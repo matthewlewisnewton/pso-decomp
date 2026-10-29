@@ -9883,6 +9883,8 @@ pso/misc/TTecKafun_802A9710.cpp:
 
 pso/misc/TTecKafun.cpp:
 	.text       start:0x802A9790 end:0x802A9A08
+	.rodata     start:0x8046FC58 end:0x8046FC68
+	.sdata      start:0x805D3E30 end:0x805D3E38
 
 pso/misc/TBGLightningCtrl.cpp:
 	.text       start:0x802A9A08 end:0x802AA2D4
