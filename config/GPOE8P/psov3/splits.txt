@@ -7782,6 +7782,9 @@ pso/object/TObject.cpp:
 
 pso/misc/TTecAnti.cpp:
 	.text       start:0x8022ACB4 end:0x8022B418
+	.rodata     start:0x8044CC68 end:0x8044CC78
+	.sdata      start:0x805D3790 end:0x805D3798
+	.sdata2     start:0x805DC798 end:0x805DC7A0
 
 pso/misc/TTecBarta.cpp:
 	.text       start:0x8022B418 end:0x8022BE64
