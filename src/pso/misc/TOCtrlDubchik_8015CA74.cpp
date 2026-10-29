@@ -112,7 +112,6 @@ struct Obj_8015D518 {
 
 extern "C" {
 void queue_destruction__7TObjectFv(void *arg0);
-s32 exchange_object_state__9TObjEnemyFls(void *, void *, int);
 u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern RecoveredGlobal_8015D314_lbl_804B0A10 bm_fs_obj_zombie_con_resource_descriptor;
 extern u32 TOCtrlDubchik__shared_resource;
@@ -177,10 +176,10 @@ void TOCtrlDubchik::sub_8015CA74() {
 void TOCtrlDubchik::complete_and_destroy() {
     u8 *arg0 = (u8 *)this;
     s32 sp8;
-    if (exchange_object_state__9TObjEnemyFls(arg0, &sp8, 1) != 0) {
+    if (((TObjEnemy *)(arg0))->exchange_object_state(&sp8, 1) != 0) {
         sp8 = 1;
         ((TObjEnemy *)arg0)->send_6x0A_enemy_state(&sp8);
-        exchange_object_state__9TObjEnemyFls(arg0, &sp8, 0);
+        ((TObjEnemy *)(arg0))->exchange_object_state(&sp8, 0);
         ((VObj_18_65b835 *)(arg0))->m77(&sp8);
         ((TOCtrlDubchik *)arg0)->sub_8015CA74();
         ((TObjCollidable *)arg0)->set_flag8();

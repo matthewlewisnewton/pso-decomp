@@ -296,7 +296,6 @@ u16 find_nearest_visible_player(void *, void *, f32);
 void queue_destruction__7TObjectFv(void *);
 f32 * dispatch_shared_handler_a__6TLobbyFl(s32);
 u8 * get_bml_motion(s32, s32);
-s32 exchange_object_state__9TObjEnemyFls(void *, void *, int);
 void transform_to_view__11TCameraCtrlFii(s32, s32);
 void *spawn_particle_effect(void *pos, s32 id);
 void *create_particle_emitter(void *pos, s32 id);
@@ -2212,10 +2211,10 @@ u8 *TObjEneSlimeOne__ct(u8 *actor, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     *(s32 *)((s8 *)actor + 0) = (s32) TObjEneSlimeOne_class_name;
     ((TObjChara *)actor)->add_flags_2e4(2);
     ((TObjEneSlimeOne *)(actor))->apply_set_data((void *)arg3);
-    if (exchange_object_state__9TObjEnemyFls(actor, &stack.sp8, 1) != 0) {
+    if (((TObjEnemy *)(actor))->exchange_object_state(&stack.sp8, 1) != 0) {
         stack.sp8 = 0;
         stack.spE = 0;
-        exchange_object_state__9TObjEnemyFls(actor, &stack.sp8, 0);
+        ((TObjEnemy *)(actor))->exchange_object_state(&stack.sp8, 0);
     }
     ((TObjEneSlimeOne *)actor)->m_3f0 = arg2;
     VecCopy((Vec *)(actor + 0x3DC), (const Vec *)(arg4));
@@ -2233,10 +2232,10 @@ u8 *init__15TObjEneSlimeOneFPviii(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
     *(s32 *)((s8 *)arg0 + 0) = (s32) TObjEneSlimeOne_class_name;
     ((TObjChara *)arg0)->add_flags_2e4(2);
     ((TObjEneSlimeOne *)(arg0))->apply_set_data((void *)arg3);
-    if (exchange_object_state__9TObjEnemyFls(arg0, &stack.sp8, 1) != 0) {
+    if (((TObjEnemy *)(arg0))->exchange_object_state(&stack.sp8, 1) != 0) {
         stack.sp8 = 0;
         stack.spE = 0;
-        exchange_object_state__9TObjEnemyFls(arg0, &stack.sp8, 0);
+        ((TObjEnemy *)(arg0))->exchange_object_state(&stack.sp8, 0);
     }
     ((TObjEneSlimeOne *)arg0)->m_3f0 = arg2;
     ((TObjEneSlimeOne *)arg0)->initialize_slime_instance_state();

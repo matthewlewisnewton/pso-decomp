@@ -434,10 +434,10 @@ s32 TBoss6MagMine__ct(s32 arg0, s32 parent, s32 arg2) {
     VecCopy__FP3VecPC3Vec(arg0 + 0x384, arg2 + 0x4C);
     ((TObjChara *)self)->add_flags_2e4(8);
     ((TBoss3Volopt *)(self))->apply_set_data((void *)arg2);
-    if (((TObjEnemy *)self)->exchange_object_state((s32)&key, (s16)1) != 0) {
+    if (((TObjEnemy *)self)->exchange_object_state(&key, (s16)1) != 0) {
         key.a = 0;
         key.c = 0;
-        ((TObjEnemy *)self)->exchange_object_state((s32)&key, (s16)0);
+        ((TObjEnemy *)self)->exchange_object_state(&key, (s16)0);
     }
     *(s32 *)((s8 *)self + 0x374) = TObjFish::get_fish_count();
     *(s32 *)((s8 *)self + 0x24) = 0;

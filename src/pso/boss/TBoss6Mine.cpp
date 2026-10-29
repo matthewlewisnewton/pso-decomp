@@ -85,7 +85,6 @@ s32 approach_angle_limited(s32, s32, s32);
 f64 TBoss5GryphonLightningWing__sub_80324CEC(f32);
 s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 f32 *dispatch_shared_handler_a__6TLobbyFl(s32);
-s32 exchange_object_state__9TObjEnemyFls(void *, void *, int);
 void *create_particle_emitter(void *pos, s32 id);
 s32 init_collision_body_parts(void *, void *, int);
 static u32 TBoss6Mine__collision_body_template[11] = {
@@ -425,10 +424,10 @@ s32 TBoss6Mine__ct(s32 arg0, s32 parent, s32 arg2) {
     ((TBoss3Volopt *)THIS)->m_388 = *(s32 *)((s8 *)arg2 + 0x60);
     ((TObjChara *)THIS)->add_flags_2e4(8);
     ((TBoss3Volopt *)THIS)->apply_set_data((void *)arg2);
-    if (exchange_object_state__9TObjEnemyFls(THIS, &tmp, 1) != 0) {
+    if (((TObjEnemy *)(THIS))->exchange_object_state(&tmp, 1) != 0) {
         tmp.a = 0;
         tmp.b = 0;
-        exchange_object_state__9TObjEnemyFls(THIS, &tmp, 0);
+        ((TObjEnemy *)(THIS))->exchange_object_state(&tmp, 0);
     }
     ((TBoss3Volopt *)THIS)->next_action = TObjFish::get_fish_count();
     ((TBoss3Volopt *)THIS)->texlist = 0;
