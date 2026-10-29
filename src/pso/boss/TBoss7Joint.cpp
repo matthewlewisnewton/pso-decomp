@@ -21,13 +21,13 @@ struct J_802EEB88 { u8 pad[0x38C]; u8 sub; };
 extern "C" {
 s32 add_radar_scaled_marker(void *, int, int, int, f32);
 extern const f32 lbl_805DEBB8;
-void initialize_enemy_state__9TObjEneDDFv(void *, s32);
+void initialize_enemy_state__9TObjEneDDFl(void *, s32);
 extern s32 __vt__11TBoss7Joint[];
 extern s32 lbl_805D3FC0;
 s32 register_object__6TLobbyFl(int);
 s32 dispatch_shared_handler_b__6TLobbyFl(int);
 s32 register_boss__6TLobbyFl(int);
-s32 reset_hp__9TObjEneDDFv(void *, int, int, int);
+s32 reset_hp__9TObjEneDDFPUcPUcPUc(void *, int, int, int);
 extern s32 lbl_80473FB8[];
 extern s32 boss7_joint_params[];
 extern const f32 lbl_805DEBBC;
@@ -101,7 +101,7 @@ s32 TBoss7Joint::init_params() {
     copy_collision_body((CollisionBody *)(&((J_802EEB88 *)this)->sub), (const CollisionBody *)lbl_80473FB8);
     set_collision_body(&((J_802EEB88 *)this)->sub);
     transform_part_positions();
-    reset_hp__9TObjEneDDFv(this, register_boss__6TLobbyFl(0x10), dispatch_shared_handler_b__6TLobbyFl(0xF), register_object__6TLobbyFl(0x10));
+    reset_hp__9TObjEneDDFPUcPUcPUc(this, register_boss__6TLobbyFl(0x10), dispatch_shared_handler_b__6TLobbyFl(0xF), register_object__6TLobbyFl(0x10));
     *(s16 *)((s8 *)this + 0x32C) = 0x4E20;
     *(s16 *)((s8 *)this + 0x2B8) = 0x4E20;
     check_state_flag_2();
@@ -122,7 +122,7 @@ u8 *TBoss7Joint__ct(u8 *boss7_joint, u8 *arg1, s16 arg2, s16 arg3, s32 arg4, s32
     *(s16 *)((s8 *)boss7_joint + 0x2C) = arg3;
     *(s32 *)((s8 *)boss7_joint + 0x3C0) = arg4;
     *(s32 *)((s8 *)boss7_joint + 0x3B8) = arg5;
-    initialize_enemy_state__9TObjEneDDFv(boss7_joint, 0x49);
+    initialize_enemy_state__9TObjEneDDFl(boss7_joint, 0x49);
     ((TBoss7Joint *)boss7_joint)->init_params();
     return boss7_joint;
 }

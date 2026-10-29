@@ -1313,8 +1313,8 @@ extern "C" {
 s32 register_object__6TLobbyFl(int);
 s32 dispatch_shared_handler_b__6TLobbyFl(int);
 s32 register_boss__6TLobbyFl(int);
-s32 reset_hp__9TObjEneDDFv(void *, int, int, int);
-s32 init_model__9TObjEneDDFv(void *, void *, int, int);
+s32 reset_hp__9TObjEneDDFPUcPUcPUc(void *, int, int, int);
+s32 init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, int, int);
 extern u8 *lbl_805D4BA4;
 void init__10TBoss2MineFPvi(u8 *arg0, s32 arg1);
 void *__dt__9TObjEneDDFv(void *arg0, s16 arg1);
@@ -1361,8 +1361,8 @@ void init__10TBoss2MineFPvi(u8 *boss2_mine, s32 arg1) {
     *(s32 *)((s8 *)boss2_mine + 0x34) = *(s32 *)((s8 *)(*(u8 **)((s8 *)lbl_805D4BA4 + 0x42C)) + 0x38);
     temp_r6 = *(u8 **)((s8 *)lbl_805D4BA4 + 0x42C);
     *(s32 *)((s8 *)boss2_mine + 0x24) = *(s32 *)((s8 *)temp_r6 + 0x2C);
-    init_model__9TObjEneDDFv(boss2_mine, (u8 *)lbl_80482CD8, 1, (int)temp_r6);
-    reset_hp__9TObjEneDDFv(boss2_mine, register_boss__6TLobbyFl(((s32 *)boss2_mine_params)[arg1]),
+    init_model__9TObjEneDDFP13CollisionBodyl(boss2_mine, (u8 *)lbl_80482CD8, 1, (int)temp_r6);
+    reset_hp__9TObjEneDDFPUcPUcPUc(boss2_mine, register_boss__6TLobbyFl(((s32 *)boss2_mine_params)[arg1]),
                             dispatch_shared_handler_b__6TLobbyFl(((s32 *)lbl_80482C90)[arg1]),
                             register_object__6TLobbyFl(((s32 *)lbl_80482C98)[arg1]));
     ((TObjEneDD *)boss2_mine)->check_state_flag_2();

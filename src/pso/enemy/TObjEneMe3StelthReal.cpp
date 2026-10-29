@@ -100,7 +100,7 @@ struct RecoveredGlobal_800F0DF0___vt__20TObjEneMe3StelthReal {
 };
 
 extern "C" {
-s32 invoke_initialization_hook__9TObjEneDDFv(void *, void *);
+s32 invoke_initialization_hook__9TObjEneDDFPv(void *, void *);
 s32 TObjEneMe3Stelth__ct();
 extern s32 __vt__20TObjEneMe3StelthReal[];
 extern s32 lbl_805D2AFC;
@@ -150,7 +150,7 @@ u8 *TObjEneMe3StelthReal__ct(TObjEneMe3StelthReal *ene_me3_stelth_real, s32 arg1
     TObjEneMe3Stelth__ct();
     *(s32 **)((s8 *)ene_me3_stelth_real + 0x18) = &(*(RecoveredGlobal_800F0DF0___vt__20TObjEneMe3StelthReal *)&__vt__20TObjEneMe3StelthReal).value;
     *(s32 *)((s8 *)ene_me3_stelth_real + 0) = (s32) lbl_805D2AFC;
-    invoke_initialization_hook__9TObjEneDDFv((void *)ene_me3_stelth_real, (void *)arg2);
+    invoke_initialization_hook__9TObjEneDDFPv((void *)ene_me3_stelth_real, (void *)arg2);
     ((TObjEneMe3Stelth *)ene_me3_stelth_real)->setup_move_bounds();
     ene_me3_stelth_real->init_common();
     ene_me3_stelth_real->mode = 0;

@@ -4407,10 +4407,10 @@ void __dl__7TObjectFPv(void *);
 void __destroy_arr(void *, void *, u32, u32);
 void *__dt__15RenderFadeStateFv(void *arg0, s16 arg1);
 void __ct__12TObjEneDD_STFP7TObject(void *, s32, s32);
-void reset_hp__9TObjEneDDFv(void *, s32, s32, s32);
-void initialize_enemy_state__9TObjEneDDFv(void *, s32);
-void init_model__9TObjEneDDFv(void *, void *, s32);
-void invoke_initialization_hook__9TObjEneDDFv(void *, s32);
+void reset_hp__9TObjEneDDFPUcPUcPUc(void *, s32, s32, s32);
+void initialize_enemy_state__9TObjEneDDFl(void *, s32);
+void init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, s32);
+void invoke_initialization_hook__9TObjEneDDFPv(void *, s32);
 void init_collision_body_parts(void *, void *, s32);
 void *__ct__14TObjCollidableFP7TObject(void *, s32);
 void __construct_array(void *, void *, void *, int, int);
@@ -4533,13 +4533,13 @@ u8 *TObjEneBm5GibonU__ct(u8 *ene_bm5_gibon_u, s32 arg1, s32 arg2) {
     __construct_array(ene_bm5_gibon_u + 0x3F4, (void *)&__ct__15RenderFadeStateFv, (void *)&__dt__15RenderFadeStateFv, 0x1C, 4);
     ((TObjPlayer *)(ene_bm5_gibon_u + 0x4B0))->construct_target_cursor_records();
     *(s32 *)((s8 *)ene_bm5_gibon_u + 0) = lbl_805D2A70;
-    invoke_initialization_hook__9TObjEneDDFv(ene_bm5_gibon_u, arg2);
+    invoke_initialization_hook__9TObjEneDDFPv(ene_bm5_gibon_u, arg2);
     ((TObjEneBm5GibonU *)ene_bm5_gibon_u)->sub_800D10A0();
     ((TObjEneDD *)ene_bm5_gibon_u)->init_position_vectors();
     if (*(s32 *)((s8 *)ene_bm5_gibon_u + 0x464) == 1) {
-        init_model__9TObjEneDDFv(ene_bm5_gibon_u, &gibon_collision_body_templates[1], 1);
+        init_model__9TObjEneDDFP13CollisionBodyl(ene_bm5_gibon_u, &gibon_collision_body_templates[1], 1);
     } else {
-        init_model__9TObjEneDDFv(ene_bm5_gibon_u, &gibon_collision_body_templates[0], 1);
+        init_model__9TObjEneDDFP13CollisionBodyl(ene_bm5_gibon_u, &gibon_collision_body_templates[0], 1);
     }
     ((TObjMotion *)ene_bm5_gibon_u)->set_field_d8((s32)gibon_u_action_table);
     ((TObjMotion *)ene_bm5_gibon_u)->set_field_dc(*(s32 *)((s8 *)(*(u8 * *)&(*(u32 *)&TObjEneBm5GibonU__model_archive)) + 0x430));
@@ -4547,15 +4547,15 @@ u8 *TObjEneBm5GibonU__ct(u8 *ene_bm5_gibon_u, s32 arg1, s32 arg2) {
     ((TObjMotion *)ene_bm5_gibon_u)->set_animation(*(s16 *)((s8 *)ene_bm5_gibon_u + 0xB8));
     ((TObjMotion *)ene_bm5_gibon_u)->set_field_b8(*(s16 *)((s8 *)ene_bm5_gibon_u + 0xB8));
     b = *(s32 *)((s8 *)ene_bm5_gibon_u + 0x464) ? 1 : 0;
-    reset_hp__9TObjEneDDFv(ene_bm5_gibon_u, ((s32 *)&(*(G_800D1D14 *)&TObjEneBm5GibonU__data_80500E78))[b],
+    reset_hp__9TObjEneDDFPUcPUcPUc(ene_bm5_gibon_u, ((s32 *)&(*(G_800D1D14 *)&TObjEneBm5GibonU__data_80500E78))[b],
         lbl_80500E80[b],
         lbl_80500E88[b]);
     ((TObjEneDD *)ene_bm5_gibon_u)->check_state_flag_1();
     *(u8 **)((s8 *)ene_bm5_gibon_u + 0x350) = TObjEneBm5GibonU__movement_parameters;
     if (*(s32 *)((s8 *)ene_bm5_gibon_u + 0x464) != 0) {
-        initialize_enemy_state__9TObjEneDDFv(ene_bm5_gibon_u, 0x3C);
+        initialize_enemy_state__9TObjEneDDFl(ene_bm5_gibon_u, 0x3C);
     } else {
-        initialize_enemy_state__9TObjEneDDFv(ene_bm5_gibon_u, 0x3B);
+        initialize_enemy_state__9TObjEneDDFl(ene_bm5_gibon_u, 0x3B);
     }
     *(f32 *)((s8 *)ene_bm5_gibon_u + 0x37C) = TObjEneBm5GibonU__data_805DA164;
     ((TObjEneDD_ST *)ene_bm5_gibon_u)->enemy_init_acquire_period(0x14);

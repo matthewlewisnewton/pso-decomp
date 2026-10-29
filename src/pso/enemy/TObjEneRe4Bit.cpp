@@ -1079,9 +1079,9 @@ void *__dt__13TObjEneRe4BitFv(void *arg0, s16 arg1) {
     return arg0;
 }
 
-int reset_hp__9TObjEneDDFv(void *, s32, s32, s32);
-int initialize_enemy_state__9TObjEneDDFv(void *, int);
-int init_model__9TObjEneDDFv(void *, void *, int);
+int reset_hp__9TObjEneDDFPUcPUcPUc(void *, s32, s32, s32);
+int initialize_enemy_state__9TObjEneDDFl(void *, int);
+int init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, int);
 extern s32 TObjEneRe4Bit__model;
 extern s32 re4_bit_texture_list;
 extern const f32 lbl_805DA784;
@@ -1092,15 +1092,15 @@ void init__13TObjEneRe4BitFPv(Bit_800ED7FC *self) {
     ((TObjEneDD *)self)->init_position_vectors();
     self->x34 = TObjEneRe4Bit__model;
     self->x24 = re4_bit_texture_list;
-    init_model__9TObjEneDDFv(self, re4_bit_model_node_desc, 1);
+    init_model__9TObjEneDDFP13CollisionBodyl(self, re4_bit_model_node_desc, 1);
     i = self->kind == 1 ? 0 : 1;
-    reset_hp__9TObjEneDDFv(self, TObjEneRe4Bit_boss_handles[i], lbl_80501058[i], lbl_80501060[i]);
+    reset_hp__9TObjEneDDFPUcPUcPUc(self, TObjEneRe4Bit_boss_handles[i], lbl_80501058[i], lbl_80501060[i]);
     ((TObjEneDD *)self)->set_state_8();
     self->x350 = re4_bit_init_params;
     if (self->kind == 1) {
-        initialize_enemy_state__9TObjEneDDFv(self, 0x20);
+        initialize_enemy_state__9TObjEneDDFl(self, 0x20);
     } else {
-        initialize_enemy_state__9TObjEneDDFv(self, 0x21);
+        initialize_enemy_state__9TObjEneDDFl(self, 0x21);
     }
     self->x37C = lbl_805DA784;
     self->x3CC = 0;
