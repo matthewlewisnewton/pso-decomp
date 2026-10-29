@@ -3,6 +3,9 @@
 
 #include "types.h"
 #include "pso/enemy/TObjEneDD_ST.h"
+#include "pso/enemy/TUnk_80494938.h"
+#include "pso/system/vector.h"
+#include <stddef.h>
 
 struct TObjEneMe1Canadin : public TObjEneDD_ST {
     virtual ~TObjEneMe1Canadin();
@@ -27,23 +30,47 @@ struct TObjEneMe1Canadin : public TObjEneDD_ST {
     void vfunc_61();
     void vfunc_28();
     void render();
-    u8 unk_374[0x30];
-    u32 m_3c0;
-    u32 m_3c4;
+    u8 unk_374[0x1C];
+    TObjChara *m_390;
+    Vec m_394;
+    Vec m_3a0;
+    f32 m_3ac;
+    u8 unk_3b0[0x10];
+    TObjEneMe1Canadin *m_3c0;
+    s32 m_3c4;
     u32 m_3c8;
-    void* m_3cc;
-    u8 _pad3D0[0x30];
-    u32 m_400;
-    u32 m_404;
-    u8 _pad408[0x4];
-    u32 m_40c;
-    u8 _pad410[0x5C];
-    u32 m_46c;
-    u32 m_470;
-    u8 _pad474[0x40];
+    TUnk_80494938 m_3cc;
+    f32 m_3e8;
+    f32 m_3ec;
+    f32 m_3f0;
+    f32 m_3f4;
+    f32 m_3f8;
+    s32 m_3fc;
+    s32 m_400;
+    s32 m_404;
+    TObject *m_408;
+    s32 m_40c;
+    s32 m_410;
+    Vec m_414[7];
+    void *m_468;
+    s32 m_46c;
+    s32 m_470;
+    s32 m_474;
+    s32 m_478;
+    s32 m_47c;
+    s32 m_480;
+    f32 m_484;
+    f32 m_488;
+    f32 m_48c;
+    Vec m_490;
+    TObject *m_49c;
+    TObject *m_4a0;
+    NJS_ARGB m_4a4;
     u32 m_4b4;
-    u32 m_4b8;
-    u8 _pad4BC[0xC];
+    s32 m_4b8;
+    s32 m_4bc;
+    s32 m_4c0;
+    s32 m_4c4;
     u16 m_4c8;
     void update_by_state(s32 arg1);
     void update_walk_animation(s32 arg1);
@@ -67,10 +94,14 @@ struct TObjEneMe1Canadin : public TObjEneDD_ST {
     void setup_enemy();
     void *init(void *arg1, void *arg2, void *arg3);
     static void *create(void *arg0);
-    u8 unk_4AE[0x1E];
 };
 
 typedef char TObjEneMe1Canadin_size[sizeof(TObjEneMe1Canadin) == 0x4CC ? 1 : -1];
+
+typedef char CanadinTargetOffset[offsetof(TObjEneMe1Canadin, m_390) == 0x390 ? 1 : -1];
+typedef char CanadinFadeOffset[offsetof(TObjEneMe1Canadin, m_3cc) == 0x3CC ? 1 : -1];
+typedef char CanadinHistoryOffset[offsetof(TObjEneMe1Canadin, m_414) == 0x414 ? 1 : -1];
+typedef char CanadinColorOffset[offsetof(TObjEneMe1Canadin, m_4b4) == 0x4B4 ? 1 : -1];
 
 extern "C" {
 void *TObjEneMe1CanadinLeader__ct(void *arg0, void *a, void *b);
@@ -85,7 +116,7 @@ void TObjEneMe1CanadinLeader__vt104(void *arg0);
 u8 TObjEneMe1CanadinLeader__vt107(void *arg0);
 void TObjEneMe1CanadinLeader__vt108(u8 *arg0, s32 arg1);
 void TObjEneMe1CanadinLeader__vt111(void *arg0);
-u8 *TObjEneMe1Canadin__ct(u8 *arg0, s32 arg1, u8 *arg2, s32 arg3, s16 arg4, s16 arg5);
+u8 *TObjEneMe1Canadin__ct(u8 *arg0, s32 arg1, u8 *arg2, s32 arg3, s32 arg4, s32 arg5);
 void TObjEneMe1Canadin__sub_8009BFF8(u8 *arg0, s32 arg1);
 void TObjEneMe1Canadin__sub_8009C178(u8 *arg0, s32 arg1);
 void TObjEneMe1Canadin__sub_8009C2EC(u8 *arg0, s32 arg1);
