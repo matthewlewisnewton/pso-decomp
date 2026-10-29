@@ -5433,6 +5433,9 @@ pso/unk/text_801782A0.cpp:
 
 pso/misc/TOSwitchTimer.cpp:
 	.text       start:0x801783BC end:0x8017866C
+	.rodata     start:0x80442C90 end:0x80442CA0
+	.sdata      start:0x805D3188 end:0x805D3190
+	.sdata2     start:0x805DBA18 end:0x805DBA28
 
 pso/unk/text_8017866C.cpp:
 	.text       start:0x8017866C end:0x801786C4
