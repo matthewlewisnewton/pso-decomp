@@ -716,12 +716,11 @@ void TObjEneDellBiter::fn_80305688() {
 
 void TObjEneDellBiter::fn_80305684() {}
 
-void TObjEneDellBiter::vfunc_104(f32 distance) {
+s32 TObjEneDellBiter::vfunc_104(f32 distance) {
     if (vfunc_99() != 0) {
-        select_and_apply_target(distance);
-        return;
+        return select_and_apply_target(distance);
     }
-    select_nearest_target(distance);
+    return select_nearest_target(distance);
 }
 
 void TObjEneDellBiter::sub_803055C8() {
