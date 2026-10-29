@@ -6,8 +6,10 @@
 #include "pso/enemy/TUnk_80494938.h"
 
 struct TObjEneMe3Shinowa : public TObjEneDD_ST {
+    TObjEneMe3Shinowa(TObject *parent);
     virtual ~TObjEneMe3Shinowa();
     virtual void run_task();
+    virtual void render();
     virtual void dispatch_action(u32, s32);
     virtual s32 vfunc_104(f32);
     virtual void vfunc_88();
