@@ -7958,8 +7958,10 @@ pso/effect/TUnk_804CCC68.cpp:
 
 pso/misc/TTecSifta.cpp:
 	.text       start:0x8023AC88 end:0x8023B220
-	.rodata     start:0x8044DC18 end:0x8044DC20
+	.rodata     start:0x8044DC08 end:0x8044DC20
 	.data       start:0x804CCC90 end:0x804CCCB0
+	.sdata      start:0x805D3820 end:0x805D3828
+	.sdata2     start:0x805DC940 end:0x805DC948
 
 pso/misc/TSlicerHistory_8023B220.cpp:
 	.text       start:0x8023B220 end:0x8023B388
