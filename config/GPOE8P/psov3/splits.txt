@@ -18,6 +18,7 @@ pso/unk/text_8000F740.cpp:
 
 pso/misc/TKeyBoardControl_8000F764.cpp:
 	.text       start:0x8000F764 end:0x8000FD54
+	.bss        start:0x804FE020 end:0x804FE120
 
 pso/player/TObjPlayer_80011014.cpp:
 	.text       start:0x8000FD54 end:0x80019848
