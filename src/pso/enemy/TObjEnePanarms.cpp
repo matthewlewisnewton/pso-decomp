@@ -37,7 +37,6 @@ extern const f32 TObjEnePanarms__data_805DA530;
 void TObjEnePanarms__sub_800E0D1C(u8 *arg0);
 s32 TObjEnePanarms__sub_800E1774(void *);
 extern f32 lbl_8043CD98[];
-extern f32 lbl_8043CD80[];
 extern const f32 lbl_805DA54C;
 extern const f32 lbl_805DA574;
 extern const f32 lbl_805DA578;
@@ -1199,41 +1198,6 @@ void TObjEnePanBARA::attack_target_player(s32 arg1) {
 #pragma auto_inline off
 #pragma dont_inline off
 #pragma fp_contract on
-s32 TObjEnePanarms__sub_800E1774(void *arg0) {
-    u8 result;
-    TObjEnePanBARA *self = (TObjEnePanBARA *)arg0;
-    Vec_800E0A44 direction;
-    if (((TObjEnePanarms *)self)->get_state_flag()) {
-        result = 0;
-        s32 target;
-        if (!TObjEnePanarms__sub_800E2FB4((O_800E2FB4 *)self->other_half)) {
-            target = ((TObjEnePanBARA *)self)->find_nearest_enemy_with_flag_alt_target((s32)&direction, lbl_8043CD80[self->part_index]);
-            self->target_id = target;
-            if (target != 0xFFFF) {
-                s32 angle = (s32)(TObjEnePanarms__data_8043CDD0 * ((f64 (*)(f32, f32))atan2_float)(direction.x, direction.z));
-                if (angle_difference_abs(self->rotation_y, angle) < 0x400) {
-                    result = 1;
-                }
-            }
-        }
-        return result;
-    } else {
-        result = 0;
-        s32 target;
-        if (!TObjEnePanarms__sub_800E2FB4((O_800E2FB4 *)self->other_half)) {
-            target = find_nearest_visible_player(self, &direction, lbl_8043CD80[self->part_index]);
-            self->target_id = target;
-            if (target != 0xFFFF) {
-                s32 angle = (s32)(TObjEnePanarms__data_8043CDD0 * ((f64 (*)(f32, f32))atan2_float)(direction.x, direction.z));
-                if (angle_difference_abs(self->rotation_y, angle) < 0x400) {
-                    result = 1;
-                }
-            }
-        }
-        return result;
-    }
-}
-
 s32 try_move_with_detour__14TObjEnePanarmsFPvPv(u8 *arg0, Vec_800E18B0 *arg1) {
     Vec_800E18B0 dir;
     Vec_800E18B0 t;
