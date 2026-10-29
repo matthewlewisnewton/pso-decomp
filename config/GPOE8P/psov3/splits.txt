@@ -9731,6 +9731,9 @@ pso/misc/TNeedleShoot_802A4A44.cpp:
 
 pso/enemy/TObjEneMe1Gee_802A4BB8.cpp:
 	.text       start:0x802A4BB8 end:0x802A4D74
+	.rodata     start:0x80466690 end:0x804666A8
+	.sdata      start:0x805D3DE0 end:0x805D3DE8
+	.sbss       start:0x805D6660 end:0x805D6668
 
 pso/unk/text_802A4D74.cpp:
 	.text       start:0x802A4D74 end:0x802A4DE8
