@@ -2384,7 +2384,9 @@ pso/item/TItem.cpp:
 
 pso/item/TItemAttacker.cpp:
 	.text       start:0x801031CC end:0x8010361C
+	.rodata     start:0x8043E028 end:0x8043E048
 	.data       start:0x8049EB40 end:0x8049EB58
+	.sdata      start:0x805D2B68 end:0x805D2B70
 
 pso/item/TItemBuff.cpp:
 	.text       start:0x8010361C end:0x80103674
