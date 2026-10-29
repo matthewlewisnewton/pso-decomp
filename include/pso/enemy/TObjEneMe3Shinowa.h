@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "pso/enemy/TObjEneDD_ST.h"
+#include "pso/enemy/TUnk_80494938.h"
 
 struct TObjEneMe3Shinowa : public TObjEneDD_ST {
     virtual ~TObjEneMe3Shinowa();
@@ -34,9 +35,33 @@ struct TObjEneMe3Shinowa : public TObjEneDD_ST {
     void vfunc_62();
     void vfunc_61();
     void vfunc_28();
-    u8 unk_3C0[0xC];
-    void* m_3e8;
+    s32 m_3c0;
+    u32 state_flags;
+    f32 initial_y;
+    f32 render_y_offset;
+    u32 effect_color;
+    s32 m_3d4;
+    s32 m_3d8;
+    s16 m_3dc;
+    u8 unk_3de[2];
+    TObject *effect_3e0;
+    TObject *effect_3e4;
+    TUnk_80494938 fade;
+    s32 m_404;
+    s32 m_408;
+    s32 m_40c;
+    f32 m_410;
+    f32 m_414;
+    f32 m_418;
+    f32 m_41c;
+    f32 m_420;
+    TObject *effect_424;
+    TObject *effect_428;
     void copy_position_vector();
 };
+
+typedef char ShinowaFadeOffset[offsetof(TObjEneMe3Shinowa, fade) == 0x3e8 ? 1 : -1];
+typedef char ShinowaEffectsOffset[offsetof(TObjEneMe3Shinowa, effect_424) == 0x424 ? 1 : -1];
+typedef char ShinowaBaseSize[sizeof(TObjEneMe3Shinowa) == 0x42c ? 1 : -1];
 
 #endif
