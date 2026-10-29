@@ -11241,6 +11241,7 @@ pso/boss/TBoss5GryphonLightningEff.cpp:
 
 pso/misc/TLobby_803255F8.cpp:
 	.text       start:0x803255F8 end:0x80325660
+	.rodata     start:0x804766F0 end:0x80476708
 
 pso/unk/text_80325660.cpp:
 	.text       start:0x80325660 end:0x803256F0
