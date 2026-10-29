@@ -277,11 +277,11 @@ s32 TObjEneGibbles::spawn_ground_impact_effects(const Vec *pos, f32 farg0) {
         particle = (TParticleCtrl *)spawn_particle_effect(&hit->surface->point_38, 0x49);
         if (particle != NULL) {
             attach_particle_model((u8 *)particle, TParticleCtrl::get_particle_model(2), TParticleCtrl::get_instance(), 0, 1, TObjEneGibbles__data_805DE7EC);
-            particle->fn_800822D4(farg0, TObjEneGibbles__data_805DE7EC);
+            particle->set_scale(farg0, TObjEneGibbles__data_805DE7EC);
         }
         particle = (TParticleCtrl *)spawn_particle_effect(&hit->surface->point_38, 0xA4);
         if (particle != NULL) {
-            particle->fn_800822D4(farg0, lbl_805DE7F0);
+            particle->set_scale(farg0, lbl_805DE7F0);
         }
         return 1;
     }

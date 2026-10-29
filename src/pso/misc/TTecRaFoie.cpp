@@ -148,7 +148,7 @@ void TUnk_804CCB28::spawn_rafoie_explosion_bursts() {
             p = spawn_particle_effect_with_flags(&higher, row->entry, mode);
         }
         if (p != NULL) {
-            ((TParticleCtrl *)p)->fn_800822D4(rafoie_burst_table[*(u16 *)&this->m_20].entries[i].scale, rafoie_burst_table[*(u16 *)&this->m_20].entries[i].scale);
+            ((TParticleCtrl *)p)->set_scale(rafoie_burst_table[*(u16 *)&this->m_20].entries[i].scale, rafoie_burst_table[*(u16 *)&this->m_20].entries[i].scale);
         }
     }
 }

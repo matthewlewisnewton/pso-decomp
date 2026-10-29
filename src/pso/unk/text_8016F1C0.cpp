@@ -255,7 +255,7 @@ void TOMineTrap::vfunc_82() {
     default:
         r = (u32)spawn_particle_effect(arg0->sub, 0x45);
         if (r != 0U) {
-            ((TParticleCtrl *)r)->fn_800822D4(lbl_805DB864, lbl_805DB864);
+            ((TParticleCtrl *)r)->set_scale(lbl_805DB864, lbl_805DB864);
         }
         break;
     case 15:
