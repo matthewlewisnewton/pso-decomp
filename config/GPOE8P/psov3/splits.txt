@@ -7763,6 +7763,7 @@ pso/misc/TLobby_802268F4.cpp:
 pso/misc/TLoadCtrl_80227390.cpp:
 	.text       start:0x80227390 end:0x80227A2C
 	.rodata     start:0x8044C890 end:0x8044C898
+	.data       start:0x804CB838 end:0x804CB850
 
 pso/misc/TLobby_80227A2C.cpp:
 	.text       start:0x80227A2C end:0x80228BEC
