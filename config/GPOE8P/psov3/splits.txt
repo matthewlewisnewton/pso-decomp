@@ -9308,6 +9308,8 @@ pso/misc/TKeyBoardControl_80290CB0.cpp:
 
 pso/unk/text_80290D1C.cpp:
 	.text       start:0x80290D1C end:0x80290DEC
+	.rodata     start:0x80464CB0 end:0x80464E30
+	.sdata2     start:0x805DD958 end:0x805DD960
 
 pso/unk/text_80290DEC.cpp:
 	.text       start:0x80290DEC end:0x80290E28
