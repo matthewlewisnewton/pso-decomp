@@ -1344,7 +1344,7 @@ void TObjEneMerillLia::beast_update_group_chase() {
                 Vec_800D6110 b = arg0->f2a8->p2fc;
                 dist = enemy_backstep_from_point(arg0, &b, arg0->f3d4);
             }
-            ((TObjPlayer *)arg0)->update_angle(((s32 *)arg0->f350)[2], arg0->ang308);
+            ((TObjEnemy *)arg0)->turn_toward_direction(((s32 *)arg0->f350)[2], (Vec *)arg0->ang308);
             arg0->f374--;
             if (dist < (arg0->f398 + arg0->model->radius) * (arg0->f398 + arg0->model->radius) || arg0->f374 < 0) {
                 arg0->f328 = 2;

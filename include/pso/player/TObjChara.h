@@ -21,8 +21,8 @@ public:
     void add_flags_2e4(u32);
     s16 get_stats_atp_max();
     s16 sub_800194C4();
-    f32 get_target_value();
-    s32 update_field_318();
+    f32 get_attack_range();
+    s32 get_attack_angle();
     s16 test_immunity_flags(s32);
     s16 get_actor_attack_params_atp_min();
     u8 obj_testFlag_2E4(u32);

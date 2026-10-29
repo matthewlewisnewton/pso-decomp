@@ -1,3 +1,4 @@
+#include "pso/player/PlayerAttackParams.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
 #include "types.h"
 #include "pso/player/TObjPlayer.h"
@@ -706,7 +707,6 @@ u8 *get_enemy_entity(u16);
 #define mult_vec_array__10TObjPlayerFUll ((s32 (*)(int, s32, void*, int))(mult_vec_array__10TObjPlayerFUll))
 void TObjPlayer__sub_800A54B4(u8 *arg0);
 #define apply_lookup_entry_effect__12TObjEneSaverFv ((s32 (*)(void*))(apply_lookup_entry_effect__12TObjEneSaverFv))
-s32 update_angle__10TObjPlayerFlPv(void *, s32, void *);
 s32 check_path_obstructed(void *, void *);
 s32 obj_testFlags30__14TObjCollidableFUl(void *, s32);
 u16 get_entity_id(void *);
@@ -1090,7 +1090,7 @@ void TObjPlayer__sub_800A54B4(u8 *arg0) {
             s32 a;
             VecCopy((Vec *)&d, (const Vec *)(F(u8 *, 0x2A8) + 0x2FC));
             subtract_vector(&d, arg0 + 0x2FC);
-            a = update_angle__10TObjPlayerFlPv(arg0, *(s32 *)((s8 *)(F(u8 *, 0x350)) + 8), &d);
+            a = ((TObjEnemy *)arg0)->turn_toward_direction(*(s32 *)((s8 *)(F(u8 *, 0x350)) + 8), (Vec *)&d);
             if (!(F(s32, 0x30) & 0x800000)) {
                 apply_actor_gravity((TObjEnemy *)arg0, (s32 *)(0), 0.0f);
             }
@@ -1269,7 +1269,7 @@ s32 TObjEneSaver::is_target_in_attack_range() {
             flags = *(s32 *)&this->m_374;
             if (flags & 8) {
                 *(s16 *)((s8 *)arg0 + 0x37C) = 2;
-                if (dist <= (var_f29 + ((TObjPlayer *)(player_object_ptr_array[*(s16 *)((s8 *)arg0 + 0x37C)]))->get_pos_x()) * (var_f29 + ((TObjPlayer *)(player_object_ptr_array[*(s16 *)((s8 *)arg0 + 0x37C)]))->get_pos_x()) && ang <= ((TObjPlayer *)(player_object_ptr_array[*(s16 *)((s8 *)arg0 + 0x37C)]))->get_field_0c()) {
+                if (dist <= (var_f29 + ((AttackParams *)(player_object_ptr_array[*(s16 *)((s8 *)arg0 + 0x37C)]))->get_attack_range()) * (var_f29 + ((AttackParams *)(player_object_ptr_array[*(s16 *)((s8 *)arg0 + 0x37C)]))->get_attack_range()) && ang <= ((AttackParams *)(player_object_ptr_array[*(s16 *)((s8 *)arg0 + 0x37C)]))->get_attack_angle()) {
                     return 1;
                 }
             } else if (flags & 0x10) {
@@ -1280,7 +1280,7 @@ s32 TObjEneSaver::is_target_in_attack_range() {
                 }
             } else {
                 *(s16 *)((s8 *)arg0 + 0x37C) = 0;
-                if (dist <= (var_f29 + ((TObjPlayer *)(player_object_ptr_array[*(s16 *)((s8 *)arg0 + 0x37C)]))->get_pos_x()) * (var_f29 + ((TObjPlayer *)(player_object_ptr_array[*(s16 *)((s8 *)arg0 + 0x37C)]))->get_pos_x()) && ang <= ((TObjPlayer *)(player_object_ptr_array[*(s16 *)((s8 *)arg0 + 0x37C)]))->get_field_0c()) {
+                if (dist <= (var_f29 + ((AttackParams *)(player_object_ptr_array[*(s16 *)((s8 *)arg0 + 0x37C)]))->get_attack_range()) * (var_f29 + ((AttackParams *)(player_object_ptr_array[*(s16 *)((s8 *)arg0 + 0x37C)]))->get_attack_range()) && ang <= ((AttackParams *)(player_object_ptr_array[*(s16 *)((s8 *)arg0 + 0x37C)]))->get_attack_angle()) {
                     return 1;
                 }
             }

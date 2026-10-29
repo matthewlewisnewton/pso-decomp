@@ -462,7 +462,6 @@ extern const f32 lbl_805DEF88;
 extern const f32 lbl_805DEF8C;
 void render__14TObjEneDolmOlmFv(Ene_803021AC *arg0);
 s32 apply_actor_gravity(void *, int, f32);
-s32 update_angle__10TObjPlayerFlPv(void *, s32, void *);
 s32 is_locally_controlled__10TObjPlayerFPv(void *);
 s32 get_entity_id(void *);
 f64 atan2_float(f32, f32);
@@ -1376,7 +1375,7 @@ s32 TObjEneDolmOlm__sub_80301C3C(void *arg0_) {
                 }
                 f32 d = horizontal_distance_squared(*(u8 **)((s8 *)arg0 + 0x2A8) + 0x2FC, arg0 + 0x38);
                 for (s32 i = 0; i < (*(Tgt_80301C3C **)((s8 *)arg0 + 0x2A8))->count; i++) {
-                    if (d > ((*(Tgt_80301C3C **)((s8 *)arg0 + 0x2A8))->arr[i].r + ((TObjChara *)arg0)->get_target_value()) * ((*(Tgt_80301C3C **)((s8 *)arg0 + 0x2A8))->arr[i].r + ((TObjChara *)arg0)->get_target_value())) {
+                    if (d > ((*(Tgt_80301C3C **)((s8 *)arg0 + 0x2A8))->arr[i].r + ((TObjChara *)arg0)->get_attack_range()) * ((*(Tgt_80301C3C **)((s8 *)arg0 + 0x2A8))->arr[i].r + ((TObjChara *)arg0)->get_attack_range())) {
                         *(s16 *)((s8 *)arg0 + 0x328) = 2;
                         break;
                     }
@@ -1459,7 +1458,7 @@ s32 TObjEneDolmOlm__sub_8030177C(void *arg0_) {
             Vec_8030177C v;
             VecCopy((Vec *)&v, (const Vec *)&arg0->target->f2fc);
             subtract_vector(&v, &arg0->f2fc);
-            if (update_angle__10TObjPlayerFlPv(arg0, arg0->move->turn, &v) < (*(Param_8030177C ** *)&TObjEneDolmOlm__behavior_params_by_variant)[arg0->kind]->angle) {
+            if (((TObjEnemy *)arg0)->turn_toward_direction(arg0->move->turn, (Vec *)&v) < (*(Param_8030177C ** *)&TObjEneDolmOlm__behavior_params_by_variant)[arg0->kind]->angle) {
                 arg0->f328 = 3;
                 arg0->fb8 = 0xC;
                 play_sound_effect((void *)copy_target_state__14TObjEnePanarmsFPv(arg0, 0x4003A804), &arg0->pos, 0, 0);
