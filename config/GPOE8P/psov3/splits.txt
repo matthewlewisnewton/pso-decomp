@@ -7164,6 +7164,8 @@ pso/misc/TSceneSora.cpp:
 pso/misc/TLobby_80207644.cpp:
 	.text       start:0x80207644 end:0x80207D44
 	.rodata     start:0x8044BA48 end:0x8044BA50
+	.bss        start:0x80513920 end:0x805139F8
+	.sdata2     start:0x805DC610 end:0x805DC618
 
 pso/ui/TAdStorySelectGC.cpp:
 	.text       start:0x80207D44 end:0x80207DA8
