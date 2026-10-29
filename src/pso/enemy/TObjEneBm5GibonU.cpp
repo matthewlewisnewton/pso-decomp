@@ -1756,12 +1756,12 @@ int spawn_landing_effect__16TObjEneBm5GibonUFPvPv(Ene_800CCC6C *arg0, void *arg1
         if (p != NULL) {
             attach_particle_model((u8 *)p, (s32)(TParticleCtrl::get_particle_model(2)), (s32)(TParticleCtrl::get_instance()), 0, 1, (f32)TObjEneBm5GibonU__data_805DA168);
             if (arg0->f464 == 1) {
-                ((TParticleCtrl *)p)->fn_800822D4(TObjEneBm5GibonU__data_805DA16C, TObjEneBm5GibonU__data_805DA168);
+                ((TParticleCtrl *)p)->set_scale(TObjEneBm5GibonU__data_805DA16C, TObjEneBm5GibonU__data_805DA168);
             }
         }
         p = spawn_particle_effect(hit->obj + 0x38, 0xA4);
         if (p != NULL && arg0->f464 == 1) {
-            ((TParticleCtrl *)p)->fn_800822D4(TObjEneBm5GibonU__data_805DA16C, TObjEneBm5GibonU__data_805DA168);
+            ((TParticleCtrl *)p)->set_scale(TObjEneBm5GibonU__data_805DA16C, TObjEneBm5GibonU__data_805DA168);
         }
         return fn_800D88E4(&arg0->pos);
     }
