@@ -10887,6 +10887,9 @@ pso/enemy/TObjEneMe3SinowZoa.cpp:
 	.data       start:0x804E87A8 end:0x804E8B88
 	.sdata2     start:0x805DF358 end:0x805DF368
 
+pso/boss/Boss5GryphonActionScripts.cpp:
+	.data       start:0x804E8D58 end:0x804EC2B0
+
 pso/enemy/TObjEneMe3SinowZoa_8031B124.cpp:
 	.text       start:0x8031B124 end:0x8031B170
 
