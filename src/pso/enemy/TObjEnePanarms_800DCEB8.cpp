@@ -30,8 +30,6 @@ struct Stack_800DD9A0 {
     f32 sp18;
 };
 
-
-
 struct Vec_800DECC4 { f32 x; f32 y; f32 z; };
 
 struct Obj_800DECC4 { u8 pad[0x38]; Vec_800DECC4 pos; u8 pad2[0x248 - 0x44]; u8 f248[0x384 - 0x248]; f32 f384; };
@@ -43,10 +41,6 @@ struct Obj_800DE124 { u8 pad0[0x60]; s32 f60; u8 pad1[0x388 - 0x64]; s32 f388; u
 struct Obj_800DE2D0 { u8 pad0[0x30]; u32 f30; u8 pad1[0x374 - 0x34]; s32 f374; u8 pad2[0x3AC - 0x378]; u8 f3AC[0x18]; u8 f3C4[4]; };
 
 struct Obj_800DE390 { u8 pad0[0x374]; s32 f374; u8 pad1[0x3E4 - 0x378]; s32 f3E4; s32 f3E8; };
-
-struct Obj_800DE9F0 { u8 pad0[0x1C]; u16 f1C; u8 pad1[0x60 - 0x1E]; s32 f60; };
-
-struct Obj_800DEA88 { u8 pad0[0x60]; s32 f60; u8 pad1[0x38C - 0x64]; s32 f38C; };
 
 struct Obj_800DED30;
 typedef void (Obj_800DED30::*PMF_800DED30)();
@@ -165,13 +159,7 @@ extern const f32 lbl_805DA4C4;
 extern const f32 lbl_805DA4C8;
 extern const f32 lbl_805DA4CC;
 extern const f32 lbl_805DA4D0;
-void *__dt__9TObjEnemyFv(TObjEnemy *arg0, s16 arg1);
 void free_collision_body_parts(void *);
-void __dl__7TObjectFPv(s32);
-s32 __destroy_arr(void *, void *, int, int);
-extern s32 __dt__15RenderFadeStateFv[];
-extern s32 __vt__14TObjEnePanarms[];
-u8 *__dt__14TObjEnePanarmsFv(u8 *arg0, s16 arg1);
 void TObjEnePanarms__sub_800DEEF8(void* p);
 void TLobby__sub_8001FE7C(void*, int);
 int post_translate_matrix(void*);
@@ -582,8 +570,6 @@ void TObjEnePanarms::fn_800DDAD8() {
 #pragma push
 #pragma fp_contract on
 struct Vec_800DEB48;
-struct Obj_800DE9F0;
-struct Obj_800DEA88;
 void TObjEnePanarms::fn_800DDC30() {
     f32 s;
     if (((Obj_800DDC30 *)this)->fc0 >= TObjEnePanarms__data_805DA4A0 && ((Obj_800DDC30 *)this)->fc0 <= lbl_805DA4B8) {
@@ -913,13 +899,13 @@ s32 TObjEnePanarms::find_combine_position(void *p) {
 void TObjEnePanarms::turn_toward_target(s32 arg1) {
     f32 sp[3];
     if (this->find_nearest_enemy_with_flag((s32)sp, (f32)lbl_805DA4F0) == 0xFFFF) {
-        if (((Obj_800DE9F0 *)this)->f1C & 1) {
+        if (entity_id & 1) {
             arg1 *= -1;
         }
-        ((Obj_800DE9F0 *)this)->f60 = ((Obj_800DE9F0 *)this)->f60 + arg1;
+        rotation_y = rotation_y + arg1;
         return;
     }
-    ((Obj_800DE9F0 *)this)->f60 = approach_angle_limited(((Obj_800DE9F0 *)this)->f60, (s32) (TObjEnePanarms__data_8043CD20 * atan2_float(sp[0], sp[2])), arg1);
+    rotation_y = approach_angle_limited(rotation_y, (s32) (TObjEnePanarms__data_8043CD20 * atan2_float(sp[0], sp[2])), arg1);
 }
 
 u16 TObjEnePanarms::turn_to_nearest_player(s32 arg1, s32 arg2) {
@@ -931,11 +917,11 @@ u16 TObjEnePanarms::turn_to_nearest_player(s32 arg1, s32 arg2) {
             var = 0;
         } else {
             var = -0x1800;
-            if (((Obj_800DEA88 *)this)->f38C == 1) {
+            if ((s32)m_38c == 1) {
                 var *= -1;
             }
         }
-        ((Obj_800DEA88 *)this)->f60 = approach_angle_limited(((Obj_800DEA88 *)this)->f60, var + (s32) (TObjEnePanarms__data_8043CD20 * atan2_float(sp[0], sp[2])), arg1);
+        rotation_y = approach_angle_limited(rotation_y, var + (s32) (TObjEnePanarms__data_8043CD20 * atan2_float(sp[0], sp[2])), arg1);
     }
     return t;
 }
@@ -1049,24 +1035,9 @@ void TObjEnePanarms__sub_800DEEF8(void* p) { push_matrix(p); post_translate_matr
 
 #include "pso/misc/RenderFadeState.h"
 
-// The camera-obstruction fade (vtable __vt__15RenderFadeState) keeps its vtable pointer at +0x14.
-struct VFade_800DEF5C {
-    u8 pad[0x14];
-    virtual void m0();
-    virtual void m1();
-    virtual void m2();
-    virtual void m3();
-    virtual void m4();
-    virtual void m5();
-    virtual void begin_draw();
-    virtual void end_draw();
-};
-
 extern "C" {
 s32 is_split_screen();
 s32 get_camera_mode__11TCameraCtrlFv();
-void update__15RenderFadeStateFv(RenderFadeState *);
-s32 defer_render__7TObjectFv(void *);
 extern s32 model_render_flags;
 extern s32 saved_model_render_flags;
 s32 submit_cursor_candidate(void *, s32);
@@ -1074,26 +1045,11 @@ s32 advance_animation_playback(void *);
 s32 minimap_render_dot(void *, s32, s32, s32);
 }
 
-struct VObj_18_800DEF5C {
-    u8 pad[0x18];
-    virtual void m0();
-    virtual void m1();
-    virtual void m2();
-    virtual void m3();
-    virtual void m4();
-    virtual void m5();
-    virtual void m6();
-    virtual void m7();
-    virtual s32 m8(f32, f32);
-};
-
-struct Obj_800DEF5C { u8 pad[0x400]; RenderFadeState fades[4]; };
-
 void TObjEnePanarms::render() {
     s32 cam;
     RenderFadeState *fade;
     s32 draw;
-    if (((VObj_18_800DEF5C *)this)->m8(lbl_805DA4F0, TObjEnePanarms__data_805DA490) == 0) {
+    if (update_object_view_visibility(lbl_805DA4F0, TObjEnePanarms__data_805DA490) == 0) {
         return;
     }
     cam = 0;
@@ -1105,18 +1061,18 @@ void TObjEnePanarms::render() {
     }
     TObjPlayer::toggle_particle_effect();
     saved_model_render_flags = model_render_flags;
-    fade = &((Obj_800DEF5C *)this)->fades[cam];
-    update__15RenderFadeStateFv(fade);
+    fade = &camera_fades[cam];
+    fade->update();
     if (fade->updateFromCamera(&this->m_2fc) != 0) {
-        ((VFade_800DEF5C *)fade)->begin_draw();
+        fade->set_flags_and_apply_damage_color();
         draw = 1;
-        if (defer_render__7TObjectFv(this) != 0) {
+        if (defer_render() != 0) {
             draw = 0;
         }
         if (draw != 0) {
             TObjEnePanarms__sub_800DEEF8(this);
         }
-        ((VFade_800DEF5C *)fade)->end_draw();
+        fade->clear_flag_and_notify();
     } else {
         model_render_flags |= 0x01000000;
         TObjEnePanarms__sub_800DEEF8(this);
@@ -1165,22 +1121,13 @@ void TObjEnePanarms::destroy_handles() {
     }
 }
 
-u8 *__dt__14TObjEnePanarmsFv(u8 *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__14TObjEnePanarms;
-        TObjFish::init_state_1(*(u8 **)((s8 *)arg0 + 0x39C));
-        queue_destruction__7TObjectFv(*(u8 **)((s8 *)arg0 + 0x3E4));
-        queue_destruction__7TObjectFv(*(u8 **)((s8 *)arg0 + 0x3E8));
-        free_collision_body_parts(arg0);
-        ((TObjEnePanarms *)arg0)->m_390 = 0;
-        ((TObjEnePanarms *)arg0)->destroy_handles();
-        __destroy_arr(arg0 + 0x400, __dt__15RenderFadeStateFv, 0x1C, 4);
-        __dt__9TObjEnemyFv((TObjEnemy *)arg0, 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv((s32) arg0);
-        }
-    }
-    return arg0;
+TObjEnePanarms::~TObjEnePanarms() {
+    TObjFish::init_state_1((void *)m_39c);
+    ((TObject *)m_3e4)->queue_destruction();
+    ((TObject *)m_3e8)->queue_destruction();
+    free_collision_body_parts(this);
+    m_390 = 0;
+    destroy_handles();
 }
 
 void TObjEnePanarms::free_data() {
