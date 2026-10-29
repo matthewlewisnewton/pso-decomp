@@ -5218,6 +5218,7 @@ pso/misc/TOMineIcon01.cpp:
 pso/misc/TOMineIcon02.cpp:
 	.text       start:0x8017170C end:0x801719E4
 	.rodata     start:0x80442230 end:0x80442238
+	.sdata2     start:0x805DB8A8 end:0x805DB8C0
 
 pso/misc/TOMineIcon03.cpp:
 	.text       start:0x801719E4 end:0x80171A98
