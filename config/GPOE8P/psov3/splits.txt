@@ -4726,6 +4726,10 @@ pso/npc/TObjNpcSecretaryBase.cpp:
 
 pso/npc/TObjNpcSoldierBase.cpp:
 	.text       start:0x8014D794 end:0x8014D96C
+	.rodata     start:0x8043FEE8 end:0x8043FF28
+	.data       start:0x804AB970 end:0x804AB988
+	.sdata      start:0x805D2E60 end:0x805D2E68
+	.sbss       start:0x805D5850 end:0x805D5858
 
 pso/npc/TObjNpcSoldierMacho.cpp:
 	.text       start:0x8014D96C end:0x8014DADC

@@ -7,6 +7,20 @@
 #include "pso/npc/TObjNpcLappy.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
+#include "pso/system/BmlResourceDescriptor.h"
+
+#pragma readonly_strings on
+
+extern "C" {
+extern const char *bm_n_gunb2_i_body_motion_names[1];
+extern const char *bm_n_gunb2_i_body_model_names[2];
+const char *bm_n_gunb2_i_body_motion_names[1] = { NULL };
+__declspec(section ".data") const char *bm_n_gunb2_i_body_model_names[2] = { "n_gunb2_i_body.nj", NULL };
+BmlResourceDescriptor TObjNpcSoldierBase__body_resource_desc = { "bm_n_gunb2_i_body.bml", bm_n_gunb2_i_body_model_names, bm_n_gunb2_i_body_motion_names, 1, 0 };
+const char *TObjNpcSoldierBase__name = "TObjNpcSoldierBase";
+u32 TObjNpcSoldierBase__shared_model_resource;
+}
+
 
 struct RecoveredGlobal_8014D7CC_lbl_804AB978 { s32 value; u8 remaining[0xC]; };
 typedef char RecoveredGlobal_8014D7CC_lbl_804AB978_size[sizeof(RecoveredGlobal_8014D7CC_lbl_804AB978) == 0x10 ? 1 : -1];
@@ -18,10 +32,10 @@ struct RecoveredGlobal_8014D874___vt__18TObjNpcSoldierBase {
 
 extern "C" {
 u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
-extern RecoveredGlobal_8014D7CC_lbl_804AB978 TObjNpcSoldierBase__body_resource_desc;
+extern BmlResourceDescriptor TObjNpcSoldierBase__body_resource_desc;
 extern u32 TObjNpcSoldierBase__shared_model_resource;
 extern s32 __vt__18TObjNpcSoldierBase[];
-extern s32 TObjNpcSoldierBase__name;
+extern const char *TObjNpcSoldierBase__name;
 void TLobby__sub_8001FE7C(void*, int);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 void __dl__7TObjectFPv(void *);
@@ -40,7 +54,7 @@ void TObjNpcSoldierBase::load_shared_resource() {
     temp_r3 = (int)::operator new(0x440);
     var_r0 = temp_r3;
     if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &TObjNpcSoldierBase__body_resource_desc.value, 0, 0, 0));
+        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &TObjNpcSoldierBase__body_resource_desc, 0, 0, 0));
     }
     (*(s32 *)&TObjNpcSoldierBase__shared_model_resource) = var_r0;
 }
