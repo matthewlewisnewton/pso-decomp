@@ -196,8 +196,6 @@ s32 update_movement_status__9TObjCharaFv();
 s32 update_movement_status__14TObjEneGibblesFv(u8 *arg0);
 s32 update_action_hold_status__9TObjCharaFv();
 s32 update_action_hold_status__14TObjEneGibblesFv(u8 *arg0);
-u32 copy_target_state__14TObjEnePanarmsFPv(void *, u32);
-
 struct Stack_802D7BE0 {
     s32 sp8;
     f32 spC;
@@ -968,7 +966,7 @@ u32 TObjEneGibbles::resolve_sound_id(u32 sound_id) {
     }
   }
   else {
-    pvVar2 = (u32)(copy_target_state__14TObjEnePanarmsFPv(this, sound_id));
+    pvVar2 = (u32)(((TObjEnemy *)(this))->remap_sound_for_area((s32)(sound_id)));
   }
   return pvVar2;
 }

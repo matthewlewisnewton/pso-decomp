@@ -471,7 +471,6 @@ struct Obj_800E37E4 {
 };
 
 extern "C" {
-s32 copy_target_state__14TObjEnePanarmsFPv(void *, s32);
 s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 s32 set_flag_0x100__23TObjEneMe3ShinowaMirageFv();
 extern f32 TObjEneMe3ShinowaMirage__data_805DA5B8;
@@ -503,7 +502,7 @@ void TObjEnePanarmsAtkColli::run_task() {
         ((void (*)(void *))fn_800E35C8)(arg0);
         return;
     case 1:
-        play_persistent_sound((s32)(copy_target_state__14TObjEnePanarmsFPv(arg0, 0x4003BA2A)), (s32)arg0, (u32)&this->position, 0, 0);
+        play_persistent_sound((s32)(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003BA2A))), (s32)arg0, (u32)&this->position, 0, 0);
         ((void (*)(void *))fn_800E3428)(arg0);
         return;
     }
@@ -559,7 +558,7 @@ void *TObjEnePanarmsAtkColli__ct(Obj_800E37E4 *arg0, void *parent, void *arg2, v
     normalize_vector(&self->scale);
     switch (self->type) {
     case 0:
-        play_sound_effect((void *)copy_target_state__14TObjEnePanarmsFPv(self, 0x4003BC2B), &self->pos, 0, 0);
+        play_sound_effect((void *)((TObjEnemy *)(self))->remap_sound_for_area((s32)(0x4003BC2B)), &self->pos, 0, 0);
         self->f378 = (5.0f);
         self->f37C = (1.0416666f);
         self->f380 = 0xC;

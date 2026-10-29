@@ -1,3 +1,4 @@
+#include "pso/enemy/TObjEnemy.h"
 #include "pso/TParticleCtrl.h"
 #include "types.h"
 #include "pso/unk/text_800D8830.h"
@@ -24,7 +25,6 @@ struct RecoveredFields_802CE510_temp_r3
 
 extern "C" {
 void *spawn_particle_effect(void *pos, s32 id);
-s32 copy_target_state__14TObjEnePanarmsFPv(void *, int);
 extern const f32 lbl_805DE6E8;
 extern const f32 lbl_805DE6EC;
 extern const f32 lbl_805DE6F0;
@@ -54,7 +54,7 @@ void fn_802CE510(int arg0) {
     }
     else
     {
-      play_persistent_sound((s32)((void *) copy_target_state__14TObjEnePanarmsFPv((void *) arg0, 0x3B211)), arg0, (arg0 + 0x38), 0, 0);
+      play_persistent_sound((s32)((void *) ((TObjEnemy *)((void *) arg0))->remap_sound_for_area((s32)(0x3B211))), arg0, (arg0 + 0x38), 0, 0);
     }
     if (((objInBand((GameObj *)arg0, (f32)((f32) lbl_805DE6EC)) != 0) || (objInBand((GameObj *)((GameObj *)arg0), (f32)((f32) lbl_805DE6E8)) != 0)) || (objInBand((GameObj *)((GameObj *)arg0), (f32)((f32) lbl_805DE6F0)) != 0))
     {

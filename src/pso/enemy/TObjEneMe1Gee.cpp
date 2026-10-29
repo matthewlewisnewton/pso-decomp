@@ -1885,7 +1885,6 @@ void * __dt__13TObjEneMe1GeeFv(void *arg0, s16 arg1);
 void TObjEneMe3SinowZoa__sub_800D758C(void *);
 void *__dt__13TUnk_80494938Fv(void *arg0, s16 arg1);
 void TBoss3Volopt__sub_800D8D88(s32);
-s32 copy_target_state__14TObjEnePanarmsFPv();
 s32 approach_angle_limited(s32, s32, s32);
 void *find_entity_by_id(u16 id);
 void free_collision_body_parts(void *);
@@ -3490,7 +3489,7 @@ s32 TObjEneMe1Gee::handle_message(s32 arg0, s32 arg1) {
         }
         return var_r3;
     }
-    var_r3 = copy_target_state__14TObjEnePanarmsFPv();
+    var_r3 = ((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(arg1));
     return var_r3;
 }
 

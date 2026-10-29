@@ -96,7 +96,6 @@ struct TObjEnePanarms : public TObjEnemy {
     static s32 create(s32 arg0);
     void init(void* a1);
     int get_state_flag();
-    void copy_target_state(void* a1);
     void attack_target_player(s32 arg1);
     void draw_with_fade();
     void update_spin();

@@ -8,6 +8,6 @@ extern "C" {
 int enemy_name_for_rt_index(void*);
 
 const char *TObjEnemy::get_name() { return (const char *)enemy_name_for_rt_index(this->control); }
-void TObjEnePanarms::copy_target_state(void* a1) { remap_area_sound_id((s32)a1, (s32)this->control); }
+s32 TObjEnemy::remap_sound_for_area(s32 sound_id) { return ::remap_area_sound_id(sound_id, (s32)this->control); }
 
 }
