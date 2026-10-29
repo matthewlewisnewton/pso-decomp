@@ -3,7 +3,7 @@
 
 extern "C" {
 
-void *TObjControl__ct(void *, void *);
+void *__ct__11TObjControlFP7TObject(void *, void *);
 void *TObjEneBalClawBody__ct(void *, void *, void *);
 void *__nw__7TObjectFUl(int);
 
@@ -14,7 +14,7 @@ void *TObjEneBalClawBody::create(void *arg0) {
     void *o2;
     o = __nw__7TObjectFUl(0x20);
     if (o != NULL) {
-        o = TObjControl__ct(o, tl_04);
+        o = __ct__11TObjControlFP7TObject(o, tl_04);
     }
     o2 = __nw__7TObjectFUl(0x404);
     if (o2 != NULL) {

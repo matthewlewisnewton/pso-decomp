@@ -6,7 +6,7 @@ struct O_800DFB44 { u8 pad[0x378]; s32 state; };
 
 extern "C" {
 s32 TObjEnePanarms__sub_800DFB44(O_800DFB44 *self);
-s32 TObjControl__ct(s32, s32);
+s32 __ct__11TObjControlFP7TObject(s32, s32);
 s32 TObjEnePanarms__ct(s32, s32, s32);
 int apply_animation_transition(void*, void*);
 s32 __nw__7TObjectFUl(s32);
@@ -22,7 +22,7 @@ s32 TObjEnePanarms::create(s32 arg0) {
     if (var_r31 != 0) {
         var_r4 = __nw__7TObjectFUl(0x20);
         if (var_r4 != 0) {
-            var_r4 = TObjControl__ct(var_r4, tl_04);
+            var_r4 = __ct__11TObjControlFP7TObject(var_r4, tl_04);
         }
         var_r31 = TObjEnePanarms__ct(var_r31, var_r4, arg0);
     }

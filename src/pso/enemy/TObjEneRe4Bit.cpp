@@ -325,7 +325,7 @@ void render__13TObjEneRe4BitFv(Bit_800ECA40 *self);
 
 extern "C" void vfunc_6__8TObjBaseFPsl();
 extern "C" void vfunc_103__9TObjEneDDFPUc();
-extern "C" void vfunc_79__9TObjEneDDFv();
+extern "C" void vfunc_79__9TObjEneDDFPl();
 extern "C" void vfunc_84__9TObjEneDDFv();
 extern "C" void vfunc_85__9TObjEneDDFv();
 extern "C" void vfunc_86__9TObjEneDDFv();
@@ -364,7 +364,7 @@ extern "C" void add_actor_exp__9TObjCharaFl();
 extern "C" void apply_action_hold_status__9TObjCharaFf();
 extern "C" void apply_anti_technique__9TObjCharaFl();
 extern "C" void apply_hit_message_flags__9TObjEnemyFPv();
-extern "C" void apply_knockback_from_attacker__9TObjCharaFPUc();
+extern "C" void apply_knockback_from_attacker__9TObjCharaFPUcf();
 extern "C" void apply_object_set_data__8TObjBaseFPv();
 extern "C" void apply_set_data__9TObjEnemyFPv();
 extern "C" void apply_switch_attack__9TObjCharaFv();
@@ -442,7 +442,7 @@ void *__vt__13TObjEneRe4Bit[107] = {
     (void *)&get_name__9TObjEnemyFv, (void *)&interact__14TObjCollidableFl, (void *)&add_actor_exp__9TObjCharaFl, (void *)&consume_timer_field__9TObjCharaFl,
     (void *)&get_actor_level_index__9TObjCharaFv, (void *)&update_actor_ground_y__9TObjCharaFv, (void *)&vfunc_18__9TObjCharaFPUc, (void *)&is_actor_cadence_frame__9TObjCharaFl,
     (void *)&select_melee_contact_body__9TObjCharaFPvf, (void *)&calc_distance_accuracy_penalty__9TObjCharaFPvPvPvf, (void *)&receive_physical_attack__9TObjCharaFPvf, (void *)&receive_direct_attack__9TObjCharaFPv19DirectAttackPayloadPvll,
-    (void *)&receive_weapon_special_attack__9TObjCharaFPvPv, (void *)&apply_knockback_from_attacker__9TObjCharaFPUc, (void *)&try_start_action__9TObjCharaFll, (void *)&roll_physical_accuracy__9TObjCharaFPvlf,
+    (void *)&receive_weapon_special_attack__9TObjCharaFPvPv, (void *)&apply_knockback_from_attacker__9TObjCharaFPUcf, (void *)&try_start_action__9TObjCharaFll, (void *)&roll_physical_accuracy__9TObjCharaFPvlf,
     (void *)&vfunc_28__13TObjEneRe4BitFv, (void *)&vfunc_29__9TObjCharaFv, (void *)&is_target_in_attack_range__9TObjCharaFv, (void *)&test_flag_256__9TObjCharaFv,
     (void *)&test_flag30_512__9TObjCharaFv, (void *)&has_flag_0x800__9TObjCharaFv, (void *)&test_flag_1000__9TObjCharaFv, (void *)&update_poison_status__9TObjCharaFv,
     (void *)&update_action_hold_status__9TObjCharaFv, (void *)&vfunc_37__9TObjCharaFv, (void *)&update_flag30_timer__9TObjCharaFv, (void *)&update_movement_status__9TObjCharaFv,
@@ -455,7 +455,7 @@ void *__vt__13TObjEneRe4Bit[107] = {
     (void *)&reset_pose__9TObjCharaFv, (void *)&get_anim_node_position__9TObjCharaFlP3Vec, (void *)&vfunc_66__9TObjCharaFv, (void *)&vfunc_67__9TObjCharaFf,
     (void *)&get_pos__9TObjCharaFl, (void *)&apply_switch_attack__9TObjCharaFv, (void *)&enemy_spawn_jellen_effect__9TObjCharaFv, (void *)&trigger_switch_attack__9TObjCharaFv,
     (void *)&enemy_spawn_zalure_effect__9TObjCharaFv, (void *)&recalc_stats__9TObjCharaFv, (void *)&vfunc_74__9TObjEnemyFl, (void *)&vfunc_75__9TObjCharaFf,
-    (void *)&vfunc_76__9TObjCharaFv, (void *)&vfunc_77__9TObjCharaFv, (void *)&vfunc_78__9TObjCharaFl, (void *)&vfunc_79__9TObjEneDDFv,
+    (void *)&vfunc_76__9TObjCharaFv, (void *)&vfunc_77__9TObjCharaFv, (void *)&vfunc_78__9TObjCharaFl, (void *)&vfunc_79__9TObjEneDDFPl,
     (void *)&apply_hit_message_flags__9TObjEnemyFPv, (void *)&apply_set_data__9TObjEnemyFPv, (void *)&clear_lobby_object_state__9TObjEnemyFv, (void *)&vfunc_83__12TObjEneDD_STFv,
     (void *)&vfunc_84__9TObjEneDDFv, (void *)&vfunc_85__9TObjEneDDFv, (void *)&vfunc_86__9TObjEneDDFv, (void *)&TObjEneRe4Bit__vt85,
     (void *)&vfunc_88__13TObjEneRe4BitFv, (void *)&vfunc_89__9TObjEneDDFv, (void *)&vfunc_90__9TObjEneDDFv, (void *)&vfunc_91__9TObjEneDDFv,
@@ -1079,9 +1079,9 @@ void *__dt__13TObjEneRe4BitFv(void *arg0, s16 arg1) {
     return arg0;
 }
 
-int reset_hp__9TObjEneDDFv(void *, s32, s32, s32);
-int initialize_enemy_state__9TObjEneDDFv(void *, int);
-int init_model__9TObjEneDDFv(void *, void *, int);
+int reset_hp__9TObjEneDDFPUcPUcPUc(void *, s32, s32, s32);
+int initialize_enemy_state__9TObjEneDDFl(void *, int);
+int init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, int);
 extern s32 TObjEneRe4Bit__model;
 extern s32 re4_bit_texture_list;
 extern const f32 lbl_805DA784;
@@ -1092,15 +1092,15 @@ void init__13TObjEneRe4BitFPv(Bit_800ED7FC *self) {
     ((TObjEneDD *)self)->init_position_vectors();
     self->x34 = TObjEneRe4Bit__model;
     self->x24 = re4_bit_texture_list;
-    init_model__9TObjEneDDFv(self, re4_bit_model_node_desc, 1);
+    init_model__9TObjEneDDFP13CollisionBodyl(self, re4_bit_model_node_desc, 1);
     i = self->kind == 1 ? 0 : 1;
-    reset_hp__9TObjEneDDFv(self, TObjEneRe4Bit_boss_handles[i], lbl_80501058[i], lbl_80501060[i]);
+    reset_hp__9TObjEneDDFPUcPUcPUc(self, TObjEneRe4Bit_boss_handles[i], lbl_80501058[i], lbl_80501060[i]);
     ((TObjEneDD *)self)->set_state_8();
     self->x350 = re4_bit_init_params;
     if (self->kind == 1) {
-        initialize_enemy_state__9TObjEneDDFv(self, 0x20);
+        initialize_enemy_state__9TObjEneDDFl(self, 0x20);
     } else {
-        initialize_enemy_state__9TObjEneDDFv(self, 0x21);
+        initialize_enemy_state__9TObjEneDDFl(self, 0x21);
     }
     self->x37C = lbl_805DA784;
     self->x3CC = 0;

@@ -138,7 +138,7 @@ void *__dt__11TOVS2Wall01Fv(void *arg0, s16 arg1) {
         ((TObjCollidable *)arg0)->unregister_object_by_id();
         free_collision_body_parts(arg0);
         __dt__15RenderFadeStateFv((s8 *)arg0 + 0x340, -1);
-        ((TObjChara *)arg0)->destroy_motion_object(0);
+        __dt__9TObjCharaFv(arg0, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }

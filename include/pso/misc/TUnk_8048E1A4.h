@@ -9,7 +9,7 @@ public:
     void freeze_shell_grow();
     s32 freeze_shell_hold();
     void update_freeze_shell_timer();
-    virtual void apply_knockback_from_attacker(u8 *);
+    virtual void apply_knockback_from_attacker(u8 *, f32);
     virtual f32 receive_weapon_special_attack(void *, void *);
     virtual f32 receive_direct_attack(void *, DirectAttackPayload, void *, s32, s32);
     virtual f32 receive_physical_attack(void *, f32);

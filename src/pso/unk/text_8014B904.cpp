@@ -3,7 +3,7 @@
 
 extern "C" {
 
-void *TObjControl__ct(void *, void *);
+void *__ct__11TObjControlFP7TObject(void *, void *);
 u8 *TObjNpcMaleBase__ct(u8 *arg0, s32 arg1, s32 arg2);
 void *__nw__7TObjectFUl(int);
 
@@ -14,7 +14,7 @@ void * TObjNpcMaleBase__create(void *arg0) {
     void *o2;
     o = __nw__7TObjectFUl(0x20);
     if (o != NULL) {
-        o = TObjControl__ct(o, tl_04);
+        o = __ct__11TObjControlFP7TObject(o, tl_04);
     }
     o2 = __nw__7TObjectFUl(0x3B8);
     if (o2 != NULL) {

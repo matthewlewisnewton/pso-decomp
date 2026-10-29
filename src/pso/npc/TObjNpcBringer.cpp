@@ -5,7 +5,7 @@
 extern "C" {
 
 void *__dt__14TObjNpcBringerFv(void *arg0, s16 arg1);
-void *TObjControl__ct(void *, void *);
+void *__ct__11TObjControlFP7TObject(void *, void *);
 void __dl__7TObjectFPv(void *);
 void *__dt__11TObjNpcBaseFv(void *arg0, s16 arg1);
 void *__nw__7TObjectFUl(int);
@@ -17,7 +17,7 @@ void *TObjNpcBringer::create(void *arg0) {
     void *o2;
     o = __nw__7TObjectFUl(0x20);
     if (o != NULL) {
-        o = TObjControl__ct(o, tl_04);
+        o = __ct__11TObjControlFP7TObject(o, tl_04);
     }
     o2 = __nw__7TObjectFUl(0x3B8);
     if (o2 != NULL) {

@@ -102,7 +102,7 @@ void* TObjNpcNFM00__create(void* placement);
 void* TObjNpcNFM01__create(void* placement);
 void* create__14TBoss6PlotFalzFl(void* placement);
 void* TObjNpcEnemy__create(void* placement);
-void* TObjEneDelDepth__create(void* placement);
+void* create__15TObjEneDelDepthFPv(void* placement);
 void* TObjEneMe3SinowZoaReal__create(void* placement);
 void* create__13TObjEneMorfosFv(void* placement);
 void* create_variant_13__14TObjNpcNgcBaseFl(void* placement);
@@ -464,7 +464,7 @@ EnemyFactoryEntry enemy_factories_floors_28_29[9] = {
     { 0x00DE, create__13TObjEneMorfosFv, 250000.0f, 0 },
     { 0x00DF, TObjEneRecobox__create, 250000.0f, 0 },
     { 0x00E0, TObjEneMe3SinowZoaReal__create, 250000.0f, 0 },
-    { 0x00DB, TObjEneDelDepth__create, 250000.0f, 0 },
+    { 0x00DB, create__15TObjEneDelDepthFPv, 250000.0f, 0 },
     { 0x00DC, TObjEneDellBiter::create, 250000.0f, 0 },
     { 0x0033, TObjNpcEnemy__create, 250000.0f, 0 },
     { 0x00F4, TObjNpcNgcBase__sub_803590C0, 250000.0f, 0 },

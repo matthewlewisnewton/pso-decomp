@@ -131,7 +131,7 @@ void copy_pos__13TBoss6MagMineFi(s32 arg0);
 void TBoss6PlotFalz__sub_802AC008(f32 farg0, f32 farg1);
 int post_translate_matrix(void*);
 void *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags);
-s32 TObjControl__ct(s32, s32);
+s32 __ct__11TObjControlFP7TObject(s32, s32);
 void free_collision_body_parts(void *);
 void draw_model_motion(void *arg0, void *arg1, f32 farg0);
 s32 get_bml_motion(s32, s32);
@@ -491,7 +491,7 @@ s32 create__13TBoss6MagMineFi(s32 arg0) {
     if (var_r31 != 0) {
         parent = __nw__7TObjectFUl(0x20);
         if (parent != 0) {
-            parent = TObjControl__ct(parent, tl_04);
+            parent = __ct__11TObjControlFP7TObject(parent, tl_04);
         }
         var_r31 = TBoss6MagMine__ct(var_r31, parent, arg0);
     }

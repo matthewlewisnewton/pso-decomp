@@ -28,7 +28,7 @@ struct TOMine : public TObjChara {
     virtual f32 receive_physical_attack(void *, f32);
     virtual const char *get_name();
     virtual void apply_object_set_data(void *);
-    virtual void apply_knockback_from_attacker(u8 *);
+    virtual void apply_knockback_from_attacker(u8 *, f32);
     virtual s32 try_start_action(s32, s32);
     virtual s32 roll_physical_accuracy(void *, s32, f32);
     void* m_334;

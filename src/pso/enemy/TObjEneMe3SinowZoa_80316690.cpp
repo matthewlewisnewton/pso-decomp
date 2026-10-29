@@ -29,7 +29,7 @@ s32 TObjEneMe3SinowZoa::check_floor_contact(void *arg1) {
     void *p;
     VecCopy((Vec *)&v, (const Vec *)arg1);
     v.y += TObjEneMe3SinowZoa__data_805DF2F0;
-    hit = (Hit_80316690 *)csnVectorUnder((s32)&v, (u32 *)&this->m_120, 0x4007);
+    hit = (Hit_80316690 *)csnVectorUnder((Vec *)&v, (u32 *)&this->m_120, 0x4007);
     if (hit != NULL) {
         *(s32 *)(arg0 + 0x3D0) = *(s32 *)(hit->obj + 0x18);
         if (*(s32 *)(arg0 + 0x3D0) & 0x4000) {

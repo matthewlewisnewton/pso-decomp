@@ -26,7 +26,7 @@ void *__dt__9TObjEnemyFv(TObjEnemy *arg0, s16 arg1) {
                 *(u32 *)((s8 *)arg0 + 0x80) = 0U;
             }
         }
-        ((TObjChara *)arg0)->destroy_motion_object(0);
+        __dt__9TObjCharaFv(arg0, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }

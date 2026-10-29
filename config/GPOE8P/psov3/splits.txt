@@ -4984,6 +4984,7 @@ pso/misc/TODragonflyCave01.cpp:
 pso/misc/TODragonflyMachine01.cpp:
 	.text       start:0x80164F50 end:0x8016582C
 	.rodata     start:0x80441228 end:0x80441238
+	.data       start:0x804B1958 end:0x804B1994
 
 pso/system/TODummyKeyCave01Sound.cpp:
 	.text       start:0x8016582C end:0x80165940
@@ -10686,6 +10687,9 @@ pso/ui/TObjLiveMonitor.cpp:
 	.data       start:0x804E76E8 end:0x804E7700
 	.sdata2     start:0x805DF168 end:0x805DF1E4
 
+pso/enemy/DelDepthConstants.cpp:
+	.sdata2     start:0x805DF250 end:0x805DF2F0
+
 pso/misc/TWindowPartyStatus.cpp:
 	.text       start:0x8030C090 end:0x8030C340
 
@@ -10733,6 +10737,11 @@ pso/misc/TPlayerBattleCtrl4P_803123F4.cpp:
 	.data       start:0x804E7D30 end:0x804E80C0
 	.sbss       start:0x805D6AB0 end:0x805D6AC0
 
+pso/enemy/DelDepthData.cpp:
+	.rodata     start:0x80475BD8 end:0x80475DD8
+	.sdata      start:0x805D4118 end:0x805D4120
+	.sbss       start:0x805D6AC0 end:0x805D6AD8
+
 pso/misc/TPlayerBattleCtrl4P_80312BDC.cpp:
 	.text       start:0x80312BDC end:0x80312C50
 
@@ -10742,25 +10751,19 @@ pso/unk/text_80312C50.cpp:
 pso/player/TObjPlayer_803130BC.cpp:
 	.text       start:0x803130BC end:0x80313268
 
-pso/enemy/TObjEneDelDepthBomb.cpp:
-	.text       start:0x80313268 end:0x80315AD8
-	.rodata     start:0x80475DD8 end:0x80475DE8
-	.sdata2     start:0x805DF250 end:0x805DF268
-
-pso/enemy/TObjEneDelDepth_80315AD8.cpp:
-	.text       start:0x80315AD8 end:0x80315CCC
-	.data       start:0x804E80C0 end:0x804E84D4
-
-pso/enemy/TObjEneDelDepth_80315CCC.cpp:
-	.text       start:0x80315CCC end:0x80316244
+pso/enemy/TObjEneDelDepth.cpp:
+	.text       start:0x80313268 end:0x8031623C
 	.ctors      start:0x80433FE4 end:0x80433FE8
+	.rodata     start:0x80475DD8 end:0x80475DE8
+	.data       start:0x804E80C0 end:0x804E875C
 
-pso/enemy/TObjEneDelDepthBomb_80316244.cpp:
-	.text       start:0x80316244 end:0x8031624C
+pso/enemy/TObjEneDelDepthAccessors.cpp:
+	.text       start:0x8031623C end:0x8031624C
 
-pso/enemy/TObjEneDelDepth_8031624C.cpp:
+pso/enemy/DelDepthMotion.cpp:
 	.text       start:0x8031624C end:0x80316690
 	.rodata     start:0x80475DE8 end:0x80475DF0
+	.data       start:0x804E8760 end:0x804E87A8
 
 pso/enemy/TObjEneMe3SinowZoa_80316690.cpp:
 	.text       start:0x80316690 end:0x80316898

@@ -2,41 +2,81 @@
 #define PSO_ENEMY_TOBJENEDELDEPTH_H
 
 #include "types.h"
+#include "pso/animation/ActorAnimationState.h"
 #include "pso/enemy/TObjEnemy.h"
 
+struct BmlResource;
+
+struct DelDepthMotion {
+    DelDepthMotion(TObjMotion *actor);
+    ~DelDepthMotion();
+    s32 get_type();
+    void draw_model_part();
+    void update_animation_frame();
+    s32 is_state_complete();
+    void set_motion(s32 motion);
+
+    TObjMotion *actor;
+    s32 motion;
+    void *model;
+    s32 texture;
+    AnimationMotion *animation;
+    void *secondModel;
+    s32 secondTexture;
+    AnimationMotion *secondAnimation;
+    f32 speed;
+    f32 endFrame;
+    f32 frame;
+};
+
 struct TObjEneDelDepth : public TObjEnemy {
+    TObjEneDelDepth(TObject *, void *);
+    static TObjEneDelDepth *create(void *setData);
     virtual ~TObjEneDelDepth();
+    typedef void (TObjEneDelDepth::*Action)();
+    struct ActionPair { Action enter; Action update; };
+    void fn_80313740();
+    void fn_803138F8();
+    void fn_80313954();
+    void fn_80313DE4();
+    void fn_803141A8();
+    void fn_803142DC();
+    void fn_80314500();
+    void fn_80314EC4();
+    s32 fn_80315380();
+    void fn_80315518();
     void set_action_state(s32);
+    void set_draw_mode(s32);
+    void set_depth_offset(s32, s32);
     void sub_803152C0();
     void sub_803152A0();
     virtual void vfunc_63();
     virtual void vfunc_62();
     virtual void vfunc_61();
-    u32 m_374;
-    u8 _pad378[0x4];
-    u32 m_37c;
-    u8 unk_380[0x4];
-    s32 m_384;
-    u8 unk_388[0x4];
+    s32 action;
+    s32 actionPhase;
+    DelDepthMotion *motionController;
+    CollisionBody *collisionBody;
+    s32 timer;
+    s32 attackTimer;
     f32 m_38c;
-    u8 unk_390[0x4];
+    f32 bombSpeed;
     s32 m_394;
-    f32 m_398;
-    u8 unk_39C[0x4];
-    void* m_3a0;
-    u8 unk_3A4[0x4];
-    f32 m_3a8;
-    u8 unk_3AC[0x4];
-    f32 m_3b0;
-    u8 unk_3B4[0x4];
-    f32 m_3b8;
+    f32 opacity;
+    f32 drawOffsetY;
+    Vec drawScale;
+    f32 movementSpeed;
+    Vec direction;
     s32 m_3bc;
-    u8 unk_3C0[0x4];
-    s32 m_3c4;
-    u8 unk_3C8[0x18];
-    u32 m_3e0;
-    u8 _pad3E4[0xC];
-    u32 m_3f0;
+    s32 relocationAttempts;
+    s32 targetPlayer;
+    u8 unk_3C8[0xC];
+    Vec fallVelocity;
+    u32 groundFlags;
+    Vec groundPoint;
+    s32 targetable;
+    u8 unknown3F4[0x40];
+    f32 get_bomb_speed();
     void update_ground_check();
     void init_move();
     void update_ai_state();
@@ -55,7 +95,7 @@ struct TObjEneDelDepth : public TObjEnemy {
     void init_draw_params();
     void try_relocate_on_timer();
     void init_params();
-    static int set_default_depth_offset(void* p);
+    void set_default_depth_offset();
     s32 draw_if_visible();
     virtual void render();
     virtual void run_task();
@@ -66,15 +106,9 @@ struct TObjEneDelDepth : public TObjEnemy {
     static void reset_globals();
     static void setup_draw_material_default(f32 farg0);
     static void setup_draw_material(f32 farg0, f32 farg1, f32 farg2, f32 farg3);
-    static int get_data();
+    static BmlResource *get_data();
     int get_flag_bit4();
     int find_nearest_enemy_with_flag(s32 arg1, f32 farg0);
-    s32 get_type();
-    void draw_model_part();
-    void update_animation_frame();
-    s32 is_state_complete();
-    void set_motion(s32 arg1);
-    static s32 conditional_delete(s32 arg0, s16 arg1);
     void start_attack_motion();
     void enter_appear_state();
     void update_scale_pulse();
@@ -82,5 +116,5 @@ struct TObjEneDelDepth : public TObjEnemy {
     void start_move_toward_player();
 };
 
-typedef char TObjEneDelDepth_size[sizeof(TObjEneDelDepth) == 0x3F4 ? 1 : -1];
+typedef char TObjEneDelDepth_size[sizeof(TObjEneDelDepth) == 0x434 ? 1 : -1];
 #endif

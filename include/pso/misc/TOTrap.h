@@ -20,7 +20,7 @@ struct TOTrap : public TObjChara {
     virtual f32 receive_physical_attack(void *, f32);
     virtual s32 try_start_action(s32, s32);
     virtual void vfunc_6(s16 *, s32);
-    virtual void apply_knockback_from_attacker(u8 *);
+    virtual void apply_knockback_from_attacker(u8 *, f32);
     virtual void run_task();
     f32 range;
     f32 dist;

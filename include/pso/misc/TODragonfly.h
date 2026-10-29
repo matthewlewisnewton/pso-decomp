@@ -20,7 +20,7 @@ struct TODragonfly : public TUnk_804AFBF8 {
     u8 unk_E4[0x4];
     f32 m_e8;
     f32 m_ec;
-    u8 unk_F0[0x4];
+    union { u8 unk_F0[4]; f32 bob_offset; };
     f32 m_f4;
     u32 m_f8;
     u32 m_fc;

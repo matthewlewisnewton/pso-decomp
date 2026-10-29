@@ -29,6 +29,7 @@ CsnGroup* select_ground_query_groups(CsnVector* origin, u32 mask);
 struct CsnContact {
     Vec point;
     Vec normal;
+    u32 flags;
 };
 
 // The result csnVector returns (one static record, NULL when nothing is hit).
@@ -53,7 +54,7 @@ void TObjPlayer__sub_80079120(s32 _w0);
 void TObjPlayer__sub_80079124(void *_w0, void *_w1);
 s32 *csnLookAt(s32 arg0, s32 arg1);
 s32 *csnVecterUnder(s32 origin, s32 mask);
-s32 *csnVectorUnder(s32 arg0, u32 *arg1, s32 arg2);
+s32 *csnVectorUnder(Vec *arg0, u32 *arg1, s32 arg2);
 s32 get_csn_group_flags(u8 arg0);
 }
 s32 prepare_wall_query_polygons(void *arg0, f32 r, s32 mask);

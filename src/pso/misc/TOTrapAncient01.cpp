@@ -185,7 +185,7 @@ void TOTrapAncient02R__sub_80154D78(void *);
 void *__nw__7TObjectFUl(int);
 s32 is_current_room(void *);
 
-void TOTrap::apply_knockback_from_attacker(u8 *) {  }
+void TOTrap::apply_knockback_from_attacker(u8 *, f32) {  }
 void TOTrapAncient01::vfunc_86() {  }
 void TOTrapAncient01::vfunc_88() {  }
 

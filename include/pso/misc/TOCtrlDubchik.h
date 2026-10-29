@@ -12,7 +12,7 @@ struct TOCtrlDubchik : public TObjEnemy {
     void sub_8015CCF4();
     void update_spin();
     void sub_8015CA74();
-    virtual void apply_knockback_from_attacker(u8 *);
+    virtual void apply_knockback_from_attacker(u8 *, f32);
     virtual s32 roll_physical_accuracy(void *, s32, f32);
     virtual s32 try_start_action(s32, s32);
     virtual s32 select_melee_contact_body(void *, f32);

@@ -589,9 +589,9 @@ u16 TObjEnemyCustom::pick_random_nearby_player(f32 radius) {
     return candidates[(s32)((f32)found * random_ratio())];
 }
 
-void TObjEnemyCustom::vfunc_79() {
+void TObjEnemyCustom::vfunc_79(s32 *state) {
     s16 saved_mode = mode;
-    TObjEnemy::vfunc_79();
+    TObjEnemy::vfunc_79(state);
     mode = saved_mode;
 }
 

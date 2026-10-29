@@ -86,7 +86,7 @@ extern void *tl_05;
 
 void roll_physical_accuracy__6TOMineFPvlf();
 void try_start_action__6TOMineFll();
-void apply_knockback_from_attacker__6TOMineFPUc();
+void apply_knockback_from_attacker__6TOMineFPUcf();
 void vfunc_79__6TOMineFv();
 void spawn_disp_objects__6TOMineFv(u8 *arg0);
 void apply_object_set_data__6TOMineFPv();
@@ -187,7 +187,7 @@ void *__vt__12TOMineIcon04[87] = {
     (void *)receive_physical_attack__6TOMineFPvf,
     (void *)receive_direct_attack__6TOMineFPv19DirectAttackPayloadPvll,
     (void *)receive_weapon_special_attack__6TOMineFPvPv,
-    (void *)apply_knockback_from_attacker__6TOMineFPUc,
+    (void *)apply_knockback_from_attacker__6TOMineFPUcf,
     (void *)try_start_action__6TOMineFll,
     (void *)roll_physical_accuracy__6TOMineFPvlf,
     (void *)vfunc_28__9TObjCharaFv,

@@ -18,7 +18,7 @@ public:
     virtual void vfunc_6(s16 *, s32);
     virtual s32 roll_physical_accuracy(void *, s32, f32);
     virtual s32 try_start_action(s32, s32);
-    virtual void apply_knockback_from_attacker(u8 *);
+    virtual void apply_knockback_from_attacker(u8 *, f32);
     virtual f32 receive_weapon_special_attack(void *, void *);
     virtual int calc_distance_accuracy_penalty(void *, void *, void *, float);
     virtual void render();

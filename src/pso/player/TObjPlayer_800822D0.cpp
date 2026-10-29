@@ -5,7 +5,7 @@
 #include "pso/misc/TUnk_8048E1A4.h"
 #include "pso/player/TObjPlayer.h"
 
-void TUnk_8048E1A4::apply_knockback_from_attacker(u8 *) {  }
+void TUnk_8048E1A4::apply_knockback_from_attacker(u8 *, f32) {  }
 void TParticleCtrl::fn_800822D4(f32 a, f32 b) { field_40 = a; field_44 = b; }
 
 f32 TObjChara::get_speed() { return this->m_c0; }

@@ -759,14 +759,14 @@ s32 *csnVectorUnder(s32 arg0, u32 *arg1, s32 arg2);
 s32 TObjPlayer__sub_800A04F0(void *);
 void *__dt__13TUnk_80490470Fv(void *arg0, s16 arg1);
 void *__dt__12TObjEneDD_STFv(void *arg0, s16 arg1);
-s32 reset_hp__9TObjEneDDFv(void *, void *, void *, void *);
-s32 initialize_enemy_state__9TObjEneDDFv(void *, int);
+s32 reset_hp__9TObjEneDDFPUcPUcPUc(void *, void *, void *, void *);
+s32 initialize_enemy_state__9TObjEneDDFl(void *, int);
 int TObjEneDD__sub_800BA804(u16 arg0);
-s32 init_model__9TObjEneDDFv(void *, void *, int, int);
+s32 init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, int, int);
 u32 vfunc_102__9TObjEneDDFv();
 u32 vfunc_101__9TObjEneDDFPUc();
 s32 clear_attack_receipts__9TObjEneDDFv(void *);
-void invoke_initialization_hook__9TObjEneDDFv(void *, void *);
+void invoke_initialization_hook__9TObjEneDDFPv(void *, void *);
 u32 load_enemy_bml_resource_named(void *, void *);
 s32 load_enemy_bml_resource(u8 *arg0);
 s32 reset_transform__13TObjEneRe4BitFv();
@@ -839,7 +839,7 @@ extern "C" {
 void vfunc_103__9TObjEneDDFPUc();
 }
 extern "C" {
-void vfunc_79__9TObjEneDDFv();
+void vfunc_79__9TObjEneDDFPl();
 }
 extern "C" {
 void vfunc_84__9TObjEneDDFv();
@@ -956,7 +956,7 @@ extern "C" {
 void apply_confusion_status__9TObjCharaFv();
 }
 extern "C" {
-void apply_knockback_from_attacker__9TObjCharaFPUc();
+void apply_knockback_from_attacker__9TObjCharaFPUcf();
 }
 extern "C" {
 void apply_movement_ailment__9TObjCharaFl();
@@ -1166,7 +1166,7 @@ void *__vt__18TObjEneRe4Sorcerer[107] = {
     (void *)&get_name__9TObjEnemyFv, (void *)&interact__14TObjCollidableFl, (void *)&add_actor_exp__9TObjCharaFl, (void *)&consume_timer_field__9TObjCharaFl,
     (void *)&get_actor_level_index__9TObjCharaFv, (void *)&update_actor_ground_y__9TObjCharaFv, (void *)&vfunc_18__9TObjCharaFPUc, (void *)&is_actor_cadence_frame__9TObjCharaFl,
     (void *)&select_melee_contact_body__9TObjCharaFPvf, (void *)&calc_distance_accuracy_penalty__9TObjCharaFPvPvPvf, (void *)&receive_physical_attack__9TObjCharaFPvf, (void *)&receive_direct_attack__9TObjCharaFPv19DirectAttackPayloadPvll,
-    (void *)&receive_weapon_special_attack__9TObjCharaFPvPv, (void *)&apply_knockback_from_attacker__9TObjCharaFPUc, (void *)&try_start_action__9TObjCharaFll, (void *)&roll_physical_accuracy__9TObjCharaFPvlf,
+    (void *)&receive_weapon_special_attack__9TObjCharaFPvPv, (void *)&apply_knockback_from_attacker__9TObjCharaFPUcf, (void *)&try_start_action__9TObjCharaFll, (void *)&roll_physical_accuracy__9TObjCharaFPvlf,
     (void *)&vfunc_28__18TObjEneRe4SorcererFv, (void *)&vfunc_29__9TObjCharaFv, (void *)&is_target_in_attack_range__9TObjCharaFv, (void *)&test_flag_256__9TObjCharaFv,
     (void *)&test_flag30_512__9TObjCharaFv, (void *)&has_flag_0x800__9TObjCharaFv, (void *)&test_flag_1000__9TObjCharaFv, (void *)&update_poison_status__9TObjCharaFv,
     (void *)&update_action_hold_status__9TObjCharaFv, (void *)&vfunc_37__9TObjCharaFv, (void *)&update_flag30_timer__9TObjCharaFv, (void *)&update_movement_status__9TObjCharaFv,
@@ -1179,7 +1179,7 @@ void *__vt__18TObjEneRe4Sorcerer[107] = {
     (void *)&reset_pose__9TObjCharaFv, (void *)&get_anim_node_position__9TObjCharaFlP3Vec, (void *)&vfunc_66__9TObjCharaFv, (void *)&vfunc_67__9TObjCharaFf,
     (void *)&get_pos__9TObjCharaFl, (void *)&apply_switch_attack__9TObjCharaFv, (void *)&enemy_spawn_jellen_effect__9TObjCharaFv, (void *)&trigger_switch_attack__9TObjCharaFv,
     (void *)&enemy_spawn_zalure_effect__9TObjCharaFv, (void *)&recalc_stats__9TObjCharaFv, (void *)&vfunc_74__9TObjEnemyFl, (void *)&vfunc_75__9TObjCharaFf,
-    (void *)&vfunc_76__9TObjCharaFv, (void *)&vfunc_77__9TObjCharaFv, (void *)&vfunc_78__9TObjCharaFl, (void *)&vfunc_79__9TObjEneDDFv,
+    (void *)&vfunc_76__9TObjCharaFv, (void *)&vfunc_77__9TObjCharaFv, (void *)&vfunc_78__9TObjCharaFl, (void *)&vfunc_79__9TObjEneDDFPl,
     (void *)&apply_hit_message_flags__9TObjEnemyFPv, (void *)&apply_set_data__9TObjEnemyFPv, (void *)&clear_lobby_object_state__9TObjEnemyFv, (void *)&vfunc_83__12TObjEneDD_STFv,
     (void *)&vfunc_84__9TObjEneDDFv, (void *)&vfunc_85__9TObjEneDDFv, (void *)&vfunc_86__9TObjEneDDFv, (void *)&TObjEneRe4Sorcerer__vt85,
     (void *)&vfunc_88__18TObjEneRe4SorcererFv, (void *)&vfunc_89__9TObjEneDDFv, (void *)&vfunc_90__9TObjEneDDFv, (void *)&vfunc_91__9TObjEneDDFv,
@@ -2353,16 +2353,16 @@ void TObjEneRe4Sorcerer::init_enemy() {
     *(s32 *)((s8 *)arg0 + 0x34) = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)(*(u8 * *)&sorcerer_bml_resource) + 0x42C)) + 8);
     temp_r6 = (u8 *)(*(u8 **)((s8 *)(*(u8 * *)&sorcerer_bml_resource) + 0x42C));
     *(s32 *)((s8 *)arg0 + 0x24) = (s32) *(s32 *)((s8 *)temp_r6 + 0xC);
-    init_model__9TObjEneDDFv((void *)arg0, (void *) ((void * *)re4_sorcerer_collision_body_part_table), 1, (int)temp_r6);
+    init_model__9TObjEneDDFP13CollisionBodyl((void *)arg0, (void *) ((void * *)re4_sorcerer_collision_body_part_table), 1, (int)temp_r6);
     ((TObjMotion *)arg0)->set_field_d8((s32)((void *) re4_sorcerer_action_params));
     ((TObjMotion *)arg0)->set_field_dc((int) (*(s32 *)((s8 *)(*(u8 * *)&sorcerer_bml_resource) + 0x430)));
     *(s16 *)((s8 *)arg0 + 0xB8) = 0;
     ((TObjMotion *)arg0)->set_animation((*(s16 *)((s8 *)arg0 + 0xB8)));
     ((TObjMotion *)arg0)->set_field_b8((int) (*(s16 *)((s8 *)arg0 + 0xB8)));
-    reset_hp__9TObjEneDDFv((void *)arg0, (void *)lbl_805D52D0, (void *)TObjEneRe4Sorcerer__attack_params, (void *)TObjEneRe4Sorcerer__resistance_params);
+    reset_hp__9TObjEneDDFPUcPUcPUc((void *)arg0, (void *)lbl_805D52D0, (void *)TObjEneRe4Sorcerer__attack_params, (void *)TObjEneRe4Sorcerer__resistance_params);
     ((TObjEneDD *)arg0)->set_state_8();
     *(void **)((s8 *)arg0 + 0x350) = (void *) re4_sorcerer_init_params;
-    initialize_enemy_state__9TObjEneDDFv(arg0, 0x1F);
+    initialize_enemy_state__9TObjEneDDFl(arg0, 0x1F);
     *(f32 *)((s8 *)arg0 + 0x37C) = (f32) TObjEneRe4Sorcerer__data_805DA78C;
     ((TObjEneDD_ST *)arg0)->enemy_init_acquire_period(0x1E);
     ((TObjEneDD_ST *)arg0)->enemy_init_validate_period(0x1E);
@@ -2403,7 +2403,7 @@ void *TObjEneRe4Sorcerer__ct(void *ene_re4_sorcerer, void *arg1, void *arg2) {
     ((TObjPlayer *)((char *)ene_re4_sorcerer + 1048))->construct_target_cursor_records();
     __construct_array((void *)((char *)ene_re4_sorcerer + 1140), __ct__15RenderFadeStateFv, __dt__15RenderFadeStateFv, 28, 4);
     *(void **)((s8 *)ene_re4_sorcerer + 0x0) = lbl_805D2AF0;
-    invoke_initialization_hook__9TObjEneDDFv(ene_re4_sorcerer, arg2);
+    invoke_initialization_hook__9TObjEneDDFPv(ene_re4_sorcerer, arg2);
     ((void (*)(void *))TObjEneRe4Sorcerer__sub_800EFE30)(ene_re4_sorcerer);
     ((TObjEneRe4Sorcerer *)ene_re4_sorcerer)->init_enemy();
     return ene_re4_sorcerer;

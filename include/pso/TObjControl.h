@@ -6,6 +6,7 @@
 
 class TObjControl : public TObject {
 public:
+    TObjControl(TObject *parent);
     s16 m_decision_mode;
     u16 m_reserved;
 

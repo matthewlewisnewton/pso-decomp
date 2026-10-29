@@ -432,7 +432,7 @@ s32 is_quest_active();
 s32 is_flag_set__6TLobbyFv();
 void subtractive_rng_seed(void *, s32);
 Ene_800F62E0 * find_active_entity_by_id(u16);
-void * TObjControl__ct(void *arg0);
+void * __ct__11TObjControlFP7TObject(void *arg0);
 void handle_6x9C_set_enemy_low_game_flags_ultimate(Msg_800F62E0 *arg0);
 void handle_6x0A_update_enemy_state(Msg_800F6464 *arg0);
 void distribute_experience__9TObjEnemyFv(TObjPlayer_800F6B68 *self);
@@ -550,7 +550,7 @@ void TObjControl::run_task() {
 
 TObjControl::~TObjControl() {}
 
-void *TObjControl__ct(void *control) {
+void *__ct__11TObjControlFP7TObject(void *control) {
     __ct__7TObjectFP7TObject(control);
     *(s32 **)((s8 *)control + 0x18) = __vt__11TObjControl;
     *(void * *)&((TObjControl *)control)->m_name = lbl_805D2B04;
@@ -742,7 +742,7 @@ void TObjEnemy::apply_hit_message_flags(void *arg1_arg) {
     }
 }
 
-void TObjEnemy::vfunc_79() {
+void TObjEnemy::vfunc_79(s32 *state) {
     struct VObj_800F6960 *o = (struct VObj_800F6960 *)this;
     o->m78();
 }

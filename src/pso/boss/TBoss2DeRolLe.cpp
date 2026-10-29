@@ -60,7 +60,7 @@ extern "C" void apply_shock_status__13TBoss2DeRolLeFv();
 extern "C" void clear_harmful_statuses__13TBoss2DeRolLeFv();
 extern "C" void vfunc_6__8TObjBaseFPsl();
 extern "C" void vfunc_103__9TObjEneDDFPUc();
-extern "C" void vfunc_79__9TObjEneDDFv();
+extern "C" void vfunc_79__9TObjEneDDFPl();
 extern "C" void vfunc_84__9TObjEneDDFv();
 extern "C" void vfunc_85__9TObjEneDDFv();
 extern "C" void vfunc_86__9TObjEneDDFv();
@@ -100,7 +100,7 @@ extern "C" void add_actor_exp__9TObjCharaFl();
 extern "C" void apply_action_hold_status__9TObjCharaFf();
 extern "C" void apply_anti_technique__9TObjCharaFl();
 extern "C" void apply_attack_stat_status__9TObjCharaFPv();
-extern "C" void apply_knockback_from_attacker__9TObjCharaFPUc();
+extern "C" void apply_knockback_from_attacker__9TObjCharaFPUcf();
 extern "C" void apply_object_set_data__8TObjBaseFPv();
 extern "C" void apply_set_data__9TObjEnemyFPv();
 extern "C" void apply_switch_attack__9TObjCharaFv();
@@ -267,7 +267,7 @@ void *__vt__13TBoss2DeRolLe[107] = {
     (void *)&get_name__9TObjEnemyFv, (void *)&interact__14TObjCollidableFl, (void *)&add_actor_exp__9TObjCharaFl, (void *)&consume_timer_field__9TObjCharaFl,
     (void *)&get_actor_level_index__9TObjCharaFv, (void *)&update_actor_ground_y__9TObjCharaFv, (void *)&vfunc_18__9TObjCharaFPUc, (void *)&is_actor_cadence_frame__9TObjCharaFl,
     (void *)&select_melee_contact_body__9TObjCharaFPvf, (void *)&calc_distance_accuracy_penalty__9TObjCharaFPvPvPvf, (void *)&receive_physical_attack__9TObjCharaFPvf, (void *)&receive_direct_attack__9TObjCharaFPv19DirectAttackPayloadPvll,
-    (void *)&receive_weapon_special_attack__9TObjCharaFPvPv, (void *)&apply_knockback_from_attacker__9TObjCharaFPUc, (void *)&try_start_action__9TObjCharaFll, (void *)&roll_physical_accuracy__9TObjCharaFPvlf,
+    (void *)&receive_weapon_special_attack__9TObjCharaFPvPv, (void *)&apply_knockback_from_attacker__9TObjCharaFPUcf, (void *)&try_start_action__9TObjCharaFll, (void *)&roll_physical_accuracy__9TObjCharaFPvlf,
     (void *)&vfunc_28__13TBoss2DeRolLeFv, (void *)&vfunc_29__9TObjCharaFv, (void *)&is_target_in_attack_range__9TObjCharaFv, (void *)&test_flag_256__9TObjCharaFv,
     (void *)&test_flag30_512__9TObjCharaFv, (void *)&has_flag_0x800__9TObjCharaFv, (void *)&test_flag_1000__9TObjCharaFv, (void *)&update_poison_status__9TObjCharaFv,
     (void *)&update_action_hold_status__9TObjCharaFv, (void *)&vfunc_37__9TObjCharaFv, (void *)&update_flag30_timer__9TObjCharaFv, (void *)&update_movement_status__9TObjCharaFv,
@@ -280,7 +280,7 @@ void *__vt__13TBoss2DeRolLe[107] = {
     (void *)&reset_pose__9TObjCharaFv, (void *)&get_anim_node_position__9TObjCharaFlP3Vec, (void *)&vfunc_66__9TObjCharaFv, (void *)&vfunc_67__9TObjCharaFf,
     (void *)&get_pos__9TObjCharaFl, (void *)&apply_switch_attack__9TObjCharaFv, (void *)&enemy_spawn_jellen_effect__9TObjCharaFv, (void *)&trigger_switch_attack__9TObjCharaFv,
     (void *)&enemy_spawn_zalure_effect__9TObjCharaFv, (void *)&recalc_stats__9TObjCharaFv, (void *)&vfunc_74__9TObjEnemyFl, (void *)&vfunc_75__9TObjCharaFf,
-    (void *)&vfunc_76__9TObjCharaFv, (void *)&vfunc_77__9TObjCharaFv, (void *)&vfunc_78__9TObjCharaFl, (void *)&vfunc_79__9TObjEneDDFv,
+    (void *)&vfunc_76__9TObjCharaFv, (void *)&vfunc_77__9TObjCharaFv, (void *)&vfunc_78__9TObjCharaFl, (void *)&vfunc_79__9TObjEneDDFPl,
     (void *)&apply_hit_message_flags__9TObjEnemyFPv, (void *)&apply_set_data__9TObjEnemyFPv, (void *)&clear_lobby_object_state__9TObjEnemyFv, (void *)&vfunc_83__12TObjEneDD_STFv,
     (void *)&vfunc_84__9TObjEneDDFv, (void *)&vfunc_85__9TObjEneDDFv, (void *)&vfunc_86__9TObjEneDDFv, (void *)&dispatch_action__13TBoss2DeRolLeFiUii,
     (void *)&update_colliders_from_offsets__13TBoss2DeRolLeFi, (void *)&vfunc_89__9TObjEneDDFv, (void *)&vfunc_90__9TObjEneDDFv, (void *)&vfunc_91__9TObjEneDDFv,
@@ -5567,10 +5567,10 @@ void *TBoss2Mine__sub_800381B8(void *, void *, u16, int);
 void *__ct__14TBoss2TentacleFP7TObjectll(void *, void *, void *, s32);
 s32 __ct__12TObjEneDD_STFP7TObject(void *, void *);
 s32 is_main_phase_15__9TObjEneDDFv();
-s32 reset_hp__9TObjEneDDFv(void *, int, int, int);
-s32 initialize_enemy_state__9TObjEneDDFv(void *, int);
-s32 init_model__9TObjEneDDFv(void *, void *, int, void *);
-s32 invoke_initialization_hook__9TObjEneDDFv(void *, void *);
+s32 reset_hp__9TObjEneDDFPUcPUcPUc(void *, int, int, int);
+s32 initialize_enemy_state__9TObjEneDDFl(void *, int);
+s32 init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, int, void *);
+s32 invoke_initialization_hook__9TObjEneDDFPv(void *, void *);
 u8 *__ct__17AreaAttackHistoryFl(u8 *arg0, s32 arg1);
 Buf_8003563C *mem_alloc(int);
 void *__nw__7TObjectFUl(int);
@@ -5607,7 +5607,7 @@ extern "C" void apply_shock_status__13TBoss2DeRolLeFv();
 extern "C" void clear_harmful_statuses__13TBoss2DeRolLeFv();
 extern "C" void vfunc_6__8TObjBaseFPsl();
 extern "C" void vfunc_103__9TObjEneDDFPUc();
-extern "C" void vfunc_79__9TObjEneDDFv();
+extern "C" void vfunc_79__9TObjEneDDFPl();
 extern "C" void vfunc_84__9TObjEneDDFv();
 extern "C" void vfunc_85__9TObjEneDDFv();
 extern "C" void vfunc_86__9TObjEneDDFv();
@@ -5647,7 +5647,7 @@ extern "C" void add_actor_exp__9TObjCharaFl();
 extern "C" void apply_action_hold_status__9TObjCharaFf();
 extern "C" void apply_anti_technique__9TObjCharaFl();
 extern "C" void apply_attack_stat_status__9TObjCharaFPv();
-extern "C" void apply_knockback_from_attacker__9TObjCharaFPUc();
+extern "C" void apply_knockback_from_attacker__9TObjCharaFPUcf();
 extern "C" void apply_object_set_data__8TObjBaseFPv();
 extern "C" void apply_set_data__9TObjEnemyFPv();
 extern "C" void apply_switch_attack__9TObjCharaFv();
@@ -5810,7 +5810,7 @@ void *TBoss2DeRolLe__ct(void *arg0, void *arg1, void *arg2) {
     if ((u32)TBoss2DeRolLe__instance == 0) {
         TBoss2DeRolLe__instance = (s32)self;
     }
-    invoke_initialization_hook__9TObjEneDDFv(self, arg2);
+    invoke_initialization_hook__9TObjEneDDFPv(self, arg2);
     self->f3C0 = 0;
     {
 
@@ -5825,7 +5825,7 @@ void *TBoss2DeRolLe__ct(void *arg0, void *arg1, void *arg2) {
         self->f34 = *(s32 *)((s8 *)q + 0x28);
         q = *(u8 **)((s8 *)lbl_805D4BA4 + 0x42C);
         self->f24 = *(s32 *)((s8 *)q + 0x2C);
-        init_model__9TObjEneDDFv(self, (u8 *)lbl_804822A8, 3, q);
+        init_model__9TObjEneDDFP13CollisionBodyl(self, (u8 *)lbl_804822A8, 3, q);
     }
     ((TBoss2DeRolLe *)self)->animationFlags = 0;
     ((TObjMotion *)self)->set_field_d8((s32)((u8 *)lbl_804823A8));
@@ -5833,10 +5833,10 @@ void *TBoss2DeRolLe__ct(void *arg0, void *arg1, void *arg2) {
     ((TBoss2DeRolLe *)self)->m_b8 = 0;
     ((TObjMotion *)self)->set_animation(((TBoss2DeRolLe *)self)->m_b8);
     ((TObjMotion *)self)->set_field_b8(((TBoss2DeRolLe *)self)->m_b8);
-    reset_hp__9TObjEneDDFv(self, TBoss2DeRolLe__base_params, ((s32 *)TBoss2DeRolLe__attack_params_table)[0], TBoss2DeRolLe__resistance_params);
+    reset_hp__9TObjEneDDFPUcPUcPUc(self, TBoss2DeRolLe__base_params, ((s32 *)TBoss2DeRolLe__attack_params_table)[0], TBoss2DeRolLe__resistance_params);
     ((TObjEneDD *)self)->check_state_flag_2();
     ((TBoss2DeRolLe *)self)->movementParameters = (u8 *)lbl_8048228C;
-    initialize_enemy_state__9TObjEneDDFv(self, 0x2D);
+    initialize_enemy_state__9TObjEneDDFl(self, 0x2D);
     ((TBoss2DeRolLe *)self)->m_37c = TBoss2DeRolLe__data_805D8294;
     ((TObjEneDD_ST *)self)->enemy_init_acquire_period(0x1E);
     ((TObjEneDD_ST *)self)->enemy_init_validate_period(0x1E);

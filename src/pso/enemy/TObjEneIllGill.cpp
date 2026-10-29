@@ -377,7 +377,7 @@ s32 approach_angle_limited(s32, s32, s32);
 extern Vec_80367B00 lbl_8050BEE0;
 void *__dt__14TObjEneIllGillFv(void *arg0, s16 arg1);
 int TLobby__sub_8001FE7C(void*, void*);
-void *TObjControl__ct(void *, void *);
+void *__ct__11TObjControlFP7TObject(void *, void *);
 void free_collision_body_parts(void *);
 s32 TObjEneMe3SinowZoa__sub_800D758C(void *);
 void __dl__7TObjectFPv(void *);
@@ -1749,7 +1749,7 @@ void *TObjEneIllGill::create() {
     void *o2;
     o = __nw__7TObjectFUl(0x20);
     if (o != NULL) {
-        o = TObjControl__ct(o, tl_04);
+        o = __ct__11TObjControlFP7TObject(o, tl_04);
     }
     o2 = __nw__7TObjectFUl(0x420);
     if (o2 != NULL) {

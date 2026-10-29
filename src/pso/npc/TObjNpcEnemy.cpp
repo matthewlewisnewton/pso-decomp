@@ -66,7 +66,7 @@ struct NpcV_802d7748_802D745C : NpcBase_802d7748_802D745C {
 
 void * TObjNpcEnemy__create(void *arg0);
 void *__dt__12TObjNpcEnemyFv(void *arg0, s16 arg1);
-void *TObjControl__ct(void *, void *);
+void *__ct__11TObjControlFP7TObject(void *, void *);
 s32 rotate_matrix_y(int, int);
 s32 translate_matrix(int, int, f32, f32, f32);
 void __dl__7TObjectFPv(void *);
@@ -305,7 +305,7 @@ void * TObjNpcEnemy__create(void *arg0) {
     void *o2;
     o = __nw__7TObjectFUl(0x20);
     if (o != NULL) {
-        o = TObjControl__ct(o, tl_04);
+        o = __ct__11TObjControlFP7TObject(o, tl_04);
     }
     o2 = __nw__7TObjectFUl(0x3BC);
     if (o2 != NULL) {

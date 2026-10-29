@@ -44,7 +44,7 @@ void fn_802CE510(int arg0) {
   u8 *temp_r3;
   VecCopy((Vec *)(&stack.sp8), (const Vec *)(arg0 + 0x38));
   stack.spC += lbl_805DE6E8;
-  temp_r3 = (u8 *) csnVectorUnder((s32)&stack.sp8, (u32 *)(arg0 + 0x120), 0x15);
+  temp_r3 = (u8 *) csnVectorUnder((Vec *)&stack.sp8, (u32 *)(arg0 + 0x120), 0x15);
   if (temp_r3 != 0)
   {
     temp_r31 = ((RecoveredFields_802CE510_temp_r3 *) temp_r3)->field_0 & 4;

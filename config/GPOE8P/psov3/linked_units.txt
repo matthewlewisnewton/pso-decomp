@@ -409,6 +409,9 @@ pso/encryption/PSOV3EncryptionTCP.cpp
 pso/enemy/BringerEffects.cpp
 pso/enemy/CanadinEffects.cpp
 pso/enemy/DarkGunner.cpp
+pso/enemy/DelDepthConstants.cpp
+pso/enemy/DelDepthData.cpp
+pso/enemy/DelDepthMotion.cpp
 pso/enemy/EnemyFactoryTables.cpp
 pso/enemy/SaverLifecycle.cpp
 pso/enemy/TEnemyTaskList.cpp
@@ -447,9 +450,8 @@ pso/enemy/TObjEneDD_800C2614.cpp
 pso/enemy/TObjEneDD_800C38D0.cpp
 pso/enemy/TObjEneDarkGunCenter.cpp
 pso/enemy/TObjEneDarkGunner.cpp
-pso/enemy/TObjEneDelDepthBomb_80316244.cpp
-pso/enemy/TObjEneDelDepth_80315AD8.cpp
-pso/enemy/TObjEneDelDepth_8031624C.cpp
+pso/enemy/TObjEneDelDepth.cpp
+pso/enemy/TObjEneDelDepthAccessors.cpp
 pso/enemy/TObjEneDellBiter.cpp
 pso/enemy/TObjEneDellBiterEffects.cpp
 pso/enemy/TObjEneDellBiter_800BC46C.cpp
@@ -1299,6 +1301,7 @@ pso/misc/TODoorMachine02.cpp
 pso/misc/TODoorVS2Door01.cpp
 pso/misc/TODoorVoShip.cpp
 pso/misc/TODragonflyCave01.cpp
+pso/misc/TODragonflyMachine01.cpp
 pso/misc/TODummyKeyCave01.cpp
 pso/misc/TOExplosiveMachine01.cpp
 pso/misc/TOExplosiveMachine02.cpp

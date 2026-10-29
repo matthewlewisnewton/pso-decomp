@@ -73,7 +73,7 @@ void *__dt__10TObjPlayerFv(void *arg0, s16 arg1) {
         TObjPlayer__sub_801BFA4C((s32)((s8 *)arg0 + 0x360), -1);
         TObjPlayer::conditional_delete_ex((s32)((s8 *)arg0 + 0x34C), (s16)(-1));
         TObjPlayer__sub_801BF9F0((u8 *)((s8 *)arg0 + 0x340), -1);
-        ((TObjChara *)arg0)->destroy_motion_object(0);
+        __dt__9TObjCharaFv(arg0, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }

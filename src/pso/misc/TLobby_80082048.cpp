@@ -103,7 +103,7 @@ void *__dt__13TUnk_8048E1A4Fv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = lbl_8048E1A4;
         if (((TUnk_8048E1A4 *)arg0)->m_350 != NULL) { TParticleCtrl::release(((TUnk_8048E1A4 *)arg0)->m_350); }
-        ((TObjChara *)arg0)->destroy_motion_object(0);
+        __dt__9TObjCharaFv(arg0, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }

@@ -23,7 +23,7 @@ extern u32 TObjNpcHRM01__body_texture_gvm_handle;
 extern char TObjNpcHRM01__data_rel_filename[];
 extern char TObjNpcHRM01__body_texture_filename[];
 void release_texture_list(void*);
-void *TObjControl__ct(void *, void *);
+void *__ct__11TObjControlFP7TObject(void *, void *);
 u8 *TObjNpcLappy__ct(u8 *self, void *parent, s32 arg2);
 void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
@@ -84,7 +84,7 @@ void * TObjNpcLappy__create(void *arg0) {
     void *o2;
     o = __nw__7TObjectFUl(0x20);
     if (o != NULL) {
-        o = TObjControl__ct(o, tl_04);
+        o = __ct__11TObjControlFP7TObject(o, tl_04);
     }
     o2 = __nw__7TObjectFUl(0x3B8);
     if (o2 != NULL) {

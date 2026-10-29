@@ -1348,7 +1348,7 @@ u16 register_entity_by_id(void *ov);
 s32 TBoss6PlotFalz__ct(s32, s32, s32);
 void TItemEffOrgaFlowShot__sub_80357204(void);
 int TLobby__sub_8001FE7C(void*, void*);
-s32 TObjControl__ct(s32, s32);
+s32 __ct__11TObjControlFP7TObject(s32, s32);
 s32 __nw__7TObjectFUl(s32);
 
 void TBoss6PlotFalz::render() {  }
@@ -1549,7 +1549,7 @@ s32 TBoss6PlotFalz::create(s32 arg0) {
     if (var_r31 != 0) {
         var_r4 = __nw__7TObjectFUl(0x20);
         if (var_r4 != 0) {
-            var_r4 = TObjControl__ct(var_r4, tl_04);
+            var_r4 = __ct__11TObjControlFP7TObject(var_r4, tl_04);
         }
         var_r31 = TBoss6PlotFalz__ct(var_r31, var_r4, arg0);
     }

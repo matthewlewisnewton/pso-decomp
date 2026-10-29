@@ -331,7 +331,7 @@ void *__dt__15TOAttackableColFv(void *arg0, s16 arg1) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__15TOAttackableCol;
         ((TObjCollidable *)arg0)->unregister_object_by_id();
         free_collision_body_parts(arg0);
-        ((TObjChara *)arg0)->destroy_motion_object(0);
+        __dt__9TObjCharaFv(arg0, 0);
         if ((s16) arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }
@@ -372,7 +372,7 @@ f32 TOAttackableCol::receive_direct_attack(void *_w1, DirectAttackPayload, void 
 
 f32 TOAttackableCol::receive_weapon_special_attack(void *_w1, void *) { return this->apply_hit((s32)_w1); }
 
-void TOAttackableCol::apply_knockback_from_attacker(u8 *) {  }
+void TOAttackableCol::apply_knockback_from_attacker(u8 *, f32) {  }
 
 void TOAttackableCol__sub_80157C20(void* p, s32 v) { *(s32*)((char*)p + 0x33c) = v; }
 s32 TOAttackableCol__sub_80157C28(void* p) { return *(s32*)((char*)p + 0x33c); }
