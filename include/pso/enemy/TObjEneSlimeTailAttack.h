@@ -6,6 +6,11 @@
 
 struct TObjEneSlimeOne;
 
+struct SlimeTailPose {
+    Vec attachment;
+    Vec shadows[4];
+};
+
 struct TObjEneSlimeTailAttack : public TObjEnemy {
     TObjEneSlimeTailAttack(TObject *parent, const Vec *position, s32 angle, TObjEneSlimeOne *owner);
     virtual ~TObjEneSlimeTailAttack();
@@ -23,24 +28,21 @@ struct TObjEneSlimeTailAttack : public TObjEnemy {
     s32 last_hit_player;
     Vec stretch_scale;
     f32 fade;
-    Vec attachment_position;
-    Vec shadow_positions[4];
+    SlimeTailPose pose;
 };
 
 typedef char SlimeTailSize[sizeof(TObjEneSlimeTailAttack) == 0x3CC ? 1 : -1];
 
 struct TObjEneSlimeWaterBomb;
 extern "C" {
-void TObjPlayer__sub_800E80C0(u8 *dst);
-void TObjPlayer__sub_800E8128(void);
-void TObjPlayer__sub_800E81A8(void);
+void get_slime_tail_pose(SlimeTailPose *dst);
+void capture_slime_tail_node(void);
+void reset_slime_tail_node_index(void);
 void sub_800E841C__22TObjEneSlimeTailAttackFv(u8 *arg0);
 void render__22TObjEneSlimeTailAttackFv(u8 *arg0);
 void run_task__22TObjEneSlimeTailAttackFv(u8 *arg0);
-void fn_800E9238(s32 arg0);
 void initialize_slime_instance_state__15TObjEneSlimeOneFv(u8 *actor);
 void render__15TObjEneSlimeOneFv(TObjEneSlimeOne *arg0);
-s32 try_spawn_child__15TObjEneSlimeOneFPv(int origin, void *arg1);
 }
 
 #endif

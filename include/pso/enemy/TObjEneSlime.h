@@ -4,12 +4,21 @@
 #include "types.h"
 #include "pso/enemy/TObjEnemy.h"
 
+struct TObjEneSlimeOne;
+
+struct SlimeChildSlot {
+    s32 state;
+    TObjEneSlimeOne *slime;
+};
+
 struct TObjEneSlime : public TObjEnemy {
     virtual ~TObjEneSlime();
     virtual void vfunc_63();
     void* m_374;
     u8 _pad378[0x3C];
-    u32 m_3b4;
+    s32 m_3b4;
+    SlimeChildSlot child_slots[4];
+    s32 try_spawn_child(void *position);
     void release_split_slimes();
     virtual void render();
     virtual void run_task();
@@ -20,7 +29,7 @@ struct TObjEneSlime : public TObjEnemy {
     void init_slots();
 };
 
-typedef char TObjEneSlime_size[sizeof(TObjEneSlime) == 0x3B8 ? 1 : -1];
+typedef char TObjEneSlime_size[sizeof(TObjEneSlime) == 0x3D8 ? 1 : -1];
 
 extern "C" {
 void TObjEneSlime__sub_800EB9F0(void *p, void *q);

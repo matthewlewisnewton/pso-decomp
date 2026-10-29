@@ -1183,10 +1183,6 @@ force_active:
   - TObjPlayer__sub_800DB0F8
   - TObjPlayer__sub_800DB390
   - TObjPlayer__sub_800DBAB8
-  - TObjPlayer__sub_800E80C0
-  - TObjPlayer__sub_800E80E8
-  - TObjPlayer__sub_800E8128
-  - TObjPlayer__sub_800E81A8
   - TObjPlayer__sub_800EBE48
   - TObjPlayer__sub_800F083C
   - TObjPlayer__sub_800F08AC
@@ -3360,6 +3356,7 @@ force_active:
   - candidate_players__12TBoss3Volopt
   - capture_attachment__17TObjEneBm3FlyNestFPv
   - capture_matrix_by_frame__16TObjDFTenchuFuruFv
+  - capture_slime_tail_node
   - cast_resta__18TObjEneRe4SorcererFv
   - cast_tech_on_players__15TBoss3VoloptP01Fv
   - cast_technique__18TObjEneMe3SinowZoaFPv
@@ -3788,6 +3785,7 @@ force_active:
   - copy_ring_buffer_window__15TObjBoss2TunnelFv
   - copy_rotation_to_current_matrix
   - copy_save_data__23TAdSinglePlyChrSelectGCFii
+  - copy_slime_tail_pose
   - copy_spawn_params__12TBoss8DragonFPv
   - copy_stat_block__17TWindowSetLevelUpFl
   - copy_state__11TBoss6Type2FPv
@@ -4540,7 +4538,6 @@ force_active:
   - fn_800E3374
   - fn_800E3428
   - fn_800E35C8
-  - fn_800E9238
   - fn_800E92D8__15TObjEneSlimeOneFv
   - fn_800E9538__15TObjEneSlimeOneFv
   - fn_800E95F4__15TObjEneSlimeOneFv
@@ -4835,6 +4832,7 @@ force_active:
   - get_serial_text__22TAdEnterSerialAccessGCFii
   - get_set_bonus_multiplier__9TItemDataFPvi
   - get_shield_set_multiplier__9TItemDataFPUc
+  - get_slime_tail_pose
   - get_slot_flag__26TWindowSubQuestBoardSelectFic
   - get_sock_status_name__Fs
   - get_speaker_balloon_anchor__11TWindowCtrlFPviPvPv
@@ -11853,6 +11851,7 @@ force_active:
   - reset_random_enemies_mode__6TLobbyFv
   - reset_request__12TChCrLoadReqFv
   - reset_selection__21TWindowSubCustomEquipFv
+  - reset_slime_tail_node_index
   - reset_state
   - reset_state__13TObjLobbyMainFPv
   - reset_state__13TObjWarnChimeFv
@@ -13405,7 +13404,7 @@ force_active:
   - try_hit_target__13TUnk_80491460Fi
   - try_open__11TObjDoaEx01Fv
   - try_relocate_on_timer__15TObjEneDelDepthFv
-  - try_spawn_child__15TObjEneSlimeOneFPv
+  - try_spawn_child__12TObjEneSlimeFPv
   - try_spawn_ground_effect__16TObjEneMe3StelthFl
   - try_start_action__20TContainerAncient01RFll
   - turn_pose_to_target__14TObjEneBm5WolfFv
@@ -13908,6 +13907,7 @@ force_active:
   - update_toggle_state__12TBoss8DragonFv
   - update_topple_state__16TBoss3VoloptCoreFv
   - update_trade_window_visibility__11TWindowCtrlFv
+  - update_trail_position__15TObjEneSlimeOneFv
   - update_trail_quads__16TAdGuideButtonGCFv
   - update_trails__11TItemWeaponFv
   - update_transition__11TItemMagSubFv

@@ -7,16 +7,13 @@
 #include "pso/TObject.h"
 #include "pso/TObjControl.h"
 #include "pso/system/BmlResource.h"
+#include "pso/system/BmlResourceDescriptor.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/misc/TLobby.h"
 #include "pso/enemy/TObjEneSlimeOne.h"
 #include "pso/enemy/TObjEneSlimeWaterBomb.h"
 #include "pso/enemy/TObjEneSlimeTailAttack.h"
-extern "C" void has_flag_0x800__9TObjCharaFv();
-extern "C" void test_flag30_512__9TObjCharaFv();
-extern "C" void test_flag_1000__9TObjCharaFv();
-extern "C" void test_flag_256__9TObjCharaFv();
 #include "pso/system/vector.h"
 
 #include <stddef.h>
@@ -33,9 +30,6 @@ extern "C" void test_flag_256__9TObjCharaFv();
 typedef void (TObjEneSlimeOne::*SlimeAction)();
 struct SlimeState { SlimeAction fn; SlimeAction update; };
 
-#include "types.h"
-#include "pso/system/vector.h"
-#include "pso/enemy/TObjEneSlimeOne.h"
 struct E_800EB8DC { s32 f0; s32 f4; };
 
 struct O_800EB8DC { u8 pad[0x3b8]; E_800EB8DC arr[4]; };
@@ -82,14 +76,9 @@ s32 has_no_active_slot(O_800EB8DC *self);
 
 }
 
-#include "types.h"
 #include "pso/unk/text_803E2D70.h"
 #include "pso/enemy/TObjEneSlimeOne_800EC394.h"
-#include "pso/object/TObjFish.h"
-#include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneSlime.h"
-#include "pso/TParticleCtrl.h"
-#include "pso/player/TObjPlayer.h"
 
 #define CAT2(a,b) a##b
 #define CAT(a,b) CAT2(a,b)
@@ -201,12 +190,8 @@ void TObjEneSlime__sub_800EB9F0(void* p, void* q);
 
 }
 
-#include "types.h"
 #include "pso/enemy/TObjEneSlime_800EBBC8.h"
 #include "pso/object/TObjDFHorming.h"
-#include "pso/enemy/TObjEneSlime.h"
-#include "pso/boss/TBoss3Volopt.h"
-#include "pso/player/TObjPlayer.h"
 
 struct RecoveredGlobal_800EBC28___vt__12TObjEneSlime {
     s32 value;
@@ -230,15 +215,11 @@ u8 *TObjEneSlime__ct(TObjEneSlime *ene_slime, s32 arg1, u8 *arg2);
 
 }
 
-#include "types.h"
-#include "pso/enemy/TObjEneSlime_800EBBC8.h"
-#include "pso/enemy/TObjEneSlime.h"
-
 extern "C" {
 
 void *load_resource_from_descriptor(void *, s32, s32 *, s32, s32, s32);
 
-extern void *slime_pair_resource_descriptor[4];
+extern BmlResourceDescriptor slime_pair_resource_descriptor;
 extern void *slime_bml_resource;
 extern const f32 lbl_805DA66C;
 extern const f32 lbl_805DA6B4;
@@ -247,13 +228,9 @@ extern s32 tl_04;
 
 }
 
-#include "types.h"
 #include "pso/misc/MaterialColorFade.h"
 #include "pso/player/TObjPlayer_800EBE2C.h"
 #include "pso/system/ChunkMaterialState.h"
-#include "pso/enemy/TObjEneSlimeTailAttack.h"
-#include "pso/player/TObjPlayer.h"
-#include "pso/enemy/TObjEneSlimeOne.h"
 
 struct Stack_800EBE74 {
     f32 sp8;
@@ -271,7 +248,6 @@ extern int chunk_polygon_flags_or_mask;
 extern int chunk_polygon_flags_and_mask;
 extern u32 model_render_flags;
 extern const f32 lbl_805DA6F8;
-s32 find_nearest_hittable_enemy__10TObjPlayerFiPvf(void *, int, f32);
 
 void TObjPlayer__sub_800EBE48(f32 farg0);
 
@@ -280,8 +256,6 @@ void TObjPlayer__sub_800EBE48(f32 farg0);
 #undef VA
 #undef CAT
 #undef CAT2
-
-typedef struct { f32 x, y, z; } Vec_800EB654;
 
 extern "C" {
 f64 atan2_float(f32, f32);
@@ -315,7 +289,6 @@ s32 post_translate_matrix(void *);
 extern const f32 lbl_805DA67C;
 extern const f32 lbl_805DA6E4;
 extern const f32 lbl_805DA728;
-void render__15TObjEneSlimeOneFv(TObjEneSlimeOne *arg0);
 s32 TObjFish__sub_8001EDB0(s32, s32);
 
 u8 *get_instance__15TObjEneSlimeOneFv();
@@ -324,155 +297,33 @@ extern const f32 lbl_805DA754;
 extern SlimeState lbl_80496574[15];
 extern s32 lbl_80496368[2];
 extern TObjMotionAction lbl_8049639C[7];
-struct RecoveredGlobal_800E8128_lbl_80496704 {
-    s32 value;
-    u8 remaining[0x8];
-};
-
-struct RecoveredGlobal_800E8128_lbl_80496710 {
-    s32 value;
-    u8 remaining[0x8];
-};
-
-struct RecoveredGlobal_800E8128_lbl_80501010 {
-    s32 value;
-    u8 remaining[0x3C];
-};
-
-struct RecoveredGlobal_800E80C0_lbl_80501010 {
-    s32 value;
-    u8 remaining[0x3C];
-};
 
 #pragma push
 #pragma auto_inline on
 #pragma dont_inline off
 #pragma inline_depth(2)
-struct B_800E80E8 { s32 w[3]; };
 
-struct A_800E80E8 { s32 w[12]; };
-
-struct S_800E80E8 { B_800E80E8 a; A_800E80E8 d; };
 #pragma pop
 
-typedef struct { f32 x, y, z; } Vec_800E81B4;
-
-struct Rot_800E81B4 { s32 x, y, z; };
-
-struct Obj_800E81B4 { u8 pad[0x39C]; Vec_800E81B4 pts[4]; };
-
-struct Vec_800E82B8 { f32 x, y, z; };
-
-typedef char RecoveredGlobal_800E8128_lbl_80496704_size[sizeof(RecoveredGlobal_800E8128_lbl_80496704) == 0xC ? 1 : -1];
-
-typedef char RecoveredGlobal_800E8128_lbl_80496710_size[sizeof(RecoveredGlobal_800E8128_lbl_80496710) == 0xC ? 1 : -1];
-
-typedef char RecoveredGlobal_800E8128_lbl_80501010_size[sizeof(RecoveredGlobal_800E8128_lbl_80501010) == 0x40 ? 1 : -1];
-
-typedef char RecoveredGlobal_800E80C0_lbl_80501010_size[sizeof(RecoveredGlobal_800E80C0_lbl_80501010) == 0x40 ? 1 : -1];
-
-struct Hit_800E8AD0 { s32 kind; f32 dmg; };
-
-struct Base_800E8AD0 { u8 pad[0x18]; };
-
-struct Ent_800E8AD0 : Base_800E8AD0 {
-    virtual void v0();
-    virtual void v1();
-    virtual void v2();
-    virtual void v3();
-    virtual void v4();
-    virtual void v5();
-    virtual void v6();
-    virtual void v7();
-    virtual void v8();
-    virtual void v9();
-    virtual void v10();
-    virtual void v11();
-    virtual void v12();
-    virtual void v13();
-    virtual void v14();
-    virtual void v15();
-    virtual void v16();
-    virtual void v17();
-    virtual void v18();
-    virtual void v19();
-    virtual void v20();
-    virtual f32 m21(s32, Hit_800E8AD0, s32, s32, s32);
-    virtual void v22();
-    virtual void m23(void *);
+// Twelve-byte per-enemy saved-state record exchanged by TObjEnemy.
+struct SlimeSavedState {
+    s32 flags;
+    u16 unknown4;
+    s16 unknown6;
+    u8 unknown8[4];
 };
-
-struct Vec_800E8D4C { f32 x, y, z; };
-
-struct Bomb_800E8D4C {
-    u8 pad0[0x38];
-    Vec_800E8D4C pos;
-    u8 pad44[0x248 - 0x44];
-    u8 hit[0x374 - 0x248];
-    Vec_800E8D4C vel;
-    f32 ground;
-    f32 life;
-    void *link;
-    s32 owner;
-    u8 pad390[4];
-    s32 timer;
-};
-
-typedef struct { f32 x, y, z; } Vec_800E8C6C;
-
-struct Vec_800E9090 { f32 x, y, z; };
-
-struct Bomb_800E9090 {
-    u8 pad0[0x38];
-    Vec_800E9090 pos;
-    u8 pad44[0x374 - 0x44];
-    Vec_800E9090 vel;
-    s32 f380;
-    u8 pad384[0x3A0 - 0x384];
-    f32 f3A0;
-    u8 pad3A4[0x3F4 - 0x3A4];
-    s32 f3F4;
-};
-
-struct Stack_800E9238 {
-    f32 sp8;
-    f32 spC;
-    f32 sp10;
-};
-
-struct Vec_800EA364 { f32 x, y, z; };
-
-struct Stack_800EB3D4 {
-    s32 sp8;
-    u8 pad_C[0x2];
-    s16 spE;
-    u8 trailing_storage[0x4];
-};
-
-struct Stack_800EB4A0 {
-    s32 sp8;
-    u8 pad_C[0x2];
-    s16 spE;
-    u8 trailing_storage[0x4];
-};
-
-struct Vec_800E9EFC { f32 x, y, z; };
 
 u16 find_nearest_visible_player(void *, void *, f32);
 void queue_destruction__7TObjectFv(void *);
 f32 * dispatch_shared_handler_a__6TLobbyFl(s32);
 u8 * get_bml_motion(s32, s32);
-s32 exchange_object_state__9TObjEnemyFls(void *, void *, int);
 void transform_to_view__11TCameraCtrlFii(s32, s32);
 void *spawn_particle_effect(void *pos, s32 id);
 void *create_particle_emitter(void *pos, s32 id);
-void TObjPlayer__sub_800E80C0(u8 *arg0);
-S_800E80E8 * TObjPlayer__sub_800E80E8(S_800E80E8 *dst, S_800E80E8 *src);
-void TObjPlayer__sub_800E8128(void);
-void TObjPlayer__sub_800E81A8(void);
-void render__22TObjEneSlimeTailAttackFv(u8 *arg0);
-void run_task__22TObjEneSlimeTailAttackFv(u8 *arg0);
-void fn_800E9238(s32 arg0);
+void get_slime_tail_pose(SlimeTailPose *arg0);
+SlimeTailPose * copy_slime_tail_pose(SlimeTailPose *dst, SlimeTailPose *src);
+void capture_slime_tail_node(void);
+void reset_slime_tail_node_index(void);
 s16 check_player_field_7cc__15TObjEneSlimeOneFv();
 void draw_blob_shadow(s32 arg0);
 void * __ct__11TObjControlFP7TObject(void *, s32);
@@ -494,13 +345,13 @@ s32 rotate_matrix_z(int, int);
 void subtract_vector(void *, void *);
 void translate_matrix(u32 arg0, f32 x, f32 y, f32 z);
 s32 rotate_matrix_x(int, int);
-s32 scale_current_matrix(Vec_800E8C6C *);
+s32 scale_current_matrix(Vec *);
 void draw_chunk_object(void *child);
 
 extern const Vec lbl_8043D230;
 extern const Vec lbl_8043D23C;
 extern DirectAttackPayload lbl_8043D260[];
-extern RecoveredGlobal_800E8128_lbl_80501010 lbl_80501010;
+extern SlimeTailPose lbl_80501010;
 extern const char *TObjEneSlimeOne_class_name;
 extern const char *lbl_805D2AE0;
 extern int lbl_805D52B4;
@@ -557,167 +408,7 @@ extern s32 tl_04;
 #pragma inline_depth(1)
 #pragma auto_inline off
 #pragma dont_inline off
-extern "C" {
-}
-extern "C" {
-void vfunc_6__8TObjBaseFPsl();
-}
-extern "C" {
-void vfunc_29__9TObjCharaFv();
-}
-extern "C" {
-void recalc_stats__9TObjCharaFv();
-}
-extern "C" {
-void vfunc_28__9TObjCharaFv();
-}
-extern "C" {
-void vfunc_67__9TObjCharaFf();
-}
-extern "C" {
-void vfunc_66__9TObjCharaFv();
-}
-extern "C" {
-void get_anim_node_position__9TObjCharaFlP3Vec();
-}
-extern "C" {
-void vfunc_63__9TObjCharaFv();
-}
-extern "C" {
-void vfunc_62__9TObjCharaFv();
-}
-extern "C" {
-void vfunc_61__9TObjCharaFv();
-}
-extern "C" {
-void vfunc_60__9TObjCharaFv();
-}
-extern "C" {
-void vfunc_59__9TObjCharaFv();
-}
-extern "C" {
-void vfunc_58__9TObjCharaFv();
-}
-extern "C" {
-void vfunc_43__9TObjCharaFv();
-}
-extern "C" {
-void vfunc_18__9TObjCharaFPUc();
-}
-extern "C" {
-void interact__14TObjCollidableFl();
-}
-extern "C" {
-void vfunc_74__9TObjEnemyFl();
-}
-extern "C" {
-void add_actor_exp__9TObjCharaFl();
-}
-extern "C" {
-void apply_action_hold_status__9TObjCharaFf();
-}
-extern "C" {
-void apply_anti_technique__9TObjCharaFl();
-}
-extern "C" {
-void apply_attack_stat_status__9TObjCharaFPv();
-}
-extern "C" {
-void apply_confusion_status__9TObjCharaFv();
-}
-extern "C" {
-void apply_hit_message_flags__9TObjEnemyFPv();
-}
-extern "C" {
-void apply_knockback_from_attacker__9TObjCharaFPUcf();
-}
-extern "C" {
-void apply_movement_ailment__9TObjCharaFl();
-}
-extern "C" {
-void apply_object_set_data__8TObjBaseFPv();
-}
-extern "C" {
-void apply_paralysis__9TObjCharaFv();
-}
-extern "C" {
-void apply_poison_status__9TObjCharaFv();
-}
-extern "C" {
-void apply_set_data__9TObjEnemyFPv();
-}
-extern "C" {
-void apply_shock_status__9TObjCharaFv();
-}
-extern "C" {
-void apply_slow_status__9TObjCharaFv();
-}
-extern "C" {
-void apply_switch_attack__9TObjCharaFv();
-}
-extern "C" {
-void calc_distance_accuracy_penalty__9TObjCharaFPvPvPvf();
-}
-extern "C" {
-void vfunc_79__9TObjEnemyFPl();
-}
-extern "C" {
-void classify_actor_view_detail__8TObjBaseFfff();
-}
-extern "C" {
-void clear_all_status_effects__9TObjCharaFv();
-}
-extern "C" {
-void clear_harmful_statuses__9TObjCharaFv();
-}
-extern "C" {
-void clear_lobby_object_state__9TObjEnemyFv();
-}
-extern "C" {
-void consume_timer_field__9TObjCharaFl();
-}
-extern "C" {
-void cure_paralysis__9TObjCharaFv();
-}
-extern "C" {
-void cure_poison_ailment__9TObjCharaFv();
-}
-extern "C" {
-void enemy_spawn_jellen_effect__9TObjCharaFv();
-}
-extern "C" {
-void enemy_spawn_zalure_effect__9TObjCharaFv();
-}
-extern "C" {
-void vfunc_78__9TObjCharaFl();
-}
-extern "C" {
-void vfunc_77__9TObjCharaFv();
-}
-extern "C" {
-void vfunc_76__9TObjCharaFv();
-}
-extern "C" {
-void vfunc_75__9TObjCharaFf();
-}
-extern "C" {
-void get_center__9TObjCharaFv();
-}
-extern "C" {
-void get_actor_level_index__9TObjCharaFv();
-}
-extern "C" {
-void get_name__9TObjEnemyFv();
-}
-extern "C" {
-void get_pos__9TObjCharaFl();
-}
-extern "C" {
-void is_actor_cadence_frame__9TObjCharaFl();
-}
-extern "C" {
-void is_target_in_attack_range__9TObjCharaFv();
-}
+
 extern "C" {
 extern u8 lbl_8043D008[];
 }
@@ -788,85 +479,26 @@ extern "C" {
 extern u8 lbl_805DA668[];
 }
 extern "C" {
-void receive_direct_attack__9TObjCharaFPv19DirectAttackPayloadPvll();
 s32 submit_cursor_candidate(void *, s32);
 s32 minimap_render_dot(void *, s32, s32, s32);
 s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 }
-extern "C" {
-void receive_physical_attack__9TObjCharaFPvf();
-}
-extern "C" {
-void receive_weapon_special_attack__9TObjCharaFPvPv();
-void apply_defense_stat_status__9TObjCharaFPv();
-}
-extern "C" {
-void render_shadows__9TObjEnemyFv(u8 *arg0);
-}
-extern "C" {
-void reset_motion_fields__9TObjCharaFv();
-}
-extern "C" {
-void reset_pose__9TObjCharaFv();
-}
-extern "C" {
-void roll_physical_accuracy__9TObjCharaFPvlf();
-}
-extern "C" {
-void select_melee_contact_body__9TObjCharaFPvf();
-}
-extern "C" {
-void trigger_switch_attack__9TObjCharaFv(s32 arg0);
-}
-extern "C" {
-void try_start_action__9TObjCharaFll();
-}
-extern "C" {
-void update_action_hold_status__9TObjCharaFv();
-}
-extern "C" {
-s32 vfunc_37__9TObjCharaFv(u8 *arg0);
-}
-extern "C" {
-void update_actor_ground_y__9TObjCharaFv();
-}
-extern "C" {
-s32 update_attack_stat_status__9TObjCharaFv(u8 *arg0);
-}
-extern "C" {
-s32 update_defense_stat_status__9TObjCharaFv(u8 *arg0);
-}
-extern "C" {
-void update_flag30_timer__9TObjCharaFv();
-}
-extern "C" {
-void update_movement_status__9TObjCharaFv();
-}
-extern "C" {
-void update_object_view_visibility__8TObjBaseFff();
-}
-extern "C" {
-void update_poison_status__9TObjCharaFv();
-}
-extern "C" {
-void update_shock_clock__9TObjCharaFv();
-}
-extern void *slime_model_name_ptr_table[7];
-extern void *bm4_ps_ma_body_motion_names[15];
-extern "C" {
-}
-void *slime_model_name_ptr_table[7] = {
-    (void *)&lbl_8043D008, (void *)&lbl_8043D01C, (void *)&lbl_8043D030, (void *)&lbl_8043D044,
-    (void *)&lbl_8043D058, (void *)&lbl_8043D06C, (void *)0x0,
+
+extern const char *slime_model_name_ptr_table[7];
+extern const char *bm4_ps_ma_body_motion_names[15];
+
+const char *slime_model_name_ptr_table[7] = {
+    (const char *)lbl_8043D008, (const char *)lbl_8043D01C, (const char *)lbl_8043D030, (const char *)lbl_8043D044,
+    (const char *)lbl_8043D058, (const char *)lbl_8043D06C, NULL,
 };
-void *bm4_ps_ma_body_motion_names[15] = {
-    (void *)&lbl_8043D080, (void *)&lbl_8043D09C, (void *)&lbl_8043D0B8, (void *)&lbl_8043D0D4,
-    (void *)&lbl_8043D0F0, (void *)&lbl_8043D108, (void *)&lbl_8043D120, (void *)&lbl_8043D138,
-    (void *)&lbl_8043D150, (void *)&lbl_8043D16C, (void *)&lbl_8043D188, (void *)&lbl_8043D1A0,
-    (void *)&lbl_8043D1B8, (void *)&lbl_8043D1D0, (void *)0x0,
+const char *bm4_ps_ma_body_motion_names[15] = {
+    (const char *)lbl_8043D080, (const char *)lbl_8043D09C, (const char *)lbl_8043D0B8, (const char *)lbl_8043D0D4,
+    (const char *)lbl_8043D0F0, (const char *)lbl_8043D108, (const char *)lbl_8043D120, (const char *)lbl_8043D138,
+    (const char *)lbl_8043D150, (const char *)lbl_8043D16C, (const char *)lbl_8043D188, (const char *)lbl_8043D1A0,
+    (const char *)lbl_8043D1B8, (const char *)lbl_8043D1D0, NULL,
 };
-void *slime_pair_resource_descriptor[4] = {
-    (void *)&lbl_8043D1EC, (void *)&slime_model_name_ptr_table, (void *)&bm4_ps_ma_body_motion_names, (void *)0x6000e,
+BmlResourceDescriptor slime_pair_resource_descriptor = {
+    (const char *)lbl_8043D1EC, slime_model_name_ptr_table, bm4_ps_ma_body_motion_names, 6, 14,
 };
 __declspec(section ".data") void *slime_debug_label_table[2] = {
     (void *)&lbl_8043D210, (void *)&lbl_805DA668,
@@ -918,17 +550,10 @@ __declspec(section ".data") s32 lbl_804966F4[2] = {
 __declspec(section ".data") s32 lbl_804966FC[2] = {
     0x30, 0x34,
 };
-void *slime_tail_attack_zero_vec[3] = {
-    (void *)0x0, (void *)0x0, (void *)0x0,
-};
-void *slime_tail_attack_transform[3] = {
-    (void *)0x0, (void *)0x0, (void *)0x0,
-};
+Vec slime_tail_attack_zero_vec = {0.0F, 0.0F, 0.0F};
+Vec slime_tail_attack_transform = {0.0F, 0.0F, 0.0F};
 
 #pragma pop
-
-#define slime_tail_attack_zero_vec (*(RecoveredGlobal_800E8128_lbl_80496704 *)slime_tail_attack_zero_vec)
-#define slime_tail_attack_transform (*(RecoveredGlobal_800E8128_lbl_80496710 *)slime_tail_attack_transform)
 
 extern "C" const char *TObjEneSlimeTailAttack__name;
 
@@ -937,8 +562,6 @@ extern const f32 lbl_805DA700;
 extern const f32 lbl_805DA704;
 
 }
-
-struct Bomb_800E9090;
 
 #pragma auto_inline off
 #pragma dont_inline off
@@ -1012,7 +635,7 @@ void TObjEneSlime::spawn_pair() {
 
     temp_r4 = ::operator new(0x440);
     if (temp_r4 != NULL) {
-        temp_r4 = load_resource_from_descriptor(temp_r4, 1, (s32 *)slime_pair_resource_descriptor, 0, 0, 0);
+        temp_r4 = load_resource_from_descriptor(temp_r4, 1, (s32 *)&slime_pair_resource_descriptor, 0, 0, 0);
     }
     slime_bml_resource = temp_r4;
     temp_r5 = *(void **)((s8 *)temp_r4 + 0x42C);
@@ -1260,22 +883,22 @@ void fn_800EB778(Obj_800EB778 *self, s32 id) {
 }
 #pragma pop
 #pragma push
-s32 TObjEneSlimeOne::try_spawn_child(void *arg1) {
+s32 TObjEneSlime::try_spawn_child(void *arg1) {
     s32 i;
-    Vec_800EB654 pos;
-    Vec_800EB654 dir;
+    Vec pos;
+    Vec dir;
     s32 ang;
     s32 n;
-    int origin = (int)this;
-    n = *(s32 *)((s8 *)origin + 0x3B4);
-    for (i = 0; i < n && *(s32 *)((s8 *)((u8 *) origin + i * 8) + 0x3B8) != 0; i++) {
+    TObjEneSlime *origin = this;
+    n = origin->m_3b4;
+    for (i = 0; i < n && origin->child_slots[i].state != 0; i++) {
     }
     if (i == n) {
         return 0;
     }
     VecCopy((Vec *)&pos, (const Vec *)arg1);
     pos.y += lbl_805DA66C;
-    ang = (s16) (lbl_805DA758 * ((f32 (*)(int)) random_ratio__9TObjCharaFv)(origin));
+    ang = (s16) (lbl_805DA758 * random_ratio__9TObjCharaFv(origin));
     dir.x = sin_table_lookup(ang);
     dir.y = lbl_805DA6B4;
     dir.z = cos_table_lookup(ang);
@@ -1309,16 +932,16 @@ s32 TObjEneSlimeOne::create(s32 owner, s32 set_data, s32 velocity) {
 #pragma opt_common_subs off
 TObjEneSlimeOne::TObjEneSlimeOne(TObject *parent, TObjEneSlime *owner, void *set_data)
     : TObjEnemy(parent) {
-    Stack_800EB4A0 state;
+    SlimeSavedState state;
     m_name = TObjEneSlimeOne_class_name;
     add_flags_2e4(2);
     apply_set_data(set_data);
     if (exchange_object_state((s32)&state, 1) != 0) {
-        state.sp8 = 0;
-        state.spE = 0;
+        state.flags = 0;
+        state.unknown6 = 0;
         exchange_object_state((s32)&state, 0);
     }
-    m_3f0 = (u32)owner;
+    slime_group = owner;
     initialize_slime_instance_state();
     project_actor_to_ground(this, &position, 0);
     set_state(0);
@@ -1330,16 +953,16 @@ TObjEneSlimeOne::TObjEneSlimeOne(TObject *parent, TObjEneSlime *owner, void *set
 #pragma opt_common_subs off
 TObjEneSlimeOne::TObjEneSlimeOne(TObject *parent, TObjEneSlime *owner, void *set_data, const Vec *velocity)
     : TObjEnemy(parent) {
-    Stack_800EB3D4 state;
+    SlimeSavedState state;
     m_name = TObjEneSlimeOne_class_name;
     add_flags_2e4(2);
     apply_set_data(set_data);
     if (exchange_object_state((s32)&state, 1) != 0) {
-        state.sp8 = 0;
-        state.spE = 0;
+        state.flags = 0;
+        state.unknown6 = 0;
         exchange_object_state((s32)&state, 0);
     }
-    m_3f0 = (u32)owner;
+    slime_group = owner;
     VecCopy(&m_3dc, velocity);
     initialize_slime_instance_state();
     set_state(14);
@@ -1423,7 +1046,7 @@ TObjEneSlimeOne::~TObjEneSlimeOne() {
 
 void TObjEneSlimeOne::run_task() {
     if (TObjPlayer::check_demo_mode() == 0) {
-        if ((s32)this->m_384 != 13 && (this->m_3f0 == 0 || ((TObject *)this->m_3f0)->all_parents_unqueued_for_destruction() == 0)) {
+        if ((s32)this->m_384 != 13 && (this->slime_group == 0 || ((TObject *)this->slime_group)->all_parents_unqueued_for_destruction() == 0)) {
             set_state(13);
         }
         set_target_flag_bit0();
@@ -1440,10 +1063,10 @@ void TObjEneSlimeOne::run_task() {
         }
         ((TObjEneSlimeOne *)this)->animation->advance();
         play_persistent_sound(0x4003B21C, (s32)this, (u32)&this->position, 0, 0);
-        fn_800E9238((s32)this);
+        update_trail_position();
         clear_child_flag();
         if ((s32)this->m_384 != 13) {
-            minimap_render_dot((u8 *)this + 0x2FC, -0x5DB4, 1, 0);
+            minimap_render_dot(body_center(), -0x5DB4, 1, 0);
         }
     }
 }
@@ -1550,9 +1173,9 @@ void TObjEneSlimeOne::clear_child_flag() {
 
 f32 TObjEneSlimeOne::receive_direct_attack(void *attacker, DirectAttackPayload payload,
                                          void *source, s32, s32) {
-    if (payload.kind == 2 && m_3f0 != 0 &&
-        ((TObjEneSlimeOne *)m_3f0)->all_parents_unqueued_for_destruction()) {
-        ((TObjEneSlimeOne *)m_3f0)->try_spawn_child(&position);
+    if (payload.kind == 2 && slime_group != 0 &&
+        slime_group->all_parents_unqueued_for_destruction()) {
+        slime_group->try_spawn_child(&position);
     }
     TObjChara::receive_direct_attack(attacker, payload, source, -1, -1);
     return lbl_805DA6B4;
@@ -1569,8 +1192,8 @@ void TObjEneSlimeOne::vfunc_63() { if (*(int *)&this->m_384 != 13) { set_state((
 void TObjEneSlimeOne::vfunc_62() {
     u8 *arg0 = (u8 *)this;
     if ((s32) this->m_384 != 0xC) {
-        if (((s32) this->m_2d4 < (s32) lbl_805D586C) && (((u32 (*)(void))get_player_by_client_id)() != 0U) && (check_player_field_7cc__15TObjEneSlimeOneFv() == 2) && ((u32) this->m_3f0 != 0U) && (((TObject *)((void *) this->m_3f0))->all_parents_unqueued_for_destruction() != 0)) {
-            ((TObjEneSlimeOne *)(this->m_3f0))->try_spawn_child((u8 *)&this->position);
+        if (((s32) this->m_2d4 < (s32) lbl_805D586C) && (((u32 (*)(void))get_player_by_client_id)() != 0U) && (check_player_field_7cc__15TObjEneSlimeOneFv() == 2) && ((u32) this->slime_group != 0U) && (((TObject *)((void *) this->slime_group))->all_parents_unqueued_for_destruction() != 0)) {
+            slime_group->try_spawn_child((u8 *)&this->position);
         }
         this->actorFlags = (s32) (this->actorFlags & 0xFFFFFDFF);
         ((TObjEneSlimeOne *)arg0)->set_state((s32)((void*)(0xC)));
@@ -1759,7 +1382,7 @@ void TObjEneSlimeOne::fn_800EA56C() {
 #pragma fp_contract on
 #pragma opt_common_subs off
 void TObjEneSlimeOne::fn_800EA364() {
-    Vec_800EA364 sp8;
+    Vec sp8;
     f32 s;
     f32 c;
     f32 t;
@@ -1890,8 +1513,8 @@ void TObjEneSlimeOne::fn_800EA120() {
 #pragma fp_contract on
 void TObjEneSlimeOne::fn_800E9EFC() {
     TObjEneSlimeOne *ene_slime_one = this;
-    Vec_800E9EFC sp14;
-    Vec_800E9EFC sp8;
+    Vec sp14;
+    Vec sp8;
     f32 f;
     u16 r;
     s32 n;
@@ -2183,9 +1806,9 @@ void TObjEneSlimeOne::fn_800E969C() {
 void TObjEneSlimeOne::fn_800E95F4() {
     TObjEneSlimeOne *arg0 = this;
     u8 *object;
-    object = (u8 *)((u8 *)arg0->m_3f0);
+    object = (u8 *)((u8 *)arg0->slime_group);
     if ((object != NULL) && (((TObject *)object)->all_parents_unqueued_for_destruction() != 0)) {
-        fn_800EB778((Obj_800EB778 *)(u8 *)arg0->m_3f0, (s32) arg0->entity_id);
+        fn_800EB778((Obj_800EB778 *)(u8 *)arg0->slime_group, (s32) arg0->entity_id);
     }
     arg0->render_scale.z = (f32) lbl_805DA67C;
     arg0->render_scale.y = (f32) lbl_805DA67C;
@@ -2306,38 +1929,36 @@ void TObjEneSlimeOne::copy_position() {
 
 #pragma push
 
-void fn_800E9238(s32 arg0) {
-    typedef char sp8_offset[(offsetof(Stack_800E9238, sp8) == 0x0) ? 1 : -1];
-    typedef char spC_offset[(offsetof(Stack_800E9238, spC) == 0x4) ? 1 : -1];
-    typedef char sp10_offset[(offsetof(Stack_800E9238, sp10) == 0x8) ? 1 : -1];
-    Stack_800E9238 stack;
-    VecCopy((Vec *)(&stack.sp8), (const Vec *)(arg0 + 0x38));
-    ((f32 (*)(void *, void *))subtract_vector)((void *)&stack.sp8, (void *)(arg0 + 0x374));
-    stack.sp8 *= lbl_805DA6FC;
-    stack.spC *= lbl_805DA6FC;
-    stack.sp10 *= lbl_805DA6FC;
-    ((f32 (*)(void *, void *))vec3_add_to)((void *)(arg0 + 0x374), (void *)&stack.sp8);
+void TObjEneSlimeOne::update_trail_position() {
+    Vec delta;
+    VecCopy(&delta, &position);
+    subtract_vector(&delta, &trail_position);
+    delta.x *= lbl_805DA6FC;
+    delta.y *= lbl_805DA6FC;
+    delta.z *= lbl_805DA6FC;
+    vec3_add_to(&trail_position, &delta);
 }
+
 #pragma pop
 
 #pragma push
 
 void TObjEneSlimeOne::sub_800E9090() {
-    Bomb_800E9090 *self = (Bomb_800E9090 *)this;
-    Vec_800E9090 c;
-    Vec_800E9090 b;
+    TObjEneSlimeOne *self = this;
+    Vec c;
+    Vec b;
     f32 s;
     s32 ang;
     s32 t;
     s32 w1;
     s32 w0;
-    s = lbl_805DA678 * self->f3A0;
-    Vec_800E9090 a = self->pos;
-    subtract_vector(&a, &self->vel);
+    s = lbl_805DA678 * self->m_3a0;
+    Vec a = self->position;
+    subtract_vector(&a, &self->trail_position);
     a.x *= lbl_805DA678;
     a.y *= lbl_805DA678;
     a.z *= lbl_805DA678;
-    VecCopy((Vec *)&c, (const Vec *)&self->vel);
+    VecCopy((Vec *)&c, (const Vec *)&self->trail_position);
     vec3_add_to(&c, &a);
     c.y += lbl_805DA6E8;
     ang = (*(const f64 *)&lbl_8043D280) * ((f32 (*)(f32, f32))atan2_float)(a.x, a.z);
@@ -2355,9 +1976,9 @@ void TObjEneSlimeOne::sub_800E9090() {
     ((void (*)(void *))post_translate_matrix)(&c);
     rotate_matrix_y(0, ang);
     scale_matrix_vec3((u8 *)(0), (u8 *)&b);
-    t = slime_tail_attack_id_pair[self->f3F4];
-    TObjFish::set_global_param(TObjFish__sub_8001EDB0(self->f380, t));
-    draw_chunk_object((void *)(get_bml_model((BmlResource *)self->f380, t)));
+    t = slime_tail_attack_id_pair[self->variant];
+    TObjFish::set_global_param(TObjFish__sub_8001EDB0((s32)self->m_380, t));
+    draw_chunk_object((void *)(get_bml_model((BmlResource *)self->m_380, t)));
     ((int (*)(void))pop_matrix)();
     TObjPlayer::init_render_globals();
 }
@@ -2453,7 +2074,7 @@ void TObjEneSlimeWaterBomb::run_task() {
 #pragma fp_contract on
 #pragma opt_common_subs off
 void TObjEneSlimeWaterBomb::render() {
-    Vec_800E8C6C shadow_scale;
+    Vec shadow_scale;
     s32 angle_x;
     s32 angle_z;
     f32 height;
@@ -2678,21 +2299,21 @@ void TObjEneSlimeTailAttack::sub_800E841C() {
     rotate_matrix_y(0, (int) (rotation_y));
     TObjFish::set_global_param((int) (texlist));
     if (active != 0) {
-        TObjPlayer__sub_800E81A8();
-        TObjEneRe7Berura::set_global_state((s32)TObjPlayer__sub_800E8128);
+        reset_slime_tail_node_index();
+        TObjEneRe7Berura::set_global_state((s32)capture_slime_tail_node);
         ((TObjMotion *)arg0)->draw();
         TObjEneRe7Berura::set_global_state(NULL);
-        TObjPlayer__sub_800E80C0((u8 *)&attachment_position);
-        VecCopy((Vec *)&m_2fc, &attachment_position);
+        get_slime_tail_pose(&pose);
+        VecCopy((Vec *)&m_2fc, &pose.attachment);
     } else {
         TObjPlayer__sub_800EBE48((f32) fade);
         scale_matrix_vec3(0, (u8 *)&stretch_scale);
-        TObjPlayer__sub_800E81A8();
-        TObjEneRe7Berura::set_global_state((s32)TObjPlayer__sub_800E8128);
+        reset_slime_tail_node_index();
+        TObjEneRe7Berura::set_global_state((s32)capture_slime_tail_node);
         ((TObjMotion *)arg0)->draw();
         TObjEneRe7Berura::set_global_state(NULL);
-        TObjPlayer__sub_800E80C0((u8 *)&attachment_position);
-        VecCopy((Vec *)&m_2fc, &attachment_position);
+        get_slime_tail_pose(&pose);
+        VecCopy((Vec *)&m_2fc, &pose.attachment);
         TObjPlayer::init_render_globals();
     }
     pop_matrix();
@@ -2708,14 +2329,14 @@ void TObjEneSlimeTailAttack::draw_stretched_segment(void *arg1, void *arg2, f32 
     f32 len;
     f32 k;
     f32 saved;
-    Vec_800E82B8 d;
-    VecCopy((Vec *)&d, (const Vec *)((Vec_800E82B8 *)arg2));
-    ((s32 (*)(void *, void *))subtract_vector)(&d, ((Vec_800E82B8 *)arg1));
+    Vec d;
+    VecCopy((Vec *)&d, (const Vec *)((Vec *)arg2));
+    ((s32 (*)(void *, void *))subtract_vector)(&d, ((Vec *)arg1));
     len = vector_length(&d);
     push_matrix();
     k = lbl_805DA678 * (lbl_805DA67C + t);
     {
-        Vec_800E82B8 p = *((Vec_800E82B8 *)arg1);
+        Vec p = *((Vec *)arg1);
         p.x += k * d.x;
         p.y += k * d.y + lbl_805DA680;
         p.z += k * d.z;
@@ -2748,13 +2369,13 @@ void TObjEneSlimeTailAttack::draw_blob_shadows() {
     s32 sp8;
     k = lbl_805DA66C;
     for (i = 0; i < 4; i++) {
-        Vec_800E81B4 v = ((Obj_800E81B4 *)this)->pts[i];
-        Rot_800E81B4 rot;
+        Vec v = pose.shadows[i];
+        Vec normal;
         v.y += k;
-        if (((s32 (*)(void *, Vec_800E81B4 *, Rot_800E81B4 *))project_actor_to_ground)(this, &v, &rot) != 0) {
+        if (((s32 (*)(void *, Vec *, Vec *))project_actor_to_ground)(this, &v, &normal) != 0) {
             push_matrix();
             translate_matrix(0, v.x, lbl_805DA670 + v.y, v.z);
-            direction_to_rotation_xz((u8 *)&rot, &spC, &sp8);
+            direction_to_rotation_xz((u8 *)&normal, &spC, &sp8);
             rotate_matrix_z(0, sp8);
             rotate_matrix_x(0, spC + 0x4000);
             scale_matrix(0, lbl_805DA674, lbl_805DA674, lbl_805DA674);
@@ -2769,19 +2390,19 @@ void TObjEneSlimeTailAttack::draw_blob_shadows() {
 #pragma inline_depth(1)
 #pragma auto_inline off
 #pragma dont_inline off
-void TObjPlayer__sub_800E81A8(void) { lbl_805D52B4 = 0; }
+void reset_slime_tail_node_index(void) { lbl_805D52B4 = 0; }
 #pragma pop
 
 #pragma push
 #pragma inline_depth(1)
 #pragma auto_inline off
 #pragma dont_inline off
-void TObjPlayer__sub_800E8128(void) {
+void capture_slime_tail_node(void) {
     if ((s32) (*(s32 *)&lbl_805D52B4) == 7) {
-        transform_to_view__11TCameraCtrlFii((s32) &slime_tail_attack_zero_vec.value, (s32) &lbl_80501010.value);
+        transform_to_view__11TCameraCtrlFii((s32) &slime_tail_attack_zero_vec, (s32) &lbl_80501010.attachment);
     }
     if (((s32) (*(s32 *)&lbl_805D52B4) >= 4) && ((s32) (*(s32 *)&lbl_805D52B4) < 8)) {
-        transform_to_view__11TCameraCtrlFii((s32) &slime_tail_attack_transform.value, (s32) ((u8 *)&lbl_80501010.value + (((*(s32 *)&lbl_805D52B4) - 4) * 0xC) + 0xC));
+        transform_to_view__11TCameraCtrlFii((s32) &slime_tail_attack_transform, (s32)&lbl_80501010.shadows[lbl_805D52B4 - 4]);
     }
     (*(s32 *)&lbl_805D52B4) += 1;
 }
@@ -2791,9 +2412,8 @@ void TObjPlayer__sub_800E8128(void) {
 #pragma inline_depth(2)
 #pragma auto_inline on
 #pragma dont_inline on
-S_800E80E8 *TObjPlayer__sub_800E80E8(S_800E80E8 *dst, S_800E80E8 *src) {
-    dst->a = src->a;
-    dst->d = src->d;
+SlimeTailPose *copy_slime_tail_pose(SlimeTailPose *dst, SlimeTailPose *src) {
+    *dst = *src;
     return dst;
 }
 #pragma pop
@@ -2802,8 +2422,8 @@ S_800E80E8 *TObjPlayer__sub_800E80E8(S_800E80E8 *dst, S_800E80E8 *src) {
 #pragma inline_depth(1)
 #pragma auto_inline off
 #pragma dont_inline off
-void TObjPlayer__sub_800E80C0(u8 *dst) {
-    TObjPlayer__sub_800E80E8((S_800E80E8 *)(dst), (S_800E80E8 *)(&(*(RecoveredGlobal_800E80C0_lbl_80501010 *)&lbl_80501010).value));
+void get_slime_tail_pose(SlimeTailPose *dst) {
+    copy_slime_tail_pose(dst, &lbl_80501010);
 }
 #pragma pop
 

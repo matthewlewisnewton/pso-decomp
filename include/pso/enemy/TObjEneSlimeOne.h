@@ -72,7 +72,7 @@ struct TObjEneSlimeOne : public TObjEnemy {
     Vec m_3dc;
     void * m_3e8;
     s32 m_3ec;
-    u32 m_3f0;
+    TObjEneSlime *slime_group;
     s32 variant;
     s32 get_attack_target();
     s32 is_in_water_bomb_states();
@@ -81,6 +81,7 @@ struct TObjEneSlimeOne : public TObjEnemy {
     int find_nearest_enemy_with_flag(s32 arg1, f32 farg0);
     int check_player_field_7cc();
     void copy_position();
+    void update_trail_position();
     void set_random_timer_15();
     void set_random_timer(s32 minimum, s32 range);
     void set_display_mode(s32 mode);
@@ -90,7 +91,6 @@ struct TObjEneSlimeOne : public TObjEnemy {
     static s32 create(s32 arg0, s32 arg1, s32 arg2);
     static s32 create(s32 arg0, s32 arg1);
     void set_state(s32 arg1);
-    s32 try_spawn_child(void *arg1);
 };
 
 typedef char TObjEneSlimeOne_size[sizeof(TObjEneSlimeOne) == 0x3F8 ? 1 : -1];
