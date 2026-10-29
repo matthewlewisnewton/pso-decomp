@@ -12,7 +12,7 @@
 #include "pso/enemy/TObjEneLappy_800F5DE0.h"
 
 extern "C" {
-TObjMotionAction lbl_8048EDE8[] = {
+TObjMotionAction balclaw_body_actions[] = {
     {1, 0, 9, 0.8f, 0}, {1, 1, 9, 0.8f, 1},
     {2, 0, 6, 0.5f, 4}, {2, 0, 7, 0.6f, 8},
     {3, 4, 8, 0.5f, 16}, {1, 5, 5, 0.8f, 0},
@@ -34,7 +34,7 @@ BalClawAttackParams player_attack_param_table[] = {
     {150.0f, 0.5555555f, 0x400, 30, 0, 0, 1, 0},
     {150.0f, 0.5555555f, 0x400, 30, 0, 0, 1, 0},
 };
-CollisionBody lbl_8048EEE0 = {{0.0f,18.0f,0.0f},5.0f,0.0f,0,0x8003,{0.0f,0.0f,0.0f},0.0f};
+CollisionBody balclaw_body_collision = {{0.0f,18.0f,0.0f},5.0f,0.0f,0,0x8003,{0.0f,0.0f,0.0f},0.0f};
 extern const char *lbl_805D2970;
 extern const f32 lbl_805D9620;
 u8 *lbl_805007A8[2];
@@ -63,9 +63,9 @@ TObjEneBalClawBody::TObjEneBalClawBody(TObject *parent, BalClawSetData *set_data
     apply_set_data(set_data);
     VecCopy((Vec *)&m_290, VecCopy((Vec *)&m_29c, &position));
     motion_list = lbl_805D4F20->motions;
-    action_table = lbl_8048EDE8;
+    action_table = balclaw_body_actions;
     set_field_d8((s32)action_table);
-    init_collision_body_parts(this, &lbl_8048EEE0, 1);
+    init_collision_body_parts(this, &balclaw_body_collision, 1);
     m_b8 = 0;
     set_animation(m_b8);
     set_field_b8(m_b8);
