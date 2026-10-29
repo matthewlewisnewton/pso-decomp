@@ -19,7 +19,6 @@ struct TObjEneEpsilon : public TObjEneDD_ST {
     void fire_attack_a(s32 arg1, s32 arg2, f32 farg0);
     void fire_attack_b(s32 arg1, s32 arg2, f32 farg0);
     void fire_attack_c(s32 arg1, s32 arg2, f32 farg0);
-    void update_angle(s32 arg1);
     s32 update_death_check();
 };
 

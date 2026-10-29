@@ -2762,7 +2762,7 @@ void TObjEneMe3ShinowaMirage::state_chase_target(s32 arg1) {
             ((TObjEneDD *)arg0)->update_velocity();
             *(f32 *)((s8 *)arg0 + 0x414) = (f32) ((*(f32 *)((s8 *)arg0 + 0x3A0) * sin_table_lookup(this->rotation_y)) + (*(f32 *)((s8 *)arg0 + 0x3A8) * cos_table_lookup(this->rotation_y)));
             if (*(f32 *)((s8 *)arg0 + 0x414) < cos_table_lookup(0x1000)) {
-                ((TObjEneEpsilon *)arg0)->update_angle(0x500);
+                ((TObjEneDD *)arg0)->turn_toward_target_direction(0x500);
                 this->vfunc_102();
             } else {
                 enemy_turn_and_move_on_ground((arg0), 0x500, (f32) (*(f32 *)((s8 *)arg0 + 0x410)));
