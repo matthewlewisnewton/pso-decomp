@@ -8968,6 +8968,8 @@ pso/unk/text_8027ACF8.cpp:
 
 pso/misc/TWindowSubItemList.cpp:
 	.text       start:0x8027AD5C end:0x8027AF54
+	.rodata     start:0x8044F9A0 end:0x8044F9B8
+	.sdata      start:0x805D3A58 end:0x805D3A60
 
 pso/misc/TWindowSubLog.cpp:
 	.text       start:0x8027AF54 end:0x8027B2B8
