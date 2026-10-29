@@ -1848,7 +1848,7 @@ void vfunc_62__17TObjEneMe1CanadinFv(void* p);
 void vfunc_63__17TObjEneMe1CanadinFv(void *arg0);
 void vfunc_28__17TObjEneMe1CanadinFv(void);
 void * __dt__17TObjEneMe1CanadinFv(void *arg0, s16 arg1);
-u8 * TObjEneMe1Canadin__ct(u8 *arg0, s32 arg1, u8 *arg2, s32 arg3, s16 arg4, s16 arg5);
+u8 * TObjEneMe1Canadin__ct(u8 *arg0, s32 arg1, u8 *arg2, s32 arg3, s32 arg4, s32 arg5);
 void * __ct__26TObjEneMe1Canadin_EffLightFP7TObjectl(void *, void *, s32);
 void TObjEneEpsilon__sub_800B92AC(u8 *arg0, s32 arg1, f32 farg0);
 int select_and_apply_target__12TObjEneDD_STFf(void*);
@@ -1910,7 +1910,6 @@ extern const f32 lbl_805D989C;
 extern const f32 lbl_805D98A8;
 extern const f32 lbl_805D98B0;
 extern const f32 lbl_805D98B8;
-extern const f32 lbl_805D98C8;
 extern const f32 lbl_805D98D0;
 extern const f32 lbl_805D98D4;
 extern const f32 lbl_805D98F4;
@@ -3183,7 +3182,7 @@ void TObjEneMe1Canadin__sub_8009C510(u8 *arg0, s32 arg1) {
                 F_8009C510(0x484) = -4.0f;
             }
             F_8009C510(0x3F8) += F_8009C510(0x484);
-            if (F_8009C510(0x3F8) < lbl_805D98C8 + (F_8009C510(0x3C) + F_8009C510(0x3EC))) {
+            if (F_8009C510(0x3F8) < 12.0f + (F_8009C510(0x3C) + F_8009C510(0x3EC))) {
                 I_8009C510(0x474) = 1;
                 if (F_8009C510(0x484) > -2.0f) {
                     F_8009C510(0x484) = -2.0f;
@@ -4506,7 +4505,7 @@ void TObjEneMe1Canadin::setup_enemy() {
 extern int fold_flush_2;
 #pragma pop
 
-u8 *TObjEneMe1Canadin__ct(u8 *arg0, s32 arg1, u8 *arg2, s32 arg3, s16 arg4, s16 arg5) {
+u8 *TObjEneMe1Canadin__ct(u8 *arg0, s32 arg1, u8 *arg2, s32 arg3, s32 arg4, s32 arg5) {
     __ct__12TObjEneDD_STFP7TObject(arg0);
     *(s32 **)((s8 *)arg0 + 0x18) = &(*(RecoveredGlobal_8009F2E0___vt__17TObjEneMe1Canadin *)&__vt__17TObjEneMe1Canadin).value;
     __ct__13TUnk_80494938Fv((arg0 + 0x3CC));
