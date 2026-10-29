@@ -10539,8 +10539,10 @@ pso/unk/text_802FEA38.cpp:
 
 pso/npc/TObjNpcKenkyu2.cpp:
 	.text       start:0x802FEAA0 end:0x802FEC78
+	.rodata     start:0x80474C80 end:0x80474CB8
 	.data       start:0x804E6240 end:0x804E6258
-	.sdata      start:0x805D4030 end:0x805D4034
+	.sdata      start:0x805D4030 end:0x805D4038
+	.sbss       start:0x805D69D0 end:0x805D69D8
 
 pso/npc/TObjNpcHosa2.cpp:
 	.text       start:0x802FEC78 end:0x802FEDE8
