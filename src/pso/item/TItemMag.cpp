@@ -1528,7 +1528,7 @@ void TItemMag::on_model_loaded() {
                 }
                 edit = (MagEditData *)item_mag_edit_file->get_root();
                 color = &edit->colors[stats.get_color()];
-                children[i]->set_material_node(edit->material_nodes[group], color);
+                children[i]->set_material_node((s8)edit->material_nodes[group], color);
                 switch (group) {
                 case 0x0E:
                     children[i]->set_node_id(1, 2);
