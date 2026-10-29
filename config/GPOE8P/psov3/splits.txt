@@ -9115,6 +9115,11 @@ pso/npc/TObjNpcKenkyu.cpp:
 
 pso/npc/TObjNpcSoutokufu.cpp:
 	.text       start:0x802895A0 end:0x80289810
+	.rodata     start:0x80450AF8 end:0x80450B38
+	.data       start:0x804D3318 end:0x804D3330
+	.sdata      start:0x805D3B08 end:0x805D3B10
+	.sbss       start:0x805D64C0 end:0x805D64C8
+	.sdata2     start:0x805DD8E8 end:0x805DD8F0
 
 pso/boss/TObjBoss5FloorStone.cpp:
 	.text       start:0x80289810 end:0x80289868
