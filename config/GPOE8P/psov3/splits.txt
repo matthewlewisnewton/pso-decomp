@@ -4612,6 +4612,10 @@ pso/unk/text_8014B904.cpp:
 
 pso/npc/TObjNpcMaleBase.cpp:
 	.text       start:0x8014B96C end:0x8014BB44
+	.rodata     start:0x8043FB70 end:0x8043FBA8
+	.data       start:0x804AA0C8 end:0x804AA0E0
+	.sdata      start:0x805D2DE0 end:0x805D2DE8
+	.sbss       start:0x805D57D8 end:0x805D57E0
 
 pso/npc/TObjNpcMaleChild.cpp:
 	.text       start:0x8014BB44 end:0x8014BD1C
