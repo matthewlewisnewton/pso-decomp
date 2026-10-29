@@ -6,6 +6,19 @@
 #include "pso/npc/TObjNpcFemaleBase.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
+#include "pso/system/BmlResourceDescriptor.h"
+
+#pragma readonly_strings on
+
+extern "C" {
+extern const char *bm_n_nurse_i_body_motion_names[1];
+extern const char *bm_n_nurse_i_body_model_names[2];
+const char *bm_n_nurse_i_body_motion_names[1] = { NULL };
+__declspec(section ".data") const char *bm_n_nurse_i_body_model_names[2] = { "n_nurse_i_body.nj", NULL };
+BmlResourceDescriptor bm_n_nurse_i_body_resource_descriptor = { "bm_n_nurse_i_body.bml", bm_n_nurse_i_body_model_names, bm_n_nurse_i_body_motion_names, 1, 0 };
+const char *TObjNpcNurseBase__name = "TObjNpcNurseBase";
+u32 TObjNpcNurseBase__shared_model_resource;
+}
 
 struct RecoveredGlobal_8014D41C_lbl_804AB658 { s32 value; u8 remaining[0xC]; };
 typedef char RecoveredGlobal_8014D41C_lbl_804AB658_size[sizeof(RecoveredGlobal_8014D41C_lbl_804AB658) == 0x10 ? 1 : -1];
@@ -17,10 +30,7 @@ struct RecoveredGlobal_8014D4C4___vt__16TObjNpcNurseBase {
 
 extern "C" {
 u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
-extern RecoveredGlobal_8014D41C_lbl_804AB658 bm_n_nurse_i_body_resource_descriptor;
-extern u32 TObjNpcNurseBase__shared_model_resource;
 extern s32 __vt__16TObjNpcNurseBase[];
-extern s32 TObjNpcNurseBase__name;
 void TLobby__sub_8001FE7C(void*, int);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 void __dl__7TObjectFPv(void *);
@@ -39,7 +49,7 @@ void TObjNpcNurseBase::load_shared_data() {
     temp_r3 = (int)::operator new(0x440);
     var_r0 = temp_r3;
     if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &bm_n_nurse_i_body_resource_descriptor.value, 0, 0, 0));
+        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &bm_n_nurse_i_body_resource_descriptor, 0, 0, 0));
     }
     (*(s32 *)&TObjNpcNurseBase__shared_model_resource) = var_r0;
 }

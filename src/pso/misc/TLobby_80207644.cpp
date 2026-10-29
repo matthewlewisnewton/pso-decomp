@@ -9,6 +9,11 @@ struct RecoveredGlobal_80207798_lbl_80513920 {
     u8 remaining[0xD4];
 };
 
+extern "C" {
+RecoveredGlobal_80207798_lbl_80513920 floor_map_registry;
+}
+
+
 struct RecoveredGlobal_802077CC_lbl_80513920 {
     s32 value;
     u8 remaining[0xD4];
@@ -51,7 +56,6 @@ s32 rand(void);
 extern RecoveredGlobal_802078A4_lbl_8044B658 adventure_map_variation_count_table;
 extern RecoveredGlobal_802078A4_lbl_8044B778 online_floor_map_variation_dimension_table;
 extern int selected_episode;
-extern const f32 lbl_805DC610;
 void randomize_adventure_maps(void);
 s32 memset(void *, int, int);
 void TLobby__sub_80207BB0(void);
@@ -196,16 +200,16 @@ void randomize_adventure_maps(void) {
       switch (main_phase)
       {
         case 14:
-          *((s32 *) (((s8 *) var_r31) + 4)) = (s32) (((f32) (*((s32 *) (((s8 *)&adventure_map_variation_count_table.value) + ((*((s32 *) (((s8 *) var_r31) + 0))) * 8))))) * (lbl_805DC610 * ((f32) rand())));
-          *((s32 *) (((s8 *) var_r31) + 8)) = (s32) (((f32) (*((s32 *) (((s8 *) (((u8 *)&adventure_map_variation_count_table.value) + ((*((s32 *) (((s8 *) var_r31) + 0))) * 8))) + 4)))) * (lbl_805DC610 * ((f32) rand())));
+          *((s32 *) (((s8 *) var_r31) + 4)) = (s32) (((f32) (*((s32 *) (((s8 *)&adventure_map_variation_count_table.value) + ((*((s32 *) (((s8 *) var_r31) + 0))) * 8))))) * (0.000030517578f * ((f32) rand())));
+          *((s32 *) (((s8 *) var_r31) + 8)) = (s32) (((f32) (*((s32 *) (((s8 *) (((u8 *)&adventure_map_variation_count_table.value) + ((*((s32 *) (((s8 *) var_r31) + 0))) * 8))) + 4)))) * (0.000030517578f * ((f32) rand())));
           break;
         case 15:
-          *((s32 *) (((s8 *) var_r31) + 4)) = (s32) (((f32) (*((s32 *) (((s8 *)&online_floor_map_variation_dimension_table.value) + ((*((s32 *) (((s8 *) var_r31) + 0))) * 8))))) * (lbl_805DC610 * ((f32) rand())));
-          *((s32 *) (((s8 *) var_r31) + 8)) = (s32) (((f32) (*((s32 *) (((s8 *) (((u8 *)&online_floor_map_variation_dimension_table.value) + ((*((s32 *) (((s8 *) var_r31) + 0))) * 8))) + 4)))) * (lbl_805DC610 * ((f32) rand())));
+          *((s32 *) (((s8 *) var_r31) + 4)) = (s32) (((f32) (*((s32 *) (((s8 *)&online_floor_map_variation_dimension_table.value) + ((*((s32 *) (((s8 *) var_r31) + 0))) * 8))))) * (0.000030517578f * ((f32) rand())));
+          *((s32 *) (((s8 *) var_r31) + 8)) = (s32) (((f32) (*((s32 *) (((s8 *) (((u8 *)&online_floor_map_variation_dimension_table.value) + ((*((s32 *) (((s8 *) var_r31) + 0))) * 8))) + 4)))) * (0.000030517578f * ((f32) rand())));
           break;
         default:
-          *((s32 *) (((s8 *) var_r31) + 4)) = (s32) (((f32) (*((s32 *) (((s8 *)&adventure_map_variation_count_table.value) + ((*((s32 *) (((s8 *) var_r31) + 0))) * 8))))) * (lbl_805DC610 * ((f32) rand())));
-          *((s32 *) (((s8 *) var_r31) + 8)) = (s32) (((f32) (*((s32 *) (((s8 *) (((u8 *)&adventure_map_variation_count_table.value) + ((*((s32 *) (((s8 *) var_r31) + 0))) * 8))) + 4)))) * (lbl_805DC610 * ((f32) rand())));
+          *((s32 *) (((s8 *) var_r31) + 4)) = (s32) (((f32) (*((s32 *) (((s8 *)&adventure_map_variation_count_table.value) + ((*((s32 *) (((s8 *) var_r31) + 0))) * 8))))) * (0.000030517578f * ((f32) rand())));
+          *((s32 *) (((s8 *) var_r31) + 8)) = (s32) (((f32) (*((s32 *) (((s8 *) (((u8 *)&adventure_map_variation_count_table.value) + ((*((s32 *) (((s8 *) var_r31) + 0))) * 8))) + 4)))) * (0.000030517578f * ((f32) rand())));
           break;
       }
     }

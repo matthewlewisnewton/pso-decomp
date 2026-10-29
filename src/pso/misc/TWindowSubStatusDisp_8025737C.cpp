@@ -8,6 +8,7 @@
 #include "pso/object/TObjFish.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 
+
 struct Bar_80256C00 {
     u8 pad0[0x14];
     f32 scale;
@@ -78,13 +79,6 @@ void set_draw_texture_and_color(s32 idx, s32 arg1);
 }
 void set_constant_material_color(u32 x);
 extern s32 lbl_805D63F0;
-extern const f32 lbl_805DCED4;
-extern const f32 lbl_805DCED8;
-extern const f32 lbl_805DCEDC;
-extern const f32 lbl_805DCEE0;
-extern const f32 lbl_805DCEE4;
-extern const f32 lbl_805DCEE8;
-extern const f32 lbl_805DCEEC;
 extern "C" {
 void draw_gauge__20TWindowSubStatusDispFPvPv(Gauge_80257784 *self, Parent_80257784 *parent);
 struct Col_802575C0 { u8 r, g, b, a; };
@@ -150,7 +144,7 @@ u32 update_text_color_transition(Fade_802575C0 *fade) {
         }
     } else {
         f32 v = fade->cr + fade->dr;
-        fade->cr = CLAMP_8025737C(v, fade->tr, lbl_805DCED4);
+        fade->cr = CLAMP_8025737C(v, fade->tr, 255.0f);
         if (fade->cr > fade->tr) {
             done = 0;
         }
@@ -163,7 +157,7 @@ u32 update_text_color_transition(Fade_802575C0 *fade) {
         }
     } else {
         f32 v = fade->cg + fade->dg;
-        fade->cg = CLAMP_8025737C(v, fade->tg, lbl_805DCED4);
+        fade->cg = CLAMP_8025737C(v, fade->tg, 255.0f);
         if (fade->cg > fade->tg) {
             done = 0;
         }
@@ -176,7 +170,7 @@ u32 update_text_color_transition(Fade_802575C0 *fade) {
         }
     } else {
         f32 v = fade->cb + fade->db;
-        fade->cb = CLAMP_8025737C(v, fade->tb, lbl_805DCED4);
+        fade->cb = CLAMP_8025737C(v, fade->tb, 255.0f);
         if (fade->cb > fade->tb) {
             done = 0;
         }
@@ -207,7 +201,7 @@ void start_text_color_transition(Fade_802575C0 *arg0, u32 rgb, f32 time) {
         arg0->tg = c.g;
         arg0->tb = c.b;
         ((TAdChrMoveEffectGC *)(&c))->copy4(&arg0->col);
-        time = lbl_805DCED8 / time;
+        time = 1.0f / time;
         arg0->cr = c.r;
         arg0->cg = c.g;
         arg0->cb = c.b;
@@ -238,9 +232,9 @@ void draw_gauge__20TWindowSubStatusDispFPvPv(Gauge_80257784 *self, Parent_802577
     f32 ratio;
     f32 sz;
     s32 col;
-    used = self->f10 / lbl_805DCEDC + self->fC / parent->f18;
-    used *= lbl_805DCEE0;
-    avail = lbl_805DCEE4 * ((f32)parent->f30 - used);
+    used = self->f10 / 21.0f + self->fC / parent->f18;
+    used *= 7.5f;
+    avail = 17.0f * ((f32)parent->f30 - used);
     if (avail <= 0.0f) {
         return;
     }
@@ -257,7 +251,7 @@ void draw_gauge__20TWindowSubStatusDispFPvPv(Gauge_80257784 *self, Parent_802577
     } else {
         hi = cur;
         col = self->f64;
-        lo = ratio - lbl_805DCED8;
+        lo = ratio - 1.0f;
     }
     if (lo > avail) {
         lo = avail;
@@ -269,8 +263,8 @@ void draw_gauge__20TWindowSubStatusDispFPvPv(Gauge_80257784 *self, Parent_802577
         pos.x = parent->f10 + self->fC;
         pos.y = parent->f14 + self->f10;
         sz = self->f8;
-        scale = lbl_805DCEE8 / (lbl_805DCEEC * sz + parent->f38);
-        begin_screen_draw(1, sz, lbl_805DCEEC, lbl_805DCEE8);
+        scale = -1.0f / (0.299f * sz + parent->f38);
+        begin_screen_draw(1, sz, 0.299f, -1.0f);
         TObjFish::set_global_param(lbl_805D63F0);
         set_draw_texture_and_color(0xB, -1);
         if (self->flags & 8) {

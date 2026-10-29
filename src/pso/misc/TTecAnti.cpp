@@ -7,6 +7,13 @@
 #include "pso/misc/TWindowCtrl.h"
 #include "pso/player/TObjPlayer.h"
 
+#pragma readonly_strings on
+
+extern "C" {
+const char *TTecAnti_name_ref = "TTecAnti";
+}
+
+
 struct Obj_8022ACB4 { u8 pad[0xA6]; s16 state; };
 extern "C" {
 s32 update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
@@ -133,8 +140,7 @@ void TTecAnti__sub_8022AD94(void *);
 s32 TTecPlayerInfluence__ct(void *, void *, void *, void *);
 extern s32 __vt__8TTecAnti[];
 extern RecoveredGlobal_8022B288_lbl_804CC1CC technique_param_table;
-extern s32 TTecAnti_name_ref;
-extern const f32 lbl_805DC798;
+extern const char *TTecAnti_name_ref;
 u8 *TTecAnti__ct(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 S_8022B3E8 *copy_technique_target_list(S_8022B3E8 *d, S_8022B3E8 *s);
 void set_owner_id__13TParticleCtrlFUs(void *, s32);
@@ -294,14 +300,14 @@ u8 *TTecAnti__ct(u8 *arg0, s32 owner, s32 pos, s32 arg3, s32 level) {
     TTecPlayerInfluence__ct((void *)arg0, (void *)owner, (void *)pos, (void *)level);
     *(s32 **)((s8 *)arg0 + 0x18) = &(*(RecoveredGlobal_8022B288___vt__8TTecAnti *)&__vt__8TTecAnti).value;
     ((TObjPlayer *)(arg0 + 0xE0))->construct_target_cursor_records();
-    *(s32 *)((s8 *)arg0 + 0) = (s32) TTecAnti_name_ref;
+    *(s32 *)((s8 *)arg0 + 0) = (s32) ((s32)TTecAnti_name_ref);
     ((TTecAnti *)arg0)->m_13c = 1;
     copy_technique_target_list((S_8022B3E8 *)(arg0 + 0xE0), (S_8022B3E8 *)(arg3));
     ((TTecAnti *)(arg0 + 0x74))->copy_params((u8 *)((void *) ((u8 *)&technique_param_table.value + 0x2C0)));
     TTecAnti__sub_8022AD94(arg0);
     temp_r3 = (u8 *)(*(u8 **)((s8 *)arg0 + 0xDC));
     if (temp_r3 != NULL) {
-        *(f32 *)((s8 *)(*(u8 **)((s8 *)temp_r3 + 0xA4)) + 0xC) = (f32) (lbl_805DC798 + ((TTecAnti *)arg0)->m_7c);
+        *(f32 *)((s8 *)(*(u8 **)((s8 *)temp_r3 + 0xA4)) + 0xC) = (f32) (5.0f + ((TTecAnti *)arg0)->m_7c);
     }
     temp_r3_2 = ((TTecAnti *)arg0)->source;
     if (temp_r3_2 != 0U) {

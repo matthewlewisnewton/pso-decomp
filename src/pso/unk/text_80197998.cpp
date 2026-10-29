@@ -1,6 +1,7 @@
 #include "types.h"
 #include "pso/TObjRain.h"
 
+
 struct Vec_80197998 { f32 x, y, z; };
 
 struct Drop_80197998 {
@@ -28,15 +29,6 @@ int rand(void);
 f32 sin_table_lookup(s32);
 f32 cos_table_lookup(s32);
 extern Cam_80197998 *camera_ctrl_instance;
-extern const f32 lbl_805DBF18;
-extern const f32 lbl_805DBF1C;
-extern const f32 lbl_805DBF20;
-extern const f32 lbl_805DBF24;
-extern const f32 lbl_805DBF28;
-extern const f32 lbl_805DBF2C;
-extern const f32 lbl_805DBF30;
-extern const f32 lbl_805DBF34;
-extern const f32 lbl_805DBF38;
 #pragma push
 #pragma fp_contract on
 void TObjRain::init_drops() {
@@ -50,18 +42,18 @@ void TObjRain::init_drops() {
     f32 z;
     d = rain->drops;
     for (i = 0; i < rain->count; i++, d++) {
-        radius = lbl_805DBF18 * (lbl_805DBF1C * (f32)rand());
-        angle = (s32)(lbl_805DBF20 * (lbl_805DBF24 - lbl_805DBF18 * (lbl_805DBF1C * (f32)rand())));
+        radius = 150.0f * (0.000030517578f * (f32)rand());
+        angle = (s32)(182.04445f * (-15.0f - 150.0f * (0.000030517578f * (f32)rand())));
         angle -= camera_ctrl_instance->yaw;
         x = radius * cos_table_lookup(angle);
         z = radius * sin_table_lookup(angle);
         d->pos.x = camera_ctrl_instance->x + x;
-        d->pos.y = lbl_805DBF28 + camera_ctrl_instance->y;
+        d->pos.y = 120.0f + camera_ctrl_instance->y;
         d->pos.z = camera_ctrl_instance->z + z;
-        d->vel.x = lbl_805DBF2C * (lbl_805DBF1C * (f32)rand());
-        d->vel.y = -(lbl_805DBF34 * (lbl_805DBF1C * (f32)rand()) + lbl_805DBF30);
-        d->vel.z = lbl_805DBF2C * (lbl_805DBF1C * (f32)rand());
-        d->floor = lbl_805DBF38;
+        d->vel.x = 1.2f * (0.000030517578f * (f32)rand());
+        d->vel.y = -(5.5f * (0.000030517578f * (f32)rand()) + 9.0f);
+        d->vel.z = 1.2f * (0.000030517578f * (f32)rand());
+        d->floor = -20.0f;
         d->active = 1;
     }
 }

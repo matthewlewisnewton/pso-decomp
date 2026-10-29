@@ -193,6 +193,7 @@ pad/Pad.c
 pso/audio/GcrnaError.cpp
 pso/audio/GcrnaStream.cpp
 pso/audio/SoundBankTables.cpp
+pso/boss/Boss5GryphonActionScripts.cpp
 pso/boss/Boss5GryphonBehavior.cpp
 pso/boss/Boss6Type1Appearance.cpp
 pso/boss/Boss6Type2Appearance.cpp

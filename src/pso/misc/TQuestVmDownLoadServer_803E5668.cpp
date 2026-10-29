@@ -2,10 +2,17 @@
 #include "pso/misc/TQuestVmDownLoadServer_803E5668.h"
 #include "pso/misc/TQuestVmDownLoadServer.h"
 
+#pragma readonly_strings on
+
 struct RecoveredGlobal_803E5EFC_lbl_8058DD88 {
     s32 value;
     u8 remaining[0x7C];
 };
+
+extern "C" {
+RecoveredGlobal_803E5EFC_lbl_8058DD88 lbl_8058DD88;
+}
+
 
 struct Ent_803E5670 {
     u8 pad[0xC];
@@ -80,7 +87,6 @@ extern s32 lbl_805D78F8;
 extern s32 lbl_805D78FC;
 extern s32 lbl_805D7900;
 extern s32 lbl_805D7904;
-extern s32 lbl_805E10C0;
 s32 TQuestVmDownLoadServer__sub_803EC69C(s32);
 u8 TQuestVmDownLoadServer__sub_803EC8D8();
 s32 TQuestVmDownLoadServer__sub_803ECC7C(u32 arg0);
@@ -244,7 +250,7 @@ s32 TQuestVmDownLoadServer__sub_803E5B94(s32 *arg0) {
     lbl_805D78E0 = 0x4000;
     lbl_805D7848 = 0;
     quest_download_match_length_limit = 0x24;
-    strcpy((int)lbl_805D7894, (int)&lbl_805E10C0);
+    strcpy((int)lbl_805D7894, (int)(s32 *)"  1.");
     strcpy((int)lbl_80596258, (int)lbl_8047E68C);
     quest_download_server_state = 0;
     lbl_805D7844 = 0;

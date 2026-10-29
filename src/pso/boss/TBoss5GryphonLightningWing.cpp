@@ -18,6 +18,13 @@ struct Stack_80351DA8 {
 #include "pso/misc/TLobby.h"
 #include "pso/boss/TBoss8Dragon.h"
 
+#pragma readonly_strings on
+
+extern "C" {
+const char *lbl_805D4368 = "TBoss5GryphonLightningWing";
+}
+
+
 #pragma opt_lifetimes off
 struct Stack_80351A80 {
     s32 sp8;
@@ -45,15 +52,12 @@ extern "C" {
 s32 __nw__7TObjectFUl(int);
 extern const f32 lbl_805D8D48;
 s32 play_sound_effect(int, void *, int, int);
-extern const f32 lbl_805DFED4;
 extern s32 TLobby__event_theme_id;
 s32 TBoss5GryphonLightning__ct(f32);
 extern u8 __vt__26TBoss5GryphonLightningWing[];
-extern s32 lbl_805D4368;
-extern const f32 lbl_805DFED8;
+extern const char *lbl_805D4368;
 s32 TBoss8Dragon__sub_80063FB8(s32, s32 *, f32);
 
-extern f32 lbl_805DFED0;
 
 void TBoss5GryphonLightningWing::apply_lightning_effect() {
     s32 sp8;
@@ -63,7 +67,7 @@ void TBoss5GryphonLightningWing::apply_lightning_effect() {
     instance_count = TBoss8Dragon::get_instance_count();
     if (instance_count != 0) {
         ((TBoss5GryphonLightningWing *)arg0)->get_wing_position((s32)&sp8);
-        TBoss8Dragon__sub_80063FB8(instance_count, &sp8, lbl_805DFED0);
+        TBoss8Dragon__sub_80063FB8(instance_count, &sp8, 10.0f);
     }
 }
 
@@ -74,12 +78,12 @@ void TBoss5GryphonLightningWing::render() {  }
 void run_task__26TBoss5GryphonLightningWingFv(TBoss5GryphonLightningWing *boss5_gryphon_lightning_wing) {
     Stack_80351A80 stack;
     *(f32 *)((s8 *)boss5_gryphon_lightning_wing + 0x88) = (f32) ((f32) *(s32 *)((s8 *)boss5_gryphon_lightning_wing + 0x94) / (f32) *(s32 *)((s8 *)boss5_gryphon_lightning_wing + 0x9C));
-    if (*(f32 *)((s8 *)boss5_gryphon_lightning_wing + 0x88) > lbl_805DFED4) {
-        *(f32 *)((s8 *)boss5_gryphon_lightning_wing + 0x88) = (f32) lbl_805DFED4;
+    if (*(f32 *)((s8 *)boss5_gryphon_lightning_wing + 0x88) > 1.0f) {
+        *(f32 *)((s8 *)boss5_gryphon_lightning_wing + 0x88) = 1.0f;
     }
     *(f32 *)((s8 *)boss5_gryphon_lightning_wing + 0x8C) = (f32) ((f32) *(s32 *)((s8 *)boss5_gryphon_lightning_wing + 0x94) / (f32) *(s32 *)((s8 *)boss5_gryphon_lightning_wing + 0x98));
-    if (*(f32 *)((s8 *)boss5_gryphon_lightning_wing + 0x8C) > lbl_805DFED4) {
-        *(f32 *)((s8 *)boss5_gryphon_lightning_wing + 0x8C) = (f32) lbl_805DFED4;
+    if (*(f32 *)((s8 *)boss5_gryphon_lightning_wing + 0x8C) > 1.0f) {
+        *(f32 *)((s8 *)boss5_gryphon_lightning_wing + 0x8C) = 1.0f;
     }
     boss5_gryphon_lightning_wing->update_wing_segments();
     boss5_gryphon_lightning_wing->apply_lightning_effect();
@@ -97,9 +101,9 @@ void run_task__26TBoss5GryphonLightningWingFv(TBoss5GryphonLightningWing *boss5_
 TBoss5GryphonLightningWing::~TBoss5GryphonLightningWing() {}
 s32 __ct__26TBoss5GryphonLightningWingFv(int arg0, void *arg1, void *a, void *mid, void *b, void *arg5, void *arg6) {
     s32 i;
-    TBoss5GryphonLightning__ct(lbl_805DFED8);
+    TBoss5GryphonLightning__ct(20.0f);
     ((Wing_80351C18 *)arg0)->vt = __vt__26TBoss5GryphonLightningWing;
-    ((Wing_80351C18 *)arg0)->x0 = lbl_805D4368;
+    ((Wing_80351C18 *)arg0)->x0 = ((s32)lbl_805D4368);
     ((Wing_80351C18 *)arg0)->n = 3;
     ((Wing_80351C18 *)arg0)->x98 = (s32)arg5;
     ((Wing_80351C18 *)arg0)->x9C = (s32)arg5 + (s32)arg6;
