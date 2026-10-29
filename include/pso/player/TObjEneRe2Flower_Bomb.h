@@ -10,12 +10,13 @@ public:
     void *destroy_and_free(s16);
     virtual void render();
     virtual void run_task();
-    u8 unk_B0[0x8];
-    s16 m_b8; // 0xB8
-    u8 unk_BA[0x42];
+    u8 unk_B0[0x4];
+    Vec startPosition;
+    u8 unk_C0[0x3C];
     void * m_fc;
     s32 m_100;
 };
 typedef char TObjEneRe2Flower_Bomb_size[sizeof(TObjEneRe2Flower_Bomb) == 0x104 ? 1 : -1];
 
+typedef char FlowerBombStartOffset[offsetof(TObjEneRe2Flower_Bomb, startPosition) == 0xB4 ? 1 : -1];
 #endif

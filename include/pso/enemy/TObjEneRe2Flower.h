@@ -3,40 +3,43 @@
 
 #include "types.h"
 #include "pso/enemy/TObjEneDD_ST.h"
+#include "pso/enemy/TUnk_80494938.h"
 
 struct TObjEneRe2Flower : public TObjEneDD_ST {
+    TObjEneRe2Flower(TObject *parent, void *setData);
     virtual ~TObjEneRe2Flower();
     virtual void run_task();
+    virtual void render();
     virtual void vfunc_88();
     virtual void vfunc_105();
     virtual void vfunc_106();
     void sub_800C3DC4();
-    bool sub_800C3B8C();
+    s32 sub_800C3B8C();
     void dispatch_action(s32);
+    virtual void dispatch_action(u32 state, s32 reason);
     void vfunc_63();
     void vfunc_62();
     void vfunc_61();
     void vfunc_28();
-    u8 unk_374[0x30];
-    u32 m_3c0;
-    u32 m_3c4;
-    u8 _pad3C8[0x4];
+    u8 unk_374[8];
+    f32 m_37c;
+    u8 unk_380[0x40];
+    s32 renderRotationY;
+    u32 flowerFlags;
+    f32 renderOffsetY;
     u32 m_3cc;
     u32 m_3d0;
     u32 m_3d4;
     u32 m_3d8;
-    u8 _pad3DC[0x18];
-    void* m_3f4;
-    u8 _pad3F8[0x10];
-    u32 m_408;
-    u8 _pad40C[0x4];
+    Vec renderAnchors[2];
+    TUnk_80494938 fade;
     u32 m_410;
     u32 m_414;
     u32 m_418;
     u32 m_41c;
     u32 m_420;
-    u8 _pad424[0x4];
-    u32 m_428;
+    f32 m_424;
+    TObject *m_428;
     void handle_event(s32 arg1);
     void begin_state_242();
     s32 check_hit_flag();
@@ -46,8 +49,12 @@ struct TObjEneRe2Flower : public TObjEneDD_ST {
     static void destroy_instance();
     static void *create(void *arg0);
     int get_flag_11();
-    u8 unk_410[0x1C];
 };
 
 typedef char TObjEneRe2Flower_size[sizeof(TObjEneRe2Flower) == 0x42C ? 1 : -1];
+typedef char FlowerRotationOffset[offsetof(TObjEneRe2Flower, renderRotationY) == 0x3C0 ? 1 : -1];
+typedef char FlowerFlagsOffset[offsetof(TObjEneRe2Flower, flowerFlags) == 0x3C4 ? 1 : -1];
+typedef char FlowerAnchorsOffset[offsetof(TObjEneRe2Flower, renderAnchors) == 0x3DC ? 1 : -1];
+typedef char FlowerFadeOffset[offsetof(TObjEneRe2Flower, fade) == 0x3F4 ? 1 : -1];
+typedef char FlowerChildOffset[offsetof(TObjEneRe2Flower, m_428) == 0x428 ? 1 : -1];
 #endif
