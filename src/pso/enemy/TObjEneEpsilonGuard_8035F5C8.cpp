@@ -495,8 +495,6 @@ extern "C"{
     void TObjEneEpsilonGuard__sub_8035FB44(u8 *arg0);
     s32 set_flag_8_and_notify__19TObjEneEpsilonGuardFv();
     s32 TObjEneEpsilonGuard__sub_8035FAA8(s32 arg0);
-    int TObjEneEpsilonGuard__sub_8035F950(void* p);
-    int TObjEneEpsilonGuard__sub_8035F95C(void* p);
     int TObjEneEpsilonGuard__sub_8035F968(void);
     struct W_8035F8A8;
 
@@ -658,7 +656,7 @@ void TObjEneEpsilonBody::dispatch_action(u32 arg1, s32 arg2) {
         ((TObjEneEpsilonGuard *)arg0)->update_fade((arg2));
         return;
         case 9:
-        ((TObjEneEpsilonGuard *)arg0)->action_destroy((arg2));
+        ((TObjEneEpsilonBody *)arg0)->action_destroy((arg2));
         default:
         return;
     }
@@ -1296,7 +1294,7 @@ void TObjEneEpsilonGuard::update_fade(s32 arg1) {
     }
 }
 
-void TObjEneEpsilonGuard::action_destroy(s32 arg1) {
+void TObjEneEpsilonBody::action_destroy(s32 arg1) {
     u8 *arg0 = (u8 *)this;
     s32 temp_r4;
     switch (arg1) {
@@ -1312,7 +1310,7 @@ void TObjEneEpsilonGuard::action_destroy(s32 arg1) {
         *(s32 *)((s8 *)arg0 + 0x4E8) = 0;
         break;
         case 3:
-        if (*(s32 *)((s8 *)arg0 + 0x4E4) == 1 && ((TObjEneEpsilonGuard *)arg0)->all_children_gone() != 0) {
+        if (*(s32 *)((s8 *)arg0 + 0x4E4) == 1 && all_children_gone() != 0) {
             queue_destruction__7TObjectFv(arg0);
         }
         break;
@@ -1651,7 +1649,7 @@ extern "C" s32 TObjEneEpsilonGuard__sub_8035FCEC(W_8035FCEC *arg0) {
     return 1;
 }
 
-s32 TObjEneEpsilonGuard::all_children_gone() {
+s32 TObjEneEpsilonBody::all_children_gone() {
     W_8035FC8C *arg0 = (W_8035FC8C *)this;
     s32 i;
     for (i = 0; i < 4; i++) {
@@ -1748,9 +1746,9 @@ s32 TObjEneEpsilonGuard::assign_guard_targets() {
 
 extern "C" int TObjEneEpsilonGuard__sub_8035F968(void) { return 0; }
 
-extern "C" int TObjEneEpsilonGuard__sub_8035F95C(void* p) { return (*(u32*)((char*)p + 0x438) >> 5) & 0x1; }
+s32 TObjEneEpsilonBody::has_state_flag_0x20() { return (m_438 >> 5) & 1; }
 
-extern "C" int TObjEneEpsilonGuard__sub_8035F950(void* p) { return (*(u32*)((char*)p + 0x438) >> 11) & 0x1; }
+s32 TObjEneEpsilonBody::has_state_flag_0x800() { return (m_438 >> 11) & 1; }
 
 s16 TObjEneEpsilonBody::get_table_value_by_index() {
     typedef char sp8_offset[(((size_t) & (((Stack_8035F8F0*)0)->sp8)) == 0x0) ? 1 : -1];

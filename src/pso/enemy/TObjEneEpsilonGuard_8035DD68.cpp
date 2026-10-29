@@ -481,7 +481,6 @@ struct VObj_8035E3B8_8035DD68 : Base_8035E3B8_8035DD68 {
 
 int TObjEneEpsilonGuard__sub_8035DD68(void* p);
 s32 scale_matrix(int, f32, f32, f32);
-int TObjEneEpsilonGuard__sub_8035F95C(void *p);
 int TObjEneEpsilonGuard__sub_8035F968(void);
 void draw_model_motion(void *arg0, void *arg1, f32 farg0);
 
@@ -825,7 +824,7 @@ void TObjEneEpsilonGuard::state_orbit(s32 arg1) {
                 if (TObjEneEpsilonGuard__sub_8035F968() == 1) {
                     *(s32 *)((s8 *)this + 0x46C) = (s32) (*(s32 *)((s8 *)this + 0x46C) & 0xFFFFFFFB);
                     *(s32 *)((s8 *)this + 0x430) = 2;
-                } else if (TObjEneEpsilonGuard__sub_8035F95C((void *)temp_r3) != 1) {
+                } else if (((TObjEneEpsilonBody *)temp_r3)->has_state_flag_0x20() != 1) {
                     goto block_23;
                 }
             } else {
@@ -999,7 +998,6 @@ void vfunc_88__19TObjEneEpsilonGuardFv(void *);
 void vfunc_89__19TObjEneEpsilonGuardFv(void *);
 s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 s32 vfunc_89__9TObjEneDDFv();
-s32 TObjEneEpsilonGuard__sub_8035F950();
 s16 get_entity_id(int);
 
 void TObjEneEpsilonGuard::update_guard_state() {
@@ -1008,7 +1006,7 @@ void TObjEneEpsilonGuard::update_guard_state() {
 
     if (!(*(s32 *)((s8 *)((u8 *)this) + 0x46C) & 0x40)) {
         entity = (s32)find_entity_by_id((*(u16 *)((s8 *)((u8 *)this) + 0x470)));
-        if ((entity == 0) || (TObjEneEpsilonGuard__sub_8035F950() == 1)) {
+        if ((entity == 0) || (((TObjEneEpsilonBody *)entity)->has_state_flag_0x800() == 1)) {
             if (*(s32 *)((s8 *)((u8 *)this) + 0x46C) & 0x10) {
                 transition_enemy_state(5);
             } else {

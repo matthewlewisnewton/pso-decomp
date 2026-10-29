@@ -12,6 +12,10 @@ public:
     u32 select_attack_target(s32 sequence);
     void init_params();
     void update_guard_flag();
+    s32 all_children_gone();
+    void action_destroy(s32 arg1);
+    s32 has_state_flag_0x800();
+    s32 has_state_flag_0x20();
     void sub_80361D4C(s32);
     void sub_803606A0(s32);
     void render_body_effect();
