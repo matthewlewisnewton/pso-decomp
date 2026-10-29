@@ -2152,7 +2152,7 @@ void *TObjEneMorfos__ct(void *ene_morfos, void *arg1, void *arg2) {
     __ct__12TObjEneDD_STFP7TObject(ene_morfos);
     *(s32 **)((s8 *)ene_morfos + 0x18) = __vt__13TObjEneMorfos;
     __ct__13TUnk_80490470Fv(((char *)ene_morfos + 1004));
-    ((TUnk_80494938 *)((char *)ene_morfos + 1032))->init_common();
+    __ct__13TUnk_80494938Fv(((char *)ene_morfos + 1032));
     __construct_array((void *)((char *)ene_morfos + 1060), __ct__15RenderFadeStateFv, __dt__15RenderFadeStateFv, 28, 4);
     *(void * *)&((TObjEneMorfos *)ene_morfos)->m_name = morfos_class_name;
     invoke_initialization_hook__9TObjEneDDFPv(ene_morfos, arg2);

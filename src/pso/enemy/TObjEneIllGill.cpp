@@ -1776,7 +1776,7 @@ void *__dt__14TObjEneIllGillFv(void *arg0, s16 arg1) {
 u8 *TObjEneIllGill__ct(u8 *self, s32 arg1, u8 *arg2) {
     __ct__9TObjEnemyFP7TObject(self, arg1, arg2);
     FIG_8036858C(void *, 0x18) = __vt__14TObjEneIllGill;
-    ((TUnk_80494938 *)(self + 0x374))->init_common();
+    __ct__13TUnk_80494938Fv((self + 0x374));
     FIG_8036858C(s32, 0) = TObjEneIllGill_class_name;
     ((TObjEnemy *)self)->set_param(0x52);
     ((VObj_18_8036858C *)self)->m79(arg2);
