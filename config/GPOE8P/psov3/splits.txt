@@ -4851,6 +4851,7 @@ pso/misc/TORainbowCave01.cpp:
 
 pso/misc/TOKey_8015845C.cpp:
 	.text       start:0x8015845C end:0x80158608
+	.sdata2     start:0x805DB2E8 end:0x805DB300
 
 pso/misc/TOBind_80158608.cpp:
 	.text       start:0x80158608 end:0x8015860C
