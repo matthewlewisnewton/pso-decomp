@@ -2138,7 +2138,7 @@ void *deleting_dtor__15TObjEneMe1GiGueFPvs(void *arg0, s16 arg1) {
 u8 *TObjEneMe1GiGue__ct(u8 *arg0, s32 enemy_custom, u8 *arg2) {
     __ct__15TObjEnemyCustomFP7TObject(arg0, enemy_custom);
     *(void **)((s8 *)arg0 + 0x18) = lbl_804E135C;
-    ((TUnk_80494938 *)(arg0 + 0x3FC))->init_common();
+    __ct__13TUnk_80494938Fv((arg0 + 0x3FC));
     __ct__15RenderFadeStateFv(((void *)(arg0 + 0x418)));
     *(s32 *)((s8 *)arg0 + 0) = lbl_805D3F18;
     ((TObjEneMe1GiGue *)arg0)->apply_set_data(arg2);

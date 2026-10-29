@@ -409,7 +409,7 @@ u8 *TObjEneRecobox__ct(u8 *ene_recobox, s32 arg1, u8 *arg2) {
     s32 n;
     __ct__12TObjEneDD_STFP7TObject(ene_recobox, arg1, arg2);
     *(u8 **)((s8 *)ene_recobox + 0x18) = TObjEneRecobox__vtable;
-    ((TUnk_80494938 *)(ene_recobox + 0x3C0))->init_common();
+    __ct__13TUnk_80494938Fv((ene_recobox + 0x3C0));
     __construct_array(ene_recobox + 0x460, (void *)&__ct__15RenderFadeStateFv, (void *)&__dt__15RenderFadeStateFv, 0x1C, 4);
     *(s32 *)((s8 *)ene_recobox + 0) = TObjEneRecobox_name_ref;
     invoke_initialization_hook__9TObjEneDDFPv(ene_recobox, arg2);

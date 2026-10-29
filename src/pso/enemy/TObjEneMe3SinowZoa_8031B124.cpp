@@ -12,7 +12,7 @@ extern void *lbl_805D4120;
 void *TObjEneMe3SinowZoa__ct(void *ene_me3_sinow_zoa) {
     __ct__12TObjEneDD_STFP7TObject(ene_me3_sinow_zoa);
     *(s32 **)((s8 *)ene_me3_sinow_zoa + 0x18) = __vt__18TObjEneMe3SinowZoa;
-    ((TUnk_80494938 *)((char *)ene_me3_sinow_zoa + 1044))->init_common();
+    __ct__13TUnk_80494938Fv(((char *)ene_me3_sinow_zoa + 1044));
     *(void * *)&((TObjEneMe3SinowZoa *)ene_me3_sinow_zoa)->m_name = lbl_805D4120;
     return ene_me3_sinow_zoa;
 }
