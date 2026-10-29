@@ -4536,6 +4536,11 @@ pso/unk/text_8014952C.cpp:
 
 pso/npc/TObjNpcCloakroomBase.cpp:
 	.text       start:0x80149630 end:0x801498E0
+	.rodata     start:0x8043F588 end:0x8043F5D0
+	.data       start:0x804A8090 end:0x804A80A8
+	.sdata      start:0x805D2D30 end:0x805D2D38
+	.sbss       start:0x805D5740 end:0x805D5748
+	.sdata2     start:0x805DB1E8 end:0x805DB1F0
 
 pso/npc/TObjNpcConnoisseur.cpp:
 	.text       start:0x801498E0 end:0x80149AD4
