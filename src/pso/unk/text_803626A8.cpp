@@ -1,4 +1,3 @@
-extern "C" void *__ct__12TObjEneDD_STFP7TObject(void *);
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
 #include "pso/misc/TRaderMapCore.h"
@@ -46,11 +45,6 @@ struct RecoveredGlobal_803626A8_lbl_80479FBC {
 struct RecoveredGlobal_803626A8_lbl_8058D490 {
     s32 value;
     u8 remaining[0x2C];
-};
-
-struct RecoveredGlobal_80362B48___vt__14TObjEneEpsilon {
-    s32 value;
-    u8 remaining[0x1A0];
 };
 
 struct Obj_80362DE8 {
@@ -176,11 +170,6 @@ f32 post_translate_matrix(void *);
 extern RecoveredGlobal_803626A8_lbl_80479FBC lbl_80479FBC;
 extern RecoveredGlobal_803626A8_lbl_8058D490 identity_matrix;
 extern s32 anim_model_matrix_array;
-void *__dt__12TObjEneDD_STFv(void *arg0, s16 arg1);
-s32 __dl__7TObjectFPv(void *);
-s32 __destroy_arr(void *, void *, int, int);
-extern s32 __dt__15RenderFadeStateFv[];
-extern s32 __vt__14TObjEneEpsilon[];
 u8 *__dt__14TObjEneEpsilonFv(u8 *arg0, s16 arg1);
 void get_weapon_color__11TItemWeaponFPv(void *, void *);
 void TObjPlayer__sub_8032E648(s32 arg0, s32 arg1, s32 arg2);
@@ -218,10 +207,8 @@ void TLobby__sub_8001FE7C(void *, int);
 void *__dt__13TUnk_804F26E0Fv(void *arg0, s16 arg1);
 void *TObjEneEpsilon__ct(void *arg0);
 void construct_srank_weapon(void *);
-void __construct_array(void *, void *, void *, int, int);
 void *__dt__13TUnk_804A4948Fv(void *arg0, s16 arg1);
 
-extern s32 __ct__15RenderFadeStateFv[];
 extern void *TObjEneEpsilon__class_name;
 
 typedef char RecoveredGlobal_803626A8_lbl_80479FBC_size[sizeof(RecoveredGlobal_803626A8_lbl_80479FBC) == 0xC ? 1 : -1];
@@ -244,7 +231,6 @@ void TObjEneEpsilonGuard::sub_803626A8(s32 arg1, s32 arg2) {
     pop_matrix();
 }
 
-typedef char RecoveredGlobal_80362B48___vt__14TObjEneEpsilon_size[sizeof(RecoveredGlobal_80362B48___vt__14TObjEneEpsilon) == 0x1A4 ? 1 : -1];
 
 void TObjEneEpsilonGuard::free_shared_resources() {
     if ((*(V_8036274C * *)&lbl_805D6FA4) != NULL) {
@@ -306,25 +292,11 @@ void TObjEneEpsilonGuard::load_assets() {
     }
 }
 
-u8 *__dt__14TObjEneEpsilonFv(u8 *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = &(*(RecoveredGlobal_80362B48___vt__14TObjEneEpsilon *)&__vt__14TObjEneEpsilon).value;
-        __destroy_arr(arg0 + 0x3C0, &__dt__15RenderFadeStateFv, 0x1C, 4);
-        __dt__12TObjEneDD_STFv(arg0, 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
-}
+TObjEneEpsilon::~TObjEneEpsilon() {}
 
-void *TObjEneEpsilon__ct(void *ene_epsilon) {
-    __ct__12TObjEneDD_STFP7TObject(ene_epsilon);
-    *(s32 **)((s8 *)ene_epsilon + 0x18) = __vt__14TObjEneEpsilon;
-    __construct_array((void *)((char *)ene_epsilon + 960), __ct__15RenderFadeStateFv, __dt__15RenderFadeStateFv, 28, 4);
-    *(void * *)&((TObjEneEpsilon *)ene_epsilon)->m_name = TObjEneEpsilon__class_name;
-    ((TObjEneDD *)ene_epsilon)->check_state_flag_4();
-    return ene_epsilon;
+TObjEneEpsilon::TObjEneEpsilon(TObject *parent): TObjEneDD_ST(parent) {
+    m_name = (const char *)TObjEneEpsilon__class_name;
+    check_state_flag_4();
 }
 
 extern s32 lbl_804F26E0[];
@@ -396,3 +368,5 @@ __declspec(section ".data") const char *bm_ene_epsilon_model_names[8] = { lbl_80
 __declspec(section ".data") const char *bm_ene_epsilon_motion_names[5] = { lbl_80479F18, lbl_80479F34, lbl_80479F50, lbl_80479F70, NULL };
 }
 BmlResourceDescriptor TObjEneEpsilonGuard__resource_descriptor = { lbl_80479F88, bm_ene_epsilon_model_names, bm_ene_epsilon_motion_names, 7, 4 };
+
+TObjMotionAction lbl_804F252C = {1, 0, 0, 0.3f, 0};
