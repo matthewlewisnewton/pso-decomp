@@ -2300,7 +2300,7 @@ void TObjEneMe3Stelth::state_chase_target(s32 arg1) {
             TObjEneMe3Stelth__sub_800F0C90(this);
             *(f32 *)((s8 *)((u8 *)this) + 0x434) = (f32) ((*(f32 *)((s8 *)((u8 *)this) + 0x3A0) * sin_table_lookup((int) (*(s32 *)((s8 *)((u8 *)this) + 0x60)))) + (*(f32 *)((s8 *)((u8 *)this) + 0x3A8) * cos_table_lookup((int) (*(s32 *)((s8 *)((u8 *)this) + 0x60)))));
             if (*(f32 *)((s8 *)((u8 *)this) + 0x434) < cos_table_lookup(0x1000)) {
-                ((TObjEneEpsilon *)((u8 *)this))->update_angle(0x500);
+                ((TObjEneDD *)((u8 *)this))->turn_toward_target_direction(0x500);
                 this->vfunc_102();
             } else {
                 enemy_turn_and_move_on_ground((((u8 *)this)), 0x500, (f32) (*(f32 *)((s8 *)((u8 *)this) + 0x430)));
@@ -2518,7 +2518,7 @@ void TObjEneMe3Stelth::state_chase(s32 arg1) {
             this->update_velocity();
             *(f32 *)((s8 *)((u8 *)this) + 0x434) = (f32) ((this->m_3a0 * sin_table_lookup(this->rotation_y)) + (*(f32 *)((s8 *)((u8 *)this) + 0x3A8) * cos_table_lookup(this->rotation_y)));
             if (*(f32 *)((s8 *)((u8 *)this) + 0x434) < cos_table_lookup(0x1000)) {
-                ((TObjEneEpsilon *)((u8 *)this))->update_angle(0x500);
+                ((TObjEneDD *)((u8 *)this))->turn_toward_target_direction(0x500);
                 ((TObjEneDD *)(this))->vfunc_102();
             }
         }

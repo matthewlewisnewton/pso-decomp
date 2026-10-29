@@ -1451,7 +1451,7 @@ void TObjEneEpsilonGuard__sub_803616E4(void *arg0_, s32 arg1) {
             ((TObjEneDD *)arg0)->update_velocity();
             F(f32, 0x4F8) = F(f32, 0x3A0) * sin_table_lookup(F(s32, 0x60)) + F(f32, 0x3A8) * cos_table_lookup(F(s32, 0x60));
             if (F(f32, 0x4F8) < cos_table_lookup(0x1000)) {
-                ((TObjEneEpsilon *)arg0)->update_angle(F(s32, 0x45C));
+                ((TObjEneDD *)arg0)->turn_toward_target_direction(F(s32, 0x45C));
                 VO->m100();
             } else {
                 enemy_turn_and_move_on_ground(arg0, F(s32, 0x45C), F(f32, 0x458));
