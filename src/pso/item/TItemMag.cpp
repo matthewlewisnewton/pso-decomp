@@ -351,7 +351,7 @@ void PhotonBlastGauge::set_blast_level(s16 blast, s8 level) {
     blast_levels[blast] = level;
 }
 
-s32 TObjChara::obj_isState7_324() {
+s32 TObjChara::is_in_fixed_pose() {
     return control_state == 7;
 }
 
@@ -414,7 +414,7 @@ void TItemMag::load_data_files() {
     MagAxisOscillationParameters *axis;
     MagEditData *edit;
 
-    item_mag_motions = (MagFollowParameters *)fn_800F955C(item_mag_motion_path);
+    item_mag_motions = (MagFollowParameters *)load_data_file(item_mag_motion_path);
     motion = item_mag_motions;
     for (i = 0; i < 90; i++, motion++) {
         bswap_32((u32 *)&motion->joint_index);
@@ -448,7 +448,7 @@ void TItemMag::load_data_files() {
 
 void TItemMag::cleanup() {
     delete item_mag_edit_file;
-    fn_800F953C(item_mag_motions);
+    free_data_file(item_mag_motions);
     item_mag_edit_file = NULL;
     item_mag_motion_tables = NULL;
     item_mag_motions = NULL;
@@ -522,7 +522,7 @@ void TItemMag::on_equip() {
     } else {
         state |= MAG_INACTIVE;
     }
-    if (is_hidden() == 0 && owner->obj_isState7_324() == 0) {
+    if (is_hidden() == 0 && owner->is_in_fixed_pose() == 0) {
         play_sound_effect(0x4000B20A, &owner->position, 0, 0);
     }
 }
@@ -1067,11 +1067,11 @@ void TItemMag::evolve_by_level() {
 }
 
 void TItemMag::on_form_changed() {
-    u8 *record;
+    MagPmtRecord *record;
 
-    record = (u8 *)TObjPlayer::get_pmt_record(get_item_group());
+    record = (MagPmtRecord *)TObjPlayer::get_pmt_record(get_item_group());
     if (record != NULL) {
-        stats.add_photon_blast(record[0xA]);
+        stats.add_photon_blast(record->photon_blast);
     }
     if (get_mode() == 2) {
         release_model();
@@ -1758,13 +1758,13 @@ void TItemMag::register_photon_blasts() {
 }
 
 void TItemMag::load_param_record() {
-    u8 *record;
+    MagPmtRecord *record;
 
-    record = (u8 *)TObjPlayer::get_pmt_record(get_item_group());
+    record = (MagPmtRecord *)TObjPlayer::get_pmt_record(get_item_group());
     if (record != NULL) {
-        feed_table = *(s16 *)(record + 8);
-        activation_rate = record[0xB];
-        set_triggers(record + 0xC, record + 0x10);
+        feed_table = record->feed_table;
+        activation_rate = record->activation_rate;
+        set_triggers(record->trigger_actions, record->trigger_modes);
     }
 }
 

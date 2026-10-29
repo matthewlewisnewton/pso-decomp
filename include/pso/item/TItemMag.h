@@ -59,6 +59,16 @@ enum {
     MAG_EVENT_BOSS_AREA = 0x80,
 };
 
+// A mag's ItemPMT record (TObjPlayer::get_pmt_record by item group).
+struct MagPmtRecord {
+    u8 pad_0[0x8];
+    s16 feed_table;
+    u8 photon_blast;        // the blast its form adds
+    u8 activation_rate;
+    u8 trigger_actions[4];  // TItemMag::trigger_actions
+    u8 trigger_modes[4];
+};
+
 // ItemMagEdit.prs: the mag models' tables, indexed by item group.
 struct MagEditData {
     s8 **motion_tables;  // per model variant: each group's 2 x 6 motion types
