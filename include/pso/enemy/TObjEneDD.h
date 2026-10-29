@@ -41,6 +41,7 @@ struct TObjEneDD : public TObjEnemy {
     static f32 calc_elapsed_scaled();
     void update_velocity();
     void turn_toward_target_direction(s32 max_step);
+    void set_target_destination(const Vec *position);
     static void init_lights();
     static s32 clamp_frame_index(s32 arg0);
     static s32 check_v2_mode();

@@ -1844,7 +1844,6 @@ struct Gee_800C8788 {
 f32 random_ratio__9TObjCharaFv(s32);
 f32 newton_sqrtf(f32);
 f32 get_random_float__21TObjEneMe3ShinowaRealFv(f32);
-int copy_position__14TObjEneEpsilonFPv(void *p, void *_w1);
 int select_and_apply_target__12TObjEneDD_STFf(void*);
 s32 set_target_player__12TObjEneDD_STFPv();
 void *__dt__12TObjEneDD_STFv(void *arg0, s16 arg1);
@@ -2283,7 +2282,7 @@ void TObjEneMe1Gee::state_return_home(s32 arg1) {
             ((s32 (*)(void *, f32))sub_800CBE6C__13TObjEneMe1GeeFv)(this, *(f32 *)((s8 *)this + 0x3C) + *(f32 *)((s8 *)this + 0x3F4));
             break;
         case 1:
-            copy_position__14TObjEneEpsilonFPv(this, (u8 *)this + 0x50);
+            set_target_destination((const Vec *)((u8 *)this + 0x50));
             this->update_velocity();
             update_angle();
             set_move_speed_x();
@@ -2423,7 +2422,7 @@ void run_task__13TObjEneMe1GeeFPvi(TObjEneMe1Gee *arg0, s32 arg1) {
         return;
     case 0:
         arg0->advance_animation();
-        copy_position__14TObjEneEpsilonFPv((arg0), ((u8 *)arg0 + 0x50));
+        arg0->set_target_destination((const Vec *)((u8 *)arg0 + 0x50));
         ((TObjEneDD *)arg0)->update_velocity();
         arg0->update_angle();
         arg0->set_move_speed_x();

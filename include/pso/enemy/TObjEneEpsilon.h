@@ -6,7 +6,6 @@
 
 struct TObjEneEpsilon : public TObjEneDD_ST {
     virtual ~TObjEneEpsilon();
-    int copy_position(void *);
     s32 update_movement_status();
     s32 is_target_in_attack_range();
     u8 unk_374[0x18];

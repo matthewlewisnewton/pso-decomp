@@ -612,7 +612,6 @@ void TBoss8Dragon__sub_80067074(s32 arg0, s32 arg1);
 void TCameraCtrl__sub_8006A044(s32 id, f32 v);
 void TObjEneEpsilon__sub_800B9384(u8 *arg0, s32 arg1, f32 farg0);
 s32 enemy_validate_retained_target(u8 *arg0);
-int copy_position__14TObjEneEpsilonFPv(void *p, void *_w1);
 s32 enemy_copy_target_destination__12TObjEneDD_STFv(void *);
 s32 update_linked_position__12TObjEneDD_STFf(f32);
 s32 enemy_set_target_id(void *, u16);
@@ -2101,7 +2100,7 @@ void TBoss5Gryphon::refresh_target_periodically() {
         if (enemy_validate_retained_target((u8 *)this) != 0) {
             enemy_copy_target_destination__12TObjEneDD_STFv(this);
         } else {
-            copy_position__14TObjEneEpsilonFPv(this, lbl_80437938);
+            ((TObjEneDD *)this)->set_target_destination((const Vec *)lbl_80437938);
         }
         ((s32 (*)(void *))TBoss8Dragon__sub_80064AB0)(this);
     }
@@ -5032,7 +5031,7 @@ TBoss5Gryphon *TBoss5Gryphon__ct(TBoss5Gryphon *self, void *parent, void *data) 
     *(void **)((u8 *)self + 0x350) = lbl_804878B4;
     initialize_enemy_state__9TObjEneDDFv(self, 77);
     self->m_37c = lbl_805D8D50;
-    copy_position__14TObjEneEpsilonFPv(self, lbl_80437938);
+    ((TObjEneDD *)self)->set_target_destination((const Vec *)lbl_80437938);
     self->enemy_init_acquire_period(10);
     self->enemy_init_validate_period(10);
     ((Obj_80065658 *)self)->f474[0] = lbl_805D8D5C;

@@ -3048,7 +3048,7 @@ void TObjEneMe1Canadin__sub_8009BFF8(u8 *arg0, s32 arg1) {
             ((s32 (*)(void *, f32))TObjEneMe1Canadin__sub_8009EB14)(arg0, *(f32 *)((s8 *)arg0 + 0x3C) + *(f32 *)((s8 *)arg0 + 0x3F4));
             break;
         case 1:
-            ((TObjEneEpsilon *)arg0)->copy_position(arg0 + 0x50);
+            ((TObjEneDD *)arg0)->set_target_destination((const Vec *)(arg0 + 0x50));
             ((TObjEneDD *)arg0)->update_velocity();
             ((TObjEneMe1Canadin *)arg0)->update_angle();
             ((TObjEneMe1Canadin *)arg0)->update_position_with_offset();
@@ -3248,7 +3248,7 @@ void TObjEneMe1Canadin::run_task(s32 arg1) {
         return;
     case 0:
         advance_animation();
-        ((TObjEneEpsilon *)arg0)->copy_position((arg0 + 0x50));
+        ((TObjEneDD *)arg0)->set_target_destination((const Vec *)(arg0 + 0x50));
         ((TObjEneDD *)arg0)->update_velocity();
         update_angle();
         update_position_with_offset();
