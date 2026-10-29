@@ -9632,7 +9632,10 @@ pso/ui/TAdSelectTxtSubGC.cpp:
 
 pso/npc/TObjNpcHosa.cpp:
 	.text       start:0x802A3A20 end:0x802A3BF8
+	.rodata     start:0x804665F8 end:0x80466628
 	.data       start:0x804DCCB0 end:0x804DCCC8
+	.sdata      start:0x805D3DC8 end:0x805D3DD0
+	.sbss       start:0x805D6650 end:0x805D6658
 
 pso/npc/TObjNpcKenkyuW.cpp:
 	.text       start:0x802A3BF8 end:0x802A4540
