@@ -9971,6 +9971,7 @@ pso/misc/TPlayerFootStamp.cpp:
 
 pso/misc/TPlayerFootStamp_802B01D8.cpp:
 	.text       start:0x802B01D8 end:0x802B02B0
+	.rodata     start:0x80470908 end:0x80470920
 
 pso/misc/TPlayerFootStamp_802B02B0.cpp:
 	.text       start:0x802B02B0 end:0x802B03F4
