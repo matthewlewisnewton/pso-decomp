@@ -40,6 +40,7 @@ struct TObjEneDD : public TObjEnemy {
     int get_flag_b4();
     static f32 calc_elapsed_scaled();
     void update_velocity();
+    void turn_toward_target_direction(s32 max_step);
     static void init_lights();
     static s32 clamp_frame_index(s32 arg0);
     static s32 check_v2_mode();
