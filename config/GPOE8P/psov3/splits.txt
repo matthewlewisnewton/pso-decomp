@@ -8010,8 +8010,9 @@ pso/player/TObjPlayer_8023C024.cpp:
 
 pso/misc/TTecZarua.cpp:
 	.text       start:0x8023C07C end:0x8023C558
-	.rodata     start:0x8044DC98 end:0x8044DCA0
+	.rodata     start:0x8044DC88 end:0x8044DCA0
 	.data       start:0x804CCD28 end:0x804CCD50
+	.sdata      start:0x805D3830 end:0x805D3838
 
 pso/misc/TTecZonde.cpp:
 	.text       start:0x8023C558 end:0x8023CDC4
