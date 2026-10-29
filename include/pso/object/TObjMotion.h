@@ -168,7 +168,10 @@ public:
     u8 unk_CC[0x4];
     f32 m_d0;
     u8 unk_D4[0x4];
-    void* action_table;
+    union {
+        void *action_table;
+        TObjMotionAction *actions;
+    };
     void* motion_list;
     void* motion_buffer;
     u8 unk_E4[0x3];
@@ -184,6 +187,9 @@ typedef char TObjCollidableSize[sizeof(TObjCollidable)==0xAC?1:-1];
 typedef char CollisionBodySize[sizeof(CollisionBody)==0x2C?1:-1];
 typedef char TObjMotionSize[sizeof(TObjMotion)==0xFC?1:-1];
 typedef char WorldActorModelOffset[offsetof(TObjBase,model)==0x34?1:-1];
+typedef char TypedMotionActionsOffset[offsetof(TObjMotion,actions)==0xD8?1:-1];
+typedef char MotionActionSize[sizeof(TObjMotionAction)==0x10?1:-1];
+typedef char MotionActionSpeedOffset[offsetof(TObjMotionAction,speed)==8?1:-1];
 typedef char MotionActionsOffset[offsetof(TObjMotion,action_table)==0xD8?1:-1];
 typedef char MotionListOffset[offsetof(TObjMotion,motion_list)==0xDC?1:-1];
 typedef char MotionBufferOffset[offsetof(TObjMotion,motion_buffer)==0xE0?1:-1];
