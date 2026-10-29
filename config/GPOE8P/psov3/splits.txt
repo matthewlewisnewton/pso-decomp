@@ -650,8 +650,9 @@ pso/boss/TBoss8Dragon_80065C90.cpp:
 
 pso/boss/TBoss5GryphonColli.cpp:
 	.text       start:0x80066128 end:0x80066540
-	.rodata     start:0x80437F20 end:0x80437F28
+	.rodata     start:0x80437EF0 end:0x80437F28
 	.data       start:0x80488668 end:0x804886AC
+	.sdata      start:0x805D2808 end:0x805D2810
 	.sdata2     start:0x805D8ED0 end:0x805D8EE0
 
 pso/boss/TBoss5GryphonDemo.cpp:
