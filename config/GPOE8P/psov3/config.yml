@@ -2618,7 +2618,7 @@ force_active:
   - action__17TObjEneDf2BringerFPvi
   - action__18TObjEneBalClawClawFPv
   - action__19TObjEneEpsilonGuardFPvi
-  - action_destroy__19TObjEneEpsilonGuardFl
+  - action_destroy__18TObjEneEpsilonBodyFl
   - activate_switch_attacks__10TObjPlayerFii
   - ad_game_start_name_ptr
   - add_armor_stat_contribution__9TItemDataFPviiPv
@@ -2684,7 +2684,7 @@ force_active:
   - advance_wait_next__11TBoss4Type3Fv
   - advance_wrap_offset__13TUnk_804B2578Fv
   - alerted_state__14TObjEneBm5WolfFl
-  - all_children_gone__19TObjEneEpsilonGuardFv
+  - all_children_gone__18TObjEneEpsilonBodyFv
   - alloc_boss4rock_buffer__6TLobbyFv
   - alloc_boss_target_slot__16TBoss3VoloptCoreFv
   - alloc_breakup_model__13TUnk_804E3BD8Fl

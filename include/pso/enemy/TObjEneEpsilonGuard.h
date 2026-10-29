@@ -32,7 +32,6 @@ struct TObjEneEpsilonGuard : public TObjEneEpsilon {
     u8 _pad472[0x4A];
     void* m_4bc;
     void init_model_and_state();
-    s32 all_children_gone();
     static void update_attack_pattern(void *arg0);
     void tick_stun_timer();
     void tick_timer_set_flag();
@@ -56,7 +55,6 @@ struct TObjEneEpsilonGuard : public TObjEneEpsilon {
     s32 calc_angle_to_target();
     void set_orbit_destination(s32 arg1);
     s32 assign_guard_targets();
-    void action_destroy(s32 arg1);
     void update_fade(s32 arg1);
     void handle_warp_state(s32 arg1);
 };
