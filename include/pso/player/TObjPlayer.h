@@ -252,8 +252,6 @@ struct TObjPlayer : public TObjChara {
     static void reset_effect_count();
     static void step_cutscene_frame();
     static void free_resources();
-    void enter_state_8();
-    void tick_freeze_state();
     void update_death_breakup();
     void dispatch_state_update();
     static void create_render_texture();
