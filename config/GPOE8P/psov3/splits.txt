@@ -6506,6 +6506,7 @@ pso/ui/TAdSinglePlyChrSelectGC_801C50A8.cpp:
 
 pso/unk/text_801C51D4.cpp:
 	.text       start:0x801C51D4 end:0x801C53D4
+	.sdata2     start:0x805DC308 end:0x805DC320
 
 pso/unk/text_801C53D4.cpp:
 	.text       start:0x801C53D4 end:0x801C543C
