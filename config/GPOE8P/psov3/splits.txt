@@ -7621,6 +7621,8 @@ pso/unk/text_80222C28.cpp:
 
 pso/misc/TLobby_80222D24.cpp:
 	.text       start:0x80222D24 end:0x80222DE8
+	.rodata     start:0x8044C298 end:0x8044C300
+	.data       start:0x804CA288 end:0x804CA2A0
 
 pso/unk/text_80222DE8.cpp:
 	.text       start:0x80222DE8 end:0x80222FC0
