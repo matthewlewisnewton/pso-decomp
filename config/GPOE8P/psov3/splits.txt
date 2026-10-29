@@ -11458,7 +11458,9 @@ pso/enemy/TObjEneMorfos.cpp:
 
 pso/enemy/TObjEneMorfosArm_80335218.cpp:
 	.text       start:0x80335218 end:0x8033542C
+	.rodata     start:0x80477618 end:0x80477630
 	.data       start:0x804EE3C0 end:0x804EE3F8
+	.sdata      start:0x805D4238 end:0x805D4240
 
 pso/enemy/TObjEneMorfosArm.cpp:
 	.text       start:0x8033542C end:0x803354A4
