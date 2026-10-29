@@ -12397,7 +12397,7 @@ pso/object/TObjIllGillKage.cpp:
 pso/enemy/TObjEneIllGill.cpp:
 	.text       start:0x80365688 end:0x8036897C
 	.rodata     start:0x8047A350 end:0x8047A358
-	.data       start:0x804F2E40 end:0x804F3038
+	.data       start:0x804F2E40 end:0x804F3184
 	.bss        start:0x80543A60 end:0x80543AA0
 
 pso/boss/TBoss6MagMine.cpp:

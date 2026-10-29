@@ -119,7 +119,6 @@ void* TObjNpcNgcBase__sub_80359038(void* placement);
 void* TObjNpcNgcBase__sub_803590C0(void* placement);
 void* TObjNpcNgcBase__sub_80359148(void* placement);
 void* TObjNpcNgcBase__create(void* placement);
-void* create__14TObjEneIllGillFv(void* placement);
 
 EnemyFactoryEntry enemy_factories_floor_00[40] = {
     { 0x0001, TObjNpcFemaleBase__create, 250000.0f, 0 },
@@ -455,7 +454,7 @@ EnemyFactoryEntry enemy_factories_floor_35[11] = {
     { 0x0061, TObjEneRe2Flower::create, 250000.0f, 0 },
     { 0x0033, TObjNpcEnemy__create, 250000.0f, 0 },
     { 0x00F6, TObjNpcNgcBase__sub_80358FB0, 250000.0f, 0 },
-    { 0x00E1, create__14TObjEneIllGillFv, 250000.0f, 0 },
+    { 0x00E1, TObjEneIllGill::create, 250000.0f, 0 },
     { -1, 0, 250000.0f, 0 },
 };
 

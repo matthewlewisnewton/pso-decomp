@@ -3,11 +3,30 @@
 
 #include "types.h"
 #include "pso/enemy/TObjEnemy.h"
+#include "pso/enemy/TUnk_80494938.h"
+
+class TParticleCtrl;
+
+struct IllGillAttackBehavior {
+    f32 recoveryFrames;
+    f32 animationSpeed;
+    u32 unknown08[4];
+    s32 specialParameter;
+    s32 thirdSpecialParameter;
+};
+
+struct IllGillMovementParameters {
+    f32 range;
+    f32 speed;
+    s32 turn;
+    u32 unknown[4];
+};
 
 struct TObjEneIllGill : public TObjEnemy {
+    TObjEneIllGill(TObject *parent, void *setData);
     virtual ~TObjEneIllGill();
     virtual s32 is_target_in_attack_range();
-    void sub_80367DC8(s32);
+    s32 project_step_to_ground(s32);
     virtual void vfunc_28();
     virtual s32 update_action_hold_status();
     virtual s32 update_movement_status();
@@ -17,43 +36,49 @@ struct TObjEneIllGill : public TObjEnemy {
     virtual void vfunc_62();
     virtual void vfunc_63();
     virtual void vfunc_58();
-    void* m_374;
-    u8 _pad378[0x10];
-    u32 m_388;
-    u8 _pad38C[0x4];
-    u32 m_390;
-    u32 m_394;
-    u32 m_398;
-    u32 m_39c;
-    u32 m_3a0;
-    u32 m_3a4;
-    u32 m_3a8;
-    u8 _pad3AC[0x4];
-    void* m_3b0;
-    u8 _pad3B4[0x8];
-    void* m_3bc;
-    u8 _pad3C0[0x8];
-    void* m_3c8;
-    u8 _pad3CC[0x8];
-    void* m_3d4;
-    u8 _pad3D8[0x38];
-    u32 m_410;
-    u32 m_414;
-    u32 m_418;
-    u32 m_41c;
-    void update_ai();
-    static void advance_camera_vec_stage();
+    TUnk_80494938 fade;
+    s32 fadingIn;
+    s32 attackType;
+    s32 weaponSpecial;
+    s32 actionTimer;
+    s32 deathTimer;
+    s32 hitFrame;
+    s32 viewDetail;
+    f32 chargeDistance;
+    Vec weaponEffectPosition;
+    Vec shadowEffectPosition;
+    Vec chargeEffectPosition1;
+    Vec chargeEffectPosition2;
+    TObjChara *chargeHits[4];
+    u8 unknown3F0[0x20];
+    s32 chargeFrames;
+    TParticleCtrl *primaryEffect;
+    TParticleCtrl *secondaryEffect;
+    TParticleCtrl *tertiaryEffect;
+    void clear_charge_hits();
+    void update_shadow_attack();
+    void update_damage_recovery();
+    void update_action_hold();
+    void update_weapon_attack();
+    void update_forward_movement();
+    void update_charge_attack();
+    static void capture_effect_positions();
     void update_death_fall();
     void free_resources();
-    static void update_chase_target(void *arg0_);
-    void run_attack_phase();
+    void update_chase_target();
+    void update_idle();
     void move_toward_dest_with_detour();
     void render();
     void run_task();
-    void *create();
+    static void *create(void *setData);
     static void free_effect();
     static void load_shared_resources();
 };
 
+typedef char IllGillFadeOffset[offsetof(TObjEneIllGill, fade) == 0x374 ? 1 : -1];
+typedef char IllGillHitListOffset[offsetof(TObjEneIllGill, chargeHits) == 0x3E0 ? 1 : -1];
+typedef char IllGillEffectsOffset[offsetof(TObjEneIllGill, primaryEffect) == 0x414 ? 1 : -1];
+typedef char IllGillMovementSize[sizeof(IllGillMovementParameters) == 0x1C ? 1 : -1];
+typedef char IllGillBehaviorSize[sizeof(IllGillAttackBehavior) == 0x20 ? 1 : -1];
 typedef char TObjEneIllGill_size[sizeof(TObjEneIllGill) == 0x420 ? 1 : -1];
 #endif
