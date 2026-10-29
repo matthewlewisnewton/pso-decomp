@@ -7,6 +7,13 @@
 #include "pso/misc/TLobby.h"
 #include "pso/player/TObjPlayer.h"
 
+#pragma readonly_strings on
+
+extern "C" {
+const char *lbl_805D2810 = "TBoss5GryphonDemo";
+}
+
+
 struct Obj_800665FC { s32 f0; u8 pad4[0x14]; void *f18; f32 f1c; f32 f20; s32 f24; };
 
 struct Cam_800665FC { s8 f8; s8 f9; s16 fa; f32 fc; f32 f10; };
@@ -19,7 +26,7 @@ u8 *get_scripted_camera_playback();
 
 int TBoss8Dragon__sub_8005D700(void);
 s32 activate_camera_mode(s32 arg0);
-extern s32 lbl_805D2810;
+extern const char *lbl_805D2810;
 
 void TBoss5GryphonDemo::render() {  }
 
@@ -37,7 +44,7 @@ TBoss5GryphonDemo::~TBoss5GryphonDemo() {}
 }
 TBoss5GryphonDemo::TBoss5GryphonDemo(TObject *parent, s32 arg2, f32 farg0) : TObject(parent) {
     Cam_800665FC c;
-    ((Obj_800665FC *)this)->f0 = lbl_805D2810;
+    ((Obj_800665FC *)this)->f0 = ((s32)lbl_805D2810);
     ((Obj_800665FC *)this)->f1c = farg0;
     ((Obj_800665FC *)this)->f20 = 0.0f;
     ((Obj_800665FC *)this)->f24 = arg2;

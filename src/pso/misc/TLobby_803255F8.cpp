@@ -3,9 +3,11 @@
 #include "pso/misc/TLobby.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 
+#pragma readonly_strings on
+
+
 extern "C" {
     u8 *load_gvm_texture_file(s32 arg0);
-    extern unsigned char lbl_804766F0[];
 extern u32 inazuma_texture_list;
 s32 release_texture_list(void*);
 
@@ -17,4 +19,4 @@ void TLobby::free_char_select_singleton() {
     }
 }
 }
-void load_f512_inazuma(void) { (*(int *)&inazuma_texture_list) = (int)load_gvm_texture_file((s32)lbl_804766F0); }
+void load_f512_inazuma(void) { (*(int *)&inazuma_texture_list) = (int)load_gvm_texture_file((s32)(unsigned char *)"f512_inazuma.gvm"); }

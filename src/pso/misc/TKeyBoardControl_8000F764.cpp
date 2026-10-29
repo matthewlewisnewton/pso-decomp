@@ -17,6 +17,11 @@
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/ui/TAdWarningBaseGC.h"
 
+extern "C" {
+u8 gx_default_light_obj[256];
+}
+
+
 struct RecoveredGlobal_8000F764_TKeyBoardControl__data_80506270 {
     s32 value;
     u8 remaining[0xAC];

@@ -10,6 +10,13 @@
 #include "pso/misc/TWindowChat.h"
 #include "pso/ui/TAdScrollWinGC.h"
 
+#pragma readonly_strings on
+
+extern "C" {
+const char *TWindowSubLog__class_name = "TWindowSubLog";
+}
+
+
 struct VBase_18_204a81 { char pad[0x18]; };
 
 struct VObj_18_204a81 : VBase_18_204a81 {
@@ -40,13 +47,9 @@ s32 TWindowCtrl__sub_8024701C(int);
 void TWindowChat__sub_80247DFC(u8 *arg0);
 void TWindowChat__sub_80247E50(u8 *arg0);
 extern RecoveredGlobal_8027AF58_lbl_8050E208 controller_input_state;
-extern const f32 lbl_805DD638;
-extern const f32 lbl_805DD63C;
-extern const f32 lbl_805DD640;
-extern const f32 lbl_805DD644;
 extern u8 lbl_8044F9C8[];
 extern u8 lbl_8044F9D0[];
-extern s32 TWindowSubLog__class_name;
+extern const char *TWindowSubLog__class_name;
 int show_child_window__17TWindowMainMenu4PFv(void*);
 int update_trade_submenu__15TWindowMainMenuFv(void*);
 
@@ -64,16 +67,16 @@ void TWindowSubLog::run_task() {
         TWindowChat__sub_80247DFC((u8 *)this->m_28);
     }
     if (TWindowCtrl__sub_8024701C(this->m_28) != 0) {
-        TWindowSubLog__sub_8026A664((*(u8 * *)&this->m_24), lbl_805DD638);
+        TWindowSubLog__sub_8026A664((*(u8 * *)&this->m_24), 200.0f);
         return;
     }
-    TWindowSubLog__sub_8026A664((*(u8 * *)&this->m_24), lbl_805DD63C);
+    TWindowSubLog__sub_8026A664((*(u8 * *)&this->m_24), 408.0f);
     temp_r31 = (u8 *)&controller_input_state.value + 0x20;
     if ((is_on_current_screen__11TCameraCtrlFv((int)temp_r31, 0x10) != 0) || (is_flag_set__11TLoadingCurFv((void *) ((u8 *)&controller_input_state.value + 0x160), 0x10) != 0)) {
-        fn_8026A61C((*(u8 * *)&this->m_24), lbl_805DD640);
+        fn_8026A61C((*(u8 * *)&this->m_24), -6.0f);
     }
     if ((is_on_current_screen__11TCameraCtrlFv((int)temp_r31, 0x20) != 0) || (is_flag_set__11TLoadingCurFv((void *) ((u8 *)&controller_input_state.value + 0x160), 0x20) != 0)) {
-        ((TAdScrollWinGC *)(this->m_24))->advance_scroll(lbl_805DD644);
+        ((TAdScrollWinGC *)(this->m_24))->advance_scroll(6.0f);
     }
     temp_r3 = (u8 *)this->m_24;
     if ((*(f32 *)((s8 *)temp_r3 + 0x3C) == *(f32 *)((s8 *)temp_r3 + 0x4C)) && ((TWindowShortListCtrl__check_controller_button((int)temp_r31, 2) != 0) || (test_flag_4c__23TAdSinglePlyChrSelectGCFv((void *) ((u8 *)&controller_input_state.value + 0x160), 2) != 0))) {
@@ -92,7 +95,7 @@ TWindowSubLog::~TWindowSubLog() {
 }
 TWindowSubLog::TWindowSubLog(TObject *arg1, void *arg2) : TObject(arg1) {
     void *w;
-    ((Lg_8027B194 *)this)->f0 = TWindowSubLog__class_name;
+    ((Lg_8027B194 *)this)->f0 = ((s32)TWindowSubLog__class_name);
     ((Lg_8027B194 *)this)->f20 = arg1;
     ((Lg_8027B194 *)this)->f1c = arg2;
     TWindowCtrl__sub_8024ADAC((s32)(((Lg_8027B194 *)this)->f1c));
