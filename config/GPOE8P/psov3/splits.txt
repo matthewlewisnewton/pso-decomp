@@ -5808,8 +5808,11 @@ pso/item/TObjItemLight.cpp:
 
 pso/misc/TKomorebi.cpp:
 	.text       start:0x80192174 end:0x80192554
+	.rodata     start:0x80445A00 end:0x80445A30
 	.data       start:0x804B7ED0 end:0x804B7EE8
-	.sdata      start:0x805D3398 end:0x805D339C
+	.sdata      start:0x805D3398 end:0x805D33A0
+	.sbss       start:0x805D5C20 end:0x805D5C28
+	.sdata2     start:0x805DBE48 end:0x805DBE58
 
 pso/unk/text_80192554.cpp:
 	.text       start:0x80192554 end:0x801925F8
