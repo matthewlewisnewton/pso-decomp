@@ -4512,7 +4512,7 @@ extern int fold_flush_2;
 u8 *TObjEneMe1Canadin__ct(u8 *arg0, s32 arg1, u8 *arg2, s32 arg3, s16 arg4, s16 arg5) {
     __ct__12TObjEneDD_STFP7TObject(arg0);
     *(s32 **)((s8 *)arg0 + 0x18) = &(*(RecoveredGlobal_8009F2E0___vt__17TObjEneMe1Canadin *)&__vt__17TObjEneMe1Canadin).value;
-    ((TUnk_80494938 *)(arg0 + 0x3CC))->init_common();
+    __ct__13TUnk_80494938Fv((arg0 + 0x3CC));
     *(s32 *)((s8 *)arg0 + 0) = (s32) (*(s32 *)&TObjEneMe1Canadin__class_name);
     *(u8 **)((s8 *)arg0 + 0x3C0) = arg2;
     ((TObjEneDD *)arg0)->init_common_from((u8 *)(*(u8 **)((s8 *)arg0 + 0x3C0)));
@@ -4530,7 +4530,7 @@ u8 *TObjEneMe1Canadin__ct(u8 *arg0, s32 arg1, u8 *arg2, s32 arg3, s16 arg4, s16 
 void *TObjEneMe1Canadin::init(void *arg1, void *arg2, void *arg3) {
     __ct__12TObjEneDD_STFP7TObject(this);
     *(s32 **)((s8 *)this + 0x18) = __vt__17TObjEneMe1Canadin;
-    ((TUnk_80494938 *)((char *)this + 972))->init_common();
+    __ct__13TUnk_80494938Fv(((char *)this + 972));
     *(void **)((s8 *)this + 0x0) = TObjEneMe1Canadin__class_name;
     invoke_initialization_hook__9TObjEneDDFPv(this, arg2);
     *(u32 *)((s8 *)this + 0x3C8) = 0;

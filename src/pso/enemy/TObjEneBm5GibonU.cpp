@@ -4529,7 +4529,7 @@ u8 *TObjEneBm5GibonU__ct(u8 *ene_bm5_gibon_u, s32 arg1, s32 arg2) {
     *(u8 **)((s8 *)ene_bm5_gibon_u + 0x18) = lbl_80493F04;
     TObjEneBm5GibonU__sub_800D1CF8((O_800D1CF8 *)(ene_bm5_gibon_u + 0x3C0));
     TObjEneBm5GibonU__sub_800D1CF8((O_800D1CF8 *)(ene_bm5_gibon_u + 0x3CC));
-    ((TUnk_80494938 *)(ene_bm5_gibon_u + 0x3D8))->init_common();
+    __ct__13TUnk_80494938Fv((ene_bm5_gibon_u + 0x3D8));
     __construct_array(ene_bm5_gibon_u + 0x3F4, (void *)&__ct__15RenderFadeStateFv, (void *)&__dt__15RenderFadeStateFv, 0x1C, 4);
     ((TObjPlayer *)(ene_bm5_gibon_u + 0x4B0))->construct_target_cursor_records();
     *(s32 *)((s8 *)ene_bm5_gibon_u + 0) = lbl_805D2A70;
