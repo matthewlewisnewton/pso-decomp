@@ -7,6 +7,7 @@
 #include "pso/item/TItem.h"
 
 
+
 struct RecoveredGlobal_80307784_lbl_804E70A8 {
     s32 value;
     u8 remaining[0xF4];
@@ -15,7 +16,6 @@ struct RecoveredGlobal_80307784_lbl_804E70A8 {
 extern "C" {
 u8 *__nw__5TItemFUl(s32);
 extern s32 tl_05;
-extern const f32 lbl_805DF0AC;
 u8 get_item_index__5TItemFv(void *);
 u8 * __ct__11TItemWeaponFP7TObjectPUc(void *, void *);
 extern s32 lbl_804E70A8[];
@@ -36,7 +36,6 @@ void TUnk_804E70A8::reserved_53() {
     *(s32 *)((s8 *)((u8 *)this) + 0xF4) = temp_r31;
 }
 
-extern f32 lbl_805DF0A8;
 
 void TUnk_804E70A8::update_weapon() {
     if ((s32) *(s32 *)((s8 *)this + 0x1F8) > 0) {
@@ -48,7 +47,7 @@ void TUnk_804E70A8::update_weapon() {
         }
     } else {
         *(s32 *)&this->unk_200 = (s32) (*(s32 *)&this->unk_200 + 0xB6);
-        this->m_1fc = (s32) (lbl_805DF0A8 * sin_table_lookup(*(s32 *)&this->unk_200));
+        this->m_1fc = (s32) (182.0f * sin_table_lookup(*(s32 *)&this->unk_200));
     }
 }
 
@@ -57,7 +56,7 @@ void TObjPlayer__sub_803076F8(u8 *arg0) {
     if ((s32) *(s32 *)((s8 *)arg0 + 0x1F8) == 0) {
         player_list = TObjPlayer::get_player_list();
         ((TItem *)arg0)->begin_particle_tev();
-        ((TItem *)arg0)->load_projection_tex((s32)((int) ((s32) (lbl_805DF0AC * (f32) (((TUnk_804E70A8 *)arg0)->m_1fc + (player_list * 3))))));
+        ((TItem *)arg0)->load_projection_tex((s32)((int) ((s32) (182.04445f * (f32) (((TUnk_804E70A8 *)arg0)->m_1fc + (player_list * 3))))));
     }
 }
 

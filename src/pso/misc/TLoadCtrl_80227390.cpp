@@ -4,6 +4,11 @@
 #include "pso/misc/TLobby.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 
+extern "C" {
+u32 lbl_804CB838[6] = { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 };
+}
+
+
 struct RecoveredGlobal_8000F764_TKeyBoardControl__data_80506270 {
     s32 value;
     u8 remaining[0xAC];
@@ -84,7 +89,7 @@ void debug_print__6TLobbyFle(const char *fmt, ...);
 extern const SndHooks lbl_8044C858;
 extern const char lbl_8044C898[];
 extern const char lbl_8044C8B4[];
-extern u32 lbl_804CB838[];
+extern u32 lbl_804CB838[6];
 extern void *lbl_80514C60[];
 extern void *lbl_805D62D8;
 extern s32 lbl_805D62F8;

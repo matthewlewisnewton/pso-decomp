@@ -8,12 +8,16 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 
+#pragma readonly_strings on
+
 extern "C" {
-extern char lbl_80474CB8[];
-extern char lbl_80474CCC[];
-extern const char *bm_npc_hosa2_motion_names[];
-__declspec(section ".data") const char *bm_npc_hosa2_model_names[2] = { lbl_80474CB8, NULL };
-BmlResourceDescriptor npc_hosa2_resource_descriptor = { lbl_80474CCC, bm_npc_hosa2_model_names, bm_npc_hosa2_motion_names, 1, 0 };
+extern const char *bm_npc_hosa2_motion_names[1];
+__declspec(section ".data") const char *bm_npc_hosa2_model_names[2] = { "hosa_hone2_body.nj", NULL };
+BmlResourceDescriptor npc_hosa2_resource_descriptor = { "bm_npc_hosa2.bml", bm_npc_hosa2_model_names, bm_npc_hosa2_motion_names, 1, 0 };
+
+const char *bm_npc_hosa2_motion_names[1] = { NULL };
+const char *TObjNpcHosa2__name = "TObjNpcHosa2";
+u32 TObjNpcHosa2__shared_model_resource;
 }
 
 struct RecoveredGlobal_802FECB0_lbl_804E63D8 { s32 value; u8 remaining[0xC]; };
@@ -31,7 +35,7 @@ extern u32 TObjNpcHosa2__shared_model_resource;
 s32 TObjFish__sub_8001EDB0(int, int);
 s32 get_bml_model(int, int);
 extern s32 __vt__12TObjNpcHosa2[];
-extern s32 TObjNpcHosa2__name;
+extern const char *TObjNpcHosa2__name;
 void TLobby__sub_8001FE7C(void*, int);
 void __dl__7TObjectFPv(void *);
 

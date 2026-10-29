@@ -10,6 +10,13 @@
 #include "pso/misc/TWindowCtrl.h"
 #include "pso/player/TObjPlayer.h"
 
+#pragma readonly_strings on
+
+extern "C" {
+const char *lbl_805D3810 = "TTecResta";
+}
+
+
 struct RecoveredGlobal_80239C48___vt__9TTecResta {
     s32 value;
     u8 remaining[0x1C];
@@ -108,8 +115,7 @@ extern "C" {
 s32 get_entity_id(int);
 s32 TTecPlayerInfluence__ct(void *, void *, void *, void *);
 extern s32 __vt__9TTecResta[];
-extern s32 lbl_805D3810;
-extern const f32 TTecResta__data_805DC908;
+extern const char *lbl_805D3810;
 u8 *TTecResta__sub_80239C48(TTecResta *arg0, s32 arg1, s32 arg2, s32 arg3);
 f32 *calc_technique_parameters(s32, s32, s32);
 s32 is_technique_ready__8TTecCtrlFv(int);
@@ -207,7 +213,7 @@ Resta_8023967C *construct_self_recovery__9TTecRestaFPvPviPv(Resta_8023967C *self
         VecCopy((Vec *)&v, (const Vec *)pos);
         row = &TTecResta__self_recovery_effect_table[i];
         if (row->flags & 1) {
-            v.y -= TTecResta__data_805DC908;
+            v.y -= 5.0f;
         }
         if (i == 2) {
             self->emitters[i] = create_timed_particle_emitter_with_flags(&v, row->entry, row->delay, row->duration, 0x30);
@@ -332,13 +338,13 @@ void *TTecResta__ct(TTecResta *arg0, void *owner, void *pos, void *arg3, void *l
     TTecPlayerInfluence__ct(arg0, owner, pos, level);
     *(s32 **)((s8 *)arg0 + 0x18) = __vt__9TTecResta;
     ((TObjPlayer *)((u8 *)arg0 + 0xE0))->construct_target_cursor_records();
-    *(s32 *)((s8 *)arg0 + 0) = lbl_805D3810;
+    *(s32 *)((s8 *)arg0 + 0) = ((s32)lbl_805D3810);
     *(s32 *)&arg0->m_13c = 1;
     copy_technique_target_list((u8 *)arg0 + 0xE0, arg3);
     arg0->init_parameters();
     p = *(u8 **)((s8 *)arg0 + 0xDC);
     if (p != NULL) {
-        *(f32 *)((s8 *)(*(u8 **)((s8 *)p + 0xA4)) + 0xC) = TTecResta__data_805DC908 + arg0->m_7c;
+        *(f32 *)((s8 *)(*(u8 **)((s8 *)p + 0xA4)) + 0xC) = 5.0f + arg0->m_7c;
     }
     src = arg0->source;
     if (src != 0) {
@@ -358,12 +364,12 @@ u8 *TTecResta__sub_80239C48(TTecResta *arg0, s32 owner, s32 pos, s32 level) {
     TTecPlayerInfluence__ct((void *)arg0, (void *)owner, (void *)pos, (void *)level);
     *(s32 **)((s8 *)arg0 + 0x18) = &(*(RecoveredGlobal_80239C48___vt__9TTecResta *)&__vt__9TTecResta).value;
     ((TObjPlayer *)((u8 *)arg0 + 0xE0))->construct_target_cursor_records();
-    *(s32 *)((s8 *)arg0 + 0) = (s32) lbl_805D3810;
+    *(s32 *)((s8 *)arg0 + 0) = (s32) ((s32)lbl_805D3810);
     arg0->m_13c = 0;
     arg0->init_parameters();
     temp_r3 = (u8 *)(*(u8 **)((s8 *)arg0 + 0xDC));
     if (temp_r3 != NULL) {
-        *(f32 *)((s8 *)(*(u8 **)((s8 *)temp_r3 + 0xA4)) + 0xC) = (f32) (TTecResta__data_805DC908 + arg0->m_7c);
+        *(f32 *)((s8 *)(*(u8 **)((s8 *)temp_r3 + 0xA4)) + 0xC) = (f32) (5.0f + arg0->m_7c);
     }
     temp_r3_2 = arg0->source;
     if (temp_r3_2 != 0U) {

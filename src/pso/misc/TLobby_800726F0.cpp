@@ -11,6 +11,8 @@
 #include "pso/TObjChallengeRetry.h"
 #include "pso/map/FloorArea.h"
 
+#pragma readonly_strings on
+
 struct W4_80072994 { u8 b[4]; };
 
 struct W8_80072994 { u8 b[8]; };
@@ -52,7 +54,6 @@ s32 TLobby__sub_80070DA8();
 void play_player_default_effect__6TLobbyFv(s32 _w0);
 s32 play_sound_effect(s32, s32, s32, s32);
 void play_cue_stream_file(s32 name);
-extern s32 lbl_804385D4[];
 s32 TWindowShortListCtrl__check_controller_button(void *, s32);
 s32 get_selected_menu_value(u32);
 s32 challenge_retry_cmd_table[3] = { 1, 0, 0 };
@@ -60,7 +61,8 @@ extern s8 controller_input_state[];
 s32 check_flag_100__10TObjPlayerFPv();
 u32 set_window_mode_4__6TLobbyFPvll(s32, void *, s32);
 __declspec(section ".data") f32 challenge_retry_window_pos[2] = { 360.0f, 125.0f };
-extern const f32 lbl_805D9110;
+
+const char *TObjChallengeRetry__class_name = "TObjChallengeRetry";
 void TLobby__sub_80072724(TLobby *arg0);
 void TLobby__sub_80072758(u8 *arg0);
 void TLobby__sub_800727A0(void *arg0);
@@ -202,7 +204,7 @@ void TObjChallengeRetry::sub_80072BB0() {
     }
     ((Obj_80072BB0 *)this)->f30 = set_window_mode_4__6TLobbyFPvll(get_window_layout_position(0x39), challenge_retry_window_pos, 1);
     if (((Obj_80072BB0 *)this)->f30 != 0) {
-        ((TLobby *)(((Obj_80072BB0 *)this)->f30))->set_field_1c(lbl_805D9110);
+        ((TLobby *)(((Obj_80072BB0 *)this)->f30))->set_field_1c(70200.0f);
         ((TLobby *)(((Obj_80072BB0 *)this)->f30))->send_and_handle(TQuestVmDownLoadServer__sub_8006EF6C(0x5E), 1);
     }
 }
@@ -261,7 +263,7 @@ void TObjChallengeRetry::handle_loss_sequence() {
     play_player_default_effect__6TLobbyFv((s32)this);
     switch (TLobby__sub_80070DA8()) {
     case 0:
-        play_cue_stream_file((s32)lbl_804385D4);
+        play_cue_stream_file((s32)(s32 *)"lose.adx");
         TLobby::send_45_and_close_windows(this);
         close_window_2c();
         sub_80072B70();
@@ -391,7 +393,7 @@ void TObjChallengeRetry::sub_8007313C() {
 void *fn_800733C4(void *arg0);
 void *__ct__7TObjectFP7TObject(void *, void *);
 extern s32 __vt__18TObjChallengeRetry[];
-extern s32 TObjChallengeRetry__class_name;
+extern const char *TObjChallengeRetry__class_name;
 void *TObjChallengeRetry__ct(void *, void *);
 void *__nw__7TObjectFUl(int);
 void TObjChallengeRetry::run_task() {
@@ -431,7 +433,7 @@ TObjChallengeRetry::~TObjChallengeRetry() {
 void *TObjChallengeRetry__ct(void *challenge_retry, void *parent) {
     __ct__7TObjectFP7TObject(challenge_retry, parent);
     *(s32 **)((s8 *)challenge_retry + 0x18) = __vt__18TObjChallengeRetry;
-    *(s32 *)((s8 *)challenge_retry + 0) = (s32) TObjChallengeRetry__class_name;
+    *(s32 *)((s8 *)challenge_retry + 0) = (s32) ((s32)TObjChallengeRetry__class_name);
     ((TObjChallengeRetry *)challenge_retry)->m_20 = ((s32 (*)(void *))is_challenge_lobby__6TLobbyFv)(challenge_retry);
     ((TObjChallengeRetry *)challenge_retry)->m_24 = 0;
     *(s32 *)((s8 *)challenge_retry + 0x2C) = 0;

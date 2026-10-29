@@ -12,8 +12,8 @@
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/object/TObjMotion.h"
 
-extern char lbl_80445A00[];
-extern char lbl_80445A10[];
+#pragma readonly_strings on
+
 extern const char *bm_fe_obj_komo_model_names[2];
 extern BmlResourceDescriptor TKomorebi__resource_descriptor;
 extern const char *bm_fe_obj_komo_motion_names[1];
@@ -45,7 +45,7 @@ s32 TObjFish__sub_8001EDB0(void *, int);
 s32 get_bml_model(void *, int);
 s32 __ct__8TObjBaseFP7TObject(void *);
 extern s32 __vt__9TKomorebi[];
-extern s32 komorebi_class_name;
+extern const char *komorebi_class_name;
 extern u32 TKomorebi__resource_bundle;
 u8 *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern s32 komorebi_last_uv_update_frame;
@@ -62,15 +62,12 @@ f32 xz_distance_squared(void *, s32);
 
 extern s32 camera_ctrl_instance;
 extern s32 actor_frame_tick;
-extern const f32 lbl_805DBE48;
-extern const f32 lbl_805DBE4C;
-extern const f32 lbl_805DBE50;
 
 void TKomorebi::render() {
     u8 *arg0 = (u8 *)this;
     f32 temp_f1;
 
-    if ((((VObj_80192174*)arg0)->m8(lbl_805DBE48, lbl_805DBE4C) != 0) && !(xz_distance_squared((u8 *)&this->position, camera_ctrl_instance + 0x178) < lbl_805DBE50)) {
+    if ((((VObj_80192174*)arg0)->m8(400.0f, 20.0f) != 0) && !(xz_distance_squared((u8 *)&this->position, camera_ctrl_instance + 0x178) < 1600.0f)) {
         TParticleCtrl::begin_effect_render();
         if ((s32) actor_frame_tick != (s32) komorebi_last_uv_update_frame) {
             scroll_ginja_mesh_uvs(*(s32 *)((s8 *)(*(void * *)&this->model) + 4), 0, (s32) this->scale.x, 0, 1);
@@ -107,7 +104,7 @@ typedef char RecoveredGlobal_801922C4___vt__9TKomorebi_size[sizeof(RecoveredGlob
 u8 *TKomorebi__ct(u8 *komorebi, s32 arg1, s32 arg2) {
     __ct__8TObjBaseFP7TObject(komorebi);
     *(s32 **)((s8 *)komorebi + 0x18) = &(*(RecoveredGlobal_801922C4___vt__9TKomorebi *)&__vt__9TKomorebi).value;
-    *(s32 *)((s8 *)komorebi + 0) = (s32) komorebi_class_name;
+    *(s32 *)((s8 *)komorebi + 0) = (s32) ((s32)komorebi_class_name);
     VecCopy((Vec *)(komorebi + 0x38), (const Vec *)(arg2 + 0xC));
     copy_xyz(komorebi + 0x5C, (void *)(arg2 + 0x18));
     VecCopy((Vec *)(komorebi + 0x68), (const Vec *)(arg2 + 0x24));
@@ -168,7 +165,11 @@ void TObjLazerFenceExtra::init_models() {
     }
 }
 
-__declspec(section ".data") const char *bm_fe_obj_komo_model_names[2] = { lbl_80445A00, NULL };
-BmlResourceDescriptor TKomorebi__resource_descriptor = { lbl_80445A10, bm_fe_obj_komo_model_names, bm_fe_obj_komo_motion_names, 1, 0 };
+__declspec(section ".data") const char *bm_fe_obj_komo_model_names[2] = { (char *)"fe_obj_komo.gj", NULL };
+BmlResourceDescriptor TKomorebi__resource_descriptor = { (char *)"bm_fe_obj_komo.bml", bm_fe_obj_komo_model_names, bm_fe_obj_komo_motion_names, 1, 0 };
 __declspec(section ".sdata") const char *bm_fe_obj_komo_motion_names[1] = { NULL };
+
+const char *komorebi_class_name = "TKomorebi";
+u32 TKomorebi__resource_bundle;
+s32 komorebi_last_uv_update_frame;
 }

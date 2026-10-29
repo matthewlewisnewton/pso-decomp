@@ -4,6 +4,13 @@
 #include "pso/misc/TLobby.h"
 #include "pso/map/FloorArea.h"
 
+#pragma readonly_strings on
+
+extern "C" {
+const char *TItemDisconnectCtrl__name = "TItemDisconnectCtrl";
+}
+
+
 extern s32 item_desync_detected;
 extern TObject *tl_05;
 extern const char *TItemDisconnectCtrl__name;

@@ -6,6 +6,11 @@ struct RecoveredGlobal_80191D14_lbl_8050DCB8 {
     u8 remaining[0x2C];
 };
 
+extern "C" {
+RecoveredGlobal_80191D14_lbl_8050DCB8 handle_6x78_entry_table;
+}
+
+
 struct RecoveredGlobal_80191D5C_lbl_8050DCB8 {
     s32 value;
     u8 remaining[0x2C];

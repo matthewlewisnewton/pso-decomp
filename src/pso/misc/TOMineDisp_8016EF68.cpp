@@ -12,6 +12,13 @@
 #include "pso/misc/TOMineTrap.h"
 #include "pso/player/TObjPlayer.h"
 
+#pragma readonly_strings on
+
+extern "C" {
+const char *TOMineTrapDisp__name = "TOMineTrapDisp";
+}
+
+
 struct RecoveredGlobal_8016EF68___vt__14TOMineTrapDisp {
     s32 value;
     u8 remaining[0x30];
@@ -34,7 +41,7 @@ struct VObj_8016EFB4 : VBase_8016EFB4 {
 extern "C" {
 s32 TOMineDisp__ct(void *, void *, void *);
 extern RecoveredGlobal_8016EF68___vt__14TOMineTrapDisp __vt__14TOMineTrapDisp;
-extern s32 TOMineTrapDisp__name;
+extern const char *TOMineTrapDisp__name;
 s32 is_locally_controlled__10TObjPlayerFPv(void);
 f32 horizontal_distance_squared(void *, void *);
 void get_player_state__6TOMineFv(void *, u16);
@@ -54,7 +61,7 @@ typedef char RecoveredGlobal_8016EF68___vt__14TOMineTrapDisp_size[sizeof(Recover
 u8 *TOMineTrapDisp__ct(u8 *mine_trap_disp, s32 arg1, s32 arg2, s16 arg3) {
     TOMineDisp__ct((void *)mine_trap_disp, (void *)arg1, (void *)arg2);
     *(s32 **)((s8 *)mine_trap_disp + 0x18) = &__vt__14TOMineTrapDisp.value;
-    *(s32 *)((s8 *)mine_trap_disp + 0) = (s32) TOMineTrapDisp__name;
+    *(s32 *)((s8 *)mine_trap_disp + 0) = (s32) ((s32)TOMineTrapDisp__name);
     ((TOMineTrapDisp *)mine_trap_disp)->m_ac = arg3;
     return mine_trap_disp;
 }

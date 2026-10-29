@@ -1,6 +1,7 @@
 #include "types.h"
 #include "pso/unk/TUnk_804C3F48.h"
 
+
 struct RecoveredGlobal_801C5380_lbl_804C3F48 {
     s32 value;
     u8 remaining[0x14];
@@ -30,12 +31,6 @@ f32 xz_distance_squared(void *, void *);
 void *get_player_by_client_id(s32 i);
 void update_technique_slot__10TTecRaFoieFl(void *, s32, s32);
 void *play_sound_effect(s32, s32, s32, s32, f32);
-extern const f32 lbl_805DC308;
-extern const f32 lbl_805DC30C;
-extern const f32 lbl_805DC310;
-extern const f32 lbl_805DC314;
-extern const f32 lbl_805DC318;
-extern const f32 lbl_805DC31C;
 typedef char RecoveredGlobal_801C5380_lbl_804C3F48_size[sizeof(RecoveredGlobal_801C5380_lbl_804C3F48) == 0x18 ? 1 : -1];
 
 typedef char RecoveredGlobal_801C5320_lbl_804C3F48_size[sizeof(RecoveredGlobal_801C5320_lbl_804C3F48) == 0x18 ? 1 : -1];
@@ -55,7 +50,7 @@ void TUnk_804C3F48::run_task() {
     }
     if (self->life > 0x5A) {
         if (--self->timer <= 0) {
-            min = lbl_805DC308;
+            min = 2250000.0f;
             for (i = 0; i < 4; i++) {
                 p = (Ply_801C51D4 *)get_player_by_client_id(i);
                 if (p != NULL && p != self->owner && !(p->flags & 0x800)) {
@@ -63,11 +58,11 @@ void TUnk_804C3F48::run_task() {
                     min = min < d ? min : d;
                 }
             }
-            f = newton_sqrtf(min) > lbl_805DC30C ? newton_sqrtf(min) : lbl_805DC30C;
-            f -= lbl_805DC30C;
-            min = lbl_805DC310 - lbl_805DC314 * f;
-            update_technique_slot__10TTecRaFoieFl(play_sound_effect(0x23230, 0, 0, 0, f), lbl_805DC318 * min, 0);
-            self->timer = (s32)(lbl_805DC31C * min) + 0x3C;
+            f = newton_sqrtf(min) > 200.0f ? newton_sqrtf(min) : 200.0f;
+            f -= 200.0f;
+            min = 1.0f - 0.00076923077f * f;
+            update_technique_slot__10TTecRaFoieFl(play_sound_effect(0x23230, 0, 0, 0, f), 256.0f * min, 0);
+            self->timer = (s32)(-53.0f * min) + 0x3C;
         }
     }
 }

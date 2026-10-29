@@ -4,6 +4,7 @@
 #include "types.h"
 #include "pso/map/CsnQuery.h"
 #include "pso/TObjControl.h"
+#include "pso/render/reflection.h"
 #include "pso/system/vector.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/player/TObjChara.h"
