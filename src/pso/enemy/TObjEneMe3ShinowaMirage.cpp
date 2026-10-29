@@ -1,3 +1,4 @@
+#include "pso/enemy/TObjEnemy.h"
 #include "types.h"
 #include "pso/misc/MaterialColorFade.h"
 #include "pso/system/ChunkMaterialState.h"
@@ -285,7 +286,6 @@ f32 random_ratio__9TObjCharaFv(void *);
 s32 enemy_clear_target__12TObjEneDD_STFUs(void *);
 s32 transform_relative_position__9TObjEneDDFPv(void *, void *);
 s32 is_player_entity_id(u16);
-s32 copy_target_state__14TObjEnePanarmsFPv(void *, s32);
 s32 play_sound_effect(s32, void *, int, int);
 extern const f32 lbl_805DA5D4;
 void *__dt__23TObjEneMe3ShinowaMirageFv(void *arg0, s16 arg1);
@@ -583,7 +583,7 @@ void TObjEneMe3ShinowaReal::vfunc_114(s32 arg1) {
                     }
                 }
                 transition_enemy_state__9TObjEneDDFl(this, 8);
-                play_sound_effect(copy_target_state__14TObjEnePanarmsFPv(this, 0x4003AD15), ((u8 *)this) + 0x38, 0, 0);
+                play_sound_effect(((TObjEnemy *)(this))->remap_sound_for_area((s32)(0x4003AD15)), ((u8 *)this) + 0x38, 0, 0);
             } else {
                 this->try_spawn_mirages();
                 transition_enemy_state__9TObjEneDDFl(this, 4);
