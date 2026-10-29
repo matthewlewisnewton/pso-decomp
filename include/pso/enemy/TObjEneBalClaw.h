@@ -10,13 +10,14 @@ struct TObjEneBalClaw : public TObjEnemyCustom {
     virtual ~TObjEneBalClaw();
     void set_attack_distance_flag();
     void clear_attack_flag();
+    void select_model(s32 index);
     virtual void vfunc_62();
     virtual void vfunc_61();
     virtual void vfunc_59();
     virtual s32 update_movement_status();
     virtual s32 update_action_hold_status();
     virtual s32 is_target_in_attack_range();
-    u8 _pad38C[0x4];
+    s32 range_state;
     TUnk_80490470 color_fade;
     f32 m_3ac;
     f32 m_3b0;
@@ -34,7 +35,7 @@ typedef char TObjEneBalClaw_size[sizeof(TObjEneBalClaw) == 0x3C0 ? 1 : -1];
 
 extern "C" {
 void TObjEneBalClawClaw__sub_8008DC14(void);
-u8 *__ct__14TObjEneBalClawFP7TObject(TObjEneBalClaw *arg0);
+u8 *__ct__14TObjEneBalClawFP7TObject(TObjEneBalClaw *arg0, TObject *parent);
 void TObjEneBalClaw__sub_8008D68C(void);
 void *__dt__14TObjEneBalClawFv(void *arg0, s16 arg1);
 }
