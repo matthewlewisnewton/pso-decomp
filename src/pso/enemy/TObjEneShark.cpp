@@ -1017,7 +1017,7 @@ void *TObjEneShark__ct(void *arg0, void *arg1, void *arg2) {
 
     ((void (*)(void *, void *))init_enemy_base__13TUnk_80493450Fv)(self, arg1);
     *(void **)((u8 *)self + 0x18) = lbl_8049168C;
-    ((TUnk_80494938 *)((u8 *)arg0 + 0x3A8))->init_common();
+    __ct__13TUnk_80494938Fv(((u8 *)arg0 + 0x3A8));
     __construct_array(self->f3CC, (void *)__ct__15RenderFadeStateFv, __dt__15RenderFadeStateFv, 0x1C, 4);
     *(s32 *)self = TObjEneShark_name_ref;
     self->m79(arg2);

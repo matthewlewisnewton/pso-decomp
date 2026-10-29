@@ -3259,7 +3259,7 @@ void TObjEneMe3Shinowa::init_enemy() {
 void *TObjEneMe3Shinowa__ct(void *ene_me3_shinowa) {
     __ct__12TObjEneDD_STFP7TObject(ene_me3_shinowa);
     *(s32 **)((s8 *)ene_me3_shinowa + 0x18) = __vt__17TObjEneMe3Shinowa;
-    ((TUnk_80494938 *)((char *)ene_me3_shinowa + 1000))->init_common();
+    __ct__13TUnk_80494938Fv(((char *)ene_me3_shinowa + 1000));
     *(void * *)&((TObjEneMe3Shinowa *)ene_me3_shinowa)->m_name = lbl_805D2AC8;
     return ene_me3_shinowa;
 }
