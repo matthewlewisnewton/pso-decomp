@@ -11583,7 +11583,9 @@ pso/ui/TAdEnterPPPPassGC.cpp:
 
 pso/misc/TChCrEffCtrlPl_80339658.cpp:
 	.text       start:0x80339658 end:0x803398CC
+	.rodata     start:0x80477C60 end:0x80477C70
 	.data       start:0x804EF5B0 end:0x804EF5C8
+	.sdata      start:0x805D4270 end:0x805D4278
 	.sdata2     start:0x805DF9F0 end:0x805DFA0C
 
 pso/ui/TWindowSubTradeMessage.cpp:
