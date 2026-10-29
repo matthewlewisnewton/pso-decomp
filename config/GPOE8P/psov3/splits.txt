@@ -11957,6 +11957,7 @@ pso/object/TObjStendGlassLobby.cpp:
 
 pso/boss/TBoss8Dragon_80359A7C.cpp:
 	.text       start:0x80359A7C end:0x80359E20
+	.sdata2     start:0x805E00B0 end:0x805E00B8
 
 pso/boss/TBoss6CrushPtcl.cpp:
 	.text       start:0x80359E20 end:0x80359FC4
