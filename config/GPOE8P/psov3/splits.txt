@@ -4719,8 +4719,10 @@ pso/npc/TObjNpcNurseBase.cpp:
 
 pso/npc/TObjNpcSecretaryBase.cpp:
 	.text       start:0x8014D5BC end:0x8014D794
+	.rodata     start:0x8043FEA0 end:0x8043FEE8
 	.data       start:0x804AB7E0 end:0x804AB7F8
-	.sdata      start:0x805D2E58 end:0x805D2E5C
+	.sdata      start:0x805D2E58 end:0x805D2E60
+	.sbss       start:0x805D5848 end:0x805D5850
 
 pso/npc/TObjNpcSoldierBase.cpp:
 	.text       start:0x8014D794 end:0x8014D96C
