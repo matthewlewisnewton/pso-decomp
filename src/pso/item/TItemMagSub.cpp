@@ -1,11 +1,12 @@
 #include "pso/system/NinjaTypes.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/item/TItemMagSub.h"
+#include "pso/item/TItemMag.h"
+#include "pso/player/TObjChara.h"
 #include "pso/item/TItem.h"
 #include "pso/misc/TRaderMapCore.h"
 #include "pso/misc/MaterialColorFade.h"
 #include "pso/boss/TBoss2DeRolLe.h"
-#include "pso/item/TItemMagSub_80114524.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/system/ChunkMaterialState.h"
@@ -57,7 +58,6 @@ extern "C" {
 void reset__11TItemMagSubFv(u8*);
 void reset_oscillation__11TItemMagSubFv(u8*);
 
-extern s32 item_mag_param_table;
 
 }
 void TItemMagSub::set_motion_type(s32 arg1) {
@@ -66,7 +66,7 @@ void TItemMagSub::set_motion_type(s32 arg1) {
 
     ((void(*)(void))reset__11TItemMagSubFv)();
     this->motion_type = arg1;
-    *(s32 * *)&this->motion = (s32 *) (item_mag_param_table + (arg1 * 0x64));
+    motion = &item_mag_motions[arg1];
     temp_r5 = (unsigned char *) (this->owner);
     if (temp_r5 != NULL) {
         s32 elem = **(s32 * *)&this->motion;
@@ -81,7 +81,7 @@ void TItemMagSub::transition_motion_type(s32 type) {
     set_flags(0x18);
     ((void(*)(void*,s32,s32))reset_oscillation__11TItemMagSubFv)(this, motion_type, type);
     motion_type = type;
-    motion = (MagFollowParameters*)(item_mag_param_table + (type*0x64));
+    motion = &item_mag_motions[type];
 }
 
 #define TOBJECT_OUT_OF_LINE_HELPERS
@@ -272,11 +272,8 @@ struct Sub_80115334 {
 extern "C" {
 
 s32 memset(void *, int, int);
-u32 mag_owner_has_motion_action(s32);
 int set_flags__11TItemMagSubFUl(void*, int);
 u32 test_flags__11TItemMagSubFUl(void *, u32);
-s32 obj_isState7_324(void *);
-s32 mag_node_oscillation_is_disabled(Feed_80114AB4 *);
 void reset_oscillation__11TItemMagSubFv(u8 *arg0);
 void lerp_follow_anchor(Vec_80114CD8 *target, Vec_80114CD8 *cur, f32 *t);
 void reset__11TItemMagSubFv(u8 *arg0);
@@ -291,7 +288,6 @@ f32 transform_point_by_current_matrix(void *, void *);
 void push_matrix();
 s32 post_translate_matrix(void *);
 }
-s32 mag_owner_freezes_follow(void *arg0);
 void accumulate_mag_axis_oscillation(f32 *arg0, s32 *arg1, void *arg2);
 void mag_accumulate_drift(f32 *out, s32 *phase, f32 *amplitude, s32 *velocity, s8 *offset);
 int mag_node_oscillation_uses_z(void* p);
@@ -341,7 +337,7 @@ void TItemMagSub::apply_node_oscillation(void* _w1) {
     Feed_80114AB4 *f;
     for (i = 0; i != 2; i++) {
         f = (Feed_80114AB4*)&oscillations[i];
-        if (mag_node_oscillation_is_disabled(f) == 0 && TItemMagSub__feed_sequence_index == ((s32 (*)(Feed_80114AB4 *))mag_node_oscillation_node_index)(f)) {
+        if (((MagNodeOscillationState *)f)->is_disabled() == 0 && TItemMagSub__feed_sequence_index == ((s32 (*)(Feed_80114AB4 *))mag_node_oscillation_node_index)(f)) {
             if (((s32 (*)(Feed_80114AB4 *))mag_node_oscillation_uses_x)(f) != 0) {
                 rotate_matrix_x(0, ((s32 (*)(Feed_80114AB4 *))mag_node_oscillation_angle)(f));
             } else if (((s32 (*)(Feed_80114AB4 *))mag_node_oscillation_uses_y)(f) != 0) {
@@ -403,7 +399,7 @@ s32 TItemMagSub::get_world_position(void* output) {
     typedef char spC_offset[(offsetof(Stack_80114DB8, spC) == 0x4) ? 1 : -1];
     typedef char sp10_offset[(offsetof(Stack_80114DB8, sp10) == 0x8) ? 1 : -1];
     Stack_80114DB8 stack;
-    if ((mag_owner_freezes_follow(item) == 0) && (output != 0)) {
+    if ((((TItemMag *)item)->is_owner_frozen() == 0) && (output != 0)) {
         push_matrix_from((void *)&identity_matrix.value);
         apply_placement_matrix();
         stack.sp8 = *(s32 *)((s8 *)&mag_sub_local_origin.value + 0);
@@ -425,7 +421,7 @@ void TItemMagSub::apply_placement_matrix() {
   s32 a3;
   s32 a4;
   post_translate_matrix((u8 *)&this->follow_anchor);
-  if (obj_isState7_324((void *)this->owner) != 0)
+  if (((TObjChara *)this->owner)->obj_isState7_324() != 0)
   {
     feed = (void *) ((TItemMagSub *)arg0)->resolve_owner_heading();
     rotate_matrix_y(0, feed);
@@ -601,7 +597,7 @@ void TItemMagSub::update_follow() {
         ((void (*)(void *, void *, void *, void *, void *))mag_accumulate_drift)((u8 *)self + 0x98, (u8 *)self + 0x5C, self->rec + 0x14, self->rec + 0x2C, self->rec + 0xE);
         ((void (*)(void *, void *, void *, void *, void *))mag_accumulate_drift)((u8 *)self + 0x9C, (u8 *)self + 0x60, self->rec + 0x18, self->rec + 0x30, self->rec + 0xF);
         vec3_add_to((u8 *)self + 0xAC, (u8 *)self + 0x94);
-        if (mag_owner_has_motion_action(self->x1C) != 0U) {
+        if (((TItemMag *)self->x1C)->is_owner_acting()) {
             self->x34 = mag_sub_angle_units_per_degree * (f32)self->rec[0xC];
         } else {
             self->x34 = 0;
@@ -611,7 +607,7 @@ void TItemMagSub::update_follow() {
         self->x3C += (s32)(mag_sub_angle_units_per_degree * (f32)(s8)self->rec[7]);
     }
     for (i = 0; i != 2; i++) {
-        update_mag_node_oscillation_state(&self->st[i]);
+        ((MagNodeOscillationState *)&self->st[i])->update();
     }
 }
 
@@ -623,11 +619,11 @@ void TItemMagSub::run_task() {
         queue_destruction__7TObjectFv(arg0);
         return;
     }
-    if (mag_owner_freezes_follow((void *)(*(s32 *)&this->item)) != 0 ||
+    if (((TItemMag *)this->item)->is_owner_frozen() != 0 ||
         ((u32 (*)(void *))mag_item_tests_flag_20)(*(u8 * *)&this->item) != 0U) {
         return;
     }
-    if (obj_isState7_324(*(u8 * *)&this->owner) != 0) {
+    if (((TObjChara *)this->owner)->obj_isState7_324() != 0) {
         ((TItemMagSub *)arg0)->update_special_pose();
         return;
     }

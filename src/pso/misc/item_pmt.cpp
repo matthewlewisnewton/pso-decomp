@@ -13,7 +13,7 @@ extern "C" char* const item_pmt_filename_descriptor;
 
 
 void free_item_pmt() {
-    __dt__9TItemLoadFPvs((s32 *)item_pmt, 1);
+    delete (RelocatedFile *)item_pmt;
     item_pmt = NULL;
     item_pmt_tbl = NULL;
 }
@@ -25,10 +25,7 @@ void unload_items() {
 }
 
 void load_item_pmt() {
-    void* p = ::operator new(8);
-    if (p != NULL) {
-        p = ((TItemLoad *)p)->load_buffer((u32)item_pmt_filename_descriptor, 0x10000);
-    }
+    RelocatedFile *p = new RelocatedFile(item_pmt_filename_descriptor, 0x10000);
     item_pmt = p;
     if (p != NULL) {
         item_pmt_tbl = ((RelocatedFile *)p)->get_root();

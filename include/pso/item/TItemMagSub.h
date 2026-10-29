@@ -8,8 +8,14 @@ struct MagDrawOwner { u8 prefix[0x2FC]; f32 center[3]; };
 struct MagNodeOscillationState {
     // Takes over another state, as the mag model table lists it.
     void copy_from(MagNodeOscillationState *src);
+    // Flags 0xE0: the node does not oscillate.
+    void disable();
+    s32 is_disabled();
+    // One frame: value swings between minimum and maximum by speed (bit 3:
+    // rising), or with bit 4 set steps by maximum and wraps to minimum.
+    void update();
 
-    u8 flags;
+    s8 flags;
     s8 speed;
     s16 value, minimum, maximum;
 };

@@ -487,7 +487,7 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/item/TItemProArmorParticle.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     # TItemMag's vtable precedes its switch tables: deferred, and written from
     # its last function back.
-    "pso/item/TItemMag.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
+    "pso/item/TItemMag.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-str reuse,readonly")},
     "pso/item/TItemProUnit.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     "pso/item/TItemProShield.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     # TItemEffNeedle.cpp too: its three vtables come out in the order only

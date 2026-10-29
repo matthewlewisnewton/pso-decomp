@@ -782,15 +782,17 @@ s32 TItem::get_max_stack_size() {
     return data.get_max_stack_size();
 }
 
-void TItem::check_equip_requirements(TObjPlayer *player, s16 *result) {
+s32 TItem::check_equip_requirements(TObjPlayer *player, s16 *result) {
     TItemData data;
     s32 requirement;
+    s32 allowed;
     data.init();
     copy_to_item_data(&data);
-    ::check_equip_requirements(player, &data, &requirement);
+    allowed = ::check_equip_requirements(player, &data, &requirement);
     if (result != NULL) {
         *result = requirement;
     }
+    return allowed;
 }
 
 void TItem::set_owner_client(u16 client) {

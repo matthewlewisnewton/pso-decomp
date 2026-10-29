@@ -2666,24 +2666,12 @@ pso/item/TItemLockCountCtrl.cpp:
 	.data       start:0x8049F460 end:0x8049F478
 
 pso/item/TItemMag.cpp:
-	.text       start:0x80110A18 end:0x80113D84
-	.rodata     start:0x8043E558 end:0x8043E568
+	.text       start:0x80110A18 end:0x8011472C
+	.rodata     start:0x8043E528 end:0x8043E590
 	.data       start:0x8049F478 end:0x8049F588
-
-pso/item/TItemMagSub_80113D84.cpp:
-	.text       start:0x80113D84 end:0x80113E30
-
-pso/item/TItemMag_80113E30.cpp:
-	.text       start:0x80113E30 end:0x80114524
-
-pso/item/TItemMagSub_80114524.cpp:
-	.text       start:0x80114524 end:0x801146A4
-
-pso/item/TItemData_801146A4.cpp:
-	.text       start:0x801146A4 end:0x80114714
-
-pso/item/TItemMagSub_80114714.cpp:
-	.text       start:0x80114714 end:0x8011472C
+	.sdata      start:0x805D2C00 end:0x805D2C04
+	.sbss       start:0x805D54A8 end:0x805D54B4
+	.sdata2     start:0x805DAB98 end:0x805DABC8
 
 pso/item/TItemMagGrowEff.cpp:
 	.text       start:0x8011472C end:0x8011491C

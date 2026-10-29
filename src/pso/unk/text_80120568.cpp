@@ -5,6 +5,7 @@
 #include "pso/TItemAttacker.h"
 #include "pso/TItemEffEquip.h"
 #include "pso/item/TItemMag.h"
+#include "pso/player/TObjChara.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/map/FloorArea.h"
 struct Pair_801205F4 { u8 a; s8 b; };
@@ -173,7 +174,6 @@ extern "C" {
 void clear_technique_boosts__14TItemEquipBaseFv(s32 arg0);
 s32 get_entity_id(s32);
 s32 test_flags_any(void *, s32);
-s32 obj_isState7_324(s32);
 s32 update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
 s32 play_sound_effect(s32, s32, s32, s32);
 void set_flag_8_if_check_passes__10TObjPlayerFv();
@@ -206,7 +206,7 @@ void TItemWeapon::on_equip() {
             ((TObjPlayer *)(*(void **)((s8 *)arg0 + 0xF0)))->set_action_provider_variant(arg0->v41());
         }
         ((TItemWeapon *)arg0)->clear_weapon_flags(0x100);
-        if (((TItem *)arg0)->is_hidden() != 0 || obj_isState7_324(*(s32 *)((s8 *)arg0 + 0xF0)) != 0) {
+        if (((TItem *)arg0)->is_hidden() != 0 || ((TObjChara *)*(s32 *)((s8 *)arg0 + 0xF0))->obj_isState7_324() != 0) {
             ((TItemWeapon *)arg0)->set_weapon_flags(8);
         } else {
             TItemAttacker::spawn_item_timer((TObject *)arg0, (ItemTimerCallback)set_flag_8_if_check_passes__10TObjPlayerFv, 0x14);

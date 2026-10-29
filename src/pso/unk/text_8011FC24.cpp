@@ -4,13 +4,13 @@
 #include "pso/item/TItemEffectWeapon.h"
 #include "pso/item/TItemEquipBase.h"
 #include "pso/item/TItemMag.h"
+#include "pso/player/TObjChara.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/items/TItemWeapon.h"
 
 extern "C" {
 
 s32 test_flag30_bit0x100000__10TObjPlayerFv(void*);
-s32 obj_isState7_324(void*);
 void TItemEffectWeapon__sub_8036340C(void*);
 void TItemEffectWeapon__sub_80363410(void*);
 extern const f32 lbl_805DAC9C;
@@ -100,7 +100,7 @@ void TItemWeapon::update_equipped() {
         }
         register_technique_boosts(technique_boosts);
         self->update_weapon();
-        if(!obj_isState7_324(self->owner)) self->advance_weapon_photon_phase();
+        if(!((TObjChara *)self->owner)->obj_isState7_324()) self->advance_weapon_photon_phase();
         if(((TItem *)self)->is_hidden()) {
             count=0;
             do {

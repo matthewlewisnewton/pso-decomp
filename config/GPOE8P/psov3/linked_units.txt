@@ -585,7 +585,6 @@ pso/item/TItemData.cpp
 pso/item/TItemData_80104D0C.cpp
 pso/item/TItemData_80105934.cpp
 pso/item/TItemData_8010EDA8.cpp
-pso/item/TItemData_801146A4.cpp
 pso/item/TItemDisconnectCtrl.cpp
 pso/item/TItemDisconnectCtrl_80105BE8.cpp
 pso/item/TItemDrop.cpp
@@ -723,11 +722,7 @@ pso/item/TItemLockCountCtrl_80119238.cpp
 pso/item/TItemLockCountCtrl_8011E184.cpp
 pso/item/TItemMagGrowEff.cpp
 pso/item/TItemMagSub.cpp
-pso/item/TItemMagSub_80113D84.cpp
-pso/item/TItemMagSub_80114524.cpp
-pso/item/TItemMagSub_80114714.cpp
 pso/item/TItemMag_8001A468.cpp
-pso/item/TItemMag_80113E30.cpp
 pso/item/TItemMenuCtrl.cpp
 pso/item/TItemMenuCtrl_801059E8.cpp
 pso/item/TItemMenuCtrl_80115A28.cpp

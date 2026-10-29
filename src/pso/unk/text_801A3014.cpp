@@ -154,7 +154,6 @@ s32 TWindowCtrlMain__sub_8024CB7C();
 s32 TWindowCtrlMain__sub_8024CB8C();
 s32 TKeyBoardControl__sub_8000F90C(s32);
 s32 TKeyBoardControl__sub_8000F91C(s32);
-s32 is_quest_active();
 s32 run_load_callback_table(void *, s32);
 s32 TLobby__sub_801A2DF4();
 s32 TLobby__sub_801A2DF8();

@@ -6,7 +6,8 @@
 extern "C" {
 s32 TItemDrop__sub_800F9448(s32 arg0, s32 arg1);
 int fn_800F953C(void *p);
-int fn_800F955C(void *p);
+// Loads a whole file into a new buffer; fn_800F953C frees it.
+void *fn_800F955C(const char *path);
 s32 load_relocatable_file(s32 arg0, s32 arg1);
 }
 
@@ -14,7 +15,7 @@ s32 load_relocatable_file(s32 arg0, s32 arg1);
 extern "C" {
 s32 TItemDrop__sub_800F9448(s32 arg0, s32 arg1);
 int fn_800F953C(void *p);
-int fn_800F955C(void *p);
+void *fn_800F955C(const char *path);
 s32 load_relocatable_file(s32 arg0, s32 arg1);
 }
 // --- end of C functions

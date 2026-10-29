@@ -417,7 +417,7 @@ force_active:
   - TItemLockCountCtrl__sub_8011926C
   - TItemLockCountCtrl__sub_801192A0
   - TItemLockCountCtrl__sub_8011933C
-  - TItemMag__sub_80113EEC
+  - get_charge__16PhotonBlastGaugeFv
   - TItemMoney__name
   - TItemTexLoad_class_name
   - TItemTexLoad_name
@@ -5312,7 +5312,7 @@ force_active:
   - is_open__15TODoorVS2Door01Fv
   - is_out_of_range__13TBoss6KakusanFv
   - is_p02_idle__12TBoss3VoloptFv
-  - is_pb_registered__8TItemMagFUc
+  - has_photon_blast__8MagStatsFUc
   - is_phase_e__9TObjEneDDFPv
   - is_player_in_range__10TObjPlayerFllf
   - is_player_in_range__10TObjRoomIdFPvUsf
