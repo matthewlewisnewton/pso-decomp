@@ -10,7 +10,7 @@ struct TObjEneDD : public TObjEnemy {
     void set_part_local_pos(void *, s32);
     void transition_enemy_state(s32);
     void sub_800BBA0C();
-    void invoke_initialization_hook();
+    void invoke_initialization_hook(void *set_data);
     void reset_state_fields();
     void init_common_from(u8 *);
     void clear_attack_receipts();
@@ -57,10 +57,10 @@ struct TObjEneDD : public TObjEnemy {
     int update_primary_light();
     int update_secondary_light();
     void reload_stats_keep_hp_tp();
-    void reset_hp();
+    void reset_hp(u8 *base_stats, u8 *attack_stats, u8 *resistance_stats);
     int get_camera_ctrl();
     int update_camera_sequence();
-    int initialize_enemy_state();
+    void initialize_enemy_state(s32 parameter);
     static s32 get_random_scaled();
     f32 rand_range(f32 farg0, f32 farg1);
     int set_state_8();
@@ -78,7 +78,7 @@ struct TObjEneDD : public TObjEnemy {
     s32 is_target_unobstructed(s32 arg1);
     u8 is_valid_target();
     void transform_part_positions();
-    void init_model();
+    void init_model(CollisionBody *bodies, s32 count);
     void clear_field_388();
     int has_move_failures(s32 arg1);
     void move_to_wall_clamped_destination(f32 farg0, f32 farg1, f32 farg2);

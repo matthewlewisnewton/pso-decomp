@@ -38,7 +38,7 @@ int matrix_mult_vec(void *, void *, void *);
 void vec3_add_to(Vec_800BA9BC *a, Vec_800BA9BC *b);
 void set_part_position__9TObjEneDDFPvPvi(Obj_800BA9BC *self, Vec_800BA9BC *v, s32 i);
 void update_local_colliders_from_world(Obj_800BAA2C *arg0, V3_800BAA2C *arg1);
-int init_collision_body_parts(void*);
+CollisionBody *init_collision_body_parts(TObjCollidable *, CollisionBody *, s32);
 
 void TObjEneDD::transform_part_positions() {
     Obj_800BA934 *self = (Obj_800BA934 *)this;
@@ -87,7 +87,10 @@ void TObjEneDD::set_part_local_pos(void *v, s32 i) {
     rotate_xz_pair_by_angle(&p->x, &p->z, -((Obj_800BAAE4 *)this)->angle);
 }
 
-void TObjEneDD::init_model() { init_collision_body_parts(this); transform_part_positions(); }
+void TObjEneDD::init_model(CollisionBody *bodies, s32 count) {
+    init_collision_body_parts(this, bodies, count);
+    transform_part_positions();
+}
 void TObjEneDD::clear_field_388() { *(s32*)((char*)this + 0x388) = 0; }
 void TObjEneDD_ST::set_active() { *(s32*)((char*)this + 0x388) = 1; }
 

@@ -111,7 +111,7 @@ s32 create__23TObjEneMe3ShinowaMirageFPvPv(void *, s32, s32, s32);
 void *find_entity_by_id(u16 id);
 u16 get_entity_id();
 void TObjEneMe3Shinowa__ct(void *, void *);
-void invoke_initialization_hook__9TObjEneDDFv(void *, void *);
+void invoke_initialization_hook__9TObjEneDDFPv(void *, void *);
 void fn_800E762C(void *);
 extern s32 TObjEneMe3ShinowaReal_class_name;
 extern s32 __vt__21TObjEneMe3ShinowaReal[];
@@ -186,7 +186,7 @@ Obj_800E46D4 *TObjEneMe3ShinowaReal__ct(Obj_800E46D4 *arg0, void *ene_me3_shinow
     TObjEneMe3Shinowa__ct(arg0, ene_me3_shinowa);
     *(void **) ((u8 *) arg0 + 0x18) = ((u8 *)&__vt__21TObjEneMe3ShinowaReal);
     arg0->f0 = TObjEneMe3ShinowaReal_class_name;
-    invoke_initialization_hook__9TObjEneDDFv(arg0, arg2);
+    invoke_initialization_hook__9TObjEneDDFPv(arg0, arg2);
     fn_800E762C(arg0);
     ((TObjEneMe3Shinowa *)arg0)->init_enemy();
     arg0->f3D4 = 0;

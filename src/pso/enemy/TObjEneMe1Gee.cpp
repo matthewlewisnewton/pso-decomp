@@ -886,10 +886,10 @@ extern u8 identity_matrix[];
 extern const f32 lbl_805DA124;
 void TObjEneMe1Gee__sub_800CA454(void *arg0, s32 arg1);
 s16 get_entity_id(void *);
-s32 reset_hp__9TObjEneDDFv(void *, int, int, int);
-s32 initialize_enemy_state__9TObjEneDDFv(void *, int);
+s32 reset_hp__9TObjEneDDFPUcPUcPUc(void *, int, int, int);
+s32 initialize_enemy_state__9TObjEneDDFl(void *, int);
 s32 set_part_position__9TObjEneDDFPvPvi(void *, int, int);
-s32 init_model__9TObjEneDDFv(void *, void *, int);
+s32 init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, int);
 s32 rand(f32);
 extern const f32 lbl_805DA0B8;
 extern const f32 TObjEneMe1Gee__data_805DA0C0;
@@ -3796,16 +3796,16 @@ void TObjEneMe1Gee::init_state() {
     u8 *temp_r4;
     this->init_position_vectors();
     this->vfunc_106();
-    init_model__9TObjEneDDFv(this, (void *) lbl_8049379C, 1);
+    init_model__9TObjEneDDFP13CollisionBodyl(this, (void *) lbl_8049379C, 1);
     this->set_field_d8((s32)((void *) TObjEneMe1Gee__motion_parameters));
     this->set_field_dc((int) (*(s32 *)((s8 *)(*(u8 * *)&(*(int *)&TObjEneMe1Gee__resource_bundle)) + 0x430)));
     *(s16 *)((s8 *)((u8 *)this) + 0xB8) = 0;
     set_animation((*(s16 *)((s8 *)((u8 *)this) + 0xB8)));
     this->set_field_b8((int) (*(s16 *)((s8 *)((u8 *)this) + 0xB8)));
-    reset_hp__9TObjEneDDFv(this, gee_boss_stat_handle_table[*(s32 *)((s8 *)((u8 *)this) + 0x3C4)], gee_shared_handler_b_table[*(s32 *)((s8 *)((u8 *)this) + 0x3C4)], gee_object_handle_table[*(s32 *)((s8 *)((u8 *)this) + 0x3C4)]);
+    reset_hp__9TObjEneDDFPUcPUcPUc(this, gee_boss_stat_handle_table[*(s32 *)((s8 *)((u8 *)this) + 0x3C4)], gee_shared_handler_b_table[*(s32 *)((s8 *)((u8 *)this) + 0x3C4)], gee_object_handle_table[*(s32 *)((s8 *)((u8 *)this) + 0x3C4)]);
     this->check_state_flag_1();
     *(s32 **)((s8 *)((u8 *)this) + 0x350) = me1_gee_init_params;
-    initialize_enemy_state__9TObjEneDDFv(this, 0x36);
+    initialize_enemy_state__9TObjEneDDFl(this, 0x36);
     *(f32 *)((s8 *)((u8 *)this) + 0x37C) = (f32) lbl_805DA0B8;
     this->enemy_init_acquire_period(0x2D);
     this->enemy_init_validate_period(0x2D);
@@ -3887,14 +3887,14 @@ u8 *TObjEneMe1Gee__ct(u8 *ene_me1_gee, s32 arg1, u8 *arg2, s32 arg3, s16 arg4, s
 #define sub_800CC0C4__13TObjEneMe1GeeFv ((void (*)(void *))sub_800CC0C4__13TObjEneMe1GeeFv)
 #define __ct__12TObjEneDD_STFP7TObject ((void (*)(void *))__ct__12TObjEneDD_STFP7TObject)
 #define __ct__13TUnk_80494938Fv ((void (*)(void *))__ct__13TUnk_80494938Fv)
-void invoke_initialization_hook__9TObjEneDDFv(void *, void *);
+void invoke_initialization_hook__9TObjEneDDFPv(void *, void *);
 
 void *init__13TObjEneMe1GeeFPvPvPvPv(void *ene_me1_gee, void *arg1, void *arg2, void *arg3) {
     __ct__12TObjEneDD_STFP7TObject(ene_me1_gee);
     *(s32 **)((s8 *)ene_me1_gee + 0x18) = __vt__13TObjEneMe1Gee;
     __ct__13TUnk_80494938Fv((void *)((char *)ene_me1_gee + 972));
     *(void * *)&((TObjEneMe1Gee *)ene_me1_gee)->m_name = (*(void **)&lbl_805D2A68);
-    invoke_initialization_hook__9TObjEneDDFv(ene_me1_gee, arg2);
+    invoke_initialization_hook__9TObjEneDDFPv(ene_me1_gee, arg2);
     *(u32 *)((s8 *)ene_me1_gee + 0x3C8) = 0;
     sub_800CC0C4__13TObjEneMe1GeeFv(ene_me1_gee);
     *(void **)((s8 *)ene_me1_gee + 0x3C0) = ene_me1_gee;

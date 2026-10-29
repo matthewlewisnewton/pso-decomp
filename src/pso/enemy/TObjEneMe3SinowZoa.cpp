@@ -562,12 +562,12 @@ extern "C" {
 int select_and_apply_target__12TObjEneDD_STFf(void*);
 void *__dt__12TObjEneDD_STFv(void *arg0, s16 arg1);
 s32 check_v2_mode__9TObjEneDDFv(s32, s32);
-s32 reset_hp__9TObjEneDDFv(void *, int, int, int);
-s32 initialize_enemy_state__9TObjEneDDFv(void *, int);
+s32 reset_hp__9TObjEneDDFPUcPUcPUc(void *, int, int, int);
+s32 initialize_enemy_state__9TObjEneDDFl(void *, int);
 int vfunc_96__9TObjEneDDFv(void*);
 int vfunc_95__9TObjEneDDFv(void*);
 void TObjEneDD__sub_800BA438(void *, void *);
-s32 init_model__9TObjEneDDFv(void *, void *, int, int);
+s32 init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, int, int);
 s32 TObjEneMe3SinowZoa__sub_800D72A4(void *);
 s32 TObjEneMe3SinowZoa__sub_800D758C(void *);
 void *__dt__13TUnk_80494938Fv(void *arg0, s16 arg1);
@@ -3023,12 +3023,12 @@ void cast_technique__18TObjEneMe3SinowZoaFPv(u8 *arg0) {
 void TObjEneMe3SinowZoa::sub_8031A3D8() {
     if (((s32 (*)(void *))sub_8031A454__18TObjEneMe3SinowZoaFv)(this) != 0) {
         *(s32 **)((s8 *)((u8 *)this) + 0x24) = &lbl_80542FDC.value;
-        initialize_enemy_state__9TObjEneDDFv(this, 0x46);
+        initialize_enemy_state__9TObjEneDDFl(this, 0x46);
         *(s32 *)((s8 *)((u8 *)this) + 0x3C8) = 1;
         return;
     }
     *(s32 **)((s8 *)((u8 *)this) + 0x24) = (s32 *) *(s32 **)((s8 *)(*(u8 **)((s8 *)TObjEneMe3SinowZoa__data_805D6AD8 + 0x42C)) + 0xC);
-    initialize_enemy_state__9TObjEneDDFv(this, 0x45);
+    initialize_enemy_state__9TObjEneDDFl(this, 0x45);
     *(s32 *)((s8 *)((u8 *)this) + 0x3C8) = 0;
 }
 
@@ -3340,7 +3340,7 @@ void TObjEneMe3SinowZoaReal::init_enemy() {
     sub_8031A3D8();
     temp_r6 = (u8 *)(*(u8 **)((s8 *)TObjEneMe3SinowZoa__data_805D6AD8 + 0x42C));
     *(s32 *)((s8 *)((u8 *)this) + 0x34) = (s32) *(s32 *)((s8 *)temp_r6 + 8);
-    init_model__9TObjEneDDFv((void *)this, ((void * *)sinow_zoa_collision_parts), 1, (int)temp_r6);
+    init_model__9TObjEneDDFP13CollisionBodyl((void *)this, ((void * *)sinow_zoa_collision_parts), 1, (int)temp_r6);
     *(s32 *)((s8 *)((u8 *)this) + 0xB0) = 0;
     this->set_field_d8((s32)lbl_804E8880);
     this->set_field_dc((int) (*(s32 *)((s8 *)TObjEneMe3SinowZoa__data_805D6AD8 + 0x430)));
@@ -3350,7 +3350,7 @@ void TObjEneMe3SinowZoaReal::init_enemy() {
         s32 *a = tbl->t[0];
         s32 *b = tbl->t[1];
         s32 *c = tbl->t[2];
-        reset_hp__9TObjEneDDFv((void *)this, a[temp_r0], b[temp_r0], c[temp_r0]);
+        reset_hp__9TObjEneDDFPUcPUcPUc((void *)this, a[temp_r0], b[temp_r0], c[temp_r0]);
     }
     this->check_state_flag_4();
     *(void **)((s8 *)((u8 *)this) + 0x350) = TObjEneMe3SinowZoa_init_params;
