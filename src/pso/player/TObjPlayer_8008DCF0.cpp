@@ -293,7 +293,7 @@ void TObjEneBalClawBody::fn_8008EDE8() {
                     move_with_wall_slide((u8 *)((P_8008EDE8 *)this));
                 }
             }
-            ((TObjPlayer *)((P_8008EDE8 *)this))->update_angle((s32)((P_8008EDE8 *)this)->f350->f8, &((P_8008EDE8 *)this)->vel);
+            turn_toward_direction((s32)((P_8008EDE8 *)this)->f350->f8, (Vec *)&((P_8008EDE8 *)this)->vel);
             ((P_8008EDE8 *)this)->f3C0 = xz_distance_squared(&((P_8008EDE8 *)this)->pos, &((P_8008EDE8 *)this)->target->pos);
             if (((P_8008EDE8 *)this)->f3C0 <= ((TObjPlayer *)(((P_8008EDE8 *)this)->f318))->get_pos_x() * ((TObjPlayer *)(((P_8008EDE8 *)this)->f318))->get_pos_x()) {
                 ((P_8008EDE8 *)this)->fB8 = 2;
@@ -338,7 +338,7 @@ void TObjEneBalClawBody::fn_8008EDE8() {
     }
     advance_animation_playback(((P_8008EDE8 *)this));
     apply_actor_gravity((TObjEnemy *)((u8 *)((P_8008EDE8 *)this)), (s32 *)(0), lbl_805D9620);
-    ((TObjPlayer *)((P_8008EDE8 *)this))->update_collisions();
+    update_collisions();
 }
 #pragma pop
 
@@ -385,7 +385,7 @@ void TObjEneBalClawBody::fn_8008F1DC() {
                     move_with_wall_slide((u8 *)o);
                 }
             }
-            ((TObjPlayer *)o)->update_angle((s32)o->f350->f8, &o->vel);
+            ((TObjChara *)o)->turn_toward_direction((s32)o->f350->f8, (Vec *)(&o->vel));
             o->f3C0 = xz_distance_squared(&o->pos, &FLD(T_8008F1DC *, 0x2A8)->pos);
             if (o->f3C0 <= ((TObjPlayer *)(o->f318))->get_pos_x() * ((TObjPlayer *)(o->f318))->get_pos_x()) {
                 FLD(s16, 0xB8) = 7;
@@ -429,7 +429,7 @@ void TObjEneBalClawBody::fn_8008F1DC() {
                 move_with_wall_slide((u8 *)o);
             }
         }
-        ((TObjPlayer *)o)->update_angle((s32)o->f350->f8, &o->vel);
+        ((TObjChara *)o)->turn_toward_direction((s32)o->f350->f8, (Vec *)(&o->vel));
         if (objInBand((GameObj *)o, (f32)lbl_805D964C) != 0) {
             play_sound_effect(0x4003B034, (u8 *)o + 0x38, 0, 0);
             if (FLD(T_8008F1DC *, 0x2A8)->m18(o, lbl_805D9650) != 0) {
@@ -546,7 +546,7 @@ void TObjEneBalClawBody::fn_8008F910() {
         *(f32 *)((s8 *)arg0 + 0x308) *= lbl_805D966C;
         *(f32 *)((s8 *)arg0 + 0x310) *= lbl_805D966C;
         apply_actor_gravity((TObjEnemy *)arg0, (s32 *)(0), lbl_805D9620);
-        ((TObjPlayer *)arg0)->update_collisions();
+        ((TObjCollidable *)arg0)->update_collisions();
         if (*(u32 *)((s8 *)arg0 + 0xB4) != 8U) {
             var_r30 = 0;
             *(s16 *)((s8 *)arg0 + 0x33E) = *(s16 *)((s8 *)arg0 + 0x32C);
@@ -599,10 +599,10 @@ void TObjEneBalClawBody::fn_8008FAD0() {
             Vec_8008FAD0 pos = *(Vec_8008FAD0 *)(*(u8 **)((s8 *)arg0 + 0x2A8) + 0x2FC);
             update_enemy_wander_move(arg0, &pos, 1, *(f32 *)((s8 *)(*(u8 **)((s8 *)arg0 + 0x350)) + 4));
         }
-        ((TObjPlayer *)arg0)->update_angle((s32)((void *)*(s32 *)((s8 *)(*(void **)((s8 *)arg0 + 0x350)) + 8)), arg0 + 0x308);
+        ((TObjChara *)arg0)->turn_toward_direction((s32)((void *)*(s32 *)((s8 *)(*(void **)((s8 *)arg0 + 0x350)) + 8)), (Vec *)(arg0 + 0x308));
         advance_animation_playback(arg0);
         apply_actor_gravity((TObjEnemy *)arg0, (s32 *)(0), lbl_805D9620);
-        ((TObjPlayer *)arg0)->update_collisions();
+        ((TObjCollidable *)arg0)->update_collisions();
         break;
     case -1:
         break;

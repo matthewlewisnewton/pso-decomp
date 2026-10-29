@@ -172,10 +172,10 @@ void TObjEnemyCustom::update_wander_state() {
             if (params->max_distance < distance || distance < params->min_distance) {
                 target = NULL;
             }
-            ((TObjPlayer *)this)->update_angle(((EnemyMoveParams *)movementParameters)->turn_speed, velocity());
+            ((TObjChara *)this)->turn_toward_direction(((EnemyMoveParams *)movementParameters)->turn_speed, (Vec *)(velocity()));
         }
         apply_actor_gravity(this, NULL, 0.0f);
-        ((TObjPlayer *)this)->update_collisions();
+        ((TObjCollidable *)this)->update_collisions();
         return;
     }
 }
@@ -197,7 +197,7 @@ void TObjEnemyCustom::update() {
                 ((TObjEnemyCustomVictim *)target)->apply_knockback_from_attacker(this, 3.0f);
             }
         }
-        ((TObjPlayer *)this)->update_collisions();
+        ((TObjCollidable *)this)->update_collisions();
         if (m_b4 != 4) {
             state = -1;
         }
@@ -224,7 +224,7 @@ void TObjEnemyCustom::update_state_machine() {
         if (!(actorFlags & 0x800000)) {
             apply_actor_gravity(this, NULL, 0.0f);
         }
-        ((TObjPlayer *)this)->update_collisions();
+        ((TObjCollidable *)this)->update_collisions();
         remaining = timer;
         timer = remaining - 1;
         if (remaining < 0) {
@@ -257,7 +257,7 @@ void TObjEnemyCustom::update_knockback_state() {
         velocity()->x *= 0.5f;
         m_310 *= 0.5f;
         apply_actor_gravity(this, NULL, 0.0f);
-        ((TObjPlayer *)this)->update_collisions();
+        ((TObjCollidable *)this)->update_collisions();
         if (m_b4 != 8) {
             state = -1;
         }
@@ -291,7 +291,7 @@ void TObjEnemyCustom::update_dying_state() {
     case 1:
         advance_animation_playback(this);
         apply_actor_gravity(this, NULL, 0.0f);
-        ((TObjPlayer *)this)->update_collisions();
+        ((TObjCollidable *)this)->update_collisions();
         if (m_c0 < 0.5f * (30.0f * m_c8)) {
             move_with_wall_slide((u8 *)this);
             velocity()->x *= 0.5f;

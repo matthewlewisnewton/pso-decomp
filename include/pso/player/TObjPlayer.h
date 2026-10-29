@@ -309,7 +309,6 @@ struct TObjPlayer : public TObjChara {
     static s32 is_player_in_range(s32 arg0, s32 arg1, f32 farg0);
     void refresh_lobby_state();
     int query_lobby_state();
-    s32 is_action_available();
     void draw_trail_strip(void *arg1, s32 arg2);
     f32 calc_photon_blast_power(s32 arg1, f32 farg0);
     static s32 is_any_teammate_in_state();
@@ -354,7 +353,6 @@ struct TObjPlayer : public TObjChara {
     void set_attribute_entry(s32 i, void *q);
     void copy_entry_bytes(void* q);
     s16 *get_attribute_entry(s32 i);
-    void update_angle(s32 arg1, void *arg2);
     static f32 calc_distance_to_client(s32 arg0, u16 arg1, u32 arg2);
     s16 get_class_id();
     s16 get_item_index();
@@ -577,7 +575,6 @@ struct TObjPlayer : public TObjChara {
     static void init_all_slots();
     static s32 check_flag_pair(s32 arg0, s32 arg1);
     static s32 check_flags(s32 arg0, s32 arg1);
-    void update_collisions();
     static void reset();
     void on_zone_exit();
     u8 is_state_ec1_ed3();

@@ -258,7 +258,7 @@ void TObjEneBalClawBody::fn_8008DD14() {
         self->vel.y = lbl_805D9620;
         VecCopy((Vec *)&self->f290, (const Vec *)&self->pos);
         calc_velocity_toward_destination(self, self->f290, self->f29C, self->info, self->info->f4);
-        ((TObjPlayer *)self)->update_angle(self->info->f8, &self->vel);
+        ((TObjChara *)self)->turn_toward_direction(self->info->f8, (Vec *)(&self->vel));
         Vec_8008DD14 v = self->pos;
         v.x += self->vel.x;
         v.z += self->vel.z;
@@ -303,7 +303,7 @@ void TObjEneBalClawBody::update_move_to_target() {
         }
         VecCopy((Vec *)&self->f290, (const Vec *)&self->pos);
         calc_velocity_toward_destination(self, self->f290, self->f29C, self->info, self->info->f4);
-        ((TObjPlayer *)self)->update_angle(self->info->f8, &self->vel);
+        ((TObjChara *)self)->turn_toward_direction(self->info->f8, (Vec *)(&self->vel));
         Vec_8008DD14 v = self->pos;
         v.x += self->vel.x;
         v.z += self->vel.z;
@@ -312,7 +312,7 @@ void TObjEneBalClawBody::update_move_to_target() {
         }
         advance_animation_playback(self);
         apply_actor_gravity((TObjEnemy *)((u8 *)self), (s32 *)(0), lbl_805D9620);
-        ((TObjPlayer *)self)->update_collisions();
+        ((TObjCollidable *)self)->update_collisions();
         break;
     }
     }

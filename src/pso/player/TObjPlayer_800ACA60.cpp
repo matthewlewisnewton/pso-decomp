@@ -580,7 +580,7 @@ void update_appearance_drop__11TObjEneMojaFv(Moja_800AE450 *self);
 
 s32 enemy_turn_toward_dest(void *, s32);
 void enemy_set_heading_velocity(TObjEnemy *arg0, s32 arg1, f32 farg0);
-s32 update_angle__10TObjPlayerFlPv(void *, s32, void *);
+s32 turn_toward_direction__9TObjCharaFlP3Vec(void *, s32, void *);
 
 void *__nw__7TObjectFUl(u32);
 void *spawn_directional_particle(void *pos, void *dir, s32 id);
@@ -784,7 +784,7 @@ s32 TObjEneMoja::update_technique_state(void *self_800AD3D8) {
             } else {
                 VecCopy((Vec *)&dir, (const Vec *)&self->target->pos);
                 subtract_vector(&dir, &self->pos);
-                a = update_angle__10TObjPlayerFlPv(self, self->info->turn, &dir);
+                a = turn_toward_direction__9TObjCharaFlP3Vec(self, self->info->turn, &dir);
             }
             if (a < 0x100) {
                 self->phase = 1;
@@ -807,7 +807,7 @@ s32 TObjEneMoja::update_technique_state(void *self_800AD3D8) {
             if (self->target != NULL) {
                 VecCopy((Vec *)&dir, (const Vec *)&self->target->pos);
                 subtract_vector(&dir, &self->pos);
-                ang2 = update_angle__10TObjPlayerFlPv(self, self->info->turn, &dir);
+                ang2 = turn_toward_direction__9TObjCharaFlP3Vec(self, self->info->turn, &dir);
             } else {
                 ang2 = ((TObjPlayer *)(self->f318))->get_field_0c();
             }
@@ -901,7 +901,7 @@ s32 TObjEneMoja::update_technique_state(void *self_800AD3D8) {
         break;
     }
     ((s32 (*)(void *, s32, f32))apply_actor_gravity)(self, 0, lbl_805D9BD8);
-    ((TObjPlayer *)self)->update_collisions();
+    ((TObjCollidable *)self)->update_collisions();
 }
 #undef self
 #pragma pop
@@ -998,7 +998,7 @@ s32 TObjEneMoja::update_punch_attack(void *self_800ADAAC) {
         break;
     }
     ((s32 (*)(void *, s32, f32))apply_actor_gravity)(arg0, 0, lbl_805D9BD8);
-    ((TObjPlayer *)arg0)->update_collisions();
+    ((TObjCollidable *)arg0)->update_collisions();
 }
 #undef arg0
 
@@ -1147,7 +1147,7 @@ s32 TObjEneMoja::update_approach_state() {
         break;
     }
     ((s32 (*)(void *)) advance_animation_playback)(arg0);
-    ((TObjPlayer *)arg0)->update_collisions();
+    ((TObjCollidable *)arg0)->update_collisions();
 }
 
 void TObjEneMoja::vfunc_59() {
@@ -1637,7 +1637,7 @@ void TObjEneMoja::run_task() {
         }
     }
     ((TObjEnemy *)arg0)->update_prev_position();
-    ((TBoss3VoloptHiraisin *)arg0)->copy_position();
+    ((TObjChara *)arg0)->refresh_center_from_body();
     submit_cursor_candidate(arg0, -1);
     temp_r4 = this->target;
     if ((temp_r4 != NULL) && (*(s32 *)((s8 *)temp_r4 + 0x30) & 0x02000800)) {
