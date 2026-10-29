@@ -11,13 +11,12 @@ struct TObjEneBalClawBody : public TObjEneBalClaw {
     void sub_8008FF50();
     void update_dragon_boss_state();
     virtual void vfunc_58();
-    u32 m_3dc;
-    u32 m_3e0;
-    u32 m_3e4;
-    u32 m_3e8;
-    u8 unk_3D0[0x8];
+    u32 m_3c0;
+    s32 claw_ids[5];
     s16 m_3d8;
-    u8 unk_3DA[0x2A];
+    u8 unk_3da[2];
+    TObject *effects[4];
+    u8 unk_3ec[0x18];
     static void *create(void *arg0);
 };
 

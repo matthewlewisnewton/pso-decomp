@@ -242,18 +242,14 @@ void *__dt__14TObjEneBalClawFv(void *arg0, s16 arg1) {
     return arg0;
 }
 
-u8 *TObjEneBalClaw__ct(TObjEneBalClaw *ene_bal_claw) {
-    __ct__15TObjEnemyCustomFP7TObject((u8 *)ene_bal_claw);
-    *(s32 **)((s8 *)ene_bal_claw + 0x18) = &(*(RecoveredGlobal_8008DB6C___vt__14TObjEneBalClaw *)&__vt__14TObjEneBalClaw).value;
-    __ct__13TUnk_80490470Fv(((u8 *)ene_bal_claw + 0x390));
-    ene_bal_claw->m_name = balclaw_class_name;
-    ((TObjChara *)ene_bal_claw)->add_flags_2e4(8);
-    ene_bal_claw->actorFlags = (s32) (ene_bal_claw->actorFlags | 0x40000);
-    ene_bal_claw->m_3b8 = 0;
-    ene_bal_claw->m_3bc = 0.0f;
-    ene_bal_claw->clear_attack_flag();
-    ene_bal_claw->m_388 = (s32) (ene_bal_claw->m_388 | 0x20000);
-    return (u8 *)ene_bal_claw;
+TObjEneBalClaw::TObjEneBalClaw(TObject *parent) : TObjEnemyCustom(parent) {
+    m_name = balclaw_class_name;
+    add_flags_2e4(8);
+    actorFlags |= 0x40000;
+    m_3b8 = 0;
+    m_3bc = 0.0f;
+    clear_attack_flag();
+    m_388 |= 0x20000;
 }
 
 void TObjEneBalClaw::vfunc_61() {  }
