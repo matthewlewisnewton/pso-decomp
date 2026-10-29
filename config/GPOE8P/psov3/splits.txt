@@ -5395,8 +5395,11 @@ pso/misc/TOSignCave03.cpp:
 
 pso/misc/TOSparkMachine01.cpp:
 	.text       start:0x80177088 end:0x801774BC
-	.rodata     start:0x80442BB8 end:0x80442BC0
-	.data       start:0x804B4400 end:0x804B4434
+	.rodata     start:0x80442B70 end:0x80442BC0
+	.data       start:0x804B43E8 end:0x804B4434
+	.sdata      start:0x805D3170 end:0x805D3178
+	.sbss       start:0x805D5AC0 end:0x805D5AC8
+	.sdata2     start:0x805DB9E8 end:0x805DBA00
 
 pso/system/TOSwitchAttackSub.cpp:
 	.text       start:0x801774BC end:0x801778A4
