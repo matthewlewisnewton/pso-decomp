@@ -1,3 +1,4 @@
+#include "pso/enemy/TObjEneNanoDrago.h"
 #include "pso/protocol/protocol_types.h"
 #include "pso/map/FloorResourceCallbacks.h"
 #include "pso/boss/TBoss1DragonDemo.h"
@@ -206,7 +207,7 @@ void fn_8009F554();
 void TObjPlayer__sub_800A2DCC();
 void load_resources__11TObjEneMojaFv();
 void TObjEneMerillLia__sub_800D6D64();
-void TLobby__sub_800DC028();
+
 void TObjEneMe3ShinowaMirage__sub_800E7B94();
 void TBoss4Type3__sub_802D1130();
 void TBoss8Dragon__sub_802FDA78();
@@ -289,7 +290,7 @@ FloorResourceCallbacks floor_resource_callbacks_selector_03[10] = {
     { TObjGrass::load_resources, TObjGrass::destroy_all },
     { TObjCGrass::load_resources, TObjCGrass::release_global_805D5130 },
     { TObjPlayer__sub_800C44C4, TObjEneRe2Flower::destroy_instance },
-    { TLobby__sub_800DC028, TLobby::free_global_window },
+    { TObjEneNanoDrago::load_resources, TObjEneNanoDrago::free_resources },
     { TLobby::load_shark_resources, TObjEneShark::free_resources },
     { TObjEnePanarms::load_and_spawn_npc, TObjEnePanarms::free_data },
     { reset_camera_override, restore_cameras_if_overridden },
@@ -302,7 +303,7 @@ FloorResourceCallbacks floor_resource_callbacks_selector_04[10] = {
     { TObjGrass::load_resources, TObjGrass::destroy_all },
     { TObjCGrass::load_resources, TObjCGrass::release_global_805D5130 },
     { TObjPlayer__sub_800C44C4, TObjEneRe2Flower::destroy_instance },
-    { TLobby__sub_800DC028, TLobby::free_global_window },
+    { TObjEneNanoDrago::load_resources, TObjEneNanoDrago::free_resources },
     { TLobby::load_shark_resources, TObjEneShark::free_resources },
     { TObjEneSlime::spawn_pair, TObjEneSlime::free_instance },
     { reset_camera_override, restore_cameras_if_overridden },
@@ -313,7 +314,7 @@ FloorResourceCallbacks floor_resource_callbacks_selector_05[12] = {
     { load_corpse_mark_resource, TObjPlayer::destroy_static_lobby },
     { TObjEneDD::create_instance, TObjEneDD::release_resource },
     { TObjPlayer__sub_800C44C4, TObjEneRe2Flower::destroy_instance },
-    { TLobby__sub_800DC028, TLobby::free_global_window },
+    { TObjEneNanoDrago::load_resources, TObjEneNanoDrago::free_resources },
     { TLobby::load_shark_resources, TObjEneShark::free_resources },
     { TObjEneSlime::spawn_pair, TObjEneSlime::free_instance },
     { TObjEnePanarms::load_and_spawn_npc, TObjEnePanarms::free_data },
