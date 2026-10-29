@@ -10,21 +10,21 @@ extern Ent_800868C4 *particle_global_entry_table;
 extern Ent_800868C4 *particle_area_entry_table;
 #pragma push
 #pragma opt_propagation off
-void *fn_80086B64(void *pos, void *dir, s32 id, s32 a, s32 b) {
-    void *p;
+TParticleCtrl *create_particle_controller_with_rotation(Vec *pos, ParticleAngles *dir, s32 id, s32 a, s32 b) {
+    TParticleCtrl *p;
     s32 idx = id;
     if (particle_pool_limit > idx) {
-        p = __nw__7TObjectFUl(0x78);
+        p = (TParticleCtrl *)__nw__7TObjectFUl(0x78);
         if (p != 0) {
-            p = initialize_with_direction__13TParticleCtrlFPvPvPviiiii(p, pos, dir, &particle_global_entry_table[idx], 0, a, b, 0);
+            p = (TParticleCtrl *)initialize_with_direction__13TParticleCtrlFPvPvPviiiii(p, pos, dir, &particle_global_entry_table[idx], 0, a, b, 0);
         }
         return p;
     }
     if (particle_pool_limit + 0x40 > idx) {
         idx -= 0x200;
-        p = __nw__7TObjectFUl(0x78);
+        p = (TParticleCtrl *)__nw__7TObjectFUl(0x78);
         if (p != 0) {
-            p = initialize_with_direction__13TParticleCtrlFPvPvPviiiii(p, pos, dir, &particle_area_entry_table[idx], 0, a, b, 0);
+            p = (TParticleCtrl *)initialize_with_direction__13TParticleCtrlFPvPvPviiiii(p, pos, dir, &particle_area_entry_table[idx], 0, a, b, 0);
         }
         return p;
     }
