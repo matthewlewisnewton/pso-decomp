@@ -880,7 +880,10 @@ pso/unk/text_80072230.cpp:
 
 pso/misc/TLobby_800726F0.cpp:
 	.text       start:0x800726F0 end:0x8007340C
+	.rodata     start:0x804385C0 end:0x804385E0
 	.data       start:0x8048D120 end:0x8048D14C
+	.sdata      start:0x805D2860 end:0x805D2868
+	.sdata2     start:0x805D9110 end:0x805D9118
 
 pso/misc/TLobby_8007340C.cpp:
 	.text       start:0x8007340C end:0x8007341C
