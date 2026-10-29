@@ -4,27 +4,6 @@
 #include "pso/enemy/TObjEneDD.h"
 #include "pso/player/TObjPlayer.h"
 
-struct Base_800BA138 { char pad[0x18]; };
-struct VObj_800BA138 : Base_800BA138 {
-    virtual void g0();
-#define VM(n) virtual void m##n();
-    VM(0) VM(1) VM(2) VM(3) VM(4) VM(5) VM(6) VM(7) VM(8) VM(9)
-    VM(10) VM(11) VM(12) VM(13) VM(14) VM(15) VM(16) VM(17) VM(18) VM(19)
-    VM(20) VM(21) VM(22) VM(23) VM(24) VM(25) VM(26) VM(27) VM(28) VM(29)
-    VM(30) VM(31) VM(32) VM(33) VM(34) VM(35) VM(36) VM(37) VM(38) VM(39)
-    VM(40) VM(41) VM(42) VM(43) VM(44) VM(45) VM(46) VM(47) VM(48) VM(49)
-    VM(50) VM(51) VM(52) VM(53) VM(54) VM(55) VM(56) VM(57) VM(58) VM(59)
-    VM(60) VM(61) VM(62) VM(63) VM(64) VM(65) VM(66) VM(67) VM(68) VM(69)
-    VM(70) VM(71) VM(72) VM(73) VM(74) VM(75) VM(76) VM(77) VM(78) VM(79)
-    VM(80) VM(81) VM(82) VM(83) VM(84) VM(85) VM(86) VM(87)
-#undef VM
-    virtual void m88();
-    virtual void m89();
-    virtual void m90();
-    virtual void m91();
-    virtual void m92();
-};
-
 #include <stddef.h>
 struct VBase_18_0c879f { char pad[0x18]; };
 
@@ -128,9 +107,8 @@ s32 all_parents_unqueued_for_destruction__7TObjectFv();
 s32 get_position__12TBoss1DragonFv(void *, s32);
 
 void TObjEneDD::vfunc_95() {
-    struct VObj_800BA138 *o = (struct VObj_800BA138 *)this;
-    o->m88();
-    o->m91();
+    this->vfunc_91();
+    this->vfunc_94();
     this->actorFlags = (s32) (this->actorFlags | 0x04040000);
 }
 
