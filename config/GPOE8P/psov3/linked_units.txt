@@ -416,7 +416,7 @@ pso/enemy/EnemyFactoryTables.cpp
 pso/enemy/SaverLifecycle.cpp
 pso/enemy/TEnemyTaskList.cpp
 pso/enemy/TObjEneBalClaw.cpp
-pso/enemy/TObjEneBalClawBody.cpp
+pso/enemy/TObjEneBalClawBody_80090178.cpp
 pso/enemy/TObjEneBalClawClaw.cpp
 pso/enemy/TObjEneBalClawClaw_8008DC18.cpp
 pso/enemy/TObjEneBeast.cpp
@@ -2217,8 +2217,6 @@ pso/player/TObjPlayer_80083B38.cpp
 pso/player/TObjPlayer_800847A8.cpp
 pso/player/TObjPlayer_80084B84.cpp
 pso/player/TObjPlayer_8008DCF0_8008DCF0.cpp
-pso/player/TObjPlayer_8008DCF0_8008FC0C.cpp
-pso/player/TObjPlayer_8008DCF0_8008FFE4.cpp
 pso/player/TObjPlayer_80090448.cpp
 pso/player/TObjPlayer_80092A7C.cpp
 pso/player/TObjPlayer_80099EF8.cpp

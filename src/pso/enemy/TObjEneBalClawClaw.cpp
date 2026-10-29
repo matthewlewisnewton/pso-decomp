@@ -1255,7 +1255,7 @@ s32 TObjEneBalClawClaw__ct(void *arg0) {
     VecCopy((Vec *)(self + 0x2FC), (const Vec *)(self + 0x38));
     *(f32 *)((s8 *)self + 0x300) += (5.0f);
     ((TBoss3Volopt *)self)->reset_photon_effect();
-    ((TObjEneBalClawClaw *)self)->sub_80090418(2);
+    ((TObjEneBalClawClaw *)self)->select_model(2);
     *(s32 *)((s8 *)self + 0x3B8) = 0;
     *(f32 *)((s8 *)self + 0x3BC) = (0.0f);
     *(f32 *)((s8 *)self + 0x3AC) = (15.0f);
@@ -1268,7 +1268,7 @@ s32 TObjEneBalClawClaw__ct(void *arg0) {
 #undef self
 #pragma pop
 u8 *TObjEneBalClawClaw__sub_80091B98(u8 *ene_bal_claw_claw, s32 arg1, u8 *arg2, s32 arg3, s32 arg4, u8 *arg5, s32 arg6, s32 _w7) {
-    TObjEneBalClaw__ct((TObjEneBalClaw *)ene_bal_claw_claw);
+    __ct__14TObjEneBalClawFP7TObject((TObjEneBalClaw *)ene_bal_claw_claw, (TObject *)arg1);
     *(s32 **)((s8 *)ene_bal_claw_claw + 0x18) = &(*(RecoveredGlobal_80091B98_lbl_8048F148 *)__vt__18TObjEneBalClawClaw).value;
     ((TObjEneBalClawClaw *)ene_bal_claw_claw)->entity_id = arg3;
     *(s16 *)((s8 *)ene_bal_claw_claw + 0x2C) = arg4;
@@ -1290,7 +1290,7 @@ u8 *TObjEneBalClawClaw__sub_80091B98(u8 *ene_bal_claw_claw, s32 arg1, u8 *arg2, 
 
 typedef char RecoveredGlobal_80091C58_lbl_8048F148_size[sizeof(RecoveredGlobal_80091C58_lbl_8048F148) == 0x14C ? 1 : -1];
 u8 *TObjEneBalClawClaw__sub_80091C58(u8 *ene_bal_claw_claw, s32 arg1, u8 *arg1_arg) {
-    TObjEneBalClaw__ct((TObjEneBalClaw *)(ene_bal_claw_claw));
+    __ct__14TObjEneBalClawFP7TObject((TObjEneBalClaw *)ene_bal_claw_claw, (TObject *)arg1);
     *(s32 **)((s8 *)ene_bal_claw_claw + 0x18) = &(*(RecoveredGlobal_80091C58_lbl_8048F148 *)__vt__18TObjEneBalClawClaw).value;
     ((TObjEneBalClawClaw *)(ene_bal_claw_claw))->apply_set_data(arg1_arg);
     TObjEneBalClawClaw__ct(ene_bal_claw_claw);
