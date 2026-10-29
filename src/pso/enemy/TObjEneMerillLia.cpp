@@ -1,3 +1,4 @@
+#include "pso/unk/text_800D8830.h"
 #include "types.h"
 #include "pso/enemy/TUnk_80493450.h"
 #include "pso/player/TObjPlayer.h"
@@ -78,7 +79,6 @@ extern const f32 lbl_805DA31C;
 extern const f32 lbl_805DA320;
 void attach_particle_model(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
 void *spawn_particle_effect(void *pos, s32 id);
-void fn_800D88E4(void *pos);
 s32 rand(void);
 extern s32 actor_frame_tick;
 extern const f32 lbl_805DA2F0;
@@ -183,7 +183,7 @@ void TObjEneMerillLia::spawn_ground_effect() {
             spawn_particle_effect(&hit->surface->point_38, 0xA4);
         }
         if ((objInBand((GameObj *)this, (f32)lbl_805DA2F8) != 0) || (objInBand((GameObj *)this, lbl_805DA2FC) != 0)) {
-            fn_800D88E4(&position);
+            play_floor_area_sound_effect(&position);
         }
     }
 }

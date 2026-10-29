@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/unk/text_800D8830.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
 #include "pso/unk/TUnk_80494968.h"
 #include "pso/render/reflection.h"
@@ -95,7 +96,6 @@ s32 update_player_state__9TObjEneDDFv(void *, void *, int);
 s32 get_camera_ctrl__9TObjEneDDFv(void *, int);
 s32 pack_debug_text_position(s32, s32);
 s32 attack_target_history_add(s32, void *);
-void fn_800D8830(void *owner, void *pos);
 s32 TObjEneGibbles__sub_800D8988(s32);
 f32 horizontal_distance_squared(void *, void *);
 void *get_player_by_client_id(s32 i);
@@ -638,7 +638,7 @@ s32 TObjEneDellBiter::fn_803059BC(const Vec *origin) {
 void TObjEneDellBiter::fn_8030591C() {
     if (objInBand((GameObj *)this, TObjEneDellBiter__data_805DEFF4) != 0 || objInBand((GameObj *)this, lbl_805DF01C) != 0) {
         if (fn_803059BC(&position) != 0) {
-            fn_800D8830(this, &position);
+            play_floor_area_persistent_sound(this, &position);
             return;
         }
         play_persistent_sound(copy_target_state__14TObjEnePanarmsFPv(this, (void *)0x40039E13), (s32)this, (u32)&position, 0, 0);
