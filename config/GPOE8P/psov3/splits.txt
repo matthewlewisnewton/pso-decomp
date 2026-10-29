@@ -9630,6 +9630,7 @@ pso/unk/text_8029EE2C.cpp:
 
 pso/player/TObjPlayer_8029EE64.cpp:
 	.text       start:0x8029EE64 end:0x8029F428
+	.sdata2     start:0x805DDDA0 end:0x805DDDB8
 
 pso/misc/TSceneSora_8029F428.cpp:
 	.text       start:0x8029F428 end:0x8029F5B0
