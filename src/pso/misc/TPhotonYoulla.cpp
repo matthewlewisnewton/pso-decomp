@@ -18,6 +18,14 @@
 #include "pso/object/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
 
+#pragma readonly_strings on
+
+extern "C" {
+const char *lbl_805D3528 = "TPhotonYoulla";
+int lbl_805D5D60;
+}
+
+
 struct Color_801AE744 { f32 a, r, g, b; };
 
 struct Vec_801AE744 { f32 x, y, z; };
@@ -53,7 +61,7 @@ void sub_801AE72C__13TPhotonYoullaFv(void *, u8);
 s32 spawn_photon_blast_attachment_effects(void *, s32);
 extern u8 photon_blast_youlla_params[];
 extern s32 __vt__13TPhotonYoulla[];
-extern s32 lbl_805D3528;
+extern const char *lbl_805D3528;
 extern u8 *photon_blast_shared_resource;
 s32 advance_animation_playback(void *);
 void __dl__7TObjectFPv(void *);
@@ -141,7 +149,7 @@ u8 *TPhotonYoulla__ct(TPhotonYoulla *photon_youlla, u8 *arg1) {
     u8 *temp_r3;
     photon_base_ct(photon_youlla);
     *(s32 **)((s8 *)photon_youlla + 0x18) = __vt__13TPhotonYoulla;
-    *(s32 *)((s8 *)photon_youlla + 0) = (s32) lbl_805D3528;
+    *(s32 *)((s8 *)photon_youlla + 0) = (s32) ((s32)lbl_805D3528);
     *(s32 *)((s8 *)photon_youlla + 0x138) = 5;
     VecCopy((Vec *)((u8 *)photon_youlla + 0x38), (const Vec *)(arg1));
     photon_youlla->m_17c = (u16) *(u16 *)((s8 *)arg1 + 0xC);

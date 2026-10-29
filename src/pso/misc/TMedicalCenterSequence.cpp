@@ -33,6 +33,11 @@ TMedicalCenterMesInput controller_input_state[];
 #include "pso/misc/TWindowCtrl.h"
 #include "pso/misc/TWindowSubComCard.h"
 
+extern "C" {
+s32 TMedicalCenterMes__slot_flags[4];
+}
+
+
 struct Base_8021641C_802163AC { char pad[0x18]; };
 struct VObj_8021641C_802163AC : Base_8021641C_802163AC {
     virtual int m0();
@@ -130,8 +135,6 @@ struct VObj_8021658C : Base_8021658C {
 extern "C" {
 s32 create_meseta_window(unsigned short);
 s32 set_service_counter_camera(void *, int);
-extern const f32 lbl_805DC688;
-extern const f32 lbl_805DC68C;
 void *__dt__13TShopSequenceFv(void *arg0, s16 arg1);
 s32 sub_8022397C__15TShopWindowBaseFv(void *);
 s32 __dl__7TObjectFPv(void *);
@@ -257,9 +260,9 @@ typedef struct VObj_18_a93f07 VObj_18_a93f07;
 s32 TMedicalCenterSequence::open_greeting_window() {
     u8 *arg0 = (u8 *)this;
   Stack_80216830 stack;
-  stack.sp8 = lbl_805DC688;
-  stack.spC = lbl_805DC68C;
-  ((TShopSequence *)arg0)->create_message_window(get_window_layout_position(0x2C, (f32) lbl_805DC688), (s32)&stack.sp8);
+  stack.sp8 = 332.0f;
+  stack.spC = 80.0f;
+  ((TShopSequence *)arg0)->create_message_window(get_window_layout_position(0x2C, 332.0f), (s32)&stack.sp8);
   (((VObj_18_a93f07 *)(arg0))->m4(0x1F, 1));
   this->m_2c = create_meseta_window((s32) ((TShopSequence *)arg0)->get_child_field1c());
   ((TShopWindowBase *)arg0)->set_field_20((s32)((void*)(2)));

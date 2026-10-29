@@ -8,6 +8,13 @@
 #include "pso/misc/TWindowCtrl.h"
 #include "pso/player/TObjPlayer.h"
 
+#pragma readonly_strings on
+
+extern "C" {
+const char *lbl_805D3820 = "TTecSifta";
+}
+
+
 struct RecoveredGlobal_8023B17C___vt__9TTecSifta {
     s32 value;
     u8 remaining[0x1C];
@@ -66,8 +73,7 @@ s32 get_entity_id(int);
 s32 TTecPlayerInfluence__ct(void *, void *, void *, void *);
 int TTecSifta__sub_8023AC88(void* p);
 extern s32 __vt__9TTecSifta[];
-extern s32 lbl_805D3820;
-extern const f32 lbl_805DC940;
+extern const char *lbl_805D3820;
 u8 *TTecSifta__sub_8023B17C(TTecSifta *arg0, s32 arg1, s32 arg2, s32 arg3);
 s32 update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
 s32 play_sound_effect(int, void *, int, int);
@@ -196,13 +202,13 @@ void *TTecSifta__ct(void *arg0_, void *owner, void *pos, void *arg3, void *level
     TTecPlayerInfluence__ct(arg0, owner, pos, level);
     *(s32 **)((s8 *)arg0 + 0x18) = __vt__9TTecSifta;
     ((TObjPlayer *)(arg0 + 0xE0))->construct_target_cursor_records();
-    *(s32 *)((s8 *)arg0 + 0) = lbl_805D3820;
+    *(s32 *)((s8 *)arg0 + 0) = ((s32)lbl_805D3820);
     *(s32 *)&((TTecSifta *)arg0)->m_13c = 1;
     copy_technique_target_list(arg0 + 0xE0, arg3);
     ((TTecSifta *)arg0)->update_effect_params();
     temp_r3 = *(u8 **)((s8 *)arg0 + 0xDC);
     if (temp_r3 != NULL) {
-        *(f32 *)((s8 *)(*(u8 **)((s8 *)temp_r3 + 0xA4)) + 0xC) = lbl_805DC940 + ((TTecSifta *)arg0)->m_7c;
+        *(f32 *)((s8 *)(*(u8 **)((s8 *)temp_r3 + 0xA4)) + 0xC) = 5.0f + ((TTecSifta *)arg0)->m_7c;
     }
     t = ((TTecSifta *)arg0)->source;
     if (t != 0U) {
@@ -223,12 +229,12 @@ u8 *TTecSifta__sub_8023B17C(TTecSifta *arg0, s32 owner, s32 pos, s32 level) {
     TTecPlayerInfluence__ct((void *)arg0, (void *)owner, (void *)pos, (void *)level);
     *(s32 **)((s8 *)arg0 + 0x18) = &(*(RecoveredGlobal_8023B17C___vt__9TTecSifta *)&__vt__9TTecSifta).value;
     ((TObjPlayer *)((u8 *)arg0 + 0xE0))->construct_target_cursor_records();
-    *(s32 *)((s8 *)arg0 + 0) = (s32) lbl_805D3820;
+    *(s32 *)((s8 *)arg0 + 0) = (s32) ((s32)lbl_805D3820);
     arg0->m_13c = 0;
     arg0->update_effect_params();
     temp_r3 = (u8 *)(*(u8 **)((s8 *)arg0 + 0xDC));
     if (temp_r3 != NULL) {
-        *(f32 *)((s8 *)(*(u8 **)((s8 *)temp_r3 + 0xA4)) + 0xC) = (f32) (lbl_805DC940 + arg0->m_7c);
+        *(f32 *)((s8 *)(*(u8 **)((s8 *)temp_r3 + 0xA4)) + 0xC) = (f32) (5.0f + arg0->m_7c);
     }
     temp_r3_2 = arg0->source;
     if (temp_r3_2 != 0U) {

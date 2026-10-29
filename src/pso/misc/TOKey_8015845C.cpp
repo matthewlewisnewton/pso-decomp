@@ -7,6 +7,7 @@
 #include "pso/misc/TOKey.h"
 #include "pso/object/TObjFish.h"
 
+
 struct VBase_18_ca64a0 { char pad[0x18]; };
 
 struct VObj_18_ca64a0 : VBase_18_ca64a0 {
@@ -27,13 +28,8 @@ s32 rotate_matrix_y(int, int);
 s32 push_matrix();
 f32 post_translate_matrix(void *);
 void draw_model_motion(void *arg0, void *arg1, f32 farg0);
-extern const f32 lbl_805DB2E8;
-extern const f32 lbl_805DB2EC;
 int __ct__14TObjCollidableFP7TObject(void);
 extern s32 lbl_804AFBF8[];
-    extern const float lbl_805DB2F0;
-    extern const float lbl_805DB2F4;
-    extern const float lbl_805DB2F8;
 void __dl__7TObjectFPv(void *);
 
 void TUnk_804AFBF8::render() {
@@ -42,8 +38,8 @@ void TUnk_804AFBF8::render() {
     s32 temp_r3;
     u32 temp_r4;
     temp_f2 = this->m_c0;
-    temp_r3 = ((VObj_18_ca64a0 *)(arg0))->m9(lbl_805DB2E8 * temp_f2, temp_f2, *(f32 *)&this->m_c4);
-    if ((temp_r3 != 0) && (((TUnk_804AFBF8 *)arg0)->is_in_view_depth(lbl_805DB2EC) != 0)) {
+    temp_r3 = ((VObj_18_ca64a0 *)(arg0))->m9(0.5f * temp_f2, temp_f2, *(f32 *)&this->m_c4);
+    if ((temp_r3 != 0) && (((TUnk_804AFBF8 *)arg0)->is_in_view_depth(30.0f) != 0)) {
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);
@@ -74,7 +70,7 @@ void *TUnk_804AFBF8::destroy_key_base(s16 arg1) {
     }
     return this;
 }
-void* init_map_object_base(void* a0) { __ct__14TObjCollidableFP7TObject(); *(int*)((char*)a0 + 0x18) = (int)((unsigned char *)&lbl_804AFBF8); ((TUnk_804AFBF8 *)a0)->m_ac = 0; ((TUnk_804AFBF8 *)a0)->m_b0 = lbl_805DB2F0; *(float*)((char*)a0 + 0xb4) = lbl_805DB2F0; ((TUnk_804AFBF8 *)a0)->m_b8 = lbl_805DB2F4; ((TUnk_804AFBF8 *)a0)->m_bc = 0; ((TUnk_804AFBF8 *)a0)->actorFlags = (((TUnk_804AFBF8 *)a0)->actorFlags | 0x40000000); ((TUnk_804AFBF8 *)a0)->m_c0 = lbl_805DB2F8; *(float*)((char*)a0 + 0xc4) = (*(const float *)&lbl_805DB2EC); return a0; }
+void* init_map_object_base(void* a0) { __ct__14TObjCollidableFP7TObject(); *(int*)((char*)a0 + 0x18) = (int)((unsigned char *)&lbl_804AFBF8); ((TUnk_804AFBF8 *)a0)->m_ac = 0; ((TUnk_804AFBF8 *)a0)->m_b0 = 0.0f; *(float*)((char*)a0 + 0xb4) = 0.0f; ((TUnk_804AFBF8 *)a0)->m_b8 = 1.0f; ((TUnk_804AFBF8 *)a0)->m_bc = 0; ((TUnk_804AFBF8 *)a0)->actorFlags = (((TUnk_804AFBF8 *)a0)->actorFlags | 0x40000000); ((TUnk_804AFBF8 *)a0)->m_c0 = 800.0f; *(float*)((char*)a0 + 0xc4) = 30.0f; return a0; }
 void TORainbowCave01__sub_80158604(void) {  }
 
 }

@@ -13,6 +13,7 @@
 #include "pso/player/TUnk_804E21F8.h"
 #include "pso/item/TItem.h"
 
+
 struct Vec_802D52E8 { f32 x, y, z; };
 
 extern "C" {
@@ -90,24 +91,21 @@ void* setup_state__10TObjPlayerFPv(void* a0);
 int init_state_445__10TObjPlayerFPv(void);
 s32 set_radar_marker_params__10TObjPlayerFPvPv();
 
-extern const f32 lbl_805DE788;
-extern const f32 lbl_805DE78C;
 
 void setup_radar_marker__10TObjPlayerFPvPv(TObjPlayer *player, void *arg1) {
     set_radar_marker_params__10TObjPlayerFPvPv();
     if (((TItemWeapon *)player)->is_mode_two_and_ready() != 0) {
-        player->drain_owner_hp_fraction(lbl_805DE788);
+        player->drain_owner_hp_fraction(0.07f);
         *(s32 *)((s8 *)arg1 + 0x10) = 0xA;
         *(s32 *)((s8 *)arg1 + 0x44) = (s32) ((TUnk_804E1CA8 *)player)->second_model;
-        *(f32 *)((s8 *)arg1 + 0x4C) = lbl_805DE78C;
+        *(f32 *)((s8 *)arg1 + 0x4C) = 1.0f;
     }
 }
 
     extern unsigned char create_needle_pos_effect[];
     extern unsigned char do_action_447_from_packet__10TObjPlayerFPvPv[];
     extern unsigned char lbl_804E1CA8[];
-    extern const float lbl_805DE790;
-void* setup_state__10TObjPlayerFPv(void* a0) { init_state_445__10TObjPlayerFPv(); *(int*)((char*)a0 + 0x18) = (int)lbl_804E1CA8; *(float*)((char*)a0 + 0x200) = lbl_805DE790; ((TItemWeapon *)a0)->set_weapon_flags(32); ((TUnk_804E1CA8 *)a0)->m_208 = (int)do_action_447_from_packet__10TObjPlayerFPvPv; *(int*)((char*)a0 + 0x204) = (int)create_needle_pos_effect; return a0; }
+void* setup_state__10TObjPlayerFPv(void* a0) { init_state_445__10TObjPlayerFPv(); *(int*)((char*)a0 + 0x18) = (int)lbl_804E1CA8; *(float*)((char*)a0 + 0x200) = 5.0f; ((TItemWeapon *)a0)->set_weapon_flags(32); ((TUnk_804E1CA8 *)a0)->m_208 = (int)do_action_447_from_packet__10TObjPlayerFPvPv; *(int*)((char*)a0 + 0x204) = (int)create_needle_pos_effect; return a0; }
 
 }
 
@@ -126,7 +124,6 @@ void spawn_hit_particles_at_vec__10TObjPlayerFiii(s32 arg0, s32 arg1, s32 arg2);
 s32 TObjPlayer__sub_802D5B78(void *, void *);
 void spawn_hit_particles_at__10TObjPlayerFiii(s32 arg0, s32 arg1, s32 arg2);
 extern const f64 lbl_804725B8[];
-extern const f32 lbl_805DE794;
 f32 atan2_float(f32 y, f32 x);
 void fn_800822D4__13TParticleCtrlFff(f32, f32);
 void *create_timed_particle_emitter(void *owner, s32 id, s32 b, s32 c);
@@ -144,8 +141,7 @@ void set_radar_marker_flag__10TObjPlayerFPvPv(void *arg0, void *arg1) {
     extern unsigned char create_needle_pos_effect[];
     extern unsigned char create_needle_effect[];
     extern unsigned char lbl_804E20FC[];
-    extern const float lbl_805DE78C;
-void* init_needle_effect__10TObjPlayerFPv(void* a0) { init_state_445__10TObjPlayerFPv(); *(int*)((char*)a0 + 0x18) = (int)lbl_804E20FC; *(float*)((char*)a0 + 0x200) = lbl_805DE78C; *(int*)((char*)a0 + 0x204) = (int)create_needle_pos_effect; ((TUnk_804E20FC *)a0)->m_208 = (int)create_needle_effect; return a0; }
+void* init_needle_effect__10TObjPlayerFPv(void* a0) { init_state_445__10TObjPlayerFPv(); *(int*)((char*)a0 + 0x18) = (int)lbl_804E20FC; *(float*)((char*)a0 + 0x200) = 1.0f; *(int*)((char*)a0 + 0x204) = (int)create_needle_pos_effect; ((TUnk_804E20FC *)a0)->m_208 = (int)create_needle_effect; return a0; }
 
 void spawn_hit_particles__10TObjPlayerFiPv(s32 pos, const P_802D5478 *arg1) {
     s32 v[3];
@@ -154,7 +150,7 @@ void spawn_hit_particles__10TObjPlayerFiPv(s32 pos, const P_802D5478 *arg1) {
     v[1] = (s32)(lbl_804725B8[0] * atan2_float(arg1->x, arg1->z));
     v[2] = 0;
     if (create_timed_particle_emitter_with_angles((void *)pos, (void *)v, 0x1B8, 0, 0xF, 4) != 0U) {
-        fn_800822D4__13TParticleCtrlFff(lbl_805DE794, lbl_805DE794);
+        fn_800822D4__13TParticleCtrlFff(1.5f, 1.5f);
     }
 }
 
@@ -297,8 +293,7 @@ void *TUnk_804E2000::enter_state_341() {
     return this;
 }
 
-    extern const float lbl_805DE790;
-void TObjPlayer::set_radar_marker_pos(int a0, void* a1) { set_radar_marker_params__10TObjPlayerFPvPv(); *(float*)((char*)a1 + 0x38) = lbl_805DE790; }
+void TObjPlayer::set_radar_marker_pos(int a0, void* a1) { set_radar_marker_params__10TObjPlayerFPvPv(); *(float*)((char*)a1 + 0x38) = 5.0f; }
 
 void TObjPlayer::spawn_item_from_arg(s32 arg0, s32 arg1) {
     spawn_item__10TObjPlayerFi((arg1));
@@ -430,7 +425,6 @@ extern "C" {
 void spawn_item__10TObjPlayerFi(s32 arg0);
 void spawn_item_thunk__10TObjPlayerFii(s32 arg0, s32 arg1);
 extern u8 lbl_804E21F8[];
-extern const f32 lbl_805DE798;
 void init_state_445__10TObjPlayerFPv(void *);
 void alloc_and_init__10TObjPlayerFlll(s32, s32, s32);
 void create_and_init_effect__10TObjPlayerFlPUll(s32, void *, s32);
@@ -438,12 +432,11 @@ S_802D595C *init_mag_effect_state__10TObjPlayerFPv(S_802D595C *arg0);
 void reset_animation_state__10TObjPlayerFPv(void *arg0);
 f32 TObjPlayer__sub_8017A1A4(s32, s32);
 
-extern f32 lbl_805DE790;
 
 void reset_animation_state__10TObjPlayerFPv(void *arg0) {
     ((TUnk_804E21F8 *)arg0)->m_248 = 0;
     *(s16 *)((s8 *)arg0 + 0x24A) = 0;
-    ((TUnk_804E21F8 *)arg0)->m_24c = (f32) (lbl_805DE790 + TObjPlayer__sub_8017A1A4(*(s32 *)((s8 *)arg0 + 0xF0), 0));
+    ((TUnk_804E21F8 *)arg0)->m_24c = (f32) (5.0f + TObjPlayer__sub_8017A1A4(*(s32 *)((s8 *)arg0 + 0xF0), 0));
     *(s32 *)((s8 *)arg0 + 0x250) = 0;
     ((TUnk_804E21F8 *)arg0)->sub_802D577C();
 }
@@ -457,9 +450,9 @@ S_802D595C *init_mag_effect_state__10TObjPlayerFPv(S_802D595C *arg0) {
     arg0->f24A = 0;
     p = arg0->v;
     for (i = 0; i < 5; i++) {
-        p->x = lbl_805DE798;
-        p->y = lbl_805DE798;
-        p->z = lbl_805DE798;
+        p->x = 0.0f;
+        p->y = 0.0f;
+        p->z = 0.0f;
         p++;
     }
     arg0->f204 = (void *)alloc_and_init__10TObjPlayerFlll;
@@ -513,11 +506,8 @@ int init_state_445__10TObjPlayerFPv(void);
 s32 fn_800822D4__13TParticleCtrlFff(s32, f32, f32);
 
     extern unsigned char lbl_804E1E08[];
-    extern const float lbl_805DE790;
-void* init_vtable_and_field200__10TObjPlayerFPv(void* a0) { init_state_445__10TObjPlayerFPv(); *(int*)((char*)a0 + 0x18) = (int)lbl_804E1E08; *(float*)((char*)a0 + 0x200) = lbl_805DE790; return a0; }
+void* init_vtable_and_field200__10TObjPlayerFPv(void* a0) { init_state_445__10TObjPlayerFPv(); *(int*)((char*)a0 + 0x18) = (int)lbl_804E1E08; *(float*)((char*)a0 + 0x200) = 5.0f; return a0; }
 
-extern f32 lbl_805DE78C;
-extern f32 lbl_805DE79C;
 
 void spawn_item__10TObjPlayerFi(s32 arg0) {
     s32 spC;
@@ -528,8 +518,8 @@ void spawn_item__10TObjPlayerFi(s32 arg0) {
     if (particle_effect != 0) {
         TItemLoad::lookup_item_data(0xD, &spC);
         TItemLoad::get_data_entry(0xD, &sp8);
-        attach_particle_model((u8 *)particle_effect, spC, sp8, 0, 0, lbl_805DE78C);
-        fn_800822D4__13TParticleCtrlFff(particle_effect, lbl_805DE79C, lbl_805DE79C);
+        attach_particle_model((u8 *)particle_effect, spC, sp8, 0, 0, 1.0f);
+        fn_800822D4__13TParticleCtrlFff(particle_effect, 10.0f, 10.0f);
     }
 }
 

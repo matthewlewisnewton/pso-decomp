@@ -8,6 +8,14 @@
 #include "pso/misc/TWindowSubComCard.h"
 #include "pso/misc/TWindowSubShortMail.h"
 
+#pragma readonly_strings on
+
+extern "C" {
+const char *TWindowSubGameEnd__class_name = "TWindowSubGameEnd";
+int window_sub_game_end_active_flag;
+}
+
+
 struct VBase_18_204a81 { char pad[0x18]; };
 
 struct VObj_18_204a81 : VBase_18_204a81 {
@@ -35,9 +43,7 @@ s32 free_member__17TWindowSubComCardFv(s32, s32);
 s32 forward_slot_selection__16TAdChrSelASlotGCFPvPv(s32, s32, s32, f32);
 s32 create__19TWindowMessageYesNoFPvPvPvPv(void *, s32, s32, s32);
 extern s32 __vt__17TWindowSubGameEnd[];
-extern s32 TWindowSubGameEnd__class_name;
-extern const f32 lbl_805DD628;
-extern const f32 lbl_805DD62C;
+extern const char *TWindowSubGameEnd__class_name;
 s32 setup_player_battle_ctrls__23TAdSinglePlyChrSelectGCFv();
 s32 TKeyBoardControl__sub_8000F91C(s32);
 s32 TKeyBoardControl__sub_8000F9CC(s32);
@@ -100,18 +106,18 @@ void *TWindowSubGameEnd__ct(TWindowSubGameEnd *window_sub_game_end, s32 arg1, s3
     s32 var_r31;
     __ct__7TObjectFP7TObject();
     *(s32 **)((s8 *)window_sub_game_end + 0x18) = __vt__17TWindowSubGameEnd;
-    *(s32 *)((s8 *)window_sub_game_end + 0) = (s32) TWindowSubGameEnd__class_name;
+    *(s32 *)((s8 *)window_sub_game_end + 0) = (s32) ((s32)TWindowSubGameEnd__class_name);
     window_sub_game_end->m_24 = arg1;
     window_sub_game_end->m_20 = arg2;
     if (get_main_phase() == 0xF) {
         var_r31 = get_message_10__20TWindowSubStatusDispFl(0x3B);
-        var_f31 = lbl_805DD628;
+        var_f31 = 469.0f;
     } else if (is_split_screen() != 0) {
         var_r31 = get_message_10__20TWindowSubStatusDispFl(0x3C);
-        var_f31 = lbl_805DD62C;
+        var_f31 = 312.0f;
     } else {
         var_r31 = get_message_10__20TWindowSubStatusDispFl(0x3A);
-        var_f31 = lbl_805DD628;
+        var_f31 = 469.0f;
     }
     window_sub_game_end->m_28 = create__19TWindowMessageYesNoFPvPvPvPv(window_sub_game_end, window_sub_game_end->m_20, 0, 0);
     forward_slot_selection__16TAdChrSelASlotGCFPvPv(window_sub_game_end->m_28, var_r31, get_window_layout_position(0x17), var_f31);
