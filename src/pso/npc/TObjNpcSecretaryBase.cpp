@@ -8,8 +8,8 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 
-extern char lbl_8043FEA0[];
-extern char lbl_8043FEB4[];
+#pragma readonly_strings on
+
 extern const char *bm_n_hisyo_i_body_model_names[2];
 extern BmlResourceDescriptor secretary_body_resource_descriptor;
 extern const char *bm_n_hisyo_i_body_motion_names[1];
@@ -26,7 +26,7 @@ extern "C" {
 u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern u32 TObjNpcSecretaryBase__static_model_resource;
 extern s32 __vt__20TObjNpcSecretaryBase[];
-extern s32 TObjNpcSecretaryBase__name;
+extern const char *TObjNpcSecretaryBase__name;
 void TLobby__sub_8001FE7C(void*, int);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 void __dl__7TObjectFPv(void *);
@@ -90,7 +90,10 @@ void * TObjNpcSoldierBase__create(void *arg0) {
     return o2;
 }
 
-__declspec(section ".data") const char *bm_n_hisyo_i_body_model_names[2] = { lbl_8043FEA0, NULL };
-BmlResourceDescriptor secretary_body_resource_descriptor = { lbl_8043FEB4, bm_n_hisyo_i_body_model_names, bm_n_hisyo_i_body_motion_names, 1, 0 };
+__declspec(section ".data") const char *bm_n_hisyo_i_body_model_names[2] = { "n_hisyo_i_body.nj", NULL };
+BmlResourceDescriptor secretary_body_resource_descriptor = { "bm_n_hisyo_i_body.bml", bm_n_hisyo_i_body_model_names, bm_n_hisyo_i_body_motion_names, 1, 0 };
 __declspec(section ".sdata") const char *bm_n_hisyo_i_body_motion_names[1] = { NULL };
+
+const char *TObjNpcSecretaryBase__name = "TObjNpcSecretaryBase";
+u32 TObjNpcSecretaryBase__static_model_resource;
 }

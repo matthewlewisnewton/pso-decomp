@@ -9,6 +9,9 @@
 #include "pso/TParticleCtrl.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 
+#pragma readonly_strings on
+
+
 struct Stack_800F0B4C
 {
   s32 sp8;
@@ -18,7 +21,6 @@ struct Stack_800F0B4C
 
 extern "C" {
 u8 *load_gvm_texture_file(s32 arg0);
-    extern unsigned char lbl_8043D438[];
 extern u32 blob_shadow_texture_list;
 s32 TObjEneGibbles__sub_800D8988(void *);
 extern const f32 TObjEneMe3Stelth__data_805DA808;
@@ -36,7 +38,7 @@ void TObjEneMe3Stelth::destroy_resources() {
     }
 }
 }
-void load_ha_u032_kage(void) { (*(int *)&blob_shadow_texture_list) = (int)load_gvm_texture_file((s32)lbl_8043D438); }
+void load_ha_u032_kage(void) { (*(int *)&blob_shadow_texture_list) = (int)load_gvm_texture_file((s32)(unsigned char *)"ha_u032_kage.gvm"); }
 
 s32 TObjEneMe3Stelth::try_spawn_ground_effect(s32 arg1) {
     s32 arg0 = (s32)this;

@@ -5,6 +5,7 @@
 #include "pso/misc/TLobby.h"
 #include "pso/player/TObjPlayer.h"
 
+
 struct Base_802A7328_802A7290 { char pad[0x8]; };
 struct VObj_802A7328_802A7290 : Base_802A7328_802A7290 {
     virtual void m0();   virtual void m1();   virtual void m2();   virtual void m3();

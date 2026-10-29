@@ -5,6 +5,13 @@
 #include "pso/misc/TNowLoading.h"
 #include "pso/TParticleCtrl.h"
 
+#pragma readonly_strings on
+
+extern "C" {
+const char *TWindowEffectParty__name = "TWindowEffectParty";
+}
+
+
 struct Obj_8024FB80 { u8 pad[0x78]; void *arr[1]; };
 
 struct Pos_8024FAD8 { s32 a, b, c; };
@@ -13,7 +20,7 @@ extern "C" {
 extern Obj_8024FB80 *TWindowCtrl__active_window;
 void *spawn_continuous_particle_effect_with_flags(void *parent, s32 idx, s32 flags);
 extern s32 __vt__18TWindowEffectParty[];
-extern s32 TWindowEffectParty__name;
+extern const char *TWindowEffectParty__name;
 void __dl__7TObjectFPv(void *);
 void __dt__7TObjectFv(void *, int);
 s32 sub_80244994__13TUnk_804CE018Fv();
@@ -74,7 +81,7 @@ void *__dt__18TWindowEffectPartyFv(void *arg0, s16 arg1) {
 }
 TWindowEffectParty::TWindowEffectParty(TObject *object, s8 arg2, s8 arg3, void *arg4) : TObject(object) {
     Pos_8024FAD8 p;
-    *(s32 *)this = TWindowEffectParty__name;
+    *(s32 *)this = ((s32)TWindowEffectParty__name);
     *(s8 *)&this->m_1d = arg2;
     TWindowEffectParty::set_slot_position((s32)this, (s32)(*(s8 *)&this->m_1d), (void *)(((u8 *)this) + 0x20));
     *(s8 *)&this->m_1e = arg3;

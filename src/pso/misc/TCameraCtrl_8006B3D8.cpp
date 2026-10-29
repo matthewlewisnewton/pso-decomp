@@ -11,10 +11,6 @@ struct RecoveredGlobal_8006BA08_lbl_80488B08 {
     u8 remaining[0x2C];
 };
 
-struct RecoveredGlobal_8006B4A0_lbl_804381E0 {
-    s32 value;
-    u8 remaining[0x1DC];
-};
 
 struct RecoveredGlobal_8006B588_lbl_80488AD8
 {
@@ -71,6 +67,35 @@ void *__nw__7TObjectFUl(int);
 extern s32 local_client_id;
 extern s32 tl_07;
 u8 *create_conversation_camera(s32 arg0);
+
+struct NpcCameraDestination {
+    f32 position[3];
+    f32 target[3];
+};
+
+extern const NpcCameraDestination fixed_npc_camera_destination_table[20];
+const NpcCameraDestination fixed_npc_camera_destination_table[20] = {
+    {-158.0f, 15.0f, 269.0f, -165.0f, 19.0f, 287.0f},
+    {-206.0f, 15.0f, 262.0f, -210.0f, 18.0f, 290.0f},
+    {-226.0f, 13.0f, 231.0f, -240.0f, 19.0f, 244.0f},
+    {-127.0f, 12.0f, 240.0f, -114.0f, 24.0f, 276.0f},
+    {-256.0f, 12.0f, -32.0f, -271.0f, 15.0f, -19.0f},
+    {184.4f, 11.8f, 330.8f, 174.0f, 17.5f, 353.1f},
+    {208.6f, 15.1f, -281.4f, 219.4f, 23.0f, -308.2f},
+    {-4.8f, 11.7f, -2015.1f, 0.4f, 20.0f, -2032.5f},
+    {-34.7f, 14.5f, -1994.0f, -58.0f, 18.8f, -2004.0f},
+    {33.9f, 12.7f, -1996.6f, 71.4f, 22.4f, -2006.6f},
+    {-158.8f, 13.5f, -125.4f, -189.3f, 19.8f, -150.5f},
+    {-144.6f, 13.0f, -187.0f, -170.4f, 19.9f, -214.1f},
+    {-93.0f, 14.6f, -197.7f, -99.8f, 20.0f, -236.8f},
+    {-91.5f, 13.1f, -110.0f, -62.0f, 20.0f, -110.0f},
+    {-122.0f, 12.7f, -73.8f, -164.3f, 21.9f, -26.6f},
+    {-1.0f, 13.0f, 209.9f, -56.0f, 20.0f, 202.8f},
+    {-0.58f, 12.0f, -210.3f, -32.26f, 16.64f, -221.77f},
+    {-10000.0f, 48.0f, -198.4f, -10000.0f, 46.5f, -236.3f},
+    {-10039.4f, 43.3f, -176.9f, -10063.5f, 53.8f, -212.1f},
+    {-9953.2f, 42.4f, -168.1f, -9924.0f, 50.0f, -183.9f},
+};
 extern "C" {
 void *__dt__13TUnk_80488A28Fv(void *arg0, s16 arg1);
 void __dl__7TObjectFPv(void *);
@@ -79,8 +104,6 @@ extern s32 TCameraCtrl__fixed_npc_camera_active;
 u8 *__dt__13TUnk_80488B08Fv(u8 *arg0, s16 arg1);
 void set_active_camera_pose(void *, void *);
 s32 approach_camera_vector(void *, void *, f32);
-extern RecoveredGlobal_8006B4A0_lbl_804381E0 fixed_npc_camera_destination_table;
-extern const f32 lbl_805D8FF8;
 s32 activate_camera_mode(int);
 s32 TCameraCtrl__sub_8006BAB4(void *, void *);
 s32 TCameraCtrl__sub_8006BAC8(void *, void *);
@@ -91,7 +114,6 @@ f32 vector_length(void *);
 void normalize_vector(void *);
 f32 xyz_distance(void *, void *);
 extern s32 lbl_80488AF0[];
-extern const f32 lbl_805D8FFC;
 s32 TCameraCtrl__sub_8006B798(void *p, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 void queue_destruction__7TObjectFv(void *);
 s32 TCameraCtrl__sub_8006BADC(void);
@@ -133,12 +155,11 @@ u8 *create_conversation_camera(s32 arg0) {
     return var_r0;
 }
 
-typedef char RecoveredGlobal_8006B4A0_lbl_804381E0_size[sizeof(RecoveredGlobal_8006B4A0_lbl_804381E0) == 0x1E0 ? 1 : -1];
 
 void TUnk_80488AD8::run_task() {
     u8 *arg0 = (u8 *)this;
-    approach_camera_vector((u8 *)&this->unk_1C, (u8 *)&fixed_npc_camera_destination_table.value + (this->m_34 * 0x18), lbl_805D8FF8);
-    approach_camera_vector(arg0 + 0x28, (u8 *)&fixed_npc_camera_destination_table.value + (this->m_34 * 0x18) + 0xC, lbl_805D8FF8);
+    approach_camera_vector((u8 *)&this->unk_1C, (u8 *)fixed_npc_camera_destination_table + (this->m_34 * 0x18), 0.725f);
+    approach_camera_vector(arg0 + 0x28, (u8 *)fixed_npc_camera_destination_table + (this->m_34 * 0x18) + 0xC, 0.725f);
     TCameraCtrl__fixed_npc_camera_active = 1;
     set_active_camera_pose((u8 *)&this->unk_1C, arg0 + 0x28);
 }
@@ -224,7 +245,7 @@ s32 TCameraCtrl__sub_8006B798(void *p, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     d.x = arg0->pos.x - VIEW_8006B798->pos.x;
     d.y = arg0->pos.y - VIEW_8006B798->pos.y;
     d.z = arg0->pos.z - VIEW_8006B798->pos.z;
-    if (lbl_805D8FFC != vector_length(&d)) {
+    if (0.0f != vector_length(&d)) {
         normalize_vector(&d);
     }
     arg0->pos.x = d.x * dist + VIEW_8006B798->pos.x;
@@ -246,7 +267,6 @@ void *TCameraCtrl__vt9(void) {
     return o;
 }
 
-extern const f32 lbl_805D9000;
 
 void TUnk_80488B08::vfunc_6() {
     void *temp_r3;
@@ -259,7 +279,7 @@ void TUnk_80488B08::vfunc_6() {
         this->position.x = (f32) *(f32 *)((s8 *)temp_r3 + 0x1C);
         this->position.y = (f32) *(f32 *)((s8 *)temp_r3 + 0x20);
         this->position.z = (f32) *(f32 *)((s8 *)temp_r3 + 0x24);
-        this->projection_angle = (s32) (lbl_805D9000 * (f32) *(s32 *)((s8 *)temp_r3 + 0x14));
+        this->projection_angle = (s32) (182.04445f * (f32) *(s32 *)((s8 *)temp_r3 + 0x14));
         this->m_58 = (f32) *(f32 *)((s8 *)temp_r3 + 0x10);
     }
 }

@@ -8,6 +8,20 @@
 #include "pso/npc/TObjNpcLappy.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
+#include "pso/system/BmlResourceDescriptor.h"
+
+#pragma readonly_strings on
+
+extern "C" {
+extern const char *bm_npc_soutokufu_motion_names[1];
+extern const char *bm_npc_soutokufu_model_names[2];
+const char *bm_npc_soutokufu_motion_names[1] = { NULL };
+__declspec(section ".data") const char *bm_npc_soutokufu_model_names[2] = { "soutokufu_body.nj", NULL };
+BmlResourceDescriptor bm_npc_soutokufu_resource_descriptor = { "bm_npc_soutokufu.bml", bm_npc_soutokufu_model_names, bm_npc_soutokufu_motion_names, 1, 0 };
+const char *TObjNpcSoutokufu__name = "TObjNpcSoutokufu";
+u32 TObjNpcSoutokufu__shared_model_resource;
+}
+
 
 struct RecoveredGlobal_802895D8_lbl_804D3320 { s32 value; u8 remaining[0xC]; };
 typedef char RecoveredGlobal_802895D8_lbl_804D3320_size[sizeof(RecoveredGlobal_802895D8_lbl_804D3320) == 0x10 ? 1 : -1];
@@ -27,15 +41,11 @@ struct Gl_80289710 { u8 pad[0x42C]; Ow_80289710 *owner; };
 
 extern "C" {
 u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
-extern RecoveredGlobal_802895D8_lbl_804D3320 bm_npc_soutokufu_resource_descriptor;
-extern u32 TObjNpcSoutokufu__shared_model_resource;
 s32 TObjFish__sub_8001EDB0(int, int);
 s32 get_bml_model(int, int);
 extern s32 __vt__16TObjNpcSoutokufu[];
-extern s32 TObjNpcSoutokufu__name;
 f32 calc_sq_offset__12TBoss8DragonFf(void *, void *, f32);
 extern void *lbl_805D4DD8;
-extern const f32 lbl_805DD8E8;
 void TLobby__sub_8001FE7C(void*, int);
 void __dl__7TObjectFPv(void *);
 
@@ -52,7 +62,7 @@ void TObjNpcSoutokufu::load_shared_resource() {
     temp_r3 = (int)::operator new(0x440);
     var_r0 = temp_r3;
     if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &bm_npc_soutokufu_resource_descriptor.value, 0, 0, 0));
+        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &bm_npc_soutokufu_resource_descriptor, 0, 0, 0));
     }
     (*(s32 *)&TObjNpcSoutokufu__shared_model_resource) = var_r0;
 }
@@ -91,7 +101,7 @@ void TBoss8Dragon::trigger_switches_in_range(void *arg0, void *arg1, void *arg2)
     Ow_80289710 *ow;
     ow = (*(Gl_80289710 * *)&lbl_805D4DD8)->owner;
     list = ow->list;
-    off = calc_sq_offset__12TBoss8DragonFf(arg2, ow, lbl_805DD8E8);
+    off = calc_sq_offset__12TBoss8DragonFf(arg2, ow, 50.0f);
     for (n = list->head; n != NULL; n = n->next) {
         if (!(n->flags & 8) && ((TBoss8Dragon *)arg1)->is_within_xz_distance((u8 *)n, (f32)off) != 0) {
             sp[0] = n->f8;
