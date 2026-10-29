@@ -15,12 +15,9 @@ struct TObjEneMe3ShinowaMirage : public TObjEneMe3Shinowa {
     virtual void apply_effect_pair();
     void vfunc_63();
     void vfunc_62();
-    u8 _pad3EC[0x10];
-    u32 m_3fc;
-    u8 _pad400[0x2C];
     u16 m_42c;
-    u8 _pad42E[0x2];
-    void* m_430;
+    u8 unk_42e[2];
+    void *m_430;
     static void advance_camera_ctrl_step();
     void state_break_apart(s32 arg1);
     void state_cast_support(s32 arg1);
@@ -35,7 +32,6 @@ struct TObjEneMe3ShinowaMirage : public TObjEneMe3Shinowa {
     void *create(void *arg1, void *arg2);
     static void set_slot_min_clamped_value(s32 arg0, f32 farg0);
     static void free_shared_resources();
-    u8 unk_418[0x1C];
     f32 m_434;
     u8 unk_438[0x4];
     f32 m_43c;
