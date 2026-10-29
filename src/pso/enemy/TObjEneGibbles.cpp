@@ -815,11 +815,11 @@ s32 TObjEneGibbles::spawn_ground_impact_effects(void *pos, f32 farg0) {
         p = (u8 *)spawn_particle_effect((void *)(hit[1] + 0x38), 0x49);
         if (p != NULL) {
             attach_particle_model(p, TParticleCtrl::get_particle_model(2), TParticleCtrl::get_instance(), 0, 1, TObjEneGibbles__data_805DE7EC);
-            ((TParticleCtrl *)p)->fn_800822D4(farg0, TObjEneGibbles__data_805DE7EC);
+            ((TParticleCtrl *)p)->set_scale(farg0, TObjEneGibbles__data_805DE7EC);
         }
         p = (u8 *)spawn_particle_effect((void *)(hit[1] + 0x38), 0xA4);
         if (p != NULL) {
-            ((TParticleCtrl *)p)->fn_800822D4(farg0, lbl_805DE7F0);
+            ((TParticleCtrl *)p)->set_scale(farg0, lbl_805DE7F0);
         }
         return 1;
     }

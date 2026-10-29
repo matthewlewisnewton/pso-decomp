@@ -615,11 +615,11 @@ s32 TObjEneDellBiter::fn_803059BC(const Vec *origin) {
             e = (void *)spawn_particle_effect(&hit->surface->point_38, 0x49);
             if (e != NULL) {
                 attach_particle_model((u8 *)e, (s32)(TParticleCtrl::get_particle_model(2)), (s32)(TParticleCtrl::get_instance()), 0, 1, (f32)TObjEneDellBiter__data_805DEFD8);
-                ((TParticleCtrl *)e)->fn_800822D4(lbl_805DF020, lbl_805DF020);
+                ((TParticleCtrl *)e)->set_scale(lbl_805DF020, lbl_805DF020);
             }
             e = (void *)spawn_particle_effect(&hit->surface->point_38, 0xA4);
             if (e != NULL) {
-                ((TParticleCtrl *)e)->fn_800822D4(lbl_805DF020, lbl_805DF020);
+                ((TParticleCtrl *)e)->set_scale(lbl_805DF020, lbl_805DF020);
             }
             return 1;
         }
@@ -627,11 +627,11 @@ s32 TObjEneDellBiter::fn_803059BC(const Vec *origin) {
             e = (void *)spawn_particle_effect(&hit->surface->point_54, 0x49);
             if (e != NULL) {
                 attach_particle_model((u8 *)e, (s32)(TParticleCtrl::get_particle_model(2)), (s32)(TParticleCtrl::get_instance()), 0, 1, (f32)TObjEneDellBiter__data_805DEFD8);
-                ((TParticleCtrl *)e)->fn_800822D4(lbl_805DF020, lbl_805DF020);
+                ((TParticleCtrl *)e)->set_scale(lbl_805DF020, lbl_805DF020);
             }
             e = (void *)spawn_particle_effect(&hit->surface->point_54, 0xA4);
             if (e != NULL) {
-                ((TParticleCtrl *)e)->fn_800822D4(lbl_805DF020, lbl_805DF020);
+                ((TParticleCtrl *)e)->set_scale(lbl_805DF020, lbl_805DF020);
             }
             return 1;
         }

@@ -51,7 +51,7 @@ public:
     static void init_particle_buffer();
     static s32 get_particle_by_index(s32 arg0);
 
-    void fn_800822D4(f32, f32);
+    void set_scale(f32, f32);
     u8 pad_1c[0x24];
     f32 field_40;
     f32 field_44;
