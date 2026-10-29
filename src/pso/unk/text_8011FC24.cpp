@@ -100,7 +100,7 @@ void TItemWeapon::update_equipped() {
         }
         register_technique_boosts(technique_boosts);
         self->update_weapon();
-        if(!((TObjChara *)self->owner)->obj_isState7_324()) self->advance_weapon_photon_phase();
+        if(!((TObjChara *)self->owner)->is_in_fixed_pose()) self->advance_weapon_photon_phase();
         if(((TItem *)self)->is_hidden()) {
             count=0;
             do {

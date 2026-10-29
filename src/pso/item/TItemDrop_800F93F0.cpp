@@ -82,8 +82,8 @@ s32 load_relocatable_file(s32 arg0, s32 arg1) {
 }
 
 #pragma pop
-int fn_800F953C(void* p) { return safe_free__23TAdSinglePlyChrSelectGCFUl(p); }
-void *fn_800F955C(const char *path) { return set_stream_and_load_file__6TLobbyFi(path); }
+int free_data_file(void* p) { return safe_free__23TAdSinglePlyChrSelectGCFUl(p); }
+void *load_data_file(const char *path) { return set_stream_and_load_file__6TLobbyFi(path); }
 void TLobby::free_nodes_with_id(u32 arg0) {
     N_800F957C *n = resource_load_task_root->first;
     while (n != 0) {

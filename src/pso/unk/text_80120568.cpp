@@ -206,7 +206,7 @@ void TItemWeapon::on_equip() {
             ((TObjPlayer *)(*(void **)((s8 *)arg0 + 0xF0)))->set_action_provider_variant(arg0->v41());
         }
         ((TItemWeapon *)arg0)->clear_weapon_flags(0x100);
-        if (((TItem *)arg0)->is_hidden() != 0 || ((TObjChara *)*(s32 *)((s8 *)arg0 + 0xF0))->obj_isState7_324() != 0) {
+        if (((TItem *)arg0)->is_hidden() != 0 || ((TObjChara *)*(s32 *)((s8 *)arg0 + 0xF0))->is_in_fixed_pose() != 0) {
             ((TItemWeapon *)arg0)->set_weapon_flags(8);
         } else {
             TItemAttacker::spawn_item_timer((TObject *)arg0, (ItemTimerCallback)set_flag_8_if_check_passes__10TObjPlayerFv, 0x14);

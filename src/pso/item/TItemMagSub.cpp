@@ -145,7 +145,7 @@ void TItemMagSub::run_task() {
     if (item->is_owner_frozen() != 0 || item->is_inactive() != 0) {
         return;
     }
-    if (owner->obj_isState7_324() != 0) {
+    if (owner->is_in_fixed_pose() != 0) {
         update_special_pose();
         return;
     }
@@ -336,7 +336,7 @@ void TItemMagSub::apply_placement_matrix() {
     s32 heading;
 
     post_translate_matrix(&follow_anchor.x);
-    if (owner->obj_isState7_324() != 0) {
+    if (owner->is_in_fixed_pose() != 0) {
         heading = resolve_owner_heading();
         rotate_matrix_y(NULL, heading);
     } else {
