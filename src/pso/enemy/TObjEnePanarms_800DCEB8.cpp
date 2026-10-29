@@ -104,7 +104,6 @@ void *spawn_directional_particle(void *pos, void *dir, s32 id);
 s32 copy_target_state__14TObjEnePanarmsFPv(void *, s32);
 s32 play_sound_effect(s32, void *, s32, s32);
 void set_field_b8__10TObjMotionFs(void *, int);
-s32 TObjEnePanarms__sub_800DFB44(s32);
 void TObjEnePanarms__sub_800E1E14(u8 *arg0);
 void *fn_80086B64(void *pos, void *dir, s32 id, s32 a, s32 b);
 extern const f32 TObjEnePanarms__data_805DA4A4;
@@ -252,7 +251,7 @@ void TObjEnePanarms::fn_800DCFE0() {
 void TObjEnePanarms::update_timed_action() {
     s32 temp_r0;
 
-    if ((TObjEnePanarms__sub_800DFB44(this->m_3e4) != 0) || (TObjEnePanarms__sub_800DFB44(this->m_3e8) != 0)) {
+    if ((((TObjEnePanBARA *)(this->m_3e4))->fn_800DFB44() != 0) || (((TObjEnePanBARA *)(this->m_3e8))->fn_800DFB44() != 0)) {
         set_state((s32)((void*)(0xA)));
         return;
     }
@@ -291,8 +290,8 @@ void TObjEnePanarms::update_separated_parts() {
         queue_destruction__7TObjectFv(this);
         return;
     }
-    if (TObjEnePanarms__sub_800DFB44(this->m_3e4) == 0) {
-        switch (TObjEnePanarms__sub_800DFB44(this->m_3e8)) {
+    if (((TObjEnePanBARA *)(this->m_3e4))->fn_800DFB44() == 0) {
+        switch (((TObjEnePanBARA *)(this->m_3e8))->fn_800DFB44()) {
         case 0:
         this->m_388 = (this->m_388 - 1);
         temp_r0 = this->m_388;
@@ -337,10 +336,10 @@ void TObjEnePanarms::fn_800DD368() {
     ((TObjEnePanarms *)ene_panarms)->m_388 = 0x384;
     ((TObjEnePanarms *)ene_panarms)->m_3f8 = 1;
     play_sound_effect((s32)((void *) (((s32)copy_target_state__14TObjEnePanarmsFPv(ene_panarms, 0x4003BC2E)))), ene_panarms + 0x38, 0, 0);
-    if (TObjEnePanarms__sub_800DFB44((s32)((int) (((TObjEnePanarms *)ene_panarms)->m_3e4))) == 0) {
+    if (((TObjEnePanBARA *)((s32)((int) (((TObjEnePanarms *)ene_panarms)->m_3e4))))->fn_800DFB44() == 0) {
         TObjEnePanarms__sub_800E1E14((u8 *)(((TObjEnePanarms *)ene_panarms)->m_3e4));
     }
-    if (TObjEnePanarms__sub_800DFB44((s32)((int) (((TObjEnePanarms *)ene_panarms)->m_3e8))) == 0) {
+    if (((TObjEnePanBARA *)((s32)((int) (((TObjEnePanarms *)ene_panarms)->m_3e8))))->fn_800DFB44() == 0) {
         TObjEnePanarms__sub_800E1E14((u8 *)(((TObjEnePanarms *)ene_panarms)->m_3e8));
     }
 }
@@ -563,17 +562,17 @@ void TObjEnePanarms::fn_800DDAD8() {
     play_sound_effect(copy_target_state__14TObjEnePanarmsFPv(((u8 *)this), 0x4003B836), ((u8 *)this) + 0x3AC, 0, 0);
     play_sound_effect(copy_target_state__14TObjEnePanarmsFPv(((u8 *)this), 0x4003BB35), ((u8 *)this) + 0x3C4, 0, 0);
     if (*(s32 *)((s8 *)((u8 *)this) + 0x3DC) != 0) {
-        if (TObjEnePanarms__sub_800DFB44(((TObjEnePanarms *)((u8 *)this))->m_3e4) == 0) {
+        if (((TObjEnePanBARA *)(((TObjEnePanarms *)((u8 *)this))->m_3e4))->fn_800DFB44() == 0) {
             ((TObjEnePanBARA *)(((TObjEnePanarms *)((u8 *)this))->m_3e4))->reset_split();
         }
-        if (TObjEnePanarms__sub_800DFB44(((TObjEnePanarms *)((u8 *)this))->m_3e8) == 0) {
+        if (((TObjEnePanBARA *)(((TObjEnePanarms *)((u8 *)this))->m_3e8))->fn_800DFB44() == 0) {
             ((TObjEnePanBARA *)(((TObjEnePanarms *)((u8 *)this))->m_3e8))->reset_split();
         }
     } else {
-        if (TObjEnePanarms__sub_800DFB44(((TObjEnePanarms *)((u8 *)this))->m_3e4) == 0) {
+        if (((TObjEnePanBARA *)(((TObjEnePanarms *)((u8 *)this))->m_3e4))->fn_800DFB44() == 0) {
             TObjEnePanarms__sub_800E1D38((void *)(((TObjEnePanarms *)((u8 *)this))->m_3e4));
         }
-        if (TObjEnePanarms__sub_800DFB44(((TObjEnePanarms *)((u8 *)this))->m_3e8) == 0) {
+        if (((TObjEnePanBARA *)(((TObjEnePanarms *)((u8 *)this))->m_3e8))->fn_800DFB44() == 0) {
             TObjEnePanarms__sub_800E1D38((void *)(((TObjEnePanarms *)((u8 *)this))->m_3e8));
         }
     }
@@ -773,7 +772,7 @@ s32 TObjEnePanarms::sub_800DE390() {
     case 11:
         return 0;
     default:
-        if (TObjEnePanarms__sub_800DFB44(this->m_3e4) != 0 || TObjEnePanarms__sub_800DFB44(this->m_3e8) != 0) {
+        if (((TObjEnePanBARA *)(this->m_3e4))->fn_800DFB44() != 0 || ((TObjEnePanBARA *)(this->m_3e8))->fn_800DFB44() != 0) {
             ((TObjEnePanarms *)arg0)->set_state((s32)((void*)((void *)10)));
             return 1;
         }

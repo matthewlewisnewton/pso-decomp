@@ -19,6 +19,7 @@ public:
     virtual void vfunc_63();
     void calc_part_position(u8 *, s32 *);
 
+    s32 fn_800DFB44();
     void update_action_timer();
     void init_attack_state();
     void init_open_state();

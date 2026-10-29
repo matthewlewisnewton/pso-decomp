@@ -1,11 +1,10 @@
 #include "types.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEnePanarms.h"
+#include "pso/enemy/TObjEnePanBARA.h"
 
-struct O_800DFB44 { u8 pad[0x378]; s32 state; };
 
 extern "C" {
-s32 TObjEnePanarms__sub_800DFB44(O_800DFB44 *self);
 s32 __ct__11TObjControlFP7TObject(s32, s32);
 s32 TObjEnePanarms__ct(s32, s32, s32);
 int apply_animation_transition(void*, void*);
@@ -31,8 +30,8 @@ s32 TObjEnePanarms::create(s32 arg0) {
 
 void TObjEnePanarms::init(void* a1) { fn_800660B8(this); apply_animation_transition(this, a1); sub_8002AE64(); }
 
-s32 TObjEnePanarms__sub_800DFB44(O_800DFB44 *self) {
-    return self->state == 7 || self->state == 8;
+s32 TObjEnePanBARA::fn_800DFB44() {
+    return state == 7 || state == 8;
 }
 
 int TObjEnePanarms::get_state_flag() { return (this->actorFlags >> 4) & 0x1; }
