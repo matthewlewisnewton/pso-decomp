@@ -5213,6 +5213,7 @@ pso/misc/TOMineTrap.cpp:
 pso/misc/TOMineIcon01.cpp:
 	.text       start:0x80171434 end:0x8017170C
 	.rodata     start:0x80442218 end:0x80442220
+	.sdata2     start:0x805DB890 end:0x805DB8A8
 
 pso/misc/TOMineIcon02.cpp:
 	.text       start:0x8017170C end:0x801719E4
