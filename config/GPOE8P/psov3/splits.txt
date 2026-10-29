@@ -8984,7 +8984,11 @@ pso/misc/TWindowSubEquipList.cpp:
 
 pso/misc/TWindowSubGameEnd.cpp:
 	.text       start:0x80279444 end:0x80279714
+	.rodata     start:0x8044F970 end:0x8044F988
 	.data       start:0x804D15F8 end:0x804D1610
+	.sdata      start:0x805D3A48 end:0x805D3A50
+	.sbss       start:0x805D6480 end:0x805D6488
+	.sdata2     start:0x805DD628 end:0x805DD630
 
 pso/misc/TWindowSubItem.cpp:
 	.text       start:0x80279714 end:0x8027ACF8
