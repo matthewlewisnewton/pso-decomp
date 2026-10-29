@@ -20,7 +20,7 @@ extern "C" void test_flag_256__9TObjCharaFv();
 #include "pso/player/TUnk_80490470.h"
 #include "pso/boss/TBoss3Volopt.h"
 #include "pso/enemy/TObjEneLappy.h"
-#include "pso/enemy/TObjEneMe1GiGue.h"
+#include "pso/enemy/TObjEnemyCustom.h"
 #include "pso/enemy/TObjEnePanarms.h"
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TNowLoading.h"
@@ -118,7 +118,7 @@ s32 apply_actor_gravity(void *, s32, f32);
 s32 minimap_render_dot(void *, s32, s32, s32);
 void TObjPlayer__sub_800A16C4(u8 *arg0);
 void queue_destruction__7TObjectFv(void *arg0);
-s32 update_if_active__15TObjEneMe1GiGueFl(void *, s32);
+s32 update_if_active__15TObjEnemyCustomFl(void *, s32);
 void *spawn_particle_effect(void *pos, s32 id);
 s32 TObjPlayer__sub_800A3210(s32 i, s32 _w1, s32 _w2);
 u8 *TObjPlayer__sub_800A4204(u8 *arg0, u8 *arg1, s32 arg2, s32 arg3, s32 arg4);
@@ -810,7 +810,7 @@ s32 TObjPlayer::update_hide_sequence() {
 
 void TObjPlayer::trigger_action_if_not_flagged() {
     if (!(*(s32 *)&this->actorFlags & 0x800) && !(*(s32 *)&this->unk_388 & 0x800000)) {
-        update_if_active__15TObjEneMe1GiGueFl(this, 6);
+        update_if_active__15TObjEnemyCustomFl(this, 6);
     }
 }
 
@@ -1215,7 +1215,7 @@ void TObjEneDarkGunner::vfunc_62() {
             trigger_targets_action__10TObjPlayerFv();
             return;
         }
-        ((TObjEneMe1GiGue *)this)->set_state(4);
+        ((TObjEnemyCustom *)this)->set_state(4);
     }
 }
 
@@ -1302,7 +1302,7 @@ s32 TObjPlayer__sub_800A1FEC(void *arg0) {
             self->fB8 = 3;
             break;
         }
-        update_if_active__15TObjEneMe1GiGueFl(self, 1);
+        update_if_active__15TObjEnemyCustomFl(self, 1);
         break;
     case -1:
         self->f388 &= ~0x200000;
@@ -1451,7 +1451,7 @@ s32 TObjPlayer__sub_800A2390(void *arg0_) {
 
 void TObjPlayer::set_hidden_flag() {
     if (!(this->actorFlags & 0x800)) {
-        update_if_active__15TObjEneMe1GiGueFl(this, 1);
+        update_if_active__15TObjEnemyCustomFl(this, 1);
         *(s32 *)&this->unk_388 = (s32) (*(s32 *)&this->unk_388 | 0x20000);
     }
 }
@@ -1494,7 +1494,7 @@ void TObjPlayer::apply_fall_damage_flag() {
     } else {
         var_r4 = 0;
     }
-    update_if_active__15TObjEneMe1GiGueFl((void *)arg0, (s32)var_r4);
+    update_if_active__15TObjEnemyCustomFl((void *)arg0, (s32)var_r4);
 }
 
 inline f32 fmax_800A28A4(f32 a, f32 b) {

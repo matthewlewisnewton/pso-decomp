@@ -50,6 +50,8 @@ struct TObjEnemyCustom : public TObjEnemy {
     u32 m_380;
     s32 m_384;
     u32 m_388;
+    void update_if_active(s32 action);
+    void set_state(s32 action);
     void update_dying_state();
     void update_knockback_state();
     void update_state_machine();
