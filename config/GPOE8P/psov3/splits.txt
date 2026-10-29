@@ -7547,6 +7547,8 @@ pso/misc/TJudgmentSequence.cpp:
 pso/misc/TMedicalCenterSequence.cpp:
 	.text       start:0x80216084 end:0x80216B44
 	.data       start:0x804C9878 end:0x804C98C8
+	.bss        start:0x80513EA0 end:0x80513EB0
+	.sdata2     start:0x805DC688 end:0x805DC690
 
 pso/misc/TWindow.cpp:
 	.text       start:0x80216B44 end:0x802171BC
