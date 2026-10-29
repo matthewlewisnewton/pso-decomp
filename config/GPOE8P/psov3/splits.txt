@@ -10567,7 +10567,9 @@ pso/boss/TObjBoss2Tunnel_802F2070.cpp:
 pso/boss/TBoss8DragonDemo.cpp:
 	.text       start:0x802F2C90 end:0x802F2E7C
 	.ctors      start:0x80433FDC end:0x80433FE0
+	.rodata     start:0x80474460 end:0x80474478
 	.data       start:0x804E4B58 end:0x804E4B70
+	.sdata      start:0x805D3FF8 end:0x805D4000
 
 pso/unk/text_802F2E7C.cpp:
 	.text       start:0x802F2E7C end:0x802F2ED8
