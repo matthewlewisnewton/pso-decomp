@@ -9012,7 +9012,10 @@ pso/misc/TWindowSubItemList.cpp:
 
 pso/misc/TWindowSubLog.cpp:
 	.text       start:0x8027AF54 end:0x8027B2B8
+	.rodata     start:0x8044F9B8 end:0x8044F9C8
 	.data       start:0x804D16A8 end:0x804D16C0
+	.sdata      start:0x805D3A60 end:0x805D3A68
+	.sdata2     start:0x805DD638 end:0x805DD648
 
 pso/misc/TWindowSubMag.cpp:
 	.text       start:0x8027B2B8 end:0x8027C13C
