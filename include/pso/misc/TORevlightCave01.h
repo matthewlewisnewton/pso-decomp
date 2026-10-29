@@ -2,17 +2,20 @@
 #define PSO_MISC_TOREVLIGHTCAVE01_H
 
 #include "types.h"
-#include "pso/misc/TUnk_804AFBF8.h"
+#include "pso/object/TObjMapObject.h"
 
-struct TORevlightCave01 : public TUnk_804AFBF8 {
+class TORevlightCave01 : public TObjMapObject {
+public:
+    TORevlightCave01(TObject *parent, void *set_data);
     virtual ~TORevlightCave01();
-    u32 m_c8;
-    u32 m_cc;
-    static void *create(void *arg0);
-    static void release_static_instance();
-    static void load_shared_resource();
     virtual void run_task();
     virtual void render();
+    void update_demo();
+    static void *create(void *set_data);
+    static void release_static_instance();
+    static void load_shared_resource();
+    s32 spin_angle;  // y angle of the turning child node
+    s32 spin_speed;  // angle added per frame: scale.x degrees
 };
 
 typedef char TORevlightCave01_size[sizeof(TORevlightCave01) == 0xD0 ? 1 : -1];

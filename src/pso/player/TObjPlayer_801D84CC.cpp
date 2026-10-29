@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/item/TItem.h"
 #include "pso/TPlyCharData.h"
 #include "pso/player/TUnk_804C4540.h"
@@ -88,7 +89,7 @@ void TObjPlayer__sub_801D8664(s32 arg0, s8 arg1, s8 arg2) {
 }
 
 s32 obj_testFlags30__14TObjCollidableFUl(void *, s32);
-s32 draw_model_with_callback__10TObjPlayerFllf(void *, s32, s32, f32);
+s32 calc_joint_matrices__10TObjMotionFP10NJS_MOTIONfl(void *, s32, f32, s32);
 void push_matrix(void);
 s32 pop_matrix(void);
 void restore_scene_lighting(void);
@@ -128,9 +129,9 @@ void TObjPlayer__sub_801D877C(u8 *arg0) {
         save_render_material_state((arg0 + 0x608));
         ((TObjPlayer *)arg0)->apply_material_color_override();
         TObjFish::set_global_param((s32)(arg0 + 0xCF4));
-        TObjPlayer::set_global_flag();
-        ((TObjPlayer *)arg0)->draw_model_with_callback();
-        TObjPlayer::clear_global_state();
+        set_motion_packed_rotation();
+        ((TObjPlayer *)arg0)->draw_saving_joints_checked();
+        clear_motion_packed_rotation();
         ((TObjPlayer *)(arg0 + 0x608))->write_ids();
         ((TObjPlayer *)arg0)->draw_head_attachments();
         pop_matrix();
@@ -141,7 +142,7 @@ void TObjPlayer__sub_801D877C(u8 *arg0) {
     push_matrix();
     translate_matrix_vec3(0, (arg0 + 0x38));
     rotate_matrix_y(0, (int) (((TUnk_804C4540 *)arg0)->rotation_y));
-    ((s32 (*)(void *, s32, f32, s32))draw_model_with_callback__10TObjPlayerFllf)(arg0, ((TUnk_804C4540 *)arg0)->unknownF8, ((TUnk_804C4540 *)arg0)->m_c0, *(s32 *)((s8 *)arg0 + 0xE0));
+    ((TUnk_804C4540 *)arg0)->calc_joint_matrices(((TUnk_804C4540 *)arg0)->current_motion, ((TUnk_804C4540 *)arg0)->frame, *(s32 *)((s8 *)arg0 + 0xE0));
     pop_matrix();
 }
 
@@ -357,13 +358,13 @@ Player_801D88C8 *create_ending_sequence_player(Player_801D88C8 *self, void *pare
     self->ang = ((TObjPlayer *)(src->sub))->get_lock_timer();
     ((TObjPlayer *)self)->select_class_action_provider();
     self->model = TObjPlayer__shared_model_buffer + get_entity_id(self) * 0xC00;
-    ((TObjPlayer *)self)->init_npc_animation((void*)(((TObjPlayer *)self)->get_table_entry_by_clamped_index()), (void*)(*(s32 *)player_ending_motion_object), (void*)1);
+    ((TObjPlayer *)self)->init_motion((TObjMotionAction *)((TObjPlayer *)self)->get_table_entry_by_clamped_index(), (BmlMotionEntry *)*(s32 *)player_ending_motion_object, 1);
     self->frame = src->frame;
     ((TObjPlayer *)self)->set_action_flag_40();
     push_matrix();
     translate_matrix_vec3(0, self->pos);
     rotate_matrix_y(0, self->ang);
-    ((void (*)(void *, void *, f32, void *))draw_model_with_callback__10TObjPlayerFllf)(self, self->motion, (*(const f32 *)&lbl_805DC3F8), self->model);
+    ((void (*)(void *, void *, f32, void *))calc_joint_matrices__10TObjMotionFP10NJS_MOTIONfl)(self, self->motion, (*(const f32 *)&lbl_805DC3F8), self->model);
     pop_matrix();
     TObjPlayer::assign_lobby_slot_if_flagged((s32)self, src->slot0);
     TObjPlayer::assign_lobby_slot_if_flagged((s32)self, src->slot1);
@@ -574,7 +575,7 @@ f32 TObjPlayer::get_attack_recovery_count() {
 
 #pragma push
 #pragma scheduling off
-void TObjPlayer::select_normal_attack_marker() {
+f32 TObjPlayer::select_normal_attack_marker() {
   s16 temp_r30;
   s16 falz_phase;
   s16 new_var;
@@ -583,7 +584,7 @@ void TObjPlayer::select_normal_attack_marker() {
   new_var = ((TObjPlayer *)(((u8 *)this) + 0x7CC))->get_stage_strike_count();
   temp_r30 = new_var;
   falz_phase = this->get_falz_phase();
-  lookup_attack_marker((s32) get_handle_value(), falz_phase, temp_r30, class_flags);
+  return lookup_attack_marker((s32) get_handle_value(), falz_phase, temp_r30, class_flags);
 }
 
 #pragma pop

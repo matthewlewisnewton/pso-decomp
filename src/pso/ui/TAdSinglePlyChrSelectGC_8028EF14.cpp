@@ -61,7 +61,6 @@ void TAdSinglePlyChrSelectGC__sub_80290884(void* p, void* q);
 extern u8 lbl_80451CD0[];
 s32 count_char_diffs__23TAdSinglePlyChrSelectGCFPvPv(void *, void *);
 extern CreationTextureCacheEntry *char_select_current_entry;
-void advance_animation_playback(s32);
 void TAdSinglePlyChrSelectGC__sub_8028ED54(void);
 void blend_creation_proportion_shapes(void *);
 s32 TLobby__sub_8001FE7C(void *, int);
@@ -86,7 +85,7 @@ int TAdSinglePlyChrSelectGC__sub_802905B8(void);
 void close_if_active__23TAdSinglePlyChrSelectGCFv(u8 * _w0);
 s32 release_texture_list(void *);
 int set_motion_interpolation_flag__10TObjMotionFv(void*);
-int draw_model_with_callback__10TObjPlayerFv(void*);
+int draw_saving_joints_checked__10TObjMotionFv(void*);
 
 extern "C" {
 void run_task__12TCMCharacterFv();
@@ -1045,7 +1044,7 @@ struct Sel_802902CC {
 };
 
 s32 load_resource_from_descriptor(s32, s32, s32, s32, s32, s32);
-s32 TObjMotion__ct(void *, void *);
+s32 __ct__10TObjMotionFP7TObject(void *, void *);
 void *mem_alloc(u32 size);
 }
 extern u32 creation_figure_object;
@@ -1128,7 +1127,7 @@ void *TCMCharacter__ct(void *motion, void *arg1) {
     s32 res;
     CharacterAppearanceFields *cm;
 
-    TObjMotion__ct(motion, arg1);
+    __ct__10TObjMotionFP7TObject(motion, arg1);
     *(void **)((s8 *)motion + 0x18) = (void *)lbl_804D4054;
     *(s32 *)((s8 *)motion + 0) = lbl_805D3BBC;
     lbl_805D49B4 = 1;
@@ -1155,8 +1154,8 @@ void *TCMCharacter__ct(void *motion, void *arg1) {
     char_select_current_entry = 0;
     ((TObjMotion *)motion)->set_field_d8((s32)((void *)character_making_action_table));
     ((TObjMotion *)motion)->set_field_dc(*(s32 *)((s8 *)creation_menu_main_obj + 0x430));
-    ((TObjMotion *)motion)->m_b8 = creation_motion_group(creation_player_character);
-    ((TObjMotion *)motion)->set_animation(((TObjMotion *)motion)->m_b8);
+    ((TObjMotion *)motion)->requested_action = creation_motion_group(creation_player_character);
+    ((TObjMotion *)motion)->set_animation(((TObjMotion *)motion)->requested_action);
     *(s32 *)((s8 *)motion + 0xE0) = (s32)mem_alloc(0xC00);
     *(f32 *)((s8 *)motion + 0x40) = lbl_805DD940;
     *(f32 *)((s8 *)motion + 0x3C) = lbl_805DD940;
@@ -1285,17 +1284,17 @@ void reset_creation_body_shapes() {
 
 void TCharaMaking__bind_body_shape_nodes(CharacterAppearanceFields *appearance, void *model) {
     reset_creation_body_shapes();
-    TObjPlayer::clear_next_entry((s32)model, (u8 *)&creation_body_shape_destination);
+    make_node_flag_table((NJS_OBJECT *)model, (NodeFlagEntry *)&creation_body_shape_destination);
     for (s32 i = 0; i < 7; ++i) {
-        TObjPlayer::clear_next_entry((s32)char_creation_data_block[0][i], (u8 *)&creation_body_shape_samples[i]);
+        make_node_flag_table((NJS_OBJECT *)char_creation_data_block[0][i], (NodeFlagEntry *)&creation_body_shape_samples[i]);
     }
 }
 void TCharaMaking__bind_head_shape_nodes(CharacterAppearanceFields *appearance, void *model) {
     reset_creation_head_shapes();
-    TObjPlayer::clear_next_entry((s32)model, (u8 *)&creation_head_shape_destination);
+    make_node_flag_table((NJS_OBJECT *)model, (NodeFlagEntry *)&creation_head_shape_destination);
     s32 head = appearance->head + 1;
     for (s32 i = 0; i < 7; ++i) {
-        TObjPlayer::clear_next_entry((s32)char_creation_data_block[head][i], (u8 *)&creation_head_shape_samples[i]);
+        make_node_flag_table((NJS_OBJECT *)char_creation_data_block[head][i], (NodeFlagEntry *)&creation_head_shape_samples[i]);
     }
 }
 void TAdSinglePlyChrSelectGC::reset_creation_parts() {
@@ -1303,12 +1302,12 @@ void TAdSinglePlyChrSelectGC::reset_creation_parts() {
     s32 i;
     reset_creation_head_shapes();
     reset_creation_body_shapes();
-    TObjPlayer::clear_next_entry((s32)((void *)arg0->a4), (u8 *)((void *)&creation_head_shape_destination));
-    TObjPlayer::clear_next_entry((s32)((void *)arg0->a8), (u8 *)((void *)&creation_body_shape_destination));
+    make_node_flag_table((NJS_OBJECT *)((void *)arg0->a4), (NodeFlagEntry *)((void *)&creation_head_shape_destination));
+    make_node_flag_table((NJS_OBJECT *)((void *)arg0->a8), (NodeFlagEntry *)((void *)&creation_body_shape_destination));
     for (i = 0; i < 3; i++) {
         s32 t = arg0->c[i];
-        TObjPlayer::clear_next_entry((s32)((void *)arg0->d[i]), (u8 *)((u8 *)creation_head_shape_samples + t * 0x28));
-        TObjPlayer::clear_next_entry((s32)((void *)arg0->e[i]), (u8 *)((u8 *)creation_body_shape_samples + t * 0x208));
+        make_node_flag_table((NJS_OBJECT *)((void *)arg0->d[i]), (NodeFlagEntry *)((u8 *)creation_head_shape_samples + t * 0x28));
+        make_node_flag_table((NJS_OBJECT *)((void *)arg0->e[i]), (NodeFlagEntry *)((u8 *)creation_body_shape_samples + t * 0x208));
     }
 }
 void load_creation_shape_rel(W_80290250 *arg0) {
@@ -1414,7 +1413,7 @@ void TCMCharacter::update_chara_preview() {
     }
     }
     blend_creation_proportion_shapes(&((CharacterAppearanceFields *)creation_player_character)->width);
-    advance_animation_playback((s32)this);
+    ((TObjMotion *)this)->advance_animation();
 }
 
 void request_creation_motion(s32 arg0) {
@@ -1424,7 +1423,7 @@ void request_creation_motion(s32 arg0) {
     ((TObjMotion *)creation_figure_object)->set_field_b8(arg0 * 3 + creation_motion_group(creation_player_character));
 }
 
-void TAdSinglePlyChrSelectGC::draw_player_model() { set_motion_interpolation_flag__10TObjMotionFv(this); draw_model_with_callback__10TObjPlayerFv(this); }
+void TAdSinglePlyChrSelectGC::draw_player_model() { set_motion_interpolation_flag__10TObjMotionFv(this); draw_saving_joints_checked__10TObjMotionFv(this); }
 void close_if_active__23TAdSinglePlyChrSelectGCFv(u8 * ad_single_ply_chr_select_gc) {
     if ((s32) char_select_active_flag != 0) {
         ((TAdSinglePlyChrSelectGC *)ad_single_ply_chr_select_gc)->draw_creation_figure();

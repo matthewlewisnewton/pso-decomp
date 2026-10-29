@@ -1,9 +1,7 @@
 #include "types.h"
 #include "pso/enemy/TObjEneMorfosArm.h"
 #include "pso/enemy/TObjEneMorfosArm_80335218.h"
-#include "pso/misc/obj_band.h"
 #include "pso/object/TObject_80019A50.h"
-#include "pso/unk/text_80143818.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/system/vector.h"
 #include "pso/object/TObjMotion.h"
@@ -13,6 +11,9 @@
 #include "pso/enemy/TObjEneRe7Berura.h"
 #include "pso/object/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
+
+// The hand-written constructors below call the base one by its symbol.
+extern "C" u8 *__ct__10TObjMotionFP7TObject(u8 *self);
 
 #pragma readonly_strings on
 
@@ -30,7 +31,6 @@ typedef char RecoveredGlobal_80335354___vt__16TObjEneMorfosArm_size[sizeof(Recov
 extern "C" {
 void *TObjEneMorfosArm__sub_803326B4(void *p);
 s32 TObjEneMorfosArm__sub_803326BC(void *);
-s32 advance_animation_playback();
 u16 get_entity_id(void *);
 s32 set_field_d8__10TObjMotionFl(void *, void *, int);
 extern RecoveredGlobal_80335354_lbl_804EE3B0 morfos_arm_motion_params;
@@ -60,7 +60,7 @@ void TObjEneMorfosArm::render() {
 void TObjEneMorfosArm::run_task() {
     u8 *arg0 = (u8 *)this;
     u8 *temp_r3;
-    advance_animation_playback();
+    advance_animation();
     temp_r3 = (u8 *)this->m_fc;
     if (temp_r3 == NULL) {
         queue_destruction__7TObjectFv((arg0));
@@ -68,7 +68,7 @@ void TObjEneMorfosArm::run_task() {
     }
     VecCopy((Vec *)(arg0 + 0x38), (const Vec *)(TObjEneMorfosArm__sub_803326B4(temp_r3)));
     this->rotation_y = TObjEneMorfosArm__sub_803326BC(*(u8 * *)&this->m_fc);
-    if (this->animationFlags & 0x10) {
+    if (this->motion_flags & 0x10) {
         queue_destruction__7TObjectFv((arg0));
     }
 }
@@ -80,7 +80,7 @@ TObjEneMorfosArm::~TObjEneMorfosArm() {
 
 u8 *TObjEneMorfosArm__ct(TObjEneMorfosArm *ene_morfos_arm, s32 arg1, u8 *arg2) {
     u8 *temp_r5;
-    TObjMotion__ct((u8 *)ene_morfos_arm);
+    __ct__10TObjMotionFP7TObject((u8 *)ene_morfos_arm);
     *(s32 **)((s8 *)ene_morfos_arm + 0x18) = &(*(RecoveredGlobal_80335354___vt__16TObjEneMorfosArm *)&__vt__16TObjEneMorfosArm).value;
     *(s32 *)((s8 *)ene_morfos_arm + 0) = (s32) ((s32)TObjEneMorfosArm__name);
     *(u8 **)((s8 *)ene_morfos_arm + 0xFC) = arg2;
@@ -92,9 +92,9 @@ u8 *TObjEneMorfosArm__ct(TObjEneMorfosArm *ene_morfos_arm, s32 arg1, u8 *arg2) {
     ene_morfos_arm->texlist = (s32) *(s32 *)((s8 *)temp_r5 + 0xC);
     set_field_d8__10TObjMotionFl((void *)ene_morfos_arm, &morfos_arm_motion_params.value, (int)temp_r5);
     ((TObjMotion *)ene_morfos_arm)->set_field_dc((int) (*(s32 *)((s8 *)(*(u8 * *)&TObjEneMorfosArm__parent_morfos_instance) + 0x430)));
-    ene_morfos_arm->m_b8 = 0;
-    ((TObjMotion *)ene_morfos_arm)->set_animation((ene_morfos_arm->m_b8));
-    ((TObjMotion *)ene_morfos_arm)->set_field_b8(ene_morfos_arm->m_b8);
+    ene_morfos_arm->requested_action = 0;
+    ((TObjMotion *)ene_morfos_arm)->set_animation((ene_morfos_arm->requested_action));
+    ((TObjMotion *)ene_morfos_arm)->set_field_b8(ene_morfos_arm->requested_action);
     return (u8 *)ene_morfos_arm;
 }
 

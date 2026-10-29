@@ -40,7 +40,7 @@ struct TObjPlayer : public TObjChara {
     u32 apply_wall_response();
     void set_action_provider_variant(s16);
     void update_position_from_target();
-    s32 get_idle_animation();
+    s16 get_idle_animation();
     void sub_801BB950();
     void handle_state2_transitions();
     void sub_8011E204(s32);
@@ -314,13 +314,6 @@ struct TObjPlayer : public TObjChara {
     static void*get_item_pmt_record(int type, int id);
     static void*get_pmt_record_by_type_id(int type, int id);
     static void*get_pmt_record_by_index(int i);
-    s32 is_anim_finished();
-    f32 get_table_value_f32(s16 arg1);
-    static void clear_next_entry(s32 arg0, u8 *arg1);
-    s32 draw_model_with_callback(s32 arg1, s32 arg2, f32 farg0);
-    void draw_model_with_callback();
-    void init_npc_animation(void* a1, void* a2, void* a3);
-    void draw_ginja_model_tree(void *arg1);
     static bool is_hit_receivable_target(s32 arg0, u32 arg1);
     static s32 is_player_in_range(s32 arg0, s32 arg1, f32 farg0);
     void refresh_lobby_state();
@@ -581,12 +574,6 @@ struct TObjPlayer : public TObjChara {
     void *initialize_effect_object();
     void handle_container_state_3();
     void set_temp_flag10_and_update();
-    static void setup_tev_swap();
-    static void set_tev_swap_mode(u8 arg0);
-    s32 check_camera_distance();
-    s32 calc_angle_to(void *arg1);
-    static u16 lerp_angle_half(u16 arg0, u16 arg1);
-    static s32 is_in_range(f32 farg0);
     void draw_model();
     void draw_if_visible();
     static void apply_status_effect(s32 a);
@@ -597,8 +584,6 @@ struct TObjPlayer : public TObjChara {
     static s32 check_flags(s32 arg0, s32 arg1);
     void update_collisions();
     static void reset();
-    void on_zone_exit();
-    u8 is_state_ec1_ed3();
     static void set_camera_mode(s32 arg0);
     void reset_fields();
     void reset_state_block();
@@ -1055,7 +1040,6 @@ struct TObjPlayer : public TObjChara {
     void set_field_1c(f32 v);
     void set_field18(f32 v);
     static void render_model_tree(void *arg0);
-    void draw_ginja_model(s32 arg1);
     static void render_matrix_chain(void *arg0);
     static void free_if_valid(s32 arg0);
     static void play_effect_if_v2(s32 arg0);
@@ -1204,8 +1188,6 @@ struct TObjPlayer : public TObjChara {
     static void setup_tex_gen();
     static void clear_move_state_bits();
     static void set_global_state(s32 arg0);
-    static void set_global_flag();
-    static void clear_global_state();
     static void set_global_7778(s32 arg0);
     static void update_render_state();
     void collect_owner_fields_recursive();
@@ -1317,7 +1299,7 @@ struct TObjPlayer : public TObjChara {
     void set_flag_8_if_check_passes();
     void fill_status_info(void *arg1);
     void launch_rare_weapon_special(void *origin, s32 enable, f32 scale);
-    static int clear_render_context();
+    static void clear_render_context();
     u8 *construct_freeze_shell(u8 *arg1, u8 *arg2);
     static void create_tec_zonde(void *arg0, void *arg1, void *arg2, void *arg3);
     TechniqueContactList *collect_technique_contacts(void *src);
@@ -1340,8 +1322,6 @@ struct TObjPlayer : public TObjChara {
     u16 get_uid();
     static u32 spawn_shot_effect(s32 arg0, s32 arg1, s32 arg2, f32 farg0);
     void clear_rico_ring_flag();
-    static void calc_direction_vector(s32 arg0, void *arg1, f32 farg0);
-    static void calc_circle_offset_pos(s32 arg0, void *arg1, void *arg2, f32 farg0);
     static void start_photon_blast(s32 arg0, u16 arg1);
     s32 init_arrays();
     s32 get_card_window_field_244();
@@ -1416,6 +1396,7 @@ struct TObjPlayer : public TObjChara {
     s32 is_outside_movement_hold(f32 *pos);
     static s32 draw_small_font(s32 arg0, void * _w1);
     static void send_code_45_1(s32 arg0);
+    static void play_effect_default(int player, int effect);
     static void play_effect(s32 arg0, s32 arg1, s32 arg2);
     s32 get_clamped_index();
     void apply_input_mode();
@@ -1475,8 +1456,9 @@ struct TObjPlayer : public TObjChara {
     void equip_item_to_slot(void *item, s32 slot);
     s32 end_camera_pan();
     static void freeze_all_players();
-    s32 start_camera_pan(s16 arg1);
-    s32 init_photon_blast(s32 arg1);
+    // The callers pass the angle to the object as well; this does not use it.
+    s32 start_camera_pan(s16 arg1, s32 angle);
+    s32 init_photon_blast(s16 arg1);
     s32 start_freeze();
     s32 register_player_slot();
     void apply_state_transform();
@@ -1569,7 +1551,7 @@ struct TObjPlayer : public TObjChara {
     static void assign_lobby_slot_if_flagged(s32 arg0, void *arg1);
     static void free_shared_lobby_data();
     void*init_inventory();
-    void select_normal_attack_marker();
+    f32 select_normal_attack_marker();
     u8 get_castable_technique_level();
     static void update_all_units(s32 arg0, s32 arg1);
     static s32 check_technique_level(s32 arg0, s32 arg1, u8 arg2);
@@ -1614,8 +1596,6 @@ struct TObjPlayer : public TObjChara {
     static u8 *create_effect_object(s32 arg0);
     static u8 *create_fields_state(s32 arg0);
     static u8 *create_state_35_alt(s32 arg0);
-    static void init_default_config();
-    void copy_config(void* q);
     static bool is_slot_within_limit(s32 arg0, s32 arg1, u8 arg2);
     s32 can_use_camera_field();
     void init_parts();

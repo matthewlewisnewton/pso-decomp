@@ -99,7 +99,7 @@ void TObjDFDemo3::render() {
         TObjPlayer__sub_80052390(a);
     }
     push_matrix();
-    TObjPlayer::set_global_flag();
+    set_motion_packed_rotation();
     post_translate_matrix((u8 *)&this->m_a0);
     rotate_matrix_y(0, this->m_ac);
     TObjFish::set_global_param(this->m_98);
@@ -110,7 +110,7 @@ void TObjDFDemo3::render() {
     set_chunk_render_flags(2);
     draw_model_motion((void *)(*(s32 *)&this->m_94), (void *)(*(s32 *)&this->m_9c), *(f32 *)&this->_padB4);
     clear_chunk_render_flags();
-    TObjPlayer::clear_global_state();
+    clear_motion_packed_rotation();
     pop_matrix();
     if (a < 1.0f) {
         TObjPlayer::sync_player_globals();
@@ -136,7 +136,7 @@ void TObjDFDemo3::run_task() {
         if (temp_r3 == 0U) {
             this->m_90 = (u32)create_particle_emitter(&this->m_bc, 0x1BD);
             if ((u32) this->m_90 != 0U) {
-                ((TBoss4Type2 *)((void *) this->m_90))->set_flags(0x40);
+                ((TParticleCtrl *)((void *) this->m_90))->set_flags(0x40);
             }
         } else if (temp_r3 != 0U) {
             ((TParticleCtrl *)temp_r3)->set_position((u8 *)&this->m_bc);
@@ -145,7 +145,7 @@ void TObjDFDemo3::run_task() {
     if ((s32) this->m_b0 == 0x86) {
         temp_r3 = (u32)spawn_particle_effect(&this->m_a0, 0x9B);
         if (temp_r3 != 0U) {
-            ((TBoss4Type2 *)temp_r3)->set_flags(0x40);
+            ((TParticleCtrl *)temp_r3)->set_flags(0x40);
         }
     }
     temp_r0 = this->m_b0;

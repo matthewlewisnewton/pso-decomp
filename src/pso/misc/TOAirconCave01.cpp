@@ -1,55 +1,61 @@
 #include "types.h"
-#include "pso/misc/TOAirconCave01_80156F64.h"
-#include "pso/system/GinjaMaterial.h"
-#include "pso/unk/text_803D96A8.h"
+#include "pso/TMainTask.h"
 #include "pso/misc/TOAirconCave01.h"
 #include "pso/object/TObjFish.h"
+#include "pso/system/BmlResourceLoad.h"
+#include "pso/system/GinjaMaterial.h"
+#include "pso/system/MatrixStack.h"
+#include "pso/system/NinjaTypes.h"
+#include "pso/unk/text_803D8F74.h"
 
-extern "C" {
-
-struct AirBase_80156e8c { char pad[0x18]; };
-struct AirV_80156e8c : AirBase_80156e8c {
-    virtual s32 m0(); virtual s32 m1(); virtual s32 m2();
-    virtual s32 m3(); virtual s32 m4(); virtual s32 m5();
-    virtual s32 m6(); virtual s32 m7();
-    virtual s32 m8(void *a, f32 b, f32 c);
+const char *bm_fs_obj_aircon01_model_names[] = {"fs_obj_aircon01.gj", NULL};
+const char *bm_fs_obj_aircon01_motion_names[] = {NULL};
+BmlResourceDescriptor TOAirconCave01__shared_resource_desc = {
+    "bm_fs_obj_aircon01.bml", bm_fs_obj_aircon01_model_names, bm_fs_obj_aircon01_motion_names, 1, 0,
 };
-
-s32 post_translate_matrix(void *);
-s32 rotate_matrix_y(int, int);
-s32 push_matrix(int);
-void *__nw__7TObjectFUl(int);
-
-extern u8 *TOAirconCave01__model_archive;
+const char *TOAirconCave01_class_name = "TOAirconCave01";
+BmlResource *TOAirconCave01__model_archive;
 
 void TOAirconCave01::render() {
-    u8 *arg0 = (u8 *)this;
-    s32 temp_r3;
-    u8 *temp_r31;
-    u8 *temp_r4;
-
-    temp_r4 = (unsigned char *) (*(void **)((s8 *)TOAirconCave01__model_archive + 0x42C));
-    temp_r31 = (unsigned char *) (*(void **)((s8 *)temp_r4 + 8));
-    if (((AirV_80156e8c *)arg0)->m8(temp_r4, this->m_c0, *(f32 *)&this->m_c4) != 0) {
-        temp_r3 = *(s32 *)&this->rotation_x;
-        *(s32 *)&this->rotation_x = (temp_r3 + 0x106);
-        push_matrix(temp_r3);
-        post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
-        TObjFish::set_global_param(this->texlist);
-        draw_ginja_model((*(s32 *)((s8 *)temp_r31 + 4)));
+    NJS_OBJECT *object = (NJS_OBJECT *)TOAirconCave01__model_archive->models[0].model;
+    if (update_object_view_visibility(view_range, model_radius) != 0) {
+        rotation_x += 0x106;
+        push_matrix();
+        post_translate_matrix(&position.x);
+        rotate_matrix_y(NULL, rotation_y);
+        TObjFish::set_global_param(texlist);
+        draw_ginja_model((s32)object->model);
         pop_matrix();
     }
 }
 
-extern void *tl_05;
-
-void *TOAirconCave01::create(void *arg0) {
-    void *o = __nw__7TObjectFUl(0xC8);
-    if (o != NULL) {
-        o = TOAirconCave01__ct((u8 *)o, (s32)tl_05, (s32)arg0);
-    }
-    return o;
+void *TOAirconCave01::create(void *set_data) {
+    return new TOAirconCave01(tl_05, set_data);
 }
 
+void TOAirconCave01::release_static_resource() {
+    if (TOAirconCave01__model_archive != NULL) {
+        TLobby__sub_8001FE7C(TOAirconCave01__model_archive, 1);
+        TOAirconCave01__model_archive = NULL;
+    }
+}
+
+void TOAirconCave01::load_shared_resource() {
+    void *memory = ::operator new(0x440);
+    BmlResource *resource = (BmlResource *)memory;
+    if (resource != NULL) {
+        resource = load_resource_from_descriptor(memory, 1, &TOAirconCave01__shared_resource_desc, 0, 0, 0);
+    }
+    TOAirconCave01__model_archive = resource;
+}
+
+TOAirconCave01::~TOAirconCave01() {}
+
+TOAirconCave01::TOAirconCave01(TObject *parent, void *set_data) : TObjMapObject(parent) {
+    m_name = TOAirconCave01_class_name;
+    apply_object_set_data(set_data);
+    model = (void *)TOAirconCave01__model_archive->models[0].model;
+    texlist = TOAirconCave01__model_archive->models[0].m_c;
+    view_range = 500.0f;
+    model_radius = 40.0f;
 }

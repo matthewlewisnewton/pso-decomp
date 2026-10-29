@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/enemy/TUnk_80493450.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/player/TObjChara.h"
@@ -13,7 +14,7 @@
 extern "C" void has_flag_0x800__9TObjCharaFv();
 extern "C" void test_flag30_512__9TObjCharaFv();
 extern "C" void test_flag_1000__9TObjCharaFv();
-#include "pso/object/obj_band.h"
+#include "pso/object/TObjMotion.h"
 #include "pso/system/vector.h"
 
 #include "pso/enemy/TUnk_80494938.h"
@@ -496,7 +497,6 @@ void render__16TObjEneMerillLiaFv(u8 *arg0);
 extern u32 TObjEneMerillLia__entry_params_resource;
 extern s32 game_difficulty_selection;
 s32 TObjEneMe3SinowZoa__sub_800D758C(void *);
-s32 advance_animation_playback(void *);
 s32 obj_testFlags30__14TObjCollidableFUl(void *, int);
 void vfunc_59__16TObjEneMerillLiaFv(Ene_800D51C8 *arg0);
 s16 find_nearest_visible_player(void *, s32, f32);
@@ -507,7 +507,6 @@ s32 minimap_render_dot(void *, int, int, int);
 s32 create__9TTecKafunFlllllff(void *, void *, int, int, int, f32, f32);
 s32 matrix_mult_vec(int, void *, void *);
 extern u32 TObjEneMerillLia__rock_param_table;
-extern s32 anim_model_matrix_array;
 extern const f32 lbl_805DA30C;
 extern const f32 lbl_805DA310;
 s32 apply_actor_gravity(void *, int, f32);
@@ -539,7 +538,7 @@ s32 approach_angle_limited(s32, s32, s32);
 s32 project_actor_to_ground(void *, void *, s32);
 s32 subtract_vector(void *, void *);
 s32 pop_matrices(int);
-extern Vec_800D5BCC lbl_8050BEE0;
+extern Vec_800D5BCC scratch_vec;
 extern Vec_800D5BCC lbl_8050BF00;
 void TObjEneMerillLia__sub_800D5BCC(u8 *arg0);
 void * TObjEneMerillLia__create(void *arg0);
@@ -779,7 +778,7 @@ void spawn_ground_effect__16TObjEneMerillLiaFPv(u8 *arg0) {
             }
             spawn_particle_effect((void *)(*(s32 *)((s8 *)temp_r3 + 4) + 0x38), 0xA4);
         }
-        if ((objInBand((GameObj *)arg0, (f32)lbl_805DA2F8) != 0) || (objInBand((GameObj *)((GameObj *)arg0), (f32)((f32)lbl_805DA2FC)) != 0)) {
+        if ((((TObjMotion *)arg0)->is_passing_frame((f32)lbl_805DA2F8) != 0) || (((TObjMotion *)arg0)->is_passing_frame((f32)((f32)lbl_805DA2FC)) != 0)) {
             fn_800D88E4((arg0 + 0x38));
         }
     }
@@ -889,21 +888,21 @@ void TObjEneMerillLia::vfunc_59() {
         this->phase = 0;
         if (this->children == NULL) {
             this->mode = 3;
-            this->m_b8 = 7;
+            this->requested_action = 7;
         } else {
             this->mode = 2;
-            this->m_b8 = 10;
+            this->requested_action = 10;
         }
         ((TObjBase *)arg0)->obj_clearFlags30(0x4040000);
         ((TObjCollidable *)arg0)->clear_player_status_flag(0, 0xA000000);
         break;
     case 4:
-        this->m_b8 = 5;
+        this->requested_action = 5;
         break;
     default:
         this->mode = 3;
         this->phase = 1;
-        this->m_b8 = 2;
+        this->requested_action = 2;
         ((TObjBase *)arg0)->obj_clearFlags30(0x4040000);
         ((TObjCollidable *)arg0)->clear_player_status_flag(0, 0xA000000);
         break;
@@ -925,10 +924,10 @@ void TObjEneMerillLia::vfunc_60() {
         this->phase = 0;
         if (this->children == NULL) {
             this->mode = 3;
-            this->m_b8 = 7;
+            this->requested_action = 7;
         } else {
             this->mode = 2;
-            this->m_b8 = 10;
+            this->requested_action = 10;
         }
         ((TObjBase *)arg0)->obj_clearFlags30(0x4040000);
         ((TObjCollidable *)arg0)->clear_player_status_flag(0, 0xA000000);
@@ -937,9 +936,9 @@ void TObjEneMerillLia::vfunc_60() {
         this->mode = 5;
         this->phase = 1;
         if (TObjEneMerillLia__data_805DA308 < random_ratio__9TObjCharaFv(arg0)) {
-            this->m_b8 = 3;
+            this->requested_action = 3;
         } else {
-            this->m_b8 = 4;
+            this->requested_action = 4;
         }
         obj_setFlags30(arg0, 0x200000);
         ((TObjBase *)arg0)->obj_clearFlags30(0x4040000);
@@ -1017,7 +1016,7 @@ void TObjEneMerillLia::sub_800D5570() {
     case 0:
     default:
         this->phase = 1;
-        this->m_b8 = 1;
+        this->requested_action = 1;
         TObjEneMe3SinowZoa__sub_800D758C((u8 *)arg0 + 0x3A8);
         ((TBoss3Volopt *)(arg0->sub38))->play_area_sound_effect();
         break;
@@ -1031,7 +1030,7 @@ void TObjEneMerillLia::sub_800D5570() {
         this->mode = 12;
         break;
     }
-    advance_animation_playback(arg0);
+    ((TObjMotion *)arg0)->advance_animation();
 }
 
 #define arg0 ((Obj_800D5614 *)ov)
@@ -1054,14 +1053,14 @@ void TObjEneMerillLia::search_target(void *ov) {
             }
         }
     }
-    advance_animation_playback(arg0);
+    ((TObjMotion *)arg0)->advance_animation();
 }
 #undef arg0
 
 #define arg0 ((u8 *)ov)
 s32 TObjEneMerillLia::update_emerge_state(void *ov) {
 
-    advance_animation_playback(arg0);
+    ((TObjMotion *)arg0)->advance_animation();
     switch (*(s16 *)((s8 *)arg0 + 0x328)) {
     case 0:
     default:
@@ -1100,7 +1099,7 @@ struct RecoveredGlobal_800D5060_lbl_8058D490;
 #define arg0 ((u8 *)p)
 s32 TObjEneMerillLia::update_kafun_attack(void *p) {
     Vec_800D57C8 sp14;
-    advance_animation_playback(arg0);
+    ((TObjMotion *)arg0)->advance_animation();
     switch (*(s16 *)((s8 *)arg0 + 0x328)) {
     default:
     case 0:
@@ -1111,14 +1110,14 @@ s32 TObjEneMerillLia::update_kafun_attack(void *p) {
         ((TObjCollidable *)arg0)->clear_player_status_flag(0, 0x0A000000);
         break;
     case 1:
-        if (objInBand((GameObj *)(arg0), (f32)lbl_805DA30C) != 0) {
-            advance_animation_playback(arg0);
+        if (((TObjMotion *)arg0)->is_passing_frame((f32)lbl_805DA30C) != 0) {
+            ((TObjMotion *)arg0)->advance_animation();
             push_matrix_from(&identity_matrix);
             post_translate_matrix(arg0 + 0x38);
             rotate_matrix_y(0, *(s32 *)((s8 *)arg0 + 0x60));
-            ((TObjEnemy *)arg0)->render_anim_model(lbl_805DA30C);
+            ((TObjEnemy *)arg0)->calc_joint_matrices(lbl_805DA30C);
             pop_matrix();
-            push_matrix_from((void *)(anim_model_matrix_array + 0x450));
+            push_matrix_from(anim_model_matrix_array[23]);
             {
                 Vec_800D57C8 sp8 = zero_offset;
                 matrix_mult_vec(0, &sp8, &sp14);
@@ -1161,16 +1160,16 @@ s32 check_path_obstructed(void *, void *);
 void TObjEneMerillLia__sub_800D59E4(u8 *arg0) {
     Vec_800D5BCC pos;
 
-    advance_animation_playback(arg0);
+    ((TObjMotion *)arg0)->advance_animation();
     VecCopy((Vec *)&pos, (const Vec *)(arg0 + 0x2FC));
-    lbl_8050BEE0.y = TObjEneMerillLia__data_805DA300;
-    lbl_8050BEE0.x = TObjEneMerillLia__data_805DA300;
-    lbl_8050BEE0.z = get_collision_body_radius(arg0, 0);
+    scratch_vec.y = TObjEneMerillLia__data_805DA300;
+    scratch_vec.x = TObjEneMerillLia__data_805DA300;
+    scratch_vec.z = get_collision_body_radius(arg0, 0);
     push_matrix_from(&identity_matrix);
     rotate_matrix_y(0, -*(s32 *)((s8 *)arg0 + 0x60));
-    rotate_vector_by_matrix(0, &lbl_8050BEE0, &lbl_8050BEE0);
+    rotate_vector_by_matrix(0, &scratch_vec, &scratch_vec);
     pop_matrix();
-    vec3_add_to(&pos, &lbl_8050BEE0);
+    vec3_add_to(&pos, &scratch_vec);
     pos.x = pos.x + *(f32 *)((s8 *)arg0 + 0x308);
     pos.z = pos.z + *(f32 *)((s8 *)arg0 + 0x310);
     if (check_path_obstructed(arg0, &pos) == 0) {
@@ -1183,7 +1182,7 @@ void TObjEneMerillLia__sub_800D59E4(u8 *arg0) {
     }
     ((TObjPlayer *)arg0)->update_collisions();
     ((TObjPlayer *)arg0)->update_enemy_collision_flags();
-    if (objInBand((GameObj *)arg0, TObjEneMerillLia__data_805DA300) != 0) {
+    if (((TObjMotion *)arg0)->is_passing_frame(TObjEneMerillLia__data_805DA300) != 0) {
         ((TObjEneMerillLia *)arg0)->vfunc_97();
     }
     if (*(u32 *)((s8 *)arg0 + 0xB4) != 8) {
@@ -1203,7 +1202,7 @@ void TObjEneMerillLia__sub_800D59E4(u8 *arg0) {
 void TObjEneMerillLia__sub_800D5BCC(u8 *arg0) {
     ((TUnk_80493450 *)o)->update_target_near_flag();
     ((TUnk_80493450 *)o)->sub_800C4E08();
-    advance_animation_playback(o);
+    ((TObjMotion *)o)->advance_animation();
     if (o->state != 1) {
         o->state = 1;
         ((TUnk_80493450 *)o)->link_into_group_chain();
@@ -1235,9 +1234,9 @@ void TObjEneMerillLia__sub_800D5BCC(u8 *arg0) {
         VecCopy((Vec *)&o->f29C, (const Vec *)&o->home);
         VecCopy((Vec *)&o->f290, (const Vec *)&o->f2FC);
         VecCopy((Vec *)&o->prev, (const Vec *)&o->pos);
-        VecCopy((Vec *)&lbl_8050BEE0, (const Vec *)&o->home);
-        subtract_vector(&lbl_8050BEE0, &o->pos);
-        d = &lbl_8050BEE0;
+        VecCopy((Vec *)&scratch_vec, (const Vec *)&o->home);
+        subtract_vector(&scratch_vec, &o->pos);
+        d = &scratch_vec;
         ang = (s32)(10430.38043493439 * atan2_float(d->x, d->z));
         v = &lbl_8050BF00;
         v->x = v->y = TObjEneMerillLia__data_805DA300;
@@ -1253,8 +1252,8 @@ void TObjEneMerillLia__sub_800D5BCC(u8 *arg0) {
             o->angle = approach_angle_limited(o->angle, ang, o->param->turn);
         } else {
             f32 rr = fabs_float(d->z);
-            if (fabs_float(lbl_8050BEE0.x) < rr) {
-                ang = (s32)(10430.38043493439 * atan2_float(lbl_8050BEE0.x, TObjEneMerillLia__data_805DA300));
+            if (fabs_float(scratch_vec.x) < rr) {
+                ang = (s32)(10430.38043493439 * atan2_float(scratch_vec.x, TObjEneMerillLia__data_805DA300));
             } else {
                 ang = (s32)(10430.38043493439 * atan2_float(TObjEneMerillLia__data_805DA300, d->z));
             }
@@ -1273,10 +1272,10 @@ void TObjEneMerillLia__sub_800D5BCC(u8 *arg0) {
             } else {
                 s32 ang2;
                 rr = fabs_float(d->z);
-                if (fabs_float(lbl_8050BEE0.x) < rr) {
+                if (fabs_float(scratch_vec.x) < rr) {
                     ang2 = (s32)(10430.38043493439 * atan2_float(TObjEneMerillLia__data_805DA300, d->z));
                 } else {
-                    ang2 = (s32)(10430.38043493439 * atan2_float(lbl_8050BEE0.x, TObjEneMerillLia__data_805DA300));
+                    ang2 = (s32)(10430.38043493439 * atan2_float(scratch_vec.x, TObjEneMerillLia__data_805DA300));
                 }
                 v->y = TObjEneMerillLia__data_805DA300;
                 lbl_8050BF00.x = TObjEneMerillLia__data_805DA300;
@@ -1323,7 +1322,7 @@ void TObjEneMerillLia::beast_update_group_chase() {
     Vec_800D6110 to;
     Vec_800D6110 d;
     f32 dist;
-    advance_animation_playback(arg0);
+    ((TObjMotion *)arg0)->advance_animation();
     switch (arg0->f328) {
     case 0:
         arg0->f328 = 1;
@@ -1429,7 +1428,7 @@ void TObjEneMerillLia::vfunc_83() {
         break;
     case 1:
         spawn_ground_effect__16TObjEneMerillLiaFPv((u8 *)arg0);
-        if (objInBand((GameObj *)arg0, (f32)lbl_805DA304) != 0) {
+        if (((TObjMotion *)arg0)->is_passing_frame((f32)lbl_805DA304) != 0) {
             TObjEneMerillLia__sub_800D501C((s32)arg0);
         }
         if (arg0->fB4 != 0x20) {
@@ -1445,7 +1444,7 @@ void TObjEneMerillLia::vfunc_83() {
         arg0->state = 1;
         break;
     }
-    advance_animation_playback(arg0);
+    ((TObjMotion *)arg0)->advance_animation();
 }
 
 void TObjEneMerillLia::beast_update_approach() {
@@ -1455,10 +1454,10 @@ void TObjEneMerillLia::beast_update_approach() {
     switch (this->phase) {
     case 0:
         apply_actor_gravity(arg0, 0, TObjEneMerillLia__data_805DA300);
-        advance_animation_playback(arg0);
-        if (this->m_b4 != 0x20U) {
+        ((TObjMotion *)arg0)->advance_animation();
+        if (this->action_flags != 0x20U) {
             this->phase = 1;
-            this->m_b8 = 2;
+            this->requested_action = 2;
         }
         break;
     default:
@@ -1476,7 +1475,7 @@ void TObjEneMerillLia::beast_update_approach() {
             }
             ((TUnk_80493450 *)arg0)->update_target_near_flag();
             ((TUnk_80493450 *)arg0)->sub_800C4E08();
-            advance_animation_playback(arg0);
+            ((TObjMotion *)arg0)->advance_animation();
             {
                 Vec_800D6618 sp8 = sp14;
                 enemy_move_toward(arg0, *(s32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 8), &sp8, 0, *(f32 *)&this->unk_394);
@@ -1539,15 +1538,15 @@ void TObjEneMerillLia::render() {
       {
         if (temp_r3 == 1)
         {
-          TObjPlayer::set_global_flag();
+          set_motion_packed_rotation();
           this->draw();
-          TObjPlayer::clear_global_state();
+          clear_motion_packed_rotation();
         }
         else
         {
-          TObjPlayer::set_global_flag();
-          this->render_world_model();
-          TObjPlayer::clear_global_state();
+          set_motion_packed_rotation();
+          this->draw_motion_model();
+          clear_motion_packed_rotation();
         }
       }
       TParticleCtrl::end_effect_render();

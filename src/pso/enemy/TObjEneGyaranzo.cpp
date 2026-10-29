@@ -159,7 +159,7 @@ extern const f32 lbl_805DA268;
 extern const f32 lbl_805DA26C;
 extern const f32 lbl_805DA270;
 
-u8 *construct_debris__8TObjChipFPvPvPv(u8 *arg0, u8 *arg1, u8 *arg2);
+u8 *__ct__8TObjChipFP7TObjectP14TObjChipParams(u8 *arg0, u8 *arg1, u8 *arg2);
 extern Params_800D2900 lbl_8043C35C;
 extern u8 *gyaranzo_resource_ptrs[];
 extern u32 gyaranzo_bml_resource;
@@ -172,7 +172,6 @@ void move_with_wall_slide(u8 *arg0);
 extern "C" {
 void calc_velocity_toward_destination(void *, Vec_800D1E4C, Vec_800D1E4C, f32);
 s32 update_if_active__15TObjEneMe1GiGueFl(void *, int);
-s32 advance_animation_playback(void *);
 extern const f32 lbl_805DA258;
 extern const f32 lbl_805DA25C;
 void update_walk_to_target__10TObjPlayerFPv(Ene_800D1E4C *arg0);
@@ -188,7 +187,7 @@ void update_walk_to_target__10TObjPlayerFPv(Ene_800D1E4C *arg0) {
         VecCopy((Vec *)&arg0->v29C, (const Vec *)&arg0->target);
         arg0->state = 1;
     case 1:
-        advance_animation_playback(arg0);
+        ((TObjMotion *)arg0)->advance_animation();
         apply_actor_gravity(arg0, 0, lbl_805DA258);
         VecCopy((Vec *)&arg0->v290, (const Vec *)&arg0->v2FC);
         calc_velocity_toward_destination(arg0, arg0->v290, arg0->v29C, arg0->param->speed);
@@ -306,7 +305,7 @@ u8 *get_player_data__10TObjPlayerFi(s32);
 u16 get_entity_id(void *);
 s32 subtract_vector(void *, void *);
 extern EnemyTargetCandidate TObjGyaranzoMissile_target_slots[];
-extern s32 lbl_805D586C;
+extern s32 registered_player_count;
 extern s32 lbl_805D5870;
 extern const f32 lbl_805DA260;
 void select_targets__15TObjEneGyaranzoFv(u8 *arg0);
@@ -342,7 +341,7 @@ void update__19TObjGyaranzoMissileFPv(u8 *arg0) {
         TObjEneMe3SinowZoa__sub_800D758C(arg0 + 0x3D0);
         *(s32 *)((s8 *)arg0 + 0x37C) = 1;
     case 1:
-        advance_animation_playback(arg0);
+        ((TObjMotion *)arg0)->advance_animation();
         if (((V_Sub_800D1F84 *) (arg0 + 0x3D0))->m5() == 1) {
             *(s32 *)((s8 *)arg0 + 0x37C) = -1;
         }
@@ -372,7 +371,7 @@ void TObjEneGyaranzo::select_targets() {
     n = 0;
     best = 0;
     k = ((TObjCollidable *)arg0)->obj_testFlags30(0x10);
-    count = lbl_805D586C;
+    count = registered_player_count;
     if (k != 0) {
         count += lbl_805D5870;
     }
@@ -1053,15 +1052,15 @@ void *bm_ene_gyaranzo_motion_names[9] = {
 void *bm_ene_gyaranzo_resource_descriptor[4] = {
     (void *)&lbl_8043C238, (void *)&bm_ene_gyaranzo_model_names, (void *)&bm_ene_gyaranzo_motion_names, (void *)0x70008,
 };
-void *gyaranzo_action_table[32] = {
-    (void *)0x20000, (void *)0x4, (void *)0x3f333333, (void *)0x0,
-    (void *)0x20005, (void *)0x5, (void *)0x3f333333, (void *)0x1,
-    (void *)0x20000, (void *)0x0, (void *)0x3f800000, (void *)0x4,
-    (void *)0x20000, (void *)0x2, (void *)0x3f4ccccd, (void *)0x8,
-    (void *)0x30004, (void *)0x3, (void *)0x3f800000, (void *)0x10,
-    (void *)0x10005, (void *)0x6, (void *)0x3f333333, (void *)0x1,
-    (void *)0x20000, (void *)0x7, (void *)0x3f4ccccd, (void *)0x1,
-    (void *)0x20000, (void *)0x1, (void *)0x3f800000, (void *)0x8,
+TObjMotionAction gyaranzo_action_table[8] = {
+    {2, 0, 4, 0.7f, 0},
+    {2, 5, 5, 0.7f, 1},
+    {2, 0, 0, 1.0f, 4},
+    {2, 0, 2, 0.8f, 8},
+    {3, 4, 3, 1.0f, 0x10},
+    {1, 5, 6, 0.7f, 1},
+    {2, 0, 7, 0.8f, 1},
+    {2, 0, 1, 1.0f, 8},
 };
 void *lbl_804941DC[7] = {
     (void *)0x43160000, (void *)0x3f0e38e3, (void *)0x400, (void *)0x1e0000,
@@ -1167,7 +1166,7 @@ void TObjEneGyaranzo::sub_800D2900() {
                 p.x44 = (*(Outer_800D2900 * *)&gyaranzo_bml_resource)->p42c->x3c;
                 obj = __nw__7TObjectFUl(0x234);
                 if (obj != NULL) {
-                    construct_debris__8TObjChipFPvPvPv((u8 *)obj, tl_05, (u8 *)&p);
+                    __ct__8TObjChipFP7TObjectP14TObjChipParams((u8 *)obj, tl_05, (u8 *)&p);
                 }
             }
         }
@@ -1184,7 +1183,7 @@ void TObjPlayer::update_aim_and_fire() {
     switch (this->m_37c) {
     case 0:
         *(s32 *)&this->unk_388 = (s32) (*(s32 *)&this->unk_388 | 0x40000);
-        this->m_b8 = 0;
+        this->requested_action = 0;
         this->m_37c = 1;
     case 1:
         var_r30 = 0;
@@ -1205,12 +1204,12 @@ void TObjPlayer::update_aim_and_fire() {
         }
         if (var_r30 != 0) {
             *(s16 *)&this->unk_33C = get_gyaranzo_missile_int_parameter(0);
-            this->m_b8 = 2;
+            this->requested_action = 2;
             this->m_37c = 2;
         }
         break;
     case 2:
-        if (this->m_c0 >= lbl_805DA278) {
+        if (this->frame >= lbl_805DA278) {
             spawn_missile_volley__19TObjGyaranzoMissileFPv();
             this->m_37c = 3;
         }
@@ -1226,7 +1225,7 @@ void TObjPlayer::update_aim_and_fire() {
         *(s32 *)&this->unk_388 = (s32) (*(s32 *)&this->unk_388 & 0xFFFBFFFF);
         break;
     }
-    advance_animation_playback(this);
+    advance_animation();
     apply_actor_gravity(this, 0, lbl_805DA258);
     update_collisions__10TObjPlayerFv(this);
 }
@@ -1252,14 +1251,14 @@ void TObjPlayer::update_death_breakup() {
     Ene_800D2F6C *arg0 = (Ene_800D2F6C *)this;
     switch (this->m_37c) {
     case 0:
-        this->m_b8 = 4;
+        this->requested_action = 4;
         ((TObjPlayer *)arg0)->refresh_lobby_state();
         arg0->timer = 0x5A;
         create_dead_spot__10TObjPlayerFllf(arg0->v2FC, 0x5A, lbl_805DA27C);
         create_dead_spot__10TObjPlayerFllf(arg0->v2FC, 0x5A, lbl_805DA27C);
         this->m_37c = 1;
     case 1:
-        advance_animation_playback(arg0);
+        ((TObjMotion *)arg0)->advance_animation();
         arg0->timer--;
         if (arg0->timer < 0) {
             TBoss3Volopt::create_breakup_mdl((s32)gyaranzo_breakup_model_obj, (s32)gyaranzo_death_breakup_params, (s32)this->texlist, (s32)arg0->v2FC, (s32)this->rotation_y);
@@ -1287,7 +1286,7 @@ void TObjPlayer__sub_800D30A8(Obj_800D30A8 *enemy) {
         enemy->fB8 = 3;
         enemy->state = 1;
     case 1: {
-        advance_animation_playback(enemy);
+        ((TObjMotion *)enemy)->advance_animation();
         Vec_800D30A8 v = enemy->pos;
         v.x += enemy->vel.x;
         v.z += enemy->vel.z;
@@ -1387,7 +1386,7 @@ void TObjPlayer__sub_800D3314(u8 *arg0) {
         enemy_turn_toward_dest(arg0, *(s32 *)((s8 *)(*(u8 **)((s8 *)arg0 + 0x350)) + 8));
         ((void (*)(void *, Vec_800D3314, f32, f32))move_along_ground_avoiding_walls__15TObjEnemyCustomF3Vecff)(arg0, *(Vec_800D3314 *)((s8 *)arg0 + 0x390), *(f32 *)((s8 *)(*(u8 **)((s8 *)arg0 + 0x350)) + 4), *(f32 *)((s8 *)(*(u8 **)((s8 *)arg0 + 0xA4)) + 0xC));
         *(f32 *)((s8 *)arg0 + 0x39C) += *(f32 *)((s8 *)(*(u8 **)((s8 *)arg0 + 0x350)) + 4);
-        advance_animation_playback(arg0);
+        ((TObjMotion *)arg0)->advance_animation();
         apply_actor_gravity(arg0, 0, lbl_805DA258);
         if (*(s16 *)((s8 *)arg0 + 0x326) == 9) {
             *(f32 *)((s8 *)arg0 + 0x3A4) += *(f32 *)((s8 *)(*(u8 **)((s8 *)arg0 + 0x350)) + 4);
@@ -1457,7 +1456,7 @@ void TObjEneGyaranzo::render() {
                     if (temp_r3 == 1) {
                         this->draw();
                     } else {
-                        this->render_world_model();
+                        this->draw_motion_model();
                     }
                     ((Obj_800D35D8 *)((u8 *)this))->light.m7();
                 } else {
@@ -1466,7 +1465,7 @@ void TObjEneGyaranzo::render() {
             } else if (temp_r3 == 1) {
                 this->draw();
             } else {
-                this->render_world_model();
+                this->draw_motion_model();
             }
             pop_matrix();
             restore_scene_lighting();
@@ -1700,16 +1699,16 @@ u8 *TObjEneGyaranzo__ct(TObjEneGyaranzo *arg0, s32 arg1, u8 *arg2) {
     ((TObjEneGyaranzo *)(arg0))->apply_set_data(arg2);
     VecCopy((Vec *)((u8 *)arg0 + 0x290), (const Vec *)(VecCopy((Vec *)((u8 *)arg0 + 0x29C), (const Vec *)((u8 *)arg0 + 0x38))));
     *(s32 *)((s8 *)arg0 + 0xDC) = (s32) *(s32 *)((s8 *)(*(u8 * *)&gyaranzo_bml_resource) + 0x430);
-    arg0->action_table = (u8 *) gyaranzo_action_table;
+    arg0->action_table = gyaranzo_action_table;
     ((TObjMotion *)arg0)->set_field_d8((s32)arg0->action_table);
     init_collision_body_parts(arg0, (void *) lbl_804941F8, 1);
     arg0->variant = 0;
     arg0->movementParameters = (u8 *) lbl_804941DC;
     ((TObjEnemy *)arg0)->bind_enemy_combat_stats((u8 *)gyaranzo_boss_stats_handle, (u8 *)gyaranzo_boss_stats_ptr_b, (u8 *)gyaranzo_object_handle);
     init_params_from_table__15TObjEneGyaranzoFv(arg0);
-    arg0->m_b8 = 0;
-    ((TObjMotion *)arg0)->set_animation(arg0->m_b8);
-    ((TObjMotion *)arg0)->set_field_b8(arg0->m_b8);
+    arg0->requested_action = 0;
+    ((TObjMotion *)arg0)->set_animation(arg0->requested_action);
+    ((TObjMotion *)arg0)->set_field_b8(arg0->requested_action);
     arg0->hp = (s16) arg0->hpmax;
     arg0->tp = (s16) arg0->tpmax;
     arg0->referenceHp = (s16) arg0->hp;

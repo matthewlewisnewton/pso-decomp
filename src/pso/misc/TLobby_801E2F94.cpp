@@ -1,4 +1,5 @@
 #include "pso/render/DebugFont.h"
+#include "pso/render/render_util.h"
 #include "pso/misc/TLobby_801E2F94.h"
 #include "pso/player/TObjPlayer_803E21B8.h"
 #include "pso/enemy/TObjEneRe4Sorcerer_801E3F14.h"
@@ -19,6 +20,7 @@
 #include "pso/misc/TQuestVmDownLoadServer.h"
 #include "pso/misc/TWindowSubSymbolChatPartsSet.h"
 #include "pso/object/TObjFish.h"
+#include "pso/misc/TCameraCtrl_803D6538.h"
 
 extern "C" {
 
@@ -481,9 +483,11 @@ void TLobby__sub_801E3CF0(u32 *p) {
     *p = (v >> 24) | ((v >> 8) & 0xFF00) | ((v << 8) & 0xFF0000) | (v << 24);
 }
 
-int bind_motion_context(void*);
+}
 
-void TBoss8Dragon::render_model_tree(void* a1) { bind_motion_context(a1); TObjPlayer::render_tree(this); }
+void draw_motion(NJS_OBJECT *model, NJS_MOTION *motion, f32 frame) {
+    bind_motion_context((s32)motion, frame);
+    TObjPlayer::render_tree(model);
 }
 
 struct RecoveredGlobal_801E3E24_TKeyBoardControl__data_80506270 { s32 value; u8 remaining[0xAC]; };
@@ -535,11 +539,11 @@ void render_tick(void) {
     TParticleCtrl::begin_effect_render();
     GXSetZMode(1, 7, 0);
     TCameraCtrl::restore_full_screen_view();
-    TObjFish::set_cull_none();
+    set_cull_none();
     render_debug_text(lbl_805D3584);
     GXSetZMode(1, 3, 1);
     GXSetViewport((0.0f), (0.0f), (6.4e+02f), (4.8e+02f), (0.0f), (1.0f));
-    TObjFish::set_cull_none();
+    set_cull_none();
     TParticleCtrl::end_effect_render();
     fn_803DCEC8();
     fn_803DCF0C();

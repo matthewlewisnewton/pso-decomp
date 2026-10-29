@@ -2,6 +2,7 @@
 
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/TParticleCtrl.h"
 #include "pso/object/TObjDFDemo1.h"
 #include "pso/system/NinjaUtil.h"
 #include "pso/system/PadRumble.h"
@@ -153,7 +154,7 @@ void TObjDFDemo1::sub_8004E068() {
   model_render_flags |= 0x20000;
   TObjEneRe4Sorcerer__sub_801E3F1C(0.0f, self->f118);
   push_matrix();
-  TObjPlayer::set_global_flag();
+  set_motion_packed_rotation();
   post_translate_matrix(self->f100);
   rotate_matrix_y(0, this->m_10c);
   for (j = 0; j < 2; j++)
@@ -161,7 +162,7 @@ void TObjDFDemo1::sub_8004E068() {
     TObjFish::set_global_param(self->recs[j].b);
     draw_model_motion((void *)((*(&self->recs[j])).a), (void *)self->recs[j].c, this->m_114);
   }
-  TObjPlayer::clear_global_state();
+  clear_motion_packed_rotation();
   pop_matrix();
   model_render_flags &= ~0x20000;
   if (alpha < 1.0f)
@@ -187,7 +188,7 @@ void TObjDFDemo1::draw_fading_model() {
         TObjPlayer__sub_80052390(alpha);
     }
     push_matrix();
-    TObjPlayer::set_global_flag();
+    set_motion_packed_rotation();
     post_translate_matrix(arg0->f100);
     rotate_matrix_y(0, this->m_10c);
     max = 30.0f;
@@ -204,7 +205,7 @@ void TObjDFDemo1::draw_fading_model() {
         }
         draw_model_motion((void *)arg0->recs[i].a, (void *)arg0->recs[i].c, f);
     }
-    TObjPlayer::clear_global_state();
+    clear_motion_packed_rotation();
     pop_matrix();
     if (alpha < 1.0f) {
         TObjPlayer::sync_player_globals();
@@ -223,7 +224,6 @@ void TObjDFDemo1::render() { draw_fading_model(); sub_8004E068(); }
 #include "pso/boss/TBoss3Volopt.h"
 #include "pso/boss/TBoss4Type2_800874F4.h"
 #include "pso/unk/text_80087278.h"
-#include "pso/TParticleCtrl.h"
 
 struct DFDemo1Emitter {
     s32 effect;
@@ -234,7 +234,7 @@ struct DFDemo1Emitter {
 
 struct DFDemo1Fields {
     u8 pad0[0x90];
-    TBoss4Type2 *emitters[4];
+    TParticleCtrl *emitters[4];
     u8 padA0[0x100 - 0xA0];
     f32 pos[3];
     s32 m_10c;
@@ -274,7 +274,7 @@ void TObjDFDemo1::run_task() {
                 p[2] = -s * e->offset[0] + c * e->offset[2];
                 p[1] = e->offset[1];
                 vec3_add_to(p, self->pos);
-                self->emitters[i] = (TBoss4Type2 *)create_particle_emitter(p, lbl_80485590[i].effect);
+                self->emitters[i] = create_particle_emitter(p, lbl_80485590[i].effect);
                 if (self->emitters[i] != NULL) {
                     self->emitters[i]->set_flags(0x40);
                 }
@@ -282,7 +282,7 @@ void TObjDFDemo1::run_task() {
         }
     }
     if (self->timer >= 0x46 && self->timer <= 0x82) {
-        TBoss4Type2 *fx = (TBoss4Type2 *)spawn_particle_effect(self->pos, 0x14E);
+        TParticleCtrl *fx = (TParticleCtrl *)spawn_particle_effect(self->pos, 0x14E);
         if (fx != NULL) {
             fx->set_flags(0x40);
         }
@@ -331,9 +331,6 @@ TObjDFDemo1::~TObjDFDemo1() {
         }
     }
     restore_player_cameras();
-}
-extern "C" {
-
 }
 
 #pragma pop

@@ -15,7 +15,6 @@ struct V_Sub_800c38d0 : Base_Sub_800c38d0 {
 };
 extern "C" {
 
-s32 advance_animation_playback();
 s32 TObjEneMe3SinowZoa__sub_800D758C(void *);
 s32 enemy_clear_target__12TObjEneDD_STFUs(void *);
 
@@ -23,7 +22,7 @@ void TObjEneDD::handle_state(s32 arg1) {
     u8 *arg0 = (u8 *)this;
     switch (arg1) {
     case 4:
-        this->m_b8 = 1;
+        this->requested_action = 1;
         this->vfunc_95();
         ((TObjEneRe2Flower *)arg0)->clear_child_flags();
         *(s32 *)((s8 *)arg0 + 0x3C4) = (s32) (*(s32 *)((s8 *)arg0 + 0x3C4) | 8);
@@ -43,7 +42,7 @@ void TObjEneDD::handle_state(s32 arg1) {
     case 1:
         return;
     case 0:
-        advance_animation_playback();
+        advance_animation();
         this->vfunc_102();
         this->vfunc_88();
         return;

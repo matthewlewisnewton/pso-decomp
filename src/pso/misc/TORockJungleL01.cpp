@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/render/render_util.h"
 #include "pso/object/TObjFish.h"
 #include "pso/misc/TORockJungleL01.h"
 #include "pso/boss/TBoss8Dragon.h"
@@ -54,12 +55,12 @@ void TORockJungleL01::vfunc_15() {
     if ((s32) this->m_d0 != 0) {
         ((VObj_8029c054_8029C030*)(arg0 + 0xB4))->m7();
     }
-    TObjFish::set_cull_none();
+    set_cull_none();
 }
 void TORockJungleL01::vfunc_14() {
     Rd_8029C094 *arg0 = (Rd_8029C094 *)this;
     Vec_8029C094 v;
-    TObjFish::set_cull_back();
+    set_cull_back();
     matrix_mult_vec(0, arg0->pos, &v);
     if (-v.z < 38.0f) {
         ((RenderFadeState *)(&arg0->fade))->fadeOut();
@@ -315,7 +316,7 @@ struct Rock_8029C390 {
 
 extern "C" {
 s32 init_collision_body_parts(void *, void *, int);
-void *TORockCaveBrakable__ct(void *arg0);
+void *__ct__18TORockCaveBrakableFv(void *arg0);
 extern s32 __vt__15TORockJungleM01[];
 extern s32 TORockJungleM01_name_ref;
 
@@ -336,7 +337,7 @@ int update__15RenderFadeStateFv(void*);
 void __dl__7TObjectFPv(void *);
 void *__dt__18TORockCaveBrakableFv(void *arg0, s16 arg1);
 
-void TORockJungleM01::run_task() { update__15RenderFadeStateFv((char*)this + 0xbc); update_break_state(); }
+void TORockJungleM01::run_task() { update__15RenderFadeStateFv((char*)this + 0xbc); TORockCaveBrakable::run_task(); }
 
 void TORockJungleM01::vfunc_18() {
     s32 arg0 = (s32)this;
@@ -366,7 +367,7 @@ void TORockJungleM01::vfunc_16() {
         chip.res2 = get_jungle_rock_texture_resource(3);
         o = __nw__7TObjectFUl(0x234);
         if (o != NULL) {
-            construct_debris__8TObjChipFPvPvPv((u8 *)o, (u8 *)tl_05, (u8 *)&chip);
+            __ct__8TObjChipFP7TObjectP14TObjChipParams((u8 *)o, (u8 *)tl_05, (u8 *)&chip);
         }
     }
 }
@@ -401,7 +402,7 @@ u8 *TORockJungleM01__ct(u8 *rock_cave_brakable, s32 arg1) {
     struct CopyStack_8029C588 { u8 bytes[0x3C]; };
     CopyStack_8029C588 copy_storage_8029C588;
     s32 temp_r0;
-    TORockCaveBrakable__ct((rock_cave_brakable));
+    __ct__18TORockCaveBrakableFv((rock_cave_brakable));
     *(s32 **)((s8 *)rock_cave_brakable + 0x18) = &(*(RecoveredGlobal_8029C588___vt__15TORockJungleM01 *)&__vt__15TORockJungleM01).value;
     __ct__15RenderFadeStateFv(((void *)(rock_cave_brakable + 0xBC)));
     *(s32 *)((s8 *)rock_cave_brakable + 0) = (s32) TORockJungleM01_name_ref;
@@ -429,12 +430,12 @@ void TORockJungleM01::vfunc_15() {
     if ((s32) this->m_d8 != 0) {
         ((VObj_8029C320*)(arg0 + 0xBC))->m7();
     }
-    TObjFish::set_cull_none();
+    set_cull_none();
 }
 void TORockJungleM01::vfunc_14() {
     Rd_8029C6FC *arg0 = (Rd_8029C6FC *)this;
     Vec_8029C6FC v;
-    TObjFish::set_cull_back();
+    set_cull_back();
     matrix_mult_vec(0, arg0->pos, &v);
     if (-v.z < 38.0f) {
         ((RenderFadeState *)(&arg0->fade))->fadeOut();
@@ -513,7 +514,7 @@ extern "C" {
 u8 * get_bml_model(void *, int);
 extern u32 TORockJungleS01__bml_resource;
 s32 init_collision_body_parts(void *, void *, int);
-void *TORockCaveBrakable__ct(void *arg0);
+void *__ct__18TORockCaveBrakableFv(void *arg0);
 extern s32 __vt__15TORockJungleS01[];
 extern s32 TORockJungleS01__name;
 
@@ -563,7 +564,7 @@ void TORockJungleS01::vfunc_16() {
         p.f44 = get_jungle_rock_texture_resource(1);
         o = __nw__7TObjectFUl(0x234);
         if (o != NULL) {
-            construct_debris__8TObjChipFPvPvPv((u8 *)o, (u8 *)tl_05, (u8 *)&p);
+            __ct__8TObjChipFP7TObjectP14TObjChipParams((u8 *)o, (u8 *)tl_05, (u8 *)&p);
         }
     }
 }
@@ -597,7 +598,7 @@ u8 *TORockJungleS01__ct(TORockJungleS01 *rock_jungle_s01, s32 arg1) {
     struct CopyStack_8029C9C8 { u8 bytes[0x3C]; };
     CopyStack_8029C9C8 copy_storage_8029C9C8;
     s32 temp_r0;
-    TORockCaveBrakable__ct((rock_jungle_s01));
+    __ct__18TORockCaveBrakableFv((rock_jungle_s01));
     *(s32 **)((s8 *)rock_jungle_s01 + 0x18) = &(*(RecoveredGlobal_8029C9C8___vt__15TORockJungleS01 *)&__vt__15TORockJungleS01).value;
     *(s32 *)((s8 *)rock_jungle_s01 + 0) = (s32) TORockJungleS01__name;
     ((TORockJungleS01 *)(rock_jungle_s01))->apply_object_set_data((void *)arg1);

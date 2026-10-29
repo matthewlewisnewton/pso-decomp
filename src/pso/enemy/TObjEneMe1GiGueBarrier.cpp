@@ -1,8 +1,6 @@
 #include "types.h"
 #include "pso/enemy/TObjEneMe1GiGueBarrier.h"
-#include "pso/misc/obj_band.h"
 #include "pso/object/TObject_80019A50.h"
-#include "pso/unk/text_80143818.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/system/vector.h"
 #include "pso/enemy/TObjEneMe1GiGue.h"
@@ -15,6 +13,9 @@
 #include "pso/object/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/map/FloorArea.h"
+
+// The hand-written constructors below call the base one by its symbol.
+extern "C" u8 *__ct__10TObjMotionFP7TObject(u8 *self);
 
 #pragma readonly_strings on
 
@@ -47,7 +48,6 @@ struct VObj_18_ca64a0 : VBase_18_ca64a0 {
 
 extern "C" {
 void *__nw__7TObjectFUl(int);
-s32 advance_animation_playback(void *);
 s32 play_sound_effect(int, void *, int, int);
 s32 is_active_state__22TObjEneMe1GiGueBarrierFv(int);
 u16 get_entity_id(void *);
@@ -103,13 +103,13 @@ void TObjEneMe1GiGueBarrier::run_task() {
     }
     VecCopy((Vec *)(arg0 + 0x38), (const Vec *)(((TObjEneMe1GiGueBarrier *)temp_r0)->update_and_get_pos()));
     this->rotation_y = ((TObjEneMe1GiGueBarrier *)(this->m_fc))->get_timer();
-    advance_animation_playback(arg0);
+    ((TObjMotion *)arg0)->advance_animation();
     this->m_108 = (this->m_108 - 1);
     switch (this->m_104) {
     case 0:
-        if (this->animationFlags & 0x10) {
+        if (this->motion_flags & 0x10) {
             this->m_104 = 1;
-            this->m_b8 = 1;
+            this->requested_action = 1;
             if (get_current_floor_area() == AREA_TOWER) {
                 play_sound_effect(0x4003A316, (u8 *)&this->position, 0, 0);
             } else {
@@ -118,7 +118,7 @@ void TObjEneMe1GiGueBarrier::run_task() {
         }
         break;
     case 2:
-        if (this->animationFlags & 0x10) {
+        if (this->motion_flags & 0x10) {
             queue_destruction__7TObjectFv((arg0));
         }
         break;
@@ -126,7 +126,7 @@ void TObjEneMe1GiGueBarrier::run_task() {
     case 1:
         if (((s32) this->m_108 <= 0) || (is_active_state__22TObjEneMe1GiGueBarrierFv(this->m_fc) != 0)) {
             this->m_104 = 2;
-            this->m_b8 = 2;
+            this->requested_action = 2;
         }
         break;
     }
@@ -140,7 +140,7 @@ TObjEneMe1GiGueBarrier::~TObjEneMe1GiGueBarrier() {
 
 u8 *TObjEneMe1GiGueBarrier__ct(TObjEneMe1GiGueBarrier *ene_me1_gi_gue_barrier, s32 arg1, u8 *arg2) {
     u8 *temp_r5;
-    TObjMotion__ct((u8 *)ene_me1_gi_gue_barrier);
+    __ct__10TObjMotionFP7TObject((u8 *)ene_me1_gi_gue_barrier);
     *(s32 **)((s8 *)ene_me1_gi_gue_barrier + 0x18) = &(*(RecoveredGlobal_80325BCC___vt__22TObjEneMe1GiGueBarrier *)&__vt__22TObjEneMe1GiGueBarrier).value;
     *(s32 *)((s8 *)ene_me1_gi_gue_barrier + 0) = (s32) ((s32)lbl_805D4198);
     *(u8 **)((s8 *)ene_me1_gi_gue_barrier + 0xFC) = arg2;
@@ -155,9 +155,9 @@ u8 *TObjEneMe1GiGueBarrier__ct(TObjEneMe1GiGueBarrier *ene_me1_gi_gue_barrier, s
     ene_me1_gi_gue_barrier->texlist = (s32) *(s32 *)((s8 *)temp_r5 + 0x2C);
     set_field_d8__10TObjMotionFl((void *)ene_me1_gi_gue_barrier, &TObjEneMe1GiGueBarrier__animation_definitions.value, (int)temp_r5);
     ((TObjMotion *)ene_me1_gi_gue_barrier)->set_field_dc((int) (*(s32 *)((s8 *)(*(u8 * *)&TObjEneMe1GiGueBarrier__barrier_resource_object) + 0x430)));
-    ene_me1_gi_gue_barrier->m_b8 = 0;
-    ((TObjMotion *)ene_me1_gi_gue_barrier)->set_animation((ene_me1_gi_gue_barrier->m_b8));
-    ((TObjMotion *)ene_me1_gi_gue_barrier)->set_field_b8(ene_me1_gi_gue_barrier->m_b8);
+    ene_me1_gi_gue_barrier->requested_action = 0;
+    ((TObjMotion *)ene_me1_gi_gue_barrier)->set_animation((ene_me1_gi_gue_barrier->requested_action));
+    ((TObjMotion *)ene_me1_gi_gue_barrier)->set_field_b8(ene_me1_gi_gue_barrier->requested_action);
     return (u8 *)ene_me1_gi_gue_barrier;
 }
 

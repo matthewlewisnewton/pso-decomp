@@ -1,5 +1,5 @@
 #include "types.h"
-#include "pso/player/TObjPlayer_80141D1C.h"
+#include "pso/render/render_util.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/player/TObjPlayer.h"
@@ -13,7 +13,7 @@ struct Self_800FFB38 {
 extern "C" {
 f32 sin_table_lookup(s32, f32, f32);
 s32 TObjMotion::get_item_ptr(s32 arg1) {
-    return (*(s32 *)&this->motion_buffer) + (arg1 * 0x30);
+    return (*(s32 *)&this->joint_matrices) + (arg1 * 0x30);
 }
 #pragma push
 #pragma fp_contract on
@@ -61,13 +61,13 @@ void TAdSinglePlyChrSelectGC::transform_vertex_list() {
         stride = (kind + 3) * 4;
         p += 2;
         while (n > 0) {
-            v[0] = TAdSinglePlyChrSelectGC__sub_80141EA0(p[0]);
-            v[1] = TAdSinglePlyChrSelectGC__sub_80141EA0(p[1]);
-            v[2] = TAdSinglePlyChrSelectGC__sub_80141EA0(p[2]);
+            v[0] = bits_to_f32(p[0]);
+            v[1] = bits_to_f32(p[1]);
+            v[2] = bits_to_f32(p[2]);
             if (((TObjPlayer *)this)->interpolate_along_curve(v) != 0) {
-                p[0] = TAdSinglePlyChrSelectGC__sub_80141E8C(v[0]);
-                p[1] = TAdSinglePlyChrSelectGC__sub_80141E8C(v[1]);
-                p[2] = TAdSinglePlyChrSelectGC__sub_80141E8C(v[2]);
+                p[0] = f32_bits(v[0]);
+                p[1] = f32_bits(v[1]);
+                p[2] = f32_bits(v[2]);
             }
             p = (u32 *)((u8 *)p + stride);
             n--;

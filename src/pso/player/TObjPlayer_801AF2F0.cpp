@@ -1,4 +1,5 @@
 #include "pso/system/ChunkMaterialState.h"
+#include "pso/player/TObjPlayer_803E4954.h"
 #include "types.h"
 #include "pso/system/FlagWord.h"
 #include "pso/protocol/protocol_types.h"
@@ -7,8 +8,8 @@
 #include "pso/boss/TBoss3VoloptHiraisin.h"
 #include "pso/misc/TLockOnCursor.h"
 #include "pso/misc/MaterialColorFade.h"
-#include "pso/object/obj_band.h"
-#include "pso/render/depth_buffer.h"
+#include "pso/object/TObjMotion.h"
+#include "pso/render/render_util.h"
 #include "pso/system/vector.h"
 #include "pso/enemy/TObjEneRecon.h"
 #include "pso/misc/TRaderMapCore.h"
@@ -54,7 +55,7 @@
 #include "pso/misc/TWindowCtrl.h"
 #include "pso/object/TObjFish.h"
 #include "pso/map/FloorArea.h"
-#include "pso/player/TObjPlayer_80141D1C.h"
+
 #include "pso/misc/TLobby_80207644.h"
 #include "pso/player/PhotonBlastGauge.h"
 
@@ -2025,9 +2026,7 @@ void TObjPlayer__sub_8013A748(void *);
 void try_add_target_candidate__11TMainCursorFPvPvPvPv(void *c, void *self, void *owner, void *p);
 u32 TLockOnCursor__ct(u32, void *, s32);
 u16 get_id__11TMainCursorFv(void* p);
-s32 draw_model_with_callback__10TObjPlayerFllf(void *, s32, s32, f32);
 s32 set_animation__10TObjMotionFs(s32, s32);
-s32 advance_animation_playback(void *);
 s32 TMainCursor__sub_80154098(int, int, int);
 s32 TMainCursor__sub_801540B8(int, int, int);
 u16 register_entity_by_id(void *obj);
@@ -2035,7 +2034,6 @@ u8 * find_entity_by_id(u16);
 s32 test_player_overlap_with_players(Obj_801B5DDC *, Obj_801B5DDC *, Vec_801B5DDC *, Hit_801B5DDC *);
 void check_enemy_body_collisions(void *arg0);
 int clear_collision_bodies__14TObjCollidableFv(void*);
-s32 is_state_ec1_ed3__10TObjPlayerFv(void *);
 s32 get_dest_area__17TObjAreaWarpQuestFv(void *);
 void fn_8019DD24(void *p, u32 v);
 u16 TObjRoomId__sub_801A1DB8(s32);
@@ -2274,7 +2272,7 @@ void TObjPlayer__sub_801BF6C0(void *p, f32 v);
 void TObjPlayer__sub_801BF6C8(s32, f32, f32);
 void TObjPlayer__sub_801BF6D4(void *p, s16 v);
 void TObjPlayer__sub_801BF6DC(void *p, s16 v);
-s32 set_anim_state__10TObjPlayerFs(void *, s32);
+s32 set_anim_state__10TObjPlayerFs(void *, s16);
 s32 set_action_id__10TObjPlayerFs(void *, s32);
 int TObjPlayer__sub_801BF840(void *p);
 int TObjPlayer__sub_801BF8AC(void *p);
@@ -2455,7 +2453,6 @@ void obj_copyVec2_0(u8 *d, u8 *s);
 void reset_cameras_to_actor(void *actor, s32 arg1);
 void set_shadow_material_state(void);
 void direction_to_rotation_xz(u8 *arg0, s32 *arg1, s32 *arg2);
-void draw_motion_model_saving_joints(TObjPlayer *arg0);
 void mask_action_buttons(void *p, u32 v);
 void emit_sand_footstep_effect(s32 arg0);
 void emit_water_footstep_effect(s32 arg0);
@@ -2532,7 +2529,7 @@ extern u8 lbl_80446F50[];
 extern u8 lbl_80446F5C[];
 extern const f64 lbl_80446F68;
 extern u8 main_phase_state[];
-extern Vec_801B6964 lbl_8050BEE0[];
+extern Vec_801B6964 scratch_vec[];
 extern DeathItemPosition lbl_8050BF60;
 extern Color_801B6964 player_feedback_light_color[];
 extern void *player_slot_table[];
@@ -3558,7 +3555,7 @@ void draw__10TObjPlayerFPvf(void *player, f32 farg0) {
     push_matrix();
     translate_matrix_vec3((u8 *)(0), (u8 *)(((s32 (*)(void *))get_position_ptr__10TObjPlayerFv)(player)));
     rotate_matrix_y(0, ((TObjPlayer *)player)->rotation_y);
-    draw_model_with_callback__10TObjPlayerFllf(player, ((TObjPlayer *)player)->unknownF8, *(s32 *)((s8 *)player + 0xE0), farg0);
+    ((TObjPlayer *)player)->calc_joint_matrices(((TObjPlayer *)player)->current_motion, farg0, *(s32 *)((s8 *)player + 0xE0));
     pop_matrix();
 }
 
@@ -3566,7 +3563,7 @@ void TObjPlayer::draw() {
     push_matrix();
     translate_matrix_vec3((u8 *)(0), (u8 *)(((s32 (*)(void *))get_position_ptr__10TObjPlayerFv)(this)));
     rotate_matrix_y(0, this->rotation_y);
-    ((s32 (*)(void *, s32, f32, s32))draw_model_with_callback__10TObjPlayerFllf)(this, this->unknownF8, (*(f32 *)&TObjPlayer__data_805DC278), *(s32 *)((s8 *)this + 0xE0));
+    calc_joint_matrices(this->current_motion, *(f32 *)&TObjPlayer__data_805DC278, *(s32 *)((s8 *)this + 0xE0));
     pop_matrix();
 }
 
@@ -4777,10 +4774,10 @@ int TObjPlayer::update_foot_stamp(int arg1) {
 }
 
 s32 test_ordered_anim_markers__10TObjPlayerFPvff(u8 *arg0, f32 farg0, f32 farg1) {
-    if (objInBand((GameObj *)arg0, (f32)farg0) != 0) {
+    if (((TObjMotion *)arg0)->is_passing_frame((f32)farg0) != 0) {
         return 1;
     }
-    return (objInBand((GameObj *)arg0, (f32)farg1) != 0) ? 2 : 0;
+    return (((TObjMotion *)arg0)->is_passing_frame((f32)farg1) != 0) ? 2 : 0;
 }
 
 void TObjPlayer::emit_footstep_effect(f32 farg0, f32 farg1) {
@@ -5763,16 +5760,16 @@ void spawn_level_change_feedback__10TObjPlayerFv(s32 arg0, s32 arg1) {
         __ct__14TFontSmallHelpFUlUllUl(p, ((s32 (*)(s32))get_entity_id)(arg0), -1, 0x3C, arg1);
     }
     TObjPlayer::new_child_object(((s32 (*)(s32))get_entity_id)(arg0));
-    lbl_8050BEE0[0].x = 0.0f;
-    lbl_8050BEE0[0].y = -1.0f;
-    lbl_8050BEE0[0].z = 0.0f;
+    scratch_vec[0].x = 0.0f;
+    scratch_vec[0].y = -1.0f;
+    scratch_vec[0].z = 0.0f;
     player_feedback_light_color[0].r = 1.0f;
     player_feedback_light_color[0].g = 1.0f;
     player_feedback_light_color[0].b = 0.8f;
     player_feedback_light_color[0].a = 0.63f;
     p = ((void * (*)(u32))__nw__7TObjectFUl)(0x64);
     if (p != NULL) {
-        ((void (*)(void *, Color_801B6964 *, f32, Vec_801B6964 *, s32, s32, s32))construct_actor_light_task)(p, player_feedback_light_color, 0.2f, lbl_8050BEE0, 10, arg0, tl_07);
+        ((void (*)(void *, Color_801B6964 *, f32, Vec_801B6964 *, s32, s32, s32))construct_actor_light_task)(p, player_feedback_light_color, 0.2f, scratch_vec, 10, arg0, tl_07);
     }
     publish_actor_light_scalars(((s32 (*)(s32))get_entity_id)(arg0), 1.0f, 0.5f);
 }
@@ -7029,7 +7026,7 @@ void send_6x26_unequip_item__10TObjPlayerFPvPv(void *self, void *item) {
 void TObjPlayer::equip_item_to_slot(void *item, s32 slot) {
     Player_801B9F40 *p = (Player_801B9F40 *)this;
     void *cur;
-    if (is_state_ec1_ed3__10TObjPlayerFv(item) != 0) {
+    if (((TItem *)item)->is_unit() != 0) {
         if (slot < 9 || slot > 12) {
             slot = 9;
         }
@@ -7171,7 +7168,7 @@ void TObjPlayer::freeze_all_players() {
     ((s32 (*)(s32 *))foreach_player__10TObjPlayerFv)(&start_freeze_self__10TObjPlayerFv.value);
 }
 
-s32 TObjPlayer::start_camera_pan(s16 arg1) {
+s32 TObjPlayer::start_camera_pan(s16 arg1, s32 angle) {
     u8 *arg0 = (u8 *)this;
     if (*(s32 *)((s8 *)arg0 + 0x320) & 0x1E000) {
         return 0;
@@ -7181,13 +7178,13 @@ s32 TObjPlayer::start_camera_pan(s16 arg1) {
     }
     this->actorFlags = (s32) (this->actorFlags | 0x10000);
     ((s32 (*)(void *))set_action_id__10TObjPlayerFs)(arg0 + 0x5F0);
-    ((s32 (*)(void *, s16))set_anim_state__10TObjPlayerFs)(arg0 + 0x5F0, this->m_b8);
+    ((s32 (*)(void *, s16))set_anim_state__10TObjPlayerFs)(arg0 + 0x5F0, this->requested_action);
     ((TObjPlayer *)(arg0 + 0x5F0))->set_state(0);
     ((TObjPlayer *)(arg0 + 0x5F0))->set_anim_state(this->rotation_y);
     return 1;
 }
 
-s32 TObjPlayer::init_photon_blast(s32 arg1) {
+s32 TObjPlayer::init_photon_blast(s16 arg1) {
     u8 *arg0 = (u8 *)this;
     if (*(s32 *)((s8 *)arg0 + 0x320) & 0x1E000) {
         return 0;
@@ -7303,7 +7300,7 @@ void handle_6x1F_set_player_floor(void *arg0) {
                 m2.id = get_entity_id(pl);
                 m2.f8 = TObjPlayer__sub_801BEB0C(pl);
                 m2.floor = ((TBoss7Crawfish *)pl)->get_floor();
-                m2.speed = ((TObjChara *)pl)->get_speed();
+                m2.speed = ((TObjChara *)pl)->get_frame();
                 ((TObjPlayer *)(&m2))->send_player_floor_packet((void*)m.slot);
             }
         }
@@ -7440,15 +7437,15 @@ void draw_body__10TObjPlayerFPvi(u8 *player, s32 arg1) {
         set_shadow_material_state();
     }
     TObjFish::set_global_param((s32)(player + 0xCF4));
-    TObjPlayer::set_global_flag();
+    set_motion_packed_rotation();
     if (arg1 == 2) {
-        ((TObjPlayer *)player)->animationFlags = (s32) (((TObjPlayer *)player)->animationFlags | 0x400);
-        draw_motion_model_saving_joints((TObjPlayer *)(player));
+        ((TObjPlayer *)player)->motion_flags = (s32) (((TObjPlayer *)player)->motion_flags | 0x400);
+        ((TObjPlayer *)player)->draw_saving_joints();
     } else {
-        ((TObjPlayer *)player)->animationFlags = (s32) (((TObjPlayer *)player)->animationFlags & 0xFFFFFBFF);
-        ((TObjPlayer *)player)->draw_model_with_callback();
+        ((TObjPlayer *)player)->motion_flags = (s32) (((TObjPlayer *)player)->motion_flags & 0xFFFFFBFF);
+        ((TObjPlayer *)player)->draw_saving_joints_checked();
     }
-    TObjPlayer::clear_global_state();
+    clear_motion_packed_rotation();
     ((TObjPlayer *)player)->draw_head_attachments();
     ((TObjPlayer *)(player + 0x608))->write_ids();
     pop_matrix();
@@ -7481,7 +7478,7 @@ void render__10TObjPlayerFv(u8 *arg0) {
                 TParticleCtrl::end_effect_render();
                 select_actor_lighting((s32)arg0);
                 if ((((s32 (*)(void *))check_flag_800000__10TObjPlayerFPv)(arg0) != 0) && (((s32 (*)(void *))obj_isState2_324__9TObjCharaFv)(arg0) != 0)) {
-                    ((TObjChara *)arg0)->get_speed();
+                    ((TObjChara *)arg0)->get_frame();
                     ((s32 (*)(void *))draw__10TObjPlayerFPvf)(arg0);
                 } else if (!(((TObjPlayer *)arg0)->m_flags & 0x400)) {
                     model_render_flags |= 1;
@@ -7490,27 +7487,27 @@ void render__10TObjPlayerFv(u8 *arg0) {
                 }
                 save_render_material_state(arg0 + 0x608);
                 ((TObjPlayer *)arg0)->apply_material_color_override();
-                set_depth_buffer_settings_id(1);
+                set_draw_list_mask(1);
                 ((s32 (*)(void *))TObjPlayer__sub_801BAC48)(arg0);
                 ((TObjPlayer *)(arg0 + 0x608))->write_ids();
                 ((s32 (*)(void))restore_scene_lighting)();
             }
         } else {
             obj_setFlags30(arg0, 0x08000000);
-            TObjPlayer::set_global_flag();
-            ((TObjChara *)arg0)->get_speed();
+            set_motion_packed_rotation();
+            ((TObjChara *)arg0)->get_frame();
             ((s32 (*)(void *))draw__10TObjPlayerFPvf)(arg0);
-            TObjPlayer::clear_global_state();
+            clear_motion_packed_rotation();
             save_render_material_state(arg0 + 0x608);
             ((TObjPlayer *)arg0)->apply_material_color_override();
             ((s32 (*)(void *))TObjPlayer__sub_801BAC48)(arg0);
             ((TObjPlayer *)(arg0 + 0x608))->write_ids();
         }
     } else {
-        TObjPlayer::set_global_flag();
-        ((TObjChara *)arg0)->get_speed();
+        set_motion_packed_rotation();
+        ((TObjChara *)arg0)->get_frame();
         ((s32 (*)(void *))draw__10TObjPlayerFPvf)(arg0);
-        TObjPlayer::clear_global_state();
+        clear_motion_packed_rotation();
         save_render_material_state(arg0 + 0x608);
         ((TObjPlayer *)arg0)->apply_material_color_override();
         ((s32 (*)(void *))TObjPlayer__sub_801BAC48)(arg0);
@@ -7524,7 +7521,7 @@ void TObjPlayer::render_body_pass(f32 f) {
     TParticleCtrl::end_effect_render();
     select_actor_lighting((s32)self);
     if (((s32 (*)(void *))check_flag_800000__10TObjPlayerFPv)(self) != 0 && ((s32 (*)(void *))obj_isState2_324__9TObjCharaFv)(self) != 0) {
-        draw__10TObjPlayerFPvf(self, ((TObjChara *)self)->get_speed());
+        draw__10TObjPlayerFPvf(self, ((TObjChara *)self)->get_frame());
     } else if (!(*(u16 *)(self + 4) & 0x400)) {
         model_render_flags |= 1;
         draw_body__10TObjPlayerFPvi(self, (s32)f);
@@ -7532,7 +7529,7 @@ void TObjPlayer::render_body_pass(f32 f) {
     }
     save_render_material_state((u8 *)&this->render_material_state);
     apply_material_color_override();
-    set_depth_buffer_settings_id(1);
+    set_draw_list_mask(1);
     ((void (*)(void *))TObjPlayer__sub_801BAC48)(self);
     ((TObjPlayer *)(self + 0x608))->write_ids();
     restore_scene_lighting();
@@ -7569,7 +7566,7 @@ void run_task__10TObjPlayerFv(TObjPlayer *player) {
     player->update_position_history();
     player->update_status_effects();
     ((s32 (*)(void *, s16, s32))run_action_state_phase__10TObjPlayerFisi)(player, player->mode, 1);
-    advance_animation_playback(player);
+    player->advance_animation();
     ((TObjChara *)player)->calc_attach_pos();
     ((TBoss3VoloptHiraisin *)player)->copy_position();
     ((TObjPlayer *)((u8 *)player + 0x84C))->copy_offset_position(player);
@@ -7897,7 +7894,6 @@ void TObjPlayer::init_collision_body() {
 
 struct Cand_801BBE54 { s16 val; Obj_801BC068 *obj; };
 struct Cmd_801BBE54 { u16 hdr; u16 client; s32 area; u8 pos[12]; };
-f32 horizontal_distance_squared(void *, void *);
 extern const f32 lbl_805DC2D8;
 
 s32 TObjPlayer::send_respawn_position() {
@@ -7922,7 +7918,7 @@ s32 TObjPlayer::send_respawn_position() {
             for (i = 0; i < 12; i++) {
                 if (i != (u16)get_entity_id(this)) {
                     u8 *p = (u8 *)((u32 (*)(int))get_player_by_client_id)(i);
-                    if (p != NULL && horizontal_distance_squared(obj->pos, p + 0x38) < range) {
+                    if (p != NULL && horizontal_distance_squared((const Vec *)obj->pos, (const Vec *)(p + 0x38)) < range) {
                         ok = 0;
                         break;
                     }

@@ -6,7 +6,7 @@
 #include "pso/TMainTask.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/TTecZondeEff.h"
-#include "pso/animation/ActorAnimationState.h"
+#include "pso/object/TObjMotion.h"
 #include "pso/boss/TBoss3Volopt.h"
 #include "pso/boss/TBoss3VoloptHiraisin.h"
 #include "pso/boss/TBoss4Type2.h"
@@ -41,7 +41,6 @@ void matrix_mult_vec(s32 matrix, const Vec *in, Vec *out);
 s32 rotate_matrix_y(s32 matrix, s32 angle);
 s32 push_matrix();
 s32 post_translate_matrix(const void *pos);
-s32 advance_animation_playback(void *obj);
 void *find_entity_by_id(u16 id);
 void init_collision_body_parts(void *obj, void *parts, s32 count);
 void free_collision_body_parts(void *obj);
@@ -50,8 +49,7 @@ s32 minimap_render_dot(void *pos, s32 color, s32 a2, s32 a3);
 f32 fabs_float(f32 x);
 void *__construct_array(void *array, void *ctor, void *dtor, u32 size, u32 count);
 extern Mtx34 identity_matrix;
-extern Mtx34 *anim_model_matrix_array;
-extern s32 lbl_805D586C;
+extern s32 registered_player_count;
 
 // TBoss3Volopt.cpp defines these; its header does not declare them yet.
 }
@@ -71,7 +69,7 @@ static TBoss3VoloptBreakupPieces *TBoss3VoloptP01__breakup_model;
 static TBoss3VoloptChunkList *volopt_p01_chunk_list;
 static u8 *volopt_p01_breakup_color_ptr;
 
-static AnimationAction volopt_p01_action_table[6] = {
+static TObjMotionAction volopt_p01_action_table[6] = {
     { 1, 0, 0xF, 0.7f, 0x0 },
     { 1, 0, 0xF, 1.0f, 0x1 },
     { 2, 0, 0x0, 0.5f, 0x4 },
@@ -162,9 +160,9 @@ void TBoss3VoloptP01::init_params() {
     variant = 0;
     movementParameters = &volopt_p01_movement;
     recalc_combat_stats(volopt_p01_boss_stat_handle_a, volopt_p01_shared_handler_b, volopt_p01_object_handle, 1.0f, 1.0f);
-    m_b8 = 0;
-    set_animation(m_b8);
-    set_field_b8(m_b8);
+    this->requested_action = 0;
+    set_animation(this->requested_action);
+    set_field_b8(this->requested_action);
     hp = hpmax;
     tp = tpmax;
     referenceHp = hp;
@@ -326,11 +324,11 @@ void TBoss3VoloptP01::update_state() {
                 state = 2;
             }
         } else {
-            m_b8 = 3;
+            this->requested_action = 3;
             state = 1;
         case 1:
-            advance_animation_playback(this);
-            if (m_b4 != 8) {
+            advance_animation();
+            if (this->action_flags != 8) {
                 flags = m_388;
                 if (flags & 0x10000) {
                     m_388 = flags & ~1;
@@ -366,7 +364,7 @@ void TBoss3VoloptP01::update_breakup() {
         actorFlags |= 0x44040000;
         actorFlags &= ~0x20000000;
         ((TBoss3VoloptP01Collision *)bodies)->flags |= 0x1000;
-        m_b8 = 4;
+        this->requested_action = 4;
         state = 1;
         *(s16 *)&timer = 0x5A;
         TObjPlayer::spawn_effect_f8((s32)&m_2fc, *(s16 *)&timer);
@@ -377,7 +375,7 @@ void TBoss3VoloptP01::update_breakup() {
         }
         state = 1;
     case 1:
-        advance_animation_playback(this);
+        advance_animation();
         (*(s16 *)&timer)--;
         if (*(s16 *)&timer < 0) {
             TBoss3Volopt::create_breakup_mdl((s32)TBoss3VoloptP01__breakup_model, (s32)&volopt_p01_breakup_params, texlist, (s32)&m_2fc, rotation_y);
@@ -400,8 +398,8 @@ void TBoss3VoloptP01::sub_80043758() {
     switch (state) {
     case 0:
         actorFlags |= 0x40000;
-        m_b8 = 0;
-        advance_animation_playback(this);
+        this->requested_action = 0;
+        advance_animation();
         y_offset = -40.0f;
         shutter->close();
         is_primary = 0;
@@ -422,8 +420,8 @@ void TBoss3VoloptP01::run_state_machine() {
     sub_8004292C();
     switch (state) {
     case 0:
-        m_b8 = 0;
-        advance_animation_playback(this);
+        this->requested_action = 0;
+        advance_animation();
         glow_effect = NULL;
         if (!(m_388 & 0x20000)) {
             effect_timer = 0x96;
@@ -448,7 +446,7 @@ void TBoss3VoloptP01::run_state_machine() {
     case 2:
         if (glow_effect == NULL) {
             glow_effect = (TObject *)create_particle_emitter(&m_2fc, 0x21);
-            ((TBoss4Type2 *)glow_effect)->set_flags(0x40U);
+            ((TParticleCtrl *)glow_effect)->set_flags(0x40U);
         }
         state = 3;
     case 3:
@@ -494,25 +492,25 @@ void TBoss3VoloptP01::update_attack() {
             switch (state) {
             case 2:
             case 3:
-                m_b8 = 5;
+                this->requested_action = 5;
                 break;
             case 5: {
                 Vec v;
                 get_node_position(5, &v);
                 charge_effect = (TObject *)create_particle_emitter(&v, 0x11A);
-                m_b8 = 2;
+                this->requested_action = 2;
                 break;
             }
             case 6:
-                m_b8 = 2;
-                advance_animation_playback(this);
-                m_c0 = 8.0f;
+                this->requested_action = 2;
+                advance_animation();
+                this->frame = 8.0f;
                 state = 7;
                 break;
             }
         } else {
             quarter_hp = hpmax / 4;
-            m_b8 = 5;
+            this->requested_action = 5;
             start_rise();
             m_388 |= 0x10000;
             shutter->open();
@@ -527,7 +525,7 @@ void TBoss3VoloptP01::update_attack() {
         } else {
             m_388 &= ~0x80000;
         }
-        advance_animation_playback(this);
+        advance_animation();
         break;
     case 1:
         set_flags_30();
@@ -544,8 +542,8 @@ void TBoss3VoloptP01::update_attack() {
         }
         break;
     case 3:
-        advance_animation_playback(this);
-        if (m_b8 == 2) {
+        advance_animation();
+        if (this->requested_action == 2) {
             if (is_primary != 0) {
                 resume_state = 4;
                 state = 4;
@@ -577,8 +575,8 @@ void TBoss3VoloptP01::update_attack() {
         }
         break;
     case 6:
-        advance_animation_playback(this);
-        if (m_c0 >= 8.0f) {
+        advance_animation();
+        if (this->frame >= 8.0f) {
             state = 7;
         }
         break;
@@ -601,8 +599,8 @@ void TBoss3VoloptP01::update_attack() {
         }
         break;
     case 9:
-        advance_animation_playback(this);
-        if (m_b4 != 4) {
+        advance_animation();
+        if (this->action_flags != 4) {
             if (cast_count >= 2) {
                 state = 0xA;
             } else {
@@ -695,7 +693,7 @@ void TBoss3VoloptP01::get_node_position(s32 node, Vec *out) {
     push_matrix_from(identity_matrix);
     translate_matrix(0, position.x, position.y + y_offset, position.z);
     rotate_matrix_y(0, rotation_y);
-    render_anim_model(m_c0);
+    calc_joint_matrices(frame);
     pop_matrix();
     Vec origin = volopt_p01_node_origin;
     push_matrix_from(anim_model_matrix_array[node]);
@@ -713,7 +711,7 @@ void TBoss3VoloptP01::push_nearby_players() {
     TObjPlayer *player;
 
     radius_sq = 64.0f;
-    for (i = 0; i < lbl_805D586C; i++) {
+    for (i = 0; i < registered_player_count; i++) {
         player = TObjPlayer::get_player_data(i);
         if (player == NULL || get_entity_id(player) >= 0x1000) {
             break;
@@ -755,7 +753,7 @@ s32 TBoss3VoloptP01::fire_zonde_at_players() {
 
     attack.power = sub_800443DC(0);
     n = 0;
-    for (i = 0; i < lbl_805D586C; i++) {
+    for (i = 0; i < registered_player_count; i++) {
         player = TObjPlayer::get_player_data(i);
         if (player == NULL || get_entity_id(player) >= 0x1000) {
             break;
@@ -816,7 +814,7 @@ void TBoss3VoloptP01::cast_tech_on_players() {
     case 0:
         fn_80044330(&targets);
         n = 0;
-        for (i = 0; i < lbl_805D586C; i++) {
+        for (i = 0; i < registered_player_count; i++) {
             player = TObjPlayer::get_player_data(i);
             if (player != NULL && get_entity_id(player) < 0x1000 && !(player->actorFlags & 0x02000800)) {
                 targets.records[n].id = get_entity_id(player);
@@ -830,7 +828,7 @@ void TBoss3VoloptP01::cast_tech_on_players() {
         }
         break;
     case 1:
-        for (j = 0; j < lbl_805D586C; j++) {
+        for (j = 0; j < registered_player_count; j++) {
             player = TObjPlayer::get_player_data(j);
             if (player != NULL && get_entity_id(player) < 0x1000 && !(player->actorFlags & 0x02000800)) {
                 TTecFoie::create_ex(this, &pos, &player->m_2fc, (void *)0x1D);
@@ -838,7 +836,7 @@ void TBoss3VoloptP01::cast_tech_on_players() {
         }
         break;
     case 2:
-        for (k = 0; k < lbl_805D586C; k++) {
+        for (k = 0; k < registered_player_count; k++) {
             target = TObjPlayer::get_player_data(k);
             if (target != NULL && get_entity_id(target) < 0x1000 && !(target->actorFlags & 0x02000800)) {
                 ((TTecGiBarta *)this)->create(&pos, &target->m_2fc, (void *)0x1D);

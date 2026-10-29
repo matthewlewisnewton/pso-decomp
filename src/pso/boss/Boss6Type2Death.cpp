@@ -115,13 +115,13 @@ extern "C" {
 void TBoss6Demo21_TYPE2_DEAD::draw_model_13() {
     if ((s32) this->m_50 >= 0x1AC) {
         push_matrix();
-        TObjPlayer::set_global_flag();
+        set_motion_packed_rotation();
         post_translate_matrix((void *) (((u8 *)this) + 0x58));
         TObjFish::set_global_param((int) (*(s32 *)((s8 *)((u8 *)this) + 0x44)));
         ((TObjFish *)(this->m_9c))->set_draw_callback_list();
         draw_model_motion((void *)this->m_40, (void *)this->m_48, (f32) (*(f32 *)((s8 *)((u8 *)this) + 0x4C)));
         clear_render_callback__8TObjFishFv(this->m_9c);
-        TObjPlayer::clear_global_state();
+        clear_motion_packed_rotation();
         pop_matrix();
     }
 }
@@ -150,13 +150,13 @@ void TBoss6Demo21_TYPE2_DEAD::draw_fading_model_8(void *p) {
             TBoss6PlotFalz::set_fade_material_color(f);
         }
         push_matrix();
-        TObjPlayer::set_global_flag();
+        set_motion_packed_rotation();
         post_translate_matrix(arg0 + 0x58);
         TObjFish::set_global_param(*(s32 *)(arg0 + 0x38));
         ((TObjFish *)(*(s32 *)(arg0 + 0x80)))->set_draw_callback_list();
         draw_model_motion((void *)(*(s32 *)(arg0 + 0x34)), (void *)(*(s32 *)(arg0 + 0x3C)), *(f32 *)(arg0 + 0x4C));
         clear_render_callback__8TObjFishFv(*(s32 *)(arg0 + 0x80));
-        TObjPlayer::clear_global_state();
+        clear_motion_packed_rotation();
         pop_matrix();
         if (f < 1.0f) {
             TObjFish::reset_fish_globals();
@@ -185,13 +185,13 @@ void TBoss6Demo21_TYPE2_DEAD::draw_fading_model_5(void *p) {
             TBoss6PlotFalz::set_fade_material_color(f);
         }
         push_matrix();
-        TObjPlayer::set_global_flag();
+        set_motion_packed_rotation();
         post_translate_matrix(arg0 + 0x58);
         TObjFish::set_global_param(*(s32 *)(arg0 + 0x2C));
         ((TObjFish *)(*(s32 *)(arg0 + 0x70)))->set_draw_callback_list();
         draw_model_motion((void *)(*(s32 *)(arg0 + 0x28)), (void *)(*(s32 *)(arg0 + 0x30)), *(f32 *)(arg0 + 0x4C));
         clear_render_callback__8TObjFishFv(*(s32 *)(arg0 + 0x70));
-        TObjPlayer::clear_global_state();
+        clear_motion_packed_rotation();
         pop_matrix();
         if (f < 1.0f) {
             TObjFish::reset_fish_globals();
@@ -216,13 +216,13 @@ void TBoss6Demo21_TYPE2_DEAD::draw_fading_model_4() {
             TBoss6PlotFalz::set_fade_material_color(var_f31);
         }
         push_matrix();
-        TObjPlayer::set_global_flag();
+        set_motion_packed_rotation();
         post_translate_matrix(((u8 *)this) + 0x58);
         TObjFish::set_global_param(this->m_20);
         ((TObjFish *)(this->m_70))->set_draw_callback_list();
         draw_model_motion((void *)(*(s32 *)((s8 *)((u8 *)this) + 0x1C)), (void *)(*(s32 *)((s8 *)((u8 *)this) + 0x24)), *(f32 *)((s8 *)((u8 *)this) + 0x4C));
         clear_render_callback__8TObjFishFv(this->m_70);
-        TObjPlayer::clear_global_state();
+        clear_motion_packed_rotation();
         pop_matrix();
         if (var_f31 < (1.0f)) {
             TObjFish::reset_fish_globals();
@@ -294,7 +294,7 @@ void run_task__23TBoss6Demo21_TYPE2_DEADFv(Fish_8033E0F0 *arg0) {
                 if (arg0->emit[i] == 0) {
                     arg0->emit[i] = create_particle_emitter(ptrs[i], boss6_type2_death_emitter_ranges[i].id);
                     if (arg0->emit[i] != 0) {
-                        ((TBoss4Type2 *)(arg0->emit[i]))->set_flags(0x40);
+                        ((TParticleCtrl *)(arg0->emit[i]))->set_flags(0x40);
                     }
                 } else {
                     ((TParticleCtrl *)arg0->emit[i])->set_position(ptrs[i]);
@@ -428,7 +428,7 @@ void *TBoss6Demo21_TYPE2_DEAD__ct(void *arg0p, void *arg1, void *arg2) {
     for (i = 0; i < 4; i++) {
         ((Fish_8033E688 *)arg0)->arr[i] = 0;
     }
-    ((TBoss6Type1 *)arg0)->animationFlags = create_zanzo__11TBoss6Type1FPvPvPv(arg0, 3, 0xF);
+    ((TBoss6Type1 *)arg0)->motion_flags = create_zanzo__11TBoss6Type1FPvPvPv(arg0, 3, 0xF);
     *(f32 *)((s8 *)arg0 + 0x4C) = (0.0f);
     *(s32 *)((s8 *)arg0 + 0x50) = 0;
     return arg0;

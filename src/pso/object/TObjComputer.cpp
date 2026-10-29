@@ -1,3 +1,5 @@
+#include "pso/render/render_util.h"
+#include "pso/system/NinjaTypes.h"
 #include "types.h"
 #include "pso/object/TObjComputer.h"
 #include "pso/object/TObjMotion.h"
@@ -98,9 +100,7 @@ s32 pop_matrix();
 extern void *container_breakup_model_archive;
 extern s32 lbl_805D5B8C;
 void debug_printf_at(s32 id, const char *fmt, ...);
-void TObjRoomId__sub_80141CF4(void *dst, void *src, f32 t);
 extern char lbl_80444EF4[];
-extern u8 lbl_804A7448[];
 extern const f32 lbl_805DBCF8;
 s32 get_bml_model(void *, s32);
 u32 init_collision_body_parts(void *, void *, s32);
@@ -124,7 +124,7 @@ s32 get_current_floor();
 extern s32 local_client_id;
 extern const f32 lbl_805DBCF4;
 void *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags);
-u8 *construct_debris__8TObjChipFPvPvPv(u8 *arg0, u8 *arg1, u8 *arg2);
+u8 *__ct__8TObjChipFP7TObjectP14TObjChipParams(u8 *arg0, u8 *arg1, u8 *arg2);
 }
 extern char lbl_80444B60[];
 extern char lbl_80444B78[];
@@ -277,7 +277,7 @@ void *TObjComputer__ct(void *arg0, void *parent, void *row) {
     ((TObjPlayer *)self)->actorFlags |= 0x40000000;
     ((TObjPlayer *)self)->register_object_by_id();
     ((TObjComputer *)self)->cursor_action.set_use();
-    ((TObjPlayer *)self)->m_c0 = lbl_805DBCEC;
+    ((TObjPlayer *)self)->frame = lbl_805DBCEC;
     self->unkC4 = 0;
     return self;
 }
@@ -332,11 +332,11 @@ void TObjContainerAbeEnemy__vt77(const Obj_8018860C *self) {
         spawn_particle_effect_with_flags((void *)&self->pos, 0x46, 0x40);
         void *o = __nw__7TObjectFUl(0x234);
         if (o != NULL) {
-            construct_debris__8TObjChipFPvPvPv((u8 *)o, (u8 *)tl_05, (u8 *)&a);
+            __ct__8TObjChipFP7TObjectP14TObjChipParams((u8 *)o, (u8 *)tl_05, (u8 *)&a);
         }
         o = __nw__7TObjectFUl(0x234);
         if (o != NULL) {
-            construct_debris__8TObjChipFPvPvPv((u8 *)o, (u8 *)tl_05, (u8 *)&b);
+            __ct__8TObjChipFP7TObjectP14TObjChipParams((u8 *)o, (u8 *)tl_05, (u8 *)&b);
         }
         play_container_break_sound((s32)self);
     }
@@ -366,7 +366,7 @@ void TObjContainerAbeEnemy::debug_print_item_box_info() {
     TObjNpcEnemy::set_global_count(0xFF00FF);
     debug_printf_at(0x130020, lbl_80444EF4, this->set_params[0]);
     TObjNpcEnemy::set_global_count(0xF0F0F0FF);
-    TObjRoomId__sub_80141CF4(self->pos, lbl_804A7448, lbl_805DBCF8);
+    debug_draw_sphere((const Vec *)self->pos, &debug_color_blue_alpha30, lbl_805DBCF8);
 }
 
 void TObjContainerAbeEnemy::vfunc_81() {

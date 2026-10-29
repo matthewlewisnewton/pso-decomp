@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/boss/TBoss3VoloptHiraisin.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/enemy/TObjEnemy.h"
@@ -110,7 +111,6 @@ struct VObj_18_3eea3b : VBase_18_3eea3b {
 };
 
 extern "C" {
-s32 advance_animation_playback(void *);
 s32 submit_cursor_candidate(void *, int);
 extern u8 *quest_mission_manager;
 extern u8 *quest_area_manager;
@@ -155,13 +155,13 @@ void TObjPlayer::draw_model() {
         push_matrix_from(0);
         translate_matrix_vec3((u8 *)(0), (u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);
-        TObjPlayer::set_global_flag();
+        set_motion_packed_rotation();
         if ((s32) this->m_394 != 0) {
             draw_chunk_object(this->model);
         } else {
             ((TObjMotion *)arg0)->draw();
         }
-        TObjPlayer::clear_global_state();
+        clear_motion_packed_rotation();
         pop_matrix();
         model_render_flags &= 0xFFFFFFFE;
         restore_scene_lighting();
@@ -226,7 +226,7 @@ void TObjNpcBase::run_task() {
       (this->update_conversation());
       break;
   }
-  advance_animation_playback((void *) ((u8 *)this));
+  advance_animation();
   this->update_prev_position();
   new_var = ((u8 *)this);
   ((TBoss3VoloptHiraisin *)new_var)->copy_position();

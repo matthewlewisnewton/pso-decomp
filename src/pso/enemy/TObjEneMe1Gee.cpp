@@ -1,4 +1,6 @@
 #include "pso/enemy/TObjEnemy.h"
+#include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
+#include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/system/vector.h"
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
@@ -16,7 +18,7 @@ extern "C" void has_flag_0x800__9TObjCharaFv();
 extern "C" void test_flag30_512__9TObjCharaFv();
 extern "C" void test_flag_1000__9TObjCharaFv();
 extern "C" void test_flag_256__9TObjCharaFv();
-#include "pso/object/obj_band.h"
+#include "pso/object/TObjMotion.h"
 #include "pso/TObject.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/boss/TBoss3Volopt.h"
@@ -36,7 +38,6 @@ struct Obj_800C86E0;
 struct Obj_800C88D4;
 struct Obj_800C8B4C;
 extern "C" {
-s32 advance_animation_playback(void *, s32);
 s32 create_breakup_mdl__12TBoss3VoloptFlllll(s32, s32, s32, void *, s32);
 void queue_destruction__7TObjectFv(void *arg0);
 int TObjEneMe1Gee__sub_800CB628(void* p);
@@ -343,7 +344,7 @@ void TUnk_8049387C::vfunc_111(s32 arg1) {
     u8 *arg0 = (u8 *)this;
     switch (arg1) {
     case 4:
-        this->m_b8 = 0;
+        this->requested_action = 0;
         ((TObjEneDD *)arg0)->set_field_378(5);
         this->vfunc_96();
         break;
@@ -353,7 +354,7 @@ void TUnk_8049387C::vfunc_111(s32 arg1) {
         }
         break;
     case 0:
-        ((void (*)())advance_animation_playback)();
+        advance_animation();
         ((TObjEneDD_ST *)arg0)->update_linked_position(TObjEneMe1Gee__data_805DA0A8);
         ((TObjEneMe1Gee *)arg0)->update();
         ((TObjEneMe1Gee *)arg0)->update_animation_frame();
@@ -393,7 +394,7 @@ void TUnk_8049387C::vfunc_110(s32 arg1) {
         }
         break;
     case 0:
-        ((void (*)())advance_animation_playback)();
+        advance_animation();
         ((TObjEneDD_ST *)arg0)->update_linked_position(TObjEneMe1Gee__data_805DA0A8);
         switch (*(s32 *)((s8 *)arg0 + 0x434)) {
         case 0:
@@ -540,7 +541,6 @@ int TUnk_8049387C::vfunc_116() {
 
 #pragma pop
 #pragma push
-#define advance_animation_playback ((s32 (*)())advance_animation_playback)
 #define TObjEneMe1Gee__data_8043BDB0 ((const u8 *)&TObjEneMe1Gee__data_8043BDB0)
 #define copy_argb ((int (*)(void *, void *))copy_argb)
 #define sub_800C84C8__13TUnk_8049387CFv ((s32 (*)(void *))sub_800C84C8__13TUnk_8049387CFv)
@@ -883,7 +883,6 @@ s32 post_translate_matrix(void *);
 extern const u8 TObjEneMe1Gee__data_8043BDC0[];
 extern Vec_800CA454 lbl_8043BE7C[];
 extern u8 identity_matrix[];
-extern u8 *anim_model_matrix_array;
 extern const f32 lbl_805DA124;
 void TObjEneMe1Gee__sub_800CA454(void *arg0, s32 arg1);
 s16 get_entity_id(void *);
@@ -2130,24 +2129,24 @@ void render__13TObjEneMe1GeeFv(u8 *ene_me1_gee) {
             if ((s16) ((TObjEneMe1Gee *)ene_me1_gee)->mode != 0xB) {
                 TObjEneMe1Gee__render_node_index = 0;
                 gee_camera_ctrl_step_ptr = (s32)(ene_me1_gee + 0x414);
-                TObjEneRe7Berura::set_global_state((s32)((void *)TObjEneMe1Gee::advance_camera_ctrl_step));
+                set_chunk_model_node_callback((s32)((void *)TObjEneMe1Gee::advance_camera_ctrl_step));
                 if (var_r30 == 1) {
-                    TObjPlayer::set_global_flag();
+                    set_motion_packed_rotation();
                     ((TObjMotion *)ene_me1_gee)->draw();
-                    TObjPlayer::clear_global_state();
+                    clear_motion_packed_rotation();
                 } else {
-                    TObjPlayer::set_global_flag();
-                    ((TObjEnemy *)ene_me1_gee)->render_world_model();
-                    TObjPlayer::clear_global_state();
+                    set_motion_packed_rotation();
+                    ((TObjEnemy *)ene_me1_gee)->draw_motion_model();
+                    clear_motion_packed_rotation();
                 }
-                TObjEneRe7Berura::set_global_state((s32)NULL);
+                set_chunk_model_node_callback((s32)NULL);
             } else {
                 rotate_matrix_z(0, (int) (((TObjEneMe1Gee *)ene_me1_gee)->rotation_z));
                 TObjEneMe1Gee__render_node_index = -1;
                 gee_camera_ctrl_step_ptr = (s32)(ene_me1_gee + 0x414);
-                TObjEneRe7Berura::set_global_state((s32)((void *)TObjEneMe1Gee::advance_camera_ctrl_step));
+                set_chunk_model_node_callback((s32)((void *)TObjEneMe1Gee::advance_camera_ctrl_step));
                 ((TObjEneDD_ST *)ene_me1_gee)->draw_with_alt_model((int) (*(s32 *)((s8 *)ene_me1_gee + 0x410)));
-                TObjEneRe7Berura::set_global_state((s32)NULL);
+                set_chunk_model_node_callback((s32)NULL);
             }
         }
         temp_r0_2 = ((TObjEneMe1Gee *)ene_me1_gee)->mode;
@@ -2194,7 +2193,7 @@ void TObjEneMe1Gee::state_orbit(s32 arg1) {
         *(f32 *)((s8 *)this + 0x44C) = cos_table_lookup(*(s32 *)((s8 *)this + 0x60));
         return;
     case 0:
-        advance_animation_playback();
+        advance_animation();
         *(f32 *)((s8 *)this + 0x3F8) = (f32) (*(f32 *)((s8 *)this + 0x3C) + *(f32 *)((s8 *)this + 0x3EC));
         *(f32 *)((s8 *)this + 0x300) = (f32) *(f32 *)((s8 *)this + 0x3F8);
         this->move_with_wall_slide_commit(*(f32 *)((s8 *)this + 0x448), *(f32 *)((s8 *)this + 0x44C), lbl_805DA0C4);
@@ -2208,17 +2207,17 @@ void TObjEneMe1Gee::state_orbit(s32 arg1) {
 void TObjEneMe1Gee::handle_event(s32 arg1) {
     switch (arg1) {
     case 4:
-        this->m_b8 = 0;
+        this->requested_action = 0;
         *(s32 *)((s8 *)this + 0x434) = 0;
         return;
     case 0:
-        advance_animation_playback();
+        advance_animation();
         *(s32 *)((s8 *)this + 0x434) = (s32) (*(s32 *)((s8 *)this + 0x434) + 1);
         if ((s32) *(s32 *)((s8 *)this + 0x434) > 0x5A) {
             *(s32 *)((s8 *)this + 0x434) = 0;
-            this->m_b8 = (this->m_b8 + 1);
-            if ((s16) this->m_b8 >= 4) {
-                this->m_b8 = 0;
+            this->requested_action = (this->requested_action + 1);
+            if ((s16) this->requested_action >= 4) {
+                this->requested_action = 0;
             }
         }
     case 3:
@@ -2271,7 +2270,7 @@ void TObjEneMe1Gee::state_return_home(s32 arg1) {
     case 5:
         return;
     case 0:
-        advance_animation_playback();
+        advance_animation();
         if (this->update_linked_position(TObjEneMe1Gee__data_805DA0A8) != 0) {
             *(s32 *)((s8 *)this + 0x434) = 2;
         }
@@ -2334,7 +2333,7 @@ void TObjEneMe1Gee__sub_800C96B4(Gee_800C96B4 *o, s32 mode) {
     switch (mode) {
     case 4:
         o->fB8 = 3;
-        ((void (*)(void *))advance_animation_playback)(o);
+        ((TObjMotion *)o)->advance_animation();
         ((TObjEneMe1Gee *)o)->update_photon_target();
         o->f3C8 &= ~0x400000;
         o->m94();
@@ -2354,7 +2353,7 @@ void TObjEneMe1Gee__sub_800C96B4(Gee_800C96B4 *o, s32 mode) {
         }
         break;
     case 0:
-        ((void (*)(void *))advance_animation_playback)(o);
+        ((TObjMotion *)o)->advance_animation();
         VecCopy__FP3VecPC3Vec(&v, &o->vel);
         len = normalize_vector_xz((Vec *)(&v));
         ((TObjEneDD *)o)->move_with_wall_slide_on_ground(v.x, v.z, len);
@@ -2406,7 +2405,7 @@ void TObjEneMe1Gee__sub_800C96B4(Gee_800C96B4 *o, s32 mode) {
 void run_task__13TObjEneMe1GeeFPvi(TObjEneMe1Gee *arg0, s32 arg1) {
     switch (arg1) {
     case 4:
-        arg0->m_b8 = 0;
+        arg0->requested_action = 0;
         ((TObjEneDD *)arg0)->set_field_378(0xA);
         *(s32 *)((s8 *)arg0 + 0x3C8) = (s32) (*(s32 *)((s8 *)arg0 + 0x3C8) & 0xFFBFFFFF);
         arg0->vfunc_95();
@@ -2423,7 +2422,7 @@ void run_task__13TObjEneMe1GeeFPvi(TObjEneMe1Gee *arg0, s32 arg1) {
     case 5:
         return;
     case 0:
-        advance_animation_playback();
+        arg0->advance_animation();
         copy_position__14TObjEneEpsilonFPv((arg0), ((u8 *)arg0 + 0x50));
         ((TObjEneDD *)arg0)->update_velocity();
         arg0->update_angle();
@@ -2464,7 +2463,7 @@ void TObjEneMe1Gee__sub_800C9A94(void *arg0, s32 arg1) {
         }
         break;
     case 0:
-        advance_animation_playback();
+        ((TObjMotion *)arg0)->advance_animation();
         if (((TObjEneDD_ST *)o)->update_linked_position(TObjEneMe1Gee__data_805DA0A8) != 0) {
             switch (o->mode) {
             case 1: {
@@ -2650,7 +2649,7 @@ void TObjEneMe1Gee__sub_800C9DF8(void *o_, s32 arg1) {
         }
         break;
     case 0:
-        advance_animation_playback();
+        ((TObjMotion *)o_)->advance_animation();
         if (o->mode == 0) {
             if (((TObjEneDD_ST *)o)->update_linked_position(TObjEneMe1Gee__data_805DA0A8) == 0) {
                 break;
@@ -2769,7 +2768,7 @@ void TObjEneMe1Gee__sub_800C9DF8(void *o_, s32 arg1) {
                         }
                     }
                 }
-            } else if (objInBand((GameObj *)o, (f32)lbl_805DA0B8) != 0) {
+            } else if (((TObjMotion *)o)->is_passing_frame((f32)lbl_805DA0B8) != 0) {
                 o->f408++;
                 if (TObjEneMe1Gee__sub_800CBA80((u8 *)o) != 0) {
                     if (o->f390->m18(o, TObjEneMe1Gee__data_805DA0EC) != 0) {
@@ -2827,7 +2826,7 @@ void TObjEneMe1Gee__sub_800CA454(void *arg0, s32 arg1) {
         }
         break;
     case 0:
-        ((void (*)(void *))advance_animation_playback)(o);
+        ((TObjMotion *)o)->advance_animation();
         if (o->mode == 1) {
             if (((TObjEneDD_ST *)o)->update_linked_position(TObjEneMe1Gee__data_805DA0A8) == 0) {
                 break;
@@ -2891,16 +2890,16 @@ void TObjEneMe1Gee__sub_800CA454(void *arg0, s32 arg1) {
                 o->flags &= ~0x40000;
                 ((void (*)(void *, const void *))destroy_subobj__13TObjEneMe1GeeFPv)(o, TObjEneMe1Gee__data_8043BDB0);
                 o->f408++;
-                ((void (*)(void *))advance_animation_playback)(o);
+                ((TObjMotion *)o)->advance_animation();
                 push_matrix_from(identity_matrix);
                 post_translate_matrix(&o->pos38);
                 rotate_matrix_y(0, o->angle);
-                TObjPlayer::set_global_flag();
-                ((TObjEnemy *)o)->render_anim_model(o->timer);
-                TObjPlayer::clear_global_state();
+                set_motion_packed_rotation();
+                ((TObjEnemy *)o)->calc_joint_matrices(o->timer);
+                clear_motion_packed_rotation();
                 pop_matrix();
                 o->timer = 0;
-                push_matrix_from(anim_model_matrix_array + 0x150);
+                push_matrix_from(anim_model_matrix_array[7]);
                 {
                     Vec_800CA454 out;
                     Vec_800CA454 in = lbl_8043BE7C[0];
@@ -2952,7 +2951,7 @@ void TObjEneMe1Gee::state_attack(s32 arg1) {
 
     switch (arg1) {
     case 4:
-        this->m_b8 = 0;
+        this->requested_action = 0;
         set_field_378(6);
         *(s32 *)((s8 *)this + 0x3C8) = (s32) (*(s32 *)((s8 *)this + 0x3C8) & 0xFFBFFFFF);
         this->vfunc_96();
@@ -2968,7 +2967,7 @@ void TObjEneMe1Gee::state_attack(s32 arg1) {
     case 1:
         return;
     case 0:
-        advance_animation_playback();
+        advance_animation();
         this->update_linked_position(TObjEneMe1Gee__data_805DA0A8);
         switch (*(s32 *)((s8 *)this + 0x434)) {
         case 0:
@@ -3013,7 +3012,7 @@ void TObjEneMe1Gee::state_attack(s32 arg1) {
 void TObjEneMe1Gee::vfunc_111(s32 arg1) {
     switch (arg1) {
     case 4:
-        this->m_b8 = 0;
+        this->requested_action = 0;
         set_field_378(5);
         *(s32 *)((s8 *)this + 0x3C8) = (s32) (*(s32 *)((s8 *)this + 0x3C8) & 0xFFBFFFFF);
         this->vfunc_96();
@@ -3028,7 +3027,7 @@ void TObjEneMe1Gee::vfunc_111(s32 arg1) {
     case 5:
         break;
     case 0:
-        advance_animation_playback();
+        advance_animation();
         update_linked_position(TObjEneMe1Gee__data_805DA0A8);
         update();
         update_animation_frame();
@@ -3070,7 +3069,7 @@ void TObjEneMe1Gee::vfunc_110(s32 arg1) {
     case 1:
         break;
     case 0:
-        ((void (*)())advance_animation_playback)();
+        advance_animation();
         ((TObjEneDD_ST *)arg0)->update_linked_position(TObjEneMe1Gee__data_805DA0A8);
         switch (*(s32 *)((s8 *)arg0 + 0x434)) {
         case 2:
@@ -3113,7 +3112,7 @@ void TObjEneMe1Gee::state_hover(s32 arg1) {
 
     switch (arg1) {
     case 4:
-        this->m_b8 = 0;
+        this->requested_action = 0;
         set_field_378(3);
         *(s32 *)((s8 *)this + 0x3C8) = (s32) (*(s32 *)((s8 *)this + 0x3C8) & 0xFFBFFFFF);
         this->vfunc_96();
@@ -3132,7 +3131,7 @@ void TObjEneMe1Gee::state_hover(s32 arg1) {
         }
         break;
     case 0:
-        advance_animation_playback();
+        advance_animation();
         if ((s32) this->m_3e0 != 1) {
             this->update_linked_position(TObjEneMe1Gee__data_805DA0A8);
         }
@@ -3179,7 +3178,7 @@ void TObjEneMe1Gee__sub_800CAFD8(u8 *ene_me1_gee, s32 arg1) {
         }
         return;
     case 0:
-        ((void (*)(void *))advance_animation_playback)(ene_me1_gee);
+        ((TObjMotion *)ene_me1_gee)->advance_animation();
         switch (((RecoveredFields_800CAFD8_arg0 *)ene_me1_gee)->field_434) {
         case 0:
             if (((VObj_14_948132 *)(ene_me1_gee + (972)))->m5() != 0) {
@@ -3205,7 +3204,7 @@ void TObjEneMe1Gee::state_move(s32 arg1) {
 
     switch (arg1) {
     case 4:
-        this->m_b8 = 0;
+        this->requested_action = 0;
         set_field_378(3);
         *(s32 *)((s8 *)((u8 *)this) + 0x3C8) = (s32) (*(s32 *)((s8 *)((u8 *)this) + 0x3C8) & 0xFFBFFFFF);
         this->vfunc_95();
@@ -3222,7 +3221,7 @@ void TObjEneMe1Gee::state_move(s32 arg1) {
     case 5:
         return;
     case 0:
-        advance_animation_playback();
+        advance_animation();
         if ((s32) this->m_3e0 == 2) {
             ((s32 (*)(void *, f32))sub_800CBE6C__13TObjEneMe1GeeFv)(this, lbl_805DA0AC + *(f32 *)((s8 *)((u8 *)this) + 0x3C));
         } else {
@@ -3236,7 +3235,7 @@ void TObjEneMe1Gee::state_move(s32 arg1) {
 void TObjEneMe1Gee::state_attack_loop(s32 arg1) {
     switch (arg1) {
     case 4:
-        this->m_b8 = 0;
+        this->requested_action = 0;
         set_field_378(3);
         this->vfunc_95();
         *(s32 *)((s8 *)this + 0x3C8) = (s32) (*(s32 *)((s8 *)this + 0x3C8) | 0x400000);
@@ -3878,7 +3877,6 @@ u8 *TObjEneMe1Gee__ct(u8 *ene_me1_gee, s32 arg1, u8 *arg2, s32 arg3, s16 arg4, s
     return ene_me1_gee;
 }
 
-#undef advance_animation_playback
 #undef TObjEneMe1Gee__data_8043BDB0
 #undef copy_argb
 #undef sub_800C84C8__13TUnk_8049387CFv

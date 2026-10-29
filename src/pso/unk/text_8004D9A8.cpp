@@ -36,7 +36,7 @@ void fn_8004D9A8(u8 *arg0) {
             TObjPlayer__sub_80052390();
         }
         push_matrix();
-        TObjPlayer::set_global_flag();
+        set_motion_packed_rotation();
         post_translate_matrix(lbl_80485550);
         for (i = 0; i < 6; i++) {
             s = o->f108;
@@ -46,7 +46,7 @@ void fn_8004D9A8(u8 *arg0) {
             TObjFish::set_global_param(o->d4[i]);
             draw_model_motion((void *)o->bc[i], (void *)o->ec[i], s);
         }
-        TObjPlayer::clear_global_state();
+        clear_motion_packed_rotation();
         pop_matrix();
         if (o->f10c < (1.0f)) {
             TObjPlayer::sync_player_globals();
@@ -115,7 +115,7 @@ void TBoss3Volopt__sub_8004DA7C(u8 *self) {
             if (((Self_8004DA7C *)self)->p[i] == NULL) {
                 ((Self_8004DA7C *)self)->p[i] = create_particle_emitter(e->data, e->arg);
                 if (((Self_8004DA7C *)self)->p[i] != NULL) {
-                    ((TBoss4Type2 *)(((Self_8004DA7C *)self)->p[i]))->set_flags(0x40);
+                    ((TParticleCtrl *)(((Self_8004DA7C *)self)->p[i]))->set_flags(0x40);
                 }
             }
             switch (i) {
@@ -145,7 +145,7 @@ void TBoss3Volopt__sub_8004DA7C(u8 *self) {
             vec3_add_to(&c, &((Vec_8004DA7C *)lbl_80485514)[t - 0x8C]);
             p = spawn_particle_effect(&c, 0x14A);
             if (p != NULL) {
-                ((TBoss4Type2 *)p)->set_flags(0x40);
+                ((TParticleCtrl *)p)->set_flags(0x40);
             }
         }
     }

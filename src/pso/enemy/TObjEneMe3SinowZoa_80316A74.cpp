@@ -1,7 +1,8 @@
 #include "types.h"
+#include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/enemy/TObjEneMe3SinowZoa_80316A74.h"
 #include "pso/object/TObjMotion.h"
-#include "pso/object/obj_band.h"
+#include "pso/object/TObjMotion.h"
 #include "pso/system/vector.h"
 #include "pso/enemy/TObjEneDD_ST.h"
 #include "pso/enemy/TObjEnemy.h"
@@ -141,7 +142,6 @@ struct Pair_80316A74 { s32 a; s32 b; };
 struct Vec_80316B20 { f32 x, y, z; };
 
 extern "C" {
-void advance_animation_playback(void *);
 s32 play_sound_effect(s32, u32, s16, s32);
 s32 pack_debug_text_position(s32, s32);
 s32 sub_8031A454__18TObjEneMe3SinowZoaFv(void *);
@@ -152,7 +152,6 @@ s32 rotate_matrix_y(int, int);
 s32 push_matrix();
 s32 pop_matrix();
 s32 post_translate_matrix(void *);
-s32 draw_model_motion(s32, void *, f32);
 extern char lbl_80475FD4[];
 extern char lbl_80475FE4[];
 extern char lbl_80475FF4[];
@@ -185,7 +184,6 @@ extern Vec_80316C3C lbl_80475FC8[];
 extern Def_80316C3C *TObjEneMe3SinowZoa__kind_param_tbls[];
 extern u8 identity_matrix[];
 extern s32 game_difficulty_selection;
-extern u8 *anim_model_matrix_array;
 extern const f32 TObjEneMe3SinowZoa__data_805DF308;
 extern const f32 TObjEneMe3SinowZoa__data_805DF30C;
 extern const f32 TObjEneMe3SinowZoa__data_805DF310;
@@ -312,26 +310,26 @@ void TObjEneMe3SinowZoa__sub_80316C3C(Obj_80316C3C *arg0, s32 arg1) {
             }
             break;
         case 1:
-            advance_animation_playback(arg0);
+            ((TObjMotion *)arg0)->advance_animation();
             if (((TObjEneMe3SinowZoa *)(&arg0->sub))->advance_timer(TObjEneMe3SinowZoa__data_805DF310) != 0) {
                 arg0->state = 2;
             }
         case 2:
-            advance_animation_playback(arg0);
+            ((TObjMotion *)arg0)->advance_animation();
             if (((TObjEneDD *)arg0)->get_flag_b4() != 0) {
                 arg0->timer = 0;
                 arg0->state = 3;
             }
-            if (objInBand((GameObj *)arg0, (f32)TObjEneMe3SinowZoa__data_805DF314) != 0) {
-                advance_animation_playback(arg0);
+            if (((TObjMotion *)arg0)->is_passing_frame((f32)TObjEneMe3SinowZoa__data_805DF314) != 0) {
+                ((TObjMotion *)arg0)->advance_animation();
                 push_matrix_from(identity_matrix);
                 post_translate_matrix(&arg0->pos);
                 rotate_matrix_y(0, arg0->rotY);
-                TObjPlayer::set_global_flag();
-                ((TObjEnemy *)arg0)->render_anim_model(TObjEneMe3SinowZoa__data_805DF314);
-                TObjPlayer::clear_global_state();
+                set_motion_packed_rotation();
+                ((TObjEnemy *)arg0)->calc_joint_matrices(TObjEneMe3SinowZoa__data_805DF314);
+                clear_motion_packed_rotation();
                 pop_matrix();
-                push_matrix_from(anim_model_matrix_array + 0x90);
+                push_matrix_from(anim_model_matrix_array[3]);
                 matrix_mult_vec(0, lbl_80475FC8[0], &out);
                 pop_matrix();
                 if (arg0->hasDest != 0) {
@@ -401,7 +399,7 @@ void TObjEneMe3SinowZoa__sub_803170F0(u8 *ene_dd, s32 arg1) {
     case 5:
         break;
     case 0:
-        advance_animation_playback(ene_dd);
+        ((TObjMotion *)ene_dd)->advance_animation();
         if (((TObjEneDD *)ene_dd)->get_flag_b4() != 0) {
             *(s32 *)((s8 *)ene_dd + 0x434) = 1;
         }
@@ -435,7 +433,7 @@ void TObjEneMe3SinowZoa__sub_80317254(u8 *ene_dd, s32 arg1) {
     case 5:
         break;
     case 0:
-        advance_animation_playback(ene_dd);
+        ((TObjMotion *)ene_dd)->advance_animation();
         if (((TObjEneDD *)ene_dd)->get_flag_b4() != 0) {
             *(s32 *)((s8 *)ene_dd + 0x434) = 1;
         }
@@ -511,9 +509,9 @@ void TObjEneMe3SinowZoa::vfunc_115() {
             } else if (frame > (motion->nframes - 1)) {
                 frame = (motion->nframes - 1);
             }
-            TObjPlayer::set_global_flag();
-            draw_model_motion(arg0->f34, motion, frame);
-            TObjPlayer::clear_global_state();
+            set_motion_packed_rotation();
+            draw_model_motion((void *)arg0->f34, motion, frame);
+            clear_motion_packed_rotation();
             arg0->fF8 = motion;
             arg0->fc0 = frame;
             frame = ((TObjEneMe3SinowZoa *)arg0)->get_node_height();

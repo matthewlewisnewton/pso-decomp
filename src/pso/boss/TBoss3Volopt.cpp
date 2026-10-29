@@ -39,6 +39,7 @@
 #include "pso/unk/text_80087278.h"
 #include "pso/unk/text_801F43B4.h"
 #include "pso/TMainTask.h"
+#include "pso/misc/TOCapsuleAncient01.h"
 #pragma readonly_strings on
 
 // Camera offsets for the follow camera, from TLobby's shared parameter tables.
@@ -77,11 +78,10 @@ void TLobby__sub_8001FE7C(void *resource, s32 flags);
 void *load_resource_from_descriptor(void *resource, s32 kind, BmlResourceDescriptor *descriptor, s32, s32, s32);
 u16 TObjRoomId__sub_801A1DB8(u16 id);
 void TObjPlayer__sub_801BA42C(void);
-extern s32 lbl_805D2ECC;
-extern s32 TODoorVoShip__class_name;
+extern s32 door_vo_ship_class_name;
 extern s32 local_client_id;
 extern s32 lbl_805D5868;
-extern s32 lbl_805D586C;
+extern s32 registered_player_count;
 extern s32 lbl_805D5870;
 }
 void reset_status_effect_row(u8 *row);
@@ -565,7 +565,7 @@ void TBoss3Volopt::move_to_arena(s32 phase2) {
     }
     if (allowed != 0) {
         if (phase2 != 0) {
-            for (i = 0; i < lbl_805D586C; i++) {
+            for (i = 0; i < registered_player_count; i++) {
                 player = TObjPlayer::get_player_data(i);
                 if (player != NULL && TObjRoomId__sub_801A1DB8(get_entity_id(player)) == 0 &&
                     ((TBoss3Volopt *)player)->get_field_3e0() == 0xD) {
@@ -1330,12 +1330,12 @@ void TBoss3Volopt::push_actors_out(s32 phase2) {
     TObjPlayer *actor;
 
     center_z = (f32)((phase2 != 0) ? -5000 : 0);
-    for (i = lbl_805D586C + lbl_805D5870; i < lbl_805D5868; i++) {
+    for (i = registered_player_count + lbl_805D5870; i < lbl_805D5868; i++) {
         actor = TObjPlayer::get_player_data(i);
         if (actor == NULL) continue;
         if (actor->bodies == NULL) continue;
-        if (((TUnk_804B6C24 *)actor)->check_value_equals(lbl_805D2ECC) != 0) continue;
-        if (((TUnk_804B6C24 *)actor)->check_value_equals(TODoorVoShip__class_name) != 0) continue;
+        if (((TUnk_804B6C24 *)actor)->check_value_equals((s32)TOCapsuleAncient01::class_name) != 0) continue;
+        if (((TUnk_804B6C24 *)actor)->check_value_equals(door_vo_ship_class_name) != 0) continue;
         if (!(actor->bodies->flags & 0x20000)) continue;
         if (fabs_float(actor->position.z - center_z) > 1000.0f) {
             Vec pos = *&actor->position;
@@ -1510,7 +1510,7 @@ s32 TBoss3Volopt::collect_candidate_players() {
     TObjPlayer *player;
 
     volopt_candidate_count = 0;
-    for (i = 0; i < lbl_805D586C; i++) {
+    for (i = 0; i < registered_player_count; i++) {
         player = TObjPlayer::get_player_data(i);
         if ((player->actorFlags & 0x02000800) == 0) {
             s32 floor = get_current_floor();

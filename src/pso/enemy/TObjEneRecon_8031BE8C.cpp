@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/enemy/TObjEneRecon_8031BE8C.h"
 #include "pso/math/MatrixTransforms.h"
@@ -204,17 +205,17 @@ void render__12TObjEneReconFv(u8 *ene_recon) {
                     *(f32 *)((s8 *)ene_recon + 0x40C) = (f32) TObjEneRecon__data_805DF3C4;
                     *(f32 *)((s8 *)ene_recon + 0x410) = (f32) TObjEneRecon__data_805DF3C4;
                     *(f32 *)((s8 *)ene_recon + 0x414) = (f32) TObjEneRecon__data_805DF3C4;
-                    TObjEneRe7Berura::set_global_state((s32)((void *)TObjEneRecon::advance_intro_stage));
+                    set_chunk_model_node_callback((s32)((void *)TObjEneRecon::advance_intro_stage));
                     TObjPlayer::toggle_particle_effect();
                     model_render_flags |= 0x01000000;
                     if (var_r31 == 1) {
                         ((TObjMotion *)ene_recon)->draw();
                     } else {
-                        ((TObjEnemy *)ene_recon)->render_world_model();
+                        ((TObjEnemy *)ene_recon)->draw_motion_model();
                     }
                     model_render_flags &= 0xFEFFFFFF;
                     TParticleCtrl::end_effect_render();
-                    TObjEneRe7Berura::set_global_state(NULL);
+                    set_chunk_model_node_callback(NULL);
                     pop_matrix();
                     ((TObjEneDD *)ene_recon)->update_primary_light();
                 }

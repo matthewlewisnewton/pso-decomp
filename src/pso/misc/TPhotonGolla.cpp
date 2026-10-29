@@ -1,4 +1,5 @@
 #include "pso/system/NinjaTypes.h"
+#include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/system/ChunkMaterialState.h"
 #include "pso/misc/PhotonBlastSummon.h"
 #include "types.h"
@@ -117,7 +118,6 @@ extern u8 *photon_blast_shared_resource;
 extern u32 farlla_photon_blast_model_buffers;
 extern "C" {
 void *spawn_particle_effect(void *pos, s32 id);
-s32 advance_animation_playback(void *);
 void *find_entity_by_id(u16 id);
 s32 spawn_photon_blast_attachment_effects(void *, int);
 u8 *TPhotonMagicSquare__ct(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
@@ -316,11 +316,11 @@ void TPhotonGolla::render() {
         saved_chunk_polygon_flags_and_mask = chunk_polygon_flags_and_mask;
         saved_chunk_polygon_flags_or_mask = chunk_polygon_flags_or_mask;
         model_render_flags |= 0x200820;
-        TObjPlayer::set_global_flag();
+        set_motion_packed_rotation();
         set_chunk_material_override_pair(-1, 0x800);
         set_constant_material((const NJS_ARGB *)(((f32 *)&self->color)));
         ((TObjMotion *)self)->draw();
-        TObjPlayer::clear_global_state();
+        clear_motion_packed_rotation();
         chunk_polygon_flags_and_mask = saved_chunk_polygon_flags_and_mask;
         chunk_polygon_flags_or_mask = saved_chunk_polygon_flags_or_mask;
         copy_argb((NJS_ARGB *)&model_material_color, (NJS_ARGB *)&saved_model_draw_color);
@@ -353,15 +353,15 @@ void TPhotonGolla::run_task() {
             TPhotonMagicSquare__ct((u8 *)photon_magic_square, (s32)arg0, 3, (s32)&stack.sp8, 0xFA, (f32)0.5f);
         }
     }
-    if ((5e+01f == (f32) *(s32 *)&this->unk_1C8) && ((s16) this->m_b8 == 1)) {
+    if ((5e+01f == (f32) *(s32 *)&this->unk_1C8) && ((s16) this->requested_action == 1)) {
         ((TUnk_804C3248 *)arg0)->begin_photon_summon_camera(5);
         *(s32 *)&this->unk_1C8 = 0;
         ((TObjMotion *)arg0)->set_field_b8(0);
         spawn_photon_blast_attachment_effects(arg0, 2);
     }
-    this->m_1b8 = (s16) this->m_b8;
+    this->m_1b8 = (s16) this->requested_action;
     ((TUnk_804C3248 *)arg0)->update_state();
-    advance_animation_playback(arg0);
+    ((TObjMotion *)arg0)->advance_animation();
     ((TUnk_804C3248 *)arg0)->update_photon_blast_attachments();
     *(s16 *)((s8 *)arg0 + 0x14C) = (s16) (*(s16 *)((s8 *)arg0 + 0x14C) + 0xF);
     *(s16 *)((s8 *)arg0 + 0x14C) = (s16) (u8) *(s16 *)((s8 *)arg0 + 0x14C);
@@ -414,7 +414,6 @@ void *destroy__12TPhotonGollaFPvs(void *arg0, s16 arg1) {
 #include "pso/misc/PhotonBlastSummon.h"
 #include "pso/misc/TLobby_802268F4.h"
 #include "pso/misc/TPhotonRainbow_801AE640.h"
-#include "pso/misc/obj_band.h"
 #include "pso/player/TObjPlayer_801AB608.h"
 #include "pso/unk/text_801ABE14.h"
 #include "pso/system/vector.h"
@@ -492,9 +491,9 @@ u8 *TPhotonGolla__ct(u8 *arg0, u8 *arg1) {
     ((TPhotonGolla *)arg0)->texlist = *(s32 *)((s8 *)(*(u8 **)((s8 *)photon_blast_shared_resource + 0x42C)) + 0x4C);
     ((TObjMotion *)arg0)->set_field_d8((s32) photon_blast_golla_params);
     ((TObjMotion *)arg0)->set_field_dc(*(s32 *)((s8 *)photon_blast_shared_resource + 0x430));
-    ((TPhotonGolla *)arg0)->m_b8 = 1;
-    ((TObjMotion *)arg0)->set_animation(((TPhotonGolla *)arg0)->m_b8);
-    ((TObjMotion *)arg0)->set_field_b8(((TPhotonGolla *)arg0)->m_b8);
+    ((TPhotonGolla *)arg0)->requested_action = 1;
+    ((TObjMotion *)arg0)->set_animation(((TPhotonGolla *)arg0)->requested_action);
+    ((TObjMotion *)arg0)->set_field_b8(((TPhotonGolla *)arg0)->requested_action);
     ((TPhotonGolla *)arg0)->m_1b8 = 1;
     ((TPhotonGolla *)arg0)->m_1bc = *(s32 *)((s8 *)arg1 + 0x10);
     *(s32 *)((s8 *)arg0 + 0x1C0) = *(s32 *)((s8 *)arg1 + 0x14);

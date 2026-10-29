@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/boss/TBoss3VoloptHiraisin.h"
 #include "pso/math/MatrixVector.h"
 #include "pso/object/TObjLight_80133568.h"
@@ -10,7 +11,7 @@
 #include "pso/npc/TObjNpcEnemy.h"
 #include "pso/object/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/player/TObjPlayer_80141D1C.h"
+#include "pso/render/render_util.h"
 
 struct RecoveredGlobal_802D72E4_TObjNpcEnemy__data_80540FF0 {
     s32 value;
@@ -49,7 +50,6 @@ extern RecoveredGlobal_802D78A0_lbl_804E2680 TObjNpcEnemy__collision_body_parts;
 extern s32 __vt__12TObjNpcEnemy[];
 extern s32 TObjNpcEnemy_class_name;
 u8 *TObjNpcEnemy__ct(u8 *arg0, s32 arg1, s32 arg2);
-s32 advance_animation_playback(void *);
 s32 draw_debug_info__11TObjNpcBaseFv();
 void debug_printf_at(s32, const char *, ...);
 extern char lbl_80472600[];
@@ -72,10 +72,7 @@ s32 translate_matrix(int, int, f32, f32, f32);
 void __dl__7TObjectFPv(void *);
 void *__dt__11TObjNpcBaseFv(void *arg0, s16 arg1);
 void *__nw__7TObjectFUl(int);
-s32 draw__10TObjMotionFv();
-s32 draw_model__16TObjEneMe3StelthFv();
-s32 init_npc_animation__10TObjPlayerFPvPvPv(void *, s32, s32, s16);
-s32 set_global_flag__10TObjPlayerFv(void *);
+s32 init_motion__10TObjMotionFP16TObjMotionActionP14BmlMotionEntrys(void *, s32, s32, s16);
 
 typedef char RecoveredGlobal_802D72E4_TObjNpcEnemy__data_80540FF0_size[sizeof(RecoveredGlobal_802D72E4_TObjNpcEnemy__data_80540FF0) == 0x240 ? 1 : -1];
 s16 *TObjNpcEnemy::get_entry_by_index(s16 arg0) {
@@ -137,10 +134,10 @@ void TObjNpcEnemy::vfunc_88() {
 
     temp_r4 = *(void * *)&this->m_3b8;
     if ((s16) this->mode != 2) {
-        this->m_b8 = (s16) *(s16 *)((s8 *)temp_r4 + 0x1C);
+        this->requested_action = (s16) *(s16 *)((s8 *)temp_r4 + 0x1C);
         return;
     }
-    this->m_b8 = (s16) *(s16 *)((s8 *)temp_r4 + 0x1E);
+    this->requested_action = (s16) *(s16 *)((s8 *)temp_r4 + 0x1E);
 }
 
 extern const f32 lbl_805DE7D8;
@@ -153,13 +150,13 @@ void TObjNpcEnemy::set_npc_data(void *arg1) {
     if (temp_r5 == NULL) {
         this->model = 0;
         this->texlist = 0;
-        this->m_b8 = 0;
+        this->requested_action = 0;
         *(f32 *)((s8 *)this->bodies + 0xC) = (f32) lbl_805DE7D8;
         return;
     }
     *(s32 *)&this->model = (s32) *(s32 *)((s8 *)temp_r5 + 8);
     this->texlist = (s32) *(s32 *)(this->m_3b8 + 0xC);
-    this->m_b8 = (s16) *(s16 *)((s8 *)temp_r5 + 0x1C);
+    this->requested_action = (s16) *(s16 *)((s8 *)temp_r5 + 0x1C);
     switch ((s32) (*(u16 *)(this->m_3b8 + 2))) {
     case 0:
     case 2:
@@ -167,7 +164,7 @@ void TObjNpcEnemy::set_npc_data(void *arg1) {
         break;
     case 1:
     case 3:
-        init_npc_animation__10TObjPlayerFPvPvPv(this, *(s32 *)((s8 *)temp_r5 + 0x18), *(s32 *)((s8 *)temp_r5 + 0x14), this->m_b8);
+        init_motion__10TObjMotionFP16TObjMotionActionP14BmlMotionEntrys(this, *(s32 *)((s8 *)temp_r5 + 0x18), *(s32 *)((s8 *)temp_r5 + 0x14), this->requested_action);
         break;
     }
     *(f32 *)((s8 *)this->bodies + 0xC) = (f32) *(f32 *)(this->m_3b8 + 0x10);
@@ -203,11 +200,11 @@ void TObjNpcEnemy::draw_debug_info() {
             TObjNpcEnemy::set_global_count(0xFF0000FF);
             debug_printf_at(0x24001A, lbl_80472620);
             TObjNpcEnemy::set_global_count(0xF0F0F0FF);
-            this->m_b8 = 0;
+            this->requested_action = 0;
         } else {
-            this->m_b8 = this->rotation_z;
+            this->requested_action = this->rotation_z;
         }
-        advance_animation_playback(arg0);
+        ((TObjMotion *)arg0)->advance_animation();
         break;
     }
 }
@@ -218,22 +215,22 @@ void TObjNpcEnemy::update_state() {
     sp4 = *(void * *)&this->m_3b8;
     switch ((s32) (*(u16 *)((s8 *)sp4 + 2))) {
     case 0:
-        set_global_flag__10TObjPlayerFv(this);
+        set_motion_packed_rotation();
         draw_chunk_object(this->model);
         set_default_alpha_blend();
-        TObjPlayer::clear_global_state();
+        clear_motion_packed_rotation();
         return;
     case 1:
-        draw__10TObjMotionFv();
+        draw();
         return;
     case 2:
-        set_global_flag__10TObjPlayerFv(this);
+        set_motion_packed_rotation();
         draw_ginja_object(this->model);
         set_default_alpha_blend();
-        TObjPlayer::clear_global_state();
+        clear_motion_packed_rotation();
         return;
     case 3:
-        draw_model__16TObjEneMe3StelthFv();
+        draw_ginja_motion_model();
     case 4:
         return;
     }

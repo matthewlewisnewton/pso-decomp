@@ -3,7 +3,6 @@
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/boss/TBoss1DragonColli.h"
 #include "pso/boss/TBoss7Crawfish_8030908C.h"
-#include "pso/misc/obj_band.h"
 #include "pso/misc/TUnk_804CE018.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/player/TObjChara.h"
@@ -36,7 +35,6 @@ extern s32 TBoss7Crawfish__class_name;
 extern const f32 TBoss7Crawfish__data_805DF0D8;
 extern const f32 TBoss7Crawfish__data_805DF0DC;
 extern const f32 lbl_805DF100;
-s32 advance_animation_playback(void *);
 int TBoss7Crawfish__sub_80308BEC(void *p);
 void TLobby__sub_8001FE7C(void*, int);
 s32 submit_cursor_candidate(void *, int);
@@ -78,7 +76,7 @@ void TBoss7Crawfish::run_task() {
         submit_cursor_candidate(arg0, -1);
     }
     add_radar_scaled_marker((u8 *)&this->position, -0x5DB4, 1, 1, lbl_805DF0FC);
-    advance_animation_playback(arg0);
+    ((TObjMotion *)arg0)->advance_animation();
 }
 
 void *__dt__14TBoss7CrawfishFv(void *arg0, s16 arg1) {
@@ -106,8 +104,8 @@ u8 *TBoss7Crawfish__ct(u8 *arg0, s32 arg1, s32 arg2) {
     ((TObjMotion *)arg0)->set_field_d8((s32)lbl_804E7380);
     ((TObjMotion *)arg0)->set_field_dc((int) (*(s32 *)((s8 *)((u8 *)TBoss7Crawfish__shared_resource) + 0x430)));
     ((TBoss7Crawfish *)arg0)->set_anim_timer(2);
-    ((TObjMotion *)arg0)->set_animation((((TBoss7Crawfish *)arg0)->m_b8));
-    set_field_b8__10TObjMotionFs(arg0, (int) (((TBoss7Crawfish *)arg0)->m_b8));
+    ((TObjMotion *)arg0)->set_animation((((TBoss7Crawfish *)arg0)->requested_action));
+    set_field_b8__10TObjMotionFs(arg0, (int) (((TBoss7Crawfish *)arg0)->requested_action));
     ((TObjChara *)arg0)->add_flags_2e4(2);
     ((TBoss7Crawfish *)(arg0))->apply_set_data((void *)arg2);
     if (((TBoss7Crawfish *)arg0)->sub_80308AA8() != 0) {
@@ -167,7 +165,7 @@ void TBoss7Crawfish::apply_confusion_status() {  }
 void TBoss7Crawfish::apply_movement_ailment(s32) {  }
 void TBoss7Crawfish::apply_shock_status() {  }
 void TBoss7Crawfish::clear_harmful_statuses() {  }
-f32 TBoss7Crawfish::get_health() { return this->m_c8; }
-void TBoss7Crawfish::set_anim_timer(s16 v) { this->m_b8 = v; }
+f32 TBoss7Crawfish::get_health() { return this->play_speed; }
+void TBoss7Crawfish::set_anim_timer(s16 v) { this->requested_action = v; }
 
 }

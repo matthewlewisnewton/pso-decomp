@@ -1,7 +1,7 @@
 #include "pso/player/PlayerAttackParams.h"
 #include "types.h"
 #include "pso/enemy/TObjEneEpsilon.h"
-#include "pso/object/obj_band.h"
+#include "pso/object/TObjMotion.h"
 #include "pso/system/vector.h"
 #include "pso/enemy/TObjEneGibbles.h"
 #include "pso/boss/TBoss3Volopt.h"
@@ -63,7 +63,6 @@ u16 get_entity_id(void *);
 void *spawn_particle_effect(void *pos, s32 id);
 void enemy_clear_target__12TObjEneDD_STFUs(void *);
 f32 horizontal_distance_squared(void *, void *);
-void advance_animation_playback(void *);
 void play_sound_effect(s32, void *, s32, s32);
 s32 is_valid_and_active__10TObjPlayerFUl();
 s32 TObjEneRecon__sub_8031DA90(u8 *arg0);
@@ -279,7 +278,7 @@ void TObjEneRecon__sub_8031C364(u8 *arg0, s32 arg1) {
     case 5:
         break;
     case 0:
-        advance_animation_playback(arg0);
+        ((TObjMotion *)arg0)->advance_animation();
         switch (F(s32, 0x3C0)) {
         case 0:
         case 1:
@@ -354,7 +353,7 @@ void TObjEneRecon__sub_8031C624(u8 *arg0, s32 arg1) {
         }
         break;
     case 0:
-        advance_animation_playback(arg0);
+        ((TObjMotion *)arg0)->advance_animation();
         n = *(s32 *)((s8 *)arg0 + 0x3C0);
         *(s32 *)((s8 *)arg0 + 0x3C0) = n + 1;
         *(f32 *)((s8 *)arg0 + 0x44C) = *(f32 *)((s8 *)arg0 + 0x308);
@@ -406,7 +405,7 @@ void run_task__12TObjEneReconFPvi(u8 *target, s32 arg1) {
 
     switch (arg1) {
     case 4:
-        ((TObjEneRecon *)target)->m_b8 = 1;
+        ((TObjEneRecon *)target)->requested_action = 1;
         ((VObj_8031c7bc *) target)->m94();
         *(s32 *)((s8 *)target + 0x444) = (s32) (*(s32 *)((s8 *)target + 0x444) & 0xFFFFFFFE);
         *(s32 *)((s8 *)target + 0x444) = (s32) (*(s32 *)((s8 *)target + 0x444) | 2);
@@ -432,7 +431,7 @@ void run_task__12TObjEneReconFPvi(u8 *target, s32 arg1) {
     case 5:
         return;
     case 0:
-        ((s32 (*)()) advance_animation_playback)();
+        ((TObjMotion *)target)->advance_animation();
         ((TObjEneDD *)target)->update_velocity();
         ((VObj_8031c7bc *) target)->m86();
         ((TObjEneRecon *)target)->clamp_min_height();
@@ -725,7 +724,7 @@ void TObjEneRecon__sub_8031C920(u8 *arg0, s32 arg1) {
     case 5:
         break;
     case 0:
-        advance_animation_playback(arg0);
+        ((TObjMotion *)arg0)->advance_animation();
         if (((TObjEneEpsilon *)arg0)->update_death_check() != 0 || ((VObj_18_2afebf *)(arg0))->m102(TObjEneRecon__data_805DF3E4) != 0) {
             switch (F(s32, 0x3C0)) {
             case 0:
@@ -782,7 +781,7 @@ void TObjEneRecon__sub_8031C920(u8 *arg0, s32 arg1) {
 void TObjEneRecon__sub_8031CCFC(u8 *arg0, s32 arg1) {
     switch (arg1) {
     case 4:
-        ((TObjEneEpsilon *)arg0)->m_b8 = 1;
+        ((TObjEneEpsilon *)arg0)->requested_action = 1;
         ((TObjEneDD_ST *)arg0)->vfunc_96();
         *(u32 *)((s8 *)arg0 + 0x444) &= ~1;
         *(u32 *)((s8 *)arg0 + 0x444) |= 2;
@@ -810,7 +809,7 @@ void TObjEneRecon__sub_8031CCFC(u8 *arg0, s32 arg1) {
         }
         break;
     case 0:
-        advance_animation_playback(arg0);
+        ((TObjMotion *)arg0)->advance_animation();
         if (((TObjEneEpsilon *)arg0)->update_death_check() == 0) {
             enemy_clear_target__12TObjEneDD_STFUs(arg0);
         }
@@ -824,12 +823,12 @@ void TObjEneRecon__sub_8031CCFC(u8 *arg0, s32 arg1) {
             (*(s32 *)((s8 *)arg0 + 0x3C4))++;
             if (*(s32 *)((s8 *)arg0 + 0x3C4) > 0xF) {
                 *(s32 *)((s8 *)arg0 + 0x3C0) = 1;
-                ((TObjEneEpsilon *)arg0)->m_b8 = 3;
+                ((TObjEneEpsilon *)arg0)->requested_action = 3;
                 play_sound_effect(TObjEneRecobox::remap_area_sound_id(0x4003A808), arg0 + 0x38, 0, 0);
             }
             break;
         case 1:
-            if (objInBand((GameObj *)arg0, (f32)lbl_805DF3F8) != 0) {
+            if (((TObjMotion *)arg0)->is_passing_frame((f32)lbl_805DF3F8) != 0) {
                 play_sound_effect(TObjEneRecobox::remap_area_sound_id(0x4003A80A), arg0 + 0x38, 0, 0);
                 TObjEneRecon::create_bomb(arg0, arg0, arg0 + 0x40C);
             } else if (((TObjEneDD *)arg0)->get_flag_b4() != 0) {
@@ -880,7 +879,7 @@ void TObjEneRecon__sub_8031CF30(u8 *arg0, s32 arg1) {
         }
         break;
     case 0:
-        advance_animation_playback(arg0);
+        ((TObjMotion *)arg0)->advance_animation();
         if (((TObjEneEpsilon *)arg0)->update_death_check() == 0) {
             enemy_clear_target__12TObjEneDD_STFUs(arg0);
         }
@@ -911,13 +910,13 @@ void TObjEneRecon__sub_8031CF30(u8 *arg0, s32 arg1) {
             ((TObjEneRecon *)arg0)->update_flag_0x444();
             break;
         case 2:
-            if (objInBand((GameObj *)arg0, (f32)lbl_805DF400) != 0 || objInBand((GameObj *)((GameObj *)arg0), (f32)((f32)lbl_805DF404)) != 0) {
+            if (((TObjMotion *)arg0)->is_passing_frame((f32)lbl_805DF400) != 0 || ((TObjMotion *)arg0)->is_passing_frame((f32)((f32)lbl_805DF404)) != 0) {
                 spawn_particle_effect(arg0 + 0x2FC, 0x218);
             }
-            if (objInBand((GameObj *)arg0, (f32)lbl_805DF408) != 0) {
+            if (((TObjMotion *)arg0)->is_passing_frame((f32)lbl_805DF408) != 0) {
                 F(s32, 0x3C8) = 1;
                 play_sound_effect(TObjEneRecobox::remap_area_sound_id(0x4003A809), arg0 + 0x38, 0, 0);
-            } else if (objInBand((GameObj *)arg0, (f32)lbl_805DF40C) != 0) {
+            } else if (((TObjMotion *)arg0)->is_passing_frame((f32)lbl_805DF40C) != 0) {
                 F(s32, 0x3C8) = 0;
             }
             if (F(s32, 0x3C8) == 1) {
@@ -972,7 +971,7 @@ void TObjEneRecon__sub_8031D380(u8 *arg0, s32 arg1) {
     case 5:
       return;
     case 0:
-      advance_animation_playback(arg0);
+      ((TObjMotion *)arg0)->advance_animation();
       if ((((TObjEneEpsilon *)arg0)->update_death_check() != 0) || ((((VObj_18_83f71d *)(arg0))->m102((TObjEneRecon__data_805DF3E4))) != 0))
     {
       ((void (*)(void *, s16)) transition_enemy_state__9TObjEneDDFl)(arg0, 4);
@@ -1021,7 +1020,7 @@ void TObjEneRecon::sub_8031D4B0(s32 arg1) {
     case 5:
         break;
     case 0:
-        advance_animation_playback(arg0);
+        ((TObjMotion *)arg0)->advance_animation();
         temp_f1 = *(f32 *)((s8 *)arg0 + 0x428);
         temp_f2 = *(f32 *)((s8 *)arg0 + 0x430);
         temp_f31 = (temp_f1 * temp_f1) + (temp_f2 * temp_f2);

@@ -339,7 +339,7 @@ void create_hit_effect__10TObjPlayerFPv(void *);
 f32 receive_direct_attack__9TObjCharaFPv19DirectAttackPayloadPvll(Actor_8001311C *self, Actor_8001311C *att, Info_8001311C *arg, Coll_8001311C *coll, s32 tech, s32 arg5);
 u8 obj_is_hit_receivable(u8 *arg0);
 int get_player_data__10TObjPlayerFi(int a0);
-extern s32 lbl_805D586C;
+extern s32 registered_player_count;
 extern s32 lbl_805D5870;
 u16 find_nearest_hittable_enemy__10TObjPlayerFiPvf(s32 arg0, Vec_800114D8 *arg1, f32 farg0);
 s32 try_spend_actor_meseta(u8 *arg0, s32 arg1);
@@ -359,7 +359,7 @@ f32 receive_weapon_special_attack__9TObjCharaFPvPv(Actor_80011824 *self, Actor_8
 void TObjPlayer__sub_8001951C(void* p);
 void subtractive_rng_seed(void *, u16);
 void __ct__14SubtractiveRngFv(void *);
-void TObjMotion__ct(void *, void *);
+void __ct__10TObjMotionFP7TObject(void *, void *);
 void __construct_array(void *, void *, void *, u32, u32);
 extern void *__vt__9TObjChara[];
 Obj_80019038 *__ct__9TObjCharaFP7TObject(Obj_80019038 *self, void *parent);
@@ -903,7 +903,7 @@ s32 create_font_small_task_default_color(u32, s32, s32, s32, s32 *, s16);
 s32 create_damage_font__19TObjEneEpsilonGuardFllll(u32, s32, s32, s16);
 f32 horizontal_distance_squared(void *, void *);
 s32 angle_difference_abs(s32, s32);
-s32 lerp_angle_half__10TObjPlayerFUsUs(s32, s32);
+s32 lerp_angle_half__Fll(s32, s32);
 s32 approach_angle_limited(s32, s32, s32);
 void __dt__10TObjMotionFv(void *, int);
 void * find_entity_by_id(s32 id);
@@ -947,7 +947,7 @@ extern u8 lbl_804340A8[];
 extern s32 lbl_804340B0[];
 extern SceneEntry_8000FD54 main_phase_table[];
 extern SceneState_8000FD54 main_phase_state;
-extern Vec_800182A0 lbl_8050BEE0;
+extern Vec_800182A0 scratch_vec;
 extern RecoveredGlobal_80010E44_lbl_8050EA40 lobby_rule_settings;
 extern RecoveredGlobal_8001806C_lbl_8058D490 identity_matrix;
 extern s32 camera_split_screen_selector;
@@ -1718,7 +1718,7 @@ u16 find_nearest_hittable_enemy__10TObjPlayerFiPvf(s32 arg0, Vec_800114D8 *arg1,
     ObjFlags *p;
     best = farg0 * farg0;
     result = 0xFFFF;
-    for (i = lbl_805D586C; i < lbl_805D586C + lbl_805D5870; i++) {
+    for (i = registered_player_count; i < registered_player_count + lbl_805D5870; i++) {
         p = ((ObjFlags * (*)(s32))get_player_data__10TObjPlayerFi)(i);
         if (p == NULL) {
             break;
@@ -1747,7 +1747,7 @@ u16 find_nearest_visible_player(u8 *arg0, Vec_800115C4 *arg1, f32 farg0) {
     f32 dist;
     Player_800115C4 *player;
     s32 i;
-    for (i = 0; i < lbl_805D586C; i++) {
+    for (i = 0; i < registered_player_count; i++) {
         player = ((Player_800115C4 * (*)(s32))get_player_data__10TObjPlayerFi)(i);
         if (player != NULL && player->id < 0x1000 && !(player->flags & 0x02000800)) {
             if (((TObjPlayer *)player)->get_field_3e4() == get_current_floor()) {
@@ -4215,13 +4215,13 @@ s32 select_enemy_destination(Obj_800182A0 *self, Vec_800182A0 *arg1, int flags) 
         if (self->fA4 != NULL) {
             subtract_vector(&d, &self->pos);
             a = (s32)(TObjPlayer__data_804340B8 * ((f64 (*)(f32, f32))atan2_float)(d.x, d.z));
-            lbl_8050BEE0.x = lbl_8050BEE0.y = (0.0f);
-            lbl_8050BEE0.z = self->fA4->fC;
+            scratch_vec.x = scratch_vec.y = (0.0f);
+            scratch_vec.z = self->fA4->fC;
             push_matrix_from(&identity_matrix);
             rotate_matrix_y(0, (void *)a);
-            rotate_vector_by_matrix(0, &lbl_8050BEE0, &lbl_8050BEE0);
+            rotate_vector_by_matrix(0, &scratch_vec, &scratch_vec);
             pop_matrix();
-            vec3_add_to(&d, &lbl_8050BEE0);
+            vec3_add_to(&d, &scratch_vec);
             vec3_add_to(&d, &self->pos);
         }
         if (!(flags & 2) && check_path_obstructed((u8 *)self, (Vec_80018428 *)&d) != 0) {
@@ -4273,7 +4273,7 @@ void enemy_turn_half_toward_dest(Obj_80018570 *self) {
     VecCopy__FP3VecPC3Vec((s32)&d, (s32)&self->dest);
     subtract_vector(&d, &self->pos);
     a = (s32)(TObjPlayer__data_804340B8 * ((f64 (*)(f32, f32))atan2_float)(d.x, d.z));
-    self->angle = lerp_angle_half__10TObjPlayerFUsUs(self->angle, a);
+    self->angle = lerp_angle_half__Fll(self->angle, a);
     angle_difference_abs(self->angle, a);
 }
 
@@ -4513,7 +4513,7 @@ Obj_80019038 *__ct__9TObjCharaFP7TObject(Obj_80019038 *self, void *parent) {
     Layout_80019038 *l;
     s32 i;
     s32 j;
-    TObjMotion__ct(self, parent);
+    __ct__10TObjMotionFP7TObject(self, parent);
     *(s32 **)((s8 *)self + 0x18) = (s32 *)__vt__9TObjChara;
     ((TObjPlayer *)(p + 0x120))->register_object();
     __ct__14SubtractiveRngFv(p + 0x160);

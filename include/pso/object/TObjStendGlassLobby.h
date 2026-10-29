@@ -2,27 +2,31 @@
 #define PSO_OBJECT_TOBJSTENDGLASSLOBBY_H
 
 #include "types.h"
-#include "pso/misc/TUnk_804AFBF8.h"
+#include "pso/object/TObjMapObject.h"
 
-struct TObjStendGlassLobby : public TUnk_804AFBF8 {
+struct BmlResource;
+
+// A lobby stained-glass window frame: shown while the event theme its set
+// data picks (0 or 1) runs, fading in and out on the xz axes.
+struct TObjStendGlassLobby : public TObjMapObject {
+    TObjStendGlassLobby(TObject *parent, void *set_data);
     virtual ~TObjStendGlassLobby();
-    u32 m_c8;
-    u8 _padCC[0x4];
-    u32 m_d0;
+    s32 fade_state;  // 0 hidden, 2 fading in, 3 shown, 1 fading out
+    f32 fade_scale;  // 0..1, the xz scale it fades in and out with
+    s32 event_theme;  // the event theme it shows for
+    // run_task's demo-mode step, empty in this build.
+    void demo_step();
     virtual void render();
     virtual void run_task();
     void update_state();
-    static void *create(void *arg0);
-    static void free_static_model();
+    static void *create(void *set_data);
+    static void free_resources();
     static void load_resources();
+
+    static BmlResource *static_model_resource;
+    static u32 lobby_texlist;  // the lobby's shared texture list
 };
 
 typedef char TObjStendGlassLobby_size[sizeof(TObjStendGlassLobby) == 0xD4 ? 1 : -1];
-
-extern "C" {
-u8 *TObjStendGlassLobby__ct(u8 *arg0, s32 arg1, s32 arg2);
-void TObjStendGlassLobby__sub_803596C0(void);
-void *__dt__19TObjStendGlassLobbyFv(void *arg0, s16 arg1);
-}
 
 #endif

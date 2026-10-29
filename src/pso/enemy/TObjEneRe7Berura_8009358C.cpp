@@ -1,7 +1,7 @@
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/unk/TUnk_80494968.h"
 #include "types.h"
-#include "pso/object/obj_band.h"
+#include "pso/object/TObjMotion.h"
 #include "pso/system/vector.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/enemy/TObjEneDD_ST.h"
@@ -164,7 +164,6 @@ f32 atan2_float(f32 y, f32 x);
 s32 check_death_trigger__16TObjEneRe7BeruraFv();
 s32 is_over_limit__16TObjEneRe7BeruraFv(void *);
 s32 TObjEneRe7Berura__sub_8009518C(void *);
-s32 advance_animation_playback();
 f32 sin_table_lookup(int);
 f32 cos_table_lookup(int);
 extern const f64 lbl_80439EF0;
@@ -346,7 +345,7 @@ extern "C" void state_patrol__16TObjEneRe7BeruraFPvi(void *arg0, s32 arg1) {
         }
         break;
     case 0:
-        advance_animation_playback();
+        ((TObjMotion *)arg0)->advance_animation();
         if (((TObjEneRe7BeruraPunch *)arg0)->is_patrol_active() == 0) {
             *(f32 *)((s8 *)arg0 + 0xC8) = (f32) lbl_805D973C;
         }
@@ -371,7 +370,7 @@ void TObjEneRe7Berura::run_flash_warning_state(s32 arg1) {
     s32 v;
     switch (arg1) {
     case 4:
-        this->m_b8 = 5;
+        this->requested_action = 5;
         this->vfunc_96();
         *(s32 *)((s8 *)arg0 + 0x3C0) = (s32) (*(s32 *)((s8 *)arg0 + 0x3C0) & 0xFFFFFFFC);
         *(s32 *)((s8 *)arg0 + 0x3C0) = (s32) (*(s32 *)((s8 *)arg0 + 0x3C0) | 4);
@@ -387,7 +386,7 @@ void TObjEneRe7Berura::run_flash_warning_state(s32 arg1) {
         }
         break;
     case 0:
-        advance_animation_playback();
+        advance_animation();
         *(s32 *)((s8 *)arg0 + 0x4C0) = *(s32 *)((s8 *)arg0 + 0x4C0) + 1;
         t = *(s32 *)((s8 *)arg0 + 0x4C8);
         if (t > 0) {
@@ -456,7 +455,7 @@ void TObjEneRe7Berura__sub_80093888(u8 *actor, s32 arg1) {
         }
         break;
     case 0:
-        advance_animation_playback();
+        ((TObjMotion *)actor)->advance_animation();
         switch (*(s32 *)((s8 *)actor + 0x4C0)) {
         case 0:
             if (enemy_validate_retained_target(actor) != 0) {
@@ -474,10 +473,10 @@ void TObjEneRe7Berura__sub_80093888(u8 *actor, s32 arg1) {
             }
             break;
         case 1:
-            if (objInBand((GameObj *)actor, (f32)lbl_805D9744) != 0) {
+            if (((TObjMotion *)actor)->is_passing_frame((f32)lbl_805D9744) != 0) {
                 play_sound_effect(((TObjEnemy *)(actor))->remap_sound_for_area((s32)(0x4003AD22)), (u32) (actor + 0x38), 0, 0);
             }
-            if ((objInBand((GameObj *)actor, (f32)lbl_805D9748) != 0) && (((TObjEneDD_ST *)actor)->enemy_check_target_valid() != 0)) {
+            if ((((TObjMotion *)actor)->is_passing_frame((f32)lbl_805D9748) != 0) && (((TObjEneDD_ST *)actor)->enemy_check_target_valid() != 0)) {
                 if (((VObj_18_a5c788 *)((u8 *)(*(u8 **)((s8 *)actor + 0x390))))->m18(actor, lbl_805D974C) != 0) {
                     if (((VObj_18_a5c788 *)((u8 *)(*(u8 **)((s8 *)actor + 0x390))))->m20(actor, lbl_805D974C) > TObjEneRe7Berura__data_805D972C) {
                         if (TObjEneDD::check_v2_mode() != 0) {
@@ -562,7 +561,7 @@ void TObjEneRe7Berura__sub_80093C80(u8 *arg0, s32 arg1) {
         }
         break;
     case 0:
-        advance_animation_playback();
+        ((TObjMotion *)arg0)->advance_animation();
         switch (F(s32, 0x4C0)) {
         case 0:
             ok = 1;
@@ -591,7 +590,7 @@ void TObjEneRe7Berura__sub_80093C80(u8 *arg0, s32 arg1) {
                     }
                 }
             }
-            if (objInBand((GameObj *)arg0, (f32)(F(f32, 0x4D0))) != 0) {
+            if (((TObjMotion *)arg0)->is_passing_frame((f32)(F(f32, 0x4D0))) != 0) {
                 ARMF[F(s32, 0x3F4)] |= 3;
                 SUB->m3();
                 VecCopy((Vec *)&v, (const Vec *)&TObjEneRe7Berura__detached_part_states[F(s32, 0x3F4)].ofs);
@@ -637,7 +636,7 @@ void TObjEneRe7Berura__sub_80093C80(u8 *arg0, s32 arg1) {
 void TObjEneRe7Berura__sub_800940E8(TObjEneRe7Berura *arg0, s32 arg1) {
     switch (arg1) {
     case 4:
-        arg0->m_b8 = 1;
+        arg0->requested_action = 1;
         ((TObjEneDD *)(arg0))->vfunc_96();
         *(s32 *)((s8 *)arg0 + 0x3C0) = (s32) (*(s32 *)((s8 *)arg0 + 0x3C0) & 0xFFFFFFF8);
         ((TObjEneDD *)arg0)->set_field_378(4);
@@ -665,7 +664,7 @@ void TObjEneRe7Berura__sub_800940E8(TObjEneRe7Berura *arg0, s32 arg1) {
     case 5:
         break;
     case 0:
-        advance_animation_playback();
+        arg0->advance_animation();
         arg0->play_band_sound();
         if (((TObjEneDD_ST *)arg0)->update_linked_position(TObjEneRe7Berura__data_805D9724) != 0) {
             ((TObjEneDD_ST *)arg0)->enemy_copy_target_destination();
@@ -730,7 +729,7 @@ void TObjEneRe7Berura::handle_state(s32 arg1) {
     s32 temp_r0;
     switch (arg1) {
     case 4:
-        this->m_b8 = 0;
+        this->requested_action = 0;
         this->vfunc_95();
         *(s32 *)((s8 *)arg0 + 0x3C0) = (s32) (*(s32 *)((s8 *)arg0 + 0x3C0) & 0xFFFFFFF8);
         ((TObjEneDD *)arg0)->set_field_378(8);
@@ -749,7 +748,7 @@ void TObjEneRe7Berura::handle_state(s32 arg1) {
     case 5:
         break;
     case 0:
-        advance_animation_playback();
+        advance_animation();
         switch (*(s32 *)((s8 *)arg0 + 0x4C0)) {
         case 0:
             if (((TObjEneDD_ST *)arg0)->update_linked_position(TObjEneRe7Berura__data_805D9724) != 0) {

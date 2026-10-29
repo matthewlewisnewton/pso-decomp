@@ -1,7 +1,7 @@
 #include "pso/player/PlayerAttackParams.h"
 #include "types.h"
 #include "pso/boss/TBoss3VoloptHiraisin.h"
-#include "pso/object/obj_band.h"
+#include "pso/object/TObjMotion.h"
 #include "pso/system/vector.h"
 #include "pso/enemy/TObjEneRe2Flower_EffCurse3.h"
 #include "pso/object/TObjMotion.h"
@@ -542,7 +542,7 @@ s32 subtract_vector(void *, void *);
 s32 push_matrix_from(void *);
 s32 pop_matrices(int);
 extern const f64 lbl_8043BC88;
-extern Vec_800C5164 lbl_8050BEE0;
+extern Vec_800C5164 scratch_vec;
 extern Vec_800C5164 lbl_8050BF00;
 extern u8 identity_matrix[];
 
@@ -552,7 +552,6 @@ void move_with_wall_slide(u8 *arg0);
 extern "C" {
 s32 obj_testFlags30__14TObjCollidableFUl(void *, int);
 void *spawn_particle_effect(void *pos, s32 id);
-s32 advance_animation_playback();
 extern const f32 lbl_805DA034;
 extern const f32 lbl_805DA038;
 extern const f32 lbl_805DA03C;
@@ -594,11 +593,11 @@ s32 angle_difference_abs(s32, s32);
 void TUnk_80493450::sub_800C4E08() {
     if (obj_testFlags30__14TObjCollidableFUl(this, 0x100000) != 0) {
         *(f32 *)((s8 *)((u8 *)this) + 0x394) = (f32) *(f32 *)((s8 *)((u8 *)this) + 0x39C);
-        this->m_c8 = (f32) *(f32 *)((s8 *)((u8 *)this) + 0x3A4);
+        this->play_speed = (f32) *(f32 *)((s8 *)((u8 *)this) + 0x3A4);
         return;
     }
     *(f32 *)((s8 *)((u8 *)this) + 0x394) = (f32) this->m_398;
-    this->m_c8 = (f32) this->m_3a0;
+    this->play_speed = (f32) this->m_3a0;
 }
 
 s32 TUnk_80493450::update_target_near_flag() {
@@ -641,15 +640,15 @@ s32 TUnk_80493450::update_target_near_flag() {
 int TUnk_80493450::beast_retire_corpse() { return queue_destruction__7TObjectFv(this); }
 void TUnk_80493450::beast_update_dead() {
     u8 *arg0 = (u8 *)this;
-    advance_animation_playback();
-    if (objInBand((GameObj *)(arg0), lbl_805DA034) != 0) {
+    advance_animation();
+    if (((TObjMotion *)arg0)->is_passing_frame(lbl_805DA034) != 0) {
         this->vfunc_98();
     }
-    if (objInBand((GameObj *)(arg0), lbl_805DA038) != 0) {
+    if (((TObjMotion *)arg0)->is_passing_frame(lbl_805DA038) != 0) {
         spawn_particle_effect(((u8 *)&this->position), 0xF3);
         this->vfunc_94();
     }
-    if (this->m_c0 < (lbl_805DA03C * (lbl_805DA040 * this->m_c8))) {
+    if (this->frame < (lbl_805DA03C * (lbl_805DA040 * this->play_speed))) {
         move_with_wall_slide((arg0));
         *(f32 *)((s8 *)arg0 + 0x308) = (f32) (*(f32 *)((s8 *)arg0 + 0x308) * lbl_805DA03C);
         this->m_310 = (f32) (this->m_310 * lbl_805DA03C);
@@ -661,21 +660,21 @@ void TUnk_80493450::beast_update_dead() {
         this->beast_retire_corpse();
     }
 }
-void TObjPlayer::enter_state_8() { if (this->mode != 8) { this->mode = 8; this->m_b8 = 8; unlink_enemy_group_relations__13TUnk_80493450Fv(this); clear_player_status_flag((s32)((void*)0), (u32)((void*)1)); refresh_lobby_state(); send_entity_set_flags__9TObjEnemyFv(this); } }
+void TObjPlayer::enter_state_8() { if (this->mode != 8) { this->mode = 8; this->requested_action = 8; unlink_enemy_group_relations__13TUnk_80493450Fv(this); clear_player_status_flag((s32)((void*)0), (u32)((void*)1)); refresh_lobby_state(); send_entity_set_flags__9TObjEnemyFv(this); } }
 void TUnk_80493450::beast_update_hurt() {
     u8 *arg0 = (u8 *)this;
     Obj_800C5164 *o = (Obj_800C5164 *)arg0;
     Vec_800C5164 v;
 
-    advance_animation_playback();
+    advance_animation();
     VecCopy((Vec *)&v, (const Vec *)&o->f2FC);
-    lbl_8050BEE0.x = lbl_8050BEE0.y = lbl_805DA034;
-    lbl_8050BEE0.z = get_collision_body_radius(o, 0);
-    ((void (*)(void *, void *))push_matrix_from)(identity_matrix, &lbl_8050BEE0);
+    scratch_vec.x = scratch_vec.y = lbl_805DA034;
+    scratch_vec.z = get_collision_body_radius(o, 0);
+    ((void (*)(void *, void *))push_matrix_from)(identity_matrix, &scratch_vec);
     rotate_matrix_y(0, -((TObjPlayer *)o)->rotation_y);
-    rotate_vector_by_matrix(0, &lbl_8050BEE0, &lbl_8050BEE0);
+    rotate_vector_by_matrix(0, &scratch_vec, &scratch_vec);
     pop_matrix();
-    vec3_add_to(&v, &lbl_8050BEE0);
+    vec3_add_to(&v, &scratch_vec);
     v.x += o->f308;
     v.z += ((TObjPlayer *)o)->m_310;
     if (check_path_obstructed(o, &v) == 0) {
@@ -686,10 +685,10 @@ void TUnk_80493450::beast_update_hurt() {
         o->f308 = ((TObjPlayer *)o)->m_310 = lbl_805DA034;
     }
     ((TObjPlayer *)o)->update_collisions();
-    if (objInBand((GameObj *)o, (f32)lbl_805DA034) != 0) {
+    if (((TObjMotion *)o)->is_passing_frame((f32)lbl_805DA034) != 0) {
         this->vfunc_97();
     }
-    if (((TObjPlayer *)o)->m_b4 != 8) {
+    if (((TObjPlayer *)o)->action_flags != 8) {
         ((TObjBase *)o)->obj_clearFlags30(0x600);
         ((TObjCollidable *)o)->clear_player_status_flag((s32)((void *)0), (u32)((void *)0x04000000));
         if (*(s32 *)&((TObjPlayer *)o)->m_334 == 0) {
@@ -705,7 +704,7 @@ void TUnk_80493450::beast_update_hurt() {
 void TUnk_80493450::vfunc_62() {
     if ((s16) this->mode != 7) {
         this->mode = 7;
-        this->m_b8 = 6;
+        this->requested_action = 6;
     }
     obj_clearFlags30(0x240000);
 }
@@ -726,12 +725,12 @@ void TUnk_80493450::beast_update_attack() {
     } else {
         ((Self_800C53DC *)this)->target = NULL;
     }
-    ((s32 (*)(void *))advance_animation_playback)(((Self_800C53DC *)this));
+    ((TObjMotion *)((Self_800C53DC *)this))->advance_animation();
     switch (((Self_800C53DC *)this)->f328) {
     case 0:
         ((Self_800C53DC *)this)->f328 = 1;
     case 1:
-        if (objInBand((GameObj *)((Self_800C53DC *)this), (f32)lbl_805DA04C) != 0) {
+        if (((TObjMotion *)((Self_800C53DC *)this))->is_passing_frame((f32)lbl_805DA04C) != 0) {
             if (((Self_800C53DC *)this)->target != NULL && ((Self_800C53DC *)this)->target->m18(((Self_800C53DC *)this), lbl_805DA048) != 0) {
                 ((Self_800C53DC *)this)->target->m20(((Self_800C53DC *)this), lbl_805DA048);
                 ((Self_800C53DC *)this)->target->m23(((Self_800C53DC *)this), lbl_805DA050);
@@ -769,10 +768,10 @@ void TUnk_80493450::vfunc_60() {
         this->phase = 0;
         if (this->children == NULL) {
             this->mode = 3;
-            this->m_b8 = 7;
+            this->requested_action = 7;
         } else {
             this->mode = 2;
-            this->m_b8 = 10;
+            this->requested_action = 10;
         }
         ((TObjBase *)o)->obj_clearFlags30(0x04040000);
         ((TObjCollidable *)o)->clear_player_status_flag((s32)((void *)0), (u32)((void *)0x0A000000));
@@ -783,9 +782,9 @@ void TUnk_80493450::vfunc_60() {
         this->mode = 5;
         this->phase = 1;
         if (lbl_805DA03C < random_ratio__9TObjCharaFv((s32)o)) {
-            this->m_b8 = 3;
+            this->requested_action = 3;
         } else {
-            this->m_b8 = 4;
+            this->requested_action = 4;
         }
         obj_setFlags30(o, 0x200000);
         ((TObjBase *)o)->obj_clearFlags30(0x04040000);
@@ -809,7 +808,7 @@ s32 TUnk_80493450::update_movement_status() {
       this->m_390 = 0;
       this->mode = 1;
       this->phase = 0;
-      this->m_b8 = 0;
+      this->requested_action = 0;
       ((TObjBase *)arg0)->obj_clearFlags30(0x04040000);
       ((TObjCollidable *)arg0)->clear_player_status_flag((s32)((void*)(0)), (u32)((void*)(0x0A000000)));
     }
@@ -833,7 +832,7 @@ s32 TUnk_80493450::update_action_hold_status() {
       this->m_390 = 0;
       this->mode = 1;
       this->phase = 0;
-      this->m_b8 = 0;
+      this->requested_action = 0;
       ((TObjBase *)arg0)->obj_clearFlags30(0x04040000);
       ((TObjCollidable *)arg0)->clear_player_status_flag((s32)((void*)(0)), (u32)((void*)(0x0A000000)));
     }
@@ -846,7 +845,7 @@ void TUnk_80493450::beast_update_group_chase() {
     Self_800C57F0 *arg0 = (Self_800C57F0 *)this;
     f32 d;
     f32 r;
-    advance_animation_playback();
+    advance_animation();
     switch (arg0->f328) {
     case 0:
         arg0->f328 = 1;
@@ -877,13 +876,13 @@ void TUnk_80493450::beast_update_approach() {
     switch (this->phase) {
     case 0:
         apply_actor_gravity(arg0, 0, lbl_805DA034);
-        ((void (*)(void *))advance_animation_playback)(arg0);
-        if (objInBand((GameObj *)arg0, (f32)lbl_805DA034) != 0) {
+        ((TObjMotion *)arg0)->advance_animation();
+        if (((TObjMotion *)arg0)->is_passing_frame((f32)lbl_805DA034) != 0) {
             this->vfunc_95();
         }
-        if (this->m_b4 != 0x20U) {
+        if (this->action_flags != 0x20U) {
             this->phase = 1;
-            this->m_b8 = 2;
+            this->requested_action = 2;
         }
         break;
     default:
@@ -900,7 +899,7 @@ void TUnk_80493450::beast_update_approach() {
             }
             ((TUnk_80493450 *)arg0)->update_target_near_flag();
             ((TUnk_80493450 *)arg0)->sub_800C4E08();
-            ((void (*)(void *))advance_animation_playback)(arg0);
+            ((TObjMotion *)arg0)->advance_animation();
             {
                 Vec_800C5900 sp8 = sp14;
                 enemy_move_toward(arg0, *(s32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 8), &sp8, 0, *(f32 *)&this->unk_394);
@@ -923,10 +922,10 @@ void TUnk_80493450::beast_update_approach() {
 void TUnk_80493450::update_turn_toward_target() {
     Player_800C5B10 *arg0 = (Player_800C5B10 *)this;
     s32 ang;
-    advance_animation_playback();
+    advance_animation();
     switch (arg0->field_328) {
     case 0:
-        if (objInBand((GameObj *)arg0, (f32)lbl_805DA034) != 0) {
+        if (((TObjMotion *)arg0)->is_passing_frame((f32)lbl_805DA034) != 0) {
             arg0->m93();
         }
         if (arg0->field_B4 != 0x20) {
@@ -982,10 +981,10 @@ void TUnk_80493450::vfunc_59() {
         this->phase = 0;
         if ((u32) this->children == 0U) {
             this->mode = 3;
-            this->m_b8 = 7;
+            this->requested_action = 7;
         } else {
             this->mode = 2;
-            this->m_b8 = 0xA;
+            this->requested_action = 0xA;
         }
         ((TObjBase *)arg0)->obj_clearFlags30(0x04040000);
         ((TObjCollidable *)arg0)->clear_player_status_flag((s32)((void*)(0)), (u32)((void*)(0x0A000000U)));
@@ -994,12 +993,12 @@ void TUnk_80493450::vfunc_59() {
     case 3:
         break;
     case 4:
-        this->m_b8 = 5;
+        this->requested_action = 5;
         break;
     default:
         this->mode = 3;
         this->phase = 1;
-        this->m_b8 = 2;
+        this->requested_action = 2;
         ((TObjBase *)arg0)->obj_clearFlags30(0x04040000);
         ((TObjCollidable *)arg0)->clear_player_status_flag((s32)((void*)(0)), (u32)((void*)(0x0A000000U)));
         break;
@@ -1018,7 +1017,7 @@ void TUnk_80493450::beast_idle_update() {
 
     ((TUnk_80493450 *)arg0)->update_target_near_flag();
     ((TUnk_80493450 *)arg0)->sub_800C4E08();
-    ((void (*)(void *))advance_animation_playback)(arg0);
+    ((TObjMotion *)arg0)->advance_animation();
     if (this->phase != 1) {
         this->phase = 1;
         ((TUnk_80493450 *)arg0)->link_into_group_chain();
@@ -1044,9 +1043,9 @@ void TUnk_80493450::beast_idle_update() {
         VecCopy((Vec *)&this->m_29c, &this->home_position);
         VecCopy((Vec *)&this->m_290, (const Vec *)&this->m_2fc);
         VecCopy(&this->prev_position, (const Vec *)&this->position);
-        VecCopy((Vec *)&lbl_8050BEE0, &this->home_position);
-        subtract_vector(&lbl_8050BEE0, (u8 *)&this->position);
-        angle = lbl_8043BC88 * atan2_float(lbl_8050BEE0.x, lbl_8050BEE0.z);
+        VecCopy((Vec *)&scratch_vec, &this->home_position);
+        subtract_vector(&scratch_vec, (u8 *)&this->position);
+        angle = lbl_8043BC88 * atan2_float(scratch_vec.x, scratch_vec.z);
         lbl_8050BF00.x = lbl_8050BF00.y = lbl_805DA034;
         lbl_8050BF00.z = *(f32 *)&this->unk_394;
         push_matrix_from(identity_matrix);
@@ -1055,16 +1054,16 @@ void TUnk_80493450::beast_idle_update() {
         pop_matrices(1);
         vec3_add_to(&lbl_8050BF00, (u8 *)&this->position);
         if (project_actor_to_ground(arg0, &lbl_8050BF00, 0) == 1) {
-            this->m_b8 = 2;
+            this->requested_action = 2;
             VecCopy((Vec *)&this->position, (const Vec *)&lbl_8050BF00);
             this->rotation_y = approach_angle_limited(this->rotation_y, angle, *(s32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 8));
             goto end;
         }
-        r = fabs_float(lbl_8050BEE0.z);
-        if (fabs_float(lbl_8050BEE0.x) < r) {
-            angle = lbl_8043BC88 * atan2_float(lbl_8050BEE0.x, lbl_805DA034);
+        r = fabs_float(scratch_vec.z);
+        if (fabs_float(scratch_vec.x) < r) {
+            angle = lbl_8043BC88 * atan2_float(scratch_vec.x, lbl_805DA034);
         } else {
-            angle = lbl_8043BC88 * atan2_float(lbl_805DA034, lbl_8050BEE0.z);
+            angle = lbl_8043BC88 * atan2_float(lbl_805DA034, scratch_vec.z);
         }
         lbl_8050BF00.x = lbl_8050BF00.y = lbl_805DA034;
         lbl_8050BF00.z = *(f32 *)&this->unk_394;
@@ -1074,16 +1073,16 @@ void TUnk_80493450::beast_idle_update() {
         pop_matrices(1);
         vec3_add_to(&lbl_8050BF00, (u8 *)&this->position);
         if (project_actor_to_ground(arg0, &lbl_8050BF00, 0) == 1) {
-            this->m_b8 = 2;
+            this->requested_action = 2;
             VecCopy((Vec *)&this->position, (const Vec *)&lbl_8050BF00);
             this->rotation_y = approach_angle_limited(this->rotation_y, angle, *(s32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 8));
             goto end;
         }
-        r = fabs_float(lbl_8050BEE0.z);
-        if (fabs_float(lbl_8050BEE0.x) < r) {
-            angle2 = lbl_8043BC88 * atan2_float(lbl_805DA034, lbl_8050BEE0.z);
+        r = fabs_float(scratch_vec.z);
+        if (fabs_float(scratch_vec.x) < r) {
+            angle2 = lbl_8043BC88 * atan2_float(lbl_805DA034, scratch_vec.z);
         } else {
-            angle2 = lbl_8043BC88 * atan2_float(lbl_8050BEE0.x, lbl_805DA034);
+            angle2 = lbl_8043BC88 * atan2_float(scratch_vec.x, lbl_805DA034);
         }
         lbl_8050BF00.x = lbl_8050BF00.y = lbl_805DA034;
         lbl_8050BF00.z = *(f32 *)&this->unk_394;
@@ -1093,14 +1092,14 @@ void TUnk_80493450::beast_idle_update() {
         pop_matrices(1);
         vec3_add_to(&lbl_8050BF00, (u8 *)&this->position);
         if (project_actor_to_ground(arg0, &lbl_8050BF00, 0) == 1) {
-            this->m_b8 = 2;
+            this->requested_action = 2;
             VecCopy((Vec *)&this->position, (const Vec *)&lbl_8050BF00);
             this->rotation_y = approach_angle_limited(this->rotation_y, angle2, *(s32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 8));
         } else {
-            this->m_b8 = 2;
+            this->requested_action = 2;
         }
     } else if (*(s32 *)&this->m_37c == 0 && lbl_805DA034 < *(f32 *)((s8 *)arg0 + 0x358)) {
-        this->m_b8 = 2;
+        this->requested_action = 2;
         ((TObjEnemy *)(arg0))->enemy_wander_home(*(f32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 4), *(f32 *)((s8 *)arg0 + 0x358), *(f32 *)((s8 *)arg0 + 0x358), *(s32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 8));
     } else {
         this->request_stand_action();
@@ -1148,7 +1147,7 @@ void TObjPlayer::tick_freeze_state() {
 
 u16 find_nearest_visible_player(void *, int, f32);
 u32 csnVector(void *, void *, s32);
-extern s32 lbl_805D586C;
+extern s32 registered_player_count;
 extern s32 lbl_805D5870;
 extern const Vec lbl_8043BC68;
 }
@@ -1179,7 +1178,7 @@ void beast_select_target(TUnk_80493450 *self) {
             best = 0xFFFF;
             Vec d = lbl_8043BC68;
             best_dist = *(f32 *)self->movementParameters * *(f32 *)self->movementParameters;
-            for (; i < lbl_805D586C + lbl_805D5870; i++) {
+            for (; i < registered_player_count + lbl_805D5870; i++) {
                 player = TObjPlayer::get_player_data(i);
                 if (player == NULL) {
                     break;

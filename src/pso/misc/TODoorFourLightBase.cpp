@@ -3,7 +3,7 @@
 #include "pso/system/GinjaMaterial.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/object/TObjMotion.h"
-#include "pso/unk/TUnk_804B0BB8.h"
+#include "pso/misc/TODoorBase.h"
 #include "pso/misc/TODoorFourLightBase.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/misc/TODoorAncient01.h"
@@ -93,7 +93,7 @@ f32 rotate_matrix_by_node_angles(void *, void *);
 s32 push_matrix();
 s32 scale_current_matrix(void *);
 f32 post_translate_matrix(void *);
-void init_door_base(void *, void *);
+void __ct__10TODoorBaseFP7TObject(void *, void *);
 extern s32 __vt__19TODoorFourLightBase[];
 extern s32 TODoorFourLightBase__class_name;
 Door_802A0994 *TODoorFourLightBase__ct(Door_802A0994 *arg0, void *arg1, s32 arg2);
@@ -107,71 +107,71 @@ void __dl__7TObjectFPv(void *);
 s32 TODoorFourLightBase::init_door_switch_binding() {
     s32 temp_r0;
 
-    *(s32 *)&this->unk_C8 = (s32) this->set_params[0];
-    temp_r0 = *(s32 *)&this->unk_C8;
+    this->switch_id = (s32) this->set_params[0];
+    temp_r0 = this->switch_id;
     if (temp_r0 > 0x100) {
-        this->m_cc = 0;
+        this->lock_mode = 0;
     } else if (temp_r0 < 0) {
-        this->m_cc = 1;
+        this->lock_mode = 1;
     } else if ((s32) this->set_params[2] < 0) {
         if ((get_main_phase() == 0xF) || (TRaderMapCore::is_not_split_screen() == 1)) {
-            this->m_cc = 3;
+            this->lock_mode = 3;
         } else {
-            this->m_cc = 2;
+            this->lock_mode = 2;
         }
     } else {
-        this->m_cc = 2;
+        this->lock_mode = 2;
     }
-    return *(s32 *)&this->unk_C8;
+    return this->switch_id;
 }
 
 void TODoorFourLightBase::vfunc_6(s16 *arg1, s32) {
     if ((s16) *arg1 == 1) {
-        this->m_d0 = (s32) (this->m_d0 | 1);
+        this->door_flags = (s32) (this->door_flags | 1);
     }
 }
 
 void TODoorFourLightBase::update_door_switch_state() {
     u8 *arg0 = (u8 *)this;
     s16 sp8;
-    switch (this->m_cc) {
+    switch (this->lock_mode) {
     case 1:
-        ((TUnk_804B0BB8 *)arg0)->play_door_sound();
-        this->m_d0 |= 1;
+        ((TODoorBase *)arg0)->play_door_sound();
+        this->door_flags |= 1;
         break;
     case 2: {
         s32 found = 0;
         s32 i;
         for (i = 0; i < *(s32 *)&this->m_f8; i++) {
-            if (((u8 (*)(u16))is_current_floor_switch_set)(*(s32 *)&this->unk_C8 + i) == 0) {
+            if (((u8 (*)(u16))is_current_floor_switch_set)(this->switch_id + i) == 0) {
                 found = 1;
             }
         }
         if (found != 0) {
-            this->m_d0 &= ~1;
+            this->door_flags &= ~1;
         } else {
-            ((TUnk_804B0BB8 *)arg0)->play_door_sound();
-            this->m_d0 |= 1;
+            ((TODoorBase *)arg0)->play_door_sound();
+            this->door_flags |= 1;
         }
         break;
     }
     case 3: {
         s32 found;
         s32 i;
-        if (this->m_d0 & 1) {
+        if (this->door_flags & 1) {
             break;
         }
         found = 0;
         for (i = 0; i < *(s32 *)&this->m_f8; i++) {
-            if (((u8 (*)(u16))is_current_floor_switch_set)(*(s32 *)&this->unk_C8 + i) == 0) {
+            if (((u8 (*)(u16))is_current_floor_switch_set)(this->switch_id + i) == 0) {
                 found = 1;
             }
         }
         if (found != 0) {
-            this->m_d0 &= ~1;
+            this->door_flags &= ~1;
         } else {
-            ((TUnk_804B0BB8 *)arg0)->play_door_sound();
-            this->m_d0 |= 1;
+            ((TODoorBase *)arg0)->play_door_sound();
+            this->door_flags |= 1;
         }
         if (found == 0 && this->set_entry != NULL && ((TObjCollidable *)arg0)->access_object_saved_state(&sp8, 1) == 1) {
             sp8 = 1;
@@ -181,7 +181,7 @@ void TODoorFourLightBase::update_door_switch_state() {
         break;
     }
     default:
-        this->m_d0 &= ~1;
+        this->door_flags &= ~1;
         break;
     }
 }
@@ -270,17 +270,17 @@ void TODoorFourLightBase::render_lights() {
 struct Door_802A0670;
 void render__19TODoorFourLightBaseFv(TODoorFourLightBase *door_four_light_base) {
     VObj_802A07E0 *self = (VObj_802A07E0 *)door_four_light_base;
-    if (self->m8(door_four_light_base->m_c0, *(f32 *)((s8 *)door_four_light_base + 0xC4)) != 1) {
+    if (self->m8(door_four_light_base->view_range, *(f32 *)((s8 *)door_four_light_base + 0xC4)) != 1) {
         return;
     }
-    switch (door_four_light_base->m_ac) {
+    switch (door_four_light_base->object_state) {
     case 1:
     case 3:
         push_matrix();
         TObjFish::set_global_param((s32)((void *)self->m20()));
         post_translate_matrix((u8 *)door_four_light_base + 0x38);
         rotate_matrix_y(0, door_four_light_base->rotation_y);
-        draw_ginja_model_with_motion(door_four_light_base->m_d4, door_four_light_base->m_bc, door_four_light_base->m_b0);
+        draw_ginja_model_with_motion(door_four_light_base->m_d4, (s32)door_four_light_base->motion, door_four_light_base->animation_frame);
         pop_matrix();
         break;
     case 2:
@@ -288,11 +288,11 @@ void render__19TODoorFourLightBaseFv(TODoorFourLightBase *door_four_light_base) 
         TObjFish::set_global_param((s32)((void *)self->m20()));
         post_translate_matrix((u8 *)door_four_light_base + 0x38);
         rotate_matrix_y(0, door_four_light_base->rotation_y);
-        draw_ginja_model_with_motion(door_four_light_base->m_d4, door_four_light_base->m_bc, *(f32 *)((s8 *)door_four_light_base + 0xB4));
+        draw_ginja_model_with_motion(door_four_light_base->m_d4, (s32)door_four_light_base->motion, door_four_light_base->animation_end_frame);
         pop_matrix();
         break;
     case 0:
-        if (door_four_light_base->m_cc == 2 || door_four_light_base->m_cc == 3) {
+        if (door_four_light_base->lock_mode == 2 || door_four_light_base->lock_mode == 3) {
             door_four_light_base->render_lights();
             break;
         }
@@ -309,7 +309,7 @@ void render__19TODoorFourLightBaseFv(TODoorFourLightBase *door_four_light_base) 
 void *__dt__19TODoorFourLightBaseFv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__19TODoorFourLightBase;
-        ((TUnk_804B0BB8 *)arg0)->destroy_ancient_door_base(0);
+        __dt__10TODoorBaseFv(arg0, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }
@@ -318,7 +318,7 @@ void *__dt__19TODoorFourLightBaseFv(void *arg0, s16 arg1) {
 }
 Door_802A0994 *TODoorFourLightBase__ct(Door_802A0994 *arg0, void *arg1, s32 arg2) {
     s32 i;
-    init_door_base(arg0, arg1);
+    __ct__10TODoorBaseFP7TObject(arg0, arg1);
     *(void **)((u8 *)arg0 + 0x18) = ((s32 *)&__vt__19TODoorFourLightBase);
     arg0->f0 = TODoorFourLightBase__class_name;
     arg0->m5(arg2);

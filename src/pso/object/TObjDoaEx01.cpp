@@ -1,6 +1,6 @@
 #include "types.h"
 #include "pso/item/TObjContainerJungEx_8018D900.h"
-#include "pso/unk/text_80158360.h"
+#include "pso/object/TObjMapObject.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/object/TObjDoaEx01.h"
 #include "pso/item/TObjContainerJungEx.h"
@@ -13,7 +13,7 @@
 #include "pso/object/TObjDoorJung.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/object/TObjDoaEx01_8018DFFC.h"
-#include "pso/unk/TUnk_804B0BB8.h"
+#include "pso/misc/TODoorBase.h"
 #include "pso/system/BmlResourceDescriptor.h"
 #include "pso/misc/TODoorAncient01.h"
 #include "pso/map/FloorArea.h"
@@ -87,21 +87,21 @@ void TObjContainerJungEx::load_resource_instance() {
 #pragma push
 #pragma opt_common_subs off
 #pragma opt_propagation off
-void TObjDoaEx01::vfunc_18() {
+void TObjDoaEx01::update_closing() {
     u8 *arg0 = (u8 *)this;
-    this->m_b0 = (f32) (this->m_b0 - this->m_b8);
-    if (this->m_b0 < 0.0f) {
-        this->m_b0 = (f32) 0.0f;
-        this->m_ac = 0;
+    this->animation_frame = (f32) (this->animation_frame - this->animation_step);
+    if (this->animation_frame < 0.0f) {
+        this->animation_frame = (f32) 0.0f;
+        this->object_state = 0;
         ((TObjCollidable *)arg0)->clear_player_status_flag(0, 8);
     }
 }
 #pragma pop
 
-void TObjDoaEx01::vfunc_17() {
+void TObjDoaEx01::update_open() {
     Obj_8018DA54 *self = (Obj_8018DA54 *)this;
     if (self->flags & 1) {
-        if (is_any_player_within_radius_xz((u8 *)self, (f32)1e+04f) == 0) {
+        if (((TObjMapObject *)self)->is_any_player_within_radius_xz((f32)1e+04f) == 0) {
             self->state = 3;
             switch (get_current_floor_area()) {
             case AREA_VR_TEMPLE_ALPHA:
@@ -135,7 +135,7 @@ void TObjDoaEx01::vfunc_17() {
     }
 }
 
-void TObjDoaEx01::vfunc_16() {
+void TObjDoaEx01::update_opening() {
     O_8018DB94 *self = (O_8018DB94 *)this;
     self->pos += self->speed;
     if (self->pos > self->max - 1.0f) {
@@ -143,10 +143,10 @@ void TObjDoaEx01::vfunc_16() {
         self->state = 2;
     }
 }
-void TObjDoaEx01::play_proximity_sound() {
+void TObjDoaEx01::update_closed() {
     Obj_8018DBCC *self = (Obj_8018DBCC *)this;
     if (self->flags & 1) {
-        if (is_any_player_within_radius_xz((u8 *)self, (f32)4.9e+03f) == 1) {
+        if (((TObjMapObject *)self)->is_any_player_within_radius_xz((f32)4.9e+03f) == 1) {
             self->state = 1;
             ((TObjCollidable *)self)->set_indexed_flags(0, 8);
             switch (get_current_floor_area()) {
@@ -297,7 +297,7 @@ void TObjDoaEx01::draw_model() {
         push_matrix();
         post_translate_matrix((void *) (((u8 *)this) + 0x38));
         rotate_matrix_y(0, (this->rotation_y));
-        temp_f31 = this->m_b0;
+        temp_f31 = this->animation_frame;
         if (temp_f31 > 0.0f) {
             temp_r31 = get_bml_motion((TObjDoaEx01__resource_bundle), 0);
             draw_ginja_model_with_motion((s32)get_bml_model((void *)(TObjDoaEx01__resource_bundle), 0), temp_r31, temp_f31);
@@ -316,7 +316,7 @@ s32 try_open__11TObjDoaEx01Fv();
 s32 draw_model__11TObjDoaEx01Fv();
 
 void TObjDoaEx01::render() {
-    if (this->m_d0 & 1) {
+    if (this->door_flags & 1) {
         draw_model__11TObjDoaEx01Fv();
         return;
     }
@@ -348,7 +348,7 @@ struct RecoveredGlobal_8018E064___vt__11TObjDoaEx01 {
 extern "C" {
 u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 s32 init_collision_body_parts(void *, void *, int);
-void *init_door_base(void *a0);
+void *__ct__10TODoorBaseFP7TObject(void *a0);
 extern RecoveredGlobal_8018E064_lbl_804B7598 TObjDoaEx01__collision_body_parts;
 extern s32 __vt__11TObjDoaEx01[];
 extern s32 TObjDoaEx01__name;
@@ -363,7 +363,7 @@ void *__dt__11TObjDoaEx01Fv(void *arg0, s16 arg1) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__11TObjDoaEx01;
         ((TObjCollidable *)arg0)->unregister_object_by_id();
         free_collision_body_parts(arg0);
-        ((TUnk_804B0BB8 *)arg0)->destroy_ancient_door_base(0);
+        __dt__10TODoorBaseFv(arg0, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }
@@ -376,7 +376,7 @@ extern void *tl_05;
 typedef char RecoveredGlobal_8018E064_lbl_804B7598_size[sizeof(RecoveredGlobal_8018E064_lbl_804B7598) == 0x2C ? 1 : -1];
 typedef char RecoveredGlobal_8018E064___vt__11TObjDoaEx01_size[sizeof(RecoveredGlobal_8018E064___vt__11TObjDoaEx01) == 0x54 ? 1 : -1];
 u8 *TObjDoaEx01__ct(u8 *arg0, s32 arg1, s32 arg2) {
-    init_door_base((arg0));
+    __ct__10TODoorBaseFP7TObject((arg0));
     *(s32 **)((s8 *)arg0 + 0x18) = &(*(RecoveredGlobal_8018E064___vt__11TObjDoaEx01 *)&__vt__11TObjDoaEx01).value;
     *(s32 *)((s8 *)arg0 + 0) = (s32) TObjDoaEx01__name;
     ((TObjDoaEx01 *)(arg0))->apply_object_set_data((void *)arg2);
@@ -384,10 +384,10 @@ u8 *TObjDoaEx01__ct(u8 *arg0, s32 arg1, s32 arg2) {
     init_collision_body_parts(arg0, &TObjDoaEx01__collision_body_parts.value, 1);
     ((TObjCollidable *)arg0)->refresh_collision_body_centers();
     ((TObjPlayer *)arg0)->register_object_by_id();
-    ((TObjDoaEx01 *)arg0)->m_b0 = (f32) 0.0f;
-    ((TObjDoaEx01 *)arg0)->m_b8 = (f32) 0.5f;
+    ((TObjDoaEx01 *)arg0)->animation_frame = (f32) 0.0f;
+    ((TObjDoaEx01 *)arg0)->animation_step = (f32) 0.5f;
     *(f32 *)((s8 *)arg0 + 0xB4) = (f32) *(u32 *)((s8 *)(get_bml_motion((*(s32 *)&TObjDoaEx01__resource_bundle), 0)) + 4);
-    ((TObjDoaEx01 *)arg0)->m_d0 = 0x100001;
+    ((TObjDoaEx01 *)arg0)->door_flags = 0x100001;
     *(f32 *)((s8 *)arg0 + 0xD4) = (f32) 1.0f;
     ((TObjDoaEx01 *)arg0)->m_d8 = (f32) 1.0f;
     *(f32 *)((s8 *)arg0 + 0xDC) = (f32) 1.0f;

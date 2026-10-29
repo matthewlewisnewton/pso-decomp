@@ -1,4 +1,5 @@
 #include "pso/enemy/TObjEnemy.h"
+#include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/system/vector.h"
 #include "pso/misc/RenderFadeState.h"
 extern "C" void *__ct__12TObjEneDD_STFP7TObject(void *);
@@ -14,7 +15,7 @@ extern "C" void has_flag_0x800__9TObjCharaFv();
 extern "C" void test_flag30_512__9TObjCharaFv();
 extern "C" void test_flag_1000__9TObjCharaFv();
 extern "C" void test_flag_256__9TObjCharaFv();
-#include "pso/object/obj_band.h"
+#include "pso/object/TObjMotion.h"
 #include "pso/boss/TBoss4Type3.h"
 
 #include "pso/player/TUnk_80490470.h"
@@ -750,7 +751,7 @@ void TObjEneRe7Berura::state_attack(s32 arg1) {
 
     switch (arg1) {
     case 4:
-        this->m_b8 = 0;
+        this->requested_action = 0;
         this->vfunc_95();
         temp_r5 = *(s32 *)((s8 *)arg0 + 0x3C0);
         *(s32 *)((s8 *)arg0 + 0x3C0) = (s32) (temp_r5 & ~5);
@@ -840,7 +841,7 @@ s32 TObjEneRe7Berura::check_death_trigger() {
 #pragma fp_contract on
 void TObjEneRe7Berura::play_band_sound() {
     u8 *arg0 = (u8 *)this;
-    if ((objInBand((GameObj *)arg0, (f32)lbl_805D9770) != 0) || (objInBand((GameObj *)((GameObj *)arg0), (f32)((f32)TObjEneRe7Berura__data_805D9764)) != 0)) {
+    if ((((TObjMotion *)arg0)->is_passing_frame((f32)lbl_805D9770) != 0) || (((TObjMotion *)arg0)->is_passing_frame((f32)((f32)TObjEneRe7Berura__data_805D9764)) != 0)) {
         play_sound_effect(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003BC1F)), (u32)(arg0 + 0x38), 0, 0);
     }
 }
@@ -1299,10 +1300,10 @@ void TObjEneRe7Berura::load_static_resources() {
     for (i = 0; i < 2; i++) {
         Elem_800959F8 *e = &TObjEneRe7Berura__detached_part_states[i];
         u8 *ent = RES->f430[TObjEneRe7Berura__animation_definitions[e->fC].f4].f4;
-        TObjPlayer::set_global_flag();
+        set_motion_packed_rotation();
         bind_motion_context((s32)ent, e->f14);
         ((void (*)(u32, void *))apply_attack_params__16TObjEneRe7BeruraFiPv)(m, e);
-        TObjPlayer::clear_global_state();
+        clear_motion_packed_rotation();
         e->f18 = (s32 *)find_model_node(m, e->f4);
         e->f1C = (s32)find_model_node(m, e->f8);
         e->f20 = 7;

@@ -1,4 +1,5 @@
 #include "pso/system/NinjaTypes.h"
+#include "pso/player/TObjPlayer_803E4954.h"
 #include "types.h"
 #include "pso/misc/TRaderMapCore.h"
 #include "pso/misc/MaterialColorFade.h"
@@ -25,7 +26,6 @@
 #include "pso/TObject.h"
 #include "pso/misc/TLobby_802268F4.h"
 #include "pso/misc/TPhotonRainbow_801AE640.h"
-#include "pso/misc/obj_band.h"
 #include "pso/unk/text_801AB370.h"
 #include "pso/map/FloorArea.h"
 
@@ -117,11 +117,11 @@ void TPhotonFarlla::render() {
         saved_chunk_polygon_flags_and_mask = chunk_polygon_flags_and_mask;
         saved_chunk_polygon_flags_or_mask = chunk_polygon_flags_or_mask;
         model_render_flags |= 0x200820;
-        TObjPlayer::set_global_flag();
+        set_motion_packed_rotation();
         set_chunk_material_override_pair(-1, 0x800);
         set_constant_material((const NJS_ARGB *)(((f32 *)&self->color)));
         ((TObjMotion *)self)->draw();
-        TObjPlayer::clear_global_state();
+        clear_motion_packed_rotation();
         chunk_polygon_flags_and_mask = saved_chunk_polygon_flags_and_mask;
         chunk_polygon_flags_or_mask = saved_chunk_polygon_flags_or_mask;
         copy_argb((NJS_ARGB *)&model_material_color, (NJS_ARGB *)&saved_model_draw_color);
@@ -145,7 +145,6 @@ struct Stack_801AB018 {
 };
 
 extern "C" {
-s32 advance_animation_playback(void *);
 void *find_entity_by_id(u16 id);
 s32 spawn_photon_blast_attachment_effects(void *, int);
 }
@@ -184,15 +183,15 @@ void TPhotonFarlla::run_task() {
             construct_photon_magic_square_normal((u8 *)photon_magic_square, (s32)arg0, 0, (s32)&stack.sp20, 0x78);
         }
     }
-    if (((s32) *(s32 *)&this->unk_1A4 == 0x64) && ((s16) this->m_b8 == 1)) {
+    if (((s32) *(s32 *)&this->unk_1A4 == 0x64) && ((s16) this->requested_action == 1)) {
         ((TUnk_804C3248 *)arg0)->begin_photon_summon_camera(1);
         *(s32 *)&this->unk_1A4 = 0;
         ((TObjMotion *)arg0)->set_field_b8(0);
         spawn_photon_blast_attachment_effects(arg0, 0);
     }
-    this->m_194 = (s16) this->m_b8;
+    this->m_194 = (s16) this->requested_action;
     ((TUnk_804C3248 *)arg0)->update_state();
-    advance_animation_playback(arg0);
+    ((TObjMotion *)arg0)->advance_animation();
     ((TUnk_804C3248 *)arg0)->update_photon_blast_attachments();
     *(s16 *)((s8 *)arg0 + 0x14C) = (s16) (*(s16 *)((s8 *)arg0 + 0x14C) + 0xF);
     *(s16 *)((s8 *)arg0 + 0x14C) = (s16) (u8) *(s16 *)((s8 *)arg0 + 0x14C);
@@ -324,9 +323,9 @@ u8 *TPhotonFarlla__ct(u8 *arg0, u8 *arg1) {
     ((TPhotonFarlla *)arg0)->texlist = *(s32 *)((s8 *)(*(u8 **)((s8 *)photon_blast_shared_resource + 0x42C)) + 0xC);
     ((TObjMotion *)arg0)->set_field_d8((s32) photon_blast_farlla_params);
     ((TObjMotion *)arg0)->set_field_dc(*(s32 *)((s8 *)photon_blast_shared_resource + 0x430));
-    ((TPhotonFarlla *)arg0)->m_b8 = 1;
-    ((TObjMotion *)arg0)->set_animation(((TPhotonFarlla *)arg0)->m_b8);
-    ((TObjMotion *)arg0)->set_field_b8(((TPhotonFarlla *)arg0)->m_b8);
+    ((TPhotonFarlla *)arg0)->requested_action = 1;
+    ((TObjMotion *)arg0)->set_animation(((TPhotonFarlla *)arg0)->requested_action);
+    ((TObjMotion *)arg0)->set_field_b8(((TPhotonFarlla *)arg0)->requested_action);
     ((TPhotonFarlla *)arg0)->m_194 = 1;
     ((TPhotonFarlla *)arg0)->m_198 = *(s32 *)((s8 *)arg1 + 0x10);
     *(s32 *)((s8 *)arg0 + 0x19C) = *(s32 *)((s8 *)arg1 + 0x14);

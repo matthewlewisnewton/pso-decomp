@@ -78,14 +78,14 @@ void TObjDFDemo4::sub_8004F2A8() {
         TObjPlayer__sub_80052390(alpha);
     }
     push_matrix();
-    TObjPlayer::set_global_flag();
+    set_motion_packed_rotation();
     post_translate_matrix(arg0->fe8);
     rotate_matrix_y(0, *(s32 *)&this->m_f4);
     for (i = 0; i < 2; i++) {
         TObjFish::set_global_param(arg0->recs[i].b);
         draw_model_motion((void *)arg0->recs[i].a, (void *)arg0->recs[i].c, lbl_805D89F8);
     }
-    TObjPlayer::clear_global_state();
+    clear_motion_packed_rotation();
     pop_matrix();
     if (alpha < 1.0f) {
         TObjPlayer::sync_player_globals();
@@ -107,24 +107,24 @@ void TObjDFDemo4::run_task() {
   s32 i;
   if ((self->fF8 <= 0x3C) && ((r = (u32)spawn_particle_effect(&self->pos, 0x14E)) != 0))
   {
-    ((TBoss4Type2 *)r)->set_flags(0x40);
+    ((TParticleCtrl *)r)->set_flags(0x40);
   }
   if (self->fF8 == 0x44)
   {
     if ((r = (u32)spawn_particle_effect(&self->pos, 0x17B)) != 0)
     {
-      ((TBoss4Type2 *)r)->set_flags(0x40);
+      ((TParticleCtrl *)r)->set_flags(0x40);
     }
     if ((r = (u32)spawn_particle_effect(&self->pos, 0x17C)) != 0)
     {
-      ((TBoss4Type2 *)r)->set_flags(0x40);
+      ((TParticleCtrl *)r)->set_flags(0x40);
     }
   }
   if (self->fF8 == 0x48)
   {
     if ((r = (u32)spawn_particle_effect(&self->pos, 0x17A)) != 0)
     {
-      ((TBoss4Type2 *)r)->set_flags(0x40);
+      ((TParticleCtrl *)r)->set_flags(0x40);
     }
     play_sound_effect(0x40039E09, &self->pos, 0, 1);
     start_pad_rumble_all(0xC0, 0xF);
@@ -144,7 +144,7 @@ void TObjDFDemo4::run_task() {
         *p = (u32)create_particle_emitter(v, 0x147);
         if ((*p) != 0)
         {
-          ((TBoss4Type2 *)(*p))->set_flags(0x40);
+          ((TParticleCtrl *)(*p))->set_flags(0x40);
         }
       }
       else

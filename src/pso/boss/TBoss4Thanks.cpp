@@ -89,7 +89,7 @@ void TBoss4Thanks::update_particle_emitters() {
             if (o->p[i] == NULL) {
                 o->p[i] = create_particle_emitter(TBoss4Thanks__data_80479B40, e->id);
                 if (o->p[i] != NULL) {
-                    ((TBoss4Type2 *)(o->p[i]))->set_flags(0x40);
+                    ((TParticleCtrl *)(o->p[i]))->set_flags(0x40);
                 }
             }
         } else {
@@ -152,11 +152,11 @@ void TBoss4Thanks::render() {
   {
     TObjPlayer__sub_80052390();
     push_matrix();
-    TObjPlayer::set_global_flag();
+    set_motion_packed_rotation();
     post_translate_matrix(TBoss4Thanks__data_80479B40);
     TObjFish::set_global_param(texture_list);
     draw_model_motion((void *)model, (void *)motions[current_motion], motion_frame);
-    TObjPlayer::clear_global_state();
+    clear_motion_packed_rotation();
     pop_matrix();
     TObjPlayer::sync_player_globals();
   }

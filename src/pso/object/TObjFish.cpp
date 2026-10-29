@@ -1,11 +1,12 @@
 #include "types.h"
+#include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/TMainTask.h"
 #include "pso/TObject.h"
 #include "pso/math/MatrixVector.h"
 #include "pso/object/TObject_80019A50.h"
-#include "pso/unk/text_80141550.h"
+#include "pso/render/render_util.h"
 #include "pso/unk/text_803D96A8.h"
-#include "pso/render/depth_buffer.h"
+
 #include "pso/system/vector.h"
 #include "pso/TLevelSelect.h"
 #include "pso/TParticleCtrl.h"
@@ -17,6 +18,7 @@
 #include "pso/object/TObjFish.h"
 #include "pso/misc/TOKeyJungleMain.h"
 #include "pso/map/FloorArea.h"
+#include "pso/misc/TLobbyEventTheme.h"
 
 struct Base_8029D3A4_8029CF68;
 struct Base_8029CF68;
@@ -121,7 +123,6 @@ void __dl__7TObjectFPv(void *);
 void *__dt__5TOKeyFv(void *arg0, s16 arg1);
 extern s32 __vt__15TOKeyJungleMain[];
 void *__dt__15TOKeyJungleMainFv(void *arg0, s16 arg1);
-s32 is_lobby_event_active();
 extern s32 TObjFish__area_event_stage;
 u8 update_state__8TObjFishFv(void *arg0);
 extern const f32 lbl_805DDD38;
@@ -132,7 +133,7 @@ u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern RecoveredGlobal_8029CFEC_lbl_804DC590 bm_obj_jungle_mkey_resource_descriptor;
 s32 dispatch_by_phase__15TOKeyJungleMainFlUs(void *, int);
 s32 init_collision_body_parts(void *, void *, int);
-void *TOKey__ct(TOKey *arg0);
+void *__ct__5TOKeyFP7TObject(TOKey *arg0);
 extern RecoveredGlobal_8029D438_lbl_804DC5A0 TOKeyJungleMain_collision_body_parts;
 extern s32 lbl_805D3D50;
 u8 *TOKeyJungleMain__ct(TOKeyJungleMain *arg0, s32 arg1, s32 arg2);
@@ -167,21 +168,21 @@ void TOKeyJungleMain::load_static_resource() {
 }
 
 void TOKeyJungleMain::debug_draw_key_id() {
-    *(s32 *)&this->m_e4 = this->set_params[0];
-    if (*(s32 *)&this->m_e4 < 0) {
-        *(s32 *)&this->m_e4 = 0;
+    *(s32 *)&this->switch_id = this->set_params[0];
+    if (*(s32 *)&this->switch_id < 0) {
+        *(s32 *)&this->switch_id = 0;
     }
-    if (*(s32 *)&this->m_e4 > 2) {
-        *(s32 *)&this->m_e4 = 2;
+    if (*(s32 *)&this->switch_id > 2) {
+        *(s32 *)&this->switch_id = 2;
     }
     TObjNpcEnemy::set_global_count(0xFF00FF);
-    debug_printf_at(0x130020, lbl_80465A2C, ((s32 *)&TOKeyJungleMain__data_804653C8)[*(s32 *)&this->m_e4]);
+    debug_printf_at(0x130020, lbl_80465A2C, ((s32 *)&TOKeyJungleMain__data_804653C8)[*(s32 *)&this->switch_id]);
     TObjNpcEnemy::set_global_count(0xF0F0F0FF);
 }
 
 void render__15TOKeyJungleMainFv(TOKeyJungleMain *key_jungle_main) {
-    if (((VObj_8029CF68 *)key_jungle_main)->m8(key_jungle_main->m_c0, *(f32 *)((s8 *)key_jungle_main + 0xC4)) == 1) {
-        switch (key_jungle_main->m_d4) {
+    if (((VObj_8029CF68 *)key_jungle_main)->m8(key_jungle_main->view_range, *(f32 *)((s8 *)key_jungle_main + 0xC4)) == 1) {
+        switch (key_jungle_main->is_on) {
         case 0:
             TObjFish__sub_8001EDB0((*(s32 *)&TOKeyJungleMain__static_model_resource), 1);
             set_global_param__8TObjFishFl();
@@ -210,25 +211,25 @@ void render__15TOKeyJungleMainFv(TOKeyJungleMain *key_jungle_main) {
 
 typedef char RecoveredGlobal_8029D200_TOKeyJungleMain__data_804653C8_size[sizeof(RecoveredGlobal_8029D200_TOKeyJungleMain__data_804653C8) == 0xC ? 1 : -1];
 void TOKeyJungleMain::send_switch_on() {
-    dispatch_by_phase__15TOKeyJungleMainFlUs((void *)game_difficulty_selection, (int) (*(s32 *)((s8 *)(&(*(RecoveredGlobal_8029D200_TOKeyJungleMain__data_804653C8 *)&TOKeyJungleMain__data_804653C8).value) + (this->m_e4 * 4))));
+    dispatch_by_phase__15TOKeyJungleMainFlUs((void *)game_difficulty_selection, (int) (*(s32 *)((s8 *)(&(*(RecoveredGlobal_8029D200_TOKeyJungleMain__data_804653C8 *)&TOKeyJungleMain__data_804653C8).value) + (this->switch_id * 4))));
 }
 
 void TOKeyJungleMain::update_lock_state() {
     s32 temp_r31;
-    if ((s32) this->m_d0 != 2) {
-        temp_r31 = this->m_d4;
-        if (TLevelSelect::get_difficulty_flag_bit(game_difficulty_selection, *(s32 *)((s8 *)&TOKeyJungleMain__data_804653C8.value + (this->m_e4 * 4))) != 0) {
-            this->m_d4 = 1;
+    if ((s32) this->mode != 2) {
+        temp_r31 = this->is_on;
+        if (TLevelSelect::get_difficulty_flag_bit(game_difficulty_selection, *(s32 *)((s8 *)&TOKeyJungleMain__data_804653C8.value + (this->switch_id * 4))) != 0) {
+            this->is_on = 1;
         } else {
-            this->m_d4 = 0;
+            this->is_on = 0;
         }
-        if (temp_r31 != (s32) this->m_d4) {
+        if (temp_r31 != (s32) this->is_on) {
             this->play_activate_sound();
         }
     }
 }
 
-void TOKeyJungleMain::vfunc_16() {
+void TOKeyJungleMain::update_switch_on() {
     u8 *arg0 = (u8 *)this;
   unsigned int new_var;
   s32 bml_motion;
@@ -251,7 +252,7 @@ void TOKeyJungleMain::vfunc_16() {
   }
 }
 
-void TOKeyJungleMain::vfunc_17() {
+void TOKeyJungleMain::update_switch_off() {
     struct VObj_8029D3A4_8029CF68 *o = (struct VObj_8029D3A4_8029CF68 *)this;
     o->m18();
 }
@@ -271,7 +272,7 @@ void *__dt__15TOKeyJungleMainFv(void *arg0, s16 arg1) {
 typedef char RecoveredGlobal_8029D438_lbl_804DC5A0_size[sizeof(RecoveredGlobal_8029D438_lbl_804DC5A0) == 0x2C ? 1 : -1];
 typedef char RecoveredGlobal_8029D438___vt__15TOKeyJungleMain_size[sizeof(RecoveredGlobal_8029D438___vt__15TOKeyJungleMain) == 0x74 ? 1 : -1];
 u8 *TOKeyJungleMain__ct(TOKeyJungleMain *key_jungle_main, s32 arg1, s32 arg2) {
-    TOKey__ct((key_jungle_main));
+    __ct__5TOKeyFP7TObject((key_jungle_main));
     *(s32 **)((s8 *)key_jungle_main + 0x18) = &(*(RecoveredGlobal_8029D438___vt__15TOKeyJungleMain *)&__vt__15TOKeyJungleMain).value;
     *(s32 *)((s8 *)key_jungle_main + 0) = (s32) lbl_805D3D50;
     ((TOKeyJungleMain *)(key_jungle_main))->apply_object_set_data((void *)arg2);
@@ -279,13 +280,13 @@ u8 *TOKeyJungleMain__ct(TOKeyJungleMain *key_jungle_main, s32 arg1, s32 arg2) {
     init_collision_body_parts(key_jungle_main, &TOKeyJungleMain_collision_body_parts.value, 1);
     ((TObjCollidable *)key_jungle_main)->refresh_collision_body_centers();
     ((TObjPlayer *)key_jungle_main)->register_object_by_id();
-    key_jungle_main->m_d0 = 0;
-    key_jungle_main->m_e4 = (s32) key_jungle_main->set_params[0];
-    if ((s32) key_jungle_main->m_e4 < 0) {
-        key_jungle_main->m_e4 = 0;
+    key_jungle_main->mode = 0;
+    key_jungle_main->switch_id = (s32) key_jungle_main->set_params[0];
+    if ((s32) key_jungle_main->switch_id < 0) {
+        key_jungle_main->switch_id = 0;
     }
-    if ((s32) key_jungle_main->m_e4 > 2) {
-        key_jungle_main->m_e4 = 2;
+    if ((s32) key_jungle_main->switch_id > 2) {
+        key_jungle_main->switch_id = 2;
     }
     key_jungle_main->m_e8 = (f32) lbl_805DDD3C;
     *(f32 *)((s8 *)key_jungle_main + 0xEC) = (f32) lbl_805DDD3C;
@@ -458,7 +459,7 @@ void render__8TObjFishFv(u8 *arg0) {
             push_matrix();
             post_translate_matrix(f);
             rotate_matrix_y(0, f->rot + (s32)r);
-            set_depth_buffer_settings_id(3);
+            set_draw_list_mask(3);
             if (get_current_floor_area() == AREA_SEABED_UPPER) {
                 switch (f->kind) {
                 case 1:
@@ -481,7 +482,7 @@ void render__8TObjFishFv(u8 *arg0) {
                     break;
                 }
             } else {
-                TObjPlayer::set_global_flag();
+                set_motion_packed_rotation();
                 switch (f->kind) {
                 case 1:
                     TObjFish__sub_8001EDB0(TObjFish__area_bml_resource, 1);
@@ -499,7 +500,7 @@ void render__8TObjFishFv(u8 *arg0) {
                     draw_ginja_model_with_motion(get_bml_model(TObjFish__area_bml_resource, 0), get_bml_motion(TObjFish__area_bml_resource, 0), f->frame);
                     break;
                 }
-                TObjPlayer::clear_global_state();
+                clear_motion_packed_rotation();
             }
             restore_draw_list_mask();
             pop_matrix();

@@ -1,4 +1,5 @@
 #include "pso/protocol/protocol_types.h"
+#include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/misc/TLobby_801E43E4.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
@@ -583,7 +584,7 @@ void TBoss6Type1::spawn_effect_slot(s32 arg1) {
         V3_802B4BA8 v = ((T1_802B4BA8 *)arg0)->pos;
         *(u32 *)(p + 0x4F8) = (u32)create_particle_emitter(&v, TBoss6Type1__effect_slot_table[arg1].a);
         if (*(u32 *)(p + 0x4F8) != 0U) {
-            ((TBoss4Type2 *)(*(u32 *)(p + 0x4F8)))->set_flags(0x40);
+            ((TParticleCtrl *)(*(u32 *)(p + 0x4F8)))->set_flags(0x40);
         }
     }
 }
@@ -607,7 +608,7 @@ void TBoss6Type1::sub_802B4C28() {
             switch (i) {
             case 0:
             case 1:
-                ((TBoss4Type2 *)(o->parts[i]))->copy_vec3(lbl_80471014);
+                ((TParticleCtrl *)(o->parts[i]))->set_direction(lbl_80471014);
                 break;
             }
         }
@@ -1876,7 +1877,7 @@ void TBoss6Type1::draw_part_motions() {
     s32 p;
     Anim_802B81A4 *a;
     u32 cb;
-    TObjPlayer::set_global_flag();
+    set_motion_packed_rotation();
     for (i = 0; i < 2; i++) {
         {
             s32 t = lbl_804DF614[i];
@@ -1903,7 +1904,7 @@ void TBoss6Type1::draw_part_motions() {
             }
         }
     }
-    TObjPlayer::clear_global_state();
+    clear_motion_packed_rotation();
 }
 
 void TBoss6Type1::set_motion_set(s32 arg1) {

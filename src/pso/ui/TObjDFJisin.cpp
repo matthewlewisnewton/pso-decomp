@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/system/PadRumble.h"
 #include "pso/player/PlayerClassFlags.h"
@@ -299,7 +300,7 @@ void run_task__13TObjDFHormingFv(u8 *arg0) {
                 subtract_vector(&d, arg0 + 0x44);
                 direction_to_rotation_xz((u8 *)&d, &rot.x, &rot.z);
                 rot.y = 0;
-                ((TBoss4Type2 *)((void *)*(u32 *)((s8 *)(arg0 + i * 4) + 0x358)))->copy_vec3(&rot);
+                ((TParticleCtrl *)((void *)*(u32 *)((s8 *)(arg0 + i * 4) + 0x358)))->set_direction(&rot);
             }
             ((TParticleCtrl *)(void *)*(u32 *)((s8 *)(arg0 + i * 4) + 0x358))->set_position(arg0 + 0x2FC);
         }
@@ -365,7 +366,7 @@ u8 *TObjDFHorming__ct(u8 *arg0, s32 parent, s32 arg2, u16 arg3) {
     *(f32 *)((s8 *)arg0 + 0x378) = lbl_805D8A88 * *(f32 *)((s8 *)arg0 + 0x364) + lbl_805D8A84;
     for (i = 0; i < 2; i++) {
         if ((((Obj_80050AF8 *)arg0)->objs[i] = (u32)create_particle_emitter(arg0 + 0x2FC, TObjDFJisin__particle_emitter_id_table[i])) != 0) {
-            ((TBoss4Type2 *)(((Obj_80050AF8 *)arg0)->objs[i]))->set_flags(0x40);
+            ((TParticleCtrl *)(((Obj_80050AF8 *)arg0)->objs[i]))->set_flags(0x40);
         }
     }
     *(s32 *)&((TObjDFHorming *)arg0)->m_368 = 0;
@@ -410,7 +411,7 @@ void fn_spawn_particle_f3_with_flags(s32 arg0, s32 arg1) {
     position.y += lbl_805D8A90;
     particle_effect = (u32)spawn_particle_effect((&position.x), 0xF3);
     if (particle_effect != 0U) {
-        ((TBoss4Type2 *)particle_effect)->set_flags(0x40);
+        ((TParticleCtrl *)particle_effect)->set_flags(0x40);
     }
 }
 }
@@ -560,7 +561,7 @@ u8 *TObjDFRecBall__ct(u8 *object, u8 *arg1, u8 *arg2, u8 *arg3) {
     particle_emitter = (u8 *)(create_particle_emitter((object + 0x1C), 0xAF));
     *(u8 **)((s8 *)object + 0x44) = particle_emitter;
     if (particle_emitter != NULL) {
-        ((TBoss4Type2 *)(*(u8 **)((s8 *)object + 0x44)))->set_flags(0x40);
+        ((TParticleCtrl *)(*(u8 **)((s8 *)object + 0x44)))->set_flags(0x40);
     }
     return object;
 }
@@ -799,7 +800,7 @@ void TObjDFRecover::run_task() {
                 ((s32 (*)(void *))queue_destruction__7TObjectFv)(this);
                 return;
             }
-            ((TBoss4Type2 *)effect)->set_flags(0x40);
+            ((TParticleCtrl *)effect)->set_flags(0x40);
             countdown = 0xA;
             phase = 1;
         }
@@ -907,9 +908,8 @@ extern RecoveredGlobal_80051AD0_lbl_804FF228 lbl_804FF228;
 extern RecoveredGlobal_80051AD0_lbl_804FF234 lbl_804FF234;
 s32 is_active__14TBoss4DarkFalzFv();
 extern const f32 lbl_805D8AC0;
-int TObjDFTenchuFuru__sub_80051A7C(void);
+void TObjDFTenchuFuru__sub_80051A7C(void);
 void *__nw__7TObjectFUl(int);
-int set_global_state__16TObjEneRe7BeruraFl(void*);
 
 #pragma push
 #pragma fp_contract on
@@ -943,7 +943,7 @@ u8 *TObjDFTenchuFuru__ct(u8 *object, u8 *arg1, u8 *arg2) {
     particle_emitter = (u8 *)(create_particle_emitter((object + 0x1C), 0x134));
     ((TObjDFTenchuFuru *)object)->m_2c = particle_emitter;
     if (particle_emitter != NULL) {
-        ((TBoss4Type2 *)(((TObjDFTenchuFuru *)object)->m_2c))->set_flags(0x40);
+        ((TParticleCtrl *)(((TObjDFTenchuFuru *)object)->m_2c))->set_flags(0x40);
     }
     return object;
 }
@@ -970,9 +970,9 @@ void TObjDFTenchuFuru::capture_matrix_by_frame() {
     (*(s32 *)&TObjDFTenchuFuru__matrix_node_index) += 1;
 }
 
-int TObjDFTenchuFuru__sub_80051A7C(void) { return set_global_state__16TObjEneRe7BeruraFl((void*)(0)); }
+void TObjDFTenchuFuru__sub_80051A7C(void) { set_chunk_model_node_callback(0); }
 
-void TObjDFTenchuFuru::register_callback() { TObjDFTenchuFuru__matrix_node_index = 0; set_global_state__16TObjEneRe7BeruraFl(((unsigned char *)TObjDFTenchuFuru::capture_matrix_by_frame)); }
+void TObjDFTenchuFuru::register_callback() { TObjDFTenchuFuru__matrix_node_index = 0; set_chunk_model_node_callback((s32)TObjDFTenchuFuru::capture_matrix_by_frame); }
 typedef char RecoveredGlobal_80051AD0_lbl_804858B4_size[sizeof(RecoveredGlobal_80051AD0_lbl_804858B4) == 0xC ? 1 : -1];
 typedef char RecoveredGlobal_80051AD0_lbl_804FF228_size[sizeof(RecoveredGlobal_80051AD0_lbl_804FF228) == 0xC ? 1 : -1];
 typedef char RecoveredGlobal_80051AD0_lbl_804FF234_size[sizeof(RecoveredGlobal_80051AD0_lbl_804FF234) == 0xC ? 1 : -1];

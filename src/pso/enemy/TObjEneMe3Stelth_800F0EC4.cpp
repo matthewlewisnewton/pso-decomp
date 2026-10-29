@@ -1,6 +1,7 @@
 #include "types.h"
+#include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/object/TObjMotion.h"
-#include "pso/object/obj_band.h"
+#include "pso/object/TObjMotion.h"
 #include "pso/system/vector.h"
 #include "pso/enemy/TObjEneMe3SinowZoa.h"
 #include "pso/enemy/TObjEneDD_ST.h"
@@ -240,7 +241,6 @@ struct Ent_800F0F84 { u8 pad0[0x18]; u32 f18; };
 
 extern "C" {
 s32 is_split_screen();
-s32 advance_animation_playback(void *);
 s32 play_sound_effect(int, void *, int, int);
 extern const Quad_800F1440 me3_stelth_offset_vec;
 extern const f32 lbl_805DA828;
@@ -263,7 +263,6 @@ extern IVec_800F1098 lbl_8043D680;
 extern Tbl_800F1098 *TObjEneMe3Stelth__behavior_params_by_variant[];
 extern u8 identity_matrix[];
 extern s32 game_difficulty_selection;
-extern u8 *anim_model_matrix_array;
 extern const f32 TObjEneMe3Stelth__data_805DA820;
 extern const f32 TObjEneMe3Stelth__data_805DA824;
 void TObjEneMe3Stelth__sub_800F1098(u8 *arg0, s32 arg1);
@@ -371,21 +370,21 @@ void TObjEneMe3Stelth__sub_800F1098(u8 *arg0, s32 arg1) {
             }
             break;
         case 1:
-            advance_animation_playback(arg0);
+            ((TObjMotion *)arg0)->advance_animation();
             if (((TObjEneDD *)arg0)->get_flag_b4() != 0) {
                 F(s32, 0x428) = 0;
                 F(s32, 0x424) = 2;
             }
-            if (objInBand((GameObj *)arg0, (f32)TObjEneMe3Stelth__data_805DA824) != 0) {
-                advance_animation_playback(arg0);
+            if (((TObjMotion *)arg0)->is_passing_frame((f32)TObjEneMe3Stelth__data_805DA824) != 0) {
+                ((TObjMotion *)arg0)->advance_animation();
                 push_matrix_from(identity_matrix);
                 post_translate_matrix(arg0 + 0x38);
                 rotate_matrix_y(0, F(s32, 0x60));
-                TObjPlayer::set_global_flag();
-                ((TObjEnemy *)arg0)->render_anim_model(TObjEneMe3Stelth__data_805DA824);
-                TObjPlayer::clear_global_state();
+                set_motion_packed_rotation();
+                ((TObjEnemy *)arg0)->calc_joint_matrices(TObjEneMe3Stelth__data_805DA824);
+                clear_motion_packed_rotation();
                 pop_matrix();
-                push_matrix_from(anim_model_matrix_array + 0x90);
+                push_matrix_from(anim_model_matrix_array[3]);
                 c.a = lbl_8043D680.a;
                 c.b = lbl_8043D680.b;
                 c.c = lbl_8043D680.c;
@@ -443,13 +442,13 @@ void TObjEneMe3Stelth__sub_800F1440(u8 *arg0, s32 arg1) {
         }
         break;
     case 0:
-        advance_animation_playback(arg0);
+        ((TObjMotion *)arg0)->advance_animation();
         if (((TObjEneDD *)arg0)->get_flag_b4() != 0) {
             F(s32, 0x424) = 3;
         } else if (is_split_screen() != 0) {
             switch (F(s32, 0x424)) {
             case 0:
-                if (objInBand((GameObj *)arg0, (f32)lbl_805DA828) != 0) {
+                if (((TObjMotion *)arg0)->is_passing_frame((f32)lbl_805DA828) != 0) {
                     F(s32, 0x3CC) |= 8;
                     q.a = me3_stelth_offset_vec.a;
                     q.b = me3_stelth_offset_vec.b;
@@ -467,9 +466,9 @@ void TObjEneMe3Stelth__sub_800F1440(u8 *arg0, s32 arg1) {
                 }
                 break;
             }
-        } else if (objInBand((GameObj *)arg0, (f32)lbl_805DA828) != 0) {
+        } else if (((TObjMotion *)arg0)->is_passing_frame((f32)lbl_805DA828) != 0) {
             F(s32, 0x3CC) |= 8;
-        } else if (objInBand((GameObj *)arg0, (f32)lbl_805DA82C) != 0) {
+        } else if (((TObjMotion *)arg0)->is_passing_frame((f32)lbl_805DA82C) != 0) {
             F(s32, 0x3CC) &= ~8;
             F(s32, 0x3C0) = 0;
         }

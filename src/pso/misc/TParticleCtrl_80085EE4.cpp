@@ -1,3 +1,5 @@
+#include "pso/render/render_util.h"
+#include "pso/system/NinjaTypes.h"
 #include "pso/system/ChunkMaterialState.h"
 #include "types.h"
 #include "pso/effect/TEffect.h"
@@ -12,7 +14,7 @@
 #include "pso/misc/TWindowSubStatusDisp_803DEE6C.h"
 #include "pso/object/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/player/TObjPlayer_80141D1C.h"
+#include "pso/render/render_util.h"
 #include "pso/misc/TParticleCtrl_80327D30.h"
 #include "pso/player/TObjPlayer_80083594.h"
 
@@ -47,7 +49,6 @@ struct RecoveredGlobal_80085E78_lbl_8048E6DC {
     u8 remaining[0x30];
 };
 
-struct Col_80085798 { u32 r; u32 g; u32 b; u32 a; };
 
 struct Obj_80085798 { u8 pad[0x38]; u8 target[0x10]; };
 
@@ -186,8 +187,7 @@ s32 __ct__8TObjBaseFP7TObject(void *, void *);
 extern s32 lbl_8048E6A8[];
 extern s32 lbl_8048E6DC[];
 extern s32 lbl_805D2930;
-extern Col_80085798 demo_mode_particle_color;
-void TObjRoomId__sub_80141CF4(void *dst, Col_80085798 *src, f32 t);
+extern NJS_ARGB demo_mode_particle_color;
 void set_color_blend_mode(s32 a, s32 b, s32 c, s32 d);
 void __ct__7TObjectFP7TObject(void *, void *);
 s32 GXSetNumTexGens(int);
@@ -201,7 +201,7 @@ s32 post_translate_matrix(void *);
 s32 TParticleCtrl__sub_803E2A1C(void *, int);
 extern Tex_80086248 lbl_804C5820[];
 extern u8 *camera_ctrl_instance;
-void fn_80141EB4(void);
+void set_inverse_alpha_blend(void);
 f32 sin_table_lookup(int);
 f32 cos_table_lookup(int);
 s32 matrix_mult_vec(int, void *, void *);
@@ -213,7 +213,7 @@ void *init_particle_base(void *arg0, void *arg1, s32 arg2);
 void load_projected_texture_matrix(f32 farg0);
 void play_indirect_effect_recipe(u8 arg0, u16 sampler, s32 second);
 s32 set_texture_num(s32 i);
-void setSpriteInverseColorBlend(void);
+void set_inverse_color_blend(void);
 void set_constant_material_color(u32 x);
 extern Cam_80085EE4 lbl_8058D4F8;
 extern "C" {
@@ -229,7 +229,6 @@ extern s32 identity_matrix[];
 void project_world_to_screen(s32, void *, void *);
 void *TParticleCtrl__sub_80085878(void *arg0, s16 arg1);
 void *TParticleCtrl__sub_80085E20(void *arg0, s16 arg1);
-f32 horizontal_distance_squared(void *, void *);
 void *get_player_by_client_id(s32 i);
 void __dl__7TObjectFPv(void *);
 
@@ -259,12 +258,12 @@ void TUnk_8048E778::draw_sprite_quad(s32 kind) {
     flags = lbl_804C5820[kind].flags;
     if (flags & 2) {
         if (flags & 4) {
-            fn_80141EB4();
+            set_inverse_alpha_blend();
         } else {
             set_default_alpha_blend();
         }
     } else if (flags & 4) {
-        setSpriteInverseColorBlend();
+        set_inverse_color_blend();
     } else {
         set_additive_blend();
     }

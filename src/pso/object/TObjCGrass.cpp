@@ -1,7 +1,6 @@
 #include "types.h"
 #include "pso/object/TObjCGrass.h"
 #include "pso/object/TObjMotion.h"
-#include "pso/misc/obj_band.h"
 #include "pso/system/vector.h"
 
 #include "pso/enemy/TObjEneDD.h"
@@ -9,7 +8,7 @@
 #include "pso/object/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
-#include "pso/player/TObjPlayer_80141D1C.h"
+#include "pso/render/render_util.h"
 
 struct Rec_800B8B08 { u8 vec[0x18]; s32 f18; u32 flags; };
 
@@ -80,7 +79,7 @@ s32 vec3_add_to(void *, void *);
 extern s32 actor_frame_tick;
 extern const f32 lbl_805D9E60;
 extern const f32 TObjCGrass__data_805D9E64;
-s32 TObjMotion__ct(void *, s32);
+s32 __ct__10TObjMotionFP7TObject(void *, s32);
 void *mem_alloc(u32 size);
 s32 rand(void);
 s32 rotate_vector_by_matrix(int, void *, void *);
@@ -137,7 +136,7 @@ void TObjCGrass::render() {
             push_matrix_from(0);
             translate_matrix_vec3((u8 *)(0), (u8 *)&arg0->recs[i]);
             rotate_matrix_y(0, arg0->recs[i].f18);
-            draw_model_motion((void *)arg0->f34, (void *)*(s32 *)&this->unknownF8, this->m_c0);
+            draw_model_motion((void *)arg0->f34, (void *)*(s32 *)&this->current_motion, this->frame);
             set_default_alpha_blend();
             pop_matrices(1);
         }
@@ -231,7 +230,7 @@ TObjCGrass::~TObjCGrass() {
 #pragma fp_contract on
 u8 *TObjCGrass__ct(Grass_800B8EFC *self, u8 *arg1, s32 arg2, s32 arg3) {
     u8 *hit;
-    TObjMotion__ct(self, tl_06);
+    __ct__10TObjMotionFP7TObject(self, tl_06);
     self->vt = __vt__10TObjCGrass;
     ((TObjPlayer *)(self->f10C))->register_object();
     self->f0 = lbl_805D2A28;

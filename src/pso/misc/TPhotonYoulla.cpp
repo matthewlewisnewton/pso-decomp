@@ -1,9 +1,9 @@
 #include "pso/system/NinjaTypes.h"
+#include "pso/player/TObjPlayer_803E4954.h"
 #include "types.h"
 #include "pso/misc/MaterialColorFade.h"
 #include "pso/boss/TBoss2DeRolLe.h"
 #include "pso/misc/PhotonBlastSummon.h"
-#include "pso/misc/obj_band.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/system/ChunkMaterialState.h"
 #include "pso/system/MaterialAlphaCompare.h"
@@ -63,7 +63,6 @@ extern u8 photon_blast_youlla_params[];
 extern s32 __vt__13TPhotonYoulla[];
 extern const char *lbl_805D3528;
 extern u8 *photon_blast_shared_resource;
-s32 advance_animation_playback(void *);
 void __dl__7TObjectFPv(void *);
 
 extern const f32 lbl_805DC264;
@@ -85,13 +84,13 @@ void TPhotonYoulla::render() {
         saved_chunk_polygon_flags_and_mask = chunk_polygon_flags_and_mask;
         saved_chunk_polygon_flags_or_mask = chunk_polygon_flags_or_mask;
         model_render_flags |= 0x200820;
-        TObjPlayer::set_global_flag();
+        set_motion_packed_rotation();
         set_material_alpha_compare_reference(0);
         set_chunk_material_override_pair(-1, 0x800);
         set_constant_material((const NJS_ARGB *)(((f32 *)&self->color)));
         ((TUnk_804C3248 *)self)->set_photon_blast_joint_callback();
         ((TObjMotion *)self)->draw();
-        TObjPlayer::clear_global_state();
+        clear_motion_packed_rotation();
         set_material_alpha_compare_reference(0xBF);
         clear_render_context__10TObjPlayerFv(self);
         chunk_polygon_flags_and_mask = saved_chunk_polygon_flags_and_mask;
@@ -109,13 +108,13 @@ void TPhotonYoulla::run_task() {
     if (((s32) *(s32 *)&this->m_1a4 == 0x32) && ((s32) *(s32 *)&this->m_1a0 == 0)) {
         *(s32 *)&this->m_1a0 = 1;
     }
-    if ((lbl_805DC264 == (f32) *(s32 *)&this->m_1a4) && ((s16) this->m_b8 == 1)) {
+    if ((lbl_805DC264 == (f32) *(s32 *)&this->m_1a4) && ((s16) this->requested_action == 1)) {
         spawn_photon_blast_attachment_effects(this, 6);
         *(s32 *)&this->m_1a4 = 0;
         set_field_b8(0);
     }
-    *(s16 *)&this->m_194 = (s16) this->m_b8;
-    advance_animation_playback(this);
+    *(s16 *)&this->m_194 = (s16) this->requested_action;
+    advance_animation();
     update_photon_blast_attachments();
     *(s16 *)((s8 *)this + 0x14C) = (s16) (*(s16 *)((s8 *)this + 0x14C) + 0xF);
     *(s16 *)((s8 *)this + 0x14C) = (s16) (u8) *(s16 *)((s8 *)this + 0x14C);
@@ -162,9 +161,9 @@ u8 *TPhotonYoulla__ct(TPhotonYoulla *photon_youlla, u8 *arg1) {
     photon_youlla->texlist = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)photon_blast_shared_resource + 0x42C)) + 0xBC);
     ((TObjMotion *)photon_youlla)->set_field_d8((s32) photon_blast_youlla_params);
     ((TObjMotion *)photon_youlla)->set_field_dc(*(s32 *)((s8 *)photon_blast_shared_resource + 0x430));
-    photon_youlla->m_b8 = 1;
-    ((TObjMotion *)photon_youlla)->set_animation(photon_youlla->m_b8);
-    ((TObjMotion *)photon_youlla)->set_field_b8(photon_youlla->m_b8);
+    photon_youlla->requested_action = 1;
+    ((TObjMotion *)photon_youlla)->set_animation(photon_youlla->requested_action);
+    ((TObjMotion *)photon_youlla)->set_field_b8(photon_youlla->requested_action);
     photon_youlla->m_194 = 1;
     photon_youlla->m_198 = (s32) *(s32 *)((s8 *)arg1 + 0x10);
     photon_youlla->m_19c = (s32) *(s32 *)((s8 *)arg1 + 0x14);

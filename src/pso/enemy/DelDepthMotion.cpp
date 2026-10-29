@@ -21,7 +21,6 @@ u8 *get_bml_motion(s32, s32);
 DelDepthMotionBinding lbl_804E8760[] = {{4, 0.3f}, {4, 0.3f}, {2, 0.6f}, {3, 0.4f}};
 DelDepthPairBinding lbl_804E8780[] = {{{1, 1}, {0, 8}, 0.6f}, {{1, 0}, {0, 7}, 0.6f}};
 extern const f32 lbl_805DF2EC;
-void advance_animation_playback(void *);
 extern f32 TObjEneDelDepth__animation_end_frame;
 extern u8 TObjEneDelDepth__animation_end_frame_initialized;
 
@@ -55,17 +54,17 @@ void DelDepthMotion::draw_model_part() {
         }
         if (temp_r0 < 0xA) {
             TObjFish::set_global_param((int) (texture));
-            TObjPlayer::set_global_flag();
+            set_motion_packed_rotation();
             draw_model_motion((void *)(model), (void *)(animation), (f32) (frame));
-            TObjPlayer::clear_global_state();
+            clear_motion_packed_rotation();
             return;
         }
-        TObjPlayer::set_global_flag();
+        set_motion_packed_rotation();
         TObjFish::set_global_param((int) (texture));
         draw_model_motion((void *)(model), (void *)(animation), (f32) (frame));
         TObjFish::set_global_param((int) (secondTexture));
         draw_model_motion((void *)(secondModel), (void *)(secondAnimation), (f32) (frame));
-        TObjPlayer::clear_global_state();
+        clear_motion_packed_rotation();
     }
 }
 #pragma pop
@@ -75,7 +74,7 @@ void DelDepthMotion::update_animation_frame() {
         return;
     }
     if (motion < 6) {
-        advance_animation_playback(actor);
+        actor->advance_animation();
     } else if (motion < 10) {
         if ((frame += speed) >= endFrame) {
             frame -= endFrame;
@@ -126,7 +125,7 @@ void DelDepthMotion::set_motion(s32 arg1) {
     }
     if (id < 6) {
         if (flag != 0) {
-            ((TObjEnePanarms *)(actor))->init((void*)((s16)id));
+            ((TObjEnePanarms *)(actor))->init((s16)id);
         } else {
             actor->set_field_b8((s16)id);
         }

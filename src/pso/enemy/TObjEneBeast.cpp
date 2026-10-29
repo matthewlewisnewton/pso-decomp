@@ -10,7 +10,7 @@
 extern "C" void has_flag_0x800__9TObjCharaFv();
 extern "C" void test_flag30_512__9TObjCharaFv();
 extern "C" void test_flag_1000__9TObjCharaFv();
-#include "pso/object/obj_band.h"
+#include "pso/object/TObjMotion.h"
 #include "pso/system/vector.h"
 #include "pso/TParticleCtrl.h"
 
@@ -22,7 +22,6 @@ extern "C" void test_flag_1000__9TObjCharaFv();
 extern "C" {
 void obj_clearFlags30__8TObjBaseFUl(void *, u32);
 void obj_setFlags30(void *, u32);
-void advance_animation_playback(void *);
 s32 post_translate_matrix(void *);
 s32 draw_chunk_object(s32);
 s32 restore_scene_lighting();
@@ -176,14 +175,14 @@ void TObjEneBeast::vfunc_93() {
     u32 entry;
     s32 idx;
     VObj_80091EA4 *eff;
-    if (this->m_c0 < 12.0f) {
-        switch (this->m_b8) {
+    if (this->frame < 12.0f) {
+        switch (this->requested_action) {
         case 3:
-            entry = TObjPlayer::lookup_entry_by_value(beast_claw_trail_instance, this->m_c0);
+            entry = TObjPlayer::lookup_entry_by_value(beast_claw_trail_instance, this->frame);
             idx = 0;
             break;
         case 4:
-            entry = TObjPlayer::lookup_entry_by_value(boss4_type3_instance, this->m_c0);
+            entry = TObjPlayer::lookup_entry_by_value(boss4_type3_instance, this->frame);
             idx = 1;
             break;
         default:
@@ -257,7 +256,7 @@ void TObjEneBeast::vfunc_83() {
         *(s16 *)((s8 *)arg0 + 0x326) = 1;
         break;
     }
-    advance_animation_playback(arg0);
+    ((TObjMotion *)arg0)->advance_animation();
 }
 void render__12TObjEneBeastFPv(Obj_8009211C *o) {
     s32 drawMode;
@@ -301,7 +300,7 @@ void render__12TObjEneBeastFPv(Obj_8009211C *o) {
             if (drawMode == 1) {
                 ((TObjMotion *)o)->draw();
             } else {
-                ((TObjEnemy *)o)->render_world_model();
+                ((TObjEnemy *)o)->draw_motion_model();
             }
         }
         TParticleCtrl::end_effect_render();
@@ -339,7 +338,6 @@ void render__12TObjEneBeastFPv(Obj_8009211C *o) {
 #undef post_translate_matrix
 #undef obj_clearFlags30__8TObjBaseFUl
 #undef obj_setFlags30
-#undef advance_animation_playback
 #undef play_sound_effect
 #undef translate_matrix
 #undef set_global_param__8TObjFishFl
@@ -358,7 +356,6 @@ void render__12TObjEneBeastFPv(Obj_8009211C *o) {
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/enemy/TObjEneBeast.h"
-#include "pso/misc/obj_band.h"
 #include "pso/object/TObject_80019A50.h"
 extern "C" void has_flag_0x800__9TObjCharaFv();
 extern "C" void test_flag30_512__9TObjCharaFv();

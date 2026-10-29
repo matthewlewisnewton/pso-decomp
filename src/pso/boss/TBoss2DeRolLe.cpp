@@ -1,4 +1,5 @@
 #include "pso/enemy/TObjEnemy.h"
+#include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/system/vector.h"
 #include "pso/protocol/protocol_types.h"
 #include "pso/misc/TLobby_801E43E4.h"
@@ -431,14 +432,14 @@ void TBoss2DeRolLe::render_body() {
     model = self->anims[self->motions[idx].anim].model;
     if (is_on_current_screen__11TCameraCtrlFv(controller_input_state + 0xC0, 4) != 0) {
         max = model->frames - 1;
-        this->m_c0 = this->m_c0 + self->speed;
-        while (this->m_c0 < TBoss2DeRolLe__data_805D827C) {
-            this->m_c0 = this->m_c0 + max;
+        this->frame = this->frame + self->speed;
+        while (this->frame < TBoss2DeRolLe__data_805D827C) {
+            this->frame = this->frame + max;
         }
-        while (this->m_c0 > max) {
-            this->m_c0 = this->m_c0 - max;
+        while (this->frame > max) {
+            this->frame = this->frame - max;
         }
-        frame = this->m_c0;
+        frame = this->frame;
     } else {
         frame = self->fixedFrame;
         if (frame < TBoss2DeRolLe__data_805D827C) {
@@ -448,10 +449,10 @@ void TBoss2DeRolLe::render_body() {
         }
     }
     fn_8002F5AC((u8 *)self);
-    TObjEneRe7Berura::set_global_state((s32)TObjPlayer__sub_8002F61C);
+    set_chunk_model_node_callback((s32)TObjPlayer__sub_8002F61C);
     TObjFish::set_global_param(this->texlist);
     draw_model_motion((void *)self->x34, (void *)model, (f32)frame);
-    TObjEneRe7Berura::set_global_state((s32)NULL);
+    set_chunk_model_node_callback((s32)NULL);
     TObjLight__sub_801337F8(current_scene_light);
     pop_matrix();
 }
@@ -654,7 +655,7 @@ void TBoss2DeRolLe::render() {
     }
     fn_8002F5AC(((u8 *)this));
     TObjFish::set_global_param(e->f24);
-    TObjEneRe7Berura::set_global_state((s32)((void *)TObjPlayer__sub_8002F61C));
+    set_chunk_model_node_callback((s32)((void *)TObjPlayer__sub_8002F61C));
     {
     Vec4_8002F258 saved;
     col = &TObjLight__scene_light_state.col;
@@ -669,7 +670,7 @@ void TBoss2DeRolLe::render() {
     this->draw();
     copy_argb((NJS_ARGB *)col, (NJS_ARGB *)&saved);
     }
-    TObjEneRe7Berura::set_global_state((s32)NULL);
+    set_chunk_model_node_callback((s32)NULL);
     TObjLight__sub_801337F8(current_scene_light);
     pop_matrix();
     chunk_polygon_flags_and_mask = saved_chunk_polygon_flags_and_mask;
@@ -1169,8 +1170,6 @@ void set_position_index__13TBoss2DeRolLeFPvi(void *, s32);
 void TObjBoss2Tunnel__sub_8003C5F8(void);
 void TObjBoss2Tunnel__sub_8003C610(void);
 void *create_particle_emitter(void *pos, s32 id);
-s32 objInBand__FP7GameObjf(void *, f32);
-void advance_animation_playback(void *);
 extern const f32 TBoss2DeRolLe__data_805D827C;
 extern const f32 TBoss2DeRolLe__data_805D8288;
 extern const f32 TBoss2DeRolLe__data_805D8294;
@@ -1216,7 +1215,6 @@ void *__ct__13TUnk_80482C58FP7TObjectll(void *, void *, int, int);
 u8 *csnVector(void *, void *, int);
 void *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags);
 void *spawn_continuous_particle_effect_with_flags(void *parent, s32 idx, s32 flags);
-void advance_animation_playback(void *);
 void *__nw__7TObjectFUl(u32);
 s32 vec3_add_to(int, void *);
 void subtract_vector(void *, void *);
@@ -1245,7 +1243,6 @@ void update_pulsing_colors__13TBoss2DeRolLeFPv(u8 *arg0);
 f32 random_ratio__9TObjCharaFv(void *);
 s32 VecCopy__FP3VecPC3Vec(int, void *);
 void pick_random_target__13TBoss2DeRolLeFi(s32 arg0);
-void advance_animation_playback(void *);
 void set_move_direction__13TBoss2DeRolLeFPv(void *, s32);
 s32 get_random_scaled__9TObjEneDDFv(void *);
 f32 sin_table_lookup(s32);
@@ -1259,7 +1256,6 @@ void TBoss2DeRolLe__sub_800310F8(void *arg0, void *arg1, int arg2);
 void TBoss2DeRolLe__sub_800338BC(void);
 s32 init_head_params__13TBoss2DeRolLeFPv(void *);
 void set_position_index__13TBoss2DeRolLeFPvi(void *, s32);
-void advance_animation_playback(void *);
 extern const f32 TBoss2DeRolLe__data_805D82BC;
 extern const f32 TBoss2DeRolLe__data_805D832C;
 void TBoss2DeRolLe__sub_800327C8(void *arg0, void *arg1, int arg2, int arg3);
@@ -1273,8 +1269,6 @@ s32 restore_player_cameras();
 s32 activate_camera_mode(int);
 void set_scripted_camera_pose(void *, void *, void *);
 f32 calc_elapsed_scaled__9TObjEneDDFv(void *);
-s32 objInBand__FP7GameObjf(void *, f32);
-void advance_animation_playback(void *);
 int play_sound_effect(void*, int, int, int);
 void play_cue_stream_file(s32 name);
 f32 cos_table_lookup(s32);
@@ -1303,10 +1297,8 @@ s32 activate_camera_mode(int);
 void set_move_target_point__13TBoss2DeRolLeFPvi(u8 *arg0, s32 arg1);
 void get_node_world_pos__13TBoss2DeRolLeFPvPv(u8 *arg0, u8 *arg1);
 s32 vec3_add_to(int, void *);
-void advance_animation_playback(void *);
 f32 calc_elapsed_scaled__9TObjEneDDFv(void *);
 void spawn_ceil_junk__13TBoss2DeRolLeFii(s32 arg1, s32 arg2);
-s32 objInBand__FP7GameObjf(void *, f32);
 int play_sound_effect(void*, int, int, int);
 s32 get_flag_b4__9TObjEneDDFv(void *);
 Play_80032E38 *get_scripted_camera_playback(void);
@@ -1345,8 +1337,6 @@ void set_position_index__13TBoss2DeRolLeFPvi(void *, s32);
 s32 advance_scalar_motion_profile(void *);
 void set_move_params__13TBoss2DeRolLeFPvffff(u8 *arg0, f32 farg0, f32 farg1, f32 farg2, f32 farg3);
 f32 calc_elapsed_scaled__9TObjEneDDFv(void *);
-s32 objInBand__FP7GameObjf(void *, f32);
-void advance_animation_playback(void *);
 extern const f32 TBoss2DeRolLe__data_805D827C;
 extern const f32 TBoss2DeRolLe__data_805D8288;
 extern const f32 TBoss2DeRolLe__data_805D8294;
@@ -1558,8 +1548,6 @@ f32 calc_elapsed_scaled__9TObjEneDDFv(void *);
 s32 vfunc_93__9TObjEneDDFv();
 s32 is_alive__8TObjBaseFv();
 u8 *get_enemy_entity(u16 arg0);
-s32 objInBand__FP7GameObjf(void *, f32);
-void advance_animation_playback(void *);
 s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 int play_sound_effect(void*, int, int, int);
 s32 vec3_add_to(int, void *);
@@ -1711,14 +1699,14 @@ void handle_death_state__13TBoss2DeRolLeFPvPv(void *arg0, void *arg1) {
         }
         break;
     case 0:
-        advance_animation_playback(o);
+        ((TObjMotion *)o)->advance_animation();
         switch (o->f6E0) {
         case 0:
-            if (objInBand__FP7GameObjf(o, lbl_805D8290) != 0) {
+            if (((TObjMotion *)o)->is_passing_frame(lbl_805D8290) != 0) {
                 play_cue_stream_file((s32)lbl_804359F8);
-            } else if (objInBand__FP7GameObjf(o, TBoss2DeRolLe__data_805D8294) != 0) {
+            } else if (((TObjMotion *)o)->is_passing_frame(TBoss2DeRolLe__data_805D8294) != 0) {
                 play_sound_effect((void *)0x4003AD11, 0, 0, 0);
-            } else if (objInBand__FP7GameObjf(o, lbl_805D8298) != 0) {
+            } else if (((TObjMotion *)o)->is_passing_frame(lbl_805D8298) != 0) {
                 play_sound_effect((void *)0x4003AD12, 0, 0, 0);
                 start_pad_rumble_all(0xC0, 0xF);
             }
@@ -1864,7 +1852,7 @@ void TBoss2DeRolLe__sub_8002FD9C(DeRolLe_8002FD9C *self, u32 arg1, s32 arg2) {
         }
         break;
     case 0:
-        ((s32 (*)(void *))advance_animation_playback)(self);
+        ((TObjMotion *)self)->advance_animation();
         break;
     }
 }
@@ -1913,7 +1901,7 @@ void TBoss2DeRolLe__sub_8002FE60(void *arg0, u32 arg1) {
         }
         break;
     case 0:
-        advance_animation_playback(self);
+        ((TObjMotion *)self)->advance_animation();
         self->f758 = 6;
         switch (self->phase) {
         case 0:
@@ -2114,27 +2102,27 @@ void state_ceiling_attack__13TBoss2DeRolLeFPvUi(u8 *arg0, u32 arg1) {
         *(s32 *)((s8 *)arg0 + 0x3C0) = *(s32 *)((s8 *)arg0 + 0x3C0) & ~4;
         *(s32 *)((s8 *)arg0 + 0x3C0) = *(s32 *)((s8 *)arg0 + 0x3C0) | 0x100;
         ((s32 (*)(void))TBoss2DeRolLe__sub_800341F0)();
-        ((TBoss2DeRolLe *)arg0)->m_b8 = 0xC;
+        ((TBoss2DeRolLe *)arg0)->requested_action = 0xC;
         *(s32 *)((s8 *)arg0 + 0x654) = 3;
         ((s32 (*)(void *, int))set_position_index__13TBoss2DeRolLeFPvi)(arg0, *(s32 *)((s8 *)arg0 + 0x654));
         *(s32 *)((s8 *)arg0 + 0x6E0) = 0;
         ((TBoss2DeRolLe *)arg0)->m_6f8 = 0;
         return;
     case 2:
-        if (((TBoss2DeRolLe *)arg0)->m_b8 == 0xF) {
+        if (((TBoss2DeRolLe *)arg0)->requested_action == 0xF) {
             set_state_and_send__13TBoss2DeRolLeFPvi((Obj_80034034 *)arg0, 0x1B);
         }
         return;
     case 9:
-        if (((TBoss2DeRolLe *)arg0)->m_b8 == 0xF) {
+        if (((TBoss2DeRolLe *)arg0)->requested_action == 0xF) {
             advance_action_sequence__13TBoss2DeRolLeFPv((Obj_80034034 *)arg0);
             return;
         }
         break;
     case 0:
-        advance_animation_playback(arg0);
+        ((TObjMotion *)arg0)->advance_animation();
         *(s32 *)((s8 *)arg0 + 0x6E0) = *(s32 *)((s8 *)arg0 + 0x6E0) + 1;
-        frame = ((TBoss2DeRolLe *)arg0)->m_c0;
+        frame = ((TBoss2DeRolLe *)arg0)->frame;
         if (frame >= TBoss2DeRolLe__data_805D82E4 && frame <= lbl_805D82EC && (f32)*(s32 *)((s8 *)arg0 + 0x6E0) >= TBoss2DeRolLe__data_805D82F0) {
             *(s32 *)((s8 *)arg0 + 0x6E0) = 0;
             VecCopy__FP3VecPC3Vec((int)&v, arg0 + 0x38);
@@ -2143,7 +2131,7 @@ void state_ceiling_attack__13TBoss2DeRolLeFPvUi(u8 *arg0, u32 arg1) {
             v.z = v.z + TBoss2DeRolLe__data_805D82AC;
             spawn_ceil_junk__13TBoss2DeRolLeFii((s32)arg0, (s32)&v);
         }
-        if (objInBand__FP7GameObjf(arg0, TBoss2DeRolLe__data_805D82E4) != 0) {
+        if (((TObjMotion *)arg0)->is_passing_frame(TBoss2DeRolLe__data_805D82E4) != 0) {
             ((int (*)(int, void *))play_sound)(0x4003AD12, arg0 + 0x518);
         }
         break;
@@ -2177,8 +2165,8 @@ void TBoss2DeRolLe__sub_80030720(Obj_80030720 *self, u32 arg1, s32 arg2) {
         }
         break;
     case 0:
-        ((s32 (*)(void *))advance_animation_playback)(self);
-        if (objInBand__FP7GameObjf(self, lbl_805D82F4) != 0) {
+        ((TObjMotion *)self)->advance_animation();
+        if (((TObjMotion *)self)->is_passing_frame(lbl_805D82F4) != 0) {
             pos = self->f4D0;
             if (arg2 == 0x18) {
                 for (i = 0; i < 5; i++) {
@@ -2232,7 +2220,7 @@ void TBoss2DeRolLe__sub_80030898(u8 *arg0, u32 arg1, s32 arg2) {
         }
         break;
     case 0:
-        advance_animation_playback(arg0);
+        ((TObjMotion *)arg0)->advance_animation();
         switch (*(s32 *)((s8 *)arg0 + 0x6E4)) {
         case 0:
             if (!(*(s32 *)((s8 *)arg0 + 0xB0) & 4)) {
@@ -2302,7 +2290,7 @@ void TBoss2DeRolLe__sub_80030A38(u8 *arg0, u32 arg1) {
         }
         break;
     case 0:
-        advance_animation_playback(arg0);
+        ((TObjMotion *)arg0)->advance_animation();
         switch (*(s32 *)((s8 *)arg0 + 0x6E0)) {
         case 0:
             *(f32 *)((s8 *)arg0 + 0x6FC) = *(f32 *)((s8 *)arg0 + 0x6FC) + TBoss2DeRolLe__data_805D8300;
@@ -2435,7 +2423,7 @@ void TBoss2DeRolLe__sub_80030DFC(void *arg0_, void *arg1_, int arg2) {
         }
         break;
     case 0:
-        advance_animation_playback(arg0);
+        ((TObjMotion *)arg0)->advance_animation();
         switch (F(s32, 0x6E0)) {
         case 0:
             F(f32, 0x704) += TBoss2DeRolLe__data_805D8300;
@@ -2532,7 +2520,7 @@ void TBoss2DeRolLe__sub_800310F8(void *arg0, void *arg1, int arg2) {
         }
         break;
     case 0:
-        advance_animation_playback(self);
+        ((TObjMotion *)self)->advance_animation();
         switch (self->phase) {
         case 0:
             self->timer++;
@@ -2647,10 +2635,8 @@ s32 advance_scalar_motion_profile(void *);
 void update_angle__13TBoss2DeRolLeFPv(void *arg0);
 void set_move_params__13TBoss2DeRolLeFPvffff(u8 *arg0, f32 farg0, f32 farg1, f32 farg2, f32 farg3);
 f32 fabs_float(f32);
-void advance_animation_playback(void *);
 f32 calc_elapsed_scaled__9TObjEneDDFv(void *);
 void spawn_ceil_junk__13TBoss2DeRolLeFii(s32 arg1, s32 arg2);
-s32 objInBand__FP7GameObjf(void *, f32);
 int play_sound(void* p, int a1);
 extern const f32 TBoss2DeRolLe__data_805D827C;
 extern const f32 TBoss2DeRolLe__data_805D8288;
@@ -2729,7 +2715,7 @@ void TBoss2DeRolLe__sub_800313F8(DR_800313F8 *o, u32 arg1, s32 arg2) {
         }
         break;
     case 0:
-        advance_animation_playback(o);
+        ((TObjMotion *)o)->advance_animation();
         switch (o->f6E0) {
         case 0:
             o->f6E4++;
@@ -2813,7 +2799,7 @@ void TBoss2DeRolLe__sub_800313F8(DR_800313F8 *o, u32 arg1, s32 arg2) {
                 v.z = v.z + TBoss2DeRolLe__data_805D82A4;
                 ((void (*)(void *, Vec_800313F8 *))spawn_ceil_junk__13TBoss2DeRolLeFii)(o, &v);
             }
-            if (objInBand__FP7GameObjf(o, lbl_805D835C) != 0) {
+            if (((TObjMotion *)o)->is_passing_frame(lbl_805D835C) != 0) {
                 ((int (*)(s32, void *))play_sound)(0x4003AD11, o->snd);
             }
             if (o->f73C == 0) {
@@ -2849,7 +2835,7 @@ void TBoss2DeRolLe__sub_800313F8(DR_800313F8 *o, u32 arg1, s32 arg2) {
             o->pos.x = o->f704 * t + o->f700;
             f32 h = TBoss2DeRolLe__data_805D8288 * o->f70C;
             o->pos.z = t * (h * t + lbl_805D836C) + o->f714;
-            if (objInBand__FP7GameObjf(o, lbl_805D8370) != 0) {
+            if (((TObjMotion *)o)->is_passing_frame(lbl_805D8370) != 0) {
                 ((int (*)(s32, void *))play_sound)(0x4003AD12, o->snd);
             }
             break;
@@ -2927,7 +2913,7 @@ void TBoss2DeRolLe__sub_80031AD4(void *arg0, void *arg1) {
         }
         break;
     case 0:
-        advance_animation_playback(o);
+        ((TObjMotion *)o)->advance_animation();
         switch (o->f6E0) {
         case 0:
             o->f6E8++;
@@ -2977,9 +2963,9 @@ void TBoss2DeRolLe__sub_80031AD4(void *arg0, void *arg1) {
                 break;
             }
             if (o->fB8 != 1) {
-                if (objInBand__FP7GameObjf(o, TBoss2DeRolLe__data_805D82FC) != 0 || objInBand__FP7GameObjf(o, lbl_805D838C) != 0) {
+                if (((TObjMotion *)o)->is_passing_frame(TBoss2DeRolLe__data_805D82FC) != 0 || ((TObjMotion *)o)->is_passing_frame(lbl_805D838C) != 0) {
                     play_sound((void *)0x4003AD11, (int)o->f518);
-                } else if (objInBand__FP7GameObjf(o, lbl_805D82EC) != 0) {
+                } else if (((TObjMotion *)o)->is_passing_frame(lbl_805D82EC) != 0) {
                     play_sound((void *)0x4003AD12, (int)o->f518);
                 }
             }
@@ -3107,13 +3093,13 @@ void TBoss2DeRolLe__sub_800320B4(void *arg0, void *arg1, int arg2, int arg3) {
     case 0:
         switch (self->phase) {
         case 0:
-            advance_animation_playback(self);
+            ((TObjMotion *)self)->advance_animation();
             if (!(self->fB0 & 4)) {
                 self->phase = 1;
             }
             break;
         case 1:
-            advance_animation_playback(self);
+            ((TObjMotion *)self)->advance_animation();
             switch (self->step) {
             case 0:
                 if (self->frame >= TBoss2DeRolLe__data_805D82E4) {
@@ -3159,9 +3145,9 @@ void TBoss2DeRolLe__sub_800320B4(void *arg0, void *arg1, int arg2, int arg3) {
                 break;
             }
             if (self->fB8 != 1) {
-                if (objInBand__FP7GameObjf(self, TBoss2DeRolLe__data_805D82E4) != 0 || objInBand__FP7GameObjf(self, lbl_805D83E8) != 0) {
+                if (((TObjMotion *)self)->is_passing_frame(TBoss2DeRolLe__data_805D82E4) != 0 || ((TObjMotion *)self)->is_passing_frame(lbl_805D83E8) != 0) {
                     ((int (*)(int, void *))play_sound)(0x4003AD11, self->snd);
-                } else if (objInBand__FP7GameObjf(self, TBoss2DeRolLe__data_805D8358) != 0) {
+                } else if (((TObjMotion *)self)->is_passing_frame(TBoss2DeRolLe__data_805D8358) != 0) {
                     ((int (*)(int, void *))play_sound)(0x4003AD12, self->snd);
                 }
             }
@@ -3350,7 +3336,7 @@ void TBoss2DeRolLe__sub_800327C8(void *arg0, void *arg1, int arg2, int arg3) {
         }
         break;
     case 0:
-        ((void (*)(void))advance_animation_playback)();
+        ((TObjMotion *)arg0)->advance_animation();
         ((void (*)(void *))TBoss2DeRolLe__sub_800338BC)(o);
         r = 0;
         switch (o->kind) {
@@ -3393,7 +3379,7 @@ void handle_debug_pad_input__13TBoss2DeRolLeFPvPv(void *arg0_, void *arg1_) {
 
     switch (arg1) {
     case 4:
-        ((TBoss2DeRolLe *)arg0)->m_b8 = 1;
+        ((TBoss2DeRolLe *)arg0)->requested_action = 1;
         TBoss2DeRolLe__sub_800341F0((Obj_800341F0 *)arg0);
         *(s32 *)((s8 *)arg0 + 0x3C0) &= ~4;
         *(s32 *)((s8 *)arg0 + 0x3C0) |= 0x100;
@@ -3478,11 +3464,11 @@ void handle_debug_pad_input__13TBoss2DeRolLeFPvPv(void *arg0_, void *arg1_) {
         }
         break;
     case 0:
-        advance_animation_playback(arg0);
-        if (!(((TBoss2DeRolLe *)arg0)->animationFlags & 4)) {
-            ((TBoss2DeRolLe *)arg0)->m_c8 -= 0.03f;
-            if (((TBoss2DeRolLe *)arg0)->m_c8 < 0.6f) {
-                ((TBoss2DeRolLe *)arg0)->m_c8 = 0.6f;
+        ((TObjMotion *)arg0)->advance_animation();
+        if (!(((TBoss2DeRolLe *)arg0)->motion_flags & 4)) {
+            ((TBoss2DeRolLe *)arg0)->play_speed -= 0.03f;
+            if (((TBoss2DeRolLe *)arg0)->play_speed < 0.6f) {
+                ((TBoss2DeRolLe *)arg0)->play_speed = 0.6f;
             }
         }
         break;
@@ -3563,7 +3549,7 @@ void TBoss2DeRolLe__sub_80032E38(void *arg0, void *arg1) {
             set_move_target_point__13TBoss2DeRolLeFPvi((u8 *)o, 0);
             o->f6E0 = 3;
         }
-        advance_animation_playback(o);
+        ((TObjMotion *)o)->advance_animation();
         switch (o->f6E0) {
         case 0:
             o->f6E8++;
@@ -3610,9 +3596,9 @@ void TBoss2DeRolLe__sub_80032E38(void *arg0, void *arg1) {
                 v3.z += lbl_805D83F0;
                 ((void (*)(void *, void *))spawn_ceil_junk__13TBoss2DeRolLeFii)(o, &v3);
             }
-            if (objInBand__FP7GameObjf(o, lbl_805D8420) != 0 || objInBand__FP7GameObjf(o, lbl_805D8424) != 0) {
+            if (((TObjMotion *)o)->is_passing_frame(lbl_805D8420) != 0 || ((TObjMotion *)o)->is_passing_frame(lbl_805D8424) != 0) {
                 play_sound_effect((void *)0x4003AD11, 0, 0, 0);
-            } else if (objInBand__FP7GameObjf(o, lbl_805D8428) != 0) {
+            } else if (((TObjMotion *)o)->is_passing_frame(lbl_805D8428) != 0) {
                 play_sound_effect((void *)0x4003AD12, 0, 0, 0);
             }
             if (o->fC0 >= lbl_805D8410) {
@@ -3657,7 +3643,7 @@ void TBoss2DeRolLe__sub_800333F4(Obj_800333F4 *self, u32 arg1) {
     switch (arg1) {
     case 4: self->f_B8 = 1; return;
     case 2: set_state_and_send__13TBoss2DeRolLeFPvi((Obj_80034034 *)(self), 1); return;
-    case 0: ((s32 (*)(void *))advance_animation_playback)(self); return;
+    case 0: ((TObjMotion *)self)->advance_animation(); return;
     case 1: return;
     case 3: return;
     case 5: return;
@@ -3854,7 +3840,7 @@ void update_projectile_spawns__13TBoss2DeRolLeFPv(u8 *arg0) {
     *(f32 *)((s8 *)temp_r31 + 0) = (f32) (*(f32 *)((s8 *)temp_r31 + 0) * TBoss2DeRolLe__data_805D8288);
     *(f32 *)((s8 *)temp_r31 + 4) = (f32) (*(f32 *)((s8 *)temp_r31 + 4) * TBoss2DeRolLe__data_805D8288);
     *(f32 *)((s8 *)temp_r31 + 8) = (f32) (*(f32 *)((s8 *)temp_r31 + 8) * TBoss2DeRolLe__data_805D8288);
-    if ((*(s32 *)((s8 *)arg0 + 0x3C0) & 0x100) && ((objInBand__FP7GameObjf(arg0, TBoss2DeRolLe__data_805D82F0) != 0) || (objInBand__FP7GameObjf(arg0, TBoss2DeRolLe__data_805D8294) != 0))) {
+    if ((*(s32 *)((s8 *)arg0 + 0x3C0) & 0x100) && ((((TObjMotion *)arg0)->is_passing_frame(TBoss2DeRolLe__data_805D82F0) != 0) || (((TObjMotion *)arg0)->is_passing_frame(TBoss2DeRolLe__data_805D8294) != 0))) {
         *(s32 *)((s8 *)arg0 + 0x53C) = 0;
     }
     if ((s32) *(s32 *)((s8 *)arg0 + 0x53C) <= 0x10) {
@@ -3908,7 +3894,7 @@ void update_particle_ctrls__13TBoss2DeRolLeFPv(Obj_80033AA4 *o) {
             p = create_particle_controller_with_angles(o->pos, &ang, 0x120, 1, 0x40);
             if (p != NULL) {
                 o->ctl[i] = p;
-                ((TBoss4Type2 *)(o->ctl[i]))->set_flags(2);
+                ((TParticleCtrl *)(o->ctl[i]))->set_flags(2);
                 ((TParticleCtrl *)(o->ctl[i]))->enable();
             } else {
                 for (j = 0; j < i; j++) {
@@ -5827,12 +5813,12 @@ void *TBoss2DeRolLe__ct(void *arg0, void *arg1, void *arg2) {
         self->f24 = *(s32 *)((s8 *)q + 0x2C);
         init_model__9TObjEneDDFv(self, (u8 *)lbl_804822A8, 3, q);
     }
-    ((TBoss2DeRolLe *)self)->animationFlags = 0;
+    ((TBoss2DeRolLe *)self)->motion_flags = 0;
     ((TObjMotion *)self)->set_field_d8((s32)((u8 *)lbl_804823A8));
     ((TObjMotion *)self)->set_field_dc(*(s32 *)((s8 *)lbl_805D4BA4 + 0x430));
-    ((TBoss2DeRolLe *)self)->m_b8 = 0;
-    ((TObjMotion *)self)->set_animation(((TBoss2DeRolLe *)self)->m_b8);
-    ((TObjMotion *)self)->set_field_b8(((TBoss2DeRolLe *)self)->m_b8);
+    ((TBoss2DeRolLe *)self)->requested_action = 0;
+    ((TObjMotion *)self)->set_animation(((TBoss2DeRolLe *)self)->requested_action);
+    ((TObjMotion *)self)->set_field_b8(((TBoss2DeRolLe *)self)->requested_action);
     reset_hp__9TObjEneDDFv(self, TBoss2DeRolLe__base_params, ((s32 *)TBoss2DeRolLe__attack_params_table)[0], TBoss2DeRolLe__resistance_params);
     ((TObjEneDD *)self)->check_state_flag_2();
     ((TBoss2DeRolLe *)self)->movementParameters = (u8 *)lbl_8048228C;

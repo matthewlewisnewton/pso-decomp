@@ -5,15 +5,15 @@
 #include "pso/boss/TBoss2DeRolLe.h"
 #include "pso/player/TObjPlayer_80363BE0.h"
 #include "pso/system/ChunkMaterialState.h"
-#include "pso/unk/text_80141550.h"
+#include "pso/render/render_util.h"
 #include "pso/unk/text_803E2D70.h"
 #include "pso/system/memory.h"
-#include "pso/render/depth_buffer.h"
+
 #include "pso/player/TUnk_804F2A10.h"
 #include "pso/player/TUnk_804F29F8.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/TItemLoad.h"
-#include "pso/player/TObjPlayer_80141D1C.h"
+
 
 extern "C" {
 void* init_vtable_804F2A10__13TUnk_804F2A10Fv(void*);
@@ -137,14 +137,14 @@ void TUnk_804F2A10::render() {
     while (n != 0) {
         obj = (VObj_18_1419ea *)find_equipped_item(*p++);
         if (obj != NULL) {
-            set_depth_buffer_settings_id(1);
+            set_draw_list_mask(1);
             obj->m26();
             set_default_alpha_blend();
             copy_argb((NJS_ARGB *)model_material_color, (NJS_ARGB *)saved_model_draw_color);
             chunk_polygon_flags_and_mask = saved_chunk_polygon_flags_and_mask;
             chunk_polygon_flags_or_mask = saved_chunk_polygon_flags_or_mask;
             model_render_flags = saved_model_render_flags;
-            set_depth_buffer_settings_id(2);
+            set_draw_list_mask(2);
             obj->m26();
             set_default_alpha_blend();
             copy_argb((NJS_ARGB *)model_material_color, (NJS_ARGB *)saved_model_draw_color);
@@ -305,10 +305,10 @@ struct Elt80364258_80364258 { s32 f0; };
 void TObjPlayer::push_to_list(s32 arg1) {
     s32 temp_r0;
 
-    temp_r0 = this->animationFlags;
+    temp_r0 = this->motion_flags;
     if (temp_r0 < 0x20) {
         ((struct Elt80364258_80364258 *)(((u8 *)this) + 0x30))[temp_r0].f0 = arg1;
-        this->animationFlags = (this->animationFlags + 1);
+        this->motion_flags = (this->motion_flags + 1);
     }
 }
 

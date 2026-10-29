@@ -15,7 +15,6 @@
 #include "pso/unk/text_803E2D70.h"
 
 extern "C" {
-void advance_animation_playback(TObjMotion *obj);
 s32 play_sound_effect(s32 id, Vec *pos, s32 a2, s32 flags);
 s32 TObjFish__sub_8001EDB0(BmlResource *resource, s32 index);
 void obj_setFlags30(TObject *obj, u32 mask);
@@ -46,13 +45,6 @@ struct BreakupParams {
     f32 pad_10;
     f32 pad_14;
     f32 pad_18;
-};
-
-struct MotionAction {
-    s32 pad_0;
-    s32 pad_4;
-    f32 pad_8;
-    s32 pad_c;
 };
 
 struct EnemyMovementParams {
@@ -90,12 +82,12 @@ struct ModelNode {
 static const char *TBoss3VoloptHiraisin_name = "TBoss3VoloptHiraisin";
 
 static BreakupParams volopt_hiraisin_breakup_params = { 0x14, 0.06f, 1.5f, 0.9f, 0.12f, 0.55f, 0.5f };
-static MotionAction volopt_hiraisin_motions[5] = {
-    { 0x10000, 6, 0.7f, 0 },
-    { 0x10000, 6, 0.7f, 1 },
-    { 0x20000, 6, 0.7f, 4 },
-    { 0x20000, 8, 0.7f, 8 },
-    { 0x30004, 7, 0.5f, 0x10 },
+static TObjMotionAction volopt_hiraisin_motions[5] = {
+    {1, 0, 6, 0.7f, 0},
+    {1, 0, 6, 0.7f, 1},
+    {2, 0, 6, 0.7f, 4},
+    {2, 0, 8, 0.7f, 8},
+    {3, 4, 7, 0.5f, 0x10},
 };
 static EnemyMovementParams volopt_hiraisin_movement = { 150.0f, 0.5555555f, 0x400, 0x1E0000, 0, 1, 0 };
 static CollisionBodyPart volopt_hiraisin_body_parts[1] = {
@@ -129,8 +121,8 @@ void TBoss3VoloptHiraisin::sub_80040FDC() {
         break;
     case 0:
         m_388 |= 1;
-        m_b8 = 0;
-        advance_animation_playback(this);
+        this->requested_action = 0;
+        advance_animation();
         position.y = 80.0f;
         actorFlags |= 0x40000;
         ((CollisionState *)bodies)->flags |= 4;
@@ -169,7 +161,7 @@ void TBoss3VoloptHiraisin::start_attack() {
 void TBoss3VoloptHiraisin::sub_8004118C() {
     switch (state) {
     case 0:
-        m_b8 = 0;
+        this->requested_action = 0;
         state = 1;
         break;
     case 1:
@@ -184,13 +176,13 @@ void TBoss3VoloptHiraisin::sub_8004118C() {
 void TBoss3VoloptHiraisin::update_drop() {
     switch (state) {
     case 0:
-        m_b8 = 4;
+        this->requested_action = 4;
         y_speed = -2.27f;
         state = 1;
         hover_angle = 0;
         break;
     case 1:
-        advance_animation_playback(this);
+        advance_animation();
         position.y = position.y + y_speed;
         if (position.y <= 4.6f) {
             position.y = 4.6f;
@@ -201,8 +193,8 @@ void TBoss3VoloptHiraisin::update_drop() {
         }
         break;
     case 2:
-        advance_animation_playback(this);
-        if (m_c0 >= anim_end_frame - 1.5f) {
+        advance_animation();
+        if (this->frame >= this->frame_count - 1.5f) {
             state = 3;
         }
         break;
@@ -220,11 +212,11 @@ void TBoss3VoloptHiraisin::sub_80041314() {
         break;
     case 0:
         actorFlags &= ~0x200000;
-        m_b8 = 3;
+        this->requested_action = 3;
         state = 1;
     case 1:
-        advance_animation_playback(this);
-        if (m_b4 != 8) {
+        advance_animation();
+        if (this->action_flags != 8) {
             referenceHp = hp;
             actorFlags &= ~0x200;
             m_388 &= ~1;
@@ -248,7 +240,7 @@ void TBoss3VoloptHiraisin::render() {
         push_matrix();
         model_render_flags &= ~0x400;
         post_translate_matrix(&position.x);
-        if (m_b4 == 8) {
+        if (this->action_flags == 8) {
             translate_matrix(0, 0.0f, 20.0f, 0.0f);
         }
         translate_matrix(0, 0.0f, sin_table_lookup(hover_angle), 0.0f);
@@ -363,9 +355,9 @@ void TBoss3VoloptHiraisin::init_params() {
     variant = 0;
     movementParameters = &volopt_hiraisin_movement;
     recalc_combat_stats(volopt_hiraisin_stats, volopt_hiraisin_stats_b, volopt_hiraisin_object_params, 1.0f, 1.0f);
-    m_b8 = 0;
-    set_animation(m_b8);
-    set_field_b8(m_b8);
+    this->requested_action = 0;
+    set_animation(this->requested_action);
+    set_field_b8(this->requested_action);
     hp = hpmax;
     tp = tpmax;
     referenceHp = hp;

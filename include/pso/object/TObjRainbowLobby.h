@@ -2,24 +2,26 @@
 #define PSO_OBJECT_TOBJRAINBOWLOBBY_H
 
 #include "types.h"
-#include "pso/misc/TUnk_804AFBF8.h"
+#include "pso/object/TObjMapObject.h"
 
-struct TObjRainbowLobby : public TUnk_804AFBF8 {
+struct BmlResource;
+
+// The lobby rainbow: shown while a lobby event runs, it grows in when the
+// lobby connects and shrinks away when a lobby object takes over.
+struct TObjRainbowLobby : public TObjMapObject {
+    TObjRainbowLobby(TObject *parent, void *set_data);
     virtual ~TObjRainbowLobby();
-    u32 m_c8;
+    s32 state;  // 0 hidden, 2 fading in, 3 shown, 1 fading out
     virtual void render();
     virtual void run_task();
-    static void *create(void *arg0);
-    static void free_static_data();
-    static void load_shared_resource();
-    u8 unk_CC[0x4];
+    static void *create(void *set_data);
+    static void free_resources();
+    static void load_resources();
+    f32 scale;
+
+    static BmlResource *shared_model_resource;
 };
 
 typedef char TObjRainbowLobby_size[sizeof(TObjRainbowLobby) == 0xD0 ? 1 : -1];
-
-extern "C" {
-void *TObjRainbowLobby__ct(TObjRainbowLobby *arg0, s32 arg1, s32 arg2);
-void *__dt__16TObjRainbowLobbyFv(void *arg0, s16 arg1);
-}
 
 #endif

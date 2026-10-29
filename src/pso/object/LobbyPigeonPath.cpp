@@ -1,6 +1,7 @@
 #pragma push
 
 #include "types.h"
+#include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/TMainTask.h"
 #include "pso/system/vector.h"
 #include "pso/misc/TLobby.h"
@@ -491,7 +492,7 @@ typedef struct { u8 pad[4]; u32 n; } Anim_802C17FC;
 
 void TLobby__sub_8001FE7C(void*, int);
 u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
-s32 TObjMapWarp__sub_80141CB0(s32 *, s32 *, s32, s32);
+s32 debug_draw_line(s32 *, s32 *, s32, s32);
 
 u8 * load_gvm_texture_file(s32);
 s32 play_sound_effect(int, void *, int, int);
@@ -1396,9 +1397,9 @@ void TUnk_804E0988::vfunc_14() {
     post_translate_matrix((u8 *)&this->unk_AC);
     rotate_matrix_y(0, this->m_b8);
     rotate_matrix_z(0, this->m_c0);
-    TObjPlayer::set_global_flag();
+    set_motion_packed_rotation();
     draw_model_motion((void *)(*(s32 *)&this->unk_98), (void *)this->m_9c, this->m_a8);
-    TObjPlayer::clear_global_state();
+    clear_motion_packed_rotation();
     pop_matrix();
 }
 
@@ -1474,7 +1475,7 @@ void draw_line_strip__10TObjPlayerFPviif(u8 *path_obj, s32 arg1, s32 arg2, f32 f
       push_matrix();
       post_translate_matrix(path_obj + 0x38);
       rotate_matrix_y(0, ((TObjPathObj *)path_obj)->rotation_y);
-      TObjMapWarp__sub_80141CB0(sp14, sp8, 0xF0F0F0FF, 0xF0F0F0FF);
+      debug_draw_line(sp14, sp8, 0xF0F0F0FF, 0xF0F0F0FF);
       pop_matrix();
     } while (temp_r30 != 0);
 }

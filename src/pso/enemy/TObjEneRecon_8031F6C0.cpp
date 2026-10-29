@@ -43,7 +43,6 @@ struct V_Sub_8031f748 : Base_Sub_8031f748 {
 
 extern "C" {
 
-s32 advance_animation_playback();
 s32 TObjEneMe3SinowZoa__sub_800D758C(void *);
 
 void TObjEneRecobox::sub_8031F6C0(s32 arg1) {
@@ -53,7 +52,7 @@ void TObjEneRecobox::sub_8031F6C0(s32 arg1) {
     case 4:
         temp_r4 = *(s32 *)((s8 *)this + 0x40C) | 1;
         *(s32 *)((s8 *)this + 0x40C) = temp_r4;
-        this->m_b8 = 0;
+        this->requested_action = 0;
         ((VObj_8031F6C0 *)this)->m93(temp_r4);
         set_field_378(0);
         return;
@@ -83,7 +82,7 @@ void TObjEneRecon::handle_state(s32 arg1) {
     case 5:
         return;
     case 0:
-        advance_animation_playback();
+        advance_animation();
         break;
     }
 }

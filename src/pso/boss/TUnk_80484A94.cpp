@@ -7,7 +7,7 @@
 #include "pso/object/TObjGyaranzoMissile.h"
 #include "pso/object/TObjVoloptCage.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/player/TObjPlayer_80141D1C.h"
+#include "pso/render/render_util.h"
 #include "pso/player/TObjChara.h"
 #include "pso/system/vector.h"
 #include "pso/unk/text_800870BC.h"
@@ -77,11 +77,11 @@ void TUnk_80484A94::run_task() {
     rotation_z -= 0x4000;
     if (trail != NULL) {
         ((TParticleCtrl *)trail)->set_position(&position);
-        ((TBoss4Type2 *)trail)->copy_vec3(&rotation_x);
+        ((TParticleCtrl *)trail)->set_direction(&rotation_x);
     }
     if (glow != NULL) {
         ((TParticleCtrl *)glow)->set_position(&position);
-        ((TBoss4Type2 *)glow)->copy_vec3(&rotation_x);
+        ((TParticleCtrl *)glow)->set_direction(&rotation_x);
     }
     if (csnVector(&prev_position, &position, -1) != 0) {
         queue_destruction();

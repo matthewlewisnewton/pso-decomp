@@ -243,8 +243,7 @@ struct TLobby : public TObject {
     void update_and_send_60();
     void byteswap_and_send();
     void init_packet_67_04();
-    void finalize_and_send_60();
-    void*init_6x05_switch_changed();
+
     static void free_char_select_resources();
     static void *create_npc(void *arg0);
     static u8 is_idle();
@@ -493,9 +492,7 @@ struct TLobby : public TObject {
     static s32 get_card_window_field();
     void set_info_board_text();
     static void reset_info_board();
-    static s32 is_connected();
-    static s32 is_lobby_obj_active();
-    static int get_lobby_type();
+    static int get_lobby_texlist();
     void set_timer(f32 v);
     static s32 open_message_scroll_window(s32 arg0, s32 arg1, s32 arg2);
     static void *create_dialing_message_window(void *arg0, void *arg1);

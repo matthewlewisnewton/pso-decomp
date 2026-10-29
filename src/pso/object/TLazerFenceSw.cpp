@@ -3,13 +3,12 @@
 #include "pso/TMainTask.h"
 #include "pso/system/GinjaMaterial.h"
 #include "pso/system/MaterialAlphaCompare.h"
-#include "pso/unk/text_80141550.h"
-#include "pso/unk/text_80156BBC.h"
+#include "pso/render/render_util.h"
 #include "pso/unk/text_80193524.h"
 #include "pso/unk/text_803D96A8.h"
-#include "pso/render/depth_buffer.h"
+
 #include "pso/object/TObjDoorJung.h"
-#include "pso/misc/TUnk_804AF8D8.h"
+#include "pso/misc/CameraDistanceFade.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/system/BmlResourceDescriptor.h"
 #include "pso/misc/TLazerFenceSw.h"
@@ -84,7 +83,6 @@ struct Node_80193CA4 {
 };
 
 extern "C" {
-s32 fn_80156BBC(void *, void *);
 
 void debug_draw_key_id__5TOKeyFv();
 void debug_printf_at(int, void *, ...);
@@ -92,8 +90,8 @@ extern u16 lbl_80445CB8[];
 extern u8 lbl_80445CD8[];
 void TLazerFenceSw__vt24(Sw_80193978 *arg0);
 s32 init_collision_body_parts(void *, void *, int);
-s32 init_key__5TOKeyFv(void *, void *);
-void *TOKey__ct(TOKey *arg0);
+s32 init_key__5TOKeyFPv(void *, void *);
+void *__ct__5TOKeyFP7TObject(TOKey *arg0);
 extern u8 lazer_fence_sw_collision_body_part[];
 extern s32 __vt__13TLazerFenceSw[];
 extern s32 lbl_805D33B0;
@@ -112,7 +110,7 @@ extern u8 lbl_80445D20[];
 s32 TLobby__sub_8001FE7C(void *, s32);
 void free_collision_body_parts(void *);
 void *__dt__5TOKeyFv(void *arg0, s16 arg1);
-s32 step_laser_fence_fade(void *);
+void *__ct__18CameraDistanceFadeFv(void *self);
 
 __declspec(section ".data") u32 lazer_fence_sw_ginja_model_table[2];
 __declspec(section ".data") u32 lazer_fence_beam_motions[2];
@@ -190,10 +188,10 @@ void TLazerFenceSw::render() {
     u8 *arg0 = (u8 *)this;
     if (((VObj_18_26a62c *)(arg0))->m8(4e+02f, 2e+01f) != 0) {
         if (TMainTask::get_render_pass() != 1) {
-            set_depth_buffer_settings_id(3);
+            set_draw_list_mask(3);
             set_material_alpha_compare_reference(0x80);
-            if (fn_80156BBC(arg0 + 0xF0, (u8 *)&this->position) != 0) {
-                if (fn_80156C38((f32 *)(arg0 + 0xF0)) != 0) {
+            if (((CameraDistanceFade *)(arg0 + 0xF0))->update_visibility(&this->position) != 0) {
+                if (((CameraDistanceFade *)(arg0 + 0xF0))->is_translucent() != 0) {
                     ((VObj_14_aa9368 *)(arg0 + (240)))->m6();
                     draw_laser_beam();
                     ((VObj_14_aa9368 *)(arg0 + (240)))->m7();
@@ -222,26 +220,26 @@ void TLazerFenceSw__vt24(Sw_80193978 *arg0) {
 
 void TLazerFenceSw__vt16(void *lazer_fence_sw) {
     ((TOKey *)lazer_fence_sw)->TOKey::trigger_activate_sound();
-    ((TLazerFenceSw *)lazer_fence_sw)->m_b0 = 0.0f;
+    ((TLazerFenceSw *)lazer_fence_sw)->animation_frame = 0.0f;
     *(f32 *)((s8 *)lazer_fence_sw + 0xEC) = 0.0f;
 }
 
 void TLazerFenceSw__vt17(void *arg0) {
-    ((TBoss3Volopt *)arg0)->call_vt21();
-    ((TLazerFenceSw *)arg0)->m_b0 = 0.0f;
+    ((TOKey *)arg0)->TOKey::trigger_deactivate_sound();
+    ((TLazerFenceSw *)arg0)->animation_frame = 0.0f;
     *(f32 *)((s8 *)arg0 + 0xEC) = 0.0f;
 }
 
 typedef char RecoveredGlobal_80193A84_lbl_8050DCF0_size[sizeof(RecoveredGlobal_80193A84_lbl_8050DCF0) == 0x18 ? 1 : -1];
-void TLazerFenceSw::vfunc_16() {
+void TLazerFenceSw::update_switch_on() {
     u32 temp_r4;
     u32 temp_r4_2;
-    this->m_b0 = (f32) (this->m_b0 + this->m_b8);
+    this->animation_frame = (f32) (this->animation_frame + this->animation_step);
     temp_r4 = *(s32 *)((s8 *)(*(u8 **)((s8 *)&lazer_fence_beam_motions.value + 0)) + 4) - 1;
-    if (this->m_b0 > (f32) temp_r4) {
-        this->m_b0 = (f32) temp_r4;
+    if (this->animation_frame > (f32) temp_r4) {
+        this->animation_frame = (f32) temp_r4;
     }
-    *(f32 *)((s8 *)((u8 *)this) + 0xEC) = (f32) (*(f32 *)((s8 *)((u8 *)this) + 0xEC) + this->m_b8);
+    *(f32 *)((s8 *)((u8 *)this) + 0xEC) = (f32) (*(f32 *)((s8 *)((u8 *)this) + 0xEC) + this->animation_step);
     temp_r4_2 = *(s32 *)((s8 *)(*(u8 **)((s8 *)&lazer_fence_beam_motions.value + 4)) + 4) - 1;
     if (*(f32 *)((s8 *)((u8 *)this) + 0xEC) > (f32) temp_r4_2) {
         *(f32 *)((s8 *)((u8 *)this) + 0xEC) = (f32) temp_r4_2;
@@ -249,18 +247,18 @@ void TLazerFenceSw::vfunc_16() {
 }
 
 typedef char RecoveredGlobal_80193B4C_lbl_8050DCF0_size[sizeof(RecoveredGlobal_80193B4C_lbl_8050DCF0) == 0x18 ? 1 : -1];
-void TLazerFenceSw::vfunc_17() {
-    this->m_b0 = (f32) (this->m_b0 + this->m_b8);
-    if (this->m_b0 > (f32) (u32) (*(s32 *)((s8 *)((*(RecoveredGlobal_80193B4C_lbl_8050DCF0 *)&lazer_fence_beam_motions).value) + 4) - 1)) {
-        this->m_b0 = (f32) 0.0f;
+void TLazerFenceSw::update_switch_off() {
+    this->animation_frame = (f32) (this->animation_frame + this->animation_step);
+    if (this->animation_frame > (f32) (u32) (*(s32 *)((s8 *)((*(RecoveredGlobal_80193B4C_lbl_8050DCF0 *)&lazer_fence_beam_motions).value) + 4) - 1)) {
+        this->animation_frame = (f32) 0.0f;
     }
     this->submit_cursor_target();
 }
 
 void TLazerFenceSw::run_task() {
     u8 *arg0 = (u8 *)this;
-    step_laser_fence_fade(arg0 + 0xF0);
-    ((TOKey *)arg0)->reset_and_notify();
+    ((CameraDistanceFade *)(arg0 + 0xF0))->step_fade();
+    ((TOKey *)arg0)->TOKey::run_task();
     *(f32 *)((s8 *)arg0 + 0x110) += 0.2f;
 }
 
@@ -338,7 +336,7 @@ void *__dt__13TLazerFenceSwFv(void *arg0, s16 arg1) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__13TLazerFenceSw;
         ((TObjCollidable *)arg0)->unregister_object_by_id();
         free_collision_body_parts(arg0);
-        ((TUnk_804AF8D8 *)((s8 *)arg0 + 0xF0))->destroy(-1);
+        ((CameraDistanceFade *)((s8 *)arg0 + 0xF0))->CameraDistanceFade::~CameraDistanceFade();
         __dt__5TOKeyFv(arg0, 0);
         if (arg1 > 0) {
             TObject::operator delete(arg0);
@@ -349,11 +347,11 @@ void *__dt__13TLazerFenceSwFv(void *arg0, s16 arg1) {
 #pragma push
 #pragma opt_common_subs off
 void *TLazerFenceSw__ct(void *arg0, void *arg1, void *arg2) {
-    TOKey__ct((TOKey *)arg0);
+    __ct__5TOKeyFP7TObject((TOKey *)arg0);
     *(u8 **)((s8 *)arg0 + 0x18) = ((u8 *)&__vt__13TLazerFenceSw);
-    ((TUnk_804AF8D8 *)((u8 *)arg0 + 0xF0))->init_vtable_804AF8D8();
+    __ct__18CameraDistanceFadeFv((u8 *)arg0 + 0xF0);
     *(s32 *)((s8 *)arg0 + 0) = lbl_805D33B0;
-    init_key__5TOKeyFv(arg0, arg2);
+    init_key__5TOKeyFPv(arg0, arg2);
     if (*(s32 *)((s8 *)arg0 + 0x8C) < 0) {
         *(s32 *)((s8 *)arg0 + 0x8C) = 0;
     }
@@ -363,7 +361,7 @@ void *TLazerFenceSw__ct(void *arg0, void *arg1, void *arg2) {
     init_collision_body_parts(arg0, lazer_fence_sw_collision_body_part, 1);
     *(s32 *)((s8 *)arg0 + 0x30) |= 0x40000000;
     ((TObjPlayer *)arg0)->register_object_by_id();
-    ((TUnk_804AF8D8 *)((u8 *)arg0 + 0xF0))->sub_80156CEC();
+    ((CameraDistanceFade *)((u8 *)arg0 + 0xF0))->reset();
     TLazerFenceSw__sub_8018A554((u8 *)arg0 + 0xF0, 2.9e+02f);
     *(f32 *)((s8 *)arg0 + 0x110) = 0.0f;
     *(s32 *)((s8 *)arg0 + 0x114) = 0;

@@ -69,7 +69,7 @@ s32 clear_render_callback__8TObjFishFv(s32);
 
 void TBoss6Demo10_TYPE1_APPEAR::sub_8033C7C8() {
     push_matrix();
-    TObjPlayer::set_global_flag();
+    set_motion_packed_rotation();
     post_translate_matrix(lbl_80477DEC);
     TObjFish::set_global_param(this->m_20);
     draw_model_motion((void *)(*(s32 *)((s8 *)this + 0x1C)), (void *)(*(s32 *)((s8 *)this + 0x24)), *(f32 *)((s8 *)this + 0x34));
@@ -77,7 +77,7 @@ void TBoss6Demo10_TYPE1_APPEAR::sub_8033C7C8() {
     ((TObjFish *)(this->m_60))->set_draw_callback_list();
     draw_model_motion((void *)this->m_28, (void *)this->m_30, *(f32 *)((s8 *)this + 0x34));
     clear_render_callback__8TObjFishFv(this->m_60);
-    TObjPlayer::clear_global_state();
+    clear_motion_packed_rotation();
     pop_matrix();
 }
 
@@ -122,7 +122,7 @@ void run_task__25TBoss6Demo10_TYPE1_APPEARFv(TBoss6Demo10_TYPE1_APPEAR *boss6_de
     case 0x1:
         *(u32 *)((s8 *)boss6_demo10_type1_appear + 0x64) = (u32)create_particle_emitter((temp_r30), 0x210);
         if ((u32) *(u32 *)((s8 *)boss6_demo10_type1_appear + 0x64) != 0U) {
-            ((TBoss4Type2 *)(*(u32 *)((s8 *)boss6_demo10_type1_appear + 0x64)))->set_flags(0x40);
+            ((TParticleCtrl *)(*(u32 *)((s8 *)boss6_demo10_type1_appear + 0x64)))->set_flags(0x40);
         }
         break;
     case 0x1AC:
@@ -133,7 +133,7 @@ void run_task__25TBoss6Demo10_TYPE1_APPEARFv(TBoss6Demo10_TYPE1_APPEAR *boss6_de
         }
         *(u32 *)((s8 *)boss6_demo10_type1_appear + 0x64) = (u32)create_particle_emitter((temp_r30), 0x211);
         if ((u32) *(u32 *)((s8 *)boss6_demo10_type1_appear + 0x64) != 0U) {
-            ((TBoss4Type2 *)(*(u32 *)((s8 *)boss6_demo10_type1_appear + 0x64)))->set_flags(0x40);
+            ((TParticleCtrl *)(*(u32 *)((s8 *)boss6_demo10_type1_appear + 0x64)))->set_flags(0x40);
         }
         break;
     case 0x11D:
@@ -143,7 +143,7 @@ void run_task__25TBoss6Demo10_TYPE1_APPEARFv(TBoss6Demo10_TYPE1_APPEAR *boss6_de
         }
         *(u32 *)((s8 *)boss6_demo10_type1_appear + 0x64) = (u32)create_particle_emitter((temp_r30), 0x210);
         if ((u32) *(u32 *)((s8 *)boss6_demo10_type1_appear + 0x64) != 0U) {
-            ((TBoss4Type2 *)(*(u32 *)((s8 *)boss6_demo10_type1_appear + 0x64)))->set_flags(0x40);
+            ((TParticleCtrl *)(*(u32 *)((s8 *)boss6_demo10_type1_appear + 0x64)))->set_flags(0x40);
         }
         break;
     }

@@ -1,4 +1,5 @@
 #include "pso/system/NinjaTypes.h"
+#include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/system/ChunkMaterialState.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_801AA664.h"
@@ -16,7 +17,6 @@
 #include "pso/misc/PhotonBlastSummon.h"
 #include "pso/misc/TLobby_802268F4.h"
 #include "pso/misc/TPhotonRainbow_801AE640.h"
-#include "pso/misc/obj_band.h"
 #include "pso/unk/text_801AAB74.h"
 #include "pso/system/vector.h"
 #include "pso/map/FloorArea.h"
@@ -75,7 +75,6 @@ struct Self_801AA818 {
 };
 
 extern "C" {
-s32 advance_animation_playback(void *);
 void *find_entity_by_id(u16 id);
 s32 spawn_photon_blast_attachment_effects(void *, int);
 }
@@ -151,11 +150,11 @@ void TPhotonEstlla::render() {
         saved_chunk_polygon_flags_and_mask = chunk_polygon_flags_and_mask;
         saved_chunk_polygon_flags_or_mask = chunk_polygon_flags_or_mask;
         model_render_flags |= 0x200820;
-        TObjPlayer::set_global_flag();
+        set_motion_packed_rotation();
         set_chunk_material_override_pair(-1, 0x800);
         set_constant_material((const NJS_ARGB *)(((f32 *)&self->color)));
         ((TObjMotion *)self)->draw();
-        TObjPlayer::clear_global_state();
+        clear_motion_packed_rotation();
         chunk_polygon_flags_and_mask = saved_chunk_polygon_flags_and_mask;
         chunk_polygon_flags_or_mask = saved_chunk_polygon_flags_or_mask;
         copy_argb((NJS_ARGB *)&model_material_color, (NJS_ARGB *)&saved_model_draw_color);
@@ -189,15 +188,15 @@ void TPhotonEstlla::run_task() {
             construct_photon_magic_square_normal((u8 *)photon_magic_square, (s32)arg0, 1, (s32)&stack.sp8, 0x78);
         }
     }
-    if (((s32) *(s32 *)&this->m_1a0 == 0x64) && ((s16) this->m_b8 == 1)) {
+    if (((s32) *(s32 *)&this->m_1a0 == 0x64) && ((s16) this->requested_action == 1)) {
         ((TUnk_804C3248 *)arg0)->begin_photon_summon_camera(0);
         *(s32 *)&this->m_1a0 = 0;
         ((TObjMotion *)arg0)->set_field_b8(0);
         spawn_photon_blast_attachment_effects(arg0, 1);
     }
-    *(s16 *)&this->m_190 = (s16) this->m_b8;
+    *(s16 *)&this->m_190 = (s16) this->requested_action;
     ((TUnk_804C3248 *)arg0)->update_state();
-    advance_animation_playback(arg0);
+    ((TObjMotion *)arg0)->advance_animation();
     ((TUnk_804C3248 *)arg0)->update_photon_blast_attachments();
     *(s16 *)((s8 *)arg0 + 0x14C) = (s16) (*(s16 *)((s8 *)arg0 + 0x14C) + 0xF);
     *(s16 *)((s8 *)arg0 + 0x14C) = (s16) (u8) *(s16 *)((s8 *)arg0 + 0x14C);
@@ -281,9 +280,9 @@ u8 *TPhotonEstlla__ct(u8 *photon_estlla, u8 *arg1) {
     ((TPhotonEstlla *)photon_estlla)->texlist = *(s32 *)((s8 *)(*(u8 **)((s8 *)photon_blast_shared_resource + 0x42C)) + 0x9C);
     ((TObjMotion *)photon_estlla)->set_field_d8((s32) photon_estlla_param_table);
     ((TObjMotion *)photon_estlla)->set_field_dc(*(s32 *)((s8 *)photon_blast_shared_resource + 0x430));
-    ((TPhotonEstlla *)photon_estlla)->m_b8 = 1;
-    ((TObjMotion *)photon_estlla)->set_animation(((TPhotonEstlla *)photon_estlla)->m_b8);
-    ((TObjMotion *)photon_estlla)->set_field_b8(((TPhotonEstlla *)photon_estlla)->m_b8);
+    ((TPhotonEstlla *)photon_estlla)->requested_action = 1;
+    ((TObjMotion *)photon_estlla)->set_animation(((TPhotonEstlla *)photon_estlla)->requested_action);
+    ((TObjMotion *)photon_estlla)->set_field_b8(((TPhotonEstlla *)photon_estlla)->requested_action);
     *(s16 *)&((TPhotonEstlla *)photon_estlla)->m_190 = 1;
     *(s32 *)&((TPhotonEstlla *)photon_estlla)->m_194 = *(s32 *)((s8 *)arg1 + 0x10);
     *(s32 *)&((TPhotonEstlla *)photon_estlla)->m_198 = *(s32 *)((s8 *)arg1 + 0x14);

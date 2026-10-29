@@ -9,7 +9,7 @@
 #include "pso/object/TObjFish.h"
 #include "pso/object/TObjGyaranzoMissile.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/player/TObjPlayer_80141D1C.h"
+#include "pso/render/render_util.h"
 #include "pso/player/TObjChara.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/GinjaTextureMatrices.h"
@@ -103,7 +103,7 @@ void TUnk_80484AFC::run_task() {
         back.z = -back.z;
         direction_to_rotation_yx((u8 *)&back, &trail_rotation[1], &trail_rotation[2]);
         trail_rotation[2] -= 0x4000;
-        ((TBoss4Type2 *)trail)->copy_vec3(trail_rotation);
+        ((TParticleCtrl *)trail)->set_direction(trail_rotation);
         vec_set_length(&back, 10.0f);
         vec3_add_to(&back, &position);
         ((TParticleCtrl *)trail)->set_position(&back);

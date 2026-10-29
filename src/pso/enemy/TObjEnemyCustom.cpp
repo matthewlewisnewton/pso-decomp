@@ -2,14 +2,13 @@
 #include "pso/enemy/TObjEnemyCustom.h"
 #include "pso/map/CsnQuery.h"
 #include "pso/misc/TKeyBoardControl_8000F764.h"
-#include "pso/misc/obj_band.h"
 #include "pso/math/MatrixTransforms.h"
 #include "pso/math/MatrixVector.h"
 #include "pso/object/TObjFish.h"
-#include "pso/object/obj_band.h"
+#include "pso/object/TObjMotion.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/player/TObjPlayer_80011014.h"
-#include "pso/player/TObjPlayer_80141D1C.h"
+#include "pso/render/render_util.h"
 #include "pso/player/TObjPlayer_801542CC.h"
 #include "pso/player/TObjPlayer_801AF2F0.h"
 #include "pso/enemy/TObjEneMe1GiGue.h"
@@ -21,12 +20,11 @@
 #include "pso/unk/text_803E2D70.h"
 
 // Matrix-stack, vector and animation helpers and unowned globals without a usable header:
-// text_803D96A8.h/text_803D853C.h/MatrixTransforms.h/misc/obj_band.h includers declare these with
+// text_803D96A8.h/text_803D853C.h/MatrixTransforms.h/TObjMotion.h includers declare these with
 // conflicting private prototypes, the globals have no owning unit yet, and the
 // MSL headers are not on this unit's include path (rand).
 extern "C" {
 int rand(void);
-void advance_animation_playback(TObjMotion *motion);
 // TNpcPlayer_800D87A8.h declares it without the id its definition passes through.
 TObjBase *find_active_entity_by_id(u16 id);
 s32 push_matrix(void);
@@ -36,10 +34,9 @@ void vec3_add_to(Vec *dst, const Vec *add);
 f32 vec3_dot(const Vec *a, const Vec *b);
 void vec3_cross(const Vec *a, const Vec *b, Vec *out);
 extern Mtx34 identity_matrix;
-extern Mtx34 *anim_model_matrix_array;
 extern s32 local_client_id;
 extern s32 TLobby__designated_client_id;
-extern s32 lbl_805D586C;
+extern s32 registered_player_count;
 extern s32 lbl_805D5870;
 }
 
@@ -141,10 +138,10 @@ void TObjEnemyCustom::vfunc_58() { ((TObjEneMe1GiGue *)this)->update_if_active(0
 void TObjEnemyCustom::update_state() {
     switch (state) {
     case 0:
-        m_b8 = 0;
+        this->requested_action = 0;
         state = 1;
     case 1:
-        advance_animation_playback(this);
+        advance_animation();
         if (!(actorFlags & 0x800000)) {
             apply_actor_gravity(this, NULL, 0.0f);
         }
@@ -162,10 +159,10 @@ void TObjEnemyCustom::update_wander_state() {
     case -1:
         break;
     case 0:
-        m_b8 = 1;
+        this->requested_action = 1;
         state = 1;
     case 1:
-        advance_animation_playback(this);
+        advance_animation();
         if (target != NULL) {
             Vec dest = *((TObjChara *)target)->body_center();
             EnemyMoveParams *params = (EnemyMoveParams *)movementParameters;
@@ -187,20 +184,20 @@ void TObjEnemyCustom::vfunc_60() { ((TObjEneMe1GiGue *)this)->update_if_active(2
 void TObjEnemyCustom::update() {
     switch (state) {
     case 0:
-        m_b8 = 2;
+        this->requested_action = 2;
         actorFlags |= 0x200000;
         state = 1;
     case 1:
         enemy_turn_toward_dest(this, ((EnemyMoveParams *)movementParameters)->turn_speed);
-        advance_animation_playback(this);
-        if (objInBand((GameObj *)this, 10.0f) != 0) {
+        advance_animation();
+        if (is_passing_frame(10.0f) != 0) {
             if (((TObjEnemyCustomVictim *)target)->select_melee_contact_body(this, 1.0f) != 0) {
                 ((TObjEnemyCustomVictim *)target)->receive_physical_attack(this, 1.0f);
                 ((TObjEnemyCustomVictim *)target)->apply_knockback_from_attacker(this, 3.0f);
             }
         }
         ((TObjPlayer *)this)->update_collisions();
-        if (m_b4 != 4) {
+        if (this->action_flags != 4) {
             state = -1;
         }
         return;
@@ -218,11 +215,11 @@ void TObjEnemyCustom::update_state_machine() {
     s16 remaining;
     switch ((s32)state) {
     case 0:
-        m_b8 = 0;
+        this->requested_action = 0;
         actorFlags &= ~0x600000;
         state = 1;
     case 1:
-        advance_animation_playback(this);
+        advance_animation();
         if (!(actorFlags & 0x800000)) {
             apply_actor_gravity(this, NULL, 0.0f);
         }
@@ -251,16 +248,16 @@ void TObjEnemyCustom::update_knockback_state() {
     switch (state) {
     case 0:
         actorFlags &= ~0x200000;
-        m_b8 = 3;
+        this->requested_action = 3;
         state = 1;
     case 1:
-        advance_animation_playback(this);
+        advance_animation();
         move_with_wall_slide((u8 *)this);
         velocity()->x *= 0.5f;
         m_310 *= 0.5f;
         apply_actor_gravity(this, NULL, 0.0f);
         ((TObjPlayer *)this)->update_collisions();
-        if (m_b4 != 8) {
+        if (this->action_flags != 8) {
             state = -1;
         }
         break;
@@ -288,13 +285,13 @@ void TObjEnemyCustom::update_dying_state() {
     case -1:
         break;
     case 0:
-        m_b8 = 4;
+        this->requested_action = 4;
         state = 1;
     case 1:
-        advance_animation_playback(this);
+        advance_animation();
         apply_actor_gravity(this, NULL, 0.0f);
         ((TObjPlayer *)this)->update_collisions();
-        if (m_c0 < 0.5f * (30.0f * m_c8)) {
+        if (this->frame < 0.5f * (30.0f * this->play_speed)) {
             move_with_wall_slide((u8 *)this);
             velocity()->x *= 0.5f;
             m_310 *= 0.5f;
@@ -331,7 +328,7 @@ void TObjEnemyCustom::render_anim_model_at_pos() {
     push_matrix_from(identity_matrix);
     post_translate_matrix(&position.x);
     rotate_matrix_y(0, rotation_y);
-    render_anim_model(m_c0);
+    calc_joint_matrices(frame);
     pop_matrix();
 }
 
@@ -500,7 +497,7 @@ u16 TObjEnemyCustom::find_nearest_enemy(Vec *out, f32 radius) {
     u16 id;
     best_distance = radius * radius;
     best = 0xFFFF;
-    for (i = lbl_805D586C; i < lbl_805D586C + lbl_805D5870; i++) {
+    for (i = registered_player_count; i < registered_player_count + lbl_805D5870; i++) {
         entity = (TObjChara *)TObjPlayer::get_player_data(i);
         if (entity == NULL) {
             break;
@@ -537,9 +534,9 @@ void TObjEnemyCustom::target_nearest_player(f32 radius) {
     best_distance = radius * radius;
     best = 0xFFFF;
     if (obj_testFlags30(0x10) != 0) {
-        count = lbl_805D586C + lbl_805D5870;
+        count = registered_player_count + lbl_805D5870;
     } else {
-        count = lbl_805D586C;
+        count = registered_player_count;
     }
     for (i = 0; i < count; i++) {
         entity = (TObjEnemyCustom *)TObjPlayer::get_player_data(i);
@@ -565,9 +562,9 @@ u16 TObjEnemyCustom::pick_random_nearby_player(f32 radius) {
     radius_sq = radius * radius;
     found = 0;
     if (obj_testFlags30(0x10) != 0) {
-        count = lbl_805D586C + lbl_805D5870;
+        count = registered_player_count + lbl_805D5870;
     } else {
-        count = lbl_805D586C;
+        count = registered_player_count;
     }
     for (i = 0; i < count; i++) {
         entity = (TObjEnemyCustom *)TObjPlayer::get_player_data(i);

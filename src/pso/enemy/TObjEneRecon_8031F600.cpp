@@ -35,7 +35,6 @@ struct VObj_8031F600 : Base_8031F600 {
 
 extern "C" {
 
-s32 advance_animation_playback();
 s32 TObjEneRecon__sub_8031FACC(void *);
 
 extern const f32 TObjEneRecon__data_805DF438;
@@ -47,7 +46,7 @@ void TObjEneRecon__sub_8031F600(void *ene_dd, s32 arg1) {
     case 4:
         temp_r4 = *(s32 *)((s8 *)ene_dd + 0x40C) & 0xFFFFFFFE;
         *(s32 *)((s8 *)ene_dd + 0x40C) = temp_r4;
-        ((TObjEneDD *)ene_dd)->m_b8 = 0;
+        ((TObjEneDD *)ene_dd)->requested_action = 0;
         ((VObj_8031F600 *)ene_dd)->m94(temp_r4);
         ((TObjEneDD *)ene_dd)->set_field_378(2);
         return;
@@ -59,7 +58,7 @@ void TObjEneRecon__sub_8031F600(void *ene_dd, s32 arg1) {
     case 5:
         break;
     case 0:
-        advance_animation_playback();
+        ((TObjMotion *)ene_dd)->advance_animation();
         break;
     }
 }

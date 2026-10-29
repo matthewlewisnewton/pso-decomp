@@ -1342,13 +1342,10 @@ pso/player/TObjPlayer_80084B84.cpp:
 	.text       start:0x80084B84 end:0x80084BC4
 
 pso/effect/TEffStarLight2D_Base.cpp:
-	.text       start:0x80084BC4 end:0x80085168
+	.text       start:0x80084BC4 end:0x800851B0
 	.rodata     start:0x80439388 end:0x804393D0
 	.data       start:0x8048E640 end:0x8048E674
 	.sdata      start:0x805D2928 end:0x805D2930
-
-pso/object/TObjCamera.cpp:
-	.text       start:0x80085168 end:0x800851B0
 
 pso/effect/TEffStarLight2D.cpp:
 	.text       start:0x800851B0 end:0x80085774
@@ -4360,59 +4357,31 @@ pso/misc/TLobby_80140FF4.cpp:
 	.text       start:0x80140FF4 end:0x8014106C
 
 pso/system/THeap.cpp:
-	.text       start:0x8014106C end:0x80141404
+	.text       start:0x8014106C end:0x801412D0
 	.sbss       start:0x805D5658 end:0x805D5660
 
-pso/player/TObjPlayer_80141404.cpp:
-	.text       start:0x80141404 end:0x801414B0
+pso/render/render_util_head.cpp:
+	.text       start:0x801412D0 end:0x80141550
+	.rodata     start:0x8043F278 end:0x8043F298
 
-pso/unk/text_801414B0.cpp:
-	.text       start:0x801414B0 end:0x80141550
-
-pso/unk/text_80141550.cpp:
-	.text       start:0x80141550 end:0x801418C4
+pso/render/render_util.cpp:
+	.text       start:0x80141550 end:0x80142624
+	.rodata     start:0x8043F2B0 end:0x8043F2C8
+	.data       start:0x804A7418 end:0x804A7478
 	.bss        start:0x8050BEC0 end:0x8050C040
+	.sbss       start:0x805D5660 end:0x805D5678
+	.sdata2     start:0x805DB150 end:0x805DB15C
 
-pso/unk/text_801418C4.cpp:
-	.text       start:0x801418C4 end:0x80141944
-
-pso/unk/text_80141944.cpp:
-	.text       start:0x80141944 end:0x80141A30
-
-pso/unk/text_80141A30.cpp:
-	.text       start:0x80141A30 end:0x80141C68
-	.rodata     start:0x8043F2B0 end:0x8043F2C0
-
-pso/object/TObjMapWarp_80141C68.cpp:
-	.text       start:0x80141C68 end:0x80141D1C
-
-pso/player/TObjPlayer_80141D1C.cpp:
-	.text       start:0x80141D1C end:0x80142478
-	.rodata     start:0x8043F2C0 end:0x8043F2C8
-
-pso/enemy/TObjEneHoldEffect_80142478.cpp:
-	.text       start:0x80142478 end:0x801424DC
-
-pso/unk/text_801424DC.cpp:
-	.text       start:0x801424DC end:0x80142524
-
-pso/misc/obj_band.cpp:
-	.text       start:0x80142524 end:0x801437C0
-	.rodata     start:0x8043F2D8 end:0x8043F2E0
-	.sdata2     start:0x805DB168 end:0x805DB174
+pso/render/render_util_tail.cpp:
+	.text       start:0x80142624 end:0x80142770
 
 pso/object/TObjMotion.cpp:
-	.text       start:0x801437C0 end:0x80143818
+	.text       start:0x80142770 end:0x80143988
+	.rodata     start:0x8043F2C8 end:0x8043F2E0
 	.data       start:0x804A7498 end:0x804A74D0
-
-pso/unk/text_80143818.cpp:
-	.text       start:0x80143818 end:0x80143888
-
-pso/misc/TPlyPhotonChair_80143888.cpp:
-	.text       start:0x80143888 end:0x80143978
-
-pso/player/TObjPlayer_80143978.cpp:
-	.text       start:0x80143978 end:0x80143988
+	.sdata      start:0x805D2CE0 end:0x805D2CE4
+	.sbss       start:0x805D5678 end:0x805D5688
+	.sdata2     start:0x805DB168 end:0x805DB174
 
 pso/misc/TMovie_80143988.cpp:
 	.text       start:0x80143988 end:0x80143BBC
@@ -4790,62 +4759,41 @@ pso/player/TObjPlayer_801542CC.cpp:
 pso/misc/TLobby_80156B18.cpp:
 	.text       start:0x80156B18 end:0x80156BBC
 
-pso/unk/text_80156BBC.cpp:
-	.text       start:0x80156BBC end:0x80156D28
+pso/misc/CameraDistanceFade.cpp:
+	.text       start:0x80156BBC end:0x80156E8C
+	.data       start:0x804AF8D8 end:0x804AF908
 	.sdata2     start:0x805DB2A8 end:0x805DB2B8
 
-pso/misc/TOAirconCave01_80156D28.cpp:
-	.text       start:0x80156D28 end:0x80156E8C
-
 pso/misc/TOAirconCave01.cpp:
-	.text       start:0x80156E8C end:0x80156F64
-
-pso/misc/TOAirconCave01_80156F64.cpp:
-	.text       start:0x80156F64 end:0x801570D4
+	.text       start:0x80156E8C end:0x801570D4
+	.rodata     start:0x804400F8 end:0x80440138
+	.data       start:0x804AF908 end:0x804AF958
+	.sdata      start:0x805D2E88 end:0x805D2E90
+	.sbss       start:0x805D5880 end:0x805D5884
+	.sdata2     start:0x805DB2B8 end:0x805DB2C0
 
 pso/misc/TOAirconCave02.cpp:
-	.text       start:0x801570D4 end:0x801571A0
-
-pso/misc/TOAirconCave02_801571A0.cpp:
-	.text       start:0x801571A0 end:0x80157310
+	.text       start:0x801570D4 end:0x80157310
+	.rodata     start:0x80440138 end:0x80440178
+	.data       start:0x804AF958 end:0x804AF9A8
+	.sdata      start:0x805D2E90 end:0x805D2E98
+	.sbss       start:0x805D5888 end:0x805D588C
+	.sdata2     start:0x805DB2C0 end:0x805DB2C8
 
 pso/misc/TOAttackableCol.cpp:
 	.text       start:0x80157310 end:0x80157CF4
 
-pso/misc/TOBarrierEnergy01_80157CF4.cpp:
-	.text       start:0x80157CF4 end:0x80157DF0
-	.data       start:0x804AFB10 end:0x804AFBF4
-
 pso/misc/TOBarrierEnergy01.cpp:
-	.text       start:0x80157DF0 end:0x80157E2C
+	.text       start:0x80157CF4 end:0x80158298
+	.rodata     start:0x80440188 end:0x80440220
+	.data       start:0x804AFB10 end:0x804AFBF4
+	.sdata      start:0x805D2EA0 end:0x805D2EA4
+	.sbss       start:0x805D5890 end:0x805D589C
+	.sdata2     start:0x805DB2D8 end:0x805DB2E8
 
-pso/misc/TOBarrierEnergy01_80157E2C.cpp:
-	.text       start:0x80157E2C end:0x80157E90
-
-pso/misc/TOBarrierEnergy01_80157E90.cpp:
-	.text       start:0x80157E90 end:0x80157ECC
-
-pso/misc/TOBarrierEnergy01_80157ECC.cpp:
-	.text       start:0x80157ECC end:0x80157F30
-
-pso/misc/TOBarrierEnergy01_80157F30.cpp:
-	.text       start:0x80157F30 end:0x80158014
-
-pso/misc/TOBarrierEnergy01_80158014.cpp:
-	.text       start:0x80158014 end:0x801582C4
-	.rodata     start:0x80440218 end:0x80440220
-
-pso/unk/text_801582C4.cpp:
-	.text       start:0x801582C4 end:0x80158360
-
-pso/unk/text_80158360.cpp:
-	.text       start:0x80158360 end:0x80158408
-
-pso/misc/TORainbowCave01.cpp:
-	.text       start:0x80158408 end:0x8015845C
-
-pso/misc/TOKey_8015845C.cpp:
-	.text       start:0x8015845C end:0x80158608
+pso/object/TObjMapObject.cpp:
+	.text       start:0x80158298 end:0x80158608
+	.data       start:0x804AFBF8 end:0x804AFC30
 	.sdata2     start:0x805DB2E8 end:0x805DB300
 
 pso/misc/TOBind_80158608.cpp:
@@ -4869,13 +4817,27 @@ pso/misc/TOBoss4.cpp:
 
 pso/misc/TOCakeshopCave01.cpp:
 	.text       start:0x80159E24 end:0x8015A2B8
-	.rodata     start:0x804403E8 end:0x804403F0
+	.rodata     start:0x804403A8 end:0x804403F0
+	.data       start:0x804AFDF0 end:0x804AFE6C
+	.sdata      start:0x805D2EC0 end:0x805D2EC8
+	.sbss       start:0x805D58B0 end:0x805D58B4
+	.sdata2     start:0x805DB358 end:0x805DB374
 
 pso/misc/TOCapsuleAncient01.cpp:
 	.text       start:0x8015A2B8 end:0x8015A5E8
+	.rodata     start:0x804403F0 end:0x80440438
+	.data       start:0x804AFE70 end:0x804AFEF8
+	.sdata      start:0x805D2EC8 end:0x805D2ED0
+	.sbss       start:0x805D58B8 end:0x805D58BC
+	.sdata2     start:0x805DB378 end:0x805DB380
 
 pso/misc/TOCapsuleMachine01.cpp:
 	.text       start:0x8015A5E8 end:0x8015A8D8
+	.rodata     start:0x80440438 end:0x80440478
+	.data       start:0x804AFEF8 end:0x804AFF74
+	.sdata      start:0x805D2ED0 end:0x805D2ED8
+	.sbss       start:0x805D58C0 end:0x805D58D0
+	.sdata2     start:0x805DB380 end:0x805DB388
 
 pso/system/TOChatSensorCapture.cpp:
 	.text       start:0x8015A8D8 end:0x8015ABD0
@@ -4907,13 +4869,19 @@ pso/misc/TOChatSensor.cpp:
 	.data       start:0x804AFFA8 end:0x804AFFDC
 
 pso/misc/TOChatSensor_8015B214.cpp:
-	.text       start:0x8015B214 end:0x8015B350
+	.text       start:0x8015B214 end:0x8015B2C4
 
 pso/misc/TOComputerMachine01.cpp:
-	.text       start:0x8015B350 end:0x8015B710
+	.text       start:0x8015B2C4 end:0x8015B714
+	.rodata     start:0x804404C0 end:0x80440508
+	.data       start:0x804AFFE0 end:0x804B0068
+	.bss        start:0x8050DB50 end:0x8050DB60
+	.sdata      start:0x805D2EE8 end:0x805D2EF0
+	.sbss       start:0x805D58E0 end:0x805D58E8
+	.sdata2     start:0x805DB390 end:0x805DB398
 
 pso/misc/TOContainerAncientEnemyRare.cpp:
-	.text       start:0x8015B710 end:0x8015B84C
+	.text       start:0x8015B714 end:0x8015B84C
 
 pso/misc/TOContainerAncientEnemyCommon.cpp:
 	.text       start:0x8015B84C end:0x8015B8E8
@@ -4958,121 +4926,150 @@ pso/misc/TOCtrlDubchik_8015CA74.cpp:
 	.rodata     start:0x80440990 end:0x80440998
 	.data       start:0x804B0B98 end:0x804B0BB4
 
-pso/unk/text_8015D5D4.cpp:
-	.text       start:0x8015D5D4 end:0x8015D6D0
-	.data       start:0x804B0BB8 end:0x804B0C58
-
-pso/unk/text_8015D6D0.cpp:
-	.text       start:0x8015D6D0 end:0x8015D714
-
-pso/unk/text_8015D714.cpp:
-	.text       start:0x8015D714 end:0x8015D7B0
-
-pso/boss/TBoss3Volopt_8015D7B0.cpp:
-	.text       start:0x8015D7B0 end:0x8015DAE4
-	.data       start:0x804B0C58 end:0x804B0D48
-
-pso/unk/text_8015DAE4.cpp:
-	.text       start:0x8015DAE4 end:0x8015DD2C
-
-pso/misc/TODoorAncient01_8015DD2C.cpp:
-	.text       start:0x8015DD2C end:0x8015DD84
+pso/misc/TODoorBase.cpp:
+	.text       start:0x8015D5D4 end:0x8015DDE4
+	.data       start:0x804B0BB8 end:0x804B0D48
+	.sbss       start:0x805D58F8 end:0x805D58FC
+	.sdata2     start:0x805DB3D0 end:0x805DB3E0
 
 pso/misc/TODoorAncient01.cpp:
-	.text       start:0x8015DD84 end:0x8015DDE8
-
-pso/misc/TODoorAncient01_8015DDE8.cpp:
-	.text       start:0x8015DDE8 end:0x8015E290
-	.rodata     start:0x80440A08 end:0x80440A10
+	.text       start:0x8015DDE4 end:0x8015E290
+	.rodata     start:0x80440998 end:0x80440A10
+	.data       start:0x804B0D48 end:0x804B0DE8
+	.sdata      start:0x805D2F20 end:0x805D2F24
+	.sbss       start:0x805D5900 end:0x805D5908
+	.sdata2     start:0x805DB3E0 end:0x805DB3F0
 
 pso/misc/TODoorAncient03.cpp:
 	.text       start:0x8015E290 end:0x8015E73C
-	.rodata     start:0x80440A80 end:0x80440A88
-	.data       start:0x804B0DE8 end:0x804B0E08
+	.rodata     start:0x80440A10 end:0x80440A88
+	.data       start:0x804B0DE8 end:0x804B0E88
+	.sdata      start:0x805D2F28 end:0x805D2F2C
+	.sbss       start:0x805D5908 end:0x805D5910
+	.sdata2     start:0x805DB3F0 end:0x805DB400
 
 pso/misc/TODoorAncient04.cpp:
 	.text       start:0x8015E73C end:0x8015EBE8
-	.rodata     start:0x80440AF8 end:0x80440B00
-	.data       start:0x804B0E88 end:0x804B0EA8
+	.rodata     start:0x80440A88 end:0x80440B00
+	.data       start:0x804B0E88 end:0x804B0F28
+	.sdata      start:0x805D2F30 end:0x805D2F34
+	.sbss       start:0x805D5910 end:0x805D5918
+	.sdata2     start:0x805DB400 end:0x805DB410
 
 pso/misc/TODoorAncient05.cpp:
 	.text       start:0x8015EBE8 end:0x8015F150
-	.rodata     start:0x80440B30 end:0x80440B38
+	.rodata     start:0x80440B00 end:0x80440B38
+	.data       start:0x804B0F28 end:0x804B0FA8
+	.sdata      start:0x805D2F38 end:0x805D2F3C
+	.sbss       start:0x805D5918 end:0x805D5928
 	.sdata2     start:0x805DB410 end:0x805DB42C
 
 pso/misc/TODoorAncient06.cpp:
 	.text       start:0x8015F150 end:0x8015F6C8
-	.rodata     start:0x80440B80 end:0x80440B88
+	.rodata     start:0x80440B38 end:0x80440B88
+	.data       start:0x804B0FA8 end:0x804B1028
+	.sdata      start:0x805D2F40 end:0x805D2F48
+	.sbss       start:0x805D5928 end:0x805D5938
 	.sdata2     start:0x805DB430 end:0x805DB44C
 
 pso/misc/TODoorAncient07.cpp:
 	.text       start:0x8015F6C8 end:0x8015FC40
-	.rodata     start:0x80440C18 end:0x80440C20
+	.rodata     start:0x80440B88 end:0x80440C20
+	.data       start:0x804B1028 end:0x804B10C8
+	.sdata      start:0x805D2F48 end:0x805D2F50
+	.sbss       start:0x805D5938 end:0x805D5948
 	.sdata2     start:0x805DB450 end:0x805DB46C
 
-pso/unk/text_8015FC40.cpp:
-	.text       start:0x8015FC40 end:0x8015FCBC
-
 pso/misc/TODoorAncient08.cpp:
-	.text       start:0x8015FCBC end:0x80160804
-	.rodata     start:0x80440C90 end:0x80440C98
-	.data       start:0x804B1168 end:0x804B1228
+	.text       start:0x8015FC40 end:0x80160804
+	.rodata     start:0x80440C20 end:0x80440C98
+	.data       start:0x804B10C8 end:0x804B1228
+	.sdata      start:0x805D2F50 end:0x805D2F58
+	.sbss       start:0x805D5948 end:0x805D5950
+	.sdata2     start:0x805DB470 end:0x805DB480
 
 pso/misc/TLobby_80160804.cpp:
 	.text       start:0x80160804 end:0x80160838
 
-pso/unk/text_80160838.cpp:
-	.text       start:0x80160838 end:0x801608B4
-
 pso/misc/TODoorAncient09.cpp:
-	.text       start:0x801608B4 end:0x8016131C
-	.rodata     start:0x80440D08 end:0x80440D10
-	.data       start:0x804B12C8 end:0x804B1388
+	.text       start:0x80160838 end:0x8016131C
+	.rodata     start:0x80440C98 end:0x80440D10
+	.data       start:0x804B1228 end:0x804B1388
+	.sdata      start:0x805D2F58 end:0x805D2F60
+	.sbss       start:0x805D5950 end:0x805D5958
 	.sdata2     start:0x805DB480 end:0x805DB490
 
 pso/misc/TODoorCave01.cpp:
 	.text       start:0x8016131C end:0x80161D38
-	.rodata     start:0x80440DB0 end:0x80440DB8
-	.data       start:0x804B1388 end:0x804B13C8
+	.rodata     start:0x80440D10 end:0x80440DB8
+	.data       start:0x804B1388 end:0x804B1448
+	.sdata      start:0x805D2F60 end:0x805D2F68
+	.sbss       start:0x805D5958 end:0x805D5960
 	.sdata2     start:0x805DB490 end:0x805DB4AC
 
 pso/misc/TODoorCave02.cpp:
 	.text       start:0x80161D38 end:0x80162384
-	.rodata     start:0x80440E58 end:0x80440E60
-	.data       start:0x804B1448 end:0x804B1488
+	.rodata     start:0x80440DB8 end:0x80440E60
+	.data       start:0x804B1448 end:0x804B1508
+	.sdata      start:0x805D2F68 end:0x805D2F70
+	.sbss       start:0x805D5960 end:0x805D5968
 	.sdata2     start:0x805DB4B0 end:0x805DB4CC
 
 pso/misc/TODoorCave03.cpp:
 	.text       start:0x80162384 end:0x80162914
-	.data       start:0x804B1508 end:0x804B1548
+	.rodata     start:0x80440E60 end:0x80440ED0
+	.data       start:0x804B1508 end:0x804B15C8
+	.sdata      start:0x805D2F70 end:0x805D2F78
+	.sbss       start:0x805D5968 end:0x805D5970
+	.sdata2     start:0x805DB4D0 end:0x805DB4EC
 
 pso/misc/TODoorMachine01.cpp:
 	.text       start:0x80162914 end:0x801632AC
-	.rodata     start:0x80440F68 end:0x80440F70
-	.data       start:0x804B15E8 end:0x804B1608
+	.rodata     start:0x80440ED0 end:0x80440F70
+	.data       start:0x804B15C8 end:0x804B1688
+	.sdata      start:0x805D2F78 end:0x805D2F80
+	.sbss       start:0x805D5970 end:0x805D5978
+	.sdata2     start:0x805DB4F0 end:0x805DB50C
 
 pso/misc/TODoorMachine02.cpp:
 	.text       start:0x801632AC end:0x80163878
-	.rodata     start:0x80441008 end:0x80441010
-	.data       start:0x804B1688 end:0x804B16A8
+	.rodata     start:0x80440F70 end:0x80441010
+	.data       start:0x804B1688 end:0x804B1748
+	.sdata      start:0x805D2F80 end:0x805D2F88
+	.sbss       start:0x805D5978 end:0x805D5980
+	.sdata2     start:0x805DB510 end:0x805DB52C
 
 pso/misc/TODoorVoShip.cpp:
 	.text       start:0x80163878 end:0x80163E14
-	.rodata     start:0x80441098 end:0x804410A0
+	.rodata     start:0x80441010 end:0x804410A0
+	.data       start:0x804B1748 end:0x804B17D8
+	.sdata      start:0x805D2F88 end:0x805D2F90
+	.sbss       start:0x805D5980 end:0x805D5988
+	.sdata2     start:0x805DB530 end:0x805DB548
 
 pso/misc/TODoorVS2Door01.cpp:
 	.text       start:0x80163E14 end:0x80164414
+	.rodata     start:0x804410A0 end:0x80441100
+	.data       start:0x804B17D8 end:0x804B1870
+	.sdata      start:0x805D2F90 end:0x805D2F98
+	.sbss       start:0x805D5988 end:0x805D5990
 	.sdata2     start:0x805DB548 end:0x805DB55C
 
 pso/misc/TODragonflyCave01.cpp:
 	.text       start:0x80164414 end:0x80164F50
-	.rodata     start:0x804411A0 end:0x804411B0
-	.data       start:0x804B1870 end:0x804B18B0
+	.rodata     start:0x80441100 end:0x804411B8
+	.data       start:0x804B1870 end:0x804B1928
+	.sdata      start:0x805D2F98 end:0x805D2FA0
+	.sbss       start:0x805D5990 end:0x805D5994
+	.sdata2     start:0x805DB560 end:0x805DB598
 
 pso/misc/TODragonflyMachine01.cpp:
 	.text       start:0x80164F50 end:0x8016582C
-	.rodata     start:0x80441228 end:0x80441238
-	.data       start:0x804B1958 end:0x804B1994
+	.rodata     start:0x804411B8 end:0x80441238
+	.data       start:0x804B1928 end:0x804B1994
+	.sdata      start:0x805D2FA0 end:0x805D2FA4
+	.sbss       start:0x805D5998 end:0x805D59A4
+	.sdata2     start:0x805DB598 end:0x805DB5D0
 
 pso/system/TODummyKeyCave01Sound.cpp:
 	.text       start:0x8016582C end:0x80165940
@@ -5095,33 +5092,42 @@ pso/misc/TOExplosiveMachine.cpp:
 	.sbss       start:0x805D59A8 end:0x805D59AC
 	.sdata2     start:0x805DB5F0 end:0x805DB5FC
 
-pso/misc/TUnk_804B1B80.cpp:
-	.text       start:0x80166778 end:0x80166970
-
-pso/player/TObjPlayer_80166970.cpp:
-	.text       start:0x80166970 end:0x80166AF4
+pso/misc/TOFenceBase.cpp:
+	.text       start:0x80166778 end:0x80166B00
+	.data       start:0x804B1B80 end:0x804B1BC4
+	.sdata2     start:0x805DB600 end:0x805DB60C
 
 pso/misc/TOFenceAncient01.cpp:
-	.text       start:0x80166AF4 end:0x80166B6C
-
-pso/unk/text_80166B6C.cpp:
-	.text       start:0x80166B6C end:0x80166F4C
-	.rodata     start:0x804414E0 end:0x804414E8
-	.data       start:0x804B1BC8 end:0x804B1BE8
+	.text       start:0x80166B00 end:0x80166EE0
+	.rodata     start:0x80441438 end:0x804414E8
+	.data       start:0x804B1BC8 end:0x804B1CB0
+	.sdata      start:0x805D2FC8 end:0x805D2FCC
+	.sbss       start:0x805D59B0 end:0x805D59B8
+	.sdata2     start:0x805DB610 end:0x805DB61C
 
 pso/misc/TOFenceAncient02.cpp:
-	.text       start:0x80166F4C end:0x80167244
-	.rodata     start:0x80441590 end:0x80441598
+	.text       start:0x80166EE0 end:0x80167244
+	.rodata     start:0x804414E8 end:0x80441598
+	.data       start:0x804B1CB0 end:0x804B1D98
+	.sdata      start:0x805D2FD0 end:0x805D2FD4
+	.sbss       start:0x805D59B8 end:0x805D59C0
+	.sdata2     start:0x805DB620 end:0x805DB62C
 
 pso/misc/TOFenceAncient03.cpp:
 	.text       start:0x80167244 end:0x801675E8
-	.rodata     start:0x80441640 end:0x80441648
-	.data       start:0x804B1D98 end:0x804B1DB8
+	.rodata     start:0x80441598 end:0x80441648
+	.data       start:0x804B1D98 end:0x804B1F5C
+	.sdata      start:0x805D2FD8 end:0x805D2FDC
+	.sbss       start:0x805D59C0 end:0x805D59C8
+	.sdata2     start:0x805DB630 end:0x805DB63C
 
 pso/misc/TOFenceAncient04.cpp:
 	.text       start:0x801675E8 end:0x80167980
 	.rodata     start:0x80441648 end:0x804416F8
-	.data       start:0x804B1F60 end:0x804B1F80
+	.data       start:0x804B1F60 end:0x804B2124
+	.sdata      start:0x805D2FE0 end:0x805D2FE4
+	.sbss       start:0x805D59C8 end:0x805D59D0
+	.sdata2     start:0x805DB640 end:0x805DB64C
 
 pso/misc/TOHangceilingCave01.cpp:
 	.text       start:0x80167980 end:0x80168D3C
@@ -5129,72 +5135,96 @@ pso/misc/TOHangceilingCave01.cpp:
 	.sdata2     start:0x805DB650 end:0x805DB6A4
 
 pso/misc/TOHangerMachine01.cpp:
-	.text       start:0x80168D3C end:0x8016916C
+	.text       start:0x80168D3C end:0x80169118
+	.rodata     start:0x80441890 end:0x804418D8
+	.data       start:0x804B26C0 end:0x804B2740
+	.sdata      start:0x805D2FF8 end:0x805D3000
+	.sbss       start:0x805D59E8 end:0x805D59EC
+	.sdata2     start:0x805DB6A8 end:0x805DB6B8
 
 pso/misc/TOHealGeneral.cpp:
-	.text       start:0x8016916C end:0x801699F4
+	.text       start:0x80169118 end:0x801699F4
+	.rodata     start:0x804418D8 end:0x80441950
+	.data       start:0x804B2740 end:0x804B27D8
+	.sdata      start:0x805D3000 end:0x805D3010
+	.sbss       start:0x805D59F0 end:0x805D59F8
 	.sdata2     start:0x805DB6B8 end:0x805DB6D4
 
-pso/unk/text_80169BD0.cpp:
-	.text       start:0x801699F4 end:0x80169EE4
+pso/misc/TOQuestTalkBase.cpp:
+	.text       start:0x801699F4 end:0x80169FBC
+	.data       start:0x804B27D8 end:0x804B2820
 	.sdata2     start:0x805DB6D8 end:0x805DB6E0
 
-pso/misc/TOKey_80169EE4.cpp:
-	.text       start:0x80169EE4 end:0x8016A408
-
-pso/unk/text_8016A408.cpp:
-	.text       start:0x8016A408 end:0x8016A47C
-
-pso/boss/TBoss3Volopt_8016A47C.cpp:
-	.text       start:0x8016A47C end:0x8016A8D0
-	.data       start:0x804B2890 end:0x804B29B0
-
 pso/misc/TOKey.cpp:
-	.text       start:0x8016A8D0 end:0x8016ACC8
-
-pso/misc/TLobby_8016ACC8.cpp:
-	.text       start:0x8016ACC8 end:0x8016AD58
+	.text       start:0x80169FBC end:0x8016AD64
+	.rodata     start:0x80441950 end:0x80441968
+	.data       start:0x804B2820 end:0x804B29B0
+	.sdata      start:0x805D3010 end:0x805D3014
+	.sdata2     start:0x805DB6E0 end:0x805DB6E4
 
 pso/misc/TOKeyAncient01.cpp:
-	.text       start:0x8016AD58 end:0x8016B204
-	.rodata     start:0x80441A00 end:0x80441A08
+	.text       start:0x8016AD64 end:0x8016B204
+	.rodata     start:0x80441968 end:0x80441A08
+	.data       start:0x804B29B0 end:0x804B2A6C
+	.sdata      start:0x805D3018 end:0x805D301C
+	.sbss       start:0x805D59F8 end:0x805D5A00
+	.sdata2     start:0x805DB6E8 end:0x805DB6FC
 
 pso/misc/TOKeyAncient02.cpp:
-	.text       start:0x8016B204 end:0x8016B8AC
+	.text       start:0x8016B204 end:0x8016B7B8
+	.rodata     start:0x80441A08 end:0x80441A88
+	.data       start:0x804B2A70 end:0x804B2B28
+	.sdata      start:0x805D3020 end:0x805D3028
+	.sbss       start:0x805D5A00 end:0x805D5A0C
+	.sdata2     start:0x805DB700 end:0x805DB718
 
 pso/misc/TOKeyAncient03.cpp:
-	.text       start:0x8016B8AC end:0x8016BE74
-	.data       start:0x804B2B40 end:0x804B2BB0
+	.text       start:0x8016B7B8 end:0x8016BE74
+	.rodata     start:0x80441A88 end:0x80441AE4
+	.data       start:0x804B2B28 end:0x804B2BB0
+	.sdata      start:0x805D3028 end:0x805D3030
+	.sbss       start:0x805D5A10 end:0x805D5A18
 	.sdata2     start:0x805DB718 end:0x805DB734
 
 pso/misc/TOKeyCave01.cpp:
-	.text       start:0x8016BE74 end:0x8016C7FC
-	.data       start:0x804B2BE0 end:0x804B2C50
+	.text       start:0x8016BE74 end:0x8016C708
+	.rodata     start:0x80441AE8 end:0x80441C20
+	.data       start:0x804B2BB0 end:0x804B2C50
+	.sdata      start:0x805D3030 end:0x805D303C
+	.sbss       start:0x805D5A18 end:0x805D5A24
 	.sdata2     start:0x805DB738 end:0x805DB758
 
 pso/misc/TOKeyCol.cpp:
-	.text       start:0x8016C7FC end:0x8016CA60
+	.text       start:0x8016C708 end:0x8016CA60
+	.rodata     start:0x80441C20 end:0x80441C30
 	.data       start:0x804B2C50 end:0x804B2CC0
+	.sdata      start:0x805D3040 end:0x805D3044
+	.sdata2     start:0x805DB758 end:0x805DB764
 
 pso/misc/TOKeyGenericSw.cpp:
 	.text       start:0x8016CA60 end:0x8016D0B4
-	.rodata     start:0x80441D48 end:0x80441D50
-	.data       start:0x804B2CC0 end:0x804B2D30
-	.sdata      start:0x805D3048 end:0x805D3050
+	.rodata     start:0x80441C30 end:0x80441D50
+	.data       start:0x804B2CC0 end:0x804B2DCC
+	.bss        start:0x8050DB60 end:0x8050DB68
+	.sdata      start:0x805D3048 end:0x805D3054
+	.sbss       start:0x805D5A28 end:0x805D5A2C
 	.sdata2     start:0x805DB768 end:0x805DB77C
 
-pso/misc/TOKeyMachine01_8016D448.cpp:
+pso/misc/TOKeyMachine01.cpp:
 	.text       start:0x8016D0B4 end:0x8016D8F8
-	.data       start:0x804B2DE8 end:0x804B2E58
+	.rodata     start:0x80441D50 end:0x80441E40
+	.data       start:0x804B2DD0 end:0x804B2E58
+	.sdata      start:0x805D3058 end:0x805D3060
+	.sbss       start:0x805D5A30 end:0x805D5A38
 	.sdata2     start:0x805DB780 end:0x805DB79C
 
-pso/unk/text_8016D8F8.cpp:
-	.text       start:0x8016D8F8 end:0x8016D99C
-
 pso/misc/TOKurage.cpp:
-	.text       start:0x8016D99C end:0x8016E998
-	.rodata     start:0x80441ED0 end:0x80441EE0
-	.sdata2     start:0x805DB7A8 end:0x805DB828
+	.text       start:0x8016D8F8 end:0x8016E998
+	.rodata     start:0x80441E40 end:0x80441EE0
+	.data       start:0x804B2E58 end:0x804B2EB4
+	.sdata      start:0x805D3060 end:0x805D3064
+	.sbss       start:0x805D5A38 end:0x805D5A3C
+	.sdata2     start:0x805DB7A0 end:0x805DB828
 
 pso/misc/TOLightMachine01.cpp:
 	.text       start:0x8016E998 end:0x8016ED9C
@@ -5255,37 +5285,44 @@ pso/misc/TOMineIcon04.cpp:
 
 pso/misc/TOMonitorMachine01.cpp:
 	.text       start:0x8017205C end:0x8017262C
-	.sdata2     start:0x805DB8F8 end:0x805DB8FC
+	.rodata     start:0x80442268 end:0x804422A8
+	.data       start:0x804B3880 end:0x804B38D0
+	.bss        start:0x8050DB68 end:0x8050DB70
+	.sdata      start:0x805D30B0 end:0x805D30B8
+	.sbss       start:0x805D5A58 end:0x805D5A60
+	.sdata2     start:0x805DB8F0 end:0x805DB914
 
 pso/misc/TOMonumentAncient01.cpp:
-	.text       start:0x8017262C end:0x801726D4
-
-pso/misc/TOMonumentAncient01_801726D4.cpp:
-	.text       start:0x801726D4 end:0x80172A34
+	.text       start:0x8017262C end:0x801728CC
+	.rodata     start:0x804422A8 end:0x80442330
+	.data       start:0x804B38D0 end:0x804B3960
+	.sdata      start:0x805D30B8 end:0x805D30C0
+	.sbss       start:0x805D5A60 end:0x805D5A64
+	.sdata2     start:0x805DB918 end:0x805DB920
 
 pso/misc/TOMonumentAncient02.cpp:
-	.text       start:0x80172A34 end:0x80173014
-	.rodata     start:0x804423E0 end:0x804423E8
-	.data       start:0x804B3960 end:0x804B39A8
-	.sdata      start:0x805D30C0 end:0x805D30CC
+	.text       start:0x801728CC end:0x80173014
+	.rodata     start:0x80442330 end:0x804423E8
+	.data       start:0x804B3960 end:0x804B3A0C
+	.sdata      start:0x805D30C0 end:0x805D30D0
+	.sbss       start:0x805D5A68 end:0x805D5A6C
+	.sdata2     start:0x805DB920 end:0x805DB93C
 
-pso/misc/TORainbowCave01_80173014.cpp:
+pso/misc/TORainbowCave01.cpp:
 	.text       start:0x80173014 end:0x80173478
-	.rodata     start:0x80442430 end:0x80442438
-	.sdata2     start:0x805DB940 end:0x805DB960
-
-pso/misc/TORevlightCave01_80173478.cpp:
-	.text       start:0x80173478 end:0x80173590
+	.rodata     start:0x804423E8 end:0x80442438
+	.data       start:0x804B3A10 end:0x804B3A60
+	.sdata      start:0x805D30D0 end:0x805D30D8
+	.sbss       start:0x805D5A70 end:0x805D5A74
+	.sdata2     start:0x805DB940 end:0x805DB95C
 
 pso/misc/TORevlightCave01.cpp:
-	.text       start:0x80173590 end:0x80173664
-
-pso/misc/TORevlightCave01_80173664.cpp:
-	.text       start:0x80173664 end:0x801736BC
-
-pso/misc/TORevlightCave01_801736BC.cpp:
-	.text       start:0x801736BC end:0x801737C4
-	.rodata     start:0x80442498 end:0x804424A0
+	.text       start:0x80173478 end:0x801737C4
+	.rodata     start:0x80442438 end:0x804424A0
+	.data       start:0x804B3A60 end:0x804B3AB8
+	.sdata      start:0x805D30D8 end:0x805D30DC
+	.sbss       start:0x805D5A78 end:0x805D5A7C
+	.sdata2     start:0x805DB960 end:0x805DB970
 
 pso/misc/TORockCaveBL03.cpp:
 	.text       start:0x801737C4 end:0x80173874
@@ -5389,29 +5426,51 @@ pso/misc/TORockCave.cpp:
 	.sdata      start:0x805D30E0 end:0x805D30F8
 
 pso/misc/TOSensor.cpp:
-	.text       start:0x80175468 end:0x80175F88
-	.rodata     start:0x804429E0 end:0x80442A38
-	.data       start:0x804B4160 end:0x804B4200
+	.text       start:0x80175468 end:0x80175858
+	.rodata     start:0x80442970 end:0x80442979
+	.data       start:0x804B40F0 end:0x804B41E0
+	.sdata      start:0x805D3140 end:0x805D3144
+	.sdata2     start:0x805DB980 end:0x805DB984
+
+pso/misc/TOSensorAncient01.cpp:
+	.text       start:0x80175858 end:0x80175F88
+	.rodata     start:0x80442980 end:0x80442A38
+	.data       start:0x804B41E0 end:0x804B4270
+	.sdata      start:0x805D3148 end:0x805D314C
+	.sbss       start:0x805D5A88 end:0x805D5AA0
 	.sdata2     start:0x805DB988 end:0x805DB9B0
 
 pso/misc/TOSensorGeneral01.cpp:
 	.text       start:0x80175F88 end:0x801764DC
-	.rodata     start:0x80442A78 end:0x80442A80
-	.data       start:0x804B4270 end:0x804B4288
-	.sdata      start:0x805D3150 end:0x805D3154
-	.sdata2     start:0x805DB9C0 end:0x805DB9D0
+	.rodata     start:0x80442A38 end:0x80442A94
+	.data       start:0x804B4270 end:0x804B42F8
+	.sdata      start:0x805D3150 end:0x805D3158
+	.sbss       start:0x805D5AA0 end:0x805D5AA8
+	.sdata2     start:0x805DB9B0 end:0x805DB9CC
 
 pso/misc/TOSignCave01.cpp:
 	.text       start:0x801764DC end:0x80176890
-	.data       start:0x804B42F8 end:0x804B4310
+	.rodata     start:0x80442A98 end:0x80442AE0
+	.data       start:0x804B42F8 end:0x804B4348
+	.sdata      start:0x805D3158 end:0x805D3160 align:4
+	.sbss       start:0x805D5AA8 end:0x805D5AAC
+	.sdata2     start:0x805DB9D0 end:0x805DB9D8
 
 pso/misc/TOSignCave02.cpp:
 	.text       start:0x80176890 end:0x80176C44
-	.data       start:0x804B4348 end:0x804B4360
-	.sdata      start:0x805D3160 end:0x805D3164
+	.rodata     start:0x80442AE0 end:0x80442B28
+	.data       start:0x804B4348 end:0x804B4398
+	.sdata      start:0x805D3160 end:0x805D3168
+	.sbss       start:0x805D5AB0 end:0x805D5AB4
+	.sdata2     start:0x805DB9D8 end:0x805DB9E0
 
 pso/misc/TOSignCave03.cpp:
 	.text       start:0x80176C44 end:0x80177088
+	.rodata     start:0x80442B28 end:0x80442B70
+	.data       start:0x804B4398 end:0x804B43E8
+	.sdata      start:0x805D3168 end:0x805D3170
+	.sbss       start:0x805D5AB8 end:0x805D5ABC
+	.sdata2     start:0x805DB9E0 end:0x805DB9E8
 
 pso/misc/TOSparkMachine01.cpp:
 	.text       start:0x80177088 end:0x801774BC
@@ -5428,15 +5487,18 @@ pso/system/TOSwitchAttackSub.cpp:
 	.sdata2     start:0x805DBA00 end:0x805DBA08
 
 pso/misc/TOSwitchAttack_801778A4.cpp:
-	.text       start:0x801778A4 end:0x80177D60
+	.text       start:0x801778A4 end:0x80177CF4
 	.data       start:0x804B4450 end:0x804B4484
 
 pso/misc/TOSwitchItem.cpp:
-	.text       start:0x80177D60 end:0x80178150
-	.data       start:0x804B44F8 end:0x804B4518
+	.text       start:0x80177CF4 end:0x80178178
+	.rodata     start:0x80442C80 end:0x80442C8D
+	.data       start:0x804B4488 end:0x804B4518
+	.sdata      start:0x805D3180 end:0x805D3184
+	.sdata2     start:0x805DBA10 end:0x805DBA18
 
 pso/player/TObjPlayer_80178150.cpp:
-	.text       start:0x80178150 end:0x801782A0
+	.text       start:0x80178178 end:0x801782A0
 
 pso/unk/text_801782A0.cpp:
 	.text       start:0x801782A0 end:0x801783BC
@@ -5620,18 +5682,19 @@ pso/misc/TButterfly.cpp:
 	.sdata2     start:0x805DBAD8 end:0x805DBB54
 
 pso/misc/TButterfly_8017F364.cpp:
-	.text       start:0x8017F364 end:0x8017F45C
+	.text       start:0x8017F364 end:0x8017F4AC
 
-pso/unk/text_8017F45C.cpp:
-	.text       start:0x8017F45C end:0x8017F624
-
-pso/object/TObjCamera_8017F80C.cpp:
-	.text       start:0x8017F624 end:0x8017FE58
-	.rodata     start:0x80443AC8 end:0x80443AD0
+pso/object/TObjCamera.cpp:
+	.text       start:0x8017F4AC end:0x8017FCD0
+	.rodata     start:0x80443978 end:0x80443AD0
+	.data       start:0x804B5878 end:0x804B58D0
+	.bss        start:0x8050DB80 end:0x8050DBE0
+	.sdata      start:0x805D3238 end:0x805D3240
+	.sbss       start:0x805D5B18 end:0x805D5B20
 	.sdata2     start:0x805DBB58 end:0x805DBB74
 
 pso/object/TObjChip.cpp:
-	.text       start:0x8017FE58 end:0x80180D18
+	.text       start:0x8017FCD0 end:0x80180D18
 	.rodata     start:0x80443AD0 end:0x80443B18
 	.data       start:0x804B58D0 end:0x804B5908
 	.sdata      start:0x805D3240 end:0x805D3244
@@ -5798,23 +5861,13 @@ pso/misc/TNpcPlayer_80190E64.cpp:
 pso/misc/TLobby_80191218.cpp:
 	.text       start:0x80191218 end:0x801912BC
 
-pso/object/TObjHashiVersus2.cpp:
-	.text       start:0x801912BC end:0x801914B8
-	.data       start:0x804B7C88 end:0x804B7CA0
-	.sdata      start:0x805D3370 end:0x805D3374
-
-pso/object/TObjHashiVersus1.cpp:
-	.text       start:0x801914B8 end:0x801916AC
-
 pso/object/TObjHashi.cpp:
-	.text       start:0x801916AC end:0x80191874
-
-pso/object/TObjHashiBase.cpp:
-	.text       start:0x80191874 end:0x80191D14
-
-pso/unk/text_80191D14.cpp:
-	.text       start:0x80191D14 end:0x80191D80
+	.text       start:0x801912BC end:0x80191D80
+	.rodata     start:0x80445928 end:0x804459E0
+	.data       start:0x804B7C58 end:0x804B7E60
 	.bss        start:0x8050DCB8 end:0x8050DCE8
+	.sdata      start:0x805D3368 end:0x805D3384
+	.sbss       start:0x805D5C10 end:0x805D5C1C
 
 pso/object/TObjInfoCol.cpp:
 	.text       start:0x80191D80 end:0x80191F80
@@ -9831,7 +9884,9 @@ pso/misc/TLobby_802A6080.cpp:
 pso/object/TObjSuisoChip.cpp:
 	.text       start:0x802A6168 end:0x802A6F40
 	.rodata     start:0x80466CD0 end:0x80466CE0
-	.data       start:0x804DD6E8 end:0x804DD82C
+	.data       start:0x804DD278 end:0x804DD82C
+	.sbss       start:0x805D6670 end:0x805D6680
+	.sdata2     start:0x805DDFF8 end:0x805DE018
 
 pso/object/TObjSeabedSuisoBrakable.cpp:
 	.text       start:0x802A6F40 end:0x802A7290
@@ -9902,9 +9957,11 @@ pso/misc/TBGLightningCtrl.cpp:
 
 pso/misc/TOBiwaMushi.cpp:
 	.text       start:0x802AA2D4 end:0x802AABEC
-	.rodata     start:0x8046FDA8 end:0x8046FDB8
-	.data       start:0x804DDFB0 end:0x804DDFF0
-	.sdata      start:0x805D3E40 end:0x805D3E48
+	.rodata     start:0x8046FCB8 end:0x8046FDB8
+	.data       start:0x804DDFB0 end:0x804DE0C4
+	.sdata      start:0x805D3E40 end:0x805D3E4C
+	.sbss       start:0x805D66D8 end:0x805D66E4
+	.sdata2     start:0x805DE068 end:0x805DE088
 
 pso/unk/text_802AA8FC.cpp:
 	.text       start:0x802AABEC end:0x802AACF4
@@ -9953,13 +10010,16 @@ pso/unk/text_802AEBA8.cpp:
 	.text       start:0x802AEBA8 end:0x802AED98
 
 pso/ui/TAdSelectCurGC_802AED98.cpp:
-	.text       start:0x802AED98 end:0x802AF2C8
+	.text       start:0x802AED98 end:0x802AF27C
 	.data       start:0x804DE420 end:0x804DE438
 
 pso/misc/TOCapsuleLabo.cpp:
-	.text       start:0x802AF2C8 end:0x802AF5FC
-	.data       start:0x804DE438 end:0x804DE450
-	.sdata      start:0x805D3E78 end:0x805D3E7C
+	.text       start:0x802AF27C end:0x802AF5FC
+	.rodata     start:0x80470790 end:0x804707D8
+	.data       start:0x804DE438 end:0x804DE4C0
+	.sdata      start:0x805D3E78 end:0x805D3E80
+	.sbss       start:0x805D6708 end:0x805D6710
+	.sdata2     start:0x805DE1E8 end:0x805DE1F0
 
 pso/misc/TLobby_802AF5FC.cpp:
 	.text       start:0x802AF5FC end:0x802AF64C
@@ -10164,30 +10224,12 @@ pso/object/TObjTradeCollision.cpp:
 	.sdata      start:0x805D3EF8 end:0x805D3F00
 
 pso/misc/TOTrapChainSawEdge.cpp:
-	.text       start:0x802C80F0 end:0x802C9924
+	.text       start:0x802C80F0 end:0x802C9C18
 	.rodata     start:0x80471DA0 end:0x80471FB8
 	.data       start:0x804E0BD0 end:0x804E0F90
 	.sdata      start:0x805D3F00 end:0x805D3F10
 	.sbss       start:0x805D6808 end:0x805D6810
 	.sdata2     start:0x805DE618 end:0x805DE63C
-
-pso/unk/text_802C9924.cpp:
-	.text       start:0x802C9924 end:0x802C9960
-
-pso/unk/text_802C9960.cpp:
-	.text       start:0x802C9960 end:0x802C99D8
-
-pso/unk/text_802C99D8.cpp:
-	.text       start:0x802C99D8 end:0x802C9A58
-
-pso/unk/text_802C9A58.cpp:
-	.text       start:0x802C9A58 end:0x802C9BE4
-
-pso/misc/TOTrapChainSaw_802C9BE4.cpp:
-	.text       start:0x802C9BE4 end:0x802C9BF8
-
-pso/misc/TOTrapChainSawDamage_802C9BF8.cpp:
-	.text       start:0x802C9BF8 end:0x802C9C18
 
 pso/unk/text_802C9C18.cpp:
 	.text       start:0x802C9C18 end:0x802C9DF0
@@ -11962,7 +12004,7 @@ pso/item/TUnk_804F0D34.cpp:
 pso/object/TObjRainbowLobby.cpp:
 	.text       start:0x8035061C end:0x80350958
 	.rodata     start:0x80478D38 end:0x80478D80
-	.data       start:0x804F0DE8 end:0x804F0E00
+	.data       start:0x804F0DE8 end:0x804F0E38
 	.sdata      start:0x805D4358 end:0x805D4360
 	.sbss       start:0x805D6EB0 end:0x805D6EB8
 	.sdata2     start:0x805DFE30 end:0x805DFE40
@@ -11979,21 +12021,24 @@ pso/player/TObjPlayer_80351748.cpp:
 	.text       start:0x80351748 end:0x80351A2C
 
 pso/boss/TBoss5GryphonLightningWing.cpp:
-	.text       start:0x80351A2C end:0x80351E64
+	.text       start:0x80351A2C end:0x80351DF8
 	.rodata     start:0x80478DF8 end:0x80478E20
 	.data       start:0x804F0E90 end:0x804F0EA8
 	.sdata      start:0x805D4368 end:0x805D4370
 	.sdata2     start:0x805DFED0 end:0x805DFEE0
 
-pso/misc/TLobby_80351E64.cpp:
-	.text       start:0x80351E64 end:0x803520D8
+pso/misc/TLobbyEventTheme.cpp:
+	.text       start:0x80351DF8 end:0x803520D8
+	.rodata     start:0x80478E20 end:0x80478E38
 	.data       start:0x804F0EA8 end:0x804F0EC0
+	.sbss       start:0x805D6EC0 end:0x805D6EC8
 
-pso/object/TObjLobbyMain_803520D8.cpp:
+pso/object/TObjLobbyMain.cpp:
 	.text       start:0x803520D8 end:0x80352A54
-	.rodata     start:0x80479078 end:0x804790F0
-	.data       start:0x804F0F98 end:0x804F0FF0
+	.rodata     start:0x80478E38 end:0x804790F0
+	.data       start:0x804F0EC0 end:0x804F0FF0
 	.sdata      start:0x805D4370 end:0x805D4374
+	.sbss       start:0x805D6EC8 end:0x805D6EE0
 	.sdata2     start:0x805DFEE0 end:0x805DFEF0
 
 pso/item/TUnk_804F0FF0.cpp:
@@ -12015,7 +12060,10 @@ pso/unk/text_80353414.cpp:
 
 pso/object/TObjKabochaLobby.cpp:
 	.text       start:0x8035346C end:0x803537D4
-	.data       start:0x804F11E0 end:0x804F11F8
+	.rodata     start:0x80479170 end:0x804791B8
+	.data       start:0x804F11E0 end:0x804F1230
+	.sdata      start:0x805D4380 end:0x805D4388
+	.sbss       start:0x805D6EE8 end:0x805D6EF0
 	.sdata2     start:0x805DFF38 end:0x805DFF48
 
 pso/boss/TBoss6Rock.cpp:
@@ -12114,7 +12162,7 @@ pso/unk/text_8035966C.cpp:
 pso/object/TObjStendGlassLobby.cpp:
 	.text       start:0x803596C0 end:0x80359A7C
 	.rodata     start:0x80479658 end:0x804796A0
-	.data       start:0x804F1A28 end:0x804F1A40
+	.data       start:0x804F1A28 end:0x804F1A78
 	.sdata      start:0x805D4400 end:0x805D4408
 	.sbss       start:0x805D6F28 end:0x805D6F30
 	.sdata2     start:0x805E00A0 end:0x805E00B0
@@ -12193,16 +12241,20 @@ pso/unk/text_8035B788.cpp:
 	.text       start:0x8035B788 end:0x8035B87C
 	.data       start:0x804F1D48 end:0x804F1D6C
 
-pso/object/TObjCurtainLobby_8035B87C.cpp:
+pso/object/TObjCurtainLobby.cpp:
 	.text       start:0x8035B87C end:0x8035BC20
-	.data       start:0x804F1D90 end:0x804F1DA8
-	.sdata      start:0x805D4420 end:0x805D4424
+	.rodata     start:0x804798F0 end:0x80479940
+	.data       start:0x804F1D90 end:0x804F1DE0
+	.sdata      start:0x805D4420 end:0x805D4428
+	.sbss       start:0x805D6F58 end:0x805D6F60
 	.sdata2     start:0x805E0148 end:0x805E0158
 
 pso/object/TObjWeddingLobby.cpp:
 	.text       start:0x8035BC20 end:0x8035BFF8
-	.rodata     start:0x804799C0 end:0x804799C8
-	.data       start:0x804F1DE0 end:0x804F1E04
+	.rodata     start:0x80479940 end:0x804799C8
+	.data       start:0x804F1DE0 end:0x804F1E3C
+	.sdata      start:0x805D4428 end:0x805D442C
+	.sbss       start:0x805D6F60 end:0x805D6F68
 	.sdata2     start:0x805E0158 end:0x805E0168
 
 pso/unk/text_8035BFF8.cpp:
@@ -12324,13 +12376,12 @@ pso/item/TItemProArmorParticle.cpp:
 	.sdata      start:0x805D4478 end:0x805D4480
 
 pso/object/TObjTreeLobby.cpp:
-	.text       start:0x80364830 end:0x80364C40
-	.data       start:0x804F2B10 end:0x804F2B28
-	.sdata      start:0x805D4480 end:0x805D4484
+	.text       start:0x80364830 end:0x80364C98
+	.rodata     start:0x8047A068 end:0x8047A0A8
+	.data       start:0x804F2B10 end:0x804F2B78
+	.sdata      start:0x805D4480 end:0x805D4488
+	.sbss       start:0x805D6FC0 end:0x805D6FC8
 	.sdata2     start:0x805E0290 end:0x805E02A0
-
-pso/unk/text_80364C40.cpp:
-	.text       start:0x80364C40 end:0x80364C98
 
 pso/object/TObjLaboDesignBase.cpp:
 	.text       start:0x80364C98 end:0x80365348
@@ -12359,7 +12410,7 @@ pso/boss/TBoss6MagMine.cpp:
 pso/object/TObjParticleLobby.cpp:
 	.text       start:0x80369654 end:0x80369B5C
 	.rodata     start:0x8047A378 end:0x8047A390
-	.data       start:0x804F33B0 end:0x804F33D8
+	.data       start:0x804F3378 end:0x804F33D8
 	.sdata      start:0x805D44B8 end:0x805D44C0
 	.sdata2     start:0x805E0340 end:0x805E0350
 
@@ -12368,6 +12419,7 @@ pso/object/TObjSuisouLobby.cpp:
 	.rodata     start:0x8047A390 end:0x8047A3E8
 	.data       start:0x804F33D8 end:0x804F3428
 	.sdata      start:0x805D44C0 end:0x805D44C8
+	.sbss       start:0x805D6FF0 end:0x805D6FF8
 	.sdata2     start:0x805E0350 end:0x805E0360
 
 pso/ui/TAdDialingMessageWindow_8036A064.cpp:

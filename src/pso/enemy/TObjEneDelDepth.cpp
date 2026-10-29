@@ -1,4 +1,5 @@
 #include "pso/enemy/DelDepthData.h"
+#include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/animation/ActorAnimationState.h"
 #include "types.h"
 #include "pso/map/CsnQuery.h"
@@ -105,7 +106,6 @@ extern s32 identity_matrix[];
 extern const char *TObjEneDelDepth__name;
 extern const char *TObjEneDelDepthBomb__name;
 extern s32 game_difficulty_selection;
-extern s32 anim_model_matrix_array;
 extern const f32 lbl_805DF264;
 extern const f32 lbl_805DF274;
 extern const f32 lbl_805DF27C;
@@ -964,19 +964,19 @@ void TObjEneDelDepth::update_bomb_drop() {
     this->attackTimer = (s32) (this->attackTimer - 1);
     temp_r0 = this->attackTimer;
     if ((temp_r0 <= 0) && (temp_r0 == 0)) {
-        TObjPlayer::set_global_flag();
+        set_motion_packed_rotation();
         push_matrix_from(identity_matrix);
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);
-        ((TObjEnemy *)arg0)->render_anim_model(lbl_805DF284);
+        ((TObjEnemy *)arg0)->calc_joint_matrices(lbl_805DF284);
         pop_matrix();
-        push_matrix_from((void *)(anim_model_matrix_array + 0x450));
+        push_matrix_from(anim_model_matrix_array[23]);
         {
         Vec v = lbl_80475DB0;
         matrix_mult_vec(0, &v, &out);
         }
         pop_matrix();
-        TObjPlayer::clear_global_state();
+        clear_motion_packed_rotation();
         play_sound_effect(0x4003A81D, (u8 *)&this->position, 0, 0);
         TObjEneDelDepthBomb::create(this, this, (Vec *)&out, TObjEneDelDepth__tune_params->techniqueLevel);
     }
@@ -1034,7 +1034,7 @@ void TObjEneDelDepth::init_state() {
 }
 
 void TObjEneDelDepth::update_state_flag() {
-    if (this->animationFlags & 0x10) {
+    if (this->motion_flags & 0x10) {
         if (get_flag_bit4() != 0) {
             set_action_state(7);
             return;
@@ -1064,7 +1064,7 @@ void TObjEneDelDepth::update_ai_state() {
     s32 temp_r0;
 
     if (this->motionController->get_type() < 6) {
-        if (this->animationFlags & 0x10) {
+        if (this->motion_flags & 0x10) {
             this->set_action_state(5);
         }
     } else {

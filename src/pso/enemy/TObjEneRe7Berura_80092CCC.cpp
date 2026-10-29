@@ -1,4 +1,5 @@
 #include "pso/enemy/TObjEnemy.h"
+#include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
 #include "pso/system/vector.h"
 #include "types.h"
@@ -255,7 +256,6 @@ struct Berura_80092CCC {
 extern "C" {
 s32 transition_enemy_state__9TObjEneDDFl(void *, s32);
 s32 play_sound_effect(s32, void *, s32, s32);
-s32 advance_animation_playback(void *);
 extern const f32 TObjEneRe7Berura__data_805D9738;
 void TObjEneRe7Berura__sub_80093470(Berura_80093470 *obj, s32 mode);
 void TObjEneRe7BeruraPunch__sub_800962F4(void *p);
@@ -369,19 +369,19 @@ void render__16TObjEneRe7BeruraFv(Berura_80092CCC *o) {
                     f1 = 0;
                 }
                 if (f1 != 0) {
-                    TObjEneRe7Berura::set_global_state((s32)((void *)TObjEneRe7Berura::demo_frame_callback));
+                    set_chunk_model_node_callback((s32)((void *)TObjEneRe7Berura::demo_frame_callback));
                     ((TObjMotion *)o)->draw();
-                    TObjEneRe7Berura::set_global_state(0);
+                    set_chunk_model_node_callback(0);
                 }
                 ((Fade_80092CCC *)fade)->v.m7();
             } else {
-                TObjEneRe7Berura::set_global_state((s32)((void *)TObjEneRe7Berura::demo_frame_callback));
+                set_chunk_model_node_callback((s32)((void *)TObjEneRe7Berura::demo_frame_callback));
                 if (mode == 1) {
                     ((TObjMotion *)o)->draw();
                 } else {
-                    ((TObjEnemy *)o)->render_world_model();
+                    ((TObjEnemy *)o)->draw_motion_model();
                 }
-                TObjEneRe7Berura::set_global_state(0);
+                set_chunk_model_node_callback(0);
             }
         } else {
             re7_berura_demo_state = 0;
@@ -394,22 +394,22 @@ void render__16TObjEneRe7BeruraFv(Berura_80092CCC *o) {
                         f2 = 0;
                     }
                     if (f2 != 0) {
-                        TObjEneRe7Berura::set_global_state((s32)((void *)TObjEneRe7Berura::advance_state));
+                        set_chunk_model_node_callback((s32)((void *)TObjEneRe7Berura::advance_state));
                         ((TObjMotion *)o)->draw();
-                        TObjEneRe7Berura::set_global_state(0);
+                        set_chunk_model_node_callback(0);
                     }
                     o->f3D8.v.m7();
                 }
             } else if (cam != 0) {
                 ((Fade_80092CCC *)fade)->v.m6();
-                TObjEneRe7Berura::set_global_state((s32)((void *)TObjEneRe7Berura::advance_state));
+                set_chunk_model_node_callback((s32)((void *)TObjEneRe7Berura::advance_state));
                 ((TObjMotion *)o)->draw();
-                TObjEneRe7Berura::set_global_state(0);
+                set_chunk_model_node_callback(0);
                 ((Fade_80092CCC *)fade)->v.m7();
             } else if (mode == 1) {
                 ((TObjMotion *)o)->draw();
             } else {
-                ((TObjEnemy *)o)->render_world_model();
+                ((TObjEnemy *)o)->draw_motion_model();
             }
         }
         pop_matrix();
@@ -488,7 +488,7 @@ void TObjEneRe7Berura::update_death_state(s32 mode) {
         self->fB8 = 7;
         this->vfunc_96();
         self->f3C0 &= ~7;
-        advance_animation_playback(self);
+        ((TObjMotion *)self)->advance_animation();
         ((TObjEnemy *)self)->refresh_and_send_entity_flags();
         TObjEneRe7BeruraPunch__sub_800962F4((void *)self->f3F8);
         self->f4D0 = self->f3CC;
@@ -502,7 +502,7 @@ void TObjEneRe7Berura::update_death_state(s32 mode) {
     case 0:
         switch (self->f4C4) {
         case 0: {
-            advance_animation_playback(self);
+            ((TObjMotion *)self)->advance_animation();
             if (((VObj_14_c1c33b *)((u8 *)self + 0x3D8))->m4() != 0) {
                 self->f4C4 = 4;
                 self->f3C0 |= 1;
@@ -529,7 +529,7 @@ void TObjEneRe7Berura__sub_80093470(Berura_80093470 *obj, s32 mode) {
         self->fieldB8 = 6;
         obj->m94();
         self->field3C0 &= ~7;
-        advance_animation_playback(self);
+        ((TObjMotion *)self)->advance_animation();
         play_sound_effect(((TObjEnemy *)(self))->remap_sound_for_area((s32)(0x4003A826)), &self->pos, 0, 0);
         ((TObjEneDD_ST *)self)->set_active();
         break;
@@ -539,7 +539,7 @@ void TObjEneRe7Berura__sub_80093470(Berura_80093470 *obj, s32 mode) {
         }
         break;
     case 0:
-        advance_animation_playback(self);
+        ((TObjMotion *)self)->advance_animation();
         VecCopy((Vec *)&v, (const Vec *)&self->vel);
         speed = normalize_vector_xz((Vec *)(&v));
         ((TObjEneDD *)self)->move_clamped_on_ground(v.x, v.z, speed);

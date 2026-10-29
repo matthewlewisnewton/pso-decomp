@@ -276,7 +276,6 @@ void run_task__17TObjEneMe3ShinowaFv(u8 *arg0);
 void *find_entity_by_id(u16 id);
 s32 all_parents_unqueued_for_destruction__7TObjectFv();
 s32 create_particle_emitter(s32, s32);
-s32 advance_animation_playback(void *, int);
 f32 sin_table_lookup(s32);
 f32 cos_table_lookup(s32);
 extern const f32 lbl_805DA5C8;
@@ -362,9 +361,9 @@ void TObjEneMe3ShinowaMirage::activate_mirage(s32 arg1) {
         *(f32 *)((s8 *)arg0 + 0x430) = (f32) TObjEneMe3ShinowaMirage__data_805DA5B8;
         temp_r4_2 = *(s32 *)((s8 *)arg0 + 0x3C4) & 0xFFFFFDFF;
         *(s32 *)((s8 *)arg0 + 0x3C4) = temp_r4_2;
-        this->m_b8 = 0xA;
-        advance_animation_playback(arg0, temp_r4_2);
-        this->m_c0 = (f32) (u32) (*(s32 *)(this->unknownF8 + 4) - 1);
+        this->requested_action = 0xA;
+        ((TObjMotion *)arg0)->advance_animation();
+        this->frame = (f32) (u32) (this->current_motion->nbFrame - 1);
         transition_enemy_state__9TObjEneDDFl(arg0, 8);
         clear_mirage();
     }
@@ -472,7 +471,7 @@ void TObjEneMe3ShinowaReal::vfunc_116(s32 arg1) {
     u8 *object;
     switch (arg1) {
     case 4:
-        this->m_b8 = 7;
+        this->requested_action = 7;
         this->set_field_378(0x10);
         this->vfunc_96();
         *(s32 *)((s8 *)((u8 *)this) + 0x3C4) = (s32) (*(s32 *)((s8 *)((u8 *)this) + 0x3C4) & 0xFFFFFFFD);
@@ -489,7 +488,7 @@ void TObjEneMe3ShinowaReal::vfunc_116(s32 arg1) {
     case 0:
         switch (*(s32 *)((s8 *)((u8 *)this) + 0x404)) {
         case 0:
-            advance_animation_playback((void *)this, arg1);
+            advance_animation();
             if (this->get_flag_b4() != 0) {
                 temp_r3 = *(s32 *)((s8 *)((u8 *)this) + 0x3C4);
                 if (temp_r3 & 0x80000) {
@@ -501,7 +500,7 @@ void TObjEneMe3ShinowaReal::vfunc_116(s32 arg1) {
                     *(s32 *)((s8 *)((u8 *)this) + 0x404) = 2;
                 }
             }
-            if (this->m_c0 >= lbl_805DA5C8) {
+            if (this->frame >= lbl_805DA5C8) {
                 if ((void *) *(u8 **)((s8 *)((u8 *)this) + 0x424) == NULL) {
                     *(u8 **)((s8 *)((u8 *)this) + 0x424) = (unsigned char *) (create_particle_emitter((s32) ((u8 *)this + 0x38), 0x114));
                     particle_ctrl = (u8 *)(*(u8 **)((s8 *)((u8 *)this) + 0x424));
@@ -555,7 +554,7 @@ void TObjEneMe3ShinowaReal::vfunc_114(s32 arg1) {
     Vec_800E420C v;
     switch (arg1) {
     case 4:
-        this->m_b8 = 7;
+        this->requested_action = 7;
         this->set_field_378(0xE);
         V->m94();
         I(0x3C4) &= ~3;
@@ -591,7 +590,7 @@ void TObjEneMe3ShinowaReal::vfunc_114(s32 arg1) {
         }
         break;
     case 0:
-        advance_animation_playback(this, arg1);
+        advance_animation();
         if (R(0xC0) >= lbl_805DA5C8) {
             if (P(0x424) == NULL) {
                 P(0x424) = (u8 *)create_particle_emitter((s32)(((u8 *)this) + 0x38), 0x114);

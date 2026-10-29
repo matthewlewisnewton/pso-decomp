@@ -1,4 +1,5 @@
 #include "pso/unk/TUnk_80494968.h"
+#include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "types.h"
 #include "pso/enemy/TUnk_80493450.h"
 #include "pso/player/TObjPlayer.h"
@@ -9,7 +10,6 @@
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/enemy/TObjEneShark.h"
-#include "pso/misc/obj_band.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/unk/text_803D96A8.h"
 extern "C" void has_flag_0x800__9TObjCharaFv();
@@ -189,7 +189,6 @@ extern const f32 lbl_805D9BA4;
 extern const f32 lbl_805D9BA8;
 void vfunc_94__12TObjEneSharkFv(u8 *arg0);
 s32 TObjEneMe3SinowZoa__sub_800D758C(void *);
-s32 advance_animation_playback();
 void vfunc_83__12TObjEneSharkFv(Obj_800ABCBC *arg0);
 s32 mult_vec_array__10TObjPlayerFUll(int, int, void *, int);
 void set_matrix_identity(u8 *arg0);
@@ -329,7 +328,7 @@ void TObjEneShark::apply_clamped_mode_param() {
 
 void TObjEneShark::vfunc_83() {
     Obj_800ABCBC *arg0 = (Obj_800ABCBC *)this;
-    advance_animation_playback();
+    ((TObjMotion *)this)->advance_animation();
     switch (*(s16 *)&this->m_328) {
     case 0:
     default:
@@ -447,7 +446,7 @@ void TObjEneShark::render() {
     }
     TObjPlayer::toggle_particle_effect();
     shark_render_node_index = 0;
-    TObjEneRe7Berura::set_global_state((s32)((void *) TObjPlayer::update_particle_by_phase));
+    set_chunk_model_node_callback((s32)((void *) TObjPlayer::update_particle_by_phase));
     if ((*(s32 *)&this->m_390) == 1)
     {
       if (((VObj_14_800ABDD8 *) (arg0 + 0x3A8))->m8() != 0)
@@ -484,7 +483,7 @@ void TObjEneShark::render() {
           }
           else
           {
-            ((TObjEnemy *)arg0)->render_world_model();
+            ((TObjEnemy *)arg0)->draw_motion_model();
           }
         }
       }
@@ -495,14 +494,14 @@ void TObjEneShark::render() {
       }
       else
       {
-        ((TObjEnemy *)arg0)->render_world_model();
+        ((TObjEnemy *)arg0)->draw_motion_model();
       }
       if (fade != 0)
       {
         ((Owner_800ABDD8 *) arg0)->fades[mode].m7();
       }
     }
-    TObjEneRe7Berura::set_global_state(0);
+    set_chunk_model_node_callback(0);
     TParticleCtrl::end_effect_render();
     if ((*(s32 *)&this->m_378) == 0)
     {

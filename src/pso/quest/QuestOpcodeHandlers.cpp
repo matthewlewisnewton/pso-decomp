@@ -1,3 +1,5 @@
+#include "pso/protocol/protocol_types.h"
+#include "pso/TParticleCtrl.h"
 #include "pso/item/TItemMag.h"
 #include "pso/TMainTask.h"
 #include "pso/quest/QuestVm.h"
@@ -44,6 +46,7 @@ int qst_label_address(int label);
 #include "pso/ui/TChallenge4PResult.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/TObject.h"
+#include "pso/object/TQuestDamageTask.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/boss/TBoss1Dragon.h"
 #include "pso/boss/TBoss3Volopt.h"
@@ -1462,7 +1465,6 @@ s32 advance_item_id_counter(u16);
 f32 xz_distance_squared(Vec3_801E79BC *, Vec3_801E79BC *);
 f32 xyz_distance_squared(u8 *arg0, u8 *arg1);
 s32 get_class_type_name__6TLobbyFl(int);
-int TLobby__sub_80142944(void *);
 int TNpcPlayer__sub_8014DC30(void*);
 }
 void init_6x40_walk_packet(void *a0);
@@ -1979,7 +1981,6 @@ void TObjPlayer__sub_80354D14(s32 arg0);
 void TObjPlayer__sub_80354DAC(s32 arg0);
 void TObjPlayer__sub_80354DF4(s32 arg0);
 void * open_message_scroll_window__6TLobbyFlll(Vec2_801E717C *, Vec2_801E717C *, void *);
-void fn_80364C40(void *, s32, s32, f32);
 s32 rand(void);
 s32 strncmp(void *, void *, int);
 s32 strcmp(void *, void *);
@@ -2465,12 +2466,9 @@ void qst_op_item_delete_noreturn() {
 }
 
 void qst_op_add_damage_to(void) {
-    u16 a = qst_args[0];
-    f32 b = (f32)qst_args[1];
-    void *p = __nw__7TObjectFUl(0x24);
-    if (p != 0) {
-        fn_80364C40(p, a, (*(s32 *)&tl_03), b);
-    }
+    u16 client_id = qst_args[0];
+    f32 damage = (f32)qst_args[1];
+    new TQuestDamageTask(client_id, tl_03, damage);
 }
 
 int qst_op_gba_update_dl_graph(void* p) { return get_selected_slot__6TLobbyFv(p); }
@@ -3717,7 +3715,7 @@ void qst_op_animation_check(s32 arg0, s32 arg1) {
     u8 *temp_r3;
     temp_r3 = (u8 *)(((s32)((u32 (*)(int, int))get_player_by_client_id)((int)((u32) (u16) qst_registers[(u8)arg0]), (int)(arg1))));
     if (temp_r3 != NULL) {
-        qst_registers[(u8)arg1] = TLobby__sub_80142944(temp_r3);
+        qst_registers[(u8)arg1] = ((TObjMotion *)temp_r3)->is_motion_held();
     }
 }
 
@@ -4407,26 +4405,26 @@ void qst_op_clear_switch_flag_sync() {
     Pkt_801ED300 pkt;
     s32 x = qst_args[0];
     s32 y = qst_args[1];
-    ((TLobby *)(&pkt))->init_6x05_switch_changed();
+    ((G_SwitchStateChanged_6x05 *)(&pkt))->init();
     pkt.a = 0xFFFF;
     pkt.b = 0;
     pkt.c = y;
     pkt.d = x;
     pkt.e = 0;
-    ((TLobby *)(&pkt))->finalize_and_send_60();
+    ((G_SwitchStateChanged_6x05 *)(&pkt))->send();
 }
 
 void qst_op_set_switch_flag_sync() {
     Pkt_801ED360 pkt;
     s32 x = qst_args[0];
     s32 y = qst_args[1];
-    ((TLobby *)(&pkt))->init_6x05_switch_changed();
+    ((G_SwitchStateChanged_6x05 *)(&pkt))->init();
     pkt.a = 0xFFFF;
     pkt.b = 0;
     pkt.c = y;
     pkt.d = x;
     pkt.e = 1;
-    ((TLobby *)(&pkt))->finalize_and_send_60();
+    ((G_SwitchStateChanged_6x05 *)(&pkt))->send();
 }
 
 void qst_op_reset_kills(s32 arg0) {
@@ -4730,13 +4728,13 @@ void qst_op_create_bgmctrl() {
 
 void qst_op_update_switch_flag(s32 arg0) {
     Pkt_801EDF64 pkt;
-    ((TLobby *)(&pkt))->init_6x05_switch_changed();
+    ((G_SwitchStateChanged_6x05 *)(&pkt))->init();
     pkt.b = 0;
     pkt.a = 0xFFFF;
     pkt.c = qst_registers[(u8)arg0++];
     pkt.d = qst_registers[(u8)arg0++];
     pkt.e = qst_registers[(u8)arg0];
-    ((TLobby *)(&pkt))->finalize_and_send_60();
+    ((G_SwitchStateChanged_6x05 *)(&pkt))->send();
 }
 }
 
@@ -5603,7 +5601,7 @@ void qst_op_player_effect_nc(u8 arg0) {
         v.y += dy;
         r = (u32)create_timed_particle_emitter(&v, kind, 0, extra);
         if (r != 0) {
-            ((TBoss4Type2 *)r)->set_flags(0x40);
+            ((TParticleCtrl *)r)->set_flags(0x40);
         }
     }
 }
@@ -5660,7 +5658,7 @@ void qst_op_particle_effect_nc(u8 arg0) {
     v.z = z;
     r = (u32)create_timed_particle_emitter(&v, kind, 0, extra);
     if (r != 0) {
-        ((TBoss4Type2 *)r)->set_flags(0x40);
+        ((TParticleCtrl *)r)->set_flags(0x40);
     }
 }
 
@@ -5693,7 +5691,7 @@ void qst_op_particle2() {
     v.z = p[2];
     u32 r = (u32)create_timed_particle_emitter(&v, qst_args[1], 0, (s32)*(f32 *)&qst_args[2]);
     if (r != 0) {
-        ((TBoss4Type2 *)r)->set_flags(0x40);
+        ((TParticleCtrl *)r)->set_flags(0x40);
     }
 }
 }

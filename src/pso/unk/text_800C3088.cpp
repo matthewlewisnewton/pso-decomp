@@ -3,7 +3,7 @@
 #include "pso/enemy/TObjEneEpsilon_800B92AC.h"
 #include "pso/unk/text_800C3088.h"
 #include "pso/unk/text_800C3A60.h"
-#include "pso/object/obj_band.h"
+#include "pso/object/TObjMotion.h"
 #include "pso/system/vector.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/enemy/TObjEneDD.h"
@@ -152,7 +152,6 @@ void *create_particle_emitter(void *pos, s32 id);
 s32 noop__9TObjEneDDFv(void *);
 s32 check_hit_flag__16TObjEneRe2FlowerFv(void *);
 s32 TObjPlayer__sub_800C4A5C(int, void *, void *, int);
-s32 advance_animation_playback(void *);
 s32 play_sound_effect(void *, void *, int, int);
 u32 __nw__7TObjectFUl(int);
 extern u8 *lbl_805D5170;
@@ -188,12 +187,12 @@ void fn_800C3088(u8 *arg0, int arg1) {
       return;
     return;
     case 0:
-      advance_animation_playback((void *) arg0);
+      ((TObjMotion *)arg0)->advance_animation();
       enemy_validate_retained_target(arg0);
       switch (((RecoveredFields_800C3088_arg0 *) arg0)->field_414)
     {
       case 0:
-        if (objInBand((GameObj *)arg0, (f32) ((((RecoveredFields_800C3088_arg0 *) arg0)->field_C4 - lbl_805D9FC0) - ((RecoveredFields_800C3088_arg0 *) arg0)->field_C8)) != 0)
+        if (((TObjMotion *)arg0)->is_passing_frame((f32) ((((RecoveredFields_800C3088_arg0 *) arg0)->field_C4 - lbl_805D9FC0) - ((RecoveredFields_800C3088_arg0 *) arg0)->field_C8)) != 0)
       {
         ((RecoveredFields_800C3088_arg0 *) arg0)->field_418 = (int) (((RecoveredFields_800C3088_arg0 *) arg0)->field_418 + 1);
         if (((f32) ((RecoveredFields_800C3088_arg0 *) arg0)->field_418) >= lbl_805D9FD4)
@@ -203,7 +202,7 @@ void fn_800C3088(u8 *arg0, int arg1) {
         }
       }
       else
-        if (objInBand((GameObj *)arg0, (f32)((f32) lbl_805D9FC4)) != 0)
+        if (((TObjMotion *)arg0)->is_passing_frame((f32)((f32) lbl_805D9FC4)) != 0)
       {
         if (((TObjEneDD_ST *)arg0)->enemy_check_target_valid() != 0)
         {
@@ -241,7 +240,7 @@ void fn_800C32DC(u8 *owner, s32 arg1) {
     u32 temp_r3_4;
     switch (arg1) {
     case 4:
-        ((TObjEneRe2Flower *)owner)->m_b8 = 0;
+        ((TObjEneRe2Flower *)owner)->requested_action = 0;
         ((TObjEneDD *)(owner))->vfunc_96();
         ((TObjEneRe2Flower *)owner)->set_child_flags();
         *(s32 *)((s8 *)owner + 0x3C4) = (s32) (*(s32 *)((s8 *)owner + 0x3C4) & 0xFFFFFFF7);
@@ -256,7 +255,7 @@ void fn_800C32DC(u8 *owner, s32 arg1) {
     case 1:
         break;
     case 0:
-        advance_animation_playback(owner);
+        ((TObjMotion *)owner)->advance_animation();
         if ((u32) *(u32 *)((s8 *)owner + 0x428) == 0U) {
             *(u32 *)((s8 *)owner + 0x428) = (u32)create_particle_emitter((owner + 0x3E8), 0xD1);
             temp_r3 = *(u32 *)((s8 *)owner + 0x428);
@@ -266,13 +265,13 @@ void fn_800C32DC(u8 *owner, s32 arg1) {
         }
         temp_r3_2 = *(u32 *)((s8 *)owner + 0x428);
         if (temp_r3_2 != 0U) {
-            if (((TObjEneRe2Flower *)owner)->m_c0 < lbl_805D9FD8) {
+            if (((TObjEneRe2Flower *)owner)->frame < lbl_805D9FD8) {
                 ((TParticleCtrl *)temp_r3_2)->set_position(owner + 0x3E8);
             } else {
                 ((TParticleCtrl *)temp_r3_2)->enable();
             }
         }
-        if (objInBand((GameObj *)(owner), lbl_805D9FDC) != 0) {
+        if (((TObjMotion *)owner)->is_passing_frame(lbl_805D9FDC) != 0) {
             VecCopy((Vec *)(&stack.sp8), (const Vec *)(owner + 0x3DC));
             stack.spC = lbl_805D9FDC + *(f32 *)((s8 *)owner + 0x3C);
             if ((((TObjEneRe2Flower *)owner)->get_flag_11() != 0) || (TObjEneDD::check_v2_mode() != 0)) {
@@ -439,9 +438,9 @@ void TObjEneDD::state_chase_target(s32 arg1) {
         break;
     case 4:
         if (this->mode == 2) {
-            this->m_b8 = 3;
+            this->requested_action = 3;
         } else {
-            this->m_b8 = 2;
+            this->requested_action = 2;
         }
         this->vfunc_96();
         ((TObjEneRe2Flower *)arg0)->set_child_flags();
@@ -469,7 +468,7 @@ void TObjEneDD::state_chase_target(s32 arg1) {
         }
         break;
     case 0:
-        ((s32 (*)())advance_animation_playback)();
+        advance_animation();
         idx = 0xFFFF;
         if (tick_period_counter((s32)arg0, (s32 *)(arg0 + 0x3D0), 0x14) != 0) {
             if (*(f32 *)((s8 *)arg0 + 0x3AC) > lbl_805D9FEC) {
@@ -502,7 +501,7 @@ void TObjEneDD::state_chase_target(s32 arg1) {
 void handle_flower_state_change(TObjEneDD *ene_dd, s32 arg1) {
     switch (arg1) {
     case 4:
-        ene_dd->m_b8 = 1;
+        ene_dd->requested_action = 1;
         ene_dd->vfunc_96();
         ((TObjEneRe2Flower *)ene_dd)->clear_child_flags();
         *(s32 *)((s8 *)ene_dd + 0x3C4) = (s32) (*(s32 *)((s8 *)ene_dd + 0x3C4) & 0xFFFFFFF7);
@@ -517,7 +516,7 @@ void handle_flower_state_change(TObjEneDD *ene_dd, s32 arg1) {
     case 1:
         return;
     case 0:
-        ((s32 (*)())advance_animation_playback)();
+        ene_dd->advance_animation();
         ene_dd->vfunc_102();
         ene_dd->vfunc_88();
         break;
