@@ -466,7 +466,7 @@ s32 request_follow_camera_offsets(void *, void *, int);
 int toggle_particle_effect__10TObjPlayerFv(void*);
 void __dt__11TBoss4Type3FPvs(void *, s16);
 s32 clear_render_callback__8TObjFishFv(s32);
-s32 TObjControl__ct(s32, s32);
+s32 __ct__11TObjControlFP7TObject(s32, s32);
 void __dt__9TObjEnemyFv(void *, s32);
 s32 approach_angle_limited(s32, s32, s32);
 void free_collision_body_parts(void *);
@@ -1743,7 +1743,7 @@ s32 TBoss4Type2::create(s32 arg0) {
     if (var_r31 != 0) {
         var_r4 = ((s32 (*)(s32))__nw__7TObjectFUl)(0x20);
         if (var_r4 != 0) {
-            var_r4 = TObjControl__ct(var_r4, tl_04);
+            var_r4 = __ct__11TObjControlFP7TObject(var_r4, tl_04);
         }
         var_r31 = ((s32 (*)(s32, s32, s32))TBoss4Type2__ct)(var_r31, var_r4, arg0);
     }

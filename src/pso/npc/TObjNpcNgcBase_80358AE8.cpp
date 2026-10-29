@@ -82,7 +82,7 @@ struct Rec_803592B8 {
 };
 
 extern "C" {
-s32 TObjControl__ct(int, int);
+s32 __ct__11TObjControlFP7TObject(int, int);
 s32 __nw__7TObjectFUl(int);
 extern RecoveredGlobal_803591D0_TObjNpcNgcBase__data_805439A8 TObjNpcNgcBase__data_805439A8;
 extern s32 tl_04;
@@ -110,7 +110,7 @@ s32 TObjNpcNgcBase::create_variant_13(s32 arg0) {
     temp_r3 = (var_r30 = __nw__7TObjectFUl((int) ((0, 0x20))));
     if (var_r30 != 0)
     {
-      var_r30 = TObjControl__ct((int) temp_r3, (int) tl_04);
+      var_r30 = __ct__11TObjControlFP7TObject((int) temp_r3, (int) tl_04);
     }
     player = __nw__7TObjectFUl(0x3B8);
     var_r0 = player;
@@ -135,7 +135,7 @@ s32 TObjNpcNgcBase__sub_80358B70(s32 arg0) {
     temp_r3 = (var_r30 = __nw__7TObjectFUl(0x20));
     if (var_r30 != 0)
     {
-      var_r30 = TObjControl__ct((int) temp_r3, (int) tl_04);
+      var_r30 = __ct__11TObjControlFP7TObject((int) temp_r3, (int) tl_04);
     }
     player = __nw__7TObjectFUl(new_var);
     var_r0 = player;
@@ -158,7 +158,7 @@ s32 TObjNpcNgcBase__sub_80358BF8(s32 arg0) {
     temp_r3 = (var_r30 = __nw__7TObjectFUl(0x20));
     if (var_r30 != 0)
     {
-      var_r30 = TObjControl__ct((int) temp_r3, (int) tl_04);
+      var_r30 = __ct__11TObjControlFP7TObject((int) temp_r3, (int) tl_04);
     }
     player = __nw__7TObjectFUl(0x3B8);
     var_r0 = player;
@@ -183,7 +183,7 @@ s32 TObjNpcNgcBase__sub_80358C80(s32 arg0) {
     temp_r3 = (var_r30 = __nw__7TObjectFUl(0x20));
     if (var_r30 != 0)
     {
-      var_r30 = TObjControl__ct((int) temp_r3, (int) tl_04);
+      var_r30 = __ct__11TObjControlFP7TObject((int) temp_r3, (int) tl_04);
     }
     player = __nw__7TObjectFUl(0x3B8);
     var_r0 = player;
@@ -216,7 +216,7 @@ s32 TObjNpcNgcBase__sub_80358D08(s32 arg0) {
     temp_r3 = (var_r30 = __nw__7TObjectFUl(0x20));
     if (var_r30)
     {
-      var_r30 = TObjControl__ct((int) temp_r3, (int) tl_04);
+      var_r30 = __ct__11TObjControlFP7TObject((int) temp_r3, (int) tl_04);
     }
     player = __nw__7TObjectFUl(0x3B8);
     var_r0 = player;
@@ -240,7 +240,7 @@ s32 TObjNpcNgcBase::create_variant_8(s32 arg0) {
     temp_r3 = (var_r30 = __nw__7TObjectFUl(0x20));
     if (var_r30 != 0)
     {
-      var_r30 = TObjControl__ct((int) temp_r3, (int) tl_04);
+      var_r30 = __ct__11TObjControlFP7TObject((int) temp_r3, (int) tl_04);
     }
     var_r0 = __nw__7TObjectFUl(0x3B8);
     player = var_r0;
@@ -267,7 +267,7 @@ s32 TObjNpcNgcBase::create_variant_7(s32 arg0) {
     temp_r3 = (var_r30 = __nw__7TObjectFUl(0x20));
     if (var_r30 != 0)
     {
-      var_r30 = TObjControl__ct((int) temp_r3, (int) tl_04);
+      var_r30 = __ct__11TObjControlFP7TObject((int) temp_r3, (int) tl_04);
     }
     player = __nw__7TObjectFUl(0x3B8);
     var_r0 = player;
@@ -295,7 +295,7 @@ s32 TObjNpcNgcBase::create_variant_6(s32 arg0) {
     temp_r3 = (var_r30 = __nw__7TObjectFUl(0x20));
     if (var_r30 != 0)
     {
-      var_r30 = TObjControl__ct((int) temp_r3, (int) tl_04);
+      var_r30 = __ct__11TObjControlFP7TObject((int) temp_r3, (int) tl_04);
     }
     player = __nw__7TObjectFUl(0x3B8);
     var_r0 = player;
@@ -327,7 +327,7 @@ s32 TObjNpcNgcBase::create_variant_5(s32 arg0) {
     {
       if (var_r30 != 0)
       {
-        var_r30 = TObjControl__ct((int) temp_r3, (int) tl_04);
+        var_r30 = __ct__11TObjControlFP7TObject((int) temp_r3, (int) tl_04);
       }
       player = __nw__7TObjectFUl(0x3B8);
       var_r0 = player;
@@ -351,7 +351,7 @@ s32 TObjNpcNgcBase__sub_80358FB0(s32 arg0) {
     temp_r3 = (var_r30 = __nw__7TObjectFUl((int) ((0, 0x20))));
     if (var_r30 != 0)
     {
-      var_r30 = TObjControl__ct((int) temp_r3, (int) tl_04);
+      var_r30 = __ct__11TObjControlFP7TObject((int) temp_r3, (int) tl_04);
     }
     player = __nw__7TObjectFUl(0x3B8);
     var_r0 = player;
@@ -374,7 +374,7 @@ s32 TObjNpcNgcBase__sub_80359038(s32 arg0) {
     temp_r3 = (var_r30 = __nw__7TObjectFUl(0x20));
     if (var_r30 != 0)
     {
-      var_r30 = TObjControl__ct((int) temp_r3, (int) tl_04);
+      var_r30 = __ct__11TObjControlFP7TObject((int) temp_r3, (int) tl_04);
     }
     player = __nw__7TObjectFUl(0x3B8);
     var_r0 = player;
@@ -397,7 +397,7 @@ s32 TObjNpcNgcBase__sub_803590C0(s32 arg0) {
     temp_r3 = (var_r30 = __nw__7TObjectFUl(0x20));
     if (var_r30 != 0)
     {
-      var_r30 = TObjControl__ct((int) temp_r3, (int) tl_04);
+      var_r30 = __ct__11TObjControlFP7TObject((int) temp_r3, (int) tl_04);
     }
     player = __nw__7TObjectFUl(0x3B8);
     var_r0 = player & 0xFFFFFFFFFFFFFFFF;
@@ -420,7 +420,7 @@ s32 TObjNpcNgcBase__sub_80359148(s32 arg0) {
     temp_r3 = (var_r30 = __nw__7TObjectFUl((int) ((0, 0x20))));
     if (var_r30 != 0)
     {
-      var_r30 = TObjControl__ct((int) temp_r3, (int) tl_04);
+      var_r30 = __ct__11TObjControlFP7TObject((int) temp_r3, (int) tl_04);
     }
     player = __nw__7TObjectFUl(0x3B8);
     var_r0 = player;
@@ -443,7 +443,7 @@ s32 TObjNpcNgcBase__create(s32 arg0) {
     temp_r3 = (var_r31 = __nw__7TObjectFUl(0x20));
     if (var_r31 != 0)
     {
-      var_r31 = TObjControl__ct((int) temp_r3, (int) tl_04);
+      var_r31 = __ct__11TObjControlFP7TObject((int) temp_r3, (int) tl_04);
     }
     player = __nw__7TObjectFUl(0x3B8);
     var_r0 = player;

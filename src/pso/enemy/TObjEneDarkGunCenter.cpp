@@ -65,7 +65,7 @@ void run_task__20TObjEneDarkGunCenterFv(Gun_800A0B20 *self);
 void TObjEneDarkGunCenter__sub_800A0E7C(void);
 void TObjEneDarkGunCenter__sub_800A0E80(void);
 void *__dt__20TObjEneDarkGunCenterFv(void *arg0, s16 arg1);
-void *TObjControl__ct(void *, void *);
+void *__ct__11TObjControlFP7TObject(void *, void *);
 u8 *TObjEneDarkGunCenter__ct(u8 *arg0, s32 arg1, s32 arg2);
 void __dl__7TObjectFPv(void *);
 void *__dt__9TObjEnemyFv(TObjEnemy *arg0, s16 arg1);
@@ -102,7 +102,7 @@ void apply_action_hold_status__9TObjCharaFf();
 void apply_anti_technique__9TObjCharaFl();
 void apply_attack_stat_status__9TObjCharaFPv();
 void apply_confusion_status__9TObjCharaFv();
-void apply_knockback_from_attacker__9TObjCharaFPUc();
+void apply_knockback_from_attacker__9TObjCharaFPUcf();
 void apply_movement_ailment__9TObjCharaFl();
 void apply_object_set_data__8TObjBaseFPv();
 void apply_paralysis__9TObjCharaFv();
@@ -111,7 +111,7 @@ void apply_set_data__9TObjEnemyFPv();
 void apply_shock_status__9TObjCharaFv();
 void apply_switch_attack__9TObjCharaFv();
 void calc_distance_accuracy_penalty__9TObjCharaFPvPvPvf();
-void vfunc_79__9TObjEnemyFv();
+void vfunc_79__9TObjEnemyFPl();
 void classify_actor_view_detail__8TObjBaseFfff();
 void clear_all_status_effects__9TObjCharaFv();
 void clear_harmful_statuses__9TObjCharaFv();
@@ -177,7 +177,7 @@ void *__vt__20TObjEneDarkGunCenter[83] = {
     (void *)receive_physical_attack__9TObjCharaFPvf,
     (void *)receive_direct_attack__9TObjCharaFPv19DirectAttackPayloadPvll,
     (void *)receive_weapon_special_attack__9TObjCharaFPvPv,
-    (void *)apply_knockback_from_attacker__9TObjCharaFPUc,
+    (void *)apply_knockback_from_attacker__9TObjCharaFPUcf,
     (void *)try_start_action__9TObjCharaFll,
     (void *)roll_physical_accuracy__9TObjCharaFPvlf,
     (void *)vfunc_28__9TObjCharaFv,
@@ -231,7 +231,7 @@ void *__vt__20TObjEneDarkGunCenter[83] = {
     (void *)vfunc_76__9TObjCharaFv,
     (void *)vfunc_77__9TObjCharaFv,
     (void *)vfunc_78__9TObjCharaFl,
-    (void *)vfunc_79__9TObjEnemyFv,
+    (void *)vfunc_79__9TObjEnemyFPl,
     (void *)apply_hit_message_flags__9TObjEnemyFPv,
     (void *)apply_set_data__9TObjEnemyFPv,
     (void *)clear_lobby_object_state__9TObjEnemyFv,
@@ -337,7 +337,7 @@ void *TObjEneDarkGunCenter::create(void *arg0) {
     void *o2;
     o = __nw__7TObjectFUl(0x20);
     if (o != NULL) {
-        o = TObjControl__ct(o, tl_04);
+        o = __ct__11TObjControlFP7TObject(o, tl_04);
     }
     o2 = __nw__7TObjectFUl(0x3A8);
     if (o2 != NULL) {

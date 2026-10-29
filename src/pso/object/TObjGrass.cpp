@@ -378,7 +378,7 @@ extern "C" u8 lbl_8043B760[];
 extern s32 lbl_805D2A38;
 u8 *TObjGrass__ct(u8 *arg0, s32 arg1, s32 arg2);
 void TLobby__sub_8001FE7C(void*, int);
-void *TObjControl__ct(void *, void *);
+void *__ct__11TObjControlFP7TObject(void *, void *);
 s32 update_movement_status__9TObjCharaFv();
 s32 update_action_hold_status__9TObjCharaFv();
 s32 *__dt__11TBoss4Type3FPvs(s32 *arg0, s16 arg1);
@@ -1709,7 +1709,7 @@ void *TObjGrass::create(void *arg0) {
     void *o2;
     o = __nw__7TObjectFUl(0x20);
     if (o != NULL) {
-        o = TObjControl__ct(o, tl_04);
+        o = __ct__11TObjControlFP7TObject(o, tl_04);
     }
     o2 = __nw__7TObjectFUl(0x404);
     if (o2 != NULL) {

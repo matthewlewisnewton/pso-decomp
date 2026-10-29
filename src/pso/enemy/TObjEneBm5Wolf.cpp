@@ -2490,7 +2490,7 @@ void receive_physical_attack__9TObjCharaFPvf(void);
 void receive_direct_attack__9TObjCharaFPv19DirectAttackPayloadPvll(void);
 void receive_weapon_special_attack__9TObjCharaFPvPv(void);
 void apply_defense_stat_status__9TObjCharaFPv();
-void apply_knockback_from_attacker__9TObjCharaFPUc(void);
+void apply_knockback_from_attacker__9TObjCharaFPUcf(void);
 void try_start_action__9TObjCharaFll(void);
 void roll_physical_accuracy__9TObjCharaFPvlf(void);
 void vfunc_28__14TObjEneBm5WolfFv(void);
@@ -2537,7 +2537,7 @@ void vfunc_75__9TObjCharaFf(void);
 void vfunc_76__9TObjCharaFv(void);
 void vfunc_77__9TObjCharaFv(void);
 void vfunc_78__9TObjCharaFl(void);
-void vfunc_79__9TObjEneDDFv(void);
+void vfunc_79__9TObjEneDDFPl(void);
 void apply_hit_message_flags__9TObjEnemyFPv(void);
 void apply_set_data__9TObjEnemyFPv(void);
 void clear_lobby_object_state__9TObjEnemyFv(void);
@@ -2587,7 +2587,7 @@ void *lbl_804922F8[107] = {
     (void *)receive_physical_attack__9TObjCharaFPvf,
     (void *)receive_direct_attack__9TObjCharaFPv19DirectAttackPayloadPvll,
     (void *)receive_weapon_special_attack__9TObjCharaFPvPv,
-    (void *)apply_knockback_from_attacker__9TObjCharaFPUc,
+    (void *)apply_knockback_from_attacker__9TObjCharaFPUcf,
     (void *)try_start_action__9TObjCharaFll,
     (void *)roll_physical_accuracy__9TObjCharaFPvlf,
     (void *)vfunc_28__14TObjEneBm5WolfFv,
@@ -2641,7 +2641,7 @@ void *lbl_804922F8[107] = {
     (void *)vfunc_76__9TObjCharaFv,
     (void *)vfunc_77__9TObjCharaFv,
     (void *)vfunc_78__9TObjCharaFl,
-    (void *)vfunc_79__9TObjEneDDFv,
+    (void *)vfunc_79__9TObjEneDDFPl,
     (void *)apply_hit_message_flags__9TObjEnemyFPv,
     (void *)apply_set_data__9TObjEnemyFPv,
     (void *)clear_lobby_object_state__9TObjEnemyFv,

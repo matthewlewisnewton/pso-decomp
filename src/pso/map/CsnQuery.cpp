@@ -135,7 +135,7 @@ void TObjPlayer__sub_80079120(s32);
 s32 evaluate_ground_triangles(s32, s32, u32 *);
 extern s32 lbl_804389CC[];
 extern s32 lbl_80500140[];
-s32 *csnVectorUnder(s32 arg0, u32 *arg1, s32 arg2);
+s32 *csnVectorUnder(Vec *arg0, u32 *arg1, s32 arg2);
 s32 TObjPlayer__sub_80079118(s32 * _w0);
 void TObjPlayer__sub_80079120(s32 _w0);
 extern u32 lbl_804FFD40[];
@@ -721,25 +721,25 @@ s32 *csnLookAt(s32 arg0, s32 arg1) {
     return var_r31;
 }
 
-s32 *csnVectorUnder(s32 arg0, u32 *arg1, s32 arg2) {
+s32 *csnVectorUnder(Vec *arg0, u32 *arg1, s32 arg2) {
     s32 *var_r31;
     TObjPlayer__sub_80079108();
     TObjPlayer__sub_8007911C();
-    TObjPlayer__sub_80079120(arg0);
+    TObjPlayer__sub_80079120((s32)arg0);
     var_r31 = lbl_80500140;
     if ((u32) *arg1 == 0U) {
         if (((u32)refill_csn_candidate_cache((P_80079C64 *)(arg0), (M_80079C64 **)(arg1), arg2)) == 0U) {
             var_r31 = NULL;
-        } else if (evaluate_ground_triangles(arg0, arg2, arg1) == 0) {
+        } else if (evaluate_ground_triangles((s32)arg0, arg2, arg1) == 0) {
             var_r31 = NULL;
         }
     } else {
-        if (evaluate_ground_triangles(arg0, arg2, arg1) != 0) {
+        if (evaluate_ground_triangles((s32)arg0, arg2, arg1) != 0) {
             goto done;
         }
         if (((u32)refill_csn_candidate_cache((P_80079C64 *)(arg0), (M_80079C64 **)(arg1), arg2)) == 0U) {
             var_r31 = NULL;
-        } else if (evaluate_ground_triangles(arg0, arg2, arg1) == 0) {
+        } else if (evaluate_ground_triangles((s32)arg0, arg2, arg1) == 0) {
             var_r31 = NULL;
         }
     }

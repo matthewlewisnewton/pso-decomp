@@ -98,7 +98,7 @@ void TBoss6Type1__sub_802B5DD4(void *);
 int post_translate_matrix(void*);
 void *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags);
 int rotate_matrix_x(void*, void*);
-s32 TObjControl__ct(s32, s32);
+s32 __ct__11TObjControlFP7TObject(s32, s32);
 void free_collision_body_parts(void *);
 s32 get_bml_motion(s32, s32);
 s32 TObjFish__sub_8001EDB0(s32, s32);
@@ -477,7 +477,7 @@ s32 TBoss6Mine::create(s32 arg0) {
     if (var_r31 != 0) {
         var_r4 = __nw__7TObjectFUl(0x20);
         if (var_r4 != 0) {
-            var_r4 = TObjControl__ct(var_r4, tl_04);
+            var_r4 = __ct__11TObjControlFP7TObject(var_r4, tl_04);
         }
         var_r31 = TBoss6Mine__ct(var_r31, var_r4, arg0);
     }

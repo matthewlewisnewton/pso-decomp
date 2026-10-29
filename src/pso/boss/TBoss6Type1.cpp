@@ -1205,7 +1205,7 @@ extern const f32 lbl_805DE3D0;
 s32 angle_difference_abs(int, int);
 s32 approach_angle_limited(int, int, int);
 s32 TBoss6Type1__ct(s32, s32, s32);
-s32 TObjControl__ct(s32, s32);
+s32 __ct__11TObjControlFP7TObject(s32, s32);
 s32 __nw__7TObjectFUl(s32);
 
 void TBoss6Type1::reset_param() {
@@ -2517,7 +2517,7 @@ s32 TBoss6Type1::create(s32 arg2_) {
     if (arg0_ != 0) {
         var_r4 = __nw__7TObjectFUl(0x20);
         if (var_r4 != 0) {
-            var_r4 = TObjControl__ct(var_r4, tl_04);
+            var_r4 = __ct__11TObjControlFP7TObject(var_r4, tl_04);
         }
         arg0_ = TBoss6Type1__ct(arg0_, var_r4, arg2_);
     }

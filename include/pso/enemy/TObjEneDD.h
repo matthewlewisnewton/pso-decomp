@@ -14,7 +14,7 @@ struct TObjEneDD : public TObjEnemy {
     void reset_state_fields();
     void init_common_from(u8 *);
     void clear_attack_receipts();
-    virtual void vfunc_79();
+    virtual void vfunc_79(s32 *);
     virtual s32 vfunc_83();
     virtual s32 vfunc_84();
     virtual void vfunc_85();

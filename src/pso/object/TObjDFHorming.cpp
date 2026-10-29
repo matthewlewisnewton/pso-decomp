@@ -781,7 +781,7 @@ extern "C" {
 s32 TBoss4DarkFalz__ct(s32 a0, s32 arg1, s32 a2);
 int TBoss4DarkFalz__sub_8030AD38(void);
 int TLobby__sub_8001FE7C(void*, void*);
-s32 TObjControl__ct(s32, s32);
+s32 __ct__11TObjControlFP7TObject(s32, s32);
 s32 __nw__7TObjectFUl(s32);
 
 void TBoss4DarkFalz::render() {  }
@@ -976,7 +976,7 @@ s32 TBoss4DarkFalz::create(s32 arg0) {
     if (var_r31 != 0) {
         var_r4 = __nw__7TObjectFUl(0x20);
         if (var_r4 != 0) {
-            var_r4 = TObjControl__ct(var_r4, tl_04);
+            var_r4 = __ct__11TObjControlFP7TObject(var_r4, tl_04);
         }
         var_r31 = TBoss4DarkFalz__ct(var_r31, var_r4, arg0);
     }

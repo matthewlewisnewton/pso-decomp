@@ -16,7 +16,7 @@ extern s32 __vt__12TObjNpcNFW01[];
 extern s32 TObjNpcNFW01__name;
 extern s32 *TObjNpcNFW01__shared_object_resource;
 extern s32 TObjNpcNFW01__texture_gvm;
-void *TObjControl__ct(void *, void *);
+void *__ct__11TObjControlFP7TObject(void *, void *);
 void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
 
@@ -51,7 +51,7 @@ void * TObjNpcNHW00__create(void *arg0) {
     void *o2;
     o = __nw__7TObjectFUl(0x20);
     if (o != NULL) {
-        o = TObjControl__ct(o, tl_04);
+        o = __ct__11TObjControlFP7TObject(o, tl_04);
     }
     o2 = __nw__7TObjectFUl(0x3B8);
     if (o2 != NULL) {

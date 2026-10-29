@@ -57,7 +57,7 @@ public:
     virtual f32 receive_physical_attack(void *, f32);
     virtual f32 receive_direct_attack(void *, DirectAttackPayload, void *, s32, s32);
     virtual f32 receive_weapon_special_attack(void *, void *);
-    virtual void apply_knockback_from_attacker(u8 *);
+    virtual void apply_knockback_from_attacker(u8 *, f32);
     virtual s32 try_start_action(s32, s32);
     virtual s32 roll_physical_accuracy(void *, s32, f32);
     virtual void vfunc_28();
@@ -112,7 +112,6 @@ public:
     virtual void vfunc_76();
     virtual void vfunc_77();
     virtual void vfunc_78(s32);
-    void *destroy_motion_object(s16);
     void request_box_item_drop(void *, s16);
     f32 get_speed();
     virtual void *get_center();
@@ -257,5 +256,7 @@ public:
     Vec *body_center() { return (Vec *)&m_2fc; }
     Vec *velocity() { return (Vec *)unk_308; }
 };
+
+extern "C" void *__dt__9TObjCharaFv(void *, s16);
 
 #endif

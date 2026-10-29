@@ -705,7 +705,7 @@ void try_start_action__6TOTrapFll();
 u8 TOTrap__sub_801792CC(u8 *arg0, s32 arg1);
 u8 TOTrap__sub_801792E4(u8 *arg0, s32 arg1);
 u8 TOTrap__sub_801792FC(u8 *arg0, s32 arg1);
-void apply_knockback_from_attacker__6TOTrapFPUc();
+void apply_knockback_from_attacker__6TOTrapFPUcf();
 void vfunc_29__9TObjCharaFv();
 void vfunc_74__9TObjCharaFl();
 void recalc_stats__9TObjCharaFv();
@@ -815,7 +815,7 @@ void *__vt__14TOTrapSeabed01[91] = {
     (void *)&TOTrapSeabed01__vt20,
     (void *)&check_trigger_range__6TOTrapFUl,
     (void *)&get_scale__6TOTrapFUl,
-    (void *)&apply_knockback_from_attacker__6TOTrapFPUc,
+    (void *)&apply_knockback_from_attacker__6TOTrapFPUcf,
     (void *)&try_start_action__6TOTrapFll,
     (void *)&TOTrap__sub_801792CC,
     (void *)&vfunc_28__9TObjCharaFv,

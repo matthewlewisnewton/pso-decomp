@@ -265,7 +265,7 @@ s32 TOMine::is_target_in_list(void *obj) {
 
 s32 TOMine::roll_physical_accuracy(void *, s32, f32) { return 1; }
 s32 TOMine::try_start_action(s32, s32) { return 1; }
-void TOMine::apply_knockback_from_attacker(u8 *) {  }
+void TOMine::apply_knockback_from_attacker(u8 *, f32) {  }
 void TOMine::vfunc_79() {  }
 s32 TOMineTrap::check_trigger(u32 arg1) {
     if (is_target_in_list((void *)arg1) == 1) {

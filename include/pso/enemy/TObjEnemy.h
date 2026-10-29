@@ -22,7 +22,7 @@ struct TObjEnemy : public TObjChara {
     void set_flags_B0(u32);
     void sub_800A7798(f32);
     void render_with_position_override(u8 *, s32);
-    virtual void vfunc_79();
+    virtual void vfunc_79(s32 *);
     virtual void apply_hit_message_flags(void *);
     virtual void apply_set_data(void *);
     virtual void clear_lobby_object_state();

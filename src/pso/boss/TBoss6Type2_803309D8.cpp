@@ -17,7 +17,7 @@ struct VObj_803309D8 : Base_803309D8 {
 
 extern "C" {
 
-s32 TObjControl__ct(s32, s32);
+s32 __ct__11TObjControlFP7TObject(s32, s32);
 s32 __nw__7TObjectFUl(s32);
 
 extern s32 tl_04;
@@ -30,7 +30,7 @@ s32 TBoss6Type2::create_mag(s32 arg0) {
     if (var_r31 != 0) {
         var_r4 = __nw__7TObjectFUl(0x20);
         if (var_r4 != 0) {
-            var_r4 = TObjControl__ct(var_r4, tl_04);
+            var_r4 = __ct__11TObjControlFP7TObject(var_r4, tl_04);
         }
         var_r31 = (s32)TBoss6Mag__ct((u8 *)var_r31, var_r4, (u8 *)arg0);
     }

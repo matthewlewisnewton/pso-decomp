@@ -583,7 +583,7 @@ void request_follow_camera_offsets(void *arg0, void *arg1, u16 arg2);
 void *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags);
 void *spawn_particle_effect(void *pos, s32 id);
 void *create_particle_emitter(void *pos, s32 id);
-s32 TObjControl__ct(s32, s32);
+s32 __ct__11TObjControlFP7TObject(s32, s32);
 s32 angle_diff_s16(s32, s32);
 s32 mem_free(s32 *);
 s32 * mem_alloc(s32);
@@ -3261,7 +3261,7 @@ s32 TBoss6Type2::create(s32 arg2_) {
     if (arg0_ != 0) {
         parent = __nw__7TObjectFUl(0x20);
         if (parent != 0) {
-            parent = TObjControl__ct(parent, tl_04);
+            parent = __ct__11TObjControlFP7TObject(parent, tl_04);
         }
         arg0_ = TBoss6Type2__ct(arg0_, parent, arg2_);
     }

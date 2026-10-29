@@ -126,7 +126,7 @@ void *__dt__12TPhotonLaserFv(void *arg0, s16 arg1) {
             queue_destruction__7TObjectFv(*(void **)((s8 *)arg0 + 0x364));
             ((TPhotonLaser *)arg0)->m_364 = 0U;
         }
-        ((TObjChara *)arg0)->destroy_motion_object(0);
+        __dt__9TObjCharaFv(arg0, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }

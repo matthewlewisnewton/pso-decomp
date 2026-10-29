@@ -306,7 +306,7 @@ u8 is_below_half_hp__14TObjEnePanarmsFPv(void *arg0);
 s32 TObjEnePanarms__sub_800E2FB4(O_800E2FB4 *self);
 int clear_render_callback__8TObjFishFv(void);
 s32 copy_target_state__14TObjEnePanarmsFPv(void *, s32);
-s32 TObjControl__ct(s32, s32);
+s32 __ct__11TObjControlFP7TObject(s32, s32);
 void refresh_lobby_state__10TObjPlayerFv();
 void *__dt__9TObjEnemyFv(TObjEnemy *arg0, s16 arg1);
 f32 horizontal_distance_squared(void *, void *);
@@ -1574,7 +1574,7 @@ s32 TObjEnePanarms::create_bara(s32 arg0, s32 arg1) {
     if (var_r31 != 0) {
         var_r4 = __nw__7TObjectFUl(0x20);
         if (var_r4 != 0) {
-            var_r4 = TObjControl__ct(var_r4, tl_04);
+            var_r4 = __ct__11TObjControlFP7TObject(var_r4, tl_04);
         }
         var_r31 = TObjEnePanBARA__ct(var_r31, var_r4, arg0, arg1);
     }

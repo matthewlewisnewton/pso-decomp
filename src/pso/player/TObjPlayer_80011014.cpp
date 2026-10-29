@@ -360,7 +360,7 @@ void subtractive_rng_seed(void *, u16);
 void __ct__14SubtractiveRngFv(void *);
 void TObjMotion__ct(void *, void *);
 void __construct_array(void *, void *, void *, u32, u32);
-extern void *lbl_804806E8[];
+extern void *__vt__9TObjChara[];
 Obj_80019038 *__ct__9TObjCharaFP7TObject(Obj_80019038 *self, void *parent);
 }
 void reset_status_effect_row(u8 *arg0);
@@ -829,7 +829,7 @@ s32 add_actor_hp_bonus(O_80011378 *self, s32 x);
 u16 find_nearest_visible_player(u8 *arg0, Vec_800115C4 *arg1, f32 farg0);
 s32 is_actor_cadence_frame__9TObjCharaFl(O_80011704 *self, s32 x);
 void apply_actor_gravity(TObjEnemy *arg0, s32 *arg1, f32 farg0);
-void apply_knockback_from_attacker__9TObjCharaFPUc(u8 *arg0, u8 *arg1);
+void apply_knockback_from_attacker__9TObjCharaFPUcf(u8 *arg0, u8 *arg1);
 int vfunc_67__9TObjCharaFf(void);
 int vfunc_66__9TObjCharaFv(void);
 void get_anim_node_position__9TObjCharaFlP3Vec(void);
@@ -862,7 +862,7 @@ u8 * vfunc_18__9TObjCharaFPUc(u8 *arg0, u8 *arg1);
 u8 * update_actor_ground_y__9TObjCharaFv(u8 *arg0);
 void* get_center__9TObjCharaFv(void* p);
 void reset_motion_fields__9TObjCharaFv(Obj_80018F64 *self);
-void * destroy_motion_object__9TObjCharaFs(void *arg0, s16 arg1);
+void * __dt__9TObjCharaFv(void *arg0, s16 arg1);
 void get_pos__9TObjCharaFl(s32 arg0, s32 arg1);
 f32 TObjPlayer__sub_800192C4(Obj800192C4 *self, s32 i);
 int obj_getArrWord_254(ObjArr254* p, int i);
@@ -1878,10 +1878,10 @@ void apply_attack_stat_status__9TObjCharaFPv(TObjPlayer *arg0, StatStatusReceipt
 void cure_paralysis__9TObjCharaFv(Obj_80014B5C *self);
 void clear_all_status_effects__9TObjCharaFv(u8 *arg0);
 
-void *lbl_804806E8[] = {
+void *__vt__9TObjChara[] = {
     0,
     0,
-    (void *)destroy_motion_object__9TObjCharaFs,
+    (void *)__dt__9TObjCharaFv,
     (void *)run_task__7TObjectFv,
     (void *)render__7TObjectFv,
     (void *)render_shadows__7TObjectFv,
@@ -1904,7 +1904,7 @@ void *lbl_804806E8[] = {
     (void *)receive_physical_attack__9TObjCharaFPvf,
     (void *)receive_direct_attack__9TObjCharaFPv19DirectAttackPayloadPvll,
     (void *)receive_weapon_special_attack__9TObjCharaFPvPv,
-    (void *)apply_knockback_from_attacker__9TObjCharaFPUc,
+    (void *)apply_knockback_from_attacker__9TObjCharaFPUcf,
     (void *)try_start_action__9TObjCharaFll,
     (void *)roll_physical_accuracy__9TObjCharaFPvlf,
     (void *)vfunc_28__9TObjCharaFv,
@@ -2813,7 +2813,7 @@ f32 TObjChara::receive_direct_attack(void *att, DirectAttackPayload payload, voi
 #undef SUB_HP
 #pragma pop
 
-void TObjChara::apply_knockback_from_attacker(u8 *arg1) {
+void TObjChara::apply_knockback_from_attacker(u8 *arg1, f32) {
     Vec_8001401C diff;
     f32 scale;
     if (((s32 (*)(void))obj_isState2_324__9TObjCharaFv)() != 1 && ((s32 (*)(void *, int))obj_testFlags30__14TObjCollidableFUl)(this, 0x04000000) == 0) {
@@ -4494,15 +4494,15 @@ void TObjChara::reset_motion_fields() {
     self->v2fc.x = self->v2fc.y = self->v2fc.z = self->v308.x = self->v308.y = self->v308.z = (0.0f);
 }
 
-void *TObjChara::destroy_motion_object(s16 arg1) {
-    if (this != NULL) {
-        *(s32 **)((s8 *)this + 0x18) = (s32 *)lbl_804806E8;
-        __dt__10TObjMotionFv(this, 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(this);
+void *__dt__9TObjCharaFv(void *self, s16 deleteFlag) {
+    if (self != NULL) {
+        *(s32 **)((s8 *)self + 0x18) = (s32 *)__vt__9TObjChara;
+        __dt__10TObjMotionFv(self, 0);
+        if (deleteFlag > 0) {
+            __dl__7TObjectFPv(self);
         }
     }
-    return this;
+    return self;
 }
 
 #pragma push
@@ -4513,7 +4513,7 @@ Obj_80019038 *__ct__9TObjCharaFP7TObject(Obj_80019038 *self, void *parent) {
     s32 i;
     s32 j;
     TObjMotion__ct(self, parent);
-    *(s32 **)((s8 *)self + 0x18) = (s32 *)lbl_804806E8;
+    *(s32 **)((s8 *)self + 0x18) = (s32 *)__vt__9TObjChara;
     ((TObjPlayer *)(p + 0x120))->register_object();
     __ct__14SubtractiveRngFv(p + 0x160);
     __construct_array(p + 0x254, (void *)TObjPlayer::init_192dc_return_self, 0, 0xC, 5);

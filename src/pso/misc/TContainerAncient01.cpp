@@ -252,7 +252,7 @@ s32 __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
 
 extern "C" void receive_weapon_special_attack__20TContainerAncient01RFPvPv();
-extern "C" void apply_knockback_from_attacker__20TContainerAncient01RFPUc();
+extern "C" void apply_knockback_from_attacker__20TContainerAncient01RFPUcf();
 extern "C" void try_start_action__20TContainerAncient01RFll();
 extern "C" void roll_physical_accuracy__20TContainerAncient01RFPvlf();
 extern "C" void vfunc_29__9TObjCharaFv();
@@ -365,7 +365,7 @@ void *__vt__20TContainerAncient01R[79] = {
     (void *)&get_name__8TObjBaseFv, (void *)&interact__14TObjCollidableFl, (void *)&add_actor_exp__9TObjCharaFl, (void *)&consume_timer_field__9TObjCharaFl,
     (void *)&get_actor_level_index__9TObjCharaFv, (void *)&update_actor_ground_y__9TObjCharaFv, (void *)&vfunc_18__9TObjCharaFPUc, (void *)&is_actor_cadence_frame__9TObjCharaFl,
     (void *)&is_within_range__19TContainerAncient01Fii, (void *)&calc_distance_accuracy_penalty__20TContainerAncient01RFPvPvPvf, (void *)&receive_physical_attack__20TContainerAncient01RFPvf, (void *)&receive_direct_attack__20TContainerAncient01RFPv19DirectAttackPayloadPvll,
-    (void *)&receive_weapon_special_attack__20TContainerAncient01RFPvPv, (void *)&apply_knockback_from_attacker__20TContainerAncient01RFPUc, (void *)&try_start_action__20TContainerAncient01RFll, (void *)&roll_physical_accuracy__20TContainerAncient01RFPvlf,
+    (void *)&receive_weapon_special_attack__20TContainerAncient01RFPvPv, (void *)&apply_knockback_from_attacker__20TContainerAncient01RFPUcf, (void *)&try_start_action__20TContainerAncient01RFll, (void *)&roll_physical_accuracy__20TContainerAncient01RFPvlf,
     (void *)&vfunc_28__9TObjCharaFv, (void *)&vfunc_29__9TObjCharaFv, (void *)&is_target_in_attack_range__9TObjCharaFv, (void *)&test_flag_256__9TObjCharaFv,
     (void *)&test_flag30_512__9TObjCharaFv, (void *)&has_flag_0x800__9TObjCharaFv, (void *)&test_flag_1000__9TObjCharaFv, (void *)&update_poison_status__9TObjCharaFv,
     (void *)&update_action_hold_status__9TObjCharaFv, (void *)&vfunc_37__9TObjCharaFv, (void *)&update_flag30_timer__9TObjCharaFv, (void *)&update_movement_status__9TObjCharaFv,
@@ -664,7 +664,7 @@ void *dt__20TContainerAncient01RFPvs(void *arg0, s16 arg1) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__20TContainerAncient01R;
         ((TObjCollidable *)arg0)->unregister_object_by_id();
         free_collision_body_parts(arg0);
-        ((TObjChara *)arg0)->destroy_motion_object(0);
+        __dt__9TObjCharaFv(arg0, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }
@@ -1145,7 +1145,7 @@ void *__dt__19TContainerAncient01Fv(void *arg0, s16 arg1) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__19TContainerAncient01;
         ((TObjCollidable *)arg0)->unregister_object_by_id();
         free_collision_body_parts(arg0);
-        ((TObjChara *)arg0)->destroy_motion_object(0);
+        __dt__9TObjCharaFv(arg0, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }
@@ -1189,7 +1189,7 @@ f32 TContainerAncient01R::receive_weapon_special_attack(void *, void *) {
     return TContainerAncient01__data_805DBD14[0];
 }
 
-void TContainerAncient01R::apply_knockback_from_attacker(u8 *) {  }
+void TContainerAncient01R::apply_knockback_from_attacker(u8 *, f32) {  }
 s32 TContainerAncient01R::try_start_action(s32, s32) { return 1; }
 s32 TContainerAncient01R::roll_physical_accuracy(void *, s32, f32) { return 1; }
 
@@ -1205,7 +1205,7 @@ f32 TContainerAncient01::receive_weapon_special_attack(void *, void *) {
     return TContainerAncient01__data_805DBD14[0];
 }
 
-void TContainerAncient01::apply_knockback_from_attacker(u8 *) {  }
+void TContainerAncient01::apply_knockback_from_attacker(u8 *, f32) {  }
 s32 TContainerAncient01::try_start_action(s32, s32) { return 1; }
 s32 TContainerAncient01::roll_physical_accuracy(void *, s32, f32) { return 1; }
 }

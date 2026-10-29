@@ -241,7 +241,7 @@ void TObjPlayer__sub_800AA330(void *);
 s32 submit_cursor_candidate(void *, s32);
 s32 minimap_render_dot(void *, s32, s32, s32);
 s32 obj_testFlags30__14TObjCollidableFUl(void *, s32);
-void *TObjControl__ct(void *, void *);
+void *__ct__11TObjControlFP7TObject(void *, void *);
 void *TObjEneDubchik__ct(void *, void *, void *);
 extern void *tl_04;
 s32 TObjPlayer__sub_800AAFF0(int);
@@ -1076,7 +1076,7 @@ void *TObjPlayer::create_dubchik(void *arg0) {
     void *o2;
     o = __nw__7TObjectFUl(0x20);
     if (o != NULL) {
-        o = TObjControl__ct(o, tl_04);
+        o = __ct__11TObjControlFP7TObject(o, tl_04);
     }
     o2 = __nw__7TObjectFUl(0x41C);
     if (o2 != NULL) {

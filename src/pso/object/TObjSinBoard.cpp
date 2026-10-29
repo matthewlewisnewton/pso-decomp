@@ -1480,7 +1480,7 @@ void *TUnk_804B8E18::destroy_player_obj(s16 arg1) {
         *(s32 **)((s8 *)this + 0x18) = lbl_804B8E18;
         unregister_object_by_id();
         clear_collision_bodies();
-        destroy_motion_object(0);
+        __dt__9TObjCharaFv(this, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(this);
         }

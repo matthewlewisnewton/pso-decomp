@@ -178,7 +178,7 @@ void *__dt_deleting__11TBoss4BishiFPvs(void *arg0, s16 arg1);
 s32 create__11TBoss4BishiFi(s32 arg0);
 void try_enter_state_3__11TBoss4BishiFPv(void* p);
 
-s32 TObjControl__ct(s32, s32);
+s32 __ct__11TObjControlFP7TObject(s32, s32);
 
 s32 __nw__7TObjectFUl(s32);
 
@@ -351,7 +351,7 @@ s32 TBoss4Zako::create(s32 arg0) {
     if (var_r31 != 0) {
         parent = __nw__7TObjectFUl(0x20);
         if (parent != 0) {
-            parent = TObjControl__ct(parent, tl_04);
+            parent = __ct__11TObjControlFP7TObject(parent, tl_04);
         }
         var_r31 = TBoss4Zako__ct(var_r31, parent, arg0);
     }
@@ -692,7 +692,7 @@ s32 create__9TBoss4UroFi(s32 arg0) {
     if (var_r31 != 0) {
         var_r4 = __nw__7TObjectFUl(0x20);
         if (var_r4 != 0) {
-            var_r4 = TObjControl__ct(var_r4, tl_04);
+            var_r4 = __ct__11TObjControlFP7TObject(var_r4, tl_04);
         }
         var_r31 = TBoss4Uro__ct(var_r31, var_r4, arg0);
     }
@@ -923,7 +923,7 @@ s32 create__11TBoss4BishiFi(s32 arg0) {
     if (var_r31 != 0) {
         parent = __nw__7TObjectFUl(0x20);
         if (parent != 0) {
-            parent = TObjControl__ct(parent, tl_04);
+            parent = __ct__11TObjControlFP7TObject(parent, tl_04);
         }
         var_r31 = TBoss4Bishi__ct(var_r31, parent, arg0);
     }
@@ -1116,7 +1116,7 @@ void is_actor_cadence_frame__9TObjCharaFl();
 void receive_weapon_special_attack__9TObjCharaFPvPv();
 void apply_defense_stat_status__9TObjCharaFPv();
 void receive_direct_attack__9TObjCharaFPv19DirectAttackPayloadPvll();
-void apply_knockback_from_attacker__9TObjCharaFPUc();
+void apply_knockback_from_attacker__9TObjCharaFPUcf();
 void receive_physical_attack__9TObjCharaFPvf();
 void vfunc_67__9TObjCharaFf();
 void vfunc_66__9TObjCharaFv();
@@ -1165,7 +1165,7 @@ void render_shadows__9TObjEnemyFv(u8 *arg0);
 void get_name__9TObjEnemyFv();
 void vfunc_74__9TObjEnemyFl();
 void apply_hit_message_flags__9TObjEnemyFPv();
-void vfunc_79__9TObjEnemyFv();
+void vfunc_79__9TObjEnemyFPl();
 void apply_set_data__9TObjEnemyFPv();
 void apply_object_set_data__8TObjBaseFPv();
 void vfunc_6__8TObjBaseFPsl();
@@ -1197,7 +1197,7 @@ s32 __vt__11TBoss4Bishi[83] = {
     (s32)receive_physical_attack__9TObjCharaFPvf,
     (s32)receive_direct_attack__9TObjCharaFPv19DirectAttackPayloadPvll,
     (s32)receive_weapon_special_attack__9TObjCharaFPvPv,
-    (s32)apply_knockback_from_attacker__9TObjCharaFPUc,
+    (s32)apply_knockback_from_attacker__9TObjCharaFPUcf,
     (s32)try_start_action__9TObjCharaFll,
     (s32)roll_physical_accuracy__9TObjCharaFPvlf,
     (s32)vfunc_28__9TObjCharaFv,
@@ -1251,7 +1251,7 @@ s32 __vt__11TBoss4Bishi[83] = {
     (s32)vfunc_76__9TObjCharaFv,
     (s32)vfunc_77__9TObjCharaFv,
     (s32)vfunc_78__9TObjCharaFl,
-    (s32)vfunc_79__9TObjEnemyFv,
+    (s32)vfunc_79__9TObjEnemyFPl,
     (s32)apply_hit_message_flags__9TObjEnemyFPv,
     (s32)apply_set_data__9TObjEnemyFPv,
     (s32)clear_lobby_object_state__9TObjEnemyFv,
@@ -1282,7 +1282,7 @@ s32 __vt__9TBoss4Uro[83] = {
     (s32)receive_physical_attack__9TObjCharaFPvf,
     (s32)receive_direct_attack__9TObjCharaFPv19DirectAttackPayloadPvll,
     (s32)receive_weapon_special_attack__9TObjCharaFPvPv,
-    (s32)apply_knockback_from_attacker__9TObjCharaFPUc,
+    (s32)apply_knockback_from_attacker__9TObjCharaFPUcf,
     (s32)try_start_action__9TObjCharaFll,
     (s32)roll_physical_accuracy__9TObjCharaFPvlf,
     (s32)vfunc_28__9TObjCharaFv,
@@ -1336,7 +1336,7 @@ s32 __vt__9TBoss4Uro[83] = {
     (s32)vfunc_76__9TObjCharaFv,
     (s32)vfunc_77__9TObjCharaFv,
     (s32)vfunc_78__9TObjCharaFl,
-    (s32)vfunc_79__9TObjEnemyFv,
+    (s32)vfunc_79__9TObjEnemyFPl,
     (s32)apply_hit_message_flags__9TObjEnemyFPv,
     (s32)apply_set_data__9TObjEnemyFPv,
     (s32)clear_lobby_object_state__9TObjEnemyFv,
@@ -1367,7 +1367,7 @@ s32 __vt__10TBoss4Zako[83] = {
     (s32)receive_physical_attack__9TObjCharaFPvf,
     (s32)receive_direct_attack__9TObjCharaFPv19DirectAttackPayloadPvll,
     (s32)receive_weapon_special_attack__9TObjCharaFPvPv,
-    (s32)apply_knockback_from_attacker__9TObjCharaFPUc,
+    (s32)apply_knockback_from_attacker__9TObjCharaFPUcf,
     (s32)try_start_action__9TObjCharaFll,
     (s32)roll_physical_accuracy__9TObjCharaFPvlf,
     (s32)vfunc_28__9TObjCharaFv,
@@ -1421,7 +1421,7 @@ s32 __vt__10TBoss4Zako[83] = {
     (s32)vfunc_76__9TObjCharaFv,
     (s32)vfunc_77__9TObjCharaFv,
     (s32)vfunc_78__9TObjCharaFl,
-    (s32)vfunc_79__9TObjEnemyFv,
+    (s32)vfunc_79__9TObjEnemyFPl,
     (s32)apply_hit_message_flags__9TObjEnemyFPv,
     (s32)apply_set_data__9TObjEnemyFPv,
     (s32)clear_lobby_object_state__9TObjEnemyFv,

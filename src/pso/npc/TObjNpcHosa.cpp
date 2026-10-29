@@ -34,7 +34,7 @@ s32 get_bml_model(int, int);
 extern s32 __vt__11TObjNpcHosa[];
 extern s32 TObjNpcHosa__name;
 void TLobby__sub_8001FE7C(void*, int);
-void *TObjControl__ct(void *, void *);
+void *__ct__11TObjControlFP7TObject(void *, void *);
 void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
 
@@ -87,7 +87,7 @@ void * TObjNpcKenkyuW__create(void *arg0) {
     void *o2;
     o = __nw__7TObjectFUl(0x20);
     if (o != NULL) {
-        o = TObjControl__ct(o, tl_04);
+        o = __ct__11TObjControlFP7TObject(o, tl_04);
     }
     o2 = __nw__7TObjectFUl(0x3B8);
     if (o2 != NULL) {

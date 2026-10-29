@@ -109,7 +109,7 @@ f32 TUnk_804B6C24::receive_weapon_special_attack(void *, void *) {
     return lbl_805DB39C;
 }
 
-void TUnk_804B6C24::apply_knockback_from_attacker(u8 *) {  }
+void TUnk_804B6C24::apply_knockback_from_attacker(u8 *, f32) {  }
 s32 TUnk_804B6C24::try_start_action(s32, s32) { return 1; }
 s32 TUnk_804B6C24::roll_physical_accuracy(void *, s32, f32) { return 1; }
 

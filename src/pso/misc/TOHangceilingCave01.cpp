@@ -871,7 +871,7 @@ void *TOHangceilingCave01KeyQuick::destroy_hanging_object(s16 arg1) {
         *(s32 **)((s8 *)this + 0x18) = lbl_804B2578;
         this->unregister_object_by_id();
         free_collision_body_parts(this);
-        this->destroy_motion_object(0);
+        __dt__9TObjCharaFv(this, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(this);
         }
@@ -903,7 +903,7 @@ f32 TUnk_804B2578::receive_physical_attack(void *, f32) {
     return 0.0f;
 }
 
-void TUnk_804B2578::apply_knockback_from_attacker(u8 *) {  }
+void TUnk_804B2578::apply_knockback_from_attacker(u8 *, f32) {  }
 
 void TUnk_804B2578::set_scale(f32 v) { this->m_338 = v; }
 

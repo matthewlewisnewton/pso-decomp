@@ -46,7 +46,7 @@ s32 TObjEneMe3Stelth::try_spawn_ground_effect(s32 arg1) {
   u8 *temp_r3;
   VecCopy((Vec *)(&stack.sp8), (const Vec *)arg1);
   stack.spC += TObjEneMe3Stelth__data_805DA808;
-  temp_r3 = (u8 *) csnVectorUnder((s32)&stack.sp8, (u32 *)(arg0 + 0x120), 0x15);
+  temp_r3 = (u8 *) csnVectorUnder((Vec *)&stack.sp8, (u32 *)(arg0 + 0x120), 0x15);
   if ((temp_r3 != 0) && ((*((s32 *) (((s8 *) temp_r3) + 0))) & 4))
   {
     particle_effect = ((s32)spawn_particle_effect((void *)((int) ((*((s32 *) (((s8 *) temp_r3) + 4))) + 0x38)), 0x49));

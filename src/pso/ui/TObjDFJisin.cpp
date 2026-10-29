@@ -320,7 +320,7 @@ S_80050A68 *__dt__13TObjDFHormingFv(S_80050A68 *o, s16 flag) {
                 o->ptr[i] = 0;
             }
         }
-        ((TObjChara *)o)->destroy_motion_object(0);
+        __dt__9TObjCharaFv(o, 0);
         if (flag > 0) {
             __dl__7TObjectFPv(o);
         }
@@ -603,7 +603,7 @@ void apply_action_hold_status__9TObjCharaFf();
 void apply_anti_technique__9TObjCharaFl();
 void apply_attack_stat_status__9TObjCharaFPv();
 void apply_confusion_status__9TObjCharaFv();
-void apply_knockback_from_attacker__9TObjCharaFPUc();
+void apply_knockback_from_attacker__9TObjCharaFPUcf();
 void apply_movement_ailment__9TObjCharaFl();
 void apply_object_set_data__8TObjBaseFPv();
 void apply_paralysis__9TObjCharaFv();
@@ -676,7 +676,7 @@ void *__vt__13TObjDFHorming[] = {
     (void *)receive_physical_attack__9TObjCharaFPvf,
     (void *)receive_direct_attack__9TObjCharaFPv19DirectAttackPayloadPvll,
     (void *)receive_weapon_special_attack__9TObjCharaFPvPv,
-    (void *)apply_knockback_from_attacker__9TObjCharaFPUc,
+    (void *)apply_knockback_from_attacker__9TObjCharaFPUcf,
     (void *)try_start_action__9TObjCharaFll,
     (void *)roll_physical_accuracy__9TObjCharaFPvlf,
     (void *)vfunc_28__9TObjCharaFv,
