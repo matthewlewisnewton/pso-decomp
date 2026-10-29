@@ -5164,8 +5164,10 @@ void TBoss1Dragon::reset_tail_hp() {
 }
 
 void TBoss1Dragon::reload_difficulty_stats() {
-    s32 arg0 = (s32)this;
-    reload_stats_keep_hp_tp__9TObjEneDDFv((void *)arg0, (int) (*(s32 *)((s8 *)&TBoss1Dragon__data_805D4B00 + (*(s32 *)((s8 *)((s32 *)TBoss1Dragon__data_80480CE0) + 0x11c) * 4))), (int) (*(s32 *)((s8 *)(&(*(RecoveredGlobal_80064CFC_lbl_804FF5A0 *)&TBoss1Dragon__part_hp_stats).value) + (*(s32 *)((s8 *)((s32 *)TBoss1Dragon__data_80480CE0) + 0x130) * 4))), (int) (*(s32 *)((s8 *)&TBoss1Dragon__data_805D4B04 + (*(s32 *)((s8 *)((s32 *)TBoss1Dragon__data_80480CE0) + 0x144) * 4))));
+    reload_stats_keep_hp_tp__9TObjEneDDFv(this,
+        (&TBoss1Dragon__data_805D4B00)[boss1_dragon_base_stat_indices[0]],
+        ((s32 *)&TBoss1Dragon__part_hp_stats)[boss1_dragon_attack_stat_indices[0]],
+        (&TBoss1Dragon__data_805D4B04)[boss1_dragon_resistance_stat_indices[0]]);
 }
 
 #pragma push
