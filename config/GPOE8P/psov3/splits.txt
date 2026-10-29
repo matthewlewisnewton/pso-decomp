@@ -11286,6 +11286,7 @@ pso/misc/GbaDownloadRuntime.cpp:
 pso/ui/TAdWarningBaseGC_8032CE1C.cpp:
 	.text       start:0x8032CE1C end:0x8032D154
 	.data       start:0x804EDB70 end:0x804EDBD0
+	.bss        start:0x805434B0 end:0x805434D0
 	.sbss       start:0x805D6CF8 end:0x805D6D00
 
 pso/ui/TAdWarningBaseGC_8032D154.cpp:
