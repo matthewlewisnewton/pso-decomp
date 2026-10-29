@@ -3431,10 +3431,10 @@ void *__dt__12TObjEneDD_STFv(void *arg0, s16 arg1);
 s32 free_collision_body_parts(void *);
 s32 __dl__7TObjectFPv(void *);
 s32 __ct__12TObjEneDD_STFP7TObject(void *, void *);
-s32 reset_hp__9TObjEneDDFv(void *, int, int, int, int);
-s32 initialize_enemy_state__9TObjEneDDFv(void *, int);
-s32 init_model__9TObjEneDDFv(void *, void *, int);
-s32 invoke_initialization_hook__9TObjEneDDFv(void *, void *);
+s32 reset_hp__9TObjEneDDFPUcPUcPUc(void *, int, int, int, int);
+s32 initialize_enemy_state__9TObjEneDDFl(void *, int);
+s32 init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, int);
+s32 invoke_initialization_hook__9TObjEneDDFPv(void *, void *);
 s32 init_collision_body_parts(void *, void *, int);
 void *__ct__14TObjCollidableFP7TObject(void *, int);
 void *__nw__7TObjectFUl(int);
@@ -3534,23 +3534,23 @@ u8 *TObjEneBm5Wolf__ct(u8 *ene_bm5_wolf, void *arg1, void *arg2) {
     TObjEneBm5Wolf__sub_800B8A24(ene_bm5_wolf + 0x3C0);
     TObjEneBm5Wolf__sub_800B8A24(ene_bm5_wolf + 0x3CC);
     *(s32 *)((s8 *)ene_bm5_wolf + 0) = bm5_wolf_class_name;
-    invoke_initialization_hook__9TObjEneDDFv(ene_bm5_wolf, arg2);
+    invoke_initialization_hook__9TObjEneDDFPv(ene_bm5_wolf, arg2);
     select_subtype__14TObjEneBm5WolfFv(ene_bm5_wolf);
     ((TObjEneDD *)ene_bm5_wolf)->init_position_vectors();
-    init_model__9TObjEneDDFv(ene_bm5_wolf, (void *)TObjEneBm5Wolf__collider_params, 1);
+    init_model__9TObjEneDDFP13CollisionBodyl(ene_bm5_wolf, (void *)TObjEneBm5Wolf__collider_params, 1);
     ((TObjMotion *)ene_bm5_wolf)->set_field_d8((s32)((void *)wolf_action_table));
     ((TObjMotion *)ene_bm5_wolf)->set_field_dc(*(s32 *)((s8 *)(*(u32 *)&TObjEneBm5Wolf__bml_resource) + 0x430));
     ((TObjEneBm5Wolf *)ene_bm5_wolf)->m_b8 = 0;
     ((TObjMotion *)ene_bm5_wolf)->set_animation(((TObjEneBm5Wolf *)ene_bm5_wolf)->m_b8);
     ((TObjMotion *)ene_bm5_wolf)->set_field_b8(((TObjEneBm5Wolf *)ene_bm5_wolf)->m_b8);
     n = *(s32 *)&((TObjEneBm5Wolf *)ene_bm5_wolf)->m_3d8;
-    reset_hp__9TObjEneDDFv(ene_bm5_wolf, TObjEneBm5Wolf__stat_params[n != 0], wolf_stat_handle_a_table[n != 0], wolf_stat_handle_b_table[n != 0], n);
+    reset_hp__9TObjEneDDFPUcPUcPUc(ene_bm5_wolf, TObjEneBm5Wolf__stat_params[n != 0], wolf_stat_handle_a_table[n != 0], wolf_stat_handle_b_table[n != 0], n);
     ((TObjEneDD *)ene_bm5_wolf)->check_state_flag_1();
     *(u8 * *)&((TObjEneBm5Wolf *)ene_bm5_wolf)->movementParameters = (u8 *)bm5_wolf_decision_row;
     if (*(s32 *)&((TObjEneBm5Wolf *)ene_bm5_wolf)->m_3d8 != 0) {
-        initialize_enemy_state__9TObjEneDDFv(ene_bm5_wolf, 8);
+        initialize_enemy_state__9TObjEneDDFl(ene_bm5_wolf, 8);
     } else {
-        initialize_enemy_state__9TObjEneDDFv(ene_bm5_wolf, 7);
+        initialize_enemy_state__9TObjEneDDFl(ene_bm5_wolf, 7);
     }
     *(f32 *)((s8 *)ene_bm5_wolf + 0x37C) = (*(f32 *)&TObjEneBm5Wolf__data_805D9DF4);
     ((TObjEneDD_ST *)ene_bm5_wolf)->enemy_init_acquire_period(0x14);

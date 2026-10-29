@@ -482,12 +482,12 @@ void *__dt__13TUnk_80490470Fv(void *arg0, s16 arg1);
 s32 enemy_set_target_id(void *, u16);
 void *__dt__12TObjEneDD_STFv(void *arg0, s16 arg1);
 int reload_stats_keep_hp_tp__9TObjEneDDFv(void *self, void *a, void *b, void *c);
-void reset_hp__9TObjEneDDFv(void *, s32, s32, s32);
-void initialize_enemy_state__9TObjEneDDFv(void *, int);
+void reset_hp__9TObjEneDDFPUcPUcPUc(void *, s32, s32, s32);
+void initialize_enemy_state__9TObjEneDDFl(void *, int);
 s32 is_alive__8TObjBaseFv(void *);
-void init_model__9TObjEneDDFv(void *, void *, int);
+void init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, int);
 s32 clear_attack_receipts__9TObjEneDDFv();
-void invoke_initialization_hook__9TObjEneDDFv(void *, void *);
+void invoke_initialization_hook__9TObjEneDDFPv(void *, void *);
 Res_800959F8 * load_enemy_bml_resource_named(void *, void *);
 s32 load_enemy_bml_resource(u8 *arg0);
 s32 set_field_378__9TObjEneDDFl(void *, s32, s32);
@@ -1157,18 +1157,18 @@ void TObjEneRe7Berura::init_enemy() {
     ((TObjEneDD *)arg0)->init_position_vectors();
     *(s32 *)((s8 *)arg0 + 0x34) = *(s32 *)((s8 *)(*(u8 **)((s8 *)(*(u8 * *)&TObjEneRe7Berura__shared_resource) + 0x42C)) + 8);
     *(s32 *)((s8 *)arg0 + 0x24) = *(s32 *)((s8 *)(*(u8 **)((s8 *)(*(u8 * *)&TObjEneRe7Berura__shared_resource) + 0x42C)) + 0xC);
-    init_model__9TObjEneDDFv(arg0, lbl_8048F66C, 1);
+    init_model__9TObjEneDDFP13CollisionBodyl(arg0, lbl_8048F66C, 1);
     ((TObjMotion *)arg0)->set_field_d8((s32)(((u8 *)TObjEneRe7Berura__animation_definitions)));
     ((TObjMotion *)arg0)->set_field_dc(*(s32 *)((s8 *)(*(u8 * *)&TObjEneRe7Berura__shared_resource) + 0x430));
     *(s16 *)((s8 *)arg0 + 0xB8) = 0;
     ((TObjMotion *)arg0)->set_animation(*(s16 *)((s8 *)arg0 + 0xB8));
     ((TObjMotion *)arg0)->set_field_b8(*(s16 *)((s8 *)arg0 + 0xB8));
-    reset_hp__9TObjEneDDFv(arg0, TObjEneRe7Berura__stat_handle_table[TObjEneRe7Berura__data_80439DA8[0]],
+    reset_hp__9TObjEneDDFPUcPUcPUc(arg0, TObjEneRe7Berura__stat_handle_table[TObjEneRe7Berura__data_80439DA8[0]],
         TObjEneRe7Berura__data_805007D4[TObjEneRe7Berura__data_80439DB0[0]],
         TObjEneRe7Berura__shared_object_handles[TObjEneRe7Berura__data_80439DB8[0]]);
     ((TObjEneDD *)arg0)->set_state_8();
     *(u8 **)((s8 *)arg0 + 0x350) = berura_init_params;
-    initialize_enemy_state__9TObjEneDDFv(arg0, 0x25);
+    initialize_enemy_state__9TObjEneDDFl(arg0, 0x25);
     *(f32 *)((s8 *)arg0 + 0x37C) = TObjEneRe7Berura__data_805D9730;
     ((TObjEneDD_ST *)arg0)->enemy_init_acquire_period(0x3C);
     ((TObjEneDD_ST *)arg0)->enemy_init_validate_period(0x3C);
@@ -1218,7 +1218,7 @@ void *TObjEneRe7Berura__ct(void *ene_re7_berura, void *arg1, void *arg2) {
     __ct__13TUnk_80490470Fv(((char *)ene_re7_berura + 1020));
     __construct_array((void *)((char *)ene_re7_berura + 1096), __ct__15RenderFadeStateFv, __dt__15RenderFadeStateFv, 28, 4);
     *(void * *)&((TObjEneRe7Berura *)ene_re7_berura)->m_name = lbl_805D2988;
-    invoke_initialization_hook__9TObjEneDDFv(ene_re7_berura, arg2);
+    invoke_initialization_hook__9TObjEneDDFPv(ene_re7_berura, arg2);
     ((void (*)(void *))TObjEneRe7Berura__sub_80095328)(ene_re7_berura);
     ((TObjEneRe7Berura *)ene_re7_berura)->init_enemy();
     return ene_re7_berura;

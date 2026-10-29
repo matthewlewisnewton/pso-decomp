@@ -5567,10 +5567,10 @@ void *TBoss2Mine__sub_800381B8(void *, void *, u16, int);
 void *__ct__14TBoss2TentacleFP7TObjectll(void *, void *, void *, s32);
 s32 __ct__12TObjEneDD_STFP7TObject(void *, void *);
 s32 is_main_phase_15__9TObjEneDDFv();
-s32 reset_hp__9TObjEneDDFv(void *, int, int, int);
-s32 initialize_enemy_state__9TObjEneDDFv(void *, int);
-s32 init_model__9TObjEneDDFv(void *, void *, int, void *);
-s32 invoke_initialization_hook__9TObjEneDDFv(void *, void *);
+s32 reset_hp__9TObjEneDDFPUcPUcPUc(void *, int, int, int);
+s32 initialize_enemy_state__9TObjEneDDFl(void *, int);
+s32 init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, int, void *);
+s32 invoke_initialization_hook__9TObjEneDDFPv(void *, void *);
 u8 *__ct__17AreaAttackHistoryFl(u8 *arg0, s32 arg1);
 Buf_8003563C *mem_alloc(int);
 void *__nw__7TObjectFUl(int);
@@ -5810,7 +5810,7 @@ void *TBoss2DeRolLe__ct(void *arg0, void *arg1, void *arg2) {
     if ((u32)TBoss2DeRolLe__instance == 0) {
         TBoss2DeRolLe__instance = (s32)self;
     }
-    invoke_initialization_hook__9TObjEneDDFv(self, arg2);
+    invoke_initialization_hook__9TObjEneDDFPv(self, arg2);
     self->f3C0 = 0;
     {
 
@@ -5825,7 +5825,7 @@ void *TBoss2DeRolLe__ct(void *arg0, void *arg1, void *arg2) {
         self->f34 = *(s32 *)((s8 *)q + 0x28);
         q = *(u8 **)((s8 *)lbl_805D4BA4 + 0x42C);
         self->f24 = *(s32 *)((s8 *)q + 0x2C);
-        init_model__9TObjEneDDFv(self, (u8 *)lbl_804822A8, 3, q);
+        init_model__9TObjEneDDFP13CollisionBodyl(self, (u8 *)lbl_804822A8, 3, q);
     }
     ((TBoss2DeRolLe *)self)->animationFlags = 0;
     ((TObjMotion *)self)->set_field_d8((s32)((u8 *)lbl_804823A8));
@@ -5833,10 +5833,10 @@ void *TBoss2DeRolLe__ct(void *arg0, void *arg1, void *arg2) {
     ((TBoss2DeRolLe *)self)->m_b8 = 0;
     ((TObjMotion *)self)->set_animation(((TBoss2DeRolLe *)self)->m_b8);
     ((TObjMotion *)self)->set_field_b8(((TBoss2DeRolLe *)self)->m_b8);
-    reset_hp__9TObjEneDDFv(self, TBoss2DeRolLe__base_params, ((s32 *)TBoss2DeRolLe__attack_params_table)[0], TBoss2DeRolLe__resistance_params);
+    reset_hp__9TObjEneDDFPUcPUcPUc(self, TBoss2DeRolLe__base_params, ((s32 *)TBoss2DeRolLe__attack_params_table)[0], TBoss2DeRolLe__resistance_params);
     ((TObjEneDD *)self)->check_state_flag_2();
     ((TBoss2DeRolLe *)self)->movementParameters = (u8 *)lbl_8048228C;
-    initialize_enemy_state__9TObjEneDDFv(self, 0x2D);
+    initialize_enemy_state__9TObjEneDDFl(self, 0x2D);
     ((TBoss2DeRolLe *)self)->m_37c = TBoss2DeRolLe__data_805D8294;
     ((TObjEneDD_ST *)self)->enemy_init_acquire_period(0x1E);
     ((TObjEneDD_ST *)self)->enemy_init_validate_period(0x1E);
