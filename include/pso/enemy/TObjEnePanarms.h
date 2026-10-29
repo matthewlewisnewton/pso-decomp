@@ -3,8 +3,11 @@
 
 #include "types.h"
 #include "pso/enemy/TObjEnemy.h"
+#include "pso/misc/RenderFadeState.h"
+#include <stddef.h>
 
 struct TObjEnePanarms : public TObjEnemy {
+    TObjEnePanarms(TObject *parent, void *set_data);
     virtual ~TObjEnePanarms();
     virtual void run_task();
     virtual void render();
@@ -12,7 +15,6 @@ struct TObjEnePanarms : public TObjEnemy {
     void vfunc_63();
     void vfunc_62();
     void vfunc_61();
-    void set_random_action_timer(int minimum, int range);
     u8 unk_374[0x4];
     s32 m_378;
     u8 unk_37C[0x4];
@@ -48,57 +50,17 @@ struct TObjEnePanarms : public TObjEnemy {
     u32 m_3f4;
     u32 m_3f8;
     u32 m_3fc;
-    void* m_400;
-    u8 unk_404[0x4];
-    s32 m_408;
-    u8 unk_40C[0x50];
-    s32 m_45c;
-    u8 unk_460[0x4];
-    f32 m_464;
-    u8 unk_468[0x4];
-    f32 m_46c;
+    RenderFadeState camera_fades[4];
     u8 unk_470[0x4];
     u32 m_474;
     u32 m_478;
     int find_nearest_enemy_with_flag(s32 arg1, f32 farg0);
     static void spawn_npc_pair();
-    void update_action_timer();
-    void init_attack_state();
-    void init_open_state();
-    void update_move_timer();
-    void start_phase3_timer12();
-    void start_phase2_timer150();
-    void update_attack();
-    void init_attack_state2();
-    void init_action();
-    void update_chase_target();
-    void init_state_2();
-    void apply_effect_if_flagged();
-    void update_hit_state();
-    void restore_from_linked_object();
-    void init_state_16();
-    void update_move_to_target();
-    void init_state_1();
-    void start_action();
-    void handle_split_flag();
-    void init_split();
-    void snap_to_parent_position();
-    void reset_state();
-    void spawn_periodic_particle();
-    void update_offset_from_parent();
-    void reset_split();
-    static int do_action_2(void* p);
-    void init_state();
-    void update_linked_effect();
-    void draw();
     static s32 create_bara(s32 arg0, s32 arg1);
-    int find_nearest_enemy_with_flag_alt_target(s32 arg1, f32 farg0);
     static s32 create(s32 arg0);
     void init(void* a1);
     int get_state_flag();
     void copy_target_state(void* a1);
-    void attack_target_player(s32 arg1);
-    void draw_with_fade();
     void update_spin();
     void enter_down_state();
     void update_state_effect();
@@ -125,5 +87,8 @@ struct TObjEnePanarms : public TObjEnemy {
     static void free_data();
     static void load_and_spawn_npc();
 };
+
+typedef char PanarmsSize[sizeof(TObjEnePanarms) == 0x47C ? 1 : -1];
+typedef char PanarmsFadeOffset[offsetof(TObjEnePanarms, camera_fades) == 0x400 ? 1 : -1];
 
 #endif

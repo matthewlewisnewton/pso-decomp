@@ -9,6 +9,7 @@
 #include <stddef.h>
 #include "pso/boss/TBoss4Type2.h"
 #include "pso/enemy/TObjEnePanarms.h"
+#include "pso/enemy/TObjEnePanBARA.h"
 #include "pso/enemy/TObjEnePanarmsAtkColli.h"
 #include "pso/enemy/TObjEneRe7Berura.h"
 #include "pso/object/TObjFish.h"
@@ -315,8 +316,8 @@ void TObjEnePanarms::update_separated_parts() {
                 return;
             }
             TObjEnePanarms::find_combine_position(this);
-            ((TObjEnePanarms *)(this->m_3e4))->init_state();
-            ((TObjEnePanarms *)(this->m_3e8))->init_state();
+            ((TObjEnePanBARA *)(this->m_3e4))->init_state();
+            ((TObjEnePanBARA *)(this->m_3e8))->init_state();
             return;
         }
         if (temp_r0 < 0) {
@@ -329,8 +330,8 @@ void TObjEnePanarms::update_separated_parts() {
                 return;
             }
             if ((s32) this->m_388 < -0x12C) {
-                TObjEnePanarms::do_action_2((void *)this->m_3e4);
-                TObjEnePanarms::do_action_2((void *)this->m_3e8);
+                TObjEnePanBARA::do_action_2((void *)this->m_3e4);
+                TObjEnePanBARA::do_action_2((void *)this->m_3e8);
                 this->m_388 = 0x384;
             }
         }
@@ -573,10 +574,10 @@ void TObjEnePanarms__sub_800DDAD8(u8 *ene_panarms) {
     play_sound_effect(copy_target_state__14TObjEnePanarmsFPv(ene_panarms, 0x4003BB35), ene_panarms + 0x3C4, 0, 0);
     if (*(s32 *)((s8 *)ene_panarms + 0x3DC) != 0) {
         if (TObjEnePanarms__sub_800DFB44(((TObjEnePanarms *)ene_panarms)->m_3e4) == 0) {
-            ((TObjEnePanarms *)(((TObjEnePanarms *)ene_panarms)->m_3e4))->reset_split();
+            ((TObjEnePanBARA *)(((TObjEnePanarms *)ene_panarms)->m_3e4))->reset_split();
         }
         if (TObjEnePanarms__sub_800DFB44(((TObjEnePanarms *)ene_panarms)->m_3e8) == 0) {
-            ((TObjEnePanarms *)(((TObjEnePanarms *)ene_panarms)->m_3e8))->reset_split();
+            ((TObjEnePanBARA *)(((TObjEnePanarms *)ene_panarms)->m_3e8))->reset_split();
         }
     } else {
         if (TObjEnePanarms__sub_800DFB44(((TObjEnePanarms *)ene_panarms)->m_3e4) == 0) {
