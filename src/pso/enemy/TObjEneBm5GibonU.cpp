@@ -235,7 +235,7 @@ extern const Spawn_800D1990 TObjEneBm5GibonU__spawn_params;
 Ene_800D17E8 * find_enemy_by_id__16TObjEneBm5GibonUFi(s32 id);
 Gibon_800D13B8 * TObjEneBm5GibonU__sub_800D13B8(Gibon_800D13B8 *arg0, s16 arg1);
 s32 rotate_xz_pair_by_angle(f32 *, f32 *, s32);
-s32 update_collisions__10TObjPlayerFv(void *);
+s32 update_collisions__14TObjCollidableFv(void *);
 f32 calc_anim_speed__16TObjEneBm5GibonUFPvf(Obj_800D0A94 *arg0, f32 farg0);
 f32 normalize_vector_xz__FP3Vec(void *);
 f32 cos_table_lookup(int);
@@ -245,7 +245,7 @@ int spawn_landing_effect__16TObjEneBm5GibonUFPvPv(Ene_800CCC6C *arg0, void *arg1
 int is_active__16TObjEneBm5GibonUFPv(void* p);
 s32 TObjEneBm5GibonU__sub_800D1D70(void* p);
 s32 get_entity_id(int);
-s32 update_angle__10TObjPlayerFlPv(void *, s32, void *);
+s32 turn_toward_direction__9TObjCharaFlP3Vec(void *, s32, void *);
 void *find_entity_by_id(u16 id);
 void * __nw__7TObjectFUl(u32);
 void render__16TObjEneBm5GibonUFv(u8 *arg0);
@@ -2055,7 +2055,7 @@ void TObjEneBm5GibonU::state_cast_technique(s32 arg1) {
                 } else {
                     VecCopy((Vec *)&v, (const Vec *)(arg0 + 0x394));
                     subtract_vector(&v, arg0 + 0x2FC);
-                    r = update_angle__10TObjPlayerFlPv(arg0, *(s32 *)(F(u8 *, 0x350) + 8), &v);
+                    r = turn_toward_direction__9TObjCharaFlP3Vec(arg0, *(s32 *)(F(u8 *, 0x350) + 8), &v);
                 }
                 if (r < 0x100) {
                     F(s32, 0x518) = 1;
@@ -2081,7 +2081,7 @@ void TObjEneBm5GibonU::state_cast_technique(s32 arg1) {
                 if (F(u32, 0x390) != 0) {
                     VecCopy((Vec *)&v, (const Vec *)(arg0 + 0x394));
                     subtract_vector(&v, arg0 + 0x2FC);
-                    r = update_angle__10TObjPlayerFlPv(arg0, *(s32 *)(F(u8 *, 0x350) + 8), &v);
+                    r = turn_toward_direction__9TObjCharaFlP3Vec(arg0, *(s32 *)(F(u8 *, 0x350) + 8), &v);
                 } else {
                     r = ((TObjPlayer *)(F(s32, 0x318)))->get_field_0c();
                 }
@@ -2154,7 +2154,7 @@ void TObjEneBm5GibonU::state_cast_technique(s32 arg1) {
     case 5:
         break;
     }
-    update_collisions__10TObjPlayerFv(arg0);
+    update_collisions__14TObjCollidableFv(arg0);
 }
 
 void TObjEneBm5GibonU__sub_800CDB98(Obj_800CDB98 *actor, s32 arg1) {
@@ -2493,7 +2493,7 @@ void TObjEneBm5GibonU__sub_800CE694(u8 *arg0, s32 arg1) {
             *(f32 *)((s8 *)(*(u8 **)((s8 *)arg0 + 0x50C)) + 0x38) = *(f32 *)((s8 *)arg0 + 0x38) + dx;
             *(f32 *)((s8 *)(*(u8 **)((s8 *)arg0 + 0x50C)) + 0x3C) = *(f32 *)((s8 *)arg0 + 0x3C);
             *(f32 *)((s8 *)(*(u8 **)((s8 *)arg0 + 0x50C)) + 0x40) = *(f32 *)((s8 *)arg0 + 0x40) + dz;
-            update_collisions__10TObjPlayerFv(*(u8 **)((s8 *)arg0 + 0x50C));
+            update_collisions__14TObjCollidableFv(*(u8 **)((s8 *)arg0 + 0x50C));
             if (!(*(s32 *)((s8 *)(*(u8 **)((s8 *)(*(u8 **)((s8 *)arg0 + 0x50C)) + 0xA4)) + 0x18) & 0x380000)) {
                 dx *= TObjEneBm5GibonU__data_805DA188;
                 dz *= TObjEneBm5GibonU__data_805DA188;
@@ -4188,8 +4188,8 @@ void TObjEneBm5GibonU::sub_800D10A0() {
 #pragma push
 #define transition_enemy_state__9TObjEneDDFl ((int (*)(void*, void*))transition_enemy_state__9TObjEneDDFl)
 #define lbl_80493F04 ((u8 *)&lbl_80493F04)
-#define update_angle__10TObjPlayerFlPv ((void (*)(void *, s32, void *))update_angle__10TObjPlayerFlPv)
-#define update_collisions__10TObjPlayerFv ((void (*)(void *))update_collisions__10TObjPlayerFv)
+#define turn_toward_direction__9TObjCharaFlP3Vec ((void (*)(void *, s32, void *))turn_toward_direction__9TObjCharaFlP3Vec)
+#define update_collisions__14TObjCollidableFv ((void (*)(void *))update_collisions__14TObjCollidableFv)
 #define __nw__7TObjectFUl ((void * (*)(int))__nw__7TObjectFUl)
 #define update_shock_clock__9TObjCharaFv ((s32 (*)())update_shock_clock__9TObjCharaFv)
 #define update_movement_status__9TObjCharaFv ((s32 (*)())update_movement_status__9TObjCharaFv)
@@ -4803,8 +4803,8 @@ s32 TObjEneBm5GibonU::try_activate() {
 
 #undef transition_enemy_state__9TObjEneDDFl
 #undef lbl_80493F04
-#undef update_angle__10TObjPlayerFlPv
-#undef update_collisions__10TObjPlayerFv
+#undef turn_toward_direction__9TObjCharaFlP3Vec
+#undef update_collisions__14TObjCollidableFv
 #undef __nw__7TObjectFUl
 #undef update_shock_clock__9TObjCharaFv
 #undef update_movement_status__9TObjCharaFv

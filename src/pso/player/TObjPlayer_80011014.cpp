@@ -4276,12 +4276,12 @@ void enemy_turn_half_toward_dest(Obj_80018570 *self) {
     angle_difference_abs(self->angle, a);
 }
 
-void TObjPlayer::update_angle(s32 arg1, void *arg2) {
-    s32 temp_r31;
+s32 TObjChara::turn_toward_direction(s32 turn_speed, Vec *direction) {
+    s32 angle;
 
-    temp_r31 = (s32) (TObjPlayer__data_804340B8 * ((f64 (*)(f32, f32))atan2_float)(*(f32 *)((s8 *)arg2 + 0), *(f32 *)((s8 *)arg2 + 8)));
-    this->rotation_y = approach_angle_limited(this->rotation_y, temp_r31, arg1);
-    angle_difference_abs(this->rotation_y, temp_r31);
+    angle = (s32)(TObjPlayer__data_804340B8 * ((f64 (*)(f32, f32))atan2_float)(direction->x, direction->z));
+    rotation_y = approach_angle_limited(rotation_y, angle, turn_speed);
+    return angle_difference_abs(rotation_y, angle);
 }
 
 void enemy_turn_toward_dest(Obj_80018660 *self, s32 turn) {

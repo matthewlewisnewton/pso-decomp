@@ -248,7 +248,7 @@ void TObjVoloptCage::run_task() {
     }
     update_state();
     update_prev_position();
-    ((TBoss3VoloptHiraisin *)this)->copy_position();
+    ((TObjChara *)this)->refresh_center_from_body();
     submit_cursor_candidate(this, -1);
 }
 

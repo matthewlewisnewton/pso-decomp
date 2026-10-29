@@ -31,6 +31,8 @@ struct TObjEnemy : public TObjChara {
     void sub_8002AE64();
     virtual const char *get_name();
     TObjEnemy* groupRoot();
+    s32 has_group();
+    void link_last_group_child(TObjEnemy *source, TObjEnemy *destination);
     u32 subtype;
     u16 targetId;
     s16 resetTimer;

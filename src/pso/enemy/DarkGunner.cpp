@@ -794,7 +794,7 @@ s32 TObjPlayer::update_hide_sequence() {
         if (!(this->actorFlags & 0x800000)) {
             apply_actor_gravity(arg0, 0, 0.0f);
         }
-        ((TObjPlayer *)arg0)->update_collisions();
+        ((TObjCollidable *)arg0)->update_collisions();
         temp_r3 = this->m_39c - 1;
         this->m_39c = (s16) temp_r3;
         if ((s16) temp_r3 <= 0) {
@@ -889,7 +889,7 @@ void TObjPlayer__sub_800A16C4(u8 *player) {
         if (!(((TObjPlayer *)player)->actorFlags & 0x800000)) {
             apply_actor_gravity(player, 0, 0.0f);
         }
-        ((TObjPlayer *)player)->update_collisions();
+        ((TObjCollidable *)player)->update_collisions();
         temp_r4 = *(s16 *)((s8 *)player + 0x33C);
         *(s16 *)((s8 *)player + 0x33C) = (temp_r4 - 1);
         if (temp_r4 < 0) {
@@ -1192,7 +1192,7 @@ void TObjPlayer__sub_800A1D70(u8 *arg0) {
         }
         }
         apply_actor_gravity(arg0, 0, 0.0f);
-        ((TObjPlayer *)arg0)->update_collisions();
+        ((TObjCollidable *)arg0)->update_collisions();
         if ((u32) ((TObjPlayer *)arg0)->m_b4 != 8U) {
             ((TObjBase *)arg0)->obj_clearFlags30(0x40300);
             *(s32 *)((s8 *)arg0 + 0x388) = (s32) ((*(s32 *)((s8 *)arg0 + 0x388)) & 0xFF7FFFFE);
@@ -1323,7 +1323,7 @@ s32 TObjPlayer__sub_800A1FEC(void *arg0) {
     ((TObjBase *)self)->obj_clearFlags30(0x40000);
     advance_animation_playback(self);
     apply_actor_gravity(self, 0, 0.0f);
-    ((TObjPlayer *)self)->update_collisions();
+    ((TObjCollidable *)self)->update_collisions();
     minimap_render_dot(&self->pos, -23988, 1, 0);
     submit_cursor_candidate(self, -1);
 }
@@ -1444,7 +1444,7 @@ s32 TObjPlayer__sub_800A2390(void *arg0_) {
     case -1:
         break;
     }
-    ((TObjPlayer *)enemy)->update_collisions();
+    ((TObjCollidable *)enemy)->update_collisions();
     minimap_render_dot((u8 *)enemy + 0x38, -0x5DB4, 1, 0);
     return submit_cursor_candidate(enemy, -1);
 }
