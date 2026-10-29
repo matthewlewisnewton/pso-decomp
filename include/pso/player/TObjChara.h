@@ -187,12 +187,26 @@ public:
     void* m_280;
     u8 unk_284[0x8];
     u32 m_28c;
-    void* m_290;
-    u32 m_294;
-    u8 unk_298[0x4];
-    u16 m_29c;
-    s16 m_29e;
-    u8 unk_2A0[0x8];
+#pragma push
+#pragma cpp_extensions on
+    // Position vectors copied by actor initialization; retain the legacy aliases.
+    union {
+        Vec position_290;
+        struct {
+            void* m_290;
+            u32 m_294;
+            u8 unk_298[0x4];
+        };
+    };
+    union {
+        Vec position_29c;
+        struct {
+            u16 m_29c;
+            s16 m_29e;
+            u8 unk_2A0[0x8];
+        };
+    };
+#pragma pop
     u8 *target;
     u32 m_2ac;
     u8 * m_2b0;
@@ -258,6 +272,20 @@ public:
     Vec *body_center() { return (Vec *)&m_2fc; }
     Vec *velocity() { return (Vec *)unk_308; }
 };
+
+typedef char TObjChara_size[sizeof(TObjChara) == 0x334 ? 1 : -1];
+#define CHARA_POSITION_OFFSET(member, offset) \
+    typedef char CharaPositionOffset_##member[offsetof(TObjChara, member) == offset ? 1 : -1]
+CHARA_POSITION_OFFSET(position_290, 0x290);
+CHARA_POSITION_OFFSET(m_290, 0x290);
+CHARA_POSITION_OFFSET(m_294, 0x294);
+CHARA_POSITION_OFFSET(unk_298, 0x298);
+CHARA_POSITION_OFFSET(position_29c, 0x29C);
+CHARA_POSITION_OFFSET(m_29c, 0x29C);
+CHARA_POSITION_OFFSET(m_29e, 0x29E);
+CHARA_POSITION_OFFSET(unk_2A0, 0x2A0);
+CHARA_POSITION_OFFSET(target, 0x2A8);
+#undef CHARA_POSITION_OFFSET
 
 extern "C" void *__dt__9TObjCharaFv(void *, s16);
 
