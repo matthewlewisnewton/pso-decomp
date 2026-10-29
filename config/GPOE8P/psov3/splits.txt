@@ -6332,6 +6332,8 @@ pso/misc/TPhotonRainbow.cpp:
 
 pso/misc/TPhotonRainbow_801AE640.cpp:
 	.text       start:0x801AE640 end:0x801AE744
+	.rodata     start:0x80446EF8 end:0x80446F08
+	.sdata      start:0x805D3520 end:0x805D3528
 
 pso/misc/TPhotonYoulla.cpp:
 	.text       start:0x801AE744 end:0x801AEB84
