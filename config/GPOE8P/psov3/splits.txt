@@ -8353,6 +8353,8 @@ pso/misc/TWindowEffectParty.cpp:
 pso/misc/TWindowSubStatusDisp_8024FBA8.cpp:
 	.text       start:0x8024FBA8 end:0x8025010C
 	.rodata     start:0x8044ECF8 end:0x8044ED08
+	.sbss       start:0x805D6430 end:0x805D6448
+	.sdata2     start:0x805DCCD8 end:0x805DCCE8
 
 pso/misc/TWindowFukidasi.cpp:
 	.text       start:0x8025010C end:0x80252AE4
