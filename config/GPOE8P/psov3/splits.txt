@@ -5253,6 +5253,7 @@ pso/misc/TOMineIcon04.cpp:
 	.text       start:0x80171C78 end:0x8017205C
 	.rodata     start:0x80442260 end:0x80442268
 	.data       start:0x804B36A8 end:0x804B387C
+	.sdata2     start:0x805DB8D8 end:0x805DB8F0
 
 pso/misc/TOMonitorMachine01.cpp:
 	.text       start:0x8017205C end:0x8017262C
