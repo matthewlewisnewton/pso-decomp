@@ -4694,6 +4694,9 @@ pso/npc/TObjNpcNHW00.cpp:
 
 pso/npc/TObjNpcNHW01.cpp:
 	.text       start:0x8014D210 end:0x8014D3E4
+	.rodata     start:0x8043FE28 end:0x8043FE60
+	.sdata      start:0x805D2E48 end:0x805D2E50
+	.sbss       start:0x805D5838 end:0x805D5840
 
 pso/npc/TObjNpcNurseBase.cpp:
 	.text       start:0x8014D3E4 end:0x8014D5BC
