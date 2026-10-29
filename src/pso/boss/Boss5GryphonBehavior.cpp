@@ -1797,7 +1797,7 @@ static StateAction actions[35] = {
     (StateAction)&TBoss5Gryphon::fn_80060788,
     (StateAction)&TBoss5Gryphon::fn_800605E8,
     (StateAction)&TBoss5Gryphon::fn_80060020,
-    (StateAction)&TBoss5Gryphon::fn_8005FEF8,
+    (StateAction)&TBoss5Gryphon::update_roar_state,
     (StateAction)&TBoss5Gryphon::fn_8005FE18,
     (StateAction)&TBoss5Gryphon::fn_8005FD34,
     (StateAction)&TBoss5Gryphon::handle_message,
@@ -2299,7 +2299,7 @@ void TBoss5Gryphon::fn_8005FE18(s32 event) {
 #define PLAY_SE(o, id) ((TBoss5Gryphon *)o)->play_se((id))
 extern const f32 lbl_805D8DB8;
 
-void TBoss5Gryphon::fn_8005FEF8(s32 event) {
+void TBoss5Gryphon::update_roar_state(s32 event) {
     TBoss5Gryphon *self = this;
     Vec pos;
     Vec *bones;
