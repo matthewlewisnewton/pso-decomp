@@ -9,8 +9,8 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 
-extern char lbl_80474C80[];
-extern char lbl_80474C90[];
+#pragma readonly_strings on
+
 extern const char *bm_npc_kenkyu2_model_names[2];
 extern BmlResourceDescriptor TObjNpcKenkyu2__resource_descriptor;
 extern const char *bm_npc_kenkyu2_motion_names[1];
@@ -29,7 +29,7 @@ extern u32 TObjNpcKenkyu2__shared_model_resource;
 s32 TObjFish__sub_8001EDB0(int, int);
 s32 get_bml_model(int, int);
 extern s32 __vt__14TObjNpcKenkyu2[];
-extern s32 TObjNpcKenkyu2__name;
+extern const char *TObjNpcKenkyu2__name;
 void TLobby__sub_8001FE7C(void*, int);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 void __dl__7TObjectFPv(void *);
@@ -93,7 +93,10 @@ void * TObjNpcHosa2__create(void *arg0) {
     return o2;
 }
 
-__declspec(section ".data") const char *bm_npc_kenkyu2_model_names[2] = { lbl_80474C80, NULL };
-BmlResourceDescriptor TObjNpcKenkyu2__resource_descriptor = { lbl_80474C90, bm_npc_kenkyu2_model_names, bm_npc_kenkyu2_motion_names, 1, 0 };
+__declspec(section ".data") const char *bm_npc_kenkyu2_model_names[2] = { "kenkyu2_body.nj", NULL };
+BmlResourceDescriptor TObjNpcKenkyu2__resource_descriptor = { "bm_npc_kenkyu2.bml", bm_npc_kenkyu2_model_names, bm_npc_kenkyu2_motion_names, 1, 0 };
 __declspec(section ".sdata") const char *bm_npc_kenkyu2_motion_names[1] = { NULL };
+
+const char *TObjNpcKenkyu2__name = "TObjNpcKenkyu2";
+u32 TObjNpcKenkyu2__shared_model_resource;
 }

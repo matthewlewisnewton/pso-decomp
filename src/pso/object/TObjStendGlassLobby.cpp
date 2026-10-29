@@ -12,9 +12,9 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 
-extern char lbl_80479658[];
-extern char lbl_80479670[];
-extern const char *bm_obj_lobby_stendglass_motion_names[];
+#pragma readonly_strings on
+
+extern const char *bm_obj_lobby_stendglass_motion_names[1];
 extern const char *bm_obj_lobby_stendglass_model_names[2];
 extern BmlResourceDescriptor TObjStendGlassLobby__resource_descriptor;
 
@@ -33,7 +33,7 @@ u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern u32 TObjStendGlassLobby__static_model_resource;
 extern s32 stend_glass_lobby_type;
 extern s32 __vt__19TObjStendGlassLobby[];
-extern s32 TObjStendGlassLobby__name;
+extern const char *TObjStendGlassLobby__name;
 void TLobby__sub_8001FE7C(void*, int);
 s32 post_translate_matrix(void *);
 s32 scale_matrix(int, f32, f32, f32);
@@ -168,6 +168,11 @@ u8 *TObjStendGlassLobby__ct(u8 *arg0, s32 arg1, s32 arg2) {
     return arg0;
 }
 
-__declspec(section ".data") const char *bm_obj_lobby_stendglass_model_names[2] = { lbl_80479658, NULL };
-BmlResourceDescriptor TObjStendGlassLobby__resource_descriptor = { lbl_80479670, bm_obj_lobby_stendglass_model_names, bm_obj_lobby_stendglass_motion_names, 1, 0 };
+__declspec(section ".data") const char *bm_obj_lobby_stendglass_model_names[2] = { "lobby_win_s_waku1.gj", NULL };
+BmlResourceDescriptor TObjStendGlassLobby__resource_descriptor = { "bm_obj_lobby_stendglass.bml", bm_obj_lobby_stendglass_model_names, bm_obj_lobby_stendglass_motion_names, 1, 0 };
+
+const char *bm_obj_lobby_stendglass_motion_names[1] = { NULL };
+const char *TObjStendGlassLobby__name = "TObjStendGlassLobby";
+u32 TObjStendGlassLobby__static_model_resource;
+s32 stend_glass_lobby_type;
 }
