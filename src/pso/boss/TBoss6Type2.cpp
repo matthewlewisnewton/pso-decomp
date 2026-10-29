@@ -2496,7 +2496,7 @@ void TBoss6Type2::run_task() {
     advance_position();
     TBoss6Type2__sub_802BBE20(arg0);
     update_parts_flags();
-    ((TObjPlayer *)arg0)->update_collisions();
+    ((TObjCollidable *)arg0)->update_collisions();
     submit_cursor_candidate(arg0, -1);
     add_radar_scaled_marker(arg0 + 0x38, -0x5DB4, 1, 1, lbl_805DE4C0);
     ((TBoss6Type2 *)arg0)->apply_rock_hits_to_players();

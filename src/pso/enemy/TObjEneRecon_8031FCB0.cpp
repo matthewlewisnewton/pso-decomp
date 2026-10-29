@@ -123,10 +123,10 @@ struct Self_8031FE98 { u8 pad[0x3FC]; s32 f3fc[4]; u8 pad40c[0x418 - 0x40C]; u16
 
 void *__dt__12TObjEneDD_STFv(void *arg0, s16 arg1);
 void __ct__12TObjEneDD_STFP7TObject(void *, s32, void *);
-void reset_hp__9TObjEneDDFv(void *, s32, s32, s32);
-void initialize_enemy_state__9TObjEneDDFv(void *, int);
-void init_model__9TObjEneDDFv(void *, void *, int);
-void invoke_initialization_hook__9TObjEneDDFv(void *, void *);
+void reset_hp__9TObjEneDDFPUcPUcPUc(void *, s32, s32, s32);
+void initialize_enemy_state__9TObjEneDDFl(void *, int);
+void init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, int);
+void invoke_initialization_hook__9TObjEneDDFPv(void *, void *);
 void TObjEneMe3SinowZoa__sub_800D758C(void *);
 void *__dt__13TUnk_80494938Fv(void *arg0, s16 arg1);
 void *__dt__15RenderFadeStateFv(void *arg0, s16 arg1);
@@ -412,11 +412,11 @@ u8 *TObjEneRecobox__ct(u8 *ene_recobox, s32 arg1, u8 *arg2) {
     __ct__13TUnk_80494938Fv((ene_recobox + 0x3C0));
     __construct_array(ene_recobox + 0x460, (void *)&__ct__15RenderFadeStateFv, (void *)&__dt__15RenderFadeStateFv, 0x1C, 4);
     *(s32 *)((s8 *)ene_recobox + 0) = TObjEneRecobox_name_ref;
-    invoke_initialization_hook__9TObjEneDDFv(ene_recobox, arg2);
+    invoke_initialization_hook__9TObjEneDDFPv(ene_recobox, arg2);
     ((TObjEneDD *)ene_recobox)->init_position_vectors();
     *(s32 *)((s8 *)ene_recobox + 0x34) = *(s32 *)((s8 *)(*(u8 **)((s8 *)TObjEneRecobox__static_instance + 0x42C)) + 0x18);
     ((TObjEneRecobox *)ene_recobox)->texlist = *(s32 *)((s8 *)(*(u8 **)((s8 *)TObjEneRecobox__static_instance + 0x42C)) + 0x1C);
-    init_model__9TObjEneDDFv(ene_recobox, lbl_804EC684, 1);
+    init_model__9TObjEneDDFP13CollisionBodyl(ene_recobox, lbl_804EC684, 1);
     ((TObjEneRecobox *)ene_recobox)->m_300 = lbl_805DF464 + *(f32 *)((s8 *)ene_recobox + 0x3C);
     ((TObjEneRecobox *)ene_recobox)->vfunc_88();
     ((TObjMotion *)ene_recobox)->set_field_d8((s32)TObjEneRecobox__animation_entries);
@@ -424,10 +424,10 @@ u8 *TObjEneRecobox__ct(u8 *ene_recobox, s32 arg1, u8 *arg2) {
     ((TObjEneRecobox *)ene_recobox)->m_b8 = 0;
     ((TObjMotion *)ene_recobox)->set_animation(((TObjEneRecobox *)ene_recobox)->m_b8);
     ((TObjMotion *)ene_recobox)->set_field_b8(((TObjEneRecobox *)ene_recobox)->m_b8);
-    reset_hp__9TObjEneDDFv(ene_recobox, recobox_boss_register_id, lbl_805D6B14, TObjEneRecobox__shared_object_handle);
+    reset_hp__9TObjEneDDFPUcPUcPUc(ene_recobox, recobox_boss_register_id, lbl_805D6B14, TObjEneRecobox__shared_object_handle);
     ((TObjEneDD *)ene_recobox)->check_state_flag_4();
     *(u8 * *)&((TObjEneRecobox *)ene_recobox)->movementParameters = TObjEneRecobox__attack_params;
-    initialize_enemy_state__9TObjEneDDFv(ene_recobox, 0x43);
+    initialize_enemy_state__9TObjEneDDFl(ene_recobox, 0x43);
     ((TObjEneRecobox *)ene_recobox)->m_37c = lbl_805DF468;
     ((TObjEneRecobox *)ene_recobox)->sub_8031F800();
     n = *(s16 *)((s8 *)arg2 + 2);

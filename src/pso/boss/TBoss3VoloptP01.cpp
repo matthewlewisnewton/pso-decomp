@@ -11,7 +11,7 @@
 #include "pso/boss/TBoss3VoloptHiraisin.h"
 #include "pso/boss/TBoss4Type2.h"
 #include "pso/boss/TBoss4Type2_800874F4.h"
-#include "pso/enemy/TObjEneMe1GiGue.h"
+#include "pso/enemy/TObjEnemyCustom.h"
 #include "pso/math/AngleLookup.h"
 #include "pso/math/MatrixTransforms.h"
 #include "pso/misc/TBreakUpMdl.h"
@@ -243,7 +243,7 @@ void TBoss3VoloptP01::run_task() {
         y = m_300;
         m_300 = y + (18.0f + y_offset);
         ((TBoss3VoloptP01Collision *)bodies)->height = 18.0f + y_offset;
-        ((TBoss3VoloptHiraisin *)this)->copy_position();
+        ((TObjChara *)this)->refresh_center_from_body();
         angle = pulse_angle;
         pulse_angle = angle + 0x400;
         clear_all_status_effects();
@@ -393,7 +393,7 @@ void TBoss3VoloptP01::update_breakup() {
     case 2:
         break;
     }
-    ((TObjPlayer *)this)->update_collisions();
+    ((TObjCollidable *)this)->update_collisions();
 }
 
 void TBoss3VoloptP01::sub_80043758() {
@@ -687,7 +687,7 @@ s32 TBoss3VoloptP01::update_sink() {
 
 void TBoss3VoloptP01::sub_80042F84() {
     if (obj_testFlags30(0x04000800) == 0) {
-        ((TObjEneMe1GiGue *)this)->update_if_active(9);
+        ((TObjEnemyCustom *)this)->update_if_active(9);
     }
 }
 
@@ -733,7 +733,7 @@ void TBoss3VoloptP01::push_nearby_players() {
 void TBoss3VoloptP01::set_primary(s32 primary) {
     if (obj_testFlags30(0x800) == 0) {
         m_388 &= ~1;
-        ((TObjEneMe1GiGue *)this)->update_if_active(2);
+        ((TObjEnemyCustom *)this)->update_if_active(2);
         is_primary = primary;
     }
 }

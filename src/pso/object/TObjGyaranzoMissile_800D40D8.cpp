@@ -218,7 +218,7 @@ void TUnk_8049442C::run_task() {
         if (self->fEC > 0) {
             self->fEC--;
         } else {
-            ((TObjPlayer *)self)->update_collisions();
+            ((TObjCollidable *)self)->update_collisions();
             if (self->info->flags & 0x380000) {
                 ((TUnk_8049442C *)self)->sub_800D4200();
                 break;

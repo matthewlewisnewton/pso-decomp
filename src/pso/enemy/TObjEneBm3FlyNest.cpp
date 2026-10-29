@@ -1888,10 +1888,10 @@ struct Nest_800B3EB8 {
 void *__ct__9TObjEneDDFP7TObject(void *, void *, void *);
 void __construct_array(void *, void *, void *, int, int);
 void __ct__15RenderFadeStateFv(void *);
-void invoke_initialization_hook__9TObjEneDDFv(void *, void *);
-void init_model__9TObjEneDDFv(void *, void *, int);
-s32 reset_hp__9TObjEneDDFv(void *, int, int, int);
-s32 initialize_enemy_state__9TObjEneDDFv(void *, int);
+void invoke_initialization_hook__9TObjEneDDFPv(void *, void *);
+void init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, int);
+s32 reset_hp__9TObjEneDDFPUcPUcPUc(void *, int, int, int);
+s32 initialize_enemy_state__9TObjEneDDFl(void *, int);
 
 #define self ((Nest_800B3EB8 *)arg0)
 #pragma push
@@ -1903,11 +1903,11 @@ void *TObjEneBm3FlyNest__ct(void *arg0, void *arg1, void *arg2) {
     self->vt = lbl_80491EE4;
     __construct_array(self->f440, __ct__15RenderFadeStateFv, __dt__15RenderFadeStateFv, 0x1C, 4);
     self->id = bm3_fly_nest_class_name;
-    invoke_initialization_hook__9TObjEneDDFv(self, arg2);
+    invoke_initialization_hook__9TObjEneDDFPv(self, arg2);
     ((TObjEneDD *)self)->init_position_vectors();
     self->f34 = *(s32 *)(*(u8 **)((int)lbl_805D5108 + 0x42C) + 0x18);
     self->f24 = *(s32 *)(*(u8 **)((int)lbl_805D5108 + 0x42C) + 0xC);
-    init_model__9TObjEneDDFv(self, &bm3_flynest_collider_params, 1);
+    init_model__9TObjEneDDFP13CollisionBodyl(self, &bm3_flynest_collider_params, 1);
     self->f300 = lbl_805D9D20 + self->pos.y;
     ((TObjEneDD *)self)->vfunc_88();
     ((TObjMotion *)self)->set_field_d8((s32)bm3_flynest_hit_action_table);
@@ -1915,10 +1915,10 @@ void *TObjEneBm3FlyNest__ct(void *arg0, void *arg1, void *arg2) {
     self->fB8 = 0;
     ((TObjMotion *)self)->set_animation(self->fB8);
     ((TObjMotion *)self)->set_field_b8(self->fB8);
-    reset_hp__9TObjEneDDFv(self, lbl_805D50F8, lbl_805D50FC, lbl_805D5100);
+    reset_hp__9TObjEneDDFPUcPUcPUc(self, lbl_805D50F8, lbl_805D50FC, lbl_805D5100);
     ((TObjEneDD *)self)->check_state_flag_1();
     self->f350 = &bm3_fly_nest_params;
-    initialize_enemy_state__9TObjEneDDFv(self, 4);
+    initialize_enemy_state__9TObjEneDDFl(self, 4);
     self->f37C = lbl_805D9D10;
     init_params__17TObjEneBm3FlyNestFv(self);
     if (self->f394 > *(s16 *)((u8 *)arg2 + 2)) {

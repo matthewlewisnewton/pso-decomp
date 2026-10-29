@@ -388,13 +388,6 @@ struct B_800F698C {
     s16 f0; u8 pad2[4]; u16 f6; s16 f8; s16 fA; u8 padC[4]; Vec_800F698C v10; Vec_800F698C v1C; f32 f28[5]; s16 f3C; s16 f3E;
 };
 
-struct Node_800F6E2C {
-    u8 pad0[0x340];
-    Node_800F6E2C *f340;
-    Node_800F6E2C *f344;
-    Node_800F6E2C *f348;
-    Node_800F6E2C *f34C;
-};
 
 struct VBase_800F6BF0 { u8 pad[0x18]; };
 
@@ -437,7 +430,6 @@ void handle_6x9C_set_enemy_low_game_flags_ultimate(Msg_800F62E0 *arg0);
 void handle_6x0A_update_enemy_state(Msg_800F6464 *arg0);
 void distribute_experience__9TObjEnemyFv(TObjPlayer_800F6B68 *self);
 void award_enemy_experience__9TObjEnemyFl(u8 *arg0, s32 arg1);
-void link_chain_nodes__10TObjPlayerFPvPvPv(void *arg0, Node_800F6E2C *arg1, Node_800F6E2C *arg2);
 void apply_by_index__9TObjEnemyFs(s16, void *);
 void resume_update__7TObjectFv(void *arg0);
 s32 get_attack_credit_slot_count(void *);
@@ -854,30 +846,30 @@ void TObjEnemy::update_prev_position() {
 }
 #pragma pop
 
-void link_chain_nodes__10TObjPlayerFPvPvPv(void *arg0, Node_800F6E2C *arg1, Node_800F6E2C *arg2) {
-    Node_800F6E2C *p = arg1->f34C;
-    Node_800F6E2C *q = arg2->f34C;
+void TObjEnemy::link_last_group_child(TObjEnemy *source, TObjEnemy *destination) {
+    TObjEnemy *p = source->children;
+    TObjEnemy *q = destination->children;
     if (p != NULL) {
-        while (p->f348 != NULL) {
-            p = p->f348;
+        while (p->next != NULL) {
+            p = p->next;
         }
         if (q == NULL) {
-            if (p->f344 != NULL) {
-                p->f344->f348 = NULL;
-                p->f344 = NULL;
+            if (p->previous != NULL) {
+                p->previous->next = NULL;
+                p->previous = NULL;
             }
-            p->f340 = arg2;
-            arg2->f34C = p;
+            p->group = destination;
+            destination->children = p;
             return;
         }
-        while (q->f348 != NULL) {
-            q = q->f348;
+        while (q->next != NULL) {
+            q = q->next;
         }
-        if (p->f344 != NULL) {
-            p->f344->f348 = NULL;
+        if (p->previous != NULL) {
+            p->previous->next = NULL;
         }
-        p->f344 = q;
-        q->f348 = p;
+        p->previous = q;
+        q->next = p;
     }
 }
 
@@ -1122,9 +1114,8 @@ s32 TUnk_80493450::countChildren() {
     return count;
 }
 
-s32 TObjPlayer::is_action_available() {
-    TObjEnemy*_w0 = (TObjEnemy*)this;
-    return ((s32)_w0->groupRoot()) ? 1 : 0;
+s32 TObjEnemy::has_group() {
+    return groupRoot() ? 1 : 0;
 }
 
 TObjEnemy* TObjEnemy::groupRoot() {

@@ -2339,24 +2339,24 @@ struct VObj_18_800B1F80 : VBase_18_800B1F80 {
     virtual s32 m85(s16, s32);
 };
 
-void reset_hp__9TObjEneDDFv(void *, s32, s32, s32);
-void initialize_enemy_state__9TObjEneDDFv(void *, s32);
-void init_model__9TObjEneDDFv(void *, void *, s32);
+void reset_hp__9TObjEneDDFPUcPUcPUc(void *, s32, s32, s32);
+void initialize_enemy_state__9TObjEneDDFl(void *, s32);
+void init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, s32);
 
 s32 TObjEneBm3Fly::init_child_params() {
     init_position_vectors();
     *(s32 *)((s8 *)this + 0x34) = *(s32 *)((s8 *)(*(u8 **)((s8 *)bm3_fly_nest_resources + 0x42C)) + 8);
     this->texlist = *(s32 *)((s8 *)(*(u8 **)((s8 *)bm3_fly_nest_resources + 0x42C)) + 0xC);
-    init_model__9TObjEneDDFv(this, &bm3_fly_collider_params, 1);
+    init_model__9TObjEneDDFP13CollisionBodyl(this, &bm3_fly_collider_params, 1);
     set_field_d8((s32)bm3_fly_action_table);
     set_field_dc(*(s32 *)((s8 *)bm3_fly_nest_resources + 0x430));
     this->m_b8 = 0;
     set_animation(this->m_b8);
     set_field_b8(this->m_b8);
-    reset_hp__9TObjEneDDFv(this, bm3_fly_boss_stat_handle, TObjEneBm3Fly__attack_params, lbl_805D50E8);
+    reset_hp__9TObjEneDDFPUcPUcPUc(this, bm3_fly_boss_stat_handle, TObjEneBm3Fly__attack_params, lbl_805D50E8);
     check_state_flag_1();
     this->movementParameters = bm3_fly_decision_row;
-    initialize_enemy_state__9TObjEneDDFv(this, 3);
+    initialize_enemy_state__9TObjEneDDFl(this, 3);
     this->m_37c = (5.0f);
     enemy_init_acquire_period(0xA);
     enemy_init_validate_period(0xA);

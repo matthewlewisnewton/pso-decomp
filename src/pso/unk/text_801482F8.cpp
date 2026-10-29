@@ -299,7 +299,7 @@ struct Lim_8014854C { u8 pad0[8]; s32 lim; };
 extern "C" {
 s32 approach_angle_limited(s32, s32, s32);
 f32 random_ratio__9TObjCharaFv();
-void enemy_set_heading_velocity(TObjEnemy *arg0, s32 arg1, f32 farg0);
+void enemy_set_heading_velocity(f32 speed, TObjEnemy *enemy, s32 heading);
 void select_enemy_destination(void *, void *, s32);
 void enemy_turn_toward_dest(void *, s32);
 f32 horizontal_distance_squared(void *, void *);
@@ -531,7 +531,7 @@ void TObjNpcBase::update_conversation() {
         F(void *, 0x3B0) = 0;
         break;
     }
-    ((TObjPlayer *)arg0)->update_collisions();
+    ((TObjCollidable *)arg0)->update_collisions();
 }
 
 void TObjNpcBase::update_wandering() {
@@ -565,7 +565,7 @@ void TObjNpcBase::update_wandering() {
         u8 *o;
         f32 r;
         enemy_turn_toward_dest(arg0, *(s32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 8));
-        enemy_set_heading_velocity((TObjEnemy *)arg0, this->rotation_y, *(f32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 4));
+        enemy_set_heading_velocity(*(f32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 4), (TObjEnemy *)arg0, this->rotation_y);
         move_with_wall_slide(arg0);
         if (objInBand((GameObj *)arg0, (f32)lbl_805DB1C8) != 0 || objInBand((GameObj *)((GameObj *)arg0), (f32)((f32)lbl_805DB1D8)) != 0) {
             this->play_voice();
@@ -590,7 +590,7 @@ void TObjNpcBase::update_wandering() {
         }
         break;
     }
-    ((TObjPlayer *)arg0)->update_collisions();
+    ((TObjCollidable *)arg0)->update_collisions();
 }
 
 void TObjNpcBase::update_standing() {
