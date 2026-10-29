@@ -4646,6 +4646,10 @@ pso/npc/TObjNpcMaleMacho.cpp:
 
 pso/npc/TObjNpcMaleOld.cpp:
 	.text       start:0x8014C2A4 end:0x8014C47C
+	.rodata     start:0x8043FC90 end:0x8043FCC8
+	.data       start:0x804AA898 end:0x804AA8B0
+	.sdata      start:0x805D2E08 end:0x805D2E10
+	.sbss       start:0x805D5800 end:0x805D5808
 
 pso/npc/TObjNpcMaleTall.cpp:
 	.text       start:0x8014C47C end:0x8014C610
