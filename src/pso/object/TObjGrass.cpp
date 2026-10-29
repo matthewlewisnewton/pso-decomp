@@ -1813,7 +1813,7 @@ u8 *TObjGrass__ct(u8 *arg0, s32 arg1, s32 arg2) {
     s32 t;
     __ct__9TObjEnemyFP7TObject(arg0, arg1, arg2);
     *(u8 **)((s8 *)arg0 + 0x18) = __vt__9TObjGrass;
-    ((TUnk_80494938 *)(arg0 + 0x3B0))->init_common();
+    __ct__13TUnk_80494938Fv((arg0 + 0x3B0));
     *(s32 *)((s8 *)arg0 + 0) = lbl_805D2A38;
     ((TObjGrass *)(arg0))->apply_set_data((void *)arg2);
     ((TObjPlayer *)arg0)->init_position_vectors();

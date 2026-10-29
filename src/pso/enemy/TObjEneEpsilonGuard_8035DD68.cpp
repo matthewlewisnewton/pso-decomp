@@ -1410,7 +1410,7 @@ void *TObjEneEpsilonGuard__ct(void *ene_epsilon_guard, void *arg1, void *arg2, v
     s32 i;
     TObjEneEpsilon__ct();
     *(void ***)((s8 *)ene_epsilon_guard + 0x18) = __vt__19TObjEneEpsilonGuard;
-    ((TUnk_80494938 *)((u8 *)ene_epsilon_guard + 0x4BC))->init_common();
+    __ct__13TUnk_80494938Fv(((u8 *)ene_epsilon_guard + 0x4BC));
     *(s32 *)((s8 *)ene_epsilon_guard + 0) = (s32) TObjEneEpsilonGuard__class_name;
     *(s16 *)((s8 *)ene_epsilon_guard + 0x470) = ((s16 (*)(void *))get_entity_id)(arg2);
     ((TObjEneDD *)ene_epsilon_guard)->init_common_from((u8 *)arg2);
