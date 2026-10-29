@@ -270,7 +270,7 @@ TObjEneNanoDrago::TObjEneNanoDrago(TObject *parent, void *setData) : TObjEnemyCu
     scale.x = 0.6f;
     speed = ((NanoDragoMovementParams *)movementParameters)->baseSpeed * scale.x;
     VecCopy((Vec *)(&home_position), (const Vec *)(&position));
-    VecCopy((Vec *)(&flightDestination), (const Vec *)(&position));
+    VecCopy((Vec *)(&moveDestination), (const Vec *)(&position));
     if ((s32)parameters[0] == 1) {
         m_388 |= 0x40000;
         if (parameters[1] < 1.0f) {
@@ -416,7 +416,7 @@ void TObjEneNanoDrago::dispatch_action_state() {
         update_growth_state();
         return;
       case 7:
-        update_damage_fade_state();
+        update_fade_in_state();
         break;
     }
   }
@@ -460,14 +460,14 @@ void TObjEneNanoDrago::render() {
         if (TObjPlayer::check_demo_mode() == 1) {
             draw_chunk_object((int) (model));
         } else if (m_388 & 4) {
-            if (damageFade.has_visible_opacity() != 0) {
-                damageFade.set_flags_and_apply_damage_color();
+            if (appearFade.has_visible_opacity() != 0) {
+                appearFade.set_flags_and_apply_damage_color();
                 if (viewDetail == 1) {
                     draw();
                 } else {
                     draw_motion_model();
                 }
-                damageFade.clear_flag_and_notify();
+                appearFade.clear_flag_and_notify();
             } else {
                 rendered = 0;
             }
@@ -773,14 +773,14 @@ void TObjEneNanoDrago::update_flight_state() {
         state = 1;
         if (actorFlags & 0x01000000) {
             if (m_388 & 0x40000) {
-                VecCopy((Vec *)(&flightDestination), (const Vec *)(&home_position));
-                calc_velocity_toward_destination(((u8 *)this), position, flightDestination, speed);
+                VecCopy((Vec *)(&moveDestination), (const Vec *)(&home_position));
+                calc_velocity_toward_destination(((u8 *)this), position, moveDestination, speed);
                 m_388 &= ~0x40000;
                 sub_8004292C();
                 flightHeight = 50.0f;
             } else {
                 find_target_in_range(((NanoDragoMovementParams *)movementParameters)->detectionRadius);
-                calc_velocity_toward_destination(((u8 *)this), position, flightDestination, speed);
+                calc_velocity_toward_destination(((u8 *)this), position, moveDestination, speed);
             }
             requested_action = 7;
         } else {
@@ -792,16 +792,16 @@ void TObjEneNanoDrago::update_flight_state() {
                 VecCopy((Vec *)&v, (const Vec *)(&position));
                 subtract_vector(&v, target + 0x38);
                 find_open_direction(&v);
-                calc_velocity_toward_destination(((u8 *)this), position, flightDestination, speed);
+                calc_velocity_toward_destination(((u8 *)this), position, moveDestination, speed);
             } else {
-                VecCopy((Vec *)(&flightDestination), (const Vec *)(&home_position));
-                calc_velocity_toward_destination(((u8 *)this), position, flightDestination, speed);
+                VecCopy((Vec *)(&moveDestination), (const Vec *)(&home_position));
+                calc_velocity_toward_destination(((u8 *)this), position, moveDestination, speed);
             }
         }
         break;
     case 1:
         advance_animation();
-        calc_velocity_toward_destination(((u8 *)this), position, flightDestination, TObjPlayer__sub_800DC434((s32)((u8 *)this), 0));
+        calc_velocity_toward_destination(((u8 *)this), position, moveDestination, TObjPlayer__sub_800DC434((s32)((u8 *)this), 0));
         if (flightHeight < 50.0f) {
             s32 ok = 1;
             if (requested_action == 6 && frame < 22.0f) {
@@ -819,7 +819,7 @@ void TObjEneNanoDrago::update_flight_state() {
             y_speed = 0.0f;
             VecCopy((Vec *)(&prev_position), (const Vec *)(&position));
             vec3_add_to(&position, &x_speed);
-            if (xz_distance_squared((Vec *)(&position), (Vec *)(&flightDestination)) <= (10.0f + speed) * (10.0f + speed)) {
+            if (xz_distance_squared((Vec *)(&position), (Vec *)(&moveDestination)) <= (10.0f + speed) * (10.0f + speed)) {
                 state = 2;
                 m_310 = 0.0f;
                 x_speed = 0.0f;
@@ -1042,13 +1042,13 @@ void TObjEneNanoDrago::wander_around(Vec *center, f32 radius) {
     TObjEneNanoDrago *actor = this;
     s32 ang;
     f32 r;
-    if (xz_distance_squared((Vec *)&actor->position, (Vec *)&actor->flightDestination) < 400.0f) {
+    if (xz_distance_squared((Vec *)&actor->position, (Vec *)&actor->moveDestination) < 400.0f) {
         ang = (s32)(182.04445f * (360.0f * random_ratio()));
         r = 0.4f * (radius * (1.0f + random_ratio()));
-        actor->flightDestination.x = r * cos_table_lookup(ang) + center->x;
-        actor->flightDestination.z = r * sin_table_lookup(ang) + center->z;
+        actor->moveDestination.x = r * cos_table_lookup(ang) + center->x;
+        actor->moveDestination.z = r * sin_table_lookup(ang) + center->z;
     }
-    VecCopy((Vec *)&actor->m_29c, (const Vec *)&actor->flightDestination);
+    VecCopy((Vec *)&actor->m_29c, (const Vec *)&actor->moveDestination);
     enemy_turn_toward_dest(actor, ((NanoDragoMovementParams *)actor->movementParameters)->turnSpeed);
     enemy_set_heading_velocity(actor->speed, actor, actor->rotation_y);
     move_with_wall_slide((u8 *)actor);
@@ -1135,7 +1135,7 @@ void TObjEneNanoDrago::trigger_hit_camera_shake(u32 victim) {
         TCameraCtrl::set_shake_preset(1);
     }
 }
-void TObjEneNanoDrago::update_damage_fade_state() {
+void TObjEneNanoDrago::update_fade_in_state() {
     s32 flags;
     s32 stateFlags;
 
@@ -1146,11 +1146,11 @@ void TObjEneNanoDrago::update_damage_fade_state() {
         actorFlags = flags;
         requested_action = 0;
         play_area_sound_effect__12TBoss3VoloptFv((u8 *)(&m_2fc), flags);
-        TObjEneMe3SinowZoa__sub_800D758C((u8 *)(&damageFade));
+        TObjEneMe3SinowZoa__sub_800D758C((u8 *)(&appearFade));
         state = 1;
     case 1:
         advance_animation();
-        if (damageFade.advance_toward_max() == 1) {
+        if (appearFade.advance_toward_max() == 1) {
             state = -1;
         }
         ((TObjPlayer *)this)->update_collisions();
@@ -1237,9 +1237,9 @@ void TObjEneNanoDrago::find_open_direction(Vec *direction) {
         i = 0;
         bias = 20.0f;
         for (; i < 3; i++) {
-            matrix_mult_vec(0, &v, &flightDestination);
-            vec3_add_to(&flightDestination, &m_2fc);
-            h = csnVector((Vec *)&m_2fc, &flightDestination, -1);
+            matrix_mult_vec(0, &v, &moveDestination);
+            vec3_add_to(&moveDestination, &m_2fc);
+            h = csnVector((Vec *)&m_2fc, &moveDestination, -1);
             if (h == NULL) {
                 pop_matrix();
                 return;
@@ -1259,8 +1259,8 @@ void TObjEneNanoDrago::find_open_direction(Vec *direction) {
         Vec v2 = find_open_direction_zero_vec;
         v2.x = bestv;
         rotate_matrix_y(0, best);
-        matrix_mult_vec(0, &v2, &flightDestination);
-        vec3_add_to(&flightDestination, &m_2fc);
+        matrix_mult_vec(0, &v2, &moveDestination);
+        vec3_add_to(&moveDestination, &m_2fc);
         pop_matrix();
     }
 }

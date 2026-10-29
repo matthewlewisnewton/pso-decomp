@@ -664,7 +664,7 @@ void TObjEneIllGill::vfunc_62() {
     this->actorFlags = (s32) (this->actorFlags & 0xFFDFFFFF);
 }
 
-void TObjEneIllGill::update_action_hold() {
+void TObjEneIllGill::sub_803669B0() {
     u8 *player = (u8 *)this;
     s32 temp_r3;
     ((TObjBase *)player)->obj_clearFlags30((int)(0x04040000U));
@@ -1381,7 +1381,7 @@ void TObjEneIllGill::run_task() {
         update_shadow_attack();
         break;
     case 6:
-        update_action_hold();
+        sub_803669B0();
         break;
     case 7:
         update_damage_recovery();

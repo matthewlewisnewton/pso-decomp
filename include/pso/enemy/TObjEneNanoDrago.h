@@ -26,7 +26,7 @@ struct TObjEneNanoDrago : public TObjEnemyCustom {
     virtual void vfunc_63();
     void capture_beam_origins();
     void add_target_in_front_arc(TObjChara *candidate);
-    void update_damage_fade_state();
+    void update_fade_in_state();
     void trigger_hit_camera_shake(u32 target);
     void request_growth();
     void spawn_beam_particle(s32 index);
@@ -54,7 +54,7 @@ struct TObjEneNanoDrago : public TObjEnemyCustom {
     static void *create(void *setData);
 
     s16 growth_count;
-    Vec flightDestination;
+    Vec moveDestination;
     Vec beamOrigins[2];
     s32 beamTargetCount;
     u16 beamTargetIds[12];
@@ -64,7 +64,7 @@ struct TObjEneNanoDrago : public TObjEnemyCustom {
     s32 cameraShakeCooldown;
     s32 alternateBeam;
     f32 sinkingOffset;
-    TUnk_80494938 damageFade;
+    TUnk_80494938 appearFade;
     f32 flightHeight;
     f32 descentSpeed;
     RenderFadeState cameraFades[4];

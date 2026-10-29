@@ -957,7 +957,7 @@ force_active:
   - __ct__14TObjEneIllGillFP7TObjectPv
   - update_shadow_attack__14TObjEneIllGillFv
   - update_damage_recovery__14TObjEneIllGillFv
-  - update_action_hold__14TObjEneIllGillFv
+  - sub_803669B0__14TObjEneIllGillFv
   - update_weapon_attack__14TObjEneIllGillFv
   - update_forward_movement__14TObjEneIllGillFv
   - clear_charge_hits__14TObjEneIllGillFv
