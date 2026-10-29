@@ -955,125 +955,6 @@ struct Obj_800E6F0C { u8 pad[0x38]; u8 pos[0x3c0 - 0x38]; s32 kind; };
 
 typedef struct { f32 x, y, z; } Vec_800E4FE8;
 
-struct Base_800E6DD8 { u8 pad[0x18]; };
-
-struct Obj_800E6DD8 : Base_800E6DD8 {
-    virtual void p0();
-    virtual void p1();
-    virtual void p2();
-    virtual void p3();
-    virtual void p4();
-    virtual void p5();
-    virtual void p6();
-    virtual void p7();
-    virtual void p8();
-    virtual void p9();
-    virtual void p10();
-    virtual void p11();
-    virtual void p12();
-    virtual void p13();
-    virtual void p14();
-    virtual void p15();
-    virtual void p16();
-    virtual void p17();
-    virtual void p18();
-    virtual void p19();
-    virtual void p20();
-    virtual void p21();
-    virtual void p22();
-    virtual void p23();
-    virtual void p24();
-    virtual void p25();
-    virtual void p26();
-    virtual void p27();
-    virtual void p28();
-    virtual void p29();
-    virtual void p30();
-    virtual void p31();
-    virtual void p32();
-    virtual void p33();
-    virtual void p34();
-    virtual void p35();
-    virtual void p36();
-    virtual void p37();
-    virtual void p38();
-    virtual void p39();
-    virtual void p40();
-    virtual void p41();
-    virtual void p42();
-    virtual void p43();
-    virtual void p44();
-    virtual void p45();
-    virtual void p46();
-    virtual void p47();
-    virtual void p48();
-    virtual void p49();
-    virtual void p50();
-    virtual void p51();
-    virtual void p52();
-    virtual void p53();
-    virtual void p54();
-    virtual void p55();
-    virtual void p56();
-    virtual void p57();
-    virtual void p58();
-    virtual void p59();
-    virtual void p60();
-    virtual void p61();
-    virtual void p62();
-    virtual void p63();
-    virtual void p64();
-    virtual void p65();
-    virtual void p66();
-    virtual void p67();
-    virtual void p68();
-    virtual void p69();
-    virtual void p70();
-    virtual void p71();
-    virtual void p72();
-    virtual void p73();
-    virtual void p74();
-    virtual void p75();
-    virtual void p76();
-    virtual void p77();
-    virtual void p78();
-    virtual void p79();
-    virtual void p80();
-    virtual void p81();
-    virtual void p82();
-    virtual void p83();
-    virtual void p84();
-    virtual void p85();
-    virtual void p86();
-    virtual void p87();
-    virtual void p88();
-    virtual void p89();
-    virtual void p90();
-    virtual void p91();
-    virtual void p92();
-    virtual void p93();
-    virtual void p94();
-    virtual void p95();
-    virtual void p96();
-    virtual void p97();
-    virtual void p98();
-    virtual void p99();
-    virtual void p100();
-    virtual void p101();
-    virtual void p102();
-    virtual void p103();
-    virtual void p104();
-    virtual void p105();
-    virtual void p106();
-    virtual void p107();
-    virtual void p108();
-    virtual void p109();
-    virtual void p110();
-    virtual void v111(s32);
-    virtual void v112(s32);
-    virtual void v113(s32);
-    virtual void v114(s32);
-};
 
 struct VBase_18_82072c { char pad[0x18]; };
 
@@ -1492,9 +1373,9 @@ void TObjEneMe3ShinowaMirage__sub_800E54E8(void *, s32);
 void TObjEneMe3ShinowaMirage__sub_800E66FC(u8 *, s32);
 void TObjEneMe3ShinowaMirage__sub_800E69F0(u8 *arg0, s32 arg1);
 void action__17TObjEneMe3ShinowaFl(u8 *arg0, s32 arg1);
-void dispatch_action__23TObjEneMe3ShinowaMirageFPvUii(Obj_800E6DD8 *arg0, u32 arg1, s32 arg2);
+void dispatch_action__17TObjEneMe3ShinowaFUll(TObjEneMe3Shinowa *, u32, s32);
 void TObjEneMe3ShinowaMirage__sub_800E6F0C(Obj_800E6F0C *self);
-int select_and_apply_target__23TObjEneMe3ShinowaMirageFPv(void* p);
+void vfunc_104__17TObjEneMe3ShinowaFf(TObjEneMe3Shinowa *, f32);
 void vfunc_89__17TObjEneMe3ShinowaFv(void *arg0);
 void vfunc_111__17TObjEneMe3ShinowaFv(void);
 void TObjEneMe3Shinowa__sub_800E7268(u8 *arg0);
@@ -1611,7 +1492,7 @@ extern "C" {
 void vfunc_83__12TObjEneDD_STFv();
 }
 extern "C" {
-void TObjEneMe3ShinowaMirage__sub_800E47DC();
+void vfunc_118__17TObjEneMe3ShinowaFv();
 }
 extern "C" {
 void vfunc_105__23TObjEneMe3ShinowaMirageFv();
@@ -1947,15 +1828,15 @@ void *__vt__23TObjEneMe3ShinowaMirage[119] = {
     (void *)&enemy_spawn_zalure_effect__9TObjCharaFv, (void *)&recalc_stats__9TObjCharaFv, (void *)&vfunc_74__9TObjEnemyFl, (void *)&vfunc_75__9TObjCharaFf,
     (void *)&vfunc_76__9TObjCharaFv, (void *)&vfunc_77__9TObjCharaFv, (void *)&vfunc_78__9TObjCharaFl, (void *)&vfunc_79__9TObjEneDDFPl,
     (void *)&apply_hit_message_flags__9TObjEnemyFPv, (void *)&apply_set_data__9TObjEnemyFPv, (void *)&clear_lobby_object_state__9TObjEnemyFv, (void *)&vfunc_83__12TObjEneDD_STFv,
-    (void *)&vfunc_84__9TObjEneDDFv, (void *)&vfunc_85__9TObjEneDDFv, (void *)&vfunc_86__9TObjEneDDFv, (void *)&dispatch_action__23TObjEneMe3ShinowaMirageFPvUii,
+    (void *)&vfunc_84__9TObjEneDDFv, (void *)&vfunc_85__9TObjEneDDFv, (void *)&vfunc_86__9TObjEneDDFv, (void *)&dispatch_action__17TObjEneMe3ShinowaFUll,
     (void *)&vfunc_88__17TObjEneMe3ShinowaFv, (void *)&vfunc_89__17TObjEneMe3ShinowaFv, (void *)&vfunc_90__9TObjEneDDFv, (void *)&vfunc_91__9TObjEneDDFv,
     (void *)&vfunc_92__9TObjEneDDFv, (void *)&vfunc_93__9TObjEneDDFv, (void *)&vfunc_94__9TObjEneDDFv, (void *)&vfunc_95__9TObjEneDDFv,
     (void *)&vfunc_96__9TObjEneDDFv, (void *)&vfunc_97__9TObjEneDDFv, (void *)&vfunc_98__9TObjEneDDFv, (void *)&vfunc_99__9TObjEneDDFv,
     (void *)&vfunc_100__9TObjEneDDFv, (void *)&vfunc_101__9TObjEneDDFPUc, (void *)&vfunc_102__9TObjEneDDFv, (void *)&vfunc_103__9TObjEneDDFPUc,
-    (void *)&select_and_apply_target__23TObjEneMe3ShinowaMirageFPv, (void *)&vfunc_105__23TObjEneMe3ShinowaMirageFv, (void *)&can_hit_same_target__23TObjEneMe3ShinowaMirageFv, (void *)&vfunc_107__23TObjEneMe3ShinowaMirageFv,
+    (void *)&vfunc_104__17TObjEneMe3ShinowaFf, (void *)&vfunc_105__23TObjEneMe3ShinowaMirageFv, (void *)&can_hit_same_target__23TObjEneMe3ShinowaMirageFv, (void *)&vfunc_107__23TObjEneMe3ShinowaMirageFv,
     (void *)&update_player_state_default__23TObjEneMe3ShinowaMirageFv, (void *)&update_effect__23TObjEneMe3ShinowaMirageFv, (void *)&dispatch_if_active__23TObjEneMe3ShinowaMirageFv, (void *)&vfunc_111__17TObjEneMe3ShinowaFv,
     (void *)&apply_effect_pair__23TObjEneMe3ShinowaMirageFv, (void *)&action__17TObjEneMe3ShinowaFl, (void *)&vfunc_114__17TObjEneMe3ShinowaFl, (void *)&TObjEneMe3ShinowaMirage__vt113,
-    (void *)&vfunc_116__17TObjEneMe3ShinowaFl, (void *)&update_mirage__17TObjEneMe3ShinowaFv, (void *)&TObjEneMe3ShinowaMirage__sub_800E47DC,
+    (void *)&vfunc_116__17TObjEneMe3ShinowaFl, (void *)&update_mirage__17TObjEneMe3ShinowaFv, (void *)&vfunc_118__17TObjEneMe3ShinowaFv,
 };
 #define shinowa_mirage_model_init_data ((u8 *)shinowa_mirage_model_init_data)
 
@@ -2029,7 +1910,7 @@ void TObjEneMe3ShinowaMirage::advance_camera_ctrl_step() {
 
 void TObjEneMe3Shinowa::vfunc_116(s32) {  }
 
-void TObjEneMe3Shinowa::vfunc_115() {  }
+void TObjEneMe3Shinowa::vfunc_115(s32) {  }
 
 void TObjEneMe3Shinowa::vfunc_114(s32) {  }
 
@@ -2967,58 +2848,58 @@ void TObjEneMe3Shinowa::action(s32 arg1) {
     }
 }
 
-void dispatch_action__23TObjEneMe3ShinowaMirageFPvUii(Obj_800E6DD8 *arg0_, u32 arg1, s32 arg2) {
-    switch (arg1) {
+void TObjEneMe3Shinowa::dispatch_action(u32 state, s32 reason) {
+    switch (state) {
     case 0:
-        arg0_->v111(arg2);
+        action(reason);
         return;
     case 1:
-        ((TObjEneMe3Shinowa *)arg0_)->sub_800E6BB8(arg2);
+        sub_800E6BB8(reason);
         return;
     case 2:
-        TObjEneMe3ShinowaMirage__sub_800E69F0((u8 *)arg0_, (s32)arg2);
+        TObjEneMe3ShinowaMirage__sub_800E69F0((u8 *)this, reason);
         return;
     case 3:
-        TObjEneMe3ShinowaMirage__sub_800E66FC((u8 *)arg0_, arg2);
+        TObjEneMe3ShinowaMirage__sub_800E66FC((u8 *)this, reason);
         return;
     case 4:
-        ((TObjEneMe3ShinowaMirage *)arg0_)->state_chase_target(arg2);
+        ((TObjEneMe3ShinowaMirage *)this)->state_chase_target(reason);
         return;
     case 5:
-        TObjEneMe3ShinowaMirage__sub_800E5F64((u8 *)arg0_, (s32)arg2);
+        TObjEneMe3ShinowaMirage__sub_800E5F64((u8 *)this, reason);
         return;
     case 6:
-        TObjEneMe3ShinowaMirage__sub_800E5CE4((u8 *)arg0_, (s32)arg2);
+        TObjEneMe3ShinowaMirage__sub_800E5CE4((u8 *)this, reason);
         return;
     case 7:
-        TObjEneMe3ShinowaReal__sub_800E5950((u8 *)arg0_, (s32)arg2);
+        TObjEneMe3ShinowaReal__sub_800E5950((u8 *)this, reason);
         return;
     case 8:
-        TObjEneMe3ShinowaMirage__sub_800E54E8(arg0_, arg2);
+        TObjEneMe3ShinowaMirage__sub_800E54E8(this, reason);
         return;
     case 11:
-        TObjEneMe3ShinowaMirage__sub_800E5220(arg0_, arg2);
+        TObjEneMe3ShinowaMirage__sub_800E5220(this, reason);
         return;
     case 9:
-        TObjEneMe3ShinowaMirage__sub_800E50D8((u8 *) arg0_, arg2);
+        TObjEneMe3ShinowaMirage__sub_800E50D8((u8 *)this, reason);
         return;
     case 10:
-        ((TObjEneMe3ShinowaMirage *)arg0_)->state_cast_support(arg2);
+        ((TObjEneMe3ShinowaMirage *)this)->state_cast_support(reason);
         return;
     case 12:
-        TObjEneMe3ShinowaMirage__sub_800E4FE8((u8 *)arg0_, (s32)arg2);
+        TObjEneMe3ShinowaMirage__sub_800E4FE8((u8 *)this, reason);
         return;
     case 13:
-        ((TObjEneMe3ShinowaMirage *)arg0_)->state_break_apart(arg2);
+        ((TObjEneMe3ShinowaMirage *)this)->state_break_apart(reason);
         return;
     case 14:
-        arg0_->v112(arg2);
+        vfunc_114(reason);
         return;
     case 15:
-        arg0_->v113(arg2);
+        vfunc_115(reason);
         return;
     case 16:
-        arg0_->v114(arg2);
+        vfunc_116(reason);
     default:
         return;
     }
@@ -3047,7 +2928,7 @@ s32 TObjEneMe3Shinowa::sub_800E6FE0() {
     return *(f32 *)((s8 *)arg0 + 0x358) >= TObjEneMe3ShinowaMirage__data_805DA5DC;
 }
 
-int select_and_apply_target__23TObjEneMe3ShinowaMirageFPv(void* p) { return select_and_apply_target__12TObjEneDD_STFf(p); }
+void TObjEneMe3Shinowa::vfunc_104(f32 distance) { select_and_apply_target(distance); }
 
 s32 TObjEneMe3Shinowa::sub_800E701C() {
     u8 *arg0 = (u8 *)this;
