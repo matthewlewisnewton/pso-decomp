@@ -63,7 +63,6 @@ s32 attack_target_history_add(s32, s32);
 void TLobby__sub_8001FE7C(void *, int);
 void free_collision_body_parts(void *);
 void TObjPlayer__sub_800C4D44(void);
-void TObjPlayer__sub_800C44C4(void);
 extern void *tl_04;
 }
 
@@ -144,7 +143,7 @@ s32 TObjEneRe2Flower_Bomb::area_attack_deliver_direct(void *recoil, s32 attackDa
     return result;
 }
 
-void TObjPlayer__sub_800C44C4(void) {
+void TObjEneRe2Flower::initialize_resources() {
     FlowerMotionSetup motionSetup;
     if (get_current_floor_area() == AREA_TOWER) {
         lbl_805D5174 = (u32)load_enemy_bml_resource_named(&TObjEneRe2Flower__resource_descriptor, lbl_8043BBE0);
