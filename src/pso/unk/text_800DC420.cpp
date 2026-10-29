@@ -143,10 +143,10 @@ void hit_object_in_radius__10TObjPlayerFPvPvPv(Src_800DC4B4 *arg0, Obj_800DC4B4 
     obj->v21(attacker, parm, 0, -1, -1);
     if (attacker != NULL) {
         if (obj->flags & 0x800) {
-            ((TObjPlayer *)attacker)->set_flag_20000();
+            ((TObjEneNanoDrago *)attacker)->request_growth();
         }
         if (is_split_screen() == 0 && local_client_id == get_entity_id(obj)) {
-            ((TObjPlayer *)attacker)->trigger_hit_camera_shake((u32)obj);
+            ((TObjEneNanoDrago *)attacker)->trigger_hit_camera_shake((u32)obj);
         }
     }
     spawn_particle_effect(obj->pos, 0xFB);

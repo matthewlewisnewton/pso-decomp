@@ -1,3 +1,4 @@
+#include "pso/enemy/TObjEneNanoDrago.h"
 #include "types.h"
 #include "pso/system/NinjaUtil.h"
 #include "pso/system/vector.h"
@@ -116,12 +117,12 @@ void TObjPlayer::update_homing_shot() {
             parm.b = lbl_805D5270;
             obj->v21(att, parm, 0, -1, -1);
             if (obj->flags & 0x800) {
-                ((TObjPlayer *)att)->set_flag_20000();
+                ((TObjEneNanoDrago *)att)->request_growth();
             }
             spawn_particle_effect(obj->pos, 0xFB);
             spawn_particle_effect(obj->pos, 0xFC);
             if (is_split_screen() == 0 && local_client_id == arg0->owner) {
-                ((TObjPlayer *)att)->trigger_hit_camera_shake((u32)obj);
+                ((TObjEneNanoDrago *)att)->trigger_hit_camera_shake((u32)obj);
             }
             queue_destruction__7TObjectFv(arg0);
         }
