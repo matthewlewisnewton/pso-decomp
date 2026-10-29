@@ -14,6 +14,69 @@ detect_strings: true
 mw_comment_version: 10
 # --- force_active (BEGIN) ---
 force_active:
+  - TObjEneMe3SinowZoa__data_805D6AD8
+  - TObjEneMe3SinowZoa__data_805D6AE0
+  - TObjEneMe3SinowZoa__kind_param_tbls
+  - TObjEneMe3SinowZoa_init_params
+  - __ct__18TObjEneMe3SinowZoaFP7TObject
+  - __ct__22TObjEneMe3SinowZoaRealFP7TObjectPv
+  - __dt__18TObjEneMe3SinowZoaFv
+  - __dt__22TObjEneMe3SinowZoaRealFv
+  - __vt__18TObjEneMe3SinowZoa
+  - __vt__22TObjEneMe3SinowZoaReal
+  - action__18TObjEneMe3SinowZoaFv
+  - check_move_collision__18TObjEneMe3SinowZoaFP3Vec
+  - create_instance__22TObjEneMe3SinowZoaRealFPv
+  - dispatch_action__18TObjEneMe3SinowZoaFUll
+  - fn_80316C3C__18TObjEneMe3SinowZoaFl
+  - fn_803170F0__18TObjEneMe3SinowZoaFl
+  - fn_80317254__18TObjEneMe3SinowZoaFl
+  - get_node_height__18TObjEneMe3SinowZoaFv
+  - init_enemy__22TObjEneMe3SinowZoaRealFv
+  - is_outside_visible_range__18TObjEneMe3SinowZoaFv
+  - is_target_in_range__18TObjEneMe3SinowZoaFv
+  - lbl_80542FB0
+  - lbl_80542FDC
+  - lbl_80542FF0
+  - lbl_805D6ADC
+  - receive_direct_attack__18TObjEneMe3SinowZoaFPv19DirectAttackPayloadPvll
+  - render__18TObjEneMe3SinowZoaFv
+  - render_model_if_visible__18TObjEneMe3SinowZoaFv
+  - run_task__18TObjEneMe3SinowZoaFv
+  - set_entry_value_clamped__18TObjEneMe3SinowZoaFlf
+  - setup_move_bounds__18TObjEneMe3SinowZoaFv
+  - sinow_zoa_alternate_position
+  - sinow_zoa_attack_parameters
+  - sinow_zoa_base_parameters
+  - sinow_zoa_bml_desc
+  - sinow_zoa_collision_parts
+  - sinow_zoa_multiplayer_bml_desc
+  - sinow_zoa_resistance_parameters
+  - state_action__18TObjEneMe3SinowZoaFl
+  - sub_8031A3D8__18TObjEneMe3SinowZoaFv
+  - sub_8031A454__18TObjEneMe3SinowZoaFv
+  - sub_8031A4D0__18TObjEneMe3SinowZoaFv
+  - try_run_effect_m6__18TObjEneMe3SinowZoaFv
+  - try_run_effect_m7__18TObjEneMe3SinowZoaFv
+  - vfunc_104__18TObjEneMe3SinowZoaFf
+  - vfunc_105__18TObjEneMe3SinowZoaFv
+  - vfunc_107__18TObjEneMe3SinowZoaFv
+  - vfunc_107__22TObjEneMe3SinowZoaRealFv
+  - vfunc_108__18TObjEneMe3SinowZoaFv
+  - vfunc_111__18TObjEneMe3SinowZoaFv
+  - vfunc_111__22TObjEneMe3SinowZoaRealFv
+  - vfunc_112__18TObjEneMe3SinowZoaFv
+  - vfunc_115__18TObjEneMe3SinowZoaFv
+  - vfunc_28__18TObjEneMe3SinowZoaFv
+  - vfunc_61__18TObjEneMe3SinowZoaFv
+  - vfunc_62__18TObjEneMe3SinowZoaFv
+  - vfunc_62__22TObjEneMe3SinowZoaRealFv
+  - vfunc_63__18TObjEneMe3SinowZoaFv
+  - vfunc_63__22TObjEneMe3SinowZoaRealFv
+  - vfunc_88__18TObjEneMe3SinowZoaFv
+  - vfunc_89__18TObjEneMe3SinowZoaFv
+  - vfunc_95__18TObjEneMe3SinowZoaFv
+  - vfunc_96__18TObjEneMe3SinowZoaFv
   - __ct__15TObjEneGyaranzoFP7TObjectPv
   - __dt__15TObjEneGyaranzoFv
   - __vt__15TObjEneGyaranzo
@@ -1113,7 +1176,6 @@ force_active:
   - TObjEneMe3ShinowaReal__sub_800E45CC
   - TObjEneMe3ShinowaReal__sub_800E5950
   - TObjEneMe3Shinowa__sub_800E7268
-  - TObjEneMe3SinowZoaReal__ct
   - TObjEneMe3SinowZoa__sub_80317B50
   - TObjEneMe3SinowZoa__sub_80317F90
   - TObjEneMe3SinowZoa__sub_803182F8

@@ -16,6 +16,8 @@ public:
     virtual s32 has_visible_opacity();
     void sub_800D741C();
     void start_fade_in();
+    s32 advance_timer(f32 threshold);
+    void set_rate(f32 value);
     f32 value;
 };
 

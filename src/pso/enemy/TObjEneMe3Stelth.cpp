@@ -124,7 +124,7 @@ void exec__16TObjEneMe3StelthFPvi(u8 *arg0, s32 arg1) {
                 }
                 break;
             case 1:
-                if (((TObjEneMe3SinowZoa *)(arg0 + 0x404))->advance_timer(0.2f) != 0) {
+                if (((TUnk_80494938 *)(arg0 + 0x404))->advance_timer(0.2f) != 0) {
                     *(s32 *)((s8 *)arg0 + 0x3CC) = (s32) (*(s32 *)((s8 *)arg0 + 0x3CC) & 0xFFFFFFF7);
                     *(s32 *)((s8 *)arg0 + 0x3C0) = 0;
                     *(s32 *)((s8 *)arg0 + 0x424) = 2;
