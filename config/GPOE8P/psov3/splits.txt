@@ -9005,6 +9005,8 @@ pso/player/TObjPlayer_802790CC.cpp:
 
 pso/misc/TWindowSubEquipList.cpp:
 	.text       start:0x8027929C end:0x80279444
+	.rodata     start:0x8044F958 end:0x8044F970
+	.sdata      start:0x805D3A40 end:0x805D3A48
 
 pso/misc/TWindowSubGameEnd.cpp:
 	.text       start:0x80279444 end:0x80279714
