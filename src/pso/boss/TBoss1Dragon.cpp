@@ -4131,7 +4131,7 @@ void TBoss1Dragon::update_walking_state(u32 arg1) {
             if (VALID_800267B8(arg0) != 0) {
                 ((TObjEneDD_ST *)arg0)->enemy_copy_target_destination();
             } else {
-                ((TObjEneEpsilon *)arg0)->copy_position(TBoss1Dragon__data_80434E80);
+                ((TObjEneDD *)arg0)->set_target_destination((const Vec *)TBoss1Dragon__data_80434E80);
             }
             ((TBoss1Dragon *)arg0)->saveTargetDestination();
             send_state_sync__12TBoss1DragonFPv((struct dragon_80028530 *)(arg0));
@@ -4145,7 +4145,7 @@ void TBoss1Dragon::update_walking_state(u32 arg1) {
         if (LINKED_800267B8() != 0) {
             ((TObjEneDD_ST *)arg0)->enemy_copy_target_destination();
         } else {
-            ((TObjEneEpsilon *)arg0)->copy_position(TBoss1Dragon__data_80434E80);
+            ((TObjEneDD *)arg0)->set_target_destination((const Vec *)TBoss1Dragon__data_80434E80);
         }
         ((TBoss1Dragon *)arg0)->saveTargetDestination();
         break;
