@@ -10106,7 +10106,9 @@ pso/ui/TAdFadeGC.cpp:
 
 pso/object/TObjTradeCollision.cpp:
 	.text       start:0x802C7F78 end:0x802C80F0
+	.rodata     start:0x80471D88 end:0x80471DA0
 	.data       start:0x804E0B98 end:0x804E0BD0
+	.sdata      start:0x805D3EF8 end:0x805D3F00
 
 pso/misc/TOTrapChainSawEdge.cpp:
 	.text       start:0x802C80F0 end:0x802C9924
