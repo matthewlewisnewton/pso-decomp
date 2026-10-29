@@ -10859,6 +10859,8 @@ pso/enemy/DelDepthConstants.cpp:
 
 pso/misc/TWindowPartyStatus.cpp:
 	.text       start:0x8030C090 end:0x8030C340
+	.rodata     start:0x804757F0 end:0x80475808
+	.sdata      start:0x805D40F8 end:0x805D4100
 
 pso/unk/text_8030C340.cpp:
 	.text       start:0x8030C340 end:0x8030C39C
