@@ -299,7 +299,7 @@ void *TObjNpcMoja__ct(void *selfv, void *parent, void *arg2v) {
     init_collision_body_parts(self, lbl_804AABD8, 1);
     ((TObjPlayer *)self)->register_object_by_id();
     ((TObjEnemy *)self)->update_prev_position();
-    ((TBoss3VoloptHiraisin *)self)->copy_position();
+    ((TObjChara *)self)->refresh_center_from_body();
     return self;
 }
 

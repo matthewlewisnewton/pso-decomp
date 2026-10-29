@@ -277,7 +277,7 @@ void TBoss3VoloptMonitor::run_task() {
     dispatch_state();
     update_prev_position();
     if (obj_testFlags30(0x800) == 0) {
-        ((TBoss3VoloptHiraisin *)this)->copy_position();
+        ((TObjChara *)this)->refresh_center_from_body();
         submit_cursor_candidate(this, -1);
         minimap_render_dot(&position, -0x5DB4, 1, 0);
     }
