@@ -7900,8 +7900,9 @@ pso/player/TObjPlayer_8023355C.cpp:
 
 pso/misc/TTecJelin.cpp:
 	.text       start:0x802335B4 end:0x80233A90
-	.rodata     start:0x8044D658 end:0x8044D660
+	.rodata     start:0x8044D648 end:0x8044D660
 	.data       start:0x804CC960 end:0x804CC988
+	.sdata      start:0x805D37D8 end:0x805D37E0
 
 pso/misc/TTecLuker.cpp:
 	.text       start:0x80233A90 end:0x8023508C
