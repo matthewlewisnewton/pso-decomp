@@ -4539,6 +4539,10 @@ pso/npc/TObjNpcConnoisseur.cpp:
 
 pso/npc/TObjNpcExpertBase.cpp:
 	.text       start:0x80149AD4 end:0x80149C44
+	.rodata     start:0x8043F7D0 end:0x8043F810
+	.data       start:0x804A84B0 end:0x804A84C8
+	.sdata      start:0x805D2D68 end:0x805D2D70
+	.sbss       start:0x805D5750 end:0x805D5758
 
 pso/npc/TObjNpcFemaleBase_80149C44.cpp:
 	.text       start:0x80149C44 end:0x80149C7C
