@@ -16,7 +16,6 @@ extern "C" {
 s32 play_sound_effect(s32, u32, s16, s32);
 s32 obj_setFlags30(void *, int);
 s32 set_flag_start_effect__10TObjPlayerFv();
-s32 copy_target_state__14TObjEnePanarmsFPv(void *, int);
 extern RecoveredGlobal_800A887C_lbl_80491260 lbl_80491260;
 extern s32 breakup_model_ptr;
 typedef struct RecoveredGlobal_800A887C_lbl_80491260 RecoveredGlobal_800A887C_lbl_80491260;
@@ -32,7 +31,7 @@ void TObjPlayer__sub_800A887C(u8 *arg0) {
     }
     else
     {
-      play_sound_effect(copy_target_state__14TObjEnePanarmsFPv((void *) arg0, 0x4003AD16), (u32)(arg0 + 0x38), 0, 0);
+      play_sound_effect(((TObjEnemy *)((void *) arg0))->remap_sound_for_area((s32)(0x4003AD16)), (u32)(arg0 + 0x38), 0, 0);
     }
     TBoss3Volopt::create_breakup_mdl((s32)((void *) breakup_model_ptr), (s32)&lbl_80491260.value, (s32)((int) (*((s32 *) (((s8 *) arg0) + 0x24)))), (s32)(arg0 + 0x2FC), (s32)((int) (*((s32 *) (((s8 *) arg0) + 0x60)))));
     ((TObjPlayer *)arg0)->refresh_lobby_state();
