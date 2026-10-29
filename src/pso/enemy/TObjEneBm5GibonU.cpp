@@ -1,3 +1,4 @@
+#include "pso/unk/text_800D8830.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/TParticleCtrl.h"
 #include "types.h"
@@ -1641,7 +1642,6 @@ u8 check_hit_sphere__16TObjEneBm5GibonUFPvif(Ene_800CCB74 *arg0, s32 arg1, f32 s
 void attach_particle_model(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
 Hit_800CCC6C *csnVectorUnder(Vec_800CCC6C *, void *, s32);
 void *spawn_particle_effect(void *, s32);
-s32 fn_800D88E4(void *);
 void TObjEneMe3SinowZoa__sub_800D758C(void *);
 void TObjEneBm5GibonU__sub_800D02F8(Gibon_800D02F8 *g, s32 arg1);
 void TObjEneBm5GibonU__sub_800CFE30(u8 *arg0, s32 arg1);
@@ -1764,7 +1764,7 @@ int spawn_landing_effect__16TObjEneBm5GibonUFPvPv(Ene_800CCC6C *arg0, void *arg1
         if (p != NULL && arg0->f464 == 1) {
             ((TParticleCtrl *)p)->fn_800822D4(TObjEneBm5GibonU__data_805DA16C, TObjEneBm5GibonU__data_805DA168);
         }
-        return fn_800D88E4(&arg0->pos);
+        return play_floor_area_sound_effect((Vec *)&arg0->pos);
     }
     return ((s32)play_sound_effect((void *)((void *)((s32)copy_target_state__14TObjEnePanarmsFPv(arg0, 0x3BC21))), &arg0->pos, 0, 0));
 }
