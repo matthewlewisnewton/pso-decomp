@@ -16,6 +16,14 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/map/FloorArea.h"
 
+#pragma readonly_strings on
+
+extern "C" {
+const char *lbl_805D4198 = "TObjEneMe1GiGueBarrier";
+s32 TObjEneMe1GiGueBarrier__barrier_resource_object;
+}
+
+
 struct RecoveredGlobal_80325BCC_lbl_804ECD40 { s32 value; u8 remaining[0x2C]; };
 typedef char RecoveredGlobal_80325BCC_lbl_804ECD40_size[sizeof(RecoveredGlobal_80325BCC_lbl_804ECD40) == 0x30 ? 1 : -1];
 
@@ -47,17 +55,13 @@ s32 set_field_d8__10TObjMotionFl(void *, void *, int);
 void TObjEneMe1GiGueBarrier__sub_802CABF4(void *p);
 extern RecoveredGlobal_80325BCC_lbl_804ECD40 TObjEneMe1GiGueBarrier__animation_definitions;
 extern s32 __vt__22TObjEneMe1GiGueBarrier[];
-extern s32 lbl_805D4198;
+extern const char *lbl_805D4198;
 extern s32 TObjEneMe1GiGueBarrier__barrier_resource_object;
 u8 *TObjEneMe1GiGueBarrier__ct(TObjEneMe1GiGueBarrier *arg0, s32 arg1, u8 *arg2);
 s32 defer_render__7TObjectFv(void *);
 s32 rotate_matrix_y(int, int);
 s32 push_matrix();
 s32 post_translate_matrix(void *);
-extern const f32 lbl_805DF620;
-extern const f32 lbl_805DF624;
-extern const f32 lbl_805DF628;
-extern const f32 lbl_805DF62C;
 void TObjEneMe1GiGueBarrier__sub_80325CC0(void);
 
 #pragma push
@@ -69,12 +73,12 @@ void TObjEneMe1GiGueBarrier::render() {
         return;
     }
     if (get_current_floor_area() == AREA_TOWER) {
-        if (((VObj_18_ca64a0 *)(arg0))->m9(lbl_805DF620, lbl_805DF620, lbl_805DF624) == 0) {
+        if (((VObj_18_ca64a0 *)(arg0))->m9(600.0f, 600.0f, 20.0f) == 0) {
             return;
         }
         goto block_6;
     }
-    if (((VObj_18_ca64a0 *)(arg0))->m9(lbl_805DF628, lbl_805DF62C, lbl_805DF624) != 0) {
+    if (((VObj_18_ca64a0 *)(arg0))->m9(150.0f, 400.0f, 20.0f) != 0) {
 block_6:
         if (defer_render__7TObjectFv(arg0) == 0) {
             push_matrix();
@@ -138,7 +142,7 @@ u8 *TObjEneMe1GiGueBarrier__ct(TObjEneMe1GiGueBarrier *ene_me1_gi_gue_barrier, s
     u8 *temp_r5;
     TObjMotion__ct((u8 *)ene_me1_gi_gue_barrier);
     *(s32 **)((s8 *)ene_me1_gi_gue_barrier + 0x18) = &(*(RecoveredGlobal_80325BCC___vt__22TObjEneMe1GiGueBarrier *)&__vt__22TObjEneMe1GiGueBarrier).value;
-    *(s32 *)((s8 *)ene_me1_gi_gue_barrier + 0) = (s32) lbl_805D4198;
+    *(s32 *)((s8 *)ene_me1_gi_gue_barrier + 0) = (s32) ((s32)lbl_805D4198);
     *(u8 **)((s8 *)ene_me1_gi_gue_barrier + 0xFC) = arg2;
     ene_me1_gi_gue_barrier->m_100 = get_entity_id(*(u8 **)((s8 *)ene_me1_gi_gue_barrier + 0xFC));
     VecCopy((Vec *)((u8 *)ene_me1_gi_gue_barrier + 0x38), (const Vec *)((void *) (((TObjEneMe1GiGueBarrier *)((s32) *(u8 **)((s8 *)ene_me1_gi_gue_barrier + 0xFC)))->update_and_get_pos())));

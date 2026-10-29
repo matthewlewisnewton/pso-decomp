@@ -11153,7 +11153,11 @@ pso/ui/TAdChrSelMovePlateGC.cpp:
 
 pso/enemy/TObjEneMe1GiGueBarrier.cpp:
 	.text       start:0x80325950 end:0x80325D38
+	.rodata     start:0x80476720 end:0x80476738
 	.data       start:0x804ECD70 end:0x804ECDA8
+	.sdata      start:0x805D4198 end:0x805D41A0
+	.sbss       start:0x805D6C60 end:0x805D6C68
+	.sdata2     start:0x805DF620 end:0x805DF630
 
 pso/boss/TBoss8Dragon_80325D38.cpp:
 	.text       start:0x80325D38 end:0x80325F7C
