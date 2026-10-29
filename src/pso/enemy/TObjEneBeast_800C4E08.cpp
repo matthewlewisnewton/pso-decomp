@@ -1,5 +1,4 @@
 #include "types.h"
-#include "pso/boss/TBoss3VoloptHiraisin.h"
 #include "pso/object/obj_band.h"
 #include "pso/system/vector.h"
 #include "pso/enemy/TObjEneRe2Flower_EffCurse3.h"
@@ -13,9 +12,6 @@
 #include "pso/boss/TObjBoss2Tunnel.h"
 #include "pso/enemy/TObjEneDD.h"
 #include "pso/misc/TNowLoading.h"
-
-struct Sub350_800C57F0 { char pad[8]; void *p8; };
-struct Ctl_800C5B10 { u8 pad[8]; void *field_8; };
 
 extern "C" {
 s32 check_path_obstructed(void *, void *);
@@ -49,22 +45,17 @@ extern const f32 lbl_805DA034;
 extern const f32 lbl_805DA038;
 extern const f32 lbl_805DA03C;
 extern const f32 lbl_805DA040;
-int unlink_enemy_group_relations__13TUnk_80493450Fv(void*);
 int send_entity_set_flags__9TObjEnemyFv(void*);
 s32 obj_setFlags30(void *, s32);
     extern const float lbl_805DA058;
     extern const float lbl_805DA05C;
     extern const float lbl_805DA060;
     extern const float lbl_805DA064;
-s32 update_movement_status__9TObjCharaFv(void *);
 s32 submit_cursor_candidate(void *, int);
 extern const f32 lbl_805DA048;
-s32 update_action_hold_status__9TObjCharaFv(void *);
 u16 get_entity_id(void *);
 int queue_destruction__7TObjectFv(void*);
-f32 random_ratio__9TObjCharaFv(s32 arg0);
 s32 enemy_move_toward(void *, s32, void *, int, f32);
-s32 test_elt_flag__13TUnk_80493450Fll(void *, int, int);
 extern const f32 lbl_805DA044;
 extern const f32 lbl_805DA054;
 extern const f32 lbl_805DA028;
@@ -77,9 +68,8 @@ TObjPlayer *get_player_by_client_id(s32 i);
 extern const f32 lbl_805DA04C;
 extern const f32 lbl_805DA050;
 f32 enemy_backstep_from_point(void *, void *, f32);
-s32 turn_toward_direction__9TObjCharaFlP3Vec(void *, void *, void *);
 s32 angle_difference_abs(s32, s32);
-void TUnk_80493450::sub_800C4E08() {
+void TUnk_80493450::select_target_proximity_movement() {
     if (obj_testFlags30(0x100000) != 0) {
         this->unk_394 = (f32) this->unk_39C;
         this->m_c8 = (f32) this->unk_3A4;
@@ -89,7 +79,7 @@ void TUnk_80493450::sub_800C4E08() {
     this->m_c8 = (f32) this->m_3a0;
 }
 
-s32 TUnk_80493450::update_target_near_flag() {
+void TUnk_80493450::update_target_near_flag() {
     f32 temp_f31;
     u8 *temp_r0;
     u8 *temp_r31;
@@ -326,7 +316,7 @@ void TUnk_80493450::beast_update_group_chase() {
     if (target != NULL) {
         Vec v = *(Vec *)&((TObjChara *)target)->m_2fc;
         d = enemy_backstep_from_point(this, &v, m_398);
-        turn_toward_direction__9TObjCharaFlP3Vec(this, ((Sub350_800C57F0 *)movementParameters)->p8, &x_speed);
+        turn_toward_direction(((EnemyMoveParams *)movementParameters)->turn_speed, (Vec *)&x_speed);
         r = m_398 + bodies->radius;
         if (d < r * r) {
             mode = 3;
@@ -368,7 +358,7 @@ void TUnk_80493450::beast_update_approach() {
                 VecCopy((Vec *)&sp14, (const Vec *)&((TObjChara *)this->target)->m_2fc);
             }
             update_target_near_flag();
-            sub_800C4E08();
+            select_target_proximity_movement();
             advance_animation_playback(this);
             {
                 Vec sp8 = sp14;
@@ -408,7 +398,7 @@ void TUnk_80493450::update_turn_toward_target() {
             Vec d;
             VecCopy((Vec *)&d, (const Vec *)&((TObjChara *)arg0->target)->m_2fc);
             subtract_vector(&d, &arg0->m_2fc);
-            ang = turn_toward_direction__9TObjCharaFlP3Vec(arg0, ((Ctl_800C5B10 *)arg0->movementParameters)->field_8, &d);
+            ang = turn_toward_direction(((EnemyMoveParams *)movementParameters)->turn_speed, &d);
             if (d.x * d.x + d.z * d.z < lbl_805DA030 || arg0->children == 0) {
                 arg0->mode = 3;
                 arg0->phase = 1;
@@ -437,7 +427,7 @@ void TUnk_80493450::update_turn_toward_target() {
         break;
     }
     apply_actor_gravity(arg0, 0, lbl_805DA034);
-    arg0->update_collisions();
+    update_collisions();
     minimap_render_dot(&arg0->position, -0x5DB4, 1, 0);
 }
 
@@ -486,12 +476,12 @@ void TUnk_80493450::beast_idle_update() {
     TUnk_80493450 *other;
 
     ((TUnk_80493450 *)arg0)->update_target_near_flag();
-    ((TUnk_80493450 *)arg0)->sub_800C4E08();
+    ((TUnk_80493450 *)arg0)->select_target_proximity_movement();
     advance_animation_playback(this);
     if (this->phase != 1) {
         this->phase = 1;
         ((TUnk_80493450 *)arg0)->link_into_group_chain();
-        *(s32 *)&this->m_378 = has_group();
+        m_378 = has_group();
     }
     *(s32 *)&this->m_37c = ((TUnk_80493450 *)arg0)->countChildren();
     other = (TUnk_80493450 *)next;

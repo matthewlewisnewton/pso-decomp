@@ -12,8 +12,8 @@ extern "C" {
 void subtractive_rng_refill(Crypt_8007C438 *c);
 void subtractive_rng_seed(R_8007C48C *arg0, s32 arg1);
 extern void* memcpy(void*,const void*,u32);
-extern u8 save_block_shuffle_permutation[256], save_block_unshuffle_permutation[256];
-extern u8 save_block_shuffle_permutation[256], save_block_shuffle_permutation[256];
+u8 save_block_shuffle_permutation[256];
+u8 save_block_unshuffle_permutation[256];
 
 void TAdSinglePlyChrSelectGC::apply_rng_cipher(u32 *data, s32 len) {
     s32 i;

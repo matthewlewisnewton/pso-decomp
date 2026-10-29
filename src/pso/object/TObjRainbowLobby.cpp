@@ -8,6 +8,20 @@
 #include "pso/misc/TOKey.h"
 #include "pso/object/TObjFish.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
+#include "pso/system/BmlResourceDescriptor.h"
+
+#pragma readonly_strings on
+
+extern "C" {
+extern const char *bm_obj_lobby_rainbow_motion_names[1];
+extern const char *bm_obj_lobby_rainbow_model_names[2];
+const char *bm_obj_lobby_rainbow_motion_names[1] = { NULL };
+__declspec(section ".data") const char *bm_obj_lobby_rainbow_model_names[2] = { "lobby_obj_niji.gj", NULL };
+BmlResourceDescriptor bm_obj_lobby_rainbow_resource_descriptor = { "bm_obj_lobby_rainbow.bml", bm_obj_lobby_rainbow_model_names, bm_obj_lobby_rainbow_motion_names, 1, 0 };
+const char *lbl_805D435C = "TObjRainbowLobby";
+u32 TObjRainbowLobby__shared_model_resource;
+}
+
 
 struct RecoveredGlobal_80350808_lbl_804F0DF0 { s32 value; u8 remaining[0xC]; };
 struct Obj_803506A4 { u8 pad[0xC8]; s32 state; f32 val; };
@@ -21,13 +35,13 @@ s32 push_matrix();
 void *__nw__7TObjectFUl(int);
 void TLobby__sub_8001FE7C(void*, int);
 u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
-extern RecoveredGlobal_80350808_lbl_804F0DF0 bm_obj_lobby_rainbow_resource_descriptor;
+extern BmlResourceDescriptor bm_obj_lobby_rainbow_resource_descriptor;
 extern u32 TObjRainbowLobby__shared_model_resource;
 void __dl__7TObjectFPv(void *);
 s32 init_map_object_base();
 s32 is_lobby_event_active();
 extern s32 __vt__16TObjRainbowLobby[];
-extern s32 lbl_805D435C;
+extern const char *lbl_805D435C;
 
 void TObjRainbowLobby::render() {
     f32 temp_f1;
@@ -101,7 +115,7 @@ void TObjRainbowLobby::load_shared_resource() {
     temp_r3 = (int)::operator new(0x440);
     var_r0 = temp_r3;
     if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &bm_obj_lobby_rainbow_resource_descriptor.value, 0, 0, 0));
+        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &bm_obj_lobby_rainbow_resource_descriptor, 0, 0, 0));
     }
     (*(s32 *)&TObjRainbowLobby__shared_model_resource) = var_r0;
 }
@@ -118,7 +132,7 @@ void *__dt__16TObjRainbowLobbyFv(void *arg0, s16 arg1) {
 void *TObjRainbowLobby__ct(TObjRainbowLobby *rainbow_lobby, s32 arg1, s32 arg2) {
     init_map_object_base();
     *(s32 **)((s8 *)rainbow_lobby + 0x18) = __vt__16TObjRainbowLobby;
-    *(s32 *)((s8 *)rainbow_lobby + 0) = (s32) lbl_805D435C;
+    *(s32 *)((s8 *)rainbow_lobby + 0) = (s32) ((s32)lbl_805D435C);
     rainbow_lobby->apply_object_set_data((void *)arg2);
     if (is_lobby_event_active() != 0) {
         rainbow_lobby->m_c8 = 0;

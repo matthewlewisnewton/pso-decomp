@@ -14,6 +14,13 @@
 #include "pso/object/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
 
+#pragma readonly_strings on
+
+extern "C" {
+const char *TObjEneMorfosArm__name = "TObjEneMorfosArm";
+}
+
+
 struct RecoveredGlobal_80335354_lbl_804EE3B0 { s32 value; u8 remaining[0xC]; };
 typedef char RecoveredGlobal_80335354_lbl_804EE3B0_size[sizeof(RecoveredGlobal_80335354_lbl_804EE3B0) == 0x10 ? 1 : -1];
 
@@ -28,7 +35,7 @@ u16 get_entity_id(void *);
 s32 set_field_d8__10TObjMotionFl(void *, void *, int);
 extern RecoveredGlobal_80335354_lbl_804EE3B0 morfos_arm_motion_params;
 extern s32 __vt__16TObjEneMorfosArm[];
-extern s32 TObjEneMorfosArm__name;
+extern const char *TObjEneMorfosArm__name;
 extern u32 TObjEneMorfosArm__parent_morfos_instance;
 s32 post_translate_matrix(void *);
 s32 rotate_matrix_y(int, int);
@@ -75,7 +82,7 @@ u8 *TObjEneMorfosArm__ct(TObjEneMorfosArm *ene_morfos_arm, s32 arg1, u8 *arg2) {
     u8 *temp_r5;
     TObjMotion__ct((u8 *)ene_morfos_arm);
     *(s32 **)((s8 *)ene_morfos_arm + 0x18) = &(*(RecoveredGlobal_80335354___vt__16TObjEneMorfosArm *)&__vt__16TObjEneMorfosArm).value;
-    *(s32 *)((s8 *)ene_morfos_arm + 0) = (s32) TObjEneMorfosArm__name;
+    *(s32 *)((s8 *)ene_morfos_arm + 0) = (s32) ((s32)TObjEneMorfosArm__name);
     *(u8 **)((s8 *)ene_morfos_arm + 0xFC) = arg2;
     ene_morfos_arm->m_100 = get_entity_id(*(u8 **)((s8 *)ene_morfos_arm + 0xFC));
     VecCopy((Vec *)((u8 *)ene_morfos_arm + 0x38), (const Vec *)((void *) (((s32)TObjEneMorfosArm__sub_803326B4((void *)((s32) *(u8 **)((s8 *)ene_morfos_arm + 0xFC)))))));

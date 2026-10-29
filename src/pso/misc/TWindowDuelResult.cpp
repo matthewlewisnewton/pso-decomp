@@ -8,6 +8,8 @@
 #include "pso/misc/TWindowSubStatusDisp.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 
+#pragma readonly_strings on
+
 struct RecoveredGlobal_8024F5B0___vt__17TWindowDuelResult {
     s32 value;
     u8 remaining[0x70];
@@ -39,6 +41,11 @@ struct TWindowDuelResult {
     void sub_8024F090();
     void sub_8024EF3C();
 };
+
+extern "C" {
+const char *window_duel_result_class_name = "TWindowDuelResult";
+}
+
 extern "C" {
 s32 draw_visible_window_entries(void *, void *, int);
 s32 draw_list_page_indicator(int, int);
@@ -48,7 +55,7 @@ s32 TWindowDuelResult__sub_8024F3CC(void *);
 u8 *init__21TWindowSubComCardListFiii(void *, s32, s32, s32);
 s32 get_window_layout_position(int);
 
-extern s32 window_duel_result_class_name;
+extern const char *window_duel_result_class_name;
 u8 *TWindowDuelResult__ct(u8 *arg0, s16 arg1);
 s32 get_localized_text_entry(int, int);
 void *get_player_by_client_id(s32 i);
@@ -310,7 +317,7 @@ u8 *TWindowDuelResult__ct(u8 *arg0_, s16 arg1) {
     u8 *var_r0;
     construct_base__9TWindowDDFPUcsPUc((void *)arg0_, &__vt__17TWindowDuelResult.value, (void *)arg1, (int) (get_window_layout_position(0x24)));
     *(s32 **)((s8 *)arg0_ + 0x18) = &(*(RecoveredGlobal_8024F5B0_lbl_804CF020 *)lbl_804CF020).value;
-    *(s32 *)((s8 *)arg0_ + 0) = (s32) window_duel_result_class_name;
+    *(s32 *)((s8 *)arg0_ + 0) = (s32) ((s32)window_duel_result_class_name);
     temp_r3 = (u8 *)((int)::operator new(0xC));
     var_r0 = temp_r3;
     if (var_r0 != NULL) {

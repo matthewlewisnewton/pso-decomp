@@ -14,6 +14,17 @@ struct TShopKeepItemWindow;
 #include "pso/player/TObjPlayer.h"
 #include "pso/ui/TWindowInputNumber.h"
 
+#pragma readonly_strings on
+
+extern "C" {
+const char *lbl_805D3640 = "TCheckRoomSequence";
+s32 lbl_805D6160;
+s32 TCheckRoomSequence__error_return_text_id;
+s32 TCheckRoomSequence__error_return_state;
+s32 TCheckRoomSequence__active_instance;
+}
+
+
 #pragma optimization_level 1
 
 struct Rec_80211034 { u8 b[0x18]; };
@@ -213,7 +224,6 @@ void set_position__18TCheckRoomSequenceFff(void* p, f32 a, f32 b);
 s16 get_child_field1c__13TShopSequenceFv(void *);
 void *__ct__18TWindowInputNumberFPvllls(void *, s32, s32, s32, s32, s16);
 s32 get_window_layout_position(s32);
-extern const f32 lbl_805DC630;
 void begin_meseta_withdrawal__18TCheckRoomSequenceFPv(Seq_8020F478 *self);
 void begin_meseta_deposit__18TCheckRoomSequenceFPv(Seq_8020F730 *self);
 s32 get_max_stack_size__9TItemDataFv(void *);
@@ -240,12 +250,10 @@ void handle_deposit_choice__18TCheckRoomSequenceFv(u8 *arg0);
 s32 set_service_counter_camera(void *, int);
 void *TWindowDeposit__ct(void *, s32);
 s32 create_meseta_window(u16);
-extern const f32 lbl_805DC634;
-extern const f32 lbl_805DC638;
 void open_bank__18TCheckRoomSequenceFv(u8 *arg0);
 u8 *TShopSequence__ct(u8 *arg0);
 extern u8 __vt__18TCheckRoomSequence[];
-extern s32 lbl_805D3640;
+extern const char *lbl_805D3640;
 void *TCheckRoomSequence__ct(void *arg0, s32 arg1, s32 arg2_);
 void remove_bank_item_amount__18TCheckRoomSequenceFiii(s32 idx, s32 amount, s32 slot);
 void *__dt__13TShopSequenceFv(void *arg0, s16 arg1);
@@ -420,7 +428,7 @@ void begin_meseta_withdrawal__18TCheckRoomSequenceFPv(Seq_8020F478 *self) {
                 }
                 self->f34 = w;
                 if (self->f34 != NULL && TLobby::is_camera_ctrl_active() > 2) {
-                    set_position__18TCheckRoomSequenceFff(self->f34, lbl_805DC630, lbl_805DC630);
+                    set_position__18TCheckRoomSequenceFff(self->f34, 0.75f, 0.75f);
                 }
             }
             ((void (*)())reset_controller_input_state)();
@@ -491,7 +499,7 @@ void begin_meseta_deposit__18TCheckRoomSequenceFPv(Seq_8020F730 *self) {
                 }
                 self->f34 = w;
                 if (self->f34 != NULL && TLobby::is_camera_ctrl_active() > 2) {
-                    set_position__18TCheckRoomSequenceFff(self->f34, lbl_805DC630, lbl_805DC630);
+                    set_position__18TCheckRoomSequenceFff(self->f34, 0.75f, 0.75f);
                 }
             }
             ((void (*)())reset_controller_input_state)();
@@ -738,8 +746,8 @@ void TCheckRoomSequence__vt11(u8 *arg0) {
 void open_bank__18TCheckRoomSequenceFv(u8 *arg0) {
     void *w;
     Vec2_80210198 v;
-    v.x = lbl_805DC634;
-    v.y = lbl_805DC638;
+    v.x = 332.0f;
+    v.y = 80.0f;
     ((TShopSequence *)arg0)->create_message_window((s32)(get_window_layout_position(0x2C)), (s32)&v);
     ((VObj_18_a93f07 *)(arg0))->m4(0x31, 1);
     *(s32 *)((s8 *)arg0 + 0x38) = create_meseta_window(get_child_field1c__13TShopSequenceFv(arg0));
@@ -832,7 +840,7 @@ void *TCheckRoomSequence__ct(void *arg0, s32 arg1, s32 arg2_) {
     s32 arg2 = arg2_;
     TShopSequence__ct((u8 *)arg0);
     self->vt = __vt__18TCheckRoomSequence;
-    self->f0 = lbl_805D3640;
+    self->f0 = ((s32)lbl_805D3640);
     self->f24 = arg2;
     self->f34 = 0;
     self->f38 = 0;

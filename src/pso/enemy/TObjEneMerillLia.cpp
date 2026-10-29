@@ -619,7 +619,7 @@ void TObjEneMerillLia::beast_update_approach() {
                 VecCopy((Vec *)&sp14, (const Vec *)&((TObjChara *)target)->m_2fc);
             }
             this->update_target_near_flag();
-            this->sub_800C4E08();
+            this->select_target_proximity_movement();
             advance_animation_playback(this);
             {
                 Vec sp8 = sp14;
@@ -778,7 +778,7 @@ void TObjEneMerillLia::beast_update_group_chase() {
 #pragma opt_common_subs off
 void TObjEneMerillLia::beast_idle_update() {
     this->update_target_near_flag();
-    this->sub_800C4E08();
+    this->select_target_proximity_movement();
     advance_animation_playback(this);
     if (this->phase != 1) {
         this->phase = 1;

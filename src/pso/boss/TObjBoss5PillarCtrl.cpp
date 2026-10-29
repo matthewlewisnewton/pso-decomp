@@ -4,6 +4,13 @@
 
 #include "pso/boss/TObjBoss5Pillar.h"
 
+#pragma readonly_strings on
+
+extern "C" {
+const char *lbl_805D3B38 = "TObjBoss5PillarCtrl";
+}
+
+
 struct Pc_8028B198 { u8 pad0[0x18]; void *vt; s32 count; void **a; };
 
 struct Node_8028B23C { u8 pad[0x8]; u8 data[0x28]; Node_8028B23C *next; };
@@ -28,7 +35,7 @@ void mem_free(void *);
 extern u8 __vt__19TObjBoss5PillarCtrl[];
 void *mem_alloc(u32 size);
 void __ct__7TObjectFP7TObject(void *, void *);
-extern s32 lbl_805D3B38;
+extern const char *lbl_805D3B38;
 extern Game_8028B23C *lbl_805D4DD8;
 Ctrl_8028B23C *TObjBoss5PillarCtrl__ct(Ctrl_8028B23C *arg0, void *arg1);
 s32 play_sound_effect(s32, s32, s32, s32);
@@ -57,7 +64,7 @@ Ctrl_8028B23C *TObjBoss5PillarCtrl__ct(Ctrl_8028B23C *arg0, void *arg1) {
     List_8028B23C *lst;
     __ct__7TObjectFP7TObject(arg0, arg1);
     arg0->vt = __vt__19TObjBoss5PillarCtrl;
-    arg0->f0 = lbl_805D3B38;
+    arg0->f0 = ((s32)lbl_805D3B38);
     arg0->count = 0;
     arg0->pillars = NULL;
     for (n = lbl_805D4DD8->owner->list->head; n != NULL; n = n->next) {
