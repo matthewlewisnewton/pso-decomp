@@ -11297,6 +11297,8 @@ pso/ui/TAdDialingGC.cpp:
 
 pso/ui/TAdDialingGC_80328DB0.cpp:
 	.text       start:0x80328DB0 end:0x80328E50
+	.rodata     start:0x80476798 end:0x804767A8
+	.sdata      start:0x805D41B0 end:0x805D41B8
 
 pso/ui/TAdDialingGC_80328E50.cpp:
 	.text       start:0x80328E50 end:0x80328E90
