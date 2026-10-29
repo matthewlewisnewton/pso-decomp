@@ -18,7 +18,7 @@
 #include "pso/object/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
 
-typedef char PanarmsActionTimerOffset[offsetof(TObjEnePanarms, action_timer) == 0x3B4 ? 1 : -1];
+typedef char PanBaraActionTimerOffset[offsetof(TObjEnePanBARA, action_timer) == 0x3B4 ? 1 : -1];
 
 struct Stack_800E0D1C {
     f32 sp8;
