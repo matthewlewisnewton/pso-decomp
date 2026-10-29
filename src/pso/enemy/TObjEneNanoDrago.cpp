@@ -1,3 +1,4 @@
+#include "pso/system/GroundEffect.h"
 #include "types.h"
 #include "pso/system/NinjaUtil.h"
 #include "pso/player/TObjChara.h"
@@ -560,7 +561,7 @@ void update_death_sequence__10TObjPlayerFPv(u8 *enemy) {
     case 3:
         *(s16 *)&((TObjEnemy *)enemy)->timer = (s16) (*(s16 *)&((TObjEnemy *)enemy)->timer - 1);
         if (*(s16 *)&((TObjEnemy *)enemy)->timer <= 0) {
-            ((TObjPlayer *)(enemy + 0x38))->spawn_ground_effect(0x1E);
+            spawn_ground_effect((Vec *)(enemy + 0x38), 0x1E);
             TObjPlayer__sub_800D92BC((s32)(enemy + 0x38), 0xF);
             *(s32 *)((s8 *)enemy + 0x37C) = 4;
             return;

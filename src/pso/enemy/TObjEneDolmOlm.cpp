@@ -1,3 +1,4 @@
+#include "pso/system/GroundEffect.h"
 #include "pso/render/reflection.h"
 #pragma defer_codegen on
 
@@ -1745,7 +1746,7 @@ void TObjEneDolmOlm::vfunc_94() {
     rotate_vector_by_matrix(0, (void *)&stack.sp8, (void *)&stack.sp8);
     pop_matrix();
     vec3_add_to((void *)&stack.sp8, (void *)(arg0 + 0x38));
-    ((TObjPlayer *)(&stack.sp8))->spawn_ground_effect(0x23);
+    spawn_ground_effect((Vec *)(&stack.sp8), 0x23);
     TObjPlayer__sub_800D92BC((void *)&stack.sp8, 0xF);
 }
 void TObjEneDolmOlm::vfunc_95() {

@@ -1,3 +1,4 @@
+#include "pso/system/GroundEffect.h"
 #include "pso/TObjControl.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_800F0810.h"
@@ -798,7 +799,7 @@ void TObjEnePanarms__sub_800E0950(u8 *panarms) {
     temp_r0 = *(s32 *)((s8 *)panarms + 0x3B4);
     if (temp_r0 <= 0x78) {
         if (temp_r0 == 0x78) {
-            ((TObjPlayer *)(panarms + 0x3A4))->spawn_ground_effect(0x78);
+            spawn_ground_effect((Vec *)(panarms + 0x3A4), 0x78);
             TObjPlayer::spawn_dead_spot_default((s32)(panarms + 0x3A4), 6);
         }
         *(f32 *)((s8 *)panarms + 0x3C) = (f32) (*(f32 *)((s8 *)panarms + 0x3C) + lbl_805DA55C);

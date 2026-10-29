@@ -1,3 +1,4 @@
+#include "pso/system/GroundEffect.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
 #include "types.h"
@@ -232,7 +233,7 @@ void fn_800C2AC4(u8 *arg0, int arg1) {
         else
         {
           TObjPlayer__sub_800D9290((s32)&stack.sp8, 0x32);
-          ((TObjPlayer *)(&stack.sp8))->spawn_ground_effect(0x46);
+          spawn_ground_effect((Vec *)(&stack.sp8), 0x46);
         }
       }
         (((TObjEneDD *)(arg0))->vfunc_102());

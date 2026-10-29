@@ -1,3 +1,4 @@
+#include "pso/system/GroundEffect.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/TObjControl.h"
@@ -554,7 +555,7 @@ void TObjEnePanarms::fn_800DD9A0() {
             ground.x = (0.5f * position.x) + (0.5f * draw_positions[0].x);
             ground.y = position.y;
             ground.z = (0.5f * position.z) + (0.5f * draw_positions[0].z);
-            ((TObjPlayer *)(&ground))->spawn_ground_effect(0x78);
+            spawn_ground_effect((Vec *)(&ground), 0x78);
             TObjPlayer::spawn_dead_spot_default((s32)((void *)&ground), 6);
         }
         if ((s32) state_timer == 0x5A) {

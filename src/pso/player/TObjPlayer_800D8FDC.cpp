@@ -1,3 +1,4 @@
+#include "pso/system/GroundEffect.h"
 #include "pso/system/ChunkMaterialState.h"
 #include "types.h"
 #include "pso/misc/TDeadSpot.h"
@@ -53,11 +54,11 @@ void fn_800D911C(Vec *position) {
 
 void TObjPlayer::trigger_dell_biter_events() { spawn_particle_effect(this, (s32)((void*)251)); spawn_particle_effect(this, (s32)((void*)252)); spawn_particle_effect(this, (s32)((void*)227)); }
 
-void TObjPlayer::spawn_ground_effect(s32 arg1) {
-    s32 sp8;
+void spawn_ground_effect(Vec *position, s32 duration) {
+    Vec ground_position;
 
-    TObjBoss2Tunnel::adjust_to_ground((s32)this, &sp8);
-    create_timed_particle_emitter((&sp8), 0xE5, 0, (arg1));
+    TObjBoss2Tunnel::adjust_to_ground((s32)position, &ground_position);
+    create_timed_particle_emitter(&ground_position, 0xE5, 0, duration);
 }
 
 void TObjPlayer::spawn_effect_at_ground(s32 arg1) {

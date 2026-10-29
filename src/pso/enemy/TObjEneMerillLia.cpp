@@ -1,3 +1,4 @@
+#include "pso/system/GroundEffect.h"
 #include "types.h"
 #include "pso/enemy/TUnk_80493450.h"
 #include "pso/player/TObjPlayer.h"
@@ -827,7 +828,7 @@ void TObjEneMerillLia::vfunc_94() {
     rotate_vector_by_matrix(0, (void *)&stack.sp8, (void *)&stack.sp8);
     pop_matrix();
     vec3_add_to((void *)&stack.sp8, (void *)(arg0 + 0x38));
-    ((TObjPlayer *)(&stack.sp8))->spawn_ground_effect(0x23);
+    spawn_ground_effect((Vec *)(&stack.sp8), 0x23);
     TObjPlayer__sub_800D92BC((s32)&stack.sp8, 0xF);
 }
 

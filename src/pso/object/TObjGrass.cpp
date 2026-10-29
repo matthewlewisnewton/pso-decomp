@@ -1,3 +1,4 @@
+#include "pso/system/GroundEffect.h"
 #include "types.h"
 #include "pso/TObject.h"
 #include "pso/object/TObjGrassWeb.h"
@@ -549,7 +550,7 @@ void TObjGrass::update_dying(void *arg0_) {
             }
             play_sound_effect((void *)copy_target_state__14TObjEnePanarmsFPv(arg0, 0x4003AB0A), arg0 + 0x38, 0, 0);
             TObjPlayer::spawn_dead_spot_default((s32)(arg0 + 0x38), 0xA);
-            ((TObjPlayer *)(arg0 + 0x38))->spawn_ground_effect(0x1E);
+            spawn_ground_effect((Vec *)(arg0 + 0x38), 0x1E);
         }
         ((TObjEnePanarms *)arg0)->scale.y -= 0.01f;
         if (((TObjEnePanarms *)arg0)->scale.y < 0.0f) {

@@ -1,3 +1,4 @@
+#include "pso/system/GroundEffect.h"
 #include "pso/unk/TUnk_80494968.h"
 #include "types.h"
 #include "pso/enemy/TUnk_80493450.h"
@@ -261,7 +262,7 @@ void TObjEneShark::vfunc_94() {
     rotate_vector_by_matrix(0, &stack.sp8, &stack.sp8);
     pop_matrix();
     vec3_add_to(&stack.sp8, (u8 *)&this->position);
-    ((TObjPlayer *)(&stack.sp8))->spawn_ground_effect(0x23);
+    spawn_ground_effect((Vec *)(&stack.sp8), 0x23);
     TObjPlayer__sub_800D92BC((s32)&stack.sp8, 0xF);
 }
 
