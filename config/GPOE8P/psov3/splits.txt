@@ -4603,6 +4603,9 @@ pso/npc/TObjNpcHHM00.cpp:
 
 pso/npc/TObjNpcHRM00.cpp:
 	.text       start:0x8014B2E0 end:0x8014B4B4
+	.rodata     start:0x8043FAD0 end:0x8043FB08
+	.sdata      start:0x805D2DC8 end:0x805D2DD0
+	.sbss       start:0x805D57C0 end:0x805D57C8
 
 pso/npc/TObjNpcHRM01.cpp:
 	.text       start:0x8014B4B4 end:0x8014B6AC
