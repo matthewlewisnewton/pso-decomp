@@ -162,7 +162,7 @@ void TTecFoie::create_particle_emitters() {
       {
         attach_particle_model((int) self->emitters[i], TParticleCtrl::get_particle_model(0), lbl_805D63B0, 0, 1, lbl_805DC7F8);
       }
-      ((TParticleCtrl *)(self->emitters[i]))->fn_800822D4((*((Binding_8022FC94 **) (&TTecFoie__emitter_profile_table[self->band])))[i].scale, (*((Binding_8022FC94 **) (&TTecFoie__emitter_profile_table[self->band])))[i].scale);
+      ((TParticleCtrl *)(self->emitters[i]))->set_scale((*((Binding_8022FC94 **) (&TTecFoie__emitter_profile_table[self->band])))[i].scale, (*((Binding_8022FC94 **) (&TTecFoie__emitter_profile_table[self->band])))[i].scale);
     }
   }
 }
