@@ -1525,6 +1525,8 @@ pso/enemy/TObjEneRe7Berura.cpp:
 
 pso/enemy/TObjEneRe7BeruraPunch.cpp:
 	.text       start:0x80095E18 end:0x800967C0
+	.rodata     start:0x80439F10 end:0x80439F28
+	.sdata      start:0x805D2990 end:0x805D2998
 	.sdata2     start:0x805D9790 end:0x805D97C8
 
 pso/enemy/TObjEneRe7Berura_800967C0.cpp:
