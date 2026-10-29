@@ -953,6 +953,7 @@ pso/object/TObjTombstone_80075854.cpp:
 
 pso/object/TObjTombstone.cpp:
 	.text       start:0x80075920 end:0x80075DA8
+	.rodata     start:0x804387C8 end:0x80438818
 
 pso/object/TObjTombstone_80075DA8.cpp:
 	.text       start:0x80075DA8 end:0x800762F0
