@@ -2592,7 +2592,7 @@ force_active:
   - accept_meseta_withdrawal__18TCheckRoomSequenceFPv
   - accumulate__14PadRumbleLevelFll
   - accumulate_key_bits__FlPl
-  - accumulate_mag_axis_oscillation__FPfPlPv
+  - accumulate_mag_axis_oscillation__FPfPlP28MagAxisOscillationParameters
   - action__13TObjEneBm3FlyFPvi
   - action__14TObjEneBm5WolfFl
   - action__15TObjEneMe1GiGueFPv
@@ -6335,7 +6335,7 @@ force_active:
   - lbl_805E03DC
   - lbl_805E03E0
   - lbl_805E03E4
-  - lerp_follow_anchor
+  - lerp_follow_anchor__FP3VecP3VecPf
   - level_to_reward__6TLobbyFl
   - load_all_floor_event_sets__6TLobbyFv
   - load_and_verify_data
@@ -6426,12 +6426,12 @@ force_active:
   - macMakeActive
   - maccmp
   - mag_accumulate_drift__FPfPlPfPlPSc
-  - mag_item_tests_flag_20__FPv
-  - mag_node_oscillation_angle__FPv
-  - mag_node_oscillation_node_index__FPv
-  - mag_node_oscillation_uses_x__FPv
-  - mag_node_oscillation_uses_y__FPv
-  - mag_node_oscillation_uses_z__FPv
+  - is_inactive__8TItemMagFv
+  - get_angle__23MagNodeOscillationStateFv
+  - node_index__23MagNodeOscillationStateFv
+  - uses_x__23MagNodeOscillationStateFv
+  - uses_y__23MagNodeOscillationStateFv
+  - uses_z__23MagNodeOscillationStateFv
   - main_task_dtor_chain
   - make_players__6TLobbyFv
   - map_pad_buttons__16TKeyBoardControlFUs
@@ -11743,7 +11743,7 @@ force_active:
   - reset_leader_selection__FPv
   - reset_leader_selection_static__6TLobbyFv
   - reset_obstruction_fade__13TUnk_80490470Fv
-  - reset_oscillation__11TItemMagSubFv
+  - reset_oscillation__11TItemMagSubFll
   - reset_pad_rumble_effects_and_channels__Fs
   - reset_placement_search_ring__13TUnk_804C4498Fv
   - reset_quest_list_vm__22THunterGuildSeqOfflineFv

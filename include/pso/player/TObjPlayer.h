@@ -232,7 +232,8 @@ struct TObjPlayer : public TObjChara {
     s32 class_flags;
     s16 costume;
     s16 skin;  // an android's body colour
-    u8 unk_898[0x14];
+    u8 unk_898[0x10];
+    f32 height;  // the body height the mag scales its follow height by
     void* m_8ac;
     u8 unk_8B0[0x4];
     u32 m_8b4;

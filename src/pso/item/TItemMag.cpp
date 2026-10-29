@@ -352,7 +352,7 @@ void PhotonBlastGauge::set_blast_level(s16 blast, s8 level) {
 }
 
 s32 TObjChara::obj_isState7_324() {
-    return m_324 == 7;
+    return control_state == 7;
 }
 
 s32 TObjPlayer::get_photon_blast_charge() {
@@ -380,7 +380,7 @@ s16 TItemMag::get_dex_level() { return stats.get_dex_level(); }
 s16 TItemMag::get_mind_level() { return stats.get_mind_level(); }
 s16 TItemMag::get_iq() { return stats.iq; }
 s16 TItemMag::get_synchro() { return stats.synchro; }
-int TItemMagSub::test_flags(u32 mask) { return flags & mask; }
+u32 TItemMagSub::test_flags(u32 mask) { return flags & mask; }
 
 int TItemMagSub::is_growth_inactive() { return test_flags(0x40) == 0; }
 
@@ -1518,7 +1518,7 @@ void TItemMag::on_model_loaded() {
         motion_types[i] += row + i * 6;
         motion = *motion_types[i];
         if (motion != -1) {
-            children[i] = new TItemMagSub((MagDrawOwner *)owner, this);
+            children[i] = new TItemMagSub(owner, this);
             if (children[i] != NULL) {
                 children[i]->set_motion_type(motion);
                 if (i == 1 && second_model != NULL) {

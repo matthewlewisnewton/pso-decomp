@@ -7082,7 +7082,7 @@ void TObjPlayer::handle_state2_transitions() {
     u8 *arg0 = (u8 *)this;
 
     sub_8011E204__10TObjPlayerFl(arg0, 0x10);
-    temp_r0 = ((TObjPlayer *)arg0)->m_324;
+    temp_r0 = ((TObjPlayer *)arg0)->control_state;
     switch (temp_r0) {
     case 1:
         if ((get_main_phase() != 0xE) && ((s32) lbl_805D55C0 != 0)) {
@@ -7576,7 +7576,7 @@ void run_task__10TObjPlayerFv(TObjPlayer *player) {
     if (((s32 (*)(void *, s32))obj_testFlags30__14TObjCollidableFUl)(player, 0x800) != 0) {
         ((TObjCollidable *)player)->refresh_collision_body_centers();
     } else if (get_type__10TObjPlayerFPv((u8 *)player + 0x828) == 0) {
-        temp_r0 = player->m_324;
+        temp_r0 = player->control_state;
         switch (temp_r0) {
         case 1:
             ((TObjCollidable *)player)->refresh_collision_body_centers();
@@ -7594,7 +7594,7 @@ void run_task__10TObjPlayerFv(TObjPlayer *player) {
             break;
         }
     } else {
-        temp_r0_2 = player->m_324;
+        temp_r0_2 = player->control_state;
         switch (temp_r0_2) {
         case 3:
         case 1:
@@ -7868,7 +7868,7 @@ void TObjPlayer::init_collision_body() {
     self->body.radius = lbl_805DC2B0;
     self->body.radius2 = lbl_805DC2B0;
     self->body.kind = 0;
-    switch (this->m_324) {
+    switch (this->control_state) {
     case 1:
     case 2:
         if (get_type__10TObjPlayerFPv(self->f828) == 0) {
