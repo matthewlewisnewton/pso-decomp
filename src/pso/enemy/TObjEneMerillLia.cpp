@@ -1782,7 +1782,7 @@ void *TObjEneMerillLia__ct(void *arg0v, void *arg1, void *arg2) {
 
     init_enemy_base__13TUnk_80493450Fv(arg0, (s32)arg1);
     *(void **)((s8 *)arg0 + 0x18) = lbl_80494728;
-    ((TUnk_80494938 *)(arg0 + 0x3A8))->init_common();
+    __ct__13TUnk_80494938Fv((arg0 + 0x3A8));
     *(s32 *)((s8 *)arg0 + 0) = lbl_805D2A88;
     ((VObj_18_4c2345 *) arg0)->m79((s32)arg2);
     ((TObjEneMerillLia *)arg0)->init_params_from_position();
