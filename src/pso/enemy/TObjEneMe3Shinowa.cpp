@@ -1366,11 +1366,11 @@ int select_and_apply_target__12TObjEneDD_STFf(void*);
 void *__dt__12TObjEneDD_STFv(void *arg0, s16 arg1);
 s32 is_main_phase_15__9TObjEneDDFv();
 s32 update_player_state__9TObjEneDDFv(void *, void *, int);
-s32 reset_hp__9TObjEneDDFv(void *, int, int, int);
+s32 reset_hp__9TObjEneDDFPUcPUcPUc(void *, int, int, int);
 void get_camera_ctrl__9TObjEneDDFv(s32, s32);
-s32 initialize_enemy_state__9TObjEneDDFv(void *, int);
+s32 initialize_enemy_state__9TObjEneDDFl(void *, int);
 void TObjEneDD__sub_800BA438(s32 arg0, u8 *arg1);
-void init_model__9TObjEneDDFv(void *, void *, s32);
+void init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, s32);
 s32 TObjEneMe3SinowZoa__sub_800D758C(void *);
 void *__dt__13TUnk_80494938Fv(void *arg0, s16 arg1);
 s32 TBoss3Volopt__sub_800D8D88(void *, f32);
@@ -2926,12 +2926,12 @@ void TObjEneMe3Shinowa::sub_800E6F64() {
     u8 *arg0 = (u8 *)this;
     if (sub_800E6FE0__17TObjEneMe3ShinowaFv(arg0) != 0) {
         *(s32 **)((s8 *)arg0 + 0x24) = &lbl_80500FEC.value;
-        initialize_enemy_state__9TObjEneDDFv(arg0, 0x1b);
+        initialize_enemy_state__9TObjEneDDFl(arg0, 0x1b);
         *(s32 *)((s8 *)arg0 + 0x3c0) = 1;
         return;
     }
     *(s32 **)((s8 *)arg0 + 0x24) = (s32 *) *(s32 **)((s8 *)(*(u8 **)((s8 *)TObjEneMe3ShinowaMirage__data_805D5298 + 0x42C)) + 0xC);
-    initialize_enemy_state__9TObjEneDDFv(arg0, 0x1a);
+    initialize_enemy_state__9TObjEneDDFl(arg0, 0x1a);
     *(s32 *)((s8 *)arg0 + 0x3c0) = 0;
 }
 
@@ -3214,7 +3214,7 @@ void TObjEneMe3Shinowa::init_enemy() {
     ((TObjEneDD *)self)->init_position_vectors();
     ((TObjEneMe3Shinowa *)self)->sub_800E6F64();
     self->f34 = *(s32 *)((*(Game_800E7884 * *)&TObjEneMe3ShinowaMirage__data_805D5298)->mdl + 8);
-    init_model__9TObjEneDDFv(self, ((void * *)shinowa_mirage_model_init_data), 1);
+    init_model__9TObjEneDDFP13CollisionBodyl(self, ((void * *)shinowa_mirage_model_init_data), 1);
     self->fB0 = 0;
     ((TObjMotion *)self)->set_field_d8((s32)shinowa_mirage_motion_param_table);
     ((TObjMotion *)self)->set_field_dc((*(Game_800E7884 * *)&TObjEneMe3ShinowaMirage__data_805D5298)->f430);
@@ -3226,7 +3226,7 @@ void TObjEneMe3Shinowa::init_enemy() {
         s32 *b = tbl->t[1];
         s32 *c = tbl->t[2];
         s32 i = self->f3C0;
-        reset_hp__9TObjEneDDFv(self, a[i], b[i], c[i]);
+        reset_hp__9TObjEneDDFPUcPUcPUc(self, a[i], b[i], c[i]);
     }
     ((TObjEneDD *)self)->check_state_flag_4();
     self->f350 = TObjEneMe3ShinowaMirage__init_params;
