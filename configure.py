@@ -431,6 +431,8 @@ GAME_COMPILER = "GC/2.6"
 # keeps an object until its source changes) or with other switches. Every
 # entry is here because a function or data section matches only this way.
 GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
+    # Deferred generation preserves the flower vtable before its dispatch table.
+    "pso/enemy/TObjEneRe2Flower_800C3E14.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     "pso/enemy/TObjEneDelDepth.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     # TObjChip: render's colour template sits after draw_chips' in .rodata
     # while render comes first in .text, so the source runs backwards.

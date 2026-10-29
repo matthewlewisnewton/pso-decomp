@@ -1039,6 +1039,8 @@ force_active:
   - TObjEneMorfos__vt85
   - TObjEneNanoDrago__ct
   - TObjEnePanarmsAtkColli__ct
+  - TObjEneRe2Flower__resource_descriptor
+  - TObjEneRe2Flower__setup_data
   - TObjEneRe4Bit__ct
   - TObjEneRe4Bit__sub_800ECC14
   - TObjEneRe4Bit__sub_800ECD28
@@ -1612,6 +1614,7 @@ force_active:
   - __ct__16TBoss3VoloptCoreFP7TObjectPv
   - __ct__16TGenGuildCardTagFRC16TGenGuildCardTag
   - __ct__16TObjEneDellBiterFP7TObjectPv
+  - __ct__16TObjEneRe2FlowerFP7TObjectPv
   - __ct__16TObjItemOKWindowFP7TObject
   - __ct__17TAdGameStartSubGCFv
   - __ct__17TChCrTagOccHeaderFv
@@ -1930,6 +1933,7 @@ force_active:
   - __dt__16TObjEneDellBiterFv
   - __dt__16TObjEneMorfosArmFv
   - __dt__16TObjEneNanoDragoFv
+  - __dt__16TObjEneRe2FlowerFv
   - __dt__16TObjEneRe7BeruraFv
   - __dt__16TObjEvtCollisionFv
   - __dt__16TObjItemOKWindowFv
@@ -2391,6 +2395,7 @@ force_active:
   - __vt__16TObjDFTenchuFuru
   - __vt__16TObjEneDellBiter
   - __vt__16TObjEneMorfosArm
+  - __vt__16TObjEneRe2Flower
   - __vt__16TObjEneRe7Berura
   - __vt__16TObjEvtCollision
   - __vt__16TObjFogCollision
@@ -3007,6 +3012,8 @@ force_active:
   - bm_ene_nanodrago_resource_descriptor
   - bm_ene_npc_nights_model_names
   - bm_ene_npc_nights_motion_names
+  - bm_ene_re2_flower_model_names
+  - bm_ene_re2_flower_motion_names
   - bm_ene_re4_sorcerer_model_names
   - bm_ene_re4_sorcerer_motion_names
   - bm_ene_re4_sorcerer_resource_descriptor
@@ -4029,6 +4036,7 @@ force_active:
   - dispatch_action__12TBoss1DragonFUll
   - dispatch_action__13TBoss5GryphonFUll
   - dispatch_action__16TObjEneDellBiterFUll
+  - dispatch_action__16TObjEneRe2FlowerFUll
   - dispatch_action_state__16TObjEneNanoDragoFv
   - dispatch_by_index__19TWindowKeyBoardSoftFv
   - dispatch_callback__Fv
@@ -4476,6 +4484,8 @@ force_active:
   - floor_resource_callbacks_selectors_19_20
   - floor_resource_callbacks_selectors_23_24_25_26_27
   - floor_resource_callbacks_selectors_28_29
+  - flower_normal_collision_parts
+  - flower_tower_collision_parts
   - flush_pending__6TLobbyFv
   - flush_pending_effect__12TBoss8DragonFv
   - fly_nest_vertex_table
@@ -12025,6 +12035,7 @@ force_active:
   - run_task__16TObjEneDellBiterFv
   - run_task__16TObjEneMorfosArmFv
   - run_task__16TObjEneNanoDragoFv
+  - run_task__16TObjEneRe2FlowerFv
   - run_task__16TObjEneRe7BeruraFv
   - run_task__16TObjEvtCollisionFv
   - run_task__16TObjOnlineEndingFv
@@ -13888,6 +13899,7 @@ force_active:
   - vfunc_28__14TObjEneBm5WolfFv
   - vfunc_28__16TObjEneBm5GibonUFv
   - vfunc_28__16TObjEneDellBiterFv
+  - vfunc_28__16TObjEneRe2FlowerFv
   - vfunc_28__16TObjEneRe7BeruraFv
   - vfunc_28__17TObjEneBm3FlyNestFv
   - vfunc_28__17TObjEneDarkGunnerFv
@@ -13927,6 +13939,7 @@ force_active:
   - vfunc_61__16TObjEneBm5GibonUFv
   - vfunc_61__16TObjEneDellBiterFv
   - vfunc_61__16TObjEneNanoDragoFv
+  - vfunc_61__16TObjEneRe2FlowerFv
   - vfunc_61__16TObjEneRe7BeruraFv
   - vfunc_61__17TObjEneBm3FlyNestFv
   - vfunc_61__17TObjEneDarkGunnerFv
@@ -13947,6 +13960,7 @@ force_active:
   - vfunc_62__16TObjEneBm5GibonUFv
   - vfunc_62__16TObjEneDellBiterFv
   - vfunc_62__16TObjEneNanoDragoFv
+  - vfunc_62__16TObjEneRe2FlowerFv
   - vfunc_62__16TObjEneRe7BeruraFv
   - vfunc_62__17TObjEneBm3FlyNestFv
   - vfunc_62__17TObjEneDarkGunnerFv
@@ -13967,6 +13981,7 @@ force_active:
   - vfunc_63__16TObjEneBm5GibonUFv
   - vfunc_63__16TObjEneDellBiterFv
   - vfunc_63__16TObjEneNanoDragoFv
+  - vfunc_63__16TObjEneRe2FlowerFv
   - vfunc_63__16TObjEneRe7BeruraFv
   - vfunc_63__17TObjEneBm3FlyNestFv
   - vfunc_63__17TObjEneDf2BringerFv
