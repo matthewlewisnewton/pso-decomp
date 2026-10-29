@@ -7395,9 +7395,12 @@ pso/misc/TLobby_8020F00C.cpp:
 
 pso/misc/TCheckRoomSequence.cpp:
 	.text       start:0x8020F034 end:0x802115F4
+	.rodata     start:0x8044BC50 end:0x8044BC68
 	.data       start:0x804C9490 end:0x804C9664
 	.bss        start:0x80513D88 end:0x80513DC8
-	.sbss       start:0x805D6170 end:0x805D6178
+	.sdata      start:0x805D3640 end:0x805D3648
+	.sbss       start:0x805D6160 end:0x805D6178
+	.sdata2     start:0x805DC630 end:0x805DC640
 
 pso/misc/TShopEquipmentSellWindow_802115F4.cpp:
 	.text       start:0x802115F4 end:0x80211608
