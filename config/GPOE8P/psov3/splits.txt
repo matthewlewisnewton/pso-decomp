@@ -669,8 +669,11 @@ pso/boss/TBoss5GryphonShockWave.cpp:
 
 pso/boss/TBoss5GryphonSnarl.cpp:
 	.text       start:0x80066A88 end:0x80066F10
-	.rodata     start:0x80437F98 end:0x80437FA0
+	.rodata     start:0x80437F70 end:0x80437FA0
 	.data       start:0x80488718 end:0x80488730
+	.sdata      start:0x805D2820 end:0x805D2828
+	.sbss       start:0x805D4DD0 end:0x805D4DD8
+	.sdata2     start:0x805D8EF8 end:0x805D8F10
 
 pso/unk/text_80066F10.cpp:
 	.text       start:0x80066F10 end:0x80066F5C
