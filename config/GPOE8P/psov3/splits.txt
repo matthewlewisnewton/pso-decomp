@@ -5796,6 +5796,7 @@ pso/object/TObjHashiBase.cpp:
 
 pso/unk/text_80191D14.cpp:
 	.text       start:0x80191D14 end:0x80191D80
+	.bss        start:0x8050DCB8 end:0x8050DCE8
 
 pso/object/TObjInfoCol.cpp:
 	.text       start:0x80191D80 end:0x80191F80
