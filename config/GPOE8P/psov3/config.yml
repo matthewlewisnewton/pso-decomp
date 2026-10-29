@@ -953,14 +953,14 @@ force_active:
   - TObjEneEpsilonGuard__sub_8035E8C0
   - TObjEneEpsilonGuard__vt21
   - TObjEneEpsilonGuard__vt85
-  - TObjEneIllGill__camera_vec_table
-  - TObjEneIllGill__ct
-  - TObjEneIllGill__sub_803660A4
-  - TObjEneIllGill__sub_803667B8
-  - TObjEneIllGill__sub_803669B0
-  - TObjEneIllGill__sub_80366AE4
-  - TObjEneIllGill__sub_80367860
-  - TObjEneIllGill__sub_80367DA4
+  - illGillWeaponEffectPosition
+  - __ct__14TObjEneIllGillFP7TObjectPv
+  - update_shadow_attack__14TObjEneIllGillFv
+  - update_damage_recovery__14TObjEneIllGillFv
+  - update_action_hold__14TObjEneIllGillFv
+  - update_weapon_attack__14TObjEneIllGillFv
+  - update_forward_movement__14TObjEneIllGillFv
+  - clear_charge_hits__14TObjEneIllGillFv
   - TObjEneIllGill_model_file_list
   - TObjEneIllGill_motion_name_table
   - TObjEneLappy__ct
@@ -2627,7 +2627,7 @@ force_active:
   - advance_bura__11TBoss4Type3Fv
   - advance_camera_ctrl_step__13TObjEneMe1GeeFv
   - advance_camera_ctrl_step__19TObjEneEpsilonGuardFv
-  - advance_camera_vec_stage__14TObjEneIllGillFv
+  - capture_effect_positions__14TObjEneIllGillFv
   - advance_capture__11TBoss4Type3Fv
   - advance_cut__11TBoss4Type3Fv
   - advance_dark_magic__11TBoss4Type3Fv
@@ -5832,9 +5832,9 @@ force_active:
   - lbl_804F2BE0
   - lbl_804F2BF0
   - lbl_804F2BF8
-  - lbl_804F2E74
-  - lbl_804F2F24
-  - lbl_804F2F40
+  - illGillResourceDescriptor
+  - illGillMovement
+  - illGillCollisionBody
   - lbl_804F6358
   - lbl_804F6558
   - lbl_804F6EE0
@@ -5878,9 +5878,9 @@ force_active:
   - lbl_80540BC8
   - lbl_805430E8
   - lbl_805432A8
-  - lbl_80543A6C
-  - lbl_80543A78
-  - lbl_80543A84
+  - illGillShadowEffectPosition
+  - illGillChargeEffectPosition1
+  - illGillChargeEffectPosition2
   - lbl_80543A90
   - lbl_805470AC
   - lbl_80549748
@@ -11799,7 +11799,7 @@ force_active:
   - rotate_title_background_quad__FlPUcPUclf
   - run_active_state__18TObjEneBalClawClawFv
   - run_and_return_arg__10TObjPlayerFl
-  - run_attack_phase__14TObjEneIllGillFv
+  - update_idle__14TObjEneIllGillFv
   - run_default_state__12TBoss8DragonFv
   - run_floor_cleanup_callbacks__6TLobbyFi
   - run_floor_initialize_callbacks__Fl
@@ -13163,7 +13163,7 @@ force_active:
   - sub_8035B66C__13TUnk_804A7488Fv
   - sub_8035D8B0__9TBoss6DPBFv
   - sub_8035EA90__19TObjEneEpsilonGuardFv
-  - sub_80367DC8__14TObjEneIllGillFl
+  - project_step_to_ground__14TObjEneIllGillFl
   - submit_chat_text__FPUc
   - submit_cursor_and_notify__16TOTrapAncient02RFv
   - submit_keyboard_input__11TWindowChatFv
@@ -13327,7 +13327,7 @@ force_active:
   - update_action_timer__11TBoss6Type1Fv
   - update_active__10TChallengeFv
   - update_active_flag__14TBoss6PlotFalzFv
-  - update_ai__14TObjEneIllGillFv
+  - update_charge_attack__14TObjEneIllGillFv
   - update_ai__9TObjGrassFPv
   - update_ai_state__15TObjEneDelDepthFv
   - update_air_fire_state__12TBoss1DragonFUl
@@ -13402,7 +13402,7 @@ force_active:
   - update_charge_state__16TBoss3VoloptCoreFv
   - update_chase__18TObjEneBalClawClawFPv
   - update_chase_state__18TObjEneBalClawClawFv
-  - update_chase_target__14TObjEneIllGillFPv
+  - update_chase_target__14TObjEneIllGillFv
   - update_chase_target__9TObjGrassFPv
   - update_chat_parts__12TWindowTimerFv
   - update_child_window_visibility__11TWindowCtrlFv
