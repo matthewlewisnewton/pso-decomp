@@ -344,7 +344,7 @@ void render__12TObjEneBeastFPv(Obj_8009211C *o) {
 #undef translate_matrix
 #undef set_global_param__8TObjFishFl
 #undef draw_chunk_object
-#undef update_if_active__15TObjEneMe1GiGueFl
+#undef update_if_active__15TObjEnemyCustomFl
 #undef TObjEneBalClawClaw__sub_800914A4
 #undef find_active_entity_by_id
 #undef reset_active_state__18TObjEneBalClawClawFPv

@@ -4,7 +4,7 @@
 #include "pso/boss/TBoss3VoloptMonitor.h"
 #include "pso/boss/TBoss3Volopt.h"
 #include "pso/boss/TBoss3VoloptHiraisin.h"
-#include "pso/enemy/TObjEneMe1GiGue.h"
+#include "pso/enemy/TObjEnemyCustom.h"
 #include "pso/misc/TLobby.h"
 #include "pso/object/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
@@ -388,7 +388,7 @@ void TBoss3VoloptMonitor::sub_80041E88() {
     case 1:
         if (--*(s16 *)&timer <= 0) {
             obj_clearFlags30(0x200200);
-            ((TObjEneMe1GiGue *)this)->update_if_active(0);
+            ((TObjEnemyCustom *)this)->update_if_active(0);
             m_388 &= ~1;
         }
         break;

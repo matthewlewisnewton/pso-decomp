@@ -4195,7 +4195,7 @@ void TObjEneBm5GibonU::sub_800D10A0() {
 #define update_movement_status__9TObjCharaFv ((s32 (*)())update_movement_status__9TObjCharaFv)
 #define get_entity_id ((s16 (*)(s32))get_entity_id)
 
-#include "pso/enemy/TObjEneMe1GiGue.h"
+#include "pso/enemy/TObjEnemyCustom.h"
 #include "pso/enemy/TObjEneMe3SinowZoa.h"
 #include "pso/enemy/TObjEnePanarms.h"
 
@@ -4778,7 +4778,7 @@ void TObjEneBm5GibonU::clear_flag_and_update() {
     u8 *arg0 = (u8 *)this;
     if ((s32) *(s32 *)((s8 *)arg0 + 0x374) == 7) {
         this->m_388 = (s32) (this->m_388 & 0xFFFFFFFE);
-        ((TObjEneMe1GiGue *)arg0)->update_if_active(0);
+        ((TObjEnemyCustom *)arg0)->update_if_active(0);
     }
 }
 

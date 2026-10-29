@@ -5,7 +5,7 @@
 #include "pso/boss/TBoss3VoloptMonitor.h"
 #include "pso/boss/TBoss3Volopt.h"
 #include "pso/boss/TUnk_80484888.h"
-#include "pso/enemy/TObjEneMe1GiGue.h"
+#include "pso/enemy/TObjEnemyCustom.h"
 #include "pso/object/TObjFish.h"
 #include "pso/object/TObjGyaranzoMissile.h"
 #include "pso/misc/TLobby.h"
@@ -94,7 +94,7 @@ static TBoss3VoloptCoreBodyPart core_body_parts[1] = {
 
 extern int player_battle_param_table[];
 
-void TObjEneMe1GiGue::set_state(s32 action) {
+void TObjEnemyCustom::set_state(s32 action) {
     s16 current = mode;
     if (current != action) {
         m_380 = current;
@@ -102,7 +102,7 @@ void TObjEneMe1GiGue::set_state(s32 action) {
     }
 }
 
-void TObjEneMe1GiGue::update_if_active(s32 action) {
+void TObjEnemyCustom::update_if_active(s32 action) {
     if (!(m_388 & 1)) {
         set_state(action);
     }
@@ -381,7 +381,7 @@ void TBoss3VoloptCore::update_grabbed_state() {
             if (m_388 & 0x40000) {
                 set_grabbed_state(0xF);
             } else {
-                ((TObjEneMe1GiGue *)this)->update_if_active(m_380);
+                this->update_if_active(m_380);
             }
         }
         return;
@@ -577,7 +577,7 @@ void TBoss3VoloptCore::update_orbit_state() {
             }
         } else if (sweep_angle < -0x1555) {
             drop_angle = orbit_angle;
-            ((TObjEneMe1GiGue *)this)->update_if_active(9);
+            this->update_if_active(9);
         }
         play_persistent_sound(0x4003BC05, this, &position.x, 0, 0);
         break;
@@ -708,7 +708,7 @@ void TBoss3VoloptCore::update_topple_state() {
 void TBoss3VoloptCore::set_grabbed_state(s32 delay) {
     TBoss3VoloptCore *core = (TBoss3VoloptCore *)find_entity_by_id(volopt_core_id);
     if (core != NULL && core->mode != 10) {
-        ((TObjEneMe1GiGue *)core)->update_if_active(10);
+        core->update_if_active(10);
         core->delay = delay;
     }
 }

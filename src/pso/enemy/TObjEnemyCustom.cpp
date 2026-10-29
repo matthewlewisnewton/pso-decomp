@@ -11,7 +11,6 @@
 #include "pso/player/TObjPlayer_80141D1C.h"
 #include "pso/player/TObjPlayer_801542CC.h"
 #include "pso/player/TObjPlayer_801AF2F0.h"
-#include "pso/enemy/TObjEneMe1GiGue.h"
 #include "pso/system/GinjaTextureMatrices.h"
 #include "pso/system/NinjaUtil.h"
 #include "pso/system/vector.h"
@@ -135,7 +134,7 @@ void TObjEnemyCustom::dispatch_state() {
 void TObjEnemyCustom::vfunc_28() {
 }
 
-void TObjEnemyCustom::vfunc_58() { ((TObjEneMe1GiGue *)this)->update_if_active(0); }
+void TObjEnemyCustom::vfunc_58() { this->update_if_active(0); }
 
 void TObjEnemyCustom::update_state() {
     switch (state) {
@@ -154,7 +153,7 @@ void TObjEnemyCustom::update_state() {
     }
 }
 
-void TObjEnemyCustom::vfunc_59() { ((TObjEneMe1GiGue *)this)->update_if_active(1); }
+void TObjEnemyCustom::vfunc_59() { this->update_if_active(1); }
 
 void TObjEnemyCustom::update_wander_state() {
     switch (state) {
@@ -181,7 +180,7 @@ void TObjEnemyCustom::update_wander_state() {
     }
 }
 
-void TObjEnemyCustom::vfunc_60() { ((TObjEneMe1GiGue *)this)->update_if_active(2); }
+void TObjEnemyCustom::vfunc_60() { this->update_if_active(2); }
 
 void TObjEnemyCustom::update() {
     switch (state) {
@@ -242,7 +241,7 @@ void TObjEnemyCustom::update_state_machine() {
 }
 
 void TObjEnemyCustom::vfunc_62() {
-    ((TObjEneMe1GiGue *)this)->set_state(4);
+    this->set_state(4);
     m_388 |= 1;
 }
 
@@ -273,12 +272,12 @@ void TObjEnemyCustom::update_knockback_state() {
 }
 
 void TObjEnemyCustom::vfunc_63() {
-    ((TObjEneMe1GiGue *)this)->set_state(5);
+    this->set_state(5);
     m_388 |= 1;
 }
 
 void TObjEnemyCustom::sub_800C7860() {
-    ((TObjEneMe1GiGue *)this)->set_state(7);
+    this->set_state(7);
     m_388 |= 1;
 }
 
@@ -396,7 +395,7 @@ s32 TObjEnemyCustom::turn_toward_point(Vec *point, s32 max_step, s32 angle_offse
 
 void TObjEnemyCustom::sub_800C73F4() {
     if (xz_distance_squared(&position, &home_position) > 100.0f) {
-        ((TObjEneMe1GiGue *)this)->update_if_active(8);
+        this->update_if_active(8);
         return;
     }
     vfunc_58();
