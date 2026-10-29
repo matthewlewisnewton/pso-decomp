@@ -1,3 +1,4 @@
+#include "pso/player/PlayerAttackParams.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
 #include "types.h"
 #include "pso/player/TObjPlayer.h"
@@ -1269,7 +1270,7 @@ s32 TObjEneSaver::is_target_in_attack_range() {
             flags = *(s32 *)&this->m_374;
             if (flags & 8) {
                 *(s16 *)((s8 *)arg0 + 0x37C) = 2;
-                if (dist <= (var_f29 + ((TObjPlayer *)(player_object_ptr_array[*(s16 *)((s8 *)arg0 + 0x37C)]))->get_pos_x()) * (var_f29 + ((TObjPlayer *)(player_object_ptr_array[*(s16 *)((s8 *)arg0 + 0x37C)]))->get_pos_x()) && ang <= ((TObjPlayer *)(player_object_ptr_array[*(s16 *)((s8 *)arg0 + 0x37C)]))->get_field_0c()) {
+                if (dist <= (var_f29 + ((AttackParams *)(player_object_ptr_array[*(s16 *)((s8 *)arg0 + 0x37C)]))->get_attack_range()) * (var_f29 + ((AttackParams *)(player_object_ptr_array[*(s16 *)((s8 *)arg0 + 0x37C)]))->get_attack_range()) && ang <= ((AttackParams *)(player_object_ptr_array[*(s16 *)((s8 *)arg0 + 0x37C)]))->get_attack_angle()) {
                     return 1;
                 }
             } else if (flags & 0x10) {
@@ -1280,7 +1281,7 @@ s32 TObjEneSaver::is_target_in_attack_range() {
                 }
             } else {
                 *(s16 *)((s8 *)arg0 + 0x37C) = 0;
-                if (dist <= (var_f29 + ((TObjPlayer *)(player_object_ptr_array[*(s16 *)((s8 *)arg0 + 0x37C)]))->get_pos_x()) * (var_f29 + ((TObjPlayer *)(player_object_ptr_array[*(s16 *)((s8 *)arg0 + 0x37C)]))->get_pos_x()) && ang <= ((TObjPlayer *)(player_object_ptr_array[*(s16 *)((s8 *)arg0 + 0x37C)]))->get_field_0c()) {
+                if (dist <= (var_f29 + ((AttackParams *)(player_object_ptr_array[*(s16 *)((s8 *)arg0 + 0x37C)]))->get_attack_range()) * (var_f29 + ((AttackParams *)(player_object_ptr_array[*(s16 *)((s8 *)arg0 + 0x37C)]))->get_attack_range()) && ang <= ((AttackParams *)(player_object_ptr_array[*(s16 *)((s8 *)arg0 + 0x37C)]))->get_attack_angle()) {
                     return 1;
                 }
             }

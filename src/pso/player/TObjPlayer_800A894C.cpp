@@ -1,3 +1,4 @@
+#include "pso/player/PlayerAttackParams.h"
 #include "pso/unk/TUnk_80494968.h"
 #include "types.h"
 #include "pso/system/NinjaUtil.h"
@@ -950,7 +951,7 @@ void TObjEneDubchik::sub_800AA10C() {
                 return;
             }
         } else if (temp_r0_2 != 0U) {
-            if (xz_distance_squared((Vec *)(((u8 *)this) + 0x38), (Vec *)(*(u32 *)((s8 *)((u8 *)this) + 0x2A8) + 0x38)) < (((TObjPlayer *)(this->m_318))->get_pos_x() * ((TObjPlayer *)(this->m_318))->get_pos_x())) {
+            if (xz_distance_squared((Vec *)(((u8 *)this) + 0x38), (Vec *)(*(u32 *)((s8 *)((u8 *)this) + 0x2A8) + 0x38)) < (((AttackParams *)(this->m_318))->get_attack_range() * ((AttackParams *)(this->m_318))->get_attack_range())) {
                 this->m_390 = (this->m_390 + 1);
                 if ((s16) this->m_390 > 3) {
                     this->m_390 = 0;

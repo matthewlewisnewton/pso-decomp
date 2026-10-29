@@ -1,3 +1,4 @@
+#include "pso/player/PlayerAttackParams.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
 #include "types.h"
 #include "pso/enemy/TObjEneBalClaw.h"
@@ -645,7 +646,7 @@ void TObjEneBalClawClaw__sub_80090ECC(Claw_80090ECC *self) {
         Vec_80090ECC v = ((Claw_80090ECC *)self->target)->pos;
         SEEK_80090ECC(self, &v, (0.7f));
         update_angle__10TObjPlayerFlPv(self, self->info->f8, self->f308);
-        if (self->f3C0 <= ((TObjPlayer *)(self->f318))->get_pos_x() * ((TObjPlayer *)(self->f318))->get_pos_x()) {
+        if (self->f3C0 <= ((AttackParams *)(self->f318))->get_attack_range() * ((AttackParams *)(self->f318))->get_attack_range()) {
             self->state = self->fB8 = 2;
         }
         break;

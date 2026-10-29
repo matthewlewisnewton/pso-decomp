@@ -1376,7 +1376,7 @@ s32 TObjEneDolmOlm__sub_80301C3C(void *arg0_) {
                 }
                 f32 d = horizontal_distance_squared(*(u8 **)((s8 *)arg0 + 0x2A8) + 0x2FC, arg0 + 0x38);
                 for (s32 i = 0; i < (*(Tgt_80301C3C **)((s8 *)arg0 + 0x2A8))->count; i++) {
-                    if (d > ((*(Tgt_80301C3C **)((s8 *)arg0 + 0x2A8))->arr[i].r + ((TObjChara *)arg0)->get_target_value()) * ((*(Tgt_80301C3C **)((s8 *)arg0 + 0x2A8))->arr[i].r + ((TObjChara *)arg0)->get_target_value())) {
+                    if (d > ((*(Tgt_80301C3C **)((s8 *)arg0 + 0x2A8))->arr[i].r + ((TObjChara *)arg0)->get_attack_range()) * ((*(Tgt_80301C3C **)((s8 *)arg0 + 0x2A8))->arr[i].r + ((TObjChara *)arg0)->get_attack_range())) {
                         *(s16 *)((s8 *)arg0 + 0x328) = 2;
                         break;
                     }

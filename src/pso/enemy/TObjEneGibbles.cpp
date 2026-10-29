@@ -1,3 +1,4 @@
+#include "pso/player/PlayerAttackParams.h"
 #include "pso/TParticleCtrl.h"
 #include "types.h"
 #include "pso/player/TObjChara.h"
@@ -1628,7 +1629,7 @@ s32 TObjEneGibbles__sub_802D9A04(void *target) {
         pl = ((VObj_802D9A04 * (*)(s32))get_player_data__10TObjPlayerFi)(i);
         if (is_valid_and_active__10TObjPlayerFUl() != 0 && get_entity_id(pl) < 0x1000U) {
             f32 dist = horizontal_distance_squared((int) ((u8 *) pl + 0x2FC), (void *) ((s32) target + 0x38));
-            if (dist <= ((TObjEneGibbles *)(*(void **)((s8 *)gibbles_combat_stat_entries + 4)))->get_pos_x() * ((TObjEneGibbles *)(*(void **)((s8 *)gibbles_combat_stat_entries + 4)))->get_pos_x()) {
+            if (dist <= ((AttackParams *)(*(void **)((s8 *)gibbles_combat_stat_entries + 4)))->get_damage_radius() * ((AttackParams *)(*(void **)((s8 *)gibbles_combat_stat_entries + 4)))->get_damage_radius()) {
                 Arg_802D9A04 tmp;
                 tmp.a = 0;
                 tmp.b = get_attack_params_atp_min(*(void **)((s8 *)gibbles_combat_stat_entries + 4));
@@ -1670,7 +1671,7 @@ void TObjEneGibbles::slam_damage_players(s32 arg1) {
             p = get_player_data__10TObjPlayerFi(i);
             if (((s32 (*)(void *))is_valid_and_active__10TObjPlayerFUl)(p) != 0 && get_entity_id(p) < 0x1000) {
                 d = horizontal_distance_squared((int)(p + 0x2FC), &v);
-                if (d <= ((TObjEneGibbles *)(*(void **)gibbles_combat_stat_entries))->get_pos_x() * ((TObjEneGibbles *)(*(void **)gibbles_combat_stat_entries))->get_pos_x()) {
+                if (d <= ((AttackParams *)(*(void **)gibbles_combat_stat_entries))->get_damage_radius() * ((AttackParams *)(*(void **)gibbles_combat_stat_entries))->get_damage_radius()) {
                     a.x = 0;
                     a.y = get_attack_params_atp_min(*(void **)gibbles_combat_stat_entries);
                     Hit_802D9B80 h = a;
@@ -1741,7 +1742,7 @@ s32 TObjEneGibbles::is_target_in_attack_range() {
             }
             if (this->m_374 & 8) {
                 this->m_37c = 2;
-                if (dist <= (rad + ((TObjPlayer *)TGT_802D9EB4)->get_pos_x()) * (rad + ((TObjPlayer *)TGT_802D9EB4)->get_pos_x()) && ang <= ((TObjPlayer *)TGT_802D9EB4)->get_field_0c()) {
+                if (dist <= (rad + ((AttackParams *)TGT_802D9EB4)->get_attack_range()) * (rad + ((AttackParams *)TGT_802D9EB4)->get_attack_range()) && ang <= ((AttackParams *)TGT_802D9EB4)->get_attack_angle()) {
                     return 1;
                 }
             } else if (this->m_374 & 0x10) {
@@ -1751,7 +1752,7 @@ s32 TObjEneGibbles::is_target_in_attack_range() {
                 }
             } else {
                 this->m_37c = 0;
-                if (dist <= (rad + ((TObjPlayer *)TGT_802D9EB4)->get_pos_x()) * (rad + ((TObjPlayer *)TGT_802D9EB4)->get_pos_x()) && ang <= ((TObjPlayer *)TGT_802D9EB4)->get_field_0c()) {
+                if (dist <= (rad + ((AttackParams *)TGT_802D9EB4)->get_attack_range()) * (rad + ((AttackParams *)TGT_802D9EB4)->get_attack_range()) && ang <= ((AttackParams *)TGT_802D9EB4)->get_attack_angle()) {
                     return 1;
                 }
             }

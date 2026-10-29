@@ -1,3 +1,4 @@
+#include "pso/player/PlayerAttackParams.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
 #include "types.h"
 #include "pso/object/obj_band.h"
@@ -297,7 +298,7 @@ void TObjPlayer__sub_8008EDE8(P_8008EDE8 *arg0) {
             }
             ((TObjPlayer *)arg0)->update_angle((s32)arg0->f350->f8, &arg0->vel);
             arg0->f3C0 = xz_distance_squared(&arg0->pos, &arg0->target->pos);
-            if (arg0->f3C0 <= ((TObjPlayer *)(arg0->f318))->get_pos_x() * ((TObjPlayer *)(arg0->f318))->get_pos_x()) {
+            if (arg0->f3C0 <= ((AttackParams *)(arg0->f318))->get_attack_range() * ((AttackParams *)(arg0->f318))->get_attack_range()) {
                 arg0->fB8 = 2;
                 arg0->state = 2;
                 play_sound_effect(0x4003B033, arg0->pos38, 0, 0);
@@ -388,7 +389,7 @@ void TObjPlayer__sub_8008F1DC(void *arg0) {
             }
             ((TObjPlayer *)o)->update_angle((s32)o->f350->f8, &o->vel);
             o->f3C0 = xz_distance_squared(&o->pos, &FLD(T_8008F1DC *, 0x2A8)->pos);
-            if (o->f3C0 <= ((TObjPlayer *)(o->f318))->get_pos_x() * ((TObjPlayer *)(o->f318))->get_pos_x()) {
+            if (o->f3C0 <= ((AttackParams *)(o->f318))->get_attack_range() * ((AttackParams *)(o->f318))->get_attack_range()) {
                 FLD(s16, 0xB8) = 7;
                 o->state = 2;
                 o->p3E4 = (u32)spawn_particle_effect_with_rotation(&o->pos, &o->f3F8, 0x12B, 2);

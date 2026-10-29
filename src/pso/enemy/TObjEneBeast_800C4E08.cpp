@@ -1,3 +1,4 @@
+#include "pso/player/PlayerAttackParams.h"
 #include "types.h"
 #include "pso/boss/TBoss3VoloptHiraisin.h"
 #include "pso/object/obj_band.h"
@@ -945,7 +946,7 @@ void TUnk_80493450::update_turn_toward_target() {
                 arg0->field_326 = 3;
                 arg0->field_328 = 1;
                 arg0->field_B8 = 2;
-            } else if (ang <= ((TObjPlayer *)(arg0->field_318))->get_field_0c()) {
+            } else if (ang <= ((AttackParams *)(arg0->field_318))->get_attack_angle()) {
                 arg0->field_328 = 2;
                 arg0->field_B8 = 0;
             }
@@ -961,7 +962,7 @@ void TUnk_80493450::update_turn_toward_target() {
                 arg0->field_326 = 3;
                 arg0->field_328 = 1;
                 arg0->field_B8 = 2;
-            } else if (((TObjPlayer *)(arg0->field_318))->get_field_0c() < ang) {
+            } else if (((AttackParams *)(arg0->field_318))->get_attack_angle() < ang) {
                 arg0->field_328 = 1;
                 arg0->field_B8 = 2;
             }

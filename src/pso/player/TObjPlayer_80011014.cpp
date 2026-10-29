@@ -1,3 +1,4 @@
+#include "pso/player/PlayerAttackParams.h"
 #include "pso/system/vector.h"
 #include "pso/system/byteswap.h"
 #include "pso/protocol/protocol_types.h"
@@ -3622,9 +3623,9 @@ s32 TObjChara::select_melee_contact_body(void *source, f32 factor) {
                 matrix_mult_vec(0, &point, &point);
             }
             dist = point.x * point.x + point.z * point.z;
-            r = (((Actor_80016454 *)this)->bodies[i].radius + ((TObjChara *)((Actor_80016454 *)source))->get_target_value()) * (((Actor_80016454 *)this)->bodies[i].radius + ((TObjChara *)((Actor_80016454 *)source))->get_target_value());
+            r = (((Actor_80016454 *)this)->bodies[i].radius + ((TObjChara *)((Actor_80016454 *)source))->get_attack_range()) * (((Actor_80016454 *)this)->bodies[i].radius + ((TObjChara *)((Actor_80016454 *)source))->get_attack_range());
             diff = angle_difference_abs(((Actor_80016454 *)source)->yaw, (s32)(TObjPlayer__data_804340B8 * ((f64 (*)(f32, f32))atan2_float)(point.x, point.z)));
-            if (dist < r && diff < ((TObjChara *)((Actor_80016454 *)source))->update_field_318()) {
+            if (dist < r && diff < ((TObjChara *)((Actor_80016454 *)source))->get_attack_angle()) {
                 selected = i;
                 break;
             }
@@ -3637,10 +3638,10 @@ s32 TObjChara::select_melee_contact_body(void *source, f32 factor) {
         ((VecCopyFn_80016454)VecCopy__FP3VecPC3Vec)(&point, &((Actor_80016454 *)this)->pos);
         subtract_vector(&point, &((Actor_80016454 *)source)->pos);
         dist2 = point.x * point.x + point.z * point.z;
-        r2 = ((TObjChara *)((Actor_80016454 *)source))->get_target_value() * ((TObjChara *)((Actor_80016454 *)source))->get_target_value();
+        r2 = ((TObjChara *)((Actor_80016454 *)source))->get_attack_range() * ((TObjChara *)((Actor_80016454 *)source))->get_attack_range();
         r2 = r2 * r2;
         diff = angle_difference_abs(((Actor_80016454 *)source)->yaw, (s32)(TObjPlayer__data_804340B8 * ((f64 (*)(f32, f32))atan2_float)(point.x, point.z)));
-        if (r2 < dist2 || ((TObjChara *)((Actor_80016454 *)source))->update_field_318() < diff) {
+        if (r2 < dist2 || ((TObjChara *)((Actor_80016454 *)source))->get_attack_angle() < diff) {
             return 0;
         }
     }
@@ -3954,9 +3955,9 @@ s32 TObjChara::is_target_in_attack_range() {
                         vec3_add_to(&v, &base);
                         subtract_vector(&v, &p->pos);
                         dist = v.x * v.x + v.z * v.z;
-                        range = (p->target->parts[i].radius + ((TObjChara *)p)->get_target_value()) * (p->target->parts[i].radius + ((TObjChara *)p)->get_target_value());
+                        range = (p->target->parts[i].radius + ((TObjChara *)p)->get_attack_range()) * (p->target->parts[i].radius + ((TObjChara *)p)->get_attack_range());
                         ang = ((s32)angle_difference_abs(p->rotY, (s32)(TObjPlayer__data_804340B8 * ((f64 (*)(f32, f32))atan2_float)(v.x, v.z))));
-                        if (dist < range && ang < ((TObjChara *)p)->update_field_318()) {
+                        if (dist < range && ang < ((TObjChara *)p)->get_attack_angle()) {
                             return 1;
                         }
                     }
@@ -3965,11 +3966,11 @@ s32 TObjChara::is_target_in_attack_range() {
                 dist = calc_xz_distance_sq((s32)((s32)p), (u32)((u32)t), &out);
                 ang = ((s32)angle_difference_abs(p->rotY, (s32)(TObjPlayer__data_804340B8 * ((f64 (*)(f32, f32))atan2_float)(out.x, out.z))));
                 if (p->target->parts != NULL) {
-                    prod = (p->target->parts->radius + ((TObjChara *)p)->get_target_value()) * (p->target->parts->radius + ((TObjChara *)p)->get_target_value());
+                    prod = (p->target->parts->radius + ((TObjChara *)p)->get_attack_range()) * (p->target->parts->radius + ((TObjChara *)p)->get_attack_range());
                 } else {
-                    prod = ((TObjChara *)p)->get_target_value() * ((TObjChara *)p)->get_target_value();
+                    prod = ((TObjChara *)p)->get_attack_range() * ((TObjChara *)p)->get_attack_range();
                 }
-                if (dist <= prod && ang <= ((TObjChara *)p)->update_field_318()) {
+                if (dist <= prod && ang <= ((TObjChara *)p)->get_attack_angle()) {
                     return 1;
                 }
             }
@@ -4791,13 +4792,13 @@ int TObjPlayer__sub_8001943C(ObjArr254_p53* p, int i) {
 
 s16 TObjPlayer::get_ata() { return this->m_2d0; }
 
-s32 TObjChara::update_field_318() { return ((TObjPlayer *)(this->m_318))->get_field_0c(); }
+s32 TObjChara::get_attack_angle() { return ((AttackParams *)(this->m_318))->get_attack_angle(); }
 
-s32 TObjPlayer::get_field_0c() { return *(s32*)((char*)this + 0xc); }
+s32 AttackParams::get_attack_angle() { return attack_angle; }
 
-f32 TObjChara::get_target_value() { return ((TObjPlayer *)(this->m_318))->get_pos_x(); }
+f32 TObjChara::get_attack_range() { return ((AttackParams *)(this->m_318))->get_attack_range(); }
 
-f32 TObjPlayer::get_pos_x() { return *(f32*)((char*)this + 0x8); }
+f32 AttackParams::get_attack_range() { return attack_range; }
 
 s32 TObjPlayer::add_status_effect_timer(s32 i, s32 v) {
     O_800194AC *self = (O_800194AC *)this;

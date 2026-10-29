@@ -1,3 +1,4 @@
+#include "pso/player/PlayerAttackParams.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/TParticleCtrl.h"
 #include "types.h"
@@ -2083,12 +2084,12 @@ void TObjEneBm5GibonU::state_cast_technique(s32 arg1) {
                     subtract_vector(&v, arg0 + 0x2FC);
                     r = update_angle__10TObjPlayerFlPv(arg0, *(s32 *)(F(u8 *, 0x350) + 8), &v);
                 } else {
-                    r = ((TObjPlayer *)(F(s32, 0x318)))->get_field_0c();
+                    r = ((AttackParams *)(F(s32, 0x318)))->get_attack_angle();
                 }
                 if (game_difficulty_selection == 3) {
                     switch (F(s32, 0x468)) {
                     case 1:
-                        if (r < ((TObjPlayer *)(F(s32, 0x318)))->get_field_0c() / 2 && F(u32, 0x390) != 0) {
+                        if (r < ((AttackParams *)(F(s32, 0x318)))->get_attack_angle() / 2 && F(u32, 0x390) != 0) {
                             TTecMegid::create((s32)arg0, (s32)&p, (s32)(arg0 + 0x394), (s32)(CB24(arg0)));
                         } else {
                             TTecMegid::create_ex((s32)arg0, (s32)&p, (s32)(F(s32, 0x60)), (s32)(CB24(arg0)));
@@ -2096,7 +2097,7 @@ void TObjEneBm5GibonU::state_cast_technique(s32 arg1) {
                         play_sound_effect((void *)0x4002A60B, &p, 0, 0);
                         break;
                     default:
-                        if (r < ((TObjPlayer *)(F(s32, 0x318)))->get_field_0c() / 2 && F(u32, 0x390) != 0) {
+                        if (r < ((AttackParams *)(F(s32, 0x318)))->get_attack_angle() / 2 && F(u32, 0x390) != 0) {
                             fn_80044330(arg0 + 0x4B0);
                             F(s32, 0x4B0) = 1;
                             F(s16, 0x4B4) = get_entity_id(F(u32, 0x390));
@@ -2115,7 +2116,7 @@ void TObjEneBm5GibonU::state_cast_technique(s32 arg1) {
                             pop_matrix();
                             e = __nw__7TObjectFUl(0x260);
                             if (e != 0) {
-                                ((TTecZonde *)e)->construct_bolt_effect((u8 *)tl_07, (u8 *)&p, (u8 *)&v, 0x14000000, 20, (f32)(((TObjPlayer *)(F(s32, 0x318)))->get_pos_x()), (f32)lbl_805DA1A0);
+                                ((TTecZonde *)e)->construct_bolt_effect((u8 *)tl_07, (u8 *)&p, (u8 *)&v, 0x14000000, 20, (f32)(((AttackParams *)(F(s32, 0x318)))->get_attack_range()), (f32)lbl_805DA1A0);
                             }
                         }
                         play_sound_effect((void *)0x4002A408, &p, 0, 0);
@@ -2127,7 +2128,7 @@ void TObjEneBm5GibonU::state_cast_technique(s32 arg1) {
                         ((TTecGiBarta *)arg0)->create_ex(&p, (void *)(F(s32, 0x60)), (void *)(CB24(arg0)));
                         break;
                     default:
-                        if (r < ((TObjPlayer *)(F(s32, 0x318)))->get_field_0c() / 2 && F(u32, 0x390) != 0) {
+                        if (r < ((AttackParams *)(F(s32, 0x318)))->get_attack_angle() / 2 && F(u32, 0x390) != 0) {
                             TTecFoie::create_ex((void *)arg0, &p, (void *)(F(u8 *, 0x390) + 0x2FC), (void *)(CB24(arg0)));
                         } else {
                             TTecFoie::create((void *)arg0, &p, (void *)(F(s32, 0x60)), (void *)(CB24(arg0)));

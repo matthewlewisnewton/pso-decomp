@@ -1,3 +1,4 @@
+#include "pso/player/PlayerAttackParams.h"
 #include "types.h"
 #include "pso/boss/TBoss3VoloptHiraisin.h"
 #include "pso/object/obj_band.h"
@@ -705,7 +706,7 @@ void update_attack_jump__11TObjEneMojaFv(Obj_800ACFE8 *arg0) {
                 }
                 if (((s32 (*)(void *))obj_is_hit_receivable)(p) != 0) {
                     d = horizontal_distance_squared((s32)(p + 0x2FC), &arg0->f2FC);
-                    if (d <= ((TObjEneGibbles *)(arg0->f318))->get_pos_x() * ((TObjEneGibbles *)(arg0->f318))->get_pos_x()) {
+                    if (d <= ((AttackParams *)(arg0->f318))->get_damage_radius() * ((AttackParams *)(arg0->f318))->get_damage_radius()) {
                         Hit_800ACFE8 hit;
                         hit.a = 0;
                         hit.b = get_attack_params_atp_min(arg0->f318);
@@ -809,12 +810,12 @@ s32 TObjEneMoja::update_technique_state(void *self_800AD3D8) {
                 subtract_vector(&dir, &self->pos);
                 ang2 = update_angle__10TObjPlayerFlPv(self, self->info->turn, &dir);
             } else {
-                ang2 = ((TObjPlayer *)(self->f318))->get_field_0c();
+                ang2 = ((AttackParams *)(self->f318))->get_attack_angle();
             }
             if (game_difficulty_selection == 3) {
                 switch (self->kind) {
                 case 1:
-                    if (ang2 < ((TObjPlayer *)(self->f318))->get_field_0c() / 2 && self->target != NULL) {
+                    if (ang2 < ((AttackParams *)(self->f318))->get_attack_angle() / 2 && self->target != NULL) {
                         TTecMegid::create((s32)self, (s32)&pos, (s32)&self->target->pos, (s32)(((TObjEneMoja *)self)->calc_technique_level()));
                     } else {
                         TTecMegid::create_ex((s32)self, (s32)&pos, self->rot_y, (s32)(((TObjEneMoja *)self)->calc_technique_level()));
@@ -824,7 +825,7 @@ s32 TObjEneMoja::update_technique_state(void *self_800AD3D8) {
                 default:
                     ((s32 (*)(void *, int))spawn_particle_effect)(&pos, 0xB9);
                     ((s32 (*)(void *, int))spawn_particle_effect)(&pos, 0xBA);
-                    if (ang2 < ((TObjPlayer *)(self->f318))->get_field_0c() / 2) {
+                    if (ang2 < ((AttackParams *)(self->f318))->get_attack_angle() / 2) {
                         if (((TObjBoss2Tunnel *)(&dir))->update_scale() < lbl_805D9C1C) {
                             dir.y = dir.x = lbl_805D9BD8;
                             dir.z = lbl_805D9BDC;
@@ -849,7 +850,7 @@ s32 TObjEneMoja::update_technique_state(void *self_800AD3D8) {
                     }
                     obj = __nw__7TObjectFUl(0x260);
                     if (obj != NULL) {
-                        ((TTecZonde *)obj)->construct_bolt_effect((u8 *)tl_07, (u8 *)&pos, (u8 *)&dir, 0x14000000, 20, (f32)(((TObjPlayer *)(self->f318))->get_pos_x()), (f32)lbl_805D9C24);
+                        ((TTecZonde *)obj)->construct_bolt_effect((u8 *)tl_07, (u8 *)&pos, (u8 *)&dir, 0x14000000, 20, (f32)(((AttackParams *)(self->f318))->get_attack_range()), (f32)lbl_805D9C24);
                     }
                     ((s32 (*)(void *, void *, int, int))play_sound_effect)((void *) 0x4002A408, &pos, 0, 0);
                     break;
@@ -860,7 +861,7 @@ s32 TObjEneMoja::update_technique_state(void *self_800AD3D8) {
                     ((TTecGiBarta *)self)->create_ex(&pos, (void *)self->rot_y, (void *)(((TObjEneMoja *)self)->calc_technique_level()));
                     break;
                 default:
-                    if (ang2 < ((TObjPlayer *)(self->f318))->get_field_0c() / 2 && self->target != NULL) {
+                    if (ang2 < ((AttackParams *)(self->f318))->get_attack_angle() / 2 && self->target != NULL) {
                         TTecFoie::create_ex((void *)self, &pos, &self->target->pos, (void *)(((TObjEneMoja *)self)->calc_technique_level()));
                     } else {
                         TTecFoie::create((void *)self, &pos, (void *)self->rot_y, (void *)(((TObjEneMoja *)self)->calc_technique_level()));
@@ -1049,9 +1050,9 @@ s32 TObjEneMoja::is_target_in_attack_range() {
         }
         for (i = 0; i < 3; i++) {
             this->m_318 = lbl_805D50CC[i + (this->variant) * 3];
-            sq = (radius + ((TObjPlayer *)(this->m_318))->get_pos_x()) *
-                 (radius + ((TObjPlayer *)(this->m_318))->get_pos_x());
-            lim = ((TObjPlayer *)(this->m_318))->get_field_0c();
+            sq = (radius + ((AttackParams *)(this->m_318))->get_attack_range()) *
+                 (radius + ((AttackParams *)(this->m_318))->get_attack_range());
+            lim = ((AttackParams *)(this->m_318))->get_attack_angle();
             if (dist <= sq && angd <= lim) {
                 this->attack = i;
                 switch (this->attack) {
