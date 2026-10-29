@@ -21,7 +21,7 @@ struct TObjEneEpsilonGuard : public TObjEneEpsilon {
     void vfunc_28();
     void render();
     void run_task();
-    u8 unk_3C0[0x78];
+    u8 unk_430[8];
     s32 m_438; // 0x438
     u8 unk_43C[0x4];
     s32 m_440; // 0x440
@@ -31,7 +31,6 @@ struct TObjEneEpsilonGuard : public TObjEneEpsilon {
     u16 m_470;
     u8 _pad472[0x4A];
     void* m_4bc;
-    void *create(void *arg1, void *arg2, void *arg3, void *arg4);
     void init_model_and_state();
     s32 all_children_gone();
     static void update_attack_pattern(void *arg0);
@@ -39,9 +38,6 @@ struct TObjEneEpsilonGuard : public TObjEneEpsilon {
     void tick_timer_set_flag();
     static void record_camera_angle_samples();
     void draw_debug_line();
-    void update_step();
-    void update_position();
-    void dispatch_state(u32 arg1, s32 arg2);
     static s32 create_damage_font(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
     static void free_shared_resources();
     static void load_assets();

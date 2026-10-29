@@ -1,9 +1,5 @@
-#include "pso/enemy/BattleParameters.h"
-extern "C" void *__ct__12TObjEneDD_STFP7TObject(void *);
 #include "pso/system/NinjaTypes.h"
-#include "pso/system/BmlResourceClass.h"
 #include "types.h"
-#include "pso/object/TObjMotion.h"
 #include "pso/misc/TRaderMapCore.h"
 #include "pso/enemy/TObjEneEpsilon.h"
 #include "pso/misc/TBreakUpMdl.h"
@@ -35,7 +31,6 @@ extern BmlResourceDescriptor TObjEneEpsilonGuard__resource_descriptor;
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/misc/TLobby.h"
 #include "pso/item/TItem.h"
-#include "pso/npc/NpcModelRegistry.h"
 struct Stack_803626A8 {
     s32 sp8;
     s32 spC;
@@ -50,11 +45,6 @@ struct RecoveredGlobal_803626A8_lbl_80479FBC {
 struct RecoveredGlobal_803626A8_lbl_8058D490 {
     s32 value;
     u8 remaining[0x2C];
-};
-
-struct RecoveredGlobal_80362B48___vt__14TObjEneEpsilon {
-    s32 value;
-    u8 remaining[0x1A0];
 };
 
 struct Obj_80362DE8 {
@@ -179,11 +169,7 @@ s32 pop_matrix();
 f32 post_translate_matrix(void *);
 extern RecoveredGlobal_803626A8_lbl_80479FBC lbl_80479FBC;
 extern RecoveredGlobal_803626A8_lbl_8058D490 identity_matrix;
-void *__dt__12TObjEneDD_STFv(void *arg0, s16 arg1);
-s32 __dl__7TObjectFPv(void *);
-s32 __destroy_arr(void *, void *, int, int);
-extern s32 __dt__15RenderFadeStateFv[];
-extern s32 __vt__14TObjEneEpsilon[];
+extern s32 anim_model_matrix_array;
 u8 *__dt__14TObjEneEpsilonFv(u8 *arg0, s16 arg1);
 void get_weapon_color__11TItemWeaponFPv(void *, void *);
 void TObjPlayer__sub_8032E648(s32 arg0, s32 arg1, s32 arg2);
@@ -193,11 +179,12 @@ void *spawn_particle_effect(void *pos, s32 id);
 s16 get_validated_attack_stage(u8 *arg0);
 extern s32 knuckle_marker_joint_table[];
 void s_rank_knuckle_marker(T_80362C80 *arg0);
-
-
-
-
+s32 dispatch_shared_handler_a__6TLobbyFl(int);
+s32 register_object__6TLobbyFl(int);
+s32 dispatch_shared_handler_b__6TLobbyFl(int);
+s32 register_boss__6TLobbyFl(int);
 Node_803627DC *get_bml_model(void *, int);
+u8 *load_resource_from_descriptor(void *, int, void *, int, int, int);
 s32 TObjPlayer__sub_800F0928(void *);
 extern Quad_803627DC lbl_80479FAC;
 extern f32 lbl_80543A18[3];
@@ -216,13 +203,12 @@ extern u8 *lbl_805D6FA8;
 extern const f32 lbl_805E0248;
 extern const f32 lbl_805E024C;
 extern const f32 lbl_805E0250;
+void TLobby__sub_8001FE7C(void *, int);
 void *__dt__13TUnk_804F26E0Fv(void *arg0, s16 arg1);
 void *TObjEneEpsilon__ct(void *arg0);
 void construct_srank_weapon(void *);
-void __construct_array(void *, void *, void *, int, int);
 void *__dt__13TUnk_804A4948Fv(void *arg0, s16 arg1);
 
-extern s32 __ct__15RenderFadeStateFv[];
 extern void *TObjEneEpsilon__class_name;
 
 typedef char RecoveredGlobal_803626A8_lbl_80479FBC_size[sizeof(RecoveredGlobal_803626A8_lbl_80479FBC) == 0xC ? 1 : -1];
@@ -238,14 +224,13 @@ void TObjEneEpsilonGuard::sub_803626A8(s32 arg1, s32 arg2) {
     push_matrix_from((void *)&identity_matrix.value);
     post_translate_matrix((void *) (((u8 *)this) + 0x38));
     rotate_matrix_y(0, this->rotation_y);
-    this->calc_joint_matrices(this->frame);
+    this->render_anim_model(this->m_c0);
     pop_matrix();
-    push_matrix_from(anim_model_matrix_array[arg2]);
+    push_matrix_from((void *) (anim_model_matrix_array + (arg2 * 0x30)));
     matrix_mult_vec(0, (void *)&stack.sp8, (void *)arg1);
     pop_matrix();
 }
 
-typedef char RecoveredGlobal_80362B48___vt__14TObjEneEpsilon_size[sizeof(RecoveredGlobal_80362B48___vt__14TObjEneEpsilon) == 0x1A4 ? 1 : -1];
 
 void TObjEneEpsilonGuard::free_shared_resources() {
     if ((*(V_8036274C * *)&lbl_805D6FA4) != NULL) {
@@ -257,7 +242,7 @@ void TObjEneEpsilonGuard::free_shared_resources() {
         (*(V_8036274C * *)&lbl_805D6FA8) = NULL;
     }
     if ((*(u32 *)&lbl_805D6FA0) != 0) {
-        delete (BmlResource *)((void *)(*(u32 *)&lbl_805D6FA0));
+        TLobby__sub_8001FE7C((void *)(*(u32 *)&lbl_805D6FA0), 1);
         (*(u32 *)&lbl_805D6FA0) = 0;
     }
 }
@@ -267,7 +252,10 @@ void TObjEneEpsilonGuard::load_assets() {
     lbl_80543A18[0] = lbl_805E0248;
     lbl_80543A18[1] = lbl_805E0248;
     lbl_80543A18[2] = lbl_805E0248;
-    p = (u8 *)new BmlResource(1, (BmlResourceDescriptor *)(&TObjEneEpsilonGuard__resource_descriptor), 0, 0, (void *)(0));
+    p = (u8 *)::operator new(0x440);
+    if (p != NULL) {
+        p = load_resource_from_descriptor(p, 1, &TObjEneEpsilonGuard__resource_descriptor, 0, 0, 0);
+    }
     lbl_805D6FA0 = p;
     p = (u8 *)::operator new(0x10);
     if (p != NULL) {
@@ -279,14 +267,14 @@ void TObjEneEpsilonGuard::load_assets() {
         p = ((TBreakUpMdl *)p)->init_from_model((s32)(get_bml_model(lbl_805D6FA0, 6)));
     }
     lbl_805D6FA8 = p;
-    lbl_805D6F80 = (s32)get_battle_base_stats(0x23);
-    lbl_805D6F84 = (s32)get_battle_attack_params(0x23);
-    lbl_805D6F88 = (s32)get_battle_resistance_params(0x23);
-    lbl_805D6F8C = (s32)get_battle_movement_params(0x23);
-    epsilon_guard_boss_stat_handle = (s32)get_battle_base_stats(0x24);
-    epsilon_guard_shared_handler_b = (s32)get_battle_attack_params(0x24);
-    epsilon_guard_registered_object_handle = (s32)get_battle_resistance_params(0x24);
-    TObjEneEpsilonGuard__movement_params = (s32)get_battle_movement_params(0x24);
+    lbl_805D6F80 = register_boss__6TLobbyFl(0x23);
+    lbl_805D6F84 = dispatch_shared_handler_b__6TLobbyFl(0x23);
+    lbl_805D6F88 = register_object__6TLobbyFl(0x23);
+    lbl_805D6F8C = dispatch_shared_handler_a__6TLobbyFl(0x23);
+    epsilon_guard_boss_stat_handle = register_boss__6TLobbyFl(0x24);
+    epsilon_guard_shared_handler_b = dispatch_shared_handler_b__6TLobbyFl(0x24);
+    epsilon_guard_registered_object_handle = register_object__6TLobbyFl(0x24);
+    TObjEneEpsilonGuard__movement_params = dispatch_shared_handler_a__6TLobbyFl(0x24);
     epsilon_guard_part_color_table[0] = get_bml_model(lbl_805D6FA0, 0)->child->leaf->v;
     epsilon_guard_part_color_table[1] = get_bml_model(lbl_805D6FA0, 0)->child->next->child->child->next->child->child->next->next->child->leaf->v;
     epsilon_guard_part_color_table[2] = get_bml_model(lbl_805D6FA0, 0)->child->next->child->child->next->child->child->next->next->next->child->leaf->v;
@@ -300,29 +288,15 @@ void TObjEneEpsilonGuard::load_assets() {
     {
         Quad_803627DC q = lbl_80479FAC;
         q.a = ((Res_803627DC *)lbl_805D6FA0)->f430;
-        NpcModelRegistry::register_animated_chunk((s16)0x4E, (void *)((s32)(((Res_803627DC *)lbl_805D6FA0)->f42c->f8)), (void *)((s32)(((Res_803627DC *)lbl_805D6FA0)->f42c->fC)), (const NpcAnimationBinding *)((s32)&q), (f32)lbl_805E024C, (f32)lbl_805E0250);
+        TLobby::spawn_npc_enemy((s16)0x4E, (s32)(((Res_803627DC *)lbl_805D6FA0)->f42c->f8), (s32)(((Res_803627DC *)lbl_805D6FA0)->f42c->fC), (s32)&q, (f32)lbl_805E024C, (f32)lbl_805E0250);
     }
 }
 
-u8 *__dt__14TObjEneEpsilonFv(u8 *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = &(*(RecoveredGlobal_80362B48___vt__14TObjEneEpsilon *)&__vt__14TObjEneEpsilon).value;
-        __destroy_arr(arg0 + 0x3C0, &__dt__15RenderFadeStateFv, 0x1C, 4);
-        __dt__12TObjEneDD_STFv(arg0, 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
-}
+TObjEneEpsilon::~TObjEneEpsilon() {}
 
-void *TObjEneEpsilon__ct(void *ene_epsilon) {
-    __ct__12TObjEneDD_STFP7TObject(ene_epsilon);
-    *(s32 **)((s8 *)ene_epsilon + 0x18) = __vt__14TObjEneEpsilon;
-    __construct_array((void *)((char *)ene_epsilon + 960), __ct__15RenderFadeStateFv, __dt__15RenderFadeStateFv, 28, 4);
-    *(void * *)&((TObjEneEpsilon *)ene_epsilon)->m_name = TObjEneEpsilon__class_name;
-    ((TObjEneDD *)ene_epsilon)->check_state_flag_4();
-    return ene_epsilon;
+TObjEneEpsilon::TObjEneEpsilon(TObject *parent): TObjEneDD_ST(parent) {
+    m_name = (const char *)TObjEneEpsilon__class_name;
+    check_state_flag_4();
 }
 
 extern s32 lbl_804F26E0[];
@@ -394,3 +368,5 @@ __declspec(section ".data") const char *bm_ene_epsilon_model_names[8] = { lbl_80
 __declspec(section ".data") const char *bm_ene_epsilon_motion_names[5] = { lbl_80479F18, lbl_80479F34, lbl_80479F50, lbl_80479F70, NULL };
 }
 BmlResourceDescriptor TObjEneEpsilonGuard__resource_descriptor = { lbl_80479F88, bm_ene_epsilon_model_names, bm_ene_epsilon_motion_names, 7, 4 };
+
+TObjMotionAction lbl_804F252C = {1, 0, 0, 0.3f, 0};

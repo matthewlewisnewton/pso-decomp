@@ -1,3 +1,4 @@
+#include "pso/unk/TObjEneEpsilonBody.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -1107,7 +1108,6 @@ extern s32 epsilon_guard_boss_stat_handle;
 extern s32 epsilon_guard_shared_handler_b;
 extern s32 epsilon_guard_registered_object_handle;
 extern u8 *lbl_805D6FA0;
-s32 TObjEneEpsilon__ct();
 extern s32 TObjEneEpsilonGuard__class_name;
 void *TObjEneEpsilonGuard__ct(void *arg0, void *arg1, void *arg2, void *arg3, void *arg4, void *arg5, void *arg6);
 void *__dt__13TUnk_80494938Fv(void *arg0, s16 arg1);
@@ -1329,13 +1329,13 @@ void run_task__19TObjEneEpsilonGuardFv(u8 *arg0) {
 }
 #pragma pop
 
-void *TObjEneEpsilonGuard::create(void *arg1, void *arg2, void *arg3, void *arg4) {
+TObjBase *TObjEneEpsilonBody::create_guard(u32 entityId, s32 setIndex, const Vec *position, s32 yaw) {
     void *o;
     o = __nw__7TObjectFUl(0x4D8);
     if (o != NULL) {
-        o = TObjEneEpsilonGuard__ct(o, tl_04, this, arg1, arg2, arg3, arg4);
+        o = TObjEneEpsilonGuard__ct(o, tl_04, this, (void *)(u32)entityId, (void *)setIndex, (void *)position, (void *)yaw);
     }
-    return o;
+    return (TObjBase *)o;
 }
 
 u8 *__dt__19TObjEneEpsilonGuardFv(u8 *arg0, s16 arg1) {
@@ -1408,7 +1408,7 @@ void TObjEneEpsilonGuard::init_model_and_state() {
 
 void *TObjEneEpsilonGuard__ct(void *ene_epsilon_guard, void *arg1, void *arg2, void *arg3, void *arg4, void *arg5, void *arg6) {
     s32 i;
-    TObjEneEpsilon__ct();
+    __ct__14TObjEneEpsilonFP7TObject(ene_epsilon_guard, (TObject *)arg1);
     *(void ***)((s8 *)ene_epsilon_guard + 0x18) = __vt__19TObjEneEpsilonGuard;
     __ct__13TUnk_80494938Fv(((u8 *)ene_epsilon_guard + 0x4BC));
     *(s32 *)((s8 *)ene_epsilon_guard + 0) = (s32) TObjEneEpsilonGuard__class_name;

@@ -14,6 +14,62 @@ detect_strings: true
 mw_comment_version: 10
 # --- force_active (BEGIN) ---
 force_active:
+  - TObjEneEpsilonGuard__debug_line_list
+  - TObjEneEpsilonGuard__sub_8035F844
+  - TObjEneEpsilonGuard__sub_8035FA50
+  - TObjEneEpsilonGuard__sub_8035FAA8
+  - TObjEneEpsilonGuard__sub_8035FB44
+  - TObjEneEpsilonGuard__sub_8035FBBC
+  - TObjEneEpsilonGuard__sub_8035FC20
+  - TObjEneEpsilonGuard__sub_8035FCEC
+  - TObjEneEpsilonGuard__sub_80360BF8
+  - TObjEneEpsilonGuard__sub_803610D0
+  - TObjEneEpsilonGuard__sub_803616E4
+  - TObjEneEpsilonGuard__sub_80361C70
+  - __ct__18TObjEneEpsilonBodyFP7TObjectPl
+  - __dt__18TObjEneEpsilonBodyFv
+  - __vt__13TUnk_80494938
+  - __vt__14TObjEneEpsilon
+  - __vt__18TObjEneEpsilonBody
+  - action__19TObjEneEpsilonGuardFPvi
+  - action_destroy__19TObjEneEpsilonGuardFl
+  - all_children_gone__19TObjEneEpsilonGuardFv
+  - assign_guard_targets__19TObjEneEpsilonGuardFv
+  - dispatch_action__18TObjEneEpsilonBodyFUll
+  - draw_debug_line__19TObjEneEpsilonGuardFv
+  - draw_with_fade__19TObjEneEpsilonGuardFPvi
+  - epsilon_body_line_colors
+  - handle_guard_action_state__19TObjEneEpsilonGuardFPvi
+  - handle_warp_state__19TObjEneEpsilonGuardFl
+  - init_params__18TObjEneEpsilonBodyFv
+  - lbl_804F2024
+  - receive_direct_attack__18TObjEneEpsilonBodyFPv19DirectAttackPayloadPvll
+  - receive_physical_attack__18TObjEneEpsilonBodyFPvf
+  - receive_weapon_special_attack__18TObjEneEpsilonBodyFPvPv
+  - record_camera_angle_samples__19TObjEneEpsilonGuardFv
+  - render__18TObjEneEpsilonBodyFv
+  - render_body_effect__18TObjEneEpsilonBodyFv
+  - reset_obstruction_fade__13TUnk_80494938Fv
+  - run_task__18TObjEneEpsilonBodyFv
+  - select_attack_target__18TObjEneEpsilonBodyFl
+  - set_guard_state__18TObjEneEpsilonBodyFv
+  - sub_8035F8A8__18TObjEneEpsilonBodyFv
+  - sub_803606A0__18TObjEneEpsilonBodyFl
+  - sub_80361D4C__18TObjEneEpsilonBodyFl
+  - tick_stun_timer__19TObjEneEpsilonGuardFv
+  - tick_timer_set_flag__19TObjEneEpsilonGuardFv
+  - update_attack_pattern__19TObjEneEpsilonGuardFPv
+  - update_fade__19TObjEneEpsilonGuardFl
+  - update_guard_flag__18TObjEneEpsilonBodyFv
+  - update_position__18TObjEneEpsilonBodyFv
+  - vfunc_105__18TObjEneEpsilonBodyFv
+  - vfunc_106__18TObjEneEpsilonBodyFv
+  - vfunc_28__18TObjEneEpsilonBodyFv
+  - vfunc_61__18TObjEneEpsilonBodyFv
+  - vfunc_62__18TObjEneEpsilonBodyFv
+  - vfunc_63__18TObjEneEpsilonBodyFv
+  - vfunc_88__18TObjEneEpsilonBodyFv
+  - vfunc_89__18TObjEneEpsilonBodyFv
   - "@14"
   - "@28@__dt__17TMedicalCenterMesFv"
   - "@28@__dt__22TQuestVmDownLoadServerFv"
