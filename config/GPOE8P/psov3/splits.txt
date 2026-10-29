@@ -10136,7 +10136,7 @@ pso/enemy/TObjEneGibbles.cpp:
 	.text       start:0x802D7A2C end:0x802DBCC4
 	.rodata     start:0x80472790 end:0x80472798
 	.data       start:0x804E2828 end:0x804E2B8C
-	.sdata2     start:0x805DE87C end:0x805DE884
+	.sdata2     start:0x805DE878 end:0x805DE884
 
 pso/ui/TAdMultiPlyChrSelectGC_802DBCC4.cpp:
 	.text       start:0x802DBCC4 end:0x802DC3D4
