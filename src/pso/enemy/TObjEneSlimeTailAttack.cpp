@@ -34,10 +34,6 @@ struct E_800EB8DC { s32 f0; s32 f4; };
 
 struct O_800EB8DC { u8 pad[0x3b8]; E_800EB8DC arr[4]; };
 
-struct Slot_800EB778 { s32 state; void *obj; };
-
-struct Obj_800EB778 { u8 pad[0x1c]; u16 id; u8 pad2[0x3b8 - 0x1e]; Slot_800EB778 slots[4]; };
-
 typedef struct { f32 x, y, z; } Vec_800EB7BC;
 struct Tmpl_800EB7BC {
     s16 a;
@@ -64,11 +60,9 @@ struct Obj_800EB7BC {
 
 extern "C" {
 s32 has_no_active_slot(O_800EB8DC *self);
-void fn_800EB778(Obj_800EB778 *self, s32 id);
 u32 create__15TObjEneSlimeOneFlll(void *, void *, u32);
 s32 spawn_slime_in_slot(Obj_800EB7BC *arg0, s32 arg1, Vec_800EB7BC *arg2, u32 arg3);
 
-void fn_800EB778(Obj_800EB778 *self, s32 id);
 
 s32 spawn_slime_in_slot(Obj_800EB7BC *origin, s32 arg1, Vec_800EB7BC *arg2, u32 arg3);
 
@@ -871,15 +865,13 @@ s32 spawn_slime_in_slot(Obj_800EB7BC *origin, s32 arg1, Vec_800EB7BC *arg2, u32 
 #pragma inline_depth(1)
 #pragma auto_inline off
 #pragma dont_inline off
-extern "C" {
-void fn_800EB778(Obj_800EB778 *self, s32 id) {
-    s32 i = id - self->id - 1;
-    if (i < 0 || i >= 4 || self->slots[i].state != 1) {
+void TObjEneSlime::release_child_slot(s32 id) {
+    s32 i = id - entity_id - 1;
+    if (i < 0 || i >= 4 || child_slots[i].state != 1) {
         return;
     }
-    self->slots[i].obj = 0;
-    self->slots[i].state = 2;
-}
+    child_slots[i].slime = 0;
+    child_slots[i].state = 2;
 }
 #pragma pop
 #pragma push
@@ -1808,7 +1800,7 @@ void TObjEneSlimeOne::fn_800E95F4() {
     u8 *object;
     object = (u8 *)((u8 *)arg0->slime_group);
     if ((object != NULL) && (((TObject *)object)->all_parents_unqueued_for_destruction() != 0)) {
-        fn_800EB778((Obj_800EB778 *)(u8 *)arg0->slime_group, (s32) arg0->entity_id);
+        arg0->slime_group->release_child_slot((s32) arg0->entity_id);
     }
     arg0->render_scale.z = (f32) lbl_805DA67C;
     arg0->render_scale.y = (f32) lbl_805DA67C;
