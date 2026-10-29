@@ -10281,6 +10281,7 @@ pso/ui/TAdMultiPlyChrSelectGC_802D50A0.cpp:
 
 pso/player/TObjPlayer_802D5174.cpp:
 	.text       start:0x802D5174 end:0x802D5B78
+	.sdata2     start:0x805DE788 end:0x805DE7A0
 
 pso/player/TObjPlayer_802D5B78.cpp:
 	.text       start:0x802D5B78 end:0x802D5C0C
