@@ -11962,7 +11962,10 @@ pso/unk/text_8035966C.cpp:
 
 pso/object/TObjStendGlassLobby.cpp:
 	.text       start:0x803596C0 end:0x80359A7C
+	.rodata     start:0x80479658 end:0x804796A0
 	.data       start:0x804F1A28 end:0x804F1A40
+	.sdata      start:0x805D4400 end:0x805D4408
+	.sbss       start:0x805D6F28 end:0x805D6F30
 	.sdata2     start:0x805E00A0 end:0x805E00B0
 
 pso/boss/TBoss8Dragon_80359A7C.cpp:
