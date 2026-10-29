@@ -4497,7 +4497,7 @@ force_active:
   - fn_8005EE04__12TBoss8DragonFPsPUl
   - fn_8005FD34__13TBoss5GryphonFl
   - fn_8005FE18__13TBoss5GryphonFl
-  - fn_8005FEF8__13TBoss5GryphonFl
+  - update_roar_state__13TBoss5GryphonFl
   - fn_80060020__13TBoss5GryphonFUl
   - fn_800605E8__13TBoss5GryphonFl
   - fn_80060788__13TBoss5GryphonFl
