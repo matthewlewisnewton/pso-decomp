@@ -3,6 +3,11 @@
 #include "pso/ui/TUnk_804EDBD0.h"
 #include "pso/misc/TLobby.h"
 
+extern "C" {
+u8 ad_warning_arq_request[32];
+}
+
+
 struct TAdWarningBaseGC {
     char pad0[0x1C];
     s32 state;

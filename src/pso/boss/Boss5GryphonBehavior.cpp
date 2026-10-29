@@ -35,6 +35,7 @@ extern "C" void test_flag_256__9TObjCharaFv();
 #include "pso/misc/TWindowCtrl.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 #include "pso/object/TObjFish.h"
+#include "pso/boss/Boss5GryphonActionScripts.h"
 
 
 #pragma inline_depth(1)
@@ -4993,7 +4994,6 @@ void *__ct__17AreaAttackHistoryFl(void *, s32);
 void *TBoss5GryphonColli__ct(void *, void *);
 extern const char *boss5_gryphon_type_name_pointer;
 extern u8 lbl_80437958[];
-extern u8 lbl_804EC238[];
 
 TBoss5Gryphon *TBoss5Gryphon__ct(TBoss5Gryphon *self, void *parent, void *data) {
     u32 flags[4];
@@ -5058,7 +5058,7 @@ TBoss5Gryphon *TBoss5Gryphon__ct(TBoss5Gryphon *self, void *parent, void *data) 
         ((Obj_80065658 *)self)->objs[i] = 0;
     }
     self->m_774 = 0;
-    self->m_778 = (u32)lbl_804EC238;
+    self->m_778 = (u32)boss5_gryphon_action_scripts;
     VecCopy__FP3VecPC3Vec(&self->m_560, &self->position);
     VecCopy__FP3VecPC3Vec(&self->m_56c, &self->position);
     *(f32 *)(*(u8 **)((u8 *)self + 0x2B0) + 0x10) = lbl_805D8E10;

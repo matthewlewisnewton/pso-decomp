@@ -20,6 +20,13 @@
 #include "pso/object/TObjCityMainWarp.h"
 #include "pso/ui/Language.h"
 
+#pragma readonly_strings on
+
+extern "C" {
+const char *TWindowSubComCardList__class_name = "TWindowSubComCardList";
+}
+
+
 struct Win_802758C8 {
     u8 pad0[0x20];
     s32 player;
@@ -65,11 +72,8 @@ u8 *TWindowMenu__ct(u8 *arg0, u32 arg1, s32 arg2, s32 arg3);
 void *init__21TWindowSubComCardListFiii(void *, s32, s8, s32);
 s32 TWindowSubComCardList__sub_80275360(void *);
 extern s32 __vt__21TWindowSubComCardList[];
-extern s32 TWindowSubComCardList__class_name;
+extern const char *TWindowSubComCardList__class_name;
 extern s32 local_client_id;
-extern const f32 lbl_805DD540;
-extern const f32 lbl_805DD544;
-extern const f32 lbl_805DD548;
 u8 *TWindowSubComCardList__ct(u8 *arg0, void *arg1);
 s32 count_leading_active__17TWindowSubComCardFPvi(s32, s32);
 u8 *TWindowSubComCardList__sub_802757AC(u8 *arg0, void *arg1, s32 arg2, s32 arg3, s8 arg4);
@@ -130,8 +134,8 @@ u8 *TWindowSubComCardList__ct(u8 *arg0, void *arg1) {
     s32 n;
     TWindowMenu__ct(arg0, 7, 4, (s32)arg1);
     *(s32 **)(arg0 + 0x18) = __vt__21TWindowSubComCardList;
-    *(s32 *)(arg0 + 0) = TWindowSubComCardList__class_name;
-    n = TWindowSubStatusDisp::round_away_from_zero((f32)TWindowSubComCard::count_active_cards() / lbl_805DD540);
+    *(s32 *)(arg0 + 0) = ((s32)TWindowSubComCardList__class_name);
+    n = TWindowSubStatusDisp::round_away_from_zero((f32)TWindowSubComCard::count_active_cards() / 7.0f);
     if (n <= 0) {
         n = 1;
     }
@@ -148,7 +152,7 @@ u8 *TWindowSubComCardList__ct(u8 *arg0, void *arg1) {
     ((TWindowSubComCardList *)arg0)->set_selected_index(0);
     TWindowSubComCardList__sub_80275360(arg0);
     ((TWindowSubComCardList *)arg0)->set_flag70_bit10();
-    ((TWindowSubComCardList *)arg0)->set_scroll_target(lbl_805DD544, lbl_805DD548);
+    ((TWindowSubComCardList *)arg0)->set_scroll_target(223.0f, 184.0f);
     return arg0;
 }
 
@@ -157,8 +161,8 @@ u8 *TWindowSubComCardList__sub_802757AC(u8 *arg0, void *arg1, s32 arg2, s32 arg3
     s32 n;
     TWindowMenu__ct(arg0, 7, 4, (s32)arg1);
     *(s32 **)(arg0 + 0x18) = __vt__21TWindowSubComCardList;
-    *(s32 *)(arg0 + 0) = TWindowSubComCardList__class_name;
-    n = TWindowSubStatusDisp::round_away_from_zero((f32)count_leading_active__17TWindowSubComCardFPvi(arg2, arg3) / lbl_805DD540);
+    *(s32 *)(arg0 + 0) = ((s32)TWindowSubComCardList__class_name);
+    n = TWindowSubStatusDisp::round_away_from_zero((f32)count_leading_active__17TWindowSubComCardFPvi(arg2, arg3) / 7.0f);
     if (n <= 0) {
         n = 1;
     }
@@ -175,7 +179,7 @@ u8 *TWindowSubComCardList__sub_802757AC(u8 *arg0, void *arg1, s32 arg2, s32 arg3
     ((TWindowSubComCardList *)arg0)->set_selected_index(0);
     TWindowSubComCardList__sub_80275360(arg0);
     ((TWindowSubComCardList *)arg0)->set_flag70_bit10();
-    ((TWindowSubComCardList *)arg0)->set_scroll_target(lbl_805DD544, lbl_805DD548);
+    ((TWindowSubComCardList *)arg0)->set_scroll_target(223.0f, 184.0f);
     return arg0;
 }
 }

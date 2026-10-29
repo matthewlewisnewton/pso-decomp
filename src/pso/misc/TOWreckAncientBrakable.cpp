@@ -1,6 +1,8 @@
 #include "types.h"
 #include "pso/misc/TOWreckAncientBrakable.h"
 
+#pragma readonly_strings on
+
 extern "C" {
 
 void *TOWreckAncientBrakable__ct(TOWreckAncientBrakable *arg0);
@@ -33,6 +35,6 @@ void *TOWreckAncientBrakable__ct(TOWreckAncientBrakable *wreck_ancient_brakable)
     return wreck_ancient_brakable;
 }
 
-extern char lbl_80443528[];
-void *TOWreckAncientBrakable__name = lbl_80443528;
+void *TOWreckAncientBrakable__name = (char *)"TOWreckAncientBrakable";
+
 }
