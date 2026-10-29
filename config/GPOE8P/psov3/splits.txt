@@ -1558,7 +1558,7 @@ pso/enemy/BringerEffects.cpp:
 pso/enemy/TObjEneMe1Canadin.cpp:
 	.text       start:0x8009AB4C end:0x8009F410
 	.rodata     start:0x8043A390 end:0x8043A398
-	.data       start:0x8048FEB0 end:0x80490238
+	.data       start:0x8048FEB0 end:0x80490410
 	.bss        start:0x80500930 end:0x80500960
 	.sdata2     start:0x805D98C0 end:0x805D98D0
 
