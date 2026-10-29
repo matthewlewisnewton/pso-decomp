@@ -1,3 +1,4 @@
+#include "pso/effect/TEffStarLight2D.h"
 #include "types.h"
 #include "pso/system/FlagWord.h"
 #include "pso/object/TObject_80019A50.h"
@@ -153,7 +154,7 @@ struct Hit_802E3D8C { s32 pad; void *pos; };
 extern "C" {
 s32 disallow_rendering__7TObjectFv(void *);
 s32 test_flags_any(void *, int);
-s32 copy_position__15TEffStarLight2DFPv(int, void *);
+
 }
 f32 vec_distance_squared(u8 *arg0, u8 *arg1);
 extern "C" {
@@ -290,7 +291,7 @@ void TItemAttackCol::run_task() {
     this->vfunc_7();
     temp_r3 = this->m_12c;
     if (temp_r3 != 0U) {
-        copy_position__15TEffStarLight2DFPv(temp_r3, (u8 *)&this->m_24);
+        ((TEffStarLight2D *)temp_r3)->copy_position((const Vec *)&this->m_24);
     }
     temp_r3_2 = this->m_130;
     if (temp_r3_2 != 0U) {

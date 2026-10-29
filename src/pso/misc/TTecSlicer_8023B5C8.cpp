@@ -1,3 +1,4 @@
+#include "pso/effect/TEffStarLight2D.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/system/ChunkMaterialState.h"
 #include "types.h"
@@ -175,7 +176,7 @@ u32 get_player_by_client_id(u16);
 s32 __ct__14TSlicerHistoryFv(void *, void *, s32, void *, s32);
 u32 __nw__7TObjectFUl(s32);
 s32 allow_rendering__7TObjectFv(void *);
-s32 copy_position__15TEffStarLight2DFPv(void *, void *);
+
 s32 queue_destruction__7TObjectFv(s32);
 void __dl__7TObjectFPv(void *);
 void dt__10TTecSlicerFls(void *, int);
@@ -385,7 +386,7 @@ void run_task__10TTecSlicerFv(u8 *object) {
     }
     ((TTecSlicer *)object)->advance_position();
     if ((u32) *(u32 *)((s8 *)object + 0x124) != 0U) {
-        copy_position__15TEffStarLight2DFPv(((TTecSlicer *)object)->star, object + 0x38);
+        ((TEffStarLight2D *)((TTecSlicer *)object)->star)->copy_position((const Vec *)(object + 0x38));
     }
     if (test_flags_any(object + 0xC0, 2) != 0) {
         queue_destruction__7TObjectFv((s32)object);
