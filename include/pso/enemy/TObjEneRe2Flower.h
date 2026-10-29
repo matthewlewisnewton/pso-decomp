@@ -46,6 +46,7 @@ struct TObjEneRe2Flower : public TObjEneDD_ST {
     void clear_child_flags();
     void set_child_flags();
     u8 *find_target_in_range();
+    static void initialize_resources();
     static void destroy_instance();
     static void *create(void *arg0);
     int get_flag_11();
