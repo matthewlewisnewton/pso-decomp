@@ -2364,6 +2364,7 @@ pso/object/TObjEZRopeBase.cpp:
 
 pso/player/TObjPlayer_800FFA88.cpp:
 	.text       start:0x800FFA88 end:0x800FFC34
+	.sdata2     start:0x805DAA68 end:0x805DAA80
 
 pso/ui/TAdSinglePlyChrSelectGC_800FFC34.cpp:
 	.text       start:0x800FFC34 end:0x800FFC6C
