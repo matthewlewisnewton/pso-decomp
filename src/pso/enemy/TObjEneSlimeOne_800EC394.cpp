@@ -18,7 +18,6 @@ s32 find_nearest_hittable_enemy__10TObjPlayerFiPvf(void *, void *, f32);
 void advance_animation_playback(s32);
 extern s8 slime_one_animation_end_initialized;
 extern f32 slime_one_animation_end_frame;
-extern f32 lbl_805DA760;
 s32 TObjFish__sub_8001EDB0(s32, s32);
 void draw_model_motion(void *arg0, void *arg1, f32 farg0);
 void TObjEneSlimeOne__sub_803E4B54(void *child, void *arg1, void *arg2, f32 farg0);
@@ -27,7 +26,6 @@ extern s32 model_render_flags;
 s32 get_bml_motion(s32, s32);
 s32 get_bml_model(s32, s32);
 void init__14TObjEnePanarmsFPv(TObjMotion *, s16);
-extern const f32 lbl_805DA764;
 extern SlimePairedMotion lbl_80496C68[2];
 extern SlimePairedMotion lbl_80496C90[2];
 int get_validated_attack_stage(void*);
@@ -157,7 +155,7 @@ void SlimeAnimationState::advance() {
         if (slime_one_animation_end_initialized == 0) {
             f32 tmp = frame_count;
             slime_one_animation_end_initialized = 1;
-            slime_one_animation_end_frame = tmp - lbl_805DA760;
+            slime_one_animation_end_frame = tmp - 1.0f;
         }
         f32 v = frame + speed;
         f32 lim = slime_one_animation_end_frame;
@@ -181,7 +179,7 @@ s32 SlimeAnimationState::is_finished() {
     if ((s8) TObjEneSlimeOne__target_depth_initialized == 0) {
         f32 tmp = frame_count;
         TObjEneSlimeOne__target_depth_initialized = 1;
-        TObjEneSlimeOne__target_depth = tmp - lbl_805DA760;
+        TObjEneSlimeOne__target_depth = tmp - 1.0f;
     }
     if (frame == TObjEneSlimeOne__target_depth) {
         return 1;
@@ -230,7 +228,7 @@ void SlimeAnimationState::set_state(s32 next_state) {
         shape_motion = (AnimationMotion *)get_bml_motion(resource, entry->shape_motion);
         frame_count = motion->frameCount;
         speed = entry->speed;
-        frame = lbl_805DA764;
+        frame = 0.0f;
         return;
     }
     s32 index = state - 9;
@@ -244,7 +242,7 @@ void SlimeAnimationState::set_state(s32 next_state) {
     second_motion = (AnimationMotion *)get_bml_motion(resource, entry->second_motion);
     frame_count = second_motion->frameCount;
     speed = entry->speed;
-    frame = lbl_805DA764;
+    frame = 0.0f;
 }
 
 SlimeAnimationState::~SlimeAnimationState() {}
