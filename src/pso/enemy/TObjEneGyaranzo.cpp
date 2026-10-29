@@ -91,7 +91,7 @@ void enemy_turn_toward_dest(void *, s32);
 u8 *find_active_entity_by_id(u16);
 extern s32 actor_frame_tick;
 extern const f32 lbl_805DA274;
-extern const f32 lbl_805DA278;
+extern const f32 gyaranzo_volley_fire_frame;
 extern const f32 lbl_805DA280;
 
 struct Pos_800D3C04 { s32 w[4]; };
@@ -757,7 +757,7 @@ void TObjEneGyaranzo::update_aim_and_fire() {
         }
         break;
     case 2:
-        if (this->m_c0 >= lbl_805DA278) {
+        if (this->m_c0 >= gyaranzo_volley_fire_frame) {
             spawn_missile_volley();
             state = 3;
         }
@@ -972,11 +972,11 @@ void TObjEneGyaranzo::select_targets() {
         if (TObjPlayer::is_valid_and_active((u32)p) == 0) continue;
         if (p == this) continue;
         if (p->actorFlags & 0x2000800) continue;
-        VecCopy((Vec *)&d, (const Vec *)&p->m_2fc);
-        subtract_vector(&d, (u8 *)&this->m_2fc);
+        VecCopy(&d, p->body_center());
+        subtract_vector(&d, body_center());
         dist = d.x * d.x + d.z * d.z;
         if (!(dist < lbl_805DA260)) continue;
-        if (check_path_obstructed(this, &p->m_2fc) == 1) continue;
+        if (check_path_obstructed(this, p->body_center()) == 1) continue;
         TObjGyaranzoMissile_target_slots[n].distance_squared = dist;
         TObjGyaranzoMissile_target_slots[n].id = get_entity_id(p);
         if (n > 0 && TObjGyaranzoMissile_target_slots[n].distance_squared > TObjGyaranzoMissile_target_slots[best].distance_squared) {
@@ -1118,5 +1118,5 @@ void TObjEneGyaranzo::cancel_fade_state() {
 #pragma pop
 
 extern "C" {
-__declspec(section ".sdata2") const f32 lbl_805DA278 = 28.0f;
+__declspec(section ".sdata2") const f32 gyaranzo_volley_fire_frame = 28.0f;
 }
