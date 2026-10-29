@@ -252,7 +252,7 @@ extern "C" {
 void enemy_set_heading_velocity(TObjEnemy *arg0, s32 arg1, f32 farg0);
 s32 select_enemy_destination(void *, Vec_800F1098 *, int);
 s32 copy_position_if_valid__10TObjPlayerFii(s32 arg0, s32 arg1);
-s32 update_angle__10TObjPlayerFlPv(void *, s32, void *);
+s32 turn_toward_direction__9TObjCharaFlP3Vec(void *, s32, void *);
 s32 enemy_turn_toward_dest(void *, s32);
 s32 matrix_mult_vec(int, void *, void *);
 s32 rotate_matrix_y(int, int);
@@ -361,7 +361,7 @@ void TObjEneMe3Stelth__sub_800F1098(u8 *arg0, s32 arg1) {
                 } else {
                     VecCopy((Vec *)&d, (const Vec *)(arg0 + 0x394));
                     subtract_vector(&d, arg0 + 0x2FC);
-                    r = update_angle__10TObjPlayerFlPv(arg0, F(Spd_800F1098 *, 0x350)->turn, &d);
+                    r = turn_toward_direction__9TObjCharaFlP3Vec(arg0, F(Spd_800F1098 *, 0x350)->turn, &d);
                 }
             }
             if (r < 0x100) {
@@ -395,7 +395,7 @@ void TObjEneMe3Stelth__sub_800F1098(u8 *arg0, s32 arg1) {
                 if (F(u32, 0x390) != 0) {
                     VecCopy((Vec *)&d, (const Vec *)(arg0 + 0x394));
                     subtract_vector(&d, arg0 + 0x2FC);
-                    r = update_angle__10TObjPlayerFlPv(arg0, F(Spd_800F1098 *, 0x350)->turn, &d);
+                    r = turn_toward_direction__9TObjCharaFlP3Vec(arg0, F(Spd_800F1098 *, 0x350)->turn, &d);
                 } else {
                     r = F(s32 *, 0x318)[3];
                 }
@@ -420,7 +420,7 @@ void TObjEneMe3Stelth__sub_800F1098(u8 *arg0, s32 arg1) {
     case 5:
         break;
     }
-    ((TObjPlayer *)arg0)->update_collisions();
+    ((TObjCollidable *)arg0)->update_collisions();
 }
 
 void TObjEneMe3Stelth__sub_800F1440(u8 *arg0, s32 arg1) {

@@ -31,7 +31,6 @@ void scale_matrix(void *mtx, f32 x, f32 y, f32 z);
 
 TUnk_8048FA00 *init_from_model__11TBreakUpMdlFl(TUnk_8048FA00 *obj, s32 model);
 void trigger_dell_biter_events__10TObjPlayerFv(Vec *pos);
-void update_collisions__10TObjPlayerFv(TObjEnemy *obj);
 
 extern u32 model_render_flags;
 extern u32 saved_model_render_flags;
@@ -211,7 +210,7 @@ void TBoss3VoloptHiraisin::update_drop() {
     case 3:
         break;
     }
-    update_collisions__10TObjPlayerFv(this);
+    update_collisions();
 }
 
 void TBoss3VoloptHiraisin::sub_80041314() {
@@ -315,7 +314,7 @@ void TBoss3VoloptHiraisin::run_task() {
         if (mode != 5) {
             m_300 -= 30.0f;
         }
-        copy_position();
+        refresh_center_from_body();
         submit_cursor_candidate(this, -1);
         minimap_render_dot(&position, -0x5DB4, 1, 0);
         volopt_hiraisin_spin_node->rotation_y += 0x4000;
@@ -355,7 +354,7 @@ TBoss3VoloptHiraisin::~TBoss3VoloptHiraisin() {
 void TBoss3VoloptHiraisin::init_params() {
     VecCopy((Vec *)&m_2fc, &position);
     m_300 -= 30.0f;
-    copy_position();
+    refresh_center_from_body();
     motion_list = volopt_hiraisin_resources->motions;
     action_table = volopt_hiraisin_motions;
     set_field_d8((s32)action_table);
@@ -397,7 +396,7 @@ TBoss3VoloptHiraisin::TBoss3VoloptHiraisin(TObject *parent, void *set_data) : TO
     init_params();
 }
 
-void TBoss3VoloptHiraisin::copy_position() {
+void TObjChara::refresh_center_from_body() {
     VecCopy(&center, (Vec *)&m_2fc);
 }
 
