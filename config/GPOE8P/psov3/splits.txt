@@ -2109,6 +2109,7 @@ pso/player/TObjPlayer_800F0810.cpp:
 
 pso/enemy/TObjEneMe3Stelth_800F0AE4.cpp:
 	.text       start:0x800F0AE4 end:0x800F0CE8
+	.rodata     start:0x8043D438 end:0x8043D450
 
 pso/enemy/TObjEneMe3StelthReal.cpp:
 	.text       start:0x800F0CE8 end:0x800F0EC4
