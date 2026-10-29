@@ -64,7 +64,7 @@ struct MagEditData {
     s8 **motion_tables;  // per model variant: each group's 2 x 6 motion types
     s8 *oscillation_ids; // each group's 2 oscillation states, -1 for none
     MagNodeOscillationState *oscillations;
-    s8 *material_nodes;
+    u8 *material_nodes;  // per group; 0xFF (-1) for none
     NJS_ARGB *colors;
     s8 *evolution_stages;
 };
