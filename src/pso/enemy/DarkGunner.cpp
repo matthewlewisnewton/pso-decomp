@@ -1285,7 +1285,7 @@ s32 TObjPlayer__sub_800A1FEC(void *arg0) {
         ((TObjEnemyCustom *)self)->find_target_in_range(200.0f);
         if (self->f338 == 0xFFFF) break;
         {
-            u8 *p = (u8 *)new TUnk_804909C4((u8 *)self, (s32)&self->f3B4, (s32)(self->target + 0x2FC));
+            u8 *p = (u8 *)new TUnk_804909C4((u8 *)self, (const Vec *)&self->f3B4, (const Vec *)(self->target + 0x2FC));
         }
         play_sound_effect(0x40039E2B, &self->pos, 0, 0);
         break;

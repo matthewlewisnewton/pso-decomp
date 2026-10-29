@@ -5619,7 +5619,7 @@ force_active:
   - lbl_8048D108
   - lbl_804907AC
   - lbl_804907BC
-  - lbl_80490998
+  - projectile_collision_body
   - lbl_8049168C
   - lbl_80491EE4
   - lbl_804922F8
@@ -13009,7 +13009,7 @@ force_active:
   - sub_8009A640__13TUnk_8048FE7CFv
   - sub_800A1520__17TObjEneDarkGunnerFv
   - sub_800A159C__17TObjEneDarkGunnerFv
-  - sub_800A3290__13TUnk_804909C4Fl
+  - check_player_hits__13TUnk_804909C4Fl
   - sub_800A435C__12TObjEneSaverFv
   - sub_800A4D9C__12TObjEneSaverFv
   - sub_800A5FA8__12TObjEneSaverFv

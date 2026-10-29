@@ -18,9 +18,9 @@ extern TObject *tl_04;
 extern f32 player_scale_factor;
 }
 
-CollisionBody lbl_80490998 = {{0.0f, 0.0f, 0.0f}, 0.0f, 0.0f, 0, 0x8003, {0.0f, 0.0f, 0.0f}, 0.0f};
+CollisionBody projectile_collision_body = {{0.0f, 0.0f, 0.0f}, 0.0f, 0.0f, 0, 0x8003, {0.0f, 0.0f, 0.0f}, 0.0f};
 
-s32 TUnk_804909C4::sub_800A3290(s32 id) {
+s32 TUnk_804909C4::check_player_hits(s32 id) {
     TObjCollidable *other;
     s32 result = 0;
     s32 i;
@@ -59,7 +59,7 @@ void TUnk_804909C4::run_task() {
     if (effect != NULL) {
         effect->set_position(&position);
     }
-    if (sub_800A3290(owner_id) != 0) {
+    if (check_player_hits(owner_id) != 0) {
         queue_destruction();
         return;
     }
@@ -77,22 +77,22 @@ TUnk_804909C4::~TUnk_804909C4() {
     }
 }
 
-TUnk_804909C4::TUnk_804909C4(u8 *player, s32 arg2, s32 arg3) : TObjCollidable(tl_04) {
+TUnk_804909C4::TUnk_804909C4(u8 *owner, const Vec *start, const Vec *target) : TObjCollidable(tl_04) {
     s32 var_r0;
     CsnHit *hit;
-    init_collision_body_parts(this, &lbl_80490998, 1);
+    init_collision_body_parts(this, &projectile_collision_body, 1);
     bodies->radius = 0.75f * player_scale_factor;
-    owner_id = get_entity_id((TObjBase *)player);
-    if (((TObjPlayer *)player)->is_flag_set_388_bit26() != 0) {
+    owner_id = get_entity_id((TObjBase *)owner);
+    if (((TObjPlayer *)owner)->is_flag_set_388_bit26() != 0) {
         var_r0 = 0xDA;
     } else {
         var_r0 = 0xD5;
     }
     effect_id = var_r0;
-    room = ((TObjPlayer *)player)->room;
-    VecCopy(&position, (const Vec *)arg2);
-    VecCopy(&velocity, (const Vec *)arg3);
-    subtract_vector(&velocity, (const Vec *)arg2);
+    room = ((TObjPlayer *)owner)->room;
+    VecCopy(&position, start);
+    VecCopy(&velocity, target);
+    subtract_vector(&velocity, start);
     velocity.y = 0.0f;
     vec_set_length(&velocity, player_scale_factor);
     effect_rotation[0] = 0;
