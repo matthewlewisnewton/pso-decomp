@@ -1884,7 +1884,7 @@ pso/enemy/TObjEneMe1Gee.cpp:
 	.sdata2     start:0x805DA0D8 end:0x805DA0E8
 
 pso/enemy/TObjEneBm5GibonU.cpp:
-	.text       start:0x800CCB24 end:0x800D1E4C
+	.text       start:0x800CCB24 end:0x800D1D80
 	.ctors      start:0x80433F5C end:0x80433F60
 	.rodata     start:0x8043C0F0 end:0x8043C0F8
 	.data       start:0x80493CA0 end:0x80494104
@@ -1892,10 +1892,10 @@ pso/enemy/TObjEneBm5GibonU.cpp:
 	.sdata2     start:0x805DA158 end:0x805DA258
 
 pso/enemy/TObjEneGyaranzo.cpp:
-	.text       start:0x800D1E4C end:0x800D40D8
-	.rodata     start:0x8043C3A8 end:0x8043C428
+	.text       start:0x800D1D80 end:0x800D40D8
+	.rodata     start:0x8043C278 end:0x8043C428
 	.data       start:0x80494108 end:0x804943FC
-	.sdata2     start:0x805DA27C end:0x805DA280
+	.sdata2     start:0x805DA278 end:0x805DA280
 
 pso/object/TObjGyaranzoMissile_800D40D8.cpp:
 	.text       start:0x800D40D8 end:0x800D47B4

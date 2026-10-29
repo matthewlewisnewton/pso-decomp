@@ -4774,30 +4774,7 @@ void TObjEneBm5GibonU::register_global_objects() {
 s32 TObjEneBm5GibonU__sub_800D1D70(void* p) { return *(s32*)((char*)p + 0x46c); }
 void* TObjEneBm5GibonU__sub_800D1D78(void* p) { return (char*)p + 0x47c; }
 
-void TObjEneBm5GibonU::clear_flag_and_update() {
-    u8 *arg0 = (u8 *)this;
-    if ((s32) *(s32 *)((s8 *)arg0 + 0x374) == 7) {
-        this->m_388 = (s32) (this->m_388 & 0xFFFFFFFE);
-        ((TObjEnemyCustom *)arg0)->update_if_active(0);
-    }
-}
 
-s32 TObjEneBm5GibonU::check_and_update() {
-    s32 arg0 = (s32)this;
-    if (update_movement_status__9TObjCharaFv() != 0) {
-        clear_flag_and_update();
-        return 1;
-    }
-    return 0;
-}
-s32 TObjEneBm5GibonU::try_activate() {
-    s32 arg0 = (s32)this;
-    if (update_shock_clock__9TObjCharaFv() != 0) {
-        clear_flag_and_update();
-        return 1;
-    }
-    return 0;
-}
 
 }
 

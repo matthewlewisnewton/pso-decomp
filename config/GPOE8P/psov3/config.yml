@@ -1604,6 +1604,7 @@ force_active:
   - __ct__15TItemEffBringerFv
   - __ct__15TObjDeadListWinFP7TObject
   - __ct__15TObjEneDelDepthFP7TObjectPv
+  - __ct__15TObjEneGyaranzoFP7TObjectPv
   - __ct__15TObjNewFloorWinFP7TObjectPv
   - __ct__15TObjSoloPlayWinFP7TObject
   - __ct__15TRecvGenerateIDFRC15TRecvGenerateID
@@ -1893,6 +1894,7 @@ force_active:
   - __dt__15TObjBoss8PillerFv
   - __dt__15TObjDeadListWinFv
   - __dt__15TObjEneDelDepthFv
+  - __dt__15TObjEneGyaranzoFv
   - __dt__15TObjNewFloorWinFv
   - __dt__15TObjQuestColApcFv
   - __dt__15TObjSoloPlayWinFv
@@ -2251,6 +2253,7 @@ force_active:
   - __vt__13TUnk_80488AD8
   - __vt__13TUnk_8048DF58
   - __vt__13TUnk_80490470
+  - __vt__13TUnk_80494938
   - __vt__13TUnk_80494E10
   - __vt__13TUnk_8049EFB8
   - __vt__13TUnk_8049F038
@@ -2353,6 +2356,7 @@ force_active:
   - __vt__15TObjDeadListWin
   - __vt__15TObjEneDelDepth
   - __vt__15TObjEneDimedian
+  - __vt__15TObjEneGyaranzo
   - __vt__15TObjEnemyCustom
   - __vt__15TObjLiveMonitor
   - __vt__15TObjNewFloorWin
@@ -2648,6 +2652,7 @@ force_active:
   - advance_thanks_state__12TBoss6ThanksFv
   - advance_to_preparation_phase__20TShopArmorListWindowFv
   - advance_toward_max__13TUnk_80490470Fv
+  - advance_toward_max__13TUnk_80494938Fv
   - advance_wait_next__11TBoss4Type3Fv
   - advance_wrap_offset__13TUnk_804B2578Fv
   - alerted_state__14TObjEneBm5WolfFl
@@ -2977,6 +2982,9 @@ force_active:
   - bm_ene_grass_model_names
   - bm_ene_grass_motion_names
   - bm_ene_grass_resource_descriptor
+  - bm_ene_gyaranzo_model_names
+  - bm_ene_gyaranzo_motion_names
+  - bm_ene_gyaranzo_resource_descriptor
   - bm_ene_me1_gee_low_model_names
   - bm_ene_me1_gee_low_motion_names
   - bm_ene_me1_gee_low_resource_descriptor
@@ -3337,6 +3345,7 @@ force_active:
   - canadin_light_width_decay
   - canadin_line_initial_phase_range
   - canadin_random_scale
+  - cancel_fade_state__15TObjEneGyaranzoFv
   - cancel_trade_for_member_out_of_range__Fl
   - candidate_players__12TBoss3Volopt
   - capture_attachment__17TObjEneBm3FlyNestFPv
@@ -3572,7 +3581,6 @@ force_active:
   - clear_flag60_bit8__13TWindowSubMagFv
   - clear_flag70_bit80__19TWindowSubTechniqueFv
   - clear_flag_and_release__14TWindowSubItemFv
-  - clear_flag_and_update__16TObjEneBm5GibonUFv
   - clear_flag_bit5__17TWindowReturnCityFv
   - clear_flag_in_state7__14TObjEneBalClawFv
   - clear_flags_60__12TObjEneLappyFv
@@ -3920,6 +3928,7 @@ force_active:
   - debug_render_overlay__9TMainTaskFv
   - decay_glow_and_calc_hp_ratio__9TBoss6MagFv
   - decay_value_toward_floor__13TUnk_80490470Fv
+  - decay_value_toward_floor__13TUnk_80494938Fv
   - decode_adx_stereo__FPSclPsPsPsPsss
   - decode_adx_stereo_downmix__FPSclPsPsPsPsss
   - decode_packed_name_chars__9TItemDataFPSc
@@ -4037,6 +4046,7 @@ force_active:
   - dispatch_state__19TBoss3VoloptMonitorFv
   - dispatch_state__20TBoss3VoloptHiraisinFv
   - dispatch_state_handler__19TObjEneBm9MericarolFiUii
+  - dispatch_state_update__15TObjEneGyaranzoFv
   - display_exp_gain__FlUlll
   - distribute_part_damage__15TBoss3VoloptP02Fv
   - do_action_447__10TObjPlayerFv
@@ -4837,6 +4847,11 @@ force_active:
   - guide_button_texture_handle
   - guide_button_type_name
   - gx_blend_mode_table
+  - gyaranzo_collision_body
+  - gyaranzo_death_breakup_params
+  - gyaranzo_flagged_resource_index_table
+  - gyaranzo_movement_parameters
+  - gyaranzo_resource_index_table
   - hair_bone_rotation_descriptor
   - hair_effect_selection_table
   - handleFallState__12TBoss1DragonFUl
@@ -4984,6 +4999,7 @@ force_active:
   - has_serial_input__22TAdEnterSerialAccessGCFv
   - has_valid_slot__23TAdSinglePlyChrSelectGCFv
   - has_visible_opacity__13TUnk_80490470Fv
+  - has_visible_opacity__13TUnk_80494938Fv
   - heaven_punisher_strike_locks__13TUnk_804A4B80Fv
   - hide__5TItemFv
   - hide_part__9TObjLukerFPvUs
@@ -5146,6 +5162,7 @@ force_active:
   - init_params__18TObjButterflyLobbyFv
   - init_params__19TBoss3VoloptMonitorFv
   - init_params__20TBoss3VoloptHiraisinFv
+  - init_params_from_table__15TObjEneGyaranzoFv
   - init_particle_effect__10TObjPlayerFv
   - init_particle_obj__13TParticleCtrlFll
   - init_parts__13TUnk_804A7488Fv
@@ -6171,6 +6188,7 @@ force_active:
   - lbl_805DA24C
   - lbl_805DA250
   - lbl_805DA254
+  - lbl_805DA278
   - lbl_805DA5A8
   - lbl_805DA5AC
   - lbl_805DA788
@@ -11481,6 +11499,7 @@ force_active:
   - render__15TDuelEffectCtrlFv
   - render__15TEndingPicStageFv
   - render__15TObjEneDelDepthFv
+  - render__15TObjEneGyaranzoFv
   - render__15TObjLiveMonitorFv
   - render__15TObjSuisouLobbyFv
   - render__15TPlyPhotonChairFPvPv
@@ -11711,6 +11730,7 @@ force_active:
   - reset_by_door__19TObjLazerFenceExtraFPv
   - reset_camera_if_fullscreen__6TLobbyFPv
   - reset_color__13TUnk_80490470Fv
+  - reset_color__13TUnk_80494938Fv
   - reset_cursor__17TAdMultiConfirmGCFPv
   - reset_effect_entries__18TAdChrMoveEffectGCFv
   - reset_effects__10TObjPlayerFv
@@ -11731,6 +11751,7 @@ force_active:
   - reset_leader_selection__FPv
   - reset_leader_selection_static__6TLobbyFv
   - reset_obstruction_fade__13TUnk_80490470Fv
+  - reset_obstruction_fade__13TUnk_80494938Fv
   - reset_oscillation__11TItemMagSubFv
   - reset_pad_rumble_effects_and_channels__Fs
   - reset_placement_search_ring__13TUnk_804C4498Fv
@@ -11984,6 +12005,7 @@ force_active:
   - run_task__15TORockJungleL01Fv
   - run_task__15TObjDeadListWinFv
   - run_task__15TObjEneDelDepthFv
+  - run_task__15TObjEneGyaranzoFv
   - run_task__15TObjEneMe1GiGueFv
   - run_task__15TObjLiveMonitorFv
   - run_task__15TObjSoloPlayWinFv
@@ -12217,6 +12239,7 @@ force_active:
   - select_lobby_pigeon_model__13TUnk_804E0898Fv
   - select_models__18TObjLazerFenceNormFv
   - select_next__26TWindowSubQuestBoardSelectFv
+  - select_next_action__15TObjEneGyaranzoFv
   - select_next_item__11TWindowMenuFv
   - select_phase1_attack__12TBoss3VoloptFv
   - select_phase2_attack__12TBoss3VoloptFv
@@ -12226,6 +12249,7 @@ force_active:
   - select_subtype__14TObjEneBm5WolfFv
   - select_target__14TObjEneBm5WolfFPv
   - select_target_in_view__13TObjEneMorfosFv
+  - select_targets__15TObjEneGyaranzoFv
   - select_unit_drop__9TItemDropFUcPUc
   - select_weapon_drop__9TItemDropFv
   - select_weighted_byte__9TItemDropFiiiii
@@ -12373,6 +12397,7 @@ force_active:
   - set_flag_and_clear_download__6TLobbyFv
   - set_flag_and_notify__10TObjPlayerFv
   - set_flags_and_apply_damage_color__13TUnk_80490470Fv
+  - set_flags_and_apply_damage_color__13TUnk_80494938Fv
   - set_flags_and_apply_damage_color__15RenderFadeStateFv
   - set_flight_height__13TBoss5GryphonFv
   - set_gauge_param__20TWindowSubStatusDispFl
@@ -12439,6 +12464,7 @@ force_active:
   - set_random_enemies_mode__Fv
   - set_random_param__12TBoss8DragonFPUc
   - set_rate_from_divisor__13TUnk_80490470Fl
+  - set_rate_from_divisor__13TUnk_80494938Fl
   - set_result_flag__12TBoss1DragonFll
   - set_scale__13TUnk_804B2578Ff
   - set_scene_light_diffuse__FPv
@@ -12493,6 +12519,7 @@ force_active:
   - setup_vertex_format__10TObjPlayerFv
   - setup_vtx_desc__10TObjPlayerFv
   - shared_breakup_model
+  - shed_armor__15TObjEneGyaranzoFv
   - shield_table__14TItemProShield
   - shift_position_history__13TBoss5GryphonFv
   - shift_queue_push_next__15TObjBoss2TunnelFPv
@@ -12813,6 +12840,7 @@ force_active:
   - spawn_ground_effects__14TObjEneDolmOlmFPvPv
   - spawn_ground_splash__13TBoss5GryphonFv
   - spawn_hamon_effects__10TObjPlayerFllf
+  - spawn_hit_debris__15TObjEneGyaranzoFv
   - spawn_hit_particle_trio__10TObjPlayerFv
   - spawn_hit_particles__10TObjPlayerFiPv
   - spawn_hit_particles_at__10TObjPlayerFiii
@@ -12826,6 +12854,8 @@ force_active:
   - spawn_lightning_effect__13TBoss5GryphonFv
   - spawn_line__13TPhotonEstllaFv
   - spawn_mirages__21TObjEneMe3ShinowaRealFv
+  - spawn_missile__15TObjEneGyaranzoFv
+  - spawn_missile_volley__15TObjEneGyaranzoFv
   - spawn_offset_particle__17TObjEneDf2BringerFPv
   - spawn_paralysis_feedback_effect__Fll
   - spawn_particle_at_entity_slot__10TObjPlayerFllll
@@ -13317,6 +13347,7 @@ force_active:
   - update_ai__14TObjEneIllGillFv
   - update_ai__9TObjGrassFPv
   - update_ai_state__15TObjEneDelDepthFv
+  - update_aim_and_fire__15TObjEneGyaranzoFv
   - update_air_fire_state__12TBoss1DragonFUl
   - update_all_parts__11TBoss6Type2FPv
   - update_all_slots__13TPhotonFarllaFv
@@ -13387,6 +13418,7 @@ force_active:
   - update_charge__11TBoss6Type1Fv
   - update_charge_effects__14TBoss6GravBallFPv
   - update_charge_state__16TBoss3VoloptCoreFv
+  - update_chase__15TObjEneGyaranzoFv
   - update_chase__18TObjEneBalClawClawFPv
   - update_chase_state__18TObjEneBalClawClawFv
   - update_chase_target__14TObjEneIllGillFPv
@@ -13421,6 +13453,7 @@ force_active:
   - update_dark_magic__11TBoss4Type3Fv
   - update_dd_flag__13TObjEneBm3FlyFPv
   - update_dead__11TBoss4Type3Fv
+  - update_death_breakup__15TObjEneGyaranzoFv
   - update_death_fall__14TObjEneIllGillFv
   - update_death_sequence__10TObjPlayerFPv
   - update_death_sequence__15TBoss3VoloptP02Fv
@@ -13429,6 +13462,7 @@ force_active:
   - update_death_state__12TBoss1DragonFv
   - update_default__14TObjEneBm5WolfFv
   - update_demo__14TOTrapChainSawFv
+  - update_demo__15TObjEneGyaranzoFv
   - update_destroy_countdown__18TObjChallengeRetryFv
   - update_destruction_countdown__6TLobbyFPv
   - update_detonation__10TTecRaFoieFPv
@@ -13478,6 +13512,7 @@ force_active:
   - update_fade_sequence__13TObjEneMe1GeeFv
   - update_fade_state__12TBoss1DragonFUl
   - update_fade_state__15TBoss3VoloptP02Fv
+  - update_fade_state__15TObjEneGyaranzoFv
   - update_farthest_target__18TObjEneRe4SorcererFlPf
   - update_field_318__9TObjCharaFv
   - update_field_40__15TFontSmallLobbyFv
@@ -13537,6 +13572,7 @@ force_active:
   - update_item_select__21TShopDeleteItemWindowFPv
   - update_judge_confirm__23TShopJudgmentItemWindowFv
   - update_key_events__16TKeyBoardControlFl
+  - update_knockback__15TObjEneGyaranzoFv
   - update_knockback_state__12TObjEneSaverFv
   - update_knockback_state__15TObjEnemyCustomFv
   - update_landing_attack__13TBoss5GryphonFUl
@@ -13573,6 +13609,7 @@ force_active:
   - update_mc_select__22TQuestVmDownLoadServerFv
   - update_menu_window__6TLobbyFv
   - update_message__18TWindowMessagePageFv
+  - update_model_visibility__15TObjEneGyaranzoFv
   - update_motion_playback__9TBoss6MagFv
   - update_move_flag__10TBoss2MineFv
   - update_move_to_destination__10TObjPlayerFv
@@ -13582,6 +13619,7 @@ force_active:
   - update_movement__15TObjEneDelDepthFv
   - update_movement_status__12TObjEneLappyFv
   - update_movement_status__12TObjEneSaverFv
+  - update_movement_status__15TObjEneGyaranzoFv
   - update_movement_status__17TObjEneDarkGunnerFv
   - update_moving__12TObjEneLappyFv
   - update_node_oscillation__11TItemMagSubFPv
@@ -13647,6 +13685,7 @@ force_active:
   - update_requirements__15TWindowHelpItemFv
   - update_resistance_rows__15TWindowHelpItemFPv
   - update_results_phase__19TPlayerBattleCtrl4PFv
+  - update_return_home__15TObjEneGyaranzoFv
   - update_return_phase__19TPlayerBattleCtrl4PFv
   - update_rise__15TBoss3VoloptP01Fv
   - update_rise_state__10TBoss4ZakoFv
@@ -13675,6 +13714,7 @@ force_active:
   - update_selection_input__19TWindowSubMagPhotonFv
   - update_setup__23TAdSinglePlyChrSelectGCFv
   - update_ship_select_window__6TLobbyFv
+  - update_shock_clock__15TObjEneGyaranzoFv
   - update_shop_close__22THunterGuildSeqOfflineFPv
   - update_short_list__6TLobbyFv
   - update_short_list_request__11TWindowCtrlFv
@@ -13928,6 +13968,7 @@ force_active:
   - vfunc_62__13TObjEneRe4BitFv
   - vfunc_62__14TObjEneBm5WolfFv
   - vfunc_62__15TObjEneDelDepthFv
+  - vfunc_62__15TObjEneGyaranzoFv
   - vfunc_62__15TObjEneMe1GiGueFv
   - vfunc_62__16TObjEneBm5GibonUFv
   - vfunc_62__16TObjEneDellBiterFv
@@ -13948,6 +13989,7 @@ force_active:
   - vfunc_63__13TObjEneRe4BitFv
   - vfunc_63__14TObjEneBm5WolfFv
   - vfunc_63__15TObjEneDelDepthFv
+  - vfunc_63__15TObjEneGyaranzoFv
   - vfunc_63__15TObjEneMe1GiGueFv
   - vfunc_63__16TObjEneBm5GibonUFv
   - vfunc_63__16TObjEneDellBiterFv

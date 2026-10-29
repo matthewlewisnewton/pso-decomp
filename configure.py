@@ -434,7 +434,7 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/enemy/TObjEneDelDepth.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     # GC/2.0: compiler-expanded struct copies take 2.0's registers.
     "pso/boss/Boss5GryphonBehavior.cpp": {"mw_version": "GC/2.0"},
-    "pso/enemy/TObjEneGyaranzo.cpp": {"mw_version": "GC/2.0"},
+    "pso/enemy/TObjEneGyaranzo.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred")},
     "pso/enemy/TObjEneSlimeTailAttack.cpp": {"mw_version": "GC/2.0"},
     "pso/boss/TBoss8Dragon.cpp": {"mw_version": "GC/2.0"},
     # GC/1.3.2: the container files 0x8018807C-0x8018D900, the CRC-32 pair
