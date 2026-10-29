@@ -172,7 +172,7 @@ s32 push_matrix_from(void *);
 s32 pop_matrices(s32 arg0);
 u8 *get_player_data__10TObjPlayerFi(s32);
 u16 get_entity_id(void *);
-void enemy_set_heading_velocity(void *, s32, f32);
+void enemy_set_heading_velocity(f32 speed, TObjEnemy *enemy, s32 heading);
 void enemy_turn_toward_dest(void *, s32);
 f32 horizontal_distance_squared(void *, void *);
 void TObjEneIllGill__sub_80367DA4(s32 arg0);
@@ -665,7 +665,7 @@ void TObjEneIllGill::update_ai() {
                 spd *= lbl_805E02B8;
             }
             enemy_turn_toward_dest(o, (s32)(lbl_805E02D0 * (f32)prm->turn));
-            enemy_set_heading_velocity(o, o->angle, spd);
+            enemy_set_heading_velocity(spd, (TObjEnemy *)(o), o->angle);
             move_with_wall_slide((u8 *)o);
             d2 = horizontal_distance_squared(&o->f29c, &o->p2fc);
             t = spd + o->body->radius;
@@ -1407,7 +1407,7 @@ void TObjEneIllGill::run_attack_phase() {
         } else {
             this->m_300 = (f32) (this->m_300 + TObjEneIllGill__data_805E02DC);
             temp_r4 = (unsigned char *) (this->movementParameters);
-            ((TObjEnemy *)arg0)->enemy_wander_home((*(s32 *)((s8 *)temp_r4 + 8)), (f32) (lbl_805E02E8 * *(f32 *)((s8 *)temp_r4 + 4)), lbl_805E02C4, lbl_805E02FC);
+            ((TObjEnemy *)arg0)->enemy_wander_home((f32) (lbl_805E02E8 * *(f32 *)((s8 *)temp_r4 + 4)), lbl_805E02C4, lbl_805E02FC, (*(s32 *)((s8 *)temp_r4 + 8)));
         }
         ((TObjCollidable *)arg0)->refresh_collision_body_centers();
         break;
@@ -1467,7 +1467,7 @@ void TObjEneIllGill::move_toward_dest_with_detour() {
         }
     }
     enemy_turn_toward_dest(o, o->f350->f8);
-    enemy_set_heading_velocity(o, o->f60, o->f350->f4);
+    enemy_set_heading_velocity(o->f350->f4, (TObjEnemy *)(o), o->f60);
     o->v2FC.y += TObjEneIllGill__data_805E02DC;
     move_with_wall_slide((u8 *)o);
 }
@@ -1776,7 +1776,7 @@ void *__dt__14TObjEneIllGillFv(void *arg0, s16 arg1) {
 u8 *TObjEneIllGill__ct(u8 *self, s32 arg1, u8 *arg2) {
     __ct__9TObjEnemyFP7TObject(self, arg1, arg2);
     FIG_8036858C(void *, 0x18) = __vt__14TObjEneIllGill;
-    ((TUnk_80494938 *)(self + 0x374))->init_common();
+    __ct__13TUnk_80494938Fv((self + 0x374));
     FIG_8036858C(s32, 0) = TObjEneIllGill_class_name;
     ((TObjEnemy *)self)->set_param(0x52);
     ((VObj_18_8036858C *)self)->m79(arg2);

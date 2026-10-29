@@ -107,7 +107,7 @@ struct Node_800AA82C { u32 flags; u8 pad[0x30 - 4]; s32 f30; };
 struct Desc_800AA82C { s32 a; void *b; s32 c; s32 d; };
 
 extern "C" {
-void enemy_set_heading_velocity(TObjEnemy *arg0, s32 arg1, f32 farg0);
+void enemy_set_heading_velocity(f32 speed, TObjEnemy *enemy, s32 heading);
 s32 check_path_obstructed(void *, void *);
 s32 TObjPlayer__sub_800AAF98(void *, s32);
 extern const f32 lbl_805D9AFC;
@@ -317,7 +317,7 @@ void TObjPlayer::clear_state7_flag() {
     u8 *arg0 = (u8 *)this;
     if ((s32) this->m_374 == 7) {
         *(s32 *)&this->unk_388 = (s32) (*(s32 *)&this->unk_388 & 0xFFFFFFFE);
-        ((TObjEneMe1GiGue *)arg0)->update_if_active(0);
+        ((TObjEnemyCustom *)arg0)->update_if_active(0);
     }
 }
 
@@ -444,7 +444,7 @@ void TObjPlayer__sub_800A8C4C(u8 *arg0) {
             *(s16 *)((s8 *)arg0 + 0xB8) = 5;
             advance_animation_playback((void *)arg0);
             *(s32 *)((s8 *)arg0 + 0x388) = (s32) (*(s32 *)((s8 *)arg0 + 0x388) & 0xFE7FFFFF);
-            ((TObjEneMe1GiGue *)arg0)->update_if_active(0);
+            ((TObjEnemyCustom *)arg0)->update_if_active(0);
         }
         return;
     }
@@ -468,7 +468,7 @@ void TObjPlayer__sub_800A8E04(u8 *ene_me1_gi_gue) {
     case -1:
         ((TObjEneMe1GiGue *)ene_me1_gi_gue)->m_388 = (s32) ((((TObjEneMe1GiGue *)ene_me1_gi_gue)->m_388) & ~5);
         ((TObjEneMe1GiGue *)ene_me1_gi_gue)->actorFlags = (s32) (((TObjEneMe1GiGue *)ene_me1_gi_gue)->actorFlags & 0xFBFFFFFF);
-        ((TObjEneMe1GiGue *)ene_me1_gi_gue)->update_if_active(0);
+        ((TObjEnemyCustom *)ene_me1_gi_gue)->update_if_active(0);
         break;
     }
 }
@@ -568,7 +568,7 @@ void TObjPlayer__sub_800A8FB4(void *arg0_) {
     switch (*(s32 *)((s8 *)arg0 + 0x37C)) {
     case 0:
         if (*(u32 *)((s8 *)arg0 + 0x39C) != 0U) {
-            ((TObjEneMe1GiGue *)arg0)->update_if_active(1);
+            ((TObjEnemyCustom *)arg0)->update_if_active(1);
             *(s32 *)((s8 *)arg0 + 0x37C) = -1;
             break;
         }
@@ -683,7 +683,7 @@ void TObjPlayer__sub_800A8FB4(void *arg0_) {
             if (*(s16 *)((s8 *)arg0 + 0x38E) > 0) {
                 *(s32 *)((s8 *)arg0 + 0x37C) = 1;
             } else {
-                ((TObjEneMe1GiGue *)arg0)->update_if_active(1);
+                ((TObjEnemyCustom *)arg0)->update_if_active(1);
                 *(s32 *)((s8 *)arg0 + 0x37C) = -1;
             }
         }
@@ -763,7 +763,7 @@ void TObjPlayer__sub_800A93E4(void *arg0_) {
         }
         pop_matrix();
         if (e->fb4 != 4) {
-            ((TObjEneMe1GiGue *)arg0)->update_if_active(1);
+            ((TObjEnemyCustom *)arg0)->update_if_active(1);
             e->state = -1;
         }
         break;
@@ -781,7 +781,7 @@ void TObjPlayer__sub_800A9C38(void *arg0_) {
             *(s32 *)((s8 *)arg0 + 0x37C) = -1;
         } else {
             *(s16 *)((s8 *)arg0 + 0xB8) = 3;
-            enemy_set_heading_velocity((TObjEnemy *)arg0, (s32)(*(s32 *)((s8 *)arg0 + 0x60)), (f32)lbl_805D9AFC);
+            enemy_set_heading_velocity((f32)lbl_805D9AFC, (TObjEnemy *)arg0, (s32)(*(s32 *)((s8 *)arg0 + 0x60)));
             *(s32 *)((s8 *)arg0 + 0x37C) = 1;
             play_sound_effect(copy_target_state__14TObjEnePanarmsFPv(arg0, 0x4003A806), arg0 + 0x38, 0, 0);
             *(s32 *)((s8 *)arg0 + 0x3CC) = TObjPlayer__sub_800AAF98(arg0, 2);
@@ -833,7 +833,7 @@ void TObjPlayer__sub_800A9C38(void *arg0_) {
         ((TObjBase *)arg0)->obj_clearFlags30(0x200);
         *(u32 *)((s8 *)arg0 + 0x388) &= ~1;
         *(s16 *)((s8 *)arg0 + 0x33E) = *(s16 *)((s8 *)arg0 + 0x32C);
-        ((TObjEneMe1GiGue *)arg0)->update_if_active(1);
+        ((TObjEnemyCustom *)arg0)->update_if_active(1);
         return;
     }
     apply_actor_gravity((TObjEnemy *)arg0, (s32 *)(0), lbl_805D9AE0);
@@ -908,7 +908,7 @@ void TObjPlayer__sub_800A9E9C(void *arg0_) {
             *(f32 *)((s8 *)arg0 + 0x3A4) += var_f31;
             ((TObjChara *)arg0)->turn_toward_direction((s32)((void *) *(s32 *)((s8 *)(*(u8 **)((s8 *)arg0 + 0x350)) + 8)), (Vec *)(arg0 + 0x308));
         } else {
-            ((TObjEneMe1GiGue *)arg0)->update_if_active(0);
+            ((TObjEnemyCustom *)arg0)->update_if_active(0);
         }
         apply_actor_gravity((TObjEnemy *)arg0, (s32 *)(0), lbl_805D9AE0);
         ((TObjPlayer *)arg0)->check_object_collisions();
@@ -925,7 +925,7 @@ void TObjEneDubchik::sub_800AA10C() {
     case 8:
     case 0:
         if ((this->is_actor_cadence_frame(0x1E) != 0) && (find_target_in_range__15TObjEnemyCustomFf(this, this->m_3d0) != 0)) {
-            ((TObjEneMe1GiGue *)((u8 *)this))->update_if_active(1);
+            ((TObjEnemyCustom *)((u8 *)this))->update_if_active(1);
         }
         break;
     case 1:
@@ -934,7 +934,7 @@ void TObjEneDubchik::sub_800AA10C() {
         }
         temp_r0_2 = *(u32 *)((s8 *)((u8 *)this) + 0x2A8);
         if (temp_r0_2 == 0U) {
-            ((TObjEneMe1GiGue *)((u8 *)this))->update_if_active(8);
+            ((TObjEnemyCustom *)((u8 *)this))->update_if_active(8);
             return;
         }
         if (this->m_3a4 >= lbl_805D9B14) {
@@ -943,7 +943,7 @@ void TObjEneDubchik::sub_800AA10C() {
                 this->targetId = pick_random_nearby_player(lbl_805D9B1C);
                 if (this->targetId != 0xFFFF) {
                     *(u32 *)((s8 *)((u8 *)this) + 0x2A8) = find_active_entity_by_id(this->targetId);
-                    ((TObjEneMe1GiGue *)((u8 *)this))->update_if_active(9);
+                    ((TObjEnemyCustom *)((u8 *)this))->update_if_active(9);
                     return;
                 }
                 find_target_in_range__15TObjEnemyCustomFf(this, (f32) (lbl_805D9B10 + this->m_3d0));
@@ -956,7 +956,7 @@ void TObjEneDubchik::sub_800AA10C() {
                     this->m_390 = 0;
                     this->target_nearest_player(lbl_805D9B20);
                 }
-                ((TObjEneMe1GiGue *)((u8 *)this))->update_if_active(2);
+                ((TObjEnemyCustom *)((u8 *)this))->update_if_active(2);
                 return;
             }
         } else if (this->is_actor_cadence_frame(0x1E) != 0) {
