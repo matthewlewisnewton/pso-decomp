@@ -28,7 +28,6 @@
 #include "pso/unk/text_803E2D70.h"
 
 extern "C" {
-f32 random_ratio__9TObjCharaFv(void *);
 f64 atan2_float(f32, f32);
 
 s32 angle_difference_abs(s32, s32);
@@ -68,7 +67,6 @@ u8 *get_bml_motion(s32, s32);
 extern const f32 lbl_805DF29C;
 extern const f32 lbl_805DF294;
 
-void queue_destruction__7TObjectFv(void *);
 s32 TObjFish__sub_8001EDB0(u8 *, int);
 
 s32 get_mode__11TCameraCtrlFPv(void *);
@@ -205,12 +203,12 @@ TObjEneDelDepth::ActionPair deldepth_actions[] = {
     { &TObjEneDelDepth::fn_80314500, &TObjEneDelDepth::fn_803142DC },
     { &TObjEneDelDepth::init_depth, &TObjEneDelDepth::fn_803141A8 },
     { &TObjEneDelDepth::setup_depth_draw, &TObjEneDelDepth::move_toward_target },
-    { &TObjEneDelDepth::fn_80313DE4, &TObjEneDelDepth::update_attack_cast },
+    { &TObjEneDelDepth::enter_attack_cast, &TObjEneDelDepth::update_attack_cast },
     { &TObjEneDelDepth::init_draw_state, &TObjEneDelDepth::update_bomb_drop },
     { &TObjEneDelDepth::init_state, &TObjEneDelDepth::update_state_flag },
     { &TObjEneDelDepth::start_attack_motion, &TObjEneDelDepth::update_ai_state },
-    { &TObjEneDelDepth::init_move, &TObjEneDelDepth::fn_80313954 },
-    { &TObjEneDelDepth::fn_803138F8, &TObjEneDelDepth::fn_80313740 },
+    { &TObjEneDelDepth::init_move, &TObjEneDelDepth::update_death_fade },
+    { &TObjEneDelDepth::enter_fall_to_ground, &TObjEneDelDepth::update_fall_to_ground },
 };
 
 }
@@ -453,12 +451,12 @@ void TObjEneDelDepth::set_action_state(s32 i) {
 }
 
 void TObjEneDelDepth::set_depth_offset(s32 minimum, s32 range) {
-    timer = minimum + (s32)((f32)range * random_ratio__9TObjCharaFv(this));
+    timer = minimum + (s32)((f32)range * random_ratio());
 }
 
 #pragma push
 #pragma fp_contract on
-s32 TObjEneDelDepth::fn_80315380() {
+s32 TObjEneDelDepth::adjust_height_to_ground() {
     TObjEneDelDepth *arg0 = this;
     Vec v = arg0->position;
     v.x = TObjEneDelDepth__data_805DF270 * cos_table_lookup(arg0->rotation_y) + v.x;
@@ -526,7 +524,7 @@ void TObjEneDelDepth::vfunc_61() {
 void TObjEneDelDepth::set_default_depth_offset() { set_depth_offset(15, 15); }
 
 void TObjEneDelDepth::init_params() {
-    this->fn_80315380();
+    this->adjust_height_to_ground();
     this->drawOffsetY = TObjEneDelDepth__data_805DF278;
     this->drawScale.z = TObjEneDelDepth__data_805DF258;
     this->drawScale.y = TObjEneDelDepth__data_805DF258;
@@ -664,7 +662,7 @@ void TObjEneDelDepth::start_move_toward_player() {
         this->set_action_state(2);
         return;
     }
-    temp_r31 = (s32) (lbl_805DF2B0 * random_ratio__9TObjCharaFv(actor));
+    temp_r31 = (s32) (lbl_805DF2B0 * random_ratio());
     this->direction.x += TObjEneDelDepth__data_805DF270 * sin_table_lookup(temp_r31);
     this->direction.z += TObjEneDelDepth__data_805DF270 * cos_table_lookup(temp_r31);
     if (vector_length((u8 *)&this->direction.x) <= lbl_805DF288) {
@@ -672,7 +670,7 @@ void TObjEneDelDepth::start_move_toward_player() {
         return;
     }
     normalize_vector((u8 *)&this->direction.x);
-    temp_f1 = (lbl_805DF2B8 * random_ratio__9TObjCharaFv(actor)) + lbl_805DF2B4;
+    temp_f1 = (lbl_805DF2B8 * random_ratio()) + lbl_805DF2B4;
     this->m_38c = temp_f1;
     this->opacity = TObjEneDelDepth__data_805DF260;
     this->motionController->set_motion(7);
@@ -733,7 +731,7 @@ void TObjEneDelDepth::update_movement() {
         d = lbl_805DF2A4 * TObjEneDelDepth_collision_body_parts[0].radius;
         p.x += d * n.x;
         p.z += d * n.z;
-        if (this->fn_80315380() != 0) {
+        if (this->adjust_height_to_ground() != 0) {
             CsnHit *hit;
             ang = 0;
             hit = csnVector(&arg0->prev_position, &p, 0x88E0);
@@ -831,10 +829,10 @@ void TObjEneDelDepth::try_enter_appear() {
 
 void TObjEneDelDepth::fn_80314500() {
     targetPlayer = 0xFFFF;
-    m_394 = ((s32)(lbl_805DF2A0 * random_ratio__9TObjCharaFv(this)) + 4) << 16;
+    m_394 = ((s32)(lbl_805DF2A0 * random_ratio()) + 4) << 16;
     timer = 0x7FFFFFFF;
     m_3bc = TObjEneDelDepth__tune_params->turnSpeed;
-    if (random_ratio__9TObjCharaFv(this) > TObjEneDelDepth__data_805DF298) {
+    if (random_ratio() > TObjEneDelDepth__data_805DF298) {
         m_3bc *= -1;
     }
     motionController->set_motion(0);
@@ -890,7 +888,7 @@ void TObjEneDelDepth::fn_803142DC() {
 void TObjEneDelDepth::init_depth() {
     this->set_depth_offset(0x1E, 0x1E);
     this->m_3bc = 0x888;
-    if (random_ratio__9TObjCharaFv(this) > TObjEneDelDepth__data_805DF298) {
+    if (random_ratio() > TObjEneDelDepth__data_805DF298) {
         this->m_3bc = this->m_3bc * 0xFFFFFFFF;
     }
     this->motionController->set_motion(0);
@@ -949,7 +947,7 @@ void TObjEneDelDepth::move_toward_target() {
         VecCopy(&this->position, &this->prev_position);
     }
     if (--this->timer <= 0) {
-        if (vector_length(&v) > TObjEneDelDepth__data_805DF280 || random_ratio__9TObjCharaFv(arg0) < lbl_805DF290) {
+        if (vector_length(&v) > TObjEneDelDepth__data_805DF280 || random_ratio() < lbl_805DF290) {
             this->set_action_state(9);
         } else {
             this->set_action_state(0xA);
@@ -994,7 +992,7 @@ void TObjEneDelDepth::update_bomb_drop() {
     }
 }
 
-void TObjEneDelDepth::fn_80313DE4() {
+void TObjEneDelDepth::enter_attack_cast() {
     timer = 30;
     attackTimer = 12;
     motionController->set_motion(1);
@@ -1102,7 +1100,7 @@ void TObjEneDelDepth::init_move() {
 
 #pragma push
 #pragma opt_common_subs off
-void TObjEneDelDepth::fn_80313954() {
+void TObjEneDelDepth::update_death_fade() {
     u8 *enemy = (u8 *)this;
     s32 sp8;
     f32 temp_f1;
@@ -1138,13 +1136,13 @@ void TObjEneDelDepth::fn_80313954() {
         vfunc_79(&sp8);
         ((TObjEnemy *)enemy)->send_entity_set_flags();
         TObjPlayer::apply_effect_variant_a((s32)((u8 *)&this->position), 0);
-        queue_destruction__7TObjectFv(enemy);
+        this->queue_destruction();
         break;
     }
 }
 
 #pragma pop
-void TObjEneDelDepth::fn_803138F8() {
+void TObjEneDelDepth::enter_fall_to_ground() {
     drawOffsetY = TObjEneDelDepth__data_805DF278;
     drawScale.z = TObjEneDelDepth__data_805DF258;
     drawScale.y = TObjEneDelDepth__data_805DF258;
@@ -1156,7 +1154,7 @@ void TObjEneDelDepth::fn_803138F8() {
 
 #pragma push
 #pragma fp_contract on
-void TObjEneDelDepth::fn_80313740() {
+void TObjEneDelDepth::update_fall_to_ground() {
     TObjEneDelDepth *o = this;
     s32 done;
     s32 tries;
@@ -1204,7 +1202,7 @@ void TObjEneDelDepth::fn_80313740() {
         }
     }
     if (done != 0) {
-        this->fn_80315380();
+        this->adjust_height_to_ground();
         this->set_action_state(1);
     }
 }
@@ -1282,7 +1280,7 @@ void TObjEneDelDepthBomb::run_task() {
         VecCopy(&impact, &position);
         impact.y += TObjEneDelDepth__data_805DF268;
         create__11TTecRaBartaFPvPvPvPv(source, &position, &impact, (void *)techniqueLevel);
-        queue_destruction__7TObjectFv(this);
+        this->queue_destruction();
     }
 }
 
@@ -1295,7 +1293,7 @@ void TObjEneDelDepthBomb::render() {
     s32 rotationZ;
     BmlResource *data = TObjEneDelDepth::get_data();
     if (data == 0) {
-        queue_destruction__7TObjectFv(this);
+        this->queue_destruction();
         return;
     }
     s32 model = get_bml_model(data, 2);

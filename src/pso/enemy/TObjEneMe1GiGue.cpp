@@ -1,3 +1,4 @@
+#include "pso/player/PlayerAttackParams.h"
 #include <dolphin/mtx.h>
 #include "pso/player/TObjPlayer.h"
 #include "pso/player/TObjChara.h"
@@ -653,8 +654,8 @@ void TObjEneMe1GiGue::load_params() {
 #pragma pop
 
 void TObjEneMe1GiGue::update_direction() {
-    *(f32 *)((s8 *)this + 0x438) = ((TObjPlayer *)(this->m_318))->get_pos_x();
-    this->m_434 = ((TObjPlayer *)(this->m_318))->get_field_0c();
+    *(f32 *)((s8 *)this + 0x438) = ((AttackParams *)(this->m_318))->get_attack_range();
+    this->m_434 = ((AttackParams *)(this->m_318))->get_attack_angle();
 }
 typedef char RecoveredGlobal_802CB03C_lbl_8058D490_size[sizeof(RecoveredGlobal_802CB03C_lbl_8058D490) == 0x30 ? 1 : -1];
 void TObjEneMe1GiGue__sub_802CB03C(u8 *enemy) {
@@ -1185,7 +1186,7 @@ void update_rush_attack__15TObjEneMe1GiGueFPv(Obj_802CBCC0 *o) {
         }
         ((TObjCollidable *)o)->refresh_collision_body_centers();
         if (o->f3EC > 15.0f) {
-            ((TObjChara *)o)->turn_toward_direction(o->f350->f8 * 2, (Vec *)(&o->v308));
+            ((TObjEnemy *)o)->turn_toward_direction(o->f350->f8 * 2, (Vec *)&o->v308);
         }
         play_persistent_sound((s32)(TObjEneMe1GiGue::remap_sound_id(o, 0x3A819)), (s32)o, (u32)&o->pos, 0, 0);
         project_actor_to_ground(o, &o->pos, 0);

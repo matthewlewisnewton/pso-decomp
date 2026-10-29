@@ -210,7 +210,7 @@ void TTecRaBarta::vfunc_8(void *pos) {
     binding = &rabarta_band_emitter_table[self->band].emitters[i];
     if ((binding->flags & 0x40) && (self->emitters[i] != 0))
     {
-      ((TParticleCtrl *)(self->emitters[i]))->fn_800822D4(binding->scale, binding->scale);
+      ((TParticleCtrl *)(self->emitters[i]))->set_scale(binding->scale, binding->scale);
     }
     if (rabarta_band_emitter_table[self->band].emitters[i].flags & 0x20)
     {

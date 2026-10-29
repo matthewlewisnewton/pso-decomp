@@ -1,4 +1,5 @@
 #include "pso/unk/text_800D8830.h"
+#include "pso/player/PlayerAttackParams.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/TParticleCtrl.h"
 #include "types.h"
@@ -245,7 +246,6 @@ int spawn_landing_effect__16TObjEneBm5GibonUFPvPv(Ene_800CCC6C *arg0, void *arg1
 int is_active__16TObjEneBm5GibonUFPv(void* p);
 s32 TObjEneBm5GibonU__sub_800D1D70(void* p);
 s32 get_entity_id(int);
-s32 turn_toward_direction__9TObjCharaFlP3Vec(void *, s32, void *);
 void *find_entity_by_id(u16 id);
 void * __nw__7TObjectFUl(u32);
 void render__16TObjEneBm5GibonUFv(u8 *arg0);
@@ -1756,12 +1756,12 @@ int spawn_landing_effect__16TObjEneBm5GibonUFPvPv(Ene_800CCC6C *arg0, void *arg1
         if (p != NULL) {
             attach_particle_model((u8 *)p, (s32)(TParticleCtrl::get_particle_model(2)), (s32)(TParticleCtrl::get_instance()), 0, 1, (f32)TObjEneBm5GibonU__data_805DA168);
             if (arg0->f464 == 1) {
-                ((TParticleCtrl *)p)->fn_800822D4(TObjEneBm5GibonU__data_805DA16C, TObjEneBm5GibonU__data_805DA168);
+                ((TParticleCtrl *)p)->set_scale(TObjEneBm5GibonU__data_805DA16C, TObjEneBm5GibonU__data_805DA168);
             }
         }
         p = spawn_particle_effect(hit->obj + 0x38, 0xA4);
         if (p != NULL && arg0->f464 == 1) {
-            ((TParticleCtrl *)p)->fn_800822D4(TObjEneBm5GibonU__data_805DA16C, TObjEneBm5GibonU__data_805DA168);
+            ((TParticleCtrl *)p)->set_scale(TObjEneBm5GibonU__data_805DA16C, TObjEneBm5GibonU__data_805DA168);
         }
         return play_floor_area_sound_effect((Vec *)&arg0->pos);
     }
@@ -2054,7 +2054,7 @@ void TObjEneBm5GibonU::state_cast_technique(s32 arg1) {
                 } else {
                     VecCopy((Vec *)&v, (const Vec *)(arg0 + 0x394));
                     subtract_vector(&v, arg0 + 0x2FC);
-                    r = turn_toward_direction__9TObjCharaFlP3Vec(arg0, *(s32 *)(F(u8 *, 0x350) + 8), &v);
+                    r = ((TObjEnemy *)arg0)->turn_toward_direction(*(s32 *)(F(u8 *, 0x350) + 8), (Vec *)&v);
                 }
                 if (r < 0x100) {
                     F(s32, 0x518) = 1;
@@ -2080,14 +2080,14 @@ void TObjEneBm5GibonU::state_cast_technique(s32 arg1) {
                 if (F(u32, 0x390) != 0) {
                     VecCopy((Vec *)&v, (const Vec *)(arg0 + 0x394));
                     subtract_vector(&v, arg0 + 0x2FC);
-                    r = turn_toward_direction__9TObjCharaFlP3Vec(arg0, *(s32 *)(F(u8 *, 0x350) + 8), &v);
+                    r = ((TObjEnemy *)arg0)->turn_toward_direction(*(s32 *)(F(u8 *, 0x350) + 8), (Vec *)&v);
                 } else {
-                    r = ((TObjPlayer *)(F(s32, 0x318)))->get_field_0c();
+                    r = ((AttackParams *)(F(s32, 0x318)))->get_attack_angle();
                 }
                 if (game_difficulty_selection == 3) {
                     switch (F(s32, 0x468)) {
                     case 1:
-                        if (r < ((TObjPlayer *)(F(s32, 0x318)))->get_field_0c() / 2 && F(u32, 0x390) != 0) {
+                        if (r < ((AttackParams *)(F(s32, 0x318)))->get_attack_angle() / 2 && F(u32, 0x390) != 0) {
                             TTecMegid::create((s32)arg0, (s32)&p, (s32)(arg0 + 0x394), (s32)(CB24(arg0)));
                         } else {
                             TTecMegid::create_ex((s32)arg0, (s32)&p, (s32)(F(s32, 0x60)), (s32)(CB24(arg0)));
@@ -2095,7 +2095,7 @@ void TObjEneBm5GibonU::state_cast_technique(s32 arg1) {
                         play_sound_effect((void *)0x4002A60B, &p, 0, 0);
                         break;
                     default:
-                        if (r < ((TObjPlayer *)(F(s32, 0x318)))->get_field_0c() / 2 && F(u32, 0x390) != 0) {
+                        if (r < ((AttackParams *)(F(s32, 0x318)))->get_attack_angle() / 2 && F(u32, 0x390) != 0) {
                             fn_80044330(arg0 + 0x4B0);
                             F(s32, 0x4B0) = 1;
                             F(s16, 0x4B4) = get_entity_id(F(u32, 0x390));
@@ -2114,7 +2114,7 @@ void TObjEneBm5GibonU::state_cast_technique(s32 arg1) {
                             pop_matrix();
                             e = __nw__7TObjectFUl(0x260);
                             if (e != 0) {
-                                ((TTecZonde *)e)->construct_bolt_effect((u8 *)tl_07, (u8 *)&p, (u8 *)&v, 0x14000000, 20, (f32)(((TObjPlayer *)(F(s32, 0x318)))->get_pos_x()), (f32)lbl_805DA1A0);
+                                ((TTecZonde *)e)->construct_bolt_effect((u8 *)tl_07, (u8 *)&p, (u8 *)&v, 0x14000000, 20, (f32)(((AttackParams *)(F(s32, 0x318)))->get_attack_range()), (f32)lbl_805DA1A0);
                             }
                         }
                         play_sound_effect((void *)0x4002A408, &p, 0, 0);
@@ -2126,7 +2126,7 @@ void TObjEneBm5GibonU::state_cast_technique(s32 arg1) {
                         ((TTecGiBarta *)arg0)->create_ex(&p, (void *)(F(s32, 0x60)), (void *)(CB24(arg0)));
                         break;
                     default:
-                        if (r < ((TObjPlayer *)(F(s32, 0x318)))->get_field_0c() / 2 && F(u32, 0x390) != 0) {
+                        if (r < ((AttackParams *)(F(s32, 0x318)))->get_attack_angle() / 2 && F(u32, 0x390) != 0) {
                             TTecFoie::create_ex((void *)arg0, &p, (void *)(F(u8 *, 0x390) + 0x2FC), (void *)(CB24(arg0)));
                         } else {
                             TTecFoie::create((void *)arg0, &p, (void *)(F(s32, 0x60)), (void *)(CB24(arg0)));
@@ -4187,7 +4187,6 @@ void TObjEneBm5GibonU::sub_800D10A0() {
 #pragma push
 #define transition_enemy_state__9TObjEneDDFl ((int (*)(void*, void*))transition_enemy_state__9TObjEneDDFl)
 #define lbl_80493F04 ((u8 *)&lbl_80493F04)
-#define turn_toward_direction__9TObjCharaFlP3Vec ((void (*)(void *, s32, void *))turn_toward_direction__9TObjCharaFlP3Vec)
 #define update_collisions__14TObjCollidableFv ((void (*)(void *))update_collisions__14TObjCollidableFv)
 #define __nw__7TObjectFUl ((void * (*)(int))__nw__7TObjectFUl)
 #define update_shock_clock__9TObjCharaFv ((s32 (*)())update_shock_clock__9TObjCharaFv)
@@ -4802,7 +4801,6 @@ s32 TObjEneBm5GibonU::try_activate() {
 
 #undef transition_enemy_state__9TObjEneDDFl
 #undef lbl_80493F04
-#undef turn_toward_direction__9TObjCharaFlP3Vec
 #undef update_collisions__14TObjCollidableFv
 #undef __nw__7TObjectFUl
 #undef update_shock_clock__9TObjCharaFv

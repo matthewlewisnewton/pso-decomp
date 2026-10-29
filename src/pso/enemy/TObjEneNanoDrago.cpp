@@ -762,7 +762,7 @@ void TObjPlayer__sub_800DAB98(u8 *arg0) {
             ((TObjCollidable *)arg0)->refresh_collision_body_centers();
         }
         if (F(f32, 0x404) > 15.0f) {
-            ((TObjChara *)arg0)->turn_toward_direction(*(s32 *)(F(u8 *, 0x350) + 8) * 2, (Vec *)(arg0 + 0x308));
+            ((TObjEnemy *)arg0)->turn_toward_direction(*(s32 *)(F(u8 *, 0x350) + 8) * 2, (Vec *)((u8 *)arg0 + 0x308));
         }
         project_actor_to_ground(arg0, arg0 + 0x38, 0);
         break;

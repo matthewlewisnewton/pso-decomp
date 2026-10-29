@@ -14,6 +14,7 @@
 #include "pso/object/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
+#include "pso/unk/text_80086B64.h"
 
 struct Stack_800DDFDC
 {
@@ -112,7 +113,6 @@ void TObjEnePanarms__sub_800DD488(u8 *arg0);
 s32 TObjEnePanarms__sub_800DFB44(s32);
 void TObjEnePanarms__sub_800E1E14(u8 *arg0);
 void TObjEnePanarms__sub_800DD368(u8 *arg0);
-void *fn_80086B64(void *pos, void *dir, s32 id, s32 a, s32 b);
 extern const f32 TObjEnePanarms__data_805DA4A4;
 void TObjEnePanarms__sub_800DE430(s32 arg0, s32 arg1, s32 arg2);
 f32 vec3_add_to(void *, void *);
@@ -790,7 +790,7 @@ void TObjEnePanarms__sub_800DE430(s32 arg0, s32 arg1, s32 arg2) {
     Vec position;
     VecCopy((Vec *)(&position.x), (const Vec *)(arg0 + 0x2FC));
     position.y += TObjEnePanarms__data_805DA4A4;
-    fn_80086B64((&position.x), (void *)(arg0 + 0x5C), 0x106, (arg1), (arg2));
+    create_particle_controller_with_rotation(&position, (ParticleAngles *)(arg0 + 0x5C), 0x106, arg1, arg2);
 }
 
 #pragma push

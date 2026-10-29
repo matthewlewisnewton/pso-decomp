@@ -1,3 +1,4 @@
+#include "pso/player/PlayerAttackParams.h"
 #include "types.h"
 #include "pso/object/obj_band.h"
 #include "pso/system/vector.h"
@@ -403,7 +404,7 @@ void TUnk_80493450::update_turn_toward_target() {
                 arg0->mode = 3;
                 arg0->phase = 1;
                 arg0->m_b8 = 2;
-            } else if (ang <= ((TObjPlayer *)(arg0->m_318))->get_field_0c()) {
+            } else if (ang <= ((AttackParams *)(arg0->m_318))->get_attack_angle()) {
                 arg0->phase = 2;
                 arg0->m_b8 = 0;
             }
@@ -419,7 +420,7 @@ void TUnk_80493450::update_turn_toward_target() {
                 arg0->mode = 3;
                 arg0->phase = 1;
                 arg0->m_b8 = 2;
-            } else if (((TObjPlayer *)(arg0->m_318))->get_field_0c() < ang) {
+            } else if (((AttackParams *)(arg0->m_318))->get_attack_angle() < ang) {
                 arg0->phase = 1;
                 arg0->m_b8 = 2;
             }

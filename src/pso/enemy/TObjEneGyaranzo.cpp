@@ -164,9 +164,7 @@ extern Params_800D2900 lbl_8043C35C;
 extern u8 *gyaranzo_resource_ptrs[];
 extern u32 gyaranzo_bml_resource;
 extern u8 *tl_05;
-s32 turn_toward_direction__9TObjCharaFlP3Vec(void *, void *, void *);
 void update_collisions__14TObjCollidableFv(void *);
-#define turn_toward_direction__9TObjCharaFlP3Vec ((void (*)(void *, s32, void *))turn_toward_direction__9TObjCharaFlP3Vec)
 #define update_collisions__14TObjCollidableFv ((void (*)(void *))update_collisions__14TObjCollidableFv)
 void apply_actor_gravity(void *, int, f32);
 }
@@ -194,7 +192,7 @@ void update_walk_to_target__10TObjPlayerFPv(Ene_800D1E4C *arg0) {
         apply_actor_gravity(arg0, 0, lbl_805DA258);
         VecCopy((Vec *)&arg0->v290, (const Vec *)&arg0->v2FC);
         calc_velocity_toward_destination(arg0, arg0->v290, arg0->v29C, arg0->param->speed);
-        turn_toward_direction__9TObjCharaFlP3Vec(arg0, arg0->param->turn, arg0->v308);
+        ((TObjEnemy *)arg0)->turn_toward_direction(arg0->param->turn, (Vec *)arg0->v308);
         move_with_wall_slide((u8 *)arg0);
         update_collisions__14TObjCollidableFv(arg0);
         if (xz_distance_squared((Vec *)&arg0->pos, (Vec *)&arg0->target) <= lbl_805DA25C) {
@@ -204,7 +202,6 @@ void update_walk_to_target__10TObjPlayerFPv(Ene_800D1E4C *arg0) {
     }
 }
 }
-#undef turn_toward_direction__9TObjCharaFlP3Vec
 #undef update_collisions__14TObjCollidableFv
 #pragma push
 
@@ -1198,7 +1195,7 @@ void TObjPlayer::update_aim_and_fire() {
         if (temp_r6 != NULL) {
             Vec_800D2CE4 v = *(Vec_800D2CE4 *)(temp_r6 + 0x38);
             subtract_vector(&v, (void *) (((u8 *)this) + 0x38));
-            temp_r3 = turn_toward_direction__9TObjCharaFlP3Vec(this, (void *) (*(s32 *)((s8 *)(*(u8 **)((s8 *)((u8 *)this) + 0x350)) + 8)), &v);
+            temp_r3 = ((TObjEnemy *)this)->turn_toward_direction((*(s32 *)((s8 *)(*(u8 **)((s8 *)((u8 *)this) + 0x350)) + 8)), (Vec *)&v);
             temp_r4 = temp_r3 >> 0x1F;
             if ((s32) ((temp_r4 ^ temp_r3) - temp_r4) < 0xE38) {
                 var_r30 = 1;

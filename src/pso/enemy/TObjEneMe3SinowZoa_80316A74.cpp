@@ -178,7 +178,6 @@ void print_float_padded(s32 arg0, s32 prec, f32 val);
 void move_with_wall_slide(u8 *arg0);
 extern "C" {
 void subtract_vector(void *, void *);
-s32 turn_toward_direction__9TObjCharaFlP3Vec(void *, s32, void *);
 s32 push_matrix_from(void *);
 s32 matrix_mult_vec(int, Vec_80316C3C, void *);
 void create__11TTecRaBartaFPvPvPvPv(void *, void *, void *, s32);
@@ -216,7 +215,7 @@ inline s32 seek_80316C3C(Obj_80316C3C *arg0, Vec_80316C3C *diff) {
     } else {
         VecCopy((Vec *)diff, (const Vec *)&arg0->dest);
         subtract_vector(diff, &arg0->cur);
-        angle = turn_toward_direction__9TObjCharaFlP3Vec(arg0, arg0->move->turn, diff);
+        angle = ((TObjEnemy *)arg0)->turn_toward_direction(arg0->move->turn, (Vec *)diff);
     }
     return angle;
 }
@@ -338,7 +337,7 @@ void TObjEneMe3SinowZoa__sub_80316C3C(Obj_80316C3C *arg0, s32 arg1) {
                 if (arg0->hasDest != 0) {
                     VecCopy((Vec *)&diff, (const Vec *)&arg0->dest);
                     subtract_vector(&diff, &arg0->cur);
-                    angle = turn_toward_direction__9TObjCharaFlP3Vec(arg0, arg0->move->turn, &diff);
+                    angle = ((TObjEnemy *)arg0)->turn_toward_direction(arg0->move->turn, (Vec *)&diff);
                 } else {
                     angle = arg0->stat->range;
                 }

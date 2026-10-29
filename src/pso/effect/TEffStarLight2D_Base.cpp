@@ -68,8 +68,8 @@ TEffStarLight2D_Base::TEffStarLight2D_Base(TObject *parent, void *set_data) : TO
     light = new TEffStarLight2D(&position, &parameters, tl_particle);
 }
 
-void TEffStarLight2D::copy_position(void *source) {
-    VecCopy(&position, (const Vec *)source);
+void TEffStarLight2D::copy_position(const Vec *source) {
+    VecCopy(&position, source);
 }
 
 #pragma push

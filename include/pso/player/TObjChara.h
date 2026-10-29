@@ -21,8 +21,8 @@ public:
     void add_flags_2e4(u32);
     s16 get_stats_atp_max();
     s16 sub_800194C4();
-    f32 get_target_value();
-    s32 update_field_318();
+    f32 get_attack_range();
+    s32 get_attack_angle();
     s16 test_immunity_flags(s32);
     s16 get_actor_attack_params_atp_min();
     u8 obj_testFlag_2E4(u32);
@@ -267,7 +267,6 @@ public:
     // destination at 0x29C, the body centre other actors measure distance to
     // at 0x2FC, and the velocity at 0x308.
     Vec *destination() { return (Vec *)&m_29c; }
-    s32 turn_toward_direction(s32 turn_speed, Vec *direction);
     void refresh_center_from_body();
     Vec *body_center() { return (Vec *)&m_2fc; }
     Vec *velocity() { return (Vec *)unk_308; }

@@ -70,7 +70,7 @@ void TObjParticleLobby::run_task() {
             *(s32 *)&this->m_c8 = 3;
         }
         if (o->ctrl != NULL) {
-            ((TParticleCtrl *)(o->ctrl))->fn_800822D4(o->t, 1.0f);
+            ((TParticleCtrl *)(o->ctrl))->set_scale(o->t, 1.0f);
         }
         break;
     case 1:
@@ -81,7 +81,7 @@ void TObjParticleLobby::run_task() {
             break;
         }
         if (o->ctrl != NULL) {
-            ((TParticleCtrl *)(o->ctrl))->fn_800822D4(o->t, 1.0f);
+            ((TParticleCtrl *)(o->ctrl))->set_scale(o->t, 1.0f);
         }
         break;
     case 3:

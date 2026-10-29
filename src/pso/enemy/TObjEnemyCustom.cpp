@@ -1,3 +1,4 @@
+#include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEnemyCustom.h"
 #include "pso/map/CsnQuery.h"
 #include "pso/misc/TKeyBoardControl_8000F764.h"
@@ -172,7 +173,7 @@ void TObjEnemyCustom::update_wander_state() {
             if (params->max_distance < distance || distance < params->min_distance) {
                 target = NULL;
             }
-            ((TObjChara *)this)->turn_toward_direction(((EnemyMoveParams *)movementParameters)->turn_speed, (Vec *)(velocity()));
+            turn_toward_direction(((EnemyMoveParams *)movementParameters)->turn_speed, velocity());
         }
         apply_actor_gravity(this, NULL, 0.0f);
         ((TObjCollidable *)this)->update_collisions();
