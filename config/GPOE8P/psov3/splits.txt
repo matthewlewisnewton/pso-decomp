@@ -2046,7 +2046,7 @@ pso/player/TObjPlayer_800E80A4.cpp:
 pso/enemy/TObjEneSlimeTailAttack.cpp:
 	.text       start:0x800E80C0 end:0x800EB778
 	.rodata     start:0x8043D288 end:0x8043D298
-	.data       start:0x804962F8 end:0x80496868
+	.data       start:0x804962F8 end:0x80496B00
 	.sdata2     start:0x805DA678 end:0x805DA738
 
 pso/unk/text_800EB778.cpp:

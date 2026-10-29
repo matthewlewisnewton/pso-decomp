@@ -565,6 +565,7 @@ pso/enemy/TObjEneSaver.cpp
 pso/enemy/TObjEneShark.cpp
 pso/enemy/TObjEneSlime.cpp
 pso/enemy/TObjEneSlimeOne_800EC394.cpp
+pso/enemy/TObjEneSlimeTailAttack.cpp
 pso/enemy/TObjEneSlime_800EBBC8.cpp
 pso/enemy/TObjEneSlime_800EBD38.cpp
 pso/enemy/TObjEneSlime_802D7260.cpp

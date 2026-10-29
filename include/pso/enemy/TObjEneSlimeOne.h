@@ -6,7 +6,11 @@
 #include "pso/enemy/TObjEnemy.h"
 #include "dolphin/mtx.h"
 
+struct TObjEneSlime;
+
 struct TObjEneSlimeOne : public TObjEnemy {
+    TObjEneSlimeOne(TObject *parent, TObjEneSlime *owner, void *set_data, const Vec *velocity);
+    TObjEneSlimeOne(TObject *parent, TObjEneSlime *owner, void *set_data);
     virtual ~TObjEneSlimeOne();
     void initialize_slime_instance_state();
     void sub_800E9090();
@@ -20,7 +24,7 @@ struct TObjEneSlimeOne : public TObjEnemy {
     u8 * m_380;
     u32 m_384;
     SlimeAnimationState *animation;
-    u8 unk_38C[0x4];
+    CollisionBody *collision_body;
     s32 m_390;
     u8 unk_394[0x4];
     f32 m_398;
@@ -42,6 +46,7 @@ struct TObjEneSlimeOne : public TObjEnemy {
     void * m_3e8;
     u32 m_3ec;
     u32 m_3f0;
+    s32 variant;
     s32 get_attack_target();
     s32 is_in_water_bomb_states();
     static int get_instance();
@@ -58,5 +63,5 @@ struct TObjEneSlimeOne : public TObjEnemy {
     s32 try_spawn_child(void *arg1);
 };
 
-typedef char TObjEneSlimeOne_size[sizeof(TObjEneSlimeOne) == 0x3F4 ? 1 : -1];
+typedef char TObjEneSlimeOne_size[sizeof(TObjEneSlimeOne) == 0x3F8 ? 1 : -1];
 #endif

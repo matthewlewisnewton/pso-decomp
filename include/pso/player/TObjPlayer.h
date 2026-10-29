@@ -1301,7 +1301,6 @@ struct TObjPlayer : public TObjChara {
     void set_flag_20000();
     void spawn_directional_particle_at_slot(s32 i);
     static void update_particle_by_phase();
-    void draw_blob_shadows();
     void set_flag_8_if_check_passes();
     void fill_status_info(void *arg1);
     void launch_rare_weapon_special(void *origin, s32 enable, f32 scale);
