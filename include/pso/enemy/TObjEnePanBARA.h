@@ -17,7 +17,8 @@ public:
     virtual void vfunc_61();
     virtual void vfunc_62();
     virtual void vfunc_63();
-    void calc_part_position(u8 *, s32 *);
+    void calc_part_position(Vec *, s32 *);
+    s32 try_move_with_detour(Vec *);
 
     s32 fn_800DFB44();
     int get_state_flag();
@@ -55,9 +56,33 @@ public:
     void init_state();
     void update_linked_effect();
     void draw();
-    void draw_with_fade();
     void set_random_action_timer(int minimum, int range);
-    int find_nearest_enemy_with_flag_alt_target(s32 arg1, f32 farg0);
+    int find_nearest_enemy_with_flag_alt_target(Vec *direction, f32 radius);
+
+    void fn_800DFE08();
+    void fn_800E0048();
+    void fn_800E0214();
+    void fn_800E0344();
+    void fn_800E055C();
+    void fn_800E092C();
+    void fn_800E0930();
+    void fn_800E0950();
+    void fn_800E0A44();
+    void fn_800E0B9C();
+    void fn_800E0D1C();
+    void fn_800E10D0();
+    s32 fn_800E1774();
+    void set_state(s32 state);
+    s32 is_phase_12();
+    s32 check_can_attack();
+    s32 fn_800E2E54();
+    s32 fn_800E2E68();
+    s32 is_below_half_hp();
+    s32 fn_800E2FB4();
+    void calc_default_part_position();
+
+    typedef void (TObjEnePanBARA::*Action)();
+    struct ActionPair { Action enter; Action update; };
 
     s32 previous_state;
     s32 state;

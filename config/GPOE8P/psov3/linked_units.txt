@@ -503,6 +503,7 @@ pso/enemy/TObjEneMorfosArm.cpp
 pso/enemy/TObjEneMorfosArm_80335218.cpp
 pso/enemy/TObjEneMorfos_80337500.cpp
 pso/enemy/TObjEneNanoDrago.cpp
+pso/enemy/TObjEnePanarms.cpp
 pso/enemy/TObjEnePanarmsAtkColli.cpp
 pso/enemy/TObjEnePanarms_800DCEB8.cpp
 pso/enemy/TObjEnePanarms_800DFB00.cpp
