@@ -201,7 +201,7 @@ extern "C" {
 void TOTrapAncient02R__sub_80154D78(void);
 void TObjPlayer__sub_801542F4(s32 a);
 void reset_global_table(void);
-u8 test_elt_flag__13TUnk_80493450Fll(void *arg0, s32 arg1, s32 arg2);
+s32 test_elt_flag__13TUnk_80493450Fll(void *arg0, s32 arg1, s32 arg2);
 s32 obj_is_hit_receivable(void *);
 s32 obj_testFlags30__14TObjCollidableFUl(void *, u32);
 void *resolve_hittable_target(u16 actorId, s16 collider);
@@ -259,7 +259,7 @@ void TObjCollidable::set_indexed_flags(s32 index, s32 flags) {
     }
 }
 
-u8 TUnk_80493450::test_elt_flag(s32 arg1, s32 arg2) {
+s32 TUnk_80493450::test_elt_flag(s32 arg1, s32 arg2) {
     struct Elt_801542CC *temp_r3;
 
     temp_r3 = *(struct Elt_801542CC * *)&this->bodies;
