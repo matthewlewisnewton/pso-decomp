@@ -8198,6 +8198,8 @@ pso/misc/TWindowSubStatusDisp_80248ADC.cpp:
 
 pso/misc/TWindowCheckBox.cpp:
 	.text       start:0x80248B7C end:0x80248B8C
+	.rodata     start:0x8044EAD8 end:0x8044EAE8
+	.sdata      start:0x805D38B0 end:0x805D38B8
 
 pso/ui/TAdVIConfigGC_80248B8C.cpp:
 	.text       start:0x80248B8C end:0x80248BE8
