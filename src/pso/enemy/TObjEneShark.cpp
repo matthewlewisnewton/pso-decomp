@@ -1,3 +1,4 @@
+#define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/unk/TUnk_80494968.h"
 #include "pso/enemy/TUnk_80493450.h"
 #include "pso/player/TObjPlayer.h"
@@ -30,6 +31,9 @@
 #include <dolphin/mtx.h>
 #include "pso/system/SoundEffect.h"
 #include "pso/system/MatrixStack.h"
+#include "pso/system/MatrixOps.h"
+#include "pso/player/TObjPlayer_800D8FDC.h"
+#include "pso/boss/TBoss4Type3_800D9960.h"
 #include "pso/math/MatrixVector.h"
 #include "pso/math/MatrixTransforms.h"
 #include "pso/unk/text_803D8F74.h"
@@ -38,11 +42,8 @@ extern "C" {
 
 extern s32 model_render_flags;
 extern s32 shark_render_node_index;
-s32 vec3_add_to(void *, void *);
 
-void TObjPlayer__sub_800D92BC(s32 point, s32 delay);
 
-extern GC_Mtx identity_matrix;
 extern __declspec(section ".sdata2") const f32 shark_zero;
 extern __declspec(section ".sdata2") const f32 shark_ground_effect_y;
 extern __declspec(section ".sdata2") const f32 shark_ground_effect_height_factor;
@@ -347,7 +348,6 @@ extern s32 game_difficulty_selection;
 
 u8 *load_enemy_bml_resource_named(void *, void *);
 u8 *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
-void draw_trail_with_colors(u8 *boss4_type3, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 void *init_trail_buffer__11TBoss4Type3FPvifff(void *, s32, f32, f32, f32);
 void *mem_alloc(u32 size);
 void spawn_npc_enemy__6TLobbyFslllff(int, int, int, void *, f32, f32);
@@ -360,7 +360,6 @@ extern __declspec(section ".sdata2") const f32 shark_attack_trail_start_frame;
 extern __declspec(section ".sdata2") const f32 shark_npc_collision_radius;
 void TLobby__sub_8001FE7C(void*, int);
 
-s32 *__dt__11TBoss4Type3FPvs(s32 *arg0, s16 arg1);
 void mem_free(void*);
 
 extern void *tl_04;
@@ -532,6 +531,36 @@ extern __declspec(section ".sdata2") const f32 shark_full_circle_degrees;
 }
 
 #pragma defer_codegen on
+s32 TObjEneMoja::calc_technique_level() {
+    MojaBattleStat *p = (MojaBattleStat *)m_2b0;
+    s32 v = 0;
+    if (p != 0) {
+        v = p->techniqueLevel;
+        if (v < 0) {
+            return 0;
+        }
+        if (game_difficulty_selection == 3) {
+            if (v > 0x1D) {
+                v = 0x1D;
+            }
+            return v;
+        }
+        if (v > 0xE) {
+            v = 0xE;
+        }
+    }
+    return v;
+}
+
+extern "C" void TObjPlayer__sub_800ACA0C(void) {  }
+
+void TObjEneShark::bind_variant_model(s32 i) {
+    model = (void *)shark_bml_resource->models[i].model;
+    texlist = shark_bml_resource->models[i].m_c;
+}
+
+void TUnk_80493450::vfunc_99() {  }
+
 TObjEneShark::TObjEneShark(TObject *parent, void *setData)
     : TUnk_80493450(parent) {
     s32 color;
@@ -603,35 +632,6 @@ TObjEneShark::TObjEneShark(TObject *parent, void *setData)
         camera_fades[i].activate_and_dispatch();
     }
     clear_lobby_object_state();
-}
-
-void TUnk_80493450::vfunc_99() {  }
-
-void TObjEneShark::bind_variant_model(s32 i) {
-    model = (void *)shark_bml_resource->models[i].model;
-    texlist = shark_bml_resource->models[i].m_c;
-}
-
-extern "C" void TObjPlayer__sub_800ACA0C(void) {  }
-s32 TObjEneMoja::calc_technique_level() {
-    MojaBattleStat *p = (MojaBattleStat *)m_2b0;
-    s32 v = 0;
-    if (p != 0) {
-        v = p->techniqueLevel;
-        if (v < 0) {
-            return 0;
-        }
-        if (game_difficulty_selection == 3) {
-            if (v > 0x1D) {
-                v = 0x1D;
-            }
-            return v;
-        }
-        if (v > 0xE) {
-            v = 0xE;
-        }
-    }
-    return v;
 }
 
 extern "C" {
