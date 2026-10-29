@@ -10546,7 +10546,10 @@ pso/npc/TObjNpcKenkyu2.cpp:
 
 pso/npc/TObjNpcHosa2.cpp:
 	.text       start:0x802FEC78 end:0x802FEDE8
+	.rodata     start:0x80474CB8 end:0x80474CF0
 	.data       start:0x804E63D0 end:0x804E63E8
+	.sdata      start:0x805D4038 end:0x805D4040
+	.sbss       start:0x805D69D8 end:0x805D69E0
 
 pso/misc/TOJungleDesign_802FEDE8.cpp:
 	.text       start:0x802FEDE8 end:0x802FEE68
