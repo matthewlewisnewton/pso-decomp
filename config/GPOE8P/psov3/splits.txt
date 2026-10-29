@@ -2604,6 +2604,7 @@ pso/item/TItemLoad_8010F484.cpp:
 
 pso/item/TItemLoad_8010F52C.cpp:
 	.text       start:0x8010F52C end:0x8010F9EC
+	.bss        start:0x80506208 end:0x80506228
 
 pso/item/TItemLoad_8010F9EC.cpp:
 	.text       start:0x8010F9EC end:0x8010FAB4
