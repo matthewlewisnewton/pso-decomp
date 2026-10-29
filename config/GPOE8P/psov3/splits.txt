@@ -8731,7 +8731,9 @@ pso/misc/TWindowCtrl_8026AD44.cpp:
 
 pso/misc/TWindowMessagePage.cpp:
 	.text       start:0x8026AD8C end:0x8026B06C
+	.rodata     start:0x8044F438 end:0x8044F450
 	.data       start:0x804D0778 end:0x804D0790
+	.sdata      start:0x805D3998 end:0x805D39A0
 
 pso/misc/TLobby_8026B06C.cpp:
 	.text       start:0x8026B06C end:0x8026B118
