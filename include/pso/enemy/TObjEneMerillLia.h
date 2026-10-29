@@ -49,9 +49,9 @@ struct TObjEneMerillLia : public TUnk_80493450 {
     virtual void vfunc_98();
     virtual void vfunc_99();
     virtual void vfunc_101();
-    void sub_800D5570();
+    void update_fade_transition();
     void spawn_ground_effect();
-    void fn_800D4EC8();
+    void play_kafun_attack_sound();
     void fn_800D501C();
     virtual void vfunc_83();
     virtual void vfunc_60();

@@ -117,31 +117,31 @@ extern "C" u8 lbl_8043C634[];
 extern "C" u8 lbl_8043C650[];
 extern "C" u8 lbl_8043C66C[];
 extern "C" u8 lbl_8043C68C[];
-const char *lbl_804944D0[3] = {
+const char *merill_lia_model_names[3] = {
     (const char *)lbl_8043C478, (const char *)lbl_8043C494, NULL,
 };
-const char *lbl_804944DC[13] = {
+const char *merill_lia_motion_names[13] = {
     (const char *)lbl_8043C4B0, (const char *)lbl_8043C4D4, (const char *)lbl_8043C4F4, (const char *)lbl_8043C514,
     (const char *)lbl_8043C538, (const char *)lbl_8043C558, (const char *)lbl_8043C578, (const char *)lbl_8043C598,
     (const char *)lbl_8043C5BC, (const char *)lbl_8043C5DC, (const char *)lbl_8043C5F4, (const char *)lbl_8043C614,
     NULL,
 };
 BmlResourceDescriptor bm_ene_re8_merill_lia_resource_descriptor = {
-    (const char *)lbl_8043C634, (const char *const *)lbl_804944D0, (const char *const *)lbl_804944DC, 2, 12,
+    (const char *)lbl_8043C634, (const char *const *)merill_lia_model_names, (const char *const *)merill_lia_motion_names, 2, 12,
 };
-const char *lbl_80494520[3] = {
+const char *merill_lia_low_model_names[3] = {
     (const char *)lbl_8043C650, (const char *)lbl_8043C66C, NULL,
 };
-const char *lbl_8049452C[13] = {
+const char *merill_lia_low_motion_names[13] = {
     (const char *)lbl_8043C4B0, (const char *)lbl_8043C4D4, (const char *)lbl_8043C4F4, (const char *)lbl_8043C514,
     (const char *)lbl_8043C538, (const char *)lbl_8043C558, (const char *)lbl_8043C578, (const char *)lbl_8043C598,
     (const char *)lbl_8043C5BC, (const char *)lbl_8043C5DC, (const char *)lbl_8043C5F4, (const char *)lbl_8043C614,
     NULL,
 };
 BmlResourceDescriptor bm_ene_re8_merill_lia_low_resource_descriptor = {
-    (const char *)lbl_8043C68C, (const char *const *)lbl_80494520, (const char *const *)lbl_8049452C, 2, 12,
+    (const char *)lbl_8043C68C, (const char *const *)merill_lia_low_model_names, (const char *const *)merill_lia_low_motion_names, 2, 12,
 };
-TObjMotionAction lbl_80494570[14] = {
+TObjMotionAction merill_lia_motion_actions[14] = {
     {1, 0, 5, 0.6f, 1}, {1, 1, 6, 0.8f, 1}, {1, 2, 8, 0.6f, 1},
     {2, 0, 1, 0.8f, 4}, {2, 0, 2, 1.0f, 4}, {1, 0, 9, 1.0f, 1},
     {2, 0, 3, 0.8f, 8}, {2, 0, 7, 0.8f, 0x20},
@@ -160,9 +160,9 @@ CollisionBody lbl_804946A4[3] = {
     {{0.0f, 10.0f, 0.0f}, 8.0f, 0.0f, 0, 0x8003, {0.0f, 0.0f, 0.0f}, 0.0f},
 };
 // The motion set TLobby::spawn_npc_enemy copies for each spawned part.
-struct NpcSpawnMotions { void *motions; void *actions; s32 initial_action; s32 counts; };
+struct NpcSpawnMotions { void *motions; TObjMotionAction *actions; s32 initial_action; s32 counts; };
 
-__declspec(section ".rodata") static NpcSpawnMotions merill_lia_spawn_motions = {0, lbl_80494570, 2, 0xC0000};
+__declspec(section ".rodata") static NpcSpawnMotions merill_lia_spawn_motions = {0, merill_lia_motion_actions, 2, 0xC0000};
 static const Vec zero_offset = {0, 0, 0};
 
 void TObjEneMerillLia::vfunc_101() {}
@@ -188,7 +188,7 @@ void TObjEneMerillLia::spawn_ground_effect() {
     }
 }
 
-void TObjEneMerillLia::fn_800D4EC8() {
+void TObjEneMerillLia::play_kafun_attack_sound() {
     play_sound_effect((void *) (copy_target_state__14TObjEnePanarmsFPv(this, 0x3AD04)), &position, 0, 0);
 }
 
@@ -331,7 +331,7 @@ TObjEneMerillLia::TObjEneMerillLia(TObject *parent, void *arg2) : TUnk_80493450(
     this->subtype = this->variant;
     this->clamp_and_apply_mode_param();
     this->load_entry_params(this->variant);
-    action_table = lbl_80494570;
+    action_table = merill_lia_motion_actions;
     this->set_field_d8((s32)(action_table));
     motion_list = TObjEneMerillLia__entry_params_resource->motions;
     this->m_b8 = 0;
@@ -495,7 +495,7 @@ void TObjEneMerillLia::run_task() {
         search_target();
         break;
     case 13:
-        this->sub_800D5570();
+        this->update_fade_transition();
         break;
     }
     this->update_prev_position();
@@ -556,10 +556,10 @@ void TObjEneMerillLia::render() {
             fade_active = 0;
             if (((s16) mode) == 0xD) {
                 fade_active = 1;
-                draw_model = ((MaterialColorFade *)&fade)->has_visible_opacity();
+                draw_model = fade.has_visible_opacity();
             }
             if (fade_active != 0) {
-                ((MaterialColorFade *)&fade)->set_flags_and_apply_damage_color();
+                fade.set_flags_and_apply_damage_color();
                 if (defer_render() != 0) {
                     draw_model = 0;
                 }
@@ -577,7 +577,7 @@ void TObjEneMerillLia::render() {
             }
             TParticleCtrl::end_effect_render();
             if (fade_active != 0) {
-                ((MaterialColorFade *)&fade)->clear_flag_and_notify();
+                fade.clear_flag_and_notify();
             }
         }
         pop_matrix();
@@ -960,7 +960,7 @@ void TObjEneMerillLia::update_kafun_attack() {
             pop_matrix();
             TTecKafun::create((s32)this, (s32)&sp14, 0xF, 0xD3, this->get_clamped_level(), TObjEneMerillLia__rock_param_table[subtype]->kafun_power, lbl_805DA310);
 
-            fn_800D4EC8();
+            play_kafun_attack_sound();
         }
         if ((u32) this->m_b4 != 4U) {
             this->phase = 2;
@@ -1048,7 +1048,7 @@ void TObjEneMerillLia::search_target() {
     advance_animation_playback(this);
 }
 
-void TObjEneMerillLia::sub_800D5570() {
+void TObjEneMerillLia::update_fade_transition() {
     switch (this->phase) {
     case 0:
     default:
@@ -1060,7 +1060,7 @@ void TObjEneMerillLia::sub_800D5570() {
     case 1:
 
         spawn_ground_effect();
-        if (((MaterialColorFade *)&fade)->advance_toward_max() != 0) {
+        if (fade.advance_toward_max() != 0) {
             this->phase = 2;
         }
         break;

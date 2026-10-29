@@ -4537,7 +4537,7 @@ force_active:
   - fn_8007F560
   - fn_8007FE78
   - fn_800BC758
-  - fn_800D4EC8__16TObjEneMerillLiaFv
+  - play_kafun_attack_sound__16TObjEneMerillLiaFv
   - fn_800D501C__16TObjEneMerillLiaFv
   - fn_800E322C
   - fn_800E3374
@@ -5660,11 +5660,11 @@ force_active:
   - lbl_80493DB0
   - lbl_80493DE4
   - lbl_80493F04
-  - lbl_804944D0
-  - lbl_804944DC
-  - lbl_80494520
-  - lbl_8049452C
-  - lbl_80494570
+  - merill_lia_model_names
+  - merill_lia_motion_names
+  - merill_lia_low_model_names
+  - merill_lia_low_motion_names
+  - merill_lia_motion_actions
   - lbl_80494C90
   - lbl_80496C68
   - lbl_80496C90
@@ -13068,7 +13068,7 @@ force_active:
   - sub_800D10A0__16TObjEneBm5GibonUFv
   - sub_800D4200__13TUnk_8049442CFv
   - sub_800D47B4__19TObjGyaranzoMissileFv
-  - sub_800D5570__16TObjEneMerillLiaFv
+  - update_fade_transition__16TObjEneMerillLiaFv
   - sub_800D741C__13TUnk_80494938Fv
   - sub_800DA1F4__16TObjEneNanoDragoFv
   - sub_800DA2A0__16TObjEneNanoDragoFv
