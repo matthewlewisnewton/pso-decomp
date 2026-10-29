@@ -707,7 +707,6 @@ u8 *get_enemy_entity(u16);
 #define mult_vec_array__10TObjPlayerFUll ((s32 (*)(int, s32, void*, int))(mult_vec_array__10TObjPlayerFUll))
 void TObjPlayer__sub_800A54B4(u8 *arg0);
 #define apply_lookup_entry_effect__12TObjEneSaverFv ((s32 (*)(void*))(apply_lookup_entry_effect__12TObjEneSaverFv))
-s32 update_angle__10TObjPlayerFlPv(void *, s32, void *);
 s32 check_path_obstructed(void *, void *);
 s32 obj_testFlags30__14TObjCollidableFUl(void *, s32);
 u16 get_entity_id(void *);
@@ -1091,7 +1090,7 @@ void TObjPlayer__sub_800A54B4(u8 *arg0) {
             s32 a;
             VecCopy((Vec *)&d, (const Vec *)(F(u8 *, 0x2A8) + 0x2FC));
             subtract_vector(&d, arg0 + 0x2FC);
-            a = update_angle__10TObjPlayerFlPv(arg0, *(s32 *)((s8 *)(F(u8 *, 0x350)) + 8), &d);
+            a = ((TObjEnemy *)arg0)->turn_toward_direction(*(s32 *)((s8 *)(F(u8 *, 0x350)) + 8), (Vec *)&d);
             if (!(F(s32, 0x30) & 0x800000)) {
                 apply_actor_gravity((TObjEnemy *)arg0, (s32 *)(0), 0.0f);
             }

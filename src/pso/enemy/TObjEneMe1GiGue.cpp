@@ -1188,7 +1188,7 @@ void update_rush_attack__15TObjEneMe1GiGueFPv(Obj_802CBCC0 *o) {
         }
         ((TObjCollidable *)o)->refresh_collision_body_centers();
         if (o->f3EC > 15.0f) {
-            ((TObjPlayer *)o)->update_angle(o->f350->f8 * 2, &o->v308);
+            ((TObjEnemy *)o)->turn_toward_direction(o->f350->f8 * 2, (Vec *)&o->v308);
         }
         play_persistent_sound((s32)(TObjEneMe1GiGue::remap_sound_id(o, 0x3A819)), (s32)o, (u32)&o->pos, 0, 0);
         project_actor_to_ground(o, &o->pos, 0);

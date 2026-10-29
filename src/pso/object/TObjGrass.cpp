@@ -323,7 +323,6 @@ extern u32 lbl_805D515C;
 void TObjGrass__sub_800BCA2C(void *);
 s32 submit_cursor_candidate(void *, int);
 f32 random_ratio__9TObjCharaFv(s32 arg0);
-s32 update_angle__10TObjPlayerFlPv(void *, void *, void *);
 u32 lookup_entry_by_value__10TObjPlayerFPvf(void *);
 s32 mult_vec_array__10TObjPlayerFUll(int, int, void *, int);
 s32 scale_matrix(int, f32, f32, f32);
@@ -735,7 +734,7 @@ s32 TObjGrass::update_web_attack() {
             s32 d;
             VecCopy((Vec *)&v, (const Vec *)&arg0->target->p2fc);
             subtract_vector(&v, &arg0->p2fc);
-            d = update_angle__10TObjPlayerFlPv(arg0, (void *)arg0->f350[2], &v);
+            d = ((TObjEnemy *)arg0)->turn_toward_direction(arg0->f350[2], (Vec *)&v);
             apply_actor_gravity(arg0, 0, (0.0f));
             if (d < ((AttackParams *)(((u32 *)TObjGrass__bml_resource)[1]))->get_attack_angle()) {
                 arg0->state = 1;
@@ -834,7 +833,7 @@ void TObjGrass::sub_800BD4D8() {
             s32 d;
             VecCopy((Vec *)&v, (const Vec *)&o->target->p2fc);
             subtract_vector(&v, &o->p2fc);
-            d = update_angle__10TObjPlayerFlPv(o, (void *)(s32)((2.0f) * (f32)o->param->turn), &v);
+            d = ((TObjEnemy *)o)->turn_toward_direction((s32)((2.0f) * (f32)o->param->turn), (Vec *)&v);
             if (d < ((AttackParams *)(o->f318))->get_attack_angle()) {
                 s32 ang = (s32)((10430.38043493439) * atan2_float(v.x, v.z));
                 o->f398 = (3e+01f) + (newton_sqrtf(TObjPlayer::calc_distance_to_client((s32)o, o->f338, (u32)0)) + get_collision_body_radius(o, 0));
@@ -998,7 +997,7 @@ void TObjGrass::sub_800BDD70() {
         } else {
             VecCopy((Vec *)&sp8, (const Vec *)(this->target + 0x2FC));
             subtract_vector(&sp8, (u8 *)&this->m_2fc);
-            ang = update_angle__10TObjPlayerFlPv(arg0, (void *)*(s32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 8), &sp8);
+            ang = ((TObjEnemy *)arg0)->turn_toward_direction(*(s32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 8), (Vec *)&sp8);
             apply_actor_gravity(arg0, 0, (0.0f));
             if (ang < ((AttackParams *)(*(s32 *)&this->m_318))->get_attack_angle()) {
                 this->phase = 1;

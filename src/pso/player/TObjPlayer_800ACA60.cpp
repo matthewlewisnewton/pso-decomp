@@ -581,7 +581,6 @@ void update_appearance_drop__11TObjEneMojaFv(Moja_800AE450 *self);
 
 s32 enemy_turn_toward_dest(void *, s32);
 void enemy_set_heading_velocity(TObjEnemy *arg0, s32 arg1, f32 farg0);
-s32 update_angle__10TObjPlayerFlPv(void *, s32, void *);
 
 void *__nw__7TObjectFUl(u32);
 void *spawn_directional_particle(void *pos, void *dir, s32 id);
@@ -785,7 +784,7 @@ s32 TObjEneMoja::update_technique_state(void *self_800AD3D8) {
             } else {
                 VecCopy((Vec *)&dir, (const Vec *)&self->target->pos);
                 subtract_vector(&dir, &self->pos);
-                a = update_angle__10TObjPlayerFlPv(self, self->info->turn, &dir);
+                a = ((TObjEnemy *)self)->turn_toward_direction(self->info->turn, (Vec *)&dir);
             }
             if (a < 0x100) {
                 self->phase = 1;
@@ -808,7 +807,7 @@ s32 TObjEneMoja::update_technique_state(void *self_800AD3D8) {
             if (self->target != NULL) {
                 VecCopy((Vec *)&dir, (const Vec *)&self->target->pos);
                 subtract_vector(&dir, &self->pos);
-                ang2 = update_angle__10TObjPlayerFlPv(self, self->info->turn, &dir);
+                ang2 = ((TObjEnemy *)self)->turn_toward_direction(self->info->turn, (Vec *)&dir);
             } else {
                 ang2 = ((AttackParams *)(self->f318))->get_attack_angle();
             }

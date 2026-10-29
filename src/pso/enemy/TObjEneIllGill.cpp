@@ -144,7 +144,6 @@ f32 calc_xz_distance_sq(void *, void *, Vec_80367270 *);
 extern const f64 lbl_8047A358[];
 extern int enable_v2_features;
 s32 apply_actor_gravity(void *, int, f32);
-s32 update_angle__10TObjPlayerFlPv(void *, void *, void *);
 s32 obj_testFlags30__14TObjCollidableFUl(void *, int);
 s32 get_current_floor(void);
 f64 atan2_float(f32, f32);
@@ -539,7 +538,7 @@ void TObjEneIllGill::update_ai() {
             Vec_80365688 v = o->target->p2fc;
             s32 d;
             subtract_vector(&v, &o->p2fc);
-            d = update_angle__10TObjPlayerFlPv(o, (void *)(s32)(lbl_805E02B8 * (f32)o->param->turn), &v);
+            d = ((TObjEnemy *)o)->turn_toward_direction((s32)(lbl_805E02B8 * (f32)o->param->turn), (Vec *)&v);
             if (d < ((AttackParams *)(o->f318))->get_attack_angle()) {
                 s32 ang = (s32)(TObjEneIllGill__data_8047A348 * atan2_float(v.x, v.z));
                 o->f3ac = TObjEneIllGill__data_805E02C0 + (newton_sqrtf(TObjPlayer::calc_distance_to_client((s32)o, o->f338, (u32)0)) + get_collision_body_radius(o, 0));
@@ -582,7 +581,7 @@ void TObjEneIllGill::update_ai() {
             Vec_80365688 v = o->target->p2fc;
             s32 d;
             subtract_vector(&v, &o->p2fc);
-            d = update_angle__10TObjPlayerFlPv(o, (void *)(s32)(lbl_805E02B8 * (f32)o->param->turn), &v);
+            d = ((TObjEnemy *)o)->turn_toward_direction((s32)(lbl_805E02B8 * (f32)o->param->turn), (Vec *)&v);
             if (d < ((AttackParams *)(o->f318))->get_attack_angle()) {
                 s32 ang = (s32)(TObjEneIllGill__data_8047A348 * atan2_float(v.x, v.z));
                 o->f3ac = TObjEneIllGill__data_805E02C0 + (newton_sqrtf(TObjPlayer::calc_distance_to_client((s32)o, o->f338, (u32)0)) + get_collision_body_radius(o, 0));
@@ -740,7 +739,7 @@ void TObjEneIllGill__sub_803660A4(void *arg0_) {
             Vec_803660A4 v;
             VecCopy((Vec *)&v, (const Vec *)(*(u8 **)((s8 *)enemy + 0x2A8) + 0x2FC));
             subtract_vector(&v, enemy + 0x2FC);
-            a = update_angle__10TObjPlayerFlPv(enemy, (void *)*(s32 *)((s8 *)(*(u8 **)((s8 *)enemy + 0x350)) + 8), &v);
+            a = ((TObjEnemy *)enemy)->turn_toward_direction(*(s32 *)((s8 *)(*(u8 **)((s8 *)enemy + 0x350)) + 8), (Vec *)&v);
             apply_actor_gravity(enemy, 0, TObjEneIllGill__data_805E02BC);
             if (a < ((AttackParams *)(ill_gill_combat_parameter_variants[2]))->get_attack_angle()) {
                 *(s16 *)((s8 *)enemy + 0x328) = 1;
@@ -1046,7 +1045,7 @@ void TObjEneIllGill__sub_80366AE4(u8 *actor) {
         } else {
             Vec3_80366AE4 v = *(Vec3_80366AE4 *)((s8 *)temp_r6 + 0x2FC);
             subtract_vector(&v, actor + 0x2FC);
-            temp_r30_2 = update_angle__10TObjPlayerFlPv(actor, (void *) (*(s32 *)((s8 *)(*(u8 **)((s8 *)actor + 0x350)) + 8)), &v);
+            temp_r30_2 = ((TObjEnemy *)actor)->turn_toward_direction((*(s32 *)((s8 *)(*(u8 **)((s8 *)actor + 0x350)) + 8)), (Vec *)&v);
             apply_actor_gravity(actor, 0, TObjEneIllGill__data_805E02BC);
             if (temp_r30_2 < ((AttackParams *)(*(s32 *)((s8 *)actor + 0x318)))->get_attack_angle()) {
                 *(s16 *)((s8 *)actor + 0x328) = 2;

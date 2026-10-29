@@ -1478,7 +1478,6 @@ struct Gib_802D9110 {
     u32 flags374;
 };
 
-s32 update_angle__10TObjPlayerFlPv(void *, s32, void *);
 void TObjEneGibbles__sub_802D9824(void *, int, f32);
 extern const f32 lbl_805DE83C;
 extern const f32 lbl_805DE840;
@@ -1518,7 +1517,7 @@ void TObjEneGibbles__sub_802D9110(Gib_802D9110 *self) {
             s32 diff;
             VecCopy((Vec *)((Vec_800A6B14 *)&d), (const Vec *)((const Vec_800A6B14 *)&self->target->pos));
             subtract_vector(&d, &self->pos);
-            diff = update_angle__10TObjPlayerFlPv(self, self->param->turn, &d);
+            diff = ((TObjEnemy *)self)->turn_toward_direction(self->param->turn, (Vec *)&d);
             if (!(self->flags30 & 0x800000)) {
                 apply_actor_gravity((TObjEnemy *)((u8 *)self), (s32 *)(0), TObjEneGibbles__data_805DE7E4);
             }
