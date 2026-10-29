@@ -344,7 +344,7 @@ void render__12TObjEneBeastFPv(Obj_8009211C *o) {
 #undef translate_matrix
 #undef set_global_param__8TObjFishFl
 #undef draw_chunk_object
-#undef update_if_active__15TObjEneMe1GiGueFl
+#undef update_if_active__15TObjEnemyCustomFl
 #undef TObjEneBalClawClaw__sub_800914A4
 #undef find_active_entity_by_id
 #undef reset_active_state__18TObjEneBalClawClawFPv
@@ -790,7 +790,7 @@ void *TObjEneBeast__ct(void *arg0v, void *arg1, void *arg2) {
     F(arg0, void *, 0x350) = &((Rec1C_800927DC *)beast_movement_params)[F(arg0, s32, 0x334)];
     F(arg0, s16, 0x33E) = F(arg0, s16, 0x32C);
     ((TObjEnemy *)arg0)->update_prev_position();
-    ((TBoss3VoloptHiraisin *)arg0)->copy_position();
+    ((TObjChara *)arg0)->refresh_center_from_body();
     ((TObjPlayer *)arg0)->register_object_by_id();
     F(arg0, s32, 0x2AC) = (s32)(182.04445f * (3.6e+02f * random_ratio__9TObjCharaFv((s32)arg0)));
     F(arg0, s16, 0x33A) = 0xF;

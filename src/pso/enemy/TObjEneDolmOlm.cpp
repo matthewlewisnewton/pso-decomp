@@ -400,7 +400,7 @@ s32 check_path_obstructed(void *, void *);
 s32 pop_matrices(int);
 extern const f32 TObjEneDolmOlm__data_805DEF68;
 void check_path_ahead__14TObjEneDolmOlmFlf(u8 *arg0, s32 arg1, f32 farg0);
-s32 copy_position__20TBoss3VoloptHiraisinFv(void *);
+s32 refresh_center_from_body__9TObjCharaFv(void *);
 s32 submit_cursor_candidate(void *, int);
 s32 TObjEneDolmOlm__sub_80301C3C(void *);
 extern const f32 TObjEneDolmOlm__data_805DEF50;
@@ -462,7 +462,7 @@ extern const f32 lbl_805DEF88;
 extern const f32 lbl_805DEF8C;
 void render__14TObjEneDolmOlmFv(Ene_803021AC *arg0);
 s32 apply_actor_gravity(void *, int, f32);
-s32 update_angle__10TObjPlayerFlPv(void *, s32, void *);
+s32 turn_toward_direction__9TObjCharaFlP3Vec(void *, s32, void *);
 s32 is_locally_controlled__10TObjPlayerFPv(void *);
 s32 get_entity_id(void *);
 f64 atan2_float(f32, f32);
@@ -960,7 +960,7 @@ u8 *TObjEneDolmOlm__ct(u8 *arg0, s32 arg1, s32 arg2) {
     *(u8 * *)&((TObjEneDolmOlm *)arg0)->movementParameters = (u8 *) lbl_804E6898 + *(s32 *)&((TObjEneDolmOlm *)arg0)->variant * 0x1C;
     ((TObjEneDolmOlm *)arg0)->referenceHp = ((TObjEneDolmOlm *)arg0)->hp;
     ((TObjEneDolmOlm *)arg0)->advance_position();
-    copy_position__20TBoss3VoloptHiraisinFv(arg0);
+    refresh_center_from_body__9TObjCharaFv(arg0);
     initialize_enemy_photon_effect(arg0);
     *(s32 *)&((TObjEneDolmOlm *)arg0)->m_2ac = lbl_805DEF94 * (lbl_805DEF98 * ((f32 (*)(void *)) random_ratio__9TObjCharaFv)(arg0));
     *(s16 *)&((TObjEneDolmOlm *)arg0)->resetTimer = 0xF;
@@ -1167,7 +1167,7 @@ void TObjEneDolmOlm::run_task() {
     }
   }
   this->advance_position();
-  copy_position__20TBoss3VoloptHiraisinFv((void *) ((u8 *)this));
+  refresh_center_from_body__9TObjCharaFv((void *) ((u8 *)this));
   submit_cursor_candidate((void *) this, -1);
   if (((RecoveredFields_8030247C_arg0 *) ((u8 *)this))->field_3E4 & 0x4000)
   {
@@ -1397,7 +1397,7 @@ s32 TObjEneDolmOlm__sub_80301C3C(void *arg0_) {
         ((TUnk_80493450 *)arg0)->sub_800C4E08();
         break;
     }
-    ((TObjPlayer *)arg0)->update_collisions();
+    ((TObjCollidable *)arg0)->update_collisions();
     minimap_render_dot(arg0 + 0x38, -0x5DB4, 1, 0);
     ((TObjBase *)arg0)->obj_clearFlags30(0x200000);
 }
@@ -1459,7 +1459,7 @@ s32 TObjEneDolmOlm__sub_8030177C(void *arg0_) {
             Vec_8030177C v;
             VecCopy((Vec *)&v, (const Vec *)&arg0->target->f2fc);
             subtract_vector(&v, &arg0->f2fc);
-            if (update_angle__10TObjPlayerFlPv(arg0, arg0->move->turn, &v) < (*(Param_8030177C ** *)&TObjEneDolmOlm__behavior_params_by_variant)[arg0->kind]->angle) {
+            if (turn_toward_direction__9TObjCharaFlP3Vec(arg0, arg0->move->turn, &v) < (*(Param_8030177C ** *)&TObjEneDolmOlm__behavior_params_by_variant)[arg0->kind]->angle) {
                 arg0->f328 = 3;
                 arg0->fb8 = 0xC;
                 play_sound_effect((void *)copy_target_state__14TObjEnePanarmsFPv(arg0, 0x4003A804), &arg0->pos, 0, 0);
@@ -1508,7 +1508,7 @@ s32 TObjEneDolmOlm__sub_8030177C(void *arg0_) {
         ((TObjCollidable *)arg0)->clear_player_status_flag(0, 0xA000000);
         break;
     }
-    ((TObjPlayer *)arg0)->update_collisions();
+    ((TObjCollidable *)arg0)->update_collisions();
     minimap_render_dot(&arg0->pos, -0x5DB4, 1, 0);
 }
 #undef arg0

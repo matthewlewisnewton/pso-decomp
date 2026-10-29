@@ -100,7 +100,7 @@ struct SinowZoaRealVTableStorage {
 };
 
 extern "C" {
-s32 invoke_initialization_hook__9TObjEneDDFv(void *, void *);
+s32 invoke_initialization_hook__9TObjEneDDFPv(void *, void *);
 void *TObjEneMe3SinowZoa__ct(void *, void *, void *);
 extern s32 __vt__22TObjEneMe3SinowZoaReal[];
 extern s32 TObjEneMe3SinowZoaReal__name;
@@ -148,7 +148,7 @@ u8 *TObjEneMe3SinowZoaReal__ct(u8 *ene_me3_sinow_zoa_real, s32 arg1, s32 arg2) {
     TObjEneMe3SinowZoa__ct(ene_me3_sinow_zoa_real, (void *) arg1, (void *) arg2);
     *(s32 **)((s8 *)ene_me3_sinow_zoa_real + 0x18) = &(*(SinowZoaRealVTableStorage *)&__vt__22TObjEneMe3SinowZoaReal).value;
     *(s32 *)((s8 *)ene_me3_sinow_zoa_real + 0) = (s32) TObjEneMe3SinowZoaReal__name;
-    invoke_initialization_hook__9TObjEneDDFv((void *)ene_me3_sinow_zoa_real, (void *)arg2);
+    invoke_initialization_hook__9TObjEneDDFPv((void *)ene_me3_sinow_zoa_real, (void *)arg2);
     ((TObjEneMe3SinowZoa *)ene_me3_sinow_zoa_real)->setup_move_bounds();
     ((TObjEneMe3SinowZoaReal *)ene_me3_sinow_zoa_real)->init_enemy();
     ((TObjEneMe3SinowZoaReal *)ene_me3_sinow_zoa_real)->mode = 0;

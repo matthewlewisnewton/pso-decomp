@@ -94,7 +94,6 @@ void enemy_set_target_id(void *, u16);
 s32 update_player_state__9TObjEneDDFv(void *, void *, int);
 s32 get_camera_ctrl__9TObjEneDDFv(void *, int);
 s32 pack_debug_text_position(s32, s32);
-void invoke_initialization_hook__9TObjEneDDFv(void *, void *);
 s32 attack_target_history_add(s32, void *);
 void fn_800D8830(void *owner, void *pos);
 s32 TObjEneGibbles__sub_800D8988(s32);
@@ -166,9 +165,6 @@ extern void *tl_04;
 
 extern "C" {
 s32 is_split_screen();
-s32 reset_hp__9TObjEneDDFv(void *, int, int, int);
-s32 initialize_enemy_state__9TObjEneDDFv(void *, int);
-s32 init_model__9TObjEneDDFv(void *, void *, int);
 s32 init_collision_body_parts(void *, void *, int);
 void *__nw__7TObjectFUl(int);
 s32 get_camera_mode__11TCameraCtrlFv();
@@ -310,7 +306,7 @@ void TObjEneDellBiter::set_min_clamped_entry_value(s32 index, f32 speed) {
 
 TObjEneDellBiter::TObjEneDellBiter(TObject *parent, void *set_data) : TObjEneDD_ST(parent) {
     m_name = (const char *)TObjEneDellBiter__class_name;
-    invoke_initialization_hook__9TObjEneDDFv(this, set_data);
+    invoke_initialization_hook(set_data);
     init_target_offsets();
     init_params();
 }
@@ -320,17 +316,17 @@ void TObjEneDellBiter::init_params() {
     init_position_vectors();
     model = (void *)((BmlResource *)TObjEneDellBiter__shared_model_resource)->models->model;
     texlist = ((BmlResource *)TObjEneDellBiter__shared_model_resource)->models->m_c;
-    init_model__9TObjEneDDFv(this, lbl_804E6B8C, 1);
+    init_model((CollisionBody *)lbl_804E6B8C, 1);
     bodies->flags |= 0x400000;
     set_field_d8((s32)&dell_biter_param_table);
     set_field_dc((s32)((BmlResource *)TObjEneDellBiter__shared_model_resource)->motions);
     m_b8 = 0;
     set_animation(m_b8);
     set_field_b8(m_b8);
-    reset_hp__9TObjEneDDFv(this, dellbiter_boss_stat_handle, TObjEneDellBiter__shared_handler_param, dellbiter_object_stat_handle);
+    reset_hp((u8 *)dellbiter_boss_stat_handle, (u8 *)TObjEneDellBiter__shared_handler_param, (u8 *)dellbiter_object_stat_handle);
     set_state_8();
     movementParameters = &TObjEneDellBiter__param_table;
-    initialize_enemy_state__9TObjEneDDFv(this, 0x48);
+    initialize_enemy_state(0x48);
     field_37c = lbl_805DF038;
     enemy_init_acquire_period(30);
     enemy_init_validate_period(30);

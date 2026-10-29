@@ -229,7 +229,7 @@ void TObjNpcBase::run_task() {
   advance_animation_playback((void *) ((u8 *)this));
   this->update_prev_position();
   new_var = ((u8 *)this);
-  ((TBoss3VoloptHiraisin *)new_var)->copy_position();
+  ((TObjChara *)new_var)->refresh_center_from_body();
   if ((((s32)this->m_3a8) > 0) && (TRaderMapCore::is_not_split_screen() == 0))
   {
     submit_cursor_candidate((void *) this, -1);

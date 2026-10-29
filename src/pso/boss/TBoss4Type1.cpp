@@ -1580,7 +1580,7 @@ void TBoss4Type2__sub_80054738(Obj_80054738 *self) {
     ((TBoss4Type1 *)self)->update_boss4_phase_timer();
     ((TBoss4Type1 *)self)->snapshot_position();
     ((TBoss4Type1 *)self)->sub_80053D4C();
-    ((TObjPlayer *)self)->update_collisions();
+    ((TObjCollidable *)self)->update_collisions();
     submit_cursor_candidate(self, -1);
     ((TBoss4Type1 *)self)->sub_80053670();
     ((TBoss4Type1 *)self)->sub_80053440();

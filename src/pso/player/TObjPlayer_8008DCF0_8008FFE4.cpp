@@ -26,7 +26,7 @@ void TObjPlayer::update_control_state() {
         return;
     }
     if ((*(s32 *)&this->unk_388 & 0x02000000) && (((TObjPlayer *)arg0)->get_flag_0x388_b24() == 0)) {
-        ((TObjEneMe1GiGue *)arg0)->update_if_active(2);
+        ((TObjEnemyCustom *)arg0)->update_if_active(2);
     } else {
         ((TObjEneBalClawBody *)arg0)->sub_8008FC10();
     }

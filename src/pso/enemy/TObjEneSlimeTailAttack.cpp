@@ -2113,7 +2113,7 @@ void TObjEneSlimeOne::run_task() {
             (((TSlime_800EAE78 *)this)->*a)();
         }
         update_prev_position();
-        ((TObjPlayer *)this)->update_collisions();
+        ((TObjCollidable *)this)->update_collisions();
         if ((s32)this->m_3ec != 0) {
             submit_cursor_candidate(this, -1);
         }
