@@ -29,8 +29,8 @@ struct TObjEnePanarms : public TObjEnemy {
     Vec draw_positions[5];
     s32 visible;
     s32 shadow_enabled;
-    TObjEnePanBARA *m_3e4;
-    TObjEnePanBARA *m_3e8;
+    TObjEnePanBARA *first_half;
+    TObjEnePanBARA *second_half;
     s32 m_3ec;
     s32 m_3f0;
     s32 initial_hp;
@@ -79,10 +79,10 @@ struct TObjEnePanarms : public TObjEnemy {
     s32 find_combine_position();
     s32 try_warp_to_position(Vec *position);
     s32 check_ground_along_path(Vec *start, Vec *end, f32 step, f32 dy);
-    s32 fn_800DE528(Vec *position);
-    s32 fn_800DE494();
+    s32 has_ground_around(Vec *position);
+    s32 no_player_within_range();
     void fn_800DE430(s32 first, s32 second);
-    void fn_800DEEF8();
+    void draw_model();
     void turn_toward_target(s32 arg1);
     u16 turn_to_nearest_player(s32 arg1, s32 arg2);
     void snap_to_ground();

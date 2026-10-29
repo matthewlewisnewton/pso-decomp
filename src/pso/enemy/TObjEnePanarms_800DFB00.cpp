@@ -13,7 +13,7 @@ void TObjEnePanarms::init(void *animation) {
     sub_8002AE64();
 }
 
-s32 TObjEnePanBARA::fn_800DFB44() {
+s32 TObjEnePanBARA::is_in_state_7_or_8() {
     return state == 7 || state == 8;
 }
 

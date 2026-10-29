@@ -473,7 +473,7 @@ void TObjEnePanBARA::vfunc_61() { this->actorFlags &= 0xfffffeff; }
 #pragma pop
 
 #pragma push
-void TObjEnePanBARA::fn_800E1E14() {
+void TObjEnePanBARA::start_split_at_body() {
     VecCopy(&position, &combined_body->position);
     rotation_y = combined_body->rotation_y;
     set_state(1);
@@ -650,15 +650,15 @@ s32 TObjEnePanBARA::try_move_with_detour(Vec *arg1) {
 #pragma auto_inline off
 #pragma dont_inline off
 #pragma fp_contract on
-s32 TObjEnePanBARA::fn_800E1774() {
+s32 TObjEnePanBARA::acquire_target_in_front() {
     Vec direction;
     return get_state_flag()
-        ? (s32)(!other_half->fn_800E2FB4() &&
+        ? (s32)(!other_half->is_in_state_9_or_11() &&
             (target_id = find_nearest_enemy_with_flag_alt_target(
                 &direction, lbl_8043CD80[part_index])) != 0xFFFF &&
             angle_difference_abs(rotation_y,
                 (s32)(10430.38043493439 * atan2_float(direction.x, direction.z))) < 0x400)
-        : (s32)(!other_half->fn_800E2FB4() &&
+        : (s32)(!other_half->is_in_state_9_or_11() &&
             (target_id = find_nearest_visible_player(
                 this, &direction, lbl_8043CD80[part_index])) != 0xFFFF &&
             angle_difference_abs(rotation_y,
@@ -874,7 +874,7 @@ void TObjEnePanBARA::fn_800E10D0() {
         this->set_state(0x10);
         return;
     }
-    if (this->fn_800E1774() != 0) {
+    if (this->acquire_target_in_front() != 0) {
         e = (TObjChara *)find_entity_by_id(target_id);
         if (e != NULL && horizontal_distance_squared(&e->position, &position) < 756.25f) {
             this->set_state(0xA);
@@ -904,7 +904,7 @@ void TObjEnePanBARA::update_move_to_target() {
         this->set_state(0x10);
         return;
     }
-    if (other_half->fn_800DFB44() != 0) {
+    if (other_half->is_in_state_7_or_8() != 0) {
         this->set_state(2);
         return;
     }
@@ -967,7 +967,7 @@ void TObjEnePanBARA::fn_800E0D1C() {
         this->set_state(0x10);
         return;
     }
-    if (other_half->fn_800DFB44() != 0) {
+    if (other_half->is_in_state_7_or_8() != 0) {
         this->set_state(2);
         return;
     }
@@ -1002,7 +1002,7 @@ void TObjEnePanBARA::restore_from_linked_object() {
 
 #pragma push
 void TObjEnePanBARA::update_hit_state() {
-    if (other_half->fn_800DFB44() != 0) {
+    if (other_half->is_in_state_7_or_8() != 0) {
         this->set_state(2);
         return;
     }
@@ -1291,7 +1291,7 @@ void TObjEnePanBARA::fn_800E0214() {
     u8 *ene_panarms = (u8  *)this;
     s32 temp_r0;
 
-    if (other_half->fn_800E2E68() != 0) {
+    if (other_half->is_in_state_14() != 0) {
         this->set_state(0xF);
         return;
     }
@@ -1301,7 +1301,7 @@ void TObjEnePanBARA::fn_800E0214() {
     }
     temp_r0 = this->action_timer - 1;
     this->action_timer = temp_r0;
-    if (((temp_r0 < 0) && (other_half->fn_800E2E54() == 0)) || (other_half->fn_800DFB44() != 0)) {
+    if (((temp_r0 < 0) && (other_half->is_in_state_13() == 0)) || (other_half->is_in_state_7_or_8() != 0)) {
         this->set_state(2);
         return;
     }
@@ -1386,7 +1386,7 @@ void TObjEnePanBARA::update_move_timer() {
     u8 *arg0 = (u8 *)this;
     s32 temp_r0;
 
-    if ((other_half->fn_800DFB44() != 0) || (animationFlags & 0x10)) {
+    if ((other_half->is_in_state_7_or_8() != 0) || (animationFlags & 0x10)) {
         this->set_state(0xA);
         return;
     }

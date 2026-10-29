@@ -4558,9 +4558,9 @@ force_active:
   - fn_800DE124__14TObjEnePanarmsFv
   - fn_800DE2B0__14TObjEnePanarmsFv
   - fn_800DE430__14TObjEnePanarmsFll
-  - fn_800DE494__14TObjEnePanarmsFv
-  - fn_800DE528__14TObjEnePanarmsFP3Vec
-  - fn_800DEEF8__14TObjEnePanarmsFv
+  - no_player_within_range__14TObjEnePanarmsFv
+  - has_ground_around__14TObjEnePanarmsFP3Vec
+  - draw_model__14TObjEnePanarmsFv
   - fn_800DFE08__14TObjEnePanBARAFv
   - fn_800E0048__14TObjEnePanBARAFv
   - fn_800E0214__14TObjEnePanBARAFv
@@ -4573,10 +4573,10 @@ force_active:
   - fn_800E0B9C__14TObjEnePanBARAFv
   - fn_800E0D1C__14TObjEnePanBARAFv
   - fn_800E10D0__14TObjEnePanBARAFv
-  - fn_800E1774__14TObjEnePanBARAFv
-  - fn_800E2E54__14TObjEnePanBARAFv
-  - fn_800E2E68__14TObjEnePanBARAFv
-  - fn_800E2FB4__14TObjEnePanBARAFv
+  - acquire_target_in_front__14TObjEnePanBARAFv
+  - is_in_state_13__14TObjEnePanBARAFv
+  - is_in_state_14__14TObjEnePanBARAFv
+  - is_in_state_9_or_11__14TObjEnePanBARAFv
   - fn_800E322C
   - fn_800E3374
   - fn_800E3428

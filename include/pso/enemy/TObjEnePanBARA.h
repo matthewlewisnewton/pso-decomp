@@ -20,12 +20,15 @@ public:
     void calc_part_position(Vec *, s32 *);
     s32 try_move_with_detour(Vec *);
 
-    s32 fn_800DFB44();
+    s32 is_in_state_7_or_8();
     int get_state_flag();
+    int is_state_4_timer_expired();
+    int is_in_state_11();
+    int is_in_state_8();
     void bind_parts(TObjEnePanarms *body, TObjEnePanBARA *half);
     void fn_800E1D38();
     void fn_800E1D94();
-    void fn_800E1E14();
+    void start_split_at_body();
     void update_action_timer();
     void init_attack_state();
     void init_open_state();
@@ -71,14 +74,14 @@ public:
     void fn_800E0B9C();
     void fn_800E0D1C();
     void fn_800E10D0();
-    s32 fn_800E1774();
+    s32 acquire_target_in_front();
     void set_state(s32 state);
     s32 is_phase_12();
     s32 check_can_attack();
-    s32 fn_800E2E54();
-    s32 fn_800E2E68();
+    s32 is_in_state_13();
+    s32 is_in_state_14();
     s32 is_below_half_hp();
-    s32 fn_800E2FB4();
+    s32 is_in_state_9_or_11();
     void calc_default_part_position();
 
     typedef void (TObjEnePanBARA::*Action)();

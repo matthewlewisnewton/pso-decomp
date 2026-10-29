@@ -3,7 +3,7 @@
 
 // Source-private definitions, included only by TObjEnePanarms.cpp.
 #pragma push
-s32 TObjEnePanBARA::fn_800E2FB4() { return state == 9 || state == 11; }
+s32 TObjEnePanBARA::is_in_state_9_or_11() { return state == 9 || state == 11; }
 #pragma pop
 #pragma push
 int TObjEnePanBARA::find_nearest_enemy_with_flag_alt_target(Vec *direction, f32 radius) {
@@ -23,20 +23,20 @@ void TObjEnePanBARA::set_random_action_timer(int minimum, int range) {
 #pragma push
 s32 TObjEnePanBARA::is_below_half_hp() {
     s32 result = 0;
-    if (part_index == 0 && other_half->fn_800DFB44() == 0 && m_3c0 == 0 && hp <= initial_hp / 2) result = 1;
+    if (part_index == 0 && other_half->is_in_state_7_or_8() == 0 && m_3c0 == 0 && hp <= initial_hp / 2) result = 1;
     return (u8)result;
 }
 #pragma pop
 #pragma push
-s32 TObjEnePanBARA::fn_800E2E68() { return state == 14; }
+s32 TObjEnePanBARA::is_in_state_14() { return state == 14; }
 #pragma pop
 #pragma push
-s32 TObjEnePanBARA::fn_800E2E54() { return state == 13; }
+s32 TObjEnePanBARA::is_in_state_13() { return state == 13; }
 #pragma pop
 #pragma push
 s32 TObjEnePanBARA::check_can_attack() {
     s32 result = 0;
-    if (m_3c4 == 0 && other_half->fn_800DFB44() != 0) result = 1;
+    if (m_3c4 == 0 && other_half->is_in_state_7_or_8() != 0) result = 1;
     return (u8)result;
 }
 #pragma pop
