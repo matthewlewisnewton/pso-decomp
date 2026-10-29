@@ -11,8 +11,8 @@ struct SharkNpcAnimationBinding {
     BmlMotionEntry *motions;
     TObjMotionAction *actions;
     s16 unknown_08;
-    s16 initial_action;
-    s16 motion_count;
+    s16 mode_2_action;
+    s16 unknown_0c;
     s16 reserved;
 };
 
