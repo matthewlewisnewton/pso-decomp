@@ -7976,6 +7976,9 @@ pso/misc/TOComputerMachine01_8023DD0C.cpp:
 
 pso/player/TObjPlayer_8023E480.cpp:
 	.text       start:0x8023E480 end:0x8023E7A8
+	.rodata     start:0x8044DCE0 end:0x8044DCE8
+	.bss        start:0x805161E0 end:0x805162E0
+	.sbss       start:0x805D63C0 end:0x805D63C8
 
 pso/ui/TAdMultiChgGameModeGC_8023E7A8.cpp:
 	.text       start:0x8023E7A8 end:0x8023EA94
