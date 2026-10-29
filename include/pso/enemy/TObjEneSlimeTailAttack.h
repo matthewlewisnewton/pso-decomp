@@ -40,11 +40,7 @@ void run_task__22TObjEneSlimeTailAttackFv(u8 *arg0);
 void fn_800E9238(s32 arg0);
 void initialize_slime_instance_state__15TObjEneSlimeOneFv(u8 *actor);
 void render__15TObjEneSlimeOneFv(TObjEneSlimeOne *arg0);
-void set_display_mode__15TObjEneSlimeOneFPvi(void *arg0, s32 arg1);
-void set_random_timer__15TObjEneSlimeOneFPvii(void *arg0, s32 arg1, s32 arg2);
 s32 try_spawn_child__15TObjEneSlimeOneFPv(int origin, void *arg1);
-}
-extern "C" {
 }
 
 #endif

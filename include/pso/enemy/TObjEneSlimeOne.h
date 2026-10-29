@@ -65,10 +65,10 @@ struct TObjEneSlimeOne : public TObjEnemy {
     Vec render_scale;
     f32 movement_speed;
     Vec movement_direction;
-    u8 unk_3C4[0x4];
+    s32 turn_step;
     s32 m_3c8;
     s32 m_3cc;
-    u8 unk_3D0[0xC];
+    Vec attack_position;
     Vec m_3dc;
     void * m_3e8;
     s32 m_3ec;
@@ -82,6 +82,9 @@ struct TObjEneSlimeOne : public TObjEnemy {
     int check_player_field_7cc();
     void copy_position();
     void set_random_timer_15();
+    void set_random_timer(s32 minimum, s32 range);
+    void set_display_mode(s32 mode);
+    s32 project_to_ground();
     void clear_child_flag();
     void set_target_flag_bit0();
     static s32 create(s32 arg0, s32 arg1, s32 arg2);

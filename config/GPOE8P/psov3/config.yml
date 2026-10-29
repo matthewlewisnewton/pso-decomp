@@ -1077,7 +1077,6 @@ force_active:
   - TObjEneSaver__vtable
   - TObjEneShark__action_table
   - TObjEneShark__ct
-  - TObjEneSlimeOne__sub_800EAD84
   - TObjEneSlime__attack_target_param_table
   - TObjEneSlime__ct
   - TObjEneSlime__sub_800EB9F0
@@ -11288,6 +11287,7 @@ force_active:
   - process_lobby_action_14__18TObjCityDoor_LobbyFv
   - process_trade_target__10TObjPlayerFiPv
   - profanity_word_table
+  - project_to_ground__15TObjEneSlimeOneFv
   - prs_read_control_bit
   - prune_weapon_attributes__9TItemDropFPvPv
   - psycho_wand_ct__FPUcPUcl
@@ -12450,7 +12450,7 @@ force_active:
   - set_destroy_event__6TLobbyFi
   - set_difficulty__6TLobbyFi
   - set_display_flags__11TMainCursorFlll
-  - set_display_mode__15TObjEneSlimeOneFPvi
+  - set_display_mode__15TObjEneSlimeOneFl
   - set_display_page__17TWindowSubComCardFv
   - set_displayed_item__14TWindowSubItemFl
   - set_displayed_item__19TWindowSubTradeMainFl
@@ -12557,7 +12557,7 @@ force_active:
   - set_random_enemies_mode__Fv
   - set_random_param__12TBoss8DragonFPUc
   - set_random_timer_15__15TObjEneSlimeOneFv
-  - set_random_timer__15TObjEneSlimeOneFPvii
+  - set_random_timer__15TObjEneSlimeOneFll
   - set_rate_from_divisor__13TUnk_80490470Fl
   - set_result_flag__12TBoss1DragonFll
   - set_scale__13TUnk_804B2578Ff
