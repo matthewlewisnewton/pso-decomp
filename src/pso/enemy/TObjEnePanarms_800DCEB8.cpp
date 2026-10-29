@@ -1,3 +1,4 @@
+#include "pso/system/ModelNodePositionCapture.h"
 #include "pso/system/GroundEffect.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
@@ -19,7 +20,7 @@
 #include "pso/object/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
 
-struct PanarmsCallbackEntry { s32 id; Vec offset; };
+
 
 extern "C" {
 extern const char lbl_8043C948[];
@@ -118,7 +119,7 @@ TObjEnePanarms::ActionPair lbl_8049515C[] = {
     {&TObjEnePanarms::fn_800DCFE0, &TObjEnePanarms::update_state_effect},
     {&TObjEnePanarms::enter_down_state, &TObjEnePanarms::update_spin},
 };
-PanarmsCallbackEntry lbl_804952AC[] = {
+ModelNodePositionEntry lbl_804952AC[] = {
     {0x35, {0, 0, 0}}, {0x22, {0, 0, 0}}, {0x38, {0, 0, 0}},
     {0x46, {0, 0, 0}}, {0x3B, {0, 0, 0}}, {-1, {0, 0, 0}}
 };
@@ -206,7 +207,6 @@ extern const f32 lbl_805DA510;
 extern const f32 lbl_805DA514;
 extern const f32 lbl_805DA518;
 int check_demo_mode__10TObjPlayerFv(void*);
-int clear_render_callback__8TObjFishFv(void*);
 
 extern const f32 lbl_805DA4E0;
 
@@ -244,7 +244,6 @@ extern "C" {
 extern const char *TObjEnePanarms__name;
 s32 TObjFish__sub_8001EDB0(BmlResource *, s32);
 CollisionBody *init_collision_body_parts(TObjCollidable *, const CollisionBody *, s32);
-void *TObjFish__sub_800E3124(PanarmsCallbackEntry *, Vec *);
 void register_entity_by_id(TObjBase *);
 }
 
@@ -1051,9 +1050,9 @@ void TObjEnePanarms::fn_800DEEF8() {
     post_translate_matrix(&position);
     rotate_matrix_y(0, (void *)rotation_y);
     TObjFish::set_global_param(texlist);
-    ((TObjFish *)draw_callbacks)->set_draw_callback_list();
+    draw_callbacks->install();
     draw();
-    clear_render_callback__8TObjFishFv(draw_callbacks);
+    draw_callbacks->clear();
     pop_matrix();
 }
 
@@ -1134,7 +1133,7 @@ void TObjEnePanarms::destroy_handles() {
 }
 
 TObjEnePanarms::~TObjEnePanarms() {
-    TObjFish::init_state_1((void *)draw_callbacks);
+    ModelNodePositionCapture::destroy(draw_callbacks);
     ((TObject *)m_3e4)->queue_destruction();
     ((TObject *)m_3e8)->queue_destruction();
     free_collision_body_parts(this);
@@ -1198,7 +1197,7 @@ TObjEnePanarms::TObjEnePanarms(TObject *parent, void *set_data) : TObjEnemy(pare
     set_param(0x15);
     for (s32 i = 0; i < 2; ++i) particle_emitters[i] = 0;
     animationFlags &= ~1;
-    draw_callbacks = (PanarmsDrawCallbacks *)TObjFish__sub_800E3124(lbl_804952AC, (Vec *)&draw_positions[0].x);
+    draw_callbacks = ModelNodePositionCapture::create(lbl_804952AC, draw_positions);
     m_38c = 1;
     m_3ec = 0;
     initial_hp = hp;

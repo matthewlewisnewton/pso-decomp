@@ -7,7 +7,7 @@
 #include <stddef.h>
 
 class TObjEnePanBARA;
-struct PanarmsDrawCallbacks;
+struct ModelNodePositionCapture;
 
 struct TObjEnePanarms : public TObjEnemy {
     TObjEnePanarms(TObject *parent, void *set_data);
@@ -25,7 +25,7 @@ struct TObjEnePanarms : public TObjEnemy {
     s32 m_38c;
     CollisionBody *collision_body;
     void *particle_emitters[2];
-    PanarmsDrawCallbacks *draw_callbacks;
+    ModelNodePositionCapture *draw_callbacks;
     Vec draw_positions[5];
     s32 visible;
     s32 shadow_enabled;

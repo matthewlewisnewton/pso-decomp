@@ -6,7 +6,7 @@
 #include <stddef.h>
 
 struct TObjEnePanarms;
-struct PanarmsDrawCallbacks;
+struct ModelNodePositionCapture;
 
 class TObjEnePanBARA : public TObjEnemy {
 public:
@@ -79,7 +79,7 @@ public:
     Vec other_half_direction;
     s32 other_half_angle;
     f32 other_half_distance;
-    PanarmsDrawCallbacks *draw_callbacks;
+    ModelNodePositionCapture *draw_callbacks;
     Vec draw_callback_position;
     RenderFadeState camera_fades[4];
     s32 frame_counter;

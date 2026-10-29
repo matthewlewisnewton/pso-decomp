@@ -26,10 +26,6 @@ struct TObjFish : public TObjBase {
     static void spawn_particle(s32 arg0, s32 arg1, f32 farg0);
     static void free_resource();
     static void load_area_resource();
-    static void draw_callback_transform_to_view();
-    void set_draw_callback_list();
-    s32 is_entry_table_valid();
-    static void init_state_1(void *arg0);
     static void load_models();
     void update_attached_orientation();
     void destroy_child();

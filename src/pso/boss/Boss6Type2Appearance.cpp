@@ -1,9 +1,9 @@
+#include "pso/system/ModelNodePositionCapture.h"
 #include "types.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/system/PadRumble.h"
 #include "pso/TObject.h"
 #include "pso/misc/TOTrapAncient01_80226534.h"
-#include "pso/object/TObjFish_800E2FFC.h"
 #include "pso/boss/Boss6Type2Appearance.h"
 #include "pso/boss/TBoss4Type2_800874F4.h"
 #include "pso/misc/TCameraCtrl_800687BC.h"
@@ -49,7 +49,6 @@ extern const f32 lbl_805DFA74;
 extern const f32 lbl_805DFA78;
 
 extern const f32 lbl_805DFA7C;
-s32 clear_render_callback__8TObjFishFv(s32);
 
 void TBoss6Demo20_TYPE2_APPEAR::draw_model_12() {
     push_matrix();
@@ -115,9 +114,9 @@ void TBoss6Demo20_TYPE2_APPEAR::draw_fading_model_4() {
         TObjPlayer::set_global_flag();
         post_translate_matrix((void *)&boss6_type2_appear_origin);
         TObjFish::set_global_param(*(s32 *)((s8 *)this + 0xC0));
-        ((TObjFish *)(this->m_7c))->set_draw_callback_list();
+        ((ModelNodePositionCapture *)(this->m_7c))->install();
         draw_model_motion((void *)this->m_bc, (void *)this->m_c4, *(f32 *)((s8 *)this + 0xE0));
-        clear_render_callback__8TObjFishFv(this->m_7c);
+        ((ModelNodePositionCapture *)(this->m_7c))->clear();
         TObjPlayer::clear_global_state();
         pop_matrix();
         if (var_f31 < lbl_805DFA74) {
@@ -284,7 +283,7 @@ O_8033D9E4 *__dt__25TBoss6Demo20_TYPE2_APPEARFv(O_8033D9E4 *arg0, s16 arg1) {
         restore_player_cameras();
         refresh_players_equipment__14TBoss6PlotFalzFPv();
         if (arg0->f7c != 0) {
-            TObjFish::init_state_1(arg0->f7c);
+            ModelNodePositionCapture::destroy((ModelNodePositionCapture *)(arg0->f7c));
             arg0->f7c = 0;
         }
         __dt__7TObjectFv(arg0, 0);
@@ -356,7 +355,7 @@ u8 *TBoss6Demo20_TYPE2_APPEAR__ct(TBoss6Demo20_TYPE2_APPEAR *boss6_demo20_type2_
     boss6_demo20_type2_appear->m_d4 = get_bml_model(count, 0xC);
     *(s32 *)((s8 *)boss6_demo20_type2_appear + 0xD8) = TObjFish__sub_8001EDB0(count, 0xC);
     boss6_demo20_type2_appear->m_dc = get_bml_motion(count, 0x22);
-    boss6_demo20_type2_appear->m_7c = TObjFish__sub_800E3124((u8 *)boss6_type2_appear_model_node_descriptors, (s32)((u8 *)boss6_demo20_type2_appear + 0x1C));
+    boss6_demo20_type2_appear->m_7c = (s32)ModelNodePositionCapture::create((ModelNodePositionEntry *)(boss6_type2_appear_model_node_descriptors), (Vec *)(((u8 *)boss6_demo20_type2_appear + 0x1C)));
     for (i = 0; i < 9; i++) {
         self->arr[i] = 0;
     }

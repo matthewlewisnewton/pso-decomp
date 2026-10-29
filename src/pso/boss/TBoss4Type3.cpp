@@ -1,3 +1,4 @@
+#include "pso/system/ModelNodePositionCapture.h"
 #include "pso/unk/TUnk_80494968.h"
 #include "types.h"
 #include "pso/system/PadRumble.h"
@@ -403,7 +404,6 @@ s32 query_teammate_state__9TObjEneDDFv(void *);
 int toggle_particle_effect__10TObjPlayerFv(void*);
 u8 * lookup_entry_by_value__10TObjPlayerFPvf(s32);
 s32 *__dt__11TBoss4Type3FPvs(s32 *arg0, s16 arg1);
-s32 clear_render_callback__8TObjFishFv(s32);
 s32 __ct__11TObjControlFP7TObject(s32, s32);
 void *__dt__9TObjEnemyFv(TObjEnemy *arg0, s16 arg1);
 s32 approach_angle_limited(s32, s32, s32);
@@ -429,7 +429,6 @@ extern void* __vt__13TObjBs4CutAtk[];
 extern s32 local_client_id;
 
 void init_model_node_tables(void *, void *, int);
-s32 TObjFish__sub_800E3124(u8 *list, s32 vecs);
 s32 init_collision_body_parts(void *, void *, int);
 extern s32 model_render_flags;
 extern s32 tl_04;
@@ -907,7 +906,7 @@ Self_8005AE60 *TBoss4Type3__ct(Self_8005AE60 *self, s32 parent, s32 *arg2) {
     self->f3F8 = 0.6f;
     self->f3F4 = 0.0f;
     for (i = 0; i < 3; i++) {
-        self->a438[i] = TObjFish__sub_800E3124((u8 *)(((void **)boss4_type3_effect_desc_ptr_table)[i]), (s32)&self->a444[i]);
+        self->a438[i] = (s32)ModelNodePositionCapture::create((ModelNodePositionEntry *)((((void **)boss4_type3_effect_desc_ptr_table)[i])), (Vec *)(&self->a444[i]));
     }
     TObjPlayer::set_global_flag();
     model = get_bml_model(self->f390, ((s32 *)lbl_80486FB0)[0]);
@@ -975,7 +974,7 @@ S_8005AD50 *__dt__11TBoss4Type3Fv(S_8005AD50 *o, s16 flag) {
             o->f528 = 0;
         }
         for (i = 0; i < 3; i++) {
-            TObjFish::init_state_1(o->fx[i]);
+            ModelNodePositionCapture::destroy((ModelNodePositionCapture *)(o->fx[i]));
             o->fx[i] = 0;
         }
         free_collision_body_parts(o);
@@ -1197,9 +1196,9 @@ void TBoss4Type3::draw_model_set(const s32 *tbl, f32 t) {
     for (i = 0; i < 3; i++) {
         TObjFish::set_global_param(TObjFish__sub_8001EDB0(this->m_390, tbl[i]));
         off = i;
-        ((TObjFish *)((s32)this->render_lists[off]))->set_draw_callback_list();
+        ((ModelNodePositionCapture *)((s32)this->render_lists[off]))->install();
         draw_model_motion((void *)(get_bml_model(this->m_390, tbl[i])), (void *)(get_bml_motion(this->m_390, TBoss4Type3__anim_state_table[this->m_3f0].motions[i])), this->m_3f4);
-        clear_render_callback__8TObjFishFv((s32)this->render_lists[off]);
+        ((ModelNodePositionCapture *)((s32)this->render_lists[off]))->clear();
     }
     TObjPlayer::clear_global_state();
     model_render_flags &= ~0x20000;

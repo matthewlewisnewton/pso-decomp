@@ -1,3 +1,5 @@
+#include "pso/enemy/TObjEneRe7Berura.h"
+#include "pso/system/ModelNodePositionCapture.h"
 #include "pso/system/GroundEffect.h"
 #include "pso/TObjControl.h"
 #include "types.h"
@@ -301,7 +303,6 @@ u8 TObjEnePanarms__sub_800E2E54(void *arg0);
 u8 TObjEnePanarms__sub_800E2E68(void *arg0);
 u8 is_below_half_hp__14TObjEnePanarmsFPv(void *arg0);
 s32 TObjEnePanarms__sub_800E2FB4(O_800E2FB4 *self);
-int clear_render_callback__8TObjFishFv(void);
 s32 copy_target_state__14TObjEnePanarmsFPv(void *, s32);
 s32 __ct__11TObjControlFP7TObject(s32, s32);
 void refresh_lobby_state__10TObjPlayerFv();
@@ -335,7 +336,6 @@ s32 rotate_matrix_x(int, void *);
 s32 normalize_vector(void *);
 s32 push_matrix();
 s32 post_translate_matrix(void *, f32);
-int set_global_state__16TObjEneRe7BeruraFl(void*);
 
 extern const f64 TObjEnePanarms__data_8043CDD0;
 extern u8 *TObjEnePanarms__entry_params_resource;
@@ -1436,7 +1436,7 @@ void TObjEnePanBARA::update_linked_effect() {
     }
 }
 
-void TObjEnePanBARA::draw() { ((int (*)(void*))push_matrix)(this); ((int (*)(void*))post_translate_matrix)((char*)this + 0x38); ((int (*)(void*, void*))rotate_matrix_y)((void*)0, *(void* *)&this->rotation_y); TObjFish::set_global_param((s32)(*(void* *)&this->texlist)); ((TObjFish *)(this->draw_callbacks))->set_draw_callback_list(); draw__10TObjMotionFv(this); ((int (*)(void*))clear_render_callback__8TObjFishFv)(this->draw_callbacks); ((int (*)(void))pop_matrix)(); }
+void TObjEnePanBARA::draw() { ((int (*)(void*))push_matrix)(this); ((int (*)(void*))post_translate_matrix)((char*)this + 0x38); ((int (*)(void*, void*))rotate_matrix_y)((void*)0, *(void* *)&this->rotation_y); TObjFish::set_global_param((s32)(*(void* *)&this->texlist)); this->draw_callbacks->install(); draw__10TObjMotionFv(this); this->draw_callbacks->clear(); ((int (*)(void))pop_matrix)(); }
 
 void TObjEnePanBARA::draw_with_fade() {
     s32 temp_r4;
@@ -1548,7 +1548,7 @@ Obj_800E24A4 *fn_800E24A4(Obj_800E24A4 *arg0, s16 arg1) {
         arg0->vt = lbl_80495934;
         free_collision_body_parts(arg0);
         arg0->f37C = 0;
-        TObjFish::init_state_1((void *)arg0->f3DC);
+        ModelNodePositionCapture::destroy((ModelNodePositionCapture *)((void *)arg0->f3DC));
         __destroy_arr(arg0->f3EC, __dt__15RenderFadeStateFv, 0x1C, 4);
         __dt__9TObjEnemyFv((TObjEnemy *)arg0, 0);
         if (arg1 > 0) {
@@ -1622,5 +1622,5 @@ s32 TObjEnePanarms__sub_800E2FB4(O_800E2FB4 *self) {
     return self->state == 9 || self->state == 11;
 }
 
-int clear_render_callback__8TObjFishFv(void) { return set_global_state__16TObjEneRe7BeruraFl((void*)(0)); }
+void ModelNodePositionCapture::clear() { TObjEneRe7Berura::set_global_state(0); }
 }
