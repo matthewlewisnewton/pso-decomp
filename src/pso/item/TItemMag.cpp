@@ -48,7 +48,8 @@
 const char *item_mag_class_name = "TItemMag";
 
 RelocatedFile *item_mag_edit_file;
-MagEditData *item_mag_edit;
+// ItemMagEdit.prs's motion tables, one per model variant.
+s8 **item_mag_motion_tables;
 MagFollowParameters *item_mag_motions;
 
 // The mag levels at which it takes its first, second and third forms.
@@ -126,9 +127,6 @@ void MagStats::clear() {
     synchro = 40;
     color = 18;
 }
-
-static const u8 photon_blast_masks[3] = {0x07, 0x38, 0xC0};
-static const u8 photon_blast_slots[3] = {1, 2, 4};
 
 s32 MagStats::get_photon_blast(s32 slot) {
     int packed;
@@ -414,9 +412,9 @@ void TItemMag::load_data_files() {
     s32 j;
     MagFollowParameters *motion;
     MagAxisOscillationParameters *axis;
-    s32 *edit;
+    MagEditData *edit;
 
-    item_mag_motions = (MagFollowParameters *)fn_800F955C("itemmagmotion.dat");
+    item_mag_motions = (MagFollowParameters *)fn_800F955C(item_mag_motion_path);
     motion = item_mag_motions;
     for (i = 0; i < 90; i++, motion++) {
         bswap_32((u32 *)&motion->joint_index);
@@ -439,12 +437,12 @@ void TItemMag::load_data_files() {
         }
     }
     edit = NULL;
-    item_mag_edit_file = new RelocatedFile("ItemMagEdit.prs", 0x1000);
+    item_mag_edit_file = new RelocatedFile(item_mag_edit_path, 0x1000);
     if (item_mag_edit_file != NULL) {
-        edit = (s32 *)item_mag_edit_file->get_root();
+        edit = (MagEditData *)item_mag_edit_file->get_root();
     }
     if (edit != NULL) {
-        item_mag_edit = (MagEditData *)*edit;
+        item_mag_motion_tables = edit->motion_tables;
     }
 }
 
@@ -452,7 +450,7 @@ void TItemMag::cleanup() {
     delete item_mag_edit_file;
     fn_800F953C(item_mag_motions);
     item_mag_edit_file = NULL;
-    item_mag_edit = NULL;
+    item_mag_motion_tables = NULL;
     item_mag_motions = NULL;
 }
 
@@ -1500,11 +1498,13 @@ void TItemMag::set_subs_visible(s32 visible) {
 
 void TItemMag::on_model_loaded() {
     u8 group = get_item_group();
-    s32 i;
     MagEditData *edit;
-    MagNodeOscillationState *oscillations;
     s8 *ids;
     s32 motion;
+    NJS_ARGB *color;
+    MagNodeOscillationState *oscillations;
+    s32 i;
+    s32 row;
 
     if (group >= 0x42) {
         group = 0x42;
@@ -1512,9 +1512,10 @@ void TItemMag::on_model_loaded() {
     if (stats.get_color() >= 18) {
         resolve_color();
     }
+    row = group * 12;
     for (i = 0; i != 2; i++) {
-        motion_types[i] = item_mag_edit->motion_tables[get_model_variant()];
-        motion_types[i] += group * 12 + i * 6;
+        motion_types[i] = item_mag_motion_tables[get_model_variant()];
+        motion_types[i] += row + i * 6;
         motion = *motion_types[i];
         if (motion != -1) {
             children[i] = new TItemMagSub((MagDrawOwner *)owner, this);
@@ -1526,7 +1527,8 @@ void TItemMag::on_model_loaded() {
                     children[i]->set_model(item_model, texlist, model_motion);
                 }
                 edit = (MagEditData *)item_mag_edit_file->get_root();
-                children[i]->set_material_node(edit->material_nodes[group], &edit->colors[stats.get_color()]);
+                color = &edit->colors[stats.get_color()];
+                children[i]->set_material_node(edit->material_nodes[group], color);
                 switch (group) {
                 case 0x0E:
                     children[i]->set_node_id(1, 2);

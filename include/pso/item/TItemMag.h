@@ -69,6 +69,10 @@ struct MagEditData {
     s8 *evolution_stages;
 };
 
+// The files TItemMag::load_data_files reads (TItemMagSub.cpp).
+extern const char item_mag_motion_path[20];
+extern const char item_mag_edit_path[20];
+
 // itemmagmotion.dat, one record per mag motion type (TItemMag::load_data_files).
 extern MagFollowParameters *item_mag_motions;
 

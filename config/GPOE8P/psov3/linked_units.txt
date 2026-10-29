@@ -720,7 +720,6 @@ pso/item/TItemLoad_801105AC.cpp
 pso/item/TItemLockCountCtrl.cpp
 pso/item/TItemLockCountCtrl_80119238.cpp
 pso/item/TItemLockCountCtrl_8011E184.cpp
-pso/item/TItemMagGrowEff.cpp
 pso/item/TItemMagSub.cpp
 pso/item/TItemMag_8001A468.cpp
 pso/item/TItemMenuCtrl.cpp
