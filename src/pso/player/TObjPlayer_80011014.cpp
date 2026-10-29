@@ -4557,7 +4557,7 @@ Obj_80019038 *__ct__9TObjCharaFP7TObject(Obj_80019038 *self, void *parent) {
     subtractive_rng_seed(p + 0x160, ((TObjChara *)self)->entity_id);
     ((TObjChara *)self)->m_2e4 = 0;
     ((TObjChara *)self)->add_flags_2e4(0);
-    ((TObjChara *)self)->m_324 = 0;
+    ((TObjChara *)self)->control_state = 0;
     ((TObjChara *)self)->m_2d8 = 0xFFFF;
     l = (Layout_80019038 *)self;
     for (i = 0; i < 3; i++) {
@@ -4596,7 +4596,7 @@ Vec *VecCopy(Vec* dst, const Vec* src) {
 #pragma scheduling off
 
 u8 is_locally_controlled__10TObjPlayerFPv(u8 *arg0) {
-    return (u8) (((TObjChara *)arg0)->m_324 == 1);
+    return (u8) (((TObjChara *)arg0)->control_state == 1);
 }
 #pragma pop
 
@@ -4666,7 +4666,7 @@ void obj_clearArrS16_FC(ObjArrFC* p, int i) {
 #pragma scheduling off
 
 s32 TObjChara::obj_isState2_324() {
-    return this->m_324 == 2;
+    return this->control_state == 2;
 }
 #pragma pop
 
@@ -4748,7 +4748,7 @@ s16 TObjPlayer::obj_getS16_116() {
 #pragma scheduling on
 #pragma scheduling off
 u8 TObjChara::obj_isState3_324() {
-    return this->m_324 == 3;
+    return this->control_state == 3;
 }
 #pragma pop
 

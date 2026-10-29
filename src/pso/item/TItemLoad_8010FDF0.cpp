@@ -38,37 +38,30 @@ void mem_free(void *p);
     extern int item_load_work_buffer_busy;
 void TItemLoad::alloc_work_buffer() { item_load_compressed_work_buffer = (int)mem_alloc((u32)((void*)24576)); item_load_work_buffer_busy = 0; }
 
-s32 *__dt__9TItemLoadFPvs(s32 *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        mem_free((void *)(*arg0));
-        if (arg1 > 0) {
-            ::operator delete(arg0);
-        }
-    }
-    return arg0;
+RelocatedFile::~RelocatedFile() {
+    mem_free(buffer);
 }
 
-void *TItemLoad::load_buffer(u32 arg1, s32 arg2) {
+RelocatedFile::RelocatedFile(const char *path, s32 size) {
     struct Sp8Buf_8010fe6c_8010FDF0 sp8;
     s32 temp_r31;
     s32 item_buff;
 
-    *(u32 *)&this->m_name = 0U;
-    *(s32 *)&this->m_flags = 0;
-    if ((arg2 != 0) && (arg1 != 0U)) {
-        *(u32 *)&this->m_name = (u32)mem_alloc((arg2));
-        item_buff = create_item_buff(arg2);
-        if ((item_buff != 0) && ((u32) *(u32 *)&this->m_name != 0U) && (read_disc_file(arg1, item_buff) > 0)) {
-            temp_r31 = prs_decompress_alloc(item_buff, *(u32 *)&this->m_name, arg2);
+    buffer = NULL;
+    root = NULL;
+    if ((size != 0) && (path != NULL)) {
+        buffer = mem_alloc(size);
+        item_buff = create_item_buff(size);
+        if ((item_buff != 0) && (buffer != NULL) && (read_disc_file((u32)path, item_buff) > 0)) {
+            temp_r31 = prs_decompress_alloc(item_buff, (u32)buffer, size);
             ((TUnk_8049C658 *)((s32 *)&sp8))->construct();
-            sp8.field1c = *(u32 *)&this->m_name;
+            sp8.field1c = (u32)buffer;
             sp8.field20 = temp_r31;
-            *(s32 *)&this->m_flags = apply_rel_relocations((s32 *)&sp8);
+            root = (void *)apply_rel_relocations((s32 *)&sp8);
             ((TUnk_8049C658 *)((s32 *)&sp8))->destroy(-1);
         }
         TItemBuff__ct();
     }
-    return this;
 }
 
 void TItemLoad::request_load(s32 arg1) {

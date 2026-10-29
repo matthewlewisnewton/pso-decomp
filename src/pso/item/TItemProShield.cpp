@@ -1,3 +1,4 @@
+#include "pso/item/TItemDrop_800F93F0.h"
 #include "types.h"
 #include "pso/item/TItemProShield.h"
 #include "pso/item/TItemData.h"
@@ -33,8 +34,6 @@ s32 push_matrix_from(void *src);
 void TObjPlayer__sub_8036414C(void);
 void TObjPlayer__sub_80364198(void);
 // The item file helpers (TItemDrop_800F93F0.cpp).
-s32 fn_800F953C(void *data);
-ShieldEffectEntry *fn_800F955C(const char *name);
 // The class name and the effect table's file name. This object really starts
 // at 0x80117E50: TObjPlayer_80117DD8.cpp's last two functions (the nearby
 // player checks, whose doubles follow these strings in .rodata) belong here
@@ -63,7 +62,7 @@ void TItemProShield::load_data() {
     s32 j;
     u32 *word;
     ShieldEffectEntry *entry;
-    shield_table = fn_800F955C(lbl_805D2C3C);
+    shield_table = (ShieldEffectEntry *)load_data_file(lbl_805D2C3C);
     i = 0;
     entry = shield_table;
     do {
@@ -83,7 +82,7 @@ void TItemProShield::load_data() {
 }
 
 void TItemProShield::free() {
-    fn_800F953C(shield_table);
+    free_data_file(shield_table);
     shield_table = NULL;
 }
 

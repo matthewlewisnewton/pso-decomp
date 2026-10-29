@@ -140,7 +140,9 @@ struct TItem : public TObjCollidable {
     void register_in_world(s32 clear_status);
     void set_mode(s8 new_mode);
     int calc_display_grade();
-    void check_equip_requirements(TObjPlayer *player, s16 *result);
+    // Nonzero when player may equip the item; *result (if given) gets
+    // the requirement it falls short on.
+    s32 check_equip_requirements(TObjPlayer *player, s16 *result);
     void draw_model();
     void draw_model_nodes(u8 *matrices);
     void apply_sign_effect(u8 *matrices);

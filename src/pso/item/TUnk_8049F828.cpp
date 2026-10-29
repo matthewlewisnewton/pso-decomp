@@ -1,19 +1,15 @@
+#include "pso/item/TItemMag.h"
 #include "types.h"
 #include "pso/TMainTask.h"
 #include "pso/item/TUnk_8049F828.h"
 #include "pso/player/TObjPlayer.h"
 
-extern "C" {
-s32 get_item_index__5TItemFv(void *);
-s32 apply_transform_action__8TItemMagFUc(s32, s32);
-}
-
 void TUnk_8049F828::apply_use_effect() {
-    s32 temp_r3;
+    TItemMag *mag;
 
-    temp_r3 = this->owner->activate_d04_slot();
-    if (temp_r3 != 0) {
-        apply_transform_action__8TItemMagFUc(temp_r3, get_item_index__5TItemFv(this));
+    mag = (TItemMag *)this->owner->activate_d04_slot();
+    if (mag != NULL) {
+        mag->evolve_special_form(get_item_index());
     }
 }
 

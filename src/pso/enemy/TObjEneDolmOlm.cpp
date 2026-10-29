@@ -942,7 +942,7 @@ u8 *TObjEneDolmOlm__ct(u8 *arg0, s32 arg1, s32 arg2) {
 
     init_enemy_base__13TUnk_80493450Fv(arg0, arg1);
     *(void **)((s8 *)arg0 + 0x18) = lbl_804E6928;
-    ((TUnk_80494938 *)(arg0 + 0x3A8))->init_common();
+    __ct__13TUnk_80494938Fv((arg0 + 0x3A8));
     *(s32 *)((s8 *)arg0 + 0) = obj_ene_dolm_olm_class_name;
     ((TObjEneDolmOlm *)arg0)->apply_set_data((void *)arg2);
     ((TObjPlayer *)arg0)->init_position_vectors();

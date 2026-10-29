@@ -1,6 +1,6 @@
+#include "pso/item/MagStats.h"
 #include "types.h"
 #include "pso/item/TItemData_80104D0C.h"
-#include "pso/item/TItemMagSub_80114524.h"
 #include "pso/unk/text_80104F4C.h"
 #include "pso/item/TItemData.h"
 #include "pso/item/TItem.h"
@@ -76,10 +76,10 @@ s32 find_eligible_combination_recipe(s32 arg0, u8 *item) {
             if (d.b[0] != 2) {
                 return 0;
             }
-            ((TItemData *)(&mag))->initialize_mag_data();
+            ((MagStats *)(&mag))->init();
             deserialize_mag__9TItemDataFPvPv(&d, &mag);
             m = rec->b9;
-            if (get_mag_total_level(&mag) < m) {
+            if (((MagStats *)(&mag))->get_level() < m) {
                 return 0;
             }
         }

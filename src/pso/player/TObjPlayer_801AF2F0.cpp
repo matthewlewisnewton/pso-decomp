@@ -4728,7 +4728,7 @@ s32 TObjPlayer::execute_palette_action(s32 arg1, void *arg2) {
         break;
     case 5:
         if (check_conditions__10TObjPlayerFv(this, act) != 0) {
-            set_photon_blast_kind((u8 *)&this->m_4ac, act);
+            set_photon_blast_kind((u8 *)&this->photon_blast_gauge, act);
             run_action_state_phase__10TObjPlayerFisi(this, 9, 5);
             return 1;
         }
@@ -4998,7 +4998,7 @@ void TObjPlayer::update_subsystems() {
             TObjPlayer::send_code_45_1(arg0);
         }
         update_target_lock__10TObjPlayerFii(arg0 + 0x63C, arg0);
-        if (((TItemMag *)(arg0 + 0x5B0))->check_state_flag_1() != 0) {
+        if (((PlayerScaleState *)(arg0  + 0x5B0))->is_scaled() != 0) {
             update_player_scale_camera((PlayerScaleState *)(arg0 + 0x5B0));
         }
     }
@@ -5945,7 +5945,7 @@ void TObjPlayer::update_status_effects() {
   (this->update_shock_clock());
   (this->update_attack_stat_status());
   (this->update_defense_stat_status());
-  if (((TItemMag *)(arg0 + 0x644))->get_mag_id() <= 0)
+  if (((TObjPlayer *)arg0)->protection.get_frames() <= 0)
   {
     ((TObjBase *)arg0)->obj_clearFlags30((u32)(0x04000100));
   }
@@ -7082,7 +7082,7 @@ void TObjPlayer::handle_state2_transitions() {
     u8 *arg0 = (u8 *)this;
 
     sub_8011E204__10TObjPlayerFl(arg0, 0x10);
-    temp_r0 = ((TObjPlayer *)arg0)->m_324;
+    temp_r0 = ((TObjPlayer *)arg0)->control_state;
     switch (temp_r0) {
     case 1:
         if ((get_main_phase() != 0xE) && ((s32) lbl_805D55C0 != 0)) {
@@ -7427,7 +7427,7 @@ void draw_body__10TObjPlayerFPvi(u8 *player, s32 arg1) {
     stack.spC += *(f32 *)((s8 *)player + 0x5FC);
     translate_matrix_vec3((u8 *)(0), (u8 *)&stack.sp8);
     ((s32 (*)(int, int))rotate_matrix_y)(0, (int) (((TObjPlayer *)player)->rotation_y));
-    if (((TItemMag *)(player + 0x5B0))->check_state_flag_1() != 0) {
+    if (((PlayerScaleState *)(player  + 0x5B0))->is_scaled() != 0) {
         temp_r3 = (u8 *)(TObjPlayer__sub_801BF934(player + 0x5B0));
         ((s32 (*)(int, f32, f32, f32))scale_matrix)(0, (f32) (*(f32 *)((s8 *)temp_r3 + 0)), (f32) (*(f32 *)((s8 *)temp_r3 + 4)), (f32) (*(f32 *)((s8 *)temp_r3 + 8)));
     }
@@ -7452,7 +7452,7 @@ void draw_body__10TObjPlayerFPvi(u8 *player, s32 arg1) {
     ((TObjPlayer *)player)->draw_head_attachments();
     ((TObjPlayer *)(player + 0x608))->write_ids();
     pop_matrix();
-    if (((TItemMag *)(player + 0x5B0))->check_state_flag_1() != 0) {
+    if (((PlayerScaleState *)(player  + 0x5B0))->is_scaled() != 0) {
         ((s32 (*)(void *, void *, int))draw_projected_shadow__10TObjPlayerFPvPvi)(player, (void *) (TObjPlayer__sub_801BF934(player + 0x5B0)), 0);
         return;
     }
@@ -7576,7 +7576,7 @@ void run_task__10TObjPlayerFv(TObjPlayer *player) {
     if (((s32 (*)(void *, s32))obj_testFlags30__14TObjCollidableFUl)(player, 0x800) != 0) {
         ((TObjCollidable *)player)->refresh_collision_body_centers();
     } else if (get_type__10TObjPlayerFPv((u8 *)player + 0x828) == 0) {
-        temp_r0 = player->m_324;
+        temp_r0 = player->control_state;
         switch (temp_r0) {
         case 1:
             ((TObjCollidable *)player)->refresh_collision_body_centers();
@@ -7594,7 +7594,7 @@ void run_task__10TObjPlayerFv(TObjPlayer *player) {
             break;
         }
     } else {
-        temp_r0_2 = player->m_324;
+        temp_r0_2 = player->control_state;
         switch (temp_r0_2) {
         case 3:
         case 1:
@@ -7786,7 +7786,7 @@ void TObjPlayer::sub_801BB950() {
     {
       ((s32 (*)(void *))draw_small_label__15TFontSmallLobbyFi)((void *) arg0);
     }
-    if (((TItemMag *)(arg0 + 0x5B0))->check_state_flag_1() != 0)
+    if (((PlayerScaleState *)(arg0  + 0x5B0))->is_scaled() != 0)
     {
       request_player_size_restore(arg0 + 0x5B0);
     }
@@ -7868,7 +7868,7 @@ void TObjPlayer::init_collision_body() {
     self->body.radius = lbl_805DC2B0;
     self->body.radius2 = lbl_805DC2B0;
     self->body.kind = 0;
-    switch (this->m_324) {
+    switch (this->control_state) {
     case 1:
     case 2:
         if (get_type__10TObjPlayerFPv(self->f828) == 0) {
