@@ -1,15 +1,22 @@
 #ifndef PSO_ENEMY_TOBJENENANODRAGO_H
 #define PSO_ENEMY_TOBJENENANODRAGO_H
 
-#include "types.h"
 #include "pso/enemy/TObjEnemyCustom.h"
+#include "pso/enemy/TUnk_80494938.h"
+#include "pso/misc/RenderFadeState.h"
 
-struct NanoDragoVector { f32 x, y, z; };
-struct NanoDragoMovementParams { f32 f0; f32 base_speed; s32 turn; };
+struct NanoDragoMovementParams {
+    f32 detectionRadius;
+    f32 baseSpeed;
+    s32 turnSpeed;
+    s32 unknown[4];
+};
 
 struct TObjEneNanoDrago : public TObjEnemyCustom {
+    TObjEneNanoDrago(TObject *parent, void *setData);
     virtual ~TObjEneNanoDrago();
     virtual void run_task();
+    virtual void render();
     virtual s32 update_action_hold_status();
     virtual void vfunc_61();
     virtual void vfunc_59();
@@ -17,32 +24,50 @@ struct TObjEneNanoDrago : public TObjEnemyCustom {
     virtual void vfunc_58();
     virtual void vfunc_62();
     virtual void vfunc_63();
+    void capture_beam_origins();
+    void add_target_in_front_arc(TObjChara *candidate);
+    void update_damage_fade_state();
+    void trigger_hit_camera_shake(u32 target);
+    void request_growth();
+    void spawn_beam_particle(s32 index);
+    void find_open_direction(Vec *direction);
+    void update_attack_parameters();
+    s32 collect_beam_targets();
+    void spawn_targeted_beam(s32 arg1);
+    void update_dying_state();
+    void update_knockback_state();
+    void update_flight_state();
+    void update_multi_beam_state();
+    void update_single_beam_state();
+    void run_demo_task();
+    void wander_around(Vec *center, f32 radius);
     void dispatch_action_state();
-    void sub_800DB970();
-    void sub_800DA2A0();
-    void sub_800DA1F4();
+    void update_idle_state();
+    void update_proximity_state();
+    void begin_hidden_flight();
     void load_entry_params_nanodrago(s32);
     void sub_800D9BBC();
-    s16 growth_count;
-    u8 unknown38E[2];
-    NanoDragoVector m_390;
-    u8 unknown39C[0x34];
-    s32 accum;
-    f32 t;
-    f32 speed;
-    u32 m_3dc;
-    s32 toggle;
-    u8 unknown3E4[4];
-    void *m_3e8;
-    u8 unk_3EC[0x18];
-    f32 m_404;
-    u8 unk_408[0x4];
-    void *m_40c;
-
     void update_growth_state();
     void update_circling_state();
-    static void *create(void *arg0);
-    u8 unk_410[0x6C];
+    static void load_resources();
+    static void free_resources();
+    static void *create(void *setData);
+
+    s16 growth_count;
+    Vec flightDestination;
+    Vec beamOrigins[2];
+    s32 beamTargetCount;
+    u16 beamTargetIds[12];
+    s32 circlingAngle;
+    f32 wanderDistance;
+    f32 speed;
+    s32 cameraShakeCooldown;
+    s32 alternateBeam;
+    f32 sinkingOffset;
+    TUnk_80494938 damageFade;
+    f32 flightHeight;
+    f32 descentSpeed;
+    RenderFadeState cameraFades[4];
 };
 
 typedef char TObjEneNanoDrago_size[sizeof(TObjEneNanoDrago) == 0x47C ? 1 : -1];
