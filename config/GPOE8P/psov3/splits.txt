@@ -7818,8 +7818,10 @@ pso/object/TObjLight_8022F34C.cpp:
 
 pso/misc/TTecDeband.cpp:
 	.text       start:0x8022F4EC end:0x8022F9E8
-	.rodata     start:0x8044D0B0 end:0x8044D0B8
+	.rodata     start:0x8044D0A0 end:0x8044D0B8
 	.data       start:0x804CC768 end:0x804CC788
+	.sdata      start:0x805D37A8 end:0x805D37B0
+	.sdata2     start:0x805DC7F0 end:0x805DC7F8
 
 pso/object/TObjLight_8022F9E8.cpp:
 	.text       start:0x8022F9E8 end:0x8022FB70
