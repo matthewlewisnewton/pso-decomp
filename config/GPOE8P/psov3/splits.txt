@@ -1805,6 +1805,7 @@ pso/object/TObjGrass.cpp:
 	.rodata     start:0x8043B7B0 end:0x8043B7D8
 	.data       start:0x80492928 end:0x80492A88
 	.bss        start:0x80500BB8 end:0x80500BE0
+	.sbss       start:0x805D5140 end:0x805D5160
 	.sdata2     start:0x805D9EB8 end:0x805D9F20
 
 pso/enemy/TObjEneLappy.cpp:
