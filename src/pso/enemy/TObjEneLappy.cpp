@@ -760,7 +760,7 @@ void TObjEneLappy::update_moving() {
         if (temp_r6 != NULL) {
             Position_800C08A0 target1 = *(Position_800C08A0 *)(temp_r6 + 0x2FC);
             enemy_backstep_from_point(arg0, &target1.x, (f32) (*(f32 *)((s8 *)((u8 *)(*(u8 * *)&this->movementParameters)) + 4)));
-            ((TObjPlayer *)arg0)->update_angle((s32)((void *) (*(s32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 8))), (u8 *)&this->unk_308);
+            turn_toward_direction(*(s32 *)((u8 *)movementParameters + 8), (Vec *)unk_308);
             apply_actor_gravity(arg0, 0, lbl_805D9F4C);
             ((TObjPlayer *)arg0)->update_collisions();
             return;
@@ -788,7 +788,7 @@ void TObjEneLappy::update_moving() {
                 temp_r4 = (u8 *)(*(u8 * *)&this->movementParameters);
                 ((s32 (*)(void *, f32, f32, f32, int))enemy_wander_home__9TObjEnemyFlfff)(arg0, *(f32 *)((s8 *)temp_r4 + 4), lbl_805D9F68, lbl_805D9F6C, *(s32 *)((s8 *)temp_r4 + 8));
             }
-            ((TObjPlayer *)arg0)->update_angle((s32)((void *) (*(s32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 8))), (u8 *)&this->unk_308);
+            turn_toward_direction(*(s32 *)((u8 *)movementParameters + 8), (Vec *)unk_308);
             play_walk_sound();
             goto block_48;
         case 1:
@@ -799,7 +799,7 @@ void TObjEneLappy::update_moving() {
                 if (temp_f1 > lbl_805D9F70) {
                     *(s16 *)&this->m_37a = 0;
                 }
-                ((TObjPlayer *)arg0)->update_angle((s32)((void *) (*(s32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 8))), (u8 *)&this->unk_308);
+                turn_toward_direction(*(s32 *)((u8 *)movementParameters + 8), (Vec *)unk_308);
                 temp_r3_3 = (u8 *)(*(u8 * *)&this->movementParameters);
                 if (*(f32 *)((s8 *)temp_r3_3 + 0) * *(f32 *)((s8 *)temp_r3_3 + 0) < temp_f1 || temp_f1 < *(f32 *)((s8 *)temp_r3_3 + 4) * *(f32 *)((s8 *)temp_r3_3 + 4)) {
                     this->target = NULL;
@@ -947,7 +947,7 @@ void TObjEneLappy::update_idle_state(void *ov) {
         advance_animation_playback(arg0);
         Vec_800C0E30 v = *(Vec_800C0E30 *)((s8 *)arg0 + 0x50);
         update_enemy_wander_move(arg0, &v, 7, *(f32 *)((s8 *)(*(u8 **)((s8 *)arg0 + 0x350)) + 4));
-        ((TObjPlayer *)arg0)->update_angle((s32)((void *) *(s32 *)((s8 *)(*(u8 **)((s8 *)arg0 + 0x350)) + 8)), arg0 + 0x308);
+        ((TObjEnemy *)arg0)->turn_toward_direction(*(s32 *)((u8 *)((TObjEnemy *)arg0)->movementParameters + 8), (Vec *)((u8 *)arg0 + 0x308));
         break;
     }
     }

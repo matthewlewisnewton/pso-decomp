@@ -1,3 +1,4 @@
+#include "pso/player/PlayerAttackParams.h"
 #include "types.h"
 #include "pso/TObject.h"
 #include "pso/object/TObjGrassWeb.h"
@@ -334,7 +335,6 @@ extern u32 lbl_805D515C;
 void TObjGrass__sub_800BCA2C(void *);
 s32 submit_cursor_candidate(void *, int);
 f32 random_ratio__9TObjCharaFv(s32 arg0);
-s32 update_angle__10TObjPlayerFlPv(void *, void *, void *);
 u32 lookup_entry_by_value__10TObjPlayerFPvf(void *);
 s32 mult_vec_array__10TObjPlayerFUll(int, int, void *, int);
 s32 scale_matrix(int, f32, f32, f32);
@@ -746,9 +746,9 @@ s32 TObjGrass::update_web_attack() {
             s32 d;
             VecCopy((Vec *)&v, (const Vec *)&arg0->target->p2fc);
             subtract_vector(&v, &arg0->p2fc);
-            d = update_angle__10TObjPlayerFlPv(arg0, (void *)arg0->f350[2], &v);
+            d = ((TObjEnemy *)arg0)->turn_toward_direction(arg0->f350[2], (Vec *)&v);
             apply_actor_gravity(arg0, 0, (0.0f));
-            if (d < ((TObjPlayer *)(((u32 *)TObjGrass__bml_resource)[1]))->get_field_0c()) {
+            if (d < ((AttackParams *)(((u32 *)TObjGrass__bml_resource)[1]))->get_attack_angle()) {
                 arg0->state = 1;
                 arg0->fb8 = 4;
                 arg0->timer = 0;
@@ -763,7 +763,7 @@ s32 TObjGrass::update_web_attack() {
             VecCopy((Vec *)&v2, (const Vec *)&arg0->target->p2fc);
             subtract_vector(&v2, &arg0->p2fc);
             d = angle_difference_abs(arg0->rotY, (s32)((10430.38043493439) * atan2_float(v2.x, v2.z)));
-            if (d < ((TObjPlayer *)(((u32 *)TObjGrass__bml_resource)[1]))->get_field_0c()) {
+            if (d < ((AttackParams *)(((u32 *)TObjGrass__bml_resource)[1]))->get_attack_angle()) {
                 VecCopy((Vec *)&v2, (const Vec *)&arg0->target->pos);
                 subtract_vector(&v2, &arg0->p380);
                 ang[0] = (s32)((10430.38043493439) * atan2_float(v2.z, newton_sqrtf(v2.x * v2.x + v2.y * v2.y)));
@@ -845,8 +845,8 @@ void TObjGrass::sub_800BD4D8() {
             s32 d;
             VecCopy((Vec *)&v, (const Vec *)&o->target->p2fc);
             subtract_vector(&v, &o->p2fc);
-            d = update_angle__10TObjPlayerFlPv(o, (void *)(s32)((2.0f) * (f32)o->param->turn), &v);
-            if (d < ((TObjPlayer *)(o->f318))->get_field_0c()) {
+            d = ((TObjEnemy *)o)->turn_toward_direction((s32)((2.0f) * (f32)o->param->turn), (Vec *)&v);
+            if (d < ((AttackParams *)(o->f318))->get_attack_angle()) {
                 s32 ang = (s32)((10430.38043493439) * atan2_float(v.x, v.z));
                 o->f398 = (3e+01f) + (newton_sqrtf(TObjPlayer::calc_distance_to_client((s32)o, o->f338, (u32)0)) + get_collision_body_radius(o, 0));
                 if (o->f398 < (1e+02f)) {
@@ -1009,9 +1009,9 @@ void TObjGrass::sub_800BDD70() {
         } else {
             VecCopy((Vec *)&sp8, (const Vec *)(this->target + 0x2FC));
             subtract_vector(&sp8, (u8 *)&this->m_2fc);
-            ang = update_angle__10TObjPlayerFlPv(arg0, (void *)*(s32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 8), &sp8);
+            ang = ((TObjEnemy *)arg0)->turn_toward_direction(*(s32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 8), (Vec *)&sp8);
             apply_actor_gravity(arg0, 0, (0.0f));
-            if (ang < ((TObjPlayer *)(*(s32 *)&this->m_318))->get_field_0c()) {
+            if (ang < ((AttackParams *)(*(s32 *)&this->m_318))->get_attack_angle()) {
                 this->phase = 1;
                 if ((0.5f) < random_ratio__9TObjCharaFv((s32)arg0)) {
                     this->m_b8 = 2;
@@ -1123,7 +1123,7 @@ struct Vec_800BE1CC { f32 x, y, z; };
 f32 calc_xz_distance_sq(void *, void *, Vec_800BE1CC *);
 #define TBL ((u32 *)TObjGrass__bml_resource)
 #define T318 (*(u32 *)((s8 *)(((u8 *)this)) + 0x318))
-#define IN_RANGE() (dist <= (r + ((TObjPlayer *)T318)->get_pos_x()) * (r + ((TObjPlayer *)T318)->get_pos_x()) && ang <= ((TObjPlayer *)T318)->get_field_0c())
+#define IN_RANGE() (dist <= (r + ((AttackParams *)T318)->get_attack_range()) * (r + ((AttackParams *)T318)->get_attack_range()) && ang <= ((AttackParams *)T318)->get_attack_angle())
 #define BIND(n) (*(s16 *)((s8 *)(((u8 *)this)) + 0x39E)) = (n); bind_enemy_combat_stats((u8 *)0, (u8 *)(TBL[(*(s16 *)((s8 *)(((u8 *)this)) + 0x39E))]), (u8 *)0); return 1;
 
 s32 TObjGrass::is_target_in_attack_range() {
@@ -1211,7 +1211,7 @@ void TObjGrass::update_chase_target(void *arg0_) {
             VecCopy((Vec *)&v, (const Vec *)(*(u8 **)((s8 *)arg0 + 0x2A8) + 0x2FC));
             subtract_vector(&v, arg0 + 0x2FC);
             turn = angle_difference_abs(*(s32 *)((s8 *)arg0 + 0x60), (s32)((10430.38043493439) * atan2_float(v.x, v.z)));
-            if (turn < ((TObjPlayer *)(*(s32 *)((s8 *)arg0 + 0x318)))->get_field_0c()) {
+            if (turn < ((AttackParams *)(*(s32 *)((s8 *)arg0 + 0x318)))->get_attack_angle()) {
                 *(s16 *)((s8 *)arg0 + 0x328) = 1;
             }
             break;

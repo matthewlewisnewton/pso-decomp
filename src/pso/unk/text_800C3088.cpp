@@ -1,3 +1,4 @@
+#include "pso/player/PlayerAttackParams.h"
 #include "types.h"
 #include "pso/enemy/TObjEneEpsilon_800B92AC.h"
 #include "pso/unk/text_800C3088.h"
@@ -459,7 +460,7 @@ void TObjEneDD::state_chase_target(s32 arg1) {
                 ((TObjEneDD *)arg0)->transition_enemy_state(2);
             } else if (d < lbl_805D9FE4) {
                 t = angle_difference_abs(this->rotation_y, *(s32 *)((s8 *)arg0 + 0x420));
-                if (t < ((TObjPlayer *)(this->m_318))->get_field_0c()) {
+                if (t < ((AttackParams *)(this->m_318))->get_attack_angle()) {
                     ((TObjEneDD *)arg0)->transition_enemy_state(5);
                 }
             } else if ((f32)*(s32 *)((s8 *)arg0 + 0x414) > lbl_805D9FE8) {

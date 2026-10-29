@@ -1,3 +1,4 @@
+#include "pso/player/PlayerAttackParams.h"
 #include "types.h"
 #include "pso/enemy/TObjEneDD.h"
 #include "pso/enemy/TObjEneRecon.h"
@@ -104,9 +105,9 @@ void TObjEneRecon::select_next_target() {
 
 s32 TObjEneRecon__sub_8031DA90(u8 *arg0) {
     f32 temp_f31;
-    if ((*(f32 *)((s8 *)arg0 + 0x3AC) < (TObjEneRecon__data_805DF3D4 + ((TObjPlayer *)TObjEneRecon__attack_params)->get_pos_x())) && (fabs_float((f32) (*(f32 *)((s8 *)arg0 + 0x448) - *(f32 *)((s8 *)arg0 + 0x398))) < lbl_805DF3CC)) {
+    if ((*(f32 *)((s8 *)arg0 + 0x3AC) < (TObjEneRecon__data_805DF3D4 + ((AttackParams *)TObjEneRecon__attack_params)->get_attack_range())) && (fabs_float((f32) (*(f32 *)((s8 *)arg0 + 0x448) - *(f32 *)((s8 *)arg0 + 0x398))) < lbl_805DF3CC)) {
         temp_f31 = vec3_dot(arg0 + 0x44C, arg0 + 0x3A0);
-        ((TObjPlayer *)(*(s32 *)((s8 *)arg0 + 0x318)))->get_field_0c();
+        ((AttackParams *)(*(s32 *)((s8 *)arg0 + 0x318)))->get_attack_angle();
         if (temp_f31 >= cos_table_lookup()) {
             return 1;
         }

@@ -1,3 +1,4 @@
+#include "pso/player/PlayerAttackParams.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
 #include "types.h"
 #include "pso/enemy/TObjEneBalClaw.h"
@@ -132,7 +133,6 @@ void update_drop__18TObjEneBalClawClawFPv(Claw_800906C8 *self);
 void move_with_wall_slide(u8 *arg0);
 extern "C" {
 void calc_velocity_toward_destination(void *self, Vec_80090850 pos, Vec_80090850 dest, f32 speed);
-void update_angle__10TObjPlayerFlPv(void *arg0, s32 arg1, void *arg2);
 void update_move_to_target__18TObjEneBalClawClawFPv(Claw_80090850 *self);
 int update_if_active__15TObjEneMe1GiGueFl(void*, int);
 void move_along_ground_avoiding_walls__15TObjEnemyCustomF3Vecff(void *, Vec_80090504, void *, f32, f32);
@@ -161,7 +161,7 @@ void TObjEneBalClawClaw::update_chase_state() {
         }
         *(f32 *)((s8 *)((u8 *)this) + 0x30C) = (0.0f);
         move_along_ground_avoiding_walls__15TObjEnemyCustomF3Vecff(this, *(Vec_80090504 *)((s8 *)this->target + 0x2FC), this->bodies, (-0.6f), *(f32 *)((s8 *)this->bodies + 0xC));
-        update_angle__10TObjPlayerFlPv(this, *(s32 *)((s8 *)this->movementParameters + 8), ((u8 *)this) + 0x308);
+        turn_toward_direction(*(s32 *)((s8 *)this->movementParameters + 8), (Vec *)unk_308);
         advance_animation_playback(this);
         apply_actor_gravity((TObjEnemy *)this, (s32 *)(0), (0.0f));
         update_collisions__10TObjPlayerFv(this);
@@ -239,7 +239,7 @@ void update_move_to_target__18TObjEneBalClawClawFPv(Claw_80090850 *self) {
         self->field30C = (0.0f);
         VecCopy((Vec *)&self->target, (const Vec *)&self->field2FC);
         calc_velocity_toward_destination(self, self->target, self->home, self->params->speed);
-        update_angle__10TObjPlayerFlPv(self, self->params->angle, &self->field308);
+        ((TObjEnemy *)self)->turn_toward_direction(self->params->angle, (Vec *)&self->field308);
         move_with_wall_slide((u8 *)self);
         advance_animation_playback(self);
         apply_actor_gravity((TObjEnemy *)((u8 *)self), (s32 *)(0), (0.0f));
@@ -450,7 +450,6 @@ void TObjEneBalClawClaw::sub_80090D3C() {
 #define reset_active_state__18TObjEneBalClawClawFPv (*(s32 (*)(void *, s32, s32))&reset_active_state__18TObjEneBalClawClawFPv)
 #define update_collisions__10TObjPlayerFv (*(s32 (*)(void *))&update_collisions__10TObjPlayerFv)
 #define update_enemy_wander_move (*(s32 (*)(void *, void *, int, void *, f32))&update_enemy_wander_move)
-#define update_angle__10TObjPlayerFlPv (*(s32 (*)(void *, s32, void *))&update_angle__10TObjPlayerFlPv)
 #define update_if_active__15TObjEneMe1GiGueFl (*(s32 (*)(void *, int))&update_if_active__15TObjEneMe1GiGueFl)
 #define clear_attack_flag__14TObjEneBalClawFv (*(s32 (*)(void *))&clear_attack_flag__14TObjEneBalClawFv)
 
@@ -644,8 +643,8 @@ void TObjEneBalClawClaw__sub_80090ECC(Claw_80090ECC *self) {
         }
         Vec_80090ECC v = ((Claw_80090ECC *)self->target)->pos;
         SEEK_80090ECC(self, &v, (0.7f));
-        update_angle__10TObjPlayerFlPv(self, self->info->f8, self->f308);
-        if (self->f3C0 <= ((TObjPlayer *)(self->f318))->get_pos_x() * ((TObjPlayer *)(self->f318))->get_pos_x()) {
+        ((TObjEnemy *)self)->turn_toward_direction(self->info->f8, (Vec *)self->f308);
+        if (self->f3C0 <= ((AttackParams *)(self->f318))->get_attack_range() * ((AttackParams *)(self->f318))->get_attack_range()) {
             self->state = self->fB8 = 2;
         }
         break;
@@ -657,7 +656,7 @@ void TObjEneBalClawClaw__sub_80090ECC(Claw_80090ECC *self) {
         }
         Vec_80090ECC v = ((Claw_80090ECC *)self->target)->pos;
         SEEK_80090ECC(self, &v, (0.7f));
-        update_angle__10TObjPlayerFlPv(self, self->info->f8, self->f308);
+        ((TObjEnemy *)self)->turn_toward_direction(self->info->f8, (Vec *)self->f308);
         if (objInBand((GameObj *)self, (f32)(8.0f)) != 0) {
             play_sound_effect(0x4003B032, self->f38, 0, 0);
             if (self->target->m18(self, (1.0f)) != 0) {
@@ -765,7 +764,7 @@ void update_chase__18TObjEneBalClawClawFPv(Claw_80091354 *self) {
         play_persistent_sound(0x4003B235, (s32)self, (u32)((u8 *)self + 0x38), 0, 0);
         Vec_80091354 v = self->target->pos;
         update_enemy_wander_move(self, &v, 1, self->info, self->info->f4);
-        update_angle__10TObjPlayerFlPv(self, self->info->f8, (u8 *)self + 0x308);
+        ((TObjEnemy *)self)->turn_toward_direction(self->info->f8, (Vec *)((u8 *)self + 0x308));
         advance_animation_playback(self);
         apply_actor_gravity((TObjEnemy *)((u8 *)self), (s32 *)(0), (0.0f));
         update_collisions__10TObjPlayerFv(self);

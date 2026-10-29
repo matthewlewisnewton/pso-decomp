@@ -1,3 +1,4 @@
+#include "pso/player/PlayerAttackParams.h"
 #include "types.h"
 #include "pso/boss/TBoss3VoloptHiraisin.h"
 #include "pso/object/obj_band.h"
@@ -590,7 +591,6 @@ TObjPlayer *get_player_by_client_id(s32 i);
 extern const f32 lbl_805DA04C;
 extern const f32 lbl_805DA050;
 f32 enemy_backstep_from_point(void *, void *, f32);
-s32 update_angle__10TObjPlayerFlPv(void *, void *, void *);
 s32 angle_difference_abs(s32, s32);
 void TUnk_80493450::sub_800C4E08() {
     if (obj_testFlags30__14TObjCollidableFUl(this, 0x100000) != 0) {
@@ -858,7 +858,7 @@ void TUnk_80493450::beast_update_group_chase() {
     if (t != NULL) {
         Vec_800C57F0 v = t->pos;
         d = enemy_backstep_from_point(arg0, &v, arg0->f398);
-        update_angle__10TObjPlayerFlPv(arg0, arg0->f350->p8, arg0->f308);
+        ((TObjEnemy *)arg0)->turn_toward_direction((s32)arg0->f350->p8, (Vec *)arg0->f308);
         r = arg0->f398 + arg0->a4->rC;
         if (d < r * r) {
             arg0->f326 = 3;
@@ -940,12 +940,12 @@ void TUnk_80493450::update_turn_toward_target() {
             Vec_800C5B10 d;
             VecCopy((Vec *)&d, (const Vec *)&arg0->target->pos2);
             subtract_vector(&d, &arg0->pos2);
-            ang = update_angle__10TObjPlayerFlPv(arg0, arg0->field_350->field_8, &d);
+            ang = ((TObjEnemy *)arg0)->turn_toward_direction((s32)arg0->field_350->field_8, (Vec *)&d);
             if (d.x * d.x + d.z * d.z < lbl_805DA030 || arg0->field_34C == 0) {
                 arg0->field_326 = 3;
                 arg0->field_328 = 1;
                 arg0->field_B8 = 2;
-            } else if (ang <= ((TObjPlayer *)(arg0->field_318))->get_field_0c()) {
+            } else if (ang <= ((AttackParams *)(arg0->field_318))->get_attack_angle()) {
                 arg0->field_328 = 2;
                 arg0->field_B8 = 0;
             }
@@ -961,7 +961,7 @@ void TUnk_80493450::update_turn_toward_target() {
                 arg0->field_326 = 3;
                 arg0->field_328 = 1;
                 arg0->field_B8 = 2;
-            } else if (((TObjPlayer *)(arg0->field_318))->get_field_0c() < ang) {
+            } else if (((AttackParams *)(arg0->field_318))->get_attack_angle() < ang) {
                 arg0->field_328 = 1;
                 arg0->field_B8 = 2;
             }

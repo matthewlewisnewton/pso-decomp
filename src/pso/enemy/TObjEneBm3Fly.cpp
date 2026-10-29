@@ -1,3 +1,4 @@
+#include "pso/player/PlayerAttackParams.h"
 #include "pso/enemy/TObjEnemy.h"
 extern "C" void *__ct__12TObjEneDD_STFP7TObject(void *);
 #include "types.h"
@@ -187,7 +188,7 @@ s32 post_translate_matrix(void *);
 void draw_chunk_object(void *child);
 s32 queue_destruction__7TObjectFv();
 
-f32 TObjEneGibbles::get_pos_x() { return *(f32 *)&this->m_up; }
+f32 AttackParams::get_damage_radius() { return damage_radius; }
 
 void TObjEneMoja::bindModel(int index) {
     model=lbl_805D50D8->models[index].model;
@@ -1569,9 +1570,9 @@ void choose_attack__13TObjEneBm3FlyFPv(Fly_800B1684 *s) {
 
 s32 TObjEneBm3Fly::can_attack_target() {
     f32 temp_f31;
-    if ((this->m_3ac < ((5.0f) + ((TObjPlayer *)TObjEneBm3Fly__attack_params)->get_pos_x())) && (fabs_float((f32) (*(f32 *)((s8 *)((u8 *)this) + 0x42C) - this->m_398)) < (1.0f))) {
+    if ((this->m_3ac < ((5.0f) + ((AttackParams *)TObjEneBm3Fly__attack_params)->get_attack_range())) && (fabs_float((f32) (*(f32 *)((s8 *)((u8 *)this) + 0x42C) - this->m_398)) < (1.0f))) {
         temp_f31 = vec3_dot(((u8 *)this) + 0x430, ((u8 *)this) + 0x3A0);
-        ((TObjPlayer *)(this->m_318))->get_field_0c();
+        ((AttackParams *)(this->m_318))->get_attack_angle();
         if (temp_f31 >= cos_table_lookup()) {
             return 1;
         }
