@@ -4580,15 +4580,15 @@ force_active:
   - fn_802A9DF4
   - fn_802A9F48
   - fn_802D7A54__14TObjEneGibblesFv
-  - fn_802D7BE0__14TObjEneGibblesFv
-  - fn_802D7DAC__14TObjEneGibblesFv
+  - spawn_ground_contact_effect__14TObjEneGibblesFv
+  - play_ground_contact_sound__14TObjEneGibblesFv
   - fn_802D7E3C__14TObjEneGibblesFv
   - fn_802D8034__14TObjEneGibblesFv
   - fn_802D8580__14TObjEneGibblesFv
   - fn_802D8E8C__14TObjEneGibblesFv
   - fn_802D9110__14TObjEneGibblesFv
-  - fn_802D9644__14TObjEneGibblesFlf
-  - fn_802D9824__14TObjEneGibblesFlf
+  - attack_from_joint_31__14TObjEneGibblesFlf
+  - attack_from_joint_53__14TObjEneGibblesFlf
   - fn_802D9A04__14TObjEneGibblesFv
   - fn_802E62A4
   - fn_80303538__16TObjEneDellBiterFv
@@ -5807,8 +5807,8 @@ force_active:
   - lbl_804E285C
   - lbl_804E286C
   - lbl_804E28A0
-  - lbl_804E2950
-  - lbl_804E296C
+  - gibbles_movement_parameters
+  - gibbles_collision_body_templates
   - lbl_804E2B90
   - lbl_804E3A38
   - lbl_804E3B60

@@ -79,8 +79,8 @@ struct TObjEneGibbles : public TObjEnemy {
     void turn_toward_target();
     void slam_damage_players(s32 arg1);
     void fn_802D7A54();
-    s32 fn_802D7BE0();
-    void fn_802D7DAC();
+    s32 spawn_ground_contact_effect();
+    void play_ground_contact_sound();
     void fn_802D7E3C();
     void fn_802D8034();
     void fn_802D8580();
@@ -88,8 +88,8 @@ struct TObjEneGibbles : public TObjEnemy {
     void fn_802D9110();
     s32 fn_802D9A04();
     void render_and_get_joint_pos(Vec *result, s32 joint);
-    bool fn_802D9644(s32, f32);
-    bool fn_802D9824(s32, f32);
+    bool attack_from_joint_31(s32, f32);
+    bool attack_from_joint_53(s32, f32);
 
     s32 flags;
     u32 target_class_mask;

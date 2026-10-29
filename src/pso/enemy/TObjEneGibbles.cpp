@@ -171,7 +171,7 @@ const char *gibbles_motion_name_table[11] = {
 BmlResourceDescriptor lbl_804E28A0 = {
     lbl_80472730, lbl_804E286C, gibbles_motion_name_table, 1, 10,
 };
-TObjMotionAction lbl_804E28B0[10] = {
+TObjMotionAction gibbles_motion_actions[10] = {
     {1, 0, 8, 0.3f, 1},
     {1, 0, 9, 0.5f, 1},
     {2, 0, 0, 0.7f, 4},
@@ -183,10 +183,10 @@ TObjMotionAction lbl_804E28B0[10] = {
     {2, 0, 1, 0.8f, 8},
     {3, 0, 2, 0.7f, 0x10},
 };
-GibblesMovementParameters lbl_804E2950 = {
+GibblesMovementParameters gibbles_movement_parameters = {
     250.0f, 1.25f, 0x400, 0, 100, 0, 0,
 };
-CollisionBody lbl_804E296C[3] = {
+CollisionBody gibbles_collision_body_templates[3] = {
     {{0.0f, 15.0f, 0.0f}, 15.0f, 0.0f, 0, 0x8003, {0.0f, 0.0f, 0.0f}, 0.0f},
     {{0.0f, 0.0f, 0.0f}, 15.0f, 0.0f, 0, 0x8003, {0.0f, 0.0f, 0.0f}, 0.0f},
     {{0.0f, 0.0f, 0.0f}, 30.0f, 0.0f, 0, 0x8003, {0.0f, 0.0f, 0.0f}, 0.0f},
@@ -244,7 +244,7 @@ void TObjEneGibbles::set_min_clamped_entry_value(s32 index, f32 value) {
     if (value < lbl_805DE7E0) {
         value = lbl_805DE7E0;
     }
-    lbl_804E28B0[index].speed = value;
+    gibbles_motion_actions[index].speed = value;
 }
 
 void TObjEneGibbles::fn_802D7A54() {
@@ -288,7 +288,7 @@ s32 TObjEneGibbles::spawn_ground_impact_effects(const Vec *pos, f32 farg0) {
     return 0;
 }
 
-s32 TObjEneGibbles::fn_802D7BE0() {
+s32 TObjEneGibbles::spawn_ground_contact_effect() {
     Vec point;
     VecCopy(&point, &position);
     f32 y = point.y;
@@ -331,7 +331,7 @@ void TObjEneGibbles::play_distance_sound() {
     }
 }
 
-void TObjEneGibbles::fn_802D7DAC() {
+void TObjEneGibbles::play_ground_contact_sound() {
     if (objInBand__FP7GameObjf(this, lbl_805DE804) || objInBand__FP7GameObjf(this, lbl_805DE808)) {
         if (spawn_ground_impact_effects(&position, TObjEneGibbles__data_805DE7F4)) {
             TObjEneGibbles__sub_800D8988(&position);
@@ -727,7 +727,7 @@ void TObjEneGibbles::sub_802D8984() {
             o->m_b8 = 1;
             o->actorFlags &= 0xF9FBFFFF;
         done:
-            o->fn_802D7BE0();
+            o->spawn_ground_contact_effect();
         }
         submit_cursor_candidate(o, -1);
         break;
@@ -804,7 +804,7 @@ void TObjEneGibbles::fn_802D8E8C() {
     }
     bodies->flags |= 1;
     this->actorFlags &= 0xF9FBFFFF;
-    fn_802D7DAC();
+    play_ground_contact_sound();
     advance_animation_playback(self);
     self->clamp_angle(0);
     switch (this->phase) {
@@ -826,7 +826,7 @@ void TObjEneGibbles::fn_802D8E8C() {
             this->phase = 2;
         }
         if (this->phase == 1) {
-            self->fn_802D9644(1, get_attack_params_atp_min(gibbles_combat_stat_entries[2]));
+            self->attack_from_joint_31(1, get_attack_params_atp_min(gibbles_combat_stat_entries[2]));
         }
         if (this->m_b4 != 4) {
             this->phase = 3;
@@ -874,16 +874,16 @@ TObjEneGibbles::TObjEneGibbles(TObject *parent, void *set_data) : TObjEnemy(pare
     set_param(0x3D);
     subtype = 0;
     sub_802DBC94(variant);
-    action_table = (void *)&lbl_804E28B0;
+    action_table = (void *)&gibbles_motion_actions;
     set_field_d8((s32)(action_table));
     motion_list = TObjEneGibbles__resource_bundle->motions;
     m_b8 = 0;
     set_animation(m_b8);
     set_field_b8(m_b8);
-    init_collision_body_parts(this, lbl_804E296C, 1);
+    init_collision_body_parts(this, gibbles_collision_body_templates, 1);
     attack_index = 0;
     attack_count = 0;
-    movementParameters = (void *)&lbl_804E2950;
+    movementParameters = (void *)&gibbles_movement_parameters;
     bind_enemy_combat_stats((u8 *)gibbles_boss_stat_handle, (u8 *)(gibbles_combat_stat_entries[attack_index]), (u8 *)gibbles_combat_stats_handle);
     referenceHp = hp;
     update_position();
@@ -898,9 +898,9 @@ TObjEneGibbles::TObjEneGibbles(TObject *parent, void *set_data) : TObjEnemy(pare
     state_code = 0x101;
     last_state_code = 0x101;
     attack_body = new TObjCollidable(NULL);
-    init_collision_body_parts(attack_body, &lbl_804E296C[1], 1);
+    init_collision_body_parts(attack_body, &gibbles_collision_body_templates[1], 1);
     m_3b8 = new TObjCollidable(NULL);
-    init_collision_body_parts(m_3b8, &lbl_804E296C[2], 1);
+    init_collision_body_parts(m_3b8, &gibbles_collision_body_templates[2], 1);
     material_fade.reset_obstruction_fade();
     for (i = 0; i < 4; i++) {
         camera_fades[i].activate_and_dispatch();
@@ -950,7 +950,7 @@ void TObjEneGibbles::load_resources() {
     binding.motions = TObjEneGibbles__resource_bundle->motions;
     TLobby::spawn_npc_enemy(0x44, TObjEneGibbles__resource_bundle->models->model,
         TObjEneGibbles__resource_bundle->models->m_c, (s32)&binding,
-        lbl_804E296C[0].radius, TObjEneGibbles__data_805DE7E4);
+        gibbles_collision_body_templates[0].radius, TObjEneGibbles__data_805DE7E4);
 }
 
 void TObjEneGibbles::free_static() {
@@ -1391,7 +1391,7 @@ void TObjEneGibbles::update_wander() {
     check_enemy_body_collisions(this);
     update_enemy_collision_flags();
     obj_clearFlags30(0x200000);
-    fn_802D7DAC();
+    play_ground_contact_sound();
     minimap_render_dot(&position, -0x5DB4, 1, 0);
     submit_cursor_candidate(this, -1);
 }
@@ -1416,7 +1416,7 @@ void TObjEneGibbles::sub_802DA7A4() {
     case 1:
         if (objInBand__FP7GameObjf((void *) (this), TObjEneGibbles__data_805DE7F8) != 0) {
             this->phase = 2;
-            fn_802D7BE0();
+            spawn_ground_contact_effect();
             play_sound_effect((int)(this->resolve_sound_id((u32)(0x3A82F))), &position, 0, 0);
             material_fade.reset_color();
         }
@@ -1634,7 +1634,7 @@ void TObjEneGibbles::sub_802DA0BC() {
         this->phase = 0;
         break;
     }
-    fn_802D7DAC();
+    play_ground_contact_sound();
     advance_animation_playback(this);
     turn_toward_target();
     check_object_collisions();
@@ -1776,13 +1776,13 @@ s32 TObjEneGibbles::fn_802D9A04() {
             }
         }
     }
-    return fn_802D7BE0();
+    return spawn_ground_contact_effect();
 }
 #pragma pop
 
 #pragma push
 #pragma opt_loop_invariants off
-bool TObjEneGibbles::fn_802D9824(s32 arg1, f32 power) {
+bool TObjEneGibbles::attack_from_joint_53(s32 trigger_hit_reaction, f32 power) {
     bool hit = false;
     s32 i;
     TObjCollidable *candidate;
@@ -1814,7 +1814,7 @@ bool TObjEneGibbles::fn_802D9824(s32 arg1, f32 power) {
                 power = target->receive_direct_attack(this, attack, NULL, -1, -1);
             }
             target->apply_knockback_from_attacker((u8 *)this, power);
-            if (arg1 == 1 && power > TObjEneGibbles__data_805DE7E4) {
+            if (trigger_hit_reaction == 1 && power > TObjEneGibbles__data_805DE7E4) {
                 obj_setFlags30(target, 0x600);
                 this->m_388 = (s16)(this->m_388 + power);
                 this->state_code = 0x10e;
@@ -1828,7 +1828,7 @@ bool TObjEneGibbles::fn_802D9824(s32 arg1, f32 power) {
 
 #pragma push
 #pragma opt_loop_invariants off
-bool TObjEneGibbles::fn_802D9644(s32 arg1, f32 power) {
+bool TObjEneGibbles::attack_from_joint_31(s32 trigger_hit_reaction, f32 power) {
     bool hit = false;
     s32 i;
     TObjCollidable *candidate;
@@ -1860,7 +1860,7 @@ bool TObjEneGibbles::fn_802D9644(s32 arg1, f32 power) {
                 power = target->receive_direct_attack(this, attack, NULL, -1, -1);
             }
             target->apply_knockback_from_attacker((u8 *)this, power);
-            if (arg1 == 1 && power > TObjEneGibbles__data_805DE7E4) {
+            if (trigger_hit_reaction == 1 && power > TObjEneGibbles__data_805DE7E4) {
                 obj_setFlags30(target, 0x600);
                 this->m_388 = (s16)(this->m_388 + power);
                 this->state_code = 0x10e;
@@ -1932,7 +1932,7 @@ void TObjEneGibbles::fn_802D9110() {
         if (objInBand__FP7GameObjf(self, TObjEneGibbles__data_805DE7F8) != 0) {
             ((TObjEneGibbles *)self)->slam_damage_players(0x1F);
         } else {
-            ((TObjEneGibbles *)self)->fn_802D9644(0, TObjEneGibbles__data_805DE7E4);
+            ((TObjEneGibbles *)self)->attack_from_joint_31(0, TObjEneGibbles__data_805DE7E4);
         }
         if (lbl_805DE83C <= self->m_c0 && self->m_c0 <= lbl_805DE840) {
             fn_802D8034();
@@ -1954,7 +1954,7 @@ void TObjEneGibbles::fn_802D9110() {
         if (objInBand__FP7GameObjf(self, lbl_805DE7FC) != 0) {
             ((TObjEneGibbles *)self)->slam_damage_players(0x35);
         } else {
-            ((TObjEneGibbles *)self)->fn_802D9824(0, TObjEneGibbles__data_805DE7E4);
+            ((TObjEneGibbles *)self)->attack_from_joint_53(0, TObjEneGibbles__data_805DE7E4);
         }
         if (lbl_805DE838 <= self->m_c0 && self->m_c0 <= lbl_805DE844) {
             fn_802D8034();
@@ -1976,7 +1976,7 @@ void TObjEneGibbles::fn_802D9110() {
         if (objInBand__FP7GameObjf(self, lbl_805DE800) != 0) {
             ((TObjEneGibbles *)self)->slam_damage_players(0x1F);
         } else {
-            ((TObjEneGibbles *)self)->fn_802D9644(0, TObjEneGibbles__data_805DE7E4);
+            ((TObjEneGibbles *)self)->attack_from_joint_31(0, TObjEneGibbles__data_805DE7E4);
         }
         if (lbl_805DE850 <= self->m_c0 && self->m_c0 <= lbl_805DE854) {
             fn_802D8034();
