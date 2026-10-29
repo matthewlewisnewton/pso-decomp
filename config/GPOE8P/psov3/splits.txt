@@ -5530,6 +5530,7 @@ pso/misc/TOWreckAncientBrakable_8017D5A4.cpp:
 
 pso/misc/TOWreckAncientBrakable.cpp:
 	.text       start:0x8017D680 end:0x8017D72C
+	.rodata     start:0x80443528 end:0x80443540
 	.sdata      start:0x805D3210 end:0x805D3214
 
 pso/misc/TOWreckAncient07.cpp:
