@@ -417,7 +417,7 @@ force_active:
   - TItemLockCountCtrl__sub_8011926C
   - TItemLockCountCtrl__sub_801192A0
   - TItemLockCountCtrl__sub_8011933C
-  - TItemMag__sub_80113EEC
+  - get_charge__16PhotonBlastGaugeFv
   - TItemMoney__name
   - TItemTexLoad_class_name
   - TItemTexLoad_name
@@ -2592,7 +2592,7 @@ force_active:
   - accept_meseta_withdrawal__18TCheckRoomSequenceFPv
   - accumulate__14PadRumbleLevelFll
   - accumulate_key_bits__FlPl
-  - accumulate_mag_axis_oscillation__FPfPlPv
+  - accumulate_mag_axis_oscillation__FPfPlP28MagAxisOscillationParameters
   - action__13TObjEneBm3FlyFPvi
   - action__14TObjEneBm5WolfFl
   - action__15TObjEneMe1GiGueFPv
@@ -5312,7 +5312,7 @@ force_active:
   - is_open__15TODoorVS2Door01Fv
   - is_out_of_range__13TBoss6KakusanFv
   - is_p02_idle__12TBoss3VoloptFv
-  - is_pb_registered__8TItemMagFUc
+  - has_photon_blast__8MagStatsFUc
   - is_phase_e__9TObjEneDDFPv
   - is_player_in_range__10TObjPlayerFllf
   - is_player_in_range__10TObjRoomIdFPvUsf
@@ -6335,7 +6335,7 @@ force_active:
   - lbl_805E03DC
   - lbl_805E03E0
   - lbl_805E03E4
-  - lerp_follow_anchor
+  - lerp_follow_anchor__FP3VecP3VecPf
   - level_to_reward__6TLobbyFl
   - load_all_floor_event_sets__6TLobbyFv
   - load_and_verify_data
@@ -6426,19 +6426,12 @@ force_active:
   - macMakeActive
   - maccmp
   - mag_accumulate_drift__FPfPlPfPlPSc
-  - mag_item_tests_flag_20__FPv
-  - mag_node_oscillation_angle__FPv
-  - mag_node_oscillation_node_index__FPv
-  - mag_node_oscillation_uses_x__FPv
-  - mag_node_oscillation_uses_y__FPv
-  - mag_node_oscillation_uses_z__FPv
-  - mag_sub_angle_units_per_degree
-  - mag_sub_height_intercept
-  - mag_sub_height_slope
-  - mag_sub_one
-  - mag_sub_render_distance_limit
-  - mag_sub_screen_cull_margin
-  - mag_sub_zero
+  - is_inactive__8TItemMagFv
+  - get_angle__23MagNodeOscillationStateFv
+  - node_index__23MagNodeOscillationStateFv
+  - uses_x__23MagNodeOscillationStateFv
+  - uses_y__23MagNodeOscillationStateFv
+  - uses_z__23MagNodeOscillationStateFv
   - main_task_dtor_chain
   - make_players__6TLobbyFv
   - map_pad_buttons__16TKeyBoardControlFUs
@@ -11750,7 +11743,7 @@ force_active:
   - reset_leader_selection__FPv
   - reset_leader_selection_static__6TLobbyFv
   - reset_obstruction_fade__13TUnk_80490470Fv
-  - reset_oscillation__11TItemMagSubFv
+  - reset_oscillation__11TItemMagSubFll
   - reset_pad_rumble_effects_and_channels__Fs
   - reset_placement_search_ring__13TUnk_804C4498Fv
   - reset_quest_list_vm__22THunterGuildSeqOfflineFv
@@ -14111,6 +14104,89 @@ force_active:
   - yasminkov_2000h_ct__FPvll
   - yasminkov_7000v_ct__FPvlPv
   - yasminkov_9000m_eject_casing__13TUnk_804A6AD8Fll
+  - TItemMagGrowEff_name
+  - TItemMagSub_name
+  - __ct__8TItemMagFP7TObjectPUc
+  - __dt__8TItemMagFv
+  - __vt__8TItemMag
+  - activate_effect__8TItemMagFl
+  - add_def__8MagStatsFs
+  - add_dex__8MagStatsFs
+  - add_iq__8MagStatsFl
+  - add_mind__8MagStatsFs
+  - add_photon_blast__8MagStatsFUc
+  - add_pow__8MagStatsFs
+  - add_synchro__8MagStatsFl
+  - apply_feed__8TItemMagFP8MagStats
+  - can_perform_action__8TItemMagFl
+  - cast_support_technique__8TItemMagFl
+  - clear_flags__13MagOwnerWatchFUl
+  - clear_growth_flag__11TItemMagSubFv
+  - collect_owner_events__8TItemMagFv
+  - copy_from__23MagNodeOscillationStateFP23MagNodeOscillationState
+  - disable__23MagNodeOscillationStateFv
+  - end_invincibility__8TItemMagFv
+  - evolve_by_level__8TItemMagFv
+  - evolve_first_form__8TItemMagFv
+  - evolve_into__8TItemMagFUc
+  - evolve_rare_form__8TItemMagFv
+  - evolve_second_form__8TItemMagFv
+  - evolve_third_form__8TItemMagFv
+  - feed__8TItemMagFP9TItemData
+  - get_color__8MagStatsFv
+  - get_dominant_stats__8TItemMagFv
+  - get_evolution_stage__8TItemMagFv
+  - get_model_variant__8TItemMagFv
+  - is_growth_inactive__11TItemMagSubFv
+  - is_local__8TItemMagFv
+  - item_mag_class_name
+  - item_mag_edit_file
+  - item_mag_follow_scale
+  - item_mag_motion_tables
+  - load_param_record__8TItemMagFv
+  - mag_sub_transition_frames
+  - on_equip__8TItemMagFv
+  - on_events_handled__8TItemMagFv
+  - on_form_changed__8TItemMagFv
+  - on_model_loaded__8TItemMagFv
+  - on_unequip__8TItemMagFv
+  - react_to_events__8TItemMagFSc
+  - refresh_invincibility__8TItemMagFv
+  - register_photon_blasts__8TItemMagFv
+  - release_model__8TItemMagFv
+  - render_equipped__8TItemMagFv
+  - render_equipped_shadow__8TItemMagFv
+  - request_action__8TItemMagFl
+  - request_equipped_model__8TItemMagFv
+  - resolve_color__8TItemMagFv
+  - roll_trigger__8TItemMagFl
+  - scale_owner_height__11TItemMagSubFf
+  - set_action_motion__8TItemMagFv
+  - set_blast_level__16PhotonBlastGaugeFsSc
+  - set_flags__13MagOwnerWatchFUl
+  - set_growth_flag__11TItemMagSubFv
+  - set_material_node__11TItemMagSubFlPv
+  - set_model__11TItemMagSubFPvUlPv
+  - set_node_id__11TItemMagSubFll
+  - set_subs_visible__8TItemMagFl
+  - set_triggers__8TItemMagFPCUcPCUc
+  - snap_to_owner__8TItemMagFv
+  - start_action__8TItemMagFl
+  - start_invincibility__8TItemMagFv
+  - test_flags__13MagOwnerWatchFUl
+  - tick_fullness_timer__8TItemMagFv
+  - update_equipped__8TItemMagFv
+  - update_idle_action__8TItemMagFv
+  - update_in_inventory__8TItemMagFv
+  - update_invincibility_action__8TItemMagFv
+  - update_long_action__8TItemMagFv
+  - update_owned__8TItemMagFv
+  - update_resta_action__8TItemMagFv
+  - update_reverser_action__8TItemMagFv
+  - update_shifta_deband_action__8TItemMagFv
+  - update_short_action__8TItemMagFv
+  - update_wait_action__8TItemMagFv
+  - write_item_data__8TItemMagFP9TItemData
 # --- force_active (END) ---
 # False pointers: packed data words whose values happen to land on code/data
 # addresses. dtk would emit a relocation and export the target symbol.

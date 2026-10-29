@@ -17,6 +17,8 @@ public:
     virtual ~TObjChara();
     u8 obj_isState3_324();
     s32 obj_isState2_324();
+    // control_state 7: the owner holds a fixed pose its mag aligns to.
+    s32 is_in_fixed_pose();
     void calc_attach_pos();
     void add_flags_2e4(u32);
     s16 get_stats_atp_max();
@@ -241,7 +243,7 @@ public:
     u32 m_318;
     u8 unk_31C[0x6];
     s16 m_322;
-    s16 m_324;
+    s16 control_state;  // who drives it: 6 a script, 7 a fixed pose
     s16 mode;
     s16 phase;
     u8 unk_32A[0x2];

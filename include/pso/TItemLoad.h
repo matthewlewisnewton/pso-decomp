@@ -26,7 +26,6 @@ public:
     static s32 decompress_buffer(u32 arg0);
     static void free_boss4_rock();
     static void alloc_work_buffer();
-    void *load_buffer(u32 arg1, s32 arg2);
     void request_load(s32 arg1);
     void free_texture();
     u32 load_data(s32 arg1);

@@ -1,3 +1,4 @@
+#include "pso/item/MagStats.h"
 #include "types.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/protocol/protocol_types.h"
@@ -329,13 +330,13 @@ void apply_bonuses(u8 *item, s32 arg1, u8 *a, u8 *b, Stats_8010BA9C *st) {
 void add_mag_stat_bonuses__9TItemDataFv(u8 *item, s32 player, u8 *a, u8 *b, EquipStats *st, s32 w5) {
     Mag_8010D614 mag;
 
-    ((TItemData *)&mag)->initialize_mag_data();
+    ((MagStats *)&mag)->init();
     deserialize_mag__9TItemDataFPvPv((Raw_8010D614 *)item, &mag);
     if (st != NULL && st != NULL) {
-        st->s0 += (s16)(mag_stat_bonus_scale[0] * (f32)((TItemData *)&mag)->get_percent());
-        st->sA += (s16)(mag_stat_bonus_scale[1] * (f32)(((TItemData *)&mag)->get_level() * 10));
-        st->s8 += (s16)(mag_stat_bonus_scale[2] * (f32)((TItemData *)&mag)->get_stat_percent());
-        st->s2 += (s16)(mag_stat_bonus_scale[3] * (f32)((TItemData *)&mag)->get_mag_mind_level());
+        st->s0 += (s16)(mag_stat_bonus_scale[0] * (f32)((MagStats *)&mag)->get_pow_level());
+        st->sA += (s16)(mag_stat_bonus_scale[1] * (f32)(((MagStats *)&mag)->get_dex_level() * 10));
+        st->s8 += (s16)(mag_stat_bonus_scale[2] * (f32)((MagStats *)&mag)->get_def_level());
+        st->s2 += (s16)(mag_stat_bonus_scale[3] * (f32)((MagStats *)&mag)->get_mind_level());
     }
 }
 
@@ -640,7 +641,7 @@ void TItemData::unpack_from_item(void *arg1) {
             *(u8 *)((s8 *)this + 4) = (u8) ((u32) *(u32 *)((s8 *)arg1 + 0x34) >> 0x10U);
             return;
         case 2:
-            ((TItemData *)(&sp8))->initialize_mag_data();
+            ((MagStats *)(&sp8))->init();
             serialize_mag__9TItemDataFPvPv(this, &sp8);
             break;
         }
@@ -860,7 +861,6 @@ extern f32 TItemData__data_805DAB78;
 extern "C" {
 void deserialize_mag__9TItemDataFPvPv(Raw_8010D614 *src, Mag_8010D614 *dst);
 void *get_armor_pmt_record(int type, int id);
-s16 get_mag_total_level(void *mag);
 s32 get_item_star_count(s32);
 s32 is_rare_item__9TItemDataFPv(u8 *item);
 int get_item_chunk_buffer(int a0);
@@ -1188,7 +1188,7 @@ s32 TItemData::calc_action_flags(s32 mask, u8 *player) {
         break;
       }
       case 12:
-        if (TItemMag::check_evolution_cond((u32)player, (s32)(((u8 *)this)[2])) == 0)
+        if (TItemMag::check_evolution_cond((TObjPlayer *)player, (s32)(((u8 *)this)[2])) == 0)
       {
         result |= 1;
       }
@@ -1222,7 +1222,7 @@ void serialize_mag__9TItemDataFPvPv(Item_8010D510 *item, const Mag_8010D510 *mag
     Item_8010D510 copy;
     copy.b0 = item->b0;
     copy.b1 = item->b1;
-    copy.level = get_mag_total_level((void *)mag);
+    copy.level = ((MagStats *)((void *)mag))->get_level();
     copy.b3 = mag->b0d;
     copy.stat[0] = mag->stat[0] & 0x7FFE;
     copy.stat[1] = mag->stat[1] & 0x7FFE;

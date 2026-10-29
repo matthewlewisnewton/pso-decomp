@@ -1,3 +1,4 @@
+#include "pso/item/TItemMag.h"
 #include "pso/TMainTask.h"
 #include "pso/quest/QuestVm.h"
 #include "pso/quest/BattleRules.h"
@@ -1457,10 +1458,6 @@ s32 is_script_controlled__10TObjPlayerFv();
 s32 activate_d04_slot__10TObjPlayerFv();
 s32 create_instance__12TItemDropSubFl(int, void *);
 void init__9TItemDataFv(Item_801EE77C *);
-s16 get_mag_item_data(s32);
-s16 get_mag_level(s32);
-s16 get_mag_item_percent(s32);
-s16 get_mag_item_stat_percent();
 s32 advance_item_id_counter(u16);
 f32 xz_distance_squared(Vec3_801E79BC *, Vec3_801E79BC *);
 f32 xyz_distance_squared(u8 *arg0, u8 *arg1);
@@ -4083,10 +4080,10 @@ void qst_op_get_mag_levels(s32 i) {
     if (((u32 (*)(void *))get_player_by_client_id)((void *)local_client_id) != 0) {
         r = activate_d04_slot__10TObjPlayerFv();
         if (r != 0) {
-            qst_registers[(u8)i++] = get_mag_item_stat_percent();
-            qst_registers[(u8)i++] = get_mag_item_percent(r);
-            qst_registers[(u8)i++] = get_mag_level(r);
-            qst_registers[(u8)i] = get_mag_item_data(r);
+            qst_registers[(u8)i++] = ((TItemMag *)r)->get_def_level();
+            qst_registers[(u8)i++] = ((TItemMag *)r)->get_pow_level();
+            qst_registers[(u8)i++] = ((TItemMag *)r)->get_dex_level();
+            qst_registers[(u8)i] = ((TItemMag *)r)->get_mind_level();
         }
     }
 }

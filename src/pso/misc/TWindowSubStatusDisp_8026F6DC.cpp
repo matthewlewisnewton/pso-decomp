@@ -95,7 +95,7 @@ struct Vec2_80270394 { f32 x; f32 y; };
 struct Rect_80270394 { f32 x0; f32 y0; f32 x1; f32 y1; f32 u0; f32 v0; f32 u1; f32 v1; };
 
 s16 obj_getS16_2BA(u8 *p);
-s32 get_sub_value__8TItemMagFv();
+s32 get_photon_blast_charge__10TObjPlayerFv();
 s32 get_photon_blast_chain(Slots_80270060 *);
 s32 TLobby__sub_801C19D0(void *);
 void * get_array_entry__13TUnk_804CE018Fi(void *, s32);
@@ -464,7 +464,7 @@ void TWindowSimpleStatus::draw_background(u8 *arg1) {
 
     get_width__19TWindowSimpleStatusFv();
     if (((u32 (*)(void))get_player_by_client_id)() != 0) {
-        f = get_sub_value__8TItemMagFv();
+        f = get_photon_blast_charge__10TObjPlayerFv();
     } else {
         f = lbl_805DD388;
     }

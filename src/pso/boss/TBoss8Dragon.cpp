@@ -1412,7 +1412,7 @@ s32 register_boss__6TLobbyFl(int);
 void TLobby__sub_8001FE7C(void*, int);
 void TBoss1Dragon__sub_80027A80(u8 *arg0, u8 *arg1);
 f32 get_random_float__21TObjEneMe3ShinowaRealFv(f32);
-s32 set_type__10TObjPlayerFl(void *, int);
+s32 set_frames__15ProtectionTimerFl(void *, int);
 s32 spawn_particle_effect_with_flags(void *, void *, int);
 void TObjEneEpsilon__sub_800B9384(u8 *arg0, s32 arg1, f32 farg0);
 s32 update_linked_position__12TObjEneDD_STFf(f32);
@@ -5772,7 +5772,7 @@ void TBoss8Dragon::freeze_player_at_self() {
     if (player != NULL) {
         if (((TObjPlayer *)player)->get_field_3e4() == get_current_floor()) {
             start_freeze__10TObjPlayerFv((int)player);
-            set_type__10TObjPlayerFl(player + 0x644, 0x14);
+            set_frames__15ProtectionTimerFl(player + 0x644, 0x14);
             ((TObjPlayer *)player)->actorFlags = (s32) (((TObjPlayer *)player)->actorFlags & 0xFFEFFFDF);
             VecCopy__FP3VecPC3Vec(player + 0x38, (u8 *)&this->m_38);
             *(f32 *)((s8 *)player + 0x3C) = (f32) (*(f32 *)((s8 *)player + 0x3C) - lbl_805DEEB8);

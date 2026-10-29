@@ -22,6 +22,9 @@ int ret_801D7954(void);
 int ret_801D795C(void);
 }
 
+// Resets a player's action palettes to the default photon blast slots.
+void assign_default_photon_blast_palette_slots(u8 *palettes);
+
 // --- C functions defined in pso_const_ids4.cpp ---
 extern "C" {
 int ret_801D78E4(void);

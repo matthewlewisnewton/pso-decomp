@@ -4,7 +4,6 @@
 
 extern "C" {
 
-s32 is_quest_active();
 u32 get_player_by_client_id(s32);
 s32 check_player_state_flag_2__6TLobbyFv();
 s32 is_split_screen();

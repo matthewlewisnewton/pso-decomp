@@ -38,7 +38,7 @@ void TUnk_804F1320::emit_marker_effects() {
     u8 *arg0 = (u8 *)this;
     s32 temp_r3;
     if (((TItemWeapon *)arg0)->is_mode_two_and_ready() != 0) {
-        temp_r3 = ((TItemMag *)(this->owner))->get_sub_value();
+        temp_r3 = ((TObjPlayer *)(this->owner))->get_photon_blast_charge();
         if (temp_r3 >= 0x14) {
             ((TItem *)arg0)->send_activate_effect(temp_r3);
             return;

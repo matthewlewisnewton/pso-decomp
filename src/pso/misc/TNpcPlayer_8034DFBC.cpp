@@ -594,7 +594,7 @@ void TNpcPlayer::update_player_field(u16 arg0, s32 arg1) {
     u32 player;
     player = ((u32)get_player_by_client_id(arg0));
     if (player != 0U) {
-        ((TObjPlayer *)(player + 0x644))->set_type(arg1);
+        ((TObjPlayer *)player)->protection.set_frames(arg1);
     }
 }
 void TNpcPlayer::end_camera_pan_for_client(u16 arg0) {

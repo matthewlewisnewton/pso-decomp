@@ -82,7 +82,6 @@ void apply_room_transform_to_enemy_rows(SpawnRecord_8020D36C *rows, s32 count);
 void apply_room_transform_to_object_rows(Rec_8020D3F0 *arr, s32 n);
 s32 find_set_factory_index(void *, void *);
 f32 xyz_distance_squared(u8 *arg0, u8 *arg1);
-s32 is_quest_active();
 s32 TLobby__sub_801C2614();
 u8 *call_area_set_factory(void *, void *);
 }

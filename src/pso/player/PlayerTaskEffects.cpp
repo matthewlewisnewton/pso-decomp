@@ -97,7 +97,7 @@ f32 apply_stat_multipliers__10TObjPlayerFiif(s32, s32, f32);
 void apply_stat_multipliers_default__10TObjPlayerFv(void);
 u16 get_obj_type__10TObjPlayerFPv(void*);
 TObjPlayer* get_player_by_client_id(int);
-f32 get_stat_f32__8TItemMagFv(s32);
+f32 get_scalar__16PlayerScaleStateFv(s32);
 void set_ring_action__10TObjPlayerFPvi(void*, s32);
 void set_stat_scale__10TObjPlayerFPvf(void*, f32);
 s32 test_flags_any(s32, s32);
@@ -123,7 +123,7 @@ extern "C" {
 f32 apply_stat_multipliers__10TObjPlayerFiif(s32 arg0, s32 arg1, f32 farg0);
 void apply_stats_and_update__10TObjPlayerFPv(void* p);
 s32 test_flags_any(s32, s32);
-f32 get_stat_f32__8TItemMagFv(s32);
+f32 get_scalar__16PlayerScaleStateFv(s32);
 s32 is_flag30_8_set__10TObjPlayerFi(s32);
 
 extern const f32 lbl_805DC33C;
@@ -136,7 +136,7 @@ extern const f32 lbl_805DC340;
 
 #define TObjPlayer__sub_801C6FDC ((f32* (*)(f32*))TObjPlayer__sub_801C6FDC)
 #define apply_stat_multipliers__10TObjPlayerFiif ((s32 (*)(f32))apply_stat_multipliers__10TObjPlayerFiif)
-#define get_stat_f32__8TItemMagFv ((f32 (*)(PlayerScaleState*))get_stat_f32__8TItemMagFv)
+#define get_scalar__16PlayerScaleStateFv ((f32 (*)(PlayerScaleState*))get_scalar__16PlayerScaleStateFv)
 #define set_stat_scale__10TObjPlayerFPvf ((s32 (*)(f32))set_stat_scale__10TObjPlayerFPvf)
 
 extern "C" {
@@ -180,7 +180,7 @@ extern const f32 lbl_805DC320;
 }
 #undef TObjPlayer__sub_801C6FDC
 #undef apply_stat_multipliers__10TObjPlayerFiif
-#undef get_stat_f32__8TItemMagFv
+#undef get_scalar__16PlayerScaleStateFv
 #undef set_stat_scale__10TObjPlayerFPvf
 
 #define get_player_by_client_id ((s32 (*)(u16))get_player_by_client_id)
@@ -815,9 +815,9 @@ void handle_6x88_restore_shrunken_player(const PlayerRestoreSizePacket* input) {
 namespace accessors {
 extern "C" {
 void update_player_scale_camera(PlayerScaleState *state) {
-  f32 z = lbl_805DC34C * ((f32 (*)(PlayerScaleState*))get_stat_f32__8TItemMagFv)(state);
-  TObjPlayer__sub_801C6FE0(state->camera_position, lbl_805DC32C, lbl_805DC344 * (lbl_805DC348 * ((f32 (*)(PlayerScaleState*))get_stat_f32__8TItemMagFv)(state)), z);
-  TObjPlayer__sub_801C6FE0(state->camera_target, lbl_805DC32C, lbl_805DC350 * ((f32 (*)(PlayerScaleState*))get_stat_f32__8TItemMagFv)(state), lbl_805DC354);
+  f32 z = lbl_805DC34C * ((f32 (*)(PlayerScaleState*))get_scalar__16PlayerScaleStateFv)(state);
+  TObjPlayer__sub_801C6FE0(state->camera_position, lbl_805DC32C, lbl_805DC344 * (lbl_805DC348 * ((f32 (*)(PlayerScaleState*))get_scalar__16PlayerScaleStateFv)(state)), z);
+  TObjPlayer__sub_801C6FE0(state->camera_target, lbl_805DC32C, lbl_805DC350 * ((f32 (*)(PlayerScaleState*))get_scalar__16PlayerScaleStateFv)(state), lbl_805DC354);
   request_follow_camera_offsets(((f32* (*)(f32*))TObjPlayer__sub_801C6FDC)(state->camera_target), ((f32* (*)(f32*))TObjPlayer__sub_801C6FDC)(state->camera_position), 0xFFFF);
 }
 
@@ -855,8 +855,8 @@ f32 apply_stat_multipliers__10TObjPlayerFiif(s32 arg0, s32 arg1, f32 farg0) {
         var_f31 *= lbl_805DC340;
     }
     ((s32 (*)(s32, f32))TObjPlayer__sub_801C6FCC)(arg0, var_f31);
-    if (((TItemMag *)(arg1 + 0x5B0))->check_state_flag_1() != 0) {
-        var_f31 *= get_stat_f32__8TItemMagFv(arg1 + 0x5B0);
+    if (((PlayerScaleState *)(arg1  + 0x5B0))->is_scaled() != 0) {
+        var_f31 *= get_scalar__16PlayerScaleStateFv(arg1 + 0x5B0);
     }
     return var_f31;
 }

@@ -13,6 +13,9 @@ struct TItemData {
     static s32 is_wrapped(void *data);
     static s32 is_rare_item(void *data);
     static s32 is_custom_name_srank(void *data);
+    // Packs a mag's MagStats into its item data, and unpacks them.
+    static void serialize_mag(void *item, void *mag);
+    static void deserialize_mag(void *item, void *mag);
 
 
     union {
@@ -68,15 +71,10 @@ struct TItemData {
     static u8 is_item_usable(s32 arg0, u8 *arg1);
     int test_flag3();
     int get_item_field_2();
-    void*initialize_mag_data();
     void add_quantity(s32 arg1);
     void adjust_count(s32 arg1);
     static void add_stat_ptr(s16 *arg0, s32 arg1);
     void add_bonus(s16 arg1);
-    s16 get_mag_mind_level();
-    s16 get_stat_percent();
-    s16 get_level();
-    s16 get_percent();
     void update_player_field();
     void set_present_color(s8 color);
     s32 get_type_nibble();
@@ -95,6 +93,8 @@ struct TItemData {
 };
 
 extern "C" {
+// The ItemPMT record for an item's type bytes, NULL for none.
+void *lookup_item_pmt_record(u8 *item);
 }
 
 #include <stddef.h>
