@@ -10,7 +10,7 @@ struct TObjEnemy : public TObjChara {
     void send_6x0A_enemy_state(void *);
     s32 bind_enemy_combat_stats(u8 *, u8 *, u8 *);
     void set_param(s32);
-    f32 enemy_wander_home(s32, f32, f32, f32);
+    f32 enemy_wander_home(f32 speed, f32 range_x, f32 range_z, s32 turn_speed);
     virtual void render_shadows();
     void render_world_model();
     s32 send_entity_set_flags();
@@ -27,10 +27,12 @@ struct TObjEnemy : public TObjChara {
     virtual void apply_set_data(void *);
     virtual void clear_lobby_object_state();
     virtual s32 vfunc_74(s32);
-    s32 exchange_object_state(s32, s16);
+    s32 exchange_object_state(void *state, s16 operation);
     void sub_8002AE64();
     virtual const char *get_name();
     TObjEnemy* groupRoot();
+    s32 has_group();
+    void link_last_group_child(TObjEnemy *source, TObjEnemy *destination);
     u32 subtype;
     u16 targetId;
     s16 resetTimer;

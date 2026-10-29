@@ -495,7 +495,7 @@ void TBoss4Zako::run_task() {
         if (((TBoss4Zako *)self)->sub_8005D698() != 0) {
             if (self->m_3a8 != 0) {
                 self->m_384->flags |= 1;
-                ((TObjPlayer *)self)->update_collisions();
+                ((TObjCollidable *)self)->update_collisions();
                 submit_cursor_candidate(self, -1);
                 minimap_render_dot(self->m_2fc, -0x5DB4, 1, 0);
             } else {
@@ -803,7 +803,7 @@ void run_task__9TBoss4UroFv(TBoss4Uro *self) {
         ((TBoss4Zako *)self)->apply_contact_damage();
         ((TObjEnemy *)self)->update_prev_position();
         if (((TBoss4Zako *)self)->sub_8005D698() != 0) {
-            ((TObjPlayer *)self)->update_collisions();
+            ((TObjCollidable *)self)->update_collisions();
             submit_cursor_candidate(self, -1);
             minimap_render_dot(self->f2FC, -0x5DB4, 1, 0);
         }
@@ -1016,7 +1016,7 @@ void TBoss4Zako__sub_8005BC4C(TBoss4Bishi *self) {
         ((TBoss4Zako *)self)->apply_contact_damage();
         ((TObjEnemy *)self)->update_prev_position();
         if (((TBoss4Zako *)self)->sub_8005D698() != 0) {
-            ((TObjPlayer *)self)->update_collisions();
+            ((TObjCollidable *)self)->update_collisions();
             submit_cursor_candidate(self, -1);
             minimap_render_dot(self->f2FC, -0x5DB4, 1, 0);
         }

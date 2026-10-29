@@ -185,7 +185,7 @@ void TObjEneSlime::run_task() {
     if ((TObjPlayer::check_demo_mode() == 0) && (has_no_active_slot(this) != 0)) {
         sp8 = 0x800;
         send_6x0A_enemy_state(&sp8);
-        exchange_object_state((s32)&sp8, (s16)0);
+        exchange_object_state(&sp8, (s16)0);
         ((VObj_800EBB18_800EB9F0 *)this)->m77(&sp8);
         send_entity_set_flags();
         queue_destruction__7TObjectFv(this);

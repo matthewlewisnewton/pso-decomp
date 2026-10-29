@@ -172,13 +172,13 @@ extern const f32 TObjEneMe3SinowZoa__data_805DF31C;
 s32 select_enemy_destination(void *, Vec_80316C3C, int);
 s32 copy_position_if_valid__10TObjPlayerFii(void *, Vec_80316C3C);
 s32 enemy_turn_toward_dest(void *, s32);
-void enemy_set_heading_velocity(void *, s32, f32);
+void enemy_set_heading_velocity(f32 speed, TObjEnemy *enemy, s32 heading);
 }
 void print_float_padded(s32 arg0, s32 prec, f32 val);
 void move_with_wall_slide(u8 *arg0);
 extern "C" {
 void subtract_vector(void *, void *);
-s32 update_angle__10TObjPlayerFlPv(void *, s32, void *);
+s32 turn_toward_direction__9TObjCharaFlP3Vec(void *, s32, void *);
 s32 push_matrix_from(void *);
 s32 matrix_mult_vec(int, Vec_80316C3C, void *);
 void create__11TTecRaBartaFPvPvPvPv(void *, void *, void *, s32);
@@ -211,12 +211,12 @@ inline s32 seek_80316C3C(Obj_80316C3C *arg0, Vec_80316C3C *diff) {
     s32 angle;
     if (select_enemy_destination(arg0, arg0->dest, 1) != 0) {
         angle = approach_80316C3C(arg0);
-        enemy_set_heading_velocity(arg0, arg0->rotY, arg0->move->speed);
+        enemy_set_heading_velocity(arg0->move->speed, (TObjEnemy *)(arg0), arg0->rotY);
         move_with_wall_slide((u8 *)arg0);
     } else {
         VecCopy((Vec *)diff, (const Vec *)&arg0->dest);
         subtract_vector(diff, &arg0->cur);
-        angle = update_angle__10TObjPlayerFlPv(arg0, arg0->move->turn, diff);
+        angle = turn_toward_direction__9TObjCharaFlP3Vec(arg0, arg0->move->turn, diff);
     }
     return angle;
 }
@@ -338,7 +338,7 @@ void TObjEneMe3SinowZoa__sub_80316C3C(Obj_80316C3C *arg0, s32 arg1) {
                 if (arg0->hasDest != 0) {
                     VecCopy((Vec *)&diff, (const Vec *)&arg0->dest);
                     subtract_vector(&diff, &arg0->cur);
-                    angle = update_angle__10TObjPlayerFlPv(arg0, arg0->move->turn, &diff);
+                    angle = turn_toward_direction__9TObjCharaFlP3Vec(arg0, arg0->move->turn, &diff);
                 } else {
                     angle = arg0->stat->range;
                 }
@@ -375,7 +375,7 @@ void TObjEneMe3SinowZoa__sub_80316C3C(Obj_80316C3C *arg0, s32 arg1) {
         }
         break;
     }
-    ((TObjPlayer *)arg0)->update_collisions();
+    ((TObjCollidable *)arg0)->update_collisions();
 }
 #pragma pop
 

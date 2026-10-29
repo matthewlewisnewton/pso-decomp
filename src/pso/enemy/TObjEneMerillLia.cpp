@@ -472,7 +472,7 @@ void vfunc_94__16TObjEneMerillLiaFv(u8 *arg0);
 extern const f32 lbl_805DA2EC;
 extern const f32 lbl_805DA334;
 extern const f32 lbl_805DA338;
-s32 copy_position__20TBoss3VoloptHiraisinFv(void *);
+s32 refresh_center_from_body__9TObjCharaFv(void *);
 s32 get_current_floor();
 f32 xz_distance_squared(void *, void *);
 void *get_player_by_client_id(s32 i);
@@ -533,10 +533,8 @@ u32 csnVector(void *, void *, s32);
 f32 normalize_vector(void *);
 extern const f32 lbl_805DA318;
 void beast_update_group_chase__16TObjEneMerillLiaFv(Obj_800D6110 *arg0);
-void enemy_wander_home__9TObjEnemyFlfff(void *, s32, f32, f32, f32);
 f32 fabs_float(f32);
 f64 atan2_float(f32, f32);
-void link_chain_nodes__10TObjPlayerFPvPvPv(void *, void *, void *);
 s32 approach_angle_limited(s32, s32, s32);
 s32 project_actor_to_ground(void *, void *, s32);
 s32 subtract_vector(void *, void *);
@@ -1091,7 +1089,7 @@ s32 TObjEneMerillLia::update_emerge_state(void *ov) {
         *(s16 *)((s8 *)arg0 + 0xB8) = 1;
         break;
     }
-    ((TObjPlayer *)arg0)->update_collisions();
+    ((TObjCollidable *)arg0)->update_collisions();
     ((TObjPlayer *)arg0)->update_enemy_collision_flags();
     minimap_render_dot(arg0 + 0x38, -0x5DB4, 1, 0);
 }
@@ -1151,7 +1149,7 @@ s32 TObjEneMerillLia::update_kafun_attack(void *p) {
         }
         break;
     }
-    ((TObjPlayer *)arg0)->update_collisions();
+    ((TObjCollidable *)arg0)->update_collisions();
     ((TObjPlayer *)arg0)->update_enemy_collision_flags();
     minimap_render_dot(arg0 + 0x38, -0x5DB4, 1, 0);
 }
@@ -1183,7 +1181,7 @@ void TObjEneMerillLia__sub_800D59E4(u8 *arg0) {
         *(f32 *)((s8 *)arg0 + 0x310) = TObjEneMerillLia__data_805DA300;
         *(f32 *)((s8 *)arg0 + 0x308) = TObjEneMerillLia__data_805DA300;
     }
-    ((TObjPlayer *)arg0)->update_collisions();
+    ((TObjCollidable *)arg0)->update_collisions();
     ((TObjPlayer *)arg0)->update_enemy_collision_flags();
     if (objInBand((GameObj *)arg0, TObjEneMerillLia__data_805DA300) != 0) {
         ((TObjEneMerillLia *)arg0)->vfunc_97();
@@ -1209,7 +1207,7 @@ void TObjEneMerillLia__sub_800D5BCC(u8 *arg0) {
     if (o->state != 1) {
         o->state = 1;
         ((TUnk_80493450 *)o)->link_into_group_chain();
-        o->f378 = ((TObjPlayer *)o)->is_action_available();
+        o->f378 = ((TObjEnemy *)o)->has_group();
     }
     o->count = ((TUnk_80493450 *)o)->countChildren();
     {
@@ -1217,11 +1215,11 @@ void TObjEneMerillLia__sub_800D5BCC(u8 *arg0) {
         if (p != NULL) {
             s32 diff = p->count - o->count;
             if (diff > 1) {
-                link_chain_nodes__10TObjPlayerFPvPvPv(o, p, o);
+                ((TObjEnemy *)o)->link_last_group_child((TObjEnemy *)p, (TObjEnemy *)o);
                 o->count++;
                 p->count--;
             } else if (diff < -1) {
-                link_chain_nodes__10TObjPlayerFPvPvPv(o, o, p);
+                ((TObjEnemy *)o)->link_last_group_child((TObjEnemy *)o, (TObjEnemy *)p);
                 o->count--;
                 p->count++;
             }
@@ -1301,7 +1299,7 @@ void TObjEneMerillLia__sub_800D5BCC(u8 *arg0) {
         f32 w;
         o->fB8 = 2;
         w = o->f358;
-        ((void (*)(void *, f32, f32, f32, s32))enemy_wander_home__9TObjEnemyFlfff)(o, o->param->speed, w, w, o->param->turn);
+        ((TObjEnemy *)(o))->enemy_wander_home(o->param->speed, w, w, o->param->turn);
     } else {
         ((TObjEneMerillLia *)o)->reset_state_clear_status();
     }
@@ -1344,13 +1342,13 @@ void TObjEneMerillLia::beast_update_group_chase() {
                 Vec_800D6110 b = arg0->f2a8->p2fc;
                 dist = enemy_backstep_from_point(arg0, &b, arg0->f3d4);
             }
-            ((TObjPlayer *)arg0)->update_angle(((s32 *)arg0->f350)[2], arg0->ang308);
+            ((TObjChara *)arg0)->turn_toward_direction(((s32 *)arg0->f350)[2], (Vec *)(arg0->ang308));
             arg0->f374--;
             if (dist < (arg0->f398 + arg0->model->radius) * (arg0->f398 + arg0->model->radius) || arg0->f374 < 0) {
                 arg0->f328 = 2;
                 arg0->f374 = 0;
             }
-            ((TObjPlayer *)arg0)->update_collisions();
+            ((TObjCollidable *)arg0)->update_collisions();
             ((TObjPlayer *)arg0)->update_enemy_collision_flags();
             if (arg0->model->flags & 0x380000) {
                 arg0->f328 = 2;
@@ -1408,7 +1406,7 @@ void TObjEneMerillLia::beast_update_group_chase() {
         }
         break;
     }
-    ((TObjPlayer *)arg0)->update_collisions();
+    ((TObjCollidable *)arg0)->update_collisions();
     ((TObjPlayer *)arg0)->update_enemy_collision_flags();
     minimap_render_dot(&arg0->pos, -0x5DB4, 1, 0);
 }
@@ -1493,7 +1491,7 @@ void TObjEneMerillLia::beast_update_approach() {
         }
         break;
     }
-    ((TObjPlayer *)arg0)->update_collisions();
+    ((TObjCollidable *)arg0)->update_collisions();
     ((TObjPlayer *)arg0)->update_enemy_collision_flags();
     minimap_render_dot((u8 *)&this->position, -0x5DB4, 1, 0);
     ((TObjBase *)arg0)->obj_clearFlags30(0x200000);
@@ -1660,7 +1658,7 @@ void TObjEneMerillLia::run_task() {
     }
   }
   this->update_prev_position();
-  copy_position__20TBoss3VoloptHiraisinFv((void *) ((u8 *)this));
+  refresh_center_from_body__9TObjCharaFv((void *) ((u8 *)this));
   submit_cursor_candidate((void *) this, -1);
   this->m_2b4 = (f32) ((this->m_2b4) + TObjEneMerillLia__data_805DA2F4);
 }
@@ -1801,7 +1799,7 @@ void *TObjEneMerillLia__ct(void *arg0v, void *arg1, void *arg2) {
     *(u8 **)((s8 *)arg0 + 0x350) = (u8 *) lbl_80494650 + *(s32 *)((s8 *)arg0 + 0x334) * 0x1C;
     *(s16 *)((s8 *)arg0 + 0x33E) = *(s16 *)((s8 *)arg0 + 0x32C);
     ((TObjEnemy *)arg0)->update_prev_position();
-    copy_position__20TBoss3VoloptHiraisinFv(arg0);
+    refresh_center_from_body__9TObjCharaFv(arg0);
     ((TObjPlayer *)arg0)->register_object_by_id();
     *(s32 *)((s8 *)arg0 + 0x2AC) = lbl_805DA340 * (lbl_805DA344 * random_ratio__9TObjCharaFv(arg0));
     *(s16 *)((s8 *)arg0 + 0x33A) = 0xF;

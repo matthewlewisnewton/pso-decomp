@@ -1269,7 +1269,7 @@ void TBoss6Mag::run_task() {
         ((TBoss6Mag *)arg0)->update_motion_playback();
         ((TObjPlayer *)arg0)->save_position();
         if ((s32) *(s32 *)((s8 *)arg0 + 0x388) != 0) {
-            ((TObjPlayer *)arg0)->update_collisions();
+            ((TObjCollidable *)arg0)->update_collisions();
             submit_cursor_candidate(arg0, -1);
         }
         ((TBoss6Rock *)(arg0 + 0x38))->break_rocks_in_radius((f32) (1e+01f));
@@ -1312,7 +1312,6 @@ struct Key_80330724 { s32 a; s16 b; s16 c; s32 d; s32 e; };
 
 extern "C" {
 void __ct__9TObjEnemyFP7TObject(void *, s32, void *);
-s32 exchange_object_state__9TObjEnemyFls(void *, Key_80330724 *, s32);
 void init_collision_body_parts(void *, void *, s32);
 f32 *dispatch_shared_handler_a__6TLobbyFl(int);
 s32 TObjFish__sub_800E3124(u8 *list, s32 vecs);
@@ -1332,10 +1331,10 @@ u8 *TBoss6Mag__ct(u8 *arg0, s32 arg1, u8 *arg2) {
     *(s32 *)((s8 *)arg0 + 0x384) = *(s32 *)((s8 *)arg2 + 0x54);
     TBoss6Type2__instance_slots[*(s32 *)((s8 *)arg0 + 0x384)] = arg0;
     ((TBoss6Mag *)arg0)->apply_set_data(arg2);
-    if (exchange_object_state__9TObjEnemyFls(arg0, &key, 1) != 0) {
+    if (((TObjEnemy *)(arg0))->exchange_object_state(&key, 1) != 0) {
         key.a = 0;
         key.c = 0;
-        exchange_object_state__9TObjEnemyFls(arg0, &key, 0);
+        ((TObjEnemy *)(arg0))->exchange_object_state(&key, 0);
     }
     *(s32 *)((s8 *)arg0 + 0x374) = TObjFish::get_fish_count();
     *(s32 *)((s8 *)arg0 + 0x37C) = 0;

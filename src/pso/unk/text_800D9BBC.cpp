@@ -1,7 +1,7 @@
 #include "types.h"
 #include "pso/system/vector.h"
 #include "pso/enemy/TObjEneNanoDrago.h"
-#include "pso/enemy/TObjEneMe1GiGue.h"
+#include "pso/enemy/TObjEnemyCustom.h"
 
 extern "C" {
 s32 project_actor_to_ground(void *, void *, s32);
@@ -19,7 +19,7 @@ void TObjEneNanoDrago::sub_800D9BBC() {
     }
     if ((s32) this->next_action == 7) {
         this->m_388 = (s32) (temp_r4 & 0xFFFFFFFE);
-        ((TObjEneMe1GiGue *)arg0)->update_if_active(0);
+        ((TObjEnemyCustom *)arg0)->update_if_active(0);
     }
 }
 #pragma pop
