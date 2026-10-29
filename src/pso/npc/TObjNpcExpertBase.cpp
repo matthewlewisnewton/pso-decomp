@@ -6,6 +6,19 @@
 #include "pso/npc/TObjNpcLappy.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
+#include "pso/system/BmlResourceDescriptor.h"
+
+#pragma readonly_strings on
+
+extern "C" {
+extern const char *bm_n_hakase_i_body_motion_names[1];
+extern const char *bm_n_hakase_i_body_model_names[2];
+const char *bm_n_hakase_i_body_motion_names[1] = { NULL };
+__declspec(section ".data") const char *bm_n_hakase_i_body_model_names[2] = { "n_hakase_i_body.nj", NULL };
+BmlResourceDescriptor bm_n_hakase_i_body_resource_descriptor = { "bm_n_hakase_i_body.bml", bm_n_hakase_i_body_model_names, bm_n_hakase_i_body_motion_names, 1, 0 };
+const char *TObjNpcExpertBase__name = "TObjNpcExpertBase";
+u32 TObjNpcExpertBase__shared_resource;
+}
 
 struct RecoveredGlobal_80149B0C_lbl_804A84B8 { s32 value; u8 remaining[0xC]; };
 typedef char RecoveredGlobal_80149B0C_lbl_804A84B8_size[sizeof(RecoveredGlobal_80149B0C_lbl_804A84B8) == 0x10 ? 1 : -1];
@@ -17,10 +30,7 @@ struct RecoveredGlobal_80149BB4___vt__17TObjNpcExpertBase {
 
 extern "C" {
 u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
-extern RecoveredGlobal_80149B0C_lbl_804A84B8 bm_n_hakase_i_body_resource_descriptor;
-extern u32 TObjNpcExpertBase__shared_resource;
 extern s32 __vt__17TObjNpcExpertBase[];
-extern s32 TObjNpcExpertBase__name;
 void TLobby__sub_8001FE7C(void*, int);
 void __dl__7TObjectFPv(void *);
 
@@ -37,7 +47,7 @@ void TObjNpcExpertBase::load_shared_resource() {
     temp_r3 = (int)::operator new(0x440);
     var_r0 = temp_r3;
     if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &bm_n_hakase_i_body_resource_descriptor.value, 0, 0, 0));
+        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &bm_n_hakase_i_body_resource_descriptor, 0, 0, 0));
     }
     (*(s32 *)&TObjNpcExpertBase__shared_resource) = var_r0;
 }

@@ -9,6 +9,13 @@
 #include "pso/misc/TOKey.h"
 #include "pso/player/TObjPlayer.h"
 
+#pragma readonly_strings on
+
+extern "C" {
+const char *lbl_805D44B8 = "TObjParticleLobby";
+}
+
+
 struct RecoveredGlobal_80369ADC___vt__17TObjParticleLobby {
     s32 value;
     u8 remaining[0x34];
@@ -20,7 +27,7 @@ extern "C" {
 void *create_particle_emitter(void *pos, s32 id);
 s32 init_map_object_base(void *, void *);
 extern s32 __vt__17TObjParticleLobby[];
-extern s32 lbl_805D44B8;
+extern const char *lbl_805D44B8;
 void set_flags__11TBoss4Type2FUl(void *, u16);
 void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
@@ -209,7 +216,7 @@ typedef char RecoveredGlobal_80369ADC___vt__17TObjParticleLobby_size[sizeof(Reco
 u8 *TObjParticleLobby__ct(u8 *particle_lobby, s32 arg1, s32 arg2) {
     init_map_object_base((void *)particle_lobby, (void *)arg1);
     *(s32 **)((s8 *)particle_lobby + 0x18) = &(*(RecoveredGlobal_80369ADC___vt__17TObjParticleLobby *)&__vt__17TObjParticleLobby).value;
-    *(s32 *)((s8 *)particle_lobby + 0) = (s32) lbl_805D44B8;
+    *(s32 *)((s8 *)particle_lobby + 0) = (s32) ((s32)lbl_805D44B8);
     ((TObjParticleLobby *)(particle_lobby))->apply_object_set_data((void *)arg2);
     ((TObjParticleLobby *)particle_lobby)->m_d4 = (s32)create_particle_emitter((particle_lobby + 0x38), 1);
     ((TObjParticleLobby *)particle_lobby)->setup_emitter();

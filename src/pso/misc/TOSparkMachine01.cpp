@@ -6,6 +6,20 @@
 #include "pso/TParticleCtrl.h"
 #include "pso/object/TObjFish.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
+#include "pso/system/BmlResourceDescriptor.h"
+
+#pragma readonly_strings on
+
+extern "C" {
+extern const char *bm_fe_obj_tank_hikari_motion_names[1];
+extern const char *bm_fe_obj_tank_hikari_model_names[2];
+const char *bm_fe_obj_tank_hikari_motion_names[1] = { NULL };
+__declspec(section ".data") const char *bm_fe_obj_tank_hikari_model_names[2] = { "fe_obj_tank_hikari.gj", NULL };
+BmlResourceDescriptor bm_fe_obj_tank_hikari_resource_descriptor = { "bm_fe_obj_tank_hikari.bml", bm_fe_obj_tank_hikari_model_names, bm_fe_obj_tank_hikari_motion_names, 1, 0 };
+const char *lbl_805D3174 = "TOSparkMachine01";
+u32 TOSparkMachine01__static_resource;
+}
+
 
 struct RecoveredGlobal_80177330_lbl_804B43F0 { s32 value; u8 remaining[0xC]; };
 typedef char RecoveredGlobal_80177330_lbl_804B43F0_size[sizeof(RecoveredGlobal_80177330_lbl_804B43F0) == 0x10 ? 1 : -1];
@@ -72,19 +86,14 @@ struct Obj_801771F4 : VBase_801771F4 {
 };
 
 extern "C" {
-extern const f32 TOSparkMachine01__data_805DB9EC;
 u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
-extern RecoveredGlobal_80177330_lbl_804B43F0 bm_fe_obj_tank_hikari_resource_descriptor;
+extern BmlResourceDescriptor bm_fe_obj_tank_hikari_resource_descriptor;
 extern u32 TOSparkMachine01__static_resource;
 void __ct__8TObjBaseFP7TObject(void *, s32);
 extern s32 __vt__16TOSparkMachine01[];
-extern s32 lbl_805D3174;
+extern const char *lbl_805D3174;
 extern s32 tl_05;
-extern const f32 lbl_805DB9F0;
-extern const f32 lbl_805DB9F4;
-extern const f32 lbl_805DB9F8;
 s32 rand(void);
-extern const f32 lbl_805DB9E8;
 void begin_effect_render__13TParticleCtrlFv(void *);
 void rotate_matrix_y(int, int);
 void push_matrix();
@@ -98,16 +107,16 @@ void TOSparkMachine01::update_spark_toggle(s32 i) {
     switch (self->on[i]) {
     case 1:
         self->timer[i] += self->speed;
-        if (lbl_805DB9E8 * (f32)rand() < self->timer[i]) {
+        if (0.000030517578f * (f32)rand() < self->timer[i]) {
             self->on[i] = 0;
-            self->timer[i] = TOSparkMachine01__data_805DB9EC;
+            self->timer[i] = 0.0f;
         }
         break;
     default:
         self->timer[i] += self->speed;
-        if (lbl_805DB9E8 * (f32)rand() < self->timer[i]) {
+        if (0.000030517578f * (f32)rand() < self->timer[i]) {
             self->on[i] = 1;
-            self->timer[i] = TOSparkMachine01__data_805DB9EC;
+            self->timer[i] = 0.0f;
         }
         break;
     }
@@ -115,7 +124,7 @@ void TOSparkMachine01::update_spark_toggle(s32 i) {
 
 void TOSparkMachine01::run_task() {
     s32 var_r31;
-    if (TOSparkMachine01__data_805DB9EC < this->scale.y) {
+    if (0.0f < this->scale.y) {
         var_r31 = 0;
         do {
             update_spark_toggle(var_r31);
@@ -179,7 +188,7 @@ void TOSparkMachine01::load_static_resource() {
     temp_r3 = (int)::operator new(0x440);
     var_r0 = temp_r3;
     if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &bm_fe_obj_tank_hikari_resource_descriptor.value, 0, 0, 0));
+        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &bm_fe_obj_tank_hikari_resource_descriptor, 0, 0, 0));
     }
     (*(s32 *)&TOSparkMachine01__static_resource) = var_r0;
 }
@@ -194,18 +203,18 @@ void *TOSparkMachine01__ct(void *arg0, void *arg1) {
     s32 i;
     __ct__8TObjBaseFP7TObject(self, tl_05);
     *(void **)((u8 *)self + 0x18) = ((s32 *)&__vt__16TOSparkMachine01);
-    *(s32 *)self = lbl_805D3174;
+    *(s32 *)self = ((s32)lbl_805D3174);
     self->m5(arg1);
     self->unk34 = ((Res_801773D8 *)TOSparkMachine01__static_resource)->model->a;
     self->unk24 = ((Res_801773D8 *)TOSparkMachine01__static_resource)->model->b;
-    self->unka8 = lbl_805DB9F0;
-    self->unkac = lbl_805DB9F4;
+    self->unka8 = 500.0f;
+    self->unkac = 40.0f;
     self->flags |= 0x40000000;
     for (i = 0; i < 4; i++) {
-        self->timer[i] = TOSparkMachine01__data_805DB9EC;
+        self->timer[i] = 0.0f;
         self->on[i] = 0;
     }
-    self->speed = lbl_805DB9F8 + self->unk68;
+    self->speed = -0.98f + self->unk68;
     return self;
 }
 

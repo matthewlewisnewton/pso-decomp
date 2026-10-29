@@ -503,6 +503,7 @@ Row_80135208 game_join_player_records[4];
 u32 lobby_join_message_buffer[64];
 char player_joined_message[0x80];
 char lobby_idle_timeout_text_buffer[0x100];
+u8 lobby_scroll_text_buffer[0x1000];
 
 void TLobby::send_game_character() {
     A_80134E30 a;

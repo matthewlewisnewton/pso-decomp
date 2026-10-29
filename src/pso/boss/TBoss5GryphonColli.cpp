@@ -11,10 +11,15 @@
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/misc/TLobby.h"
 #include "pso/player/TObjPlayer.h"
+
+#pragma readonly_strings on
 extern "C" void *__ct__14TObjCollidableFP7TObject(void *, s32);
 
 extern "C" {
 s32 gryphon_demo_collision_body_desc[11] = { 0, 0, 0, 0x3F800000, 0, 0, 0x8003, 0, 0, 0, 0 };
+
+const char *lbl_805D2808 = "TBoss5GryphonColli_C";
+const char *lbl_805D280C = "TBoss5GryphonColli";
 
 int TBoss5GryphonDemo::get_state() { return ((int (*)(void*))TBoss5GryphonDemo__sub_8006626C)(*(void**)((char*)this + 0x1c)); }
 void TBoss5GryphonDemo::draw_linked_model(void* position, s32 yaw) { ((TBoss5GryphonDemo *)(((TBoss5GryphonColli*)this)->objects[0]))->draw_model(position, yaw); }
@@ -46,7 +51,7 @@ struct RecoveredGlobal_800661E4___vt__18TBoss5GryphonColli {
 extern "C" {
 s32 __nw__7TObjectFUl(int);
 extern RecoveredGlobal_800661E4___vt__18TBoss5GryphonColli __vt__18TBoss5GryphonColli;
-extern s32 lbl_805D280C;
+extern const char *lbl_805D280C;
 
 typedef char RecoveredGlobal_800661E4___vt__18TBoss5GryphonColli_size[sizeof(RecoveredGlobal_800661E4___vt__18TBoss5GryphonColli) == 0x18 ? 1 : -1];
 u8 *TBoss5GryphonColli__ct(u8 *object, s32 arg1) {
@@ -58,7 +63,7 @@ u8 *TBoss5GryphonColli__ct(u8 *object, s32 arg1) {
     s32 var_r0;
     __ct__7TObjectFP7TObject((void *)object, (void *)arg1);
     *(s32 **)((s8 *)object + 0x18) = &__vt__18TBoss5GryphonColli.value;
-    *(s32 *)((s8 *)object + 0) = (s32) lbl_805D280C;
+    *(s32 *)((s8 *)object + 0) = (s32) ((s32)lbl_805D280C);
     stack.sp8 = 0.0f;
     stack.spC = 0.0f;
     stack.sp10 = 3e+01f;
@@ -105,7 +110,7 @@ u16 register_entity_by_id(void *ov);
 int refresh_collision_body_centers__14TObjCollidableFv(void*);
 extern s32 gryphon_demo_collision_body_desc[];
 extern s32 lbl_804886AC[];
-extern s32 lbl_805D2808;
+extern const char *lbl_805D2808;
 
 void TBoss5GryphonDemo__sub_8006626C(void* p);
 int matrix_mult_vec(void*, void*, void*);
@@ -159,7 +164,7 @@ TBoss5GryphonColli_C *TBoss5GryphonDemo__sub_800663DC(TBoss5GryphonColli_C *self
     s32 i;
     __ct__14TObjCollidableFP7TObject(self, arg1);
     obj->vt = lbl_804886AC;
-    obj->f0 = lbl_805D2808;
+    obj->f0 = ((s32)lbl_805D2808);
     obj->f1c = TLobby::alloc_actor_ids(0);
     VecCopy((Vec *)obj->posbuf, (const Vec *)arg3);
     obj->count = arg2;

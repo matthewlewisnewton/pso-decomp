@@ -7,6 +7,7 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/player/TObjChara.h"
 #include "pso/map/FloorArea.h"
+
 extern "C" void has_flag_0x800__9TObjCharaFv();
 extern "C" void test_flag30_512__9TObjCharaFv();
 extern "C" void test_flag_1000__9TObjCharaFv();
@@ -64,11 +65,6 @@ extern void *__vt__12TOMineIcon04[];
 extern s32 TOMineIcon04__name;
 extern s32 game_difficulty_selection;
 extern void *lbl_805D5A50;
-extern const f32 lbl_805DB8D8;
-extern const f32 lbl_805DB8DC;
-extern const f32 lbl_805DB8E0;
-extern const f32 lbl_805DB8E4;
-extern const f32 lbl_805DB8E8;
 void *TOMineIcon04__ct(void *arg0, void *arg1, void *arg2);
 int vfunc_82__12TOMineIcon04Fv(void* p);
 void vfunc_84__12TOMineIcon04Fv(void);
@@ -342,13 +338,13 @@ void *TOMineIcon04__ct(void *arg0, void *arg1, void *arg2) {
     if (self->f8C < 0) {
         self->f8C = 0;
     }
-    self->f358 = (f32)self->f84 * (lbl_805DB8DC * (f32)game_difficulty_selection + lbl_805DB8D8);
+    self->f358 = (f32)self->f84 * (2.0f * (f32)game_difficulty_selection + 1.0f);
     if (game_difficulty_selection == 3) {
-        self->f358 *= lbl_805DB8DC;
+        self->f358 *= 2.0f;
     }
     self->f354 = self->f88;
-    self->f34C = lbl_805DB8E4 * self->f68 + lbl_805DB8E0;
-    self->f350 = lbl_805DB8E4 * self->f6C + lbl_805DB8E8;
+    self->f34C = 0.5f * self->f68 + 60.0f;
+    self->f350 = 0.5f * self->f6C + 120.0f;
     ((TOMine *)self)->update_state();
     self->f35C = 0xFFFF;
     self->f30 |= 0x60000000;

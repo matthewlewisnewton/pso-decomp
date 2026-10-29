@@ -23,6 +23,18 @@ extern "C" void render__12TObjGrassWebFv();
 #include "pso/object/TObjFish.h"
 
 #include "pso/player/TObjPlayer.h"
+
+extern "C" {
+s32 lbl_805D5140;
+u32 TObjGrass__bml_resource;
+s32 grass_combat_stats_handle;
+s32 lbl_805D514C;
+s32 TObjGrass__render_node_index;
+u32 TObjGrass__resource_bundle;
+u32 lbl_805D5158;
+u32 lbl_805D515C;
+}
+
 #pragma readonly_strings on
 
 struct E_800BFB8C { s32 f0; s32 f4; s32 f8; s32 fc; };

@@ -15,6 +15,13 @@
 #include "pso/ui/TAdChrSelASlotGC.h"
 #include "pso/misc/TLobby_80207644.h"
 
+#pragma readonly_strings on
+
+extern "C" {
+const char *lbl_805D34A8 = "TObjLuker";
+}
+
+
 struct Win_801A0DB4 { u8 pad[4]; u16 flags; };
 
 struct Obj_801A0DB4 { u8 pad[0x90]; Win_801A0DB4 *wins[4]; };
@@ -86,7 +93,7 @@ void TWindow__close(u8 *arg0);
 extern u8 __vt__9TObjLuker[];
 Luker_801A16D8 *__dt__9TObjLukerFv(Luker_801A16D8 *arg0, s16 arg1);
 void __ct__8TObjBaseFP7TObject(void *, void *);
-extern s32 lbl_805D34A8;
+extern const char *lbl_805D34A8;
 void *TObjLuker__ct(void *arg0, void *arg1, void *arg2);
 f32 horizontal_distance_squared(void *, void *);
 s32 TWindowShortListCtrl__check_controller_button(void *, int);
@@ -197,7 +204,6 @@ s32 are_players_gathered_near(void *arg0, s32 *arg1, f32 range);
 void offset_point_toward_camera(u8 *arg0, u8 *arg1, f32 farg0);
 extern s32 local_client_id;
 extern s32 tl_07;
-extern const f32 lbl_805DC080;
 s32 are_players_gathered_near(void *arg0, s32 *arg1, f32 range) {
     s32 ret;
     s32 flag;
@@ -417,10 +423,10 @@ void TObjLuker::run_task() {
             switch (this->m_b0) {
             case 0:
                 sp8 = 0;
-                if (is_player_in_range__9TObjLukerFv((s32)((s32) arg0), lbl_805DC080) != 0) {
+                if (is_player_in_range__9TObjLukerFv((s32)((s32) arg0), 10.0f) != 0) {
                     flag = 0;
                     if (is_split_screen() != 0) {
-                        if (are_players_gathered_near((u8 *)&this->position, &sp8, lbl_805DC080) != 0) {
+                        if (are_players_gathered_near((u8 *)&this->position, &sp8, 10.0f) != 0) {
                             flag = 1;
                             this->m_aa = this->m_a8;
                         }
@@ -433,7 +439,7 @@ void TObjLuker::run_task() {
                     }
                     if (flag != 0) {
                         this->m_b0 = 1;
-                        offset_point_toward_camera((u8 *)&this->position, (u8 *)spC, (f32)lbl_805DC080);
+                        offset_point_toward_camera((u8 *)&this->position, (u8 *)spC, 10.0f);
                         spawn_particle_effect(spC, 0xB3);
                         p = PBC_801A1418(local_client_id);
                         if (p != NULL) {
@@ -495,7 +501,7 @@ void *TObjLuker__ct(void *arg0, void *parent, void *arg2) {
     s32 i;
     __ct__8TObjBaseFP7TObject(self, parent);
     self->f18 = __vt__9TObjLuker;
-    self->f0 = lbl_805D34A8;
+    self->f0 = ((s32)lbl_805D34A8);
     ((TObjBase *)self)->apply_object_set_data(arg2);
     self->fB0 = 0;
     self->fAA = 0xFFFF;
