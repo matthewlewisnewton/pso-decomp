@@ -59,7 +59,6 @@ struct TObjEnePanarms : public TObjEnemy {
     static s32 create_bara(s32 arg0, s32 arg1);
     static s32 create(s32 arg0);
     void init(void* a1);
-    int get_state_flag();
     void copy_target_state(void* a1);
     void fn_800DE2B0();
     void fn_800DE124();

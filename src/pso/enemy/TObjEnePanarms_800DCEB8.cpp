@@ -307,7 +307,7 @@ void TObjEnePanarms::update_separated_parts() {
         }
         if (temp_r0 < 0) {
             if ((TObjEnePanarms__sub_800DFB74((void *)this->m_3e4) != 0) && (TObjEnePanarms__sub_800DFB74((void *)this->m_3e8) != 0)) {
-                if ((((TObjEnePanarms *)(this->m_3e4))->get_state_flag() != 0) || (((TObjEnePanarms *)(this->m_3e8))->get_state_flag() != 0)) {
+                if ((((TObjEnePanBARA *)(this->m_3e4))->get_state_flag() != 0) || (((TObjEnePanBARA *)(this->m_3e8))->get_state_flag() != 0)) {
                     this->m_388 = -1;
                     return;
                 }

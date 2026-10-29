@@ -20,6 +20,7 @@ public:
     void calc_part_position(u8 *, s32 *);
 
     s32 fn_800DFB44();
+    int get_state_flag();
     void update_action_timer();
     void init_attack_state();
     void init_open_state();

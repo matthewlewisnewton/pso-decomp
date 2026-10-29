@@ -34,6 +34,6 @@ s32 TObjEnePanBARA::fn_800DFB44() {
     return state == 7 || state == 8;
 }
 
-int TObjEnePanarms::get_state_flag() { return (this->actorFlags >> 4) & 0x1; }
+int TObjEnePanBARA::get_state_flag() { return (this->actorFlags >> 4) & 0x1; }
 
 }
