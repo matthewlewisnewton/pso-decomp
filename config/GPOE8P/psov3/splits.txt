@@ -11874,8 +11874,10 @@ pso/player/TObjPlayer_80351748.cpp:
 
 pso/boss/TBoss5GryphonLightningWing.cpp:
 	.text       start:0x80351A2C end:0x80351E64
-	.rodata     start:0x80478E18 end:0x80478E20
+	.rodata     start:0x80478DF8 end:0x80478E20
 	.data       start:0x804F0E90 end:0x804F0EA8
+	.sdata      start:0x805D4368 end:0x805D4370
+	.sdata2     start:0x805DFED0 end:0x805DFEE0
 
 pso/misc/TLobby_80351E64.cpp:
 	.text       start:0x80351E64 end:0x803520D8
