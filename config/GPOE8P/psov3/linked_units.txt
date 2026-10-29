@@ -1301,6 +1301,7 @@ pso/misc/TODoorMachine02.cpp
 pso/misc/TODoorVS2Door01.cpp
 pso/misc/TODoorVoShip.cpp
 pso/misc/TODragonflyCave01.cpp
+pso/misc/TODragonflyMachine01.cpp
 pso/misc/TODummyKeyCave01.cpp
 pso/misc/TOExplosiveMachine01.cpp
 pso/misc/TOExplosiveMachine02.cpp

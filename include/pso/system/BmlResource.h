@@ -10,10 +10,16 @@ struct BmlModelEntry {
     s32 m_c;
 };
 
+struct AnimationMotion;
+struct BmlMotionEntry {
+    u32 unknown;
+    AnimationMotion *motion;
+};
+
 struct BmlResource {
     u8 m_0[0x42C];
     BmlModelEntry *models;
-    void *motions;
+    BmlMotionEntry *motions;
 };
 
 extern "C" s32 get_bml_model(BmlResource *resource, s32 index);

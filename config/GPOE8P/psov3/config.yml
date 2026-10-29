@@ -2025,6 +2025,7 @@ force_active:
   - __dt__20TBoss5GryphonTornadoFv
   - __dt__20TEffStarLight2D_BaseFv
   - __dt__20TItemReverseTechCtrlFv
+  - __dt__20TODragonflyMachine01Fv
   - __dt__20TOTrapChainSawDamageFv
   - __dt__20TObjBoss5PillarSmokeFv
   - __dt__20TObjChallenge4PRetryFv
@@ -2483,6 +2484,7 @@ force_active:
   - __vt__20TContainerAncient01R
   - __vt__20TEffStarLight2D_Base
   - __vt__20TItemReverseTechCtrl
+  - __vt__20TODragonflyMachine01
   - __vt__20TOTrapChainSawDamage
   - __vt__20TObjBoss5PillarSmoke
   - __vt__20TObjChallenge4PRetry
@@ -5205,6 +5207,7 @@ force_active:
   - init_zeroed_object__10TObjPlayerFv
   - initialize__13TUnk_804A05C8FP15TItemHeapObjectUsll
   - initialize__16TItemWeaponRifleFlPUc
+  - initialize__20TODragonflyMachine01FPv
   - initialize_battle__19TPlayerBattleCtrl4PFv
   - initialize_boss6_type2_appear_particle_origin__Fv
   - initialize_fmt1_materials__6TSceneFv
@@ -11567,6 +11570,7 @@ force_active:
   - render__20TBoss5GryphonTornadoFv
   - render__20TContainerAncient01RFv
   - render__20TEffStarLight2D_BaseFv
+  - render__20TODragonflyMachine01Fv
   - render__20TObjEneDarkGunCenterFv
   - render__20TObjLiveMonitorSmallFv
   - render__20TQuadSpriteSclColRotFv
@@ -11778,6 +11782,7 @@ force_active:
   - roll_shop_weapon_special
   - roll_technique_level__9TItemDropFv
   - roll_weapon_special__9TItemDropFiPvi
+  - rotate_animated_node__20TODragonflyMachine01Fv
   - rotate_heading_by_stick__11TCameraCtrlFv
   - rotate_title_background_quad__FlPUcPUclf
   - run_active_state__18TObjEneBalClawClawFv
@@ -12094,6 +12099,7 @@ force_active:
   - run_task__20TContainerAncient01RFv
   - run_task__20TEffStarLight2D_BaseFv
   - run_task__20TItemReverseTechCtrlFv
+  - run_task__20TODragonflyMachine01Fv
   - run_task__20TObjChallenge4PRetryFv
   - run_task__20TObjEneDarkGunCenterFv
   - run_task__20TObjLiveMonitorSmallFv
@@ -13789,6 +13795,7 @@ force_active:
   - update_web_attack__9TObjGrassFv
   - update_when_camera_active__13TObjWarnChimeFv
   - update_with_default_state__14TObjEneBm5WolfFv
+  - update_yaw_animation__20TODragonflyMachine01Fv
   - upload_font_glyph__FUsPv
   - upload_glyph_if_needed__20TWindowSubStatusDispFUsPUcPPv
   - use_combination_recipe__5TItemFv

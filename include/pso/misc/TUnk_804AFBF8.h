@@ -2,6 +2,7 @@
 #define PSO_MISC_TUNK_804AFBF8_H
 #include "types.h"
 #include "pso/object/TObjMotion.h"
+#include "pso/animation/ActorAnimationState.h"
 
 class TUnk_804AFBF8 : public TObjCollidable {
 public:
@@ -13,11 +14,11 @@ public:
     virtual void run_task();
     u32 m_ac;
     f32 m_b0;
-    u32 m_b4;
+    union { u32 m_b4; f32 animation_end_frame; };
     f32 m_b8;
-    u32 m_bc;
+    union { u32 m_bc; AnimationMotion *motion; };
     f32 m_c0;
-    u32 m_c4;
+    union { u32 m_c4; f32 model_radius; };
 };
 
 #endif
