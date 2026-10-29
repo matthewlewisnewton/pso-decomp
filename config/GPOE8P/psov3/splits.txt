@@ -735,8 +735,9 @@ pso/misc/TCameraCtrl.cpp:
 
 pso/misc/TCameraCtrl_8006B3D8.cpp:
 	.text       start:0x8006B3D8 end:0x8006BA68
-	.rodata     start:0x804383C0 end:0x804383D0
+	.rodata     start:0x804381E0 end:0x804383D0
 	.data       start:0x80488AD8 end:0x80488AF0
+	.sdata2     start:0x805D8FF8 end:0x805D9008
 
 pso/misc/TCameraCtrl_8006BA68.cpp:
 	.text       start:0x8006BA68 end:0x8006BCD8
