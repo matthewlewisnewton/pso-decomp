@@ -2026,20 +2026,12 @@ pso/enemy/TObjEnePanarmsAtkColli.cpp:
 	.text       start:0x800E31C4 end:0x800E3A58
 	.sdata2     start:0x805DA5A0 end:0x805DA5B8
 
-pso/enemy/TObjEneMe3ShinowaMirage.cpp:
-	.text       start:0x800E3A58 end:0x800E4490
-	.rodata     start:0x8043CFA0 end:0x8043CFA8
-
-pso/enemy/TObjEneMe3ShinowaReal.cpp:
-	.text       start:0x800E4490 end:0x800E47DC
-
 pso/enemy/TObjEneMe3Shinowa.cpp:
-	.text       start:0x800E47DC end:0x800E7A70
-	.data       start:0x80495BE0 end:0x80495F3C
-	.sdata2     start:0x805DA5E4 end:0x805DA634
-
-pso/enemy/TObjEneMe3ShinowaMirage_800E7A70.cpp:
-	.text       start:0x800E7A70 end:0x800E80A4
+	.text       start:0x800E3A58 end:0x800E80A4
+	.rodata     start:0x8043CFA0 end:0x8043CFA8
+	.data       start:0x80495BE0 end:0x804962F4
+	.bss        start:0x80500FC0 end:0x80501010
+	.sdata2     start:0x805DA5B8 end:0x805DA634
 
 pso/player/TObjPlayer_800E80A4.cpp:
 	.text       start:0x800E80A4 end:0x800E80C0

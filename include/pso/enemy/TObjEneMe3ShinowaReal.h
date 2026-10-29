@@ -5,6 +5,7 @@
 #include "pso/enemy/TObjEneMe3Shinowa.h"
 
 struct TObjEneMe3ShinowaReal : public TObjEneMe3Shinowa {
+    TObjEneMe3ShinowaReal(TObject *parent, void *set_data);
     virtual ~TObjEneMe3ShinowaReal();
     virtual void vfunc_114(s32);
     virtual void vfunc_116(s32);
@@ -18,7 +19,7 @@ struct TObjEneMe3ShinowaReal : public TObjEneMe3Shinowa {
     void try_spawn_mirages();
     void *create();
     static f32 get_random_float();
-    u8 unk_42c[8];
+    u16 mirage_ids[4];
 };
 
 typedef char TObjEneMe3ShinowaReal_size[sizeof(TObjEneMe3ShinowaReal) == 0x434 ? 1 : -1];
