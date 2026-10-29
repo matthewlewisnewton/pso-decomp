@@ -47,7 +47,6 @@ struct IV3_802CB824 { s32 x, y, z; };
 
 extern "C" {
 void __ct__15RenderFadeStateFv(void *);
-s32 copy_target_state__14TObjEnePanarmsFPv(void *, void *);
 void * __nw__7TObjectFUl(int);
 void TObjPlayer__sub_802CDEB4(void *, void *, u16, void *, s32, s32, u16);
 void TObjEneMe1GiGue__sub_802CB824(void *obj, s32 arg1);
@@ -878,7 +877,7 @@ s32 TObjEneMe1GiGue::remap_sound_id(void *obj, s32 id) {
     s32 area = get_current_floor_area();
     if (id == 0x3A344) return area == AREA_TOWER ? 0x40039E14 : id;
     if (id == 0x3A345) return area == AREA_TOWER ? 0x40039415 : id;
-    return ((s32 (*)(void *, s32))copy_target_state__14TObjEnePanarmsFPv)(obj, id);
+    return ((TObjEnemy *)(obj))->remap_sound_for_area((s32)(id));
 }
 
 void TObjEneMe1GiGue::apply_hit_shake(u32 arg1) {

@@ -63,7 +63,7 @@ void TObjEneBm3FlyNest__sub_800B318C(u8 *arg0, s32 arg1);
 s32 TObjEneBm3FlyNest__sub_800B3AC8(u8 *arg0);
 int TObjEneBm3FlyNest__sub_800B4158(void);
 void *__dt__26TObjEneBm3FlyNest_CarryFlyFv(void *arg0, s16 arg1);
-int copy_target_state__17TObjEneBm3FlyNestFPv(void *p);
+int copy_target_state__17TObjEneBm3FlyNestFPv(void *p, s32 sound_id);
 void dispatch_state__17TObjEneBm3FlyNestFiUii(s32 arg0, u32 arg1, s32 arg2);
 void handle_appear__17TObjEneBm3FlyNestFPvi(u8 *arg0, s32 arg1);
 void handle_attachment_sample__17TObjEneBm3FlyNestFi(s32 arg0);
