@@ -1,209 +1,193 @@
-#include "types.h"
-#include "pso/misc/TOTrapAncient01_80226534.h"
-#include "pso/system/GinjaMaterial.h"
-#include "pso/unk/text_803D96A8.h"
+#define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/misc/TOExplosiveMachine.h"
+#include "pso/misc/TOExplosiveMachine01.h"
+#include "pso/misc/TOExplosiveMachine02.h"
+#include "pso/misc/TOExplosiveMachine03.h"
+#include "pso/TMainTask.h"
+#include "pso/misc/TLobby.h"
+#include "pso/object/TObjChip.h"
 #include "pso/object/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/ui/TAdSinglePlyChrSelectGC.h"
-#include "pso/object/TObjMotion.h"
-
-struct Base1_80166568 { char pad[0x18]; };
-struct VObj1_80166568 : Base1_80166568 {
-    virtual void m0(); virtual void m1(); virtual void m2(); virtual void m3();
-    virtual void m4(); virtual void m5(); virtual void m6(); virtual void m7();
-    virtual s32 m8(f32, f32);
-};
-struct Base_A_801668cc_80166568 { char pad[0x18]; };
-struct V_A_801668cc_80166568 : Base_A_801668cc_80166568 {
-    virtual void f0();
-    virtual void f1(); virtual void f2(); virtual void f3();
-    virtual void f4(); virtual void f5(); virtual void f6();
-    virtual void f7(); virtual void f8(); virtual void f9();
-    virtual void f10(); virtual void f11(); virtual void f12();
-    virtual void f13();
-    virtual void m14();
-};
-
-struct RecoveredGlobal_80166614_lbl_804B1AA0 { s32 value; u8 remaining[0xC]; };
-typedef char RecoveredGlobal_80166614_lbl_804B1AA0_size[sizeof(RecoveredGlobal_80166614_lbl_804B1AA0) == 0x10 ? 1 : -1];
-
-struct O_80166664 { u8 pad[0x18]; void *vt; u8 pad1c[0x9C - 0x1C]; s32 a[2]; s32 b[2]; };
-
-struct O_801666E8 { s32 id; u8 pad4[0x14]; void *vt; u8 pad1c[0x68 - 0x1C]; f32 f68; u8 pad6c[0x90 - 0x6C]; f32 f90; f32 f94; f32 f98; s32 a[2]; s32 b[2]; };
-
-struct VBase_80166778 { char pad[0x18]; };
-
-struct VObj_80166778 : VBase_80166778 {
-    virtual void m0(); virtual void m1(); virtual void m2(); virtual void m3();
-    virtual void m4(); virtual void m5(); virtual void m6(); virtual void m7();
-    virtual void m8(); virtual void m9(); virtual void m10(); virtual void m11();
-    virtual s32 m12();
-};
-
-struct VBase_80166814 { char pad[0x18]; };
-
-struct VObj_80166814 : VBase_80166814 {
-    virtual void m0();
-    virtual void m1();
-    virtual void m2();
-    virtual void m3();
-    virtual void m4();
-    virtual void m5();
-    virtual void m6();
-    virtual void m7();
-    virtual void m8();
-    virtual void m9();
-    virtual void m10();
-    virtual void m11();
-    virtual void m12();
-    virtual s32 m13();
-};
+#include "pso/player/TObjPlayer_801AF2F0.h"
+#include "pso/system/BmlResourceDescriptor.h"
+#include "pso/system/GinjaMaterial.h"
+#include "pso/system/NinjaTypes.h"
+#include "pso/unk/text_80087278.h"
+#include "pso/unk/text_803D96A8.h"
 
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
-extern RecoveredGlobal_80166614_lbl_804B1AA0 explosive_machine_resource_desc;
-extern u32 explosive_machine_model_archive;
-void __dl__7TObjectFPv(void *);
-extern char __vt__18TOExplosiveMachine[];
-O_80166664 *__dt__18TOExplosiveMachineFv(O_80166664 *arg0, s16 arg1);
-void __ct__8TObjBaseFP7TObject(void *, s32);
-extern s32 TOExplosiveMachine__class_name;
-extern s32 tl_05;
-extern const f32 lbl_805DB5F0;
-extern const f32 lbl_805DB5F4;
-extern const f32 lbl_805DB5F8;
-O_801666E8 *TOExplosiveMachine__ct(O_801666E8 *arg0);
-s32 is_any_player_within_radius_xz(f32);
-u8 is_current_floor_switch_set(u16);
-extern const f32 lbl_805DB600;
-extern const f32 lbl_805DB604;
-void TLobby__sub_8001FE7C(void*, int);
-s32 post_translate_matrix(void *);
+void *load_resource_from_descriptor(void *, s32, BmlResourceDescriptor *, s32, s32, s32);
+void TLobby__sub_8001FE7C(void *, s32);
+f32 horizontal_distance_squared(const Vec *, const Vec *);
+s32 post_translate_matrix(const Vec *);
 s32 rotate_matrix_y(s32, s32);
 s32 push_matrix();
 
-void TOExplosiveMachine::explode() {
-    u8 *arg0 = (u8 *)this;
-    VObj1_80166568 *self = (VObj1_80166568 *)arg0;
-    if (self->m8(*(f32 *)&this->unk_90, this->m_94) != 0) {
+void *get_bml_model(void *, s32);
+s32 TObjFish__sub_8001EDB0(void *, s32);
+
+__declspec(section ".rodata") const char lbl_80441268[] = "fs_obj_bapipe.gj";
+__declspec(section ".rodata") const char lbl_8044127C[] = "fs_obj_bapipe_a.gj";
+__declspec(section ".rodata") const char lbl_80441290[] = "fs_obj_bapipe_b.gj";
+__declspec(section ".rodata") const char lbl_804412A4[] = "fs_obj_baswitch.gj";
+__declspec(section ".rodata") const char lbl_804412B8[] = "fs_obj_baswitch_a.gj";
+__declspec(section ".rodata") const char lbl_804412D0[] = "fs_obj_baswitch_b.gj";
+__declspec(section ".rodata") const char lbl_804412E8[] = "fs_obj_batank.gj";
+__declspec(section ".rodata") const char lbl_804412FC[] = "fs_obj_batank_a.gj";
+__declspec(section ".rodata") const char lbl_80441310[] = "fs_obj_batank_b.gj";
+__declspec(section ".rodata") const char lbl_80441324[] = "bm_o_explosive_machine.bml";
+__declspec(section ".rodata") const char lbl_80441340[] = "TOExplosiveMachine";
+__declspec(section ".rodata") const char lbl_80441354[] = "TOExplosiveMachine01";
+__declspec(section ".rodata") const char lbl_8044136C[] = "TOExplosiveMachine02";
+__declspec(section ".rodata") const char lbl_80441384[] = "TOExplosiveMachine03";
+
+const char *bm_o_explosive_machine_model_names[] = {
+    lbl_80441268, lbl_8044127C, lbl_80441290,
+    lbl_804412A4, lbl_804412B8, lbl_804412D0,
+    lbl_804412E8, lbl_804412FC, lbl_80441310, NULL
+};
+__declspec(section ".sdata") const char *bm_o_explosive_machine_motion_names[] = {NULL};
+BmlResourceDescriptor explosive_machine_resource_desc = {
+    lbl_80441324, bm_o_explosive_machine_model_names,
+    bm_o_explosive_machine_motion_names, 9, 0
+};
+const char *TOExplosiveMachine__class_name = lbl_80441340;
+const char *TOExplosiveMachine01__class_name = lbl_80441354;
+const char *TOExplosiveMachine02__class_name = lbl_8044136C;
+const char *TOExplosiveMachine03__class_name = lbl_80441384;
+void *explosive_machine_model_archive;
+
+}
+
+#pragma push
+#pragma defer_codegen on
+
+TOExplosiveMachine::TOExplosiveMachine() : TObjBase(tl_05) {
+    m_name = TOExplosiveMachine__class_name;
+    view_distance = 500.0f;
+    view_radius = 0.0f;
+    trigger_radius = 30.0f + scale.x;
+    for (s32 i = 0; i < 2; i++) {
+        debris_models[i] = NULL;
+        debris_textures[i] = 0;
+    }
+}
+
+TOExplosiveMachine::~TOExplosiveMachine() {
+    for (s32 i = 0; i < 2; i++) {
+        debris_models[i] = NULL;
+        debris_textures[i] = 0;
+    }
+}
+
+void TOExplosiveMachine::load_shared_resource() {
+    void *resource = ::operator new(0x440);
+    if (resource != NULL) {
+        resource = load_resource_from_descriptor(resource, 1, &explosive_machine_resource_desc, 0, 0, 0);
+    }
+    explosive_machine_model_archive = resource;
+}
+
+void TOExplosiveMachine::destroy_static_lobby() {
+    if (explosive_machine_model_archive != NULL) {
+        TLobby__sub_8001FE7C(explosive_machine_model_archive, 1);
+        explosive_machine_model_archive = NULL;
+    }
+}
+
+void TOExplosiveMachine::render() {
+    if (update_object_view_visibility(view_distance, view_radius) != 0) {
         push_matrix();
-        post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
-        TObjFish::set_global_param(this->texlist);
-        draw_ginja_object(this->model);
+        post_translate_matrix(&position);
+        rotate_matrix_y(0, rotation_y);
+        TObjFish::set_global_param(texlist);
+        draw_ginja_object(model);
         pop_matrix();
     }
 }
 
-void TOExplosiveMachine::destroy_static_lobby() {
-    if ((u32) explosive_machine_model_archive != 0U) {
-        TLobby__sub_8001FE7C((void*)explosive_machine_model_archive, 1);
-        explosive_machine_model_archive = 0U;
-    }
-}
-
-extern const f32 lbl_805DB608;
-
-void TOExplosiveMachine::load_shared_resource() {
-    s32 temp_r3;
-    s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
-    var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &explosive_machine_resource_desc.value, 0, 0, 0));
-    }
-    (*(s32 *)&explosive_machine_model_archive) = var_r0;
-}
-
-O_80166664 *__dt__18TOExplosiveMachineFv(O_80166664 *arg0, s16 arg1) {
-    s32 i;
-    if (arg0 != NULL) {
-        arg0->vt = __vt__18TOExplosiveMachine;
-        for (i = 0; i < 2; i++) {
-            arg0->a[i] = 0;
-            arg0->b[i] = 0;
-        }
-        __dt__8TObjBaseFv(arg0, 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
+void TOExplosiveMachine::run_task() {
+    for (s32 client = 0; client < TLobby::get_game_mode(); client++) {
+        TObjPlayer *player = get_player_by_client_id(client);
+        if (player != NULL && !player->obj_testFlags30(0x800) &&
+            horizontal_distance_squared(&player->position, &position) <= trigger_radius * trigger_radius) {
+            const TObjChipParams first = {
+                {0.5f, 0.03f, 0.2f}, {position.x, position.y, position.z}, {3, 5, 3},
+                {0x800, 0x100, 0x800}, {7, 50}, {-100, 1},
+                (s32)debris_models[0], debris_textures[0], 22
+            };
+            const TObjChipParams second = {
+                {0.5f, 0.03f, 0.2f}, {position.x, position.y, position.z}, {3, 5, 3},
+                {0x800, 0x100, 0x800}, {7, 50}, {-100, 1},
+                (s32)debris_models[1], debris_textures[1], 22
+            };
+            spawn_particle_effect(&position, 0x45);
+            spawn_particle_effect(&position, 0x46);
+            void *chip = TObject::operator new(0x234);
+            if (chip != NULL) {
+                construct_debris__8TObjChipFPvPvPv((u8 *)chip, (u8 *)tl_05, (u8 *)&first);
+            }
+            chip = TObject::operator new(0x234);
+            if (chip != NULL) {
+                construct_debris__8TObjChipFPvPvPv((u8 *)chip, (u8 *)tl_05, (u8 *)&second);
+            }
+            queue_destruction();
+            break;
         }
     }
-    return arg0;
 }
 
-O_801666E8 *TOExplosiveMachine__ct(O_801666E8 *arg0) {
-    s32 i;
-    __ct__8TObjBaseFP7TObject(arg0, tl_05);
-    arg0->vt = __vt__18TOExplosiveMachine;
-    arg0->id = TOExplosiveMachine__class_name;
-    arg0->f90 = lbl_805DB5F0;
-    arg0->f94 = lbl_805DB5F4;
-    arg0->f98 = lbl_805DB5F8 + arg0->f68;
-    for (i = 0; i < 2; i++) {
-        arg0->a[i] = 0;
-        arg0->b[i] = 0;
-    }
-    return arg0;
+TOExplosiveMachine01::TOExplosiveMachine01(void *set_data) {
+    m_name = TOExplosiveMachine01__class_name;
+    apply_object_set_data(set_data);
+    model = get_bml_model(explosive_machine_model_archive, 0);
+    texlist = TObjFish__sub_8001EDB0(explosive_machine_model_archive, 0);
+    view_radius = ((ExplosiveMachineModel *)((NJS_OBJECT *)model)->model)->radius;
+    debris_models[0] = get_bml_model(explosive_machine_model_archive, 1);
+    debris_textures[0] = TObjFish__sub_8001EDB0(explosive_machine_model_archive, 1);
+    debris_models[1] = get_bml_model(explosive_machine_model_archive, 2);
+    debris_textures[1] = TObjFish__sub_8001EDB0(explosive_machine_model_archive, 2);
 }
 
-s32 TOExplosiveMachine::check_trigger() {
-    switch (*(s32 *)((s8 *)this + 0xC8)) {
-    case 0:
-        break;
-    case 1:
-        if (is_any_player_within_radius_xz(lbl_805DB600) == 1) {
-            ((VObj_80166778 *)this)->m12();
-        }
-        break;
-    case 2:
-        if (is_current_floor_switch_set(*(s32 *)((s8 *)this + 0xCC)) == 1) {
-            ((VObj_80166778 *)this)->m12();
-        }
-        break;
-    }
+TOExplosiveMachine01::~TOExplosiveMachine01() {}
+
+extern "C" void *TOExplosiveMachine01__create(void *set_data) {
+    return new TOExplosiveMachine01(set_data);
 }
 
-s32 TOExplosiveMachine::update_trigger() {
-    switch (*(s32 *)((s8 *)this + 0xC8)) {
-    case 0:
-        break;
-    case 1:
-        if (is_any_player_within_radius_xz(lbl_805DB604) != 1) {
-            ((VObj_80166814 *)(this))->m13();
-        }
-        break;
-    case 2:
-        if (is_current_floor_switch_set(*(s32 *)((s8 *)this + 0xCC)) != 1) {
-            ((VObj_80166814 *)(this))->m13();
-        }
-        break;
-    }
-    play_persistent_sound(0x4004C10F, (s32)this, (u32)((u8 *)this + 0x38), 0, 0);
+TOExplosiveMachine02::TOExplosiveMachine02(void *set_data) {
+    m_name = TOExplosiveMachine02__class_name;
+    apply_object_set_data(set_data);
+    model = get_bml_model(explosive_machine_model_archive, 3);
+    texlist = TObjFish__sub_8001EDB0(explosive_machine_model_archive, 3);
+    view_radius = ((ExplosiveMachineModel *)((NJS_OBJECT *)model)->model)->radius;
+    debris_models[0] = get_bml_model(explosive_machine_model_archive, 4);
+    debris_textures[0] = TObjFish__sub_8001EDB0(explosive_machine_model_archive, 4);
+    debris_models[1] = get_bml_model(explosive_machine_model_archive, 5);
+    debris_textures[1] = TObjFish__sub_8001EDB0(explosive_machine_model_archive, 5);
 }
 
-void TOExplosiveMachine::update() {
-    f32 temp_f0;
-    f32 temp_f1;
+TOExplosiveMachine02::~TOExplosiveMachine02() {}
 
-    if (TObjPlayer::check_demo_mode() == 1) {
-        ((V_A_801668cc_80166568 *)this)->m14();
-        return;
-    }
-    switch (*(s32 *)((s8 *)this + 0xAC)) {
-    case 0:
-        check_trigger();
-        break;
-    case 1:
-        update_trigger();
-        break;
-    }
-    *(f32 *)((s8 *)this + 0xB0) = (f32) (*(f32 *)((s8 *)this + 0xB0) + lbl_805DB608);
-    temp_f1 = *(f32 *)((s8 *)this + 0xB4);
-    temp_f0 = *(f32 *)((s8 *)this + 0xB0);
-    if (temp_f1 < temp_f0) {
-        *(f32 *)((s8 *)this + 0xB0) = (f32) (temp_f0 - temp_f1);
-    }
+extern "C" void *TOExplosiveMachine02__create(void *set_data) {
+    return new TOExplosiveMachine02(set_data);
 }
 
+TOExplosiveMachine03::TOExplosiveMachine03(void *set_data) {
+    m_name = TOExplosiveMachine03__class_name;
+    apply_object_set_data(set_data);
+    model = get_bml_model(explosive_machine_model_archive, 6);
+    texlist = TObjFish__sub_8001EDB0(explosive_machine_model_archive, 6);
+    view_radius = ((ExplosiveMachineModel *)((NJS_OBJECT *)model)->model)->radius;
+    debris_models[0] = get_bml_model(explosive_machine_model_archive, 7);
+    debris_textures[0] = TObjFish__sub_8001EDB0(explosive_machine_model_archive, 7);
+    debris_models[1] = get_bml_model(explosive_machine_model_archive, 8);
+    debris_textures[1] = TObjFish__sub_8001EDB0(explosive_machine_model_archive, 8);
 }
+
+TOExplosiveMachine03::~TOExplosiveMachine03() {}
+
+extern "C" void *TOExplosiveMachine03__create(void *set_data) {
+    return new TOExplosiveMachine03(set_data);
+}
+#pragma pop

@@ -38,6 +38,13 @@ struct RMode_803DD0D8 {
     u8 vfilter[7];
 };
 struct Tlut_803DD0D8 { u32 w[4]; };
+
+extern "C" {
+u8 lbl_805D46C8 = 0x1;
+Tlut_803DD0D8 gx_tlut_region_table[0x500 / sizeof(Tlut_803DD0D8)];
+s32 tv_render_mode_obj[16];
+}
+
 extern "C" {
 
 u32 VIGetNextField(void);

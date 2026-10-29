@@ -7,9 +7,18 @@
 #include "pso/npc/TObjNpcLappy.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
-struct RecoveredGlobal_8014B9A4_lbl_804AA0D0 { s32 value; u8 remaining[0xC]; };
-typedef char RecoveredGlobal_8014B9A4_lbl_804AA0D0_size[sizeof(RecoveredGlobal_8014B9A4_lbl_804AA0D0) == 0x10 ? 1 : -1];
+#pragma readonly_strings on
+
+extern "C" {
+__declspec(section ".data") const char *bm_n_ebm_i_body_model_names[2] = { "n_ebm_i_body_4.nj", NULL };
+const char *bm_n_ebm_i_body_motion_names[1] = { NULL };
+BmlResourceDescriptor bm_n_ebm_i_body_resource_descriptor = { "bm_n_ebm_i_body.bml", bm_n_ebm_i_body_model_names, bm_n_ebm_i_body_motion_names, 1, 0 };
+const char *TObjNpcMaleBase__name = "TObjNpcMaleBase";
+u32 TObjNpcMaleBase__shared_bml_archive;
+}
+
 
 struct RecoveredGlobal_8014BA4C___vt__15TObjNpcMaleBase {
     s32 value;
@@ -18,10 +27,7 @@ struct RecoveredGlobal_8014BA4C___vt__15TObjNpcMaleBase {
 
 extern "C" {
 u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
-extern RecoveredGlobal_8014B9A4_lbl_804AA0D0 bm_n_ebm_i_body_resource_descriptor;
-extern u32 TObjNpcMaleBase__shared_bml_archive;
 extern s32 __vt__15TObjNpcMaleBase[];
-extern s32 TObjNpcMaleBase__name;
 u8 *TObjNpcMaleBase__ct(u8 *arg0, s32 arg1, s32 arg2);
 void * TObjNpcMaleChild__create(void *arg0);
 void *__dt__15TObjNpcMaleBaseFv(void *arg0, s16 arg1);
@@ -43,7 +49,7 @@ void TObjNpcMaleBase::load_shared_resource() {
     temp_r3 = (int)::operator new(0x440);
     var_r0 = temp_r3;
     if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &bm_n_ebm_i_body_resource_descriptor.value, 0, 0, 0));
+        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &bm_n_ebm_i_body_resource_descriptor, 0, 0, 0));
     }
     (*(s32 *)&TObjNpcMaleBase__shared_bml_archive) = var_r0;
 }

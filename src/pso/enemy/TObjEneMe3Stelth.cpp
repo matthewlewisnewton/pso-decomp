@@ -36,6 +36,15 @@ extern "C" void test_flag_256__9TObjCharaFv();
 #include "pso/misc/TTecResta.h"
 #include "pso/misc/TTecSifta.h"
 
+extern "C" {
+u8 * TObjEneMe3Stelth__bml_resource;
+s32 TObjEneMe3Stelth__render_node_index;
+s32 TObjEneMe3Stelth__breakup_model;
+s32 TObjEneMe3Stelth__trail_buffer;
+s32 stelth_projection_texture_handle;
+}
+
+
 extern "C" int draw_model__16TObjEneMe3StelthFPv(void* p);
 extern "C" void sub_800F5874__12TObjEneDD_STFl(u8 *arg0, s32 arg1);
 extern "C" void sub_800F5864__12TObjEneDD_STFl(u8 *arg0, s32 arg1);

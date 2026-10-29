@@ -24,17 +24,10 @@ int TBoss6Rock__sub_80353A0C(void);
 s32 rand();
 extern RecoveredGlobal_8035A1A4___vt__15TBoss6CrushRock __vt__15TBoss6CrushRock;
 extern s32 TBoss6CrushRock__name;
-extern const f32 lbl_805E00C8;
-extern const f32 lbl_805E00CC;
-extern const f32 lbl_805E00D0;
-extern const f32 lbl_805E00D4;
 void *__nw__7TObjectFUl(int);
 f32 sin_table_lookup(s32);
 f32 cos_table_lookup(s32);
 extern s32 tl_02;
-extern const f32 lbl_805E00D8;
-extern const f32 lbl_805E00DC;
-extern const f32 lbl_805E00E0;
 extern s32 TBoss6PlotFalz__instance;
 
 #pragma push
@@ -48,15 +41,15 @@ u8 *__ct__15TBoss6CrushRockFv(u8 *object, s32 arg1, s32 arg2, s32 arg3) {
     *(s32 *)((s8 *)object + 0x1C) = get_bml_model((int) (TBoss6Rock__sub_80353A0C()), (void *)arg3);
     *(s32 *)((s8 *)object + 0x20) = TBoss6Rock__sub_80353A04();
     VecCopy((Vec *)(object + 0x24), (const Vec *)(arg2));
-    *(f32 *)((s8 *)object + 0x30) = (f32) (lbl_805E00C8 * ((lbl_805E00CC * (f32) rand()) - lbl_805E00C8));
-    *(f32 *)((s8 *)object + 0x34) = (f32) (lbl_805E00C8 * ((lbl_805E00CC * (f32) rand()) - lbl_805E00C8));
-    *(f32 *)((s8 *)object + 0x38) = (f32) (lbl_805E00C8 * ((lbl_805E00CC * (f32) rand()) - lbl_805E00C8));
-    *(s32 *)((s8 *)object + 0x3C) = (s32) (lbl_805E00D0 * (lbl_805E00CC * (f32) rand()));
-    *(s32 *)((s8 *)object + 0x40) = (s32) (lbl_805E00D0 * (lbl_805E00CC * (f32) rand()));
-    *(s32 *)((s8 *)object + 0x44) = (s32) (lbl_805E00D0 * (lbl_805E00CC * (f32) rand()));
-    *(s32 *)((s8 *)object + 0x48) = (s32) (lbl_805E00D4 * ((lbl_805E00CC * (f32) rand()) - lbl_805E00C8));
-    *(s32 *)((s8 *)object + 0x4C) = (s32) (lbl_805E00D4 * ((lbl_805E00CC * (f32) rand()) - lbl_805E00C8));
-    *(s32 *)((s8 *)object + 0x50) = (s32) (lbl_805E00D4 * ((lbl_805E00CC * (f32) rand()) - lbl_805E00C8));
+    *(f32 *)((s8 *)object + 0x30) = (f32) (0.5f * ((0.000030517578f * (f32) rand()) - 0.5f));
+    *(f32 *)((s8 *)object + 0x34) = (f32) (0.5f * ((0.000030517578f * (f32) rand()) - 0.5f));
+    *(f32 *)((s8 *)object + 0x38) = (f32) (0.5f * ((0.000030517578f * (f32) rand()) - 0.5f));
+    *(s32 *)((s8 *)object + 0x3C) = (s32) (65535.0f * (0.000030517578f * (f32) rand()));
+    *(s32 *)((s8 *)object + 0x40) = (s32) (65535.0f * (0.000030517578f * (f32) rand()));
+    *(s32 *)((s8 *)object + 0x44) = (s32) (65535.0f * (0.000030517578f * (f32) rand()));
+    *(s32 *)((s8 *)object + 0x48) = (s32) (4096.0f * ((0.000030517578f * (f32) rand()) - 0.5f));
+    *(s32 *)((s8 *)object + 0x4C) = (s32) (4096.0f * ((0.000030517578f * (f32) rand()) - 0.5f));
+    *(s32 *)((s8 *)object + 0x50) = (s32) (4096.0f * ((0.000030517578f * (f32) rand()) - 0.5f));
     return object;
 }
 #pragma pop
@@ -74,7 +67,7 @@ void TBoss6Rock::spawn_crush_rocks(s32 kind) {
         return;
     }
     ((TBoss6CrushPtcl *)this)->create();
-    radius = lbl_805E00D8;
+    radius = 7.5f;
     base = 5;
     n = 2;
     if ((u32)TBoss6PlotFalz::get_hp() == 0) {
@@ -84,7 +77,7 @@ void TBoss6Rock::spawn_crush_rocks(s32 kind) {
     case 0:
         break;
     case 1:
-        radius = lbl_805E00DC;
+        radius = 15.0f;
         base = 1;
         n = 3;
         break;
@@ -92,9 +85,9 @@ void TBoss6Rock::spawn_crush_rocks(s32 kind) {
     for (i = 0; i < 0x12 / n; i++) {
         for (j = 0; j < n; j++) {
             Vec_8035A460 p = *((Vec_8035A460 *)this);
-            s32 angle = (s32)(lbl_805E00D0 * (lbl_805E00CC * (f32)rand()));
+            s32 angle = (s32)(65535.0f * (0.000030517578f * (f32)rand()));
             p.x += radius * sin_table_lookup(angle);
-            p.y += lbl_805E00E0 * (lbl_805E00CC * (f32)rand());
+            p.y += 35.0f * (0.000030517578f * (f32)rand());
             p.z += radius * cos_table_lookup(angle);
             u8 *o = (u8 *)__nw__7TObjectFUl(0x54);
             if (o != NULL) {
@@ -111,4 +104,5 @@ s32 TBoss6PlotFalz::get_hp() {
 
 extern char lbl_804796A0[];
 s32 TBoss6CrushRock__name = (s32)lbl_804796A0;
+
 }

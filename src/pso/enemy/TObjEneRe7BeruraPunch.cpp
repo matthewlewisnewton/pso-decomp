@@ -17,6 +17,8 @@
 #include "pso/misc/TNowLoading.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 
+#pragma readonly_strings on
+
 extern "C" {
 
 s32 is_player_entity_id();
@@ -145,6 +147,8 @@ void TObjEneRe7BeruraPunch::update_velocity_and_snap() {
 
 __declspec(section ".sdata2") const f32 TObjEneRe7BeruraPunch__data_805D97A0[1] = {10.0f};
 
+const char *lbl_805D2990 = "TObjEneRe7BeruraPunch";
+
 #pragma push
 #pragma opt_common_subs off
 #pragma opt_propagation off
@@ -261,7 +265,7 @@ s32 *csnVecterUnder(s32 origin, s32 mask);
 u16 get_entity_id(void *);
 extern RecoveredGlobal_80096750_lbl_8048F930 TObjEneRe7BeruraPunch__collision_body_templates;
 extern s32 __vt__21TObjEneRe7BeruraPunch[];
-extern s32 lbl_805D2990;
+extern const char *lbl_805D2990;
 u8 *TObjEneRe7BeruraPunch__ct(u8 *arg0, s32 arg1, s32 arg2);
 void queue_destruction__7TObjectFv(void *);
 void *create_particle_emitter(void *pos, s32 id);
@@ -441,7 +445,7 @@ u8 *TObjEneRe7BeruraPunch__ct(u8 *ene_re7_berura_punch, s32 arg1, s32 arg2) {
     __ct__13TUnk_804928CCFP7TObjectP8TObjBasePC13CollisionBodyl(ene_re7_berura_punch, (void *)arg1, (void *)arg2, &TObjEneRe7BeruraPunch__collision_body_templates.value, 2);
     *(s32 **)((s8 *)ene_re7_berura_punch + 0x18) = &(*(RecoveredGlobal_80096750___vt__21TObjEneRe7BeruraPunch *)&__vt__21TObjEneRe7BeruraPunch).value;
     __ct__13TUnk_80490470Fv((ene_re7_berura_punch + 0xF8));
-    *(s32 *)((s8 *)ene_re7_berura_punch + 0) = (s32) lbl_805D2990;
+    *(s32 *)((s8 *)ene_re7_berura_punch + 0) = (s32) ((s32)lbl_805D2990);
     ((TObjEneRe7BeruraPunch *)ene_re7_berura_punch)->m_b0 = get_entity_id((void *)arg2);
     ((TObjEneRe7BeruraPunch *)ene_re7_berura_punch)->init();
     return ene_re7_berura_punch;

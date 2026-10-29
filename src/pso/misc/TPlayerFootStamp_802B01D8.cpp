@@ -4,6 +4,9 @@
 #include "pso/boss/TBoss6PlotFalz.h"
 #include "pso/object/TObjOnlineEnding.h"
 
+#pragma readonly_strings on
+
+
 struct Obj_802B0204 { u8 pad[0xbe]; s16 fbe; };
 
 extern "C" {
@@ -13,9 +16,8 @@ int freeze_all_players__14TBoss6PlotFalzFv(void*);
 u8 *load_gvm_texture_file(s32 arg0);
 }
 
-    extern unsigned char lbl_80470908[];
     extern int player_footstamp_texture_gvm_handle;
-void load_player_footstamp(void) { player_footstamp_texture_gvm_handle = (int)load_gvm_texture_file((s32)lbl_80470908); }
+void load_player_footstamp(void) { player_footstamp_texture_gvm_handle = (int)load_gvm_texture_file((s32)(unsigned char *)"player_footstamp.GVM"); }
 
 void TPlayerFootStamp::sub_802B0204(s32 v) {
     Obj_802B0204 *self = (Obj_802B0204 *)this;
