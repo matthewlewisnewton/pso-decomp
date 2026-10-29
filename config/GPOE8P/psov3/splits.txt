@@ -5216,6 +5216,8 @@ pso/misc/TOMineTrapDisp.cpp:
 
 pso/misc/TOMineDisp_8016EF68.cpp:
 	.text       start:0x8016EF68 end:0x8016F168
+	.rodata     start:0x804421E0 end:0x804421F0
+	.sdata      start:0x805D3088 end:0x805D3090
 
 pso/misc/TOMineDisp.cpp:
 	.text       start:0x8016F168 end:0x8016F1C0
