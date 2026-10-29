@@ -2595,7 +2595,7 @@ u8 *TObjEneGibbles__ct(u8 *arg0, void *parent, s32 arg2) {
     void *p;
     __ct__9TObjEnemyFP7TObject(arg0, parent);
     *(void **)((s8 *)arg0 + 0x18) = (void *)lbl_804E29F0;
-    ((TUnk_80494938 *)(arg0 + 0x3C0))->init_common();
+    __ct__13TUnk_80494938Fv((arg0 + 0x3C0));
     __construct_array(arg0 + 0x3DC, (void *)__ct__15RenderFadeStateFv, (void *)__dt__15RenderFadeStateFv, 0x1C, 4);
     *(s32 *)((s8 *)arg0 + 0) = lbl_805D3F60;
     ((TObjEneGibbles *)arg0)->apply_set_data((void *)arg2);

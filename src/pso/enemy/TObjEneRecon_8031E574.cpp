@@ -17,7 +17,7 @@ extern s32 TObjEneRecon_name_ref;
 u8 *TObjEneRecon__ct(u8 *ene_recon, s32 arg1, s32 arg2, s16 arg3, s16 arg4, s32 arg5, s32 arg6) {
     __ct__12TObjEneDD_STFP7TObject();
     *(s32 **)((s8 *)ene_recon + 0x18) = __vt__12TObjEneRecon;
-    ((TUnk_80494938 *)(ene_recon + 0x480))->init_common();
+    __ct__13TUnk_80494938Fv((ene_recon + 0x480));
     *(s32 *)((s8 *)ene_recon + 0) = (s32) TObjEneRecon_name_ref;
     *(s16 *)((s8 *)ene_recon + 0x434) = get_entity_id((void *)arg2);
     ((TObjEneDD *)ene_recon)->init_common_from((u8 *)arg2);
