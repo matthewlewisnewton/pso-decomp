@@ -3,14 +3,23 @@
 #include "pso/item/TItemHeapObject.h"
 #include "types.h"
 #include <stddef.h>
+#include <dolphin/mtx/GeoTypes.h>
 
-struct MagDrawOwner { u8 prefix[0x2FC]; f32 center[3]; };
+class TObjPlayer;
+struct TItemMag;
+
 struct MagNodeOscillationState {
     // Takes over another state, as the mag model table lists it.
     void copy_from(MagNodeOscillationState *src);
     // Flags 0xE0: the node does not oscillate.
     void disable();
     s32 is_disabled();
+    // Bits 0-2: the model node it turns; bits 5-7: the axis (x, y, z).
+    int node_index();
+    int uses_x();
+    int uses_y();
+    int uses_z();
+    s32 get_angle();
     // One frame: value swings between minimum and maximum by speed (bit 3:
     // rising), or with bit 4 set steps by maximum and wraps to minimum.
     void update();
@@ -41,8 +50,8 @@ typedef char MagFollowParametersSize[sizeof(MagFollowParameters)==0x64?1:-1];
 typedef char MagOscillationStateSize[sizeof(MagNodeOscillationState)==8?1:-1];
 class TItemMagSub : public TItemHeapObject {
 public:
-    void* item;
-    MagDrawOwner* owner;
+    TItemMag *item;
+    TObjPlayer *owner;
     void *model, *animation;
     u32 textures;
     MagFollowParameters* motion;
@@ -58,18 +67,21 @@ public:
     f32 animation_frame, animation_length;
     u8 unknown88[12];
     f32 drift_offset[3];
-    f32 follow_anchor[3];
+    Vec follow_anchor;
     f32 translation_offset[3];
     f32 material_parameters[4];
     f32 owner_height_scale;
     MagNodeOscillationState oscillations[2];
-    f32 cached_position[3];
+    Vec cached_position;
 
-    static void clear_optional_oscillation_flag(void* arg0);
-    void reset_oscillation();
+    static TItemMagSub *drawing;
+    static s32 drawn_node;
+
+    static void clear_optional_oscillation_flag(void *sub);
+    void reset_oscillation(s32 from, s32 to);
     void apply_node_oscillation(void* node);
     static void update_node_oscillation(void* node);
-    s32 get_world_position(void* output);
+    s32 get_world_position(Vec *output);
     void apply_placement_matrix();
     s32 resolve_owner_heading();
     void update_special_pose();
@@ -78,24 +90,23 @@ public:
     void reset();
     void clear_growth_flag();
     void clear_flags(u32 v);
-    int set_growth_flag();
+    void set_growth_flag();
     void set_flags(u32 value);
     void set_node_id(s32 index, s32 id);
     void set_material_node(s32 node, void* parameters);
     void set_model(void* model, u32 textures, void* animation);
     void scale_owner_height(f32 factor);
     int is_growth_inactive();
-    int test_flags(u32 mask);
+    u32 test_flags(u32 mask);
     void release_model_and_destroy();
     void set_motion_type(s32 type);
     void transition_motion_type(s32 type);
-    TItemMagSub(MagDrawOwner* player, TObject* item);
+    TItemMagSub(TObjPlayer *owner, TItemMag *item);
     virtual ~TItemMagSub();
     virtual void run_task();
     virtual void render();
     virtual void render_shadows();
 };
-typedef char MagDrawOwnerCenter[offsetof(MagDrawOwner,center)==0x2FC?1:-1];
 typedef char MagChildSize[sizeof(TItemMagSub)==0xE8?1:-1];
 typedef char MagChild_item[offsetof(TItemMagSub,item)==0x1C?1:-1];
 typedef char MagChild_owner[offsetof(TItemMagSub,owner)==0x20?1:-1];

@@ -242,7 +242,7 @@ public:
     u32 m_318;
     u8 unk_31C[0x6];
     s16 m_322;
-    s16 m_324;
+    s16 control_state;  // who drives it: 6 a script, 7 a fixed pose
     s16 mode;
     s16 phase;
     u8 unk_32A[0x2];

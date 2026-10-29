@@ -117,6 +117,7 @@ struct TItemMag : public TItemEquipBase {
     s16 get_mind_level();
     s32 is_owner_frozen();
     u32 is_owner_acting();
+    u32 is_inactive();
     // Changes the mag into form (its item group) unless it has evolved
     // past the third stage.
     void evolve_into(u8 form);
