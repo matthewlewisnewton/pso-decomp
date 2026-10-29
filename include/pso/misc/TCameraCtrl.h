@@ -164,4 +164,8 @@ typedef char TCameraCtrl_size[sizeof(TCameraCtrl) == 0x1D4 ? 1 : -1];
 // The camera's right axis, which screen tests offset points along.
 extern f32 camera_right[3];
 
+extern "C" {
+int is_quest_active(void);
+}
+
 #endif

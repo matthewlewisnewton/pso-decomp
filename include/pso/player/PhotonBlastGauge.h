@@ -8,9 +8,17 @@
 struct PhotonBlastGauge {
     // Empties the charge.
     void clear_charge();
+    f32 get_charge();
+    // The equipped mag's level for blast (0-5), -1 when no mag holds it.
+    void set_blast_level(s16 blast, s8 level);
 
     u8 pad_0[0x3C];
     f32 charge;
+    u8 pad_40[0x4];
+    s8 blast_levels[6];
+    u8 pad_4a[0xA];
 };
+
+typedef char PhotonBlastGaugeSize[sizeof(PhotonBlastGauge) == 0x54 ? 1 : -1];
 
 #endif

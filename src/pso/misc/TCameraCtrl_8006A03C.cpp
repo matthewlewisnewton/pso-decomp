@@ -18,7 +18,6 @@ s32 is_split_screen();
 }
 void reset_cameras_to_actor(void *actor, s32 arg1);
 extern "C" {
-s32 is_quest_active();
 s32 TWindowShortListCtrl__check_controller_button(void *, s32);
 s32 is_on_current_screen__11TCameraCtrlFv(void *, s32);
 u32 get_player_by_client_id(s32);

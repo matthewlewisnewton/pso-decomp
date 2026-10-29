@@ -1,6 +1,7 @@
 #include "types.h"
 #include "pso/item/TItemData_8010EDA8.h"
 #include "pso/item/TItemData.h"
+#include "pso/item/MagStats.h"
 #include "pso/player/TObjPlayer.h"
 
 extern "C" {
@@ -43,20 +44,20 @@ void TItemData__sub_8010EE30(s16 *arg0, s32 arg1) {
     *arg0 -= arg1;
 }
 
-s16 TItemData::get_mag_mind_level() {
-    return (s16) ((s16) *(s16 *)((s8 *)this + 0xA) / 100);
+s16 MagStats::get_mind_level() {
+    return mind / 100;
 }
 
-s16 TItemData::get_stat_percent() {
-    return (s16) ((s16) *(s16 *)((s8 *)this + 4) / 100);
+s16 MagStats::get_def_level() {
+    return def / 100;
 }
 
-s16 TItemData::get_level() {
-    return (s16) ((s16) *(s16 *)((s8 *)this + 8) / 100);
+s16 MagStats::get_dex_level() {
+    return dex / 100;
 }
 
-s16 TItemData::get_percent() {
-    return (s16) ((s16) *(s16 *)((s8 *)this + 6) / 100);
+s16 MagStats::get_pow_level() {
+    return pow / 100;
 }
 
 void TItemData::update_player_field() {

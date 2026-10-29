@@ -23,7 +23,7 @@ void *construct__13TUnk_8049C658Fv(void *);
 s32 read_disc_file(void *, void *);
 void __dl__7TObjectFPv(void *);
 void __dt__7TObjectFv(void *, int);
-int set_stream_and_load_file__6TLobbyFi(void*);
+void *set_stream_and_load_file__6TLobbyFi(const char *path);
 
 extern s32 lbl_8049C658[];
 
@@ -83,7 +83,7 @@ s32 load_relocatable_file(s32 arg0, s32 arg1) {
 
 #pragma pop
 int fn_800F953C(void* p) { return safe_free__23TAdSinglePlyChrSelectGCFUl(p); }
-int fn_800F955C(void* p) { return set_stream_and_load_file__6TLobbyFi(p); }
+void *fn_800F955C(const char *path) { return set_stream_and_load_file__6TLobbyFi(path); }
 void TLobby::free_nodes_with_id(u32 arg0) {
     N_800F957C *n = resource_load_task_root->first;
     while (n != 0) {
