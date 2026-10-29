@@ -72,7 +72,7 @@ struct TObjEneMe1Canadin : public TObjEneDD_ST {
     f32 m_3ec;
     f32 m_3f0;
     f32 m_3f4;
-    f32 m_3f8;
+    f32 hover_y;
     s32 m_3fc;
     s32 m_400;
     s32 m_404;
@@ -112,8 +112,8 @@ struct TObjEneMe1Canadin : public TObjEneDD_ST {
     s32 fn_8009E860(f32 *out, f32 _w2);
     void fn_8009E930();
     void fn_8009E948();
-    void fn_8009EB14(f32 height);
-    void fn_8009EB98(f32 farg0);
+    void update_hover_position(f32 height);
+    void approach_hover_y(f32 target_y);
     void fn_8009E258();
     void fn_8009E27C();
     s32 fn_8009E31C(s32 arg1);
