@@ -5963,6 +5963,7 @@ pso/unk/text_801977D4.cpp:
 pso/unk/text_80197998.cpp:
 	.text       start:0x80197998 end:0x80197BEC
 	.rodata     start:0x80445F78 end:0x80445F80
+	.sdata2     start:0x805DBF18 end:0x805DBF40
 
 pso/object/TObjRain.cpp:
 	.text       start:0x80197BEC end:0x80197CE8
