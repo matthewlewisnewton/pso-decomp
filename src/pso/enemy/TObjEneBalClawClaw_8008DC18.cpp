@@ -18,13 +18,8 @@ struct RecoveredGlobal_8008DC18_lbl_80439B5C {
     u8 remaining[0x10];
 };
 
-struct RecoveredGlobal_8008DC18_lbl_8048EEE0 {
-    s32 value;
-    u8 remaining[0x28];
-};
-
 extern RecoveredGlobal_8008DC18_lbl_80439B5C lbl_80439B5C;
-extern RecoveredGlobal_8008DC18_lbl_8048EEE0 lbl_8048EEE0;
+extern "C" CollisionBody balclaw_body_collision;
 extern u8 *lbl_805D4F20;
 extern const f32 lbl_805D9618;
 
@@ -33,7 +28,6 @@ extern "C" {
 f32 xz_distance_squared(s32, s32);
 
 typedef char RecoveredGlobal_8008DC18_lbl_80439B5C_size[sizeof(RecoveredGlobal_8008DC18_lbl_80439B5C) == 0x14 ? 1 : -1];
-typedef char RecoveredGlobal_8008DC18_lbl_8048EEE0_size[sizeof(RecoveredGlobal_8008DC18_lbl_8048EEE0) == 0x2C ? 1 : -1];
 void TObjEneBalClawClaw::spawn_child_enemy() {
     typedef char sp8_offset[(offsetof(Stack_8008DC18, sp8) == 0x0) ? 1 : -1];
     typedef char spC_offset[(offsetof(Stack_8008DC18, spC) == 0x4) ? 1 : -1];
@@ -47,7 +41,7 @@ void TObjEneBalClawClaw::spawn_child_enemy() {
     stack.sp14 = *(s32 *)((s8 *)&lbl_80439B5C.value + 0xC);
     stack.sp8 = *(s32 *)((s8 *)lbl_805D4F20 + 0x430);
     temp_r5 = (u8 *)(*(u8 **)((s8 *)lbl_805D4F20 + 0x42C));
-    TLobby::spawn_npc_enemy((s16)(0x13), (s32)((int) (*(s32 *)((s8 *)temp_r5 + 0x18))), (s32)((int) (*(s32 *)((s8 *)temp_r5 + 0x1C))), (s32)((void *)&stack.sp8), (f32)((f32) (*(f32 *)((s8 *)&lbl_8048EEE0.value + 0xC))), (f32)lbl_805D9618);
+    TLobby::spawn_npc_enemy((s16)(0x13), (s32)((int) (*(s32 *)((s8 *)temp_r5 + 0x18))), (s32)((int) (*(s32 *)((s8 *)temp_r5 + 0x1C))), (s32)((void *)&stack.sp8), balclaw_body_collision.radius, (f32)lbl_805D9618);
 }
 
 void TObjEneBalClawClaw__sub_8008DC90(void) {  }
