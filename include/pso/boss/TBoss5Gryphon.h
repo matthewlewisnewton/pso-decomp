@@ -51,7 +51,7 @@ struct TBoss5Gryphon : public TObjEneDD_ST {
     void fn_80060788(s32);
     void fn_800605E8(s32);
     void fn_80060020(u32);
-    void fn_8005FEF8(s32);
+    void update_roar_state(s32);
     void fn_8005FE18(s32);
     void fn_8005FD34(s32);
     void handle_message(s32);
