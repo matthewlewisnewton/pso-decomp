@@ -1688,7 +1688,7 @@ u8 *TObjEneGyaranzo__ct(TObjEneGyaranzo *arg0, s32 arg1, u8 *arg2) {
 
     ((void (*)(void *, s32, void *)) __ct__15TObjEnemyCustomFP7TObject)(arg0, arg1, arg2);
     *(u8 **)((s8 *)arg0 + 0x18) = (u8 *) ((void * *)gyaranzo_actor_vtable_ops);
-    ((TUnk_80494938 *)((u8 *)arg0 + 0x3D0))->init_common();
+    __ct__13TUnk_80494938Fv(((u8 *)arg0 + 0x3D0));
     __construct_array((u8 *)arg0 + 0x3EC, &__ct__15RenderFadeStateFv, &__dt__15RenderFadeStateFv, 0x1C, 4);
     *(s32 *)((s8 *)arg0 + 0) = (s32) lbl_805D2A78;
     ((TObjEneGyaranzo *)(arg0))->apply_set_data(arg2);
