@@ -4595,15 +4595,15 @@ force_active:
   - fn_80305C40__16TObjEneDellBiterFv
   - fn_80305E1C__16TObjEneDellBiterFv
   - fn_80313268__19TObjEneDelDepthBombFv
-  - fn_80313740__15TObjEneDelDepthFv
-  - fn_803138F8__15TObjEneDelDepthFv
-  - fn_80313954__15TObjEneDelDepthFv
-  - fn_80313DE4__15TObjEneDelDepthFv
+  - update_fall_to_ground__15TObjEneDelDepthFv
+  - enter_fall_to_ground__15TObjEneDelDepthFv
+  - update_death_fade__15TObjEneDelDepthFv
+  - enter_attack_cast__15TObjEneDelDepthFv
   - fn_803141A8__15TObjEneDelDepthFv
   - fn_803142DC__15TObjEneDelDepthFv
   - fn_80314500__15TObjEneDelDepthFv
   - fn_80314EC4__15TObjEneDelDepthFv
-  - fn_80315380__15TObjEneDelDepthFv
+  - adjust_height_to_ground__15TObjEneDelDepthFv
   - fn_80315518__15TObjEneDelDepthFv
   - fn_8031B618
   - fn_8031FE14
