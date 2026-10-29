@@ -8887,8 +8887,10 @@ pso/unk/text_802754EC.cpp:
 
 pso/misc/TWindowSubComCardList.cpp:
 	.text       start:0x8027553C end:0x80275C0C
-	.rodata     start:0x8044F710 end:0x8044F718
+	.rodata     start:0x8044F6F8 end:0x8044F718
 	.data       start:0x804D1178 end:0x804D1198
+	.sdata      start:0x805D3A18 end:0x805D3A20
+	.sdata2     start:0x805DD540 end:0x805DD550
 
 pso/misc/TWindowSubEquip_80275C0C.cpp:
 	.text       start:0x80275C0C end:0x80275D84
