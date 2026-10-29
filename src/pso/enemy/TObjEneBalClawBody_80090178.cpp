@@ -61,7 +61,7 @@ TObjEneBalClawBody::TObjEneBalClawBody(TObject *parent, BalClawSetData *set_data
     : TObjEneBalClaw(parent) {
     m_name = lbl_805D2970;
     apply_set_data(set_data);
-    VecCopy((Vec *)&m_290, VecCopy((Vec *)&m_29c, &position));
+    VecCopy(&position_290, VecCopy(&position_29c, &position));
     motion_list = lbl_805D4F20->motions;
     action_table = lbl_8048EDE8;
     set_field_d8((s32)action_table);
