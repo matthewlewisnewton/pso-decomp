@@ -538,7 +538,7 @@ f32 vec3_dot(void *, void *);
 void play_se_at_pos__12TBoss1DragonFii(s32 arg0, s32 arg1);
 extern const f32 TBoss1Dragon__data_805D8040;
 void TBoss1Dragon__sub_80028B28(u8 *arg0);
-s32 set_type__10TObjPlayerFl(void *, s32);
+s32 set_frames__15ProtectionTimerFl(void *, s32);
 extern const f32 lbl_805D8090;
 f32 calc_burrow_speed__12TBoss1DragonFPv(void *arg0);
 extern const f32 lbl_805D80B0;
@@ -4509,7 +4509,7 @@ void TBoss1Dragon::hold_captured_player() {
         temp_r3b = ((TObjPlayer *)temp_r3)->get_field_3e4();
         if (temp_r3b == temp_r31) {
             ((TObjPlayer *)temp_r3)->start_freeze();
-            set_type__10TObjPlayerFl(temp_r3 + 0x644, 0x14);
+            set_frames__15ProtectionTimerFl(temp_r3 + 0x644, 0x14);
             ((TObjPlayer *)temp_r3)->actorFlags = (s32) (((TObjPlayer *)temp_r3)->actorFlags & 0xFFEFFFDF);
             VecCopy__FP3VecPC3Vec((s32)(temp_r3 + 0x38), (s32)(arg0 + 0x38));
             *(f32 *)((s8 *)temp_r3 + 0x3C) = (f32) (*(f32 *)((s8 *)temp_r3 + 0x3C) - lbl_805D8090);
@@ -6333,7 +6333,7 @@ void TObjMotion::set_field_dc(s32 v) { *(s32 *)&this->motion_list = v; }
 void TObjMotion::set_field_d8(s32 v) { (*(s32 *)&this->action_table) = v; }
 void TObjPlayer::reset_lobby_model() { reset_type(); }
 void TObjPlayer::reset_type() { *(s32*)((char*)this + 0x0) = 0; }
-void TObjPlayer::set_type(s32 v) { *(s32*)((char*)this + 0x0) = v; }
+void ProtectionTimer::set_frames(s32 v) { frames = v; }
 void TObjPlayer::send_6x12_packet() { bswap_6x12_packet(); send_subcommand((u8 *)this); }
 void TObjPlayer::bswap_6x12_packet() { ((G_ClientIDHeader *)this)->bswap(); bswap_16((u16 *)((char*)this + 0x4)); bswap_16((u16 *)((char*)this + 0x6)); bswap_32((u32 *)((char*)this + 0x8)); }
 void TObjPlayer::set_type_dragon() { *(u8*)((char*)this + 0x0) = 18; *(u8*)((char*)this + 0x1) = 5; }

@@ -5,13 +5,17 @@
 #include "types.h"
 #include <stddef.h>
 
+class TParticleCtrl;
+class TItemMagSub;
+
+// The grow effect a mag sub shows after its mag changes form.
 class TItemMagGrowEff : public TObject {
 public:
     s32 progress_ticks;
- u8* effect;
- u8* mag;
+    TParticleCtrl *effect;
+    TItemMagSub *mag;
 
-    TItemMagGrowEff(TObject *parent, void *mag_object);
+    TItemMagGrowEff(TObject *parent, TItemMagSub *sub);
     virtual ~TItemMagGrowEff();
     virtual void run_task();
 };

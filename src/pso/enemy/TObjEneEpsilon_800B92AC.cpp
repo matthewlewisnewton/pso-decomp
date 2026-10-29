@@ -125,114 +125,6 @@ void TObjEneDD_ST::enemy_copy_target_destination() {
 
 #define enemy_clear_target__12TObjEneDD_STFUs ((s32 (*)(void *))enemy_clear_target__12TObjEneDD_STFUs)
 
-struct VBase_18_8e9c4f { char pad[0x18]; };
-
-struct VObj_18_8e9c4f : VBase_18_8e9c4f {
-    virtual void m0();
-    virtual void m1();
-    virtual void m2();
-    virtual void m3();
-    virtual void m4();
-    virtual void m5();
-    virtual void m6();
-    virtual void m7();
-    virtual void m8();
-    virtual void m9();
-    virtual void m10();
-    virtual void m11();
-    virtual void m12();
-    virtual void m13();
-    virtual void m14();
-    virtual void m15();
-    virtual void m16();
-    virtual void m17();
-    virtual void m18();
-    virtual void m19();
-    virtual void m20();
-    virtual void m21();
-    virtual void m22();
-    virtual void m23();
-    virtual void m24();
-    virtual void m25();
-    virtual void m26();
-    virtual void m27();
-    virtual void m28();
-    virtual void m29();
-    virtual void m30();
-    virtual void m31();
-    virtual void m32();
-    virtual void m33();
-    virtual void m34();
-    virtual void m35();
-    virtual void m36();
-    virtual void m37();
-    virtual void m38();
-    virtual void m39();
-    virtual void m40();
-    virtual void m41();
-    virtual void m42();
-    virtual void m43();
-    virtual void m44();
-    virtual void m45();
-    virtual void m46();
-    virtual void m47();
-    virtual void m48();
-    virtual void m49();
-    virtual void m50();
-    virtual void m51();
-    virtual void m52();
-    virtual void m53();
-    virtual void m54();
-    virtual void m55();
-    virtual void m56();
-    virtual void m57();
-    virtual void m58();
-    virtual void m59();
-    virtual void m60();
-    virtual void m61();
-    virtual void m62();
-    virtual void m63();
-    virtual void m64();
-    virtual void m65();
-    virtual void m66();
-    virtual void m67();
-    virtual void m68();
-    virtual void m69();
-    virtual void m70();
-    virtual void m71();
-    virtual void m72();
-    virtual void m73();
-    virtual void m74();
-    virtual void m75();
-    virtual void m76();
-    virtual void m77();
-    virtual void m78();
-    virtual void m79();
-    virtual void m80();
-    virtual void m81();
-    virtual void m82();
-    virtual void m83();
-    virtual void m84();
-    virtual void m85();
-    virtual void m86();
-    virtual void m87();
-    virtual void m88();
-    virtual void m89();
-    virtual void m90();
-    virtual void m91();
-    virtual void m92();
-    virtual void m93();
-    virtual void m94();
-    virtual void m95();
-    virtual void m96();
-    virtual void m97();
-    virtual void m98();
-    virtual void m99();
-    virtual void m100();
-    virtual void m101();
-    virtual s32 m102(f32);
-};
-
 s32 TObjEneDD_ST::update_linked_position(f32 scale) {
     return enemy_tick_target_acquisition__12TObjEneDD_STFPllf((u8 *)this, (s32 *)((u8 *)this + 0x3B0),
                                *(s32 *)((s8 *)this + 0x3B4), scale);
@@ -240,7 +132,7 @@ s32 TObjEneDD_ST::update_linked_position(f32 scale) {
 s32 TObjEneDD_ST::enemy_tick_target_acquisition(s32 *counter, s32 limit, f32 scale) {
     s32 var_r31;
     if (tick_period_counter((s32)this, counter, limit) != 0) {
-        var_r31 = ((VObj_18_8e9c4f *)(this))->m102(scale);
+        var_r31 = this->vfunc_104(scale);
     } else {
         var_r31 = enemy_has_live_target();
         if (var_r31 == 0) {
@@ -252,9 +144,9 @@ s32 TObjEneDD_ST::enemy_tick_target_acquisition(s32 *counter, s32 limit, f32 sca
 
 #undef enemy_clear_target__12TObjEneDD_STFUs
 
-void TObjEneDD_ST::select_nearest_target(f32 distance) {
+s32 TObjEneDD_ST::select_nearest_target(f32 distance) {
     u16 target = enemy_find_nearest_player_in_range(this, distance);
-    enemy_bind_or_clear_target(this, target);
+    return enemy_bind_or_clear_target(this, target);
 }
 
 
@@ -262,7 +154,7 @@ extern "C" {
 
 u16 set_squared_value__9TObjEneDDFf(void *, f32);
 
-void TObjEneDD_ST::select_and_apply_target(f32 farg0) {
+s32 TObjEneDD_ST::select_and_apply_target(f32 farg0) {
     u16 temp_r3;
     u16 var_r4;
 
@@ -275,7 +167,7 @@ void TObjEneDD_ST::select_and_apply_target(f32 farg0) {
     } else {
         var_r4 = enemy_find_nearest_player_in_range(this, farg0);
     }
-    enemy_bind_or_clear_target(this, var_r4);
+    return enemy_bind_or_clear_target(this, var_r4);
 }
 
 }
@@ -303,7 +195,7 @@ s32 enemy_bind_or_clear_target(void *self, u16 x) {
     return 0;
 }
 
-void TObjEneDD_ST::vfunc_104(f32 distance) { select_nearest_target(distance); }
+s32 TObjEneDD_ST::vfunc_104(f32 distance) { return select_nearest_target(distance); }
 
 void TObjEneDD_ST::enemy_init_acquire_period(s32 arg1) {
     *(s32 *)((s8 *)((u8 *)this) + 0x3B0) = (s32) (this->entity_id % arg1);

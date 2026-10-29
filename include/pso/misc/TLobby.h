@@ -20,6 +20,8 @@ typedef char TLobbyFloorItemEntrySize[(sizeof(TLobbyFloorItemEntry) == 0x24) ? 1
 typedef char TLobbyFloorItemEntryDataOffset[(offsetof(TLobbyFloorItemEntry, item_data) == 0x10) ? 1 : -1];
 
 struct TLobby : public TObject {
+    // Whether a challenge-mode task is running.
+    static s32 is_flag_set();
     virtual ~TLobby();
     void update_countdown_state(void *);
     void try_close(void *);

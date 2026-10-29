@@ -52,4 +52,12 @@ struct NJS_OBJECT {
     NJS_OBJECT *sibling;
 };
 
+// Ninja motion: per-node key data played over nbFrame frames.
+struct NJS_MOTION {
+    void *mdata;
+    u32 nbFrame;
+    u16 type;
+    u16 inp_fn;
+};
+
 #endif

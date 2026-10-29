@@ -1,3 +1,4 @@
+#include "pso/item/MagStats.h"
 #include "types.h"
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/misc/TUnk_804CDFE8.h"
@@ -157,11 +158,11 @@ s32 TWindowSubMag::count_slots() {
     s32 sp8;
     s32 slot;
 
-    ((TItemData *)(&sp8))->initialize_mag_data();
+    ((MagStats *)(&sp8))->init();
     deserialize_mag__9TItemDataFPvPv(this->m_2c, &sp8);
     slot = 0;
 loop_1:
-    if (((TItemMag *)(&sp8))->get_photon_blast_at_slot(slot) == -1) {
+    if (((MagStats *)(&sp8))->get_photon_blast(slot) == -1) {
         return slot;
     }
     slot += 1;
@@ -193,9 +194,9 @@ void *TWindowSubMag::create_learned_blast_toast() {
     f32 scale;
     s32 n;
     void *win;
-    ((TItemData *)((s32 *)&item))->initialize_mag_data();
+    ((MagStats *)((s32 *)&item))->init();
     deserialize_mag__9TItemDataFPvPv(*(s32 *)&this->m_2c, (s32 *)&item);
-    n = ((TItemMag *)((s32 *)&item))->get_photon_blast_at_slot(*(s8 *)&this->m_1e);
+    n = ((MagStats *)((s32 *)&item))->get_photon_blast(*(s8 *)&this->m_1e);
     if (n == -1) {
         return 0;
     }
@@ -247,7 +248,7 @@ void *TWindowSubMag::create_action_menu(s32 id) {
     s32 mag[4];
     void *window;
     u8 *item;
-    ((TItemData *)mag)->initialize_mag_data();
+    ((MagStats *)mag)->init();
     item = (u8 *)find_item_by_id(id);
     window = (void *)create_titled_window_menu(get_window_layout_position(8), 2, get_message_10__20TWindowSubStatusDispFl(0x1D), menu->field_0x28);
     TWindowSubEquip__sub_80263AF8(menu->field_0x30, 1);
@@ -258,7 +259,7 @@ void *TWindowSubMag::create_action_menu(s32 id) {
         forward_trade_action_default__16TObjCityMainWarpFPviii(window, get_message_10__20TWindowSubStatusDispFl(0x65), 6, 1);
     }
     deserialize_mag__9TItemDataFPvPv(menu->field_0x2c, mag);
-    if (((TItemMag *)mag)->get_photon_blast_at_slot(0) != -1) {
+    if (((MagStats *)mag)->get_photon_blast(0) != -1) {
         forward_trade_action_default__16TObjCityMainWarpFPviii(window, get_message_10__20TWindowSubStatusDispFl(0x64), 6, 0);
     } else {
         TWindowSubComCard::draw_text_gray((s32)window, (s32)(get_message_10__20TWindowSubStatusDispFl(0x64)), 6, 0);

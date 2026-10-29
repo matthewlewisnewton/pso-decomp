@@ -1,3 +1,4 @@
+#include "pso/item/MagStats.h"
 #include "types.h"
 #include "pso/misc/TWindowSubMagPhoton.h"
 #include "pso/item/TItemData.h"
@@ -23,10 +24,10 @@ void TWindowSubMagPhoton::get_cursor_origin(void *xy) {
 void TWindowSubMagPhoton::init_photon_blast_entries() {
     u8 mag[16];
     s32 i;
-    ((TItemData *)mag)->initialize_mag_data();
+    ((MagStats *)mag)->init();
     deserialize_mag__9TItemDataFPvPv(((Win_8027C188 *)this)->mag, mag);
     for (i = 0; i < 3; i++) {
-        s32 blast = ((TItemMag *)mag)->get_photon_blast_at_slot(i);
+        s32 blast = ((MagStats *)mag)->get_photon_blast(i);
         ((Win_8027C188 *)this)->pb[lbl_805DD678[i]] = blast;
         void *e = get_array_entry__13TUnk_804CE018Fi(this, i + 1);
         if (blast != -1) {

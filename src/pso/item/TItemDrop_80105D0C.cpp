@@ -1,3 +1,4 @@
+#include "pso/item/MagStats.h"
 #include "types.h"
 #include "pso/system/memory.h"
 #include "pso/item/TItemDrop.h"
@@ -755,7 +756,7 @@ void apply_item_data__9TItemDropFPvPv(void *arg0, void *item) {
     s32 sp8;
 
     if ((u8) *(u8 *)((s8 *)item + 0) == 2) {
-        ((TItemData *)(&sp8))->initialize_mag_data();
+        ((MagStats *)(&sp8))->init();
         *(s8 *)((s8 *)item + 1) = 0;
         serialize_mag__9TItemDataFPvPv(item, &sp8);
     }
