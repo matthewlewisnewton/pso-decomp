@@ -379,7 +379,6 @@ struct Res_80302784 { u8 pad[0x42C]; Ent_80302784 *x42C; Pair_80302784 *x430; };
 extern "C" {
 s32 TObjEneDolmOlm__sub_80300CF0(void);
 extern s32 TObjEneDolmOlm__effect_render_state;
-s32 copy_target_state__14TObjEnePanarmsFPv(void *, int);
 s32 play_sound_effect(void *, void *, int, int);
 void vfunc_98__14TObjEneDolmOlmFv(s32 arg0);
 void vfunc_97__14TObjEneDolmOlmFv(s32 arg0);
@@ -462,7 +461,6 @@ extern const f32 lbl_805DEF88;
 extern const f32 lbl_805DEF8C;
 void render__14TObjEneDolmOlmFv(Ene_803021AC *arg0);
 s32 apply_actor_gravity(void *, int, f32);
-s32 update_angle__10TObjPlayerFlPv(void *, s32, void *);
 s32 is_locally_controlled__10TObjPlayerFPv(void *);
 s32 get_entity_id(void *);
 f64 atan2_float(f32, f32);
@@ -1357,7 +1355,7 @@ s32 TObjEneDolmOlm__sub_80301C3C(void *arg0_) {
                 VecCopy((Vec *)&v, (const Vec *)(*(u8 **)((s8 *)arg0 + 0x2A8) + 0x2FC));
             }
             ADV(arg0);
-            play_sound_effect((void *)copy_target_state__14TObjEnePanarmsFPv(arg0, 0x4003B205), arg0 + 0x38, 0, 0);
+            play_sound_effect((void *)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003B205)), arg0 + 0x38, 0, 0);
             if (horizontal_distance_squared(arg0 + 0x29C, arg0 + 0x38) < lbl_805DEF78 || ((VObj_18_cc39a7 *)(arg0))->m17(0x1E) != 0) {
                 Vec_80301C3C a = v;
                 if (select_enemy_destination(arg0, &a, 1) != 0) {
@@ -1376,7 +1374,7 @@ s32 TObjEneDolmOlm__sub_80301C3C(void *arg0_) {
                 }
                 f32 d = horizontal_distance_squared(*(u8 **)((s8 *)arg0 + 0x2A8) + 0x2FC, arg0 + 0x38);
                 for (s32 i = 0; i < (*(Tgt_80301C3C **)((s8 *)arg0 + 0x2A8))->count; i++) {
-                    if (d > ((*(Tgt_80301C3C **)((s8 *)arg0 + 0x2A8))->arr[i].r + ((TObjChara *)arg0)->get_target_value()) * ((*(Tgt_80301C3C **)((s8 *)arg0 + 0x2A8))->arr[i].r + ((TObjChara *)arg0)->get_target_value())) {
+                    if (d > ((*(Tgt_80301C3C **)((s8 *)arg0 + 0x2A8))->arr[i].r + ((TObjChara *)arg0)->get_attack_range()) * ((*(Tgt_80301C3C **)((s8 *)arg0 + 0x2A8))->arr[i].r + ((TObjChara *)arg0)->get_attack_range())) {
                         *(s16 *)((s8 *)arg0 + 0x328) = 2;
                         break;
                     }
@@ -1459,10 +1457,10 @@ s32 TObjEneDolmOlm__sub_8030177C(void *arg0_) {
             Vec_8030177C v;
             VecCopy((Vec *)&v, (const Vec *)&arg0->target->f2fc);
             subtract_vector(&v, &arg0->f2fc);
-            if (update_angle__10TObjPlayerFlPv(arg0, arg0->move->turn, &v) < (*(Param_8030177C ** *)&TObjEneDolmOlm__behavior_params_by_variant)[arg0->kind]->angle) {
+            if (((TObjEnemy *)arg0)->turn_toward_direction(arg0->move->turn, (Vec *)&v) < (*(Param_8030177C ** *)&TObjEneDolmOlm__behavior_params_by_variant)[arg0->kind]->angle) {
                 arg0->f328 = 3;
                 arg0->fb8 = 0xC;
-                play_sound_effect((void *)copy_target_state__14TObjEnePanarmsFPv(arg0, 0x4003A804), &arg0->pos, 0, 0);
+                play_sound_effect((void *)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003A804)), &arg0->pos, 0, 0);
                 spawn_particle_effect(&arg0->pos, 0x20E);
             }
         } else {
@@ -1750,19 +1748,19 @@ void TObjEneDolmOlm::vfunc_94() {
 }
 void TObjEneDolmOlm::vfunc_95() {
     s32 arg0 = (s32)this;
-    play_sound_effect((void *) (copy_target_state__14TObjEnePanarmsFPv((void *)arg0, 0x4003AD00)), (void *)(arg0 + 0x38), 0, 0);
+    play_sound_effect((void *) (((TObjEnemy *)((void *)arg0))->remap_sound_for_area((s32)(0x4003AD00))), (void *)(arg0 + 0x38), 0, 0);
 }
 void TObjEneDolmOlm::vfunc_96() {
     s32 arg0 = (s32)this;
-    play_sound_effect((void *) (copy_target_state__14TObjEnePanarmsFPv((void *)arg0, 0x4003B203)), (void *)(arg0 + 0x38), 0, 0);
+    play_sound_effect((void *) (((TObjEnemy *)((void *)arg0))->remap_sound_for_area((s32)(0x4003B203))), (void *)(arg0 + 0x38), 0, 0);
 }
 void TObjEneDolmOlm::vfunc_97() {
     s32 arg0 = (s32)this;
-    play_sound_effect((void *) (copy_target_state__14TObjEnePanarmsFPv((void *)arg0, 0x4003A802)), (void *)(arg0 + 0x38), 0, 0);
+    play_sound_effect((void *) (((TObjEnemy *)((void *)arg0))->remap_sound_for_area((s32)(0x4003A802))), (void *)(arg0 + 0x38), 0, 0);
 }
 void TObjEneDolmOlm::vfunc_98() {
     s32 arg0 = (s32)this;
-    play_sound_effect((void *) (copy_target_state__14TObjEnePanarmsFPv((void *)arg0, 0x4003A801)), (void *)(arg0 + 0x38), 0, 0);
+    play_sound_effect((void *) (((TObjEnemy *)((void *)arg0))->remap_sound_for_area((s32)(0x4003A801))), (void *)(arg0 + 0x38), 0, 0);
 }
 void TObjEneDolmOlm::init_body_sub() {
     spawn_ground_effects__14TObjEneDolmOlmFPvPv((u8 *)this, (Vec_80300D00 *)((s8 *)this + 0x38));

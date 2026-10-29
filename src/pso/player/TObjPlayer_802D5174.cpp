@@ -1,3 +1,4 @@
+#include "pso/TParticleCtrl.h"
 #include "types.h"
 #include "pso/misc/TRaderMapCore.h"
 #include "pso/unk/TUnk_804E1CA8.h"
@@ -125,7 +126,6 @@ s32 TObjPlayer__sub_802D5B78(void *, void *);
 void spawn_hit_particles_at__10TObjPlayerFiii(s32 arg0, s32 arg1, s32 arg2);
 extern const f64 lbl_804725B8[];
 f32 atan2_float(f32 y, f32 x);
-void fn_800822D4__13TParticleCtrlFff(f32, f32);
 void *create_timed_particle_emitter(void *owner, s32 id, s32 b, s32 c);
 void spawn_hit_particles__10TObjPlayerFiPv(s32 arg0, const P_802D5478 *arg1);
 void* init_needle_effect__10TObjPlayerFPv(void* a0);
@@ -149,8 +149,11 @@ void spawn_hit_particles__10TObjPlayerFiPv(s32 pos, const P_802D5478 *arg1) {
     v[0] = 0;
     v[1] = (s32)(lbl_804725B8[0] * atan2_float(arg1->x, arg1->z));
     v[2] = 0;
-    if (create_timed_particle_emitter_with_angles((void *)pos, (void *)v, 0x1B8, 0, 0xF, 4) != 0U) {
-        fn_800822D4__13TParticleCtrlFff(1.5f, 1.5f);
+    {
+        TParticleCtrl *particle = (TParticleCtrl *)create_timed_particle_emitter_with_angles((void *)pos, (void *)v, 0x1B8, 0, 0xF, 4);
+        if (particle != NULL) {
+            particle->set_scale(1.5f, 1.5f);
+        }
     }
 }
 
@@ -503,7 +506,6 @@ void spawn_item__10TObjPlayerFi(s32 arg0);
 s32 spawn_particle_effect(s32, s32);
 void attach_particle_model(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
 int init_state_445__10TObjPlayerFPv(void);
-s32 fn_800822D4__13TParticleCtrlFff(s32, f32, f32);
 
     extern unsigned char lbl_804E1E08[];
 void* init_vtable_and_field200__10TObjPlayerFPv(void* a0) { init_state_445__10TObjPlayerFPv(); *(int*)((char*)a0 + 0x18) = (int)lbl_804E1E08; *(float*)((char*)a0 + 0x200) = 5.0f; return a0; }
@@ -519,7 +521,7 @@ void spawn_item__10TObjPlayerFi(s32 arg0) {
         TItemLoad::lookup_item_data(0xD, &spC);
         TItemLoad::get_data_entry(0xD, &sp8);
         attach_particle_model((u8 *)particle_effect, spC, sp8, 0, 0, 1.0f);
-        fn_800822D4__13TParticleCtrlFff(particle_effect, 10.0f, 10.0f);
+        ((TParticleCtrl *)particle_effect)->set_scale(10.0f, 10.0f);
     }
 }
 

@@ -10,12 +10,14 @@ struct TObjEnemy : public TObjChara {
     void send_6x0A_enemy_state(void *);
     s32 bind_enemy_combat_stats(u8 *, u8 *, u8 *);
     void set_param(s32);
+    s32 remap_sound_for_area(s32 sound_id);
     f32 enemy_wander_home(s32, f32, f32, f32);
     virtual void render_shadows();
     void render_world_model();
     s32 send_entity_set_flags();
     s32 render_anim_model(f32);
     void update_prev_position();
+    s32 turn_toward_direction(s32 max_step, Vec *direction);
     void award_enemy_experience(s32);
     void distribute_experience();
     void send_6x9C_enemy_low_game_flags(s32);

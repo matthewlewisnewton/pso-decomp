@@ -217,7 +217,7 @@ void TTecBarta::create_particle_emitters() {
             if (row->flags & 0x20) {
                 attach_particle_model((u8 *)self->emitters[i], (s32)(get_bml_model(technique_effect_bml, 0)), (s32)lbl_805D63B0, (s32)(get_bml_motion(technique_effect_bml, 0)), 0, (f32)lbl_805DC7A0);
             } else {
-                ((TParticleCtrl *)(self->emitters[i]))->fn_800822D4(row->scale, row->scale);
+                ((TParticleCtrl *)(self->emitters[i]))->set_scale(row->scale, row->scale);
             }
         }
     }

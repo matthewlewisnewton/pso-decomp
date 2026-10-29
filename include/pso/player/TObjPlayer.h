@@ -354,12 +354,9 @@ struct TObjPlayer : public TObjChara {
     void set_attribute_entry(s32 i, void *q);
     void copy_entry_bytes(void* q);
     s16 *get_attribute_entry(s32 i);
-    void update_angle(s32 arg1, void *arg2);
     static f32 calc_distance_to_client(s32 arg0, u16 arg1, u32 arg2);
     s16 get_class_id();
     s16 get_item_index();
-    s32 get_field_0c();
-    f32 get_pos_x();
     s32 add_status_effect_timer(s32 i, s32 v);
     static void*init_192dc_return_self(void* p);
     void bswap_head16();

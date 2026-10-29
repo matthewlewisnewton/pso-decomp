@@ -114,10 +114,10 @@ struct TObjEneDellBiter : public TObjEneDD_ST {
     void fn_8030492C(s32 reason);
     void fn_80304B88(s32 reason);
     void fn_80304D10(s32 reason);
-    s32 fn_80305C40();
-    void fn_80305E1C();
-    s32 fn_80305788();
-    s32 fn_80305884();
+    s32 check_rush_collisions();
+    void update_contact_attacks();
+    s32 select_farthest_visible_player();
+    s32 validate_or_update_target();
     void fn_803058DC();
     void fn_8030591C();
     void fn_80305684();

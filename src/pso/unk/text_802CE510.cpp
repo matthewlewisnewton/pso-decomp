@@ -1,3 +1,4 @@
+#include "pso/enemy/TObjEnemy.h"
 #include "pso/TParticleCtrl.h"
 #include "types.h"
 #include "pso/unk/text_800D8830.h"
@@ -24,7 +25,6 @@ struct RecoveredFields_802CE510_temp_r3
 
 extern "C" {
 void *spawn_particle_effect(void *pos, s32 id);
-s32 copy_target_state__14TObjEnePanarmsFPv(void *, int);
 extern const f32 lbl_805DE6E8;
 extern const f32 lbl_805DE6EC;
 extern const f32 lbl_805DE6F0;
@@ -54,7 +54,7 @@ void fn_802CE510(int arg0) {
     }
     else
     {
-      play_persistent_sound((s32)((void *) copy_target_state__14TObjEnePanarmsFPv((void *) arg0, 0x3B211)), arg0, (arg0 + 0x38), 0, 0);
+      play_persistent_sound((s32)((void *) ((TObjEnemy *)((void *) arg0))->remap_sound_for_area((s32)(0x3B211))), arg0, (arg0 + 0x38), 0, 0);
     }
     if (((objInBand((GameObj *)arg0, (f32)((f32) lbl_805DE6EC)) != 0) || (objInBand((GameObj *)((GameObj *)arg0), (f32)((f32) lbl_805DE6E8)) != 0)) || (objInBand((GameObj *)((GameObj *)arg0), (f32)((f32) lbl_805DE6F0)) != 0))
     {
@@ -67,12 +67,12 @@ void fn_802CE510(int arg0) {
           attach_particle_model((u8 *)particle_effect, (s32)((int) TParticleCtrl::get_particle_model(2)), (s32)((int) TParticleCtrl::get_instance()), 0, 1, (f32)((f32) lbl_805DE6F4));
           temp_r3 = temp_r3;
           new_var = (int) particle_effect;
-          ((TParticleCtrl *)new_var)->fn_800822D4((f32) lbl_805DE6EC, (f32) lbl_805DE6F4);
+          ((TParticleCtrl *)new_var)->set_scale((f32) lbl_805DE6EC, (f32) lbl_805DE6F4);
         }
         temp_r3_3 = (unsigned int)spawn_particle_effect((void *)(((RecoveredFields_802CE510_temp_r3 *) temp_r3)->field_4 + 0x38), 0xA4);
         if (temp_r3_3 != 0U)
         {
-          ((TParticleCtrl *)temp_r3_3)->fn_800822D4((f32) lbl_805DE6EC, (f32) lbl_805DE6F8);
+          ((TParticleCtrl *)temp_r3_3)->set_scale((f32) lbl_805DE6EC, (f32) lbl_805DE6F8);
         }
       }
       else
@@ -80,7 +80,7 @@ void fn_802CE510(int arg0) {
         temp_r3_4 = (unsigned int)spawn_particle_effect((void *)(arg0 + 0x38), 0xF3);
         if (temp_r3_4 != 0U)
         {
-          ((TParticleCtrl *)temp_r3_4)->fn_800822D4((f32) lbl_805DE6EC, (f32) lbl_805DE6FC);
+          ((TParticleCtrl *)temp_r3_4)->set_scale((f32) lbl_805DE6EC, (f32) lbl_805DE6FC);
         }
       }
     }

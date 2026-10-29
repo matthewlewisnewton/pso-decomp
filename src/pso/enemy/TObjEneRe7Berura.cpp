@@ -494,7 +494,6 @@ s32 set_field_378__9TObjEneDDFl(void *, s32, s32);
 s32 create__13TUnk_80494968FUlUl(s32, s32);
 s32 *__dt__11TBoss4Type3FPvs(s32 *arg0, s16 arg1);
 void * init_trail_buffer__11TBoss4Type3FPvifff(void *arg0, s32 segs, f32 start, f32 end, f32 step);
-s32 copy_target_state__14TObjEnePanarmsFPv(void *, int);
 s32 angle_diff_s16(s32);
 void mem_free(void*);
 void *mem_alloc(u32 size);
@@ -842,7 +841,7 @@ s32 TObjEneRe7Berura::check_death_trigger() {
 void TObjEneRe7Berura::play_band_sound() {
     u8 *arg0 = (u8 *)this;
     if ((objInBand((GameObj *)arg0, (f32)lbl_805D9770) != 0) || (objInBand((GameObj *)((GameObj *)arg0), (f32)((f32)TObjEneRe7Berura__data_805D9764)) != 0)) {
-        play_sound_effect(copy_target_state__14TObjEnePanarmsFPv(arg0, 0x4003BC1F), (u32)(arg0 + 0x38), 0, 0);
+        play_sound_effect(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003BC1F)), (u32)(arg0 + 0x38), 0, 0);
     }
 }
 #pragma pop
