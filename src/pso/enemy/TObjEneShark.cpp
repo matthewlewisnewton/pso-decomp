@@ -47,7 +47,7 @@ extern __declspec(section ".sdata2") const f32 shark_zero;
 extern __declspec(section ".sdata2") const f32 shark_ground_effect_y;
 extern __declspec(section ".sdata2") const f32 shark_ground_effect_height_factor;
 s32 TObjEneMe3SinowZoa__sub_800D758C(void *);
-s32 advance_animation_playback();
+void advance_animation_playback(void *);
 
 s32 mult_vec_array__10TObjPlayerFUll(int, int, void *, int);
 
@@ -170,7 +170,7 @@ void TObjEneShark::apply_clamped_mode_param() {
 }
 
 void TObjEneShark::vfunc_83() {
-    advance_animation_playback();
+    advance_animation_playback(this);
     switch (phase) {
     case 0:
     default:
