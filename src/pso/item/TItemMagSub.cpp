@@ -15,23 +15,30 @@
 #include "pso/unk/text_803D96A8.h"
 #include "pso/unk/text_803DC86C.h"
 #include "pso/system/vector.h"
-
 #include "types.h"
 #include "pso/player/TObjPlayer_8023E480.h"
 #include "pso/player/TObjPlayer_80141D1C.h"
-
+#include "pso/item/TItemMagGrowEff.h"
+#include "pso/boss/TBoss4Type2_800874F4.h"
+#include "pso/boss/TBoss4Type2.h"
+#include "pso/misc/TNowLoading.h"
+#include "pso/TParticleCtrl.h"
+// The mag data files TItemMag::load_data_files reads.
+extern const char item_mag_motion_path[20] = "itemmagmotion.dat";
+extern const char item_mag_edit_path[20] = "ItemMagEdit.prs";
+// MagStats::photon_blasts holds slot 0 in bits 0-2, slot 1 in bits 3-5 and
+// slot 2's rank in bits 6-7; photon_blast_flags has one bit per slot.
+extern const u8 photon_blast_masks[3] = {0x07, 0x38, 0xC0};
+extern const u8 photon_blast_slots[3] = {1, 2, 4};
+f32 mag_sub_transition_frames = 10.0f;
+f32 item_mag_follow_scale = 0.6f;
+const char *TItemMagSub_name = "TItemMagSub";
+static const Vec mag_sub_special_pose_offset = {0.0f, 0.0f, 5.0f};
+static const Vec mag_sub_local_origin = {0.0f, 0.0f, 0.0f};
+const char *TItemMagGrowEff_name = "TItemMagGrowEff";
 extern "C" {
 int set_flags__11TItemMagSubFUl(void *, int);
 }
-void TItemMagSub::release_model_and_destroy() {
-    u8* arg0=(u8*)this;
-    *(s32 *)((s8 *)arg0 + 0x24) = 0;
-    *(s32 *)((s8 *)arg0 + 0x28) = 0;
-    this->textures = 0;
-    set_flags__11TItemMagSubFUl(arg0, 0x80U);
-}
-#define TOBJECT_OUT_OF_LINE_HELPERS
-
 struct Base_80114950 { char pad[0x18]; };
 struct VObj_80114950 : Base_80114950 {
     virtual void m00(); virtual void m01(); virtual void m02(); virtual void m03();
@@ -52,7 +59,6 @@ struct VObj_80114950 : Base_80114950 {
     virtual void m60(); virtual void m61(); virtual void m62();
     virtual void m63(s32, void *);
 };
-
 extern "C" {
 
 void reset__11TItemMagSubFv(u8*);
@@ -60,56 +66,16 @@ void reset_oscillation__11TItemMagSubFv(u8*);
 
 
 }
-void TItemMagSub::set_motion_type(s32 arg1) {
-    u8* arg0=(u8*)this;
-    u8 *temp_r5;
-
-    ((void(*)(void))reset__11TItemMagSubFv)();
-    this->motion_type = arg1;
-    motion = &item_mag_motions[arg1];
-    temp_r5 = (unsigned char *) (this->owner);
-    if (temp_r5 != NULL) {
-        s32 elem = **(s32 * *)&this->motion;
-        if (elem == -1) {
-            VecCopy((Vec *)(arg0 + 0xA0), (const Vec *)(temp_r5 + 0x2FC));
-            return;
-        }
-        ((VObj_80114950 *)temp_r5)->m63(elem, (u8 *)&this->follow_anchor);
-    }
-}
-void TItemMagSub::transition_motion_type(s32 type) {
-    set_flags(0x18);
-    ((void(*)(void*,s32,s32))reset_oscillation__11TItemMagSubFv)(this, motion_type, type);
-    motion_type = type;
-    motion = &item_mag_motions[type];
-}
-
-#define TOBJECT_OUT_OF_LINE_HELPERS
-
 #include <stddef.h>
 #include "pso/TObject.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/enemy/TObjEneRe7Berura.h"
 #include "pso/player/TObjPlayer.h"
-
-struct Stack_80114DB8 {
-    s32 sp8;
-    s32 spC;
-    s32 sp10;
-};
-
-struct RecoveredGlobal_80114DB8_lbl_8043E5A8 {
-    s32 value;
-    u8 remaining[0x8];
-};
-
 struct RecoveredGlobal_80114DB8_lbl_8058D490 {
     s32 value;
     u8 remaining[0x2C];
 };
-
 struct Vec_80114CD8 { f32 x, y, z; };
-
 typedef struct TItemMagSub_801152AC {
     u8 pad0[0x34];
     f32 vec34[3];
@@ -122,18 +88,13 @@ typedef struct TItemMagSub_801152AC {
     f32 f98;
     f32 f9C;
 } TItemMagSub_801152AC;
-
 typedef struct MagSub_80115800 { u8 pad0[0x70]; s32 slots[3]; } MagSub_80115800;
-
 struct RecoveredGlobal_801151E0_lbl_8058D490 {
     s32 value;
     u8 remaining[0x2C];
 };
-
 struct Vec_801151E0 { f32 x, y, z; };
-
 struct Base_801151E0 { u8 pad0[0x18]; };
-
 struct Player_801151E0 : Base_801151E0 {
     virtual void m0();
     virtual void m1();
@@ -200,9 +161,7 @@ struct Player_801151E0 : Base_801151E0 {
     virtual void m62();
     virtual void get_joint_pos(s32, void *);
 };
-
 struct Joint_801151E0 { s32 id; };
-
 struct MagSub_801151E0 {
     u8 pad0[0x20];
     Player_801151E0 *player;
@@ -211,7 +170,6 @@ struct MagSub_801151E0 {
     u8 pad34[0x6C];
     Vec_801151E0 posA0;
 };
-
 typedef struct TItemMagSub_80114F0C {
     u8 pad0[0x24];
     void *model;
@@ -222,23 +180,13 @@ typedef struct TItemMagSub_80114F0C {
     u8 pad70[0x80 - 0x70];
     f32 animation_frame;
 } TItemMagSub_80114F0C;
-
 struct Feed_80114AB4 { u8 data[8]; };
-
-typedef char RecoveredGlobal_80114DB8_lbl_8043E5A8_size[sizeof(RecoveredGlobal_80114DB8_lbl_8043E5A8) == 0xC ? 1 : -1];
-
 typedef char RecoveredGlobal_80114DB8_lbl_8058D490_size[sizeof(RecoveredGlobal_80114DB8_lbl_8058D490) == 0x30 ? 1 : -1];
-
 struct MagSub_801151E0;
-
 struct TItemMagSub_801152AC;
-
 struct Vec_80114CD8;
-
 struct Vec_80115334 { f32 x, y, z; };
-
 struct Base_80115334 { u8 pad[0x18]; };
-
 struct VObj_80115334 : Base_80115334 {
     virtual void m0(); virtual void m1(); virtual void m2(); virtual void m3(); virtual void m4();
     virtual void m5(); virtual void m6(); virtual void m7(); virtual void m8(); virtual void m9();
@@ -254,9 +202,7 @@ struct VObj_80115334 : Base_80115334 {
     virtual void m55(); virtual void m56(); virtual void m57(); virtual void m58(); virtual void m59();
     virtual void m60(); virtual void m61(); virtual void m62(); virtual void m63(s32, Vec_80115334 *);
 };
-
 struct Stat_80115334 { u8 pad[8]; };
-
 struct Sub_80115334 {
     u8 pad0[0x1C];
     s32 x1C;
@@ -298,150 +244,249 @@ int mag_node_oscillation_node_index(void* p);
 int mag_item_tests_flag_20(void* p);
 extern void *TItemMagSub__oscillating_instance;
 extern s32 TItemMagSub__feed_sequence_index;
-extern const f32 mag_sub_zero;
-extern const f32 mag_sub_angle_units_per_degree;
-extern const f32 mag_sub_one;
-extern Vec_801151E0 mag_sub_special_pose_offset[];
-extern RecoveredGlobal_80114DB8_lbl_8043E5A8 mag_sub_local_origin;
 extern f32 model_material_color[4], saved_model_draw_color[4];
 extern RecoveredGlobal_80114DB8_lbl_8058D490 identity_matrix;
-extern f32 mag_sub_transition_frames;
-extern f32 item_mag_follow_scale;
-extern u32 TItemMagSub_name;
 extern u32 model_render_flags, saved_model_render_flags;
 extern s32 saved_chunk_polygon_flags_and_mask;
 extern s32 saved_chunk_polygon_flags_or_mask;
 extern s32 chunk_polygon_flags_or_mask;
 extern s32 chunk_polygon_flags_and_mask;
-extern const f32 mag_sub_render_distance_limit, mag_sub_screen_cull_margin;
-extern const f32 mag_sub_height_intercept;
-extern const f32 mag_sub_height_slope;
-void TItemMagSub::clear_optional_oscillation_flag(void* item_mag_sub) {
 
-    if ((u32) item_mag_sub != 0U) {
-        ((TItemMagSub *)item_mag_sub)->clear_flags(2);
+// The functions below run from the last one in the object back to the
+// first (deferred code generation, see configure.py).
+
+int mag_item_tests_flag_20(void* p) { return *(u32*)((char*)p + 0x18c) & 0x20; }
+
+int mag_node_oscillation_node_index(void* p) { return *(u8*)((char*)p + 0x0) & 0x7; }
+
+int mag_node_oscillation_uses_x(void* p) { return (*(u8*)((char*)p + 0x0) >> 5) & 0x1; }
+
+s32 mag_node_oscillation_angle(void *arg0) {
+    return (s32) ((65536.0f / 360.0f) * (f32) *(s16 *)((s8 *)arg0 + 2));
+}
+
+int mag_node_oscillation_uses_y(void* p) { return (*(u8*)((char*)p + 0x0) >> 6) & 0x1; }
+
+int mag_node_oscillation_uses_z(void* p) { return (*(u8*)((char*)p + 0x0) >> 7) & 0x1; }
+
+int TItemMagSub::set_growth_flag() {
+    void* p=this; return set_flags__11TItemMagSubFUl(p, 64); }
+
+void TItemMagSub::clear_flags(u32 v) {
+    void* p=this; *(u32*)((char*)p + 0x64) &= ~v; }
+
+void TItemMagSub::clear_growth_flag() {
+    void* p=this; ((TItemMagSub *)p)->clear_flags(64); }
+
+void TObject::disallow_rendering_shadows() { m_flags = (u16)(m_flags | 0x100); }
+
+#pragma push
+#pragma fp_contract on
+TItemMagSub::TItemMagSub(MagDrawOwner* player, TObject* parent) : TItemHeapObject(parent) {
+    s32 i;
+    m_name = TItemMagSub_name;
+    owner = player;
+    model = 0;
+    textures = 0;
+    animation = 0;
+    reset();
+    flags = 0;
+    item = parent;
+    animation_frame = 0.0f;
+    transition_frame = 0.0f;
+    for (i=0; i<3; i++) node_ids[i]=-1;
+    if (0.5 < *(f32*)((s8 *)player + 0x8A8)) {
+        owner_height_scale = 1.1f - 0.2f * *(f32 *)((s8 *)player + 0x8A8);
+    } else {
+        owner_height_scale = 1.0f;
+    }
+    disallow_rendering();
+    disallow_rendering_shadows();
+}
+
+#pragma pop
+
+void TItemMagSub::reset() {
+    u8* arg0=(u8*)this;
+    VecCopy((Vec *)&this->translation_offset, (const Vec *)(*(s32 *)&this->owner + 0x2FC));
+    *(s32 *)((s8 *)arg0 + 0x48) = 0;
+    *(s32 *)((s8 *)arg0 + 0x44) = 0;
+    *(s32 *)((s8 *)arg0 + 0x40) = 0;
+    *(s32 *)((s8 *)arg0 + 0x60) = 0;
+    *(s32 *)((s8 *)arg0 + 0x5C) = 0;
+    *(s32 *)((s8 *)arg0 + 0x58) = 0;
+    *(s32 *)((s8 *)arg0 + 0x54) = 0;
+    *(s32 *)((s8 *)arg0 + 0x50) = 0;
+    *(s32 *)((s8 *)arg0 + 0x4C) = 0;
+    *(f32 *)((s8 *)arg0 + 0x9C) = 0.0f;
+    *(f32 *)((s8 *)arg0 + 0x98) = 0.0f;
+    *(f32 *)((s8 *)arg0 + 0x94) = 0.0f;
+    *(s32 *)((s8 *)arg0 + 0x3C) = 0;
+    *(s32 *)((s8 *)arg0 + 0x38) = 0;
+    *(s32 *)((s8 *)arg0 + 0x34) = 0;
+    *(s32 *)&this->motion = 0;
+}
+
+// Inline in the original: the one kept copy follows its first caller,
+// ~TItemMagSub, and the class vtable comes out with it.
+inline TItemHeapObject::~TItemHeapObject() {}
+
+TItemMagSub::~TItemMagSub() {}
+
+void TItemMagSub::run_task() {
+    u8* arg0 = (u8*)this;
+    if (test_flags__11TItemMagSubFUl(arg0, 0x80U) != 0U) {
+        queue_destruction__7TObjectFv(arg0);
+        return;
+    }
+    if (((TItemMag *)this->item)->is_owner_frozen() != 0 ||
+        ((u32 (*)(void *))mag_item_tests_flag_20)(*(u8 * *)&this->item) != 0U) {
+        return;
+    }
+    if (((TObjChara *)this->owner)->obj_isState7_324() != 0) {
+        ((TItemMagSub *)arg0)->update_special_pose();
+        return;
+    }
+    *(f32 *)((s8 *)arg0 + 0xB8) = ((TObjPlayer *)this->owner)->render_material_state.get_alpha();
+    if (test_flags__11TItemMagSubFUl(arg0, 8U) != 0U) {
+        ((TItemMagSub *)arg0)->update_transition();
+    } else {
+        ((TItemMagSub *)arg0)->update_follow();
+    }
+    if (*(u32 *)((s8 *)arg0 + 0x28) != 0U) {
+        *(f32 *)((s8 *)arg0 + 0x80) += 1.0f;
+        if (*(f32 *)((s8 *)arg0 + 0x84) <= *(f32 *)((s8 *)arg0 + 0x80)) {
+            *(f32 *)((s8 *)arg0 + 0x80) = 0.0f;
+        }
     }
 }
-void TItemMagSub::reset_oscillation() {
-    u8* arg0=(u8*)this;
-    memset((u8 *)&this->rotation_delta, 0, 0xC);
-    memset((u8 *)&this->drift_phase, 0, 0xC);
-    *(f32 *)((s8 *)arg0 + 0x9C) = (f32) mag_sub_zero;
-    *(f32 *)((s8 *)arg0 + 0x98) = (f32) mag_sub_zero;
-    *(f32 *)((s8 *)arg0 + 0x94) = (f32) mag_sub_zero;
+
+#pragma push
+#pragma opt_common_subs off
+void TItemMagSub::update_follow() {
+    Sub_80115334* self=(Sub_80115334*)this;
+    Vec_80115334 v;
+    s32 i;
+
+    if (self->rec != NULL) {
+        if (*(s32 *)self->rec == -1) {
+            VecCopy((Vec *)&v, (const Vec *)((u8 *)self->owner + 0x2FC));
+        } else {
+            self->owner->m63(*(s32 *)self->rec, &v);
+        }
+        if (((u32 (*)(void *, s32))test_flags__11TItemMagSubFUl)(self, 2) != 0U) {
+            VecCopy((Vec *)((u8 *)self + 0xA0), (const Vec *)&v);
+        } else if (((u32 (*)(void *, s32))test_flags__11TItemMagSubFUl)(self, 0x10) != 0U) {
+            lerp_follow_anchor((Vec_80114CD8 *)&v, (Vec_80114CD8 *)((u8 *)self + 0xA0), &item_mag_follow_scale);
+        } else {
+            lerp_follow_anchor((Vec_80114CD8 *)&v, (Vec_80114CD8 *)((u8 *)self + 0xA0), (f32 *)(self->rec + 8));
+        }
+        ((void (*)(void *, void *, void *))accumulate_mag_axis_oscillation)((u8 *)self + 0xAC, (u8 *)self + 0x4C, self->rec + 0x34);
+        ((void (*)(void *, void *, void *))accumulate_mag_axis_oscillation)((u8 *)self + 0xB0, (u8 *)self + 0x50, self->rec + 0x44);
+        ((void (*)(void *, void *, void *))accumulate_mag_axis_oscillation)((u8 *)self + 0xB4, (u8 *)self + 0x54, self->rec + 0x54);
+        ((void (*)(void *, void *, void *, void *, void *))mag_accumulate_drift)((u8 *)self + 0x94, (u8 *)self + 0x58, self->rec + 0x10, self->rec + 0x28, self->rec + 0xD);
+        ((void (*)(void *, void *, void *, void *, void *))mag_accumulate_drift)((u8 *)self + 0x98, (u8 *)self + 0x5C, self->rec + 0x14, self->rec + 0x2C, self->rec + 0xE);
+        ((void (*)(void *, void *, void *, void *, void *))mag_accumulate_drift)((u8 *)self + 0x9C, (u8 *)self + 0x60, self->rec + 0x18, self->rec + 0x30, self->rec + 0xF);
+        vec3_add_to((u8 *)self + 0xAC, (u8 *)self + 0x94);
+        if (((TItemMag *)self->x1C)->is_owner_acting()) {
+            self->x34 = (65536.0f / 360.0f) * (f32)self->rec[0xC];
+        } else {
+            self->x34 = 0;
+        }
+        self->x34 += (s32)((65536.0f / 360.0f) * (f32)(s8)self->rec[5]);
+        self->x38 += (s32)((65536.0f / 360.0f) * (f32)(s8)self->rec[6]);
+        self->x3C += (s32)((65536.0f / 360.0f) * (f32)(s8)self->rec[7]);
+    }
+    for (i = 0; i != 2; i++) {
+        ((MagNodeOscillationState *)&self->st[i])->update();
+    }
 }
 
-void TItemMagSub::apply_node_oscillation(void* _w1) {
+#pragma pop
 
-    s32 i;
-    Feed_80114AB4 *f;
-    for (i = 0; i != 2; i++) {
-        f = (Feed_80114AB4*)&oscillations[i];
-        if (((MagNodeOscillationState *)f)->is_disabled() == 0 && TItemMagSub__feed_sequence_index == ((s32 (*)(Feed_80114AB4 *))mag_node_oscillation_node_index)(f)) {
-            if (((s32 (*)(Feed_80114AB4 *))mag_node_oscillation_uses_x)(f) != 0) {
-                rotate_matrix_x(0, ((s32 (*)(Feed_80114AB4 *))mag_node_oscillation_angle)(f));
-            } else if (((s32 (*)(Feed_80114AB4 *))mag_node_oscillation_uses_y)(f) != 0) {
-                rotate_matrix_y(0, (void *)((s32 (*)(Feed_80114AB4 *))mag_node_oscillation_angle)(f));
-            } else if (((s32 (*)(Feed_80114AB4 *))mag_node_oscillation_uses_z)(f) != 0) {
-                rotate_matrix_z(0, ((s32 (*)(Feed_80114AB4 *))mag_node_oscillation_angle)(f));
+void TItemMagSub::update_transition() {
+    TItemMagSub_801152AC* self=(TItemMagSub_801152AC*)this;
+    self->timer += 1.0f;
+    if (mag_sub_transition_frames == self->timer) {
+        ((TItemMagSub *)self)->clear_flags(0x18);
+        memset(self->vec34, 0, 0xC);
+        memset(self->vec58, 0, 0xC);
+        self->f9C = 0.0f;
+        self->f98 = 0.0f;
+        self->f94 = 0.0f;
+    }
+    ((TItemMagSub *)self)->update_follow();
+}
+
+void TItemMagSub::update_special_pose() {
+    MagSub_801151E0* self=(MagSub_801151E0*)this;
+    if (self->joint != NULL) {
+        if (self->joint->id == -1) {
+            VecCopy((Vec *)&self->posA0, (const Vec *)((s32)self->player + 0x2FC));
+        } else {
+            self->player->get_joint_pos(self->joint->id, &self->posA0);
+        }
+    }
+    push_matrix_from((void *) (&(*(RecoveredGlobal_801151E0_lbl_8058D490 *)&identity_matrix).value));
+    rotate_matrix_y(0, (void *)(((TItemMagSub *)self)->resolve_owner_heading() + 0x8000));
+    Vec in = mag_sub_special_pose_offset;
+    Vec out;
+    transform_point_by_current_matrix(&in, &out);
+    vec3_add_to(&self->posA0, &out);
+    pop_matrix();
+}
+
+s32 TItemMagSub::resolve_owner_heading() {
+    void* arg0=this;
+    s32 temp_r3;
+    void **temp_r4_2;
+    void *temp_r3_2;
+    void *temp_r4;
+    void *temp_r4_3;
+
+    temp_r3_2 = *(void **)((s8 *)arg0 + 0x20);
+    temp_r4_2 = *(void ***)((s8 *)temp_r3_2 + 0xF8);
+    temp_r3 = *(s32 *)((s8 *)temp_r3_2 + 0x60);
+    if (temp_r4_2 != NULL) {
+        temp_r4_3 = *temp_r4_2;
+        if (temp_r4_3 != NULL) {
+            temp_r4 = *(void **)((s8 *)temp_r4_3 + 4);
+            if (temp_r4 != NULL) {
+                return temp_r3 + *(s16 *)((s8 *)temp_r4 + 4);
             }
         }
     }
-    if (TItemMagSub__feed_sequence_index == node_ids[selected_node]) {
-        if (test_flags__11TItemMagSubFUl(this, 0x20) == 0) {
-            model_render_flags |= 0x10;
-            set_constant_material((const NJS_ARGB *)material_parameters);
-            TParticleCtrl::begin_effect_render();
-            ((s32 (*)(void *, int))set_flags__11TItemMagSubFUl)(this, 0x20);
+    return temp_r3;
+}
+
+void TItemMagSub::render() {
+    TItemMagSub* self = this;
+    if (is_point_on_screen(self->owner->center, 400.0f, 20.0f) && self->model) {
+        TItemMagSub__oscillating_instance = self;
+        set_texlist(self->textures);
+        push_matrix();
+        ((TItemMagSub *)self)->apply_placement_matrix();
+        (*(u32 *)&TItemMagSub__feed_sequence_index) = 0;
+        self->selected_node = 0;
+        if (self->animation) {
+            TObjEneRe7Berura::set_global_state((s32)(TItemMagSub::update_node_oscillation));
+            TObjPlayer::set_global_flag();
+            draw_model_motion(self->model, self->animation, self->animation_frame);
+            TObjPlayer::clear_global_state();
+            TObjEneRe7Berura::set_global_state(0);
+        } else {
+            draw_node_tree_with_callback((NJS_OBJECT *)self->model, (void (*)(NJS_OBJECT *))TItemMagSub::update_node_oscillation);
         }
-        if (selected_node != 2) {
-            selected_node++;
-        }
-    } else if (test_flags__11TItemMagSubFUl(this, 0x20) != 0) {
-        TParticleCtrl::end_effect_render();
-        copy_argb((NJS_ARGB *)model_material_color, (NJS_ARGB *)saved_model_draw_color);
-        model_render_flags = saved_model_render_flags;
-        clear_flags(0x20);
-    }
-}
-void TItemMagSub::update_node_oscillation(void* arg) {
-
-    if (TItemMagSub__oscillating_instance != 0) {
-        ((TItemMagSub *)TItemMagSub__oscillating_instance)->apply_node_oscillation(arg);
-        TItemMagSub__feed_sequence_index++;
-    }
-}
-void accumulate_mag_axis_oscillation(f32 *arg0, s32 *arg1, void *arg2) {
-    *arg1 = *arg1 + *(s32 *)((s8 *)arg2 + 0xC);
-    *arg0 = *(f32 *)((s8 *)arg2 + 0) * sin_table_lookup(*arg1 + *(s32 *)((s8 *)arg2 + 8));
-}
-
-#pragma push
-#pragma fp_contract on
-
-void lerp_follow_anchor(Vec_80114CD8 *target, Vec_80114CD8 *cur, f32 *t) {
-    cur->x += *t * (target->x - cur->x);
-    cur->y += *t * (target->y - cur->y);
-    cur->z += *t * (target->z - cur->z);
-}
-#pragma pop
-
-#pragma push
-#pragma fp_contract on
-void mag_accumulate_drift(f32 *out, s32 *phase, f32 *amplitude, s32 *velocity, s8 *offset) {
-    *phase += *velocity;
-    *out += *amplitude * sin_table_lookup(*phase + (s32)(mag_sub_angle_units_per_degree * (f32)*offset));
-}
-#pragma pop
-s32 TItemMagSub::get_world_position(void* output) {
-
-    typedef char sp8_offset[(offsetof(Stack_80114DB8, sp8) == 0x0) ? 1 : -1];
-    typedef char spC_offset[(offsetof(Stack_80114DB8, spC) == 0x4) ? 1 : -1];
-    typedef char sp10_offset[(offsetof(Stack_80114DB8, sp10) == 0x8) ? 1 : -1];
-    Stack_80114DB8 stack;
-    if ((((TItemMag *)item)->is_owner_frozen() == 0) && (output != 0)) {
-        push_matrix_from((void *)&identity_matrix.value);
-        apply_placement_matrix();
-        stack.sp8 = *(s32 *)((s8 *)&mag_sub_local_origin.value + 0);
-        stack.spC = *(s32 *)((s8 *)&mag_sub_local_origin.value + 4);
-        stack.sp10 = *(s32 *)((s8 *)&mag_sub_local_origin.value + 8);
-        transform_point_by_current_matrix((void *)&stack.sp8, output);
+        (*(u32 *)&TItemMagSub__feed_sequence_index) = 0;
         pop_matrix();
-        return 1;
+        TItemMagSub__oscillating_instance = 0;
+        if (test_flags__11TItemMagSubFUl(self, 0x20)) {
+            TParticleCtrl::end_effect_render();
+            copy_argb((NJS_ARGB *)model_material_color, (NJS_ARGB *)saved_model_draw_color);
+            model_render_flags = saved_model_render_flags;
+            ((TItemMagSub *)self)->clear_flags(0x20);
+        }
     }
-    return 0;
-}
-void TItemMagSub::apply_placement_matrix() {
-    u8* arg0=(u8*)this;
-  f32 temp_f1;
-  s32 temp_r7;
-  u8 *temp_r6;
-  void *feed;
-  s32 a2;
-  s32 a3;
-  s32 a4;
-  post_translate_matrix((u8 *)&this->follow_anchor);
-  if (((TObjChara *)this->owner)->obj_isState7_324() != 0)
-  {
-    feed = (void *) ((TItemMagSub *)arg0)->resolve_owner_heading();
-    rotate_matrix_y(0, feed);
-  }
-  else
-  {
-    rotate_matrix_y(0, (void *) (*((s32 *) (((s8 *)this->owner) + 0x60))));
-  }
-  post_translate_matrix((u8 *)&this->translation_offset);
-  temp_r6 = (unsigned char *) (this->motion);
-  if (temp_r6 != 0)
-  {
-    a2 = *((s32 *) (((s8 *) temp_r6) + 0x1C));
-    a2 = a2 + (*((s32 *) (((s8 *) arg0) + 0x34)));
-    a3 = (*((s32 *) (((s8 *) temp_r6) + 0x20))) + (*((s32 *) (((s8 *) arg0) + 0x38)));
-    a4 = (*((s32 *) (((s8 *) temp_r6) + 0x24))) + (*((s32 *) (((s8 *) arg0) + 0x3C)));
-    rotate_matrix_zyx(0, (int) a2, (int) a3, (int) a4, (int) (*((s32 *) (((s8 *) temp_r6) + 0x20))));
-  }
-  temp_f1 = this->owner_height_scale;
-  scale_matrix(0, (f32) temp_f1, (f32) temp_f1, (f32) temp_f1);
 }
 
 void TItemMagSub::render_shadows() {
@@ -487,235 +532,215 @@ void TItemMagSub::render_shadows() {
     chunk_polygon_flags_or_mask = saved_chunk_polygon_flags_or_mask;
     model_render_flags = saved_model_render_flags;
 }
-void TItemMagSub::render() {
-    TItemMagSub* self = this;
-    if (is_point_on_screen(self->owner->center, mag_sub_render_distance_limit, mag_sub_screen_cull_margin) && self->model) {
-        TItemMagSub__oscillating_instance = self;
-        set_texlist(self->textures);
-        push_matrix();
-        ((TItemMagSub *)self)->apply_placement_matrix();
-        (*(u32 *)&TItemMagSub__feed_sequence_index) = 0;
-        self->selected_node = 0;
-        if (self->animation) {
-            TObjEneRe7Berura::set_global_state((s32)(TItemMagSub::update_node_oscillation));
-            TObjPlayer::set_global_flag();
-            draw_model_motion(self->model, self->animation, self->animation_frame);
-            TObjPlayer::clear_global_state();
-            TObjEneRe7Berura::set_global_state(0);
-        } else {
-            draw_node_tree_with_callback((NJS_OBJECT *)self->model, (void (*)(NJS_OBJECT *))TItemMagSub::update_node_oscillation);
-        }
-        (*(u32 *)&TItemMagSub__feed_sequence_index) = 0;
-        pop_matrix();
-        TItemMagSub__oscillating_instance = 0;
-        if (test_flags__11TItemMagSubFUl(self, 0x20)) {
-            TParticleCtrl::end_effect_render();
-            copy_argb((NJS_ARGB *)model_material_color, (NJS_ARGB *)saved_model_draw_color);
-            model_render_flags = saved_model_render_flags;
-            ((TItemMagSub *)self)->clear_flags(0x20);
-        }
-    }
-}
-s32 TItemMagSub::resolve_owner_heading() {
-    void* arg0=this;
-    s32 temp_r3;
-    void **temp_r4_2;
-    void *temp_r3_2;
-    void *temp_r4;
-    void *temp_r4_3;
 
-    temp_r3_2 = *(void **)((s8 *)arg0 + 0x20);
-    temp_r4_2 = *(void ***)((s8 *)temp_r3_2 + 0xF8);
-    temp_r3 = *(s32 *)((s8 *)temp_r3_2 + 0x60);
-    if (temp_r4_2 != NULL) {
-        temp_r4_3 = *temp_r4_2;
-        if (temp_r4_3 != NULL) {
-            temp_r4 = *(void **)((s8 *)temp_r4_3 + 4);
-            if (temp_r4 != NULL) {
-                return temp_r3 + *(s16 *)((s8 *)temp_r4 + 4);
-            }
-        }
-    }
-    return temp_r3;
-}
-
-void TItemMagSub::update_special_pose() {
-    MagSub_801151E0* self=(MagSub_801151E0*)this;
-    if (self->joint != NULL) {
-        if (self->joint->id == -1) {
-            VecCopy((Vec *)&self->posA0, (const Vec *)((s32)self->player + 0x2FC));
-        } else {
-            self->player->get_joint_pos(self->joint->id, &self->posA0);
-        }
-    }
-    push_matrix_from((void *) (&(*(RecoveredGlobal_801151E0_lbl_8058D490 *)&identity_matrix).value));
-    rotate_matrix_y(0, (void *)(((TItemMagSub *)self)->resolve_owner_heading() + 0x8000));
-    Vec_801151E0 in = mag_sub_special_pose_offset[0];
-    Vec_801151E0 out;
-    transform_point_by_current_matrix(&in, &out);
-    vec3_add_to(&self->posA0, &out);
-    pop_matrix();
-}
-void TItemMagSub::update_transition() {
-    TItemMagSub_801152AC* self=(TItemMagSub_801152AC*)this;
-    self->timer += mag_sub_one;
-    if (mag_sub_transition_frames == self->timer) {
-        ((TItemMagSub *)self)->clear_flags(0x18);
-        memset(self->vec34, 0, 0xC);
-        memset(self->vec58, 0, 0xC);
-        self->f9C = mag_sub_zero;
-        self->f98 = mag_sub_zero;
-        self->f94 = mag_sub_zero;
-    }
-    ((TItemMagSub *)self)->update_follow();
-}
-
-#pragma push
-#pragma opt_common_subs off
-void TItemMagSub::update_follow() {
-    Sub_80115334* self=(Sub_80115334*)this;
-    Vec_80115334 v;
-    s32 i;
-
-    if (self->rec != NULL) {
-        if (*(s32 *)self->rec == -1) {
-            VecCopy((Vec *)&v, (const Vec *)((u8 *)self->owner + 0x2FC));
-        } else {
-            self->owner->m63(*(s32 *)self->rec, &v);
-        }
-        if (((u32 (*)(void *, s32))test_flags__11TItemMagSubFUl)(self, 2) != 0U) {
-            VecCopy((Vec *)((u8 *)self + 0xA0), (const Vec *)&v);
-        } else if (((u32 (*)(void *, s32))test_flags__11TItemMagSubFUl)(self, 0x10) != 0U) {
-            lerp_follow_anchor((Vec_80114CD8 *)&v, (Vec_80114CD8 *)((u8 *)self + 0xA0), &item_mag_follow_scale);
-        } else {
-            lerp_follow_anchor((Vec_80114CD8 *)&v, (Vec_80114CD8 *)((u8 *)self + 0xA0), (f32 *)(self->rec + 8));
-        }
-        ((void (*)(void *, void *, void *))accumulate_mag_axis_oscillation)((u8 *)self + 0xAC, (u8 *)self + 0x4C, self->rec + 0x34);
-        ((void (*)(void *, void *, void *))accumulate_mag_axis_oscillation)((u8 *)self + 0xB0, (u8 *)self + 0x50, self->rec + 0x44);
-        ((void (*)(void *, void *, void *))accumulate_mag_axis_oscillation)((u8 *)self + 0xB4, (u8 *)self + 0x54, self->rec + 0x54);
-        ((void (*)(void *, void *, void *, void *, void *))mag_accumulate_drift)((u8 *)self + 0x94, (u8 *)self + 0x58, self->rec + 0x10, self->rec + 0x28, self->rec + 0xD);
-        ((void (*)(void *, void *, void *, void *, void *))mag_accumulate_drift)((u8 *)self + 0x98, (u8 *)self + 0x5C, self->rec + 0x14, self->rec + 0x2C, self->rec + 0xE);
-        ((void (*)(void *, void *, void *, void *, void *))mag_accumulate_drift)((u8 *)self + 0x9C, (u8 *)self + 0x60, self->rec + 0x18, self->rec + 0x30, self->rec + 0xF);
-        vec3_add_to((u8 *)self + 0xAC, (u8 *)self + 0x94);
-        if (((TItemMag *)self->x1C)->is_owner_acting()) {
-            self->x34 = mag_sub_angle_units_per_degree * (f32)self->rec[0xC];
-        } else {
-            self->x34 = 0;
-        }
-        self->x34 += (s32)(mag_sub_angle_units_per_degree * (f32)(s8)self->rec[5]);
-        self->x38 += (s32)(mag_sub_angle_units_per_degree * (f32)(s8)self->rec[6]);
-        self->x3C += (s32)(mag_sub_angle_units_per_degree * (f32)(s8)self->rec[7]);
-    }
-    for (i = 0; i != 2; i++) {
-        ((MagNodeOscillationState *)&self->st[i])->update();
-    }
-}
-
-#pragma pop
-
-void TItemMagSub::run_task() {
-    u8* arg0 = (u8*)this;
-    if (test_flags__11TItemMagSubFUl(arg0, 0x80U) != 0U) {
-        queue_destruction__7TObjectFv(arg0);
-        return;
-    }
-    if (((TItemMag *)this->item)->is_owner_frozen() != 0 ||
-        ((u32 (*)(void *))mag_item_tests_flag_20)(*(u8 * *)&this->item) != 0U) {
-        return;
-    }
-    if (((TObjChara *)this->owner)->obj_isState7_324() != 0) {
-        ((TItemMagSub *)arg0)->update_special_pose();
-        return;
-    }
-    *(f32 *)((s8 *)arg0 + 0xB8) = ((TObjPlayer *)this->owner)->render_material_state.get_alpha();
-    if (test_flags__11TItemMagSubFUl(arg0, 8U) != 0U) {
-        ((TItemMagSub *)arg0)->update_transition();
-    } else {
-        ((TItemMagSub *)arg0)->update_follow();
-    }
-    if (*(u32 *)((s8 *)arg0 + 0x28) != 0U) {
-        *(f32 *)((s8 *)arg0 + 0x80) = *(f32 *)((s8 *)arg0 + 0x80) + mag_sub_one;
-        if (*(f32 *)((s8 *)arg0 + 0x84) <= *(f32 *)((s8 *)arg0 + 0x80)) {
-            *(f32 *)((s8 *)arg0 + 0x80) = mag_sub_zero;
-        }
-    }
-}
-TItemMagSub::~TItemMagSub() {}
-TItemHeapObject::~TItemHeapObject() {}
-void TItemMagSub::reset() {
+void TItemMagSub::apply_placement_matrix() {
     u8* arg0=(u8*)this;
-    VecCopy((Vec *)&this->translation_offset, (const Vec *)(*(s32 *)&this->owner + 0x2FC));
-    *(s32 *)((s8 *)arg0 + 0x48) = 0;
-    *(s32 *)((s8 *)arg0 + 0x44) = 0;
-    *(s32 *)((s8 *)arg0 + 0x40) = 0;
-    *(s32 *)((s8 *)arg0 + 0x60) = 0;
-    *(s32 *)((s8 *)arg0 + 0x5C) = 0;
-    *(s32 *)((s8 *)arg0 + 0x58) = 0;
-    *(s32 *)((s8 *)arg0 + 0x54) = 0;
-    *(s32 *)((s8 *)arg0 + 0x50) = 0;
-    *(s32 *)((s8 *)arg0 + 0x4C) = 0;
-    *(f32 *)((s8 *)arg0 + 0x9C) = (f32) mag_sub_zero;
-    *(f32 *)((s8 *)arg0 + 0x98) = (f32) mag_sub_zero;
-    *(f32 *)((s8 *)arg0 + 0x94) = (f32) mag_sub_zero;
-    *(s32 *)((s8 *)arg0 + 0x3C) = 0;
-    *(s32 *)((s8 *)arg0 + 0x38) = 0;
-    *(s32 *)((s8 *)arg0 + 0x34) = 0;
-    *(s32 *)&this->motion = 0;
+  f32 temp_f1;
+  s32 temp_r7;
+  u8 *temp_r6;
+  void *feed;
+  s32 a2;
+  s32 a3;
+  s32 a4;
+  post_translate_matrix((u8 *)&this->follow_anchor);
+  if (((TObjChara *)this->owner)->obj_isState7_324() != 0)
+  {
+    feed = (void *) ((TItemMagSub *)arg0)->resolve_owner_heading();
+    rotate_matrix_y(0, feed);
+  }
+  else
+  {
+    rotate_matrix_y(0, (void *) (*((s32 *) (((s8 *)this->owner) + 0x60))));
+  }
+  post_translate_matrix((u8 *)&this->translation_offset);
+  temp_r6 = (unsigned char *) (this->motion);
+  if (temp_r6 != 0)
+  {
+    a2 = *((s32 *) (((s8 *) temp_r6) + 0x1C));
+    a2 = a2 + (*((s32 *) (((s8 *) arg0) + 0x34)));
+    a3 = (*((s32 *) (((s8 *) temp_r6) + 0x20))) + (*((s32 *) (((s8 *) arg0) + 0x38)));
+    a4 = (*((s32 *) (((s8 *) temp_r6) + 0x24))) + (*((s32 *) (((s8 *) arg0) + 0x3C)));
+    rotate_matrix_zyx(0, (int) a2, (int) a3, (int) a4, (int) (*((s32 *) (((s8 *) temp_r6) + 0x20))));
+  }
+  temp_f1 = this->owner_height_scale;
+  scale_matrix(0, (f32) temp_f1, (f32) temp_f1, (f32) temp_f1);
+}
+
+s32 TItemMagSub::get_world_position(void* output) {
+
+    if ((((TItemMag *)item)->is_owner_frozen() == 0) && (output != 0)) {
+        push_matrix_from((void *)&identity_matrix.value);
+        apply_placement_matrix();
+        Vec origin = mag_sub_local_origin;
+        transform_point_by_current_matrix(&origin, output);
+        pop_matrix();
+        return 1;
+    }
+    return 0;
 }
 
 #pragma push
 #pragma fp_contract on
-TItemMagSub::TItemMagSub(MagDrawOwner* player, TObject* parent) : TItemHeapObject(parent) {
-    s32 i;
-    m_name = (const char*)TItemMagSub_name;
-    owner = player;
-    model = 0;
-    textures = 0;
-    animation = 0;
-    reset();
-    flags = 0;
-    item = parent;
-    animation_frame = mag_sub_zero;
-    transition_frame = mag_sub_zero;
-    for (i=0; i<3; i++) node_ids[i]=-1;
-    if (0.5 < *(f32*)((s8 *)player + 0x8A8)) {
-        owner_height_scale = -((mag_sub_height_slope**(f32*)((s8 *)player + 0x8A8))-mag_sub_height_intercept);
-    } else {
-        owner_height_scale = mag_sub_one;
-    }
-    disallow_rendering();
-    disallow_rendering_shadows();
+void mag_accumulate_drift(f32 *out, s32 *phase, f32 *amplitude, s32 *velocity, s8 *offset) {
+    *phase += *velocity;
+    *out += *amplitude * sin_table_lookup(*phase + (s32)((65536.0f / 360.0f) * (f32)*offset));
 }
-
 #pragma pop
 
-void TObject::disallow_rendering_shadows() { m_flags = (u16)(m_flags | 0x100); }
-void TItemMagSub::clear_growth_flag() {
-    void* p=this; ((TItemMagSub *)p)->clear_flags(64); }
-void TItemMagSub::clear_flags(u32 v) {
-    void* p=this; *(u32*)((char*)p + 0x64) &= ~v; }
-int TItemMagSub::set_growth_flag() {
-    void* p=this; return set_flags__11TItemMagSubFUl(p, 64); }
-int mag_node_oscillation_uses_z(void* p) { return (*(u8*)((char*)p + 0x0) >> 7) & 0x1; }
+#pragma push
+#pragma fp_contract on
 
-int mag_node_oscillation_uses_y(void* p) { return (*(u8*)((char*)p + 0x0) >> 6) & 0x1; }
+void lerp_follow_anchor(Vec_80114CD8 *target, Vec_80114CD8 *cur, f32 *t) {
+    cur->x += *t * (target->x - cur->x);
+    cur->y += *t * (target->y - cur->y);
+    cur->z += *t * (target->z - cur->z);
+}
+#pragma pop
 
-s32 mag_node_oscillation_angle(void *arg0) {
-    return (s32) (mag_sub_angle_units_per_degree * (f32) *(s16 *)((s8 *)arg0 + 2));
+void accumulate_mag_axis_oscillation(f32 *arg0, s32 *arg1, void *arg2) {
+    *arg1 = *arg1 + *(s32 *)((s8 *)arg2 + 0xC);
+    *arg0 = *(f32 *)((s8 *)arg2 + 0) * sin_table_lookup(*arg1 + *(s32 *)((s8 *)arg2 + 8));
 }
 
-int mag_node_oscillation_uses_x(void* p) { return (*(u8*)((char*)p + 0x0) >> 5) & 0x1; }
+void TItemMagSub::update_node_oscillation(void* arg) {
 
-int mag_node_oscillation_node_index(void* p) { return *(u8*)((char*)p + 0x0) & 0x7; }
+    if (TItemMagSub__oscillating_instance != 0) {
+        ((TItemMagSub *)TItemMagSub__oscillating_instance)->apply_node_oscillation(arg);
+        TItemMagSub__feed_sequence_index++;
+    }
+}
 
-int mag_item_tests_flag_20(void* p) { return *(u32*)((char*)p + 0x18c) & 0x20; }
-extern "C" {
+void TItemMagSub::apply_node_oscillation(void* _w1) {
 
-__declspec(section ".sdata2") extern const f32 mag_sub_zero = 0.0f;
-__declspec(section ".sdata2") extern const f32 mag_sub_angle_units_per_degree = 182.0444488525390625f;
-__declspec(section ".sdata2") extern const f32 mag_sub_render_distance_limit = 400.0f;
-__declspec(section ".sdata2") extern const f32 mag_sub_screen_cull_margin = 20.0f;
-__declspec(section ".sdata2") extern const f32 mag_sub_one = 1.0f;
-__declspec(section ".sdata2") extern const f32 mag_sub_height_intercept = 1.10000002384185791015625f;
-__declspec(section ".sdata2") extern const f32 mag_sub_height_slope = 0.20000000298023223876953125f;
+    s32 i;
+    Feed_80114AB4 *f;
+    for (i = 0; i != 2; i++) {
+        f = (Feed_80114AB4*)&oscillations[i];
+        if (((MagNodeOscillationState *)f)->is_disabled() == 0 && TItemMagSub__feed_sequence_index == ((s32 (*)(Feed_80114AB4 *))mag_node_oscillation_node_index)(f)) {
+            if (((s32 (*)(Feed_80114AB4 *))mag_node_oscillation_uses_x)(f) != 0) {
+                rotate_matrix_x(0, ((s32 (*)(Feed_80114AB4 *))mag_node_oscillation_angle)(f));
+            } else if (((s32 (*)(Feed_80114AB4 *))mag_node_oscillation_uses_y)(f) != 0) {
+                rotate_matrix_y(0, (void *)((s32 (*)(Feed_80114AB4 *))mag_node_oscillation_angle)(f));
+            } else if (((s32 (*)(Feed_80114AB4 *))mag_node_oscillation_uses_z)(f) != 0) {
+                rotate_matrix_z(0, ((s32 (*)(Feed_80114AB4 *))mag_node_oscillation_angle)(f));
+            }
+        }
+    }
+    if (TItemMagSub__feed_sequence_index == node_ids[selected_node]) {
+        if (test_flags__11TItemMagSubFUl(this, 0x20) == 0) {
+            model_render_flags |= 0x10;
+            set_constant_material((const NJS_ARGB *)material_parameters);
+            TParticleCtrl::begin_effect_render();
+            ((s32 (*)(void *, int))set_flags__11TItemMagSubFUl)(this, 0x20);
+        }
+        if (selected_node != 2) {
+            selected_node++;
+        }
+    } else if (test_flags__11TItemMagSubFUl(this, 0x20) != 0) {
+        TParticleCtrl::end_effect_render();
+        copy_argb((NJS_ARGB *)model_material_color, (NJS_ARGB *)saved_model_draw_color);
+        model_render_flags = saved_model_render_flags;
+        clear_flags(0x20);
+    }
+}
+
+void TItemMagSub::reset_oscillation() {
+    u8* arg0=(u8*)this;
+    memset((u8 *)&this->rotation_delta, 0, 0xC);
+    memset((u8 *)&this->drift_phase, 0, 0xC);
+    *(f32 *)((s8 *)arg0 + 0x9C) = 0.0f;
+    *(f32 *)((s8 *)arg0 + 0x98) = 0.0f;
+    *(f32 *)((s8 *)arg0 + 0x94) = 0.0f;
+}
+
+void TItemMagSub::clear_optional_oscillation_flag(void* item_mag_sub) {
+
+    if ((u32) item_mag_sub != 0U) {
+        ((TItemMagSub *)item_mag_sub)->clear_flags(2);
+    }
+}
+
+void TItemMagSub::transition_motion_type(s32 type) {
+    set_flags(0x18);
+    ((void(*)(void*,s32,s32))reset_oscillation__11TItemMagSubFv)(this, motion_type, type);
+    motion_type = type;
+    motion = &item_mag_motions[type];
+}
+
+void TItemMagSub::set_motion_type(s32 arg1) {
+    u8* arg0=(u8*)this;
+    u8 *temp_r5;
+
+    ((void(*)(void))reset__11TItemMagSubFv)();
+    this->motion_type = arg1;
+    motion = &item_mag_motions[arg1];
+    temp_r5 = (unsigned char *) (this->owner);
+    if (temp_r5 != NULL) {
+        s32 elem = **(s32 * *)&this->motion;
+        if (elem == -1) {
+            VecCopy((Vec *)(arg0 + 0xA0), (const Vec *)(temp_r5 + 0x2FC));
+            return;
+        }
+        ((VObj_80114950 *)temp_r5)->m63(elem, (u8 *)&this->follow_anchor);
+    }
+}
+
+void TItemMagSub::release_model_and_destroy() {
+    u8* arg0=(u8*)this;
+    *(s32 *)((s8 *)arg0 + 0x24) = 0;
+    *(s32 *)((s8 *)arg0 + 0x28) = 0;
+    this->textures = 0;
+    set_flags__11TItemMagSubFUl(arg0, 0x80U);
+}
+
+TItemMagGrowEff::TItemMagGrowEff(TObject *parent, void *mag_object) : TObject(parent) {
+    m_name = TItemMagGrowEff_name;
+    if (mag_object != NULL) {
+        mag = (u8*)mag_object;
+        progress_ticks = 0;
+        effect = (u8*)create_particle_emitter((mag + 0xDC), 0x9D);
+        ((TItemMagSub *)mag)->set_growth_flag();
+    } else {
+        mag = NULL;
+        effect = NULL;
+        queue_destruction__7TObjectFv(this);
+    }
+}
+
+TItemMagGrowEff::~TItemMagGrowEff() {
+    TParticleCtrl::release(effect);
+    if (mag != nullptr) ((TItemMagSub *)mag)->clear_growth_flag();
+}
+
+void TItemMagGrowEff::run_task() {
+    f32 position[3];
+    s32 ticks;
+    u8 *effect_object;
+    u8 *mag_object;
+    u8 *active_mag;
+    effect_object = effect;
+    if ((effect_object != NULL) && (((TObject *)effect_object)->all_parents_unqueued_for_destruction() == 0)) {
+        effect = NULL;
+    }
+    mag_object = mag;
+    if ((mag_object != NULL) && (((TObject *)mag_object)->all_parents_unqueued_for_destruction() == 0)) {
+        mag = NULL;
+    }
+    if ((effect != NULL) && (active_mag = mag, (active_mag != NULL))) {
+        if (((TItemMagSub *)active_mag)->get_world_position((void*)position) != 0) {
+            if (progress_ticks == 0xA) {
+                TParticleCtrl::release(effect);
+                effect = (u8 *) (create_particle_emitter(position, 0x9E));
+            }
+            ((TParticleCtrl *)effect)->set_position(position);
+            ticks = progress_ticks;
+            if (ticks == 0x14) {
+                queue_destruction__7TObjectFv(this);
+                return;
+            }
+            progress_ticks = ticks + 1;
+        }
+    } else {
+        queue_destruction__7TObjectFv(this);
+    }
 }

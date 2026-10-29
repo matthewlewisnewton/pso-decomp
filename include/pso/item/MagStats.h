@@ -54,6 +54,11 @@ struct MagStats {
     u8 pad_f;
 };
 
+// The photon_blasts field of each slot, and its photon_blast_flags bit
+// (TItemMagSub.cpp).
+extern const u8 photon_blast_masks[3];
+extern const u8 photon_blast_slots[3];
+
 typedef char MagStatsSize[sizeof(MagStats) == 0x10 ? 1 : -1];
 
 #endif
