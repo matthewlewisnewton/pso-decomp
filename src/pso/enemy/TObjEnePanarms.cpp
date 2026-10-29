@@ -1,3 +1,4 @@
+#include "pso/TObjControl.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_800F0810.h"
 #include "pso/unk/text_803D96A8.h"
@@ -1565,19 +1566,8 @@ Obj_800E24A4 *fn_800E24A4(Obj_800E24A4 *arg0, s16 arg1) {
     return arg0;
 }
 
-s32 TObjEnePanarms::create_bara(s32 arg0, s32 arg1) {
-    s32 var_r31;
-    s32 var_r4;
-
-    var_r31 = __nw__7TObjectFUl(0x470);
-    if (var_r31 != 0) {
-        var_r4 = __nw__7TObjectFUl(0x20);
-        if (var_r4 != 0) {
-            var_r4 = __ct__11TObjControlFP7TObject(var_r4, tl_04);
-        }
-        var_r31 = TObjEnePanBARA__ct(var_r31, var_r4, arg0, arg1);
-    }
-    return var_r31;
+TObjEnePanBARA *TObjEnePanarms::create_bara(void *set_data, s32 part) {
+    return new TObjEnePanBARA(new TObjControl((TObject *)tl_04), set_data, part);
 }
 
 void TObjMotion::sub_800E2DE4(s32 arg1) {

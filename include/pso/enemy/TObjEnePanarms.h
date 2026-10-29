@@ -6,6 +6,8 @@
 #include "pso/misc/RenderFadeState.h"
 #include <stddef.h>
 
+class TObjEnePanBARA;
+
 struct TObjEnePanarms : public TObjEnemy {
     TObjEnePanarms(TObject *parent, void *set_data);
     virtual ~TObjEnePanarms();
@@ -56,7 +58,7 @@ struct TObjEnePanarms : public TObjEnemy {
     u32 m_478;
     int find_nearest_enemy_with_flag(s32 arg1, f32 farg0);
     static void spawn_npc_pair();
-    static s32 create_bara(s32 arg0, s32 arg1);
+    static TObjEnePanBARA *create_bara(void *set_data, s32 part);
     static s32 create(s32 arg0);
     void init(void* a1);
     void copy_target_state(void* a1);
