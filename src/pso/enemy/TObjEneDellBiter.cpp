@@ -80,7 +80,6 @@ s16 get_attack_params_atp_min(void *p);
 s32 obj_is_hit_receivable(void *);
 u16 get_entity_id(void *);
 void obj_setFlags30(void *, s32);
-void queue_destruction__7TObjectFv(void *arg0);
 void TLobby__sub_8001FE7C(void*, int);
 void attach_particle_model(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
 s32 get_mode__11TCameraCtrlFPv(void *);
@@ -491,12 +490,12 @@ void TObjEneDellBiter::update_particle_emitters() {
     }
     TParticleCtrl *emitter = status_effects[0];
     if (emitter != NULL) {
-        queue_destruction__7TObjectFv(emitter);
+        emitter->queue_destruction();
         status_effects[0] = NULL;
     }
     emitter = status_effects[1];
     if (emitter != NULL) {
-        queue_destruction__7TObjectFv(emitter);
+        emitter->queue_destruction();
         status_effects[1] = NULL;
     }
 }
@@ -1298,7 +1297,7 @@ void TObjEneDellBiter::fn_803040D0(s32 reason) {
     case 5:
         temp_r3 = (u32)effect;
         if (temp_r3 != 0U) {
-            queue_destruction__7TObjectFv(((void *)temp_r3));
+            ((TObject *)temp_r3)->queue_destruction();
             effect = NULL;
         }
         break;
