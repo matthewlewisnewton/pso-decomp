@@ -8,6 +8,13 @@
 #include "pso/misc/TWindowSubComCard.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 #include "pso/object/TObjFish.h"
+
+#pragma readonly_strings on
+
+extern "C" {
+const char *TWindowPartyStatus__name = "TWindowPartyStatus";
+}
+
 struct Stack_8030C0C4 {
     f32 sp8;
     f32 spC;
@@ -47,7 +54,7 @@ extern const f32 lbl_805DF204;
 s32 get_window_layout_position(int);
 s32 TWindowSimpleStatus__ct(void *, int, void *, void *);
 extern s32 __vt__18TWindowPartyStatus[];
-extern s32 TWindowPartyStatus__name;
+extern const char *TWindowPartyStatus__name;
 extern s32 local_client_id;
 u8 *TWindowPartyStatus__ct(u8 *arg0, s16 arg1, s32 arg2);
 void *__dt__18TWindowPartyStatusFv(void *arg0, s16 arg1);
@@ -130,7 +137,7 @@ typedef char RecoveredGlobal_8030C2D8___vt__18TWindowPartyStatus_size[sizeof(Rec
 u8 *TWindowPartyStatus__ct(u8 *window_party_status, s16 arg1, s32 arg2) {
     TWindowSimpleStatus__ct((void *)window_party_status, (int) (get_window_layout_position(0xAB)), (void *)local_client_id, (void *)arg2);
     *(s32 **)((s8 *)window_party_status + 0x18) = &(*(RecoveredGlobal_8030C2D8___vt__18TWindowPartyStatus *)&__vt__18TWindowPartyStatus).value;
-    *(s32 *)((s8 *)window_party_status + 0) = (s32) TWindowPartyStatus__name;
+    *(s32 *)((s8 *)window_party_status + 0) = (s32) ((s32)TWindowPartyStatus__name);
     ((TWindowPartyStatus *)window_party_status)->m_20 = arg1;
     return window_party_status;
 }

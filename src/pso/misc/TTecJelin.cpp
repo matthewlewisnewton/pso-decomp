@@ -10,6 +10,13 @@
 #include "pso/misc/TTecLuker.h"
 #include "pso/player/TObjPlayer.h"
 
+#pragma readonly_strings on
+
+extern "C" {
+const char *tec_jelin_class_name_ptr = "TTecJelin";
+}
+
+
 struct RecoveredGlobal_802384E0_lbl_804CCB28 { s32 value; u8 remaining[0x14]; };
 
 struct RecoveredGlobal_802385EC_lbl_804CCB28 { s32 value; u8 remaining[0x14]; };
@@ -132,7 +139,7 @@ extern "C" {
 void *find_entity_by_id(u16 id);
 void run_task__9TTecJelinFv(struct Self_802336F0 *self);
 void construct_area_technique_base(void *);
-extern s32 tec_jelin_class_name_ptr;
+extern const char *tec_jelin_class_name_ptr;
 extern s32 __vt__9TTecJelin[];
 s32 play_sound_effect(int, void *, int, int);
 s32 update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
@@ -209,7 +216,7 @@ Jelin_80233808 *TTecJelin__ct(Jelin_80233808 *self, void *_w1, void *_w2, void *
     __ct__13TUnk_804CC148Flll(self, _w1, _w2, _w4);
     self->vt = __vt__9TTecJelin;
     ((TObjPlayer *)(self->sub))->construct_target_cursor_records();
-    self->f0 = tec_jelin_class_name_ptr;
+    self->f0 = ((s32)tec_jelin_class_name_ptr);
     self->fec = 1;
     copy_technique_target_list(self->sub, _w3);
     ((TTecJelin *)self)->init_tech_params();
@@ -248,7 +255,7 @@ Jelin_80233958 *construct__9TTecJelinFPviiii(Jelin_80233958 *self, s32 _w1, s32 
     construct_area_technique_base(self);
     self->vt = ((s32 *)&__vt__9TTecJelin);
     ((TObjPlayer *)(self->sub))->construct_target_cursor_records();
-    self->f0 = tec_jelin_class_name_ptr;
+    self->f0 = ((s32)tec_jelin_class_name_ptr);
     self->fec = 0;
     ((TTecJelin *)self)->init_tech_params();
     VecCopy((Vec *)&self->pos, (const Vec *)&self->src_pos);

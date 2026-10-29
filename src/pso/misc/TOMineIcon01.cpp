@@ -8,6 +8,7 @@
 #include "pso/misc/TOMineTrap.h"
 #include "pso/player/TObjPlayer.h"
 
+
 struct Base_801714E8 { char pad[0x18]; };
 
 struct VIcon_801714E8 : Base_801714E8 {
@@ -55,11 +56,6 @@ extern s32 __vt__12TOMineIcon01[];
 extern s32 TOMineIcon01__name;
 extern s32 game_difficulty_selection;
 extern void *lbl_805D5A50;
-extern const f32 lbl_805DB890;
-extern const f32 lbl_805DB894;
-extern const f32 lbl_805DB898;
-extern const f32 lbl_805DB89C;
-extern const f32 lbl_805DB8A0;
 s32 free_collision_body_parts(void *);
 s32 __dl__7TObjectFPv(void *);
 void *__dt__6TOMineFv(void *arg0, s16 arg1);
@@ -114,13 +110,13 @@ void *TOMineIcon01__ct(void *arg0, void *arg1, void *arg2) {
     if (self->f8C < 0) {
         self->f8C = 0;
     }
-    self->f358 = (f32)self->f84 * (lbl_805DB894 * (f32)game_difficulty_selection + lbl_805DB890);
+    self->f358 = (f32)self->f84 * (2.0f * (f32)game_difficulty_selection + 1.0f);
     if (game_difficulty_selection == 3) {
-        self->f358 *= lbl_805DB894;
+        self->f358 *= 2.0f;
     }
     self->f354 = self->f88;
-    self->f34C = lbl_805DB89C * self->f68 + lbl_805DB898;
-    self->f350 = lbl_805DB89C * self->f6C + lbl_805DB8A0;
+    self->f34C = 0.5f * self->f68 + 30.0f;
+    self->f350 = 0.5f * self->f6C + 60.0f;
     ((TOMine *)self)->update_state();
     self->f35C = 0xFFFF;
     self->f30 |= 0x60000000;

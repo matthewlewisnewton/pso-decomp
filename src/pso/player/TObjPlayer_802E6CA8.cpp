@@ -121,7 +121,7 @@ extern Vec_802E708C lbl_80472C90;
 extern const f32 lbl_805DE9F8;
 void queue_destruction__7TObjectFv(void *arg0);
 void TObjPlayer__sub_802E7640(void *);
-extern s32 lbl_80472C68[];
+extern s32 lbl_80472C68[6];
 extern s32 lbl_804E3BC0[];
 Obj_802E72DC *TObjPlayer__sub_802E72DC(Obj_802E72DC *arg0, s32 arg1, Vec_802E72DC *arg2, s32 arg3);
 void *__dt__13TUnk_804E3BA8Fv(void *arg0, s16 arg1);
@@ -458,3 +458,8 @@ s32 TObjPlayer__sub_802E76C8(u8 *arg0) {
 #pragma pop
 
 f32 lbl_805D6910 = lbl_805DE9F0;
+
+extern "C" {
+__declspec(section ".rodata") s32 lbl_80472C68[6] = { 1, 6, 12, 18, 24, 29 };
+}
+

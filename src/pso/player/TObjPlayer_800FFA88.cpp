@@ -4,6 +4,7 @@
 #include "pso/object/TObjMotion.h"
 #include "pso/player/TObjPlayer.h"
 
+
 struct Self_800FFB38 {
     u8 pad[0x20];
     u32 *list;
@@ -11,11 +12,6 @@ struct Self_800FFB38 {
 
 extern "C" {
 f32 sin_table_lookup(s32, f32, f32);
-extern const f32 lbl_805DAA68;
-extern const f32 lbl_805DAA6C;
-extern const f32 lbl_805DAA70;
-extern const f32 lbl_805DAA74;
-extern const f32 lbl_805DAA78;
 s32 TObjMotion::get_item_ptr(s32 arg1) {
     return (*(s32 *)&this->motion_buffer) + (arg1 * 0x30);
 }
@@ -27,12 +23,12 @@ s32 TObjPlayer::interpolate_along_curve(void *arg1) {
     f32 temp_f31;
     f32 temp_orig;
     temp_f1 = *(f32 *)((s8 *)arg1 + 8);
-    if ((temp_f1 < lbl_805DAA68) || (temp_f1 > lbl_805DAA6C)) {
+    if ((temp_f1 < -8.0f) || (temp_f1 > -1.0f)) {
         return 0;
     }
-    temp_f2 = temp_f1 - lbl_805DAA6C;
-    temp_f31 = temp_f2 / lbl_805DAA70;
-    *(f32 *)((s8 *)arg1 + 0) = (lbl_805DAA74 * temp_f31) * sin_table_lookup(*(s32 *)&this->room + (s32) (lbl_805DAA78 * temp_f31), lbl_805DAA70, temp_f2) + *(f32 *)((s8 *)arg1 + 0);
+    temp_f2 = temp_f1 - -1.0f;
+    temp_f31 = temp_f2 / -7.0f;
+    *(f32 *)((s8 *)arg1 + 0) = (0.25f * temp_f31) * sin_table_lookup(*(s32 *)&this->room + (s32) (-16384.0f * temp_f31), -7.0f, temp_f2) + *(f32 *)((s8 *)arg1 + 0);
     return 1;
 }
 #pragma pop

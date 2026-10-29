@@ -67,7 +67,6 @@ s32 find_nearest_hittable_enemy__10TObjPlayerFiPvf(void *, void *, f32);
 void advance_animation_playback(s32);
 extern s8 slime_one_animation_end_initialized;
 extern f32 slime_one_animation_end_frame;
-extern f32 lbl_805DA760;
 s32 TObjFish__sub_8001EDB0(s32, s32);
 void draw_model_motion(void *arg0, void *arg1, f32 farg0);
 void TObjEneSlimeOne__sub_803E4B54(void *child, void *arg1, void *arg2, f32 farg0);
@@ -76,7 +75,6 @@ extern s32 model_render_flags;
 s32 get_bml_motion(s32, s32);
 s32 get_bml_model(s32, s32);
 s32 init__14TObjEnePanarmsFPv(void *, int);
-extern const f32 lbl_805DA764;
 extern void *lbl_80496C68[10];
 extern void *lbl_80496C90[10];
 int get_validated_attack_stage(void*);
@@ -208,7 +206,7 @@ void TObjEneSlimeOne::advance_animation_state() {
         if (slime_one_animation_end_initialized == 0) {
             f32 tmp = arg0->f2C;
             slime_one_animation_end_initialized = 1;
-            slime_one_animation_end_frame = tmp - lbl_805DA760;
+            slime_one_animation_end_frame = tmp - 1.0f;
         }
         f32 v = arg0->f30 + arg0->f28;
         f32 lim = slime_one_animation_end_frame;
@@ -232,7 +230,7 @@ s32 TObjEneSlimeOne::is_reached_target_depth() {
     if ((s8) TObjEneSlimeOne__target_depth_initialized == 0) {
         f32 tmp = *(f32 *)&this->set_index;
         TObjEneSlimeOne__target_depth_initialized = 1;
-        TObjEneSlimeOne__target_depth = tmp - lbl_805DA760;
+        TObjEneSlimeOne__target_depth = tmp - 1.0f;
     }
     if (*(f32 *)&this->actorFlags == TObjEneSlimeOne__target_depth) {
         return 1;
@@ -255,6 +253,11 @@ __declspec(section ".data") void *slime_one_attack_target_id_table[2] = {
     (void *)0x4, (void *)0x5,
 };
 __declspec(section ".data") s32 slime_one_part_texture_index_table[2] = { 0, 2 };
+
+f32 TObjEneSlimeOne__target_depth;
+u8 TObjEneSlimeOne__target_depth_initialized;
+f32 slime_one_animation_end_frame;
+s8 slime_one_animation_end_initialized;
 void TObjEneSlimeOne::set_motion_state(s32 arg1) {
     Slime_800EC7F4 *arg0 = (Slime_800EC7F4 *)this;
   s32 flag;
@@ -287,7 +290,7 @@ void TObjEneSlimeOne::set_motion_state(s32 arg1) {
     arg0->f14 = get_bml_motion(inst, e->b);
     arg0->f2C = arg0->f10->n;
     arg0->f28 = e->c;
-    arg0->f30 = lbl_805DA764;
+    arg0->f30 = 0.0f;
     return;
   }
   {
@@ -302,7 +305,7 @@ void TObjEneSlimeOne::set_motion_state(s32 arg1) {
     arg0->f20 = (Res_800EC7F4 *) get_bml_motion(inst, f->d);
     arg0->f2C = arg0->f20->n;
     arg0->f28 = f->e;
-    arg0->f30 = lbl_805DA764;
+    arg0->f30 = 0.0f;
   }
 }
 

@@ -7,6 +7,20 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/map/FloorArea.h"
+#include "pso/system/BmlResourceDescriptor.h"
+
+#pragma readonly_strings on
+
+extern "C" {
+extern const char *bm_n_trunk_i_body_motion_names[1];
+extern const char *bm_n_trunk_i_body_model_names[2];
+const char *bm_n_trunk_i_body_motion_names[1] = { NULL };
+__declspec(section ".data") const char *bm_n_trunk_i_body_model_names[2] = { "n_trunk_i_body.nj", NULL };
+BmlResourceDescriptor bm_n_trunk_i_body_resource_descriptor = { "bm_n_trunk_i_body.bml", bm_n_trunk_i_body_model_names, bm_n_trunk_i_body_motion_names, 1, 0 };
+const char *TObjNpcCloakroomBase__name = "TObjNpcCloakroomBase";
+u32 TObjNpcCloakroomBase__static_instance;
+}
+
 
 struct RecoveredGlobal_80149738_lbl_804A8098 { s32 value; u8 remaining[0xC]; };
 typedef char RecoveredGlobal_80149738_lbl_804A8098_size[sizeof(RecoveredGlobal_80149738_lbl_804A8098) == 0x10 ? 1 : -1];
@@ -18,10 +32,7 @@ struct RecoveredGlobal_801497E0___vt__20TObjNpcCloakroomBase {
 
 extern "C" {
 u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
-extern RecoveredGlobal_80149738_lbl_804A8098 bm_n_trunk_i_body_resource_descriptor;
-extern u32 TObjNpcCloakroomBase__static_instance;
 extern s32 __vt__20TObjNpcCloakroomBase[];
-extern s32 TObjNpcCloakroomBase__name;
 s32 play_sound_effect(s32, s32, s32, s32);
 void TLobby__sub_8001FE7C(void*, int);
 void *__ct__11TObjControlFP7TObject(void *, void *);
@@ -66,7 +77,7 @@ void TObjNpcCloakroomBase::load_shared_resource() {
     temp_r3 = (int)::operator new(0x440);
     var_r0 = temp_r3;
     if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &bm_n_trunk_i_body_resource_descriptor.value, 0, 0, 0));
+        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &bm_n_trunk_i_body_resource_descriptor, 0, 0, 0));
     }
     (*(s32 *)&TObjNpcCloakroomBase__static_instance) = var_r0;
 }
@@ -82,7 +93,6 @@ void *__dt__20TObjNpcCloakroomBaseFv(void *arg0, s16 arg1) {
     return arg0;
 }
 
-extern f32 lbl_805DB1E8;
 
 typedef char RecoveredGlobal_801497E0___vt__20TObjNpcCloakroomBase_size[sizeof(RecoveredGlobal_801497E0___vt__20TObjNpcCloakroomBase) == 0x178 ? 1 : -1];
 u8 *TObjNpcCloakroomBase__ct(u8 *arg0, s32 arg1, s32 arg2) {
@@ -98,7 +108,7 @@ u8 *TObjNpcCloakroomBase__ct(u8 *arg0, s32 arg1, s32 arg2) {
 }
 
 f32 TObjNpcCloakroomBase::receive_direct_attack(void *, DirectAttackPayload, void *, s32, s32) {
-    return lbl_805DB1E8;
+    return 0.0f;
 }
 
 void * TObjNpcConnoisseur__create(void *arg0) {

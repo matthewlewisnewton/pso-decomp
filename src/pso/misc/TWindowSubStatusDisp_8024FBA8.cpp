@@ -3,6 +3,15 @@
 #include "pso/misc/TWindowKeyBoardSoft.h"
 #include "pso/ui/Language.h"
 
+extern "C" {
+s32 text_draw_clip_context;
+f32 text_draw_depth;
+f32 text_draw_right_limit_x;
+s32 text_clip_enabled_flag;
+s32 lbl_805D6440;
+}
+
+
 struct Quad_8024FBB0 {
     f32 x;
     f32 y;
@@ -44,11 +53,7 @@ void calc_gauge_scale__20TWindowSubStatusDispFPvPvi(s32, void *, s32);
 void end_render_forward__20TWindowSubStatusDispFPv();
 void TWindowSubStatusDisp::set_input_mode(u8 v) { *(u8*)((char*)this + 0x64) = v; }
 }
-extern const f32 lbl_805DCCD8;
-extern const f32 lbl_805DCCDC;
 s32 draw_small_font_string_clipped(f32 *pos, const char *s, u32 color, f32 width);
-extern const f32 lbl_805DCCE0;
-extern const f32 lbl_805DCCE4;
 s32 draw_window_text(f32 *pos, const char *s, s32 color, s32 mode, f32 width);
 s32 draw_small_font_string_clipped(f32 *pos, const char *s, u32 color, f32 width) {
     s32 ok;
@@ -73,9 +78,9 @@ s32 draw_small_font_string_clipped(f32 *pos, const char *s, u32 color, f32 width
     while (*s != 0) {
         c = (u8)*s++;
         if (c == 0x20) {
-            x += lbl_805DCCD8;
-            width -= lbl_805DCCD8;
-        } else if (width <= lbl_805DCCDC) {
+            x += 5.0f;
+            width -= 5.0f;
+        } else if (width <= 0.0f) {
             ok = 0;
         } else {
             glyph = TWindowSubStatusDisp__sub_800FC248(c);
@@ -145,11 +150,11 @@ s32 draw_window_text(f32 *pos, const char *s, s32 color, s32 mode, f32 width) {
         if (code == '\n') {
             if (mode == 0) {
                 if (lbl_805D6440 != 0) {
-                    x += lbl_805DCCE0;
-                    width -= lbl_805DCCE0;
+                    x += 9.0f;
+                    width -= 9.0f;
                 } else {
                     x = pos[0];
-                    y += lbl_805DCCE4;
+                    y += 20.0f;
                 }
             }
             continue;
@@ -158,7 +163,7 @@ s32 draw_window_text(f32 *pos, const char *s, s32 color, s32 mode, f32 width) {
             code = (u16)(code << 8);
             code |= (u8)*s++;
         }
-        if (width <= lbl_805DCCDC) {
+        if (width <= 0.0f) {
             ok = 0;
             continue;
         }
@@ -166,7 +171,7 @@ s32 draw_window_text(f32 *pos, const char *s, s32 color, s32 mode, f32 width) {
         adv = get_font_char_advance(glyph);
         if (x + (f32)(u8)adv > text_draw_right_limit_x) {
             x = pos[0];
-            y += lbl_805DCCE4;
+            y += 20.0f;
         }
         if ((glyph & 0xFFFF) == 0x20) {
             x += (f32)(s32)(u8)adv;
