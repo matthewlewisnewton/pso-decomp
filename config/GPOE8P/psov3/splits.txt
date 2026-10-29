@@ -9397,8 +9397,10 @@ pso/object/TObjCMMainMenu_8029427C.cpp:
 
 pso/ui/TObjCMHexTile.cpp:
 	.text       start:0x80294324 end:0x802948A8
-	.rodata     start:0x80464F38 end:0x80464F40
+	.rodata     start:0x80464F28 end:0x80464F40
 	.data       start:0x804DB938 end:0x804DB950
+	.sdata      start:0x805D3CC8 end:0x805D3CD0
+	.sdata2     start:0x805DDA00 end:0x805DDA58
 
 pso/unk/text_802948A8.cpp:
 	.text       start:0x802948A8 end:0x802948F4
