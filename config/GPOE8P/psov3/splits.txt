@@ -7944,7 +7944,9 @@ pso/misc/TTecRaZonde_80238C6C.cpp:
 
 pso/misc/TTecResta.cpp:
 	.text       start:0x80239490 end:0x80239D8C
-	.rodata     start:0x8044DB98 end:0x8044DBA0
+	.rodata     start:0x8044DB88 end:0x8044DBA0
+	.sdata      start:0x805D3810 end:0x805D3818
+	.sdata2     start:0x805DC908 end:0x805DC910
 
 pso/misc/TTecReverser.cpp:
 	.text       start:0x80239D8C end:0x8023A434
