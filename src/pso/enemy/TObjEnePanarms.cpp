@@ -293,10 +293,6 @@ void TObjEnePanarms__sub_800E0B9C(Obj_800E0B9C *arg0);
 s32 try_move_with_detour__14TObjEnePanarmsFPvPv(u8 *arg0, Vec_800E18B0 *arg1);
 void calc_default_part_position__14TObjEnePanarmsFPv(u8 *arg0);
 void calc_part_position__14TObjEnePanBARAFPUcPl(u8 *arg0, u8 *arg1, s32 *arg2);
-void TObjEnePanarms__sub_800E1C8C(void *arg0, s32 arg1, s32 arg2);
-void TObjEnePanarms__sub_800E1D38(void *arg0);
-int TObjEnePanarms__sub_800E1D94(void* p);
-void TObjEnePanarms__sub_800E1E14(u8 *arg0);
 Obj_800E24A4 * fn_800E24A4(Obj_800E24A4 *arg0, s16 arg1);
 s32 TObjEnePanBARA__ct(s32, s32, s32, s32);
 u8 is_phase_12__14TObjEnePanarmsFPv(void *arg0);
@@ -1300,9 +1296,9 @@ void TObjEnePanBARA::calc_part_position(u8 *arg1, s32 *arg2) {
 #pragma inline_depth(1)
 #pragma auto_inline off
 #pragma dont_inline off
-void TObjEnePanarms__sub_800E1C8C(void *arg0, s32 arg1, s32 arg2) {
-    *(s32 *)((s8 *)arg0 + 0x39C) = arg1;
-    *(s32 *)((s8 *)arg0 + 0x3A0) = arg2;
+void TObjEnePanBARA::bind_parts(TObjEnePanarms *body, TObjEnePanBARA *half) {
+    combined_body = body;
+    other_half = half;
 }
 #pragma pop
 
@@ -1327,10 +1323,7 @@ void TObjEnePanarms__sub_800E1C98(void *panarms, s32 state) {
 #pragma inline_depth(1)
 #pragma auto_inline off
 #pragma dont_inline off
-void TObjEnePanarms__sub_800E1D38(void *arg0) {
-    struct VObj_800E1D38_800E158C *o = (struct VObj_800E1D38_800E158C *)arg0;
-    o->m61();
-}
+void TObjEnePanBARA::fn_800E1D38() { vfunc_63(); }
 #pragma pop
 
 #pragma push
@@ -1348,14 +1341,14 @@ void TObjEnePanBARA::reset_split() {
 #pragma inline_depth(1)
 #pragma auto_inline off
 #pragma dont_inline off
-int TObjEnePanarms__sub_800E1D94(void* p) { return ((int (*)(void*, int))TObjEnePanarms__sub_800E1C98)(p, 5); }
+void TObjEnePanBARA::fn_800E1D94() { TObjEnePanarms__sub_800E1C98(this, 5); }
 #pragma pop
 
 #pragma push
 #pragma inline_depth(1)
 #pragma auto_inline off
 #pragma dont_inline off
-int TObjEnePanBARA::do_action_2(void* p) { return ((int (*)(void*, int))TObjEnePanarms__sub_800E1C98)(p, 2); }
+void TObjEnePanBARA::do_action_2() { TObjEnePanarms__sub_800E1C98(this, 2); }
 #pragma pop
 
 #pragma push
@@ -1369,12 +1362,10 @@ void TObjEnePanBARA::init_state() {
 }
 #pragma pop
 
-void TObjEnePanarms__sub_800E1E14(u8 *arg0) {
-    u8 *temp_r5;
-    VecCopy((Vec *)(arg0 + 0x38), (const Vec *)(*(u8 **)((s8 *)arg0 + 0x39C) + 0x38));
-    temp_r5 = *(u8 **)((s8 *)arg0 + 0x39C);
-    *(s32 *)((s8 *)arg0 + 0x60) = (s32) *(s32 *)((s8 *)temp_r5 + 0x60);
-    ((s32 (*)(void *, int, int))TObjEnePanarms__sub_800E1C98)((void *)arg0, 1, (int)temp_r5);
+void TObjEnePanBARA::fn_800E1E14() {
+    VecCopy(&position, &combined_body->position);
+    rotation_y = combined_body->rotation_y;
+    TObjEnePanarms__sub_800E1C98(this, 1);
 }
 
 void TObjEnePanBARA::vfunc_61() { this->actorFlags &= 0xfffffeff; }

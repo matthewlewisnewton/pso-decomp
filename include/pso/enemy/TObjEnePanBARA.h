@@ -21,6 +21,10 @@ public:
 
     s32 fn_800DFB44();
     int get_state_flag();
+    void bind_parts(TObjEnePanarms *body, TObjEnePanBARA *half);
+    void fn_800E1D38();
+    void fn_800E1D94();
+    void fn_800E1E14();
     void update_action_timer();
     void init_attack_state();
     void init_open_state();
@@ -47,7 +51,7 @@ public:
     void attack_target_player(s32 arg1);
     void update_offset_from_parent();
     void reset_split();
-    static int do_action_2(void* p);
+    void do_action_2();
     void init_state();
     void update_linked_effect();
     void draw();
