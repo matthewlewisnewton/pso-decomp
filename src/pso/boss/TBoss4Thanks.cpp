@@ -12,6 +12,7 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/TParticleCtrl.h"
 
+
 struct RecoveredGlobal_8035C83C___vt__12TBoss4Thanks { s32 value; u8 remaining[0x14]; };
 typedef char RecoveredGlobal_8035C83C___vt__12TBoss4Thanks_size[sizeof(RecoveredGlobal_8035C83C___vt__12TBoss4Thanks) == 0x18 ? 1 : -1];
 
@@ -51,8 +52,6 @@ s32 get_bml_model(void *, s32);
 void __ct__7TObjectFP7TObject(void *, void *);
 extern RecoveredGlobal_8035C83C___vt__12TBoss4Thanks __vt__12TBoss4Thanks;
 extern s32 TBoss4Thanks__class_name;
-extern const f32 lbl_805E0184;
-extern const f32 lbl_805E0188;
 u8 *TBoss4Thanks__ct(u8 *arg0, u8 *arg1);
 u8 * __dt__7TObjectFv(void *, s16);
 void __dl__7TObjectFPv(s32);
@@ -64,9 +63,6 @@ void *get_player_data__10TObjPlayerFi(s32);
 s32 get_entity_id(void *);
 s32 TBoss4Type3__sub_8005254C(s32);
 f32 xyz_distance(void *, void *);
-extern const f32 lbl_805E0180;
-extern const f32 lbl_805E018C;
-extern const f32 lbl_805E0194;
 void TObjPlayer__sub_80052390(void);
 void push_matrix(void);
 void post_translate_matrix(void *);
@@ -83,7 +79,6 @@ u8 TBoss4Thanks::is_door_0x97_open() {
 int TBoss4Thanks::dispatch_main_phase_153() { return dispatch_by_main_phase__14TBoss4DarkFalzFUs((void*)(153)); }
 int TBoss4Thanks::dispatch_main_phase() { return dispatch_by_main_phase__14TBoss4DarkFalzFUs((void*)(151)); }
 
-extern const f32 lbl_805E0190;
 
 void TBoss4Thanks::update_particle_emitters() {
     Obj_8035C35C *o = (Obj_8035C35C *)this;
@@ -131,7 +126,7 @@ int TBoss4Thanks::is_player_nearby(void *arg0) {
     f32 lim;
     u8 *p;
     n = TLobby::get_game_mode();
-    lim = lbl_805E0180;
+    lim = 30.0f;
     for (i = 0; i < n; i++) {
         p = (u8 *)get_player_data__10TObjPlayerFi(i);
         if (p != NULL && TBoss4Type3__sub_8005254C(get_entity_id(p)) != 0 &&
@@ -149,7 +144,7 @@ void TBoss4Thanks::render() {
   int hidden;
   fade = fade_amount;
   fade = fade;
-  hidden = lbl_805E0184 == fade;
+  hidden = 0.0f == fade;
   if (hidden)
   {
     return;
@@ -175,7 +170,7 @@ void TBoss4Thanks::update_fade_out() {
             play_sound_effect(0x40033231, 0, 0, 0);
         }
         update_particle_emitters();
-        this->fade_amount = (f32) (lbl_805E0188 * (lbl_805E018C - ((f32) this->fade_frame / lbl_805E0190)));
+        this->fade_amount = (f32) (0.99f * (1.0f - ((f32) this->fade_frame / 120.0f)));
         temp_r3 = this->fade_frame;
         if (temp_r3 == 0x78) {
             play_sound_effect(0x40033232, 0, 0, 0);
@@ -212,8 +207,8 @@ void TBoss4Thanks::run_task() {
       ((TBoss4Thanks *)o)->update_fade_out();
       break;
   }
-  o->frame += lbl_805E0194;
-  len = ((f32) o->anim[o->cur]->frames) - lbl_805E018C;
+  o->frame += 0.6f;
+  len = ((f32) o->anim[o->cur]->frames) - 1.0f;
   if (o->frame >= len)
   {
     o->frame -= len;
@@ -251,8 +246,8 @@ u8 *TBoss4Thanks__ct(u8 *object, u8 *arg1) {
     *(s32 *)((s8 *)object + 0x1C) = 0;
     *(s32 *)((s8 *)object + 0x24) = 0;
     *(s32 *)((s8 *)object + 0x20) = 0;
-    *(f32 *)((s8 *)object + 0x28) = (f32) lbl_805E0184;
-    *(f32 *)((s8 *)object + 0x2C) = (f32) lbl_805E0188;
+    *(f32 *)((s8 *)object + 0x28) = 0.0f;
+    *(f32 *)((s8 *)object + 0x2C) = 0.99f;
     *(s32 *)((s8 *)object + 0x30) = 0;
     return object;
 }

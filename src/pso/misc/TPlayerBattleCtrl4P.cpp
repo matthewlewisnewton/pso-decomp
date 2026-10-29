@@ -6,6 +6,11 @@
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TWindowCtrl.h"
 
+extern "C" {
+char team_matchup_message_buffer[256];
+}
+
+
 struct VBase_18_26c590 { char pad[0x18]; };
 
 struct VObj_18_26c590 : VBase_18_26c590 {

@@ -30,7 +30,7 @@ void TLobby__sub_803C9E38(TLobby *, VObj_803C9E38 *);
 s32 TLobby__sub_803C9CB0(TLobby *);
 void update_scroll__6TLobbyFv(void);
 s32 get_field_60__6TLobbyFv(TLobby *);
-extern Ent_803CE240 lbl_80581330[];
+Ent_803CE240 lbl_80581330[4];
 void TLobby__sub_803CE240(void) {
     s32 i;
     TLobby__sub_803CD99C();

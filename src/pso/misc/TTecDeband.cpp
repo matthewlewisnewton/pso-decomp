@@ -6,6 +6,13 @@
 #include "pso/misc/TWindowCtrl.h"
 #include "pso/player/TObjPlayer.h"
 
+#pragma readonly_strings on
+
+extern "C" {
+const char *tec_deband_class_name_ptr = "TTecDeband";
+}
+
+
 struct RecoveredGlobal_8022F948___vt__10TTecDeband {
     s32 value;
     u8 remaining[0x1C];
@@ -65,8 +72,7 @@ extern "C" {
 s32 get_entity_id(int);
 s32 TTecPlayerInfluence__ct(void *, void *, void *, void *);
 extern s32 __vt__10TTecDeband[];
-extern s32 tec_deband_class_name_ptr;
-extern const f32 lbl_805DC7F0;
+extern const char *tec_deband_class_name_ptr;
 void *find_entity_by_id(u16 id);
 s32 is_parents_unqueued__9TTecLukerFUl();
 s32 deliver_technique_to_party_targets(void *);
@@ -168,14 +174,14 @@ s32 TTecDeband__ct(u32 a0, s32 owner, s32 pos, s32 arg3, s32 level) {
     TTecPlayerInfluence__ct((void *)arg0, (void *)owner, (void *)pos, (void *)level);
     *(s32 **)((s8 *)arg0 + 0x18) = __vt__10TTecDeband;
     ((TObjPlayer *)(arg0 + 0xE0))->construct_target_cursor_records();
-    s32 g = tec_deband_class_name_ptr;
+    s32 g = ((s32)tec_deband_class_name_ptr);
     *(s32 *)((s8 *)arg0 + 0) = g;
     *(s32 *)&((TTecDeband *)arg0)->m_13c = 1;
     copy_technique_target_list(arg0 + 0xE0, (void *) arg3, g);
     ((TTecDeband *)arg0)->update_effect_params();
     temp_r3 = *(u8 **)((s8 *)arg0 + 0xDC);
     if (temp_r3 != NULL) {
-        *(f32 *)((s8 *)(*(u8 **)((s8 *)temp_r3 + 0xA4)) + 0xC) = (f32) (lbl_805DC7F0 + ((TTecDeband *)arg0)->m_7c);
+        *(f32 *)((s8 *)(*(u8 **)((s8 *)temp_r3 + 0xA4)) + 0xC) = (f32) (5.0f + ((TTecDeband *)arg0)->m_7c);
     }
     temp_r3_2 = ((TTecDeband *)arg0)->source;
     if (temp_r3_2 != 0U) {
@@ -196,12 +202,12 @@ u8 *TTecDeband__sub_8022F948(TTecDeband *arg0, s32 owner, s32 pos, s32 level) {
     TTecPlayerInfluence__ct((void *)arg0, (void *)owner, (void *)pos, (void *)level);
     *(s32 **)((s8 *)arg0 + 0x18) = &(*(RecoveredGlobal_8022F948___vt__10TTecDeband *)&__vt__10TTecDeband).value;
     ((TObjPlayer *)((u8 *)arg0 + 0xE0))->construct_target_cursor_records();
-    *(s32 *)((s8 *)arg0 + 0) = (s32) tec_deband_class_name_ptr;
+    *(s32 *)((s8 *)arg0 + 0) = (s32) ((s32)tec_deband_class_name_ptr);
     arg0->m_13c = 0;
     arg0->update_effect_params();
     temp_r3 = (u8 *)(*(u8 **)((s8 *)arg0 + 0xDC));
     if (temp_r3 != NULL) {
-        *(f32 *)((s8 *)(*(u8 **)((s8 *)temp_r3 + 0xA4)) + 0xC) = (f32) (lbl_805DC7F0 + arg0->m_7c);
+        *(f32 *)((s8 *)(*(u8 **)((s8 *)temp_r3 + 0xA4)) + 0xC) = (f32) (5.0f + arg0->m_7c);
     }
     temp_r3_2 = arg0->source;
     if (temp_r3_2 != 0U) {
