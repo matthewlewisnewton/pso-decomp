@@ -20,7 +20,7 @@ f32 TObjEneDD::calc_elapsed_scaled() {
     return lbl_805D9E98 * (calc_boss4_scale__10TObjPlayerFi() - lbl_805D9E9C);
 }
 
-u8 TObjEneDD::vfunc_99() {
+s32 TObjEneDD::vfunc_99() {
     return (u8) (((this->actorFlags & 0x10) - 0x10) == 0);
 }
 

@@ -30,7 +30,7 @@ struct TObjEneDD : public TObjEnemy {
     virtual void vfunc_96();
     virtual void vfunc_97();
     virtual void vfunc_98();
-    virtual u8 vfunc_99();
+    virtual s32 vfunc_99();
     virtual void vfunc_100();
     virtual u8 *vfunc_101(u8 *);
     virtual u8 *vfunc_102();
