@@ -308,7 +308,7 @@ void TUnk_804EDD44::start_card_effect_flash() {
     *(u32 *)((s8 *)arg0 + 0x1C) = (u32)spawn_particle_effect_with_rotation(((u8 *)&this->unk_64), ((u8 *)&this->unk_54), 0x1B9, 0x104);
     p = *(u32 *)((s8 *)arg0 + 0x1C);
     if (p != 0U) {
-        ((TParticleCtrl *)p)->fn_800822D4(1.5f, 1.5f);
+        ((TParticleCtrl *)p)->set_scale(1.5f, 1.5f);
         q = this->m_50;
         if (q != 0U) {
             ((TParticleCtrl *)(*(u32 *)((s8 *)arg0 + 0x1C)))->set_tint_color(q);

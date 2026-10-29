@@ -1,3 +1,4 @@
+#include "pso/player/PlayerAttackParams.h"
 #include <dolphin/mtx.h>
 #include "pso/player/TObjPlayer.h"
 #include "pso/player/TObjChara.h"
@@ -46,7 +47,6 @@ struct IV3_802CB824 { s32 x, y, z; };
 
 extern "C" {
 void __ct__15RenderFadeStateFv(void *);
-s32 copy_target_state__14TObjEnePanarmsFPv(void *, void *);
 void * __nw__7TObjectFUl(int);
 void TObjPlayer__sub_802CDEB4(void *, void *, u16, void *, s32, s32, u16);
 void TObjEneMe1GiGue__sub_802CB824(void *obj, s32 arg1);
@@ -654,8 +654,8 @@ void TObjEneMe1GiGue::load_params() {
 #pragma pop
 
 void TObjEneMe1GiGue::update_direction() {
-    *(f32 *)((s8 *)this + 0x438) = ((TObjPlayer *)(this->m_318))->get_pos_x();
-    this->m_434 = ((TObjPlayer *)(this->m_318))->get_field_0c();
+    *(f32 *)((s8 *)this + 0x438) = ((AttackParams *)(this->m_318))->get_attack_range();
+    this->m_434 = ((AttackParams *)(this->m_318))->get_attack_angle();
 }
 typedef char RecoveredGlobal_802CB03C_lbl_8058D490_size[sizeof(RecoveredGlobal_802CB03C_lbl_8058D490) == 0x30 ? 1 : -1];
 void TObjEneMe1GiGue__sub_802CB03C(u8 *enemy) {
@@ -877,7 +877,7 @@ s32 TObjEneMe1GiGue::remap_sound_id(void *obj, s32 id) {
     s32 area = get_current_floor_area();
     if (id == 0x3A344) return area == AREA_TOWER ? 0x40039E14 : id;
     if (id == 0x3A345) return area == AREA_TOWER ? 0x40039415 : id;
-    return ((s32 (*)(void *, s32))copy_target_state__14TObjEnePanarmsFPv)(obj, id);
+    return ((TObjEnemy *)(obj))->remap_sound_for_area((s32)(id));
 }
 
 void TObjEneMe1GiGue::apply_hit_shake(u32 arg1) {
@@ -1187,7 +1187,7 @@ void update_rush_attack__15TObjEneMe1GiGueFPv(Obj_802CBCC0 *o) {
         }
         ((TObjCollidable *)o)->refresh_collision_body_centers();
         if (o->f3EC > 15.0f) {
-            ((TObjPlayer *)o)->update_angle(o->f350->f8 * 2, &o->v308);
+            ((TObjEnemy *)o)->turn_toward_direction(o->f350->f8 * 2, (Vec *)&o->v308);
         }
         play_persistent_sound((s32)(TObjEneMe1GiGue::remap_sound_id(o, 0x3A819)), (s32)o, (u32)&o->pos, 0, 0);
         project_actor_to_ground(o, &o->pos, 0);

@@ -1,3 +1,4 @@
+#include "pso/player/PlayerAttackParams.h"
 #include "pso/enemy/TObjEnemy.h"
 extern "C" void *__ct__12TObjEneDD_STFP7TObject(void *);
 #include "types.h"
@@ -173,7 +174,6 @@ void restore_default_scene(void);
 void set_scene_override(u8 scene);
 void spawn_landing_dead_spot(s32 point, s32 delay);
 extern "C" {
-s32 copy_target_state__14TObjEnePanarmsFPv(void *, s32);
 s32 advance_animation_playback();
 void *find_entity_by_id(u16 id);
 s32 play_sound_effect(s32, void *, s32, s32);
@@ -187,7 +187,7 @@ s32 post_translate_matrix(void *);
 void draw_chunk_object(void *child);
 s32 queue_destruction__7TObjectFv();
 
-f32 TObjEneGibbles::get_pos_x() { return *(f32 *)&this->m_up; }
+f32 AttackParams::get_damage_radius() { return damage_radius; }
 
 void TObjEneMoja::bindModel(int index) {
     model=lbl_805D50D8->models[index].model;
@@ -292,7 +292,7 @@ void TObjEneBm3Fly::state_death_fall(s32 arg1) {
         *(f32 *)((s8 *)arg0 + 0x430) = (f32) *(f32 *)((s8 *)arg0 + 0x308);
         *(f32 *)((s8 *)arg0 + 0x438) = (f32) this->m_310;
         *(f32 *)((s8 *)arg0 + 0x3E4) = normalize_vector_xz__FP3Vec(arg0 + 0x430);
-        temp_copy = copy_target_state__14TObjEnePanarmsFPv(arg0, 0x4003E425);
+        temp_copy = ((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003E425));
         play_sound_effect(temp_copy, (u8 *)&this->position, 0, 0);
         return;
     case 3:
@@ -355,7 +355,7 @@ void action__13TObjEneBm3FlyFPvi(u8 *arg0, s32 arg1) {
         }
         TBoss8Dragon__sub_800BB7DC(arg0);
         TBoss8Dragon__sub_800BB7D8(arg0, 0xF1, (1.0f));
-        play_sound_effect(copy_target_state__14TObjEnePanarmsFPv(arg0, 0x4003E425), arg0 + 0x38, 0, 0);
+        play_sound_effect(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003E425)), arg0 + 0x38, 0, 0);
         TBoss3Volopt::create_breakup_mdl((s32)TObjEneBm3Fly__breakup_model, (s32)bm3_fly_breakup_params, (s32)(*(s32 *)((s8 *)arg0 + 0x24)), (s32)(arg0 + 0x2FC), (s32)(*(s32 *)((s8 *)arg0 + 0x60)));
         *(s32 *)((s8 *)arg0 + 0x3C0) = 0;
         return;
@@ -915,7 +915,7 @@ void TObjEneBm3Fly::update_recoil_state(s32 arg1) {
         *(u32 *)((s8 *)((u8 *)this) + 0x428) |= 2;
         set_field_378__9TObjEneDDFl(this, this->mode);
         noop__12TBoss8DragonFv(this);
-        play_sound_effect(copy_target_state__14TObjEnePanarmsFPv(this, 0x4003E425), ((u8 *)this) + 0x38, 0, 0);
+        play_sound_effect(((TObjEnemy *)(this))->remap_sound_for_area((s32)(0x4003E425)), ((u8 *)this) + 0x38, 0, 0);
         this->m_3c0 = 0;
         break;
     case 3:
@@ -923,7 +923,6 @@ void TObjEneBm3Fly::update_recoil_state(s32 arg1) {
             if (((Ene_800B012C *)((u8 *)this))->m97() != 0) {
                 ((Ene_800B012C *)((u8 *)this))->m102((2e+02f));
             }
-#define copy_target_state__14TObjEnePanarmsFPv (*(void * (*)(void *, int))&copy_target_state__14TObjEnePanarmsFPv)
 #define sub_800B1634__13TObjEneBm3FlyFv (*(s32 (*)(void *))&sub_800B1634__13TObjEneBm3FlyFv)
 #define approach_value__13TObjEneBm3FlyFff (*(f32 (*)(void *, f32, f32))&approach_value__13TObjEneBm3FlyFff)
 #define clamp_flight_height__13TObjEneBm3FlyFv (*(s32 (*)(void *))&clamp_flight_height__13TObjEneBm3FlyFv)
@@ -1165,7 +1164,7 @@ void TObjEneBm3Fly::execute_action(s32 arg1) {
                         TObjEneDD::inflict_poison((s32)this, (u8 *)this->m_390);
                     }
                 }
-                play_sound_effect(copy_target_state__14TObjEnePanarmsFPv(this, 0x4003A524), ((u8 *)this) + 0x38, 0, 0);
+                play_sound_effect((void *)((TObjEnemy *)(this))->remap_sound_for_area((s32)(0x4003A524)), ((u8 *)this) + 0x38, 0, 0);
                 TObjPlayer::play_effect_if_v2(-0x400);
             }
             if (this->get_flag_b4() != 0) {
@@ -1472,18 +1471,17 @@ void TObjEneBm3Fly__vt102(void *arg0, f32 farg0) {
     select_nearest_target__12TObjEneDD_STFf(arg0, farg0);
 }
 void TObjEneBm3Fly__play_orbit_flight_sound(s32 arg0) {
-    play_persistent_sound((((s32)copy_target_state__14TObjEnePanarmsFPv((void *)arg0, 0x4003AB23))), (arg0), (arg0 + 0x38), 0, 0);
+    play_persistent_sound((((s32)((TObjEnemy *)((void *)arg0))->remap_sound_for_area((s32)(0x4003AB23)))), (arg0), (arg0 + 0x38), 0, 0);
     TObjPlayer::play_effect_if_v2(-0x400);
 }
 void TObjEneBm3Fly::play_pitched_cue() {
     s32 arg0 = (s32)this;
-    play_persistent_sound((((s32)copy_target_state__14TObjEnePanarmsFPv((void *)arg0, 0x40039E22))), (arg0), (arg0 + 0x38), 0, 0);
+    play_persistent_sound((((s32)((TObjEnemy *)((void *)arg0))->remap_sound_for_area((s32)(0x40039E22)))), (arg0), (arg0 + 0x38), 0, 0);
     TObjPlayer::play_effect_if_v2(-0x400);
 }
 
 }
 
-#undef copy_target_state__14TObjEnePanarmsFPv
 #undef sub_800B1634__13TObjEneBm3FlyFv
 #undef approach_value__13TObjEneBm3FlyFff
 #undef clamp_flight_height__13TObjEneBm3FlyFv
@@ -1569,9 +1567,9 @@ void choose_attack__13TObjEneBm3FlyFPv(Fly_800B1684 *s) {
 
 s32 TObjEneBm3Fly::can_attack_target() {
     f32 temp_f31;
-    if ((this->m_3ac < ((5.0f) + ((TObjPlayer *)TObjEneBm3Fly__attack_params)->get_pos_x())) && (fabs_float((f32) (*(f32 *)((s8 *)((u8 *)this) + 0x42C) - this->m_398)) < (1.0f))) {
+    if ((this->m_3ac < ((5.0f) + ((AttackParams *)TObjEneBm3Fly__attack_params)->get_attack_range())) && (fabs_float((f32) (*(f32 *)((s8 *)((u8 *)this) + 0x42C) - this->m_398)) < (1.0f))) {
         temp_f31 = vec3_dot(((u8 *)this) + 0x430, ((u8 *)this) + 0x3A0);
-        ((TObjPlayer *)(this->m_318))->get_field_0c();
+        ((AttackParams *)(this->m_318))->get_attack_angle();
         if (temp_f31 >= cos_table_lookup()) {
             return 1;
         }
@@ -2109,7 +2107,6 @@ void TObjEneBm3Fly::clamp_flight_height() {
 #define set_field_378__9TObjEneDDFl (*(s32 (*)(void *, s32))&set_field_378__9TObjEneDDFl)
 #define transition_enemy_state__9TObjEneDDFl (*(s32 (*)(void *, s32))&transition_enemy_state__9TObjEneDDFl)
 #define toggle_particle_effect__10TObjPlayerFv (*(void (*)(void))&toggle_particle_effect__10TObjPlayerFv)
-#define copy_target_state__14TObjEnePanarmsFPv (*(int (*)(void*))&copy_target_state__14TObjEnePanarmsFPv)
 #define advance_animation_playback (*(s32 (*)(void *))&advance_animation_playback)
 #define end_effect_render__13TParticleCtrlFv (*(void (*)(void))&end_effect_render__13TParticleCtrlFv)
 #define play_sound_effect (*(s32 (*)(void *, void *, int, int))&play_sound_effect)
@@ -2475,7 +2472,6 @@ void TObjEneBm3Fly::load_resources() {
 #undef set_field_378__9TObjEneDDFl
 #undef transition_enemy_state__9TObjEneDDFl
 #undef toggle_particle_effect__10TObjPlayerFv
-#undef copy_target_state__14TObjEnePanarmsFPv
 #undef advance_animation_playback
 #undef end_effect_render__13TParticleCtrlFv
 #undef play_sound_effect

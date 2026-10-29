@@ -2,6 +2,7 @@
 #define PSO_PLAYER_PLAYERATTACKPARAMS_H
 
 #include "types.h"
+#include <stddef.h>
 #include "pso/system/FlagWord.h"
 
 // An actor's attack parameters (TObjChara::m_318, read with
@@ -11,7 +12,15 @@ struct AttackParams {
     s16 atp_min;
     s16 atp_max;
     s16 ata;
-    u8 pad_6[0x2A];
+    u8 pad_6[2];
+    f32 attack_range;
+    s32 attack_angle;
+    f32 damage_radius;
+    u8 pad_14[0x1C];
+
+    f32 get_attack_range();
+    s32 get_attack_angle();
+    f32 get_damage_radius();
 
     void sub_ata(s32 amount);
     void sub_atp_max(s32 amount);
@@ -20,6 +29,11 @@ struct AttackParams {
     void add_atp_max(s32 amount);
     void add_atp_min(s32 amount);
 };
+
+typedef char AttackParamsRangeOffset[(offsetof(AttackParams, attack_range) == 0x8) ? 1 : -1];
+typedef char AttackParamsAngleOffset[(offsetof(AttackParams, attack_angle) == 0xC) ? 1 : -1];
+typedef char AttackParamsRadiusOffset[(offsetof(AttackParams, damage_radius) == 0x10) ? 1 : -1];
+typedef char AttackParamsSize[(sizeof(AttackParams) == 0x30) ? 1 : -1];
 
 // An actor's parameter block (TObjChara at 0x31C); an equipped item keeps
 // its own bonus in the same layout and adds it to it.

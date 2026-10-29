@@ -1,4 +1,5 @@
 #include "pso/unk/text_800D8830.h"
+#include "pso/player/PlayerAttackParams.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/TParticleCtrl.h"
 #include "types.h"
@@ -215,7 +216,6 @@ s32 transition_enemy_state__9TObjEneDDFl(void *, s32);
 void TObjEneBm5GibonU__sub_800CCD8C(u8 *arg0);
 s32 TObjEneBm5GibonU__sub_800D0968(u8 *arg0, int);
 void turn_toward_angle__16TObjEneBm5GibonUFPvi(Ene_800D0FDC *arg0, s32 arg1);
-s32 copy_target_state__14TObjEnePanarmsFPv(void *, s32);
 s32 approach_angle_limited(s32, s32, s32);
 s32 objInBand__FP7GameObjf(void *, f32);
 s32 advance_animation_playback(void *);
@@ -246,7 +246,6 @@ int spawn_landing_effect__16TObjEneBm5GibonUFPvPv(Ene_800CCC6C *arg0, void *arg1
 int is_active__16TObjEneBm5GibonUFPv(void* p);
 s32 TObjEneBm5GibonU__sub_800D1D70(void* p);
 s32 get_entity_id(int);
-s32 update_angle__10TObjPlayerFlPv(void *, s32, void *);
 void *find_entity_by_id(u16 id);
 void * __nw__7TObjectFUl(u32);
 void render__16TObjEneBm5GibonUFv(u8 *arg0);
@@ -1757,16 +1756,16 @@ int spawn_landing_effect__16TObjEneBm5GibonUFPvPv(Ene_800CCC6C *arg0, void *arg1
         if (p != NULL) {
             attach_particle_model((u8 *)p, (s32)(TParticleCtrl::get_particle_model(2)), (s32)(TParticleCtrl::get_instance()), 0, 1, (f32)TObjEneBm5GibonU__data_805DA168);
             if (arg0->f464 == 1) {
-                ((TParticleCtrl *)p)->fn_800822D4(TObjEneBm5GibonU__data_805DA16C, TObjEneBm5GibonU__data_805DA168);
+                ((TParticleCtrl *)p)->set_scale(TObjEneBm5GibonU__data_805DA16C, TObjEneBm5GibonU__data_805DA168);
             }
         }
         p = spawn_particle_effect(hit->obj + 0x38, 0xA4);
         if (p != NULL && arg0->f464 == 1) {
-            ((TParticleCtrl *)p)->fn_800822D4(TObjEneBm5GibonU__data_805DA16C, TObjEneBm5GibonU__data_805DA168);
+            ((TParticleCtrl *)p)->set_scale(TObjEneBm5GibonU__data_805DA16C, TObjEneBm5GibonU__data_805DA168);
         }
         return play_floor_area_sound_effect((Vec *)&arg0->pos);
     }
-    return ((s32)play_sound_effect((void *)((void *)((s32)copy_target_state__14TObjEnePanarmsFPv(arg0, 0x3BC21))), &arg0->pos, 0, 0));
+    return ((s32)play_sound_effect((void *)((void *)((s32)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x3BC21)))), &arg0->pos, 0, 0));
 }
 
 #pragma push
@@ -2055,7 +2054,7 @@ void TObjEneBm5GibonU::state_cast_technique(s32 arg1) {
                 } else {
                     VecCopy((Vec *)&v, (const Vec *)(arg0 + 0x394));
                     subtract_vector(&v, arg0 + 0x2FC);
-                    r = update_angle__10TObjPlayerFlPv(arg0, *(s32 *)(F(u8 *, 0x350) + 8), &v);
+                    r = ((TObjEnemy *)arg0)->turn_toward_direction(*(s32 *)(F(u8 *, 0x350) + 8), (Vec *)&v);
                 }
                 if (r < 0x100) {
                     F(s32, 0x518) = 1;
@@ -2081,14 +2080,14 @@ void TObjEneBm5GibonU::state_cast_technique(s32 arg1) {
                 if (F(u32, 0x390) != 0) {
                     VecCopy((Vec *)&v, (const Vec *)(arg0 + 0x394));
                     subtract_vector(&v, arg0 + 0x2FC);
-                    r = update_angle__10TObjPlayerFlPv(arg0, *(s32 *)(F(u8 *, 0x350) + 8), &v);
+                    r = ((TObjEnemy *)arg0)->turn_toward_direction(*(s32 *)(F(u8 *, 0x350) + 8), (Vec *)&v);
                 } else {
-                    r = ((TObjPlayer *)(F(s32, 0x318)))->get_field_0c();
+                    r = ((AttackParams *)(F(s32, 0x318)))->get_attack_angle();
                 }
                 if (game_difficulty_selection == 3) {
                     switch (F(s32, 0x468)) {
                     case 1:
-                        if (r < ((TObjPlayer *)(F(s32, 0x318)))->get_field_0c() / 2 && F(u32, 0x390) != 0) {
+                        if (r < ((AttackParams *)(F(s32, 0x318)))->get_attack_angle() / 2 && F(u32, 0x390) != 0) {
                             TTecMegid::create((s32)arg0, (s32)&p, (s32)(arg0 + 0x394), (s32)(CB24(arg0)));
                         } else {
                             TTecMegid::create_ex((s32)arg0, (s32)&p, (s32)(F(s32, 0x60)), (s32)(CB24(arg0)));
@@ -2096,7 +2095,7 @@ void TObjEneBm5GibonU::state_cast_technique(s32 arg1) {
                         play_sound_effect((void *)0x4002A60B, &p, 0, 0);
                         break;
                     default:
-                        if (r < ((TObjPlayer *)(F(s32, 0x318)))->get_field_0c() / 2 && F(u32, 0x390) != 0) {
+                        if (r < ((AttackParams *)(F(s32, 0x318)))->get_attack_angle() / 2 && F(u32, 0x390) != 0) {
                             fn_80044330(arg0 + 0x4B0);
                             F(s32, 0x4B0) = 1;
                             F(s16, 0x4B4) = get_entity_id(F(u32, 0x390));
@@ -2115,7 +2114,7 @@ void TObjEneBm5GibonU::state_cast_technique(s32 arg1) {
                             pop_matrix();
                             e = __nw__7TObjectFUl(0x260);
                             if (e != 0) {
-                                ((TTecZonde *)e)->construct_bolt_effect((u8 *)tl_07, (u8 *)&p, (u8 *)&v, 0x14000000, 20, (f32)(((TObjPlayer *)(F(s32, 0x318)))->get_pos_x()), (f32)lbl_805DA1A0);
+                                ((TTecZonde *)e)->construct_bolt_effect((u8 *)tl_07, (u8 *)&p, (u8 *)&v, 0x14000000, 20, (f32)(((AttackParams *)(F(s32, 0x318)))->get_attack_range()), (f32)lbl_805DA1A0);
                             }
                         }
                         play_sound_effect((void *)0x4002A408, &p, 0, 0);
@@ -2127,7 +2126,7 @@ void TObjEneBm5GibonU::state_cast_technique(s32 arg1) {
                         ((TTecGiBarta *)arg0)->create_ex(&p, (void *)(F(s32, 0x60)), (void *)(CB24(arg0)));
                         break;
                     default:
-                        if (r < ((TObjPlayer *)(F(s32, 0x318)))->get_field_0c() / 2 && F(u32, 0x390) != 0) {
+                        if (r < ((AttackParams *)(F(s32, 0x318)))->get_attack_angle() / 2 && F(u32, 0x390) != 0) {
                             TTecFoie::create_ex((void *)arg0, &p, (void *)(F(u8 *, 0x390) + 0x2FC), (void *)(CB24(arg0)));
                         } else {
                             TTecFoie::create((void *)arg0, &p, (void *)(F(s32, 0x60)), (void *)(CB24(arg0)));
@@ -2229,7 +2228,7 @@ void TObjEneBm5GibonU__sub_800CDB98(Obj_800CDB98 *actor, s32 arg1) {
             }
             TObjEneBm5GibonU__sub_800CCD8C((u8 *)actor);
             if (objInBand__FP7GameObjf(actor, TObjEneBm5GibonU__data_805DA160) != 0) {
-                play_sound_effect((void *)copy_target_state__14TObjEnePanarmsFPv(actor, 0x3B22A), &actor->pos, 0, 0);
+                play_sound_effect((void *)((TObjEnemy *)(actor))->remap_sound_for_area((s32)(0x3B22A)), &actor->pos, 0, 0);
             }
             if (objInBand__FP7GameObjf(actor, lbl_805DA1AC) != 0) {
                 actor->m90();
@@ -2278,7 +2277,7 @@ void TObjEneBm5GibonU__sub_800CE060(u8 *arg0, s32 arg1) {
     case 4:
         ((TObjEneDD *)arg0)->vfunc_96();
         ((TObjEnemy *)arg0)->refresh_and_send_entity_flags();
-        play_sound_effect((void *)copy_target_state__14TObjEnePanarmsFPv(arg0, 0x3A826), arg0 + 0x38, 0, 0);
+        play_sound_effect((void *)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x3A826)), arg0 + 0x38, 0, 0);
         *(s16 *)((s8 *)arg0 + 0xB8) = 0xB;
         TBoss8Dragon__sub_800BB7D4(arg0, 0xF1);
         *(s32 *)((s8 *)arg0 + 0x518) = 0;
@@ -2364,7 +2363,7 @@ void TObjEneBm5GibonU__sub_800CE370(u8 *arg0, s32 arg1) {
         *(s16 *)((s8 *)arg0 + 0xB8) = 6;
         *(s32 *)((s8 *)arg0 + 0x518) = 0;
         if (*(s16 *)((s8 *)arg0 + 0x33E) - *(s16 *)((s8 *)arg0 + 0x32C) < 0x14) {
-            play_sound_effect((void *) copy_target_state__14TObjEnePanarmsFPv(arg0, 0x3A824), arg0 + 0x38, 0, 0);
+            play_sound_effect((void *) ((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x3A824)), arg0 + 0x38, 0, 0);
         }
         ((TObjEneDD_ST *)arg0)->set_active();
         break;
@@ -2433,7 +2432,7 @@ void action__16TObjEneBm5GibonUFPvi(TObjEneBm5GibonU *ene_bm5_gibon_u, s32 arg1)
         advance_animation_playback(ene_bm5_gibon_u);
         turn_toward_angle__16TObjEneBm5GibonUFPvi(ene_bm5_gibon_u, ene_bm5_gibon_u->rotation_y);
         if (objInBand__FP7GameObjf(ene_bm5_gibon_u, TObjEneBm5GibonU__data_805DA178) != 0) {
-            play_sound_effect((void *)copy_target_state__14TObjEnePanarmsFPv(ene_bm5_gibon_u, 0x3AA22), (u8 *)ene_bm5_gibon_u + 0x38, 0, 0);
+            play_sound_effect((void *)((TObjEnemy *)(ene_bm5_gibon_u))->remap_sound_for_area((s32)(0x3AA22)), (u8 *)ene_bm5_gibon_u + 0x38, 0, 0);
         }
         *(s32 *)((s8 *)ene_bm5_gibon_u + 0x518) = (s32) (*(s32 *)((s8 *)ene_bm5_gibon_u + 0x518) + 1);
         temp_r0 = *(s32 *)((s8 *)ene_bm5_gibon_u + 0x518);
@@ -2688,10 +2687,10 @@ void TObjEneBm5GibonU__sub_800CEBD8(u8 *actor, s32 arg1) {
             }
             TObjEneBm5GibonU__sub_800CCD8C(actor);
             if (objInBand__FP7GameObjf(actor, TObjEneBm5GibonU__data_805DA160) != 0) {
-                play_sound_effect((void *)(copy_target_state__14TObjEnePanarmsFPv(actor, 0x3A828)), actor + 0x38, 0, 0);
+                play_sound_effect((void *)(((TObjEnemy *)(actor))->remap_sound_for_area((s32)(0x3A828))), actor + 0x38, 0, 0);
             }
             if (objInBand__FP7GameObjf(actor, lbl_805DA1DC) != 0) {
-                play_sound_effect((void *)(copy_target_state__14TObjEnePanarmsFPv(actor, 0x3A529)), actor + 0x38, 0, 0);
+                play_sound_effect((void *)(((TObjEnemy *)(actor))->remap_sound_for_area((s32)(0x3A529))), actor + 0x38, 0, 0);
             }
             if (objInBand__FP7GameObjf(actor, lbl_805DA1DC) != 0) {
                 *(s32 *)((s8 *)actor + 0x564) = 0;
@@ -3513,7 +3512,7 @@ void TObjEneBm5GibonU__sub_800CFE34(u8 *ene_dd_st, s32 arg1) {
     case 0:
         ((void (*)(void *, s32))advance_animation_playback)(ene_dd_st, (*(s32 *)((s8 *)ene_dd_st + 0x518))++);
         if (objInBand__FP7GameObjf(ene_dd_st, TObjEneBm5GibonU__data_805DA184) != 0) {
-            play_sound_effect((void *)copy_target_state__14TObjEnePanarmsFPv(ene_dd_st, 0x3A523), ene_dd_st + 0x38, 0, 0);
+            play_sound_effect((void *)((TObjEnemy *)(ene_dd_st))->remap_sound_for_area((s32)(0x3A523)), ene_dd_st + 0x38, 0, 0);
         }
         if (*(s32 *)((s8 *)ene_dd_st + 0x518) == 0x3C) {
             for (n = (*(List_800CFE34 *)&TObjEneBm5GibonU__enemy_list).head; n != NULL; n = n->next) {
@@ -3560,7 +3559,7 @@ void TObjEneBm5GibonU__sub_800CFFBC(u8 *ene_bm5_gibon_u, s32 arg1) {
       advance_animation_playback((void *) ene_bm5_gibon_u);
       if (objInBand__FP7GameObjf((void *) ene_bm5_gibon_u, (f32) TObjEneBm5GibonU__data_805DA184) != 0)
     {
-      play_sound_effect((void *)((void *) ((s32)copy_target_state__14TObjEnePanarmsFPv((void *)((void *) ene_bm5_gibon_u), 0x3A523))), ene_bm5_gibon_u + 0x38, 0, 0);
+      play_sound_effect((void *)((void *) ((s32)((TObjEnemy *)((void *)((void *) ene_bm5_gibon_u)))->remap_sound_for_area((s32)(0x3A523)))), ene_bm5_gibon_u + 0x38, 0, 0);
     }
       if (enemy_validate_retained_target((void *) ene_bm5_gibon_u) != 0)
     {
@@ -3717,10 +3716,10 @@ void TObjEneBm5GibonU__sub_800D0420(u8 *arg0, s32 arg1) {
         if (!(*(s32 *)((s8 *)arg0 + 0xB0) & 4)) {
             TObjEneBm5GibonU__sub_800CCD8C(arg0);
             if (objInBand__FP7GameObjf(arg0, TObjEneBm5GibonU__data_805DA160) != 0) {
-                play_sound_effect((void *) copy_target_state__14TObjEnePanarmsFPv(arg0, 0x3A828), arg0 + 0x38, 0, 0);
+                play_sound_effect((void *) ((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x3A828)), arg0 + 0x38, 0, 0);
             }
             if (objInBand__FP7GameObjf(arg0, lbl_805DA1DC) != 0) {
-                play_sound_effect((void *) copy_target_state__14TObjEnePanarmsFPv(arg0, 0x3A529), arg0 + 0x38, 0, 0);
+                play_sound_effect((void *) ((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x3A529)), arg0 + 0x38, 0, 0);
             }
             if (*(f32 *)((s8 *)arg0 + 0xC0) > TObjEneBm5GibonU__data_805DA174) {
                 *(f32 *)((s8 *)arg0 + 0x530) *= TObjEneBm5GibonU__data_805DA1B8;
@@ -4188,7 +4187,6 @@ void TObjEneBm5GibonU::sub_800D10A0() {
 #pragma push
 #define transition_enemy_state__9TObjEneDDFl ((int (*)(void*, void*))transition_enemy_state__9TObjEneDDFl)
 #define lbl_80493F04 ((u8 *)&lbl_80493F04)
-#define update_angle__10TObjPlayerFlPv ((void (*)(void *, s32, void *))update_angle__10TObjPlayerFlPv)
 #define update_collisions__10TObjPlayerFv ((void (*)(void *))update_collisions__10TObjPlayerFv)
 #define __nw__7TObjectFUl ((void * (*)(int))__nw__7TObjectFUl)
 #define update_shock_clock__9TObjCharaFv ((s32 (*)())update_shock_clock__9TObjCharaFv)
@@ -4803,7 +4801,6 @@ s32 TObjEneBm5GibonU::try_activate() {
 
 #undef transition_enemy_state__9TObjEneDDFl
 #undef lbl_80493F04
-#undef update_angle__10TObjPlayerFlPv
 #undef update_collisions__10TObjPlayerFv
 #undef __nw__7TObjectFUl
 #undef update_shock_clock__9TObjCharaFv
