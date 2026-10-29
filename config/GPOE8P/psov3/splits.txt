@@ -6031,6 +6031,7 @@ pso/misc/TLobby_801A3B84.cpp:
 pso/unk/text_801A3BB8.cpp:
 	.text       start:0x801A3BB8 end:0x801A3BF4
 	.ctors      start:0x80433F88 end:0x80433F8C
+	.bss        start:0x8050DDE0 end:0x8050E208
 
 pso/misc/TLobby_801A3BF4.cpp:
 	.text       start:0x801A3BF4 end:0x801A3C0C
