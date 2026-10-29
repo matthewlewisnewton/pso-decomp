@@ -1,3 +1,4 @@
+#include "pso/effect/TEffStarLight2D.h"
 #include "types.h"
 #include "pso/system/FlagWord.h"
 #include "pso/item/TUnk_804A2018.h"
@@ -32,7 +33,7 @@ typedef struct MegidWeaponRenderView { u8 pad[0x200]; s32 f200; } MegidWeaponRen
 
 struct StarLightPosition { f32 x, y, z; };
 
-struct StarLightParameters { u32 w[5]; };
+struct WeaponStarLightParameterWords { u32 w[5]; };
 
 struct StarLightFollowerView {
     u8 pad0[0x18];
@@ -48,7 +49,7 @@ typedef char RecoilSpinOffset[offsetof(RecoilWeaponView, projectileSpin) == 0x1F
 typedef char RecoilAngleOffset[offsetof(RecoilWeaponView, recoilAngle) == 0x200 ? 1 : -1];
 typedef char RecoilPhaseOffset[offsetof(RecoilWeaponView, recoilPhase) == 0x204 ? 1 : -1];
 typedef char RecoilWeaponExtent[sizeof(RecoilWeaponView) == 0x208 ? 1 : -1];
-typedef char StarLightParametersExtent[sizeof(StarLightParameters) == 0x14 ? 1 : -1];
+typedef char WeaponStarLightParameterWordsExtent[sizeof(WeaponStarLightParameterWords) == 0x14 ? 1 : -1];
 typedef char StarLightFollowerExtent[sizeof(StarLightFollowerView) == 0x2C ? 1 : -1];
 
 extern "C" {
@@ -99,14 +100,14 @@ void drill_launcher_return_timer(void *arg0);
 int get_item_system_generation(void);
 u8 *spawn_star_light_2d(s32 arg0, s32 arg1, s32 arg2);
 extern "C" {
-const StarLightParameters weapon_star_light_parameters[] = {
+const WeaponStarLightParameterWords weapon_star_light_parameters[] = {
     { { 0x40400000, 0x40E00000, 0xB4FF0019, 0, 0x41A00000 } }
 };
 StarLightFollowerView *__ct__13TUnk_804A2018FP7TObjectll(StarLightFollowerView *self, void *parent, s32 a, s32 b);
 void __dt__7TObjectFv(void *, int);
 void *TObjPlayer__sub_8012417C(void *arg0, s16 arg1);
 s8 get_mode__5TItemFv();
-s32 copy_position__15TEffStarLight2DFPv(u32, s32 *);
+
 void queue_destruction__7TObjectFv(void *arg0);
 void run_task__13TUnk_804A2018Fv(void *arg0);
 void *__dt__13TUnk_804A204CFv(void *arg0, s16 arg1);
@@ -140,7 +141,7 @@ void TUnk_804A2018::run_task() {
         item = ((s32)find_item_by_id(*(s32 *)&this->unk_1C));
         if ((item != 0) && (get_mode__5TItemFv() == 2) && (((TItemWeapon *)item)->get_joint_position(this->m_20, &sp8) != 0)) {
             if (((TItem *)item)->is_hidden() == 0) {
-                copy_position__15TEffStarLight2DFPv(*(u32 *)&this->unk_24, &sp8);
+                ((TEffStarLight2D *)*(u32 *)&this->unk_24)->copy_position((const Vec *)&sp8);
                 return;
             }
             ((TObjCamera *)(*(u32 *)&this->unk_24))->queue_target_destruction();
@@ -171,7 +172,7 @@ TUnk_804A2018::TUnk_804A2018(TObject *parent, s32 a, s32 b) : TObject(parent) {
     ((StarLightFollowerView *)this)->f28 = get_item_system_generation();
     p = find_item_by_id(((StarLightFollowerView *)this)->f1c);
     if (p != NULL && ((TItemWeapon *)p)->get_joint_position(((StarLightFollowerView *)this)->f20, &v) != 0) {
-        StarLightParameters blk = weapon_star_light_parameters[0];
+        WeaponStarLightParameterWords blk = weapon_star_light_parameters[0];
         ((StarLightFollowerView *)this)->f24 = (s32)spawn_star_light_2d((s32)&v, (s32)&blk, (s32)((StarLightFollowerView *)this));
     }
 }
