@@ -450,7 +450,6 @@ void move_with_wall_slide(u8 *arg0);
 
 extern "C" {
 f32 random_ratio__9TObjCharaFv(void *);
-s32 copy_target_state__14TObjEnePanarmsFPv(void *, int);
 s32 play_sound_effect(void *, void *, int, int);
 void TObjEneMerillLia__sub_800D4EC8(s32 arg0);
 void vfunc_99__16TObjEneMerillLiaFv(s32 arg0);
@@ -788,31 +787,31 @@ void spawn_ground_effect__16TObjEneMerillLiaFPv(u8 *arg0) {
 }
 
 void TObjEneMerillLia__sub_800D4EC8(s32 arg0) {
-    play_sound_effect((void *) (copy_target_state__14TObjEnePanarmsFPv((void *)arg0, 0x3AD04)), (void *)(arg0 + 0x38), 0, 0);
+    play_sound_effect((void *) (((TObjEnemy *)((void *)arg0))->remap_sound_for_area((s32)(0x3AD04))), (void *)(arg0 + 0x38), 0, 0);
 }
 
 void TObjEneMerillLia::vfunc_99() {
     s32 arg0 = (s32)this;
-    play_sound_effect((void *) (copy_target_state__14TObjEnePanarmsFPv((void *)arg0, 0x3B205)), (void *)(arg0 + 0x38), 0, 0);
+    play_sound_effect((void *) (((TObjEnemy *)((void *)arg0))->remap_sound_for_area((s32)(0x3B205))), (void *)(arg0 + 0x38), 0, 0);
 }
 
 void TObjEneMerillLia::vfunc_98() {
     s32 arg0 = (s32)this;
-    play_sound_effect((void *) (copy_target_state__14TObjEnePanarmsFPv((void *)arg0, 0x3AD00)), (void *)(arg0 + 0x38), 0, 0);
+    play_sound_effect((void *) (((TObjEnemy *)((void *)arg0))->remap_sound_for_area((s32)(0x3AD00))), (void *)(arg0 + 0x38), 0, 0);
 }
 
 void TObjEneMerillLia::vfunc_97() {
     s32 arg0 = (s32)this;
-    play_sound_effect((void *) (copy_target_state__14TObjEnePanarmsFPv((void *)arg0, 0x3B201)), (void *)(arg0 + 0x38), 0, 0);
+    play_sound_effect((void *) (((TObjEnemy *)((void *)arg0))->remap_sound_for_area((s32)(0x3B201))), (void *)(arg0 + 0x38), 0, 0);
 }
 
 void TObjEneMerillLia::vfunc_96() {
     s32 arg0 = (s32)this;
-    play_sound_effect((void *) (copy_target_state__14TObjEnePanarmsFPv((void *)arg0, 0x3AB02)), (void *)(arg0 + 0x38), 0, 0);
+    play_sound_effect((void *) (((TObjEnemy *)((void *)arg0))->remap_sound_for_area((s32)(0x3AB02))), (void *)(arg0 + 0x38), 0, 0);
 }
 
 void TObjEneMerillLia__sub_800D501C(s32 arg0) {
-    play_sound_effect((void *) (copy_target_state__14TObjEnePanarmsFPv((void *)arg0, 0x3B206)), (void *)(arg0 + 0x38), 0, 0);
+    play_sound_effect((void *) (((TObjEnemy *)((void *)arg0))->remap_sound_for_area((s32)(0x3B206))), (void *)(arg0 + 0x38), 0, 0);
 }
 
 void TObjEneMerillLia::vfunc_94() {
@@ -1344,7 +1343,7 @@ void TObjEneMerillLia::beast_update_group_chase() {
                 Vec_800D6110 b = arg0->f2a8->p2fc;
                 dist = enemy_backstep_from_point(arg0, &b, arg0->f3d4);
             }
-            ((TObjPlayer *)arg0)->update_angle(((s32 *)arg0->f350)[2], arg0->ang308);
+            ((TObjEnemy *)arg0)->turn_toward_direction(((s32 *)arg0->f350)[2], (Vec *)arg0->ang308);
             arg0->f374--;
             if (dist < (arg0->f398 + arg0->model->radius) * (arg0->f398 + arg0->model->radius) || arg0->f374 < 0) {
                 arg0->f328 = 2;

@@ -78,9 +78,9 @@ u8 *TOSwitchAttackSub__ct(u8 *object, u8 *arg1, s32 arg2, s32 arg3, u32 arg4, f3
         *(void **)(object + 0x20) = spawn_particle_effect_with_rotation(object + 0x24, &p, a.v[arg4], 0x40);
         if (*(void **)(object + 0x20) != 0) {
             if ((s32) arg4 == 10) {
-                ((TParticleCtrl *)(*(void **)(object + 0x20)))->fn_800822D4(1.25f * farg0, 1.25f * farg0);
+                ((TParticleCtrl *)(*(void **)(object + 0x20)))->set_scale(1.25f * farg0, 1.25f * farg0);
             } else {
-                ((TParticleCtrl *)(*(void **)(object + 0x20)))->fn_800822D4(farg0, farg0);
+                ((TParticleCtrl *)(*(void **)(object + 0x20)))->set_scale(farg0, farg0);
             }
         }
     }

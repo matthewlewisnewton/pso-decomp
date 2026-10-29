@@ -1,3 +1,4 @@
+#include "pso/enemy/TObjEnemy.h"
 #include "pso/unk/TUnk_80494968.h"
 #include "types.h"
 #include "pso/object/obj_band.h"
@@ -183,7 +184,6 @@ s32 push_matrix(void);
 s32 pop_matrix(void);
 f32 post_translate_matrix(void *);
 void TObjEneDD__sub_800BA378(s32 arg0, u8 *arg1);
-s32 copy_target_state__14TObjEnePanarmsFPv(void *, int);
 s32 mult_vec_array__10TObjPlayerFUll(int, int, void *, int);
 void set_matrix_identity(u8 *arg0);
 s32 rotate_matrix_y(int, int);
@@ -407,7 +407,7 @@ void TObjEneRe7Berura::run_flash_warning_state(s32 arg1) {
         this->vfunc_102();
         this->vfunc_89();
         ((void (*)(s32, s32, s32))update_technique_slot__10TTecRaFoieFl)(
-            play_persistent_sound((s32)(copy_target_state__14TObjEnePanarmsFPv(arg0, 0x4003C61E)), (s32)arg0, (u32)&this->position, 0, 0),
+            play_persistent_sound((s32)(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003C61E))), (s32)arg0, (u32)&this->position, 0, 0),
             0x400, 0);
         break;
     case 5:
@@ -475,7 +475,7 @@ void TObjEneRe7Berura__sub_80093888(u8 *actor, s32 arg1) {
             break;
         case 1:
             if (objInBand((GameObj *)actor, (f32)lbl_805D9744) != 0) {
-                play_sound_effect(copy_target_state__14TObjEnePanarmsFPv(actor, 0x4003AD22), (u32) (actor + 0x38), 0, 0);
+                play_sound_effect(((TObjEnemy *)(actor))->remap_sound_for_area((s32)(0x4003AD22)), (u32) (actor + 0x38), 0, 0);
             }
             if ((objInBand((GameObj *)actor, (f32)lbl_805D9748) != 0) && (((TObjEneDD_ST *)actor)->enemy_check_target_valid() != 0)) {
                 if (((VObj_18_a5c788 *)((u8 *)(*(u8 **)((s8 *)actor + 0x390))))->m18(actor, lbl_805D974C) != 0) {
@@ -553,7 +553,7 @@ void TObjEneRe7Berura__sub_80093C80(u8 *arg0, s32 arg1) {
             TObjEneRe7Berura__animation_definitions[0x48 / 4] = TObjEneRe7Berura__data_805D9738;
             TObjEneRe7Berura__animation_definitions[0x38 / 4] = TObjEneRe7Berura__data_805D9738;
         }
-        play_sound_effect(copy_target_state__14TObjEnePanarmsFPv(arg0, 0x4003BC20), (u32)(arg0 + 0x38), 0, 0);
+        play_sound_effect(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003BC20)), (u32)(arg0 + 0x38), 0, 0);
         TObjPlayer::play_effect_if_v2(-0x100);
         break;
     case 3:
@@ -600,7 +600,7 @@ void TObjEneRe7Berura__sub_80093C80(u8 *arg0, s32 arg1) {
                 launch__21TObjEneRe7BeruraPunchFll(F(s32, 0x3F8), F(s32, 0x3F4), &v, arg0 + 0x394);
                 F(s32, 0x4C0) = 1;
                 ((TObjEneRe7Berura *)arg0)->destroy_parts();
-                play_sound_effect(copy_target_state__14TObjEnePanarmsFPv(arg0, 0x4003A321), (u32)(arg0 + 0x38), 0, 0);
+                play_sound_effect(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003A321)), (u32)(arg0 + 0x38), 0, 0);
                 TObjPlayer::play_effect_if_v2(-0x100);
             }
             break;
@@ -868,7 +868,7 @@ void TObjEneRe7Berura__sub_8009472C(u8 *arg0, s32 arg1) {
                 }
                 *(s32 *)((s8 *)arg0 + 0x3C8) = (s32) (var_r4_2 | ((var_r4_2 << 0x10) | 0xFF000000 | (var_r4_2 << 8)));
             }
-            play_persistent_sound((s32)(copy_target_state__14TObjEnePanarmsFPv(arg0, 0x4003C61E)), (s32)arg0, (u32)(arg0 + 0x38), 0, 0);
+            play_persistent_sound((s32)(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003C61E))), (s32)arg0, (u32)(arg0 + 0x38), 0, 0);
             TObjPlayer::play_effect_if_v2(-0x100);
             break;
         }

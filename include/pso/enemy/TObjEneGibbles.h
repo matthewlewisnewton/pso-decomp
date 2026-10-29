@@ -59,7 +59,6 @@ struct TObjEneGibbles : public TObjEnemy {
     static void *create(void *arg0);
     static void free_static();
     static void load_resources();
-    f32 get_pos_x();
     void turn_toward_target();
     void slam_damage_players(s32 arg1);
 };

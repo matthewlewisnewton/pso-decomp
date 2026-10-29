@@ -310,7 +310,7 @@ void TTecMegid::spawn_particle_emitters() {
       row = &((Data_802351B4 *) TTecMegid__emitter_bands)[this->band].rows[i];
       if (row->flags & 0x40)
       {
-        ((TParticleCtrl *)(self->emitters[i]))->fn_800822D4(row->scale, row->scale);
+        ((TParticleCtrl *)(self->emitters[i]))->set_scale(row->scale, row->scale);
       }
       if (((Data_802351B4 *) TTecMegid__emitter_bands)[this->band].rows[i].flags & 0x20)
       {

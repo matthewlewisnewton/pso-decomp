@@ -1,3 +1,4 @@
+#include "pso/effect/TEffStarLight2D.h"
 #include "pso/TItemShoot.h"
 #include "pso/item/TItem.h"
 #include "pso/TItemShootGun.h"
@@ -11,7 +12,7 @@ extern "C" void disallow_rendering__7TObjectFv(TObject *arg0);
 extern "C" void allow_rendering__7TObjectFv(TObject *arg0);
 extern "C" void queue_destruction__7TObjectFv(void *arg0);
 extern "C" void  vec3_add_to(Vec*, Vec*);
-extern "C" void  copy_position__15TEffStarLight2DFPv(void*, Vec*);
+
 
 extern "C" void  subtract_vector(Vec*, const Vec*);
 extern "C" f32   vector_length(Vec*);
@@ -74,7 +75,7 @@ void TItemShoot::run_task() {
     allow_rendering__7TObjectFv(this);
     vec3_add_to(&this->m_pos, &this->m_dir);
     if (this->m_50 != nullptr) {
-        copy_position__15TEffStarLight2DFPv(this->m_50, &this->m_pos);
+        ((TEffStarLight2D *)this->m_50)->copy_position(&this->m_pos);
     }
     this->hook();
     this->m_life -= kLifeDecay;

@@ -254,7 +254,6 @@ struct Berura_80092CCC {
 
 extern "C" {
 s32 transition_enemy_state__9TObjEneDDFl(void *, s32);
-s32 copy_target_state__14TObjEnePanarmsFPv(void *, int);
 s32 play_sound_effect(s32, void *, s32, s32);
 s32 advance_animation_playback(void *);
 extern const f32 TObjEneRe7Berura__data_805D9738;
@@ -498,7 +497,7 @@ void TObjEneRe7Berura::update_death_state(s32 mode) {
         fn_800D911C((Vec *)((u8 *)self + 0x2FC));
         TObjPlayer__sub_800A04F0((u8 *)self + 0x3D8);
         self->f3C0 |= 2;
-        play_sound_effect(copy_target_state__14TObjEnePanarmsFPv(self, 0x4003AD25), (u8 *)self + 0x38, 0, 0);
+        play_sound_effect(((TObjEnemy *)(self))->remap_sound_for_area((s32)(0x4003AD25)), (u8 *)self + 0x38, 0, 0);
         break;
     case 0:
         switch (self->f4C4) {
@@ -531,7 +530,7 @@ void TObjEneRe7Berura__sub_80093470(Berura_80093470 *obj, s32 mode) {
         obj->m94();
         self->field3C0 &= ~7;
         advance_animation_playback(self);
-        play_sound_effect(copy_target_state__14TObjEnePanarmsFPv(self, 0x4003A826), &self->pos, 0, 0);
+        play_sound_effect(((TObjEnemy *)(self))->remap_sound_for_area((s32)(0x4003A826)), &self->pos, 0, 0);
         ((TObjEneDD_ST *)self)->set_active();
         break;
     case 3:
