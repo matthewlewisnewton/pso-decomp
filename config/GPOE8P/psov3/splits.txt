@@ -833,7 +833,9 @@ pso/misc/TChallenge.cpp:
 pso/misc/TLobby_80070A00.cpp:
 	.text       start:0x80070A00 end:0x8007172C
 	.ctors      start:0x80433F48 end:0x80433F4C
-	.rodata     start:0x804385B8 end:0x804385C0
+	.rodata     start:0x804385B0 end:0x804385C0
+	.sbss       start:0x805D4E38 end:0x805D4E40
+	.sdata2     start:0x805D9108 end:0x805D9110
 
 pso/object/TObjOnlineEnding.cpp:
 	.text       start:0x8007172C end:0x80071774
