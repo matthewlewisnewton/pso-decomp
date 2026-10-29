@@ -1,3 +1,4 @@
+#include "pso/unk/TUnk_80494968.h"
 #include "types.h"
 #include "pso/system/PadRumble.h"
 #include "pso/object/TObjMotion.h"
@@ -372,7 +373,7 @@ struct VObj_8005B218 : VBase_8005B218 {
     virtual void m21(s32, Dmg_8005B218 *, s32, s32, s32);
 };
 
-f32 calc_boss4_scale__10TObjPlayerFi(void *);
+f32 random_ratio__9TObjCharaFv(void *);
 int get_player_data__10TObjPlayerFi(int a0);
 u16 get_entity_id(void *);
 s32 is_split_screen();
@@ -784,7 +785,7 @@ struct Ply_80059ABC;
 s32 init_trail_buffer__11TBoss4Type3FPvifff(void *, s32, f32, f32, f32);
 }
 extern "C" {
-s32 create__12TObjEneSaverFPvPv(s32, s32);
+s32 create__13TUnk_80494968FUlUl(s32, s32);
 void draw_trail_with_colors(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 
 Self_8005AE60 *TBoss4Type3__ct(Self_8005AE60 *, s32, s32 *);
@@ -916,14 +917,14 @@ Self_8005AE60 *TBoss4Type3__ct(Self_8005AE60 *self, s32 parent, s32 *arg2) {
     }
     *(s32 *)((u8 *)self + 0x51C) = p;
     draw_trail_with_colors((u8 *)(*(s32 *)((u8 *)self + 0x51C)), model, get_bml_motion(self->f390, ((s32 *)&TBoss4Type3__anim_state_table)[0x44 / 4]), 0x16, 0x17);
-    *(s32 *)((u8 *)self + 0x524) = create__12TObjEneSaverFPvPv(0xA0303030, 0xFFFF0088);
+    *(s32 *)((u8 *)self + 0x524) = create__13TUnk_80494968FUlUl(0xA0303030, 0xFFFF0088);
     p = (s32)::operator new(0x18);
     if (p != 0) {
         p = init_trail_buffer__11TBoss4Type3FPvifff((void *)p, 2, 3.0f, 9.0f, 0.6f);
     }
     *(s32 *)((u8 *)self + 0x520) = p;
     draw_trail_with_colors((u8 *)(*(s32 *)((u8 *)self + 0x520)), model, get_bml_motion(self->f390, ((s32 *)&TBoss4Type3__anim_state_table)[0x58 / 4]), 9, 10);
-    *(s32 *)((u8 *)self + 0x528) = create__12TObjEneSaverFPvPv(0xA0303030, 0xFFFF0088);
+    *(s32 *)((u8 *)self + 0x528) = create__13TUnk_80494968FUlUl(0xA0303030, 0xFFFF0088);
     TObjPlayer::clear_global_state();
     ((TBoss4Type3 *)self)->create_particle_emitters();
     init_model_node_tables(self->f378, (void *)boss4_type3_model_node_specs, 2);
@@ -1386,7 +1387,7 @@ void TBoss4Type3::spawn_random_effect() {
     s32 arg0 = (s32)this;
     s32 temp_r5;
 
-    temp_r5 = (s32) (15.99f * ((f32 (*)(void))calc_boss4_scale__10TObjPlayerFi)());
+    temp_r5 = (s32) (15.99f * ((f32 (*)(void))random_ratio__9TObjCharaFv)());
     send_packed_action(0xF, temp_r5, temp_r5);
 }
 
@@ -1472,7 +1473,7 @@ s32 TBoss4Type3::choose_attack_heading_sector() {
 }
 
 s32 TBoss4Type3::get_random_scaled(void * _w0) {
-    return (s32) (15.84f * ((f32 (*)(void))calc_boss4_scale__10TObjPlayerFi)());
+    return (s32) (15.84f * ((f32 (*)(void))random_ratio__9TObjCharaFv)());
 }
 
 void TBoss4Type3::turn_toward_player(s32 arg1) {
@@ -1494,7 +1495,7 @@ void TBoss4Type3::calc_grid_index() {
 
 void TBoss4Type3__sub_800599F4(void *p, int lo, int hi) {
     s32 sector = ((TBoss4Type3 *)p)->choose_attack_heading_sector();
-    s32 n = (s64)(s32)(0.99f * (f32)(hi - lo + 1) * calc_boss4_scale__10TObjPlayerFi(p));
+    s32 n = (s64)(s32)(0.99f * (f32)(hi - lo + 1) * random_ratio__9TObjCharaFv(p));
     n += lo;
     ((TBoss4Type3 *)p)->send_packed_action(n + 4, sector, sector);
 }
@@ -1689,8 +1690,8 @@ void TBoss4Type3::update_dead() {
 
 void TBoss4Type3::enter_cut() {
     u8 *arg0 = (u8 *)this;
-    ((TBoss4Type3 *)(this->m_524))->reset_timer();
-    ((TBoss4Type3 *)(this->m_528))->reset_timer();
+    ((TUnk_80494968 *)(this->m_524))->clear_segments();
+    ((TUnk_80494968 *)(this->m_528))->clear_segments();
     ((TBoss4Type3 *)arg0)->set_anim_state((int) (((this->m_374 - 4) & 1) + 3));
     this->m_52c = 0;
     this->m_398 = 0x31;
@@ -2137,7 +2138,7 @@ void TBoss4Type3::advance_bura() {
     if ((s32) this->m_398 == 0) {
         this->m_3bc = (this->m_3bc + 1);
         temp_r0 = this->m_3bc;
-        if ((temp_r0 >= 5) || ((temp_r0 >= 2) && (calc_boss4_scale__10TObjPlayerFi(arg0) < 0.5f))) {
+        if ((temp_r0 >= 5) || ((temp_r0 >= 2) && (random_ratio__9TObjCharaFv(arg0) < 0.5f))) {
             ((s32 (*)(void *, s32))TBoss4Type3__sub_80059F64)(arg0, 9);
             return;
         }

@@ -1,3 +1,4 @@
+#include "pso/TParticleCtrl.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_800822D0.h"
 #include "pso/player/TObjChara.h"
@@ -5,7 +6,7 @@
 #include "pso/player/TObjPlayer.h"
 
 void TUnk_8048E1A4::apply_knockback_from_attacker(u8 *) {  }
-void TObjPlayer::set_position_xy(f32 a, f32 b) { this->position.z = a; this->prev_position.x = b; }
+void TParticleCtrl::fn_800822D4(f32 a, f32 b) { field_40 = a; field_44 = b; }
 
 f32 TObjChara::get_speed() { return this->m_c0; }
 

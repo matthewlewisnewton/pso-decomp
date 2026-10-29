@@ -1,3 +1,4 @@
+#include "pso/enemy/TObjEnemy.h"
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
 #include "pso/system/NinjaUtil.h"
@@ -17,7 +18,6 @@
 #include "pso/boss/TObjBoss2Tunnel.h"
 #include "pso/enemy/TObjEneDD.h"
 #include "pso/enemy/TObjEneDD_ST.h"
-#include "pso/enemy/TObjEnemy.h"
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TNowLoading.h"
@@ -972,7 +972,7 @@ int play_sound_effect(void*, void*, void*, void*);
 extern Vec_802EBBC8 lbl_80473F78;
 extern Vec_802EBBC8 lbl_80473F84;
 void TObjFish__sub_802EBBC8(u8 *arg0, u32 arg1);
-f32 calc_boss4_scale__10TObjPlayerFi(void *);
+f32 random_ratio__9TObjCharaFv(void *);
 s32 get_random_scaled__9TObjEneDDFv(void *);
 
 s32 TBoss7Tentacle__sub_802F0904(s32);
@@ -1268,7 +1268,7 @@ f32 get_random_float__21TObjEneMe3ShinowaRealFv(f32);
 s32 enemy_clear_target__12TObjEneDD_STFUs(void *);
 s32 enemy_set_target_id(void * a0 = 0, u16 a1 = 0);
 void project_sound_origin_from_camera(s32 arg0, u8 *arg1, f32 farg0);
-s32 is_alive__9TObjEneDDFv();
+s32 is_alive__8TObjBaseFv();
 u8 *get_enemy_entity(u16 arg0);
 s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 #define TObjFish__sub_802E7B40 ((s32 (*)(void *))TObjFish__sub_802E7B40)
@@ -1442,7 +1442,7 @@ void TObjFish__sub_802E85E0(u8 *arg0, u32 arg1, s32 arg2) {
                     if (((TObjEneDD_ST *)self)->enemy_has_live_target() != 0) {
                         ((s32 (*)(Vec_802E85E0 *, Vec_802E85E0 *))VecCopy__FP3VecPC3Vec)(&v, &self->target->pos);
                     } else {
-                        scale = lbl_805DEA20 * calc_boss4_scale__10TObjPlayerFi(self);
+                        scale = lbl_805DEA20 * random_ratio__9TObjCharaFv(self);
                         r = get_random_scaled__9TObjEneDDFv(self);
                         v.x = scale * sin_table_lookup(r);
                         v.y = lbl_805DEA24;
@@ -1702,7 +1702,7 @@ void TObjFish::handle_death_state(u32 arg1) {
         for (i = 0; i != 10; i++) {
             assign_slots_from_list(o, (s32)o->kids[i]);
         }
-        ((TBoss8Dragon *)o)->refresh_and_send_entity_flags();
+        ((TObjEnemy *)o)->refresh_and_send_entity_flags();
         TBoss4DarkFalz::dispatch_by_main_phase(0x4C);
         VecCopy__FP3VecPC3Vec((int)&o->pos, &saved);
         ((TObjEnemy *)o)->update_prev_position();
@@ -2198,7 +2198,7 @@ void handle_tentacle_attack_state__8TObjFishFPvUii(Fish_802E9ADC *o, u32 arg1, s
                 if (((TObjEneDD_ST *)o)->enemy_has_live_target() != 0) {
                     VecCopy__FP3VecPC3Vec((int)&v, o->target + 0x38);
                 } else {
-                    f32 r = lbl_805DEA20 * calc_boss4_scale__10TObjPlayerFi(o);
+                    f32 r = lbl_805DEA20 * random_ratio__9TObjCharaFv(o);
                     ang = get_random_scaled__9TObjEneDDFv(o);
                     v.x = r * sin_table_lookup(ang);
                     v.y = lbl_805DEA24;
@@ -2376,7 +2376,7 @@ void TObjFish__sub_802E9DBC(u8 *arg0, u32 arg1, s32 arg2) {
                 f32 s;
                 self->tick = 0;
                 ((void (*)(void *, void *)) VecCopy__FP3VecPC3Vec)(&v, &self->p4DC);
-                s = lbl_805DEAB8 * calc_boss4_scale__10TObjPlayerFi(self);
+                s = lbl_805DEAB8 * random_ratio__9TObjCharaFv(self);
                 v.x = v.x - self->f744 * s;
                 v.y = lbl_805DEA60;
                 v.z = v.z + lbl_805DEABC;
@@ -2764,7 +2764,7 @@ void TObjFish__sub_802EAAC8(u8 *arg0, u32 arg1, s32 arg2, s32 arg3) {
                             }
                             ((void (*)(void *, void *)) VecCopy__FP3VecPC3Vec)(&v, &self->recs[i]);
                         }
-                        v.x = v.x - self->dir * (lbl_805DEA30 * calc_boss4_scale__10TObjPlayerFi(self) + lbl_805DEABC);
+                        v.x = v.x - self->dir * (lbl_805DEA30 * random_ratio__9TObjCharaFv(self) + lbl_805DEABC);
                         v.y = lbl_805DEA60;
                         v.z = v.z + (lbl_805DEA30 * calc_elapsed_scaled__9TObjEneDDFv(self) + lbl_805DEB50);
                         ((void (*)(void *, void *)) spawn_particle_201__8TObjFishFii)(self, &v);
@@ -2773,7 +2773,7 @@ void TObjFish__sub_802EAAC8(u8 *arg0, u32 arg1, s32 arg2, s32 arg3) {
                     V_802EAAC8 v;
                     self->tick = 0;
                     ((void (*)(void *, void *)) VecCopy__FP3VecPC3Vec)(&v, &self->x);
-                    v.x = v.x + self->dir * (20.0f * calc_boss4_scale__10TObjPlayerFi(self) + 20.0f);
+                    v.x = v.x + self->dir * (20.0f * random_ratio__9TObjCharaFv(self) + 20.0f);
                     v.y = lbl_805DEA60;
                     v.z = v.z + (lbl_805DEB54 * calc_elapsed_scaled__9TObjEneDDFv(self) + lbl_805DEA50);
                     ((void (*)(void *, void *)) spawn_particle_201__8TObjFishFii)(self, &v);
@@ -3531,11 +3531,11 @@ void TObjFish::pick_random_target() {
         ((TObjEneDD_ST *)((u8 *)this))->set_target_player(p);
         return;
     }
-    idx = (s32)get_random_float__21TObjEneMe3ShinowaRealFv((f32)n * calc_boss4_scale__10TObjPlayerFi(this));
+    idx = (s32)get_random_float__21TObjEneMe3ShinowaRealFv((f32)n * random_ratio__9TObjCharaFv(this));
     enemy_clear_target__12TObjEneDD_STFUs(this);
     for (i = 0; i < n; i++) {
         p = (u8 *)get_player_data__10TObjPlayerFi(idx);
-        if (is_alive__9TObjEneDDFv() != 0) {
+        if (is_alive__8TObjBaseFv() != 0) {
             ((TObjEneDD_ST *)((u8 *)this))->set_target_player(p);
             return;
         }
@@ -3939,7 +3939,7 @@ void TBoss7PhotonBullet__sub_802ED5A0(void *arg0, int arg1);
 s32 update_local_colliders_from_world(void *, void *);
 #define VecCopy__FP3VecPC3Vec ((s32 (*)(void *, void *))VecCopy__FP3VecPC3Vec)
 s32 add_radar_scaled_marker(void *, int, int, int, f32);
-s32 set_player_state_default__12TBoss8DragonFv(void *);
+s32 submit_default_cursor_candidate__9TObjEnemyFv(void *);
 
 f32 TBoss7PhotonBullet::get_target_pos_y() {
     return *(f32 *)((s8 *)(TLobby::dispatch_shared_handler_a(0xF)) + 4);
@@ -3992,7 +3992,7 @@ void TBoss7DeRolLeC::set_state_and_send(s32 arg1) {
 
 void TBoss7DeRolLeC::flee_if_disturbed() {
     if (*(s32 *)((s8 *)this->bodies + 0x18) & 1) {
-        set_player_state_default__12TBoss8DragonFv(this);
+        submit_default_cursor_candidate__9TObjEnemyFv(this);
         add_radar_scaled_marker((void *) (((u8 *)this) + 0x38), -0x5DB4, 1, 1, lbl_805DEA44);
     }
 }

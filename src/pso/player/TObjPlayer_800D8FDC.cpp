@@ -46,7 +46,10 @@ void create_dead_spot__10TObjPlayerFiiif(s32 arg0, s32 arg1, s32 arg2, f32 farg0
     }
 }
 
-void TObjPlayer::request_two_effects() { create_timed_particle_emitter(this, (s32)((void*)232), (s32)((void*)10), (s32)((void*)1)); create_timed_particle_emitter(this, (s32)((void*)236), (s32)((void*)10), (s32)((void*)1)); }
+void fn_800D911C(Vec *position) {
+    create_timed_particle_emitter(position, 232, 10, 1);
+    create_timed_particle_emitter(position, 236, 10, 1);
+}
 
 void TObjPlayer::trigger_dell_biter_events() { spawn_particle_effect(this, (s32)((void*)251)); spawn_particle_effect(this, (s32)((void*)252)); spawn_particle_effect(this, (s32)((void*)227)); }
 

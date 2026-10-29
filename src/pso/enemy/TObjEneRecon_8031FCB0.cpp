@@ -1,8 +1,8 @@
+#include "pso/enemy/TObjEnemy.h"
 #include "pso/misc/RenderFadeState.h"
 #include "types.h"
 #include "pso/enemy/TObjEneDD.h"
 #include "pso/enemy/TObjEneDD_ST.h"
-#include "pso/enemy/TObjEnemy.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/player/TObjChara.h"
 #include "pso/object/TObjMotion.h"
@@ -122,7 +122,7 @@ struct Sub_8031FE98 { u8 b[0x1C]; };
 struct Self_8031FE98 { u8 pad[0x3FC]; s32 f3fc[4]; u8 pad40c[0x418 - 0x40C]; u16 f418[6]; u16 f424[30]; Sub_8031FE98 subs[4]; };
 
 void *__dt__12TObjEneDD_STFv(void *arg0, s16 arg1);
-void init_object__12TObjEneDD_STFv(void *, s32, void *);
+void __ct__12TObjEneDD_STFP7TObject(void *, s32, void *);
 void reset_hp__9TObjEneDDFv(void *, s32, s32, s32);
 void initialize_enemy_state__9TObjEneDDFv(void *, int);
 void init_model__9TObjEneDDFv(void *, void *, int);
@@ -153,7 +153,7 @@ extern const f32 lbl_805DF46C;
 extern "C" void vfunc_6__8TObjBaseFPsl();
 extern "C" void vfunc_103__9TObjEneDDFPUc();
 extern "C" void vfunc_79__9TObjEneDDFv();
-extern "C" void TObjEneDD__vt82();
+extern "C" void vfunc_84__9TObjEneDDFv();
 extern "C" void vfunc_85__9TObjEneDDFv();
 extern "C" void vfunc_86__9TObjEneDDFv();
 extern "C" void vfunc_89__9TObjEneDDFv();
@@ -170,7 +170,7 @@ extern "C" void vfunc_99__9TObjEneDDFv();
 extern "C" void vfunc_100__9TObjEneDDFv();
 extern "C" void vfunc_101__9TObjEneDDFPUc();
 extern "C" void vfunc_102__9TObjEneDDFv();
-extern "C" int TObjEneEpsilon__vt101(void *p);
+extern "C" int vfunc_104__12TObjEneDD_STFf(void *p);
 extern "C" void vfunc_83__12TObjEneDD_STFv();
 extern "C" void draw_with_debug_info__14TObjEneRecoboxFv();
 extern "C" void render__14TObjEneRecoboxFv(u8 *arg0);
@@ -333,12 +333,12 @@ void *TObjEneRecobox__vtable[107] = {
     (void *)&enemy_spawn_zalure_effect__9TObjCharaFv, (void *)&recalc_stats__9TObjCharaFv, (void *)&vfunc_74__9TObjEnemyFl, (void *)&vfunc_75__9TObjCharaFf,
     (void *)&vfunc_76__9TObjCharaFv, (void *)&vfunc_77__9TObjCharaFv, (void *)&vfunc_78__9TObjCharaFl, (void *)&vfunc_79__9TObjEneDDFv,
     (void *)&apply_hit_message_flags__9TObjEnemyFPv, (void *)&apply_set_data__9TObjEnemyFPv, (void *)&clear_lobby_object_state__9TObjEnemyFv, (void *)&vfunc_83__12TObjEneDD_STFv,
-    (void *)&TObjEneDD__vt82, (void *)&vfunc_85__9TObjEneDDFv, (void *)&vfunc_86__9TObjEneDDFv, (void *)&dispatch_state__12TObjEneReconFiUii,
+    (void *)&vfunc_84__9TObjEneDDFv, (void *)&vfunc_85__9TObjEneDDFv, (void *)&vfunc_86__9TObjEneDDFv, (void *)&dispatch_state__12TObjEneReconFiUii,
     (void *)&TObjEneRecon__sub_8031FB6C, (void *)&vfunc_89__9TObjEneDDFv, (void *)&vfunc_90__9TObjEneDDFv, (void *)&vfunc_91__9TObjEneDDFv,
     (void *)&vfunc_92__9TObjEneDDFv, (void *)&vfunc_93__9TObjEneDDFv, (void *)&vfunc_94__9TObjEneDDFv, (void *)&vfunc_95__9TObjEneDDFv,
     (void *)&vfunc_96__9TObjEneDDFv, (void *)&vfunc_97__9TObjEneDDFv, (void *)&vfunc_98__9TObjEneDDFv, (void *)&vfunc_99__9TObjEneDDFv,
     (void *)&vfunc_100__9TObjEneDDFv, (void *)&vfunc_101__9TObjEneDDFPUc, (void *)&vfunc_102__9TObjEneDDFv, (void *)&vfunc_103__9TObjEneDDFPUc,
-    (void *)&TObjEneEpsilon__vt101, (void *)&update_if_800BB858__14TObjEneRecoboxFv, (void *)&draw_with_debug_info__14TObjEneRecoboxFv,
+    (void *)&vfunc_104__12TObjEneDD_STFf, (void *)&update_if_800BB858__14TObjEneRecoboxFv, (void *)&draw_with_debug_info__14TObjEneRecoboxFv,
 };
 #define TObjEneRecobox__attack_params ((u8 *)TObjEneRecobox__attack_params)
 #define lbl_804EC684 ((u8 *)lbl_804EC684)
@@ -384,7 +384,7 @@ void TObjEneRecobox::run_task() {
     }
     this->vfunc_88();
     ((TObjEneRecon *)((u8 *)this))->restore_position();
-    ((TBoss8Dragon *)((u8 *)this))->set_player_state_default();
+    ((TObjEnemy *)((u8 *)this))->submit_default_cursor_candidate();
     this->vfunc_100();
     this->update_floor_probe();
 }
@@ -407,7 +407,7 @@ u8 *TObjEneRecobox__ct(u8 *ene_recobox, s32 arg1, u8 *arg2) {
     Self_8031FE98 *S = (Self_8031FE98 *)ene_recobox;
     s32 i;
     s32 n;
-    init_object__12TObjEneDD_STFv(ene_recobox, arg1, arg2);
+    __ct__12TObjEneDD_STFP7TObject(ene_recobox, arg1, arg2);
     *(u8 **)((s8 *)ene_recobox + 0x18) = TObjEneRecobox__vtable;
     ((TUnk_80494938 *)(ene_recobox + 0x3C0))->init_common();
     __construct_array(ene_recobox + 0x460, (void *)&__ct__15RenderFadeStateFv, (void *)&__dt__15RenderFadeStateFv, 0x1C, 4);

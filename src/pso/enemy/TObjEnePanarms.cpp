@@ -41,7 +41,7 @@ extern const f32 lbl_805DA54C;
 extern const f32 lbl_805DA574;
 extern const f32 lbl_805DA578;
 extern const f32 lbl_805DA57C;
-f32 calc_boss4_scale__10TObjPlayerFi(void *);
+f32 random_ratio__9TObjCharaFv(void *);
 struct Stack_800DFC18
 {
   s32 sp8;
@@ -1168,7 +1168,7 @@ void TObjEnePanarms::attack_target_player(s32 arg1) {
             }
             return;
         }
-        sc = calc_boss4_scale__10TObjPlayerFi(this);
+        sc = random_ratio__9TObjCharaFv(this);
         if (sc <= *(f32 *)((s8 *)((u8 *)this) + 0x468)) {
             lv = ((Prm_800E1608 * (*)(s32))dispatch_shared_handler_a__6TLobbyFl)(0x33)->x1c;
             if (lv < 0 || lv > 0xE) {
@@ -1624,7 +1624,7 @@ u8 is_below_half_hp__14TObjEnePanarmsFPv(void *arg0) {
 #pragma push
 #pragma fp_contract on
 void TObjEnePanarms::set_random_action_timer(int minimum, int range) {
-    action_timer = (s32)((f32)range * calc_boss4_scale__10TObjPlayerFi(this) + (f32)minimum);
+    action_timer = (s32)((f32)range * random_ratio__9TObjCharaFv(this) + (f32)minimum);
 }
 #pragma pop
 

@@ -1,3 +1,4 @@
+#include "pso/TParticleCtrl.h"
 #include "types.h"
 #include "pso/boss/TBoss4Type2_800874F4.h"
 #include "pso/misc/TParticleCtrl_800867E4.h"
@@ -243,7 +244,7 @@ void TTecGiBarta::create_particles() {
         }
         if (emitter != NULL) {
             if (TTecGiBarta__emitter_profile_table[shot->band].rows[i].flags & 0x40) {
-                ((TObjPlayer *)emitter)->set_position_xy(TTecGiBarta__emitter_profile_table[shot->band].rows[i].scale, TTecGiBarta__emitter_profile_table[shot->band].rows[i].scale);
+                ((TParticleCtrl *)emitter)->fn_800822D4(TTecGiBarta__emitter_profile_table[shot->band].rows[i].scale, TTecGiBarta__emitter_profile_table[shot->band].rows[i].scale);
             }
             if (TTecGiBarta__emitter_profile_table[shot->band].rows[i].flags & 0x20) {
                 attach_particle_model((u8 *)emitter, (s32)(get_bml_model(technique_effect_bml, (u16)(TTecGiBarta__emitter_profile_table[shot->band].rows[i].flags >> 16))), (s32)lbl_805D63B0, (s32)NULL, 0, (f32)lbl_805DC804);

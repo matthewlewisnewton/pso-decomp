@@ -586,7 +586,7 @@ u16 TObjEnemyCustom::pick_random_nearby_player(f32 radius) {
     if (found == 0) {
         return 0xFFFF;
     }
-    return candidates[(s32)((f32)found * TObjPlayer::calc_boss4_scale((s32)this))];
+    return candidates[(s32)((f32)found * random_ratio())];
 }
 
 void TObjEnemyCustom::vfunc_79() {

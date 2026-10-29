@@ -450,6 +450,8 @@ pso/enemy/TObjEneDarkGunner.cpp
 pso/enemy/TObjEneDelDepthBomb_80316244.cpp
 pso/enemy/TObjEneDelDepth_80315AD8.cpp
 pso/enemy/TObjEneDelDepth_8031624C.cpp
+pso/enemy/TObjEneDellBiter.cpp
+pso/enemy/TObjEneDellBiterEffects.cpp
 pso/enemy/TObjEneDellBiter_800BC46C.cpp
 pso/enemy/TObjEneDf2Bringer_80097100.cpp
 pso/enemy/TObjEneDf2Bringer_800972B0.cpp
@@ -3452,9 +3454,6 @@ pso/unk/text_802FEA38.cpp
 pso/unk/text_802FF028.cpp
 pso/unk/text_802FF760.cpp
 pso/unk/text_803000C8.cpp
-pso/unk/text_80302DC0.cpp
-pso/unk/text_80302F6C.cpp
-pso/unk/text_80302FD8.cpp
 pso/unk/text_80307964.cpp
 pso/unk/text_80307BE8.cpp
 pso/unk/text_80308294.cpp

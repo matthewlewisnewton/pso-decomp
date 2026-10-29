@@ -1,3 +1,4 @@
+#include "pso/unk/TUnk_80494968.h"
 #include "types.h"
 #include "pso/system/NinjaUtil.h"
 #include "pso/object/obj_band.h"
@@ -272,7 +273,7 @@ extern const f32 lbl_805D9B28;
 extern const f32 lbl_805D9B2C;
 extern const f32 lbl_805D9B30;
 void TObjPlayer__sub_800AA334(u8 *arg0);
-f32 calc_boss4_scale__10TObjPlayerFi(s32 arg0);
+f32 random_ratio__9TObjCharaFv(s32 arg0);
 s32 find_target_in_range__15TObjEnemyCustomFf(void *, f32);
 extern const f32 lbl_805D9B14;
 extern const f32 lbl_805D9B18;
@@ -715,7 +716,7 @@ void TObjPlayer__sub_800A93E4(void *arg0_) {
         }
         e->fb8 = a;
         e->flags |= 0x200000;
-        ((TBoss4Type3 *)(e->model))->reset_timer();
+        ((TUnk_80494968 *)(e->model))->clear_segments();
         e->state = 1;
     }
     case 1:
@@ -737,7 +738,7 @@ void TObjPlayer__sub_800A93E4(void *arg0_) {
             if (e->target != NULL && e->target->m18(arg0, 1.0f) != 0) {
                 e->target->m20(arg0, 1.0f);
                 e->target->m23(arg0, 3.0f);
-                if (e->f368 != 0 && calc_boss4_scale__10TObjPlayerFi((s32)arg0) <= 0.16666667f) {
+                if (e->f368 != 0 && random_ratio__9TObjCharaFv((s32)arg0) <= 0.16666667f) {
                     Pair_800A93E4 p = lbl_8043AC9C[0];
                     e->target->m21(arg0, &p, 0, -1, -1);
                 }
@@ -776,7 +777,7 @@ void TObjPlayer__sub_800A93E4(void *arg0_) {
 void TObjPlayer__sub_800A9C38(void *arg0_) {
     switch (*(s32 *)((s8 *)arg0 + 0x37C)) {
     case 0:
-        if (TObjEneDD::check_v2_mode() != 0 && calc_boss4_scale__10TObjPlayerFi((s32)arg0) > lbl_805D9B0C) {
+        if (TObjEneDD::check_v2_mode() != 0 && random_ratio__9TObjCharaFv((s32)arg0) > lbl_805D9B0C) {
             *(s32 *)((s8 *)arg0 + 0x37C) = -1;
         } else {
             *(s16 *)((s8 *)arg0 + 0xB8) = 3;
@@ -938,7 +939,7 @@ void TObjEneDubchik::sub_800AA10C() {
         }
         if (this->m_3a4 >= lbl_805D9B14) {
             this->m_3a4 = (f32) lbl_805D9AE0;
-            if ((*(f32 *)((s8 *)((u8 *)this) + 0x354) >= lbl_805D9AE0) && (calc_boss4_scale__10TObjPlayerFi((s32)this) < lbl_805D9B18)) {
+            if ((*(f32 *)((s8 *)((u8 *)this) + 0x354) >= lbl_805D9AE0) && (random_ratio__9TObjCharaFv((s32)this) < lbl_805D9B18)) {
                 this->targetId = pick_random_nearby_player(lbl_805D9B1C);
                 if (this->targetId != 0xFFFF) {
                     *(u32 *)((s8 *)((u8 *)this) + 0x2A8) = find_active_entity_by_id(this->targetId);

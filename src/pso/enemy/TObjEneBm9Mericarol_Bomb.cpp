@@ -239,7 +239,7 @@ void *TObjEneBm9Mericarol_Bomb::dt(s16 arg1) {
         *(s32 **)((s8 *)this + 0x18) = lbl_804E18A8;
         if (this->m_110 != NULL) { queue_destruction__7TObjectFv(this->m_110); this->m_110 = 0; }
         if (*(void * *)&this->unk_114 != NULL) { queue_destruction__7TObjectFv(*(void * *)&this->unk_114); *(s32 *)&this->unk_114 = 0; }
-        destroy_enemy_object(0);
+        __dt__13TUnk_804928CCFv(this, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(this);
         }
@@ -253,7 +253,7 @@ void *TObjEneBm9Mericarol_Bomb::dt(s16 arg1) {
 u8 *TObjEneBm9Mericarol__sub_802D1880(u8 *ene_bm9_mericarol_bomb, u8 *ene_bm9_mericarol, Vec_802D1880 *arg2, Vec_802D1880 *arg3, s32 arg4, f32 farg0, f32 farg1) {
     Vec_802D1880 d;
     f32 k;
-    construct_collision_body((u8 *)ene_bm9_mericarol_bomb, (s32)ene_bm9_mericarol, (u32)ene_bm9_mericarol);
+    __ct__13TUnk_804928CCFP7TObjectP8TObjBase((u8 *)ene_bm9_mericarol_bomb, (s32)ene_bm9_mericarol, (u32)ene_bm9_mericarol);
     *(s32 **)((s8 *)ene_bm9_mericarol_bomb + 0x18) = lbl_804E18A8;
     *(s32 *)((s8 *)ene_bm9_mericarol_bomb + 0) = lbl_805D3F30;
     if (TObjEneDD::check_v2_mode() != 0) {

@@ -1,9 +1,9 @@
+#include "pso/enemy/TObjEnemy.h"
+#include "pso/system/vector.h"
 #include "pso/system/ChunkMaterialState.h"
 #include "types.h"
 #include "pso/misc/MaterialColorFade.h"
-#include "pso/system/vector.h"
 #include "pso/object/TObjMotion.h"
-#include "pso/enemy/TObjEnemy.h"
 #include "pso/boss/TUnk_80482EC0.h"
 #include "pso/boss/TUnk_80482D04.h"
 #include "pso/boss/TBoss2Mine.h"
@@ -16,7 +16,7 @@
 
 struct Mine_80038760; struct O_80038908;
 extern "C" {
-s32 transition_enemy_state__9TObjEneDDFs(void *, int);
+s32 transition_enemy_state__9TObjEneDDFl(void *, int);
 s32 play_sound_effect(int, void *, int, int);
 f32 calc_elapsed_scaled__9TObjEneDDFv(void *);
 void init_params__10TBoss2MineFlf(u8 *arg0, s32 arg1, f32 farg0);
@@ -38,7 +38,7 @@ f32 cos_table_lookup(s32);
 void init_launch__10TBoss2MineFPvPvii(u8 *arg0, u8 *arg1, s32 arg2, s32 arg3);
 s32 subtract_vector(void *, void *);
 s32 vec3_add_to(void *, void *);
-s32 is_alive__9TObjEneDDFv(s32);
+s32 is_alive__8TObjBaseFv(s32);
 
 #pragma push
 #pragma fp_contract on
@@ -60,10 +60,10 @@ void TUnk_80482D04::vfunc_106(s32 arg1) {
     case 3:
         if (*(s32 *)((s8 *)arg0 + 0x38C) & 0x100) {
             *(s32 *)((s8 *)arg0 + 0x38C) &= ~0x100;
-            transition_enemy_state__9TObjEneDDFs(arg0, 1);
+            transition_enemy_state__9TObjEneDDFl(arg0, 1);
         }
         if (*(s32 *)((s8 *)arg0 + 0x3C8) == 1) {
-            transition_enemy_state__9TObjEneDDFs(arg0, 3);
+            transition_enemy_state__9TObjEneDDFl(arg0, 3);
         }
         break;
     case 0:
@@ -75,7 +75,7 @@ void TUnk_80482D04::vfunc_106(s32 arg1) {
         ((TUnk_80482D04 *)arg0)->move_mine();
         VecCopy((Vec *)&v, (const Vec *)(arg0 + 0x390));
         subtract_vector(&v, arg0 + 0x2FC);
-        s = ((TObjBoss2Tunnel *)(&v))->clamp_velocity();
+        s = normalize_vector_xz((Vec *)(&v));
         s *= (0.75f);
         if (s < (0.2f)) {
             VecCopy((Vec *)(arg0 + 0x2FC), (const Vec *)((s32)&*(Vec_800375C0 *)((s8 *)arg0 + 0x390)));
@@ -122,7 +122,7 @@ void TUnk_80482D04::vfunc_105(s32 arg1) {
         break;
     case 3:
         if (*(s32 *)((s8 *)arg0 + 0x3C8) == 3) {
-            transition_enemy_state__9TObjEneDDFs(arg0, 2);
+            transition_enemy_state__9TObjEneDDFl(arg0, 2);
         }
         break;
     case 0:
@@ -218,7 +218,7 @@ void init_launch__10TBoss2MineFPvPvii(u8 *arg0, u8 *arg1, s32 arg2, s32 arg3) {
 
 void TUnk_80482D04::move_mine() {
     u8 *arg0 = (u8 *)this;
-    if (is_alive__9TObjEneDDFv(*(s32 *)((s8 *)arg0 + 0x3F0)) != 0) {
+    if (is_alive__8TObjBaseFv(*(s32 *)((s8 *)arg0 + 0x3F0)) != 0) {
         VecCopy((Vec *)(arg0 + 0x390), (const Vec *)(*(s32 *)((s8 *)arg0 + 0x3F0) + 0x38));
         vec3_add_to(arg0 + 0x390, arg0 + 0x3F8);
         *(f32 *)((s8 *)arg0 + 0x394) += 17.0f;
@@ -304,10 +304,10 @@ void TUnk_80482EC0::vfunc_106(s32 arg1) {
         temp_r4 = *(s32 *)((s8 *)((u8 *)this) + 0x38C);
         if (temp_r4 & 0x100) {
             *(s32 *)((s8 *)((u8 *)this) + 0x38C) = (s32) (temp_r4 & 0xFFFFFEFF);
-            transition_enemy_state__9TObjEneDDFs(this, 1);
+            transition_enemy_state__9TObjEneDDFl(this, 1);
         }
         if ((s32) *(s32 *)((s8 *)((u8 *)this) + 0x3C8) == 2) {
-            transition_enemy_state__9TObjEneDDFs(this, 3);
+            transition_enemy_state__9TObjEneDDFl(this, 3);
         }
         break;
     case 5:
@@ -349,7 +349,7 @@ void TUnk_80482EC0::vfunc_105(s32 arg1) {
         *(s32 *)((s8 *)arg0 + 0x38C) = (s32) (*(s32 *)((s8 *)arg0 + 0x38C) & 0xFFFFFFF8);
         VecCopy((Vec *)(arg0 + 0x39C), (const Vec *)(arg0 + 0x390));
         subtract_vector(arg0 + 0x39C, arg0 + 0x2FC);
-        *(f32 *)((s8 *)arg0 + 0x3DC) = ((TObjBoss2Tunnel *)(arg0 + 0x39C))->clamp_velocity();
+        *(f32 *)((s8 *)arg0 + 0x3DC) = normalize_vector_xz((Vec *)(arg0 + 0x39C));
         temp_r3 = (s32) ((10430.38043493439) * atan2_float(*(f32 *)((s8 *)arg0 + 0x39C), *(f32 *)((s8 *)arg0 + 0x3A4)));
         *(s32 *)((s8 *)arg0 + 0x60) = temp_r3;
         *(s32 *)((s8 *)arg0 + 0x5C) = 0x4000;
@@ -364,7 +364,7 @@ void TUnk_80482EC0::vfunc_105(s32 arg1) {
     case 3:
         if (*(f32 *)((s8 *)arg0 + 0x300) < *(f32 *)((s8 *)arg0 + 0x394)) {
             *(f32 *)((s8 *)arg0 + 0x300) = *(f32 *)((s8 *)arg0 + 0x394);
-            transition_enemy_state__9TObjEneDDFs(arg0, 2);
+            transition_enemy_state__9TObjEneDDFl(arg0, 2);
         }
         break;
     case 5:
@@ -700,7 +700,7 @@ void TBoss2Mine::vfunc_108(s32 arg1) {
         *(s32 *)((s8 *)this + 0x38C) = (s32) (*(s32 *)((s8 *)this + 0x38C) & 0xFFFFFFF8);
         return;
     case 3:
-        transition_enemy_state__9TObjEneDDFs(this, 0);
+        transition_enemy_state__9TObjEneDDFl(this, 0);
         return;
     case 5:
         *(s32 *)((s8 *)this + 0x30) = (s32) (*(s32 *)((s8 *)this + 0x30) & 0xFFFFF7FF);
@@ -740,7 +740,7 @@ void TBoss2Mine::vfunc_107(s32 arg1) {
     case 3:
       if (((s32) (*((s32 *) (((s8 *) arg0) + 0x3CC)))) == 2)
     {
-      transition_enemy_state__9TObjEneDDFs(arg0, 0);
+      transition_enemy_state__9TObjEneDDFl(arg0, 0);
     }
     case 5:
       return;
@@ -768,7 +768,7 @@ void TBoss2Mine::vfunc_105(s32) {  }
 #undef play_sound_effect
 #undef TBoss2Mine__ct
 #undef set_node_offsets__10TBoss2MineFv
-#define transition_enemy_state__9TObjEneDDFs ((int (*)(void *, void *))transition_enemy_state__9TObjEneDDFs)
+#define transition_enemy_state__9TObjEneDDFl ((int (*)(void *, void *))transition_enemy_state__9TObjEneDDFl)
 
 #define VM(n) virtual void m##n();
 struct Base_800386A4_80038610 { char pad[0x18]; };
@@ -934,7 +934,7 @@ void TBoss2Mine__vt102(void *boss2_mine, s32 arg1) {
         temp_r4 = *(s32 *)((s8 *)boss2_mine + 0x38C);
         if (temp_r4 & 0x100) {
             *(s32 *)((s8 *)boss2_mine + 0x38C) = (s32) (temp_r4 & 0xFFFFFEFF);
-            transition_enemy_state__9TObjEneDDFs((void*)((s32)boss2_mine), (void*)(1));
+            transition_enemy_state__9TObjEneDDFl((void*)((s32)boss2_mine), (void*)(1));
         }
     case 5:
     case 0:
@@ -1058,8 +1058,8 @@ void TBoss2Mine::vfunc_61() {  }
 
 }
 
-#undef transition_enemy_state__9TObjEneDDFs
-#define transition_enemy_state__9TObjEneDDFs ((int (*)(void *, void *))transition_enemy_state__9TObjEneDDFs)
+#undef transition_enemy_state__9TObjEneDDFl
+#define transition_enemy_state__9TObjEneDDFl ((int (*)(void *, void *))transition_enemy_state__9TObjEneDDFl)
 
 struct VBase_18 { char pad[0x18]; };
 struct VObj_18 : VBase_18 {
@@ -1175,7 +1175,7 @@ struct VObj_18 : VBase_18 {
 
 void TBoss2Mine::vfunc_62() { clear_attack_receipts(); }
 
-void TBoss2Mine::vfunc_63() { if (*(short*)((char*)this + 0x326) != 4) { transition_enemy_state__9TObjEneDDFs(this, (void*)4); } }
+void TBoss2Mine::vfunc_63() { if (*(short*)((char*)this + 0x326) != 4) { transition_enemy_state__9TObjEneDDFl(this, (void*)4); } }
 void TBoss2Mine::vfunc_28() {  }
 void TBoss2Mine::run_task() {
     u8 *arg0 = (u8 *)this;
@@ -1192,13 +1192,13 @@ void TBoss2Mine::run_task() {
     if (!(*(s32 *)((s8 *)arg0 + 0x38C) & 1)) {
         save_position();
         this->vfunc_88();
-        ((TBoss8Dragon *)arg0)->set_player_state_default();
+        ((TObjEnemy *)arg0)->submit_default_cursor_candidate();
         this->vfunc_100();
     }
     ((TObjCollidable *)arg0)->refresh_collision_body_centers();
 }
 
-#undef transition_enemy_state__9TObjEneDDFs
+#undef transition_enemy_state__9TObjEneDDFl
 
 struct VBase_18_72b3e0 { char pad[0x18]; };
 

@@ -295,50 +295,6 @@ struct V_800BBA18 : Base_800BBA18 {
     s16 state;
 };
 
-struct B_800BBB18 { u8 pad[0x18]; };
-
-struct V_800BBB18 : B_800BBB18 {
-    virtual void m0();
-    virtual void m1();
-    virtual void m2();
-    virtual void m3();
-    virtual void m4();
-    virtual void m5();
-    virtual void m6();
-    virtual void m7();
-    virtual void m8();
-    virtual void m9();
-    virtual void m10();
-    virtual void m11();
-    virtual void m12();
-    virtual void m13();
-    virtual void m14();
-    virtual void m15();
-    virtual void m16();
-    virtual void m17();
-    virtual void m18();
-    virtual void m19();
-    virtual void m20();
-    virtual void m21();
-    virtual void m22();
-    virtual void m23();
-    virtual void m24();
-    virtual void m25();
-    virtual void m26();
-    virtual void m27();
-    virtual void m28();
-    virtual void m29();
-    virtual void m30();
-    virtual void m31();
-    virtual void m32();
-    virtual void m33();
-    virtual s32 m34();
-    virtual void m35();
-    virtual void m36();
-    virtual s32 m37();
-    virtual s32 m38();
-};
-
 struct Obj_800BB88C {
     u8 pad0[0x28]; s16 f28; s16 f2a; u8 pad2c[0xc];
     f32 f38; f32 f3c; f32 f40; u8 pad44[0x18];
@@ -348,7 +304,6 @@ struct Obj_800BB88C {
 
 extern "C" {
 u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
-s32 TObjEneDD__vt82(V_800BBB18 *self);
 extern const f32 TObjEneDD__data_805D9E8C;
 s32 subtractive_rng_seed(void *, int);
 s32 vfunc_79__9TObjEnemyFv();
@@ -431,10 +386,10 @@ void TObjEneDD::sub_800BBA0C() {
     *(s32 *)((s8 *)((u8 *)this) + 0x374) = (s32) this->mode;
 }
 
-void TObjEneDD::transition_enemy_state(s16 state) {
-    ((V_800BBA18 *)this)->m85(((V_800BBA18 *)this)->state, 5);
-    ((V_800BBA18 *)this)->m85(state, 4);
-    ((V_800BBA18 *)this)->state = state;
+void TObjEneDD::transition_enemy_state(s32 state) {
+    dispatch_action(mode, 5);
+    dispatch_action(state, 4);
+    mode = state;
 }
 
 u8 TObjEneDD::vfunc_86() {
@@ -449,10 +404,10 @@ void TObjEneDD::vfunc_85() {
     sub_800BBA0C();
 }
 
-s32 TObjEneDD__vt82(V_800BBB18 *self) {
-    s32 r = self->m34();
-    r |= self->m38();
-    r |= self->m37();
+s32 TObjEneDD::vfunc_84() {
+    s32 r = update_action_hold_status();
+    r |= update_shock_clock();
+    r |= update_movement_status();
     return r;
 }
 
@@ -512,7 +467,7 @@ void *__dt__9TObjEneDDFv(void *arg0, s16 arg1) {
 extern const f32 lbl_805D9EA8;
 extern void *lbl_805D2A30;
 
-void *TObjEneDD__ct(void *ene_dd) {
+void *__ct__9TObjEneDDFP7TObject(void *ene_dd) {
     __ct__9TObjEnemyFP7TObject(ene_dd);
     *(s32 **)((s8 *)ene_dd + 0x18) = __vt__9TObjEneDD;
     *(void * *)&((TObjEneDD *)ene_dd)->m_name = lbl_805D2A30;
@@ -547,7 +502,7 @@ void TObjEneDD::create_instance() {
     void *o;
     o = __nw__7TObjectFUl(0xB0);
     if (o != NULL) {
-        o = construct_collision_body((u8 *)o, 0, 0);
+        o = __ct__13TUnk_804928CCFP7TObjectP8TObjBase((u8 *)o, 0, 0);
     }
     obj_ene_dd_instance = (struct VObj_800BBDD4 *)o;
 }

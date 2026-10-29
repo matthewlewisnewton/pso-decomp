@@ -149,7 +149,7 @@ struct Inner_800D2900 { u8 pad[0x3c]; s32 x3c; };
 struct Outer_800D2900 { u8 pad[0x42c]; Inner_800D2900 *p42c; };
 
 extern "C" {
-f32 calc_boss4_scale__10TObjPlayerFi(s32);
+f32 random_ratio__9TObjCharaFv(s32);
 s32 spawn_particle_effect(void *, int);
 u8 * TObjGyaranzoMissile__sub_800D4668(void *, void *, void *, s32, s32);
 s32 play_sound_effect(int, void *, int, int);
@@ -1127,7 +1127,7 @@ void TObjEneGyaranzo::spawn_missile() {
     u8 *temp_r3;
     render_anim_model_at_pos__15TObjEnemyCustomFv(this);
     ((VObj_18_f1aa6a *)(this))->m63(0x18, &launch_position);
-    temp_r31 = (s32) (lbl_805DA268 * ((lbl_805DA26C * calc_boss4_scale__10TObjPlayerFi((s32) this)) - lbl_805DA270));
+    temp_r31 = (s32) (lbl_805DA268 * ((lbl_805DA26C * random_ratio__9TObjCharaFv((s32) this)) - lbl_805DA270));
     temp_r3 = (u8 *)(((u8 *)__nw__7TObjectFUl(0xF0)));
     if (temp_r3 != NULL) {
         TObjGyaranzoMissile__sub_800D4668(temp_r3, this, &launch_position, rotation_y, temp_r31);

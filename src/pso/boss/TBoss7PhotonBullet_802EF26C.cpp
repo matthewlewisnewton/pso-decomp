@@ -127,7 +127,7 @@ void *__dt__18TBoss7PhotonBulletFv(void *arg0, s16 arg1) {
         *(void ***)((s8 *)arg0 + 0x18) = __vt__18TBoss7PhotonBullet;
         if (*(void **)((s8 *)arg0 + 0xF0) != NULL) { queue_destruction__7TObjectFv(*(void **)((s8 *)arg0 + 0xF0)); }
         if (*(void **)((s8 *)arg0 + 0xF4) != NULL) { queue_destruction__7TObjectFv(*(void **)((s8 *)arg0 + 0xF4)); }
-        ((TUnk_804928CC *)arg0)->destroy_enemy_object(0);
+        __dt__13TUnk_804928CCFv(arg0, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }
@@ -135,7 +135,7 @@ void *__dt__18TBoss7PhotonBulletFv(void *arg0, s16 arg1) {
     return arg0;
 }
 u8 *TBoss7PhotonBullet__ct(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0) {
-    construct_collision_body((arg0), (arg1), (arg2));
+    __ct__13TUnk_804928CCFP7TObjectP8TObjBase((arg0), (arg1), (arg2));
     *(s32 **)((s8 *)arg0 + 0x18) = &(*(RecoveredGlobal_802EF514___vt__18TBoss7PhotonBullet *)&__vt__18TBoss7PhotonBullet).value;
     *(s32 *)((s8 *)arg0 + 0) = (s32) lbl_805D3FD4;
     VecCopy__FP3VecPC3Vec(arg0 + 0x38, (void *) (VecCopy__FP3VecPC3Vec(arg0 + 0xC0, (void *)arg3)));

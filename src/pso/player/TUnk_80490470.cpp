@@ -11,16 +11,16 @@ s32 calc_recoil_offsets__13TUnk_80490470Fv(f32);
 
 
 s32 TUnk_80490470::has_visible_opacity() {
-    return *(f32 *)&this->unk_18 > 0.0f;
+    return phase > 0.0f;
 }
 
 void TUnk_80490470::set_flags_and_apply_damage_color() { MaterialColorFade::set_flags_and_apply_damage_color(); set_chunk_blend(7424); }
 s32 TUnk_80490470::advance_toward_max() {
     f32 temp_f1;
-    temp_f1 = *(f32 *)&this->unk_18;
-    *(f32 *)&this->unk_18 = (f32) (temp_f1 + this->rate);
+    temp_f1 = phase;
+    phase = (f32) (temp_f1 + this->rate);
     calc_recoil_offsets__13TUnk_80490470Fv(temp_f1);
-    return *(f32 *)&this->unk_18 >= 2.0f;
+    return phase >= 2.0f;
 }
 s32 TUnk_80490470::decay_value_toward_floor() {
     u8 *arg0 = (u8 *)this;
@@ -51,7 +51,7 @@ void TUnk_80490470::calc_recoil_offsets() {
     f32 temp_f1;
     f32 var_f0;
 
-    temp_f1 = *(f32 *)&this->unk_18;
+    temp_f1 = phase;
     if (temp_f1 > 1.0f) {
         if (temp_f1 > 2.0f) {
             this->color.a = (f32) 0.0f;
@@ -64,7 +64,7 @@ void TUnk_80490470::calc_recoil_offsets() {
         return;
     }
     this->color.a = (f32) (-1.0f);
-    var_f0 = *(f32 *)&this->unk_18 - 1.0f;
+    var_f0 = phase - 1.0f;
     if (var_f0 < (-1.0f)) {
         var_f0 = (-1.0f);
     }
@@ -75,10 +75,10 @@ void TUnk_80490470::calc_recoil_offsets() {
 
     
     
-void TUnk_80490470::reset_obstruction_fade() { *(float *)&this->unk_18 = 0.0f; this->color.a = (-1.0f); this->color.r = (-1.0f); this->color.g = (-1.0f); this->color.b = (-1.0f); }
+void TUnk_80490470::reset_obstruction_fade() { phase = 0.0f; this->color.a = (-1.0f); this->color.r = (-1.0f); this->color.g = (-1.0f); this->color.b = (-1.0f); }
 
     
-void TUnk_80490470::reset_color() { *(float *)&this->unk_18 = 2.0f; this->color.a = 0.0f; this->color.r = 0.0f; this->color.g = 0.0f; this->color.b = 0.0f; }
+void TUnk_80490470::reset_color() { phase = 2.0f; this->color.a = 0.0f; this->color.r = 0.0f; this->color.g = 0.0f; this->color.b = 0.0f; }
 
 struct Base_800A04F0 { f32 v0, v4, v8, vc; f32 rate; };
 
@@ -125,18 +125,9 @@ void TObjPlayer__sub_800A0554(Obj_800A0554 *self) {
     self->vc = 0.0f;
 }
 
-extern s32 lbl_80490470[];
 
-void *__dt__13TUnk_80490470Fv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x14) = lbl_80490470;
-        __dt__17MaterialColorFadeFv(arg0, 0);
-        if (arg1 > 0) {
-            ::operator delete(arg0);
-        }
-    }
-    return arg0;
-}
+
+TUnk_80490470::~TUnk_80490470() {}
 
 }
 
@@ -153,7 +144,7 @@ void TObjPlayer__sub_800A0654(Obj_800A0654 *self);
 s32 TObjPlayer__sub_800A06B4(Obj_800A06B4 *self);
 int __ct__17MaterialColorFadeFv(void);
 
-void*TUnk_80490470::init_vtable_and_field18() { __ct__17MaterialColorFadeFv(); *(int*)((char*)this + 0x14) = (int)lbl_80490470; *(float *)&this->unk_18 = 0.0f; return this; }
+TUnk_80490470::TUnk_80490470() : MaterialColorFade(), phase(0.0f) {}
 void TObjPlayer__sub_800A0654(Obj_800A0654 *self) {
     s32 i;
     for (i = 0; i < self->count; i++) {

@@ -73,7 +73,7 @@ extern const f32 lbl_805DA71C;
 extern const f32 lbl_805DA720;
 extern const f32 lbl_805DA724;
 void TObjPlayer__sub_800E9BCC(Obj_800E9BCC *o);
-f32 calc_boss4_scale__10TObjPlayerFi(void *);
+f32 random_ratio__9TObjCharaFv(void *);
 s32 spawn_slime_in_slot(void *, s32, Vec_800EB654 *, Vec_800EB654 *);
 s32 play_sound_effect(int, void *, int, int);
 f32 sin_table_lookup(s32);
@@ -1553,8 +1553,8 @@ void start_tail_attack__15TObjEneSlimeOneFPv(Self_800E984C *self) {
         return;
     }
     VecCopy((Vec *)&self->dest, (const Vec *)&t->pos);
-    r = lbl_805DA6AC * calc_boss4_scale__10TObjPlayerFi(self) + lbl_805DA710;
-    ang = lbl_805DA714 * calc_boss4_scale__10TObjPlayerFi(self);
+    r = lbl_805DA6AC * random_ratio__9TObjCharaFv(self) + lbl_805DA710;
+    ang = lbl_805DA714 * random_ratio__9TObjCharaFv(self);
     self->dest.x = r * sin_table_lookup(ang) + self->dest.x;
     self->dest.z = r * cos_table_lookup(ang) + self->dest.z;
     Vec_800E984C dir = self->dest;
@@ -1649,7 +1649,7 @@ void TObjPlayer__sub_800E9BCC(Obj_800E9BCC *o) {
         VecCopy((Vec *)o->pos, (const Vec *)o->prev);
     }
     if (--o->f390 <= 0) {
-        if (vector_length(v) > lbl_805DA720 || calc_boss4_scale__10TObjPlayerFi(o) < lbl_805DA724) {
+        if (vector_length(v) > lbl_805DA720 || random_ratio__9TObjCharaFv(o) < lbl_805DA724) {
             ((TObjEneSlimeOne *)o)->set_state(9);
         } else {
             ((TObjEneSlimeOne *)o)->set_state(10);
@@ -1680,7 +1680,7 @@ void TObjPlayer__sub_800E9DC8(Obj_800E9DC8 *arg0) {
 void init_slime_state__10TObjPlayerFPv(void *actor) {
     ((s32 (*)(void *, s32, s32))set_random_timer__15TObjEneSlimeOneFPvii)(actor, 0x1E, 0x1E);
     ((TObjPlayer *)actor)->m_3c4 = 0x888;
-    if (calc_boss4_scale__10TObjPlayerFi(actor) > lbl_805DA678) {
+    if (random_ratio__9TObjCharaFv(actor) > lbl_805DA678) {
         ((TObjPlayer *)actor)->m_3c4 = ((TObjPlayer *)actor)->m_3c4 * 0xFFFFFFFF;
     }
     ((TObjEneSlimeOne *)(*(s32 *)((s8 *)actor + 0x388)))->set_motion_state((s32)((void*)(1)));
@@ -1737,11 +1737,11 @@ void TObjPlayer__sub_800E9EFC(u8 *ene_slime_one) {
 void TObjPlayer__sub_800EA120(u8 *actor) {
   unsigned int new_var;
   *((s32 *) (((s8 *) actor) + 0x3CC)) = 0xFFFF;
-  *((s32 *) (((s8 *) actor) + 0x39C)) = (s32) ((((s32) (lbl_805DA730 * calc_boss4_scale__10TObjPlayerFi((void *)((s32) actor)))) + 4) << 0x10);
+  *((s32 *) (((s8 *) actor) + 0x39C)) = (s32) ((((s32) (lbl_805DA730 * random_ratio__9TObjCharaFv((void *)((s32) actor)))) + 4) << 0x10);
   *((s32 *) (((s8 *) actor) + 0x390)) = 0x7FFFFFFF;
   *((s32 *) (((s8 *) actor) + 0x3C4)) = 0x400;
   new_var = 1;
-  if (calc_boss4_scale__10TObjPlayerFi((void *)((s32) actor)) > (*(const f32 *)&lbl_805DA678))
+  if (random_ratio__9TObjCharaFv((void *)((s32) actor)) > (*(const f32 *)&lbl_805DA678))
   {
     *((s32 *) (((s8 *) actor) + 0x3C4)) = (s32) ((*((s32 *) (((s8 *) actor) + 0x3C4))) * (-new_var));
   }
@@ -1859,7 +1859,7 @@ void TObjPlayer__sub_800EA56C(u8 *actor) {
         ((TObjEneSlimeOne *)actor)->set_state(2);
         return;
     }
-    temp_r31 = (s32) (lbl_805DA738 * calc_boss4_scale__10TObjPlayerFi(actor));
+    temp_r31 = (s32) (lbl_805DA738 * random_ratio__9TObjCharaFv(actor));
     *(f32 *)((s8 *)actor + 0x3B8) = (f32) ((lbl_805DA6E0 * sin_table_lookup(temp_r31)) + *(f32 *)((s8 *)actor + 0x3B8));
     *(f32 *)((s8 *)actor + 0x3C0) = (f32) ((lbl_805DA6E0 * cos_table_lookup(temp_r31)) + *(f32 *)((s8 *)actor + 0x3C0));
     if (vector_length(actor + 0x3B8) <= lbl_805DA718) {
@@ -1867,7 +1867,7 @@ void TObjPlayer__sub_800EA56C(u8 *actor) {
         return;
     }
     ((s32 (*)(void *))normalize_vector)(actor + 0x3B8);
-    *(f32 *)((s8 *)actor + 0x398) = ((lbl_805DA6E4 * calc_boss4_scale__10TObjPlayerFi(actor)) + lbl_805DA720);
+    *(f32 *)((s8 *)actor + 0x398) = ((lbl_805DA6E4 * random_ratio__9TObjCharaFv(actor)) + lbl_805DA720);
     *(f32 *)((s8 *)actor + 0x3A0) = (f32) (*(const f32 *)&lbl_805DA67C);
     ((TObjEneSlimeOne *)((void *) *(s32 *)((s8 *)actor + 0x388)))->set_motion_state((s32)((void *) 8));
     ((int (*)(void*, int))set_display_mode__15TObjEneSlimeOneFPvi)(actor, 1);
@@ -2063,7 +2063,7 @@ s32 TObjEneSlimeOne__sub_800EAD84(Obj_800EAD84 *arg0) {
 #pragma pop
 
 void set_random_timer__15TObjEneSlimeOneFPvii(void *arg0, s32 arg1, s32 arg2) {
-    *(s32 *)((s8 *)arg0 + 0x390) = (s32) (arg1 + (s32) ((f32) arg2 * ((f32 (*)(void))calc_boss4_scale__10TObjPlayerFi)()));
+    *(s32 *)((s8 *)arg0 + 0x390) = (s32) (arg1 + (s32) ((f32) arg2 * ((f32 (*)(void))random_ratio__9TObjCharaFv)()));
 }
 
 void TObjEneSlimeOne::set_state(s32 arg1) {
@@ -2150,7 +2150,7 @@ void TObjEneSlimeOne::initialize_slime_instance_state() {
   u8 *new_var;
     u8 *actor = (u8 *)this;
   ((TObjEneSlimeOne *)actor)->m_380 = get_instance__15TObjEneSlimeOneFv();
-  if ((calc_boss4_scale__10TObjPlayerFi(actor) < lbl_805DA754) || ((((TObjEneSlimeOne *)actor)->state36C) & 1))
+  if ((random_ratio__9TObjCharaFv(actor) < lbl_805DA754) || ((((TObjEneSlimeOne *)actor)->state36C) & 1))
   {
     *((s32 *) (((s8 *) actor) + 0x3F4)) = 1;
   }
@@ -2289,7 +2289,7 @@ s32 TObjEneSlimeOne::try_spawn_child(void *arg1) {
     }
     VecCopy((Vec *)&pos, (const Vec *)arg1);
     pos.y += lbl_805DA66C;
-    ang = (s16) (lbl_805DA758 * ((f32 (*)(int)) calc_boss4_scale__10TObjPlayerFi)(origin));
+    ang = (s16) (lbl_805DA758 * ((f32 (*)(int)) random_ratio__9TObjCharaFv)(origin));
     dir.x = sin_table_lookup(ang);
     dir.y = lbl_805DA6B4;
     dir.z = cos_table_lookup(ang);

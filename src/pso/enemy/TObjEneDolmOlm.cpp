@@ -1,3 +1,4 @@
+#include "pso/render/reflection.h"
 #pragma defer_codegen on
 
 #include "types.h"
@@ -433,7 +434,7 @@ s32 draw_trail_with_colors(u32, s32, s32, int, int);
 extern const f32 lbl_805DEF64;
 s32 obj_testFlags30__14TObjCollidableFUl(void *, u32);
 void vfunc_59__14TObjEneDolmOlmFv(u8 *arg0);
-f32 calc_boss4_scale__10TObjPlayerFi();
+f32 random_ratio__9TObjCharaFv();
 s32 obj_setFlags30(void *, s32);
 s32 get_current_floor();
 f32 fabs_float(f32);
@@ -514,7 +515,7 @@ void *__nw__7TObjectFUl(int);
 void mem_free(void*);
 s32 get_mode__11TCameraCtrlFPv(void *);
 s32 init_enemy_base__13TUnk_80493450Fv(void *, s32);
-s32 create__12TObjEneSaverFPvPv(u32, u32);
+s32 create__13TUnk_80494968FUlUl(u32, u32);
 }
 void restore_render_scissor(s32 arg0);
 int initialize_enemy_photon_effect(void *p);
@@ -961,7 +962,7 @@ u8 *TObjEneDolmOlm__ct(u8 *arg0, s32 arg1, s32 arg2) {
     ((TObjEneDolmOlm *)arg0)->advance_position();
     copy_position__20TBoss3VoloptHiraisinFv(arg0);
     initialize_enemy_photon_effect(arg0);
-    *(s32 *)&((TObjEneDolmOlm *)arg0)->m_2ac = lbl_805DEF94 * (lbl_805DEF98 * ((f32 (*)(void *)) calc_boss4_scale__10TObjPlayerFi)(arg0));
+    *(s32 *)&((TObjEneDolmOlm *)arg0)->m_2ac = lbl_805DEF94 * (lbl_805DEF98 * ((f32 (*)(void *)) random_ratio__9TObjCharaFv)(arg0));
     *(s16 *)&((TObjEneDolmOlm *)arg0)->resetTimer = 0xF;
     *(s16 *)&((TObjEneDolmOlm *)arg0)->timer = *(s16 *)&((TObjEneDolmOlm *)arg0)->resetTimer;
     ((TObjEneDolmOlm *)arg0)->phase = 0;
@@ -983,8 +984,8 @@ u8 *TObjEneDolmOlm__ct(u8 *arg0, s32 arg1, s32 arg2) {
     }
     ((VObj_14_fa0828 *) (arg0 + 0x3A8))->m3();
     ((TObjEneDolmOlm *)arg0)->m_390 = 1;
-    *(s32 *)&((TObjEneDolmOlm *)arg0)->m_3c4 = create__12TObjEneSaverFPvPv(0xA0303030, col);
-    *(s32 *)&((TObjEneDolmOlm *)arg0)->m_3c8 = create__12TObjEneSaverFPvPv(0xA0303030, col);
+    *(s32 *)&((TObjEneDolmOlm *)arg0)->m_3c4 = create__13TUnk_80494968FUlUl(0xA0303030, col);
+    *(s32 *)&((TObjEneDolmOlm *)arg0)->m_3c8 = create__13TUnk_80494968FUlUl(0xA0303030, col);
     *(f32 *)&((TObjEneDolmOlm *)arg0)->m_398 = ((f32 **) TObjEneDolmOlm__behavior_params_by_variant)[*(s32 *)&((TObjEneDolmOlm *)arg0)->variant][0];
     *(f32 *)&((TObjEneDolmOlm *)arg0)->m_3a0 = ((f32 **) TObjEneDolmOlm__behavior_params_by_variant)[*(s32 *)&((TObjEneDolmOlm *)arg0)->variant][1];
     *(f32 *)((s8 *)arg0 + 0x39C) = ((f32 **) TObjEneDolmOlm__behavior_params_by_variant)[*(s32 *)&((TObjEneDolmOlm *)arg0)->variant][2];
@@ -1267,7 +1268,7 @@ void TObjEneDolmOlm::render() {
 }
 s32 TObjEneDolmOlm::render_model_if_visible() {
     if (get_mode__11TCameraCtrlFPv(((s32 *)&main_task)) & 0x20) {
-        if (((TObjEneRecon *)(((u8 *)this) + 0x3D8))->push_reflect_matrix() != 0) {
+        if (push_reflection_matrix((Vec *)(((u8 *)this) + 0x3D8)) != 0) {
             TObjFish::set_global_param(this->texlist);
             push_matrix();
             post_translate_matrix((void *) (((u8 *)this) + 0x38));
@@ -1320,7 +1321,7 @@ void TObjEneDolmOlm::vfunc_83() {
     }
 }
 void TObjEneDolmOlm::vfunc_100() {
-    if (calc_boss4_scale__10TObjPlayerFi() < *(f32 *)((s8 *)this + 0x3CC)) {
+    if (random_ratio__9TObjCharaFv() < *(f32 *)((s8 *)this + 0x3CC)) {
         this->mode = 0xA;
         this->phase = 0;
     }
@@ -1434,7 +1435,7 @@ s32 TObjEneDolmOlm__sub_8030177C(void *arg0_) {
                 if (fabs_float(p->pos.y - arg0->pos.y) < TObjEneDolmOlm__data_805DEF6C) {
                     arg0->f326 = 5;
                     arg0->f328 = 1;
-                    if (TObjEneDolmOlm__data_805DEF5C < ((f32 (*)(void *))calc_boss4_scale__10TObjPlayerFi)(arg0)) {
+                    if (TObjEneDolmOlm__data_805DEF5C < ((f32 (*)(void *))random_ratio__9TObjCharaFv)(arg0)) {
                         arg0->fb8 = 3;
                     } else {
                         arg0->fb8 = 4;
@@ -1614,7 +1615,7 @@ void TObjEneDolmOlm::vfunc_60() {
                 temp_f31 = horizontal_distance_squared(player + 0x38, (void *) (((u8 *)this) + 0x38));
                 var_f30 = fabs_float(*(f32 *)((s8 *)player + 0x3C) - *(f32 *)((s8 *)((u8 *)this) + 0x3C));
                 if (((TObjPlayer *)player)->get_field_3e4() == get_current_floor()) {
-                    if ((temp_f31 < (*(f32 *)((s8 *)(*(s32 *)((s8 *)TObjEneDolmOlm__behavior_params_by_variant + (this->variant * 4))) + 0x10) * *(f32 *)((s8 *)(*(s32 *)((s8 *)TObjEneDolmOlm__behavior_params_by_variant + (this->variant * 4))) + 0x10))) && (((f32 (*)(void *)) calc_boss4_scale__10TObjPlayerFi)(this) < this->m_3d0)) {
+                    if ((temp_f31 < (*(f32 *)((s8 *)(*(s32 *)((s8 *)TObjEneDolmOlm__behavior_params_by_variant + (this->variant * 4))) + 0x10) * *(f32 *)((s8 *)(*(s32 *)((s8 *)TObjEneDolmOlm__behavior_params_by_variant + (this->variant * 4))) + 0x10))) && (((f32 (*)(void *)) random_ratio__9TObjCharaFv)(this) < this->m_3d0)) {
                         var_r29 = 1;
                     }
                 }
@@ -1636,7 +1637,7 @@ void TObjEneDolmOlm::vfunc_60() {
         if (var_f30 < TObjEneDolmOlm__data_805DEF6C) {
             this->mode = 5;
             this->phase = 1;
-            if (TObjEneDolmOlm__data_805DEF5C < ((f32 (*)(void *)) calc_boss4_scale__10TObjPlayerFi)(this)) {
+            if (TObjEneDolmOlm__data_805DEF5C < ((f32 (*)(void *)) random_ratio__9TObjCharaFv)(this)) {
                 this->m_b8 = 3;
             } else {
                 this->m_b8 = 4;

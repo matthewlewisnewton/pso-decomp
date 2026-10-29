@@ -1002,7 +1002,7 @@ u32 TObjCollidable::check_actor_body_contact(void *o_arg, f32 range) {
     return 0;
 }
 
-void TObjPlayer::update_enemy_collision_flags() {
+void TObjCollidable::update_enemy_collision_flags() {
     s32 temp_r3;
     s32 j;
     void *actor_body_contact;
@@ -1049,7 +1049,7 @@ void check_enemy_body_collisions(void *arg0) {
     }
 }
 
-void TObjPlayer::check_object_collisions() {
+void TObjCollidable::check_object_collisions() {
     void *temp_r3;
     s32 j;
     void *actor_body_contact;

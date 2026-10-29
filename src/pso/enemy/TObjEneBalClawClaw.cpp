@@ -1,3 +1,4 @@
+#include "pso/player/TObjPlayer_800D8FDC.h"
 #include "types.h"
 #include "pso/enemy/TObjEneBalClaw.h"
 #include "pso/player/TObjPlayer.h"
@@ -689,7 +690,7 @@ void TObjEneBalClawClaw__sub_80091134(Claw_80091134 *self) {
         ((TObjPlayer *)self)->refresh_lobby_state();
         self->fieldB8 = 4;
         TObjPlayer__sub_800A04F0(&self->motion);
-        ((TObjPlayer *)(self->effects))->request_two_effects();
+        fn_800D911C((Vec *)(self->effects));
         play_sound_effect(0x4003AD37, self->pos, 0, 0);
         self->state = 1;
     case 1:

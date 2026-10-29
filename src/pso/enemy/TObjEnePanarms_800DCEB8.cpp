@@ -147,7 +147,7 @@ extern S_800DF634 panarms_npc_spawn_descriptor[];
 extern u8 lbl_80494F10[];
 extern u32 TObjEnePanarms__entry_params_resource;
 extern const f32 lbl_805DA51C;
-f32 calc_boss4_scale__10TObjPlayerFi(s32 arg0);
+f32 random_ratio__9TObjCharaFv(s32 arg0);
 extern const f32 lbl_805DA4BC;
 extern const f32 lbl_805DA4D4;
 void TObjEnePanarms__sub_800DDED8(u8 *arg0);
@@ -673,7 +673,7 @@ void TObjEnePanarms__sub_800DDED8(u8 *actor) {
     *(u32 *)((s8 *)(*(u8 **)((s8 *)actor + 0x390)) + 0x18) &= ~0x08000000;
     *(u32 *)((s8 *)(*(u8 **)((s8 *)actor + 0x390)) + 0x18) |= 1;
     ((TObjBase *)actor)->obj_clearFlags30(0x04040000);
-    *(s32 *)((s8 *)actor + 0x388) = (s32) (lbl_805DA4BC * (f32) ((s32) (lbl_805DA4D4 * calc_boss4_scale__10TObjPlayerFi((s32)actor)) + 1));
+    *(s32 *)((s8 *)actor + 0x388) = (s32) (lbl_805DA4BC * (f32) ((s32) (lbl_805DA4D4 * random_ratio__9TObjCharaFv((s32)actor)) + 1));
     set_field_b8__10TObjMotionFs(actor, var_r30);
 }
 

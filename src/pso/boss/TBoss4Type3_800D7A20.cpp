@@ -1,4 +1,3 @@
-#include "types.h"
-#include "pso/boss/TBoss4Type3.h"
+#include "pso/unk/TUnk_80494968.h"
 
-void TBoss4Type3::reset_timer() { *(s32*)((char*)this + 0x1c) = 0; }
+void TUnk_80494968::clear_segments() { segment_count = 0; }

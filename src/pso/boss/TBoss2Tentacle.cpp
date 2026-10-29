@@ -1,5 +1,5 @@
-#include "pso/TBoss2Tentacle.h"
 #include "pso/system/vector.h"
+#include "pso/TBoss2Tentacle.h"
 
 TBoss2Tentacle::~TBoss2Tentacle() {}
 
@@ -233,7 +233,7 @@ void run_task__14TBoss2TentacleFv(u8 *arg0) {
         pop_matrix();
         VecCopy((Vec *)&v, (const Vec *)(arg0 + 0x12C));
         subtract_vector(&v, arg0 + 0x140);
-        len = ((TObjBoss2Tunnel *)(&v))->clamp_velocity();
+        len = normalize_vector_xz((Vec *)(&v));
         F(s32, 0x11C) = (s32)(lbl_80435BA8[0] * atan2_float(v.x, v.z)) + 0x8000;
         VecCopy((Vec *)&pos, (const Vec *)(arg0 + 0x12C));
         switch (F(s32, 0x24)) {

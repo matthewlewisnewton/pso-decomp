@@ -1,3 +1,4 @@
+#include "pso/player/TObjPlayer_800D8FDC.h"
 #include "pso/system/ChunkMaterialState.h"
 #include "types.h"
 #include "pso/enemy/TUnk_804909C4.h"
@@ -1135,7 +1136,7 @@ void TObjPlayer__sub_800A1C84(TObjPlayer *enemy) {
         enemy->refresh_lobby_state();
         ((TObjEnemy *)enemy)->send_entity_set_flags();
         TObjPlayer__sub_800A04F0((u8 *)enemy + 0x408);
-        ((TObjPlayer *)((u8 *)enemy + 0x2FC))->request_two_effects();
+        fn_800D911C((Vec *)((u8 *)enemy + 0x2FC));
         *(s32 *)((s8 *)enemy + 0x388) |= 4;
         play_sound_effect(0x4003AD37, (u8 *)enemy + 0x38, 0, 0);
         enemy->m_37c = 1;
@@ -1673,7 +1674,7 @@ u8 *TObjPlayer__sub_800A2F94(u8 *self, s32 arg1, u8 *arg2) {
 
     __ct__15TObjEnemyCustomFP7TObject(self, arg1, arg2);
     F(void *, 0x18) = __vt__17TObjEneDarkGunner;
-    ((TUnk_80490470 *)(self + 0x408))->init_vtable_and_field18();
+    __ct__13TUnk_80490470Fv((self + 0x408));
     F(s32, 0) = dark_gunner_class_name_ptr;
     ((VObj_18_800A2F94 *)self)->m79(arg2);
     initialize_enemy_photon_effect(self);

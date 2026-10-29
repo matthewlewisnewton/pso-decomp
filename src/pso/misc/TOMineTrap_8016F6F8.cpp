@@ -104,7 +104,7 @@ s32 play_sound_effect(s32, s32, s32, s32);
 extern s8 mine_trap_effect_table[];
 extern s8 mine_trap_keymachine_table[];
 void *spawn_particle_effect(void *pos, s32 id);
-s32 set_position_xy__10TObjPlayerFff(f32, f32);
+s32 fn_800822D4__13TParticleCtrlFff(f32, f32);
 extern f32 lbl_805DB864;
 extern f32 lbl_805DB85C;
 extern const f32 TOMineTrap__data_805DB868;
@@ -365,7 +365,7 @@ void TOMineTrap::attach_to_keymachine() {
 void TOMineTrap::detonate_if_triggered() {
     s32 arg0 = (s32)this;
     if (spawn_particle_effect((void *)(arg0 + 0x2FC), 0x45) != 0U) {
-        set_position_xy__10TObjPlayerFff(lbl_805DB864, lbl_805DB864);
+        fn_800822D4__13TParticleCtrlFff(lbl_805DB864, lbl_805DB864);
     }
 }
 void TOMine::sub_8017070C() {

@@ -1,3 +1,4 @@
+#include "pso/TParticleCtrl.h"
 #include "types.h"
 #include "pso/unk/text_8016F1C0.h"
 #include "pso/misc/TOMineDisp.h"
@@ -254,7 +255,7 @@ void TOMineTrap::vfunc_82() {
     default:
         r = (u32)spawn_particle_effect(arg0->sub, 0x45);
         if (r != 0U) {
-            ((TObjPlayer *)r)->set_position_xy(lbl_805DB864, lbl_805DB864);
+            ((TParticleCtrl *)r)->fn_800822D4(lbl_805DB864, lbl_805DB864);
         }
         break;
     case 15:

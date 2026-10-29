@@ -449,7 +449,7 @@ struct VObj_18_4c2345 : VBase_18_4c2345 {
 void move_with_wall_slide(u8 *arg0);
 
 extern "C" {
-f32 calc_boss4_scale__10TObjPlayerFi(void *);
+f32 random_ratio__9TObjCharaFv(void *);
 s32 copy_target_state__14TObjEnePanarmsFPv(void *, int);
 s32 play_sound_effect(void *, void *, int, int);
 void TObjEneMerillLia__sub_800D4EC8(s32 arg0);
@@ -938,7 +938,7 @@ void TObjEneMerillLia::vfunc_60() {
     default:
         this->mode = 5;
         this->phase = 1;
-        if (TObjEneMerillLia__data_805DA308 < calc_boss4_scale__10TObjPlayerFi(arg0)) {
+        if (TObjEneMerillLia__data_805DA308 < random_ratio__9TObjCharaFv(arg0)) {
             this->m_b8 = 3;
         } else {
             this->m_b8 = 4;
@@ -1140,7 +1140,7 @@ s32 TObjEneMerillLia::update_kafun_attack(void *p) {
         if (*(s16 *)((s8 *)arg0 + 0x33C) < 0) {
             ((TObjBase *)arg0)->obj_clearFlags30(0x200000);
             *(s16 *)((s8 *)arg0 + 0x33C) = 0;
-            if (calc_boss4_scale__10TObjPlayerFi(arg0) <= *(f32 *)((s8 *)arg0 + 0x3C4)) {
+            if (random_ratio__9TObjCharaFv(arg0) <= *(f32 *)((s8 *)arg0 + 0x3C4)) {
                 ((TObjEneMerillLia *)arg0)->init_attack_state();
             } else {
                 *(s16 *)((s8 *)arg0 + 0x326) = 1;
@@ -1593,11 +1593,11 @@ void TObjEneMerillLia::init_params_from_position() {
 
 void TObjEneMerillLia::select_action_by_distance() {
     u8 *arg0 = (u8 *)this;
-    if (calc_boss4_scale__10TObjPlayerFi(arg0) <= this->m_3c4) {
+    if (random_ratio__9TObjCharaFv(arg0) <= this->m_3c4) {
         init_attack_state();
         return;
     }
-    if (calc_boss4_scale__10TObjPlayerFi(arg0) <= *(f32 *)((s8 *)arg0 + 0x3C8)) {
+    if (random_ratio__9TObjCharaFv(arg0) <= *(f32 *)((s8 *)arg0 + 0x3C8)) {
         reset_action_state();
     }
 }
@@ -1803,7 +1803,7 @@ void *TObjEneMerillLia__ct(void *arg0v, void *arg1, void *arg2) {
     ((TObjEnemy *)arg0)->update_prev_position();
     copy_position__20TBoss3VoloptHiraisinFv(arg0);
     ((TObjPlayer *)arg0)->register_object_by_id();
-    *(s32 *)((s8 *)arg0 + 0x2AC) = lbl_805DA340 * (lbl_805DA344 * calc_boss4_scale__10TObjPlayerFi(arg0));
+    *(s32 *)((s8 *)arg0 + 0x2AC) = lbl_805DA340 * (lbl_805DA344 * random_ratio__9TObjCharaFv(arg0));
     *(s16 *)((s8 *)arg0 + 0x33A) = 0xF;
     *(s16 *)((s8 *)arg0 + 0x33C) = *(s16 *)((s8 *)arg0 + 0x33A);
     *(s16 *)((s8 *)arg0 + 0x328) = 0;

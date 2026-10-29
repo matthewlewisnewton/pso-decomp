@@ -1,3 +1,4 @@
+#include "pso/system/vector.h"
 #include "types.h"
 #include "pso/boss/TBoss8Dragon_802F3AB4.h"
 #include "pso/boss/TBoss8Dragon.h"
@@ -40,7 +41,7 @@ s32 TBoss8Dragon::is_closest_part() {
     v.x = ((Ent_802F376C *)this)->x - ((Ent_802F376C *)this)->x;
     v.y = lbl_805DED48;
     v.z = ((Ent_802F376C *)this)->z - ((Ent_802F376C *)this)->z;
-    len = ((TObjBoss2Tunnel *)(&v))->clamp_velocity();
+    len = normalize_vector_xz((Vec *)(&v));
     for (i = 1; i < 6; i++) {
         u16 id = ((TBoss8Dragon *)boss8_dragon_leader_part)->get_part_count_plus(i);
         if (id != get_entity_id(this)) {
@@ -49,7 +50,7 @@ s32 TBoss8Dragon::is_closest_part() {
                 v.x = e->x - ((Ent_802F376C *)this)->x;
                 v.y = lbl_805DED48;
                 v.z = e->z - ((Ent_802F376C *)this)->z;
-                if (!(((TObjBoss2Tunnel *)(&v))->clamp_velocity() >= len)) {
+                if (!(normalize_vector_xz((Vec *)(&v)) >= len)) {
                     return 0;
                 }
             }
@@ -75,7 +76,7 @@ s32 TBoss8Dragon::push_apart_from_parts() {
                 v.x = e->x - ((Ent_802F3878 *)this)->x;
                 v.y = lbl_805DED48;
                 v.z = e->z - ((Ent_802F3878 *)this)->z;
-                d = ((TObjBoss2Tunnel *)(&v))->clamp_velocity() - lbl_805DED4C;
+                d = normalize_vector_xz((Vec *)(&v)) - lbl_805DED4C;
                 if (!(d >= lbl_805DED48)) {
                     ((Ent_802F3878 *)this)->x = v.x * d + ((Ent_802F3878 *)this)->x;
                     ((Ent_802F3878 *)this)->z = v.z * d + ((Ent_802F3878 *)this)->z;
@@ -102,7 +103,7 @@ s32 TBoss8Dragon::is_near_other_part() {
                 v.x = e->x - ((Ent_802F3974 *)this)->x;
                 v.y = lbl_805DED48;
                 v.z = e->z - ((Ent_802F3974 *)this)->z;
-                if (!(((TObjBoss2Tunnel *)(&v))->clamp_velocity() >= lbl_805DED4C)) {
+                if (!(normalize_vector_xz((Vec *)(&v)) >= lbl_805DED4C)) {
                     return 1;
                 }
             }

@@ -77,7 +77,6 @@ struct TObjEneRecon : public TObjEneDD_ST {
     s32 m_4d8;
     u8 unk_4DC[0x8];
     static s32 render_player_marker(u16 arg0, s32 arg1);
-    s32 push_reflect_matrix();
     static void update_particle_if_active();
     static void notify_scene(s32 arg0);
     static s32 calc_scaled_value();

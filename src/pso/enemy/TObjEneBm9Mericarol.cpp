@@ -1,10 +1,10 @@
+#include "pso/enemy/TObjEnemy.h"
 #include "pso/misc/RenderFadeState.h"
 #include "types.h"
 #include "pso/enemy/TObjEneDD.h"
 #include "pso/enemy/TObjEneDD_ST.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/player/TObjChara.h"
-#include "pso/enemy/TObjEnemy.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/enemy/TObjEneBm9Mericarol.h"
 extern "C" void has_flag_0x800__9TObjCharaFv();
@@ -143,7 +143,7 @@ void run_task__19TObjEneBm9MericarolFv(u8 *arg0);
 s32 copy_target_state__14TObjEnePanarmsFPv(void *, int);
 s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 void TObjEneBm9Mericarol__sub_802D073C(s32 arg0);
-f32 calc_boss4_scale__10TObjPlayerFi(s32);
+f32 random_ratio__9TObjCharaFv(s32);
 extern const f32 lbl_805DE6F4;
 extern const f32 lbl_805DE714;
 extern const f32 lbl_805DE728;
@@ -165,7 +165,7 @@ f32 horizontal_distance_squared(void *, void *);
 extern const f32 lbl_805DE74C;
 void queue_destruction__7TObjectFv(void *arg0);
 void *__dt__12TObjEneDD_STFv(void *arg0, s16 arg1);
-s32 delete_buffer__12TBoss8DragonFis(s32 arg0, s16 arg1);
+s32 __dt__17AreaAttackHistoryFv(s32 arg0, s16 arg1);
 void *__dt__13TUnk_80494938Fv(void *arg0, s16 arg1);
 s32 free_collision_body_parts(void *);
 s32 __dl__7TObjectFPv(void *);
@@ -191,7 +191,7 @@ extern "C" void vfunc_6__8TObjBaseFPsl();
 extern "C" void vfunc_105__19TObjEneBm9MericarolFv();
 extern "C" void vfunc_103__9TObjEneDDFPUc();
 extern "C" void vfunc_79__9TObjEneDDFv();
-extern "C" void TObjEneDD__vt82();
+extern "C" void vfunc_84__9TObjEneDDFv();
 extern "C" void vfunc_85__9TObjEneDDFv();
 extern "C" void vfunc_86__9TObjEneDDFv();
 extern "C" void vfunc_89__9TObjEneDDFv();
@@ -208,7 +208,7 @@ extern "C" void vfunc_99__9TObjEneDDFv();
 extern "C" void vfunc_100__9TObjEneDDFv();
 extern "C" void vfunc_101__9TObjEneDDFPUc();
 extern "C" void vfunc_102__9TObjEneDDFv();
-extern "C" int TObjEneEpsilon__vt101(void *p);
+extern "C" int vfunc_104__12TObjEneDD_STFf(void *p);
 extern "C" void vfunc_83__12TObjEneDD_STFv();
 extern "C" void vfunc_29__9TObjCharaFv();
 extern "C" void recalc_stats__9TObjCharaFv();
@@ -348,16 +348,16 @@ struct Obj_802D0D3C {
 typedef void (*VFn0_802D0D3C)(void *);
 typedef void (*VFn2_802D0D3C)(void *, s32, s32);
 
-void init_object__12TObjEneDD_STFv(void *, void *);
+void __ct__12TObjEneDD_STFP7TObject(void *, void *);
 void __construct_array(void *, void *, void *, u32, u32);
 void invoke_initialization_hook__9TObjEneDDFv(void *, s32);
 void init_model__9TObjEneDDFv(void *, void *, s32);
 void reset_hp__9TObjEneDDFv(void *, s32, s32, s32);
-s32 create__12TObjEneSaverFPvPv(s32, s32);
+s32 create__13TUnk_80494968FUlUl(s32, s32);
 void initialize_enemy_state__9TObjEneDDFv(void *, s32);
 void *__ct__14TObjCollidableFP7TObject(void *, s32);
 void init_collision_body_parts(void *, void *, s32);
-u8 *TBoss8Dragon__sub_800BC5EC(u8 *arg0, s32 arg1);
+u8 *__ct__17AreaAttackHistoryFl(u8 *arg0, s32 arg1);
 void __ct__15RenderFadeStateFv(void *);
 extern const s32 lbl_80472318[];
 extern s32 lbl_805D3F28;
@@ -432,12 +432,12 @@ void *TObjEneBm9Mericarol__vtable[107] = {
     (void *)&enemy_spawn_zalure_effect__9TObjCharaFv, (void *)&recalc_stats__9TObjCharaFv, (void *)&vfunc_74__9TObjEnemyFl, (void *)&vfunc_75__9TObjCharaFf,
     (void *)&vfunc_76__9TObjCharaFv, (void *)&vfunc_77__9TObjCharaFv, (void *)&vfunc_78__9TObjCharaFl, (void *)&vfunc_79__9TObjEneDDFv,
     (void *)&apply_hit_message_flags__9TObjEnemyFPv, (void *)&apply_set_data__9TObjEnemyFPv, (void *)&clear_lobby_object_state__9TObjEnemyFv, (void *)&vfunc_83__12TObjEneDD_STFv,
-    (void *)&TObjEneDD__vt82, (void *)&vfunc_85__9TObjEneDDFv, (void *)&vfunc_86__9TObjEneDDFv, (void *)&dispatch_state_handler__19TObjEneBm9MericarolFiUii,
+    (void *)&vfunc_84__9TObjEneDDFv, (void *)&vfunc_85__9TObjEneDDFv, (void *)&vfunc_86__9TObjEneDDFv, (void *)&dispatch_state_handler__19TObjEneBm9MericarolFiUii,
     (void *)&vfunc_88__19TObjEneBm9MericarolFv, (void *)&vfunc_89__9TObjEneDDFv, (void *)&vfunc_90__9TObjEneDDFv, (void *)&vfunc_91__9TObjEneDDFv,
     (void *)&vfunc_92__9TObjEneDDFv, (void *)&vfunc_93__9TObjEneDDFv, (void *)&vfunc_94__9TObjEneDDFv, (void *)&vfunc_95__9TObjEneDDFv,
     (void *)&vfunc_96__9TObjEneDDFv, (void *)&vfunc_97__9TObjEneDDFv, (void *)&vfunc_98__9TObjEneDDFv, (void *)&vfunc_99__9TObjEneDDFv,
     (void *)&vfunc_100__9TObjEneDDFv, (void *)&vfunc_101__9TObjEneDDFPUc, (void *)&vfunc_102__9TObjEneDDFv, (void *)&vfunc_103__9TObjEneDDFPUc,
-    (void *)&TObjEneEpsilon__vt101, (void *)&vfunc_105__19TObjEneBm9MericarolFv, (void *)&draw_color_variant__19TObjEneBm9MericarolFv,
+    (void *)&vfunc_104__12TObjEneDD_STFf, (void *)&vfunc_105__19TObjEneBm9MericarolFv, (void *)&draw_color_variant__19TObjEneBm9MericarolFv,
 };
 #define TObjEneBm9Mericarol__vtable ((u8 *)TObjEneBm9Mericarol__vtable)
 u32 bm9_mericarol_phase_hp_table[3];
@@ -461,7 +461,7 @@ void TObjEneBm9Mericarol::init_size_tier_and_offsets() {
     *(s32 *)((s8 *)arg0 + 0x45C) = (s32) *(s32 *)((s8 *)arg0 + 0x368);
     temp_r0 = *(s32 *)((s8 *)arg0 + 0x45C);
     if ((temp_r0 < 0) || (temp_r0 > 2)) {
-        temp_f1 = calc_boss4_scale__10TObjPlayerFi((s32) arg0);
+        temp_f1 = random_ratio__9TObjCharaFv((s32) arg0);
         if (temp_f1 > lbl_805DE728) {
             *(s32 *)((s8 *)arg0 + 0x45C) = 2;
         } else if (temp_f1 > lbl_805DE740) {
@@ -614,7 +614,7 @@ void TObjEneBm9Mericarol::run_task() {
         }
     }
     this->sync_center_position();
-    ((TBoss8Dragon *)((u8 *)this))->set_player_state_default();
+    ((TObjEnemy *)((u8 *)this))->submit_default_cursor_candidate();
     this->vfunc_100();
 }
 #pragma pop
@@ -630,7 +630,7 @@ u8 *__dt__19TObjEneBm9MericarolFPvs(u8 *arg0, s16 arg1) {
             }
         }
         if (*(void **)((s8 *)arg0 + 0x488) != NULL) {
-            delete_buffer__12TBoss8DragonFis((s32)(*(void **)((s8 *)arg0 + 0x488)), 1);
+            __dt__17AreaAttackHistoryFv((s32)(*(void **)((s8 *)arg0 + 0x488)), 1);
             *(void **)((s8 *)arg0 + 0x488) = NULL;
         }
         if (*(void **)((s8 *)arg0 + 0x48C) != NULL) {
@@ -660,7 +660,7 @@ Obj_802D0D3C *TObjEneBm9Mericarol__ct(Obj_802D0D3C *self, void *parent, s32 arg2
     s32 i;
     void *p;
 
-    init_object__12TObjEneDD_STFv(self, parent);
+    __ct__12TObjEneDD_STFP7TObject(self, parent);
     self->vt18 = TObjEneBm9Mericarol__vtable;
     __construct_array(self->a3C8, (void *)__ct__15RenderFadeStateFv, (void *)__dt__15RenderFadeStateFv, 0x1C, 4);
     ((TUnk_80494938 *)(self->o46C))->init_common();
@@ -668,7 +668,7 @@ Obj_802D0D3C *TObjEneBm9Mericarol__ct(Obj_802D0D3C *self, void *parent, s32 arg2
     invoke_initialization_hook__9TObjEneDDFv(self, arg2);
     ((TObjEneBm9Mericarol *)self)->init_size_tier_and_offsets();
     self->f438 = 0;
-    if (calc_boss4_scale__10TObjPlayerFi((s32)self) <= lbl_805DE750) {
+    if (random_ratio__9TObjCharaFv((s32)self) <= lbl_805DE750) {
         self->f438 |= 0x400;
     }
     ((TObjEneDD *)self)->init_position_vectors();
@@ -682,8 +682,8 @@ Obj_802D0D3C *TObjEneBm9Mericarol__ct(Obj_802D0D3C *self, void *parent, s32 arg2
     ((TObjMotion *)self)->set_field_b8(self->fB8);
     ph = ((TObjEneBm9Mericarol *)self)->get_phase();
     reset_hp__9TObjEneDDFv(self, bm9_mericarol_phase_hp_table[ph], lbl_80540B64[ph], lbl_80540B70[ph]);
-    self->f3C0 = create__12TObjEneSaverFPvPv(0xA0303030, lbl_80472318[ph]);
-    self->f3C4 = create__12TObjEneSaverFPvPv(0xA0303030, lbl_80472318[ph]);
+    self->f3C0 = create__13TUnk_80494968FUlUl(0xA0303030, lbl_80472318[ph]);
+    self->f3C4 = create__13TUnk_80494968FUlUl(0xA0303030, lbl_80472318[ph]);
     ((TObjChara *)self)->add_flags_2e4(0x12);
     self->f350 = lbl_804E1548;
     switch (((TObjEneBm9Mericarol *)self)->get_phase()) {
@@ -714,7 +714,7 @@ Obj_802D0D3C *TObjEneBm9Mericarol__ct(Obj_802D0D3C *self, void *parent, s32 arg2
     init_collision_body_parts(self->f48C, (u8 *)lbl_804E1564 + 0x2C, 1);
     p = ::operator new(0x10);
     if (p != NULL) {
-        p = TBoss8Dragon__sub_800BC5EC((u8 *)p, 8);
+        p = __ct__17AreaAttackHistoryFl((u8 *)p, 8);
     }
     self->f488 = p;
     self->f490 = 0;

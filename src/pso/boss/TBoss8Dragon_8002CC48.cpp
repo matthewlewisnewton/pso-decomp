@@ -1,9 +1,9 @@
+#include "pso/system/vector.h"
 #include "pso/system/NinjaTypes.h"
 void set_constant_material(const NJS_ARGB *color);
 #include "types.h"
 #include "pso/misc/MaterialColorFade.h"
 #include "pso/system/memory.h"
-#include "pso/system/vector.h"
 #include "pso/boss/TObjBoss1MokoHill_Solo.h"
 #include "pso/boss/TObjBoss1MokoHill_SoloM.h"
 #include <stddef.h>
@@ -355,7 +355,7 @@ void TObjBoss1MokoHill_SoloM::run_task() {
             pos.z = s * lbl_805D81B4 + ((Vec_8002CFB8 *)dragon_trail_position_source)->z;
             vel.x = pos.x - ax;
             vel.z = pos.z - az;
-            ((TObjBoss2Tunnel *)(&vel))->clamp_velocity();
+            normalize_vector_xz((Vec *)(&vel));
             vel.x *= 1.5f;
             vel.z *= 1.5f;
             vel.y = lerp__9TDeadSpotFff(6.0f, 9.0f);
@@ -571,7 +571,7 @@ f32 TBoss8Dragon::apply_velocity_scale(f32 farg0, f32 farg1) {
     f32 var_f31;
     s32 temp_r31;
 
-    temp_f1 = ((TObjBoss2Tunnel *)this)->clamp_velocity();
+    temp_f1 = normalize_vector_xz((Vec *)this);
     if (temp_f1 > farg0) {
         var_f31 = lbl_805D8198;
         *(f32 *)((s8 *)this + 0) = var_f31;

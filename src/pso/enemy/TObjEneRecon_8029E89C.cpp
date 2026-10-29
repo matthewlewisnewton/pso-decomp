@@ -1,3 +1,4 @@
+#include "pso/render/reflection.h"
 #include "types.h"
 #include "pso/enemy/TObjEneRecon_8029E89C.h"
 #include "pso/unk/text_8029E7BC.h"
@@ -62,34 +63,30 @@ s32 TObjEneRecon::render_player_marker(u16 arg0, s32 arg1) {
     return var_r3;
 }
 
-s32 TObjEneRecon::push_reflect_matrix() {
-    typedef char sp8_offset[(offsetof(Stack_8029E960, sp8) == 0x0) ? 1 : -1];
-    typedef char spC_offset[(offsetof(Stack_8029E960, spC) == 0x4) ? 1 : -1];
-    typedef char sp10_offset[(offsetof(Stack_8029E960, sp10) == 0x8) ? 1 : -1];
-    typedef char sp14_offset[(offsetof(Stack_8029E960, sp14) == 0xC) ? 1 : -1];
-    typedef char sp18_offset[(offsetof(Stack_8029E960, sp18) == 0x10) ? 1 : -1];
-    typedef char sp1C_offset[(offsetof(Stack_8029E960, sp1C) == 0x14) ? 1 : -1];
-    Stack_8029E960 stack;
-    s32 temp_r3;
-    if ((u16) scene_sora_reflect_active == 0) {
+}
+
+s32 push_reflection_matrix(Vec *point) {
+    Vec plane[2];
+    s32 visible;
+    if (scene_sora_reflect_active == 0) {
         return 1;
     }
-    if (this == NULL) {
+    if (point == NULL) {
         return 0;
     }
-    stack.sp8 = *(f32 *)&this->m_name;
-    stack.spC = *(f32 *)&this->m_flags;
-    stack.sp10 = *(f32 *)&this->m_prev;
-    stack.sp14 = lbl_805DDD8C;
-    stack.sp18 = lbl_805DDD90;
-    stack.sp1C = stack.sp14;
-    temp_r3 = TObjEneRecon__sub_8029EA4C(this, 1);
-    if (temp_r3 != 0) {
+    plane[0].x = point->x;
+    plane[0].y = point->y;
+    plane[0].z = point->z;
+    plane[1].x = lbl_805DDD8C;
+    plane[1].y = lbl_805DDD90;
+    plane[1].z = plane[1].x;
+    visible = TObjEneRecon__sub_8029EA4C((void *)point, 1);
+    if (visible != 0) {
         push_matrix();
-        reflect_matrix_in_plane(0, (s32 *)&stack.sp8);
+        reflect_matrix_in_plane(0, (s32 *)plane);
     }
-    return temp_r3;
-}
+    return visible;
+
 }
 
 void restore_render_scissor(s32 arg0) {

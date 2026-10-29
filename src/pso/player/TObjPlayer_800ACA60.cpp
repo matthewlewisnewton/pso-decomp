@@ -11,7 +11,7 @@
 #include "pso/enemy/TObjEneMoja.h"
 
 extern "C" {
-f32 calc_boss4_scale__10TObjPlayerFi(s32);
+f32 random_ratio__9TObjCharaFv(s32);
 extern const f32 lbl_805D9BE0;
 s32 spawn_particle_effect(s32, s32);
 struct Vec_800ACB58 { f32 x, y, z; };
@@ -58,7 +58,7 @@ void TObjEneMoja::select_rare_variant() {
         return;
     }
     if (temp_r0 <= 0) {
-        if (calc_boss4_scale__10TObjPlayerFi((s32) arg0) < lbl_805D9BE0) {
+        if (random_ratio__9TObjCharaFv((s32) arg0) < lbl_805D9BE0) {
             (this->variant) = 1;
             ((TObjEnemy *)arg0)->set_param(2);
             ((TObjEneMoja *)arg0)->bindModel(2);
@@ -940,7 +940,7 @@ s32 TObjEneMoja::update_punch_attack(void *self_800ADAAC) {
                 if ((obj_is_hit_receivable() != 0) && !(*(s32 *)(p + 0x30) & 0x02000800) && (((VObj_18_247a8e *)p)->m18(arg0, lbl_805D9BDC) != 0)) {
                     ((VObj_18_247a8e *)p)->m20(arg0, lbl_805D9BDC);
                     ((VObj_18_247a8e *)p)->m23(arg0);
-                    if (lbl_805D9BEC < ((f32 (*)(void *))calc_boss4_scale__10TObjPlayerFi)(arg0)) {
+                    if (lbl_805D9BEC < ((f32 (*)(void *))random_ratio__9TObjCharaFv)(arg0)) {
                         *(s32 *)(arg0 + 0x388) = 1;
                     }
                 }
@@ -1062,7 +1062,7 @@ s32 TObjEneMoja::is_target_in_attack_range() {
                     return 1;
                 case 1:
                     if (this->attackSequence != -1 && !(this->techniqueChance < lbl_805D9C1C)) {
-                        if (((f32 (*)(void *))calc_boss4_scale__10TObjPlayerFi)(this) < this->techniqueChance) {
+                        if (((f32 (*)(void *))random_ratio__9TObjCharaFv)(this) < this->techniqueChance) {
                             return 1;
                         }
                         this->attackSequence = -1;
@@ -1078,7 +1078,7 @@ s32 TObjEneMoja::is_target_in_attack_range() {
                     break;
                 case 2:
                     if (this->attackSequence != -1) {
-                        if (lbl_805D9C30 < dist && ((f32 (*)(void *))calc_boss4_scale__10TObjPlayerFi)(this) < this->jumpChance) {
+                        if (lbl_805D9C30 < dist && ((f32 (*)(void *))random_ratio__9TObjCharaFv)(this) < this->jumpChance) {
                             return 1;
                         }
                         this->attackSequence = -1;

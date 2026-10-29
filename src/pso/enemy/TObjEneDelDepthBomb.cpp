@@ -1,5 +1,6 @@
-#include "types.h"
+#include "pso/render/reflection.h"
 #include "pso/system/vector.h"
+#include "types.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/player/TObjChara.h"
 #include "pso/enemy/TObjEnemy.h"
@@ -74,7 +75,7 @@ typedef struct Vec_803142DC { f32 x; f32 y; f32 z; } Vec_803142DC;
 struct Obj_800E9DC8 { u8 pad0[0x60]; s32 f60; u8 pad1[0x384 - 0x64]; s32 f390; u8 pad2[0x3BC - 0x388]; s32 f3C4; };
 
 extern "C" {
-f32 calc_boss4_scale__10TObjPlayerFi(void *);
+f32 random_ratio__9TObjCharaFv(void *);
 f64 atan2_float(f32, f32);
 u32 csnLookAt(void *, void *);
 s32 angle_difference_abs(s32, s32);
@@ -826,7 +827,7 @@ void TObjEneDelDepth::move_toward_target() {
         VecCopy((Vec *)(arg0 + 0x38), (const Vec *)(arg0 + 0x44));
     }
     if (--this->m_384 <= 0) {
-        if (vector_length(&v) > TObjEneDelDepth__data_805DF280 || calc_boss4_scale__10TObjPlayerFi(arg0) < lbl_805DF290) {
+        if (vector_length(&v) > TObjEneDelDepth__data_805DF280 || random_ratio__9TObjCharaFv(arg0) < lbl_805DF290) {
             ((TObjEneDelDepth *)arg0)->set_action_state(9);
         } else {
             ((TObjEneDelDepth *)arg0)->set_action_state(0xA);
@@ -857,7 +858,7 @@ void TObjEneDelDepth__sub_803141A8(Obj_800E9DC8 *arg0) {
 void TObjEneDelDepth::init_depth() {
     ((int (*)(void*, void*, void*))set_depth_offset__15TObjEneDelDepthFPvii)(this, (void*)(0x1E), (void*)(0x1E));
     this->m_3bc = 0x888;
-    if (calc_boss4_scale__10TObjPlayerFi(this) > TObjEneDelDepth__data_805DF298) {
+    if (random_ratio__9TObjCharaFv(this) > TObjEneDelDepth__data_805DF298) {
         this->m_3bc = this->m_3bc * 0xFFFFFFFF;
     }
     set_motion__15TObjEneDelDepthFl((void*)this->m_37c, (void*)(0));
@@ -912,10 +913,10 @@ void TObjEneDelDepth__sub_803142DC(u8 *ene_del_depth) {
 
 void TObjEneDelDepth__sub_80314500(u8 *actor) {
   *((s32 *) (((s8 *) actor) + 0x3C4)) = 0xFFFF;
-  *((s32 *) (((s8 *) actor) + 0x394)) = (s32) ((((s32) (lbl_805DF2A0 * calc_boss4_scale__10TObjPlayerFi((void *)((s32) actor)))) + 4) << 0x10);
+  *((s32 *) (((s8 *) actor) + 0x394)) = (s32) ((((s32) (lbl_805DF2A0 * random_ratio__9TObjCharaFv((void *)((s32) actor)))) + 4) << 0x10);
   *((s32 *) (((s8 *) actor) + 0x384)) = 0x7FFFFFFF;
   *((s32 *) (((s8 *) actor) + 0x3BC)) = (s32) (*((s32 *) (((s8 *) TObjEneDelDepth__tune_params) + 0x1C)));
-  if (calc_boss4_scale__10TObjPlayerFi((void *)((s32) actor)) > TObjEneDelDepth__data_805DF298)
+  if (random_ratio__9TObjCharaFv((void *)((s32) actor)) > TObjEneDelDepth__data_805DF298)
   {
     *((s32 *) (((s8 *) actor) + 0x3BC)) = (s32) (((*((s32 *) (((s8 *) actor) + 0x3BC))) & 0xFFFFFFFF) * (-1));
   }
@@ -1022,7 +1023,7 @@ void TObjEneDelDepth::update_movement() {
                 VecCopy((Vec *)&p, (const Vec *)&arg0->pos);
                 w.x = hit->obj->f14;
                 w.z = -hit->obj->fc;
-                ((TObjBoss2Tunnel *)(&w))->clamp_velocity();
+                normalize_vector_xz((Vec *)(&w));
                 if (n.x * w.x + n.z * w.z >= (*(const f32 *)&TObjEneDelDepth__data_805DF258)) {
                     n.x = w.x;
                     n.z = w.z;
@@ -1086,7 +1087,7 @@ void TObjEneDelDepth::start_move_toward_player() {
         ((TObjEneDelDepth *)actor)->set_action_state(2);
         return;
     }
-    temp_r31 = (s32) (lbl_805DF2B0 * calc_boss4_scale__10TObjPlayerFi(actor));
+    temp_r31 = (s32) (lbl_805DF2B0 * random_ratio__9TObjCharaFv(actor));
     this->m_3b0 += TObjEneDelDepth__data_805DF270 * sin_table_lookup(temp_r31);
     this->m_3b8 += TObjEneDelDepth__data_805DF270 * cos_table_lookup(temp_r31);
     if (vector_length((u8 *)&this->m_3b0) <= lbl_805DF288) {
@@ -1094,7 +1095,7 @@ void TObjEneDelDepth::start_move_toward_player() {
         return;
     }
     normalize_vector((u8 *)&this->m_3b0);
-    temp_f1 = (lbl_805DF2B8 * calc_boss4_scale__10TObjPlayerFi(actor)) + lbl_805DF2B4;
+    temp_f1 = (lbl_805DF2B8 * random_ratio__9TObjCharaFv(actor)) + lbl_805DF2B4;
     this->m_38c = temp_f1;
     this->m_398 = (*(const f32 *)&TObjEneDelDepth__data_805DF260);
     ((int (*)(s32, int, f32))set_motion__15TObjEneDelDepthFl)(this->m_37c, 7, temp_f1);
@@ -1293,7 +1294,7 @@ s32 TObjEneDelDepth__sub_80315380(Obj_80315380 *arg0) {
 #pragma pop
 
 void set_depth_offset__15TObjEneDelDepthFPvii(void *arg0, s32 arg1, s32 arg2) {
-    *(s32 *)((s8 *)arg0 + 0x384) = (s32) (arg1 + (s32) ((f32) arg2 * ((f32 (*)(void))calc_boss4_scale__10TObjPlayerFi)()));
+    *(s32 *)((s8 *)arg0 + 0x384) = (s32) (arg1 + (s32) ((f32) arg2 * ((f32 (*)(void))random_ratio__9TObjCharaFv)()));
 }
 
 void TObjEneDelDepth::set_action_state(s32 i) {
@@ -1310,7 +1311,7 @@ void TObjEneDelDepth__sub_80315518(void) {  }
 s32 TObjEneDelDepth::draw_if_visible() {
     Dep_8031551C *o = (Dep_8031551C *)this;
     if (get_mode__11TCameraCtrlFPv(((u8 *)&main_task)) & 0x20) {
-        if (((TObjEneRecon *)(o->f3E4))->push_reflect_matrix() != 0) {
+        if (push_reflection_matrix((Vec *)(o->f3E4)) != 0) {
             push_matrix();
             Vec_8031551C v = o->pos;
             v.y += o->f39C;

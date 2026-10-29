@@ -1,6 +1,6 @@
+#include "pso/TParticleCtrl.h"
 #include "types.h"
 #include "pso/object/TObject_80019A50.h"
-#include "pso/TParticleCtrl.h"
 #include "pso/misc/TUnk_804AFBF8.h"
 #include "pso/object/TObjParticleLobby.h"
 #include "pso/boss/TBoss4Type2.h"
@@ -63,7 +63,7 @@ void TObjParticleLobby::run_task() {
             *(s32 *)&this->m_c8 = 3;
         }
         if (o->ctrl != NULL) {
-            ((TObjPlayer *)(o->ctrl))->set_position_xy(o->t, 1.0f);
+            ((TParticleCtrl *)(o->ctrl))->fn_800822D4(o->t, 1.0f);
         }
         break;
     case 1:
@@ -74,7 +74,7 @@ void TObjParticleLobby::run_task() {
             break;
         }
         if (o->ctrl != NULL) {
-            ((TObjPlayer *)(o->ctrl))->set_position_xy(o->t, 1.0f);
+            ((TParticleCtrl *)(o->ctrl))->fn_800822D4(o->t, 1.0f);
         }
         break;
     case 3:

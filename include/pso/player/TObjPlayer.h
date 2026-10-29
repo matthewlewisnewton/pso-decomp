@@ -265,7 +265,6 @@ struct TObjPlayer : public TObjChara {
     void call_callback_1ec(s32 arg1, s32 arg2);
     void copy_wall_polygon(u8 *arg1);
     static void copy_matrix(u32 arg0, u32 arg1);
-    static f32 calc_boss4_scale(int arg0);
     static s32 run_next_key_callback(s32 arg0);
     static s32 sample_next_quaternion_key(s32 arg0);
     void interpolate_motion_key(s32 arg1, s32 *arg2, f32 farg0);
@@ -397,7 +396,6 @@ struct TObjPlayer : public TObjChara {
     static s32 is_locally_controlled(void *player);
     static TObjPlayer *get_player_data(int index);
     int queue_destruction();
-    void set_position_xy(f32 a, f32 b);
     u8 test_action_mask(s32 arg1);
     static void free_singleton();
     static void init_render_target_singleton();
@@ -442,7 +440,6 @@ struct TObjPlayer : public TObjChara {
     static void create_dead_spot(s32 arg0, s32 arg1, f32 farg0);
     static void spawn_effect_f8(s32 arg1, s32 arg2);
     static void set_field_e4(s32 arg1, s32 arg2);
-    void request_two_effects();
     void trigger_dell_biter_events();
     void spawn_ground_effect(s32 arg1);
     void spawn_effect_at_ground(s32 arg1);
@@ -586,8 +583,6 @@ struct TObjPlayer : public TObjChara {
     static void init_all_slots();
     static s32 check_flag_pair(s32 arg0, s32 arg1);
     static s32 check_flags(s32 arg0, s32 arg1);
-    void update_enemy_collision_flags();
-    void check_object_collisions();
     void update_collisions();
     static void reset();
     void on_zone_exit();

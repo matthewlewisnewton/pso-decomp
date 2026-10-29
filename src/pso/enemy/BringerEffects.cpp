@@ -43,7 +43,7 @@ struct Bringer_80099F0C : Base_80099F0C {
 struct Arg_80099F0C { s32 a; f32 b; };
 
 extern "C" {
-int construct_collision_body(void);
+int __ct__13TUnk_804928CCFP7TObjectP8TObjBase(void);
 extern s32 lbl_8048FE08[];
     extern s32 bringer_tp_absorb_effect_name;
 void __dl__7TObjectFPv(void *);
@@ -130,14 +130,14 @@ void TObjEneDf2Bringer::setup_dir_shot(const void *arg1, s32 arg2, f32 farg0) {
 void *__dt__13TUnk_8048FE08Fv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = lbl_8048FE08;
-        ((TUnk_804928CC *)arg0)->destroy_enemy_object(0);
+        __dt__13TUnk_804928CCFv(arg0, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }
     }
     return arg0;
 }
-void*TUnk_8048FE08::init(int a1, int a2, int a3) { construct_collision_body(); *(int*)((char*)this + 0x18) = (int)((unsigned char *)&lbl_8048FE08); *(int *)&this->m_name = bringer_tp_absorb_effect_name; *(int*)((char*)this + 0xb0) = 0; *(float *)&this->unk_D0 = 0.0f; *(float*)((char*)this + 0xc8) = 0.0f; this->m_cc = 0.0f; this->m_b4 = 0; *(float*)((char*)this + 0x38) = 0.0f; *(float*)((char*)this + 0x3c) = 0.0f; *(float*)((char*)this + 0x40) = 0.0f; *(float*)((char*)this + 0xb8) = 0.0f; this->m_bc = 0.0f; *(float*)((char*)this + 0xc0) = 0.0f; this->m_c4 = a3; *(int*)((char*)*(int *)&this->bodies + 0x14) = 1; return this; }
+void*TUnk_8048FE08::init(int a1, int a2, int a3) { __ct__13TUnk_804928CCFP7TObjectP8TObjBase(); *(int*)((char*)this + 0x18) = (int)((unsigned char *)&lbl_8048FE08); *(int *)&this->m_name = bringer_tp_absorb_effect_name; *(int*)((char*)this + 0xb0) = 0; *(float *)&this->unk_D0 = 0.0f; *(float*)((char*)this + 0xc8) = 0.0f; this->m_cc = 0.0f; this->m_b4 = 0; *(float*)((char*)this + 0x38) = 0.0f; *(float*)((char*)this + 0x3c) = 0.0f; *(float*)((char*)this + 0x40) = 0.0f; *(float*)((char*)this + 0xb8) = 0.0f; this->m_bc = 0.0f; *(float*)((char*)this + 0xc0) = 0.0f; this->m_c4 = a3; *(int*)((char*)*(int *)&this->bodies + 0x14) = 1; return this; }
 void TUnk_8048FE64::render() {  }
 
 #pragma push
@@ -346,7 +346,7 @@ struct RecoveredGlobal_8009AA64_lbl_8048FE94 { s32 value; u8 remaining[0x18]; };
 extern "C" {
 s32 get_entity_id(void *);
 s32 is_player_entity_id();
-s32 is_alive__9TObjEneDDFv(void *);
+s32 is_alive__8TObjBaseFv(void *);
 s32 obj_isState2_324__9TObjCharaFv(void *);
 s32 is_vec_xz_cross_negative(void *, void *);
 s32 rotate_xz_pair_by_angle(void *, void *, int);
@@ -404,7 +404,7 @@ void TObjEneDf2Bringer_Eff_Rush::run_task() {
         queue_destruction__7TObjectFv(this);
         return;
     }
-    if (is_alive__9TObjEneDDFv((void *) (*(u8 **)((s8 *)((u8 *)this) + 0x1C))) == 0) {
+    if (is_alive__8TObjBaseFv((void *) (*(u8 **)((s8 *)((u8 *)this) + 0x1C))) == 0) {
         queue_destruction__7TObjectFv(this);
         return;
     }

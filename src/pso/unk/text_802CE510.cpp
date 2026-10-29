@@ -1,3 +1,4 @@
+#include "pso/TParticleCtrl.h"
 #include "types.h"
 #include "pso/unk/text_800D8830.h"
 #include "pso/boss/TBoss8Dragon_80065C90.h"
@@ -6,7 +7,6 @@
 #include "pso/unk/text_802CE510.h"
 #include "pso/object/obj_band.h"
 #include "pso/system/vector.h"
-#include "pso/TParticleCtrl.h"
 #include "pso/player/TObjPlayer.h"
 
 struct Stack_802CE510
@@ -67,12 +67,12 @@ void fn_802CE510(int arg0) {
           attach_particle_model((u8 *)particle_effect, (s32)((int) TParticleCtrl::get_particle_model(2)), (s32)((int) TParticleCtrl::get_instance()), 0, 1, (f32)((f32) lbl_805DE6F4));
           temp_r3 = temp_r3;
           new_var = (int) particle_effect;
-          ((TObjPlayer *)new_var)->set_position_xy((f32) lbl_805DE6EC, (f32) lbl_805DE6F4);
+          ((TParticleCtrl *)new_var)->fn_800822D4((f32) lbl_805DE6EC, (f32) lbl_805DE6F4);
         }
         temp_r3_3 = (unsigned int)spawn_particle_effect((void *)(((RecoveredFields_802CE510_temp_r3 *) temp_r3)->field_4 + 0x38), 0xA4);
         if (temp_r3_3 != 0U)
         {
-          ((TObjPlayer *)temp_r3_3)->set_position_xy((f32) lbl_805DE6EC, (f32) lbl_805DE6F8);
+          ((TParticleCtrl *)temp_r3_3)->fn_800822D4((f32) lbl_805DE6EC, (f32) lbl_805DE6F8);
         }
       }
       else
@@ -80,7 +80,7 @@ void fn_802CE510(int arg0) {
         temp_r3_4 = (unsigned int)spawn_particle_effect((void *)(arg0 + 0x38), 0xF3);
         if (temp_r3_4 != 0U)
         {
-          ((TObjPlayer *)temp_r3_4)->set_position_xy((f32) lbl_805DE6EC, (f32) lbl_805DE6FC);
+          ((TParticleCtrl *)temp_r3_4)->fn_800822D4((f32) lbl_805DE6EC, (f32) lbl_805DE6FC);
         }
       }
     }

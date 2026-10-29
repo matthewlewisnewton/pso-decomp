@@ -1,3 +1,4 @@
+#include "pso/TParticleCtrl.h"
 #include "types.h"
 #include "pso/misc/MaterialColorFade.h"
 #include "pso/boss/TBoss8Dragon_80065C90.h"
@@ -83,7 +84,7 @@ s32 TUnk_8048E1A4::freeze_shell_hold() {
     p = (s32)spawn_particle_effect((u8 *)this + 0x38, 0x33);
     if (p != 0) {
         attach_particle_model((u8 *)p, (s32)(get_bml_model(freeze_shell_bml_resource, 0)), (s32)(TObjFish__sub_8001EDB0(freeze_shell_bml_resource, 1)), (s32)(get_bml_motion(freeze_shell_bml_resource, 0)), 0, (f32)lbl_805D9384);
-        ((TObjPlayer *)p)->set_position_xy(this->scale.x, this->scale.y);
+        ((TParticleCtrl *)p)->fn_800822D4(this->scale.x, this->scale.y);
     }
     this->m_c0 = lbl_805D9378;
 }

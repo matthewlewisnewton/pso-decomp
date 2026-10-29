@@ -1577,6 +1577,7 @@ pso/unk/text_800A02AC.cpp:
 pso/player/TUnk_80490470.cpp:
 	.text       start:0x800A0320 end:0x800A0798
 	.rodata     start:0x8043A468 end:0x8043A470
+	.data       start:0x80490470 end:0x8049049C
 	.sdata2     start:0x805D9958 end:0x805D9970
 
 pso/unk/text_800A0798.cpp:
@@ -1721,6 +1722,7 @@ pso/enemy/TObjEneDD_800B99D8.cpp:
 
 pso/enemy/TObjEneDD_800B9A34.cpp:
 	.text       start:0x800B9A34 end:0x800B9AF8
+	.data       start:0x80492558 end:0x804926FC
 
 pso/enemy/TObjEneDD_800B9AF8.cpp:
 	.text       start:0x800B9AF8 end:0x800B9B84
@@ -1772,6 +1774,7 @@ pso/boss/TBoss1Dragon_800BC3C4.cpp:
 
 pso/player/TObjPlayer_800BC40C.cpp:
 	.text       start:0x800BC40C end:0x800BC46C
+	.data       start:0x804928A0 end:0x80492928
 
 pso/enemy/TObjEneDellBiter_800BC46C.cpp:
 	.text       start:0x800BC46C end:0x800BC4C8
@@ -10517,19 +10520,14 @@ pso/enemy/TObjEneDolmOlm.cpp:
 	.sdata2     start:0x805DEF48 end:0x805DEF4C
 
 pso/enemy/TObjEneRecon_80302DB0.cpp:
-	.text       start:0x80302DB0 end:0x80302DC0
+	.text       start:0x80302DB0 end:0x80302DBC
 
-pso/unk/text_80302DC0.cpp:
-	.text       start:0x80302DC0 end:0x80302F6C
-
-pso/unk/text_80302F6C.cpp:
-	.text       start:0x80302F6C end:0x80302FD8
-
-pso/unk/text_80302FD8.cpp:
-	.text       start:0x80302FD8 end:0x803030D4
+pso/enemy/TObjEneDellBiterEffects.cpp:
+	.text       start:0x80302DBC end:0x803032EC
+	.data       start:0x804E6AF8 end:0x804E6B6C
 
 pso/enemy/TObjEneDellBiter.cpp:
-	.text       start:0x803030D4 end:0x80306994
+	.text       start:0x803032EC end:0x80306994
 	.rodata     start:0x80475330 end:0x80475338
 	.data       start:0x804E6B70 end:0x804E6FA8
 	.sdata2     start:0x805DEFC0 end:0x805DEFC8

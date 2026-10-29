@@ -95,7 +95,7 @@ extern "C" {
 void TBoss1Dragon__sub_8002AB6C(u8 *arg0);
 s32 isV2Mode__12TBoss1DragonFv();
 s32 create_particle_emitter(void *, int, f32);
-void construct_collision_body(void *);
+void __ct__13TUnk_804928CCFP7TObjectP8TObjBase(void *);
 s32 rand();
 extern const V3_8002C544 lbl_80435560;
 extern s32 __vt__15TObjBoss1Crater[];
@@ -196,9 +196,9 @@ void TObjBoss1Crater::area_attack_receive_direct(void *self_arg, f32 *arg2, void
 void *__dt__15TObjBoss1CraterFv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__15TObjBoss1Crater;
-        if (((TObjBoss1Crater *)arg0)->m_b4 != NULL) { delete_buffer__12TBoss8DragonFis((s32)(((TObjBoss1Crater *)arg0)->m_b4), 1); *(s32 *)((s8 *)arg0 + 0xB4) = 0; }
+        if (((TObjBoss1Crater *)arg0)->m_b4 != NULL) { __dt__17AreaAttackHistoryFv((s32)(((TObjBoss1Crater *)arg0)->m_b4), 1); *(s32 *)((s8 *)arg0 + 0xB4) = 0; }
         if (*(void **)((s8 *)arg0 + 0xB0) != NULL) { queue_destruction__7TObjectFv(*(void **)((s8 *)arg0 + 0xB0)); *(s32 *)((s8 *)arg0 + 0xB0) = 0; }
-        ((TUnk_804928CC *)arg0)->destroy_enemy_object(0);
+        __dt__13TUnk_804928CCFv(arg0, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }
@@ -210,7 +210,7 @@ Crater_8002C544 *TObjBoss1Crater__ct(Crater_8002C544 *self, void *arg1, void *ar
     f32 r;
     void *p;
     s32 i;
-    construct_collision_body(self);
+    __ct__13TUnk_804928CCFP7TObjectP8TObjBase(self);
     self->vt = ((s32 *)&__vt__15TObjBoss1Crater);
     r = lbl_80435560.z;
     self->f0 = TObjBoss1Crater__name;
@@ -221,7 +221,7 @@ Crater_8002C544 *TObjBoss1Crater__ct(Crater_8002C544 *self, void *arg1, void *ar
     self->fB0 = create_particle_emitter(self->pos, 0x40, r);
     p = ::operator new(0x10);
     if (p != NULL) {
-        p = TBoss8Dragon__sub_800BC5EC((u8 *)p, 4);
+        p = __ct__17AreaAttackHistoryFl((u8 *)p, 4);
     }
     self->fB4 = p;
     for (i = 0; i < 4; i++) {

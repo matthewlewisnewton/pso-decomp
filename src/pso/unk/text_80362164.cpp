@@ -1,3 +1,4 @@
+#include "pso/enemy/TObjEnemy.h"
 #include "types.h"
 #include "pso/enemy/TObjEneDD.h"
 #include "pso/misc/TOTrapAncient01_80226534.h"
@@ -23,6 +24,6 @@ void TObjEneEpsilonBody::run_task() {
     }
     this->vfunc_88();
     ((TObjEneEpsilonGuard *)((u8 *)this))->update_position();
-    ((TBoss8Dragon *)((u8 *)this))->set_player_state_default();
+    ((TObjEnemy *)((u8 *)this))->submit_default_cursor_candidate();
     this->vfunc_100();
 }

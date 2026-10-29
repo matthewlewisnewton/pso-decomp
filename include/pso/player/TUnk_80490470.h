@@ -5,6 +5,7 @@
 
 class TUnk_80490470 : public MaterialColorFade {
 public:
+    TUnk_80490470();
     virtual ~TUnk_80490470();
     virtual void set_flags_and_apply_damage_color();
     virtual s32 decay_value_toward_floor();
@@ -13,9 +14,10 @@ public:
     virtual void reset_obstruction_fade();
     virtual s32 advance_toward_max();
     virtual s32 has_visible_opacity();
-    void*init_vtable_and_field18();
     void calc_recoil_offsets();
-    u8 unk_18[0x4];
+    f32 phase;
 };
+
+extern "C" void *__ct__13TUnk_80490470Fv(void *);
 
 #endif

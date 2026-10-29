@@ -1,6 +1,6 @@
+#include "pso/system/vector.h"
 #include "types.h"
 #include "pso/boss/TBoss8Dragon_800BC53C.h"
-#include "pso/system/vector.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/player/TUnk_804928CC.h"
 #include "pso/player/TObjPlayer.h"
@@ -167,7 +167,7 @@ void TUnk_804928CC::area_attack_apply_recoil(void *b_arg, f32 s) {
     Vec_800BBFD0 v;
     VecCopy((Vec *)&v, (const Vec *)&b->pos);
     subtract_vector(&v, &a->pos);
-    ((TObjBoss2Tunnel *)(&v))->clamp_velocity();
+    normalize_vector_xz((Vec *)(&v));
     b->f308 = v.x * s + b->f308;
     b->f310 = v.z * s + b->f310;
 }

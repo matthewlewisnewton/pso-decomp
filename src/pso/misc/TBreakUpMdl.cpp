@@ -1,3 +1,4 @@
+#include "pso/system/vector.h"
 #include "types.h"
 #include "pso/misc/TBreakUpMdl.h"
 #include "pso/misc/MaterialColorFade.h"
@@ -10,7 +11,6 @@
 #include "pso/unk/text_803D96A8.h"
 #include "pso/unk/text_803E2D70.h"
 #include "pso/system/memory.h"
-#include "pso/system/vector.h"
 #include "pso/enemy/TObjEneDf2Bringer.h"
 
 #include "pso/TParticleCtrl.h"
@@ -239,7 +239,7 @@ u8 *TBreakUpMdl__ct(u8 *break_up_mdl, void *arg1, Model_80096AD8 *arg2, void *ar
         part = &self->parts[i];
         matrix_mult_vec(0, (int)self->model->segs[i].a, (int)part);
         rotate_vector_by_matrix(0, self->model->segs[i].b, part->vel);
-        ((TObjBoss2Tunnel *)(part->vel))->clamp_velocity();
+        normalize_vector_xz((Vec *)(part->vel));
         part->vel[1] = scale * (lbl_805D97D0 * (f32)rand()) + base;
         part->f18 = 0;
         part->f1c = arg6;
@@ -272,7 +272,7 @@ s32 TBreakUpMdl::collect_node_positions(u8 *arg1, s32 arg2) {
             temp_r4 = (long) (temp_r31 + 4);
             matrix_mult_vec(0, temp_r4, temp_r4);
             VecCopy((Vec *)(temp_r31 + 0x10), (const Vec *)(temp_r31 + 4));
-            ((TObjBoss2Tunnel *)(temp_r31 + 0x10))->clamp_velocity();
+            normalize_vector_xz((Vec *)(temp_r31 + 0x10));
             var_r29 += 1;
             *(s32 *)temp_r31 = *(s32 *)((s8 *)var_r28 + 4);
         }
@@ -307,7 +307,7 @@ s32 TBreakUpMdl::build_node_records(u8 *arg1, s32 arg2) {
             temp_r4 = (long) (temp_r31 + 4);
             matrix_mult_vec(0, temp_r4, temp_r4);
             VecCopy((Vec *)(temp_r31 + 0x10), (const Vec *)(temp_r31 + 4));
-            ((TObjBoss2Tunnel *)(temp_r31 + 0x10))->clamp_velocity();
+            normalize_vector_xz((Vec *)(temp_r31 + 0x10));
             var_r29 += 1;
             *(s32 *)temp_r31 = *(s32 *)((s8 *)var_r28 + 4);
         }

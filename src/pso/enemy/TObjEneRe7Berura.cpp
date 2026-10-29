@@ -1,9 +1,11 @@
+#include "pso/enemy/TObjEnemy.h"
+#include "pso/system/vector.h"
 #include "pso/misc/RenderFadeState.h"
+extern "C" void *__ct__12TObjEneDD_STFP7TObject(void *);
 #include "types.h"
 #include "pso/system/NinjaUtil.h"
 #include "pso/enemy/TObjEneDD.h"
 #include "pso/enemy/TObjEneDD_ST.h"
-#include "pso/enemy/TObjEnemy.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/player/TObjChara.h"
 #include "pso/enemy/TObjEneRe7Berura.h"
@@ -482,14 +484,14 @@ void *__dt__12TObjEneDD_STFv(void *arg0, s16 arg1);
 int reload_stats_keep_hp_tp__9TObjEneDDFv(void *self, void *a, void *b, void *c);
 void reset_hp__9TObjEneDDFv(void *, s32, s32, s32);
 void initialize_enemy_state__9TObjEneDDFv(void *, int);
-s32 is_alive__9TObjEneDDFv(void *);
+s32 is_alive__8TObjBaseFv(void *);
 void init_model__9TObjEneDDFv(void *, void *, int);
 s32 clear_attack_receipts__9TObjEneDDFv();
 void invoke_initialization_hook__9TObjEneDDFv(void *, void *);
 Res_800959F8 * load_enemy_bml_resource_named(void *, void *);
 s32 load_enemy_bml_resource(u8 *arg0);
 s32 set_field_378__9TObjEneDDFl(void *, s32, s32);
-s32 create__12TObjEneSaverFPvPv(s32, s32);
+s32 create__13TUnk_80494968FUlUl(s32, s32);
 s32 *__dt__11TBoss4Type3FPvs(s32 *arg0, s16 arg1);
 void * init_trail_buffer__11TBoss4Type3FPvifff(void *arg0, s32 segs, f32 start, f32 end, f32 step);
 s32 copy_target_state__14TObjEnePanarmsFPv(void *, int);
@@ -576,7 +578,7 @@ extern "C" {
 extern "C" void vfunc_6__8TObjBaseFPsl();
 extern "C" void vfunc_103__9TObjEneDDFPUc();
 extern "C" void vfunc_79__9TObjEneDDFv();
-extern "C" void TObjEneDD__vt82();
+extern "C" void vfunc_84__9TObjEneDDFv();
 extern "C" void vfunc_85__9TObjEneDDFv();
 extern "C" void vfunc_86__9TObjEneDDFv();
 extern "C" void vfunc_89__9TObjEneDDFv();
@@ -593,7 +595,7 @@ extern "C" void vfunc_99__9TObjEneDDFv();
 extern "C" void vfunc_100__9TObjEneDDFv();
 extern "C" void vfunc_101__9TObjEneDDFPUc();
 extern "C" void vfunc_102__9TObjEneDDFv();
-extern "C" int TObjEneEpsilon__vt101(void *p);
+extern "C" int vfunc_104__12TObjEneDD_STFf(void *p);
 extern "C" void vfunc_83__12TObjEneDD_STFv();
 extern "C" void vfunc_83__16TObjEneRe7BeruraFv();
 extern "C" void vfunc_105__16TObjEneRe7BeruraFv();
@@ -730,12 +732,12 @@ void *__vt__16TObjEneRe7Berura[107] = {
     (void *)&enemy_spawn_zalure_effect__9TObjCharaFv, (void *)&recalc_stats__9TObjCharaFv, (void *)&vfunc_74__9TObjEnemyFl, (void *)&vfunc_75__9TObjCharaFf,
     (void *)&vfunc_76__9TObjCharaFv, (void *)&vfunc_77__9TObjCharaFv, (void *)&vfunc_78__9TObjCharaFl, (void *)&vfunc_79__9TObjEneDDFv,
     (void *)&apply_hit_message_flags__9TObjEnemyFPv, (void *)&apply_set_data__9TObjEnemyFPv, (void *)&clear_lobby_object_state__9TObjEnemyFv, (void *)&vfunc_83__12TObjEneDD_STFv,
-    (void *)&TObjEneDD__vt82, (void *)&vfunc_85__9TObjEneDDFv, (void *)&vfunc_86__9TObjEneDDFv, (void *)&TObjEneRe7Berura__vt85,
+    (void *)&vfunc_84__9TObjEneDDFv, (void *)&vfunc_85__9TObjEneDDFv, (void *)&vfunc_86__9TObjEneDDFv, (void *)&TObjEneRe7Berura__vt85,
     (void *)&vfunc_88__16TObjEneRe7BeruraFv, (void *)&vfunc_89__9TObjEneDDFv, (void *)&vfunc_90__9TObjEneDDFv, (void *)&vfunc_91__9TObjEneDDFv,
     (void *)&vfunc_92__9TObjEneDDFv, (void *)&vfunc_93__9TObjEneDDFv, (void *)&vfunc_94__9TObjEneDDFv, (void *)&vfunc_95__9TObjEneDDFv,
     (void *)&vfunc_96__9TObjEneDDFv, (void *)&vfunc_97__9TObjEneDDFv, (void *)&vfunc_98__9TObjEneDDFv, (void *)&vfunc_99__9TObjEneDDFv,
     (void *)&vfunc_100__9TObjEneDDFv, (void *)&vfunc_101__9TObjEneDDFPUc, (void *)&vfunc_102__9TObjEneDDFv, (void *)&vfunc_103__9TObjEneDDFPUc,
-    (void *)&TObjEneEpsilon__vt101, (void *)&vfunc_83__16TObjEneRe7BeruraFv, (void *)&vfunc_105__16TObjEneRe7BeruraFv,
+    (void *)&vfunc_104__12TObjEneDD_STFf, (void *)&vfunc_83__16TObjEneRe7BeruraFv, (void *)&vfunc_105__16TObjEneRe7BeruraFv,
 };
 #define berura_init_params ((u8 *)berura_init_params)
 #define lbl_8048F66C ((u8 *)lbl_8048F66C)
@@ -1052,11 +1054,11 @@ s32 TObjEneRe7Berura::acquire_target_in_view() {
     n = TLobby::get_game_mode();
     for (i = 0; i < n; i++) {
         p = get_player_data__10TObjPlayerFi(i);
-        if (is_alive__9TObjEneDDFv(p) != 0) {
+        if (is_alive__8TObjBaseFv(p) != 0) {
             VecCopy__FP3VecPC3Vec(&v, &p->pos38);
             subtract_vector(&v, &self->pos);
             v.y = TObjEneRe7Berura__data_805D972C;
-            d = ((TObjBoss2Tunnel *)(&v))->clamp_velocity();
+            d = normalize_vector_xz((Vec *)(&v));
             if (d < TObjEneRe7Berura__data_805D9724 && d > best &&
                 s * v.x + c * v.z > limit &&
                 csnLookAt(&self->pos, &p->pos) == 0) {
@@ -1117,7 +1119,7 @@ void run_task__16TObjEneRe7BeruraFv(TObjEneRe7Berura *ene_re7_berura) {
         ene_re7_berura->m_3ec = (s32) (u8) ene_re7_berura->m_3ec;
     }
     ene_re7_berura->update_collision_center();
-    ((TBoss8Dragon *)ene_re7_berura)->set_player_state_default();
+    ((TObjEnemy *)ene_re7_berura)->submit_default_cursor_candidate();
     ((TObjEneRe7Berura *)(ene_re7_berura))->vfunc_100();
 }
 
@@ -1189,8 +1191,8 @@ void TObjEneRe7Berura::init_enemy() {
         ((void (*)(void *, void *))VecCopy__FP3VecPC3Vec)(&S->v420[i], arg0 + 0x38);
         S->f438[i] = 0;
     }
-    *(s32 *)((s8 *)arg0 + 0x440) = create__12TObjEneSaverFPvPv(0xFF00FF00, 0xA0703030);
-    *(s32 *)((s8 *)arg0 + 0x444) = create__12TObjEneSaverFPvPv(0xFF00FF00, 0xA0703030);
+    *(s32 *)((s8 *)arg0 + 0x440) = create__13TUnk_80494968FUlUl(0xFF00FF00, 0xA0703030);
+    *(s32 *)((s8 *)arg0 + 0x444) = create__13TUnk_80494968FUlUl(0xFF00FF00, 0xA0703030);
     for (j = 0; j < 4; j++) {
         ((RenderFadeState *)(&S->subs[j]))->activate_and_dispatch();
     }
@@ -1211,10 +1213,10 @@ void TObjEneRe7Berura::init_enemy() {
 }
 
 void *TObjEneRe7Berura__ct(void *ene_re7_berura, void *arg1, void *arg2) {
-    ((TObjEneDD_ST *)ene_re7_berura)->init_object();
+    __ct__12TObjEneDD_STFP7TObject(ene_re7_berura);
     *(s32 **)((s8 *)ene_re7_berura + 0x18) = __vt__16TObjEneRe7Berura;
-    ((TUnk_80490470 *)((char *)ene_re7_berura + 984))->init_vtable_and_field18();
-    ((TUnk_80490470 *)((char *)ene_re7_berura + 1020))->init_vtable_and_field18();
+    __ct__13TUnk_80490470Fv(((char *)ene_re7_berura + 984));
+    __ct__13TUnk_80490470Fv(((char *)ene_re7_berura + 1020));
     __construct_array((void *)((char *)ene_re7_berura + 1096), __ct__15RenderFadeStateFv, __dt__15RenderFadeStateFv, 28, 4);
     *(void * *)&((TObjEneRe7Berura *)ene_re7_berura)->m_name = lbl_805D2988;
     invoke_initialization_hook__9TObjEneDDFv(ene_re7_berura, arg2);

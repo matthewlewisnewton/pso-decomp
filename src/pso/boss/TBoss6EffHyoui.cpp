@@ -1,3 +1,4 @@
+#include "pso/TParticleCtrl.h"
 #include "pso/TBoss6EffHyoui.h"
 #include "pso/boss/TBoss4Type2_800874F4.h"
 #include "pso/boss/TBoss6EffHyoui.h"
@@ -20,7 +21,6 @@ extern const f32 lbl_805E0380;
 #include "pso/boss/TBoss4Type2.h"
 #include "pso/misc/TNowLoading.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/TParticleCtrl.h"
 
 extern "C" {
 void *__nw__7TObjectFUl(int);
@@ -62,7 +62,7 @@ void *TBoss6EffHyoui__ct(void *object, void *arg1, void *arg2, void *arg3, void 
         }
         if ((*(void **)((s8 *)self + 0x1C) = create_particle_emitter(p + 0x38, lbl_8047AC70[(s32)arg3])) != NULL) {
             ((TBoss4Type2 *)(*(void **)((s8 *)self + 0x1C)))->set_flags(0x40);
-            ((TObjPlayer *)(*(void **)((s8 *)self + 0x1C)))->set_position_xy(lbl_805D6FF8, lbl_805D6FF8);
+            ((TParticleCtrl *)(*(void **)((s8 *)self + 0x1C)))->fn_800822D4(lbl_805D6FF8, lbl_805D6FF8);
         }
     }
     *(s32 *)((s8 *)self + 0x28) = 0;

@@ -113,7 +113,7 @@ int vfunc_63__16TObjEneMe3StelthFv(void*);
 void __dl__7TObjectFPv(void *);
 void *__dt__16TObjEneMe3StelthFv(void *arg0, s16 arg1);
 void *__nw__7TObjectFUl(int);
-f32 calc_boss4_scale__10TObjPlayerFi();
+f32 random_ratio__9TObjCharaFv();
 
 void TObjEneMe3StelthReal::vfunc_111() {  }
 
@@ -122,7 +122,7 @@ extern const f32 lbl_805DA81C;
 void TObjEneMe3StelthReal::vfunc_107() {
     EneStelth_800F0CE8 *self = (EneStelth_800F0CE8 *)this;
     *(s32 *)((s8 *)this + 0x3EC) = *(s32 *)((s8 *)this + 0x3EC) + 1;
-    if ((*(s32 *)((s8 *)this + 0x3EC) >= 2) || (calc_boss4_scale__10TObjPlayerFi() < lbl_805DA81C)) {
+    if ((*(s32 *)((s8 *)this + 0x3EC) >= 2) || (random_ratio__9TObjCharaFv() < lbl_805DA81C)) {
         ((TObjEneDD *)self)->transition_enemy_state(9);
         return;
     }

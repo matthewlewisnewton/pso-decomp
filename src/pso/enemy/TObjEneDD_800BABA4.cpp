@@ -1,5 +1,5 @@
-#include "types.h"
 #include "pso/system/vector.h"
+#include "types.h"
 #include "pso/boss/TBoss5Gryphon.h"
 #include "pso/enemy/TObjEneDD.h"
 #include "pso/boss/TObjBoss2Tunnel.h"
@@ -288,7 +288,7 @@ void calc_wall_slide_destination(void *arg0, void *arg1, f32 dx, f32 dz, f32 dis
     e->count++;
     v.x = *(f32 *)(n->wall + 0x14);
     v.z = -*(f32 *)(n->wall + 0xC);
-    ((TObjBoss2Tunnel *)(&v))->clamp_velocity();
+    normalize_vector_xz((Vec *)(&v));
     if (dx * v.x + dz * v.z >= TObjEneDD__data_805D9E8C) {
         dx = v.x;
         dz = v.z;

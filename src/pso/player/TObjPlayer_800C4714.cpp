@@ -80,7 +80,7 @@ s32 vec3_add_to(void *, void *);
 
 void __dl__7TObjectFPv(void *);
 u16 get_entity_id(void *);
-u8 *construct_collision_body(u8 *arg0, s32 arg1, u32 arg2);
+u8 *__ct__13TUnk_804928CCFP7TObjectP8TObjBase(u8 *arg0, s32 arg1, u32 arg2);
 f32 sin_table_lookup(int);
 f32 cos_table_lookup(int);
 Obj_800C4A5C *TObjPlayer__sub_800C4A5C(Obj_800C4A5C *o, void *owner, Vec_800C4A5C *start, s32 angle);
@@ -268,7 +268,7 @@ void *TObjEneRe2Flower_Bomb::destroy_and_free(s16 arg1) {
     if (this != NULL) {
         *(s32 **)((s8 *)this + 0x18) = lbl_804933D8;
         if (this->m_fc != NULL) { queue_destruction__7TObjectFv((this->m_fc)); this->m_fc = 0; }
-        this->destroy_enemy_object(0);
+        __dt__13TUnk_804928CCFv(this, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(this);
         }
@@ -279,7 +279,7 @@ void *TObjEneRe2Flower_Bomb::destroy_and_free(s16 arg1) {
 Obj_800C4A5C *TObjPlayer__sub_800C4A5C(Obj_800C4A5C *o, void *owner, Vec_800C4A5C *start, s32 angle) {
     f32 s;
     f32 c;
-    construct_collision_body((u8 *)o, (s32)owner, (u32)owner);
+    __ct__13TUnk_804928CCFP7TObjectP8TObjBase((u8 *)o, (s32)owner, (u32)owner);
     o->vptr = lbl_804933D8;
     o->f0 = lbl_805D2A50;
     o->coll->radius = lbl_8043BC10[0].z;

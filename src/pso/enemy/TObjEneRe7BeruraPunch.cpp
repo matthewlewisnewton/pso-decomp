@@ -22,7 +22,7 @@ extern "C" {
 s32 is_player_entity_id();
 void *find_entity_by_id(u16 id);
 s32 apply_hit_if_active__13TUnk_804928CCFPvPf();
-f32 calc_boss4_scale__10TObjPlayerFi();
+f32 random_ratio__9TObjCharaFv();
 u16 get_entity_id(void *);
 
 int TObjEneRe7BeruraPunch::is_patrol_active() { return (*(u32 *)&this->m_b0 >> 2) & 0x1; }
@@ -35,7 +35,7 @@ void TObjEneRe7BeruraPunch__vt20(TObjEneRe7BeruraPunch *ene_re7_berura_punch, s3
         get_entity_id((void *)target);
         if (is_player_entity_id() != 0) {
             entity = (s32)find_entity_by_id(ene_re7_berura_punch->m_b0);
-            if ((entity != 0) && (calc_boss4_scale__10TObjPlayerFi() < 0.1f)) {
+            if ((entity != 0) && (random_ratio__9TObjCharaFv() < 0.1f)) {
                 TObjEneDD__sub_800BA438(entity, (u8 *)target);
             }
         }
@@ -285,8 +285,8 @@ struct EneBVObj_800962F4 : EneBBase_800962F4 {
 
 void TObjEneRe7BeruraPunch__sub_800962F4(void* p);
 void *__dt__21TObjEneRe7BeruraPunchFv(void *arg0, s16 arg1);
-s32 delete_buffer__12TBoss8DragonFis(s32 arg0, s16 arg1);
-u8 *TBoss8Dragon__sub_800BC5EC(u8 *arg0, s32 arg1);
+s32 __dt__17AreaAttackHistoryFv(s32 arg0, s16 arg1);
+u8 *__ct__17AreaAttackHistoryFl(u8 *arg0, s32 arg1);
 void *__dt__13TUnk_80490470Fv(void *arg0, s16 arg1);
 void __dl__7TObjectFPv(void *);
 s32 fill_value_array(s32);
@@ -402,9 +402,9 @@ void *__dt__21TObjEneRe7BeruraPunchFv(void *arg0, s16 arg1) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__21TObjEneRe7BeruraPunch;
         if (*(void **)((s8 *)arg0 + 0xD0) != NULL) { queue_destruction__7TObjectFv(*(void **)((s8 *)arg0 + 0xD0)); ((TObjEneRe7BeruraPunch *)arg0)->m_d0 = 0; }
         if (*(void **)((s8 *)arg0 + 0xD4) != NULL) { queue_destruction__7TObjectFv(*(void **)((s8 *)arg0 + 0xD4)); ((TObjEneRe7BeruraPunch *)arg0)->m_d4 = 0; }
-        if (*(void **)((s8 *)arg0 + 0xD8) != NULL) { delete_buffer__12TBoss8DragonFis((s32)(*(void **)((s8 *)arg0 + 0xD8)), 1); *(s32 *)((s8 *)arg0 + 0xD8) = 0; }
+        if (*(void **)((s8 *)arg0 + 0xD8) != NULL) { __dt__17AreaAttackHistoryFv((s32)(*(void **)((s8 *)arg0 + 0xD8)), 1); *(s32 *)((s8 *)arg0 + 0xD8) = 0; }
         __dt__13TUnk_80490470Fv((s8 *)arg0 + 0xF8, -1);
-        ((TUnk_804928CC *)arg0)->destroy_enemy_object(0);
+        __dt__13TUnk_804928CCFv(arg0, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }
@@ -429,7 +429,7 @@ void TObjEneRe7BeruraPunch::init() {
     var_a = (int)::operator new(0x10);
     var_r0 = var_a;
     if (var_r0 != 0) {
-        var_r0 = (s32)TBoss8Dragon__sub_800BC5EC((u8 *)var_a, 9);
+        var_r0 = (s32)__ct__17AreaAttackHistoryFl((u8 *)var_a, 9);
     }
     *(s32 *)&this->_padD8 = var_r0;
     ((EneBVObj_800962F4*)(arg0 + 0xF8))->m1(0);
@@ -438,9 +438,9 @@ void TObjEneRe7BeruraPunch::init() {
 typedef char RecoveredGlobal_80096750_lbl_8048F930_size[sizeof(RecoveredGlobal_80096750_lbl_8048F930) == 0x58 ? 1 : -1];
 typedef char RecoveredGlobal_80096750___vt__21TObjEneRe7BeruraPunch_size[sizeof(RecoveredGlobal_80096750___vt__21TObjEneRe7BeruraPunch) == 0x60 ? 1 : -1];
 u8 *TObjEneRe7BeruraPunch__ct(u8 *ene_re7_berura_punch, s32 arg1, s32 arg2) {
-    ((TUnk_804928CC *)ene_re7_berura_punch)->init_instance((void *)arg1, (void *)arg2, &TObjEneRe7BeruraPunch__collision_body_templates.value, (void *)2);
+    __ct__13TUnk_804928CCFP7TObjectP8TObjBasePC13CollisionBodyl(ene_re7_berura_punch, (void *)arg1, (void *)arg2, &TObjEneRe7BeruraPunch__collision_body_templates.value, 2);
     *(s32 **)((s8 *)ene_re7_berura_punch + 0x18) = &(*(RecoveredGlobal_80096750___vt__21TObjEneRe7BeruraPunch *)&__vt__21TObjEneRe7BeruraPunch).value;
-    ((TUnk_80490470 *)(ene_re7_berura_punch + 0xF8))->init_vtable_and_field18();
+    __ct__13TUnk_80490470Fv((ene_re7_berura_punch + 0xF8));
     *(s32 *)((s8 *)ene_re7_berura_punch + 0) = (s32) lbl_805D2990;
     ((TObjEneRe7BeruraPunch *)ene_re7_berura_punch)->m_b0 = get_entity_id((void *)arg2);
     ((TObjEneRe7BeruraPunch *)ene_re7_berura_punch)->init();

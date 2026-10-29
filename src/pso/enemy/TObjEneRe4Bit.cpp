@@ -1,8 +1,8 @@
+#include "pso/enemy/TObjEnemy.h"
 struct Obj_800ED4BC;
 
 #include "types.h"
 #include "pso/enemy/TObjEneDD_ST.h"
-#include "pso/enemy/TObjEnemy.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/player/TObjChara.h"
@@ -326,7 +326,7 @@ void render__13TObjEneRe4BitFv(Bit_800ECA40 *self);
 extern "C" void vfunc_6__8TObjBaseFPsl();
 extern "C" void vfunc_103__9TObjEneDDFPUc();
 extern "C" void vfunc_79__9TObjEneDDFv();
-extern "C" void TObjEneDD__vt82();
+extern "C" void vfunc_84__9TObjEneDDFv();
 extern "C" void vfunc_85__9TObjEneDDFv();
 extern "C" void vfunc_86__9TObjEneDDFv();
 extern "C" void vfunc_89__9TObjEneDDFv();
@@ -343,7 +343,7 @@ extern "C" void vfunc_99__9TObjEneDDFv();
 extern "C" void vfunc_100__9TObjEneDDFv();
 extern "C" void vfunc_101__9TObjEneDDFPUc();
 extern "C" void vfunc_102__9TObjEneDDFv();
-extern "C" int TObjEneEpsilon__vt101(void *p);
+extern "C" int vfunc_104__12TObjEneDD_STFf(void *p);
 extern "C" void vfunc_83__12TObjEneDD_STFv();
 extern "C" void vfunc_83__13TObjEneRe4BitFv();
 extern "C" void vfunc_106__13TObjEneRe4BitFv();
@@ -457,12 +457,12 @@ void *__vt__13TObjEneRe4Bit[107] = {
     (void *)&enemy_spawn_zalure_effect__9TObjCharaFv, (void *)&recalc_stats__9TObjCharaFv, (void *)&vfunc_74__9TObjEnemyFl, (void *)&vfunc_75__9TObjCharaFf,
     (void *)&vfunc_76__9TObjCharaFv, (void *)&vfunc_77__9TObjCharaFv, (void *)&vfunc_78__9TObjCharaFl, (void *)&vfunc_79__9TObjEneDDFv,
     (void *)&apply_hit_message_flags__9TObjEnemyFPv, (void *)&apply_set_data__9TObjEnemyFPv, (void *)&clear_lobby_object_state__9TObjEnemyFv, (void *)&vfunc_83__12TObjEneDD_STFv,
-    (void *)&TObjEneDD__vt82, (void *)&vfunc_85__9TObjEneDDFv, (void *)&vfunc_86__9TObjEneDDFv, (void *)&TObjEneRe4Bit__vt85,
+    (void *)&vfunc_84__9TObjEneDDFv, (void *)&vfunc_85__9TObjEneDDFv, (void *)&vfunc_86__9TObjEneDDFv, (void *)&TObjEneRe4Bit__vt85,
     (void *)&vfunc_88__13TObjEneRe4BitFv, (void *)&vfunc_89__9TObjEneDDFv, (void *)&vfunc_90__9TObjEneDDFv, (void *)&vfunc_91__9TObjEneDDFv,
     (void *)&vfunc_92__9TObjEneDDFv, (void *)&vfunc_93__9TObjEneDDFv, (void *)&vfunc_94__9TObjEneDDFv, (void *)&vfunc_95__9TObjEneDDFv,
     (void *)&vfunc_96__9TObjEneDDFv, (void *)&vfunc_97__9TObjEneDDFv, (void *)&vfunc_98__9TObjEneDDFv, (void *)&vfunc_99__9TObjEneDDFv,
     (void *)&vfunc_100__9TObjEneDDFv, (void *)&vfunc_101__9TObjEneDDFPUc, (void *)&vfunc_102__9TObjEneDDFv, (void *)&vfunc_103__9TObjEneDDFPUc,
-    (void *)&TObjEneEpsilon__vt101, (void *)&vfunc_83__13TObjEneRe4BitFv, (void *)&vfunc_106__13TObjEneRe4BitFv,
+    (void *)&vfunc_104__12TObjEneDD_STFf, (void *)&vfunc_83__13TObjEneRe4BitFv, (void *)&vfunc_106__13TObjEneRe4BitFv,
 };
 #define re4_bit_init_params ((u8 *)re4_bit_init_params)
 #define re4_bit_model_node_desc ((u8 *)re4_bit_model_node_desc)
@@ -983,7 +983,7 @@ void free_collision_body_parts(void *);
 void *__dt__13TUnk_80490470Fv(void *arg0, s16 arg1);
 void __dl__7TObjectFPv(void *);
 void *__dt__12TObjEneDD_STFv(void *arg0, s16 arg1);
-s32 init_object__12TObjEneDD_STFv();
+s32 __ct__12TObjEneDD_STFP7TObject();
 s16 get_entity_id(void *);
 
 #pragma push
@@ -1063,7 +1063,7 @@ void run_task__13TObjEneRe4BitFv(u8 *arg0) {
     }
     ((TObjEneRe4Bit *)arg0)->copy_pos();
     ((TObjEneRe4Bit *)(arg0))->vfunc_88();
-    ((TBoss8Dragon *)arg0)->set_player_state_default();
+    ((TObjEnemy *)arg0)->submit_default_cursor_candidate();
 }
 
 void *__dt__13TObjEneRe4BitFv(void *arg0, s16 arg1) {
@@ -1123,9 +1123,9 @@ void init__13TObjEneRe4BitFPv(Bit_800ED7FC *self) {
 extern s32 lbl_805D2AE8;
 
 u8 *TObjEneRe4Bit__ct(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s16 arg5, s16 arg6) {
-    init_object__12TObjEneDD_STFv();
+    __ct__12TObjEneDD_STFP7TObject();
     *(s32 **)((s8 *)arg0 + 0x18) = __vt__13TObjEneRe4Bit;
-    ((TUnk_80490470 *)(arg0 + 0x3DC))->init_vtable_and_field18();
+    __ct__13TUnk_80490470Fv((arg0 + 0x3DC));
     *(s32 *)((s8 *)arg0 + 0) = (s32) lbl_805D2AE8;
     ((TObjEneDD *)arg0)->init_common_from((u8 *)arg2);
     *(s16 *)((s8 *)arg0 + 0x3C4) = get_entity_id((void *)arg2);

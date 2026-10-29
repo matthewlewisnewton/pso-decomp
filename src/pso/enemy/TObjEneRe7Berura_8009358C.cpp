@@ -1,3 +1,4 @@
+#include "pso/unk/TUnk_80494968.h"
 #include "types.h"
 #include "pso/object/obj_band.h"
 #include "pso/system/vector.h"
@@ -174,7 +175,7 @@ extern const f32 TObjEneRe7Berura__data_805D9764;
 extern const f32 lbl_805D9768;
 void TObjEneRe7Berura__sub_800940E8(TObjEneRe7Berura *arg0, s32 arg1);
 
-f32 calc_boss4_scale__10TObjPlayerFi(s32);
+f32 random_ratio__9TObjCharaFv(s32);
 s32 get_field_3D4_shifted__16TObjEneRe7BeruraFPv(void *);
 s32 enemy_validate_retained_target(u8 *arg0);
 s32 play_sound_effect(s32, u32, s16, s32);
@@ -466,7 +467,7 @@ void TObjEneRe7Berura__sub_80093888(u8 *actor, s32 arg1) {
                     *(s16 *)((s8 *)actor + 0xB8) = 2;
                     ((TObjEneRe7Berura *)actor)->init_fields4B8();
                     for (i = 0; i < 2; i++) {
-                        ((TBoss4Type3 *)(((Timers_80093888 *)actor)->t[i]))->reset_timer();
+                        ((TUnk_80494968 *)(((Timers_80093888 *)actor)->t[i]))->clear_segments();
                     }
                 }
                 ((TObjEneRe7Berura *)actor)->play_band_sound();
@@ -480,10 +481,10 @@ void TObjEneRe7Berura__sub_80093888(u8 *actor, s32 arg1) {
                 if (((VObj_18_a5c788 *)((u8 *)(*(u8 **)((s8 *)actor + 0x390))))->m18(actor, lbl_805D974C) != 0) {
                     if (((VObj_18_a5c788 *)((u8 *)(*(u8 **)((s8 *)actor + 0x390))))->m20(actor, lbl_805D974C) > TObjEneRe7Berura__data_805D972C) {
                         if (TObjEneDD::check_v2_mode() != 0) {
-                            if (calc_boss4_scale__10TObjPlayerFi((s32) actor) <= lbl_805D9750) {
+                            if (random_ratio__9TObjCharaFv((s32) actor) <= lbl_805D9750) {
                                 TObjEneDD__sub_800BA378((s32)actor, (*(u8 **)((s8 *)actor + 0x390)));
                             }
-                        } else if (calc_boss4_scale__10TObjPlayerFi((s32) actor) <= lbl_805D9754) {
+                        } else if (random_ratio__9TObjCharaFv((s32) actor) <= lbl_805D9754) {
                             TObjEneDD__sub_800BA378((s32)actor, (*(u8 **)((s8 *)actor + 0x390)));
                         }
                     }

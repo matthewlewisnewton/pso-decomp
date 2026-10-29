@@ -5,9 +5,10 @@
 #include "pso/enemy/TObjEnemy.h"
 
 struct TObjEneDD : public TObjEnemy {
+    TObjEneDD(TObject *parent);
     virtual ~TObjEneDD();
     void set_part_local_pos(void *, s32);
-    void transition_enemy_state(s16);
+    void transition_enemy_state(s32);
     void sub_800BBA0C();
     void invoke_initialization_hook();
     void reset_state_fields();
@@ -15,7 +16,7 @@ struct TObjEneDD : public TObjEnemy {
     void clear_attack_receipts();
     virtual void vfunc_79();
     virtual s32 vfunc_83();
-    virtual void vfunc_84();
+    virtual s32 vfunc_84();
     virtual void vfunc_85();
     virtual u8 vfunc_86();
     virtual void dispatch_action(u32 state, s32 reason) = 0;
@@ -35,7 +36,7 @@ struct TObjEneDD : public TObjEnemy {
     virtual u8 *vfunc_101(u8 *);
     virtual u8 *vfunc_102();
     virtual u8 *vfunc_103(u8 *);
-    virtual void vfunc_104() = 0;
+    virtual void vfunc_104(f32) = 0;
     int get_flag_b4();
     static f32 calc_elapsed_scaled();
     void update_velocity();
@@ -71,7 +72,6 @@ struct TObjEneDD : public TObjEnemy {
     static void emit_enemy_effect(s32 arg0, s32 arg1, u8 *arg2, s32 arg3);
     static void setup(void* p, int a1, int a2);
     static void setup_instance(s32 arg0, s32 arg1, u8 *arg2, s32 arg3);
-    u8 is_alive();
     void transform_relative_position(void* a1);
     s32 is_target_unobstructed(s32 arg1);
     u8 is_valid_target();

@@ -1,3 +1,4 @@
+#include "pso/TParticleCtrl.h"
 #include "types.h"
 #include "pso/player/TObjChara.h"
 #include "pso/player/TObjPlayer.h"
@@ -12,7 +13,6 @@ extern "C" void test_flag_1000__9TObjCharaFv();
 
 #include "pso/enemy/TUnk_80494938.h"
 #include <stddef.h>
-#include "pso/TParticleCtrl.h"
 #include "pso/boss/TBoss4DarkFalz.h"
 #include "pso/enemy/TObjEneLappy.h"
 #include "pso/enemy/TObjEneMe3SinowZoa.h"
@@ -137,7 +137,7 @@ s32 TObjEneGibbles__sub_802D7BE0(s32 arg0);
 extern const f32 TObjEneGibbles__data_805DE7F8;
 extern const f32 TObjEneGibbles__data_805DE830;
 extern const f32 lbl_805DE874;
-f32 calc_boss4_scale__10TObjPlayerFi(void *, int);
+f32 random_ratio__9TObjCharaFv(void *, int);
 s32 enemy_move_toward(void *, s32, void *, int, f32);
 s32 select_enemy_destination(void *, Vec_802DA0BC *, int);
 s32 copy_position_if_valid__10TObjPlayerFii(s32 arg0, s32 arg1);
@@ -815,11 +815,11 @@ s32 TObjEneGibbles::spawn_ground_impact_effects(void *pos, f32 farg0) {
         p = (u8 *)spawn_particle_effect((void *)(hit[1] + 0x38), 0x49);
         if (p != NULL) {
             attach_particle_model(p, TParticleCtrl::get_particle_model(2), TParticleCtrl::get_instance(), 0, 1, TObjEneGibbles__data_805DE7EC);
-            ((TObjPlayer *)p)->set_position_xy(farg0, TObjEneGibbles__data_805DE7EC);
+            ((TParticleCtrl *)p)->fn_800822D4(farg0, TObjEneGibbles__data_805DE7EC);
         }
         p = (u8 *)spawn_particle_effect((void *)(hit[1] + 0x38), 0xA4);
         if (p != NULL) {
-            ((TObjPlayer *)p)->set_position_xy(farg0, lbl_805DE7F0);
+            ((TParticleCtrl *)p)->fn_800822D4(farg0, lbl_805DE7F0);
         }
         return 1;
     }
@@ -1102,7 +1102,7 @@ void TObjEneGibbles::update_action_state() {
         temp_r4 = (unsigned char *) (this->bodies);
         *(s32 *)((s8 *)temp_r4 + 0x18) = (s32) (*(s32 *)((s8 *)temp_r4 + 0x18) & 0xFBFFFFFF);
         this->referenceHp = (s16) this->hp;
-        if (calc_boss4_scale__10TObjPlayerFi((void *)arg0, (int)temp_r4) < *(f32 *)&this->unk_398) {
+        if (random_ratio__9TObjCharaFv((void *)arg0, (int)temp_r4) < *(f32 *)&this->unk_398) {
             this->mode = 6;
             this->phase = 0;
             this->m_b8 = 4;
@@ -1805,7 +1805,7 @@ void TObjEneGibbles::sub_802DA0BC() {
             this->m_374 |= 0x10;
         } else if (*(f32 *)((s8 *)((u8 *)this) + 0x3A0) >= lbl_805DE864) {
             *(f32 *)((s8 *)((u8 *)this) + 0x3A0) = TObjEneGibbles__data_805DE7E4;
-            if (((f32 (*)(void *))calc_boss4_scale__10TObjPlayerFi)(this) < this->m_394 && ok != 0) {
+            if (((f32 (*)(void *))random_ratio__9TObjCharaFv)(this) < this->m_394 && ok != 0) {
                 this->m_374 |= 0x10;
             } else {
                 this->m_374 &= ~0x10;

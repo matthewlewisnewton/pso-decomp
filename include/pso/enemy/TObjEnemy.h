@@ -4,6 +4,8 @@
 #include "pso/player/TObjChara.h"
 struct TObjEnemy : public TObjChara {
     TObjEnemy(TObject *parent);
+    void refresh_and_send_entity_flags();
+    int submit_default_cursor_candidate();
     virtual ~TObjEnemy();
     void send_6x0A_enemy_state(void *);
     s32 bind_enemy_combat_stats(u8 *, u8 *, u8 *);

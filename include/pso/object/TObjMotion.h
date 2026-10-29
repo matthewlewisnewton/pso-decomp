@@ -14,7 +14,7 @@ public:
     virtual void reset_motion_fields();
     virtual void *get_center();
     virtual s32 update_object_view_visibility(f32, f32);
-    virtual s16 classify_actor_view_detail(f32, f32, f32);
+    virtual s32 classify_actor_view_detail(f32, f32, f32);
     virtual const char *get_name();
     void obj_clearFlags30(u32);
     s16 get_room();
@@ -27,6 +27,7 @@ public:
     void set_entity_id(u16 id);
     int set_position_from(void *pos);
     s32 get_texlist();
+    s32 is_alive();
     u16 entity_id;  // the object table id, 0xFFFF while unregistered
     s16 visibility; // update_object_view_visibility: 0 culled, 1 visible, 2 near
     s32 m_20;
@@ -95,6 +96,8 @@ public:
     void clear_collision_bodies();
     u32 check_actor_body_contact(void *, f32);
     void mark_enemy_body_contacts();
+    void update_enemy_collision_flags();
+    void check_object_collisions();
     void refresh_collision_body_centers();
     // Gives it an entity id if it has none and enters it in the id-sorted
     // entity table (unregister_object_by_id takes it out).

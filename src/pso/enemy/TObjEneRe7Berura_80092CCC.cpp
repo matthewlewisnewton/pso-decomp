@@ -1,9 +1,10 @@
+#include "pso/enemy/TObjEnemy.h"
+#include "pso/player/TObjPlayer_800D8FDC.h"
+#include "pso/system/vector.h"
 #include "types.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/unk/text_803D96A8.h"
-#include "pso/system/vector.h"
-#include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneDD_ST.h"
 #include "pso/enemy/TObjEneRe7Berura.h"
 #include "pso/TParticleCtrl.h"
@@ -252,7 +253,7 @@ struct Berura_80092CCC {
 };
 
 extern "C" {
-s32 transition_enemy_state__9TObjEneDDFs(void *, s32);
+s32 transition_enemy_state__9TObjEneDDFl(void *, s32);
 s32 copy_target_state__14TObjEnePanarmsFPv(void *, int);
 s32 play_sound_effect(s32, void *, s32, s32);
 s32 advance_animation_playback(void *);
@@ -489,12 +490,12 @@ void TObjEneRe7Berura::update_death_state(s32 mode) {
         this->vfunc_96();
         self->f3C0 &= ~7;
         advance_animation_playback(self);
-        ((TBoss8Dragon *)self)->refresh_and_send_entity_flags();
+        ((TObjEnemy *)self)->refresh_and_send_entity_flags();
         TObjEneRe7BeruraPunch__sub_800962F4((void *)self->f3F8);
         self->f4D0 = self->f3CC;
         self->f4C4 = 0;
         self->f4C0 = 0;
-        ((TObjPlayer *)((u8 *)self + 0x2FC))->request_two_effects();
+        fn_800D911C((Vec *)((u8 *)self + 0x2FC));
         TObjPlayer__sub_800A04F0((u8 *)self + 0x3D8);
         self->f3C0 |= 2;
         play_sound_effect(copy_target_state__14TObjEnePanarmsFPv(self, 0x4003AD25), (u8 *)self + 0x38, 0, 0);
@@ -535,13 +536,13 @@ void TObjEneRe7Berura__sub_80093470(Berura_80093470 *obj, s32 mode) {
         break;
     case 3:
         if (((TObjEneDD *)self)->get_flag_b4() != 0) {
-            transition_enemy_state__9TObjEneDDFs(self, self->field378);
+            transition_enemy_state__9TObjEneDDFl(self, self->field378);
         }
         break;
     case 0:
         advance_animation_playback(self);
         VecCopy((Vec *)&v, (const Vec *)&self->vel);
-        speed = ((TObjBoss2Tunnel *)(&v))->clamp_velocity();
+        speed = normalize_vector_xz((Vec *)(&v));
         ((TObjEneDD *)self)->move_clamped_on_ground(v.x, v.z, speed);
         self->vel.x *= TObjEneRe7Berura__data_805D9738;
         self->vel.z *= TObjEneRe7Berura__data_805D9738;

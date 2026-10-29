@@ -403,7 +403,7 @@ void queue_destruction__7TObjectFv(void *arg0);
 s32 __dt__12TPlyCharDataFv(s32 arg0, s16 arg1);
 void * __ct__12TPlyCharDataFv(void *self);
 u8 * csnVector(s32, s32, s32);
-s32 is_alive__9TObjEneDDFv(void *);
+s32 is_alive__8TObjBaseFv(void *);
 s32 find_active_entity_by_id(void *);
 f32 horizontal_distance_squared(void *, void *);
 void *mem_alloc(u32 size);
@@ -2251,7 +2251,7 @@ s32 find_parts_in_range__10TNpcPlayerFPvPvif(View_8014F424 *view, void *pos, s32
         view->c[j].dist = TNpcPlayer__data_805DB1F0;
     }
     actor = find_entity_by_id(id);
-    if (is_alive__9TObjEneDDFv(actor) != 0) {
+    if (is_alive__8TObjBaseFv(actor) != 0) {
         range = range * range;
         for (i = 0; i < actor->ncols; i++) {
             if (actor->cols == 0) {

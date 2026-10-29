@@ -267,7 +267,7 @@ s32 update_if_active__15TObjEneMe1GiGueFl(void *, s32, s32);
 s32 sub_8004292C__15TObjEnemyCustomFv();
 s32 advance_animation_playback(void *);
 s32 check_enemy_body_collisions(void *);
-void check_object_collisions__10TObjPlayerFv(void *);
+void check_object_collisions__14TObjCollidableFv(void *);
 s32 play_sound_effect(int, void *, int, int);
 void rotate_vector_by_matrix(int, void *, void *);
 
@@ -431,7 +431,7 @@ void TObjPlayer__sub_800DCD04(void *, void *, int, void *, s32, int);
 void *find_entity_by_id(u16 id);
 u32 __nw__7TObjectFUl(u32);
 void TObjPlayer__sub_800DA414(Obj_800DA414 *arg0, s32 arg1);
-f32 calc_boss4_scale__10TObjPlayerFi(void *);
+f32 random_ratio__9TObjCharaFv(void *);
 void enemy_turn_toward_dest(void *, s32);
 f32 sin_table_lookup(s32);
 f32 cos_table_lookup(s32);
@@ -495,8 +495,8 @@ void update_circle_move__10TObjPlayerFPvPvf(Ene_800DA508 *actor, Vec_800DA508 *c
     s32 ang;
     f32 r;
     if (xz_distance_squared((Vec *)&actor->pos, (Vec *)&actor->dest) < 400.0f) {
-        ang = (s32)(182.04445f * (360.0f * calc_boss4_scale__10TObjPlayerFi(actor)));
-        r = 0.4f * (radius * (1.0f + calc_boss4_scale__10TObjPlayerFi(actor)));
+        ang = (s32)(182.04445f * (360.0f * random_ratio__9TObjCharaFv(actor)));
+        r = 0.4f * (radius * (1.0f + random_ratio__9TObjCharaFv(actor)));
         actor->dest.x = r * cos_table_lookup(ang) + center->x;
         actor->dest.z = r * sin_table_lookup(ang) + center->z;
     }
@@ -792,7 +792,7 @@ void TObjPlayer__sub_800DAB98(u8 *arg0) {
         if (TObjPlayer__sub_800DC478(arg0, 8, 42.0f) != 0) {
             play_sound_effect(0x4003AD23, arg0 + 0x38, 0, 0);
         }
-        check_object_collisions__10TObjPlayerFv(arg0);
+        check_object_collisions__14TObjCollidableFv(arg0);
         apply_actor_gravity(arg0, 0, 0.0f);
         break;
     case -1:
@@ -1009,7 +1009,7 @@ void TObjEneNanoDrago::update_circling_state() {
             e->t = 0.0f;
             e->state = 2;
         }
-        check_object_collisions__10TObjPlayerFv(arg0);
+        check_object_collisions__14TObjCollidableFv(arg0);
         check_enemy_body_collisions(arg0);
         break;
     case 2:
@@ -1028,7 +1028,7 @@ void TObjEneNanoDrago::update_circling_state() {
                 ((void (*)(void *, s32))update_if_active__15TObjEneMe1GiGueFl)(arg0, 0);
             }
         }
-        check_object_collisions__10TObjPlayerFv(arg0);
+        check_object_collisions__14TObjCollidableFv(arg0);
         check_enemy_body_collisions(arg0);
         break;
     }
@@ -1077,12 +1077,12 @@ void TObjEneNanoDrago::sub_800DB970() {
             (this->state) = 2;
             this->m_384 = 0x5A;
         }
-        ((s32 (*)(void *))check_object_collisions__10TObjPlayerFv)(this);
+        ((s32 (*)(void *))check_object_collisions__14TObjCollidableFv)(this);
         apply_actor_gravity(this, 0, 0.0f);
         break;
     case 2:
         advance_animation_playback(this);
-        ((s32 (*)(void *))check_object_collisions__10TObjPlayerFv)(this);
+        ((s32 (*)(void *))check_object_collisions__14TObjCollidableFv)(this);
         this->m_384 = this->m_384 - 1;
         if (this->m_384 <= 0) {
             (this->state) = 0;

@@ -437,7 +437,7 @@ struct Vec_80059C20 { f32 x, y, z; };
 
 struct Dmg_8005B218 { s32 type; f32 val; };
 
-f32 calc_boss4_scale__10TObjPlayerFi(void *);
+f32 random_ratio__9TObjCharaFv(void *);
 void * get_player_data__10TObjPlayerFi(s32 i);
 u16 get_entity_id(void *);
 s32 is_split_screen();
@@ -740,7 +740,7 @@ void TBoss4Type2::md_stop_update() {
 void TBoss4Type2::md_stop_idle() {
     void *boss4_type2 = (void *)this;
     if ((s32) *(s32 *)((s8 *)boss4_type2 + 0x398) == 0) {
-        if (((f32 (*)(void))calc_boss4_scale__10TObjPlayerFi)() < 0.75f) {
+        if (((f32 (*)(void))random_ratio__9TObjCharaFv)() < 0.75f) {
             ((TBoss4Type2 *)boss4_type2)->choose_next_action();
             return;
         }
@@ -1226,11 +1226,11 @@ void TBoss4Type2::sub_80056998() {
     s32 temp_r3;
     s32 var_r4;
     s32 var_r5;
-    if (((s32) *(s32 *)((s8 *)((u8 *)this) + 0x3E0) < 3) && (calc_boss4_scale__10TObjPlayerFi(this) < 0.1f)) {
+    if (((s32) *(s32 *)((s8 *)((u8 *)this) + 0x3E0) < 3) && (random_ratio__9TObjCharaFv(this) < 0.1f)) {
         sub_80056F90(4, (s32)((int)((void *) (sub_80057224()))));
         return;
     }
-    if (calc_boss4_scale__10TObjPlayerFi(this) < 0.1f) {
+    if (random_ratio__9TObjCharaFv(this) < 0.1f) {
         temp_r3 = *(s32 *)((s8 *)((u8 *)this) + 0x424);
         var_r5 = temp_r3 + 1;
         var_r4 = temp_r3;
@@ -1293,7 +1293,7 @@ void TBoss4Type2__sub_80056B3C(void *actor, s32 lo, s32 hi) {
     }
     step = 1.0f / (f32)(hi - lo + 1);
     acc = step;
-    scale = calc_boss4_scale__10TObjPlayerFi(actor);
+    scale = random_ratio__9TObjCharaFv(actor);
     for (i = lo; i < hi; i++) {
         if (scale < acc) {
             break;
@@ -1341,9 +1341,9 @@ void find_target_pos__11TBoss4Type2FPvPv(O_80056C30 *self, Vec_80056C30 *out) {
         VecCopy((Vec *)out, (const Vec *)&res);
         return;
     }
-    s = 200.625f * calc_boss4_scale__10TObjPlayerFi(self);
+    s = 200.625f * random_ratio__9TObjCharaFv(self);
     a1 = (s32)((10430.38043493439) * atan2_float(-self->pos.x, -self->pos.z));
-    b = (s32)(49152.0f * calc_boss4_scale__10TObjPlayerFi(self));
+    b = (s32)(49152.0f * random_ratio__9TObjCharaFv(self));
     ang = b + a1;
     ang -= 0x6000;
     out->x = s * sin_table_lookup(ang);
@@ -1480,7 +1480,7 @@ void TBoss4Type2__sub_80057128(void *arg0) {
 #pragma pop
 
 s32 TBoss4Type2::sub_80057224() {
-    return (s32)(49152.0f * calc_boss4_scale__10TObjPlayerFi(((Obj_80057224 *)this))) + 0x2000 + ((Obj_80057224 *)this)->f3a0;
+    return (s32)(49152.0f * random_ratio__9TObjCharaFv(((Obj_80057224 *)this))) + 0x2000 + ((Obj_80057224 *)this)->f3a0;
 }
 
 void TUnk_80486924::draw_hanger() {

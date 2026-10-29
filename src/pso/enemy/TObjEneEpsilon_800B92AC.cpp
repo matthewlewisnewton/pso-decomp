@@ -12,7 +12,7 @@ struct O_800B98C0;
 extern "C" {
 void enemy_clear_target__12TObjEneDD_STFUs(O_800B98C0 *self, u16 _w1);
 s32 enemy_tick_target_acquisition__12TObjEneDD_STFPllf(u8 *arg0, s32 *counter, s32 limit, f32 scale);
-void spawn_part__14TObjEneEpsilonFi(s32 arg0);
+void select_nearest_target__12TObjEneDD_STFf(s32 arg0);
 u16 enemy_find_nearest_player_in_range(void *, f32);
 #define enemy_clear_target__12TObjEneDD_STFUs ((s32 (*)(void *))enemy_clear_target__12TObjEneDD_STFUs)
 #define enemy_tick_target_acquisition__12TObjEneDD_STFPllf ((int (*)(void *, void *, void *))enemy_tick_target_acquisition__12TObjEneDD_STFPllf)
@@ -280,15 +280,10 @@ s32 TObjEneDD_ST::enemy_tick_target_acquisition(s32 *counter, s32 limit, f32 sca
 
 #undef enemy_clear_target__12TObjEneDD_STFUs
 
-#define enemy_bind_or_clear_target ((s32 (*)(s32, s32))enemy_bind_or_clear_target)
-#define enemy_find_nearest_player_in_range ((s32 (*)())enemy_find_nearest_player_in_range)
-void spawn_part__14TObjEneEpsilonFi(s32 arg0) {
-    s8 *tmp = (s8 *)enemy_find_nearest_player_in_range();
-    enemy_bind_or_clear_target(arg0, (s32)tmp);
+void TObjEneDD_ST::select_nearest_target(f32 distance) {
+    u16 target = enemy_find_nearest_player_in_range(this, distance);
+    enemy_bind_or_clear_target(this, target);
 }
-
-#undef enemy_bind_or_clear_target
-#undef enemy_find_nearest_player_in_range
 
 struct Base_800B97B4 { char pad[0x18]; };
 struct VObj_800B97B4 : Base_800B97B4 {
@@ -320,7 +315,7 @@ void TObjEneDD_ST::select_and_apply_target(f32 farg0) {
 
 }
 
-#define spawn_part__14TObjEneEpsilonFi ((int (*)(void *))spawn_part__14TObjEneEpsilonFi)
+
 
 struct O_800B98C0 { u8 pad[0x38c]; u16 f38c; u8 pad2[2]; s32 f390; };
 
@@ -343,7 +338,7 @@ s32 enemy_bind_or_clear_target(void *self, u16 x) {
     return 0;
 }
 
-int TObjEneEpsilon__vt101(void* p) { return spawn_part__14TObjEneEpsilonFi(p); }
+void TObjEneDD_ST::vfunc_104(f32 distance) { select_nearest_target(distance); }
 
 void TObjEneDD_ST::enemy_init_acquire_period(s32 arg1) {
     *(s32 *)((s8 *)((u8 *)this) + 0x3B0) = (s32) (this->entity_id % arg1);

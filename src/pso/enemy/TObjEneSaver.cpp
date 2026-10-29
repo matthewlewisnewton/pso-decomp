@@ -1,5 +1,5 @@
 #include "types.h"
-#include "pso/enemy/TObjEneSaver.h"
+#include "pso/unk/TUnk_80494968.h"
 
 extern "C" {
 
@@ -8,13 +8,13 @@ void *fn_800D79A8(void *, void *, void *, void *);
 
 extern void *tl_05;
 
-void *TObjEneSaver::create(void *arg0, void *arg1) {
+TUnk_80494968 *TUnk_80494968::create(u32 arg0, u32 arg1) {
     void *o;
     o = __nw__7TObjectFUl(0x128);
     if (o != NULL) {
-        o = fn_800D79A8(o, tl_05, arg0, arg1);
+        o = fn_800D79A8(o, tl_05, (void *)arg0, (void *)arg1);
     }
-    return o;
+    return (TUnk_80494968 *)o;
 }
 
 }

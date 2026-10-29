@@ -1,3 +1,4 @@
+#include "pso/enemy/TObjEnemy.h"
 #include "types.h"
 #include "pso/enemy/TObjEneDD.h"
 #include "pso/enemy/TObjEneDD_ST.h"
@@ -6,7 +7,6 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/player/TObjChara.h"
 #include "pso/unk/TObjEneEpsilonBody.h"
-#include "pso/enemy/TObjEnemy.h"
 #include "pso/object/TObjMotion.h"
 extern "C" void has_flag_0x800__9TObjCharaFv();
 extern "C" void test_flag30_512__9TObjCharaFv();
@@ -1120,7 +1120,7 @@ extern const f64 lbl_80479C88;
 extern "C" void vfunc_6__8TObjBaseFPsl();
 extern "C" void vfunc_103__9TObjEneDDFPUc();
 extern "C" void vfunc_79__9TObjEneDDFv();
-extern "C" void TObjEneDD__vt82();
+extern "C" void vfunc_84__9TObjEneDDFv();
 extern "C" void vfunc_85__9TObjEneDDFv();
 extern "C" void vfunc_86__9TObjEneDDFv();
 extern "C" void vfunc_90__9TObjEneDDFv();
@@ -1138,7 +1138,7 @@ extern "C" void vfunc_101__9TObjEneDDFPUc();
 extern "C" void vfunc_102__9TObjEneDDFv();
 extern "C" void receive_physical_attack__19TObjEneEpsilonGuardFPvf();
 extern "C" void receive_weapon_special_attack__19TObjEneEpsilonGuardFPvPv();
-extern "C" int TObjEneEpsilon__vt101(void *p);
+extern "C" int vfunc_104__12TObjEneDD_STFf(void *p);
 extern "C" void is_target_in_attack_range__14TObjEneEpsilonFv();
 extern "C" void update_movement_status__14TObjEneEpsilonFv();
 extern "C" void vfunc_83__12TObjEneDD_STFv();
@@ -1242,12 +1242,12 @@ void *__vt__19TObjEneEpsilonGuard[105] = {
     (void *)&enemy_spawn_zalure_effect__9TObjCharaFv, (void *)&recalc_stats__9TObjCharaFv, (void *)&vfunc_74__9TObjEnemyFl, (void *)&vfunc_75__9TObjCharaFf,
     (void *)&vfunc_76__9TObjCharaFv, (void *)&vfunc_77__9TObjCharaFv, (void *)&vfunc_78__9TObjCharaFl, (void *)&vfunc_79__9TObjEneDDFv,
     (void *)&apply_hit_message_flags__9TObjEnemyFPv, (void *)&apply_set_data__9TObjEnemyFPv, (void *)&clear_lobby_object_state__9TObjEnemyFv, (void *)&vfunc_83__12TObjEneDD_STFv,
-    (void *)&TObjEneDD__vt82, (void *)&vfunc_85__9TObjEneDDFv, (void *)&vfunc_86__9TObjEneDDFv, (void *)&TObjEneEpsilonGuard__vt85,
+    (void *)&vfunc_84__9TObjEneDDFv, (void *)&vfunc_85__9TObjEneDDFv, (void *)&vfunc_86__9TObjEneDDFv, (void *)&TObjEneEpsilonGuard__vt85,
     (void *)&vfunc_88__19TObjEneEpsilonGuardFv, (void *)&vfunc_89__19TObjEneEpsilonGuardFv, (void *)&vfunc_90__9TObjEneDDFv, (void *)&vfunc_91__9TObjEneDDFv,
     (void *)&vfunc_92__9TObjEneDDFv, (void *)&vfunc_93__9TObjEneDDFv, (void *)&vfunc_94__9TObjEneDDFv, (void *)&vfunc_95__9TObjEneDDFv,
     (void *)&vfunc_96__9TObjEneDDFv, (void *)&vfunc_97__9TObjEneDDFv, (void *)&vfunc_98__9TObjEneDDFv, (void *)&vfunc_99__9TObjEneDDFv,
     (void *)&vfunc_100__9TObjEneDDFv, (void *)&vfunc_101__9TObjEneDDFPUc, (void *)&vfunc_102__9TObjEneDDFv, (void *)&vfunc_103__9TObjEneDDFPUc,
-    (void *)&TObjEneEpsilon__vt101,
+    (void *)&vfunc_104__12TObjEneDD_STFf,
 };
 
 s32 TObjEneEpsilonGuard::calc_angle_to_target() {
@@ -1307,7 +1307,7 @@ void run_task__19TObjEneEpsilonGuardFv(u8 *arg0) {
         if (!(*(s32 *)((s8 *)arg0 + 0x46C) & 0x10)) {
             ((TObjEneEpsilonGuard *)(arg0))->vfunc_88();
             ((TObjEneEpsilonGuard *)arg0)->update_center_position();
-            ((TBoss8Dragon *)arg0)->set_player_state_default();
+            ((TObjEnemy *)arg0)->submit_default_cursor_candidate();
             ((TObjEneEpsilonGuard *)(arg0))->vfunc_100();
             return;
         }

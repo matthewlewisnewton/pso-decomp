@@ -83,7 +83,7 @@ s32 subtract_vector(void *, void *);
 extern void *player_render_texture_buffer;
 void release_texture_list(void *);
 void mem_free(void *);
-s32 is_alive__9TObjEneDDFv(s32);
+s32 is_alive__8TObjBaseFv(s32);
 extern u8 *camera_ctrl_instance;
 void *spawn_continuous_particle_effect_with_flags(void *parent, s32 idx, s32 flags);
 
@@ -102,7 +102,7 @@ void TObjEneRe2Flower_EffCurse3::run_task() {
         queue_destruction__7TObjectFv((o));
         return;
     }
-    if (is_alive__9TObjEneDDFv((s32)o->target) != 0) {
+    if (is_alive__8TObjBaseFv((s32)o->target) != 0) {
         VecCopy((Vec *)&a, (const Vec *)&o->target->pos);
         a.y += (14.0f);
         VecCopy((Vec *)&b, (const Vec *)(camera_ctrl_instance + 0x178));
@@ -124,7 +124,7 @@ TObjEneRe2Flower_EffCurse3::TObjEneRe2Flower_EffCurse3(s32 arg1, s32 arg2) : TOb
     *(s32 *)&this->m_name = (s32) lbl_805D2A58;
     *(s32 *)((s8 *)this + 0x1C) = 0;
     (this->m_20) = arg2;
-    if (is_alive__9TObjEneDDFv((this->m_20)) != 0) {
+    if (is_alive__8TObjBaseFv((this->m_20)) != 0) {
         *(s32 *)&this->unk_24 = (s32)spawn_continuous_particle_effect_with_flags((void *)((this->m_20) + 0x38), 0xDE, 0x40);
     }
 }

@@ -1,10 +1,10 @@
+#include "pso/system/vector.h"
 #include "types.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/object/TObject_8001A448.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/unk/text_803D853C.h"
 #include "pso/unk/text_803E2D70.h"
-#include "pso/system/vector.h"
 #include "pso/TBoss7Tentacle.h"
 #include "pso/boss/TBoss7PhotonBullet.h"
 #include "pso/boss/TBoss7TentacleNeedle.h"
@@ -444,7 +444,7 @@ void run_task__14TBoss7TentacleFv(u8 *boss7_tentacle) {
         pop_matrix();
         VecCopy((Vec *)&v, (const Vec *)(boss7_tentacle + 0x14C));
         subtract_vector(&v, boss7_tentacle + 0x40);
-        len = ((TObjBoss2Tunnel *)(&v))->clamp_velocity();
+        len = normalize_vector_xz((Vec *)(&v));
         *(s32 *)((s8 *)boss7_tentacle + 0x13C) = (s32)(lbl_804740D8[0] * atan2_float(v.x, v.z)) + 0x8000;
         VecCopy((Vec *)&p, (const Vec *)(boss7_tentacle + 0x14C));
         switch (*(s32 *)((s8 *)boss7_tentacle + 0x38)) {

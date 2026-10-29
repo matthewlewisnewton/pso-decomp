@@ -1,3 +1,5 @@
+#include "pso/enemy/TObjEnemy.h"
+#include "pso/player/TObjPlayer_800D8FDC.h"
 #include "types.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
@@ -194,7 +196,7 @@ void fn_800C2AC4(u8 *arg0, int arg1) {
       (((TObjEneDD *)(arg0))->vfunc_96());
       ((TObjEneRe2Flower *)arg0)->clear_child_flags();
       ((RecoveredFields_800C2AC4_arg0 *) arg0)->field_3C4 = (int) (((RecoveredFields_800C2AC4_arg0 *) arg0)->field_3C4 & 0xFFFFFFF7);
-      ((TBoss8Dragon *)arg0)->refresh_and_send_entity_flags();
+      ((TObjEnemy *)arg0)->refresh_and_send_entity_flags();
       TBoss8Dragon__sub_800BB7D4((void *) arg0, 0xF2);
       ((RecoveredFields_800C2AC4_arg0 *) arg0)->field_410 = 0;
       ((RecoveredFields_800C2AC4_arg0 *) arg0)->field_424 = (f32) lbl_805D9FAC;
@@ -224,7 +226,7 @@ void fn_800C2AC4(u8 *arg0, int arg1) {
         if (((TObjEneRe2Flower *)arg0)->get_flag_11() != 0)
         {
           TObjPlayer::apply_effect_variant_a((s32)&stack.sp8, 0x32);
-          ((TObjPlayer *)(&stack.sp8))->request_two_effects();
+          fn_800D911C((Vec *)(&stack.sp8));
           ((TObjEneMe3SinowZoa *)(arg0 + 0x3F4))->init_death_params();
         }
         else

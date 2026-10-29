@@ -13,6 +13,7 @@ struct DirectAttackPayload {
 class TObjChara : public TObjMotion {
 public:
     TObjChara(TObject *parent);
+    f32 random_ratio();
     virtual ~TObjChara();
     u8 obj_isState3_324();
     s32 obj_isState2_324();
@@ -231,8 +232,10 @@ public:
     f32 m_2fc;
     f32 m_300;
     f32 m_304;
-    u8 unk_308[0x2];
-    s16 m_30a;
+    union {
+        u8 unk_308[0x4];
+        f32 x_speed;
+    };
     f32 y_speed;
     f32 m_310;
     s32 m_314;

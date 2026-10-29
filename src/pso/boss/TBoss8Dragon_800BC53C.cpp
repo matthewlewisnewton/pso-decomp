@@ -4,12 +4,8 @@
 #include "pso/boss/TBoss8Dragon.h"
 #include "pso/object/TObjGrassWeb.h"
 
-struct AreaAttackHistory {
-    void** entries;
-    void* empty;
-    s32 count;
-    s32 capacity;
-};
+#include "pso/enemy/AttackTargetHistory.h"
+
 
 extern "C" {
 void *mem_alloc(u32 size);
@@ -24,44 +20,27 @@ s32 attack_target_history_add(s32 object, s32 target) {
     return 0;
 }
 
-s32 delete_buffer__12TBoss8DragonFis(s32 arg0, s16 arg1) {
-    if (arg0 != 0) {
-        free_buffer__12TBoss8DragonFPvs((u32 *)arg0, (s16)(0));
-        if (arg1 > 0) {
-            ::operator delete((u32 *)arg0);
-        }
-    }
-    return arg0;
-}
+AreaAttackHistory::~AreaAttackHistory() {}
 
-u8 *TBoss8Dragon__sub_800BC5EC(u8 *boss8_dragon, s32 arg1) {
-    ((TBoss8Dragon *)boss8_dragon)->init_buffer(arg1, 0);
-    return boss8_dragon;
-}
+AreaAttackHistory::AreaAttackHistory(s32 capacity) : PointerBuffer(capacity, NULL) {}
 
-void *TBoss8Dragon::init_buffer(s32 arg1, s32 arg2) {
-    if (arg1 > 0) {
-        this->m_0 = (s32)mem_alloc(arg1 * 4);
+PointerBuffer::PointerBuffer(s32 capacity, void *empty) {
+    if (capacity > 0) {
+        entries = (void **)mem_alloc(capacity * sizeof(void *));
     } else {
-        this->m_0 = 0;
+        entries = NULL;
     }
-    *(s32 *)&this->unk_4 = arg2;
-    *(s32 *)&this->m_8 = 0;
-    *(s32 *)&this->unk_C = arg1;
+    this->empty = empty;
+    count = 0;
+    this->capacity = capacity;
     fill_value_array(this);
-    return this;
 }
-u32 *free_buffer__12TBoss8DragonFPvs(u32 *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        if ((u32) *arg0 != 0U) {
-            mem_free((void *)(*arg0));
-            *arg0 = 0U;
-        }
-        if (arg1 > 0) {
-            ::operator delete(arg0);
-        }
+
+PointerBuffer::~PointerBuffer() {
+    if (entries != NULL) {
+        mem_free(entries);
+        entries = NULL;
     }
-    return arg0;
 }
 }
 

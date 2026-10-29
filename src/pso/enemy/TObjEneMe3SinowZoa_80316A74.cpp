@@ -192,7 +192,7 @@ extern const f32 TObjEneMe3SinowZoa__data_805DF30C;
 extern const f32 TObjEneMe3SinowZoa__data_805DF310;
 extern const f32 TObjEneMe3SinowZoa__data_805DF314;
 void TObjEneMe3SinowZoa__sub_80316C3C(Obj_80316C3C *arg0, s32 arg1);
-f32 calc_boss4_scale__10TObjPlayerFi(void *);
+f32 random_ratio__9TObjCharaFv(void *);
 f32 receive_direct_attack__9TObjCharaFPv19DirectAttackPayloadPvll(void *, int, int);
 f32 receive_damage_and_transition__18TObjEneMe3SinowZoaFPviii(u8 *arg0, s32 arg1, Pair_80316A74 arg2, s32 arg3);
 u16 get_entity_id(int);
@@ -224,7 +224,7 @@ inline s32 seek_80316C3C(Obj_80316C3C *arg0, Vec_80316C3C *diff) {
 f32 receive_damage_and_transition__18TObjEneMe3SinowZoaFPviii(u8 *actor, s32 arg1, Pair_80316A74 arg2, s32 arg3) {
     f32 temp_f31;
     temp_f31 = ((f32 (*)(void *, s32, Pair_80316A74, s32, s32, s32))receive_direct_attack__9TObjCharaFPv19DirectAttackPayloadPvll)(actor, arg1, arg2, arg3, -1, -1);
-    if (*(s32 *)((s8 *)actor + 0x3C0) == 1 && calc_boss4_scale__10TObjPlayerFi(actor) <= *(f32 *)((s8 *)actor + 0x3F0)) {
+    if (*(s32 *)((s8 *)actor + 0x3C0) == 1 && random_ratio__9TObjCharaFv(actor) <= *(f32 *)((s8 *)actor + 0x3F0)) {
         ((TObjEneDD *)actor)->transition_enemy_state(0x12);
     } else if (*(s16 *)((s8 *)actor + 0x326) == 2) {
         ((TObjEneDD *)actor)->transition_enemy_state(6);

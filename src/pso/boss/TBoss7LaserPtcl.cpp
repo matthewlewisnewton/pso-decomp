@@ -1,9 +1,9 @@
+#include "pso/system/vector.h"
 #include "types.h"
 #include "pso/unk/text_8035A860.h"
 #include "pso/boss/TBoss7LaserPtcl.h"
 #include "pso/boss/TObjBoss2Tunnel.h"
 #include "pso/object/TObject_80019A50.h"
-#include "pso/system/vector.h"
 #include "pso/boss/TBoss7PhotonBullet.h"
 #include "pso/boss/TUnk_804F1C88.h"
 #include <stddef.h>
@@ -59,7 +59,7 @@ void TBoss7LaserPtcl::init_laser() {
     u8 *arg0 = (u8 *)this;
     this->destroy_particles();
     subtract_vector(arg0 + 0x2C, arg0 + 0x20);
-    ((TObjBoss2Tunnel *)(arg0 + 0x2C))->clamp_velocity();
+    normalize_vector_xz((Vec *)(arg0 + 0x2C));
     *(f32 *)((s8 *)arg0 + 0x30) = (f32) 0.0f;
     this->m_54 = (s32) (lbl_804796D8 * atan2_float((f32) (*(f32 *)((s8 *)arg0 + 0x2C)), (f32) (*(f32 *)((s8 *)arg0 + 0x34))));
     spawn_particle_effect_with_flags((arg0 + 0x20), 0x20A, 0x40);

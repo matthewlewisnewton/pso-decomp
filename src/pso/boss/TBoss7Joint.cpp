@@ -1,3 +1,4 @@
+#include "pso/enemy/TObjEnemy.h"
 #include "types.h"
 #include "pso/boss/Boss7DeRolLeCBehavior.h"
 #include "pso/boss/TBoss1DragonColli.h"
@@ -74,7 +75,7 @@ void TBoss7Joint::run_task() {
         store_position();
         this->vfunc_88();
         if (*(s32 *)((s8 *)this->bodies + 0x18) & 1) {
-            ((TBoss8Dragon *)arg0)->set_player_state_default();
+            ((TObjEnemy *)arg0)->submit_default_cursor_candidate();
             add_radar_scaled_marker((u8 *)&this->position, -0x5DB4, 1, 1, lbl_805DEBB8);
         }
     }
@@ -113,7 +114,7 @@ s32 TBoss7Joint::init_params() {
 }
 
 u8 *TBoss7Joint__ct(u8 *boss7_joint, u8 *arg1, s16 arg2, s16 arg3, s32 arg4, s32 arg5) {
-    TObjEneDD__ct(boss7_joint);
+    __ct__9TObjEneDDFP7TObject(boss7_joint);
     *(s32 **)((s8 *)boss7_joint + 0x18) = &(*(RecoveredGlobal_802EEC60___vt__11TBoss7Joint *)&__vt__11TBoss7Joint).value;
     *(s32 *)((s8 *)boss7_joint + 0) = (s32) lbl_805D3FC0;
     ((TObjEneDD *)boss7_joint)->init_common_from(arg1);

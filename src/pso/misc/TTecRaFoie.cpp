@@ -1,3 +1,4 @@
+#include "pso/TParticleCtrl.h"
 #include "pso/system/ChunkMaterialState.h"
 #include "types.h"
 #include "pso/unk/text_80141550.h"
@@ -147,7 +148,7 @@ void TUnk_804CCB28::spawn_rafoie_explosion_bursts() {
             p = spawn_particle_effect_with_flags(&higher, row->entry, mode);
         }
         if (p != NULL) {
-            ((TObjPlayer *)p)->set_position_xy(rafoie_burst_table[*(u16 *)&this->m_20].entries[i].scale, rafoie_burst_table[*(u16 *)&this->m_20].entries[i].scale);
+            ((TParticleCtrl *)p)->fn_800822D4(rafoie_burst_table[*(u16 *)&this->m_20].entries[i].scale, rafoie_burst_table[*(u16 *)&this->m_20].entries[i].scale);
         }
     }
 }
@@ -232,7 +233,6 @@ void TTecRaFoie::vfunc_8(void *) {
 #define spawn_rafoie_explosion_bursts__13TUnk_804CCB28Fv ((s32 (*)(void *))spawn_rafoie_explosion_bursts__13TUnk_804CCB28Fv)
 
 #include <stddef.h>
-#include "pso/TParticleCtrl.h"
 #include "pso/misc/TScene.h"
 #include "pso/misc/TTecAnti.h"
 #include "pso/misc/TTecResta.h"

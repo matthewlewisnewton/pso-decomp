@@ -575,7 +575,7 @@ extern const f32 lbl_805DA048;
 s32 update_action_hold_status__9TObjCharaFv(void *);
 u16 get_entity_id(void *);
 int queue_destruction__7TObjectFv(void*);
-f32 calc_boss4_scale__10TObjPlayerFi(s32 arg0);
+f32 random_ratio__9TObjCharaFv(s32 arg0);
 s32 enemy_move_toward(void *, s32, void *, int, f32);
 s32 test_elt_flag__13TUnk_80493450Fll(void *, int, int);
 extern const f32 lbl_805DA044;
@@ -783,7 +783,7 @@ void TUnk_80493450::vfunc_60() {
     default:
         this->mode = 5;
         this->phase = 1;
-        if (lbl_805DA03C < calc_boss4_scale__10TObjPlayerFi((s32)o)) {
+        if (lbl_805DA03C < random_ratio__9TObjCharaFv((s32)o)) {
             this->m_b8 = 3;
         } else {
             this->m_b8 = 4;

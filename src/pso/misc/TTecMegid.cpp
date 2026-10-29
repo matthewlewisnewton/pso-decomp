@@ -1,3 +1,4 @@
+#include "pso/TParticleCtrl.h"
 #include "types.h"
 #include "pso/effect/TUnk_804CCC68.h"
 #include "pso/unk/TUnk_804CCA78.h"
@@ -5,7 +6,6 @@
 #include "pso/misc/TNowLoading.h"
 #include "pso/misc/TTecAnti.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/TParticleCtrl.h"
 
 struct RecoveredGlobal_80235348_lbl_804CC510
 {
@@ -310,7 +310,7 @@ void TTecMegid::spawn_particle_emitters() {
       row = &((Data_802351B4 *) TTecMegid__emitter_bands)[this->band].rows[i];
       if (row->flags & 0x40)
       {
-        ((TObjPlayer *)(self->emitters[i]))->set_position_xy(row->scale, row->scale);
+        ((TParticleCtrl *)(self->emitters[i]))->fn_800822D4(row->scale, row->scale);
       }
       if (((Data_802351B4 *) TTecMegid__emitter_bands)[this->band].rows[i].flags & 0x20)
       {

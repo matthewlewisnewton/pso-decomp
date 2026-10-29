@@ -1,3 +1,4 @@
+#include "pso/unk/TUnk_80494968.h"
 #include "types.h"
 #include "pso/enemy/TObjEneBalClaw.h"
 #include "pso/player/TObjPlayer.h"
@@ -752,7 +753,7 @@ struct VObj_800927DC : VBase_800927DC {
     virtual void m80();
 };
 
-f32 calc_boss4_scale__10TObjPlayerFi(s32 arg0);
+f32 random_ratio__9TObjCharaFv(s32 arg0);
 void obj_setFlags30(void *, u32);
 void init_enemy_base__13TUnk_80493450Fv(void *, void *);
 // init_collision_body_parts: declared once above (s32 return, int arg)
@@ -791,7 +792,7 @@ void *TObjEneBeast__ct(void *arg0v, void *arg1, void *arg2) {
     ((TObjEnemy *)arg0)->update_prev_position();
     ((TBoss3VoloptHiraisin *)arg0)->copy_position();
     ((TObjPlayer *)arg0)->register_object_by_id();
-    F(arg0, s32, 0x2AC) = (s32)(182.04445f * (3.6e+02f * calc_boss4_scale__10TObjPlayerFi((s32)arg0)));
+    F(arg0, s32, 0x2AC) = (s32)(182.04445f * (3.6e+02f * random_ratio__9TObjCharaFv((s32)arg0)));
     F(arg0, s16, 0x33A) = 0xF;
     F(arg0, s16, 0x33C) = F(arg0, s16, 0x33A);
     F(arg0, s16, 0x328) = 0;
@@ -802,8 +803,8 @@ void *TObjEneBeast__ct(void *arg0v, void *arg1, void *arg2) {
     ((TObjChara *)arg0)->add_flags_2e4(1);
     obj_setFlags30(arg0, 0x40000);
     F(arg0, f32, 0x380) = 0.0f;
-    F(arg0, void *, 0x3A8) = TObjEneSaver::create((void *)0xA0303030, (void *)0xFF303030);
-    F(arg0, void *, 0x3AC) = TObjEneSaver::create((void *)0xA0303030, (void *)0xFF303030);
+    F(arg0, void *, 0x3A8) = TUnk_80494968::create((u32)0xA0303030, (u32)0xFF303030);
+    F(arg0, void *, 0x3AC) = TUnk_80494968::create((u32)0xA0303030, (u32)0xFF303030);
     F(arg0, f32, 0x398) = ((f32 **)boss4_rock_shared_handler_ids)[F(arg0, s32, 0x334)][0];
     F(arg0, f32, 0x3A0) = ((f32 **)boss4_rock_shared_handler_ids)[F(arg0, s32, 0x334)][1];
     F(arg0, f32, 0x39C) = ((f32 **)boss4_rock_shared_handler_ids)[F(arg0, s32, 0x334)][2];

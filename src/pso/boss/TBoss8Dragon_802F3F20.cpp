@@ -1,3 +1,4 @@
+#include "pso/system/vector.h"
 #include "types.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/boss/TBoss8Dragon_802F3F20.h"
@@ -5,7 +6,6 @@
 #include "pso/system/MaterialAlphaCompare.h"
 #include "pso/unk/text_801414B0.h"
 #include "pso/unk/text_803D96A8.h"
-#include "pso/system/vector.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/boss/TBoss8Dragon.h"
 #include "pso/boss/TObjBoss2Tunnel.h"
@@ -108,7 +108,7 @@ s32 TBoss8Dragon__sub_802F3F20(u8 *arg0) {
     VecCopy((Vec *)&sp8, (const Vec *)(entity + 0x38));
     subtract_vector(&sp8, &sp14);
     sp8.y = TBoss8Dragon__data_805DED50;
-    temp_f31 = ((TObjBoss2Tunnel *)(&sp8))->clamp_velocity();
+    temp_f31 = normalize_vector_xz((Vec *)(&sp8));
     VecCopy((Vec *)boss8_dragon_reference_pos_vec, (const Vec *)&sp14);
     VecCopy((Vec *)dragon_forward_reference_vec, (const Vec *)&sp8);
     boss8_dragon_visibility_distance = temp_f31;

@@ -1,3 +1,4 @@
+#include "pso/player/TObjPlayer_800D8FDC.h"
 #include "types.h"
 #include "pso/TObject.h"
 #include "pso/object/TObjIllGillKage.h"
@@ -363,7 +364,7 @@ s32 get_enemy_entity(u16);
 extern Vec_80367FDC lbl_8047A328;
 extern s32 lbl_805D586C;
 extern s32 lbl_805D5870;
-f32 calc_boss4_scale__10TObjPlayerFi(s32 arg0);
+f32 random_ratio__9TObjCharaFv(s32 arg0);
 extern const f32 lbl_805E02EC;
 void TObjEneIllGill__sub_80366AE4(u8 *arg0);
 f32 enemy_move_toward(void *, s32, Vec_80367588 *, s32, f32, f32);
@@ -882,7 +883,7 @@ void TObjEneIllGill::update_death_fall() {
     {
       play_sound_effect(0x4003A358, (u8 *)&this->position, 0, 0);
       TObjPlayer::apply_effect_variant_b((s32)(arg0 + 0x38), 0xA);
-      ((TObjPlayer *)(arg0 + 0x38))->request_two_effects();
+      fn_800D911C((Vec *)(arg0 + 0x38));
       this->phase = 4;
       this->m_3a0 = 0xA;
       return;
@@ -1050,8 +1051,8 @@ void TObjEneIllGill__sub_80366AE4(u8 *actor) {
                 *(s16 *)((s8 *)actor + 0x328) = 2;
                 temp_f1_2 = *(f32 *)((s8 *)actor + 0x358);
                 if (TObjEneIllGill__data_805E02BC == temp_f1_2) {
-                    if (calc_boss4_scale__10TObjPlayerFi((s32)actor) > lbl_805E02EC) {
-                        if (calc_boss4_scale__10TObjPlayerFi((s32)actor) > lbl_805E02E0) {
+                    if (random_ratio__9TObjCharaFv((s32)actor) > lbl_805E02EC) {
+                        if (random_ratio__9TObjCharaFv((s32)actor) > lbl_805E02E0) {
                             *(s32 *)((s8 *)actor + 0x398) = 1;
                         } else {
                             *(s32 *)((s8 *)actor + 0x398) = 2;

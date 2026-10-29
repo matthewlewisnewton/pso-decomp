@@ -37,14 +37,14 @@ struct VObj_8031D780 : Base_8031D780 {
 
 extern "C" {
 
-s32 spawn_part__14TObjEneEpsilonFi(void *, f32);
+s32 select_nearest_target__12TObjEneDD_STFf(void *, f32);
 
 void TObjEneRecon__vt102(void *ene_epsilon, f32 farg0) {
     if (((VObj_8031D780 *)ene_epsilon)->m97() != 0) {
         ((TObjEneDD_ST *)ene_epsilon)->select_and_apply_target(farg0);
         return;
     }
-    spawn_part__14TObjEneEpsilonFi(ene_epsilon, farg0);
+    select_nearest_target__12TObjEneDD_STFf(ene_epsilon, farg0);
 }
 
 void TObjEneRecon::spawn_trap_a() {

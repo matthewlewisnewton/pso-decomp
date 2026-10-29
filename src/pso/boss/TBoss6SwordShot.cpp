@@ -1,3 +1,4 @@
+#include "pso/TParticleCtrl.h"
 #include "pso/TBoss6SwordShot.h"
 #include "pso/TObject.h"
 #include "pso/system/vector.h"
@@ -208,10 +209,10 @@ u8 *TBoss6SwordShot__ct(void *arg0, s32 arg1, s32 arg2, s32 arg3, f32 farg0) {
             scale = self->speed / lbl_805DFFF4;
         }
         if ((p = spawn_particle_effect_with_flags(&self->pos, 0x212, 0x40)) != NULL) {
-            ((TObjPlayer *)p)->set_position_xy(scale, lbl_805DFFF0);
+            ((TParticleCtrl *)p)->fn_800822D4(scale, lbl_805DFFF0);
         }
         if ((p = spawn_particle_effect_with_flags(&self->pos, 0x213, 0x40)) != NULL) {
-            ((TObjPlayer *)p)->set_position_xy(scale, lbl_805DFFF0);
+            ((TParticleCtrl *)p)->fn_800822D4(scale, lbl_805DFFF0);
         }
     }
     return (u8 *)arg0;

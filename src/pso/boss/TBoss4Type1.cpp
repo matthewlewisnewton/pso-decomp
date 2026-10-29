@@ -277,7 +277,7 @@ struct Stack_80053670 {
     f32 sp10;
 };
 
-f32 calc_boss4_scale__10TObjPlayerFi(void *);
+f32 random_ratio__9TObjCharaFv(void *);
 void VecCopy__FP3VecPC3Vec(void *, void *);
 int get_player_data__10TObjPlayerFi(int a0);
 u16 get_entity_id(void *);
@@ -820,7 +820,7 @@ void TBoss4Type2__sub_800525AC(u8 *boss4_type2) {
 
 void TBoss4Type2__sub_800528B8(void *arg0) {
     if ((s32) *(s32 *)((s8 *)arg0 + 0x398) == 0) {
-        if (((f32 (*)(void))calc_boss4_scale__10TObjPlayerFi)() < lbl_805D8B08) {
+        if (((f32 (*)(void))random_ratio__9TObjCharaFv)() < lbl_805D8B08) {
             ((s32 (*)(void *))TBoss4Type2__sub_800535A8)(arg0);
             return;
         }
@@ -874,7 +874,7 @@ void update_scale_state__11TBoss4Type2FPv(void *arg0) {
     s32 var_r31;
 
     if ((s32) *(s32 *)((s8 *)arg0 + 0x398) == 0) {
-        if (((f32 (*)(void))calc_boss4_scale__10TObjPlayerFi)() < lbl_80437620[0]) {
+        if (((f32 (*)(void))random_ratio__9TObjCharaFv)() < lbl_80437620[0]) {
             ((s32 (*)(void *))TBoss4Type2__sub_80053504)(arg0);
             return;
         }
@@ -1243,9 +1243,9 @@ void pick_target_position__13TRaderMapCoreFPvPv(O_80053914 *self, Vec_80053914 *
         ((s32 (*)(Vec_80053914 *, Vec_80053914 *))VecCopy__FP3VecPC3Vec)(out, &res);
         return;
     }
-    s = lbl_805D8B50 * calc_boss4_scale__10TObjPlayerFi(self);
+    s = lbl_805D8B50 * random_ratio__9TObjCharaFv(self);
     a1 = (s32)(lbl_80437630 * atan2_float(-self->pos.x, -self->pos.z));
-    b = (s32)(lbl_805D8B54 * calc_boss4_scale__10TObjPlayerFi(self));
+    b = (s32)(lbl_805D8B54 * random_ratio__9TObjCharaFv(self));
     ang = b + a1;
     ang -= 0x6000;
     out->x = s * sin_table_lookup(ang);
@@ -1272,13 +1272,13 @@ void TBoss4Type2::calc_target_position() {
 void TBoss4Type2::calc_scale_slot_indices(s32 *a, s32 *b) {
     f32 s;
     s32 v;
-    v = ((S_80053B48 *)this)->f3a0 + (s32)(lbl_805D8B64 * calc_boss4_scale__10TObjPlayerFi(((S_80053B48 *)this)));
+    v = ((S_80053B48 *)this)->f3a0 + (s32)(lbl_805D8B64 * random_ratio__9TObjCharaFv(((S_80053B48 *)this)));
     v += 1;
     if (v >= 4) {
         v -= 4;
     }
     *a = v;
-    s = calc_boss4_scale__10TObjPlayerFi(this);
+    s = random_ratio__9TObjCharaFv(this);
     if (s <= lbl_805D8B68) {
         *b = 0;
     } else if (s <= lbl_805D8B6C) {

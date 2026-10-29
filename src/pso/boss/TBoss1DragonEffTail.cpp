@@ -139,9 +139,9 @@ int TBoss1DragonEffTail::is_visible() { return fill_value_array(*(void* *)&this-
 void *__dt__19TBoss1DragonEffTailFv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__19TBoss1DragonEffTail;
-        delete_buffer__12TBoss8DragonFis((s32)(*(void **)((s8 *)arg0 + 0xB8)), 1);
+        __dt__17AreaAttackHistoryFv((s32)(*(void **)((s8 *)arg0 + 0xB8)), 1);
         ((TBoss1DragonEffTail *)arg0)->m_b8 = 0;
-        ((TUnk_804928CC *)arg0)->destroy_enemy_object(0);
+        __dt__13TUnk_804928CCFv(arg0, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }
@@ -152,7 +152,7 @@ EffTail_8002C06C *TBoss1DragonEffTail__ct(EffTail_8002C06C *arg0, s32 arg1, s32 
     void *data;
     s32 i;
     void *p;
-    ((TUnk_804928CC *)arg0)->init_instance((void *)0, (void *)arg1, (void *)TBoss1DragonEffTail__collision_body_templates, (void *)0x11);
+    __ct__13TUnk_804928CCFP7TObjectP8TObjBasePC13CollisionBodyl(arg0, (void *)0, (void *)arg1, (void *)TBoss1DragonEffTail__collision_body_templates, 0x11);
     arg0->vtbl = ((s32 *)&__vt__19TBoss1DragonEffTail);
     data = TBoss1DragonEffTail__collision_body_templates;
     arg0->unk0 = TBoss1DragonEffTail__name;
@@ -163,7 +163,7 @@ EffTail_8002C06C *TBoss1DragonEffTail__ct(EffTail_8002C06C *arg0, s32 arg1, s32 
     arg0->unkB4 = arg2;
     p = ::operator new(0x10);
     if (p != 0) {
-        p = TBoss8Dragon__sub_800BC5EC((u8 *)p, 4);
+        p = __ct__17AreaAttackHistoryFl((u8 *)p, 4);
     }
     arg0->unkB8 = p;
     arg0->unkBC = 0;

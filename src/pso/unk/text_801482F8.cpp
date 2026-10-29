@@ -298,7 +298,7 @@ struct Lim_8014854C { u8 pad0[8]; s32 lim; };
 
 extern "C" {
 s32 approach_angle_limited(s32, s32, s32);
-f32 calc_boss4_scale__10TObjPlayerFi();
+f32 random_ratio__9TObjCharaFv();
 void enemy_set_heading_velocity(TObjEnemy *arg0, s32 arg1, f32 farg0);
 void select_enemy_destination(void *, void *, s32);
 void enemy_turn_toward_dest(void *, s32);
@@ -544,7 +544,7 @@ void TObjNpcBase::update_wandering() {
         v.y = lbl_805DB1C4;
         v.x = lbl_805DB1C4;
         v.z = lbl_805DB1C8;
-        angle = (s32)(lbl_805DB1CC * (lbl_805DB1D0 * calc_boss4_scale__10TObjPlayerFi()));
+        angle = (s32)(lbl_805DB1CC * (lbl_805DB1D0 * random_ratio__9TObjCharaFv()));
         push_matrix_from(identity_matrix);
         rotate_matrix_y(0, angle);
         rotate_vector_by_matrix(0, &v, &v);

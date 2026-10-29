@@ -1,3 +1,4 @@
+#include "pso/system/vector.h"
 #include "types.h"
 #include "pso/enemy/TObjEneMe1Canadin_EffLight.h"
 #include "pso/TObject.h"
@@ -347,7 +348,7 @@ Obj_8009FEB8 *TObjEneMe1Canadin_EffDischarge__ct(Obj_8009FEB8 *self, void *paren
     VC_C(&self->dir, &self->end);
     subtract_vector(&self->dir, &self->start);
     self->dir.y = canadin_effect_zero;
-    self->dist = ((TObjBoss2Tunnel *)(&self->dir))->clamp_velocity();
+    self->dist = normalize_vector_xz((Vec *)(&self->dir));
     if (self->dist > canadin_discharge_motion_scale) {
         self->duration = canadin_discharge_motion_scale;
         self->remain = self->dist - self->duration;

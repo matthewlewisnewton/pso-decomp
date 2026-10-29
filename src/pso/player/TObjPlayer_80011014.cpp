@@ -1,3 +1,4 @@
+#include "pso/system/vector.h"
 #include "pso/system/byteswap.h"
 #include "pso/protocol/protocol_types.h"
 #include "pso/misc/TLobby_801E43E4.h"
@@ -325,7 +326,7 @@ s32 get_main_phase();
 s32 check_heavy_damage_flag__9TObjCharaFf(void *arg0, f32 farg0);
 void activate_switch_attacks__10TObjPlayerFii(s32 arg0, s32 arg1);
 void attach_mine_trap__10TObjPlayerFiUi(s32 arg0, u32 arg1);
-f32 calc_boss4_scale__10TObjPlayerFi(s32 arg0);
+f32 random_ratio__9TObjCharaFv(s32 arg0);
 s32 add_actor_hp(u8 *arg0, s16 arg1);
 s32 TObjectV8047c128_subtract_hp(u8 *arg0, s16 arg1);
 void trigger_switch_attack__10TObjPlayerFPvi(void *arg0, s32 arg1);
@@ -1135,7 +1136,7 @@ s32 calc_freeze_chance(TObjPlayer *actor, TObjPlayer *arg1, TObjPlayer *arg2, f3
     } else if ((0.4f) < var_f31) {
         var_f31 = (0.4f);
     }
-    return calc_boss4_scale__10TObjPlayerFi((s32) actor) < var_f31;
+    return random_ratio__9TObjCharaFv((s32) actor) < var_f31;
 }
 
 s32 calc_shock_chance(TObjPlayer *actor, TObjPlayer *arg1, TObjPlayer *arg2) {
@@ -1151,7 +1152,7 @@ s32 calc_shock_chance(TObjPlayer *actor, TObjPlayer *arg1, TObjPlayer *arg2) {
     } else {
         var_f31 = (0.06666667f);
     }
-    return calc_boss4_scale__10TObjPlayerFi((s32) actor) < var_f31;
+    return random_ratio__9TObjCharaFv((s32) actor) < var_f31;
 }
 extern "C" {
 
@@ -1476,11 +1477,11 @@ void attach_mine_trap__10TObjPlayerFiUi(s32 arg0, u32 arg1) {
 
 void TObjChara::vfunc_28() {  }
 
-f32 calc_boss4_scale__10TObjPlayerFi(s32 arg0) {
+f32 TObjChara::random_ratio() {
     if (get_main_phase() == 0xE) {
         return (3.0517578e-05f) * (f32) rand();
     }
-    return ((f32 (*)(s32))calc_random_ratio__10TObjPlayerFv)(arg0 + 0x160);
+    return ((f32 (*)(s32))calc_random_ratio__10TObjPlayerFv)((s32)this + 0x160);
 }
 
 extern const f32 lbl_805D7D3C = 65536.0f;
@@ -1835,7 +1836,7 @@ struct O_800112D4;
 #define ADDTP_W24(p, v) ((s32 (*)(void *, s32))add_actor_tp)((p), (v))
 #define HPLABEL_W24(p, v, k, n) ((void (*)(void *, void *, s32, s32))draw_hp_label)((p), (v), (k), (n))
 #define TPFONT_W24(p, v, k, n) ((void (*)(void *, void *, s32, s32))show_tp_font)((p), (v), (k), (n))
-#define BOSS4_W24(p) ((f32 (*)(void *))calc_boss4_scale__10TObjPlayerFi)(p)
+#define BOSS4_W24(p) ((f32 (*)(void *))random_ratio__9TObjCharaFv)(p)
 #define CLEARCOLL_W24() if (coll != NULL) { coll->flags &= ~0x04000000; }
 typedef unsigned int RangedU;
 typedef struct { float x,y,z; } RangedVec;
@@ -2648,7 +2649,7 @@ f32 TObjChara::receive_direct_attack(void *att, DirectAttackPayload payload, voi
                 }
                 ((Actor_8001311C *)this)->f2dc |= 4;
                 dmg = (0.01f) * (info.power - (f32)((Actor_8001311C *)this)->resist5);
-                if (immune == 0 && ((f32 (*)(Actor_8001311C *))calc_boss4_scale__10TObjPlayerFi)(((Actor_8001311C *)this)) < dmg) {
+                if (immune == 0 && ((f32 (*)(Actor_8001311C *))random_ratio__9TObjCharaFv)(((Actor_8001311C *)this)) < dmg) {
                     ((TObjPlayer *)((Actor_8001311C *)this))->set_hp_clamped(0);
                     SET30(((Actor_8001311C *)this), 0xA00);
                 }
@@ -2941,7 +2942,7 @@ struct Obj_80014108 {
 
 #define check_heavy_damage_flag__9TObjCharaFf(a, b) ((void (*)(void *, f32))check_heavy_damage_flag__9TObjCharaFf)(a, b)
 #define attach_mine_trap__10TObjPlayerFiUi(a, b) ((void (*)(void *, void *))attach_mine_trap__10TObjPlayerFiUi)(a, b)
-#define calc_boss4_scale__10TObjPlayerFi(a) ((f32 (*)(void *))calc_boss4_scale__10TObjPlayerFi)(a)
+#define random_ratio__9TObjCharaFv(a) ((f32 (*)(void *))random_ratio__9TObjCharaFv)(a)
 #define TObjectV8047c128_subtract_hp(a, b) ((void (*)(void *, s32))TObjectV8047c128_subtract_hp)(a, b)
 #define trigger_switch_attack__10TObjPlayerFPvi(a, b) ((void (*)(void *, void *))trigger_switch_attack__10TObjPlayerFPvi)(a, b)
 #define try_apply_damage__9TObjCharaFUll(a, b, c) ((void (*)(void *, void *, s32))try_apply_damage__9TObjCharaFUll)(a, b, c)
@@ -2993,7 +2994,7 @@ f32 TObjChara::receive_physical_attack(void *att, f32 scale) {
     } else {
         immune = 0;
     }
-    scl0 = calc_boss4_scale__10TObjPlayerFi(((Obj_80014108 *)this));
+    scl0 = random_ratio__9TObjCharaFv(((Obj_80014108 *)this));
     dmg = 0.2f * (((Obj_80014108 *)att)->atpRange * scl0 + ((Obj_80014108 *)att)->atp);
     elem = 0.2f * get_actor_attack_params_atp_min__9TObjCharaFv(((Obj_80014108 *)att));
     for (j = 0; j < 3; j++) {
@@ -3038,7 +3039,7 @@ f32 TObjChara::receive_physical_attack(void *att, f32 scale) {
             } else {
                 d *= scale;
                 if (obj_testFlags30__14TObjCollidableFUl(((Obj_80014108 *)this), 0x02000000) == 0) {
-                    boss = calc_boss4_scale__10TObjPlayerFi(((Obj_80014108 *)this));
+                    boss = random_ratio__9TObjCharaFv(((Obj_80014108 *)this));
                     if (get_entity_id(((Obj_80014108 *)att)) < 0x1000) {
                         crit = boss; crit *= (5e+02f);
                     } else {
@@ -3088,7 +3089,7 @@ f32 TObjChara::receive_physical_attack(void *att, f32 scale) {
 
 #undef check_heavy_damage_flag__9TObjCharaFf
 #undef attach_mine_trap__10TObjPlayerFiUi
-#undef calc_boss4_scale__10TObjPlayerFi
+#undef random_ratio__9TObjCharaFv
 #undef TObjectV8047c128_subtract_hp
 #undef trigger_switch_attack__10TObjPlayerFPvi
 #undef try_apply_damage__9TObjCharaFUll
@@ -3481,7 +3482,7 @@ extern const double lbl_80434090;
 #define obj_testFlag_2E4__9TObjCharaFUl(a, b) ((int (*)(const void *, RangedU))obj_testFlag_2E4__9TObjCharaFUl)(a, b)
 #define VecCopy__FP3VecPC3Vec(a, b) ((void (*)(RangedVec *, const RangedVec *))VecCopy__FP3VecPC3Vec)(a, b)
 #define subtract_vector(a, b) ((void (*)(RangedVec *, const RangedVec *))subtract_vector)(a, b)
-#define calc_boss4_scale__10TObjPlayerFi(a) ((float (*)(RangedActor *))calc_boss4_scale__10TObjPlayerFi)(a)
+#define random_ratio__9TObjCharaFv(a) ((float (*)(RangedActor *))random_ratio__9TObjCharaFv)(a)
 #define attach_mine_trap__10TObjPlayerFiUi(a, b) ((void (*)(RangedActor *, RangedActor *))attach_mine_trap__10TObjPlayerFiUi)(a, b)
 #define show_miss_popup__9TObjCharaFPCf(a, b) ((void (*)(RangedActor *, const RangedVec *))show_miss_popup__9TObjCharaFPCf)(a, b)
 int TObjChara::calc_distance_accuracy_penalty(void *attacker, void *body_arg, void *origin, float multiplier) {
@@ -3499,7 +3500,7 @@ int TObjChara::calc_distance_accuracy_penalty(void *attacker, void *body_arg, vo
             pen*=(0.33333334f);
             chance-=pen;
         }
-        if((0.0f)<chance&&calc_boss4_scale__10TObjPlayerFi(((RangedActor*)this))<=chance) {
+        if((0.0f)<chance&&random_ratio__9TObjCharaFv(((RangedActor*)this))<=chance) {
             body->flags|=0x04000000;attach_mine_trap__10TObjPlayerFiUi(((RangedActor*)this),((RangedActor*)attacker));((RangedActor*)this)->hit_flags|=2;return 1;
         }
         ((RangedActor*)this)->flags|=0x100;VecCopy__FP3VecPC3Vec(&delta,&body->center);show_miss_popup__9TObjCharaFPCf(((RangedActor*)this),&delta);
@@ -3512,7 +3513,7 @@ int TObjChara::calc_distance_accuracy_penalty(void *attacker, void *body_arg, vo
 #undef obj_testFlag_2E4__9TObjCharaFUl
 #undef VecCopy__FP3VecPC3Vec
 #undef subtract_vector
-#undef calc_boss4_scale__10TObjPlayerFi
+#undef random_ratio__9TObjCharaFv
 #undef attach_mine_trap__10TObjPlayerFiUi
 #undef show_miss_popup__9TObjCharaFPCf
 #pragma pop
@@ -3580,7 +3581,7 @@ s32 TObjChara::roll_physical_accuracy(void *arg1, s32 arg2, f32 farg0) {
     }
     if (((s32 (*)(void *, u32))obj_testFlags30__14TObjCollidableFUl)(this, 0x04000800) == 0) {
         v = (0.01f) * ((farg0 * (f32) get_ata__10TObjPlayerFv(arg1)) - ((0.2f) * (f32) ((Obj_800162E0 *)this)->val2CC));
-        if ((0.0f) < v && ((f32 (*)(void *))calc_boss4_scale__10TObjPlayerFi)(this) <= v) {
+        if ((0.0f) < v && ((f32 (*)(void *))random_ratio__9TObjCharaFv)(this) <= v) {
             ((Obj_800162E0 *)this)->elems[arg2].flags |= 0x04000000;
             ((Obj_800162E0 *)this)->flags2DC |= 1;
             return 1;
@@ -4049,7 +4050,7 @@ f32 TObjEnemy::enemy_wander_home(s32 arg1, f32 farg0, f32 farg1, f32 farg2) {
     if ((var_f31 < (farg0 * farg0)) || (((TObjEnemy *)(arg0))->is_actor_cadence_frame(0x96) != 0)) {
         v.x = v.y = (0.0f);
         v.z = (1.0f);
-        ang = (s32) ((182.04445f) * ((3.6e+02f) * ((f32 (*)(void *))calc_boss4_scale__10TObjPlayerFi)(arg0)));
+        ang = (s32) ((182.04445f) * ((3.6e+02f) * ((f32 (*)(void *))random_ratio__9TObjCharaFv)(arg0)));
         push_matrix_from(&identity_matrix);
         rotate_matrix_y(0, (void *) ang);
         rotate_vector_by_matrix(0, &v, &v);
@@ -4103,7 +4104,7 @@ void move_with_wall_slide(u8 *arg0) {
   VecCopy__FP3VecPC3Vec((s32)&next, (s32)&self->cur);
   vec3_add_to(&next, &self->vel);
   VecCopy__FP3VecPC3Vec((s32)&dir, (s32)&self->vel);
-  ((TObjBoss2Tunnel *)(&dir))->clamp_velocity();
+  normalize_vector_xz((Vec *)(&dir));
   next.x = ((5.0f) * dir.x) + next.x;
   next.z = ((5.0f) * dir.z) + next.z;
   hit = (Hit_80017E6C *) csnVector(&self->cur, &next, 0x8FE0);
@@ -4112,7 +4113,7 @@ void move_with_wall_slide(u8 *arg0) {
     pl = hit->plane;
     nrm.x = pl->f14;
     nrm.z = -pl->fC;
-    ((TObjBoss2Tunnel *)(&nrm))->clamp_velocity();
+    normalize_vector_xz((Vec *)(&nrm));
     xx = self->vel.x * self->vel.x;
     zz = self->vel.z * self->vel.z;
     len = newton_sqrtf(xx + zz);
@@ -4129,7 +4130,7 @@ void move_with_wall_slide(u8 *arg0) {
     VecCopy__FP3VecPC3Vec((s32)&next, (s32)&self->cur);
     vec3_add_to(&next, &self->vel);
     VecCopy__FP3VecPC3Vec((s32)&dir, (s32)&self->vel);
-    ((TObjBoss2Tunnel *)(&dir))->clamp_velocity();
+    normalize_vector_xz((Vec *)(&dir));
     next.x = ((5.0f) * dir.x) + next.x;
     next.z = ((5.0f) * dir.z) + next.z;
     if (csnVector(&self->cur, &next, 0x8FE0) != 0)
@@ -4582,10 +4583,11 @@ void TObjChara::get_pos(s32 arg1) {
 }
 #pragma push
 #pragma scheduling off
-void VecCopy(Vec* dst, const Vec* src) {
+Vec *VecCopy(Vec* dst, const Vec* src) {
     dst->x = src->x;
     dst->y = src->y;
     dst->z = src->z;
+    return dst;
 }
 #pragma pop
 

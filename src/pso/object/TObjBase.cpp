@@ -147,7 +147,7 @@ void *TObjBase::get_center() { return &center; }
 #pragma opt_common_subs off
 #pragma opt_propagation off
 #pragma fp_contract on
-s16 TObjBase::classify_actor_view_detail(f32 near_depth, f32 far_depth, f32 radius) {
+s32 TObjBase::classify_actor_view_detail(f32 near_depth, f32 far_depth, f32 radius) {
     ViewProbe probe;
     f32 z;
     if (this->m_flags & 0x400) {

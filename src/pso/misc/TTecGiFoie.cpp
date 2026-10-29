@@ -1,3 +1,4 @@
+#include "pso/TParticleCtrl.h"
 #include "types.h"
 #include "pso/misc/TTecGiFoie.h"
 extern "C" void *__dt__13TUnk_804CC148Fv(void *, s16);
@@ -267,11 +268,11 @@ Task_802312E4 *construct_orbit__10TTecGiFoieFPvPviUciPvUc(Task_802312E4 *self, V
             if (self->band == 2) {
                 if (arg4 >= 0xF && arg4 < 0x19) {
                     if (i <= 1 && self->emitters[i] != 0) {
-                        ((TObjPlayer *)(self->emitters[i]))->set_position_xy(lbl_805DC820, lbl_805DC820);
+                        ((TParticleCtrl *)(self->emitters[i]))->fn_800822D4(lbl_805DC820, lbl_805DC820);
                     }
                 } else if (arg4 >= 0x19 && arg4 < 0x1E) {
                     if (i <= 1 && self->emitters[i] != 0) {
-                        ((TObjPlayer *)(self->emitters[i]))->set_position_xy(lbl_805DC820, lbl_805DC824);
+                        ((TParticleCtrl *)(self->emitters[i]))->fn_800822D4(lbl_805DC820, lbl_805DC824);
                     }
                 }
             }

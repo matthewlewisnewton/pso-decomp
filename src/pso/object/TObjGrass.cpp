@@ -321,7 +321,7 @@ extern u32 lbl_805D5158;
 extern u32 lbl_805D515C;
 void TObjGrass__sub_800BCA2C(void *);
 s32 submit_cursor_candidate(void *, int);
-f32 calc_boss4_scale__10TObjPlayerFi(s32 arg0);
+f32 random_ratio__9TObjCharaFv(s32 arg0);
 s32 update_angle__10TObjPlayerFlPv(void *, void *, void *);
 u32 lookup_entry_by_value__10TObjPlayerFPvf(void *);
 s32 mult_vec_array__10TObjPlayerFUll(int, int, void *, int);
@@ -361,7 +361,7 @@ s32 copy_position_if_valid__10TObjPlayerFii(void *, Vec_800BD4D8);
 s32 obj_is_hit_receivable(void *);
 s32 is_split_screen();
 extern s32 local_client_id;
-s32 create__12TObjEneSaverFPvPv(int, int);
+s32 create__13TUnk_80494968FUlUl(int, int);
 s32 set_param__9TObjEnemyFl(void *, int, int);
 s32 __ct__9TObjEnemyFP7TObject(void *, s32, s32);
 s32 init_collision_body_parts(void *, void *, int);
@@ -1001,7 +1001,7 @@ void TObjGrass::sub_800BDD70() {
             apply_actor_gravity(arg0, 0, (0.0f));
             if (ang < ((TObjPlayer *)(*(s32 *)&this->m_318))->get_field_0c()) {
                 this->phase = 1;
-                if ((0.5f) < calc_boss4_scale__10TObjPlayerFi((s32)arg0)) {
+                if ((0.5f) < random_ratio__9TObjCharaFv((s32)arg0)) {
                     this->m_b8 = 2;
                 } else {
                     this->m_b8 = 3;
@@ -1843,8 +1843,8 @@ u8 *TObjGrass__ct(u8 *arg0, s32 arg1, s32 arg2) {
     obj_setFlags30(arg0, 0x04040000);
     ((VObj_14_fa0828 *)(arg0 + 0x3B0))->m3();
     *(s32 *)&((TObjGrass *)arg0)->m_3ac = 1;
-    *(s32 *)&((TObjGrass *)arg0)->m_3cc = create__12TObjEneSaverFPvPv(0xA0303030, 0xFFFF0088);
-    *(s32 *)&((TObjGrass *)arg0)->m_3d0 = create__12TObjEneSaverFPvPv(0xA0303030, 0xFFFF0088);
+    *(s32 *)&((TObjGrass *)arg0)->m_3cc = create__13TUnk_80494968FUlUl(0xA0303030, 0xFFFF0088);
+    *(s32 *)&((TObjGrass *)arg0)->m_3d0 = create__13TUnk_80494968FUlUl(0xA0303030, 0xFFFF0088);
     *(s32 *)&((TObjGrass *)arg0)->m_3a8 = 0;
     ((TObjGrass *)(arg0))->clear_lobby_object_state();
     return arg0;

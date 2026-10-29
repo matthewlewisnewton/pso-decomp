@@ -35,14 +35,14 @@ struct O_800BA8A8 { u8 pad[0xa4]; E_800BA8A8 *entries; s32 count; };
 extern "C" {
 u32 is_player_entity_id(u16 arg0);
 s32 *csnLookAt(s32 arg0, s32 arg1);
-s32 is_alive__9TObjEneDDFv(void *arg0);
+s32 is_alive__8TObjBaseFv(void *arg0);
 int TObjEneDD__sub_800BA804(u16 arg0);
 void check_enemy_body_collisions(void *arg0);
 s32 all_parents_unqueued_for_destruction__7TObjectFv();
 
 s32 TObjEneDD::is_target_unobstructed(s32 arg1) {
     s32 arg0 = (s32)this;
-    if ((is_alive__9TObjEneDDFv((void *)arg0) != 0) && (csnLookAt((arg1), (arg0 + 0x2FC)) == 0U)) {
+    if ((is_alive__8TObjBaseFv((void *)arg0) != 0) && (csnLookAt((arg1), (arg0 + 0x2FC)) == 0U)) {
         return 1;
     }
     return 0;

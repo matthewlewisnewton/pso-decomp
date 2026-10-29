@@ -109,7 +109,7 @@ int vfunc_63__18TObjEneMe3SinowZoaFv(void*);
 void __dl__7TObjectFPv(void *);
 void *__dt__18TObjEneMe3SinowZoaFv(void *arg0, s16 arg1);
 void *__nw__7TObjectFUl(int);
-f32 calc_boss4_scale__10TObjPlayerFi();
+f32 random_ratio__9TObjCharaFv();
 
 void TObjEneMe3SinowZoaReal::vfunc_111() {  }
 
@@ -120,7 +120,7 @@ struct Ene_80316898;
 void TObjEneMe3SinowZoaReal::vfunc_107() {
     struct Ene_80316898 *self = (struct Ene_80316898 *) this;
     *(s32 *)((s8 *)this + 0x3FC) = *(s32 *)((s8 *)this + 0x3FC) + 1;
-    if ((*(s32 *)((s8 *)this + 0x3FC) >= 2) || (calc_boss4_scale__10TObjPlayerFi() < lbl_805DF304)) {
+    if ((*(s32 *)((s8 *)this + 0x3FC) >= 2) || (random_ratio__9TObjCharaFv() < lbl_805DF304)) {
         ((TObjEneDD *)self)->transition_enemy_state(9);
         return;
     }

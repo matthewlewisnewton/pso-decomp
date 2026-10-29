@@ -1,3 +1,4 @@
+#include "pso/player/TObjPlayer_800D8FDC.h"
 #include "types.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/math/MatrixVector.h"
@@ -188,7 +189,7 @@ void TObjEneDimedian::vfunc_96() {
 void TObjEneDimedian::vfunc_95() {
     s32 arg0 = (s32)this;
     s32 temp_r3;
-    if (TObjPlayer::calc_boss4_scale((s32)this) < 0.5f) {
+    if (random_ratio() < 0.5f) {
         temp_r3 = copy_target_state__14TObjEnePanarmsFPv(arg0, 0x4003B23B);
         play_sound_effect(temp_r3, arg0 + 0x38, 0, 0);
     } else {
@@ -202,7 +203,7 @@ void TObjEneDimedian::vfunc_94() {
     s32 arg0 = (s32)this;
     s32 area;
     TObjPlayer::apply_effect_variant_a(arg0 + 0x38, 0);
-    ((TObjPlayer *)(arg0 + 0x2FC))->request_two_effects();
+    fn_800D911C((Vec *)(arg0 + 0x2FC));
     area = get_current_floor_area();
     if ((area == AREA_VR_TEMPLE_ALPHA) || (area == AREA_VR_TEMPLE_BETA)) {
         play_sound_effect(0x3AD3F, arg0 + 0x38, 0, 0);
@@ -491,7 +492,7 @@ extern s32 dimedian_resource_handles[];
 extern s32 dimedian_last_draw_tick[];
 
 void init_enemy_base__13TUnk_80493450Fv(void *);
-s32 create__12TObjEneSaverFPvPv(s32, s32);
+s32 create__13TUnk_80494968FUlUl(s32, s32);
 }
 int initialize_enemy_photon_effect(void *p);
 extern "C" {
@@ -844,7 +845,7 @@ void *TObjEneDimedian__ct(void *arg0_, void *arg1_, void *arg2_) {
     s32 i;
     ((void (*)(void *, s32, s32))init_enemy_base__13TUnk_80493450Fv)(arg0, arg1, arg2);
     *(u8 **)((s8 *)arg0 + 0x18) = __vt__15TObjEneDimedian;
-    ((TUnk_80490470 *)(arg0 + 0x3A8))->init_vtable_and_field18();
+    __ct__13TUnk_80490470Fv((arg0 + 0x3A8));
     __construct_array(arg0 + 0x3CC, (void *)&__ct__15RenderFadeStateFv, (void *)&__dt__15RenderFadeStateFv, 0x1C, 4);
     *(s32 *)((s8 *)arg0 + 0) = TObjEneDimedian_name_ref;
     ((VObj_18_c99286 *)arg0)->m79(arg2);
@@ -865,7 +866,7 @@ void *TObjEneDimedian__ct(void *arg0_, void *arg1_, void *arg2_) {
     ((TObjEnemy *)arg0)->update_prev_position();
     ((TBoss3VoloptHiraisin *)arg0)->copy_position();
     initialize_enemy_photon_effect(arg0);
-    *(s32 *)((s8 *)arg0 + 0x2AC) = (s32)(182.04445f * (3.6e+02f * TObjPlayer::calc_boss4_scale((s32)arg0)));
+    *(s32 *)((s8 *)arg0 + 0x2AC) = (s32)(182.04445f * (3.6e+02f * ((TObjChara *)arg0)->random_ratio()));
     *(s16 *)((s8 *)arg0 + 0x33A) = 0xF;
     *(s16 *)((s8 *)arg0 + 0x33C) = *(s16 *)((s8 *)arg0 + 0x33A);
     *(s16 *)((s8 *)arg0 + 0x328) = 0;
@@ -902,8 +903,8 @@ void *TObjEneDimedian__ct(void *arg0_, void *arg1_, void *arg2_) {
             break;
         }
     }
-    *(s32 *)((s8 *)arg0 + 0x3C4) = create__12TObjEneSaverFPvPv(0xA0303030, color);
-    *(s32 *)((s8 *)arg0 + 0x3C8) = create__12TObjEneSaverFPvPv(0xA0303030, color);
+    *(s32 *)((s8 *)arg0 + 0x3C4) = create__13TUnk_80494968FUlUl(0xA0303030, color);
+    *(s32 *)((s8 *)arg0 + 0x3C8) = create__13TUnk_80494968FUlUl(0xA0303030, color);
     *(s32 *)((s8 *)arg0 + 0x390) = 1;
     *(f32 *)((s8 *)arg0 + 0x398) = ((f32 **)(*(s32 **)&dimedian_buffer_ptr))[*(s32 *)((s8 *)arg0 + 0x334)][0];
     *(f32 *)((s8 *)arg0 + 0x3A0) = ((f32 **)(*(s32 **)&dimedian_buffer_ptr))[*(s32 *)((s8 *)arg0 + 0x334)][1];

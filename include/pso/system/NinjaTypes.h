@@ -35,6 +35,12 @@ struct NJS_ARGB {
 #define NJD_EVAL_BREAK 0x10    // the node's children are skipped
 #define NJD_EVAL_ZXY_ANG 0x20  // ang is applied in Z, X, Y order
 
+// Chunk model streams referenced by an NJS_OBJECT.
+struct NJS_CNK_MODEL {
+    void *vertex_list;
+    s16 *polygon_list;
+};
+
 // Ninja model hierarchy node.
 struct NJS_OBJECT {
     u32 evalflags;

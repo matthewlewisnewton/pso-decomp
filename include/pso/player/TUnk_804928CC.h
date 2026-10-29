@@ -5,6 +5,8 @@
 
 class TUnk_804928CC : public TObjCollidable {
 public:
+    TUnk_804928CC(TObject *, TObjBase *);
+    TUnk_804928CC(TObject *, TObjBase *, const CollisionBody *, s32);
     virtual ~TUnk_804928CC();
     void update_body_contact_flag(f32);
     virtual void call_vt13_with_default(void*, void*, s32);
@@ -16,11 +18,12 @@ public:
     virtual void area_attack_apply_recoil(void *, f32);
     virtual void area_attack_receive_direct(void *, f32 *, void *);
     virtual void apply_hit_if_active(void *, f32 *);
-    void *init_instance(void *, void *, void *, void *);
-    void *destroy_enemy_object(s16);
     void sub_800BC3E8(u8 *);
     u32 m_ac;
 };
 typedef char TUnk_804928CC_size[sizeof(TUnk_804928CC) == 0xB0 ? 1 : -1];
+
+extern "C" void *__dt__13TUnk_804928CCFv(void *, s16);
+extern "C" void *__ct__13TUnk_804928CCFP7TObjectP8TObjBasePC13CollisionBodyl(void *, void *, void *, const void *, s32);
 
 #endif

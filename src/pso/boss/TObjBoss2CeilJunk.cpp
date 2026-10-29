@@ -1,3 +1,4 @@
+#include "pso/system/vector.h"
 #include "types.h"
 #include "pso/boss/TObjBoss2CeilJunk.h"
 #include "pso/misc/MaterialColorFade.h"
@@ -7,7 +8,6 @@
 #include "pso/system/GinjaMaterial.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/unk/text_803E2D70.h"
-#include "pso/system/vector.h"
 #include "pso/boss/TObjBoss2CeilJunk.h"
 #include "pso/boss/TObjBoss2Tunnel.h"
 #include "pso/enemy/TObjEneDD.h"
@@ -245,7 +245,7 @@ void run_task__17TObjBoss2CeilJunkFv(Junk_8003A314 *o) {
                     if (top > h && bottom < h) {
                         VecCopy((Vec *)&d, (const Vec *)(pl + 0x38));
                         subtract_vector(&d, &o->pos);
-                        if (((TObjBoss2Tunnel *)(&d))->clamp_velocity() < rad) {
+                        if (normalize_vector_xz((Vec *)(&d)) < rad) {
                             hit = 1;
                             forward_switch_phase_stats__13TBoss2DeRolLeFi((s32)pl);
                         }

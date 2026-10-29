@@ -1,3 +1,4 @@
+#include "pso/player/TObjPlayer_800D8FDC.h"
 #include "types.h"
 #include "pso/object/obj_band.h"
 #include "pso/system/vector.h"
@@ -170,7 +171,7 @@ s32 update_enemy_wander_move(void *, Vec_8008FAD0 *, int, f32);
 s32 reset_enemy_state__10TObjPlayerFv();
 s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 void TObjPlayer__sub_8008FAD0(u8 *arg0);
-f32 calc_boss4_scale__10TObjPlayerFi(s32 arg0);
+f32 random_ratio__9TObjCharaFv(s32 arg0);
 void calc_velocity_toward_destination(void *, Vec_8008F910, Vec_8008F910, f32);
 s32 select_enemy_destination(void *, Vec_8008F910, s32);
 void copy_position_if_valid__10TObjPlayerFii(void *, Vec_8008F910);
@@ -320,7 +321,7 @@ void TObjPlayer__sub_8008EDE8(P_8008EDE8 *arg0) {
             }
             if (objInBand((GameObj *)arg0, (f32)lbl_805D964C) != 0) {
                 if (arg0->target->m18(arg0, lbl_805D9650) != 0) {
-                    if (calc_boss4_scale__10TObjPlayerFi((s32)arg0) <= lbl_805D9654) {
+                    if (random_ratio__9TObjCharaFv((s32)arg0) <= lbl_805D9654) {
                         Pair_8008EDE8 q = lbl_80439B54[0];
                         arg0->target->m21(arg0, &q, 0, -1, -1);
                     }
@@ -507,7 +508,7 @@ void TObjPlayer::run_death_sequence() {
         break;
     case 3:
         TObjPlayer__sub_800A04F0((u8 *)&this->unk_390);
-        ((TObjPlayer *)(arg0 + 0x2FC))->request_two_effects();
+        fn_800D911C((Vec *)(arg0 + 0x2FC));
         *(s32 *)((s8 *)arg0 + 0x388) |= 4;
         this->m_37c = 4;
     case 4:

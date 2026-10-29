@@ -55,7 +55,7 @@ u8 *__dt__14TBoss7DeRolLeCFv(u8 *arg0, s16 arg1) {
             o->f720 = 0;
         }
         if (o->f718 != 0) {
-            delete_buffer__12TBoss8DragonFis((s32)o->f718, 1);
+            __dt__17AreaAttackHistoryFv((s32)o->f718, 1);
             o->f718 = 0;
         }
         if (o->f708 != 0) {

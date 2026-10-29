@@ -1,3 +1,4 @@
+#include "pso/unk/TUnk_80494968.h"
 #include "types.h"
 #include "pso/enemy/TUnk_80493450.h"
 #include "pso/player/TObjPlayer.h"
@@ -995,7 +996,7 @@ struct Shark_800AC6B0 : VObj_800AC6B0 {
 };
 
 extern "C" {
-f32 calc_boss4_scale__10TObjPlayerFi(s32 arg0);
+f32 random_ratio__9TObjCharaFv(s32 arg0);
 
 void init_enemy_base__13TUnk_80493450Fv(void *);
 }
@@ -1037,7 +1038,7 @@ void *TObjEneShark__ct(void *arg0, void *arg1, void *arg2) {
     ((TObjEnemy *)self)->update_prev_position();
     ((TBoss3VoloptHiraisin *)self)->copy_position();
     initialize_enemy_photon_effect(self);
-    self->f2AC = (s32)(lbl_805D9BD0 * (lbl_805D9BD4 * calc_boss4_scale__10TObjPlayerFi((s32)self)));
+    self->f2AC = (s32)(lbl_805D9BD0 * (lbl_805D9BD4 * random_ratio__9TObjCharaFv((s32)self)));
     self->f33A = 0xF;
     self->f33C = self->f33A;
     self->f328 = 0;
@@ -1075,8 +1076,8 @@ void *TObjEneShark__ct(void *arg0, void *arg1, void *arg2) {
     }
     self->f3A8.m3();
     self->f390 = 1;
-    self->f3C4 = TObjEneSaver::create((void *)0xA0303030, (void *)color);
-    self->f3C8 = TObjEneSaver::create((void *)0xA0303030, (void *)color);
+    self->f3C4 = TUnk_80494968::create((u32)0xA0303030, (u32)color);
+    self->f3C8 = TUnk_80494968::create((u32)0xA0303030, (u32)color);
     self->f398 = (*(f32 **)(shark_resource_buffer + self->f334 * 4))[0];
     self->f3A0 = (*(f32 **)(shark_resource_buffer + self->f334 * 4))[1];
     self->f39C = (*(f32 **)(shark_resource_buffer + self->f334 * 4))[2];

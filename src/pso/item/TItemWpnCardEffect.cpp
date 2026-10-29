@@ -1,3 +1,4 @@
+#include "pso/TParticleCtrl.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/system/ChunkMaterialState.h"
 #include "types.h"
@@ -8,7 +9,6 @@
 #include "pso/player/TUnk_804EDD20.h"
 #include "pso/item/TUnk_804EDD44.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/TParticleCtrl.h"
 #include "pso/item/TItemWpnCardEffect.h"
 #include "pso/misc/TNowLoading.h"
 #include "pso/system/vector.h"
@@ -308,7 +308,7 @@ void TUnk_804EDD44::start_card_effect_flash() {
     *(u32 *)((s8 *)arg0 + 0x1C) = (u32)spawn_particle_effect_with_rotation(((u8 *)&this->unk_64), ((u8 *)&this->unk_54), 0x1B9, 0x104);
     p = *(u32 *)((s8 *)arg0 + 0x1C);
     if (p != 0U) {
-        ((TObjPlayer *)p)->set_position_xy(1.5f, 1.5f);
+        ((TParticleCtrl *)p)->fn_800822D4(1.5f, 1.5f);
         q = this->m_50;
         if (q != 0U) {
             ((TParticleCtrl *)(*(u32 *)((s8 *)arg0 + 0x1C)))->set_tint_color(q);

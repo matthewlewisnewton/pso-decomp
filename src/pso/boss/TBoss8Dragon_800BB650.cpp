@@ -13,7 +13,7 @@ extern "C" {
 s32 get_player_data__10TObjPlayerFi(int);
 s32 get_entity_id(void *);
 u32 csnLookAt(void *, void *);
-s32 is_alive__9TObjEneDDFv(void *);
+s32 is_alive__8TObjBaseFv(void *);
 f32 horizontal_distance_squared(void *, void *);
 int submit_cursor_candidate(void*, int);
 int refresh_lobby_state__10TObjPlayerFv(void*);
@@ -38,7 +38,7 @@ s32 enemy_nearest_visible_player_sq(u8 *arg0, f32 farg0) {
     n = TLobby::get_game_mode();
     for (i = 0; i < n; i++) {
         p = (u8 *)get_player_data__10TObjPlayerFi(i);
-        if (is_alive__9TObjEneDDFv(p) != 0) {
+        if (is_alive__8TObjBaseFv(p) != 0) {
             d = horizontal_distance_squared(arg0 + 0x2FC, p + 0x38);
             if (d < best && csnLookAt(arg0 + 0x2FC, p + 0x2FC) == 0) {
                 result = get_entity_id(p);
@@ -49,7 +49,7 @@ s32 enemy_nearest_visible_player_sq(u8 *arg0, f32 farg0) {
     return result;
 }
 
-void TBoss8Dragon::refresh_and_send_entity_flags() { refresh_lobby_state__10TObjPlayerFv(this); send_entity_set_flags__9TObjEnemyFv(this); }
+void TObjEnemy::refresh_and_send_entity_flags() { refresh_lobby_state__10TObjPlayerFv(this); send_entity_set_flags__9TObjEnemyFv(this); }
 
 int TObjEneBm3Fly::was_hit_by_ranged() { return (this->m_2dc >> 1) & 0x1; }
 
@@ -67,4 +67,4 @@ void TBoss8Dragon::noop() {  }
 void TBoss8Dragon__sub_800BB7D4(void) {  }
 void TBoss8Dragon__sub_800BB7D8(void) {  }
 void TBoss8Dragon__sub_800BB7DC(void) {  }
-int TBoss8Dragon::set_player_state_default() { return submit_cursor_candidate(this, -1); }
+int TObjEnemy::submit_default_cursor_candidate() { return submit_cursor_candidate(this, -1); }

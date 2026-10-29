@@ -48,7 +48,7 @@ void TBoss8DragonEffBreath::run_task() {
 
 }
 TBoss8DragonEffBreath::~TBoss8DragonEffBreath() {
-    delete_buffer__12TBoss8DragonFis((s32)(*(void **)((s8 *)this + 0x3C)), 1);
+    __dt__17AreaAttackHistoryFv((s32)(*(void **)((s8 *)this + 0x3C)), 1);
     this->m_3c = 0;
 }
 TBoss8DragonEffBreath::TBoss8DragonEffBreath(TObject *parent, void *p, void *v, s32 a, s16 b) : TObject(parent) {
@@ -63,7 +63,7 @@ TBoss8DragonEffBreath::TBoss8DragonEffBreath(TObject *parent, void *p, void *v, 
     ((Obj_802FE024 *)this)->b = b;
     h = ::operator new(0x10);
     if (h != NULL) {
-        h = TBoss8Dragon__sub_800BC5EC((u8 *)h, 4);
+        h = __ct__17AreaAttackHistoryFl((u8 *)h, 4);
     }
     ((Obj_802FE024 *)this)->h = h;
 }

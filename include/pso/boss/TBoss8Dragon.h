@@ -264,10 +264,7 @@ struct TBoss8Dragon
     void bswap_boss_actions();
     s32 is_within_xz_distance(u8 *arg1, f32 farg0);
     f32 calc_sq_offset(f32 farg0);
-    void refresh_and_send_entity_flags();
     static void noop();
-    int set_player_state_default();
-    void *init_buffer(s32 arg1, s32 arg2);
     static int get_instance();
     static u16 get_global_part_count(s32 arg0);
     void place_parts_in_ring(s32 arg1, s32 arg2);

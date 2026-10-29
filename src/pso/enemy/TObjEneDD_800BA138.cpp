@@ -247,7 +247,7 @@ void TObjEneDD::setup_instance(s32 arg0, s32 arg1, u8 *arg2, s32 arg3) {
 
 int is_target_android(void* p) { return (((TObjPlayer *)p)->class_flags & CLASS_FLAG_ANDROID) != 0; }
 int is_target_ranger(void* p) { return (((TObjPlayer *)p)->class_flags & CLASS_FLAG_RANGER) != 0; }
-u8 TObjEneDD::is_alive() {
+s32 TObjBase::is_alive() {
     int var_r31;
 
     var_r31 = 0;

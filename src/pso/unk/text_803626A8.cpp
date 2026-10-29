@@ -1,3 +1,4 @@
+extern "C" void *__ct__12TObjEneDD_STFP7TObject(void *);
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
 #include "pso/misc/TRaderMapCore.h"
@@ -318,7 +319,7 @@ u8 *__dt__14TObjEneEpsilonFv(u8 *arg0, s16 arg1) {
 }
 
 void *TObjEneEpsilon__ct(void *ene_epsilon) {
-    ((TObjEneDD_ST *)ene_epsilon)->init_object();
+    __ct__12TObjEneDD_STFP7TObject(ene_epsilon);
     *(s32 **)((s8 *)ene_epsilon + 0x18) = __vt__14TObjEneEpsilon;
     __construct_array((void *)((char *)ene_epsilon + 960), __ct__15RenderFadeStateFv, __dt__15RenderFadeStateFv, 28, 4);
     *(void * *)&((TObjEneEpsilon *)ene_epsilon)->m_name = TObjEneEpsilon__class_name;

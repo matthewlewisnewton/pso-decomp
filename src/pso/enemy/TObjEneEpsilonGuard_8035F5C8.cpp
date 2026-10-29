@@ -1,3 +1,5 @@
+#include "pso/enemy/TObjEnemy.h"
+#include "pso/system/vector.h"
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
 #include "pso/misc/TRaderMapCore.h"
@@ -8,7 +10,6 @@
 #include "pso/enemy/TObjEneDD_ST.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/player/TObjChara.h"
-#include "pso/enemy/TObjEnemy.h"
 #include "pso/unk/TObjEneEpsilonBody.h"
 #include "pso/player/TObjPlayer_80141D1C.h"
 
@@ -434,7 +435,7 @@ s32 get_mode__11TCameraCtrlFPv(void *);
 extern const f32 lbl_805E0214;
 extern const f32 lbl_805E0218;
 s32 set_field_378__9TObjEneDDFl(void *, s32);
-s32 transition_enemy_state__9TObjEneDDFs(void *, s32);
+s32 transition_enemy_state__9TObjEneDDFl(void *, s32);
 void set_guard_state__18TObjEneEpsilonBodyFl(void *, s32);
 s32 clear_attack_receipts__9TObjEneDDFv();
 s32 VecCopy__FP3VecPC3Vec(void *, void *);
@@ -467,7 +468,7 @@ s32 TObjEneEpsilonGuard__sub_8035FBBC(W_8035FBBC *arg0);
 s32 TObjEneEpsilonGuard__sub_8035FC20(W_8035FC20 *arg0);
 s32 is_guard_ready__19TObjEneEpsilonGuardFv();
 s32 TObjEneEpsilonGuard__sub_8035FCEC(W_8035FCEC *arg0);
-f32 calc_boss4_scale__10TObjPlayerFi(s32 arg0);
+f32 random_ratio__9TObjCharaFv(s32 arg0);
 s32 TObjEneEpsilonGuard__sub_8035DD74(u8 *arg0);
 void set_target__19TObjEneEpsilonGuardFlll(u32, V3_8035F970 *, s32, s32);
 extern const f64 lbl_80479E88;
@@ -645,7 +646,7 @@ s32 TObjEneEpsilonGuard::assign_guard_targets() {
             return 0;
         }
     }
-    near = calc_boss4_scale__10TObjPlayerFi((s32)this) < lbl_80479E88;
+    near = random_ratio__9TObjCharaFv((s32)this) < lbl_80479E88;
     for (i = 0; i < 4; i++) {
         p = find_entity_by_id(((Guard_8035F970 *)this)->h[i]);
         if (p != 0) {
@@ -755,7 +756,7 @@ void TObjEneEpsilonGuard::update_attack_pattern(void *arg0) {
     if (o->flags & 0x400) {
         o->timer--;
         if (o->timer <= 0) {
-            row = t.v[(s32)(lbl_805E0210 * calc_boss4_scale__10TObjPlayerFi((s32)o)) % 20];
+            row = t.v[(s32)(lbl_805E0210 * random_ratio__9TObjCharaFv((s32)o)) % 20];
             for (i = 0; i < 4; i++) {
                 if (row[i] == 1) {
                     TObjEneEpsilonGuard__sub_8035F844((W_8035F844 *)o, i);
@@ -1017,7 +1018,7 @@ void TObjEneEpsilonGuard::action_destroy(s32 arg1) {
         temp_r4 = this->m_438;
         this->m_438 = temp_r4 & ~0x243;
         set_guard_state__18TObjEneEpsilonBodyFl(arg0, temp_r4);
-        ((TBoss8Dragon *)arg0)->refresh_and_send_entity_flags();
+        ((TObjEnemy *)arg0)->refresh_and_send_entity_flags();
         *(s32 *)((s8 *)arg0 + 0x4E4) = 0;
         *(s32 *)((s8 *)arg0 + 0x4E8) = 0;
         break;
@@ -1060,7 +1061,7 @@ void TObjEneEpsilonGuard::update_fade(s32 arg1) {
         return;
     case 3:
         if ((s32) *(s32 *)((s8 *)this + 0x4E4) == 2) {
-            transition_enemy_state__9TObjEneDDFs(this, 4);
+            transition_enemy_state__9TObjEneDDFl(this, 4);
         }
         break;
     case 0:
@@ -1111,7 +1112,7 @@ void TObjEneEpsilonGuard__sub_80360BF8(u8 *arg0, s32 arg1) {
         break;
     case 3:
         if ((s32) ((TObjEneEpsilonBody *)arg0)->m_4e4 == 3) {
-            transition_enemy_state__9TObjEneDDFs((void *)(arg0), 0);
+            transition_enemy_state__9TObjEneDDFl((void *)(arg0), 0);
             ((TObjEneEpsilonBody *)(arg0))->vfunc_95();
         }
         break;
@@ -1164,7 +1165,7 @@ void TObjEneEpsilonGuard::handle_warp_state(s32 arg1) {
         break;
     case 3:
         if (g->state == 3) {
-            transition_enemy_state__9TObjEneDDFs(this, 2);
+            transition_enemy_state__9TObjEneDDFl(this, 2);
         }
         break;
     case 0:
@@ -1238,9 +1239,9 @@ void TObjEneEpsilonGuard__sub_803610D0(u8 *arg0, s32 arg1) {
         break;
     case 3:
         if (F_8036(0x4E4, s32) == 5) {
-            transition_enemy_state__9TObjEneDDFs(arg0, 6);
+            transition_enemy_state__9TObjEneDDFl(arg0, 6);
         } else if (F_8036(0x4E4, s32) == 4) {
-            transition_enemy_state__9TObjEneDDFs(arg0, 4);
+            transition_enemy_state__9TObjEneDDFl(arg0, 4);
         }
         break;
     case 0:
@@ -1319,7 +1320,7 @@ void action__19TObjEneEpsilonGuardFPvi(void *arg0, s32 arg1) {
         return;
     case 3:
         if ((s32) *(s32 *)((s8 *)arg0 + 0x4E4) == 2) {
-            transition_enemy_state__9TObjEneDDFs(arg0, 5);
+            transition_enemy_state__9TObjEneDDFl(arg0, 5);
         }
         break;
     case 5:
@@ -1371,9 +1372,9 @@ void handle_guard_action_state__19TObjEneEpsilonGuardFPvi(W_80361508 *self, s32 
         if (self->state == 3) {
             TObjEneEpsilonGuard__sub_8035FA50((W_8035FA50 *)self);
             self->flags &= ~0x10;
-            transition_enemy_state__9TObjEneDDFs(self, 4);
+            transition_enemy_state__9TObjEneDDFl(self, 4);
         } else if (self->state == 2) {
-            transition_enemy_state__9TObjEneDDFs(self, 2);
+            transition_enemy_state__9TObjEneDDFl(self, 2);
         }
         break;
     case 0:
@@ -1434,10 +1435,10 @@ void TObjEneEpsilonGuard__sub_803616E4(void *arg0_, s32 arg1) {
         break;
     case 3:
         if (F(s32, 0x438) & 0x80) {
-            transition_enemy_state__9TObjEneDDFs(arg0, 7);
+            transition_enemy_state__9TObjEneDDFl(arg0, 7);
         } else if (F(s32, 0x4E4) == 1) {
             F(s32, 0x440) = F(s32, 0x450);
-            transition_enemy_state__9TObjEneDDFs(arg0, 3);
+            transition_enemy_state__9TObjEneDDFl(arg0, 3);
         }
         break;
     case 5:
@@ -1502,7 +1503,7 @@ void TObjEneEpsilonGuard__sub_803616E4(void *arg0_, s32 arg1) {
             VecCopy__FP3VecPC3Vec(&a, tgt);
             VecCopy__FP3VecPC3Vec(&b, d);
             subtract_vector(&a, d);
-            ((TObjBoss2Tunnel *)(&a))->clamp_velocity();
+            normalize_vector_xz((Vec *)(&a));
             s = *(f32 *)(GP + 4);
             b.x += a.x * s;
             b.y += lbl_805E022C;
@@ -1580,7 +1581,7 @@ void TObjEneEpsilonGuard__sub_80361C70(u8 *arg0, s32 arg1) {
         break;
     case 3:
         if (((VObj_14_948132 *)(arg0 + (1216)))->m5() != 0) {
-            transition_enemy_state__9TObjEneDDFs(arg0, 2);
+            transition_enemy_state__9TObjEneDDFl(arg0, 2);
             break;
         }
     case 5:
@@ -1606,7 +1607,7 @@ extern const f32 lbl_805E0240;
 
 extern "C" {
 
-#define transition_enemy_state__9TObjEneDDFs ((s32 (*)(void *, int))transition_enemy_state__9TObjEneDDFs)
+#define transition_enemy_state__9TObjEneDDFl ((s32 (*)(void *, int))transition_enemy_state__9TObjEneDDFl)
 #define set_field_378__9TObjEneDDFl ((s32 (*)(void *, int))set_field_378__9TObjEneDDFl)
 #define set_guard_state__18TObjEneEpsilonBodyFl ((s32 (*)(void *))set_guard_state__18TObjEneEpsilonBodyFl)
 s32 update_linked_position__12TObjEneDD_STFf(f32);
@@ -1628,7 +1629,7 @@ void TObjEneEpsilonBody::sub_80361D4C(s32 arg1) {
         return;
     case 3:
         if (!(this->m_438 & 0x80)) {
-            transition_enemy_state__9TObjEneDDFs(arg0, 1);
+            transition_enemy_state__9TObjEneDDFl(arg0, 1);
         }
     case 5:
     case 0:
@@ -1672,11 +1673,11 @@ void TObjEneEpsilonBody::init_params() {
 }
 #pragma pop
 
-#undef transition_enemy_state__9TObjEneDDFs
+#undef transition_enemy_state__9TObjEneDDFl
 #undef set_field_378__9TObjEneDDFl
 #undef set_guard_state__18TObjEneEpsilonBodyFl
 #define handle_guard_action_state__19TObjEneEpsilonGuardFPvi ((s32 (*)(void *, void *))handle_guard_action_state__19TObjEneEpsilonGuardFPvi)
-#define transition_enemy_state__9TObjEneDDFs ((int (*)(void*, void*))transition_enemy_state__9TObjEneDDFs)
+#define transition_enemy_state__9TObjEneDDFl ((int (*)(void*, void*))transition_enemy_state__9TObjEneDDFl)
 int vfunc_89__9TObjEneDDFv(void*);
 #define VecCopy__FP3VecPC3Vec ((s32 (*)(void *, void *, void *, f32))VecCopy__FP3VecPC3Vec)
 
@@ -1698,11 +1699,11 @@ void TObjEneEpsilonBody::vfunc_62() {
     if ((s16) this->mode != 8) {
         temp_r4 = this->m_438;
         if (!(temp_r4 & 2) && !(temp_r4 & 0x40)) {
-            transition_enemy_state__9TObjEneDDFs(this, (void*)(8));
+            transition_enemy_state__9TObjEneDDFl(this, (void*)(8));
         }
     }
 }
-void TObjEneEpsilonBody::vfunc_63() { if (this->mode != 9) { transition_enemy_state__9TObjEneDDFs(this, (void*)9); } }
+void TObjEneEpsilonBody::vfunc_63() { if (this->mode != 9) { transition_enemy_state__9TObjEneDDFl(this, (void*)9); } }
 void TObjEneEpsilonBody::vfunc_28() {  }
 void TObjEneEpsilonGuard::dispatch_state(u32 arg1, s32 arg2) {
     s32 arg0 = (s32)this;
@@ -1744,5 +1745,5 @@ void TObjEneEpsilonGuard::dispatch_state(u32 arg1, s32 arg2) {
 }
 
 #undef handle_guard_action_state__19TObjEneEpsilonGuardFPvi
-#undef transition_enemy_state__9TObjEneDDFs
+#undef transition_enemy_state__9TObjEneDDFl
 #undef VecCopy__FP3VecPC3Vec

@@ -245,7 +245,7 @@ void __ct__11TItemWeaponFP7TObjectPUc(void *);
 s32 TObjPlayer__sub_802E451C();
 void __dl__7TObjectFPv(void *);
 void __dt__7TObjectFv(void *, int);
-s32 set_position_xy__10TObjPlayerFff(f32, f32);
+s32 fn_800822D4__13TParticleCtrlFff(f32, f32);
 s32 update_battle_control_if_unlocked__10TObjPlayerFv();
 
 void *TObjPlayer::reset_field28() {
@@ -567,7 +567,7 @@ void TObjPlayer::handle_action(s32 arg1, s32 arg2, s32 arg3) {
         update_battle_control_if_unlocked__10TObjPlayerFv();
     }
     if ((arg3 == 1) && (spawn_particle_effect((s32 *)(arg0 + 0x2FC), 0xA8) != 0U)) {
-        set_position_xy__10TObjPlayerFff(lbl_805E0074, lbl_805E0078);
+        fn_800822D4__13TParticleCtrlFff(lbl_805E0074, lbl_805E0078);
     }
 }
 
@@ -596,7 +596,7 @@ void TObjPlayer::handle_symbol_chat_action(s32 arg1, s32 arg2, s32 arg3) {
         update_battle_control_if_unlocked__10TObjPlayerFv();
     }
     if ((arg3 == 1) && (spawn_particle_effect((s32 *)(arg0 + 0x2FC), 0x67) != 0U)) {
-        set_position_xy__10TObjPlayerFff(lbl_805E0074, lbl_805E0078);
+        fn_800822D4__13TParticleCtrlFff(lbl_805E0074, lbl_805E0078);
     }
 }
 
@@ -649,10 +649,10 @@ void weapon_hell_effect(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     }
     if (arg3 == 1) {
         if (spawn_particle_effect((s32 *)arg2, 0x1C5) != 0U) {
-            set_position_xy__10TObjPlayerFff(lbl_805E007C, lbl_805E007C);
+            fn_800822D4__13TParticleCtrlFff(lbl_805E007C, lbl_805E007C);
         }
         if (spawn_particle_effect((s32 *)arg2, 0x1C8) != 0U) {
-            set_position_xy__10TObjPlayerFff(lbl_805E007C, lbl_805E007C);
+            fn_800822D4__13TParticleCtrlFff(lbl_805E007C, lbl_805E007C);
         }
     }
 }

@@ -185,7 +185,7 @@ extern s32 local_client_id;
 void check_hold_player__14TOTrapSeabed01FPv(u8 *arg0);
 void vfunc_81__14TOTrapSeabed01Fv(u8 *arg0);
 s32 get_bml_model(int, int);
-s32 set_position_xy__10TObjPlayerFff(f32, f32);
+s32 fn_800822D4__13TParticleCtrlFff(f32, f32);
 void *spawn_particle_effect(void *pos, s32 id);
 u8 *copy_transform__8TObjChipFPvPv(u8 *arg0, u8 *arg1);
 void *__nw__7TObjectFUl(int);
@@ -240,7 +240,7 @@ void TOTrapSeabed01__vt83(Trap_802C9E3C *self) {
         rotate_matrix_y(&m, self->rotY);
         matrix_mult_vec(&m, &v, &v);
         if (spawn_particle_effect(&v, 0x8B) != 0) {
-            set_position_xy__10TObjPlayerFff(lbl_805DE648, lbl_805DE648);
+            fn_800822D4__13TParticleCtrlFff(lbl_805DE648, lbl_805DE648);
         }
     }
     ((TOTrapSeabed01 *)self)->sub_802C9C18(1);

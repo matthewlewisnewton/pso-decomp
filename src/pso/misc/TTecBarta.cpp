@@ -1,3 +1,4 @@
+#include "pso/TParticleCtrl.h"
 #include "types.h"
 #include "pso/misc/TTecBarta.h"
 #include "pso/effect/TUnk_804CC148.h"
@@ -18,7 +19,6 @@ struct RecoveredGlobal_8022B6FC_lbl_804CC55C
 #include "pso/misc/TNowLoading.h"
 #include "pso/misc/TTecAnti.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/TParticleCtrl.h"
 
 struct HitInfo_8022B8F4 { s32 type; f32 power; };
 
@@ -217,7 +217,7 @@ void TTecBarta::create_particle_emitters() {
             if (row->flags & 0x20) {
                 attach_particle_model((u8 *)self->emitters[i], (s32)(get_bml_model(technique_effect_bml, 0)), (s32)lbl_805D63B0, (s32)(get_bml_motion(technique_effect_bml, 0)), 0, (f32)lbl_805DC7A0);
             } else {
-                ((TObjPlayer *)(self->emitters[i]))->set_position_xy(row->scale, row->scale);
+                ((TParticleCtrl *)(self->emitters[i]))->fn_800822D4(row->scale, row->scale);
             }
         }
     }

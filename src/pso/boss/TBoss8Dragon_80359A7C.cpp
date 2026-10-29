@@ -1,8 +1,8 @@
+#include "pso/enemy/TObjEnemy.h"
 #include "types.h"
 #include "pso/enemy/TObjEneDD_800B9B84.h"
 #include "pso/boss/TBoss8Dragon_80359A7C.h"
 #include "pso/object/TObject_80019A50.h"
-#include "pso/enemy/TObjEnemy.h"
 #include "pso/TObject.h"
 #include "pso/boss/TBoss8Dragon.h"
 #include "pso/enemy/TObjEneDD.h"
@@ -206,7 +206,7 @@ void TBoss8Dragon__sub_80359A7C(u8 *boss8_dragon) {
     ((TObjEneDD *)boss8_dragon)->sub_800BBA0C();
     ((VObj_18 *)(boss8_dragon))->m86();
     ((TBoss8Dragon *)boss8_dragon)->store_position();
-    ((TBoss8Dragon *)boss8_dragon)->set_player_state_default();
+    ((TObjEnemy *)boss8_dragon)->submit_default_cursor_candidate();
     add_radar_scaled_marker(boss8_dragon + 0x38, -0x5DB4, 1, 1, lbl_805E00B0);
     if (temp_r30_2 == 0) {
         ((TObject *)(boss8_dragon + 0x3C4))->run_tasks();

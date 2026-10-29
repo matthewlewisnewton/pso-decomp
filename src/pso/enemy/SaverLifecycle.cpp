@@ -1,3 +1,4 @@
+#include "pso/player/TObjPlayer_800D8FDC.h"
 #include "types.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/player/TObjChara.h"
@@ -89,7 +90,7 @@ extern void *TObjEneSaver__vtable[83];
 Obj_800A73F8 *__dt__12TObjEneSaverFv(Obj_800A73F8 *arg0, s16 arg1);
 void* get_center__12TObjEneSaverFv(void* p);
 void copy_position__20TBoss3VoloptHiraisinFv(s32 arg0);
-s32 create__12TObjEneSaverFPvPv(u32, u32);
+s32 create__13TUnk_80494968FUlUl(u32, u32);
 void __ct__9TObjEnemyFP7TObject(void *, void *, void *);
 void init_collision_body_parts(void *, void *, s32);
 void *__nw__7TObjectFUl(int);
@@ -153,7 +154,7 @@ void set_matrix_identity(u8 *arg0);
 s32 rotate_matrix_y(int, int);
 s32 push_matrix();
 s32 pop_matrix();
-f32 calc_boss4_scale__10TObjPlayerFi(s32 arg0);
+f32 random_ratio__9TObjCharaFv(s32 arg0);
 s32 minimap_render_dot(void *, int, int, int);
 s32 refresh_lobby_state__10TObjPlayerFv(void *, void *);
 
@@ -392,7 +393,7 @@ void TObjEneSaver::update_collapse_and_destroy() {
     switch (((TObjEneSaver *)arg0)->phase) {
     case 0:
         ((TObjEneSaver *)arg0)->phase = 1;
-        ((TObjPlayer *)(arg0 + 0x38))->request_two_effects();
+        fn_800D911C((Vec *)(arg0 + 0x38));
         TObjPlayer__sub_800A04F0((u8 *)&this->m_3a4);
         apply_actor_gravity((TObjEnemy *)(arg0), (s32 *)(0), 0.0f);
         prev_r3 = copy_target_state__14TObjEnePanarmsFPv(arg0, 0x4003B207);
@@ -422,7 +423,7 @@ void TObjEneSaver::vfunc_63() {
         temp_s16 = 0xA;
         this->mode = temp_s16;
         this->phase = 0;
-        if (calc_boss4_scale__10TObjPlayerFi((s32)this) < 0.5f) {
+        if (random_ratio__9TObjCharaFv((s32)this) < 0.5f) {
             this->m_b8 = 9;
         } else {
             this->m_b8 = 0xA;
@@ -2151,7 +2152,7 @@ u8 *TObjEneSaver__ct(TObjEneSaver *arg0, void *arg1, void *arg2) {
     void *p;
     __ct__9TObjEnemyFP7TObject(arg0, arg1, arg2);
     *(u8 **)((s8 *)arg0 + 0x18) = (u8 *)TObjEneSaver__vtable;
-    ((TUnk_80490470 *)((u8 *)arg0 + 0x3A4))->init_vtable_and_field18();
+    __ct__13TUnk_80490470Fv(((u8 *)arg0 + 0x3A4));
     *(s32 *)((s8 *)arg0 + 0) = TObjEneSaver__class_name;
     arg0->apply_set_data(arg2);
     ((TObjPlayer *)arg0)->init_position_vectors();
@@ -2202,9 +2203,9 @@ u8 *TObjEneSaver__ct(TObjEneSaver *arg0, void *arg1, void *arg2) {
         p = TEneParticleCtrl__ct((u8 *)p, (s32)arg0, arg0->m_380);
     }
     *(void **)((s8 *)arg0 + 0x3A0) = p;
-    *(s32 *)((s8 *)arg0 + 0x3C0) = create__12TObjEneSaverFPvPv(0xA0303030, 0xFFFF0088);
-    *(s32 *)((s8 *)arg0 + 0x3C4) = create__12TObjEneSaverFPvPv(0xA0303030, 0xFFFF0088);
-    *(s32 *)((s8 *)arg0 + 0x3C8) = create__12TObjEneSaverFPvPv(0xA0303030, 0xFF303030);
+    *(s32 *)((s8 *)arg0 + 0x3C0) = create__13TUnk_80494968FUlUl(0xA0303030, 0xFFFF0088);
+    *(s32 *)((s8 *)arg0 + 0x3C4) = create__13TUnk_80494968FUlUl(0xA0303030, 0xFFFF0088);
+    *(s32 *)((s8 *)arg0 + 0x3C8) = create__13TUnk_80494968FUlUl(0xA0303030, 0xFF303030);
     arg0->clear_lobby_object_state();
     return (u8 *)arg0;
 }
