@@ -1118,6 +1118,7 @@ pso/encryption/PSOV3EncryptionTCP.cpp:
 
 pso/unk/text_8007C0CC.cpp:
 	.text       start:0x8007C0CC end:0x8007C520
+	.bss        start:0x80500398 end:0x80500598
 
 pso/item/TItemDrop.cpp:
 	.text       start:0x8007C520 end:0x8007C550
