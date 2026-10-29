@@ -27,10 +27,10 @@ s32 TUnk_80494938::has_visible_opacity() {
 
 void TUnk_80494938::set_flags_and_apply_damage_color() { MaterialColorFade::set_flags_and_apply_damage_color(); set_chunk_blend(8448); }
 
-s32 TObjEneMe3SinowZoa::advance_timer(f32 farg0) {
-    *(f32 *)((s8 *)((u8 *)this) + 0x18) = (f32) (*(f32 *)((s8 *)((u8 *)this) + 0x18) + *(f32 *)&this->m_up);
-    ((TUnk_80494938 *)((u8 *)this))->sub_800D741C();
-    return *(f32 *)((s8 *)((u8 *)this) + 0x18) >= farg0;
+s32 TUnk_80494938::advance_timer(f32 threshold) {
+    value += rate;
+    sub_800D741C();
+    return value >= threshold;
 }
 
 s32 TUnk_80494938::advance_toward_max() {
@@ -71,7 +71,7 @@ void TUnk_80494938::reset_obstruction_fade() { this->value = lbl_805DA348; this-
     extern const float lbl_805DA34C;
 void TUnk_80494938::reset_color() { this->value = lbl_805DA34C; this->color.a = lbl_805DA348; this->color.r = lbl_805DA348; this->color.g = lbl_805DA348; this->color.b = lbl_805DA348; }
 
-void TObjEneMe3SinowZoa::set_field_10(f32 v) { *(f32 *)&this->m_up = v; }
+void TUnk_80494938::set_rate(f32 v) { rate = v; }
 
 }
 

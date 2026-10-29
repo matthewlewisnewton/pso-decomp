@@ -15,6 +15,8 @@ public:
     virtual void set_flags_and_apply_damage_color();
     virtual s32 has_visible_opacity();
     void sub_800D741C();
+    s32 advance_timer(f32 threshold);
+    void set_rate(f32 value);
     f32 value;
 };
 
