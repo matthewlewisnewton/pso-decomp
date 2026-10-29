@@ -4587,13 +4587,13 @@ force_active:
   - fn_803054FC__16TObjEneDellBiterFv
   - fn_80305684__16TObjEneDellBiterFv
   - fn_80305688__16TObjEneDellBiterFv
-  - fn_80305788__16TObjEneDellBiterFv
-  - fn_80305884__16TObjEneDellBiterFv
+  - select_farthest_visible_player__16TObjEneDellBiterFv
+  - validate_or_update_target__16TObjEneDellBiterFv
   - fn_803058DC__16TObjEneDellBiterFv
   - fn_8030591C__16TObjEneDellBiterFv
   - fn_803059BC__16TObjEneDellBiterFPC3Vec
-  - fn_80305C40__16TObjEneDellBiterFv
-  - fn_80305E1C__16TObjEneDellBiterFv
+  - check_rush_collisions__16TObjEneDellBiterFv
+  - update_contact_attacks__16TObjEneDellBiterFv
   - fn_80313268__19TObjEneDelDepthBombFv
   - fn_80313740__15TObjEneDelDepthFv
   - fn_803138F8__15TObjEneDelDepthFv
