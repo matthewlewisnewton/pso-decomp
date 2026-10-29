@@ -12110,6 +12110,7 @@ pso/boss/TBoss6CrushRock.cpp:
 	.rodata     start:0x804796C0 end:0x804796C8
 	.data       start:0x804F1C40 end:0x804F1C58
 	.sdata      start:0x805D4408 end:0x805D440C
+	.sdata2     start:0x805E00C8 end:0x805E00E8
 
 pso/boss/TBoss7DeRolLeC.cpp:
 	.text       start:0x8035A628 end:0x8035A630
