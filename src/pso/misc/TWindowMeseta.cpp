@@ -7,6 +7,13 @@
 #include "pso/misc/TWindowDD.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 
+#pragma readonly_strings on
+
+extern "C" {
+const char *TWindowMeseta__class_name = "TWindowMeseta";
+}
+
+
 struct Sub_80269244 { u8 pad0[8]; f32 x8; };
 
 struct Meseta_80269244 {
@@ -29,16 +36,11 @@ extern "C" {
 s32 get_meseta_value__13TWindowMesetaFv();
 extern s32 TWindowMeseta__window_descriptor[];
 extern s32 __vt__13TWindowMeseta[];
-extern s32 TWindowMeseta__class_name;
-extern const f32 lbl_805DD204;
-extern const f32 lbl_805DD208;
-extern const f32 lbl_805DD20C;
-extern const f32 lbl_805DD210;
+extern const char *TWindowMeseta__class_name;
 void *TWindowMeseta__ct(void *arg0, s32 arg1, s32 arg2, s32 arg3);
 void *__dt__13TWindowMesetaFv(void *arg0, s16 arg1);
 void __dl__7TObjectFPv(void *);
 
-extern const f32 lbl_805DD200;
 
 void TWindowMeseta::run_task() {
     u8 *arg0 = (u8 *)this;
@@ -47,7 +49,7 @@ void TWindowMeseta::run_task() {
     temp_r3 = get_meseta_value__13TWindowMesetaFv();
     if (temp_r3 != (s32) this->m_68) {
         this->m_68 = temp_r3;
-        ((TWindowSubStatusDisp *)(((TUnk_804CE018 *)arg0)->get_array_entry(1)))->set_animated_target(this->m_68, lbl_805DD200);
+        ((TWindowSubStatusDisp *)(((TUnk_804CE018 *)arg0)->get_array_entry(1)))->set_animated_target(this->m_68, 9.0f);
     }
     ((TWindowDD *)arg0)->initialize_subwindow();
     ((TUnk_804CE018 *)arg0)->update_window_entry_list((u8 *)&this->m_24);
@@ -69,22 +71,22 @@ void *TWindowMeseta__ct(void *arg0, s32 arg1, s32 arg2, s32 str) {
     Sub_80269244 *b;
     ((TWindowDD *)arg0)->construct_base((u8 *)TWindowMeseta__window_descriptor, (s16)arg2, (u8 *)arg1);
     self->vt = __vt__13TWindowMeseta;
-    self->name = TWindowMeseta__class_name;
+    self->name = ((s32)TWindowMeseta__class_name);
     self->x64 = arg2;
     self->meseta = ((s32 (*)(void *))get_meseta_value__13TWindowMesetaFv)(arg0);
     a = (Sub_80269244 *)((TUnk_804CE018 *)arg0)->get_array_entry(0);
     b = (Sub_80269244 *)((TUnk_804CE018 *)arg0)->get_array_entry(1);
     set_text_entry_string((u8 *)a, str, 0);
     ((TWindowSubStatusDisp *)b)->set_all_values(self->meseta);
-    self->x38 = lbl_805DD204 + b->x8;
+    self->x38 = 10.0f + b->x8;
     ((TUnk_804CE018 *)arg0)->save_position();
-    self->x60 = TWindowSubStatusDisp__sub_802877A4(self->x48 - lbl_805DD208);
+    self->x60 = TWindowSubStatusDisp__sub_802877A4(self->x48 - 16.0f);
     if (TCameraCtrl::get_camera_id() > 2) {
-        self->x6c = lbl_805DD20C;
-        self->x70 = lbl_805DD20C;
+        self->x6c = 0.75f;
+        self->x70 = 0.75f;
     } else {
-        self->x6c = lbl_805DD210;
-        self->x70 = lbl_805DD210;
+        self->x6c = 1.0f;
+        self->x70 = 1.0f;
     }
     return arg0;
 }

@@ -5,6 +5,9 @@
 #include "pso/misc/TWindowSubComCard.h"
 #include "pso/ui/Language.h"
 
+#pragma readonly_strings on
+
+
 struct E_80075D68 { u8 f0; u8 pad[0x2f]; };
 
 struct O_80075D68 { u8 pad[0x110]; E_80075D68 e[6]; };
@@ -43,16 +46,10 @@ extern s32 local_client_id;
 extern const f32 lbl_805D91A8;
 extern const f32 TObjTombstone__data_805D9174;
 int sprintf(char *, const char *, ...);
-extern char lbl_804387F8[];
 const char *TQuestVmDownLoadServer__sub_8006EF6C(s32);
-extern char lbl_80438800[];
-extern char lbl_80438808[];
 Ply_8007598C * get_player_by_client_id(s32, void *);
 char *strncpy(char *, const char *, unsigned long);
 unsigned long strlen(const char *);
-extern char lbl_80438810[];
-extern char lbl_804387C8[];
-extern char lbl_804387E0[];
 s32 check_height_ready__13TObjTombstoneFv();
 
 void TObjTombstone::render() {
@@ -110,10 +107,10 @@ void TObjTombstone::format_date_text() {
     }
     switch (current_language) {
     case LANGUAGE_JAPANESE:
-        sprintf(text, lbl_804387C8, year + 2000, month, day, hour, minute);
+        sprintf(text, (char *)"%d/%02d/%02d %02d:%02d", year + 2000, month, day, hour, minute);
         break;
     default:
-        sprintf(text, lbl_804387E0, month, day, year + 2000, hour, minute);
+        sprintf(text, (char *)"%02d/%02d/%d %02d:%02d", month, day, year + 2000, hour, minute);
         break;
     }
 }
@@ -124,7 +121,7 @@ void TObjTombstone::format_quoted_name() {
     if (self->name[0] == 0 || TWindowSubComCard::contains_profanity(self->name) != 0) {
         buf[0] = 0;
     } else {
-        sprintf(buf, lbl_804387F8, self->name);
+        sprintf(buf, (char *)"\"%s\"", self->name);
     }
     buf[0x2F] = 0;
 }
@@ -152,14 +149,14 @@ void TObjTombstone::build_name_text() {
     if (self->name[0] == 0 || TWindowSubComCard::contains_profanity(self->name) != 0) {
         buf[0] = 0;
     } else {
-        sprintf(buf, lbl_80438800, TQuestVmDownLoadServer__sub_8006EF6C(0x4C), self->name);
+        sprintf(buf, (char *)"%s%s", TQuestVmDownLoadServer__sub_8006EF6C(0x4C), self->name);
     }
     buf[0x2F] = 0;
 }
 
 void TObjTombstone::format_label() {
     Obj_80075C60 *self = (Obj_80075C60 *)this;
-    sprintf(self->buf, lbl_80438808, TQuestVmDownLoadServer__sub_8006EF6C(0x4D), this->m_c4);
+    sprintf(self->buf, (char *)"%s%d", TQuestVmDownLoadServer__sub_8006EF6C(0x4D), this->m_c4);
     self->buf[0x2F] = 0;
 }
 
@@ -177,7 +174,7 @@ void TObjTombstone::format_player_name() {
         for (p = buf + strlen(buf) - 1; p > buf && *p == ' '; p--) {
             *p = 0;
         }
-        sprintf(dst, lbl_80438810, buf);
+        sprintf(dst, (char *)"< %s >", buf);
     }
     dst[0x2F] = 0;
 }

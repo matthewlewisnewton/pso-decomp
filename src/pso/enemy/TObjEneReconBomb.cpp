@@ -13,6 +13,8 @@
 #include "pso/object/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
 
+#pragma readonly_strings on
+
 struct Vec_8031B618 { f32 x, y, z; };
 
 struct Sub_8031B618 { u8 pad[0xC]; f32 radius; };
@@ -255,7 +257,7 @@ void *__dt__16TObjEneReconBombFv(void *arg0, s16 arg1) {
     return arg0;
 }
 
-extern s32 TObjEneReconBomb__name;
+extern const char *TObjEneReconBomb__name;
 
 u8 *TObjEneReconBomb__ct(TObjEneReconBomb *ene_recon_bomb, s32 arg1, s32 arg2, s32 arg3) {
     f32 temp_f1;
@@ -287,5 +289,7 @@ u8 *TObjEneReconBomb__ct(TObjEneReconBomb *ene_recon_bomb, s32 arg1, s32 arg2, s
 __declspec(section ".sdata2") extern const f32 lbl_805DF3AC = 0.94999998807907104f;
 __declspec(section ".sdata2") extern const f32 lbl_805DF3B0 = -0.10000000149011612f;
 __declspec(section ".sdata2") extern const f32 lbl_805DF3B4 = -0.5f;
+
+const char *TObjEneReconBomb__name = "TObjEneReconBomb";
 
 }

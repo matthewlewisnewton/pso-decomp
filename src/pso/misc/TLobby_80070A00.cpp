@@ -4,6 +4,8 @@
 
 #include "types.h"
 
+#pragma readonly_strings on
+
 #pragma inline_depth(1)
 #pragma auto_inline off
 #pragma dont_inline off
@@ -28,7 +30,6 @@ extern "C" {
 u32 create__10TChallengeFv();
 
 s32 get_main_phase();
-extern s32 lbl_804385B0[];
 extern u32 challenge_task;
 extern s32 challenge_task_created;
 extern s32 TLobby__data_805D4E30;
@@ -45,7 +46,7 @@ void TLobby::init_on_main_phase() {
             challenge_task = create__10TChallengeFv();
             challenge_task_created = 1;
             TObjTombstone::load_resources();
-            ((TLobby *)lbl_804385B0)->set_name_string();
+            ((TLobby *)(s32 *)"Area00")->set_name_string();
         }
     }
 }
@@ -58,6 +59,12 @@ void TLobby::copy_state_block() {
 }
 
 __declspec(section ".ctors") static void *const __sinit_TLobby_80070A00_80070A00_cpp_ref = (void *)TLobby::copy_state_block;
+
+extern "C" {
+s32 challenge_time_limit_sentinel;
+s8 challenge_time_limit_initialized;
+}
+
 
 #undef challenge_mode_state
 
@@ -606,14 +613,12 @@ s32 TLobby__sub_80071B30(s32, s32);
 
 s32 TLobby__sub_80071654(s32 arg0);
 
-extern f32 lbl_805D9108;
-extern f32 lbl_805D910C;
 
 s32 TLobby::try_set_value(f32 farg0) {
     if (((s32 (*)(void))is_flag_set__6TLobbyFv)() == 0) {
         return 0;
     }
-    if ((farg0 < lbl_805D9108) || (farg0 > lbl_805D910C)) {
+    if ((farg0 < 0.01f) || (farg0 > 10000.0f)) {
         return 0;
     }
     *(f32 *)((s8 *)&challenge_mode_state + 4) = farg0;
