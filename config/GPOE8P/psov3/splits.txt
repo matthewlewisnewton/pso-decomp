@@ -6324,7 +6324,9 @@ pso/misc/TPhotonRainbow_801AE640.cpp:
 
 pso/misc/TPhotonYoulla.cpp:
 	.text       start:0x801AE744 end:0x801AEB84
-	.rodata     start:0x80446F18 end:0x80446F20
+	.rodata     start:0x80446F08 end:0x80446F20
+	.sdata      start:0x805D3528 end:0x805D3530
+	.sbss       start:0x805D5D60 end:0x805D5D68
 
 pso/player/TObjPlayer_801AEB84.cpp:
 	.text       start:0x801AEB84 end:0x801AEE10
