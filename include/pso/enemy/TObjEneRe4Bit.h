@@ -2,6 +2,7 @@
 #define PSO_ENEMY_TOBJENERE4BIT_H
 
 #include "types.h"
+#include <stddef.h>
 #include "pso/enemy/TObjEneDD_ST.h"
 
 struct TObjEneRe4Bit : public TObjEneDD_ST {
@@ -36,7 +37,9 @@ struct TObjEneRe4Bit : public TObjEneDD_ST {
     u32 m_3d0;
     u8 _pad3D4[0x8];
     void* m_3dc;
-    u8 _pad3E0[0x10];
+    u8 _pad3c4[0x8];
+    u32 state_flags;
+    u8 _pad3d0[0x4];
     u32 m_3f0;
     u8 _pad3F4[0x10];
     u32 m_404;
@@ -53,6 +56,8 @@ struct TObjEneRe4Bit : public TObjEneDD_ST {
     void create_disabled(s32 arg1, s32 arg2, s32 arg3);
     static void *create(void *arg0, void *arg1, void *arg2, void *arg3, void *arg4);
 };
+
+typedef char TObjEneRe4Bit_state_flags_offset[offsetof(TObjEneRe4Bit, state_flags) == 0x3CC ? 1 : -1];
 
 typedef char TObjEneRe4Bit_size[sizeof(TObjEneRe4Bit) == 0x410 ? 1 : -1];
 
