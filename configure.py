@@ -438,7 +438,7 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/object/TObjChip.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     # GC/2.0: compiler-expanded struct copies take 2.0's registers.
     "pso/boss/Boss5GryphonBehavior.cpp": {"mw_version": "GC/2.0"},
-    "pso/enemy/TObjEneGyaranzo.cpp": {"mw_version": "GC/2.0"},
+    "pso/enemy/TObjEneGyaranzo.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred")},
     "pso/misc/TOExplosiveMachine.cpp": {"mw_version": "GC/2.0"},
     "pso/enemy/TObjEneSlimeTailAttack.cpp": {"mw_version": "GC/2.0"},
     "pso/boss/TBoss8Dragon.cpp": {"mw_version": "GC/2.0"},

@@ -14,6 +14,41 @@ detect_strings: true
 mw_comment_version: 10
 # --- force_active (BEGIN) ---
 force_active:
+  - __ct__15TObjEneGyaranzoFP7TObjectPv
+  - __dt__15TObjEneGyaranzoFv
+  - __vt__15TObjEneGyaranzo
+  - bm_ene_gyaranzo_model_names
+  - bm_ene_gyaranzo_motion_names
+  - bm_ene_gyaranzo_resource_descriptor
+  - cancel_fade_state__15TObjEneGyaranzoFv
+  - dispatch_state_update__15TObjEneGyaranzoFv
+  - gyaranzo_collision_body
+  - gyaranzo_death_breakup_params
+  - gyaranzo_flagged_resource_index_table
+  - gyaranzo_movement_parameters
+  - gyaranzo_resource_index_table
+  - init_params_from_table__15TObjEneGyaranzoFv
+  - lbl_805DA278
+  - render__15TObjEneGyaranzoFv
+  - run_task__15TObjEneGyaranzoFv
+  - select_next_action__15TObjEneGyaranzoFv
+  - select_targets__15TObjEneGyaranzoFv
+  - shed_armor__15TObjEneGyaranzoFv
+  - spawn_hit_debris__15TObjEneGyaranzoFv
+  - spawn_missile__15TObjEneGyaranzoFv
+  - spawn_missile_volley__15TObjEneGyaranzoFv
+  - update_aim_and_fire__15TObjEneGyaranzoFv
+  - update_chase__15TObjEneGyaranzoFv
+  - update_death_breakup__15TObjEneGyaranzoFv
+  - update_demo__15TObjEneGyaranzoFv
+  - update_fade_state__15TObjEneGyaranzoFv
+  - update_knockback__15TObjEneGyaranzoFv
+  - update_model_visibility__15TObjEneGyaranzoFv
+  - update_movement_status__15TObjEneGyaranzoFv
+  - update_return_home__15TObjEneGyaranzoFv
+  - update_shock_clock__15TObjEneGyaranzoFv
+  - vfunc_62__15TObjEneGyaranzoFv
+  - vfunc_63__15TObjEneGyaranzoFv
   - TObjEneEpsilonGuard__debug_line_list
   - TObjEneEpsilonGuard__sub_8035F844
   - TObjEneEpsilonGuard__sub_8035FA50
@@ -3688,7 +3723,6 @@ force_active:
   - clear_flag60_bit8__13TWindowSubMagFv
   - clear_flag70_bit80__19TWindowSubTechniqueFv
   - clear_flag_and_release__14TWindowSubItemFv
-  - clear_flag_and_update__16TObjEneBm5GibonUFv
   - clear_flag_bit5__17TWindowReturnCityFv
   - clear_flag_in_state7__14TObjEneBalClawFv
   - clear_flags_60__12TObjEneLappyFv

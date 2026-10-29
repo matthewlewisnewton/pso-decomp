@@ -465,6 +465,7 @@ pso/enemy/TObjEneEpsilon.cpp
 pso/enemy/TObjEneEpsilonGuard_8035DD68.cpp
 pso/enemy/TObjEneEpsilonGuard_8035F5C8.cpp
 pso/enemy/TObjEneEpsilon_800B92AC.cpp
+pso/enemy/TObjEneGyaranzo.cpp
 pso/enemy/TObjEneHoldEffect.cpp
 pso/enemy/TObjEneHoldEffect_800FD814.cpp
 pso/enemy/TObjEneHoldEffect_8036CDFC.cpp
