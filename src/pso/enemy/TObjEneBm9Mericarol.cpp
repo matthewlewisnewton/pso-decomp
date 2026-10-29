@@ -663,7 +663,7 @@ Obj_802D0D3C *TObjEneBm9Mericarol__ct(Obj_802D0D3C *self, void *parent, s32 arg2
     __ct__12TObjEneDD_STFP7TObject(self, parent);
     self->vt18 = TObjEneBm9Mericarol__vtable;
     __construct_array(self->a3C8, (void *)__ct__15RenderFadeStateFv, (void *)__dt__15RenderFadeStateFv, 0x1C, 4);
-    ((TUnk_80494938 *)(self->o46C))->init_common();
+    __ct__13TUnk_80494938Fv((self->o46C));
     self->f0 = lbl_805D3F28;
     invoke_initialization_hook__9TObjEneDDFv(self, arg2);
     ((TObjEneBm9Mericarol *)self)->init_size_tier_and_offsets();
