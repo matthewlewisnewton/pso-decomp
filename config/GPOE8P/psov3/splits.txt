@@ -10889,6 +10889,8 @@ pso/unk/text_8031B240.cpp:
 
 pso/enemy/TObjEneReconBomb.cpp:
 	.text       start:0x8031B618 end:0x8031BC38
+	.rodata     start:0x804760A8 end:0x804760C0
+	.sdata      start:0x805D4128 end:0x805D4130
 	.sdata2     start:0x805DF390 end:0x805DF3B8
 
 pso/enemy/TObjEneRecon_8031BC38.cpp:
