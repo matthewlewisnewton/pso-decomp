@@ -20,9 +20,9 @@ struct TObjEneSlimeOne : public TObjEnemy {
     virtual f32 receive_direct_attack(void *, DirectAttackPayload, void *, s32, s32);
     virtual void render();
     virtual void run_task();
-    u8 unk_374[0xC];
+    Vec trail_position;
     u8 * m_380;
-    u32 m_384;
+    s32 m_384;
     SlimeAnimationState *animation;
     CollisionBody *collision_body;
     s32 m_390;
@@ -44,7 +44,7 @@ struct TObjEneSlimeOne : public TObjEnemy {
     u8 unk_3D0[0xC];
     Vec m_3dc;
     void * m_3e8;
-    u32 m_3ec;
+    s32 m_3ec;
     u32 m_3f0;
     s32 variant;
     s32 get_attack_target();

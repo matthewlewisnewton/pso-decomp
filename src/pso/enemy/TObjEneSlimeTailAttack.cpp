@@ -272,17 +272,11 @@ struct Stack_800EB4A0 {
     u8 trailing_storage[0x4];
 };
 
-struct TSlime_800EAE78;
 
-typedef void (TSlime_800EAE78::*Action_800EAE78)();
+typedef void (TObjEneSlimeOne::*Action_800EAE78)();
 
 struct Ent_800EAE78 { Action_800EAE78 fn; Action_800EAE78 update; };
 
-struct TSlime_800EAE78 {
-    u8 pad[0x384];
-    s32 state;
-    void run(s32 s);
-};
 
 struct Vec_800E9EFC { f32 x, y, z; };
 
@@ -1009,9 +1003,9 @@ void TObjEneSlimeOne::run_task() {
         set_target_flag_bit0();
         {
             Ent_800EAE78 *tbl = lbl_80496574;
-            Action_800EAE78 a = tbl[((TSlime_800EAE78 *)this)->state].update;
+            Action_800EAE78 a = tbl[m_384].update;
             if (a != 0) {}
-            (((TSlime_800EAE78 *)this)->*a)();
+            (this->*a)();
         }
         update_prev_position();
         ((TObjPlayer *)this)->update_collisions();
@@ -1062,10 +1056,10 @@ void TObjEneSlimeOne::render() {
 #pragma push
 
 void TObjEneSlimeOne::set_state(s32 arg1) {
-    ((TSlime_800EAE78 *)this)->state = arg1;
-    Action_800EAE78 a = lbl_80496574[((TSlime_800EAE78 *)this)->state].fn;
+    m_384 = arg1;
+    Action_800EAE78 a = lbl_80496574[m_384].fn;
     if (a != 0) {}
-    (((TSlime_800EAE78 *)this)->*a)();
+    (this->*a)();
 }
 #pragma pop
 
@@ -1119,21 +1113,15 @@ void set_display_mode__15TObjEneSlimeOneFPvi(void *arg0, s32 arg1) {
 #pragma push
 
 void TObjEneSlimeOne::set_target_flag_bit0() {
-    void *temp_r3;
-
-    temp_r3 = *(void **)((s8 *)this + 0x38C);
-    *(s32 *)((s8 *)temp_r3 + 0x18) = (s32) (*(s32 *)((s8 *)temp_r3 + 0x18) | 1);
+    collision_body->flags |= 1;
 }
 #pragma pop
 
 #pragma push
 
 void TObjEneSlimeOne::clear_child_flag() {
-    void *temp_r3;
-
-    if ((s32) this->m_3ec == 0) {
-        temp_r3 = *(void **)((s8 *)this + 0x38C);
-        *(s32 *)((s8 *)temp_r3 + 0x18) = (s32) (*(s32 *)((s8 *)temp_r3 + 0x18) & 0xFFFFFFFE);
+    if (m_3ec == 0) {
+        collision_body->flags &= ~1;
     }
 }
 #pragma pop
@@ -1845,8 +1833,7 @@ void TBoss8Dragon__sub_800E92D8(TObjEneSlimeOne *self) {
 #pragma push
 
 void TObjEneSlimeOne::copy_position() {
-    s32 arg0 = (s32)this;
-    VecCopy((Vec *)(arg0 + 0x374), (const Vec *)(arg0 + 0x38));
+    VecCopy(&trail_position, &position);
 }
 #pragma pop
 
