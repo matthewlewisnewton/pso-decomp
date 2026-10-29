@@ -13521,6 +13521,7 @@ pso/unk/text_803DC86C.cpp:
 pso/system/ModelDrawContext.cpp:
 	.text       start:0x803DC88C end:0x803DCDA8
 	.rodata     start:0x8047E3D8 end:0x8047E428
+	.bss        start:0x8058CE10 end:0x8058CE40
 
 pso/system/MaterialAlphaCompare.cpp:
 	.text       start:0x803DCDA8 end:0x803DCDB0
