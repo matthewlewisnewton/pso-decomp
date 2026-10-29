@@ -6081,6 +6081,9 @@ pso/item/TObjContainerIdo_801A0B94.cpp:
 
 pso/object/TObjLuker.cpp:
 	.text       start:0x801A0C38 end:0x801A1880
+	.rodata     start:0x80446870 end:0x80446880
+	.sdata      start:0x805D34A8 end:0x805D34B0
+	.sdata2     start:0x805DC080 end:0x805DC088
 
 pso/misc/TTecLuker_801A1880.cpp:
 	.text       start:0x801A1880 end:0x801A1888
