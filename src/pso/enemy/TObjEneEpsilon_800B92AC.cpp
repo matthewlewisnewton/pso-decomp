@@ -22,7 +22,7 @@ f32 sin_table_lookup(s32);
 f32 cos_table_lookup(s32);
 s32 is_player_entity_id(u16);
 s16 approach_angle_limited(s32, s32, s32);
-int VecCopy__FP3VecPC3Vec(void*);
+void VecCopy__FP3VecPC3Vec(void *, const void *);
 s32 calc_shot_position__13TBoss5GryphonFPUcfff(void *, s32, f32, f32, f32);
 f64 atan2_float(f32, f32);
 
@@ -111,12 +111,12 @@ void TObjEneDD_ST::enemy_init_validate_period(s32 arg1) {
     *(s32 *)((s8 *)((u8 *)this) + 0x3B8) = (s32) ((this->entity_id + 3) % *(s32 *)((s8 *)((u8 *)this) + 0x3BC));
 }
 
-int copy_position__14TObjEneEpsilonFPv(void* p, void * _w1) { return VecCopy__FP3VecPC3Vec((char*)p + 0x394); }
+void TObjEneDD::set_target_destination(const Vec *position) { VecCopy__FP3VecPC3Vec((char *)this + 0x394, position); }
 void TObjEneDD_ST::enemy_copy_target_destination() {
     u32 temp_r4;
     temp_r4 = *(u32 *)((s8 *)((u8 *)this) + 0x390);
     if (temp_r4 != 0U) {
-        copy_position__14TObjEneEpsilonFPv(this, ((void *)(temp_r4 + 0x38)));
+        set_target_destination((const Vec *)(temp_r4 + 0x38));
     }
 }
 
