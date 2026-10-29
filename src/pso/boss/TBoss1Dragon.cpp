@@ -326,7 +326,7 @@ struct Obj_800288EC {
 
 struct Vec_80021490 { f32 x, y, z; };
 
-struct Rot_80021490 { s32 x, y, z; };
+struct DragonEffectRotation { s32 x, y, z; };
 
 struct Tbl_80021490 { u8 pad0[8]; s32 e8; u8 padC[0x14 - 0xC]; s32 e14; u8 pad18[4]; s32 e1C; };
 
@@ -1421,7 +1421,7 @@ void TBoss1Dragon::update_appearance_state(u32 reason) {
                 break;
             case 5:
                 if (self->frame < (150.0f)) {
-                    Rot_80021490 rot;
+                    DragonEffectRotation rot;
                     direction_to_rotation_xz((u8 *)&self->fxdir, &rot.x, &rot.z);
                     if (self->mouth == 0) {
                         self->mouth = spawn_particle_effect_with_rotation(&self->fxpos, &rot, (void *) self->tbl->e14, 0x40);
@@ -1487,7 +1487,7 @@ void TBoss1Dragon::update_appearance_state(u32 reason) {
                 break;
             case 4:
                 if (self->frame < (155.0f)) {
-                    Rot_80021490 rot;
+                    DragonEffectRotation rot;
                     direction_to_rotation_xz((u8 *)&self->fxdir, &rot.x, &rot.z);
                     if (self->mouth == 0) {
                         self->mouth = spawn_particle_effect_with_rotation(&self->fxpos, &rot, (void *) self->tbl->e14, 0x40);
@@ -1550,7 +1550,7 @@ void TBoss1Dragon::update_appearance_state(u32 reason) {
                 break;
             case 5:
                 if (self->frame < (150.0f)) {
-                    Rot_80021490 rot;
+                    DragonEffectRotation rot;
                     direction_to_rotation_xz((u8 *)&self->fxdir, &rot.x, &rot.z);
                     if (self->mouth == 0) {
                         self->mouth = spawn_particle_effect_with_rotation(&self->fxpos, &rot, (void *) self->tbl->e14, 0x40);
@@ -2270,7 +2270,6 @@ void update_death_state__12TBoss1DragonFv(u8 *arg0, u32 arg1) {
     Cam_80022EE0 cam;
     Vec_80022EE0 rot;
     Vec_80022EE0 v;
-    void *u;
     switch (arg1) {
     case 4:
         F(s16, 0xB8) = 0x13;
@@ -2315,7 +2314,7 @@ void update_death_state__12TBoss1DragonFv(u8 *arg0, u32 arg1) {
         break;
     case 9:
         if (F(s32, 0x868) >= 0x32) {
-            ((TBoss1Dragon *)u)->request_state_change(0x16);
+            ((TBoss1Dragon *)arg0)->request_state_change(0x16);
         }
         break;
     case 0:
@@ -2854,7 +2853,6 @@ void update_dive_state__12TBoss1DragonFv(u8 *arg0, u32 arg1) {
     extern u8 TBoss1Dragon__data_80434E80[0xC];
     Vec_80024314 pos;
     Vec_80024314 vel;
-    void *u;
     s32 r;
     s32 a;
     f32 k;
@@ -2899,17 +2897,17 @@ void update_dive_state__12TBoss1DragonFv(u8 *arg0, u32 arg1) {
         break;
     case 2:
         if (F(s32, 0x864) == 4) {
-            ((TBoss1Dragon *)u)->request_state_change(0x1B);
+            ((TBoss1Dragon *)arg0)->request_state_change(0x1B);
         }
         break;
     case 11:
         if (F(s32, 0x864) == 4) {
-            ((TBoss1Dragon *)u)->request_state_change(0x24);
+            ((TBoss1Dragon *)arg0)->request_state_change(0x24);
         }
         break;
     case 9:
         if (F(s32, 0x864) == 4) {
-            next_sequence_action__12TBoss1DragonFv(u);
+            next_sequence_action__12TBoss1DragonFv(arg0);
         }
         break;
     case 7:
@@ -2919,7 +2917,7 @@ void update_dive_state__12TBoss1DragonFv(u8 *arg0, u32 arg1) {
         }
         break;
     case 6:
-        if (choose_burrow_ring_destination__12TBoss1DragonFPvPv((Dragon_80028EA8 *)u, (Vec_80028EA8 *)(arg0 + 0x394)) == 0) {
+        if (choose_burrow_ring_destination__12TBoss1DragonFPvPv((Dragon_80028EA8 *)arg0, (Vec_80028EA8 *)(arg0 + 0x394)) == 0) {
             F(f32, 0x394) = (0.0f);
             F(f32, 0x398) = (0.0f);
             F(f32, 0x39C) = (0.0f);
@@ -3915,8 +3913,7 @@ void TBoss1Dragon::update_tail_attack_state(u32 arg1) {
 #pragma opt_common_subs off
 void TBoss1Dragon::update_breath_attack_state(u32 arg1) {
     u8 *arg0 = (u8 *)this;
-    s32 sp10[2];
-    s32 sp8[2];
+    DragonEffectRotation rotation;
 
     switch (arg1) {
     case ENEMY_STATE_ENTER:
@@ -3993,7 +3990,7 @@ void TBoss1Dragon::update_breath_attack_state(u32 arg1) {
             }
             if (!(this->motion_flags & 4)) {
                 spawn_trap__12TBoss1DragonFii((s32)arg0, 0x4003AD0D);
-                direction_to_rotation_xz(arg0 + 0x418, (s32 *)&sp8, (s32 *)sp10);
+                direction_to_rotation_xz(arg0 + 0x418, &rotation.x, &rotation.z);
                 this->impactAge = (this->impactAge + 1);
                 if ((s32) this->impactAge >= 2) {
                     u8 *o = __nw__7TObjectFUl(0x38);
@@ -4003,23 +4000,23 @@ void TBoss1Dragon::update_breath_attack_state(u32 arg1) {
                     this->impactAge = 0;
                 }
                 if ((u32) *(u32 *)((s8 *)arg0 + 0x8AC) == 0U) {
-                    *(u32 *)((s8 *)arg0 + 0x8AC) = spawn_particle_effect_with_rotation(arg0 + 0x40C, &sp8, (void *) (*(s32 *)((s8 *)this->effectResource + 0x10)), 0x40);
+                    *(u32 *)((s8 *)arg0 + 0x8AC) = spawn_particle_effect_with_rotation(arg0 + 0x40C, &rotation, (void *) (*(s32 *)((s8 *)this->effectResource + 0x10)), 0x40);
                     if ((u32) *(u32 *)((s8 *)arg0 + 0x8AC) != 0U) {
                         ((TParticleCtrl *)(*(void **)((s8 *)arg0 + 0x8AC)))->enable();
                     }
                 } else {
                     ((TParticleCtrl *)*(void **)((s8 *)arg0 + 0x8AC))->set_position(arg0 + 0x424);
-                    ((TParticleCtrl *)(*(void **)((s8 *)arg0 + 0x8AC)))->set_direction(&sp8);
+                    ((TParticleCtrl *)(*(void **)((s8 *)arg0 + 0x8AC)))->set_direction(&rotation);
                 }
                 if ((u32) *(u32 *)((s8 *)arg0 + 0x8B4) == 0U) {
-                    *(u32 *)((s8 *)arg0 + 0x8B4) = spawn_particle_effect_with_rotation(arg0 + 0x40C, &sp8, (void *) (*(s32 *)((s8 *)this->effectResource + 0x14)), 0x40);
+                    *(u32 *)((s8 *)arg0 + 0x8B4) = spawn_particle_effect_with_rotation(arg0 + 0x40C, &rotation, (void *) (*(s32 *)((s8 *)this->effectResource + 0x14)), 0x40);
                     if ((u32) *(u32 *)((s8 *)arg0 + 0x8B4) != 0U) {
                         ((TParticleCtrl *)(*(void **)((s8 *)arg0 + 0x8B4)))->enable();
                         return;
                     }
                 } else {
                     ((TParticleCtrl *)*(void **)((s8 *)arg0 + 0x8B4))->set_position(arg0 + 0x424);
-                    ((TParticleCtrl *)(*(void **)((s8 *)arg0 + 0x8B4)))->set_direction(&sp8);
+                    ((TParticleCtrl *)(*(void **)((s8 *)arg0 + 0x8B4)))->set_direction(&rotation);
                     return;
                 }
             }
@@ -5158,8 +5155,10 @@ void TBoss1Dragon::reset_tail_hp() {
 }
 
 void TBoss1Dragon::reload_difficulty_stats() {
-    s32 arg0 = (s32)this;
-    reload_stats_keep_hp_tp__9TObjEneDDFv((void *)arg0, (int) (*(s32 *)((s8 *)&TBoss1Dragon__data_805D4B00 + (*(s32 *)((s8 *)((s32 *)TBoss1Dragon__data_80480CE0) + 0x11c) * 4))), (int) (*(s32 *)((s8 *)(&(*(RecoveredGlobal_80064CFC_lbl_804FF5A0 *)&TBoss1Dragon__part_hp_stats).value) + (*(s32 *)((s8 *)((s32 *)TBoss1Dragon__data_80480CE0) + 0x130) * 4))), (int) (*(s32 *)((s8 *)&TBoss1Dragon__data_805D4B04 + (*(s32 *)((s8 *)((s32 *)TBoss1Dragon__data_80480CE0) + 0x144) * 4))));
+    reload_stats_keep_hp_tp__9TObjEneDDFv(this,
+        (&TBoss1Dragon__data_805D4B00)[boss1_dragon_base_stat_indices[0]],
+        ((s32 *)&TBoss1Dragon__part_hp_stats)[boss1_dragon_attack_stat_indices[0]],
+        (&TBoss1Dragon__data_805D4B04)[boss1_dragon_resistance_stat_indices[0]]);
 }
 
 #pragma push
