@@ -7,6 +7,13 @@
 #include "pso/TParticleCtrl.h"
 #include "pso/misc/TNowLoading.h"
 
+#pragma readonly_strings on
+
+extern "C" {
+const char *lbl_805D34F0 = "TPhotonLaser";
+}
+
+
 typedef struct Vec_801AC36C { f32 x, y, z; } Vec_801AC36C;
 
 struct Params_801AC36C {
@@ -56,7 +63,7 @@ extern "C" {
 void __ct__9TObjCharaFP7TObject(void *, void *);
 void *create_particle_emitter(void *pos, s32 id);
 extern s32 __vt__12TPhotonLaser[];
-extern s32 lbl_805D34F0;
+extern const char *lbl_805D34F0;
 Laser_801AC36C *TPhotonLaser__ct(Laser_801AC36C *self, Params_801AC36C *p, void *parent, s16 arg3);
 void queue_destruction__7TObjectFv(void *arg0);
 void *spawn_particle_effect(void *pos, s32 id);
@@ -67,10 +74,6 @@ void rotate_matrix_y(int, int);
 s32 push_matrix_from(void *);
 s32 pop_matrices(s32 arg0);
 extern u8 identity_matrix[];
-extern const f32 lbl_805DC1B0;
-extern const f32 lbl_805DC1B4;
-extern const f32 lbl_805DC1B8;
-extern const f32 lbl_805DC1BC;
 void run_task__12TPhotonLaserFv(Laser_801AC17C *o);
 void *__dt__12TPhotonLaserFv(void *arg0, s16 arg1);
 s32 free_collision_body_parts(void *);
@@ -82,11 +85,11 @@ void run_task__12TPhotonLaserFv(Laser_801AC17C *o) {
     Vec_801AC36C in;
     Vec_801AC36C out;
     void *owner;
-    o->f368 += lbl_805DC1B0;
-    in.y = in.x = lbl_805DC1B4;
-    in.z = lbl_805DC1B8;
+    o->f368 += 1.0f;
+    in.y = in.x = 0.0f;
+    in.z = 10.0f;
     push_matrix_from(identity_matrix);
-    rotate_matrix_y(0, (s32)(lbl_805DC1BC * (f32)o->f36C));
+    rotate_matrix_y(0, (s32)(182.04445f * (f32)o->f36C));
     rotate_vector_by_matrix(0, &in, &out);
     pop_matrices(1);
     vec3_add_to(&o->f340, &out);
@@ -101,17 +104,17 @@ void run_task__12TPhotonLaserFv(Laser_801AC17C *o) {
             queue_destruction__7TObjectFv(o->f364);
             o->f364 = 0;
         }
-        o->f34C.x = lbl_805DC1B4;
-        o->f34C.y = lbl_805DC1B4;
-        o->f34C.z = lbl_805DC1B4;
+        o->f34C.x = 0.0f;
+        o->f34C.y = 0.0f;
+        o->f34C.z = 0.0f;
     } else if (o->f340.y < *(f32 *)((u8 *)owner + 0x3C)) {
         if (o->f364 != 0) {
             queue_destruction__7TObjectFv(o->f364);
             o->f364 = 0;
         }
-        o->f34C.x = lbl_805DC1B4;
-        o->f34C.y = lbl_805DC1B4;
-        o->f34C.z = lbl_805DC1B4;
+        o->f34C.x = 0.0f;
+        o->f34C.y = 0.0f;
+        o->f34C.z = 0.0f;
         spawn_particle_effect(&o->f340, 0x13D);
         queue_destruction__7TObjectFv(o);
     }
@@ -137,7 +140,7 @@ void *__dt__12TPhotonLaserFv(void *arg0, s16 arg1) {
 Laser_801AC36C *TPhotonLaser__ct(Laser_801AC36C *self, Params_801AC36C *p, void *parent, s16 arg3) {
     __ct__9TObjCharaFP7TObject(self, parent);
     self->vt18 = ((s32 *)&__vt__12TPhotonLaser);
-    self->f0 = lbl_805D34F0;
+    self->f0 = ((s32)lbl_805D34F0);
     VecCopy((Vec *)&self->f334, (const Vec *)(VecCopy((Vec *)((Vec *)&self->f340), (const Vec *)((const Vec *)&p->pos))));
     self->f370 = arg3;
     VecCopy((Vec *)&self->f34C, (const Vec *)&p->dir);

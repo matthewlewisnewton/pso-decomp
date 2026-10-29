@@ -11,6 +11,13 @@
 #include "pso/misc/TWindowSubStatusDisp.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/protocol/subcmd_6x.h"
+
+#pragma readonly_strings on
+
+extern "C" {
+const char *TItemObject_name = "TItemObject";
+}
+
 extern "C" {
 s16 get_entity_id(TObjPlayer *);
 f32 horizontal_distance_squared(void *, void *);

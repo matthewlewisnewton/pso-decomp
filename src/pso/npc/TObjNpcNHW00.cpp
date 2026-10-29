@@ -10,6 +10,14 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 
+#pragma readonly_strings on
+
+extern "C" {
+const char *TObjNpcNHW00__name = "TObjNpcNHW00";
+u32 TObjNpcNHW00__shared_named_model_object;
+u32 TObjNpcNHW00__texture_gvm_handle;
+}
+
 struct RecoveredGlobal_8014D124___vt__12TObjNpcNHW00 {
     s32 value;
     u8 remaining[0x174];
@@ -17,11 +25,6 @@ struct RecoveredGlobal_8014D124___vt__12TObjNpcNHW00 {
 
 extern "C" {
 extern s32 __vt__12TObjNpcNHW00[];
-extern s32 TObjNpcNHW00__name;
-extern u32 TObjNpcNHW00__shared_named_model_object;
-extern u32 TObjNpcNHW00__texture_gvm_handle;
-extern char lbl_8043FE00[];
-extern char lbl_8043FE14[];
 void release_texture_list(void*);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 void __dl__7TObjectFPv(void *);
@@ -40,8 +43,8 @@ void TObjNpcNHW00::free_static_resources() {
 }
 
 void TObjNpcNHW00::load_resources() {
-    TObjNpcNHW00__shared_named_model_object = (u32)create_named_object((s32)lbl_8043FE00);
-    TObjNpcNHW00__texture_gvm_handle = (u32)load_gvm_texture_file((s32)lbl_8043FE14);
+    TObjNpcNHW00__shared_named_model_object = (u32)create_named_object((s32)"npc_b00_data.rel");
+    TObjNpcNHW00__texture_gvm_handle = (u32)load_gvm_texture_file((s32)"n_b00_body.gvm");
 }
 
 void *__dt__12TObjNpcNHW00Fv(void *arg0, s16 arg1) {

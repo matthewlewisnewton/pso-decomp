@@ -6,6 +6,13 @@
 #include "pso/misc/TWindowSubSymbolChatPartsSet.h"
 #include "pso/ui/TWindowSubTradeMessage.h"
 
+#pragma readonly_strings on
+
+extern "C" {
+const char *TChCrEffCtrlPl__name = "TChCrEffCtrlPl";
+}
+
+
 struct O_80339808 { s32 f0; u8 pad[0x14]; void *vt; s32 f1c; s32 f20; u8 v[8]; f32 f2c; u8 pad2[4]; s32 f34; };
 
 struct O_803396C8 { u8 pad[0x24]; f32 x; f32 y; f32 f2c; f32 f30; s32 f34; };
@@ -13,7 +20,7 @@ struct O_803396C8 { u8 pad[0x24]; f32 x; f32 y; f32 f2c; f32 f30; s32 f34; };
 extern "C" {
 s32 draw_ui_sprite(int, void *, f32, f32);
 extern u8 lbl_80477C70[];
-extern s32 TChCrEffCtrlPl__name;
+extern const char *TChCrEffCtrlPl__name;
 O_80339808 *__ct__14TChCrEffCtrlPlFP7TObject(O_80339808 *arg0, void * _w1);
 f32 sin_table_lookup(s32);
 extern const f32 lbl_80477C78[];
@@ -66,7 +73,7 @@ TChCrEffCtrlPl::~TChCrEffCtrlPl() {}
 
 }
 TChCrEffCtrlPl::TChCrEffCtrlPl(TObject *object) : TObject(object) {
-    ((O_80339808 *)this)->f0 = TChCrEffCtrlPl__name;
+    ((O_80339808 *)this)->f0 = ((s32)TChCrEffCtrlPl__name);
     ((O_80339808 *)this)->f1c = TChCrEffCtrlPl::get_clamped_player_index() + 0x8B;
     ((O_80339808 *)this)->f20 = TChCrEffCtrlPl::get_clamped_player_index() + 0xBC;
     ((TWindowSubSymbolChatPartsSet *)(((O_80339808 *)this)->v))->copy_vec2(lbl_80477C70);

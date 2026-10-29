@@ -9,6 +9,8 @@
 #include <stddef.h>
 #include "pso/boss/TBoss8Dragon.h"
 #include "pso/misc/TCameraCtrl.h"
+
+#pragma readonly_strings on
 struct Stack_802F2D8C {
     s8 sp8;
     s8 sp9;
@@ -33,7 +35,7 @@ extern "C" {
 u8 *get_scripted_camera_playback();
 s32 __ct__7TObjectFP7TObject(void *, void *);
 extern RecoveredGlobal_802F2D8C___vt__16TBoss8DragonDemo __vt__16TBoss8DragonDemo;
-extern s32 lbl_805D3FF8;
+extern const char *lbl_805D3FF8;
 extern const f32 lbl_805DED18;
 extern RecoveredGlobal_802F2CC4_lbl_804E4A44 lbl_804E4A44;
 extern const f32 lbl_805DE9F4;
@@ -69,7 +71,7 @@ u8 *__ct__16TBoss8DragonDemoFv(u8 *object, s32 arg1, s32 arg2, f32 farg0) {
     Stack_802F2D8C stack;
     __ct__7TObjectFP7TObject((void *)object, (void *)arg1);
     *(s32 **)((s8 *)object + 0x18) = &__vt__16TBoss8DragonDemo.value;
-    *(s32 *)((s8 *)object + 0) = (s32) lbl_805D3FF8;
+    *(s32 *)((s8 *)object + 0) = (s32) ((s32)lbl_805D3FF8);
     *(f32 *)((s8 *)object + 0x1C) = farg0;
     *(f32 *)((s8 *)object + 0x20) = (f32) lbl_805DED18;
     *(s32 *)((s8 *)object + 0x24) = arg2;
@@ -93,3 +95,8 @@ void TBoss8Dragon::update_colli_parts() {
 }
 
 __declspec(section ".ctors") static void *const __sinit_TBoss8DragonDemo_cpp_ref = (void *)TBoss8DragonDemo__sub_802F2CC4;
+
+extern "C" {
+const char *lbl_805D3FF8 = "TBoss8DragonDemo";
+}
+

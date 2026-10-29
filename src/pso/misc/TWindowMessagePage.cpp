@@ -4,6 +4,13 @@
 #include "pso/misc/TWindowSubStatusDisp_80228F5C.h"
 #include "pso/misc/TWindowMessage.h"
 
+#pragma readonly_strings on
+
+extern "C" {
+const char *lbl_805D3998 = "TWindowMessagePage";
+}
+
+
 
 struct RecoveredGlobal_8026B014___vt__18TWindowMessagePage { s32 value; u8 remaining[0x14]; };
 typedef char RecoveredGlobal_8026B014___vt__18TWindowMessagePage_size[sizeof(RecoveredGlobal_8026B014___vt__18TWindowMessagePage) == 0x18 ? 1 : -1];
@@ -20,7 +27,7 @@ u8 *__nw__7TObjectFUl(s32);
 s32 TLobby__sub_80269DA4(void *, void *);
 u8 *TWindowMessage__ct(u8 *arg0, s32 arg1, u32 arg2, s32 arg3);
 extern s32 __vt__18TWindowMessagePage[];
-extern s32 lbl_805D3998;
+extern const char *lbl_805D3998;
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 TWindowShortListCtrl__check_controller_button(void *, int, int);
 s32 run_task__14TWindowMessageFv();
@@ -98,7 +105,7 @@ TWindowMessagePage::~TWindowMessagePage() {
 u8 *TWindowMessagePage__ct(u8 *window_message_page, s32 arg1, s32 arg2, s32 arg3) {
     TWindowMessage__ct((window_message_page), (arg1), (arg2), (arg3));
     *(s32 **)((s8 *)window_message_page + 0x18) = &(*(RecoveredGlobal_8026B014___vt__18TWindowMessagePage *)&__vt__18TWindowMessagePage).value;
-    *(s32 *)((s8 *)window_message_page + 0) = (s32) lbl_805D3998;
+    *(s32 *)((s8 *)window_message_page + 0) = (s32) ((s32)lbl_805D3998);
     *(s32 *)((s8 *)window_message_page + 0x90) = 0;
     ((TWindowMessagePage *)window_message_page)->m_20 = (s16) arg3;
     ((TWindowMessagePage *)window_message_page)->m_94 = 0;

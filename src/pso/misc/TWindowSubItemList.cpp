@@ -7,6 +7,13 @@
 #include "pso/misc/TWindowSubItem.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 
+#pragma readonly_strings on
+
+extern "C" {
+const char *TWindowSubItemList__class_name = "TWindowSubItemList";
+}
+
+
 struct RecoveredGlobal_8027AEDC___vt__18TWindowSubItemList { s32 value; u8 remaining[0x1C]; };
 typedef char RecoveredGlobal_8027AEDC___vt__18TWindowSubItemList_size[sizeof(RecoveredGlobal_8027AEDC___vt__18TWindowSubItemList) == 0x20 ? 1 : -1];
 
@@ -19,7 +26,7 @@ s32 forward_render__20TWindowSubStatusDispFv(void *, int);
 u8 *__nw__7TObjectFUl(s32);
 s32 TShopJudgmentItemWindow__sub_80267F9C(void *, int);
 extern s32 __vt__18TWindowSubItemList[];
-extern s32 TWindowSubItemList__class_name;
+extern const char *TWindowSubItemList__class_name;
 void __dl__7TObjectFPv(void *);
 
 u8 *create_sub_item_list_window(s32 arg0, s32 arg1, s16 arg2) {

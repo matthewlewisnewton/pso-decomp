@@ -2,6 +2,9 @@
 
 #include "types.h"
 #include "pso/misc/TLobby.h"
+
+#pragma readonly_strings on
+
 struct Ent_803CE198 { s32 a; s32 b; u8 pad[8]; };
 
 struct Sub_803CE198 { u8 pad[0x214]; Ent_803CE198 e[1]; };
@@ -92,16 +95,16 @@ s32 TLobby__sub_803CCB98(void *, int, int);
 void *adxf_open__6TLobbyFUii(const char *, s32);
 extern char lbl_8047C818[];
 extern Ent_803CD840 *afs_archive_toc_table[256];
-extern u8 adxf_open_file_buffer[];
+u8 adxf_open_file_buffer[0x2080];
 extern s32 lobby_adxf_current_file_id;
 extern void *lobby_adxf_open_file_handle;
 extern s32 lobby_afs_toc_entry_index;
 extern s32 lbl_805D75EC;
-extern s32 lbl_805D75F0;
+s32 lbl_805D75F0;
 s32 adxf_open_file__6TLobbyFiPviPv(s32 id, const char *name, s32 arg2, Ent_803CD840 *e);
 int memcmp(const void *, const void *, unsigned long);
 unsigned long strlen(const char *);
-extern char *lbl_805D4688;
+char *cri_copyright_string = "(c)CRI";
 s32 parse_aix_header__6TLobbyFPviPv(u8 *arg0, s32 arg1, Out_803CDEC8 *arg2);
 void TLobby__sub_803D3130(Chunk_803CDB0C *, s32, Chunk_803CDB0C *, Chunk_803CDB0C *);
 void *memcpy(void *, const void *, u32);
@@ -170,7 +173,7 @@ struct StreamSlot_803CD99C {
     u8 pad4C0[0x18];
 };
 
-extern StreamSlot_803CD99C lbl_8057FFD0[4];
+StreamSlot_803CD99C lbl_8057FFD0[4];
 void TLobby__sub_803CD99C(void);
 
 void TLobby__sub_803CD99C(void) {
@@ -315,7 +318,7 @@ s32 parse_aix_header__6TLobbyFPviPv(u8 *arg0, s32 arg1, Out_803CDEC8 *arg2) {
     s32 hdr;
     u8 *p;
     s32 i;
-    len = strlen(lbl_805D4688);
+    len = strlen(cri_copyright_string);
     if (arg1 < 0x1800) {
         return 0;
     }
@@ -323,7 +326,7 @@ s32 parse_aix_header__6TLobbyFPviPv(u8 *arg0, s32 arg1, Out_803CDEC8 *arg2) {
         return 0;
     }
     hdr = BE32_803CDEC8(arg0 + 4);
-    if (memcmp(arg0 + (hdr + 8 - len), lbl_805D4688, len) != 0) {
+    if (memcmp(arg0 + (hdr + 8 - len), cri_copyright_string, len) != 0) {
         return 0;
     }
     arg2->f0 = arg0[8];

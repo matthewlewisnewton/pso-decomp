@@ -109,6 +109,13 @@ struct VObj_18_6ff2a2 : VBase_18_6ff2a2 {
 };
 
 #include <stddef.h>
+
+extern "C" {
+RecoveredGlobal_8035E374_lbl_805439E0 lbl_805439E0;
+s32 epsilon_guard_camera_step;
+s32 epsilon_guard_camera_ctrl_ptr;
+}
+
 struct VBase_18_7f4864 { char pad[0x18]; };
 
 struct VObj_18_7f4864 : VBase_18_7f4864 {
