@@ -1312,7 +1312,6 @@ struct TObjPlayer : public TObjChara {
     void trigger_hit_camera_shake(u32 arg1);
     void set_flag_20000();
     void spawn_directional_particle_at_slot(s32 i);
-    static void update_particle_by_phase();
     void draw_blob_shadows();
     void set_flag_8_if_check_passes();
     void fill_status_info(void *arg1);
