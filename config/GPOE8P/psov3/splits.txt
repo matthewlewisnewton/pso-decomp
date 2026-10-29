@@ -9281,7 +9281,9 @@ pso/boss/TObjBoss5Pillar_8028B08C.cpp:
 
 pso/boss/TObjBoss5PillarCtrl.cpp:
 	.text       start:0x8028B190 end:0x8028B400
+	.rodata     start:0x80450CE8 end:0x80450D00
 	.data       start:0x804D3620 end:0x804D3638
+	.sdata      start:0x805D3B38 end:0x805D3B40
 
 pso/boss/TObjBoss5Pillar.cpp:
 	.text       start:0x8028B400 end:0x8028B6C0
