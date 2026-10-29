@@ -533,7 +533,6 @@ u32 csnVector(void *, void *, s32);
 f32 normalize_vector(void *);
 extern const f32 lbl_805DA318;
 void beast_update_group_chase__16TObjEneMerillLiaFv(Obj_800D6110 *arg0);
-void enemy_wander_home__9TObjEnemyFlfff(void *, s32, f32, f32, f32);
 f32 fabs_float(f32);
 f64 atan2_float(f32, f32);
 s32 approach_angle_limited(s32, s32, s32);
@@ -1300,7 +1299,7 @@ void TObjEneMerillLia__sub_800D5BCC(u8 *arg0) {
         f32 w;
         o->fB8 = 2;
         w = o->f358;
-        ((void (*)(void *, f32, f32, f32, s32))enemy_wander_home__9TObjEnemyFlfff)(o, o->param->speed, w, w, o->param->turn);
+        ((TObjEnemy *)(o))->enemy_wander_home(o->param->speed, w, w, o->param->turn);
     } else {
         ((TObjEneMerillLia *)o)->reset_state_clear_status();
     }

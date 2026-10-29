@@ -21,7 +21,6 @@ extern "C" {
 s32 check_path_obstructed(void *, void *);
 f32 get_collision_body_radius(void *, s32);
 s32 pop_matrix();
-s32 enemy_wander_home__9TObjEnemyFlfff(void *, int, f32, f32, f32);
 f32 fabs_float(f32);
 f64 atan2_float(f32, f32);
 f32 horizontal_distance_squared(void *, void *);
@@ -571,7 +570,7 @@ void TUnk_80493450::beast_idle_update() {
         }
     } else if (*(s32 *)&this->m_37c == 0 && lbl_805DA034 < parameters[1]) {
         this->m_b8 = 2;
-        ((s32 (*)(void *, f32, int, f32, f32))enemy_wander_home__9TObjEnemyFlfff)(arg0, ((EnemyMoveParams *)movementParameters)->min_distance, ((EnemyMoveParams *)movementParameters)->turn_speed, parameters[1], parameters[1]);
+        enemy_wander_home(((EnemyMoveParams *)movementParameters)->min_distance, parameters[1], parameters[1], ((EnemyMoveParams *)movementParameters)->turn_speed);
     } else {
         this->request_stand_action();
     }
