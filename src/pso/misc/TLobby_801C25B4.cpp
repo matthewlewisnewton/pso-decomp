@@ -405,7 +405,7 @@ void TLobby__sub_8020BCE4(void);
 void clear_trap_counts(s8 *arg0);
 
 s32 set_flag_270__6TLobbyFPv();
-s32 set_type__10TObjPlayerFl(s32, s32);
+s32 set_frames__15ProtectionTimerFl(s32, s32);
 
 s32 check_all_players_ready__6TLobbyFv(void) {
     u8 *var_r31;
@@ -504,7 +504,7 @@ void init__6TLobbyFPv(void *arg0) {
     temp_r3 = update_battle_controller__10TObjPlayerFv();
     if (temp_r3 != 0) {
         obj_set_flag_20000();
-        set_type__10TObjPlayerFl(temp_r3 + 0x644, 0xE10);
+        set_frames__15ProtectionTimerFl(temp_r3 + 0x644, 0xE10);
     }
     TOMineTrap::destroy_matching_traps();
     queue_destroy_event_descendants((TObject*)tl_01);

@@ -3,6 +3,7 @@
 #include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TWindowStatus.h"
 #include "pso/item/TItemMag.h"
+#include "pso/player/TObjPlayer.h"
 #include "pso/item/TItemProShield.h"
 #include "pso/misc/TWindowDD.h"
 #include "pso/misc/TWindowSubComCard.h"
@@ -97,7 +98,7 @@ void update_hp_tp_values__20TWindowSubStatusDispFPv(u8 *window_sub_status_disp) 
         *(f32 *)((s8 *)d + 8) = *(f32 *)((s8 *)a + 8);
         ((TWindowSubStatusDisp *)window_sub_status_disp)->update_status_entry();
         e = get_array_entry__13TUnk_804CE018Fi(window_sub_status_disp, 0xE);
-        set_status_entry_target(e, ((TItemMag *)pl)->get_sub_value());
+        set_status_entry_target(e, ((TObjPlayer *)pl)->get_photon_blast_charge());
     }
 }
 

@@ -283,7 +283,7 @@ void run_task__20TWindowActionPaletteFv(u8 *arg0) {
     v = get_entry_by_index__20TWindowActionPaletteFPll(effect, 3);
     ((TWindowActionPalette *)arg0)->update_slot_sprites(2, get_slot_type_for_index__20TWindowActionPaletteFPll(effect, 3), v);
     target = TObjPlayer::get_current_target_id();
-    if (target == 0xFFFF || target == ((TWindowActionPalette *)arg0)->m_20 || ((TItemMag *)player)->get_sub_value() <= 0) {
+    if (target == 0xFFFF || target == ((TWindowActionPalette *)arg0)->m_20 || ((TObjPlayer *)player)->get_photon_blast_charge() <= 0) {
         if (((TWindowActionPalette *)(player + 0x500))->handle_input_forward() != 0) {
             if (is_split_screen() != 0) {
                 ((TWindowActionPalette *)SELF)->set_bank_panel_art(3);

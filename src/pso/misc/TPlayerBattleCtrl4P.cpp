@@ -45,7 +45,7 @@ extern char team_matchup_message_buffer[];
 void update__19TPlayerBattleCtrl4PFv(void *);
 s32 __ct__15TDuelEffectCtrlFP7TObjectUc(void *, void *, s32);
 void *__nw__7TObjectFUl(s32);
-void set_type__10TObjPlayerFl(void *, s32);
+void set_frames__15ProtectionTimerFl(void *, s32);
 s32 update_all_players__19TPlayerBattleCtrl4PFv();
 s32 check_all_players_flag__19TPlayerBattleCtrl4PFv(void *);
 
@@ -91,7 +91,7 @@ void TPlayerBattleCtrl4P::begin_battle_results() {
     for (i = 0; i < 4; i++) {
         p = (VObj_18_26c590 *)get_player_by_client_id(i);
         if (p != 0) {
-            set_type__10TObjPlayerFl((u8 *)p + 0x644, 0xE10);
+            set_frames__15ProtectionTimerFl((u8 *)p + 0x644, 0xE10);
         }
     }
     ((s32 (*)(void *))update_all_players__19TPlayerBattleCtrl4PFv)(this);

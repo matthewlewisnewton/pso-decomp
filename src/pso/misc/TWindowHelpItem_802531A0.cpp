@@ -1,3 +1,4 @@
+#include "pso/item/MagStats.h"
 #include "types.h"
 #include "pso/misc/TWindowHelpItem_802531A0.h"
 #include "pso/misc/TWindowHelpItem_80255AB4.h"
@@ -165,12 +166,12 @@ void TWindowHelpItem__vt11(u8 *window) {
     MagData_80253564 mag;
     s32 slot;
     s32 blast;
-    ((TItemData *)(&mag))->initialize_mag_data();
+    ((MagStats *)(&mag))->init();
     init_window_layout_entries(window + 0x24, lbl_804CF4E4, *(s16 *)((s8 *)window + 0x20));
     *(Callback_80253564 *) (window + 0xB0) = TWindowHelpItem__photon_blast_update_callback;
     deserialize_mag__9TItemDataFPvPv(*(void **)((s8 *)window + 0x68), &mag);
     for (slot = 0; slot < 3; slot++) {
-        blast = ((TItemMag *)(&mag))->get_photon_blast_at_slot(slot);
+        blast = ((MagStats *)(&mag))->get_photon_blast(slot);
         if (blast != -1) {
             draw_action_palette_icon(((void *)get_array_entry__13TUnk_804CE018Fi(window, slot + 1)), 5, (u16) blast);
         } else {

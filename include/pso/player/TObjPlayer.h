@@ -2,6 +2,7 @@
 #define PSO_PLAYER_TOBJPLAYER_H
 
 #include "types.h"
+#include "pso/player/PhotonBlastGauge.h"
 #include "pso/player/PlayerClassFlags.h"
 #include "pso/player/PlayerScaleState.h"
 #include "pso/player/RenderMaterialState.h"
@@ -13,6 +14,15 @@ struct player_stats;
 
 struct TItem;
 struct TechniqueContactList;
+
+// The frames a player stays protected from hits (after getting up, being
+// hurt, or a mag's invincibility).
+struct ProtectionTimer {
+    s32 get_frames();
+    void set_frames(s32 frames);
+
+    s32 frames;
+};
 
 struct TObjPlayer : public TObjChara {
     virtual ~TObjPlayer();
@@ -162,8 +172,7 @@ struct TObjPlayer : public TObjChara {
     u8 unk_420[0x4];
     s32 m_424;
     u8 technique_levels[0x84];  // set/get_cast_technique_level's table
-    void* m_4ac;
-    u8 _pad4B0[0x50];
+    PhotonBlastGauge photon_blast_gauge;
     ActionPalette action_palettes[2];
     u8 unk_548[0x4];
     s32 m_54c;
@@ -182,7 +191,7 @@ struct TObjPlayer : public TObjChara {
     u8 _pad638[0x4];
     void* m_63c;
     u8 _pad640[0x4];
-    void* m_644;
+    ProtectionTimer protection;  // frames the player cannot be hurt
     u8 _pad648[0x4];
     void* m_64c;
     u8 _pad650[0x8];
@@ -215,12 +224,16 @@ struct TObjPlayer : public TObjChara {
     void* m_858;
     char name[0x1C];
     u8 m_878;
-    u8 unk_879[0x14];
+    u8 unk_879[0x13];
+    u8 section_id;
     u8 m_88d;
     s8 m_88e;
     u8 unk_88F[0x1];
     s32 class_flags;
-    u8 unk_894[0x18];
+    s16 costume;
+    s16 skin;  // an android's body colour
+    u8 unk_898[0x10];
+    f32 height;  // the body height the mag scales its follow height by
     void* m_8ac;
     u8 unk_8B0[0x4];
     u32 m_8b4;
@@ -257,7 +270,10 @@ struct TObjPlayer : public TObjChara {
     void update_death_breakup();
     void dispatch_state_update();
     static void create_render_texture();
-    s16 get_mag_data();
+    // The photon blast gauge's charge, 0-100.
+    s32 get_photon_blast_charge();
+    int is_frozen();
+    static void send_6x26_unequip_item(void *player, void *item);
     player_class_type get_class_type();
     static void add_angle_clamped(s32 *arg0, s32 arg1, s32 arg2);
     static void step_angle_clamped(void *actor, int arg1);
@@ -368,7 +384,6 @@ struct TObjPlayer : public TObjChara {
     void clear_ground_candidates();
     void reset_lobby_model();
     void reset_type();
-    void set_type(s32 v);
     void send_6x12_packet();
     void bswap_6x12_packet();
     void set_type_dragon();
@@ -393,7 +408,7 @@ struct TObjPlayer : public TObjChara {
     static s32 is_locally_controlled(void *player);
     static TObjPlayer *get_player_data(int index);
     int queue_destruction();
-    u8 test_action_mask(s32 arg1);
+    s32 test_action_mask(s32 arg1);
     static void free_singleton();
     static void init_render_target_singleton();
     static void setup_tev_stage();
@@ -1659,7 +1674,7 @@ struct TObjPlayer : public TObjChara {
 #include <stddef.h>
 typedef char PlayerActionPaletteSize[(sizeof(TObjPlayer::ActionPalette) == 0x24) ? 1 : -1];
 typedef char PlayerActionPaletteBanks[(offsetof(TObjPlayer::ActionPalette, bindings) == 4) ? 1 : -1];
-typedef char PlayerPaletteModifierOffset[(offsetof(TObjPlayer, m_4ac) == 0x4AC) ? 1 : -1];
+typedef char PlayerPaletteModifierOffset[(offsetof(TObjPlayer, photon_blast_gauge) == 0x4AC) ? 1 : -1];
 typedef char PlayerActionPalettesOffset[(offsetof(TObjPlayer, action_palettes) == 0x500) ? 1 : -1];
 typedef char PlayerStateAfterPalettes[(offsetof(TObjPlayer, m_550) == 0x550) ? 1 : -1];
 typedef char PlayerHairSelectorOffset[(offsetof(TObjPlayer, m_878) == 0x878) ? 1 : -1];

@@ -1,3 +1,4 @@
+#include "pso/item/MagStats.h"
 #include "types.h"
 #include "pso/misc/TWindowHelpItem_80255AB4.h"
 #include "pso/unk/text_8025373C.h"
@@ -33,14 +34,14 @@ s32 fn_8025373C(u8 *self) {
     Entry_8025373C *bar;
     Entry_8025373C *num;
     s32 count;
-    ((TItemData *)(&mag))->initialize_mag_data();
+    ((MagStats *)(&mag))->init();
     deserialize_mag__9TItemDataFPvPv(*(s32 *)(self + 0x68), &mag);
     help = get_array_entry__13TUnk_804CE018Fi(self, 0);
     panel = get_array_entry__13TUnk_804CE018Fi(self, 0xF);
     count = TWindowHelpItem__sub_80255DDC(help);
     num = get_array_entry__13TUnk_804CE018Fi(self, 4);
     bar = get_array_entry__13TUnk_804CE018Fi(self, 5);
-    if (num->value < ((TItemData *)(&mag))->get_stat_percent()) {
+    if (num->value < ((MagStats *)(&mag))->get_def_level()) {
         num->value++;
         bar->timer = TWindowHelpItem__data_805DCDE4;
         count++;
@@ -48,7 +49,7 @@ s32 fn_8025373C(u8 *self) {
     }
     num = get_array_entry__13TUnk_804CE018Fi(self, 7);
     bar = get_array_entry__13TUnk_804CE018Fi(self, 8);
-    if (num->value < ((TItemData *)(&mag))->get_percent()) {
+    if (num->value < ((MagStats *)(&mag))->get_pow_level()) {
         num->value++;
         count++;
         bar->timer = TWindowHelpItem__data_805DCDE4;
@@ -56,7 +57,7 @@ s32 fn_8025373C(u8 *self) {
     }
     num = get_array_entry__13TUnk_804CE018Fi(self, 0xA);
     bar = get_array_entry__13TUnk_804CE018Fi(self, 0xB);
-    if (num->value < ((TItemData *)(&mag))->get_level()) {
+    if (num->value < ((MagStats *)(&mag))->get_dex_level()) {
         num->value++;
         bar->timer = TWindowHelpItem__data_805DCDE4;
         count++;
@@ -64,7 +65,7 @@ s32 fn_8025373C(u8 *self) {
     }
     num = get_array_entry__13TUnk_804CE018Fi(self, 0xD);
     bar = get_array_entry__13TUnk_804CE018Fi(self, 0xE);
-    if (num->value < ((TItemData *)(&mag))->get_mag_mind_level()) {
+    if (num->value < ((MagStats *)(&mag))->get_mind_level()) {
         num->value++;
         bar->timer = TWindowHelpItem__data_805DCDE4;
         count++;

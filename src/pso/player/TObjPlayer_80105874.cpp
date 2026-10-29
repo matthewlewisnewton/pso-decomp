@@ -34,7 +34,7 @@ void TObjPlayer::init_game_resources() {
 void fn_801058E8(void* p) { *(u8*)((char*)p + 0x7) |= 0x1; }
 
 u8 TObjPlayer::is_script_controlled() {
-    return (u8) (this->m_324 == 6);
+    return (u8) (this->control_state == 6);
 }
 
 int TObjPlayer::activate_d04_slot() { return get_slot_value__10TObjPlayerFPvi((s32 *)((char*)this + 0xd04), 1); }
