@@ -312,7 +312,7 @@ void TObjEneMe1Canadin::setup_enemy() {
     m_3ec = lbl_805D98A4;
     m_3f0 = TObjEneMe1Canadin__data_805D98AC * (lbl_805D992C * (f32)rand()) + lbl_805D98A4;
     m_3f4 = m_3ec;
-    m_3f8 = position.y + m_3f4;
+    hover_y = position.y + m_3f4;
     m_3fc = 4;
     m_400 = 0;
     m_404 = 0;
@@ -402,14 +402,14 @@ void TObjEneMe1Canadin::vfunc_61() {  }
 
 void TObjEneMe1Canadin::copy_pos() {
     m_2fc = (f32) position.x;
-    m_300 = (f32) m_3f8;
+    m_300 = (f32) hover_y;
     m_304 = (f32) position.z;
     VecCopy(&center, body_center());
 }
 
 void TObjEneMe1Canadin::vfunc_88() {
     TObjEneMe1Canadin *o = this;
-    m_3f4 = (f32) (m_3f8 - position.y);
+    m_3f4 = (f32) (hover_y - position.y);
     if (m_3f4 < lbl_805D98D0) {
         o->vfunc_98();
     } else {
@@ -459,40 +459,40 @@ u8 *TObjEneMe1Canadin::vfunc_101(u8 *pos) {
     return result;
 }
 
-void TObjEneMe1Canadin::fn_8009EB98(f32 farg0) {
+void TObjEneMe1Canadin::approach_hover_y(f32 target_y) {
     f32 temp_f3;
-    temp_f3 = farg0 - m_3f8;
+    temp_f3 = target_y - hover_y;
     m_3c8 = (s32) (m_3c8 & 0xFFF7FFFF);
     if (temp_f3 >= TObjEneMe1Canadin__data_805D98BC) {
-        m_3f8 = (f32) (m_3f8 + TObjEneMe1Canadin__data_805D98BC);
+        hover_y = (f32) (hover_y + TObjEneMe1Canadin__data_805D98BC);
         return;
     }
     if (temp_f3 <= lbl_805D9924) {
-        m_3f8 = (f32) (m_3f8 - TObjEneMe1Canadin__data_805D98BC);
+        hover_y = (f32) (hover_y - TObjEneMe1Canadin__data_805D98BC);
         return;
     }
-    m_3f8 = farg0;
+    hover_y = target_y;
     m_3c8 = (s32) (m_3c8 | 0x80000);
 }
 
 void TObjEneMe1Canadin::update_position_with_offset() {
-    this->fn_8009EB98(position.y + m_3e8);
+    this->approach_hover_y(position.y + m_3e8);
 }
 
-void TObjEneMe1Canadin::fn_8009EB14(f32 height) {
+void TObjEneMe1Canadin::update_hover_position(f32 height) {
     Vec stack;
-    this->fn_8009EB98(height);
+    this->approach_hover_y(height);
     VecCopy((Vec *)(&stack), (const Vec *)(&position));
-    stack.y = m_3f8;
+    stack.y = hover_y;
     this->vfunc_101((u8 *)&stack);
 }
 
 void TObjEneMe1Canadin::set_target_speed_z() {
-    this->fn_8009EB14((m_3ec + position.y));
+    this->update_hover_position((m_3ec + position.y));
 }
 
 void TObjEneMe1Canadin::update_hover_height() {
-    this->fn_8009EB14((m_3e8 + position.y));
+    this->update_hover_position((m_3e8 + position.y));
 }
 
 void TObjEneMe1Canadin::update_angle() {
@@ -882,7 +882,7 @@ void TObjEneMe1Canadin::fn_8009DE90(s32 arg1) {
     case 0:
         advance_animation_playback(this);
         if ((s32) m_3c4 == 2) {
-            this->fn_8009EB14(lbl_805D9890 + position.y);
+            this->update_hover_position(lbl_805D9890 + position.y);
         } else {
             this->set_target_speed_z();
         }
@@ -921,7 +921,7 @@ void TObjEneMe1Canadin::action(s32 arg1) {
             update_linked_position(TObjEneMe1Canadin__data_805D988C);
         }
         if ((s32) m_3c4 == 2) {
-            this->fn_8009EB14(lbl_805D9890 + position.y);
+            this->update_hover_position(lbl_805D9890 + position.y);
         } else {
             set_target_speed_z();
         }
@@ -1088,7 +1088,7 @@ void TObjEneMe1Canadin::move(s32 arg1) {
             if ((s32) m_4b8 != 0) {
                 update_hover_height();
             } else {
-                this->fn_8009EB14(position.y + m_3f0);
+                this->update_hover_position(position.y + m_3f0);
                 if (m_3c8 & 0x80000) {
                     m_470 = 3;
                 }
@@ -1314,7 +1314,7 @@ void TObjEneMe1Canadin::fn_8009CC74(s32 arg1) {
                     }
                 }
             }
-            ((TObjEneMe1Canadin *)((u8 *)o))->fn_8009EB14(o->position.y + o->m_3f4);
+            ((TObjEneMe1Canadin *)((u8 *)o))->update_hover_position(o->position.y + o->m_3f4);
             break;
         }
         case 1:
@@ -1351,7 +1351,7 @@ void TObjEneMe1Canadin::fn_8009CC74(s32 arg1) {
                 o->m_470 = 0;
                 ((TObjEneMe1Canadin *)((u8 *)o))->fn_8009E930();
             }
-            o->m_3f8 += o->m_488;
+            o->hover_y += o->m_488;
             o->move_to_wall_clamped_destination(o->m_3a0.x, o->m_3a0.z, o->m_484);
             push_history_entry__17TObjEneMe1CanadinFPvfPvi(o->m_408, lbl_805D98FC, o->m_414, o->m_4b4);
             break;
@@ -1359,7 +1359,7 @@ void TObjEneMe1Canadin::fn_8009CC74(s32 arg1) {
             o->enemy_copy_target_destination();
             o->update_velocity();
             o->update_angle();
-            ((TObjEneMe1Canadin *)((u8 *)o))->fn_8009EB98(o->position.y + o->m_3ec);
+            ((TObjEneMe1Canadin *)((u8 *)o))->approach_hover_y(o->position.y + o->m_3ec);
             if (o->m_3ac < lbl_805D9900) {
                 if (((TObjEneMe1Canadin *)((u8 *)o))->fn_8009E76C() != 0) {
                     o->m_474 = 0;
@@ -1487,7 +1487,7 @@ void TObjEneMe1Canadin::fn_8009C91C(s32 arg1) {
                     o->m_470 = 0;
                     ((TObjEneMe1Canadin *)((u8 *)o))->fn_8009E930();
                 }
-                o->m_3f8 += o->m_484;
+                o->hover_y += o->m_484;
                 rotate_xz_pair_by_angle(&dir->x, &dir->z, o->m_480);
                 {
                     Vec v;
@@ -1573,7 +1573,7 @@ void TObjEneMe1Canadin::fn_8009C510(s32 arg1) {
         this->vfunc_96();
         actorFlags &= 0xFEFFFFFF;
         m_470 = 0;
-        if (m_3f8 > TObjEneMe1Canadin__data_805D98AC + (position.y + m_3ec)) {
+        if (hover_y > TObjEneMe1Canadin__data_805D98AC + (position.y + m_3ec)) {
             m_474 = 0;
         } else {
             m_474 = 2;
@@ -1599,8 +1599,8 @@ void TObjEneMe1Canadin::fn_8009C510(s32 arg1) {
             if (m_484 < -4.0f) {
                 m_484 = -4.0f;
             }
-            m_3f8 += m_484;
-            if (m_3f8 < 12.0f + (position.y + m_3ec)) {
+            hover_y += m_484;
+            if (hover_y < 12.0f + (position.y + m_3ec)) {
                 m_474 = 1;
                 if (m_484 > -2.0f) {
                     m_484 = -2.0f;
@@ -1610,10 +1610,10 @@ void TObjEneMe1Canadin::fn_8009C510(s32 arg1) {
             break;
         case 1:
             m_484 += m_488;
-            m_3f8 += m_484;
+            hover_y += m_484;
             if (m_484 >= lbl_805D9898) {
-                if (m_3f8 > position.y + m_3ec) {
-                    m_3f8 = position.y + m_3ec;
+                if (hover_y > position.y + m_3ec) {
+                    hover_y = position.y + m_3ec;
                     m_470 = 0;
                     m_474 = 2;
                 }
@@ -1667,7 +1667,7 @@ void TObjEneMe1Canadin::fn_8009C2EC(s32 arg1) {
             this->enemy_copy_target_destination();
         }
         this->update_velocity();
-        this->fn_8009EB98(position.y + m_3ec);
+        this->approach_hover_y(position.y + m_3ec);
         TObjEneEpsilon__sub_800B92AC(arg0, 0x200, lbl_805D98B8);
         rotation_z += 0x2000;
         (m_470)++;
@@ -1755,7 +1755,7 @@ void TObjEneMe1Canadin::fn_8009BFF8(s32 arg1) {
                 m_470 = 1;
                 this->advance_state_5_to_4();
             }
-            this->fn_8009EB14(position.y + m_3f4);
+            this->update_hover_position(position.y + m_3f4);
             break;
         case 1:
             ((TObjEneEpsilon *)arg0)->copy_position(&home_position);
@@ -1830,14 +1830,14 @@ void TObjEneMe1Canadin::update_by_state(s32 arg1) {
     case 4:
         m_b8 = 0;
         temp_f1 = position.y;
-        m_3f8 = (f32) (temp_f1 + m_3ec);
+        hover_y = (f32) (temp_f1 + m_3ec);
         m_484 = sin_table_lookup(rotation_y);
         m_488 = cos_table_lookup(rotation_y);
         return;
     case 0:
         advance_animation_playback(this);
-        m_3f8 = (f32) (position.y + m_3ec);
-        m_300 = (f32) m_3f8;
+        hover_y = (f32) (position.y + m_3ec);
+        m_300 = (f32) hover_y;
         move_with_wall_slide_commit(m_484, m_488, lbl_805D98A8);
     case 3:
     case 5:
@@ -2281,7 +2281,7 @@ void TObjEneMe1CanadinLeader::vfunc_110(s32 arg1) {
             update_move();
             break;
         }
-        this->fn_8009EB14(lbl_805D9890 + self->position.y);
+        this->update_hover_position(lbl_805D9890 + self->position.y);
         this->vfunc_89();
         break;
     case 5:

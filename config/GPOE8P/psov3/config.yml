@@ -4565,8 +4565,8 @@ force_active:
   - fn_8009E860__17TObjEneMe1CanadinFPff
   - fn_8009E930__17TObjEneMe1CanadinFv
   - fn_8009E948__17TObjEneMe1CanadinFv
-  - fn_8009EB14__17TObjEneMe1CanadinFf
-  - fn_8009EB98__17TObjEneMe1CanadinFf
+  - update_hover_position__17TObjEneMe1CanadinFf
+  - approach_hover_y__17TObjEneMe1CanadinFf
   - fn_800BC758
   - fn_800E322C
   - fn_800E3374
