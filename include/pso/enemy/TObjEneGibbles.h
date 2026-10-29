@@ -86,7 +86,7 @@ struct TObjEneGibbles : public TObjEnemy {
     void fn_802D8580();
     void fn_802D8E8C();
     void fn_802D9110();
-    s32 fn_802D9A04();
+    s32 apply_landing_area_attack();
     void render_and_get_joint_pos(Vec *result, s32 joint);
     bool attack_from_joint_31(s32, f32);
     bool attack_from_joint_53(s32, f32);

@@ -4589,7 +4589,7 @@ force_active:
   - fn_802D9110__14TObjEneGibblesFv
   - attack_from_joint_31__14TObjEneGibblesFlf
   - attack_from_joint_53__14TObjEneGibblesFlf
-  - fn_802D9A04__14TObjEneGibblesFv
+  - apply_landing_area_attack__14TObjEneGibblesFv
   - fn_802E62A4
   - fn_80303538__16TObjEneDellBiterFv
   - fn_80303AA0__16TObjEneDellBiterFl

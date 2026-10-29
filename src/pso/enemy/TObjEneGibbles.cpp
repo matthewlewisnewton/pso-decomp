@@ -744,7 +744,7 @@ void TObjEneGibbles::sub_802D8984() {
         if (objInBand__FP7GameObjf(o, o->anim_end_frame - TObjEneGibbles__data_805DE7EC - o->m_c8) != 0) {
             o->phase = 3;
             o->height_offset = TObjEneGibbles__data_805DE7E4;
-            switch (o->fn_802D9A04()) {
+            switch (o->apply_landing_area_attack()) {
             case 0:
                 TObjEneGibbles__sub_800D8988(&o->position);
                 break;
@@ -1545,7 +1545,7 @@ void TObjEneGibbles::update_death_sequence() {
         if (objInBand__FP7GameObjf(this, (end_frame - TObjEneGibbles__data_805DE7EC) - m_c8) != 0) {
             this->height_offset = (f32) TObjEneGibbles__data_805DE7E4;
             this->vertical_step = (f32) TObjEneGibbles__data_805DE7E4;
-            switch (((TObjEneGibbles *)(self))->fn_802D9A04()) {
+            switch (((TObjEneGibbles *)(self))->apply_landing_area_attack()) {
             case 0:
                 TObjEneGibbles__sub_800D8988(&position);
                 break;
@@ -1757,7 +1757,7 @@ void TObjEneGibbles::slam_damage_players(s32 arg1) {
 
 #pragma push
 #pragma opt_loop_invariants off
-s32 TObjEneGibbles::fn_802D9A04() {
+s32 TObjEneGibbles::apply_landing_area_attack() {
     s32 i;
     TObjChara *player;
     for (i = 0; i < lbl_805D5868; i++) {
