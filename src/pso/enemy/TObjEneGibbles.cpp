@@ -605,9 +605,9 @@ void TObjEneGibbles::fn_802D8580() {
         self->flags &= ~0x20;
         break;
     }
-    ((TObjPlayer *)self)->check_object_collisions();
+    self->check_object_collisions();
     check_enemy_body_collisions(self);
-    ((TObjPlayer *)self)->update_enemy_collision_flags();
+    self->update_enemy_collision_flags();
     minimap_render_dot((u8 *)&self->position, -0x5DB4, 1, 0);
     self->actorFlags &= 0xFFDFFFFF;
 }
@@ -842,9 +842,9 @@ void TObjEneGibbles::fn_802D8E8C() {
         this->actorFlags &= 0xFFDFFFFF;
         break;
     }
-    ((TObjPlayer *)self)->check_object_collisions();
+    self->check_object_collisions();
     check_enemy_body_collisions(self);
-    ((TObjPlayer *)self)->update_enemy_collision_flags();
+    self->update_enemy_collision_flags();
     minimap_render_dot((u8 *)&position, -0x5DB4, 1, 0);
     submit_cursor_candidate(self, -1);
 }
@@ -2000,9 +2000,9 @@ void TObjEneGibbles::fn_802D9110() {
     ((TObjEneGibbles *)self)->play_distance_sound();
     advance_animation_playback(self);
     ((TObjEneGibbles *)self)->clamp_angle(0);
-    ((TObjPlayer *)self)->check_object_collisions();
+    self->check_object_collisions();
     check_enemy_body_collisions(self);
-    ((TObjPlayer *)self)->update_enemy_collision_flags();
+    self->update_enemy_collision_flags();
     minimap_render_dot(&self->position, -0x5DB4, 1, 0);
     submit_cursor_candidate(self, -1);
 }
