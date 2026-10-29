@@ -10835,6 +10835,7 @@ pso/misc/TPlayerBattleCtrl4P_80311800.cpp:
 
 pso/misc/TPlayerBattleCtrl4P.cpp:
 	.text       start:0x80311E4C end:0x803123F4
+	.bss        start:0x80542EB0 end:0x80542FB0
 
 pso/misc/TPlayerBattleCtrl4P_803123F4.cpp:
 	.text       start:0x803123F4 end:0x80312BDC
