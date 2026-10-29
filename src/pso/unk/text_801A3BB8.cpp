@@ -2,8 +2,8 @@
 #include "pso/misc/TPlyCharData.h"
 #include "pso/unk/text_801A3BB8.h"
 extern "C" {
-extern u8 TPlyCharData__global_character_data[];
-extern u8 TPlyCharData__global_destructor_registration[];
+u8 TPlyCharData__global_destructor_registration[0xC];
+u8 TPlyCharData__global_character_data[0x41C];
 void *__ct__12TPlyCharDataFv(void *p);
 void __register_global_object(void *obj, void *dtor, void *link);
 void fn_801A3BB8(void) {

@@ -9,17 +9,20 @@
 #include "pso/misc/TNowLoading.h"
 #include "pso/TParticleCtrl.h"
 
+#pragma readonly_strings on
+
+extern "C" {
+__declspec(section ".rodata") s32 boss5_gryphon_snarl_effect_id_table[4] = { 521, 539, 540, 538 };
+const char *lbl_805D2820 = "TBoss5GryphonSnarl";
+s32 * TBoss5GryphonSnarl__effect_table;
+}
+
+
 extern "C" {
 s32 TBoss8Dragon__sub_8005D700(void *self);
-extern s32 boss5_gryphon_snarl_effect_id_table[];
+extern s32 boss5_gryphon_snarl_effect_id_table[4];
 extern s32 *TBoss5GryphonSnarl__effect_table;
 extern const char *lbl_805D2820;
-extern const f32 lbl_805D8F0C;
-extern const f32 lbl_805D8EF8;
-extern const f32 lbl_805D8EFC;
-extern const f32 lbl_805D8F00;
-extern const f32 lbl_805D8F04;
-extern const f32 lbl_805D8F08;
 extern s32 boss5_gryphon_bml_resource;
 extern s32 boss5_gryphon_texture_list;
 void TBoss8Dragon__sub_8006402C(s32 instance, Vec *pos, f32 radius, f32 scale);
@@ -49,12 +52,12 @@ void TBoss5GryphonSnarl::run_task() {
 
     switch (state) {
     case 0:
-        inner = lbl_805D8EF8 * (f32)frame;
+        inner = 7.0f * (f32)frame;
         instance = TBoss8Dragon::get_instance_count();
-        scale = (f32)(30 - frame) / lbl_805D8EFC;
-        scale += lbl_805D8F00;
+        scale = (f32)(30 - frame) / 30.0f;
+        scale += 1.0f;
         TBoss8Dragon__sub_8006402C(instance, &position, inner, scale);
-        outer = lbl_805D8F04 + inner;
+        outer = 10.0f + inner;
         for (i = 0; i < 32; i++) {
             angle = (i << 16) / 32;
             if (children_20[i] == NULL) {
@@ -62,19 +65,19 @@ void TBoss5GryphonSnarl::run_task() {
             }
             if (children_20[i] != NULL) {
                 v.x = inner * sin_table_lookup(angle) + position.x;
-                v.y = lbl_805D8F08;
+                v.y = 0.0f;
                 v.z = inner * cos_table_lookup(angle) + position.z;
                 ((TParticleCtrl *)children_20[i])->set_position(&v);
             }
             if (children_a0[i] == NULL) {
                 children_a0[i] = (TObject *)spawn_continuous_particle_effect_with_flags(&position, TBoss5GryphonSnarl__effect_table[1], 0x40);
                 if (children_a0[i] != NULL) {
-                    attach_particle_model(children_a0[i], get_bml_model(boss5_gryphon_bml_resource, 1), boss5_gryphon_texture_list, 0, 0, lbl_805D8F00);
+                    attach_particle_model(children_a0[i], get_bml_model(boss5_gryphon_bml_resource, 1), boss5_gryphon_texture_list, 0, 0, 1.0f);
                 }
             }
             if (children_a0[i] != NULL) {
                 v.x = outer * sin_table_lookup(angle) + position.x;
-                v.y = lbl_805D8F08;
+                v.y = 0.0f;
                 v.z = outer * cos_table_lookup(angle) + position.z;
                 ((TParticleCtrl *)children_a0[i])->set_position(&v);
             }
@@ -122,7 +125,7 @@ TBoss5GryphonSnarl::TBoss5GryphonSnarl(TObject *parent, void *arg2) : TObject(pa
     s32 i;
     m_name = lbl_805D2820;
     VecCopy(&position, (const Vec *)arg2);
-    position.y = lbl_805D8F0C;
+    position.y = 2.0f;
     frame = 0;
     state = 0;
     spawn_particle_effect_with_flags(&position, TBoss5GryphonSnarl__effect_table[3], 0x40);

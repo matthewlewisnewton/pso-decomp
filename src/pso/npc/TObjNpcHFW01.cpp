@@ -7,6 +7,12 @@
 #include "pso/npc/TObjNpcFemaleTall.h"
 #include "pso/player/TObjPlayer.h"
 
+#pragma readonly_strings on
+
+extern "C" {
+const char *TObjNpcHFW01__name = "TObjNpcHFW01";
+}
+
 struct RecoveredGlobal_8014B020___vt__12TObjNpcHFW01 {
     s32 value;
     u8 remaining[0x174];
@@ -14,7 +20,6 @@ struct RecoveredGlobal_8014B020___vt__12TObjNpcHFW01 {
 
 extern "C" {
 extern s32 __vt__12TObjNpcHFW01[];
-extern s32 TObjNpcHFW01__name;
 extern s32 *TObjNpcHFW01__resource_node;
 extern s32 TObjNpcHFW01__texture_handle;
 void *__ct__11TObjControlFP7TObject(void *, void *);

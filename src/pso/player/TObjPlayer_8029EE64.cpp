@@ -6,6 +6,7 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/map/FloorArea.h"
 
+
 struct Vec_8029EFFC { f32 x, y, z; };
 
 struct Cam_8029EFFC { Vec_8029EFFC pos; Vec_8029EFFC scale; };
@@ -51,9 +52,6 @@ extern const f64 lbl_80465E18;
 extern u32 camera_ctrl_instance;
 extern u32 lbl_805D65F0;
 extern s32 current_matrix;
-extern const f32 lbl_805DDDA0;
-extern const f32 lbl_805DDDA4;
-extern const f32 lbl_805DDDA8;
 extern "C" {
 void TObjPlayer__sub_8029EE2C(void);
 int set_instance__6TSceneFi(void *f);
@@ -76,8 +74,6 @@ extern s16 scene_sora_reflect_active;
 extern u8 scene_sora_recon_active_flag;
 extern const f32 lbl_805DDD8C;
 extern const f32 lbl_805DDD90;
-extern const f32 lbl_805DDDAC;
-extern const f32 lbl_805DDDB0;
 extern s32 model_render_flags;
 
 void TObjPlayer::clear_state_if_flag80(s32 arg0) {
@@ -100,9 +96,9 @@ void TObjPlayer::setup_projection_texture(s32 arg0, s32 arg1, s32 arg2) {
             push_matrix();
             temp_f31 = (f32) (lbl_80465E18 * calc_camera_fov_degrees());
             if (TCameraCtrl__sub_800689F4() != 0) {
-                C_MTXLightPerspective(&sp10, temp_f31, lbl_805DDDA0, lbl_805DDDA4, lbl_805DDDA8, (f32) (lbl_805DDDA4 - spC), (f32) (lbl_805DDDA4 - sp8));
+                C_MTXLightPerspective(&sp10, temp_f31, 1.1333334f, 0.5f, -0.5f, (f32) (0.5f - spC), (f32) (0.5f - sp8));
             } else {
-                C_MTXLightPerspective(&sp10, temp_f31, lbl_805DDDA0, lbl_805DDDA4, lbl_805DDDA8, lbl_805DDDA4, lbl_805DDDA4);
+                C_MTXLightPerspective(&sp10, temp_f31, 1.1333334f, 0.5f, -0.5f, 0.5f, 0.5f);
             }
             PSMTXConcat(&sp10, (void *)current_matrix, (void *)current_matrix);
             load_current_tex_matrix(2);
@@ -139,7 +135,7 @@ void TUnk_804DC7C4::render_shadows() {
         return;
     }
     TScene__sub_8029F5EC();
-    TScene__sub_8029F5E4(lbl_805DDDAC);
+    TScene__sub_8029F5E4(100.0f);
     if (TSceneSora__instance != 0) {
         TSceneSora__sky_active_flag = 0;
     }
@@ -147,7 +143,7 @@ void TUnk_804DC7C4::render_shadows() {
     scene_sora_reflect_active = 1;
     {
         Vec_8029EFFC off = p->pos2FC;
-        off.y += lbl_805DDDB0;
+        off.y += 10.0f;
         hit = fn_8029E7BC((s32)&off, (u8 *)&o->pos24);
     }
     if (is_boss_area() != 0) {

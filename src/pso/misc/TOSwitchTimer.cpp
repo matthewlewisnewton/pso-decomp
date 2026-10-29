@@ -4,6 +4,13 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/object/TObjMotion.h"
 
+#pragma readonly_strings on
+
+extern "C" {
+const char *lbl_805D3188 = "TOSwitchTimer";
+}
+
+
 struct Stack_801783BC {
     f32 sp8;
     f32 spC;
@@ -22,16 +29,12 @@ struct RecoveredGlobal_80178604___vt__13TOSwitchTimer {
 extern "C" {
 s32 TObjRoomId__sub_80141CF4(s32, f32 *, f32, f32, f32);
 }
-extern const f32 lbl_805DBA18;
-extern const f32 lbl_805DBA1C;
-extern const f32 lbl_805DBA20;
-extern const f32 lbl_805DBA24;
 void clear_floor_switch_flag(u32 id, s16 floor);
 extern "C" {
 void __dl__7TObjectFPv(s32);
 extern RecoveredGlobal_8017858C___vt__13TOSwitchTimer __vt__13TOSwitchTimer;
 s32 __ct__8TObjBaseFP7TObject(void *);
-extern s32 lbl_805D3188;
+extern const char *lbl_805D3188;
 s32 play_sound_effect(s32, s32, s32, s32);
 u8 is_current_floor_switch_set(u16);
 void *__nw__7TObjectFUl(int);
@@ -40,11 +43,11 @@ void TOSwitchTimer::render() {
     s32 arg0 = (s32)this;
     Stack_801783BC stack;
     if (TObjPlayer::check_demo_mode() == 1) {
-        stack.sp8 = lbl_805DBA18;
-        stack.spC = lbl_805DBA1C;
-        stack.sp10 = lbl_805DBA18;
-        stack.sp14 = lbl_805DBA20;
-        TObjRoomId__sub_80141CF4(arg0 + 0x38, &stack.sp8, lbl_805DBA24, lbl_805DBA1C, lbl_805DBA18);
+        stack.sp8 = 0.3f;
+        stack.spC = 0.6f;
+        stack.sp10 = 0.3f;
+        stack.sp14 = 0.0f;
+        TObjRoomId__sub_80141CF4(arg0 + 0x38, &stack.sp8, 10.0f, 0.6f, 0.3f);
     }
 }
 
@@ -115,7 +118,7 @@ typedef char RecoveredGlobal_80178604___vt__13TOSwitchTimer_size[sizeof(Recovere
 u8 *TOSwitchTimer__ct(u8 *switch_timer, s32 arg1, s32 arg2) {
     __ct__8TObjBaseFP7TObject(switch_timer);
     *(s32 **)((s8 *)switch_timer + 0x18) = &(*(RecoveredGlobal_80178604___vt__13TOSwitchTimer *)&__vt__13TOSwitchTimer).value;
-    *(s32 *)((s8 *)switch_timer + 0) = (s32) lbl_805D3188;
+    *(s32 *)((s8 *)switch_timer + 0) = (s32) ((s32)lbl_805D3188);
     ((TOSwitchTimer *)(switch_timer))->apply_object_set_data((void *)arg2);
     ((TOSwitchTimer *)switch_timer)->sub_801782A0();
     return switch_timer;

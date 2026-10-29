@@ -24,6 +24,11 @@ struct RecoveredGlobal_801532C8_TObjFogCollisionPoison__data_8050D430 {
     u8 remaining[0x2C];
 };
 
+extern "C" {
+RecoveredGlobal_801532C8_TObjFogCollisionPoison__data_8050D430 TObjFogCollisionPoison__instances;
+}
+
+
 struct RecoveredGlobal_801531EC_TObjFogCollisionPoison__data_8050D430 {
     s32 value;
     u8 remaining[0x2C];

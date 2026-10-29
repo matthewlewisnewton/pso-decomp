@@ -8,6 +8,14 @@
 #include "pso/enemy/TObjEneMe1Gee.h"
 #include "pso/TParticleCtrl.h"
 
+#pragma readonly_strings on
+
+extern "C" {
+const char *TObjEneMe1Gee_NEEDLE__name = "TObjEneMe1Gee_NEEDLE";
+u32 me1gee_cached_model_handle;
+}
+
+
 struct RecoveredGlobal_802A4CC4_lbl_804DCFF8 {
     s32 value;
     u8 remaining[0x24];
@@ -20,7 +28,7 @@ s32 update_lifetime__22TObjEneMe1GiGueMissileFv(void *);
 u16 get_entity_id(void *);
 u8 * TNeedleShoot__ct(void *, s32, void *, void *);
 extern RecoveredGlobal_802A4CC4_lbl_804DCFF8 __vt__20TObjEneMe1Gee_NEEDLE;
-extern s32 TObjEneMe1Gee_NEEDLE__name;
+extern const char *TObjEneMe1Gee_NEEDLE__name;
 int TObjEneMe1Gee__sub_800CC2BC(void);
 extern u32 me1gee_cached_model_handle;
 s32 post_translate_matrix(void *);
@@ -68,7 +76,7 @@ u8 *TObjEneMe1Gee_NEEDLE__ct(TObjEneMe1Gee_NEEDLE *arg0, s32 arg1, u8 *from, u8 
     u8 *temp_r3;
     TNeedleShoot__ct(arg0, arg1, from, to);
     *(s32 **)((s8 *)arg0 + 0x18) = &__vt__20TObjEneMe1Gee_NEEDLE.value;
-    *(s32 *)((s8 *)arg0 + 0) = (s32) TObjEneMe1Gee_NEEDLE__name;
+    *(s32 *)((s8 *)arg0 + 0) = (s32) ((s32)TObjEneMe1Gee_NEEDLE__name);
     *(f32 *)((s8 *)arg0 + 0xBC) = farg1;
     *(f32 *)((s8 *)arg0 + 0xAC) = farg0;
     arg0->m_c0 = 0x96;
