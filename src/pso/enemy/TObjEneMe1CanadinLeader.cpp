@@ -3,10 +3,10 @@
 
 extern "C" {
 
-f64 ceil();
+f64 ceil(f64);
 
-f32 TObjEneMe1CanadinLeader::get_status_value_f32() {
-    return (f32) ceil();
+f32 ceil_to_float(f32 value) {
+    return (f32) ceil((f64)value);
 }
 
 }

@@ -1,3 +1,4 @@
+#include "pso/math/FloatRounding.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/system/vector.h"
@@ -1498,7 +1499,6 @@ s32 VecCopy__FP3VecPC3Vec(int, void *);
 int get_player_data__10TObjPlayerFi(int a0);
 void queue_destruction__7TObjectFv(void *);
 s32 get_flag_b4__9TObjEneDDFv(void *);
-f32 get_random_float__21TObjEneMe3ShinowaRealFv(f32);
 void TBoss2DeRolLe__sub_8002F73C(Obj_8002F73C *self, u32 kind);
 void TBoss2DeRolLe__sub_8002FCE4(Obj_8002FCE4 *self, u32 kind);
 void TBoss2DeRolLe__sub_8002FD9C(DeRolLe_8002FD9C *self, u32 arg1, s32 arg2);
@@ -4148,7 +4148,7 @@ void pick_random_target__13TBoss2DeRolLeFi(s32 actor) {
         ((TObjEneDD_ST *)actor)->set_target_player((void *)p);
         return;
     }
-    j = (s32) get_random_float__21TObjEneMe3ShinowaRealFv((f32) n * random_ratio__9TObjCharaFv((void *)actor));
+    j = (s32) floor_to_float((f32) n * random_ratio__9TObjCharaFv((void *)actor));
     enemy_clear_target__12TObjEneDD_STFUs((void *)actor);
     for (i = 0; i < n; i++) {
         p = get_player_data__10TObjPlayerFi(j);

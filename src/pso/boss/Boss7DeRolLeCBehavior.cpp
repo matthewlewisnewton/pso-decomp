@@ -1,3 +1,4 @@
+#include "pso/math/FloatRounding.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
@@ -1263,7 +1264,6 @@ struct Fish_802ECC44 {
 };
 
 int get_player_data__10TObjPlayerFi(int a0);
-f32 get_random_float__21TObjEneMe3ShinowaRealFv(f32);
 s32 enemy_clear_target__12TObjEneDD_STFUs(void *);
 s32 enemy_set_target_id(void * a0 = 0, u16 a1 = 0);
 void project_sound_origin_from_camera(s32 arg0, u8 *arg1, f32 farg0);
@@ -3530,7 +3530,7 @@ void TObjFish::pick_random_target() {
         ((TObjEneDD_ST *)((u8 *)this))->set_target_player(p);
         return;
     }
-    idx = (s32)get_random_float__21TObjEneMe3ShinowaRealFv((f32)n * random_ratio__9TObjCharaFv(this));
+    idx = (s32)floor_to_float((f32)n * random_ratio__9TObjCharaFv(this));
     enemy_clear_target__12TObjEneDD_STFUs(this);
     for (i = 0; i < n; i++) {
         p = (u8 *)get_player_data__10TObjPlayerFi(idx);

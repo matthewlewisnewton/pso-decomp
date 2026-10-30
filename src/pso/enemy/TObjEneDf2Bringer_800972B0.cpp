@@ -1,3 +1,4 @@
+#include "pso/math/FloatRounding.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -1968,7 +1969,6 @@ extern const f32 lbl_805D9838;
 extern const f32 lbl_805D983C;
 void check_can_act__10TObjPlayerFii(void *, s16);
 s16 get_actor_tp(u8 *p);
-f32 get_random_float__21TObjEneMe3ShinowaRealFv(f32);
 u8 *fn_8009A398(void *, void *, void *, void *);
 #define __nw__7TObjectFUl ((void * (*)(int))__nw__7TObjectFUl)
 extern const f32 lbl_805D9828;
@@ -2127,7 +2127,7 @@ s32 attack_visible_players__17TObjEneDf2BringerFPv(Obj_80098EFC *self) {
         if (is_alive__8TObjBaseFv(player) != 0) {
             horizontal_distance_squared(self->field2FC, player->pos);
             if (csnLookAt(self->field2FC, player->field2FC) == 0) {
-                dmg = get_random_float__21TObjEneMe3ShinowaRealFv(lbl_805D9828 * (f32)get_actor_tp((u8 *)player));
+                dmg = floor_to_float(lbl_805D9828 * (f32)get_actor_tp((u8 *)player));
                 check_can_act__10TObjPlayerFii(player, dmg);
                 total += dmg;
                 o = __nw__7TObjectFUl(0x54);

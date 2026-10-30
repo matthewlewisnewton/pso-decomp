@@ -1,3 +1,4 @@
+#include "pso/math/FloatRounding.h"
 #include "types.h"
 #include "pso/misc/TFogCtrl.h"
 #include "pso/unk/text_803E1FC8.h"
@@ -179,7 +180,6 @@ extern "C" {
 
 s32 is_split_screen();
 s32 get_camera_mode__11TCameraCtrlFv();
-s32 get_random_float__21TObjEneMe3ShinowaRealFv(f32);
 void read_disc_file(void *, void *);
 s32 TFogCtrl__sub_800FAC84(void* p);
 s32 request_fog__8TFogCtrlFPvii(u8 *arg0, s32 arg1, s32 arg2);
@@ -536,9 +536,9 @@ s32 TFogCtrl::is_controller_animated(s32 arg0, s32 arg1) {
   if (temp_r3 & 4)
   {
     temp_f31 = *((f32 *) (((s8 *) temp_r31) + 0x44));
-    get_random_float__21TObjEneMe3ShinowaRealFv((f32) temp_f31);
+    floor_to_float((f32) temp_f31);
     var_f31 = temp_f31 + (*((f32 *) (((s8 *) temp_r31) + 0x18)));
-    get_random_float__21TObjEneMe3ShinowaRealFv((f32) var_f31);
+    floor_to_float((f32) var_f31);
     if (var_f31 < FOG_ZERO)
     {
       var_f31 += (128.0f);

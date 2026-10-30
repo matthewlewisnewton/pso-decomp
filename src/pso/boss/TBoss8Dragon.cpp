@@ -1,3 +1,4 @@
+#include "pso/math/FloatRounding.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -1412,7 +1413,6 @@ s32 register_object__6TLobbyFl(int);
 s32 register_boss__6TLobbyFl(int);
 void TLobby__sub_8001FE7C(void*, int);
 void TBoss1Dragon__sub_80027A80(u8 *arg0, u8 *arg1);
-f32 get_random_float__21TObjEneMe3ShinowaRealFv(f32);
 s32 set_frames__15ProtectionTimerFl(void *, int);
 s32 spawn_particle_effect_with_flags(void *, void *, int);
 void TObjEneEpsilon__sub_800B9384(u8 *arg0, s32 arg1, f32 farg0);
@@ -6301,7 +6301,7 @@ s32 select_target_in_front__12TBoss8DragonFPv(u8 *ene_dd_st) {
         enemy_set_target_id(ene_dd_st, ids[0]);
         return 1;
     }
-    enemy_set_target_id(ene_dd_st, ids[(s32)get_random_float__21TObjEneMe3ShinowaRealFv((f32)n * ((f32 (*)(void *))random_ratio__9TObjCharaFv)(ene_dd_st))]);
+    enemy_set_target_id(ene_dd_st, ids[(s32)floor_to_float((f32)n * ((f32 (*)(void *))random_ratio__9TObjCharaFv)(ene_dd_st))]);
     return 1;
 }
 
@@ -6323,7 +6323,7 @@ s32 TBoss8Dragon__sub_802FC580(Obj_802FC580 *obj, f32 *out) {
     s32 i;
     s32 n;
     f32 r;
-    i = (s32)get_random_float__21TObjEneMe3ShinowaRealFv(TBoss8Dragon__data_805DED64 * random_ratio__9TObjCharaFv());
+    i = (s32)floor_to_float(TBoss8Dragon__data_805DED64 * random_ratio__9TObjCharaFv());
     n = obj->count;
     if (n < 12) {
         obj->count = n + 1;

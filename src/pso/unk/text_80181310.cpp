@@ -1,3 +1,4 @@
+#include "pso/math/FloatRounding.h"
 #include "types.h"
 #include "pso/boss/TBoss8Dragon_8002CC48.h"
 #include "pso/unk/text_801811FC.h"
@@ -8,7 +9,6 @@ struct Rec_80181310 { s32 timer; s32 count; void *objs[2]; };
 struct Ctrl_80181310 { u8 pad0[0x24]; s32 counter; Rec_80181310 recs[5]; };
 
 extern "C" {
-f32 get_random_float__21TObjEneMe3ShinowaRealFv(f32);
 void *construct_city_air_car(void *, void *, s32, s32, f32);
 void *__nw__7TObjectFUl(u32);
 s32 rand(void);
@@ -50,9 +50,9 @@ void run_task__19TObjCityAirCar_CtrlFv(Ctrl_80181310 *self) {
         if (count < 2 && --timer <= 0) {
             timer = lerp__9TDeadSpotFff(lbl_805DBBCC, lbl_805DBBD0);
             if (i == 0 || i == 1) {
-                type = get_random_float__21TObjEneMe3ShinowaRealFv(lbl_805DBBD4 * (lbl_805DBBD8 * rand()));
+                type = floor_to_float(lbl_805DBBD4 * (lbl_805DBBD8 * rand()));
             } else {
-                type = (s32)get_random_float__21TObjEneMe3ShinowaRealFv(lbl_805DBBDC * (lbl_805DBBD8 * rand())) + 1;
+                type = (s32)floor_to_float(lbl_805DBBDC * (lbl_805DBBD8 * rand())) + 1;
             }
             if (i == 1 || i == 2) {
                 self->counter++;
