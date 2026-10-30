@@ -22,6 +22,7 @@
 #include "pso/system/NinjaTypes.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/BmlResourceDescriptor.h"
+#include "pso/npc/NpcAnimationBinding.h"
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/TObjControl.h"
 #include "pso/TMainTask.h"
@@ -498,7 +499,7 @@ void TObjEneShark::load_resources() {
     shark_render_node_index = 0;
     {
         s16 ids[3] = { 0x2F, 0x30, 0x31 };
-        SharkNpcAnimationBinding anim = { shark_bml_resource->motions, shark_actions, 0, 2, 12, 0 };
+        NpcAnimationBinding anim = { shark_bml_resource->motions, shark_actions, 0, 2, 12 };
         for (i = 0; i < 3; i++) {
             spawn_npc_enemy__6TLobbyFslllff(ids[i], shark_bml_resource->models[i].model, shark_bml_resource->models[i].m_c, &anim,
                 shark_npc_collision_radius, shark_zero);
