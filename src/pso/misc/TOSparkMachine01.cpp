@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/misc/TOSparkMachine01.h"
 #include "pso/system/GinjaMaterial.h"
 #include "pso/unk/text_803D96A8.h"
@@ -86,7 +87,6 @@ struct Obj_801771F4 : VBase_801771F4 {
 };
 
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern BmlResourceDescriptor bm_fe_obj_tank_hikari_resource_descriptor;
 extern u32 TOSparkMachine01__static_resource;
 void __ct__8TObjBaseFP7TObject(void *, s32);
@@ -98,7 +98,6 @@ void begin_effect_render__13TParticleCtrlFv(void *);
 void rotate_matrix_y(int, int);
 void push_matrix();
 void post_translate_matrix(void *);
-void TLobby__sub_8001FE7C(void*, int);
 void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
 
@@ -177,7 +176,7 @@ void *TOSparkMachine01::create() {
 
 void TOSparkMachine01::destroy_static_instance() {
     if ((u32) TOSparkMachine01__static_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)TOSparkMachine01__static_resource, 1);
+        delete (BmlResource *)((void*)TOSparkMachine01__static_resource);
         TOSparkMachine01__static_resource = 0U;
     }
 }
@@ -185,11 +184,8 @@ void TOSparkMachine01::destroy_static_instance() {
 void TOSparkMachine01::load_static_resource() {
     s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
+    temp_r3 = (int)new BmlResource(1, (BmlResourceDescriptor *)(&bm_fe_obj_tank_hikari_resource_descriptor), 0, 0, (void *)(0));
     var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &bm_fe_obj_tank_hikari_resource_descriptor, 0, 0, 0));
-    }
     (*(s32 *)&TOSparkMachine01__static_resource) = var_r0;
 }
 

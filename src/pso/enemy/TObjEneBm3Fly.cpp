@@ -1624,6 +1624,7 @@ void TObjEneBm3Fly::vfunc_89() { vfunc_89__9TObjEneDDFv(this); clamp_flight_heig
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/misc/TLobby.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
+#include "pso/npc/NpcModelRegistry.h"
 
 extern "C" {
 
@@ -2112,14 +2113,14 @@ void TObjEneBm3Fly::clamp_flight_height() {
 #define set_global_param__8TObjFishFl (*(void (*)(s32))&set_global_param__8TObjFishFl)
 #define vfunc_89__9TObjEneDDFv (*(void (*)())&vfunc_89__9TObjEneDDFv)
 #define render__13TObjEneBm3FlyFv (*(void (*)())&render__13TObjEneBm3FlyFv)
-    this->m_300 = *(f32 *)((s8 *)arg0 + 0x42C);
+    this->body_center_position.y = *(f32 *)((s8 *)arg0 + 0x42C);
 }
 #pragma pop
 
 void TObjEneBm3Fly::store_position() {
     u8 *arg0 = (u8 *)this;
-    this->m_2fc = (f32) *(f32 *)((s8 *)arg0 + 0x38);
-    this->m_304 = (f32) *(f32 *)((s8 *)arg0 + 0x40);
+    this->body_center_position.x = (f32) *(f32 *)((s8 *)arg0 + 0x38);
+    this->body_center_position.z = (f32) *(f32 *)((s8 *)arg0 + 0x40);
     VecCopy((Vec *)(arg0 + 0x74), (const Vec *)(arg0 + 0x2FC));
 }
 
@@ -2251,7 +2252,7 @@ void TObjEneBm3Fly::run_task() {
     temp_r3_2 = particle_effect;
     if (temp_r3_2 == 0)
     {
-      particle_effect = (u8 *)create_particle_emitter(&this->m_2fc, 0xC7);
+      particle_effect = (u8 *)create_particle_emitter(&this->body_center_position, 0xC7);
       temp_r3_3 = particle_effect;
       if (temp_r3_3 != 0)
       {
@@ -2283,9 +2284,9 @@ void TObjEneBm3Fly::run_task() {
         }
         temp_f31 = var_f30 * ((f32 (*)(s32))cos_table_lookup)(rotation_y);
         temp_f2 = var_f30 * (-((f32 (*)(s32))sin_table_lookup)(rotation_y));
-        *((f32 *) ((particle_effect) + 0x60)) = (f32) (((*(Vec *)&this->m_2fc).x) + temp_f31);
-        *((f32 *) ((particle_effect) + 0x64)) = (f32) ((-1.5f) + ((*(Vec *)&this->m_2fc).y));
-        *((f32 *) ((particle_effect) + 0x68)) = (f32) (((*(Vec *)&this->m_2fc).z) + temp_f2);
+        *((f32 *) ((particle_effect) + 0x60)) = (f32) ((this->body_center_position.x) + temp_f31);
+        *((f32 *) ((particle_effect) + 0x64)) = (f32) ((-1.5f) + (this->body_center_position.y));
+        *((f32 *) ((particle_effect) + 0x68)) = (f32) ((this->body_center_position.z) + temp_f2);
       }
     }
   }
@@ -2456,7 +2457,7 @@ void TObjEneBm3Fly::load_resources() {
     stack.sp14 = *(s32 *)((s8 *)&bm3_fly_resource_binding_desc.value + 0xC);
     stack.sp8 = *(s32 *)((s8 *)bm3_fly_nest_resources + 0x430);
     temp_r5 = (u8 *)(*(u8 **)((s8 *)bm3_fly_nest_resources + 0x42C));
-    TLobby::spawn_npc_enemy((s16)(7), (s32)((int) (*(s32 *)((s8 *)temp_r5 + 8))), (s32)((int) (*(s32 *)((s8 *)temp_r5 + 0xC))), (s32)((void *)&stack.sp8), (f32)((f32) (*(f32 *)((s8 *)&bm3_fly_collider_params.value + 0xC))), (f32)((f32) ((15.0f))));
+    NpcModelRegistry::register_animated_chunk((s16)(7), (void *)((s32)((int) (*(s32 *)((s8 *)temp_r5 + 8)))), (void *)((s32)((int) (*(s32 *)((s8 *)temp_r5 + 0xC)))), (const NpcAnimationBinding *)((s32)((void *)&stack.sp8)), (f32)((f32) (*(f32 *)((s8 *)&bm3_fly_collider_params.value + 0xC))), (f32)((f32) ((15.0f))));
 }
 
 }

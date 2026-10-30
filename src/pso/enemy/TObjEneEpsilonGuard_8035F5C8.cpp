@@ -1035,7 +1035,7 @@ void TObjEneEpsilonGuard::action_destroy(s32 arg1) {
             if (*(s32 *)((s8 *)arg0 + 0x4E8) >= 0x14) {
                 ((TObjEneEpsilonBody *)(arg0))->vfunc_95();
                 TBoss3Volopt::create_breakup_mdl((s32)lbl_805D6FA4, (s32)epsilon_guard_destroy_breakup_params, (s32)(this->texlist), (s32)(arg0 + 0x2FC), (s32)(this->rotation_y));
-                play_sound_effect(0x4003AD4C, (u8 *)&this->m_2fc, 0, 0);
+                play_sound_effect(0x4003AD4C, (u8 *)&this->body_center_position, 0, 0);
                 ((TObjPlayer *)(arg0 + 0x2FC))->trigger_dell_biter_events();
                 this->m_438 |= 1;
                 *(s32 *)((s8 *)arg0 + 0x4E4) = 1;
@@ -1622,7 +1622,7 @@ void TObjEneEpsilonBody::sub_80361D4C(s32 arg1) {
         set_guard_state__18TObjEneEpsilonBodyFl(arg0);
         VecCopy__FP3VecPC3Vec((u8 *)&this->position, (u8 *)&this->home_position);
         VecCopy__FP3VecPC3Vec((u8 *)&this->prev_position, (u8 *)&this->home_position);
-        VecCopy__FP3VecPC3Vec((u8 *)&this->m_2fc, (u8 *)&this->home_position);
+        VecCopy__FP3VecPC3Vec((u8 *)&this->body_center_position, (u8 *)&this->home_position);
         *(s32 *)((s8 *)arg0 + 0x440) = (s32) this->m_450;
         this->m_444 = (s32) *(s32 *)((s8 *)arg0 + 0x454);
         return;

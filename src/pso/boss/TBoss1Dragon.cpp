@@ -1,4 +1,6 @@
 #include "pso/enemy/TObjEnemy.h"
+#include "pso/system/EnemyBmlResource.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/protocol/protocol_types.h"
 #include "pso/system/ChunkMaterialState.h"
@@ -440,8 +442,6 @@ void prepare_flight_destination__12TBoss1DragonFPv(u8 *arg0);
 extern const f32 lbl_805D800C;
 s32 get_current_floor();
 u32 get_player_by_client_id(s32);
-u32 load_enemy_bml_resource(u8 *);
-u32 load_enemy_bml_resource_named(u8 *, u8 *);
 void *alloc__22TQuestVmDownLoadServerFv(s32);
 extern u8 lbl_80435394[];
 extern s32 lbl_805D2648;
@@ -957,7 +957,6 @@ u8 *get_enemy_entity(u16 arg0);
 s32 angle_diff_s16(s32, s32);
 s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 void *init_base__13TUnk_80481B34Fv(void *arg0);
-void TLobby__sub_8001FE7C(void*, int);
 void __ct__13TUnk_804928CCFP7TObjectP8TObjBase(void *);
 s32 update_linked_position__12TObjEneDD_STFf(f32);
 void subtractive_rng_seed(void *, u32);
@@ -5976,7 +5975,7 @@ void TBoss1Dragon::free_resources() {
         TBoss1Dragon__data_805D4B28 = 0U;
     }
     if ((u32) TBoss1Dragon__data_805D4B08 != 0U) {
-        TLobby__sub_8001FE7C((void*)TBoss1Dragon__data_805D4B08, 1);
+        delete (BmlResource *)((void*)TBoss1Dragon__data_805D4B08);
         TBoss1Dragon__data_805D4B08 = 0U;
     }
 }
@@ -6016,10 +6015,10 @@ void TBoss1Dragon::load_resources() {
 
     switch (isV2Mode__12TBoss1DragonFv()) {
     case 0:
-        TBoss1Dragon__data_805D4B08 = load_enemy_bml_resource((u8 *)&boss1_dragon_bml_descriptor);
+        TBoss1Dragon__data_805D4B08 = (u32)load_enemy_bml_resource((BmlResourceDescriptor *)((u8 *)&boss1_dragon_bml_descriptor));
         break;
     case 1:
-        TBoss1Dragon__data_805D4B08 = load_enemy_bml_resource_named((u8 *)&boss1_dragon_bml_descriptor, lbl_80435394);
+        TBoss1Dragon__data_805D4B08 = (u32)load_enemy_bml_resource_named((BmlResourceDescriptor *)((u8 *)&boss1_dragon_bml_descriptor), (const char *)(lbl_80435394));
         break;
     }
     source = ((DragonResource *)TBoss1Dragon__data_805D4B08)->model->root;

@@ -1,4 +1,5 @@
 #include "pso/player/PlayerAttackParams.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include <dolphin/mtx.h>
@@ -1717,8 +1718,6 @@ s32 dispatch_shared_handler_a__6TLobbyFl(int);
 s32 register_object__6TLobbyFl(int);
 s32 dispatch_shared_handler_b__6TLobbyFl(int);
 s32 register_boss__6TLobbyFl(int);
-s32 TLobby__sub_8001FE7C(s32, s32);
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 s32 init_from_model__11TBreakUpMdlFl(s32, s32);
 s32 update__15RenderFadeStateFv(void *);
 s32 find_active_entity_by_id(int);
@@ -1759,6 +1758,7 @@ void TObjEneMe1GiGue__sub_802CD054(void) {  }
 #include "pso/misc/TLobby.h"
 #include "pso/object/TObjFish.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
+#include "pso/npc/NpcModelRegistry.h"
 
 struct Vec_802CD058 { f32 x, y, z; };
 
@@ -1983,7 +1983,7 @@ void TObjEneMe1GiGue::run_task() {
         ((TObjEneMe1GiGue *)arg0)->state = 0;
     }
     VecCopy((Vec *)(arg0 + 0x2FC), (const Vec *)(arg0 + 0x38));
-    ((TObjEneMe1GiGue *)arg0)->m_300 = (f32) (((TObjEneMe1GiGue *)arg0)->m_300 + (15.0f + ((TObjEneMe1GiGue *)arg0)->m_3ec));
+    ((TObjEneMe1GiGue *)arg0)->body_center_position.y = (f32) (((TObjEneMe1GiGue *)arg0)->body_center_position.y + (15.0f + ((TObjEneMe1GiGue *)arg0)->m_3ec));
     *(f32 *)((s8 *)(((TObjEneMe1GiGue *)arg0)->bodies) + 4) = (f32) (25.0f + ((TObjEneMe1GiGue *)arg0)->m_3ec);
     if (!(((TObjEneMe1GiGue *)arg0)->m_388 & 0x40000)) {
         submit_cursor_candidate(arg0, -1);
@@ -2033,7 +2033,7 @@ void TObjEneMe1GiGue::delete_barrier() {
         TObjEneMe1GiGue__barrier_obj = NULL;
     }
     if (TObjEneMe1GiGue__data_805D6838 != 0U) {
-        TLobby__sub_8001FE7C(TObjEneMe1GiGue__data_805D6838, 1);
+        delete (BmlResource *)(TObjEneMe1GiGue__data_805D6838);
         TObjEneMe1GiGue__data_805D6838 = 0U;
     }
 }
@@ -2052,16 +2052,10 @@ void TObjEneMe1GiGue::load_resources() {
     Sub_802CD62C *q;
 
     if (is_split_screen() != 0) {
-        o = (int)::operator new(0x440);
-        if (o != 0) {
-            o = (s32)load_resource_from_descriptor((void *)o, 1, lbl_804E1248, 0, 0, 0);
-        }
+        o = (int)new BmlResource(1, (BmlResourceDescriptor *)(lbl_804E1248), 0, 0, (void *)(0));
         TObjEneMe1GiGue__data_805D6838 = o;
     } else {
-        o = (int)::operator new(0x440);
-        if (o != 0) {
-            o = (s32)load_resource_from_descriptor((void *)o, 1, lbl_804E1200, 0, 0, 0);
-        }
+        o = (int)new BmlResource(1, (BmlResourceDescriptor *)(lbl_804E1200), 0, 0, (void *)(0));
         TObjEneMe1GiGue__data_805D6838 = o;
     }
     ene_me1_gigue_boss_id = register_boss__6TLobbyFl(0x1A);
@@ -2079,7 +2073,7 @@ void TObjEneMe1GiGue::load_resources() {
     {
     Spawn_802CD62C sp = gigue_spawn_descriptor;
     sp.w[0] = ((Obj_802CD62C *)TObjEneMe1GiGue__data_805D6838)->v430;
-    TLobby::spawn_npc_enemy((s16)0x41, (s32)(((Obj_802CD62C *)TObjEneMe1GiGue__data_805D6838)->mdl->a), (s32)(((Obj_802CD62C *)TObjEneMe1GiGue__data_805D6838)->mdl->b), (s32)&sp, (f32)(getf_802CD62C(q)), (f32)15.0f);
+    NpcModelRegistry::register_animated_chunk((s16)0x41, (void *)((s32)(((Obj_802CD62C *)TObjEneMe1GiGue__data_805D6838)->mdl->a)), (void *)((s32)(((Obj_802CD62C *)TObjEneMe1GiGue__data_805D6838)->mdl->b)), (const NpcAnimationBinding *)((s32)&sp), (f32)(getf_802CD62C(q)), (f32)15.0f);
     }
 }
 #pragma pop

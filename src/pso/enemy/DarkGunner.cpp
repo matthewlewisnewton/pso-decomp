@@ -1,4 +1,5 @@
 #include "pso/player/TObjPlayer_800D8FDC.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/system/ChunkMaterialState.h"
 #include "types.h"
 #include "pso/enemy/TUnk_804909C4.h"
@@ -32,6 +33,7 @@ extern "C" void test_flag_256__9TObjCharaFv();
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/misc/MaterialColorFade.h"
 #include "pso/TParticleCtrl.h"
+#include "pso/npc/NpcModelRegistry.h"
 #pragma readonly_strings on
 
 struct VBase_18_800A2F94 { char pad[0x18]; };
@@ -226,7 +228,6 @@ s32 check_path_obstructed(void *, Vec_800A1D70 *);
 f32 atan2_float(f32, f32);
 int TObjFish__sub_8001EDB0(void*, void*);
 int get_bml_model(void*);
-void TLobby__sub_8001FE7C(void*, int);
 u8 * csnVector(void *, Vec_800A34E8 *, s32);
 void * __dt__13TUnk_80490470Fv(void *, s16);
 s32 trigger_targets_action__10TObjPlayerFv();
@@ -704,7 +705,7 @@ void TObjPlayer::step_along_ground() {
     u8 *q;
 
     VecCopy(&this->prev_position, (const Vec *)&this->position);
-    VecCopy((Vec *)&pos, (const Vec *)&this->m_2fc);
+    VecCopy((Vec *)&pos, (const Vec *)&this->body_center_position);
     vel = *(Raw_800A10A0 *)(arg0 + 0x308);
     vec_set_length((Vec *)&vel, 10.0f + ((f32 (*)(int))TObjPlayer__sub_800A3200)(0));
     ((void (*)(void *, void *))vec3_add_to)(&pos, &vel);
@@ -906,7 +907,7 @@ void TObjPlayer__sub_800A16C4(u8 *player) {
 void TObjEneDarkGunner::vfunc_61() {
     u8 *arg0 = (u8 *)this;
     ((TObjBase *)arg0)->obj_clearFlags30((s32)(0x100U));
-    spawn_particle_effect(((u8 *)&this->m_2fc), 0xD7);
+    spawn_particle_effect(((u8 *)&this->body_center_position), 0xD7);
     play_sound_effect(0x4003B22D, (u8 *)&this->position, 0, 0);
 }
 
@@ -1598,7 +1599,7 @@ void *TObjPlayer::create_instance(void *arg0) {
 
 void TObjPlayer::cleanup_effects() {
     if ((u32) player_effect_bml_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)player_effect_bml_resource, 1);
+        delete (BmlResource *)((void*)player_effect_bml_resource);
         player_effect_bml_resource = 0U;
     }
     if ((u32) TObjPlayer__effect_resource != 0U) {
@@ -1612,7 +1613,6 @@ void TObjPlayer::cleanup_effects() {
 extern "C" {
 extern s32 lbl_805D5024;
 extern s32 lbl_805D5028;
-void *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 void TObjPlayer__sub_800A2DCC();
 }
 
@@ -1620,10 +1620,7 @@ struct Node_800A2DCC { u32 flags; s32 *model; u8 pad[0x24]; Node_800A2DCC *child
 
 void TObjPlayer__sub_800A2DCC() {
     s32 i;
-    void *res = (void *)::operator new(0x440);
-    if (res != NULL) {
-        res = load_resource_from_descriptor(res, 1, bm_ene_darkgunner_resource_descriptor, 0, 0, 0);
-    }
+    void *res = (void *)new BmlResource(1, (BmlResourceDescriptor *)(bm_ene_darkgunner_resource_descriptor), 0, 0, (void *)(0));
     player_effect_bml_resource = (u32)res;
     TObjPlayer__shadow_chunk_object = ((s32 (*)(void *, s32))get_bml_model)((void *)player_effect_bml_resource, 0);
     lbl_805D5014 = ((s32 (*)(void *, s32))TObjFish__sub_8001EDB0)((void *)player_effect_bml_resource, 0);
@@ -1719,7 +1716,7 @@ u8 *TObjPlayer__sub_800A2F94(u8 *self, s32 arg1, u8 *arg2) {
     {
         Atk_800A2F94 atk = dark_gunner_attack_binding_desc;
         atk.w[0] = *(s32 *)(G500C + 0x430);
-        TLobby::spawn_npc_enemy(0x19, *(s32 *)(*(u8 **)(G500C + 0x42C) + 0x18), *(s32 *)(*(u8 **)(G500C + 0x42C) + 0x1C), (s32)&atk, 10.0f, 0.0f);
+        NpcModelRegistry::register_animated_chunk(0x19, (void *)(*(s32 *)(*(u8 **)(G500C + 0x42C) + 0x18)), (void *)(*(s32 *)(*(u8 **)(G500C + 0x42C) + 0x1C)), (const NpcAnimationBinding *)((s32)&atk), 10.0f, 0.0f);
     }
     return self;
 }

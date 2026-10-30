@@ -9,6 +9,7 @@
 #include "pso/player/TObjChara.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/npc/TObjNpcEnemy.h"
+#include "pso/npc/NpcModelEntry.h"
 #include "pso/object/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/render/render_util.h"
@@ -114,14 +115,14 @@ s16 *TObjNpcEnemy::insert_slot_by_id(s16 arg0) {
     if (i < 0xF) {
         memmove(e + 1, e, (0xF - i) * 0x24);
     }
-    ((TObjNpcEnemy *)e)->reset_anim_fields();
+    ((NpcModelEntry *)e)->reset();
     return (s16 *)e;
 }
 
 void TObjNpcEnemy::reset_all_anim_fields() {
     s32 i;
     for (i = 0; i < 0x10; i++) {
-        ((TObjNpcEnemy *)(&((Ent_802D732C *)&TObjNpcEnemy__entry_table)[i]))->reset_anim_fields();
+        ((NpcModelEntry *)(&((Ent_802D732C *)&TObjNpcEnemy__entry_table)[i]))->reset();
     }
 }
 
@@ -292,7 +293,7 @@ u8 *TObjNpcEnemy__ct(u8 *arg0, s32 arg1, s32 arg2) {
     init_collision_body_parts(arg0, &TObjNpcEnemy__collision_body_parts.value, 1);
     ((TObjPlayer *)arg0)->register_object_by_id();
     ((TObjEnemy *)arg0)->update_prev_position();
-    ((TBoss3VoloptHiraisin *)arg0)->copy_position();
+    ((TObjChara *)arg0)->copy_body_to_center();
     ((TObjNpcEnemy *)arg0)->set_npc_data((void *)((int) (((s32)TObjNpcEnemy::get_entry_by_index((s16)((int) ((s16) *(s32 *)((s8 *)arg0 + 0x5C))))))));
     return arg0;
 }

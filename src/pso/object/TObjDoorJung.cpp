@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/object/TObjDoorJung.h"
 #include "pso/misc/TODoorBase.h"
@@ -69,7 +70,6 @@ extern const f32 lbl_805DBDF8;
 extern const f32 lbl_805DBDFC;
 
 void *__dt__12TObjDoorJungFv(void *arg0, s16 arg1);
-s32 TLobby__sub_8001FE7C(void *, s16);
 s32 free_collision_body_parts(void *);
 s32 minimap_render_gate(void *, s32, u16, s32, s32);
 s32 __dl__7TObjectFPv(void *);
@@ -80,7 +80,7 @@ void TObjDoorJung::free_buffers() {
         TObjDoorJung__door_scene_buffer = NULL;
     }
     if (TObjDoorJung__resource_handle != NULL) {
-        TLobby__sub_8001FE7C(TObjDoorJung__resource_handle, 1);
+        delete (BmlResource *)(TObjDoorJung__resource_handle);
         TObjDoorJung__resource_handle = NULL;
     }
 }
@@ -90,7 +90,6 @@ struct DoorJungPartNames {
 };
 extern const DoorJungPartNames lbl_80445640;
 extern u8 bm_obj_beamdoa_resource_descriptor[];
-s32 load_resource_from_descriptor(s32 buffer, s32 kind, void *descriptor, s32 a3, s32 a4, s32 a5);
 s32 TObjFish__sub_8001EDB0(void *bml, s32 index);
 
 void TObjDoorJung__sub_8018F4AC(void) {
@@ -99,10 +98,7 @@ void TObjDoorJung__sub_8018F4AC(void) {
     Node_8018F4AC *node;
     void *scene;
 
-    handle = (int)::operator new(0x440);
-    if (handle != 0) {
-        handle = load_resource_from_descriptor(handle, 5, bm_obj_beamdoa_resource_descriptor, 0, 0, 0);
-    }
+    handle = (int)new BmlResource(5, (BmlResourceDescriptor *)(bm_obj_beamdoa_resource_descriptor), 0, 0, (void *)(0));
     TObjDoorJung__resource_handle = (void *)handle;
     lbl_805D5BD4 = TObjFish__sub_8001EDB0(TObjDoorJung__resource_handle, 0);
     model = get_bml_model(TObjDoorJung__resource_handle, 1);

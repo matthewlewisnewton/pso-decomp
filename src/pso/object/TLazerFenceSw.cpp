@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/system/NinjaUtil.h"
 #include "pso/TMainTask.h"
 #include "pso/system/GinjaMaterial.h"
@@ -96,7 +97,6 @@ extern u8 lazer_fence_sw_collision_body_part[];
 extern s32 __vt__13TLazerFenceSw[];
 extern s32 lbl_805D33B0;
 
-void *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 u8 *load_gvm_texture_file(s32 arg0);
 
 extern void *lazer_fence_switch_bml_resource;
@@ -107,7 +107,6 @@ extern u8 fe_obj_switch_laz_j_resource_descriptor[];
 extern u8 lbl_80445CF0[];
 extern u8 lbl_80445D08[];
 extern u8 lbl_80445D20[];
-s32 TLobby__sub_8001FE7C(void *, s32);
 void free_collision_body_parts(void *);
 void *__dt__5TOKeyFv(void *arg0, s16 arg1);
 void *__ct__18CameraDistanceFadeFv(void *self);
@@ -272,7 +271,7 @@ void *TLazerFenceSw::create() {
 
 void TLazerFenceSw__sub_80193C5C(void) {
     if (lazer_fence_switch_bml_resource != 0) {
-        TLobby__sub_8001FE7C(lazer_fence_switch_bml_resource, 1);
+        delete (BmlResource *)(lazer_fence_switch_bml_resource);
         lazer_fence_switch_bml_resource = 0;
     }
     TObjPlayer::free_if_valid(TLazerFenceSw__texture_list);
@@ -290,17 +289,11 @@ void TLazerFenceSw::load_resources() {
     lazer_fence_switch_bml_resource = 0;
     area = get_current_floor_area();
     if (TContainerAncient01::is_global_state_in_table() == 1 || area == AREA_SEABED_UPPER || area == AREA_SEABED_LOWER) {
-        obj = ::operator new(0x440);
-        if (obj != NULL) {
-            obj = load_resource_from_descriptor(obj, 5, fe_obj_switch_laz_j_resource_descriptor, 0, 0, 0);
-        }
+        obj = new BmlResource(5, (BmlResourceDescriptor *)(fe_obj_switch_laz_j_resource_descriptor), 0, 0, (void *)(0));
         lazer_fence_switch_bml_resource = obj;
         TLazerFenceSw__texture_list = (s32)load_gvm_texture_file((s32)lbl_80445CF0);
     } else {
-        obj = ::operator new(0x440);
-        if (obj != NULL) {
-            obj = load_resource_from_descriptor(obj, 5, &laser_fence_switch_resource_descriptor, 0, 0, 0);
-        }
+        obj = new BmlResource(5, (BmlResourceDescriptor *)(&laser_fence_switch_resource_descriptor), 0, 0, (void *)(0));
         lazer_fence_switch_bml_resource = obj;
         if (game_difficulty_selection == 3) {
             TLazerFenceSw__texture_list = (s32)load_gvm_texture_file((s32)lbl_80445D08);

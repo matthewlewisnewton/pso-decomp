@@ -1706,12 +1706,12 @@ void TBoss6Type1::update_part_positions() {
 }
 
 void TBoss6Type1::update_position() {
-    VecCopy((Vec *)&this->m_2fc, &this->position);
+    VecCopy((Vec *)&this->body_center_position, &this->position);
     if ((s32) this->m_438 != 0) {
-        this->m_300 = (f32) (this->m_300 - lbl_805DE3A4);
+        this->body_center_position.y = (f32) (this->body_center_position.y - lbl_805DE3A4);
         return;
     }
-    this->m_300 = (f32) (this->m_300 - lbl_805DE3A0);
+    this->body_center_position.y = (f32) (this->body_center_position.y - lbl_805DE3A0);
 }
 
 typedef struct Stack_802B7D74_boss6_1 Stack_802B7D74_boss6_1;

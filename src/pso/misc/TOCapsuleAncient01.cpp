@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/misc/TOCapsuleAncient01.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/TProtocol.h"
@@ -59,16 +60,13 @@ void *TOCapsuleAncient01::create(void *set_data) {
 
 void TOCapsuleAncient01::unload_resources() {
     if (model_resource != NULL) {
-        TLobby__sub_8001FE7C(model_resource, 1);
+        delete (BmlResource *)(model_resource);
         model_resource = NULL;
     }
 }
 
 void TOCapsuleAncient01::load_resources() {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_fe_obj_o_capsule01_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&bm_fe_obj_o_capsule01_resource_descriptor), 0, 0, (void *)(0));
     model_resource = resource;
 }
 

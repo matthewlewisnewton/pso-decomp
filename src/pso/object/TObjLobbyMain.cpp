@@ -29,8 +29,6 @@
 #pragma readonly_strings on
 
 extern "C" {
-void TLobby__sub_8001FE7C(BmlResource *resource, s32 del);
-BmlResource *load_resource_from_descriptor(void *resource, s32 kind, BmlResourceDescriptor *descriptor, s32, s32, s32);
 AnimationMotion *get_bml_motion(BmlResource *resource, s32 index);
 void draw_ginja_model_with_motion(s32 model, AnimationMotion *motion, f32 frame);
 extern s32 actor_frame_tick;
@@ -117,10 +115,7 @@ TObjLobbyMain::~TObjLobbyMain() {
 }
 
 void TObjLobbyMain::load_resources() {
-    void *resource = ::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 5, &bm_obj_lobby_main_resource_descriptor, 0, 0, 0);
-    }
+    void *resource = new BmlResource(5, (BmlResourceDescriptor *)(&bm_obj_lobby_main_resource_descriptor), 0, 0, (void *)(0));
     model_resource = (BmlResource *)resource;
     lobby_texlist = TLobby::get_lobby_texlist();
     computer_screen_model = (NJS_CNK_MODEL *)((NJS_OBJECT *)get_bml_model(model_resource, 6))
@@ -132,7 +127,7 @@ void TObjLobbyMain::load_resources() {
 
 void TObjLobbyMain::free_resources() {
     if (model_resource != NULL) {
-        TLobby__sub_8001FE7C(model_resource, 1);
+        delete (BmlResource *)(model_resource);
         model_resource = NULL;
     }
 }

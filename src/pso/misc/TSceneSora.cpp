@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/misc/TLobby_80207DA8.h"
 #include "pso/misc/TLobby_80131794.h"
 #include "pso/misc/TLobby_80140FF4.h"
@@ -48,7 +49,6 @@ struct Ent_80207478 { s32 f0; char *name; };
 struct Res_80207478 { void *buf; s32 n; };
 
 extern "C" {
-u8 * TLobby__sub_8001FE7C(void *, s16);
 extern s32 TSceneSora__sky_active_flag;
 extern s32 TSceneSora__instance;
 extern u32 TSceneSora__sky_bml_resource;
@@ -163,7 +163,7 @@ void TSceneSora::create_instance() {
 void TSceneSora__sub_80207430(void) {
     TSceneSora__sky_active_flag = 1;
     if ((void *) (*(u8 * *)&TSceneSora__sky_bml_resource) != NULL) {
-        TLobby__sub_8001FE7C((*(u8 * *)&TSceneSora__sky_bml_resource), 1);
+        delete (BmlResource *)((*(u8 * *)&TSceneSora__sky_bml_resource));
         (*(u8 * *)&TSceneSora__sky_bml_resource) = NULL;
     }
     TSceneSora__instance = 0;

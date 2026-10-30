@@ -571,7 +571,7 @@ void TObjNpcBase::update_wandering() {
             this->play_voice();
         }
         {
-            f32 dist = horizontal_distance_squared((u8 *)&this->m_29c, (u8 *)&this->m_2fc);
+            f32 dist = horizontal_distance_squared((u8 *)&this->m_29c, (u8 *)&this->body_center_position);
             r = *(f32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 4) + *(f32 *)((s8 *)(*(u8 * *)&this->bodies) + 0xC);
             if (dist < r * r || (*(u32 *)((s8 *)(*(u8 * *)&this->bodies) + 0x18) & 0x380000)) {
                 this->phase = 3;

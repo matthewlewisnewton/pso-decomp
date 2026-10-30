@@ -44,7 +44,7 @@ void TObjEneRecon__sub_8031FB6C(u8 *ene_recobox) {
         stack.spC += lbl_805DF450;
     }
     temp_r3 = (u8 *)(csnVectorUnder((Vec *)&stack.sp8, (u32 *)(ene_recobox + 0x120), 0x15));
-    if ((temp_r3 == NULL) || (((TObjEneRecobox *)ene_recobox)->m_300 >= (lbl_805DF460 + *(f32 *)((s8 *)(*(u8 **)((s8 *)temp_r3 + 4)) + 4)))) {
+    if ((temp_r3 == NULL) || (((TObjEneRecobox *)ene_recobox)->body_center_position.y >= (lbl_805DF460 + *(f32 *)((s8 *)(*(u8 **)((s8 *)temp_r3 + 4)) + 4)))) {
         ((TObjEneRecobox *)(ene_recobox))->vfunc_97();
     }
     ((TObjEneDD *)ene_recobox)->set_part_local_pos(ene_recobox + 0x2FC, 0);

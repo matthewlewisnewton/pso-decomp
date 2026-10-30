@@ -1,4 +1,6 @@
 #include "pso/enemy/TObjEnemy.h"
+#include "pso/system/EnemyBmlResource.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/misc/RenderFadeState.h"
 #include "types.h"
@@ -26,6 +28,7 @@ extern "C" void test_flag_256__9TObjCharaFv();
 #include "pso/enemy/TObjEneDD_800BB804.h"
 #include "pso/boss/TBoss4Type3_800D9960.h"
 #include "pso/unk/text_802D1C84.h"
+#include "pso/npc/NpcModelRegistry.h"
 
 struct SubBase { char pad[0x14]; };
 
@@ -180,7 +183,6 @@ void vfunc_63__19TObjEneBm9MericarolFv(void *arg0);
 void vfunc_62__19TObjEneBm9MericarolFv(void *arg0);
 void vfunc_88__19TObjEneBm9MericarolFv(void *arg0);
 s32 clear_attack_receipts__9TObjEneDDFv(void);
-void TLobby__sub_8001FE7C(void*, int);
 struct Obj_802D0D3C;
 Obj_802D0D3C *TObjEneBm9Mericarol__ct(Obj_802D0D3C *, void *, s32);
 s32 *__dt__11TBoss4Type3FPvs(s32 *arg0, s16 arg1);
@@ -508,13 +510,13 @@ s32 TObjEneBm9Mericarol::try_set_mode8_if_flag2() {
 void TObjEneBm9Mericarol__sub_802D093C(void) {  }
 void TObjEneBm9Mericarol__sub_802D0940(void) {  }
 void TObjEneBm9Mericarol::vfunc_88() {
-    *(f32 *)((s8 *)this->bodies + 4) = (f32) (this->m_300 - *(f32 *)((s8 *)this + 0x3C));
+    *(f32 *)((s8 *)this->bodies + 4) = (f32) (this->body_center_position.y - *(f32 *)((s8 *)this + 0x3C));
 }
 
 void TObjEneBm9Mericarol::sync_center_position() {
     u8 *arg0 = (u8 *)this;
     VecCopy((Vec *)(arg0 + 0x2FC), (const Vec *)(arg0 + 0x38));
-    this->m_300 = (f32) (this->m_300 + lbl_805DE704);
+    this->body_center_position.y = (f32) (this->body_center_position.y + lbl_805DE704);
     VecCopy((Vec *)(arg0 + 0x74), (const Vec *)(arg0 + 0x2FC));
 }
 
@@ -747,7 +749,7 @@ void TObjEneBm9Mericarol::free_shared_instances() {
     }
     fn_802D1C84();
     if ((u32) lbl_805D6868 != 0U) {
-        TLobby__sub_8001FE7C((void*)lbl_805D6868, 1);
+        delete (BmlResource *)((void*)lbl_805D6868);
         lbl_805D6868 = 0U;
     }
 }
@@ -785,9 +787,9 @@ void TBoss4Type3__sub_802D1130(void) {
     MotionPair_802D1130 *pair;
 
     if (is_split_screen() != 0) {
-        lbl_805D6868 = load_enemy_bml_resource((u8 *)lbl_804E1624);
+        lbl_805D6868 = (s32)load_enemy_bml_resource((BmlResourceDescriptor *)((u8 *)lbl_804E1624));
     } else {
-        lbl_805D6868 = load_enemy_bml_resource((u8 *)lbl_804E15E8);
+        lbl_805D6868 = (s32)load_enemy_bml_resource((BmlResourceDescriptor *)((u8 *)lbl_804E15E8));
     }
     lbl_805D686C = 0;
     lbl_805D6870 = 0;
@@ -824,8 +826,7 @@ void TBoss4Type3__sub_802D1130(void) {
         SpawnPos_802D1130 pos = lbl_80472480;
         pair = (MotionPair_802D1130 *)((Res_802D0D3C *)lbl_805D6868)->f430;
         pos.motions = pair;
-        TLobby::spawn_npc_enemy(0x42, ((Res_802D0D3C *)lbl_805D6868)->f42C[2], ((Res_802D0D3C *)lbl_805D6868)->f42C[3], (s32)&pos,
-            *(f32 *)&lbl_804E1564[3], lbl_805DE70C);
+        NpcModelRegistry::register_animated_chunk(0x42, (void *)(((Res_802D0D3C *)lbl_805D6868)->f42C[2]), (void *)(((Res_802D0D3C *)lbl_805D6868)->f42C[3]), (const NpcAnimationBinding *)((s32)&pos), *(f32 *)&lbl_804E1564[3], lbl_805DE70C);
     }
 }
 

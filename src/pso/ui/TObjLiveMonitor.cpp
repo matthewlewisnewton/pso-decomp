@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/boss/TBoss8Dragon_802F3638.h"
 #include "pso/object/TObjControl.h"
 #include "pso/ui/TObjLiveMonitor.h"
@@ -105,24 +106,19 @@ struct RecoveredGlobal_8030B708___vt__14TObjLiveCamera {
 };
 
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern RecoveredGlobal_8030B658_lbl_804E76C0 bm_obj_boss8_monitor_resource_descriptor;
 s32 __ct__8TObjBaseFP7TObject(void *, void *);
 extern s32 __vt__14TObjLiveCamera[];
 extern s32 TObjLiveCamera__class_name;
-int TLobby__sub_8001FE7C(void*, void*);
 void __dl__7TObjectFPv(void *);
 
-void TObjLiveCamera__sub_8030B630(void) { TLobby__sub_8001FE7C((void*)live_monitor_shared_resource, (void*)1); }
+void TObjLiveCamera__sub_8030B630(void) { delete (BmlResource *)((void*)live_monitor_shared_resource); }
 
 void TObjLiveCamera::load_static_resource() {
     s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
+    temp_r3 = (int)new BmlResource(5, (BmlResourceDescriptor *)(&bm_obj_boss8_monitor_resource_descriptor.value), 0, 0, (void *)(0));
     var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 5, &bm_obj_boss8_monitor_resource_descriptor.value, 0, 0, 0));
-    }
     (*(s32 *)&live_monitor_shared_resource) = var_r0;
 }
 

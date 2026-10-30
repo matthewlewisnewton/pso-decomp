@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/unk/text_8014B8A4.h"
 #include "pso/npc/TObjNpcKenkyuW.h"
@@ -72,7 +73,6 @@ struct Obj_802A3FDC {
 };
 
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern RecoveredGlobal_802A3C30_lbl_804DCE48 bm_npc_kenkyu_w_resource_descriptor;
 extern u32 TObjNpcKenkyuW__model_resource;
 s32 TObjFish__sub_8001EDB0(int, int);
@@ -90,12 +90,11 @@ extern const f32 lbl_805DDF64;
 TechniqueContactList *TObjPlayer__sub_802A3DE8(Obj_802A3DE8 *self, void *src);
 void *find_entity_by_id(u16 id);
 TechniqueContactList *TObjPlayer__sub_802A3FDC(Obj_802A3FDC *self, void *src);
-void TLobby__sub_8001FE7C(void*, int);
 void __dl__7TObjectFPv(void *);
 
 void TObjNpcKenkyuW::destroy_instance() {
     if ((u32) TObjNpcKenkyuW__model_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)TObjNpcKenkyuW__model_resource, 1);
+        delete (BmlResource *)((void*)TObjNpcKenkyuW__model_resource);
         TObjNpcKenkyuW__model_resource = 0U;
     }
 }
@@ -103,11 +102,8 @@ void TObjNpcKenkyuW::destroy_instance() {
 void TObjNpcKenkyuW::load_resource_instance() {
     s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
+    temp_r3 = (int)new BmlResource(1, (BmlResourceDescriptor *)(&bm_npc_kenkyu_w_resource_descriptor.value), 0, 0, (void *)(0));
     var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &bm_npc_kenkyu_w_resource_descriptor.value, 0, 0, 0));
-    }
     (*(s32 *)&TObjNpcKenkyuW__model_resource) = var_r0;
 }
 

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/render/render_util.h"
 #include <stdlib.h>
 #include "pso/TMainTask.h"
@@ -177,7 +178,7 @@ void *TOMonumentAncient02::create(void *set_data) {
 
 void TOMonumentAncient02::free_shared_data() {
     if (TOMonumentAncient02__bml_resource != NULL) {
-        TLobby__sub_8001FE7C(TOMonumentAncient02__bml_resource, 1);
+        delete (BmlResource *)(TOMonumentAncient02__bml_resource);
         TOMonumentAncient02__bml_resource = NULL;
     }
 }
@@ -186,24 +187,15 @@ void TOMonumentAncient02::load_resources() {
     BmlResource *resource;
     switch (get_current_floor_area()) {
     default:
-        resource = (BmlResource *)::operator new(0x440);
-        if (resource != NULL) {
-            resource = load_resource_from_descriptor(resource, 5, &bm_fs_obj_o_monument01_resource_descriptor, 0, 0, 0);
-        }
+        resource = (BmlResource *)new BmlResource(5, (BmlResourceDescriptor *)(&bm_fs_obj_o_monument01_resource_descriptor), 0, 0, (void *)(0));
         TOMonumentAncient02__bml_resource = resource;
         break;
     case AREA_CAVE2:
-        resource = (BmlResource *)::operator new(0x440);
-        if (resource != NULL) {
-            resource = load_resource_from_descriptor(resource, 5, &bm_fs_obj_o_monument02_resource_descriptor, 0, 0, 0);
-        }
+        resource = (BmlResource *)new BmlResource(5, (BmlResourceDescriptor *)(&bm_fs_obj_o_monument02_resource_descriptor), 0, 0, (void *)(0));
         TOMonumentAncient02__bml_resource = resource;
         break;
     case AREA_MINE2:
-        resource = (BmlResource *)::operator new(0x440);
-        if (resource != NULL) {
-            resource = load_resource_from_descriptor(resource, 5, &bm_fs_obj_o_monument03_resource_descriptor, 0, 0, 0);
-        }
+        resource = (BmlResource *)new BmlResource(5, (BmlResourceDescriptor *)(&bm_fs_obj_o_monument03_resource_descriptor), 0, 0, (void *)(0));
         TOMonumentAncient02__bml_resource = resource;
         break;
     }

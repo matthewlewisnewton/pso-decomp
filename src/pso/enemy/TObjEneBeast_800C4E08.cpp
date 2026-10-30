@@ -1,3 +1,4 @@
+#include "pso/player/TObjChara.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "types.h"
 #include "pso/boss/TBoss3VoloptHiraisin.h"
@@ -1041,7 +1042,7 @@ void TUnk_80493450::beast_idle_update() {
     range = *(f32 *)((s8 *)arg0 + 0x358) + (*(f32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 4) + *(f32 *)((s8 *)(*(u8 * *)&this->bodies) + 0xC));
     if (range * range < dist) {
         VecCopy((Vec *)&this->m_29c, &this->home_position);
-        VecCopy((Vec *)&this->m_290, (const Vec *)&this->m_2fc);
+        VecCopy((Vec *)&this->m_290, (const Vec *)&this->body_center_position);
         VecCopy(&this->prev_position, (const Vec *)&this->position);
         VecCopy((Vec *)&scratch_vec, &this->home_position);
         subtract_vector(&scratch_vec, (u8 *)&this->position);
@@ -1185,11 +1186,11 @@ void beast_select_target(TUnk_80493450 *self) {
                 }
                 id = get_entity_id(player);
                 if (id < 0x4000 && id != self->entity_id && player->obj_testFlags30(0x03000800) == 0) {
-                    VecCopy(&d, (Vec *)&player->m_2fc);
-                    subtract_vector(&d, &self->m_2fc);
+                    VecCopy(&d, (Vec *)&player->body_center_position);
+                    subtract_vector(&d, &self->body_center_position);
                     dist = d.x * d.x + d.z * d.z;
-                    if (dist < best_dist && check_path_obstructed(self, &player->m_2fc) != 1 &&
-                        csnVector(&self->m_2fc, &player->m_2fc, -1) == 0) {
+                    if (dist < best_dist && check_path_obstructed(self, &player->body_center_position) != 1 &&
+                        csnVector(&self->body_center_position, &player->body_center_position, -1) == 0) {
                         best = id;
                         best_dist = dist;
                     }
@@ -1263,7 +1264,7 @@ void TUnk_80493450::run_task() {
     }
   }
   ((TObjEnemy *)arg0)->update_prev_position();
-  ((TBoss3VoloptHiraisin *)arg0)->copy_position();
+  ((TObjChara *)arg0)->copy_body_to_center();
   submit_cursor_candidate((void *) arg0, -1);
   this->m_2b4 = (f32) ((this->m_2b4) + lbl_805DA048);
 }

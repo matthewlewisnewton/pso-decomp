@@ -32,6 +32,7 @@ struct Pl_800D5614 { u8 pad0[0x38]; u8 pos[0xC]; };
 #include "pso/enemy/TObjEnePanarms.h"
 #include "pso/enemy/TObjEneRe7Berura.h"
 #include "pso/object/TObjFish.h"
+#include "pso/npc/NpcModelRegistry.h"
 
 struct Stack_800D5060 {
     f32 sp8;
@@ -472,7 +473,6 @@ void vfunc_94__16TObjEneMerillLiaFv(u8 *arg0);
 extern const f32 lbl_805DA2EC;
 extern const f32 lbl_805DA334;
 extern const f32 lbl_805DA338;
-s32 copy_position__20TBoss3VoloptHiraisinFv(void *);
 s32 get_current_floor();
 f32 xz_distance_squared(void *, void *);
 void *get_player_by_client_id(s32 i);
@@ -545,7 +545,6 @@ void vfunc_101__16TObjEneMerillLiaFv(void);
 void vfunc_93__16TObjEneMerillLiaFv(void);
 void *__dt__16TObjEneMerillLiaFPvs(void *arg0, s16 arg1);
 void vfunc_58__16TObjEneMerillLiaFv(void *arg0);
-void TLobby__sub_8001FE7C(void*, int);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 void free_collision_body_parts(void *);
 void *TObjEneMerillLia__ct(void *, void *, void *);
@@ -554,7 +553,6 @@ void __dl__7TObjectFPv(void *);
 void *__dt__13TUnk_80494938Fv(void *arg0, s16 arg1);
 void *__nw__7TObjectFUl(int);
 s32 is_split_screen(void);
-u8 *load_resource_from_descriptor(void *, s32, BmlResourceDescriptor *, s32, s32, s32);
 void TObjEneMerillLia__sub_800D6D64(void);
 
 extern "C" void vfunc_6__8TObjBaseFPsl();
@@ -748,7 +746,7 @@ void *lbl_80494728[103] = {
 };
 #define lbl_80494728 ((s32 *)lbl_80494728)
 
-// The motion set TLobby::spawn_npc_enemy copies for each spawned part.
+// The motion set copied into the NPC model registry for each spawned part.
 struct NpcSpawnMotions { void *motions; void *actions; s32 initial_action; s32 counts; };
 
 // One 0x2C-byte record of the collision body table init_collision_body_parts reads.
@@ -1656,7 +1654,7 @@ void TObjEneMerillLia::run_task() {
     }
   }
   this->update_prev_position();
-  copy_position__20TBoss3VoloptHiraisinFv((void *) ((u8 *)this));
+  ((TObjChara *)this)->copy_body_to_center();
   submit_cursor_candidate((void *) this, -1);
   this->m_2b4 = (f32) ((this->m_2b4) + TObjEneMerillLia__data_805DA2F4);
 }
@@ -1687,16 +1685,10 @@ void TObjEneMerillLia__sub_800D6D64(void) {
     u8 *res;
 
     if (is_split_screen() != 0) {
-        res = (u8 *)::operator new(0x440);
-        if (res != NULL) {
-            res = load_resource_from_descriptor(res, 1, &bm_ene_re8_merill_lia_low_resource_descriptor, 0, 0, 0);
-        }
+        res = (u8 *)new BmlResource(1, (BmlResourceDescriptor *)(&bm_ene_re8_merill_lia_low_resource_descriptor), 0, 0, (void *)(0));
         TObjEneMerillLia__entry_params_resource = (u32)res;
     } else {
-        res = (u8 *)::operator new(0x440);
-        if (res != NULL) {
-            res = load_resource_from_descriptor(res, 1, &bm_ene_re8_merill_lia_resource_descriptor, 0, 0, 0);
-        }
+        res = (u8 *)new BmlResource(1, (BmlResourceDescriptor *)(&bm_ene_re8_merill_lia_resource_descriptor), 0, 0, (void *)(0));
         TObjEneMerillLia__entry_params_resource = (u32)res;
     }
     ((CollisionPartRecord *)lbl_804946A4)[0].radius = lbl_805DA2F8;
@@ -1719,9 +1711,7 @@ void TObjEneMerillLia__sub_800D6D64(void) {
         NpcSpawnMotions motions = merill_lia_spawn_motions;
         motions.motions = ((BmlResource *)TObjEneMerillLia__entry_params_resource)->motions;
         for (i = 0; i < 2; i++) {
-            TLobby::spawn_npc_enemy(ids[i], ((BmlResource *)TObjEneMerillLia__entry_params_resource)->models[i].model,
-                ((BmlResource *)TObjEneMerillLia__entry_params_resource)->models[i].m_c, (s32)&motions,
-                ((CollisionPartRecord *)lbl_804946A4)[i].radius, TObjEneMerillLia__data_805DA300);
+            NpcModelRegistry::register_animated_chunk(ids[i], (void *)(((BmlResource *)TObjEneMerillLia__entry_params_resource)->models[i].model), (void *)(((BmlResource *)TObjEneMerillLia__entry_params_resource)->models[i].m_c), (const NpcAnimationBinding *)((s32)&motions), ((CollisionPartRecord *)lbl_804946A4)[i].radius, TObjEneMerillLia__data_805DA300);
         }
     }
 }
@@ -1745,7 +1735,7 @@ void TObjEneMerillLia::destroy_rocks() {
         TObjEneMerillLia__rock_param_table = 0U;
     }
     if ((u32) TObjEneMerillLia__entry_params_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)TObjEneMerillLia__entry_params_resource, 1);
+        delete (BmlResource *)((void*)TObjEneMerillLia__entry_params_resource);
         TObjEneMerillLia__entry_params_resource = 0U;
     }
 }
@@ -1797,7 +1787,7 @@ void *TObjEneMerillLia__ct(void *arg0v, void *arg1, void *arg2) {
     *(u8 **)((s8 *)arg0 + 0x350) = (u8 *) lbl_80494650 + *(s32 *)((s8 *)arg0 + 0x334) * 0x1C;
     *(s16 *)((s8 *)arg0 + 0x33E) = *(s16 *)((s8 *)arg0 + 0x32C);
     ((TObjEnemy *)arg0)->update_prev_position();
-    copy_position__20TBoss3VoloptHiraisinFv(arg0);
+    ((TObjChara *)arg0)->copy_body_to_center();
     ((TObjPlayer *)arg0)->register_object_by_id();
     *(s32 *)((s8 *)arg0 + 0x2AC) = lbl_805DA340 * (lbl_805DA344 * random_ratio__9TObjCharaFv(arg0));
     *(s16 *)((s8 *)arg0 + 0x33A) = 0xF;

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/npc/TObjNpcHosa2.h"
 #include "pso/unk/text_8014B8A4.h"
 #include "pso/npc/TUnk_804A9F50.h"
@@ -24,20 +25,18 @@ struct RecoveredGlobal_802FEB80___vt__14TObjNpcKenkyu2 {
 };
 
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern u32 TObjNpcKenkyu2__shared_model_resource;
 s32 TObjFish__sub_8001EDB0(int, int);
 s32 get_bml_model(int, int);
 extern s32 __vt__14TObjNpcKenkyu2[];
 extern const char *TObjNpcKenkyu2__name;
-void TLobby__sub_8001FE7C(void*, int);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
 
 void TObjNpcKenkyu2::free_static_model() {
     if ((u32) TObjNpcKenkyu2__shared_model_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)TObjNpcKenkyu2__shared_model_resource, 1);
+        delete (BmlResource *)((void*)TObjNpcKenkyu2__shared_model_resource);
         TObjNpcKenkyu2__shared_model_resource = 0U;
     }
 }
@@ -45,11 +44,8 @@ void TObjNpcKenkyu2::free_static_model() {
 void TObjNpcKenkyu2::load_shared_resource() {
     s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
+    temp_r3 = (int)new BmlResource(1, (BmlResourceDescriptor *)(&TObjNpcKenkyu2__resource_descriptor), 0, 0, (void *)(0));
     var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &TObjNpcKenkyu2__resource_descriptor, 0, 0, 0));
-    }
     (*(s32 *)&TObjNpcKenkyu2__shared_model_resource) = var_r0;
 }
 

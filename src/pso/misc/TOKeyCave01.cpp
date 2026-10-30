@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/TMainTask.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/TProtocol.h"
@@ -221,7 +222,7 @@ void TOKeyCave01::free_objects() {
         }
     }
     if (TOKeyCave01__resource_bundle != NULL) {
-        TLobby__sub_8001FE7C(TOKeyCave01__resource_bundle, 1);
+        delete (BmlResource *)(TOKeyCave01__resource_bundle);
         TOKeyCave01__resource_bundle = NULL;
     }
 }
@@ -231,10 +232,7 @@ void TOKeyCave01::load_resources() {
     BmlResource *resource;
 
     if (TContainerAncient01::is_global_state_in_table() == 1 || area == AREA_SEABED_UPPER || area == AREA_SEABED_LOWER) {
-        resource = (BmlResource *)::operator new(0x440);
-        if (resource != NULL) {
-            resource = load_resource_from_descriptor(resource, 1, &fs_obj_key_jungle_resource_descriptor, 0, 0, 0);
-        }
+        resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&fs_obj_key_jungle_resource_descriptor), 0, 0, (void *)(0));
         TOKeyCave01__resource_bundle = resource;
         TOKeyCave01__texture_lists = (s32 *)mem_alloc(8);
         TOKeyCave01__texture_lists[0] = (s32)load_gvm_texture_file((s32) "fs_obj_key_jungle_red.gvm");
@@ -242,10 +240,7 @@ void TOKeyCave01::load_resources() {
         key_cave_render_state = 1;
         return;
     }
-    resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_fs_obj_do_doa_panel_resource_descriptor, 0, 0, 0);
-    }
+    resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&bm_fs_obj_do_doa_panel_resource_descriptor), 0, 0, (void *)(0));
     TOKeyCave01__resource_bundle = resource;
     TOKeyCave01__texture_lists = (s32 *)mem_alloc(8);
     TOKeyCave01__texture_lists[0] = (s32)load_gvm_texture_file((s32) "fs_obj_do_doa_panelr.gvm");

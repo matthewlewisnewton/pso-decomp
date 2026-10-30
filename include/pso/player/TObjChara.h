@@ -1,6 +1,7 @@
 #ifndef PSO_PLAYER_TOBJCHARA_H
 #define PSO_PLAYER_TOBJCHARA_H
 #include "types.h"
+#include <stddef.h>
 #include "pso/object/TObjMotion.h"
 
 struct Vec;
@@ -229,9 +230,7 @@ public:
     u8 unk_2F6[0x2];
     s16 m_2f8;
     u8 unk_2FA[0x2];
-    f32 m_2fc;
-    f32 m_300;
-    f32 m_304;
+    Vec body_center_position;
     union {
         u8 unk_308[0x4];
         f32 x_speed;
@@ -250,13 +249,17 @@ public:
     u16 tp;
     u8 unk_330[0x4];
 
-    // Typed views of the vectors the fields above split up: the movement
-    // destination at 0x29C, the body centre other actors measure distance to
-    // at 0x2FC, and the velocity at 0x308.
+    // The destination and velocity still use split storage; body_center_position
+    // is the actual Vec at 0x2FC.
     Vec *destination() { return (Vec *)&m_29c; }
-    Vec *body_center() { return (Vec *)&m_2fc; }
+    void copy_body_to_center();
+    Vec *body_center() { return &body_center_position; }
     Vec *velocity() { return (Vec *)unk_308; }
 };
+
+typedef char TObjChara_body_center_offset[(offsetof(TObjChara, body_center_position) == 0x2FC) ? 1 : -1];
+typedef char TObjChara_body_center_size[(sizeof(((TObjChara *)0)->body_center_position) == 0xC) ? 1 : -1];
+typedef char TObjChara_velocity_offset[(offsetof(TObjChara, unk_308) == 0x308) ? 1 : -1];
 
 extern "C" void *__dt__9TObjCharaFv(void *, s16);
 

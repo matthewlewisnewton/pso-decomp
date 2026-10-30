@@ -1,4 +1,5 @@
 #include "pso/protocol/protocol_types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/misc/TLobby_801E43E4.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/system/ChunkMaterialState.h"
@@ -586,7 +587,6 @@ void TWindowTimer::throw_gogo_ball(s32 arg1, s32 arg2) {
 struct Vec_80198E84 { f32 x; f32 y; f32 z; s32 w; u8 pad10[2]; s16 f12; };
 
 extern "C" {
-void TLobby__sub_8001FE7C(s32, int, void *, f32);
 extern s32 lobby_gvm_texture_handles[];
 void fn_80198E84(void);
 void fn_80198E84(void) {
@@ -598,7 +598,7 @@ void fn_80198E84(void) {
     gogo_ball_sync_state->y = (0.0f);
     gogo_ball_sync_state->z = (63.0f);
     gogo_ball_sync_state->w = 0;
-    TLobby__sub_8001FE7C(gogo_ball_bml_resource, 1, gogo_ball_sync_state, (63.0f));
+    delete (BmlResource *)(gogo_ball_bml_resource);
     gogo_ball_bml_resource = 0;
     for (i = 0; i < 9; i++) {
         TObjPlayer::free_if_valid(lobby_gvm_texture_handles[i]);
@@ -615,7 +615,6 @@ struct Cfg_80198F14 { f32 f0; f32 f4; f32 f8; s32 fC; u8 pad10[2]; s16 f12; u8 p
 struct Pair_80198F14 { s32 a; s32 b; };
 
 extern "C" {
-void *load_resource_from_descriptor(void *, int, void *, int, int, int);
 u8 *load_gvm_texture_file(s32 arg0);
 extern char lbl_80446088[];
 extern char lbl_80446098[];
@@ -638,10 +637,7 @@ void TLanguage::load_lobby_textures() {
     c->f18 = 0;
     p->a = 0;
     p->b = 0;
-    obj = ::operator new(0x440);
-    if (obj != 0) {
-        obj = load_resource_from_descriptor(obj, 5, language_lobby_texture_descriptor, 0, 0, 0);
-    }
+    obj = new BmlResource(5, (BmlResourceDescriptor *)(language_lobby_texture_descriptor), 0, 0, (void *)(0));
     (*(void**)&gogo_ball_bml_resource) = obj;
     lobby_gvm_texture_handles[0] = (s32)load_gvm_texture_file((s32)lbl_80446088);
     lobby_gvm_texture_handles[1] = (s32)load_gvm_texture_file((s32)lbl_80446098);

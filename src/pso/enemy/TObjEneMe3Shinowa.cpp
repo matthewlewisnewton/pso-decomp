@@ -3265,7 +3265,7 @@ void fn_800E762C(void) {  }
 
 void TObjEneMe3Shinowa::vfunc_88() {
     u8 *arg0 = (u8 *)this;
-    *(f32 *)((s8 *)this->bodies + 4) = (f32) (*(f32 *)((s8 *)arg0 + 0x3CC) + (this->m_300 - *(f32 *)((s8 *)arg0 + 0x3C)));
+    *(f32 *)((s8 *)this->bodies + 4) = (f32) (*(f32 *)((s8 *)arg0 + 0x3CC) + (this->body_center_position.y - *(f32 *)((s8 *)arg0 + 0x3C)));
 }
 
 void TObjEneMe3Shinowa::copy_position_vector() { VecCopy((Vec *)((char*)this + 0x74), (const Vec *)((char*)this + 0x2fc)); }
