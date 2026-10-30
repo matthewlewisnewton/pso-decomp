@@ -10255,6 +10255,7 @@ pso/enemy/TObjEneMe1GiGue.cpp:
 pso/enemy/TObjEneMe1GiGue_802CDB1C.cpp:
 	.text       start:0x802CDB1C end:0x802CE088
 	.rodata     start:0x804722C0 end:0x804722C8
+	.data       start:0x804E14E8 end:0x804E1520
 
 pso/enemy/TObjEneMe1GiGueMissile.cpp:
 	.text       start:0x802CE088 end:0x802CE510
