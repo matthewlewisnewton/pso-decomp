@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include <stddef.h>
+#include "pso/misc/MaterialOpacityFade.h"
 #include "pso/enemy/TObjEneDD_ST.h"
 
 struct TObjEneMe1Gee : public TObjEneDD_ST {
@@ -46,7 +47,9 @@ struct TObjEneMe1Gee : public TObjEneDD_ST {
     void run_task();
     TObjEneMe1Gee *leader;
     u32 m_3e0;
-    u8 _pad3E4[0x20];
+
+    u8 _padBeforeFade[0x4];
+    MaterialOpacityFade fade;
     u32 m_404;
     u32 m_408;
     u8 _pad40C[0x4];
@@ -94,5 +97,7 @@ typedef char GeeLeaderOffset[offsetof(TObjEneMe1Gee, leader) == 0x3C0 ? 1 : -1];
 typedef char GeeLegacyRoleOffset[offsetof(TObjEneMe1Gee, m_3e0) == 0x3C4 ? 1 : -1];
 typedef char GeeLegacyAttackHeightOffset[offsetof(TObjEneMe1Gee, m_404) == 0x3E8 ? 1 : -1];
 typedef char GeeLegacyTailFieldOffset[offsetof(TObjEneMe1Gee, m_48c) == 0x470 ? 1 : -1];
+typedef char TObjEneMe1GeeFadeOffset[offsetof(TObjEneMe1Gee, fade) == 0x3CC ? 1 : -1];
+
 typedef char TObjEneMe1Gee_size[sizeof(TObjEneMe1Gee) == 0x490 ? 1 : -1];
 #endif
