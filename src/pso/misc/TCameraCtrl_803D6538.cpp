@@ -1,4 +1,6 @@
+#include "pso/animation/MotionContext.h"
 #include "types.h"
+#include "pso/system/NinjaTypes.h"
 #include "pso/misc/TCameraCtrl_803D6538.h"
 
 #include <stddef.h>
@@ -561,12 +563,12 @@ void interpolate_spline_cyclic_cubic(struct SplineKey_803D7288 *keys, u32 count,
 
 #pragma push
 #pragma scheduling off
-void bind_motion_blend_channels(u8 *arg0, f32 farg0) {
+void bind_motion_blend_channels(NJS_MOTION_LINK *motion, f32 blend_factor) {
     select_motion_context(1);
-    bind_motion_channel_samplers((int)((int) (*(s32 *)((s8 *)arg0 + 4))), (f32) (*(f32 *)((s8 *)arg0 + 0xC)));
+    bind_motion_channel_samplers((s32)motion->motion[1], motion->frame[1]);
     select_motion_context(0);
-    bind_motion_channel_samplers((int)((int) (*(s32 *)((s8 *)arg0 + 0))), (f32) (*(f32 *)((s8 *)arg0 + 8)));
-    motion_blend_factor = farg0;
+    bind_motion_channel_samplers((s32)motion->motion[0], motion->frame[0]);
+    motion_blend_factor = blend_factor;
 }
 #pragma pop
 
@@ -797,9 +799,9 @@ void find_motion_key_interval(void *keys, s32 stride, s32 count, f32 t, void *k0
 #pragma push
 #pragma scheduling off
 
-void bind_motion_context(s32 arg0, f32 farg0) {
+void bind_motion_context(NJS_MOTION *motion, f32 farg0) {
     select_motion_context(0);
-    bind_motion_channel_samplers(arg0, farg0);
+    bind_motion_channel_samplers((s32)motion, farg0);
 }
 #pragma pop
 

@@ -454,7 +454,6 @@ struct TObjPlayer : public TObjChara {
     static void spawn_dead_spot_here(s32 arg0, s32 arg1);
     static void spawn_dead_spot_type2(s32 arg0, s32 arg1);
     static void destroy_static_lobby();
-    static s32 lookup_entry_by_value(void *arg0, f32 farg0);
     void copy_vec3(void* q);
     static void init_render_globals();
     static void push_material_color_override(f32 farg0, f32 farg1, f32 farg2, f32 farg3);

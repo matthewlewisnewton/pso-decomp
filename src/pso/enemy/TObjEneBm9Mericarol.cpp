@@ -1,3 +1,4 @@
+#include "pso/misc/SampledMotionPoints.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/misc/RenderFadeState.h"
@@ -24,7 +25,6 @@ extern "C" void test_flag_256__9TObjCharaFv();
 #include "pso/enemy/TObjEnePanarms.h"
 #include "pso/misc/TLobby.h"
 #include "pso/enemy/TObjEneDD_800BB804.h"
-#include "pso/boss/TBoss4Type3_800D9960.h"
 #include "pso/unk/text_802D1C84.h"
 
 struct SubBase { char pad[0x14]; };
@@ -183,7 +183,6 @@ s32 clear_attack_receipts__9TObjEneDDFv(void);
 void TLobby__sub_8001FE7C(void*, int);
 struct Obj_802D0D3C;
 Obj_802D0D3C *TObjEneBm9Mericarol__ct(Obj_802D0D3C *, void *, s32);
-s32 *__dt__11TBoss4Type3FPvs(s32 *arg0, s16 arg1);
 void *__nw__7TObjectFUl(int);
 void fn_802D1C84(void);
 
@@ -738,11 +737,11 @@ Obj_802D0D3C *TObjEneBm9Mericarol__ct(Obj_802D0D3C *self, void *parent, s32 arg2
 
 void TObjEneBm9Mericarol::free_shared_instances() {
     if ((u32) lbl_805D6864 != 0U) {
-        __dt__11TBoss4Type3FPvs((s32 *)lbl_805D6864, 1);
+        delete (SampledMotionPoints *)lbl_805D6864;
         lbl_805D6864 = 0U;
     }
     if ((u32) TBoss4Type3_shared_instance != 0U) {
-        __dt__11TBoss4Type3FPvs((s32 *)TBoss4Type3_shared_instance, 1);
+        delete (SampledMotionPoints *)TBoss4Type3_shared_instance;
         TBoss4Type3_shared_instance = 0U;
     }
     fn_802D1C84();
@@ -767,7 +766,6 @@ struct MotionPair_802D1130 { s32 id; s32 motion; };
 struct SpawnPos_802D1130 { MotionPair_802D1130 *motions; s32 w[3]; };
 s32 is_split_screen();
 void TObjPlayer__sub_800F0928(void);
-void *init_trail_buffer__11TBoss4Type3FPvifff(void *, s32, f32, f32, f32);
 extern const s32 lbl_804722E8[];
 extern const s32 lbl_804722F4[];
 extern const s32 lbl_80472300[];
@@ -804,21 +802,15 @@ void TBoss4Type3__sub_802D1130(void) {
         lbl_80540B70[i] = (u32)TLobby::register_object(lbl_80472300[i]);
         mericarol_phase_param_table[i] = (u32)TLobby::dispatch_shared_handler_a(lbl_8047230C[i]);
     }
-    p = ::operator new(0x18);
-    if (p != NULL) {
-        p = init_trail_buffer__11TBoss4Type3FPvifff(p, 2, lbl_805DE70C, lbl_805DE704, lbl_805DE754);
-    }
+    p = new SampledMotionPoints(2, lbl_805DE70C, lbl_805DE704, lbl_805DE754);
     TBoss4Type3_shared_instance = (u32)p;
-    p = ::operator new(0x18);
-    if (p != NULL) {
-        p = init_trail_buffer__11TBoss4Type3FPvifff(p, 2, lbl_805DE70C, lbl_805DE704, lbl_805DE754);
-    }
+    p = new SampledMotionPoints(2, lbl_805DE70C, lbl_805DE704, lbl_805DE754);
     lbl_805D6864 = (u32)p;
     set_motion_packed_rotation();
     pair = (MotionPair_802D1130 *)((Res_802D0D3C *)lbl_805D6868)->f430 + ((MotionEntry_802D1130 *)lbl_804E1634)[8].index;
-    draw_trail_with_colors((u8 *)TBoss4Type3_shared_instance, ((Res_802D0D3C *)lbl_805D6868)->f42C[2], pair->motion, 0x20, 0x21);
+    ((SampledMotionPoints *)TBoss4Type3_shared_instance)->sample_two_nodes((NJS_OBJECT *)((Res_802D0D3C *)lbl_805D6868)->f42C[2], (NJS_MOTION *)pair->motion, 0x20, 0x21);
     pair = (MotionPair_802D1130 *)((Res_802D0D3C *)lbl_805D6868)->f430 + ((MotionEntry_802D1130 *)lbl_804E1634)[8].index;
-    draw_trail_with_colors((u8 *)lbl_805D6864, ((Res_802D0D3C *)lbl_805D6868)->f42C[2], pair->motion, 0x2A, 0x2B);
+    ((SampledMotionPoints *)lbl_805D6864)->sample_two_nodes((NJS_OBJECT *)((Res_802D0D3C *)lbl_805D6868)->f42C[2], (NJS_MOTION *)pair->motion, 0x2A, 0x2B);
     clear_motion_packed_rotation();
     {
         SpawnPos_802D1130 pos = lbl_80472480;

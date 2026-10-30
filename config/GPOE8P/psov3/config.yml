@@ -4085,7 +4085,7 @@ force_active:
   - draw_background__13TWindowStatusFPUc
   - draw_background__17TAdGameStartSubGCFPv
   - draw_background__18TWindowPartyStatusFPUc
-  - draw_blend_motion_tree__10TObjPlayerFiii
+  - draw_blend_motion_tree
   - draw_body__13TBoss5GryphonFv
   - draw_body__13TObjEneMorfosFv
   - draw_bottom_bar__20TWindowSubStatusDispFv
@@ -4149,7 +4149,7 @@ force_active:
   - draw_model_set__11TBoss4Type3FPClf
   - draw_model_with_arg__10TObjPlayerFPv
   - draw_motion_node_list__10TObjPlayerFv
-  - draw_motion_tree__10TObjPlayerFPvPvi
+  - draw_motion_tree
   - draw_node_tree__16TObjEneRe7BeruraFPv
   - draw_node_tree__18TObjLaboDesignBaseFiPv
   - draw_node_tree__19TODoorFourLightBaseFPUc

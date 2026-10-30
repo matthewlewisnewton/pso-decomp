@@ -1,3 +1,4 @@
+#include "pso/misc/SampledMotionPoints.h"
 #include "pso/math/FloatRounding.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/unk/TUnk_80494968.h"
@@ -490,7 +491,7 @@ void TObjEneRe7Berura__sub_80093888(u8 *actor, s32 arg1) {
                     ((VObj_18_a5c788 *)((u8 *)(*(u8 **)((s8 *)actor + 0x390))))->m23(actor, lbl_805D9758);
                 }
             }
-            entry = TObjPlayer::lookup_entry_by_value(belra_trail_buffer, *(f32 *)((s8 *)actor + 0xC0));
+            entry = (s32)((SampledMotionPoints *)(belra_trail_buffer))->lookup(*(f32 *)((s8 *)actor + 0xC0));
             if (entry != 0) {
                 push_matrix();
                 set_matrix_identity(0);

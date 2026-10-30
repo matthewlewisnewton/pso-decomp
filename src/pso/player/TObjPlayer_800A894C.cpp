@@ -1,4 +1,5 @@
 #include "pso/enemy/TUnk_80494938.h"
+#include "pso/misc/SampledMotionPoints.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/unk/TUnk_80494968.h"
 #include "types.h"
@@ -128,7 +129,6 @@ void *__nw__7TObjectFUl(int);
 void TObjPlayer__sub_800A8FB4(void *arg0_);
 
 void TLobby__sub_8001FE7C(void *, s32);
-s32 *__dt__11TBoss4Type3FPvs(s32 *arg0, s16 arg1);
 extern s32 lbl_80500AF0[];
 extern s32 lbl_80500AF8[];
 struct Res_800AA82C;
@@ -146,8 +146,6 @@ s32 get_bml_model(void *, int);
 void *load_resource_from_descriptor(void *, int, void *, int, int, int);
 void TObjPlayer__sub_800A4294(void);
 Res_800AA82C *load_enemy_bml_resource_named(void *, void *);
-void draw_trail_with_colors(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
-void *init_trail_buffer__11TBoss4Type3FPvifff(void *, int, f32, f32, f32);
 u8 *load_gvm_texture_file(s32 arg0);
 void spawn_npc_enemy__6TLobbyFslllff(int, int, int, void *, f32, f32);
 extern u8 lbl_8043ACA4[];
@@ -745,8 +743,8 @@ void TObjPlayer__sub_800A93E4(void *arg0_) {
         }
         ((TObjPlayer *)arg0)->check_object_collisions();
         check_enemy_body_collisions(arg0);
-        h0 = TObjPlayer::lookup_entry_by_value((void *)lbl_80500AF0[e->kind], (f32)e->fc0);
-        h1 = TObjPlayer::lookup_entry_by_value((void *)lbl_80500AF8[e->kind], (f32)e->fc0);
+        h0 = (s32)((SampledMotionPoints *)((void *)lbl_80500AF0[e->kind]))->lookup((f32)e->fc0);
+        h1 = (s32)((SampledMotionPoints *)((void *)lbl_80500AF8[e->kind]))->lookup((f32)e->fc0);
         push_matrix();
         set_matrix_identity(0);
         post_translate_matrix(&e->pos);
@@ -1099,19 +1097,19 @@ void TObjPlayer::free_effect_resources() {
     }
     TObjPlayer::reset_effect_count();
     if ((void *)lbl_80500AF0[0] != NULL) {
-        __dt__11TBoss4Type3FPvs((s32 *)lbl_80500AF0[0], 1);
+        delete (SampledMotionPoints *)lbl_80500AF0[0];
         lbl_80500AF0[0] = 0;
     }
     if ((void *)lbl_80500AF8[0] != NULL) {
-        __dt__11TBoss4Type3FPvs((s32 *)lbl_80500AF8[0], 1);
+        delete (SampledMotionPoints *)lbl_80500AF8[0];
         lbl_80500AF8[0] = 0;
     }
     if ((void *)lbl_80500AF0[1] != NULL) {
-        __dt__11TBoss4Type3FPvs((s32 *)lbl_80500AF0[1], 1);
+        delete (SampledMotionPoints *)lbl_80500AF0[1];
         lbl_80500AF0[1] = 0;
     }
     if ((void *)lbl_80500AF8[1] != NULL) {
-        __dt__11TBoss4Type3FPvs((s32 *)lbl_80500AF8[1], 1);
+        delete (SampledMotionPoints *)lbl_80500AF8[1];
         lbl_80500AF8[1] = 0;
     }
 }
@@ -1152,32 +1150,20 @@ void TObjPlayer__sub_800AA82C(void) {
         p = ((TBreakUpMdl *)p)->init_from_model(lbl_805D5090->mdl->f8);
     }
     breakup_model_ptr = p;
-    p = ::operator new(0x18);
-    if (p != NULL) {
-        p = init_trail_buffer__11TBoss4Type3FPvifff(p, 2, lbl_805D9B34, lbl_805D9B38, lbl_805D9AF0);
-    }
+    p = new SampledMotionPoints(2, lbl_805D9B34, lbl_805D9B38, lbl_805D9AF0);
     lbl_80500AF0[0] = (s32)p;
-    draw_trail_with_colors((u8 *)lbl_80500AF0[0], get_bml_model(lbl_805D5090, 0), get_bml_motion(lbl_805D5090, 6), 0x1C, 0x24);
-    p = ::operator new(0x18);
-    if (p != NULL) {
-        p = init_trail_buffer__11TBoss4Type3FPvifff(p, 2, lbl_805D9B3C, lbl_805D9B20, lbl_805D9AF0);
-    }
+    ((SampledMotionPoints *)lbl_80500AF0[0])->sample_two_nodes((NJS_OBJECT *)get_bml_model(lbl_805D5090, 0), (NJS_MOTION *)get_bml_motion(lbl_805D5090, 6), 0x1C, 0x24);
+    p = new SampledMotionPoints(2, lbl_805D9B3C, lbl_805D9B20, lbl_805D9AF0);
     lbl_80500AF8[0] = (s32)p;
-    draw_trail_with_colors((u8 *)lbl_80500AF8[0], get_bml_model(lbl_805D5090, 0), get_bml_motion(lbl_805D5090, 6), 0x2E, 0x32);
-    p = ::operator new(0x18);
-    if (p != NULL) {
-        p = init_trail_buffer__11TBoss4Type3FPvifff(p, 2, lbl_805D9B40, lbl_805D9B44, lbl_805D9AF0);
-    }
+    ((SampledMotionPoints *)lbl_80500AF8[0])->sample_two_nodes((NJS_OBJECT *)get_bml_model(lbl_805D5090, 0), (NJS_MOTION *)get_bml_motion(lbl_805D5090, 6), 0x2E, 0x32);
+    p = new SampledMotionPoints(2, lbl_805D9B40, lbl_805D9B44, lbl_805D9AF0);
     t = lbl_80500AF0;
     t[1] = (s32)p;
-    draw_trail_with_colors((u8 *)t[1], get_bml_model(lbl_805D5090, 0), get_bml_motion(lbl_805D5090, 7), 0x1C, 0x24);
-    p = ::operator new(0x18);
-    if (p != NULL) {
-        p = init_trail_buffer__11TBoss4Type3FPvifff(p, 2, lbl_805D9B10, lbl_805D9B48, lbl_805D9AF0);
-    }
+    ((SampledMotionPoints *)t[1])->sample_two_nodes((NJS_OBJECT *)get_bml_model(lbl_805D5090, 0), (NJS_MOTION *)get_bml_motion(lbl_805D5090, 7), 0x1C, 0x24);
+    p = new SampledMotionPoints(2, lbl_805D9B10, lbl_805D9B48, lbl_805D9AF0);
     t = lbl_80500AF8;
     t[1] = (s32)p;
-    draw_trail_with_colors((u8 *)t[1], get_bml_model(lbl_805D5090, 0), get_bml_motion(lbl_805D5090, 7), 0x2E, 0x32);
+    ((SampledMotionPoints *)t[1])->sample_two_nodes((NJS_OBJECT *)get_bml_model(lbl_805D5090, 0), (NJS_MOTION *)get_bml_motion(lbl_805D5090, 7), 0x2E, 0x32);
     for (i = 0; i < 2; i++) {
         ((s32 *)lbl_805009A0)[i] = register_boss__6TLobbyFl(i + 0x1B);
         lbl_805009A8[i] = dispatch_shared_handler_b__6TLobbyFl(i + 0x1B);

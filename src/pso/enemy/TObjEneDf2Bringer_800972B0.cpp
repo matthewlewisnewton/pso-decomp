@@ -1,3 +1,4 @@
+#include "pso/misc/SampledMotionPoints.h"
 #include "pso/math/FloatRounding.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
@@ -933,7 +934,6 @@ extern const f32 lbl_805D9800;
 extern const f32 lbl_805D9804;
 extern const f32 TObjEneDf2Bringer__data_805D9808;
 #define update_attack_child__17TObjEneDf2BringerFPv ((s32 (*)(void *))update_attack_child__17TObjEneDf2BringerFPv)
-s32 lookup_entry_by_value__10TObjPlayerFPvf(int, f32);
 s32 matrix_mult_vec(int, void *, void *);
 void set_matrix_identity(u8 *arg0);
 extern s32 TObjEneDf2Bringer__trail_buffer;
@@ -1337,7 +1337,7 @@ void TObjEneDf2Bringer__sub_80097E9C(u8 *arg0, s32 arg1) {
             if (((TObjMotion *)arg0)->is_passing_frame(TObjEneDf2Bringer__data_805D97F4) != 0) {
                 spawn_offset_particle__17TObjEneDf2BringerFPv(arg0);
             }
-            entry = lookup_entry_by_value__10TObjPlayerFPvf(TObjEneDf2Bringer__trail_buffer, (f32) (*(f32 *)((s8 *)arg0 + 0xC0)));
+            entry = (s32)((SampledMotionPoints *)TObjEneDf2Bringer__trail_buffer)->lookup(*(f32 *)((s8 *)arg0 + 0xC0));
             if (entry != 0) {
                 push_matrix();
                 set_matrix_identity(0);
@@ -1962,7 +1962,6 @@ void enemy_set_target_id(void *, u16);
 s32 is_alive__8TObjBaseFv(void *);
 f32 horizontal_distance_squared(void *, void *);
 extern const f32 lbl_805D982C;
-#define lookup_entry_by_value__10TObjPlayerFPvf ((Entry_800993E8 * (*)(void *, f32))lookup_entry_by_value__10TObjPlayerFPvf)
 extern Pair_800993E8 lbl_8043A0CC[];
 #define TObjEneDf2Bringer__trail_buffer (*(void * *)&TObjEneDf2Bringer__trail_buffer)
 extern const f32 lbl_805D9838;
@@ -2264,7 +2263,7 @@ void update_attack_child__17TObjEneDf2BringerFPv(Bringer_800993E8 *obj) {
         start = lbl_805D980C;
     }
     if (self->frame >= start && self->frame <= lbl_805D983C) {
-        entry = lookup_entry_by_value__10TObjPlayerFPvf(TObjEneDf2Bringer__trail_buffer, self->frame);
+        entry = (Entry_800993E8 *)((SampledMotionPoints *)TObjEneDf2Bringer__trail_buffer)->lookup(self->frame);
         VecCopy((Vec *)(&((ChildFields_800993E8 *)self->child)->pos), (const Vec *)&self->pos);
         ((ChildFields_800993E8 *)self->child)->angle = self->angle;
         VecCopy((Vec *)(((ChildFields_800993E8 *)self->child)->model), (const Vec *)&entry->a);
@@ -2278,7 +2277,6 @@ void update_attack_child__17TObjEneDf2BringerFPv(Bringer_800993E8 *obj) {
     }
 }
 
-#undef lookup_entry_by_value__10TObjPlayerFPvf
 #undef play_persistent_sound
 #undef update_linked_position__12TObjEneDD_STFf
 #undef enemy_validate_retained_target
@@ -2538,7 +2536,6 @@ void TLobby__sub_8001FE7C(void*, int);
 void bringer_effect_cleanup_noop(void);
 extern "C" {
 void __construct_array(void *, void *, void *, int, int);
-s32 *__dt__11TBoss4Type3FPvs(s32 *arg0, s16 arg1);
 }
 #define __nw__7TObjectFUl ((void * (*)(int))__nw__7TObjectFUl)
 void *destroy_buffer_pair(void *arg0, s16 arg1);
@@ -2723,7 +2720,7 @@ void TObjEneDf2Bringer::free_resources() {
         TObjEneDf2Bringer__uv_scroll_buffer = 0U;
     }
     if ((u32) TObjEneDf2Bringer__trail_buffer != 0U) {
-        __dt__11TBoss4Type3FPvs((s32 *)TObjEneDf2Bringer__trail_buffer, 1);
+        delete (SampledMotionPoints *)TObjEneDf2Bringer__trail_buffer;
         TObjEneDf2Bringer__trail_buffer = 0U;
     }
     if ((u32) TObjEneDf2Bringer__resource_bundle != 0U) {
@@ -2787,7 +2784,6 @@ void init_bringer_effect_tables(void);
 extern "C" {
 u32 load_enemy_bml_resource_named(void *, void *);
 s32 load_enemy_bml_resource(u8 *arg0);
-void *init_trail_buffer__11TBoss4Type3FPvifff(void *, s32, f32, f32, f32);
 extern Sp_80099BD4 lbl_8043A0BC[];
 extern u8 lbl_8043A108[];
 extern const f32 lbl_805D9848;
@@ -2833,12 +2829,8 @@ void TObjEneDf2Bringer::load_resources() {
   TObjEneDf2Bringer__render_point_cursor = 0;
   TObjEneDf2Bringer::set_entry_value_clamped(4, *((f32 *)(TObjEneDf2Bringer__data_805D4FB4 + 8)));
   TObjEneDf2Bringer::set_entry_value_clamped(5, *((f32 *)(TObjEneDf2Bringer__data_805D4FB4 + 0xC)));
-  o = ::operator new(0x18);
-  if (o != 0)
-  {
-    o = init_trail_buffer__11TBoss4Type3FPvifff(o, 4, TObjEneDf2Bringer__data_805D9808, lbl_805D97FC, *((f32 *) (((u8 *)&lbl_8048FAF8) + 0x48)));
-  }
-  TObjEneDf2Bringer__trail_buffer = (u32) o;
+  SampledMotionPoints *sampled = new SampledMotionPoints(4, TObjEneDf2Bringer__data_805D9808, lbl_805D97FC, *((f32 *) (((u8 *)&lbl_8048FAF8) + 0x48)));
+  TObjEneDf2Bringer__trail_buffer = (u32) sampled;
   {
     ids[0] = 0x1A;
     ids[1] = 0x1A;
@@ -2851,7 +2843,7 @@ void TObjEneDf2Bringer::load_resources() {
       offs[i].z = TObjEneDf2Bringer__data_805D97E0;
     }
 
-    ((TBoss4Type3 *)o)->draw_motion_trail((s32)(*((s32 *) ((*((u8 **) (((u8 *) TObjEneDf2Bringer__resource_bundle) + 0x42C))) + 8))), (s32)((*((Ent_80099BD4 **) (((u8 *) TObjEneDf2Bringer__resource_bundle) + 0x430)))[*((s32 *) (((u8 *)&lbl_8048FAF8) + 0x44))].v), (s32)ids, (s32)offs);
+    sampled->sample((NJS_OBJECT *)(*((s32 *) ((*((u8 **) (((u8 *) TObjEneDf2Bringer__resource_bundle) + 0x42C))) + 8))), (NJS_MOTION *)((*((Ent_80099BD4 **) (((u8 *) TObjEneDf2Bringer__resource_bundle) + 0x430)))[*((s32 *) (((u8 *)&lbl_8048FAF8) + 0x44))].v), (const s32 *)ids, (const Vec *)offs);
   }
   k1 = lbl_805D9848;
   n = ((Path_80099BD4 *) TObjEneDf2Bringer__trail_buffer)->n;

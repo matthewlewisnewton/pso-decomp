@@ -1,3 +1,4 @@
+#include "pso/misc/SampledMotionPoints.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
 #include "types.h"
 #include "pso/object/TObjMotion.h"
@@ -221,11 +222,11 @@ void TObjEneDimedian::vfunc_93() {
     }
     switch (this->requested_action) {
     case 3:
-        e = TObjPlayer::lookup_entry_by_value((void *)dimedian_type3_object, this->frame);
+        e = (s32)((SampledMotionPoints *)((void *)dimedian_type3_object))->lookup(this->frame);
         idx = 0;
         break;
     case 4:
-        e = TObjPlayer::lookup_entry_by_value((void *)lbl_805D5088, this->frame);
+        e = (s32)((SampledMotionPoints *)((void *)lbl_805D5088))->lookup(this->frame);
         idx = 1;
         break;
     default:
@@ -480,8 +481,6 @@ s32 dispatch_shared_handler_b__6TLobbyFl(int);
 s32 register_boss__6TLobbyFl(int);
 u8 *load_enemy_bml_resource_named(void *, void *);
 u8 *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
-void draw_trail_with_colors(void *, s32, s32, s32, s32);
-void *init_trail_buffer__11TBoss4Type3FPvifff(void *, s32, f32, f32, f32);
 s32 *mem_alloc(s32);
 void spawn_npc_enemy__6TLobbyFslllff(int, int, int, void *, f32, f32);
 extern u8 lbl_8043AAA4[];
@@ -507,7 +506,6 @@ extern u8 __dt__15RenderFadeStateFv[];
 O_800A846C *TObjPlayer__sub_800A846C(O_800A846C *arg0, s16 arg1);
 void TLobby__sub_8001FE7C(void*, int);
 void *__ct__11TObjControlFP7TObject(void *, void *);
-void __dt__11TBoss4Type3FPvs(void*, int);
 void *__nw__7TObjectFUl(int);
 void mem_free(void*);
 
@@ -724,11 +722,11 @@ void TObjEneDimedian::free_boss_objects() {
         dimedian_buffer_ptr = 0U;
     }
     if ((u32) lbl_805D5088 != 0U) {
-        __dt__11TBoss4Type3FPvs((void*)lbl_805D5088, 1);
+        delete (SampledMotionPoints *)lbl_805D5088;
         lbl_805D5088 = 0U;
     }
     if ((u32) dimedian_type3_object != 0U) {
-        __dt__11TBoss4Type3FPvs((void*)dimedian_type3_object, 1);
+        delete (SampledMotionPoints *)dimedian_type3_object;
         dimedian_type3_object = 0U;
     }
     if ((u32) dimedian_resource_ptr != 0U) {
@@ -763,20 +761,12 @@ void TLobby::load_dimedian_resources() {
     dimedian_last_draw_tick[0] = 0;
     dimedian_last_draw_tick[1] = 0;
     dimedian_last_draw_tick[2] = 0;
-    p = ::operator new(0x18);
-    if (p != NULL) {
-        p = init_trail_buffer__11TBoss4Type3FPvifff(p, 2, 7.0f, 12.0f, 1.0f);
-    }
+    p = new SampledMotionPoints(2, 7.0f, 12.0f, 1.0f);
     (*(void **)&dimedian_type3_object) = p;
-    p = ::operator new(0x18);
-    if (p != NULL) {
-        p = init_trail_buffer__11TBoss4Type3FPvifff(p, 2, 7.0f, 12.0f, 1.0f);
-    }
+    p = new SampledMotionPoints(2, 7.0f, 12.0f, 1.0f);
     (*(void **)&lbl_805D5088) = p;
-    draw_trail_with_colors((*(void **)&dimedian_type3_object), RES_800A8118->bodies->model,
-        RES_800A8118->motions[dimedian_action_table[3].idx].b, 5, 8);
-    draw_trail_with_colors((*(void **)&lbl_805D5088), RES_800A8118->bodies->model,
-        RES_800A8118->motions[dimedian_action_table[4].idx].b, 0xA, 0xD);
+    ((SampledMotionPoints *)(*(void **)&dimedian_type3_object))->sample_two_nodes((NJS_OBJECT *)RES_800A8118->bodies->model, (NJS_MOTION *)RES_800A8118->motions[dimedian_action_table[3].idx].b, 5, 8);
+    ((SampledMotionPoints *)(*(void **)&lbl_805D5088))->sample_two_nodes((NJS_OBJECT *)RES_800A8118->bodies->model, (NJS_MOTION *)RES_800A8118->motions[dimedian_action_table[4].idx].b, 0xA, 0xD);
     (*(s32 **)&dimedian_boss_object_buf) = mem_alloc(0xC);
     (*(s32 **)&lbl_805D5074) = mem_alloc(0xC);
     (*(s32 **)&TObjEneDimedian__boss_objects) = mem_alloc(0xC);
