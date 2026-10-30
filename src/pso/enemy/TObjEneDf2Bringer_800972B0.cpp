@@ -1,4 +1,6 @@
 #include "pso/enemy/TObjEnemy.h"
+#include "pso/system/EnemyBmlResource.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
@@ -2531,7 +2533,6 @@ struct VObj_18_be4a70 : VBase_18_be4a70 {
 extern const f32 lbl_805D9844;
 extern "C" {
 void *TObjEneDf2Bringer__ct(void *arg0, void *arg1, void *arg2);
-void TLobby__sub_8001FE7C(void*, int);
 }
 #define transition_enemy_state__9TObjEneDDFl ((int (*)(void*, void*))transition_enemy_state__9TObjEneDDFl)
 #define TObjEneDf2Bringer__sub_800994F8 ((void (*)(void *))TObjEneDf2Bringer__sub_800994F8)
@@ -2727,7 +2728,7 @@ void TObjEneDf2Bringer::free_resources() {
         TObjEneDf2Bringer__trail_buffer = 0U;
     }
     if ((u32) TObjEneDf2Bringer__resource_bundle != 0U) {
-        TLobby__sub_8001FE7C((void*)TObjEneDf2Bringer__resource_bundle, 1);
+        delete (BmlResource *)((void*)TObjEneDf2Bringer__resource_bundle);
         TObjEneDf2Bringer__resource_bundle = 0U;
     }
 }
@@ -2785,8 +2786,6 @@ s32 register_boss__6TLobbyFl(int);
 }
 void init_bringer_effect_tables(void);
 extern "C" {
-u32 load_enemy_bml_resource_named(void *, void *);
-s32 load_enemy_bml_resource(u8 *arg0);
 void *init_trail_buffer__11TBoss4Type3FPvifff(void *, s32, f32, f32, f32);
 extern Sp_80099BD4 lbl_8043A0BC[];
 extern u8 lbl_8043A108[];
@@ -2818,11 +2817,11 @@ void TObjEneDf2Bringer::load_resources() {
   bringer_camera_ctrl_target_vec.z = TObjEneDf2Bringer__data_805D97E0;
   if (TObjEneDD::check_v2_mode() != 0)
   {
-    TObjEneDf2Bringer__resource_bundle = load_enemy_bml_resource_named(bm_ene_df2_bringer_resource_descriptor, lbl_8043A108);
+    TObjEneDf2Bringer__resource_bundle = (u32)load_enemy_bml_resource_named((BmlResourceDescriptor *)(bm_ene_df2_bringer_resource_descriptor), (const char *)(lbl_8043A108));
   }
   else
   {
-    TObjEneDf2Bringer__resource_bundle = load_enemy_bml_resource((u8 *)bm_ene_df2_bringer_resource_descriptor);
+    TObjEneDf2Bringer__resource_bundle = (s32)load_enemy_bml_resource((BmlResourceDescriptor *)((u8 *)bm_ene_df2_bringer_resource_descriptor));
   }
   bringer_boss_stats_handle = register_boss__6TLobbyFl(0xD);
   bringer_boss_stats_ptr_b = dispatch_shared_handler_b__6TLobbyFl(0xD);

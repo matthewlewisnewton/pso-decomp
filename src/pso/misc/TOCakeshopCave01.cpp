@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include <stdlib.h>
 #include "pso/TMainTask.h"
 #include "pso/TParticleCtrl.h"
@@ -91,16 +92,13 @@ void *TOCakeshopCave01::create(void *set_data) {
 
 void TOCakeshopCave01::release_static_resource() {
     if (TOCakeshopCave01__model_resource != NULL) {
-        TLobby__sub_8001FE7C(TOCakeshopCave01__model_resource, 1);
+        delete (BmlResource *)(TOCakeshopCave01__model_resource);
         TOCakeshopCave01__model_resource = NULL;
     }
 }
 
 void TOCakeshopCave01::load_shared_resource() {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_fs_obj_cakeya_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&bm_fs_obj_cakeya_resource_descriptor), 0, 0, (void *)(0));
     TOCakeshopCave01__model_resource = resource;
 }
 

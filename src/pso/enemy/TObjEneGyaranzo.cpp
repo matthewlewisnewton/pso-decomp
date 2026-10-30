@@ -1,4 +1,6 @@
 #include "pso/enemy/EnemyTargetCandidate.h"
+#include "pso/system/EnemyBmlResource.h"
+#include "pso/system/BmlResourceClass.h"
 #include "types.h"
 #include "pso/system/NinjaUtil.h"
 #include "pso/enemy/TObjEneBm5GibonU.h"
@@ -707,12 +709,9 @@ s32 register_object__6TLobbyFl(int);
 s32 dispatch_shared_handler_b__6TLobbyFl(int);
 s32 register_boss__6TLobbyFl(int);
 s32 get_bml_motion(u32, int);
-s32 TLobby__sub_8001FE7C(u32, s32);
-u32 load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 s32 get_camera_mode__11TCameraCtrlFv();
 s32 copy_position__20TBoss3VoloptHiraisinFv(void *);
 VObj_800D3BA0_800D3B38 * init__11TBreakUpMdlFPviif(void *, s32, s32, f32);
-u32 load_enemy_bml_resource_named(void *, void *);
 void __dt__15TObjEnemyCustomFv(void *, int);
 s32 __ct__15TObjEnemyCustomFP7TObject(void *);
 #define update_walk_to_target__10TObjPlayerFPv ((s32 (*)(void *))update_walk_to_target__10TObjPlayerFPv)
@@ -1617,7 +1616,7 @@ void *TObjEneGyaranzo::create(void *arg0) {
 
 void TObjEneGyaranzo::free_static_instances() {
     if (gyaranzo_bml_resource != 0U) {
-        TLobby__sub_8001FE7C(gyaranzo_bml_resource, 1);
+        delete (BmlResource *)(gyaranzo_bml_resource);
         gyaranzo_bml_resource = 0U;
     }
     if ((*(struct VObj_800D3BA0_800D3B38 * *)&gyaranzo_breakup_model_obj) != 0) {
@@ -1629,17 +1628,16 @@ void TObjEneGyaranzo::free_static_instances() {
 }
 
 #define AREA ((Area_800D3C04 *)gyaranzo_bml_resource)
+#pragma push
+#pragma opt_propagation off
 void TLobby::load_gyaranzo_resources() {
     s32 i;
     void *p;
 
     if (TObjEneDD::check_v2_mode() != 0) {
-        gyaranzo_bml_resource = load_enemy_bml_resource_named(bm_ene_gyaranzo_resource_descriptor, lbl_8043C428);
+        gyaranzo_bml_resource = (u32)load_enemy_bml_resource_named((BmlResourceDescriptor *)(bm_ene_gyaranzo_resource_descriptor), (const char *)(lbl_8043C428));
     } else {
-        p = ::operator new(0x440);
-        if (p != NULL) {
-            p = (void *)load_resource_from_descriptor(p, 5, bm_ene_gyaranzo_resource_descriptor, 0, 0, 0);
-        }
+        p = new BmlResource(5, (BmlResourceDescriptor *)(bm_ene_gyaranzo_resource_descriptor), 0, 0, (void *)(0));
         gyaranzo_bml_resource = (u32)p;
     }
     for (i = 0; i < 0x16; i++) {
@@ -1669,6 +1667,8 @@ void TLobby::load_gyaranzo_resources() {
         spawn_npc_enemy__6TLobbyFslllff(0x21, AREA->res->r48, AREA->res->r3C, &pos, lbl_805DA298, lbl_805DA258);
     }
 }
+
+#pragma pop
 
 #undef AREA
 Obj_800D3E54 *fn_800D3E54(Obj_800D3E54 *arg0, s16 arg1) {

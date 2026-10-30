@@ -1,4 +1,6 @@
 #include "pso/enemy/TObjEnemy.h"
+#include "pso/system/EnemyBmlResource.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
 #include "pso/render/reflection.h"
@@ -646,7 +648,6 @@ struct VObj_14_c1c33b : VBase_14_c1c33b {
 
 f32 receive_physical_attack__9TObjCharaFPvf(void *, void *, f32);
 u16 get_entity_id(void *);
-void TLobby__sub_8001FE7C(void*, int);
 f32 get_random_float__21TObjEneMe3ShinowaRealFv(f32);
 s32 get_mode__11TCameraCtrlFPv(void *);
 u32 csnLookAt(void *, void *);
@@ -2165,7 +2166,7 @@ void *TObjEneMorfos__ct(void *ene_morfos, void *arg1, void *arg2) {
 void TObjEneMorfos::unload_static_data() {
     TObjEneMorfosArm__sub_8033542C();
     if ((u32) (*(u32 *)&TObjEneMorfos__instance) != 0U) {
-        TLobby__sub_8001FE7C((void*)(*(u32 *)&TObjEneMorfos__instance), 1);
+        delete (BmlResource *)((void*)(*(u32 *)&TObjEneMorfos__instance));
         (*(u32 *)&TObjEneMorfos__instance) = 0U;
     }
 }
@@ -2195,8 +2196,6 @@ struct ResMgr_803350AC {
 struct SpawnDesc_803350AC {
     s32 w[4];
 };
-
-s32 load_enemy_bml_resource(u8 *desc);
 extern f32 lbl_805434D0[3];
 extern const s32 lbl_805DF860[1];
 extern const s32 lbl_805DF864[1];
@@ -2210,9 +2209,9 @@ void TObjEneMorfos__sub_803350AC(void) {
     s32 i;
 
     if (is_split_screen() != 0) {
-        mgr = (ResMgr_803350AC *)load_enemy_bml_resource((u8 *)bm_ene_morfos_low_resource_descriptor);
+        mgr = (ResMgr_803350AC *)(s32)load_enemy_bml_resource((BmlResourceDescriptor *)((u8 *)bm_ene_morfos_low_resource_descriptor));
     } else {
-        mgr = (ResMgr_803350AC *)load_enemy_bml_resource((u8 *)morfos_resource_descriptor);
+        mgr = (ResMgr_803350AC *)(s32)load_enemy_bml_resource((BmlResourceDescriptor *)((u8 *)morfos_resource_descriptor));
     }
     TObjEneMorfos__instance = (int)mgr;
     lbl_805434D0[0] = TObjEneMorfos__data_805DF874;

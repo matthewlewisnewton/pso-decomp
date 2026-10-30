@@ -122,7 +122,6 @@ f32 fabs_float(f32);
 s32 approach_angle_limited(s32, s32, s32);
 extern Vec scratch_vec;
 
-int TLobby__sub_8001FE7C(void*, void*);
 void free_collision_body_parts(void *);
 s32 TObjEneMe3SinowZoa__sub_800D758C(void *);
 
@@ -1478,7 +1477,7 @@ TObjEneIllGill::TObjEneIllGill(TObject *parent, void *setData) : TObjEnemy(paren
 }
 
 void TObjEneIllGill::free_effect() {
-    TLobby__sub_8001FE7C(illGillResource, (void *)1);
+    delete (BmlResource *)(illGillResource);
     illGillResource = NULL;
 }
 
@@ -1489,17 +1488,13 @@ struct IllGillSharedMotionSetup {
 s32 register_object__6TLobbyFl(int);
 s32 dispatch_shared_handler_b__6TLobbyFl(int);
 s32 register_boss__6TLobbyFl(int);
-u8 *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern IllGillSharedMotionSetup lbl_8047A318;
 void TObjEneIllGill::load_shared_resources() {
     void *p;
     BmlResource *resource;
     Vec *q;
 
-    p = (void *)::operator new(0x440);
-    if (p != NULL) {
-        p = load_resource_from_descriptor(p, 1, &illGillResourceDescriptor, 0, 0, 0);
-    }
+    p = (void *)new BmlResource(1, (BmlResourceDescriptor *)(&illGillResourceDescriptor), 0, 0, (void *)(0));
     illGillResource = (BmlResource *)p;
     TObjEneIllGill__boss_registration_id = register_boss__6TLobbyFl(0x26);
     ill_gill_combat_parameter_variants[0] = (AttackParams *)dispatch_shared_handler_b__6TLobbyFl(0x26);

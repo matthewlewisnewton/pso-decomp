@@ -1,4 +1,5 @@
 #include "pso/render/reflection.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #pragma defer_codegen on
@@ -489,7 +490,6 @@ s32 dispatch_shared_handler_a__6TLobbyFl(int);
 s32 register_object__6TLobbyFl(int);
 s32 dispatch_shared_handler_b__6TLobbyFl(int);
 s32 register_boss__6TLobbyFl(int);
-u8 *load_resource_from_descriptor(void *, int, void *, int, int, int);
 u8 *init_trail_buffer__11TBoss4Type3FPvifff(void *, int, f32, f32, f32);
 u8 *mem_alloc(s32);
 s32 spawn_npc_enemy__6TLobbyFslllff(s16, s32, s32, void *, f32, f32);
@@ -506,7 +506,6 @@ void vfunc_101__14TObjEneDolmOlmFv(void);
 void request_stand_action__14TObjEneDolmOlmFv(void* p);
 void vfunc_100__14TObjEneDolmOlmFv(void *arg0);
 void vfunc_58__14TObjEneDolmOlmFv(void *arg0);
-void TLobby__sub_8001FE7C(void*, int);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 u8 *TObjEneDolmOlm__ct(u8 *, s32, s32);
 void __dt__11TBoss4Type3FPvs(void*, int);
@@ -1019,16 +1018,10 @@ void TObjEneDolmOlm::load_shared_resources() {
     u8 *p;
     s32 i;
     if (is_split_screen() != 0) {
-        p = (u8 *)::operator new(0x440);
-        if (p != NULL) {
-            p = load_resource_from_descriptor(p, 1, lbl_804E67B8, 0, 0, 0);
-        }
+        p = (u8 *)new BmlResource(1, (BmlResourceDescriptor *)(lbl_804E67B8), 0, 0, (void *)(0));
         TObjEneDolmOlm__resource_bundle = (u32) p;
     } else {
-        p = (u8 *)::operator new(0x440);
-        if (p != NULL) {
-            p = load_resource_from_descriptor(p, 1, lbl_804E6774, 0, 0, 0);
-        }
+        p = (u8 *)new BmlResource(1, (BmlResourceDescriptor *)(lbl_804E6774), 0, 0, (void *)(0));
         TObjEneDolmOlm__resource_bundle = (u32) p;
     }
     p = (u8 *)::operator new(0x18);
@@ -1095,7 +1088,7 @@ void TObjEneDolmOlm::free_shared_resources() {
         TObjEneDolmOlm__data_805D6A14 = 0U;
     }
     if ((u32) TObjEneDolmOlm__resource_bundle != 0U) {
-        TLobby__sub_8001FE7C((void*)TObjEneDolmOlm__resource_bundle, 1);
+        delete (BmlResource *)((void*)TObjEneDolmOlm__resource_bundle);
         TObjEneDolmOlm__resource_bundle = 0U;
     }
 }

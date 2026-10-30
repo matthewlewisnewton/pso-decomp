@@ -65,10 +65,7 @@ TODoorAncient03::~TODoorAncient03() {
 }
 
 void TODoorAncient03::load_resources() {
-    BmlResource *archive = (BmlResource *)::operator new(0x440);
-    if (archive != NULL) {
-        archive = load_resource_from_descriptor(archive, 1, &bm_fe_obj_o_door03l_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *archive = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&bm_fe_obj_o_door03l_resource_descriptor), 0, 0, (void *)(0));
     door_ancient03_archive = archive;
     s32 *texlists = (s32 *)mem_alloc(2 * sizeof(s32));
     door_ancient03_texlists = texlists;
@@ -85,7 +82,7 @@ void TODoorAncient03::free_resources() {
         }
     }
     if (door_ancient03_archive != NULL) {
-        TLobby__sub_8001FE7C(door_ancient03_archive, 1);
+        delete (BmlResource *)(door_ancient03_archive);
         door_ancient03_archive = NULL;
     }
 }

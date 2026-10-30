@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/TObject.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/system/vector.h"
@@ -473,7 +474,6 @@ void *TObjOnlineEnding__ct(void *arg0, void *parent) {
 #pragma pop
 #undef SELF
 
-void TLobby__sub_8001FE7C(void*, int);
 void *TObjOnlineEnding__ct(void *, void *);
 
 void *TObjOnlineEnding::create(void *arg0) {
@@ -486,7 +486,7 @@ void *TObjOnlineEnding::create(void *arg0) {
 
 void TBoss4DarkFalz::free_global_instance() {
     if ((u32) lbl_805D68F4 != 0U) {
-        TLobby__sub_8001FE7C((void*)lbl_805D68F4, 1);
+        delete (BmlResource *)((void*)lbl_805D68F4);
         lbl_805D68F4 = 0U;
     }
 }

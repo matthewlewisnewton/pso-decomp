@@ -1,4 +1,5 @@
 #include "pso/system/ChunkMaterialState.h"
+#include "pso/system/BmlResourceClass.h"
 #include "types.h"
 #include "pso/misc/MaterialColorFade.h"
 #include "pso/system/vector.h"
@@ -85,7 +86,6 @@ void *__dt__8TObjDoorFv(void *arg0, s16 arg1);
 void *__nw__7TObjectFUl(int);
 extern void *tl_05;
 void *TObjDoor__create(void *arg0);
-void TLobby__sub_8001FE7C(void*, int);
 extern s32 TObjDoor__resource_param;
 extern u32 door_resource_handle;
 u8 *TObjDoorJung__ct(u8 *arg0, s32 arg1, s32 arg2);
@@ -96,7 +96,6 @@ extern s32 saved_model_render_flags;
 extern s32 model_render_flags;
 void render__8TObjDoorFPv(Door_8018E40C *arg0);
 s32 draw_closed__8TObjDoorFPv(Door_8018E5F4 *arg0);
-u8 *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 u8 *load_gvm_texture_file(s32 arg0);
 s32 get_bml_model(s32, s32);
 s32 get_bml_motion(s32, s32);
@@ -575,17 +574,14 @@ void TObjDoor::free_resources() {
     TObjPlayer::free_if_valid(TObjDoor__resource_param);
     TObjDoor__resource_param = 0;
     if ((u32) door_resource_handle != 0U) {
-        TLobby__sub_8001FE7C((void*)door_resource_handle, 1);
+        delete (BmlResource *)((void*)door_resource_handle);
         door_resource_handle = 0U;
     }
 }
 
 extern "C" const char lbl_80445588[] = "fe_obj_door.gvm";
 void TObjDoor::load_resources() {
-    s32 p = (int)::operator new(0x440);
-    if (p != 0) {
-        p = (s32)load_resource_from_descriptor((void *)p, 5, door_resource_descriptor, 0, 0, 0);
-    }
+    s32 p = (int)new BmlResource(5, (BmlResourceDescriptor *)(door_resource_descriptor), 0, 0, (void *)(0));
     door_resource_handle = p;
     TObjDoor__resource_param = (s32)load_gvm_texture_file((s32)lbl_80445588);
     ((s32 *)&TObjDoor__model_resource_ptrs)[0] = get_bml_model(door_resource_handle, 4);

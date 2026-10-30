@@ -1,4 +1,6 @@
 #include "pso/unk/TUnk_80494968.h"
+#include "pso/system/EnemyBmlResource.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "types.h"
 #include "pso/enemy/TUnk_80493450.h"
@@ -584,8 +586,6 @@ s32 dispatch_shared_handler_a__6TLobbyFl(int);
 s32 register_object__6TLobbyFl(int);
 s32 dispatch_shared_handler_b__6TLobbyFl(int);
 s32 register_boss__6TLobbyFl(int);
-u8 *load_enemy_bml_resource_named(void *, void *);
-u8 *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 void draw_trail_with_colors(u8 *boss4_type3, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 void *init_trail_buffer__11TBoss4Type3FPvifff(void *, s32, f32, f32, f32);
 void *mem_alloc(u32 size);
@@ -598,7 +598,6 @@ extern u32 shark_resource_buffer;
 extern const f32 lbl_805D9BC8;
 extern const f32 lbl_805D9BCC;
 void vfunc_99__13TUnk_80493450Fv(void);
-void TLobby__sub_8001FE7C(void*, int);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 s32 *__dt__11TBoss4Type3FPvs(s32 *arg0, s16 arg1);
 void mem_free(void*);
@@ -827,7 +826,7 @@ void TObjEneShark::free_resources() {
         TObjEneShark__attack_motion_3_trail = 0U;
     }
     if ((u32) shark_bml_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)shark_bml_resource, 1);
+        delete (BmlResource *)((void*)shark_bml_resource);
         shark_bml_resource = 0U;
     }
 }
@@ -844,12 +843,9 @@ void TLobby::load_shark_resources() {
     void *p;
     s32 i;
     if (TObjEneDD::check_v2_mode() != 0) {
-        G_B8 = load_enemy_bml_resource_named(bm_ene_bm1_shark_resource_descriptor, lbl_8043AEDC);
+        G_B8 = (u8 *)load_enemy_bml_resource_named((BmlResourceDescriptor *)(bm_ene_bm1_shark_resource_descriptor), (const char *)(lbl_8043AEDC));
     } else {
-        p = ::operator new(0x440);
-        if (p != NULL) {
-            p = load_resource_from_descriptor(p, 1, bm_ene_bm1_shark_resource_descriptor, 0, 0, 0);
-        }
+        p = new BmlResource(1, (BmlResourceDescriptor *)(bm_ene_bm1_shark_resource_descriptor), 0, 0, (void *)(0));
         G_B8 = (u8 *)p;
     }
     p = ::operator new(0x18);

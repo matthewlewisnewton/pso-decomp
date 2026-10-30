@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/unk/text_8015C534.h"
 #include "pso/unk/text_8018A150.h"
 #include "pso/player/TUnk_804B08BC.h"
@@ -16,7 +17,6 @@ struct RecoveredGlobal_8015C534_lbl_804B08BC {
 };
 
 extern "C" {
-s32 TLobby__sub_8001FE7C(u32, int);
 void mem_free(void *p);
 extern u32 ancient_container_resource_bundle;
 extern u32 ancient_container_fragment_texture_lists;
@@ -68,7 +68,7 @@ void fn_8015C5F8(void) {
     }
     p = ancient_container_resource_bundle;
     if (p != 0U) {
-        TLobby__sub_8001FE7C(p, 1);
+        delete (BmlResource *)(p);
         ancient_container_resource_bundle = 0U;
     }
 }

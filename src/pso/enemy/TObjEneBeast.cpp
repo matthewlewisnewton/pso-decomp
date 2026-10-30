@@ -1,4 +1,6 @@
 #include "pso/unk/TUnk_80494968.h"
+#include "pso/system/EnemyBmlResource.h"
+#include "pso/system/BmlResourceClass.h"
 #include "types.h"
 #include "pso/enemy/TObjEneBalClaw.h"
 #include "pso/player/TObjPlayer.h"
@@ -386,8 +388,6 @@ s32 dispatch_shared_handler_a__6TLobbyFl(int);
 s32 register_object__6TLobbyFl(int);
 s32 dispatch_shared_handler_b__6TLobbyFl(int);
 s32 register_boss__6TLobbyFl(int);
-u8 *load_resource_from_descriptor(void *, int, void *, int, int, int);
-u8 *load_enemy_bml_resource_named(void *, void *);
 void draw_trail_with_colors(u8 *boss4_type3, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 u8 *init_trail_buffer__11TBoss4Type3FPvifff(void *, int, f32, f32, f32);
 void *mem_alloc(u32 size);
@@ -395,7 +395,6 @@ s32 spawn_npc_enemy__6TLobbyFslllff(int, s32, s32, Quad_8009241C *, f32, f32);
 extern Ids_8009241C lbl_80439D68[];
 extern Quad_8009241C lbl_80439D70[];
 extern s32 lbl_80439D80[];
-void TLobby__sub_8001FE7C(void*, int);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 s32 *__dt__11TBoss4Type3FPvs(s32 *arg0, s16 arg1);
 void *__nw__7TObjectFUl(int);
@@ -636,7 +635,7 @@ void free_boss4_rock_pool(void) {
         beast_claw_trail_instance = 0U;
     }
     if ((u32) ene_beast_bml_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)ene_beast_bml_resource, 1);
+        delete (BmlResource *)((void*)ene_beast_bml_resource);
         ene_beast_bml_resource = 0U;
     }
 }
@@ -648,15 +647,12 @@ void TObjEneBeast::load_resources() {
     s32 i;
 
     if (TObjEneDD::check_v2_mode() != 0) {
-        ene_beast_bml_resource = (u32)load_enemy_bml_resource_named(beast_resource_descriptor, lbl_80439D80);
+        ene_beast_bml_resource = (u32)(u8 *)load_enemy_bml_resource_named((BmlResourceDescriptor *)(beast_resource_descriptor), (const char *)(lbl_80439D80));
         ((Ent_8009241C *)beast_collision_body_table)[0].radius = 1e+01f;
         ((Ent_8009241C *)beast_collision_body_table)[1].radius = 1e+01f;
         ((Ent_8009241C *)beast_collision_body_table)[2].radius = 9.0f;
     } else {
-        p = (u8 *)::operator new(0x440);
-        if (p != NULL) {
-            p = load_resource_from_descriptor(p, 1, beast_resource_descriptor, 0, 0, 0);
-        }
+        p = (u8 *)new BmlResource(1, (BmlResourceDescriptor *)(beast_resource_descriptor), 0, 0, (void *)(0));
         ene_beast_bml_resource = (u32)p;
         ((Ent_8009241C *)beast_collision_body_table)[0].radius = 7.0f;
         ((Ent_8009241C *)beast_collision_body_table)[1].radius = 7.0f;

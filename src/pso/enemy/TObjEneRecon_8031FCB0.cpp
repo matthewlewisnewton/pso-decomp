@@ -1,4 +1,6 @@
 #include "pso/enemy/TObjEnemy.h"
+#include "pso/system/EnemyBmlResource.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/misc/RenderFadeState.h"
 #include "types.h"
 #include "pso/enemy/TObjEneDD.h"
@@ -495,13 +497,12 @@ u32 TObjEneRecobox::remap_area_sound_id(u32 arg0) {
 int TObjEneRecobox__sub_803201D0(void) {  return (*(int *)&TObjEneRecobox__static_instance); }
 
 void *TObjEneRecobox__create(void *arg0);
-void TLobby__sub_8001FE7C(void*, int);
 void *__nw__7TObjectFUl(int);
 
 void TObjEneRecobox::release_static_instance() {
     TObjEneRecon::release_static_instance();
     if ((u32) (*(u32 *)&TObjEneRecobox__static_instance) != 0U) {
-        TLobby__sub_8001FE7C((void*)(*(u32 *)&TObjEneRecobox__static_instance), 1);
+        delete (BmlResource *)((void*)(*(u32 *)&TObjEneRecobox__static_instance));
         (*(u32 *)&TObjEneRecobox__static_instance) = 0U;
     }
 }
@@ -528,7 +529,6 @@ s32 dispatch_shared_handler_a__6TLobbyFl(s32);
 s32 register_object__6TLobbyFl(s32);
 s32 dispatch_shared_handler_b__6TLobbyFl(s32);
 s32 register_boss__6TLobbyFl(s32);
-s32 load_enemy_bml_resource(u8 *arg0);
 extern Spawn_80320260 recobox_resource_binding_desc;
 extern "C" u8 lbl_80476118[];
 extern "C" u8 lbl_80476124[];
@@ -567,9 +567,9 @@ void TObjEneRecobox::load_resources() {
     {
         u32 res;
         if (is_split_screen(&lbl_80543000) != 0) {
-            res = load_enemy_bml_resource((u8 *)lbl_804EC750);
+            res = (s32)load_enemy_bml_resource((BmlResourceDescriptor *)((u8 *)lbl_804EC750));
         } else {
-            res = load_enemy_bml_resource((u8 *)lbl_804EC6F8);
+            res = (s32)load_enemy_bml_resource((BmlResourceDescriptor *)((u8 *)lbl_804EC6F8));
         }
         (*(u32 *)&TObjEneRecobox__static_instance) = res;
     }

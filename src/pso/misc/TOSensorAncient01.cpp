@@ -147,16 +147,13 @@ void TOSensorAncient01::destroy() {
         }
     }
     if (sensor_ancient01_model_resource != NULL) {
-        TLobby__sub_8001FE7C(sensor_ancient01_model_resource, 1);
+        delete (BmlResource *)(sensor_ancient01_model_resource);
         sensor_ancient01_model_resource = NULL;
     }
 }
 
 void TOSensorAncient01::load_resources() {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &TOSensorAncient01__resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&TOSensorAncient01__resource_descriptor), 0, 0, (void *)(0));
     sensor_ancient01_model_resource = resource;
     ancient_sensor_resource_pair_table = (TOSensorAncient01Textures *)mem_alloc(0x10);
     ancient_sensor_resource_pair_table[0].plain = sensor_ancient01_model_resource->models[0].m_c;

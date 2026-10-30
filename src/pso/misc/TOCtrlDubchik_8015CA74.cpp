@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/vector.h"
 #include "pso/object/TObjMotion.h"
@@ -113,7 +114,6 @@ struct Obj_8015D518 {
 extern "C" {
 void queue_destruction__7TObjectFv(void *arg0);
 s32 exchange_object_state__9TObjEnemyFls(void *, void *, int);
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern RecoveredGlobal_8015D314_lbl_804B0A10 bm_fs_obj_zombie_con_resource_descriptor;
 extern u32 TOCtrlDubchik__shared_resource;
 void apply_actor_gravity(TObjEnemy *arg0, s32 *arg1, f32 farg0);
@@ -147,7 +147,6 @@ s32 play_sound_effect(s32, void *, s32, s32);
 f32 receive_direct_attack__9TObjCharaFPv19DirectAttackPayloadPvll(void *, s32, Pair_8015D518, void *, s32, s32);
 f32 TOCtrlDubchik__vt21(Obj_8015D518 *arg0, s32 arg1, Pair_8015D518 arg2, void *arg3);
 void *__dt__13TOCtrlDubchikFv(void *arg0, s16 arg1);
-void TLobby__sub_8001FE7C(void*, int);
 s32 free_collision_body_parts(void *);
 s32 select_melee_contact_body__9TObjCharaFPvf();
 s32 __dl__7TObjectFPv(void *);
@@ -328,7 +327,7 @@ void *TOCtrlDubchik::create(void *arg0) {
 
 void TOCtrlDubchik::destroy_instance() {
     if ((u32) TOCtrlDubchik__shared_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)TOCtrlDubchik__shared_resource, 1);
+        delete (BmlResource *)((void*)TOCtrlDubchik__shared_resource);
         TOCtrlDubchik__shared_resource = 0U;
     }
 }
@@ -336,11 +335,8 @@ void TOCtrlDubchik::destroy_instance() {
 void TOCtrlDubchik::load_shared_resource() {
     s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
+    temp_r3 = (int)new BmlResource(1, (BmlResourceDescriptor *)(&bm_fs_obj_zombie_con_resource_descriptor.value), 0, 0, (void *)(0));
     var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &bm_fs_obj_zombie_con_resource_descriptor.value, 0, 0, 0));
-    }
     (*(s32 *)&TOCtrlDubchik__shared_resource) = var_r0;
 }
 

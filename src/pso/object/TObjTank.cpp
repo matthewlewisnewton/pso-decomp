@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/misc/TLanguage_801E4874.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/system/vector.h"
@@ -39,14 +40,12 @@ extern u32 tank_bml_resource;
 extern u32 TObjTank__texture_list;
 extern const f32 lbl_805DBFA0;
 extern const f32 lbl_805DBFA4;
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern RecoveredGlobal_8019A9B8_lbl_80446184 lbl_80446184;
 extern RecoveredGlobal_8019A9B8_lbl_804B8F60 fs_obj_tank_resource_descriptor;
 s32 init_collision_body_parts(void *, void *, int);
 extern RecoveredGlobal_8019A880_lbl_804B8F70 tobjtank_collision_body_parts;
 extern s32 __vt__8TObjTank[];
 extern s32 TObjTank__class_name;
-void TLobby__sub_8001FE7C(void*, int);
 s32 release_texture_list(void*);
 s32 free_collision_body_parts(void *);
 s32 __dl__7TObjectFPv(void *);
@@ -125,7 +124,7 @@ void TObjTank::free_globals() {
         TObjTank__texture_list = 0U;
     }
     if ((u32) tank_bml_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)tank_bml_resource, 1);
+        delete (BmlResource *)((void*)tank_bml_resource);
         tank_bml_resource = 0U;
     }
 }
@@ -134,11 +133,8 @@ typedef char RecoveredGlobal_8019A9B8_lbl_804B8F60_size[sizeof(RecoveredGlobal_8
 void TObjTank::load_globals() {
     s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
+    temp_r3 = (int)new BmlResource(5, (BmlResourceDescriptor *)(&fs_obj_tank_resource_descriptor.value), 0, 0, (void *)(0));
     var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 5, &fs_obj_tank_resource_descriptor.value, 0, 0, 0));
-    }
     (*(s32 *)&tank_bml_resource) = var_r0;
     (*(u8 * *)&TObjTank__texture_list) = load_gvm_texture_file((s32) &lbl_80446184.value);
 }

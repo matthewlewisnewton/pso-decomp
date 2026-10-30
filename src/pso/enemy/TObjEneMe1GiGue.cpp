@@ -1,4 +1,5 @@
 #include "pso/player/PlayerAttackParams.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include <dolphin/mtx.h>
@@ -1718,8 +1719,6 @@ s32 dispatch_shared_handler_a__6TLobbyFl(int);
 s32 register_object__6TLobbyFl(int);
 s32 dispatch_shared_handler_b__6TLobbyFl(int);
 s32 register_boss__6TLobbyFl(int);
-s32 TLobby__sub_8001FE7C(s32, s32);
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 s32 init_from_model__11TBreakUpMdlFl(s32, s32);
 s32 update__15RenderFadeStateFv(void *);
 s32 find_active_entity_by_id(int);
@@ -2034,7 +2033,7 @@ void TObjEneMe1GiGue::delete_barrier() {
         TObjEneMe1GiGue__barrier_obj = NULL;
     }
     if (TObjEneMe1GiGue__data_805D6838 != 0U) {
-        TLobby__sub_8001FE7C(TObjEneMe1GiGue__data_805D6838, 1);
+        delete (BmlResource *)(TObjEneMe1GiGue__data_805D6838);
         TObjEneMe1GiGue__data_805D6838 = 0U;
     }
 }
@@ -2053,16 +2052,10 @@ void TObjEneMe1GiGue::load_resources() {
     Sub_802CD62C *q;
 
     if (is_split_screen() != 0) {
-        o = (int)::operator new(0x440);
-        if (o != 0) {
-            o = (s32)load_resource_from_descriptor((void *)o, 1, lbl_804E1248, 0, 0, 0);
-        }
+        o = (int)new BmlResource(1, (BmlResourceDescriptor *)(lbl_804E1248), 0, 0, (void *)(0));
         TObjEneMe1GiGue__data_805D6838 = o;
     } else {
-        o = (int)::operator new(0x440);
-        if (o != 0) {
-            o = (s32)load_resource_from_descriptor((void *)o, 1, lbl_804E1200, 0, 0, 0);
-        }
+        o = (int)new BmlResource(1, (BmlResourceDescriptor *)(lbl_804E1200), 0, 0, (void *)(0));
         TObjEneMe1GiGue__data_805D6838 = o;
     }
     ene_me1_gigue_boss_id = register_boss__6TLobbyFl(0x1A);

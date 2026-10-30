@@ -1,4 +1,6 @@
 #include "pso/enemy/TObjEnemy.h"
+#include "pso/system/EnemyBmlResource.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "types.h"
@@ -3439,8 +3441,6 @@ s32 init_collision_body_parts(void *, void *, int);
 void *__ct__14TObjCollidableFP7TObject(void *, int);
 void *__nw__7TObjectFUl(int);
 extern s32 bm5_wolf_class_name;
-void TLobby__sub_8001FE7C(void*, int);
-
 void TObjEneBm5Wolf::update_collision_center() {
 
     this->m_2fc = (f32) *(f32 *)((s8 *)((u8 *)this) + 0x38);
@@ -3644,7 +3644,7 @@ void TObjEneBm5Wolf::apply_position_to_node_list() {
 
 void TObjEneBm5Wolf::release_global_805D5120() {
     if ((u32) (*(u32 *)&TObjEneBm5Wolf__bml_resource) != 0U) {
-        TLobby__sub_8001FE7C((void*)(*(u32 *)&TObjEneBm5Wolf__bml_resource), 1);
+        delete (BmlResource *)((void*)(*(u32 *)&TObjEneBm5Wolf__bml_resource));
         (*(u32 *)&TObjEneBm5Wolf__bml_resource) = 0U;
     }
 }
@@ -3685,8 +3685,6 @@ s32 dispatch_shared_handler_a__6TLobbyFl(s32);
 s32 register_object__6TLobbyFl(s32);
 s32 dispatch_shared_handler_b__6TLobbyFl(s32);
 s32 register_boss__6TLobbyFl(s32);
-Wolf_800B86B4 *load_enemy_bml_resource_named(void *, void *);
-s32 load_enemy_bml_resource(u8 *arg0);
 s32 spawn_npc_enemy__6TLobbyFslllff(int, int, int, void *, f32, f32);
 extern s32 lbl_8043B3A8[];
 extern s32 lbl_8043B3B0[];
@@ -3716,9 +3714,9 @@ void TObjEneBm5Wolf::load_resources() {
     s32 i;
 
     if (check_v2_mode__9TObjEneDDFv() != 0) {
-        TObjEneBm5Wolf__bml_resource = load_enemy_bml_resource_named(bm_ene_bm5_wolf_resource_descriptor, lbl_8043B5C0);
+        TObjEneBm5Wolf__bml_resource = (Wolf_800B86B4 *)load_enemy_bml_resource_named((BmlResourceDescriptor *)(bm_ene_bm5_wolf_resource_descriptor), (const char *)(lbl_8043B5C0));
     } else {
-        TObjEneBm5Wolf__bml_resource = (Wolf_800B86B4 *)load_enemy_bml_resource(bm_ene_bm5_wolf_resource_descriptor);
+        TObjEneBm5Wolf__bml_resource = (Wolf_800B86B4 *)(s32)load_enemy_bml_resource((BmlResourceDescriptor *)(bm_ene_bm5_wolf_resource_descriptor));
     }
     ((TObjEneBm5Wolf *)TObjEneBm5Wolf__pack_member_list)->reset_fields();
     ((TObjEneBm5Wolf *)TObjEneBm5Wolf__instance_list)->reset_fields();

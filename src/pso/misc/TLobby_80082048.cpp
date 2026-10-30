@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/misc/TLobby_80082048.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/system/vector.h"
@@ -66,7 +67,6 @@ struct RecoveredFields_8008213C_temp_r3 {
 };
 
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern u32 freeze_shell_bml_resource;
 s32 __ct__9TObjCharaFP7TObject(void *, void *);
 s16 get_entity_id(void *);
@@ -78,12 +78,11 @@ extern const f32 lbl_805D9378;
 extern const f32 lbl_805D9398;
 extern const f32 lbl_805D939C;
 extern const f32 lbl_805D93A0;
-void TLobby__sub_8001FE7C(void*, int);
 void __dl__7TObjectFPv(void *);
 
 void TLobby::destroy_global_singleton() {
     if ((u32) freeze_shell_bml_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)freeze_shell_bml_resource, 1);
+        delete (BmlResource *)((void*)freeze_shell_bml_resource);
         freeze_shell_bml_resource = 0U;
     }
 }
@@ -91,11 +90,8 @@ void TLobby::destroy_global_singleton() {
 void TLobby::load_freeze_ice_resource() {
     s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
+    temp_r3 = (int)new BmlResource(5, (BmlResourceDescriptor *)(&enemy_freeze_ice_resource_descriptor), 0, 0, (void *)(0));
     var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 5, &enemy_freeze_ice_resource_descriptor, 0, 0, 0));
-    }
     (*(s32 *)&freeze_shell_bml_resource) = var_r0;
 }
 

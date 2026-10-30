@@ -1,4 +1,6 @@
 #include "pso/enemy/TObjEnemy.h"
+#include "pso/system/EnemyBmlResource.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/system/vector.h"
@@ -3915,7 +3917,6 @@ struct DelB_800CC808 { char pad[0xC]; };
 struct Del_800CC808 : DelB_800CC808 { virtual ~Del_800CC808(); };
 
 extern "C" {
-void TLobby__sub_8001FE7C(void *, s32);
 void TObjEneMe1Gee__sub_802A4D4C(void);
 
 #define g51C4 (*(Del_800CC808 **)&TObjEneMe1Gee__data_805D51C4)
@@ -3931,7 +3932,7 @@ void TObjEneMe1Gee::free_globals() {
         g51C0 = NULL;
     }
     if (g51B0 != NULL) {
-        TLobby__sub_8001FE7C(g51B0, 1);
+        delete (BmlResource *)(g51B0);
         g51B0 = NULL;
     }
     TObjEneMe1Gee__sub_802A4D4C();
@@ -3997,7 +3998,6 @@ s32 register_object__6TLobbyFl(s32);
 s32 dispatch_shared_handler_b__6TLobbyFl(s32);
 s32 register_boss__6TLobbyFl(s32);
 s32 init_from_model__11TBreakUpMdlFl(s32, s32);
-s32 load_enemy_bml_resource(u8 *arg0);
 s32 TObjPlayer__sub_800F0928(s32);
 extern s32 lbl_8043BCD8[];
 extern s32 lbl_8043BCE4[];
@@ -4016,9 +4016,9 @@ void TObjEneMe1Gee::load_resources() {
     v->y = TObjEneMe1Gee__data_805DA0B4;
     v->z = TObjEneMe1Gee__data_805DA0B4;
     if (((s32 (*)(void *))is_split_screen)(v) != 0) {
-        TObjEneMe1Gee__resource_bundle = (D_800CC950 *)load_enemy_bml_resource(bm_ene_me1_gee_low_resource_descriptor);
+        TObjEneMe1Gee__resource_bundle = (D_800CC950 *)(s32)load_enemy_bml_resource((BmlResourceDescriptor *)(bm_ene_me1_gee_low_resource_descriptor));
     } else {
-        TObjEneMe1Gee__resource_bundle = (D_800CC950 *)load_enemy_bml_resource(bm_ene_me1_gee_resource_descriptor);
+        TObjEneMe1Gee__resource_bundle = (D_800CC950 *)(s32)load_enemy_bml_resource((BmlResourceDescriptor *)(bm_ene_me1_gee_resource_descriptor));
     }
     TObjEneMe1Gee::cache_result_805D6660();
     lbl_805D51B4 = (u8 *)find_model_node(TObjEneMe1Gee__resource_bundle->f42c->f8, 7);

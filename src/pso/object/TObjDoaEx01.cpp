@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/item/TObjContainerJungEx_8018D900.h"
 #include "pso/object/TObjMapObject.h"
 #include "pso/object/TObjMotion.h"
@@ -47,12 +48,9 @@ extern "C" {
 u8 * TObjFish__sub_8001EDB0(void *, int);
 extern u32 TObjContainerJungEx__resource_bundle;
 u8 * get_bml_model(void *, int);
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern RecoveredGlobal_8018D9B0_lbl_804B7158 fe_obj_hako02_resource_descriptor;
 
 void play_sound_effect(s32, void *, s32, s32);
-
-void TLobby__sub_8001FE7C(void*, int);
 
 u8 *TObjContainerJungEx__sub_8018D900(s32 arg0) {
     if ((void *) (*(u8 * *)&TObjContainerJungEx__resource_bundle) != NULL) {
@@ -70,18 +68,15 @@ u8 *TObjContainerJungEx::get_model(s32 arg0) {
 
 void TObjContainerJungEx::free_data() {
     if ((u32) TObjContainerJungEx__resource_bundle != 0U) {
-        TLobby__sub_8001FE7C((void*)TObjContainerJungEx__resource_bundle, 1);
+        delete (BmlResource *)((void*)TObjContainerJungEx__resource_bundle);
         TObjContainerJungEx__resource_bundle = 0U;
     }
 }
 void TObjContainerJungEx::load_resource_instance() {
     s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
+    temp_r3 = (int)new BmlResource(5, (BmlResourceDescriptor *)(&fe_obj_hako02_resource_descriptor.value), 0, 0, (void *)(0));
     var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 5, &fe_obj_hako02_resource_descriptor.value, 0, 0, 0));
-    }
     (*(s32 *)&TObjContainerJungEx__resource_bundle) = var_r0;
 }
 #pragma push
@@ -346,14 +341,12 @@ struct RecoveredGlobal_8018E064___vt__11TObjDoaEx01 {
 };
 
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 s32 init_collision_body_parts(void *, void *, int);
 void *__ct__10TODoorBaseFP7TObject(void *a0);
 extern RecoveredGlobal_8018E064_lbl_804B7598 TObjDoaEx01__collision_body_parts;
 extern s32 __vt__11TObjDoaEx01[];
 extern s32 TObjDoaEx01__name;
 
-void TLobby__sub_8001FE7C(void*, int);
 s32 free_collision_body_parts(void *);
 s32 __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
@@ -405,7 +398,7 @@ void *TObjDoaEx01__create(void *arg0) {
 
 void TObjDoaEx01::free_resource() {
     if ((u32) TObjDoaEx01__resource_bundle != 0U) {
-        TLobby__sub_8001FE7C((void*)TObjDoaEx01__resource_bundle, 1);
+        delete (BmlResource *)((void*)TObjDoaEx01__resource_bundle);
         TObjDoaEx01__resource_bundle = 0U;
     }
 }
@@ -413,11 +406,8 @@ void TObjDoaEx01::load_resources() {
     s32 temp_r3;
     s32 var_r0;
     u8 *temp_r3_2;
-    temp_r3 = (int)::operator new(0x440);
+    temp_r3 = (int)new BmlResource(1, (BmlResourceDescriptor *)(&TObjDoaEx01__resource_descriptor), 0, 0, (void *)(0));
     var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &TObjDoaEx01__resource_descriptor, 0, 0, 0));
-    }
     (*(u8 * *)&TObjDoaEx01__resource_bundle) = (unsigned char *) ((void *) var_r0);
     temp_r3_2 = (u8 *)(*(void **)((s8 *)(*(void **)((s8 *)(*(void **)((s8 *)(*(void **)((s8 *)(get_bml_model((void *) var_r0, 0)) + 0x2C)) + 0x30)) + 0x2C)) + 0x2C));
     TObjDoaEx01__alpha_model_node = temp_r3_2;

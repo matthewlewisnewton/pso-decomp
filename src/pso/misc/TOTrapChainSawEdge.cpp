@@ -1,4 +1,5 @@
 #include "pso/protocol/protocol_types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_801E2D1C.h"
 #include "pso/TObject.h"
@@ -1093,12 +1094,10 @@ u8 *TOTrapChainSawKey::get_model(s32 arg0) {
 #include "types.h"
 
 extern "C" {
-void TLobby__sub_8001FE7C(void *, int);
-
 void TOTrapChainSaw::unload_static_data() {
     s32 i;
     if (lbl_805D6808 != NULL) {
-        TLobby__sub_8001FE7C(lbl_805D6808, 1);
+        delete (BmlResource *)(lbl_805D6808);
         lbl_805D6808 = NULL;
     }
     for (i = 0; i < 5; i++) {
@@ -1118,15 +1117,11 @@ void TOTrapChainSaw::unload_static_data() {
 #include "pso/misc/TOTrapChainSawDamage.h"
 
 extern "C" {
-void *load_resource_from_descriptor(void *, int, void *, int, int, int);
 void TOTrapChainSaw::load_shared_resource() {
-    void *p;
+    BmlResource *p;
     s32 i;
     s32 h;
-    p = ::operator new(0x440);
-    if (p != NULL) {
-        p = load_resource_from_descriptor(p, 5, bm_obj_jungle_nokogiri_resource_descriptor, 0, 0, 0);
-    }
+    p = new BmlResource(5, (BmlResourceDescriptor *)(bm_obj_jungle_nokogiri_resource_descriptor), 0, 0, (void *)(0));
     lbl_805D6808 = (u8 *)p;
     for (i = 0; i < 5; i++) {
         seabed_suiso_linked_switch_counts[i] = 0;

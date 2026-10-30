@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/misc/TOFenceBase.h"
@@ -176,8 +177,6 @@ s32 memset(void *, int, int);
 s32 obj_setFlags30(void *, s32);
 s32 get_current_floor();
 void * get_bml_motion(s32, s32);
-void TLobby__sub_8001FE7C(void*, int);
-Big_8016775C * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 void mem_free(void *p);
 void *mem_alloc(u32 size);
 void * __dt__27TOHangceilingCave01KeyQuickFv(void *arg0, s16 arg1);
@@ -790,7 +789,7 @@ void TOHangceilingCave01::destroy_instance() {
         }
     }
     if ((u32) TOHangceilingCave01__model_archive != 0U) {
-        TLobby__sub_8001FE7C((void*)TOHangceilingCave01__model_archive, 1);
+        delete (BmlResource *)((void*)TOHangceilingCave01__model_archive);
         TOHangceilingCave01__model_archive = 0U;
     }
 }
@@ -815,10 +814,7 @@ void load_turiten_singo_resources(void) {
     switch (get_current_floor_area()) {
     case AREA_VR_TEMPLE_ALPHA:
     case AREA_VR_TEMPLE_BETA:
-        p = ::operator new(0x440);
-        if (p != 0) {
-            p = ((void *(*)(void *, int, void *, int, int, int))load_resource_from_descriptor)(p, 5, turiten_singo_resource_descriptor, 0, 0, 0);
-        }
+        p = new BmlResource(5, (BmlResourceDescriptor *)turiten_singo_resource_descriptor, 0, 0, NULL);
         (*(void **)&TOHangceilingCave01__model_archive) = p;
         (*(Buf_80168AA8 **)&turiten_singo_texture_lists) = (Buf_80168AA8 *)mem_alloc(0xC);
         (*(Buf_80168AA8 **)&turiten_singo_texture_lists)->b = 0;
@@ -830,10 +826,7 @@ void load_turiten_singo_resources(void) {
         hanging_ceiling_motion_index = 0;
         break;
     default:
-        p = ::operator new(0x440);
-        if (p != 0) {
-            p = ((void *(*)(void *, int, void *, int, int, int))load_resource_from_descriptor)(p, 5, fe_obj_turiten_moto_resource_descriptor, 0, 0, 0);
-        }
+        p = new BmlResource(5, (BmlResourceDescriptor *)fe_obj_turiten_moto_resource_descriptor, 0, 0, NULL);
         (*(void **)&TOHangceilingCave01__model_archive) = p;
         (*(Buf_80168AA8 **)&turiten_singo_texture_lists) = (Buf_80168AA8 *)mem_alloc(0xC);
         (*(Buf_80168AA8 **)&turiten_singo_texture_lists)->a = (s32)load_gvm_texture_file((s32)lbl_80441858);

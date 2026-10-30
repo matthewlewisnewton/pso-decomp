@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/object/TObjCamera.h"
 #include "pso/TMainTask.h"
 #include "pso/animation/ActorAnimationState.h"
@@ -22,8 +23,6 @@
 #pragma readonly_strings on
 
 extern "C" {
-u8 *load_resource_from_descriptor(void *, s32, BmlResourceDescriptor *, s32, s32, s32);
-void TLobby__sub_8001FE7C(void *, int);
 AnimationMotion *get_bml_motion(u32, int);
 s32 get_bml_model(u32, int);
 void TObjFish__sub_8001EDB0(u32, int);
@@ -219,7 +218,7 @@ void *TObjCamera::create(void *set_data) {
 
 void TObjCamera::free_resources() {
     if (model_resource != 0) {
-        TLobby__sub_8001FE7C((void *)model_resource, 1);
+        delete (BmlResource *)((void *)model_resource);
         model_resource = 0;
     }
 }
@@ -228,10 +227,7 @@ void TObjCamera::load_resources() {
     void *resource;
     u32 loaded;
     camera_slot_scan_index = 0;
-    resource = ::operator new(0x440);
+    resource = new BmlResource(1, (BmlResourceDescriptor *)&fe_obj_cam_resource_descriptor, 0, 0, NULL);
     loaded = (u32)resource;
-    if (loaded != 0) {
-        loaded = (u32)load_resource_from_descriptor(resource, 1, &fe_obj_cam_resource_descriptor, 0, 0, 0);
-    }
     model_resource = loaded;
 }

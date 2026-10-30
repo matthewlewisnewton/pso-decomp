@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/TObject.h"
 #include "pso/system/vector.h"
@@ -140,7 +141,6 @@ f32 vector_length(void *);
 extern const f32 lbl_805DA4B4;
 extern const f32 lbl_805DA4F4;
 extern Ent_800DED30 lbl_8049515C[];
-Obj_800DF634 *load_resource_from_descriptor(Obj_800DF634 *, s32, void *, s32, s32, s32);
 s32 spawn_npc_enemy__6TLobbyFslllff(s32, s32, s32, void *, s32, void *, f32, f32);
 extern S_800DF634 panarms_npc_spawn_descriptor[];
 extern u8 lbl_80494F10[];
@@ -187,7 +187,6 @@ u8 *__dt__14TObjEnePanarmsFv(u8 *arg0, s16 arg1);
 void TObjEnePanarms__sub_800DE2B0(void* p);
 void TObjEnePanarms__sub_800DEEF8(void* p);
 void init_state__14TObjEnePanarmsFPv(u8 *arg0);
-void TLobby__sub_8001FE7C(void*, int);
 int post_translate_matrix(void*);
 int rotate_matrix_y(void*, void*);
 int push_matrix(void*);
@@ -1190,15 +1189,12 @@ u8 *__dt__14TObjEnePanarmsFv(u8 *arg0, s16 arg1) {
 
 void TObjEnePanarms::free_data() {
     if ((u32) TObjEnePanarms__entry_params_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)TObjEnePanarms__entry_params_resource, 1);
+        delete (BmlResource *)((void*)TObjEnePanarms__entry_params_resource);
         TObjEnePanarms__entry_params_resource = 0U;
     }
 }
 void TObjEnePanarms::load_and_spawn_npc() {
-    Obj_800DF634 *o = (Obj_800DF634 *) ::operator new(0x440);
-    if (o != NULL) {
-        o = load_resource_from_descriptor(o, 1, lbl_80494F10, 0, 0, 0);
-    }
+    Obj_800DF634 *o = (Obj_800DF634 *) new BmlResource(1, (BmlResourceDescriptor *)(lbl_80494F10), 0, 0, (void *)(0));
     TObjEnePanarms__entry_params_resource = (u32) o;
     if (o != NULL) {
         S_800DF634 sp = panarms_npc_spawn_descriptor[0];

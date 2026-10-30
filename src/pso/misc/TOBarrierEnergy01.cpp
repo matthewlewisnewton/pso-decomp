@@ -72,10 +72,7 @@ TOBarrierEnergy01::~TOBarrierEnergy01() {
 }
 
 void TOBarrierEnergy01::load_resources() {
-    BmlResource *archive = (BmlResource *)::operator new(0x440);
-    if (archive != NULL) {
-        archive = load_resource_from_descriptor(archive, 1, &bm_fs_obj_lazerguard_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *archive = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&bm_fs_obj_lazerguard_resource_descriptor), 0, 0, (void *)(0));
     barrier_energy_shared_bml_archive = archive;
     barrier_energy_model = (void *)get_bml_model(archive, 0);
     barrier_energy_texlists = (s32 *)mem_alloc(3 * sizeof(s32));
@@ -93,7 +90,7 @@ void TOBarrierEnergy01::free_resources() {
         }
     }
     if (barrier_energy_shared_bml_archive != NULL) {
-        TLobby__sub_8001FE7C(barrier_energy_shared_bml_archive, 1);
+        delete (BmlResource *)(barrier_energy_shared_bml_archive);
         barrier_energy_shared_bml_archive = NULL;
     }
 }

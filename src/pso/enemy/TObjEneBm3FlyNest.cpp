@@ -1,4 +1,6 @@
 #include "pso/enemy/TObjEnemy.h"
+#include "pso/system/EnemyBmlResource.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/system/vector.h"
@@ -742,7 +744,6 @@ s32 dispatch_shared_handler_a__6TLobbyFl(int);
 s32 register_object__6TLobbyFl(int);
 s32 dispatch_shared_handler_b__6TLobbyFl(int);
 s32 register_boss__6TLobbyFl(int);
-void TLobby__sub_8001FE7C(void*, int);
 s32 get_camera_mode__11TCameraCtrlFv();
 s32 get_flag_b4__9TObjEneDDFv(void *);
 void rotate_xz_pair_by_angle(f32 *arg0, f32 *arg1, s32 arg2);
@@ -784,8 +785,6 @@ s32 clear_attack_receipts__9TObjEneDDFv();
 s32 noop__12TBoss8DragonFv(void *);
 s32 TBoss8Dragon__sub_800BB7D4(void *, s32);
 s32 pack_debug_text_position(s32, s32);
-u32 load_enemy_bml_resource_named(void *, void *);
-s32 load_enemy_bml_resource(u8 *arg0);
 s32 transition_enemy_state__9TObjEneDDFl(void *, s32);
 void *__dt__9TObjEneDDFv(void *arg0, s16 arg1);
 s32 update__15RenderFadeStateFv(void *);
@@ -1967,7 +1966,7 @@ int TObjEneBm3FlyNest__sub_800B4158(void) {  return (*(int *)&lbl_805D5108); }
 void TObjEneBm3FlyNest::free_fly() {
     TObjEneBm3Fly::release_shared_data();
     if ((u32) lbl_805D5108 != 0U) {
-        TLobby__sub_8001FE7C((void*)lbl_805D5108, 1);
+        delete (BmlResource *)((void*)lbl_805D5108);
         lbl_805D5108 = 0U;
     }
 }
@@ -1990,9 +1989,9 @@ void TObjEneBm3FlyNest::load_resources() {
     lbl_805D5114 = 0;
     bm3_fly_nest_attachment_index = 0;
     if (TObjEneDD::check_v2_mode() != 0) {
-        lbl_805D5108 = load_enemy_bml_resource_named(&bm3_fly_nest_resource_desc, (void *)lbl_8043B380);
+        lbl_805D5108 = (u32)load_enemy_bml_resource_named((BmlResourceDescriptor *)(&bm3_fly_nest_resource_desc), (const char *)((void *)lbl_8043B380));
     } else {
-        lbl_805D5108 = load_enemy_bml_resource((u8 *)&bm3_fly_nest_resource_desc);
+        lbl_805D5108 = (s32)load_enemy_bml_resource((BmlResourceDescriptor *)((u8 *)&bm3_fly_nest_resource_desc));
     }
     lbl_805D50F8 = register_boss__6TLobbyFl(1);
     lbl_805D50FC = dispatch_shared_handler_b__6TLobbyFl(1);

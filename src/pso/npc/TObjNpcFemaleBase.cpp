@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/npc/TUnk_804A8640.h"
 #include "pso/npc/TObjNpcFemaleBase.h"
 #include "pso/npc/TObjNpcFemaleChild.h"
@@ -18,7 +19,6 @@ struct RecoveredGlobal_80149E88___vt__17TObjNpcFemaleBase {
 };
 
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern RecoveredGlobal_80149DE0_lbl_804A87C0 bm_n_ebw_i_body_resource_descriptor;
 extern u32 TObjNpcFemaleBase__shared_resource_obj;
 extern RecoveredGlobal_80149FB8_lbl_804A8950 bm_n_ecw_i_body_resource_descriptor;
@@ -29,7 +29,6 @@ u8 *TObjNpcFemaleBase__ct(u8 *arg0, s32 arg1, s32 arg2);
 void * TObjNpcFemaleBase__create(void *arg0);
 void * TObjNpcFemaleChild__create(void *arg0);
 void *__dt__17TObjNpcFemaleBaseFv(void *arg0, s16 arg1);
-void TLobby__sub_8001FE7C(void*, int);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
@@ -52,7 +51,7 @@ void * TObjNpcFemaleBase__create(void *arg0) {
 
 void TObjNpcFemaleBase::free_static_data() {
     if ((u32) TObjNpcFemaleBase__shared_resource_obj != 0U) {
-        TLobby__sub_8001FE7C((void*)TObjNpcFemaleBase__shared_resource_obj, 1);
+        delete (BmlResource *)((void*)TObjNpcFemaleBase__shared_resource_obj);
         TObjNpcFemaleBase__shared_resource_obj = 0U;
     }
 }
@@ -60,11 +59,8 @@ void TObjNpcFemaleBase::free_static_data() {
 void TObjNpcFemaleBase::load_shared_resource() {
     s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
+    temp_r3 = (int)new BmlResource(1, (BmlResourceDescriptor *)(&bm_n_ebw_i_body_resource_descriptor.value), 0, 0, (void *)(0));
     var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &bm_n_ebw_i_body_resource_descriptor.value, 0, 0, 0));
-    }
     (*(s32 *)&TObjNpcFemaleBase__shared_resource_obj) = var_r0;
 }
 
@@ -108,18 +104,15 @@ void * TObjNpcFemaleChild__create(void *arg0) {
 
 void TObjNpcFemaleChild::release_static_instance() {
     if ((u32) TObjNpcFemaleChild__static_instance != 0U) {
-        TLobby__sub_8001FE7C((void*)TObjNpcFemaleChild__static_instance, 1);
+        delete (BmlResource *)((void*)TObjNpcFemaleChild__static_instance);
         TObjNpcFemaleChild__static_instance = 0U;
     }
 }
 void TObjNpcFemaleChild::load_shared_resource() {
     s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
+    temp_r3 = (int)new BmlResource(1, (BmlResourceDescriptor *)(&bm_n_ecw_i_body_resource_descriptor.value), 0, 0, (void *)(0));
     var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &bm_n_ecw_i_body_resource_descriptor.value, 0, 0, 0));
-    }
     (*(s32 *)&TObjNpcFemaleChild__static_instance) = var_r0;
 }
 

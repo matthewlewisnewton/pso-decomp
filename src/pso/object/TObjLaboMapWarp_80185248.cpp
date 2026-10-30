@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/object/TObjMapWarp.h"
 #include "pso/object/TObjCityMainWarp_801867F4.h"
 #include "pso/object/TObjAreaWarp.h"
@@ -148,8 +149,6 @@ extern "C" {
 s32 get_bml_motion(s32, s32);
 s32 TObjFish__sub_8001EDB0(s32, s32);
 s32 get_bml_model(s32, s32);
-void TLobby__sub_8001FE7C(void*, int);
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 int is_quest_active(void);
 s32 get_localized_text_entry(s32, s32);
 void run_task__15TObjLaboMapWarpFv(u8 *arg0);
@@ -314,7 +313,7 @@ void TObjLaboMapWarp__vt13(TObjLaboMapWarp *labo_map_warp, s32 arg1) {
 
 void TObjLaboMapWarp::release_static_resource() {
     if ((u32) (*(u32 *)&TObjLaboMapWarp__resource_bundle) != 0U) {
-        TLobby__sub_8001FE7C((void*)(*(u32 *)&TObjLaboMapWarp__resource_bundle), 1);
+        delete (BmlResource *)((void*)(*(u32 *)&TObjLaboMapWarp__resource_bundle));
         (*(u32 *)&TObjLaboMapWarp__resource_bundle) = 0U;
     }
 }
@@ -322,11 +321,8 @@ void TObjLaboMapWarp::release_static_resource() {
 void TObjLaboMapWarp::load_static_resource() {
     s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
+    temp_r3 = (int)new BmlResource(5, (BmlResourceDescriptor *)(&bm_obj_warp_labo_resource_descriptor.value), 0, 0, (void *)(0));
     var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 5, &bm_obj_warp_labo_resource_descriptor.value, 0, 0, 0));
-    }
     (*(s32 *)&TObjLaboMapWarp__resource_bundle) = var_r0;
 }
 

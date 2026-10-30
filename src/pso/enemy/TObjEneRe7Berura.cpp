@@ -1,4 +1,6 @@
 #include "pso/enemy/TObjEnemy.h"
+#include "pso/system/EnemyBmlResource.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/system/vector.h"
 #include "pso/misc/RenderFadeState.h"
@@ -448,7 +450,6 @@ s32 dispatch_shared_handler_a__6TLobbyFl(s32);
 s32 register_object__6TLobbyFl(s32);
 s32 dispatch_shared_handler_b__6TLobbyFl(s32);
 s32 register_boss__6TLobbyFl(s32);
-void TLobby__sub_8001FE7C(void*, int);
 u32 csnLookAt(void *, void *);
 s32 TObjEneRe7Berura__sub_80093470(void *, void *);
 void state_patrol__16TObjEneRe7BeruraFPvi(void *arg0, s32 arg1);
@@ -489,8 +490,6 @@ s32 is_alive__8TObjBaseFv(void *);
 void init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, int);
 s32 clear_attack_receipts__9TObjEneDDFv();
 void invoke_initialization_hook__9TObjEneDDFPv(void *, void *);
-Res_800959F8 * load_enemy_bml_resource_named(void *, void *);
-s32 load_enemy_bml_resource(u8 *arg0);
 s32 set_field_378__9TObjEneDDFl(void *, s32, s32);
 s32 create__13TUnk_80494968FUlUl(s32, s32);
 s32 *__dt__11TBoss4Type3FPvs(s32 *arg0, s16 arg1);
@@ -1239,7 +1238,7 @@ void TObjEneRe7Berura::destroy_children() {
         re7_berura_static_buffer = 0U;
     }
     if ((u32) TObjEneRe7Berura__shared_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)TObjEneRe7Berura__shared_resource, 1);
+        delete (BmlResource *)((void*)TObjEneRe7Berura__shared_resource);
         TObjEneRe7Berura__shared_resource = 0U;
     }
 }
@@ -1268,9 +1267,9 @@ void TObjEneRe7Berura::load_static_resources() {
     s32 i;
     void *p;
     if (TObjEneDD::check_v2_mode() != 0) {
-        r = load_enemy_bml_resource_named(ene_berura_bml_descriptor, lbl_80439EF8);
+        r = (Res_800959F8 *)load_enemy_bml_resource_named((BmlResourceDescriptor *)(ene_berura_bml_descriptor), (const char *)(lbl_80439EF8));
     } else {
-        r = (Res_800959F8 *)load_enemy_bml_resource(ene_berura_bml_descriptor);
+        r = (Res_800959F8 *)(s32)load_enemy_bml_resource((BmlResourceDescriptor *)(ene_berura_bml_descriptor));
     }
     TObjEneRe7Berura__shared_resource = (u32)r;
     lbl_805007C8[0] = TObjEneRe7Berura__data_805D972C;

@@ -1,5 +1,6 @@
 extern "C" void *__ct__12TObjEneDD_STFP7TObject(void *);
 #include "pso/system/NinjaTypes.h"
+#include "pso/system/BmlResourceClass.h"
 #include "types.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/misc/TRaderMapCore.h"
@@ -195,7 +196,6 @@ s32 register_object__6TLobbyFl(int);
 s32 dispatch_shared_handler_b__6TLobbyFl(int);
 s32 register_boss__6TLobbyFl(int);
 Node_803627DC *get_bml_model(void *, int);
-u8 *load_resource_from_descriptor(void *, int, void *, int, int, int);
 s32 TObjPlayer__sub_800F0928(void *);
 extern Quad_803627DC lbl_80479FAC;
 extern f32 lbl_80543A18[3];
@@ -214,7 +214,6 @@ extern u8 *lbl_805D6FA8;
 extern const f32 lbl_805E0248;
 extern const f32 lbl_805E024C;
 extern const f32 lbl_805E0250;
-void TLobby__sub_8001FE7C(void *, int);
 void *__dt__13TUnk_804F26E0Fv(void *arg0, s16 arg1);
 void *TObjEneEpsilon__ct(void *arg0);
 void construct_srank_weapon(void *);
@@ -256,7 +255,7 @@ void TObjEneEpsilonGuard::free_shared_resources() {
         (*(V_8036274C * *)&lbl_805D6FA8) = NULL;
     }
     if ((*(u32 *)&lbl_805D6FA0) != 0) {
-        TLobby__sub_8001FE7C((void *)(*(u32 *)&lbl_805D6FA0), 1);
+        delete (BmlResource *)((void *)(*(u32 *)&lbl_805D6FA0));
         (*(u32 *)&lbl_805D6FA0) = 0;
     }
 }
@@ -266,10 +265,7 @@ void TObjEneEpsilonGuard::load_assets() {
     lbl_80543A18[0] = lbl_805E0248;
     lbl_80543A18[1] = lbl_805E0248;
     lbl_80543A18[2] = lbl_805E0248;
-    p = (u8 *)::operator new(0x440);
-    if (p != NULL) {
-        p = load_resource_from_descriptor(p, 1, &TObjEneEpsilonGuard__resource_descriptor, 0, 0, 0);
-    }
+    p = (u8 *)new BmlResource(1, (BmlResourceDescriptor *)(&TObjEneEpsilonGuard__resource_descriptor), 0, 0, (void *)(0));
     lbl_805D6FA0 = p;
     p = (u8 *)::operator new(0x10);
     if (p != NULL) {

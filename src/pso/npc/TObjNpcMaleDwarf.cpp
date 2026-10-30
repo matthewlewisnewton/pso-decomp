@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/unk/text_8014B8A4.h"
 #include "pso/npc/TUnk_804A9F50.h"
 #include "pso/npc/TObjNpcMaleDwarf.h"
@@ -20,21 +21,19 @@ struct RecoveredGlobal_8014BDFC___vt__16TObjNpcMaleDwarf {
 };
 
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern RecoveredGlobal_8014BD54_lbl_804AA3F0 bm_n_efsm_i_body_3_resource_descriptor;
 extern u32 TObjNpcMaleDwarf__shared_model_resource;
 extern RecoveredGlobal_8014BF2C_lbl_804AA580 bm_n_efm_i_body_resource_descriptor;
 extern u32 TObjNpcMaleFat__static_model_resource;
 extern s32 __vt__16TObjNpcMaleDwarf[];
 extern s32 TObjNpcMaleDwarf__name;
-void TLobby__sub_8001FE7C(void*, int);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
 
 void TObjNpcMaleDwarf::unload_static_data() {
     if ((u32) TObjNpcMaleDwarf__shared_model_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)TObjNpcMaleDwarf__shared_model_resource, 1);
+        delete (BmlResource *)((void*)TObjNpcMaleDwarf__shared_model_resource);
         TObjNpcMaleDwarf__shared_model_resource = 0U;
     }
 }
@@ -42,11 +41,8 @@ void TObjNpcMaleDwarf::unload_static_data() {
 void TObjNpcMaleDwarf::load_shared_resource() {
     s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
+    temp_r3 = (int)new BmlResource(1, (BmlResourceDescriptor *)(&bm_n_efsm_i_body_3_resource_descriptor.value), 0, 0, (void *)(0));
     var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &bm_n_efsm_i_body_3_resource_descriptor.value, 0, 0, 0));
-    }
     (*(s32 *)&TObjNpcMaleDwarf__shared_model_resource) = var_r0;
 }
 
@@ -92,18 +88,15 @@ void * TObjNpcMaleFat__create(void *arg0) {
 
 void TObjNpcMaleFat::free_static_model() {
     if ((u32) TObjNpcMaleFat__static_model_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)TObjNpcMaleFat__static_model_resource, 1);
+        delete (BmlResource *)((void*)TObjNpcMaleFat__static_model_resource);
         TObjNpcMaleFat__static_model_resource = 0U;
     }
 }
 void TObjNpcMaleFat::load_static_resource() {
     s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
+    temp_r3 = (int)new BmlResource(1, (BmlResourceDescriptor *)(&bm_n_efm_i_body_resource_descriptor.value), 0, 0, (void *)(0));
     var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &bm_n_efm_i_body_resource_descriptor.value, 0, 0, 0));
-    }
     (*(s32 *)&TObjNpcMaleFat__static_model_resource) = var_r0;
 }
 
