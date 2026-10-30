@@ -705,7 +705,7 @@ void TObjPlayer::step_along_ground() {
     u8 *q;
 
     VecCopy(&this->prev_position, (const Vec *)&this->position);
-    VecCopy((Vec *)&pos, (const Vec *)&this->m_2fc);
+    VecCopy((Vec *)&pos, (const Vec *)&this->body_center_position);
     vel = *(Raw_800A10A0 *)(arg0 + 0x308);
     vec_set_length((Vec *)&vel, 10.0f + ((f32 (*)(int))TObjPlayer__sub_800A3200)(0));
     ((void (*)(void *, void *))vec3_add_to)(&pos, &vel);
@@ -907,7 +907,7 @@ void TObjPlayer__sub_800A16C4(u8 *player) {
 void TObjEneDarkGunner::vfunc_61() {
     u8 *arg0 = (u8 *)this;
     ((TObjBase *)arg0)->obj_clearFlags30((s32)(0x100U));
-    spawn_particle_effect(((u8 *)&this->m_2fc), 0xD7);
+    spawn_particle_effect(((u8 *)&this->body_center_position), 0xD7);
     play_sound_effect(0x4003B22D, (u8 *)&this->position, 0, 0);
 }
 

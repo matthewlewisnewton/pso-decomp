@@ -1639,8 +1639,8 @@ void TObjEneDolmOlm::vfunc_60() {
     }
 }
 void TObjEneDolmOlm::advance_position() {
-    VecCopy((Vec *)&this->m_2fc, (const Vec *)&this->position);
-    this->m_300 = (f32) (this->m_300 + TObjEneDolmOlm__data_805DEF6C);
+    VecCopy((Vec *)&this->body_center_position, (const Vec *)&this->position);
+    this->body_center_position.y = (f32) (this->body_center_position.y + TObjEneDolmOlm__data_805DEF6C);
 }
 void TObjEneDolmOlm::request_stand_action() { this->requested_action = 1; }
 #pragma push

@@ -4427,9 +4427,9 @@ void TObjEneBm5GibonU::vfunc_88() {
 
 void TObjEneBm5GibonU::update_center_position() {
     u8 *arg0 = (u8 *)this;
-    this->m_2fc = (f32) *(f32 *)((s8 *)arg0 + 0x38);
-    this->m_300 = (f32) (TObjEneBm5GibonU__data_805DA178 + *(f32 *)((s8 *)arg0 + 0x3C));
-    this->m_304 = (f32) *(f32 *)((s8 *)arg0 + 0x40);
+    this->body_center_position.x = (f32) *(f32 *)((s8 *)arg0 + 0x38);
+    this->body_center_position.y = (f32) (TObjEneBm5GibonU__data_805DA178 + *(f32 *)((s8 *)arg0 + 0x3C));
+    this->body_center_position.z = (f32) *(f32 *)((s8 *)arg0 + 0x40);
     VecCopy((Vec *)(arg0 + 0x74), (const Vec *)(arg0 + 0x2FC));
 }
 

@@ -3597,7 +3597,7 @@ void TObjEneMe3Stelth::setup_move_bounds() {
 }
 
 void TObjEneMe3Stelth::vfunc_88() {
-    *(f32 *)((s8 *)this->bodies + 4) = (f32) (this->m_300 - *(f32 *)((s8 *)this + 0x3C));
+    *(f32 *)((s8 *)this->bodies + 4) = (f32) (this->body_center_position.y - *(f32 *)((s8 *)this + 0x3C));
 }
 
 void TObjEneMe3Stelth::copy_pos_with_height_offset() {

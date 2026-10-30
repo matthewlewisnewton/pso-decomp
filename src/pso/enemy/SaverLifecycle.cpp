@@ -869,7 +869,7 @@ void TObjEneSaver::sub_800A4D9C() {
                 copy_position_if_valid__10TObjPlayerFii((s32)arg0, (s32)&pos);
             }
             VecCopy((Vec *)&d, (const Vec *)(arg0 + 0x29C));
-            subtract_vector(&d, (u8 *)&this->m_2fc);
+            subtract_vector(&d, (u8 *)&this->body_center_position);
             {
                 f32 dist = newton_sqrtf(d.x * d.x + d.z * d.z);
                 dist -= 15.0f;

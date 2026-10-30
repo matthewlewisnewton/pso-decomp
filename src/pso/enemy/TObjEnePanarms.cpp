@@ -1408,7 +1408,7 @@ void TObjEnePanBARA::vfunc_63() {
             VecCopy(&this->position, (const Vec *)(this->m_39c + 0x38));
             *(f32 *)((s8 *)arg0 + 0x38) += lbl_805DA588 * sin_table_lookup(this->rotation_y);
             *(f32 *)((s8 *)arg0 + 0x40) += lbl_805DA588 * cos_table_lookup(this->rotation_y);
-            VecCopy((Vec *)&this->m_2fc, &this->position);
+            VecCopy((Vec *)&this->body_center_position, &this->position);
         }
         ((int (*)(void*, int))TObjEnePanarms__sub_800E1C98)(arg0, 7);
         break;

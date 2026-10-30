@@ -312,7 +312,7 @@ void TOCtrlDubchik::run_task() {
         complete_and_destroy();
         break;
     }
-    VecCopy((Vec *)&this->m_2fc, (const Vec *)&this->position);
+    VecCopy((Vec *)&this->body_center_position, (const Vec *)&this->position);
     ((TObjCollidable *)arg0)->refresh_collision_body_centers();
     submit_cursor_candidate(arg0, -1);
 }

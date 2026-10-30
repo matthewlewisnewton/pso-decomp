@@ -3435,7 +3435,7 @@ void TObjChara::apply_poison_status() {
 void TObjPlayer::spawn_recovery_effect() {
     u8 *arg0 = (u8 *)this;
     if (((s32 (*)(void *, s32))obj_testFlags30__14TObjCollidableFUl)(arg0, 0x02000000) == 0) {
-        create_timed_particle_emitter_with_flags(((u8 *)&this->m_2fc), 0x10A, 0, 0xA, 0x40);
+        create_timed_particle_emitter_with_flags(((u8 *)&this->body_center_position), 0x10A, 0, 0xA, 0x40);
     }
 }
 
@@ -4047,7 +4047,7 @@ f32 TObjEnemy::enemy_wander_home(f32 farg0, f32 farg1, f32 farg2, s32 arg1) {
     f32 var_f31;
     s32 ang;
     u8 *arg0 = (u8 *)this;
-    var_f31 = horizontal_distance_squared((u8 *)&this->m_2fc, (u8 *)&this->m_29c);
+    var_f31 = horizontal_distance_squared((u8 *)&this->body_center_position, (u8 *)&this->m_29c);
     if ((var_f31 < (farg0 * farg0)) || (((TObjEnemy *)(arg0))->is_actor_cadence_frame(0x96) != 0)) {
         v.x = v.y = (0.0f);
         v.z = (1.0f);
@@ -4069,7 +4069,7 @@ f32 TObjEnemy::enemy_wander_home(f32 farg0, f32 farg1, f32 farg2, s32 arg1) {
         enemy_turn_toward_dest((Obj_80018660 *) arg0, arg1);
         enemy_set_heading_velocity(farg0, (TObjEnemy *)arg0, ((TObjEnemy *)arg0)->rotation_y);
         move_with_wall_slide(arg0);
-        var_f31 = horizontal_distance_squared((u8 *)&this->m_29c, (u8 *)&this->m_2fc);
+        var_f31 = horizontal_distance_squared((u8 *)&this->m_29c, (u8 *)&this->body_center_position);
         ((TObjEnemy *)arg0)->m_2ac = ((TObjEnemy *)arg0)->m_2ac + 1;
     }
     return var_f31;
@@ -4432,9 +4432,9 @@ s32 TObjChara::recalc_combat_stats(void *motion_arg, void *arg2, void *bonus_arg
 void TObjChara::calc_attach_pos() {
     u8 *arg0 = (u8 *)this;
     if ((void *) this->m_2b0 != NULL) {
-        this->m_2fc = (f32) this->position.x;
-        this->m_300 = (f32) (((0.5f) * *(f32 *)(this->m_2b0 + 0x10)) + this->position.y);
-        this->m_304 = (f32) this->position.z;
+        this->body_center_position.x = (f32) this->position.x;
+        this->body_center_position.y = (f32) (((0.5f) * *(f32 *)(this->m_2b0 + 0x10)) + this->position.y);
+        this->body_center_position.z = (f32) this->position.z;
         return;
     }
     ((s32 (*)(void *, void *))VecCopy__FP3VecPC3Vec)(arg0 + 0x2FC, (u8 *)&this->position);

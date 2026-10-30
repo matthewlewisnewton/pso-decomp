@@ -1984,7 +1984,7 @@ void TObjEneMe1GiGue::run_task() {
         ((TObjEneMe1GiGue *)arg0)->state = 0;
     }
     VecCopy((Vec *)(arg0 + 0x2FC), (const Vec *)(arg0 + 0x38));
-    ((TObjEneMe1GiGue *)arg0)->m_300 = (f32) (((TObjEneMe1GiGue *)arg0)->m_300 + (15.0f + ((TObjEneMe1GiGue *)arg0)->m_3ec));
+    ((TObjEneMe1GiGue *)arg0)->body_center_position.y = (f32) (((TObjEneMe1GiGue *)arg0)->body_center_position.y + (15.0f + ((TObjEneMe1GiGue *)arg0)->m_3ec));
     *(f32 *)((s8 *)(((TObjEneMe1GiGue *)arg0)->bodies) + 4) = (f32) (25.0f + ((TObjEneMe1GiGue *)arg0)->m_3ec);
     if (!(((TObjEneMe1GiGue *)arg0)->m_388 & 0x40000)) {
         submit_cursor_candidate(arg0, -1);

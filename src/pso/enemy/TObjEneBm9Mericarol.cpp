@@ -510,13 +510,13 @@ s32 TObjEneBm9Mericarol::try_set_mode8_if_flag2() {
 void TObjEneBm9Mericarol__sub_802D093C(void) {  }
 void TObjEneBm9Mericarol__sub_802D0940(void) {  }
 void TObjEneBm9Mericarol::vfunc_88() {
-    *(f32 *)((s8 *)this->bodies + 4) = (f32) (this->m_300 - *(f32 *)((s8 *)this + 0x3C));
+    *(f32 *)((s8 *)this->bodies + 4) = (f32) (this->body_center_position.y - *(f32 *)((s8 *)this + 0x3C));
 }
 
 void TObjEneBm9Mericarol::sync_center_position() {
     u8 *arg0 = (u8 *)this;
     VecCopy((Vec *)(arg0 + 0x2FC), (const Vec *)(arg0 + 0x38));
-    this->m_300 = (f32) (this->m_300 + lbl_805DE704);
+    this->body_center_position.y = (f32) (this->body_center_position.y + lbl_805DE704);
     VecCopy((Vec *)(arg0 + 0x74), (const Vec *)(arg0 + 0x2FC));
 }
 

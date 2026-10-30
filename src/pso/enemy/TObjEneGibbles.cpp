@@ -869,19 +869,19 @@ void TObjEneGibbles__sub_802D7DAC(s32 arg0) {
 void TObjEneGibbles__sub_802D7E3C(void) {  }
 
 void TObjEneGibbles::update_shadow_height() {
-    *(f32 *)((s8 *)this->bodies + 4) = (f32) (this->m_300 - this->position.y);
+    *(f32 *)((s8 *)this->bodies + 4) = (f32) (this->body_center_position.y - this->position.y);
 }
 
 void TObjEneGibbles::update_position() {
     u8 *arg0 = (u8 *)this;
 
     VecCopy((Vec *)(arg0 + 0x2FC), &this->position);
-    this->m_300 = (f32) (this->m_300 + TObjEneGibbles__data_805DE7E8);
+    this->body_center_position.y = (f32) (this->body_center_position.y + TObjEneGibbles__data_805DE7E8);
     switch (this->mode) {
     case 2:
     case 6:
     case 0xA:
-        this->m_300 = (f32) (this->m_300 + this->m_38c);
+        this->body_center_position.y = (f32) (this->body_center_position.y + this->m_38c);
         break;
     }
 }
@@ -1672,7 +1672,7 @@ void TObjEneGibbles::vfunc_60() {
     case 0:
     default: {
         VecCopy((Vec *)((Vec_800A6B14 *) &v), (const Vec *)((Vec_800A6B14 *) (this->target + 0x2FC)));
-        subtract_vector(&v, (u8 *)&this->m_2fc);
+        subtract_vector(&v, (u8 *)&this->body_center_position);
         f64 t = atan2_float(v.x, v.z);
         this->mode = 4;
         if ((s32) (TObjEneGibbles__data_80472798 * t) < 0x10) {

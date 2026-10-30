@@ -227,7 +227,7 @@ void TBoss3VoloptCore::run_task() {
         dispatch_reaction_state();
         position.y = (position.y > 7.0f) ? position.y : 7.0f;
         update_prev_position();
-        TBoss3Volopt::set_camera_focus((Vec *)&m_2fc);
+        TBoss3Volopt::set_camera_focus((Vec *)&body_center_position);
         clear_all_status_effects();
     }
 }
@@ -326,7 +326,7 @@ void TBoss3VoloptCore::update_charge_state() {
             state = 4;
             return;
         }
-        VecCopy((Vec *)unk_308, (Vec *)&player->m_2fc);
+        VecCopy((Vec *)unk_308, (Vec *)&player->body_center_position);
         subtract_vector((Vec *)unk_308, &position);
         vec_set_length((Vec *)unk_308, 5.0f);
         turn_toward_direction(0x800, (Vec *)unk_308);

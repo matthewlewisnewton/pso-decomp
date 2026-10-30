@@ -2243,7 +2243,7 @@ void TObjEneMe1Gee::vfunc_112(s32 arg1) {
         play_sound_effect(TObjEneMe1Gee::handle_message((s32) arg0, 0x3A843), (u32)(arg0 + 0x38), 0, 0);
         *(s32 *)((s8 *)arg0 + 0x3C8) = (s32) (*(s32 *)((s8 *)arg0 + 0x3C8) | 0x400000);
         this->actorFlags = (s32) (this->actorFlags | 0x01000000);
-        ((void (*)(void *, void *))VecCopy__FP3VecPC3Vec)(&stack.sp8, (u8 *)&this->m_2fc);
+        ((void (*)(void *, void *))VecCopy__FP3VecPC3Vec)(&stack.sp8, (u8 *)&this->body_center_position);
         stack.spC -= TObjEneMe1Gee__data_805DA0C8;
         ((TObjEnemy *)arg0)->refresh_and_send_entity_flags();
         return;

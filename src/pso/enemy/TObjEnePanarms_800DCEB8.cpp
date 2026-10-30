@@ -1111,7 +1111,7 @@ void TObjEnePanarms::render() {
     saved_model_render_flags = model_render_flags;
     fade = &((Obj_800DEF5C *)this)->fades[cam];
     update__15RenderFadeStateFv(fade);
-    if (fade->updateFromCamera(&this->m_2fc) != 0) {
+    if (fade->updateFromCamera(&this->body_center_position.x) != 0) {
         ((VFade_800DEF5C *)fade)->begin_draw();
         draw = 1;
         if (defer_render__7TObjectFv(this) != 0) {
@@ -1153,7 +1153,7 @@ void TObjEnePanarms::run_task() {
                 advance_animation();
             }
             if ((*(s32 *)&this->m_3dc != 0 && *(s32 *)&this->unk_374 != 4) || *(s32 *)&this->unk_374 == 1) {
-                minimap_render_dot(&this->m_2fc, -0x5DB4, 1, 0);
+                minimap_render_dot(&this->body_center_position, -0x5DB4, 1, 0);
             }
         }
     }

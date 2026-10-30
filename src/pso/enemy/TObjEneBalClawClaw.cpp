@@ -1177,8 +1177,8 @@ void TObjEneBalClawClaw::run_task() {
         }
         ((TObjEneBalClaw *)arg0)->update_claw_angle();
         VecCopy((Vec *)(arg0 + 0x2FC), (const Vec *)(arg0 + 0x38));
-        temp_f2 = this->m_300;
-        this->m_300 = (f32) (temp_f2 + (this->m_3b4 + *(f32 *)((s8 *)arg0 + 0x3BC)));
+        temp_f2 = this->body_center_position.y;
+        this->body_center_position.y = (f32) (temp_f2 + (this->m_3b4 + *(f32 *)((s8 *)arg0 + 0x3BC)));
         temp_f1 = this->m_3b4;
         temp_r5 = (unsigned char *) (this->bodies);
         *(f32 *)((s8 *)temp_r5 + 4) = (f32) (temp_f1 + *(f32 *)((s8 *)arg0 + 0x3BC));

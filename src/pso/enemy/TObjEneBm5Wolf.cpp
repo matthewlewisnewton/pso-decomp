@@ -3444,9 +3444,9 @@ void *__nw__7TObjectFUl(int);
 extern s32 bm5_wolf_class_name;
 void TObjEneBm5Wolf::update_collision_center() {
 
-    this->m_2fc = (f32) *(f32 *)((s8 *)((u8 *)this) + 0x38);
-    this->m_300 = (f32) ((*(f32 *)&this->_pad40C) + ((*(f32 *)&TObjEneBm5Wolf__data_805D9DB4) + *(f32 *)((s8 *)((u8 *)this) + 0x3C)));
-    this->m_304 = (f32) *(f32 *)((s8 *)((u8 *)this) + 0x40);
+    this->body_center_position.x = (f32) *(f32 *)((s8 *)((u8 *)this) + 0x38);
+    this->body_center_position.y = (f32) ((*(f32 *)&this->_pad40C) + ((*(f32 *)&TObjEneBm5Wolf__data_805D9DB4) + *(f32 *)((s8 *)((u8 *)this) + 0x3C)));
+    this->body_center_position.z = (f32) *(f32 *)((s8 *)((u8 *)this) + 0x40);
     VecCopy((Vec *)(((u8 *)this) + 0x74), (const Vec *)(((u8 *)this) + 0x2FC));
 }
 
