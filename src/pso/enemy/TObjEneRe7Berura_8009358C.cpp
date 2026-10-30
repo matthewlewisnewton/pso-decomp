@@ -650,7 +650,7 @@ void TObjEneRe7Berura__sub_800940E8(TObjEneRe7Berura *arg0, s32 arg1) {
         return;
     case 3:
         if (check_death_trigger__16TObjEneRe7BeruraFv() == 0) {
-            if ((u32) arg0->m_390 == 0U) {
+            if (arg0->target == NULL) {
                 ((TObjEneDD *)arg0)->transition_enemy_state(8);
             } else if (*(f32 *)((s8 *)arg0 + 0x3AC) <= TObjEneRe7Berura__data_805D9740) {
                 ((TObjEneDD *)arg0)->transition_enemy_state(6);

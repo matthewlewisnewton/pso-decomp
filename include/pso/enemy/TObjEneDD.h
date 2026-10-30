@@ -7,6 +7,12 @@
 struct TObjEneDD : public TObjEnemy {
     TObjEneDD(TObject *parent);
     virtual ~TObjEneDD();
+    s32 previous_mode;
+    s32 m_378;
+    f32 m_37c;
+    u8 dd_fields_380[0x4];
+    s32 m_384;
+    s32 m_388;
     void set_part_local_pos(void *, s32);
     void transition_enemy_state(s32);
     void sub_800BBA0C();
@@ -100,5 +106,7 @@ struct TObjEneDD : public TObjEnemy {
     void init_position_vectors();
     static void release_resource();
 };
+
+typedef char TObjEneDD_size_check[sizeof(TObjEneDD) == 0x38C ? 1 : -1];
 
 #endif

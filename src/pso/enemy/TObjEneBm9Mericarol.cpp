@@ -600,10 +600,10 @@ void TObjEneBm9Mericarol::run_task() {
     }
     temp_r3 = this->m_454;
     if (temp_r3 & 0x10) {
-        if ((u32) this->m_390 == 0U) {
+        if ((u32) this->target == 0U) {
             this->m_454 = (s32) (temp_r3 & 0xFFFFFFEF);
         }
-    } else if ((u32) this->m_390 != 0U) {
+    } else if ((u32) this->target != 0U) {
         this->m_454 = (s32) (temp_r3 | 0x10);
     }
     if (this->vfunc_83() != 4) {

@@ -2447,9 +2447,9 @@ void TBoss1Dragon::update_emergence_state(u32 arg1) {
         return;
     case 6:
         if (choose_burrow_ring_destination__12TBoss1DragonFPvPv((Dragon_80028EA8 *)this, (Vec_80028EA8 *)(((u8 *)this) + 0x394)) == 0) {
-            this->targetX = (0.0f);
-            this->targetY = *(f32 *)((s8 *)((u8 *)this) + 0x3C);
-            this->targetZ = (0.0f);
+            this->target_destination.x = (0.0f);
+            this->target_destination.y = *(f32 *)((s8 *)((u8 *)this) + 0x3C);
+            this->target_destination.z = (0.0f);
             UPDVEL_80023450(this, (0.0f));
         }
         this->saveTargetDestination();
@@ -2715,9 +2715,9 @@ void TBoss1Dragon::update_burrow_outward_run(u32 arg1) {
             *(f32 *)((s8 *)arg0 + 0x3A0) = sin_table_lookup(this->rotation_y);
             *(f32 *)((s8 *)arg0 + 0x3A8) = cos_table_lookup(this->rotation_y);
         }
-        this->targetX = (350.0f) * *(f32 *)((s8 *)arg0 + 0x3A0);
-        this->targetY = (0.0f);
-        this->targetZ = (350.0f) * *(f32 *)((s8 *)arg0 + 0x3A8);
+        this->target_destination.x = (350.0f) * *(f32 *)((s8 *)arg0 + 0x3A0);
+        this->target_destination.y = (0.0f);
+        this->target_destination.z = (350.0f) * *(f32 *)((s8 *)arg0 + 0x3A8);
         ((TBoss1Dragon *)arg0)->saveTargetDestination();
         break;
     case ENEMY_STATE_UPDATE:
@@ -3739,7 +3739,7 @@ void TBoss1Dragon::update_flight_state(u32 arg1) {
         restoreTargetPosition__12TBoss1DragonFv();
         break;
     case 6:
-        prepare_flight_destination__12TBoss1DragonFPv(arg0, (u8 *)&this->targetX);
+        prepare_flight_destination__12TBoss1DragonFPv(arg0, (u8 *)&this->target_destination.x);
         ((TBoss1Dragon *)arg0)->saveTargetDestination();
         break;
     case ENEMY_STATE_UPDATE:
@@ -3947,9 +3947,9 @@ void TBoss1Dragon::update_breath_attack_state(u32 arg1) {
         if (enemy_validate_retained_target() != 0) {
             ((TObjEneDD_ST *)arg0)->enemy_copy_target_destination();
         } else {
-            this->targetX = (f32) ((lbl_805D8074 * sin_table_lookup(this->rotation_y)) + *(f32 *)((s8 *)arg0 + 0x40C));
-            this->targetY = (f32) this->position.y;
-            this->targetZ = (f32) ((lbl_805D8074 * cos_table_lookup(this->rotation_y)) + *(f32 *)((s8 *)arg0 + 0x414));
+            this->target_destination.x = (f32) ((lbl_805D8074 * sin_table_lookup(this->rotation_y)) + *(f32 *)((s8 *)arg0 + 0x40C));
+            this->target_destination.y = (f32) this->position.y;
+            this->target_destination.z = (f32) ((lbl_805D8074 * cos_table_lookup(this->rotation_y)) + *(f32 *)((s8 *)arg0 + 0x414));
         }
         ((TBoss1Dragon *)arg0)->saveTargetDestination();
         return;
@@ -4097,7 +4097,7 @@ void TBoss1Dragon::update_walking_state(u32 arg1) {
     case 9:
         ticks = this->stateStep;
         next = 0;
-        if (ticks >= 150 && this->m_390 != 0) {
+        if (ticks >= 150 && this->target != NULL) {
             if (*(f32 *)((s8 *)arg0 + 0x3AC) < this->fallVelocity) {
                 next = 1;
             } else if (NEAR_800267B8(arg0) != 0) {
@@ -5025,8 +5025,8 @@ void TBoss1Dragon::setDestinationX(int x) {
 }
 
 void TBoss1Dragon::saveTargetDestination() {
-    destinationX = targetX;
-    destinationZ = targetZ;
+    destinationX = target_destination.x;
+    destinationZ = target_destination.z;
 }
 
 void TBoss1Dragon::restorePosition() {
@@ -5039,8 +5039,8 @@ void TBoss1Dragon::copySavedX(int* x) {
 }
 
 void TBoss1Dragon::restoreTargetPosition() {
-    targetX = savedX;
-    targetZ = savedZ;
+    target_destination.x = savedX;
+    target_destination.z = savedZ;
 }
 
 struct Pkt_800284B4 {

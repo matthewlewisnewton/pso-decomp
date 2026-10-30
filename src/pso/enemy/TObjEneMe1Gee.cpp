@@ -2289,7 +2289,7 @@ void TObjEneMe1Gee::state_return_home(s32 arg1) {
             update_angle();
             set_move_speed_x();
             if (*(f32 *)((s8 *)this + 0x3AC) > lbl_805DA0CC) {
-                this->move_with_wall_slide_commit(*(f32 *)((s8 *)this + 0x3A0), *(f32 *)((s8 *)this + 0x3A8), lbl_805DA0D0);
+                this->move_with_wall_slide_commit(this->target_direction.x, this->target_direction.z, lbl_805DA0D0);
             }
             break;
         }
@@ -2428,7 +2428,7 @@ void run_task__13TObjEneMe1GeeFPvi(TObjEneMe1Gee *arg0, s32 arg1) {
         ((TObjEneDD *)arg0)->update_velocity();
         arg0->update_angle();
         arg0->set_move_speed_x();
-        ((TObjEneDD *)arg0)->move_with_wall_slide_commit(arg0->m_3a0, (f32) (*(f32 *)((s8 *)arg0 + 0x3A8)), lbl_805DA0D0);
+        ((TObjEneDD *)arg0)->move_with_wall_slide_commit(arg0->target_direction.x, (f32) (arg0->target_direction.z), lbl_805DA0D0);
         arg0->vfunc_88();
         break;
     }
@@ -3494,7 +3494,7 @@ s32 TObjEneMe1Gee::handle_message(s32 arg0, s32 arg1) {
 }
 
 s32 TObjEneMe1Gee::check_death_trigger() {
-    if ((u32) this->m_390 == 0U) {
+    if (this->target == NULL) {
         transition_enemy_state__9TObjEneDDFl(this, 0xF);
         return 1;
     }
@@ -3527,7 +3527,7 @@ s32 TObjEneMe1Gee::check_can_attack() {
     if (*(f32 *)((s8 *)this + 0x3AC) < lbl_805DA0FC) {
         var_r31 = 1;
         *(void **)((s8 *)this + 0x3C0) = find_entity_by_id(*(u16 *)((s8 *)this + 0x48C));
-        if ((((VObj_800CBA98 *)(*(void **)((s8 *)this + 0x3C0)))->m114(this->m_390) == 0) && (((s32 (*)(void *, f32 *, f32))find_attack_target__13TObjEneMe1GeeFPvPv)(this, &sp8, lbl_805DA138) != 0) && (sp8 > lbl_805DA0FC)) {
+        if ((((VObj_800CBA98 *)(*(void **)((s8 *)this + 0x3C0)))->m114((u32)this->target) == 0) && (((s32 (*)(void *, f32 *, f32))find_attack_target__13TObjEneMe1GeeFPvPv)(this, &sp8, lbl_805DA138) != 0) && (sp8 > lbl_805DA0FC)) {
             var_r31 = 0;
         }
     }
@@ -3594,7 +3594,7 @@ void TObjEneMe1Gee::vfunc_105() {
 void TObjEneMe1Gee::update() { if (this->enemy_has_live_target() != 0) { this->enemy_copy_target_destination(); this->update_velocity(); this->update_angle(); } }
 
 void TObjEneMe1Gee::update_angle() {
-    this->rotation_y = approach_angle_limited(this->rotation_y, (s32) (lbl_8043BF28 * atan2_float(this->m_3a0, *(f32 *)((s8 *)this + 0x3A8))), 0x400);
+    this->rotation_y = approach_angle_limited(this->rotation_y, (s32) (lbl_8043BF28 * atan2_float(this->target_direction.x, this->target_direction.z)), 0x400);
     this->rotation_y = (s32) (s16) this->rotation_y;
 }
 

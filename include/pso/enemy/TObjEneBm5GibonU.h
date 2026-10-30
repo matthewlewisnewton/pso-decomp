@@ -20,16 +20,6 @@ struct TObjEneBm5GibonU : public TObjEneDD_ST {
     void vfunc_62();
     void vfunc_61();
     void vfunc_28();
-    u8 unk_374[0x14];
-    s32 m_388;
-    u8 unk_38C[0x4];
-    TObjPlayer *m_390;
-    f32 m_394;
-    u8 unk_398[0x4];
-    f32 m_39c;
-    u8 unk_3A0[0xC];
-    f32 m_3ac;
-    u8 unk_3B0[0x10];
     void* m_3c0;
     u8 _pad3C4[0x8];
     void* m_3cc;

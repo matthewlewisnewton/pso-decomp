@@ -2,6 +2,7 @@
 #define PSO_ENEMY_TOBJENEME1GEE_H
 
 #include "types.h"
+#include <stddef.h>
 #include "pso/enemy/TObjEneDD_ST.h"
 
 struct TObjEneMe1Gee : public TObjEneDD_ST {
@@ -43,15 +44,7 @@ struct TObjEneMe1Gee : public TObjEneDD_ST {
     void state_attack_loop(s32);
     void render();
     void run_task();
-    u8 unk_374[0x1C];
-    u32 m_390;
-    u8 unk_394[0xC];
-    f32 m_3a0;
-    u32 m_3c0;
-    u32 m_3c4;
-    u32 m_3c8;
-    void* m_3cc;
-    u8 _pad3D0[0x10];
+    TObjEneMe1Gee *leader;
     u32 m_3e0;
     u8 _pad3E4[0x20];
     u32 m_404;
@@ -96,5 +89,10 @@ struct TObjEneMe1Gee : public TObjEneDD_ST {
     void update();
 };
 
+// The legacy field suffixes do not describe their physical offsets.
+typedef char GeeLeaderOffset[offsetof(TObjEneMe1Gee, leader) == 0x3C0 ? 1 : -1];
+typedef char GeeLegacyRoleOffset[offsetof(TObjEneMe1Gee, m_3e0) == 0x3C4 ? 1 : -1];
+typedef char GeeLegacyAttackHeightOffset[offsetof(TObjEneMe1Gee, m_404) == 0x3E8 ? 1 : -1];
+typedef char GeeLegacyTailFieldOffset[offsetof(TObjEneMe1Gee, m_48c) == 0x470 ? 1 : -1];
 typedef char TObjEneMe1Gee_size[sizeof(TObjEneMe1Gee) == 0x490 ? 1 : -1];
 #endif

@@ -34,11 +34,7 @@ struct TObjEneMe3SinowZoa : public TObjEneDD_ST {
     void vfunc_62();
     void vfunc_61();
     void vfunc_28();
-    u8 unk_374[0x30];
-    u32 m_3c0;
-    u8 _pad3C4[0x8];
-    u32 m_3cc;
-    u8 unk_3D0[0x10];
+    u8 unk_3C0[0x4];
     u32 m_3e0;
     u8 unk_3E4[0x30];
     void* m_414;

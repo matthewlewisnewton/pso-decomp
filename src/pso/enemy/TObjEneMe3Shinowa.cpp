@@ -2508,18 +2508,18 @@ void TObjEneMe3ShinowaMirage__sub_800E5CE4(u8 *ene_epsilon, s32 arg1) {
                 if (((TObjEneEpsilon *)ene_epsilon)->update_death_check() != 0) {
                     ((TObjEneDD_ST *)ene_epsilon)->enemy_copy_target_destination();
                     ((TObjEneDD *)ene_epsilon)->update_velocity();
-                    var_r4 = (s32) (TObjEneMe3ShinowaMirage__data_8043CFE0 * atan2_float(((TObjEneEpsilon *)ene_epsilon)->m_3a0, *(f32 *)((s8 *)ene_epsilon + 0x3A8)));
+                    var_r4 = (s32) (TObjEneMe3ShinowaMirage__data_8043CFE0 * atan2_float(((TObjEneDD_ST *)ene_epsilon)->target_direction.x, *(f32 *)((s8 *)ene_epsilon + 0x3A8)));
                 } else {
                     var_r4 = ((TObjEneEpsilon *)ene_epsilon)->rotation_y;
                 }
                 ((TObjEneEpsilon *)ene_epsilon)->rotation_y = approach_angle_limited(((TObjEneEpsilon *)ene_epsilon)->rotation_y, var_r4, 0x300);
-                ((TObjEneEpsilon *)ene_epsilon)->m_3a0 = sin_table_lookup(((TObjEneEpsilon *)ene_epsilon)->rotation_y);
+                ((TObjEneDD_ST *)ene_epsilon)->target_direction.x = sin_table_lookup(((TObjEneEpsilon *)ene_epsilon)->rotation_y);
                 *(f32 *)((s8 *)ene_epsilon + 0x3A8) = cos_table_lookup(((TObjEneEpsilon *)ene_epsilon)->rotation_y);
             }
             ((VObj_18_4f5f2e *)(ene_epsilon))->m110();
             if (((TObjEneEpsilon *)ene_epsilon)->frame >= TObjEneMe3ShinowaMirage__data_805DA5B8 && ((TObjEneEpsilon *)ene_epsilon)->frame <= lbl_805DA5D4) {
                 info = ((Info_800E5CE4 * *)&TObjEneMe3ShinowaMirage__mirage_info_table)[*(s32 *)((s8 *)ene_epsilon + 0x3C0)];
-                move_to_shot_position__9TObjEneDDFfff(ene_epsilon, info, ((TObjEneEpsilon *)ene_epsilon)->m_3a0, *(f32 *)((s8 *)ene_epsilon + 0x3A8), info->f8);
+                move_to_shot_position__9TObjEneDDFfff(ene_epsilon, info, ((TObjEneDD_ST *)ene_epsilon)->target_direction.x, *(f32 *)((s8 *)ene_epsilon + 0x3A8), info->f8);
             } else {
                 ((TObjEneEpsilon *)(ene_epsilon))->vfunc_102();
             }
@@ -2743,7 +2743,7 @@ void TObjEneMe3ShinowaMirage::state_chase_target(s32 arg1) {
         *(f32 *)((s8 *)arg0 + 0x414) = (f32) TObjEneMe3ShinowaMirage__data_805DA5B8;
         return;
     case 3:
-        if ((u32) this->m_390 == 0U) {
+        if (this->target == NULL) {
             this->vfunc_111();
             transition_enemy_state__9TObjEneDDFl(arg0, 0xB);
         } else if (((s32 (*)(f32))check_in_range__23TObjEneMe3ShinowaMirageFPv)((f32) (*(f32 *)((s8 *)arg0 + 0x414))) != 0) {

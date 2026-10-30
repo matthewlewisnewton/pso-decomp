@@ -3978,7 +3978,7 @@ void TBoss7DeRolLeC::set_state_and_send(s32 arg1) {
         pa.a = this->entity_id;
         pa.b = arg1;
         pa.c = (s16)this->m_6d0;
-        pa.d = this->m_38c;
+        pa.d = this->target_entity_id;
         ((TBoss7Joint *)(&pa))->broadcast_state();
         return;
     }

@@ -325,7 +325,7 @@ void TObjEneDellBiter::init_params() {
     set_state_8();
     movementParameters = &TObjEneDellBiter__param_table;
     initialize_enemy_state(0x48);
-    field_37c = lbl_805DF038;
+    m_37c = lbl_805DF038;
     enemy_init_acquire_period(30);
     enemy_init_validate_period(30);
     flags = 0;
@@ -1034,7 +1034,7 @@ void TObjEneDellBiter::fn_8030492C(s32 reason) {
         state_timer = 0;
         return;
     case 3:
-        if ((u32) current_target == 0U) {
+        if (target == NULL) {
             transition_enemy_state(4);
         } else if ((target_distance >= TObjEneDellBiter__movement_params->rush_start_distance) && ((s32) field_48c < 2)) {
             transition_enemy_state(6);
@@ -1141,7 +1141,7 @@ void TObjEneDellBiter::fn_803044AC(s32 reason) {
             }
             if (enemy_validate_retained_target(this) != 0) {
                 Vec v;
-                VecCopy(&v, &current_target->position);
+                VecCopy(&v, &((TObjChara *)target)->position);
                 subtract_vector(&v, &position);
                 if (normalize_vector_xz(&v) >= TObjEneDellBiter__data_805DEFE8) {
                     if (v.x * sin_table_lookup(rotation_y) + v.z * cos_table_lookup(rotation_y) < TObjEneDellBiter__data_805DEFF4) {
@@ -1441,7 +1441,7 @@ void TObjEneDellBiter::fn_80303AA0(s32 reason) {
     case 3:
         if (this->get_flag_b4() != 0 && this->check_low_hp_transition() == 0 &&
             this->fn_803054A8() == 0 && this->fn_803054FC() == 0) {
-            transition_enemy_state(next_mode);
+            transition_enemy_state(m_378);
         }
         break;
     case 0:

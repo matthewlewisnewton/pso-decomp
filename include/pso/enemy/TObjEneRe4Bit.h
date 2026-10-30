@@ -27,14 +27,6 @@ struct TObjEneRe4Bit : public TObjEneDD_ST {
     void vfunc_28();
     void render();
     void run_task();
-    u8 unk_374[0x30];
-    u32 m_3c0;
-    u16 m_3c4;
-    u8 _pad3C6[0x2];
-    u32 m_3c8;
-    u32 m_3cc;
-    u32 m_3d0;
-    u8 _pad3D4[0x8];
     void* m_3dc;
     u8 _pad3E0[0x10];
     u32 m_3f0;

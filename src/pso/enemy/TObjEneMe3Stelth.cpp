@@ -2094,19 +2094,19 @@ void TObjEneMe3Stelth__sub_800F3214(u8 *ene_epsilon, s32 arg1) {
                 if (((TObjEneEpsilon *)ene_epsilon)->update_death_check() != 0) {
                     ((TObjEneDD_ST *)ene_epsilon)->enemy_copy_target_destination();
                     ((TObjEneDD *)ene_epsilon)->update_velocity();
-                    var_r4 = (s32) (TObjEneMe3Stelth__data_8043D758 * atan2_float((f32) (((TObjEneEpsilon *)ene_epsilon)->m_3a0), (f32) (*(f32 *)((s8 *)ene_epsilon + 0x3A8))));
+                    var_r4 = (s32) (TObjEneMe3Stelth__data_8043D758 * atan2_float((f32) (((TObjEneDD_ST *)ene_epsilon)->target_direction.x), (f32) (*(f32 *)((s8 *)ene_epsilon + 0x3A8))));
                 } else {
                     var_r4 = ((TObjEneEpsilon *)ene_epsilon)->rotation_y;
                 }
                 ((TObjEneEpsilon *)ene_epsilon)->rotation_y = approach_angle_limited((int) (((TObjEneEpsilon *)ene_epsilon)->rotation_y), var_r4, 0x300);
-                ((TObjEneEpsilon *)ene_epsilon)->m_3a0 = sin_table_lookup((int) (((TObjEneEpsilon *)ene_epsilon)->rotation_y));
+                ((TObjEneDD_ST *)ene_epsilon)->target_direction.x = sin_table_lookup((int) (((TObjEneEpsilon *)ene_epsilon)->rotation_y));
                 *(f32 *)((s8 *)ene_epsilon + 0x3A8) = cos_table_lookup((int) (((TObjEneEpsilon *)ene_epsilon)->rotation_y));
             }
             ((VObj_18_4f5f2e *)(ene_epsilon))->m110();
             TObjEneMe3Stelth__sub_800F0C90(ene_epsilon);
             temp_f1 = ((TObjEneEpsilon *)ene_epsilon)->frame;
             if ((temp_f1 >= TObjEneMe3Stelth__data_805DA840) && (temp_f1 <= TObjEneMe3Stelth__data_805DA820)) {
-                move_to_shot_position__9TObjEneDDFfff(ene_epsilon, (int) TObjEneMe3Stelth__behavior_params_by_variant[*(s32 *)((s8 *)ene_epsilon + 0x3C8)], ((TObjEneEpsilon *)ene_epsilon)->m_3a0, *(f32 *)((s8 *)ene_epsilon + 0x3A8), TObjEneMe3Stelth__behavior_params_by_variant[*(s32 *)((s8 *)ene_epsilon + 0x3C8)][2]);
+                move_to_shot_position__9TObjEneDDFfff(ene_epsilon, (int) TObjEneMe3Stelth__behavior_params_by_variant[*(s32 *)((s8 *)ene_epsilon + 0x3C8)], ((TObjEneDD_ST *)ene_epsilon)->target_direction.x, *(f32 *)((s8 *)ene_epsilon + 0x3A8), TObjEneMe3Stelth__behavior_params_by_variant[*(s32 *)((s8 *)ene_epsilon + 0x3C8)][2]);
             } else {
                 ((TObjEneDD *)(ene_epsilon))->vfunc_102();
             }
@@ -2512,7 +2512,7 @@ void TObjEneMe3Stelth::state_chase(s32 arg1) {
         if (update_linked_position__12TObjEneDD_STFf(this, TObjEneMe3Stelth__data_805DA848) != 0) {
             this->enemy_copy_target_destination();
             this->update_velocity();
-            *(f32 *)((s8 *)((u8 *)this) + 0x434) = (f32) ((this->m_3a0 * sin_table_lookup(this->rotation_y)) + (*(f32 *)((s8 *)((u8 *)this) + 0x3A8) * cos_table_lookup(this->rotation_y)));
+            *(f32 *)((s8 *)((u8 *)this) + 0x434) = (f32) ((this->target_direction.x * sin_table_lookup(this->rotation_y)) + (*(f32 *)((s8 *)((u8 *)this) + 0x3A8) * cos_table_lookup(this->rotation_y)));
             if (*(f32 *)((s8 *)((u8 *)this) + 0x434) < cos_table_lookup(0x1000)) {
                 ((TObjEneDD *)((u8 *)this))->turn_toward_target_direction(0x500);
                 ((TObjEneDD *)(this))->vfunc_102();

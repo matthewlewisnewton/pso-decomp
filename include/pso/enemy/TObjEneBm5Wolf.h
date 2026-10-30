@@ -18,14 +18,6 @@ struct TObjEneBm5Wolf : public TObjEneDD_ST {
     void vfunc_28();
     void roaming_state(int event);
     void choose_roaming_destination();
-    u8 unk_374[0x4];
-    s32 m_378;
-    u8 unk_37C[0x14];
-    void* target;
-    f32 destination[3];
-    f32 destinationDirection[3];
-    f32 destinationDistance;
-    u8 _pad3B0[0x10];
     void* m_3c0;
     u8 _pad3C4[0x8];
     void* m_3cc;
@@ -106,9 +98,9 @@ struct TObjEneBm5Wolf : public TObjEneDD_ST {
 };
 
 typedef char WolfOffset_target[offsetof(TObjEneBm5Wolf, target) == 0x390 ? 1 : -1];
-typedef char WolfOffset_destination[offsetof(TObjEneBm5Wolf, destination) == 0x394 ? 1 : -1];
-typedef char WolfOffset_destinationDirection[offsetof(TObjEneBm5Wolf, destinationDirection) == 0x3A0 ? 1 : -1];
-typedef char WolfOffset_destinationDistance[offsetof(TObjEneBm5Wolf, destinationDistance) == 0x3AC ? 1 : -1];
+typedef char WolfOffset_destination[offsetof(TObjEneBm5Wolf, target_destination) == 0x394 ? 1 : -1];
+typedef char WolfOffset_destinationDirection[offsetof(TObjEneBm5Wolf, target_direction) == 0x3A0 ? 1 : -1];
+typedef char WolfOffset_destinationDistance[offsetof(TObjEneBm5Wolf, target_distance) == 0x3AC ? 1 : -1];
 typedef char WolfOffset_m_3c0[offsetof(TObjEneBm5Wolf, m_3c0) == 0x3C0 ? 1 : -1];
 typedef char WolfOffset_m_3d8[offsetof(TObjEneBm5Wolf, m_3d8) == 0x3D8 ? 1 : -1];
 typedef char WolfOffset_turnOffset[offsetof(TObjEneBm5Wolf, turnOffset) == 0x3E4 ? 1 : -1];
