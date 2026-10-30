@@ -25,6 +25,8 @@
 #include "pso/system/BmlResourceDescriptor.h"
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/TObjControl.h"
+#include "pso/TMainTask.h"
+#include "pso/player/TObjPlayer_80011014.h"
 #include "pso/misc/TLobby.h"
 #include "pso/misc/RenderFadeState.h"
 #include "pso/misc/TNowLoading.h"
@@ -54,7 +56,6 @@ extern void *shark_attack3_trail_buffer;
 extern void *shark_attack4_trail_buffer;
 extern __declspec(section ".sdata2") const f32 shark_attack_trail_end_frame;
 
-s32 is_split_screen();
 
 s32 restore_scene_lighting();
 s32 select_actor_lighting(void *);
@@ -360,7 +361,6 @@ void TLobby__sub_8001FE7C(void*, int);
 
 void mem_free(void*);
 
-extern void *tl_04;
 
 extern "C" __declspec(section ".rodata") const char shark_model_filename_0[] = "bm1f_s_wala_body.nj";
 extern "C" __declspec(section ".rodata") const char shark_model_filename_1[] = "bm1tl_s_wala_body.nj";
@@ -421,25 +421,25 @@ CollisionBody shark_collision_bodies[3] = {
 }
 
 void *TObjEneShark::create(void *setData) {
-    TObjControl *control = new TObjControl((TObject *)tl_04);
+    TObjControl *control = new TObjControl(tl_04);
     return new TObjEneShark(control, setData);
 }
 
 void TObjEneShark::free_resources() {
     if (shark_combat_stats != NULL) {
-        mem_free((void*)shark_combat_stats);
+        mem_free(shark_combat_stats);
         shark_combat_stats = NULL;
     }
     if (shark_attack_stats != NULL) {
-        mem_free((void*)shark_attack_stats);
+        mem_free(shark_attack_stats);
         shark_attack_stats = NULL;
     }
     if (shark_resistance_stats != NULL) {
-        mem_free((void*)shark_resistance_stats);
+        mem_free(shark_resistance_stats);
         shark_resistance_stats = NULL;
     }
     if (shark_movement_parameter_sets != NULL) {
-        mem_free((void*)shark_movement_parameter_sets);
+        mem_free(shark_movement_parameter_sets);
         shark_movement_parameter_sets = NULL;
     }
     if (shark_attack4_trail_buffer != NULL) {
@@ -550,7 +550,7 @@ s32 TObjEneMoja::calc_technique_level() {
     return v;
 }
 
-extern "C" void TObjPlayer__sub_800ACA0C(void) {  }
+void TObjEneMoja::fn_800ACA0C() {  }
 
 void TObjEneShark::bind_variant_model(s32 i) {
     model = (void *)shark_bml_resource->models[i].model;

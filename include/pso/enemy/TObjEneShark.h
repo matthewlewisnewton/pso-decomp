@@ -59,7 +59,4 @@ typedef char SharkTrailsOffset[offsetof(TObjEneShark, attack_trails) == 0x3C4 ? 
 typedef char SharkCameraFadesOffset[offsetof(TObjEneShark, camera_fades) == 0x3CC ? 1 : -1];
 typedef char SharkSize[sizeof(TObjEneShark) == 0x43C ? 1 : -1];
 
-extern "C" {
-void TObjPlayer__sub_800ACA0C(void);
-}
 #endif

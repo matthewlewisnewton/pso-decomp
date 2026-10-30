@@ -507,7 +507,6 @@ extern s32 lbl_8043B0B4[];
 extern s32 registered_player_count;
 extern s32 lbl_805D5870;
 void acquire_target__11TObjEneMojaFPv(u8 *arg0);
-s32 TObjPlayer__sub_800ACA0C(void *);
 
 void update_attack_jump__11TObjEneMojaFv(Obj_800ACFE8 *);
 struct Moja_800AE450;
@@ -1580,7 +1579,7 @@ void TObjEneMoja::run_task() {
     u8 *temp_r3_2;
     u8 *temp_r4;
     if (TObjPlayer::check_demo_mode() == 1) {
-        TObjPlayer__sub_800ACA0C(arg0);
+        fn_800ACA0C();
         return;
     }
     temp_r3 = this->targetId;
