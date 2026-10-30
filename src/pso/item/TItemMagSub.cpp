@@ -261,7 +261,7 @@ s32 TItemMagSub::resolve_owner_heading() {
 }
 
 void TItemMagSub::render() {
-    if (is_point_on_screen(&owner->body_center_position.x, 400.0f, 20.0f) && model != NULL) {
+    if (is_point_on_screen(&owner->body_center_position, 400.0f, 20.0f) && model != NULL) {
         drawing = this;
         set_texlist(textures);
         push_matrix();
