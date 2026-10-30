@@ -2,6 +2,7 @@
 #define PSO_MISC_TCAMERACTRL_803D6538_H
 
 #include "types.h"
+#include "pso/animation/MotionContext.h"
 
 extern "C" {
 void TCameraCtrl__sub_803D65F8(u8 *_w0);
@@ -10,13 +11,7 @@ s32 TObjPlayer__sub_803D7FD0(void);
 s32 TObjPlayer__sub_803D7FD8(void);
 }
 void advance_motion_row(void);
-extern "C" {
-void bind_motion_blend_channels(u8 *arg0, f32 farg0);
-}
 void bind_motion_channel_samplers(int arg0, f32 farg0);
-extern "C" {
-void bind_motion_context(s32 arg0, f32 farg0);
-}
 s32 blend_motion_poses(void *node, void *arg1, void *unused, void *arg3, void *rot);
 extern "C" {
 void compose_motion_node_matrix(void *arg0);

@@ -1,6 +1,6 @@
+#include "pso/misc/SampledMotionPoints.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
-#include "pso/boss/TBoss4Type3_800D9960.h"
 #include "pso/enemy/TObjEneMoja.h"
 
 extern "C" {
@@ -51,7 +51,7 @@ void TObjEneMoja::free_resources() {
         lbl_805D50D4 = 0U;
     }
     if ((u32) lbl_805D50DC != 0U) {
-        __dt__11TBoss4Type3FPvs((s32 *)lbl_805D50DC, 1);
+        delete (SampledMotionPoints *)lbl_805D50DC;
         lbl_805D50DC = 0U;
     }
     if ((u32) lbl_805D50D8 != 0U) {

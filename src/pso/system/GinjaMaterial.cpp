@@ -1,3 +1,4 @@
+#include "pso/system/ModelDrawCallback.h"
 #include "pso/system/GinjaMaterialState.h"
 #include "pso/player/TObjPlayer_803DF7A8.h"
 #include "pso/system/GinjaMaterial.h"
@@ -81,7 +82,6 @@ void set_ginja_vertex_arrays(Arr_803DC3BC *arg0);
 s32 apply_ginja_material_params(GinjaDrawRecord *);
 s32 GXCallDisplayList(void *, u32);
 extern s32 ginja_draw_list_state, ginja_draw_list_mask, ginja_draw_flags;
-s32 draw_ginja_model_lists(GinjaModel *model);
 void GXSetTexCoordGen2(s32 dst, u32 func, u32 src, s32 mtx, s32 normalize, s32 pt);
 extern s32 ginja_texture_matrix_ids[];
 extern s32 ginja_texcoord_gen_enabled;
@@ -98,7 +98,6 @@ void convert_color_f32_to_u8(const F_803DB9A0 *, C_803DB9A0 *);
 void convert_color_u8_to_f32(const C_803DB9A0 *, F_803DB9A0 *);
 extern F_803DB9A0 model_material_color;
 extern const C_803DB9A0 lbl_805E0F68;
-void init_model_draw_queue(void *);
 void traverse_model_node_tree(void *, void *);
 void GXSetChanCtrl(s32,s32,s32,s32,s32,s32,s32);
 extern s32 gx_chan_ctrl_light_mask;
@@ -114,7 +113,7 @@ extern RecoveredCallback_b52dc2a08a00 ginja_post_tev_callback;
 
 void draw_ginja_object(void *child) {
     prepare_ginja_model();
-    init_model_draw_queue((void *) draw_ginja_model_lists);
+    init_model_draw_queue(draw_ginja_model_lists);
     traverse_model_node_tree(child, (void *) queue_model_draw_current_matrix);
     flush_model_draw_queue();
     if (ginja_draw_end_callback != NULL) {
@@ -400,7 +399,8 @@ GinjaMaterialCache *invalidate_ginja_inherited_state() {
 #pragma scheduling off
 #pragma peephole off
 
-s32 draw_ginja_model_lists(GinjaModel *model) {
+s32 draw_ginja_model_lists(void *model_data) {
+  GinjaModel *model = (GinjaModel *)model_data;
   s32 secondaryCount;
   GinjaDrawRecord *secondary;
   GinjaDrawRecord *primary;

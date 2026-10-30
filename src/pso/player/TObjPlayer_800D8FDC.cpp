@@ -1,3 +1,4 @@
+#include "pso/misc/SampledMotionPoints.h"
 #include "pso/math/FloatRounding.h"
 #include "pso/system/ChunkMaterialState.h"
 #include "pso/system/BmlResourceClass.h"
@@ -244,25 +245,16 @@ MaterialColorFade::MaterialColorFade() {
 }
 extern const f32 lbl_805DA3E8;
 
-s32 TObjPlayer::lookup_entry_by_value(void *arg0, f32 farg0) {
-    void *var_r31;
-    f32 temp_f2;
-    s32 temp_r4;
-    s32 temp_r0;
-    s32 temp_r3;
-
-    var_r31 = arg0;
-    temp_f2 = *(f32 *)((s8 *)var_r31 + 0xC);
-    if ((farg0 < temp_f2) || (farg0 > *(f32 *)((s8 *)var_r31 + 0x10))) {
+Vec *SampledMotionPoints::lookup(f32 frame) {
+    f32 first = start;
+    if ((frame < first) || (frame > end)) {
         return 0;
     }
-    f32 sample_position = farg0 - temp_f2;
+    f32 sample_position = frame - first;
     sample_position += lbl_805DA3E8;
-    sample_position /= *(f32 *)((s8 *)var_r31 + 0x14);
-    temp_r4 = (s32) floor_to_float(sample_position);
-    temp_r0 = *(s32 *)((s8 *)var_r31 + 0x4);
-    temp_r3 = *(s32 *)((s8 *)var_r31 + 0x0);
-    return temp_r3 + temp_r0 * temp_r4 * 0xC;
+    sample_position /= step;
+    s32 index = (s32)floor_to_float(sample_position);
+    return points + points_per_sample * index;
 }
 
 }

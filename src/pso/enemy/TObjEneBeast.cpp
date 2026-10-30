@@ -1,4 +1,5 @@
 #include "pso/system/MatrixVectorArray.h"
+#include "pso/misc/SampledMotionPoints.h"
 #include "pso/unk/TUnk_80494968.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -180,11 +181,11 @@ void TObjEneBeast::vfunc_93() {
     if (this->frame < 12.0f) {
         switch (this->requested_action) {
         case 3:
-            entry = TObjPlayer::lookup_entry_by_value(beast_claw_trail_instance, this->frame);
+            entry = (s32)((SampledMotionPoints *)(beast_claw_trail_instance))->lookup(this->frame);
             idx = 0;
             break;
         case 4:
-            entry = TObjPlayer::lookup_entry_by_value(boss4_type3_instance, this->frame);
+            entry = (s32)((SampledMotionPoints *)(boss4_type3_instance))->lookup(this->frame);
             idx = 1;
             break;
         default:
@@ -389,14 +390,11 @@ s32 dispatch_shared_handler_a__6TLobbyFl(int);
 s32 register_object__6TLobbyFl(int);
 s32 dispatch_shared_handler_b__6TLobbyFl(int);
 s32 register_boss__6TLobbyFl(int);
-void draw_trail_with_colors(u8 *boss4_type3, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
-u8 *init_trail_buffer__11TBoss4Type3FPvifff(void *, int, f32, f32, f32);
 void *mem_alloc(u32 size);
 extern Ids_8009241C lbl_80439D68[];
 extern Quad_8009241C lbl_80439D70[];
 extern s32 lbl_80439D80[];
 void *__ct__11TObjControlFP7TObject(void *, void *);
-s32 *__dt__11TBoss4Type3FPvs(s32 *arg0, s16 arg1);
 void *__nw__7TObjectFUl(int);
 void mem_free(void*);
 
@@ -627,11 +625,11 @@ void free_boss4_rock_pool(void) {
         boss4_rock_shared_handler_ids = 0U;
     }
     if ((u32) boss4_type3_instance != 0U) {
-        __dt__11TBoss4Type3FPvs((s32 *)boss4_type3_instance, 1);
+        delete (SampledMotionPoints *)boss4_type3_instance;
         boss4_type3_instance = 0U;
     }
     if ((u32) beast_claw_trail_instance != 0U) {
-        __dt__11TBoss4Type3FPvs((s32 *)beast_claw_trail_instance, 1);
+        delete (SampledMotionPoints *)beast_claw_trail_instance;
         beast_claw_trail_instance = 0U;
     }
     if ((u32) ene_beast_bml_resource != 0U) {
@@ -658,18 +656,12 @@ void TObjEneBeast::load_resources() {
         ((Ent_8009241C *)beast_collision_body_table)[1].radius = 7.0f;
         ((Ent_8009241C *)beast_collision_body_table)[2].radius = 8.0f;
     }
-    p = (u8 *)::operator new(0x18);
-    if (p != NULL) {
-        p = init_trail_buffer__11TBoss4Type3FPvifff(p, 2, 7.0f, 12.0f, 1.0f);
-    }
+    p = (u8 *)new SampledMotionPoints(2, 7.0f, 12.0f, 1.0f);
     beast_claw_trail_instance = (void *)p;
-    p = (u8 *)::operator new(0x18);
-    if (p != NULL) {
-        p = init_trail_buffer__11TBoss4Type3FPvifff(p, 2, 7.0f, 12.0f, 1.0f);
-    }
+    p = (u8 *)new SampledMotionPoints(2, 7.0f, 12.0f, 1.0f);
     boss4_type3_instance = (void *)p;
-    draw_trail_with_colors((u8 *)beast_claw_trail_instance, (s32)(((Data_8009241C *)ene_beast_bml_resource)->f42c->f8), (s32)(((Data_8009241C *)ene_beast_bml_resource)->f430[((s32 *)beast_action_table)[13]].f4), 5, 8);
-    draw_trail_with_colors((u8 *)boss4_type3_instance, (s32)(((Data_8009241C *)ene_beast_bml_resource)->f42c->f8), (s32)(((Data_8009241C *)ene_beast_bml_resource)->f430[((s32 *)beast_action_table)[17]].f4), 10, 13);
+    ((SampledMotionPoints *)beast_claw_trail_instance)->sample_two_nodes((NJS_OBJECT *)(((Data_8009241C *)ene_beast_bml_resource)->f42c->f8), (NJS_MOTION *)(((Data_8009241C *)ene_beast_bml_resource)->f430[((s32 *)beast_action_table)[13]].f4), 5, 8);
+    ((SampledMotionPoints *)boss4_type3_instance)->sample_two_nodes((NJS_OBJECT *)(((Data_8009241C *)ene_beast_bml_resource)->f42c->f8), (NJS_MOTION *)(((Data_8009241C *)ene_beast_bml_resource)->f430[((s32 *)beast_action_table)[17]].f4), 10, 13);
     ene_beast_boss_id_buffer = (u32)mem_alloc(0xC);
     TObjEneBeast__boss4_rock_handler_ids = (u32)mem_alloc(0xC);
     boss4_rock_pool = (u32)mem_alloc(0xC);

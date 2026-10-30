@@ -1,5 +1,6 @@
 #include "pso/system/MatrixVectorArray.h"
 #include "pso/player/TObjChara.h"
+#include "pso/misc/SampledMotionPoints.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "types.h"
@@ -525,7 +526,6 @@ extern const f32 lbl_805D9C1C;
 extern const f32 lbl_805D9C30;
 
 s32 obj_is_hit_receivable();
-s32 lookup_entry_by_value__10TObjPlayerFPvf(void *);
 
 void set_matrix_identity(u8 *arg0);
 s32 push_matrix();
@@ -945,7 +945,7 @@ s32 TObjEneMoja::update_punch_attack(void *self_800ADAAC) {
             }
         }
         if ((lbl_805D9C28 <= *(f32 *)(arg0 + 0xC0)) && (*(f32 *)(arg0 + 0xC0) <= lbl_805D9C2C)) {
-            e = lookup_entry_by_value__10TObjPlayerFPvf(lbl_805D50DC);
+            e = (s32)((SampledMotionPoints *)lbl_805D50DC)->lookup(((TObjMotion *)self_800ADAAC)->frame);
             if (e != 0) {
                 push_matrix();
                 set_matrix_identity(0);

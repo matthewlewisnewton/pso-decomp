@@ -1,3 +1,4 @@
+#include "pso/misc/SampledMotionPoints.h"
 #include "pso/unk/TUnk_80494968.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "types.h"
@@ -402,8 +403,6 @@ void * create__13TObjBs4CutAtkFPvPvPv(void *arg0, void *arg1, void *arg2);
 void request_follow_camera_offsets(void *arg0, void *arg1, u16 arg2);
 s32 query_teammate_state__9TObjEneDDFv(void *);
 int toggle_particle_effect__10TObjPlayerFv(void*);
-u8 * lookup_entry_by_value__10TObjPlayerFPvf(s32);
-s32 *__dt__11TBoss4Type3FPvs(s32 *arg0, s16 arg1);
 s32 clear_render_callback__8TObjFishFv(s32);
 s32 __ct__11TObjControlFP7TObject(s32, s32);
 void *__dt__9TObjEnemyFv(TObjEnemy *arg0, s16 arg1);
@@ -782,12 +781,9 @@ void submit_cursor_candidate(void *, int);
 struct O_80059618;
 struct Obj_8005A1AC;
 struct Ply_80059ABC;
-
-s32 init_trail_buffer__11TBoss4Type3FPvifff(void *, s32, f32, f32, f32);
 }
 extern "C" {
 s32 create__13TUnk_80494968FUlUl(s32, s32);
-void draw_trail_with_colors(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 
 Self_8005AE60 *TBoss4Type3__ct(Self_8005AE60 *, s32, s32 *);
 }
@@ -912,19 +908,13 @@ Self_8005AE60 *TBoss4Type3__ct(Self_8005AE60 *self, s32 parent, s32 *arg2) {
     }
     set_motion_packed_rotation();
     model = get_bml_model(self->f390, ((s32 *)lbl_80486FB0)[0]);
-    p = (s32)::operator new(0x18);
-    if (p != 0) {
-        p = init_trail_buffer__11TBoss4Type3FPvifff((void *)p, 2, 3.0f, 9.0f, 0.6f);
-    }
+    p = (s32)new SampledMotionPoints(2, 3.0f, 9.0f, 0.6f);
     *(s32 *)((u8 *)self + 0x51C) = p;
-    draw_trail_with_colors((u8 *)(*(s32 *)((u8 *)self + 0x51C)), model, get_bml_motion(self->f390, ((s32 *)&TBoss4Type3__anim_state_table)[0x44 / 4]), 0x16, 0x17);
+    ((SampledMotionPoints *)(*(s32 *)((u8 *)self + 0x51C)))->sample_two_nodes((NJS_OBJECT *)model, (NJS_MOTION *)get_bml_motion(self->f390, ((s32 *)&TBoss4Type3__anim_state_table)[0x44 / 4]), 0x16, 0x17);
     *(s32 *)((u8 *)self + 0x524) = create__13TUnk_80494968FUlUl(0xA0303030, 0xFFFF0088);
-    p = (s32)::operator new(0x18);
-    if (p != 0) {
-        p = init_trail_buffer__11TBoss4Type3FPvifff((void *)p, 2, 3.0f, 9.0f, 0.6f);
-    }
+    p = (s32)new SampledMotionPoints(2, 3.0f, 9.0f, 0.6f);
     *(s32 *)((u8 *)self + 0x520) = p;
-    draw_trail_with_colors((u8 *)(*(s32 *)((u8 *)self + 0x520)), model, get_bml_motion(self->f390, ((s32 *)&TBoss4Type3__anim_state_table)[0x58 / 4]), 9, 10);
+    ((SampledMotionPoints *)(*(s32 *)((u8 *)self + 0x520)))->sample_two_nodes((NJS_OBJECT *)model, (NJS_MOTION *)get_bml_motion(self->f390, ((s32 *)&TBoss4Type3__anim_state_table)[0x58 / 4]), 9, 10);
     *(s32 *)((u8 *)self + 0x528) = create__13TUnk_80494968FUlUl(0xA0303030, 0xFFFF0088);
     clear_motion_packed_rotation();
     ((TBoss4Type3 *)self)->create_particle_emitters();
@@ -960,7 +950,7 @@ S_8005AD50 *__dt__11TBoss4Type3Fv(S_8005AD50 *o, s16 flag) {
         fn_8004AA04(o->f378);
         ((TBoss4Type3 *)o)->destroy_parts();
         if (o->f51c != 0) {
-            __dt__11TBoss4Type3FPvs((s32 *)o->f51c, 1);
+            delete (SampledMotionPoints *)o->f51c;
             o->f51c = 0;
         }
         if (o->f524 != 0) {
@@ -968,7 +958,7 @@ S_8005AD50 *__dt__11TBoss4Type3Fv(S_8005AD50 *o, s16 flag) {
             o->f524 = 0;
         }
         if (o->f520 != 0) {
-            __dt__11TBoss4Type3FPvs((s32 *)o->f520, 1);
+            delete (SampledMotionPoints *)o->f520;
             o->f520 = 0;
         }
         if (o->f528 != 0) {
@@ -1010,7 +1000,7 @@ void reset_action_to_3__11TBoss4Type3FPv(Obj_8005ACBC *self) {
 void TBoss4Type3::run_task() {
     u8 v[2][0xC];
     Type3Handler fn;
-    void *p;
+    SampledMotionPoints *p;
     f32 lim;
     u8 *e;
 
@@ -1069,14 +1059,11 @@ void TBoss4Type3::run_task() {
     if (lim > 29.0f) {
         lim = 29.0f;
     }
-    p = ::operator new(0x18);
-    if (p != 0) {
-        p = (void *)init_trail_buffer__11TBoss4Type3FPvifff(p, 2, lim, lim, 0.6f);
-    }
+    p = new SampledMotionPoints(2, lim, lim, 0.6f);
     set_motion_packed_rotation();
-    ((TBoss4Type3 *)p)->draw_motion_trail((s32)(get_bml_model(this->m_390, ((s32 *)lbl_80486FB0)[0])), (s32)(get_bml_motion(this->m_390, TBoss4Type3__anim_state_table[this->m_3f0].motions[0])), (s32)boss4_type3_run_task_params, 0);
+    p->sample((NJS_OBJECT *)(get_bml_model(this->m_390, ((s32 *)lbl_80486FB0)[0])), (NJS_MOTION *)(get_bml_motion(this->m_390, TBoss4Type3__anim_state_table[this->m_3f0].motions[0])), (const s32 *)boss4_type3_run_task_params, NULL);
     clear_motion_packed_rotation();
-    e = ((u8 *(*)(void *, f32))lookup_entry_by_value__10TObjPlayerFPvf)(p, lim);
+    e = (u8 *)((SampledMotionPoints *)p)->lookup(lim);
     push_matrix();
     set_matrix_identity(0);
     post_translate_matrix(&this->position.x);
@@ -1092,7 +1079,7 @@ void TBoss4Type3::run_task() {
             ((TParticleCtrl *)this->effect_parts[6])->set_position(v[1]);
         }
     }
-    __dt__11TBoss4Type3FPvs((s32 *)p, 1);
+    delete p;
     this->m_3e8 += -0.06666667f;
     if (this->m_3e8 < 0.0f) {
         this->m_3e8 = 0.0f;
@@ -1734,7 +1721,7 @@ void TBoss4Type3::update_cut() {
   if ((o->f3f4 >= 3.0f) && (o->f3f4 <= 9.0f))
   {
     s32 idx = (o->f374 - 4) & 1;
-    u8 *e = lookup_entry_by_value__10TObjPlayerFPvf(o->f51c[idx]);
+    u8 *e = (u8 *)((SampledMotionPoints *)o->f51c[idx])->lookup(o->f3f4);
     if (e != 0)
     {
       push_matrix();

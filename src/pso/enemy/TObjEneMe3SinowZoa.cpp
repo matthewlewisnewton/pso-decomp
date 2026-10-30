@@ -1,4 +1,5 @@
 #include "pso/enemy/TUnk_80494938.h"
+#include "pso/animation/MotionContext.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/vector.h"
 #include "pso/system/NinjaTypes.h"
@@ -619,7 +620,6 @@ void run_task__18TObjEneMe3SinowZoaFv(u8 *arg0);
 void * __dt__18TObjEneMe3SinowZoaFv(void *arg0, s16 arg1);
 f32 sin_table_lookup(s32);
 f32 cos_table_lookup(s32);
-void bind_motion_context(s32, f32);
 void compose_motion_node_matrix(void *arg0);
 s32 matrix_mult_vec(int, void *, void *);
 s32 push_matrix_from(void *);
@@ -3193,7 +3193,7 @@ f32 TObjEneMe3SinowZoa::get_node_height() {
     v.y = TObjEneMe3SinowZoa__data_805DF31C;
     v.z = TObjEneMe3SinowZoa__data_805DF31C;
     push_matrix_from(identity_matrix);
-    bind_motion_context(self->ff8, self->fc0);
+    bind_motion_context((NJS_MOTION *)self->ff8, self->fc0);
     node = self->node;
     compose_motion_node_matrix(node);
     compose_motion_node_matrix(node->child);

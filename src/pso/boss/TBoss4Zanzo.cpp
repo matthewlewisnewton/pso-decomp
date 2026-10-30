@@ -1,3 +1,4 @@
+#include "pso/misc/SampledMotionPoints.h"
 #include "pso/math/FloatRounding.h"
 #pragma readonly_strings on
 #include "types.h"
@@ -466,7 +467,6 @@ void * __ct__13TObjBs4CutAtkFv(void *arg0, s32 arg1, s32 arg2, s32 arg3);
 s32 create__11TBoss4BishiFi(void *);
 s32 request_follow_camera_offsets(void *, void *, int);
 int toggle_particle_effect__10TObjPlayerFv(void*);
-void __dt__11TBoss4Type3FPvs(void *, s16);
 s32 clear_render_callback__8TObjFishFv(s32);
 s32 __ct__11TObjControlFP7TObject(s32, s32);
 void __dt__9TObjEnemyFv(void *, s32);

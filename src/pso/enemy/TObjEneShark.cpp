@@ -37,7 +37,7 @@
 #include "pso/system/MatrixStack.h"
 #include "pso/system/MatrixOps.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
-#include "pso/boss/TBoss4Type3_800D9960.h"
+#include "pso/misc/SampledMotionPoints.h"
 #include "pso/math/MatrixVector.h"
 #include "pso/system/MatrixVectorArray.h"
 #include "pso/math/MatrixTransforms.h"
@@ -54,8 +54,8 @@ extern __declspec(section ".sdata2") const f32 shark_ground_effect_y;
 extern __declspec(section ".sdata2") const f32 shark_ground_effect_height_factor;
 
 
-extern void *shark_attack3_trail_buffer;
-extern void *shark_attack4_trail_buffer;
+extern SampledMotionPoints *shark_attack3_trail_buffer;
+extern SampledMotionPoints *shark_attack4_trail_buffer;
 extern __declspec(section ".sdata2") const f32 shark_attack_trail_end_frame;
 
 
@@ -113,7 +113,7 @@ void TObjEneShark::vfunc_94() {
 
 void TObjEneShark::vfunc_93() {
     Vec endpoints[2];
-    u32 e;
+    Vec *e;
     s32 idx;
     TUnk_80494968 *eff;
     if (!(frame < shark_attack_trail_end_frame)) {
@@ -121,11 +121,11 @@ void TObjEneShark::vfunc_93() {
     }
     switch (requested_action) {
     case 3:
-        e = TObjPlayer::lookup_entry_by_value((void *)shark_attack3_trail_buffer, frame);
+        e = shark_attack3_trail_buffer->lookup(frame);
         idx = 0;
         break;
     case 4:
-        e = TObjPlayer::lookup_entry_by_value((void *)shark_attack4_trail_buffer, frame);
+        e = shark_attack4_trail_buffer->lookup(frame);
         idx = 1;
         break;
     default:
@@ -347,7 +347,6 @@ extern "C" {
 extern BmlResource *shark_bml_resource;
 extern s32 game_difficulty_selection;
 
-void *init_trail_buffer__11TBoss4Type3FPvifff(void *, s32, f32, f32, f32);
 void *mem_alloc(u32 size);
 extern const char shark_alt_archive_filename[];
 extern u8 **shark_combat_stats;
@@ -441,11 +440,11 @@ void TObjEneShark::free_resources() {
         shark_movement_parameter_sets = NULL;
     }
     if (shark_attack4_trail_buffer != NULL) {
-        __dt__11TBoss4Type3FPvs((s32 *)shark_attack4_trail_buffer, 1);
+        delete shark_attack4_trail_buffer;
         shark_attack4_trail_buffer = NULL;
     }
     if (shark_attack3_trail_buffer != NULL) {
-        __dt__11TBoss4Type3FPvs((s32 *)shark_attack3_trail_buffer, 1);
+        delete shark_attack3_trail_buffer;
         shark_attack3_trail_buffer = NULL;
     }
     if (shark_bml_resource != NULL) {
@@ -455,25 +454,16 @@ void TObjEneShark::free_resources() {
 }
 
 void TObjEneShark::load_resources() {
-    void *p;
     s32 i;
     if (TObjEneDD::check_v2_mode() != 0) {
         shark_bml_resource = load_enemy_bml_resource_named(&bm_ene_bm1_shark_resource_descriptor, shark_alt_archive_filename);
     } else {
         shark_bml_resource = new BmlResource(1, &bm_ene_bm1_shark_resource_descriptor, 0, 0, NULL);
     }
-    p = ::operator new(0x18);
-    if (p != NULL) {
-        p = init_trail_buffer__11TBoss4Type3FPvifff(p, 2, shark_attack_trail_start_frame, shark_attack_trail_end_frame, shark_one);
-    }
-    shark_attack3_trail_buffer = p;
-    p = ::operator new(0x18);
-    if (p != NULL) {
-        p = init_trail_buffer__11TBoss4Type3FPvifff(p, 2, shark_attack_trail_start_frame, shark_attack_trail_end_frame, shark_one);
-    }
-    shark_attack4_trail_buffer = p;
-    draw_trail_with_colors((u8 *)shark_attack3_trail_buffer, shark_bml_resource->models->model, (s32)shark_bml_resource->motions[shark_actions[3].motion].motion, 5, 8);
-    draw_trail_with_colors((u8 *)shark_attack4_trail_buffer, shark_bml_resource->models->model, (s32)shark_bml_resource->motions[shark_actions[4].motion].motion, 0xA, 0xD);
+    shark_attack3_trail_buffer = new SampledMotionPoints(2, shark_attack_trail_start_frame, shark_attack_trail_end_frame, shark_one);
+    shark_attack4_trail_buffer = new SampledMotionPoints(2, shark_attack_trail_start_frame, shark_attack_trail_end_frame, shark_one);
+    shark_attack3_trail_buffer->sample_two_nodes((NJS_OBJECT *)shark_bml_resource->models->model, (NJS_MOTION *)shark_bml_resource->motions[shark_actions[3].motion].motion, 5, 8);
+    shark_attack4_trail_buffer->sample_two_nodes((NJS_OBJECT *)shark_bml_resource->models->model, (NJS_MOTION *)shark_bml_resource->motions[shark_actions[4].motion].motion, 0xA, 0xD);
     shark_combat_stats = (u8 **)mem_alloc(0xC);
     shark_attack_stats = (u8 **)mem_alloc(0xC);
     shark_resistance_stats = (u8 **)mem_alloc(0xC);
@@ -632,8 +622,8 @@ u8 **shark_attack_stats;
 u8 **shark_resistance_stats;
 f32 **shark_movement_parameter_sets;
 BmlResource *shark_bml_resource;
-void *shark_attack3_trail_buffer;
-void *shark_attack4_trail_buffer;
+SampledMotionPoints *shark_attack3_trail_buffer;
+SampledMotionPoints *shark_attack4_trail_buffer;
 s32 shark_render_node_index;
 
 extern __declspec(section ".sdata2") const f32 shark_zero = 0.0f;

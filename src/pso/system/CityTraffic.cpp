@@ -1,3 +1,4 @@
+#include "pso/animation/MotionContext.h"
 #pragma push
 
 #include "types.h"
@@ -114,7 +115,7 @@ s32 sample_aircar_path_position(s32 arg0, void *arg1, f32 farg0) {
         farg0 = lim;
         r = 0;
     }
-    bind_motion_context((s32)m, farg0);
+    bind_motion_context((NJS_MOTION *)m, farg0);
     void *t = ((void * (*)(s32))get_city_common_model)(city_aircar_model_indices[arg0]);
     sample_motion_node_transform(t, arg1, &sp24, &sp18, &sp8);
     return r;
@@ -170,11 +171,11 @@ void measure_traffic_path_lengths(void) {
     f32 end = (m->count - 1);
     frame = lbl_805DBBC8;
     f32 total = frame;
-    ((void (*)(Motion_801817AC *, f32))bind_motion_context)(m, frame);
+    bind_motion_context((NJS_MOTION *)m, frame);
     sample_motion_node_transform((void *)(get_city_common_model(city_aircar_model_indices[i])), (void *)&prev, (void *)&a, (void *)&b, (void *)&q);
     for (frame += lbl_805DBBC4; frame < end; frame += lbl_805DBBC4)
     {
-      ((void (*)(Motion_801817AC *, f32))bind_motion_context)(m, frame);
+      bind_motion_context((NJS_MOTION *)m, frame);
       sample_motion_node_transform((void *)(get_city_common_model(city_aircar_model_indices[i])), (void *)&cur, (void *)&a2, (void *)&b2, (void *)&q2);
       subtract_vector(&prev, &cur);
       total += ((TObjBoss2Tunnel *)(&prev))->update_scale();
