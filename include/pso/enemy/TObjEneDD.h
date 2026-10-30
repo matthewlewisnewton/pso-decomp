@@ -44,7 +44,7 @@ struct TObjEneDD : public TObjEnemy {
     virtual u8 *vfunc_103(u8 *);
     virtual s32 vfunc_104(f32) = 0;
     int get_flag_b4();
-    static f32 calc_elapsed_scaled();
+    f32 calc_elapsed_scaled();
     void update_velocity();
     void turn_toward_target_direction(s32 max_step);
     void set_target_destination(const Vec *position);

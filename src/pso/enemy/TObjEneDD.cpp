@@ -11,13 +11,11 @@ struct Part_800BA084 { u8 pad[0x2c]; };
 struct Obj_800BA084 { u8 pad[0xa4]; Part_800BA084 *parts; s32 count; };
 
 extern "C" {
-f32 random_ratio__9TObjCharaFv();
-
 extern f32 lbl_805D9E98;
 extern f32 lbl_805D9E9C;
 
 f32 TObjEneDD::calc_elapsed_scaled() {
-    return lbl_805D9E98 * (random_ratio__9TObjCharaFv() - lbl_805D9E9C);
+    return lbl_805D9E98 * (random_ratio() - lbl_805D9E9C);
 }
 
 s32 TObjEneDD::vfunc_99() {
