@@ -163,7 +163,6 @@ void render__13TObjEneBm3FlyFv(VObj_800AFBF0 *o);
 f32 normalize_vector_xz__FP3Vec(void *);
 void clamp_flight_height__13TObjEneBm3FlyFv(u8 *arg0);
 void update_dd_flag__13TObjEneBm3FlyFPv(void *arg0);
-s32 remove_child__17TObjEneBm3FlyNestFPUc(u32, void *);
 s32 refresh_and_send_entity_flags__9TObjEnemyFv(void *, s32);
 s32 TBoss8Dragon__sub_800BB7DC(void *);
 s32 transition_enemy_state__9TObjEneDDFl(void *, s32);
@@ -280,7 +279,7 @@ void TObjEneBm3Fly::state_death_fall(s32 arg1) {
         ((s32 (*)(void *))refresh_and_send_entity_flags__9TObjEnemyFv)(arg0);
         temp_photon = (u32)find_entity_by_id(this->owner_id);
         if (temp_photon != 0U) {
-            remove_child__17TObjEneBm3FlyNestFPUc(temp_photon, arg0);
+            reinterpret_cast<TObjEneBm3FlyNest *>(temp_photon)->remove_child(this);
         }
         TBoss8Dragon__sub_800BB7DC(arg0);
         this->m_3c0 = 0;
@@ -348,7 +347,7 @@ void action__13TObjEneBm3FlyFPvi(u8 *arg0, s32 arg1) {
         refresh_and_send_entity_flags__9TObjEnemyFv(arg0, temp_r4);
         temp_ret = (u32)find_entity_by_id(*(u16 *)((s8 *)arg0 + 0x418));
         if (temp_ret != 0U) {
-            remove_child__17TObjEneBm3FlyNestFPUc(temp_ret, arg0);
+            reinterpret_cast<TObjEneBm3FlyNest *>(temp_ret)->remove_child(reinterpret_cast<TObjEneBm3Fly *>(arg0));
         }
         TBoss8Dragon__sub_800BB7DC(arg0);
         TBoss8Dragon__sub_800BB7D8(arg0, 0xF1, (1.0f));
@@ -2097,7 +2096,6 @@ void TObjEneBm3Fly::clamp_flight_height() {
     }
 #define queue_destruction__7TObjectFv (*(void (*)(void *))&queue_destruction__7TObjectFv)
 #define update_scale__15TObjBoss2TunnelFv (*(s32 (*)(void *))&update_scale__15TObjBoss2TunnelFv)
-#define remove_child__17TObjEneBm3FlyNestFPUc (*(void (*)(Obj_800B2A5C *, u8 *))&remove_child__17TObjEneBm3FlyNestFPUc)
 #define has_free_attack_slot__17TObjEneBm3FlyNestFUs (*(s32 (*)(Obj_800B2AF4 *, u16))&has_free_attack_slot__17TObjEneBm3FlyNestFUs)
 #define clear_global_flag_400__9TObjEneDDFv (*(void (*)(void))&clear_global_flag_400__9TObjEneDDFv)
 #define set_field_378__9TObjEneDDFl (*(s32 (*)(void *, s32))&set_field_378__9TObjEneDDFl)
@@ -2461,7 +2459,6 @@ void TObjEneBm3Fly::load_resources() {
 
 #undef queue_destruction__7TObjectFv
 #undef update_scale__15TObjBoss2TunnelFv
-#undef remove_child__17TObjEneBm3FlyNestFPUc
 #undef has_free_attack_slot__17TObjEneBm3FlyNestFUs
 #undef clear_global_flag_400__9TObjEneDDFv
 #undef set_field_378__9TObjEneDDFl

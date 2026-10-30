@@ -25,6 +25,7 @@
 #include "pso/object/TObjMotion.h"
 #include "pso/enemy/TObjEneBm3FlyNest.h"
 #include "pso/system/BmlResource.h"
+#include "pso/player/TObjPlayer_801542CC.h"
 #include "pso/enemy/TEnemyTaskList.h"
 
 #include "pso/enemy/TObjEneDD_ST.h"
@@ -60,8 +61,6 @@ s32 TBoss8Dragon__sub_800BB7D4(void *, s32);
 s32 pack_debug_text_position(s32, s32);
 s32 set_field_e4__10TObjPlayerFll(void *, int, f32);
 void spawn_dead_spot_scale15(s32 point, s32 delay);
-void *find_entity_by_id(u16 id);
-void free_collision_body_parts(void *);
 s32 send_entity_set_flags__9TObjEnemyFv();
 f32 sin_table_lookup(int);
 f32 cos_table_lookup(int);
@@ -1016,7 +1015,7 @@ s32 TObjEneBm3FlyNest::has_free_attack_slot(u16 id) {
     return count < 2;
 }
 
-void TObjEneBm3FlyNest::remove_child(u8 *child) {
+void TObjEneBm3FlyNest::remove_child(TObjCollidable *child) {
     for (s32 i = 0; i < 6; i++) {
         if (find_entity_by_id(child_ids[i]) == child) {
             child_count--;

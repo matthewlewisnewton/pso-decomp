@@ -61,7 +61,7 @@ struct TObjEneBm3FlyNest : public TObjEneDD {
     static void sample_carrier_attachments(NJS_OBJECT *);
     static BmlResource *get_resources();
     s32 remap_child_sound(s32);
-    void remove_child(u8 *child);
+    void remove_child(TObjCollidable *child);
     s32 has_free_attack_slot(u16 id);
     Vec *get_spawn_point();
     s32 has_pending_spawns() const;
