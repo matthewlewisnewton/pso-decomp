@@ -307,8 +307,8 @@ s32 angle_difference_abs(s32 a, s32 b) {
     return (u16)d;
 }
 
-s16 angle_diff_s16(s32 a, s32 b) {
-    return (u16)b - (u16)a;
+s32 angle_diff_s16(s32 a, s32 b) {
+    return (s16)((u16)b - (u16)a);
 }
 
 f32 approach_vector_fixed_distance(const Vec *from, const Vec *to, Vec *out, f32 step) {
