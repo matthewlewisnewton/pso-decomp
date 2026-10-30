@@ -3049,6 +3049,7 @@ void calc_rotated_vector__14TObjEneBm5WolfFPviPvPv(void *arg0, s32 arg1, void *a
 #define rotate_xz_pair_by_angle ((void (*)(f32 *, f32 *, s32))rotate_xz_pair_by_angle)
 
 #include <stddef.h>
+#include "pso/npc/NpcModelRegistry.h"
 struct Stack_800B7C14 {
     f32 sp8;
     f32 spC;
@@ -3685,7 +3686,6 @@ s32 dispatch_shared_handler_a__6TLobbyFl(s32);
 s32 register_object__6TLobbyFl(s32);
 s32 dispatch_shared_handler_b__6TLobbyFl(s32);
 s32 register_boss__6TLobbyFl(s32);
-s32 spawn_npc_enemy__6TLobbyFslllff(int, int, int, void *, f32, f32);
 extern s32 lbl_8043B3A8[];
 extern s32 lbl_8043B3B0[];
 extern s32 lbl_8043B3B8[];
@@ -3734,8 +3734,8 @@ void TObjEneBm5Wolf::load_resources() {
     {
     Spawn_800B86B4 sp = bm5_wolf_spawn_descriptor;
     sp.a = TObjEneBm5Wolf__bml_resource->x430;
-    spawn_npc_enemy__6TLobbyFslllff(9, TObjEneBm5Wolf__bml_resource->p42c[6], TObjEneBm5Wolf__bml_resource->p42c[3], &sp, TObjEneBm5Wolf__collider_params[3], (*(f32 *)&TObjEneBm5Wolf__data_805D9D78));
-    spawn_npc_enemy__6TLobbyFslllff(10, TObjEneBm5Wolf__bml_resource->p42c[2], TObjEneBm5Wolf__bml_resource->p42c[3], &sp, TObjEneBm5Wolf__collider_params[3], (*(f32 *)&TObjEneBm5Wolf__data_805D9D78));
+    NpcModelRegistry::register_animated_chunk(9, (void *)(TObjEneBm5Wolf__bml_resource->p42c[6]), (void *)(TObjEneBm5Wolf__bml_resource->p42c[3]), (const NpcAnimationBinding *)(&sp), TObjEneBm5Wolf__collider_params[3], (*(f32 *)&TObjEneBm5Wolf__data_805D9D78));
+    NpcModelRegistry::register_animated_chunk(10, (void *)(TObjEneBm5Wolf__bml_resource->p42c[2]), (void *)(TObjEneBm5Wolf__bml_resource->p42c[3]), (const NpcAnimationBinding *)(&sp), TObjEneBm5Wolf__collider_params[3], (*(f32 *)&TObjEneBm5Wolf__data_805D9D78));
     }
 }
 

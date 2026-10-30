@@ -367,6 +367,7 @@ extern "C" void vfunc_101__12TObjEneBeastFv();
 extern "C" void test_flag_256__13TUnk_80493450Fv();
 #include "pso/enemy/TObjEneDD.h"
 #include "pso/enemy/TObjEnePanarms.h"
+#include "pso/npc/NpcModelRegistry.h"
 
 struct Ent_8009241C { u8 pad0[0xC]; f32 radius; u8 pad10[0x2C - 0x10]; };
 struct Mdl_8009241C { u8 pad0[8]; s32 f8; s32 fC; };
@@ -391,7 +392,6 @@ s32 register_boss__6TLobbyFl(int);
 void draw_trail_with_colors(u8 *boss4_type3, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 u8 *init_trail_buffer__11TBoss4Type3FPvifff(void *, int, f32, f32, f32);
 void *mem_alloc(u32 size);
-s32 spawn_npc_enemy__6TLobbyFslllff(int, s32, s32, Quad_8009241C *, f32, f32);
 extern Ids_8009241C lbl_80439D68[];
 extern Quad_8009241C lbl_80439D70[];
 extern s32 lbl_80439D80[];
@@ -691,9 +691,7 @@ void TObjEneBeast::load_resources() {
         Quad_8009241C q = lbl_80439D70[0];
         q.a = (s32)((Data_8009241C *)ene_beast_bml_resource)->f430;
         for (i = 0; i < 3; i++) {
-            spawn_npc_enemy__6TLobbyFslllff(ids.id[i], ((Data_8009241C *)ene_beast_bml_resource)->f42c[i].f8,
-                                            ((Data_8009241C *)ene_beast_bml_resource)->f42c[i].fC, &q,
-                                            ((Ent_8009241C *)beast_collision_body_table)[i].radius, 0.0f);
+            NpcModelRegistry::register_animated_chunk(ids.id[i], (void *)(((Data_8009241C *)ene_beast_bml_resource)->f42c[i].f8), (void *)(((Data_8009241C *)ene_beast_bml_resource)->f42c[i].fC), (const NpcAnimationBinding *)(&q), ((Ent_8009241C *)beast_collision_body_table)[i].radius, 0.0f);
         }
     }
 }

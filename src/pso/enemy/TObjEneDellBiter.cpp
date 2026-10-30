@@ -47,6 +47,7 @@
 
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/item/TItem.h"
+#include "pso/npc/NpcModelRegistry.h"
 
 extern "C" {
 f64 atan2_float(f32, f32);
@@ -279,8 +280,7 @@ void TObjEneDellBiter::load_resources() {
         TObjEneDellBiter__last_uv_scroll_tick = 0;
         DelbiterAttackDefinition attack = ene_dell_biter_attack_def;
         attack.motion = resource->motions;
-        TLobby::spawn_npc_enemy((s16)0x46, resource->models->model, resource->models->m_c,
-            (s32)&attack, lbl_804E6B8C[0].radius, TObjEneDellBiter__data_805DEFF4);
+        NpcModelRegistry::register_animated_chunk((s16)0x46, (void *)(resource->models->model), (void *)(resource->models->m_c), (const NpcAnimationBinding *)((s32)&attack), lbl_804E6B8C[0].radius, TObjEneDellBiter__data_805DEFF4);
     }
 }
 

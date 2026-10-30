@@ -35,6 +35,7 @@ extern "C" void test_flag_256__9TObjCharaFv();
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TNowLoading.h"
 #include "pso/object/TObjFish.h"
+#include "pso/npc/NpcModelRegistry.h"
 
 struct VBase_18_76ddf3 { char pad[0x18]; };
 
@@ -2239,9 +2240,7 @@ void TObjEneMorfos__sub_803350AC(void) {
     {
         SpawnDesc_803350AC desc = lbl_804775C8;
         desc.w[0] = ((ResMgr_803350AC *)TObjEneMorfos__instance)->f430;
-        TLobby::spawn_npc_enemy(0x4D, (s32)((ResMgr_803350AC *)TObjEneMorfos__instance)->res->f18,
-                                (s32)((ResMgr_803350AC *)TObjEneMorfos__instance)->res->f1C, (s32)&desc,
-                                lbl_805DF880, TObjEneMorfos__data_805DF874);
+        NpcModelRegistry::register_animated_chunk(0x4D, (void *)((s32)((ResMgr_803350AC *)TObjEneMorfos__instance)->res->f18), (void *)((s32)((ResMgr_803350AC *)TObjEneMorfos__instance)->res->f1C), (const NpcAnimationBinding *)((s32)&desc), lbl_805DF880, TObjEneMorfos__data_805DF874);
     }
 }
 }

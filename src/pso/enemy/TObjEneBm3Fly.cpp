@@ -1624,6 +1624,7 @@ void TObjEneBm3Fly::vfunc_89() { vfunc_89__9TObjEneDDFv(this); clamp_flight_heig
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/misc/TLobby.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
+#include "pso/npc/NpcModelRegistry.h"
 
 extern "C" {
 
@@ -2456,7 +2457,7 @@ void TObjEneBm3Fly::load_resources() {
     stack.sp14 = *(s32 *)((s8 *)&bm3_fly_resource_binding_desc.value + 0xC);
     stack.sp8 = *(s32 *)((s8 *)bm3_fly_nest_resources + 0x430);
     temp_r5 = (u8 *)(*(u8 **)((s8 *)bm3_fly_nest_resources + 0x42C));
-    TLobby::spawn_npc_enemy((s16)(7), (s32)((int) (*(s32 *)((s8 *)temp_r5 + 8))), (s32)((int) (*(s32 *)((s8 *)temp_r5 + 0xC))), (s32)((void *)&stack.sp8), (f32)((f32) (*(f32 *)((s8 *)&bm3_fly_collider_params.value + 0xC))), (f32)((f32) ((15.0f))));
+    NpcModelRegistry::register_animated_chunk((s16)(7), (void *)((s32)((int) (*(s32 *)((s8 *)temp_r5 + 8)))), (void *)((s32)((int) (*(s32 *)((s8 *)temp_r5 + 0xC)))), (const NpcAnimationBinding *)((s32)((void *)&stack.sp8)), (f32)((f32) (*(f32 *)((s8 *)&bm3_fly_collider_params.value + 0xC))), (f32)((f32) ((15.0f))));
 }
 
 }

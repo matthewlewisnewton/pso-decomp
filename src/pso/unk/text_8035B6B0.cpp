@@ -4,6 +4,7 @@
 
 #include <stddef.h>
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
+#include "pso/npc/NpcModelRegistry.h"
 struct Stack_8035B6B0 {
     s32 sp8;
     s32 spC;
@@ -12,7 +13,6 @@ struct Stack_8035B6B0 {
 };
 
 extern "C" {
-s32 spawn_npc_enemy__6TLobbyFslllff(int, int, int, void *, int, void *, f32, f32);
 }
 extern s32 chao_npc_spawn_descriptor[];
 extern s32 bm_ene_npc_chao_resource_descriptor[];
@@ -35,5 +35,5 @@ void load_and_spawn_chao_npc(void) {
     stack.sp14 = *(s32 *)((s8 *)chao_npc_spawn_descriptor + 0xC);
     stack.sp8 = *(s32 *)((s8 *)var_r9 + 0x430);
     temp_r5 = (u8 *)(*(u8 **)((s8 *)var_r9 + 0x42C));
-    spawn_npc_enemy__6TLobbyFslllff(0xB, (int) (*(s32 *)((s8 *)temp_r5 + 8)), (int) (*(s32 *)((s8 *)temp_r5 + 0xC)), &stack.sp8, (int) (*(s32 *)((s8 *)chao_npc_spawn_descriptor + 0)), chao_npc_spawn_descriptor, lbl_805E0138, lbl_805E013C);
+    NpcModelRegistry::register_animated_chunk(0xB, (void *)((int) (*(s32 *)((s8 *)temp_r5 + 8))), (void *)((int) (*(s32 *)((s8 *)temp_r5 + 0xC))), (const NpcAnimationBinding *)(&stack.sp8), lbl_805E0138, lbl_805E013C);
 }

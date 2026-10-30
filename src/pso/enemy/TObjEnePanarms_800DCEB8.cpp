@@ -141,7 +141,6 @@ f32 vector_length(void *);
 extern const f32 lbl_805DA4B4;
 extern const f32 lbl_805DA4F4;
 extern Ent_800DED30 lbl_8049515C[];
-s32 spawn_npc_enemy__6TLobbyFslllff(s32, s32, s32, void *, s32, void *, f32, f32);
 extern S_800DF634 panarms_npc_spawn_descriptor[];
 extern u8 lbl_80494F10[];
 extern u32 TObjEnePanarms__entry_params_resource;
@@ -1053,6 +1052,7 @@ void TObjEnePanarms::draw_shadow() {
 void TObjEnePanarms__sub_800DEEF8(void* p) { push_matrix(p); post_translate_matrix((char*)p + 0x38); rotate_matrix_y((void*)0, *(void**)((char*)p + 0x60)); TObjFish::set_global_param((s32)(*(void**)((char*)p + 0x24))); ((TObjFish *)(((TObjEneRe7Berura *)p)->m_39c))->set_draw_callback_list(); ((TObjMotion *)p)->draw(); clear_render_callback__8TObjFishFv(((TObjEneRe7Berura *)p)->m_39c); pop_matrix(); }
 
 #include "pso/misc/RenderFadeState.h"
+#include "pso/npc/NpcModelRegistry.h"
 
 // The camera-obstruction fade (vtable __vt__15RenderFadeState) keeps its vtable pointer at +0x14.
 struct VFade_800DEF5C {
@@ -1199,7 +1199,7 @@ void TObjEnePanarms::load_and_spawn_npc() {
     if (o != NULL) {
         S_800DF634 sp = panarms_npc_spawn_descriptor[0];
         sp.a = o->f430;
-        spawn_npc_enemy__6TLobbyFslllff(0x23, *(s32 *)(o->f42C + 8), *(s32 *)(o->f42C + 0xC), &sp, panarms_npc_spawn_descriptor[0].a, panarms_npc_spawn_descriptor, lbl_805DA51C, TObjEnePanarms__data_805DA4A0);
+        NpcModelRegistry::register_animated_chunk(0x23, (void *)(*(s32 *)(o->f42C + 8)), (void *)(*(s32 *)(o->f42C + 0xC)), (const NpcAnimationBinding *)(&sp), lbl_805DA51C, TObjEnePanarms__data_805DA4A0);
         TObjEnePanarms::spawn_npc_pair();
     }
 }

@@ -1,24 +1,19 @@
-#include "types.h"
-#include "pso/misc/TMotorcycle_802D712C.h"
-#include "pso/misc/TLobby.h"
+#include "pso/npc/NpcAnimationBinding.h"
+#include "pso/npc/NpcModelEntry.h"
+#include "pso/npc/NpcModelRegistry.h"
+#include "pso/npc/TObjNpcEnemy.h"
 
-extern "C" {
-
-u8 *insert_slot_by_id__12TObjNpcEnemyFs();
-
-void TLobby::spawn_npc_enemy(s16 arg0, s32 arg1, s32 arg2, s32 arg3, f32 farg0, f32 farg1) {
-    u8 *temp_r3;
-
-    temp_r3 = insert_slot_by_id__12TObjNpcEnemyFs();
-    if (temp_r3 != NULL) {
-        *(s16 *)((s8 *)temp_r3 + 0) = arg0;
-        *(s16 *)((s8 *)temp_r3 + 2) = 1;
-        *(f32 *)((s8 *)temp_r3 + 4) = farg1;
-        *(s32 *)((s8 *)temp_r3 + 8) = arg1;
-        *(s32 *)((s8 *)temp_r3 + 0xC) = arg2;
-        *(f32 *)((s8 *)temp_r3 + 0x10) = farg0;
-        *(NpcAnimationBinding *)(temp_r3 + 0x14) = *(const NpcAnimationBinding *)arg3;
+void NpcModelRegistry::register_animated_chunk(s16 id, void *model, void *texture_list,
+                                               const NpcAnimationBinding *animation,
+                                               f32 collision_radius, f32 vertical_offset) {
+    NpcModelEntry *entry = (NpcModelEntry *)TObjNpcEnemy::insert_slot_by_id(id);
+    if (entry != NULL) {
+        entry->id = id;
+        entry->render_mode = 1;
+        entry->vertical_offset = vertical_offset;
+        entry->model = model;
+        entry->texture_list = texture_list;
+        entry->collision_radius = collision_radius;
+        entry->animation = *animation;
     }
-}
-
 }

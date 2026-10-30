@@ -30,6 +30,7 @@ extern "C" void test_flag_256__9TObjCharaFv();
 #include "pso/misc/TLobby.h"
 
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
+#include "pso/npc/NpcModelRegistry.h"
 
 struct VBase_800B3EB8 { char pad[0x18]; };
 struct VObj_800B3EB8 : VBase_800B3EB8 {
@@ -2003,7 +2004,7 @@ void TObjEneBm3FlyNest::load_resources() {
         Anim_800B41E8 anim = bm3_flynest_anim_binding;
         anim.motions = ((Res_800B41E8 *)lbl_805D5108)->motions;
         bodies = (Bodies_800B41E8 *)((Res_800B41E8 *)lbl_805D5108)->bodies;
-        TLobby::spawn_npc_enemy((s16)8, bodies->model, bodies->textures, (s32)&anim, (f32)bm3_flynest_collider_params.radius, (f32)0.0f);
+        NpcModelRegistry::register_animated_chunk((s16)8, (void *)(bodies->model), (void *)(bodies->textures), (const NpcAnimationBinding *)((s32)&anim), (f32)bm3_flynest_collider_params.radius, (f32)0.0f);
     }
 }
 

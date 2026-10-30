@@ -128,6 +128,7 @@ inline f32 xz_length_squared(Vec *v) { return v->x * v->x + v->z * v->z; }
 #include "pso/misc/RenderFadeState.h"
 #include "pso/object/TObjFish.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
+#include "pso/npc/NpcModelRegistry.h"
 
 extern "C" s32 is_split_screen();
 extern "C" s32 restore_scene_lighting();
@@ -311,7 +312,7 @@ void TObjEneNanoDrago::load_resources() {
     binding = nano_drago_anim_binding;
     binding.motions = nano_drago_entry_params_resource->motions;
     modelEntries = nano_drago_entry_params_resource->models;
-    TLobby::spawn_npc_enemy((s16)(0x22), modelEntries[0].model, modelEntries[0].m_c, (s32)&binding, (f32)((f32) (15.0f)), (f32)((f32) (0.0f)));
+    NpcModelRegistry::register_animated_chunk((s16)(0x22), (void *)(modelEntries[0].model), (void *)(modelEntries[0].m_c), (const NpcAnimationBinding *)((s32)&binding), (f32)((f32) (15.0f)), (f32)((f32) (0.0f)));
 }
 void TObjEneNanoDrago::free_resources() {
     if ((u32) nano_drago_entry_params_resource != 0U) {

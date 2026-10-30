@@ -547,6 +547,7 @@ void TObjEneShark::render() {
 #include "pso/enemy/TObjEnePanarms.h"
 #include "pso/misc/RenderFadeState.h"
 #include "pso/misc/TNowLoading.h"
+#include "pso/npc/NpcModelRegistry.h"
 
 struct E_800AC9DC { u8 pad[8]; s32 x8; s32 xc; };
 
@@ -589,7 +590,6 @@ s32 register_boss__6TLobbyFl(int);
 void draw_trail_with_colors(u8 *boss4_type3, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 void *init_trail_buffer__11TBoss4Type3FPvifff(void *, s32, f32, f32, f32);
 void *mem_alloc(u32 size);
-void spawn_npc_enemy__6TLobbyFslllff(int, int, int, void *, f32, f32);
 extern u8 lbl_8043AEDC[];
 extern u32 TObjEneShark__resource_node;
 extern u32 TObjEneShark__resource_buf;
@@ -881,8 +881,7 @@ void TLobby::load_shark_resources() {
         s16 ids[3] = { 0x2F, 0x30, 0x31 };
         Anim_800AC318 anim = { (s32)RES->motions, TObjEneShark__action_table, 2, 0xC0000 };
         for (i = 0; i < 3; i++) {
-            spawn_npc_enemy__6TLobbyFslllff(ids[i], RES->bodies[i].model, RES->bodies[i].textures, &anim,
-                lbl_805D9BCC, lbl_805D9BA0);
+            NpcModelRegistry::register_animated_chunk(ids[i], (void *)(RES->bodies[i].model), (void *)(RES->bodies[i].textures), (const NpcAnimationBinding *)(&anim), lbl_805D9BCC, lbl_805D9BA0);
         }
     }
 }
