@@ -1,3 +1,4 @@
+#include "pso/math/FloatRounding.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -4067,7 +4068,6 @@ typedef struct Ene_800D0FDC {
 } Ene_800D0FDC;
 
 extern "C" {
-f32 get_random_float__21TObjEneMe3ShinowaRealFv(f32);
 Hit_800D0E14 *csnVector(void *, void *, s32);
 void pick_wander_destination__16TObjEneBm5GibonUFPv(Ene_800D0E14 *arg0);
 s32 angle_diff_s16(s32, s32);
@@ -4155,7 +4155,7 @@ void turn_toward_angle__16TObjEneBm5GibonUFPvi(Ene_800D0FDC *arg0, s32 arg1) {
 }
 
 void TObjEneBm5GibonU::sub_800D10A0() {
-    *(s32 *)((s8 *)((u8 *)this) + 0x46C) = (s32) get_random_float__21TObjEneMe3ShinowaRealFv((f32) (*(f32 *)((s8 *)((u8 *)this) + 0x354)));
+    *(s32 *)((s8 *)((u8 *)this) + 0x46C) = (s32) floor_to_float((f32) (*(f32 *)((s8 *)((u8 *)this) + 0x354)));
     if (*(f32 *)((s8 *)((u8 *)this) + 0x358) >= TObjEneBm5GibonU__data_805DA168) {
         *(s32 *)((s8 *)((u8 *)this) + 0x470) = 0;
     } else {

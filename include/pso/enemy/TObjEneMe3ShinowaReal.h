@@ -23,7 +23,6 @@ struct TObjEneMe3ShinowaReal : public TObjEneMe3Shinowa {
     s32 get_or_create_mirage(s32 arg1);
     void try_spawn_mirages();
     void *create();
-    static f32 get_random_float();
     u8 unk_40C[0x28];
 };
 

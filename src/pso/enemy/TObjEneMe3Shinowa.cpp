@@ -1,4 +1,5 @@
 #include "pso/system/MatrixVectorArray.h"
+#include "pso/math/FloatRounding.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/unk/TUnk_80494968.h"
@@ -528,7 +529,6 @@ extern const f32 TObjEneMe3ShinowaMirage__data_805DA5DC;
 extern const f32 TObjEneMe3ShinowaMirage__data_805DA5E4;
 void TObjEneMe3ShinowaMirage__sub_800E5F64(u8 *arg0, s32 arg1);
 struct Tgt_800E54E8 { u16 id; u8 pad[6]; };
-f32 get_random_float__21TObjEneMe3ShinowaRealFv(f32, f32);
 void rotate_xz_pair_by_angle(f32 *arg0, f32 *arg1, s32 arg2);
 void *create_particle_emitter(void *, s32);
 s32 enemy_set_target_id(void *, u16);
@@ -2284,7 +2284,7 @@ void TObjEneMe3ShinowaMirage__sub_800E54E8(void *arg0_, s32 arg1) {
         F(s32, 0x408) = 0;
         F(f32, 0x410) = TObjEneMe3ShinowaMirage__data_805DA5DC;
         F(f32, 0x37C) = lbl_805DA5F8;
-        F(s32, 0x40C) = ((F(s32, 0x3D4) - (s32)get_random_float__21TObjEneMe3ShinowaRealFv(lbl_805DA5FC, TObjEneMe3ShinowaMirage__data_805DA5DC)) * 0x3333) / 40;
+        F(s32, 0x40C) = ((F(s32, 0x3D4) - (s32)floor_to_float(lbl_805DA5FC)) * 0x3333) / 40;
         VecCopy((Vec *)home, (const Vec *)(arg0 + 0x38));
         F(void *, 0x424) = 0;
         F(void *, 0x428) = 0;

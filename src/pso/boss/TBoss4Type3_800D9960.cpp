@@ -1,3 +1,4 @@
+#include "pso/math/FloatRounding.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/boss/TBoss4Type3_800D9960.h"
@@ -32,8 +33,6 @@ struct Arg_800D9994 { s32 a; s32 b; s32 count; f32 start; u8 pad10[4]; f32 step;
 
 extern "C" {
 extern RecoveredGlobal_800D9960_lbl_80500FA4 lbl_80500FA4;
-f32 get_random_float__21TObjEneMe3ShinowaRealFv(f32);
-f32 get_status_value_f32__23TObjEneMe1CanadinLeaderFv(f32);
 void *mem_alloc(u32 size);
 extern const f32 lbl_805DA3EC;
 extern const f32 lbl_805DA3F0;
@@ -94,8 +93,8 @@ Trail_800D9ABC *init_trail_buffer__11TBoss4Type3FPvifff(Trail_800D9ABC *arg0, s3
     s32 i;
     arg0->step = step;
     arg0->segs = segs;
-    arg0->start = get_random_float__21TObjEneMe3ShinowaRealFv(start / arg0->step);
-    arg0->end = get_status_value_f32__23TObjEneMe1CanadinLeaderFv(end / arg0->step);
+    arg0->start = floor_to_float(start / arg0->step);
+    arg0->end = ceil_to_float(end / arg0->step);
     arg0->len = (s32)(lbl_805DA3F0 + (arg0->end - arg0->start));
     arg0->start *= arg0->step;
     arg0->end *= arg0->step;

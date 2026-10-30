@@ -1,3 +1,4 @@
+#include "pso/math/FloatRounding.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -3062,7 +3063,6 @@ typedef struct Wolf_800B7DDC {
 } Wolf_800B7DDC;
 
 extern "C" {
-f32 get_random_float__21TObjEneMe3ShinowaRealFv(f32);
 void *csnVector(void *from, void *to, u32 flags);
 s32 angle_diff_s16(s32, s32);
 
@@ -3156,7 +3156,7 @@ void advance_pose_turn__14TObjEneBm5WolfFPvi(Wolf_800B7DDC *s, s32 target) {
 }
 
 void TObjEneBm5Wolf::select_subtype() {
-    *(s32 *)&this->_pad3DC = (s32) get_random_float__21TObjEneMe3ShinowaRealFv((f32) (*(f32 *)((s8 *)((u8 *)this) + 0x354)));
+    *(s32 *)&this->_pad3DC = (s32) floor_to_float((f32) (*(f32 *)((s8 *)((u8 *)this) + 0x354)));
     if (this->parameters[1] >= (*(f32 *)&TObjEneBm5Wolf__data_805D9D8C)) {
         this->m_3d8 = 1;
         (*(s32 *)&this->model) = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)(*(u8**)&TObjEneBm5Wolf__bml_resource) + 0x42C)) + 0x18);

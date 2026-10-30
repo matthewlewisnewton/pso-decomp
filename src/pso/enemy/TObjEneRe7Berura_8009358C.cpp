@@ -1,4 +1,5 @@
 #include "pso/system/MatrixVectorArray.h"
+#include "pso/math/FloatRounding.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/unk/TUnk_80494968.h"
 #include "types.h"
@@ -197,7 +198,6 @@ extern const f32 lbl_805D9758;
 struct Vec3_80093888 { f32 x, y, z; };
 struct Timers_80093888 { u8 pad[0x440]; s32 t[2]; };
 
-f32 get_random_float__21TObjEneMe3ShinowaRealFv(f32);
 s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 extern const f32 lbl_805D976C;
 void TObjEneRe7Berura__sub_8009472C(u8 *arg0, s32 arg1);
@@ -851,7 +851,7 @@ void TObjEneRe7Berura__sub_8009472C(u8 *arg0, s32 arg1) {
             }
             if (!(*(s32 *)((s8 *)arg0 + 0x4C4) & 2)) {
                 *(f32 *)((s8 *)arg0 + 0x4D0) = (f32) (*(f32 *)((s8 *)arg0 + 0x4D0) + lbl_805D976C);
-                *(s32 *)((s8 *)arg0 + 0x3CC) = (s32) get_random_float__21TObjEneMe3ShinowaRealFv(*(f32 *)((s8 *)arg0 + 0x4D0));
+                *(s32 *)((s8 *)arg0 + 0x3CC) = (s32) floor_to_float(*(f32 *)((s8 *)arg0 + 0x4D0));
                 if ((s32) *(s32 *)((s8 *)arg0 + 0x3CC) >= 0xC) {
                     *(s32 *)((s8 *)arg0 + 0x4C4) = (s32) (*(s32 *)((s8 *)arg0 + 0x4C4) | 2);
                     *(s32 *)((s8 *)arg0 + 0x3CC) = 0xC;

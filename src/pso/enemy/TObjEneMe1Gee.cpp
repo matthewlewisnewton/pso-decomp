@@ -1,4 +1,5 @@
 #include "pso/enemy/TUnk_80494938.h"
+#include "pso/math/FloatRounding.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -853,7 +854,6 @@ extern const f32 TObjEneMe1Gee__data_805DA0C8;
 extern const f32 TObjEneMe1Gee__data_805DA0D4;
 extern const f32 TObjEneMe1Gee__data_805DA0E8;
 void TObjEneMe1Gee__sub_800C96B4(Gee_800C96B4 *o, s32 mode);
-f32 get_status_value_f32__23TObjEneMe1CanadinLeaderFv(f32);
 void *create__13TObjEneMe1GeeFPvPvPvPv(void *arg0, void *arg1, void *arg2, void *arg3);
 f32 sin_table_lookup(s32, f32);
 f32 cos_table_lookup(s32);
@@ -1844,7 +1844,6 @@ struct Gee_800C8788 {
 
 f32 random_ratio__9TObjCharaFv(s32);
 f32 newton_sqrtf(f32);
-f32 get_random_float__21TObjEneMe3ShinowaRealFv(f32);
 int select_and_apply_target__12TObjEneDD_STFf(void*);
 s32 set_target_player__12TObjEneDD_STFPv();
 void *__dt__12TObjEneDD_STFv(void *arg0, s16 arg1);
@@ -1932,7 +1931,7 @@ void TUnk_8049387C::vfunc_117(u32 arg1) {
         }
     }
     if (arg0->x4b8 == 3) {
-        s32 lim = (s32)get_status_value_f32__23TObjEneMe1CanadinLeaderFv((f32)arg0->maxCount / (f32)arg0->par->x2c);
+        s32 lim = (s32)ceil_to_float((f32)arg0->maxCount / (f32)arg0->par->x2c);
         if (arg0->count <= arg0->maxCount - lim) {
             arg0->x3c0 = (s32)find_entity_by_id(arg0->x48c);
             ((TObjEneMe1Gee *)(arg0->x3c0))->set_flag3c8_bit8();
@@ -1969,7 +1968,7 @@ void TUnk_8049387C::vfunc_107() {
     s32 angle;
     Vec_800C8950 v;
     Gee_800C8950 *self = (Gee_800C8950 *)this;
-    n = (s32)get_status_value_f32__23TObjEneMe1CanadinLeaderFv((f32)self->maxCount / (f32)self->par->x2c);
+    n = (s32)ceil_to_float((f32)self->maxCount / (f32)self->par->x2c);
     if (n < 1) {
         n = 1;
     }
@@ -3694,12 +3693,12 @@ void TObjEneMe1Gee::vfunc_106() {
 #pragma opt_common_subs off
 void TObjEneMe1Gee::sub_800CC0C4() {
     u8 *arg0 = (u8 *)this;
-    if ((s32) get_random_float__21TObjEneMe3ShinowaRealFv((f32) (*(f32 *)((s8 *)arg0 + 0x354))) == 0) {
+    if ((s32) floor_to_float((f32) (*(f32 *)((s8 *)arg0 + 0x354))) == 0) {
         ((TObjEneMe1Gee *)arg0)->sub_800CB5D4();
     } else {
         ((TObjEneMe1Gee *)arg0)->sub_800CB5B8();
     }
-    if ((s32) get_random_float__21TObjEneMe3ShinowaRealFv((f32) (*(f32 *)((s8 *)arg0 + 0x358))) == 0) {
+    if ((s32) floor_to_float((f32) (*(f32 *)((s8 *)arg0 + 0x358))) == 0) {
         ((TObjEneMe1Gee *)arg0)->sub_800CB60C();
     } else {
         ((TObjEneMe1Gee *)arg0)->sub_800CB5F0();

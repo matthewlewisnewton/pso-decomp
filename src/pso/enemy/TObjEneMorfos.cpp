@@ -1,3 +1,4 @@
+#include "pso/math/FloatRounding.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
@@ -648,7 +649,6 @@ struct VObj_14_c1c33b : VBase_14_c1c33b {
 f32 receive_physical_attack__9TObjCharaFPvf(void *, void *, f32);
 u16 get_entity_id(void *);
 void TLobby__sub_8001FE7C(void*, int);
-f32 get_random_float__21TObjEneMe3ShinowaRealFv(f32);
 s32 get_mode__11TCameraCtrlFPv(void *);
 u32 csnLookAt(void *, void *);
 s32 is_patrol_active__21TObjEneRe7BeruraPunchFv(void *);
@@ -1679,7 +1679,7 @@ void TObjEneMorfos::state_appear(s32 arg1) {
             break;
         case 1:
             this->m_4c4 = (f32) (this->m_4c4 + lbl_805DF894);
-            *(s32 *)((s8 *)this + 0x3D4) = (s32) get_random_float__21TObjEneMe3ShinowaRealFv(this->m_4c4);
+            *(s32 *)((s8 *)this + 0x3D4) = (s32) floor_to_float(this->m_4c4);
             if ((s32) *(s32 *)((s8 *)this + 0x3D4) >= 0xC) {
                 *(s32 *)((s8 *)this + 0x3D4) = 0xC;
                 *(s32 *)((s8 *)this + 0x4B0) = 2;

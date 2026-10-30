@@ -1,3 +1,4 @@
+#include "pso/math/FloatRounding.h"
 #include "pso/system/NinjaTypes.h"
 // Folded unit: pso/unk/text_80153674 + pso/object/TObjFogCollisionSwitch + pso/unk/text_80153A7C.
 #include "types.h"
@@ -62,7 +63,6 @@ extern char lbl_804400A4[];
 extern char lbl_804400B8[];
 void record_fog_collision_hit(s32 arg0, s32 arg1, s32 arg2);
 u8 is_current_floor_switch_set(u16);
-f32 get_random_float__21TObjEneMe3ShinowaRealFv(f32);
 
 extern s32 game_difficulty_selection;
 
@@ -318,7 +318,7 @@ extern "C" {
 void TObjFogCollisionPoison::vfunc_13(s32) {
     f32 var_f2;
 
-    *(s32 *)&this->m_98 = (s32) get_random_float__21TObjEneMe3ShinowaRealFv(this->scale.y);
+    *(s32 *)&this->m_98 = (s32) floor_to_float(this->scale.y);
     switch ((s32) game_difficulty_selection) {
     default:
     case 0:
