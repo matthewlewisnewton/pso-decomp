@@ -1,3 +1,4 @@
+#include "pso/system/MatrixVectorArray.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/unk/TUnk_80494968.h"
@@ -515,7 +516,6 @@ s32 spawn_particle_effect(void *, int);
 s32 transition_enemy_state__9TObjEneDDFl(void *, s32);
 s32 approach_angle_limited(int, int, int);
 s32 play_sound_effect(void *, void *, int, int);
-s32 mult_vec_array__10TObjPlayerFUll(int, int, void *, int);
 s32 set_matrix_identity(int);
 s32 rotate_matrix_y(int, int);
 s32 push_matrix();
@@ -2708,7 +2708,7 @@ void TObjEneMe3ShinowaMirage__sub_800E5F64(u8 *arg0, s32 arg1) {
                 set_matrix_identity(0);
                 post_translate_matrix(arg0 + 0x38);
                 rotate_matrix_y(0, *(s32 *)((s8 *)arg0 + 0x60));
-                mult_vec_array__10TObjPlayerFUll(0, entry, &sp14, 2);
+                matrix_mult_vec_array((f32 (*)[4])(0), (const Vec *)(entry), (Vec *)(&sp14), 2);
                 pop_matrix();
                 ((VObj_18_2add4a *)*(u8 **)((s8 *)arg0 + 0x3E0))->m4((s32 *)&sp14, (s32 *)&sp20);
             }
@@ -3093,12 +3093,12 @@ void TObjEneMe3Shinowa::apply_effect_pair() {
     rotate_matrix_y(0, this->rotation_y);
     entry = TObjPlayer::lookup_entry_by_value((void *)TObjEneMe3ShinowaMirage__data_805D52A4, this->frame);
     if (entry != 0U) {
-        mult_vec_array__10TObjPlayerFUll(0, entry, &sp8, 2);
+        matrix_mult_vec_array((f32 (*)[4])(0), (const Vec *)(entry), (Vec *)(&sp8), 2);
         ((VObj18b_800e70d4_800E47DC *) ((unsigned char *) (*(void **)((s8 *)arg0 + 0x3E0))))->m4(&sp8, &sp8[3]);
     }
     temp_r3_3 = TObjPlayer::lookup_entry_by_value((void *)TObjEneMe3ShinowaMirage__data_805D52A8, this->frame);
     if (temp_r3_3 != 0U) {
-        mult_vec_array__10TObjPlayerFUll(0, temp_r3_3, &sp8, 2);
+        matrix_mult_vec_array((f32 (*)[4])(0), (const Vec *)(temp_r3_3), (Vec *)(&sp8), 2);
         ((VObj18b_800e70d4_800E47DC *) ((unsigned char *) (*(void **)((s8 *)arg0 + 0x3E4))))->m4(&sp8, &sp8[3]);
     }
     pop_matrix();

@@ -37,6 +37,7 @@
 #include "pso/player/TObjPlayer_800D8FDC.h"
 #include "pso/boss/TBoss4Type3_800D9960.h"
 #include "pso/math/MatrixVector.h"
+#include "pso/system/MatrixVectorArray.h"
 #include "pso/math/MatrixTransforms.h"
 #include "pso/unk/text_803D8F74.h"
 #include "pso/unk/text_803E2D70.h"
@@ -50,7 +51,6 @@ extern __declspec(section ".sdata2") const f32 shark_zero;
 extern __declspec(section ".sdata2") const f32 shark_ground_effect_y;
 extern __declspec(section ".sdata2") const f32 shark_ground_effect_height_factor;
 
-s32 mult_vec_array__10TObjPlayerFUll(int, int, void *, int);
 
 extern void *shark_attack3_trail_buffer;
 extern void *shark_attack4_trail_buffer;
@@ -137,7 +137,7 @@ void TObjEneShark::vfunc_93() {
     set_matrix_identity(0);
     post_translate_matrix(&position.x);
     rotate_matrix_y(0, rotation_y);
-    mult_vec_array__10TObjPlayerFUll(0, e, endpoints, 2);
+    matrix_mult_vec_array(NULL, reinterpret_cast<const Vec *>(e), endpoints, 2);
     pop_matrix();
     eff = attack_trails[idx];
     if (eff != NULL) {

@@ -1267,7 +1267,6 @@ struct TObjPlayer : public TObjChara {
     void create_party_effects(s32 id);
     u16 find_first_valid_target_id();
     void process_all_elements();
-    static void mult_vec_array(u32 arg0, s32 arg1);
     static void invert_matrix_in_place(u32 arg0);
     static void concat_matrix(u32 arg0, u32 arg1);
     void concat_quaternion_rotation();
