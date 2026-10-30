@@ -1930,7 +1930,6 @@ void vfunc_28__13TObjEneBm3FlyFv(void);
 void TObjEneBm3Fly__vt85(s32 arg0, u32 arg1, s32 arg2);
 void * __dt__13TObjEneBm3FlyFv(void *arg0, s16 arg1);
 u8 * TObjEneBm3Fly__ct(u8 *arg0, s32 arg1, u8 *arg2, s32 arg3, s32 arg4, u8 *arg5, u8 *arg6);
-int TObjEneBm3FlyNest__sub_800B4158(void);
 u32 TObjEneEpsilon__sub_800B92F8(void *, void *, f32);
 s32 enemy_copy_target_destination__12TObjEneDD_STFv();
 void *__dt__12TObjEneDD_STFv(void *arg0, s16 arg1);
@@ -2037,7 +2036,7 @@ typedef struct Ctl_800B47C4 {
 extern s32 TObjEneBm3Fly__name;
 extern s32 bm3_fly_boss_stat_handle;
 extern s32 lbl_805D50E8;
-extern u8 *bm3_fly_nest_resources;
+extern BmlResource *bm3_fly_nest_resources;
 extern void *tl_04;
 
 extern "C" void vfunc_83__12TObjEneDD_STFv();
@@ -2440,7 +2439,7 @@ void TObjEneBm3Fly::load_resources() {
     s32 temp_r3;
     s32 var_r0;
     u8 *temp_r5;
-    bm3_fly_nest_resources = ((u8 * (*)(void))TObjEneBm3FlyNest__sub_800B4158)();
+    bm3_fly_nest_resources = TObjEneBm3FlyNest::get_resources();
     temp_r3 = (int)::operator new(0x10);
     var_r0 = temp_r3;
     if (var_r0 != 0) {

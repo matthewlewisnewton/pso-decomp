@@ -829,9 +829,9 @@ force_active:
   - TObjEneBeast__ct
   - TObjEneBm3FlyNest__attachment_sample_origin
   - TObjEneBm3FlyNest__ct
-  - TObjEneBm3FlyNest__sub_800B2A54
-  - TObjEneBm3FlyNest__sub_800B318C
-  - TObjEneBm3FlyNest__sub_800B3AC8
+  - get_spawn_point__17TObjEneBm3FlyNestFv
+  - fn_800B318C__17TObjEneBm3FlyNestFl
+  - has_pending_spawns__17TObjEneBm3FlyNestCFv
   - TObjEneBm3FlyNest__sub_800B3E40
   - TObjEneBm3Fly__ct
   - TObjEneBm3Fly__play_orbit_flight_sound
@@ -1656,7 +1656,7 @@ force_active:
   - __ct__25TBoss6Demo10_TYPE1_APPEARFP7TObject
   - __ct__26TBoss5GryphonLightningHornFv
   - __ct__26TBoss5GryphonLightningWingFv
-  - __ct__26TObjEneBm3FlyNest_CarryFlyFP7TObjectlllll
+  - __ct__26TObjEneBm3FlyNest_CarryFlyFP17TObjEneBm3FlyNestPC3VecPC3VecPC3VecPCll
   - __ct__31G_DropStackedItem_PC_V3_BB_6x5DFv
   - __ct__8TFogCtrlFP7TObjectl
   - __ct__9TBoss6DPBFv
@@ -3354,7 +3354,7 @@ force_active:
   - canadin_random_scale
   - cancel_trade_for_member_out_of_range__Fl
   - candidate_players__12TBoss3Volopt
-  - capture_attachment__17TObjEneBm3FlyNestFPv
+  - capture_attachment__17TObjEneBm3FlyNestFP10NJS_OBJECT
   - capture_matrix_by_frame__16TObjDFTenchuFuruFv
   - cast_resta__18TObjEneRe4SorcererFv
   - cast_tech_on_players__15TBoss3VoloptP01Fv
@@ -3792,7 +3792,7 @@ force_active:
   - copy_struct__6TLobbyFPUc
   - copy_struct_f8__6TLobbyFii
   - copy_target_record__11TMainCursorFPvPv
-  - copy_target_state__17TObjEneBm3FlyNestFPv
+  - remap_child_sound__17TObjEneBm3FlyNestFl
   - copy_udp_socket_event_record
   - copy_vec3__11TBoss6Type2Fii
   - restore_model_material_color__FPv
@@ -4860,8 +4860,8 @@ force_active:
   - handleFallState__12TBoss1DragonFUl
   - handle_6x87_shrink__10TObjPlayerFPvf
   - handle_6x91_update_state__15TOAttackableColFv
-  - handle_appear__17TObjEneBm3FlyNestFPvi
-  - handle_attachment_sample__17TObjEneBm3FlyNestFi
+  - handle_appear__17TObjEneBm3FlyNestFl
+  - sample_carrier_attachments__17TObjEneBm3FlyNestFP10NJS_OBJECT
   - handle_battle_result__6TLobbyFii
   - handle_break_state__19TObjEneEpsilonGuardFl
   - handle_breakup_state__16TObjEneMe3StelthFl
@@ -4909,7 +4909,7 @@ force_active:
   - handle_error_ack__18TCheckRoomSequenceFPv
   - handle_event__13TObjEneMe1GeeFl
   - handle_event__13TObjEneRe4BitFl
-  - handle_event__17TObjEneBm3FlyNestFPvi
+  - handle_event__17TObjEneBm3FlyNestFl
   - handle_event__19TObjEneEpsilonGuardFl
   - handle_event__22TAdMultiPlyChrSelectGCFl
   - handle_event_transition__13TObjEneMorfosFl
@@ -4934,7 +4934,7 @@ force_active:
   - handle_message__19TObjEneEpsilonGuardFl
   - handle_message_transition__16TObjEneRe7BeruraFl
   - handle_mode_selection__21TAdMultiChgGameModeGCFv
-  - handle_motion_event__17TObjEneBm3FlyNestFPvi
+  - handle_motion_event__17TObjEneBm3FlyNestFl
   - handle_msg_type1__6TLobbyFl
   - handle_msg_type1_for_idle_slots__6TLobbyFv
   - handle_msg_type2__6TLobbyFl
@@ -4966,7 +4966,7 @@ force_active:
   - handle_state__12TAdDialingGCFv
   - handle_state__12TBoss1DragonFUl
   - handle_state__16TObjEneBm5GibonUFl
-  - handle_state__17TObjEneBm3FlyNestFPvi
+  - handle_state__17TObjEneBm3FlyNestFl
   - handle_state__17TObjEneDf2BringerFl
   - handle_state__18TObjEneRe4SorcererFl
   - handle_state__6TLobbyFi
@@ -5427,7 +5427,7 @@ force_active:
   - lbl_8043AE80
   - lbl_8043AE9C
   - lbl_8043AEDC
-  - lbl_8043B380
+  - alternate_fly_bml_filename
   - lbl_8043B398
   - lbl_8043BC10
   - lbl_8043BC24
@@ -12912,7 +12912,7 @@ force_active:
   - state_death__13TObjEneMorfosFl
   - state_death__16TObjEneDellBiterFl
   - state_death_fall__13TObjEneBm3FlyFl
-  - state_dying__17TObjEneBm3FlyNestFPvi
+  - state_dying__17TObjEneBm3FlyNestFl
   - state_hover__13TObjEneMe1GeeFl
   - state_initial_emit__17TObjEneBm3FlyNestFl
   - state_knockback__18TObjEneMe3SinowZoaFl
@@ -12923,8 +12923,8 @@ force_active:
   - state_patrol__13TObjEneMorfosFl
   - state_return_home__13TObjEneMe1GeeFl
   - state_rotating_projectile_burst__13TObjEneMorfosFl
-  - state_spawn__17TObjEneBm3FlyNestFPvi
-  - state_wait__17TObjEneBm3FlyNestFPvi
+  - state_spawn__17TObjEneBm3FlyNestFl
+  - state_wait__17TObjEneBm3FlyNestFl
   - state_wait__18TObjEneRe4SorcererFl
   - status_alphabet_metrics_table
   - stderr_buff
@@ -13723,7 +13723,7 @@ force_active:
   - update_state__15TObjEneDelDepthFv
   - update_state__16TObjEneDellBiterFl
   - update_state__17TOTrapChainSawKeyFv
-  - update_state__17TObjEneBm3FlyNestFPvi
+  - update_state__17TObjEneBm3FlyNestFl
   - update_state__18TObjEneBalClawClawFv
   - update_state__18TObjSeabedSuiso_CHFv
   - update_state__19TObjStendGlassLobbyFv
