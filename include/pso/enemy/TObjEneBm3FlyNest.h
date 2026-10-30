@@ -6,13 +6,17 @@
 #include "pso/misc/RenderFadeState.h"
 
 struct BmlResource;
+struct EnemySetRecord;
 
 struct TObjEneBm3FlyNest : public TObjEneDD {
+    TObjEneBm3FlyNest(TObject *parent, EnemySetRecord *set_data);
     virtual ~TObjEneBm3FlyNest();
     virtual void run_task();
     virtual void render();
     virtual void vfunc_88();
+    virtual void init();
     virtual void render_with_state_debug();
+    virtual void dispatch_action(u32 state, s32 reason);
     virtual void render_shadows();
     void handle_state(s32);
     void state_dying(s32);
@@ -56,7 +60,6 @@ struct TObjEneBm3FlyNest : public TObjEneDD {
     static void capture_attachment(NJS_OBJECT *);
     static void sample_carrier_attachments(NJS_OBJECT *);
     static BmlResource *get_resources();
-    static int init(void* p);
     s32 remap_child_sound(s32);
     void remove_child(u8 *child);
     s32 has_free_attack_slot(u16 id);
@@ -73,11 +76,5 @@ struct TObjEneBm3FlyNest : public TObjEneDD {
 
 typedef char TObjEneBm3FlyNest_size[sizeof(TObjEneBm3FlyNest) == 0x4DC ? 1 : -1];
 
-extern "C" {
-void *TObjEneBm3FlyNest__ct(void *arg0, void *arg1, void *arg2);
-void dispatch_state__17TObjEneBm3FlyNestFiUii(s32 arg0, u32 arg1, s32 arg2);
-void render__17TObjEneBm3FlyNestFv(u8 *arg0);
-void run_task__17TObjEneBm3FlyNestFv(u8 *arg0);
-}
 
 #endif

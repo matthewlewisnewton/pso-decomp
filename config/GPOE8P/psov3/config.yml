@@ -828,11 +828,11 @@ force_active:
   - TObjEneBalClawClaw__sub_80091C58
   - TObjEneBeast__ct
   - TObjEneBm3FlyNest__attachment_sample_origin
-  - TObjEneBm3FlyNest__ct
+  - __ct__17TObjEneBm3FlyNestFP7TObjectP14EnemySetRecord
   - get_spawn_point__17TObjEneBm3FlyNestFv
   - fn_800B318C__17TObjEneBm3FlyNestFl
   - has_pending_spawns__17TObjEneBm3FlyNestCFv
-  - TObjEneBm3FlyNest__sub_800B3E40
+  - __dt__17TObjEneBm3FlyNestFv
   - TObjEneBm3Fly__ct
   - TObjEneBm3Fly__play_orbit_flight_sound
   - TObjEneBm3Fly__sub_800B02C8
@@ -4049,7 +4049,7 @@ force_active:
   - dispatch_state__15TBoss3VoloptP02Fv
   - dispatch_state__15TObjEneMe1GiGueFv
   - dispatch_state__15TObjEnemyCustomFv
-  - dispatch_state__17TObjEneBm3FlyNestFiUii
+  - dispatch_action__17TObjEneBm3FlyNestFUll
   - dispatch_state__19TBoss3VoloptMonitorFv
   - dispatch_state__20TBoss3VoloptHiraisinFv
   - dispatch_state_handler__19TObjEneBm9MericarolFiUii
@@ -5032,7 +5032,7 @@ force_active:
   - init__15PSOV3EncryptionFUl
   - init__15TObjEneDelDepthFv
   - init__15TObjEneMe1GiGueFPv
-  - init__17TObjEneBm3FlyNestFPv
+  - init__17TObjEneBm3FlyNestFv
   - init__17TWindowSubComCardFi
   - init__18TChallenge4PResultFv
   - init__18TObjAreaWarpForestFPvPv
@@ -5427,8 +5427,6 @@ force_active:
   - lbl_8043AE80
   - lbl_8043AE9C
   - lbl_8043AEDC
-  - alternate_fly_bml_filename
-  - lbl_8043B398
   - lbl_8043BC10
   - lbl_8043BC24
   - lbl_8043BC48
@@ -5618,7 +5616,7 @@ force_active:
   - lbl_804907AC
   - lbl_804907BC
   - lbl_8049168C
-  - lbl_80491EE4
+  - __vt__17TObjEneBm3FlyNest
   - lbl_804922F8
   - lbl_80492BE4
   - lbl_80492C20
