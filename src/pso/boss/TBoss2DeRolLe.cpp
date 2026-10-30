@@ -1,6 +1,7 @@
 #include "pso/system/MatrixVectorArray.h"
 #include "pso/animation/MotionContext.h"
 #include "pso/math/FloatRounding.h"
+#include "pso/map/CsnGroundQuery.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -2545,7 +2546,7 @@ void TBoss2DeRolLe__sub_800310F8(void *arg0, void *arg1, int arg2) {
                     v.x = r * sin_table_lookup(a);
                     v.y = lbl_805D8344;
                     v.z = r * cos_table_lookup(a);
-                    TObjBoss2Tunnel::adjust_to_ground((s32)&v, &v);
+                    adjust_point_to_ground((const Vec *)&v, (Vec *)&v);
                 }
                 {
                     Self_800310F8 *o = (Self_800310F8 *)arg0;
@@ -6051,7 +6052,7 @@ void load_resources__13TBoss2DeRolLeFv(void) {
     TBoss2Tentacle__sub_8003A0AC();
     TBoss2Mine__sub_80038D88();
     for (k = 0; k < 5; k++) {
-        TObjBoss2Tunnel::adjust_to_ground((s32)(lbl_804356C0 + k * 0xC), (u8 *)TBoss2DeRolLe__mine_ground_targets + k * 0xC);
+        adjust_point_to_ground((const Vec *)((lbl_804356C0 + k * 0xC)), (Vec *)((u8 *)TBoss2DeRolLe__mine_ground_targets + k * 0xC));
     }
     TBoss2Fin::init_effect_table();
     res = (*(u8 * *)&lbl_805D4BA4);

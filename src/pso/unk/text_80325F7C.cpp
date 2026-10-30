@@ -97,7 +97,7 @@ void TBoss5GryphonLightningHorn::rebuild_lightning_segments() {
     p.y += self->vel.y;
     p.z += self->vel.z;
     p.y = lbl_805DF63C;
-    hit = (Hit_80326074 *)csnVecterUnder((s32)&p, 0x16EF);
+    hit = (Hit_80326074 *)csnVecterUnder((const Vec *)&p, 0x16EF);
     if (hit == NULL || (h = hit->pos[1]) > lbl_805D8D48) {
         get_wing_position__26TBoss5GryphonLightningWingFl(self, &p);
         self->vel.x *= lbl_805DF640;

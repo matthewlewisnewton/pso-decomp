@@ -1,5 +1,6 @@
 #include "pso/enemy/TUnk_80494938.h"
 #include "pso/animation/MotionContext.h"
+#include "pso/map/CsnGroundQuery.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/vector.h"
 #include "pso/system/NinjaTypes.h"
@@ -2316,8 +2317,6 @@ struct Ene_80318F7C : Obj_80318F7C {
 };
 
 extern "C" {
-
-u32 csnVecterUnder(void *, int);
 extern const f32 lbl_805DF348;
 extern const f32 lbl_805DF34C;
 extern const f32 lbl_805DF354;
@@ -2387,7 +2386,7 @@ void TObjEneMe3SinowZoa__sub_80318F7C(Ene_80318F7C *self, s32 arg1) {
                     v.x = self->f3A0 * d + v.x;
                     v.y = v.y + TObjEneMe3SinowZoa__data_805DF320;
                     v.z = self->f3A8 * d + v.z;
-                    if (csnVecterUnder(&v, 0x15) != 0) {
+                    if (csnVecterUnder((const Vec *)&v, 0x15) != 0) {
                         if (self->f28 == ((TScene *)(&v))->find_section_at_position()) {
                             if (self->f3C0 != 0) {
                                 ((TObjEneMe3SinowZoa *)(&self->sub))->set_field_10(TObjEneMe3SinowZoa__data_805DF30C);

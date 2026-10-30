@@ -1,3 +1,4 @@
+#include "pso/map/CsnGroundQuery.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
@@ -341,7 +342,6 @@ f32 calc_distance_to_client__10TObjPlayerFlUsUl(void *, u16, Vec_802D8828 *);
 s32 obj_setFlags30(void *, int);
 s32 queue_destruction__7TObjectFv();
 void TCameraCtrl__sub_8006A044(s32, f32);
-s32 *csnVecterUnder(s32 origin, s32 mask);
 s32 rotate_xz_pair_by_angle(f32 *, f32 *, s32, f32);
 s32 test_action_mask__10TObjPlayerFl(void *, int);
 void TObjPlayer__sub_800D93C4(s32 point, s32 delay);
@@ -1643,7 +1643,7 @@ void TObjEneGibbles::slam_damage_players(s32 arg1) {
         return;
     }
     v.y += lbl_805DE808;
-    if (csnVecterUnder((s32)&v, 0x16EF) != 0) {
+    if (csnVecterUnder((const Vec *)&v, 0x16EF) != 0) {
         if (((TObjEneGibbles *)target)->spawn_ground_impact_effects(&v, lbl_805DE858) == 0) {
             v.y += TObjEneGibbles__data_805DE81C;
             spawn_particle_effect(&v, 0x64);

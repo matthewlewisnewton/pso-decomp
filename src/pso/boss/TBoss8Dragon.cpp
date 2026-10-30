@@ -1,5 +1,6 @@
 #include "pso/system/MatrixVectorArray.h"
 #include "pso/math/FloatRounding.h"
+#include "pso/map/CsnGroundQuery.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
@@ -304,7 +305,6 @@ extern s32 local_client_id;
 extern s32 TBoss8Dragon__data_805D69B8;
 extern const f32 lbl_805DEEE4;
 void run_task__12TBoss8DragonFv(u8 *arg0);
-s32 *csnVecterUnder(s32 origin, s32 mask);
 void TBoss8Dragon__sub_802F48DC(TBoss8Dragon *dragon, Vec *target);
 struct Dragon_802F8578;
 void TBoss8Dragon__sub_802F8578(struct Dragon_802F8578 *, u32);
@@ -4811,7 +4811,7 @@ void TBoss8Dragon__sub_802F87EC(u8 *arg0, u32 arg1) {
         v.x = *(f32 *)((s8 *)TBoss8Dragon__data_80541DDC[2] + 0xC) * c + *(f32 *)((s8 *)arg0 + 0x394);
         v.y = TBoss8Dragon__data_805DED9C;
         v.z = *(f32 *)((s8 *)TBoss8Dragon__data_80541DDC[2] + 0xC) * cos_table_lookup(ang) + *(f32 *)((s8 *)arg0 + 0x39C);
-        hit = (u8 *)csnVecterUnder((s32)&v, 0x16EF);
+        hit = (u8 *)csnVecterUnder((const Vec *)&v, 0x16EF);
         if ((hit != NULL) && (*(f32 *)((s8 *)(*(u8 **)((s8 *)hit + 4)) + 4) <= TBoss8Dragon__data_805DED9C)) {
             *(f32 *)((s8 *)arg0 + 0x394) = v.x;
             *(f32 *)((s8 *)arg0 + 0x39C) = v.z;
@@ -5844,7 +5844,7 @@ void TBoss8Dragon::spawn_ground_effect() {
     f32 temp_f1;
     u8 *temp_r3;
     VecCopy__FP3VecPC3Vec(&stack.sp8, (u8 *)&this->m_38);
-    temp_r3 = (u8 *)csnVecterUnder((s32)&stack.sp8, 0x16EF);
+    temp_r3 = (u8 *)csnVecterUnder((const Vec *)&stack.sp8, 0x16EF);
     if (temp_r3 != NULL) {
         temp_f1 = *(f32 *)((s8 *)(*(void **)((s8 *)temp_r3 + 4)) + 4);
         if (!(temp_f1 > TBoss8Dragon__data_805DED9C)) {

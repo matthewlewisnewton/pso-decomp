@@ -1,4 +1,5 @@
 #include "pso/animation/MotionContext.h"
+#include "pso/map/CsnGroundQuery.h"
 #pragma push
 
 #include "types.h"
@@ -194,7 +195,6 @@ struct Obj_802C22A4 {
 struct PigeonMovement { s32 motion; f32 pathSpeed, animationSpeed, lookAhead; s32 turnStep; };
 
 extern "C" {
-Hit_802C22A4 *csnVecterUnder(Vec_802C22A4 *, s32);
 void vec3_add_to(void *, void *);
 u8 *TObjPathObj__ct(u8 *arg0, s32 arg1, s32 arg2);
 
@@ -1106,7 +1106,7 @@ s32 TUnk_804E094C::update_path_follow_rotation(void *, f32) {
         Hit_802C22A4 *hit;
         vec3_add_to(&p, &self->pos);
         p.y += (1e+04f);
-        hit = csnVecterUnder(&p, 0x16EF);
+        hit = (Hit_802C22A4 *)csnVecterUnder((const Vec *)&p, 0x16EF);
         if (hit != NULL) {
             self->pos.y = hit->n->y;
         }

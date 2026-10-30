@@ -1,6 +1,7 @@
 #include "pso/system/MatrixVectorArray.h"
 #include "pso/animation/MotionContext.h"
 #include "pso/math/FloatRounding.h"
+#include "pso/map/CsnGroundQuery.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
@@ -1447,7 +1448,7 @@ void TObjFish__sub_802E85E0(u8 *arg0, u32 arg1, s32 arg2) {
                         v.x = scale * sin_table_lookup(r);
                         v.y = lbl_805DEA24;
                         v.z = scale * cos_table_lookup(r);
-                        TObjBoss2Tunnel::adjust_to_ground((s32)&v, (void *)&v);
+                        adjust_point_to_ground((const Vec *)&v, (Vec *)((void *)&v));
                     }
                     for (j = 0; j != 4; j++) {
                         ((TBoss7Tentacle *)(self->kids[j]))->start_attack_at_position((u8 *)&v, self->f738);
@@ -2203,7 +2204,7 @@ void handle_tentacle_attack_state__8TObjFishFPvUii(Fish_802E9ADC *o, u32 arg1, s
                     v.x = r * sin_table_lookup(ang);
                     v.y = lbl_805DEA24;
                     v.z = r * cos_table_lookup(ang);
-                    TObjBoss2Tunnel::adjust_to_ground((s32)&v, (void *)&v);
+                    adjust_point_to_ground((const Vec *)&v, (Vec *)((void *)&v));
                 }
                 ((TBoss7Tentacle *)(o->tent[o->idx]))->start_attack_at_position((u8 *)&v, (s32)o->arg);
                 o->idx++;

@@ -2,6 +2,7 @@
 #include "pso/animation/MotionContext.h"
 #include "pso/misc/SampledMotionPoints.h"
 #include "pso/math/FloatRounding.h"
+#include "pso/map/CsnGroundQuery.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/unk/TUnk_80494968.h"
@@ -514,7 +515,6 @@ extern "C" const u32 lbl_805DA624[1];
 
 extern "C" {
 f64 atan2_float(f32, f32);
-u32 csnVecterUnder(void *, int);
 s32 spawn_particle_effect(void *, int);
 s32 transition_enemy_state__9TObjEneDDFl(void *, s32);
 s32 approach_angle_limited(int, int, int);
@@ -2662,7 +2662,7 @@ void TObjEneMe3ShinowaMirage__sub_800E5F64(u8 *arg0, s32 arg1) {
                     v.x += *(f32 *)((s8 *)arg0 + 0x3A0) * d;
                     v.y += TObjEneMe3ShinowaMirage__data_805DA5EC;
                     v.z += *(f32 *)((s8 *)arg0 + 0x3A8) * d;
-                    if (csnVecterUnder(&v, 0x15) != 0U) {
+                    if (csnVecterUnder((const Vec *)&v, 0x15) != 0U) {
                         *(s32 *)((s8 *)arg0 + 0x404) = 3;
                         *(f32 *)((s8 *)arg0 + 0x414) = (*(f32 *)((s8 *)arg0 + 0x3AC) - TObjEneMe3ShinowaMirage__data_805DA5EC) / lbl_805DA618;
                         ((TObjEneDD *)(arg0))->vfunc_91();

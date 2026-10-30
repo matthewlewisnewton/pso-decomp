@@ -1,6 +1,7 @@
 #include "pso/system/MatrixVectorArray.h"
 #include "pso/animation/MotionContext.h"
 #include "pso/misc/SampledMotionPoints.h"
+#include "pso/map/CsnGroundQuery.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -1903,7 +1904,6 @@ s32 TObjEneMe3Stelth__sub_800F0C90(void *);
 extern const f32 lbl_805DA878;
 f64 atan2_float(f32, f32);
 #define get_flag_b4__9TObjEneDDFv ((s32 (*)())get_flag_b4__9TObjEneDDFv)
-u32 csnVecterUnder(void *, int);
 #define test_body_collision__16TObjEneMe3StelthFlf ((s32 (*)(void *, int, f32))test_body_collision__16TObjEneMe3StelthFlf)
 s32 approach_angle_limited(int, int, int);
 #define play_sound_effect ((s32 (*)(int, void *, int, int))play_sound_effect)
@@ -2197,7 +2197,7 @@ void TObjEneMe3Stelth__sub_800F348C(u8 *arg0, s32 arg1) {
                     v.x += F(f32, 0x3A0) * t;
                     v.y += TObjEneMe3Stelth__data_805DA844;
                     v.z += F(f32, 0x3A8) * t;
-                    if (csnVecterUnder(&v, 0x15) != 0) {
+                    if (csnVecterUnder((const Vec *)&v, 0x15) != 0) {
                         if (F(s16, 0x28) == ((TScene *)(&v))->find_section_at_position()) {
                             F(s32, 0x424) = 3;
                             F(f32, 0x434) = (F(f32, 0x3AC) - TObjEneMe3Stelth__data_805DA844) / lbl_805DA870;

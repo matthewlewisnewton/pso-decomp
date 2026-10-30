@@ -1,3 +1,4 @@
+#include "pso/map/CsnGroundQuery.h"
 #include "pso/protocol/protocol_types.h"
 #include "pso/misc/TLobby_801E43E4.h"
 #include "types.h"
@@ -236,7 +237,6 @@ f32 horizontal_distance_squared(void *, void *);
 extern s32 camera_ctrl_instance;
 extern const f32 lbl_805DC864;
 extern const f32 lbl_805DC868;
-Hit_8023453C *csnVecterUnder(void *, s32);
 u32 spawn_continuous_particle_effect_with_flags(void *, s32, s32);
 }
 void init_telepipe_packet_header(void* p);
@@ -642,7 +642,7 @@ void *create_telepipe_visual(void *self, Vec_802347B4 *pos, u32 id, s32 res) {
   __ct__7TObjectFP7TObject(self, (void *) res);
   ((Fx_8023453C *) self)->vt = lbl_804CCA0C;
   VecCopy((Vec *)(&((Fx_8023453C *) self)->pos), (const Vec *)pos);
-  hit = csnVecterUnder(&((Fx_8023453C *) self)->pos, 0x100);
+  hit = (Hit_8023453C *)csnVecterUnder((const Vec *)(&((Fx_8023453C *) self)->pos), 0x100);
   VecCopy((Vec *)(&((Fx_8023453C *) self)->pos2), (const Vec *)(&((Fx_8023453C *) self)->pos));
   if (hit != 0)
   {
