@@ -1,4 +1,6 @@
 #include "pso/math/ScratchVectorStorage.h"
+#include "pso/player/TObjPlayer_800F0810.h"
+#include "pso/unk/text_803D8F74.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/system/vector.h"
 #include "pso/system/byteswap.h"
@@ -898,7 +900,6 @@ u32 subtractive_rng_next();
 void create__10TObjPlayerFUiii(u32, s32, s32);
 s32 spawn_particle_effect_with_flags(s32, s32, s32);
 s32 set_owner_id__13TParticleCtrlFUs(s32, s32);
-s32 draw_blob_shadow(void *);
 s32 create_font_small_task(u32, s32, s32, s32, s32 *, s16, s32);
 s32 create_font_small_task_default_color(u32, s32, s32, s32, s32 *, s16);
 s32 create_damage_font__19TObjEneEpsilonGuardFllll(u32, s32, s32, s16);
@@ -925,7 +926,6 @@ s32 scale_matrix(int, f32, f32, f32);
 void set_matrix_identity(s32);
 f32 vec_squared_length(void *);
 s32 rotate_vector_by_matrix(int, void *, void *);
-s32 rotate_matrix_y(int, void *);
 s32 rotate_matrix_z(int, int);
 s32 translate_matrix(int, f32, f32, f32);
 s32 rotate_matrix_x(int, int);
@@ -1487,22 +1487,21 @@ f32 TObjChara::random_ratio() {
 
 extern const f32 lbl_805D7D3C = 65536.0f;
 
-void TObjEnemy::render_with_position_override(u8 *arg1, s32 arg2) {
-    u8 *arg0 = (u8 *)this;
-    s32 spC;
-    s32 sp8;
+void TObjEnemy::draw_ground_shadow(const Vec *scale, s32 forceDraw) {
+    s32 rotationX;
+    s32 rotationZ;
 
     push_matrix();
-    direction_to_rotation_xz((u8 *)&this->m_248, &spC, &sp8);
-    translate_matrix(0, (f32) (*(f32 *)&(*(void * *)((u8 *)this + 0x38))), (f32) ((0.3f) + *(f32 *)((s8 *)arg0 + 0x3C)), (f32) ((*(f32 *)((u8 *)this + 0x40))));
-    rotate_matrix_z(0, sp8);
-    rotate_matrix_x(0, spC);
-    ((s32 (*)(int, int))rotate_matrix_y)(0, (int) ((this->rotation_y)));
+    direction_to_rotation_xz((u8 *)&ground_normal, &rotationX, &rotationZ);
+    translate_matrix(0, position.x, 0.3f + position.y, position.z);
+    rotate_matrix_z(0, rotationZ);
+    rotate_matrix_x(0, rotationX);
+    rotate_matrix_y(0, rotation_y);
     rotate_matrix_x(0, -0x4000);
-    if (arg1 != NULL) {
-        scale_matrix(0, (f32) (*(f32 *)((s8 *)arg1 + 0)), (f32) (*(f32 *)((s8 *)arg1 + 8)), (f32) ((1.0f)));
+    if (scale != NULL) {
+        scale_matrix(0, scale->x, scale->z, 1.0f);
     }
-    draw_blob_shadow((void *)arg2);
+    draw_blob_shadow(forceDraw);
     pop_matrix();
 }
 
@@ -3616,7 +3615,7 @@ s32 TObjChara::select_melee_contact_body(void *source, f32 factor) {
         set_matrix_identity(0);
         ((void (*)(s32, f32, f32, f32))translate_matrix)(0, -((Actor_80016454 *)source)->pos.x, -((Actor_80016454 *)source)->pos.y, -((Actor_80016454 *)source)->pos.z);
         post_translate_matrix(&((Actor_80016454 *)this)->pos);
-        rotate_matrix_y(0, (void *)((Actor_80016454 *)this)->yaw);
+        rotate_matrix_y(0, ((Actor_80016454 *)this)->yaw);
         for (i = 0; i < ((Actor_80016454 *)this)->bodyCount; i++) {
             if (!(((Actor_80016454 *)this)->bodies[i].flags & 0x02000000)) {
                 ((VecCopyFn_80016454)VecCopy__FP3VecPC3Vec)(&point, &((Actor_80016454 *)this)->bodies[i]);
@@ -3949,7 +3948,7 @@ s32 TObjChara::is_target_in_attack_range() {
                     if (!(p->target->parts[i].flags & 0x02000000)) {
                         VCOPY(&v, &p->target->parts[i]);
                         push_matrix_from(&identity_matrix);
-                        rotate_matrix_y(0, (void *)p->target->rotY);
+                        rotate_matrix_y(0, p->target->rotY);
                         rotate_vector_by_matrix(0, &v, &v);
                         pop_matrix();
                         vec3_add_to(&v, &base);
@@ -4018,7 +4017,7 @@ f32 enemy_pursue_point(u8 *arg0, s32 arg1, Vec_800180E8 arg2, f32 farg0, f32 far
         d.z = farg1;
         d.x = d.y = (0.0f);
         push_matrix_from(&identity_matrix);
-        rotate_matrix_y(0, (void *)a);
+        rotate_matrix_y(0, a);
         rotate_vector_by_matrix(0, &d, &d);
         pop_matrix();
         vec3_add_to(&d, arg0 + 0x2FC);
@@ -4053,7 +4052,7 @@ f32 TObjEnemy::enemy_wander_home(f32 farg0, f32 farg1, f32 farg2, s32 arg1) {
         v.z = (1.0f);
         ang = (s32) ((182.04445f) * ((3.6e+02f) * ((f32 (*)(void *))random_ratio__9TObjCharaFv)(arg0)));
         push_matrix_from(&identity_matrix);
-        rotate_matrix_y(0, (void *) ang);
+        rotate_matrix_y(0, ang);
         rotate_vector_by_matrix(0, &v, &v);
         pop_matrix();
         v.x *= farg1;
@@ -4158,7 +4157,7 @@ void enemy_set_heading_velocity(f32 farg0, TObjEnemy *enemy, s32 arg1) {
     stack.spC = (0.0f);
     stack.sp8 = (0.0f);
     push_matrix_from(&identity_matrix.value);
-    rotate_matrix_y(0, (void *)arg1);
+    rotate_matrix_y(0, arg1);
     rotate_vector_by_matrix(0, &stack.sp8, &stack.sp8);
     pop_matrix();
     *(f32 *)((s8 *)enemy + 0x308) = stack.sp8;
@@ -4178,7 +4177,7 @@ void calc_velocity_toward_destination(Obj_800180E8 *self, Vec_800180E8 *pos, Vec
         d.z = speed;
         d.x = d.y = (0.0f);
         push_matrix_from(&identity_matrix);
-        rotate_matrix_y(0, (void *)a);
+        rotate_matrix_y(0, a);
         rotate_vector_by_matrix(0, &d, &d);
         pop_matrix();
         self->vx = d.x;
@@ -4191,7 +4190,7 @@ s32 TObjPlayer__sub_800181DC(u8 *arg0, Vec_800180E8 arg1) {
     VecCopy__FP3VecPC3Vec((s32) &d, (s32) &arg1);
     subtract_vector(&d, arg0 + 0x2FC);
     push_matrix_from(&identity_matrix);
-    rotate_matrix_y(0, (void *) 0x8000);
+    rotate_matrix_y(0, 0x8000);
     rotate_vector_by_matrix(0, &d, &d);
     pop_matrix();
     if ((1e-05f) < vec_squared_length(&d)) {
@@ -4218,7 +4217,7 @@ s32 select_enemy_destination(Obj_800182A0 *self, Vec_800182A0 *arg1, int flags) 
             scratch_vec.vector.x = scratch_vec.vector.y = (0.0f);
             scratch_vec.vector.z = self->fA4->fC;
             push_matrix_from(&identity_matrix);
-            rotate_matrix_y(0, (void *)a);
+            rotate_matrix_y(0, a);
             rotate_vector_by_matrix(0, &scratch_vec.vector, &scratch_vec.vector);
             pop_matrix();
             vec3_add_to(&d, &scratch_vec.vector);
@@ -4246,7 +4245,7 @@ s32 check_path_obstructed(u8 *arg0, Vec_80018428 *arg1) {
         d.y = d.x = (0.0f);
         d.z = (3e+02f);
         push_matrix_from(&identity_matrix);
-        rotate_matrix_y(0, (void *) a);
+        rotate_matrix_y(0, a);
         rotate_vector_by_matrix(0, &d, &d);
         pop_matrix();
         vec3_add_to(&d, arg0 + 0x2FC);
@@ -4484,8 +4483,8 @@ void TObjChara::reset_motion_fields() {
     self->v104.x = self->v104.y = self->v104.z = (0.0f);
     self->v290.x = self->v290.y = self->v290.z = (0.0f);
     self->v29c.x = self->v29c.y = self->v29c.z = (0.0f);
-    this->m_248 = this->m_250 = (0.0f);
-    self->f24c = (1.0f);
+    this->ground_normal.x = this->ground_normal.z = (0.0f);
+    ground_normal.y = (1.0f);
     this->m_2ac = 0;
     this->m_2b4 = (0.0f);
     this->m_2d4 = 0xFFFF;

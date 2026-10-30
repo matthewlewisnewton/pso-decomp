@@ -19,7 +19,6 @@ extern "C" {
 s32 post_translate_matrix(void *);
 s32 rotate_matrix_y(s32, s32);
 s32 push_matrix();
-s32 update_player_state__9TObjEneDDFv(void *, s32, s32);
 
 extern const f32 lbl_805DF3BC;
 extern const f32 TObjEneRecon__data_805DF3C0;
@@ -27,7 +26,7 @@ extern const f32 TObjEneRecon__data_805DF3C0;
 void TObjEneRecon::vfunc_106() {
     u8 *arg0 = (u8 *)this;
     if (((VObj800AFB60_8031bd64 *) arg0)->m8(lbl_805DF3BC, TObjEneRecon__data_805DF3C0) != 0) {
-        update_player_state__9TObjEneDDFv(arg0, 0, 0);
+        ((TObjEneDD *)(arg0))->draw_ground_shadow(0, 0);
         TObjFish::set_global_param(this->texlist);
         push_matrix();
         post_translate_matrix((u8 *)&this->position);

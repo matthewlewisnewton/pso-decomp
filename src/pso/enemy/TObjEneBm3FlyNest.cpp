@@ -308,7 +308,6 @@ void run_task__17TObjEneBm3FlyNestFv(u8 *arg0);
 Obj_800B3E40 * TObjEneBm3FlyNest__sub_800B3E40(Obj_800B3E40 *self, s16 flag);
 void * TObjEneBm3FlyNest__ct(void *, void *, void *);
 s32 is_main_phase_15__9TObjEneDDFv();
-void update_player_state__9TObjEneDDFv(void *, Vec *, s32);
 void get_camera_ctrl__9TObjEneDDFv(s32, s32);
 s32 get_random_scaled__9TObjEneDDFv(void *);
 s32 noop__12TBoss8DragonFv(void *);
@@ -626,7 +625,7 @@ void TObjEneBm3FlyNest::render_with_state_debug() {
     }
     if (update_object_view_visibility(500.0f, 120.0f) != 0) {
         Vec shadow_scale = lbl_8043B31C;
-        update_player_state__9TObjEneDDFv(this, &shadow_scale, 1);
+        TObjEneDD::draw_ground_shadow(&shadow_scale, 1);
         TObjFish::set_global_param(texlist);
         push_matrix();
         post_translate_matrix(&position.x);
@@ -698,7 +697,7 @@ void TObjEneBm3FlyNest::render() {
                         shadow_scale.x = shadow_scale.z = lbl_805D9D1C * factor;
                     }
                 }
-                update_player_state__9TObjEneDDFv(this, &shadow_scale, 1);
+                TObjEneDD::draw_ground_shadow(&shadow_scale, 1);
             }
             if (draw_now != 0) {
                 update_secondary_light();

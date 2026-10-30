@@ -34,7 +34,6 @@ struct MojaResourceEntry {u8 unknown[8];void* model;void* textures;};
 
 struct MojaResources {u8 unknown[0x42C];MojaResourceEntry* models;};
 
-struct Vec_800AFBF0 { f32 x, y, z; };
 
 struct Base_800AFBF0 { char pad[0x18]; };
 
@@ -150,7 +149,6 @@ extern MojaResources* lbl_805D50D8;
 extern "C" {
 s32 is_main_phase_15__9TObjEneDDFv();
 s32 clear_global_flag_400__9TObjEneDDFv();
-s32 update_player_state__9TObjEneDDFv(void *, s32, s32);
 s32 toggle_particle_effect__10TObjPlayerFv();
 s32 end_effect_render__13TParticleCtrlFv();
 s32 rotate_matrix_y(s32, s32);
@@ -158,7 +156,7 @@ void translate_matrix(u32 arg0, f32 x, f32 y, f32 z);
 s32 push_matrix();
 s32 pop_matrix();
 s32 set_global_param__8TObjFishFl(s32);
-extern Vec_800AFBF0 lbl_8043B10C;
+extern Vec lbl_8043B10C;
 extern const f32 lbl_805D9E84;
 extern const f32 lbl_805D9E88;
 void render__13TObjEneBm3FlyFv(VObj_800AFBF0 *o);
@@ -195,7 +193,7 @@ void TObjEneMoja::bindModel(int index) {
 
 void TObjEneBm3Fly__vt104(TObjEneBm3Fly *arg0) {
     if (((VObj800AFB60_800AFB28 *) arg0)->m8((4e+02f), (15.0f)) != 0) {
-        update_player_state__9TObjEneDDFv(arg0, 0, 0);
+        ((TObjEneDD *)(arg0))->draw_ground_shadow(0, 0);
         set_global_param__8TObjFishFl(arg0->texlist);
         push_matrix();
         post_translate_matrix((u8 *)arg0 + 0x38);
@@ -226,8 +224,8 @@ void render__13TObjEneBm3FlyFv(VObj_800AFBF0 *o) {
     }
     if (kind != 0) {
         if (*(s32 *)((s8 *)o + 0x428) & 2) {
-            Vec_800AFBF0 v = lbl_8043B10C;
-            update_player_state__9TObjEneDDFv(o, (s32)&v, 0);
+            Vec v = lbl_8043B10C;
+            ((TObjEneDD *)(o))->draw_ground_shadow(&v, 0);
         }
         ((TObjEneDD *)o)->update_secondary_light();
         set_global_param__8TObjFishFl(((TObjEneBm3Fly *)o)->texlist);
@@ -2102,7 +2100,6 @@ void TObjEneBm3Fly::clamp_flight_height() {
 #define remove_child__17TObjEneBm3FlyNestFPUc (*(void (*)(Obj_800B2A5C *, u8 *))&remove_child__17TObjEneBm3FlyNestFPUc)
 #define has_free_attack_slot__17TObjEneBm3FlyNestFUs (*(s32 (*)(Obj_800B2AF4 *, u16))&has_free_attack_slot__17TObjEneBm3FlyNestFUs)
 #define clear_global_flag_400__9TObjEneDDFv (*(void (*)(void))&clear_global_flag_400__9TObjEneDDFv)
-#define update_player_state__9TObjEneDDFv (*(void (*)(void *, Vec_800B23A0 *, s32))&update_player_state__9TObjEneDDFv)
 #define set_field_378__9TObjEneDDFl (*(s32 (*)(void *, s32))&set_field_378__9TObjEneDDFl)
 #define transition_enemy_state__9TObjEneDDFl (*(s32 (*)(void *, s32))&transition_enemy_state__9TObjEneDDFl)
 #define toggle_particle_effect__10TObjPlayerFv (*(void (*)(void))&toggle_particle_effect__10TObjPlayerFv)
@@ -2467,7 +2464,6 @@ void TObjEneBm3Fly::load_resources() {
 #undef remove_child__17TObjEneBm3FlyNestFPUc
 #undef has_free_attack_slot__17TObjEneBm3FlyNestFUs
 #undef clear_global_flag_400__9TObjEneDDFv
-#undef update_player_state__9TObjEneDDFv
 #undef set_field_378__9TObjEneDDFl
 #undef transition_enemy_state__9TObjEneDDFl
 #undef toggle_particle_effect__10TObjPlayerFv

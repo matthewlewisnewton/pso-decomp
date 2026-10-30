@@ -1168,7 +1168,6 @@ struct Vec_800B4824 { f32 x, y, z; };
 struct Ent16_800B4824 { s32 f0; s32 f4; s32 f8; s32 fC; };
 struct Ent8_800B4824 { s32 f0; u8 *f4; };
 
-s32 update_player_state__9TObjEneDDFv(void *, int, int);
 s32 pack_debug_text_position(s32 arg0, s32 arg1);
 s32 debug_draw_line(void *, void *, int, int);
 s32 debug_printf_at(s32, const char *, ...);
@@ -1195,7 +1194,7 @@ void render_debug__14TObjEneBm5WolfFPv(u8 *ene_bm5_wolf) {
         }
     }
     if (((VObj_18_26a62c *)(ene_bm5_wolf))->m8(lbl_805D9D70, TObjEneBm5Wolf__data_805D9D74) != 0) {
-        update_player_state__9TObjEneDDFv(ene_bm5_wolf, 0, 0);
+        ((TObjEneDD *)(ene_bm5_wolf))->draw_ground_shadow(0, 0);
         TObjFish::set_global_param(((TObjEneBm5Wolf *)ene_bm5_wolf)->texlist);
         push_matrix();
         post_translate_matrix(ene_bm5_wolf + 0x38);

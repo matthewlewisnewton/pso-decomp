@@ -616,7 +616,6 @@ struct VObj_18_1fdb47 : VBase_18_1fdb47 {
     virtual s32 m104();
 };
 
-struct Vec_800972B0 { f32 x, y, z; };
 
 struct Ent_800972B0 { s32 a, b, c; };
 
@@ -626,10 +625,10 @@ struct Fields_800972B0 {
     u8 pad0[0x24];
     Ent_800972B0 **f24;
     u8 pad28[0x2FC - 0x28];
-    Vec_800972B0 pos;
+    Vec pos;
     u8 pad308[0x3E0 - 0x308];
     Fade_800972B0 fades[4];
-    Vec_800972B0 pts[4];
+    Vec pts[4];
     s32 f480;
 };
 
@@ -883,7 +882,6 @@ extern f32 TObjEneDf2Bringer__data_805D9820;
 s32 is_split_screen();
 s32 get_camera_mode__11TCameraCtrlFv();
 s32 is_main_phase_15__9TObjEneDDFv();
-s32 update_player_state__9TObjEneDDFv(void *, void *, int);
 s32 update__15RenderFadeStateFv(void *);
 s32 scroll_strip_uvs(int, int, int);
 s32 defer_render__7TObjectFv(void *);
@@ -891,7 +889,7 @@ s32 rotate_matrix_y(int, int);
 s32 push_matrix();
 s32 pop_matrix();
 s32 post_translate_matrix(void *);
-extern Vec_800972B0 lbl_8043A0D4[];
+extern Vec lbl_8043A0D4[];
 extern s32 TObjEneDf2Bringer__uv_scroll_buffer;
 extern s32 saved_model_render_flags;
 extern s32 model_render_flags;
@@ -974,8 +972,8 @@ void render__17TObjEneDf2BringerFv(u8 *arg0) {
     }
     if (var_r31 != 0) {
         {
-            Vec_800972B0 v = lbl_8043A0D4[0];
-            update_player_state__9TObjEneDDFv(arg0, &v, 0);
+            Vec v = lbl_8043A0D4[0];
+            ((TObjEneDD *)(arg0))->draw_ground_shadow(&v, 0);
         }
         ((TObjEneDD *)arg0)->update_secondary_light();
         TObjEneDf2Bringer__render_node_index = 0;

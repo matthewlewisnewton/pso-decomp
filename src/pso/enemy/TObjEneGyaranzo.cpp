@@ -680,7 +680,6 @@ struct Elem_800D35D8 { u8 pad[0x1C]; };
 
 struct Obj_800D35D8 { u8 pad[0x3D0]; VObj_14_fddec9 light; u8 pad2[0x3EC - 0x3D0 - sizeof(VObj_14_fddec9)]; Elem_800D35D8 arr[2]; };
 
-struct Vec_800D35D8 { s32 x, y, z; };
 
 struct Ene_800D2E8C;
 
@@ -752,7 +751,7 @@ s32 post_translate_matrix(void *);
 s32 draw_chunk_object(int);
 
 extern Pos_800D3C04 lbl_8043C25C;
-extern Vec_800D35D8 lbl_8043C26C;
+extern Vec lbl_8043C26C;
 extern s32 lbl_8043C428[];
 extern u32 *gyaranzo_model_resources[];
 extern s32 lbl_805D2A78;
@@ -1468,8 +1467,8 @@ void TObjEneGyaranzo::render() {
             restore_scene_lighting();
             TParticleCtrl::end_effect_render();
             if (!(this->actorFlags & 0x800) && (var_r29 != 0)) {
-                Vec_800D35D8 sp8 = lbl_8043C26C;
-                this->render_with_position_override((u8 *)&sp8, 0);
+                Vec sp8 = lbl_8043C26C;
+                this->TObjEnemy::draw_ground_shadow(&sp8, 0);
             }
             ((VObj_14_fddec9 *)(var_r30))->m7();
         }

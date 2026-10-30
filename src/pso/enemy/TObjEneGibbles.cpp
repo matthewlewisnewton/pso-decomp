@@ -2382,7 +2382,7 @@ void draw_model__14TObjEneGibblesFPv(TObjEneGibbles *arg0) {
         pop_matrix();
         restore_scene_lighting();
         if (!(arg0->m_374 & 1)) {
-            ((TObjEnemy *)arg0)->render_with_position_override(0, 0);
+            ((TObjEnemy *)arg0)->draw_ground_shadow(0, 0);
         }
     } else {
         arg0->update_position();

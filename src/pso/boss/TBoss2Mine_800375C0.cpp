@@ -549,7 +549,6 @@ struct RecoveredGlobal_800384C8_lbl_80435AB0
   u8 remaining[0x10];
 };
 
-struct Vec_80038200 { f32 x, y, z; };
 
 struct Col_80038200 { s32 a; f32 r, g, b; };
 
@@ -577,7 +576,7 @@ struct Mine_80038200 : Base_80038200 {
     void *f24;
     u8 pad28[0x34 - 0x28];
     void *model;
-    Vec_80038200 pos;
+    Vec pos;
     u8 pad44[0x5C - 0x44];
     s32 f5C;
     s32 f60;
@@ -607,7 +606,7 @@ void push_matrix(void);
 s32 pop_matrix(void);
 void post_translate_matrix(void *);
 void draw_chunk_object(void *);
-extern Vec_80038200 lbl_80435AD0;
+extern Vec lbl_80435AD0;
 extern Col_80038200 boss2_mine_render_color;
 extern void *lbl_805D28BC;
 extern s32 saved_model_render_flags;
@@ -653,8 +652,8 @@ void TBoss2Mine::render() {
         return;
     }
     if (self->flags & 2) {
-        Vec_80038200 v = lbl_80435AD0;
-        ((TObjEnemy *)self)->render_with_position_override((u8 *)&v, 0);
+        Vec v = lbl_80435AD0;
+        ((TObjEnemy *)self)->draw_ground_shadow(&v, 0);
     }
     TObjFish::set_global_param((s32)self->f24);
     saved_model_render_flags = model_render_flags;

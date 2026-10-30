@@ -80,7 +80,6 @@ typedef struct Grass_800BE75C {
 
 struct Vec_800BEF8C { f32 x, y, z; };
 
-struct Vec_800BF66C { f32 x, y, z; };
 
 struct Quad_800BF66C { s32 a, b, c, d; };
 
@@ -583,13 +582,13 @@ void TObjGrass::update_dying(void *arg0_) {
 #undef arg0
 #pragma pop
 
-Vec_800BF66C grass_camera_vec;
-Vec_800BF66C grass_render_vec;
-Vec_800BF66C grass_origin_vec;
+Vec grass_camera_vec;
+Vec grass_render_vec;
+Vec grass_origin_vec;
 
 extern u8 lbl_804FF5E8[];
 void TObjGrass::update_camera_vec_by_stage() {
-    Vec_800BF66C *v;
+    Vec *v;
 
     switch (TObjGrass__render_node_index) {
     case 0x31:
@@ -1549,7 +1548,6 @@ struct VObj_18_ca64a0 : VBase_18_ca64a0 {
     virtual s32 m9(f32, f32, f32);
 };
 
-s32 render_with_position_override__9TObjEnemyFPUcl(void *, void *, int, f32);
 void restore_scene_lighting(void);
 void select_actor_lighting(s32 obj);
 s32 defer_render__7TObjectFv(void *);
@@ -1628,11 +1626,11 @@ void TObjGrass::render() {
     case 9:
         break;
     default: {
-        Vec_800BF66C v;
+        Vec v;
         v.x = (1.0f);
         v.y = (1.0f);
         v.z = (4.0f);
-        render_with_position_override__9TObjEnemyFPUcl(self, &v, 0, (1.0f));
+        ((TObjEnemy *)self)->draw_ground_shadow(&v, 0);
         break;
     }
     }
