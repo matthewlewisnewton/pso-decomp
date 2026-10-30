@@ -1,4 +1,5 @@
 #include "pso/math/FloatRounding.h"
+#include "pso/misc/PositionSoundEffects.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -3663,7 +3664,7 @@ void TObjEneBm5GibonU__sub_800D02F8(Gibon_800D02F8 *g, s32 arg1) {
         g->f478 = 0;
         VecCopy((Vec *)home, (const Vec *)g->pos);
         ((TUnk_80494938 *)(&g->sub))->start_fade_in();
-        ((TBoss3Volopt *)(g->pos))->play_area_sound_effect();
+        play_area_sound_and_particles_b((const Vec *)(g->pos));
         break;
     case 3:
         if (g->sub.m5() != 0) {

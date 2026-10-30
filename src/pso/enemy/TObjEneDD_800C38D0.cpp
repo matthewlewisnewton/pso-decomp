@@ -1,4 +1,5 @@
 #include "pso/enemy/TUnk_80494938.h"
+#include "pso/misc/PositionSoundEffects.h"
 #include "types.h"
 #include "pso/enemy/TObjEneDD.h"
 #include "pso/boss/TBoss3Volopt.h"
@@ -33,7 +34,7 @@ void TObjEneDD::handle_state(s32 arg1) {
             ((TBoss3Volopt *)(arg0 + 0x38))->play_area_se_with_particle();
             return;
         }
-        ((TBoss3Volopt *)(arg0 + 0x38))->play_area_sound_effect();
+        play_area_sound_and_particles_b((const Vec *)(arg0 + 0x38));
         return;
     case 3:
         if (((V_Sub_800c38d0 *) (arg0 + 0x3F4))->m5() != 0) {

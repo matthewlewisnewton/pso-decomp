@@ -1,3 +1,4 @@
+#include "pso/misc/PositionSoundEffects.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/TParticleCtrl.h"
@@ -710,8 +711,6 @@ s32 sub_8004292C__15TObjEnemyCustomFv(void *);
 void *spawn_particle_effect(void *pos, s32 id);
 s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 s32 play_sound_effect(void *, void *, s32, s32);
-s32 play_area_sound_effect__12TBoss3VoloptFv(void *, s32);
-
 }
 
 struct Base410 { char pad[0x14]; };
@@ -730,7 +729,7 @@ void init__15TObjEneMe1GiGueFPv(u8 *arg0) {
         temp_r4 = *(s32 *)((s8 *)arg0 + 0x30) | 0x04000000;
         *(s32 *)((s8 *)arg0 + 0x30) = temp_r4;
         *(s16 *)((s8 *)arg0 + 0xB8) = 0;
-        play_area_sound_effect__12TBoss3VoloptFv(arg0 + 0x2FC, temp_r4);
+        play_area_sound_and_particles_b((const Vec *)(arg0 + 0x2FC));
         ((TUnk_80494938 *)(arg0 + 0x3FC))->start_fade_in();
         *(s32 *)((s8 *)arg0 + 0x37C) = 1;
     case 1:

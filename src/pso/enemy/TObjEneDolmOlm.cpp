@@ -1,5 +1,6 @@
 #include "pso/system/MatrixVectorArray.h"
 #include "pso/misc/SampledMotionPoints.h"
+#include "pso/misc/PositionSoundEffects.h"
 #include "pso/render/reflection.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/misc/GroundEffects.h"
@@ -1277,7 +1278,7 @@ void TObjEneDolmOlm::vfunc_83() {
     default:
         if (this->m_390 != 0) {
             ((TUnk_80494938 *)(&self->obj))->start_fade_in();
-            ((TBoss3Volopt *)(self->sub38))->play_area_sound_effect();
+            play_area_sound_and_particles_b((const Vec *)(self->sub38));
             this->phase = 1;
             return;
         }

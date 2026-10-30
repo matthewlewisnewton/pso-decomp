@@ -1,6 +1,7 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/unk/TUnk_80494968.h"
 #include "pso/misc/GroundEffects.h"
+#include "pso/misc/PositionSoundEffects.h"
 #include "pso/enemy/TUnk_80493450.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/player/TObjChara.h"
@@ -13,7 +14,6 @@
 #include "pso/object/TObject_80019A50.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/TParticleCtrl.h"
-#include "pso/boss/TBoss3Volopt.h"
 #include "pso/enemy/TObjEneDD.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/object/TObjFish.h"
@@ -179,7 +179,7 @@ void TObjEneShark::vfunc_83() {
     default:
         if (m_390 != 0) {
             appearance_fade.start_fade_in();
-            ((TBoss3Volopt *)&position)->play_area_sound_effect();
+            play_area_sound_and_particles_b(&position);
             phase = 1;
         } else {
             phase = 2;

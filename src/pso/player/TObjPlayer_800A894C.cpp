@@ -1,6 +1,7 @@
 #include "pso/enemy/TUnk_80494938.h"
 #include "pso/system/MatrixVectorArray.h"
 #include "pso/misc/SampledMotionPoints.h"
+#include "pso/misc/PositionSoundEffects.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -229,7 +230,6 @@ struct Vec_800AA334 { s32 x, y, z; };
 typedef struct Vec_800A9E9C { f32 x, y, z; } Vec_800A9E9C;
 
 extern "C" {
-void TBoss3Volopt__sub_800D8D88(s32 arg0);
 void TObjPlayer__sub_800A8E04(u8 *arg0);
 void obj_setFlags30(void *, u32);
 void TObjPlayer__sub_800A8C1C(u8 *arg0);
@@ -454,7 +454,7 @@ void TObjPlayer__sub_800A8E04(u8 *ene_me1_gi_gue) {
         ((TObjEneMe1GiGue *)ene_me1_gi_gue)->actorFlags = (((TObjEneMe1GiGue *)ene_me1_gi_gue)->actorFlags | 0x04000000);
         ((TObjEneMe1GiGue *)ene_me1_gi_gue)->requested_action = 5;
         ((TObjMotion *)ene_me1_gi_gue)->advance_animation();
-        TBoss3Volopt__sub_800D8D88((s32)(ene_me1_gi_gue + 0x2FC));
+        play_area_sound_and_particles_a((const Vec *)((s32)(ene_me1_gi_gue + 0x2FC)));
         ((TUnk_80494938 *)(ene_me1_gi_gue + 0x3B0))->start_fade_in();
         ((TObjEneMe1GiGue *)ene_me1_gi_gue)->state = 1;
     case 1:

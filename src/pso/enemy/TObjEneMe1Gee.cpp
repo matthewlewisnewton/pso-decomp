@@ -1,5 +1,6 @@
 #include "pso/enemy/TUnk_80494938.h"
 #include "pso/math/FloatRounding.h"
+#include "pso/misc/PositionSoundEffects.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -1350,12 +1351,6 @@ typedef char RecoveredFields_800C9580_arg0_3C8_offset[offsetof(RecoveredFields_8
 
 typedef char RecoveredFields_800C9580_arg0_48C_offset[offsetof(RecoveredFields_800C9580_arg0, field_48C) == 0x48C ? 1 : -1];
 
-struct Stack_800CAFD8 {
-    f32 sp8;
-    f32 spC;
-    f32 sp10;
-};
-
 struct VBase_14_948132 { char pad[0x14]; };
 
 struct VObj_14_948132 : VBase_14_948132 {
@@ -1883,7 +1878,6 @@ int TObjEneMe1Gee__sub_800CC2BC(void);
 void run_task__13TObjEneMe1GeeFv(u8 *arg0);
 void * __dt__13TObjEneMe1GeeFv(void *arg0, s16 arg1);
 void *__dt__13TUnk_80494938Fv(void *arg0, s16 arg1);
-void TBoss3Volopt__sub_800D8D88(s32);
 s32 approach_angle_limited(s32, s32, s32);
 void *find_entity_by_id(u16 id);
 void free_collision_body_parts(void *);
@@ -3151,7 +3145,7 @@ void TObjEneMe1Gee::state_hover(s32 arg1) {
 }
 
 void TObjEneMe1Gee__sub_800CAFD8(u8 *ene_me1_gee, s32 arg1) {
-    Stack_800CAFD8 stack;
+    Vec stack;
     f32 temp_f0;
     switch (arg1) {
     case 4:
@@ -3163,11 +3157,11 @@ void TObjEneMe1Gee__sub_800CAFD8(u8 *ene_me1_gee, s32 arg1) {
         ((TObjEneMe1Gee *)(ene_me1_gee))->vfunc_95();
         ((RecoveredFields_800CAFD8_arg0 *)ene_me1_gee)->field_47C = 1;
         ((TUnk_80494938 *)(ene_me1_gee + 0x3CC))->start_fade_in();
-        ((void (*)(void *, void *))VecCopy__FP3VecPC3Vec)(&stack.sp8, ene_me1_gee + 0x38);
-        temp_f0 = stack.spC + lbl_805DA128;
-        stack.spC = temp_f0;
+        ((void (*)(void *, void *))VecCopy__FP3VecPC3Vec)(&stack, ene_me1_gee + 0x38);
+        temp_f0 = stack.y + lbl_805DA128;
+        stack.y = temp_f0;
         ((RecoveredFields_800CAFD8_arg0 *)ene_me1_gee)->field_3F8 = temp_f0;
-        TBoss3Volopt__sub_800D8D88((s32) &stack.sp8);
+        play_area_sound_and_particles_a((const Vec *)((s32) &stack));
         ((TObjEneMe1Gee *)(ene_me1_gee))->vfunc_91();
         ((RecoveredFields_800CAFD8_arg0 *)ene_me1_gee)->field_434 = 0;
         return;
@@ -3212,7 +3206,7 @@ void TObjEneMe1Gee::state_move(s32 arg1) {
         this->actorFlags = temp_r4;
         *(s32 *)((s8 *)((u8 *)this) + 0x47C) = 1;
         ((TUnk_80494938 *)(((u8 *)this) + 0x3CC))->start_fade_in();
-        ((TBoss3Volopt *)(((u8 *)this) + 0x38))->play_area_sound_effect();
+        play_area_sound_and_particles_b((const Vec *)(((u8 *)this) + 0x38));
         return;
     case 3:
         if (((V_Sub *) (((u8 *)this) + 0x3CC))->m5() != 0) {

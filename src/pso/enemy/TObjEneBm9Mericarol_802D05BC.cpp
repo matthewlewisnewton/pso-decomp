@@ -1,4 +1,5 @@
 #include "pso/enemy/TUnk_80494938.h"
+#include "pso/misc/PositionSoundEffects.h"
 #include "types.h"
 #include "pso/enemy/TObjEneDD_ST.h"
 #include "pso/enemy/TObjEneBm9Mericarol_802D05BC.h"
@@ -49,7 +50,7 @@ void TObjEneBm9Mericarol__sub_802D05BC(u8 *ene_dd_st, s32 arg1) {
         ((TObjEneDD *)ene_dd_st)->set_field_378(2);
         enemy_clear_target__12TObjEneDD_STFUs(ene_dd_st);
         ((TUnk_80494938 *)(ene_dd_st + 0x46C))->start_fade_in();
-        ((TBoss3Volopt *)(ene_dd_st + 0x38))->play_area_sound_effect();
+        play_area_sound_and_particles_b((const Vec *)(ene_dd_st + 0x38));
         return;
     case 3:
         if (((SubObj_802d05bc *)(ene_dd_st + 0x46C))->v5() != 0) {

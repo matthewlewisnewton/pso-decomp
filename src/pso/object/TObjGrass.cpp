@@ -1,5 +1,6 @@
 #include "pso/system/MatrixVectorArray.h"
 #include "pso/misc/SampledMotionPoints.h"
+#include "pso/misc/PositionSoundEffects.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -1290,7 +1291,7 @@ void TObjGrass::update_ai(void *arg0) {
     case 0:
         obj_setFlags30(o, 0x04040000);
         ((TUnk_80494938 *)(&o->sub))->start_fade_in();
-        ((TBoss3Volopt *)(&o->pos))->play_area_sound_effect();
+        play_area_sound_and_particles_b((const Vec *)(&o->pos));
         o->state = 1;
         break;
     case 1:

@@ -1,4 +1,5 @@
 #include "pso/math/FloatRounding.h"
+#include "pso/misc/PositionSoundEffects.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/system/vector.h"
@@ -1869,7 +1870,6 @@ s32 collect_enemy_target_candidates(void *, Entry_8009E860 *);
 void clear_attack_receipts__9TObjEneDDFv();
 void invoke_initialization_hook__9TObjEneDDFPv(void *, void *);
 void *__dt__13TUnk_80494938Fv(void *arg0, s16 arg1);
-void TBoss3Volopt__sub_800D8D88(s32 arg0);
 s32 trigger_dell_biter_events__10TObjPlayerFv(void *, f32);
 s32 approach_angle_limited(s32, s32, s32);
 void *find_entity_by_id(u16 id);
@@ -3903,7 +3903,7 @@ void TObjEneMe1Canadin__sub_8009DE90(void *argv0, s32 arg1) {
         *(s32 *)((s8 *)arg0 + 0x3FC) = 4;
         *(s32 *)((s8 *)arg0 + 0x4B8) = 1;
         ((TUnk_80494938 *)(arg0 + 0x3CC))->start_fade_in();
-        TBoss3Volopt__sub_800D8D88((s32)(arg0 + 0x38));
+        play_area_sound_and_particles_a((const Vec *)((s32)(arg0 + 0x38)));
         return;
     case 3:
         if (((V_Sub_8009DE90 *) (arg0 + 0x3CC))->m5() != 0) {

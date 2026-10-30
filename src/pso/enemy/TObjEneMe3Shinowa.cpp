@@ -3,6 +3,7 @@
 #include "pso/misc/SampledMotionPoints.h"
 #include "pso/math/FloatRounding.h"
 #include "pso/map/CsnGroundQuery.h"
+#include "pso/misc/PositionSoundEffects.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/unk/TUnk_80494968.h"
@@ -694,11 +695,6 @@ struct RecoveredGlobal_800E4D7C_lbl_80500FF4 {
 struct RecoveredGlobal_800F4758_lbl_8050110C {
     s32 value;
     u8 remaining[0x10];
-};
-
-struct Stack_800E6BB8 {
-    s32 sp8;
-    f32 spC;
 };
 
 struct VBase_14_948132 { char pad[0x14]; };
@@ -1492,7 +1488,6 @@ s32 initialize_enemy_state__9TObjEneDDFl(void *, int);
 void TObjEneDD__sub_800BA438(s32 arg0, u8 *arg1);
 void init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, s32);
 void *__dt__13TUnk_80494938Fv(void *arg0, s16 arg1);
-s32 TBoss3Volopt__sub_800D8D88(void *, f32);
 void update_mirage__17TObjEneMe3ShinowaFv(void* p);
 void vfunc_116__17TObjEneMe3ShinowaFl(void);
 void vfunc_114__17TObjEneMe3ShinowaFl(void);
@@ -2915,7 +2910,7 @@ void TObjEneMe3ShinowaMirage__sub_800E69F0(u8 *ene_me3_shinowa_mirage, s32 arg1)
 
 void TObjEneMe3Shinowa::sub_800E6BB8(s32 arg1) {
     u8 *arg0 = (u8 *)this;
-    Stack_800E6BB8 stack;
+    Vec stack;
     f32 temp_f1;
     switch (arg1) {
     case 4:
@@ -2924,10 +2919,10 @@ void TObjEneMe3Shinowa::sub_800E6BB8(s32 arg1) {
         this->vfunc_95();
         *(s32 *)((s8 *)arg0 + 0x3C4) = (s32) (*(s32 *)((s8 *)arg0 + 0x3C4) & 0xFFFFFFFC);
         ((TUnk_80494938 *)(arg0 + 0x3E8))->start_fade_in();
-        VecCopy((Vec *)(&stack.sp8), (const Vec *)(arg0 + 0x38));
+        VecCopy((Vec *)(&stack), (const Vec *)(arg0 + 0x38));
         temp_f1 = *(f32 *)((s8 *)arg0 + 0x3C8);
-        stack.spC = temp_f1 - TObjEneMe3ShinowaMirage__data_805DA5EC;
-        TBoss3Volopt__sub_800D8D88(&stack.sp8, temp_f1);
+        stack.y = temp_f1 - TObjEneMe3ShinowaMirage__data_805DA5EC;
+        play_area_sound_and_particles_a((const Vec *)(&stack));
         return;
     case 3:
         if (((VObj_14_948132 *)(arg0 + (1000)))->m5() != 0) {
