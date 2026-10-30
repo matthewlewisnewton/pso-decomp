@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include <stdlib.h>
 #include "pso/TMainTask.h"
 #include "pso/TParticleCtrl.h"
@@ -85,16 +86,13 @@ void *TOSignCave02::create(void *set_data) {
 
 void TOSignCave02::release_static_resource() {
     if (TOSignCave02__bml_resource != NULL) {
-        TLobby__sub_8001FE7C(TOSignCave02__bml_resource, 1);
+        delete (BmlResource *)(TOSignCave02__bml_resource);
         TOSignCave02__bml_resource = NULL;
     }
 }
 
 void TOSignCave02::load_shared_resource() {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_fs_obj_dokanban02_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&bm_fs_obj_dokanban02_resource_descriptor), 0, 0, (void *)(0));
     TOSignCave02__bml_resource = resource;
 }
 

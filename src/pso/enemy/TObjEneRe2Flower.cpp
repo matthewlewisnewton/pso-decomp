@@ -46,14 +46,14 @@ void TObjEneRe2Flower::set_child_flags() {
 
 void TObjEneRe2Flower::vfunc_88() {
     u8 *arg0 = (u8 *)this;
-    *(f32 *)((s8 *)this->bodies + 0x30) = (f32) (this->m_300 - *(f32 *)((s8 *)arg0 + 0x3C));
+    *(f32 *)((s8 *)this->bodies + 0x30) = (f32) (this->body_center_position.y - *(f32 *)((s8 *)arg0 + 0x3C));
     ((TObjEneDD *)arg0)->set_part_local_pos((u8 *)&this->_pad3F8, 0);
 }
 
 void TObjEneRe2Flower::sub_800C3DC4() {
-    VecCopy((Vec *)&this->m_2fc, (const Vec *)&this->position);
-    this->m_300 = (f32) (this->m_300 + lbl_805D9FF8);
-    VecCopy(&this->center, (const Vec *)&this->m_2fc);
+    VecCopy((Vec *)&this->body_center_position, (const Vec *)&this->position);
+    this->body_center_position.y = (f32) (this->body_center_position.y + lbl_805D9FF8);
+    VecCopy(&this->center, (const Vec *)&this->body_center_position);
 }
 
 }

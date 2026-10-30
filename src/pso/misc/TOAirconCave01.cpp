@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/TMainTask.h"
 #include "pso/misc/TOAirconCave01.h"
 #include "pso/object/TObjFish.h"
@@ -35,17 +36,13 @@ void *TOAirconCave01::create(void *set_data) {
 
 void TOAirconCave01::release_static_resource() {
     if (TOAirconCave01__model_archive != NULL) {
-        TLobby__sub_8001FE7C(TOAirconCave01__model_archive, 1);
+        delete (BmlResource *)(TOAirconCave01__model_archive);
         TOAirconCave01__model_archive = NULL;
     }
 }
 
 void TOAirconCave01::load_shared_resource() {
-    void *memory = ::operator new(0x440);
-    BmlResource *resource = (BmlResource *)memory;
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(memory, 1, &TOAirconCave01__shared_resource_desc, 0, 0, 0);
-    }
+    BmlResource *resource = new BmlResource(1, (BmlResourceDescriptor *)&TOAirconCave01__shared_resource_desc, 0, 0, NULL);
     TOAirconCave01__model_archive = resource;
 }
 

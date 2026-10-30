@@ -1,10 +1,10 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/enemy/TObjEneSlime_800EBBC8.h"
 #include "pso/enemy/TObjEneSlime.h"
 
 extern "C" {
 
-void *load_resource_from_descriptor(void *, s32, s32 *, s32, s32, s32);
 s32 __ct__11TObjControlFP7TObject(s32, s32);
 s32 __nw__7TObjectFUl(s32);
 
@@ -18,10 +18,7 @@ void TObjEneSlime::spawn_pair() {
     void *temp_r5;
     void *temp_r5_2;
 
-    temp_r4 = ::operator new(0x440);
-    if (temp_r4 != NULL) {
-        temp_r4 = load_resource_from_descriptor(temp_r4, 1, slime_pair_resource_descriptor, 0, 0, 0);
-    }
+    temp_r4 = new BmlResource(1, (BmlResourceDescriptor *)(slime_pair_resource_descriptor), 0, 0, (void *)(0));
     slime_bml_resource = temp_r4;
     temp_r5 = *(void **)((s8 *)temp_r4 + 0x42C);
     TObjEneSlime::spawn_child(0x28, *(s32 *)((s8 *)temp_r5 + 0x48), *(s32 *)((s8 *)temp_r5 + 0x4C), lbl_805DA66C, lbl_805DA6B4);

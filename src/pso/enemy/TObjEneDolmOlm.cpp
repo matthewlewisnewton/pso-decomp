@@ -1,4 +1,5 @@
 #include "pso/render/reflection.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #pragma defer_codegen on
@@ -49,6 +50,7 @@ struct VObj_80301690_80300CE4 : Base_80301690_80300CE4 {
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/misc/TLobby.h"
 #include "pso/object/TObjFish.h"
+#include "pso/npc/NpcModelRegistry.h"
 struct Stack_80300FC0 {
     f32 sp8;
     f32 spC;
@@ -401,7 +403,6 @@ s32 check_path_obstructed(void *, void *);
 s32 pop_matrices(int);
 extern const f32 TObjEneDolmOlm__data_805DEF68;
 void check_path_ahead__14TObjEneDolmOlmFlf(u8 *arg0, s32 arg1, f32 farg0);
-s32 copy_position__20TBoss3VoloptHiraisinFv(void *);
 s32 submit_cursor_candidate(void *, int);
 s32 TObjEneDolmOlm__sub_80301C3C(void *);
 extern const f32 TObjEneDolmOlm__data_805DEF50;
@@ -489,10 +490,8 @@ s32 dispatch_shared_handler_a__6TLobbyFl(int);
 s32 register_object__6TLobbyFl(int);
 s32 dispatch_shared_handler_b__6TLobbyFl(int);
 s32 register_boss__6TLobbyFl(int);
-u8 *load_resource_from_descriptor(void *, int, void *, int, int, int);
 u8 *init_trail_buffer__11TBoss4Type3FPvifff(void *, int, f32, f32, f32);
 u8 *mem_alloc(s32);
-s32 spawn_npc_enemy__6TLobbyFslllff(s16, s32, s32, void *, f32, f32);
 extern u32 dolm_olm_combat_stat_id_pair;
 extern u32 TObjEneDolmOlm__shared_handler_ids;
 extern u32 TObjEneDolmOlm__registered_object_ids;
@@ -506,7 +505,6 @@ void vfunc_101__14TObjEneDolmOlmFv(void);
 void request_stand_action__14TObjEneDolmOlmFv(void* p);
 void vfunc_100__14TObjEneDolmOlmFv(void *arg0);
 void vfunc_58__14TObjEneDolmOlmFv(void *arg0);
-void TLobby__sub_8001FE7C(void*, int);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 u8 *TObjEneDolmOlm__ct(u8 *, s32, s32);
 void __dt__11TBoss4Type3FPvs(void*, int);
@@ -959,7 +957,7 @@ u8 *TObjEneDolmOlm__ct(u8 *arg0, s32 arg1, s32 arg2) {
     *(u8 * *)&((TObjEneDolmOlm *)arg0)->movementParameters = (u8 *) lbl_804E6898 + *(s32 *)&((TObjEneDolmOlm *)arg0)->variant * 0x1C;
     ((TObjEneDolmOlm *)arg0)->referenceHp = ((TObjEneDolmOlm *)arg0)->hp;
     ((TObjEneDolmOlm *)arg0)->advance_position();
-    copy_position__20TBoss3VoloptHiraisinFv(arg0);
+    ((TObjChara *)arg0)->copy_body_to_center();
     initialize_enemy_photon_effect(arg0);
     *(s32 *)&((TObjEneDolmOlm *)arg0)->m_2ac = lbl_805DEF94 * (lbl_805DEF98 * ((f32 (*)(void *)) random_ratio__9TObjCharaFv)(arg0));
     *(s16 *)&((TObjEneDolmOlm *)arg0)->resetTimer = 0xF;
@@ -1019,16 +1017,10 @@ void TObjEneDolmOlm::load_shared_resources() {
     u8 *p;
     s32 i;
     if (is_split_screen() != 0) {
-        p = (u8 *)::operator new(0x440);
-        if (p != NULL) {
-            p = load_resource_from_descriptor(p, 1, lbl_804E67B8, 0, 0, 0);
-        }
+        p = (u8 *)new BmlResource(1, (BmlResourceDescriptor *)(lbl_804E67B8), 0, 0, (void *)(0));
         TObjEneDolmOlm__resource_bundle = (u32) p;
     } else {
-        p = (u8 *)::operator new(0x440);
-        if (p != NULL) {
-            p = load_resource_from_descriptor(p, 1, lbl_804E6774, 0, 0, 0);
-        }
+        p = (u8 *)new BmlResource(1, (BmlResourceDescriptor *)(lbl_804E6774), 0, 0, (void *)(0));
         TObjEneDolmOlm__resource_bundle = (u32) p;
     }
     p = (u8 *)::operator new(0x18);
@@ -1065,7 +1057,7 @@ void TObjEneDolmOlm::load_shared_resources() {
         Desc_80302784 d = { *(s32 *)((s8 *)TObjEneDolmOlm__resource_bundle + 0x430), TObjEneDolmOlm__param_table, 2, 0xC0000 };
         for (i = 0; i < 2; i++) {
             Ent_80302784 *e = &(*(Ent_80302784 **)((s8 *)TObjEneDolmOlm__resource_bundle + 0x42C))[i];
-            spawn_npc_enemy__6TLobbyFslllff(ids[i], e->f8, e->fC, &d, ((Row_80302784 *) lbl_804E68D0)[i].fC, TObjEneDolmOlm__data_805DEF54);
+            NpcModelRegistry::register_animated_chunk(ids[i], (void *)(e->f8), (void *)(e->fC), (const NpcAnimationBinding *)(&d), ((Row_80302784 *) lbl_804E68D0)[i].fC, TObjEneDolmOlm__data_805DEF54);
         }
     }
 }
@@ -1095,7 +1087,7 @@ void TObjEneDolmOlm::free_shared_resources() {
         TObjEneDolmOlm__data_805D6A14 = 0U;
     }
     if ((u32) TObjEneDolmOlm__resource_bundle != 0U) {
-        TLobby__sub_8001FE7C((void*)TObjEneDolmOlm__resource_bundle, 1);
+        delete (BmlResource *)((void*)TObjEneDolmOlm__resource_bundle);
         TObjEneDolmOlm__resource_bundle = 0U;
     }
 }
@@ -1166,7 +1158,7 @@ void TObjEneDolmOlm::run_task() {
     }
   }
   this->advance_position();
-  copy_position__20TBoss3VoloptHiraisinFv((void *) ((u8 *)this));
+  ((TObjChara *)this)->copy_body_to_center();
   submit_cursor_candidate((void *) this, -1);
   if (((RecoveredFields_8030247C_arg0 *) ((u8 *)this))->field_3E4 & 0x4000)
   {
@@ -1647,8 +1639,8 @@ void TObjEneDolmOlm::vfunc_60() {
     }
 }
 void TObjEneDolmOlm::advance_position() {
-    VecCopy((Vec *)&this->m_2fc, (const Vec *)&this->position);
-    this->m_300 = (f32) (this->m_300 + TObjEneDolmOlm__data_805DEF6C);
+    VecCopy((Vec *)&this->body_center_position, (const Vec *)&this->position);
+    this->body_center_position.y = (f32) (this->body_center_position.y + TObjEneDolmOlm__data_805DEF6C);
 }
 void TObjEneDolmOlm::request_stand_action() { this->requested_action = 1; }
 #pragma push

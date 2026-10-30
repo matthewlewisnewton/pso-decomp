@@ -1,4 +1,6 @@
 #include "pso/enemy/TObjEnemy.h"
+#include "pso/system/EnemyBmlResource.h"
+#include "pso/system/BmlResourceClass.h"
 #include "types.h"
 #include "pso/player/TObjEneRe2Flower_Bomb.h"
 #include "pso/enemy/TObjEneDD.h"
@@ -19,6 +21,7 @@ extern "C" void test_flag_256__9TObjCharaFv();
 #include "pso/boss/TBoss8Dragon.h"
 
 #include "pso/misc/TLobby.h"
+#include "pso/npc/NpcModelRegistry.h"
 
 struct VBase_14_2f517b { char pad[0x14]; };
 
@@ -51,8 +54,6 @@ struct RecoveredGlobal_800C44C4_lbl_8043BBF4 {
 typedef char RecoveredGlobal_800C44C4_lbl_8043BBF4_size[sizeof(RecoveredGlobal_800C44C4_lbl_8043BBF4) == 0x18 ? 1 : -1];
 
 extern "C" {
-u8 *load_enemy_bml_resource_named(s32 *, s32 *);
-s32 load_enemy_bml_resource(u8 *arg0);
 s32 TObjPlayer__sub_800F0928();
 extern RecoveredGlobal_800C44C4_lbl_8043BB90 lbl_8043BB90;
 extern RecoveredGlobal_800C44C4_lbl_8043BBE0 lbl_8043BBE0;
@@ -82,7 +83,6 @@ void vfunc_28__16TObjEneRe2FlowerFv(void);
 void *destroy__16TObjEneRe2FlowerFPvs(void *arg0, s16 arg1);
 void vfunc_63__16TObjEneRe2FlowerFv(void *arg0);
 void vfunc_62__16TObjEneRe2FlowerFv(void *arg0);
-void TLobby__sub_8001FE7C(void*, int);
 void free_collision_body_parts(void *);
 void *TObjEneRe2Flower__ct(void *, void *, void *);
 void TObjPlayer__sub_800C4D44(void);
@@ -374,7 +374,7 @@ extern u32 lbl_805D5174;
 void TObjEneRe2Flower::destroy_instance() {
     TObjPlayer__sub_800C4D44();
     if ((u32) lbl_805D5174 != 0U) {
-        TLobby__sub_8001FE7C((void*)lbl_805D5174, 1);
+        delete (BmlResource *)((void*)lbl_805D5174);
         lbl_805D5174 = 0U;
     }
 }
@@ -395,11 +395,11 @@ void TObjPlayer__sub_800C44C4(void) {
     u8 *temp_r5;
 
     if (get_current_floor_area() == AREA_TOWER) {
-        lbl_805D5174 = (u32) load_enemy_bml_resource_named((s32 *)&TObjEneRe2Flower__resource_descriptor, &lbl_8043BBE0.value);
+        lbl_805D5174 = (u32) (u8 *)load_enemy_bml_resource_named((BmlResourceDescriptor *)((s32 *)&TObjEneRe2Flower__resource_descriptor), (const char *)(&lbl_8043BBE0.value));
     } else if (TObjEneDD::check_v2_mode() != 0) {
-        lbl_805D5174 = (u32) load_enemy_bml_resource_named((s32 *)&TObjEneRe2Flower__resource_descriptor, &lbl_8043BBF4.value);
+        lbl_805D5174 = (u32) (u8 *)load_enemy_bml_resource_named((BmlResourceDescriptor *)((s32 *)&TObjEneRe2Flower__resource_descriptor), (const char *)(&lbl_8043BBF4.value));
     } else {
-        lbl_805D5174 = (u32) load_enemy_bml_resource((u8 *)((s32 *)&TObjEneRe2Flower__resource_descriptor));
+        lbl_805D5174 = (u32) (s32)load_enemy_bml_resource((BmlResourceDescriptor *)((u8 *)((s32 *)&TObjEneRe2Flower__resource_descriptor)));
     }
     lbl_805D5178 = 0;
     lbl_805D517C = 0;
@@ -412,7 +412,7 @@ void TObjPlayer__sub_800C44C4(void) {
     stack.sp14 = *(s32 *)((s8 *)&lbl_8043BB90.value + 0xC);
     stack.sp8 = *(s32 *)((s8 *)lbl_805D5174 + 0x430);
     temp_r5 = (u8 *)(*(u8 **)((s8 *)lbl_805D5174 + 0x42C));
-    TLobby::spawn_npc_enemy((s16)(0x37), (s32)((int) (*(s32 *)((s8 *)temp_r5 + 8))), (s32)((int) (*(s32 *)((s8 *)temp_r5 + 0xC))), (s32)((void *)&stack.sp8), (f32)lbl_805D9FBC, (f32)lbl_805D9FAC);
+    NpcModelRegistry::register_animated_chunk((s16)(0x37), (void *)((s32)((int) (*(s32 *)((s8 *)temp_r5 + 8)))), (void *)((s32)((int) (*(s32 *)((s8 *)temp_r5 + 0xC)))), (const NpcAnimationBinding *)((s32)((void *)&stack.sp8)), (f32)lbl_805D9FBC, (f32)lbl_805D9FAC);
 }
 s32 TObjEneRe2Flower_Bomb::area_attack_deliver_direct(void *recoil, s32 arg2, void *object, f32 range) {
     s32 result;

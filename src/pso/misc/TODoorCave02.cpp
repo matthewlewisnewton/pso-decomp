@@ -137,7 +137,7 @@ void TODoorCave02::destroy() {
         }
     }
     if (bml_resource != NULL) {
-        TLobby__sub_8001FE7C(bml_resource, 1);
+        delete (BmlResource *)(bml_resource);
         bml_resource = NULL;
     }
 }
@@ -146,17 +146,11 @@ void TODoorCave02::load_resources() {
     BmlResource *resource;
     texture_lists = (s32 *)mem_alloc(8);
     if (enable_v2_features == 1 && TLobby::is_online_ready() != 0) {
-        resource = (BmlResource *)::operator new(0x440);
-        if (resource != NULL) {
-            resource = load_resource_from_descriptor(resource, 1, &door_cave02_a_resource_descriptor, 0, 0, 0);
-        }
+        resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&door_cave02_a_resource_descriptor), 0, 0, (void *)(0));
         bml_resource = resource;
         texture_lists[0] = (s32)load_gvm_texture_file((s32)"fs_obj_do_doa02r_a.gvm");
     } else {
-        resource = (BmlResource *)::operator new(0x440);
-        if (resource != NULL) {
-            resource = load_resource_from_descriptor(resource, 1, &door_cave02_resource_descriptor, 0, 0, 0);
-        }
+        resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&door_cave02_resource_descriptor), 0, 0, (void *)(0));
         bml_resource = resource;
         texture_lists[0] = (s32)load_gvm_texture_file((s32)"fs_obj_do_doa02r.gvm");
     }

@@ -134,7 +134,7 @@ void *TODoorCave03::create(void *set_data) {
 
 void TODoorCave03::destroy() {
     if (bml_resource != NULL) {
-        TLobby__sub_8001FE7C(bml_resource, 1);
+        delete (BmlResource *)(bml_resource);
         bml_resource = NULL;
     }
 }
@@ -142,17 +142,11 @@ void TODoorCave03::destroy() {
 void TODoorCave03::load_resources() {
     BmlResource *resource;
     if (enable_v2_features == 1 && TLobby::is_online_ready() != 0) {
-        resource = (BmlResource *)::operator new(0x440);
-        if (resource != NULL) {
-            resource = load_resource_from_descriptor(resource, 1, &door_cave03_a_resource_descriptor, 0, 0, 0);
-        }
+        resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&door_cave03_a_resource_descriptor), 0, 0, (void *)(0));
         bml_resource = resource;
         return;
     }
-    resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &door_cave03_resource_descriptor, 0, 0, 0);
-    }
+    resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&door_cave03_resource_descriptor), 0, 0, (void *)(0));
     bml_resource = resource;
 }
 

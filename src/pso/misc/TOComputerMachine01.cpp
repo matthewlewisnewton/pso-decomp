@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/misc/TOComputerMachine01.h"
 #include "pso/TMainTask.h"
 #include "pso/TParticleCtrl.h"
@@ -82,17 +83,14 @@ void TOComputerMachine01::unload_resources() {
         screen_meshes[i] = NULL;
     }
     if (model_resource != NULL) {
-        TLobby__sub_8001FE7C(model_resource, 1);
+        delete (BmlResource *)(model_resource);
         model_resource = NULL;
     }
 }
 
 void TOComputerMachine01::load_resources() {
     NJS_OBJECT *screen;
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_fs_obj_kenkyu_com_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&bm_fs_obj_kenkyu_com_resource_descriptor), 0, 0, (void *)(0));
     model_resource = resource;
     screen = ((NJS_OBJECT *)resource->models->model)->child;
     screen_meshes[3] = screen->model;

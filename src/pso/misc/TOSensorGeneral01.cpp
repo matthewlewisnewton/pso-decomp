@@ -104,16 +104,13 @@ void TOSensorGeneral01::free_assets() {
         }
     }
     if (sensor_general_shared_bml_archive != NULL) {
-        TLobby__sub_8001FE7C(sensor_general_shared_bml_archive, 1);
+        delete (BmlResource *)(sensor_general_shared_bml_archive);
         sensor_general_shared_bml_archive = NULL;
     }
 }
 
 void TOSensorGeneral01::load_assets() {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &TOSensorGeneral01__resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&TOSensorGeneral01__resource_descriptor), 0, 0, (void *)(0));
     sensor_general_shared_bml_archive = resource;
     TOSensorGeneral01__texture_lists = (s32 *)mem_alloc(8);
     TOSensorGeneral01__texture_lists[1] = sensor_general_shared_bml_archive->models[0].m_c;

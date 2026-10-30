@@ -48,7 +48,7 @@ s32 TBoss5Gryphon::enemy_probe_wall_ahead(f32 farg0, f32 farg1, f32 farg2) {
     return farg0 * 0;
   }
   stack.sp8 = (*((f32 *) (((s8 *) ((u8 *)this)) + 0x38))) + temp_f30;
-  stack.spC = this->m_300;
+  stack.spC = this->body_center_position.y;
   stack.sp10 = (*((f32 *) (((s8 *) ((u8 *)this)) + 0x40))) + temp_f31;
   return csnVector((void *) (((u8 *)this) + 0x2FC), &stack.sp8, 0x88E0);
 }

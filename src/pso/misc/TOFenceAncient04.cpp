@@ -64,16 +64,13 @@ void TOFenceAncient04::unload_resources() {
         }
     }
     if (model_resource != NULL) {
-        TLobby__sub_8001FE7C(model_resource, 1);
+        delete (BmlResource *)(model_resource);
         model_resource = NULL;
     }
 }
 
 void TOFenceAncient04::load_resources() {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_fd_obj_n_saku_6x4_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&bm_fd_obj_n_saku_6x4_resource_descriptor), 0, 0, (void *)(0));
     model_resource = resource;
     s32 *lists = (s32 *)mem_alloc(4 * sizeof(s32));
     texlists = lists;

@@ -1,4 +1,6 @@
 #include "pso/enemy/TObjEnemy.h"
+#include "pso/system/EnemyBmlResource.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/system/vector.h"
 extern "C" void *__ct__12TObjEneDD_STFP7TObject(void *);
@@ -3595,7 +3597,7 @@ void TObjEneMe3Stelth::setup_move_bounds() {
 }
 
 void TObjEneMe3Stelth::vfunc_88() {
-    *(f32 *)((s8 *)this->bodies + 4) = (f32) (this->m_300 - *(f32 *)((s8 *)this + 0x3C));
+    *(f32 *)((s8 *)this->bodies + 4) = (f32) (this->body_center_position.y - *(f32 *)((s8 *)this + 0x3C));
 }
 
 void TObjEneMe3Stelth::copy_pos_with_height_offset() {
@@ -3749,7 +3751,6 @@ struct VB_800F5324 { u8 pad[0xC]; };
 struct VO_800F5324 : VB_800F5324 { virtual ~VO_800F5324(); };
 
 extern "C" {
-s32 TLobby__sub_8001FE7C(void *, s32);
 s32 *__dt__11TBoss4Type3FPvs(s32 *arg0, s16 arg1);
 void mem_free(void *p);
 #define TObjEneMe3Stelth__alternate_texture_list ((void * *)&TObjEneMe3Stelth__alternate_texture_list)
@@ -3781,7 +3782,7 @@ void TObjEneMe3Stelth::free_shared_resources() {
         TObjEneMe3Stelth__alternate_texture_list[0] = 0;
     }
     if ((*(void **)&TObjEneMe3Stelth__bml_resource) != 0) {
-        TLobby__sub_8001FE7C((*(void **)&TObjEneMe3Stelth__bml_resource), 1);
+        delete (BmlResource *)((*(void **)&TObjEneMe3Stelth__bml_resource));
         (*(void **)&TObjEneMe3Stelth__bml_resource) = 0;
     }
 }
@@ -3799,8 +3800,6 @@ struct Res_800F53E8 { u8 pad[0x42C]; u8 *f42C; struct Ent_800F53E8 *f430; };
 struct Tbl_800F53E8 { u8 pad[0x54]; s32 f54; u8 pad58[0xC]; s32 f64; };
 struct Atk_800F53E8 { s32 w[4]; };
 struct V3_800F53E8 { f32 x, y, z; };
-
-s32 load_enemy_bml_resource(u8 *arg0);
 s32 register_object__6TLobbyFl(s32);
 s32 dispatch_shared_handler_b__6TLobbyFl(s32);
 s32 register_boss__6TLobbyFl(s32);
@@ -3847,9 +3846,9 @@ void TObjEneMe3Stelth::load_shared_resources() {
     lbl_805010E0[1] = TObjEneMe3Stelth__data_805DA840;
     lbl_805010E0[2] = TObjEneMe3Stelth__data_805DA840;
     if (is_split_screen() != 0) {
-        TObjEneMe3Stelth__bml_resource = (u8 *)load_enemy_bml_resource((u8 *)me3_stelth_bml_resource_desc);
+        TObjEneMe3Stelth__bml_resource = (u8 *)(s32)load_enemy_bml_resource((BmlResourceDescriptor *)((u8 *)me3_stelth_bml_resource_desc));
     } else {
-        TObjEneMe3Stelth__bml_resource = (u8 *)load_enemy_bml_resource((u8 *)stelth_bml_resource_desc);
+        TObjEneMe3Stelth__bml_resource = (u8 *)(s32)load_enemy_bml_resource((BmlResourceDescriptor *)((u8 *)stelth_bml_resource_desc));
     }
     src = *(Arr_800F53E8 **)(((Res_800F53E8 *)TObjEneMe3Stelth__bml_resource)->f42C + 0xC);
     n = src->n;

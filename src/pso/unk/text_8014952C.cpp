@@ -163,7 +163,7 @@ u8 *TObjNpcBringer__ct(u8 *self, void *parent, s32 arg2) {
     init_collision_body_parts(self, lbl_804A7EC0, 2);
     ((TObjPlayer *)self)->register_object_by_id();
     ((TObjEnemy *)self)->update_prev_position();
-    ((TBoss3VoloptHiraisin *)self)->copy_position();
+    ((TObjChara *)self)->copy_body_to_center();
     return self;
 }
 

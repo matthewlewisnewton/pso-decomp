@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include <dolphin/base/PPCArch.h>
 #include "pso/TMainTask.h"
 #include "pso/misc/TOCapsuleMachine01.h"
@@ -57,17 +58,15 @@ void TOCapsuleMachine01::reset_static_state() {
     TOCapsuleMachine01__last_update_frame_tick = 0;
     lbl_805D58C4 = 0;
     if (TOCapsuleMachine01__model_resource != NULL) {
-        TLobby__sub_8001FE7C(TOCapsuleMachine01__model_resource, 1);
+        delete (BmlResource *)(TOCapsuleMachine01__model_resource);
         TOCapsuleMachine01__model_resource = NULL;
     }
 }
 
 void TOCapsuleMachine01::alloc_and_load_resource() {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
+    BmlResource *resource = new BmlResource(1, (BmlResourceDescriptor *)&bm_fs_obj_cap_moto_resource_descriptor, 0, 0, NULL);
     NJS_OBJECT *root;
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_fs_obj_cap_moto_resource_descriptor, 0, 0, 0);
-    }
+
     TOCapsuleMachine01__model_resource = resource;
     root = (NJS_OBJECT *)resource->models[0].model;
     capsule_machine_ginja_mesh_handle = root->child->sibling->child->sibling->model;

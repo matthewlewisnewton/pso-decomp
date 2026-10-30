@@ -1,4 +1,5 @@
 #include "pso/system/NinjaTypes.h"
+#include "pso/system/BmlResourceClass.h"
 void set_constant_material(const NJS_ARGB *color);
 #include "types.h"
 #include "pso/system/NinjaUtil.h"
@@ -619,9 +620,9 @@ void TBoss6PlotFalz::award_exp_and_destroy() {
         u8 *pl = ((u8 *(*)(s32))get_player_by_client_id)(local_client_id);
         if (pl != NULL) {
             V3_802AB490 saved = *(V3_802AB490 *)(arg0 + 0x2FC);
-            VecCopy((Vec *)&this->m_2fc, (const Vec *)(pl + 0x2FC));
+            VecCopy((Vec *)&this->body_center_position, (const Vec *)(pl + 0x2FC));
             ((TObjEnemy *)arg0)->distribute_experience();
-            VecCopy((Vec *)&this->m_2fc, (const Vec *)&saved);
+            VecCopy((Vec *)&this->body_center_position, (const Vec *)&saved);
         }
     }
     Msg_802AB490 m;
@@ -1323,7 +1324,6 @@ struct Boss_802AC7E4 { u8 pad[0x37C]; u8 mode; };
 
 extern "C" {
 s32 query_teammate_state__9TObjEneDDFv();
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 void fn_802E52AC(void);
 void TItemEffOrgaFlowShot__sub_80357210(void);
 void TLobby__sub_8036DDE8(void);
@@ -1347,7 +1347,6 @@ s32 __ct__9TObjEnemyFP7TObject();
 u16 register_entity_by_id(void *ov);
 s32 TBoss6PlotFalz__ct(s32, s32, s32);
 void TItemEffOrgaFlowShot__sub_80357204(void);
-int TLobby__sub_8001FE7C(void*, void*);
 s32 __ct__11TObjControlFP7TObject(s32, s32);
 s32 __nw__7TObjectFUl(s32);
 
@@ -1519,18 +1518,15 @@ s32 TBoss6PlotFalz__ct(s32 self, s32 arg1, s32 arg2) {
 #pragma pop
 #undef arg0
 
-void TBoss6PlotFalz::free_all() { TBoss4DarkFalz::free_global_instance(); TBoss6Tube::free_resources(); TBoss6Rock::free_data(); TItemEffOrgaFlowShot__sub_80357204(); TLobby__sub_8001FE7C((void*)obj_fish_count, (void*)1); obj_fish_count = 0; }
+void TBoss6PlotFalz::free_all() { TBoss4DarkFalz::free_global_instance(); TBoss6Tube::free_resources(); TBoss6Rock::free_data(); TItemEffOrgaFlowShot__sub_80357204(); delete (BmlResource *)((void*)obj_fish_count); obj_fish_count = 0; }
 
 extern s32 tl_04;
 
 void TBoss6PlotFalz::load_resources() {
     s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (s32)::operator new(0x440);
+    temp_r3 = (s32)new BmlResource(5, (BmlResourceDescriptor *)(&boss6_plot_falz_resource_descriptor), 0, 0, (void *)(0));
     var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 5, &boss6_plot_falz_resource_descriptor, 0, 0, 0));
-    }
     (*(u8 * *)&obj_fish_count) = (unsigned char *) ((void *) var_r0);
     if ((u32) var_r0 != 0U) {
         TLobby__sub_8036DDE8();

@@ -1,4 +1,6 @@
 #include "pso/enemy/TObjEnemy.h"
+#include "pso/system/EnemyBmlResource.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
 #include "pso/render/reflection.h"
@@ -33,6 +35,7 @@ extern "C" void test_flag_256__9TObjCharaFv();
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TNowLoading.h"
 #include "pso/object/TObjFish.h"
+#include "pso/npc/NpcModelRegistry.h"
 
 struct VBase_18_76ddf3 { char pad[0x18]; };
 
@@ -646,7 +649,6 @@ struct VObj_14_c1c33b : VBase_14_c1c33b {
 
 f32 receive_physical_attack__9TObjCharaFPvf(void *, void *, f32);
 u16 get_entity_id(void *);
-void TLobby__sub_8001FE7C(void*, int);
 f32 get_random_float__21TObjEneMe3ShinowaRealFv(f32);
 s32 get_mode__11TCameraCtrlFPv(void *);
 u32 csnLookAt(void *, void *);
@@ -1835,14 +1837,14 @@ void TObjEneMorfos::init_target_offsets() {
 #pragma pop
 
 void TObjEneMorfos::vfunc_88() {
-    *(f32 *)((s8 *)this->bodies + 4) = (f32) (this->m_300 - *(f32 *)((s8 *)this + 0x3C));
+    *(f32 *)((s8 *)this->bodies + 4) = (f32) (this->body_center_position.y - *(f32 *)((s8 *)this + 0x3C));
 }
 
 void TObjEneMorfos::set_hover_target_position() {
     u8 *arg0 = (u8 *)this;
-    this->m_2fc = (f32) *(f32 *)((s8 *)arg0 + 0x38);
-    this->m_300 = (f32) (TObjEneMorfos__data_805DF89C + *(f32 *)((s8 *)arg0 + 0x3C));
-    this->m_304 = (f32) *(f32 *)((s8 *)arg0 + 0x40);
+    this->body_center_position.x = (f32) *(f32 *)((s8 *)arg0 + 0x38);
+    this->body_center_position.y = (f32) (TObjEneMorfos__data_805DF89C + *(f32 *)((s8 *)arg0 + 0x3C));
+    this->body_center_position.z = (f32) *(f32 *)((s8 *)arg0 + 0x40);
     VecCopy((Vec *)(arg0 + 0x74), (const Vec *)(arg0 + 0x2FC));
 }
 
@@ -2165,7 +2167,7 @@ void *TObjEneMorfos__ct(void *ene_morfos, void *arg1, void *arg2) {
 void TObjEneMorfos::unload_static_data() {
     TObjEneMorfosArm__sub_8033542C();
     if ((u32) (*(u32 *)&TObjEneMorfos__instance) != 0U) {
-        TLobby__sub_8001FE7C((void*)(*(u32 *)&TObjEneMorfos__instance), 1);
+        delete (BmlResource *)((void*)(*(u32 *)&TObjEneMorfos__instance));
         (*(u32 *)&TObjEneMorfos__instance) = 0U;
     }
 }
@@ -2195,8 +2197,6 @@ struct ResMgr_803350AC {
 struct SpawnDesc_803350AC {
     s32 w[4];
 };
-
-s32 load_enemy_bml_resource(u8 *desc);
 extern f32 lbl_805434D0[3];
 extern const s32 lbl_805DF860[1];
 extern const s32 lbl_805DF864[1];
@@ -2210,9 +2210,9 @@ void TObjEneMorfos__sub_803350AC(void) {
     s32 i;
 
     if (is_split_screen() != 0) {
-        mgr = (ResMgr_803350AC *)load_enemy_bml_resource((u8 *)bm_ene_morfos_low_resource_descriptor);
+        mgr = (ResMgr_803350AC *)(s32)load_enemy_bml_resource((BmlResourceDescriptor *)((u8 *)bm_ene_morfos_low_resource_descriptor));
     } else {
-        mgr = (ResMgr_803350AC *)load_enemy_bml_resource((u8 *)morfos_resource_descriptor);
+        mgr = (ResMgr_803350AC *)(s32)load_enemy_bml_resource((BmlResourceDescriptor *)((u8 *)morfos_resource_descriptor));
     }
     TObjEneMorfos__instance = (int)mgr;
     lbl_805434D0[0] = TObjEneMorfos__data_805DF874;
@@ -2240,9 +2240,7 @@ void TObjEneMorfos__sub_803350AC(void) {
     {
         SpawnDesc_803350AC desc = lbl_804775C8;
         desc.w[0] = ((ResMgr_803350AC *)TObjEneMorfos__instance)->f430;
-        TLobby::spawn_npc_enemy(0x4D, (s32)((ResMgr_803350AC *)TObjEneMorfos__instance)->res->f18,
-                                (s32)((ResMgr_803350AC *)TObjEneMorfos__instance)->res->f1C, (s32)&desc,
-                                lbl_805DF880, TObjEneMorfos__data_805DF874);
+        NpcModelRegistry::register_animated_chunk(0x4D, (void *)((s32)((ResMgr_803350AC *)TObjEneMorfos__instance)->res->f18), (void *)((s32)((ResMgr_803350AC *)TObjEneMorfos__instance)->res->f1C), (const NpcAnimationBinding *)((s32)&desc), lbl_805DF880, TObjEneMorfos__data_805DF874);
     }
 }
 }

@@ -73,10 +73,7 @@ TODoorAncient09::~TODoorAncient09() {
 }
 
 void TODoorAncient09::load_resources() {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &door_ancient09_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&door_ancient09_resource_descriptor), 0, 0, (void *)(0));
     bml_resource = resource;
     texture_lists = (s32 *)mem_alloc(8);
     texture_lists[0] = bml_resource->models[0].m_c;
@@ -92,7 +89,7 @@ void TODoorAncient09::destroy() {
         }
     }
     if (bml_resource != NULL) {
-        TLobby__sub_8001FE7C(bml_resource, 1);
+        delete (BmlResource *)(bml_resource);
         bml_resource = NULL;
     }
 }

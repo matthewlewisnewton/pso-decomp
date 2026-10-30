@@ -1,3 +1,4 @@
+#include "pso/player/TObjChara.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/boss/TBoss3VoloptHiraisin.h"
@@ -229,7 +230,7 @@ void TObjNpcBase::run_task() {
   advance_animation();
   this->update_prev_position();
   new_var = ((u8 *)this);
-  ((TBoss3VoloptHiraisin *)new_var)->copy_position();
+  ((TObjChara *)new_var)->copy_body_to_center();
   if ((((s32)this->m_3a8) > 0) && (TRaderMapCore::is_not_split_screen() == 0))
   {
     submit_cursor_candidate((void *) this, -1);

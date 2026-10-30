@@ -1,4 +1,5 @@
 #include "pso/misc/RenderFadeState.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/system/vector.h"
 #include "pso/misc/TRaderMapCore.h"
 #include "pso/object/TObjFish.h"
@@ -57,7 +58,6 @@ struct Pkt_8018CB44 { u16 a; u16 b; s32 c; s32 d; s32 e; };
 
 extern "C" {
 void queue_destruction__7TObjectFv(void *arg0);
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 void debug_printf_at(s32 id, const char *fmt, ...);
 extern char lbl_80445430[];
 extern char lbl_8044543C[];
@@ -531,7 +531,6 @@ extern "C" {
 u8 * get_bml_model(void *, int);
 extern s32 TObjContainerJung__bml_model_resource;
 s32 TObjFish__sub_8001EDB0(void *, s32);
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern RecoveredGlobal_8018D47C_lbl_804B7134 TObjContainerJung__resource_descriptor;
 extern s32 TObjContainerJung__bml_aux_handle;
 u32 init_collision_body_parts(void *, s32, s32);
@@ -553,7 +552,6 @@ extern Spawn_8018D4DC container_jung_debris_desc;
 extern Spawn_8018D4DC container_jung_spawn_params;
 extern void *tl_05;
 void TObjContainerJung__vt77(const Obj_8018D4DC *self);
-s32 TLobby__sub_8001FE7C(s32, s32);
 s32 free_collision_body_parts(void *);
 s32 submit_cursor_candidate(void *, s32);
 s32 __dl__7TObjectFPv(void *);
@@ -578,7 +576,7 @@ void *TObjContainerJung::create(void *arg0) {
 }
 
 void TObjContainerJung::release() {
-    TLobby__sub_8001FE7C(TObjContainerJung__bml_model_resource, 1);
+    delete (BmlResource *)(TObjContainerJung__bml_model_resource);
     TObjContainerJung__bml_model_resource = 0;
     TObjContainerJung__bml_aux_handle = 0;
 }
@@ -586,11 +584,8 @@ void TObjContainerJung::release() {
 void TObjContainerJung::load_resources() {
     s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
+    temp_r3 = (int)new BmlResource(5, (BmlResourceDescriptor *)(&TObjContainerJung__resource_descriptor.value), 0, 0, (void *)(0));
     var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 5, &TObjContainerJung__resource_descriptor.value, 0, 0, 0));
-    }
     (*(u8 * *)&TObjContainerJung__bml_model_resource) = (unsigned char *) ((void *) var_r0);
     TObjContainerJung__bml_aux_handle = TObjFish__sub_8001EDB0((void *) var_r0, 0);
 }

@@ -1,4 +1,6 @@
 #include "pso/player/PlayerAttackParams.h"
+#include "pso/system/EnemyBmlResource.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/enemy/TObjEnemy.h"
@@ -225,8 +227,6 @@ s32 dispatch_shared_handler_a__6TLobbyFl(s32);
 s32 register_object__6TLobbyFl(s32);
 s32 dispatch_shared_handler_b__6TLobbyFl(s32);
 s32 register_boss__6TLobbyFl(s32);
-u8 *load_enemy_bml_resource(void *);
-void spawn_npc_enemy__6TLobbyFslllff(s16, s32, s32, void *, f32, f32);
 extern const s32 lbl_8043BF30[];
 extern const s32 lbl_8043BF38[];
 extern const s32 lbl_8043BF40[];
@@ -4197,6 +4197,7 @@ void TObjEneBm5GibonU::sub_800D10A0() {
 #include "pso/enemy/TObjEneMe1GiGue.h"
 #include "pso/enemy/TObjEneMe3SinowZoa.h"
 #include "pso/enemy/TObjEnePanarms.h"
+#include "pso/npc/NpcModelRegistry.h"
 
 struct RecoveredGlobal_800D184C_TObjEneBm5GibonU__data_80500EC4 {
     s32 value;
@@ -4418,7 +4419,6 @@ extern s32 lbl_805D2A70;
 u8 *TObjEneBm5GibonU__ct(u8 *arg0, s32 arg1, s32 arg2);
 void vfunc_61__16TObjEneBm5GibonUFv(void);
 void vfunc_28__16TObjEneBm5GibonUFv(void);
-void TLobby__sub_8001FE7C(void*, int);
 void __dl__FPv(void);
 
 void TObjEneBm5GibonU::vfunc_88() {
@@ -4427,9 +4427,9 @@ void TObjEneBm5GibonU::vfunc_88() {
 
 void TObjEneBm5GibonU::update_center_position() {
     u8 *arg0 = (u8 *)this;
-    this->m_2fc = (f32) *(f32 *)((s8 *)arg0 + 0x38);
-    this->m_300 = (f32) (TObjEneBm5GibonU__data_805DA178 + *(f32 *)((s8 *)arg0 + 0x3C));
-    this->m_304 = (f32) *(f32 *)((s8 *)arg0 + 0x40);
+    this->body_center_position.x = (f32) *(f32 *)((s8 *)arg0 + 0x38);
+    this->body_center_position.y = (f32) (TObjEneBm5GibonU__data_805DA178 + *(f32 *)((s8 *)arg0 + 0x3C));
+    this->body_center_position.z = (f32) *(f32 *)((s8 *)arg0 + 0x40);
     VecCopy((Vec *)(arg0 + 0x74), (const Vec *)(arg0 + 0x2FC));
 }
 
@@ -4648,7 +4648,7 @@ void TObjEneBm5GibonU::init_child_node() {
 
 void TObjEneBm5GibonU::release_static_resource() {
     if ((u32) (*(u32 *)&TObjEneBm5GibonU__model_archive) != 0U) {
-        TLobby__sub_8001FE7C((void*)(*(u32 *)&TObjEneBm5GibonU__model_archive), 1);
+        delete (BmlResource *)((void*)(*(u32 *)&TObjEneBm5GibonU__model_archive));
         (*(u32 *)&TObjEneBm5GibonU__model_archive) = 0U;
     }
 }
@@ -4669,9 +4669,9 @@ void TObjEneBm5GibonU::load_resources() {
     u8 *m;
     f32 *v;
     if (is_split_screen() != 0) {
-        m = load_enemy_bml_resource(lbl_80493DE4);
+        m = (u8 *)load_enemy_bml_resource((BmlResourceDescriptor *)(lbl_80493DE4));
     } else {
-        m = load_enemy_bml_resource(lbl_80493DA0);
+        m = (u8 *)load_enemy_bml_resource((BmlResourceDescriptor *)(lbl_80493DA0));
     }
     (*(u32 *)&TObjEneBm5GibonU__model_archive) = (u32)m;
     ((TObjEneBm5GibonU *)(&(*(RecoveredGlobal_800D18AC_TObjEneBm5GibonU__data_80500EB0 *)&TObjEneBm5GibonU__node_list)))->reset_fields();
@@ -4694,8 +4694,8 @@ void TObjEneBm5GibonU::load_resources() {
     sp.d = TObjEneBm5GibonU__spawn_params.d;
     m = (u8 *)(*(u32 *)&TObjEneBm5GibonU__model_archive);
     sp.a = *(s32 *)((s8 *)m + 0x430);
-    spawn_npc_enemy__6TLobbyFslllff(0xE, *(s32 *)((s8 *)(*(u8 **)((s8 *)m + 0x42C)) + 8), *(s32 *)((s8 *)(*(u8 **)((s8 *)m + 0x42C)) + 0xC), &sp, *(f32 *)((s8 *)gibon_collision_body_templates + 0xC), 0.0f);
-    spawn_npc_enemy__6TLobbyFslllff(0xF, *(s32 *)((s8 *)(*(u8 **)((s8 *)(*(u32 *)&TObjEneBm5GibonU__model_archive) + 0x42C)) + 0x18), *(s32 *)((s8 *)(*(u8 **)((s8 *)(*(u32 *)&TObjEneBm5GibonU__model_archive) + 0x42C)) + 0x1C), &sp, *(f32 *)((s8 *)gibon_collision_body_templates + 0x38), 0.0f);
+    NpcModelRegistry::register_animated_chunk(0xE, (void *)(*(s32 *)((s8 *)(*(u8 **)((s8 *)m + 0x42C)) + 8)), (void *)(*(s32 *)((s8 *)(*(u8 **)((s8 *)m + 0x42C)) + 0xC)), (const NpcAnimationBinding *)(&sp), *(f32 *)((s8 *)gibon_collision_body_templates + 0xC), 0.0f);
+    NpcModelRegistry::register_animated_chunk(0xF, (void *)(*(s32 *)((s8 *)(*(u8 **)((s8 *)(*(u32 *)&TObjEneBm5GibonU__model_archive) + 0x42C)) + 0x18)), (void *)(*(s32 *)((s8 *)(*(u8 **)((s8 *)(*(u32 *)&TObjEneBm5GibonU__model_archive) + 0x42C)) + 0x1C)), (const NpcAnimationBinding *)(&sp), *(f32 *)((s8 *)gibon_collision_body_templates + 0x38), 0.0f);
 }
 
 void TObjEneBm5GibonU::forward_hit(void* a1) { ((TObjEneBm5GibonU *)a1)->unlink_list_node((void ***)(this), (void **)((void*)((char*)this + 0x4))); }

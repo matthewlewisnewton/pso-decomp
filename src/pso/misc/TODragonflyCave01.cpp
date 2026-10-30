@@ -208,19 +208,13 @@ void TODragonflyCave01::load_resources() {
 
     switch (get_current_floor_area()) {
     default:
-        resource = (BmlResource *)::operator new(0x440);
-        if (resource != NULL) {
-            resource = load_resource_from_descriptor(resource, 1, &bm_fs_obj_tombo_resource_descriptor, 0, 0, 0);
-        }
+        resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&bm_fs_obj_tombo_resource_descriptor), 0, 0, (void *)(0));
         model_resource = resource;
         break;
     case AREA_BATTLE1:
     case AREA_VR_SPACESHIP_ALPHA:
     case AREA_VR_SPACESHIP_BETA:
-        resource = (BmlResource *)::operator new(0x440);
-        if (resource != NULL) {
-            resource = load_resource_from_descriptor(resource, 1, &fs_obj_ex_entombo_resource_descriptor, 0, 0, 0);
-        }
+        resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&fs_obj_ex_entombo_resource_descriptor), 0, 0, (void *)(0));
         model_resource = resource;
         break;
     }
@@ -228,7 +222,7 @@ void TODragonflyCave01::load_resources() {
 
 void TODragonflyCave01::release_static_instance() {
     if (model_resource != NULL) {
-        TLobby__sub_8001FE7C(model_resource, 1);
+        delete (BmlResource *)(model_resource);
         model_resource = NULL;
     }
 }

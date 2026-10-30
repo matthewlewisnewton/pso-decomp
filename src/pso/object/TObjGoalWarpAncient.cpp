@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/misc/TLanguage_801E4874.h"
 #include "pso/object/TObjGoalWarpAncient.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
@@ -26,7 +27,6 @@ struct RecoveredGlobal_8019A880___vt__8TObjTank {
 extern "C" {
 extern int ancient_warp_shared_resource;
 extern s32 goal_warp_ancient_gvm_texture;
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern RecoveredGlobal_8019A9B8_lbl_80446184 lbl_80443308;
 extern RecoveredGlobal_8019A9B8_lbl_804B8F60 bm_o_warp_ancient_resource_descriptor;
 void TObjGoalWarpAncient__sub_8017D2D4(void* a0);
@@ -41,11 +41,8 @@ typedef char RecoveredGlobal_8019A9B8_lbl_804B8F60_size[sizeof(RecoveredGlobal_8
 void TObjGoalWarpAncient::load_resources() {
     s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
+    temp_r3 = (int)new BmlResource(0x1, (BmlResourceDescriptor *)(&bm_o_warp_ancient_resource_descriptor.value), 0, 0, (void *)(0));
     var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 0x1, &bm_o_warp_ancient_resource_descriptor.value, 0, 0, 0));
-    }
     (*(s32 *)&ancient_warp_shared_resource) = var_r0;
     (*(u8 * *)&goal_warp_ancient_gvm_texture) = load_gvm_texture_file((s32) &lbl_80443308.value);
 }

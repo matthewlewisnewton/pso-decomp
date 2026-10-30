@@ -1,4 +1,6 @@
 #include "pso/player/PlayerAttackParams.h"
+#include "pso/system/EnemyBmlResource.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "types.h"
 #include "pso/TObject.h"
@@ -25,6 +27,7 @@ extern "C" void render__12TObjGrassWebFv();
 #include "pso/object/TObjFish.h"
 
 #include "pso/player/TObjPlayer.h"
+#include "pso/npc/NpcModelRegistry.h"
 
 extern "C" {
 s32 lbl_805D5140;
@@ -318,8 +321,6 @@ s32 dispatch_shared_handler_a__6TLobbyFl(int);
 s32 register_object__6TLobbyFl(int);
 s32 dispatch_shared_handler_b__6TLobbyFl(int);
 s32 register_boss__6TLobbyFl(int);
-u8 *load_resource_from_descriptor(void *, int, void *, int, int, int);
-u8 *load_enemy_bml_resource_named(void *, void *);
 void draw_trail_with_colors(u8 *boss4_type3, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 u8 *init_trail_buffer__11TBoss4Type3FPvifff(void *, int, f32, f32, f32);
 void *mem_alloc(u32 size);
@@ -387,7 +388,6 @@ extern "C" u8 lbl_8043B74C[];
 extern "C" u8 lbl_8043B760[];
 extern s32 lbl_805D2A38;
 u8 *TObjGrass__ct(u8 *arg0, s32 arg1, s32 arg2);
-void TLobby__sub_8001FE7C(void*, int);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 s32 update_movement_status__9TObjCharaFv();
 s32 update_action_hold_status__9TObjCharaFv();
@@ -1006,7 +1006,7 @@ void TObjGrass::sub_800BDD70() {
             *(s16 *)&this->timer = 0;
         } else {
             VecCopy((Vec *)&sp8, (const Vec *)(this->target + 0x2FC));
-            subtract_vector(&sp8, (u8 *)&this->m_2fc);
+            subtract_vector(&sp8, (u8 *)&this->body_center_position);
             ang = ((TObjEnemy *)arg0)->turn_toward_direction(*(s32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 8), (Vec *)&sp8);
             apply_actor_gravity(arg0, 0, (0.0f));
             if (ang < ((AttackParams *)(*(s32 *)&this->m_318))->get_attack_angle()) {
@@ -1491,7 +1491,7 @@ void TObjGrass::vfunc_28() {
                     f32 xx;
                     f32 zz;
                     VecCopy((Vec *)&v, (const Vec *)(p + 0x2FC));
-                    subtract_vector(&v, (u8 *)&this->m_2fc);
+                    subtract_vector(&v, (u8 *)&this->body_center_position);
                     xx = v.x * v.x;
                     zz = v.z * v.z;
                     d = xx + zz;
@@ -1709,7 +1709,7 @@ void TObjGrass::run_task() {
         this->target = NULL;
     }
     ((TObjEnemy *)arg0)->update_prev_position();
-    ((TBoss3VoloptHiraisin *)arg0)->copy_position();
+    ((TObjChara *)arg0)->copy_body_to_center();
     submit_cursor_candidate(arg0, -1);
     this->m_2b4 += (1.0f);
 }
@@ -1742,7 +1742,7 @@ void TObjGrass::destroy_all() {
         lbl_805D5158 = 0U;
     }
     if ((u32) TObjGrass__resource_bundle != 0U) {
-        TLobby__sub_8001FE7C((void*)TObjGrass__resource_bundle, 1);
+        delete (BmlResource *)((void*)TObjGrass__resource_bundle);
         TObjGrass__resource_bundle = 0U;
     }
 }
@@ -1750,12 +1750,9 @@ void TObjGrass::destroy_all() {
 void TObjGrass::load_resources() {
     u8 *p;
     if (TObjEneDD::check_v2_mode() != 0) {
-        TObjGrass__resource_bundle = (u32) load_enemy_bml_resource_named(bm_ene_grass_resource_descriptor, (void *)"bm_ene_grass_a.bml");
+        TObjGrass__resource_bundle = (u32) (u8 *)load_enemy_bml_resource_named((BmlResourceDescriptor *)(bm_ene_grass_resource_descriptor), (const char *)((void *)"bm_ene_grass_a.bml"));
     } else {
-        p = (u8 *)::operator new(0x440);
-        if (p != NULL) {
-            p = load_resource_from_descriptor(p, 1, bm_ene_grass_resource_descriptor, 0, 0, 0);
-        }
+        p = (u8 *)new BmlResource(1, (BmlResourceDescriptor *)(bm_ene_grass_resource_descriptor), 0, 0, (void *)(0));
         TObjGrass__resource_bundle = (u32) p;
     }
     TObjGrass__render_node_index = 0;
@@ -1782,7 +1779,7 @@ void TObjGrass::load_resources() {
     {
     Quad_800BF66C q = grass_spawn_descriptor;
     q.a = (s32) ((Data_800BF66C *)TObjGrass__resource_bundle)->f430;
-    TLobby::spawn_npc_enemy((s16)0x35, (s32)(((Data_800BF66C *)TObjGrass__resource_bundle)->f42c->f8), (s32)(((Data_800BF66C *)TObjGrass__resource_bundle)->f42c->fC), (s32)&q, (f32)((1e+01f)), (f32)((0.0f)));
+    NpcModelRegistry::register_animated_chunk((s16)0x35, (void *)((s32)(((Data_800BF66C *)TObjGrass__resource_bundle)->f42c->f8)), (void *)((s32)(((Data_800BF66C *)TObjGrass__resource_bundle)->f42c->fC)), (const NpcAnimationBinding *)((s32)&q), (f32)((1e+01f)), (f32)((0.0f)));
     }
 }
 
@@ -1842,7 +1839,7 @@ u8 *TObjGrass__ct(u8 *arg0, s32 arg1, s32 arg2) {
     *(u8 * *)&((TObjGrass *)arg0)->movementParameters = (u8 *)&((E1C_800BF924 *)lbl_804929E4)[*(s32 *)&((TObjGrass *)arg0)->variant];
     ((TObjGrass *)arg0)->referenceHp = ((TObjGrass *)arg0)->hp;
     ((TObjEnemy *)arg0)->update_prev_position();
-    ((TBoss3VoloptHiraisin *)arg0)->copy_position();
+    ((TObjChara *)arg0)->copy_body_to_center();
     ((TObjPlayer *)arg0)->register_object_by_id();
     ((TObjGrass *)arg0)->m_398 = (0.0f);
     ((TObjGrass *)arg0)->mode = 0;
