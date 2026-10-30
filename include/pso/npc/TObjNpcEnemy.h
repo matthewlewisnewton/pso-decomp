@@ -16,7 +16,6 @@ struct TObjNpcEnemy : public TObjNpcBase {
     void set_npc_data(void *arg1);
     void update_state();
     virtual void render();
-    void reset_anim_fields();
     static void set_global_count(s32 arg0);
 };
 
