@@ -34,7 +34,7 @@ public:
     TObjEneShark(TObject *parent, void *setData);
     virtual ~TObjEneShark();
     void bind_variant_model(s32);
-    void apply_clamped_mode_param();
+    void configure_subtype();
     virtual void vfunc_83();
     virtual void vfunc_101();
     virtual void vfunc_98();

@@ -145,7 +145,7 @@ void TObjEneShark::vfunc_93() {
     }
 }
 
-void TObjEneShark::apply_clamped_mode_param() {
+void TObjEneShark::configure_subtype() {
     s32 selectedSubtype;
     selectedSubtype = subtype;
     if (selectedSubtype < 0) {
@@ -248,9 +248,9 @@ void TObjEneShark::render() {
         case 1:
         case 8:
         case 9: {
-            s16 *polygon = ((NJS_CNK_MODEL *)((NJS_OBJECT *)model)->child->sibling->model)->polygon_list;
+            s16 *polygon = static_cast<NJS_CNK_MODEL *>(static_cast<NJS_OBJECT *>(model)->child->sibling->model)->polygon_list;
             s16 t = polygon[3];
-            ((NJS_CNK_MODEL *)((NJS_OBJECT *)model)->child->sibling->model)->polygon_list[3] = (u8)polygon[3];
+            static_cast<NJS_CNK_MODEL *>(static_cast<NJS_OBJECT *>(model)->child->sibling->model)->polygon_list[3] = (u8)polygon[3];
             savedFirstPolygonWord3 = t;
             break;
         }
@@ -258,13 +258,13 @@ void TObjEneShark::render() {
         if (m_378 == 0) {
             s16 a;
             s16 b;
-            s16 *polygon = ((NJS_CNK_MODEL *)((NJS_OBJECT *)model)->child->sibling->sibling->model)->polygon_list;
+            s16 *polygon = static_cast<NJS_CNK_MODEL *>(static_cast<NJS_OBJECT *>(model)->child->sibling->sibling->model)->polygon_list;
             a = polygon[2];
             b = polygon[3];
             polygon[2] = -0xB4;
             savedSecondPolygonWord2 = a;
             savedSecondPolygonWord3 = b;
-            ((NJS_CNK_MODEL *)((NJS_OBJECT *)model)->child->sibling->sibling->model)->polygon_list[3] = -1;
+            static_cast<NJS_CNK_MODEL *>(static_cast<NJS_OBJECT *>(model)->child->sibling->sibling->model)->polygon_list[3] = -1;
         }
         TObjPlayer::toggle_particle_effect();
         shark_render_node_index = 0;
@@ -309,15 +309,15 @@ void TObjEneShark::render() {
         set_chunk_model_node_callback(0);
         TParticleCtrl::end_effect_render();
         if (m_378 == 0) {
-            ((NJS_CNK_MODEL *)((NJS_OBJECT *)model)->child->sibling->sibling->model)->polygon_list[2] = savedSecondPolygonWord2;
-            ((NJS_CNK_MODEL *)((NJS_OBJECT *)model)->child->sibling->sibling->model)->polygon_list[3] = savedSecondPolygonWord3;
+            static_cast<NJS_CNK_MODEL *>(static_cast<NJS_OBJECT *>(model)->child->sibling->sibling->model)->polygon_list[2] = savedSecondPolygonWord2;
+            static_cast<NJS_CNK_MODEL *>(static_cast<NJS_OBJECT *>(model)->child->sibling->sibling->model)->polygon_list[3] = savedSecondPolygonWord3;
         }
         switch (mode) {
         case 0:
         case 1:
         case 8:
         case 9:
-            ((NJS_CNK_MODEL *)((NJS_OBJECT *)model)->child->sibling->model)->polygon_list[3] = savedFirstPolygonWord3;
+            static_cast<NJS_CNK_MODEL *>(static_cast<NJS_OBJECT *>(model)->child->sibling->model)->polygon_list[3] = savedFirstPolygonWord3;
             break;
         }
     }
@@ -394,17 +394,17 @@ BmlResourceDescriptor bm_ene_bm1_shark_resource_descriptor = {
     shark_archive_filename, bm_ene_bm1_shark_model_names, bm_ene_bm1_shark_motion_names, 3, 12
 };
 TObjMotionAction shark_actions[11] = {
-    { 1, 0, 9, 0.6f, 0x1 },
-    { 2, 0, 7, 0.6f, 0x20 },
-    { 1, 2, 11, 1.0f, 0x1 },
-    { 2, 0, 1, 1.0f, 0x4 },
-    { 2, 0, 2, 1.0f, 0x4 },
-    { 1, 0, 8, 1.0f, 0x1 },
-    { 2, 0, 3, 1.0f, 0x8 },
-    { 2, 0, 10, 0.8f, 0x20 },
-    { 3, 0, 5, 0.6f, 0x10 },
-    { 3, 0, 4, 0.6f, 0x10 },
-    { 2, 0, 6, 0.6f, 0x20 },
+    { MOTION_MODE_LOOP, 0, 9, 0.6f, 0x1 },
+    { MOTION_MODE_CHAIN, 0, 7, 0.6f, 0x20 },
+    { MOTION_MODE_LOOP, 2, 11, 1.0f, 0x1 },
+    { MOTION_MODE_CHAIN, 0, 1, 1.0f, 0x4 },
+    { MOTION_MODE_CHAIN, 0, 2, 1.0f, 0x4 },
+    { MOTION_MODE_LOOP, 0, 8, 1.0f, 0x1 },
+    { MOTION_MODE_CHAIN, 0, 3, 1.0f, 0x8 },
+    { MOTION_MODE_CHAIN, 0, 10, 0.8f, 0x20 },
+    { MOTION_MODE_ONCE, 0, 5, 0.6f, 0x10 },
+    { MOTION_MODE_ONCE, 0, 4, 0.6f, 0x10 },
+    { MOTION_MODE_CHAIN, 0, 6, 0.6f, 0x20 },
 };
 
 SharkMovementParameters shark_movement_parameters[3] = {
@@ -567,7 +567,7 @@ TObjEneShark::TObjEneShark(TObject *parent, void *setData)
     apply_set_data(setData);
     ((TObjPlayer *)this)->init_position_vectors();
     subtype = variant;
-    apply_clamped_mode_param();
+    configure_subtype();
     bind_variant_model(variant);
     action_table = shark_actions;
     set_field_d8((s32)action_table);
