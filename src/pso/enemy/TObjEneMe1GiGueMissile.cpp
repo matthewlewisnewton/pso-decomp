@@ -179,5 +179,5 @@ u8 *TObjEneMe1GiGueMissile__ct(u8 *arg0, s32 arg1, u8 *from, u8 *to, f32 farg0, 
 
 void TObjEneMe1GiGue__sub_802CE4E8(void) {  }
 
-void TObjEneMe1GiGue__sub_802CE4EC(void) { TObjEneMe1GiGue_barrier_count = TObjEneMe1GiGue::get_barrier_count(); }
+void TObjEneMe1GiGue__sub_802CE4EC(void) { TObjEneMe1GiGue_barrier_count = (s32)TObjEneMe1GiGue::get_resources(); }
 
