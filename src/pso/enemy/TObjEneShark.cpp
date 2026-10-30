@@ -565,7 +565,7 @@ TObjEneShark::TObjEneShark(TObject *parent, void *setData)
     s32 i;
     m_name = TObjEneShark_name_ref;
     apply_set_data(setData);
-    ((TObjPlayer *)this)->init_position_vectors();
+    initialize_position_copies();
     subtype = variant;
     configure_subtype();
     bind_variant_model(variant);

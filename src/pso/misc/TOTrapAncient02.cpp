@@ -841,7 +841,7 @@ void *TOTrapAncient02R__ct(TOTrapAncient02R *trap_ancient02_r, void *arg1, void 
     *(s32 **)((s8 *)trap_ancient02_r + 0x18) = __vt__16TOTrapAncient02R;
     *(s32 *)((s8 *)trap_ancient02_r + 0) = (s32) lbl_805D31B8;
     trap_ancient02_r->apply_object_set_data(arg2);
-    ((TObjPlayer *)trap_ancient02_r)->init_position_vectors();
+    ((TObjChara *)trap_ancient02_r)->initialize_position_copies();
     ((TObjChara *)trap_ancient02_r)->calc_attach_pos();
     *(s32 *)((s8 *)trap_ancient02_r + 0x34) = (s32) *(s32 *)((s8 *)(*(void **)((s8 *)(*(void * *)&TOTrapAncient02__shared_resource) + 0x42C)) + 8);
     trap_ancient02_r->texlist = (s32) *(s32 *)((s8 *)(*(void **)((s8 *)(*(void * *)&TOTrapAncient02__shared_resource) + 0x42C)) + 0xC);
@@ -1237,7 +1237,7 @@ void *TOTrapAncient02__ct(void *arg0, void *arg1, void *arg2) {
     ((Trap_8017B6D8 *)arg0)->vt = (void *)__vt__15TOTrapAncient02;
     ((Trap_8017B6D8 *)arg0)->id = lbl_805D31B4;
     ((V_8017B6D8 *)((Trap_8017B6D8 *)arg0))->init(arg2);
-    ((TObjPlayer *)arg0)->init_position_vectors();
+    ((TObjChara *)arg0)->initialize_position_copies();
     ((TObjChara *)arg0)->calc_attach_pos();
     ((Trap_8017B6D8 *)arg0)->f34 = *(void **)(*(u8 **)(TOTrapAncient02__shared_resource + 0x42C) + 8);
     ((Trap_8017B6D8 *)arg0)->f24 = *(s32 *)(*(u8 **)(TOTrapAncient02__shared_resource + 0x42C) + 0xC);

@@ -78,7 +78,7 @@ u8 *TObjNpcSoldierBase__ct(u8 *player, s32 arg1, s32 arg2) {
     *(s32 **)((s8 *)player + 0x18) = &(*(RecoveredGlobal_8014D874___vt__18TObjNpcSoldierBase *)&__vt__18TObjNpcSoldierBase).value;
     *(s32 *)((s8 *)player + 0) = (s32) TObjNpcSoldierBase__name;
     ((TObjNpcSoldierBase *)(player))->apply_set_data((void *)arg2);
-    ((TObjPlayer *)player)->init_position_vectors();
+    ((TObjChara *)player)->initialize_position_copies();
     *(s32 *)((s8 *)player + 0x34) = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)(*(u8 * *)&TObjNpcSoldierBase__shared_model_resource) + 0x42C)) + 8);
     ((TObjNpcSoldierBase *)player)->texlist = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)(*(u8 * *)&TObjNpcSoldierBase__shared_model_resource) + 0x42C)) + 0xC);
     ((TObjNpcBase *)player)->setup_common();

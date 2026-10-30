@@ -364,7 +364,7 @@ u8 *TOCtrlDubchik__ct(TOCtrlDubchik *ctrl_dubchik, s32 arg1, s32 arg2) {
     *(s32 **)((s8 *)ctrl_dubchik + 0x18) = &(*(RecoveredGlobal_8015D3CC___vt__13TOCtrlDubchik *)&__vt__13TOCtrlDubchik).value;
     *(s32 *)((s8 *)ctrl_dubchik + 0) = (s32) lbl_805D2F1C;
     ((TOCtrlDubchik *)(ctrl_dubchik))->apply_set_data((void *)arg2);
-    ((TObjPlayer *)ctrl_dubchik)->init_position_vectors();
+    ((TObjChara *)ctrl_dubchik)->initialize_position_copies();
     ctrl_dubchik->model = (unsigned char *) ((void *) *(void **)((s8 *)(*(u8 **)((s8 *)(*(u8 * *)&TOCtrlDubchik__shared_resource) + 0x42C)) + 8));
     ctrl_dubchik->texlist = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)(*(u8 * *)&TOCtrlDubchik__shared_resource) + 0x42C)) + 0xC);
     init_collision_body_parts(ctrl_dubchik, &TOCtrlDubchik__collision_body.value, 1);

@@ -68,7 +68,7 @@ u8 *TObjNpcExpertBase__ct(u8 *player, s32 arg1, s32 arg2) {
     *(s32 **)((s8 *)player + 0x18) = &(*(RecoveredGlobal_80149BB4___vt__17TObjNpcExpertBase *)&__vt__17TObjNpcExpertBase).value;
     *(s32 *)((s8 *)player + 0) = (s32) TObjNpcExpertBase__name;
     ((TObjNpcExpertBase *)(player))->apply_set_data((void *)arg2);
-    ((TObjPlayer *)player)->init_position_vectors();
+    ((TObjChara *)player)->initialize_position_copies();
     *(s32 *)((s8 *)player + 0x34) = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)(*(u8 * *)&TObjNpcExpertBase__shared_resource) + 0x42C)) + 8);
     ((TObjNpcExpertBase *)player)->texlist = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)(*(u8 * *)&TObjNpcExpertBase__shared_resource) + 0x42C)) + 0xC);
     ((TObjNpcBase *)player)->setup_common();

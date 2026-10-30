@@ -72,7 +72,7 @@ u8 *TObjNpcGovernorBase__ct(u8 *player, s32 arg1, s32 arg2) {
     *(s32 **)((s8 *)player + 0x18) = &(*(RecoveredGlobal_8014AC6C___vt__19TObjNpcGovernorBase *)&__vt__19TObjNpcGovernorBase).value;
     *(s32 *)((s8 *)player + 0) = (s32) TObjNpcGovernorBase__name;
     ((TObjNpcGovernorBase *)(player))->apply_set_data((void *)arg2);
-    ((TObjPlayer *)player)->init_position_vectors();
+    ((TObjChara *)player)->initialize_position_copies();
     *(s32 *)((s8 *)player + 0x34) = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)(*(u8 * *)&TObjNpcGovernorBase__shared_resource) + 0x42C)) + 8);
     ((TObjNpcGovernorBase *)player)->texlist = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)(*(u8 * *)&TObjNpcGovernorBase__shared_resource) + 0x42C)) + 0xC);
     ((TObjNpcBase *)player)->setup_common();

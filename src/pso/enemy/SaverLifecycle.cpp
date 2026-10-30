@@ -2143,7 +2143,7 @@ u8 *TObjEneSaver__ct(TObjEneSaver *arg0, void *arg1, void *arg2) {
     __ct__13TUnk_80490470Fv(((u8 *)arg0 + 0x3A4));
     *(s32 *)((s8 *)arg0 + 0) = TObjEneSaver__class_name;
     arg0->apply_set_data(arg2);
-    ((TObjPlayer *)arg0)->init_position_vectors();
+    ((TObjChara *)arg0)->initialize_position_copies();
     *(f32 *)((s8 *)arg0 + 0x70) = 1.0f;
     arg0->scale.y = 1.0f;
     arg0->scale.x = 1.0f;

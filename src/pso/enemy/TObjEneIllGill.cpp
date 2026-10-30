@@ -1418,7 +1418,7 @@ TObjEneIllGill::TObjEneIllGill(TObject *parent, void *setData) : TObjEnemy(paren
     this->set_param(0x52);
     this->apply_set_data(setData);
     this->clear_lobby_object_state();
-    ((TObjPlayer *)self)->init_position_vectors();
+    ((TObjChara *)self)->initialize_position_copies();
     apply_actor_gravity(self, 0, TObjEneIllGill__data_805E02BC);
     model = (void *)illGillResource->models->model;
     texlist = illGillResource->models->m_c;

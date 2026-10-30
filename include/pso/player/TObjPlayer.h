@@ -421,7 +421,6 @@ struct TObjPlayer : public TObjChara {
     void update_me1_gigue_state();
     void update_control_state();
     int get_flag_0x388_b24();
-    void init_position_vectors();
     void trigger_targets_action();
     s16 get_field_2c8();
     void set_flag_start_effect();

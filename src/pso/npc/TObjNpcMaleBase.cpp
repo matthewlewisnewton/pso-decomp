@@ -73,7 +73,7 @@ u8 *TObjNpcMaleBase__ct(u8 *player, s32 arg1, s32 arg2) {
     *(s32 **)((s8 *)player + 0x18) = &(*(RecoveredGlobal_8014BA4C___vt__15TObjNpcMaleBase *)&__vt__15TObjNpcMaleBase).value;
     *(s32 *)((s8 *)player + 0) = (s32) TObjNpcMaleBase__name;
     ((TObjNpcMaleBase *)(player))->apply_set_data((void *)arg2);
-    ((TObjPlayer *)player)->init_position_vectors();
+    ((TObjChara *)player)->initialize_position_copies();
     *(s32 *)((s8 *)player + 0x34) = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)(*(u8 * *)&TObjNpcMaleBase__shared_bml_archive) + 0x42C)) + 8);
     ((TObjNpcMaleBase *)player)->texlist = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)(*(u8 * *)&TObjNpcMaleBase__shared_bml_archive) + 0x42C)) + 0xC);
     ((TObjNpcBase *)player)->setup_common();

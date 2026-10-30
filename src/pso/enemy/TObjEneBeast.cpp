@@ -772,7 +772,7 @@ void *TObjEneBeast__ct(void *arg0v, void *arg1, void *arg2) {
     __construct_array(arg0 + 0x3B0, __ct__15RenderFadeStateFv, __dt__15RenderFadeStateFv, 0x1C, 4);
     F(arg0, s32, 0) = lbl_805D2980;
     ((VObj_800927DC *)arg0)->m79(arg2);
-    ((TObjPlayer *)arg0)->init_position_vectors();
+    ((TObjChara *)arg0)->initialize_position_copies();
     F(arg0, s32, 0x334) = F(arg0, s32, 0x368);
     ((TObjEneBeast *)arg0)->select_subtype();
     ((TObjEneBeast *)arg0)->select_model_record(F(arg0, s32, 0x368));

@@ -70,7 +70,7 @@ u8 *TObjNpcMaleTall__ct(u8 *player, s32 arg1, s32 arg2) {
     *(s32 **)((s8 *)player + 0x18) = &(*(RecoveredGlobal_8014C55C___vt__15TObjNpcMaleTall *)&__vt__15TObjNpcMaleTall).value;
     *(s32 *)((s8 *)player + 0) = (s32) TObjNpcMaleTall__name;
     ((TObjNpcMaleTall *)(player))->apply_set_data((void *)arg2);
-    ((TObjPlayer *)player)->init_position_vectors();
+    ((TObjChara *)player)->initialize_position_copies();
     *(s32 *)((s8 *)player + 0x34) = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)(*(u8 * *)&TObjNpcMaleTall__shared_model_resource) + 0x42C)) + 8);
     ((TObjNpcMaleTall *)player)->texlist = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)(*(u8 * *)&TObjNpcMaleTall__shared_model_resource) + 0x42C)) + 0xC);
     ((TObjNpcBase *)player)->setup_common();

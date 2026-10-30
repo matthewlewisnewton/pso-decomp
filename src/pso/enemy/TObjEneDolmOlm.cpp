@@ -944,7 +944,7 @@ u8 *TObjEneDolmOlm__ct(u8 *arg0, s32 arg1, s32 arg2) {
     __ct__13TUnk_80494938Fv((arg0 + 0x3A8));
     *(s32 *)((s8 *)arg0 + 0) = obj_ene_dolm_olm_class_name;
     ((TObjEneDolmOlm *)arg0)->apply_set_data((void *)arg2);
-    ((TObjPlayer *)arg0)->init_position_vectors();
+    ((TObjChara *)arg0)->initialize_position_copies();
     ((TObjEneDolmOlm *)arg0)->sub_80301148();
     *(void * *)&((TObjEneDolmOlm *)arg0)->action_table = TObjEneDolmOlm__param_table;
     ((TObjMotion *)arg0)->set_field_d8((s32)(*(void * *)&((TObjEneDolmOlm *)arg0)->action_table));
