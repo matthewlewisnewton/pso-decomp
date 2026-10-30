@@ -396,7 +396,6 @@ extern RecoveredGlobal_8035E374_lbl_805439E0 lbl_805439E0;
 extern s32 epsilon_guard_camera_step;
 extern s32 epsilon_guard_camera_ctrl_ptr;
 s32 is_main_phase_15__9TObjEneDDFv();
-s32 update_player_state__9TObjEneDDFv(void *, int, int);
 
 void render__19TObjEneEpsilonGuardFv(u8 *);
 void TObjEneEpsilonGuard__sub_8035E578(u8 *, s32);
@@ -666,7 +665,7 @@ void render__19TObjEneEpsilonGuardFv(u8 *ene_epsilon_guard) {
             }
         }
         if (var_r31 != 0) {
-            update_player_state__9TObjEneDDFv(ene_epsilon_guard, 0, 0);
+            ((TObjEneDD *)(ene_epsilon_guard))->draw_ground_shadow(0, 0);
             ((TObject *)ene_epsilon_guard)->defer_render();
             render_with_fade__19TObjEneEpsilonGuardFPvi(ene_epsilon_guard, var_r31);
             ((TObjEneEpsilonGuard *)ene_epsilon_guard)->render_guard_effect();

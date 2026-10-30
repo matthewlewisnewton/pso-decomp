@@ -34,7 +34,6 @@ struct RecoveredGlobal_802CE68C_lbl_8058D490 {
     u8 remaining[0x2C];
 };
 
-struct Vec_802CE740 { s32 a, b, c; };
 
 struct VBase_802CE740 { char pad[0x18]; };
 
@@ -102,13 +101,12 @@ s32 rotate_matrix_y(int, int);
 f32 post_translate_matrix(void *);
 extern RecoveredGlobal_802CE68C_lbl_804724A8 player_sub_802ce68c_zero_vec;
 extern RecoveredGlobal_802CE68C_lbl_8058D490 identity_matrix;
-s32 update_player_state__9TObjEneDDFv(void *, Vec_802CE740 *, int);
 }
 void restore_alpha_ref(void);
 void set_alpha_ref_override(u8 scene);
 extern "C" {
 s32 push_matrix();
-extern Vec_802CE740 lbl_8047249C;
+extern Vec lbl_8047249C;
 extern const f32 lbl_805DE700;
 extern const f32 lbl_805DE704;
 s32 is_split_screen();
@@ -117,7 +115,7 @@ s32 is_main_phase_15__9TObjEneDDFv();
 s32 update__15RenderFadeStateFv(void *);
 s32 defer_render__7TObjectFv(void *);
 s32 translate_matrix(int, f32, f32, f32);
-extern Vec_802CE740 lbl_80472490;
+extern Vec lbl_80472490;
 extern s32 saved_model_render_flags;
 extern s32 lbl_805D686C;
 extern s32 model_render_flags;
@@ -152,8 +150,8 @@ void TObjEneBm9Mericarol::draw_color_variant() {
     s32 s1;
     s32 s2;
     if (((VObj_802CE740 *) ((u8 *)this))->m8(lbl_805DE700, lbl_805DE704) != 0) {
-        Vec_802CE740 v = lbl_8047249C;
-        update_player_state__9TObjEneDDFv(this, &v, 0);
+        Vec v = lbl_8047249C;
+        TObjEneDD::draw_ground_shadow(&v, 0);
         switch (*(s32 *)&this->variant) {
         case 1:
             s0 = (**(s32 ** *)&this->texlist)[2];
@@ -230,8 +228,8 @@ void TObjEneBm9Mericarol::render() {
         return;
     }
     if (self->f326 != 0xB) {
-        Vec_802CE740 v = lbl_80472490;
-        update_player_state__9TObjEneDDFv(((u8 *)this), &v, 0);
+        Vec v = lbl_80472490;
+        TObjEneDD::draw_ground_shadow(&v, 0);
     }
     ((TObjEneDD *)((u8 *)this))->update_secondary_light();
     switch (((TObjEneBm9Mericarol *)((u8 *)this))->get_phase()) {

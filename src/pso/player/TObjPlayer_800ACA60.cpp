@@ -339,7 +339,6 @@ struct Moja_800AE7F4 {
     s32 f384;
 };
 
-struct Vec_800AF080 { f32 x, y, z; };
 
 struct FadeBase_800AF080 { u8 pad[0x14]; };
 
@@ -554,7 +553,6 @@ extern const f32 lbl_805D9C40;
 extern const f32 lbl_805D9C44;
 extern const f32 lbl_805D9C48;
 void update_appearance_jump__11TObjEneMojaFv(Moja_800AE7F4 *self);
-s32 render_with_position_override__9TObjEnemyFPUcl(void *, f32 *, s32, f32);
 s32 get_camera_mode__11TCameraCtrlFv();
 s32 update__15RenderFadeStateFv(void *, s32, s32, s32);
 s32 restore_scene_lighting(s32, s32);
@@ -1498,7 +1496,7 @@ void acquire_target__11TObjEneMojaFPv(u8 *arg0) {
 }
 
 void render__11TObjEneMojaFv(u8 *arg0) {
-    Vec_800AF080 pos;
+    Vec pos;
     Fade_800AF080 *fade;
     s32 cam;
     s32 vis;
@@ -1567,7 +1565,7 @@ void render__11TObjEneMojaFv(u8 *arg0) {
         pos.x = lbl_805D9C58;
         pos.y = lbl_805D9BDC;
         pos.z = lbl_805D9C58;
-        render_with_position_override__9TObjEnemyFPUcl(arg0, &pos.x, 0, lbl_805D9C58);
+        ((TObjEnemy *)(arg0))->draw_ground_shadow(&pos, 0);
         break;
     }
 }

@@ -1213,7 +1213,7 @@ void TObjEneSlimeWaterBomb::render() {
     f32 k;
     ((int (*)(void*))push_matrix)(arg0);
     translate_matrix(0, *(f32 *)((s8 *)arg0 + 0x38), lbl_805DA670 + this->m_380, *(f32 *)((s8 *)arg0 + 0x40));
-    direction_to_rotation_xz((u8 *)&this->m_248, &spC, &sp8);
+    direction_to_rotation_xz((u8 *)&this->ground_normal, &spC, &sp8);
     rotate_matrix_z(0, sp8);
     rotate_matrix_x(0, spC + 0x4000);
     d = *(f32 *)((s8 *)arg0 + 0x3C) - this->m_380;

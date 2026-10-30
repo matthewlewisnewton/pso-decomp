@@ -166,7 +166,7 @@ void TObjPlayer::draw_model() {
         pop_matrix();
         model_render_flags &= 0xFFFFFFFE;
         restore_scene_lighting();
-        ((TObjEnemy *)arg0)->render_with_position_override(0, 0);
+        ((TObjEnemy *)arg0)->draw_ground_shadow(0, 0);
     }
 }
 typedef struct VBase_18_3eea3b VBase_18_3eea3b;

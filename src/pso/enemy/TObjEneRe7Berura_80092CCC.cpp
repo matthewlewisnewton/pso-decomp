@@ -222,7 +222,6 @@ struct VObj_18_1fdb47 : VBase_18_1fdb47 {
     virtual void m104();
 };
 
-struct Vec_80092CCC { f32 x, y, z; };
 
 struct Elem_80092CCC { u8 data[0x64]; };
 
@@ -231,11 +230,11 @@ struct Berura_80092CCC {
     u8 pad1C[0x24 - sizeof(VObj_18_1fdb47)];
     s32 f24;
     u8 pad28[0x10];
-    Vec_80092CCC pos;
+    Vec pos;
     u8 pad44[0x1C];
     s32 f60;
     u8 pad64[0x2FC - 0x64];
-    Vec_80092CCC f2FC;
+    Vec f2FC;
     u8 pad308[0x326 - 0x308];
     s16 f326;
     u8 pad328[0x3C0 - 0x328];
@@ -249,7 +248,7 @@ struct Berura_80092CCC {
     u8 pad3F4[8];
     u8 f3FC[0x418 - 0x3FC];
     u32 f418[2];
-    Vec_80092CCC f420[2];
+    Vec f420[2];
     u8 pad438[0x448 - 0x438];
     Fade_80092CCC fades[2];
 };
@@ -266,14 +265,13 @@ s32 get_camera_mode__11TCameraCtrlFv();
 s32 fn_80095DD0(void *);
 s32 fn_80095DF4(void *);
 s32 is_main_phase_15__9TObjEneDDFv();
-s32 update_player_state__9TObjEneDDFv(void *, void *, int);
 s32 update__15RenderFadeStateFv(void *);
 s32 scroll_strip_uvs(s32, int, int);
 s32 defer_render__7TObjectFv(void *);
 s32 rotate_matrix_y(int, int);
 s32 push_matrix();
 s32 post_translate_matrix(void *);
-extern Vec_80092CCC lbl_80439EC4[];
+extern Vec lbl_80439EC4[];
 extern Elem_80092CCC TObjEneRe7Berura__detached_part_states[];
 extern s32 re7_berura_demo_state;
 extern s32 lbl_805D4F6C;
@@ -324,8 +322,8 @@ void render__16TObjEneRe7BeruraFv(Berura_80092CCC *o) {
     }
     if (mode != 0) {
         if (o->f326 != 0xB) {
-            Vec_80092CCC v = lbl_80439EC4[0];
-            update_player_state__9TObjEneDDFv(o, &v, 0);
+            Vec v = lbl_80439EC4[0];
+            ((TObjEneDD *)(o))->draw_ground_shadow(&v, 0);
         }
         ((TObjEneDD *)o)->update_secondary_light();
         saved_model_render_flags = model_render_flags;

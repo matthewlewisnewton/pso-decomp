@@ -206,7 +206,6 @@ struct VObj_18_ca64a0 : VBase_18_ca64a0 {
     virtual s32 m9(f32, f32, f32);
 };
 
-struct Vec_800AA334 { s32 x, y, z; };
 
 typedef struct Vec_800A9E9C { f32 x, y, z; } Vec_800A9E9C;
 
@@ -243,7 +242,7 @@ s32 push_matrix();
 s32 pop_matrix();
 s32 post_translate_matrix(void *);
 void draw_chunk_object(void *child);
-extern s32 lbl_8043AC78[];
+extern Vec lbl_8043AC78;
 extern s32 saved_model_render_flags;
 extern s32 model_render_flags;
 extern const f32 lbl_805D9B24;
@@ -999,8 +998,8 @@ void TObjPlayer__sub_800AA334(u8 *arg0) {
             restore_scene_lighting();
             TParticleCtrl::end_effect_render();
             if (!(((TObjEneDubchik *)arg0)->actorFlags & 0x800) && (var_r30 != 0)) {
-                Vec_800AA334 v = *(Vec_800AA334 *)lbl_8043AC78;
-                ((TObjEnemy *)arg0)->render_with_position_override((u8 *)&v, 0);
+                Vec v = lbl_8043AC78;
+                ((TObjEnemy *)arg0)->draw_ground_shadow(&v, 0);
             }
         }
     }

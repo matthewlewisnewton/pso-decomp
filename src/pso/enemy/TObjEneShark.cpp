@@ -339,7 +339,7 @@ void TObjEneShark::render() {
         scale.x = shark_shadow_scale_x;
         scale.y = shark_one;
         scale.z = shark_shadow_scale_z;
-        render_with_position_override((u8 *)&scale, 0);
+        TObjEnemy::draw_ground_shadow(&scale, 0);
     }
     }
 }

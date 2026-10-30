@@ -409,7 +409,7 @@ void TObjEneDelDepth::render() {
     }
     if (!(o->groundFlags & 0x4000)) {
         Vec s = lbl_80475DA4[0];
-        ((TObjEnemy *)o)->render_with_position_override((u8 *)&s, 0);
+        ((TObjEnemy *)o)->draw_ground_shadow(&s, 0);
     }
 }
 
@@ -1251,7 +1251,7 @@ void TObjEneDelDepthBomb::run_task() {
     }
     Vec ground = position;
     ground.y += TObjEneDelDepth__data_805DF268;
-    if (project_actor_to_ground(this, &ground, &m_248) != 0) {
+    if (project_actor_to_ground(this, &ground, &ground_normal) != 0) {
         groundHeight = ground.y;
         if (position.y <= groundHeight) {
             done = 1;
@@ -1298,7 +1298,7 @@ void TObjEneDelDepthBomb::render() {
     pop_matrix();
     push_matrix();
     translate_matrix(0, position.x, lbl_805DF250 + groundHeight, position.z);
-    direction_to_rotation_xz((u8 *)&m_248, &rotationX, &rotationZ);
+    direction_to_rotation_xz((u8 *)&ground_normal, &rotationX, &rotationZ);
     rotate_matrix_z(0, rotationZ);
     rotate_matrix_x(0, (void *)(rotationX + 0x4000));
     f32 height = position.y - groundHeight;

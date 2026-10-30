@@ -176,13 +176,10 @@ struct G_800A3210 { u8 pad[0x18]; s32 arr[1]; };
 
 struct Obj_800A2EDC { u8 pad0[0x18]; void *vt; u8 pad1c[0x3F0 - 0x1C]; void *items[4]; void *p400; void *p404; };
 
-typedef struct Vec_800A159C {
-    f32 x, y, z;
-} Vec_800A159C;
 
 typedef struct Obj_800A159C {
     u8 pad0[0x38];
-    Vec_800A159C pos;
+    Vec pos;
     u8 pad44[0x60 - 0x44];
     s32 f60;
     s32 f64;
@@ -194,7 +191,7 @@ typedef struct Obj_800A159C {
     f32 f394;
     u8 pad398[0x3B4 - 0x398];
     u8 mtx3B4[0xC];
-    Vec_800A159C v3C0[4];
+    Vec v3C0[4];
 } Obj_800A159C;
 
 typedef struct Vec_800A1814 {
@@ -277,7 +274,7 @@ void draw_chunk_object(void *child);
 
 extern s32 __vt__20TObjEneDarkGunCenter[];
 extern Ofs_800A1814 hamon_effect_offset_table;
-extern Vec_800A159C lbl_8043A6A4;
+extern Vec lbl_8043A6A4;
 
 void obj_setFlags30(void *, u32);
 void __ct__15TObjEnemyCustomFP7TObject(void *, s32, void *);
@@ -597,7 +594,7 @@ void *lbl_80490780[11] = {
 void *lbl_804907AC[4] = {
     (void *)0x0, (void *)0x0, (void *)0x0, (void *)0x0,
 };
-Vec_800A159C lbl_804907BC[4] = {
+Vec lbl_804907BC[4] = {
     {0.0f, 10.0f, 2.0f}, {0.0f, 10.0f, -2.0f}, {2.0f, 10.0f, 0.0f}, {-2.0f, 10.0f, 0.0f},
 };
 void *__vt__17TObjEneDarkGunner[83] = {
@@ -861,7 +858,7 @@ void TObjEneDarkGunner::sub_800A159C() {
     post_translate_matrix((s32)&o->pos);
     rotate_matrix_z(0, this->rotation_z);
     rotate_matrix_y(0, this->rotation_y);
-    Vec_800A159C t = lbl_8043A6A4;
+    Vec t = lbl_8043A6A4;
     lo = 5.0f + o->hover_height;
     t.y = lo + this->render_y_offset;
     matrix_mult_vec(0, &t, o->mtx3B4);
@@ -975,16 +972,16 @@ struct VObj_18_800A28A4 : VBase_18_800A2F94 {
     u8 pad1C[0x24 - 0x1C];
     s32 texture;
     u8 pad28[0x38 - 0x28];
-    Vec_800A159C pos;
+    Vec pos;
     u8 pad44[0x60 - 0x44];
     s32 rotation_y;
     s32 rotation_z;
     u8 pad68[0x74 - 0x68];
-    Vec_800A159C prev_pos;
+    Vec prev_pos;
     u8 pad80[0xA4 - 0x80];
     Motion_800A28A4 *motion;
     u8 padA8[0x2FC - 0xA8];
-    Vec_800A159C ground_pos;
+    Vec ground_pos;
     u8 pad308[0x326 - 0x308];
     s16 action;
     u8 pad328[0x374 - 0x328];
@@ -995,7 +992,7 @@ struct VObj_18_800A28A4 : VBase_18_800A2F94 {
     u32 flags;
     f32 render_y_offset;
     u8 pad390[0x3B4 - 0x390];
-    Vec_800A159C shadow_pos;
+    Vec shadow_pos;
     u8 pad3C0[0x3F0 - 0x3C0];
     TObjPlayer *children[4];
     TParticleCtrl *trail_emitter;
@@ -1016,7 +1013,7 @@ extern "C" {
 extern s32 saved_model_render_flags;
 extern u32 model_render_flags;
 extern const MaterialColor lbl_8043A668;
-extern const Vec_800A159C lbl_8043A678;
+extern const Vec lbl_8043A678;
 void translate_matrix(u32 arg0, f32 x, f32 y, f32 z);
 void set_chunk_material_override_pair(s32 first, s32 second);
 void restore_scene_lighting(void);
@@ -1108,8 +1105,8 @@ void TObjPlayer__sub_800A1978(VObj_18_800A28A4 *self) {
             }
             if (((TObjEnemy *)self)->obj_testFlags30(0x800) == 0 && drawn != 0 &&
                 ((TObjEnemy *)self)->obj_testFlags30(0x800000) != 0) {
-                Vec_800A159C offset = lbl_8043A678;
-                ((TObjEnemy *)self)->render_with_position_override((u8 *)&offset, 0);
+                Vec offset = lbl_8043A678;
+                ((TObjEnemy *)self)->draw_ground_shadow(&offset, 0);
             }
         }
     }
@@ -1583,7 +1580,7 @@ void TObjPlayer__sub_800A28A4(VObj_18_800A28A4 *self) {
     self->motion->speed = 4.0f + self->render_y_offset;
     if ((actor_frame_tick & 3) == 0 && (self->flags & 0x400000) && ((TObjEnemy *)self)->obj_testFlags30(0x22) == 0 &&
         self->m9(150.0f, 400.0f, 15.0f) != 0) {
-        Vec_800A159C p = self->pos;
+        Vec p = self->pos;
         p.y += self->render_y_offset;
         spawn_particle_effect(&p, 0xD6);
     }

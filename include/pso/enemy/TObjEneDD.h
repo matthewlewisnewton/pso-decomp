@@ -52,7 +52,7 @@ struct TObjEneDD : public TObjEnemy {
     static u8 is_phase_e();
     static u8 is_main_phase_15();
     static void clear_global_flag_400();
-    int update_player_state();
+    void draw_ground_shadow(const Vec *scale, s32 forceDraw);
     void draw_oriented_shadow(s32 arg1, s32 arg2, u32 arg3);
     int update_primary_light();
     int update_secondary_light();

@@ -1749,7 +1749,6 @@ void TObjEneMe1GiGue__sub_802CD054(void) {  }
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/npc/NpcModelRegistry.h"
 
-struct Vec_802CD058 { f32 x, y, z; };
 
 struct ObjBase_802CD058 { u8 pad[0x18]; };
 struct Obj_802CD058 : ObjBase_802CD058 {
@@ -1768,7 +1767,7 @@ struct Obj_802CD058 : ObjBase_802CD058 {
     u8 pad28[0x30 - 0x28];
     u32 f30;
     s32 f34;
-    Vec_802CD058 pos;
+    Vec pos;
     u8 pad44[0x60 - 0x44];
     s32 f60;
     u8 pad64[0x68 - 0x64];
@@ -1863,9 +1862,9 @@ void draw_model__15TObjEneMe1GiGueFPv(Obj_802CD058 *self) {
     restore_scene_lighting();
     TParticleCtrl::end_effect_render();
     if (!(self->f30 & 0x800) && ok != 0) {
-        Vec_802CD058 v;
+        Vec v;
         v.x = v.y = v.z = (1.0f - 0.01f * self->f3ec) * (5.0f * self->f68);
-        ((TObjEnemy *)self)->render_with_position_override((u8 *)&v, 0);
+        ((TObjEnemy *)self)->draw_ground_shadow(&v, 0);
     }
     self->s418.clear_flag_and_notify();
     model_render_flags = saved_model_render_flags;

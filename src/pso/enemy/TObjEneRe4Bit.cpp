@@ -144,7 +144,6 @@ struct VObj_14_c143b1 : VBase_14_c143b1 {
     virtual s32 m5();
 };
 
-struct Vec_800ECA40 { f32 x, y, z; };
 
 struct LBase_800ECA40 { char pad[0x14]; };
 
@@ -279,7 +278,7 @@ struct Bit_800ECA40 : VBase_800ECA40 {
     Model_800ECA40 **x24;
     u8 pad28[0x34 - 0x28];
     void *x34;
-    Vec_800ECA40 pos;
+    Vec pos;
     u8 pad44[0x60 - 0x44];
     s32 x60;
     u8 pad64[0x300 - 0x64];
@@ -315,7 +314,7 @@ int push_matrix();
 s32 pop_matrix(void);
 int post_translate_matrix(void *);
 void draw_chunk_object(void *child);
-extern Vec_800ECA40 re4_bit_render_vec;
+extern Vec re4_bit_render_vec;
 extern s32 saved_model_render_flags;
 extern s32 model_render_flags;
 extern const f32 lbl_805D9E84;
@@ -489,8 +488,8 @@ void render__13TObjEneRe4BitFv(Bit_800ECA40 *self) {
         return;
     }
     if (self->flags & 0x800) {
-        Vec_800ECA40 v = re4_bit_render_vec;
-        ((TObjEnemy *)self)->render_with_position_override((u8 *)&v, 0);
+        Vec v = re4_bit_render_vec;
+        ((TObjEnemy *)self)->draw_ground_shadow(&v, 0);
     }
     ((TObjEneDD *)self)->update_secondary_light();
     m = *self->x24;

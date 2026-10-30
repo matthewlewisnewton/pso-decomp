@@ -315,7 +315,7 @@ void draw_actor_model__10TObjPlayerFPv(Player_800A7CA4 *self) {
     s32 mode;
     s32 d;
     s32 doDraw;
-    f32 pos[3];
+    Vec pos;
     if (actor_frame_tick != dimedian_last_draw_tick[self->f368]) {
         dimedian_last_draw_tick[self->f368] = actor_frame_tick;
         TObjPlayer__sub_8023DEE0(dimedian_resource_handles[self->f368], 0xE, 0, 0);
@@ -407,10 +407,10 @@ void draw_actor_model__10TObjPlayerFPv(Player_800A7CA4 *self) {
     case 9:
         break;
     default:
-        pos[0] = 1.5f;
-        pos[1] = 1.0f;
-        pos[2] = 2.0f;
-        ((TObjEnemy *)self)->render_with_position_override((u8 *)pos, 0);
+        pos.x = 1.5f;
+        pos.y = 1.0f;
+        pos.z = 2.0f;
+        ((TObjEnemy *)self)->draw_ground_shadow(&pos, 0);
         break;
     }
 }

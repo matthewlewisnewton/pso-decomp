@@ -480,7 +480,7 @@ void TObjEneNanoDrago::render() {
             shadowScale.z = shadowRadius;
             shadowScale.y = shadowRadius;
             shadowScale.x = shadowRadius;
-            render_with_position_override((u8 *)&shadowScale, 0);
+            TObjEnemy::draw_ground_shadow(&shadowScale, 0);
         }
         fade->clear_flag_and_notify();
         model_render_flags = saved_model_render_flags;

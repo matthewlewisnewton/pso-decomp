@@ -559,7 +559,6 @@ struct VObj_18_26a62c : VBase_18_26a62c {
 
 extern "C" {
 s32 is_main_phase_15__9TObjEneDDFv();
-s32 update_player_state__9TObjEneDDFv(void *, int, int);
 s32 defer_render__7TObjectFv(void *);
 s32 rotate_matrix_y(int, int);
 s32 rotate_matrix_z(int, int);
@@ -2779,7 +2778,7 @@ void TObjEneMe1Canadin::render_canadin_model_with_debug_type() {
         }
     }
     if (((VObj_18_26a62c *)(arg0))->m8(lbl_805D98A0, lbl_805D98A4) != 0) {
-        update_player_state__9TObjEneDDFv(arg0, 0, 0);
+        ((TObjEneDD *)(arg0))->draw_ground_shadow(0, 0);
         TObjPlayer::toggle_particle_effect();
         TObjFish::set_global_param((int) (*(s32 *)((s8 *)arg0 + 0x24)));
         push_matrix();
@@ -2815,7 +2814,7 @@ void TObjEneMe1Canadin::render() {
     }
     if (var_r30 != 0) {
         if (*(s32 *)((s8 *)arg0 + 0x3C8) & 0x01000000) {
-            update_player_state__9TObjEneDDFv(arg0, 0, 0);
+            ((TObjEneDD *)(arg0))->draw_ground_shadow(0, 0);
         }
         ((TObjEneDD *)arg0)->update_secondary_light();
         TObjFish::set_global_param((int) (*(s32 *)((s8 *)arg0 + 0x24)));
