@@ -2421,13 +2421,14 @@ void TObjEneBm3Fly::release_shared_data() {
     }
 }
 
-void *TObjEneBm3Fly::create(void *arg1, void *arg2, void *arg3, void *arg4) {
-    void *o;
-    o = __nw__7TObjectFUl(0x4A8);
+TObjEneBm3Fly *TObjEneBm3Fly::create(TObjEneBm3FlyNest *nest, s32 id, s32 set_index,
+    const Vec *spawn_position, const Vec *velocity) {
+    void *o = __nw__7TObjectFUl(0x4A8);
     if (o != NULL) {
-        o = TObjEneBm3Fly__ct((u8 *)o, (s32)tl_04, (u8 *)this, (s32)arg1, (s32)arg2, (u8 *)arg3, (u8 *)arg4);
+        o = TObjEneBm3Fly__ct((u8 *)o, (s32)tl_04, (u8 *)nest, id, set_index,
+            (u8 *)spawn_position, (u8 *)velocity);
     }
-    return o;
+    return static_cast<TObjEneBm3Fly *>(o);
 }
 
 void TObjEneBm3Fly::load_resources() {

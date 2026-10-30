@@ -1230,7 +1230,7 @@ void TObjEneBm3FlyNest::spawn_child() {
     if (child_count <= 6) {
         n = (set_index + 1) + children_spawned;
         VecCopy(&spawn_position, get_spawn_point());
-        if (((TObjEneBm3Fly *)this)->create((void *)next_child_id, (void *)n, &spawn_position, &velocity) != 0) {
+        if (TObjEneBm3Fly::create(this, next_child_id, n, &spawn_position, &velocity) != 0) {
             child_ids[child_count++] = next_child_id;
             next_child_id++;
             children_spawned++;
