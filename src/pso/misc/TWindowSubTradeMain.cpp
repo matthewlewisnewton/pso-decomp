@@ -29,7 +29,6 @@ struct VObj_803323D8 : VBase_803323D8 {
     virtual s32 m8(f32, f32);
 };
 
-struct V3_803323D8 { f32 x, y, z; };
 
 struct Anim_803323D8 { s32 a; u32 count; };
 
@@ -49,12 +48,11 @@ struct O_803323D8 {
 extern "C" {
 extern s32 actor_frame_tick;
 extern const f32 TObjEneMorfos__data_805DF870;
-void update_player_state__9TObjEneDDFv(void *, V3_803323D8 *, int);
 s32 rotate_matrix_y(int, int);
 void push_matrix(void);
 int post_translate_matrix(void *);
 void draw_model_motion(void *arg0, void *arg1, f32 farg0);
-extern const V3_803323D8 lbl_804775F0;
+extern const Vec lbl_804775F0;
 extern const f32 TObjEneMorfos__data_805DF86C;
 extern const f32 TObjEneMorfos__data_805DF874;
 void* TObjEneMorfosArm__sub_803326B4(void* p);
@@ -75,8 +73,8 @@ void TObjEneMorfos::vfunc_106() {
     ((TObjEneDD *)arg0)->get_target_info();
     if (((VObj_803323D8 *)arg0)->m8(TObjEneMorfos__data_805DF86C, TObjEneMorfos__data_805DF870) != 0) {
         if (arg0->f326 != 0xB) {
-            V3_803323D8 v = lbl_804775F0;
-            update_player_state__9TObjEneDDFv(arg0, &v, 0);
+            Vec v = lbl_804775F0;
+            ((TObjEneDD *)(arg0))->draw_ground_shadow(&v, 0);
         }
         TObjPlayer::toggle_particle_effect();
         TObjFish::set_global_param(arg0->f24);

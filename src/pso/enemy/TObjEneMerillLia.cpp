@@ -150,12 +150,6 @@ struct VObj_18_477421 : VBase_18_477421 {
     virtual s32 m99();
 };
 
-struct Stack_800D6810
-{
-  f32 sp8;
-  f32 spC;
-  f32 sp10;
-};
 
 struct VBase_18_ca64a0
 {
@@ -1003,7 +997,6 @@ void TObjEneMerillLia::reset_action_state() {
 extern void *tl_04;
 
 typedef struct RecoveredFields_800D6810_arg0 RecoveredFields_800D6810_arg0;
-typedef struct Stack_800D6810 Stack_800D6810;
 typedef struct VBase_14_fddec9 VBase_14_fddec9;
 typedef struct VBase_18_ca64a0 VBase_18_ca64a0;
 typedef struct VObj_14_fddec9 VObj_14_fddec9;
@@ -1496,7 +1489,7 @@ void TObjEneMerillLia::beast_update_approach() {
 }
 
 void TObjEneMerillLia::render() {
-  Stack_800D6810 stack;
+  Vec stack;
   s32 var_r30;
   s16 temp_r0;
   s32 temp_r3;
@@ -1559,10 +1552,10 @@ void TObjEneMerillLia::render() {
     temp_r0 = ((RecoveredFields_800D6810_arg0 *) ((u8 *)this))->field_326;
     if ((temp_r0 >= 0xA) || (temp_r0 < 8))
     {
-      stack.sp8 = lbl_805DA32C;
-      stack.spC = TObjEneMerillLia__data_805DA2F4;
-      stack.sp10 = lbl_805DA330;
-      this->render_with_position_override((u8 *)&stack.sp8, 0);
+      stack.x = lbl_805DA32C;
+      stack.y = TObjEneMerillLia__data_805DA2F4;
+      stack.z = lbl_805DA330;
+      this->TObjEnemy::draw_ground_shadow(&stack, 0);
     }
   }
 }

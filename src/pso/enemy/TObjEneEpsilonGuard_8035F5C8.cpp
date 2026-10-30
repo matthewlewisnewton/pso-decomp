@@ -453,7 +453,6 @@ void TObjEneEpsilonGuard__sub_80361C70(u8 *arg0, s32 arg1);
 s32 is_split_screen();
 s32 get_camera_mode__11TCameraCtrlFv();
 s32 is_main_phase_15__9TObjEneDDFv();
-s32 update_player_state__9TObjEneDDFv(void *, int, int);
 extern const f32 lbl_805E021C;
 extern const f32 lbl_805E0220;
 extern const f32 lbl_805E0224;
@@ -982,7 +981,7 @@ void TObjEneEpsilonBody::render() {
             var_r31 = 0;
         }
         if (var_r31 != 0) {
-            update_player_state__9TObjEneDDFv(this, 0, 0);
+            TObjEneDD::draw_ground_shadow(0, 0);
             this->defer_render();
             draw_with_fade__19TObjEneEpsilonGuardFPvi((u8 *)(this), (s32)(var_r31));
             if ((s16) this->mode == 6) {

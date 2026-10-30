@@ -37,7 +37,7 @@ void TObjPlayer::draw_if_visible() {
         ((TObjMotion *)arg0)->draw();
         pop_matrix();
         model_render_flags &= 0xFFFFFFFE;
-        ((TObjEnemy *)arg0)->render_with_position_override(0, 0);
+        ((TObjEnemy *)arg0)->draw_ground_shadow(0, 0);
     }
 }
 

@@ -265,7 +265,6 @@ struct VObj_18_800B23A0 : VBase_18_800B23A0 {
     virtual s32 m8(f32, f32);
 };
 
-struct Vec_800B23A0 { s32 x, y, z; };
 
 struct Ent_800B23A0 { s32 a; u32 count; };
 
@@ -419,7 +418,6 @@ struct VObj_18_113a45 : VBase_18_113a45 {
     virtual s32 m103();
 };
 
-struct Vec_800B264C { f32 x, y, z; };
 
 struct Cam_800B264C { u8 b[0x1C]; };
 
@@ -430,13 +428,13 @@ struct Nest_800B264C {
     u8 f38[0x60 - 0x38];
     s32 f60;
     u8 pad64[0x2FC - 0x64];
-    Vec_800B264C f2FC;
+    Vec f2FC;
     u8 pad308[0x326 - 0x308];
     s16 f326;
     u8 pad328[0x3AC - 0x328];
     s32 f3AC;
     u8 pad3B0[0x3C8 - 0x3B0];
-    Vec_800B264C f3C8;
+    Vec f3C8;
     u8 pad3D4[0x3E0 - 0x3D4];
     u8 f3E0[0x440 - 0x3E0];
     Cam_800B264C cams[4];
@@ -776,7 +774,6 @@ int TObjEneBm3FlyNest__sub_800B4158(void);
 void * __dt__26TObjEneBm3FlyNest_CarryFlyFv(void *arg0, s16 arg1);
 u8 * __ct__26TObjEneBm3FlyNest_CarryFlyFP7TObjectlllll(u8 *self, void *parent, s32 a, s32 b, s32 unused, s32 c, s32 d);
 s32 is_main_phase_15__9TObjEneDDFv();
-void update_player_state__9TObjEneDDFv(void *, Vec_800B23A0 *, s32);
 void get_camera_ctrl__9TObjEneDDFv(s32, s32);
 s32 get_random_scaled__9TObjEneDDFv(void *);
 f32 rand_range__9TObjEneDDFff(void *, f32, f32);
@@ -965,8 +962,8 @@ void *lbl_80491EE4[106] = {
 extern RecoveredGlobal_800B2948_lbl_8043B2A4 bm3_fly_nest_attachment_sample_table;
 extern Anim_800B41E8 bm3_flynest_anim_binding;
 extern Vec_800B39CC lbl_8043B304[];
-extern Vec_800B264C lbl_8043B310;
-extern const Vec_800B23A0 lbl_8043B31C;
+extern Vec lbl_8043B310;
+extern const Vec lbl_8043B31C;
 extern char lbl_8043B328[];
 extern char lbl_8043B338[];
 extern char lbl_8043B348[];
@@ -1068,8 +1065,8 @@ void TObjEneBm3FlyNest::render_with_state_debug() {
         break;
     }
     if (((VObj_18_800B23A0 *)arg0)->m8(500.0f, 120.0f) != 0) {
-        Vec_800B23A0 v = lbl_8043B31C;
-        update_player_state__9TObjEneDDFv(arg0, &v, 1);
+        Vec v = lbl_8043B31C;
+        ((TObjEneDD *)(arg0))->draw_ground_shadow(&v, 1);
         set_global_param__8TObjFishFl(this->texlist);
         ((void (*)(void))push_matrix)();
         ((void (*)(void *))post_translate_matrix)(arg0 + 0x38);
@@ -1133,14 +1130,14 @@ void TObjEneBm3FlyNest::render() {
                 }
             }
             if (self->f326 != 9) {
-                Vec_800B264C v = lbl_8043B310;
+                Vec v = lbl_8043B310;
                 if (self->f326 == 0) {
                     t = lbl_805D9D10 / (self->f4B0 - lbl_805D9D14);
                     if (t < lbl_805D9D18 && t > 0.0f) {
                         v.x = v.z = lbl_805D9D1C * t;
                     }
                 }
-                ((s32 (*)(void *, void *, int))update_player_state__9TObjEneDDFv)(this, &v, 1);
+                TObjEneDD::draw_ground_shadow(&v, 1);
             }
             if (draw != 0) {
                 this->update_secondary_light();

@@ -90,7 +90,6 @@ void *create_particle_emitter(void *pos, s32 id);
 s32 TObjPlayer__sub_800A04F0(void *);
 void enemy_clear_target__12TObjEneDD_STFUs(void *);
 void enemy_set_target_id(void *, u16);
-s32 update_player_state__9TObjEneDDFv(void *, void *, int);
 s32 get_camera_ctrl__9TObjEneDDFv(void *, int);
 s32 pack_debug_text_position(s32, s32);
 s32 attack_target_history_add(s32, void *);
@@ -1584,7 +1583,7 @@ void TObjEneDellBiter::render() {
         }
         if (!(flags_3c4 & 0x4000)) {
             Vec v = lbl_80475294[0];
-            update_player_state__9TObjEneDDFv(this, &v, 0);
+            TObjEneDD::draw_ground_shadow(&v, 0);
         }
         update_secondary_light();
         TObjEneDellBiter__demo_script_step = 0;
@@ -1655,7 +1654,7 @@ void TObjEneDellBiter::vfunc_106() {
     }
     if (update_object_view_visibility(lbl_805DEFBC, 15.0f) != 0) {
         Vec v = lbl_804752A0[0];
-        update_player_state__9TObjEneDDFv(this, &v, 0);
+        TObjEneDD::draw_ground_shadow(&v, 0);
         TObjPlayer::toggle_particle_effect();
         TObjFish::set_global_param((int) (texlist));
         push_matrix();

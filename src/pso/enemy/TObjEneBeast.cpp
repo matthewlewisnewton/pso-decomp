@@ -92,7 +92,6 @@ struct VObj_18 : VBase_18 {
     virtual void m8();
     virtual s32 m9(f32, f32, f32);
 };
-struct Vec_8009211C { f32 x, y, z; };
 struct Obj_8009211C : VObj_18 {
     u8 pad1C[0x24 - 0x1C];
     s32 f24;
@@ -101,7 +100,7 @@ struct Obj_8009211C : VObj_18 {
     u8 f38[0x60 - 0x38];
     s32 f60;
     u8 pad64[0x2FC - 0x64];
-    Vec_8009211C f2FC;
+    Vec f2FC;
     u8 pad308[0x326 - 0x308];
     s16 f326;
     u8 pad328[0x380 - 0x328];
@@ -311,11 +310,11 @@ void render__12TObjEneBeastFPv(Obj_8009211C *o) {
     pop_matrix();
     restore_scene_lighting();
     if (o->f326 >= 10 || o->f326 < 8) {
-        Vec_8009211C v;
+        Vec v;
         v.x = 1.5f;
         v.y = 1.0f;
         v.z = 2.0f;
-        ((TObjEnemy *)o)->render_with_position_override((u8 *)&v, 0);
+        ((TObjEnemy *)o)->draw_ground_shadow(&v, 0);
     }
 }
 

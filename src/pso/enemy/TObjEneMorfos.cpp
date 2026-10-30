@@ -250,7 +250,6 @@ struct VObj_80332850 : VBase_80332850 {
     virtual void m104();
 };
 
-struct Vec_80332850 { s32 a, b, c; };
 
 struct Base_803344F0 { char pad[0x18]; };
 
@@ -386,8 +385,7 @@ void TObjEneMorfos__sub_80332FD4(TObjEneMorfos *arg0, s32 arg1);
 s32 is_split_screen();
 s32 get_camera_mode__11TCameraCtrlFv();
 s32 is_main_phase_15__9TObjEneDDFv();
-s32 update_player_state__9TObjEneDDFv(void *, Vec_80332850 *, s32);
-extern Vec_80332850 lbl_804775E4;
+extern Vec lbl_804775E4;
 extern s32 saved_model_render_flags;
 extern s32 model_render_flags;
 extern const f32 lbl_805D9E84;
@@ -962,8 +960,8 @@ void render__13TObjEneMorfosFv(u8 *ene_morfos) {
         ((TObject *)ene_morfos)->defer_render();
         ((TObjEneMorfos *)ene_morfos)->render_part(cam, vis);
         if (((TObjEneMorfos *)ene_morfos)->mode != 0xB && !(*(u32 *)((s8 *)ene_morfos + 0x3C4) & 0x4000)) {
-            Vec_80332850 v = lbl_804775E4;
-            update_player_state__9TObjEneDDFv(ene_morfos, &v, 0);
+            Vec v = lbl_804775E4;
+            ((TObjEneDD *)(ene_morfos))->draw_ground_shadow(&v, 0);
         }
         ((TObjEneDD *)ene_morfos)->update_secondary_light();
         saved_model_render_flags = model_render_flags;

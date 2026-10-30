@@ -311,7 +311,6 @@ struct Ene_803021AC : EBase_803021AC {
     u32 f3e4;
 };
 
-struct Vec_803021AC { f32 x, y, z; };
 
 struct Vec_8030177C { f32 x, y, z; };
 
@@ -1254,11 +1253,11 @@ void TObjEneDolmOlm::render() {
         break;
     default:
         if (!(arg0->f3e4 & 0x4000)) {
-            Vec_803021AC v;
+            Vec v;
             v.x = lbl_805DEF8C;
             v.y = TObjEneDolmOlm__data_805DEF50;
             v.z = TObjEneDolmOlm__data_805DEF68;
-            ((TObjEnemy *)arg0)->render_with_position_override((u8 *)&v, 0);
+            ((TObjEnemy *)arg0)->draw_ground_shadow(&v, 0);
         }
         break;
     }
