@@ -2164,7 +2164,7 @@ void TObjEneMe3SinowZoa__sub_80318C0C(void *arg0_, s32 arg1) {
             ((TObjMotion *)ene_epsilon)->advance_animation();
             ((VObj_18_4f5f2e *)(ene_epsilon))->m103();
             if (*(f32 *)((s8 *)ene_epsilon + 0xC0) < TObjEneMe3SinowZoa__data_805DF320) {
-                if (((TObjEneEpsilon *)ene_epsilon)->update_death_check() != 0) {
+                if (((TObjEneDD_ST *)ene_epsilon)->check_target_validity() != 0) {
                     ((TObjEneDD_ST *)ene_epsilon)->enemy_copy_target_destination();
                     ((TObjEneDD *)ene_epsilon)->update_velocity();
                     var_r4 = (s32) (TObjEneMe3SinowZoa__data_804760A0 * atan2_float(*(f32 *)((s8 *)ene_epsilon + 0x3A0), *(f32 *)((s8 *)ene_epsilon + 0x3A8)));
@@ -2356,7 +2356,7 @@ void TObjEneMe3SinowZoa__sub_80318F7C(Ene_80318F7C *self, s32 arg1) {
         case 1: {
             s32 target;
             ((TObjMotion *)self)->advance_animation();
-            if (((TObjEneEpsilon *)self)->update_death_check() != 0) {
+            if (((TObjEneDD_ST *)self)->check_target_validity() != 0) {
                 ((TObjEneDD_ST *)self)->enemy_copy_target_destination();
                 ((TObjEneDD *)self)->update_velocity();
                 target = (s32)(TObjEneMe3SinowZoa__data_804760A0 * atan2_float(self->f3A0, self->f3A8));
@@ -2373,7 +2373,7 @@ void TObjEneMe3SinowZoa__sub_80318F7C(Ene_80318F7C *self, s32 arg1) {
         }
         case 2:
             ((TObjMotion *)self)->advance_animation();
-            if (((TObjEneEpsilon *)self)->update_death_check() != 0) {
+            if (((TObjEneDD_ST *)self)->check_target_validity() != 0) {
                 ((TObjEneDD_ST *)self)->enemy_copy_target_destination();
                 ((TObjEneDD *)self)->update_velocity();
             }

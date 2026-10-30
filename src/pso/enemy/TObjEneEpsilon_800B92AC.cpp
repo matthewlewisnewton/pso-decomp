@@ -83,7 +83,7 @@ void TObjEneDD::turn_toward_target_direction(s32 arg1) {
     this->rotation_y = (s32) approach_angle_limited(this->rotation_y, (s32) (lbl_8043B698 * atan2_float(*(f32 *)((s8 *)this + 0x3A0), *(f32 *)((s8 *)this + 0x3A8))), arg1);
 }
 
-s32 TObjEneEpsilon::update_death_check() {
+s32 TObjEneDD_ST::check_target_validity() {
     if ((this->vfunc_99() == 0) && (is_player_entity_id(target_entity_id) == 0)) {
         enemy_clear_target__12TObjEneDD_STFUs(this);
         return 0;

@@ -3384,7 +3384,7 @@ void TObjEneMe1Canadin__sub_8009CC74(void *arg0, s32 arg1) {
             if (((TObjEneDD_ST *)o)->update_linked_position(TObjEneMe1Canadin__data_805D988C) == 0) {
                 break;
             }
-        } else if (((TObjEneEpsilon *)o)->update_death_check() == 0) {
+        } else if (((TObjEneDD_ST *)o)->check_target_validity() == 0) {
             break;
         }
         switch (o->mode) {
@@ -3566,7 +3566,7 @@ void TObjEneMe1Canadin__sub_8009D320(void *arg0, s32 arg1) {
             if (((TObjEneDD_ST *)o)->update_linked_position(TObjEneMe1Canadin__data_805D988C) == 0) {
                 break;
             }
-        } else if (((TObjEneEpsilon *)o)->update_death_check() == 0) {
+        } else if (((TObjEneDD_ST *)o)->check_target_validity() == 0) {
             break;
         }
         ((TObjEneDD_ST *)o)->enemy_copy_target_destination();

@@ -1650,7 +1650,7 @@ void returning_state__14TObjEneBm5WolfFPvi(u8 *actor, s32 arg1) {
     case 0:
         (*(s32 *)((s8 *)actor + 0x41C))++;
         ((TObjMotion *)actor)->advance_animation();
-        if (((TObjEneEpsilon *)actor)->update_death_check() != 0) {
+        if (((TObjEneDD_ST *)actor)->check_target_validity() != 0) {
             play_footsteps__14TObjEneBm5WolfFPv(actor);
             *(s32 *)((s8 *)actor + 0x42C) = approach_angle_limited(*(s32 *)((s8 *)actor + 0x42C), *(s32 *)((s8 *)actor + 0x430), 0x100);
             *(f32 *)((s8 *)actor + 0x394) = TObjEneBm5Wolf__data_805D9DC8 * sin_table_lookup((s32)(*(s32 *)((s8 *)actor + 0x42C))) + home->x;
@@ -1868,7 +1868,7 @@ void TObjEneBm5Wolf::circling_state(s32 arg1) {
         break;
     case 0:
         ((TObjMotion *)self)->advance_animation();
-        if (((TObjEneEpsilon *)self)->update_death_check() != 0) {
+        if (((TObjEneDD_ST *)self)->check_target_validity() != 0) {
             if (self->f424 == 0) {
                 Vec_800B5D4C fwd;
                 Vec_800B5D4C to;
@@ -2007,7 +2007,7 @@ void TObjEneBm5Wolf::flanking_state(s32 arg1) {
         break;
     case 0:
         advance_animation();
-        if (((TObjEneEpsilon *)((u8 *)this))->update_death_check() != 0) {
+        if (check_target_validity() != 0) {
             if (is_passing_frame(TObjEneBm5Wolf__data_805D9DE0) != 0) {
                 spawn_particle_effect((s32)(((u8 *)this) + 0x38), 0xF3);
             }
@@ -2081,7 +2081,7 @@ void TObjEneBm5Wolf::chasing_state(s32 arg1) {
         if ((s16) this->requested_action == 2) {
             play_proximity_effect();
         }
-        if (((TObjEneEpsilon *)arg0)->update_death_check() != 0) {
+        if (((TObjEneDD_ST *)arg0)->check_target_validity() != 0) {
             enemy_copy_target_destination__12TObjEneDD_STFv(arg0);
             update_velocity__9TObjEneDDFv(arg0);
             if (this->frame >= TObjEneBm5Wolf__data_805D9DF4) {

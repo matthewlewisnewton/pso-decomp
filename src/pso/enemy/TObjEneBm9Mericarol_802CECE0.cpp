@@ -1328,7 +1328,7 @@ void TObjEneBm9Mericarol__sub_802D01D8(u8 *actor, s32 arg1) {
                     enemy_set_target_id(actor, var_r30);
                 }
             }
-        } else if (((TObjEneEpsilon *)actor)->update_death_check() == 0) {
+        } else if (((TObjEneDD_ST *)actor)->check_target_validity() == 0) {
             break;
         }
         ((TObjEneDD_ST *)actor)->enemy_copy_target_destination();

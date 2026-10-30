@@ -2655,7 +2655,7 @@ void TObjEneMe1Gee__sub_800C9DF8(void *o_, s32 arg1) {
             if (((TObjEneDD_ST *)o)->update_linked_position(TObjEneMe1Gee__data_805DA0A8) == 0) {
                 break;
             }
-        } else if (((TObjEneEpsilon *)o)->update_death_check() == 0) {
+        } else if (((TObjEneDD_ST *)o)->check_target_validity() == 0) {
             break;
         }
         switch (o->mode) {
@@ -2832,7 +2832,7 @@ void TObjEneMe1Gee__sub_800CA454(void *arg0, s32 arg1) {
             if (((TObjEneDD_ST *)o)->update_linked_position(TObjEneMe1Gee__data_805DA0A8) == 0) {
                 break;
             }
-        } else if (((TObjEneEpsilon *)o)->update_death_check() == 0) {
+        } else if (((TObjEneDD_ST *)o)->check_target_validity() == 0) {
             break;
         }
         ((TObjEneDD_ST *)o)->enemy_copy_target_destination();

@@ -1035,7 +1035,7 @@ void TObjEneBm3Fly::state_circle_target(s32 arg1) {
         break;
     case 0:
         advance_animation();
-        if (((TObjEneEpsilon *)arg0)->update_death_check() == 0 && V->m102((2e+02f)) == 0) {
+        if (((TObjEneDD_ST *)arg0)->check_target_validity() == 0 && V->m102((2e+02f)) == 0) {
             break;
         }
         switch (I(0x3C0)) {
@@ -1124,7 +1124,7 @@ void TObjEneBm3Fly::execute_action(s32 arg1) {
         break;
     case 0:
         advance_animation();
-        if (((TObjEneEpsilon *)((u8 *)this))->update_death_check() == 0) {
+        if (check_target_validity() == 0) {
             enemy_clear_target__12TObjEneDD_STFUs(((u8 *)this));
         }
         switch (this->m_3c0) {
@@ -1245,7 +1245,7 @@ void TObjEneBm3Fly__sub_800B0B20(u8 *arg0, s32 arg1) {
         break;
     case 0:
         ((TObjMotion *)arg0)->advance_animation();
-        if (((TObjEneEpsilon *)arg0)->update_death_check() == 0 && V->m102((2e+02f)) == 0) {
+        if (((TObjEneDD_ST *)arg0)->check_target_validity() == 0 && V->m102((2e+02f)) == 0) {
             break;
         }
         ((TObjEneBm3Fly *)arg0)->update();

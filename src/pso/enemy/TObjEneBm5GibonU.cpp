@@ -2575,7 +2575,7 @@ void TObjEneBm5GibonU__sub_800CE978(u8 *actor, s32 arg1) {
     case 0:
         (*(s32 *)((s8 *)actor + 0x518))++;
         ((TObjMotion *)actor)->advance_animation();
-        if (((TObjEneEpsilon *)actor)->update_death_check() != 0) {
+        if (((TObjEneDD_ST *)actor)->check_target_validity() != 0) {
             TObjEneBm5GibonU__sub_800CCE28(actor);
             *(s32 *)((s8 *)actor + 0x528) = approach_angle_limited(*(s32 *)((s8 *)actor + 0x528), *(s32 *)((s8 *)actor + 0x52C), 0x100);
             *(f32 *)((s8 *)actor + 0x394) = TObjEneBm5GibonU__data_805DA1C8 * sin_table_lookup(*(s32 *)((s8 *)actor + 0x528)) + home->x;
@@ -3084,7 +3084,7 @@ void TObjEneBm5GibonU::run_idle_state(s32 arg1) {
 
     case 0:
       ((TObjMotion *)((Ene_800CEEE8 *) ((u8 *)this)))->advance_animation();
-      if (((TObjEneEpsilon *)((u8 *)this))->update_death_check() != 0)
+      if (check_target_validity() != 0)
     {
       if (((Ene_800CEEE8 *) ((u8 *)this))->f520 == 0)
       {
@@ -3267,7 +3267,7 @@ void TObjEneBm5GibonU__sub_800CF4BC(u8 *actor, s32 arg1) {
         return;
     case 0:
         ((TObjMotion *)actor)->advance_animation();
-        if (((TObjEneEpsilon *)actor)->update_death_check() == 0) {
+        if (((TObjEneDD_ST *)actor)->check_target_validity() == 0) {
             return;
         }
         if (((TObjMotion *)actor)->is_passing_frame(lbl_805DA1FC) != 0) {
@@ -3349,7 +3349,7 @@ void TObjEneBm5GibonU__sub_800CF7CC(u8 *actor, s32 arg1) {
         if ((s16) *(s16 *)((s8 *)actor + 0xB8) == 2) {
             TObjEneBm5GibonU__sub_800CCDE4(actor);
         }
-        if (((TObjEneEpsilon *)actor)->update_death_check() != 0) {
+        if (((TObjEneDD_ST *)actor)->check_target_validity() != 0) {
             ((TObjEneDD_ST *)actor)->enemy_copy_target_destination();
             ((TObjEneDD *)actor)->update_velocity();
             if (((TObjMotion *)actor)->is_passing_frame(lbl_805DA200) != 0) {
