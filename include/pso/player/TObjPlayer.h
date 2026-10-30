@@ -445,7 +445,6 @@ struct TObjPlayer : public TObjChara {
     static void spawn_effect_f8(s32 arg1, s32 arg2);
     static void set_field_e4(s32 arg1, s32 arg2);
     void trigger_dell_biter_events();
-    void spawn_ground_effect(s32 arg1);
     void spawn_effect_at_ground(s32 arg1);
     static void apply_effect_variant_a(s32 arg0, s32 arg1);
     static void apply_effect_variant_b(s32 arg0, s32 arg1);

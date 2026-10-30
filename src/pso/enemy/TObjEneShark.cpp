@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/unk/TUnk_80494968.h"
+#include "pso/misc/GroundEffects.h"
 #include "pso/enemy/TUnk_80493450.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/player/TObjChara.h"
@@ -107,7 +108,7 @@ void TObjEneShark::vfunc_94() {
     rotate_vector_by_matrix(0, &impactPosition, &impactPosition);
     pop_matrix();
     vec3_add_to(&impactPosition, &position);
-    ((TObjPlayer *)(&impactPosition))->spawn_ground_effect(0x23);
+    spawn_ground_effect(&impactPosition, 0x23);
     TObjPlayer__sub_800D92BC((s32)&impactPosition, 0xF);
 }
 

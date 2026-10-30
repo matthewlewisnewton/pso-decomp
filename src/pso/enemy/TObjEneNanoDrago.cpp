@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/misc/GroundEffects.h"
 #include "pso/TObjControl.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/BmlResourceDescriptor.h"
@@ -1015,7 +1016,7 @@ void TObjEneNanoDrago::update_dying_state() {
     case 3:
         timer = (s16) (timer - 1);
         if (timer <= 0) {
-            ((TObjPlayer *)(&position))->spawn_ground_effect(0x1E);
+            spawn_ground_effect((const Vec *)(&position), 0x1E);
             TObjPlayer__sub_800D92BC((s32)(&position), 0xF);
             state = 4;
             return;

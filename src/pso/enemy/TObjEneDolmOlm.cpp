@@ -2,6 +2,7 @@
 #include "pso/misc/SampledMotionPoints.h"
 #include "pso/render/reflection.h"
 #include "pso/system/BmlResourceClass.h"
+#include "pso/misc/GroundEffects.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #pragma defer_codegen on
@@ -53,12 +54,6 @@ struct VObj_80301690_80300CE4 : Base_80301690_80300CE4 {
 #include "pso/misc/TLobby.h"
 #include "pso/object/TObjFish.h"
 #include "pso/npc/NpcModelRegistry.h"
-struct Stack_80300FC0 {
-    f32 sp8;
-    f32 spC;
-    f32 sp10;
-};
-
 struct RecoveredGlobal_80300FC0_lbl_8058D490 { s32 value; u8 remaining[0x2C]; };
 typedef char RecoveredGlobal_80300FC0_lbl_8058D490_size[sizeof(RecoveredGlobal_80300FC0_lbl_8058D490) == 0x30 ? 1 : -1];
 
@@ -1707,20 +1702,20 @@ void TObjEneDolmOlm::vfunc_93() {
 }
 void TObjEneDolmOlm::vfunc_94() {
     u8 *arg0 = (u8 *)this;
-    typedef char sp8_offset[(offsetof(Stack_80300FC0, sp8) == 0x0) ? 1 : -1];
-    typedef char spC_offset[(offsetof(Stack_80300FC0, spC) == 0x4) ? 1 : -1];
-    typedef char sp10_offset[(offsetof(Stack_80300FC0, sp10) == 0x8) ? 1 : -1];
-    Stack_80300FC0 stack;
-    stack.sp8 = TObjEneDolmOlm__data_805DEF54;
-    stack.spC = lbl_805DEF58;
-    stack.sp10 = TObjEneDolmOlm__data_805DEF5C * *(f32 *)(this->m_2b0 + 0x10);
+
+
+
+    Vec point;
+    point.x = TObjEneDolmOlm__data_805DEF54;
+    point.y = lbl_805DEF58;
+    point.z = TObjEneDolmOlm__data_805DEF5C * *(f32 *)(this->m_2b0 + 0x10);
     push_matrix_from((void *)&identity_matrix.value);
     rotate_matrix_y(0, this->rotation_y);
-    rotate_vector_by_matrix(0, (void *)&stack.sp8, (void *)&stack.sp8);
+    rotate_vector_by_matrix(0, (void *)&point, (void *)&point);
     pop_matrix();
-    vec3_add_to((void *)&stack.sp8, (void *)(arg0 + 0x38));
-    ((TObjPlayer *)(&stack.sp8))->spawn_ground_effect(0x23);
-    TObjPlayer__sub_800D92BC((void *)&stack.sp8, 0xF);
+    vec3_add_to((void *)&point, (void *)(arg0 + 0x38));
+    spawn_ground_effect(&point, 0x23);
+    TObjPlayer__sub_800D92BC((void *)&point, 0xF);
 }
 void TObjEneDolmOlm::vfunc_95() {
     s32 arg0 = (s32)this;

@@ -1,5 +1,6 @@
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
+#include "pso/misc/GroundEffects.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/TObject.h"
 #include "pso/system/vector.h"
@@ -537,7 +538,7 @@ void TObjEnePanarms__sub_800DD9A0(u8 *object) {
             stack.sp8 = (lbl_805DA4AC * *(f32 *)((s8 *)object + 0x38)) + (lbl_805DA4AC * *(f32 *)((s8 *)object + 0x3A0));
             stack.spC = *(f32 *)((s8 *)object + 0x3C);
             stack.sp10 = (lbl_805DA4AC * *(f32 *)((s8 *)object + 0x40)) + (lbl_805DA4AC * *(f32 *)((s8 *)object + 0x3A8));
-            ((TObjPlayer *)(&stack.sp8))->spawn_ground_effect(0x78);
+            spawn_ground_effect((const Vec *)(&stack.sp8), 0x78);
             TObjPlayer::spawn_dead_spot_default((s32)((void *)&stack.sp8), 6);
         }
         if ((s32) *(s32 *)((s8 *)object + 0x388) == 0x5A) {

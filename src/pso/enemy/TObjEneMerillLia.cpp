@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/misc/GroundEffects.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/enemy/TUnk_80493450.h"
 #include "pso/player/TObjPlayer.h"
@@ -33,12 +34,6 @@ struct Pl_800D5614 { u8 pad0[0x38]; u8 pos[0xC]; };
 #include "pso/enemy/TObjEneRe7Berura.h"
 #include "pso/object/TObjFish.h"
 #include "pso/npc/NpcModelRegistry.h"
-
-struct Stack_800D5060 {
-    f32 sp8;
-    f32 spC;
-    f32 sp10;
-};
 
 struct RecoveredGlobal_800D5060_lbl_8058D490 { s32 value; u8 remaining[0x2C]; };
 typedef char RecoveredGlobal_800D5060_lbl_8058D490_size[sizeof(RecoveredGlobal_800D5060_lbl_8058D490) == 0x30 ? 1 : -1];
@@ -811,20 +806,20 @@ void TObjEneMerillLia__sub_800D501C(s32 arg0) {
 
 void TObjEneMerillLia::vfunc_94() {
     u8 *arg0 = (u8 *)this;
-    typedef char sp8_offset[(offsetof(Stack_800D5060, sp8) == 0x0) ? 1 : -1];
-    typedef char spC_offset[(offsetof(Stack_800D5060, spC) == 0x4) ? 1 : -1];
-    typedef char sp10_offset[(offsetof(Stack_800D5060, sp10) == 0x8) ? 1 : -1];
-    Stack_800D5060 stack;
-    stack.sp8 = TObjEneMerillLia__data_805DA300;
-    stack.spC = lbl_805DA304;
-    stack.sp10 = TObjEneMerillLia__data_805DA308 * *(f32 *)(this->m_2b0 + 0x10);
+
+
+
+    Vec point;
+    point.x = TObjEneMerillLia__data_805DA300;
+    point.y = lbl_805DA304;
+    point.z = TObjEneMerillLia__data_805DA308 * *(f32 *)(this->m_2b0 + 0x10);
     push_matrix_from((void *)&identity_matrix.value);
     rotate_matrix_y(0, this->rotation_y);
-    rotate_vector_by_matrix(0, (void *)&stack.sp8, (void *)&stack.sp8);
+    rotate_vector_by_matrix(0, (void *)&point, (void *)&point);
     pop_matrix();
-    vec3_add_to((void *)&stack.sp8, (void *)(arg0 + 0x38));
-    ((TObjPlayer *)(&stack.sp8))->spawn_ground_effect(0x23);
-    TObjPlayer__sub_800D92BC((s32)&stack.sp8, 0xF);
+    vec3_add_to((void *)&point, (void *)(arg0 + 0x38));
+    spawn_ground_effect(&point, 0x23);
+    TObjPlayer__sub_800D92BC((s32)&point, 0xF);
 }
 
 void TObjEneMerillLia::vfunc_93() {  }
