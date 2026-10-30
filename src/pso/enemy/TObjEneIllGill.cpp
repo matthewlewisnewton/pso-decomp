@@ -566,8 +566,8 @@ void TObjEneIllGill::update_death_fall() {
     case 2:
       this->body_center_position.y = (f32) ((this->body_center_position.y) + TObjEneIllGill__data_805E02DC);
       move_with_wall_slide(arg0);
-      x_speed = (f32) ((x_speed) * lbl_805E02E0);
-      this->m_310 = (f32) ((this->m_310) * lbl_805E02E0);
+      movement_velocity.x = (f32) ((movement_velocity.x) * lbl_805E02E0);
+      this->movement_velocity.z = (f32) ((this->movement_velocity.z) * lbl_805E02E0);
       if (((TObjMotion *)arg0)->is_passing_frame((f32)((f32) TObjEneIllGill__data_805E02C0)) != 0)
     {
       this->phase = 3;
@@ -617,8 +617,8 @@ void TObjEneIllGill::update_damage_recovery() {
     u8 *arg0 = (u8 *)this;
     ((TObjBase *)arg0)->obj_clearFlags30(0x04040000);
     ((TObjMotion *)arg0)->advance_animation();
-    this->m_310 = TObjEneIllGill__data_805E02BC;
-    this->x_speed = TObjEneIllGill__data_805E02BC;
+    this->movement_velocity.z = TObjEneIllGill__data_805E02BC;
+    this->movement_velocity.x = TObjEneIllGill__data_805E02BC;
     apply_actor_gravity(arg0, 0, TObjEneIllGill__data_805E02BC);
     ((TObjPlayer *)arg0)->update_collisions();
     if (((TObjMotion *)arg0)->is_passing_frame((f32)TObjEneIllGill__data_805E02C0) != 0) {

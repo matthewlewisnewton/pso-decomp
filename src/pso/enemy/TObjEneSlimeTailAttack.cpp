@@ -2169,7 +2169,7 @@ void TObjEneSlimeOne::initialize_slime_instance_state() {
   ((TObjMotion *)actor)->set_animation(0);
   ((TObjMotion *)actor)->set_field_b8(0);
   VecCopy((Vec *)(new_var = actor + 0x2FC), (const Vec *)(actor + 0x38));
-  ((TObjEneSlimeOne *)actor)->m_310 = lbl_805DA6B4;
+  ((TObjEneSlimeOne *)actor)->movement_velocity.z = lbl_805DA6B4;
   *((f32 *) (((s8 *) actor) + 0x30C)) = lbl_805DA6B4;
   *((f32 *) (((s8 *) actor) + 0x308)) = lbl_805DA6B4;
   *((s32 *) (((s8 *) actor) + 0x2A8)) = 0;

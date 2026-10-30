@@ -161,7 +161,7 @@ void TObjEneBalClawClaw::update_chase_state() {
         }
         *(f32 *)((s8 *)((u8 *)this) + 0x30C) = (0.0f);
         move_along_ground_avoiding_walls__15TObjEnemyCustomF3Vecff(this, *(Vec_80090504 *)((s8 *)this->target + 0x2FC), this->bodies, (-0.6f), *(f32 *)((s8 *)this->bodies + 0xC));
-        turn_toward_direction(*(s32 *)((s8 *)this->movementParameters + 8), (Vec *)unk_308);
+        turn_toward_direction(*(s32 *)((s8 *)this->movementParameters + 8), &movement_velocity);
         advance_animation();
         apply_actor_gravity((TObjEnemy *)this, (s32 *)(0), (0.0f));
         update_collisions__10TObjPlayerFv(this);

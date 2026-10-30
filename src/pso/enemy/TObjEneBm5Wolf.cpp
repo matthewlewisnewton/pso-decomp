@@ -1466,11 +1466,11 @@ void TObjEneBm5Wolf::hurt_state(s32 arg1) {
         ((TObjEneDD *)arg0)->move_with_wall_slide_on_ground(v.x, v.z, c);
         }
         if (this->roamingSubstate == 0) {
-            (*(f32 *)&this->unk_308) *= TObjEneBm5Wolf__data_805D9DAC;
-            this->m_310 *= TObjEneBm5Wolf__data_805D9DAC;
+            (this->movement_velocity.x) *= TObjEneBm5Wolf__data_805D9DAC;
+            this->movement_velocity.z *= TObjEneBm5Wolf__data_805D9DAC;
         } else {
-            (*(f32 *)&this->unk_308) *= TObjEneBm5Wolf__data_805D9DB0;
-            this->m_310 *= TObjEneBm5Wolf__data_805D9DB0;
+            (this->movement_velocity.x) *= TObjEneBm5Wolf__data_805D9DB0;
+            this->movement_velocity.z *= TObjEneBm5Wolf__data_805D9DB0;
             this->rotation_y = approach_angle_limited(this->rotation_y, this->m_42c, 0x300);
             this->rotation_y = (s16) this->rotation_y;
             if (((TObjMotion *)arg0)->is_passing_frame(lbl_805D9DA0) != 0) {

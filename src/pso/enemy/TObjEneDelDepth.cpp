@@ -317,9 +317,9 @@ void TObjEneDelDepth::init() {
     ((TObjMotion *)arg0)->set_animation(0);
     ((TObjMotion *)arg0)->set_field_b8(0);
     VecCopy((Vec *)((u8 *)&this->body_center_position), &this->position);
-    this->m_310 = (f32) TObjEneDelDepth__data_805DF258;
-    this->y_speed = (f32) TObjEneDelDepth__data_805DF258;
-    x_speed = (f32) TObjEneDelDepth__data_805DF258;
+    this->movement_velocity.z = (f32) TObjEneDelDepth__data_805DF258;
+    this->movement_velocity.y = (f32) TObjEneDelDepth__data_805DF258;
+    movement_velocity.x = (f32) TObjEneDelDepth__data_805DF258;
     this->target = 0;
     ((TObjEnemy *)arg0)->bind_enemy_combat_stats((u8 *)(TLobby::register_boss(0x30)), (u8 *)(TLobby::dispatch_shared_handler_b(0x30)), (u8 *)(TLobby::register_object(0x30)));
     this->referenceHp = (s16) this->hp;

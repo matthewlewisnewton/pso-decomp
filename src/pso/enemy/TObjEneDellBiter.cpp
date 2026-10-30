@@ -1446,11 +1446,11 @@ void TObjEneDellBiter::fn_80303AA0(s32 reason) {
         break;
     case 0:
         advance_animation();
-        VecCopy(&v, (const Vec *)&x_speed);
+        VecCopy(&v, &movement_velocity);
         len = normalize_vector_xz(&v);
         this->move_clamped_on_ground(v.x, v.z, len);
-        x_speed *= lbl_805DEFC8;
-        m_310 *= lbl_805DEFC8;
+        movement_velocity.x *= lbl_805DEFC8;
+        movement_velocity.z *= lbl_805DEFC8;
         this->vfunc_89();
         break;
     case 5:

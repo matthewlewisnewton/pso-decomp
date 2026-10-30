@@ -1164,9 +1164,9 @@ void TObjPlayer__sub_8001053C(u8 *arg0) {
 }
 
 void TObjPlayer::apply_velocity() {
-    this->position.x = (f32) (this->position.x + *(f32 *)&this->unk_308);
-    this->position.y = (f32) (this->position.y + this->y_speed);
-    this->position.z = (f32) (this->position.z + *(f32 *)&this->m_310);
+    this->position.x = (f32) (this->position.x + this->movement_velocity.x);
+    this->position.y = (f32) (this->position.y + this->movement_velocity.y);
+    this->position.z = (f32) (this->position.z + this->movement_velocity.z);
 }
 
 s16 TObjPlayer::clamp_tp() {
@@ -2822,7 +2822,7 @@ void TObjChara::apply_knockback_from_attacker(u8 *arg1, f32) {
     ((s32 (*)(void *, void *))subtract_vector)(&diff, ((u8 *)this) + 0x38);
     if ((diff.x * diff.x) + (diff.z * diff.z) < (1e-05f)) {
         *(f32 *)((s8 *)((u8 *)this) + 0x308) = (0.0f);
-        this->m_310 = (0.0f);
+        this->movement_velocity.z = (0.0f);
         return;
     }
     scale = 10.0f + (10.0f - *(f32 *)(this->m_2b0 + 0x14));
@@ -2831,7 +2831,7 @@ void TObjChara::apply_knockback_from_attacker(u8 *arg1, f32) {
     }
     ((TObjBoss2Tunnel *)(&diff))->update_scale();
     *(f32 *)((s8 *)((u8 *)this) + 0x308) = -scale * diff.x;
-    this->m_310 = -scale * diff.z;
+    this->movement_velocity.z = -scale * diff.z;
     }
 }
 
@@ -4063,7 +4063,7 @@ f32 TObjEnemy::enemy_wander_home(f32 farg0, f32 farg1, f32 farg2, s32 arg1) {
             Vec_80017BA8 c = v;
             select_enemy_destination((Obj_800182A0 *) arg0, (Vec_800182A0 *) &c, 1);
         }
-        *(f32 *)((s8 *)arg0 + 0x308) = ((TObjEnemy *)arg0)->m_310 = (0.0f);
+        *(f32 *)((s8 *)arg0 + 0x308) = ((TObjEnemy *)arg0)->movement_velocity.z = (0.0f);
         ((TObjEnemy *)arg0)->m_2ac = 0;
     } else {
         enemy_turn_toward_dest((Obj_80018660 *) arg0, arg1);
@@ -4162,7 +4162,7 @@ void enemy_set_heading_velocity(f32 farg0, TObjEnemy *enemy, s32 arg1) {
     rotate_vector_by_matrix(0, &stack.sp8, &stack.sp8);
     pop_matrix();
     *(f32 *)((s8 *)enemy + 0x308) = stack.sp8;
-    enemy->m_310 = stack.sp10;
+    enemy->movement_velocity.z = stack.sp10;
 }
 
 void calc_velocity_toward_destination(Obj_800180E8 *self, Vec_800180E8 *pos, Vec_800180E8 *dest, f32 speed) {

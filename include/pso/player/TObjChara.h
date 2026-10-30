@@ -231,12 +231,7 @@ public:
     s16 m_2f8;
     u8 unk_2FA[0x2];
     Vec body_center_position;
-    union {
-        u8 unk_308[0x4];
-        f32 x_speed;
-    };
-    f32 y_speed;
-    f32 m_310;
+    Vec movement_velocity;
     s32 m_314;
     u32 m_318;
     u8 unk_31C[0x6];
@@ -249,17 +244,17 @@ public:
     u16 tp;
     u8 unk_330[0x4];
 
-    // The destination and velocity still use split storage; body_center_position
-    // is the actual Vec at 0x2FC.
+    // The destination still uses split storage.
     Vec *destination() { return (Vec *)&m_29c; }
     void copy_body_to_center();
     Vec *body_center() { return &body_center_position; }
-    Vec *velocity() { return (Vec *)unk_308; }
+    Vec *velocity() { return &movement_velocity; }
 };
 
 typedef char TObjChara_body_center_offset[(offsetof(TObjChara, body_center_position) == 0x2FC) ? 1 : -1];
 typedef char TObjChara_body_center_size[(sizeof(((TObjChara *)0)->body_center_position) == 0xC) ? 1 : -1];
-typedef char TObjChara_velocity_offset[(offsetof(TObjChara, unk_308) == 0x308) ? 1 : -1];
+typedef char TObjChara_velocity_offset[(offsetof(TObjChara, movement_velocity) == 0x308) ? 1 : -1];
+typedef char TObjChara_velocity_size[(sizeof(((TObjChara *)0)->movement_velocity) == 0xC) ? 1 : -1];
 
 extern "C" void *__dt__9TObjCharaFv(void *, s16);
 

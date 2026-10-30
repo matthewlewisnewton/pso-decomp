@@ -723,18 +723,18 @@ void TObjPlayer::step_along_ground() {
     }
     for (i = 0, ang = 0; i < 15; i++, ang += 0x1000) {
         if (i == 0) {
-            VecCopy((Vec *)&dir, (const Vec *)&this->unk_308);
+            VecCopy((Vec *)&dir, (const Vec *)&this->movement_velocity);
         } else {
             ((void (*)(void *))push_matrix_from)(identity_matrix);
             ((void (*)(int, s32))rotate_matrix_y)(0, sign * ang);
-            rotate_vector_by_matrix(0, (u8 *)&this->unk_308, &dir);
+            rotate_vector_by_matrix(0, (u8 *)&this->movement_velocity, &dir);
             ((void (*)(void))pop_matrix)();
         }
         VecCopy((Vec *)&v, (const Vec *)&this->position);
         ((void (*)(void *, void *))vec3_add_to)(&v, &dir);
         if (project_actor_to_ground(arg0, &v, 0) == 1) {
             VecCopy((Vec *)&this->position, (const Vec *)&v);
-            VecCopy((Vec *)&this->unk_308, (const Vec *)&this->position);
+            VecCopy((Vec *)&this->movement_velocity, (const Vec *)&this->position);
             ((void (*)(void *, void *))subtract_vector)(arg0 + 0x308, (u8 *)&this->prev_position);
             return;
         }
@@ -1169,7 +1169,7 @@ void TObjPlayer__sub_800A1D70(u8 *arg0) {
         temp_f1 = TObjPlayer__sub_800A3200(2);
         if (temp_f31 > temp_f1) {
             *(f32 *)((s8 *)arg0 + 0x308) = (f32) ((*(f32 *)((s8 *)arg0 + 0x308) * temp_f1) / temp_f31);
-            ((TObjPlayer *)arg0)->m_310 = (f32) ((((TObjPlayer *)arg0)->m_310 * temp_f1) / temp_f31);
+            ((TObjPlayer *)arg0)->movement_velocity.z = (f32) ((((TObjPlayer *)arg0)->movement_velocity.z * temp_f1) / temp_f31);
         }
         if (*(s32 *)((s8 *)arg0 + 0x388) & 0x400000) {
             spawn_particle_effect((arg0 + 0x2FC), 0xD7);
@@ -1178,16 +1178,16 @@ void TObjPlayer__sub_800A1D70(u8 *arg0) {
         ((TObjPlayer *)arg0)->m_37c = 1;
     case 1:
         *(f32 *)((s8 *)arg0 + 0x308) *= 0.95;
-        ((TObjPlayer *)arg0)->m_310 *= 0.95;
+        ((TObjPlayer *)arg0)->movement_velocity.z *= 0.95;
         ((TObjMotion *)arg0)->advance_animation();
         {
         Vec_800A1D70 v = *(Vec_800A1D70 *)(arg0 + 0x2FC);
         v.x = v.x + *(f32 *)((s8 *)arg0 + 0x308);
-        v.z = v.z + ((TObjPlayer *)arg0)->m_310;
+        v.z = v.z + ((TObjPlayer *)arg0)->movement_velocity.z;
         if (check_path_obstructed(arg0, &v) == 0) {
             move_with_wall_slide((arg0));
         } else {
-            ((TObjPlayer *)arg0)->m_310 = (f32) 0.0f;
+            ((TObjPlayer *)arg0)->movement_velocity.z = (f32) 0.0f;
             *(f32 *)((s8 *)arg0 + 0x308) = (f32) 0.0f;
         }
         }

@@ -555,7 +555,7 @@ void TObjNpcBase::update_wandering() {
         if (lbl_805DB1D4 < horizontal_distance_squared(&v, (u8 *)&this->position)) {
             Vec_801489B8 d = v;
             select_enemy_destination(arg0, &d, 0);
-            *(f32 *)((s8 *)arg0 + 0x308) = this->m_310 = lbl_805DB1C4;
+            *(f32 *)((s8 *)arg0 + 0x308) = this->movement_velocity.z = lbl_805DB1C4;
             this->phase = 1;
             ((VObj18_801489B8 *) arg0)->vf160(1);
         }

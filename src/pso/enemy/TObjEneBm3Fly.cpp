@@ -289,7 +289,7 @@ void TObjEneBm3Fly::state_death_fall(s32 arg1) {
         *(s32 *)((s8 *)arg0 + 0x3C4) = 0;
         this->m_3e0 = (f32) (0.0f);
         *(f32 *)((s8 *)arg0 + 0x430) = (f32) *(f32 *)((s8 *)arg0 + 0x308);
-        *(f32 *)((s8 *)arg0 + 0x438) = (f32) this->m_310;
+        *(f32 *)((s8 *)arg0 + 0x438) = (f32) this->movement_velocity.z;
         *(f32 *)((s8 *)arg0 + 0x3E4) = normalize_vector_xz__FP3Vec(arg0 + 0x430);
         temp_copy = ((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003E425));
         play_sound_effect(temp_copy, (u8 *)&this->position, 0, 0);
@@ -943,12 +943,12 @@ void TObjEneBm3Fly::update_recoil_state(s32 arg1) {
         t = this->m_3c0;
         this->m_3c0 = t + 1;
         ((P_800B012C *)((u8 *)this))->v.x = *(f32 *)((s8 *)((u8 *)this) + 0x308);
-        ((P_800B012C *)((u8 *)this))->v.z = this->m_310;
+        ((P_800B012C *)((u8 *)this))->v.z = this->movement_velocity.z;
         v = normalize_vector_xz__FP3Vec(&((P_800B012C *)((u8 *)this))->v, t);
         update_dd_flag__13TObjEneBm3FlyFPv(((u8 *)this), ((P_800B012C *)((u8 *)this))->v.x, ((P_800B012C *)((u8 *)this))->v.z, v);
         clamp_flight_height__13TObjEneBm3FlyFv(this);
         *(f32 *)((s8 *)((u8 *)this) + 0x308) *= (0.5f);
-        this->m_310 *= (0.5f);
+        this->movement_velocity.z *= (0.5f);
         this->vfunc_89();
         break;
     case 5:

@@ -2120,7 +2120,7 @@ void TObjEneMe3ShinowaMirage__sub_800E4FE8(u8 *ene_dd_st, s32 arg1) {
         c = normalize_vector_xz((Vec *)(&v));
         ((TObjEneDD *)ene_dd_st)->move_clamped_on_ground(v.x, v.z, c);
         *(f32 *)((s8 *)ene_dd_st + 0x308) *= lbl_805DA5F0;
-        ((TObjEneDD_ST *)ene_dd_st)->m_310 *= lbl_805DA5F0;
+        ((TObjEneDD_ST *)ene_dd_st)->movement_velocity.z *= lbl_805DA5F0;
         ((TObjEneDD *)ene_dd_st)->vfunc_89();
         break;
     case 5:

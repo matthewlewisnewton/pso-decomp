@@ -651,7 +651,7 @@ void TUnk_80493450::beast_update_dead() {
     if (this->frame < (lbl_805DA03C * (lbl_805DA040 * this->play_speed))) {
         move_with_wall_slide((arg0));
         *(f32 *)((s8 *)arg0 + 0x308) = (f32) (*(f32 *)((s8 *)arg0 + 0x308) * lbl_805DA03C);
-        this->m_310 = (f32) (this->m_310 * lbl_805DA03C);
+        this->movement_velocity.z = (f32) (this->movement_velocity.z * lbl_805DA03C);
     } else if (obj_testFlags30__14TObjCollidableFUl(arg0, 0x800000) == 0) {
         apply_actor_gravity(arg0, 0, lbl_805DA034);
     }
@@ -676,13 +676,13 @@ void TUnk_80493450::beast_update_hurt() {
     pop_matrix();
     vec3_add_to(&v, &scratch_vec.vector);
     v.x += o->f308;
-    v.z += ((TObjPlayer *)o)->m_310;
+    v.z += ((TObjPlayer *)o)->movement_velocity.z;
     if (check_path_obstructed(o, &v) == 0) {
         move_with_wall_slide((u8 *)o);
         o->f308 *= lbl_805DA03C;
-        ((TObjPlayer *)o)->m_310 *= lbl_805DA03C;
+        ((TObjPlayer *)o)->movement_velocity.z *= lbl_805DA03C;
     } else {
-        o->f308 = ((TObjPlayer *)o)->m_310 = lbl_805DA034;
+        o->f308 = ((TObjPlayer *)o)->movement_velocity.z = lbl_805DA034;
     }
     ((TObjPlayer *)o)->update_collisions();
     if (((TObjMotion *)o)->is_passing_frame((f32)lbl_805DA034) != 0) {

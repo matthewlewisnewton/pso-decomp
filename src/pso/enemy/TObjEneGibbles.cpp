@@ -1070,8 +1070,8 @@ void TObjEneGibbles::update_action_state() {
         play_sound_effect(((TObjEneGibbles*)((void *)((void *)(arg0))))->resolve_sound_id((u32)(0x3AD34)), (void *) (arg0 + 0x38), 0, 0);
         break;
     case 1:
-        this->m_310 = (f32) TObjEneGibbles__data_805DE7E4;
-        (*(f32 *)&this->unk_308) = (f32) TObjEneGibbles__data_805DE7E4;
+        this->movement_velocity.z = (f32) TObjEneGibbles__data_805DE7E4;
+        (this->movement_velocity.x) = (f32) TObjEneGibbles__data_805DE7E4;
         apply_actor_gravity((TObjEnemy *)(arg0), (s32 *)(0), TObjEneGibbles__data_805DE7E4);
         if ((u32) this->action_flags != 8U) {
             this->phase = 3;

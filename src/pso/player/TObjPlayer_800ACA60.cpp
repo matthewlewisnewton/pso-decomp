@@ -97,8 +97,8 @@ void TObjEneMoja::update_death_state() {
     }
     if (this->frame < lbl_805D9BEC * (lbl_805D9BF0 * this->play_speed)) {
         move_with_wall_slide(arg0);
-        (*(f32 *)&this->unk_308) *= lbl_805D9BEC;
-        this->m_310 *= lbl_805D9BEC;
+        (this->movement_velocity.x) *= lbl_805D9BEC;
+        this->movement_velocity.z *= lbl_805D9BEC;
     } else if (!((this->actorFlags) & 0x800000)) {
         apply_actor_gravity(arg0, 0, lbl_805D9BD8);
     }
@@ -133,8 +133,8 @@ void TObjPlayer::update_ground_effect() {
         ((s32 (*)(void *, void *, int, int))play_sound_effect)((void *)((TObjEnemy *)(this))->remap_sound_for_area((s32)(0x3A807)), (void *) (((u8 *)this) + 0x38), 0, 0);
         TObjPlayer::play_effect_if_v2(-0x300);
     }
-    this->m_310 = (f32) lbl_805D9BD8;
-    *(f32 *)&this->unk_308 = (f32) lbl_805D9BD8;
+    this->movement_velocity.z = (f32) lbl_805D9BD8;
+    this->movement_velocity.x = (f32) lbl_805D9BD8;
     apply_actor_gravity(this, 0, lbl_805D9BD8);
     this->update_collisions();
     if ((u32) this->action_flags != 8U) {

@@ -1487,7 +1487,7 @@ s32 TBoss6PlotFalz__ct(s32 self, s32 arg1, s32 arg2) {
     }
     VecCopy((Vec *)(arg0 + 0x44), (const Vec *)(VecCopy((Vec *)(arg0 + 0x50), (const Vec *)(VecCopy((Vec *)(arg0 + 0x74), (const Vec *)(arg0 + 0x38))))));
     VecCopy((Vec *)(arg0 + 0x2FC), (const Vec *)(arg0 + 0x38));
-    ((TBoss6PlotFalz *)arg0)->m_310 = (f32) 0.0f;
+    ((TBoss6PlotFalz *)arg0)->movement_velocity.z = (f32) 0.0f;
     *(f32 *)((s8 *)arg0 + 0x30C) = (f32) 0.0f;
     *(f32 *)((s8 *)arg0 + 0x308) = (f32) 0.0f;
     *(s32 *)((s8 *)arg0 + 0x2A8) = 0;

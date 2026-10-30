@@ -997,14 +997,14 @@ void TObjEneMe1GiGue::update_hit_reaction() {
         if (!(this->actorFlags & 0x01000000)) {
             Vec_802CBA98 v = *(Vec_802CBA98 *)((s8 *)((u8 *)this) + 0x2FC);
             v.x += *(f32 *)((s8 *)((u8 *)this) + 0x308);
-            v.z += this->m_310;
+            v.z += this->movement_velocity.z;
             if (check_path_obstructed(this, &v) == 0) {
                 move_with_wall_slide(((u8 *)this));
             } else {
-                *(f32 *)((s8 *)((u8 *)this) + 0x308) = this->m_310 = 0.0f;
+                *(f32 *)((s8 *)((u8 *)this) + 0x308) = this->movement_velocity.z = 0.0f;
             }
             *(f32 *)((s8 *)((u8 *)this) + 0x308) *= 0.5f;
-            this->m_310 *= 0.5f;
+            this->movement_velocity.z *= 0.5f;
         }
         apply_actor_gravity(this, 0, 0.0f);
         ((TObjPlayer *)((u8 *)this))->update_collisions();
