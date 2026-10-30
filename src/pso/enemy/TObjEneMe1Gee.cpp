@@ -1,3 +1,4 @@
+#include "pso/enemy/TUnk_80494938.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -1880,7 +1881,6 @@ void vfunc_28__13TObjEneMe1GeeFv(void);
 int TObjEneMe1Gee__sub_800CC2BC(void);
 void run_task__13TObjEneMe1GeeFv(u8 *arg0);
 void * __dt__13TObjEneMe1GeeFv(void *arg0, s16 arg1);
-void TObjEneMe3SinowZoa__sub_800D758C(void *);
 void *__dt__13TUnk_80494938Fv(void *arg0, s16 arg1);
 void TBoss3Volopt__sub_800D8D88(s32);
 s32 approach_angle_limited(s32, s32, s32);
@@ -3161,7 +3161,7 @@ void TObjEneMe1Gee__sub_800CAFD8(u8 *ene_me1_gee, s32 arg1) {
         ((RecoveredFields_800CAFD8_arg0 *)ene_me1_gee)->field_30 = (s32) (((RecoveredFields_800CAFD8_arg0 *)ene_me1_gee)->field_30 | 0x01000000);
         ((TObjEneMe1Gee *)(ene_me1_gee))->vfunc_95();
         ((RecoveredFields_800CAFD8_arg0 *)ene_me1_gee)->field_47C = 1;
-        TObjEneMe3SinowZoa__sub_800D758C(ene_me1_gee + 0x3CC);
+        ((TUnk_80494938 *)(ene_me1_gee + 0x3CC))->start_fade_in();
         ((void (*)(void *, void *))VecCopy__FP3VecPC3Vec)(&stack.sp8, ene_me1_gee + 0x38);
         temp_f0 = stack.spC + lbl_805DA128;
         stack.spC = temp_f0;
@@ -3210,7 +3210,7 @@ void TObjEneMe1Gee::state_move(s32 arg1) {
         temp_r4 = this->actorFlags & 0xFEFFFFFF;
         this->actorFlags = temp_r4;
         *(s32 *)((s8 *)((u8 *)this) + 0x47C) = 1;
-        ((s32 (*)(void *, s32))TObjEneMe3SinowZoa__sub_800D758C)(((u8 *)this) + 0x3CC, temp_r4);
+        ((TUnk_80494938 *)(((u8 *)this) + 0x3CC))->start_fade_in();
         ((TBoss3Volopt *)(((u8 *)this) + 0x38))->play_area_sound_effect();
         return;
     case 3:

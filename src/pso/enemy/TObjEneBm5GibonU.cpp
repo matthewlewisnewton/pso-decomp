@@ -1641,7 +1641,6 @@ void attach_particle_model(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32
 Hit_800CCC6C *csnVectorUnder(Vec_800CCC6C *, void *, s32);
 void *spawn_particle_effect(void *, s32);
 s32 fn_800D88E4(void *);
-void TObjEneMe3SinowZoa__sub_800D758C(void *);
 void TObjEneBm5GibonU__sub_800D02F8(Gibon_800D02F8 *g, s32 arg1);
 void TObjEneBm5GibonU__sub_800CFE30(u8 *arg0, s32 arg1);
 void TObjEneBm5GibonU__sub_800CFA48(TObjEneBm5GibonU *self, s32 arg1);
@@ -3662,7 +3661,7 @@ void TObjEneBm5GibonU__sub_800D02F8(Gibon_800D02F8 *g, s32 arg1) {
         enemy_clear_target__12TObjEneDD_STFUs(g);
         g->f478 = 0;
         VecCopy((Vec *)home, (const Vec *)g->pos);
-        TObjEneMe3SinowZoa__sub_800D758C(&g->sub);
+        ((TUnk_80494938 *)(&g->sub))->start_fade_in();
         ((TBoss3Volopt *)(g->pos))->play_area_sound_effect();
         break;
     case 3:

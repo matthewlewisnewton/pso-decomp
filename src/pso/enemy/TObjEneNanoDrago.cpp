@@ -78,7 +78,6 @@ extern "C" s32 check_enemy_body_collisions(void *);
 extern "C" s32 play_sound_effect(int, void *, int, int);
 extern "C" void rotate_vector_by_matrix(int, void *, void *);
 
-extern "C" s32 TObjEneMe3SinowZoa__sub_800D758C(void *);
 extern "C" u32 get_player_by_client_id(s32);
 extern "C" s32 play_area_sound_effect__12TBoss3VoloptFv(void *, s32);
 
@@ -1146,7 +1145,7 @@ void TObjEneNanoDrago::update_fade_in_state() {
         actorFlags = flags;
         requested_action = 0;
         play_area_sound_effect__12TBoss3VoloptFv((u8 *)(&m_2fc), flags);
-        TObjEneMe3SinowZoa__sub_800D758C((u8 *)(&appearFade));
+        ((TUnk_80494938 *)((u8 *)(&appearFade)))->start_fade_in();
         state = 1;
     case 1:
         advance_animation();

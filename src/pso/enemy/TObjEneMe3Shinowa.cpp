@@ -1489,7 +1489,6 @@ void get_camera_ctrl__9TObjEneDDFv(s32, s32);
 s32 initialize_enemy_state__9TObjEneDDFl(void *, int);
 void TObjEneDD__sub_800BA438(s32 arg0, u8 *arg1);
 void init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, s32);
-s32 TObjEneMe3SinowZoa__sub_800D758C(void *);
 void *__dt__13TUnk_80494938Fv(void *arg0, s16 arg1);
 s32 TBoss3Volopt__sub_800D8D88(void *, f32);
 void update_mirage__17TObjEneMe3ShinowaFv(void* p);
@@ -2923,7 +2922,7 @@ void TObjEneMe3Shinowa::sub_800E6BB8(s32 arg1) {
         ((TObjEneDD *)arg0)->set_field_378(0);
         this->vfunc_95();
         *(s32 *)((s8 *)arg0 + 0x3C4) = (s32) (*(s32 *)((s8 *)arg0 + 0x3C4) & 0xFFFFFFFC);
-        TObjEneMe3SinowZoa__sub_800D758C(arg0 + 0x3E8);
+        ((TUnk_80494938 *)(arg0 + 0x3E8))->start_fade_in();
         VecCopy((Vec *)(&stack.sp8), (const Vec *)(arg0 + 0x38));
         temp_f1 = *(f32 *)((s8 *)arg0 + 0x3C8);
         stack.spC = temp_f1 - TObjEneMe3ShinowaMirage__data_805DA5EC;

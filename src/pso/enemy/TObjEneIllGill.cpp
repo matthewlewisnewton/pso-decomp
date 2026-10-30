@@ -124,7 +124,6 @@ extern Vec scratch_vec;
 
 int TLobby__sub_8001FE7C(void*, void*);
 void free_collision_body_parts(void *);
-s32 TObjEneMe3SinowZoa__sub_800D758C(void *);
 
 #pragma push
 #pragma opt_common_subs off
@@ -1082,7 +1081,7 @@ void TObjEneIllGill::update_idle() {
     switch (this->phase) {
     case 0:
         obj_setFlags30(arg0, 0x04040000);
-        TObjEneMe3SinowZoa__sub_800D758C(&this->fade);
+        ((TUnk_80494938 *)(&this->fade))->start_fade_in();
         ((TBoss3Volopt *)(&position))->play_area_se_with_particle();
         this->phase = 1;
         break;

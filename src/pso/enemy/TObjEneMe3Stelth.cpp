@@ -1883,7 +1883,6 @@ struct VObj_18_347dfc : VBase_18_347dfc {
 extern const f32 lbl_805DA888;
 extern const f32 lbl_805DA88C;
 extern "C" {
-s32 TObjEneMe3SinowZoa__sub_800D758C(void *);
 s32 TBoss3Volopt__sub_800D8D88(void *, f32);
 void TObjEneMe3Stelth__sub_800F3FE4(u8 *arg0, s32 arg1);
 void *create_timed_particle_emitter(void *owner, s32 id, s32 b, s32 c);
@@ -2448,7 +2447,7 @@ void TObjEneMe3Stelth__sub_800F3FE4(u8 *ene_dd, s32 arg1) {
         set_field_378__9TObjEneDDFl(ene_dd, 0);
         ((TObjEneDD *)(ene_dd))->vfunc_95();
         *(s32 *)((s8 *)ene_dd + 0x3CC) = (s32) (*(s32 *)((s8 *)ene_dd + 0x3CC) | 7);
-        TObjEneMe3SinowZoa__sub_800D758C(ene_dd + 0x404);
+        ((TUnk_80494938 *)(ene_dd + 0x404))->start_fade_in();
         VecCopy((Vec *)(&stack.sp8), (const Vec *)(ene_dd + 0x38));
         temp_f1 = *(f32 *)((s8 *)ene_dd + 0x3D0);
         stack.spC = temp_f1 - TObjEneMe3Stelth__data_805DA824;
@@ -2534,7 +2533,7 @@ void TObjEneMe3Stelth::sub_800F42B8(s32 arg1) {
         this->vfunc_95();
         *(s32 *)((s8 *)arg0 + 0x3CC) &= ~2;
         *(s32 *)((s8 *)arg0 + 0x3CC) |= 5;
-        TObjEneMe3SinowZoa__sub_800D758C(arg0 + 0x404);
+        ((TUnk_80494938 *)(arg0 + 0x404))->start_fade_in();
         VecCopy((Vec *)&v, (const Vec *)(arg0 + 0x38));
         t = *(f32 *)((s8 *)arg0 + 0x3D0);
         v.y = t - TObjEneMe3Stelth__data_805DA844;
