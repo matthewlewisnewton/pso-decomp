@@ -185,7 +185,6 @@ extern Spawn_802DB7C0 gibbles_resource_binding_desc;
 extern s32 gibbles_boss_stat_handle;
 extern s32 gibbles_combat_stats_handle;
 extern u32 TObjEneGibbles__resource_bundle;
-void copy_position__20TBoss3VoloptHiraisinFv(s32 arg0);
 void init_collision_body_parts(void *, void *, int);
 void *__ct__14TObjCollidableFP7TObject(void *, int);
 void * __nw__7TObjectFUl(int);
@@ -2447,7 +2446,7 @@ void TObjEneGibbles::run_task() {
     }
     this->update_position();
     this->update_shadow_height();
-    copy_position__20TBoss3VoloptHiraisinFv((s32)this);
+    ((TObjChara *)this)->copy_body_to_center();
     this->sync_state();
     this->m_2b4 = (f32) (this->m_2b4 + TObjEneGibbles__data_805DE7EC);
 }
@@ -2598,7 +2597,7 @@ u8 *TObjEneGibbles__ct(u8 *arg0, void *parent, s32 arg2) {
     ((TObjEneGibbles *)arg0)->referenceHp = ((TObjEneGibbles *)arg0)->hp;
     ((TObjEneGibbles *)arg0)->update_position();
     ((TObjEneGibbles *)arg0)->update_shadow_height();
-    copy_position__20TBoss3VoloptHiraisinFv((s32)arg0);
+    ((TObjChara *)arg0)->copy_body_to_center();
     initialize_enemy_photon_effect(arg0);
     ((TObjEneGibbles *)arg0)->m_374 = 1;
     *(s32 *)((s8 *)arg0 + 0x3B0) = 0;

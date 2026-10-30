@@ -711,7 +711,6 @@ s32 dispatch_shared_handler_b__6TLobbyFl(int);
 s32 register_boss__6TLobbyFl(int);
 s32 get_bml_motion(u32, int);
 s32 get_camera_mode__11TCameraCtrlFv();
-s32 copy_position__20TBoss3VoloptHiraisinFv(void *);
 VObj_800D3BA0_800D3B38 * init__11TBreakUpMdlFPviif(void *, s32, s32, f32);
 void __dt__15TObjEnemyCustomFv(void *, int);
 s32 __ct__15TObjEnemyCustomFP7TObject(void *);
@@ -1595,7 +1594,7 @@ void TObjEneGyaranzo::run_task() {
     }
     ((TObjPlayer *)((u8 *)this))->dispatch_state_update();
     this->update_prev_position();
-    copy_position__20TBoss3VoloptHiraisinFv(this);
+    ((TObjChara *)this)->copy_body_to_center();
     submit_cursor_candidate(this, -1);
     minimap_render_dot(((u8 *)this) + 0x38, -0x5DB4, 1, 0);
 }

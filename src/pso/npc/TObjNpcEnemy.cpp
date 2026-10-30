@@ -293,7 +293,7 @@ u8 *TObjNpcEnemy__ct(u8 *arg0, s32 arg1, s32 arg2) {
     init_collision_body_parts(arg0, &TObjNpcEnemy__collision_body_parts.value, 1);
     ((TObjPlayer *)arg0)->register_object_by_id();
     ((TObjEnemy *)arg0)->update_prev_position();
-    ((TBoss3VoloptHiraisin *)arg0)->copy_position();
+    ((TObjChara *)arg0)->copy_body_to_center();
     ((TObjNpcEnemy *)arg0)->set_npc_data((void *)((int) (((s32)TObjNpcEnemy::get_entry_by_index((s16)((int) ((s16) *(s32 *)((s8 *)arg0 + 0x5C))))))));
     return arg0;
 }

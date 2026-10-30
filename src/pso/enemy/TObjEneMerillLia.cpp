@@ -473,7 +473,6 @@ void vfunc_94__16TObjEneMerillLiaFv(u8 *arg0);
 extern const f32 lbl_805DA2EC;
 extern const f32 lbl_805DA334;
 extern const f32 lbl_805DA338;
-s32 copy_position__20TBoss3VoloptHiraisinFv(void *);
 s32 get_current_floor();
 f32 xz_distance_squared(void *, void *);
 void *get_player_by_client_id(s32 i);
@@ -1656,7 +1655,7 @@ void TObjEneMerillLia::run_task() {
     }
   }
   this->update_prev_position();
-  copy_position__20TBoss3VoloptHiraisinFv((void *) ((u8 *)this));
+  ((TObjChara *)this)->copy_body_to_center();
   submit_cursor_candidate((void *) this, -1);
   this->m_2b4 = (f32) ((this->m_2b4) + TObjEneMerillLia__data_805DA2F4);
 }
@@ -1789,7 +1788,7 @@ void *TObjEneMerillLia__ct(void *arg0v, void *arg1, void *arg2) {
     *(u8 **)((s8 *)arg0 + 0x350) = (u8 *) lbl_80494650 + *(s32 *)((s8 *)arg0 + 0x334) * 0x1C;
     *(s16 *)((s8 *)arg0 + 0x33E) = *(s16 *)((s8 *)arg0 + 0x32C);
     ((TObjEnemy *)arg0)->update_prev_position();
-    copy_position__20TBoss3VoloptHiraisinFv(arg0);
+    ((TObjChara *)arg0)->copy_body_to_center();
     ((TObjPlayer *)arg0)->register_object_by_id();
     *(s32 *)((s8 *)arg0 + 0x2AC) = lbl_805DA340 * (lbl_805DA344 * random_ratio__9TObjCharaFv(arg0));
     *(s16 *)((s8 *)arg0 + 0x33A) = 0xF;

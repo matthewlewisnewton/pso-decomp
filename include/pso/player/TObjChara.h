@@ -254,6 +254,7 @@ public:
     // destination at 0x29C, the body centre other actors measure distance to
     // at 0x2FC, and the velocity at 0x308.
     Vec *destination() { return (Vec *)&m_29c; }
+    void copy_body_to_center();
     Vec *body_center() { return (Vec *)&m_2fc; }
     Vec *velocity() { return (Vec *)unk_308; }
 };

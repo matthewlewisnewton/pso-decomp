@@ -1,3 +1,4 @@
+#include "pso/player/TObjChara.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "types.h"
@@ -1635,7 +1636,7 @@ void TObjEneMoja::run_task() {
         }
     }
     ((TObjEnemy *)arg0)->update_prev_position();
-    ((TBoss3VoloptHiraisin *)arg0)->copy_position();
+    ((TObjChara *)arg0)->copy_body_to_center();
     submit_cursor_candidate(arg0, -1);
     temp_r4 = this->target;
     if ((temp_r4 != NULL) && (*(s32 *)((s8 *)temp_r4 + 0x30) & 0x02000800)) {

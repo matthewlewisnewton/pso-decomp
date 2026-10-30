@@ -434,7 +434,7 @@ void TBoss3VoloptP02::run_task() {
             }
             run_state();
             update_prev_position();
-            ((TBoss3VoloptHiraisin *)this)->copy_position();
+            ((TObjChara *)this)->copy_body_to_center();
             submit_cursor_candidate(this, -1);
             minimap_render_dot(&position, -0x5DB4, 1, 0);
             fade.update();

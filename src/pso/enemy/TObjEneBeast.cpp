@@ -781,7 +781,7 @@ void *TObjEneBeast__ct(void *arg0v, void *arg1, void *arg2) {
     F(arg0, void *, 0x350) = &((Rec1C_800927DC *)beast_movement_params)[F(arg0, s32, 0x334)];
     F(arg0, s16, 0x33E) = F(arg0, s16, 0x32C);
     ((TObjEnemy *)arg0)->update_prev_position();
-    ((TBoss3VoloptHiraisin *)arg0)->copy_position();
+    ((TObjChara *)arg0)->copy_body_to_center();
     ((TObjPlayer *)arg0)->register_object_by_id();
     F(arg0, s32, 0x2AC) = (s32)(182.04445f * (3.6e+02f * random_ratio__9TObjCharaFv((s32)arg0)));
     F(arg0, s16, 0x33A) = 0xF;
