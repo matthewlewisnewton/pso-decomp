@@ -2,7 +2,7 @@
 #define PSO_ENEMY_TOBJENESHARK_H
 
 #include "pso/enemy/TUnk_80493450.h"
-#include "pso/enemy/TUnk_80494938.h"
+#include "pso/misc/MaterialOpacityFade.h"
 #include "pso/misc/RenderFadeState.h"
 #include "pso/unk/TUnk_80494968.h"
 #include "pso/system/BmlResource.h"
@@ -35,7 +35,7 @@ public:
     virtual void vfunc_93();
     virtual void render();
 
-    TUnk_80494938 appearance_fade;
+    MaterialOpacityFade appearance_fade;
     TUnk_80494968 *attack_trails[2];
     RenderFadeState camera_fades[4];
     static void *create(void *setData);

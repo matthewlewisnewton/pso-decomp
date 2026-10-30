@@ -19,7 +19,7 @@
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/object/TObjFish.h"
 
-#include "pso/enemy/TUnk_80494938.h"
+#include "pso/misc/MaterialOpacityFade.h"
 
 #include "pso/system/NinjaTypes.h"
 #include "pso/system/BmlResource.h"

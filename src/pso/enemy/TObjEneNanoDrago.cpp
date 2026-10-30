@@ -18,7 +18,7 @@
 #include "pso/enemy/TObjEneMe1GiGue.h"
 #include "pso/misc/TCameraCtrl.h"
 
-#include "pso/enemy/TUnk_80494938.h"
+#include "pso/misc/MaterialOpacityFade.h"
 
 extern "C" s32 TObjPlayer__sub_800DC420(void *self, s32 i);
 extern "C" f32 TObjPlayer__sub_800DC434(s32 arg0, s32 arg1);
@@ -1142,7 +1142,7 @@ void TObjEneNanoDrago::update_fade_in_state() {
         actorFlags = flags;
         requested_action = 0;
         play_area_sound_and_particles_b((const Vec *)((u8 *)(&m_2fc)));
-        ((TUnk_80494938 *)((u8 *)(&appearFade)))->start_fade_in();
+        appearFade.start_fade_in();
         state = 1;
     case 1:
         advance_animation();
