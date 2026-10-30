@@ -1,4 +1,5 @@
 #include "pso/enemy/DelDepthData.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/animation/ActorAnimationState.h"
 #include "types.h"
@@ -128,10 +129,6 @@ extern const f32 lbl_805DF2DC;
 extern "C" {
 s32 is_split_screen(void);
 s32 dispatch_shared_handler_a__6TLobbyFl(s32);
-BmlResource *load_resource_from_descriptor(BmlResource *, s32, const BmlResourceDescriptor *, s32, s32, s32);
-
-void TLobby__sub_8001FE7C(void*, int);
-
 extern "C" const char lbl_80475BD8[];
 extern "C" const char lbl_80475BE8[];
 extern "C" const char lbl_80475BF8[];
@@ -271,16 +268,10 @@ TObjEneDelDepth *TObjEneDelDepth::create(void *setData) {
 void TObjEneDelDepth::load_assets() {
 
     if (is_split_screen() != 0) {
-        BmlResource *p = (BmlResource *)::operator new(0x440);
-        if (p != NULL) {
-            p = load_resource_from_descriptor(p, 1, &lbl_804E8158, 0, 0, 0);
-        }
+        BmlResource *p = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&lbl_804E8158), 0, 0, (void *)(0));
         TObjEneDelDepth__shared_resource = p;
     } else {
-        BmlResource *p = (BmlResource *)::operator new(0x440);
-        if (p != NULL) {
-            p = load_resource_from_descriptor(p, 1, &lbl_804E8104, 0, 0, 0);
-        }
+        BmlResource *p = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&lbl_804E8104), 0, 0, (void *)(0));
         TObjEneDelDepth__shared_resource = p;
     }
 
@@ -299,7 +290,7 @@ void TObjEneDelDepth::load_assets() {
 
 void TObjEneDelDepth::free_shared_data() {
     if ((u32) TObjEneDelDepth__shared_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)TObjEneDelDepth__shared_resource, 1);
+        delete (BmlResource *)((void*)TObjEneDelDepth__shared_resource);
         TObjEneDelDepth__shared_resource = NULL;
     }
 }

@@ -1,4 +1,6 @@
 #include "pso/enemy/TObjEnemy.h"
+#include "pso/system/EnemyBmlResource.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/misc/RenderFadeState.h"
 #include "types.h"
@@ -181,7 +183,6 @@ void vfunc_63__19TObjEneBm9MericarolFv(void *arg0);
 void vfunc_62__19TObjEneBm9MericarolFv(void *arg0);
 void vfunc_88__19TObjEneBm9MericarolFv(void *arg0);
 s32 clear_attack_receipts__9TObjEneDDFv(void);
-void TLobby__sub_8001FE7C(void*, int);
 struct Obj_802D0D3C;
 Obj_802D0D3C *TObjEneBm9Mericarol__ct(Obj_802D0D3C *, void *, s32);
 s32 *__dt__11TBoss4Type3FPvs(s32 *arg0, s16 arg1);
@@ -748,7 +749,7 @@ void TObjEneBm9Mericarol::free_shared_instances() {
     }
     fn_802D1C84();
     if ((u32) lbl_805D6868 != 0U) {
-        TLobby__sub_8001FE7C((void*)lbl_805D6868, 1);
+        delete (BmlResource *)((void*)lbl_805D6868);
         lbl_805D6868 = 0U;
     }
 }
@@ -786,9 +787,9 @@ void TBoss4Type3__sub_802D1130(void) {
     MotionPair_802D1130 *pair;
 
     if (is_split_screen() != 0) {
-        lbl_805D6868 = load_enemy_bml_resource((u8 *)lbl_804E1624);
+        lbl_805D6868 = (s32)load_enemy_bml_resource((BmlResourceDescriptor *)((u8 *)lbl_804E1624));
     } else {
-        lbl_805D6868 = load_enemy_bml_resource((u8 *)lbl_804E15E8);
+        lbl_805D6868 = (s32)load_enemy_bml_resource((BmlResourceDescriptor *)((u8 *)lbl_804E15E8));
     }
     lbl_805D686C = 0;
     lbl_805D6870 = 0;

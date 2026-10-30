@@ -21,6 +21,7 @@
 
 #include "pso/system/NinjaTypes.h"
 #include "pso/system/BmlResource.h"
+#include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceDescriptor.h"
 #include "pso/npc/NpcAnimationBinding.h"
 #include "pso/npc/NpcModelRegistry.h"
@@ -346,8 +347,6 @@ extern "C" {
 extern BmlResource *shark_bml_resource;
 extern s32 game_difficulty_selection;
 
-u8 *load_enemy_bml_resource_named(void *, void *);
-u8 *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 void *init_trail_buffer__11TBoss4Type3FPvifff(void *, s32, f32, f32, f32);
 void *mem_alloc(u32 size);
 extern const char shark_alt_archive_filename[];
@@ -357,7 +356,6 @@ extern u8 **shark_resistance_stats;
 extern f32 **shark_movement_parameter_sets;
 extern __declspec(section ".sdata2") const f32 shark_attack_trail_start_frame;
 extern __declspec(section ".sdata2") const f32 shark_npc_collision_radius;
-void TLobby__sub_8001FE7C(void*, int);
 
 void mem_free(void*);
 
@@ -451,7 +449,7 @@ void TObjEneShark::free_resources() {
         shark_attack3_trail_buffer = NULL;
     }
     if (shark_bml_resource != NULL) {
-        TLobby__sub_8001FE7C((void*)shark_bml_resource, 1);
+        delete shark_bml_resource;
         shark_bml_resource = NULL;
     }
 }
@@ -460,13 +458,9 @@ void TObjEneShark::load_resources() {
     void *p;
     s32 i;
     if (TObjEneDD::check_v2_mode() != 0) {
-        shark_bml_resource = (BmlResource *)load_enemy_bml_resource_named(&bm_ene_bm1_shark_resource_descriptor, (void *)shark_alt_archive_filename);
+        shark_bml_resource = load_enemy_bml_resource_named(&bm_ene_bm1_shark_resource_descriptor, shark_alt_archive_filename);
     } else {
-        p = ::operator new(0x440);
-        if (p != NULL) {
-            p = load_resource_from_descriptor(p, 1, &bm_ene_bm1_shark_resource_descriptor, 0, 0, 0);
-        }
-        shark_bml_resource = (BmlResource *)p;
+        shark_bml_resource = new BmlResource(1, &bm_ene_bm1_shark_resource_descriptor, 0, 0, NULL);
     }
     p = ::operator new(0x18);
     if (p != NULL) {

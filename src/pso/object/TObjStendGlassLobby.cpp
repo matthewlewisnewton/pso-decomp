@@ -15,8 +15,6 @@
 #pragma readonly_strings on
 
 extern "C" {
-void TLobby__sub_8001FE7C(BmlResource *resource, s32 del);
-BmlResource *load_resource_from_descriptor(void *resource, s32 kind, BmlResourceDescriptor *descriptor, s32, s32, s32);
 }
 
 const char *bm_obj_lobby_stendglass_motion_names[1] = { NULL };
@@ -96,16 +94,13 @@ void *TObjStendGlassLobby::create(void *set_data) {
 
 void TObjStendGlassLobby::free_resources() {
     if (static_model_resource != NULL) {
-        TLobby__sub_8001FE7C(static_model_resource, 1);
+        delete (BmlResource *)(static_model_resource);
         static_model_resource = NULL;
     }
 }
 
 void TObjStendGlassLobby::load_resources() {
-    void *resource = ::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 5, &bm_obj_lobby_stendglass_resource_descriptor, 0, 0, 0);
-    }
+    void *resource = new BmlResource(5, (BmlResourceDescriptor *)(&bm_obj_lobby_stendglass_resource_descriptor), 0, 0, (void *)(0));
     static_model_resource = (BmlResource *)resource;
     lobby_texlist = TLobby::get_lobby_texlist();
 }

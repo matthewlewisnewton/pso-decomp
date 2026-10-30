@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/math/MatrixTransforms.h"
 #include "pso/system/GinjaMaterial.h"
 #include "pso/unk/text_803D96A8.h"
@@ -23,7 +24,6 @@ struct RecoveredGlobal_8016EC04___vt__16TOLightMachine01 { s32 value; u8 remaini
 extern "C" {
 s32 TObjFish__sub_8001EDB0(void *, s32);
 s32 get_bml_model(void *, s32);
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern RecoveredGlobal_8016EB3C_lbl_804B2EC4 light_machine01_resource_desc;
 extern u32 TOLightMachine01__shared_bml_archive;
 extern s32 light_machine_ginja_model_handle;
@@ -42,7 +42,6 @@ extern const f32 lbl_805DB83C;
 extern const f32 lbl_805DB840;
 extern const f32 lbl_805DB844;
 extern const f32 lbl_805DB848;
-void TLobby__sub_8001FE7C(void*, int);
 s32 post_translate_matrix(void *);
 s32 rotate_matrix_y(s32, s32);
 s32 push_matrix();
@@ -88,7 +87,7 @@ void *TOLightMachine01::create(void *arg0) {
 
 void TOLightMachine01::destroy_instance() {
     if ((u32) TOLightMachine01__shared_bml_archive != 0U) {
-        TLobby__sub_8001FE7C((void*)TOLightMachine01__shared_bml_archive, 1);
+        delete (BmlResource *)((void*)TOLightMachine01__shared_bml_archive);
         TOLightMachine01__shared_bml_archive = 0U;
     }
 }
@@ -96,11 +95,8 @@ void TOLightMachine01::destroy_instance() {
 void TOLightMachine01::load_assets() {
     s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
+    temp_r3 = (int)new BmlResource(1, (BmlResourceDescriptor *)(&light_machine01_resource_desc.value), 0, 0, (void *)(0));
     var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &light_machine01_resource_desc.value, 0, 0, 0));
-    }
     (*(u8 * *)&TOLightMachine01__shared_bml_archive) = (unsigned char *) ((void *) var_r0);
     light_machine_ginja_model_handle = get_bml_model((void *) var_r0, 0);
     light_machine_ginja_param = TObjFish__sub_8001EDB0((*(u8 * *)&TOLightMachine01__shared_bml_archive), 0);

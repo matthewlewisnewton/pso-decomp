@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/misc/MaterialColorFade.h"
 #include "pso/object/TObjEnvSoundGlobal.h"
 #include "pso/object/TObject_80019A50.h"
@@ -77,7 +78,6 @@ void debug_printf_at(int, void *, ...);
 extern u8 lbl_804456C8[];
 extern const f32 lbl_805DBE08;
 s32 get_bml_model(s32, int);
-s32 load_resource_from_descriptor(s32, int, void *, int, int, int);
 u8 *load_gvm_texture_file(s32 arg0);
 extern u8 lbl_804456D8[];
 extern s32 TObjDoorKey__ginja_model_table[];
@@ -104,7 +104,6 @@ extern u8 TObjDoorKey__collision_body_parts[];
 extern s32 __vt__11TObjDoorKey[];
 extern s32 TObjDoorKey__class_name;
 extern const f32 lbl_805DBE0C;
-void TLobby__sub_8001FE7C(void*, int);
 int update_armed_switch__5TOKeyFv(void*);
 s32 free_collision_body_parts(void *);
 int submit_cursor_candidate(void*, int);
@@ -304,7 +303,7 @@ void *TObjDoorKey__create(void *arg0) {
 
 void TObjDoorKey::free_key() {
     if ((u32) door_key_resource_handle != 0U) {
-        TLobby__sub_8001FE7C((void*)door_key_resource_handle, 1);
+        delete (BmlResource *)((void*)door_key_resource_handle);
         door_key_resource_handle = 0U;
     }
     TObjPlayer::free_if_valid(TObjDoorKey__texture_handle);
@@ -313,10 +312,7 @@ void TObjDoorKey::free_key() {
 }
 
 void TObjDoorKey::load_resources() {
-    s32 r = (int)::operator new(0x440);
-    if (r != 0) {
-        r = load_resource_from_descriptor(r, 5, &TObjDoorKey__resource_descriptor, 0, 0, 0);
-    }
+    s32 r = (int)new BmlResource(5, (BmlResourceDescriptor *)(&TObjDoorKey__resource_descriptor), 0, 0, (void *)(0));
     (*(s32 *)&door_key_resource_handle) = r;
     TObjDoorKey__texture_handle = (s32)load_gvm_texture_file((s32)lbl_804456D8);
     TObjDoorKey__ginja_model_table[0] = get_bml_model((*(s32 *)&door_key_resource_handle), 1);

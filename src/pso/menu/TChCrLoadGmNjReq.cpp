@@ -1,7 +1,6 @@
 #include "pso/TChCrLoadGmNjReq.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/menu/TChCrLoadGmNjReq.h"
-
-extern "C" void TLobby__sub_8001FE7C(void*, int);
 
 #include "types.h"
 
@@ -40,7 +39,7 @@ void TChCrLoadGmNjReq::run_task() {
 TChCrLoadGmNjReq::~TChCrLoadGmNjReq() {
     sub_8028C8A8();
     if (m_68 != nullptr) {
-        TLobby__sub_8001FE7C(m_68, 1);
+        delete (BmlResource *)(m_68);
     }
 }
 void *TChCrLoadGmNjReq__ct(void *ch_cr_load_gm_nj_req, void *arg1, void *arg2) {

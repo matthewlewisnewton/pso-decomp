@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/npc/TObjNpcExpertBase.h"
 #include "pso/unk/text_8014B8A4.h"
 #include "pso/npc/TUnk_804A9F50.h"
@@ -17,18 +18,16 @@ extern "C" {
 extern s32 __vt__18TObjNpcConnoisseur[];
 extern s32 TObjNpcConnoisseur__name;
 extern u32 TObjNpcConnoisseur__instance;
-void *load_resource_from_descriptor(void *, s32, s32, s32, s32, s32);
 extern s32 tekker_descriptor_selector_table[];
 extern u8 TLobby__data_805011D8[];
 extern s32 lbl_805D5748;
-void TLobby__sub_8001FE7C(void*, int);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
 
 void TObjNpcConnoisseur::destroy_instance() {
     if ((u32) TObjNpcConnoisseur__instance != 0U) {
-        TLobby__sub_8001FE7C((void*)TObjNpcConnoisseur__instance, 1);
+        delete (BmlResource *)((void*)TObjNpcConnoisseur__instance);
         TObjNpcConnoisseur__instance = 0U;
     }
 }
@@ -36,10 +35,7 @@ void TObjNpcConnoisseur::destroy_instance() {
 void TObjNpcConnoisseur::load_section_motion() {
     void *o;
     lbl_805D5748 = ((TFontSmallTask *)TLobby__data_805011D8)->get_task_id();
-    o = ::operator new(0x440);
-    if (o != 0) {
-        o = load_resource_from_descriptor(o, 1, tekker_descriptor_selector_table[lbl_805D5748], 0, 0, 0);
-    }
+    o = new BmlResource(1, (BmlResourceDescriptor *)(tekker_descriptor_selector_table[lbl_805D5748]), 0, 0, (void *)(0));
     TObjNpcConnoisseur__instance = (u32)o;
 }
 

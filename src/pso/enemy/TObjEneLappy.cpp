@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/system/NinjaUtil.h"
@@ -1679,14 +1680,12 @@ typedef struct Desc_800C17B8 {
     s32 d;
 } Desc_800C17B8;
 
-void TLobby__sub_8001FE7C(void*, int);
 s32 release_texture_list(void*);
 s32 get_main_phase();
 s32 dispatch_shared_handler_a__6TLobbyFl(s32);
 s32 register_object__6TLobbyFl(s32);
 s32 dispatch_shared_handler_b__6TLobbyFl(s32);
 s32 register_boss__6TLobbyFl(s32);
-s32 load_resource_from_descriptor(s32, int, void *, int, int, int);
 u8 *load_gvm_texture_file(s32 arg0);
 extern u8 lbl_8043BA28[];
 extern u8 lbl_8043BA44[];
@@ -1706,7 +1705,7 @@ void TLobby::cleanup_handles() {
         (*(u32 *)&rappy_alternate_texture_list) = 0U;
     }
     if ((u32) (*(u32 *)&rappy_bml_resource) != 0U) {
-        TLobby__sub_8001FE7C((void*)(*(u32 *)&rappy_bml_resource), 1);
+        delete (BmlResource *)((void*)(*(u32 *)&rappy_bml_resource));
         (*(u32 *)&rappy_bml_resource) = 0U;
     }
 }
@@ -1724,64 +1723,40 @@ void TObjEneLappy::load_resources() {
         case 1:
             lappy_variant_id = 1;
             if (rare) {
-                p = (int)::operator new(0x440);
-                if (p != 0) {
-                    p = load_resource_from_descriptor(p, 1, lbl_80492E08, 0, 0, 0);
-                }
+                p = (int)new BmlResource(1, (BmlResourceDescriptor *)(lbl_80492E08), 0, 0, (void *)(0));
                 (*(u32 *)&rappy_bml_resource) = p;
             } else {
-                p = (int)::operator new(0x440);
-                if (p != 0) {
-                    p = load_resource_from_descriptor(p, 1, lbl_80492DC0, 0, 0, 0);
-                }
+                p = (int)new BmlResource(1, (BmlResourceDescriptor *)(lbl_80492DC0), 0, 0, (void *)(0));
                 (*(u32 *)&rappy_bml_resource) = p;
             }
             break;
         case 4:
             lappy_variant_id = 2;
             if (rare) {
-                p = (int)::operator new(0x440);
-                if (p != 0) {
-                    p = load_resource_from_descriptor(p, 1, lbl_80492CE8, 0, 0, 0);
-                }
+                p = (int)new BmlResource(1, (BmlResourceDescriptor *)(lbl_80492CE8), 0, 0, (void *)(0));
                 (*(u32 *)&rappy_bml_resource) = p;
             } else {
-                p = (int)::operator new(0x440);
-                if (p != 0) {
-                    p = load_resource_from_descriptor(p, 1, lbl_80492CA0, 0, 0, 0);
-                }
+                p = (int)new BmlResource(1, (BmlResourceDescriptor *)(lbl_80492CA0), 0, 0, (void *)(0));
                 (*(u32 *)&rappy_bml_resource) = p;
             }
             break;
         case 5:
             lappy_variant_id = 3;
             if (rare) {
-                p = (int)::operator new(0x440);
-                if (p != 0) {
-                    p = load_resource_from_descriptor(p, 1, lbl_80492D78, 0, 0, 0);
-                }
+                p = (int)new BmlResource(1, (BmlResourceDescriptor *)(lbl_80492D78), 0, 0, (void *)(0));
                 (*(u32 *)&rappy_bml_resource) = p;
             } else {
-                p = (int)::operator new(0x440);
-                if (p != 0) {
-                    p = load_resource_from_descriptor(p, 1, lbl_80492D30, 0, 0, 0);
-                }
+                p = (int)new BmlResource(1, (BmlResourceDescriptor *)(lbl_80492D30), 0, 0, (void *)(0));
                 (*(u32 *)&rappy_bml_resource) = p;
             }
             break;
         default:
             lappy_variant_id = 0;
             if (rare) {
-                p = (int)::operator new(0x440);
-                if (p != 0) {
-                    p = load_resource_from_descriptor(p, 1, lbl_80492C58, 0, 0, 0);
-                }
+                p = (int)new BmlResource(1, (BmlResourceDescriptor *)(lbl_80492C58), 0, 0, (void *)(0));
                 (*(u32 *)&rappy_bml_resource) = p;
             } else {
-                p = (int)::operator new(0x440);
-                if (p != 0) {
-                    p = load_resource_from_descriptor(p, 1, lbl_80492C10, 0, 0, 0);
-                }
+                p = (int)new BmlResource(1, (BmlResourceDescriptor *)(lbl_80492C10), 0, 0, (void *)(0));
                 (*(u32 *)&rappy_bml_resource) = p;
             }
             break;
@@ -1789,16 +1764,10 @@ void TObjEneLappy::load_resources() {
     } else {
         lappy_variant_id = 0;
         if (rare) {
-            p = (int)::operator new(0x440);
-            if (p != 0) {
-                p = load_resource_from_descriptor(p, 1, lbl_80492C58, 0, 0, 0);
-            }
+            p = (int)new BmlResource(1, (BmlResourceDescriptor *)(lbl_80492C58), 0, 0, (void *)(0));
             (*(u32 *)&rappy_bml_resource) = p;
         } else {
-            p = (int)::operator new(0x440);
-            if (p != 0) {
-                p = load_resource_from_descriptor(p, 1, lbl_80492C10, 0, 0, 0);
-            }
+            p = (int)new BmlResource(1, (BmlResourceDescriptor *)(lbl_80492C10), 0, 0, (void *)(0));
             (*(u32 *)&rappy_bml_resource) = p;
         }
     }

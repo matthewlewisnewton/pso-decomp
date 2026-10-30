@@ -1,4 +1,7 @@
 #include "types.h"
+#include "pso/system/BmlResourceDescriptor.h"
+#include "pso/system/EnemyBmlResource.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/enemy/TObjEneDD_800BB804.h"
 #include "pso/unk/text_800BC4C8.h"
 #include "pso/system/vector.h"
@@ -220,7 +223,6 @@ struct Obj_800BB88C {
 };
 
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern const f32 TObjEneDD__data_805D9E8C;
 s32 subtractive_rng_seed(void *, int);
 s32 vfunc_79__9TObjEnemyFPl();
@@ -270,30 +272,26 @@ void TObjEneDD::vfunc_79(s32 *state) {
     this->mode = temp_r31;
 }
 
-void load_enemy_bml_resource_named(s32 arg0, s32 arg1) {
-    s32 sp8;
-    ((TObjEneDD *)(&sp8))->copy_resource_desc((u8 *)arg0);
-    sp8 = arg1;
-    load_enemy_bml_resource((u8 *)&sp8);
+BmlResource *load_enemy_bml_resource_named(BmlResourceDescriptor *descriptor, const char *archive_filename) {
+    BmlResourceDescriptor copy;
+    copy.copy_from(*descriptor);
+    copy.archive_filename = archive_filename;
+    return load_enemy_bml_resource(&copy);
 }
 
-void TObjEneDD::copy_resource_desc(u8 *arg1) {
-    *(s32 *)&this->m_name = (s32) *(s32 *)((s8 *)arg1 + 0);
-    *(s32 *)&this->m_flags = (s32) *(s32 *)((s8 *)arg1 + 4);
-    *(s32 *)&this->m_prev = (s32) *(s32 *)((s8 *)arg1 + 8);
-    *(s16 *)&this->m_next = (s16) *(s16 *)((s8 *)arg1 + 0xC);
-    *(s16 *)((s8 *)((u8 *)this) + 0xE) = (s16) *(s16 *)((s8 *)arg1 + 0xE);
+#pragma push
+#pragma scheduling off
+void BmlResourceDescriptor::copy_from(const BmlResourceDescriptor &other) {
+    archive_filename = other.archive_filename;
+    model_filenames = other.model_filenames;
+    motion_filenames = other.motion_filenames;
+    model_count = other.model_count;
+    motion_count = other.motion_count;
 }
+#pragma pop
 
-s32 load_enemy_bml_resource(u8 *arg0) {
-    s32 temp_r3;
-    s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
-    var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, arg0, 0, 0, 0));
-    }
-    return var_r0;
+BmlResource *load_enemy_bml_resource(BmlResourceDescriptor *descriptor) {
+    return new BmlResource(1, descriptor, 0, 0, NULL);
 }
 
 void TObjEneDD::set_field_378(s32 v) { *(s32*)((char*)this + 0x378) = v; }

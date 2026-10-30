@@ -1,5 +1,6 @@
 #include "pso/system/MatrixVectorArray.h"
 #include "pso/player/PlayerAttackParams.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
@@ -62,7 +63,6 @@ s32 update_action_hold_status__12TObjEneSaverFv(u8 *arg0);
 s32 register_object__6TLobbyFl(int);
 s32 dispatch_shared_handler_b__6TLobbyFl(int);
 s32 register_boss__6TLobbyFl(int);
-void *load_resource_from_descriptor(void *, int, void *, int, int, int);
 void TObjEneMe3ShinowaMirage__sub_800D98D8(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, u8 *arg4, u8 *arg5);
 void draw_trail_with_colors(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 s32 init_trail_buffer__11TBoss4Type3FPvifff(void *, int, f32, f32, f32);
@@ -1506,7 +1506,6 @@ extern s32 model_render_flags;
 extern s32 lbl_8043A8B0[];
 extern s32 lbl_8043A8BC[];
 void * create_ene_saver(void *arg0);
-void TLobby__sub_8001FE7C(void*, int);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 s32 *__dt__11TBoss4Type3FPvs(s32 *arg0, s16 arg1);
 void mem_free(void*);
@@ -2046,7 +2045,7 @@ void TObjPlayer::free_resources() {
         (*(u32 *)&lbl_805D506C) = 0U;
     }
     if ((u32) saver_bml_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)saver_bml_resource, 1);
+        delete (BmlResource *)((void*)saver_bml_resource);
         saver_bml_resource = 0U;
     }
 }
@@ -2070,10 +2069,7 @@ void initialize_saver_resources(void) {
     Vec_800A715C pos;
     Vec_800A715C dir;
     void *r;
-    r = ::operator new(0x440);
-    if (r != NULL) {
-        r = load_resource_from_descriptor(r, 1, bm_ene_df1_saver_resource_descriptor, 0, 0, 0);
-    }
+    r = new BmlResource(1, (BmlResourceDescriptor *)(bm_ene_df1_saver_resource_descriptor), 0, 0, (void *)(0));
     saver_bml_resource = (u32)r;
     lbl_805D5054 = *(s32 *)((s8 *)(*(void **)((s8 *)(*(void **)((s8 *)(*(void **)((s8 *)(*(void **)((s8 *)((u8 *)((Res_800A715C *)r)->sub) + 8)) + 0x2C)) + 0x30)) + 4)) + 4);
     lbl_805D5058 = 0;

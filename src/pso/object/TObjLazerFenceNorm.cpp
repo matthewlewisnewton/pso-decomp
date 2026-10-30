@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/object/TObjDoorJung.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/object/TObjFish.h"
@@ -317,7 +318,6 @@ extern "C" {
 extern s32 __vt__18TObjLazerFenceNorm[];
 extern s32 obj_lazer_fence_norm_class_name;
 
-void TLobby__sub_8001FE7C(void*, int);
 s32 release_texture_list(void*);
 s32 free_collision_body_parts(void *);
 s32 update_closed__18TObjLazerFenceNormFv();
@@ -391,7 +391,7 @@ void *TObjLazerFenceNorm__create(void *arg0) {
 
 void TObjLazerFenceNorm::free_resources() {
     if ((u32) lazer_fence_norm_bml_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)lazer_fence_norm_bml_resource, 1);
+        delete (BmlResource *)((void*)lazer_fence_norm_bml_resource);
         lazer_fence_norm_bml_resource = 0U;
     }
     if ((u32) lazer_fence_norm_texture_list != 0U) {

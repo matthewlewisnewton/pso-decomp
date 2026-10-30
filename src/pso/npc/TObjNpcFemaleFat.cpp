@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/npc/TObjNpcFemaleFat.h"
 #include "pso/npc/TUnk_804A8640.h"
 #include "pso/npc/TObjNpcFemaleMacho.h"
@@ -16,13 +17,11 @@ struct RecoveredGlobal_8014A410___vt__16TObjNpcFemaleFat {
 };
 
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern RecoveredGlobal_8014A540_lbl_804A8E00 bm_n_emw_i_body_resource_descriptor;
 extern u32 TObjNpcFemaleMacho__lobby_resource;
 extern s32 __vt__16TObjNpcFemaleFat[];
 extern s32 TObjNpcFemaleFat__name;
 extern u8 *TObjNpcFemaleFat__static_model;
-void TLobby__sub_8001FE7C(void*, int);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
@@ -69,18 +68,15 @@ void * TObjNpcFemaleMacho__create(void *arg0) {
 
 void TObjNpcFemaleMacho::close_dialog_window() {
     if ((u32) TObjNpcFemaleMacho__lobby_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)TObjNpcFemaleMacho__lobby_resource, 1);
+        delete (BmlResource *)((void*)TObjNpcFemaleMacho__lobby_resource);
         TObjNpcFemaleMacho__lobby_resource = 0U;
     }
 }
 void TObjNpcFemaleMacho::load_resources() {
     s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
+    temp_r3 = (int)new BmlResource(1, (BmlResourceDescriptor *)(&bm_n_emw_i_body_resource_descriptor.value), 0, 0, (void *)(0));
     var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &bm_n_emw_i_body_resource_descriptor.value, 0, 0, 0));
-    }
     (*(s32 *)&TObjNpcFemaleMacho__lobby_resource) = var_r0;
 }
 

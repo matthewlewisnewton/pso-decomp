@@ -1,4 +1,6 @@
 #include "pso/enemy/TObjEnemy.h"
+#include "pso/system/EnemyBmlResource.h"
+#include "pso/system/BmlResourceClass.h"
 #include "types.h"
 #include "pso/player/TObjEneRe2Flower_Bomb.h"
 #include "pso/enemy/TObjEneDD.h"
@@ -52,8 +54,6 @@ struct RecoveredGlobal_800C44C4_lbl_8043BBF4 {
 typedef char RecoveredGlobal_800C44C4_lbl_8043BBF4_size[sizeof(RecoveredGlobal_800C44C4_lbl_8043BBF4) == 0x18 ? 1 : -1];
 
 extern "C" {
-u8 *load_enemy_bml_resource_named(s32 *, s32 *);
-s32 load_enemy_bml_resource(u8 *arg0);
 s32 TObjPlayer__sub_800F0928();
 extern RecoveredGlobal_800C44C4_lbl_8043BB90 lbl_8043BB90;
 extern RecoveredGlobal_800C44C4_lbl_8043BBE0 lbl_8043BBE0;
@@ -83,7 +83,6 @@ void vfunc_28__16TObjEneRe2FlowerFv(void);
 void *destroy__16TObjEneRe2FlowerFPvs(void *arg0, s16 arg1);
 void vfunc_63__16TObjEneRe2FlowerFv(void *arg0);
 void vfunc_62__16TObjEneRe2FlowerFv(void *arg0);
-void TLobby__sub_8001FE7C(void*, int);
 void free_collision_body_parts(void *);
 void *TObjEneRe2Flower__ct(void *, void *, void *);
 void TObjPlayer__sub_800C4D44(void);
@@ -375,7 +374,7 @@ extern u32 lbl_805D5174;
 void TObjEneRe2Flower::destroy_instance() {
     TObjPlayer__sub_800C4D44();
     if ((u32) lbl_805D5174 != 0U) {
-        TLobby__sub_8001FE7C((void*)lbl_805D5174, 1);
+        delete (BmlResource *)((void*)lbl_805D5174);
         lbl_805D5174 = 0U;
     }
 }
@@ -396,11 +395,11 @@ void TObjPlayer__sub_800C44C4(void) {
     u8 *temp_r5;
 
     if (get_current_floor_area() == AREA_TOWER) {
-        lbl_805D5174 = (u32) load_enemy_bml_resource_named((s32 *)&TObjEneRe2Flower__resource_descriptor, &lbl_8043BBE0.value);
+        lbl_805D5174 = (u32) (u8 *)load_enemy_bml_resource_named((BmlResourceDescriptor *)((s32 *)&TObjEneRe2Flower__resource_descriptor), (const char *)(&lbl_8043BBE0.value));
     } else if (TObjEneDD::check_v2_mode() != 0) {
-        lbl_805D5174 = (u32) load_enemy_bml_resource_named((s32 *)&TObjEneRe2Flower__resource_descriptor, &lbl_8043BBF4.value);
+        lbl_805D5174 = (u32) (u8 *)load_enemy_bml_resource_named((BmlResourceDescriptor *)((s32 *)&TObjEneRe2Flower__resource_descriptor), (const char *)(&lbl_8043BBF4.value));
     } else {
-        lbl_805D5174 = (u32) load_enemy_bml_resource((u8 *)((s32 *)&TObjEneRe2Flower__resource_descriptor));
+        lbl_805D5174 = (u32) (s32)load_enemy_bml_resource((BmlResourceDescriptor *)((u8 *)((s32 *)&TObjEneRe2Flower__resource_descriptor)));
     }
     lbl_805D5178 = 0;
     lbl_805D517C = 0;

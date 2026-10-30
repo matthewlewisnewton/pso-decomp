@@ -15,8 +15,6 @@
 #pragma readonly_strings on
 
 extern "C" {
-void TLobby__sub_8001FE7C(BmlResource *resource, s32 del);
-BmlResource *load_resource_from_descriptor(void *resource, s32 kind, BmlResourceDescriptor *descriptor, s32, s32, s32);
 // Defined (returning u8) in the lobby-event module; the original callers test
 // the full register.
 }
@@ -79,16 +77,13 @@ void *TObjRainbowLobby::create(void *set_data) {
 
 void TObjRainbowLobby::free_resources() {
     if (shared_model_resource != NULL) {
-        TLobby__sub_8001FE7C(shared_model_resource, 1);
+        delete (BmlResource *)(shared_model_resource);
         shared_model_resource = NULL;
     }
 }
 
 void TObjRainbowLobby::load_resources() {
-    void *resource = ::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_obj_lobby_rainbow_resource_descriptor, 0, 0, 0);
-    }
+    void *resource = new BmlResource(1, (BmlResourceDescriptor *)(&bm_obj_lobby_rainbow_resource_descriptor), 0, 0, (void *)(0));
     shared_model_resource = (BmlResource *)resource;
 }
 

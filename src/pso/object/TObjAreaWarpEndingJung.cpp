@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/system/vector.h"
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/misc/TWindowSubComCard.h"
@@ -578,7 +579,6 @@ struct VObj_8019DA54_8019D964 : Base_8019DA54_8019D964 {
     virtual void m12(); virtual void m13();
 };
 
-s32 TLobby__sub_8001FE7C(s32, s32);
 s32 release_texture_list(void*);
 
 extern s32 forest_warp_bml_resource;
@@ -595,7 +595,7 @@ void TObjWarpBase::free_globals() {
         TAdSinglePlyChrSelectGC::safe_free(forest_warp_texture_list);
         forest_warp_texture_list = 0U;
     }
-    TLobby__sub_8001FE7C(forest_warp_bml_resource, 1);
+    delete (BmlResource *)(forest_warp_bml_resource);
     forest_warp_bml_resource = 0;
 }
 

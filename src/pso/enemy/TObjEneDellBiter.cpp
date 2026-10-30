@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/player/TObjPlayer_800D8FDC.h"
+#include "pso/system/EnemyBmlResource.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/unk/TUnk_80494968.h"
@@ -81,7 +82,6 @@ s16 get_attack_params_atp_min(void *p);
 s32 obj_is_hit_receivable(void *);
 u16 get_entity_id(void *);
 void obj_setFlags30(void *, s32);
-void TLobby__sub_8001FE7C(void*, int);
 void attach_particle_model(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
 s32 get_mode__11TCameraCtrlFPv(void *);
 u32 csnLookAt(void *, void *);
@@ -201,7 +201,6 @@ u8 *dispatch_shared_handler_a__6TLobbyFl(s32);
 s32 register_object__6TLobbyFl(int);
 s32 dispatch_shared_handler_b__6TLobbyFl(int);
 s32 register_boss__6TLobbyFl(int);
-void *load_enemy_bml_resource(void *);
 extern DelbiterAttackDefinition ene_dell_biter_attack_def;
 }
 DelbiterInitialParameters TObjEneDellBiter__param_table = {
@@ -261,9 +260,9 @@ void TObjEneDellBiter::load_resources() {
     dellbiter_demo_camera_vec.y = TObjEneDellBiter__data_805DEFF4;
     dellbiter_demo_camera_vec.z = TObjEneDellBiter__data_805DEFF4;
     if (is_split_screen() != 0) {
-        TObjEneDellBiter__shared_model_resource = (u32)load_enemy_bml_resource(&lbl_804E6CB4);
+        TObjEneDellBiter__shared_model_resource = (u32)(void *)load_enemy_bml_resource((BmlResourceDescriptor *)(&lbl_804E6CB4));
     } else {
-        TObjEneDellBiter__shared_model_resource = (u32)load_enemy_bml_resource(&lbl_804E6C70);
+        TObjEneDellBiter__shared_model_resource = (u32)(void *)load_enemy_bml_resource((BmlResourceDescriptor *)(&lbl_804E6C70));
     }
     dellbiter_boss_stat_handle = register_boss__6TLobbyFl(0xD);
     TObjEneDellBiter__shared_handler_param = dispatch_shared_handler_b__6TLobbyFl(0xD);
@@ -291,7 +290,7 @@ void *TObjEneDellBiter::create(void *set_data) {
 
 void TObjEneDellBiter::destroy_static_instance() {
     if ((u32) TObjEneDellBiter__shared_model_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)TObjEneDellBiter__shared_model_resource, 1);
+        delete (BmlResource *)((void*)TObjEneDellBiter__shared_model_resource);
         TObjEneDellBiter__shared_model_resource = 0U;
     }
 }

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/npc/TObjNpcFemaleDwarf.h"
 #include "pso/npc/TUnk_804A8640.h"
 #include "pso/npc/TObjNpcFemaleFat.h"
@@ -16,13 +17,11 @@ struct RecoveredGlobal_8014A238___vt__18TObjNpcFemaleDwarf {
 };
 
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern RecoveredGlobal_8014A368_lbl_804A8C70 bm_n_efw_i_body_resource_descriptor;
 extern u32 TObjNpcFemaleFat__static_model;
 extern s32 __vt__18TObjNpcFemaleDwarf[];
 extern s32 TObjNpcFemaleDwarf__name;
 extern u8 *TObjNpcFemaleDwarf__static_data;
-void TLobby__sub_8001FE7C(void*, int);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
@@ -69,18 +68,15 @@ void * TObjNpcFemaleFat__create(void *arg0) {
 
 void TObjNpcFemaleFat::free_static_model() {
     if ((u32) TObjNpcFemaleFat__static_model != 0U) {
-        TLobby__sub_8001FE7C((void*)TObjNpcFemaleFat__static_model, 1);
+        delete (BmlResource *)((void*)TObjNpcFemaleFat__static_model);
         TObjNpcFemaleFat__static_model = 0U;
     }
 }
 void TObjNpcFemaleFat::load_static_resource() {
     s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
+    temp_r3 = (int)new BmlResource(1, (BmlResourceDescriptor *)(&bm_n_efw_i_body_resource_descriptor.value), 0, 0, (void *)(0));
     var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &bm_n_efw_i_body_resource_descriptor.value, 0, 0, 0));
-    }
     (*(s32 *)&TObjNpcFemaleFat__static_model) = var_r0;
 }
 

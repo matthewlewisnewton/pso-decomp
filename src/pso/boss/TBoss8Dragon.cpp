@@ -1,6 +1,7 @@
 #include "pso/system/MatrixVectorArray.h"
 #include "pso/math/FloatRounding.h"
 #include "pso/enemy/TObjEnemy.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/misc/TLobby_801E2F94.h"
@@ -1412,7 +1413,6 @@ int get_player_data__10TObjPlayerFi(int a0);
 s32 get_current_floor();
 s32 register_object__6TLobbyFl(int);
 s32 register_boss__6TLobbyFl(int);
-void TLobby__sub_8001FE7C(void*, int);
 void TBoss1Dragon__sub_80027A80(u8 *arg0, u8 *arg1);
 s32 set_frames__15ProtectionTimerFl(void *, int);
 s32 spawn_particle_effect_with_flags(void *, void *, int);
@@ -7034,7 +7034,7 @@ void TBoss8Dragon::free_static() {
         (*(u32 *)&TBoss8Dragon__data_805D69A8) = 0U;
     }
     if ((u32) TBoss8Dragon__data_805D6988 != 0U) {
-        TLobby__sub_8001FE7C((void*)TBoss8Dragon__data_805D6988, 1);
+        delete (BmlResource *)((void*)TBoss8Dragon__data_805D6988);
         TBoss8Dragon__data_805D6988 = 0U;
     }
 }

@@ -1,6 +1,8 @@
 #include "pso/system/MatrixVectorArray.h"
 #include "pso/math/FloatRounding.h"
 #include "pso/enemy/TObjEnemy.h"
+#include "pso/system/EnemyBmlResource.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/system/vector.h"
 #include "pso/protocol/protocol_types.h"
@@ -5174,8 +5176,6 @@ s32 register_boss__6TLobbyFl(int);
 void TObjPlayer__sub_8002E7C8(void);
 void TBoss2Mine__sub_80038D88(void);
 void TBoss2Tentacle__sub_8003A0AC(void);
-u8 *load_enemy_bml_resource_named(void *, void *);
-s32 load_enemy_bml_resource(u8 *arg0);
 extern u8 lbl_804356C0[];
 extern u8 lbl_80435A18[];
 extern s32 TBoss2DeRolLe__shared_handler_id_table[];
@@ -5228,7 +5228,6 @@ s32 TBoss2DeRolLe__sub_80034034(void *);
 void TBoss2Fin__sub_800367C0(void);
 void TBoss2Mine__sub_80038D84(void);
 void TBoss2Tentacle__sub_8003A0A8(void);
-void TLobby__sub_8001FE7C(void*, int);
 void TObjPlayer__sub_8002EB88(void);
 void __dl__FPv(void);
 void *__nw__7TObjectFUl(int);
@@ -5983,7 +5982,7 @@ void reset_parts__13TBoss2DeRolLeFv(void) {
     TBoss2Mine__sub_80038D84();
     TBoss2Tentacle__sub_8003A0A8();
     if ((u32) lbl_805D4BA4 != 0U) {
-        TLobby__sub_8001FE7C((void*)lbl_805D4BA4, 1);
+        delete (BmlResource *)((void*)lbl_805D4BA4);
         lbl_805D4BA4 = 0U;
     }
 }
@@ -6018,9 +6017,9 @@ void load_resources__13TBoss2DeRolLeFv(void) {
     Node_80035D24 *m;
     Slot_80035D24 *p;
     if (TObjEneDD::check_v2_mode() != 0) {
-        res = load_enemy_bml_resource_named(boss2_derolle_bml_descriptor, lbl_80435A18);
+        res = (u8 *)load_enemy_bml_resource_named((BmlResourceDescriptor *)(boss2_derolle_bml_descriptor), (const char *)(lbl_80435A18));
     } else {
-        res = (u8 *)load_enemy_bml_resource(boss2_derolle_bml_descriptor);
+        res = (u8 *)(s32)load_enemy_bml_resource((BmlResourceDescriptor *)(boss2_derolle_bml_descriptor));
     }
     (*(u8 * *)&lbl_805D4BA4) = res;
     TBoss2DeRolLe__current_attack_id = 0;

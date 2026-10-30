@@ -149,8 +149,6 @@ extern "C" s32 dispatch_shared_handler_a__6TLobbyFl(int);
 extern "C" s32 register_object__6TLobbyFl(int);
 extern "C" s32 dispatch_shared_handler_b__6TLobbyFl(int);
 extern "C" s32 register_boss__6TLobbyFl(int);
-extern "C" void TLobby__sub_8001FE7C(void*, int);
-extern "C" u8 * load_resource_from_descriptor(void *, s32, s32 *, s32, s32, s32);
 extern "C" s32 find_active_entity_by_id(int);
 
 extern "C" void TObjPlayer__sub_800DC444(void);
@@ -303,11 +301,8 @@ void TObjEneNanoDrago::load_resources() {
     BmlModelEntry *modelEntries;
     u8 *resource;
 
-    storage = (u8 *)((int)::operator new(0x440));
+    storage = (u8 *)((int)new BmlResource(1, (BmlResourceDescriptor *)((s32 *)&bm_ene_nanodrago_resource_descriptor), 0, 0, (void *)(0)));
     resource = storage;
-    if (resource != NULL) {
-        resource = (u8 *)(load_resource_from_descriptor(storage, 1, (s32 *)&bm_ene_nanodrago_resource_descriptor, 0, 0, 0));
-    }
     nano_drago_entry_params_resource = (BmlResource *)resource;
     lbl_805D5248 = register_boss__6TLobbyFl(0x1A);
     lbl_805D524C = dispatch_shared_handler_b__6TLobbyFl(0x1A);
@@ -320,7 +315,7 @@ void TObjEneNanoDrago::load_resources() {
 }
 void TObjEneNanoDrago::free_resources() {
     if ((u32) nano_drago_entry_params_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)nano_drago_entry_params_resource, 1);
+        delete (BmlResource *)((void*)nano_drago_entry_params_resource);
         nano_drago_entry_params_resource = NULL;
     }
 }

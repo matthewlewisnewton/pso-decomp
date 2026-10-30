@@ -74,8 +74,6 @@ s32 is_local_client_floor_leader();
 void request_follow_camera_offsets(Vec *position, Vec *target, s32 id, f32 blend);
 u16 get_entity_id(void *object);
 void obj_setFlags30(void *object, s32 flags);
-void TLobby__sub_8001FE7C(void *resource, s32 flags);
-void *load_resource_from_descriptor(void *resource, s32 kind, BmlResourceDescriptor *descriptor, s32, s32, s32);
 u16 TObjRoomId__sub_801A1DB8(u16 id);
 void TObjPlayer__sub_801BA42C(void);
 extern s32 door_vo_ship_class_name;
@@ -421,16 +419,10 @@ void TBoss3Volopt::load_resources() {
     void *resource;
     v2 = TObjEneDD::check_v2_mode();
     if (v2 != 0) {
-        resource = ::operator new(0x440);
-        if (resource != NULL) {
-            resource = load_resource_from_descriptor(resource, 5, &bm_boss3_volopt_ap_resource_descriptor, 0, 0, 0);
-        }
+        resource = new BmlResource(5, (BmlResourceDescriptor *)(&bm_boss3_volopt_ap_resource_descriptor), 0, 0, (void *)(0));
         boss3_volopt_resources = (BmlResource *)resource;
     } else {
-        resource = ::operator new(0x440);
-        if (resource != NULL) {
-            resource = load_resource_from_descriptor(resource, 5, &bm_boss3_volopt_resource_descriptor, 0, 0, 0);
-        }
+        resource = new BmlResource(5, (BmlResourceDescriptor *)(&bm_boss3_volopt_resource_descriptor), 0, 0, (void *)(0));
         boss3_volopt_resources = (BmlResource *)resource;
     }
     volopt_v2_mode = v2;
@@ -454,7 +446,7 @@ void TBoss3Volopt::load_resources() {
 void TBoss3Volopt::free_parts() {
     TObjVoloptCage::destroy();
     if (boss3_volopt_resources != NULL) {
-        TLobby__sub_8001FE7C(boss3_volopt_resources, 1);
+        delete (BmlResource *)(boss3_volopt_resources);
         boss3_volopt_resources = NULL;
     }
     TBoss3VoloptP01::destroy();

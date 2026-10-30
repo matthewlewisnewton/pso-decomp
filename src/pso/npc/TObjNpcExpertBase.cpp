@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/unk/text_8014B8A4.h"
 #include "pso/npc/TUnk_804A9F50.h"
 #include "pso/npc/TObjNpcExpertBase.h"
@@ -29,14 +30,12 @@ struct RecoveredGlobal_80149BB4___vt__17TObjNpcExpertBase {
 };
 
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern s32 __vt__17TObjNpcExpertBase[];
-void TLobby__sub_8001FE7C(void*, int);
 void __dl__7TObjectFPv(void *);
 
 void TObjNpcExpertBase::free_shared_data() {
     if ((u32) TObjNpcExpertBase__shared_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)TObjNpcExpertBase__shared_resource, 1);
+        delete (BmlResource *)((void*)TObjNpcExpertBase__shared_resource);
         TObjNpcExpertBase__shared_resource = 0U;
     }
 }
@@ -44,11 +43,8 @@ void TObjNpcExpertBase::free_shared_data() {
 void TObjNpcExpertBase::load_shared_resource() {
     s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
+    temp_r3 = (int)new BmlResource(1, (BmlResourceDescriptor *)(&bm_n_hakase_i_body_resource_descriptor), 0, 0, (void *)(0));
     var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &bm_n_hakase_i_body_resource_descriptor, 0, 0, 0));
-    }
     (*(s32 *)&TObjNpcExpertBase__shared_resource) = var_r0;
 }
 

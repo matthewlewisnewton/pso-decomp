@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/misc/TLobby.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/boss/TBoss1DragonColli.h"
@@ -19,7 +20,6 @@ typedef char RecoveredGlobal_8030946C_lbl_804E7370_size[sizeof(RecoveredGlobal_8
 struct Vec_8030920C { f32 x, y, z; };
 
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern RecoveredGlobal_8030946C_lbl_804E7370 bm_boss7_crawfish_resource_descriptor;
 extern u32 TBoss7Crawfish__shared_resource;
 s32 dispatch_shared_handler_a__6TLobbyFl(int);
@@ -36,7 +36,6 @@ extern const f32 TBoss7Crawfish__data_805DF0D8;
 extern const f32 TBoss7Crawfish__data_805DF0DC;
 extern const f32 lbl_805DF100;
 int TBoss7Crawfish__sub_80308BEC(void *p);
-void TLobby__sub_8001FE7C(void*, int);
 s32 submit_cursor_candidate(void *, int);
 s32 add_radar_scaled_marker(void *, int, int, int, f32);
 s32 __dl__7TObjectFPv(void *);
@@ -142,7 +141,7 @@ u8 *TBoss7Crawfish__ct(u8 *arg0, s32 arg1, s32 arg2) {
 
 void TBoss7Crawfish::destroy_instance() {
     if ((u32) TBoss7Crawfish__shared_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)TBoss7Crawfish__shared_resource, 1);
+        delete (BmlResource *)((void*)TBoss7Crawfish__shared_resource);
         TBoss7Crawfish__shared_resource = 0U;
     }
 }
@@ -150,11 +149,8 @@ void TBoss7Crawfish::destroy_instance() {
 void TBoss7Crawfish::load_static_resource() {
     s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
+    temp_r3 = (int)new BmlResource(5, (BmlResourceDescriptor *)(&bm_boss7_crawfish_resource_descriptor.value), 0, 0, (void *)(0));
     var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 5, &bm_boss7_crawfish_resource_descriptor.value, 0, 0, 0));
-    }
     (*(s32 *)&TBoss7Crawfish__shared_resource) = var_r0;
 }
 

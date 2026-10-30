@@ -1,4 +1,6 @@
 #include "pso/enemy/TObjEnemy.h"
+#include "pso/system/EnemyBmlResource.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
 #include "pso/system/vector.h"
@@ -754,7 +756,6 @@ s32 dispatch_shared_handler_a__6TLobbyFl(int);
 s32 register_object__6TLobbyFl(int);
 s32 dispatch_shared_handler_b__6TLobbyFl(int);
 s32 register_boss__6TLobbyFl(int);
-void TLobby__sub_8001FE7C(void*, int);
 void fn_80044330(void *);
 s32 *csnVectorUnder(s32 arg0, u32 *arg1, s32 arg2);
 s32 TObjPlayer__sub_800A04F0(void *);
@@ -768,8 +769,6 @@ u32 vfunc_102__9TObjEneDDFv();
 u32 vfunc_101__9TObjEneDDFPUc();
 s32 clear_attack_receipts__9TObjEneDDFv(void *);
 void invoke_initialization_hook__9TObjEneDDFPv(void *, void *);
-u32 load_enemy_bml_resource_named(void *, void *);
-s32 load_enemy_bml_resource(u8 *arg0);
 s32 reset_transform__13TObjEneRe4BitFv();
 s32 set_flag_and_notify__18TObjEneRe4SorcererFv();
 u8 * get_spell_data__18TObjEneRe4SorcererFv();
@@ -2416,7 +2415,7 @@ void TObjEneRe4Sorcerer::free_bits() {
     }
     TObjEneRe4Bit__sub_800EDAB0();
     if ((u32) sorcerer_bml_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)sorcerer_bml_resource, 1);
+        delete (BmlResource *)((void*)sorcerer_bml_resource);
         sorcerer_bml_resource = 0U;
     }
 }
@@ -2435,9 +2434,9 @@ void TObjEneRe4Sorcerer::load_resources() {
     lbl_80501070.y = TObjEneRe4Sorcerer__data_805DA790;
     lbl_80501070.z = TObjEneRe4Sorcerer__data_805DA790;
     if (TObjEneDD::check_v2_mode() != 0) {
-        sorcerer_bml_resource = load_enemy_bml_resource_named(bm_ene_re4_sorcerer_resource_descriptor, lbl_8043D418);
+        sorcerer_bml_resource = (u32)load_enemy_bml_resource_named((BmlResourceDescriptor *)(bm_ene_re4_sorcerer_resource_descriptor), (const char *)(lbl_8043D418));
     } else {
-        sorcerer_bml_resource = load_enemy_bml_resource(bm_ene_re4_sorcerer_resource_descriptor);
+        sorcerer_bml_resource = (s32)load_enemy_bml_resource((BmlResourceDescriptor *)(bm_ene_re4_sorcerer_resource_descriptor));
     }
     lbl_805D52D0 = register_boss__6TLobbyFl(0xA);
     TObjEneRe4Sorcerer__attack_params = dispatch_shared_handler_b__6TLobbyFl(0xA);

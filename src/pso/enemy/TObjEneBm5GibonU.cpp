@@ -1,5 +1,7 @@
 #include "pso/math/FloatRounding.h"
 #include "pso/player/PlayerAttackParams.h"
+#include "pso/system/EnemyBmlResource.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/enemy/TObjEnemy.h"
@@ -226,7 +228,6 @@ s32 dispatch_shared_handler_a__6TLobbyFl(s32);
 s32 register_object__6TLobbyFl(s32);
 s32 dispatch_shared_handler_b__6TLobbyFl(s32);
 s32 register_boss__6TLobbyFl(s32);
-u8 *load_enemy_bml_resource(void *);
 extern const s32 lbl_8043BF30[];
 extern const s32 lbl_8043BF38[];
 extern const s32 lbl_8043BF40[];
@@ -4417,7 +4418,6 @@ extern s32 lbl_805D2A70;
 u8 *TObjEneBm5GibonU__ct(u8 *arg0, s32 arg1, s32 arg2);
 void vfunc_61__16TObjEneBm5GibonUFv(void);
 void vfunc_28__16TObjEneBm5GibonUFv(void);
-void TLobby__sub_8001FE7C(void*, int);
 void __dl__FPv(void);
 
 void TObjEneBm5GibonU::vfunc_88() {
@@ -4647,7 +4647,7 @@ void TObjEneBm5GibonU::init_child_node() {
 
 void TObjEneBm5GibonU::release_static_resource() {
     if ((u32) (*(u32 *)&TObjEneBm5GibonU__model_archive) != 0U) {
-        TLobby__sub_8001FE7C((void*)(*(u32 *)&TObjEneBm5GibonU__model_archive), 1);
+        delete (BmlResource *)((void*)(*(u32 *)&TObjEneBm5GibonU__model_archive));
         (*(u32 *)&TObjEneBm5GibonU__model_archive) = 0U;
     }
 }
@@ -4668,9 +4668,9 @@ void TObjEneBm5GibonU::load_resources() {
     u8 *m;
     f32 *v;
     if (is_split_screen() != 0) {
-        m = load_enemy_bml_resource(lbl_80493DE4);
+        m = (u8 *)load_enemy_bml_resource((BmlResourceDescriptor *)(lbl_80493DE4));
     } else {
-        m = load_enemy_bml_resource(lbl_80493DA0);
+        m = (u8 *)load_enemy_bml_resource((BmlResourceDescriptor *)(lbl_80493DA0));
     }
     (*(u32 *)&TObjEneBm5GibonU__model_archive) = (u32)m;
     ((TObjEneBm5GibonU *)(&(*(RecoveredGlobal_800D18AC_TObjEneBm5GibonU__data_80500EB0 *)&TObjEneBm5GibonU__node_list)))->reset_fields();

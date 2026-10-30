@@ -2,6 +2,7 @@
 #pragma push
 
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/object/TObjMapWarp.h"
 #include "pso/misc/TLobby_8030A6A8.h"
 #include "pso/object/TObjGoalWarpAncient_8017CB60.h"
@@ -260,7 +261,6 @@ void TObjMapWarpAncient::run_task() {
 
 extern "C" {
 
-void TLobby__sub_8001FE7C(void*, int);
 s32 TObjGoalWarpAncient__sub_8017D2D4(int);
 s32 TObjMapWarp__ct();
 void __dl__7TObjectFPv(void *);
@@ -306,7 +306,7 @@ void TObjMapWarpAncient::free_globals() {
     TObjPlayer::free_if_valid(goal_warp_ancient_gvm_texture);
     goal_warp_ancient_gvm_texture = 0;
     if ((u32) ancient_warp_shared_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)ancient_warp_shared_resource, 1);
+        delete (BmlResource *)((void*)ancient_warp_shared_resource);
         ancient_warp_shared_resource = 0U;
     }
 }

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/boss/TBoss1DragonColli.h"
 #include "pso/boss/TBoss8Dragon_800BC53C.h"
 #include "pso/enemy/TObjEneDD_800BA754.h"
@@ -112,7 +113,6 @@ extern P8_802FE494 lbl_80474BBC[];
 extern const f32 lbl_805DEF08;
 extern const f32 lbl_805DEF0C;
 extern const f32 lbl_805DEF10;
-s32 TLobby__sub_8001FE7C(s32, s32);
 s32 release_texture_list(void*);
 void __dl__7TObjectFPv(void *);
 int fill_value_array(void*);
@@ -221,7 +221,7 @@ void TBoss8DragonEffTail::free_statics() {
         TAdSinglePlyChrSelectGC::safe_free(dragon_tail_gvm_texture_handle);
         dragon_tail_gvm_texture_handle = 0U;
     }
-    TLobby__sub_8001FE7C(boss8_eff_tail_bml_resource, 1);
+    delete (BmlResource *)(boss8_eff_tail_bml_resource);
     boss8_eff_tail_bml_resource = 0;
 }
 

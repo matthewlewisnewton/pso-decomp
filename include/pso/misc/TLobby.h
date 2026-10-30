@@ -96,15 +96,11 @@ struct TLobby : public TObject {
     static f32 calc_phase_offset();
     static s32 get_internet_beat();
     static s32 get_clock_frames();
-    void free_if_not_owner(void* a1);
-    void load_texture_sub(void *arg1, s32 arg2);
-    void set_flag_and_notify();
     static s32 load_bml_exec(u8 *arg0, u8 *arg1);
     static void free_chr_select_data();
     static void init_download_buffers();
     void load_bin_model_callback();
     s32 load_bin_motion(s32 arg1, s32 arg2);
-    void reset_battle_state();
     static s32 get_game_mode();
     void copy_header(void *arg1);
     static void free_char_select();

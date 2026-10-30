@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/system/vector.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/boss/TBoss4DarkFalz.h"
@@ -746,7 +747,6 @@ typedef struct Msg_8004BFA4 {
 
 extern "C" {
 s32 query_teammate_state__9TObjEneDDFv();
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 void fn_802E52AC(void);
 extern RecoveredGlobal_8004C0D4_lbl_80484D74 darkfalz_dat_resource_descriptor;
 extern int darkfalz_dat_resource;
@@ -780,7 +780,6 @@ extern s32 game_difficulty_selection;
 extern "C" {
 s32 TBoss4DarkFalz__ct(s32 a0, s32 arg1, s32 a2);
 int TBoss4DarkFalz__sub_8030AD38(void);
-int TLobby__sub_8001FE7C(void*, void*);
 s32 __ct__11TObjControlFP7TObject(s32, s32);
 s32 __nw__7TObjectFUl(s32);
 
@@ -949,18 +948,15 @@ void handle_6x19_dark_falz_actions(Msg_8004BFA4 *arg0) {
     }
 }
 
-void TBoss4DarkFalz::cleanup_global() { TBoss4DarkFalz::free_global_instance(); TBoss4DarkFalz__sub_8030AD38(); TLobby__sub_8001FE7C((void*)darkfalz_dat_resource, (void*)1); darkfalz_dat_resource = 0; }
+void TBoss4DarkFalz::cleanup_global() { TBoss4DarkFalz::free_global_instance(); TBoss4DarkFalz__sub_8030AD38(); delete (BmlResource *)((void*)darkfalz_dat_resource); darkfalz_dat_resource = 0; }
 
 extern s32 tl_04;
 
 void TBoss4DarkFalz::load_resources() {
     s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
+    temp_r3 = (int)new BmlResource(5, (BmlResourceDescriptor *)(&darkfalz_dat_resource_descriptor.value), 0, 0, (void *)(0));
     var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 5, &darkfalz_dat_resource_descriptor.value, 0, 0, 0));
-    }
     (*(u8 * *)&darkfalz_dat_resource) = (unsigned char *) ((void *) var_r0);
     if ((u32) var_r0 != 0U) {
         TBoss4DarkFalz::init_uro_link();
