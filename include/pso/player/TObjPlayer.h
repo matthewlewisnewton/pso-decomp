@@ -1288,7 +1288,6 @@ struct TObjPlayer : public TObjChara {
     s32 apply_area_attack_hits(u8 *arg1, s32 arg2, u32 arg3, f32 farg0);
     void update_aim_and_fire();
     void set_flag_and_notify();
-    static void update_particle_by_phase();
     void draw_blob_shadows();
     void set_flag_8_if_check_passes();
     void fill_status_info(void *arg1);

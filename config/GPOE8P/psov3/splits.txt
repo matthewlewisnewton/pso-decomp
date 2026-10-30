@@ -1680,6 +1680,8 @@ pso/enemy/TObjEneShark.cpp:
 	.text       start:0x800AB970 end:0x800ACA60
 	.rodata     start:0x8043AD10 end:0x8043AEF8
 	.data       start:0x804914B0 end:0x80491828
+	.sbss       start:0x805D50A8 end:0x805D50C8
+	.sdata2     start:0x805D9BA0 end:0x805D9BD8
 
 pso/player/TObjPlayer_800ACA60.cpp:
 	.text       start:0x800ACA60 end:0x800AF450
