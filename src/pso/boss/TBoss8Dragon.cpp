@@ -6216,6 +6216,34 @@ s32 TBoss8Dragon__sub_802FBFA4(u8 *arg0) {
 }
 #pragma pop
 
+#pragma push
+#pragma fp_contract on
+void TBoss8Dragon__sub_802FC060(void *arg0, s32 arg1) {
+    extern const f32 TBoss8Dragon__data_805DED50;
+    extern const f32 TBoss8Dragon__data_805DED60;
+    extern const f32 TBoss8Dragon__data_805DEDA8;
+    extern const f32 TBoss8Dragon__data_805DEE9C;
+    extern const f32 lbl_805DEECC;
+    extern const f32 lbl_805DEDEC;
+    f32 height;
+    f32 turn;
+    f32 half;
+
+    *(s32 *)((s8 *)arg0 + 0x650) = (s16) *(s32 *)((s8 *)arg0 + 0x650);
+    height = (f32) *(s32 *)((s8 *)arg0 + 0x650);
+    turn = (f32) angle_diff_s16(*(s32 *)((s8 *)arg0 + 0x60), arg1);
+    half = TBoss8Dragon__data_805DEDA8 * height;
+    *(f32 *)((s8 *)arg0 + 0x660) = -(TBoss8Dragon__data_805DED60 * (turn - half * TBoss8Dragon__data_805DEE9C)) / lbl_805DEECC;
+    *(f32 *)((s8 *)arg0 + 0x65C) = -(*(f32 *)((s8 *)arg0 + 0x660) * lbl_805DEDEC + height) / TBoss8Dragon__data_805DEE9C;
+    *(f32 *)((s8 *)arg0 + 0x670) = TBoss8Dragon__data_805DED50;
+    *(f32 *)((s8 *)arg0 + 0x664) = height;
+    *(f32 *)((s8 *)arg0 + 0x668) = -(*(f32 *)((s8 *)arg0 + 0x660) * lbl_805DEDEC);
+    half = TBoss8Dragon__data_805DEDA8 * *(f32 *)((s8 *)arg0 + 0x65C);
+    *(f32 *)((s8 *)arg0 + 0x66C) = TBoss8Dragon__data_805DEE9C * (half * TBoss8Dragon__data_805DEE9C + height);
+    *(s32 *)((s8 *)arg0 + 0x658) = *(s32 *)((s8 *)arg0 + 0x60);
+}
+#pragma pop
+
 void TBoss8Dragon::check_hit_result(s32 arg1, s32 arg2) {
     if (angle_diff_s16(arg1, arg2) >= 0) {
         this->m_654 = 1;
