@@ -7,6 +7,7 @@
 #include "pso/player/TObjPlayer_803E4954.h"
 #include <dolphin/mtx.h>
 #include "pso/player/TObjPlayer.h"
+#include "pso/player/TObjPlayer_801542CC.h"
 #include "pso/player/TObjChara.h"
 #include "pso/enemy/TObjEnemyCustom.h"
 #include "pso/enemy/TObjEnemy.h"
@@ -111,7 +112,6 @@ struct GiGueParameters {
 
 
 extern "C" {
-s32 project_actor_to_ground(void *, void *, s32);
 }
 
 extern f32 lbl_805D6840;
@@ -127,7 +127,6 @@ s32 rotate_matrix_y(int, int);
 void translate_matrix(u32 arg0, f32 x, f32 y, f32 z);
 
 extern Mtx34 identity_matrix;
-extern s32 lbl_805D586C;
 f64 atan2_float(f32, f32);
 void vec3_add_to(void *, void *);
 void matrix_mult_vec(int, Vec *, void *);
@@ -162,9 +161,7 @@ s32 enemy_turn_toward_dest(void *, s32);
 f32 sin_table_lookup(s32);
 f32 cos_table_lookup(s32);
 u16 find_nearest_visible_player(void *, int, f32);
-s32 check_enemy_body_collisions(void *);
 s32 check_path_obstructed(void *, Vec *);
-void *find_entity_by_id(u16 id);
 u32 get_player_by_client_id(s32);
 
 }
@@ -210,12 +207,10 @@ extern s32 model_render_flags;
 }
 
 extern "C" {
-void free_collision_body_parts(void *);
 s32 obj_setFlags30(void *, int);
 }
 int initialize_enemy_photon_effect(void *p);
 extern "C" {
-s32 init_collision_body_parts(void *, void *, int);
 extern const char *lbl_805D3F18;
 
 }
@@ -387,7 +382,7 @@ void TObjEneMe1GiGue::run_task() {
         this->mode = (s16) this->next_action;
         this->state = 0;
     }
-    VecCopy((Vec *)&body_center_position.x, &position);
+    VecCopy(&body_center_position, &position);
     this->body_center_position.y = (f32) (this->body_center_position.y + (15.0f + this->flight_height));
     bodies[0].offset.y = (f32) (25.0f + this->flight_height);
     if (!(this->m_388 & 0x40000)) {
@@ -979,7 +974,7 @@ void TObjEneMe1GiGue::update_rush_attack() {
         }
         this->refresh_collision_body_centers();
         if (this->flight_height > 15.0f) {
-            this->turn_toward_direction(((GiGueMovementParameters *)movementParameters)->turn_speed * 2, (Vec *)&this->movement_velocity.x);
+            this->turn_toward_direction(((GiGueMovementParameters *)movementParameters)->turn_speed * 2, &movement_velocity);
         }
         play_persistent_sound((s32)(remap_sound_id(0x3A819)), (s32)this, (u32)&this->position, 0, 0);
         project_actor_to_ground(this, &this->position, 0);
@@ -1046,7 +1041,7 @@ void TObjEneMe1GiGue::update_hit_reaction() {
     case 1:
         advance_animation();
         if (!(this->actorFlags & 0x01000000)) {
-            Vec v = *(Vec *)&body_center_position.x;
+            Vec v = body_center_position;
             v.x += this->movement_velocity.x;
             v.z += this->movement_velocity.z;
             if (check_path_obstructed(this, &v) == 0) {
@@ -1279,7 +1274,7 @@ void TObjEneMe1GiGue::add_target_in_cone(TObjChara *target) {
 s32 TObjEneMe1GiGue::collect_targets() {
     s32 i;
     this->target_count = 0;
-    for (i = 0; i < lbl_805D586C; i++) {
+    for (i = 0; i < registered_player_count; i++) {
         TObjPlayer *target = TObjPlayer::get_player_data(i);
         add_target_in_cone(target);
     }
