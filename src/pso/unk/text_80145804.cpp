@@ -1,28 +1,17 @@
 #include "pso/system/GinjaTextureInput.h"
 #include "types.h"
-#include "pso/unk/text_80144AC8.h"
+#include "pso/TNECFontEORFunction.h"
 #include "pso/unk/text_80145804.h"
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TLanguage.h"
 #include "pso/object/TObjFish.h"
-#include "pso/player/TObjPlayer.h"
-typedef GinjaTextureInput Rect_80145804;
-
-typedef struct Tex_80145804 { u8 pad[0xC]; } Tex_80145804;
 
 typedef struct Font_80145804 {
     u32 *bufs[2];
-    Rect_80145804 rects[2];
-    Tex_80145804 names[2];
+    GinjaTextureInput rects[2];
+    GinjaTextureEntry names[2];
 } Font_80145804;
 
-typedef struct Img_80145804 { u8 pad[0x20]; u32 *pixels; } Img_80145804;
-
-typedef struct TexObj_80145804 { u8 pad[0xC]; Img_80145804 *img; } TexObj_80145804;
-
-typedef struct TexEnt_80145804 { u32 a; u32 b; TexObj_80145804 *obj; } TexEnt_80145804;
-
-typedef struct TexList_80145804 { TexEnt_80145804 *ents; } TexList_80145804;
 
 typedef struct Glyph_80145804 {
     s16 code;
@@ -37,20 +26,14 @@ typedef struct Glyph_80145804 {
 extern "C" {
 s32 set_stream_and_load_file__6TLobbyFi(void *);
 void *mem_alloc(u32);
-void *__nw__7TObjectFUl(u32);
 void set_texture_name(void *, void *, u32, u32);
 void load_texture_list(void *);
 extern u8 lbl_8043F3D8[];
-extern TexList_80145804 menu_font_texture_list[];
 extern s32 menu_font_glyph_data;
-extern s16 *lbl_805D56B4;
-extern s32 menu_font_upload_flags;
 extern Glyph_80145804 *menu_font_glyph_table;
-extern u8 lbl_805D56C0;
-extern void *menu_font_object;
 __declspec(section ".data") u32 *menu_font_glyph_pixel_buffers[2];
-Rect_80145804 menu_font_render_rects[2];
-Tex_80145804 lbl_8050C090[2];
+GinjaTextureInput menu_font_render_rects[2];
+GinjaTextureEntry lbl_8050C090[2];
 #pragma push
 #pragma dont_inline off
 #pragma inline_depth(4)
@@ -67,7 +50,7 @@ void load_menu_font(void) {
     s16 *t;
     s32 n;
     Glyph_80145804 *g;
-    void *f;
+    TNECFontEORFunction *f;
     u32 i;
     u32 j;
     u32 k;
@@ -80,18 +63,18 @@ void load_menu_font(void) {
         menu_font_render_rects[i].configure(0, 0x208, 0x100, 0x100);
         set_texture_name(lbl_8050C090 + i, menu_font_render_rects + i, i + 0xDCF28, 0x08800000);
     }
-    load_texture_list(menu_font_texture_list);
+    load_texture_list(&menu_font_texture_list);
     for (m = 0; m < 2; m++) {
-        *(menu_font_glyph_pixel_buffers + m) = menu_font_texture_list[0].ents[m].obj->img->pixels;
+        *(menu_font_glyph_pixel_buffers + m) = (u32 *)menu_font_texture_list.entries[m].texture->surface->pixels;
         clear_words_80145804(*(menu_font_glyph_pixel_buffers + m), 0x2000);
     }
-    lbl_805D56B4 = (s16 *)mem_alloc(0x100);
-    clear_words_80145804((u32 *)lbl_805D56B4, 0x40);
-    lbl_805D56B4[0] = 0xFFF;
-    lbl_805D56B4[1] = 0x3FFF;
-    lbl_805D56B4[2] = 0x5FFF;
-    lbl_805D56B4[3] = 0x7FFF;
-    TObjFish::set_global_param((s32)menu_font_texture_list);
+    menu_font_palette = (s16 *)mem_alloc(0x100);
+    clear_words_80145804((u32 *)menu_font_palette, 0x40);
+    menu_font_palette[0] = 0xFFF;
+    menu_font_palette[1] = 0x3FFF;
+    menu_font_palette[2] = 0x5FFF;
+    menu_font_palette[3] = 0x7FFF;
+    TObjFish::set_global_param((s32)&menu_font_texture_list);
     for (i = 0; i < 2; i++) {
         TLanguage::set_entry_index(i, 0);
     }
@@ -116,10 +99,7 @@ void load_menu_font(void) {
     }
     lbl_805D56C0 = 0;
     menu_font_upload_flags = 3;
-    f = __nw__7TObjectFUl(0x1C);
-    if (f != NULL) {
-        f = TNECFontEORFunction__ct((u8 *)f);
-    }
+    f = new TNECFontEORFunction;
     menu_font_object = f;
 }
 #pragma pop
