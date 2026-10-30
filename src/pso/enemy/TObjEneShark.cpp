@@ -140,7 +140,7 @@ void TObjEneShark::vfunc_93() {
     set_matrix_identity(0);
     post_translate_matrix(&position.x);
     rotate_matrix_y(0, rotation_y);
-    matrix_mult_vec_array(NULL, reinterpret_cast<const Vec *>(e), endpoints, 2);
+    matrix_mult_vec_array(NULL, e, endpoints, 2);
     pop_matrix();
     eff = attack_trails[idx];
     if (eff != NULL) {
