@@ -1,6 +1,7 @@
 #pragma push
 
 #include "types.h"
+#include "pso/npc/NpcModelRegistry.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/TMainTask.h"
 #include "pso/system/vector.h"
@@ -1296,7 +1297,7 @@ void TObjPlayer::load_seabed_dolphin() {
     seabed_dolphin_texture_handle = ((s32 (*)(void *))load_gvm_texture_file)(lbl_804719B8);
     Q_802C2958 q = *(Q_802C2958 *)seabed_dolphin_anim_binding;
     q.a = (*(Obj_802C2958 * *)&seabed_dolphin_bml_archive)->f430;
-    TLobby::spawn_npc_enemy((s16)0x40, (s32)(((s32 (*)(void *, s32, s32, s32, s32, void *))get_bml_model)((*(Obj_802C2958 * *)&seabed_dolphin_bml_archive), 0, ((Q_802C2958 *)seabed_dolphin_anim_binding)->c, ((Q_802C2958 *)seabed_dolphin_anim_binding)->b, ((Q_802C2958 *)seabed_dolphin_anim_binding)->a, seabed_dolphin_anim_binding)), (s32)seabed_dolphin_texture_handle, (s32)(&q), (f32)((16.0f)), (f32)((1e+01f)));
+    NpcModelRegistry::register_animated_chunk((s16)0x40, (void *)((s32)(((s32 (*)(void *, s32, s32, s32, s32, void *))get_bml_model)((*(Obj_802C2958 * *)&seabed_dolphin_bml_archive), 0, ((Q_802C2958 *)seabed_dolphin_anim_binding)->c, ((Q_802C2958 *)seabed_dolphin_anim_binding)->b, ((Q_802C2958 *)seabed_dolphin_anim_binding)->a, seabed_dolphin_anim_binding))), (void *)((s32)seabed_dolphin_texture_handle), (const NpcAnimationBinding *)((s32)(&q)), (f32)((16.0f)), (f32)((1e+01f)));
 }
 
 s32 TUnk_804E0988::sub_802C2A10() {

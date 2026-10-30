@@ -581,6 +581,7 @@ struct VObj_800D3314 : VBase_800D3314 {
 #include "pso/enemy/TObjEneRe7Berura.h"
 #include "pso/misc/RenderFadeState.h"
 #include "pso/object/TObjFish.h"
+#include "pso/npc/NpcModelRegistry.h"
 
 struct Vec_800D2CE4 { f32 x, y, z; };
 
@@ -743,7 +744,6 @@ s32 submit_cursor_candidate(void *, s32);
 s32 minimap_render_dot(void *, s32, s32, s32);
 s32 defer_render__7TObjectFv(void *);
 s32 __dl__7TObjectFPv(void *);
-s32 spawn_npc_enemy__6TLobbyFslllff(int, int, int, void *, f32, f32);
 void __destroy_arr(void *, void *, int, int);
 s32 __construct_array(void *, void *, void *, int, int);
 s32 rotate_matrix_y(int, int);
@@ -1663,8 +1663,8 @@ void TLobby::load_gyaranzo_resources() {
     {
         Pos_800D3C04 pos = lbl_8043C25C;
         pos.w[0] = AREA->f430;
-        spawn_npc_enemy__6TLobbyFslllff(0x20, AREA->res->r38, AREA->res->r3C, &pos, lbl_805DA298, lbl_805DA258);
-        spawn_npc_enemy__6TLobbyFslllff(0x21, AREA->res->r48, AREA->res->r3C, &pos, lbl_805DA298, lbl_805DA258);
+        NpcModelRegistry::register_animated_chunk(0x20, (void *)(AREA->res->r38), (void *)(AREA->res->r3C), (const NpcAnimationBinding *)(&pos), lbl_805DA298, lbl_805DA258);
+        NpcModelRegistry::register_animated_chunk(0x21, (void *)(AREA->res->r48), (void *)(AREA->res->r3C), (const NpcAnimationBinding *)(&pos), lbl_805DA298, lbl_805DA258);
     }
 }
 

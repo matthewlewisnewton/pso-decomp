@@ -32,6 +32,7 @@ extern "C" void test_flag_256__9TObjCharaFv();
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/misc/MaterialColorFade.h"
 #include "pso/TParticleCtrl.h"
+#include "pso/npc/NpcModelRegistry.h"
 #pragma readonly_strings on
 
 struct VBase_18_800A2F94 { char pad[0x18]; };
@@ -1719,7 +1720,7 @@ u8 *TObjPlayer__sub_800A2F94(u8 *self, s32 arg1, u8 *arg2) {
     {
         Atk_800A2F94 atk = dark_gunner_attack_binding_desc;
         atk.w[0] = *(s32 *)(G500C + 0x430);
-        TLobby::spawn_npc_enemy(0x19, *(s32 *)(*(u8 **)(G500C + 0x42C) + 0x18), *(s32 *)(*(u8 **)(G500C + 0x42C) + 0x1C), (s32)&atk, 10.0f, 0.0f);
+        NpcModelRegistry::register_animated_chunk(0x19, (void *)(*(s32 *)(*(u8 **)(G500C + 0x42C) + 0x18)), (void *)(*(s32 *)(*(u8 **)(G500C + 0x42C) + 0x1C)), (const NpcAnimationBinding *)((s32)&atk), 10.0f, 0.0f);
     }
     return self;
 }

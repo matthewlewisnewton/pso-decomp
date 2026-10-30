@@ -24,6 +24,7 @@
 #include "pso/enemy/TObjEneBeast.h"
 #include "pso/enemy/TObjEnePanarms.h"
 #include "pso/map/FloorArea.h"
+#include "pso/npc/NpcModelRegistry.h"
 
 struct VBase_14_800A7BEC { char pad[0x14]; };
 
@@ -483,7 +484,6 @@ u8 *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 void draw_trail_with_colors(void *, s32, s32, s32, s32);
 void *init_trail_buffer__11TBoss4Type3FPvifff(void *, s32, f32, f32, f32);
 s32 *mem_alloc(s32);
-void spawn_npc_enemy__6TLobbyFslllff(int, int, int, void *, f32, f32);
 extern u8 lbl_8043AAA4[];
 extern s32 dimedian_resource_handles[];
 extern s32 dimedian_last_draw_tick[];
@@ -798,8 +798,7 @@ void TLobby::load_dimedian_resources() {
         Anim_800A8118 anim = { (s32)RES_800A8118->motions, dimedian_action_table, 2, 0xC0000 };
         for (i = 0; i < 3; i++) {
             u8 *b = *(u8 **)((s8 *)(*(u8 **)&dimedian_resource_ptr) + 0x42C) + i * 0x10;
-            spawn_npc_enemy__6TLobbyFslllff(ids[i], *(s32 *)((s8 *)b + 8), *(s32 *)((s8 *)b + 0xC), &anim,
-                dimedian_collision_body_table[i].radius, 0.0f);
+            NpcModelRegistry::register_animated_chunk(ids[i], (void *)(*(s32 *)((s8 *)b + 8)), (void *)(*(s32 *)((s8 *)b + 0xC)), (const NpcAnimationBinding *)(&anim), dimedian_collision_body_table[i].radius, 0.0f);
         }
     }
 }

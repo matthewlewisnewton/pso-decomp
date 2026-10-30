@@ -26,6 +26,7 @@ extern "C" void render__12TObjGrassWebFv();
 #include "pso/object/TObjFish.h"
 
 #include "pso/player/TObjPlayer.h"
+#include "pso/npc/NpcModelRegistry.h"
 
 extern "C" {
 s32 lbl_805D5140;
@@ -1781,7 +1782,7 @@ void TObjGrass::load_resources() {
     {
     Quad_800BF66C q = grass_spawn_descriptor;
     q.a = (s32) ((Data_800BF66C *)TObjGrass__resource_bundle)->f430;
-    TLobby::spawn_npc_enemy((s16)0x35, (s32)(((Data_800BF66C *)TObjGrass__resource_bundle)->f42c->f8), (s32)(((Data_800BF66C *)TObjGrass__resource_bundle)->f42c->fC), (s32)&q, (f32)((1e+01f)), (f32)((0.0f)));
+    NpcModelRegistry::register_animated_chunk((s16)0x35, (void *)((s32)(((Data_800BF66C *)TObjGrass__resource_bundle)->f42c->f8)), (void *)((s32)(((Data_800BF66C *)TObjGrass__resource_bundle)->f42c->fC)), (const NpcAnimationBinding *)((s32)&q), (f32)((1e+01f)), (f32)((0.0f)));
     }
 }
 

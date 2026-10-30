@@ -9,6 +9,7 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/render/render_util.h"
+#include "pso/npc/NpcModelRegistry.h"
 
 struct Rec_800B8B08 { u8 vec[0x18]; s32 f18; u32 flags; };
 
@@ -218,7 +219,7 @@ void TObjCGrass::load_resources() {
     stack.sp14 = *(s32 *)((s8 *)&cgrass_anim_binding.value + 0xC);
     stack.sp8 = *(s32 *)((s8 *)TObjCGrass_bml_resource + 0x430);
     temp_r5 = (u8 *)(*(u8 **)((s8 *)TObjCGrass_bml_resource + 0x42C));
-    TLobby::spawn_npc_enemy((s16)(0x36), (s32)((int) (*(s32 *)((s8 *)temp_r5 + 8))), (s32)((int) (*(s32 *)((s8 *)temp_r5 + 0xC))), (s32)((void *)&stack.sp8), (f32)lbl_805D9E68, (f32)TObjCGrass__data_805D9E64);
+    NpcModelRegistry::register_animated_chunk((s16)(0x36), (void *)((s32)((int) (*(s32 *)((s8 *)temp_r5 + 8)))), (void *)((s32)((int) (*(s32 *)((s8 *)temp_r5 + 0xC)))), (const NpcAnimationBinding *)((s32)((void *)&stack.sp8)), (f32)lbl_805D9E68, (f32)TObjCGrass__data_805D9E64);
 }
 
 }

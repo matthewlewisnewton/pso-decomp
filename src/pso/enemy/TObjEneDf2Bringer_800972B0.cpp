@@ -749,6 +749,7 @@ struct Vec_80097820 { f32 x, y, z; };
 u8 *construct_bringer_rush_effect(u8 *, s32, u8 *, s32, f32);
 #include "pso/misc/TNowLoading.h"
 #include "pso/object/TObjFish.h"
+#include "pso/npc/NpcModelRegistry.h"
 struct VBase_18_d3b6b2 { char pad[0x18]; };
 
 struct VObj_18_d3b6b2 : VBase_18_d3b6b2 {
@@ -2887,7 +2888,7 @@ void TObjEneDf2Bringer::load_resources() {
   {
     Sp_80099BD4 sp = lbl_8043A0BC[0];
     sp.a = *((s32 *) (((u8 *) TObjEneDf2Bringer__resource_bundle) + 0x430));
-    TLobby::spawn_npc_enemy((s16)0x16, (s32)(*((s32 *) ((*((u8 **) (((u8 *) TObjEneDf2Bringer__resource_bundle) + 0x42C))) + 8))), (s32)(*((s32 *) ((*((u8 **) (((u8 *) TObjEneDf2Bringer__resource_bundle) + 0x42C))) + 0xC))), (s32)&sp, (f32)TObjEneDf2Bringer__data_805D9808, (f32)TObjEneDf2Bringer__data_805D97E0);
+    NpcModelRegistry::register_animated_chunk((s16)0x16, (void *)((s32)(*((s32 *) ((*((u8 **) (((u8 *) TObjEneDf2Bringer__resource_bundle) + 0x42C))) + 8)))), (void *)((s32)(*((s32 *) ((*((u8 **) (((u8 *) TObjEneDf2Bringer__resource_bundle) + 0x42C))) + 0xC)))), (const NpcAnimationBinding *)((s32)&sp), (f32)TObjEneDf2Bringer__data_805D9808, (f32)TObjEneDf2Bringer__data_805D97E0);
   }
 }
 }

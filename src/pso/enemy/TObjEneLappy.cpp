@@ -1169,6 +1169,7 @@ void *TObjEneLappy::create(void *arg0) {
 #include "pso/enemy/TObjEneRe2Flower.h"
 #include "pso/enemy/TObjEneRe7Berura.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
+#include "pso/npc/NpcModelRegistry.h"
 
 struct Set_800C1C4C {
     u8 pad0[0xA];
@@ -1687,7 +1688,6 @@ s32 dispatch_shared_handler_b__6TLobbyFl(s32);
 s32 register_boss__6TLobbyFl(s32);
 s32 load_resource_from_descriptor(s32, int, void *, int, int, int);
 u8 *load_gvm_texture_file(s32 arg0);
-void spawn_npc_enemy__6TLobbyFslllff(int, int, int, void *, f32, f32);
 extern u8 lbl_8043BA28[];
 extern u8 lbl_8043BA44[];
 extern const Desc_800C17B8 lappy_resource_binding_desc;
@@ -1822,14 +1822,11 @@ void TObjEneLappy::load_resources() {
         u8 *res = RES_800C17B8;
         Desc_800C17B8 d = lappy_resource_binding_desc;
         d.a = *(s32 *)(res + 0x430);
-        spawn_npc_enemy__6TLobbyFslllff(5, *(s32 *)(*(u8 **)(RES_800C17B8 + 0x42C) + 8),
-                                        *(s32 *)(*(u8 **)(RES_800C17B8 + 0x42C) + 0xC), &d, lbl_805D9F28, lbl_805D9F4C);
+        NpcModelRegistry::register_animated_chunk(5, (void *)(*(s32 *)(*(u8 **)(RES_800C17B8 + 0x42C) + 8)), (void *)(*(s32 *)(*(u8 **)(RES_800C17B8 + 0x42C) + 0xC)), (const NpcAnimationBinding *)(&d), lbl_805D9F28, lbl_805D9F4C);
         if (TLobby::get_instance() == 0) {
-            spawn_npc_enemy__6TLobbyFslllff(6, *(s32 *)(*(u8 **)(RES_800C17B8 + 0x42C) + 8), (*(u32 *)&rappy_alternate_texture_list), &d,
-                                            lbl_805D9F28, lbl_805D9F4C);
+            NpcModelRegistry::register_animated_chunk(6, (void *)(*(s32 *)(*(u8 **)(RES_800C17B8 + 0x42C) + 8)), (void *)((*(u32 *)&rappy_alternate_texture_list)), (const NpcAnimationBinding *)(&d), lbl_805D9F28, lbl_805D9F4C);
         } else {
-            spawn_npc_enemy__6TLobbyFslllff(6, *(s32 *)(*(u8 **)(RES_800C17B8 + 0x42C) + 0x18),
-                                            *(s32 *)(*(u8 **)(RES_800C17B8 + 0x42C) + 0x1C), &d, lbl_805D9F28, lbl_805D9F4C);
+            NpcModelRegistry::register_animated_chunk(6, (void *)(*(s32 *)(*(u8 **)(RES_800C17B8 + 0x42C) + 0x18)), (void *)(*(s32 *)(*(u8 **)(RES_800C17B8 + 0x42C) + 0x1C)), (const NpcAnimationBinding *)(&d), lbl_805D9F28, lbl_805D9F4C);
         }
     }
 }

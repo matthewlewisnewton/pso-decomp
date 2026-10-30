@@ -170,6 +170,7 @@ s32 TObjEneRe4Sorcerer::vfunc_83() { if (((int (*)(void*))get_target_info__9TObj
 #include "pso/misc/TTecRaFoie.h"
 #include "pso/misc/TTecResta.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
+#include "pso/npc/NpcModelRegistry.h"
 
 struct VBase_14 { char pad[0x14]; };
 
@@ -2454,7 +2455,7 @@ void TObjEneRe4Sorcerer::load_resources() {
     TObjEneRe4Sorcerer__uv_scroll_buffer = r;
     Params_800F0464 p = re4_sorcerer_spawn_descriptor;
     p.a = *(s32 *)((s8 *)sorcerer_bml_resource + 0x430);
-    TLobby::spawn_npc_enemy((s16)0x2A, (s32)(*(s32 *)((s8 *)(*(u8 **)((s8 *)sorcerer_bml_resource + 0x42C)) + 8)), (s32)(*(s32 *)((s8 *)(*(u8 **)((s8 *)sorcerer_bml_resource + 0x42C)) + 0xC)), (s32)&p, re4_sorcerer_collision_body_part_table[3], (f32)TObjEneRe4Sorcerer__data_805DA78C);
+    NpcModelRegistry::register_animated_chunk((s16)0x2A, (void *)((s32)(*(s32 *)((s8 *)(*(u8 **)((s8 *)sorcerer_bml_resource + 0x42C)) + 8))), (void *)((s32)(*(s32 *)((s8 *)(*(u8 **)((s8 *)sorcerer_bml_resource + 0x42C)) + 0xC))), (const NpcAnimationBinding *)((s32)&p), re4_sorcerer_collision_body_part_table[3], (f32)TObjEneRe4Sorcerer__data_805DA78C);
 }
 
 void TBoss3Volopt__sub_800F059C(void) {  }

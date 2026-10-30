@@ -25,6 +25,7 @@ extern "C" void test_flag_256__9TObjCharaFv();
 
 #include "pso/enemy/TObjEnePanarms.h"
 #include "pso/misc/TLobby.h"
+#include "pso/npc/NpcModelRegistry.h"
 
 #define CAT2(a, b) a##b
 #define CAT(a, b) CAT2(a, b)
@@ -1359,7 +1360,7 @@ void TObjEneRe7Berura::load_static_resources() {
     {
         Atk_800959F8 atk = ene_re7_berura_attack_def;
         atk.w[0] = (s32)RES->f430;
-        TLobby::spawn_npc_enemy(0x15, *(s32 *)(RES->f42C + 8), *(s32 *)(RES->f42C + 0xC), (s32)&atk, lbl_805D9788, TObjEneRe7Berura__data_805D972C);
+        NpcModelRegistry::register_animated_chunk(0x15, (void *)(*(s32 *)(RES->f42C + 8)), (void *)(*(s32 *)(RES->f42C + 0xC)), (const NpcAnimationBinding *)((s32)&atk), lbl_805D9788, TObjEneRe7Berura__data_805D972C);
     }
 }
 

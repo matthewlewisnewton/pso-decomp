@@ -33,6 +33,7 @@ extern BmlResourceDescriptor TObjEneEpsilonGuard__resource_descriptor;
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/misc/TLobby.h"
 #include "pso/item/TItem.h"
+#include "pso/npc/NpcModelRegistry.h"
 struct Stack_803626A8 {
     s32 sp8;
     s32 spC;
@@ -302,7 +303,7 @@ void TObjEneEpsilonGuard::load_assets() {
     {
         Quad_803627DC q = lbl_80479FAC;
         q.a = ((Res_803627DC *)lbl_805D6FA0)->f430;
-        TLobby::spawn_npc_enemy((s16)0x4E, (s32)(((Res_803627DC *)lbl_805D6FA0)->f42c->f8), (s32)(((Res_803627DC *)lbl_805D6FA0)->f42c->fC), (s32)&q, (f32)lbl_805E024C, (f32)lbl_805E0250);
+        NpcModelRegistry::register_animated_chunk((s16)0x4E, (void *)((s32)(((Res_803627DC *)lbl_805D6FA0)->f42c->f8)), (void *)((s32)(((Res_803627DC *)lbl_805D6FA0)->f42c->fC)), (const NpcAnimationBinding *)((s32)&q), (f32)lbl_805E024C, (f32)lbl_805E0250);
     }
 }
 

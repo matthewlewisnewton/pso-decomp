@@ -11,7 +11,7 @@ void NpcModelEntry::reset() {
     collision_radius = lbl_805DE7D8;
     animation.motions = NULL;
     animation.actions = NULL;
-    animation.standing_action = 0;
-    animation.conversation_action = 0;
-    animation.action_count = 0;
+    animation.default_action = 0;
+    animation.mode2_action = 0;
+    animation.debug_action_limit = 0;
 }

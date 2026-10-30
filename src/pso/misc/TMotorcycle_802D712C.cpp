@@ -7,9 +7,9 @@
 NpcAnimationBinding &NpcAnimationBinding::operator=(const NpcAnimationBinding &other) {
     motions = other.motions;
     actions = other.actions;
-    standing_action = other.standing_action;
-    conversation_action = other.conversation_action;
-    action_count = other.action_count;
+    default_action = other.default_action;
+    mode2_action = other.mode2_action;
+    debug_action_limit = other.debug_action_limit;
     return *this;
 }
 

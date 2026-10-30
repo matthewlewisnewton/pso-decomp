@@ -20,6 +20,7 @@
 #include "pso/enemy/TObjEneRe7Berura.h"
 #include "pso/misc/TNowLoading.h"
 #include "pso/object/TObjFish.h"
+#include "pso/npc/NpcModelRegistry.h"
 #define lbl_805D9ADC 2.0f
 #define lbl_805D9AE0 0.0f
 #define lbl_805D9AE4 100.0f
@@ -150,7 +151,6 @@ Res_800AA82C *load_enemy_bml_resource_named(void *, void *);
 void draw_trail_with_colors(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 void *init_trail_buffer__11TBoss4Type3FPvifff(void *, int, f32, f32, f32);
 u8 *load_gvm_texture_file(s32 arg0);
-void spawn_npc_enemy__6TLobbyFslllff(int, int, int, void *, f32, f32);
 extern u8 lbl_8043ACA4[];
 extern u8 lbl_8043ACBC[];
 extern u8 lbl_8043ACD0[];
@@ -1198,7 +1198,7 @@ void TObjPlayer__sub_800AA82C(void) {
         d.a = lbl_805D5090->f430;
         for (j = 0; j < 2; j++) {
             Mdl_800AA82C *e = &lbl_805D5090->mdl[j];
-            spawn_npc_enemy__6TLobbyFslllff(ids.v[j], e->f8, e->fC, &d, lbl_805D9B4C, lbl_805D9AE0);
+            NpcModelRegistry::register_animated_chunk(ids.v[j], (void *)(e->f8), (void *)(e->fC), (const NpcAnimationBinding *)(&d), lbl_805D9B4C, lbl_805D9AE0);
         }
     }
 }

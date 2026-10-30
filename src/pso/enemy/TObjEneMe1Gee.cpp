@@ -3981,6 +3981,7 @@ void *TObjEneMe1Gee::create(void *arg0) {
 
 #include "pso/misc/TLobby.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
+#include "pso/npc/NpcModelRegistry.h"
 
 struct Vec_800CC950 { f32 x, y, z; };
 
@@ -4045,7 +4046,7 @@ void TObjEneMe1Gee::load_resources() {
     {
         Q_800CC950 sp8 = lbl_8043BE6C;
         sp8.a = TObjEneMe1Gee__resource_bundle->f430;
-        TLobby::spawn_npc_enemy((s16)0x10, TObjEneMe1Gee__resource_bundle->f42c->f8, TObjEneMe1Gee__resource_bundle->f42c->fc, (s32)&sp8, (f32)lbl_805DA150, (f32)TObjEneMe1Gee__data_805DA0C0);
+        NpcModelRegistry::register_animated_chunk((s16)0x10, (void *)(TObjEneMe1Gee__resource_bundle->f42c->f8), (void *)(TObjEneMe1Gee__resource_bundle->f42c->fc), (const NpcAnimationBinding *)((s32)&sp8), (f32)lbl_805DA150, (f32)TObjEneMe1Gee__data_805DA0C0);
     }
 }
 

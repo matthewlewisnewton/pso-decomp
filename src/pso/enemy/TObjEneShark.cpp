@@ -23,6 +23,7 @@
 #include "pso/system/BmlResource.h"
 #include "pso/system/BmlResourceDescriptor.h"
 #include "pso/npc/NpcAnimationBinding.h"
+#include "pso/npc/NpcModelRegistry.h"
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/TObjControl.h"
 #include "pso/TMainTask.h"
@@ -349,7 +350,6 @@ u8 *load_enemy_bml_resource_named(void *, void *);
 u8 *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 void *init_trail_buffer__11TBoss4Type3FPvifff(void *, s32, f32, f32, f32);
 void *mem_alloc(u32 size);
-void spawn_npc_enemy__6TLobbyFslllff(int, int, int, void *, f32, f32);
 extern const char shark_alt_archive_filename[];
 extern u8 **shark_combat_stats;
 extern u8 **shark_attack_stats;
@@ -501,7 +501,7 @@ void TObjEneShark::load_resources() {
         s16 ids[3] = { 0x2F, 0x30, 0x31 };
         NpcAnimationBinding anim = { shark_bml_resource->motions, shark_actions, 0, 2, 12 };
         for (i = 0; i < 3; i++) {
-            spawn_npc_enemy__6TLobbyFslllff(ids[i], shark_bml_resource->models[i].model, shark_bml_resource->models[i].m_c, &anim,
+            NpcModelRegistry::register_animated_chunk(ids[i], (void *)shark_bml_resource->models[i].model, (void *)shark_bml_resource->models[i].m_c, &anim,
                 shark_npc_collision_radius, shark_zero);
         }
     }

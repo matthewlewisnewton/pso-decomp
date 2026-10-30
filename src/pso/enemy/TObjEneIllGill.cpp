@@ -33,6 +33,7 @@ extern "C" void render__15TObjIllGillKageFv();
 
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/TParticleCtrl.h"
+#include "pso/npc/NpcModelRegistry.h"
 
 struct IllGillEffectRotation { s32 x, y, z; };
 
@@ -1520,7 +1521,7 @@ void TObjEneIllGill::load_shared_resources() {
         IllGillSharedMotionSetup pos = lbl_8047A318;
         resource = illGillResource;
         pos.motions = resource->motions;
-        TLobby::spawn_npc_enemy((s16)0x43, (s32)(resource->models->model), (s32)(resource->models->m_c), (s32)&pos, illGillCollisionBody.radius, (f32)TObjEneIllGill__data_805E02BC);
+        NpcModelRegistry::register_animated_chunk((s16)0x43, (void *)((s32)(resource->models->model)), (void *)((s32)(resource->models->m_c)), (const NpcAnimationBinding *)((s32)&pos), illGillCollisionBody.radius, (f32)TObjEneIllGill__data_805E02BC);
     }
 }
 

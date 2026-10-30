@@ -20,6 +20,7 @@ extern "C" void test_flag_256__9TObjCharaFv();
 #include "pso/enemy/TObjEnePanarms.h"
 #include "pso/enemy/TObjEneRecon.h"
 #include "pso/misc/TLobby.h"
+#include "pso/npc/NpcModelRegistry.h"
 
 extern "C" {
 
@@ -582,7 +583,7 @@ void TObjEneRecobox::load_resources() {
         Spawn_80320260 s = recobox_resource_binding_desc;
         box = (Box_80320260 *)(*(u32 *)&TObjEneRecobox__static_instance);
         s.a = box->f430;
-        TLobby::spawn_npc_enemy((s16)0xD, box->f42C->f18, box->f42C->f1C, (s32)&s, (f32)(getf_80320260(sp)), (f32)lbl_805DF46C);
+        NpcModelRegistry::register_animated_chunk((s16)0xD, (void *)(box->f42C->f18), (void *)(box->f42C->f1C), (const NpcAnimationBinding *)((s32)&s), (f32)(getf_80320260(sp)), (f32)lbl_805DF46C);
     }
 }
 
