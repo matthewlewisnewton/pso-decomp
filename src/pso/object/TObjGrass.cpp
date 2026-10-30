@@ -1,3 +1,4 @@
+#include "pso/math/ScratchVectorStorage.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -363,8 +364,6 @@ void enemy_turn_toward_dest(void *, s32);
 f32 fabs_float(f32);
 s32 approach_angle_limited(s32, s32, s32);
 s32 project_actor_to_ground(void *, void *, s32);
-extern Vec_800BE8FC scratch_vec;
-extern Vec_800BE8FC lbl_8050BF00;
 f32 get_collision_body_radius(void *, int);
 s32 select_enemy_destination(void *, Vec_800BD4D8, int);
 s32 copy_position_if_valid__10TObjPlayerFii(void *, Vec_800BD4D8);
@@ -1311,66 +1310,66 @@ void TObjGrass::update_ai(void *arg0) {
         case 1:
             o->fB8 = 1;
             if ((1e+04f) < horizontal_distance_squared(&o->pos, &o->home)) {
-                Vec_800BE8FC *d;
-                Vec_800BE8FC *v;
+                Vec *d;
+                Vec *v;
                 s32 ang;
                 VecCopy((Vec *)&o->f29C, (const Vec *)&o->home);
                 VecCopy((Vec *)&o->f290, (const Vec *)&o->f2FC);
                 VecCopy((Vec *)&o->prev, (const Vec *)&o->pos);
-                VecCopy((Vec *)&scratch_vec, (const Vec *)&o->home);
-                subtract_vector(&scratch_vec, &o->pos);
-                d = &scratch_vec;
+                VecCopy((Vec *)&scratch_vec.vector, (const Vec *)&o->home);
+                subtract_vector(&scratch_vec.vector, &o->pos);
+                d = &scratch_vec.vector;
                 ang = (s32)((10430.38043493439) * atan2_float(d->x, d->z));
-                v = &lbl_8050BF00;
+                v = &lbl_8050BF00.vector;
                 v->x = v->y = (0.0f);
                 v->z = o->param->speed;
                 push_matrix_from(identity_matrix);
                 rotate_matrix_y(0, ang);
-                rotate_vector_by_matrix(0, &lbl_8050BF00, &lbl_8050BF00);
+                rotate_vector_by_matrix(0, &lbl_8050BF00.vector, &lbl_8050BF00.vector);
                 pop_matrices(1);
-                vec3_add_to(&lbl_8050BF00, &o->pos);
-                if (project_actor_to_ground(o, &lbl_8050BF00, 0) == 1) {
+                vec3_add_to(&lbl_8050BF00.vector, &o->pos);
+                if (project_actor_to_ground(o, &lbl_8050BF00.vector, 0) == 1) {
                     o->fB8 = 1;
-                    VecCopy((Vec *)&o->pos, (const Vec *)&lbl_8050BF00);
+                    VecCopy((Vec *)&o->pos, (const Vec *)&lbl_8050BF00.vector);
                     o->angle = approach_angle_limited(o->angle, ang, o->param->turn);
                 } else {
                     f32 r = fabs_float(d->z);
-                    if (fabs_float(scratch_vec.x) < r) {
-                        ang = (s32)((10430.38043493439) * atan2_float(scratch_vec.x, (0.0f)));
+                    if (fabs_float(scratch_vec.vector.x) < r) {
+                        ang = (s32)((10430.38043493439) * atan2_float(scratch_vec.vector.x, (0.0f)));
                     } else {
                         ang = (s32)((10430.38043493439) * atan2_float((0.0f), d->z));
                     }
                     v->y = (0.0f);
-                    lbl_8050BF00.x = (0.0f);
+                    lbl_8050BF00.vector.x = (0.0f);
                     v->z = o->param->speed;
                     push_matrix_from(identity_matrix);
                     rotate_matrix_y(0, ang);
-                    rotate_vector_by_matrix(0, &lbl_8050BF00, &lbl_8050BF00);
+                    rotate_vector_by_matrix(0, &lbl_8050BF00.vector, &lbl_8050BF00.vector);
                     pop_matrices(1);
-                    vec3_add_to(&lbl_8050BF00, &o->pos);
-                    if (project_actor_to_ground(o, &lbl_8050BF00, 0) == 1) {
+                    vec3_add_to(&lbl_8050BF00.vector, &o->pos);
+                    if (project_actor_to_ground(o, &lbl_8050BF00.vector, 0) == 1) {
                         o->fB8 = 1;
-                        VecCopy((Vec *)&o->pos, (const Vec *)&lbl_8050BF00);
+                        VecCopy((Vec *)&o->pos, (const Vec *)&lbl_8050BF00.vector);
                         o->angle = approach_angle_limited(o->angle, ang, o->param->turn);
                     } else {
                         s32 ang2;
                         r = fabs_float(d->z);
-                        if (fabs_float(scratch_vec.x) < r) {
+                        if (fabs_float(scratch_vec.vector.x) < r) {
                             ang2 = (s32)((10430.38043493439) * atan2_float((0.0f), d->z));
                         } else {
-                            ang2 = (s32)((10430.38043493439) * atan2_float(scratch_vec.x, (0.0f)));
+                            ang2 = (s32)((10430.38043493439) * atan2_float(scratch_vec.vector.x, (0.0f)));
                         }
                         v->y = (0.0f);
-                        lbl_8050BF00.x = (0.0f);
+                        lbl_8050BF00.vector.x = (0.0f);
                         v->z = o->param->speed;
                         push_matrix_from(identity_matrix);
                         rotate_matrix_y(0, ang2);
-                        rotate_vector_by_matrix(0, &lbl_8050BF00, &lbl_8050BF00);
+                        rotate_vector_by_matrix(0, &lbl_8050BF00.vector, &lbl_8050BF00.vector);
                         pop_matrices(1);
-                        vec3_add_to(&lbl_8050BF00, &o->pos);
-                        if (project_actor_to_ground(o, &lbl_8050BF00, 0) == 1) {
+                        vec3_add_to(&lbl_8050BF00.vector, &o->pos);
+                        if (project_actor_to_ground(o, &lbl_8050BF00.vector, 0) == 1) {
                             o->fB8 = 1;
-                            VecCopy((Vec *)&o->pos, (const Vec *)&lbl_8050BF00);
+                            VecCopy((Vec *)&o->pos, (const Vec *)&lbl_8050BF00.vector);
                             o->angle = approach_angle_limited(o->angle, ang2, o->param->turn);
                         } else {
                             o->fB8 = 1;

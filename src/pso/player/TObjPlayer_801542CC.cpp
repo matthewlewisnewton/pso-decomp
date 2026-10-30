@@ -1,3 +1,4 @@
+#include "pso/math/ScratchVectorStorage.h"
 #include "types.h"
 #include "pso/system/FlagWord.h"
 #include "pso/player/TObjChara.h"
@@ -135,7 +136,6 @@ s32 build_collision_box_corners(s32 arg0, s32 arg1, Box_80154EF8 *box, u32 out);
 s32 subtract_vector(void *, void *);
 extern s32 enable_v2_features;
 f32 get_collision_body_radius(Obj_801547E0 *self, s32 i);
-extern Vec_80155294 scratch_vec;
 f64 atan2_float(f32, f32);
 extern const f64 lbl_804400F0;
 s32 angle_difference_abs(s32, s32);
@@ -650,13 +650,13 @@ s32 resolve_player_box_contact(u8 *arg0, u8 *arg1, u8 *arg2) {
         moved = 0;
         xl = hw * hw + get_collision_body_radius((Obj_801547E0 *)arg0, 0);
         zl = hd * hd + get_collision_body_radius((Obj_801547E0 *)arg0, 0);
-        VecCopy__FP3VecPC3Vec(&scratch_vec, &radial);
+        VecCopy__FP3VecPC3Vec(&scratch_vec.vector, &radial);
         push_matrix_from(identity_matrix);
         rotate_matrix_y(0, -*(s32 *)(arg1 + 0x60));
-        rotate_vector_by_current_matrix(&scratch_vec, &scratch_vec);
+        rotate_vector_by_current_matrix(&scratch_vec.vector, &scratch_vec.vector);
         pop_matrix();
-        xx = scratch_vec.x * scratch_vec.x;
-        zz = scratch_vec.z * scratch_vec.z;
+        xx = scratch_vec.vector.x * scratch_vec.vector.x;
+        zz = scratch_vec.vector.z * scratch_vec.vector.z;
         dx = xl - xx;
         dz = zl - zz;
         if (xx + zz < lbl_805DB284) {
@@ -667,13 +667,13 @@ s32 resolve_player_box_contact(u8 *arg0, u8 *arg1, u8 *arg2) {
         } else if (*(u32 *)(arg2 + 0x18) & 0x20000000) {
             v.x = v.y = v.z = TObjPlayer__data_805DB270;
             if (hd < hw) {
-                if (TObjPlayer__data_805DB270 < scratch_vec.z) {
+                if (TObjPlayer__data_805DB270 < scratch_vec.vector.z) {
                     v.z = lbl_805DB288;
                 } else {
                     v.z = lbl_805DB28C;
                 }
             } else {
-                if (TObjPlayer__data_805DB270 < scratch_vec.x) {
+                if (TObjPlayer__data_805DB270 < scratch_vec.vector.x) {
                     v.x = lbl_805DB288;
                 } else {
                     v.x = lbl_805DB28C;
@@ -681,12 +681,12 @@ s32 resolve_player_box_contact(u8 *arg0, u8 *arg1, u8 *arg2) {
             }
             SHIFT_80155294(*(s32 *)(arg1 + 0x60));
         } else if (dx < dz) {
-            v.x = scratch_vec.x < 0.0f ? lbl_805DB28C : lbl_805DB288;
+            v.x = scratch_vec.vector.x < 0.0f ? lbl_805DB28C : lbl_805DB288;
             v.z = v.y = TObjPlayer__data_805DB270;
             SHIFT_80155294(*(s32 *)(arg1 + 0x60));
             v.x = TObjPlayer__data_805DB270;
             v.y = TObjPlayer__data_805DB270;
-            if (scratch_vec.z < TObjPlayer__data_805DB270) {
+            if (scratch_vec.vector.z < TObjPlayer__data_805DB270) {
                 v.z = lbl_805DB290;
             } else {
                 v.z = lbl_805DB294;
@@ -695,13 +695,13 @@ s32 resolve_player_box_contact(u8 *arg0, u8 *arg1, u8 *arg2) {
         } else {
             v.x = TObjPlayer__data_805DB270;
             v.y = TObjPlayer__data_805DB270;
-            if (scratch_vec.z < TObjPlayer__data_805DB270) {
+            if (scratch_vec.vector.z < TObjPlayer__data_805DB270) {
                 v.z = lbl_805DB28C;
             } else {
                 v.z = lbl_805DB288;
             }
             SHIFT_80155294(*(s32 *)(arg1 + 0x60));
-            v.x = scratch_vec.x < 0.0f ? lbl_805DB290 : lbl_805DB294;
+            v.x = scratch_vec.vector.x < 0.0f ? lbl_805DB290 : lbl_805DB294;
             v.z = v.y = TObjPlayer__data_805DB270;
             SHIFT_80155294(*(s32 *)(arg1 + 0x60));
         }

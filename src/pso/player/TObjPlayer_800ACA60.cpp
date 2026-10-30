@@ -1,3 +1,4 @@
+#include "pso/math/ScratchVectorStorage.h"
 #include "pso/player/TObjChara.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -576,7 +577,6 @@ void render__11TObjEneMojaFv(u8 *arg0);
 
 s32 approach_angle_limited(s32, s32, s32);
 
-extern Vec_800AE450 scratch_vec;
 void update_appearance_drop__11TObjEneMojaFv(Moja_800AE450 *self);
 
 s32 enemy_turn_toward_dest(void *, s32);
@@ -1190,10 +1190,10 @@ void update_appearance_drop__11TObjEneMojaFv(Moja_800AE450 *self) {
     switch (self->phase) {
     case 0:
     default:
-        VecCopy((Vec *)&scratch_vec, (const Vec *)&self->home);
-        subtract_vector(&scratch_vec, &self->pos);
+        VecCopy((Vec *)&scratch_vec.vector, (const Vec *)&self->home);
+        subtract_vector(&scratch_vec.vector, &self->pos);
         self->angle = approach_angle_limited(self->angle,
-            (s32)(lbl_8043B0C8[0] * atan2_float(scratch_vec.x, scratch_vec.z)),
+            (s32)(lbl_8043B0C8[0] * atan2_float(scratch_vec.vector.x, scratch_vec.vector.z)),
             self->turn->step);
         if (self->angle >= self->turn->step) {
             return;
@@ -1204,11 +1204,11 @@ void update_appearance_drop__11TObjEneMojaFv(Moja_800AE450 *self) {
         }
         VecCopy((Vec *)&self->dest, (const Vec *)&self->home);
         VecCopy((Vec *)&self->from, (const Vec *)&self->pos);
-        self->speed = newton_sqrtf(scratch_vec.x * scratch_vec.x + scratch_vec.z * scratch_vec.z);
+        self->speed = newton_sqrtf(scratch_vec.vector.x * scratch_vec.vector.x + scratch_vec.vector.z * scratch_vec.vector.z);
         ticks = lbl_805D9C04 / self->fC8;
         self->speed = self->speed / ticks;
         ((s32 (*)(void *, Vec_800AE450, Vec_800AE450, f32))calc_velocity_toward_destination)(self, self->from, self->dest, self->speed);
-        self->vel.y = scratch_vec.y / ticks;
+        self->vel.y = scratch_vec.vector.y / ticks;
         self->phase = 1;
         break;
     case 1:

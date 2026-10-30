@@ -1,3 +1,4 @@
+#include "pso/math/ScratchVectorStorage.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/system/vector.h"
 #include "pso/system/byteswap.h"
@@ -947,7 +948,6 @@ extern u8 lbl_804340A8[];
 extern s32 lbl_804340B0[];
 extern SceneEntry_8000FD54 main_phase_table[];
 extern SceneState_8000FD54 main_phase_state;
-extern Vec_800182A0 scratch_vec;
 extern RecoveredGlobal_80010E44_lbl_8050EA40 lobby_rule_settings;
 extern RecoveredGlobal_8001806C_lbl_8058D490 identity_matrix;
 extern s32 camera_split_screen_selector;
@@ -4215,13 +4215,13 @@ s32 select_enemy_destination(Obj_800182A0 *self, Vec_800182A0 *arg1, int flags) 
         if (self->fA4 != NULL) {
             subtract_vector(&d, &self->pos);
             a = (s32)(TObjPlayer__data_804340B8 * ((f64 (*)(f32, f32))atan2_float)(d.x, d.z));
-            scratch_vec.x = scratch_vec.y = (0.0f);
-            scratch_vec.z = self->fA4->fC;
+            scratch_vec.vector.x = scratch_vec.vector.y = (0.0f);
+            scratch_vec.vector.z = self->fA4->fC;
             push_matrix_from(&identity_matrix);
             rotate_matrix_y(0, (void *)a);
-            rotate_vector_by_matrix(0, &scratch_vec, &scratch_vec);
+            rotate_vector_by_matrix(0, &scratch_vec.vector, &scratch_vec.vector);
             pop_matrix();
-            vec3_add_to(&d, &scratch_vec);
+            vec3_add_to(&d, &scratch_vec.vector);
             vec3_add_to(&d, &self->pos);
         }
         if (!(flags & 2) && check_path_obstructed((u8 *)self, (Vec_80018428 *)&d) != 0) {

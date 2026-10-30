@@ -1,3 +1,4 @@
+#include "pso/math/ScratchVectorStorage.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
@@ -101,7 +102,6 @@ extern const f32 TObjEneIllGill__data_805E02DC;
 extern const f32 lbl_805E02E0;
 extern const f32 lbl_805E02E4;
 s32 project_actor_to_ground(void *, void *, int);
-extern Vec lbl_8050BF00;
 
 void submit_cursor_candidate(void *, int);
 f32 step_toward_destination__10TObjPlayerFPvPvf(void *, Vec, f32);
@@ -121,7 +121,6 @@ extern const f32 lbl_805E02F4;
 extern const f32 lbl_805E02F8;
 f32 fabs_float(f32);
 s32 approach_angle_limited(s32, s32, s32);
-extern Vec scratch_vec;
 
 void free_collision_body_parts(void *);
 
@@ -1124,32 +1123,32 @@ void TObjEneIllGill::move_toward_dest_with_detour() {
     VecCopy((Vec *)(Vec *)&o->m_29c, (const Vec *)&o->home_position);
     VecCopy((Vec *)&(*(Vec *)&o->m_290), (const Vec *)(Vec *)&o->body_center_position);
     VecCopy((Vec *)&o->prev_position, (const Vec *)&o->position);
-    VecCopy((Vec *)&scratch_vec, (const Vec *)&o->home_position);
-    subtract_vector(&scratch_vec, &o->position);
-    ang = (s32)(TObjEneIllGill__data_8047A348 * atan2_float(scratch_vec.x, scratch_vec.z));
+    VecCopy((Vec *)&scratch_vec.vector, (const Vec *)&o->home_position);
+    subtract_vector(&scratch_vec.vector, &o->position);
+    ang = (s32)(TObjEneIllGill__data_8047A348 * atan2_float(scratch_vec.vector.x, scratch_vec.vector.z));
     if (o->project_step_to_ground(ang) == 1) {
         o->requested_action = 1;
-        VecCopy((Vec *)&o->position, (const Vec *)&lbl_8050BF00);
+        VecCopy((Vec *)&o->position, (const Vec *)&lbl_8050BF00.vector);
         o->rotation_y = approach_angle_limited(o->rotation_y, ang, ((IllGillMovementParameters *)o->movementParameters)->turn);
     } else {
-        if (fabs_float(scratch_vec.x) < fabs_float(scratch_vec.z)) {
-            ang = (s32)(TObjEneIllGill__data_8047A348 * atan2_float(scratch_vec.x, TObjEneIllGill__data_805E02BC));
+        if (fabs_float(scratch_vec.vector.x) < fabs_float(scratch_vec.vector.z)) {
+            ang = (s32)(TObjEneIllGill__data_8047A348 * atan2_float(scratch_vec.vector.x, TObjEneIllGill__data_805E02BC));
         } else {
-            ang = (s32)(TObjEneIllGill__data_8047A348 * atan2_float(TObjEneIllGill__data_805E02BC, scratch_vec.z));
+            ang = (s32)(TObjEneIllGill__data_8047A348 * atan2_float(TObjEneIllGill__data_805E02BC, scratch_vec.vector.z));
         }
         if (o->project_step_to_ground(ang) == 1) {
             o->requested_action = 1;
-            VecCopy((Vec *)&o->position, (const Vec *)&lbl_8050BF00);
+            VecCopy((Vec *)&o->position, (const Vec *)&lbl_8050BF00.vector);
             o->rotation_y = approach_angle_limited(o->rotation_y, ang, ((IllGillMovementParameters *)o->movementParameters)->turn);
         } else {
-            if (fabs_float(scratch_vec.x) < fabs_float(scratch_vec.z)) {
-                ang = (s32)(TObjEneIllGill__data_8047A348 * atan2_float(TObjEneIllGill__data_805E02BC, scratch_vec.z));
+            if (fabs_float(scratch_vec.vector.x) < fabs_float(scratch_vec.vector.z)) {
+                ang = (s32)(TObjEneIllGill__data_8047A348 * atan2_float(TObjEneIllGill__data_805E02BC, scratch_vec.vector.z));
             } else {
-                ang = (s32)(TObjEneIllGill__data_8047A348 * atan2_float(scratch_vec.x, TObjEneIllGill__data_805E02BC));
+                ang = (s32)(TObjEneIllGill__data_8047A348 * atan2_float(scratch_vec.vector.x, TObjEneIllGill__data_805E02BC));
             }
             if (o->project_step_to_ground(ang) == 1) {
                 o->requested_action = 1;
-                VecCopy((Vec *)&o->position, (const Vec *)&lbl_8050BF00);
+                VecCopy((Vec *)&o->position, (const Vec *)&lbl_8050BF00.vector);
                 o->rotation_y = approach_angle_limited(o->rotation_y, ang, ((IllGillMovementParameters *)o->movementParameters)->turn);
             } else {
                 o->requested_action = 0;
@@ -1169,15 +1168,15 @@ void TObjEneIllGill::clear_charge_hits() {
 }
 
 s32 TObjEneIllGill::project_step_to_ground(s32 angle) {
-    lbl_8050BF00.y = TObjEneIllGill__data_805E02BC;
-    lbl_8050BF00.x = TObjEneIllGill__data_805E02BC;
-    lbl_8050BF00.z = ((IllGillMovementParameters *)movementParameters)->speed;
+    lbl_8050BF00.vector.y = TObjEneIllGill__data_805E02BC;
+    lbl_8050BF00.vector.x = TObjEneIllGill__data_805E02BC;
+    lbl_8050BF00.vector.z = ((IllGillMovementParameters *)movementParameters)->speed;
     push_matrix_from(identity_matrix);
     rotate_matrix_y(0, angle);
-    rotate_vector_by_matrix(0, &lbl_8050BF00, &lbl_8050BF00);
+    rotate_vector_by_matrix(0, &lbl_8050BF00.vector, &lbl_8050BF00.vector);
     pop_matrices(1);
-    vec3_add_to(&lbl_8050BF00, &position);
-    return project_actor_to_ground(this, &lbl_8050BF00, 0);
+    vec3_add_to(&lbl_8050BF00.vector, &position);
+    return project_actor_to_ground(this, &lbl_8050BF00.vector, 0);
 }
 
 void TObjEneIllGill::vfunc_58() {

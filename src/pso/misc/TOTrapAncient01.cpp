@@ -1,3 +1,4 @@
+#include "pso/math/ScratchVectorStorage.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/misc/TKeyBoardControl_8000F764.h"
@@ -384,7 +385,6 @@ void TOTrapAncient01::release_static_resource() {
     }
 }
 
-extern s32 scratch_vec[];
 extern s32 trap_ancient_light_color[];
 
 typedef struct RecoveredGlobal_80179E34_lbl_804B4834 RecoveredGlobal_80179E34_lbl_804B4834;
@@ -471,7 +471,7 @@ void TOTrapAncient02R::vfunc_86() {
     s32 x;
     x = is_current_room(this);
     if (x == 1) {
-        fn_80141CF0((void *)((char *)this + 80), scratch_vec, trap_ancient_light_color);
+        fn_80141CF0((void *)((char *)this + 80), (&scratch_vec.vector), trap_ancient_light_color);
         TOTrapAncient02R__sub_80154D78(this);
     }
 }
