@@ -10,7 +10,7 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/boss/TBoss3Volopt.h"
 #include "pso/boss/TBoss4Type2.h"
-#include "pso/enemy/TObjEneMe1GiGue.h"
+#include "pso/enemy/TObjEnemyCustom.h"
 #include "pso/misc/TNowLoading.h"
 
 struct Row_8008ED48 { u32 *p[11]; };
@@ -565,7 +565,7 @@ void TObjPlayer__sub_8008F910(u8 *arg0) {
                     var_r30 = 2;
                 }
             }
-            ((TObjEneMe1GiGue *)arg0)->update_if_active(var_r30);
+            ((TObjEnemyCustom *)arg0)->update_if_active(var_r30);
         }
         break;
     }

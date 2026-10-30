@@ -17,7 +17,7 @@
 #include "pso/boss/TUnk_80484840.h"
 #include "pso/boss/TUnk_80484870.h"
 #include "pso/enemy/TObjEneGyaranzo.h"
-#include "pso/enemy/TObjEneMe1GiGue.h"
+#include "pso/enemy/TObjEnemyCustom.h"
 #include "pso/math/AngleLookup.h"
 #include "pso/misc/TBreakUpMdl.h"
 #include "pso/misc/TCameraCtrl.h"
@@ -499,7 +499,7 @@ void TBoss3VoloptP02::check_and_trigger() {
     if ((obj_testFlags30(0x800) == 0) && !(m_388 & 0x40000)) {
         check_and_notify();
         m_388 &= ~1;
-        ((TObjEneMe1GiGue *)this)->update_if_active(0xB);
+        ((TObjEnemyCustom *)this)->update_if_active(0xB);
     }
 }
 
@@ -507,7 +507,7 @@ void TBoss3VoloptP02::set_motion(u16 target_id) {
     if ((obj_testFlags30(0x800) == 0) && !(m_388 & 0x10000) && (mode != 9)) {
         targetId = target_id;
         m_388 &= ~1;
-        ((TObjEneMe1GiGue *)this)->update_if_active(9);
+        ((TObjEnemyCustom *)this)->update_if_active(9);
     }
 }
 
@@ -517,7 +517,7 @@ void TBoss3VoloptP02::set_action_wait(u16 target_id) {
         if (target_id != 0xFFFF) {
             targetId = target_id;
             m_388 &= ~1;
-            ((TObjEneMe1GiGue *)this)->update_if_active(0xA);
+            ((TObjEnemyCustom *)this)->update_if_active(0xA);
         }
     }
 }
@@ -1583,7 +1583,7 @@ void TBoss3VoloptP02::apply_hit_reaction(f32 delay) {
         check_and_notify();
         ring_radius = 55.0f + delay;
         m_388 &= ~1;
-        ((TObjEneMe1GiGue *)this)->update_if_active(0xC);
+        ((TObjEnemyCustom *)this)->update_if_active(0xC);
     }
 }
 
