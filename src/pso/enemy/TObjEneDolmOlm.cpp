@@ -1,3 +1,4 @@
+#include "pso/misc/PositionSoundEffects.h"
 #include "pso/render/reflection.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -1301,7 +1302,7 @@ void TObjEneDolmOlm::vfunc_83() {
     default:
         if (this->m_390 != 0) {
             TObjEneMe3SinowZoa__sub_800D758C(&self->obj);
-            ((TBoss3Volopt *)(self->sub38))->play_area_sound_effect();
+            play_area_sound_and_particles_b((const Vec *)(self->sub38));
             this->phase = 1;
             return;
         }

@@ -1,3 +1,4 @@
+#include "pso/misc/PositionSoundEffects.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/system/vector.h"
@@ -1411,13 +1412,6 @@ struct VObj_14_948132 : VBase_14_948132 {
     virtual s32 m5();
 };
 
-struct Stack_800F3FE4 {
-    s32 sp8;
-    f32 spC;
-};
-
-struct Vec_800F42B8 { f32 x, y, z; };
-
 struct VBase_14_800F42B8 { char pad[0x14]; };
 
 struct VSub_800F42B8 : VBase_14_800F42B8 {
@@ -1884,7 +1878,6 @@ extern const f32 lbl_805DA888;
 extern const f32 lbl_805DA88C;
 extern "C" {
 s32 TObjEneMe3SinowZoa__sub_800D758C(void *);
-s32 TBoss3Volopt__sub_800D8D88(void *, f32);
 void TObjEneMe3Stelth__sub_800F3FE4(u8 *arg0, s32 arg1);
 void *create_timed_particle_emitter(void *owner, s32 id, s32 b, s32 c);
 f32 *TBoss3Volopt__sub_800F059C(void *);
@@ -2438,9 +2431,7 @@ void TObjEneMe3Stelth::update_state_fade_in(s32 arg1) {
 }
 
 void TObjEneMe3Stelth__sub_800F3FE4(u8 *ene_dd, s32 arg1) {
-    typedef char sp8_offset[(offsetof(Stack_800F3FE4, sp8) == 0x0) ? 1 : -1];
-    typedef char spC_offset[(offsetof(Stack_800F3FE4, spC) == 0x4) ? 1 : -1];
-    Stack_800F3FE4 stack;
+    Vec stack;
     f32 temp_f1;
     switch (arg1) {
     case 4:
@@ -2449,10 +2440,10 @@ void TObjEneMe3Stelth__sub_800F3FE4(u8 *ene_dd, s32 arg1) {
         ((TObjEneDD *)(ene_dd))->vfunc_95();
         *(s32 *)((s8 *)ene_dd + 0x3CC) = (s32) (*(s32 *)((s8 *)ene_dd + 0x3CC) | 7);
         TObjEneMe3SinowZoa__sub_800D758C(ene_dd + 0x404);
-        VecCopy((Vec *)(&stack.sp8), (const Vec *)(ene_dd + 0x38));
+        VecCopy((Vec *)(&stack), (const Vec *)(ene_dd + 0x38));
         temp_f1 = *(f32 *)((s8 *)ene_dd + 0x3D0);
-        stack.spC = temp_f1 - TObjEneMe3Stelth__data_805DA824;
-        TBoss3Volopt__sub_800D8D88(&stack.sp8, temp_f1);
+        stack.y = temp_f1 - TObjEneMe3Stelth__data_805DA824;
+        play_area_sound_and_particles_a((const Vec *)(&stack));
         break;
     case 3:
         if (((VObj_14_948132 *)(ene_dd + (1028)))->m5() != 0) {
@@ -2525,7 +2516,7 @@ void TObjEneMe3Stelth::state_chase(s32 arg1) {
 
 void TObjEneMe3Stelth::sub_800F42B8(s32 arg1) {
     u8 *arg0 = (u8 *)this;
-    Vec_800F42B8 v;
+    Vec v;
     f32 t;
     switch (arg1) {
     case 4:
@@ -2539,7 +2530,7 @@ void TObjEneMe3Stelth::sub_800F42B8(s32 arg1) {
         t = *(f32 *)((s8 *)arg0 + 0x3D0);
         v.y = t - TObjEneMe3Stelth__data_805DA844;
         if (*(s32 *)((s8 *)arg0 + 0x3C0) == 0) {
-            TBoss3Volopt__sub_800D8D88(&v, t);
+            play_area_sound_and_particles_a((const Vec *)(&v));
         } else {
             create_timed_particle_emitter((u8 *)&this->position, 0x79, 0, 0xF);
         }

@@ -1,3 +1,4 @@
+#include "pso/misc/PositionSoundEffects.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/TObjControl.h"
@@ -80,8 +81,6 @@ extern "C" void rotate_vector_by_matrix(int, void *, void *);
 
 extern "C" s32 TObjEneMe3SinowZoa__sub_800D758C(void *);
 extern "C" u32 get_player_by_client_id(s32);
-extern "C" s32 play_area_sound_effect__12TBoss3VoloptFv(void *, s32);
-
 void move_with_wall_slide(u8 *arg0);
 
 struct BeamRotation { s32 x, y, z; };
@@ -1145,7 +1144,7 @@ void TObjEneNanoDrago::update_fade_in_state() {
         flags = actorFlags | 0x04000000;
         actorFlags = flags;
         requested_action = 0;
-        play_area_sound_effect__12TBoss3VoloptFv((u8 *)(&m_2fc), flags);
+        play_area_sound_and_particles_b((const Vec *)((u8 *)(&m_2fc)));
         TObjEneMe3SinowZoa__sub_800D758C((u8 *)(&appearFade));
         state = 1;
     case 1:

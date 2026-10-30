@@ -1,3 +1,4 @@
+#include "pso/misc/PositionSoundEffects.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "types.h"
@@ -1293,7 +1294,7 @@ void TObjGrass::update_ai(void *arg0) {
     case 0:
         obj_setFlags30(o, 0x04040000);
         TObjEneMe3SinowZoa__sub_800D758C(&o->sub);
-        ((TBoss3Volopt *)(&o->pos))->play_area_sound_effect();
+        play_area_sound_and_particles_b((const Vec *)(&o->pos));
         o->state = 1;
         break;
     case 1:

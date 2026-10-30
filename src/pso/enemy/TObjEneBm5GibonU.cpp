@@ -1,3 +1,4 @@
+#include "pso/misc/PositionSoundEffects.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -3663,7 +3664,7 @@ void TObjEneBm5GibonU__sub_800D02F8(Gibon_800D02F8 *g, s32 arg1) {
         g->f478 = 0;
         VecCopy((Vec *)home, (const Vec *)g->pos);
         TObjEneMe3SinowZoa__sub_800D758C(&g->sub);
-        ((TBoss3Volopt *)(g->pos))->play_area_sound_effect();
+        play_area_sound_and_particles_b((const Vec *)(g->pos));
         break;
     case 3:
         if (g->sub.m5() != 0) {

@@ -1,3 +1,4 @@
+#include "pso/misc/PositionSoundEffects.h"
 #include "pso/unk/TUnk_80494968.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "types.h"
@@ -334,7 +335,7 @@ void TObjEneShark::vfunc_83() {
     default:
         if (*(s32 *)&this->m_390 != 0) {
             TObjEneMe3SinowZoa__sub_800D758C((u8 *)arg0 + 0x3A8);
-            ((TBoss3Volopt *)(arg0->sub38))->play_area_sound_effect();
+            play_area_sound_and_particles_b((const Vec *)(arg0->sub38));
             *(s16 *)&this->m_328 = 1;
         } else {
             *(s16 *)&this->m_328 = 2;

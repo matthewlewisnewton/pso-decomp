@@ -1,3 +1,4 @@
+#include "pso/misc/PositionSoundEffects.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/enemy/TUnk_80493450.h"
@@ -1018,7 +1019,7 @@ void TObjEneMerillLia::sub_800D5570() {
         this->phase = 1;
         this->requested_action = 1;
         TObjEneMe3SinowZoa__sub_800D758C((u8 *)arg0 + 0x3A8);
-        ((TBoss3Volopt *)(arg0->sub38))->play_area_sound_effect();
+        play_area_sound_and_particles_b((const Vec *)(arg0->sub38));
         break;
     case 1:
         spawn_ground_effect__16TObjEneMerillLiaFPv((u8 *)arg0);

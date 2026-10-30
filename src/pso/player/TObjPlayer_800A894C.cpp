@@ -1,3 +1,4 @@
+#include "pso/misc/PositionSoundEffects.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/unk/TUnk_80494968.h"
 #include "types.h"
@@ -231,7 +232,6 @@ typedef struct Vec_800A9E9C { f32 x, y, z; } Vec_800A9E9C;
 
 extern "C" {
 s32 TObjEneMe3SinowZoa__sub_800D758C(void *);
-void TBoss3Volopt__sub_800D8D88(s32 arg0);
 void TObjPlayer__sub_800A8E04(u8 *arg0);
 void obj_setFlags30(void *, u32);
 void TObjPlayer__sub_800A8C1C(u8 *arg0);
@@ -456,7 +456,7 @@ void TObjPlayer__sub_800A8E04(u8 *ene_me1_gi_gue) {
         ((TObjEneMe1GiGue *)ene_me1_gi_gue)->actorFlags = (((TObjEneMe1GiGue *)ene_me1_gi_gue)->actorFlags | 0x04000000);
         ((TObjEneMe1GiGue *)ene_me1_gi_gue)->requested_action = 5;
         ((TObjMotion *)ene_me1_gi_gue)->advance_animation();
-        TBoss3Volopt__sub_800D8D88((s32)(ene_me1_gi_gue + 0x2FC));
+        play_area_sound_and_particles_a((const Vec *)((s32)(ene_me1_gi_gue + 0x2FC)));
         TObjEneMe3SinowZoa__sub_800D758C(ene_me1_gi_gue + 0x3B0);
         ((TObjEneMe1GiGue *)ene_me1_gi_gue)->state = 1;
     case 1:

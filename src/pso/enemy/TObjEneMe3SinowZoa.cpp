@@ -1,3 +1,4 @@
+#include "pso/misc/PositionSoundEffects.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/vector.h"
 #include "pso/system/NinjaTypes.h"
@@ -51,13 +52,6 @@ struct VObj_14_948132 : VBase_14_948132 {
     virtual void m4();
     virtual s32 m5();
 };
-
-struct Stack_80319B8C {
-    s32 sp8;
-    f32 spC;
-};
-
-struct Vec_80319E74 { f32 x, y; };
 
 struct VBase_18_64d9d3 { char pad[0x18]; };
 
@@ -571,7 +565,6 @@ s32 init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, int, int);
 s32 TObjEneMe3SinowZoa__sub_800D72A4(void *);
 s32 TObjEneMe3SinowZoa__sub_800D758C(void *);
 void *__dt__13TUnk_80494938Fv(void *arg0, s16 arg1);
-s32 TBoss3Volopt__sub_800D8D88(void *, f32);
 f32 * TBoss3Volopt__sub_800F059C(void *);
 s32 check_enemy_body_collisions(void *);
 void free_collision_body_parts(void *);
@@ -2761,9 +2754,7 @@ extern const f32 lbl_805DF370;
 #pragma push
 #pragma fp_contract on
 void TObjEneMe3SinowZoa__sub_80319B8C(u8 *ene_dd, s32 arg1) {
-    typedef char sp8_offset[(offsetof(Stack_80319B8C, sp8) == 0x0) ? 1 : -1];
-    typedef char spC_offset[(offsetof(Stack_80319B8C, spC) == 0x4) ? 1 : -1];
-    Stack_80319B8C stack;
+    Vec stack;
     f32 temp_f1;
     switch (arg1) {
     case 4:
@@ -2772,10 +2763,10 @@ void TObjEneMe3SinowZoa__sub_80319B8C(u8 *ene_dd, s32 arg1) {
         ((TObjEneDD *)(ene_dd))->vfunc_95();
         *(s32 *)((s8 *)ene_dd + 0x3CC) = (s32) (*(s32 *)((s8 *)ene_dd + 0x3CC) | 7);
         TObjEneMe3SinowZoa__sub_800D758C(ene_dd + 0x414);
-        VecCopy((Vec *)(&stack.sp8), (const Vec *)(ene_dd + 0x38));
+        VecCopy((Vec *)(&stack), (const Vec *)(ene_dd + 0x38));
         temp_f1 = *(f32 *)((s8 *)ene_dd + 0x3E0);
-        stack.spC = temp_f1 - TObjEneMe3SinowZoa__data_805DF314;
-        TBoss3Volopt__sub_800D8D88(&stack.sp8, temp_f1);
+        stack.y = temp_f1 - TObjEneMe3SinowZoa__data_805DF314;
+        play_area_sound_and_particles_a((const Vec *)(&stack));
         break;
     case 3:
         if (((VObj_14_948132 *)(ene_dd + (1044)))->m5() != 0) {
@@ -2848,7 +2839,7 @@ void TObjEneMe3SinowZoa::state_chase(s32 arg1) {
 }
 
 void TObjEneMe3SinowZoa::sub_80319E74(s32 arg1) {
-    Vec_80319E74 v;
+    Vec v;
     f32 t;
     u8 *arg0 = (u8 *)this;
     switch (arg1) {
@@ -2863,7 +2854,7 @@ void TObjEneMe3SinowZoa::sub_80319E74(s32 arg1) {
         t = *(f32 *)((s8 *)arg0 + 0x3E0);
         v.y = t - TObjEneMe3SinowZoa__data_805DF320;
         if (*(s32 *)((s8 *)arg0 + 0x3C0) == 0) {
-            TBoss3Volopt__sub_800D8D88(&v, t);
+            play_area_sound_and_particles_a((const Vec *)(&v));
         } else {
             create_timed_particle_emitter(arg0 + 0x38, 0x79, 0, 0xF);
         }
