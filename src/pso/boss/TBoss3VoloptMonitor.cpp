@@ -1,3 +1,4 @@
+#include "pso/player/TObjChara.h"
 #include "types.h"
 #include "pso/system/NinjaUtil.h"
 #include "pso/boss/TBoss3VoloptCore.h"
@@ -277,7 +278,7 @@ void TBoss3VoloptMonitor::run_task() {
     dispatch_state();
     update_prev_position();
     if (obj_testFlags30(0x800) == 0) {
-        ((TBoss3VoloptHiraisin *)this)->copy_position();
+        ((TObjChara *)this)->copy_body_to_center();
         submit_cursor_candidate(this, -1);
         minimap_render_dot(&position, -0x5DB4, 1, 0);
     }

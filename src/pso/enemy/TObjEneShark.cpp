@@ -13,7 +13,6 @@
 #include "pso/unk/text_803D96A8.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/boss/TBoss3Volopt.h"
-#include "pso/boss/TBoss3VoloptHiraisin.h"
 #include "pso/enemy/TObjEneDD.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/object/TObjFish.h"
@@ -580,7 +579,7 @@ TObjEneShark::TObjEneShark(TObject *parent, void *setData)
     movementParameters = &shark_movement_parameters[subtype];
     referenceHp = hp;
     update_prev_position();
-    ((TBoss3VoloptHiraisin *)this)->copy_position();
+    copy_body_to_center();
     initialize_enemy_photon_effect(this);
     m_2ac = (s32)(shark_angle_units_per_degree * (shark_full_circle_degrees * random_ratio()));
     resetTimer = 0xF;

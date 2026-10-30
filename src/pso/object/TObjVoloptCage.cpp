@@ -1,3 +1,4 @@
+#include "pso/player/TObjChara.h"
 #pragma readonly_strings on
 #pragma fp_contract on
 
@@ -248,7 +249,7 @@ void TObjVoloptCage::run_task() {
     }
     update_state();
     update_prev_position();
-    ((TBoss3VoloptHiraisin *)this)->copy_position();
+    ((TObjChara *)this)->copy_body_to_center();
     submit_cursor_candidate(this, -1);
 }
 

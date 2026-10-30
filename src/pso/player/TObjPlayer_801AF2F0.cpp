@@ -7568,7 +7568,7 @@ void run_task__10TObjPlayerFv(TObjPlayer *player) {
     ((s32 (*)(void *, s16, s32))run_action_state_phase__10TObjPlayerFisi)(player, player->mode, 1);
     player->advance_animation();
     ((TObjChara *)player)->calc_attach_pos();
-    ((TBoss3VoloptHiraisin *)player)->copy_position();
+    ((TObjChara *)player)->copy_body_to_center();
     ((TObjPlayer *)((u8 *)player + 0x84C))->copy_offset_position(player);
     if (((s32 (*)(void *, s32))obj_testFlags30__14TObjCollidableFUl)(player, 0x800) != 0) {
         ((TObjCollidable *)player)->refresh_collision_body_centers();
