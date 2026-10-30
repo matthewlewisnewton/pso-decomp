@@ -286,26 +286,6 @@ struct VObj_18_p5 : VBase_18 {
 struct Obj_800B3E40 { u8 pad[0x18]; void *vtbl; u8 pad2[0x440 - 0x1c]; u8 arr[4][0x1c]; };
 
 
-typedef struct Nest_800B39CC {
-    u8 pad0[0x2C];
-    s16 f2C;
-    u8 pad2E[0x38 - 0x2E];
-    Vec pos;
-    u8 pad44[0x3B0 - 0x44];
-    s32 count;
-    s32 spawned;
-    u16 ids[6];
-    u16 nextId;
-    u8 pad3C6[0x3D4 - 0x3C6];
-    u8 f3D4[0xC];
-} Nest_800B39CC;
-
-
-
-
-
-
-
 s32 is_split_screen();
 f32 atan2_float(f32 y, f32 x);
 s32 dispatch_shared_handler_a__6TLobbyFl(int);
@@ -331,7 +311,6 @@ s32 is_main_phase_15__9TObjEneDDFv();
 void update_player_state__9TObjEneDDFv(void *, Vec *, s32);
 void get_camera_ctrl__9TObjEneDDFv(s32, s32);
 s32 get_random_scaled__9TObjEneDDFv(void *);
-f32 rand_range__9TObjEneDDFff(void *, f32, f32);
 s32 noop__12TBoss8DragonFv(void *);
 s32 TBoss8Dragon__sub_800BB7D4(void *, s32);
 s32 pack_debug_text_position(s32, s32);
@@ -871,7 +850,7 @@ void TObjEneBm3FlyNest::state_dying(s32 arg1) {
             if (this->frame < lbl_805D9D08) {
                 this->state_timer += 1;
                 if (this->state_timer >= 4) {
-                    r = rand_range__9TObjEneDDFff(this, lbl_805D9D1C, lbl_805D9D10);
+                    r = rand_range(lbl_805D9D1C, lbl_805D9D10);
                     a = get_random_scaled__9TObjEneDDFv(this);
                     VecCopy(&p, &body_center_position);
                     p.x = r * sin_table_lookup(a) + p.x;
@@ -882,7 +861,7 @@ void TObjEneBm3FlyNest::state_dying(s32 arg1) {
                 }
                 this->state_counter += 1;
                 if (this->state_counter >= 0x14) {
-                    ((s32 (*)(int, void *, int, int))play_sound_effect)(this->remap_sound_for_area((s32)(0x4003AD2B)), &position, 0, 0);
+                    play_sound_effect(remap_sound_for_area(0x4003AD2B), &position, 0, 0);
                     this->state_counter = 0;
                 }
             }
@@ -904,7 +883,7 @@ void TObjEneBm3FlyNest::handle_motion_event(s32 arg1) {
         this->vfunc_96();
         noop__12TBoss8DragonFv(this);
         TBoss8Dragon__sub_800BB7D4(this, 0xF1);
-        ((s32 (*)(void *, void *, s32, s32))play_sound_effect)((void *)(s32)this->remap_sound_for_area((s32)(0x4003A829)), &position, 0, 0);
+        play_sound_effect(remap_sound_for_area(0x4003A829), &position, 0, 0);
         if ((s32) this->damage_phase != 0) {
             this->requested_action = 6;
             this->model_height = (f32) 0.0f;
@@ -1022,10 +1001,10 @@ void TObjEneBm3FlyNest::fn_800B318C(s32 arg1) {
             spawn_particle_effect((&position), 0xF0);
         } else if (this->is_passing_frame(lbl_805D9D3C) != 0) {
             temp_r31 = this->rotation_y - 0x4000;
-            VecCopy((Vec *)(&effect_position.x), (const Vec *)(&position));
+            VecCopy(&effect_position, &position);
             effect_position.x += lbl_805D9D40 * sin_table_lookup(temp_r31);
             effect_position.z += lbl_805D9D40 * cos_table_lookup(temp_r31);
-            spawn_particle_effect((&effect_position.x), 0xF0);
+            spawn_particle_effect(&effect_position, 0xF0);
         }
         this->model_height = (f32) (this->model_height + lbl_805D9D2C);
         if (this->model_height > 0.0f) {
@@ -1250,13 +1229,13 @@ void TObjEneBm3FlyNest::spawn_child() {
     s32 n;
     if (child_count <= 6) {
         n = (set_index + 1) + children_spawned;
-        VecCopy((Vec *)(&spawn_position), (const Vec *)(get_spawn_point()));
+        VecCopy(&spawn_position, get_spawn_point());
         if (((TObjEneBm3Fly *)this)->create((void *)next_child_id, (void *)n, &spawn_position, &velocity) != 0) {
             child_ids[child_count++] = next_child_id;
             next_child_id++;
             children_spawned++;
             spawn_particle_effect(&attachment_points[1], 0xC8);
-            ((s32 (*)(s32, void *, s32, s32))play_sound_effect)(TObjEnemy::remap_sound_for_area((s32)(0x4003AB27)), &this->position, 0, 0);
+            play_sound_effect(TObjEnemy::remap_sound_for_area(0x4003AB27), &position, 0, 0);
             TObjPlayer::play_effect_if_v2(-0x400);
         }
     }
@@ -1387,7 +1366,7 @@ void TObjEneBm3FlyNest::run_task() {
     }
     this->vfunc_88();
     this->copy_pos();
-    ((TObjEnemy *)((u8 *)this))->submit_default_cursor_candidate();
+    submit_default_cursor_candidate();
     this->vfunc_100();
 }
 #pragma pop
@@ -1589,7 +1568,6 @@ void TObjEneBm3FlyNest_CarryFly::render() {
 
 #pragma push
 #pragma fp_contract on
-#pragma fp_contract on
 void TObjEneBm3FlyNest_CarryFly::run_task() {
     f32 lim;
     f32 v;
@@ -1605,13 +1583,13 @@ void TObjEneBm3FlyNest_CarryFly::run_task() {
         if (*release_counter == order) {
             Vec tmp;
             state = 1;
-            VecCopy((Vec *)&tmp, (const Vec *)(&position));
+            VecCopy(&tmp, &position);
             vec3_add_to(&tmp, attachment);
-            VecCopy((Vec *)(&direction), (const Vec *)&tmp);
+            VecCopy(&direction, &tmp);
             subtract_vector(&direction, destination);
             direction.y -= lbl_805D9D1C;
-            VecCopy((Vec *)(&position), (const Vec *)(&direction));
-            distance = normalize_vector_xz((Vec *)(&direction));
+            VecCopy(&position, &direction);
+            distance = normalize_vector_xz(&direction);
             if (distance <= lbl_805D9D58) {
                 queue_destruction();
                 break;
