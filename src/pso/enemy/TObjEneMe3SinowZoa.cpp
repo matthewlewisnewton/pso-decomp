@@ -2,6 +2,7 @@
 #include "pso/animation/MotionContext.h"
 #include "pso/map/CsnGroundQuery.h"
 #include "pso/misc/PositionSoundEffects.h"
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/vector.h"
 #include "pso/system/NinjaTypes.h"
@@ -1224,7 +1225,7 @@ void TObjEneMe3SinowZoa::render() {
     s32 i;
     Zoa_8031786C *o = (Zoa_8031786C *)this;
 
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         v->m113();
         return;
     }
@@ -3280,7 +3281,7 @@ void TObjEneMe3SinowZoa::sub_8031AC74() {
 
 void TObjEneMe3SinowZoa::run_task() {
     s32 temp_r3;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->vfunc_115();
         return;
     }

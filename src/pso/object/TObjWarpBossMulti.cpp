@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/object/TObjWarpBase.h"
@@ -1196,7 +1197,7 @@ block_4:
 
 void TObjWarpBoss::run_task() {
     u8 *arg0 = (u8 *)this;
-    if (TObjPlayer::check_demo_mode() != 1) {
+    if (check_demo_mode() != 1) {
         if (!(*(s16 *)((s8 *)arg0 + 0xE2) & 1) && ((s16) *(s16 *)((s8 *)arg0 + 0xDE) != (s16) *(s16 *)((s8 *)arg0 + 0xDC))) {
             if ((s16) *(s16 *)((s8 *)arg0 + 0xE0) != -1) {
                 *(s16 *)((s8 *)arg0 + 0xE0) = -1;

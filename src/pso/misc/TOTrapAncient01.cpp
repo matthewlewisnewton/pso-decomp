@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/misc/TKeyBoardControl_8000F764.h"
@@ -338,7 +339,7 @@ void render__15TOTrapAncient01Fv(Trap_80179B8C *self) {
         push_matrix();
         post_translate_matrix(self->pos38);
         rotate_matrix_y(0, self->f60);
-        if (TObjPlayer::check_demo_mode() != 1 && self->f6C <= TOTrapAncient01__data_805DBA4C) {
+        if (check_demo_mode() != 1 && self->f6C <= TOTrapAncient01__data_805DBA4C) {
             v.x = lbl_805DBA60 * (lbl_805DBA64 * (f32)rand()) - lbl_805DBA68;
             v.y = TOTrapAncient01__data_805DBA4C;
             v.z = lbl_805DBA60 * (lbl_805DBA64 * (f32)rand()) - lbl_805DBA68;

@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/system/ChunkMaterialState.h"
@@ -1510,7 +1511,7 @@ void TObjPlayer__sub_800A28A4(VObj_18_800A28A4 *self) {
         TObjPlayer__sub_8023DEE0((s16 *)lbl_805D5024, 8, 0, 1);
         TObjPlayer__sub_8023DEE0((s16 *)lbl_805D5028, 8, 0, 0);
     }
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         ((void (*)(VObj_18_800A28A4 *))init_scale_global__10TObjPlayerFv)(self);
         TObjPlayer__sub_800A1974(self);
         return;

@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "types.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -210,7 +211,7 @@ void TObjEneBm9Mericarol::render() {
     s32 s1;
     s32 s2;
     Node_802CE8CC *n;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->draw_color_variant();
         return;
     }

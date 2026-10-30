@@ -1,5 +1,6 @@
 #include "pso/animation/MotionContext.h"
 #include "pso/misc/SampledMotionPoints.h"
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -1108,7 +1109,7 @@ void TObjEneRe7Berura::vfunc_63() { if (this->mode != 11) { transition_enemy_sta
 void TObjEneRe7Berura::vfunc_28() {  }
 
 void run_task__16TObjEneRe7BeruraFv(TObjEneRe7Berura *ene_re7_berura) {
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((TObjEneRe7Berura *)(ene_re7_berura))->vfunc_83();
         return;
     }

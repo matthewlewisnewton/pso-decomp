@@ -1,4 +1,5 @@
 #include "pso/misc/PositionSoundEffects.h"
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/EnemyTargetCandidate.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -1445,7 +1446,7 @@ void TObjEneGyaranzo::render() {
             push_matrix();
             post_translate_matrix(((u8 *)this) + 0x38);
             rotate_matrix_y(0, this->rotation_y);
-            if (TObjPlayer::check_demo_mode() == 1) {
+            if (check_demo_mode() == 1) {
                 draw_chunk_object((int) (*(s32 *)((s8 *)((u8 *)this) + 0x34)));
             } else if (this->m_388 & 4) {
                 if (((Obj_800D35D8 *)((u8 *)this))->light.m8() != 0) {
@@ -1574,7 +1575,7 @@ void TObjPlayer::dispatch_state_update() {
 void TObjEneGyaranzo::run_task() {
     s32 temp_r3;
 
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         ((s32 (*)(void *))TObjPlayer__sub_800D35D4)(this);
         return;
     }

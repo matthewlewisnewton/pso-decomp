@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
@@ -304,7 +305,7 @@ void render__16TObjEneRe7BeruraFv(Berura_80092CCC *o) {
     s32 f2;
     s32 l3;
     s32 l4;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         o->v.m104();
         return;
     }

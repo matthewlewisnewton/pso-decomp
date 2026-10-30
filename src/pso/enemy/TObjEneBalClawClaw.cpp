@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/npc/NpcModelRegistry.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
@@ -375,7 +376,7 @@ void TObjEneBalClawClaw::render() {
             TObjPlayer::toggle_particle_effect();
             push_matrix();
             model_render_flags &= 0xFFFFFBFF;
-            if (TObjPlayer::check_demo_mode() == 1) {
+            if (check_demo_mode() == 1) {
                 post_translate_matrix((u8 *)&this->position);
                 rotate_matrix_x(0, *(s32 *)((s8 *)arg0 + 0x5C));
                 rotate_matrix_y(0, this->rotation_y);
@@ -1144,7 +1145,7 @@ void TObjEneBalClawClaw::run_task() {
     u8 *temp_r5;
     u8 *arg0 = (u8 *)this;
     TObjEneBalClaw__sub_8008D68C();
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         TObjEneBalClawClaw__sub_80090824(arg0);
         TObjEneBalClawClaw__sub_800914A4(arg0);
         return;

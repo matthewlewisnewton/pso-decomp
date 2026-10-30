@@ -1,4 +1,5 @@
 #include "pso/math/FloatRounding.h"
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -943,7 +944,7 @@ struct Self_803329E4;
 void render__13TObjEneMorfosFv(u8 *ene_morfos) {
     s32 cam;
     s32 vis;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((VObj_80332850 *)ene_morfos)->m104();
         return;
     }
@@ -1943,7 +1944,7 @@ void TObjEneMorfos::vfunc_63() { if (this->mode != 11) { ((int (*)(void*, void*)
 void TObjEneMorfos::vfunc_28() {  }
 
 void run_task__13TObjEneMorfosFv(u8 *arg0) {
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((TObjEneMorfos *)(arg0))->vfunc_106();
         return;
     }

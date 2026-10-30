@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/boss/TBoss6Type1.h"
@@ -97,7 +98,6 @@ void *__vt__13TBoss6MagMine[11] = {
     (void *)0x0, (void *)0x0, (void *)0x0,
 };
 void vec3_add_to(void *, void *);
-s32 check_demo_mode__10TObjPlayerFv(void *);
 s32 query_teammate_state__9TObjEneDDFv();
 void submit_cursor_candidate(void *, int);
 void add_radar_scaled_marker(void *, int, int, int, f32);
@@ -356,7 +356,7 @@ public:
 void TUnk_804F322C::run_task() {
     TBoss6MagMine_80368FA0 *self = (TBoss6MagMine_80368FA0 *)this;
     s32 color;
-    if (check_demo_mode__10TObjPlayerFv(self) != 0) {
+    if (check_demo_mode() != 0) {
         return;
     }
     if (TBoss6PlotFalz::is_boss_active() == 0) {

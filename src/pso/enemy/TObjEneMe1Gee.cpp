@@ -1,6 +1,7 @@
 #include "pso/enemy/TUnk_80494938.h"
 #include "pso/math/FloatRounding.h"
 #include "pso/misc/PositionSoundEffects.h"
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -2011,7 +2012,7 @@ void TUnk_8049387C::vfunc_105() {
 void TUnk_8049387C::vfunc_106() { *(int*)((char*)this + 0x34) = *(int*)((char*)*(int*)((char*)(*(int *)&TObjEneMe1Gee__resource_bundle) + 0x42c) + 0x8); this->texlist = *(int*)((char*)*(int*)((char*)(*(int *)&TObjEneMe1Gee__resource_bundle) + 0x42c) + 0xc); }
 
 void TObjEneMe1Gee__sub_800C8BCC(u8 *arg0) {
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((TUnk_8049387C *)(arg0))->vfunc_114();
         return;
     }
@@ -2084,7 +2085,7 @@ void render__13TObjEneMe1GeeFv(u8 *ene_me1_gee) {
     s32 var_r30;
     s32 var_r29;
 
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((TObjEneMe1Gee *)(ene_me1_gee))->vfunc_115();
         return;
     }
@@ -3748,7 +3749,7 @@ int TObjEneMe1Gee__sub_800CC2BC(void) {  return (*(int *)&TObjEneMe1Gee__resourc
 
 void run_task__13TObjEneMe1GeeFv(u8 *arg0) {
     u8 *object;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((TObjEneMe1Gee *)(arg0))->vfunc_114();
         return;
     }

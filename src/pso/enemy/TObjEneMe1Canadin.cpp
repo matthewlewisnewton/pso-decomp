@@ -1,5 +1,6 @@
 #include "pso/math/FloatRounding.h"
 #include "pso/misc/PositionSoundEffects.h"
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/system/vector.h"
@@ -2634,7 +2635,7 @@ void TObjEneMe1CanadinLeader__vt104(void *arg0) {
 }
 
 void run_task__23TObjEneMe1CanadinLeaderFv(u8 *pv) {
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((VObj_18 *)(pv))->m112();
         return;
     }
@@ -2835,7 +2836,7 @@ void TObjEneMe1Canadin::render() {
     s16 temp_r0_2;
     s32 var_r30;
     s32 var_r29;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((VObj_18_8dc821 *)(arg0))->m113();
         return;
     }
@@ -4396,7 +4397,7 @@ void TObjEneMe1Canadin::vfunc_28() {  }
 void TObjEneMe1Canadin::run_task() {
     u8 *arg0 = (u8 *)this;
     u8 *temp_r3;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->update_if_ready();
         return;
     }

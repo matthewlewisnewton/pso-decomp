@@ -2,6 +2,7 @@
 #include "pso/system/MatrixVectorArray.h"
 #include "pso/misc/SampledMotionPoints.h"
 #include "pso/misc/PositionSoundEffects.h"
+#include "pso/player/demo_mode.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -988,7 +989,7 @@ void TObjPlayer__sub_800AA334(u8 *arg0) {
             rotate_matrix_y(0, (int) (((TObjEneDubchik *)arg0)->rotation_y));
             scale_matrix(0, lbl_805D9B30, lbl_805D9B30, lbl_805D9B30);
             model_render_flags &= 0xFFFFFBFF;
-            if (TObjPlayer::check_demo_mode() == 1) {
+            if (check_demo_mode() == 1) {
                 draw_chunk_object((void *)(*(s32 *)((s8 *)arg0 + 0x34)));
             } else if (((TObjEneDubchik *)arg0)->m_388 & 4) {
                 if (((Self_800AA334 *)arg0)->sub.m8() != 0) {
@@ -1042,7 +1043,7 @@ void TObjPlayer::run_synced_state_handler() {
 
 void TObjPlayer::update_synced_state() {
     u8 *arg0 = (u8 *)this;
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         TObjPlayer__sub_800AA330(arg0);
         return;
     }

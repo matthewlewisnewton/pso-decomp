@@ -1,6 +1,7 @@
 #include "pso/system/MatrixVectorArray.h"
 #include "pso/misc/SampledMotionPoints.h"
 #include "pso/misc/PositionSoundEffects.h"
+#include "pso/player/demo_mode.h"
 #include "pso/render/reflection.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/misc/GroundEffects.h"
@@ -1091,7 +1092,7 @@ void * TObjEneDolmOlm__create(void *arg0) {
 }
 void TObjEneDolmOlm::run_task() {
   s16 temp_r0;
-  if (TObjPlayer::check_demo_mode() == 1)
+  if (check_demo_mode() == 1)
   {
     (this->vfunc_101());
     return;
@@ -1170,7 +1171,7 @@ void TObjEneDolmOlm::render() {
     translate_matrix(0, TObjEneDolmOlm__data_805DEF54, arg0->f380, TObjEneDolmOlm__data_805DEF54);
     post_translate_matrix(arg0->pos);
     rotate_matrix_y(0, arg0->rotY);
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         draw_chunk_object(arg0->model);
     } else {
         switch (arg0->state) {

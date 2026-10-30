@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/TObjEnemy.h"
 struct Obj_800ED4BC;
 
@@ -472,7 +473,7 @@ void render__13TObjEneRe4BitFv(Bit_800ECA40 *self) {
     s32 saved;
     s32 draw;
     Model_800ECA40 *m;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         self->m104();
         return;
     }
@@ -1050,7 +1051,7 @@ void TObjEneRe4Bit::vfunc_28() {  }
 
 void run_task__13TObjEneRe4BitFv(u8 *arg0) {
     s32 temp_r3;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((TObjEneRe4Bit *)(arg0))->vfunc_106();
         return;
     }

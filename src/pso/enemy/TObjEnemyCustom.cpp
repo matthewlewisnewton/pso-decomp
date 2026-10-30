@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEnemyCustom.h"
 #include "pso/map/CsnQuery.h"
@@ -82,7 +83,7 @@ TObjEnemyCustom::~TObjEnemyCustom() {
 }
 
 void TObjEnemyCustom::run_task() {
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         run_demo_task();
         return;
     }
@@ -309,7 +310,7 @@ void TObjEnemyCustom::render() {
         post_translate_matrix(&position.x);
         rotate_matrix_y(0, rotation_y);
         model_render_flags &= ~0x400;
-        if (TObjPlayer::check_demo_mode() == 1) {
+        if (check_demo_mode() == 1) {
             draw_chunk_object(model);
         } else {
             draw();

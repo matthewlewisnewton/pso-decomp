@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/system/NinjaUtil.h"
@@ -213,7 +214,7 @@ void TBoss3VoloptP01::run_task() {
     f32 y;
     s32 angle;
 
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         sub_80043CA8();
         return;
     }
@@ -268,7 +269,7 @@ void TBoss3VoloptP01::render() {
         select_actor_lighting((s32)this);
         TObjPlayer::toggle_particle_effect();
         push_matrix();
-        if (TObjPlayer::check_demo_mode() == 1) {
+        if (check_demo_mode() == 1) {
             post_translate_matrix(&position);
             rotate_matrix_y(0, rotation_y);
             draw_chunk_object(model);

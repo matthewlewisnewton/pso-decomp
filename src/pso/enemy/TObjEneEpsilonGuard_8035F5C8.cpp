@@ -1,4 +1,5 @@
 #include "pso/enemy/TUnk_80494938.h"
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -964,7 +965,7 @@ void TObjEneEpsilonBody::sub_803606A0(s32 i) {
 void TObjEneEpsilonBody::render() {
     s32 var_r31;
     s32 i;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->vfunc_106();
         return;
     }

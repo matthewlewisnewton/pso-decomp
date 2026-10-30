@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -672,7 +673,7 @@ void render_with_fade__19TObjEneEpsilonGuardFPvi(u8 *ene_re7_berura, s32 arg1) {
 #pragma opt_common_subs off
 void render__19TObjEneEpsilonGuardFv(u8 *ene_epsilon_guard) {
     s32 var_r31;
-    if ((TObjPlayer::check_demo_mode() == 0) && !(*(s32 *)((s8 *)ene_epsilon_guard + 0x30) & 0x02000000)) {
+    if ((check_demo_mode() == 0) && !(*(s32 *)((s8 *)ene_epsilon_guard + 0x30) & 0x02000000)) {
         var_r31 = 0;
         if (!(*(s32 *)((s8 *)ene_epsilon_guard + 0x46C) & 0x10)) {
             if (is_main_phase_15__9TObjEneDDFv() != 0) {

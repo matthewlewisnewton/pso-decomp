@@ -2,6 +2,7 @@
 #include "pso/unk/TUnk_80494968.h"
 #include "pso/misc/GroundEffects.h"
 #include "pso/misc/PositionSoundEffects.h"
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/TUnk_80493450.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/player/TObjChara.h"
@@ -243,7 +244,7 @@ void TObjEneShark::render() {
     translate_matrix(0, shark_zero, unk_380, shark_zero);
     post_translate_matrix(&position.x);
     rotate_matrix_y(0, rotation_y);
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         draw_chunk_object(model);
     } else {
         switch (mode) {

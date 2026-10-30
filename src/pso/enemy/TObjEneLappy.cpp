@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
@@ -1059,7 +1060,7 @@ void TObjEneLappy::run_task() {
     u8 *temp_r3;
     u8 *temp_r3_2;
     sub_800C20C0__12TObjEneLappyFv();
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         apply_variant_speeds__12TObjEneLappyFv((Obj_800BFCD4 *)(this));
         TObjPlayer__sub_800BFF54(this);
         return;
@@ -2003,7 +2004,7 @@ void TObjPlayer__sub_800C220C(Obj_800C220C *o) {
     s32 visible;
     s32 save8;
     s32 save14;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         o->m104();
         return;
     }

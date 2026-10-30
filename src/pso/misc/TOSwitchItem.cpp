@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 // Built -inline off,deferred: the functions are written from the last back.
 #include "types.h"
 #include "pso/item/TItem.h"
@@ -105,7 +106,7 @@ void TOSwitchItem::run_task() {
 void TOSwitchItem::debug_draw_key_id() {}
 
 void TOSwitchItem::render() {
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         NJS_ARGB color;
         color.a = 0.3f;
         color.r = 0.3f;

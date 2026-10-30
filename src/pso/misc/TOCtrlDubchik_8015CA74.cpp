@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/enemy/TObjEnemy.h"
@@ -278,7 +279,7 @@ void TOCtrlDubchik::sub_8015CE80() {
 
 void TOCtrlDubchik::run_task() {
     u8 *arg0 = (u8 *)this;
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         TOCtrlDubchik__sub_8015C9D0(arg0);
         return;
     }

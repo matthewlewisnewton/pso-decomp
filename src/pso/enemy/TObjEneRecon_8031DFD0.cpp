@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "types.h"
 #include "pso/enemy/TObjEneDD.h"
@@ -348,7 +349,7 @@ void run_task__12TObjEneReconFv(TObjEneRecon *ene_recon) {
     u8 *temp_r3_2;
     u8 *temp_r3_3;
     u8 *temp_r3_4;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((TObjEneRecon *)(ene_recon))->vfunc_106();
         return;
     }

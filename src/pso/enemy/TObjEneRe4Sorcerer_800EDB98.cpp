@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -1196,7 +1197,7 @@ void render__18TObjEneRe4SorcererFv(u8 *ene_re7_berura) {
     s32 temp_r31;
     s32 var_r28;
     s32 var_r27;
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         ((VObj_18 *)(ene_re7_berura))->m104();
         return;
     }
@@ -2287,7 +2288,7 @@ void TObjEneRe4Sorcerer::vfunc_28() {  }
 void run_task__18TObjEneRe4SorcererFv(u8 *arg0) {
     s32 i;
     void *p;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((TObjEneRe4Sorcerer *)(arg0))->vfunc_106();
         return;
     }

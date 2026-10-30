@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "types.h"
 #include "pso/misc/GroundEffects.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
@@ -1490,7 +1491,7 @@ void run_state_machine__14TObjEnePanarmsFPv(Panarms_800E2200 *self) {
     Vec_800E2200 a;
     f32 s;
 
-    if (self->state != 0 && TObjPlayer::check_demo_mode() != 0) {
+    if (self->state != 0 && check_demo_mode() != 0) {
         ((void (*)(void *, s32))TObjEnePanarms__sub_800E1C98)(self, 0);
     }
     self->diff.x = self->target->x - self->x;

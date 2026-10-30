@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/system/vector.h"
@@ -787,7 +788,7 @@ void TBoss4DarkFalz::render() {  }
 
 void TBoss4DarkFalz::run_task() {
     u8 *arg0 = (u8 *)this;
-    if (((s32) this->m_37c != 0) && (TObjPlayer::check_demo_mode() != 0)) {
+    if (((s32) this->m_37c != 0) && (check_demo_mode() != 0)) {
         ((TBoss4DarkFalz *)arg0)->change_state(0);
     }
     if (query_teammate_state__9TObjEneDDFv() == 0) {

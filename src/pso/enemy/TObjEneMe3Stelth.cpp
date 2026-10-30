@@ -3,6 +3,7 @@
 #include "pso/misc/SampledMotionPoints.h"
 #include "pso/map/CsnGroundQuery.h"
 #include "pso/misc/PositionSoundEffects.h"
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -492,7 +493,7 @@ void TObjEneMe3Stelth::render() {
     s32 mode;
     s32 draw;
     u8 *arg0 = (u8 *)this;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         VO->m113();
         return;
     }
@@ -3619,7 +3620,7 @@ void TObjEneMe3Stelth::vfunc_28() {  }
 void TObjEneMe3Stelth::run_task() {
     u8 *arg0 = (u8 *)this;
     s32 temp_r3;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->setup_move();
         return;
     }

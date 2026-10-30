@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "types.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjChara.h"
@@ -2076,7 +2077,7 @@ void TObjEneSlimeOne::set_state(s32 arg1) {
 struct Bomb_800E9090;
 void render__15TObjEneSlimeOneFv(TObjEneSlimeOne *ene_slime_one) {
     s32 temp_r31;
-    if ((TObjPlayer::check_demo_mode() == 0) && !(ene_slime_one->m_3a0 <= lbl_805DA6B4) && (((VObj_18_26a62c *)(ene_slime_one))->m8(lbl_805DA728, lbl_805DA6E4) != 0)) {
+    if ((check_demo_mode() == 0) && !(ene_slime_one->m_3a0 <= lbl_805DA6B4) && (((VObj_18_26a62c *)(ene_slime_one))->m8(lbl_805DA728, lbl_805DA6E4) != 0)) {
         temp_r31 = defer_render__7TObjectFv(ene_slime_one);
         if (ene_slime_one->m_3a0 < lbl_805DA67C) {
             TObjPlayer__sub_800EBE48(ene_slime_one->m_3a0);
@@ -2101,7 +2102,7 @@ void render__15TObjEneSlimeOneFv(TObjEneSlimeOne *ene_slime_one) {
 }
 
 void TObjEneSlimeOne::run_task() {
-    if (TObjPlayer::check_demo_mode() == 0) {
+    if (check_demo_mode() == 0) {
         if ((s32)this->m_384 != 13 && (this->m_3f0 == 0 || ((TObject *)this->m_3f0)->all_parents_unqueued_for_destruction() == 0)) {
             set_state(13);
         }

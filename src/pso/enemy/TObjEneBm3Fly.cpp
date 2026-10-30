@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/enemy/TObjEnemy.h"
 extern "C" void *__ct__12TObjEneDD_STFP7TObject(void *);
@@ -210,7 +211,7 @@ void TObjEneBm3Fly__vt104(TObjEneBm3Fly *arg0) {
 
 void render__13TObjEneBm3FlyFv(VObj_800AFBF0 *o) {
     s32 kind;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         o->v104();
         return;
     }
@@ -2235,7 +2236,7 @@ void TObjEneBm3Fly::run_task() {
   u8 *temp_r3_2;
   u8 *temp_r3_3;
   u8 *temp_r3_4;
-  if (TObjPlayer::check_demo_mode() != 0)
+  if (check_demo_mode() != 0)
   {
     (((VObj_18_6eb1ad *)(arg0))->m103());
     return;

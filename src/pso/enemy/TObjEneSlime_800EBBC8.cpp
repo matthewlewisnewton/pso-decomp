@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/enemy/TObjEneSlime_800EBBC8.h"
@@ -45,7 +46,7 @@ u8 *TObjEneSlime__ct(TObjEneSlime *ene_slime, s32 arg1, u8 *arg2) {
     ene_slime->m_3b4 = (s32) *(s16 *)((s8 *)arg2 + 2);
     temp_r0 = ene_slime->m_3b4;
     if (temp_r0 < 1) {
-        if (TObjPlayer::check_demo_mode() != 0) {
+        if (check_demo_mode() != 0) {
             ene_slime->m_3b4 = 3;
         }
     } else if (temp_r0 > 4) {

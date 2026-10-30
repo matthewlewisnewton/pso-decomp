@@ -1,5 +1,6 @@
 #include "pso/system/MatrixVectorArray.h"
 #include "pso/misc/SampledMotionPoints.h"
+#include "pso/player/demo_mode.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -337,7 +338,7 @@ void draw_actor_model__10TObjPlayerFPv(Player_800A7CA4 *self) {
     push_matrix();
     post_translate_matrix(self->pos);
     rotate_matrix_y(0, self->f60);
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         draw_chunk_object(self->f34);
     } else {
         switch (self->f326) {

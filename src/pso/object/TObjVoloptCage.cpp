@@ -1,4 +1,5 @@
 #include "pso/player/TObjChara.h"
+#include "pso/player/demo_mode.h"
 #pragma readonly_strings on
 #pragma fp_contract on
 
@@ -228,7 +229,7 @@ void TObjVoloptCage::update_state() {
 }
 
 void TObjVoloptCage::run_task() {
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         run_demo_task();
         return;
     }

@@ -1,6 +1,7 @@
 #include "pso/system/MatrixVectorArray.h"
 #include "pso/animation/MotionContext.h"
 #include "pso/math/FloatRounding.h"
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -1041,7 +1042,7 @@ void TBoss1Dragon::render_shadows() {
     u8 *temp_r4;
 
     var_r31 = 0;
-    if (TObjPlayer::check_demo_mode() == 0) {
+    if (check_demo_mode() == 0) {
         if (is_split_screen() != 0) {
             var_r31 = get_camera_mode__11TCameraCtrlFv();
         }
@@ -1076,7 +1077,7 @@ void TBoss1Dragon::render() {
     s32 hit;
     f32 dist;
     view = 0;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->render_low_detail();
         return;
     }
@@ -5629,7 +5630,7 @@ void TBoss1Dragon::run_task() {
     s32 temp_r30;
     s32 temp_r30_2;
     u8 *arg0 = (u8 *)this;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((TBoss1Dragon *)(arg0))->vfunc_105();
         return;
     }

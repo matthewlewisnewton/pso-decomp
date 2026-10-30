@@ -1,6 +1,7 @@
 #include "pso/system/MatrixVectorArray.h"
 #include "pso/player/TObjChara.h"
 #include "pso/misc/SampledMotionPoints.h"
+#include "pso/player/demo_mode.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "types.h"
@@ -1535,7 +1536,7 @@ void render__11TObjEneMojaFv(u8 *arg0) {
         translate_matrix(0, lbl_805D9BD8, ((TObjEneMoja *)arg0)->sinkOffset, lbl_805D9BD8);
         post_translate_matrix(arg0 + 0x38);
         rotate_matrix_y(0, (int)(((TObjEneMoja *)arg0)->rotation_y));
-        if (TObjPlayer::check_demo_mode() == 1) {
+        if (check_demo_mode() == 1) {
             draw_chunk_object(*(s32 *)((s8 *)arg0 + 0x34));
         } else {
             TObjPlayer::toggle_particle_effect();
@@ -1579,7 +1580,7 @@ void TObjEneMoja::run_task() {
     u16 temp_r3;
     u8 *temp_r3_2;
     u8 *temp_r4;
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         fn_800ACA0C();
         return;
     }

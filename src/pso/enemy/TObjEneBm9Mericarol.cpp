@@ -1,4 +1,5 @@
 #include "pso/misc/SampledMotionPoints.h"
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -593,7 +594,7 @@ void dispatch_state_handler__19TObjEneBm9MericarolFiUii(s32 actor, u32 arg1, s32
 void TObjEneBm9Mericarol::run_task() {
     s16 temp_r3_2;
     s32 temp_r3;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->vfunc_105();
         return;
     }

@@ -1,6 +1,7 @@
 #include "pso/system/MatrixVectorArray.h"
 #include "pso/math/FloatRounding.h"
 #include "pso/map/CsnGroundQuery.h"
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
@@ -6603,7 +6604,7 @@ void TBoss8Dragon::run_task() {
     s32 temp_r30_2;
     s32 i;
     s32 var_r30;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((VObj_18 *)(arg0))->m103();
         return;
     }
