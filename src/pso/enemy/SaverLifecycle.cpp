@@ -1,3 +1,4 @@
+#include "pso/system/MatrixVectorArray.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -148,7 +149,6 @@ void update_entry_motion__12TObjEneSaverFv(u8 *arg0);
 s32 post_translate_matrix(void *);
 void check_enemy_body_collisions(void *arg0);
 s32 submit_cursor_candidate(void *, int);
-s32 mult_vec_array__10TObjPlayerFUll(int, int, void *, int);
 void set_matrix_identity(u8 *arg0);
 s32 rotate_matrix_y(int, int);
 s32 push_matrix();
@@ -327,7 +327,7 @@ void TObjEneSaver::apply_lookup_entry_effect() {
         set_matrix_identity(0);
         post_translate_matrix((void *) (((u8 *)this) + 0x38));
         rotate_matrix_y(0, this->rotation_y);
-        mult_vec_array__10TObjPlayerFUll(0, entry, &sp8, 2);
+        matrix_mult_vec_array((f32 (*)[4])(0), (const Vec *)(entry), (Vec *)(&sp8), 2);
         pop_matrix();
         temp_r3_2 = (unsigned char *) (*(void **)((s8 *)((u8 *)this) + 0x3C0));
         if (temp_r3_2 != NULL) {
@@ -700,7 +700,6 @@ u8 *get_enemy_entity(u16);
 
 #define get_player_by_client_id ((u8* (*)(u16))(get_player_by_client_id))
 #define play_sound_effect ((s32 (*)(int, void*, int, int))(play_sound_effect))
-#define mult_vec_array__10TObjPlayerFUll ((s32 (*)(int, s32, void*, int))(mult_vec_array__10TObjPlayerFUll))
 void TObjPlayer__sub_800A54B4(u8 *arg0);
 #define apply_lookup_entry_effect__12TObjEneSaverFv ((s32 (*)(void*))(apply_lookup_entry_effect__12TObjEneSaverFv))
 s32 check_path_obstructed(void *, void *);
@@ -891,7 +890,7 @@ void TObjEneSaver::sub_800A4D9C() {
                 set_matrix_identity(0);
                 post_translate_matrix((u8 *)&this->position);
                 rotate_matrix_y(0, F(s32, 0x60));
-                mult_vec_array__10TObjPlayerFUll(0, e, m44, 2);
+                matrix_mult_vec_array((f32 (*)[4])(0), (const Vec *)(e), (Vec *)(m44), 2);
                 pop_matrix();
                 if (F(VObj18_800A4D9C *, 0x3C4) != NULL) {
                     F(VObj18_800A4D9C *, 0x3C4)->m4(m44, m50);
@@ -1029,7 +1028,7 @@ void TObjPlayer__sub_800A5154(void *arg0) {
                 set_matrix_identity(0);
                 post_translate_matrix(&o->pos);
                 rotate_matrix_y(0, o->angle);
-                mult_vec_array__10TObjPlayerFUll(0, entry, &v, 2);
+                matrix_mult_vec_array((f32 (*)[4])(0), (const Vec *)(entry), (Vec *)(&v), 2);
                 pop_matrix();
                 if (o->cb != NULL) {
                     o->cb->m4(&v, &w);
@@ -1394,7 +1393,6 @@ void TObjEneSaver::advance_motion_state() {
 #undef step_angle_clamped__10TObjPlayerFPvi
 #undef get_player_by_client_id
 #undef play_sound_effect
-#undef mult_vec_array__10TObjPlayerFUll
 #undef apply_lookup_entry_effect__12TObjEneSaverFv
 #undef calc_move_state__12TObjEneSaverFv
 

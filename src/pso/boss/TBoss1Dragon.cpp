@@ -1,3 +1,4 @@
+#include "pso/system/MatrixVectorArray.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/protocol/protocol_types.h"
@@ -559,7 +560,6 @@ extern const f32 lbl_805D80C0;
 void run_task__12TBoss1DragonFv(u8 *arg0);
 void get_camera_ctrl__9TObjEneDDFv(s32, s32);
 void update_camera_sequence__9TObjEneDDFv(void);
-s32 mult_vec_array__10TObjPlayerFUll(int, void *, int, int);
 extern const RecoveredGlobal_8002116C_lbl_80434F20 boss1_dragon_capture_node_table;
 extern DragonModelVector lbl_804FE188;
 extern DragonCaptureVectors lbl_804FE194;
@@ -1243,7 +1243,7 @@ void dragon_capture_node_points(void) {
     if ((s32) TBoss1Dragon__data_805D4B0C == (s32) lbl_805D4B10) {
         push_matrix();
         update_camera_sequence__9TObjEneDDFv();
-        mult_vec_array__10TObjPlayerFUll(0, (void *)&lbl_804FE194.vectors[0].x, TBoss1Dragon__data_805D4B14, 3);
+        matrix_mult_vec_array((f32 (*)[4])(0), (const Vec *)((void *)&lbl_804FE194.vectors[0].x), (Vec *)(TBoss1Dragon__data_805D4B14), 3);
         pop_matrix();
     }
     if ((s32) TBoss1Dragon__data_805D4B0C == (s32) *(s32 *)((s8 *)&boss1_dragon_capture_node_table.value + (TBoss1Dragon__data_805D4B18 * 4))) {

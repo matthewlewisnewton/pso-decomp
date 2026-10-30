@@ -1,3 +1,4 @@
+#include "pso/system/MatrixVectorArray.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
@@ -544,7 +545,6 @@ struct RecoveredGlobal_802E80F4_lbl_8058D4C0 {
 };
 
 extern "C" {
-s32 mult_vec_array__10TObjPlayerFUll(int, void *, void *, int);
 }
 void get_current_matrix(void *m);
 extern "C" {
@@ -678,7 +678,7 @@ void TObjPlayer__sub_802E8274(void) {
     }
     if ((s32) boss7_derolle_c_motion_id == 0x33) {
         push_matrix();
-        mult_vec_array__10TObjPlayerFUll(0, (void *)&lbl_804E3BFC.value, (void *)lbl_805D692C, 4);
+        matrix_mult_vec_array((f32 (*)[4])(0), (const Vec *)((void *)&lbl_804E3BFC.value), (Vec *)((void *)lbl_805D692C), 4);
         pop_matrix();
         subtract_vector((void *)(lbl_805D692C + 0xC), (void *)lbl_805D692C);
     }

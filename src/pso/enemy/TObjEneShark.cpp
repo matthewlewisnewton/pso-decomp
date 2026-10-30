@@ -1,3 +1,4 @@
+#include "pso/system/MatrixVectorArray.h"
 #include "pso/unk/TUnk_80494968.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "types.h"
@@ -190,7 +191,6 @@ extern const f32 lbl_805D9BA8;
 void vfunc_94__12TObjEneSharkFv(u8 *arg0);
 s32 TObjEneMe3SinowZoa__sub_800D758C(void *);
 void vfunc_83__12TObjEneSharkFv(Obj_800ABCBC *arg0);
-s32 mult_vec_array__10TObjPlayerFUll(int, int, void *, int);
 void set_matrix_identity(u8 *arg0);
 extern u32 TObjEneShark__attack_motion_3_trail;
 extern u32 shark_attack4_trail_buffer;
@@ -293,7 +293,7 @@ void TObjEneShark::vfunc_93() {
     set_matrix_identity(0);
     post_translate_matrix(&o->pos);
     rotate_matrix_y(0, this->rotation_y);
-    mult_vec_array__10TObjPlayerFUll(0, e, &a, 2);
+    matrix_mult_vec_array((f32 (*)[4])(0), (const Vec *)(e), (Vec *)(&a), 2);
     pop_matrix();
     eff = o->effs[idx];
     if (eff != NULL) {

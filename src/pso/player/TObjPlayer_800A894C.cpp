@@ -1,3 +1,4 @@
+#include "pso/system/MatrixVectorArray.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/unk/TUnk_80494968.h"
 #include "types.h"
@@ -556,7 +557,6 @@ struct Ene_800A93E4 {
     VO_800A93E4 *model;
 };
 
-s32 mult_vec_array__10TObjPlayerFUll(int, u32, void *, int);
 void set_matrix_identity(u8 *arg0);
 extern f32 player_band_threshold_table[];
 extern Pair_800A93E4 lbl_8043AC9C[];
@@ -752,12 +752,12 @@ void TObjPlayer__sub_800A93E4(void *arg0_) {
         post_translate_matrix(&e->pos);
         rotate_matrix_y(0, e->angle);
         if (h0 != 0) {
-            mult_vec_array__10TObjPlayerFUll(0, h0, &a1, 2);
+            matrix_mult_vec_array((f32 (*)[4])(0), (const Vec *)(h0), (Vec *)(&a1), 2);
             e->model->m4(&a1, &b1);
         }
         if (h1 != 0) {
             s32 pa = (s32)&a2;
-            mult_vec_array__10TObjPlayerFUll(0, h1, (void *)pa, 2);
+            matrix_mult_vec_array((f32 (*)[4])(0), (const Vec *)(h1), (Vec *)((void *)pa), 2);
             e->model->m4((Vec_800A93E4 *)pa, &b2);
         }
         pop_matrix();

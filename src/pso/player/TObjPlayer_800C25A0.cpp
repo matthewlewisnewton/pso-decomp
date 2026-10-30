@@ -1,3 +1,4 @@
+#include "pso/system/MatrixVectorArray.h"
 #include "types.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/player/TObjPlayer.h"
@@ -5,7 +6,6 @@
 extern "C" {
 
 s32 update_camera_sequence__9TObjEneDDFv();
-s32 mult_vec_array__10TObjPlayerFUll(s32, s32, s32, s32);
 s32 rotate_matrix_y(s32, s32);
 s32 push_matrix();
 
@@ -21,7 +21,7 @@ void TObjPlayer::update_effect_sequence() {
     case 14:
         push_matrix();
         update_camera_sequence__9TObjEneDDFv();
-        mult_vec_array__10TObjPlayerFUll(0, lbl_805D5180, lbl_805D5180, 2);
+        matrix_mult_vec_array((f32 (*)[4])(0), (const Vec *)(lbl_805D5180), (Vec *)(lbl_805D5180), 2);
         pop_matrix();
         break;
     }

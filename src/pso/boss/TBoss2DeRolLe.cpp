@@ -1,3 +1,4 @@
+#include "pso/system/MatrixVectorArray.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/system/vector.h"
@@ -772,7 +773,6 @@ struct RecoveredGlobal_8002F61C_lbl_804FE31C {
 extern "C" {
 void get_camera_ctrl__9TObjEneDDFv(s32, s32);
 void update_camera_sequence__9TObjEneDDFv(void);
-s32 mult_vec_array__10TObjPlayerFUll(int, void *, void *, int);
 s32 subtract_vector(void *, void *);
 s32 push_matrix();
 s32 pop_matrix();
@@ -799,7 +799,7 @@ void TObjPlayer__sub_8002F61C(void) {
     if ((s32) TBoss2DeRolLe__current_attack_id == 0x33) {
         push_matrix();
         update_camera_sequence__9TObjEneDDFv();
-        mult_vec_array__10TObjPlayerFUll(0, (void *)&derolle_part_transform_template.value, (void *)lbl_805D4BB8, 4);
+        matrix_mult_vec_array((f32 (*)[4])(0), (const Vec *)((void *)&derolle_part_transform_template.value), (Vec *)((void *)lbl_805D4BB8), 4);
         pop_matrix();
         subtract_vector((void *)(lbl_805D4BB8 + 0xC), (void *)lbl_805D4BB8);
     }

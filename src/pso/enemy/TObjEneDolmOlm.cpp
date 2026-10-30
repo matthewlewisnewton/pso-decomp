@@ -1,3 +1,4 @@
+#include "pso/system/MatrixVectorArray.h"
 #include "pso/render/reflection.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -415,7 +416,6 @@ void __dt__13TUnk_80494938Fv(void *, int);
 void free_collision_body_parts(void *);
 void __dl__7TObjectFPv(void *);
 Ene_80302A34 *TObjEneDolmOlm__sub_80302A34(Ene_80302A34 *self, s16 flag);
-s32 mult_vec_array__10TObjPlayerFUll(int, int, void *, int);
 s32 set_matrix_identity(int);
 s32 push_matrix();
 s32 post_translate_matrix(void *);
@@ -1721,7 +1721,7 @@ void TObjEneDolmOlm::vfunc_93() {
     set_matrix_identity(0);
     post_translate_matrix(&o->pos);
     rotate_matrix_y(0, this->rotation_y);
-    mult_vec_array__10TObjPlayerFUll(0, e, &a, 2);
+    matrix_mult_vec_array((f32 (*)[4])(0), (const Vec *)(e), (Vec *)(&a), 2);
     pop_matrix();
     eff = o->effs[idx];
     if (eff != NULL) {

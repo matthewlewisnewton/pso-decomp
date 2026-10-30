@@ -1,3 +1,4 @@
+#include "pso/system/MatrixVectorArray.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -1485,7 +1486,6 @@ u8 *TBoss8Dragon__ct(u8 *, void *, void *);
 void TBoss8Dragon__sub_802FD9D0(void);
 s32 eval_bezier_curve__12TBoss8DragonFPviiPvf(void *, int, int, void *, f32);
 void __destroy_arr(void *, void *, u32, u32);
-s32 mult_vec_array__10TObjPlayerFUll(int, void *, int, int);
 f32 vec3_dot(void *, void *);
 s32 rotate_matrix_y(s32, s32);
 s32 rotate_matrix_z(s32, s32);
@@ -2241,7 +2241,7 @@ void TBoss8Dragon::update_camera_script() {
     if ((s32) TBoss8Dragon__data_805D698C == (s32) lbl_805D6990) {
         push_matrix();
         update_camera_sequence__9TObjEneDDFv();
-        mult_vec_array__10TObjPlayerFUll(0, (void *)&lbl_80541DF4.value, TBoss8Dragon__data_805D6994, 3);
+        matrix_mult_vec_array((f32 (*)[4])(0), (const Vec *)((void *)&lbl_80541DF4.value), (Vec *)(TBoss8Dragon__data_805D6994), 3);
         pop_matrix();
     }
     if ((s32) TBoss8Dragon__data_805D698C == (s32) *(s32 *)((s8 *)&dragon_camera_script_frame_table.value + (TBoss8Dragon__data_805D6998 * 4))) {

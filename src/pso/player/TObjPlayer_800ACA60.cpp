@@ -1,3 +1,4 @@
+#include "pso/system/MatrixVectorArray.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "types.h"
@@ -526,7 +527,6 @@ extern const f32 lbl_805D9C30;
 s32 obj_is_hit_receivable();
 s32 lookup_entry_by_value__10TObjPlayerFPvf(void *);
 
-s32 mult_vec_array__10TObjPlayerFUll(int, int, void *, int);
 void set_matrix_identity(u8 *arg0);
 s32 push_matrix();
 
@@ -951,7 +951,7 @@ s32 TObjEneMoja::update_punch_attack(void *self_800ADAAC) {
                 set_matrix_identity(0);
                 post_translate_matrix(arg0 + 0x38);
                 rotate_matrix_y(0, *(s32 *)(arg0 + 0x60));
-                mult_vec_array__10TObjPlayerFUll(0, e, &sp8, 2);
+                matrix_mult_vec_array((f32 (*)[4])(0), (const Vec *)(e), (Vec *)(&sp8), 2);
                 ((s32 (*)())pop_matrix)();
                 o = *(V398_800ADAAC **)(arg0 + 0x398);
                 if (o != NULL) {
