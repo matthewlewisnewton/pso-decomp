@@ -360,7 +360,6 @@ extern s32 tl_05;
 void enemy_set_heading_velocity(f32 speed, TObjEnemy *enemy, s32 heading);
 void enemy_turn_toward_dest(void *, s32);
 f32 fabs_float(f32);
-void TObjEneMe3SinowZoa__sub_800D758C(void *);
 s32 approach_angle_limited(s32, s32, s32);
 s32 project_actor_to_ground(void *, void *, s32);
 extern Vec_800BE8FC scratch_vec;
@@ -1292,7 +1291,7 @@ void TObjGrass::update_ai(void *arg0) {
     switch (o->state) {
     case 0:
         obj_setFlags30(o, 0x04040000);
-        TObjEneMe3SinowZoa__sub_800D758C(&o->sub);
+        ((TUnk_80494938 *)(&o->sub))->start_fade_in();
         ((TBoss3Volopt *)(&o->pos))->play_area_sound_effect();
         o->state = 1;
         break;

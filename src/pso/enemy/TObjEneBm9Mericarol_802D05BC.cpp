@@ -1,3 +1,4 @@
+#include "pso/enemy/TUnk_80494938.h"
 #include "types.h"
 #include "pso/enemy/TObjEneDD_ST.h"
 #include "pso/enemy/TObjEneBm9Mericarol_802D05BC.h"
@@ -35,7 +36,6 @@ struct VObj_802D06E0_802D05BC : Base_802D06E0_802D05BC {
 };
 
 s32 TObjEneBm9Mericarol__sub_802D093C(void *);
-s32 TObjEneMe3SinowZoa__sub_800D758C(void *);
 s32 enemy_clear_target__12TObjEneDD_STFUs(void *);
 
 void TObjEneBm9Mericarol__sub_802D05BC(u8 *ene_dd_st, s32 arg1) {
@@ -48,7 +48,7 @@ void TObjEneBm9Mericarol__sub_802D05BC(u8 *ene_dd_st, s32 arg1) {
         *(s32 *)((s8 *)ene_dd_st + 0x438) = (s32) (*(s32 *)((s8 *)ene_dd_st + 0x438) & 0xFFFFFFEF);
         ((TObjEneDD *)ene_dd_st)->set_field_378(2);
         enemy_clear_target__12TObjEneDD_STFUs(ene_dd_st);
-        TObjEneMe3SinowZoa__sub_800D758C(ene_dd_st + 0x46C);
+        ((TUnk_80494938 *)(ene_dd_st + 0x46C))->start_fade_in();
         ((TBoss3Volopt *)(ene_dd_st + 0x38))->play_area_sound_effect();
         return;
     case 3:

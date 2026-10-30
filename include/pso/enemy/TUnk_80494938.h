@@ -15,6 +15,7 @@ public:
     virtual void set_flags_and_apply_damage_color();
     virtual s32 has_visible_opacity();
     void sub_800D741C();
+    void start_fade_in();
     f32 value;
 };
 
