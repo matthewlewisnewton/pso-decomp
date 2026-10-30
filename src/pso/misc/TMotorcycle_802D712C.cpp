@@ -2,13 +2,18 @@
 #include "pso/misc/TMotorcycle_802D712C.h"
 #include "pso/misc/TMotorcycle.h"
 
-void copy_position_data(void *arg0, void *arg1) {
-    *(s32 *)((s8 *)arg0 + 0) = (s32) *(s32 *)((s8 *)arg1 + 0);
-    *(s32 *)((s8 *)arg0 + 4) = (s32) *(s32 *)((s8 *)arg1 + 4);
-    *(s16 *)((s8 *)arg0 + 8) = (s16) *(s16 *)((s8 *)arg1 + 8);
-    *(s16 *)((s8 *)arg0 + 0xA) = (s16) *(s16 *)((s8 *)arg1 + 0xA);
-    *(s16 *)((s8 *)arg0 + 0xC) = (s16) *(s16 *)((s8 *)arg1 + 0xC);
+#pragma push
+#pragma scheduling off
+NpcAnimationBinding &NpcAnimationBinding::operator=(const NpcAnimationBinding &other) {
+    motions = other.motions;
+    actions = other.actions;
+    standing_action = other.standing_action;
+    conversation_action = other.conversation_action;
+    action_count = other.action_count;
+    return *this;
 }
+
+#pragma pop
 extern "C" {
 
 void *insert_slot_by_id__12TObjNpcEnemyFs();
