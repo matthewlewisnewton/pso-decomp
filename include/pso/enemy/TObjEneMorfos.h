@@ -1,3 +1,4 @@
+struct NJS_OBJECT;
 #ifndef PSO_ENEMY_TOBJENEMORFOS_H
 #define PSO_ENEMY_TOBJENEMORFOS_H
 
@@ -30,7 +31,7 @@ struct TObjEneMorfos : public TObjEneDD_ST {
     void* m_498;
     static int get_instance();
     void draw_body();
-    static void record_camera_path_point();
+    static void record_camera_path_point(NJS_OBJECT *);
     void state_death(s32 arg1);
     void state_patrol(s32 arg1);
     void state_appear(s32 arg1);

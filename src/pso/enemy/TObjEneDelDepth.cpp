@@ -364,7 +364,7 @@ void TObjEneDelDepth::run_task() {
     (void)(fn != NULL);
     (this->*fn)();
     ((TObjEnemy *)o)->update_prev_position();
-    ((TObjPlayer *)o)->update_collisions();
+    ((TObjCollidable *)o)->update_collisions();
     if (this->targetable != 0) {
         submit_cursor_candidate(o, -1);
     }
@@ -1124,7 +1124,7 @@ void TObjEneDelDepth::update_death_fade() {
     default:
         sp8 = 0x800;
         ((TObjEnemy *)enemy)->send_6x0A_enemy_state(&sp8);
-        ((TObjEnemy *)enemy)->exchange_object_state((s32)&sp8, (s16)(0));
+        ((TObjEnemy *)enemy)->exchange_object_state(&sp8, (s16)(0));
         vfunc_79(&sp8);
         ((TObjEnemy *)enemy)->send_entity_set_flags();
         TObjPlayer::apply_effect_variant_a((s32)((u8 *)&this->position), 0);
