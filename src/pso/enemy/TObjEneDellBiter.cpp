@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/player/TObjPlayer_800D8FDC.h"
 #include "pso/system/EnemyBmlResource.h"
@@ -197,10 +198,10 @@ extern const char *lbl_804E6C80[2];
 extern const char *lbl_804E6C88[11];
 
 extern "C" {
-u8 *dispatch_shared_handler_a__6TLobbyFl(s32);
-s32 register_object__6TLobbyFl(int);
-s32 dispatch_shared_handler_b__6TLobbyFl(int);
-s32 register_boss__6TLobbyFl(int);
+
+
+
+
 extern DelbiterAttackDefinition ene_dell_biter_attack_def;
 }
 DelbiterInitialParameters TObjEneDellBiter__param_table = {
@@ -264,10 +265,10 @@ void TObjEneDellBiter::load_resources() {
     } else {
         TObjEneDellBiter__shared_model_resource = (u32)(void *)load_enemy_bml_resource((BmlResourceDescriptor *)(&lbl_804E6C70));
     }
-    dellbiter_boss_stat_handle = register_boss__6TLobbyFl(0xD);
-    TObjEneDellBiter__shared_handler_param = dispatch_shared_handler_b__6TLobbyFl(0xD);
-    dellbiter_object_stat_handle = register_object__6TLobbyFl(0xD);
-    TObjEneDellBiter__movement_params = (DelbiterMovementParameters *)dispatch_shared_handler_a__6TLobbyFl(0xD);
+    dellbiter_boss_stat_handle = ((s32)get_battle_base_stats(0xD));
+    TObjEneDellBiter__shared_handler_param = ((s32)get_battle_attack_params(0xD));
+    dellbiter_object_stat_handle = ((s32)get_battle_resistance_params(0xD));
+    TObjEneDellBiter__movement_params = (DelbiterMovementParameters *)((u8 *)get_battle_movement_params(0xD));
     TObjEneDellBiter__demo_script_step = 0;
     TObjEneDellBiter__demo_rotate_x_angle = 0;
     TObjEneDellBiter__demo_script_cursor = 0;

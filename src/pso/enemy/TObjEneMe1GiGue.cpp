@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/TParticleCtrl.h"
@@ -1714,10 +1715,10 @@ void TObjEneMe1GiGue::sub_802CCF2C() {
 #undef TObjEneMe1GiGue__sub_802CB10C
 #undef subtract_vector
 s32 is_split_screen();
-s32 dispatch_shared_handler_a__6TLobbyFl(int);
-s32 register_object__6TLobbyFl(int);
-s32 dispatch_shared_handler_b__6TLobbyFl(int);
-s32 register_boss__6TLobbyFl(int);
+
+
+
+
 s32 init_from_model__11TBreakUpMdlFl(s32, s32);
 s32 update__15RenderFadeStateFv(void *);
 s32 find_active_entity_by_id(int);
@@ -2058,10 +2059,10 @@ void TObjEneMe1GiGue::load_resources() {
         o = (int)new BmlResource(1, (BmlResourceDescriptor *)(lbl_804E1200), 0, 0, (void *)(0));
         TObjEneMe1GiGue__data_805D6838 = o;
     }
-    ene_me1_gigue_boss_id = register_boss__6TLobbyFl(0x1A);
-    lbl_805D682C = dispatch_shared_handler_b__6TLobbyFl(0x1A);
-    lbl_805D6830 = register_object__6TLobbyFl(0x1A);
-    TObjEneMe1GiGue__param_table = dispatch_shared_handler_a__6TLobbyFl(0x1A);
+    ene_me1_gigue_boss_id = ((s32)get_battle_base_stats(0x1A));
+    lbl_805D682C = ((s32)get_battle_attack_params(0x1A));
+    lbl_805D6830 = ((s32)get_battle_resistance_params(0x1A));
+    TObjEneMe1GiGue__param_table = ((s32)get_battle_movement_params(0x1A));
     o = (int)::operator new(0x10);
     if (o != 0) {
         o = init_from_model__11TBreakUpMdlFl(o, ((Obj_802CD62C *)TObjEneMe1GiGue__data_805D6838)->mdl->a);

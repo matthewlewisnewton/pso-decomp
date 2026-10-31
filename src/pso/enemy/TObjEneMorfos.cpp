@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -2224,16 +2225,16 @@ void TObjEneMorfos__sub_803350AC(void) {
     lbl_805D6D28 = 0;
     lbl_805D6D2C = 0;
     for (i = 0; i < 1; i++) {
-        lbl_805D6D08[i] = (s32)TLobby::register_boss(lbl_805DF860[i]);
+        lbl_805D6D08[i] = (s32)get_battle_base_stats(lbl_805DF860[i]);
     }
     for (i = 0; i < 2; i++) {
-        lbl_805434DC[i] = (s32)TLobby::dispatch_shared_handler_b(lbl_804774A0[i]);
+        lbl_805434DC[i] = (s32)get_battle_attack_params(lbl_804774A0[i]);
     }
     for (i = 0; i < 1; i++) {
-        lbl_805D6D0C[i] = (s32)TLobby::register_object(lbl_805DF864[i]);
+        lbl_805D6D0C[i] = (s32)get_battle_resistance_params(lbl_805DF864[i]);
     }
     for (i = 0; i < 1; i++) {
-        (&TObjEneMorfos__param_table)[i] = (int)TLobby::dispatch_shared_handler_a(lbl_805DF868[i]);
+        (&TObjEneMorfos__param_table)[i] = (int)get_battle_movement_params(lbl_805DF868[i]);
     }
     TObjEneMorfosArm::init_global();
     {

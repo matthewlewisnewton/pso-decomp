@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -6094,15 +6095,15 @@ void TBoss1Dragon::load_resources() {
     nodes[55].value.y -= (0.5f);
 
     out = &TBoss1Dragon__data_805D4B00;
-    for (s32 i = 0; i < 1; i++) { out[i] = (s32)TLobby::register_boss((&lbl_805D2648)[i]); }
+    for (s32 i = 0; i < 1; i++) { out[i] = (s32)get_battle_base_stats((&lbl_805D2648)[i]); }
     table = boss1_dragon_attack_param_ids;
     out = (s32 *)&TBoss1Dragon__part_hp_stats;
     for (s32 i = 0; i < 5; i++) {
-        out[i] = (s32)TLobby::dispatch_shared_handler_b(table[i]);
+        out[i] = (s32)get_battle_attack_params(table[i]);
     }
-    for (s32 i = 0; i < 1; i++) { (&TBoss1Dragon__data_805D4B04)[i] = (s32)TLobby::register_object((&lbl_805D264C)[i]); }
+    for (s32 i = 0; i < 1; i++) { (&TBoss1Dragon__data_805D4B04)[i] = (s32)get_battle_resistance_params((&lbl_805D264C)[i]); }
     for (s32 i = 0; i < 3; i++) {
-        TBoss1Dragon__data_804FE17C[i] = (s32)TLobby::dispatch_shared_handler_a(boss1_dragon_resistance_param_ids[i]);
+        TBoss1Dragon__data_804FE17C[i] = (s32)get_battle_movement_params(boss1_dragon_resistance_param_ids[i]);
     }
     lbl_805D4B34 = 0;
     TBoss1Dragon__data_805D4B38 = 0;

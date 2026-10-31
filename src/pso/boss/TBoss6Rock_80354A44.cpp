@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/boss/TBoss6Rock_80354A44.h"
@@ -67,7 +68,7 @@ void TBoss6Rock::load_resources() {
     for (i = 0; i < 0x20; i++) {
         TBoss6Rock__instance_table[i] = 0;
     }
-    lbl_805D6EFC = (s32)*(f32 *)((u8 *)TLobby::dispatch_shared_handler_a(0x2C) + 0xC);
+    lbl_805D6EFC = (s32)*(f32 *)((u8 *)get_battle_movement_params(0x2C) + 0xC);
     if (lbl_805D6EFC < 1) {
         lbl_805D6EFC = 0x14;
     }

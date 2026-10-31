@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #include "types.h"
 #include "pso/boss/TBoss6RockChase.h"
 #include "pso/object/TObject_80019A50.h"
@@ -107,7 +108,7 @@ extern const f32 lbl_805E03C0;
 extern const f32 lbl_805E03C4;
 extern const f32 lbl_805E03C8;
 int get_player_data__10TObjPlayerFi(int a0);
-Param_8036D1B4 *dispatch_shared_handler_a__6TLobbyFl(s32);
+
 f32 vector_length(void *);
 int subtract_vector(void *, void *);
 extern RecoveredGlobal_8036D4E0_lbl_8047ACE8 boss6_rock_chase_model_radius_table;
@@ -134,7 +135,7 @@ s32 TBoss6RockChase::damage_players_in_range() {
         Ent_8036D1B4 *tbl = (Ent_8036D1B4 *)&boss6_rock_chase_model_radius_table;
         range = tbl[self->xB0].range;
     }
-    dmg = dispatch_shared_handler_a__6TLobbyFl(0x2C)->v;
+    dmg = ((Param_8036D1B4 *)get_battle_movement_params(0x2C))->v;
     if (dmg < 1) {
         dmg = 20;
     }

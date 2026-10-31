@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
@@ -176,10 +177,10 @@ extern f32 lbl_805DE80C;
 extern const f32 lbl_805DE814;
 extern const f32 lbl_805DE828;
 extern const f32 lbl_805DE82C;
-s32 dispatch_shared_handler_a__6TLobbyFl(int);
-s32 register_object__6TLobbyFl(int);
-s32 dispatch_shared_handler_b__6TLobbyFl(int);
-s32 register_boss__6TLobbyFl(int);
+
+
+
+
 void *mem_alloc(u32 size);
 extern Spawn_802DB7C0 gibbles_resource_binding_desc;
 extern s32 gibbles_boss_stat_handle;
@@ -2507,12 +2508,12 @@ void TObjEneGibbles::load_resources() {
     TObjEneGibbles__render_node_index = 0;
     TObjEneGibbles__render_rotation_x = 0;
     gibbles_combat_stat_entries = (u32) mem_alloc(0xC);
-    gibbles_boss_stat_handle = register_boss__6TLobbyFl(0x3D);
-    ((s32 *) gibbles_combat_stat_entries)[0] = dispatch_shared_handler_b__6TLobbyFl(0x3D);
-    ((s32 *) gibbles_combat_stat_entries)[2] = dispatch_shared_handler_b__6TLobbyFl(0x3E);
-    ((s32 *) gibbles_combat_stat_entries)[1] = dispatch_shared_handler_b__6TLobbyFl(0x3F);
-    gibbles_combat_stats_handle = register_object__6TLobbyFl(0x3D);
-    (*(s32 *)&TObjEneGibbles__ai_parameters) = dispatch_shared_handler_a__6TLobbyFl(0x3D);
+    gibbles_boss_stat_handle = ((s32)get_battle_base_stats(0x3D));
+    ((s32 *) gibbles_combat_stat_entries)[0] = ((s32)get_battle_attack_params(0x3D));
+    ((s32 *) gibbles_combat_stat_entries)[2] = ((s32)get_battle_attack_params(0x3E));
+    ((s32 *) gibbles_combat_stat_entries)[1] = ((s32)get_battle_attack_params(0x3F));
+    gibbles_combat_stats_handle = ((s32)get_battle_resistance_params(0x3D));
+    (*(s32 *)&TObjEneGibbles__ai_parameters) = ((s32)get_battle_movement_params(0x3D));
     Spawn_802DB7C0 s = gibbles_resource_binding_desc;
     s.a = *(s32 *)((s8 *)TObjEneGibbles__resource_bundle + 0x430);
     NpcModelRegistry::register_animated_chunk((s16)0x44, (void *)((s32)(*(s32 *)((s8 *)(*(u8 **)((s8 *)TObjEneGibbles__resource_bundle + 0x42C)) + 8))), (void *)((s32)(*(s32 *)((s8 *)(*(u8 **)((s8 *)TObjEneGibbles__resource_bundle + 0x42C)) + 0xC))), (const NpcAnimationBinding *)((s32)(&s)), (f32)(((f32 *)lbl_804E296C)[3]), (f32)TObjEneGibbles__data_805DE7E4);

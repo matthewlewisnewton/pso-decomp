@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #include "pso/unk/TUnk_80494968.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -385,10 +386,10 @@ void __dl__7TObjectFPv(void *);
 void __destroy_arr(void *, void *, int, int);
 extern u8 __dt__15RenderFadeStateFv[];
 O_80092724 *TObjPlayer__sub_80092724(O_80092724 *arg0, s16 arg1);
-s32 dispatch_shared_handler_a__6TLobbyFl(int);
-s32 register_object__6TLobbyFl(int);
-s32 dispatch_shared_handler_b__6TLobbyFl(int);
-s32 register_boss__6TLobbyFl(int);
+
+
+
+
 void draw_trail_with_colors(u8 *boss4_type3, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 u8 *init_trail_buffer__11TBoss4Type3FPvifff(void *, int, f32, f32, f32);
 void *mem_alloc(u32 size);
@@ -674,18 +675,18 @@ void TObjEneBeast::load_resources() {
     TObjEneBeast__boss4_rock_handler_ids = (u32)mem_alloc(0xC);
     boss4_rock_pool = (u32)mem_alloc(0xC);
     boss4_rock_shared_handler_ids = (u32)mem_alloc(0xC);
-    ((s32 *)ene_beast_boss_id_buffer)[0] = register_boss__6TLobbyFl(0x4B);
-    ((s32 *)ene_beast_boss_id_buffer)[1] = register_boss__6TLobbyFl(0x4C);
-    ((s32 *)ene_beast_boss_id_buffer)[2] = register_boss__6TLobbyFl(0x4D);
-    ((s32 *)TObjEneBeast__boss4_rock_handler_ids)[0] = dispatch_shared_handler_b__6TLobbyFl(0x4E);
-    ((s32 *)TObjEneBeast__boss4_rock_handler_ids)[1] = dispatch_shared_handler_b__6TLobbyFl(0x4F);
-    ((s32 *)TObjEneBeast__boss4_rock_handler_ids)[2] = dispatch_shared_handler_b__6TLobbyFl(0x50);
-    ((s32 *)boss4_rock_pool)[0] = register_object__6TLobbyFl(0x4A);
-    ((s32 *)boss4_rock_pool)[1] = register_object__6TLobbyFl(0x4B);
-    ((s32 *)boss4_rock_pool)[2] = register_object__6TLobbyFl(0x4C);
-    ((s32 *)boss4_rock_shared_handler_ids)[0] = dispatch_shared_handler_a__6TLobbyFl(0x4A);
-    ((s32 *)boss4_rock_shared_handler_ids)[1] = dispatch_shared_handler_a__6TLobbyFl(0x4B);
-    ((s32 *)boss4_rock_shared_handler_ids)[2] = dispatch_shared_handler_a__6TLobbyFl(0x4C);
+    ((s32 *)ene_beast_boss_id_buffer)[0] = ((s32)get_battle_base_stats(0x4B));
+    ((s32 *)ene_beast_boss_id_buffer)[1] = ((s32)get_battle_base_stats(0x4C));
+    ((s32 *)ene_beast_boss_id_buffer)[2] = ((s32)get_battle_base_stats(0x4D));
+    ((s32 *)TObjEneBeast__boss4_rock_handler_ids)[0] = ((s32)get_battle_attack_params(0x4E));
+    ((s32 *)TObjEneBeast__boss4_rock_handler_ids)[1] = ((s32)get_battle_attack_params(0x4F));
+    ((s32 *)TObjEneBeast__boss4_rock_handler_ids)[2] = ((s32)get_battle_attack_params(0x50));
+    ((s32 *)boss4_rock_pool)[0] = ((s32)get_battle_resistance_params(0x4A));
+    ((s32 *)boss4_rock_pool)[1] = ((s32)get_battle_resistance_params(0x4B));
+    ((s32 *)boss4_rock_pool)[2] = ((s32)get_battle_resistance_params(0x4C));
+    ((s32 *)boss4_rock_shared_handler_ids)[0] = ((s32)get_battle_movement_params(0x4A));
+    ((s32 *)boss4_rock_shared_handler_ids)[1] = ((s32)get_battle_movement_params(0x4B));
+    ((s32 *)boss4_rock_shared_handler_ids)[2] = ((s32)get_battle_movement_params(0x4C));
     {
         Ids_8009241C ids = lbl_80439D68[0];
         Quad_8009241C q = lbl_80439D70[0];

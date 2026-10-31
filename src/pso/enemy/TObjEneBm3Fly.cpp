@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/enemy/TObjEnemy.h"
 extern "C" void *__ct__12TObjEneDD_STFP7TObject(void *);
@@ -1916,10 +1917,10 @@ typedef struct Nest_800B39CC {
 } Nest_800B39CC;
 
 u16 get_entity_id(void *);
-s32 dispatch_shared_handler_a__6TLobbyFl(int);
-s32 register_object__6TLobbyFl(int);
-s32 dispatch_shared_handler_b__6TLobbyFl(int);
-s32 register_boss__6TLobbyFl(int);
+
+
+
+
 void *create_particle_emitter(void *pos, s32 id);
 s32 init_from_model__11TBreakUpMdlFl(int, void *);
 void TObjEneBm3Fly__sub_800B0B20(u8 *arg0, s32 arg1);
@@ -2447,10 +2448,10 @@ void TObjEneBm3Fly::load_resources() {
         var_r0 = init_from_model__11TBreakUpMdlFl(temp_r3, (void *) (*(s32 *)((s8 *)(*(u8 **)((s8 *)bm3_fly_nest_resources + 0x42C)) + 8)));
     }
     (*(s32 *)&(*(void **)&TObjEneBm3Fly__breakup_model)) = var_r0;
-    bm3_fly_boss_stat_handle = register_boss__6TLobbyFl(0);
-    TObjEneBm3Fly__attack_params = dispatch_shared_handler_b__6TLobbyFl(0);
-    lbl_805D50E8 = register_object__6TLobbyFl(0);
-    (*(s32 *)&(*(f32 **)&lbl_805D50EC)) = dispatch_shared_handler_a__6TLobbyFl(0);
+    bm3_fly_boss_stat_handle = ((s32)get_battle_base_stats(0));
+    TObjEneBm3Fly__attack_params = ((s32)get_battle_attack_params(0));
+    lbl_805D50E8 = ((s32)get_battle_resistance_params(0));
+    (*(s32 *)&(*(f32 **)&lbl_805D50EC)) = ((s32)get_battle_movement_params(0));
     stack.sp8 = *(s32 *)((s8 *)&bm3_fly_resource_binding_desc.value + 0);
     stack.spC = *(s32 *)((s8 *)&bm3_fly_resource_binding_desc.value + 4);
     stack.sp10 = *(s32 *)((s8 *)&bm3_fly_resource_binding_desc.value + 8);

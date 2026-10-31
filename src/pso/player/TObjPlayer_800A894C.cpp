@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TUnk_80494938.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/system/EnemyBmlResource.h"
@@ -139,10 +140,9 @@ extern s32 lbl_805D5094;
 extern s32 lbl_805D5098;
 extern void *breakup_model_ptr;
 
-s32 dispatch_shared_handler_a__6TLobbyFl(int);
-s32 register_object__6TLobbyFl(int);
-s32 dispatch_shared_handler_b__6TLobbyFl(int);
-s32 register_boss__6TLobbyFl(int);
+
+
+
 s32 get_bml_motion(void *, int);
 s32 get_bml_model(void *, int);
 void TObjPlayer__sub_800A4294(void);
@@ -1175,10 +1175,10 @@ void TObjPlayer__sub_800AA82C(void) {
     t[1] = (s32)p;
     draw_trail_with_colors((u8 *)t[1], get_bml_model(lbl_805D5090, 0), get_bml_motion(lbl_805D5090, 7), 0x2E, 0x32);
     for (i = 0; i < 2; i++) {
-        ((s32 *)lbl_805009A0)[i] = register_boss__6TLobbyFl(i + 0x1B);
-        lbl_805009A8[i] = dispatch_shared_handler_b__6TLobbyFl(i + 0x1B);
-        lbl_805009B0[i] = register_object__6TLobbyFl(i + 0x1B);
-        lbl_805009B8[i] = dispatch_shared_handler_a__6TLobbyFl(i + 0x1B);
+        ((s32 *)lbl_805009A0)[i] = (s32)get_battle_base_stats(i + 0x1B);
+        lbl_805009A8[i] = (s32)get_battle_attack_params(i + 0x1B);
+        lbl_805009B0[i] = (s32)get_battle_resistance_params(i + 0x1B);
+        lbl_805009B8[i] = (s32)get_battle_movement_params(i + 0x1B);
     }
     mdl = lbl_805D5090->mdl->f8;
     for (i = 0; i < 3; i++) {

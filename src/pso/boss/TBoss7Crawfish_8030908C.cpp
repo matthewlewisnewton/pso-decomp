@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/misc/TLobby.h"
@@ -22,7 +23,7 @@ struct Vec_8030920C { f32 x, y, z; };
 extern "C" {
 extern RecoveredGlobal_8030946C_lbl_804E7370 bm_boss7_crawfish_resource_descriptor;
 extern u32 TBoss7Crawfish__shared_resource;
-s32 dispatch_shared_handler_a__6TLobbyFl(int);
+
 s32 TObjFish__sub_8001EDB0(int, int);
 s32 get_bml_model(int, int);
 s32 set_field_b8__10TObjMotionFs(void *, int);
@@ -109,13 +110,13 @@ u8 *TBoss7Crawfish__ct(u8 *arg0, s32 arg1, s32 arg2) {
     ((TBoss7Crawfish *)(arg0))->apply_set_data((void *)arg2);
     if (((TBoss7Crawfish *)arg0)->sub_80308AA8() != 0) {
         ((TObjEnemy *)arg0)->set_param(0x4A);
-        ((TObjEnemy *)arg0)->bind_enemy_combat_stats((u8 *)(TLobby::register_boss(8)), (u8 *)(TLobby::dispatch_shared_handler_b(8)), (u8 *)(TLobby::register_object(8)));
-        ((TBoss7Crawfish *)arg0)->m_3a0 = dispatch_shared_handler_a__6TLobbyFl(8);
+        ((TObjEnemy *)arg0)->bind_enemy_combat_stats((u8 *)(get_battle_base_stats(8)), (u8 *)(get_battle_attack_params(8)), (u8 *)(get_battle_resistance_params(8)));
+        ((TBoss7Crawfish *)arg0)->m_3a0 = ((s32)get_battle_movement_params(8));
         *(s32 *)((s8 *)arg0 + 0x34) = get_bml_model(TBoss7Crawfish__shared_resource, 0);
     } else {
         ((TObjEnemy *)arg0)->set_param(0x4B);
-        ((TObjEnemy *)arg0)->bind_enemy_combat_stats((u8 *)(TLobby::register_boss(9)), (u8 *)(TLobby::dispatch_shared_handler_b(9)), (u8 *)(TLobby::register_object(9)));
-        ((TBoss7Crawfish *)arg0)->m_3a0 = dispatch_shared_handler_a__6TLobbyFl(9);
+        ((TObjEnemy *)arg0)->bind_enemy_combat_stats((u8 *)(get_battle_base_stats(9)), (u8 *)(get_battle_attack_params(9)), (u8 *)(get_battle_resistance_params(9)));
+        ((TBoss7Crawfish *)arg0)->m_3a0 = ((s32)get_battle_movement_params(9));
         *(s32 *)((s8 *)arg0 + 0x34) = get_bml_model(TBoss7Crawfish__shared_resource, 1);
     }
     ((TObjChara *)arg0)->get_or_assign_entity_id(0);

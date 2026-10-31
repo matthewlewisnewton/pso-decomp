@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -447,10 +448,10 @@ s32 VecCopy__FP3VecPC3Vec(void *, void *);
 Player_800951AC * get_player_data__10TObjPlayerFi(s32);
 u16 get_entity_id(void *);
 void queue_destruction__7TObjectFv(void *);
-s32 dispatch_shared_handler_a__6TLobbyFl(s32);
-s32 register_object__6TLobbyFl(s32);
-s32 dispatch_shared_handler_b__6TLobbyFl(s32);
-s32 register_boss__6TLobbyFl(s32);
+
+
+
+
 u32 csnLookAt(void *, void *);
 s32 TObjEneRe7Berura__sub_80093470(void *, void *);
 void state_patrol__16TObjEneRe7BeruraFPvi(void *arg0, s32 arg1);
@@ -1345,16 +1346,16 @@ void TObjEneRe7Berura::load_static_resources() {
     vecs[2].x = TObjEneRe7Berura__data_805D9730;
     ((TBoss4Type3 *)p)->draw_motion_trail((s32)(*(s32 *)(RES->f42C + 8)), (s32)((RES->f430 + TObjEneRe7Berura__animation_definitions[2].f4)->f4), (s32)pair, (s32)vecs);
     for (i = 0; i < 1; i++) {
-        TObjEneRe7Berura__stat_handle_table[i] = register_boss__6TLobbyFl(lbl_805D9718[i]);
+        TObjEneRe7Berura__stat_handle_table[i] = ((s32)get_battle_base_stats(lbl_805D9718[i]));
     }
     for (s32 j = 0; j < 2; j++) {
-        TObjEneRe7Berura__data_805007D4[j] = dispatch_shared_handler_b__6TLobbyFl(lbl_80439DA0[j]);
+        TObjEneRe7Berura__data_805007D4[j] = ((s32)get_battle_attack_params(lbl_80439DA0[j]));
     }
     for (i = 0; i < 1; i++) {
-        TObjEneRe7Berura__shared_object_handles[i] = register_object__6TLobbyFl(lbl_805D971C[i]);
+        TObjEneRe7Berura__shared_object_handles[i] = ((s32)get_battle_resistance_params(lbl_805D971C[i]));
     }
     for (i = 0; i < 1; i++) {
-        TObjEneRe7Berura__handler_table_a[i] = dispatch_shared_handler_a__6TLobbyFl(lbl_805D9720[i]);
+        TObjEneRe7Berura__handler_table_a[i] = ((s32)get_battle_movement_params(lbl_805D9720[i]));
     }
     {
         Atk_800959F8 atk = ene_re7_berura_attack_def;

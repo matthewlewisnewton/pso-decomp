@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -801,10 +802,10 @@ void TBoss4Type3__sub_802D1130(void) {
     fn_802D1CC8();
     TObjPlayer__sub_800F0928();
     for (i = 0; i < 3; i++) {
-        bm9_mericarol_phase_hp_table[i] = (u32)TLobby::register_boss(lbl_804722E8[i]);
-        lbl_80540B64[i] = (u32)TLobby::dispatch_shared_handler_b(lbl_804722F4[i]);
-        lbl_80540B70[i] = (u32)TLobby::register_object(lbl_80472300[i]);
-        mericarol_phase_param_table[i] = (u32)TLobby::dispatch_shared_handler_a(lbl_8047230C[i]);
+        bm9_mericarol_phase_hp_table[i] = (u32)get_battle_base_stats(lbl_804722E8[i]);
+        lbl_80540B64[i] = (u32)get_battle_attack_params(lbl_804722F4[i]);
+        lbl_80540B70[i] = (u32)get_battle_resistance_params(lbl_80472300[i]);
+        mericarol_phase_param_table[i] = (u32)get_battle_movement_params(lbl_8047230C[i]);
     }
     p = ::operator new(0x18);
     if (p != NULL) {

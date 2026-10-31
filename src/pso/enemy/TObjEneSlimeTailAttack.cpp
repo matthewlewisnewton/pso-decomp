@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #include "types.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjChara.h"
@@ -295,7 +296,7 @@ struct Vec_800E9EFC { f32 x, y, z; };
 
 u16 find_nearest_visible_player(void *, void *, f32);
 void queue_destruction__7TObjectFv(void *);
-f32 * dispatch_shared_handler_a__6TLobbyFl(s32);
+
 u8 * get_bml_motion(s32, s32);
 s32 exchange_object_state__9TObjEnemyFls(void *, void *, int);
 void transform_to_view__11TCameraCtrlFii(s32, s32);
@@ -1046,7 +1047,7 @@ s32 TObjPlayer__sub_800E85BC(TObjEneSlimeTailAttack *self) {
     }
     hit.kind = 0;
     result = 0;
-    hit.dmg = *(s16 *)TLobby::register_boss((s32)lbl_804966FC[((TObjEneSlimeOne *)(*(s32 *)((u8 *)self + 0x374)))->get_attack_target()]);
+    hit.dmg = *(s16 *)get_battle_base_stats((s32)lbl_804966FC[((TObjEneSlimeOne *)(*(s32 *)((u8 *)self + 0x374)))->get_attack_target()]);
     id = find_nearest_visible_player(self, 0, lbl_805DA6A8);
     if (id != 0xFFFF && id != *(s32 *)((u8 *)self + 0x37C)) {
         e = ((Ent_800E8AD0 *(*)(s32))get_player_by_client_id)(id);
@@ -1310,7 +1311,7 @@ void *TObjEneSlimeWaterBomb__ct(TObjEneSlimeWaterBomb *ene_slime_water_bomb, voi
     ene_slime_water_bomb->m_37c = lbl_805DA6D8 * c;
     *(f32 *)((s8 *)ene_slime_water_bomb + 0x384) = lbl_805DA6B4;
     *(s32 *)&ene_slime_water_bomb->m_388 = (s32)create_particle_emitter((u8 *) ene_slime_water_bomb + 0x38, 0xCF);
-    *(f32 *)((s8 *)ene_slime_water_bomb + 0x390) = *dispatch_shared_handler_a__6TLobbyFl(TObjEneSlime__attack_target_param_table[((TObjEneSlimeOne *)(*(s32 *)&ene_slime_water_bomb->m_38c))->get_attack_target()]);
+    *(f32 *)((s8 *)ene_slime_water_bomb + 0x390) = *((f32 *)get_battle_movement_params(TObjEneSlime__attack_target_param_table[((TObjEneSlimeOne *)(*(s32 *)&ene_slime_water_bomb->m_38c))->get_attack_target()]));
     if (*(f32 *)((s8 *)ene_slime_water_bomb + 0x390) < lbl_805DA6B4) {
         *(f32 *)((s8 *)ene_slime_water_bomb + 0x390) = lbl_805DA6B4;
     }
@@ -2175,11 +2176,11 @@ void TObjEneSlimeOne::initialize_slime_instance_state() {
   *((s32 *) (((s8 *) actor) + 0x2A8)) = 0;
   if ((*new_var2) == 0)
   {
-    ((TObjEnemy *)actor)->bind_enemy_combat_stats((u8 *)(TLobby::register_boss(0x30)), (u8 *)(TLobby::dispatch_shared_handler_b(0x30)), (u8 *)(TLobby::register_object(0x30)));
+    ((TObjEnemy *)actor)->bind_enemy_combat_stats((u8 *)(get_battle_base_stats(0x30)), (u8 *)(get_battle_attack_params(0x30)), (u8 *)(get_battle_resistance_params(0x30)));
   }
   else
   {
-    ((TObjEnemy *)actor)->bind_enemy_combat_stats((u8 *)(TLobby::register_boss(0x34)), (u8 *)(TLobby::dispatch_shared_handler_b(0x34)), (u8 *)(TLobby::register_object(0x34)));
+    ((TObjEnemy *)actor)->bind_enemy_combat_stats((u8 *)(get_battle_base_stats(0x34)), (u8 *)(get_battle_attack_params(0x34)), (u8 *)(get_battle_resistance_params(0x34)));
   }
   ((TObjEneSlimeOne *)actor)->referenceHp = ((TObjEneSlimeOne *)actor)->hp;
   ((TBoss3Volopt *)actor)->reset_photon_effect();

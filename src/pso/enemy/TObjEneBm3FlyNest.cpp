@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -741,10 +742,10 @@ struct Vec_800B4388 { f32 x, y, z; };
 s32 is_split_screen();
 f32 atan2_float(f32 y, f32 x);
 void queue_destruction__7TObjectFv(void *);
-s32 dispatch_shared_handler_a__6TLobbyFl(int);
-s32 register_object__6TLobbyFl(int);
-s32 dispatch_shared_handler_b__6TLobbyFl(int);
-s32 register_boss__6TLobbyFl(int);
+
+
+
+
 s32 get_camera_mode__11TCameraCtrlFv();
 s32 get_flag_b4__9TObjEneDDFv(void *);
 void rotate_xz_pair_by_angle(f32 *arg0, f32 *arg1, s32 arg2);
@@ -1994,10 +1995,10 @@ void TObjEneBm3FlyNest::load_resources() {
     } else {
         lbl_805D5108 = (s32)load_enemy_bml_resource((BmlResourceDescriptor *)((u8 *)&bm3_fly_nest_resource_desc));
     }
-    lbl_805D50F8 = register_boss__6TLobbyFl(1);
-    lbl_805D50FC = dispatch_shared_handler_b__6TLobbyFl(1);
-    lbl_805D5100 = register_object__6TLobbyFl(1);
-    lbl_805D5104 = dispatch_shared_handler_a__6TLobbyFl(1);
+    lbl_805D50F8 = ((s32)get_battle_base_stats(1));
+    lbl_805D50FC = ((s32)get_battle_attack_params(1));
+    lbl_805D5100 = ((s32)get_battle_resistance_params(1));
+    lbl_805D5104 = ((s32)get_battle_movement_params(1));
     TObjEneBm3Fly::load_resources();
     TObjEneBm3FlyNest::init_vertex_table();
     {

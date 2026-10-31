@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/EnemyTargetCandidate.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -704,10 +705,10 @@ struct Gy_800D3ED8 { u8 pad[0x3EC]; E_800D3ED8 e3EC[4]; };
 
 s32 is_split_screen();
 void queue_destruction__7TObjectFv(void *);
-s32 dispatch_shared_handler_a__6TLobbyFl(int);
-s32 register_object__6TLobbyFl(int);
-s32 dispatch_shared_handler_b__6TLobbyFl(int);
-s32 register_boss__6TLobbyFl(int);
+
+
+
+
 s32 get_bml_motion(u32, int);
 s32 get_camera_mode__11TCameraCtrlFv();
 VObj_800D3BA0_800D3B38 * init__11TBreakUpMdlFPviif(void *, s32, s32, f32);
@@ -1654,10 +1655,10 @@ void TLobby::load_gyaranzo_resources() {
         p = init__11TBreakUpMdlFPviif(p, AREA->res->r38, get_bml_motion(gyaranzo_bml_resource, 3), lbl_805DA294);
     }
     (*(struct VObj_800D3BA0_800D3B38 * *)&gyaranzo_breakup_model_obj) = (VObj_800D3BA0_800D3B38 *)p;
-    gyaranzo_boss_stats_handle = register_boss__6TLobbyFl(0x1D);
-    gyaranzo_boss_stats_ptr_b = dispatch_shared_handler_b__6TLobbyFl(0x1D);
-    gyaranzo_object_handle = register_object__6TLobbyFl(0x1D);
-    gyaranzo_missile_param_table = dispatch_shared_handler_a__6TLobbyFl(0x1D);
+    gyaranzo_boss_stats_handle = ((s32)get_battle_base_stats(0x1D));
+    gyaranzo_boss_stats_ptr_b = ((s32)get_battle_attack_params(0x1D));
+    gyaranzo_object_handle = ((s32)get_battle_resistance_params(0x1D));
+    gyaranzo_missile_param_table = ((s32)get_battle_movement_params(0x1D));
     {
         Pos_800D3C04 pos = lbl_8043C25C;
         pos.w[0] = AREA->f430;

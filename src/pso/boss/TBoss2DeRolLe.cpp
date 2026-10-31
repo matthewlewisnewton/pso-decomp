@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -5169,10 +5170,10 @@ extern s32 current_scene_light;
 extern const f32 lbl_805D8260;
 extern const f32 TBoss2Fin__data_805D8450;
 extern const f32 lbl_805D8454;
-s32 dispatch_shared_handler_a__6TLobbyFl(s32);
-s32 register_object__6TLobbyFl(s32);
-s32 dispatch_shared_handler_b__6TLobbyFl(int);
-s32 register_boss__6TLobbyFl(int);
+
+
+
+
 void TObjPlayer__sub_8002E7C8(void);
 void TBoss2Mine__sub_80038D88(void);
 void TBoss2Tentacle__sub_8003A0AC(void);
@@ -6037,16 +6038,16 @@ void load_resources__13TBoss2DeRolLeFv(void) {
     lbl_805D4BBC = 0;
     lbl_805D4BC0 = 0;
     for (i = 0; i < 1; i++) {
-        TBoss2DeRolLe__base_params[i] = register_boss__6TLobbyFl(de_rol_le_base_param_ids[i]);
+        TBoss2DeRolLe__base_params[i] = (s32)get_battle_base_stats(de_rol_le_base_param_ids[i]);
     }
     for (i = 0; i < 3; i++) {
-        ((s32 *)TBoss2DeRolLe__attack_params_table)[i] = dispatch_shared_handler_b__6TLobbyFl(TBoss2DeRolLe__shared_handler_id_table[i]);
+        ((s32 *)TBoss2DeRolLe__attack_params_table)[i] = (s32)get_battle_attack_params(TBoss2DeRolLe__shared_handler_id_table[i]);
     }
     for (i = 0; i < 1; i++) {
-        TBoss2DeRolLe__resistance_params[i] = register_object__6TLobbyFl(de_rol_le_resistance_param_ids[i]);
+        TBoss2DeRolLe__resistance_params[i] = (s32)get_battle_resistance_params(de_rol_le_resistance_param_ids[i]);
     }
     for (i = 0; i < 1; i++) {
-        TBoss2DeRolLe__data_805D4BA0[i] = dispatch_shared_handler_a__6TLobbyFl(lbl_805D26B0[i]);
+        TBoss2DeRolLe__data_805D4BA0[i] = (s32)get_battle_movement_params(lbl_805D26B0[i]);
     }
     TBoss2DeRolLe__instance = 0;
     TBoss2Tentacle__sub_8003A0AC();

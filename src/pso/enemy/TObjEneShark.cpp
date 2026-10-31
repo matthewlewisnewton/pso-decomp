@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #include "pso/unk/TUnk_80494968.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -582,10 +583,10 @@ void __destroy_arr(void *, void *, int, int);
 void *__dt__13TUnk_80494938Fv(void *arg0, s16 arg1);
 extern u8 __dt__15RenderFadeStateFv[];
 O_800AC5EC *__dt__12TObjEneSharkFv(O_800AC5EC *arg0, s16 arg1);
-s32 dispatch_shared_handler_a__6TLobbyFl(int);
-s32 register_object__6TLobbyFl(int);
-s32 dispatch_shared_handler_b__6TLobbyFl(int);
-s32 register_boss__6TLobbyFl(int);
+
+
+
+
 void draw_trail_with_colors(u8 *boss4_type3, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 void *init_trail_buffer__11TBoss4Type3FPvifff(void *, s32, f32, f32, f32);
 void *mem_alloc(u32 size);
@@ -863,18 +864,18 @@ void TLobby::load_shark_resources() {
     G_AC = (s32 *)mem_alloc(0xC);
     G_B0 = (s32 *)mem_alloc(0xC);
     G_B4 = (s32 *)mem_alloc(0xC);
-    G_A8[0] = register_boss__6TLobbyFl(0x4F);
-    G_A8[1] = register_boss__6TLobbyFl(0x50);
-    G_A8[2] = register_boss__6TLobbyFl(0x51);
-    G_AC[0] = dispatch_shared_handler_b__6TLobbyFl(0x54);
-    G_AC[1] = dispatch_shared_handler_b__6TLobbyFl(0x55);
-    G_AC[2] = dispatch_shared_handler_b__6TLobbyFl(0x56);
-    G_B0[0] = register_object__6TLobbyFl(0x4E);
-    G_B0[1] = register_object__6TLobbyFl(0x4F);
-    G_B0[2] = register_object__6TLobbyFl(0x50);
-    G_B4[0] = dispatch_shared_handler_a__6TLobbyFl(0x4E);
-    G_B4[1] = dispatch_shared_handler_a__6TLobbyFl(0x4F);
-    G_B4[2] = dispatch_shared_handler_a__6TLobbyFl(0x50);
+    G_A8[0] = ((s32)get_battle_base_stats(0x4F));
+    G_A8[1] = ((s32)get_battle_base_stats(0x50));
+    G_A8[2] = ((s32)get_battle_base_stats(0x51));
+    G_AC[0] = ((s32)get_battle_attack_params(0x54));
+    G_AC[1] = ((s32)get_battle_attack_params(0x55));
+    G_AC[2] = ((s32)get_battle_attack_params(0x56));
+    G_B0[0] = ((s32)get_battle_resistance_params(0x4E));
+    G_B0[1] = ((s32)get_battle_resistance_params(0x4F));
+    G_B0[2] = ((s32)get_battle_resistance_params(0x50));
+    G_B4[0] = ((s32)get_battle_movement_params(0x4E));
+    G_B4[1] = ((s32)get_battle_movement_params(0x4F));
+    G_B4[2] = ((s32)get_battle_movement_params(0x50));
     shark_render_node_index = 0;
     {
         s16 ids[3] = { 0x2F, 0x30, 0x31 };

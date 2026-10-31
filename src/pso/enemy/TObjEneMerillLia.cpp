@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #include "pso/math/ScratchVectorStorage.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -1697,14 +1698,14 @@ void TObjEneMerillLia__sub_800D6D64(void) {
     merill_lia_rock_buffer = (u32)mem_alloc(8);
     merill_lia_rock_aux_buffer = (u32)mem_alloc(8);
     TObjEneMerillLia__rock_param_table = (u32)mem_alloc(8);
-    ((void **)TObjEneMerillLia__rock_stats_table)[0] = TLobby::register_boss(75);
-    ((void **)TObjEneMerillLia__rock_stats_table)[1] = TLobby::register_boss(76);
-    ((void **)merill_lia_rock_buffer)[0] = TLobby::dispatch_shared_handler_b(78);
-    ((void **)merill_lia_rock_buffer)[1] = TLobby::dispatch_shared_handler_b(79);
-    ((void **)merill_lia_rock_aux_buffer)[0] = TLobby::register_object(74);
-    ((void **)merill_lia_rock_aux_buffer)[1] = TLobby::register_object(75);
-    ((void **)TObjEneMerillLia__rock_param_table)[0] = TLobby::dispatch_shared_handler_a(74);
-    ((void **)TObjEneMerillLia__rock_param_table)[1] = TLobby::dispatch_shared_handler_a(75);
+    ((void **)TObjEneMerillLia__rock_stats_table)[0] = get_battle_base_stats(75);
+    ((void **)TObjEneMerillLia__rock_stats_table)[1] = get_battle_base_stats(76);
+    ((void **)merill_lia_rock_buffer)[0] = get_battle_attack_params(78);
+    ((void **)merill_lia_rock_buffer)[1] = get_battle_attack_params(79);
+    ((void **)merill_lia_rock_aux_buffer)[0] = get_battle_resistance_params(74);
+    ((void **)merill_lia_rock_aux_buffer)[1] = get_battle_resistance_params(75);
+    ((void **)TObjEneMerillLia__rock_param_table)[0] = get_battle_movement_params(74);
+    ((void **)TObjEneMerillLia__rock_param_table)[1] = get_battle_movement_params(75);
     {
         s16 ids[2] = {44, 46};
         NpcSpawnMotions motions = merill_lia_spawn_motions;
