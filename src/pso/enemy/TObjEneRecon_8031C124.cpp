@@ -1,3 +1,4 @@
+struct NJS_OBJECT;
 #include "types.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/enemy/TObjEneRecon.h"
@@ -12,7 +13,7 @@ s32 push_matrix();
 extern s32 recon_intro_stage;
 extern s32 recon_model_matrix_ptr;
 
-void TObjEneRecon::advance_intro_stage() {
+void TObjEneRecon::advance_intro_stage(NJS_OBJECT *) {
     switch ((s32) recon_intro_stage) {
     case 0:
         push_matrix();

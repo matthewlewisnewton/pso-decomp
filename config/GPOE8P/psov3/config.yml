@@ -1103,7 +1103,7 @@ force_active:
   - TObjEnvSoundEx__ct
   - TObjEnvSound__ct
   - TObjEvtCollision__ct
-  - TObjFish__sub_800E3188
+  - __dt__24ModelNodePositionCaptureFv
   - TObjFish__sub_8034029C
   - TObjFogCollisionPoison__ct
   - TObjFogCollisionSwitch__ct
@@ -2651,16 +2651,16 @@ force_active:
   - advance_afterimage__11TBoss4Type2Fv
   - advance_afterimage__11TBoss4Type3Fv
   - advance_air_turn__12TBoss1DragonFv
-  - advance_anim_frame__16TObjEneBm5GibonUFv
+  - advance_anim_frame__16TObjEneBm5GibonUFP10NJS_OBJECT
   - advance_anim_frame__18TObjEneRe4SorcererFv
   - advance_anim_time__13TUnk_804B5E48Flf
   - advance_animation_state__10TEndingPicFv
   - advance_appear__11TBoss4Type3Fv
   - advance_bone_rotation__19TObjEZBoneRotPlayerFv
   - advance_bura__11TBoss4Type3Fv
-  - advance_camera_ctrl_step__13TObjEneMe1GeeFv
-  - advance_camera_ctrl_step__19TObjEneEpsilonGuardFv
-  - capture_effect_positions__14TObjEneIllGillFv
+  - advance_camera_ctrl_step__13TObjEneMe1GeeFP10NJS_OBJECT
+  - advance_camera_ctrl_step__19TObjEneEpsilonGuardFP10NJS_OBJECT
+  - capture_effect_positions__14TObjEneIllGillFP10NJS_OBJECT
   - advance_capture__11TBoss4Type3Fv
   - advance_cut__11TBoss4Type3Fv
   - advance_dark_magic__11TBoss4Type3Fv
@@ -2687,8 +2687,8 @@ force_active:
   - advance_review__14CreationCameraFv
   - advance_scene_object_animations__6TSceneFv
   - advance_scroll__13TRaderMapCoreFv
-  - advance_spawn_timer__14TObjEneBm5WolfFv
-  - advance_state__16TObjEneRe7BeruraFv
+  - advance_spawn_timer__14TObjEneBm5WolfFP10NJS_OBJECT
+  - advance_state__16TObjEneRe7BeruraFP10NJS_OBJECT
   - advance_text_entry_reveal__FPUc
   - advance_thanks_state__12TBoss4ThanksFv
   - advance_thanks_state__12TBoss6ThanksFv
@@ -3239,7 +3239,7 @@ force_active:
   - break_apart__15TObjEneMe1GiGueFv
   - break_rocks_in_wave__15TBoss6SwordWaveFv
   - bringer_init_params
-  - bringer_render_node_callback__Fv
+  - bringer_render_node_callback__FP10NJS_OBJECT
   - broadcast_state__15TOAttackableColFv
   - broadcast_to_players__6TLobbyFii
   - broadcast_values__15TBoss3VoloptP02Fv
@@ -3394,8 +3394,8 @@ force_active:
   - canadin_random_scale
   - cancel_trade_for_member_out_of_range__Fl
   - candidate_players__12TBoss3Volopt
-  - capture_attachment__17TObjEneBm3FlyNestFPv
-  - capture_matrix_by_frame__16TObjDFTenchuFuruFv
+  - capture_attachment__17TObjEneBm3FlyNestFP10NJS_OBJECT
+  - capture_matrix_by_frame__16TObjDFTenchuFuruFP10NJS_OBJECT
   - cast_resta__18TObjEneRe4SorcererFv
   - cast_tech_on_players__15TBoss3VoloptP01Fv
   - cast_technique__18TObjEneMe3SinowZoaFPv
@@ -4000,7 +4000,7 @@ force_active:
   - deliver_chain_hits__11TTecGiZondeFv
   - deliver_delayed_weapon_hit
   - deliver_target_hit__10TTecSlicerFv
-  - demo_frame_callback__16TObjEneRe7BeruraFv
+  - demo_frame_callback__16TObjEneRe7BeruraFP10NJS_OBJECT
   - demux_stream_chunks__6TLobbyFv
   - depth_buffer_config_copy
   - despawn_state__14TObjEneBm5WolfFl
@@ -4116,7 +4116,7 @@ force_active:
   - door_cave03_resource_descriptor
   - door_resource_descriptor
   - door_resource_handle
-  - dragon_capture_node_points__Fv
+  - dragon_capture_node_points__FP10NJS_OBJECT
   - dragonfly_cave01_resource_descriptor
   - draw__10TBoss6MineFv
   - draw__11TBoss4Type3Fv
@@ -4139,7 +4139,7 @@ force_active:
   - draw_body__13TBoss5GryphonFv
   - draw_body__13TObjEneMorfosFv
   - draw_bottom_bar__20TWindowSubStatusDispFv
-  - draw_callback_transform_to_view__8TObjFishFv
+  - capture_node__24ModelNodePositionCaptureFP10NJS_OBJECT
   - draw_closed__8TObjDoorFPv
   - draw_closed_glow__8TObjDoorFPv
   - draw_closing__8TObjDoorFPv
@@ -5335,7 +5335,7 @@ force_active:
   - is_enabled__9TItemDropFv
   - is_end__12TCharaMakingFv
   - is_entity_locally_controlled__Fl
-  - is_entry_table_valid__8TObjFishFv
+  - is_valid__24ModelNodePositionCaptureFP22ModelNodePositionEntry
   - is_entry_valid__23TAdSinglePlyChrSelectGCFPvi
   - is_entry_valid__6TLobbyFl
   - is_far_from_origin__10TBoss6MineFv
@@ -11370,7 +11370,7 @@ force_active:
   - recobox_motion_name_table
   - recoil_weapon_shoot_model_vtable
   - recoiling_projectile_weapon_vtable
-  - record_camera_path_point__13TObjEneMorfosFv
+  - record_camera_path_point__13TObjEneMorfosFP10NJS_OBJECT
   - record_hit__22TObjFogCollisionPoisonFll
   - record_local_battle_placement
   - record_local_damage_if_enabled__FPvPvl
@@ -11873,7 +11873,7 @@ force_active:
   - roll_shop_weapon_special
   - roll_technique_level__9TItemDropFv
   - roll_weapon_special__9TItemDropFiPvi
-  - rotate_animated_node__20TODragonflyMachine01Fv
+  - rotate_animated_node__20TODragonflyMachine01FP10NJS_OBJECT
   - rotate_heading_by_stick__11TCameraCtrlFv
   - rotate_title_background_quad__FlPUcPUclf
   - run_active_state__18TObjEneBalClawClawFv
@@ -12278,7 +12278,7 @@ force_active:
   - saveCurrentDestination__12TBoss1DragonFv
   - saveTargetDestination__12TBoss1DragonFv
   - save_globals__14QuestVmContextFv
-  - save_joint_matrix_callback__Fv
+  - save_joint_matrix_callback__FP10NJS_OBJECT
   - save_position__10TBoss2MineFv
   - save_position__10TObjPlayerFv
   - save_model_render_flags__FPv
@@ -13024,9 +13024,9 @@ force_active:
   - step_angle_clamped__10TObjPlayerFPvi
   - step_angle_toward__11TBoss6Type2Flll
   - step_camera_scalar__FPCfPCfPff
-  - step_cutscene_frame__10TObjPlayerFv
-  - step_demo_script__16TObjEneDellBiterFv
-  - step_effect_sequence__18TObjEneRe4SorcererFv
+  - step_cutscene_frame__10TObjPlayerFP10NJS_OBJECT
+  - step_demo_script__16TObjEneDellBiterFP10NJS_OBJECT
+  - step_effect_sequence__18TObjEneRe4SorcererFP10NJS_OBJECT
   - step_fade_opacity_decrease__13TUnk_80499970Fv
   - step_fade_opacity_increase__FPUc
   - step_ground_technique_projectile
@@ -13344,7 +13344,7 @@ force_active:
   - tl_window_name
   - to_le_uint16_t__FUs
   - todoormachine01_resource_descriptor
-  - toggle_effect_render__14TObjEneDolmOlmFv
+  - toggle_effect_render__14TObjEneDolmOlmFP10NJS_OBJECT
   - toggle_selected_part__28TWindowSubSymbolChatPartsSetFv
   - tombstone_resource_descriptor
   - town_player_motion_clip_index_tables
@@ -13481,7 +13481,7 @@ force_active:
   - update_by_state__9TTecMegidFv
   - update_camera_facing_offset__11TLoadingCurFv
   - update_camera_slots__10TObjCameraFv
-  - update_camera_vec_by_stage__9TObjGrassFv
+  - update_camera_vec_by_stage__9TObjGrassFP10NJS_OBJECT
   - update_capture__11TBoss4Type3Fv
   - update_capture__14TObjVoloptCageFv
   - update_card_confirm__16TAdChrSelBSlotGCFPv
@@ -13696,7 +13696,7 @@ force_active:
   - update_movement_status__12TObjEneSaverFv
   - update_movement_status__17TObjEneDarkGunnerFv
   - update_moving__12TObjEneLappyFv
-  - update_node_oscillation__11TItemMagSubFPv
+  - update_node_oscillation__11TItemMagSubFP10NJS_OBJECT
   - update_opening__13TOHealGeneralFv
   - update_opening_glow__8TObjDoorFPv
   - update_or_dispatch__14TBoss7DeRolLeCFv
@@ -13709,7 +13709,7 @@ force_active:
   - update_pad_recalibration
   - update_palette_sprite__20TWindowSubStatusDispFv
   - update_particle__15TObjSuisouLobbyFv
-  - update_node_particle_state__12TObjEneSharkFv
+  - update_node_particle_state__12TObjEneSharkFP10NJS_OBJECT
   - update_particle_emitters__12TBoss4ThanksFv
   - update_particle_emitters__12TBoss6ThanksFv
   - update_particle_emitters__16TObjEneDellBiterFv
