@@ -176,3 +176,31 @@ correct `TWindowDD::construct_base` member directly removes the original
 `extsh` instruction, while widening the constructor's input to recover that
 instruction changes an already source-linked caller. This checkpoint preserves
 the existing exact constructor and caller instead of masking that conflict.
+
+### Native-data verification
+
+The initial one-byte `.sbss` split endpoint caused dtk to reject the following
+automatic split's alignment. The final split retains the aligned eight-byte
+range `0x805D6458..0x805D6460`, but marks the single-byte guard local. The
+compiled unit emits one guard byte; `link_units.py` accepts the remaining seven
+bytes as alignment padding, with no duplicate guard object.
+
+The locked rebuild passed the original DOL SHA-1. `check_pr.py --no-build`
+passed against the assigned base (+892 matched data bytes, no lost exact code,
+data or linked units) and `report_delta.py --check` passed against the earlier
+WIP checkpoint (+884 matched data bytes). All 3,536 linked units remain valid.
+The unit's `.data` (548 bytes), `.rodata` (344 bytes) and `.sbss` (8-byte split)
+compare at 100%; `.data` and `.rodata` section alignment is eight bytes. A
+separate source-object layout check found no alignment, extra-section, global
+data-layout, function-order or exported-descriptor mismatch. The unit is not
+linkable yet: `.text` is non-exact and 20 original `.sdata2` symbols remain
+missing from the source object. The original DOL still uses fallback for this
+unit, so its hash does not validate runtime behavior of these new bodies.
+
+The latest report scores the dispatcher, glyph renderer and grid renderer at
+95.22%, 79.10% and 95.51% respectively. Earlier percentage figures describe
+individual experiments and are not the scores of this combined object. The
+constructor declaration and use of the 20-byte descriptor compile with all
+three functions exact, but the inherited base-constructor free declaration
+remains an ABI-repair prerequisite described above. Independent review is
+required for this checkpoint.
