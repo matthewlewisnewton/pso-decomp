@@ -1166,6 +1166,8 @@ typedef struct Player_801CB1B0 {
     u8 pad30c[4];
     f32 z;
 } Player_801CB1B0;
+s32 validate_6x47_cast_technique(u8 *);
+
 extern "C" {
 
 s32 get_main_phase();
@@ -4626,6 +4628,46 @@ void TObjPlayer::enter_technique_cast() {
         this->current_action = ((s16 (*)(void))ret_801D26AC)();
     }
     ((void (*)(void *, s16, s16))set_action_state__10TObjPlayerFPvss)(self, 8, ((TObjPlayer *)self)->get_status());
+}
+
+// Packet 6x47 has ten four-byte target entries following its eight-byte header.
+struct CastPacket_801CD550 {
+    u8 cmd, size;
+    u16 id;
+    s8 tech, unused, level, count;
+    u32 targets[10];
+};
+
+void handle_6x47_cast_technique(void *arg) {
+    CastPacket_801CD550 pkt;
+    u8 *player;
+    s16 tech;
+    s8 level, count, valid;
+    u8 effective;
+    u32 *dst, *src;
+    s32 i;
+    ((TNpcPlayer *)&pkt)->init_cast_technique_cmd();
+    TObjPlayer__sub_801D21CC((u8 *)&pkt, (u8 *)arg);
+    ((TNpcPlayer *)&pkt)->byteswap_positions();
+    if (!validate_6x47_cast_technique((u8 *)&pkt)) return;
+    player = get_player_by_client_id(pkt.id);
+    if (!player || !reset_volopt_state__10TObjPlayerFv(player) || test_action_mask__10TObjPlayerFl(player, 0x8200)) return;
+    tech = pkt.tech;
+    set_technique_id__10TObjPlayerFs((s32)(player + 0x428), tech);
+    level = pkt.level;
+    valid = ((TObjPlayer *)(player + 0x428))->get_valid_technique();
+    if (!TObjPlayer::is_valid_technique_slot((u8)valid)) valid = 0;
+    if (level == 14) level += valid;
+    if (!check_technique_level__10TObjPlayerFllUc(player + 0x428, tech, (u8)level)) level = 0;
+    effective = level;
+    ((TObjPlayer *)(player + 0x428))->set_technique_id(effective);
+    clamp_and_set_unit_value__10TObjPlayerFiUci((s32)player, effective, tech);
+    count = pkt.count;
+    ((TObjPlayer *)(player + 0x428))->set_tech_level(count);
+    dst = (u32 *)get_technique_data__10TObjPlayerFPv(player + 0x428);
+    src = pkt.targets;
+    for (i = 0; i < count; i++) copy_tech_params__10TObjPlayerFPvPv(dst++, src++);
+    run_action_state_phase__10TObjPlayerFisi((s32)player, 8, 0);
 }
 
 void handle_6x8D_set_technique_level_override(void *arg0) {
