@@ -1027,7 +1027,7 @@ void TObjEneGyaranzo::update_fade_state() {
         temp_r4 = actorFlags | 0x04000000;
         actorFlags = temp_r4;
         requested_action = 0;
-        play_area_sound_and_particles_a(&body_center_position, temp_r4);
+        play_area_sound_and_particles_a(&body_center_position);
         fade.start_fade_in();
         state = 1;
     case 1:
