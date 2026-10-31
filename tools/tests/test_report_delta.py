@@ -14,16 +14,16 @@ class PaddingEvidenceTests(unittest.TestCase):
             path = Path(tmp) / "symbols.txt"
             path.write_text("entry = extab:0x80000004; // type:object\n"
                             "other = .data:0x80000010; // type:object\n")
-            starts = delta.symbol_starts(path)
-        self.assertEqual(starts["extab"], [0x80000004])
+            starts = delta.symbol_extents(path)
+        self.assertEqual(starts["extab"], [(0x80000004, 0x80000005)])
         self.assertFalse(delta.is_alignment_padding(self.row, lambda a, n: bytes(n), starts))
 
     def test_missing_or_empty_inventory_cannot_prove_padding(self):
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / "symbols.txt"
-            self.assertIsNone(delta.symbol_starts(path))
+            self.assertIsNone(delta.symbol_extents(path))
             path.write_text("")
-            self.assertIsNone(delta.symbol_starts(path))
+            self.assertIsNone(delta.symbol_extents(path))
         self.assertFalse(delta.is_alignment_padding(self.row, lambda a, n: bytes(n), None))
 
     def test_short_dol_read_cannot_prove_padding(self):
@@ -47,9 +47,45 @@ class PaddingEvidenceTests(unittest.TestCase):
                                            "metadata": {"virtual_address": 0x80000004}}]}]}
         after = {"units": []}
         result = delta.compare(before, after, read=lambda a, n: bytes(n),
-                               starts={"extab": [0x80000004]})
+                               starts={"extab": [(0x80000004, 0x80000005)]})
         self.assertEqual(result["data_coverage_lost"], [self.row])
         self.assertIn("Original data addresses disappeared from coverage", result["failures"])
+
+    def test_object_tail_loss_cannot_be_masked_by_unrelated_gains(self):
+        def unit(name, address, size, exact, complete):
+            return {"name": name, "metadata": {"module_name": "psov3", "complete": complete},
+                    "sections": [{"name": "extab", "size": size,
+                                  "fuzzy_match_percent": 100 if exact else 0,
+                                  "metadata": {"virtual_address": address}}]}
+
+        before = {"measures": {"total_data": 16, "matched_data": 8, "complete_data": 8},
+                  "units": [unit("A", 0x80000000, 8, True, True),
+                            unit("B", 0x80000010, 8, False, False)]}
+        after = {"measures": {"total_data": 12, "matched_data": 12, "complete_data": 12},
+                 "units": [unit("A", 0x80000000, 4, True, True),
+                           unit("B", 0x80000010, 8, True, True)]}
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "symbols.txt"
+            path.write_text("A = extab:0x80000000; // type:object size:0x8\n"
+                            "B = extab:0x80000010; // type:object size:0x8\n")
+            result = delta.compare(before, after, read=lambda a, n: bytes(n),
+                                   starts=delta.symbol_extents(path))
+        self.assertEqual(result["data_coverage_lost"], [self.row])
+        self.assertEqual(result["data_regressions"], [self.row])
+        self.assertEqual(result["linked_data_lost"], [self.row])
+        self.assertTrue(result["failures"])
+
+    def test_gap_after_symbol_end_and_nested_extents(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "symbols.txt"
+            path.write_text("A = extab:0x80000000; // type:object size:0x4\n"
+                            "B = extab:0x80000008; // type:object size:0x8\n")
+            self.assertTrue(delta.is_alignment_padding(self.row, lambda a, n: bytes(n),
+                                                       delta.symbol_extents(path)))
+            path.write_text("A = extab:0x80000000; // type:object size:0x8\n"
+                            "nested = extab:0x80000002; // type:object size:0x1\n")
+            self.assertFalse(delta.is_alignment_padding(self.row, lambda a, n: bytes(n),
+                                                        delta.symbol_extents(path)))
 
 
 if __name__ == "__main__":
