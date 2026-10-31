@@ -7,6 +7,7 @@
 #include "pso/player/demo_mode.h"
 #include "pso/misc/MaterialOpacityFade.h"
 #include "pso/misc/RenderFadeState.h"
+struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/unk/TUnk_80494968.h"
@@ -1826,7 +1827,7 @@ void TObjEneMe3ShinowaMirage::draw_model() {
             translate_matrix(0, TObjEneMe3ShinowaMirage__data_805DA5B8, (f32) (*(f32 *)((s8 *)((u8 *)this) + 0x3CC)), TObjEneMe3ShinowaMirage__data_805DA5B8);
             rotate_matrix_y(0, this->rotation_y);
             TObjEneMe3ShinowaMirage__render_node_index = 0;
-            set_chunk_model_node_callback((s32)((void *) (TObjEneMe3ShinowaMirage::advance_camera_ctrl_step)));
+            set_chunk_model_node_callback(( (TObjEneMe3ShinowaMirage::advance_camera_ctrl_step)));
             if (var_r31 == 1) {
                 ((TObjMotion *)((u8 *)this))->draw();
             } else {
@@ -1845,7 +1846,7 @@ void TObjEneMe3ShinowaMirage::draw_model() {
     TParticleCtrl::end_effect_render();
 }
 
-void TObjEneMe3ShinowaMirage::advance_camera_ctrl_step() {
+void TObjEneMe3ShinowaMirage::advance_camera_ctrl_step(NJS_OBJECT *) {
     if ((s32) TObjEneMe3ShinowaMirage__render_node_index == 1) {
         transform_point_to_view((s32) &TObjEneMe3ShinowaMirage__data_80500FC0.value, (s32) &lbl_80500FF4.value);
     }

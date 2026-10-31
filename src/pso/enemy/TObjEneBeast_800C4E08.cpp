@@ -56,7 +56,6 @@ f32 get_collision_body_radius(void *, s32);
 s32 pop_matrix();
 f32 fabs_float(f32);
 f64 atan2_float(f32, f32);
-s32 link_chain_nodes__10TObjPlayerFPvPvPv(void *, void *, void *);
 f32 horizontal_distance_squared(void *, void *);
 s32 approach_angle_limited(int, int, int);
 s32 project_actor_to_ground(void *, void *, int);
@@ -185,7 +184,7 @@ void TUnk_80493450::beast_update_hurt() {
     } else {
         movement_velocity.x = movement_velocity.z = BEAST_ZERO_SPEED;
     }
-    ((TObjPlayer *)this)->update_collisions();
+    ((TObjCollidable *)this)->update_collisions();
     if (is_passing_frame(BEAST_ANIMATION_START_FRAME) != 0) {
         this->vfunc_97();
     }
@@ -255,7 +254,7 @@ void TUnk_80493450::beast_update_attack() {
     }
     apply_actor_gravity(this, 0, BEAST_GROUND_HEIGHT_OFFSET);
     enemy_turn_toward_dest(this, ((s32 *)movementParameters)[2]);
-    ((TObjPlayer *)this)->update_collisions();
+    ((TObjCollidable *)this)->update_collisions();
     minimap_render_dot(&position, -0x5DB4, 1, 0);
 }
 
@@ -362,7 +361,7 @@ void TUnk_80493450::beast_update_group_chase() {
             m_374 = 0;
         }
     }
-    ((TObjPlayer *)this)->update_collisions();
+    ((TObjCollidable *)this)->update_collisions();
     minimap_render_dot(&position, -0x5DB4, 1, 0);
 }
 
@@ -411,7 +410,7 @@ void TUnk_80493450::beast_update_approach() {
         }
         break;
     }
-    ((TObjPlayer *)arg0)->update_collisions();
+    ((TObjCollidable *)arg0)->update_collisions();
     minimap_render_dot((u8 *)&this->position, -0x5DB4, 1, 0);
     ((TObjBase *)arg0)->obj_clearFlags30(0x200000);
 }
@@ -464,7 +463,7 @@ void TUnk_80493450::update_turn_toward_target() {
         break;
     }
     apply_actor_gravity(arg0, 0, BEAST_GROUND_HEIGHT_OFFSET);
-    ((TObjPlayer *)arg0)->update_collisions();
+    ((TObjCollidable *)arg0)->update_collisions();
     minimap_render_dot(&arg0->position, -0x5DB4, 1, 0);
 }
 
@@ -518,18 +517,18 @@ void TUnk_80493450::beast_idle_update() {
     if (this->phase != 1) {
         this->phase = 1;
         ((TUnk_80493450 *)arg0)->link_into_group_chain();
-        *(s32 *)&this->m_378 = ((TObjPlayer *)arg0)->is_action_available();
+        *(s32 *)&this->m_378 = ((TObjEnemy *)arg0)->has_group();
     }
     *(s32 *)&this->m_37c = ((TUnk_80493450 *)arg0)->countChildren();
     other = *(u8 * *)&this->next;
     if (other != NULL) {
         diff = *(s32 *)((s8 *)other + 0x37C) - *(s32 *)&this->m_37c;
         if (diff > 1) {
-            link_chain_nodes__10TObjPlayerFPvPvPv(arg0, other, arg0);
+            ((TObjEnemy *)arg0)->link_last_group_child((TObjEnemy *)other, (TObjEnemy *)arg0);
             *(s32 *)&this->m_37c = *(s32 *)&this->m_37c + 1;
             *(s32 *)((s8 *)other + 0x37C) = *(s32 *)((s8 *)other + 0x37C) - 1;
         } else if (diff < -1) {
-            link_chain_nodes__10TObjPlayerFPvPvPv(arg0, arg0, other);
+            ((TObjEnemy *)arg0)->link_last_group_child((TObjEnemy *)arg0, (TObjEnemy *)other);
             *(s32 *)&this->m_37c = *(s32 *)&this->m_37c - 1;
             *(s32 *)((s8 *)other + 0x37C) = *(s32 *)((s8 *)other + 0x37C) + 1;
         }
