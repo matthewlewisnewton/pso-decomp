@@ -131,6 +131,19 @@ struct Trap_80179B8C : VObj_80179B8C {
     Fade_80179B8C fades[4];
 };
 
+struct TrapChipParams {
+    f32 params[3];
+    f32 pos[3];
+    f32 velocity[3];
+    s32 rotation[3];
+    s32 count_and_lifetime[2];
+    f32 floor_and_scale[2];
+    s32 model;
+    s32 textures;
+    s32 kind;
+};
+typedef char TrapChipParams_size[sizeof(TrapChipParams) == 0x4c ? 1 : -1];
+
 extern "C" {
 void receive_physical_attack__6TOTrapFPvf(void *, void *, f32);
 u16 get_entity_id(TObjBase *);
@@ -171,7 +184,6 @@ void submit_cursor_candidate(void *, s32);
 extern s32 lbl_805D3530;
 extern const f32 lbl_805DBA48;
 extern const f32 lbl_805DBA50;
-extern const TObjChipParams lbl_80442D80, lbl_80442DCC, lbl_80442E18;
 extern void *tl_06;
 s32 is_split_screen();
 s32 get_camera_mode__11TCameraCtrlFv();
@@ -239,22 +251,28 @@ void TOTrapAncient01::release_trapped_player() {
 }
 
 // Parameter templates are still owned by original-data ranges pending a split audit.
+#pragma push
+#pragma pool_data off
+#pragma opt_lifetimes off
 void TOTrapAncient01::play_sounds() {
-    TObjChipParams a = lbl_80442D80;
-    a.pos[0] = position.x; a.pos[1] = position.y; a.pos[2] = position.z;
-    a.pad_38[0] = position.y;
-    a.model = get_bml_model((void *)TOTrapAncient01__bml_resource, 0);
-    a.textures = TObjFish__sub_8001EDB0((void *)TOTrapAncient01__bml_resource, 0);
-    TObjChipParams b = lbl_80442DCC;
-    b.pos[0] = position.x; b.pos[1] = position.y; b.pos[2] = position.z;
-    b.pad_38[0] = position.y;
-    b.model = get_bml_model((void *)TOTrapAncient01__bml_resource, 1);
-    b.textures = TObjFish__sub_8001EDB0((void *)TOTrapAncient01__bml_resource, 1);
-    TObjChipParams c = lbl_80442E18;
-    c.pos[0] = position.x; c.pos[1] = position.y; c.pos[2] = position.z;
-    c.pad_38[0] = position.y;
-    c.model = get_bml_model((void *)TOTrapAncient01__bml_resource, 2);
-    c.textures = TObjFish__sub_8001EDB0((void *)TOTrapAncient01__bml_resource, 2);
+    TrapChipParams a = {
+        {0.5f, 0.03f, 0.15f}, {position.x, position.y, position.z},
+        {3.0f, 5.0f, 3.0f}, {0x800, 0x100, 0x800}, {4, 30},
+        {position.y, 1.0f}, get_bml_model((void *)TOTrapAncient01__bml_resource, 0),
+        TObjFish__sub_8001EDB0((void *)TOTrapAncient01__bml_resource, 0), 22
+    };
+    TrapChipParams b = {
+        {0.5f, 0.03f, 0.15f}, {position.x, position.y, position.z},
+        {3.0f, 5.0f, 3.0f}, {0x800, 0x100, 0x800}, {4, 30},
+        {position.y, 1.0f}, get_bml_model((void *)TOTrapAncient01__bml_resource, 1),
+        TObjFish__sub_8001EDB0((void *)TOTrapAncient01__bml_resource, 1), 22
+    };
+    TrapChipParams c = {
+        {0.5f, 0.03f, 0.15f}, {position.x, position.y, position.z},
+        {3.0f, 5.0f, 3.0f}, {0x800, 0x100, 0x800}, {4, 30},
+        {position.y, 1.0f}, get_bml_model((void *)TOTrapAncient01__bml_resource, 2),
+        TObjFish__sub_8001EDB0((void *)TOTrapAncient01__bml_resource, 2), 22
+    };
     void *o = __nw__7TObjectFUl(0x234);
     if (o != NULL) __ct__8TObjChipFP7TObjectP14TObjChipParams((u8 *)o, (u8 *)tl_06, (u8 *)&a);
     o = __nw__7TObjectFUl(0x234);
@@ -264,18 +282,26 @@ void TOTrapAncient01::play_sounds() {
     TParticleCtrl *particle = spawn_particle_effect(&position, 0x8b);
     if (particle != NULL) particle->set_scale(lbl_805DBA50, lbl_805DBA50);
     switch (get_current_floor_area()) {
-    case AREA_VR_TEMPLE_ALPHA: case AREA_VR_TEMPLE_BETA:
-        play_sound_effect(0x4bc07, &position, 0, 0); break;
-    case AREA_VR_SPACESHIP_ALPHA: case AREA_VR_SPACESHIP_BETA:
-        play_sound_effect(0x4004bc07, &position, 0, 0); break;
     case AREA_SEABED_UPPER: case AREA_SEABED_LOWER:
-        play_sound_effect(0x4004c118, &position, 0, 0); break;
-    case AREA_SEASIDE_NIGHT: case AREA_TOWER:
-        play_sound_effect(0x4004bc19, &position, 0, 0); break;
-    default:
-        play_sound_effect(0x4004bc12, &position, 0, 0); break;
+        play_sound_effect(0x4004c118, &position, 0, 0); return;
+    case AREA_VR_TEMPLE_ALPHA: case AREA_VR_TEMPLE_BETA:
+        play_sound_effect(0x4bc07, &position, 0, 0); return;
+    case AREA_VR_SPACESHIP_ALPHA: case AREA_VR_SPACESHIP_BETA:
+        play_sound_effect(0x4004bc07, &position, 0, 0); return;
+    case AREA_SEASIDE_NIGHT:
+        play_sound_effect(0x4004bc19, &position, 0, 0); return;
+    case AREA_TOWER:
+        play_sound_effect(0x4004bc19, &position, 0, 0); return;
+    case AREA_CENTRAL_CONTROL_AREA: case AREA_JUNGLE_NORTH:
+    case AREA_JUNGLE_EAST: case AREA_MOUNTAIN: case AREA_SEASIDE:
+    case AREA_GAL_GRYPHON: case AREA_OLGA_FLOW: case AREA_BARBA_RAY:
+    case AREA_GOL_DRAGON:
+        break;
     }
+    play_sound_effect(0x4004bc12, &position, 0, 0);
 }
+
+#pragma pop
 
 f32 TOTrapAncient01::receive_physical_attack(void *arg1, f32 farg0) {
     this->release_trapped_player();
