@@ -288,7 +288,7 @@ void run_task__30TObjEneMe1Canadin_EffDischargeFv(u8 *ene_me1_canadin_eff_discha
     }
     VC_B(ene_me1_canadin_eff_discharge + 0x38, ene_me1_canadin_eff_discharge + 0x50);
     if (var_r31 != 0) {
-        fn_8009E1D4((u8 *)(*(s32 *)((s8 *)ene_me1_canadin_eff_discharge + 0x1C)), (s32)(ene_me1_canadin_eff_discharge + 0x44));
+        ((TObjEneMe1Canadin *)(*(s32 *)((s8 *)ene_me1_canadin_eff_discharge + 0x1C)))->fn_8009E1D4((Vec *)(ene_me1_canadin_eff_discharge + 0x44));
         queue_destruction__7TObjectFv(ene_me1_canadin_eff_discharge);
     }
 }
