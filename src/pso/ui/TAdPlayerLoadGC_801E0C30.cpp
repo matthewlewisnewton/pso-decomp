@@ -964,8 +964,9 @@ s32 TAdPlayerLoadGC__sub_801E26DC(s32 chan, const char *name, void *buf, u32 siz
     case -3: return result;
     case -1: return result;
     case 0: return result;
-    case -128: case -12: case -6: case -4: case -2:
-    default: return result;
+    case -2: case -4: case -6: case -8: case -9: goto create_error;
+    case -128: case -12:
+    default: create_error: return result;
     }
 }
 
