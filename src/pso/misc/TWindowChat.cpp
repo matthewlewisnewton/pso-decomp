@@ -11,6 +11,7 @@
 #include "pso/TObject.h"
 #include "pso/misc/TWindowMenu.h"
 #include "types.h"
+#include "pso/misc/TWindowKeyBoardSoft_80261440.h"
 
 struct Win_8024701C { u8 p0[0x1E]; u16 flags; s32 f20; u8 p24[4]; s32 f28; };
 
@@ -71,7 +72,6 @@ s32 check_flag_100__10TObjPlayerFPv();
 extern u8 controller_input_state[];
 s32 __nw__7TObjectFUl(int);
 s32 construct_symbol_chat_selection(int, void *);
-s32 TWindowKeyBoardSoft__ct(int, void *, void *);
 s32 get_window_layout_position(int);
 s32 TWindowDD__ct(int, void *, void *);
 void *__dt__11TWindowChatFv(void *, s16);
@@ -394,7 +394,7 @@ void TWindowChat::open_next_input_window() {
         temp_r3 = __nw__7TObjectFUl(0x70);
         var_r0 = temp_r3;
         if (var_r0 != 0) {
-            var_r0 = TWindowKeyBoardSoft__ct((int)temp_r3, (void *) (((RecoveredFields_8024792C_arg0 *)arg0)->field_20), (void *)local_client_id);
+            var_r0 = (s32)TWindowKeyBoardSoft__ct((u8 *)temp_r3, (s32)(((RecoveredFields_8024792C_arg0 *)arg0)->field_20), local_client_id);
         }
         ((RecoveredFields_8024792C_arg0 *)arg0)->field_24 = var_r0;
         fn_80247ED8((void*)((int) (((RecoveredFields_8024792C_arg0 *)arg0)->field_24)));

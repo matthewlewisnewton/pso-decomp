@@ -46,7 +46,6 @@ struct RecoveredGlobal_80262740_lbl_804D0004 {
 };
 
 extern "C" {
-s32 construct_base__9TWindowDDFPUcsPUc(void *, void *, void *, int);
 s32 get_window_layout_position(int);
 extern s32 __vt__19TWindowKeyBoardSoft[];
 extern s32 keyboard_soft_type_name_pointer;
@@ -64,8 +63,8 @@ void *__dt__19TWindowKeyBoardSoftFv(void *arg0, s16 arg1) {
     return arg0;
 }
 typedef char RecoveredGlobal_80262740_lbl_804D0004_size[sizeof(RecoveredGlobal_80262740_lbl_804D0004) == 0x1C ? 1 : -1];
-u8 *TWindowKeyBoardSoft__ct(u8 *arg0, s32 arg1, s16 arg2) {
-    construct_base__9TWindowDDFPUcsPUc((void *)arg0, &soft_keyboard_window_and_action_data, (void *)arg2, (int) (get_window_layout_position(0xBA)));
+u8 *TWindowKeyBoardSoft__ct(u8 *arg0, s32 arg1, s32 arg2) {
+    ((TWindowDD *)arg0)->construct_base((u8 *)&soft_keyboard_window_and_action_data, (s16)arg2, (u8 *)get_window_layout_position(0xBA));
     *(s32 **)((s8 *)arg0 + 0x18) = &(*(RecoveredGlobal_80262740_lbl_804D0004 *)&__vt__19TWindowKeyBoardSoft).value;
     *(s32 *)((s8 *)arg0 + 0) = (s32) keyboard_soft_type_name_pointer;
     *(s32 *)((s8 *)arg0 + 0x60) = 0;
