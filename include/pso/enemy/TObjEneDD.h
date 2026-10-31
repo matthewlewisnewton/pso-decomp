@@ -43,7 +43,6 @@ struct TObjEneDD : public TObjEnemy {
     virtual u8 *vfunc_101(u8 *);
     virtual u8 *vfunc_102();
     virtual u8 *vfunc_103(u8 *);
-    virtual s32 vfunc_104(f32) = 0;
     int get_flag_b4();
     f32 calc_elapsed_scaled();
     void update_velocity();

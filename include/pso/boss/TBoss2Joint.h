@@ -19,6 +19,7 @@ struct TBoss2Joint : public TObjEneDD {
     virtual void vfunc_61();
     virtual void vfunc_88();
     virtual void vfunc_93();
+    virtual void initialize_joint();
     virtual void vfunc_105();
     void call_36A90_with_1();
     void init_joint_offset(s32 arg1);

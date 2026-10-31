@@ -920,10 +920,10 @@ struct VObj_80038948_80038610 : Base_80038948_80038610 {
     virtual u32 m102();
 };
 
-void TBoss2Mine__vt102(void *arg0, s32 arg1);
 void TBoss2Mine__vt85(void *arg0, s32 arg1, s32 arg2);
 
-void TBoss2Mine__vt102(void *boss2_mine, s32 arg1) {
+void TBoss2Mine::handle_initial_action(s32 arg1) {
+    void *boss2_mine = this;
     s32 temp_r4;
 
     switch (arg1) {
