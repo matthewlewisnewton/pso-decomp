@@ -1,5 +1,5 @@
 # Source-only checks: no original game data or compiler is required.
-# Passing these checks does not establish binary correctness; CI owns that gate.
+# Passing these checks does not establish binary correctness; the local mechanical queue owns that gate.
 name: Source checks
 
 on:
