@@ -75,7 +75,7 @@ void render__22TWindowLoadItemTextureFv(TWindowLoadItemTexture *arg0) {
             arg0->m_60 = 1U;
         }
     }
-    temp_r31 = ((TUnk_804CE018 *)arg0)->setup_window_draw_context((s32)((u8 *)arg0 + 0x64));
+    temp_r31 = (s32)((TUnk_804CE018 *)arg0)->setup_window_draw_context((s32)((u8 *)arg0 + 0x64));
     if (arg0->m_61 & 1) {
         ((TUnk_804CE018 *)arg0)->draw_window_frame((void *)temp_r31);
     }

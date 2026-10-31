@@ -504,7 +504,7 @@ void *TWindowLockOn::create_for_target(s32 arg0, u16 arg1) {
 void render__13TWindowLockOnFv(TWindowLockOn *arg0) {
     s32 temp_r3;
 
-    temp_r3 = ((TUnk_804CE018 *)arg0)->setup_window_draw_context((s32)((u8 *)arg0 + 0x68));
+    temp_r3 = (s32)((TUnk_804CE018 *)arg0)->setup_window_draw_context((s32)((u8 *)arg0 + 0x68));
     ((TUnk_804CE018 *)arg0)->draw_window_frame((void *)temp_r3);
     if ((arg0->m_30 == arg0->m_40) && (*(f32 *)((s8 *)arg0 + 0x34) == *(f32 *)((s8 *)arg0 + 0x44)) && (arg0->m_38 == arg0->m_48) && (*(f32 *)((s8 *)arg0 + 0x3C) == *(f32 *)((s8 *)arg0 + 0x4C))) {
         draw_visible_window_entries(arg0, (u8 *)arg0 + 0x24, temp_r3);

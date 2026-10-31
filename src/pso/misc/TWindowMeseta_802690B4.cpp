@@ -30,7 +30,7 @@ void TWindowMeseta::render() {
     s32 ctx;
     s32 arg0 = (s32)this;
 
-    ctx = ((TUnk_804CE018 *)arg0)->setup_window_draw_context(arg0 + 0x6C);
+    ctx = (s32)((TUnk_804CE018 *)arg0)->setup_window_draw_context(arg0 + 0x6C);
     ((TWindowMeseta *)arg0)->draw_value(ctx);
     draw_visible_window_entries(arg0, arg0 + 0x24, ctx);
 }

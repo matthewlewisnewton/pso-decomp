@@ -11,6 +11,7 @@
 #include "pso/misc/TWindowSubTradeMain.h"
 #include "pso/TObject.h"
 #include "pso/misc/TWindowKeyBoardSoft.h"
+#include "pso/misc/TWindowDrawContext.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 #include "pso/object/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
@@ -149,8 +150,13 @@ Win_80244DFC * find_overlapping_balloon__15TWindowFukidasiFPvPvPvPv(Win_80244DFC
 s32 sub_80246948__13TUnk_804CE018Fv();
 int TWindowFukidasi__sub_8024695C(void *p);
 s32 TWindowCtrlMain__sub_8024CE24();
-s32 animate_scale__19TWindowKeyBoardSoftFv();
-s32 open_singleton__19TWindowKeyBoardSoftFiiii(void *, void *, void *, int, f32);
+TWindowDrawContext *open_singleton__19TWindowKeyBoardSoftFiiii(f32 *, f32 *, f32 *, u32, f32);
+void apply_window_closing_stretch__FPUci(TWindowDrawContext *, int);
+void animate_scale__19TWindowKeyBoardSoftFv(TWindowDrawContext *);
+void shrink_clip_right__19TWindowKeyBoardSoftFv(TWindowDrawContext *);
+void set_bounds__19TWindowKeyBoardSoftFffff(TWindowDrawContext *, f32, f32, f32, f32);
+void set_open_tick__19TWindowKeyBoardSoftFl(TWindowDrawContext *, s32);
+
 s32 init_window_layout_entries(void *, int, int);
 s32 sub_8026CC28__13TUnk_804CE018Fv();
 s32 resort_window_order__13TUnk_804CE018Fv(void *);
@@ -275,7 +281,7 @@ void draw_selection_bar(u8 *arg0, u8 *arg1, s32 arg2);
 void window_request_refresh(u8 *arg0);
 void window_request_show(void *arg0);
 bool is_balloon_overlapping(u8 *arg0, u8 *arg1, u8 *arg2);
-void apply_window_closing_stretch(u8 *arg0, int arg1);
+
 void window_request_refresh(u8 *arg0) {
     if (!((f32) *(s32 *)((s8 *)arg0 + 0x5C) >= 7.5f)) {
         *(s32 *)((s8 *)arg0 + 0x5C) = 7;
@@ -304,30 +310,32 @@ void window_request_show(void *object) {
     allow_rendering__7TObjectFv((TObject *)object);
 }
 
-s32 TUnk_804CE018::setup_window_draw_context(s32 arg1) {
-    s32 temp_r31;
+TWindowDrawContext *TUnk_804CE018::setup_window_draw_context(s32 arg1) {
+    TWindowDrawContext *temp_r31;
     s32 var_r4;
-    temp_r31 = ((s32 (*)(void *, void *, void *, f32, int))open_singleton__19TWindowKeyBoardSoftFiiii)((void *) (((u8 *)this) + 0x40), (void *) (((u8 *)this) + 0x48), (void *)arg1, (f32) (*(f32 *)((s8 *)((u8 *)this) + 0x54)), (int) (*(s32 *)((s8 *)((u8 *)this) + 0x2C)));
+    f32 depth = *(f32 *)((u8 *)this + 0x54);
+    u32 flags = *(u32 *)((u8 *)this + 0x2c);
+    temp_r31 = open_singleton__19TWindowKeyBoardSoftFiiii((f32 *)((u8 *)this + 0x40), (f32 *)((u8 *)this + 0x48), (f32 *)arg1, flags, depth);
     if (*(s32 *)((s8 *)((u8 *)this) + 0x2C) & 0x40) {
-        animate_scale__19TWindowKeyBoardSoftFv();
+        animate_scale__19TWindowKeyBoardSoftFv(temp_r31);
     }
     if (*(s32 *)((s8 *)((u8 *)this) + 0x2C) & 0x80) {
-        ((TWindowKeyBoardSoft *)temp_r31)->shrink_clip_right();
+        shrink_clip_right__19TWindowKeyBoardSoftFv(temp_r31);
     }
     if (*(s32 *)((s8 *)((u8 *)this) + 0x2C) & 8) {
-        ((TWindowKeyBoardSoft *)temp_r31)->set_bounds(0.0f, 0.0f, 640.0f, 480.0f);
+        set_bounds__19TWindowKeyBoardSoftFffff(temp_r31, 0.0f, 0.0f, 640.0f, 480.0f);
     }
     var_r4 = *(s32 *)((s8 *)((u8 *)this) + 0x5C);
     if (!(*(s32 *)((s8 *)((u8 *)this) + 0x2C) & 0x2000)) {
         var_r4 = (s32) ((f32) var_r4 - 7.5f);
     }
-    ((TWindowKeyBoardSoft *)temp_r31)->set_open_tick(var_r4);
-    apply_window_closing_stretch((u8 *)temp_r31, (*(s16 *)((s8 *)((u8 *)this) + 0x22)));
+    set_open_tick__19TWindowKeyBoardSoftFl(temp_r31, var_r4);
+    apply_window_closing_stretch__FPUci(temp_r31, (*(s16 *)((s8 *)((u8 *)this) + 0x22)));
     return temp_r31;
 }
 
 s32 TWindowDD::draw_default_entry(s32 arg0) {
-    return ((TUnk_804CE018 *)arg0)->setup_window_draw_context((s32)fn_8026CB68());
+    return (s32)((TUnk_804CE018 *)arg0)->setup_window_draw_context((s32)fn_8026CB68());
 }
 
 void TLobby::set_field_1c(f32 farg0) {

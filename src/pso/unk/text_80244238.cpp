@@ -3,8 +3,6 @@
 #include "pso/misc/TUnk_804CDFE8.h"
 #include "pso/misc/TWindowDrawContext.h"
 
-struct Ctx_80244364 { u8 pad[0x10]; f32 x; f32 y; };
-
 struct Obj_80244364 { u8 pad[0x60]; f32 a[2]; f32 x; f32 y; };
 
 typedef struct Disp_80244238 {
@@ -27,7 +25,7 @@ s32 set_position_xy__13TUnk_804CDFE8Fff(f32, f32);
 extern s32 lbl_805D3878;
 extern const f32 lbl_805DCAAC;
 extern const f32 lbl_805DCAB0;
-Ctx_80244364 *setup_window_draw_context__13TUnk_804CE018Fl(Obj_80244364 *self, f32 *p);
+TWindowDrawContext *setup_window_draw_context__13TUnk_804CE018Fl(void *self, s32 p);
 extern const f32 lbl_805DCAA8;
 
 #pragma push
@@ -53,10 +51,10 @@ void TUnk_804CDFE8::step_window_tween() {
 
 TWindowDrawContext *get_draw_context__11TWindowBaseFPv(void *window) {
     Obj_80244364 *self = (Obj_80244364 *)window;
-    Ctx_80244364 *c = setup_window_draw_context__13TUnk_804CE018Fl(self, self->a);
-    c->x -= self->x;
-    c->y -= self->y;
-    return (TWindowDrawContext *)c;
+    TWindowDrawContext *c = setup_window_draw_context__13TUnk_804CE018Fl(self, (s32)self->a);
+    c->inner_x -= self->x;
+    c->inner_y -= self->y;
+    return c;
 }
 
 void TUnk_804CDFE8::sub_802443B4() {
