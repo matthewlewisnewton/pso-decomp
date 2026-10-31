@@ -3116,6 +3116,31 @@ u16 TQuestVmDownLoadServer::jis_to_sjis(u16 arg0) {
     return (hi << 8) | lo;
 }
 
+// The callers validate Shift-JIS lead bytes; this conversion checks the trail byte.
+s32 TQuestVmDownLoadServer__sub_803EC69C(int code) {
+    u32 lo = code & 0xff;
+    u8 hi = ((u32)code >> 8) & 0xff;
+    code = hi;
+    u32 row;
+    u8 outlo;
+    if (lo < 0x40 || lo > 0xfc || lo == 0x7f) {
+        return 0;
+    }
+    if ((u32)code >= 0xe0) {
+        code -= 0x40;
+    }
+    row = ((u8)code - 0x81) * 2 + 0x21;
+    if ((u8)lo >= 0x9f) {
+        row++;
+        outlo = lo - 0x7e;
+    } else if ((u8)lo >= 0x80) {
+        outlo = lo - 0x20;
+    } else {
+        outlo = lo - 0x1f;
+    }
+    return ((row << 8) & 0xff00) | outlo;
+}
+
 s32 TQuestVmDownLoadServer::is_valid_sjis_code(u16 arg0) {
     s32 var_r0;
     if ((arg0 >= 0x2120U) && (arg0 < 0x3020U)) {
@@ -3877,6 +3902,57 @@ u8 *TQuestVmDownLoadServer::find_keyword_entry(u16 *start, u16 *end) {
     }
     return NULL;
 }
+
+#pragma push
+#pragma dont_inline off
+#pragma inline_depth(1)
+inline u8 Upper_803EDDA4(s32 code) {
+    u8 ch = code;
+    if ((u8)code >= 0x61U && (u8)code <= 0x7aU) {
+        ch -= 0x20;
+    }
+    return ch;
+}
+extern u8 lbl_8047F9B8[];
+extern u8 *lbl_8047FBD4[];
+u8 *TQuestVmDownLoadServer__sub_803EDDA4(u16 *start, u16 *end) {
+    s32 len = end - start;
+    s32 index;
+    u8 **entry;
+    u8 *p;
+    u8 *limit;
+    s32 ch;
+    if (len == 0) {
+        return lbl_8047F9B8 + 1;
+    }
+    if ((u32)(len - 1) <= 1) {
+        s32 first = (u8)start[0];
+        if (first >= 'a' && first <= 'z') {
+            index = first - 'a';
+        } else if (first >= 'A' && first <= 'Z') {
+            index = first - 'A';
+        } else {
+            return NULL;
+        }
+        entry = lbl_8047FBD4 + index;
+        p = *entry;
+        if (len == 1) {
+            return p + 1;
+        }
+        do {
+            limit = *++entry;
+        } while (limit == NULL);
+        ch = Upper_803EDDA4(start[1] & 0xff);
+        for (p += 11; p < limit; p += 11) {
+            if (*p == ch) {
+                return p + 1;
+            }
+        }
+    }
+    return NULL;
+}
+
+#pragma pop
 
 void TQuestVmDownLoadServer__sub_803EE2E4(void) {
     lbl_8058DC98.value = 0;
