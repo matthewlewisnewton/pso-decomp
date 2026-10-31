@@ -1,0 +1,326 @@
+#!/usr/bin/env python3
+"""Deterministic, fork-only reviewed batch validation and atomic publication."""
+from __future__ import annotations
+import argparse
+import fcntl
+import hashlib
+import json
+import math
+import os
+from pathlib import Path
+import re
+import subprocess
+import sys
+import time
+
+REPOSITORY = 'matthewlewisnewton/pso-decomp'
+REMOTE = 'git@github.com:' + REPOSITORY + '.git'
+SHA = re.compile(r'[0-9a-f]{40}')
+CHECKS = {'source', 'build', 'coverage', 'link', 'provenance', 'dol'}
+
+
+class Rejected(Exception):
+    def __init__(self, code, detail):
+        self.code, self.detail = code, detail
+        super().__init__(f'{code}: {detail}')
+
+
+def require(condition, code, detail):
+    if not condition:
+        raise Rejected(code, detail)
+
+
+def digest(path):
+    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+
+def canonical(value):
+    return json.dumps(value, sort_keys=True, separators=(',', ':'))
+
+
+def save(path, value):
+    # Durable same-directory replace; state directory is private to this invocation.
+    tmp = path.with_suffix('.tmp')
+    with tmp.open('w') as out:
+        out.write(json.dumps(value, indent=2) + '\n')
+        out.flush()
+        os.fsync(out.fileno())
+    os.replace(tmp, path)
+    fd = os.open(path.parent, os.O_RDONLY | os.O_DIRECTORY)
+    try:
+        os.fsync(fd)
+    finally:
+        os.close(fd)
+
+
+def run(args, cwd=None, env=None):
+    result = subprocess.run(args, cwd=cwd, env=env, text=True, capture_output=True)
+    require(result.returncode == 0, 'command_failed', {
+        'command': args[:3], 'returncode': result.returncode,
+        'diagnostic': result.stderr[-2000:]})
+    return result.stdout.strip()
+
+
+def validate_spec(spec):
+    require(spec.get('version') == 1 and spec.get('repository') == REPOSITORY,
+            'wrong_repository', 'Only schema 1 and the personal fork are supported')
+    require(spec.get('default_branch') in ('master', 'main'), 'wrong_base', 'Unsupported default branch')
+    require(SHA.fullmatch(spec.get('target', '')), 'invalid_spec', 'Immutable target SHA required')
+    require(spec.get('policy') in ('recovery', 'maintenance'), 'invalid_policy', 'Recovery or maintenance required')
+    require(isinstance(spec.get('commit_epoch'), int) and spec['commit_epoch'] > 0,
+            'invalid_spec', 'Positive fixed commit_epoch required')
+    require(spec.get('authorization'), 'missing_authorization', 'Record parent/user batch authorization')
+    require(isinstance(spec.get('prs'), list) and spec['prs'], 'empty_batch', 'Explicit ordered PRs required')
+    seen = set()
+    for pr in spec['prs']:
+        number = pr.get('number')
+        require(type(number) is int and number > 0 and number not in seen, 'invalid_spec', 'Unique positive PR numbers required')
+        seen.add(number)
+        for key in ('head', 'base_sha', 'review_base'):
+            require(SHA.fullmatch(pr.get(key, '')), 'invalid_spec', f'PR {number}: {key} missing')
+        require(pr.get('base_ref') and pr.get('head_ref'), 'invalid_spec', 'Both branch names required')
+        review = pr.get('review', {})
+        require(review.get('verdict') == 'pass' and review.get('independent') is True
+                and review.get('head') == pr['head'] and review.get('base') == pr['review_base']
+                and review.get('reviewer'), 'missing_review', f'PR {number}: independent exact-head review required')
+        require(pr.get('kind') in ('recovery', 'prerequisite', 'maintenance'), 'invalid_spec', 'PR kind required')
+        require(pr['kind'] != 'prerequisite' or pr.get('reason'), 'missing_prerequisite_reason', number)
+        require(spec['policy'] != 'maintenance' or pr['kind'] == 'maintenance', 'invalid_policy', number)
+        require(isinstance(pr.get('required_checks'), list) and pr['required_checks'],
+                'missing_checks', f'PR {number}: explicit hosted check names required')
+
+
+def evidence(spec):
+    for pr in spec['prs']:
+        r = pr['review']
+        path = Path(r.get('path', ''))
+        require(path.is_absolute() and path.is_file() and not path.is_symlink(), 'missing_review', pr['number'])
+        require(digest(path) == r.get('sha256'), 'stale_review', pr['number'])
+
+
+def check_live(spec, live, branch):
+    require(branch['name'] == spec['default_branch'] and branch['head'] == spec['target'],
+            'stale_target', branch)
+    for pr in spec['prs']:
+        actual = live[pr['number']]
+        expected = {k: pr[k] for k in ('head', 'base_sha', 'base_ref', 'head_ref')}
+        require(actual['repository'] == REPOSITORY, 'wrong_repository', pr['number'])
+        require(actual['state'] == 'open' and not actual['draft'], 'unresolved_pr', pr['number'])
+        require(all(actual[k] == v for k, v in expected.items()), 'stale_pr', {'pr': pr['number'], 'expected': expected, 'actual': actual})
+        require(all(actual['checks'].get(c) == 'success' for c in pr['required_checks']),
+                'missing_checks', {'pr': pr['number'], 'required': pr['required_checks'], 'actual': actual['checks']})
+
+
+def check_validation(spec, result, tree):
+    require(result.get('version') == 1 and result.get('target') == spec['target']
+            and result.get('tree') == tree, 'wrong_validation_tree', result)
+    needed = {'source'} if spec['policy'] == 'maintenance' else CHECKS
+    require(all(result.get('checks', {}).get(k) is True for k in needed), 'failed_checks', result.get('checks'))
+    if spec['policy'] == 'recovery':
+        require(result.get('losses') == {'code': 0, 'data': 0, 'link': 0}, 'coverage_loss', result.get('losses'))
+        delta = result.get('delta', {})
+        keys = ('matched_code', 'matched_data', 'complete_code', 'complete_data')
+        require(all(type(delta.get(k)) in (int, float) and math.isfinite(delta[k]) and delta[k] >= 0 for k in keys), 'coverage_loss', delta)
+        require(any(delta[k] > 0 for k in keys), 'zero_gain', 'Prerequisites require a net-positive recovery batch')
+        require(result.get('dol_sha1') == '0d85744b51d7379efb025a943d0cd5aaae2191a3', 'wrong_dol', result.get('dol_sha1'))
+
+
+class GitHub:
+    def get(self, suffix):
+        return json.loads(run(['gh', 'api', 'repos/' + REPOSITORY + ('/' + suffix if suffix else '')]))
+
+    def branch(self, name):
+        repo = self.get('')
+        require(repo['full_name'] == REPOSITORY and repo['default_branch'] == name,
+                'wrong_base', 'Repository/default branch changed')
+        return {'name': name, 'head': self.get('branches/' + name)['commit']['sha']}
+
+    def prs(self, spec):
+        result = {}
+        for pr in spec['prs']:
+            p = self.get('pulls/' + str(pr['number']))
+            # Latest run by check name wins. Paginate: a large stack must not hide failures.
+            checks = {}
+            page = 1
+            while True:
+                rows = self.get(f"commits/{p['head']['sha']}/check-runs?per_page=100&page={page}")['check_runs']
+                for row in sorted(rows, key=lambda x: x['id'], reverse=True):
+                    checks.setdefault(row['name'], row['conclusion'] if row['status'] == 'completed' else row['status'])
+                if len(rows) < 100:
+                    break
+                page += 1
+            result[pr['number']] = {
+                'repository': p['base']['repo']['full_name'], 'head': p['head']['sha'],
+                'head_repository': p['head']['repo']['full_name'], 'head_ref': p['head']['ref'],
+                'base_sha': p['base']['sha'], 'base_ref': p['base']['ref'],
+                'state': p['state'], 'draft': p['draft'], 'checks': checks,
+                'merged': p['merged'], 'merge_commit': p['merge_commit_sha']}
+            require(result[pr['number']]['head_repository'] == REPOSITORY,
+                    'wrong_repository', 'Only same-fork heads are supported')
+        return result
+
+
+class Queue:
+    def __init__(self, spec, state, api=None):
+        self.spec, self.state = spec, state
+        self.api = api or GitHub()
+        self.repo = state / 'checkout'
+        self.journal = state / 'receipt.json'
+        self.record = {'version': 1, 'spec_sha256': hashlib.sha256(canonical(spec).encode()).hexdigest(), 'state': 'new'}
+        if self.journal.exists():
+            self.record = json.loads(self.journal.read_text())
+            require(self.record['spec_sha256'] == hashlib.sha256(canonical(spec).encode()).hexdigest(),
+                    'different_batch', 'Use a new state directory for a changed manifest')
+
+    def write(self, **fields):
+        self.record.update(fields)
+        save(self.journal, self.record)
+
+    def git(self, *args, env=None):
+        return run(['git', '-C', str(self.repo), *args], env=env)
+
+    def live_guard(self):
+        evidence(self.spec)
+        check_live(self.spec, self.api.prs(self.spec), self.api.branch(self.spec['default_branch']))
+
+    def construct(self):
+        if not self.repo.exists():
+            run(['git', 'init', str(self.repo)])
+            self.git('remote', 'add', 'origin', REMOTE)
+        require(self.git('remote', 'get-url', 'origin') == REMOTE, 'wrong_repository', 'Unexpected checkout remote')
+        # Fetch only immutable selected objects, never fetch/push a wildcard refspec.
+        self.git('fetch', '--no-tags', 'origin', self.spec['target'], *[p['head'] for p in self.spec['prs']])
+        current = self.spec['target']
+        commits = []
+        env = os.environ.copy()
+        env.update(GIT_AUTHOR_NAME='PSO mechanical queue', GIT_AUTHOR_EMAIL='queue@localhost',
+                   GIT_COMMITTER_NAME='PSO mechanical queue', GIT_COMMITTER_EMAIL='queue@localhost',
+                   GIT_AUTHOR_DATE=f"@{self.spec['commit_epoch']} +0000",
+                   GIT_COMMITTER_DATE=f"@{self.spec['commit_epoch']} +0000")
+        for pr in self.spec['prs']:
+            # An explicit ordered batch can include structural bases, but never omit one.
+            self.git('merge-base', '--is-ancestor', pr['base_sha'], current)
+            self.git('merge-base', '--is-ancestor', pr['review_base'], pr['head'])
+            merged = subprocess.run(['git', '-C', str(self.repo), 'merge-tree', '--write-tree', current, pr['head']],
+                                    text=True, capture_output=True)
+            require(merged.returncode == 0, 'conflict', {'pr': pr['number'], 'diagnostic': merged.stdout[-2000:]})
+            tree = merged.stdout.splitlines()[0]
+            require(SHA.fullmatch(tree), 'invalid_tree', pr['number'])
+            current = self.git('commit-tree', tree, '-p', current, '-p', pr['head'], '-m',
+                               f"Merge reviewed fork PR #{pr['number']}", env=env)
+            commits.append({'pr': pr['number'], 'commit': current, 'tree': tree, 'head': pr['head']})
+        self.git('checkout', '--detach', current)
+        self.git('diff', '--check', self.spec['target'], current)
+        if self.spec['policy'] == 'maintenance':
+            paths = self.git('diff', '--name-only', self.spec['target'], current).splitlines()
+            require(all(p.startswith(('tools/', 'docs/', '.github/')) or p in ('README.md', 'CONTRIBUTING.md', 'AGENTS.md')
+                        for p in paths), 'maintenance_scope', paths)
+        self.write(state='planned', candidate=current, tree=tree, commits=commits)
+        return current, tree
+
+    def verify(self, validator, expected_hash, environment):
+        require(validator.is_absolute() and validator.is_file() and not validator.is_symlink(), 'untrusted_validator', str(validator))
+        require(not validator.is_relative_to(self.repo.resolve()) and digest(validator) == expected_hash,
+                'untrusted_validator', 'Validator must be pinned outside candidate checkout')
+        require(environment.is_absolute() and digest(environment) == self.spec.get('environment_sha256'),
+                'stale_environment', str(environment))
+        output = self.state / ('validation-' + str(time.time_ns()) + '.json')
+        request = self.state / 'validation-request.json'
+        save(request, {'version': 1, 'repository': REPOSITORY, 'target': self.spec['target'],
+                       'candidate': self.record['candidate'], 'tree': self.record['tree'],
+                       'checkout': str(self.repo), 'state': str(self.state), 'policy': self.spec['policy'],
+                       'environment': str(environment), 'output': str(output)})
+        self.write(state='validating', validator_sha256=expected_hash)
+        # Validator code is supplied by the operator, never by candidate content.
+        with (self.state / 'validator.log').open('a') as log:
+            result = subprocess.run([sys.executable, '-I', str(validator), str(request)], text=True,
+                                    stdout=log, stderr=subprocess.STDOUT)
+        require(result.returncode == 0 and output.is_file(), 'failed_build_or_checks', {'returncode': result.returncode, 'log': str(self.state / 'validator.log')})
+        require(digest(validator) == expected_hash and digest(environment) == self.spec['environment_sha256'],
+                'changed_validator', 'Harness/environment changed during validation')
+        check_validation(self.spec, json.loads(output.read_text()), self.record['tree'])
+        require(self.git('rev-parse', 'HEAD') == self.record['candidate'] and
+                not self.git('status', '--porcelain', '--untracked-files=no'), 'candidate_changed', 'Tracked tree changed during validation')
+        self.write(state='validated', validation=str(output), validation_sha256=digest(output))
+
+    def recover_publication(self):
+        # A lost push response is never blindly retried. Inspect the remote graph first.
+        current = self.api.branch(self.spec['default_branch'])['head']
+        self.git('fetch', '--no-tags', 'origin', current)
+        result = subprocess.run(['git', '-C', str(self.repo), 'merge-base', '--is-ancestor', self.record['candidate'], current], capture_output=True)
+        if result.returncode != 0:
+            require(current == self.spec['target'], 'publication_diverged', {'remote': current, 'candidate': self.record['candidate']})
+            self.write(state='not_published', remote_head=current)
+            return False
+        prs = self.api.prs(self.spec)
+        pending = [p['number'] for p in self.spec['prs'] if not prs[p['number']]['merged']]
+        self.write(state='published_metadata_pending' if pending else 'published', remote_head=current,
+                   published_commit=self.record['candidate'], pending_pr_metadata=pending,
+                   pr_statuses={str(n): {'merged': p['merged'], 'merge_commit': p['merge_commit']} for n, p in prs.items()})
+        return True
+
+    def publish(self):
+        self.live_guard()
+        # No force, admin bypass, branch deletion, or approval submission.
+        self.write(state='publishing')  # fsync before any remote mutation
+        result = subprocess.run(['git', '-C', str(self.repo), 'push', '--atomic', 'origin',
+                                 self.record['candidate'] + ':refs/heads/' + self.spec['default_branch']],
+                                text=True, capture_output=True)
+        self.write(push_returncode=result.returncode, push_diagnostic=result.stderr[-2000:])
+        # Even an error can be an interrupted response after successful publication.
+        require(self.recover_publication(), 'publication_rejected', self.record.get('push_diagnostic'))
+
+    def execute(self, mode, validator=None, validator_hash=None, environment=None):
+        if self.record['state'] in ('publishing', 'published', 'published_metadata_pending'):
+            if self.recover_publication():
+                return self.record
+        self.live_guard()
+        self.construct()
+        if mode == 'plan':
+            return self.record
+        require(validator is not None and validator_hash and environment is not None,
+                'missing_validator', 'Pinned external validator and environment required')
+        # Rebuild on retry: no unverifiable reuse of a successful-looking receipt.
+        self.verify(validator, validator_hash, environment)
+        self.live_guard()
+        if mode == 'execute':
+            self.publish()
+        else:
+            self.write(state='dry_run_pass')
+        return self.record
+
+
+def main(argv=None):
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument('mode', choices=('plan', 'dry-run', 'execute'))
+    ap.add_argument('--batch', type=Path, required=True)
+    ap.add_argument('--state', type=Path, required=True, help='Unique private state directory; retained for recovery')
+    ap.add_argument('--validator', type=Path)
+    ap.add_argument('--validator-sha256')
+    ap.add_argument('--environment', type=Path)
+    args = ap.parse_args(argv)
+    queue = None
+    try:
+        spec = json.loads(args.batch.read_text())
+        validate_spec(spec)
+        state = args.state.resolve()
+        state.mkdir(parents=True, exist_ok=True)
+        # One process across all batches; same existing inode, never delete locks.
+        with open('/tmp/pso-mechanical-merge-queue.lock', 'a') as lock:
+            fcntl.flock(lock, fcntl.LOCK_EX)
+            queue = Queue(spec, state)
+            result = queue.execute(args.mode, args.validator, args.validator_sha256, args.environment)
+        print(json.dumps(result, indent=2))
+        return 0
+    except (Rejected, OSError, ValueError, KeyError) as exc:
+        error = {'state': 'rejected', 'code': getattr(exc, 'code', 'invalid_input'),
+                 'detail': getattr(exc, 'detail', str(exc))}
+        if queue:
+            # Preserve publishing state for uncertain recovery; errors are additive.
+            queue.write(last_error=error)
+        print(json.dumps(error, indent=2))
+        return 1
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())
