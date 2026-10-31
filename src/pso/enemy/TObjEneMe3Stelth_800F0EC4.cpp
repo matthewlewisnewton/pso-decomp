@@ -408,7 +408,7 @@ void TObjEneMe3Stelth__sub_800F1098(u8 *arg0, s32 arg1) {
     case 5:
         break;
     }
-    ((TObjPlayer *)arg0)->update_collisions();
+    ((TObjCollidable *)arg0)->update_collisions();
 }
 
 void TObjEneMe3Stelth__sub_800F1440(u8 *arg0, s32 arg1) {

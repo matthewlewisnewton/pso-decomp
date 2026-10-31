@@ -1225,7 +1225,7 @@ s32 try_move_with_detour__14TObjEnePanarmsFPvPv(u8 *arg0, Vec_800E18B0 *arg1) {
         if (project_actor_to_ground(arg0, &p, 0) != 0 && csnLookAt(arg0 + 0x38, &p) == 0) {
             VecCopy((Vec *)(arg0 + 0x44), (const Vec *)(arg0 + 0x38));
             VecCopy((Vec *)(arg0 + 0x38), (const Vec *)&p);
-            ((TObjPlayer *)arg0)->update_collisions();
+            ((TObjCollidable *)arg0)->update_collisions();
             return 1;
         }
         ang = i << 12;

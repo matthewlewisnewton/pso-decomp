@@ -776,7 +776,6 @@ struct TBoss4Type3;
 typedef char TypedVector_80059B78_size[(sizeof(TypedVector_80059B78) == 12) ? 1 : -1];
 
 extern "C" {
-void update_collisions__10TObjPlayerFv(void *);
 void submit_cursor_candidate(void *, int);
 struct O_80059618;
 struct Obj_8005A1AC;
@@ -1024,7 +1023,7 @@ void TBoss4Type3::run_task() {
     advance_afterimage();
     if (this->m_3a0 != 17) {
         this->m_394->flags |= 1;
-        update_collisions__10TObjPlayerFv(this);
+        ((TObjCollidable *)(this))->update_collisions();
         submit_cursor_candidate(this, -1);
     } else {
         this->m_394->flags &= ~1;
