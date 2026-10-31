@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "pso/math/ScratchVectorStorage.h"
 #include "pso/player/TObjChara.h"
 #include "pso/player/PlayerAttackParams.h"
@@ -17,7 +18,7 @@
 extern "C" {
 f32 random_ratio__9TObjCharaFv(s32);
 extern const f32 lbl_805D9BE0;
-s32 spawn_particle_effect(s32, s32);
+
 struct Vec_800ACB58 { f32 x, y, z; };
 s32 apply_actor_gravity(void *, int, f32);
 }
@@ -91,7 +92,7 @@ void TObjEneMoja::update_death_state() {
         vec3_add_to(&v, (u8 *)&this->position);
         play_sound_effect(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x3AD03)), &v, 0, 0);
         TObjPlayer::play_effect_if_v2(-0x300);
-        spawn_particle_effect((s32) &v, 0xF0);
+        spawn_particle_effect((const Vec *)((s32) &v), 0xF0);
         spawn_dead_spot_scale15(&v, 0x14);
         ((TObjPlayer *)(&v))->spawn_effect_at_ground(0x32);
     }
@@ -116,7 +117,7 @@ void TObjEneMoja::vfunc_63() {
         this->requested_action = 7;
         temp_r6 = (u8 *)this->bodies;
         *(s32 *)((s8 *)temp_r6 + 0x18) = (s32) (*(s32 *)((s8 *)temp_r6 + 0x18) & 0xFFFF7FFE);
-        spawn_particle_effect((s32)(arg0 + 0x2FC), 0xF1);
+        spawn_particle_effect((const Vec *)((s32)(arg0 + 0x2FC)), 0xF1);
         ((TObjPlayer *)arg0)->refresh_lobby_state();
         ((TObjEnemy *)arg0)->send_entity_set_flags();
         this->appearance = 0;
@@ -688,7 +689,7 @@ void update_attack_jump__11TObjEneMojaFv(Obj_800ACFE8 *arg0) {
             } else {
                 arg0->f328 = 2;
             }
-            ((s32 (*)(void *, int))spawn_particle_effect)(&arg0->f38, 0xF3);
+            spawn_particle_effect((const Vec *)(&arg0->f38), 0xF3);
             ((s32 (*)(void *, void *, int, int))play_sound_effect)((void *)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x3A802)), &arg0->f38, 0, 0);
         }
         break;
@@ -716,8 +717,8 @@ void update_attack_jump__11TObjEneMojaFv(Obj_800ACFE8 *arg0) {
                     }
                 }
             }
-            ((s32 (*)(void *, int))spawn_particle_effect)(&arg0->f38, 0xCB);
-            ((s32 (*)(void *, int))spawn_particle_effect)(&arg0->f38, 0xF0);
+            spawn_particle_effect((const Vec *)(&arg0->f38), 0xCB);
+            spawn_particle_effect((const Vec *)(&arg0->f38), 0xF0);
             ((s32 (*)(void *, void *, int, int))play_sound_effect)((void *)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x3AD03)), &arg0->f38, 0, 0);
             TObjPlayer::play_effect_if_v2(-0x300);
         }
@@ -821,8 +822,8 @@ s32 TObjEneMoja::update_technique_state(void *self_800AD3D8) {
                     ((s32 (*)(void *, void *, int, int))play_sound_effect)((void *) 0x4002A60B, &pos, 0, 0);
                     break;
                 default:
-                    ((s32 (*)(void *, int))spawn_particle_effect)(&pos, 0xB9);
-                    ((s32 (*)(void *, int))spawn_particle_effect)(&pos, 0xBA);
+                    spawn_particle_effect((const Vec *)(&pos), 0xB9);
+                    spawn_particle_effect((const Vec *)(&pos), 0xBA);
                     if (ang2 < ((AttackParams *)(self->f318))->get_attack_angle() / 2) {
                         if (((TObjBoss2Tunnel *)(&dir))->update_scale() < lbl_805D9C1C) {
                             dir.y = dir.x = lbl_805D9BD8;
@@ -1238,8 +1239,8 @@ void update_appearance_drop__11TObjEneMojaFv(Moja_800AE450 *self) {
                 }
             }
         }
-        ((s32 (*)(void *, int))spawn_particle_effect)(&self->pos, 0xCB);
-        ((s32 (*)(void *, int))spawn_particle_effect)(&self->pos, 0xF0);
+        spawn_particle_effect((const Vec *)(&self->pos), 0xCB);
+        spawn_particle_effect((const Vec *)(&self->pos), 0xF0);
         ((s32 (*)(void *, void *, int, int))play_sound_effect)((void *)((TObjEnemy *)(self))->remap_sound_for_area((s32)(0x3AD03)), &self->pos, 0, 0);
         TObjPlayer::play_effect_if_v2(-0x300);
         break;
@@ -1323,8 +1324,8 @@ void update_appearance_jump__11TObjEneMojaFv(Moja_800AE7F4 *self) {
                 }
             }
         }
-        ((s32 (*)(void *, int))spawn_particle_effect)(&self->pos, 0xCB);
-        ((s32 (*)(void *, int))spawn_particle_effect)(&self->pos, 0xF0);
+        spawn_particle_effect((const Vec *)(&self->pos), 0xCB);
+        spawn_particle_effect((const Vec *)(&self->pos), 0xF0);
         ((s32 (*)(void *, void *, int, int))play_sound_effect)((void *)((TObjEnemy *)(self))->remap_sound_for_area((s32)(0x3AD03)), &self->pos, 0, 0);
         TObjPlayer::play_effect_if_v2(-0x300);
         break;

@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 struct NJS_OBJECT;
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/system/BmlResourceClass.h"
@@ -133,7 +134,7 @@ extern const f32 lbl_805DE838;
 void TObjEneGibbles__sub_802D8E8C(u8 *arg0);
 void attach_particle_model(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
 s32 * csnVectorUnder(s32 *, s32, s32, f32);
-void *spawn_particle_effect(void *pos, s32 id);
+
 extern const f32 TObjEneGibbles__data_805DE7E8;
 extern const f32 TObjEneGibbles__data_805DE7EC;
 extern const f32 lbl_805DE7F0;
@@ -796,12 +797,12 @@ s32 TObjEneGibbles::spawn_ground_impact_effects(void *pos, f32 farg0) {
     v.y = y + TObjEneGibbles__data_805DE7E8;
     hit = (s32 *)csnVectorUnder((s32 *)&v, (s32)this + 0x120, 5, y);
     if ((hit != NULL) && (hit[0] & 4)) {
-        p = (u8 *)spawn_particle_effect((void *)(hit[1] + 0x38), 0x49);
+        p = (u8 *)spawn_particle_effect((const Vec *)((hit[1] + 0x38)), 0x49);
         if (p != NULL) {
             attach_particle_model(p, TParticleCtrl::get_particle_model(2), TParticleCtrl::get_instance(), 0, 1, TObjEneGibbles__data_805DE7EC);
             ((TParticleCtrl *)p)->set_scale(farg0, TObjEneGibbles__data_805DE7EC);
         }
-        p = (u8 *)spawn_particle_effect((void *)(hit[1] + 0x38), 0xA4);
+        p = (u8 *)spawn_particle_effect((const Vec *)((hit[1] + 0x38)), 0xA4);
         if (p != NULL) {
             ((TParticleCtrl *)p)->set_scale(farg0, lbl_805DE7F0);
         }
@@ -823,7 +824,7 @@ s32 TObjEneGibbles__sub_802D7BE0(s32 arg0) {
             ((TObjEneGibbles *)arg0)->spawn_ground_impact_effects((void *)((void *) (arg0 + 0x38)), TObjEneGibbles__data_805DE7F4);
             return 0;
         }
-        spawn_particle_effect((void *)(arg0 + 0x38), 0x20E);
+        spawn_particle_effect((const Vec *)((arg0 + 0x38)), 0x20E);
         return 1;
     }
     return 2;
@@ -1647,7 +1648,7 @@ void TObjEneGibbles::slam_damage_players(s32 arg1) {
     if (csnVecterUnder((s32)&v, 0x16EF) != 0) {
         if (((TObjEneGibbles *)target)->spawn_ground_impact_effects(&v, lbl_805DE858) == 0) {
             v.y += TObjEneGibbles__data_805DE81C;
-            spawn_particle_effect(&v, 0x64);
+            spawn_particle_effect((const Vec *)(&v), 0x64);
         }
         for (i = 0; i < lbl_805D5868; i++) {
             p = get_player_data__10TObjPlayerFi(i);

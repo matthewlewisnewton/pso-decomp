@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/boss/TBoss3Volopt_800D8ACC.h"
 #include "pso/enemy/TObjEneRe4Sorcerer_800EDB98.h"
@@ -16,7 +17,7 @@ typedef struct Vec_800D8C48 {
 
 extern "C" {
 void *create_timed_particle_emitter(void *owner, s32 id, s32 b, s32 c);
-s32 spawn_particle_effect(void *, int, f32);
+
 extern const f32 lbl_805DA3C0;
 s32 play_sound_effect(int, void *, int, int);
 s32 TBreakUpMdl__ct(void*, s32, s32, s32, s32, s32, s32);
@@ -104,7 +105,7 @@ void TBoss3Volopt::play_area_se_with_particle() {
     VecCopy((Vec *)&v, (const Vec *)arg0);
     y = v.y;
     v.y = y + lbl_805DA3C0;
-    spawn_particle_effect(&v, 0xE6, y);
+    spawn_particle_effect((const Vec *)(&v), 0xE6);
 }
 
 void TBoss3Volopt__sub_800D8D88(s32 arg0) {
@@ -167,7 +168,7 @@ void spawn_particles_at__12TBoss3VoloptFi(s32 arg0) {
     create_timed_particle_emitter((void *)arg0, 0xEA, 0xA, 0x1E);
     temp_f1 = stack.spC;
     stack.spC = temp_f1 + lbl_805DA3C0;
-    spawn_particle_effect(&stack.sp8, 0xE9, temp_f1);
+    spawn_particle_effect((const Vec *)(&stack.sp8), 0xE9);
 }
 
 }

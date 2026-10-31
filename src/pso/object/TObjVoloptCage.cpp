@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "pso/player/TObjChara.h"
 #pragma readonly_strings on
 #pragma fp_contract on
@@ -101,7 +102,7 @@ void TObjVoloptCage::update_breakup() {
             pos.x = 20.0f * cos_table_lookup(angle) + body_center_position.x;
             pos.y = 20.0f * (3.0517578e-05f * (f32)rand()) + body_center_position.y;
             pos.z = 20.0f * sin_table_lookup(angle) + body_center_position.z;
-            spawn_particle_effect(&pos, 0xFB);
+            spawn_particle_effect((const Vec *)(&pos), 0xFB);
         }
         if ((timer -= 1) <= 0) {
             queue_destruction();

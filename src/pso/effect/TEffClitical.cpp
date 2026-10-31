@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "pso/effect/TEffClitical.h"
 #include "pso/misc/MaterialColorFade.h"
 #include "pso/object/TObject_80019A50.h"
@@ -126,19 +127,19 @@ void TEffClitical::run_task() {
         do {
             switch (var_r30) {
             case 0:
-                spawn_particle_effect((arg0 + 0x20), 7);
+                spawn_particle_effect((const Vec *)((arg0 + 0x20)), 7);
                 break;
             case 1:
-                spawn_particle_effect((arg0 + 0x20), 0xB);
+                spawn_particle_effect((const Vec *)((arg0 + 0x20)), 0xB);
                 break;
             case 2:
                 stack.sp8 = *(f32 *)((s8 *)arg0 + 0x20);
                 stack.spC = *(f32 *)((s8 *)arg0 + 0x24) - lbl_805D93A8;
                 stack.sp10 = *(f32 *)((s8 *)arg0 + 0x28);
-                spawn_particle_effect((&stack.sp8), 0xC);
+                spawn_particle_effect((const Vec *)((&stack.sp8)), 0xC);
                 break;
             case 3:
-                spawn_particle_effect((arg0 + 0x20), 0xE);
+                spawn_particle_effect((const Vec *)((arg0 + 0x20)), 0xE);
                 break;
             }
             var_r30 += 1;

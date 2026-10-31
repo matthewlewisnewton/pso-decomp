@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/system/vector.h"
@@ -273,7 +274,7 @@ void fn_803594B4(void *, s32, f32);
 void TBoss4DarkFalz__sub_8004B730(u8 *arg0, s32 arg1, f32 farg0);
 extern RecoveredGlobal_8004B084_TBoss4DarkFalz__data_80485108 TBoss4DarkFalz__data_80485108;
 void release_all_players_control_lock(void);
-void *spawn_particle_effect(void *pos, s32 id);
+
 s32 TBoss4Thanks__sub_8035C96C();
 
 void TBoss4DarkFalz__sub_8004B5A0(void);
@@ -547,7 +548,7 @@ void TBoss4DarkFalz__sub_8004B5A0(void) {
             if (p != 0 && ((TBoss3Volopt *)p)->get_field_3e0() == 0xE) {
                 VecCopy((Vec *)&v, (const Vec *)&p->pos);
                 v.y += k;
-                spawn_particle_effect(&v, 0x28);
+                spawn_particle_effect((const Vec *)(&v), 0x28);
             }
         }
     }

@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "types.h"
 #include "pso/enemy/TObjEneEpsilon.h"
@@ -60,7 +61,7 @@ u8 TObjEneRecon__sub_8031C250(T_8031C250 *self);
 s16 get_attack_params_atp_min(void *p);
 int get_player_data__10TObjPlayerFi(int a0);
 u16 get_entity_id(void *);
-void *spawn_particle_effect(void *pos, s32 id);
+
 void enemy_clear_target__12TObjEneDD_STFUs(void *);
 f32 horizontal_distance_squared(void *, void *);
 void play_sound_effect(s32, void *, s32, s32);
@@ -911,7 +912,7 @@ void TObjEneRecon__sub_8031CF30(u8 *arg0, s32 arg1) {
             break;
         case 2:
             if (((TObjMotion *)arg0)->is_passing_frame((f32)lbl_805DF400) != 0 || ((TObjMotion *)arg0)->is_passing_frame((f32)((f32)lbl_805DF404)) != 0) {
-                spawn_particle_effect(arg0 + 0x2FC, 0x218);
+                spawn_particle_effect((const Vec *)(arg0 + 0x2FC), 0x218);
             }
             if (((TObjMotion *)arg0)->is_passing_frame((f32)lbl_805DF408) != 0) {
                 F(s32, 0x3C8) = 1;

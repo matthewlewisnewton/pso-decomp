@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "pso/player/TObjChara.h"
 #include "types.h"
 #include "pso/system/NinjaUtil.h"
@@ -481,7 +482,7 @@ void TBoss3VoloptMonitor::spawn_effects() {
     angle[1] = rotation_y;
     angle[2] = 0;
     spawn_directional_particle(&body_center_position, angle, (slot & 3) == 0 ? 0x62 : 0x61);
-    spawn_particle_effect(&body_center_position, 0x45);
+    spawn_particle_effect((const Vec *)(&body_center_position), 0x45);
 }
 
 void TBoss3VoloptMonitor::set_hit_flags_and_notify() {

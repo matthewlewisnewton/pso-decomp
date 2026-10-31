@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/misc/TLobby_8030A6A8.h"
 #include "pso/object/TObjChip.h"
@@ -176,8 +177,8 @@ void TUnk_804B08BC::vfunc_79() {
             __ct__8TObjChipFP7TObjectP14TObjChipParams(o, tl_05, (u8 *)&b);
         }
     }
-    spawn_particle_effect(&self->x, 0x45);
-    spawn_particle_effect(&self->x, 0x46);
+    spawn_particle_effect((const Vec *)(&self->x), 0x45);
+    spawn_particle_effect((const Vec *)(&self->x), 0x46);
     play_container_break_sound((s32)self);
 }
 

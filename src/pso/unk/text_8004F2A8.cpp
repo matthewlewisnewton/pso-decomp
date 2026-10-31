@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/system/PadRumble.h"
 #include "pso/object/TObject_80019A50.h"
@@ -56,7 +57,7 @@ void post_translate_matrix(void *);
 extern const f32 lbl_805D89F4;
 extern const f32 lbl_805D89F8;
 void set_scripted_camera_pose(void *, void *, void *);
-void *spawn_particle_effect(void *pos, s32 id);
+
 void *create_particle_emitter(void *pos, s32 id);
 void play_sound_effect(s32, void *, s32, s32);
 extern Vec_8004F3D4 lbl_804373F4[];
@@ -105,24 +106,24 @@ void TObjDFDemo4::run_task() {
   u32 r;
   u32 *p;
   s32 i;
-  if ((self->fF8 <= 0x3C) && ((r = (u32)spawn_particle_effect(&self->pos, 0x14E)) != 0))
+  if ((self->fF8 <= 0x3C) && ((r = (u32)spawn_particle_effect((const Vec *)(&self->pos), 0x14E)) != 0))
   {
     ((TParticleCtrl *)r)->set_flags(0x40);
   }
   if (self->fF8 == 0x44)
   {
-    if ((r = (u32)spawn_particle_effect(&self->pos, 0x17B)) != 0)
+    if ((r = (u32)spawn_particle_effect((const Vec *)(&self->pos), 0x17B)) != 0)
     {
       ((TParticleCtrl *)r)->set_flags(0x40);
     }
-    if ((r = (u32)spawn_particle_effect(&self->pos, 0x17C)) != 0)
+    if ((r = (u32)spawn_particle_effect((const Vec *)(&self->pos), 0x17C)) != 0)
     {
       ((TParticleCtrl *)r)->set_flags(0x40);
     }
   }
   if (self->fF8 == 0x48)
   {
-    if ((r = (u32)spawn_particle_effect(&self->pos, 0x17A)) != 0)
+    if ((r = (u32)spawn_particle_effect((const Vec *)(&self->pos), 0x17A)) != 0)
     {
       ((TParticleCtrl *)r)->set_flags(0x40);
     }

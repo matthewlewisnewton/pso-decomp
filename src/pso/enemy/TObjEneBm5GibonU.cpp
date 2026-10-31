@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 struct NJS_OBJECT;
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/system/EnemyBmlResource.h"
@@ -1640,7 +1641,7 @@ extern s32 game_difficulty_selection;
 u8 check_hit_sphere__16TObjEneBm5GibonUFPvif(Ene_800CCB74 *arg0, s32 arg1, f32 scale);
 void attach_particle_model(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
 Hit_800CCC6C *csnVectorUnder(Vec_800CCC6C *, void *, s32);
-void *spawn_particle_effect(void *, s32);
+
 s32 fn_800D88E4(void *);
 void TObjEneBm5GibonU__sub_800D02F8(Gibon_800D02F8 *g, s32 arg1);
 void TObjEneBm5GibonU__sub_800CFE30(u8 *arg0, s32 arg1);
@@ -1752,14 +1753,14 @@ int spawn_landing_effect__16TObjEneBm5GibonUFPvPv(Ene_800CCC6C *arg0, void *arg1
     v.y += TObjEneBm5GibonU__data_805DA164;
     hit = csnVectorUnder(&v, arg0->f120, 5);
     if (hit != NULL && (hit->flags & 4)) {
-        p = spawn_particle_effect(hit->obj + 0x38, 0x49);
+        p = spawn_particle_effect((const Vec *)(hit->obj + 0x38), 0x49);
         if (p != NULL) {
             attach_particle_model((u8 *)p, (s32)(TParticleCtrl::get_particle_model(2)), (s32)(TParticleCtrl::get_instance()), 0, 1, (f32)TObjEneBm5GibonU__data_805DA168);
             if (arg0->f464 == 1) {
                 ((TParticleCtrl *)p)->set_scale(TObjEneBm5GibonU__data_805DA16C, TObjEneBm5GibonU__data_805DA168);
             }
         }
-        p = spawn_particle_effect(hit->obj + 0x38, 0xA4);
+        p = spawn_particle_effect((const Vec *)(hit->obj + 0x38), 0xA4);
         if (p != NULL && arg0->f464 == 1) {
             ((TParticleCtrl *)p)->set_scale(TObjEneBm5GibonU__data_805DA16C, TObjEneBm5GibonU__data_805DA168);
         }
@@ -2103,8 +2104,8 @@ void TObjEneBm5GibonU::state_cast_technique(s32 arg1) {
                             ((TTecGiZonde *)arg0)->create(&p, arg0 + 0x4B0, (void *)(CB24(arg0)));
                         } else {
                             void *e;
-                            spawn_particle_effect(&p, 0xB9);
-                            spawn_particle_effect(&p, 0xBA);
+                            spawn_particle_effect((const Vec *)(&p), 0xB9);
+                            spawn_particle_effect((const Vec *)(&p), 0xBA);
                             v.x = 0.0f;
                             v.y = 0.0f;
                             v.z = TObjEneBm5GibonU__data_805DA168;

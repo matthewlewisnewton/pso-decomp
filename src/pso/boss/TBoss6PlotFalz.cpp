@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/system/BmlResourceClass.h"
 void set_constant_material(const NJS_ARGB *color);
@@ -480,7 +481,7 @@ void fn_803594B4(void *, s32, f32);
 s32 vector_length(void *);
 s32 subtract_vector(void *, void *);
 void TBoss6PlotFalz__sub_802AB684(s32 arg0);
-void *spawn_particle_effect(void *pos, s32 id);
+
 int play_sound_effect(int, int, int, int);
 int TBoss6Thanks__sub_8035D270();
 f64 atan2_float(f32, f32);
@@ -517,7 +518,7 @@ void TBoss6PlotFalz::spawn_player_hit_effects() {
             if (is_state_1f__14TBoss6PlotFalzFUi(p) != 0) {
                 VecCopy((Vec *)(&v), (const Vec *)(&p->pos));
                 v.y += k;
-                spawn_particle_effect(&v, 0x29);
+                spawn_particle_effect((const Vec *)(&v), 0x29);
             }
         }
     }

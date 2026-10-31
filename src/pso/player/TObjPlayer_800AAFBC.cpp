@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/system/NinjaUtil.h"
 #include "pso/player/TUnk_80491460.h"
@@ -208,7 +209,7 @@ extern Vec_800AB31C lbl_8043ACE0[];
 extern s32 __vt__13TUnk_80491460[];
 extern void *tl_06;
 extern const f32 lbl_805D9B64;
-void *spawn_particle_effect(void *pos, s32 id);
+
 extern Pair_800AB0EC lbl_8043ACEC[];
 extern const f32 lbl_805D9B58;
 f32 newton_sqrtf();
@@ -280,7 +281,7 @@ s32 TUnk_80491460::try_hit_target(int arg1) {
         tmp.b = (f32)this->m_68;
         Pair_800AB0EC arg = tmp;
         ((VObj_800AB0EC *)e)->m21(o->f64, &arg, 0, -1, -1);
-        spawn_particle_effect(e + 0x2FC, 0xFB);
+        spawn_particle_effect((const Vec *)(e + 0x2FC), 0xFB);
         queue_destruction__7TObjectFv(o);
     }
 }

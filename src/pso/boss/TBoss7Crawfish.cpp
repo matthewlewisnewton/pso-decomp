@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include <dolphin/mtx.h>
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/object/TObjMotion.h"
@@ -180,8 +181,8 @@ void TBoss7Crawfish::spawn_ground_effects() {
     position.x = *(f32 *)((s8 *)arg0 + 0x38);
     position.y = TBoss7Crawfish__data_805DF0D8;
     position.z = *(f32 *)((s8 *)arg0 + 0x40);
-    spawn_particle_effect((&position.x), 0x20D);
-    spawn_particle_effect((&position.x), 0x20E);
+    spawn_particle_effect((const Vec *)((&position.x)), 0x20D);
+    spawn_particle_effect((const Vec *)((&position.x)), 0x20E);
 }
 
 #define arg0 ((s32)arg0_)

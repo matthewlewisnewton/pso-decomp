@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/system/PadRumble.h"
@@ -328,7 +329,7 @@ s32 TBoss4Type2__sub_80054FC0(void *, f32);
 void TBoss4Type2__sub_80055300(void);
 Vec_80053E40 * get_position_ptr__10TObjPlayerFv(void *);
 void * create__9TBoss4UroFi(Params_80052CDC *);
-void *spawn_particle_effect(void *, s32);
+
 void *create_particle_emitter(void *pos, s32 id);
 int toggle_particle_effect__10TObjPlayerFv(void*);
 s32 clear_render_callback__8TObjFishFv(s32);
@@ -854,7 +855,7 @@ void update_tech_charge__11TBoss4Type2FPv(u8 *arg0) {
         play_persistent_sound(0x4003B512, (s32)arg0, (u32)(arg0 + 0x38), 0, 1);
     }
     if (*(s32 *)((s8 *)arg0 + 0x398) == 0x26) {
-        if ((r = ((u32 (*)(void *, s32))spawn_particle_effect)(ent, 0xFD)) != 0) {
+        if ((r = (u32)spawn_particle_effect((const Vec *)(ent), 0xFD)) != 0) {
             ((TParticleCtrl *)r)->set_flags(0x40);
         }
         play_sound_effect(0x4003A813, arg0 + 0x38, 0, 1);
@@ -944,7 +945,7 @@ void update_spawn_uro__14TBoss4DarkFalzFPv(Obj_80052CDC *arg0) {
             p.c = 1;
             VecCopy__FP3VecPC3Vec(&p.pos, s);
             if (create__9TBoss4UroFi(&p) != NULL) {
-                spawn_particle_effect(s, 0x7D);
+                spawn_particle_effect((const Vec *)(s), 0x7D);
                 play_sound_effect(0x4003A810, s, 0, 1);
                 arg0->count++;
             }
@@ -1813,7 +1814,7 @@ void TBoss4Type2__sub_80054DA8(TBoss4Type2 *boss) {
     power = (f32)*(s32 *)((u8 *)TLobby::dispatch_shared_handler_a(0x36) + 0x20);
     spot = (Vec_80053914 *)&TBoss4Type2__tenchu_furu_array;
     for (i = 0; i < 0x40; i++) {
-        TParticleCtrl *effect = (TParticleCtrl *)spawn_particle_effect(spot, (s32)lbl_80485B08[i & 1]);
+        TParticleCtrl *effect = spawn_particle_effect((const Vec *)(spot), (s32)lbl_80485B08[i & 1]);
         if (effect != NULL) {
             effect->set_flags(0x40);
         }

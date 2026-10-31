@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 struct NJS_OBJECT;
 #include "pso/math/ScratchVectorStorage.h"
 #include "pso/player/PlayerAttackParams.h"
@@ -285,7 +286,7 @@ struct E1C_800BF924 { u8 pad[0x1C]; };
 struct E2C_800BF924 { u8 pad[0x2C]; };
 
 extern "C" {
-void *spawn_particle_effect(void *pos, s32 id);
+
 s32 apply_actor_gravity(void *, s32, f32);
 s32 minimap_render_dot(void *, s32, s32, s32);
 s32 play_persistent_sound(s32, void *, void *, s32, s32);
@@ -531,7 +532,7 @@ void TObjGrass::update_dying(void *arg0_) {
         ((TObjEnePanarms *)arg0)->movement_velocity.z *= (0.5f);
         if (((TObjMotion *)arg0)->is_passing_frame((f32)(23.0f)) != 0) {
             ((TObjEnePanarms *)arg0)->phase = 2;
-            spawn_particle_effect((arg0 + 0x38), 0xF0);
+            spawn_particle_effect((const Vec *)((arg0 + 0x38)), 0xF0);
         }
         break;
     case 2:
@@ -577,7 +578,7 @@ void TObjGrass::update_dying(void *arg0_) {
         (*(s32 *)((s8 *)arg0 + 0x3A0))++;
         if (*(s32 *)((s8 *)arg0 + 0x3A0) == 4) {
             *(s32 *)((s8 *)arg0 + 0x3A0) = 0;
-            spawn_particle_effect((arg0 + 0x38C), 0xF2);
+            spawn_particle_effect((const Vec *)((arg0 + 0x38C)), 0xF2);
         }
     }
 }
@@ -635,7 +636,7 @@ void TObjGrass::vfunc_63() {
         *(s16 *)((s8 *)arg0 + 0xB8) = 6;
         temp_r6 = (u8 *)(*(u8 **)((s8 *)arg0 + 0xA4));
         *(s32 *)((s8 *)temp_r6 + 0x18) = (s32) (*(s32 *)((s8 *)temp_r6 + 0x18) & 0xFFFF7FFE);
-        spawn_particle_effect((arg0 + 0x2FC), 0xF2);
+        spawn_particle_effect((const Vec *)((arg0 + 0x2FC)), 0xF2);
         ((TObjPlayer *)arg0)->refresh_lobby_state();
         ((TObjEnemy *)arg0)->send_entity_set_flags();
     }

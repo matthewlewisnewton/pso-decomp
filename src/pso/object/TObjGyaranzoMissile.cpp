@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/system/NinjaUtil.h"
 #include "pso/system/vector.h"
@@ -58,7 +59,7 @@ extern f32 TObjGyaranzoMissile__speed_scale;
 u8 *TObjGyaranzoMissile__ct(u8 *arg0, u8 *arg1, u8 *arg2, s16 arg3);
 void queue_destruction__7TObjectFv(void *);
 Obj_800D47B4 *get_battle_param__10TObjPlayerFi(s32);
-void *spawn_particle_effect(void *pos, s32 id);
+
 s32 remap_area_sound_id(s32 arg0, s32 arg1);
 void *find_entity_by_id(u16);
 void init_all_slots__10TObjPlayerFv(void *);
@@ -114,7 +115,7 @@ void TObjGyaranzoMissile::sub_800D47B4() {
             }
         }
     }
-    spawn_particle_effect(&position, 0xFB);
+    spawn_particle_effect((const Vec *)(&position), 0xFB);
     play_sound_effect((void *)remap_area_sound_id(0x4003A80C, 0x19), &position, 0, 0);
     queue_destruction__7TObjectFv(this);
 }

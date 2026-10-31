@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "pso/math/ScratchVectorStorage.h"
 #include "pso/player/TObjChara.h"
 #include "pso/player/PlayerAttackParams.h"
@@ -551,7 +552,7 @@ s32 apply_actor_gravity(void *, int, f32);
 void move_with_wall_slide(u8 *arg0);
 extern "C" {
 s32 obj_testFlags30__14TObjCollidableFUl(void *, int);
-void *spawn_particle_effect(void *pos, s32 id);
+
 extern const f32 lbl_805DA034;
 extern const f32 lbl_805DA038;
 extern const f32 lbl_805DA03C;
@@ -645,7 +646,7 @@ void TUnk_80493450::beast_update_dead() {
         this->vfunc_98();
     }
     if (((TObjMotion *)arg0)->is_passing_frame(lbl_805DA038) != 0) {
-        spawn_particle_effect(((u8 *)&this->position), 0xF3);
+        spawn_particle_effect((const Vec *)(((u8 *)&this->position)), 0xF3);
         this->vfunc_94();
     }
     if (this->frame < (lbl_805DA03C * (lbl_805DA040 * this->play_speed))) {

@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "types.h"
@@ -204,9 +205,9 @@ void TPhotonFarlla::run_task() {
             VecCopy((Vec *)(&stack.sp14), (const Vec *)(temp_r3_3 + 0x38));
         }
         stack.sp18 += 1e+01f;
-        spawn_particle_effect((&stack.sp14), 0x151);
+        spawn_particle_effect((const Vec *)((&stack.sp14)), 0x151);
         stack.sp18 += 5.0f;
-        spawn_particle_effect((&stack.sp14), 0x15F);
+        spawn_particle_effect((const Vec *)((&stack.sp14)), 0x15F);
     }
     temp_r3_4 = *(s32 *)&this->unk_1A4;
     if ((133.0f == (f32) temp_r3_4) || (135.0f == (f32) temp_r3_4)) {
@@ -215,7 +216,7 @@ void TPhotonFarlla::run_task() {
             VecCopy((Vec *)(&stack.sp8), (const Vec *)(temp_r3_5 + 0x38));
             stack.spC += 1e+01f;
         }
-        spawn_particle_effect((&stack.sp8), 0x151);
+        spawn_particle_effect((const Vec *)((&stack.sp8)), 0x151);
     }
     if ((f32) *(s32 *)&this->unk_1A4 > 138.0f) {
         temp_f1 = this->m_184;

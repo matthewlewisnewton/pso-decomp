@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/map/FloorArea.h"
@@ -227,7 +228,7 @@ extern s32 registered_player_count;
 
 s32 TContainerAncient01__sub_8018BE90(void);
 
-void *spawn_particle_effect(void *pos, s32 id);
+
 extern s32 TContainerAncient01__effect_id_table[];
 void TContainerAncient01__sub_8018B180(Obj_8018B180 *self, f32 range);
 
@@ -702,7 +703,7 @@ void *TContainerAncient01R__ct(Obj_8018B030 *self, void *arg1, void *parent) {
 }
 #pragma pop
 
-void TContainerAncient01::spawn_effect(void* p, void* a1, void* a2) { spawn_particle_effect(a1, (s32)a2); }
+void TContainerAncient01::spawn_effect(void* p, void* a1, void* a2) { spawn_particle_effect((const Vec *)(a1), (s32)a2); }
 
 void TContainerAncient01__sub_8018B180(Obj_8018B180 *self, f32 range) {
     u16 i;

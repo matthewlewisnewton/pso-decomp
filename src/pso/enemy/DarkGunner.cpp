@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/system/ChunkMaterialState.h"
@@ -121,7 +122,7 @@ s32 minimap_render_dot(void *, s32, s32, s32);
 void TObjPlayer__sub_800A16C4(u8 *arg0);
 void queue_destruction__7TObjectFv(void *arg0);
 s32 update_if_active__15TObjEneMe1GiGueFl(void *, s32);
-void *spawn_particle_effect(void *pos, s32 id);
+
 s32 TObjPlayer__sub_800A3210(s32 i, s32 _w1, s32 _w2);
 u8 *TObjPlayer__sub_800A4204(u8 *arg0, u8 *arg1, s32 arg2, s32 arg3, s32 arg4);
 s32 submit_cursor_candidate(void *, s32);
@@ -907,7 +908,7 @@ void TObjPlayer__sub_800A16C4(u8 *player) {
 void TObjEneDarkGunner::vfunc_61() {
     u8 *arg0 = (u8 *)this;
     ((TObjBase *)arg0)->obj_clearFlags30((s32)(0x100U));
-    spawn_particle_effect(((u8 *)&this->body_center_position), 0xD7);
+    spawn_particle_effect((const Vec *)(((u8 *)&this->body_center_position)), 0xD7);
     play_sound_effect(0x4003B22D, (u8 *)&this->position, 0, 0);
 }
 
@@ -1172,7 +1173,7 @@ void TObjPlayer__sub_800A1D70(u8 *arg0) {
             ((TObjPlayer *)arg0)->movement_velocity.z = (f32) ((((TObjPlayer *)arg0)->movement_velocity.z * temp_f1) / temp_f31);
         }
         if (*(s32 *)((s8 *)arg0 + 0x388) & 0x400000) {
-            spawn_particle_effect((arg0 + 0x2FC), 0xD7);
+            spawn_particle_effect((const Vec *)((arg0 + 0x2FC)), 0xD7);
         }
         *(s16 *)((s8 *)arg0 + 0x39E) = 0;
         ((TObjPlayer *)arg0)->m_37c = 1;
@@ -1271,9 +1272,9 @@ s32 TObjPlayer__sub_800A1FEC(void *arg0) {
         }
         self->state = 3;
         if (((TObjPlayer *)self)->is_flag_set_388_bit26() != 0) {
-            spawn_particle_effect(&self->f3B4, 0xD8);
+            spawn_particle_effect((const Vec *)(&self->f3B4), 0xD8);
         } else {
-            spawn_particle_effect(&self->f3B4, 0xD2);
+            spawn_particle_effect((const Vec *)(&self->f3B4), 0xD2);
         }
         break;
     case 3:
@@ -1584,7 +1585,7 @@ void TObjPlayer__sub_800A28A4(VObj_18_800A28A4 *self) {
         self->m9(150.0f, 400.0f, 15.0f) != 0) {
         Vec_800A159C p = self->pos;
         p.y += self->render_y_offset;
-        spawn_particle_effect(&p, 0xD6);
+        spawn_particle_effect((const Vec *)(&p), 0xD6);
     }
 }
 #pragma pop

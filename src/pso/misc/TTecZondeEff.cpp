@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "pso/system/ChunkMaterialState.h"
 #include "pso/TTecZondeEff.h"
 #include "pso/misc/MaterialColorFade.h"
@@ -149,7 +150,7 @@ extern s32 TTecZondeEff__beam_vertex_data;
 f32 rand_signed_unit();
 void randomize_bolt_jitter__12TTecZondeEffFv(Obj_8023D4A8 *arg0);
 s32 is_split_screen(void);
-void spawn_particle_effect(Rec_8023D568 *, s32);
+
 void queue_destruction__7TObjectFv(void *);
 void restore_saved_depth_alpha_state();
 extern u32 saved_model_render_flags;
@@ -403,7 +404,7 @@ void TTecZondeEff::init_bolt_points() {
         o->pts[i].y = dy * t + y0;
         o->pts[i].z = dz * t + z0;
         if (is_split_screen() == 0) {
-            spawn_particle_effect(&o->pts[i], 0x1F0);
+            spawn_particle_effect((const Vec *)(&o->pts[i]), 0x1F0);
         }
     }
 }

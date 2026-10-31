@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "pso/boss/TBoss4Zako.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/player/TObjPlayer.h"
@@ -128,7 +129,7 @@ extern const f32 lbl_805D8CC8;
 extern const f32 lbl_805D8CE4;
 void vt6__9TBoss4UroFv(u8 *arg0);
 void queue_destruction__7TObjectFv(void *arg0);
-void *spawn_particle_effect(void *pos, s32 id);
+
 extern const f32 lbl_805D8CB8;
 extern const f32 lbl_805D8CC0;
 void vt2__11TBoss4BishiFv(u8 *arg0);
@@ -662,7 +663,7 @@ void TBoss4Zako::update_sink_state() {
     m_38.y = (f32) (m_38.y + lbl_805D8CB8);
     temp_f1 = m_38.y;
     if ((temp_f1 < lbl_805D8CBC) && (temp_f1 >= lbl_805D8CB8)) {
-        spawn_particle_effect((&m_38), 0xF3);
+        spawn_particle_effect((const Vec *)((&m_38)), 0xF3);
     }
     m_5c = (m_5c + 0x111);
     if (m_38.y < lbl_805D8CC0) {
@@ -940,7 +941,7 @@ void vt5__9TBoss4UroFv(u8 *arg0) {
     *(f32 *)((s8 *)arg0 + 0x3C) = (f32) (*(f32 *)((s8 *)arg0 + 0x3C) + lbl_805D8CB8);
     temp_f1 = *(f32 *)((s8 *)arg0 + 0x3C);
     if ((temp_f1 < lbl_805D8CBC) && (temp_f1 >= lbl_805D8CB8)) {
-        spawn_particle_effect((arg0 + 0x38), 0xF3);
+        spawn_particle_effect((const Vec *)((arg0 + 0x38)), 0xF3);
     }
     *(s32 *)((s8 *)arg0 + 0x5C) = (s32) (*(s32 *)((s8 *)arg0 + 0x5C) + 0x111);
     if (*(f32 *)((s8 *)arg0 + 0x3C) < lbl_805D8CC0) {
@@ -1119,7 +1120,7 @@ void vt2__11TBoss4BishiFv(u8 *arg0) {
     *(f32 *)((s8 *)arg0 + 0x3C) = (f32) (*(f32 *)((s8 *)arg0 + 0x3C) + lbl_805D8CB8);
     temp_f1 = *(f32 *)((s8 *)arg0 + 0x3C);
     if ((temp_f1 < lbl_805D8CBC) && (temp_f1 >= lbl_805D8CB8)) {
-        spawn_particle_effect((arg0 + 0x38), 0xF3);
+        spawn_particle_effect((const Vec *)((arg0 + 0x38)), 0xF3);
     }
     *(s32 *)((s8 *)arg0 + 0x5C) = (s32) (*(s32 *)((s8 *)arg0 + 0x5C) + 0x111);
     if (*(f32 *)((s8 *)arg0 + 0x3C) < lbl_805D8CC0) {

@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_800F0810.h"
@@ -282,7 +283,7 @@ f64 atan2_float(f32, f32, f32);
 u8 * dispatch_shared_handler_a__6TLobbyFl(s32);
 s32 get_camera_mode__11TCameraCtrlFv();
 u32 csnLookAt(void *, void *);
-s32 spawn_particle_effect(void *, int, f32);
+
 s32 update__15RenderFadeStateFv(int, int);
 void TObjEnePanarms__sub_800DFE08(u8 *arg0);
 void TObjEnePanarms__sub_800E0048(u8 *arg0);
@@ -796,7 +797,7 @@ void TObjEnePanarms__sub_800E0950(u8 *panarms) {
         VecCopy((Vec *)(&stack.sp8), (const Vec *)(panarms + 0x3A4));
         temp_f1 = stack.spC;
         stack.spC = temp_f1 + TObjEnePanarms__data_805DA544;
-        spawn_particle_effect((void *)&stack.sp8, 0xF3, temp_f1);
+        spawn_particle_effect((const Vec *)(&stack.sp8), 0xF3);
     }
     temp_r0 = *(s32 *)((s8 *)panarms + 0x3B4);
     if (temp_r0 <= 0x78) {
@@ -1143,7 +1144,7 @@ void TObjEnePanarms::spawn_periodic_particle() {
     if (!(this->m_45c & 7)) {
         VecCopy((Vec *)(&position.x), (const Vec *)(arg0 + 0x3A4));
         position.y += TObjEnePanarms__data_805DA544;
-        ((s32 (*)(void *, int))spawn_particle_effect)(&position.x, 0xF3);
+        spawn_particle_effect((const Vec *)(&position.x), 0xF3);
     }
 }
 #pragma pop

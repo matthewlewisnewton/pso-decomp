@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
@@ -376,7 +377,7 @@ extern const f32 lbl_805DF87C;
 extern const f32 lbl_805DF890;
 void TObjEneMorfos__sub_80333AD0(u8 *arg0, s32 arg1);
 s32 get_flag_b4__9TObjEneDDFv();
-void spawn_particle_effect(void *, int);
+
 s32 play_sound_effect(s32, u32, s16, s32);
 u8 * TObjEneMorfos__sub_80337824(void *, void *, s32, s32);
 void * __nw__7TObjectFUl(int);
@@ -1325,7 +1326,7 @@ void TObjEneMorfos::state_rotating_projectile_burst(s32 arg1) {
             break;
         }
         case 2:
-            spawn_particle_effect(arg0 + 0x498, 0x212);
+            spawn_particle_effect((const Vec *)(arg0 + 0x498), 0x212);
             if (((TObjMotion *)arg0)->is_passing_frame((f32)TObjEneMorfos__data_805DF884) != 0) {
                 F(0x4B0, s32) = 3;
             }
@@ -1403,7 +1404,7 @@ void TObjEneMorfos__sub_80333690(TObjEneMorfos *arg0, s32 arg1) {
             if (arg0->approach_value(arg0->m_4bc, *(s32 *)((s8 *)(*(u8 * *)&TObjEneMorfos__param_table) + 0x1C)) != 0) {
                 *(s32 *)((s8 *)arg0 + 0x4B0) = 1;
                 arg0->requested_action = 2;
-                spawn_particle_effect((u8 *)arg0 + 0x498, 0x212);
+                spawn_particle_effect((const Vec *)((u8 *)arg0 + 0x498), 0x212);
             }
             break;
         case 1:
@@ -1926,8 +1927,8 @@ f32 TObjEneMorfos__vt20(Obj_80334A4C *arg0, Obj_80334A4C *att, f32 scale) {
     }
     if (arg0->f3C0 & 0x10) {
         if (d < 0x4000) {
-            spawn_particle_effect(arg0->snd, 0x214);
-            spawn_particle_effect(arg0->snd, 0x21A);
+            spawn_particle_effect((const Vec *)(arg0->snd), 0x214);
+            spawn_particle_effect((const Vec *)(arg0->snd), 0x21A);
         } else {
             arg0->f3C0 &= ~0x10;
             arg0->f3C0 |= 0x20;

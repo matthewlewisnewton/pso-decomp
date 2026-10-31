@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 struct NJS_OBJECT;
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/player/TObjPlayer_800D8FDC.h"
@@ -52,7 +53,7 @@ struct NJS_OBJECT;
 
 extern "C" {
 f64 atan2_float(f32, f32);
-s32 spawn_particle_effect(void *, int);
+
 s32 approach_angle_limited(int, int, int);
 s32 play_sound_effect(int, void *, int, int);
 void * __nw__7TObjectFUl(int);
@@ -588,7 +589,7 @@ void TObjEneDellBiter::spawn_front_particle() {
     rotate_xz_pair_by_angle(&front.x, &front.z, rotation_y);
     vec3_add_to(&front, &position);
     if (fn_803059BC(&front) == 0) {
-        spawn_particle_effect(&front, 0xF3);
+        spawn_particle_effect((const Vec *)(&front), 0xF3);
     }
 }
 
@@ -607,24 +608,24 @@ s32 TObjEneDellBiter::fn_803059BC(const Vec *origin) {
             VecCopy(&reflection_position, &position);
         }
         if (hit->flags & 4) {
-            e = (void *)spawn_particle_effect(&hit->surface->point_38, 0x49);
+            e = (void *)spawn_particle_effect((const Vec *)(&hit->surface->point_38), 0x49);
             if (e != NULL) {
                 attach_particle_model((u8 *)e, (s32)(TParticleCtrl::get_particle_model(2)), (s32)(TParticleCtrl::get_instance()), 0, 1, (f32)TObjEneDellBiter__data_805DEFD8);
                 ((TParticleCtrl *)e)->set_scale(lbl_805DF020, lbl_805DF020);
             }
-            e = (void *)spawn_particle_effect(&hit->surface->point_38, 0xA4);
+            e = (void *)spawn_particle_effect((const Vec *)(&hit->surface->point_38), 0xA4);
             if (e != NULL) {
                 ((TParticleCtrl *)e)->set_scale(lbl_805DF020, lbl_805DF020);
             }
             return 1;
         }
         if (hit->flags & 2) {
-            e = (void *)spawn_particle_effect(&hit->surface->point_54, 0x49);
+            e = (void *)spawn_particle_effect((const Vec *)(&hit->surface->point_54), 0x49);
             if (e != NULL) {
                 attach_particle_model((u8 *)e, (s32)(TParticleCtrl::get_particle_model(2)), (s32)(TParticleCtrl::get_instance()), 0, 1, (f32)TObjEneDellBiter__data_805DEFD8);
                 ((TParticleCtrl *)e)->set_scale(lbl_805DF020, lbl_805DF020);
             }
-            e = (void *)spawn_particle_effect(&hit->surface->point_54, 0xA4);
+            e = (void *)spawn_particle_effect((const Vec *)(&hit->surface->point_54), 0xA4);
             if (e != NULL) {
                 ((TParticleCtrl *)e)->set_scale(lbl_805DF020, lbl_805DF020);
             }
@@ -641,7 +642,7 @@ void TObjEneDellBiter::fn_8030591C() {
             return;
         }
         play_persistent_sound(((TObjEnemy *)(this))->remap_sound_for_area((s32)((void *)0x40039E13)), (s32)this, (u32)&position, 0, 0);
-        spawn_particle_effect(&position, 0xF0);
+        spawn_particle_effect((const Vec *)(&position), 0xF0);
     }
 }
 
@@ -1322,11 +1323,11 @@ void TObjEneDellBiter::fn_80303F04(s32 reason) {
             VecCopy(&sp8, &position);
             sp8.y += TObjEneDellBiter__data_805DEFE0;
             if ((s32) game_difficulty_selection == 3) {
-                spawn_particle_effect(&sp8, 0x21D);
-                spawn_particle_effect(&sp8, 0x21E);
+                spawn_particle_effect((const Vec *)(&sp8), 0x21D);
+                spawn_particle_effect((const Vec *)(&sp8), 0x21E);
             } else {
-                spawn_particle_effect(&sp8, 0x21B);
-                spawn_particle_effect(&sp8, 0x21C);
+                spawn_particle_effect((const Vec *)(&sp8), 0x21B);
+                spawn_particle_effect((const Vec *)(&sp8), 0x21C);
             }
         }
         if (is_passing_frame(TObjEneDellBiter__data_805DEFE4) != 0) {
@@ -1417,7 +1418,7 @@ void TObjEneDellBiter::fn_80303BC0(s32 reason) {
                 play_sound_effect(((TObjEnemy *)(this))->remap_sound_for_area((s32)((void *)0x40039F17)), &position, 0, 0);
             }
             if (is_passing_frame(TObjEneDellBiter__data_805DEFD8) != 0) {
-                spawn_particle_effect(&part_positions[0], 0x21F);
+                spawn_particle_effect((const Vec *)(&part_positions[0]), 0x21F);
             }
             break;
         }

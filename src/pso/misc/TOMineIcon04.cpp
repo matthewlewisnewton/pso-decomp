@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/TObject.h"
 #include "pso/misc/TOMine.h"
@@ -69,14 +70,14 @@ void *TOMineIcon04__ct(void *arg0, void *arg1, void *arg2);
 int vfunc_82__12TOMineIcon04Fv(void* p);
 void vfunc_84__12TOMineIcon04Fv(void);
 void *__dt__12TOMineIcon04Fv(void *arg0, s16 arg1);
-void *spawn_particle_effect(void *pos, s32 id);
+
 s32 free_collision_body_parts(void *);
 s32 __dl__7TObjectFPv(void *);
 void *__dt__6TOMineFv(void *arg0, s16 arg1);
 void *__nw__7TObjectFUl(int);
 
 void TOMineIcon04::vfunc_84() {  }
-void TOMineIcon04::vfunc_82() { spawn_particle_effect((char*)this + 0x2fc, 140); }
+void TOMineIcon04::vfunc_82() { spawn_particle_effect((const Vec *)((char*)this + 0x2fc), 140); }
 
 extern void *tl_05;
 

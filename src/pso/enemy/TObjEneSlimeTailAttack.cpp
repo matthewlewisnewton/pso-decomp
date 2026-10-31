@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 struct NJS_OBJECT;
 #include "types.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
@@ -300,7 +301,7 @@ f32 * dispatch_shared_handler_a__6TLobbyFl(s32);
 u8 * get_bml_motion(s32, s32);
 s32 exchange_object_state__9TObjEnemyFls(void *, void *, int);
 void transform_to_view__11TCameraCtrlFii(s32, s32);
-void *spawn_particle_effect(void *pos, s32 id);
+
 void *create_particle_emitter(void *pos, s32 id);
 void TObjPlayer__sub_800E80C0(u8 *arg0);
 S_800E80E8 * TObjPlayer__sub_800E80E8(S_800E80E8 *dst, S_800E80E8 *src);
@@ -1246,7 +1247,7 @@ void run_task__21TObjEneSlimeWaterBombFv(Bomb_800E8D4C *arg0) {
             if (arg0->pos.y <= arg0->ground) {
                 arg0->pos.y = arg0->ground;
                 arg0->vel.y *= lbl_805DA6D4;
-                spawn_particle_effect(&arg0->pos, 0xE2);
+                spawn_particle_effect((const Vec *)(&arg0->pos), 0xE2);
             }
         } else {
             die = 1;
@@ -1262,7 +1263,7 @@ void run_task__21TObjEneSlimeWaterBombFv(Bomb_800E8D4C *arg0) {
         f32 t = arg0->life + lbl_805DA6D8;
         arg0->life = t;
         if (t >= lbl_805DA6DC || die != 0) {
-            spawn_particle_effect(&arg0->pos, 0xE2);
+            spawn_particle_effect((const Vec *)(&arg0->pos), 0xE2);
             ((s32 (*)(void *))queue_destruction__7TObjectFv)(arg0);
         }
     }
@@ -1439,7 +1440,7 @@ void TBoss8Dragon__sub_800E92D8(TObjEneSlimeOne *self) {
             p.x = lbl_805DA704 * sin_table_lookup(angle) + p.x;
             p.y += lbl_805DA708;
             p.z = lbl_805DA704 * cos_table_lookup(angle) + p.z;
-            spawn_particle_effect(&p, 0xE2);
+            spawn_particle_effect((const Vec *)(&p), 0xE2);
         }
         TObjEneSlimeOne__sub_800EAD84((Obj_800EAD84 *)self);
         self->set_state(1);
@@ -1490,7 +1491,7 @@ void fn_800E95F4(u8 *arg0) {
     *(s32 *)((s8 *)arg0 + 0x390) = 5;
     ((TObjPlayer *)arg0)->refresh_lobby_state();
     ((s32 (*)(s32, u32, s16, s32))play_sound_effect)(0x4003A81B, (u32)(arg0 + 0x38), 0, 0);
-    spawn_particle_effect((arg0 + 0x2FC), 0xFE);
+    spawn_particle_effect((const Vec *)((arg0 + 0x2FC)), 0xFE);
     ((TObjEneSlimeOne *)(*(u8 **)((s8 *)arg0 + 0x388)))->set_motion_state(5);
     set_display_mode__15TObjEneSlimeOneFPvi(arg0, 0);
 }
@@ -1505,7 +1506,7 @@ void init_split_effect__15TObjEneSlimeOneFPv(u8 *arg0) {
     *(f32 *)((s8 *)arg0 + 0x3B0) = (f32) lbl_805DA67C;
     *(f32 *)((s8 *)arg0 + 0x3AC) = (f32) lbl_805DA67C;
     *(f32 *)((s8 *)arg0 + 0x3A8) = (f32) lbl_805DA67C;
-    spawn_particle_effect((arg0 + 0x2FC), 0xCE);
+    spawn_particle_effect((const Vec *)((arg0 + 0x2FC)), 0xCE);
     play_sound_effect(0x4003A61A, arg0 + 0x38, 0, 0);
     ((TObjEneSlimeOne *)(*(s32 *)((s8 *)arg0 + 0x388)))->set_motion_state(5);
     ((s32 (*)(void *, int))set_display_mode__15TObjEneSlimeOneFPvi)(arg0, 0);
@@ -1517,7 +1518,7 @@ void update_tick__15TObjEneSlimeOneFPv(TObjEneSlimeOne *ene_slime_one) {
     temp_r3 = *(s32 *)((s8 *)ene_slime_one + 0x394) + 1;
     *(s32 *)((s8 *)ene_slime_one + 0x394) = temp_r3;
     if (!(temp_r3 & 3)) {
-        spawn_particle_effect(((u8 *)ene_slime_one + 0x2FC), 0xE0);
+        spawn_particle_effect((const Vec *)(((u8 *)ene_slime_one + 0x2FC)), 0xE0);
     }
     if (ene_slime_one->motion_flags & 0x10) {
         if (ene_slime_one->is_timer_active() != 0) {
@@ -1601,10 +1602,10 @@ void update_water_bomb_timer__15TObjEneSlimeOneFPv(u8 *arg0) {
     *(s32 *)((s8 *)arg0 + 0x394) = (s32) (*(s32 *)((s8 *)arg0 + 0x394) - 1);
     temp_r0 = *(s32 *)((s8 *)arg0 + 0x394);
     if (temp_r0 > 0) {
-        spawn_particle_effect(arg0 + 0x2FC, 0xFF);
+        spawn_particle_effect((const Vec *)(arg0 + 0x2FC), 0xFF);
     } else if (temp_r0 == 0) {
         ((s32 (*)(s32, void *, s32, s32))play_sound_effect)(0x4003A017, arg0 + 0x38, 0, 0);
-        spawn_particle_effect(arg0 + 0x2FC, 0xE2);
+        spawn_particle_effect((const Vec *)(arg0 + 0x2FC), 0xE2);
         ((TObjEneSlimeWaterBomb *)arg0)->create(arg0);
     }
     temp_r0_2 = *(s32 *)((s8 *)arg0 + 0x390) - 1;
@@ -1756,7 +1757,7 @@ void update_dive_timer__10TObjPlayerFPv(u8 *ene_slime_one) {
     temp_r0 = *(s32 *)((s8 *)ene_slime_one + 0x394) - 1;
     *(s32 *)((s8 *)ene_slime_one + 0x394) = temp_r0;
     if (temp_r0 == 0) {
-        spawn_particle_effect(ene_slime_one + 0x2FC, 0xCD);
+        spawn_particle_effect((const Vec *)(ene_slime_one + 0x2FC), 0xCD);
     }
     if (((TObjEneSlimeOne *)(((TObjEneSlimeOne *)ene_slime_one)->m_388))->is_reached_target_depth() == 1) {
         ((TObjEneSlimeOne *)ene_slime_one)->set_state(3);
@@ -1776,7 +1777,7 @@ void update_slime_timer__10TObjPlayerFPv(u8 *ene_slime_one) {
     temp_r0 = *(s32 *)((s8 *)ene_slime_one + 0x394) - 1;
     *(s32 *)((s8 *)ene_slime_one + 0x394) = temp_r0;
     if (temp_r0 == 0) {
-        spawn_particle_effect(ene_slime_one + 0x2FC, 0xCD);
+        spawn_particle_effect((const Vec *)(ene_slime_one + 0x2FC), 0xCD);
     }
     if (((TObjEneSlimeOne *)(((TObjEneSlimeOne *)ene_slime_one)->m_388))->is_reached_target_depth() == 1) {
         if (((TObjEneSlimeOne *)ene_slime_one)->is_timer_active() != 0) {

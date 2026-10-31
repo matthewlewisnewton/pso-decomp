@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/TBoss6SwordShot.h"
 #include "pso/TObject.h"
@@ -71,7 +72,7 @@ extern const f32 lbl_805E0010;
 extern const f32 lbl_805E0014;
 void clear_bit__15TBoss6SwordWaveFPvUc(W_80356D10 *arg0, u8 arg1);
 void *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags);
-void *spawn_particle_effect(void *pos, s32 id);
+
 u8 TBoss6SwordWave__sub_80356D08(u32 arg1, u32 arg2);
 f32 sin_table_lookup(int);
 f32 cos_table_lookup(int);
@@ -264,7 +265,7 @@ s32 TBoss6SwordWave::spawn_wave_ring_particles() {
             if (!(xyz_distance(&v, lbl_80479388) > lbl_805E0008)) {
                 spawn_particle_effect_with_flags(&v, 0x212, 0x40);
                 if (((TBoss6Type2 *)(o->owner))->get_rotation_timer() == 0) {
-                    spawn_particle_effect(&v, 0x213);
+                    spawn_particle_effect((const Vec *)(&v), 0x213);
                 } else {
                     spawn_particle_effect_with_flags(&v, 0x229, 0x2000);
                 }

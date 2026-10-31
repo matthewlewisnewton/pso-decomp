@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "pso/map/FloorArea.h"
 #include "pso/item/TItemObject.h"
 #include "pso/object/TObjMotion.h"
@@ -24,7 +25,7 @@ f32 horizontal_distance_squared(void *, void *);
 s32 sub_801A1DDC__10TObjPlayerFv(void *);
 void *get_player_by_client_id(s32 i);
 void send_nearby_player_ids(TObjPlayer *self, f32 range);
-void *spawn_particle_effect(void *pos, s32 id);
+
 void *TObjPlayer__sub_80116620(void *, s32);
 void send_star_atomizer_targets(TObjPlayer *player);
 }
@@ -189,9 +190,9 @@ void handle_6x66_use_star_atomizer(u8 *arg0) {
                     target->set_hp_clamped(((TItemProShield *)target)->get_field_2b8());
                     if (is_current_area_item_enabled() != 0) {
                         if (i == 0) {
-                            spawn_particle_effect((u8 *)target + 0x2FC, 0x19);
+                            spawn_particle_effect((const Vec *)((u8 *)target + 0x2FC), 0x19);
                         }
-                        spawn_particle_effect((u8 *)target + 0x2FC, 0xC2);
+                        spawn_particle_effect((const Vec *)((u8 *)target + 0x2FC), 0xC2);
                     }
                 }
             }

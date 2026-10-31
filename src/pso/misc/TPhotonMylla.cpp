@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/system/ChunkMaterialState.h"
@@ -108,7 +109,7 @@ struct Game_801AD970 { u8 pad[0x42C]; Res_801AD970 *res; s32 f430; };
 
 extern "C" {
 u16 get_entity_id(void *);
-void *spawn_particle_effect(void *pos, s32 id);
+
 void *find_entity_by_id(u16 id);
 u8 *TPhotonMagicSquare__ct(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
 s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
@@ -261,8 +262,8 @@ void TPhotonMylla::run_task() {
             VecCopy((Vec *)(&stack.sp20), (const Vec *)(temp_r3_3 + 0x38));
         }
         stack.sp24 += lbl_805DC20C;
-        spawn_particle_effect(&stack.sp20, 0x174);
-        spawn_particle_effect(&stack.sp20, 0x175);
+        spawn_particle_effect((const Vec *)(&stack.sp20), 0x174);
+        spawn_particle_effect((const Vec *)(&stack.sp20), 0x175);
     }
     if (lbl_805DC210 == (f32) ((RecoveredFields_801AD5D8_arg0 *)arg0)->field_1A4) {
         temp_r3_4 = (u8 *)(find_entity_by_id(((RecoveredFields_801AD5D8_arg0 *)arg0)->field_17C));
@@ -270,7 +271,7 @@ void TPhotonMylla::run_task() {
             VecCopy((Vec *)(&stack.sp14), (const Vec *)(temp_r3_4 + 0x38));
         }
         stack.sp18 += lbl_805DC20C;
-        spawn_particle_effect(&stack.sp14, 0x169);
+        spawn_particle_effect((const Vec *)(&stack.sp14), 0x169);
     }
     if (lbl_805DC214 == (f32) ((RecoveredFields_801AD5D8_arg0 *)arg0)->field_1A4) {
         temp_r3_5 = (u8 *)(find_entity_by_id(((RecoveredFields_801AD5D8_arg0 *)arg0)->field_17C));
@@ -278,7 +279,7 @@ void TPhotonMylla::run_task() {
             VecCopy((Vec *)(&stack.sp8), (const Vec *)(temp_r3_5 + 0x38));
         }
         stack.spC += lbl_805DC20C;
-        spawn_particle_effect(&stack.sp8, 0x169);
+        spawn_particle_effect((const Vec *)(&stack.sp8), 0x169);
         if (temp_r3_5 != NULL) {
             queue_photon_blast_hit((int) (get_entity_id(temp_r3_5)), 5, 0, (f32) (((RecoveredFields_801AD5D8_arg0 *)arg0)->field_150));
         }

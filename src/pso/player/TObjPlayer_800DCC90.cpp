@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "pso/enemy/TObjEneNanoDrago.h"
 #include "types.h"
 #include "pso/system/NinjaUtil.h"
@@ -52,7 +53,7 @@ s32 play_sound_effect(int, void *, int, int);
 s32 subtract_vector(void *, void *);
 s32 vec3_add_to(void *, void *);
 u32 csnVector(void *, void *, int);
-void spawn_particle_effect(void *, int);
+
 s32 is_split_screen();
 extern const f32 lbl_805D5260;
 extern const f32 lbl_805D5268;
@@ -119,8 +120,8 @@ void TObjPlayer::update_homing_shot() {
             if (obj->flags & 0x800) {
                 ((TObjEneNanoDrago *)att)->request_growth();
             }
-            spawn_particle_effect(obj->pos, 0xFB);
-            spawn_particle_effect(obj->pos, 0xFC);
+            spawn_particle_effect((const Vec *)(obj->pos), 0xFB);
+            spawn_particle_effect((const Vec *)(obj->pos), 0xFC);
             if (is_split_screen() == 0 && local_client_id == arg0->owner) {
                 ((TObjEneNanoDrago *)att)->trigger_hit_camera_shake((u32)obj);
             }

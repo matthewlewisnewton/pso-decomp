@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 struct NJS_OBJECT;
 #include "pso/math/ScratchVectorStorage.h"
 #include "pso/player/PlayerAttackParams.h"
@@ -98,7 +99,7 @@ extern const f32 lbl_805E0308;
 void move_with_wall_slide(u8 *arg0);
 
 extern "C" {
-void *spawn_particle_effect(void *pos, s32 id);
+
 extern const f32 TObjEneIllGill__data_805E02DC;
 extern const f32 lbl_805E02E0;
 extern const f32 lbl_805E02E4;
@@ -572,7 +573,7 @@ void TObjEneIllGill::update_death_fall() {
       if (((TObjMotion *)arg0)->is_passing_frame((f32)((f32) TObjEneIllGill__data_805E02C0)) != 0)
     {
       this->phase = 3;
-      spawn_particle_effect(&position, 0xF0);
+      spawn_particle_effect((const Vec *)(&position), 0xF0);
       return;
     }
       break;
@@ -608,7 +609,7 @@ void TObjEneIllGill::vfunc_63() {
         temp_r5 = (u8 *)this->bodies;
         bodies->flags = (s32) (bodies->flags & 0xFFFF7FFE);
         this->free_resources();
-        spawn_particle_effect(&body_center_position, 0xF2);
+        spawn_particle_effect((const Vec *)(&body_center_position), 0xF2);
         ((TObjPlayer *)arg0)->refresh_lobby_state();
         ((TObjEnemy *)arg0)->send_entity_set_flags();
     }

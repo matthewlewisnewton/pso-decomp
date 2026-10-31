@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -3077,7 +3078,7 @@ struct VObj_14_2ab9de : VBase_14_2ab9de {
 s32 is_locally_controlled__10TObjPlayerFPv(void *);
 u32 get_item_field_6__10TObjPlayerFPv(void *);
 f32 fabs_float(f32);
-void *spawn_particle_effect(void *pos, s32 id);
+
 s32 get_item_id__5TItemFv(void);
 int select_and_apply_target__12TObjEneDD_STFf(void*);
 void *__dt__12TObjEneDD_STFv(void *arg0, s16 arg1);
@@ -3512,7 +3513,7 @@ void attack_and_unequip__16TObjEneMe3StelthFPv(Stelth_800F4A90 *self) {
                 if (is_locally_controlled__10TObjPlayerFPv(t) != 0 && get_item_field_6__10TObjPlayerFPv(t) != 0) {
                     send_6x26_unequip_item__10TObjPlayerFPvPv(t, get_item_id__5TItemFv());
                     ((TObjPlayer *)t)->get_hand_joint_position((s32)self->f3F8);
-                    spawn_particle_effect(self->f3F8, 0x1D0);
+                    spawn_particle_effect((const Vec *)(self->f3F8), 0x1D0);
                 }
             } else if (near != 0 && random_ratio__9TObjCharaFv(self) <= lbl_805DA8A0) {
                 TObjEneDD__sub_800BA438(self, self->target);
