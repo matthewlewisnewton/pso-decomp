@@ -10,4 +10,4 @@ The constructor passes its position at offset 0x1c to `copy_vec2__28TWindowSubSy
 
 A link-readiness audit also finds the original split exports `lbl_80470620`, but the compiler emits the corresponding eight-byte conversion constant as a local literal. Scanning every current report unit’s split and compiled objects found no undefined references to that symbol. The repository localization tool confirmed no outside references and marked the symbol local; rebuild and source-link validation remain pending.
 
-The exact-helper checkpoint passed the full DOL SHA-1 build and regression checks: one newly exact function, 396 code bytes and 136 data bytes gained, with no losses. The subsequent localization and source linkage remain pending validation.
+The exact-helper checkpoint passed the full DOL SHA-1 build and regression checks: one newly exact function, 396 code bytes and 136 data bytes gained, with no losses. The localized-symbol checkpoint also passed the full DOL SHA-1 build and regression checks. The scan identified this as the only new exact link candidate; source linkage is pending validation.
