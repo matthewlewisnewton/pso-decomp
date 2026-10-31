@@ -1025,18 +1025,18 @@ force_active:
   - TObjEneMe3Stelth__sub_800F348C
   - TObjEneMe3Stelth__sub_800F3FE4
   - TObjEneMe3Stelth__sub_800F4C10
-  - TObjEneMorfos__ct
-  - TObjEneMorfos__sub_80332DBC
-  - TObjEneMorfos__sub_80332FD4
-  - TObjEneMorfos__sub_80333690
-  - TObjEneMorfos__sub_80333AD0
-  - TObjEneMorfos__sub_80333E48
-  - TObjEneMorfos__sub_80334030
-  - TObjEneMorfos__sub_803342B8
-  - TObjEneMorfos__sub_803344F0
-  - TObjEneMorfos__sub_80334704
-  - TObjEneMorfos__vt20
-  - TObjEneMorfos__vt85
+  - __ct__13TObjEneMorfosFP7TObjectPv
+  - state_damaged__13TObjEneMorfosFl
+  - state_melee_attack__13TObjEneMorfosFl
+  - state_projectile_attack__13TObjEneMorfosFl
+  - state_move__13TObjEneMorfosFl
+  - state_disappear__13TObjEneMorfosFl
+  - state_hidden__13TObjEneMorfosFl
+  - state_fade_in__13TObjEneMorfosFl
+  - fn_803344F0__13TObjEneMorfosFv
+  - get_parameters__13TObjEneMorfosFv
+  - receive_physical_attack__13TObjEneMorfosFPvf
+  - dispatch_action__13TObjEneMorfosFUll
   - TObjEneNanoDrago__ct
   - TObjEnePanarmsAtkColli__ct
   - TObjEneRe4Bit__ct
@@ -2804,7 +2804,7 @@ force_active:
   - approach_target__16TObjEneBm5GibonUFf
   - approach_target_value__13TObjEneMe1GeeFPvf
   - approach_value__13TObjEneBm3FlyFff
-  - approach_value__13TObjEneMorfosFll
+  - turn_toward_angle__13TObjEneMorfosFll
   - aramQueueCallback
   - are_all_players_in_range__12TObjWarpBossFv
   - are_all_selections_done__23TAdSinglePlyChrSelectGCFv
@@ -4088,7 +4088,7 @@ force_active:
   - draw_background__18TWindowPartyStatusFPUc
   - draw_blend_motion_tree
   - draw_body__13TBoss5GryphonFv
-  - draw_body__13TObjEneMorfosFv
+  - draw_guard_wall__13TObjEneMorfosFv
   - draw_bottom_bar__20TWindowSubStatusDispFv
   - draw_callback_transform_to_view__8TObjFishFv
   - draw_closed__8TObjDoorFPv
@@ -5008,7 +5008,7 @@ force_active:
   - hide_part__9TObjLukerFPvUs
   - hide_title_layers_and_release
   - hit_object_in_radius__10TObjPlayerFPvPvPv
-  - hit_target_in_range__13TObjEneMorfosFPvPvPv
+  - hit_target__13TUnk_804EF130FP9TObjCharaP9TObjChara
   - hold_captured_player__12TBoss1DragonFv
   - hook__13TItemEffLavisFv
   - hook__13TUnk_804A2148Fv
@@ -5811,7 +5811,7 @@ force_active:
   - lbl_804ED77C
   - lbl_804ED9C0
   - lbl_804EDDEC
-  - lbl_804EE0C0
+  - morfos_initial_parameters
   - lbl_804EF1B8
   - lbl_804EF1DC
   - lbl_804EF3A4
@@ -6764,7 +6764,7 @@ force_active:
   - play_se_at_pos__12TBoss1DragonFii
   - play_sifta_cast_sound__9TTecSiftaFv
   - play_sound__14TObjEneBm5WolfFPv
-  - play_sound_in_band__13TObjEneMorfosFv
+  - play_frame_sounds__13TObjEneMorfosFv
   - play_sound_variant__16TObjEneBm5GibonUFv
   - play_variant_sound__14TObjEneBm5WolfFPv
   - play_walk_sound__12TObjEneLappyFv
@@ -11295,7 +11295,7 @@ force_active:
   - recobox_motion_name_table
   - recoil_weapon_shoot_model_vtable
   - recoiling_projectile_weapon_vtable
-  - record_camera_path_point__13TObjEneMorfosFv
+  - record_model_node_position__13TObjEneMorfosFv
   - record_hit__22TObjFogCollisionPoisonFll
   - record_local_battle_placement
   - record_local_damage_if_enabled__FPvPvl
@@ -11663,14 +11663,14 @@ force_active:
   - render_matrix_chain__10TObjPlayerFPv
   - render_model__13TBoss5GryphonFv
   - render_model__5TItemFv
-  - render_model_if_visible__13TObjEneMorfosFv
+  - render_reflection__13TObjEneMorfosFv
   - render_model_if_visible__14TObjEneDolmOlmFv
   - render_model_if_visible__16TObjEneDellBiterFv
   - render_model_transformed__10TObjPlayerFv
   - render_nodes_with_flag__13TBoss5GryphonFv
   - render_objects__9TMainTaskFv
   - render_owned__5TItemFv
-  - render_part__13TObjEneMorfosFll
+  - render_with_camera_fade__13TObjEneMorfosFll
   - render_particle_chain__15TOTrapAncient02Fv
   - render_particle_effects__9TMainTaskFv
   - render_present_box__5TItemFv
@@ -12397,7 +12397,7 @@ force_active:
   - set_hit_cooldown_for_player__14TOTrapChainSawFPv
   - set_hit_flags_and_notify__19TBoss3VoloptMonitorFv
   - set_hold_flags__18TObjEneRe4SorcererFPv
-  - set_hover_target_position__13TObjEneMorfosFv
+  - update_body_center__13TObjEneMorfosFv
   - set_id__23TAdSinglePlyChrSelectGCFPvi
   - set_index__9TLanguageFl
   - set_input_active__11TWindowChatFv
@@ -12572,7 +12572,7 @@ force_active:
   - slime_one_part_texture_index_table
   - smpcmp
   - snap_to_ground__10TObjPlayerFll
-  - snap_to_ground__13TObjEneMorfosFll
+  - snap_to_ground__13TUnk_804EF130FP3Vec
   - snap_to_ground__21TObjEneRe7BeruraPunchFv
   - snap_to_ground__5TItemFv
   - snapshot_player_card_status__6TLobbyFv
