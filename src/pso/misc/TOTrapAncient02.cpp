@@ -1,3 +1,4 @@
+extern "C" float vfunc_87__6TOTrapFf(void *, float);
 #include "pso/math/VectorNormalize.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
@@ -583,7 +584,7 @@ s32 __vt__16TOTrapAncient02R[90] = {
     (s32)&vfunc_84__15TOTrapAncient02Fv,
     (s32)&play_sounds__6TOTrapFv,
     (s32)&vfunc_86__16TOTrapAncient02RFv,
-    (s32)&TOTrap::scale_by_table_value,
+    (s32)&vfunc_87__6TOTrapFf,
     (s32)&vfunc_88__16TOTrapAncient02RFv,
     (s32)&vfunc_89__6TOTrapFv
 };
