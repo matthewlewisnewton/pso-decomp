@@ -19,24 +19,20 @@ its callers pass a signed stick sample in r3, and `ansi_fp_abs` accepts
 an integer. Giving this boundary its scalar signature preserves the existing
 32-byte implementation without fabricating a receiver.
 
-The native constructor emits the original 500-byte instruction sequence.
-This is not yet a reported exact gain: its native constructor symbol must be
-mapped to the original address and the sole caller updated consistently.
-The existing raw constructor name is a legacy annotation. The proposed native
-allocation at the caller preserves its instructions and relocation types,
-with only that constructor symbol changed.
+The native constructor is mapped to `0x80322F20`, and the sole caller uses
+native allocation with its verified `TAdLoadQuestGC` parent. Fresh original
+split objects generated from these repository mappings compare exactly with
+targeted compiler output: 500 constructor bytes and 13 relocations, plus all
+three caller functions (196, 4, and 4 bytes). No comparison aliases are needed.
 
-The compiler also emits an unsigned conversion double. The original double
-at `0x80476640` is currently in an automatic data unit; both original and
-compiled values are the native `2^52` conversion bias. Original-object and
-compiled-object reference scans found no other consumer of this constant.
-Claiming its eight bytes for this unit and making the symbol local is a
-bounded ownership correction, pending coordinated integration. No original
-assets, data ranges, symbols, caller source, or linked-unit selection have
-been modified by this checkpoint.
+The compiler emits an unsigned conversion double. Its original eight-byte
+range `0x80476640..0x80476648` is assigned to this unit and localized; both
+original and compiled values are the native `2^52` bias with alignment 8.
+Original-object and compiled-object reference scans found no other consumer.
+Neighboring tables, strings, and signed conversion data retain their ownership.
 
 Targeted compilation preserves all three existing exact functions. Both other
-header consumers (`TBoss6Kakusan.cpp` and `TBoss6GravBall_80323134.cpp`) only
-include this header; their compiled allocated sections and relocations must
-remain identical. Whole-program validation and source-link eligibility remain
-pending; a matching fallback DOL alone will not prove source linkage.
+header consumers (`TBoss6Kakusan.cpp` and `TBoss6GravBall_80323134.cpp`) retain
+byte-identical complete objects. The task body remains unrecovered in this
+checkpoint. Whole-program validation is pending, and source-link selection is
+unchanged.
