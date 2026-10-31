@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "pso/system/ChunkMaterialState.h"
 // ---- pso/unk/text_80232934
 #include "types.h"
@@ -123,7 +124,7 @@ extern u8 __vt__13TUnk_804CC870[];
 Obj_80232B7C *construct_grants_flash(Obj_80232B7C *self, s32 id, void *parent, Vec_80232B7C *pos, f32 scale);
 
 void attach_particle_model(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
-void *spawn_particle_effect(void *pos, s32 id);
+
 void *find_entity_by_id(u16 id);
 void *__nw__7TObjectFUl(u32);
 }
@@ -167,12 +168,12 @@ void TUnk_804CC888::run_task() {
             if (obj != 0) {
                 SEnt_80232C50 *e = &technique_effect_entry_table[((Ctl_80232C50 *)this)->kind].ents[i];
                 if (e->flags & 0x20) {
-                    r = (s32)spawn_particle_effect(obj + 0x38, e->a);
+                    r = (s32)spawn_particle_effect((const Vec *)(obj + 0x38), (s32)(e->a));
                     if (r != 0) {
                         attach_particle_model((u8 *)r, (s32)(get_bml_model(technique_effect_bml, technique_effect_entry_table[((Ctl_80232C50 *)this)->kind].ents[i].flags >> 16)), (s32)lbl_805D63B0, 0, 1, (f32)1.0f);
                     }
                 } else {
-                    spawn_particle_effect(obj + 0x38, e->a);
+                    spawn_particle_effect((const Vec *)(obj + 0x38), (s32)(e->a));
                 }
             }
         }

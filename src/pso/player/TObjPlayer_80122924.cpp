@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/item/TUnk_804A1190.h"
 #include "pso/unk/text_80087278.h"
@@ -8,5 +9,5 @@ void TUnk_804A1190::emit_marker_effects() {
     s32 arg0 = (s32)this;
 
     ((TItemWeapon *)arg0)->get_joint_position(1, sp8);
-    spawn_particle_effect(sp8, 0xC1);
+    spawn_particle_effect((const Vec *)(sp8), 0xC1);
 }

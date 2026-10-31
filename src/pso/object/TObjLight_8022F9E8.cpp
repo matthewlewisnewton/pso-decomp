@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/object/TUnk_804CC794.h"
 
@@ -7,7 +8,7 @@
 #include "pso/player/TObjPlayer.h"
 extern "C" {
 extern u32 fire_technique_charge_effect_ids[];
-void *spawn_particle_effect(void *pos, s32 id);
+
 void queue_destruction__7TObjectFv(void*);
 void TObjLight__updateFireTechniqueCharge(TechniqueChargeEmitter* state);
 void *__dt__13TUnk_804CC794Fv(void *arg0, s16 arg1);
@@ -21,7 +22,7 @@ extern s32 __vt__13TUnk_804CC794[];
 void TObjLight__updateFireTechniqueCharge(TechniqueChargeEmitter* state) {
     ++state->age;
     if(state->age%10==0) {
-        for(int i=0;i<3;++i)spawn_particle_effect(state->position,fire_technique_charge_effect_ids[i]);
+        for(int i=0;i<3;++i)spawn_particle_effect((const Vec *)(state->position), (s32)(fire_technique_charge_effect_ids[i]));
     }
     if(!((TObjPlayer *)(state->actor))->check_flag_0x80())queue_destruction__7TObjectFv(state);
     else if(state->age>=180)queue_destruction__7TObjectFv(state);

@@ -1,4 +1,5 @@
 #include "pso/player/demo_mode.h"
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/boss/TBoss6GravBall.h"
 #include "pso/object/TObject_80019A50.h"
@@ -287,8 +288,8 @@ void update_charge_effects__14TBoss6GravBallFPv(u8 *self) {
         return;
     case 31:
         if ((s32) *(s32 *)((s8 *)self + 0xC4) == 0) {
-            spawn_particle_effect((self + 0xC8), 0x21C);
-            spawn_particle_effect((self + 0xC8), 0x21D);
+            spawn_particle_effect((const Vec *)((self + 0xC8)), 0x21C);
+            spawn_particle_effect((const Vec *)((self + 0xC8)), 0x21D);
             *(s32 *)((s8 *)self + 0xC4) = 1;
         }
         destroy_part__14TBoss6GravBallFl(self, 5);

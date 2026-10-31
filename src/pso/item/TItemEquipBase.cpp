@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/item/TItemEquipBase.h"
 #include "pso/item/TItem.h"
@@ -52,7 +53,7 @@ void play_target_impact_effect(s32 unused0, s32 unused1, u16 actor_id, s16 colli
         VecCopy(&pos, &target->position);
         pos.y = target->body_center_position.y;
     }
-    spawn_particle_effect(&pos, 0x45);
+    spawn_particle_effect((const Vec *)(&pos), 0x45);
 }
 
 EquipHpTpBonus *TItemEquipBase::get_stat_bonus_ptr() { return &hp_tp_bonus; }

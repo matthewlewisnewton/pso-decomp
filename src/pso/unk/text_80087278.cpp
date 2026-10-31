@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/unk/text_80087278.h"
 #include "pso/TParticleCtrl.h"
@@ -36,22 +37,22 @@ void *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags) {
 }
 #pragma pop
 
-void *spawn_particle_effect(void *pos, s32 id) {
+TParticleCtrl *spawn_particle_effect(const Vec *pos, s32 id) {
     void *p;
     if (particle_pool_limit > id) {
         p = __nw__7TObjectFUl((u32)(0x78));
         if (p != 0) {
-            p = ((TParticleCtrl *)p)->initialize((const void *)pos, (s32)(&(*(Ent_80087350 * *)&particle_global_entry_table)[id]), 1, 0, 0, 0);
+            p = ((TParticleCtrl *)p)->initialize((const Vec *)pos, (s32)(&(*(Ent_80087350 * *)&particle_global_entry_table)[id]), 1, 0, 0, 0);
         }
-        return p;
+        return (TParticleCtrl *)p;
     }
     if (particle_pool_limit + 0x40 > id) {
         s32 idx = id - 0x200;
         p = __nw__7TObjectFUl((u32)(0x78));
         if (p != 0) {
-            p = ((TParticleCtrl *)p)->initialize((const void *)pos, (s32)(&(*(Ent_80087350 * *)&particle_area_entry_table)[idx]), 1, 0, 0, 0);
+            p = ((TParticleCtrl *)p)->initialize((const Vec *)pos, (s32)(&(*(Ent_80087350 * *)&particle_area_entry_table)[idx]), 1, 0, 0, 0);
         }
-        return p;
+        return (TParticleCtrl *)p;
     }
     return 0;
 }

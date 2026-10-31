@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "pso/render/render_util.h"
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
@@ -66,7 +67,7 @@ void byteswap_and_send__6TLobbyFv(void *, int);
 extern s32 local_client_id;
 extern const f32 lbl_805DB39C;
 s32 check_value_equals__13TUnk_804B6C24Fl(void *, s32);
-void *spawn_particle_effect(void *pos, s32 id);
+
 u8 *__ct__8TObjChipFP7TObjectP14TObjChipParams(u8 *arg0, u8 *arg1, u8 *arg2);
 }
 void play_container_break_sound(s32 arg0);
@@ -115,8 +116,8 @@ void TOContainerAncientEnemy::vfunc_79() {
             a.f44 = ancient_container_fragment_texture_lists->a;
             b.f44 = ancient_container_fragment_texture_lists->b;
         }
-        spawn_particle_effect(&self->x, 0x45);
-        spawn_particle_effect(&self->x, 0x46);
+        spawn_particle_effect((const Vec *)(&self->x), 0x45);
+        spawn_particle_effect((const Vec *)(&self->x), 0x46);
         o = __nw__7TObjectFUl(0x234);
         if (o != NULL) {
             __ct__8TObjChipFP7TObjectP14TObjChipParams((u8 *)o, (u8 *)tl_05, (u8 *)&a);

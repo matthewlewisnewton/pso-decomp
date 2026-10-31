@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/system/NinjaUtil.h"
 #include "pso/enemy/TUnk_804E14E8.h"
@@ -72,7 +73,7 @@ extern const f32 lbl_805DE6C8;
 u8 *TObjPlayer__sub_802CDEB4(u8 *arg0, Vec_802CDEB4 *arg1, s16 arg2, Rot_802CDEB4 *arg3, s32 arg4, s32 arg5, s16 arg6);
 void queue_destruction__7TObjectFv(void *);
 u32 csnVector(void *, void *, s32);
-void *spawn_particle_effect(void *pos, s32 id);
+
 VEnt_802CDB1C *find_active_entity_by_id(u16);
 s32 play_sound_effect(s32, void *, s32, s32);
 s32 vec3_add_to(void *, void *);
@@ -158,7 +159,7 @@ void TObjPlayer__sub_802CDB1C(u8 *arg0) {
                 Hit_802CDB1C h2 = h;
                 tgt->m21(src, &h2, 0, -1, -1);
             }
-            spawn_particle_effect((u8 *)tgt + 0x2FC, 0x8E);
+            spawn_particle_effect((const Vec *)((u8 *)tgt + 0x2FC), 0x8E);
             if (local_client_id == self->target_id) {
                 ((TObjEneMe1GiGue *)src)->apply_hit_shake((u32)tgt);
             }

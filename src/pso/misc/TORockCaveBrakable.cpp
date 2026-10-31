@@ -1,4 +1,5 @@
 #include "pso/player/demo_mode.h"
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/object/TObjChip.h"
 #include "pso/object/TObject_80019A50.h"
@@ -73,8 +74,8 @@ void TORockCaveBrakable::vfunc_16() {
 
 void TORockCaveBrakable::spawn_break_effect() {
     this->vfunc_18();
-    spawn_particle_effect(&this->position, 0x45);
-    spawn_particle_effect(&this->position, 0x46);
+    spawn_particle_effect((const Vec *)(&this->position), 0x45);
+    spawn_particle_effect((const Vec *)(&this->position), 0x46);
 }
 
 void TORockCaveBrakable::run_task() {

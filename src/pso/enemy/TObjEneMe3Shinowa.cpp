@@ -7,6 +7,7 @@
 #include "pso/player/demo_mode.h"
 #include "pso/misc/MaterialOpacityFade.h"
 #include "pso/misc/RenderFadeState.h"
+#include "pso/misc/ParticleFactory.h"
 struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
@@ -517,7 +518,6 @@ extern "C" const u32 lbl_805DA624[1];
 
 extern "C" {
 f64 atan2_float(f32, f32);
-s32 spawn_particle_effect(void *, int);
 s32 transition_enemy_state__9TObjEneDDFl(void *, s32);
 s32 approach_angle_limited(int, int, int);
 s32 play_sound_effect(void *, void *, int, int);
@@ -2391,7 +2391,7 @@ void TObjEneMe3ShinowaReal__sub_800E5950(u8 *arg0, s32 arg1) {
                 *(s32 *)((s8 *)arg0 + 0x404) = 2;
                 ((TObjEneDD *)(arg0))->vfunc_92();
                 play_sound_effect((void *) ((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003AD12)), arg0 + 0x38, 0, 0);
-                spawn_particle_effect(arg0 + 0x38, 0xF3);
+                spawn_particle_effect((const Vec *)(arg0 + 0x38), 0xF3);
             }
             ((TObjEneDD *)arg0)->move_clamped_on_ground((f32) (*(f32 *)((s8 *)arg0 + 0x3A0)), (f32) (*(f32 *)((s8 *)arg0 + 0x3A8)), (f32) (*(f32 *)((s8 *)arg0 + 0x410)));
             ((TObjEneDD *)(arg0))->vfunc_88();
@@ -2615,7 +2615,7 @@ void TObjEneMe3ShinowaMirage__sub_800E5F64(u8 *arg0, s32 arg1) {
                 *(s32 *)((s8 *)arg0 + 0x404) = 4;
                 ((TObjEneDD *)(arg0))->vfunc_92();
                 play_sound_effect((void *)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003AD12)), arg0 + 0x38, 0, 0);
-                spawn_particle_effect(arg0 + 0x38, 0xF3);
+                spawn_particle_effect((const Vec *)(arg0 + 0x38), 0xF3);
             }
             ((TObjEneDD *)arg0)->move_with_wall_slide_commit(*(f32 *)((s8 *)arg0 + 0x3A0), *(f32 *)((s8 *)arg0 + 0x3A8), *(f32 *)((s8 *)arg0 + 0x414));
             ((TObjEneDD *)(arg0))->vfunc_88();
@@ -2764,7 +2764,7 @@ void TObjEneMe3ShinowaMirage__sub_800E66FC(u8 *arg0, s32 arg1) {
                 *(f32 *)((s8 *)arg0 + 0x3C8) = *(f32 *)((s8 *)arg0 + 0x3C);
                 *(s32 *)((s8 *)arg0 + 0x404) = 2;
                 ((s32 (*)(s32, u32, s16, s32))play_sound_effect)(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003AD12)), (u32)(arg0 + 0x38), 0, 0);
-                ((s32 (*)(s32, s32))spawn_particle_effect)((s32)(arg0 + 0x38), 0xF3);
+                spawn_particle_effect((const Vec *)((s32)(arg0 + 0x38)), 0xF3);
             }
             break;
         case 2:

@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "pso/protocol/protocol_types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/misc/TLobby_801E43E4.h"
@@ -433,7 +434,7 @@ struct Sys_80198A2C { u8 pad0[0x48]; u16 mode; };
 
 extern "C" {
 void *spawn_particle_effect_with_rotation(void *pos, void *dir, s32 id, int e);
-void *spawn_particle_effect(void *pos, s32 id);
+
 s32 play_sound_effect(int, void *, int, int);
 extern Vec_80198A2C boss3_volopt_init_vec;
 #pragma push
@@ -481,7 +482,7 @@ void TUnk_804B8DE8::run_task() {
             Vec_80198A2C v;
             VecCopy((Vec *)&v, (const Vec *)&self->pos);
             v.y += (18.0f);
-            spawn_particle_effect(&v, 0x1DB);
+            spawn_particle_effect((const Vec *)(&v), 0x1DB);
         }
         self->pos.y = (0.001f) * (f32)(self->timer * self->timer) + self->pos.y;
         if (self->effect != NULL) {

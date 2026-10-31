@@ -1,6 +1,7 @@
 #include "pso/player/demo_mode.h"
 #include "pso/math/VectorNormalize.h"
 #include "pso/enemy/BattleParameters.h"
+#include "pso/misc/ParticleFactory.h"
 struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
@@ -750,7 +751,7 @@ void queue_destruction__7TObjectFv(void *);
 s32 get_camera_mode__11TCameraCtrlFv();
 s32 get_flag_b4__9TObjEneDDFv(void *);
 void rotate_xz_pair_by_angle(f32 *arg0, f32 *arg1, s32 arg2);
-void *spawn_particle_effect(void *pos, s32 id);
+
 void render_with_state_debug__17TObjEneBm3FlyNestFv(u8 *arg0);
 void render__17TObjEneBm3FlyNestFv(u8 *arg0);
 void handle_attachment_sample__17TObjEneBm3FlyNestFi(NJS_OBJECT *arg0);
@@ -1301,7 +1302,7 @@ void state_dying__17TObjEneBm3FlyNestFPvi(u8 *actor, s32 arg1) {
                     p.x = r * sin_table_lookup(a) + p.x;
                     p.y += lbl_805D9D1C;
                     p.z = r * cos_table_lookup(a) + p.z;
-                    spawn_particle_effect(&p, 0xF1);
+                    spawn_particle_effect((const Vec *)(&p), 0xF1);
                     *(s32 *)((s8 *)actor + 0x4C8) = 0;
                 }
                 *(s32 *)((s8 *)actor + 0x4CC) += 1;
@@ -1445,13 +1446,13 @@ void TObjEneBm3FlyNest__sub_800B318C(u8 *ene_dd, s32 arg1) {
             play_sound_effect((void *) (((TObjEnemy *)(ene_dd))->remap_sound_for_area((s32)(0x4003B72A))), ene_dd + 0x38, 0, 0);
         }
         if (((TObjMotion *)ene_dd)->is_passing_frame(lbl_805D9D38) != 0) {
-            spawn_particle_effect((ene_dd + 0x38), 0xF0);
+            spawn_particle_effect((const Vec *)((ene_dd + 0x38)), 0xF0);
         } else if (((TObjMotion *)ene_dd)->is_passing_frame(lbl_805D9D3C) != 0) {
             temp_r31 = ((TObjEneDD *)ene_dd)->rotation_y - 0x4000;
             VecCopy((Vec *)(&stack.sp8), (const Vec *)(ene_dd + 0x38));
             stack.sp8 += lbl_805D9D40 * sin_table_lookup(temp_r31);
             stack.sp10 += lbl_805D9D40 * cos_table_lookup(temp_r31);
-            spawn_particle_effect((&stack.sp8), 0xF0);
+            spawn_particle_effect((const Vec *)((&stack.sp8)), 0xF0);
         }
         *(f32 *)((s8 *)ene_dd + 0x4B0) = (f32) (*(f32 *)((s8 *)ene_dd + 0x4B0) + lbl_805D9D2C);
         if (*(f32 *)((s8 *)ene_dd + 0x4B0) > 0.0f) {
@@ -1632,7 +1633,7 @@ void handle_appear__17TObjEneBm3FlyNestFPvi(u8 *ene_dd, s32 arg1) {
                 *(f32 *)((s8 *)ene_dd + 0x4B0) = -5.0f;
                 *(s32 *)((s8 *)ene_dd + 0x4D0) = 1;
                 *(s32 *)((s8 *)ene_dd + 0x4C8) = 0;
-                spawn_particle_effect(ene_dd + 0x38, 0xF0);
+                spawn_particle_effect((const Vec *)(ene_dd + 0x38), 0xF0);
                 play_sound_effect((void *) ((TObjEnemy *)(ene_dd))->remap_sound_for_area((s32)(0x4003B72A)), ene_dd + 0x38, 0, 0);
             }
             break;
@@ -1691,7 +1692,7 @@ void TObjEneBm3FlyNest::spawn_child() {
             s->ids[s->count++] = s->nextId;
             s->nextId++;
             s->spawned++;
-            spawn_particle_effect(s->f3D4, 0xC8);
+            spawn_particle_effect((const Vec *)(s->f3D4), 0xC8);
             ((s32 (*)(s32, void *, s32, s32))play_sound_effect)(((TObjEnemy *)(s))->remap_sound_for_area((s32)(0x4003AB27)), &s->pos, 0, 0);
             TObjPlayer::play_effect_if_v2(-0x400);
         }
@@ -2075,7 +2076,7 @@ void update_monest_carrier(u8 *self) {
         v = *(f32 *)((s8 *)self + 0x54);
         v = v - lbl_805D9D68 * spd;
         if (v < lbl_805D9D64 * -spd) {
-            spawn_particle_effect((void *)(*(s32 *)((s8 *)self + 0x34)), 0xC8);
+            spawn_particle_effect((const Vec *)((*(s32 *)((s8 *)self + 0x34))), 0xC8);
             ((s32 (*)(s32, s32, s32, s32))play_sound_effect)(((s32 (*)(s32, s32))copy_target_state__17TObjEneBm3FlyNestFPv)(*(s32 *)((s8 *)self + 0x10), 0x4003AB27), *(s32 *)((s8 *)self + 0x34), 0, 0);
             TObjPlayer::play_effect_if_v2(-0x400);
             ((s32 (*)(void *))queue_destruction__7TObjectFv)(self);

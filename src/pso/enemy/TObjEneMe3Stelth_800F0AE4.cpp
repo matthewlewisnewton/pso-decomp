@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/boss/TBoss8Dragon_80065C90.h"
 #include "pso/enemy/TObjEneMe3Stelth_800F0AE4.h"
@@ -51,13 +52,13 @@ s32 TObjEneMe3Stelth::try_spawn_ground_effect(s32 arg1) {
   temp_r3 = (u8 *) csnVectorUnder((Vec *)&stack.sp8, (u32 *)(arg0 + 0x120), 0x15);
   if ((temp_r3 != 0) && ((*((s32 *) (((s8 *) temp_r3) + 0))) & 4))
   {
-    particle_effect = ((s32)spawn_particle_effect((void *)((int) ((*((s32 *) (((s8 *) temp_r3) + 4))) + 0x38)), 0x49));
+    particle_effect = ((s32)spawn_particle_effect((const Vec *)(((int) ((*((s32 *) (((s8 *) temp_r3) + 4))) + 0x38))), 0x49));
     if (particle_effect != 0)
     {
       ;
       attach_particle_model((u8 *)particle_effect, (int) TParticleCtrl::get_particle_model(2), (int) TParticleCtrl::get_instance(), 0, 1, (f32) TObjEneMe3Stelth__data_805DA80C);
     }
-    spawn_particle_effect((void *)((int) ((*((s32 *) (((s8 *) temp_r3) + 4))) + 0x38)), 0xA4);
+    spawn_particle_effect((const Vec *)(((int) ((*((s32 *) (((s8 *) temp_r3) + 4))) + 0x38))), 0xA4);
     TObjEneGibbles__sub_800D8988((void *)(arg0 + 0x38));
     return 1;
   }
@@ -69,7 +70,7 @@ void TObjEneMe3Stelth::play_hit_effect() {
         play_sound_effect(0x3A836, arg0 + 0x38, 0, 0);
         return;
     }
-    spawn_particle_effect((void *)(arg0 + 0x38), 0xF3);
+    spawn_particle_effect((const Vec *)((arg0 + 0x38)), 0xF3);
     play_sound_effect(0x3A836, arg0 + 0x38, 0, 0);
 }
 void TObjEneMe3Stelth__sub_800F0C90(u8 *arg0) {

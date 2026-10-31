@@ -5,6 +5,7 @@
 #include "pso/misc/MaterialOpacityFade.h"
 #include "pso/misc/RenderFadeState.h"
 #include "pso/enemy/BattleParameters.h"
+#include "pso/misc/ParticleFactory.h"
 struct NJS_OBJECT;
 #include "pso/render/reflection.h"
 #include "pso/system/BmlResourceClass.h"
@@ -395,7 +396,7 @@ extern const f32 lbl_805DEF60;
 void vfunc_93__14TObjEneDolmOlmFv(Obj_800A7A14 *o);
 void attach_particle_model(s32, s32, s32, s32, s32, f32);
 Hit_80300D00 *csnVectorUnder(void *, void *, s32, f32);
-s32 spawn_particle_effect(void *, int);
+
 void fn_800D88E4(void *);
 extern s32 actor_frame_tick;
 extern const f32 lbl_805DEF4C;
@@ -1406,7 +1407,7 @@ s32 TObjEneDolmOlm__sub_8030177C(void *arg0_) {
                 arg0->f328 = 3;
                 arg0->fb8 = 0xC;
                 play_sound_effect((void *)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003A804)), &arg0->pos, 0, 0);
-                spawn_particle_effect(&arg0->pos, 0x20E);
+                spawn_particle_effect((const Vec *)(&arg0->pos), 0x20E);
             }
         } else {
             arg0->fb8 = arg0->f328 = 2;
@@ -1720,20 +1721,20 @@ void spawn_ground_effects__14TObjEneDolmOlmFPvPv(u8 *arg0, Vec_80300D00 *arg1) {
             if (actor_frame_tick % 5 == 0) {
                 fn_800D88E4(arg0 + 0x38);
             }
-            e = spawn_particle_effect(hit->obj + 0x38, 0x49);
+            e = (u32)spawn_particle_effect((const Vec *)(hit->obj + 0x38), 0x49);
             if (e != 0) {
                 attach_particle_model(e, TParticleCtrl::get_particle_model(2), TParticleCtrl::get_instance(), 0, 1, TObjEneDolmOlm__data_805DEF50);
             }
-            spawn_particle_effect(hit->obj + 0x38, 0xA4);
+            spawn_particle_effect((const Vec *)(hit->obj + 0x38), 0xA4);
         } else if (hit->flags & 2) {
             if (actor_frame_tick % 10 == 0) {
                 fn_800D88E4(arg0 + 0x38);
             }
-            e = spawn_particle_effect(hit->obj + 0x54, 0x49);
+            e = (u32)spawn_particle_effect((const Vec *)(hit->obj + 0x54), 0x49);
             if (e != 0) {
                 attach_particle_model(e, TParticleCtrl::get_particle_model(2), TParticleCtrl::get_instance(), 0, 1, TObjEneDolmOlm__data_805DEF50);
             }
-            spawn_particle_effect(hit->obj + 0x54, 0xA4);
+            spawn_particle_effect((const Vec *)(hit->obj + 0x54), 0xA4);
         }
         *(s32 *)(arg0 + 0x3E4) = *(s32 *)(hit->obj + 0x18);
         if (*(s32 *)(arg0 + 0x3E4) & 0x4000) {

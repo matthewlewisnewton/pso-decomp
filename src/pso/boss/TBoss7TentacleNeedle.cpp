@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "pso/system/vector.h"
 #include "types.h"
 #include "pso/object/TObject_80019A50.h"
@@ -115,7 +116,7 @@ typedef struct Anim_802F0BE8 { u8 pad0[4]; u32 n; } Anim_802F0BE8;
 
 s32 obj_testFlags30__14TObjCollidableFUl(void *, s32);
 s32 attach_particle_model(int, int, int, int, int, f32);
-void *spawn_particle_effect(void *pos, s32 id);
+
 f32 horizontal_distance_squared(void *, void *);
 void *get_player_by_client_id(s32 i);
 void __dl__7TObjectFPv(void *);
@@ -161,7 +162,7 @@ void TBoss7Tentacle::restart_particle_effect() {
     queue_destruction__7TObjectFv((*((void **) (((s8 *) arg0) + 0x40))));
     *((u32 *) (((s8 *) arg0) + 0x40)) = 0U;
   }
-  particle_effect = (s32)spawn_particle_effect((arg0 + 0x1C), 0x215);
+  particle_effect = (s32)spawn_particle_effect((const Vec *)((arg0 + 0x1C)), 0x215);
   temp_r3 = particle_effect;
   if (temp_r3 != 0)
   {
@@ -211,7 +212,7 @@ void damage_nearby_players__14TBoss7TentacleFPv(u8 *boss7_tentacle) {
                 Hit_802EF99C a = b;
                 ((VObj_18_9935f6 *)p)->m21(*(s32 *)(boss7_tentacle + 0x10), &a, 0, -1, -1);
                 if (((Obj_802EF99C *)boss7_tentacle)->flags[(u16)i] == 0) {
-                    spawn_particle_effect(p + 0x2FC, 0x214);
+                    spawn_particle_effect((const Vec *)(p + 0x2FC), 0x214);
                     ((Obj_802EF99C *)boss7_tentacle)->flags[(u16)i] = 1;
                 }
             }

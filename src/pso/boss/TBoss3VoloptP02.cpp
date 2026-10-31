@@ -1,5 +1,6 @@
 #include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
+#include "pso/misc/ParticleFactory.h"
 #include "pso/protocol/protocol_types.h"
 #pragma readonly_strings on
 #define TOBJECT_OUT_OF_LINE_HELPERS
@@ -1200,7 +1201,7 @@ void TBoss3VoloptP02::spawn_ambient_particles() {
         pos.x = (radius * cos_table_lookup(angle)) + position.x;
         pos.y = (30.0f * ((1.0f / 32768.0f) * (f32)rand())) + 20.0f;
         pos.z = (radius * sin_table_lookup(angle)) + position.z;
-        spawn_particle_effect(&pos, 0xFB);
+        spawn_particle_effect((const Vec *)(&pos), 0xFB);
     }
     play_persistent_sound(0x4003AD21, this, &position, 0, 0);
 }

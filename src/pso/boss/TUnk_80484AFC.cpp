@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #pragma fp_contract on
 
 #include "pso/boss/TUnk_80484AFC.h"
@@ -69,7 +70,7 @@ void TUnk_80484AFC::explode_and_destroy() {
             }
         }
     }
-    spawn_particle_effect(&position, 0xFB);
+    spawn_particle_effect((const Vec *)(&position), 0xFB);
     queue_destruction();
 }
 

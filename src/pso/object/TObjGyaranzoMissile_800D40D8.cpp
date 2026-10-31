@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/system/vector.h"
 #include "pso/enemy/TObjEneGyaranzo.h"
@@ -71,7 +72,7 @@ s32 project_actor_to_ground(void *, void *, int);
 s32 obj_is_hit_receivable();
 void queue_destruction__7TObjectFv(void *arg0);
 u8 *get_battle_param__10TObjPlayerFi(s32);
-void *spawn_particle_effect(void *pos, s32 id);
+
 s32 remap_area_sound_id(s32 arg0, s32 arg1);
 void *find_entity_by_id(u16 id);
 void check_enemy_body_collisions(void *arg0);
@@ -162,7 +163,7 @@ void TUnk_8049442C::sub_800D4200() {
             }
         }
     }
-    spawn_particle_effect(arg0 + 0x38, 0xFB);
+    spawn_particle_effect((const Vec *)(arg0 + 0x38), 0xFB);
     play_sound_effect((void *)remap_area_sound_id(0x4003A80C, 0x19), arg0 + 0x38, 0, 0);
     queue_destruction__7TObjectFv(arg0);
 }
@@ -200,7 +201,7 @@ void TUnk_8049442C::run_task() {
             rotate_vector_by_matrix(0, &self->vel, &self->vel);
             pop_matrix();
             self->fC0 = 0;
-            spawn_particle_effect(&self->pos, 0xF3);
+            spawn_particle_effect((const Vec *)(&self->pos), 0xF3);
             self->state = 1;
         }
         break;
@@ -268,7 +269,7 @@ u8 *TObjGyaranzoMissile__sub_800D4668(u8 *arg0, u8 *arg1, u8 *arg2, s32 arg3, s3
 
 void queue_destruction__7TObjectFv(void *);
 
-void *spawn_particle_effect(void *pos, s32 id);
+
 s32 remap_area_sound_id(s32 arg0, s32 arg1);
 void *find_entity_by_id(u16);
 void check_enemy_body_collisions(void *);

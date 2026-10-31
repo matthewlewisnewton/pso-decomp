@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/misc/TPhotonConcentrate.h"
 #include "pso/object/TObject_80019A50.h"
@@ -85,7 +86,7 @@ void run_task__18TPhotonConcentrateFv(PC_801A7E7C *self) {
   {
     queue_destruction__7TObjectFv(self->emitter);
     self->emitter = 0;
-    spawn_particle_effect(&self->pos, 0xC6);
+    spawn_particle_effect((const Vec *)(&self->pos), 0xC6);
     queue_destruction__7TObjectFv(self);
     return;
   }

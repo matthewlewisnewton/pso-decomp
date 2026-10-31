@@ -2,6 +2,7 @@
 #include "pso/misc/SampledMotionPoints.h"
 #include "pso/math/FloatRounding.h"
 #include "pso/enemy/BattleParameters.h"
+#include "pso/misc/ParticleFactory.h"
 #pragma readonly_strings on
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -81,7 +82,7 @@ s32 subtract_vector(void *, void *);
 s32 normalize_vector(void *);
 extern u32 boss4_type3_radar_marker_colors[];
 extern const f32 TBoss4Type3__data_805D8C40;
-u32 spawn_particle_effect(void *, int);
+
 u32 create_particle_emitter(void *, int);
 s32 play_sound_effect(int, void *, int, int);
 f64 atan2_float(f32, f32);
@@ -683,7 +684,7 @@ void TBoss4Type2::md_recover_update() {
   }
   if ((*((int *) (((s8 *) boss4_type2) + 0x398))) == 0x46)
   {
-    particle_effect = spawn_particle_effect(boss4_type2 + 0x468, 0x13E);
+    particle_effect = (u32)spawn_particle_effect((const Vec *)(boss4_type2 + 0x468), 0x13E);
     if (particle_effect != 0)
     {
       ((TParticleCtrl *)particle_effect)->set_flags(0x40);
@@ -696,7 +697,7 @@ void TBoss4Type2::md_recover_update() {
       {
         VecCopy((Vec *)(&stack.sp8), (const Vec *)((int) ((TObjPlayer *)temp_r3_5)->get_position_ptr()));
         stack.spC += 10.0f;
-        temp_r3_6 = spawn_particle_effect(&stack.sp8, 0x38);
+        temp_r3_6 = (u32)spawn_particle_effect((const Vec *)(&stack.sp8), 0x38);
         if (temp_r3_6 != 0)
         {
           ((TParticleCtrl *)temp_r3_6)->set_flags(0x40);
@@ -963,7 +964,7 @@ void TBoss4Type2::beam_update() {
         }
     }
     if (*(s32 *)((s8 *)arg0 + 0x398) == 0x26) {
-        h = spawn_particle_effect(&v, 0xFD);
+        h = (u32)spawn_particle_effect((const Vec *)(&v), 0xFD);
         if (h != 0) {
             ((TParticleCtrl *)h)->set_flags(0x40);
         }

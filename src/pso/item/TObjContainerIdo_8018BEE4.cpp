@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "pso/misc/RenderFadeState.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/system/vector.h"
@@ -172,7 +173,7 @@ void rotate_vector_by_matrix(int, void *, void *);
 s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 void play_sound_effect(s32, void *, s32, s32);
 s32 rand();
-void *spawn_particle_effect(void *pos, s32 id);
+
 int update__15RenderFadeStateFv(void*);
 extern const Vec3_8018C18C lbl_80445110;
 extern const Vec3_8018C18C lbl_8044511C;
@@ -259,9 +260,9 @@ void run_task__16TObjContainerIdoFv(Ido_8018C18C *self) {
             rotate_matrix_y(0, self->f60);
             rotate_matrix_x(0, self->f5c);
             matrix_mult_vec(0, &a, &out);
-            spawn_particle_effect(&out, 0x42);
+            spawn_particle_effect((const Vec *)(&out), 0x42);
             matrix_mult_vec(0, &b, &out);
-            spawn_particle_effect(&out, 0x42);
+            spawn_particle_effect((const Vec *)(&out), 0x42);
             pop_matrix();
         }
     }

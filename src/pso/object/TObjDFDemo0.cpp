@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #pragma push
 
 #define TOBJECT_OUT_OF_LINE_HELPERS
@@ -282,7 +283,7 @@ void TObjDFDemo1::run_task() {
         }
     }
     if (self->timer >= 0x46 && self->timer <= 0x82) {
-        TParticleCtrl *fx = (TParticleCtrl *)spawn_particle_effect(self->pos, 0x14E);
+        TParticleCtrl *fx = spawn_particle_effect((const Vec *)(self->pos), 0x14E);
         if (fx != NULL) {
             fx->set_flags(0x40);
         }

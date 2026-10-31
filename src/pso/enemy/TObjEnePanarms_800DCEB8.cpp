@@ -1,4 +1,5 @@
 #include "pso/player/demo_mode.h"
+#include "pso/misc/ParticleFactory.h"
 #include "pso/system/ModelNodePositionCapture.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
@@ -98,7 +99,7 @@ struct Obj_800DDC30 {
 extern "C" {
 s32 obj_setFlags30(void *, int);
 int TObjEnePanarms__sub_800E1D94(void *);
-void *spawn_particle_effect(void *pos, s32 id);
+
 extern const f32 TObjEnePanarms__data_805DA490;
 extern const f32 lbl_805DA494;
 extern const f32 TObjEnePanarms__data_805DA49C;
@@ -240,7 +241,7 @@ void TObjEnePanarms::update_state_effect() {
     f32 temp_f1;
     temp_f1 = this->frame;
     if ((temp_f1 >= TObjEnePanarms__data_805DA490) && (temp_f1 < lbl_805DA494)) {
-        spawn_particle_effect((((u8 *)this) + 0x38), 0xF0);
+        spawn_particle_effect((const Vec *)((((u8 *)this) + 0x38)), 0xF0);
     }
     if (this->motion_flags & 0x10) {
         set_state((s32)((void*)(3)));
@@ -358,7 +359,7 @@ void TObjEnePanarms::update_hit_effect() {
     f32 temp_f1;
     temp_f1 = this->frame;
     if ((temp_f1 >= TObjEnePanarms__data_805DA490) && (temp_f1 < lbl_805DA494)) {
-        spawn_particle_effect((((u8 *)this) + 0x38), 0xF0);
+        spawn_particle_effect((const Vec *)((((u8 *)this) + 0x38)), 0xF0);
     }
     if (this->motion_flags & 0x10) {
         set_state((s32)((void*)(0xA)));
@@ -529,7 +530,7 @@ void TObjEnePanarms__sub_800DD9A0(u8 *object) {
     if ((temp_f2 >= lbl_805DA4A8) && (temp_f2 < (lbl_805DA4A8 + lbl_805D527C))) {
         VecCopy((Vec *)(&stack.sp14), (const Vec *)(object + 0x2FC));
         stack.sp18 += TObjEnePanarms__data_805DA49C;
-        spawn_particle_effect((&stack.sp14), 0xF0);
+        spawn_particle_effect((const Vec *)((&stack.sp14)), 0xF0);
     }
     temp_r0 = *(s32 *)((s8 *)object + 0x388);
     if (temp_r0 <= 0x78) {
@@ -686,7 +687,7 @@ void TObjEnePanarms::update_fall() {
     if ((*((f32 *) (((s8 *) arg0) + 0x3C))) <= (*((f32 *) (((s8 *) arg0) + 0x384))))
     {
       *((f32 *) (((s8 *) arg0) + 0x3C)) = *((f32 *) (((s8 *) arg0) + 0x384));
-      spawn_particle_effect(((u8 *)&this->position), 0xF0);
+      spawn_particle_effect((const Vec *)(((u8 *)&this->position)), 0xF0);
       set_state((s32)((void*)(3)));
       return;
     }
@@ -696,7 +697,7 @@ void TObjEnePanarms::update_fall() {
   {
     VecCopy((Vec *)(&stack.sp8), (const Vec *)(arg0 + 0x2FC));
     stack.spC = TObjEnePanarms__data_805DA49C + (*((f32 *) (((s8 *) arg0) + 0x384)));
-    spawn_particle_effect((&stack.sp8), 0xF0);
+    spawn_particle_effect((const Vec *)((&stack.sp8)), 0xF0);
   }
 }
 
