@@ -120,6 +120,16 @@ extern u8 lbl_8044F138[];
 void TKeyBoardControl__sub_802613A4(TKeyBoardControl *arg0);
 f32 TWindowKeyBoardSoft__sub_802614DC(u8 *, u8 *, f32, f32, f32, f32);
 s32 TWindowKeyBoardSoft__sub_802616BC(void *, int);
+void reset_gauge__20TWindowSubStatusDispFPv(s32);
+s32 end_render_forward__20TWindowSubStatusDispFPv();
+void render_forward__20TWindowSubStatusDispFPv();
+void begin_render__20TWindowSubStatusDispFl();
+u16 map_char_to_font_code(u16);
+u8 calc_gauge_scale__20TWindowSubStatusDispFPvPvi(s32, void *, s32);
+void set_glyph_quad_extents(u8, void *);
+extern const f32 lbl_805DD09C, lbl_805DD0A0, lbl_805DD0A4, lbl_805DD0A8;
+extern const f32 lbl_805DD0AC, lbl_805DD0B0;
+extern const f32 lbl_8044F164[][2], lbl_8044F1B4[][2], lbl_8044F204[][2];
 void TWindowKeyBoardSoft__sub_80261DD8(TWindowKeyBoardSoft *, TWindowKeyBoardSoft *);
 s32 TWindowKeyBoardSoft__sub_8026227C(int, int);
 s32 get_player__20TWindowSubStatusDispFv();
@@ -619,6 +629,109 @@ void TWindowKeyBoardSoft::spawn_key_effect(s32 arg1, s32 arg2) {
     TWindowEffectLight::create(&pos, (void *)kind, (void *)local_client_id);
 }
 #pragma pop
+
+// Glyphs and icon rectangles use external tables owned by neighboring data
+// ranges. Their precise source-level types and the rendering API are provisional.
+s32 TWindowKeyBoardSoft__sub_802616BC(void *self, int context) {
+    TWindowKeyBoardSoft *kb = (TWindowKeyBoardSoft *)self;
+    TWindowKeyBoardSoft *ctx = (TWindowKeyBoardSoft *)context;
+    SoftKeyLayout_80260904 *layout = (SoftKeyLayout_80260904 *)TWindowKeyBoardSoft__language_text_resources;
+    f32 scale = TWindowKeyBoardSoft__data_805DD098 / (lbl_805DD09C + ctx->depth);
+    s32 selected = kb->sub_802605DC();
+    const u16 *keys = layout->pages[*(s8 *)((u8 *)self + 0x64)];
+    Quad_80262038 q;
+    reset_gauge__20TWindowSubStatusDispFPv(0);
+    for (s32 row = 0; row < 7; ++row) {
+        f32 y = TWindowKeyBoardSoft__data_805DD07C * (f32)row;
+        for (s32 col = 0; col < 16; ++col) {
+            u16 code = *keys++;
+            if (code < 0x20) continue;
+            if (kb->get_flag_bit5() && (code < 'A' || code > 'Z')) code = 0x16;
+            if (kb->get_flag_bit6() && !is_alnum__19TWindowKeyBoardSoftFUs(code)) code = 0x16;
+            if (kb->is_cursor_locked() && (code < '0' || code > '9')) code = 0x16;
+            if (code == 0x16) continue;
+            u16 glyph = map_char_to_font_code(code);
+            s32 index = calc_key_index__19TWindowKeyBoardSoftFiii((s32)self, col, row);
+            s32 color = index == selected ? (s32)0xFF000000 : (s32)0xFF999999;
+            q.x = TWindowKeyBoardSoft__data_805DD078 + (TWindowKeyBoardSoft__data_805DD078 + (TWindowKeyBoardSoft__data_805DD07C * (f32)col + ctx->x));
+            q.y = TWindowKeyBoardSoft__data_805DD078 + (TWindowKeyBoardSoft__data_805DD094 + (ctx->y + y));
+            u8 advance = calc_gauge_scale__20TWindowSubStatusDispFPvPvi(glyph, &q, color);
+            q.x += TWindowKeyBoardSoft__data_805DD080 * (f32)(18 - advance);
+            set_glyph_quad_extents(advance, &q);
+            if (kb->hit_test_relative((u8 *)ctx, (u8 *)&q)) {
+                apply_context_transform_to_rect(ctx, &q);
+                draw_textured_quad_at_depth((f32 *)&q, scale);
+            }
+        }
+    }
+    end_render_forward__20TWindowSubStatusDispFPv();
+    begin_screen_draw(1);
+    render_forward__20TWindowSubStatusDispFPv();
+    set_draw_texture_and_color(0, 0xFF999999);
+    s32 index = calc_key_index__19TWindowKeyBoardSoftFiii((s32)self, 2, 0);
+    for (s32 i = 0; i < 12; ++i, ++index) {
+        q.x = TWindowKeyBoardSoft__data_805DD078 + (TWindowKeyBoardSoft__data_805DD078 + (TWindowKeyBoardSoft__data_805DD07C * (f32)(i + 2) + ctx->x));
+        q.x2 = lbl_805DD0A0 + q.x;
+        q.y = TWindowKeyBoardSoft__data_805DD078 + (TWindowKeyBoardSoft__data_805DD094 + ctx->y);
+        q.y2 = lbl_805DD0A0 + q.y;
+        q.u = (lbl_805DD0A0 * (f32)i) * lbl_805DD0A4;
+        q.v = TWindowKeyBoardSoft__data_805DD090;
+        q.u2 = (lbl_805DD0A0 * (f32)(i + 1)) * lbl_805DD0A4;
+        q.v2 = lbl_805DD0A8;
+        if (kb->hit_test_relative((u8 *)ctx, (u8 *)&q)) {
+            set_constant_material_color(index == selected ? 0xFF000000 : 0xFF999999);
+            apply_context_transform_to_rect(ctx, &q);
+            draw_textured_quad_at_depth((f32 *)&q, scale);
+        }
+    }
+    begin_render__20TWindowSubStatusDispFl();
+    set_draw_texture_and_color(3, 0xFF999999);
+    f32 x = TWindowKeyBoardSoft__sub_802606E0(kb);
+    s32 min_page, max_page;
+    calc_cursor_step__19TWindowKeyBoardSoftFiPvPv((s32)self, &min_page, &max_page);
+    for (s32 page = 0; page < layout->page_count; ++page) {
+        u32 color;
+        if (page == *(s8 *)((u8 *)self + 0x64)) color = 0xFF000000;
+        else if (page < min_page || page > max_page) color = 0xFF646464;
+        else color = 0xFF999999;
+        q.x = TWindowKeyBoardSoft__data_805DD078 + (ctx->x + x);
+        q.y = TWindowKeyBoardSoft__data_805DD078 + (TWindowKeyBoardSoft__data_805DD098 + ctx->y);
+        q.x2 = (q.x + (f32)(s32)layout->page_width) - lbl_805DD0AC;
+        q.y2 = lbl_805DD0A0 + q.y;
+        q.u = TWindowKeyBoardSoft__data_805DD090;
+        q.v = (lbl_805DD0A0 * (f32)page) * lbl_805DD0B0;
+        q.u2 = ((f32)(s32)layout->page_width - lbl_805DD0AC) * lbl_805DD0B0;
+        q.v2 = (lbl_805DD0A0 * (f32)(page + 1)) * lbl_805DD0B0;
+        if (kb->hit_test_relative((u8 *)ctx, (u8 *)&q)) {
+            apply_context_transform_to_rect(ctx, &q);
+            set_constant_material_color(color);
+            draw_textured_quad_at_depth((f32 *)&q, scale);
+        }
+        x += (f32)(s32)layout->page_width;
+    }
+    for (s32 i = 0; i < 10; ++i) {
+        s32 col = (s32)lbl_8044F164[i][0], row = (s32)lbl_8044F164[i][1];
+        index = calc_key_index__19TWindowKeyBoardSoftFiii((s32)self, col, row);
+        u32 color = index == selected ? 0xFF000000 : 0xFF999999;
+        f32 center = ctx->x + calc_key_x__19TWindowKeyBoardSoftFiii((s32)self, col, row);
+        f32 width = lbl_8044F1B4[i][0], height = lbl_8044F1B4[i][1];
+        f32 u = lbl_8044F204[i][0], v = lbl_8044F204[i][1];
+        q.x = center - TWindowKeyBoardSoft__data_805DD080 * width;
+        q.y = TWindowKeyBoardSoft__data_805DD078 + (TWindowKeyBoardSoft__data_805DD094 + (TWindowKeyBoardSoft__data_805DD07C * lbl_8044F164[i][1] + ctx->y));
+        q.x2 = q.x + width;
+        q.y2 = q.y + height;
+        q.u = u * lbl_805DD0B0;
+        q.v = v * lbl_805DD0B0;
+        q.u2 = (u + width) * lbl_805DD0B0;
+        q.v2 = (v + height) * lbl_805DD0B0;
+        if (kb->hit_test_relative((u8 *)ctx, (u8 *)&q)) {
+            set_constant_material_color(color);
+            apply_context_transform_to_rect(ctx, &q);
+            draw_textured_quad_at_depth((f32 *)&q, scale);
+        }
+    }
+    return get_player__20TWindowSubStatusDispFv();
+}
 
 void TWindowKeyBoardSoft__sub_80261DD8(TWindowKeyBoardSoft *self, TWindowKeyBoardSoft *ctx) {
     Vec2_802615B8 v[5];

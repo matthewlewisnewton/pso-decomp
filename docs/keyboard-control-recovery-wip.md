@@ -19,8 +19,7 @@ conversion preserves the original unit data in a targeted comparison; the
 locked two-job rebuild and `tools/check_pr.py --no-build` passed: no exact
 functions, data ranges or linked units regressed, and all 3,536 linked units
 passed. The baseline DOL hash passed; this unit still uses original fallback
-for linking, so that hash does not establish correctness of the new body. The function at `0x802616BC` still has no source body, and the unit is not
-linked from source.
+for linking, so that hash does not establish correctness of the new body. The unit is not linked from source and the new bodies are not exact.
 No original binaries or generated objects are included in this checkpoint.
 
 ## Input dispatch candidate at 0x80260904
@@ -37,4 +36,22 @@ The targeted GC/2.6 compile succeeds. Its input dispatcher is 704 bytes against
 1,324 original bytes, with objdiff reporting 40.28%; a loop expresses the
 original expanded copy and this is not an exact-code claim. The previous
 grid renderer remains 91.09%, and targeted `.rodata` comparison remains 100%.
-The full regression check for the new dispatcher is pending.
+The locked two-job rebuild and regression checks passed with no lost exact
+functions, data or linked units. This does not validate runtime behavior of the
+source body, which is still linked from original fallback.
+
+## Glyph rendering candidate at 0x802616BC
+
+The original first walks the selected language page as a 7-by-16 grid and
+filters characters according to the three input flags. It then draws twelve
+control glyphs, the page selector glyphs, and ten icon rectangles using the
+external position, size and texture tables at `0x8044F164`, `0x8044F1B4` and
+`0x8044F204`. The candidate follows these paths through existing rendering
+interfaces and local views; shared UI and rendering declarations remain
+provisional.
+
+The standalone GC/2.6 compile succeeds. Objdiff reports 81.26% for the new
+body (1,820 original versus 1,864 candidate bytes). The input dispatcher and
+grid frame renderer remain 40.28% and 91.09% respectively. The targeted
+`.rodata` comparison is 100%; the full regression check is pending. None of
+these scores proves exact code, relocations or runtime semantics.
