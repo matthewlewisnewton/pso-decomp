@@ -142,24 +142,24 @@ def dol_reader(path: Path = DOL_PATH):
     return read
 
 
-def symbol_starts(path: Path = SYMBOLS_PATH) -> dict:
-    """{section: sorted symbol addresses} from symbols.txt."""
+def symbol_starts(path: Path = SYMBOLS_PATH) -> dict | None:
+    """{section: sorted symbol addresses}, or None if inventory is unavailable."""
     starts = {}
     try:
         lines = path.read_text().splitlines()
     except OSError:
-        return starts
+        return None
     for line in lines:
-        match = re.match(r"\S+ = (\.\w+):0x([0-9A-Fa-f]+);", line)
+        match = re.match(r"\S+ = ([\w.]+):0x([0-9A-Fa-f]+);", line)
         if match:
             starts.setdefault(match[1], []).append(int(match[2], 16))
     for addresses in starts.values():
         addresses.sort()
-    return starts
+    return starts or None
 
 
 def is_alignment_padding(row: dict, read, starts: dict) -> bool:
-    if read is None or row["module"] != DOL_MODULE:
+    if read is None or starts is None or row["module"] != DOL_MODULE:
         return False
     start, size = int(row["address"], 16), row["size"]
     end = start + size
@@ -171,7 +171,7 @@ def is_alignment_padding(row: dict, read, starts: dict) -> bool:
     if first < len(addresses) and addresses[first] < end:
         return False
     data = read(start, size)
-    return data is not None and not any(data)
+    return data is not None and len(data) == size and not any(data)
 
 
 def compare(before: dict, after: dict, read=None, starts=None) -> dict:
