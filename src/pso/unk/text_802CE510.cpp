@@ -52,7 +52,7 @@ void fn_802CE510(int arg0) {
     temp_r31 = ((RecoveredFields_802CE510_temp_r3 *) temp_r3)->field_0 & 4;
     if (temp_r31 != 0)
     {
-      fn_800D8830((void *)arg0, (void *)(arg0 + 0x38));
+      play_floor_area_persistent_sound((TObject *)arg0, (Vec *)(arg0 + 0x38));
     }
     else
     {

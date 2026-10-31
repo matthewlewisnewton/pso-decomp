@@ -1,3 +1,4 @@
+#include "pso/unk/text_800D8830.h"
 #include "pso/misc/PositionSoundEffects.h"
 #include "pso/player/demo_mode.h"
 #include "pso/misc/MaterialOpacityFade.h"
@@ -494,8 +495,6 @@ extern const f32 lbl_805DA320;
 void beast_update_approach__16TObjEneMerillLiaFv(u8 *arg0);
 void attach_particle_model(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
 s32 *csnVectorUnder(s32 arg0, u32 *arg1, s32 arg2);
-
-void fn_800D88E4(void *pos);
 s32 rand(void);
 extern s32 actor_frame_tick;
 extern const f32 lbl_805DA2F0;
@@ -749,7 +748,7 @@ void spawn_ground_effect__16TObjEneMerillLiaFPv(u8 *arg0) {
             spawn_particle_effect((const Vec *)((*(s32 *)((s8 *)temp_r3 + 4) + 0x38)), 0xA4);
         }
         if ((((TObjMotion *)arg0)->is_passing_frame((f32)lbl_805DA2F8) != 0) || (((TObjMotion *)arg0)->is_passing_frame((f32)((f32)lbl_805DA2FC)) != 0)) {
-            fn_800D88E4((arg0 + 0x38));
+            play_floor_area_sound_effect((Vec *)(arg0 + 0x38));
         }
     }
 }

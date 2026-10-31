@@ -1,3 +1,4 @@
+#include "pso/unk/text_800D8830.h"
 #include "pso/player/demo_mode.h"
 #include "pso/math/ViewPoint.h"
 #include "pso/enemy/BattleParameters.h"
@@ -101,7 +102,6 @@ void enemy_clear_target__12TObjEneDD_STFUs(void *);
 void enemy_set_target_id(void *, u16);
 s32 pack_debug_text_position(s32, s32);
 s32 attack_target_history_add(s32, void *);
-void fn_800D8830(void *owner, void *pos);
 s32 TObjEneGibbles__sub_800D8988(s32);
 f32 horizontal_distance_squared(void *, void *);
 void *get_player_by_client_id(s32 i);
@@ -642,7 +642,7 @@ s32 TObjEneDellBiter::fn_803059BC(const Vec *origin) {
 void TObjEneDellBiter::fn_8030591C() {
     if (is_passing_frame(TObjEneDellBiter__data_805DEFF4) != 0 || is_passing_frame(lbl_805DF01C) != 0) {
         if (fn_803059BC(&position) != 0) {
-            fn_800D8830(this, &position);
+            play_floor_area_persistent_sound(this, &position);
             return;
         }
         play_persistent_sound((s32)(((TObjEnemy *)(this))->remap_sound_for_area((s32)((void *)0x40039E13))), (const void *)((s32)this), (const Vec *)((u32)&position), 0, 0);
