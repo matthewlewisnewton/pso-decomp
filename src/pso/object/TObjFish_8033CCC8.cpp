@@ -1,3 +1,4 @@
+#include "pso/system/ModelNodePositionCapture.h"
 #include "types.h"
 #include "pso/system/PadRumble.h"
 #include "pso/misc/TOTrapAncient01_80226534.h"
@@ -25,7 +26,6 @@ struct Fish_8033CDF8 { u8 pad[0x4C]; Vec_8033CDF8 vecs[3]; };
 extern "C" {
 s32 play_sound_effect(int, int, int, int);
 extern Range_8033CDF8 fish_spawn_entry_table[];
-void clear_render_callback__8TObjFishFv(void);
 s32 push_matrix(void);
 f32 post_translate_matrix(void);
 extern const f32 lbl_805DFA58;
@@ -58,9 +58,9 @@ void TBoss6Demo11_TYPE1_DEAD::render_fade_model() {
         TObjFish::set_global_param(*(s32 *)&(*(void * *)((u8 *)this + 0x2C)));
         draw_model_motion((void *)(*(s32 *)&(this->m_28)), (void *)(*(s32 *)&(this->m_30)), this->m_40);
         TObjFish::set_global_param(this->m_38);
-        ((TObjFish *)((this->m_88)))->set_draw_callback_list();
+        ((ModelNodePositionCapture *)((this->m_88)))->install();
         draw_model_motion((void *)(*(s32 *)&(*(void * *)((u8 *)this + 0x34))), (void *)(*(s32 *)((s8 *)arg0 + 0x3C)), this->m_40);
-        ((int (*)(void *))clear_render_callback__8TObjFishFv)((this->m_88));
+        ((ModelNodePositionCapture *)(this->m_88))->clear();
         clear_motion_packed_rotation();
         pop_matrix();
         if (var_f31 < lbl_805DFA58) {
@@ -164,7 +164,7 @@ void *TBoss6Demo11_TYPE1_DEAD::destroy(s16 arg1) {
     if (this != NULL) {
         *(s32 **)((s8 *)this + 0x18) = lbl_804EF9EC;
         restore_player_cameras();
-        if (*(void * *)&(this->m_88) != NULL) { TObjFish::init_state_1(*(void * *)&(this->m_88)); *(s32 *)&(this->m_88) = 0; }
+        if (*(void * *)&(this->m_88) != NULL) { ModelNodePositionCapture::destroy((ModelNodePositionCapture *)(*(void * *)&(this->m_88))); *(s32 *)&(this->m_88) = 0; }
         if (*(void * *)&(this->unk_8C) != NULL) { TParticleCtrl::release(*(void * *)&(this->unk_8C)); *(s32 *)&(this->unk_8C) = 0; }
         __dt__7TObjectFv(this, 0);
         if (arg1 > 0) {
