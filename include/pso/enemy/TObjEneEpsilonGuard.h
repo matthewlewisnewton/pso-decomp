@@ -1,3 +1,4 @@
+struct NJS_OBJECT;
 #ifndef PSO_ENEMY_TOBJENEEPSILONGUARD_H
 #define PSO_ENEMY_TOBJENEEPSILONGUARD_H
 
@@ -36,7 +37,7 @@ struct TObjEneEpsilonGuard : public TObjEneEpsilon {
     static void update_attack_pattern(void *arg0);
     void tick_stun_timer();
     void tick_timer_set_flag();
-    static void record_camera_angle_samples();
+    static void record_camera_angle_samples(NJS_OBJECT *);
     void draw_debug_line();
     static s32 create_damage_font(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
     static void free_shared_resources();
@@ -50,7 +51,7 @@ struct TObjEneEpsilonGuard : public TObjEneEpsilon {
     void clear_and_flag_state();
     void set_flag_8_and_notify();
     void set_target(s32 arg1, s32 arg2, s32 arg3);
-    static void advance_camera_ctrl_step();
+    static void advance_camera_ctrl_step(NJS_OBJECT *);
     void handle_message(s32 arg1);
     void handle_break_state(s32 arg1);
     void state_orbit(s32 arg1);

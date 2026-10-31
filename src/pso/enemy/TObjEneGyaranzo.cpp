@@ -51,7 +51,6 @@ u8 *__ct__8TObjChipFP7TObjectP14TObjChipParams(u8 *arg0, u8 *arg1, u8 *arg2);
 extern NJS_OBJECT *gyaranzo_resource_ptrs[];
 extern BmlResource *gyaranzo_bml_resource;
 extern u8 *tl_05;
-void update_collisions__10TObjPlayerFv(void *);
 void apply_actor_gravity(void *, int, f32);
 }
 void move_with_wall_slide(u8 *arg0);
@@ -572,7 +571,7 @@ void TObjEneGyaranzo::update_chase() {
             get_anim_node_position(0x27, &v);
             spawn_particle_effect(&v, 0xF3);
         }
-        update_collisions__10TObjPlayerFv(this);
+        ((TObjCollidable *)(this))->update_collisions();
         if (bodies->flags & 0x380000) {
             state = -1;
         } else if (distance_travelled >= chase_limit) {
@@ -646,7 +645,7 @@ void TObjEneGyaranzo::update_knockback() {
         movement_velocity.x *= lbl_805DA280;
         movement_velocity.z *= lbl_805DA280;
         apply_actor_gravity(this, 0, lbl_805DA258);
-        update_collisions__10TObjPlayerFv(this);
+        ((TObjCollidable *)(this))->update_collisions();
         if (action_flags != 8) {
             state = -1;
         }
@@ -769,7 +768,7 @@ void TObjEneGyaranzo::update_aim_and_fire() {
     }
     advance_animation();
     apply_actor_gravity(this, 0, lbl_805DA258);
-    update_collisions__10TObjPlayerFv(this);
+    ((TObjCollidable *)(this))->update_collisions();
 }
 #pragma pop
 
@@ -1073,7 +1072,7 @@ void TObjEneGyaranzo::update_return_home() {
         calc_velocity_toward_destination(this, *(Vec *)&m_290, *(Vec *)&m_29c, ((GyaranzoMovementParameters *)movementParameters)->walk_speed);
         turn_toward_direction(((EnemyMoveParams *)movementParameters)->turn_speed, &movement_velocity);
         move_with_wall_slide((u8 *)this);
-        update_collisions__10TObjPlayerFv(this);
+        ((TObjCollidable *)(this))->update_collisions();
         if (xz_distance_squared(&position, &home_position) <= lbl_805DA25C) {
             update_if_active(0);
         }

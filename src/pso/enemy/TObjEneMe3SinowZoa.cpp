@@ -3365,7 +3365,7 @@ void TObjEneMe3SinowZoa::fn_80316C3C(s32 arg1) {
         }
         break;
     }
-    ((TObjPlayer *)this)->update_collisions();
+    update_collisions();
 }
 
 u32 TObjEneMe3SinowZoa::check_move_collision(Vec *destination) {

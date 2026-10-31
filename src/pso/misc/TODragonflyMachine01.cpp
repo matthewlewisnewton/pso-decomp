@@ -1,4 +1,5 @@
 #include "pso/player/demo_mode.h"
+struct NJS_OBJECT;
 #include "types.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/misc/TODragonflyMachine01.h"
@@ -99,7 +100,7 @@ void TODragonflyMachine01::update_yaw_animation() {
     }
 }
 
-void TODragonflyMachine01::rotate_animated_node() {
+void TODragonflyMachine01::rotate_animated_node(NJS_OBJECT *) {
     if (node_index == 6) {
         rotate_matrix_y(NULL, node_yaw);
     }
@@ -123,7 +124,7 @@ void TODragonflyMachine01::render() {
         TObjFish::set_global_param(texlist);
         node_index = 0;
         node_yaw = animation_yaw;
-        set_chunk_model_node_callback((s32)&rotate_animated_node);
+        set_chunk_model_node_callback(&rotate_animated_node);
         draw_ginja_model_with_motion(model, motion, animation_frame);
         set_chunk_model_node_callback(0);
         pop_matrix();

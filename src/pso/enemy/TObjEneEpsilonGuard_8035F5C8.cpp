@@ -1472,7 +1472,7 @@ extern "C" void draw_with_fade__19TObjEneEpsilonGuardFPvi(u8 *arg0, s32 arg1) {
     rotate_matrix_y(0, ((TObjEneDD_ST *)arg0)->rotation_y);
     TObjEneDD::clear_global_flag_400();
     if (*(s32 *)((s8 *)arg0 + 0x438) & 2) {
-        set_chunk_model_node_callback((s32)((void *) TObjEneEpsilonGuard::record_camera_angle_samples));
+        set_chunk_model_node_callback(TObjEneEpsilonGuard::record_camera_angle_samples);
     }
     TObjPlayer::toggle_particle_effect();
     epsilon_guard_camera_sample_read_ptr = arg0 + 0x470;
@@ -1492,7 +1492,7 @@ extern "C" void draw_with_fade__19TObjEneEpsilonGuardFPvi(u8 *arg0, s32 arg1) {
     }
     TParticleCtrl::end_effect_render();
     if (*(s32 *)((s8 *)arg0 + 0x438) & 2) {
-        set_chunk_model_node_callback((s32)0);
+        set_chunk_model_node_callback(NULL);
     }
     pop_matrix();
     ((TObjEneDD *)arg0)->update_primary_light();
@@ -1527,7 +1527,7 @@ void TObjEneEpsilonBody::render_body_effect() {
     }
 }
 
-void TObjEneEpsilonGuard::record_camera_angle_samples() {
+void TObjEneEpsilonGuard::record_camera_angle_samples(NJS_OBJECT *) {
     switch (epsilon_guard_camera_sample_phase) {
         case 0x1C:
         case 0x26:
