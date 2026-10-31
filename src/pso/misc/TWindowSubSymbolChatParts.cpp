@@ -23,7 +23,7 @@ struct Win_802857C4 {
     u8 pad0[0x24];
     u8 sub[0x76 - 0x24];
     s16 count;
-    u8 *p78;
+    s8 *p78;
     s32 *p7C;
     s32 *p80;
 };
@@ -399,7 +399,7 @@ void fn_802855C4(Win_802857C4 *self, Rect_802857C4 *ctx) {
                 if (i >= self->count) break;
                 e1->x = 40.0f * (f32)j + 10.0f;
                 e1->y = draw_y;
-                setup_part_sprites__28TWindowSubSymbolChatPartsSetFPvPvPvUsiiii(e1, e2, e0, (u16)i, (s8)*self->p78, *self->p7C, *self->p80, 0);
+                setup_part_sprites__28TWindowSubSymbolChatPartsSetFPvPvPvUsiiii(e1, e2, e0, (u16)i, *self->p78, *self->p7C, *self->p80, 0);
                 draw_visible_window_entries(self, self->sub, ctx);
             }
         }
