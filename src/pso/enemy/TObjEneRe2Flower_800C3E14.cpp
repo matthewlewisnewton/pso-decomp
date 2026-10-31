@@ -128,7 +128,7 @@ s32 TObjEneRe2Flower_Bomb::area_attack_deliver_direct(void *recoil, s32 attackDa
             }
             if (obj_is_hit_receivable(target) != 0 && (u32)target != m_ac &&
                 is_area_attack_target_eligible((s32)this, target->actorFlags) != 0 &&
-                !(fabs_float(startPosition.y - target->m_300) > lbl_805DA000)) {
+                !(fabs_float(startPosition.y - target->body_center_position.y) > lbl_805DA000)) {
                 s32 eligible = 1;
                 if (history != NULL && attack_target_history_add((s32)history, (s32)target) == 0) {
                     eligible = 0;
@@ -163,7 +163,7 @@ void TObjEneRe2Flower::initialize_resources() {
     motionSetup.unknown0c = lbl_8043BB90.unknown0c;
     motionSetup.motions = ((BmlResource *)lbl_805D5174)->motions;
     BmlModelEntry *modelEntry = ((BmlResource *)lbl_805D5174)->models;
-    NpcModelRegistry::register_animated_chunk(0x37, modelEntry->model, modelEntry->m_c,
+    NpcModelRegistry::register_animated_chunk(0x37, (void *)modelEntry->model, (void *)modelEntry->m_c,
                           (const NpcAnimationBinding *)&motionSetup, lbl_805D9FBC, lbl_805D9FAC);
 }
 
@@ -199,18 +199,18 @@ TObjEneRe2Flower::TObjEneRe2Flower(TObject *parent, void *setData)
         init_model(flower_normal_collision_parts, 2);
     set_field_d8((s32)TObjEneRe2Flower__animation_descriptors);
     set_field_dc((s32)((BmlResource *)lbl_805D5174)->motions);
-    m_b8 = 1;
-    set_animation(m_b8);
-    set_field_b8(m_b8);
+    requested_action = 1;
+    set_animation(requested_action);
+    set_field_b8(requested_action);
     sub_8002AE64();
     s32 variantIndex;
     if (get_flag_11()) variantIndex = 2;
     else if (sub_800C3B8C()) variantIndex = 1;
     else variantIndex = 0;
-    reset_hp((BattleBaseStats *)TLobby::register_boss(lbl_8043BA7C[variantIndex]),
-             (AttackParams *)TLobby::dispatch_shared_handler_b(lbl_8043BA88[variantIndex]),
-             (ActorParamBlock *)TLobby::register_object(lbl_8043BA94[variantIndex]));
-    lbl_805D5170 = TLobby::dispatch_shared_handler_a(lbl_8043BAA0[variantIndex]);
+    reset_hp((BattleBaseStats *)get_battle_base_stats(lbl_8043BA7C[variantIndex]),
+             (AttackParams *)get_battle_attack_params(lbl_8043BA88[variantIndex]),
+             (ActorParamBlock *)get_battle_resistance_params(lbl_8043BA94[variantIndex]));
+    lbl_805D5170 = get_battle_movement_params(lbl_8043BAA0[variantIndex]);
     if (get_flag_11()) set_state_8();
     else check_state_flag_2();
     movementParameters = &TObjEneRe2Flower__setup_data;
