@@ -20,5 +20,6 @@ void spawn_landing_dead_spot(s32 point, s32 delay);
 
 #include <dolphin/mtx.h>
 extern "C" void fn_800D911C(Vec *position);
+extern "C" void spawn_dead_spot_e4(Vec *position, s32 lifetime, f32 radius);
 
 #endif
