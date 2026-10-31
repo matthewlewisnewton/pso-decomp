@@ -261,7 +261,8 @@ pso/boss/TBoss2Joint.cpp:
 
 pso/boss/TBoss2LaserLight.cpp:
 	.text       start:0x800371F0 end:0x800375C0
-	.sdata2     start:0x805D849C end:0x805D84A8
+	.data       start:0x80482C58 end:0x80482C88
+	.sdata2     start:0x805D8498 end:0x805D84A8
 
 pso/boss/TBoss2Mine_800375C0.cpp:
 	.text       start:0x800375C0 end:0x80038D0C

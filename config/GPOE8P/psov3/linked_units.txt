@@ -208,6 +208,7 @@ pso/boss/TBoss1Dragon_8002B108.cpp
 pso/boss/TBoss1Dragon_800BC3C4.cpp
 pso/boss/TBoss2Fin.cpp
 pso/boss/TBoss2Joint.cpp
+pso/boss/TBoss2LaserLight.cpp
 pso/boss/TBoss2Mine.cpp
 pso/boss/TBoss2Mine_800375C0.cpp
 pso/boss/TBoss2PhotonBullet_80038DCC.cpp
