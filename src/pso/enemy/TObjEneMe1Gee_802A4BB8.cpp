@@ -29,7 +29,6 @@ u16 get_entity_id(void *);
 u8 * TNeedleShoot__ct(void *, s32, void *, void *);
 extern RecoveredGlobal_802A4CC4_lbl_804DCFF8 __vt__20TObjEneMe1Gee_NEEDLE;
 extern const char *TObjEneMe1Gee_NEEDLE__name;
-int TObjEneMe1Gee__sub_800CC2BC(void);
 extern u32 me1gee_cached_model_handle;
 s32 post_translate_matrix(void *);
 s32 draw_ginja_object();
@@ -88,7 +87,7 @@ u8 *TObjEneMe1Gee_NEEDLE__ct(TObjEneMe1Gee_NEEDLE *arg0, s32 arg1, u8 *from, u8 
     return (u8 *)arg0;
 }
 void TObjEneMe1Gee__sub_802A4D4C(void) {  }
-void TObjEneMe1Gee::cache_result_805D6660() { (*(int *)&me1gee_cached_model_handle) = TObjEneMe1Gee__sub_800CC2BC(); }
+void TObjEneMe1Gee::cache_result_805D6660() { me1gee_cached_model_handle = (u32)TObjEneMe1Gee::get_resources(); }
 
 typedef char RecoveredGlobal_802A4CC4_lbl_804DCFF8_size[sizeof(RecoveredGlobal_802A4CC4_lbl_804DCFF8) == 0x28 ? 1 : -1];
 
