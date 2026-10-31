@@ -250,6 +250,14 @@ public:
     Vec *velocity() { return &movement_velocity; }
 };
 
+typedef char TObjChara_size[(sizeof(TObjChara) == 0x334) ? 1 : -1];
+typedef char TObjChara_m_290_offset[(offsetof(TObjChara, m_290) == 0x290) ? 1 : -1];
+typedef char TObjChara_m_294_offset[(offsetof(TObjChara, m_294) == 0x294) ? 1 : -1];
+typedef char TObjChara_unk_298_offset[(offsetof(TObjChara, unk_298) == 0x298) ? 1 : -1];
+typedef char TObjChara_m_29c_offset[(offsetof(TObjChara, m_29c) == 0x29C) ? 1 : -1];
+typedef char TObjChara_m_29e_offset[(offsetof(TObjChara, m_29e) == 0x29E) ? 1 : -1];
+typedef char TObjChara_unk_2A0_offset[(offsetof(TObjChara, unk_2A0) == 0x2A0) ? 1 : -1];
+typedef char TObjChara_target_offset[(offsetof(TObjChara, target) == 0x2A8) ? 1 : -1];
 typedef char TObjChara_body_center_offset[(offsetof(TObjChara, body_center_position) == 0x2FC) ? 1 : -1];
 typedef char TObjChara_body_center_size[(sizeof(((TObjChara *)0)->body_center_position) == 0xC) ? 1 : -1];
 typedef char TObjChara_velocity_offset[(offsetof(TObjChara, movement_velocity) == 0x308) ? 1 : -1];
