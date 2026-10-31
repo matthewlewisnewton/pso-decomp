@@ -6,7 +6,7 @@ on:
   # No base-branch filter: dependency stacks need checks too.
   pull_request:
   push:
-    branches: [master]
+    branches: [main]
 
 permissions:
   contents: read
