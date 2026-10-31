@@ -955,7 +955,7 @@ s32 TAdPlayerLoadGC__sub_801E26DC(s32 chan, const char *name, void *buf, u32 siz
     case -4: break;
     case -1: return result;
     case 0: return result;
-    case -128: case -10: case -5:
+    case -128: case -10: case -6:
     default: return result;
     }
     result = CARDCreate(chan, filename, lbl_805D5E3C, &TAdPlayerLoadGC__data_80511EE8);
