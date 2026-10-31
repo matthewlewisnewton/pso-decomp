@@ -369,7 +369,7 @@ void TBoss6Mine::run_task() {
     }
     copy_pos();
     if (this->state == 2) {
-        ((TObjPlayer *)this)->update_collisions();
+        ((TObjCollidable *)this)->update_collisions();
         submit_cursor_candidate(this, -1);
     }
     color = 0xFF7F5126;

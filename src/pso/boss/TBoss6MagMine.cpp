@@ -380,7 +380,7 @@ void TUnk_804F322C::run_task() {
     }
     copy_pos__13TBoss6MagMineFi((s32)self);
     if (self->state == 2) {
-        ((TObjPlayer *)self)->update_collisions();
+        ((TObjCollidable *)self)->update_collisions();
         submit_cursor_candidate(self, -1);
     }
     if (self->state != 0) {

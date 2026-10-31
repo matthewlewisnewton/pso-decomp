@@ -1587,7 +1587,7 @@ void TBoss4Type2::update_main() {
     advance_afterimage();
     if (0.0f == *(f32 *)((s8 *)arg0 + 0x3E8)) {
         *(u32 *)((s8 *)(*(u8 **)((s8 *)arg0 + 0x394)) + 0x18) |= 1;
-        ((TObjPlayer *)arg0)->update_collisions();
+        ((TObjCollidable *)arg0)->update_collisions();
         submit_cursor_candidate(arg0, -1);
     } else {
         *(u32 *)((s8 *)(*(u8 **)((s8 *)arg0 + 0x394)) + 0x18) &= ~1;
