@@ -41114,6 +41114,7 @@ beast_movement_params = .data:0x8048F3DC; // type:object size:0x54
 beast_collision_body_table = .data:0x8048F430; // type:object size:0x84
 __vt__12TObjEneBeast = .data:0x8048F4B4; // type:object size:0x19C
 berura_init_params = .data:0x8048F650; // type:object size:0x1C
+TObjEneRe7Berura__collision_body_template = .data:0x8048F66C; // type:object size:0x2C
 bm_ene_re7_berura_model_names = .data:0x8048F698; // type:object size:0x8
 bm_ene_re7_berura_motion_names = .data:0x8048F6A0; // type:object size:0x24
 ene_berura_bml_descriptor = .data:0x8048F6C4; // type:object size:0x10
