@@ -1,5 +1,6 @@
 #include "pso/misc/MaterialOpacityFade.h"
 #include "pso/misc/RenderFadeState.h"
+#include "pso/enemy/EnemyUnknownHooks.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/misc/GroundEffects.h"
@@ -153,8 +154,6 @@ struct RecoveredFields_800C2AC4_arg0
 };
 
 extern "C" {
-s32 TBoss8Dragon__sub_800BB7D4(void *, int);
-
 f32 sin_table_lookup(int);
 f32 cos_table_lookup(int);
 f32 vec3_add_to(void *, void *);
@@ -191,7 +190,7 @@ void fn_800C2AC4(u8 *arg0, int arg1) {
       ((TObjEneRe2Flower *)arg0)->clear_child_flags();
       ((RecoveredFields_800C2AC4_arg0 *) arg0)->field_3C4 = (int) (((RecoveredFields_800C2AC4_arg0 *) arg0)->field_3C4 & 0xFFFFFFF7);
       ((TObjEnemy *)arg0)->refresh_and_send_entity_flags();
-      TBoss8Dragon__sub_800BB7D4((void *) arg0, 0xF2);
+      fn_800BB7D4((void *) arg0, 0xF2);
       ((RecoveredFields_800C2AC4_arg0 *) arg0)->field_410 = 0;
       ((RecoveredFields_800C2AC4_arg0 *) arg0)->field_424 = (f32) lbl_805D9FAC;
       play_sound_effect((s32)((void *) fn_800C3A60((s32)arg0, 0x4003A812)), (const Vec *)(arg0 + 0x38), 0, 0);

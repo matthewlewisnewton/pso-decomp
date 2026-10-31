@@ -4,6 +4,7 @@
 #include "pso/misc/MaterialOpacityFade.h"
 #include "pso/misc/RenderFadeState.h"
 #include "pso/enemy/BattleParameters.h"
+#include "pso/enemy/EnemyUnknownHooks.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
@@ -1627,7 +1628,6 @@ void TObjEneBm5GibonU__sub_800CFE30(u8 *arg0, s32 arg1);
 void TObjEneBm5GibonU__sub_800CFA48(TObjEneBm5GibonU *self, s32 arg1);
 void action__16TObjEneBm5GibonUFPvi(TObjEneBm5GibonU *arg0, s32 arg1);
 void TObjEneBm5GibonU__sub_800CFE34(u8 *arg0, s32 arg1);
-s32 TBoss8Dragon__sub_800BB7D4(void *, int);
 void TObjEneBm5GibonU__sub_800CE370(u8 *arg0, s32 arg1);
 void TObjEneBm5GibonU__sub_800D0420(u8 *arg0, s32 arg1);
 s32 is_split_screen();
@@ -2259,7 +2259,7 @@ void TObjEneBm5GibonU__sub_800CE060(u8 *arg0, s32 arg1) {
         ((TObjEnemy *)arg0)->refresh_and_send_entity_flags();
         play_sound_effect((s32)((void *)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x3A826))), (const Vec *)(arg0 + 0x38), 0, 0);
         *(s16 *)((s8 *)arg0 + 0xB8) = 0xB;
-        TBoss8Dragon__sub_800BB7D4(arg0, 0xF1);
+        fn_800BB7D4(arg0, 0xF1);
         *(s32 *)((s8 *)arg0 + 0x518) = 0;
         *(f32 *)((s8 *)arg0 + 0x530) = calc_anim_speed__16TObjEneBm5GibonUFPvf(arg0, *(u8 **)((s8 *)arg0 + 0xD8), *(f32 *)((s8 *)(*(u8 **)((s8 *)arg0 + 0xD8)) + 0x78));
         *(f32 *)((s8 *)arg0 + 0x538) = 0.0f;
@@ -2337,7 +2337,7 @@ void TObjEneBm5GibonU__sub_800CE370(u8 *arg0, s32 arg1) {
     switch (arg1) {
     case 4:
         ((TObjEneDD *)(arg0))->vfunc_96();
-        TBoss8Dragon__sub_800BB7D4(arg0, 0xF1);
+        fn_800BB7D4(arg0, 0xF1);
         *(s32 *)((s8 *)arg0 + 0x51C) = 0;
         *(s32 *)((s8 *)arg0 + 0x528) = 0;
         *(s16 *)((s8 *)arg0 + 0xB8) = 6;

@@ -1,3 +1,4 @@
+#include "pso/enemy/EnemyUnknownHooks.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/enemy/TObjEneRe2Flower_EffCurse3.h"
@@ -122,7 +123,6 @@ extern Pair_800C2E64 lbl_8043BA60[];
 void TObjEneRe2Flower__sub_800C2E64(Obj_800C2E64 *self, s32 state);
 f32 random_ratio__9TObjCharaFv(s32 arg0);
 s32 get_flag_b4__9TObjEneDDFv();
-s32 TBoss8Dragon__sub_800BB7D4(void *, int);
 s32 transition_enemy_state__9TObjEneDDFl(void *, s32);
 s32 noop__9TObjEneDDFv(void *, s32);
 s32 fn_800C3A60(void *, s32);
@@ -137,7 +137,7 @@ void TObjEneDD::state_damaged(s32 arg1) {
         this->vfunc_96();
         ((TObjEneRe2Flower *)arg0)->clear_child_flags();
         F(s32, 0x3C4) &= ~8;
-        TBoss8Dragon__sub_800BB7D4(arg0, 0xF2);
+        fn_800BB7D4(arg0, 0xF2);
         play_sound_effect((s32)(fn_800C3A60(arg0, 0x4003AB13)), (const Vec *)((u8 *)&this->position), 0, 0);
         TObjPlayer::play_effect_if_v2(-0x200);
         break;
