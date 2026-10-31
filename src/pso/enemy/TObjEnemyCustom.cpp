@@ -1,4 +1,5 @@
 #include "pso/player/demo_mode.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEnemyCustom.h"
 #include "pso/map/CsnQuery.h"
@@ -304,7 +305,7 @@ void TObjEnemyCustom::update_dying_state() {
 
 void TObjEnemyCustom::render() {
     if (update_object_view_visibility(400.0f, 20.0f) != 0) {
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         push_matrix();
         post_translate_matrix(&position.x);
         rotate_matrix_y(0, rotation_y);

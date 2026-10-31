@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/render/render_util.h"
@@ -332,7 +333,7 @@ extern Offs_8029C390 lbl_80465884;
 extern ChipParam_8029C390 lbl_80465890;
 extern u8 identity_matrix[];
 extern void *tl_05;
-s32 play_sound_effect(s32, s32, s32, s32);
+
 void free_collision_body_parts(void *);
 int update__15RenderFadeStateFv(void*);
 void __dl__7TObjectFPv(void *);
@@ -342,7 +343,7 @@ void TORockJungleM01::run_task() { update__15RenderFadeStateFv((char*)this + 0xb
 
 void TORockJungleM01::vfunc_18() {
     s32 arg0 = (s32)this;
-    play_sound_effect(0x4BC19, arg0 + 0x38, 0, 0);
+    play_sound_effect(0x4BC19, (const Vec *)(arg0 + 0x38), 0, 0);
 }
 
 void TORockJungleM01::vfunc_16() {
@@ -529,7 +530,7 @@ void *__nw__7TObjectFUl(int);
 extern Offs_8029C7DC lbl_8046581C;
 extern Spawn_8029C7DC lbl_80465828;
 extern u8 identity_matrix[];
-s32 play_sound_effect(s32, s32, s32, s32);
+
 s32 release_texture_list(void*);
 void free_collision_body_parts(void *);
 void __dl__7TObjectFPv(void *);
@@ -537,7 +538,7 @@ void *__dt__18TORockCaveBrakableFv(void *arg0, s16 arg1);
 
 void TORockJungleS01::vfunc_18() {
     s32 arg0 = (s32)this;
-    play_sound_effect(0x4BC19, arg0 + 0x38, 0, 0);
+    play_sound_effect(0x4BC19, (const Vec *)(arg0 + 0x38), 0, 0);
 }
 
 void TORockJungleS01::vfunc_16() {

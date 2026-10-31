@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "pso/TParticleCtrl.h"
 #include "types.h"
 #include "pso/misc/TRaderMapCore.h"
@@ -24,7 +25,7 @@ void TObjPlayer__sub_802D5B78(void *a, void *b);
 void do_action_447_from_packet__10TObjPlayerFPvPv(void *self, void *arg);
 void *__dt__13TUnk_804E1BB0Fv(void *arg0, s16 arg1);
 void *__dt__13TUnk_804E1CA8Fv(void *arg0, s16 arg1);
-int spawn_particle_effect(void*, int);
+
 void __ct__11TItemWeaponFP7TObjectPUc(void *);
 void *__dt__13TUnk_804E23F0Fv(void *arg0, s16 arg1);
 
@@ -74,7 +75,7 @@ void *__dt__13TUnk_804E1CA8Fv(void *arg0, s16 arg1) {
     return arg0;
 }
 
-int TObjPlayer::do_action_447() { return spawn_particle_effect(this, 447); }
+int TObjPlayer::do_action_447() { return (s32)spawn_particle_effect((const Vec *)(this), 447); }
 void do_action_447_from_packet__10TObjPlayerFPvPv(void *self, void *arg) {
     Vec_802D52E8 v;
     TObjPlayer__sub_802D5B78(arg, &v);
@@ -503,7 +504,7 @@ extern "C" {
 
 void* init_vtable_and_field200__10TObjPlayerFPv(void* a0);
 void spawn_item__10TObjPlayerFi(s32 arg0);
-s32 spawn_particle_effect(s32, s32);
+
 void attach_particle_model(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
 int init_state_445__10TObjPlayerFPv(void);
 
@@ -516,7 +517,7 @@ void spawn_item__10TObjPlayerFi(s32 arg0) {
     s32 sp8;
     s32 particle_effect;
 
-    particle_effect = spawn_particle_effect(arg0, 0x1BF);
+    particle_effect = (s32)spawn_particle_effect((const Vec *)(arg0), 0x1BF);
     if (particle_effect != 0) {
         TItemLoad::lookup_item_data(0xD, &spC);
         TItemLoad::get_data_entry(0xD, &sp8);

@@ -1,4 +1,5 @@
 #include "pso/player/demo_mode.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TOHealGeneral.h"
 #include "pso/TMainTask.h"
@@ -159,7 +160,7 @@ void TOHealGeneral::find_heal_target() {
             if (effect != NULL) {
                 effect->set_owner_id(heal_target);
             }
-            play_sound_effect(0x4002AB0E, &position, 0, 0);
+            play_sound_effect(0x4002AB0E, (const Vec *)(&position), 0, 0);
             break;
         }
     }
@@ -195,7 +196,7 @@ void TOHealGeneral::render() {
         push_matrix();
         post_translate_matrix(&position.x);
         rotate_matrix_y(NULL, rotation_y);
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         base = (NJS_OBJECT *)model;
         post_translate_matrix(base->pos);
         draw_ginja_model((s32)base->model);

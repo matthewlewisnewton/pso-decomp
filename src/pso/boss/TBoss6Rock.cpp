@@ -1,3 +1,6 @@
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/system/GinjaMaterial.h"
@@ -107,7 +110,7 @@ extern const f32 lbl_805DFF6C;
 extern const f32 lbl_805DFF70;
 extern const f32 lbl_805DFF74;
 extern const f32 lbl_805DFF78;
-s32 play_sound_effect(s32, u32, int, s32);
+
 extern const f32 TBoss6Rock__data_805DFF50;
 extern const f32 lbl_805DFF54;
 extern const f32 lbl_805DFF94;
@@ -164,7 +167,7 @@ void TUnk_804F1280::render() {
         rotate_matrix_y(0, this->m_34);
         rotate_matrix_x(0, (int) (*(s32 *)&this->unk_30));
         rotate_matrix_z(0, (int) (*(s32 *)&this->unk_38));
-        TObjFish::set_global_param(this->m_3c);
+        set_current_texture_list((GinjaTextureList *)(this->m_3c));
         TBoss6PlotFalz::set_fade_material_color(TBoss6Rock__data_805DFF4C);
         draw_ginja_object((void *)(*(s32 *)&this->unk_40));
         TObjFish::reset_fish_globals();
@@ -491,7 +494,7 @@ void TBoss6Rock::break_and_release() {
     }
     if ((s32) this->m_c8 != 2) {
         ((TBoss6Rock *)(arg0 + 0xD4))->spawn_crush_rocks(this->m_b4);
-        play_sound_effect(0x4006AB1F, (u32)(arg0 + 0x38), 0, 0);
+        play_sound_effect(0x4006AB1F, (const Vec *)((arg0 + 0x38)), 0, 0);
         release_object();
         randomize_motion();
         this->m_c4 = 0;
@@ -523,9 +526,9 @@ void TBoss6Rock::update_fall() {
         *(f32 *)&this->unk_CC = (f32) TBoss6Rock__data_805DFF50;
         TBoss6Rock__sub_803542E8(this, 1);
         ((TBoss6Rock *)arg0)->sub_80353F5C();
-        play_sound_effect(0x4006B51E, (u32)(arg0 + 0x38), 0, 0);
-        spawn_particle_effect(((u8 *)&this->position), 0x220);
-        spawn_particle_effect(((u8 *)&this->position), 0x222);
+        play_sound_effect(0x4006B51E, (const Vec *)((u32)(arg0 + 0x38)), 0, 0);
+        spawn_particle_effect((const Vec *)(((u8 *)&this->position)), 0x220);
+        spawn_particle_effect((const Vec *)(((u8 *)&this->position)), 0x222);
         TBoss6PlotFalz::apply_radial_effect_to_players((u8 *)&this->position, 0xC0, 0xF, lbl_805DFF54);
         this->m_c4 = 2;
     }
@@ -566,7 +569,7 @@ void TBoss6Rock::draw_model() {
     rotate_matrix_y(0, arg0->f60);
     rotate_matrix_x(0, arg0->f5C);
     rotate_matrix_z(0, arg0->f64);
-    TObjFish::set_global_param((*(s32 *)&TBoss6Rock__data_805D6EF4));
+    set_current_texture_list((GinjaTextureList *)((*(s32 *)&TBoss6Rock__data_805D6EF4)));
     draw_ginja_object((void *)(get_bml_model((*(s32 *)&TBoss6Rock__data_805D6EF0), ((E_803546B0 *)&TBoss6Rock__data_80479258)[arg0->fB4].id)));
     pop_matrix();
 }

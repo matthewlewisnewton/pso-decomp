@@ -1,4 +1,7 @@
 #include "pso/system/ModelNodePositionCapture.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
+#include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/system/PadRumble.h"
@@ -54,7 +57,7 @@ void TBoss6Demo20_TYPE2_APPEAR::draw_model_12() {
     push_matrix();
     set_motion_packed_rotation();
     post_translate_matrix((void *)&boss6_type2_appear_origin);
-    TObjFish::set_global_param(*(s32 *)((s8 *)this + 0xD8));
+    set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)this + 0xD8)));
     draw_model_motion((void *)this->m_d4, (void *)this->m_dc, *(f32 *)((s8 *)this + 0xE0));
     clear_motion_packed_rotation();
     pop_matrix();
@@ -76,7 +79,7 @@ void TBoss6Demo20_TYPE2_APPEAR::draw_fading_model_1_pair() {
         if (var_f31 < lbl_805DFA74) {
             TBoss6PlotFalz::set_fade_material_color(var_f31);
         }
-        TObjFish::set_global_param(this->m_cc);
+        set_current_texture_list((GinjaTextureList *)(this->m_cc));
         set_motion_packed_rotation();
         push_matrix();
         post_translate_matrix((s32 *)((u8 *)this + 0x4C));
@@ -113,7 +116,7 @@ void TBoss6Demo20_TYPE2_APPEAR::draw_fading_model_4() {
         push_matrix();
         set_motion_packed_rotation();
         post_translate_matrix((void *)&boss6_type2_appear_origin);
-        TObjFish::set_global_param(*(s32 *)((s8 *)this + 0xC0));
+        set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)this + 0xC0)));
         ((ModelNodePositionCapture *)(this->m_7c))->install();
         draw_model_motion((void *)this->m_bc, (void *)this->m_c4, *(f32 *)((s8 *)this + 0xE0));
         ((ModelNodePositionCapture *)(this->m_7c))->clear();
@@ -150,7 +153,7 @@ void TBoss6Demo20_TYPE2_APPEAR::draw_fading_model_pair() {
         var_r31 = 0;
         do {
             temp_r30 = (u8 *)this + var_r31;
-            TObjFish::set_global_param(*(s32 *)((s8 *)temp_r30 + 0xA8));
+            set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)temp_r30 + 0xA8)));
             draw_model_motion((void *)(*(s32 *)((s8 *)temp_r30 + 0xA4)), (void *)(*(s32 *)((s8 *)temp_r30 + 0xAC)), *(f32 *)((s8 *)this + 0xE0));
             var_r29 += 1;
             var_r31 += 0xC;
@@ -191,7 +194,6 @@ s32 refresh_players_equipment__14TBoss6PlotFalzFPv();
 extern s32 __vt__25TBoss6Demo20_TYPE2_APPEAR[];
 O_8033D9E4 *__dt__25TBoss6Demo20_TYPE2_APPEARFv(O_8033D9E4 *arg0, s16 arg1);
 void *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags);
-void play_sound_effect(int, void *, int, int);
 
 extern const Ent_8033D6DC boss6_type2_appear_particle_schedule[];
 
@@ -220,7 +222,7 @@ void run_task__25TBoss6Demo20_TYPE2_APPEARFv(O_8033D6DC *self) {
         play_sound_effect(0x40031C2B, 0, 0, 0);
         break;
     }
-    play_persistent_sound(0x4003C627, (s32)self, 0, 0, 0);
+    play_persistent_sound((s32)(0x4003C627), (const void *)(self), (const Vec *)(0), 0, 0);
     switch (self->frame) {
     case 0xB9:
         spawn_particle_effect_with_flags(self->obj40, 0x220, 0x40);

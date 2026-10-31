@@ -1,6 +1,8 @@
 #include "pso/animation/MotionContext.h"
 #include "pso/map/CsnGroundQuery.h"
 #include "pso/player/demo_mode.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #pragma push
 
 #include "types.h"
@@ -497,7 +499,7 @@ typedef struct { u8 pad[4]; u32 n; } Anim_802C17FC;
 s32 debug_draw_line(s32 *, s32 *, s32, s32);
 
 u8 * load_gvm_texture_file(s32);
-s32 play_sound_effect(int, void *, int, int);
+
 void __dl__7TObjectFPv(void *);
 void * __nw__7TObjectFUl(int);
 
@@ -558,7 +560,7 @@ void TUnk_804E0898::vfunc_14() {
                                         (s32)(self->path), (1.0f));
   if (self->phase == 0 || lobby_pigeon_lobby_type == 0)
     return;
-  TObjFish::set_global_param((s32)(lobby_pigeon_lobby_type));
+  set_current_texture_list((GinjaTextureList *)((lobby_pigeon_lobby_type)));
   push_matrix();
   post_translate_matrix((void *)(self->position));
   rotate_matrix_y(0, (s32)(self->facing));
@@ -788,7 +790,7 @@ void TUnk_804E08D4::vfunc_14() {
     if ((check_demo_mode() == 1) && (TMainTask::get_render_pass() == 0)) {
         ((s32 (*)(void *, s32, s32, f32))draw_line_strip__10TObjPlayerFPviif)(arg0, *(s32 *)&this->unk_98, *(s32 *)((s8 *)arg0 + 0xA0), (1.0f));
     }
-    TObjFish::set_global_param((*(s32 *)&lobby_kamome_texture_gvm_handle));
+    set_current_texture_list((GinjaTextureList *)((*(s32 *)&lobby_kamome_texture_gvm_handle)));
     push_matrix();
     post_translate_matrix((u8 *)&this->position);
     rotate_matrix_y(0, this->rotation_y);
@@ -823,7 +825,7 @@ void TUnk_804E08D4::vfunc_13(s32) {
         ((s32 (*)(void *, int))rotate_matrix_y)(&m, this->rotation_y);
         translate_matrix_vec3((u8 *)&m, (u8 *)&this->unk_AC);
         ((s32 (*)(void *, void *, void *))matrix_mult_vec)(&m, &v, &v);
-        play_sound_effect(0x4BC04, (u8 *)&this->position, 0x7F, 0);
+        play_sound_effect(0x4BC04, (const Vec *)((u8 *)&this->position), 0x7F, 0);
         *(s32 *)&this->unk_CC = (s32) (((3e+01f) * ((4.0f) * ((3.0517578e-05f) * (f32) rand()))) + (1.5e+02f));
     }
 }
@@ -983,7 +985,7 @@ void TUnk_804E0910::vfunc_14() {
     if ((check_demo_mode() == 1) && (TMainTask::get_render_pass() == 0)) {
         ((s32 (*)(void *, s32, s32, f32))draw_line_strip__10TObjPlayerFPviif)(arg0, *(s32 *)&this->unk_98, *(s32 *)((s8 *)arg0 + 0xA0), (1.0f));
     }
-    TObjFish::set_global_param((*(s32 *)&lobby_pigeon_texture_gvm));
+    set_current_texture_list((GinjaTextureList *)((*(s32 *)&lobby_pigeon_texture_gvm)));
     push_matrix();
     post_translate_matrix((u8 *)&this->position);
     rotate_matrix_y(0, this->rotation_y);
@@ -1194,7 +1196,7 @@ void TUnk_804E094C::vfunc_14() {
     if ((check_demo_mode() == 1) && (TMainTask::get_render_pass() == 0)) {
         ((s32 (*)(void *, s32, s32, f32))draw_line_strip__10TObjPlayerFPviif)(arg0, *(s32 *)&this->unk_98, *(s32 *)((s8 *)arg0 + 0xA0), (1.0f));
     }
-    TObjFish::set_global_param((*(s32 *)&jungle_ebi_texture_gvm_handle));
+    set_current_texture_list((GinjaTextureList *)((*(s32 *)&jungle_ebi_texture_gvm_handle)));
     push_matrix();
     post_translate_matrix((u8 *)&this->position);
     rotate_matrix_y(0, this->rotation_y);
@@ -1379,7 +1381,7 @@ void TUnk_804E0988::vfunc_14() {
     if ((check_demo_mode() == 1) && (TMainTask::get_render_pass() == 0)) {
         ((s32 (*)(void *, s32, s32, f32))draw_line_strip__10TObjPlayerFPviif)(arg0, *(s32 *)&this->unk_98, *(s32 *)((s8 *)arg0 + 0xA0), (1.0f));
     }
-    TObjFish::set_global_param(seabed_dolphin_texture_handle);
+    set_current_texture_list((GinjaTextureList *)(seabed_dolphin_texture_handle));
     push_matrix();
     post_translate_matrix((u8 *)&this->position);
     rotate_matrix_y(0, this->rotation_y);

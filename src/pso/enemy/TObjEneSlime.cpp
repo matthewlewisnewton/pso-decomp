@@ -1,4 +1,5 @@
 #include "pso/player/demo_mode.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/render/render_util.h"
 #include "pso/unk/text_803E2D70.h"
@@ -112,7 +113,7 @@ void debug_printf_at(s32 id, const char *fmt, ...);
 s32 push_matrix();
 s32 pop_matrix();
 s32 post_translate_matrix(void *, void *);
-s32 set_global_param__8TObjFishFl();
+
 extern char lbl_8043D298[];
 extern s32 slime_debug_label_table[];
 extern s32 lbl_80496368[];
@@ -159,8 +160,7 @@ void TObjEneSlime::render() {
         push_matrix();
         temp_r30_2 = *(s32 *)((s8 *)((u8 *)lbl_80496368 + temp_r30) + 0);
         post_translate_matrix((void *) ((u8 *)arg0 + 0x38), (void *)lbl_80496368);
-        TObjFish__sub_8001EDB0((void *)slime_bml_resource, (int)temp_r30_2);
-        set_global_param__8TObjFishFl();
+        set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0((void *)slime_bml_resource, (int)temp_r30_2)));
         if (temp_r31 != 0) {
             model_render_flags |= 0x400000;
             set_chunk_render_flags(1);

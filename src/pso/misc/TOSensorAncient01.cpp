@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/TMainTask.h"
 #include "pso/TParticleCtrl.h"
@@ -70,7 +71,7 @@ void TOSensorAncient01::render() {
         push_matrix();
         post_translate_matrix(&position.x);
         rotate_matrix_y(NULL, rotation_y);
-        TObjFish::set_global_param(ancient_sensor_resource_pair_table[set_params[2]].red);
+        set_current_texture_list((GinjaTextureList *)(ancient_sensor_resource_pair_table[set_params[2]].red));
         object = (NJS_OBJECT *)model;
         post_translate_matrix(object->pos);
         draw_ginja_model((s32)object->model);
@@ -78,7 +79,7 @@ void TOSensorAncient01::render() {
         push_matrix();
         object = object->child;
         if ((f32)lamp_timer < 30.0f) {
-            TObjFish::set_global_param(ancient_sensor_resource_pair_table[sensor_texture_table_index].plain);
+            set_current_texture_list((GinjaTextureList *)(ancient_sensor_resource_pair_table[sensor_texture_table_index].plain));
         }
         post_translate_matrix(object->pos);
         draw_ginja_model((s32)object->model);
@@ -86,7 +87,7 @@ void TOSensorAncient01::render() {
         push_matrix();
         object = object->sibling;
         if ((f32)lamp_timer < 60.0f) {
-            TObjFish::set_global_param(ancient_sensor_resource_pair_table[sensor_texture_table_index].plain);
+            set_current_texture_list((GinjaTextureList *)(ancient_sensor_resource_pair_table[sensor_texture_table_index].plain));
         }
         post_translate_matrix(object->pos);
         draw_ginja_model((s32)object->model);
@@ -94,7 +95,7 @@ void TOSensorAncient01::render() {
         push_matrix();
         object = object->sibling;
         if ((f32)lamp_timer < 90.0f) {
-            TObjFish::set_global_param(ancient_sensor_resource_pair_table[sensor_texture_table_index].plain);
+            set_current_texture_list((GinjaTextureList *)(ancient_sensor_resource_pair_table[sensor_texture_table_index].plain));
         }
         post_translate_matrix(object->pos);
         draw_ginja_model((s32)object->model);

@@ -1,4 +1,6 @@
 #include "pso/math/MatrixCopy.h"
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/system/vector.h"
 #include "types.h"
 #include "pso/object/TObject_80019A50.h"
@@ -17,7 +19,7 @@ struct Ten_802F08A8;
 extern "C" {
 f64 atan2_float(f32, f32);
 s32 approach_angle_limited(s32, s32, s32);
-s32 play_sound_effect(int, void *, int, int);
+
 void TBoss7Tentacle__sub_802F0608(TBoss7Tentacle *tentacle, f32 len);
 f32 sin_table_lookup(s32);
 s32 set_matrix_identity(int);
@@ -116,7 +118,7 @@ typedef struct Anim_802F0BE8 { u8 pad0[4]; u32 n; } Anim_802F0BE8;
 
 s32 obj_testFlags30__14TObjCollidableFUl(void *, s32);
 s32 attach_particle_model(int, int, int, int, int, f32);
-void *spawn_particle_effect(void *pos, s32 id);
+
 f32 horizontal_distance_squared(void *, void *);
 void *get_player_by_client_id(s32 i);
 void __dl__7TObjectFPv(void *);
@@ -162,14 +164,14 @@ void TBoss7Tentacle::restart_particle_effect() {
     queue_destruction__7TObjectFv((*((void **) (((s8 *) arg0) + 0x40))));
     *((u32 *) (((s8 *) arg0) + 0x40)) = 0U;
   }
-  particle_effect = (s32)spawn_particle_effect((arg0 + 0x1C), 0x215);
+  particle_effect = (s32)spawn_particle_effect((const Vec *)((arg0 + 0x1C)), 0x215);
   temp_r3 = particle_effect;
   if (temp_r3 != 0)
   {
     particle_effect = TObjPlayer__sub_802E80A0();
     attach_particle_model((int) temp_r3, (int) queue_boss_effect__10TObjPlayerFPv(4), (int) particle_effect, 0, 0, (f32) (*(f32 *)&TBoss7Tentacle__data_805DEC00));
   }
-  play_sound_effect(0x3A809, (void *) (arg0 + 0x1C), 0, 0);
+  play_sound_effect(0x3A809, (const Vec *)((arg0 + 0x1C)), 0, 0);
 }
 
 s32 TBoss7Tentacle::advance_anim_time_wrapped(f32 d) {
@@ -212,7 +214,7 @@ void damage_nearby_players__14TBoss7TentacleFPv(u8 *boss7_tentacle) {
                 Hit_802EF99C a = b;
                 ((VObj_18_9935f6 *)p)->m21(*(s32 *)(boss7_tentacle + 0x10), &a, 0, -1, -1);
                 if (((Obj_802EF99C *)boss7_tentacle)->flags[(u16)i] == 0) {
-                    spawn_particle_effect(p + 0x2FC, 0x214);
+                    spawn_particle_effect((const Vec *)(p + 0x2FC), 0x214);
                     ((Obj_802EF99C *)boss7_tentacle)->flags[(u16)i] = 1;
                 }
             }
@@ -328,7 +330,7 @@ void render__14TBoss7TentacleFv(u8 *arg0) {
         concat_matrix((MtxP)(0), (const f32 (*)[4])((int) (*(s32 *)((s8 *)arg0 + 0x130))));
         rotate_matrix_y(0, (int) (*(s32 *)((s8 *)arg0 + 0x13C)));
         scale_current_matrix((void *) ((u8 *)(arg0) + 0x24));
-        ((s32 (*)(void *, int, f32))draw_model_motion)((void *) (*(s32 **)((s8 *)arg0 + 0x1C)), (int) (*(s32 *)((s8 *)arg0 + 0x20)), (f32) (*(f32 *)((s8 *)arg0 + 0x134)));
+        draw_model_motion((void *) (*(s32 **)((s8 *)arg0 + 0x1C)), (void *) (*(s32 *)((s8 *)arg0 + 0x20)), (f32) (*(f32 *)((s8 *)arg0 + 0x134)));
         clear_motion_packed_rotation();
         break;
     case 1:
@@ -338,7 +340,7 @@ void render__14TBoss7TentacleFv(u8 *arg0) {
         concat_matrix((MtxP)(0), (const f32 (*)[4])((int) (*(s32 *)((s8 *)arg0 + 0x130))));
         rotate_matrix_zyx(0, (*(s32 *)((s8 *)arg0 + 0x140)), (*(s32 *)((s8 *)arg0 + 0x13C)), 0);
         scale_current_matrix((void *) ((u8 *)(arg0) + 0x24));
-        ((s32 (*)(void *, int, f32))draw_model_motion)((void *) (*(s32 **)((s8 *)arg0 + 0x1C)), (int) (*(s32 *)((s8 *)arg0 + 0x20)), (f32) (*(f32 *)((s8 *)arg0 + 0x134)));
+        draw_model_motion((void *) (*(s32 **)((s8 *)arg0 + 0x1C)), (void *) (*(s32 *)((s8 *)arg0 + 0x20)), (f32) (*(f32 *)((s8 *)arg0 + 0x134)));
         clear_motion_packed_rotation();
         break;
     case 2:
@@ -473,7 +475,7 @@ void run_task__14TBoss7TentacleFv(u8 *boss7_tentacle) {
                         ((TBoss7PhotonBullet *)st)->emit_hit_effect(&p);
                     }
                 }
-                play_sound_effect(0x3A809, &p, 0, 0);
+                play_sound_effect(0x3A809, (const Vec *)(&p), 0, 0);
             }
             if (*(f32 *)((s8 *)boss7_tentacle + 0x158) >= lbl_805DEC44 * len) {
                 *(f32 *)((s8 *)boss7_tentacle + 0x15C) = TBoss7Tentacle__data_805DEC00;

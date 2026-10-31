@@ -1,3 +1,5 @@
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TWindowSubStatusDisp_8025737C.h"
 #include "pso/system/memory.h"
@@ -119,7 +121,7 @@ struct Bar_8025799C {
 };
 
 void update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
-s32 play_sound_effect(u32, s32, s32, s32);
+
 #define destroy__13TUnk_804CF930Fs ((s32 (*)(s32, s32 *))destroy__13TUnk_804CF930Fs)
 #define sub_80256BDC__13TUnk_804CF930Fs ((int (*)(void*, int))sub_80256BDC__13TUnk_804CF930Fs)
 #define calc_bar_width__20TWindowSubStatusDispFPv ((s32 (*)())calc_bar_width__20TWindowSubStatusDispFPv)
@@ -265,7 +267,7 @@ void draw_gauge__20TWindowSubStatusDispFPvPv(Gauge_80257784 *self, Parent_802577
         sz = self->f8;
         scale = -1.0f / (0.299f * sz + parent->f38);
         begin_screen_draw(1, sz, 0.299f, -1.0f);
-        TObjFish::set_global_param(lbl_805D63F0);
+        set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
         set_draw_texture_and_color(0xB, -1);
         if (self->flags & 8) {
             TWindowSubStatusDisp__sub_80256C40(self, parent, &pos, scale);

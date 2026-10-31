@@ -1,4 +1,5 @@
 #include "pso/system/ModelNodePositionCapture.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/unk/text_803D96A8.h"
@@ -24,7 +25,7 @@ void TObjDFDemo4::sub_8004F1FC() {
         var_r31 = 0;
         do {
             temp_r30 = arg0 + var_r31;
-            TObjFish::set_global_param((int) (*(s32 *)((s8 *)temp_r30 + 0xC8)));
+            set_current_texture_list((GinjaTextureList *)((*(s32 *)((s8 *)temp_r30 + 0xC8))));
             if (var_r29 == 0) {
                 ((ModelNodePositionCapture *)(this->m_100))->install();
             }

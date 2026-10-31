@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TWindowCtrl_8024A054.h"
 #include "pso/misc/TWindowChoiceSetting.h"
@@ -103,7 +104,7 @@ void mem_free(void *);
 void *mem_alloc(u32 size);
 s32 TWindowShortListCtrl__check_controller_button(int, int);
 Ent_80265C30 * get_array_entry__13TUnk_804CE018Fi(void *w, s32 i);
-s32 play_sound_effect(s32, s32, s32, s32);
+
 void __dl__7TObjectFPv(void *);
 s32 __nw__7TObjectFUl(int);
 s32 get_draw_context__11TWindowBaseFPv();

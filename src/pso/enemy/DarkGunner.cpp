@@ -1,5 +1,9 @@
 #include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
+#include "pso/misc/PersistentSound.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/system/ChunkMaterialState.h"
@@ -123,16 +127,15 @@ s32 minimap_render_dot(void *, s32, s32, s32);
 void TObjPlayer__sub_800A16C4(u8 *arg0);
 void queue_destruction__7TObjectFv(void *arg0);
 s32 update_if_active__15TObjEnemyCustomFl(void *, s32);
-void *spawn_particle_effect(void *pos, s32 id);
 s32 TObjPlayer__sub_800A3210(s32 i, s32 _w1, s32 _w2);
 u8 *TObjPlayer__sub_800A4204(u8 *arg0, u8 *arg1, s32 arg2, s32 arg3, s32 arg4);
 s32 submit_cursor_candidate(void *, s32);
-s32 play_sound_effect(int, void *, int, int);
+
 void * __nw__7TObjectFUl(int);
 s32 TObjPlayer__sub_800A1FEC(void *arg0);
 void enemy_set_heading_velocity(f32 speed, TObjEnemy *enemy, s32 heading);
 f32 TObjPlayer__sub_800A3200(s32 arg0);
-s32 play_persistent_sound(int, void *, void *, int, int);
+
 extern s32 actor_frame_tick;
 s32 TObjPlayer__sub_800A2390(void *arg0_);
 typedef struct Obj_800A0EDC {
@@ -906,8 +909,8 @@ void TObjPlayer__sub_800A16C4(u8 *player) {
 void TObjEneDarkGunner::vfunc_61() {
     u8 *arg0 = (u8 *)this;
     ((TObjBase *)arg0)->obj_clearFlags30((s32)(0x100U));
-    spawn_particle_effect(((u8 *)&this->body_center_position), 0xD7);
-    play_sound_effect(0x4003B22D, (u8 *)&this->position, 0, 0);
+    spawn_particle_effect((const Vec *)(((u8 *)&this->body_center_position)), 0xD7);
+    play_sound_effect(0x4003B22D, (const Vec *)((u8 *)&this->position), 0, 0);
 }
 
 int TObjPlayer__sub_800A1808(void* p) { return (*(u32*)((char*)p + 0x30) >> 23) & 0x1; }
@@ -937,9 +940,9 @@ void TObjPlayer::render_shadow() {
     s32 arg0 = (s32)this;
     if (this->obj_testFlags30(0x800) == 0) {
         if (is_flag_set_388_bit26() == 0) {
-            TObjFish::set_global_param(lbl_805D5014);
+            set_current_texture_list((GinjaTextureList *)(lbl_805D5014));
         } else {
-            TObjFish::set_global_param(lbl_805D5018);
+            set_current_texture_list((GinjaTextureList *)(lbl_805D5018));
         }
         push_matrix();
         post_translate_matrix(arg0 + 0x3B4);
@@ -1058,9 +1061,9 @@ void TObjPlayer__sub_800A1978(VObj_18_800A28A4 *self) {
                 color.g = s;
                 color.b = s;
                 set_constant_material((const NJS_ARGB *)&color);
-                TObjFish::set_global_param(TObjPlayer__effect_resource);
+                set_current_texture_list((GinjaTextureList *)(TObjPlayer__effect_resource));
             } else {
-                TObjFish::set_global_param(self->texture);
+                set_current_texture_list((GinjaTextureList *)(self->texture));
             }
             if (self->flags & 4) {
                 if (self->fade.has_visible_opacity() != 0) {
@@ -1137,7 +1140,7 @@ void TObjPlayer__sub_800A1C84(TObjPlayer *enemy) {
         TObjPlayer__sub_800A04F0((u8 *)enemy + 0x408);
         fn_800D911C((Vec *)((u8 *)enemy + 0x2FC));
         *(s32 *)((s8 *)enemy + 0x388) |= 4;
-        play_sound_effect(0x4003AD37, (u8 *)enemy + 0x38, 0, 0);
+        play_sound_effect(0x4003AD37, (const Vec *)((u8 *)enemy + 0x38), 0, 0);
         enemy->m_37c = 1;
         break;
     case 1:
@@ -1171,7 +1174,7 @@ void TObjPlayer__sub_800A1D70(u8 *arg0) {
             ((TObjPlayer *)arg0)->movement_velocity.z = (f32) ((((TObjPlayer *)arg0)->movement_velocity.z * temp_f1) / temp_f31);
         }
         if (*(s32 *)((s8 *)arg0 + 0x388) & 0x400000) {
-            spawn_particle_effect((arg0 + 0x2FC), 0xD7);
+            spawn_particle_effect((const Vec *)((arg0 + 0x2FC)), 0xD7);
         }
         *(s16 *)((s8 *)arg0 + 0x39E) = 0;
         ((TObjPlayer *)arg0)->m_37c = 1;
@@ -1229,8 +1232,8 @@ s32 TObjPlayer__sub_800A1FEC(void *arg0) {
         self->f388 &= 0xFFB7FFFF;
         self->count = 0;
         self->fB8 = 3;
-        play_sound_effect(0x4003B52F, &self->pos, 0, 0);
-        play_sound_effect(0x4003AD29, (u8 *)arg0 + 0x38, 0, 0);
+        play_sound_effect(0x4003B52F, (const Vec *)(&self->pos), 0, 0);
+        play_sound_effect(0x4003AD29, (const Vec *)((u8 *)arg0 + 0x38), 0, 0);
         self->state = 1;
         break;
     case 1:
@@ -1241,7 +1244,7 @@ s32 TObjPlayer__sub_800A1FEC(void *arg0) {
         self->f388 |= 0x200000;
         self->timer = ((s32 (*)(s32))TObjPlayer__sub_800A3210)(0);
         self->state = 2;
-        play_sound_effect(0x4003B52A, &self->pos, 0, 0);
+        play_sound_effect(0x4003B52A, (const Vec *)(&self->pos), 0, 0);
         {
             s32 i;
             for (i = 0; i < 4; i++) {
@@ -1270,9 +1273,9 @@ s32 TObjPlayer__sub_800A1FEC(void *arg0) {
         }
         self->state = 3;
         if (((TObjPlayer *)self)->is_flag_set_388_bit26() != 0) {
-            spawn_particle_effect(&self->f3B4, 0xD8);
+            spawn_particle_effect((const Vec *)(&self->f3B4), 0xD8);
         } else {
-            spawn_particle_effect(&self->f3B4, 0xD2);
+            spawn_particle_effect((const Vec *)(&self->f3B4), 0xD2);
         }
         break;
     case 3:
@@ -1286,7 +1289,7 @@ s32 TObjPlayer__sub_800A1FEC(void *arg0) {
         {
             u8 *p = (u8 *)new TUnk_804909C4((u8 *)self, (s32)&self->f3B4, (s32)(self->target + 0x2FC));
         }
-        play_sound_effect(0x40039E2B, &self->pos, 0, 0);
+        play_sound_effect(0x40039E2B, (const Vec *)(&self->pos), 0, 0);
         break;
     case 4:
         self->f394 = 1.6088889f;
@@ -1427,7 +1430,7 @@ s32 TObjPlayer__sub_800A2390(void *arg0_) {
             enemy->f388 &= ~0x80000;
             enemy->state = 3;
         }
-        play_persistent_sound(0x4003AD28, enemy, (u8 *)enemy + 0x38, 0, 0);
+        play_persistent_sound((s32)(0x4003AD28), (const void *)(enemy), (const Vec *)((u8 *)enemy + 0x38), 0, 0);
         if (enemy->f3AC > 0) {
             enemy->f3AC--;
             if (enemy->fA4->f18 & 0x300000) {
@@ -1583,7 +1586,7 @@ void TObjPlayer__sub_800A28A4(VObj_18_800A28A4 *self) {
         self->m9(150.0f, 400.0f, 15.0f) != 0) {
         Vec p = self->pos;
         p.y += self->render_y_offset;
-        spawn_particle_effect(&p, 0xD6);
+        spawn_particle_effect((const Vec *)(&p), 0xD6);
     }
 }
 #pragma pop

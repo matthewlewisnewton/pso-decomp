@@ -1,3 +1,6 @@
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/system/ChunkMaterialState.h"
@@ -117,11 +120,11 @@ typedef struct Golla_801AB868 {
 extern u8 *photon_blast_shared_resource;
 extern u32 farlla_photon_blast_model_buffers;
 extern "C" {
-void *spawn_particle_effect(void *pos, s32 id);
+
 void *find_entity_by_id(u16 id);
 s32 spawn_photon_blast_attachment_effects(void *, int);
 u8 *TPhotonMagicSquare__ct(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 u32 __nw__7TObjectFUl(int);
 
 s32 scroll_strip_uvs(void *, s16, int);
@@ -306,7 +309,7 @@ void TPhotonGolla::render() {
     if (this->m_1c4 != 0) {
         scroll_strip_uvs(golla_photon_blast_buffer_pair, self->f14C, 0);
         TParticleCtrl::begin_effect_render();
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)(this->texlist));
         push_matrix();
         post_translate_matrix(&self->pos);
         rotate_matrix_y(0, this->rotation_y);
@@ -367,7 +370,7 @@ void TPhotonGolla::run_task() {
     *(s16 *)((s8 *)arg0 + 0x14C) = (s16) (u8) *(s16 *)((s8 *)arg0 + 0x14C);
     if ((s32) *(s32 *)&this->unk_1C8 == 0x50) {
         VecCopy((Vec *)(arg0 + 0x1AC), (const Vec *)(this->m_148 + 0x44));
-        spawn_particle_effect((arg0 + 0x1AC), 0x133);
+        spawn_particle_effect((const Vec *)((arg0 + 0x1AC)), 0x133);
         TPhotonGolla::spawn_concentrate(arg0);
     }
     temp_r0 = *(s32 *)&this->unk_1C8;
@@ -375,7 +378,7 @@ void TPhotonGolla::run_task() {
         TPhotonGolla::spawn_concentrate(arg0);
     }
     if ((s32) this->m_1c4 != 0) {
-        play_persistent_sound(0x4002462F, (s32)arg0, 0, 0, 0);
+        play_persistent_sound((s32)(0x4002462F), (const void *)((s32)arg0), (const Vec *)(0), 0, 0);
     }
 }
 

@@ -1,4 +1,6 @@
 #include "pso/player/demo_mode.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
@@ -256,7 +258,7 @@ struct Berura_80092CCC {
 
 extern "C" {
 s32 transition_enemy_state__9TObjEneDDFl(void *, s32);
-s32 play_sound_effect(s32, void *, s32, s32);
+
 extern const f32 TObjEneRe7Berura__data_805D9738;
 void TObjEneRe7Berura__sub_80093470(Berura_80093470 *obj, s32 mode);
 void TObjEneRe7BeruraPunch__sub_800962F4(void *p);
@@ -343,7 +345,7 @@ void render__16TObjEneRe7BeruraFv(Berura_80092CCC *o) {
         fade = (s32)&o->fades[cam];
         update__15RenderFadeStateFv((void *)fade);
         cam = ((RenderFadeState *)fade)->updateFromCamera((const f32*)(&o->f2FC));
-        TObjFish::set_global_param(o->f24);
+        set_current_texture_list((GinjaTextureList *)(o->f24));
         push_matrix();
         post_translate_matrix(&o->pos);
         rotate_matrix_y(0, o->f60);
@@ -497,7 +499,7 @@ void TObjEneRe7Berura::update_death_state(s32 mode) {
         fn_800D911C((Vec *)((u8 *)self + 0x2FC));
         TObjPlayer__sub_800A04F0((u8 *)self + 0x3D8);
         self->f3C0 |= 2;
-        play_sound_effect(((TObjEnemy *)(self))->remap_sound_for_area((s32)(0x4003AD25)), (u8 *)self + 0x38, 0, 0);
+        play_sound_effect((s32)(((TObjEnemy *)(self))->remap_sound_for_area((s32)(0x4003AD25))), (const Vec *)((u8 *)self + 0x38), 0, 0);
         break;
     case 0:
         switch (self->f4C4) {
@@ -530,7 +532,7 @@ void TObjEneRe7Berura__sub_80093470(Berura_80093470 *obj, s32 mode) {
         obj->m94();
         self->field3C0 &= ~7;
         ((TObjMotion *)self)->advance_animation();
-        play_sound_effect(((TObjEnemy *)(self))->remap_sound_for_area((s32)(0x4003A826)), &self->pos, 0, 0);
+        play_sound_effect((s32)(((TObjEnemy *)(self))->remap_sound_for_area((s32)(0x4003A826))), (const Vec *)(&self->pos), 0, 0);
         ((TObjEneDD_ST *)self)->set_active();
         break;
     case 3:

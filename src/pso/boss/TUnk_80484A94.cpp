@@ -1,3 +1,4 @@
+#include "pso/misc/PersistentSound.h"
 #include "pso/boss/TUnk_80484A94.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/NinjaUtil.h"
@@ -22,7 +23,7 @@ extern "C" {
 void rotate_vector_by_matrix(s32 matrix, const Vec *src, Vec *dst);
 void vec3_add_to(Vec *v, const Vec *add);
 void subtract_vector(Vec *v, const Vec *sub);
-void play_persistent_sound(s32 id, void *owner, const Vec *pos, s32 a3, s32 flags);
+
 s32 obj_is_hit_receivable(TObjChara *actor);
 u16 get_entity_id(TObject *object);
 extern GC_Mtx identity_matrix;
@@ -94,7 +95,7 @@ void TUnk_80484A94::run_task() {
         queue_destruction();
         return;
     }
-    play_persistent_sound(0x4003C11D, this, &position, 0, 0);
+    play_persistent_sound((s32)(0x4003C11D), (const void *)(this), (const Vec *)(&position), 0, 0);
 }
 
 TUnk_80484A94::~TUnk_80484A94() {

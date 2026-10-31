@@ -1,4 +1,5 @@
 #include "pso/player/demo_mode.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/object/TObjWeddingLobby.h"
 #include "pso/TMainTask.h"
@@ -33,7 +34,7 @@ void TObjWeddingLobby::demo_step() {}
 void TObjWeddingLobby::render() {
     if (fade_state != 0 && lobby_texlist != 0) {
         TParticleCtrl::begin_effect_render();
-        TObjFish::set_global_param(lobby_texlist);
+        set_current_texture_list((GinjaTextureList *)(lobby_texlist));
         push_matrix();
         post_translate_matrix(&position.x);
         rotate_matrix_y(NULL, rotation_y);

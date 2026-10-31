@@ -2,6 +2,10 @@
 #include "pso/math/VectorNormalize.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/EnemyUnknownHooks.h"
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
+#include "pso/misc/PersistentSound.h"
 struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
@@ -751,7 +755,7 @@ void queue_destruction__7TObjectFv(void *);
 s32 get_camera_mode__11TCameraCtrlFv();
 s32 get_flag_b4__9TObjEneDDFv(void *);
 void rotate_xz_pair_by_angle(f32 *arg0, f32 *arg1, s32 arg2);
-void *spawn_particle_effect(void *pos, s32 id);
+
 void render_with_state_debug__17TObjEneBm3FlyNestFv(u8 *arg0);
 void render__17TObjEneBm3FlyNestFv(u8 *arg0);
 void handle_attachment_sample__17TObjEneBm3FlyNestFi(NJS_OBJECT *arg0);
@@ -794,8 +798,8 @@ void spawn_dead_spot_scale15(const Vec *point, s32 delay);
 void *find_entity_by_id(u16 id);
 void free_collision_body_parts(void *);
 s32 send_entity_set_flags__9TObjEnemyFv();
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
-s32 play_sound_effect(void *, void *, int, int);
+
+
 s32 defer_render__7TObjectFv(void *);
 void __dl__7TObjectFPv(void *);
 void * __nw__7TObjectFUl(int);
@@ -811,7 +815,7 @@ void translate_matrix(s32, f32, f32, f32);
 s32 push_matrix();
 s32 pop_matrix();
 s32 post_translate_matrix(void *);
-void set_global_param__8TObjFishFl(s32);
+
 void draw_chunk_object(void *child);
 void draw_model_motion(void *arg0, void *arg1, f32 farg0);
 
@@ -1069,7 +1073,7 @@ void TObjEneBm3FlyNest::render_with_state_debug() {
     if (((VObj_18_800B23A0 *)arg0)->m8(500.0f, 120.0f) != 0) {
         Vec v = lbl_8043B31C;
         ((TObjEneDD *)(arg0))->draw_ground_shadow(&v, 1);
-        set_global_param__8TObjFishFl(this->texlist);
+        set_current_texture_list((GinjaTextureList *)(this->texlist));
         ((void (*)(void))push_matrix)();
         ((void (*)(void *))post_translate_matrix)(arg0 + 0x38);
         translate_matrix(0, 0.0f, -5.0f, 0.0f);
@@ -1143,7 +1147,7 @@ void TObjEneBm3FlyNest::render() {
             }
             if (draw != 0) {
                 this->update_secondary_light();
-                ((s32 (*)(int))set_global_param__8TObjFishFl)(self->f24);
+                set_current_texture_list((GinjaTextureList *)(self->f24));
                 push_matrix();
                 lbl_805D510C = 0;
                 TObjEneBm3FlyNest_attachment_point_ptr = (NestAttachmentPoint *)&self->f3C8;
@@ -1299,12 +1303,12 @@ void state_dying__17TObjEneBm3FlyNestFPvi(u8 *actor, s32 arg1) {
                     p.x = r * sin_table_lookup(a) + p.x;
                     p.y += lbl_805D9D1C;
                     p.z = r * cos_table_lookup(a) + p.z;
-                    spawn_particle_effect(&p, 0xF1);
+                    spawn_particle_effect((const Vec *)(&p), 0xF1);
                     *(s32 *)((s8 *)actor + 0x4C8) = 0;
                 }
                 *(s32 *)((s8 *)actor + 0x4CC) += 1;
                 if (*(s32 *)((s8 *)actor + 0x4CC) >= 0x14) {
-                    ((s32 (*)(int, void *, int, int))play_sound_effect)(((TObjEnemy *)(actor))->remap_sound_for_area((s32)(0x4003AD2B)), actor + 0x38, 0, 0);
+                    play_sound_effect((s32)(((TObjEnemy *)(actor))->remap_sound_for_area((s32)(0x4003AD2B))), (const Vec *)(actor + 0x38), 0, 0);
                     *(s32 *)((s8 *)actor + 0x4CC) = 0;
                 }
             }
@@ -1326,7 +1330,7 @@ void handle_motion_event__17TObjEneBm3FlyNestFPvi(u8 *arg0, s32 arg1) {
         ((TObjEneDD *)arg0)->vfunc_96();
         fn_800BB7D0(arg0);
         fn_800BB7D4(arg0, 0xF1);
-        ((s32 (*)(void *, void *, s32, s32))play_sound_effect)((void *)(s32)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003A829)), arg0 + 0x38, 0, 0);
+        play_sound_effect((s32)((void *)(s32)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003A829))), (const Vec *)(arg0 + 0x38), 0, 0);
         if ((s32) *(s32 *)((s8 *)arg0 + 0x3A8) != 0) {
             *(s16 *)((s8 *)arg0 + 0xB8) = 6;
             *(f32 *)((s8 *)arg0 + 0x4B0) = (f32) 0.0f;
@@ -1440,16 +1444,16 @@ void TObjEneBm3FlyNest__sub_800B318C(u8 *ene_dd, s32 arg1) {
     case 0:
         (((TObjMotion *)ene_dd)->advance_animation());
         if ((((TObjMotion *)ene_dd)->is_passing_frame(lbl_805D9D10) != 0) || (((TObjMotion *)ene_dd)->is_passing_frame(lbl_805D9D34) != 0)) {
-            play_sound_effect((void *) (((TObjEnemy *)(ene_dd))->remap_sound_for_area((s32)(0x4003B72A))), ene_dd + 0x38, 0, 0);
+            play_sound_effect((s32)((void *) (((TObjEnemy *)(ene_dd))->remap_sound_for_area((s32)(0x4003B72A)))), (const Vec *)(ene_dd + 0x38), 0, 0);
         }
         if (((TObjMotion *)ene_dd)->is_passing_frame(lbl_805D9D38) != 0) {
-            spawn_particle_effect((ene_dd + 0x38), 0xF0);
+            spawn_particle_effect((const Vec *)((ene_dd + 0x38)), 0xF0);
         } else if (((TObjMotion *)ene_dd)->is_passing_frame(lbl_805D9D3C) != 0) {
             temp_r31 = ((TObjEneDD *)ene_dd)->rotation_y - 0x4000;
             VecCopy((Vec *)(&stack.sp8), (const Vec *)(ene_dd + 0x38));
             stack.sp8 += lbl_805D9D40 * sin_table_lookup(temp_r31);
             stack.sp10 += lbl_805D9D40 * cos_table_lookup(temp_r31);
-            spawn_particle_effect((&stack.sp8), 0xF0);
+            spawn_particle_effect((const Vec *)((&stack.sp8)), 0xF0);
         }
         *(f32 *)((s8 *)ene_dd + 0x4B0) = (f32) (*(f32 *)((s8 *)ene_dd + 0x4B0) + lbl_805D9D2C);
         if (*(f32 *)((s8 *)ene_dd + 0x4B0) > 0.0f) {
@@ -1630,8 +1634,8 @@ void handle_appear__17TObjEneBm3FlyNestFPvi(u8 *ene_dd, s32 arg1) {
                 *(f32 *)((s8 *)ene_dd + 0x4B0) = -5.0f;
                 *(s32 *)((s8 *)ene_dd + 0x4D0) = 1;
                 *(s32 *)((s8 *)ene_dd + 0x4C8) = 0;
-                spawn_particle_effect(ene_dd + 0x38, 0xF0);
-                play_sound_effect((void *) ((TObjEnemy *)(ene_dd))->remap_sound_for_area((s32)(0x4003B72A)), ene_dd + 0x38, 0, 0);
+                spawn_particle_effect((const Vec *)(ene_dd + 0x38), 0xF0);
+                play_sound_effect((s32)((void *) ((TObjEnemy *)(ene_dd))->remap_sound_for_area((s32)(0x4003B72A))), (const Vec *)(ene_dd + 0x38), 0, 0);
             }
             break;
         case 1:
@@ -1689,8 +1693,8 @@ void TObjEneBm3FlyNest::spawn_child() {
             s->ids[s->count++] = s->nextId;
             s->nextId++;
             s->spawned++;
-            spawn_particle_effect(s->f3D4, 0xC8);
-            ((s32 (*)(s32, void *, s32, s32))play_sound_effect)(((TObjEnemy *)(s))->remap_sound_for_area((s32)(0x4003AB27)), &s->pos, 0, 0);
+            spawn_particle_effect((const Vec *)(s->f3D4), 0xC8);
+            play_sound_effect((s32)(((TObjEnemy *)(s))->remap_sound_for_area((s32)(0x4003AB27))), (const Vec *)(&s->pos), 0, 0);
             TObjPlayer::play_effect_if_v2(-0x400);
         }
     }
@@ -2009,7 +2013,7 @@ void TObjEneBm3FlyNest::load_resources() {
 
 void TObjEneBm3FlyNest::render_parts() {
     u8 *arg0 = (u8 *)this;
-    ((s32 (*)(s32, void *))set_global_param__8TObjFishFl)(*(s32 *)((s8 *)(*(void **)((s8 *)(*(u8 * *)&lbl_805D5108) + 0x42C)) + 0xC), (*(u8 * *)&lbl_805D5108));
+    set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)(*(void **)((s8 *)(*(u8 * *)&lbl_805D5108) + 0x42C)) + 0xC)));
     push_matrix();
     if (*(s32 *)&this->set_index == 0) {
         post_translate_matrix(*(void * *)&this->actorFlags);
@@ -2056,7 +2060,7 @@ void update_monest_carrier(u8 *self) {
             ((TObjEneBm3FlyNest_CarryFly *)self)->m_60 = lbl_805D9D5C / (*(f32 *)((s8 *)self + 0x5C) * *(f32 *)((s8 *)self + 0x5C));
             *(f32 *)((s8 *)self + 0x64) = lbl_805D9D60;
         }
-        play_persistent_sound((s32)(((s32 (*)(s32, s32))copy_target_state__17TObjEneBm3FlyNestFPv)(*(s32 *)((s8 *)self + 0x10), 0x4003A828)), (s32)self, (u32)(((TObjEneBm3FlyNest_CarryFly *)self)->m_30), 0, 0);
+        play_persistent_sound((s32)((s32)(((s32 (*)(s32, s32))copy_target_state__17TObjEneBm3FlyNestFPv)(*(s32 *)((s8 *)self + 0x10), 0x4003A828))), (const void *)(self), (const Vec *)((u32)(((TObjEneBm3FlyNest_CarryFly *)self)->m_30)), 0, 0);
         TObjPlayer::play_effect_if_v2(-0x400);
         break;
     case 1:
@@ -2065,7 +2069,7 @@ void update_monest_carrier(u8 *self) {
             *(s32 *)((s8 *)self + 0x2C) = 2;
             *(f32 *)((s8 *)self + 0x54) = lbl_805D9D64 * *(f32 *)((s8 *)self + 0x5C);
         }
-        play_persistent_sound((s32)(((s32 (*)(s32, s32))copy_target_state__17TObjEneBm3FlyNestFPv)(*(s32 *)((s8 *)self + 0x10), 0x4003A828)), (s32)self, (u32)(((TObjEneBm3FlyNest_CarryFly *)self)->m_30), 0, 0);
+        play_persistent_sound((s32)((s32)(((s32 (*)(s32, s32))copy_target_state__17TObjEneBm3FlyNestFPv)(*(s32 *)((s8 *)self + 0x10), 0x4003A828))), (const void *)(self), (const Vec *)((u32)(((TObjEneBm3FlyNest_CarryFly *)self)->m_30)), 0, 0);
         TObjPlayer::play_effect_if_v2(-0x400);
         break;
     case 2:
@@ -2073,8 +2077,8 @@ void update_monest_carrier(u8 *self) {
         v = *(f32 *)((s8 *)self + 0x54);
         v = v - lbl_805D9D68 * spd;
         if (v < lbl_805D9D64 * -spd) {
-            spawn_particle_effect((void *)(*(s32 *)((s8 *)self + 0x34)), 0xC8);
-            ((s32 (*)(s32, s32, s32, s32))play_sound_effect)(((s32 (*)(s32, s32))copy_target_state__17TObjEneBm3FlyNestFPv)(*(s32 *)((s8 *)self + 0x10), 0x4003AB27), *(s32 *)((s8 *)self + 0x34), 0, 0);
+            spawn_particle_effect((const Vec *)((*(s32 *)((s8 *)self + 0x34))), 0xC8);
+            play_sound_effect((s32)(((s32 (*)(s32, s32))copy_target_state__17TObjEneBm3FlyNestFPv)(*(s32 *)((s8 *)self + 0x10), 0x4003AB27)), (const Vec *)(*(s32 *)((s8 *)self + 0x34)), 0, 0);
             TObjPlayer::play_effect_if_v2(-0x400);
             ((s32 (*)(void *))queue_destruction__7TObjectFv)(self);
             break;
@@ -2084,7 +2088,7 @@ void update_monest_carrier(u8 *self) {
         v = lbl_805D9D64 * *(f32 *)((s8 *)self + 0x5C) + v;
         *(f32 *)((s8 *)self + 0x1C) = ((TObjEneBm3FlyNest_CarryFly *)self)->m_50 * v;
         *(f32 *)((s8 *)self + 0x24) = ((TObjEneBm3FlyNest_CarryFly *)self)->m_58 * v;
-        play_persistent_sound((s32)(((s32 (*)(s32, s32))copy_target_state__17TObjEneBm3FlyNestFPv)(*(s32 *)((s8 *)self + 0x10), 0x4003A828)), (s32)self, (u32)(*(s32 *)((s8 *)self + 0x34)), 0, 0);
+        play_persistent_sound((s32)((s32)(((s32 (*)(s32, s32))copy_target_state__17TObjEneBm3FlyNestFPv)(*(s32 *)((s8 *)self + 0x10), 0x4003A828))), (const void *)(self), (const Vec *)((u32)(*(s32 *)((s8 *)self + 0x34))), 0, 0);
         TObjPlayer::play_effect_if_v2(-0x400);
         break;
     }

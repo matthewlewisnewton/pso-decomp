@@ -1,5 +1,7 @@
 #include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/boss/TBoss6Type1.h"
@@ -106,7 +108,7 @@ void vt2__13TBoss6MagMineFv(u8 *arg0);
 void vt1__13TBoss6MagMineFv(u8 *arg0);
 s32 is_locally_controlled__10TObjPlayerFPv(void *);
 int get_player_data__10TObjPlayerFi(int a0);
-void play_sound_effect(int, Vec_80368C14 *, int, int);
+
 f32 vector_length(Vec_80368C14 *);
 void subtract_vector(Vec_80368C14 *, void *);
 void explode__13TBoss6MagMineFPv(Mine_80368C14 *o);
@@ -172,7 +174,7 @@ void TUnk_804F322C::update_linked_state() {
     temp_r31 = TObjFish__sub_8001EDB0(*(s32 *)((s8 *)this + 0x374), 2);
     bml_model = get_bml_model(*(s32 *)((s8 *)this + 0x374), 2);
     bml_motion = get_bml_motion(*(s32 *)((s8 *)this + 0x374), 0);
-    TObjFish::set_global_param(temp_r31);
+    set_current_texture_list((GinjaTextureList *)(temp_r31));
     TBoss6PlotFalz__sub_802AC008(*(f32 *)((s8 *)this + 0x3A8), 0.0f);
     draw_model_motion((void *)bml_model, (void *)bml_motion, *(f32 *)((s8 *)this + 0x398));
     TBoss6PlotFalz::update_camera_target();
@@ -239,7 +241,7 @@ void explode__13TBoss6MagMineFPv(Mine_80368C14 *o) {
             }
         }
     }
-    play_sound_effect(0x4003BA1E, &o->pos, 0, 0);
+    play_sound_effect(0x4003BA1E, (const Vec *)(&o->pos), 0, 0);
 }
 
 s32 is_player_in_range__13TBoss6MagMineFPv(void *arg0_) {

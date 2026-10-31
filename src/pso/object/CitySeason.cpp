@@ -1,4 +1,5 @@
 #include "pso/math/VectorNormalize.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/boss/TBoss4Type2_80086C44.h"
@@ -461,7 +462,7 @@ extern const f32 lbl_805DBC48[1];
 void TObjCity_Season_Board::render() {
     u8 *arg0 = (u8 *)this;
     if (((u32) lbl_805D5B38 != 0U) && (((Fn801838D4VObj_801838d4*)arg0)->m8(lbl_805DBC44[0], lbl_805DBC48[0]) != 0)) {
-        TObjFish::set_global_param(lbl_805D5B44);
+        set_current_texture_list((GinjaTextureList *)(lbl_805D5B44));
         scroll_strip_uvs(lbl_805D5B48, (s16) *(s32 *)&this->unk_90, 0);
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
@@ -637,7 +638,7 @@ void TObjCity_Season_SonicAdv2::render() {
     Vec_80183AF0 b;
     res = ((Res_80183AF0 * (*)(void *))get_anim_frame__13TUnk_804B5E48Fv)(self);
     if (res != NULL && self->m8(lbl_805DBC44[0], lbl_805DBC4C[0]) != 0) {
-        TObjFish::set_global_param(city_season_xmas_model_table[5]);
+        set_current_texture_list((GinjaTextureList *)(city_season_xmas_model_table[5]));
         idx = ((TObjCity_Season_SonicAdv2 *)self)->sub_80183C38();
         ((void (*)())push_matrix)();
         ((void (*)(void *))post_translate_matrix)(&self->pos);
@@ -770,7 +771,7 @@ void TObjCity_Season_21_21::render() {
     temp_r3 = (u8 *)(((u8 * (*)())get_anim_frame__13TUnk_804B5E48Fv)());
     if (temp_r3 != NULL) {
         if (((VObj_18_26a62c *)(arg0))->m8(lbl_805DBC44[0], lbl_805DBC60[0]) != 0) {
-            TObjFish::set_global_param((int) (*(s32 *)((s8 *)(&(*(RecoveredGlobal_80183D4C_lbl_8050DC50 *)&city_season_xmas_model_table).value) + 0x10)));
+            set_current_texture_list((GinjaTextureList *)((*(s32 *)((s8 *)(&(*(RecoveredGlobal_80183D4C_lbl_8050DC50 *)&city_season_xmas_model_table).value) + 0x10))));
             ((s32 (*)(void *, int, int))scroll_strip_uvs)((void *)lbl_805D5B34, 0, (int) ((s16) *(s32 *)((s8 *)arg0 + 0xB4)));
             push_matrix();
             post_translate_matrix((u8 *)&this->position);
@@ -918,7 +919,7 @@ void TObjCity_Season_HalloweenPumpkin::render() {
     u8 *temp_r31;
     temp_r31 = (u8 *)(*(u8 **)((s8 *)(&(*(RecoveredGlobal_80183FC0_lbl_8050DC38 *)&city_season_easter_egg_model_table).value) + 0xC));
     if ((temp_r31 != NULL) && (((VObj_18_26a62c *)(arg0))->m8(lbl_805DBC44[0], lbl_805DBC68[0]) != 0)) {
-        TObjFish::set_global_param((int) (*(s32 *)((s8 *)(&(*(RecoveredGlobal_80183FC0_lbl_8050DC50 *)&city_season_xmas_model_table).value) + 0xC)));
+        set_current_texture_list((GinjaTextureList *)((*(s32 *)((s8 *)(&(*(RecoveredGlobal_80183FC0_lbl_8050DC50 *)&city_season_xmas_model_table).value) + 0xC))));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         ((s32 (*)(int, int))rotate_matrix_y)(0, this->rotation_y);
@@ -1049,7 +1050,7 @@ void TObjCity_Season_XmasWreath::render() {
     u8 *temp_r31;
     temp_r31 = (u8 *)(*(u8 **)((s8 *)(&(*(RecoveredGlobal_8018417C_lbl_8050DC38 *)&city_season_easter_egg_model_table).value) + 8));
     if ((temp_r31 != NULL) && (((VObj_18_26a62c *)(arg0))->m8(lbl_805DBC6C[0], lbl_805DBC4C[0]) != 0)) {
-        TObjFish::set_global_param((int) (*(s32 *)((s8 *)(&(*(RecoveredGlobal_8018417C_lbl_8050DC50 *)&city_season_xmas_model_table).value) + 8)));
+        set_current_texture_list((GinjaTextureList *)((*(s32 *)((s8 *)(&(*(RecoveredGlobal_8018417C_lbl_8050DC50 *)&city_season_xmas_model_table).value) + 8))));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         ((s32 (*)(int, int))rotate_matrix_y)(0, this->rotation_y);
@@ -1147,7 +1148,7 @@ void TObjCity_Season_XmasTree::render() {
 
     temp_r3 = ((u8 * (*)())get_anim_frame__13TUnk_804B5E48Fv)();
     if ((temp_r3 != NULL) && (((VObj_80184314_80184210 *)arg0)->m8(lbl_805DBC44[0], lbl_805DBC40[0]) != 0)) {
-        TObjFish::set_global_param(*(s32 *)((s8 *)city_season_xmas_model_table + 8));
+        set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)city_season_xmas_model_table + 8)));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);
@@ -1255,7 +1256,7 @@ void TObjCity_Season_ValentineHeart::render() {
 
     temp_r3 = ((u8 * (*)(void *))get_anim_frame__13TUnk_804B5E48Fv)(arg0);
     if ((temp_r3 != NULL) && (((VObj_8018455c_80184408*)arg0)->m8(lbl_805DBC44[0], lbl_805DBC40[0]) != 0)) {
-        TObjFish::set_global_param(*(s32 *)((s8 *)city_season_xmas_model_table + 4));
+        set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)city_season_xmas_model_table + 4)));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);
@@ -1357,7 +1358,7 @@ void TObjCity_Season_EasterEgg::render() {
 
     temp_r3 = ((u8 * (*)(void *))get_anim_frame__13TUnk_804B5E48Fv)(arg0);
     if ((temp_r3 != NULL) && (((VObj_8018455c_80184620*)arg0)->m8(lbl_805DBC44[0], lbl_805DBC40[0]) != 0)) {
-        TObjFish::set_global_param(city_season_xmas_model_table[0]);
+        set_current_texture_list((GinjaTextureList *)(city_season_xmas_model_table[0]));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);

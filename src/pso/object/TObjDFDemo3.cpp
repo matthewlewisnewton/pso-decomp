@@ -1,4 +1,7 @@
+#include "pso/misc/ParticleFactory.h"
 #include "pso/system/ModelNodePositionCapture.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/TObject.h"
 #include "pso/object/TObjMotion.h"
@@ -20,9 +23,9 @@
 #pragma readonly_strings on
 
 extern "C" {
-void *spawn_particle_effect(void *pos, s32 id);
+
 void *create_particle_emitter(void *pos, s32 id);
-s32 play_sound_effect(s32, void *, s32, s32);
+
 void run_task__11TObjDFDemo3Fv(u8 *arg0);
 s32 rotate_matrix_y(s32, s32);
 s32 push_matrix();
@@ -101,7 +104,7 @@ void TObjDFDemo3::render() {
     set_motion_packed_rotation();
     post_translate_matrix((u8 *)&this->m_a0);
     rotate_matrix_y(0, this->m_ac);
-    TObjFish::set_global_param(this->m_98);
+    set_current_texture_list((GinjaTextureList *)(this->m_98));
     ((ModelNodePositionCapture *)(this->m_b8))->install();
     set_chunk_render_flags(1);
     draw_model_motion((void *)(*(s32 *)&this->m_94), (void *)(*(s32 *)&this->m_9c), *(f32 *)&this->_padB4);
@@ -142,14 +145,14 @@ void TObjDFDemo3::run_task() {
         }
     }
     if ((s32) this->m_b0 == 0x86) {
-        temp_r3 = (u32)spawn_particle_effect(&this->m_a0, 0x9B);
+        temp_r3 = (u32)spawn_particle_effect((const Vec *)(&this->m_a0), 0x9B);
         if (temp_r3 != 0U) {
             ((TParticleCtrl *)temp_r3)->set_flags(0x40);
         }
     }
     temp_r0 = this->m_b0;
     if ((temp_r0 == 0x28) || (temp_r0 == 0x3C)) {
-        play_sound_effect(0x4003D03A, (u8 *)&this->m_a0, 0, 1);
+        play_sound_effect(0x4003D03A, (const Vec *)((u8 *)&this->m_a0), 0, 1);
     }
     if ((*(f32 *)&this->_padB4 += 1.0f) > 119.0f) {
         *(f32 *)&this->_padB4 = 119.0f;

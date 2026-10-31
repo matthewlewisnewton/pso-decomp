@@ -3,6 +3,9 @@
 #include "pso/misc/MaterialOpacityFade.h"
 #include "pso/misc/RenderFadeState.h"
 #include "pso/enemy/BattleParameters.h"
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/enemy/EnemyTargetCandidate.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -156,9 +159,9 @@ struct Outer_800D2900 { u8 pad[0x42c]; Inner_800D2900 *p42c; };
 
 extern "C" {
 f32 random_ratio__9TObjCharaFv(s32);
-s32 spawn_particle_effect(void *, int);
+
 u8 * TObjGyaranzoMissile__sub_800D4668(void *, void *, void *, s32, s32);
-s32 play_sound_effect(int, void *, int, int);
+
 s32 render_anim_model_at_pos__15TObjEnemyCustomFv(void *);
 void * __nw__7TObjectFUl(int);
 extern const f32 lbl_805DA268;
@@ -451,41 +454,41 @@ void spawn_missile_volley__19TObjGyaranzoMissileFPv(u8 *arg0) {
         V->m63(0x10, &pos);
         NEW(d1, ids[0]);
         NEW(d2, ids[1]);
-        spawn_particle_effect(&pos, 0xF3);
+        spawn_particle_effect((const Vec *)(&pos), 0xF3);
         V->m63(0x14, &pos);
         NEW(d3, ids[0]);
         NEW(d4, ids[1]);
-        spawn_particle_effect(&pos, 0xF3);
+        spawn_particle_effect((const Vec *)(&pos), 0xF3);
         if (*(s32 *)((s8 *)arg0 + 0x3A8) >= 1) {
             V->m63(0x11, &pos);
             NEW(d1, ids[0]);
             NEW(d2, ids[1]);
-            spawn_particle_effect(&pos, 0xF3);
+            spawn_particle_effect((const Vec *)(&pos), 0xF3);
             V->m63(0x15, &pos);
             NEW(d3, ids[2]);
             NEW(d4, ids[3]);
-            spawn_particle_effect(&pos, 0xF3);
+            spawn_particle_effect((const Vec *)(&pos), 0xF3);
         }
         if (*(s32 *)((s8 *)arg0 + 0x3A8) >= 2) {
             V->m63(0x12, &pos);
             NEW(d1, ids[0]);
             NEW(d2, ids[1]);
-            spawn_particle_effect(&pos, 0xF3);
+            spawn_particle_effect((const Vec *)(&pos), 0xF3);
             V->m63(0x16, &pos);
             NEW(d3, ids[2]);
             NEW(d4, ids[3]);
-            spawn_particle_effect(&pos, 0xF3);
+            spawn_particle_effect((const Vec *)(&pos), 0xF3);
             V->m63(0x13, &pos);
             NEW(d1, ids[2]);
             NEW(d2, ids[3]);
-            spawn_particle_effect(&pos, 0xF3);
+            spawn_particle_effect((const Vec *)(&pos), 0xF3);
             V->m63(0x17, &pos);
             NEW(d3, ids[2]);
             NEW(d4, ids[3]);
-            spawn_particle_effect(&pos, 0xF3);
+            spawn_particle_effect((const Vec *)(&pos), 0xF3);
         }
     }
-    play_sound_effect(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003AD0A)), arg0 + 0x38, 0, 0);
+    play_sound_effect((s32)(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003AD0A))), (const Vec *)(arg0 + 0x38), 0, 0);
 }
 }
 #pragma pool_data reset
@@ -605,7 +608,6 @@ void enemy_turn_toward_dest(void *, s32);
 void move_along_ground_avoiding_walls__15TObjEnemyCustomF3Vecff(void *, Vec_800D3314, void *, f32, f32);
 #define render_anim_model_at_pos__15TObjEnemyCustomFv ((void (*)(void *))render_anim_model_at_pos__15TObjEnemyCustomFv)
 u8 *find_active_entity_by_id(u16);
-#define play_sound_effect ((s32 (*)(void *, void *, int, int))play_sound_effect)
 extern s32 actor_frame_tick;
 void TObjPlayer__sub_800D3314(u8 *arg0);
 #define spawn_missile_volley__19TObjGyaranzoMissileFPv ((s32 (*)())spawn_missile_volley__19TObjGyaranzoMissileFPv)
@@ -1098,8 +1100,8 @@ void TObjEneGyaranzo::spawn_missile() {
     if (temp_r3 != NULL) {
         TObjGyaranzoMissile__sub_800D4668(temp_r3, this, &launch_position, rotation_y, temp_r31);
     }
-    spawn_particle_effect((void *)((s32) &launch_position), 0xF3);
-    play_sound_effect((void *)(((TObjEnemy *)(this))->remap_sound_for_area((s32)(0x4003B20D))), &position, 0, 0);
+    spawn_particle_effect((const Vec *)(((s32) &launch_position)), 0xF3);
+    play_sound_effect((s32)((void *)(((TObjEnemy *)(this))->remap_sound_for_area((s32)(0x4003B20D)))), &position, 0, 0);
 }
 #pragma pop
 
@@ -1236,7 +1238,7 @@ void TObjPlayer::update_death_breakup() {
             TBoss3Volopt::create_breakup_mdl((s32)gyaranzo_breakup_model_obj, (s32)gyaranzo_death_breakup_params, (s32)this->texlist, (s32)arg0->v2FC, (s32)this->rotation_y);
             ((TObjEnemy *)arg0)->send_entity_set_flags();
             ((TObjPlayer *)(arg0->v2FC))->trigger_dell_biter_events();
-            play_sound_effect((void *)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003AD10)), arg0->pos, 0, 0);
+            play_sound_effect((s32)((void *)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003AD10))), (const Vec *)(arg0->pos), 0, 0);
             queue_destruction__7TObjectFv(arg0);
         }
         break;
@@ -1311,7 +1313,7 @@ void TObjEneGyaranzo::vfunc_62() {
       ((TObjEneGyaranzo *)arg0)->sub_800D2900();
     }
     this->referenceHp = this->hp;
-    play_sound_effect((void *) ((TObjEnemy *)((void *) arg0))->remap_sound_for_area((s32)(0x4003AD0F)), (u8 *)&this->position, 0, 0);
+    play_sound_effect((s32)((void *) ((TObjEnemy *)((void *) arg0))->remap_sound_for_area((s32)(0x4003AD0F))), (const Vec *)((u8 *)&this->position), 0, 0);
     if (!((this->m_388) & 0x40000))
     {
       ((TObjEnemyCustom *)arg0)->set_state(4);
@@ -1341,7 +1343,7 @@ void TObjPlayer__sub_800D3314(u8 *arg0) {
             *(f32 *)((s8 *)arg0 + 0x3A0) = lbl_805DA270;
             (*(s32 *)((s8 *)arg0 + 0x3B4))++;
         }
-        play_sound_effect((void *)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003B209)))), arg0 + 0x38, 0, 0);
+        play_sound_effect((s32)((void *)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003B209))))), (const Vec *)(arg0 + 0x38), 0, 0);
         if (*(u8 **)((s8 *)arg0 + 0x2A8) != NULL) {
             VecCopy((Vec *)(arg0 + 0x29C), (const Vec *)(*(u8 **)((s8 *)arg0 + 0x2A8) + 0x2FC));
         }
@@ -1370,9 +1372,9 @@ void TObjPlayer__sub_800D3314(u8 *arg0) {
         if (!(actor_frame_tick & 3)) {
             render_anim_model_at_pos__15TObjEnemyCustomFv(arg0);
             ((VObj_800D3314 *)arg0)->m63(0x1F, &v);
-            spawn_particle_effect(&v, 0xF3);
+            spawn_particle_effect((const Vec *)(&v), 0xF3);
             ((VObj_800D3314 *)arg0)->m63(0x27, &v);
-            spawn_particle_effect(&v, 0xF3);
+            spawn_particle_effect((const Vec *)(&v), 0xF3);
         }
         ((TObjCollidable *)(arg0))->update_collisions();
         if (*(u32 *)((s8 *)(*(u8 **)((s8 *)arg0 + 0xA4)) + 0x18) & 0x380000) {
@@ -1414,7 +1416,7 @@ void TObjEneGyaranzo::render() {
                 }
             }
             TObjPlayer__sub_800D2E8C((Ene_800D2E8C *) (this));
-            TObjFish::set_global_param(this->texlist);
+            set_current_texture_list((GinjaTextureList *)(this->texlist));
             select_actor_lighting(this);
             TObjPlayer::toggle_particle_effect();
             push_matrix();

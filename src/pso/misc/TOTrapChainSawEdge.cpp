@@ -1,4 +1,6 @@
 #include "pso/player/demo_mode.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 #include "pso/protocol/protocol_types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "types.h"
@@ -192,7 +194,7 @@ s32 TOTrapAncient02R__sub_80154D78(void *);
 void free_collision_body_parts(void *);
 s32 init_collision_body_parts(void *, int, int);
 void *get_player_by_client_id(s32 i);
-s32 play_persistent_sound(void *, void *, void *, int, int);
+
 u8 is_current_floor_switch_set(u16);
 void __dl__7TObjectFPv(void *);
 void * __nw__7TObjectFUl(int);
@@ -314,7 +316,7 @@ void TOTrapChainSawEdge::vfunc_16() {
 }
 
 void TOTrapChainSawEdge::vfunc_25() {
-    TObjFish::set_global_param((s32)(*(void **)((s8 *)this + 0x24)));
+    set_current_texture_list((GinjaTextureList *)((*(void **)((s8 *)this + 0x24))));
     push_matrix();
     post_translate_matrix((void *)((char *)this + 56));
     push_matrix();
@@ -416,7 +418,7 @@ void TOTrapChainSawKey::vfunc_27() {  }
 int TOTrapChainSawKey::check_player_contact() { if (*(int*)((char*)this + 0xf0) != 1) { check_player_contact__14TOTrapChainSawFv(this); } }
 
 void TOTrapChainSawKey::vfunc_25() {
-    TObjFish::set_global_param((s32)(*(void **)((s8 *)this + 0x24)));
+    set_current_texture_list((GinjaTextureList *)((*(void **)((s8 *)this + 0x24))));
     push_matrix();
     post_translate_matrix((void *)((char *)this + 56));
     push_matrix();
@@ -449,9 +451,9 @@ void TOTrapChainSawKey::update_state() {
     if (*(f32 *)((s8 *)arg0 + 0x104) > (f32) (u32) (*(s32 *)((s8 *)(*(u8 **)((s8 *)arg0 + 0x100)) + 4) - 1)) {
         *(f32 *)((s8 *)arg0 + 0x104) = (f32) (0.0f);
     }
-    play_persistent_sound((void *) (((s32 (*)(void *, int))get_area_table_value__17TOTrapChainSawKeyFii)(arg0, 2)), arg0, arg0 + 0x38, 0, 0);
+    play_persistent_sound((s32)((void *) (((s32 (*)(void *, int))get_area_table_value__17TOTrapChainSawKeyFii)(arg0, 2))), (const void *)(arg0), (const Vec *)(arg0 + 0x38), 0, 0);
     if ((s32) *(s32 *)((s8 *)arg0 + 0xF0) == 1) {
-        play_persistent_sound((void *) (((s32 (*)(void *, int))get_area_table_value__17TOTrapChainSawKeyFii)(arg0, 1)), arg0, arg0 + 0x38, 0, 0);
+        play_persistent_sound((s32)((void *) (((s32 (*)(void *, int))get_area_table_value__17TOTrapChainSawKeyFii)(arg0, 1))), (const void *)(arg0), (const Vec *)(arg0 + 0x38), 0, 0);
     }
 }
 
@@ -539,7 +541,7 @@ void TOTrapChainSawDamage::vfunc_27() {
     if (((s32) *(s32 *)((s8 *)((u8 *)this) + 0x100) == 0xA) && ((p = *(void **)((s8 *)((u8 *)this) + 0x108)) != NULL)) {
         TOTrapChainSawDamage__sub_802C9C00((u8 *)p, 1);
     }
-    ((s32 (*)(s32, void *, void *, int, int))play_persistent_sound)(((s32 (*)(void *, int))get_area_table_value__17TOTrapChainSawKeyFii)(this, 0), this, (void *) (((u8 *)this) + 0x38), 0, 0);
+    play_persistent_sound((s32)(((s32 (*)(void *, int))get_area_table_value__17TOTrapChainSawKeyFii)(this, 0)), (const void *)(this), (const Vec *)((void *) (((u8 *)this) + 0x38)), 0, 0);
 }
 #pragma pop
 
@@ -554,7 +556,7 @@ void TOTrapChainSawDamage::vfunc_14() {
 }
 
 void TOTrapChainSawDamage::vfunc_25() {
-    TObjFish::set_global_param((s32)(*(void **)((s8 *)this + 0x24)));
+    set_current_texture_list((GinjaTextureList *)((*(void **)((s8 *)this + 0x24))));
     push_matrix();
     post_translate_matrix((void *)((char *)this + 56));
     push_matrix();

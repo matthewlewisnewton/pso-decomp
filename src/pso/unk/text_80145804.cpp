@@ -1,4 +1,5 @@
 #include "pso/system/GinjaTextureInput.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/unk/text_80144AC8.h"
 #include "pso/unk/text_80145804.h"
@@ -91,7 +92,7 @@ void load_menu_font(void) {
     lbl_805D56B4[1] = 0x3FFF;
     lbl_805D56B4[2] = 0x5FFF;
     lbl_805D56B4[3] = 0x7FFF;
-    TObjFish::set_global_param((s32)menu_font_texture_list);
+    set_current_texture_list((GinjaTextureList *)(menu_font_texture_list));
     for (i = 0; i < 2; i++) {
         TLanguage::set_entry_index(i, 0);
     }

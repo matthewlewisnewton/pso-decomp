@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/unk/text_80076E84.h"
 #include "pso/misc/TWindowSubSymbolChat_80076F88.h"
@@ -44,7 +45,7 @@ s32 is_initialized__20TWindowSubSymbolChatFv();
 int get_instance__20TWindowSubSymbolChatFv(void*);
 s32 strncpy(void *, void *, int);
 extern s32 local_client_id;
-s32 play_sound_effect(s32, u32, s16, s32);
+
 extern RecoveredGlobal_800773BC_lbl_80438830 symbol_chat_sound_ids;
 E_80077480 *get_character_save_record(u32 id);
 
@@ -191,7 +192,7 @@ void TWindowSubSymbolChat::update_selected_symbol() {
 typedef char RecoveredGlobal_800773BC_lbl_80438830_size[sizeof(RecoveredGlobal_800773BC_lbl_80438830) == 0x24 ? 1 : -1];
 void TWindowSubSymbolChat::play_symbol_sound(s32 arg0) {
     if ((arg0 >= 0) && (arg0 < 9)) {
-        play_sound_effect(*(s32 *)((s8 *)&symbol_chat_sound_ids.value + (arg0 * 4)), 0U, 0, 0);
+        play_sound_effect((s32)(*(s32 *)((s8 *)&symbol_chat_sound_ids.value + (arg0 * 4))), (const Vec *)(0U), 0, 0);
     }
 }
 

@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/TMainTask.h"
 #include "pso/object/TObjMotion.h"
@@ -69,8 +70,6 @@ s32 rotate_matrix_y(int, int);
 void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
 void queue_destruction__7TObjectFv(void *);
-s32 set_global_param__8TObjFishFl();
-
 
 extern "C" u8 lbl_8047A0A8[];
 extern "C" u8 lbl_8047A0C4[];
@@ -272,8 +271,7 @@ void draw_node_tree__18TObjLaboDesignBaseFiPv(s32 arg0, u8 *arg1) {
 }
 
 void render__18TObjLaboDesignBaseFPv(u8 *arg0) {
-    TObjFish__sub_8001EDB0((int) (*(s32 *)((s8 *)arg0 + 0xAC)), 0);
-    set_global_param__8TObjFishFl();
+    set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0((int) (*(s32 *)((s8 *)arg0 + 0xAC)), 0)));
     push_matrix();
     post_translate_matrix(arg0 + 0x38);
     rotate_matrix_y(0, (int) (*(s32 *)((s8 *)arg0 + 0x60)));

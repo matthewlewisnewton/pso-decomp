@@ -1,4 +1,5 @@
 #include "pso/player/demo_mode.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include <stdlib.h>
@@ -279,7 +280,7 @@ void TOKurage::render() {
         push_matrix();
         post_translate_matrix(&position.x);
         rotate_matrix_zyx(NULL, rotation_x, rotation_y, rotation_z);
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         switch (state) {
         case 4:
             saved_model_render_flags = model_render_flags;

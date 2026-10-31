@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/NinjaTypes.h"
 void set_constant_material(const NJS_ARGB *color);
 #include "types.h"
@@ -165,7 +166,7 @@ void TObjPlayer::draw_area_chunk_objects() {
     s32 i;
     r31 = ((s32)get_bml_model((s32)(TBoss4Uro::get_instance_count()), 8));
     TObjPlayer__sub_80052390(lbl_805DF148);
-    TObjFish::set_global_param(falz_zako_texture_list);
+    set_current_texture_list((GinjaTextureList *)(falz_zako_texture_list));
     for (i = 0; i < t->count; i++, p++) {
         push_matrix();
         post_translate_matrix(p);
