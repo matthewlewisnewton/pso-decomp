@@ -488,7 +488,6 @@ pso/enemy/TObjEneMe1GiGueMissile_802A4628.cpp
 pso/enemy/TObjEneMe1GiGue_802CDB1C.cpp
 pso/enemy/TObjEneMe3Shinowa.cpp
 pso/enemy/TObjEneMe3SinowZoa.cpp
-pso/misc/MaterialOpacityFade.cpp
 pso/enemy/TObjEneMe3SinowZoa_80316690.cpp
 pso/enemy/TObjEneMe3Stelth.cpp
 pso/enemy/TObjEneMe3StelthReal.cpp
@@ -831,6 +830,7 @@ pso/misc/CreationMotion.cpp
 pso/misc/EndingSceneTables.cpp
 pso/misc/GbaDownloadRuntime.cpp
 pso/misc/KeyboardCharacterMaps.cpp
+pso/misc/MaterialOpacityFade.cpp
 pso/misc/RenderFadeState.cpp
 pso/misc/ShopToolStock.cpp
 pso/misc/ShopWeaponStock.cpp
@@ -840,6 +840,7 @@ pso/misc/TBGLightningCtrl.cpp
 pso/misc/TBreakUpMdl.cpp
 pso/misc/TButterfly.cpp
 pso/misc/TButterfly_8017F364.cpp
+pso/misc/TCameraCtrl.cpp
 pso/misc/TCameraCtrl_80067654.cpp
 pso/misc/TCameraCtrl_8006782C.cpp
 pso/misc/TCameraCtrl_80067C88.cpp
@@ -847,7 +848,6 @@ pso/misc/TCameraCtrl_80067CE8.cpp
 pso/misc/TCameraCtrl_80067F44.cpp
 pso/misc/TCameraCtrl_80067F8C.cpp
 pso/misc/TCameraCtrl_80067FC0.cpp
-pso/misc/TCameraCtrl_8006A03C.cpp
 pso/misc/TCameraCtrl_8006B3D8.cpp
 pso/misc/TCameraCtrl_8006BA68.cpp
 pso/misc/TCameraCtrl_8006BCD8.cpp
