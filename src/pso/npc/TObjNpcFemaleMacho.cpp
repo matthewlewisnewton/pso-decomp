@@ -45,7 +45,7 @@ u8 *TObjNpcFemaleMacho__ct(u8 *arg0, s32 arg1, s32 arg2) {
     *(s32 **)((s8 *)arg0 + 0x18) = &(*(RecoveredGlobal_8014A5E8___vt__18TObjNpcFemaleMacho *)&__vt__18TObjNpcFemaleMacho).value;
     *(s32 *)((s8 *)arg0 + 0) = (s32) TObjNpcFemaleMacho__name;
     ((TObjNpcFemaleMacho *)(arg0))->apply_set_data((void *)arg2);
-    ((TObjPlayer *)arg0)->init_position_vectors();
+    ((TObjChara *)arg0)->initialize_position_copies();
     *(s32 *)((s8 *)arg0 + 0x34) = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)TObjNpcFemaleMacho__lobby_resource + 0x42C)) + 8);
     ((TObjNpcFemaleMacho *)arg0)->texlist = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)TObjNpcFemaleMacho__lobby_resource + 0x42C)) + 0xC);
     ((TObjNpcBase *)arg0)->setup_common();

@@ -67,7 +67,7 @@ u8 *TObjNpcHHM00__ct(u8 *player, s32 arg1, s32 arg2) {
     *(s32 **)((s8 *)player + 0x18) = &(*(RecoveredGlobal_8014B1F4___vt__12TObjNpcHHM00 *)&__vt__12TObjNpcHHM00).value;
     *(s32 *)((s8 *)player + 0) = (s32) TObjNpcHHM00__name;
     ((TObjNpcHHM00 *)(player))->apply_set_data((void *)arg2);
-    ((TObjPlayer *)player)->init_position_vectors();
+    ((TObjChara *)player)->initialize_position_copies();
     *(s32 *)((s8 *)player + 0x34) = (s32) *(*(s32 * *)&TObjNpcHHM00__model_object);
     ((TObjNpcHHM00 *)player)->texlist = (s32) (*(s32 *)&TObjNpcHHM00__body_texture_gvm_handle);
     ((TObjNpcBase *)player)->setup_common();

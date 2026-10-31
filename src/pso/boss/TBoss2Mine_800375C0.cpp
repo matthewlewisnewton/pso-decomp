@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/math/VectorNormalize.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEnemy.h"
@@ -643,7 +644,7 @@ void TBoss2Mine::vfunc_109() {  }
 
 void TBoss2Mine::render() {
     Mine_80038200 *self = (Mine_80038200 *)this;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         self->m108();
         return;
     }
@@ -1180,7 +1181,7 @@ void TBoss2Mine::vfunc_63() { if (*(short*)((char*)this + 0x326) != 4) { transit
 void TBoss2Mine::vfunc_28() {  }
 void TBoss2Mine::run_task() {
     u8 *arg0 = (u8 *)this;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->vfunc_109();
         return;
     }

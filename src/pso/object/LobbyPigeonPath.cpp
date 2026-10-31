@@ -1,9 +1,11 @@
 #include "pso/animation/MotionContext.h"
+#include "pso/map/CsnGroundQuery.h"
+#include "pso/player/demo_mode.h"
 #pragma push
 
 #include "types.h"
-#include "pso/system/BmlResourceClass.h"
 #include "pso/npc/NpcModelRegistry.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/TMainTask.h"
 #include "pso/system/vector.h"
@@ -194,7 +196,6 @@ struct Obj_802C22A4 {
 struct PigeonMovement { s32 motion; f32 pathSpeed, animationSpeed, lookAhead; s32 turnStep; };
 
 extern "C" {
-Hit_802C22A4 *csnVecterUnder(Vec_802C22A4 *, s32);
 void vec3_add_to(void *, void *);
 u8 *TObjPathObj__ct(u8 *arg0, s32 arg1, s32 arg2);
 
@@ -551,7 +552,7 @@ extern u32 lobby_kamome_texture_gvm_handle;
 #pragma fp_contract on
 void TUnk_804E0898::vfunc_14() {
     LobbyPigeon *self = (LobbyPigeon *)this;
-  if (TObjPlayer::check_demo_mode() == 1 &&
+  if (check_demo_mode() == 1 &&
       TMainTask::get_render_pass() == 0)
     draw_line_strip__10TObjPlayerFPviif((u8 *)(self), (s32)(self->model),
                                         (s32)(self->path), (1.0f));
@@ -784,7 +785,7 @@ s32 TUnk_804E08D4::sub_802C1660() {
 
 void TUnk_804E08D4::vfunc_14() {
     u8 *arg0 = (u8 *)this;
-    if ((TObjPlayer::check_demo_mode() == 1) && (TMainTask::get_render_pass() == 0)) {
+    if ((check_demo_mode() == 1) && (TMainTask::get_render_pass() == 0)) {
         ((s32 (*)(void *, s32, s32, f32))draw_line_strip__10TObjPlayerFPviif)(arg0, *(s32 *)&this->unk_98, *(s32 *)((s8 *)arg0 + 0xA0), (1.0f));
     }
     TObjFish::set_global_param((*(s32 *)&lobby_kamome_texture_gvm_handle));
@@ -979,7 +980,7 @@ s32 TUnk_804E0910::sub_802C1E34() {
 
 void TUnk_804E0910::vfunc_14() {
     u8 *arg0 = (u8 *)this;
-    if ((TObjPlayer::check_demo_mode() == 1) && (TMainTask::get_render_pass() == 0)) {
+    if ((check_demo_mode() == 1) && (TMainTask::get_render_pass() == 0)) {
         ((s32 (*)(void *, s32, s32, f32))draw_line_strip__10TObjPlayerFPviif)(arg0, *(s32 *)&this->unk_98, *(s32 *)((s8 *)arg0 + 0xA0), (1.0f));
     }
     TObjFish::set_global_param((*(s32 *)&lobby_pigeon_texture_gvm));
@@ -1106,7 +1107,7 @@ s32 TUnk_804E094C::update_path_follow_rotation(void *, f32) {
         Hit_802C22A4 *hit;
         vec3_add_to(&p, &self->pos);
         p.y += (1e+04f);
-        hit = csnVecterUnder(&p, 0x16EF);
+        hit = (Hit_802C22A4 *)csnVecterUnder((const Vec *)&p, 0x16EF);
         if (hit != NULL) {
             self->pos.y = hit->n->y;
         }
@@ -1190,7 +1191,7 @@ s32 TUnk_804E094C::sub_802C2548() {
 
 void TUnk_804E094C::vfunc_14() {
     u8 *arg0 = (u8 *)this;
-    if ((TObjPlayer::check_demo_mode() == 1) && (TMainTask::get_render_pass() == 0)) {
+    if ((check_demo_mode() == 1) && (TMainTask::get_render_pass() == 0)) {
         ((s32 (*)(void *, s32, s32, f32))draw_line_strip__10TObjPlayerFPviif)(arg0, *(s32 *)&this->unk_98, *(s32 *)((s8 *)arg0 + 0xA0), (1.0f));
     }
     TObjFish::set_global_param((*(s32 *)&jungle_ebi_texture_gvm_handle));
@@ -1375,7 +1376,7 @@ s32 TUnk_804E0988::sub_802C2C48() {
 
 void TUnk_804E0988::vfunc_14() {
     u8 *arg0 = (u8 *)this;
-    if ((TObjPlayer::check_demo_mode() == 1) && (TMainTask::get_render_pass() == 0)) {
+    if ((check_demo_mode() == 1) && (TMainTask::get_render_pass() == 0)) {
         ((s32 (*)(void *, s32, s32, f32))draw_line_strip__10TObjPlayerFPviif)(arg0, *(s32 *)&this->unk_98, *(s32 *)((s8 *)arg0 + 0xA0), (1.0f));
     }
     TObjFish::set_global_param(seabed_dolphin_texture_handle);
