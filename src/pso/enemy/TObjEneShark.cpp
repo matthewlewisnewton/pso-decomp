@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/enemy/BattleParameters.h"
+struct NJS_OBJECT;
 #include "pso/unk/TUnk_80494968.h"
 #include "pso/misc/GroundEffects.h"
 #include "pso/misc/PositionSoundEffects.h"
@@ -201,7 +202,7 @@ void TObjEneShark::vfunc_83() {
     }
 }
 
-void TObjEneShark::update_node_particle_state() {
+void TObjEneShark::update_node_particle_state(NJS_OBJECT *) {
     switch (shark_render_node_index) {
     case 0x10:
     case 0x1A:
@@ -274,7 +275,7 @@ void TObjEneShark::render() {
         }
         TObjPlayer::toggle_particle_effect();
         shark_render_node_index = 0;
-        set_chunk_model_node_callback((s32)((void *) TObjEneShark::update_node_particle_state));
+        set_chunk_model_node_callback(TObjEneShark::update_node_particle_state);
         if (m_390 == 1) {
             if (appearance_fade.has_visible_opacity() != 0) {
                 saved_model_render_flags = model_render_flags;

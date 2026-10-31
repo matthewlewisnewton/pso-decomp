@@ -36,7 +36,7 @@ typedef char SlimeTailSize[sizeof(TObjEneSlimeTailAttack) == 0x3CC ? 1 : -1];
 struct TObjEneSlimeWaterBomb;
 extern "C" {
 void get_slime_tail_pose(SlimeTailPose *dst);
-void capture_slime_tail_node(void);
+void capture_slime_tail_node(NJS_OBJECT *);
 void reset_slime_tail_node_index(void);
 void sub_800E841C__22TObjEneSlimeTailAttackFv(u8 *arg0);
 void render__22TObjEneSlimeTailAttackFv(u8 *arg0);

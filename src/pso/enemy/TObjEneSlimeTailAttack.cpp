@@ -321,7 +321,7 @@ void *spawn_particle_effect(void *pos, s32 id);
 void *create_particle_emitter(void *pos, s32 id);
 void get_slime_tail_pose(SlimeTailPose *arg0);
 SlimeTailPose * copy_slime_tail_pose(SlimeTailPose *dst, SlimeTailPose *src);
-void capture_slime_tail_node(void);
+void capture_slime_tail_node(NJS_OBJECT *);
 void reset_slime_tail_node_index(void);
 s16 check_player_field_7cc__15TObjEneSlimeOneFv();
 void draw_blob_shadow(s32 arg0);
@@ -722,7 +722,7 @@ void TObjEneSlime::run_task() {
     if ((check_demo_mode() == 0) && (has_no_active_slot((O_800EB8DC *)this) != 0)) {
         sp8 = 0x800;
         send_6x0A_enemy_state(&sp8);
-        exchange_object_state((s32)&sp8, (s16)0);
+        exchange_object_state(&sp8, (s16)0);
         ((VObj_800EBB18_800EB9F0 *)this)->m77(&sp8);
         send_entity_set_flags();
         queue_destruction__7TObjectFv(this);
@@ -933,10 +933,10 @@ TObjEneSlimeOne::TObjEneSlimeOne(TObject *parent, TObjEneSlime *owner, void *set
     m_name = TObjEneSlimeOne_class_name;
     add_flags_2e4(2);
     apply_set_data(set_data);
-    if (exchange_object_state((s32)&state, 1) != 0) {
+    if (exchange_object_state(&state, 1) != 0) {
         state.flags = 0;
         state.unknown6 = 0;
-        exchange_object_state((s32)&state, 0);
+        exchange_object_state(&state, 0);
     }
     slime_group = owner;
     initialize_slime_instance_state();
@@ -954,10 +954,10 @@ TObjEneSlimeOne::TObjEneSlimeOne(TObject *parent, TObjEneSlime *owner, void *set
     m_name = TObjEneSlimeOne_class_name;
     add_flags_2e4(2);
     apply_set_data(set_data);
-    if (exchange_object_state((s32)&state, 1) != 0) {
+    if (exchange_object_state(&state, 1) != 0) {
         state.flags = 0;
         state.unknown6 = 0;
-        exchange_object_state((s32)&state, 0);
+        exchange_object_state(&state, 0);
     }
     slime_group = owner;
     VecCopy(&m_3dc, velocity);
@@ -1054,7 +1054,7 @@ void TObjEneSlimeOne::run_task() {
             (this->*a)();
         }
         update_prev_position();
-        ((TObjPlayer *)this)->update_collisions();
+        ((TObjCollidable *)this)->update_collisions();
         if ((s32)this->m_3ec != 0) {
             submit_cursor_candidate(this, -1);
         }
@@ -2297,7 +2297,7 @@ void TObjEneSlimeTailAttack::sub_800E841C() {
     TObjFish::set_global_param((int) (texlist));
     if (active != 0) {
         reset_slime_tail_node_index();
-        set_chunk_model_node_callback((s32)capture_slime_tail_node);
+        set_chunk_model_node_callback(capture_slime_tail_node);
         ((TObjMotion *)arg0)->draw();
         set_chunk_model_node_callback(NULL);
         get_slime_tail_pose(&pose);
@@ -2306,7 +2306,7 @@ void TObjEneSlimeTailAttack::sub_800E841C() {
         TObjPlayer__sub_800EBE48((f32) fade);
         scale_matrix_vec3(0, (u8 *)&stretch_scale);
         reset_slime_tail_node_index();
-        set_chunk_model_node_callback((s32)capture_slime_tail_node);
+        set_chunk_model_node_callback(capture_slime_tail_node);
         ((TObjMotion *)arg0)->draw();
         set_chunk_model_node_callback(NULL);
         get_slime_tail_pose(&pose);
@@ -2394,7 +2394,7 @@ void reset_slime_tail_node_index(void) { lbl_805D52B4 = 0; }
 #pragma inline_depth(1)
 #pragma auto_inline off
 #pragma dont_inline off
-void capture_slime_tail_node(void) {
+void capture_slime_tail_node(NJS_OBJECT *) {
     if ((s32) (*(s32 *)&lbl_805D52B4) == 7) {
         transform_to_view__11TCameraCtrlFii((s32) &slime_tail_attack_zero_vec, (s32) &lbl_80501010.attachment);
     }
