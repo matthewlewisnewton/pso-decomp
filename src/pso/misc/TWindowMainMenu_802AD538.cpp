@@ -157,7 +157,7 @@ void draw_item_labels__15TWindowMainMenuFv(Item_802AD538 *p, Win_802AD538 *w) {
     f32 a;
 
     if (((TWindowMainMenu *)p)->is_item_active() != 0 && p->x10 > 0) {
-        scale = lbl_805DE138 / (lbl_805DE13C + w->x38);
+        scale = -1.0f / (0.299f + w->x38);
         uv = &main_menu_label_uv_table[p->x11];
         begin_render__20TWindowSubStatusDispFl();
         switch (p->x12) {
@@ -167,11 +167,11 @@ void draw_item_labels__15TWindowMainMenuFv(Item_802AD538 *p, Win_802AD538 *w) {
                 rgb = 0x686868;
             }
             if (p->x10 >= 4) {
-                a = lbl_805DE140;
+                a = 1.0f;
             } else {
-                a = p->x10 * lbl_805DE144;
+                a = (f32)p->x10 / 4.0f;
             }
-            color = rgb | ((s32)(lbl_805DE148 * a) << 24);
+            color = rgb | ((s32)(255.0f * a) << 24);
             break;
         case 1:
             TLanguage::set_entry_index(2, 0x4C);
@@ -259,7 +259,7 @@ void TWindowMainMenu::update_item_tween() {
 void TWindowMainMenu::init_color() {
   int new_var;
   char *new_var2;
-  *((float *) (((char *) this) + 0xc)) = (*((float *) (((char *) this) + 0x8)) = (*((float *) (((char *) this) + 0x4)) = (*((float *) (((char *) this) + 0x0)) = lbl_805DE158)));
+  *((float *) (((char *) this) + 0xc)) = (*((float *) (((char *) this) + 0x8)) = (*((float *) (((char *) this) + 0x4)) = (*((float *) (((char *) this) + 0x0)) = 0.0f)));
   new_var2 = (char *) this;
   *((unsigned char *) (new_var2 + 0x10)) = 0;
   *((unsigned char *) (new_var2 + 0x11)) = -((double) 1);
@@ -455,7 +455,7 @@ loop_1:
 }
 
 void get_row_position__15TWindowMainMenuFiPvi(s32 arg0, void *arg1, s32 arg2) {
-    *(f32 *)((s8 *)arg1 + 0) = (f32) lbl_805DE158;
+    *(f32 *)((s8 *)arg1 + 0) = (f32) 0.0f;
     *(f32 *)((s8 *)arg1 + 4) = (f32) (lbl_805DE150 * (f32) arg2);
 }
 
@@ -500,11 +500,11 @@ s32 append_child_rows__15TWindowMainMenuFPvi(Menu_802ADD38 *arg0, s32 arg1) {
 
 void TWindowMainMenu::set_target_y(f32 farg0) {
     if (is_not_split_screen__15TWindowMainMenuFv(this) != 0) {
-        farg0 += lbl_805DE15C;
+        farg0 += 51.0f;
     } else {
-        farg0 += lbl_805DE160;
+        farg0 += 42.0f;
     }
-    farg0 += lbl_805DE164;
+    farg0 += 39.0f;
     if (*(f32 *)&this->_pad58 != farg0) {
         *(f32 *)&this->_pad58 = farg0;
         *(s32 *)((s8 *)this + 0x50) = 8;
@@ -529,20 +529,6 @@ void TWindowMainMenu::draw_entries_reversed(u8 *arg1) {
     } while (var_r31 < 8);
 }
 
-Rect_802AE2B0 *setup_content_frame__15TWindowMainMenuFPv(u8 *window_menu_main_menu) {
-    f32 v;
-    Rect_802AE2B0 *r;
-    r = open_singleton__19TWindowKeyBoardSoftFiiii(window_menu_main_menu + 0x40, window_menu_main_menu + 0x48, fn_8026CB68(), ((TWindowMenuMainMenu *)window_menu_main_menu)->m_54, ((TWindowMenuMainMenu *)window_menu_main_menu)->m_2c);
-    if (is_not_split_screen__15TWindowMainMenuFv(window_menu_main_menu) != 0) {
-        v = lbl_805DE15C;
-    } else {
-        v = lbl_805DE164;
-    }
-    ((TWindowKeyBoardSoft *)r)->set_bounds(lbl_805DE1A4 + r->x, r->y + v, (r->x + r->w) - lbl_805DE1A4, (r->y + r->h) - lbl_805DE164);
-    r->color = ((s32)(lbl_805DE148 * TWindowSubComCard__sub_80244784((TWindowSubComCard *)window_menu_main_menu)) << 24) | 0xFF0000 | 0xFFFF;
-    return r;
-}
-
 // The caller passes the content-frame context returned by setup_content_frame.
 struct FrameContext_802ADF20 {
     f32 x, y, width;
@@ -555,15 +541,11 @@ struct FrameContext_802ADF20 {
 extern GinjaTextureList *lbl_805D63F0;
 void apply_context_transform_to_rect(void *, void *);
 extern const f32 lbl_805DE154;
-extern const f32 lbl_805DE168, lbl_805DE16C, lbl_805DE170, lbl_805DE174;
-extern const f32 lbl_805DE178, lbl_805DE17C, lbl_805DE180, lbl_805DE184;
-extern const f32 lbl_805DE188, lbl_805DE18C, lbl_805DE190, lbl_805DE194;
-extern const f32 lbl_805DE198, lbl_805DE19C, lbl_805DE1A0;
 
 void draw_frame__19TWindowMenuMainMenuFv(TWindowMenuMainMenu *window, FrameContext_802ADF20 *context) {
     Rect_802AD538 r;
-    f32 depth = lbl_805DE138 / (lbl_805DE13C + window->m_54);
-    f32 offset = lbl_805DE158;
+    f32 depth = -1.0f / (0.299f + window->m_54);
+    f32 offset = 0.0f;
     f32 remaining = context->height;
     f32 height;
     begin_screen_draw(1);
@@ -571,64 +553,82 @@ void draw_frame__19TWindowMenuMainMenuFv(TWindowMenuMainMenu *window, FrameConte
     set_draw_texture_and_color(11, context->color);
     if (is_not_split_screen__15TWindowMainMenuFv(window)) {
         r.x0 = context->x;
-        r.y0 = context->y + lbl_805DE158;
-        r.x1 = lbl_805DE168 + r.x0;
-        r.y1 = lbl_805DE16C + r.y0;
-        r.u0 = lbl_805DE170; r.v0 = lbl_805DE158;
-        r.u1 = lbl_805DE174; r.v1 = lbl_805DE178;
+        f32 zero = 0.0f;
+        r.y0 = context->y + zero;
+        r.x1 = 18.0f + r.x0;
+        r.y1 = 28.0f + r.y0;
+        r.u0 = 0.8984375f; r.v0 = 0.0f;
+        r.u1 = 0.96875f; r.v1 = 0.109375f;
         apply_context_transform_to_rect(context, &r);
         draw_textured_quad_at_depth((f32 *)&r, depth);
-        offset += lbl_805DE16C;
-        remaining -= lbl_805DE16C;
+        offset += 28.0f;
+        remaining -= 28.0f;
         r.x0 = context->x; r.y0 = context->y + offset;
-        r.x1 = r.x0 + context->width; r.y1 = lbl_805DE17C + r.y0;
-        r.u0 = lbl_805DE158; r.v0 = lbl_805DE180;
-        r.u1 = lbl_805DE184; r.v1 = lbl_805DE188;
+        r.x1 = r.x0 + context->width; r.y1 = 23.0f + r.y0;
+        r.u0 = 0.0f; r.v0 = 0.3125f;
+        r.u1 = 0.453125f; r.v1 = 0.40234375f;
         apply_context_transform_to_rect(context, &r);
         draw_textured_quad_at_depth((f32 *)&r, depth);
-        offset += lbl_805DE17C;
-        remaining -= lbl_805DE17C;
+        offset += 23.0f;
+        remaining -= 23.0f;
     } else {
         f32 x = context->x;
-        r.x0 = x; r.y0 = context->y + lbl_805DE158;
+        r.x0 = x; f32 zero = 0.0f;
+        r.y0 = context->y + zero;
         r.x1 = x + context->width;
-        r.y1 = lbl_805DE18C + (lbl_805DE164 + r.y0);
-        r.u0 = lbl_805DE184; r.v0 = lbl_805DE190;
-        r.u1 = lbl_805DE158; r.v1 = lbl_805DE194;
+        f32 edge = 39.0f + r.y0;
+        r.y1 = 3.0f + edge;
+        r.u0 = 0.453125f; r.v0 = 0.6796875f;
+        r.u1 = 0.0f; r.v1 = 0.515625f;
         apply_context_transform_to_rect(context, &r);
         draw_textured_quad_at_depth((f32 *)&r, depth);
-        offset += lbl_805DE160;
-        remaining -= lbl_805DE160;
+        offset += 42.0f;
+        remaining -= 42.0f;
     }
-    remaining -= lbl_805DE164;
-    while (remaining >= lbl_805DE198) {
+    remaining -= 39.0f;
+    while (remaining >= 4.0f) {
         if (remaining < 16.0f) {
-            height = lbl_805DE198;
+            height = 4.0f;
         } else {
             height = 16.0f;
         }
         r.x0 = context->x; r.y0 = context->y + offset;
         r.x1 = r.x0 + context->width; r.y1 = r.y0 + height;
-        r.u0 = lbl_805DE158; r.v0 = lbl_805DE188;
-        r.u1 = lbl_805DE184; r.v1 = (lbl_805DE19C + height) / 256.0f;
+        r.u0 = 0.0f; r.v0 = 0.40234375f;
+        r.u1 = 0.453125f; r.v1 = (103.0f + height) / 256.0f;
         apply_context_transform_to_rect(context, &r);
         draw_textured_quad_at_depth((f32 *)&r, depth);
         offset += height;
         remaining -= height;
     }
     r.x0 = context->x; r.y0 = context->y + offset;
-    r.x1 = r.x0 + context->width; r.y1 = lbl_805DE164 + r.y0;
-    r.u0 = lbl_805DE158; r.v0 = lbl_805DE1A0;
-    r.u1 = lbl_805DE184; r.v1 = lbl_805DE190;
+    r.x1 = r.x0 + context->width; r.y1 = 39.0f + r.y0;
+    r.u0 = 0.0f; r.v0 = 0.52734375f;
+    r.u1 = 0.453125f; r.v1 = 0.6796875f;
     apply_context_transform_to_rect(context, &r);
     draw_textured_quad_at_depth((f32 *)&r, depth);
     TWindowSubStatusDisp::get_player();
 }
 
+Rect_802AE2B0 *setup_content_frame__15TWindowMainMenuFPv(u8 *window_menu_main_menu) {
+    f32 v;
+    Rect_802AE2B0 *r;
+    r = open_singleton__19TWindowKeyBoardSoftFiiii(window_menu_main_menu + 0x40, window_menu_main_menu + 0x48, fn_8026CB68(), ((TWindowMenuMainMenu *)window_menu_main_menu)->m_54, ((TWindowMenuMainMenu *)window_menu_main_menu)->m_2c);
+    if (is_not_split_screen__15TWindowMainMenuFv(window_menu_main_menu) != 0) {
+        v = 51.0f;
+    } else {
+        v = 39.0f;
+    }
+    ((TWindowKeyBoardSoft *)r)->set_bounds(10.0f + r->x, r->y + v, (r->x + r->w) - 10.0f, (r->y + r->h) - 39.0f);
+    r->color = ((s32)(255.0f * TWindowSubComCard__sub_80244784((TWindowSubComCard *)window_menu_main_menu)) << 24) | 0xFF0000 | 0xFFFF;
+    return r;
+}
+
+
 void TWindowMainMenu::update_slide_position() {
     if (sub_80246948__13TUnk_804CE018Fv() != 0) {
-        set_target_y(lbl_805DE158);
-        *(u32 *)((s8 *)this + 0x50) = (u32) (lbl_805DE1A8 - (f32) (*(s16 *)((s8 *)this + 0x22)));
+        set_target_y(0.0f);
+        *(u32 *)((s8 *)this + 0x50) = (u32) (4.5f - (f32) (*(s16 *)((s8 *)this + 0x22)));
         return;
     }
     update_scaled_position();
