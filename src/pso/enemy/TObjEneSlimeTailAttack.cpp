@@ -353,7 +353,7 @@ extern SlimeTailPose lbl_80501010;
 extern const char *TObjEneSlimeOne_class_name;
 extern const char *lbl_805D2AE0;
 extern int lbl_805D52B4;
-extern s32 lbl_805D586C;
+extern s32 registered_player_count;
 extern const f32 lbl_805DA670;
 extern const f32 lbl_805DA674;
 extern const f32 lbl_805DA678;
@@ -1188,7 +1188,7 @@ void TObjEneSlimeOne::vfunc_63() { if (*(int *)&this->m_384 != 13) { set_state((
 void TObjEneSlimeOne::vfunc_62() {
     u8 *arg0 = (u8 *)this;
     if ((s32) this->m_384 != 0xC) {
-        if (((s32) this->m_2d4 < (s32) lbl_805D586C) && (((u32 (*)(void))get_player_by_client_id)() != 0U) && (check_player_field_7cc__15TObjEneSlimeOneFv() == 2) && ((u32) this->slime_group != 0U) && (((TObject *)((void *) this->slime_group))->all_parents_unqueued_for_destruction() != 0)) {
+        if (((s32) this->m_2d4 < (s32) registered_player_count) && (((u32 (*)(void))get_player_by_client_id)() != 0U) && (check_player_field_7cc__15TObjEneSlimeOneFv() == 2) && ((u32) this->slime_group != 0U) && (((TObject *)((void *) this->slime_group))->all_parents_unqueued_for_destruction() != 0)) {
             slime_group->try_spawn_child((u8 *)&this->position);
         }
         this->actorFlags = (s32) (this->actorFlags & 0xFFFFFDFF);
@@ -1764,7 +1764,7 @@ void TObjEneSlimeOne::update_tick() {
     if (!(temp_r3 & 3)) {
         spawn_particle_effect(ene_slime_one->body_center(), 0xE0);
     }
-    if (ene_slime_one->action_flags & 0x10) {
+    if (ene_slime_one->motion_flags & 0x10) {
         if (ene_slime_one->is_timer_active() != 0) {
             ene_slime_one->set_state(7);
             return;
@@ -1791,7 +1791,7 @@ void TObjEneSlimeOne::init_split_effect() {
 
 void TObjEneSlimeOne::fn_800E969C() {
     TObjEneSlimeOne *ene_slime_one = (TObjEneSlimeOne *)this;
-    if (ene_slime_one->action_flags & 0x10) {
+    if (ene_slime_one->motion_flags & 0x10) {
         ene_slime_one->set_state(5);
     }
 }
@@ -2180,7 +2180,7 @@ void TObjEneSlimeTailAttack::run_task() {
     if (active != 0) {
         check_hits();
         advance_animation__10TObjMotionFv(this);
-        if (this->action_flags & 0x10) {
+        if (this->motion_flags & 0x10) {
             queue_destruction__7TObjectFv(this);
             return;
         }
