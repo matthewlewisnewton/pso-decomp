@@ -352,9 +352,9 @@ extern s32 game_difficulty_selection;
 
 void *mem_alloc(u32 size);
 extern const char shark_alt_archive_filename[];
-extern u8 **shark_combat_stats;
-extern u8 **shark_attack_stats;
-extern u8 **shark_resistance_stats;
+extern BattleBaseStats **shark_combat_stats;
+extern AttackParams **shark_attack_stats;
+extern ActorParamBlock **shark_resistance_stats;
 extern f32 **shark_movement_parameter_sets;
 extern __declspec(section ".sdata2") const f32 shark_attack_trail_start_frame;
 extern __declspec(section ".sdata2") const f32 shark_npc_collision_radius;
@@ -467,19 +467,19 @@ void TObjEneShark::load_resources() {
     shark_attack4_trail_buffer = new SampledMotionPoints(2, shark_attack_trail_start_frame, shark_attack_trail_end_frame, shark_one);
     shark_attack3_trail_buffer->sample_two_nodes((NJS_OBJECT *)shark_bml_resource->models->model, (NJS_MOTION *)shark_bml_resource->motions[shark_actions[3].motion].motion, 5, 8);
     shark_attack4_trail_buffer->sample_two_nodes((NJS_OBJECT *)shark_bml_resource->models->model, (NJS_MOTION *)shark_bml_resource->motions[shark_actions[4].motion].motion, 0xA, 0xD);
-    shark_combat_stats = (u8 **)mem_alloc(0xC);
-    shark_attack_stats = (u8 **)mem_alloc(0xC);
-    shark_resistance_stats = (u8 **)mem_alloc(0xC);
+    shark_combat_stats = static_cast<BattleBaseStats **>(mem_alloc(3 * sizeof(*shark_combat_stats)));
+    shark_attack_stats = static_cast<AttackParams **>(mem_alloc(3 * sizeof(*shark_attack_stats)));
+    shark_resistance_stats = static_cast<ActorParamBlock **>(mem_alloc(3 * sizeof(*shark_resistance_stats)));
     shark_movement_parameter_sets = (f32 **)mem_alloc(0xC);
-    shark_combat_stats[0] = (u8 *)get_battle_base_stats(0x4F);
-    shark_combat_stats[1] = (u8 *)get_battle_base_stats(0x50);
-    shark_combat_stats[2] = (u8 *)get_battle_base_stats(0x51);
-    shark_attack_stats[0] = (u8 *)get_battle_attack_params(0x54);
-    shark_attack_stats[1] = (u8 *)get_battle_attack_params(0x55);
-    shark_attack_stats[2] = (u8 *)get_battle_attack_params(0x56);
-    shark_resistance_stats[0] = (u8 *)get_battle_resistance_params(0x4E);
-    shark_resistance_stats[1] = (u8 *)get_battle_resistance_params(0x4F);
-    shark_resistance_stats[2] = (u8 *)get_battle_resistance_params(0x50);
+    shark_combat_stats[0] = get_battle_base_stats(0x4F);
+    shark_combat_stats[1] = get_battle_base_stats(0x50);
+    shark_combat_stats[2] = get_battle_base_stats(0x51);
+    shark_attack_stats[0] = get_battle_attack_params(0x54);
+    shark_attack_stats[1] = get_battle_attack_params(0x55);
+    shark_attack_stats[2] = get_battle_attack_params(0x56);
+    shark_resistance_stats[0] = get_battle_resistance_params(0x4E);
+    shark_resistance_stats[1] = get_battle_resistance_params(0x4F);
+    shark_resistance_stats[2] = get_battle_resistance_params(0x50);
     shark_movement_parameter_sets[0] = (f32 *)get_battle_movement_params(0x4E);
     shark_movement_parameter_sets[1] = (f32 *)get_battle_movement_params(0x4F);
     shark_movement_parameter_sets[2] = (f32 *)get_battle_movement_params(0x50);
@@ -563,7 +563,8 @@ TObjEneShark::TObjEneShark(TObject *parent, void *setData)
     set_animation(requested_action);
     set_field_b8(requested_action);
     init_collision_body_parts(this, &shark_collision_bodies[subtype], 1);
-    bind_enemy_combat_stats(shark_combat_stats[subtype], shark_attack_stats[subtype], shark_resistance_stats[subtype]);
+    bind_enemy_combat_stats(reinterpret_cast<u8 *>(shark_combat_stats[subtype]),
+        reinterpret_cast<u8 *>(shark_attack_stats[subtype]), reinterpret_cast<u8 *>(shark_resistance_stats[subtype]));
     movementParameters = &shark_movement_parameters[subtype];
     referenceHp = hp;
     update_prev_position();
@@ -620,9 +621,9 @@ TObjEneShark::TObjEneShark(TObject *parent, void *setData)
 }
 
 extern "C" {
-u8 **shark_combat_stats;
-u8 **shark_attack_stats;
-u8 **shark_resistance_stats;
+BattleBaseStats **shark_combat_stats;
+AttackParams **shark_attack_stats;
+ActorParamBlock **shark_resistance_stats;
 f32 **shark_movement_parameter_sets;
 BmlResource *shark_bml_resource;
 SampledMotionPoints *shark_attack3_trail_buffer;
