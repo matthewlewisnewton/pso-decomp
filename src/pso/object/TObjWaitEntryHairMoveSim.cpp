@@ -763,7 +763,7 @@ s32 TObjWaitEntryHairMoveSim__sub_800FE73C(s32 arg0) {
     s32 temp_r3;
     s32 var_r0;
     if (((TCharaMaking *)(arg0 + 0x85C))->get_display_index() == 0xE) {
-        TObjTailsTailsMove::create((void *)arg0);
+        TObjTailsTailsMove::create((TObjPlayer *)arg0);
         return 0;
     }
     if (((s32 (*)(void *))is_move_done__24TObjWaitEntryHairMoveSimFv)((void *)arg0) != 0) {

@@ -2714,7 +2714,6 @@ pso/ui/TAdSinglePlyChrSelectGC_8001C5E8.cpp
 pso/ui/TAdSinglePlyChrSelectGC_8001ED80.cpp
 pso/ui/TAdSinglePlyChrSelectGC_8007B7E4.cpp
 pso/ui/TAdSinglePlyChrSelectGC_8007EB94.cpp
-pso/ui/TAdSinglePlyChrSelectGC_800FFC34.cpp
 pso/ui/TAdSinglePlyChrSelectGC_801334D4.cpp
 pso/ui/TAdSinglePlyChrSelectGC_80145778.cpp
 pso/ui/TAdSinglePlyChrSelectGC_801A6D60.cpp
@@ -2900,7 +2899,6 @@ pso/unk/text_800FA7E0.cpp
 pso/unk/text_800FCC78.cpp
 pso/unk/text_800FD8A0.cpp
 pso/unk/text_800FD930.cpp
-pso/unk/text_800FFC6C.cpp
 pso/unk/text_80103674.cpp
 pso/unk/text_801036CC.cpp
 pso/unk/text_80104F4C.cpp
