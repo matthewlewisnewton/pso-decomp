@@ -1,4 +1,5 @@
 #include "pso/player/demo_mode.h"
+#include "pso/misc/ParticleFactory.h"
 #include "pso/misc/TLobby_801E43E4.h"
 #include "types.h"
 #include "pso/system/byteswap.h"
@@ -58,7 +59,7 @@ void TOAttackableCol__sub_80157310(void *_w0);
 u8 is_current_floor_switch_set(int);
 volatile int is_locally_controlled__10TObjPlayerFPv(void *);
 u16 get_entity_id(void *);
-void *spawn_particle_effect(void *pos, s32 id);
+
 extern u32 quest_mission_manager;
 extern u32 quest_area_manager;
 extern s32 tl_00;
@@ -281,8 +282,8 @@ f32 TOAttackableCol::apply_hit(s32 arg1) {
     goto block_26;
   }
   block_26:
-  spawn_particle_effect(((u8 *)&this->position), 0x1D0);
-  spawn_particle_effect(((u8 *)&this->position), 1);
+  spawn_particle_effect((const Vec *)(((u8 *)&this->position)), 0x1D0);
+  spawn_particle_effect((const Vec *)(((u8 *)&this->position)), 1);
   return lbl_805DB2C8;
 }
 

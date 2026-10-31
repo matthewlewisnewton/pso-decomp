@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_80128A70.h"
 #include "pso/unk/text_80087278.h"
@@ -71,7 +72,7 @@ void TUnk_804A444C::emit_marker_effects() {
     s32 sp8;
     TObjPlayer__sub_80128A70();
     ((TItemWeapon *)arg0)->get_joint_position(7, (void *)&sp8);
-    spawn_particle_effect((&sp8), 9);
+    spawn_particle_effect((const Vec *)((&sp8)), 9);
     ((VObj_18_8622c5 *)(arg0))->m49(&sp8, 0, *(s32 *)((s8 *)&s_rank_shot_marker_offsets.value + 0), 1);
     ((TItemWeapon *)arg0)->get_joint_position(3, (void *)&sp8);
     ((VObj_18_8622c5 *)(arg0))->m49(&sp8, 1, *(s32 *)((s8 *)&s_rank_shot_marker_offsets.value + 4), 1);

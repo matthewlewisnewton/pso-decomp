@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/TObject.h"
 #include "pso/object/TObjMotion.h"
@@ -20,7 +21,7 @@
 #pragma readonly_strings on
 
 extern "C" {
-void *spawn_particle_effect(void *pos, s32 id);
+
 void *create_particle_emitter(void *pos, s32 id);
 s32 play_sound_effect(s32, void *, s32, s32);
 void run_task__11TObjDFDemo3Fv(u8 *arg0);
@@ -143,7 +144,7 @@ void TObjDFDemo3::run_task() {
         }
     }
     if ((s32) this->m_b0 == 0x86) {
-        temp_r3 = (u32)spawn_particle_effect(&this->m_a0, 0x9B);
+        temp_r3 = (u32)spawn_particle_effect((const Vec *)(&this->m_a0), 0x9B);
         if (temp_r3 != 0U) {
             ((TParticleCtrl *)temp_r3)->set_flags(0x40);
         }

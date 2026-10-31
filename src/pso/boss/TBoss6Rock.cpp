@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/system/GinjaMaterial.h"
@@ -524,8 +525,8 @@ void TBoss6Rock::update_fall() {
         TBoss6Rock__sub_803542E8(this, 1);
         ((TBoss6Rock *)arg0)->sub_80353F5C();
         play_sound_effect(0x4006B51E, (u32)(arg0 + 0x38), 0, 0);
-        spawn_particle_effect(((u8 *)&this->position), 0x220);
-        spawn_particle_effect(((u8 *)&this->position), 0x222);
+        spawn_particle_effect((const Vec *)(((u8 *)&this->position)), 0x220);
+        spawn_particle_effect((const Vec *)(((u8 *)&this->position)), 0x222);
         TBoss6PlotFalz::apply_radial_effect_to_players((u8 *)&this->position, 0xC0, 0xF, lbl_805DFF54);
         this->m_c4 = 2;
     }

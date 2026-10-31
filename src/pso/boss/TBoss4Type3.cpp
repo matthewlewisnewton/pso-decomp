@@ -1,5 +1,6 @@
 #include "pso/misc/SampledMotionPoints.h"
 #include "pso/enemy/BattleParameters.h"
+#include "pso/misc/ParticleFactory.h"
 #include "pso/unk/TUnk_80494968.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "types.h"
@@ -166,7 +167,7 @@ s32 vec3_add_to(void *, void *);
 f32 vector_length(void *);
 s32 subtract_vector(void *, void *);
 s32 normalize_vector(void *);
-void *spawn_particle_effect(void *pos, s32 id);
+
 void *create_particle_emitter(void *pos, s32 id);
 s32 play_sound_effect(int, void *, int, int);
 f64 atan2_float(f32, f32);
@@ -1577,7 +1578,7 @@ void TBoss4Type3::handle_damage_taken() {
     dir.y *= 25.0f;
     dir.z *= 25.0f;
     for (i = 0; i < 8; i++) {
-        e = (u32)spawn_particle_effect(&pos, 0x38);
+        e = (u32)spawn_particle_effect((const Vec *)(&pos), 0x38);
         if (e != 0) {
             ((TParticleCtrl *)e)->set_flags(0x40);
         }
@@ -1929,7 +1930,7 @@ void TBoss4Type3::update_light_magic() {
         ((TBoss4Type3 *)arg0)->set_anim_state(7);
     }
     if ((s32) *(s32 *)((s8 *)arg0 + 0x398) == 0x49) {
-        p = spawn_particle_effect(sub, 0x133);
+        p = spawn_particle_effect((const Vec *)(sub), 0x133);
         if (p != 0) {
             ((TParticleCtrl *)p)->set_flags(0x40);
         }
@@ -2070,7 +2071,7 @@ void TBoss4Type3::update_capture() {
         TBoss4Type3::create_yutai((void *)arg0, (void *)0, (void *)((void *)this->m_3b8));
     }
     if (this->m_398 == 0x1C) {
-        h = (u32)spawn_particle_effect(&v, 0x38);
+        h = (u32)spawn_particle_effect((const Vec *)(&v), 0x38);
         if (h != 0) {
             ((TParticleCtrl *)h)->set_flags(0x40);
         }

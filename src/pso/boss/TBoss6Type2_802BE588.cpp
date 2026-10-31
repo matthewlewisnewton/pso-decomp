@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/boss/TBoss6Type2_802BE588.h"
 #include "pso/unk/text_80087278.h"
@@ -210,7 +211,7 @@ void TBoss6Type2::start_flow_soul_effect() {
             VecCopy__FP3VecPC3Vec(&v, (void *)(pl + 0x38));
             v.y += lbl_805DE4EC;
             spawn_flow_soul__11TBoss6Type2Fiii((s32)arg0, (s32)&v, (s32)arg0->t45C);
-            spawn_particle_effect((void *)(pl + 0x38), 0x36);
+            spawn_particle_effect((const Vec *)((pl + 0x38)), 0x36);
         }
         ((TBoss6EffHyoui *)(arg0->client))->create((void *)1, (void *)arg0->t45C);
         if (((TBoss6Type2 *)arg0)->is_target_valid() == 0) {
@@ -233,7 +234,7 @@ void update_attack_timer__11TBoss6Type2FPv(u8 *arg0) {
             }
             player = (u32)get_player_by_client_id((*(u16 *)((s8 *)arg0 + 0x55C)));
             if (player != 0U) {
-                spawn_particle_effect((void *)(player + 0x38), 0x36);
+                spawn_particle_effect((const Vec *)((player + 0x38)), 0x36);
             }
         }
         ((TBoss6Type2 *)arg0)->set_action_state((void *)0x1B);
@@ -283,7 +284,7 @@ void TBoss6Type2__sub_802BEC28(TBoss6Type2 *arg0) {
             }
             player = (u32)get_player_by_client_id(((s32) *(u16 *)((s8 *)arg0 + 0x55C)));
             if (player != 0U) {
-                spawn_particle_effect((void *)(player + 0x38), 0x36);
+                spawn_particle_effect((const Vec *)((player + 0x38)), 0x36);
             }
         }
         arg0->copy_anim_state();

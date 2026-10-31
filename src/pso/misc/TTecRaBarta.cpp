@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "pso/TParticleCtrl.h"
 #include "types.h"
 #include "pso/misc/TTecRaBarta.h"
@@ -237,7 +238,7 @@ void TTecRaBarta::vfunc_8(void *pos) {
       VecCopy((Vec *)&point2, (const Vec *)(self->source + 0x38));
     }
     point2.y += dy;
-    emitter = spawn_particle_effect(&point2, b2->entry);
+    emitter = spawn_particle_effect((const Vec *)(&point2), (s32)(b2->entry));
     id = b2->flags >> 16;
     if (emitter != 0)
     {

@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "pso/effect/TEffGuard.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/unk/text_80087278.h"

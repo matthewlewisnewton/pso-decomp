@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/system/PadRumble.h"
 #include "pso/TObject.h"
@@ -143,7 +144,7 @@ void TBoss3Volopt__sub_8004DA7C(u8 *self) {
             void *p;
             Vec_8004DA7C c = V90;
             vec3_add_to(&c, &((Vec_8004DA7C *)lbl_80485514)[t - 0x8C]);
-            p = spawn_particle_effect(&c, 0x14A);
+            p = spawn_particle_effect((const Vec *)(&c), 0x14A);
             if (p != NULL) {
                 ((TParticleCtrl *)p)->set_flags(0x40);
             }

@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 extern "C" void *__dt__13TUnk_804CC148Fv(void *, s16);
 #include "pso/object/TObject_80019A50.h"
@@ -53,9 +54,9 @@ void TTecKafun::run_task() {
         queue_destruction__7TObjectFv((arg0));
         return;
     }
-    spawn_particle_effect((arg0 + 0x20), (this->m_f0));
+    spawn_particle_effect((const Vec *)((arg0 + 0x20)), (s32)((this->m_f0)));
     if ((s32) this->m_fc == 1) {
-        spawn_particle_effect((arg0 + 0x20), (this->m_f4));
+        spawn_particle_effect((const Vec *)((arg0 + 0x20)), (s32)((this->m_f4)));
     }
     ((TUnk_804CC148 *)arg0)->apply_technique_to_area_targets();
     queue_destruction__7TObjectFv((arg0));

@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/misc/TRaderMapCore.h"
@@ -99,7 +100,7 @@ f32 horizontal_distance_squared(void *, void *);
 s32 TWindowShortListCtrl__check_controller_button(void *, int);
 s32 check_flag_100__10TObjPlayerFPv(void *);
 void queue_destruction__7TObjectFv(void *);
-s32 spawn_particle_effect(void *, int);
+
 s32 play_effect_default__10TObjPlayerFii(void *, int);
 s32 play_persistent_sound(int, void *, void *, int, int);
 void *__nw__7TObjectFUl(int);
@@ -440,7 +441,7 @@ void TObjLuker::run_task() {
                     if (flag != 0) {
                         this->m_b0 = 1;
                         offset_point_toward_camera((u8 *)&this->position, (u8 *)spC, 10.0f);
-                        spawn_particle_effect(spC, 0xB3);
+                        spawn_particle_effect((const Vec *)(spC), 0xB3);
                         p = PBC_801A1418(local_client_id);
                         if (p != NULL) {
                             play_effect_default__10TObjPlayerFii(p, 0xA);

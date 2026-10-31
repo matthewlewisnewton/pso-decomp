@@ -1,4 +1,5 @@
 #include "pso/enemy/BattleParameters.h"
+#include "pso/misc/ParticleFactory.h"
 #include "pso/protocol/protocol_types.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
@@ -1073,7 +1074,7 @@ void TBoss3Volopt::update_phase1() {
         pos.x = radius * cos_table_lookup(angle);
         pos.y = 50.0f * (3.0517578e-05f * (f32)rand()) + 10.0f;
         pos.z = radius * sin_table_lookup(angle);
-        spawn_particle_effect(&pos, 0xFB);
+        spawn_particle_effect((const Vec *)(&pos), 0xFB);
         play_persistent_sound(0x4003AD21, this, 0, 0, 0);
         break;
     case 4:

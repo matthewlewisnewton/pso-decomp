@@ -1,4 +1,5 @@
 #include "pso/player/demo_mode.h"
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/enemy/TObjEneBalClawBody.h"
 #include "pso/system/vector.h"
@@ -203,7 +204,7 @@ extern const f32 lbl_805D9624;
 extern const f32 lbl_805D9628;
 s16 get_actor_hp(u8 *p);
 void queue_destruction__7TObjectFv(void *arg0);
-void *spawn_particle_effect(void *pos, s32 id);
+
 void *create_particle_emitter(void *pos, s32 id);
 s32 play_sound_effect(int, void *, int, int);
 extern const f32 lbl_805D9634;
@@ -456,7 +457,7 @@ void TObjPlayer__sub_8008E310(P_8008E310 *arg0_) {
         if (arg0_->fB8 != 0xB) {
             queue_destruction__7TObjectFv((void *)arg0_->emit1);
             arg0_->emit1 = 0;
-            spawn_particle_effect(arg0_->f2FC, 0x129);
+            spawn_particle_effect((const Vec *)(arg0_->f2FC), 0x129);
             TObjPlayer__sub_8008E934(arg0_, 1);
             ((TObjMotion *)arg0_)->advance_animation();
             arg0_->flags &= ~0x04000000;

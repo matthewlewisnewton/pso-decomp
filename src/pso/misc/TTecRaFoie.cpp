@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/system/ChunkMaterialState.h"
 #include "types.h"
@@ -86,8 +87,7 @@ s32 is_split_screen();
 void get_bml_model(void *, s32);
 #define get_bml_model ((void * (*)(void *, int))get_bml_model)
 void attach_particle_model(void *, void *, void *, int, int, f32);
-void spawn_particle_effect(void *, s32, void *);
-#define spawn_particle_effect ((void * (*)(Vec_80237FB8 *, int))spawn_particle_effect)
+
 s32 is_parents_unqueued__9TTecLukerFUl();
 s32 is_valid_and_active__10TObjPlayerFUl(int);
 #define is_valid_and_active__10TObjPlayerFUl ((s32 (*)(TObjPlayer_80237FB8 *))is_valid_and_active__10TObjPlayerFUl)
@@ -194,23 +194,23 @@ void TTecRaFoie::vfunc_8(void *) {
     TObjPlayer_80237FB8 *target;
     if (self->explicit_position == 1) {
         if (is_split_screen() != 0) {
-            spawn_particle_effect(&self->target, 0x39);
+            spawn_particle_effect((const Vec *)(&self->target), 0x39);
         } else {
-            emitter = spawn_particle_effect(&self->target, 0x1A);
+            emitter = spawn_particle_effect((const Vec *)(&self->target), 0x1A);
             if (emitter != NULL) {
                 attach_particle_model(emitter, get_bml_model(technique_effect_bml, 9), lbl_805D63B0, 0, 1, (1.0f));
             }
         }
-        spawn_particle_effect(&self->target, 0x3A);
-        spawn_particle_effect(&self->target, 0x3B);
+        spawn_particle_effect((const Vec *)(&self->target), 0x3A);
+        spawn_particle_effect((const Vec *)(&self->target), 0x3B);
         return;
     }
     if (self->target_count != 0) {
         target = (TObjPlayer_80237FB8 *) find_entity_by_id(self->first_id);
         if (is_parents_unqueued__9TTecLukerFUl() != 0 && is_valid_and_active__10TObjPlayerFUl(target) != 0) {
             Vec_80237FB8 point = target->pos;
-            spawn_particle_effect(&point, 0x39);
-            emitter = spawn_particle_effect(&point, 0x1A);
+            spawn_particle_effect((const Vec *)(&point), 0x39);
+            emitter = spawn_particle_effect((const Vec *)(&point), 0x1A);
             if (emitter != NULL) {
                 attach_particle_model(emitter, get_bml_model(technique_effect_bml, 9), lbl_805D63B0, 0, 1, (1.0f));
             }
@@ -229,7 +229,6 @@ void TTecRaFoie::vfunc_8(void *) {
 #undef apply_technique_to_area_targets__13TUnk_804CC148Fv
 
 #undef __dt__13TUnk_804CC148Fv
-#undef spawn_particle_effect
 #define spawn_rafoie_explosion_bursts__13TUnk_804CCB28Fv ((s32 (*)(void *))spawn_rafoie_explosion_bursts__13TUnk_804CCB28Fv)
 
 #include <stddef.h>

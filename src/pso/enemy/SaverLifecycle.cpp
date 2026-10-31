@@ -2,6 +2,7 @@
 #include "pso/misc/SampledMotionPoints.h"
 #include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
+#include "pso/misc/ParticleFactory.h"
 struct NJS_OBJECT;
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/system/BmlResourceClass.h"
@@ -691,7 +692,7 @@ s32 calc_velocity_toward_destination(void *, Vec_800A5DC4, Vec_800A5DC4, f32);
 s32 get_current_floor();
 s32 get_floor__10TObjPlayerFv(void *);
 f32 newton_sqrtf(f32);
-void *spawn_particle_effect(void *pos, s32 id);
+
 #define step_angle_clamped__10TObjPlayerFPvi ((s32 (*)(void*, int))(step_angle_clamped__10TObjPlayerFPvi))
 u8 *get_enemy_entity(u16);
 
@@ -876,7 +877,7 @@ void TObjEneSaver::sub_800A4D9C() {
         fail:
             F(s16, 0x328) = 2;
         done:
-            spawn_particle_effect((u8 *)&this->position, 0xF3);
+            spawn_particle_effect((const Vec *)((u8 *)&this->position), 0xF3);
         }
         break;
     case 1:
@@ -899,7 +900,7 @@ void TObjEneSaver::sub_800A4D9C() {
             check_enemy_body_collisions(arg0);
             F(s16, 0x328) = 2;
             TObjPlayer__sub_800A5960(arg0);
-            spawn_particle_effect((u8 *)&this->position, 0xF3);
+            spawn_particle_effect((const Vec *)((u8 *)&this->position), 0xF3);
             play_sound_effect(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003AD04)), (u8 *)&this->position, 0, 0);
             F(u32, 0x374) &= ~0x10;
         }

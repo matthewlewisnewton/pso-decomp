@@ -3,6 +3,7 @@
 #include "pso/player/demo_mode.h"
 #include "pso/math/VectorNormalize.h"
 #include "pso/enemy/BattleParameters.h"
+#include "pso/misc/ParticleFactory.h"
 struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
@@ -1955,7 +1956,7 @@ struct Obj_80098EFC {
 extern "C" {
 void *get_player_by_client_id(s32 i);
 s32 rotate_xz_pair_by_angle(f32 *, f32 *, s32, f32, f32);
-void *spawn_particle_effect(void *pos, s32 id);
+
 s32 vec3_add_to(f32 *, void *);
 extern const f32 lbl_805D9830;
 #define play_persistent_sound ((s32 (*)(void *, void *, void *, int, int))play_persistent_sound)
@@ -2191,7 +2192,7 @@ void update_if_in_band__17TObjEneDf2BringerFi(s32 arg0) {
 
 void spawn_particle_if_in_band__17TObjEneDf2BringerFPv(u8 *arg0) {
     if ((((TObjMotion *)arg0)->is_passing_frame((f32)TObjEneDf2Bringer__data_805D97E0) != 0) || (((TObjMotion *)arg0)->is_passing_frame((f32)((f32)lbl_805D97E8)) != 0)) {
-        spawn_particle_effect(arg0 + 0x38, 0xF0);
+        spawn_particle_effect((const Vec *)(arg0 + 0x38), 0xF0);
     }
 }
 
@@ -2202,7 +2203,7 @@ void spawn_offset_particle__17TObjEneDf2BringerFPv(u8 *arg0) {
     stack.sp10 = TObjEneDf2Bringer__data_805D9808;
     rotate_xz_pair_by_angle(&stack.sp8, &stack.sp10, *(s32 *)((s8 *)arg0 + 0x60), TObjEneDf2Bringer__data_805D97E0, lbl_805D9830);
     vec3_add_to(&stack.sp8, arg0 + 0x38);
-    spawn_particle_effect(&stack.sp8, 0xF3);
+    spawn_particle_effect((const Vec *)(&stack.sp8), 0xF3);
 }
 s32 check_enemy_body_collisions(void *);
 s32 obj_is_hit_receivable(void);

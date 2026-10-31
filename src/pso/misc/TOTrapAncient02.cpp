@@ -1,4 +1,5 @@
 #include "pso/math/VectorNormalize.h"
+#include "pso/misc/ParticleFactory.h"
 #include "pso/math/ScratchVectorStorage.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
@@ -99,7 +100,7 @@ extern "C" {
 u16 find_nearest_visible_player(void *, int, f32);
 s32 get_current_floor(void);
 f32 atan2_float(f32 y, f32 x);
-void *spawn_particle_effect(void *pos, s32 id);
+
 f32 get_collision_body_radius(void *, s32);
 void submit_cursor_candidate(void *, s32);
 void *get_player_by_client_id(s32 i);
@@ -695,8 +696,8 @@ void TOTrapAncient02R__vt79(Obj_8017A3C0 *o) {
                         dmg.type = 3;
                         dmg.v = ((TOTrapAncient02R *)o)->vfunc_87(lbl_805DBA94 * (f32)o->level + lbl_805DBA90);
                         ((Trap_8017A3C0 *)o->target)->m21(o, dmg, 0, -1, -1);
-                        spawn_particle_effect((&scratch_vec.vector), 0xB9);
-                        spawn_particle_effect((&scratch_vec.vector), 0xBA);
+                        spawn_particle_effect((const Vec *)((&scratch_vec.vector)), 0xB9);
+                        spawn_particle_effect((const Vec *)((&scratch_vec.vector)), 0xBA);
                         {
                             void *t = __nw__7TObjectFUl(0x260);
                             if (t != NULL) {
@@ -790,8 +791,8 @@ f32 TOTrapAncient02R::receive_physical_attack(void *, f32) {
     if (self->id >= 0x4000 && self->x80 != 0) {
         Vec_8017A988 v = self->pos;
         v.y += self->x344 + self->x348;
-        spawn_particle_effect(&v, 0x1D0);
-        spawn_particle_effect(&v, 1);
+        spawn_particle_effect((const Vec *)(&v), 0x1D0);
+        spawn_particle_effect((const Vec *)(&v), 1);
         if (--self->timer <= 0) {
             self->timer = 0;
             if (((TObjCollidable *)self)->access_object_saved_state(&msg, 1) != 0) {

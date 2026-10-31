@@ -1,4 +1,5 @@
 #include "pso/enemy/BattleParameters.h"
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/system/NinjaUtil.h"
@@ -583,7 +584,7 @@ u16 get_entity_id(void *);
 s32 is_split_screen();
 void request_follow_camera_offsets(void *arg0, void *arg1, u16 arg2);
 void *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags);
-void *spawn_particle_effect(void *pos, s32 id);
+
 void *create_particle_emitter(void *pos, s32 id);
 s32 __ct__11TObjControlFP7TObject(s32, s32);
 s32 angle_diff_s16(s32, s32);
@@ -763,13 +764,13 @@ void TBoss6Type2::spawn_hit_effects() {
         e = t;
         for (i = 0; i < 3; i++, e++) {
             if (e->flags & 0x04000000) {
-                spawn_particle_effect(((u8 *)o + boss6_type2_hit_effect_node_table[i] * 0xC + 0x59C), 0x223);
+                spawn_particle_effect((const Vec *)(((u8 *)o + boss6_type2_hit_effect_node_table[i] * 0xC + 0x59C)), 0x223);
                 found = 1;
             }
         }
     }
     if (found == 0) {
-        spawn_particle_effect(((u8 *)o + 0x2FC), 0x223);
+        spawn_particle_effect((const Vec *)(((u8 *)o + 0x2FC)), 0x223);
     }
 }
 
@@ -881,7 +882,7 @@ void TBoss6Type2::update_footstep_effects() {
         spawn_particle_effect_with_flags(temp_r29, 0x220, 0x40);
         if (((s32)this->m_418) == 0)
         {
-          spawn_particle_effect(temp_r29, 0x222);
+          spawn_particle_effect((const Vec *)(temp_r29), 0x222);
         }
         else
         {
@@ -1114,7 +1115,7 @@ void TBoss6Type2::update_possess_target() {
             if (this->is_target_valid() == 0) {
                 play_sound_effect(0x40069E13, ((u8 *)this) + 0x38, 0, 1);
             }
-            spawn_particle_effect(pl + 0x38, 0x36);
+            spawn_particle_effect((const Vec *)(pl + 0x38), 0x36);
             done = 1;
         }
         if (done != 0) {

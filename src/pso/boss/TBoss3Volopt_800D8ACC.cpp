@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/misc/PositionSoundEffects.h"
 #include "pso/unk/text_80087278.h"
@@ -12,6 +13,7 @@ typedef struct Vec_800D8C48 {
 
 extern "C" {
 void *create_timed_particle_emitter(void *owner, s32 id, s32 b, s32 c);
+
 extern const f32 lbl_805DA3C0;
 s32 play_sound_effect(int, void *, int, int);
 s32 TBreakUpMdl__ct(void*, s32, s32, s32, s32, s32, s32);

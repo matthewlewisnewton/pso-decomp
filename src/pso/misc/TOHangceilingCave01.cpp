@@ -1,4 +1,5 @@
 #include "pso/player/demo_mode.h"
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/object/TObjMotion.h"
@@ -620,7 +621,7 @@ struct VObj_18_26a62c : VBase_18_26a62c {
 };
 
 bool sub_801688C0__13TUnk_804B2578Fv(u8 *);
-void *spawn_particle_effect(void *pos, s32 id);
+
 f32 xz_distance_squared(void *, void *);
 s32 transform_point_by_current_matrix(void *, void *);
 extern s32 camera_ctrl_instance;
@@ -717,7 +718,7 @@ void TUnk_804B2578::run_task() {
         this->vfunc_80();
         ((TUnk_804B2578 *)arg0)->sub_80168398();
         if ((((s32 (*)(void *))sub_801688C0__13TUnk_804B2578Fv)(arg0) != 0) && ((s16) this->mode != 3) && (((TObjMotion *)arg0)->is_passing_frame((f32)8.0f) != 0)) {
-            spawn_particle_effect(&this->position, 0x64);
+            spawn_particle_effect((const Vec *)(&this->position), 0x64);
         }
     }
 }

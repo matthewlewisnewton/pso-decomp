@@ -1,5 +1,6 @@
 #include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
+#include "pso/misc/ParticleFactory.h"
 struct NJS_OBJECT;
 #include "pso/math/ScratchVectorStorage.h"
 #include "pso/player/PlayerAttackParams.h"
@@ -100,7 +101,7 @@ extern const f32 lbl_805E0308;
 void move_with_wall_slide(u8 *arg0);
 
 extern "C" {
-void *spawn_particle_effect(void *pos, s32 id);
+
 extern const f32 TObjEneIllGill__data_805E02DC;
 extern const f32 lbl_805E02E0;
 extern const f32 lbl_805E02E4;
@@ -574,7 +575,7 @@ void TObjEneIllGill::update_death_fall() {
       if (((TObjMotion *)arg0)->is_passing_frame((f32)((f32) TObjEneIllGill__data_805E02C0)) != 0)
     {
       this->phase = 3;
-      spawn_particle_effect(&position, 0xF0);
+      spawn_particle_effect((const Vec *)(&position), 0xF0);
       return;
     }
       break;

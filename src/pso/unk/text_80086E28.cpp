@@ -17,7 +17,7 @@ void *TAdLoadQuestPrtTxtGC::create_particle(void *position, s32 arg1, s32 use_se
     if (particle_pool_limit > arg1) {
         o = __nw__7TObjectFUl(0x78);
         if (o != NULL) {
-            o = ((TParticleCtrl *)o)->initialize((const void *)position, (s32)&particle_global_entry_table[arg1], 0, 0, 0, (s32)use_self);
+            o = ((TParticleCtrl *)o)->initialize((const Vec *)position, (s32)&particle_global_entry_table[arg1], 0, 0, 0, (s32)use_self);
         }
         return o;
     }
@@ -25,7 +25,7 @@ void *TAdLoadQuestPrtTxtGC::create_particle(void *position, s32 arg1, s32 use_se
         s32 idx = arg1 - 0x200;
         o = __nw__7TObjectFUl(0x78);
         if (o != NULL) {
-            o = ((TParticleCtrl *)o)->initialize((const void *)position, (s32)&particle_area_entry_table[idx], 0, 0, 0, (s32)use_self);
+            o = ((TParticleCtrl *)o)->initialize((const Vec *)position, (s32)&particle_area_entry_table[idx], 0, 0, 0, (s32)use_self);
         }
         return o;
     }

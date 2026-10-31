@@ -4,6 +4,8 @@
 #include "pso/player/demo_mode.h"
 #include "pso/misc/MaterialOpacityFade.h"
 #include "pso/misc/RenderFadeState.h"
+#include "pso/misc/ParticleFactory.h"
+#include "pso/enemy/TUnk_80494938.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/vector.h"
 #include "pso/system/NinjaTypes.h"
@@ -497,7 +499,7 @@ u32 get_item_field_6__10TObjPlayerFPv(void *);
 f32 fabs_float(f32);
 void queue_destruction__7TObjectFv(void *);
 void *create_timed_particle_emitter(void *owner, s32 id, s32 b, s32 c);
-void *spawn_particle_effect(void *pos, s32 id);
+
 s32 get_item_id__5TItemFv();
 }
 void enemy_turn_and_move_on_ground(u8 *arg0, s32 arg1, f32 farg0);
@@ -3016,7 +3018,7 @@ void TObjEneMe3SinowZoa__sub_8031A6A0(u8 *arg0) {
                         if (is_locally_controlled__10TObjPlayerFPv(pl) != 0 && get_item_field_6__10TObjPlayerFPv(pl) != 0) {
                             send_6x26_unequip_item__10TObjPlayerFPvPv(pl, get_item_id__5TItemFv());
                             ((TObjPlayer *)pl)->get_hand_joint_position((s32)(arg0 + 0x408));
-                            spawn_particle_effect(arg0 + 0x408, 0x1D0);
+                            spawn_particle_effect((const Vec *)(arg0 + 0x408), 0x1D0);
                         }
                     } else if (near != 0 && random_ratio__9TObjCharaFv((s32) arg0) <= lbl_805DF384) {
                         TObjEneDD__sub_800BA438(arg0, *(void **)((s8 *)arg0 + 0x390));

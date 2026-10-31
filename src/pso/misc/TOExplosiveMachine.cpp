@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/misc/TOExplosiveMachine.h"
 #include "pso/system/BmlResourceClass.h"
@@ -117,8 +118,8 @@ void TOExplosiveMachine::run_task() {
                 {0x800, 0x100, 0x800}, {7, 50}, {-100, 1},
                 (s32)debris_models[1], debris_textures[1], 22
             };
-            spawn_particle_effect(&position, 0x45);
-            spawn_particle_effect(&position, 0x46);
+            spawn_particle_effect((const Vec *)(&position), 0x45);
+            spawn_particle_effect((const Vec *)(&position), 0x46);
             void *chip = TObject::operator new(0x234);
             if (chip != NULL) {
                 __ct__8TObjChipFP7TObjectP14TObjChipParams((u8 *)chip, (u8 *)tl_05, (u8 *)&first);

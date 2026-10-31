@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "pso/TParticleCtrl.h"
 #include "types.h"
 #include "pso/boss/TBoss4Type2_800874F4.h"
@@ -255,11 +256,11 @@ void TTecGiBarta::create_particles() {
     if (shot->band == 5) {
         VecCopy((Vec *)&v, (const Vec *)&shot->pos);
         v.y -= lbl_805DC808;
-        spawn_particle_effect(&v, 0x1E0);
-        spawn_particle_effect(&v, 0x1E1);
+        spawn_particle_effect((const Vec *)(&v), 0x1E0);
+        spawn_particle_effect((const Vec *)(&v), 0x1E1);
         src = (u8 *)find_entity_by_id(shot->source);
         if (src != NULL) {
-            emitter = spawn_particle_effect(src + 0x38, 0x18B);
+            emitter = spawn_particle_effect((const Vec *)(src + 0x38), 0x18B);
             if (emitter != NULL) {
                 attach_particle_model((u8 *)emitter, (s32)(get_bml_model(technique_effect_bml, 6)), (s32)lbl_805D63B0, (s32)(get_bml_motion(technique_effect_bml, 2)), 0, (f32)lbl_805DC804);
             }

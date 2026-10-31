@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/misc/TUnk_804CCD0C.h"
 #include "pso/misc/TLobby_80226070.h"
@@ -37,7 +38,7 @@ extern s32 __vt__13TUnk_804CCD0C[];
 void TTecSlicer__updateLightningTechniqueCharge(TechniqueChargeEmitter* state) {
     ++state->age;
     if(state->age%10==0) {
-        for(int i=0;i<3;++i)spawn_particle_effect(state->position,lightning_charge_particle_ids[i]);
+        for(int i=0;i<3;++i)spawn_particle_effect((const Vec *)(state->position), (s32)(lightning_charge_particle_ids[i]));
     }
     if(!((TObjPlayer *)(state->actor))->check_flag_0x80())queue_destruction__7TObjectFv((state));
     else if(state->age>=180)queue_destruction__7TObjectFv((state));

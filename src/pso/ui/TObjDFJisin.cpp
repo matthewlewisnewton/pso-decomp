@@ -1,4 +1,5 @@
 #include "pso/enemy/BattleParameters.h"
+#include "pso/misc/ParticleFactory.h"
 struct NJS_OBJECT;
 #include "types.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
@@ -198,7 +199,7 @@ void * create__16TObjDFBeamCursorFPvPv(void *arg0, void *arg1);
 u8 * TObjDFRecBall__ct(u8 *arg0, u8 *arg1, u8 *arg2, u8 *arg3);
 void * create__13TObjDFRecBallFPvPvPv(void *arg0, void *arg1, void *arg2);
 s32 TBoss4Type3__sub_8005254C(s16);
-void *spawn_particle_effect(void *pos, s32 id);
+
 void *create_particle_emitter(void *pos, s32 id);
 void __dl__7TObjectFPv(void *);
 void * __nw__7TObjectFUl(int);
@@ -411,7 +412,7 @@ void fn_spawn_particle_f3_with_flags(s32 arg0, s32 arg1) {
     u32 particle_effect;
     VecCopy((Vec *)(&position.x), (const Vec *)(arg1));
     position.y += lbl_805D8A90;
-    particle_effect = (u32)spawn_particle_effect((&position.x), 0xF3);
+    particle_effect = (u32)spawn_particle_effect((const Vec *)((&position.x)), 0xF3);
     if (particle_effect != 0U) {
         ((TParticleCtrl *)particle_effect)->set_flags(0x40);
     }
@@ -475,7 +476,7 @@ void run_task__16TObjDFBeamCursorFv(u8 *arg0) {
     temp_r0 = *(s32 *)((s8 *)arg0 + 0x1C) - 1;
     *(s32 *)((s8 *)arg0 + 0x1C) = temp_r0;
     if (temp_r0 <= 0) {
-        spawn_particle_effect((arg0 + 0x20), 0x38);
+        spawn_particle_effect((const Vec *)((arg0 + 0x20)), 0x38);
         ((s32 (*)(void *))queue_destruction__7TObjectFv)(arg0);
     }
 }
