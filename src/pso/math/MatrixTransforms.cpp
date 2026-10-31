@@ -50,6 +50,12 @@ extern "C" void copy_matrix(MtxP dest, const f32 (*source)[4]) {
 
 #pragma pop
 
+extern "C" void subtract_vector(Vec *v, const Vec *sub) {
+    v->x -= sub->x;
+    v->y -= sub->y;
+    v->z -= sub->z;
+}
+
 void euler_zyx_to_quaternion(u8 *arg0, u8 *arg1) {
     f32 temp_f1;
     f32 temp_f27;
