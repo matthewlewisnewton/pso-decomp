@@ -289,7 +289,7 @@ void *TObjNpcMoja__ct(void *selfv, void *parent, void *arg2v) {
     *(u8 **)(self + 0x18) = (u8 *)__vt__11TObjNpcMoja;
     *(s32 *)(self + 0) = TObjNpcMoja__name;
     ((VObj_8014C780 *)self)->m79(arg2);
-    ((TObjPlayer *)self)->init_position_vectors();
+    ((TObjChara *)self)->initialize_position_copies();
     ((VObj_8014C780 *)self)->m85(0, 1);
     *(s32 *)(self + 0x34) = get_bml_model(lbl_805D50D8, 0);
     *(s32 *)(self + 0x24) = TObjFish__sub_8001EDB0(lbl_805D50D8, 0);

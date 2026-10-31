@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "types.h"
 #include "pso/render/render_util.h"
 #include "pso/unk/text_803E2D70.h"
@@ -151,7 +152,7 @@ void TObjEneSlime::render() {
     s32 temp_r30_2;
     s32 temp_r31;
     temp_r31 = defer_render__7TObjectFv();
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         temp_r30 = (this->state36C * 4) & 4;
         debug_printf_at(0x130020, lbl_8043D298, (int) (*(s32 *)((s8 *)((u8 *)slime_debug_label_table + temp_r30) + 0)));
         TObjPlayer::toggle_particle_effect();
@@ -183,7 +184,7 @@ void TObjEneSlime::render() {
 void TObjEneSlime::run_task() {
     s32 sp8;
 
-    if ((TObjPlayer::check_demo_mode() == 0) && (has_no_active_slot(this) != 0)) {
+    if ((check_demo_mode() == 0) && (has_no_active_slot(this) != 0)) {
         sp8 = 0x800;
         send_6x0A_enemy_state(&sp8);
         exchange_object_state((s32)&sp8, (s16)0);

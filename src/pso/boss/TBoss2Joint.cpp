@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/NinjaTypes.h"
@@ -423,7 +424,7 @@ void TBoss2Joint::vfunc_28() {  }
 
 void TBoss2Joint::run_task() {
     u8 *arg0 = (u8 *)this;
-    if (TObjPlayer::check_demo_mode() == 0) {
+    if (check_demo_mode() == 0) {
         VecCopy((Vec *)(arg0 + 0x38), (const Vec *)((int) (*(s32 *)((s8 *)arg0 + 0x390))));
         this->vfunc_83();
         if (((VObj_18 *)(arg0))->m84() == 0) {

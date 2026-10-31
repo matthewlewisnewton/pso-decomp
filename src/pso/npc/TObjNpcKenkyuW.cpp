@@ -123,7 +123,7 @@ u8 *TObjNpcKenkyuW__ct(u8 *player, s32 arg1, s32 arg2) {
     *(s32 **)((s8 *)player + 0x18) = &(*(RecoveredGlobal_802A3CD8___vt__14TObjNpcKenkyuW *)&__vt__14TObjNpcKenkyuW).value;
     *(s32 *)((s8 *)player + 0) = (s32) TObjNpcKenkyuW__name;
     ((TObjNpcKenkyuW *)(player))->apply_set_data((void *)arg2);
-    ((TObjPlayer *)player)->init_position_vectors();
+    ((TObjChara *)player)->initialize_position_copies();
     *(s32 *)((s8 *)player + 0x34) = get_bml_model((int) ((*(s32 *)&TObjNpcKenkyuW__model_resource)), 0);
     ((TObjNpcKenkyuW *)player)->texlist = TObjFish__sub_8001EDB0((int) ((*(s32 *)&TObjNpcKenkyuW__model_resource)), 0);
     ((TObjNpcBase *)player)->setup_common();
