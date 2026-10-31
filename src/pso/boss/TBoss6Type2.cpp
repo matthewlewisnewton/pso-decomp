@@ -196,7 +196,7 @@ s32 add_radar_scaled_marker(void *, int, int, int, f32);
 
 void TObjPlayer__sub_8023DEE0(s16 *p, s16 a, s16 b, u16 id);
 void TBoss6Type2__sub_802BA7BC(u8 *o);
-s32 TBoss6Type2__sub_802BBE20(void *);
+void TBoss6Type2__sub_802BBE20(void *);
 extern const f32 lbl_805DE4C0;
 s32 get_bml_motion(int, int);
 extern u8 boss6_type2_zero_motion_block[];
@@ -1868,6 +1868,65 @@ void TBoss6Type2::update_parts_flags() {
     }
     if (this->m_474 & 2) {
         set_owner_flag_bit0();
+    }
+}
+
+struct Vec_802BBE20 { f32 x, y, z; };
+
+struct Ent_802BBE20 { Vec_802BBE20 m; u8 padC[0x1C - 0xC]; Vec_802BBE20 n; u8 pad28[0x2C - 0x28]; };
+
+struct Tbl_802BBE20 { s32 kind; s32 idx; };
+
+struct Boss_802BBE20 {
+    u8 pad0[0x38];
+    Vec_802BBE20 pos;
+    u8 pad44[0x60 - 0x44];
+    s32 f60;
+    u8 pad64[0xA4 - 0x64];
+    Ent_802BBE20 *ents;
+    u8 padA8[0x59C - 0xA8];
+    Vec_802BBE20 rock[19];
+};
+
+extern "C" {
+extern Tbl_802BBE20 lbl_8047130C[];
+s32 matrix_mult_vec(int, void *, void *);
+void set_matrix_identity(u8 *arg0);
+s32 rotate_matrix_y(int, int);
+s32 push_matrix();
+s32 pop_matrix();
+}
+
+void TBoss6Type2__sub_802BBE20(void *self) {
+    Boss_802BBE20 *arg0 = (Boss_802BBE20 *)self;
+    Vec_802BBE20 v;
+    s32 i;
+    Vec_802BBE20 *base;
+    Ent_802BBE20 *e;
+    if (((TBoss6Type2 *)self)->m_a4 != NULL) {
+        for (i = 0; i < 3; i++) {
+            Tbl_802BBE20 *t;
+            e = &arg0->ents[i];
+            t = &lbl_8047130C[i];
+            base = NULL;
+            switch (t->kind) {
+            case 0:
+                base = arg0->rock;
+                break;
+            }
+            if (base == NULL) {
+                return;
+            }
+            VecCopy((Vec *)&v, (const Vec *)&base[t->idx]);
+            subtract_vector((Vec_802B9A68 *)&v, (Vec_802B9A68 *)&arg0->pos);
+            push_matrix();
+            set_matrix_identity(0);
+            rotate_matrix_y(0, -((TBoss6Type2 *)self)->m_60);
+            matrix_mult_vec(0, &v, e);
+            pop_matrix();
+            VecCopy((Vec *)&e->n, (const Vec *)e);
+            vec3_add_to(&e->n, &arg0->pos);
+        }
     }
 }
 

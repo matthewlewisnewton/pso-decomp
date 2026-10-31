@@ -338,6 +338,9 @@ extern s16 TCameraCtrl__viewport_x;
 extern s16 TCameraCtrl__viewport_y;
 extern const f32 TCameraCtrl__data_805D8FA8;
 extern f32 TCameraCtrl__data_805D8FAC;
+extern const f32 TCameraCtrl__data_805D8FDC;
+extern const f32 TCameraCtrl__data_805D8FE0;
+s32 set_perspective_projection_from_fov(int, f32, f32, f32);
 s32 get_entity_id(int);
 s32 get_camera_mode__11TCameraCtrlFv();
 s32 TCameraCtrl__sub_8006B358(int);
@@ -573,6 +576,26 @@ f32 TCameraCtrl::get_view_scale() {
         return lbl_805D8FC8;
     }
     return TCameraCtrl__data_805D8FAC;
+}
+
+void TCameraCtrl__sub_80068EF0(void) {
+    f32 neg_w;
+    f32 neg_h;
+    if (is_split_screen() == 0) {
+        ((TCameraCtrl *)((s32) &TCameraCtrl__data_804FF634.value))->copy_view_state((s32)((s32) &lbl_804FF67C.value));
+        neg_w = -(*(f32 *)((s8 *)&TCameraCtrl__data_804FF634.value + 8) - 320.0f);
+        neg_h = -(*(f32 *)((s8 *)&TCameraCtrl__data_804FF634.value + 0xC) - 240.0f);
+        if (0.0f == neg_w && 0.0f == neg_h) {
+            TCameraCtrl__data_805D4E0A = 0;
+        } else {
+            TCameraCtrl__data_805D4E0A = 1;
+        }
+        GXSetScissorBoxOffset((s32) neg_w, (s32) neg_h);
+        TCameraCtrl__sub_801E32D8(*(f32 *)((s8 *)&TCameraCtrl__data_804FF634.value + 8), *(f32 *)((s8 *)&TCameraCtrl__data_804FF634.value + 0xC));
+        if ((void *) camera_ctrl_instance != NULL) {
+            set_perspective_projection_from_fov((s32) ((TCameraCtrl *) camera_ctrl_instance)->m_19c, TCameraCtrl__data_805D8FDC, TCameraCtrl__data_805D8FAC, TCameraCtrl__data_805D8FE0);
+        }
+    }
 }
 
 extern s32 tl_camera;
