@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/object/TObjWarpBase.h"
 #include "pso/misc/THunterGuildSeqOffline.h"
 #include "pso/misc/TLobby.h"
@@ -244,7 +245,6 @@ extern "C" {
 s32 get_bml_motion(s32, s32);
 s32 TObjFish__sub_8001EDB0(s32, s32);
 s32 get_bml_model(s32, s32);
-s32 load_resource_from_descriptor(s32, void *, s32, s32, s32);
 extern s32 boss_warp_base_model;
 extern s32 warp_boss_model;
 extern s32 warp_boss_bml_motion;
@@ -339,7 +339,6 @@ int get_boss_warp_model_handle(void);
 int fn_8019F9AC(void);
 }
 }
-void TLobby__sub_8001FE7C(void*, int);
 void TObjFish__sub_8019F72C(void);
 }
 s32 TObjWarpBossMulti__create(s32 arg0);
@@ -1286,7 +1285,7 @@ s32 TObjWarpBossMulti__create(s32 arg0) {
 }
 void TObjFish__sub_8019F72C(void) {
     if ((u32) boss_warp_resource_bundle != 0U) {
-        TLobby__sub_8001FE7C((void*)boss_warp_resource_bundle, 1);
+        delete (BmlResource *)((void*)boss_warp_resource_bundle);
         boss_warp_resource_bundle = 0U;
     }
 }
@@ -1295,10 +1294,7 @@ void TObjFish::load_models() {
     s32 r;
     area = get_current_floor_area();
     if (area >= 8 && area <= 0xA) {
-        r = ((s32)::operator new(0x440));
-        if (r != 0) {
-            r = ((s32 (*)(s32, s32, void *, s32, s32, s32)) load_resource_from_descriptor)(r, 5, lbl_804B94D8, 0, 0, 0);
-        }
+        r = (s32)new BmlResource(5, (BmlResourceDescriptor *)lbl_804B94D8, 0, 0, NULL);
         (*(s32 *)&boss_warp_resource_bundle) = r;
         (*(s32 *)&boss_warp_base_model) = get_bml_model(r, 0);
         (*(s32 *)&boss_warp_confirmation_model) = get_bml_model((*(s32 *)&boss_warp_resource_bundle), 2);
@@ -1310,10 +1306,7 @@ void TObjFish::load_models() {
         return;
     }
     if (TContainerAncient01::is_global_state_in_table() != 0 || area == AREA_SEABED_UPPER || area == AREA_SEABED_LOWER) {
-        r = ((s32)::operator new(0x440));
-        if (r != 0) {
-            r = ((s32 (*)(s32, s32, void *, s32, s32, s32)) load_resource_from_descriptor)(r, 5, lbl_804B94FC, 0, 0, 0);
-        }
+        r = (s32)new BmlResource(5, (BmlResourceDescriptor *)lbl_804B94FC, 0, 0, NULL);
         (*(s32 *)&boss_warp_resource_bundle) = r;
         (*(s32 *)&boss_warp_base_model) = get_bml_model(r, 0);
         (*(s32 *)&boss_warp_confirmation_model) = get_bml_model((*(s32 *)&boss_warp_resource_bundle), 1);
@@ -1324,10 +1317,7 @@ void TObjFish::load_models() {
         (*(s32 *)&lbl_805D5CA4) = TObjFish__sub_8001EDB0((*(s32 *)&boss_warp_resource_bundle), 0);
         return;
     }
-    r = ((s32)::operator new(0x440));
-    if (r != 0) {
-        r = ((s32 (*)(s32, s32, void *, s32, s32, s32)) load_resource_from_descriptor)(r, 5, lbl_804B94AC, 0, 0, 0);
-    }
+    r = (s32)new BmlResource(5, (BmlResourceDescriptor *)lbl_804B94AC, 0, 0, NULL);
     (*(s32 *)&boss_warp_resource_bundle) = r;
     (*(s32 *)&boss_warp_base_model) = get_bml_model(r, 0);
     (*(s32 *)&boss_warp_confirmation_model) = get_bml_model((*(s32 *)&boss_warp_resource_bundle), 2);

@@ -3,10 +3,17 @@
 
 #include "types.h"
 #include "pso/enemy/TObjEnemy.h"
+#include "pso/enemy/BattleParameters.h"
 
 struct TObjEneDD : public TObjEnemy {
     TObjEneDD(TObject *parent);
     virtual ~TObjEneDD();
+    s32 previous_mode;
+    s32 m_378;
+    f32 m_37c;
+    u8 dd_fields_380[0x4];
+    s32 m_384;
+    s32 m_388;
     void set_part_local_pos(void *, s32);
     void transition_enemy_state(s32);
     void sub_800BBA0C();
@@ -38,7 +45,7 @@ struct TObjEneDD : public TObjEnemy {
     virtual u8 *vfunc_103(u8 *);
     virtual s32 vfunc_104(f32) = 0;
     int get_flag_b4();
-    static f32 calc_elapsed_scaled();
+    f32 calc_elapsed_scaled();
     void update_velocity();
     void turn_toward_target_direction(s32 max_step);
     void set_target_destination(const Vec *position);
@@ -57,8 +64,7 @@ struct TObjEneDD : public TObjEnemy {
     int update_primary_light();
     int update_secondary_light();
     void reload_stats_keep_hp_tp();
-    void reset_hp(u8 *base_stats, u8 *attack_stats, u8 *resistance_stats);
-    int get_camera_ctrl();
+    void reset_hp(BattleBaseStats *base_stats, AttackParams *attack_stats, ActorParamBlock *resistance_stats);
     int update_camera_sequence();
     void initialize_enemy_state(s32 parameter);
     static s32 get_random_scaled();
@@ -96,10 +102,11 @@ struct TObjEneDD : public TObjEnemy {
     void state_damaged(s32 arg1);
     void state_chase_target(s32 arg1);
     int get_target_info();
-    void copy_resource_desc(u8 *arg1);
     void set_field_378(s32 v);
     void init_position_vectors();
     static void release_resource();
 };
+
+typedef char TObjEneDD_size_check[sizeof(TObjEneDD) == 0x38C ? 1 : -1];
 
 #endif

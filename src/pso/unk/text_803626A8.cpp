@@ -1,5 +1,7 @@
+#include "pso/enemy/BattleParameters.h"
 extern "C" void *__ct__12TObjEneDD_STFP7TObject(void *);
 #include "pso/system/NinjaTypes.h"
+#include "pso/system/BmlResourceClass.h"
 #include "types.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/misc/TRaderMapCore.h"
@@ -33,6 +35,7 @@ extern BmlResourceDescriptor TObjEneEpsilonGuard__resource_descriptor;
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/misc/TLobby.h"
 #include "pso/item/TItem.h"
+#include "pso/npc/NpcModelRegistry.h"
 struct Stack_803626A8 {
     s32 sp8;
     s32 spC;
@@ -190,12 +193,11 @@ void *spawn_particle_effect(void *pos, s32 id);
 s16 get_validated_attack_stage(u8 *arg0);
 extern s32 knuckle_marker_joint_table[];
 void s_rank_knuckle_marker(T_80362C80 *arg0);
-s32 dispatch_shared_handler_a__6TLobbyFl(int);
-s32 register_object__6TLobbyFl(int);
-s32 dispatch_shared_handler_b__6TLobbyFl(int);
-s32 register_boss__6TLobbyFl(int);
+
+
+
+
 Node_803627DC *get_bml_model(void *, int);
-u8 *load_resource_from_descriptor(void *, int, void *, int, int, int);
 s32 TObjPlayer__sub_800F0928(void *);
 extern Quad_803627DC lbl_80479FAC;
 extern f32 lbl_80543A18[3];
@@ -214,7 +216,6 @@ extern u8 *lbl_805D6FA8;
 extern const f32 lbl_805E0248;
 extern const f32 lbl_805E024C;
 extern const f32 lbl_805E0250;
-void TLobby__sub_8001FE7C(void *, int);
 void *__dt__13TUnk_804F26E0Fv(void *arg0, s16 arg1);
 void *TObjEneEpsilon__ct(void *arg0);
 void construct_srank_weapon(void *);
@@ -256,7 +257,7 @@ void TObjEneEpsilonGuard::free_shared_resources() {
         (*(V_8036274C * *)&lbl_805D6FA8) = NULL;
     }
     if ((*(u32 *)&lbl_805D6FA0) != 0) {
-        TLobby__sub_8001FE7C((void *)(*(u32 *)&lbl_805D6FA0), 1);
+        delete (BmlResource *)((void *)(*(u32 *)&lbl_805D6FA0));
         (*(u32 *)&lbl_805D6FA0) = 0;
     }
 }
@@ -266,10 +267,7 @@ void TObjEneEpsilonGuard::load_assets() {
     lbl_80543A18[0] = lbl_805E0248;
     lbl_80543A18[1] = lbl_805E0248;
     lbl_80543A18[2] = lbl_805E0248;
-    p = (u8 *)::operator new(0x440);
-    if (p != NULL) {
-        p = load_resource_from_descriptor(p, 1, &TObjEneEpsilonGuard__resource_descriptor, 0, 0, 0);
-    }
+    p = (u8 *)new BmlResource(1, (BmlResourceDescriptor *)(&TObjEneEpsilonGuard__resource_descriptor), 0, 0, (void *)(0));
     lbl_805D6FA0 = p;
     p = (u8 *)::operator new(0x10);
     if (p != NULL) {
@@ -281,14 +279,14 @@ void TObjEneEpsilonGuard::load_assets() {
         p = ((TBreakUpMdl *)p)->init_from_model((s32)(get_bml_model(lbl_805D6FA0, 6)));
     }
     lbl_805D6FA8 = p;
-    lbl_805D6F80 = register_boss__6TLobbyFl(0x23);
-    lbl_805D6F84 = dispatch_shared_handler_b__6TLobbyFl(0x23);
-    lbl_805D6F88 = register_object__6TLobbyFl(0x23);
-    lbl_805D6F8C = dispatch_shared_handler_a__6TLobbyFl(0x23);
-    epsilon_guard_boss_stat_handle = register_boss__6TLobbyFl(0x24);
-    epsilon_guard_shared_handler_b = dispatch_shared_handler_b__6TLobbyFl(0x24);
-    epsilon_guard_registered_object_handle = register_object__6TLobbyFl(0x24);
-    TObjEneEpsilonGuard__movement_params = dispatch_shared_handler_a__6TLobbyFl(0x24);
+    lbl_805D6F80 = (s32)get_battle_base_stats(0x23);
+    lbl_805D6F84 = (s32)get_battle_attack_params(0x23);
+    lbl_805D6F88 = (s32)get_battle_resistance_params(0x23);
+    lbl_805D6F8C = (s32)get_battle_movement_params(0x23);
+    epsilon_guard_boss_stat_handle = (s32)get_battle_base_stats(0x24);
+    epsilon_guard_shared_handler_b = (s32)get_battle_attack_params(0x24);
+    epsilon_guard_registered_object_handle = (s32)get_battle_resistance_params(0x24);
+    TObjEneEpsilonGuard__movement_params = (s32)get_battle_movement_params(0x24);
     epsilon_guard_part_color_table[0] = get_bml_model(lbl_805D6FA0, 0)->child->leaf->v;
     epsilon_guard_part_color_table[1] = get_bml_model(lbl_805D6FA0, 0)->child->next->child->child->next->child->child->next->next->child->leaf->v;
     epsilon_guard_part_color_table[2] = get_bml_model(lbl_805D6FA0, 0)->child->next->child->child->next->child->child->next->next->next->child->leaf->v;
@@ -302,7 +300,7 @@ void TObjEneEpsilonGuard::load_assets() {
     {
         Quad_803627DC q = lbl_80479FAC;
         q.a = ((Res_803627DC *)lbl_805D6FA0)->f430;
-        TLobby::spawn_npc_enemy((s16)0x4E, (s32)(((Res_803627DC *)lbl_805D6FA0)->f42c->f8), (s32)(((Res_803627DC *)lbl_805D6FA0)->f42c->fC), (s32)&q, (f32)lbl_805E024C, (f32)lbl_805E0250);
+        NpcModelRegistry::register_animated_chunk((s16)0x4E, (void *)((s32)(((Res_803627DC *)lbl_805D6FA0)->f42c->f8)), (void *)((s32)(((Res_803627DC *)lbl_805D6FA0)->f42c->fC)), (const NpcAnimationBinding *)((s32)&q), (f32)lbl_805E024C, (f32)lbl_805E0250);
     }
 }
 

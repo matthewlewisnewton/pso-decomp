@@ -1,4 +1,5 @@
 #include "pso/player/PlayerAttackParams.h"
+#include "pso/npc/NpcModelRegistry.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
 #include "types.h"
 #include "pso/enemy/TObjEneBalClaw.h"
@@ -52,7 +53,7 @@ void spawn_lobby_npc_enemy(void) {
     stack.sp14 = *(s32 *)((s8 *)&lbl_80439B8C.value + 0xC);
     stack.sp8 = *(s32 *)((s8 *)lbl_805D4F20 + 0x430);
     temp_r5 = (u8 *)(*(u8 **)((s8 *)lbl_805D4F20 + 0x42C));
-    TLobby::spawn_npc_enemy((s16)(0x14), (s32)((int) (*(s32 *)((s8 *)temp_r5 + 0x28))), (s32)((int) (*(s32 *)((s8 *)temp_r5 + 0x2C))), (s32)((void *)&stack.sp8), (f32)((f32) (*(f32 *)((s8 *)((s32 *)TObjEneBalClawClaw__collision_body_template) + 0xC))), (f32)((f32) ((15.0f))));
+    NpcModelRegistry::register_animated_chunk((s16)(0x14), (void *)((s32)((int) (*(s32 *)((s8 *)temp_r5 + 0x28)))), (void *)((s32)((int) (*(s32 *)((s8 *)temp_r5 + 0x2C)))), (const NpcAnimationBinding *)((s32)((void *)&stack.sp8)), (f32)((f32) (*(f32 *)((s8 *)((s32 *)TObjEneBalClawClaw__collision_body_template) + 0xC))), (f32)((f32) ((15.0f))));
 }
 
 #include <stddef.h>
@@ -160,7 +161,7 @@ void TObjEneBalClawClaw::update_chase_state() {
         }
         *(f32 *)((s8 *)((u8 *)this) + 0x30C) = (0.0f);
         move_along_ground_avoiding_walls__15TObjEnemyCustomF3Vecff(this, *(Vec_80090504 *)((s8 *)this->target + 0x2FC), this->bodies, (-0.6f), *(f32 *)((s8 *)this->bodies + 0xC));
-        turn_toward_direction(*(s32 *)((s8 *)this->movementParameters + 8), (Vec *)unk_308);
+        turn_toward_direction(*(s32 *)((s8 *)this->movementParameters + 8), &movement_velocity);
         advance_animation();
         apply_actor_gravity((TObjEnemy *)this, (s32 *)(0), (0.0f));
         update_collisions__10TObjPlayerFv(this);
@@ -1176,8 +1177,8 @@ void TObjEneBalClawClaw::run_task() {
         }
         ((TObjEneBalClaw *)arg0)->update_claw_angle();
         VecCopy((Vec *)(arg0 + 0x2FC), (const Vec *)(arg0 + 0x38));
-        temp_f2 = this->m_300;
-        this->m_300 = (f32) (temp_f2 + (this->m_3b4 + *(f32 *)((s8 *)arg0 + 0x3BC)));
+        temp_f2 = this->body_center_position.y;
+        this->body_center_position.y = (f32) (temp_f2 + (this->m_3b4 + *(f32 *)((s8 *)arg0 + 0x3BC)));
         temp_f1 = this->m_3b4;
         temp_r5 = (unsigned char *) (this->bodies);
         *(f32 *)((s8 *)temp_r5 + 4) = (f32) (temp_f1 + *(f32 *)((s8 *)arg0 + 0x3BC));

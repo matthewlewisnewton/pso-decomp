@@ -78,8 +78,8 @@ void TObjEneDellBiter_Eff_Rush::run_task() {
         queue_destruction();
         return;
     }
-    target->x_speed = direction.x * speed;
-    target->m_310 = direction.z * strength;
+    target->movement_velocity.x = direction.x * speed;
+    target->movement_velocity.z = direction.z * strength;
     strength *= lbl_805DEFB4;
 }
 

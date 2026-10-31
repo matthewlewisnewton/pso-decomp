@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #include "types.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_800F0810.h"
@@ -17,6 +18,7 @@
 #include "pso/misc/TTecZarua.h"
 #include "pso/object/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/npc/NpcModelRegistry.h"
 
 typedef char PanarmsActionTimerOffset[offsetof(TObjEnePanarms, action_timer) == 0x3B4 ? 1 : -1];
 
@@ -278,7 +280,7 @@ s32 find_nearest_hittable_enemy__10TObjPlayerFiPvf(void *, void *, f32);
 u16 find_nearest_visible_player(void *, Vec_800E0A44 *, f32);
 s32 is_split_screen();
 f64 atan2_float(f32, f32, f32);
-u8 * dispatch_shared_handler_a__6TLobbyFl(s32);
+
 s32 get_camera_mode__11TCameraCtrlFv();
 u32 csnLookAt(void *, void *);
 s32 spawn_particle_effect(void *, int, f32);
@@ -418,9 +420,9 @@ void TObjEnePanarms::spawn_npc_pair() {
   stack.sp14 = *((s32 *) (((s8 *)&panarms_npc_binding_desc_b.value) + 0xC));
   stack.sp8 = temp_r8;
   temp_r5 = (u8 *) (*((u8 **) (new_var + 0x42C)));
-  TLobby::spawn_npc_enemy((s16)(0x24), (s32)((int) (*((s32 *) (((s8 *) temp_r5) + 0x18)))), (s32)((int) (*((s32 *) (((s8 *) temp_r5) + 0x1C)))), (s32)((void *)&stack.sp18), (f32)((f32) lbl_805DA520), (f32)((f32) TObjEnePanarms__data_805DA524));
+  NpcModelRegistry::register_animated_chunk((s16)(0x24), (void *)((s32)((int) (*((s32 *) (((s8 *) temp_r5) + 0x18))))), (void *)((s32)((int) (*((s32 *) (((s8 *) temp_r5) + 0x1C))))), (const NpcAnimationBinding *)((s32)((void *)&stack.sp18)), (f32)((f32) lbl_805DA520), (f32)((f32) TObjEnePanarms__data_805DA524));
   temp_r5_2 = (u8 *) (*((u8 **) (((s8 *) TObjEnePanarms__entry_params_resource) + 0x42C)));
-  TLobby::spawn_npc_enemy((s16)(0x25), (s32)((int) (*((s32 *) (((s8 *) temp_r5_2) + 0x28)))), (s32)((int) (*((s32 *) (((s8 *) temp_r5_2) + 0x2C)))), (s32)((void *)&stack.sp8), (f32)((f32) lbl_805DA520), (f32)((f32) TObjEnePanarms__data_805DA524));
+  NpcModelRegistry::register_animated_chunk((s16)(0x25), (void *)((s32)((int) (*((s32 *) (((s8 *) temp_r5_2) + 0x28))))), (void *)((s32)((int) (*((s32 *) (((s8 *) temp_r5_2) + 0x2C))))), (const NpcAnimationBinding *)((s32)((void *)&stack.sp8)), (f32)((f32) lbl_805DA520), (f32)((f32) TObjEnePanarms__data_805DA524));
 }
 #pragma pop
 
@@ -471,7 +473,7 @@ void TObjEnePanarms__sub_800DFE08(u8 *arg0) {
         ((s32 (*)(void *, s32))set_field_b8__10TObjMotionFs)(arg0, 4);
     }
     if (lbl_805DA528 == (f32) *(s32 *)((s8 *)arg0 + 0x3B4)) {
-        var_r5 = *(s32 *)((s8 *)(dispatch_shared_handler_a__6TLobbyFl(0x33)) + 0x18);
+        var_r5 = *(s32 *)((s8 *)(((u8 *)get_battle_movement_params(0x33))) + 0x18);
         if ((var_r5 < 0) || (var_r5 > 0xE)) {
             var_r5 = 0;
         }
@@ -1168,7 +1170,7 @@ void TObjEnePanarms::attack_target_player(s32 arg1) {
         }
         sc = random_ratio__9TObjCharaFv(this);
         if (sc <= *(f32 *)((s8 *)((u8 *)this) + 0x468)) {
-            lv = ((Prm_800E1608 * (*)(s32))dispatch_shared_handler_a__6TLobbyFl)(0x33)->x1c;
+            lv = ((Prm_800E1608 *)get_battle_movement_params(0x33))->x1c;
             if (lv < 0 || lv > 0xE) {
                 lv = 0;
             }
@@ -1176,7 +1178,7 @@ void TObjEnePanarms::attack_target_player(s32 arg1) {
             return;
         }
         if (sc <= *(f32 *)((s8 *)((u8 *)this) + 0x468) + this->m_46c) {
-            lv = ((Prm_800E1608 * (*)(s32))dispatch_shared_handler_a__6TLobbyFl)(0x33)->x20;
+            lv = ((Prm_800E1608 *)get_battle_movement_params(0x33))->x20;
             if (lv < 0 || lv > 0xE) {
                 lv = 0;
             }
@@ -1407,7 +1409,7 @@ void TObjEnePanBARA::vfunc_63() {
             VecCopy(&this->position, (const Vec *)(this->m_39c + 0x38));
             *(f32 *)((s8 *)arg0 + 0x38) += lbl_805DA588 * sin_table_lookup(this->rotation_y);
             *(f32 *)((s8 *)arg0 + 0x40) += lbl_805DA588 * cos_table_lookup(this->rotation_y);
-            VecCopy((Vec *)&this->m_2fc, &this->position);
+            VecCopy((Vec *)&this->body_center_position, &this->position);
         }
         ((int (*)(void*, int))TObjEnePanarms__sub_800E1C98)(arg0, 7);
         break;

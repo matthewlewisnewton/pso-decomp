@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/system/GinjaMaterial.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/object/TObjMotion.h"
@@ -41,7 +42,6 @@ struct RecoveredGlobal_8017DE94___vt__14TOWreckAncient {
 };
 
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern RecoveredGlobal_8017DDA8_lbl_804B53D0 bm_o_wreck_ancient_resource_descriptor;
 extern u32 wreck_ancient_bml_resource;
 extern u32 wreck_ancient_brakable_bml_resource;
@@ -55,7 +55,6 @@ extern const f32 lbl_805DBAD0;
 extern const f32 lbl_805DBAD4;
 u8 *TOWreckAncient__ct(u8 *arg0, s32 arg1);
 void *__dt__14TOWreckAncientFv(void *arg0, s16 arg1);
-void TLobby__sub_8001FE7C(void*, int);
 s32 post_translate_matrix(void *);
 s32 free_collision_body_parts(void *);
 s32 rotate_matrix_y(s32, s32);
@@ -77,11 +76,11 @@ void TOWreckAncient::render() {
 
 void TOWreckAncient::free_statics() {
     if ((u32) wreck_ancient_bml_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)wreck_ancient_bml_resource, 1);
+        delete (BmlResource *)((void*)wreck_ancient_bml_resource);
         wreck_ancient_bml_resource = 0U;
     }
     if ((u32) wreck_ancient_brakable_bml_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)wreck_ancient_brakable_bml_resource, 1);
+        delete (BmlResource *)((void*)wreck_ancient_brakable_bml_resource);
         wreck_ancient_brakable_bml_resource = 0U;
     }
 }
@@ -91,17 +90,11 @@ void TOWreckAncient::load_resources() {
     s32 temp_r3_2;
     s32 var_r0;
     s32 var_r0_2;
-    temp_r3 = (int)::operator new(0x440);
+    temp_r3 = (int)new BmlResource(1, (BmlResourceDescriptor *)(&bm_o_wreck_ancient_resource_descriptor.value), 0, 0, (void *)(0));
     var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &bm_o_wreck_ancient_resource_descriptor.value, 0, 0, 0));
-    }
     (*(s32 *)&wreck_ancient_bml_resource) = var_r0;
-    temp_r3_2 = (int)::operator new(0x440);
+    temp_r3_2 = (int)new BmlResource(1, (BmlResourceDescriptor *)(&TOWreckAncient__resource_descriptor), 0, 0, (void *)(0));
     var_r0_2 = temp_r3_2;
-    if (var_r0_2 != 0) {
-        var_r0_2 = (long) (load_resource_from_descriptor((void *) temp_r3_2, 1, &TOWreckAncient__resource_descriptor, 0, 0, 0));
-    }
     (*(s32 *)&wreck_ancient_brakable_bml_resource) = var_r0_2;
 }
 

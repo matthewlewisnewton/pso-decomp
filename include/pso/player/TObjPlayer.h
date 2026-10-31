@@ -444,7 +444,6 @@ struct TObjPlayer : public TObjChara {
     static void toggle_particle_effect();
     static void create_dead_spot(s32 arg0, s32 arg1, f32 farg0);
     static void spawn_effect_f8(s32 arg1, s32 arg2);
-    static void set_field_e4(s32 arg1, s32 arg2);
     void trigger_dell_biter_events();
     void spawn_ground_effect(s32 arg1);
     void spawn_effect_at_ground(s32 arg1);

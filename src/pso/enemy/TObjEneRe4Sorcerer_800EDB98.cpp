@@ -1,4 +1,7 @@
+#include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEnemy.h"
+#include "pso/system/EnemyBmlResource.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
 #include "pso/system/vector.h"
@@ -169,6 +172,7 @@ s32 TObjEneRe4Sorcerer::vfunc_83() { if (((int (*)(void*))get_target_info__9TObj
 #include "pso/misc/TTecRaFoie.h"
 #include "pso/misc/TTecResta.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
+#include "pso/npc/NpcModelRegistry.h"
 
 struct VBase_14 { char pad[0x14]; };
 
@@ -748,17 +752,16 @@ struct Sorc_800F0118 {
 
 s32 VecCopy__FP3VecPC3Vec(void *, void *);
 void queue_destruction__7TObjectFv(void *arg0);
-s32 dispatch_shared_handler_a__6TLobbyFl(int);
-s32 register_object__6TLobbyFl(int);
-s32 dispatch_shared_handler_b__6TLobbyFl(int);
-s32 register_boss__6TLobbyFl(int);
-void TLobby__sub_8001FE7C(void*, int);
+
+
+
+
 void fn_80044330(void *);
 s32 *csnVectorUnder(s32 arg0, u32 *arg1, s32 arg2);
 s32 TObjPlayer__sub_800A04F0(void *);
 void *__dt__13TUnk_80490470Fv(void *arg0, s16 arg1);
 void *__dt__12TObjEneDD_STFv(void *arg0, s16 arg1);
-s32 reset_hp__9TObjEneDDFPUcPUcPUc(void *, void *, void *, void *);
+s32 reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(void *, void *, void *, void *);
 s32 initialize_enemy_state__9TObjEneDDFl(void *, int);
 int TObjEneDD__sub_800BA804(u16 arg0);
 s32 init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, int, int);
@@ -766,8 +769,6 @@ u32 vfunc_102__9TObjEneDDFv();
 u32 vfunc_101__9TObjEneDDFPUc();
 s32 clear_attack_receipts__9TObjEneDDFv(void *);
 void invoke_initialization_hook__9TObjEneDDFPv(void *, void *);
-u32 load_enemy_bml_resource_named(void *, void *);
-s32 load_enemy_bml_resource(u8 *arg0);
 s32 reset_transform__13TObjEneRe4BitFv();
 s32 set_flag_and_notify__18TObjEneRe4SorcererFv();
 u8 * get_spell_data__18TObjEneRe4SorcererFv();
@@ -2357,7 +2358,7 @@ void TObjEneRe4Sorcerer::init_enemy() {
     *(s16 *)((s8 *)arg0 + 0xB8) = 0;
     ((TObjMotion *)arg0)->set_animation((*(s16 *)((s8 *)arg0 + 0xB8)));
     ((TObjMotion *)arg0)->set_field_b8((int) (*(s16 *)((s8 *)arg0 + 0xB8)));
-    reset_hp__9TObjEneDDFPUcPUcPUc((void *)arg0, (void *)lbl_805D52D0, (void *)TObjEneRe4Sorcerer__attack_params, (void *)TObjEneRe4Sorcerer__resistance_params);
+    reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock((void *)arg0, (void *)lbl_805D52D0, (void *)TObjEneRe4Sorcerer__attack_params, (void *)TObjEneRe4Sorcerer__resistance_params);
     ((TObjEneDD *)arg0)->set_state_8();
     *(void **)((s8 *)arg0 + 0x350) = (void *) re4_sorcerer_init_params;
     initialize_enemy_state__9TObjEneDDFl(arg0, 0x1F);
@@ -2414,7 +2415,7 @@ void TObjEneRe4Sorcerer::free_bits() {
     }
     TObjEneRe4Bit__sub_800EDAB0();
     if ((u32) sorcerer_bml_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)sorcerer_bml_resource, 1);
+        delete (BmlResource *)((void*)sorcerer_bml_resource);
         sorcerer_bml_resource = 0U;
     }
 }
@@ -2433,14 +2434,14 @@ void TObjEneRe4Sorcerer::load_resources() {
     lbl_80501070.y = TObjEneRe4Sorcerer__data_805DA790;
     lbl_80501070.z = TObjEneRe4Sorcerer__data_805DA790;
     if (TObjEneDD::check_v2_mode() != 0) {
-        sorcerer_bml_resource = load_enemy_bml_resource_named(bm_ene_re4_sorcerer_resource_descriptor, lbl_8043D418);
+        sorcerer_bml_resource = (u32)load_enemy_bml_resource_named((BmlResourceDescriptor *)(bm_ene_re4_sorcerer_resource_descriptor), (const char *)(lbl_8043D418));
     } else {
-        sorcerer_bml_resource = load_enemy_bml_resource(bm_ene_re4_sorcerer_resource_descriptor);
+        sorcerer_bml_resource = (s32)load_enemy_bml_resource((BmlResourceDescriptor *)(bm_ene_re4_sorcerer_resource_descriptor));
     }
-    lbl_805D52D0 = register_boss__6TLobbyFl(0xA);
-    TObjEneRe4Sorcerer__attack_params = dispatch_shared_handler_b__6TLobbyFl(0xA);
-    TObjEneRe4Sorcerer__resistance_params = register_object__6TLobbyFl(0xA);
-    (*(s32 *)&sorcerer_behavior_params) = dispatch_shared_handler_a__6TLobbyFl(0xA);
+    lbl_805D52D0 = ((s32)get_battle_base_stats(0xA));
+    TObjEneRe4Sorcerer__attack_params = ((s32)get_battle_attack_params(0xA));
+    TObjEneRe4Sorcerer__resistance_params = ((s32)get_battle_resistance_params(0xA));
+    (*(s32 *)&sorcerer_behavior_params) = ((s32)get_battle_movement_params(0xA));
     TObjEneRe4Sorcerer__render_node_index = 0;
     TObjEneRe4Sorcerer__saved_render_flags = 0;
     TObjEneRe4Sorcerer__effect_render_scale = TObjEneRe4Sorcerer__data_805DA790;
@@ -2453,7 +2454,7 @@ void TObjEneRe4Sorcerer::load_resources() {
     TObjEneRe4Sorcerer__uv_scroll_buffer = r;
     Params_800F0464 p = re4_sorcerer_spawn_descriptor;
     p.a = *(s32 *)((s8 *)sorcerer_bml_resource + 0x430);
-    TLobby::spawn_npc_enemy((s16)0x2A, (s32)(*(s32 *)((s8 *)(*(u8 **)((s8 *)sorcerer_bml_resource + 0x42C)) + 8)), (s32)(*(s32 *)((s8 *)(*(u8 **)((s8 *)sorcerer_bml_resource + 0x42C)) + 0xC)), (s32)&p, re4_sorcerer_collision_body_part_table[3], (f32)TObjEneRe4Sorcerer__data_805DA78C);
+    NpcModelRegistry::register_animated_chunk((s16)0x2A, (void *)((s32)(*(s32 *)((s8 *)(*(u8 **)((s8 *)sorcerer_bml_resource + 0x42C)) + 8))), (void *)((s32)(*(s32 *)((s8 *)(*(u8 **)((s8 *)sorcerer_bml_resource + 0x42C)) + 0xC))), (const NpcAnimationBinding *)((s32)&p), re4_sorcerer_collision_body_part_table[3], (f32)TObjEneRe4Sorcerer__data_805DA78C);
 }
 
 void TBoss3Volopt__sub_800F059C(void) {  }

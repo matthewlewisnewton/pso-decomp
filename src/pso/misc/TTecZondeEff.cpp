@@ -1,3 +1,4 @@
+#include "pso/math/VectorNormalize.h"
 #include "pso/system/ChunkMaterialState.h"
 #include "pso/TTecZondeEff.h"
 #include "pso/misc/MaterialColorFade.h"
@@ -310,7 +311,7 @@ void TTecZondeEff::calc_lightning_scatter_direction(s32 axis, void *arg2) {
         out->y = a;
         out->z = b;
         out->x = inv * (a * p + b * q);
-        ((TObjBoss2Tunnel *)out)->update_scale();
+        normalize_vector_checked((Vec *)out);
         break;
     }
     case 1: {
@@ -323,7 +324,7 @@ void TTecZondeEff::calc_lightning_scatter_direction(s32 axis, void *arg2) {
         out->z = a;
         out->x = b;
         out->y = inv * (a * p + b * q);
-        ((TObjBoss2Tunnel *)out)->update_scale();
+        normalize_vector_checked((Vec *)out);
         break;
     }
     case 2: {
@@ -336,7 +337,7 @@ void TTecZondeEff::calc_lightning_scatter_direction(s32 axis, void *arg2) {
         out->x = a;
         out->y = b;
         out->z = inv * (a * p + b * q);
-        ((TObjBoss2Tunnel *)out)->update_scale();
+        normalize_vector_checked((Vec *)out);
         break;
     }
     }

@@ -291,7 +291,7 @@ extern const f32 lbl_805D9734;
 extern const f32 lbl_805D9E84;
 extern const f32 lbl_805D9E88;
 void render__16TObjEneRe7BeruraFv(Berura_80092CCC *o);
-s32 get_camera_ctrl__9TObjEneDDFv(s32, s32);
+s32 transform_point_to_view(s32, s32);
 
 void render__16TObjEneRe7BeruraFv(Berura_80092CCC *o) {
     s32 fade;
@@ -452,7 +452,7 @@ void TObjEneRe7Berura::demo_frame_callback() {
         break;
     case 0x4C:
     case 0x50:
-        get_camera_ctrl__9TObjEneDDFv(re7_berura_demo_camera_ptr, re7_berura_demo_camera_ptr);
+        transform_point_to_view(re7_berura_demo_camera_ptr, re7_berura_demo_camera_ptr);
         re7_berura_demo_camera_ptr += 0xC;
         break;
     case 0x21:

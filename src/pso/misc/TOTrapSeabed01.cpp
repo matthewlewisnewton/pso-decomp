@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/system/NinjaUtil.h"
 #include "pso/TMainTask.h"
 #include "pso/render/render_util.h"
@@ -531,7 +532,6 @@ extern SeabedTrapCollisionBody seabed_trap_collision_body;
 extern void *__vt__14TOTrapSeabed01[];
 extern s32 TOTrapSeabed01_class_name;
 u8 *TOTrapSeabed01__ct(TOTrapSeabed01 *arg0, s32 arg1, s32 arg2);
-void *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 u8 *load_gvm_texture_file(s32 arg0);
 extern u8 lbl_804720E8[];
 extern u8 lbl_80472100[];
@@ -540,7 +540,6 @@ extern SeabedTrapResourceDescriptor seabed_trap_resource_descriptor;
 extern s32 trap_seabed01_param_index_table[];
 void vfunc_6__14TOTrapSeabed01FPsl(void *arg0, s16 *arg1, s32 arg2);
 void *__dt__14TOTrapSeabed01Fv(void *arg0, s16 arg1);
-void TLobby__sub_8001FE7C(void*, int);
 void stop_sound_request(s32 idx);
 s32 release_texture_list(void*);
 void free_collision_body_parts(void *);
@@ -624,16 +623,13 @@ void TOTrapSeabed01::free_static_resources() {
         (*(u32 *)&TOTrapSeabed01__texture_file) = 0U;
     }
     if ((u32) (*(u32 *)&TOTrapSeabed01__bml_resource) != 0U) {
-        TLobby__sub_8001FE7C((void*)(*(u32 *)&TOTrapSeabed01__bml_resource), 1);
+        delete (BmlResource *)((void*)(*(u32 *)&TOTrapSeabed01__bml_resource));
         (*(u32 *)&TOTrapSeabed01__bml_resource) = 0U;
     }
 }
 
 void TOTrapSeabed01::load_resources() {
-    void *p = ::operator new(0x440);
-    if (p != 0) {
-        p = load_resource_from_descriptor(p, 5, (void *)&seabed_trap_resource_descriptor, 0, 0, 0);
-    }
+    void *p = new BmlResource(5, (BmlResourceDescriptor *)((void *)&seabed_trap_resource_descriptor), 0, 0, (void *)(0));
     (*(u32 *)&TOTrapSeabed01__bml_resource) = (u32)p;
     (*(u32 *)&TOTrapSeabed01__texture_file) = (u32)load_gvm_texture_file((s32)lbl_804720E8);
     s32 n = (s32)find_object_node((NJS_OBJECT *)(get_bml_model((*(u32 *)&TOTrapSeabed01__bml_resource), 0)), 5);

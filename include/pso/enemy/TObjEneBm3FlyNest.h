@@ -17,9 +17,6 @@ struct TObjEneBm3FlyNest : public TObjEneDD {
     void vfunc_62();
     void vfunc_61();
     void vfunc_28();
-    u8 unk_374[0x4];
-    u32 m_394;
-    u8 _pad398[0x10];
     u32 m_3a8;
     u32 m_3ac;
     u32 m_3b0;

@@ -1,5 +1,8 @@
 #include "pso/misc/SampledMotionPoints.h"
+#include "pso/enemy/BattleParameters.h"
 #include "pso/unk/TUnk_80494968.h"
+#include "pso/system/EnemyBmlResource.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "types.h"
 #include "pso/enemy/TUnk_80493450.h"
@@ -538,6 +541,7 @@ void TObjEneShark::render() {
 #include "pso/enemy/TObjEnePanarms.h"
 #include "pso/misc/RenderFadeState.h"
 #include "pso/misc/TNowLoading.h"
+#include "pso/npc/NpcModelRegistry.h"
 
 struct E_800AC9DC { u8 pad[8]; s32 x8; s32 xc; };
 
@@ -573,14 +577,9 @@ void __destroy_arr(void *, void *, int, int);
 void *__dt__13TUnk_80494938Fv(void *arg0, s16 arg1);
 extern u8 __dt__15RenderFadeStateFv[];
 O_800AC5EC *__dt__12TObjEneSharkFv(O_800AC5EC *arg0, s16 arg1);
-s32 dispatch_shared_handler_a__6TLobbyFl(int);
-s32 register_object__6TLobbyFl(int);
-s32 dispatch_shared_handler_b__6TLobbyFl(int);
-s32 register_boss__6TLobbyFl(int);
 u8 *load_enemy_bml_resource_named(void *, void *);
 u8 *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 void *mem_alloc(u32 size);
-void spawn_npc_enemy__6TLobbyFslllff(int, int, int, void *, f32, f32);
 extern u8 lbl_8043AEDC[];
 extern u32 TObjEneShark__resource_node;
 extern u32 TObjEneShark__resource_buf;
@@ -589,7 +588,6 @@ extern u32 shark_resource_buffer;
 extern const f32 lbl_805D9BC8;
 extern const f32 lbl_805D9BCC;
 void vfunc_99__13TUnk_80493450Fv(void);
-void TLobby__sub_8001FE7C(void*, int);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 void mem_free(void*);
 
@@ -817,7 +815,7 @@ void TObjEneShark::free_resources() {
         TObjEneShark__attack_motion_3_trail = 0U;
     }
     if ((u32) shark_bml_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)shark_bml_resource, 1);
+        delete (BmlResource *)((void*)shark_bml_resource);
         shark_bml_resource = 0U;
     }
 }
@@ -834,12 +832,9 @@ void TLobby::load_shark_resources() {
     void *p;
     s32 i;
     if (TObjEneDD::check_v2_mode() != 0) {
-        G_B8 = load_enemy_bml_resource_named(bm_ene_bm1_shark_resource_descriptor, lbl_8043AEDC);
+        G_B8 = (u8 *)load_enemy_bml_resource_named((BmlResourceDescriptor *)(bm_ene_bm1_shark_resource_descriptor), (const char *)(lbl_8043AEDC));
     } else {
-        p = ::operator new(0x440);
-        if (p != NULL) {
-            p = load_resource_from_descriptor(p, 1, bm_ene_bm1_shark_resource_descriptor, 0, 0, 0);
-        }
+        p = new BmlResource(1, (BmlResourceDescriptor *)(bm_ene_bm1_shark_resource_descriptor), 0, 0, (void *)(0));
         G_B8 = (u8 *)p;
     }
     p = new SampledMotionPoints(2, lbl_805D9BC8, lbl_805D9BAC, lbl_805D9BC0);
@@ -852,25 +847,24 @@ void TLobby::load_shark_resources() {
     G_AC = (s32 *)mem_alloc(0xC);
     G_B0 = (s32 *)mem_alloc(0xC);
     G_B4 = (s32 *)mem_alloc(0xC);
-    G_A8[0] = register_boss__6TLobbyFl(0x4F);
-    G_A8[1] = register_boss__6TLobbyFl(0x50);
-    G_A8[2] = register_boss__6TLobbyFl(0x51);
-    G_AC[0] = dispatch_shared_handler_b__6TLobbyFl(0x54);
-    G_AC[1] = dispatch_shared_handler_b__6TLobbyFl(0x55);
-    G_AC[2] = dispatch_shared_handler_b__6TLobbyFl(0x56);
-    G_B0[0] = register_object__6TLobbyFl(0x4E);
-    G_B0[1] = register_object__6TLobbyFl(0x4F);
-    G_B0[2] = register_object__6TLobbyFl(0x50);
-    G_B4[0] = dispatch_shared_handler_a__6TLobbyFl(0x4E);
-    G_B4[1] = dispatch_shared_handler_a__6TLobbyFl(0x4F);
-    G_B4[2] = dispatch_shared_handler_a__6TLobbyFl(0x50);
+    G_A8[0] = ((s32)get_battle_base_stats(0x4F));
+    G_A8[1] = ((s32)get_battle_base_stats(0x50));
+    G_A8[2] = ((s32)get_battle_base_stats(0x51));
+    G_AC[0] = ((s32)get_battle_attack_params(0x54));
+    G_AC[1] = ((s32)get_battle_attack_params(0x55));
+    G_AC[2] = ((s32)get_battle_attack_params(0x56));
+    G_B0[0] = ((s32)get_battle_resistance_params(0x4E));
+    G_B0[1] = ((s32)get_battle_resistance_params(0x4F));
+    G_B0[2] = ((s32)get_battle_resistance_params(0x50));
+    G_B4[0] = ((s32)get_battle_movement_params(0x4E));
+    G_B4[1] = ((s32)get_battle_movement_params(0x4F));
+    G_B4[2] = ((s32)get_battle_movement_params(0x50));
     shark_render_node_index = 0;
     {
         s16 ids[3] = { 0x2F, 0x30, 0x31 };
         Anim_800AC318 anim = { (s32)RES->motions, TObjEneShark__action_table, 2, 0xC0000 };
         for (i = 0; i < 3; i++) {
-            spawn_npc_enemy__6TLobbyFslllff(ids[i], RES->bodies[i].model, RES->bodies[i].textures, &anim,
-                lbl_805D9BCC, lbl_805D9BA0);
+            NpcModelRegistry::register_animated_chunk(ids[i], (void *)(RES->bodies[i].model), (void *)(RES->bodies[i].textures), (const NpcAnimationBinding *)(&anim), lbl_805D9BCC, lbl_805D9BA0);
         }
     }
 }
@@ -1018,7 +1012,7 @@ void *TObjEneShark__ct(void *arg0, void *arg1, void *arg2) {
     self->f350 = lbl_804915B4 + self->f334 * 0x1C;
     self->f33E = self->f32C;
     ((TObjEnemy *)self)->update_prev_position();
-    ((TBoss3VoloptHiraisin *)self)->copy_position();
+    ((TObjChara *)self)->copy_body_to_center();
     initialize_enemy_photon_effect(self);
     self->f2AC = (s32)(lbl_805D9BD0 * (lbl_805D9BD4 * random_ratio__9TObjCharaFv((s32)self)));
     self->f33A = 0xF;

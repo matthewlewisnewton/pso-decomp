@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #include "pso/boss/TBoss4Zako.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/player/TObjPlayer.h"
@@ -316,7 +317,7 @@ extern "C" TObjEnemy *__ct__9TObjEnemyFP7TObject(void *, void *);
 
 struct O_8005D6B0 { u8 pad[0x374]; s32 f374; };
 
-f32 *dispatch_shared_handler_a__6TLobbyFl(s32);
+
 s32 get_instance_count__9TBoss4UroFv();
 
 void *create_particle_emitter(void *pos, s32 id);
@@ -410,7 +411,7 @@ s32 TBoss4Zako__ct(s32 arg0, s32 parent, s32 arg2) {
     *(f32 *)((s8 *)THIS + 0x30C) = lbl_805D8CBC;
     *(f32 *)((s8 *)THIS + 0x308) = lbl_805D8CBC;
     *(s32 *)((s8 *)THIS + 0x2A8) = 0;
-    ((TObjEnemy *)THIS)->bind_enemy_combat_stats((u8 *)(TLobby::register_boss(0x35)), (u8 *)(TLobby::dispatch_shared_handler_b(0x35)), (u8 *)(TLobby::register_object(0x35)));
+    ((TObjEnemy *)THIS)->bind_enemy_combat_stats((u8 *)(get_battle_base_stats(0x35)), (u8 *)(get_battle_attack_params(0x35)), (u8 *)(get_battle_resistance_params(0x35)));
     *(s16 *)((s8 *)THIS + 0x33E) = *(s16 *)((s8 *)THIS + 0x32C);
     ((TBoss3Volopt *)THIS)->reset_photon_effect();
     ((TObjEnemy *)THIS)->set_param(0);
@@ -431,11 +432,11 @@ s32 TBoss4Zako__ct(s32 arg0, s32 parent, s32 arg2) {
     *(f32 *)((s8 *)THIS + 0x3B0) = lbl_805D8CBC;
     *(s32 *)((s8 *)THIS + 0x3BC) = lbl_805D8CF8 * random_ratio__9TObjCharaFv((s32)THIS);
     *(s32 *)((s8 *)THIS + 0x3C0) = lbl_805D8D34 * random_ratio__9TObjCharaFv((s32)THIS) + lbl_805D8D30;
-    *(f32 *)((s8 *)THIS + 0x39C) = *dispatch_shared_handler_a__6TLobbyFl(0x35);
+    *(f32 *)((s8 *)THIS + 0x39C) = *((f32 *)get_battle_movement_params(0x35));
     if (*(f32 *)((s8 *)THIS + 0x39C) <= TBoss4Zako_one_third || *(f32 *)((s8 *)THIS + 0x39C) > lbl_805D8D38) {
         *(f32 *)((s8 *)THIS + 0x39C) = lbl_805D8D3C;
     }
-    *(f32 *)((s8 *)THIS + 0x3A0) = *dispatch_shared_handler_a__6TLobbyFl(0x39);
+    *(f32 *)((s8 *)THIS + 0x3A0) = *((f32 *)get_battle_movement_params(0x39));
     if (*(f32 *)((s8 *)THIS + 0x3A0) <= TBoss4Zako_one_third || *(f32 *)((s8 *)THIS + 0x3A0) > lbl_805D8D40) {
         *(f32 *)((s8 *)THIS + 0x3A0) = lbl_805D8D44;
     }

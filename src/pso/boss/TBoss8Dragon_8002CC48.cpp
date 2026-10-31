@@ -190,7 +190,7 @@ f32 calc_nearest_crater_distance(void *);
 f32 horizontal_distance_squared(void *, void *);
 f32 sin_table_lookup(s32);
 f32 cos_table_lookup(s32, f32);
-s32 update_scale__15TObjBoss2TunnelFv(void *, f32);
+s32 normalize_vector_checked(void *, f32);
 void rotate_matrix_y(int, int);
 void rotate_matrix_x(int, int);
 u8 *TObjBoss1MokoHill_SoloM__ct(u8 *arg0, u8 *arg1, u8 *arg2, s32 arg3);
@@ -585,7 +585,7 @@ f32 TBoss8Dragon::apply_velocity_scale(f32 farg0, f32 farg1) {
         *(f32 *)((s8 *)this + 0) = temp_f2;
         *(f32 *)&this->unk_4 = (f32) lbl_805D81F4;
         this->m_8 = (f32) (this->m_8 * temp_f1_2);
-        update_scale__15TObjBoss2TunnelFv(this, temp_f1_2);
+        normalize_vector_checked(this, temp_f1_2);
     }
     return var_f31;
 }

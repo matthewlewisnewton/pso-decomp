@@ -1,5 +1,7 @@
 #include "pso/misc/SampledMotionPoints.h"
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/boss/TBoss4Type3_800D9960.h"
 #include "pso/enemy/TObjEneMe3ShinowaMirage_800E7A70.h"
 #include "pso/enemy/TObjEneMe3ShinowaMirage.h"
 
@@ -16,7 +18,6 @@ struct VO_800E7A98 : VB_800E7A98 { virtual ~VO_800E7A98(); };
 extern "C" {
 extern RecoveredGlobal_8031B170_lbl_804E8880 shinowa_mirage_motion_param_table;
 extern const f32 TObjEneMe3ShinowaMirage__data_805DA5C4;
-s32 TLobby__sub_8001FE7C(void *, s32);
 void mem_free(void *p);
 extern void *lbl_80500FEC[];
 extern void *TObjEneMe3ShinowaMirage__data_805D5298;
@@ -63,7 +64,7 @@ void TObjEneMe3ShinowaMirage::free_shared_resources() {
         lbl_80500FEC[0] = 0;
     }
     if (TObjEneMe3ShinowaMirage__data_805D5298 != 0) {
-        TLobby__sub_8001FE7C(TObjEneMe3ShinowaMirage__data_805D5298, 1);
+        delete (BmlResource *)(TObjEneMe3ShinowaMirage__data_805D5298);
         TObjEneMe3ShinowaMirage__data_805D5298 = 0;
     }
 }

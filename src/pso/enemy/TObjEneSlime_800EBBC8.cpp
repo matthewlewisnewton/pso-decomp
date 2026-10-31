@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/enemy/TObjEneSlime_800EBBC8.h"
 #include "pso/object/TObjDFHorming.h"
 #include "pso/enemy/TObjEneSlime.h"
@@ -14,7 +15,6 @@ extern "C" {
 s32 __ct__9TObjEnemyFP7TObject(void *);
 extern s32 __vt__12TObjEneSlime[];
 extern s32 lbl_805D2AD8;
-void TLobby__sub_8001FE7C(void*, int);
 void __dl__7TObjectFPv(void *);
 void *__dt__9TObjEnemyFv(TObjEnemy *arg0, s16 arg1);
 
@@ -58,7 +58,7 @@ u8 *TObjEneSlime__ct(TObjEneSlime *ene_slime, s32 arg1, u8 *arg2) {
 
 void TObjEneSlime::free_instance() {
     if ((u32) slime_bml_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)slime_bml_resource, 1);
+        delete (BmlResource *)((void*)slime_bml_resource);
         slime_bml_resource = 0U;
     }
 }

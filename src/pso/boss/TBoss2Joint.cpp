@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
@@ -240,11 +241,11 @@ extern const f32 TBoss2Joint__data_805D8474;
 extern const f32 lbl_805D8498;
 void push_trail_position__13TBoss2DeRolLeFPvPv(Obj_80037178 *self, V3_80037178 *src);
 void *spawn_continuous_particle_effect_with_flags(void *parent, s32 idx, s32 flags);
-s32 register_object__6TLobbyFl(s32);
-s32 dispatch_shared_handler_b__6TLobbyFl(s32);
-s32 register_boss__6TLobbyFl(s32);
+
+
+
 s32 TBoss2Joint_get_shell_max_hp(void);
-void reset_hp__9TObjEneDDFPUcPUcPUc(void *, s32, s32, s32);
+void reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(void *, s32, s32, s32);
 void init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, s32);
 extern const f32 lbl_805D846C;
 extern const f32 lbl_805D8490;
@@ -348,9 +349,9 @@ void *__nw__7TObjectFUl(u32);
 void TBoss2Joint__vt102(Obj_80036ACC *self) {
     self->f38C = self->f38C | 1;
     reload_stats_keep_hp_tp__9TObjEneDDFv(self,
-        register_boss__6TLobbyFl(((Ent_80036ACC *)&TBoss2Joint__param_table)->b),
-        dispatch_shared_handler_b__6TLobbyFl(((Ent_80036ACC *)lbl_80482A58)->b),
-        register_object__6TLobbyFl(((Ent_80036ACC *)lbl_80482A60)->b));
+        ((s32)get_battle_base_stats(((Ent_80036ACC *)&TBoss2Joint__param_table)->b)),
+        ((s32)get_battle_attack_params(((Ent_80036ACC *)lbl_80482A58)->b)),
+        ((s32)get_battle_resistance_params(((Ent_80036ACC *)lbl_80482A60)->b)));
     self->f32C = 0x4E20;
     self->f2B8 = 0x4E20;
     {
@@ -464,7 +465,7 @@ s32 TBoss2Joint::init_params() {
     self->unk34 = 0;
     self->unk24 = 0;
     init_model__9TObjEneDDFP13CollisionBodyl(self, prm->unk34, 1);
-    reset_hp__9TObjEneDDFPUcPUcPUc(self, register_boss__6TLobbyFl(prm->unk0), dispatch_shared_handler_b__6TLobbyFl(prm->unk8), register_object__6TLobbyFl(prm->unk10));
+    reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(self, ((s32)get_battle_base_stats(prm->unk0)), ((s32)get_battle_attack_params(prm->unk8)), ((s32)get_battle_resistance_params(prm->unk10)));
     self->hp32C = 0x4E20;
     self->hp2B8 = 0x4E20;
     ((TObjEneDD *)self)->check_state_flag_2();

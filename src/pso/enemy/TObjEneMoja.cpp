@@ -1,10 +1,11 @@
 #include "pso/misc/SampledMotionPoints.h"
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/boss/TBoss4Type3_800D9960.h"
 #include "pso/enemy/TObjEneMoja.h"
 
 extern "C" {
 
-void TLobby__sub_8001FE7C(void*, int);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 void *TObjEneMoja__ct(void *, void *, void *);
 void *__nw__7TObjectFUl(int);
@@ -55,7 +56,7 @@ void TObjEneMoja::free_resources() {
         lbl_805D50DC = 0U;
     }
     if ((u32) lbl_805D50D8 != 0U) {
-        TLobby__sub_8001FE7C((void*)lbl_805D50D8, 1);
+        delete (BmlResource *)((void*)lbl_805D50D8);
         lbl_805D50D8 = 0U;
     }
 }

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/unk/text_80359420.h"
 #include "pso/npc/TObjNpcNgcBase_80358AE8.h"
 #include "pso/npc/TObjNpcNgcBase.h"
@@ -86,8 +87,6 @@ s32 __ct__11TObjControlFP7TObject(int, int);
 s32 __nw__7TObjectFUl(int);
 extern RecoveredGlobal_803591D0_TObjNpcNgcBase__data_805439A8 TObjNpcNgcBase__data_805439A8;
 extern s32 tl_04;
-s32 TLobby__sub_8001FE7C(void *, s32);
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern Rec_803592B8 npc_delta_w_body_model_names[];
 typedef struct RecoveredGlobal_803591D0_TObjNpcNgcBase__data_805439A8 RecoveredGlobal_803591D0_TObjNpcNgcBase__data_805439A8;
 typedef char RecoveredGlobal_803591D0_TObjNpcNgcBase__data_805439A8_size[((sizeof(RecoveredGlobal_803591D0_TObjNpcNgcBase__data_805439A8)) == 0x38) ? (1) : (-1)];
@@ -459,7 +458,7 @@ void TObjNpcNgcBase::free_shared_resources() {
     s32 i;
     for (i = 0xd; i >= 0; i--) {
         if (((void * *)&TObjNpcNgcBase__data_805439A8)[i] != 0) {
-            TLobby__sub_8001FE7C(((void * *)&TObjNpcNgcBase__data_805439A8)[i], 1);
+            delete (BmlResource *)(((void * *)&TObjNpcNgcBase__data_805439A8)[i]);
             ((void * *)&TObjNpcNgcBase__data_805439A8)[i] = 0;
         }
     }
@@ -488,10 +487,7 @@ void TObjNpcNgcBase::load_resources() {
     }
     if (p != NULL) {
         while (p->idx != -1) {
-            obj = (void *)::operator new(0x440);
-            if (obj != NULL) {
-                obj = load_resource_from_descriptor(obj, 1, p->data, 0, 0, 0);
-            }
+            obj = (void *)new BmlResource(1, (BmlResourceDescriptor *)(p->data), 0, 0, (void *)(0));
             ((void **)&TObjNpcNgcBase__data_805439A8)[p->idx] = obj;
             p++;
         }

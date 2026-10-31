@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/system/BmlResourceDescriptor.h"
 #include "pso/object/TObjTombstone.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
@@ -13,9 +14,7 @@ struct RecoveredGlobal_800765B4_lbl_8048D240 { s32 value; u8 remaining[0xC]; };
 typedef char RecoveredGlobal_800765B4_lbl_8048D240_size[sizeof(RecoveredGlobal_800765B4_lbl_8048D240) == 0x10 ? 1 : -1];
 
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern u32 TObjTombstone__shared_resource_object;
-void TLobby__sub_8001FE7C(void*, int);
 s32 __ct__14TObjCollidableFP7TObject();
 
 extern s32 __vt__13TObjTombstone[];
@@ -41,7 +40,7 @@ void *TObjTombstone::init(s32 arg1, s32 arg2, s32 arg3) {
 
 void TObjTombstone::destroy() {
     if ((u32) TObjTombstone__shared_resource_object != 0U) {
-        TLobby__sub_8001FE7C((void*)TObjTombstone__shared_resource_object, 1);
+        delete (BmlResource *)((void*)TObjTombstone__shared_resource_object);
         TObjTombstone__shared_resource_object = 0U;
         TObjTombstone::reset_matrix();
     }
@@ -50,11 +49,8 @@ void TObjTombstone::load_resources() {
     s32 temp_r3;
     s32 var_r0;
     if ((void *) (*(u8 * *)&TObjTombstone__shared_resource_object) == NULL) {
-        temp_r3 = (int)::operator new(0x440);
+        temp_r3 = (int)new BmlResource(1, (BmlResourceDescriptor *)(&tombstone_resource_descriptor), 0, 0, (void *)(0));
         var_r0 = temp_r3;
-        if (var_r0 != 0) {
-            var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &tombstone_resource_descriptor, 0, 0, 0));
-        }
         (*(u8 * *)&TObjTombstone__shared_resource_object) = (unsigned char *) ((void *) var_r0);
         TObjTombstone::reset_matrix();
     }

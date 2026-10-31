@@ -1,4 +1,5 @@
 #include "pso/misc/RenderFadeState.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/system/vector.h"
 #include "pso/misc/TRaderMapCore.h"
 #include "pso/object/TObjFish.h"
@@ -304,7 +305,6 @@ struct Ido_8018C7BC { u8 pad[0xCC]; s32 ids[4]; };
 
 extern "C" {
 extern u32 container_ido_texture_gvm_handle;
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 u8 * load_gvm_texture_file(s32);
 extern RecoveredGlobal_8019A9B8_lbl_80446184 lbl_80445130;
 extern RecoveredGlobal_8019A9B8_lbl_804B8F60 container_ido_resource_descriptor;
@@ -313,7 +313,6 @@ extern u8 container_ido_collision_parts[];
 extern s32 __vt__16TObjContainerIdo[];
 extern s32 obj_container_ido_class_name;
 void *__dt__16TObjContainerIdoFv(void *arg0, s16 arg1);
-void TLobby__sub_8001FE7C(void*, int);
 s32 release_texture_list(void*);
 void *__dt__15RenderFadeStateFv(void *arg0, s16 arg1);
 
@@ -324,7 +323,7 @@ void TObjContainerIdo::free_resources() {
         container_ido_texture_gvm_handle = 0U;
     }
     if ((u32) TObjContainerIdo__model_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)TObjContainerIdo__model_resource, 1);
+        delete (BmlResource *)((void*)TObjContainerIdo__model_resource);
         TObjContainerIdo__model_resource = 0U;
     }
 }
@@ -336,11 +335,8 @@ typedef char RecoveredGlobal_8019A9B8_lbl_804B8F60_size[sizeof(RecoveredGlobal_8
 void TObjContainerIdo::load_resources() {
     s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
+    temp_r3 = (int)new BmlResource(5, (BmlResourceDescriptor *)(&container_ido_resource_descriptor.value), 0, 0, (void *)(0));
     var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 5, &container_ido_resource_descriptor.value, 0, 0, 0));
-    }
     (*(s32 *)&TObjContainerIdo__model_resource) = var_r0;
     (*(u8 * *)&container_ido_texture_gvm_handle) = load_gvm_texture_file((s32) &lbl_80445130.value);
 }

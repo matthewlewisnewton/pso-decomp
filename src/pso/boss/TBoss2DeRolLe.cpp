@@ -1,6 +1,10 @@
 #include "pso/animation/MotionContext.h"
 #include "pso/math/FloatRounding.h"
+#include "pso/math/VectorNormalize.h"
+#include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEnemy.h"
+#include "pso/system/EnemyBmlResource.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/system/vector.h"
 #include "pso/protocol/protocol_types.h"
@@ -772,7 +776,7 @@ struct RecoveredGlobal_8002F61C_lbl_804FE31C {
 };
 
 extern "C" {
-void get_camera_ctrl__9TObjEneDDFv(s32, s32);
+void transform_point_to_view(s32, s32);
 void update_camera_sequence__9TObjEneDDFv(void);
 s32 mult_vec_array__10TObjPlayerFUll(int, void *, void *, int);
 s32 subtract_vector(void *, void *);
@@ -794,7 +798,7 @@ typedef char RecoveredGlobal_8002F61C_lbl_804820D8_size[sizeof(RecoveredGlobal_8
 typedef char RecoveredGlobal_8002F61C_lbl_804FE31C_size[sizeof(RecoveredGlobal_8002F61C_lbl_804FE31C) == 0xC ? 1 : -1];
 void TObjPlayer__sub_8002F61C(void) {
     if ((s32) TBoss2DeRolLe__current_attack_id == (s32) *(s32 *)((s8 *)&derolle_attack_sequence_id_table.value + (TBoss2DeRolLe__sequence_match_index * 4))) {
-        get_camera_ctrl__9TObjEneDDFv((s32) &lbl_804FE31C.value, lbl_805D4BB4);
+        transform_point_to_view((s32) &lbl_804FE31C.value, lbl_805D4BB4);
         TBoss2DeRolLe__sequence_match_index += 1;
         lbl_805D4BB4 += 0xC;
     }
@@ -2007,7 +2011,7 @@ void TBoss2DeRolLe__sub_8002FE60(void *arg0, u32 arg1) {
                 VCOPY(&p, &self->pos);
                 VCOPY(&d, hit);
                 subtract_vector(&d, &p);
-                dist = ((TObjBoss2Tunnel *)(&d))->update_scale();
+                dist = normalize_vector_checked((Vec *)(&d));
                 p.x += d.x * s;
                 p.y += d.y * s;
                 p.z += d.z * s;
@@ -5166,15 +5170,13 @@ extern s32 current_scene_light;
 extern const f32 lbl_805D8260;
 extern const f32 TBoss2Fin__data_805D8450;
 extern const f32 lbl_805D8454;
-s32 dispatch_shared_handler_a__6TLobbyFl(s32);
-s32 register_object__6TLobbyFl(s32);
-s32 dispatch_shared_handler_b__6TLobbyFl(int);
-s32 register_boss__6TLobbyFl(int);
+
+
+
+
 void TObjPlayer__sub_8002E7C8(void);
 void TBoss2Mine__sub_80038D88(void);
 void TBoss2Tentacle__sub_8003A0AC(void);
-u8 *load_enemy_bml_resource_named(void *, void *);
-s32 load_enemy_bml_resource(u8 *arg0);
 extern u8 lbl_804356C0[];
 extern u8 lbl_80435A18[];
 extern s32 TBoss2DeRolLe__shared_handler_id_table[];
@@ -5227,7 +5229,6 @@ s32 TBoss2DeRolLe__sub_80034034(void *);
 void TBoss2Fin__sub_800367C0(void);
 void TBoss2Mine__sub_80038D84(void);
 void TBoss2Tentacle__sub_8003A0A8(void);
-void TLobby__sub_8001FE7C(void*, int);
 void TObjPlayer__sub_8002EB88(void);
 void __dl__FPv(void);
 void *__nw__7TObjectFUl(int);
@@ -5552,7 +5553,7 @@ void *TBoss2Mine__sub_800381B8(void *, void *, u16, int);
 void *__ct__14TBoss2TentacleFP7TObjectll(void *, void *, void *, s32);
 s32 __ct__12TObjEneDD_STFP7TObject(void *, void *);
 s32 is_main_phase_15__9TObjEneDDFv();
-s32 reset_hp__9TObjEneDDFPUcPUcPUc(void *, int, int, int);
+s32 reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(void *, int, int, int);
 s32 initialize_enemy_state__9TObjEneDDFl(void *, int);
 s32 init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, int, void *);
 s32 invoke_initialization_hook__9TObjEneDDFPv(void *, void *);
@@ -5818,7 +5819,7 @@ void *TBoss2DeRolLe__ct(void *arg0, void *arg1, void *arg2) {
     ((TBoss2DeRolLe *)self)->requested_action = 0;
     ((TObjMotion *)self)->set_animation(((TBoss2DeRolLe *)self)->requested_action);
     ((TObjMotion *)self)->set_field_b8(((TBoss2DeRolLe *)self)->requested_action);
-    reset_hp__9TObjEneDDFPUcPUcPUc(self, TBoss2DeRolLe__base_params, ((s32 *)TBoss2DeRolLe__attack_params_table)[0], TBoss2DeRolLe__resistance_params);
+    reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(self, TBoss2DeRolLe__base_params, ((s32 *)TBoss2DeRolLe__attack_params_table)[0], TBoss2DeRolLe__resistance_params);
     ((TObjEneDD *)self)->check_state_flag_2();
     ((TBoss2DeRolLe *)self)->movementParameters = (u8 *)lbl_8048228C;
     initialize_enemy_state__9TObjEneDDFl(self, 0x2D);
@@ -5982,7 +5983,7 @@ void reset_parts__13TBoss2DeRolLeFv(void) {
     TBoss2Mine__sub_80038D84();
     TBoss2Tentacle__sub_8003A0A8();
     if ((u32) lbl_805D4BA4 != 0U) {
-        TLobby__sub_8001FE7C((void*)lbl_805D4BA4, 1);
+        delete (BmlResource *)((void*)lbl_805D4BA4);
         lbl_805D4BA4 = 0U;
     }
 }
@@ -6017,9 +6018,9 @@ void load_resources__13TBoss2DeRolLeFv(void) {
     Node_80035D24 *m;
     Slot_80035D24 *p;
     if (TObjEneDD::check_v2_mode() != 0) {
-        res = load_enemy_bml_resource_named(boss2_derolle_bml_descriptor, lbl_80435A18);
+        res = (u8 *)load_enemy_bml_resource_named((BmlResourceDescriptor *)(boss2_derolle_bml_descriptor), (const char *)(lbl_80435A18));
     } else {
-        res = (u8 *)load_enemy_bml_resource(boss2_derolle_bml_descriptor);
+        res = (u8 *)(s32)load_enemy_bml_resource((BmlResourceDescriptor *)(boss2_derolle_bml_descriptor));
     }
     (*(u8 * *)&lbl_805D4BA4) = res;
     TBoss2DeRolLe__current_attack_id = 0;
@@ -6037,16 +6038,16 @@ void load_resources__13TBoss2DeRolLeFv(void) {
     lbl_805D4BBC = 0;
     lbl_805D4BC0 = 0;
     for (i = 0; i < 1; i++) {
-        TBoss2DeRolLe__base_params[i] = register_boss__6TLobbyFl(de_rol_le_base_param_ids[i]);
+        TBoss2DeRolLe__base_params[i] = (s32)get_battle_base_stats(de_rol_le_base_param_ids[i]);
     }
     for (i = 0; i < 3; i++) {
-        ((s32 *)TBoss2DeRolLe__attack_params_table)[i] = dispatch_shared_handler_b__6TLobbyFl(TBoss2DeRolLe__shared_handler_id_table[i]);
+        ((s32 *)TBoss2DeRolLe__attack_params_table)[i] = (s32)get_battle_attack_params(TBoss2DeRolLe__shared_handler_id_table[i]);
     }
     for (i = 0; i < 1; i++) {
-        TBoss2DeRolLe__resistance_params[i] = register_object__6TLobbyFl(de_rol_le_resistance_param_ids[i]);
+        TBoss2DeRolLe__resistance_params[i] = (s32)get_battle_resistance_params(de_rol_le_resistance_param_ids[i]);
     }
     for (i = 0; i < 1; i++) {
-        TBoss2DeRolLe__data_805D4BA0[i] = dispatch_shared_handler_a__6TLobbyFl(lbl_805D26B0[i]);
+        TBoss2DeRolLe__data_805D4BA0[i] = (s32)get_battle_movement_params(lbl_805D26B0[i]);
     }
     TBoss2DeRolLe__instance = 0;
     TBoss2Tentacle__sub_8003A0AC();

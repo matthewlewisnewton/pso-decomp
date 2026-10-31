@@ -1,3 +1,4 @@
+#include "pso/math/VectorNormalize.h"
 #include "types.h"
 #include "pso/map/CsnQuery.h"
 #include "pso/unk/text_80325F7C.h"
@@ -72,7 +73,7 @@ void fn_80325F7C(void *arg0) {
                 dir.x = ray.d.x;
                 dir.y = ray.d.y;
                 dir.z = ray.d.z;
-                ((TObjBoss2Tunnel *)(&dir))->update_scale();
+                normalize_vector_checked((Vec *)(&dir));
                 TObjPlayer__sub_80325D58(arg0, &pos, &dir, &hit);
                 TBoss8Dragon__sub_80063FB8(inst, &hit, lbl_805DF638);
             }
@@ -109,7 +110,7 @@ void TBoss5GryphonLightningHorn::rebuild_lightning_segments() {
     copy_position__12TBoss8DragonFl(self, &q);
     VecCopy((Vec *)&d, (const Vec *)&p);
     subtract_vector(&d, &q);
-    len = ((TObjBoss2Tunnel *)(&d))->update_scale() / (self->n - 1);
+    len = normalize_vector_checked((Vec *)(&d)) / (self->n - 1);
     d.x *= len;
     d.y *= len;
     d.z *= len;

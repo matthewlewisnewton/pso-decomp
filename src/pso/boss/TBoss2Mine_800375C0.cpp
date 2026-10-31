@@ -1,3 +1,5 @@
+#include "pso/math/VectorNormalize.h"
+#include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/vector.h"
 #include "pso/system/ChunkMaterialState.h"
@@ -158,7 +160,7 @@ void TUnk_80482D04::vfunc_105(s32 arg1) {
             ((TUnk_80482D04 *)arg0)->move_mine();
             VecCopy((Vec *)&v, (const Vec *)(arg0 + 0x390));
             subtract_vector(&v, arg0 + 0x2FC);
-            if (((TObjBoss2Tunnel *)(&v))->update_scale() <= (4.5f)) {
+            if (normalize_vector_checked((Vec *)(&v)) <= (4.5f)) {
                 *(s32 *)((s8 *)arg0 + 0x3C8) = 3;
             }
             *(f32 *)((s8 *)arg0 + 0x3E0) += (0.05f);
@@ -169,7 +171,7 @@ void TUnk_80482D04::vfunc_105(s32 arg1) {
             *(f32 *)((s8 *)arg0 + 0x404) = v.x * t + *(f32 *)((s8 *)arg0 + 0x404);
             *(f32 *)((s8 *)arg0 + 0x408) = v.y * t + *(f32 *)((s8 *)arg0 + 0x408);
             *(f32 *)((s8 *)arg0 + 0x40C) = v.z * t + *(f32 *)((s8 *)arg0 + 0x40C);
-            ((TObjBoss2Tunnel *)((s32)arg0 + 0x404))->update_scale();
+            normalize_vector_checked((Vec *)((s32)arg0 + 0x404));
             *(f32 *)((s8 *)arg0 + 0x2FC) = ((Mine_800377E8 *)arg0)->vel.x * *(f32 *)((s8 *)arg0 + 0x3DC) + *(f32 *)((s8 *)arg0 + 0x2FC);
             *(f32 *)((s8 *)arg0 + 0x300) = *(f32 *)((s8 *)arg0 + 0x408) * *(f32 *)((s8 *)arg0 + 0x3DC) + *(f32 *)((s8 *)arg0 + 0x300);
             *(f32 *)((s8 *)arg0 + 0x304) = *(f32 *)((s8 *)arg0 + 0x40C) * *(f32 *)((s8 *)arg0 + 0x3DC) + *(f32 *)((s8 *)arg0 + 0x304);
@@ -1309,10 +1311,10 @@ typedef struct Tbl_80038BA0 {
 } Tbl_80038BA0;
 
 extern "C" {
-s32 register_object__6TLobbyFl(int);
-s32 dispatch_shared_handler_b__6TLobbyFl(int);
-s32 register_boss__6TLobbyFl(int);
-s32 reset_hp__9TObjEneDDFPUcPUcPUc(void *, int, int, int);
+
+
+
+s32 reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(void *, int, int, int);
 s32 init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, int, int);
 extern u8 *lbl_805D4BA4;
 void init__10TBoss2MineFPvi(u8 *arg0, s32 arg1);
@@ -1361,9 +1363,9 @@ void init__10TBoss2MineFPvi(u8 *boss2_mine, s32 arg1) {
     temp_r6 = *(u8 **)((s8 *)lbl_805D4BA4 + 0x42C);
     *(s32 *)((s8 *)boss2_mine + 0x24) = *(s32 *)((s8 *)temp_r6 + 0x2C);
     init_model__9TObjEneDDFP13CollisionBodyl(boss2_mine, (u8 *)lbl_80482CD8, 1, (int)temp_r6);
-    reset_hp__9TObjEneDDFPUcPUcPUc(boss2_mine, register_boss__6TLobbyFl(((s32 *)boss2_mine_params)[arg1]),
-                            dispatch_shared_handler_b__6TLobbyFl(((s32 *)lbl_80482C90)[arg1]),
-                            register_object__6TLobbyFl(((s32 *)lbl_80482C98)[arg1]));
+    reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(boss2_mine, ((s32)get_battle_base_stats(((s32 *)boss2_mine_params)[arg1])),
+                            ((s32)get_battle_attack_params(((s32 *)lbl_80482C90)[arg1])),
+                            ((s32)get_battle_resistance_params(((s32 *)lbl_80482C98)[arg1])));
     ((TObjEneDD *)boss2_mine)->check_state_flag_2();
     *(Rec_80038BA0 **)((s8 *)boss2_mine + 0x350) = &((Rec_80038BA0 *)lbl_80482CA0)[arg1];
     *(f32 *)((s8 *)boss2_mine + 0x37C) = (3.0f);

@@ -1,5 +1,8 @@
 #include "pso/misc/SampledMotionPoints.h"
+#include "pso/enemy/BattleParameters.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
+#include "pso/system/EnemyBmlResource.h"
+#include "pso/system/BmlResourceClass.h"
 #include "types.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/math/MatrixVector.h"
@@ -24,6 +27,7 @@
 #include "pso/enemy/TObjEneBeast.h"
 #include "pso/enemy/TObjEnePanarms.h"
 #include "pso/map/FloorArea.h"
+#include "pso/npc/NpcModelRegistry.h"
 
 struct VBase_14_800A7BEC { char pad[0x14]; };
 
@@ -475,14 +479,9 @@ struct Sub_800A8530 { u8 b[0x1C]; };
 struct Self_800A8530 { u8 pad[0x3CC]; Sub_800A8530 subs[4]; };
 
 extern "C" {
-s32 dispatch_shared_handler_a__6TLobbyFl(int);
-s32 register_object__6TLobbyFl(int);
-s32 dispatch_shared_handler_b__6TLobbyFl(int);
-s32 register_boss__6TLobbyFl(int);
 u8 *load_enemy_bml_resource_named(void *, void *);
 u8 *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 s32 *mem_alloc(s32);
-void spawn_npc_enemy__6TLobbyFslllff(int, int, int, void *, f32, f32);
 extern u8 lbl_8043AAA4[];
 extern s32 dimedian_resource_handles[];
 extern s32 dimedian_last_draw_tick[];
@@ -504,7 +503,6 @@ void __destroy_arr(void *, void *, int, int);
 void __dt__13TUnk_80490470Fv(void *, int);
 extern u8 __dt__15RenderFadeStateFv[];
 O_800A846C *TObjPlayer__sub_800A846C(O_800A846C *arg0, s16 arg1);
-void TLobby__sub_8001FE7C(void*, int);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 void *__nw__7TObjectFUl(int);
 void mem_free(void*);
@@ -730,7 +728,7 @@ void TObjEneDimedian::free_boss_objects() {
         dimedian_type3_object = 0U;
     }
     if ((u32) dimedian_resource_ptr != 0U) {
-        TLobby__sub_8001FE7C((void*)dimedian_resource_ptr, 1);
+        delete (BmlResource *)((void*)dimedian_resource_ptr);
         dimedian_resource_ptr = 0U;
     }
 }
@@ -746,12 +744,9 @@ void TLobby::load_dimedian_resources() {
     void *p;
     s32 i;
     if (TObjEneDD::check_v2_mode() != 0) {
-        (*(u8 **)&dimedian_resource_ptr) = load_enemy_bml_resource_named(dimedian_resource_descriptor, lbl_8043AAA4);
+        (*(u8 **)&dimedian_resource_ptr) = (u8 *)load_enemy_bml_resource_named((BmlResourceDescriptor *)(dimedian_resource_descriptor), (const char *)(lbl_8043AAA4));
     } else {
-        p = ::operator new(0x440);
-        if (p != NULL) {
-            p = load_resource_from_descriptor(p, 1, dimedian_resource_descriptor, 0, 0, 0);
-        }
+        p = new BmlResource(1, (BmlResourceDescriptor *)(dimedian_resource_descriptor), 0, 0, (void *)(0));
         (*(u8 **)&dimedian_resource_ptr) = (u8 *)p;
     }
     r = *(u8 **)((s8 *)(*(u8 **)&dimedian_resource_ptr) + 0x42C);
@@ -771,25 +766,24 @@ void TLobby::load_dimedian_resources() {
     (*(s32 **)&lbl_805D5074) = mem_alloc(0xC);
     (*(s32 **)&TObjEneDimedian__boss_objects) = mem_alloc(0xC);
     (*(s32 **)&dimedian_buffer_ptr) = mem_alloc(0xC);
-    (*(s32 **)&dimedian_boss_object_buf)[0] = register_boss__6TLobbyFl(0x53);
-    (*(s32 **)&dimedian_boss_object_buf)[1] = register_boss__6TLobbyFl(0x54);
-    (*(s32 **)&dimedian_boss_object_buf)[2] = register_boss__6TLobbyFl(0x55);
-    (*(s32 **)&lbl_805D5074)[0] = dispatch_shared_handler_b__6TLobbyFl(0x5A);
-    (*(s32 **)&lbl_805D5074)[1] = dispatch_shared_handler_b__6TLobbyFl(0x5B);
-    (*(s32 **)&lbl_805D5074)[2] = dispatch_shared_handler_b__6TLobbyFl(0x5C);
-    (*(s32 **)&TObjEneDimedian__boss_objects)[0] = register_object__6TLobbyFl(0x52);
-    (*(s32 **)&TObjEneDimedian__boss_objects)[1] = register_object__6TLobbyFl(0x53);
-    (*(s32 **)&TObjEneDimedian__boss_objects)[2] = register_object__6TLobbyFl(0x54);
-    (*(s32 **)&dimedian_buffer_ptr)[0] = dispatch_shared_handler_a__6TLobbyFl(0x52);
-    (*(s32 **)&dimedian_buffer_ptr)[1] = dispatch_shared_handler_a__6TLobbyFl(0x53);
-    (*(s32 **)&dimedian_buffer_ptr)[2] = dispatch_shared_handler_a__6TLobbyFl(0x54);
+    (*(s32 **)&dimedian_boss_object_buf)[0] = ((s32)get_battle_base_stats(0x53));
+    (*(s32 **)&dimedian_boss_object_buf)[1] = ((s32)get_battle_base_stats(0x54));
+    (*(s32 **)&dimedian_boss_object_buf)[2] = ((s32)get_battle_base_stats(0x55));
+    (*(s32 **)&lbl_805D5074)[0] = ((s32)get_battle_attack_params(0x5A));
+    (*(s32 **)&lbl_805D5074)[1] = ((s32)get_battle_attack_params(0x5B));
+    (*(s32 **)&lbl_805D5074)[2] = ((s32)get_battle_attack_params(0x5C));
+    (*(s32 **)&TObjEneDimedian__boss_objects)[0] = ((s32)get_battle_resistance_params(0x52));
+    (*(s32 **)&TObjEneDimedian__boss_objects)[1] = ((s32)get_battle_resistance_params(0x53));
+    (*(s32 **)&TObjEneDimedian__boss_objects)[2] = ((s32)get_battle_resistance_params(0x54));
+    (*(s32 **)&dimedian_buffer_ptr)[0] = ((s32)get_battle_movement_params(0x52));
+    (*(s32 **)&dimedian_buffer_ptr)[1] = ((s32)get_battle_movement_params(0x53));
+    (*(s32 **)&dimedian_buffer_ptr)[2] = ((s32)get_battle_movement_params(0x54));
     {
         s16 ids[3] = { 0x1B, 0x1C, 0x1D };
         Anim_800A8118 anim = { (s32)RES_800A8118->motions, dimedian_action_table, 2, 0xC0000 };
         for (i = 0; i < 3; i++) {
             u8 *b = *(u8 **)((s8 *)(*(u8 **)&dimedian_resource_ptr) + 0x42C) + i * 0x10;
-            spawn_npc_enemy__6TLobbyFslllff(ids[i], *(s32 *)((s8 *)b + 8), *(s32 *)((s8 *)b + 0xC), &anim,
-                dimedian_collision_body_table[i].radius, 0.0f);
+            NpcModelRegistry::register_animated_chunk(ids[i], (void *)(*(s32 *)((s8 *)b + 8)), (void *)(*(s32 *)((s8 *)b + 0xC)), (const NpcAnimationBinding *)(&anim), dimedian_collision_body_table[i].radius, 0.0f);
         }
     }
 }
@@ -851,7 +845,7 @@ void *TObjEneDimedian__ct(void *arg0_, void *arg1_, void *arg2_) {
     *(u8 **)((s8 *)arg0 + 0x350) = dimedian_movement_params + *(s32 *)((s8 *)arg0 + 0x334) * 0x1C;
     *(s16 *)((s8 *)arg0 + 0x33E) = *(s16 *)((s8 *)arg0 + 0x32C);
     ((TObjEnemy *)arg0)->update_prev_position();
-    ((TBoss3VoloptHiraisin *)arg0)->copy_position();
+    ((TObjChara *)arg0)->copy_body_to_center();
     initialize_enemy_photon_effect(arg0);
     *(s32 *)((s8 *)arg0 + 0x2AC) = (s32)(182.04445f * (3.6e+02f * ((TObjChara *)arg0)->random_ratio()));
     *(s16 *)((s8 *)arg0 + 0x33A) = 0xF;

@@ -18,11 +18,6 @@ struct TObjEneDf2Bringer : public TObjEneDD_ST {
     void vfunc_28();
     void render();
     void run_task();
-    u8 unk_374[0x30];
-    u32 m_3c0;
-    void* m_3c4;
-    u8 _pad3C8[0x10];
-    u32 m_3d8;
     u8 _pad3DC[0x4];
     void* m_3e0;
     u8 _pad3E4[0x6C];

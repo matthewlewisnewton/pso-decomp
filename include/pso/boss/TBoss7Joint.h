@@ -20,7 +20,7 @@ struct TBoss7Joint : public TObjEneDD {
     virtual void vfunc_28();
     virtual void vfunc_88();
     virtual void vfunc_93();
-    u8 unk_374[0x28];
+    u8 unk_38c[0x10];
     u32 m_3b8;
     u8 _pad3BC[0x4];
     u32 m_3c0;

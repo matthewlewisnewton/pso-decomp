@@ -17,14 +17,6 @@ struct TObjEneRe2Flower : public TObjEneDD_ST {
     void vfunc_62();
     void vfunc_61();
     void vfunc_28();
-    u8 unk_374[0x30];
-    u32 m_3c0;
-    u32 m_3c4;
-    u8 _pad3C8[0x4];
-    u32 m_3cc;
-    u32 m_3d0;
-    u32 m_3d4;
-    u32 m_3d8;
     u8 _pad3DC[0x18];
     void* m_3f4;
     u8 _pad3F8[0x10];

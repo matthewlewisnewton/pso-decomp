@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/misc/TOCapsuleLabo.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/TProtocol.h"
@@ -32,17 +33,14 @@ void *TOCapsuleLabo::create(void *set_data) {
 
 void TOCapsuleLabo::unload_resources() {
     if (model_resource != NULL) {
-        TLobby__sub_8001FE7C(model_resource, 1);
+        delete (BmlResource *)(model_resource);
         model_resource = NULL;
     }
 }
 
 void TOCapsuleLabo::load_resources() {
     NJS_OBJECT *root;
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_obj_labo_infocapsule_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&bm_obj_labo_infocapsule_resource_descriptor), 0, 0, (void *)(0));
     model_resource = resource;
     root = (NJS_OBJECT *)get_bml_model(resource, 0);
     if (root != NULL) {

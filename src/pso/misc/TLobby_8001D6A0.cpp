@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #include "types.h"
 #include "pso/misc/TKeyBoardControl_8000F764.h"
 #include "pso/misc/TLobby_8001D6A0.h"
@@ -537,22 +538,22 @@ u8 is_valid_player_index__6TLobbyFi(s32 arg0) {
 }
 
     extern int battle_parameter_difficulty;
-void*TLobby::dispatch_shared_handler_a(s32 index) { return get_player_entry__6TLobbyFii(battle_parameter_difficulty, index); }
+BattleMovementParams *get_battle_movement_params(s32 index) { return (BattleMovementParams *)get_player_entry__6TLobbyFii(battle_parameter_difficulty, index); }
 
     extern int battle_param_movement;
 void* get_player_entry__6TLobbyFii(int a0, int a1) {  return (char*)(battle_param_movement) + a1 * 48; }
 
-void*TLobby::register_object(s32 index) { return get_entry__6TLobbyFii(battle_parameter_difficulty, index); }
+ActorParamBlock *get_battle_resistance_params(s32 index) { return (ActorParamBlock *)get_entry__6TLobbyFii(battle_parameter_difficulty, index); }
 
     extern int TLobby__battle_param_resistances;
 void* get_entry__6TLobbyFii(int a0, int a1) {  return (char*)(TLobby__battle_param_resistances) + a1 * 32; }
 
-void*TLobby::dispatch_shared_handler_b(s32 index) { return TLobby__sub_8001E270(battle_parameter_difficulty, index); }
+AttackParams *get_battle_attack_params(s32 index) { return (AttackParams *)TLobby__sub_8001E270(battle_parameter_difficulty, index); }
 
     extern int TLobby__battle_param_attacks;
 void* TLobby__sub_8001E270(int a0, int a1) {  return (char*)(TLobby__battle_param_attacks) + a1 * 48; }
 
-void*TLobby::register_boss(s32 index) { return TLobby__sub_8001E2A8(battle_parameter_difficulty, index); }
+BattleBaseStats *get_battle_base_stats(s32 index) { return (BattleBaseStats *)TLobby__sub_8001E2A8(battle_parameter_difficulty, index); }
 
     extern int battle_param_stats;
 void* TLobby__sub_8001E2A8(int a0, int a1) {  return (char*)(battle_param_stats) + a1 * 36; }

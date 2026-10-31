@@ -26,7 +26,7 @@ public:
     virtual void vfunc_105();
     virtual void vfunc_106();
     virtual f32 receive_direct_attack(void *, DirectAttackPayload, void *, s32, s32);
-    u8 unk_3A8[0x90];
+    u8 unk_3C0[0x78];
     s32 m_438; // 0x438
     u8 unk_43C[0x2];
     s16 m_43e; // 0x43E

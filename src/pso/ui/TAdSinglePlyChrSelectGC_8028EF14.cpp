@@ -63,7 +63,6 @@ s32 count_char_diffs__23TAdSinglePlyChrSelectGCFPvPv(void *, void *);
 extern CreationTextureCacheEntry *char_select_current_entry;
 void TAdSinglePlyChrSelectGC__sub_8028ED54(void);
 void blend_creation_proportion_shapes(void *);
-s32 TLobby__sub_8001FE7C(void *, int);
 void *__dt__10TObjMotionFv(void *arg0, s16 arg1);
 void mem_free(void *p);
 s32 __dl__7TObjectFPv(void *);
@@ -1043,7 +1042,6 @@ struct Sel_802902CC {
     s32 e[3];
 };
 
-s32 load_resource_from_descriptor(s32, s32, s32, s32, s32, s32);
 s32 __ct__10TObjMotionFP7TObject(void *, void *);
 void *mem_alloc(u32 size);
 }
@@ -1135,10 +1133,7 @@ void *TCMCharacter__ct(void *motion, void *arg1) {
     char_select_active_flag = 0;
     char_creation_figure_draw_flag = 0;
     creation_figure_object = (u32)motion;
-    res = (s32)(int)::operator new(0x440);
-    if (res != 0) {
-        res = load_resource_from_descriptor(res, 6, ((s32 *)character_making_resource_descriptor_table)[((TCharaMaking *)cm)->get_display_index()], 0, 0, 0);
-    }
+    res = (s32)(int)new BmlResource(6, (BmlResourceDescriptor *)(((s32 *)character_making_resource_descriptor_table)[((TCharaMaking *)cm)->get_display_index()]), 0, 0, (void *)(0));
     chara_select_preview_resource = res;
     for (p = ((CreationTextureCacheEntry *)creation_texture_cache); p < ((CreationTextureCacheEntry *)creation_texture_cache) + 0x80; p++) {
         p->in_use = 0;
@@ -1179,7 +1174,7 @@ u8 *TAdSinglePlyChrSelectGC__sub_802908CC(u8 *arg0, s16 arg1) {
             }
         }
         ((TAdSinglePlyChrSelectGC *)arg0)->free_field_FC();
-        TLobby__sub_8001FE7C((void *)chara_select_preview_resource, 1);
+        delete (BmlResource *)((void *)chara_select_preview_resource);
         chara_select_preview_resource = 0;
         ((TCMCharacter *)arg0)->reset_model_parts();
         (*(s32 *)&chara_select_head_node) = 0;

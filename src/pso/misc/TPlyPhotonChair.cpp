@@ -1,4 +1,5 @@
 #include "pso/system/NinjaTypes.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/render/render_util.h"
 #include "types.h"
 #include "pso/misc/TRaderMapCore.h"
@@ -136,7 +137,6 @@ extern "C" {
 void *get_player_by_client_id(s32 i);
 s32 is_mounted__15TPlyPhotonChairFv();
 void TPlyPhotonChair__sub_8035B56C(void* p, f32 v);
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern u32 TPlyPhotonChair__shared_model_resource;
 s32 get_bml_motion(int, int);
 s32 TObjFish__sub_8001EDB0(int, int);
@@ -154,7 +154,6 @@ int scale_current_matrix(void *);
 int post_translate_matrix(void *);
 int TPlyPhotonChair__sub_8035B520(void* p);
 void *__dt__15TPlyPhotonChairFv(void *arg0, s16 arg1);
-void TLobby__sub_8001FE7C(void*, int);
 void __dl__7TObjectFPv(void *);
 
 void TPlyPhotonChair::render() {
@@ -227,7 +226,7 @@ void TPlyPhotonChair::run_task() {
 
 void TPlyPhotonChair::free_static_model() {
     if ((u32) TPlyPhotonChair__shared_model_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)TPlyPhotonChair__shared_model_resource, 1);
+        delete (BmlResource *)((void*)TPlyPhotonChair__shared_model_resource);
         TPlyPhotonChair__shared_model_resource = 0U;
     }
 }
@@ -235,11 +234,8 @@ void TPlyPhotonChair::free_static_model() {
 s32 TPlyPhotonChair::load_resources() {
     s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
+    temp_r3 = (int)new BmlResource(5, (BmlResourceDescriptor *)(&photon_chair_resource_descriptor), 0, 0, (void *)(0));
     var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 5, &photon_chair_resource_descriptor, 0, 0, 0));
-    }
     (*(u8 * *)&TPlyPhotonChair__shared_model_resource) = (unsigned char *) ((void *) var_r0);
     if ((u32) var_r0 == 0U) {
         return 0;
@@ -340,7 +336,7 @@ extern u32 chao_npc_instance_handle;
 
 void TPlyPhotonChair::free_instance() {
     if ((u32) chao_npc_instance_handle != 0U) {
-        TLobby__sub_8001FE7C((void*)chao_npc_instance_handle, 1);
+        delete (BmlResource *)((void*)chao_npc_instance_handle);
         chao_npc_instance_handle = 0U;
     }
 }

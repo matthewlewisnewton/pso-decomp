@@ -1,3 +1,5 @@
+#include "pso/enemy/BattleParameters.h"
+#include "pso/player/TObjChara.h"
 #include "types.h"
 #include "pso/system/NinjaUtil.h"
 #include "pso/boss/TBoss3VoloptHiraisin.h"
@@ -146,8 +148,8 @@ void TBoss3VoloptHiraisin::start_attack() {
     s16 max_hp;
     u32 flags;
     TBoss3Volopt::create_breakup_mdl((s32)volopt_hiraisin_breakup_model, (s32)&volopt_hiraisin_breakup_params,
-                                     TObjFish__sub_8001EDB0(volopt_hiraisin_resources, 0x10), (s32)&m_2fc, rotation_y);
-    trigger_dell_biter_events__10TObjPlayerFv((Vec *)&m_2fc);
+                                     TObjFish__sub_8001EDB0(volopt_hiraisin_resources, 0x10), (s32)&body_center_position, rotation_y);
+    trigger_dell_biter_events__10TObjPlayerFv((Vec *)&body_center_position);
     play_sound_effect(0x4001C112, &position, 0, 0);
     m_388 &= ~1;
     max_hp = hpmax;
@@ -177,13 +179,13 @@ void TBoss3VoloptHiraisin::update_drop() {
     switch (state) {
     case 0:
         this->requested_action = 4;
-        y_speed = -2.27f;
+        movement_velocity.y = -2.27f;
         state = 1;
         hover_angle = 0;
         break;
     case 1:
         advance_animation();
-        position.y = position.y + y_speed;
+        position.y = position.y + movement_velocity.y;
         if (position.y <= 4.6f) {
             position.y = 4.6f;
             state = 2;
@@ -303,11 +305,11 @@ void TBoss3VoloptHiraisin::run_task() {
             state = 0;
         }
         dispatch_state();
-        VecCopy((Vec *)&m_2fc, &position);
+        VecCopy((Vec *)&body_center_position, &position);
         if (mode != 5) {
-            m_300 -= 30.0f;
+            body_center_position.y -= 30.0f;
         }
-        copy_position();
+        copy_body_to_center();
         submit_cursor_candidate(this, -1);
         minimap_render_dot(&position, -0x5DB4, 1, 0);
         volopt_hiraisin_spin_node->rotation_y += 0x4000;
@@ -330,10 +332,10 @@ void TBoss3VoloptHiraisin::init_models() {
         breakup = init_from_model__11TBreakUpMdlFl(breakup, get_bml_model(volopt_hiraisin_resources, 0x10));
     }
     volopt_hiraisin_breakup_model = breakup;
-    volopt_hiraisin_stats = TLobby::register_boss(0x24);
-    volopt_hiraisin_stats_b = TLobby::dispatch_shared_handler_b(0x24);
-    volopt_hiraisin_object_params = TLobby::register_object(0x24);
-    volopt_hiraisin_stat_table = TLobby::dispatch_shared_handler_a(0x24);
+    volopt_hiraisin_stats = get_battle_base_stats(0x24);
+    volopt_hiraisin_stats_b = get_battle_attack_params(0x24);
+    volopt_hiraisin_object_params = get_battle_resistance_params(0x24);
+    volopt_hiraisin_stat_table = get_battle_movement_params(0x24);
 }
 
 void *TBoss3VoloptHiraisin::create(void *set_data) {
@@ -345,9 +347,9 @@ TBoss3VoloptHiraisin::~TBoss3VoloptHiraisin() {
 }
 
 void TBoss3VoloptHiraisin::init_params() {
-    VecCopy((Vec *)&m_2fc, &position);
-    m_300 -= 30.0f;
-    copy_position();
+    VecCopy((Vec *)&body_center_position, &position);
+    body_center_position.y -= 30.0f;
+    copy_body_to_center();
     motion_list = volopt_hiraisin_resources->motions;
     action_table = volopt_hiraisin_motions;
     set_field_d8((s32)action_table);
@@ -389,8 +391,8 @@ TBoss3VoloptHiraisin::TBoss3VoloptHiraisin(TObject *parent, void *set_data) : TO
     init_params();
 }
 
-void TBoss3VoloptHiraisin::copy_position() {
-    VecCopy(&center, (Vec *)&m_2fc);
+void TObjChara::copy_body_to_center() {
+    VecCopy(&center, (Vec *)&body_center_position);
 }
 
 void TBoss3VoloptHiraisin::load_params_from_table(s32 index) {

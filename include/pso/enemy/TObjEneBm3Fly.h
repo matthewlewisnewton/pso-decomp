@@ -20,18 +20,6 @@ struct TObjEneBm3Fly : public TObjEneDD_ST {
     void vfunc_28();
     void render();
     void run_task();
-    u8 unk_374[0x4];
-    s32 m_378;
-    f32 m_37c;
-    u8 unk_380[0xC];
-    u16 m_38c;
-    u8 unk_38E[0x2];
-    void * m_390;
-    u8 unk_394[0x4];
-    f32 m_398;
-    u8 unk_39C[0x10];
-    f32 m_3ac;
-    u8 unk_3B0[0x10];
     s32 m_3c0;
     u8 unk_3C4[0x4];
     s32 m_3c8;

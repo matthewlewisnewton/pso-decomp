@@ -1,10 +1,10 @@
+#include "pso/enemy/PlayerTargetCandidate.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "types.h"
 #include "pso/enemy/TObjEneDD.h"
 #include "pso/enemy/TObjEneRecon.h"
 #include "pso/player/TObjPlayer.h"
 
-struct Hit_8031D898 { u16 id; u8 pad[6]; };
 
 struct Recon_8031D898 {
     u8 pad0[0x38C];
@@ -16,7 +16,6 @@ struct Recon_8031D898 {
     s32 f474;
 };
 
-struct Hit_8031D994 { u16 id; u8 pad[6]; };
 
 struct Recon_8031D994 {
     u8 pad0[0x38C];
@@ -44,7 +43,7 @@ void *find_entity_by_id(u16);
 extern const f32 lbl_805DF420;
 
 void TObjEneRecon::retarget() {
-    Hit_8031D898 hits[5];
+    PlayerTargetCandidate hits[5];
     void *p;
     s32 n;
     u16 id;
@@ -74,7 +73,7 @@ void TObjEneRecon::retarget() {
 }
 
 void TObjEneRecon::select_next_target() {
-    Hit_8031D994 hits[5];
+    PlayerTargetCandidate hits[5];
     void *p;
     s32 n;
     u16 id;

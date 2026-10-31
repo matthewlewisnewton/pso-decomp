@@ -1,5 +1,7 @@
 #include "pso/misc/SampledMotionPoints.h"
+#include "pso/enemy/BattleParameters.h"
 #include "pso/player/PlayerAttackParams.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
@@ -27,6 +29,7 @@ extern "C" void test_flag_1000__9TObjCharaFv();
 #include "pso/misc/TEneParticleCtrl.h"
 #include "pso/misc/TLobby.h"
 #include "pso/object/TObjFish.h"
+#include "pso/npc/NpcModelRegistry.h"
 
 struct RecoveredGlobal_800A6BE0_lbl_80500978 {
     s32 value;
@@ -58,9 +61,6 @@ s32 update_movement_status__9TObjCharaFv();
 s32 update_movement_status__12TObjEneSaverFv(u8 *arg0);
 s32 update_action_hold_status__9TObjCharaFv();
 s32 update_action_hold_status__12TObjEneSaverFv(u8 *arg0);
-s32 register_object__6TLobbyFl(int);
-s32 dispatch_shared_handler_b__6TLobbyFl(int);
-s32 register_boss__6TLobbyFl(int);
 void *load_resource_from_descriptor(void *, int, void *, int, int, int);
 void *mem_alloc(u32 size);
 extern const Init_800A715C saver_init_binding_desc;
@@ -88,7 +88,6 @@ s32 __dl__7TObjectFPv(void *);
 extern void *TObjEneSaver__vtable[83];
 Obj_800A73F8 *__dt__12TObjEneSaverFv(Obj_800A73F8 *arg0, s16 arg1);
 void* get_center__12TObjEneSaverFv(void* p);
-void copy_position__20TBoss3VoloptHiraisinFv(s32 arg0);
 s32 create__13TUnk_80494968FUlUl(u32, u32);
 void __ct__9TObjEnemyFP7TObject(void *, void *, void *);
 void init_collision_body_parts(void *, void *, s32);
@@ -400,7 +399,7 @@ void TObjEneSaver::update_collapse_and_destroy() {
         step_angle_clamped__10TObjPlayerFPvi(arg0, 0);
         move_with_wall_slide(arg0);
         *(f32 *)((s8 *)arg0 + 0x308) *= 0.5f;
-        ((TObjEneSaver *)arg0)->m_310*= 0.5f;
+        ((TObjEneSaver *)arg0)->movement_velocity.z*= 0.5f;
         if (((VObj1 *)(arg0 + 0x3A4))->m4() == 1) {
             TObjPlayer::apply_effect_variant_a((s32)(arg0 + 0x38), 0);
             ((TObjEneSaver *)arg0)->phase = 2;
@@ -443,7 +442,7 @@ void TObjEneSaver::update_entry_motion() {
         apply_actor_gravity((TObjEnemy *)(this), (s32 *)(0), 0.0f);
         break;
     case 1:
-        this->m_310 = (f32) 0.0f;
+        this->movement_velocity.z = (f32) 0.0f;
         *(f32 *)((s8 *)((u8 *)this) + 0x308) = (f32) 0.0f;
         apply_actor_gravity((TObjEnemy *)(this), (s32 *)(0), 0.0f);
         if ((u32) this->action_flags != 8U) {
@@ -519,7 +518,7 @@ void TObjEneSaver::update_knockback_state() {
     case 1:
         move_with_wall_slide(((u8 *)this));
         *(f32 *)((s8 *)((u8 *)this) + 0x308) *= 0.5f;
-        this->m_310 *= 0.5f;
+        this->movement_velocity.z *= 0.5f;
         if ((u32) this->action_flags != 8U) {
             this->requested_action = 7;
             this->phase = 2;
@@ -867,7 +866,7 @@ void TObjEneSaver::sub_800A4D9C() {
                 copy_position_if_valid__10TObjPlayerFii((s32)arg0, (s32)&pos);
             }
             VecCopy((Vec *)&d, (const Vec *)(arg0 + 0x29C));
-            subtract_vector(&d, (u8 *)&this->m_2fc);
+            subtract_vector(&d, (u8 *)&this->body_center_position);
             {
                 f32 dist = newton_sqrtf(d.x * d.x + d.z * d.z);
                 dist -= 15.0f;
@@ -1506,7 +1505,6 @@ extern s32 model_render_flags;
 extern s32 lbl_8043A8B0[];
 extern s32 lbl_8043A8BC[];
 void * create_ene_saver(void *arg0);
-void TLobby__sub_8001FE7C(void*, int);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 void mem_free(void*);
 s32 lerp_angle_half__Fll(s32, s32);
@@ -2008,7 +2006,7 @@ void TObjEneSaver::run_task() {
         this->target = NULL;
     }
     this->update_prev_position();
-    copy_position__20TBoss3VoloptHiraisinFv((s32)this);
+    ((TObjChara *)this)->copy_body_to_center();
     sub_800A435C__12TObjEneSaverFv(this);
     this->m_2b4 += 1.0f;
 }
@@ -2045,7 +2043,7 @@ void TObjPlayer::free_resources() {
         (*(u32 *)&lbl_805D506C) = 0U;
     }
     if ((u32) saver_bml_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)saver_bml_resource, 1);
+        delete (BmlResource *)((void*)saver_bml_resource);
         saver_bml_resource = 0U;
     }
 }
@@ -2069,10 +2067,7 @@ void initialize_saver_resources(void) {
     Vec_800A715C pos;
     Vec_800A715C dir;
     void *r;
-    r = ::operator new(0x440);
-    if (r != NULL) {
-        r = load_resource_from_descriptor(r, 1, bm_ene_df1_saver_resource_descriptor, 0, 0, 0);
-    }
+    r = new BmlResource(1, (BmlResourceDescriptor *)(bm_ene_df1_saver_resource_descriptor), 0, 0, (void *)(0));
     saver_bml_resource = (u32)r;
     lbl_805D5054 = *(s32 *)((s8 *)(*(void **)((s8 *)(*(void **)((s8 *)(*(void **)((s8 *)(*(void **)((s8 *)((u8 *)((Res_800A715C *)r)->sub) + 8)) + 0x2C)) + 0x30)) + 4)) + 4);
     lbl_805D5058 = 0;
@@ -2094,15 +2089,15 @@ void initialize_saver_resources(void) {
     dir.y = dir.z = 0.0f;
     ((SampledMotionPoints *)lbl_805D506C)->sample_node_offsets((NJS_OBJECT *)RES->sub->f8, (NJS_MOTION *)(RES->ents[saver_action_table[3].motion].b), 0x19, (const Vec *)&pos, (const Vec *)&dir);
     player_object_ptr_array = (s32 *)mem_alloc(0xC);
-    saver_boss_stat_handle = register_boss__6TLobbyFl(0x52);
-    player_object_ptr_array[0] = dispatch_shared_handler_b__6TLobbyFl(0x57);
-    player_object_ptr_array[2] = dispatch_shared_handler_b__6TLobbyFl(0x58);
-    player_object_ptr_array[1] = dispatch_shared_handler_b__6TLobbyFl(0x59);
-    saver_object_stat_handle = register_object__6TLobbyFl(0x51);
-    lbl_805D504C = (f32 *)TLobby::dispatch_shared_handler_a(0x51);
+    saver_boss_stat_handle = ((s32)get_battle_base_stats(0x52));
+    player_object_ptr_array[0] = ((s32)get_battle_attack_params(0x57));
+    player_object_ptr_array[2] = ((s32)get_battle_attack_params(0x58));
+    player_object_ptr_array[1] = ((s32)get_battle_attack_params(0x59));
+    saver_object_stat_handle = ((s32)get_battle_resistance_params(0x51));
+    lbl_805D504C = (f32 *)get_battle_movement_params(0x51);
     Init_800A715C init = saver_init_binding_desc;
     init.w[0] = (s32)RES->ents;
-    TLobby::spawn_npc_enemy((s16)0x1A, (s32)RES->sub->f8, (s32)RES->sub->fC, (s32)&init, (f32)saver_collision_body_part_table[3], (f32)0.0f);
+    NpcModelRegistry::register_animated_chunk((s16)0x1A, (void *)((s32)RES->sub->f8), (void *)((s32)RES->sub->fC), (const NpcAnimationBinding *)((s32)&init), (f32)saver_collision_body_part_table[3], (f32)0.0f);
 }
 Obj_800A73F8 *__dt__12TObjEneSaverFv(Obj_800A73F8 *arg0, s16 arg1) {
     s32 i;
@@ -2167,7 +2162,7 @@ u8 *TObjEneSaver__ct(TObjEneSaver *arg0, void *arg1, void *arg2) {
     arg0->movementParameters = (u8*)lbl_80490B28;
     arg0->referenceHp = arg0->hp;
     ((TObjEnemy *)arg0)->update_prev_position();
-    copy_position__20TBoss3VoloptHiraisinFv((s32)arg0);
+    ((TObjChara *)arg0)->copy_body_to_center();
     initialize_enemy_photon_effect(arg0);
     *(s32 *)((s8 *)arg0 + 0x374) = 1;
     *(s32 *)((s8 *)arg0 + 0x38C) = 0;

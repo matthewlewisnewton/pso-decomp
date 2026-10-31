@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "types.h"
 #include "pso/boss/Boss7DeRolLeCBehavior.h"
@@ -24,10 +25,10 @@ extern const f32 lbl_805DEBB8;
 void initialize_enemy_state__9TObjEneDDFl(void *, s32);
 extern s32 __vt__11TBoss7Joint[];
 extern s32 lbl_805D3FC0;
-s32 register_object__6TLobbyFl(int);
-s32 dispatch_shared_handler_b__6TLobbyFl(int);
-s32 register_boss__6TLobbyFl(int);
-s32 reset_hp__9TObjEneDDFPUcPUcPUc(void *, int, int, int);
+
+
+
+s32 reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(void *, int, int, int);
 extern s32 lbl_80473FB8[];
 extern s32 boss7_joint_params[];
 extern const f32 lbl_805DEBBC;
@@ -101,7 +102,7 @@ s32 TBoss7Joint::init_params() {
     copy_collision_body((CollisionBody *)(&((J_802EEB88 *)this)->sub), (const CollisionBody *)lbl_80473FB8);
     set_collision_body(&((J_802EEB88 *)this)->sub);
     transform_part_positions();
-    reset_hp__9TObjEneDDFPUcPUcPUc(this, register_boss__6TLobbyFl(0x10), dispatch_shared_handler_b__6TLobbyFl(0xF), register_object__6TLobbyFl(0x10));
+    reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(this, ((s32)get_battle_base_stats(0x10)), ((s32)get_battle_attack_params(0xF)), ((s32)get_battle_resistance_params(0x10)));
     *(s16 *)((s8 *)this + 0x32C) = 0x4E20;
     *(s16 *)((s8 *)this + 0x2B8) = 0x4E20;
     check_state_flag_2();

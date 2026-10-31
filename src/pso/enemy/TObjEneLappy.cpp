@@ -1,4 +1,6 @@
+#include "pso/enemy/BattleParameters.h"
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/system/NinjaUtil.h"
@@ -428,10 +430,10 @@ s32 TObjEneLappy::advance_flee_step() {
     s32 var_r30;
     s32 var_r29;
     VecCopy((Vec *)((LappyVec *)&arg0->prev_position), (const Vec *)&arg0->position);
-    VecCopy((Vec *)&sp20, (const Vec *)((LappyVec *)&arg0->m_2fc));
-    vec3_add_to(&sp20, (LappyVec *)&arg0->unk_308);
+    VecCopy((Vec *)&sp20, (const Vec *)((LappyVec *)&arg0->body_center_position));
+    vec3_add_to(&sp20, &arg0->movement_velocity);
     if (arg0->is_actor_cadence_frame(0x1E) != 0) {
-        if (csnVector((LappyVec *)&arg0->m_2fc, &sp20, -1) != 0U) {
+        if (csnVector((LappyVec *)&arg0->body_center_position, &sp20, -1) != 0U) {
             return 0;
         }
         if (random_ratio__9TObjCharaFv(arg0) < lbl_805D9F24) {
@@ -443,19 +445,19 @@ s32 TObjEneLappy::advance_flee_step() {
         var_r31 = 0;
 loop_7:
         if (var_r29 == 0) {
-            VecCopy((Vec *)&sp14, (const Vec *)((LappyVec *)&arg0->unk_308));
+            VecCopy((Vec *)&sp14, &arg0->movement_velocity);
         } else {
             push_matrix_from(&identity_matrix);
             rotate_matrix_y(0, (int)(var_r30 * var_r31));
-            rotate_vector_by_matrix(0, (LappyVec *)&arg0->unk_308, &sp14);
+            rotate_vector_by_matrix(0, &arg0->movement_velocity, &sp14);
             pop_matrices(1);
         }
         VecCopy((Vec *)&sp8, (const Vec *)&arg0->position);
         vec3_add_to(&sp8, &sp14);
         if (((s32)project_actor_to_ground(arg0, &sp8, 0)) == 1) {
             VecCopy((Vec *)&arg0->position, (const Vec *)&sp8);
-            VecCopy((Vec *)((LappyVec *)&arg0->unk_308), (const Vec *)&arg0->position);
-            subtract_vector((LappyVec *)&arg0->unk_308, (LappyVec *)&arg0->prev_position);
+            VecCopy(&arg0->movement_velocity, (const Vec *)&arg0->position);
+            subtract_vector(&arg0->movement_velocity, (LappyVec *)&arg0->prev_position);
             return 1;
         }
         var_r29 += 1;
@@ -467,8 +469,8 @@ loop_7:
     }
     if (((s32)project_actor_to_ground(arg0, &sp20, 0)) == 1) {
         VecCopy((Vec *)((LappyVec *)&arg0->position), (const Vec *)&sp20);
-        VecCopy((Vec *)((LappyVec *)&arg0->unk_308), (const Vec *)((LappyVec *)&arg0->position));
-        subtract_vector((LappyVec *)&arg0->unk_308, (LappyVec *)&arg0->prev_position);
+        VecCopy(&arg0->movement_velocity, (const Vec *)((LappyVec *)&arg0->position));
+        subtract_vector(&arg0->movement_velocity, (LappyVec *)&arg0->prev_position);
         return 1;
     }
     return 0;
@@ -554,7 +556,7 @@ s32 TObjEneLappy::apply_move_friction() {
     if (this->frame < (lbl_805D9F24 * (lbl_805D9F2C * this->play_speed))) {
         move_with_wall_slide((u8 *)this);
         *(f32 *)((s8 *)this + 0x308) = (f32) (*(f32 *)((s8 *)this + 0x308) * lbl_805D9F24);
-        this->m_310 = (f32) (this->m_310 * lbl_805D9F24);
+        this->movement_velocity.z = (f32) (this->movement_velocity.z * lbl_805D9F24);
     }
 }
 void TObjEneLappy::vfunc_63() {
@@ -668,8 +670,8 @@ void TObjEneLappy::update_attacking() {
         VecCopy((Vec *)(arg0 + 0x44), (const Vec *)(arg0 + 0x38));
         *(f32 *)((s8 *)arg0 + 0x38) += *(f32 *)((s8 *)arg0 + 0x308);
         *(f32 *)((s8 *)arg0 + 0x308) *= lbl_805D9F58;
-        *(f32 *)((s8 *)arg0 + 0x40) += this->m_310;
-        this->m_310 *= lbl_805D9F58;
+        *(f32 *)((s8 *)arg0 + 0x40) += this->movement_velocity.z;
+        this->movement_velocity.z *= lbl_805D9F58;
         apply_actor_gravity(arg0, 0, lbl_805D9F4C);
         if (((TObjMotion *)arg0)->is_passing_frame((f32)lbl_805D9F5C) != 0) {
             temp_r3 = this->target;
@@ -692,10 +694,10 @@ void TObjEneLappy::update_attacking() {
     case 3:
         VecCopy((Vec *)(arg0 + 0x44), (const Vec *)(arg0 + 0x38));
         *(f32 *)((s8 *)arg0 + 0x38) += *(f32 *)((s8 *)arg0 + 0x308);
-        *(f32 *)((s8 *)arg0 + 0x40) += this->m_310;
+        *(f32 *)((s8 *)arg0 + 0x40) += this->movement_velocity.z;
         apply_actor_gravity(arg0, 0, lbl_805D9F4C);
         if (this->action_flags != 4U) {
-            *(f32 *)((s8 *)arg0 + 0x308) = *(f32 *)((s8 *)arg0 + 0x30C) = this->m_310 = lbl_805D9F4C;
+            *(f32 *)((s8 *)arg0 + 0x308) = *(f32 *)((s8 *)arg0 + 0x30C) = this->movement_velocity.z = lbl_805D9F4C;
             *(s32 *)&this->actorFlags &= 0xFFDFFFFF;
             this->vfunc_59();
             *(s16 *)&this->timer = 0;
@@ -759,7 +761,7 @@ void TObjEneLappy::update_moving() {
         if (temp_r6 != NULL) {
             Position_800C08A0 target1 = *(Position_800C08A0 *)(temp_r6 + 0x2FC);
             enemy_backstep_from_point(arg0, &target1.x, (f32) (*(f32 *)((s8 *)((u8 *)(*(u8 * *)&this->movementParameters)) + 4)));
-            turn_toward_direction(*(s32 *)((u8 *)movementParameters + 8), (Vec *)unk_308);
+            turn_toward_direction(*(s32 *)((u8 *)movementParameters + 8), &movement_velocity);
             apply_actor_gravity(arg0, 0, lbl_805D9F4C);
             ((TObjPlayer *)arg0)->update_collisions();
             return;
@@ -787,7 +789,7 @@ void TObjEneLappy::update_moving() {
                 temp_r4 = (u8 *)(*(u8 * *)&this->movementParameters);
                 ((TObjEnemy *)(arg0))->enemy_wander_home(*(f32 *)((s8 *)temp_r4 + 4), lbl_805D9F68, lbl_805D9F6C, *(s32 *)((s8 *)temp_r4 + 8));
             }
-            turn_toward_direction(*(s32 *)((u8 *)movementParameters + 8), (Vec *)unk_308);
+            turn_toward_direction(*(s32 *)((u8 *)movementParameters + 8), &movement_velocity);
             play_walk_sound();
             goto block_48;
         case 1:
@@ -798,7 +800,7 @@ void TObjEneLappy::update_moving() {
                 if (temp_f1 > lbl_805D9F70) {
                     *(s16 *)&this->m_37a = 0;
                 }
-                turn_toward_direction(*(s32 *)((u8 *)movementParameters + 8), (Vec *)unk_308);
+                turn_toward_direction(*(s32 *)((u8 *)movementParameters + 8), &movement_velocity);
                 temp_r3_3 = (u8 *)(*(u8 * *)&this->movementParameters);
                 if (*(f32 *)((s8 *)temp_r3_3 + 0) * *(f32 *)((s8 *)temp_r3_3 + 0) < temp_f1 || temp_f1 < *(f32 *)((s8 *)temp_r3_3 + 4) * *(f32 *)((s8 *)temp_r3_3 + 4)) {
                     this->target = NULL;
@@ -1169,6 +1171,7 @@ void *TObjEneLappy::create(void *arg0) {
 #include "pso/enemy/TObjEneRe2Flower.h"
 #include "pso/enemy/TObjEneRe7Berura.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
+#include "pso/npc/NpcModelRegistry.h"
 
 struct Set_800C1C4C {
     u8 pad0[0xA];
@@ -1673,16 +1676,13 @@ typedef struct Desc_800C17B8 {
     s32 d;
 } Desc_800C17B8;
 
-void TLobby__sub_8001FE7C(void*, int);
 s32 release_texture_list(void*);
 s32 get_main_phase();
-s32 dispatch_shared_handler_a__6TLobbyFl(s32);
-s32 register_object__6TLobbyFl(s32);
-s32 dispatch_shared_handler_b__6TLobbyFl(s32);
-s32 register_boss__6TLobbyFl(s32);
-s32 load_resource_from_descriptor(s32, int, void *, int, int, int);
+
+
+
+
 u8 *load_gvm_texture_file(s32 arg0);
-void spawn_npc_enemy__6TLobbyFslllff(int, int, int, void *, f32, f32);
 extern u8 lbl_8043BA28[];
 extern u8 lbl_8043BA44[];
 extern const Desc_800C17B8 lappy_resource_binding_desc;
@@ -1701,7 +1701,7 @@ void TLobby::cleanup_handles() {
         (*(u32 *)&rappy_alternate_texture_list) = 0U;
     }
     if ((u32) (*(u32 *)&rappy_bml_resource) != 0U) {
-        TLobby__sub_8001FE7C((void*)(*(u32 *)&rappy_bml_resource), 1);
+        delete (BmlResource *)((void*)(*(u32 *)&rappy_bml_resource));
         (*(u32 *)&rappy_bml_resource) = 0U;
     }
 }
@@ -1719,64 +1719,40 @@ void TObjEneLappy::load_resources() {
         case 1:
             lappy_variant_id = 1;
             if (rare) {
-                p = (int)::operator new(0x440);
-                if (p != 0) {
-                    p = load_resource_from_descriptor(p, 1, lbl_80492E08, 0, 0, 0);
-                }
+                p = (int)new BmlResource(1, (BmlResourceDescriptor *)(lbl_80492E08), 0, 0, (void *)(0));
                 (*(u32 *)&rappy_bml_resource) = p;
             } else {
-                p = (int)::operator new(0x440);
-                if (p != 0) {
-                    p = load_resource_from_descriptor(p, 1, lbl_80492DC0, 0, 0, 0);
-                }
+                p = (int)new BmlResource(1, (BmlResourceDescriptor *)(lbl_80492DC0), 0, 0, (void *)(0));
                 (*(u32 *)&rappy_bml_resource) = p;
             }
             break;
         case 4:
             lappy_variant_id = 2;
             if (rare) {
-                p = (int)::operator new(0x440);
-                if (p != 0) {
-                    p = load_resource_from_descriptor(p, 1, lbl_80492CE8, 0, 0, 0);
-                }
+                p = (int)new BmlResource(1, (BmlResourceDescriptor *)(lbl_80492CE8), 0, 0, (void *)(0));
                 (*(u32 *)&rappy_bml_resource) = p;
             } else {
-                p = (int)::operator new(0x440);
-                if (p != 0) {
-                    p = load_resource_from_descriptor(p, 1, lbl_80492CA0, 0, 0, 0);
-                }
+                p = (int)new BmlResource(1, (BmlResourceDescriptor *)(lbl_80492CA0), 0, 0, (void *)(0));
                 (*(u32 *)&rappy_bml_resource) = p;
             }
             break;
         case 5:
             lappy_variant_id = 3;
             if (rare) {
-                p = (int)::operator new(0x440);
-                if (p != 0) {
-                    p = load_resource_from_descriptor(p, 1, lbl_80492D78, 0, 0, 0);
-                }
+                p = (int)new BmlResource(1, (BmlResourceDescriptor *)(lbl_80492D78), 0, 0, (void *)(0));
                 (*(u32 *)&rappy_bml_resource) = p;
             } else {
-                p = (int)::operator new(0x440);
-                if (p != 0) {
-                    p = load_resource_from_descriptor(p, 1, lbl_80492D30, 0, 0, 0);
-                }
+                p = (int)new BmlResource(1, (BmlResourceDescriptor *)(lbl_80492D30), 0, 0, (void *)(0));
                 (*(u32 *)&rappy_bml_resource) = p;
             }
             break;
         default:
             lappy_variant_id = 0;
             if (rare) {
-                p = (int)::operator new(0x440);
-                if (p != 0) {
-                    p = load_resource_from_descriptor(p, 1, lbl_80492C58, 0, 0, 0);
-                }
+                p = (int)new BmlResource(1, (BmlResourceDescriptor *)(lbl_80492C58), 0, 0, (void *)(0));
                 (*(u32 *)&rappy_bml_resource) = p;
             } else {
-                p = (int)::operator new(0x440);
-                if (p != 0) {
-                    p = load_resource_from_descriptor(p, 1, lbl_80492C10, 0, 0, 0);
-                }
+                p = (int)new BmlResource(1, (BmlResourceDescriptor *)(lbl_80492C10), 0, 0, (void *)(0));
                 (*(u32 *)&rappy_bml_resource) = p;
             }
             break;
@@ -1784,16 +1760,10 @@ void TObjEneLappy::load_resources() {
     } else {
         lappy_variant_id = 0;
         if (rare) {
-            p = (int)::operator new(0x440);
-            if (p != 0) {
-                p = load_resource_from_descriptor(p, 1, lbl_80492C58, 0, 0, 0);
-            }
+            p = (int)new BmlResource(1, (BmlResourceDescriptor *)(lbl_80492C58), 0, 0, (void *)(0));
             (*(u32 *)&rappy_bml_resource) = p;
         } else {
-            p = (int)::operator new(0x440);
-            if (p != 0) {
-                p = load_resource_from_descriptor(p, 1, lbl_80492C10, 0, 0, 0);
-            }
+            p = (int)new BmlResource(1, (BmlResourceDescriptor *)(lbl_80492C10), 0, 0, (void *)(0));
             (*(u32 *)&rappy_bml_resource) = p;
         }
     }
@@ -1808,23 +1778,20 @@ void TObjEneLappy::load_resources() {
     }
     (*(s32 *)&rappy_visibility_node) = (s32)find_model_node((*(s32 *)(*(u8 **)(RES_800C17B8 + 0x42C) + 8)), 0x12);
     for (i = 0; i < 2; i++) {
-        lappy_boss_stats_handles[i] = register_boss__6TLobbyFl(i + 0x18);
-        lappy_boss_stats_ptrs_b[i] = dispatch_shared_handler_b__6TLobbyFl(i + 0x18);
-        lappy_object_handles[i] = register_object__6TLobbyFl(i + 0x18);
-        lappy_variant_speed_ptr_table[i] = dispatch_shared_handler_a__6TLobbyFl(i + 0x18);
+        lappy_boss_stats_handles[i] = ((s32)get_battle_base_stats(i + 0x18));
+        lappy_boss_stats_ptrs_b[i] = ((s32)get_battle_attack_params(i + 0x18));
+        lappy_object_handles[i] = ((s32)get_battle_resistance_params(i + 0x18));
+        lappy_variant_speed_ptr_table[i] = ((s32)get_battle_movement_params(i + 0x18));
     }
     {
         u8 *res = RES_800C17B8;
         Desc_800C17B8 d = lappy_resource_binding_desc;
         d.a = *(s32 *)(res + 0x430);
-        spawn_npc_enemy__6TLobbyFslllff(5, *(s32 *)(*(u8 **)(RES_800C17B8 + 0x42C) + 8),
-                                        *(s32 *)(*(u8 **)(RES_800C17B8 + 0x42C) + 0xC), &d, lbl_805D9F28, lbl_805D9F4C);
+        NpcModelRegistry::register_animated_chunk(5, (void *)(*(s32 *)(*(u8 **)(RES_800C17B8 + 0x42C) + 8)), (void *)(*(s32 *)(*(u8 **)(RES_800C17B8 + 0x42C) + 0xC)), (const NpcAnimationBinding *)(&d), lbl_805D9F28, lbl_805D9F4C);
         if (TLobby::get_instance() == 0) {
-            spawn_npc_enemy__6TLobbyFslllff(6, *(s32 *)(*(u8 **)(RES_800C17B8 + 0x42C) + 8), (*(u32 *)&rappy_alternate_texture_list), &d,
-                                            lbl_805D9F28, lbl_805D9F4C);
+            NpcModelRegistry::register_animated_chunk(6, (void *)(*(s32 *)(*(u8 **)(RES_800C17B8 + 0x42C) + 8)), (void *)((*(u32 *)&rappy_alternate_texture_list)), (const NpcAnimationBinding *)(&d), lbl_805D9F28, lbl_805D9F4C);
         } else {
-            spawn_npc_enemy__6TLobbyFslllff(6, *(s32 *)(*(u8 **)(RES_800C17B8 + 0x42C) + 0x18),
-                                            *(s32 *)(*(u8 **)(RES_800C17B8 + 0x42C) + 0x1C), &d, lbl_805D9F28, lbl_805D9F4C);
+            NpcModelRegistry::register_animated_chunk(6, (void *)(*(s32 *)(*(u8 **)(RES_800C17B8 + 0x42C) + 0x18)), (void *)(*(s32 *)(*(u8 **)(RES_800C17B8 + 0x42C) + 0x1C)), (const NpcAnimationBinding *)(&d), lbl_805D9F28, lbl_805D9F4C);
         }
     }
 }
@@ -1914,7 +1881,7 @@ u8 *TObjEneLappy__ct(u8 *self, s32 arg1, Set_800C1C4C *set) {
     *(s16 *)(self + 0x32E) = *(s16 *)(self + 0x2BA);
     *(s16 *)(self + 0x33E) = *(s16 *)(self + 0x32C);
     ((TObjEnemy *)self)->update_prev_position();
-    ((TBoss3VoloptHiraisin *)self)->copy_position();
+    ((TObjChara *)self)->copy_body_to_center();
     ((TObjPlayer *)self)->register_object_by_id();
     scale = lbl_805D9F84 * (lbl_805D9F60 + random_ratio__9TObjCharaFv(self));
     *(s16 *)(self + 0x37E) = lbl_805D9F2C * scale;

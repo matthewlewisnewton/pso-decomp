@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #include "pso/protocol/protocol_types.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
@@ -74,8 +75,6 @@ s32 is_local_client_floor_leader();
 void request_follow_camera_offsets(Vec *position, Vec *target, s32 id, f32 blend);
 u16 get_entity_id(void *object);
 void obj_setFlags30(void *object, s32 flags);
-void TLobby__sub_8001FE7C(void *resource, s32 flags);
-void *load_resource_from_descriptor(void *resource, s32 kind, BmlResourceDescriptor *descriptor, s32, s32, s32);
 u16 TObjRoomId__sub_801A1DB8(u16 id);
 void TObjPlayer__sub_801BA42C(void);
 extern s32 door_vo_ship_class_name;
@@ -387,7 +386,7 @@ TBoss3Volopt::TBoss3Volopt(void *set_data) : TObjEnemyCustom(tl_04) {
     apply_set_data(set_data);
     reset_photon_effect();
     move_to_arena(0);
-    VecCopy(&position, VecCopy((Vec *)&m_2fc, &boss3_volopt_spawn_pos));
+    VecCopy(&position, VecCopy((Vec *)&body_center_position, &boss3_volopt_spawn_pos));
     actorFlags |= 0x06040000;
     volopt_cage_id = get_part_id(0x20);
     volopt_cage_group = get_part_group(0x20);
@@ -421,16 +420,10 @@ void TBoss3Volopt::load_resources() {
     void *resource;
     v2 = TObjEneDD::check_v2_mode();
     if (v2 != 0) {
-        resource = ::operator new(0x440);
-        if (resource != NULL) {
-            resource = load_resource_from_descriptor(resource, 5, &bm_boss3_volopt_ap_resource_descriptor, 0, 0, 0);
-        }
+        resource = new BmlResource(5, (BmlResourceDescriptor *)(&bm_boss3_volopt_ap_resource_descriptor), 0, 0, (void *)(0));
         boss3_volopt_resources = (BmlResource *)resource;
     } else {
-        resource = ::operator new(0x440);
-        if (resource != NULL) {
-            resource = load_resource_from_descriptor(resource, 5, &bm_boss3_volopt_resource_descriptor, 0, 0, 0);
-        }
+        resource = new BmlResource(5, (BmlResourceDescriptor *)(&bm_boss3_volopt_resource_descriptor), 0, 0, (void *)(0));
         boss3_volopt_resources = (BmlResource *)resource;
     }
     volopt_v2_mode = v2;
@@ -446,15 +439,15 @@ void TBoss3Volopt::load_resources() {
     TObjVoloptCage::init_break_model();
     volopt_p02_id = 0xFFFF;
     volopt_resources_loaded = 0;
-    volopt_phase1_camera = (VoloptCameraParams *)TLobby::dispatch_shared_handler_a(0x27);
-    volopt_phase2_camera = (VoloptCameraParams *)TLobby::dispatch_shared_handler_a(0x28);
-    volopt_cage_camera = (VoloptCameraParams *)TLobby::dispatch_shared_handler_a(0x29);
+    volopt_phase1_camera = (VoloptCameraParams *)get_battle_movement_params(0x27);
+    volopt_phase2_camera = (VoloptCameraParams *)get_battle_movement_params(0x28);
+    volopt_cage_camera = (VoloptCameraParams *)get_battle_movement_params(0x29);
 }
 
 void TBoss3Volopt::free_parts() {
     TObjVoloptCage::destroy();
     if (boss3_volopt_resources != NULL) {
-        TLobby__sub_8001FE7C(boss3_volopt_resources, 1);
+        delete (BmlResource *)(boss3_volopt_resources);
         boss3_volopt_resources = NULL;
     }
     TBoss3VoloptP01::destroy();
@@ -956,7 +949,7 @@ void TBoss3Volopt::start_phase2() {
         p02->sub_800C7860();
     }
     move_to_arena(1);
-    VecCopy(&position, VecCopy((Vec *)&m_2fc, &boss3_volopt_spawn_pos));
+    VecCopy(&position, VecCopy((Vec *)&body_center_position, &boss3_volopt_spawn_pos));
     attack_step = 0;
     attack_delay = 0;
     clear_volopt_cage_flag();

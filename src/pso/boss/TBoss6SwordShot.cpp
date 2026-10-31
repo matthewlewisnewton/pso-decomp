@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/TBoss6SwordShot.h"
 #include "pso/TObject.h"
@@ -57,7 +58,7 @@ extern "C" {
 u8 *__nw__7TObjectFUl(s32);
 u8 test_rock_bit__15TBoss6SwordWaveFiUc(s32 arg0, u8 arg1);
 void set_bit__15TBoss6SwordWaveFiUc(s32 arg0, u8 arg1);
-f32 *dispatch_shared_handler_a__6TLobbyFl(s32);
+
 s32 __ct__7TObjectFP7TObject(void *, void *);
 void fn_80356E30(s32 *p);
 extern RecoveredGlobal_80356B18___vt__15TBoss6SwordWave __vt__15TBoss6SwordWave;
@@ -198,7 +199,7 @@ u8 *TBoss6SwordShot__ct(void *arg0, s32 arg1, s32 arg2, s32 arg3, f32 farg0) {
     VecCopy((Vec *)&self->pos, (const Vec *)arg2);
     self->speed = farg0;
     self->f30 = 0;
-    v = *dispatch_shared_handler_a__6TLobbyFl(0x2B);
+    v = *((f32 *)get_battle_movement_params(0x2B));
     self->life = (s32)v;
     if (lbl_805DFFE8 == v) {
         self->life = 0x14;
@@ -416,12 +417,12 @@ u8 *__ct__15TBoss6SwordWaveFv(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, 
     *(f32 *)((s8 *)arg0 + 0x50) = (f32) lbl_805DFFE8;
     *(f32 *)((s8 *)arg0 + 0x54) = (f32) lbl_805DFFE8;
     *(f32 *)((s8 *)arg0 + 0x58) = (f32) lbl_805DFFE8;
-    temp_f2 = *dispatch_shared_handler_a__6TLobbyFl(0x2C);
+    temp_f2 = *((f32 *)get_battle_movement_params(0x2C));
     *(s32 *)((s8 *)arg0 + 0x5C) = (s32) temp_f2;
     if (lbl_805DFFE8 == temp_f2) {
         *(s32 *)((s8 *)arg0 + 0x5C) = 0x14;
     }
-    temp_f1 = *(f32 *)((s8 *)(dispatch_shared_handler_a__6TLobbyFl(0x2F)) + 8);
+    temp_f1 = *(f32 *)((s8 *)(((f32 *)get_battle_movement_params(0x2F))) + 8);
     *(f32 *)((s8 *)arg0 + 0x60) = temp_f1;
     if (lbl_805DFFE8 == temp_f1) {
         *(f32 *)((s8 *)arg0 + 0x60) = (f32) lbl_805DFFF0;

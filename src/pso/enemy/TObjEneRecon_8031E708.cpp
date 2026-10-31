@@ -1,9 +1,11 @@
+#include "pso/enemy/BattleParameters.h"
 #include "types.h"
 #include "pso/enemy/TObjEneRecon_8031FCB0.h"
 #include "pso/enemy/TObjEneRecon_8031BC38.h"
 #include "pso/enemy/TObjEneRecon.h"
 #include "pso/misc/TLobby.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
+#include "pso/npc/NpcModelRegistry.h"
 
 struct Stack_8031E708
 {
@@ -40,10 +42,10 @@ struct RecoveredFields_8031E708_temp_r5
 };
 
 extern "C" {
-s32 dispatch_shared_handler_a__6TLobbyFl(int);
-s32 register_object__6TLobbyFl(int);
-s32 dispatch_shared_handler_b__6TLobbyFl(int);
-s32 register_boss__6TLobbyFl(int);
+
+
+
+
 s32 init_from_model__11TBreakUpMdlFl(int, void *);
 extern RecoveredGlobal_8031E708_lbl_804760EC recon_anim_binding;
 extern RecoveredGlobal_8031E708_lbl_804EC40C TObjEneRecon__collision_body_template;
@@ -77,10 +79,10 @@ void TObjEneRecon::load_resources() {
   boss3_volopt_instance = var_r4;
   recon_intro_stage = 0;
   recon_model_matrix_ptr = 0;
-  lbl_805D6AF0 = register_boss__6TLobbyFl(0x42);
-  TObjEneRecon__attack_params = dispatch_shared_handler_b__6TLobbyFl(0x42);
-  TObjEneRecon__resistance_params = register_object__6TLobbyFl(0x42);
-  TObjEneRecon__data_805D6AFC = dispatch_shared_handler_a__6TLobbyFl(0x42);
+  lbl_805D6AF0 = ((s32)get_battle_base_stats(0x42));
+  TObjEneRecon__attack_params = ((s32)get_battle_attack_params(0x42));
+  TObjEneRecon__resistance_params = ((s32)get_battle_resistance_params(0x42));
+  TObjEneRecon__data_805D6AFC = ((s32)get_battle_movement_params(0x42));
   TObjEneRecon__sub_8031BC94();
   stack.sp8 = *((s32 *) (((s8 *)&recon_anim_binding.value) + 0));
   stack.spC = *((s32 *) (((s8 *)&recon_anim_binding.value) + 4));
@@ -88,7 +90,7 @@ void TObjEneRecon::load_resources() {
   stack.sp14 = *((s32 *) (((s8 *)&recon_anim_binding.value) + 0xC));
   stack.sp8 = ((RecoveredFields_8031E708_TObjEneRecon__data_805D6B00 *) TObjEneRecon__recobox_static_instance)->field_430;
   temp_r5 = (u8 *) ((RecoveredFields_8031E708_TObjEneRecon__data_805D6B00 *) TObjEneRecon__recobox_static_instance)->field_42C;
-  TLobby::spawn_npc_enemy((s16)(0xC), (s32)((int) ((RecoveredFields_8031E708_temp_r5 *) temp_r5)->field_8), (s32)((int) ((RecoveredFields_8031E708_temp_r5 *) temp_r5)->field_C), (s32)((void *)&stack.sp8), (f32)((f32) (*((f32 *) (((s8 *)&TObjEneRecon__collision_body_template.value) + 0xC)))), (f32)((f32) TObjEneRecon__data_805DF3C0));
+  NpcModelRegistry::register_animated_chunk((s16)(0xC), (void *)((s32)((int) ((RecoveredFields_8031E708_temp_r5 *) temp_r5)->field_8)), (void *)((s32)((int) ((RecoveredFields_8031E708_temp_r5 *) temp_r5)->field_C)), (const NpcAnimationBinding *)((s32)((void *)&stack.sp8)), (f32)((f32) (*((f32 *) (((s8 *)&TObjEneRecon__collision_body_template.value) + 0xC)))), (f32)((f32) TObjEneRecon__data_805DF3C0));
 }
 
 }

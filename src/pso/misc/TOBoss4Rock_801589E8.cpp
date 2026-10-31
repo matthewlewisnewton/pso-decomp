@@ -1,3 +1,4 @@
+#include "pso/math/ScratchVectorStorage.h"
 #include "types.h"
 #include "pso/misc/TOBoss4Bird.h"
 #include "pso/misc/TOBoss4Rock.h"
@@ -370,13 +371,11 @@ f32 horizontal_distance_squared(Vec_8015959C *, Vec_8015959C *);
 s32 approach_angle_limited(s32, s32, s32);
 s32 rand(void);
 f32 sin_table_lookup(s32);
-void vec3_add_to(Vec_8015959C *, Vec_8015959C *);
-void rotate_vector_by_matrix(s32, Vec_8015959C *, Vec_8015959C *);
-void subtract_vector(Vec_8015959C *, Vec_8015959C *);
+void vec3_add_to(Vec_8015959C *, Vec *);
+void rotate_vector_by_matrix(s32, Vec *, Vec *);
+void subtract_vector(Vec *, Vec_8015959C *);
 void push_matrix_from(void *);
 void pop_matrices(s32);
-extern Vec_8015959C scratch_vec;
-extern Vec_8015959C lbl_8050BF00;
 extern u8 identity_matrix[];
 
 void TOBoss4Bird::run_task() {
@@ -390,27 +389,27 @@ void TOBoss4Bird::run_task() {
     switch (self->state) {
     case 0:
         self->state = 1;
-        scratch_vec.x = (0.0f);
-        scratch_vec.y = self->fac * ((3.0517578e-05f) * (f32)rand());
-        scratch_vec.z = self->fb0 * ((3.0517578e-05f) * (f32)rand());
+        scratch_vec.vector.x = (0.0f);
+        scratch_vec.vector.y = self->fac * ((3.0517578e-05f) * (f32)rand());
+        scratch_vec.vector.z = self->fb0 * ((3.0517578e-05f) * (f32)rand());
         push_matrix_from(identity_matrix);
         rotate_matrix_y(0, (s32)((182.04445f) * ((3.6e+02f) * ((3.0517578e-05f) * (f32)rand()))));
-        rotate_vector_by_matrix(0, &scratch_vec, &scratch_vec);
+        rotate_vector_by_matrix(0, &scratch_vec.vector, &scratch_vec.vector);
         pop_matrices(1);
         VecCopy((Vec *)&self->fc4, (const Vec *)&self->f50);
-        vec3_add_to(&self->fc4, &scratch_vec);
+        vec3_add_to(&self->fc4, &scratch_vec.vector);
         break;
     case 1:
-        VecCopy((Vec *)&scratch_vec, (const Vec *)&self->fc4);
-        subtract_vector(&scratch_vec, &self->f38);
-        self->f60 = approach_angle_limited(self->f60, (s32)((10430.38043493439) * atan2_float(scratch_vec.x, scratch_vec.z)), 0x100);
-        lbl_8050BF00.x = lbl_8050BF00.y = (0.0f);
-        lbl_8050BF00.z = self->fa8;
+        VecCopy((Vec *)&scratch_vec.vector, (const Vec *)&self->fc4);
+        subtract_vector(&scratch_vec.vector, &self->f38);
+        self->f60 = approach_angle_limited(self->f60, (s32)((10430.38043493439) * atan2_float(scratch_vec.vector.x, scratch_vec.vector.z)), 0x100);
+        lbl_8050BF00.vector.x = lbl_8050BF00.vector.y = (0.0f);
+        lbl_8050BF00.vector.z = self->fa8;
         push_matrix_from(identity_matrix);
         rotate_matrix_y(0, self->f60);
-        rotate_vector_by_matrix(0, &lbl_8050BF00, &lbl_8050BF00);
+        rotate_vector_by_matrix(0, &lbl_8050BF00.vector, &lbl_8050BF00.vector);
         pop_matrices(1);
-        vec3_add_to(&self->f38, &lbl_8050BF00);
+        vec3_add_to(&self->f38, &lbl_8050BF00.vector);
         if (horizontal_distance_squared(&self->fc4, &self->f38) < self->fb0 || (1.5e+02f) < (f32)self->fe4++) {
             self->state = 0;
             self->fe4 = 0;

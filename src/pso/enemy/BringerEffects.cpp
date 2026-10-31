@@ -1,4 +1,5 @@
 #include "pso/math/FloatRounding.h"
+#include "pso/math/VectorNormalize.h"
 #include "types.h"
 #include "pso/enemy/BringerEffects.h"
 #include "pso/misc/TParticleCtrl_800867E4.h"
@@ -81,7 +82,7 @@ void update_shot__17TObjEneDf2BringerFPv(Bringer_80099F0C *self) {
         VecCopy((Vec *)&v, (const Vec *)(*(void **)((u8 *)res + 4)));
         VecCopy((Vec *)&d, (const Vec *)&self->pos);
         subtract_vector(&d, &v);
-        step = ((TObjBoss2Tunnel *)(&d))->update_scale();
+        step = normalize_vector_checked((Vec *)(&d));
         hit = 1;
     }
     f32 inc = 16.0f;
@@ -188,7 +189,7 @@ u8 *fn_8009A398(u8 *arg0, s32 arg1, u8 *arg2, u8 *arg3) {
     VecCopy((Vec *)(arg0 + 0x1C), (const Vec *)(arg0 + 0x28));
     VecCopy((Vec *)(arg0 + 0x40), (const Vec *)(arg0 + 0x34));
     subtract_vector(arg0 + 0x40, arg0 + 0x28);
-    ((TUnk_8048FE64 *)arg0)->m_4c = ((TObjBoss2Tunnel *)(arg0 + 0x40))->update_scale();
+    ((TUnk_8048FE64 *)arg0)->m_4c = normalize_vector_checked((Vec *)(arg0 + 0x40));
     *(f32 *)((s8 *)arg0 + 0x50) = (f32) 0.0f;
     return arg0;
 }

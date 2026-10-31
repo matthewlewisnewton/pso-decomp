@@ -1,6 +1,9 @@
 #include "pso/animation/MotionContext.h"
 #include "pso/misc/SampledMotionPoints.h"
+#include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEnemy.h"
+#include "pso/system/EnemyBmlResource.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/system/vector.h"
 extern "C" void *__ct__12TObjEneDD_STFP7TObject(void *);
@@ -2091,22 +2094,22 @@ void TObjEneMe3Stelth__sub_800F3214(u8 *ene_epsilon, s32 arg1) {
         case 0:
             ((VObj_18_4f5f2e *)(ene_epsilon))->m103();
             if (((TObjEneEpsilon *)ene_epsilon)->frame < TObjEneMe3Stelth__data_805DA844) {
-                if (((TObjEneEpsilon *)ene_epsilon)->update_death_check() != 0) {
+                if (((TObjEneDD_ST *)ene_epsilon)->check_target_validity() != 0) {
                     ((TObjEneDD_ST *)ene_epsilon)->enemy_copy_target_destination();
                     ((TObjEneDD *)ene_epsilon)->update_velocity();
-                    var_r4 = (s32) (TObjEneMe3Stelth__data_8043D758 * atan2_float((f32) (((TObjEneEpsilon *)ene_epsilon)->m_3a0), (f32) (*(f32 *)((s8 *)ene_epsilon + 0x3A8))));
+                    var_r4 = (s32) (TObjEneMe3Stelth__data_8043D758 * atan2_float((f32) (((TObjEneDD_ST *)ene_epsilon)->target_direction.x), (f32) (*(f32 *)((s8 *)ene_epsilon + 0x3A8))));
                 } else {
                     var_r4 = ((TObjEneEpsilon *)ene_epsilon)->rotation_y;
                 }
                 ((TObjEneEpsilon *)ene_epsilon)->rotation_y = approach_angle_limited((int) (((TObjEneEpsilon *)ene_epsilon)->rotation_y), var_r4, 0x300);
-                ((TObjEneEpsilon *)ene_epsilon)->m_3a0 = sin_table_lookup((int) (((TObjEneEpsilon *)ene_epsilon)->rotation_y));
+                ((TObjEneDD_ST *)ene_epsilon)->target_direction.x = sin_table_lookup((int) (((TObjEneEpsilon *)ene_epsilon)->rotation_y));
                 *(f32 *)((s8 *)ene_epsilon + 0x3A8) = cos_table_lookup((int) (((TObjEneEpsilon *)ene_epsilon)->rotation_y));
             }
             ((VObj_18_4f5f2e *)(ene_epsilon))->m110();
             TObjEneMe3Stelth__sub_800F0C90(ene_epsilon);
             temp_f1 = ((TObjEneEpsilon *)ene_epsilon)->frame;
             if ((temp_f1 >= TObjEneMe3Stelth__data_805DA840) && (temp_f1 <= TObjEneMe3Stelth__data_805DA820)) {
-                move_to_shot_position__9TObjEneDDFfff(ene_epsilon, (int) TObjEneMe3Stelth__behavior_params_by_variant[*(s32 *)((s8 *)ene_epsilon + 0x3C8)], ((TObjEneEpsilon *)ene_epsilon)->m_3a0, *(f32 *)((s8 *)ene_epsilon + 0x3A8), TObjEneMe3Stelth__behavior_params_by_variant[*(s32 *)((s8 *)ene_epsilon + 0x3C8)][2]);
+                move_to_shot_position__9TObjEneDDFfff(ene_epsilon, (int) TObjEneMe3Stelth__behavior_params_by_variant[*(s32 *)((s8 *)ene_epsilon + 0x3C8)], ((TObjEneDD_ST *)ene_epsilon)->target_direction.x, *(f32 *)((s8 *)ene_epsilon + 0x3A8), TObjEneMe3Stelth__behavior_params_by_variant[*(s32 *)((s8 *)ene_epsilon + 0x3C8)][2]);
             } else {
                 ((TObjEneDD *)(ene_epsilon))->vfunc_102();
             }
@@ -2166,7 +2169,7 @@ void TObjEneMe3Stelth__sub_800F348C(u8 *arg0, s32 arg1) {
             break;
         case 1:
             ((TObjMotion *)arg0)->advance_animation();
-            if (((TObjEneEpsilon *)arg0)->update_death_check() != 0) {
+            if (((TObjEneDD_ST *)arg0)->check_target_validity() != 0) {
                 ((TObjEneDD_ST *)arg0)->enemy_copy_target_destination();
                 ((TObjEneDD *)arg0)->update_velocity();
                 ang = (s32)(TObjEneMe3Stelth__data_8043D758 * atan2_float(F(f32, 0x3A0), F(f32, 0x3A8)));
@@ -2182,7 +2185,7 @@ void TObjEneMe3Stelth__sub_800F348C(u8 *arg0, s32 arg1) {
             break;
         case 2:
             ((TObjMotion *)arg0)->advance_animation();
-            if (((TObjEneEpsilon *)arg0)->update_death_check() != 0) {
+            if (((TObjEneDD_ST *)arg0)->check_target_validity() != 0) {
                 ((TObjEneDD_ST *)arg0)->enemy_copy_target_destination();
                 ((TObjEneDD *)arg0)->update_velocity();
             }
@@ -2512,7 +2515,7 @@ void TObjEneMe3Stelth::state_chase(s32 arg1) {
         if (update_linked_position__12TObjEneDD_STFf(this, TObjEneMe3Stelth__data_805DA848) != 0) {
             this->enemy_copy_target_destination();
             this->update_velocity();
-            *(f32 *)((s8 *)((u8 *)this) + 0x434) = (f32) ((this->m_3a0 * sin_table_lookup(this->rotation_y)) + (*(f32 *)((s8 *)((u8 *)this) + 0x3A8) * cos_table_lookup(this->rotation_y)));
+            *(f32 *)((s8 *)((u8 *)this) + 0x434) = (f32) ((this->target_direction.x * sin_table_lookup(this->rotation_y)) + (*(f32 *)((s8 *)((u8 *)this) + 0x3A8) * cos_table_lookup(this->rotation_y)));
             if (*(f32 *)((s8 *)((u8 *)this) + 0x434) < cos_table_lookup(0x1000)) {
                 ((TObjEneDD *)((u8 *)this))->turn_toward_target_direction(0x500);
                 ((TObjEneDD *)(this))->vfunc_102();
@@ -3081,7 +3084,7 @@ void *spawn_particle_effect(void *pos, s32 id);
 s32 get_item_id__5TItemFv(void);
 int select_and_apply_target__12TObjEneDD_STFf(void*);
 void *__dt__12TObjEneDD_STFv(void *arg0, s16 arg1);
-s32 reset_hp__9TObjEneDDFPUcPUcPUc(void *, int, int, int);
+s32 reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(void *, int, int, int);
 s32 initialize_enemy_state__9TObjEneDDFl(void *, int);
 int vfunc_96__9TObjEneDDFv(void*);
 int vfunc_95__9TObjEneDDFv(void*);
@@ -3595,7 +3598,7 @@ void TObjEneMe3Stelth::setup_move_bounds() {
 }
 
 void TObjEneMe3Stelth::vfunc_88() {
-    *(f32 *)((s8 *)this->bodies + 4) = (f32) (this->m_300 - *(f32 *)((s8 *)this + 0x3C));
+    *(f32 *)((s8 *)this->bodies + 4) = (f32) (this->body_center_position.y - *(f32 *)((s8 *)this + 0x3C));
 }
 
 void TObjEneMe3Stelth::copy_pos_with_height_offset() {
@@ -3676,7 +3679,7 @@ void TObjEneMe3StelthReal::init_common() {
     ((TObjMotion *)arg0)->set_field_dc((int) (*(s32 *)((s8 *)TObjEneMe3Stelth__bml_resource + 0x430)));
     ((TObjMotion *)arg0)->set_animation((*(s16 *)((s8 *)arg0 + 0xB8)));
     temp_r0 = *(s32 *)((s8 *)arg0 + 0x3C8);
-    reset_hp__9TObjEneDDFPUcPUcPUc(arg0, TObjEneMe3Stelth__base_params_by_variant[temp_r0], TObjEneMe3Stelth__attack_params_by_variant[temp_r0], TObjEneMe3Stelth__resistance_params_by_variant[temp_r0]);
+    reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(arg0, TObjEneMe3Stelth__base_params_by_variant[temp_r0], TObjEneMe3Stelth__attack_params_by_variant[temp_r0], TObjEneMe3Stelth__resistance_params_by_variant[temp_r0]);
     ((TObjEneDD *)arg0)->check_state_flag_4();
     *(void **)((s8 *)arg0 + 0x350) = TObjEneMe3Stelth__shared_params;
     *(f32 *)((s8 *)arg0 + 0x37C) = (f32) TObjEneMe3Stelth__data_805DA824;
@@ -3780,7 +3783,7 @@ void TObjEneMe3Stelth::free_shared_resources() {
         TObjEneMe3Stelth__alternate_texture_list[0] = 0;
     }
     if ((*(void **)&TObjEneMe3Stelth__bml_resource) != 0) {
-        TLobby__sub_8001FE7C((*(void **)&TObjEneMe3Stelth__bml_resource), 1);
+        delete (BmlResource *)((*(void **)&TObjEneMe3Stelth__bml_resource));
         (*(void **)&TObjEneMe3Stelth__bml_resource) = 0;
     }
 }
@@ -3799,10 +3802,8 @@ struct Tbl_800F53E8 { u8 pad[0x54]; s32 f54; u8 pad58[0xC]; s32 f64; };
 struct Atk_800F53E8 { s32 w[4]; };
 struct V3_800F53E8 { f32 x, y, z; };
 
-s32 load_enemy_bml_resource(u8 *arg0);
-s32 register_object__6TLobbyFl(s32);
-s32 dispatch_shared_handler_b__6TLobbyFl(s32);
-s32 register_boss__6TLobbyFl(s32);
+
+
 void *init__11TBreakUpMdlFPviif(void *, s32, s32, f32);
 void *mem_alloc(u32 size);
 extern s32 lbl_8043D47C[];
@@ -3844,9 +3845,9 @@ void TObjEneMe3Stelth::load_shared_resources() {
     lbl_805010E0[1] = TObjEneMe3Stelth__data_805DA840;
     lbl_805010E0[2] = TObjEneMe3Stelth__data_805DA840;
     if (is_split_screen() != 0) {
-        TObjEneMe3Stelth__bml_resource = (u8 *)load_enemy_bml_resource((u8 *)me3_stelth_bml_resource_desc);
+        TObjEneMe3Stelth__bml_resource = (u8 *)(s32)load_enemy_bml_resource((BmlResourceDescriptor *)((u8 *)me3_stelth_bml_resource_desc));
     } else {
-        TObjEneMe3Stelth__bml_resource = (u8 *)load_enemy_bml_resource((u8 *)stelth_bml_resource_desc);
+        TObjEneMe3Stelth__bml_resource = (u8 *)(s32)load_enemy_bml_resource((BmlResourceDescriptor *)((u8 *)stelth_bml_resource_desc));
     }
     src = *(Arr_800F53E8 **)(((Res_800F53E8 *)TObjEneMe3Stelth__bml_resource)->f42C + 0xC);
     n = src->n;
@@ -3859,16 +3860,16 @@ void TObjEneMe3Stelth::load_shared_resources() {
         ((IV_800F53E8 *)TObjEneMe3Stelth__alternate_texture_list[0])[i].z = ((IV_800F53E8 *)TObjEneMe3Stelth__alternate_texture_list[0])[i + 3].z;
     }
     for (i = 0; i < 2; i++) {
-        TObjEneMe3Stelth__base_params_by_variant[i] = register_boss__6TLobbyFl(lbl_8043D47C[i]);
+        TObjEneMe3Stelth__base_params_by_variant[i] = ((s32)get_battle_base_stats(lbl_8043D47C[i]));
     }
     for (i = 0; i < 2; i++) {
-        TObjEneMe3Stelth__attack_params_by_variant[i] = dispatch_shared_handler_b__6TLobbyFl(lbl_8043D484[i]);
+        TObjEneMe3Stelth__attack_params_by_variant[i] = ((s32)get_battle_attack_params(lbl_8043D484[i]));
     }
     for (i = 0; i < 2; i++) {
-        TObjEneMe3Stelth__resistance_params_by_variant[i] = register_object__6TLobbyFl(lbl_8043D48C[i]);
+        TObjEneMe3Stelth__resistance_params_by_variant[i] = ((s32)get_battle_resistance_params(lbl_8043D48C[i]));
     }
     for (i = 0; i < 2; i++) {
-        TObjEneMe3Stelth__behavior_params_by_variant[i] = (u8 *)TLobby::dispatch_shared_handler_a(lbl_8043D494[i]);
+        TObjEneMe3Stelth__behavior_params_by_variant[i] = (u8 *)get_battle_movement_params(lbl_8043D494[i]);
     }
     d = TObjEneMe3Stelth__behavior_params_by_variant[0];
     TObjEneMe3Stelth::set_slot_min_clamped_value(7, *(f32 *)(d + 0xC));

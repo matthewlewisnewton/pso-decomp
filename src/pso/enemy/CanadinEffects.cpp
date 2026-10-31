@@ -1,3 +1,4 @@
+#include "pso/math/VectorNormalize.h"
 #include "pso/system/vector.h"
 #include "types.h"
 #include "pso/enemy/TObjEneMe1Canadin_EffLight.h"
@@ -280,7 +281,7 @@ void run_task__30TObjEneMe1Canadin_EffDischargeFv(u8 *ene_me1_canadin_eff_discha
     }
     VC_B(&sp8, ene_me1_canadin_eff_discharge + 0x50);
     subtract_vector(&sp8, ene_me1_canadin_eff_discharge + 0x38);
-    temp_f31 = ((TObjBoss2Tunnel *)(&sp8))->update_scale();
+    temp_f31 = normalize_vector_checked((Vec *)(&sp8));
     s32 nw_ret = __nw__7TObjectFUl(0x260);
     if (nw_ret != 0U) {
         ((TTecZondeEff *)nw_ret)->construct((u8 *)tl_05, ene_me1_canadin_eff_discharge + 0x38, (u8 *)&sp8, (f32)temp_f31);

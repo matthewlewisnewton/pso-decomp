@@ -1,3 +1,5 @@
+#include "pso/enemy/BattleParameters.h"
+#include "pso/player/TObjChara.h"
 #pragma readonly_strings on
 #pragma fp_contract on
 
@@ -86,10 +88,10 @@ void TObjVoloptCage::update_breakup() {
     case 0:
         play_sound_effect(0x4001C112, &position, 0, 0);
         create_breakup_mdl__12TBoss3VoloptFlllll(volopt_cage_breakup_model, &volopt_cage_breakup_params,
-                                                 volopt_cage_textures, (Vec *)&m_2fc, rotation_y);
+                                                 volopt_cage_textures, (Vec *)&body_center_position, rotation_y);
         create_breakup_mdl__12TBoss3VoloptFlllll(volopt_cage_breakup_model, &volopt_cage_breakup_params,
-                                                 volopt_cage_textures, (Vec *)&m_2fc, rotation_y);
-        ((TObjPlayer *)&m_2fc)->trigger_dell_biter_events();
+                                                 volopt_cage_textures, (Vec *)&body_center_position, rotation_y);
+        ((TObjPlayer *)&body_center_position)->trigger_dell_biter_events();
         timer = 12;
         disallow_rendering();
         state = 1;
@@ -97,9 +99,9 @@ void TObjVoloptCage::update_breakup() {
     case 1:
         if (timer & 1) {
             angle = (s32)(182.04445f * (360.0f * (3.0517578e-05f * (f32)rand())));
-            pos.x = 20.0f * cos_table_lookup(angle) + m_2fc;
-            pos.y = 20.0f * (3.0517578e-05f * (f32)rand()) + m_300;
-            pos.z = 20.0f * sin_table_lookup(angle) + m_304;
+            pos.x = 20.0f * cos_table_lookup(angle) + body_center_position.x;
+            pos.y = 20.0f * (3.0517578e-05f * (f32)rand()) + body_center_position.y;
+            pos.z = 20.0f * sin_table_lookup(angle) + body_center_position.z;
             spawn_particle_effect(&pos, 0xFB);
         }
         if ((timer -= 1) <= 0) {
@@ -193,8 +195,8 @@ void TObjVoloptCage::init_break_model() {
         model = (TBreakUpMdl *)model->init_from_model(volopt_cage_model);
     }
     volopt_cage_breakup_model = (TBreakUpMdlPieces *)model;
-    volopt_cage_combat_stats = TLobby::register_boss(0x26);
-    volopt_cage_params = (VoloptCageParams *)TLobby::dispatch_shared_handler_a(0x26);
+    volopt_cage_combat_stats = get_battle_base_stats(0x26);
+    volopt_cage_params = (VoloptCageParams *)get_battle_movement_params(0x26);
 }
 
 void TObjVoloptCage::render() {
@@ -248,7 +250,7 @@ void TObjVoloptCage::run_task() {
     }
     update_state();
     update_prev_position();
-    ((TBoss3VoloptHiraisin *)this)->copy_position();
+    ((TObjChara *)this)->copy_body_to_center();
     submit_cursor_candidate(this, -1);
 }
 

@@ -1,6 +1,7 @@
 #include "pso/misc/SampledMotionPoints.h"
 #include "pso/math/FloatRounding.h"
 #include "pso/system/ChunkMaterialState.h"
+#include "pso/system/BmlResourceClass.h"
 #include "types.h"
 #include "pso/misc/TDeadSpot.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
@@ -14,7 +15,6 @@ extern "C" {
 s32 __nw__7TObjectFUl(s32);
 void *create_timed_particle_emitter(void *owner, s32 id, s32 b, s32 c);
 extern void * player_corpse_mark_resource;
-#define create_dead_spot__10TObjPlayerFiiif ((s32 (*)(s32, s32, s32))create_dead_spot__10TObjPlayerFiiif)
 
 extern s32 tl_05;
 
@@ -31,11 +31,10 @@ void TObjPlayer::spawn_effect_f8(s32 arg1, s32 arg2) {
     create_timed_particle_emitter((void *)arg1, 0xF8, 0, (arg2));
 }
 
-void TObjPlayer::set_field_e4(s32 arg1, s32 arg2) {
-    create_dead_spot__10TObjPlayerFiiif(arg1, 0xE4, arg2);
+void spawn_dead_spot_e4(Vec *position, s32 lifetime, f32 radius) {
+    create_dead_spot__10TObjPlayerFiiif((s32)position, 0xE4, lifetime, radius);
 }
 
-#undef create_dead_spot__10TObjPlayerFiiif
 
 void *spawn_particle_effect(void *pos, s32 id);
 
@@ -111,8 +110,8 @@ void TObjPlayer::spawn_dead_spot_type2(s32 point, s32 delay) {
     TObjPlayer::spawn_dead_spot(point, 2, delay, lbl_805DA3C8);
 }
 
-void spawn_dead_spot_scale15(s32 point, s32 delay) {
-    TObjPlayer::spawn_dead_spot(point, 2, delay, lbl_805DA3CC);
+void spawn_dead_spot_scale15(const Vec *point, s32 delay) {
+    TObjPlayer::spawn_dead_spot((s32)point, 2, delay, lbl_805DA3CC);
 }
 
 void TObjPlayer__sub_800D93C4(s32 point, s32 delay) {
@@ -144,13 +143,11 @@ void TObjPlayer::spawn_dead_spot(s32 point, s32 selector, s32 delay, f32 farg0) 
 extern const f32 lbl_805DA3D8;
 extern s32 player_particle_effect_enabled;
 extern u8 corpse_mark_resource_descriptor[];
-u8 *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
-void TLobby__sub_8001FE7C(void*, int);
 void set_chunk_material_override_pair(s32 arg0, s32 arg1);
 
 void TObjPlayer::destroy_static_lobby() {
     if ((u32) (*(u32 *)&player_corpse_mark_resource) != 0U) {
-        TLobby__sub_8001FE7C((void*)(*(u32 *)&player_corpse_mark_resource), 1);
+        delete (BmlResource *)((void*)(*(u32 *)&player_corpse_mark_resource));
         (*(u32 *)&player_corpse_mark_resource) = 0U;
     }
 }
@@ -159,10 +156,7 @@ void set_chunk_blend(u32 x);
 extern s32 model_render_flags;
 
 void load_corpse_mark_resource(void) {
-    u8 *p = (u8 *)::operator new(0x440);
-    if (p != 0) {
-        p = load_resource_from_descriptor(p, 1, corpse_mark_resource_descriptor, 0, 0, 0);
-    }
+    u8 *p = (u8 *)new BmlResource(1, (BmlResourceDescriptor *)(corpse_mark_resource_descriptor), 0, 0, (void *)(0));
     (*(u32 *)&player_corpse_mark_resource) = (u32)p;
     player_particle_effect_enabled = 1;
 }

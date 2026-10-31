@@ -1,4 +1,6 @@
+#include "pso/enemy/BattleParameters.h"
 #include "pso/player/PlayerAttackParams.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include <dolphin/mtx.h>
@@ -996,14 +998,14 @@ void TObjEneMe1GiGue::update_hit_reaction() {
         if (!(this->actorFlags & 0x01000000)) {
             Vec_802CBA98 v = *(Vec_802CBA98 *)((s8 *)((u8 *)this) + 0x2FC);
             v.x += *(f32 *)((s8 *)((u8 *)this) + 0x308);
-            v.z += this->m_310;
+            v.z += this->movement_velocity.z;
             if (check_path_obstructed(this, &v) == 0) {
                 move_with_wall_slide(((u8 *)this));
             } else {
-                *(f32 *)((s8 *)((u8 *)this) + 0x308) = this->m_310 = 0.0f;
+                *(f32 *)((s8 *)((u8 *)this) + 0x308) = this->movement_velocity.z = 0.0f;
             }
             *(f32 *)((s8 *)((u8 *)this) + 0x308) *= 0.5f;
-            this->m_310 *= 0.5f;
+            this->movement_velocity.z *= 0.5f;
         }
         apply_actor_gravity(this, 0, 0.0f);
         ((TObjPlayer *)((u8 *)this))->update_collisions();
@@ -1713,12 +1715,10 @@ void TObjEneMe1GiGue::sub_802CCF2C() {
 #undef TObjEneMe1GiGue__sub_802CB10C
 #undef subtract_vector
 s32 is_split_screen();
-s32 dispatch_shared_handler_a__6TLobbyFl(int);
-s32 register_object__6TLobbyFl(int);
-s32 dispatch_shared_handler_b__6TLobbyFl(int);
-s32 register_boss__6TLobbyFl(int);
-s32 TLobby__sub_8001FE7C(s32, s32);
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
+
+
+
+
 s32 init_from_model__11TBreakUpMdlFl(s32, s32);
 s32 update__15RenderFadeStateFv(void *);
 s32 find_active_entity_by_id(int);
@@ -1759,6 +1759,7 @@ void TObjEneMe1GiGue__sub_802CD054(void) {  }
 #include "pso/misc/TLobby.h"
 #include "pso/object/TObjFish.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
+#include "pso/npc/NpcModelRegistry.h"
 
 
 struct SubBase_802CD058 { u8 pad[0x14]; };
@@ -1982,7 +1983,7 @@ void TObjEneMe1GiGue::run_task() {
         ((TObjEneMe1GiGue *)arg0)->state = 0;
     }
     VecCopy((Vec *)(arg0 + 0x2FC), (const Vec *)(arg0 + 0x38));
-    ((TObjEneMe1GiGue *)arg0)->m_300 = (f32) (((TObjEneMe1GiGue *)arg0)->m_300 + (15.0f + ((TObjEneMe1GiGue *)arg0)->m_3ec));
+    ((TObjEneMe1GiGue *)arg0)->body_center_position.y = (f32) (((TObjEneMe1GiGue *)arg0)->body_center_position.y + (15.0f + ((TObjEneMe1GiGue *)arg0)->m_3ec));
     *(f32 *)((s8 *)(((TObjEneMe1GiGue *)arg0)->bodies) + 4) = (f32) (25.0f + ((TObjEneMe1GiGue *)arg0)->m_3ec);
     if (!(((TObjEneMe1GiGue *)arg0)->m_388 & 0x40000)) {
         submit_cursor_candidate(arg0, -1);
@@ -2032,7 +2033,7 @@ void TObjEneMe1GiGue::delete_barrier() {
         TObjEneMe1GiGue__barrier_obj = NULL;
     }
     if (TObjEneMe1GiGue__data_805D6838 != 0U) {
-        TLobby__sub_8001FE7C(TObjEneMe1GiGue__data_805D6838, 1);
+        delete (BmlResource *)(TObjEneMe1GiGue__data_805D6838);
         TObjEneMe1GiGue__data_805D6838 = 0U;
     }
 }
@@ -2051,22 +2052,16 @@ void TObjEneMe1GiGue::load_resources() {
     Sub_802CD62C *q;
 
     if (is_split_screen() != 0) {
-        o = (int)::operator new(0x440);
-        if (o != 0) {
-            o = (s32)load_resource_from_descriptor((void *)o, 1, lbl_804E1248, 0, 0, 0);
-        }
+        o = (int)new BmlResource(1, (BmlResourceDescriptor *)(lbl_804E1248), 0, 0, (void *)(0));
         TObjEneMe1GiGue__data_805D6838 = o;
     } else {
-        o = (int)::operator new(0x440);
-        if (o != 0) {
-            o = (s32)load_resource_from_descriptor((void *)o, 1, lbl_804E1200, 0, 0, 0);
-        }
+        o = (int)new BmlResource(1, (BmlResourceDescriptor *)(lbl_804E1200), 0, 0, (void *)(0));
         TObjEneMe1GiGue__data_805D6838 = o;
     }
-    ene_me1_gigue_boss_id = register_boss__6TLobbyFl(0x1A);
-    lbl_805D682C = dispatch_shared_handler_b__6TLobbyFl(0x1A);
-    lbl_805D6830 = register_object__6TLobbyFl(0x1A);
-    TObjEneMe1GiGue__param_table = dispatch_shared_handler_a__6TLobbyFl(0x1A);
+    ene_me1_gigue_boss_id = ((s32)get_battle_base_stats(0x1A));
+    lbl_805D682C = ((s32)get_battle_attack_params(0x1A));
+    lbl_805D6830 = ((s32)get_battle_resistance_params(0x1A));
+    TObjEneMe1GiGue__param_table = ((s32)get_battle_movement_params(0x1A));
     o = (int)::operator new(0x10);
     if (o != 0) {
         o = init_from_model__11TBreakUpMdlFl(o, ((Obj_802CD62C *)TObjEneMe1GiGue__data_805D6838)->mdl->a);
@@ -2078,7 +2073,7 @@ void TObjEneMe1GiGue::load_resources() {
     {
     Spawn_802CD62C sp = gigue_spawn_descriptor;
     sp.w[0] = ((Obj_802CD62C *)TObjEneMe1GiGue__data_805D6838)->v430;
-    TLobby::spawn_npc_enemy((s16)0x41, (s32)(((Obj_802CD62C *)TObjEneMe1GiGue__data_805D6838)->mdl->a), (s32)(((Obj_802CD62C *)TObjEneMe1GiGue__data_805D6838)->mdl->b), (s32)&sp, (f32)(getf_802CD62C(q)), (f32)15.0f);
+    NpcModelRegistry::register_animated_chunk((s16)0x41, (void *)((s32)(((Obj_802CD62C *)TObjEneMe1GiGue__data_805D6838)->mdl->a)), (void *)((s32)(((Obj_802CD62C *)TObjEneMe1GiGue__data_805D6838)->mdl->b)), (const NpcAnimationBinding *)((s32)&sp), (f32)(getf_802CD62C(q)), (f32)15.0f);
     }
 }
 #pragma pop

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/misc/TLanguage_801E4874.h"
 #include "pso/misc/TRaderMapCore.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
@@ -26,10 +27,8 @@ struct RecoveredGlobal_8019A880___vt__8TObjTank {
 extern "C" {
 extern u32 TRaderMapCore__frame_model_resource;
 extern u32 TRaderMapCore__data_805D5F4C;
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern RecoveredGlobal_8019A9B8_lbl_80446184 lbl_8044A7B8;
 extern RecoveredGlobal_8019A9B8_lbl_804B8F60 obj_f_enemy_resource_descriptor;
-void TLobby__sub_8001FE7C(void*, int);
 s32 release_texture_list(void*);
 
 void TRaderMapCore::free_statics() {
@@ -39,7 +38,7 @@ void TRaderMapCore::free_statics() {
         TRaderMapCore__data_805D5F4C = 0U;
     }
     if ((u32) TRaderMapCore__frame_model_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)TRaderMapCore__frame_model_resource, 1);
+        delete (BmlResource *)((void*)TRaderMapCore__frame_model_resource);
         TRaderMapCore__frame_model_resource = 0U;
     }
 }
@@ -50,11 +49,8 @@ typedef char RecoveredGlobal_8019A9B8_lbl_804B8F60_size[sizeof(RecoveredGlobal_8
 void TRaderMapCore::load_frame_texture() {
     s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
+    temp_r3 = (int)new BmlResource(5, (BmlResourceDescriptor *)(&obj_f_enemy_resource_descriptor.value), 0, 0, (void *)(0));
     var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 5, &obj_f_enemy_resource_descriptor.value, 0, 0, 0));
-    }
     (*(s32 *)&TRaderMapCore__frame_model_resource) = var_r0;
     (*(u8 * *)&TRaderMapCore__data_805D5F4C) = load_gvm_texture_file((s32) &lbl_8044A7B8.value);
 }

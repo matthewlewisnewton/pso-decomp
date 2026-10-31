@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/TMainTask.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/math/MatrixVector.h"
@@ -129,17 +130,14 @@ void TOKeyAncient02::free_static() {
         }
     }
     if (TOKeyAncient02__model_archive != NULL) {
-        TLobby__sub_8001FE7C(TOKeyAncient02__model_archive, 1);
+        delete (BmlResource *)(TOKeyAncient02__model_archive);
         TOKeyAncient02__model_archive = NULL;
     }
     TOKeyAncient02__glass_model = NULL;
 }
 
 void TOKeyAncient02::load_resources() {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_fs_obj_o_doorswitch01_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&bm_fs_obj_o_doorswitch01_resource_descriptor), 0, 0, (void *)(0));
     TOKeyAncient02__model_archive = resource;
     TOKeyAncient02__texture_lists = (s32 *)mem_alloc(8);
     TOKeyAncient02__texture_lists[0] = TObjFish__sub_8001EDB0(TOKeyAncient02__model_archive, 0);

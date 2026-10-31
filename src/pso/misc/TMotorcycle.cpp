@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/TMainTask.h"
 #include "pso/render/render_util.h"
 
@@ -51,7 +52,6 @@ extern u32 TMotorcycle__bml_resource;
 extern u32 TMotorcycle__texture_list;
 extern const f32 lbl_805DBED0;
 extern const f32 lbl_805DBED4;
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 u8 * load_gvm_texture_file(s32);
 extern RecoveredGlobal_801950B8_lbl_80445E18 lbl_80445E18;
 extern const f32 lbl_805DBED8;
@@ -65,7 +65,6 @@ extern s32 __vt__11TMotorcycle[];
 extern s32 motorcycle_class_name;
 void *TMotorcycle__ct(void *arg0, void *arg1, void *arg2);
 void *__dt__11TMotorcycleFv(void *arg0, s16 arg1);
-void TLobby__sub_8001FE7C(void*, int);
 s32 release_texture_list(void*);
 s32 free_collision_body_parts(void *);
 s32 __dl__7TObjectFPv(void *);
@@ -107,7 +106,7 @@ void TMotorcycle::free_statics() {
         TMotorcycle__texture_list = 0U;
     }
     if ((u32) TMotorcycle__bml_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)TMotorcycle__bml_resource, 1);
+        delete (BmlResource *)((void*)TMotorcycle__bml_resource);
         TMotorcycle__bml_resource = 0U;
     }
 }
@@ -115,11 +114,8 @@ void TMotorcycle::free_statics() {
 void TMotorcycle::load_resources() {
     s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
+    temp_r3 = (int)new BmlResource(5, (BmlResourceDescriptor *)(&motorcycle_resource_descriptor), 0, 0, (void *)(0));
     var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 5, &motorcycle_resource_descriptor, 0, 0, 0));
-    }
     (*(u8 * *)&TMotorcycle__bml_resource) = (unsigned char *) ((void *) var_r0);
     (*(u8 * *)&TMotorcycle__texture_list) = load_gvm_texture_file((s32) &lbl_80445E18.value);
     TMotorcycle::add_entry((s16)(0x3C), (s32)((void *) (((s32)get_bml_model((void *)((*(u8 * *)&TMotorcycle__bml_resource)), 0)))), (s32)((void *) ((*(u8 * *)&TMotorcycle__texture_list))), lbl_805DBED8, lbl_805DBEDC);

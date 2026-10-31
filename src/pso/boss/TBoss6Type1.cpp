@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #include "pso/protocol/protocol_types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/misc/TLobby_801E43E4.h"
@@ -1706,12 +1707,12 @@ void TBoss6Type1::update_part_positions() {
 }
 
 void TBoss6Type1::update_position() {
-    VecCopy((Vec *)&this->m_2fc, &this->position);
+    VecCopy((Vec *)&this->body_center_position, &this->position);
     if ((s32) this->m_438 != 0) {
-        this->m_300 = (f32) (this->m_300 - lbl_805DE3A4);
+        this->body_center_position.y = (f32) (this->body_center_position.y - lbl_805DE3A4);
         return;
     }
-    this->m_300 = (f32) (this->m_300 - lbl_805DE3A0);
+    this->body_center_position.y = (f32) (this->body_center_position.y - lbl_805DE3A0);
 }
 
 typedef struct Stack_802B7D74_boss6_1 Stack_802B7D74_boss6_1;
@@ -1817,7 +1818,7 @@ void TBoss6Type1::latch_phase_counter() {
 typedef char RecoveredGlobal_802B7E88_lbl_80470CEC_size[sizeof(RecoveredGlobal_802B7E88_lbl_80470CEC) == 0x30 ? 1 : -1];
 void TBoss6Type1::load_params_from_table() {
     u8 *temp_r3;
-    temp_r3 = (u8 *)(TLobby::dispatch_shared_handler_a(0x2B));
+    temp_r3 = (u8 *)(get_battle_movement_params(0x2B));
     this->m_47c = (s32) *(f32 *)((s8 *)temp_r3 + 0);
     if ((f32) this->m_47c <= TBoss6Type1__data_805DE2D0) {
         this->m_47c = (s32) *(s32 *)((s8 *)&TBoss6Type1__param_table.value + 0);
@@ -1862,7 +1863,7 @@ void TBoss6Type1::load_params_from_table() {
     if (this->laser_fire_time <= 0) {
         this->laser_fire_time = (s32) *(s32 *)((s8 *)&TBoss6Type1__param_table.value + 0x24);
     }
-    *(s32 *)&this->unk_4A8 = (s32) *(f32 *)((s8 *)(TLobby::dispatch_shared_handler_a(0x2F)) + 0x14);
+    *(s32 *)&this->unk_4A8 = (s32) *(f32 *)((s8 *)(get_battle_movement_params(0x2F)) + 0x14);
     if ((f32) *(s32 *)&this->unk_4A8 <= TBoss6Type1__data_805DE2D0) {
         *(s32 *)&this->unk_4A8 = (s32) *(s32 *)((s8 *)&TBoss6Type1__param_table.value + 0x2C);
     }
@@ -2458,7 +2459,7 @@ s32 TBoss6Type1__ct(s32 arg0_, s32 parent, s32 arg2_) {
     *(f32 *)((s8 *)arg0 + 0x30C) = TBoss6Type1__data_805DE2D0;
     *(f32 *)((s8 *)arg0 + 0x308) = TBoss6Type1__data_805DE2D0;
     *(s32 *)((s8 *)arg0 + 0x2A8) = 0;
-    ((TObjEnemy *)arg0)->bind_enemy_combat_stats((u8 *)(TLobby::register_boss(0x2B)), (u8 *)(TLobby::dispatch_shared_handler_b(0x2B)), (u8 *)(TLobby::register_object(0x2B)));
+    ((TObjEnemy *)arg0)->bind_enemy_combat_stats((u8 *)(get_battle_base_stats(0x2B)), (u8 *)(get_battle_attack_params(0x2B)), (u8 *)(get_battle_resistance_params(0x2B)));
     *(s16 *)((s8 *)arg0 + 0x33E) = *(s16 *)((s8 *)arg0 + 0x32C);
     ((TBoss3Volopt *)arg0)->reset_photon_effect();
     ((TObjEnemy *)arg0)->set_param(0x4E);

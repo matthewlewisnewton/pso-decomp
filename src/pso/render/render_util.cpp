@@ -10,6 +10,7 @@
 #include "pso/enemy/TObjEneMe3Stelth_803DC82C.h"
 #include "pso/math/AngleLookup.h"
 #include "pso/math/MatrixVector.h"
+#include "pso/math/ScratchVectorStorage.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/player/TObjPlayer_80011014.h"
 #include "pso/player/TObjPlayer_803DC834.h"
@@ -56,8 +57,8 @@ void set_shadow_material_state() {
 
 NJS_ARGB saved_model_draw_color;
 NJS_ARGB lbl_8050BED0; // no reference in the game
-f32 scratch_vec[8];
-f32 lbl_8050BF00[8];
+ScratchVectorStorage scratch_vec;
+ScratchVectorStorage lbl_8050BF00;
 u32 lbl_8050BF20[8];
 u32 lbl_8050BF40[8];
 f32 lbl_8050BF60[16];

@@ -1206,17 +1206,17 @@ void TItem::set_owner_technique_level(s16 technique, s16 level) {
 }
 
 s32 TItem::update_object_view_visibility(f32 depth, f32 radius) {
-    return is_point_on_screen(&position.x, depth, radius);
+    return is_point_on_screen(&position, depth, radius);
 }
 
 // Whether a sphere of `radius` around `pos` is in front of the camera,
 // within `range` and inside the 640-pixel-wide screen.
 #pragma push
 #pragma fp_contract on
-s32 is_point_on_screen(const f32 *pos, f32 range, f32 radius) {
+s32 is_point_on_screen(const Vec *pos, f32 range, f32 radius) {
     Vec view;
     f32 screen[2];
-    transform_point_by_current_matrix(pos, &view);
+    transform_point_by_current_matrix(&pos->x, &view);
     if (view.z > 0.0f) {
         return 0;
     }
@@ -1224,17 +1224,17 @@ s32 is_point_on_screen(const f32 *pos, f32 range, f32 radius) {
         return 0;
     }
     if (view.x < 0.0f) {
-        view.x = camera_right[0] * radius + pos[0];
-        view.y = camera_right[1] * radius + pos[1];
-        view.z = camera_right[2] * radius + pos[2];
+        view.x = camera_right[0] * radius + pos->x;
+        view.y = camera_right[1] * radius + pos->y;
+        view.z = camera_right[2] * radius + pos->z;
         project_world_to_screen(0, &view, screen);
         if (screen[0] < 0.0f) {
             return 0;
         }
     } else {
-        view.x = pos[0] - camera_right[0] * radius;
-        view.y = pos[1] - camera_right[1] * radius;
-        view.z = pos[2] - camera_right[2] * radius;
+        view.x = pos->x - camera_right[0] * radius;
+        view.y = pos->y - camera_right[1] * radius;
+        view.z = pos->z - camera_right[2] * radius;
         project_world_to_screen(0, &view, screen);
         if (screen[0] > 640.0f) {
             return 0;
@@ -1400,7 +1400,7 @@ void TItem::snap_to_owner() {}
 
 void TItem::apply_switch_attack(s32 effect) {
     if (owner != NULL && owner->is_body_collision_inactive() == 0) {
-        TParticleCtrl *particle = (TParticleCtrl *)spawn_particle_effect_with_flags(&owner->m_2fc, effect, 0x10);
+        TParticleCtrl *particle = (TParticleCtrl *)spawn_particle_effect_with_flags(&owner->body_center_position, effect, 0x10);
         if (particle != NULL) {
             particle->set_owner_id(get_owner_client());
         }

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/enemy/TObjEneMe3SinowZoa.h"
 
 struct RecoveredGlobal_8031B170_lbl_804E8880
@@ -18,7 +19,6 @@ struct G_8031B198 { u32 p; u32 rest[3]; };
 extern "C" {
 extern RecoveredGlobal_8031B170_lbl_804E8880 lbl_804E8880;
 extern const f32 lbl_805DF38C;
-s32 TLobby__sub_8001FE7C(u32, s32);
 void mem_free(void *p);
 extern G_8031B198 lbl_80542FDC;
 extern u32 TObjEneMe3SinowZoa__data_805D6AD8;
@@ -47,7 +47,7 @@ void TObjEneMe3SinowZoa::free_resources() {
         lbl_80542FDC.p = 0;
     }
     if (TObjEneMe3SinowZoa__data_805D6AD8 != 0) {
-        TLobby__sub_8001FE7C(TObjEneMe3SinowZoa__data_805D6AD8, 1);
+        delete (BmlResource *)(TObjEneMe3SinowZoa__data_805D6AD8);
         TObjEneMe3SinowZoa__data_805D6AD8 = 0;
     }
 }

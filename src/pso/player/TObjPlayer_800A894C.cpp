@@ -1,6 +1,9 @@
+#include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TUnk_80494938.h"
 #include "pso/misc/SampledMotionPoints.h"
 #include "pso/player/PlayerAttackParams.h"
+#include "pso/system/EnemyBmlResource.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/unk/TUnk_80494968.h"
 #include "types.h"
 #include "pso/system/NinjaUtil.h"
@@ -20,6 +23,7 @@
 #include "pso/enemy/TObjEneRe7Berura.h"
 #include "pso/misc/TNowLoading.h"
 #include "pso/object/TObjFish.h"
+#include "pso/npc/NpcModelRegistry.h"
 #define lbl_805D9ADC 2.0f
 #define lbl_805D9AE0 0.0f
 #define lbl_805D9AE4 100.0f
@@ -137,17 +141,14 @@ extern s32 lbl_805D5094;
 extern s32 lbl_805D5098;
 extern void *breakup_model_ptr;
 
-s32 dispatch_shared_handler_a__6TLobbyFl(int);
-s32 register_object__6TLobbyFl(int);
-s32 dispatch_shared_handler_b__6TLobbyFl(int);
-s32 register_boss__6TLobbyFl(int);
+
+
+
 s32 get_bml_motion(void *, int);
 s32 get_bml_model(void *, int);
-void *load_resource_from_descriptor(void *, int, void *, int, int, int);
 void TObjPlayer__sub_800A4294(void);
 Res_800AA82C *load_enemy_bml_resource_named(void *, void *);
 u8 *load_gvm_texture_file(s32 arg0);
-void spawn_npc_enemy__6TLobbyFslllff(int, int, int, void *, f32, f32);
 extern u8 lbl_8043ACA4[];
 extern u8 lbl_8043ACBC[];
 extern u8 lbl_8043ACD0[];
@@ -1061,7 +1062,7 @@ void TObjPlayer::update_synced_state() {
     run_synced_state_handler();
     ((TObjEneDubchik *)arg0)->sub_800AB068();
     ((TObjEnemy *)arg0)->update_prev_position();
-    VecCopy(&this->center, (const Vec *)&this->m_2fc);
+    VecCopy(&this->center, (const Vec *)&this->body_center_position);
     if (obj_testFlags30__14TObjCollidableFUl(arg0, 0x04000000) == 0) {
         submit_cursor_candidate(arg0, -1);
     }
@@ -1086,7 +1087,7 @@ void TObjPlayer::free_effect_resources() {
         breakup_model_ptr = NULL;
     }
     if (lbl_805D5090 != NULL) {
-        TLobby__sub_8001FE7C(lbl_805D5090, 1);
+        delete (BmlResource *)(lbl_805D5090);
         lbl_805D5090 = NULL;
     }
     lbl_805D5094 = 0;
@@ -1124,12 +1125,9 @@ void TObjPlayer__sub_800AA82C(void) {
     u32 mdl;
     Node_800AA82C *n;
     if (TObjEneDD::check_v2_mode() != 0) {
-        lbl_805D5090 = load_enemy_bml_resource_named(bm_ene_dubchik_resource_descriptor, lbl_8043ACA4);
+        lbl_805D5090 = (Res_800AA82C *)load_enemy_bml_resource_named((BmlResourceDescriptor *)(bm_ene_dubchik_resource_descriptor), (const char *)(lbl_8043ACA4));
     } else {
-        p = ::operator new(0x440);
-        if (p != NULL) {
-            p = load_resource_from_descriptor(p, 5, bm_ene_dubchik_resource_descriptor, 0, 0, 0);
-        }
+        p = new BmlResource(5, (BmlResourceDescriptor *)(bm_ene_dubchik_resource_descriptor), 0, 0, (void *)(0));
         lbl_805D5090 = (Res_800AA82C *)p;
     }
     lbl_805D5094 = *(s32 *)((u8 *)lbl_805D5090->mdl + 0x1C);
@@ -1164,10 +1162,10 @@ void TObjPlayer__sub_800AA82C(void) {
     t[1] = (s32)p;
     ((SampledMotionPoints *)t[1])->sample_two_nodes((NJS_OBJECT *)get_bml_model(lbl_805D5090, 0), (NJS_MOTION *)get_bml_motion(lbl_805D5090, 7), 0x2E, 0x32);
     for (i = 0; i < 2; i++) {
-        ((s32 *)lbl_805009A0)[i] = register_boss__6TLobbyFl(i + 0x1B);
-        lbl_805009A8[i] = dispatch_shared_handler_b__6TLobbyFl(i + 0x1B);
-        lbl_805009B0[i] = register_object__6TLobbyFl(i + 0x1B);
-        lbl_805009B8[i] = dispatch_shared_handler_a__6TLobbyFl(i + 0x1B);
+        ((s32 *)lbl_805009A0)[i] = (s32)get_battle_base_stats(i + 0x1B);
+        lbl_805009A8[i] = (s32)get_battle_attack_params(i + 0x1B);
+        lbl_805009B0[i] = (s32)get_battle_resistance_params(i + 0x1B);
+        lbl_805009B8[i] = (s32)get_battle_movement_params(i + 0x1B);
     }
     mdl = lbl_805D5090->mdl->f8;
     for (i = 0; i < 3; i++) {
@@ -1183,7 +1181,7 @@ void TObjPlayer__sub_800AA82C(void) {
         d.a = lbl_805D5090->f430;
         for (j = 0; j < 2; j++) {
             Mdl_800AA82C *e = &lbl_805D5090->mdl[j];
-            spawn_npc_enemy__6TLobbyFslllff(ids.v[j], e->f8, e->fC, &d, lbl_805D9B4C, lbl_805D9AE0);
+            NpcModelRegistry::register_animated_chunk(ids.v[j], (void *)(e->f8), (void *)(e->fC), (const NpcAnimationBinding *)(&d), lbl_805D9B4C, lbl_805D9AE0);
         }
     }
 }

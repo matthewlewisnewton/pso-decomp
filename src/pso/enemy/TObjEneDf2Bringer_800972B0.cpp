@@ -1,6 +1,10 @@
 #include "pso/misc/SampledMotionPoints.h"
 #include "pso/math/FloatRounding.h"
+#include "pso/math/VectorNormalize.h"
+#include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEnemy.h"
+#include "pso/system/EnemyBmlResource.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
@@ -750,6 +754,7 @@ struct Vec_80097820 { f32 x, y, z; };
 u8 *construct_bringer_rush_effect(u8 *, s32, u8 *, s32, f32);
 #include "pso/misc/TNowLoading.h"
 #include "pso/object/TObjFish.h"
+#include "pso/npc/NpcModelRegistry.h"
 struct VBase_18_d3b6b2 { char pad[0x18]; };
 
 struct VObj_18_d3b6b2 : VBase_18_d3b6b2 {
@@ -866,7 +871,7 @@ s32 queue_destruction__7TObjectFv(void *);
 s32 TObjPlayer__sub_800A04F0(void *);
 s32 play_effect_if_v2__10TObjPlayerFl(int);
 s32 play_sound_effect(void *, void *, int, int);
-s32 get_camera_ctrl__9TObjEneDDFv(void *, int);
+s32 transform_point_to_view(void *, int);
 s32 rotate_matrix_x(int, int);
 extern RecoveredGlobal_800975A8_lbl_805008A8 bringer_camera_ctrl_target_vec;
 extern s32 TObjEneDf2Bringer__render_node_index;
@@ -1047,7 +1052,7 @@ void bringer_render_node_callback(void) {
     case 41:
         pos = TObjEneDf2Bringer__render_point_cursor;
         TObjEneDf2Bringer__render_point_cursor = pos + 0xC;
-        get_camera_ctrl__9TObjEneDDFv(&bringer_camera_ctrl_target_vec.value, pos);
+        transform_point_to_view(&bringer_camera_ctrl_target_vec.value, pos);
         break;
     }
     TObjEneDf2Bringer__render_node_index += 1;
@@ -2527,7 +2532,6 @@ struct VObj_18_be4a70 : VBase_18_be4a70 {
 extern const f32 lbl_805D9844;
 extern "C" {
 void *TObjEneDf2Bringer__ct(void *arg0, void *arg1, void *arg2);
-void TLobby__sub_8001FE7C(void*, int);
 }
 #define transition_enemy_state__9TObjEneDDFl ((int (*)(void*, void*))transition_enemy_state__9TObjEneDDFl)
 #define TObjEneDf2Bringer__sub_800994F8 ((void (*)(void *))TObjEneDf2Bringer__sub_800994F8)
@@ -2573,7 +2577,7 @@ void run_task__17TObjEneDf2BringerFv(u8 *arg0) {
 struct Vec_80099800 { f32 x, y, z; };
 struct Slot_80099800 { u8 pad[0x1C]; };
 
-s32 reset_hp__9TObjEneDDFPUcPUcPUc(void *, int, int, int);
+s32 reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(void *, int, int, int);
 void initialize_enemy_state__9TObjEneDDFl(void *, s32);
 void init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, s32);
 u8 *__ct__17AreaAttackHistoryFl(u8 *arg0, s32 arg1);
@@ -2631,7 +2635,7 @@ void TObjEneDf2Bringer::init_enemy() {
     *(s16 *)((s8 *)arg0 + 0xB8) = 0;
     ((TObjMotion *)arg0)->set_animation(*(s16 *)((s8 *)arg0 + 0xB8));
     ((TObjMotion *)arg0)->set_field_b8(*(s16 *)((s8 *)arg0 + 0xB8));
-    reset_hp__9TObjEneDDFPUcPUcPUc(arg0, bringer_boss_stats_handle, bringer_boss_stats_ptr_b, bringer_object_handle);
+    reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(arg0, bringer_boss_stats_handle, bringer_boss_stats_ptr_b, bringer_object_handle);
     ((TObjEneDD *)arg0)->set_state_8();
     *(void **)((s8 *)arg0 + 0x350) = bringer_init_params;
     initialize_enemy_state__9TObjEneDDFl(arg0, 0x24);
@@ -2722,7 +2726,7 @@ void TObjEneDf2Bringer::free_resources() {
         TObjEneDf2Bringer__trail_buffer = 0U;
     }
     if ((u32) TObjEneDf2Bringer__resource_bundle != 0U) {
-        TLobby__sub_8001FE7C((void*)TObjEneDf2Bringer__resource_bundle, 1);
+        delete (BmlResource *)((void*)TObjEneDf2Bringer__resource_bundle);
         TObjEneDf2Bringer__resource_bundle = 0U;
     }
 }
@@ -2773,10 +2777,10 @@ struct Path_80099BD4
   s32 pad;
   s32 n;
 };
-u8 *dispatch_shared_handler_a__6TLobbyFl(s32);
-s32 register_object__6TLobbyFl(int);
-s32 dispatch_shared_handler_b__6TLobbyFl(int);
-s32 register_boss__6TLobbyFl(int);
+
+
+
+
 }
 void init_bringer_effect_tables(void);
 extern "C" {
@@ -2812,16 +2816,16 @@ void TObjEneDf2Bringer::load_resources() {
   bringer_camera_ctrl_target_vec.z = TObjEneDf2Bringer__data_805D97E0;
   if (TObjEneDD::check_v2_mode() != 0)
   {
-    TObjEneDf2Bringer__resource_bundle = load_enemy_bml_resource_named(bm_ene_df2_bringer_resource_descriptor, lbl_8043A108);
+    TObjEneDf2Bringer__resource_bundle = (u32)load_enemy_bml_resource_named((BmlResourceDescriptor *)(bm_ene_df2_bringer_resource_descriptor), (const char *)(lbl_8043A108));
   }
   else
   {
-    TObjEneDf2Bringer__resource_bundle = load_enemy_bml_resource((u8 *)bm_ene_df2_bringer_resource_descriptor);
+    TObjEneDf2Bringer__resource_bundle = (s32)load_enemy_bml_resource((BmlResourceDescriptor *)((u8 *)bm_ene_df2_bringer_resource_descriptor));
   }
-  bringer_boss_stats_handle = register_boss__6TLobbyFl(0xD);
-  bringer_boss_stats_ptr_b = dispatch_shared_handler_b__6TLobbyFl(0xD);
-  bringer_object_handle = register_object__6TLobbyFl(0xD);
-  TObjEneDf2Bringer__data_805D4FB4 = dispatch_shared_handler_a__6TLobbyFl(0xD);
+  bringer_boss_stats_handle = ((s32)get_battle_base_stats(0xD));
+  bringer_boss_stats_ptr_b = ((s32)get_battle_attack_params(0xD));
+  bringer_object_handle = ((s32)get_battle_resistance_params(0xD));
+  TObjEneDf2Bringer__data_805D4FB4 = ((u8 *)get_battle_movement_params(0xD));
   TObjEneDf2Bringer__render_node_index = 0;
   TObjEneDf2Bringer__render_rotation_x = 0;
   TObjEneDf2Bringer__render_point_cursor = 0;
@@ -2852,7 +2856,7 @@ void TObjEneDf2Bringer::load_resources() {
     VecCopy((Vec *)&a, (const Vec *)&seg->p0);
     VecCopy((Vec *)&d, (const Vec *)&seg->p2);
     subtract_vector(&d, &a);
-    len = ((TObjBoss2Tunnel *)(&d))->update_scale();
+    len = normalize_vector_checked((Vec *)(&d));
     p1 = &seg->p1;
     s1 = k1 * len;
     VecCopy((Vec *)p1, (const Vec *)&a);
@@ -2877,7 +2881,7 @@ void TObjEneDf2Bringer::load_resources() {
   {
     Sp_80099BD4 sp = lbl_8043A0BC[0];
     sp.a = *((s32 *) (((u8 *) TObjEneDf2Bringer__resource_bundle) + 0x430));
-    TLobby::spawn_npc_enemy((s16)0x16, (s32)(*((s32 *) ((*((u8 **) (((u8 *) TObjEneDf2Bringer__resource_bundle) + 0x42C))) + 8))), (s32)(*((s32 *) ((*((u8 **) (((u8 *) TObjEneDf2Bringer__resource_bundle) + 0x42C))) + 0xC))), (s32)&sp, (f32)TObjEneDf2Bringer__data_805D9808, (f32)TObjEneDf2Bringer__data_805D97E0);
+    NpcModelRegistry::register_animated_chunk((s16)0x16, (void *)((s32)(*((s32 *) ((*((u8 **) (((u8 *) TObjEneDf2Bringer__resource_bundle) + 0x42C))) + 8)))), (void *)((s32)(*((s32 *) ((*((u8 **) (((u8 *) TObjEneDf2Bringer__resource_bundle) + 0x42C))) + 0xC)))), (const NpcAnimationBinding *)((s32)&sp), (f32)TObjEneDf2Bringer__data_805D9808, (f32)TObjEneDf2Bringer__data_805D97E0);
   }
 }
 }
