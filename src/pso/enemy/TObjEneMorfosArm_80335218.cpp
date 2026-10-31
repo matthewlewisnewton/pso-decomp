@@ -15,7 +15,7 @@
 #include "pso/player/TObjPlayer.h"
 
 // The hand-written constructors below call the base one by its symbol.
-extern "C" u8 *__ct__10TObjMotionFP7TObject(u8 *self);
+extern "C" u8 *__ct__10TObjMotionFP7TObject(u8 *self, TObject *parent);
 
 #pragma readonly_strings on
 
@@ -80,7 +80,7 @@ TObjEneMorfosArm::~TObjEneMorfosArm() {
 
 u8 *TObjEneMorfosArm__ct(TObjEneMorfosArm *ene_morfos_arm, s32 arg1, u8 *arg2) {
     u8 *temp_r5;
-    __ct__10TObjMotionFP7TObject((u8 *)ene_morfos_arm);
+    __ct__10TObjMotionFP7TObject((u8 *)ene_morfos_arm, (TObject *)arg1);
     *(s32 **)((s8 *)ene_morfos_arm + 0x18) = &(*(RecoveredGlobal_80335354___vt__16TObjEneMorfosArm *)&__vt__16TObjEneMorfosArm).value;
     *(s32 *)((s8 *)ene_morfos_arm + 0) = (s32) ((s32)TObjEneMorfosArm__name);
     *(u8 **)((s8 *)ene_morfos_arm + 0xFC) = arg2;
