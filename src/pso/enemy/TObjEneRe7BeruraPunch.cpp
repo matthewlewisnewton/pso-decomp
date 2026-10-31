@@ -69,9 +69,7 @@ extern "C" {
 
 u8 * csnVector(s32, s32, s32);
 void *find_entity_by_id(u16 id);
-s32 TObjEneRe7Berura__sub_80094D98();
 
-void TObjEneRe7Berura__sub_80094C68(TObjEneRe7Berura *self);
 s32 refresh_collision_body_centers__14TObjCollidableFv(void *, void *, f32, f32);
 extern Pair_80096150 lbl_80439F28[];
 
@@ -182,8 +180,9 @@ void TObjEneRe7BeruraPunch::update_flight() {
     this->snap_to_ground();
     if ((var_r31 != 0) || (sub_80096150() != 0) || (this->m_114 > this->m_c8)) {
         this->m_b4 = 2;
-        if (find_entity_by_id(this->m_b0) != NULL) {
-            TObjEneRe7Berura__sub_80094D98();
+        TObjEneRe7Berura *owner = (TObjEneRe7Berura *)find_entity_by_id(this->m_b0);
+        if (owner != NULL) {
+            owner->clear_active_part_flag_2();
         }
     }
 }
@@ -212,7 +211,7 @@ s32 TObjEneRe7BeruraPunch::sub_80096150() {
     }
     this->call_vt16_with_default((void *)&p, (void *)(*(s32 *)&this->_padD8));
     if (entity != 0) {
-        TObjEneRe7Berura__sub_80094C68((TObjEneRe7Berura *)entity);
+        ((TObjEneRe7Berura *)entity)->fn_80094C68();
     }
     return 0;
 }

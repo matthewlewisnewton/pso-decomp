@@ -1044,9 +1044,6 @@ force_active:
   - TObjEneRe4Sorcerer__sub_800EFE30
   - TObjEneRe4Sorcerer__vt85
   - TObjEneRe7BeruraPunch__data_805D97A0
-  - TObjEneRe7Berura__ct
-  - TObjEneRe7Berura__data_805007D4
-  - TObjEneRe7Berura__vt85
   - TObjEneRecobox__attack_params
   - TObjEneRecobox__ct
   - TObjEneRecobox__resource_bundle
@@ -1604,6 +1601,7 @@ force_active:
   - __ct__16TObjEneDellBiterFP7TObjectPv
   - __ct__16TObjEneMerillLiaFP7TObjectPv
   - __ct__16TObjEneRe2FlowerFP7TObjectPv
+  - __ct__16TObjEneRe7BeruraFP7TObjectPv
   - __ct__16TObjHashiVersus1FP7TObjectPv
   - __ct__16TObjHashiVersus2FP7TObjectPv
   - __ct__16TObjItemOKWindowFP7TObject
@@ -2786,7 +2784,6 @@ force_active:
   - append_text__24TMessageWindowControllerFPCc
   - append_title_string__24TMessageWindowControllerFv
   - apply_armor_effect_flags__13TItemProArmorFv
-  - apply_attack_params__16TObjEneRe7BeruraFiPv
   - apply_attack_stat_status__13TObjEneRe4BitFPv
   - apply_balance__19TWindowSoundBalanceFPv
   - apply_battle_ctrl_effect__Fi
@@ -3049,6 +3046,7 @@ force_active:
   - begin_parse__24TMessageWindowControllerFPCcPc
   - begin_review__14CreationCameraFv
   - begin_state_1__13TUnk_804B5BA8Fv
+  - berura_attack_stats
   - berura_init_params
   - bind_controller_devices
   - bind_network_info_cipher_pool__FPUll
@@ -3487,6 +3485,7 @@ force_active:
   - capture_effect_positions__14TObjEneIllGillFP10NJS_OBJECT
   - capture_matrix_by_frame__16TObjDFTenchuFuruFP10NJS_OBJECT
   - capture_node__24ModelNodePositionCaptureFP10NJS_OBJECT
+  - capture_part_matrices__16TObjEneRe7BeruraFP10NJS_OBJECTP18BeruraDetachedPart
   - capture_slime_tail_node
   - cast_resta__18TObjEneRe4SorcererFv
   - cast_support_technique__8TItemMagFl
@@ -3818,7 +3817,7 @@ force_active:
   - collect_body_contacts__10TObjPlayerFiPvPv
   - collect_candidate_players__12TBoss3VoloptFv
   - collect_hit_targets__12TPhotonGollaFPv
-  - collect_node_matrices__16TObjEneRe7BeruraFPvi
+  - collect_node_matrices__16TObjEneRe7BeruraFP10NJS_OBJECTl
   - collect_node_positions__11TBreakUpMdlFPUcl
   - collect_owner_events__8TItemMagFv
   - collect_plist_strips_by_texture__FPvPsl
@@ -4197,6 +4196,7 @@ force_active:
   - dispatch_action__13TObjEneMorfosFUll
   - dispatch_action__16TObjEneDellBiterFUll
   - dispatch_action__16TObjEneRe2FlowerFUll
+  - dispatch_action__16TObjEneRe7BeruraFUll
   - dispatch_action__17TObjEneBm3FlyNestFUll
   - dispatch_action__17TObjEneMe1CanadinFUll
   - dispatch_action__17TObjEneMe3ShinowaFUll
@@ -4326,7 +4326,8 @@ force_active:
   - draw_model_with_arg__10TObjPlayerFPv
   - draw_motion_node_list__10TObjPlayerFv
   - draw_motion_tree
-  - draw_node_tree__16TObjEneRe7BeruraFPv
+  - draw_node_tree__16TObjEneRe7BeruraFP10NJS_OBJECT
+  - draw_node_tree__16TObjEneRe7BeruraFP10NJS_OBJECTPA3_A4_f
   - draw_node_tree__18TObjLaboDesignBaseFiPv
   - draw_node_tree__19TODoorFourLightBaseFPUc
   - draw_number_value__15TWindowHelpItemFPvPflll
@@ -12869,7 +12870,6 @@ force_active:
   - set_cursor_index_2__17TAdMultiConfirmGCFPv
   - set_cursor_index__13TUnk_804E3008Fl
   - set_cursor_row_for_mode__14TWindowSubItemFl
-  - set_data_and_draw_node_tree__16TObjEneRe7BeruraFii
   - set_default_depth_offset__15TObjEneDelDepthFv
   - set_depth_offset__15TObjEneDelDepthFll
   - set_destroy_event__6TLobbyFi

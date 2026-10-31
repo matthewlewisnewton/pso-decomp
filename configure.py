@@ -482,6 +482,7 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # native vtables before the switch tables and functions in address order.
     "pso/enemy/TObjEneNanoDrago.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
     "pso/enemy/TObjEneMe1GiGue.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
+    "pso/enemy/TObjEneRe7Berura.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     "pso/enemy/TObjEneDellBiter.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     "pso/enemy/TObjEneDellBiterEffects.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     # The Vol Opt fade tasks: deferred like the units above, but nothing is
