@@ -1,3 +1,4 @@
+#include "pso/map/CsnGroundQuery.h"
 #include "pso/item/TItemData.h"
 #include "types.h"
 #include "pso/item/TUnk_804C4498.h"
@@ -110,7 +111,6 @@ void send_6x29_delete_item__10TObjPlayerFPvii(void *, s32, s32);
 void *get_player_by_client_id(u16);
 void *get_ptr_0x44__9TItemListFPv(void *);
 s8 get_chr_select_state__23TAdSinglePlyChrSelectGCFv();
-s32 *csnVecterUnder(s32 origin, s32 mask);
 s32 TAdPlayerLoadGC__sub_801E1B50(s32);
 f32 sin_table_lookup(s32);
 f32 cos_table_lookup(s32);
@@ -283,7 +283,7 @@ s32 TUnk_804C4498::step_placement_search() {
     s->candidate.x = s->radius * sin_table_lookup(s->angle) + s->origin.x;
     s->candidate.y = s->origin.y;
     s->candidate.z = s->radius * cos_table_lookup(s->angle) + s->origin.z;
-    g = (Ground_801D3C38 *)csnVecterUnder((s32)&s->candidate, 0x41);
+    g = (Ground_801D3C38 *)csnVecterUnder((const Vec *)&s->candidate, 0x41);
     if (g == NULL) {
         s->angle += s->step;
         s->sample++;

@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/system/ChunkMaterialState.h"
 #include "pso/system/BmlResourceClass.h"
 #include "types.h"
@@ -88,7 +89,7 @@ void TOMine::run_task() {
     u8 *arg0 = (u8 *)this;
     s32 temp_r3;
 
-    if (TObjPlayer::check_demo_mode() != 1) {
+    if (check_demo_mode() != 1) {
         this->vfunc_79();
         ((TOMine *)arg0)->update_float_height();
         switch (this->mode) {

@@ -1,6 +1,10 @@
-#include "pso/enemy/BattleParameters.h"
-#include "pso/enemy/TUnk_80494938.h"
+#include "pso/system/MatrixVectorArray.h"
 #include "pso/misc/SampledMotionPoints.h"
+#include "pso/misc/PositionSoundEffects.h"
+#include "pso/player/demo_mode.h"
+#include "pso/misc/MaterialOpacityFade.h"
+#include "pso/misc/RenderFadeState.h"
+#include "pso/enemy/BattleParameters.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -9,7 +13,6 @@
 #include "pso/system/NinjaUtil.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/system/vector.h"
-#include "pso/object/TObjMotion.h"
 #include "pso/misc/TBreakUpMdl.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneDubchik.h"
@@ -132,7 +135,6 @@ s32 play_sound_effect(s32, void *, int, int);
 void *__nw__7TObjectFUl(int);
 void TObjPlayer__sub_800A8FB4(void *arg0_);
 
-void TLobby__sub_8001FE7C(void *, s32);
 extern s32 lbl_80500AF0[];
 extern s32 lbl_80500AF8[];
 struct Res_800AA82C;
@@ -171,12 +173,7 @@ void TObjPlayer__sub_800AA82C(void);
 #define CAT(a, b) CAT2(a, b)
 #define PADV virtual void CAT(pv, __LINE__)();
 #define PADV4 virtual void CAT(pa, __LINE__)(); virtual void CAT(pb, __LINE__)(); virtual void CAT(pc, __LINE__)(); virtual void CAT(pd, __LINE__)();
-struct Base_Sub { char pad[0x14]; };
-struct V_Sub : Base_Sub {
-    PADV4
-    PADV
-    virtual s32 m5();
-};
+
 struct RecoveredGlobal_800A8B8C_lbl_804910F4
 {
   s32 value;
@@ -193,19 +190,6 @@ struct Obj_800A8A7C { u8 pad[0x388]; u32 flags; };
 struct Vec_800A8C4C { s32 x, y, z; };
 
 struct Obj_800A8A7C;
-struct VBase_14_fddec9 { char pad[0x14]; };
-
-struct VObj_14_fddec9 : VBase_14_fddec9 {
-    virtual void m0();
-    virtual void m1();
-    virtual void m2();
-    virtual void m3();
-    virtual void m4();
-    virtual void m5();
-    virtual s32 m6();
-    virtual s32 m7();
-    virtual s32 m8();
-};
 
 struct VBase_18_ca64a0 { char pad[0x18]; };
 
@@ -222,13 +206,10 @@ struct VObj_18_ca64a0 : VBase_18_ca64a0 {
     virtual s32 m9(f32, f32, f32);
 };
 
-struct Self_800AA334 { u8 pad[0x3B0]; VObj_14_fddec9 sub; };
-
 
 typedef struct Vec_800A9E9C { f32 x, y, z; } Vec_800A9E9C;
 
 extern "C" {
-void TBoss3Volopt__sub_800D8D88(s32 arg0);
 void TObjPlayer__sub_800A8E04(u8 *arg0);
 void obj_setFlags30(void *, u32);
 void TObjPlayer__sub_800A8C1C(u8 *arg0);
@@ -453,11 +434,11 @@ void TObjPlayer__sub_800A8E04(u8 *ene_me1_gi_gue) {
         ((TObjEneMe1GiGue *)ene_me1_gi_gue)->actorFlags = (((TObjEneMe1GiGue *)ene_me1_gi_gue)->actorFlags | 0x04000000);
         ((TObjEneMe1GiGue *)ene_me1_gi_gue)->requested_action = 5;
         ((TObjMotion *)ene_me1_gi_gue)->advance_animation();
-        TBoss3Volopt__sub_800D8D88((s32)(ene_me1_gi_gue + 0x2FC));
-        ((TUnk_80494938 *)(ene_me1_gi_gue + 0x3B0))->start_fade_in();
+        play_area_sound_and_particles_a((const Vec *)((s32)(ene_me1_gi_gue + 0x2FC)));
+        ((TObjEneDubchik *)ene_me1_gi_gue)->fade.start_fade_in();
         ((TObjEneMe1GiGue *)ene_me1_gi_gue)->state = 1;
     case 1:
-        if (((V_Sub *) (ene_me1_gi_gue + 0x3B0))->m5() == 1) {
+        if (((TObjEneDubchik *)ene_me1_gi_gue)->fade.advance_toward_max() == 1) {
             ((TObjEneMe1GiGue *)ene_me1_gi_gue)->state = -1;
         }
         return;
@@ -553,7 +534,6 @@ struct Ene_800A93E4 {
     VO_800A93E4 *model;
 };
 
-s32 mult_vec_array__10TObjPlayerFUll(int, u32, void *, int);
 void set_matrix_identity(u8 *arg0);
 extern f32 player_band_threshold_table[];
 extern Pair_800A93E4 lbl_8043AC9C[];
@@ -749,12 +729,12 @@ void TObjPlayer__sub_800A93E4(void *arg0_) {
         post_translate_matrix(&e->pos);
         rotate_matrix_y(0, e->angle);
         if (h0 != 0) {
-            mult_vec_array__10TObjPlayerFUll(0, h0, &a1, 2);
+            matrix_mult_vec_array((f32 (*)[4])(0), (const Vec *)(h0), (Vec *)(&a1), 2);
             e->model->m4(&a1, &b1);
         }
         if (h1 != 0) {
             s32 pa = (s32)&a2;
-            mult_vec_array__10TObjPlayerFUll(0, h1, (void *)pa, 2);
+            matrix_mult_vec_array((f32 (*)[4])(0), (const Vec *)(h1), (Vec *)((void *)pa), 2);
             e->model->m4((Vec_800A93E4 *)pa, &b2);
         }
         pop_matrix();
@@ -988,11 +968,11 @@ void TObjPlayer__sub_800AA334(u8 *arg0) {
             rotate_matrix_y(0, (int) (((TObjEneDubchik *)arg0)->rotation_y));
             scale_matrix(0, lbl_805D9B30, lbl_805D9B30, lbl_805D9B30);
             model_render_flags &= 0xFFFFFBFF;
-            if (TObjPlayer::check_demo_mode() == 1) {
+            if (check_demo_mode() == 1) {
                 draw_chunk_object((void *)(*(s32 *)((s8 *)arg0 + 0x34)));
             } else if (((TObjEneDubchik *)arg0)->m_388 & 4) {
-                if (((Self_800AA334 *)arg0)->sub.m8() != 0) {
-                    ((Self_800AA334 *)arg0)->sub.m6();
+                if (((TObjEneDubchik *)arg0)->fade.has_visible_opacity() != 0) {
+                    ((TObjEneDubchik *)arg0)->fade.set_flags_and_apply_damage_color();
                     var_r29 = 1;
                     if (defer_render__7TObjectFv(arg0) != 0) {
                         var_r29 = 0;
@@ -1004,7 +984,7 @@ void TObjPlayer__sub_800AA334(u8 *arg0) {
                             ((TObjEnemy *)arg0)->draw_motion_model();
                         }
                     }
-                    ((Self_800AA334 *)arg0)->sub.m7();
+                    ((TObjEneDubchik *)arg0)->fade.clear_flag_and_notify();
                 } else {
                     var_r30 = 0;
                 }
@@ -1042,7 +1022,7 @@ void TObjPlayer::run_synced_state_handler() {
 
 void TObjPlayer::update_synced_state() {
     u8 *arg0 = (u8 *)this;
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         TObjPlayer__sub_800AA330(arg0);
         return;
     }

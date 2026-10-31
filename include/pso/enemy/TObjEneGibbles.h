@@ -3,7 +3,7 @@
 #include "types.h"
 #include <stddef.h>
 #include "pso/enemy/TObjEnemy.h"
-#include "pso/enemy/TUnk_80494938.h"
+#include "pso/misc/MaterialOpacityFade.h"
 #include "pso/misc/RenderFadeState.h"
 #include "pso/system/BmlResource.h"
 
@@ -105,7 +105,7 @@ struct TObjEneGibbles : public TObjEnemy {
     TObjCollidable *attack_body;
     TObjCollidable *m_3b8;
     s32 render_angle;
-    TUnk_80494938 material_fade;
+    MaterialOpacityFade material_fade;
     RenderFadeState camera_fades[4];
 };
 typedef char GibblesAiParameters_size[sizeof(GibblesAiParameters) == 0x1C ? 1 : -1];

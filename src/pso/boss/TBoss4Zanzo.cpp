@@ -1708,7 +1708,7 @@ u8 *TBoss4Type2__ct(u8 *arg0, s32 parent, s32 *arg2) {
     *(s32 *)((s8 *)arg0 + 0x3A0) = 0;
     *(s32 *)((s8 *)arg0 + 0x3E0) = 0;
     *(u16 *)((s8 *)arg0 + 0x3C4) = 0xFFFF;
-    *(s32 *)((s8 *)arg0 + 0x41C) = floor_to_float(*(f32 *) (u8 *)get_battle_movement_params(0x37));
+    *(s32 *)((s8 *)arg0 + 0x41C) = floor_to_float(*(f32 *) get_battle_movement_params(0x37));
     if (*(s32 *)((s8 *)arg0 + 0x41C) < 1 || *(s32 *)((s8 *)arg0 + 0x41C) > 25) {
         *(s32 *)((s8 *)arg0 + 0x41C) = 4;
     }

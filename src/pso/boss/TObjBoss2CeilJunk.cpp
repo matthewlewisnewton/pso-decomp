@@ -1,3 +1,4 @@
+#include "pso/map/CsnGroundQuery.h"
 #include "pso/system/vector.h"
 #include "types.h"
 #include "pso/boss/TObjBoss2CeilJunk.h"
@@ -111,7 +112,6 @@ struct Junk_8003A314 {
 };
 
 extern "C" {
-s32 spawn_effect__15TObjBoss2TunnelFlPvPv(void *, void *, void *, f32, f32);
 s32 __ct__8TObjBaseFP7TObject();
 s32 rand();
 extern RecoveredGlobal_8003A6F4_lbl_80435BD8 TObjBoss2CeilJunk__height_offset_table;
@@ -306,7 +306,7 @@ u8 *TObjBoss2CeilJunk__ct(struct RecoveredFields_8003A6F4_arg0 *arg0, s32 arg1, 
     temp_f2 = (f32) rand();
     temp_f1 = (3.0517578e-05f) * temp_f2;
     arg0->field_AC = (s32) (*(const volatile f32 *)&lbl_805D85A0 * temp_f1);
-    if (spawn_effect__15TObjBoss2TunnelFlPvPv(&arg0->unknown_1C[0x1C], &arg0->unknown_1C[0x28], arg0->unknown_9C, temp_f1, temp_f2) == 0) {
+    if (adjust_point_to_ground_with_normal((const Vec *)&arg0->unknown_1C[0x1C], (Vec *)&arg0->unknown_1C[0x28], (Vec *)arg0->unknown_9C) == 0) {
         arg0->field_A8 = 0;
     } else {
         arg0->field_A8 = 2;

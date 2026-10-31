@@ -1,3 +1,4 @@
+#include "pso/map/CsnGroundQuery.h"
 #include "types.h"
 #include "pso/player/TObjChara.h"
 #include "pso/misc/TLobby.h"
@@ -88,7 +89,6 @@ extern s32 TLobby__designated_client_id;
 extern Entry_8010567C *quest_object_entries;
 extern s32 local_client_id;
 int check_class_equip_permission(TObjPlayer *player, s32 perm);
-s32 *csnVecterUnder(s32 origin, s32 mask);
 s32 is_valid_drop_floor();
 }
 void *build_6x06_send_guild_card(void *arg0);
@@ -185,7 +185,7 @@ void send_6x60_standard_drop_item_request(Obj_80105538 *self) {
                         v.x = pkt.x;
                         v.y = lbl_805DAAB4;
                         v.z = pkt.z;
-                        if (csnVecterUnder((s32)&v, 1) != 0) {
+                        if (csnVecterUnder((const Vec *)&v, 1) != 0) {
                             ((TLobby *)(&pkt))->dispatch_packet_wrapper();
                         }
                     }

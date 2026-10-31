@@ -2,6 +2,7 @@
 #pragma inline_depth(4)
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/player/TObjPlayer_803E4954.h"
+#include "pso/player/demo_mode.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/enemy/BattleParameters.h"
@@ -23,7 +24,7 @@
 #include "pso/map/CsnGroundQuery.h"
 #include "pso/system/BmlResourceDescriptor.h"
 #include "pso/system/vector.h"
-#include "pso/enemy/TUnk_80494938.h"
+#include "pso/misc/MaterialOpacityFade.h"
 #include <stddef.h>
 #include "pso/boss/TBoss4DarkFalz.h"
 #include "pso/enemy/TObjEneLappy.h"
@@ -109,7 +110,7 @@ f32 calc_distance_to_client__10TObjPlayerFlUsUl(void *, u16, Vec *);
 s32 obj_setFlags30(void *, int);
 
 void TCameraCtrl__sub_8006A044(s32, f32);
-s32 *csnVecterUnder(s32 origin, s32 mask);
+
 s32 rotate_xz_pair_by_angle(f32 *, f32 *, s32, f32);
 s32 test_action_mask__10TObjPlayerFl(void *, int);
 
@@ -876,7 +877,7 @@ TObjEneGibbles::TObjEneGibbles(TObject *parent, void *set_data) : TObjEnemy(pare
     s32 i;
     m_name = lbl_805D3F60;
     apply_set_data(set_data);
-    ((TObjPlayer *)this)->init_position_vectors();
+    initialize_position_copies();
     scale.x = scale.y = scale.z = TObjEneGibbles__data_805DE7EC;
     init_params();
     mode = 0;
@@ -886,7 +887,7 @@ TObjEneGibbles::TObjEneGibbles(TObject *parent, void *set_data) : TObjEnemy(pare
     subtype = 0;
     sub_802DBC94(variant);
     action_table = gibbles_motion_actions;
-    set_field_d8((s32)(action_table));
+    set_action_table(action_table);
     motion_list = TObjEneGibbles__resource_bundle->motions;
     requested_action = 0;
     set_animation(requested_action);
@@ -990,7 +991,7 @@ void TObjEneGibbles::init_params() {
 
 void TObjEneGibbles::run_task() {
     u8 *candidate;
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         fn_802D7E3C();
         return;
     }
@@ -1737,7 +1738,7 @@ void TObjEneGibbles::slam_damage_players(s32 arg1) {
         return;
     }
     point.y += lbl_805DE808;
-    if (csnVecterUnder((s32)&point, 0x16EF) != NULL) {
+    if (csnVecterUnder(&point, 0x16EF) != NULL) {
         if (spawn_ground_impact_effects(&point, lbl_805DE858) == 0) {
             point.y += TObjEneGibbles__data_805DE81C;
             spawn_particle_effect(&point, 0x64);

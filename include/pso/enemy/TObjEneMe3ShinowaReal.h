@@ -13,11 +13,8 @@ struct TObjEneMe3ShinowaReal : public TObjEneMe3Shinowa {
     void sub_800E7250();
     void vfunc_63();
     void vfunc_62();
-    u8 _pad3EC[0x10];
-    u32 m_3fc;
-    u8 _pad400[0x4];
-    u32 m_404;
-    u8 _pad408[0x1C];
+
+    u8 _padAfterBaseFade[0x4];
     u32 m_424;
     void spawn_mirages();
     s32 get_or_create_mirage(s32 arg1);
@@ -25,6 +22,7 @@ struct TObjEneMe3ShinowaReal : public TObjEneMe3Shinowa {
     void *create();
     u8 unk_40C[0x28];
 };
+typedef char TObjEneMe3ShinowaReal_m_424_offset[offsetof(TObjEneMe3ShinowaReal, m_424) == 0x408 ? 1 : -1];
 
 typedef char TObjEneMe3ShinowaReal_size[sizeof(TObjEneMe3ShinowaReal) == 0x434 ? 1 : -1];
 #endif

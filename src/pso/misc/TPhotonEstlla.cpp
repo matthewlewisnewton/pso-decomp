@@ -278,8 +278,8 @@ u8 *TPhotonEstlla__ct(u8 *photon_estlla, u8 *arg1) {
     }
     *(s32 *)((s8 *)photon_estlla + 0x34) = *(s32 *)((s8 *)(*(u8 **)((s8 *)photon_blast_shared_resource + 0x42C)) + 0x98);
     ((TPhotonEstlla *)photon_estlla)->texlist = *(s32 *)((s8 *)(*(u8 **)((s8 *)photon_blast_shared_resource + 0x42C)) + 0x9C);
-    ((TObjMotion *)photon_estlla)->set_field_d8((s32) photon_estlla_param_table);
-    ((TObjMotion *)photon_estlla)->set_field_dc(*(s32 *)((s8 *)photon_blast_shared_resource + 0x430));
+    ((TObjMotion *)photon_estlla)->set_action_table((TObjMotionAction *)((s32) photon_estlla_param_table));
+    ((TObjMotion *)photon_estlla)->set_motion_list((BmlMotionEntry *)(*(s32 *)((s8 *)photon_blast_shared_resource + 0x430)));
     ((TPhotonEstlla *)photon_estlla)->requested_action = 1;
     ((TObjMotion *)photon_estlla)->set_animation(((TPhotonEstlla *)photon_estlla)->requested_action);
     ((TObjMotion *)photon_estlla)->set_field_b8(((TPhotonEstlla *)photon_estlla)->requested_action);
