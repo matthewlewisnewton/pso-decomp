@@ -28,10 +28,6 @@ struct RecoveredGlobal_8006ABAC_lbl_804FF61C {
     u8 remaining[0x8];
 };
 struct Vec_8006AF9C { f32 x, y, z; };
-struct Obj_8006AF9C {
-    u8 pad0[0x19c];
-    s32 f19c;
-};
 void set_camera_look_at(u8 *eye, u8 *target, u8 *up);
 extern "C" {
 s32 set_perspective_projection_from_fov(int, f32, f32, f32);
@@ -79,8 +75,6 @@ struct Out_80069F20 {
     u8 pad60[4];
     s16 f64;
 };
-struct RecoveredGlobal_80069094_camera_controller_registry { s32 value; u8 remaining[0x64]; };
-typedef char RecoveredGlobal_80069094_camera_controller_registry_size[sizeof(RecoveredGlobal_80069094_camera_controller_registry) == 0x68 ? 1 : -1];
 struct RecoveredGlobal_80069024_TCameraCtrl__data_804FF634 {
     s32 value;
     u8 remaining[0x44];
@@ -117,17 +111,9 @@ struct RecoveredGlobal_80069148_TCameraCtrl__data_804FF700 {
     s32 value;
     u8 remaining[0xBC];
 };
-struct RecoveredGlobal_80069C94_camera_controller_registry {
-    s32 value;
-    u8 remaining[0x64];
-};
 struct RecoveredGlobal_80069C94_TCameraCtrl__data_804FF628 {
     s32 value;
     u8 remaining[0x8];
-};
-struct RecoveredGlobal_80069D04_camera_controller_registry {
-    s32 value;
-    u8 remaining[0x64];
 };
 struct RecoveredGlobal_80069D04_TCameraCtrl__data_804FF628 {
     s32 value;
@@ -164,10 +150,6 @@ struct RecoveredGlobal_80069258_TCameraCtrl__data_804FF700 {
 struct RecoveredGlobal_80069258_main_task {
     s32 value;
     u8 remaining[0x30];
-};
-struct RecoveredGlobal_80069A6C_camera_controller_registry {
-    s32 value;
-    u8 remaining[0x64];
 };
 struct RecoveredGlobal_80069A6C_TCameraCtrl__data_804FF628 {
     u8 value;
@@ -256,11 +238,6 @@ struct VObj_18_f8ef8c : VBase_18_f8ef8c {
     virtual void m4();
     virtual s32 m5();
 };
-struct RecoveredGlobal_80069E7C_camera_controller_registry
-{
-  s32 value;
-  u8 remaining[0x64];
-};
 struct RecoveredGlobal_80069E7C_TCameraCtrl__data_804FF628
 {
   s32 value;
@@ -276,7 +253,6 @@ struct W_80068FCC { f32 x, y; };
 struct O_80068FCC { M_80068FCC m; W_80068FCC a; W_80068FCC b; W_80068FCC c; };
 struct Cam_800688D0 { u8 pad[0x10]; s32 slots[4]; };
 struct RecoveredGlobal_800695E8_TCameraCtrl__data_804FF628;
-struct RecoveredGlobal_80069094_camera_controller_registry;
 struct Vec_80068810 { f32 x, y, z; };
 struct Cam_80068810 {
     u8 pad0[0x94];
@@ -427,12 +403,9 @@ typedef char RecoveredGlobal_80069534_TCameraCtrl__data_804FF628_size[sizeof(Rec
 typedef char RecoveredGlobal_8006961C_TCameraCtrl__data_804FF628_size[sizeof(RecoveredGlobal_8006961C_TCameraCtrl__data_804FF628) == 0xC ? 1 : -1];
 typedef char RecoveredGlobal_8006961C_TCameraCtrl__data_804FF634_size[sizeof(RecoveredGlobal_8006961C_TCameraCtrl__data_804FF634) == 0x48 ? 1 : -1];
 typedef char RecoveredGlobal_8006961C_lbl_8058CA60_size[sizeof(RecoveredGlobal_8006961C_lbl_8058CA60) == 0x58 ? 1 : -1];
-typedef char RecoveredGlobal_80069A6C_camera_controller_registry_size[sizeof(RecoveredGlobal_80069A6C_camera_controller_registry) == 0x68 ? 1 : -1];
 typedef char RecoveredGlobal_80069A6C_TCameraCtrl__data_804FF628_size[sizeof(RecoveredGlobal_80069A6C_TCameraCtrl__data_804FF628) == 0xC ? 1 : -1];
-typedef char RecoveredGlobal_80069C94_camera_controller_registry_size[sizeof(RecoveredGlobal_80069C94_camera_controller_registry) == 0x68 ? 1 : -1];
 typedef char RecoveredGlobal_80069C94_TCameraCtrl__data_804FF628_size[sizeof(RecoveredGlobal_80069C94_TCameraCtrl__data_804FF628) == 0xC ? 1 : -1];
 void set_active_camera_pose(u8 *arg0, u8 *arg1);
-typedef char RecoveredGlobal_80069D04_camera_controller_registry_size[sizeof(RecoveredGlobal_80069D04_camera_controller_registry) == 0x68 ? 1 : -1];
 typedef char RecoveredGlobal_80069D04_TCameraCtrl__data_804FF628_size[sizeof(RecoveredGlobal_80069D04_TCameraCtrl__data_804FF628) == 0xC ? 1 : -1];
 void set_active_camera_pose_from_params(u8 *arg0);
 #pragma push
@@ -441,10 +414,8 @@ void set_active_camera_pose_from_params(u8 *arg0);
 typedef char RecoveredGlobal_80069D7C_TCameraCtrl__data_804FF628_size[sizeof(RecoveredGlobal_80069D7C_TCameraCtrl__data_804FF628) == 0xC ? 1 : -1];
 #pragma pop
 typedef struct RecoveredGlobal_80069E7C_TCameraCtrl__data_804FF628 RecoveredGlobal_80069E7C_TCameraCtrl__data_804FF628;
-typedef struct RecoveredGlobal_80069E7C_camera_controller_registry RecoveredGlobal_80069E7C_camera_controller_registry;
 typedef struct VBase_18_f8ef8c VBase_18_f8ef8c;
 typedef struct VObj_18_f8ef8c VObj_18_f8ef8c;
-typedef char RecoveredGlobal_80069E7C_camera_controller_registry_size[((sizeof(RecoveredGlobal_80069E7C_camera_controller_registry)) == 0x68) ? (1) : (-1)];
 typedef char RecoveredGlobal_80069E7C_TCameraCtrl__data_804FF628_size[((sizeof(RecoveredGlobal_80069E7C_TCameraCtrl__data_804FF628)) == 0xC) ? (1) : (-1)];
 s32 restore_player_cameras(void);
 s32 activate_camera_mode(s32 arg0);
@@ -483,11 +454,6 @@ struct RecoveredGlobal_8006A5DC_TCameraCtrl__data_804FF628 {
     u8 value;
     u8 remaining[0xB];
 };
-struct RecoveredGlobal_8006A788_camera_controller_registry
-{
-  s32 value;
-  u8 remaining[0x64];
-};
 struct RecoveredGlobal_8006A788_TCameraCtrl__data_804FF628
 {
   s8 value;
@@ -509,20 +475,10 @@ struct VObj_18_9639c7 : VBase_18_9639c7 {
     virtual void m8();
     virtual s32 m9();
 };
-struct RecoveredGlobal_8006A7D8_camera_controller_registry
-{
-  s32 value;
-  u8 remaining[0x64];
-};
 struct RecoveredGlobal_8006A7D8_TCameraCtrl__data_804FF628
 {
   s32 value;
   u8 remaining[0x8];
-};
-struct RecoveredGlobal_8006A5EC_camera_controller_registry
-{
-  s32 value;
-  u8 remaining[0x64];
 };
 struct RecoveredGlobal_8006A5EC_TCameraCtrl__data_804FF628
 {
@@ -588,14 +544,10 @@ void reset_cameras_to_actor(void *actor, s32 arg1);
 extern "C" {
 u16 TCameraCtrl__sub_8006A5DC(void);
 typedef struct RecoveredGlobal_8006A788_TCameraCtrl__data_804FF628 RecoveredGlobal_8006A788_TCameraCtrl__data_804FF628;
-typedef struct RecoveredGlobal_8006A788_camera_controller_registry RecoveredGlobal_8006A788_camera_controller_registry;
 typedef struct VBase_18_f8ef8c VBase_18_f8ef8c;
 typedef struct VObj_18_f8ef8c VObj_18_f8ef8c;
-typedef char RecoveredGlobal_8006A788_camera_controller_registry_size[((sizeof(RecoveredGlobal_8006A788_camera_controller_registry)) == 0x68) ? (1) : (-1)];
 typedef char RecoveredGlobal_8006A788_TCameraCtrl__data_804FF628_size[((sizeof(RecoveredGlobal_8006A788_TCameraCtrl__data_804FF628)) == 0xC) ? (1) : (-1)];
 typedef struct RecoveredGlobal_8006A5EC_TCameraCtrl__data_804FF628 RecoveredGlobal_8006A5EC_TCameraCtrl__data_804FF628;
-typedef struct RecoveredGlobal_8006A5EC_camera_controller_registry RecoveredGlobal_8006A5EC_camera_controller_registry;
-typedef char RecoveredGlobal_8006A5EC_camera_controller_registry_size[((sizeof(RecoveredGlobal_8006A5EC_camera_controller_registry)) == 0x68) ? (1) : (-1)];
 typedef char RecoveredGlobal_8006A5EC_TCameraCtrl__data_804FF628_size[((sizeof(RecoveredGlobal_8006A5EC_TCameraCtrl__data_804FF628)) == 0xC) ? (1) : (-1)];
 struct Cam_8006A6C4
 {
@@ -612,10 +564,8 @@ extern const f32 lbl_805D8FF4;
 }
 void select_camera_controller(s32 arg0);
 typedef struct RecoveredGlobal_8006A7D8_TCameraCtrl__data_804FF628 RecoveredGlobal_8006A7D8_TCameraCtrl__data_804FF628;
-typedef struct RecoveredGlobal_8006A7D8_camera_controller_registry RecoveredGlobal_8006A7D8_camera_controller_registry;
 typedef struct VBase_18_9639c7 VBase_18_9639c7;
 typedef struct VObj_18_9639c7 VObj_18_9639c7;
-typedef char RecoveredGlobal_8006A7D8_camera_controller_registry_size[((sizeof(RecoveredGlobal_8006A7D8_camera_controller_registry)) == 0x68) ? (1) : (-1)];
 typedef char RecoveredGlobal_8006A7D8_TCameraCtrl__data_804FF628_size[((sizeof(RecoveredGlobal_8006A7D8_TCameraCtrl__data_804FF628)) == 0xC) ? (1) : (-1)];
 struct Ctl_8006AA90 {
     u8 pad[0x18];
@@ -632,7 +582,6 @@ Ctl_8006AA90 *TCameraCtrl__sub_8006AA90(Ctl_8006AA90 *self, s16 arg1);
 #pragma inline_depth(1)
 #pragma auto_inline off
 #pragma dont_inline off
-struct ByteBlock_30 { u8 bytes[0x30]; };
 struct RecoveredGlobal_8006B324_lbl_805137F8 {
     s32 value;
     u8 remaining[0x20];

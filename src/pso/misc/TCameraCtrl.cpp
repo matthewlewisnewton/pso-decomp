@@ -16,7 +16,7 @@ void TUnk_80488A28::run_task() { }
 #pragma push
 #pragma dont_inline off
 #pragma auto_inline off
-void*TCameraCtrl::get_target_ptr() { return (char*)this + 0x44; }
+void *TCameraCtrl::get_target_ptr() { return &m_44; }
 #pragma pop
 
 
@@ -245,7 +245,7 @@ void TCameraCtrl::setup_default_view(void *arg1_arg) {
     if (0.0f == d.x && 0.0f == d.z) {
         pat->z += TCameraCtrl__data_805D8FAC;
     }
-    set_perspective_projection_from_fov(((Obj_8006AF9C *)this)->f19c, TCameraCtrl__data_805D8FDC, TCameraCtrl__data_805D8FAC, TCameraCtrl__data_805D8FE0);
+    set_perspective_projection_from_fov(m_19c, TCameraCtrl__data_805D8FDC, TCameraCtrl__data_805D8FAC, TCameraCtrl__data_805D8FE0);
     set_camera_look_at((u8 *)&eye, (u8 *)&at, (u8 *)TCameraCtrl__up_vector);
 }
 #pragma pop
@@ -254,9 +254,9 @@ void TCameraCtrl::setup_default_view(void *arg1_arg) {
 #pragma push
 #pragma dont_inline off
 #pragma auto_inline off
-u8 * copy_view_params__11TCameraCtrlFii(C30_8006AD34 *arg0, const C30_8006AD34 *arg1) {
-    *(ByteBlock_30 *)(arg0) = *(const ByteBlock_30 *)(arg1);
-    return (u8 *)arg0;
+u8 *copy_view_params__11TCameraCtrlFii(C30_8006AD34 *destination, const C30_8006AD34 *source) {
+    *destination = *source;
+    return (u8 *)destination;
 }
 #pragma pop
 
@@ -265,16 +265,14 @@ u8 * copy_view_params__11TCameraCtrlFii(C30_8006AD34 *arg0, const C30_8006AD34 *
 #pragma dont_inline off
 #pragma auto_inline off
 void TCameraCtrl::run_task() {
-    u8 *arg0 = (u8 *)this;
     V3_8006AD34 v;
     u8 *t;
     s32 i;
-    s32 off;
-    arg0[0x1C] = 1;
-    ((TCameraCtrl *)arg0)->update_target_from_state();
-    cycle_spectate_target__11TCameraCtrlFv(arg0);
-    ((TCameraCtrl *)arg0)->update_active_controller();
-    reset_view_flags__11TCameraCtrlFv(arg0);
+    m_1c = 1;
+    update_target_from_state();
+    cycle_spectate_target__11TCameraCtrlFv(this);
+    update_active_controller();
+    reset_view_flags__11TCameraCtrlFv(this);
     if ((camera_ctrl_instance) != NULL) {
         if (TCameraCtrl__sub_8006B370((*(f32 *)((camera_ctrl_instance) + (0x178)))) == 0 && TCameraCtrl__sub_8006B370((*(f32 *)((camera_ctrl_instance) + (0x17C)))) == 0) {
             TCameraCtrl__sub_8006B370((*(f32 *)((camera_ctrl_instance) + (0x180))));
@@ -287,13 +285,13 @@ void TCameraCtrl::run_task() {
         }
     }
     if ((camera_ctrl_instance) != NULL) {
-        t = get_target__11TCameraCtrlFv(arg0);
+        t = get_target__11TCameraCtrlFv(this);
         v.x = (((f32 *)t)[0] + (*(f32 *)((camera_ctrl_instance) + (0x184)))) - (*(f32 *)((camera_ctrl_instance) + (0x178)));
         v.y = (((f32 *)t)[1] + (*(f32 *)((camera_ctrl_instance) + (0x188)))) - (*(f32 *)((camera_ctrl_instance) + (0x17C)));
         v.z = (((f32 *)t)[2] + (*(f32 *)((camera_ctrl_instance) + (0x18C)))) - (*(f32 *)((camera_ctrl_instance) + (0x180)));
-        lbl_804FF5E8[0] = *(f32 *)(arg0 + 0x178);
-        lbl_804FF5E8[1] = *(f32 *)(arg0 + 0x17C);
-        lbl_804FF5E8[2] = *(f32 *)(arg0 + 0x180);
+        lbl_804FF5E8[0] = m_178;
+        lbl_804FF5E8[1] = m_17c;
+        lbl_804FF5E8[2] = m_180;
         if (0.0f != vec_squared_length(&v)) {
             normalize_vector(&v);
         }
@@ -314,7 +312,7 @@ void TCameraCtrl::run_task() {
     } else {
         ((TObjBoss2Tunnel *)lbl_804FF5E8)->render(TCameraCtrl__view_matrix);
     }
-    ((TCameraCtrl *)arg0)->calc_rotated_axes();
+    calc_rotated_axes();
 }
 #pragma pop
 
@@ -385,10 +383,10 @@ void TCameraCtrl::calc_axes_from_angles(s32 arg0, s32 arg1, s32 arg2) {
 #pragma auto_inline off
 void TCameraCtrl::render() {
     if ((is_split_screen() == 0) && (TMainTask::get_render_pass() != 1)) {
-        if ((u8) *(u8 *)((s8 *)this + 0x1C) == 0) {
-            setup_default_view((Vec_8006AF9C *)(0));
+        if (m_1c == 0) {
+            setup_default_view(0);
         }
-        *(u8 *)((s8 *)this + 0x1C) = 0U;
+        m_1c = 0;
     }
 }
 #pragma pop
@@ -401,11 +399,11 @@ Ctl_8006AA90 *TCameraCtrl__sub_8006AA90(Ctl_8006AA90 *self, s16 arg1) {
     s32 i;
     if (self != NULL) {
         *(u8 **)((u8 *)self + 0x18) = ((u8 *)lbl_80488AC0);
-        (*(s32 *)&camera_ctrl_instance) = 0;
+        camera_ctrl_instance = 0;
         for (i = 0; i < 13; i++) {
-            if (((Ctl_8006AA90 **)camera_controller_registry)[i] != NULL) {
-                delete ((Ctl_8006AA90 **)camera_controller_registry)[i];
-                ((Ctl_8006AA90 **)camera_controller_registry)[i] = NULL;
+            if (camera_controller_registry[i] != NULL) {
+                delete (Ctl_8006AA90 *)camera_controller_registry[i];
+                camera_controller_registry[i] = NULL;
             }
         }
         ((s32 *)&TCameraCtrl__view_state)[1] = 0;
@@ -462,7 +460,7 @@ void TCameraCtrl::update_active_controller() {
   {
     camera_no = 0;
   }
-  temp_r30 = (u8 *) (*((void **) (((s8 *) (((u8 *) (&(*(RecoveredGlobal_8006A7D8_camera_controller_registry *)&(*(RecoveredGlobal_8006A788_camera_controller_registry *)camera_controller_registry)).value)) + (((*((u8 *) (((s8 *) (&(*(RecoveredGlobal_8006A7D8_TCameraCtrl__data_804FF628 *)&TCameraCtrl__view_state).value)) + 0))) + camera_no) * 4))) + 0)));
+  temp_r30 = (u8 *)camera_controller_registry[TCameraCtrl__view_state[0] + camera_no];
   if (temp_r30 != 0)
   {
     if (!((*((s32 *) (((s8 *) (&(*(RecoveredGlobal_8006A7D8_TCameraCtrl__data_804FF628 *)&TCameraCtrl__view_state).value)) + 8))) & 0x800))
@@ -541,7 +539,8 @@ void TCameraCtrl::update_active_controller() {
 void select_camera_controller(s32 arg0) {
   u8 *temp_r0;
   (*(RecoveredGlobal_8006A788_TCameraCtrl__data_804FF628 *)&TCameraCtrl__view_state).value = arg0;
-  temp_r0 = (u8 *) (*((s32 *) (((s8 *)&(*(RecoveredGlobal_8006A788_camera_controller_registry *)camera_controller_registry).value) + ((arg0 * 4) & 0x3FC))));
+  // The original lookup masks the selector to its low byte.
+  temp_r0 = (u8 *)camera_controller_registry[(u8)arg0];
   if (temp_r0 != 0)
   {
     (((VObj_18_f8ef8c *)(temp_r0))->m5());
@@ -581,7 +580,8 @@ void TCameraCtrl::select_active_controller(s8 arg0) {
   f32 temp_f0_6;
   u8 *temp_r31;
   (*(RecoveredGlobal_8006A5EC_TCameraCtrl__data_804FF628 *)&TCameraCtrl__view_state).value = arg0;
-  temp_r31 = (u8 *) (*((u8 **) (((s8 *) (((u8 *) (&(*(RecoveredGlobal_8006A5EC_camera_controller_registry *)&(*(RecoveredGlobal_8006A788_camera_controller_registry *)camera_controller_registry)).value)) + ((arg0 * 4) & 0x3FC))) + 0)));
+  // Keep the unsigned low-byte lookup even though the argument is signed.
+  temp_r31 = (u8 *)camera_controller_registry[(u8)arg0];
   if (temp_r31 != 0)
   {
     (((VObj_18_f8ef8c *)(temp_r31))->m5());
@@ -657,7 +657,7 @@ void reset_cameras_to_actor(void *actor, s32 arg1) {
       }
     }
   }
-  c = ((Ctrl_8006A410 **) (&(*(RecoveredGlobal_8006A788_camera_controller_registry *)camera_controller_registry)))[((u8) TCameraCtrl__view_state[0]) + view];
+  c = (Ctrl_8006A410 *)camera_controller_registry[TCameraCtrl__view_state[0] + view];
   if (c != 0)
   {
     if (is_split_screen() == 0)
@@ -683,7 +683,7 @@ void reset_cameras_to_actor(void *actor, s32 arg1) {
       *((s32 *) (((s8 *) TCameraCtrl__view_state) + 8)) |= 0x800;
     }
   }
-  c = ((Ctrl_8006A410 **) (&(*(RecoveredGlobal_8006A788_camera_controller_registry *)camera_controller_registry)))[view];
+  c = (Ctrl_8006A410 *)camera_controller_registry[view];
   if (c != 0)
   {
     ((TUnk_80488A28 *)c)->set_target((u32)actor);
@@ -854,7 +854,7 @@ void TCameraCtrl__sub_8006A044(s32 id, f32 v) {
 #pragma push
 #pragma dont_inline off
 #pragma auto_inline off
-void*TCameraCtrl::get_params() { return (char*)this + 0x20; }
+void *TCameraCtrl::get_params() { return &m_20; }
 #pragma pop
 
 
@@ -933,7 +933,7 @@ s32 activate_camera_mode(s32 arg0) {
     }
     *((u8 *) (((s8 *) (&(*(RecoveredGlobal_80069E7C_TCameraCtrl__data_804FF628 *)&TCameraCtrl__view_state).value)) + 0)) = arg0;
   }
-  temp_r3 = (u8 *) (*((void **) (((s8 *) (((u8 *) (&(*(RecoveredGlobal_80069E7C_camera_controller_registry *)&camera_controller_registry).value)) + ((*((u8 *) (((s8 *) (&(*(RecoveredGlobal_80069E7C_TCameraCtrl__data_804FF628 *)&TCameraCtrl__view_state).value)) + 0))) * 4))) + 0)));
+  temp_r3 = (u8 *)camera_controller_registry[TCameraCtrl__view_state[0]];
   if (temp_r3 != 0)
   {
     (((VObj_18_f8ef8c *)(temp_r3))->m5());
@@ -951,8 +951,8 @@ s32 restore_player_cameras(void) {
     u8 *player;
     if (*(u32 *)((s8 *)&TCameraCtrl__view_state + 8) & 4) {
         *(u32 *)((s8 *)&TCameraCtrl__view_state + 8) &= ~4;
-        if (TCameraCtrl__sub_8006A5DC() == 5 && *(u8 **)((s8 *)&camera_controller_registry + 0x14) != NULL && TCameraCtrl__saved_projection_angle != 0) {
-            *(s32 *)((s8 *)(*(u8 **)((s8 *)&camera_controller_registry + 0x14)) + 0x54) = TCameraCtrl__saved_projection_angle;
+        if (TCameraCtrl__sub_8006A5DC() == 5 && camera_controller_registry[5] != NULL && TCameraCtrl__saved_projection_angle != 0) {
+            *(s32 *)((u8 *)camera_controller_registry[5] + 0x54) = TCameraCtrl__saved_projection_angle;
         }
         *(u32 *)((s8 *)&TCameraCtrl__view_state + 8) |= 0x20;
     }
@@ -997,7 +997,7 @@ s32 TCameraCtrl::release_photon_blast_camera() {
 void set_active_camera_pose_from_params(u8 *arg0) {
     u8 *temp_r4;
     if ((*(s32 *)((s8 *)(&(*(RecoveredGlobal_80069D04_TCameraCtrl__data_804FF628 *)&TCameraCtrl__view_state).value) + 8) & 8) || (*(s32 *)((s8 *)(&(*(RecoveredGlobal_80069D04_TCameraCtrl__data_804FF628 *)&TCameraCtrl__view_state).value) + 8) & 4)) {
-        temp_r4 = (u8 *)(*(s32 *)((s8 *)(&(*(RecoveredGlobal_80069D04_camera_controller_registry *)&camera_controller_registry).value) + (*(u8 *)((s8 *)(&(*(RecoveredGlobal_80069D04_TCameraCtrl__data_804FF628 *)&TCameraCtrl__view_state).value) + 0) * 4)));
+        temp_r4 = (u8 *)camera_controller_registry[TCameraCtrl__view_state[0]];
         if (temp_r4 != NULL) {
             *(f32 *)((s8 *)temp_r4 + 0x3C) = (f32) *(f32 *)((s8 *)arg0 + 0x1C);
             *(f32 *)((s8 *)temp_r4 + 0x40) = (f32) *(f32 *)((s8 *)arg0 + 0x20);
@@ -1018,7 +1018,7 @@ void set_active_camera_pose_from_params(u8 *arg0) {
 void set_active_camera_pose(u8 *arg0, u8 *arg1) {
     u8 *temp_r5;
     if ((*(s32 *)((s8 *)(&(*(RecoveredGlobal_80069C94_TCameraCtrl__data_804FF628 *)&TCameraCtrl__view_state).value) + 8) & 8) || (*(s32 *)((s8 *)(&(*(RecoveredGlobal_80069C94_TCameraCtrl__data_804FF628 *)&TCameraCtrl__view_state).value) + 8) & 4)) {
-        temp_r5 = (u8 *)(*(s32 *)((s8 *)(&(*(RecoveredGlobal_80069C94_camera_controller_registry *)&camera_controller_registry).value) + (*(u8 *)((s8 *)(&(*(RecoveredGlobal_80069C94_TCameraCtrl__data_804FF628 *)&TCameraCtrl__view_state).value) + 0) * 4)));
+        temp_r5 = (u8 *)camera_controller_registry[TCameraCtrl__view_state[0]];
         if (temp_r5 != NULL) {
             *(f32 *)((s8 *)temp_r5 + 0x3C) = (f32) *(f32 *)((s8 *)arg0 + 0);
             *(f32 *)((s8 *)temp_r5 + 0x40) = (f32) *(f32 *)((s8 *)arg0 + 4);
@@ -1109,7 +1109,7 @@ void TCameraCtrl::update_target_smoothing() {
         *(f32 *)((s8 *)temp_r3 + 0x138) = (f32) this->m_17c;
         *(f32 *)((s8 *)temp_r3 + 0x13C) = (f32) this->m_180;
     }
-    temp_r3_2 = (u8 *)(*(u8 **)((s8 *)((u8 *)(&(*(RecoveredGlobal_80069A6C_camera_controller_registry *)&camera_controller_registry).value) + ((*(RecoveredGlobal_80069A6C_TCameraCtrl__data_804FF628 *)&TCameraCtrl__view_state).value * 4)) + 0));
+    temp_r3_2 = (u8 *)camera_controller_registry[TCameraCtrl__view_state[0]];
     if ((temp_r3_2 != NULL) && !(*(s32 *)((s8 *)temp_r3_2 + 0x38) & 0x10)) {
         *(f32 *)&this->unk_188 = (f32) *(f32 *)&this->unk_1B0;
     }
@@ -1491,7 +1491,7 @@ s32 TCameraCtrl::get_camera_target_id(s32 arg0) {
     s32 var_r31;
     s32 var_r3;
     u32 temp_r3;
-    u32 temp_r3_2;
+    void *temp_r3_2;
     if (is_split_screen() != 0) {
         var_r31 = 0xFFFF;
         if (arg0 < 0) {
@@ -1502,9 +1502,9 @@ s32 TCameraCtrl::get_camera_target_id(s32 arg0) {
         if (var_r3 >= 4) {
             return 0xFFFF;
         }
-        temp_r3_2 = *(s32 *)((s8 *)&camera_controller_registry[0] + (var_r3 * 4));
-        if (temp_r3_2 != 0U) {
-            var_r31 = TCameraCtrl__sub_8006B358((void *)temp_r3_2);
+        temp_r3_2 = camera_controller_registry[var_r3];
+        if (temp_r3_2 != NULL) {
+            var_r31 = TCameraCtrl__sub_8006B358(temp_r3_2);
         }
         return var_r31;
     }
