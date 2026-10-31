@@ -44,7 +44,7 @@ u8 *TObjNpcNFW01__ct(u8 *arg0, s32 arg1, s32 arg2) {
     *(s32 **)((s8 *)arg0 + 0x18) = &(*(RecoveredGlobal_8014CF50___vt__12TObjNpcNFW01 *)&__vt__12TObjNpcNFW01).value;
     *(s32 *)((s8 *)arg0 + 0) = (s32) TObjNpcNFW01__name;
     ((TObjNpcNFW01 *)(arg0))->apply_set_data((void *)arg2);
-    ((TObjPlayer *)arg0)->init_position_vectors();
+    ((TObjChara *)arg0)->initialize_position_copies();
     *(s32 *)((s8 *)arg0 + 0x34) = (s32) *TObjNpcNFW01__shared_object_resource;
     ((TObjNpcNFW01 *)arg0)->texlist = (s32) TObjNpcNFW01__texture_gvm;
     ((TObjNpcBase *)arg0)->setup_common();

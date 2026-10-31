@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "types.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/player/TObjChara.h"
@@ -76,7 +77,7 @@ int TOVS2Wall01::interact_player_neg1() { return submit_cursor_candidate(this, -
 
 void TOVS2Wall01::run_task() {
     u8 *arg0 = (u8 *)this;
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         TOVS2Wall01__sub_8017B9AC(arg0);
         return;
     }

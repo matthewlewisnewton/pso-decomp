@@ -1,4 +1,7 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/math/FloatRounding.h"
+#include "pso/misc/PositionSoundEffects.h"
+#include "pso/player/demo_mode.h"
 #include "pso/misc/MaterialOpacityFade.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEnemy.h"
@@ -141,7 +144,6 @@ extern const f32 TObjEneMe1Gee__data_805DA0B4;
 extern const f32 TObjEneMe1Gee__data_805DA0C8;
 extern const f32 TObjEneMe1Gee__data_805DA0D4;
 extern const f32 TObjEneMe1Gee__data_805DA0E8;
-f32 get_status_value_f32__23TObjEneMe1CanadinLeaderFv(f32);
 extern const f32 lbl_805DA0B0;
 f64 atan2_float(f32, f32);
 void rotate_xz_pair_by_angle(f32 *arg0, f32 *arg1, s32 arg2);
@@ -206,7 +208,6 @@ s32 pack_debug_text_position(s32, s32);
 s32 find_attack_target__13TObjEneMe1GeeFPvPv(Gee_800CBB34 *arg0, f32 *out);
 void vfunc_61__13TObjEneMe1GeeFv(void);
 void vfunc_28__13TObjEneMe1GeeFv(void);
-void TBoss3Volopt__sub_800D8D88(s32);
 s32 approach_angle_limited(s32, s32, s32);
 void *get_player_by_client_id(s32 i);
 s32 push_matrix();
@@ -396,8 +397,8 @@ void TObjEneMe1Gee::init_state() {
     this->init_position_vectors();
     this->vfunc_106();
     this->init_model(gee_collision_template, 1);
-    this->set_field_d8((s32)((void *) gee_actions));
-    this->set_field_dc((int) (*(s32 *)((s8 *)(*(u8 * *)&(*(int *)&TObjEneMe1Gee__resource_bundle)) + 0x430)));
+    set_action_table(gee_actions);
+    set_motion_list(TObjEneMe1Gee__resource_bundle->motions);
     this->requested_action = 0;
     set_animation((this->requested_action));
     this->set_field_b8((int) (this->requested_action));
@@ -468,7 +469,7 @@ TObjEneMe1Gee::~TObjEneMe1Gee() {
 
 void TObjEneMe1Gee::run_task() {
     TObjEneMe1Gee *object;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         vfunc_114();
         return;
     }
@@ -1010,7 +1011,7 @@ void TObjEneMe1Gee::state_move(s32 arg1) {
         this->actorFlags = temp_r4;
         this->color_sequence = 1;
         this->fade.start_fade_in();
-        ((TBoss3Volopt *)&this->position)->play_area_sound_effect();
+        play_area_sound_and_particles_b(&position);
         return;
     case 3:
         if (this->fade.advance_toward_max() != 0) {
@@ -1047,7 +1048,7 @@ void TObjEneMe1Gee::fn_800CAFD8(s32 reason) {
         effect_height = effect_position.y + lbl_805DA128;
         effect_position.y = effect_height;
         world_height = effect_height;
-        TBoss3Volopt__sub_800D8D88((s32)&effect_position);
+        play_area_sound_and_particles_a(&effect_position);
         vfunc_91();
         state_step = 0;
         return;
@@ -1974,7 +1975,7 @@ void TObjEneMe1Gee::render() {
     s32 var_r30;
     s32 var_r29;
 
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->vfunc_115();
         return;
     }
@@ -2096,7 +2097,7 @@ void TObjEneMe1Gee::vfunc_115() {
 TUnk_8049387C::~TUnk_8049387C() {}
 
 void TUnk_8049387C::run_task() {
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         vfunc_114();
         return;
     }
@@ -2137,7 +2138,7 @@ void TUnk_8049387C::vfunc_107() {
     s32 b;
     s32 angle;
     Vec v;
-    n = (s32)get_status_value_f32__23TObjEneMe1CanadinLeaderFv((f32)max_children / (f32)gee_parameters->swarm_group_divisor);
+    n = (s32)ceil_to_float((f32)max_children / (f32)gee_parameters->swarm_group_divisor);
     if (n < 1) {
         n = 1;
     }
@@ -2193,7 +2194,7 @@ void TUnk_8049387C::remove_child(TObjEneMe1Gee *arg1) {
         }
     }
     if (swarm_phase == 3) {
-        s32 lim = (s32)get_status_value_f32__23TObjEneMe1CanadinLeaderFv((f32)max_children / (f32)gee_parameters->swarm_group_divisor);
+        s32 lim = (s32)ceil_to_float((f32)max_children / (f32)gee_parameters->swarm_group_divisor);
         if (child_count <= max_children - lim) {
             leader = (TObjEneMe1Gee *)find_entity_by_id(leader_id);
             leader->set_flag3c8_bit8();

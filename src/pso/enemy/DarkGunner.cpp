@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
 #include "pso/system/BmlResourceClass.h"
@@ -1508,7 +1509,7 @@ void TObjPlayer__sub_800A28A4(VObj_18_800A28A4 *self) {
         TObjPlayer__sub_8023DEE0((s16 *)lbl_805D5024, 8, 0, 1);
         TObjPlayer__sub_8023DEE0((s16 *)lbl_805D5028, 8, 0, 0);
     }
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         ((void (*)(VObj_18_800A28A4 *))init_scale_global__10TObjPlayerFv)(self);
         TObjPlayer__sub_800A1974(self);
         return;
@@ -1685,7 +1686,7 @@ u8 *TObjPlayer__sub_800A2F94(u8 *self, s32 arg1, u8 *arg2) {
     ((TObjEneDarkGunner *)self)->set_fields_24_34_from_global((void *)1);
     F(s32, 0xDC) = *(s32 *)(G500C + 0x430);
     F(void *, 0xD8) = lbl_80490668;
-    ((TObjMotion *)self)->set_field_d8(F(s32, 0xD8));
+    ((TObjMotion *)self)->set_action_table((TObjMotionAction *)(F(s32, 0xD8)));
     F(s16, 0xB8) = 0;
     ((TObjMotion *)self)->set_animation(F(s16, 0xB8));
     ((TObjMotion *)self)->set_field_b8(F(s16, 0xB8));

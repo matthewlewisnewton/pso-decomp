@@ -7,23 +7,29 @@ compiler/split/symbol configuration. Shared headers and implementations are reta
 from the fork base. The main and swarm shadow calls use the base's canonical
 `draw_ground_shadow` declaration.
 
-## Required prerequisites
+## Current base and remaining prerequisites
 
-The initial fork base `623d9415a5edb3e27c686135385dcf98b5fa36bc` lacks these
-reviewed contracts needed by this source:
+The certified foundation merged at fork
+`a166aa963a4afefc9d94608aeb4411a2b26dbf33` has the exact tree reviewed and
+validated at `6286c30af81e4bb81cae2c99d0c2c818219f28a8`. It supplies the canonical
+MaterialOpacityFade class/unit, BML/NPC storage and view/ground/position interfaces.
+The native fade member remains 0x1C bytes at Gee offset 0x3CC, with automatic
+construction and destruction. The Gee source uses the foundation's free demo
+predicate, float ceiling helper, positional effects, typed motion-table setters
+and ground-shadow calls. Shared declarations and implementations are unchanged.
 
-- `c8556ebbba071e334b2d994c92fc5dcba4d07fdf`: canonical
-  `MaterialOpacityFade` class and implementation. The native member is 0x1C
-  bytes at Gee offset 0x3CC; its construction/destruction is automatic.
+Two reviewed contracts remain missing from that foundation:
+
 - `028902d2ca5bacfde2ec6cb4f37865f7ed53b57c`: nonstatic actor receiver
-  for `TObjEneDD::get_random_scaled`.
+  for `TObjEneDD::get_random_scaled` (the foundation declares it static).
 - `e2267dabd4c903e79b5f7f13b98c8f987858590d`: full-register `s32`
-  result for the static main-phase predicate.
+  result for the static main-phase predicate (the foundation declares `u8`).
 
 The integration lead supplies coherent equivalents on a fork-local common base.
 This layer introduces no generic declarations or shims to fill those gaps. The
-initial draft is unvalidated on this base; prior matching results do not certify
-this reapplication. Validate after the prerequisite base is available.
+combined draft remains unvalidated; prior matching results do not certify this
+reapplication. Full builds and review wait for the prerequisite base. The initial
+623d preparation additionally lacked MaterialOpacityFade; that gap is now closed.
 
 ## Native storage and emission
 

@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "types.h"
 #include "pso/render/render_util.h"
 #include "pso/system/memory.h"
@@ -84,7 +85,7 @@ void TBoss6Zanzo::render() { set_depth_buffer_settings_1__Fv(this); TBoss6Zanzo_
 void run_task__11TBoss6ZanzoFv(Obj_803208CC *arg0) {
     Src_80320534 *base;
     Src_80320534 *p;
-    if (TObjPlayer::check_demo_mode() == 0) {
+    if (check_demo_mode() == 0) {
         base = arg0->arr;
         for (p = base + arg0->n - 1; p > base; p--) {
             ((TBoss6Zanzo *)arg0)->copy_trail_buffer(p, p - 1);
