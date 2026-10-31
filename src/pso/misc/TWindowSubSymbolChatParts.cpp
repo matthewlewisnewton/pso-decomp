@@ -384,18 +384,16 @@ void fn_802855C4(Win_802857C4 *self, Rect_802857C4 *ctx) {
     Part_80285314 *e1;
     Part_80285314 *e2;
     Part_80285314 *e0;
-    f32 y;
     row = 0;
     e1 = (Part_80285314 *)((TUnk_804CE018 *)self)->get_array_entry(1);
     e2 = (Part_80285314 *)((TUnk_804CE018 *)self)->get_array_entry(2);
     e0 = (Part_80285314 *)((TUnk_804CE018 *)self)->get_array_entry(0);
     for (i = 0; i < self->count; row++) {
-        f32 off = 40.0f * (f32)row;
-        y = ctx->y + off;
-        if (8.0f + (32.0f + y) < ctx->top || y - 8.0f > ctx->bottom) {
+        f32 bottom = 8.0f + (32.0f + (ctx->y + 40.0f * (f32)row));
+        if (bottom < ctx->top || (ctx->y + 40.0f * (f32)row) - 8.0f > ctx->bottom) {
             i += 4;
         } else {
-            f32 draw_y = 9.0f + off;
+            f32 draw_y = 9.0f + 40.0f * (f32)row;
             for (j = 0; j < 4; j++, i++) {
                 if (i >= self->count) break;
                 e1->x = 40.0f * (f32)j + 10.0f;
