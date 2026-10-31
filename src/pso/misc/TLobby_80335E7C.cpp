@@ -1,5 +1,6 @@
 // ---- pso/misc/TLobby_80335E08 [0x80335E7C-0x80336054): separate TU (own .sdata2 pool 0x805DF8C8-0x805DF8E8)
 #include "types.h"
+#include "pso/misc/TitleSceneTables.h"
 #include "pso/misc/TUnk_804EE470.h"
 #include "pso/ui/TUnk_804EE458.h"
 #include "pso/misc/TLobby_80335E08.h"
@@ -31,10 +32,6 @@ struct RecoveredGlobal_8000F764_TKeyBoardControl__data_80506270 {
     u8 remaining[0xAC];
 };
 
-struct RecoveredGlobal_8000F7FC_lbl_80515F48 {
-    s32 value;
-    u8 remaining[0x24];
-};
 
 struct RecoveredGlobal_8000F9E4_lbl_804FE120 {
     s32 value;
@@ -80,7 +77,7 @@ s32 TCameraCtrl__sub_80068EF0();
 
 
 
-extern RecoveredGlobal_8000F7FC_lbl_80515F48 title_texture_list;
+
 
     
     
@@ -139,7 +136,7 @@ void*TLobby::get_record(int a0) {  return (char*)lobby_record_table + a0 * 32; }
 typedef char RecoveredGlobal_8000F764_TKeyBoardControl__data_80506270_size[sizeof(RecoveredGlobal_8000F764_TKeyBoardControl__data_80506270) == 0xB0 ? 1 : -1];
 typedef char RecoveredGlobal_8000F7FC_lbl_80515F48_size[sizeof(RecoveredGlobal_8000F7FC_lbl_80515F48) == 0x28 ? 1 : -1];
 void bind_title_texture_list(void) {
-    set_texlist((u32)&title_texture_list.value);
+    set_texlist((u32)&title_texture_list);
 }
 typedef char RecoveredGlobal_8000F90C_lbl_804FE120_size[sizeof(RecoveredGlobal_8000F90C_lbl_804FE120) == 0x18 ? 1 : -1];
 typedef char RecoveredGlobal_8000F8FC_lbl_804FE120_size[sizeof(RecoveredGlobal_8000F8FC_lbl_804FE120) == 0x18 ? 1 : -1];
