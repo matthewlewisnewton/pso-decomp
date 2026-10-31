@@ -53,5 +53,7 @@ provisional.
 The standalone GC/2.6 compile succeeds. Objdiff reports 81.26% for the new
 body (1,820 original versus 1,864 candidate bytes). The input dispatcher and
 grid frame renderer remain 40.28% and 91.09% respectively. The targeted
-`.rodata` comparison is 100%; the full regression check is pending. None of
-these scores proves exact code, relocations or runtime semantics.
+`.rodata` comparison is 100%. The locked two-job incremental rebuild and
+`tools/check_pr.py --no-build` passed with no lost exact functions, data or
+linked units (3,536 linked units checked). None of these scores proves exact
+code, relocations or runtime semantics; the DOL still uses the original unit.
