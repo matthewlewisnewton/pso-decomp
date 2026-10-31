@@ -381,38 +381,27 @@ void render__15TOTrapAncient01Fv(Trap_80179B8C *self) {
 void TOTrapAncient01::vfunc_81() {
     f32 &step = *(f32 *)((u8 *)this + 0x34c);
     scale.y += step;
-    if (0.0f < scale.y) {
-        switch (get_current_floor_area()) {
+    if (!(0.0f < scale.y)) {
+        goto grounded;
+    }
+    switch (get_current_floor_area()) {
         case AREA_CAVE1: case AREA_CAVE2: case AREA_CAVE3:
             play_persistent_sound(0x4321a, this, &position, 0, 0);
-            break;
+            return;
         case AREA_MINE1: case AREA_MINE2:
             play_persistent_sound(0x4004b211, this, &position, 0, 0);
-            break;
+            return;
         case AREA_RUINS1: case AREA_RUINS2: case AREA_RUINS3:
             play_persistent_sound(0x4004b217, this, &position, 0, 0);
-            break;
+            return;
         case AREA_VR_SPACESHIP_ALPHA: case AREA_VR_SPACESHIP_BETA:
             play_persistent_sound(0x4004b212, this, &position, 0, 0);
-            // Area 0 shares this return path; the remaining no-op areas use
-            // the switch exit. Its one relocation still needs recovery.
-        case AREA_PIONEER2_EP1:
             return;
-        case AREA_FOREST1:
-        case AREA_FOREST2:
-        case AREA_DRAGON:
-        case AREA_DE_ROL_LE:
-        case AREA_VOL_OPT:
-        case AREA_DARK_FALZ:
-        case AREA_LOBBY:
-        case AREA_BATTLE1:
-        case AREA_BATTLE2:
-        case AREA_PIONEER2_EP2:
-        case AREA_VR_TEMPLE_ALPHA:
-        case AREA_VR_TEMPLE_BETA:
-            break;
-        }
-    } else {
+// Keep the grounded path inside the switch's lexical extent so no-op case
+// labels below bind directly to the common epilogue. Moving it outside creates
+// a branch thunk and changes the compiler-generated jump-table relocations.
+grounded:
+    {
         *(s16 *)((u8 *)this + 0x326) = 3;
         scale.y = 0.0f;
         calc_attach_pos();
@@ -441,6 +430,22 @@ void TOTrapAncient01::vfunc_81() {
         } else {
             target = NULL;
         }
+    }
+        case AREA_PIONEER2_EP1:
+            return;
+        case AREA_FOREST1:
+        case AREA_FOREST2:
+        case AREA_DRAGON:
+        case AREA_DE_ROL_LE:
+        case AREA_VOL_OPT:
+        case AREA_DARK_FALZ:
+        case AREA_LOBBY:
+        case AREA_BATTLE1:
+        case AREA_BATTLE2:
+        case AREA_PIONEER2_EP2:
+        case AREA_VR_TEMPLE_ALPHA:
+        case AREA_VR_TEMPLE_BETA:
+            return;
     }
 }
 
