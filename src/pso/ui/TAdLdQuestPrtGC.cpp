@@ -112,3 +112,66 @@ TAdLdQuestPrtGC::TAdLdQuestPrtGC(TObject *parent) : TObject(parent) {
     angle_steps[3].z = -0x5B;
 }
 #pragma pop
+
+// The physical bank's stick samples and extent are established by the input updater.
+struct QuestPhysicalPortBank {
+    u8 unknown_00[0x34];
+    s16 stick_x, stick_y;
+    u8 remaining[0x178];
+};
+extern "C" {
+extern QuestPhysicalPortBank controller_physical_port_bank;
+extern u8 controller_input_state[0x1B0];
+// Existing names encode obsolete class ownership; both receive an input record
+// in r3 and a button mask in r4, as in the neighboring loading UI callers.
+s32 TWindowShortListCtrl__check_controller_button(void *, s32);
+s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, s32);
+extern const f32 lbl_805DF540, lbl_805DF544;
+}
+
+#pragma push
+#pragma opt_common_subs on
+void TAdLdQuestPrtGC::run_task() {
+    if (TWindowShortListCtrl__check_controller_button((u8 *)&controller_physical_port_bank + 0x20, 4) != 0 ||
+        test_flag_4c__23TAdSinglePlyChrSelectGCFv(controller_input_state + 0x160, 4) != 0) {
+        color_frames = 0;
+        ++color_index;
+        if (color_index >= 6) color_index = 0;
+    }
+    s32 x = controller_physical_port_bank.stick_x;
+    s32 y = controller_physical_port_bank.stick_y;
+    if (get_abs__15TAdLdQuestPrtGCFv(x) > 0 || get_abs__15TAdLdQuestPrtGCFv(y) > 0) {
+        static f32 input_scale = lbl_805DF540;
+        const f32 multiplier = input_scale;
+        x = (s32)((f32)x * multiplier);
+        f32 x_angle = lbl_805DF544 * (f32)-x;
+        y = (s32)((f32)y * multiplier);
+        f32 y_angle = lbl_805DF544 * (f32)-y;
+        angle_steps[0].x = (s32)x_angle / 5;
+        angle_steps[0].z = (s32)y_angle / 5;
+        angle_steps[1].x = (s32)(lbl_805DF544 * (f32)(-x * 2)) / 4;
+        angle_steps[1].z = (s32)(lbl_805DF544 * (f32)(-y * 2)) / 3;
+        angle_steps[2].x = (s32)y_angle / 2;
+        angle_steps[2].z = (s32)(lbl_805DF544 * (f32)x) / 6;
+        // Angles are word accumulators: unsigned addition preserves their wrap.
+        angles[0].x += angle_steps[0].x;
+        angles[1].x += angle_steps[1].x;
+        angles[2].x += angle_steps[2].x;
+        angles[3].x += angle_steps[3].x;
+    }
+    angles[0].z += angle_steps[0].z;
+    angles[1].z += angle_steps[1].z;
+    angles[2].z += angle_steps[2].z;
+    angles[3].z += angle_steps[3].z;
+    for (u32 i = 0; i < 4; i++) {
+        if (particles[i] != 0) {
+            particles[i]->set_direction(&angles[i]);
+            particles[i]->set_tint_color(lbl_80476610[color_index]);
+        }
+    }
+    ++color_frames;
+    color_frames = color_frames > 12 ? 12 : color_frames;
+    ++frames;
+}
+
+#pragma pop

@@ -40,3 +40,25 @@ header consumers (`TBoss6Kakusan.cpp` and `TBoss6GravBall_80323134.cpp`) only
 include this header; their compiled allocated sections and relocations must
 remain identical. Whole-program validation and source-link eligibility remain
 pending; a matching fallback DOL alone will not prove source linkage.
+
+## Task continuation
+
+The task at `0x80322B54` changes a six-entry tint selection on the existing
+button helpers, samples two signed stick axes, scales them with a lazily
+initialized multiplier, and converts signed angular increments with truncation
+toward zero. The doubled-angle paths multiply the signed integer before the
+float conversion. Division is signed, and the half/quarter paths truncate toward
+zero. The recovered word accumulators preserve wrap, and controller directions
+are updated only for non-null children. Frame counters use unsigned arithmetic.
+
+The retained 828-byte task candidate is nonexact (95.52657% targeted similarity).
+The remaining differences concern floating conversion scheduling, temporary
+registers/stack slots, and still-externalized static storage/constant labels.
+This is not an exact-gain or source-link claim. Caching the reused Y conversion
+is supported by the original reuse; changing float versus integer temporaries
+and conversion order produced distinct nonexact probes. Additional scheduling
+experiments need a new source-level hypothesis rather than score-only rewriting.
+
+The input helper names retain existing annotations. Their call boundaries match
+the original r3 input-record/r4 mask usage; this change does not expand unrelated
+input-helper class contracts or alter their implementations.
