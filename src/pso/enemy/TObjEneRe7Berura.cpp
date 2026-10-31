@@ -1,3 +1,4 @@
+#include "pso/math/MatrixCopy.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -509,10 +510,8 @@ f32 cos_table_lookup(s32);
 void bind_motion_context(s32 arg0, f32 farg0);
 void compose_motion_node_matrix(void *arg0);
 s32 matrix_mult_vec(int, void *, void *);
-void copy_matrix__10TObjPlayerFUlUl(int, void *);
 s32 subtract_vector(void *, void *);
 void translate_matrix(u32 arg0, f32 x, f32 y, f32 z);
-s32 concat_matrix__10TObjPlayerFUlUl(s32, s32);
 s32 push_matrix_from(void *, int, int, int);
 s32 push_matrix();
 s32 pop_matrix();
@@ -959,7 +958,7 @@ void draw_node_tree__16TObjEneRe7BeruraFPv(void *arg0) {
         push_matrix();
         temp_r4 = TObjEneRe7Berura__node_matrix_cursor;
         TObjEneRe7Berura__node_matrix_cursor = temp_r4 + 0x30;
-        concat_matrix__10TObjPlayerFUlUl(0, temp_r4);
+        concat_matrix(0, (const f32 (*)[4])temp_r4);
         temp_r31 = *(s32 *)((s8 *)var_r30 + 0);
         if (!(temp_r31 & 8)) {
             draw_chunk_model((void *)(*(s32 *)((s8 *)var_r30 + 4)));
@@ -1008,10 +1007,10 @@ s32 TObjEneRe7Berura::collect_node_matrices(void *arg0, int idx) {
             get_current_matrix(&m);
             ((s32 (*)(void *))push_matrix_from)(identity_matrix);
             translate_matrix(0, -V[0], -V[1], -V[2]);
-            ((s32 (*)(s32, void *))concat_matrix__10TObjPlayerFUlUl)(0, &m);
+            concat_matrix(0, m.m);
             get_current_matrix(&m);
             pop_matrix();
-            copy_matrix__10TObjPlayerFUlUl(0, &m);
+            copy_matrix(0, m.m);
         }
         if (idx >= berura_attack_node_range_start && idx <= berura_attack_node_range_end) {
             s32 p = TObjEneRe7Berura__node_matrix_cursor;

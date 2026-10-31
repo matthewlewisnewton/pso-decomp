@@ -1,3 +1,4 @@
+#include "pso/math/MatrixCopy.h"
 #include "pso/system/vector.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/TBoss2Tentacle.h"
@@ -140,20 +141,20 @@ void render__14TBoss2TentacleFv(u8 *arg0) {
     push_matrix();
     switch (*(s32 *)((s8 *)arg0 + 0x1C)) {
     case 0:
-        TObjPlayer::concat_matrix(0, (int) (*(s32 *)((s8 *)arg0 + 0x110)));
+        concat_matrix((MtxP)(0), (const f32 (*)[4])((int) (*(s32 *)((s8 *)arg0 + 0x110))));
         rotate_matrix_y(0, (int) (*(s32 *)((s8 *)arg0 + 0x11C)));
         draw_model_motion((lbl_805D4BD0), (TBoss2Tentacle__motion_data), (f32) (*(f32 *)((s8 *)arg0 + 0x114)));
         break;
     case 1:
     case 4:
     case 5:
-        TObjPlayer::concat_matrix(0, (int) (*(s32 *)((s8 *)arg0 + 0x110)));
+        concat_matrix((MtxP)(0), (const f32 (*)[4])((int) (*(s32 *)((s8 *)arg0 + 0x110))));
         rotate_matrix_x(0, (int) (*(s32 *)((s8 *)arg0 + 0x120)));
         rotate_matrix_y(0, (int) (*(s32 *)((s8 *)arg0 + 0x11C)));
         draw_model_motion((lbl_805D4BD0), (TBoss2Tentacle__motion_data), (f32) (*(f32 *)((s8 *)arg0 + 0x114)));
         break;
     case 2:
-        TObjPlayer::concat_matrix(0, (int) (*(s32 *)((s8 *)arg0 + 0x110)));
+        concat_matrix((MtxP)(0), (const f32 (*)[4])((int) (*(s32 *)((s8 *)arg0 + 0x110))));
         rotate_matrix_x(0, (int) (*(s32 *)((s8 *)arg0 + 0x120)));
         rotate_matrix_y(0, (int) (*(s32 *)((s8 *)arg0 + 0x11C)));
         draw_chunk_object((lbl_805D4BD0));
@@ -229,7 +230,7 @@ void run_task__14TBoss2TentacleFv(u8 *arg0) {
         v.z = v.y = v.x = (*(const f32 *)&TBoss2Tentacle__data_805D8534);
         push_matrix();
         set_matrix_identity(0);
-        TObjPlayer::concat_matrix(0, F(s32, 0x110));
+        concat_matrix((MtxP)(0), (const f32 (*)[4])(F(s32, 0x110)));
         matrix_mult_vec(0, &v, arg0 + 0x140);
         pop_matrix();
         VecCopy((Vec *)&v, (const Vec *)(arg0 + 0x12C));

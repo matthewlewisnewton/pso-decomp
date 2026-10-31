@@ -280,7 +280,6 @@ struct TObjPlayer : public TObjChara {
     void drain_owner_hp_fraction(f32 farg0);
     void call_callback_1ec(s32 arg1, s32 arg2);
     void copy_wall_polygon(u8 *arg1);
-    static void copy_matrix(u32 arg0, u32 arg1);
     static s32 run_next_key_callback(s32 arg0);
     static s32 sample_next_quaternion_key(s32 arg0);
     void interpolate_motion_key(s32 arg1, s32 *arg2, f32 farg0);
@@ -1269,7 +1268,6 @@ struct TObjPlayer : public TObjChara {
     void process_all_elements();
     static void mult_vec_array(u32 arg0, s32 arg1);
     static void invert_matrix_in_place(u32 arg0);
-    static void concat_matrix(u32 arg0, u32 arg1);
     void concat_quaternion_rotation();
     void apply_quat_rotation(f32 farg0);
     static s32 is_gvm_load_ok();

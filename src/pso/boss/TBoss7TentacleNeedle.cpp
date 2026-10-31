@@ -1,3 +1,4 @@
+#include "pso/math/MatrixCopy.h"
 #include "pso/system/vector.h"
 #include "types.h"
 #include "pso/object/TObject_80019A50.h"
@@ -324,7 +325,7 @@ void render__14TBoss7TentacleFv(u8 *arg0) {
     switch (*(s32 *)((s8 *)arg0 + 0x30)) {
     case 0:
         set_motion_packed_rotation();
-        TObjPlayer::concat_matrix(0, (int) (*(s32 *)((s8 *)arg0 + 0x130)));
+        concat_matrix((MtxP)(0), (const f32 (*)[4])((int) (*(s32 *)((s8 *)arg0 + 0x130))));
         rotate_matrix_y(0, (int) (*(s32 *)((s8 *)arg0 + 0x13C)));
         scale_current_matrix((void *) ((u8 *)(arg0) + 0x24));
         ((s32 (*)(void *, int, f32))draw_model_motion)((void *) (*(s32 **)((s8 *)arg0 + 0x1C)), (int) (*(s32 *)((s8 *)arg0 + 0x20)), (f32) (*(f32 *)((s8 *)arg0 + 0x134)));
@@ -334,14 +335,14 @@ void render__14TBoss7TentacleFv(u8 *arg0) {
     case 4:
     case 5:
         set_motion_packed_rotation();
-        TObjPlayer::concat_matrix(0, (int) (*(s32 *)((s8 *)arg0 + 0x130)));
+        concat_matrix((MtxP)(0), (const f32 (*)[4])((int) (*(s32 *)((s8 *)arg0 + 0x130))));
         rotate_matrix_zyx(0, (*(s32 *)((s8 *)arg0 + 0x140)), (*(s32 *)((s8 *)arg0 + 0x13C)), 0);
         scale_current_matrix((void *) ((u8 *)(arg0) + 0x24));
         ((s32 (*)(void *, int, f32))draw_model_motion)((void *) (*(s32 **)((s8 *)arg0 + 0x1C)), (int) (*(s32 *)((s8 *)arg0 + 0x20)), (f32) (*(f32 *)((s8 *)arg0 + 0x134)));
         clear_motion_packed_rotation();
         break;
     case 2:
-        TObjPlayer::concat_matrix(0, (int) (*(s32 *)((s8 *)arg0 + 0x130)));
+        concat_matrix((MtxP)(0), (const f32 (*)[4])((int) (*(s32 *)((s8 *)arg0 + 0x130))));
         rotate_matrix_zyx(0, (*(s32 *)((s8 *)arg0 + 0x140)), (*(s32 *)((s8 *)arg0 + 0x13C)), 0);
         scale_current_matrix((void *) ((u8 *)(arg0) + 0x24));
         draw_chunk_object((*(s32 **)((s8 *)arg0 + 0x1C)));
@@ -439,7 +440,7 @@ void run_task__14TBoss7TentacleFv(u8 *boss7_tentacle) {
         v.z = TBoss7Tentacle__data_805DEC04;
         push_matrix();
         set_matrix_identity(0);
-        TObjPlayer::concat_matrix(0, *(s32 *)((s8 *)boss7_tentacle + 0x130));
+        concat_matrix((MtxP)(0), (const f32 (*)[4])(*(s32 *)((s8 *)boss7_tentacle + 0x130)));
         transform_point_by_current_matrix(&v, boss7_tentacle + 0x40);
         pop_matrix();
         VecCopy((Vec *)&v, (const Vec *)(boss7_tentacle + 0x14C));
