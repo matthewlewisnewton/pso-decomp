@@ -289,7 +289,7 @@ void TObjEneMe1Canadin::setup_enemy() {
     u8 *arg0 = (u8 *)this;
     s32 i;
 
-    this->initialize_position_copies();
+    this->init_position_vectors();
     this->vfunc_106();
     init_model__9TObjEneDDFP13CollisionBodyl(arg0, &lbl_8048FECC, 1);
     ((TObjMotion *)arg0)->set_action_table((TObjMotionAction *)lbl_8048FF30);
