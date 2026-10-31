@@ -65,7 +65,7 @@ extern TCameraCtrl *camera_ctrl_instance;
 extern LensFlareSpriteDefinition lbl_804C5820[];
 extern const Vec lbl_80438E40;
 f32 vec3_dot(const Vec *, const Vec *);
-s32 normalize_vector(Vec *);
+f32 normalize_vector(Vec *);
 extern const f32 lbl_805D9338;
 extern const f32 lbl_805D933C;
 extern const f32 lbl_805D9340;
@@ -209,13 +209,11 @@ void TEF_LensFlare::render() {
             draw_textured_quad_at_depth(quad, lbl_805D9360);
             TWindowSubStatusDisp::get_player();
             LensFlareElement *element = elements;
-            f32 one = lbl_805D935C;
-            f32 inverse_strength = one - strength;
-            f32 zero = lbl_805D9338;
+            f32 inverse_strength = lbl_805D935C - strength;
             s32 i = 1;
             do {
-                f32 size = element->scale * (one - inverse_strength * element->attenuation);
-                if (size < zero) size = zero;
+                f32 size = element->scale * (lbl_805D935C - inverse_strength * element->attenuation);
+                if (size < lbl_805D9338) size = lbl_805D9338;
                 LensFlareColor color;
                 // fctiwz followed by stb: signed truncation, then low-byte wrapping.
                 color.channels.a = (s32)(lbl_805D934C * (strength * element->alpha));
@@ -223,7 +221,7 @@ void TEF_LensFlare::render() {
                 sprite->color = color.packed;
                 point.x = center_x * element->displacement + screen[0];
                 point.y = center_y * element->displacement + screen[1];
-                point.z = zero;
+                point.z = lbl_805D9338;
                 VecCopy(sprite_position, &point);
                 sprite->scale_x = size; sprite->scale_y = sprite->scale_x;
                 begin_screen_draw(1);
@@ -239,8 +237,8 @@ void TEF_LensFlare::render() {
                 f32 quad[8];
                 quad[0] = x - half_width; quad[2] = x + half_width;
                 quad[1] = y - half_height; quad[3] = y + half_height;
-                quad[4] = zero; quad[5] = zero;
-                quad[6] = one; quad[7] = one;
+                quad[4] = lbl_805D9338; quad[5] = lbl_805D9338;
+                quad[6] = lbl_805D935C; quad[7] = lbl_805D935C;
                 set_constant_material_color(sprite->color);
                 draw_textured_quad_at_depth(quad, lbl_805D9360);
                 TWindowSubStatusDisp::get_player();

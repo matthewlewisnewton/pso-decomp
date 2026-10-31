@@ -10,12 +10,15 @@ initializes a local sprite scratch, selects additive blending, and optionally
 rejects the light using `(10 * scale.x)^2` and the existing proximity helper.
 That rejection precedes `begin_effect_render`; do not add a matching end call
 there. After beginning the effect, it normalizes the camera-to-light vector
-when its squared length is nonzero. An identity matrix, camera y rotation,
+when its squared length is nonzero. The normalizer at 0x803D97B4 writes
+three float components and returns its approximate length in f1; its local
+declaration therefore uses an f32 result. The caller ignores that result. An identity matrix, camera y rotation,
 camera x rotation, and the constant forward vector establish the facing dot
 product. A nonpositive dot skips drawing but still ends the effect.
 
 For positive facing, depth/alpha state is saved by the existing state helper
-before projecting the object's position. The original has no extra x/y screen
+before projecting the object's position. The projection helper at 0x803D8D1C
+writes only output offsets 0 and 4, proving the two-float screen buffer extent. The original has no extra x/y screen
 clipping test or alpha clamp. The glare path uses sprite definition 15 when
 facing exceeds 0.99. The central path always uses definition 9. Both build
 axis-aligned quads with full 0..1 UVs at depth 0.5. Each draw pairs
