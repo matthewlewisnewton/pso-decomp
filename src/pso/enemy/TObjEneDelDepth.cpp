@@ -364,7 +364,7 @@ void TObjEneDelDepth::run_task() {
     (void)(fn != NULL);
     (this->*fn)();
     ((TObjEnemy *)o)->update_prev_position();
-    ((TObjPlayer *)o)->update_collisions();
+    ((TObjCollidable *)o)->update_collisions();
     if (this->targetable != 0) {
         submit_cursor_candidate(o, -1);
     }

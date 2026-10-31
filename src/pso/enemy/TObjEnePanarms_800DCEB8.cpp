@@ -1,5 +1,6 @@
 #include "pso/player/demo_mode.h"
 #include "pso/misc/ParticleFactory.h"
+#include "pso/system/ModelNodePositionCapture.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/misc/GroundEffects.h"
@@ -210,7 +211,6 @@ extern const f32 lbl_805DA50C;
 extern const f32 lbl_805DA510;
 extern const f32 lbl_805DA514;
 extern const f32 lbl_805DA518;
-int clear_render_callback__8TObjFishFv(void*);
 
 void TObjEnePanarms::update_spin() {
     s32 temp_r0;
@@ -988,7 +988,7 @@ s32 try_warp_to_position__14TObjEnePanarmsFPvPv(u8 *player, Vec_800DEB48 *arg1) 
             } while (i < 0x10);
         }
     }
-    ((TObjPlayer *)player)->update_collisions();
+    ((TObjCollidable *)player)->update_collisions();
     return ok;
 }
 #pragma pop
@@ -1050,7 +1050,7 @@ void TObjEnePanarms::draw_shadow() {
 
 #pragma pop
 
-void TObjEnePanarms__sub_800DEEF8(void* p) { push_matrix(p); post_translate_matrix((char*)p + 0x38); rotate_matrix_y((void*)0, *(void**)((char*)p + 0x60)); TObjFish::set_global_param((s32)(*(void**)((char*)p + 0x24))); ((TObjFish *)(((TObjEnePanarms *)p)->m_39c))->set_draw_callback_list(); ((TObjMotion *)p)->draw(); clear_render_callback__8TObjFishFv((void *)((TObjEnePanarms *)p)->m_39c); pop_matrix(); }
+void TObjEnePanarms__sub_800DEEF8(void* p) { push_matrix(p); post_translate_matrix((char*)p + 0x38); rotate_matrix_y((void*)0, *(void**)((char*)p + 0x60)); TObjFish::set_global_param((s32)(*(void**)((char*)p + 0x24))); ((ModelNodePositionCapture *)(((TObjEnePanarms *)p)->m_39c))->install(); ((TObjMotion *)p)->draw(); ((ModelNodePositionCapture *)((TObjEnePanarms *)p)->m_39c)->clear(); pop_matrix(); }
 
 #include "pso/misc/RenderFadeState.h"
 #include "pso/npc/NpcModelRegistry.h"
@@ -1173,7 +1173,7 @@ void TObjEnePanarms::destroy_handles() {
 u8 *__dt__14TObjEnePanarmsFv(u8 *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__14TObjEnePanarms;
-        TObjFish::init_state_1(*(u8 **)((s8 *)arg0 + 0x39C));
+        ModelNodePositionCapture::destroy((ModelNodePositionCapture *)*(u8 **)((s8 *)arg0 + 0x39C));
         queue_destruction__7TObjectFv(*(u8 **)((s8 *)arg0 + 0x3E4));
         queue_destruction__7TObjectFv(*(u8 **)((s8 *)arg0 + 0x3E8));
         free_collision_body_parts(arg0);

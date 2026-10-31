@@ -101,6 +101,7 @@ public:
     void mark_enemy_body_contacts();
     void update_enemy_collision_flags();
     void check_object_collisions();
+    void update_collisions();
     void refresh_collision_body_centers();
     // Gives it an entity id if it has none and enters it in the id-sorted
     // entity table (unregister_object_by_id takes it out).

@@ -670,7 +670,7 @@ void TObjEneNanoDrago::update_single_beam_state() {
         if (!(actorFlags & 0x01000000)) {
             apply_actor_gravity(((u8 *)this), 0, (f32) (0.0f));
         }
-        ((TObjPlayer *)((u8 *)this))->update_collisions();
+        ((TObjCollidable *)((u8 *)this))->update_collisions();
         remainingFrames = m_384 - 1;
         m_384 = remainingFrames;
         if (remainingFrames <= 0) {
@@ -733,7 +733,7 @@ void TObjEneNanoDrago::update_multi_beam_state() {
         }
         advance_animation();
         apply_actor_gravity(((u8 *)this), 0, 0.0f);
-        ((TObjPlayer *)((u8 *)this))->update_collisions();
+        ((TObjCollidable *)((u8 *)this))->update_collisions();
         m_384--;
         if (m_384 <= 0) {
             m_384 = 0x2D;
@@ -745,7 +745,7 @@ void TObjEneNanoDrago::update_multi_beam_state() {
         enemy_wander_home(speed, 100.0f, 100.0f, ((NanoDragoMovementParams *)movementParameters)->turnSpeed);
         advance_animation();
         apply_actor_gravity(((u8 *)this), 0, 0.0f);
-        ((TObjPlayer *)((u8 *)this))->update_collisions();
+        ((TObjCollidable *)((u8 *)this))->update_collisions();
         if (is_passing_frame((f32)(4.0f)) != 0 || is_passing_frame((f32)(20.0f)) != 0) {
             play_sound_effect(0x4003AD23, &position, 0, 0);
         }
@@ -807,7 +807,7 @@ void TObjEneNanoDrago::update_flight_state() {
             if (ok != 0) {
                 flightHeight += 2.2f;
             }
-            ((TObjPlayer *)((u8 *)this))->update_collisions();
+            ((TObjCollidable *)((u8 *)this))->update_collisions();
             if (TObjPlayer__sub_800DC478(((u8 *)this), 6, 22.0f) != 0) {
                 spawn_particle_effect((const Vec *)(&position), 0xF0);
                 play_sound_effect(0x4003AD20, &position, 0, 0);
@@ -892,7 +892,7 @@ void TObjEneNanoDrago::update_growth_state() {
     case 1:
         advance_animation();
         apply_actor_gravity(((u8 *)this), 0, 0.0f);
-        ((TObjPlayer *)((u8 *)this))->update_collisions();
+        ((TObjCollidable *)((u8 *)this))->update_collisions();
         t = scale.y;
         v = 0.0016000001f + scale.x;
         scale.x = (v < t) ? v : t;
@@ -938,7 +938,7 @@ void TObjEneNanoDrago::update_knockback_state() {
             movement_velocity.z *= 0.5f;
         }
         apply_actor_gravity(((u8 *)this), 0, 0.0f);
-        ((TObjPlayer *)((u8 *)this))->update_collisions();
+        ((TObjCollidable *)((u8 *)this))->update_collisions();
         if ((u32) action_flags != 8U) {
             state = -1;
         }
@@ -1150,7 +1150,7 @@ void TObjEneNanoDrago::update_fade_in_state() {
         if (appearFade.advance_toward_max() == 1) {
             state = -1;
         }
-        ((TObjPlayer *)this)->update_collisions();
+        ((TObjCollidable *)this)->update_collisions();
         return;
     case -1:
         stateFlags = m_388;

@@ -1570,7 +1570,7 @@ void TObjEneBm5Wolf::repositioning_state(s32 arg1) {
             *(f32 *)(this->m_410 + 0x38) = *(f32 *)((s8 *)arg0 + 0x38) + dx;
             *(f32 *)(this->m_410 + 0x3C) = *(f32 *)((s8 *)arg0 + 0x3C);
             *(f32 *)(this->m_410 + 0x40) = *(f32 *)((s8 *)arg0 + 0x40) + dz;
-            ((TObjPlayer *)(this->m_410))->update_collisions();
+            ((TObjCollidable *)(this->m_410))->update_collisions();
             if (!(*(s32 *)((s8 *)(*(void **)(this->m_410 + 0xA4)) + 0x18) & 0x380000)) {
                 dx *= TObjEneBm5Wolf__data_805D9DBC;
                 dz *= TObjEneBm5Wolf__data_805D9DBC;

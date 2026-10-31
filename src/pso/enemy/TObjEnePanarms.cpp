@@ -1,4 +1,5 @@
 #include "pso/player/demo_mode.h"
+#include "pso/system/ModelNodePositionCapture.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
 #include "types.h"
@@ -310,7 +311,6 @@ u8 TObjEnePanarms__sub_800E2E54(void *arg0);
 u8 TObjEnePanarms__sub_800E2E68(void *arg0);
 u8 is_below_half_hp__14TObjEnePanarmsFPv(void *arg0);
 s32 TObjEnePanarms__sub_800E2FB4(O_800E2FB4 *self);
-void clear_render_callback__8TObjFishFv(void);
 s32 __ct__11TObjControlFP7TObject(s32, s32);
 void *__dt__9TObjEnemyFv(TObjEnemy *arg0, s16 arg1);
 f32 horizontal_distance_squared(void *, void *);
@@ -1226,7 +1226,7 @@ s32 try_move_with_detour__14TObjEnePanarmsFPvPv(u8 *arg0, Vec_800E18B0 *arg1) {
         if (project_actor_to_ground(arg0, &p, 0) != 0 && csnLookAt(arg0 + 0x38, &p) == 0) {
             VecCopy((Vec *)(arg0 + 0x44), (const Vec *)(arg0 + 0x38));
             VecCopy((Vec *)(arg0 + 0x38), (const Vec *)&p);
-            ((TObjPlayer *)arg0)->update_collisions();
+            ((TObjCollidable *)arg0)->update_collisions();
             return 1;
         }
         ang = i << 12;
@@ -1446,7 +1446,7 @@ void TObjEnePanarms::update_linked_effect() {
     }
 }
 
-void TObjEnePanarms::draw() { ((int (*)(void*))push_matrix)(this); ((int (*)(void*))post_translate_matrix)((char*)this + 0x38); ((int (*)(void*, void*))rotate_matrix_y)((void*)0, *(void* *)&this->rotation_y); TObjFish::set_global_param((s32)(*(void* *)&this->texlist)); ((TObjFish *)(this->m_3dc))->set_draw_callback_list(); draw__10TObjMotionFv(this); ((int (*)(void*))clear_render_callback__8TObjFishFv)(this->m_3dc); ((int (*)(void))pop_matrix)(); }
+void TObjEnePanarms::draw() { ((int (*)(void*))push_matrix)(this); ((int (*)(void*))post_translate_matrix)((char*)this + 0x38); ((int (*)(void*, void*))rotate_matrix_y)((void*)0, *(void* *)&this->rotation_y); TObjFish::set_global_param((s32)(*(void* *)&this->texlist)); ((ModelNodePositionCapture *)(this->m_3dc))->install(); draw__10TObjMotionFv(this); ((ModelNodePositionCapture *)(this->m_3dc))->clear(); ((int (*)(void))pop_matrix)(); }
 
 void TObjEnePanarms::draw_with_fade() {
     s32 temp_r4;
@@ -1558,7 +1558,7 @@ Obj_800E24A4 *fn_800E24A4(Obj_800E24A4 *arg0, s16 arg1) {
         arg0->vt = lbl_80495934;
         free_collision_body_parts(arg0);
         arg0->f37C = 0;
-        TObjFish::init_state_1((void *)arg0->f3DC);
+        ModelNodePositionCapture::destroy((ModelNodePositionCapture *)((void *)arg0->f3DC));
         __destroy_arr(arg0->f3EC, __dt__15RenderFadeStateFv, 0x1C, 4);
         __dt__9TObjEnemyFv((TObjEnemy *)arg0, 0);
         if (arg1 > 0) {
@@ -1643,5 +1643,5 @@ s32 TObjEnePanarms__sub_800E2FB4(O_800E2FB4 *self) {
     return self->state == 9 || self->state == 11;
 }
 
-void clear_render_callback__8TObjFishFv(void) { set_chunk_model_node_callback(0); }
+void ModelNodePositionCapture::clear() { set_chunk_model_node_callback(0); }
 }

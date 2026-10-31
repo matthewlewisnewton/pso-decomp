@@ -171,8 +171,6 @@ extern Params_800D2900 lbl_8043C35C;
 extern u8 *gyaranzo_resource_ptrs[];
 extern u32 gyaranzo_bml_resource;
 extern u8 *tl_05;
-void update_collisions__10TObjPlayerFv(void *);
-#define update_collisions__10TObjPlayerFv ((void (*)(void *))update_collisions__10TObjPlayerFv)
 void apply_actor_gravity(void *, int, f32);
 }
 void move_with_wall_slide(u8 *arg0);
@@ -200,7 +198,7 @@ void update_walk_to_target__10TObjPlayerFPv(Ene_800D1E4C *arg0) {
         calc_velocity_toward_destination(arg0, arg0->v290, arg0->v29C, arg0->param->speed);
         ((TObjEnemy *)arg0)->turn_toward_direction(arg0->param->turn, (Vec *)arg0->v308);
         move_with_wall_slide((u8 *)arg0);
-        update_collisions__10TObjPlayerFv(arg0);
+        ((TObjCollidable *)(arg0))->update_collisions();
         if (xz_distance_squared((Vec *)&arg0->pos, (Vec *)&arg0->target) <= lbl_805DA25C) {
             update_if_active__15TObjEnemyCustomFl(arg0, 0);
         }
@@ -208,7 +206,6 @@ void update_walk_to_target__10TObjPlayerFPv(Ene_800D1E4C *arg0) {
     }
 }
 }
-#undef update_collisions__10TObjPlayerFv
 #pragma push
 
 #define CAT2(a, b) a##b
@@ -1203,7 +1200,7 @@ void TObjPlayer::update_aim_and_fire() {
     }
     advance_animation();
     apply_actor_gravity(this, 0, lbl_805DA258);
-    update_collisions__10TObjPlayerFv(this);
+    ((TObjCollidable *)(this))->update_collisions();
 }
 
 void TObjPlayer__sub_800D2E8C(Ene_800D2E8C *arg0) {
@@ -1274,7 +1271,7 @@ void TObjPlayer__sub_800D30A8(Obj_800D30A8 *enemy) {
         enemy->vel.x *= lbl_805DA280;
         enemy->vel.z *= lbl_805DA280;
         apply_actor_gravity(enemy, 0, lbl_805DA258);
-        update_collisions__10TObjPlayerFv(enemy);
+        ((TObjCollidable *)(enemy))->update_collisions();
         if (enemy->fB4 != 8) {
             enemy->state = -1;
         }
@@ -1378,7 +1375,7 @@ void TObjPlayer__sub_800D3314(u8 *arg0) {
             ((VObj_800D3314 *)arg0)->m63(0x27, &v);
             spawn_particle_effect((const Vec *)(&v), 0xF3);
         }
-        update_collisions__10TObjPlayerFv(arg0);
+        ((TObjCollidable *)(arg0))->update_collisions();
         if (*(u32 *)((s8 *)(*(u8 **)((s8 *)arg0 + 0xA4)) + 0x18) & 0x380000) {
             *(s32 *)((s8 *)arg0 + 0x37C) = -1;
         } else if (*(f32 *)((s8 *)arg0 + 0x39C) >= *(f32 *)((s8 *)arg0 + 0x3A0)) {

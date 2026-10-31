@@ -735,7 +735,7 @@ void init__15TObjEneMe1GiGueFPv(u8 *arg0) {
             *(s32 *)((s8 *)arg0 + 0x37C) = -1;
             play_sound_effect((void *)TObjEneMe1GiGue::remap_sound_id((arg0), 0x3A345), arg0 + 0x38, 0, 0);
         }
-        ((TObjPlayer *)arg0)->update_collisions();
+        ((TObjCollidable *)arg0)->update_collisions();
         return;
     case -1:
         temp_r5 = *(s32 *)((s8 *)arg0 + 0x388);
@@ -785,7 +785,7 @@ void TObjEneMe1GiGue__sub_802CB378(u8 *arg0) {
             }
         }
         play_persistent_sound((s32)(TObjEneMe1GiGue::remap_sound_id(arg0, 0x3A819)), (s32)arg0, (u32)(arg0 + 0x38), 0, 0);
-        ((TObjPlayer *)arg0)->update_collisions();
+        ((TObjCollidable *)arg0)->update_collisions();
         break;
     case -1:
         ((void (*)(void *, s32))update_if_active__15TObjEnemyCustomFl)(arg0, 1);
@@ -999,7 +999,7 @@ void TObjEneMe1GiGue::update_hit_reaction() {
             this->movement_velocity.z *= 0.5f;
         }
         apply_actor_gravity(this, 0, 0.0f);
-        ((TObjPlayer *)((u8 *)this))->update_collisions();
+        ((TObjCollidable *)((u8 *)this))->update_collisions();
         if ((u32) this->action_flags != 8U) {
             this->state = -1;
         }
@@ -1146,7 +1146,7 @@ void update_rush_attack__15TObjEneMe1GiGueFPv(Obj_802CBCC0 *o) {
         if (ok) {
             o->f3EC += 2.2f;
         }
-        ((TObjPlayer *)o)->update_collisions();
+        ((TObjCollidable *)o)->update_collisions();
         if (TObjPlayer__sub_800DC478((u8 *)o, 1, 22.0f) != 0 && ((TObjEneMe1GiGue *)o)->check_vector_bit((s32)&o->pos) != 0) {
             spawn_particle_effect((const Vec *)(&o->pos), 0xF0);
         }
@@ -1255,13 +1255,13 @@ void action__15TObjEneMe1GiGueFPv(void *enemy) {
         *(s32 *)((s8 *)enemy + 0x384) = 0x2D;
         ((TObjMotion *)enemy)->advance_animation();
         apply_actor_gravity(enemy, 0, 0.0f);
-        ((TObjPlayer *)enemy)->update_collisions();
+        ((TObjCollidable *)enemy)->update_collisions();
         return;
     case 2:
         ((TObjEnemy *)(enemy))->enemy_wander_home(*(f32 *)((s8 *)enemy + 0x3E4), 100.0f, 100.0f, *(s32 *)((s8 *)(*(void **)((s8 *)enemy + 0x350)) + 8));
         ((TObjMotion *)enemy)->advance_animation();
         apply_actor_gravity(enemy, 0, 0.0f);
-        ((TObjPlayer *)enemy)->update_collisions();
+        ((TObjCollidable *)enemy)->update_collisions();
         *(s32 *)((s8 *)enemy + 0x384) = (s32) (*(s32 *)((s8 *)enemy + 0x384) - 1);
         if ((s32) *(s32 *)((s8 *)enemy + 0x384) <= 0) {
             update_if_active__15TObjEnemyCustomFl(enemy, 0);
@@ -1315,7 +1315,7 @@ void TObjEneMe1GiGue__sub_802CC45C(u8 *arg0) {
     }
         ((TObjMotion *)arg0)->advance_animation();
         apply_actor_gravity(arg0, 0, 0.0f);
-        ((TObjPlayer *)arg0)->update_collisions();
+        ((TObjCollidable *)arg0)->update_collisions();
         if (*(s16 *)((s8 *)arg0 + 0xB8) != 3) {
             update_if_active__15TObjEnemyCustomFl(arg0, 0xD);
         }
@@ -1385,7 +1385,7 @@ void TObjEneMe1GiGue__sub_802CC614(u8 *enemy) {
         }
         ((TObjMotion *)enemy)->advance_animation();
         apply_actor_gravity(enemy, 0, 0.0f);
-        ((TObjPlayer *)enemy)->update_collisions();
+        ((TObjCollidable *)enemy)->update_collisions();
         (*(s32 *)((s8 *)enemy + 0x384))--;
         if (*(s32 *)((s8 *)enemy + 0x384) <= 0) {
             (*(s32 *)((s8 *)enemy + 0x448))++;
@@ -1403,7 +1403,7 @@ void TObjEneMe1GiGue__sub_802CC614(u8 *enemy) {
         ((TObjEnemy *)(enemy))->enemy_wander_home(*(f32 *)((s8 *)enemy + 0x3E4), 100.0f, 100.0f, *(s32 *)((s8 *)(*(u8 **)((s8 *)enemy + 0x350)) + 8));
         ((TObjMotion *)enemy)->advance_animation();
         apply_actor_gravity(enemy, 0, 0.0f);
-        ((TObjPlayer *)enemy)->update_collisions();
+        ((TObjCollidable *)enemy)->update_collisions();
         (*(s32 *)((s8 *)enemy + 0x384))--;
         if (*(s32 *)((s8 *)enemy + 0x384) <= 0) {
             if (!(*(s32 *)((s8 *)enemy + 0x388) & 0x80000) && random_ratio__9TObjCharaFv(enemy) <= *(f32 *)((s8 *)enemy + 0x440)) {
@@ -1528,7 +1528,7 @@ void TObjEneMe1GiGue__sub_802CC900(u8 *arg0) {
         if (!(o->f30 & 0x01000000)) {
             apply_actor_gravity(o, 0, 0.0f);
         }
-        ((TObjPlayer *)o)->update_collisions();
+        ((TObjCollidable *)o)->update_collisions();
         if (--o->f384 <= 0) {
             o->state = 4;
         }

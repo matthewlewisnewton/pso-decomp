@@ -1,3 +1,4 @@
+#include "pso/system/ModelNodePositionCapture.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/protocol/protocol_types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -377,7 +378,6 @@ extern const f32 lbl_805DE38C;
 void TBoss6Type1__sub_802B6C30(Boss_802B6C30 *self);
 s32 TObjFish__sub_8001EDB0(s32, s32);
 s32 get_bml_model(s32, s32);
-void clear_render_callback__8TObjFishFv(u32);
 void draw_model_motion(void *arg0, void *arg1, f32 farg0);
 extern s32 lbl_804DF614[];
 extern const s32 lbl_805DE3C8;
@@ -1891,17 +1891,17 @@ void TBoss6Type1::draw_part_motions() {
         if (cb != 0) {
             TObjFish::set_global_param(p);
             if (TBoss6Type1__data_805DE2D0 == a->blend) {
-                ((TObjFish *)cb)->set_draw_callback_list();
+                ((ModelNodePositionCapture *)cb)->install();
                 draw_model_motion((void *)id, (void *)a->id, a->t);
-                clear_render_callback__8TObjFishFv(cb);
+                ((ModelNodePositionCapture *)(cb))->clear();
             } else {
                 b.ids[0] = a->prevId;
                 b.ts[0] = a->prevT;
                 b.ids[1] = a->id;
                 b.ts[1] = a->t;
-                ((TObjFish *)cb)->set_draw_callback_list();
+                ((ModelNodePositionCapture *)cb)->install();
                 draw_model_blend_motion((void *)id, &b, a->blend);
-                clear_render_callback__8TObjFishFv(cb);
+                ((ModelNodePositionCapture *)(cb))->clear();
             }
         }
     }
@@ -2060,7 +2060,7 @@ void TBoss6Type1::run_task() {
     update_position();
     update_part_positions();
     update_parts_flags();
-    ((TObjPlayer *)this)->update_collisions();
+    ((TObjCollidable *)this)->update_collisions();
     submit_cursor_candidate(this, -1);
     add_radar_scaled_marker((u8 *)this + 0x584, -0x5DB4, 1, 1, TBoss6Type1__data_805DE338);
     sub_802B5CB4();
@@ -2412,7 +2412,6 @@ struct VObj_18_f05d67 : VBase_18_f05d67 {
 struct Arr_802B93C4 { u8 pad[0x378]; s32 arr[32]; };
 struct Tmp_802B93C4 { s32 a; s16 b; s16 c; u8 pad[0x10]; };
 
-s32 TObjFish__sub_800E3124(u8 *list, s32 vecs);
 s32 init_collision_body_parts(void *, void *, int);
 void build_tables__14TBoss6PlotFalzFPvPvi(void *, void *, int);
 void TBoss6Type1__sub_802B854C(void *);
@@ -2464,8 +2463,8 @@ s32 TBoss6Type1__ct(s32 arg0_, s32 parent, s32 arg2_) {
     ((TBoss3Volopt *)arg0)->reset_photon_effect();
     ((TObjEnemy *)arg0)->set_param(0x4E);
     TBoss6Type1__sub_802B854C(arg0);
-    *(s32 *)((s8 *)arg0 + 0x654) = TObjFish__sub_800E3124((u8 *)boss6_type1_model_node_desc, (s32)(arg0 + 0x578));
-    *(s32 *)((s8 *)arg0 + 0x650) = TObjFish__sub_800E3124((u8 *)boss6_type1_model_node_desc_b, (s32)(arg0 + 0x5FC));
+    *(s32 *)((s8 *)arg0 + 0x654) = (s32)ModelNodePositionCapture::create((ModelNodePositionEntry *)(boss6_type1_model_node_desc), (Vec *)((arg0 + 0x578)));
+    *(s32 *)((s8 *)arg0 + 0x650) = (s32)ModelNodePositionCapture::create((ModelNodePositionEntry *)(boss6_type1_model_node_desc_b), (Vec *)((arg0 + 0x5FC)));
     build_tables__14TBoss6PlotFalzFPvPvi(arg0 + 0x658, boss6_type1_build_table, 2);
     build_tables__14TBoss6PlotFalzFPvPvi(arg0 + 0x66C, lbl_80470EA0, 1);
     *(s32 *)((s8 *)arg0 + 0x400) = create_zanzo__11TBoss6Type1FPvPvPv(arg0, 7, 0xF);

@@ -1,3 +1,4 @@
+#include "pso/system/ModelNodePositionCapture.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
 #include "types.h"
@@ -207,7 +208,6 @@ extern const f32 TBoss6Type2__data_805DE40C;
 extern const f32 TBoss6Type2__data_805DE430;
 extern const f32 TBoss6Type2__data_805DE434;
 void TBoss6Type2__sub_802BA598(TBoss6Type2 *self, s32 elapsed, s32 duration);
-s32 clear_render_callback__8TObjFishFv(u32);
 }
 void draw_model_blend_motion(void *arg0, void *arg1, f32 farg0);
 extern "C" {
@@ -225,7 +225,6 @@ extern const f32 lbl_805DE46C;
 extern const f32 lbl_805DE470;
 extern const f32 lbl_805DE474;
 s32 TObjFish__sub_8001EDB0(s32, s32);
-s32 TObjFish__sub_800E3124(u8 *list, s32 vecs);
 s32 init_collision_body_parts(void *, void *, int);
 void build_tables__14TBoss6PlotFalzFPvPvi(void *, void *, int);
 void TBoss6Type2__sub_802BA7B0(void* p);
@@ -2301,9 +2300,9 @@ void TBoss6Type2::draw_body_models() {
                     if (done != 0) {
                         draw_model_motion((void *)p1, (void *)(*(s32 *)((s8 *)arg0 + 0x498)), *(f32 *)((s8 *)arg0 + 0x49C));
                     } else {
-                        ((TObjFish *)obj)->set_draw_callback_list();
+                        ((ModelNodePositionCapture *)obj)->install();
                         draw_model_motion((void *)p1, (void *)(*(s32 *)((s8 *)arg0 + 0x498)), *(f32 *)((s8 *)arg0 + 0x49C));
-                        clear_render_callback__8TObjFishFv(obj);
+                        ((ModelNodePositionCapture *)(obj))->clear();
                         done = 1;
                     }
                 } else {
@@ -2314,9 +2313,9 @@ void TBoss6Type2::draw_body_models() {
                     if (done != 0) {
                         draw_model_blend_motion((void *)p1, &prm, *(f32 *)((s8 *)arg0 + 0x4A4));
                     } else {
-                        ((TObjFish *)obj)->set_draw_callback_list();
+                        ((ModelNodePositionCapture *)obj)->install();
                         draw_model_blend_motion((void *)p1, &prm, *(f32 *)((s8 *)arg0 + 0x4A4));
-                        clear_render_callback__8TObjFishFv(obj);
+                        ((ModelNodePositionCapture *)(obj))->clear();
                         done = 1;
                     }
                 }
@@ -2499,7 +2498,7 @@ void TBoss6Type2::run_task() {
     advance_position();
     TBoss6Type2__sub_802BBE20(arg0);
     update_parts_flags();
-    ((TObjPlayer *)arg0)->update_collisions();
+    ((TObjCollidable *)arg0)->update_collisions();
     submit_cursor_candidate(arg0, -1);
     add_radar_scaled_marker(arg0 + 0x38, -0x5DB4, 1, 1, lbl_805DE4C0);
     ((TBoss6Type2 *)arg0)->apply_rock_hits_to_players();
@@ -3120,7 +3119,7 @@ s32 __dt__11TBoss6Type2Fv(s32 self_, s16 flag) {
         ((TBoss6PlotFalz *)&self->m_768)->free_buffer_pairs();
         for (i = 0; i < 1; i++) {
             if (((Fish_802BE014 *)self)->fish[i] != 0) {
-                TObjFish::init_state_1(((Fish_802BE014 *)self)->fish[i]);
+                ModelNodePositionCapture::destroy((ModelNodePositionCapture *)(((Fish_802BE014 *)self)->fish[i]));
                 ((Fish_802BE014 *)self)->fish[i] = 0;
             }
         }
@@ -3191,7 +3190,7 @@ s32 TBoss6Type2__ct(s32 arg0_, s32 parent, s32 arg2_) {
     }
     }
     ((TBoss6Type2 *)arg0)->init_motion_entries();
-    *(s32 *)((s8 *)arg0 + 0x764) = TObjFish__sub_800E3124((u8 *)boss6_type2_effect_desc_table, (s32)(arg0 + 0x59C));
+    *(s32 *)((s8 *)arg0 + 0x764) = (s32)ModelNodePositionCapture::create((ModelNodePositionEntry *)(boss6_type2_effect_desc_table), (Vec *)((arg0 + 0x59C)));
     build_tables__14TBoss6PlotFalzFPvPvi(arg0 + 0x768, boss6_type2_plot_falz_entry_table, 2);
     *(s32 *)((s8 *)arg0 + 0x458) = create_zanzo__11TBoss6Type1FPvPvPv(arg0, 7, 0xF);
     *(s8 *)((s8 *)arg0 + 0x478) = 0;

@@ -1342,7 +1342,7 @@ s32 TObjEneDolmOlm__sub_80301C3C(void *arg0_) {
         ((TUnk_80493450 *)arg0)->select_target_proximity_movement();
         break;
     }
-    ((TObjPlayer *)arg0)->update_collisions();
+    ((TObjCollidable *)arg0)->update_collisions();
     minimap_render_dot(arg0 + 0x38, -0x5DB4, 1, 0);
     ((TObjBase *)arg0)->obj_clearFlags30(0x200000);
 }
@@ -1452,7 +1452,7 @@ s32 TObjEneDolmOlm__sub_8030177C(void *arg0_) {
         ((TObjCollidable *)arg0)->clear_player_status_flag(0, 0xA000000);
         break;
     }
-    ((TObjPlayer *)arg0)->update_collisions();
+    ((TObjCollidable *)arg0)->update_collisions();
     minimap_render_dot(&arg0->pos, -0x5DB4, 1, 0);
 }
 #undef arg0

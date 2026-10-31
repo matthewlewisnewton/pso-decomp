@@ -599,7 +599,7 @@ void TObjEneLappy::update_hurt() {
     self->vx *= lbl_805D9F24;
     self->vz *= lbl_805D9F24;
     apply_actor_gravity(arg0, 0, lbl_805D9F4C);
-    ((TObjPlayer *)arg0)->update_collisions();
+    ((TObjCollidable *)arg0)->update_collisions();
     if (this->action_flags != 8U) {
         this->actorFlags &= ~0x200;
         this->referenceHp = this->hp;
@@ -636,7 +636,7 @@ void TObjEneLappy::update_invuln_timer() {
     if (!(*(s32 *)&this->actorFlags & 0x800000)) {
         apply_actor_gravity(arg0, NULL, lbl_805D9F4C);
     }
-    ((TObjPlayer *)arg0)->update_collisions();
+    ((TObjCollidable *)arg0)->update_collisions();
     temp_r4 = *(s16 *)&this->timer;
     *(s16 *)&this->timer = (temp_r4 - 1);
     if (temp_r4 < 0) {
@@ -706,7 +706,7 @@ void TObjEneLappy::update_attacking() {
         }
         break;
     }
-    ((TObjPlayer *)arg0)->update_collisions();
+    ((TObjCollidable *)arg0)->update_collisions();
 }
 
 void TObjEneLappy::vfunc_60() {
@@ -765,7 +765,7 @@ void TObjEneLappy::update_moving() {
             enemy_backstep_from_point(arg0, &target1.x, (f32) (*(f32 *)((s8 *)((u8 *)(*(u8 * *)&this->movementParameters)) + 4)));
             turn_toward_direction(*(s32 *)((u8 *)movementParameters + 8), &movement_velocity);
             apply_actor_gravity(arg0, 0, lbl_805D9F4C);
-            ((TObjPlayer *)arg0)->update_collisions();
+            ((TObjCollidable *)arg0)->update_collisions();
             return;
         }
     }
@@ -857,7 +857,7 @@ block_47:
     }
 block_48:
         apply_actor_gravity(arg0, 0, lbl_805D9F4C);
-        ((TObjPlayer *)arg0)->update_collisions();
+        ((TObjCollidable *)arg0)->update_collisions();
 }
 
 void TObjEneLappy::vfunc_59() {

@@ -185,7 +185,7 @@ void TUnk_80493450::beast_update_hurt() {
     } else {
         movement_velocity.x = movement_velocity.z = BEAST_ZERO_SPEED;
     }
-    ((TObjPlayer *)this)->update_collisions();
+    ((TObjCollidable *)this)->update_collisions();
     if (is_passing_frame(BEAST_ANIMATION_START_FRAME) != 0) {
         this->vfunc_97();
     }
@@ -255,7 +255,7 @@ void TUnk_80493450::beast_update_attack() {
     }
     apply_actor_gravity(this, 0, BEAST_GROUND_HEIGHT_OFFSET);
     enemy_turn_toward_dest(this, ((s32 *)movementParameters)[2]);
-    ((TObjPlayer *)this)->update_collisions();
+    ((TObjCollidable *)this)->update_collisions();
     minimap_render_dot(&position, -0x5DB4, 1, 0);
 }
 
@@ -362,7 +362,7 @@ void TUnk_80493450::beast_update_group_chase() {
             m_374 = 0;
         }
     }
-    ((TObjPlayer *)this)->update_collisions();
+    ((TObjCollidable *)this)->update_collisions();
     minimap_render_dot(&position, -0x5DB4, 1, 0);
 }
 
@@ -411,7 +411,7 @@ void TUnk_80493450::beast_update_approach() {
         }
         break;
     }
-    ((TObjPlayer *)arg0)->update_collisions();
+    ((TObjCollidable *)arg0)->update_collisions();
     minimap_render_dot((u8 *)&this->position, -0x5DB4, 1, 0);
     ((TObjBase *)arg0)->obj_clearFlags30(0x200000);
 }
@@ -464,7 +464,7 @@ void TUnk_80493450::update_turn_toward_target() {
         break;
     }
     apply_actor_gravity(arg0, 0, BEAST_GROUND_HEIGHT_OFFSET);
-    ((TObjPlayer *)arg0)->update_collisions();
+    ((TObjCollidable *)arg0)->update_collisions();
     minimap_render_dot(&arg0->position, -0x5DB4, 1, 0);
 }
 
