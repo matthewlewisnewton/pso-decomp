@@ -31,7 +31,7 @@ typedef char RecoveredGlobal_80335354___vt__16TObjEneMorfosArm_size[sizeof(Recov
 
 extern "C" {
 u16 get_entity_id(void *);
-s32 set_field_d8__10TObjMotionFl(void *, void *, int);
+s32 set_action_table__10TObjMotionFP16TObjMotionAction(void *, void *, int);
 extern RecoveredGlobal_80335354_lbl_804EE3B0 morfos_arm_motion_params;
 extern s32 __vt__16TObjEneMorfosArm[];
 extern const char *TObjEneMorfosArm__name;
@@ -89,8 +89,8 @@ u8 *TObjEneMorfosArm__ct(TObjEneMorfosArm *ene_morfos_arm, s32 arg1, u8 *arg2) {
     *(s32 *)((s8 *)ene_morfos_arm + 0x34) = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)(*(u8 * *)&TObjEneMorfosArm__parent_morfos_instance) + 0x42C)) + 8);
     temp_r5 = (u8 *)(*(u8 **)((s8 *)(*(u8 * *)&TObjEneMorfosArm__parent_morfos_instance) + 0x42C));
     ene_morfos_arm->texlist = (s32) *(s32 *)((s8 *)temp_r5 + 0xC);
-    set_field_d8__10TObjMotionFl((void *)ene_morfos_arm, &morfos_arm_motion_params.value, (int)temp_r5);
-    ((TObjMotion *)ene_morfos_arm)->set_field_dc((int) (*(s32 *)((s8 *)(*(u8 * *)&TObjEneMorfosArm__parent_morfos_instance) + 0x430)));
+    set_action_table__10TObjMotionFP16TObjMotionAction((void *)ene_morfos_arm, &morfos_arm_motion_params.value, (int)temp_r5);
+    ((TObjMotion *)ene_morfos_arm)->set_motion_list((BmlMotionEntry *)((int) (*(s32 *)((s8 *)(*(u8 * *)&TObjEneMorfosArm__parent_morfos_instance) + 0x430))));
     ene_morfos_arm->requested_action = 0;
     ((TObjMotion *)ene_morfos_arm)->set_animation((ene_morfos_arm->requested_action));
     ((TObjMotion *)ene_morfos_arm)->set_field_b8(ene_morfos_arm->requested_action);

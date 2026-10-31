@@ -19,6 +19,7 @@
 #include "pso/misc/TLobby.h"
 #include "pso/object/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/player/demo_mode.h"
 #include "pso/player/TObjPlayer_80011014.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
 #include "pso/player/TObjPlayer_801542CC.h"
@@ -302,7 +303,7 @@ TObjEneMorfos::~TObjEneMorfos() {
 }
 
 void TObjEneMorfos::run_task() {
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->update_demo();
         return;
     }
@@ -1251,7 +1252,7 @@ void TObjEneMorfos::render_with_camera_fade(s32 idx, s32 mode) {
 void TObjEneMorfos::render() {
     s32 cam;
     s32 vis;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->render_demo();
         return;
     }

@@ -1,3 +1,7 @@
+#include "pso/map/CsnGroundQuery.h"
+#include "pso/player/demo_mode.h"
+#include "pso/misc/MaterialOpacityFade.h"
+#include "pso/misc/RenderFadeState.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/system/BmlResourceClass.h"
@@ -16,14 +20,12 @@ extern "C" void test_flag30_512__9TObjCharaFv();
 extern "C" void test_flag_1000__9TObjCharaFv();
 #include "pso/system/vector.h"
 
-#include "pso/enemy/TUnk_80494938.h"
 #include <stddef.h>
 #include "pso/boss/TBoss4DarkFalz.h"
 #include "pso/enemy/TObjEneLappy.h"
 #include "pso/enemy/TObjEneMe3SinowZoa.h"
 #include "pso/enemy/TObjEnePanarms.h"
 #include "pso/enemy/TObjEneRe7Berura.h"
-#include "pso/misc/RenderFadeState.h"
 #include "pso/misc/TLobby.h"
 #include "pso/object/TObjFish.h"
 #include "pso/npc/NpcModelRegistry.h"
@@ -33,27 +35,8 @@ struct Vec_802D9EB4 { f32 x, y, z; };
 
 struct Vec_802D7ACC { f32 x, y, z; };
 
-struct V_802DA7A4Base { u8 pad[0x14]; };
-
-struct V_802DA7A4 : V_802DA7A4Base {
-    virtual void v0();
-    virtual void v1();
-    virtual void m2();
-    virtual void v3();
-    virtual s32 m4();
-};
-
 struct Obj_800A6B14;
 struct Vec_802DA0BC { s32 x, y, z; };
-
-struct FadeBase_802DB200 { char pad[0x14]; };
-
-struct Fade_802DB200 : FadeBase_802DB200 {
-    virtual void m0(); virtual void m1(); virtual void m2(); virtual void m3();
-    virtual void m4(); virtual void m5(); virtual void m6(); virtual void m7();
-    virtual s32 m8();
-    char pad2[4];
-};
 
 struct ObjBase_802DB200 { char pad[0x18]; };
 
@@ -63,8 +46,8 @@ struct Obj_802DB200 : ObjBase_802DB200 {
     virtual s32 m8(f32, f32);
     virtual s32 m9(f32, f32, f32);
     char pad1[0x3C0 - 0x1C];
-    Fade_802DB200 sub;
-    Fade_802DB200 fades[4];
+    MaterialOpacityFade sub;
+    RenderFadeState fades[4];
 };
 
 struct VBase_802DAD50 { char pad[0x18]; };
@@ -84,29 +67,10 @@ struct Prm_802D8984 { u8 pad[0xC]; f32 fC; u8 pad10[8]; s32 f18; };
 struct Spawn_802DB7C0 { s32 a; s32 b; s32 c; s32 d; };
 
 struct O_802DBC94;
-struct VBase_14_802DBA18 { char pad[0x14]; };
-
-struct VObj_14_802DBA18 : VBase_14_802DBA18 {
-    virtual void m0();
-    virtual void m1();
-    virtual void m2();
-    virtual void m3();
-};
 
 struct Part_802DBA18 { u8 pad[0x1C]; };
 
 struct G_802DBA18 { u8 pad[0x3DC]; Part_802DBA18 parts[4]; };
-
-struct Base14 { char pad[0x14]; };
-
-struct VObj14 : Base14 {
-    virtual s32 m0();
-    virtual s32 m1();
-    virtual s32 m2();
-    virtual s32 m3();
-    virtual s32 m4();
-    virtual s32 m5();
-};
 
 extern "C" {
 f32 calc_xz_distance_sq(void *, void *, Vec_802D9EB4 *);
@@ -226,31 +190,11 @@ struct RecoveredGlobal_802D7ED4_lbl_8058D490 {
     u8 remaining[0x2C];
 };
 
-
 typedef char RecoveredGlobal_802D7ED4_lbl_80472780_size[sizeof(RecoveredGlobal_802D7ED4_lbl_80472780) == 0x10 ? 1 : -1];
 
 typedef char RecoveredGlobal_802D7ED4_lbl_8058D490_size[sizeof(RecoveredGlobal_802D7ED4_lbl_8058D490) == 0x30 ? 1 : -1];
 
 typedef struct Stack_802D8140 Stack_802D8140;
-
-struct GibBase_802da394_802D87D8 { char pad[0x14]; };
-
-struct GibVObj_802da394_802D87D8 : GibBase_802da394_802D87D8 {
-    virtual s32 m0();
-    virtual s32 m1();
-    virtual s32 m2();
-    virtual s32 m3();
-    virtual s32 m4();
-    virtual s32 m5();
-};
-
-struct VBase802DAAC8_802daac8_802D87D8 { char pad[0x14]; };
-
-struct VObj802DAAC8_802daac8_802D87D8 : VBase802DAAC8_802daac8_802D87D8 {
-    virtual void m0(); virtual void m1(); virtual void m2(); virtual void m3();
-    virtual void m4(); virtual void m5(); virtual void m6(); virtual void m7();
-    virtual s32 m8();
-};
 
 struct E_802DBC94 { s32 a; s32 b; s32 c; s32 d; };
 
@@ -342,7 +286,6 @@ f32 calc_distance_to_client__10TObjPlayerFlUsUl(void *, u16, Vec_802D8828 *);
 s32 obj_setFlags30(void *, int);
 s32 queue_destruction__7TObjectFv();
 void TCameraCtrl__sub_8006A044(s32, f32);
-s32 *csnVecterUnder(s32 origin, s32 mask);
 s32 rotate_xz_pair_by_angle(f32 *, f32 *, s32, f32);
 s32 test_action_mask__10TObjPlayerFl(void *, int);
 void TObjPlayer__sub_800D93C4(s32 point, s32 delay);
@@ -1185,7 +1128,6 @@ void TObjEneGibbles__sub_802D8580(TObjEneGibbles *self) {
 }
 #pragma pop
 
-
 void TObjEneGibbles::vfunc_61() {
     s16 temp_r0;
     void *temp_r5;
@@ -1644,7 +1586,7 @@ void TObjEneGibbles::slam_damage_players(s32 arg1) {
         return;
     }
     v.y += lbl_805DE808;
-    if (csnVecterUnder((s32)&v, 0x16EF) != 0) {
+    if (csnVecterUnder((const Vec *)&v, 0x16EF) != 0) {
         if (((TObjEneGibbles *)target)->spawn_ground_impact_effects(&v, lbl_805DE858) == 0) {
             v.y += TObjEneGibbles__data_805DE81C;
             spawn_particle_effect(&v, 0x64);
@@ -1833,13 +1775,13 @@ void TObjEneGibbles::update_death_sequence() {
     case 0:
         this->phase = 1;
         this->requested_action = 5;
-        ((TUnk_80494938 *)((void *) (arg0 + 0x3C0)))->start_fade_in();
+        ((TObjEneGibbles *)arg0)->fade.start_fade_in();
         this->m_38c = (f32) lbl_805DE868;
         *(f32 *)&this->unk_390 = (f32) TObjEneGibbles__data_805DE830;
         apply_actor_gravity((TObjEnemy *)(arg0), (s32 *)(0), TObjEneGibbles__data_805DE7E4);
         break;
     case 1:
-        if (((struct GibVObj_802da394_802D87D8 *) (arg0 + 0x3C0))->m5() != 0) {
+        if (((TObjEneGibbles *)arg0)->fade.advance_toward_max() != 0) {
             this->m_38c = (f32) (this->m_38c - *(f32 *)&this->unk_390);
             *(f32 *)&this->unk_390 = (f32) (*(f32 *)&this->unk_390 + TObjEneGibbles__data_805DE830);
         } else {
@@ -1982,12 +1924,12 @@ void TObjEneGibbles::sub_802DA7A4() {
             this->phase = 2;
             TObjEneGibbles__sub_802D7BE0((s32) (this));
             play_sound_effect((int)(this->resolve_sound_id((u32)(0x3A82F))), (void *) (((u8 *)this) + 0x38), 0, 0);
-            ((V_802DA7A4 *)(((u8 *)this) + 0x3C0))->m2();
+            ((TObjEneGibbles *)this)->fade.reset_color();
         }
         apply_actor_gravity((TObjEnemy *)(this), (s32 *)(0), TObjEneGibbles__data_805DE7E4);
         break;
     case 2:
-        if (((V_802DA7A4 *)(((u8 *)this) + 0x3C0))->m4() == 1) {
+        if (((TObjEneGibbles *)this)->fade.decay_value_toward_floor() == 1) {
             this->phase = 3;
         } else {
             this->m_38c = (f32) (this->m_38c + *(f32 *)&this->unk_390);
@@ -2080,7 +2022,7 @@ void TObjEneGibbles::vfunc_58() {
 
     switch (this->mode) {
     case 0:
-        if (((VObj802DAAC8_802daac8_802D87D8 *)(arg0 + 0x3C0))->m8() != 0) {
+        if (((TObjEneGibbles *)arg0)->fade.has_visible_opacity() != 0) {
             this->mode = 0xA;
             this->phase = 0;
             this->requested_action = 0;
@@ -2118,7 +2060,7 @@ s32 TObjEneGibbles::update_movement_status() {
         case 1:
         case 2:
         case 0xa:
-            if (((VObj14 *)(arg0 + 0x3c0))->m5() == 1) {
+            if (((TObjEneGibbles *)arg0)->fade.advance_toward_max() == 1) {
                 this->m_374 &= ~0x143;
                 this->m_374 |= 4;
                 this->mode = 3;
@@ -2141,7 +2083,7 @@ s32 TObjEneGibbles::update_action_hold_status() {
         case 1:
         case 2:
         case 0xa:
-            if (((VObj14 *)(arg0 + 0x3c0))->m5() == 1) {
+            if (((TObjEneGibbles *)arg0)->fade.advance_toward_max() == 1) {
                 this->m_374 &= ~0x143;
                 this->m_374 |= 4;
                 this->mode = 3;
@@ -2339,16 +2281,16 @@ void draw_model__14TObjEneGibblesFPv(TObjEneGibbles *arg0) {
         case 1:
         case 2:
         case 10:
-            if (self->sub.m8() != 0) {
+            if (self->sub.has_visible_opacity() != 0) {
                 saved_model_render_flags = model_render_flags;
                 saved_chunk_polygon_flags_and_mask = chunk_polygon_flags_and_mask;
                 saved_chunk_polygon_flags_or_mask = chunk_polygon_flags_or_mask;
                 model_render_flags |= 1;
-                self->sub.m6();
+                self->sub.set_flags_and_apply_damage_color();
                 if (defer_render__7TObjectFv(arg0) == 0) {
                     ((TObjMotion *)arg0)->draw();
                 }
-                self->sub.m7();
+                self->sub.clear_flag_and_notify();
                 chunk_polygon_flags_and_mask = saved_chunk_polygon_flags_and_mask;
                 chunk_polygon_flags_or_mask = saved_chunk_polygon_flags_or_mask;
                 model_render_flags = saved_model_render_flags;
@@ -2359,7 +2301,7 @@ void draw_model__14TObjEneGibblesFPv(TObjEneGibbles *arg0) {
                 saved_model_render_flags = model_render_flags;
                 saved_chunk_polygon_flags_and_mask = chunk_polygon_flags_and_mask;
                 saved_chunk_polygon_flags_or_mask = chunk_polygon_flags_or_mask;
-                self->fades[cam].m6();
+                self->fades[cam].set_flags_and_apply_damage_color();
                 if (defer_render__7TObjectFv(arg0) == 0) {
                     if (vis == 1) {
                         ((TObjMotion *)arg0)->draw();
@@ -2367,7 +2309,7 @@ void draw_model__14TObjEneGibblesFPv(TObjEneGibbles *arg0) {
                         ((TObjEnemy *)arg0)->draw_motion_model();
                     }
                 }
-                self->fades[cam].m7();
+                self->fades[cam].clear_flag_and_notify();
                 chunk_polygon_flags_and_mask = saved_chunk_polygon_flags_and_mask;
                 chunk_polygon_flags_or_mask = saved_chunk_polygon_flags_or_mask;
                 model_render_flags = saved_model_render_flags;
@@ -2393,7 +2335,7 @@ void draw_model__14TObjEneGibblesFPv(TObjEneGibbles *arg0) {
 void TObjEneGibbles::run_task() {
     s16 temp_r0;
     u8 *temp_r4;
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         ((void (*)(u8 *))TObjEneGibbles__sub_802D7E3C)((u8 *)this);
         return;
     }
@@ -2519,7 +2461,6 @@ void TObjEneGibbles::load_resources() {
     NpcModelRegistry::register_animated_chunk((s16)0x44, (void *)((s32)(*(s32 *)((s8 *)(*(u8 **)((s8 *)TObjEneGibbles__resource_bundle + 0x42C)) + 8))), (void *)((s32)(*(s32 *)((s8 *)(*(u8 **)((s8 *)TObjEneGibbles__resource_bundle + 0x42C)) + 0xC))), (const NpcAnimationBinding *)((s32)(&s)), (f32)(((f32 *)lbl_804E296C)[3]), (f32)TObjEneGibbles__data_805DE7E4);
 }
 
-void *__dt__13TUnk_80494938Fv(void *arg0, s16 arg1);
 void *__dt__9TObjEnemyFv(TObjEnemy *arg0, s16 arg1);
 void free_collision_body_parts(void *);
 void __dl__7TObjectFPv(void *);
@@ -2556,7 +2497,7 @@ Gib_802DB920 *TObjEneGibbles__sub_802DB920(Gib_802DB920 *self, s16 arg1) {
         }
         free_collision_body_parts(self);
         __destroy_arr((u8 *)self + 0x3DC, (void *)__dt__15RenderFadeStateFv, 0x1C, 4);
-        __dt__13TUnk_80494938Fv((u8 *)self + 0x3C0, -1);
+        ((TObjEneGibbles *)self)->fade.MaterialOpacityFade::~MaterialOpacityFade();
         __dt__9TObjEnemyFv((TObjEnemy *)self, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(self);
@@ -2570,11 +2511,11 @@ u8 *TObjEneGibbles__ct(u8 *arg0, void *parent, s32 arg2) {
     void *p;
     __ct__9TObjEnemyFP7TObject(arg0, parent);
     *(void **)((s8 *)arg0 + 0x18) = (void *)lbl_804E29F0;
-    __ct__13TUnk_80494938Fv((arg0 + 0x3C0));
+    __ct__19MaterialOpacityFadeFv((arg0 + 0x3C0));
     __construct_array(arg0 + 0x3DC, (void *)__ct__15RenderFadeStateFv, (void *)__dt__15RenderFadeStateFv, 0x1C, 4);
     *(s32 *)((s8 *)arg0 + 0) = lbl_805D3F60;
     ((TObjEneGibbles *)arg0)->apply_set_data((void *)arg2);
-    ((TObjPlayer *)arg0)->init_position_vectors();
+    ((TObjChara *)arg0)->initialize_position_copies();
     ((TObjEneGibbles *)arg0)->scale.x = ((TObjEneGibbles *)arg0)->scale.y = *(f32 *)((s8 *)arg0 + 0x70) = TObjEneGibbles__data_805DE7EC;
     ((TObjEneGibbles *)arg0)->init_params();
     ((TObjEneGibbles *)arg0)->mode = 0;
@@ -2584,7 +2525,7 @@ u8 *TObjEneGibbles__ct(u8 *arg0, void *parent, s32 arg2) {
     ((TObjEneGibbles *)arg0)->subtype = 0;
     ((TObjEneGibbles *)arg0)->sub_802DBC94(((TObjEneGibbles *)arg0)->variant);
     ((TObjEneGibbles *)arg0)->action_table = gibbles_action_table;
-    ((TObjMotion *)arg0)->set_field_d8((s32)(((TObjEneGibbles *)arg0)->action_table));
+    ((TObjMotion *)arg0)->set_action_table((TObjMotionAction *)((s32)(((TObjEneGibbles *)arg0)->action_table)));
     *(s32 *)((s8 *)arg0 + 0xDC) = *(s32 *)((s8 *)TObjEneGibbles__resource_bundle + 0x430);
     ((TObjEneGibbles *)arg0)->requested_action = 0;
     ((TObjMotion *)arg0)->set_animation(((TObjEneGibbles *)arg0)->requested_action);
@@ -2618,7 +2559,7 @@ u8 *TObjEneGibbles__ct(u8 *arg0, void *parent, s32 arg2) {
     }
     ((TObjEneGibbles *)arg0)->m_3b8 = p;
     init_collision_body_parts(((TObjEneGibbles *)arg0)->m_3b8, (u8 *)lbl_804E296C + 0x58, 1);
-    ((VObj_14_802DBA18 *)(arg0 + 0x3C0))->m3();
+    ((TObjEneGibbles *)arg0)->fade.reset_obstruction_fade();
     for (i = 0; i < 4; i++) {
         ((RenderFadeState *)(&((G_802DBA18 *)arg0)->parts[i]))->activate_and_dispatch();
     }

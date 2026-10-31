@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include <stdlib.h>
@@ -25,7 +26,7 @@ BmlResource *TORevlightCave01__bml_resource;
 void TORevlightCave01::update_demo() {}
 
 void TORevlightCave01::run_task() {
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         update_demo();
     }
     spin_angle += spin_speed;

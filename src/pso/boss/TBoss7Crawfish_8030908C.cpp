@@ -101,8 +101,8 @@ u8 *TBoss7Crawfish__ct(u8 *arg0, s32 arg1, s32 arg2) {
     ((TBoss7Crawfish *)arg0)->texlist = TObjFish__sub_8001EDB0(TBoss7Crawfish__shared_resource, 0);
     copy_collision_body((CollisionBody *)(arg0 + 0x374), (const CollisionBody *)crawfish_collision_body_desc);
     ((TObjCollidable *)arg0)->set_collision_body(arg0 + 0x374);
-    ((TObjMotion *)arg0)->set_field_d8((s32)lbl_804E7380);
-    ((TObjMotion *)arg0)->set_field_dc((int) (*(s32 *)((s8 *)((u8 *)TBoss7Crawfish__shared_resource) + 0x430)));
+    ((TObjMotion *)arg0)->set_action_table((TObjMotionAction *)((s32)lbl_804E7380));
+    ((TObjMotion *)arg0)->set_motion_list((BmlMotionEntry *)((int) (*(s32 *)((s8 *)((u8 *)TBoss7Crawfish__shared_resource) + 0x430))));
     ((TBoss7Crawfish *)arg0)->set_anim_timer(2);
     ((TObjMotion *)arg0)->set_animation((((TBoss7Crawfish *)arg0)->requested_action));
     set_field_b8__10TObjMotionFs(arg0, (int) (((TBoss7Crawfish *)arg0)->requested_action));

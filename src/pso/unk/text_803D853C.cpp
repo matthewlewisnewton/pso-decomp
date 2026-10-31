@@ -1,3 +1,4 @@
+#include "pso/system/MatrixVectorArray.h"
 #include "pso/render/DebugFont.h"
 #include "pso/unk/text_803D853C.h"
 #define PSO_SDK_COMPACT_MATH
@@ -10,7 +11,7 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/enemy/TObjEneMe1Gee.h"
 extern "C" {
-f32 PSMTXMultVecArray(s32, s32);
+void PSMTXMultVecArray(const f32 (*m)[4], const Vec *src, Vec *dst, u32 count);
 extern s32 current_matrix;
 s32 PSMTXInverse(int, int);
 void PSMTXMultVec(const f32 (*m)[4], const Vec *src, Vec *dst);
@@ -44,13 +45,11 @@ void matrix_mult_vec(f32 (*m)[4], const Vec *src, Vec *dst) {
 
 #pragma push
 #pragma scheduling off
-void TObjPlayer::mult_vec_array(u32 arg0, s32 arg1) {
-    u32 var_r3;
-    var_r3 = arg0;
-    if (var_r3 == 0U) {
-        var_r3 = (u32) current_matrix;
+void matrix_mult_vec_array(f32 (*m)[4], const Vec *src, Vec *dst, u32 count) {
+    if (m == NULL) {
+        m = (f32 (*)[4])current_matrix;
     }
-    PSMTXMultVecArray((s32) var_r3, arg1);
+    PSMTXMultVecArray(m, src, dst, count);
 }
 }
 #pragma pop
