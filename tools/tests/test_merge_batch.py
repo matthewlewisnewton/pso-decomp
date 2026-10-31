@@ -238,7 +238,7 @@ class QueueTests(unittest.TestCase):
         review=self.root/'graph-review.json'; review.write_text('{}')
         env=self.root/'readme-env.json'; env.write_text(json.dumps({'acceptance_capacity':{'review':{'path':str(review),'sha256':m.digest(review)}}}))
         result={'review_sha256':m.digest(review), 'raw_report_paths':files, 'raw_report_sha256':{k:m.digest(v) for k,v in files.items()},
-                'coverage_receipt':str(coverage), 'acceptance_builds':{k:{'provenance':provenance} for k in files}}
+                'coverage_receipt':str(coverage), 'coverage_receipt_sha256':m.digest(coverage), 'acceptance_builds':{k:{'provenance':provenance} for k in files}}
         validation=self.state/'validated.json'; validation.write_text(json.dumps(result))
         self.q.record.update(validation=str(validation),validation_sha256=m.digest(validation))
         generator=MODULE.with_name('merge_batch_readme.py')
@@ -262,6 +262,34 @@ class QueueTests(unittest.TestCase):
         files=self.readme_transaction(False); self.q.prepare_readme(self.root/'readme-env.json')
         self.assertEqual(self.q.record['publication_candidate'],self.q.record['candidate'])
         Path(files['candidate']).write_text('{}')
+        self.rejects('stale_readme_evidence',self.q.check_readme_publication)
+
+    def test_readme_rejects_coverage_replaced_after_validation(self):
+        self.readme_transaction()
+        coverage=self.state/'coverage.json'; coverage.write_text('{"result":"fail"}')
+        self.rejects('stale_coverage_receipt', lambda: self.q.prepare_readme(self.root/'readme-env.json'))
+        self.assertNotIn('publication_candidate', self.q.record)
+
+    def test_readme_requires_validation_coverage_hash(self):
+        for value in (None, '', '0'*63, 'Z'*64, True, '0'*64):
+            with self.subTest(value=value):
+                self.readme_transaction()
+                validation=Path(self.q.record['validation']); data=json.loads(validation.read_text())
+                if value is None: del data['coverage_receipt_sha256']
+                else: data['coverage_receipt_sha256']=value
+                validation.write_text(json.dumps(data)); self.q.record['validation_sha256']=m.digest(validation)
+                code='stale_coverage_receipt' if value == '0'*64 else 'missing_coverage_binding'
+                self.rejects(code, lambda: self.q.prepare_readme(self.root/'readme-env.json'))
+
+    def test_readme_journals_original_coverage_binding(self):
+        self.readme_transaction(); self.q.prepare_readme(self.root/'readme-env.json')
+        validation=json.loads(Path(self.q.record['validation']).read_text())
+        self.assertEqual(self.q.record['readme_evidence']['coverage_sha256'], validation['coverage_receipt_sha256'])
+        self.q.check_readme_publication()
+        self.q.record['readme_evidence']['coverage_sha256']='0'*64
+        self.rejects('coverage_binding_mismatch',self.q.check_readme_publication)
+        self.q.record['readme_evidence']['coverage_sha256']=validation['coverage_receipt_sha256']
+        (self.state/'coverage.json').write_text('{"result":"fail"}')
         self.rejects('stale_readme_evidence',self.q.check_readme_publication)
 
     def test_readme_rejects_tampered_publication_tree(self):

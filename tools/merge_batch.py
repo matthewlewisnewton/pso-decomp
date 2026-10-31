@@ -306,7 +306,9 @@ class Queue:
         inputs = {role: builds[role]['provenance'] for role in ('baseline', 'candidate')}
         coverage = Path(data['coverage_receipt'])
         require(coverage.is_absolute() and coverage.resolve() == coverage and coverage.is_file() and coverage.is_relative_to(self.state.resolve()), 'invalid_coverage_receipt', '')
-        coverage_sha = digest(coverage)
+        coverage_sha = data.get('coverage_receipt_sha256')
+        require(isinstance(coverage_sha, str) and re.fullmatch(r'[0-9a-f]{64}', coverage_sha) is not None, 'missing_coverage_binding', '')
+        require(digest(coverage) == coverage_sha, 'stale_coverage_receipt', '')
         source = self.record['candidate']
         mode = self.git('ls-tree', source, '--', 'README.md').split()
         require(len(mode) == 4 and mode[0:2] == ['100644', 'blob'] and mode[3] == 'README.md', 'invalid_readme_mode', mode)
@@ -348,6 +350,8 @@ class Queue:
         evidence = self.record['readme_evidence']
         if self.record.get('validator_path'):
             require(digest(self.record['validator_path']) == self.record['validator_sha256'] and digest(self.record['environment_path']) == self.spec['environment_sha256'], 'stale_validation_pins', '')
+        validation = json.loads(Path(self.record['validation']).read_text())
+        require(validation.get('coverage_receipt') == evidence['coverage'] and validation.get('coverage_receipt_sha256') == evidence['coverage_sha256'], 'coverage_binding_mismatch', '')
         require(digest(evidence['review']) == evidence['review_sha256'] and digest(evidence['generator']) == evidence['generator_sha256'] and digest(evidence['coverage']) == evidence['coverage_sha256'] and digest(self.record['validation']) == self.record['validation_sha256'] and all(digest(v['path']) == v['sha256'] for v in evidence['reports'].values()), 'stale_readme_evidence', '')
         source, final = self.record['candidate'], self.record['publication_candidate']
         require(self.git('rev-parse', final + '^{tree}') == self.record['publication_tree'], 'readme_tree_changed', '')

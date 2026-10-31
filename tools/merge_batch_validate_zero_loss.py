@@ -179,6 +179,7 @@ def validate(request):
             raise RuntimeError('validator_receipt_delta_mismatch: ' + key)
     if any(digest(path) != sha for path, sha, _ in reports) or digest(review_path) != review_entry['sha256'] or digest(coverage_path) != coverage_sha:
         raise RuntimeError('evidence_changed_during_guard')
+    result['coverage_receipt_sha256'] = coverage_sha
     result['raw_report_sha256'] = {role: reports[i][1] for i, role in enumerate(('baseline', 'candidate'))}
     result['raw_report_paths'] = {role: str(reports[i][0]) for i, role in enumerate(('baseline', 'candidate'))}
     result['extent_gate'] = 'Unfiltered raw coverage, exact and source-linked intervals preserved.'
