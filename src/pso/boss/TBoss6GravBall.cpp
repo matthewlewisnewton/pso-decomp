@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "types.h"
 #include "pso/boss/TBoss6GravBall.h"
 #include "pso/object/TObject_80019A50.h"
@@ -228,7 +229,6 @@ typedef void (TBoss6GravBall::*ActP_80323BBC)(void *);
 typedef void (TBoss6GravBall::*Act0_80323BBC)();
 
 extern "C" {
-s32 check_demo_mode__10TObjPlayerFv(void *);
 s32 query_teammate_state__9TObjEneDDFv(void);
 void VecCopy__FP3VecPC3Vec(void *, void *);
 s32 create_emitter__14TBoss6GravBallFl(void *, int);
@@ -359,7 +359,7 @@ void update_state__14TBoss6GravBallFPv(u8 *arg0) {
 }
 
 void run_task__14TBoss6GravBallFv(TBoss6GravBall_80323BBC *arg0) {
-    if (check_demo_mode__10TObjPlayerFv(arg0) != 0) {
+    if (check_demo_mode() != 0) {
         return;
     }
     if (query_teammate_state__9TObjEneDDFv() != 0) {

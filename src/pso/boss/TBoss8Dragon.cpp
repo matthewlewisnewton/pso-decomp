@@ -1,4 +1,7 @@
+#include "pso/system/MatrixVectorArray.h"
 #include "pso/math/FloatRounding.h"
+#include "pso/map/CsnGroundQuery.h"
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
 struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
@@ -305,7 +308,6 @@ extern s32 local_client_id;
 extern s32 TBoss8Dragon__data_805D69B8;
 extern const f32 lbl_805DEEE4;
 void run_task__12TBoss8DragonFv(u8 *arg0);
-s32 *csnVecterUnder(s32 origin, s32 mask);
 void TBoss8Dragon__sub_802F48DC(TBoss8Dragon *dragon, Vec *target);
 struct Dragon_802F8578;
 void TBoss8Dragon__sub_802F8578(struct Dragon_802F8578 *, u32);
@@ -1487,7 +1489,6 @@ u8 *TBoss8Dragon__ct(u8 *, void *, void *);
 void TBoss8Dragon__sub_802FD9D0(void);
 s32 eval_bezier_curve__12TBoss8DragonFPviiPvf(void *, int, int, void *, f32);
 void __destroy_arr(void *, void *, u32, u32);
-s32 mult_vec_array__10TObjPlayerFUll(int, void *, int, int);
 f32 vec3_dot(void *, void *);
 s32 rotate_matrix_y(s32, s32);
 s32 rotate_matrix_z(s32, s32);
@@ -2243,7 +2244,7 @@ void TBoss8Dragon::update_camera_script(NJS_OBJECT *) {
     if ((s32) TBoss8Dragon__data_805D698C == (s32) lbl_805D6990) {
         push_matrix();
         update_camera_sequence__9TObjEneDDFv();
-        mult_vec_array__10TObjPlayerFUll(0, (void *)&lbl_80541DF4.value, TBoss8Dragon__data_805D6994, 3);
+        matrix_mult_vec_array((f32 (*)[4])(0), (const Vec *)((void *)&lbl_80541DF4.value), (Vec *)(TBoss8Dragon__data_805D6994), 3);
         pop_matrix();
     }
     if ((s32) TBoss8Dragon__data_805D698C == (s32) *(s32 *)((s8 *)&dragon_camera_script_frame_table.value + (TBoss8Dragon__data_805D6998 * 4))) {
@@ -4813,7 +4814,7 @@ void TBoss8Dragon__sub_802F87EC(u8 *arg0, u32 arg1) {
         v.x = *(f32 *)((s8 *)TBoss8Dragon__data_80541DDC[2] + 0xC) * c + *(f32 *)((s8 *)arg0 + 0x394);
         v.y = TBoss8Dragon__data_805DED9C;
         v.z = *(f32 *)((s8 *)TBoss8Dragon__data_80541DDC[2] + 0xC) * cos_table_lookup(ang) + *(f32 *)((s8 *)arg0 + 0x39C);
-        hit = (u8 *)csnVecterUnder((s32)&v, 0x16EF);
+        hit = (u8 *)csnVecterUnder((const Vec *)&v, 0x16EF);
         if ((hit != NULL) && (*(f32 *)((s8 *)(*(u8 **)((s8 *)hit + 4)) + 4) <= TBoss8Dragon__data_805DED9C)) {
             *(f32 *)((s8 *)arg0 + 0x394) = v.x;
             *(f32 *)((s8 *)arg0 + 0x39C) = v.z;
@@ -5846,7 +5847,7 @@ void TBoss8Dragon::spawn_ground_effect() {
     f32 temp_f1;
     u8 *temp_r3;
     VecCopy__FP3VecPC3Vec(&stack.sp8, (u8 *)&this->m_38);
-    temp_r3 = (u8 *)csnVecterUnder((s32)&stack.sp8, 0x16EF);
+    temp_r3 = (u8 *)csnVecterUnder((const Vec *)&stack.sp8, 0x16EF);
     if (temp_r3 != NULL) {
         temp_f1 = *(f32 *)((s8 *)(*(void **)((s8 *)temp_r3 + 4)) + 4);
         if (!(temp_f1 > TBoss8Dragon__data_805DED9C)) {
@@ -6605,7 +6606,7 @@ void TBoss8Dragon::run_task() {
     s32 temp_r30_2;
     s32 i;
     s32 var_r30;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((VObj_18 *)(arg0))->m103();
         return;
     }
@@ -6898,8 +6899,8 @@ u8 *TBoss8Dragon__ct(u8 *arg0, void *arg1, void *arg2) {
     ((TBoss8Dragon *)arg0)->m_70 = TBoss8Dragon__data_805DED60;
     init_model__9TObjEneDDFP13CollisionBodyl(arg0, lbl_804E4C58, 7);
     ((TBoss8Dragon *)arg0)->m_b0 = 0;
-    ((TObjMotion *)arg0)->set_field_d8((s32)lbl_804E4E18);
-    ((TObjMotion *)arg0)->set_field_dc(*(s32 *)((s8 *)TBoss8Dragon__data_805D6988 + 0x430));
+    ((TObjMotion *)arg0)->set_action_table((TObjMotionAction *)((s32)lbl_804E4E18));
+    ((TObjMotion *)arg0)->set_motion_list((BmlMotionEntry *)(*(s32 *)((s8 *)TBoss8Dragon__data_805D6988 + 0x430)));
     ((TBoss8Dragon *)arg0)->m_b8 = 0;
     ((TObjMotion *)arg0)->set_animation(((TBoss8Dragon *)arg0)->m_b8);
     ((TObjMotion *)arg0)->set_field_b8(((TBoss8Dragon *)arg0)->m_b8);

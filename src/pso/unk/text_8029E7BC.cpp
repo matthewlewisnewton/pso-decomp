@@ -27,7 +27,7 @@ s32 fn_8029E7BC(s32 arg0, u8 *arg1) {
   }
   VecCopy((Vec *)(&stack.sp8), (const Vec *)arg0);
   stack.spC += lbl_805DDD88;
-  temp_r3 = (u8 *) csnVecterUnder((s32)&stack.sp8, var_r31);
+  temp_r3 = (u8 *) csnVecterUnder((const Vec *)&stack.sp8, var_r31);
   if (temp_r3 != 0)
   {
     temp_r4 = (u8 *) (*((u8 **) (((s8 *) temp_r3) + 4)));

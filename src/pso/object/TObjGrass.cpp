@@ -1,10 +1,17 @@
+#include "pso/system/MatrixVectorArray.h"
 #include "pso/misc/SampledMotionPoints.h"
+#include "pso/misc/PositionSoundEffects.h"
+#include "pso/player/demo_mode.h"
+#include "pso/misc/MaterialOpacityFade.h"
+#include "pso/misc/RenderFadeState.h"
 #include "pso/enemy/BattleParameters.h"
 struct NJS_OBJECT;
 #include "pso/math/ScratchVectorStorage.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
+#include "pso/misc/GroundEffects.h"
+#include "pso/math/ScratchVectorStorage.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "types.h"
 #include "pso/TObject.h"
@@ -15,9 +22,7 @@ struct NJS_OBJECT;
 #include "pso/system/vector.h"
 #include "pso/player/TObjChara.h"
 #include "pso/enemy/TObjEnemy.h"
-#include "pso/object/TObjMotion.h"
 #include "pso/object/TObjGrass.h"
-#include "pso/enemy/TUnk_80494938.h"
 #include "pso/map/FloorArea.h"
 extern "C" void render__12TObjGrassWebFv();
 #include "pso/TParticleCtrl.h"
@@ -163,13 +168,6 @@ struct Grass_800BD10C {
     u8 pad354[0x380 - 0x354]; Vec_800BD10C p380;
 };
 
-struct VBase_14_800BE8FC { char pad[0x14]; };
-
-struct VObj_14_800BE8FC : VBase_14_800BE8FC {
-    virtual void m0(); virtual void m1(); virtual void m2(); virtual void m3(); virtual void m4();
-    virtual s32 m5();
-};
-
 struct Vec_800BE8FC { f32 x, y, z; };
 
 struct Param_800BE8FC { u8 pad0[4]; f32 speed; s32 turn; };
@@ -198,7 +196,7 @@ struct Grass_800BE8FC {
     s16 f39C;
     u8 pad39E[0x3AC - 0x39E];
     s32 f3AC;
-    VObj_14_800BE8FC sub;
+    MaterialOpacityFade sub;
 };
 
 struct O_800BFB68;
@@ -272,15 +270,6 @@ struct Grass_800BD4D8 {
     VObj_18_800BD4D8 *hit[12];
 };
 
-struct VBase_14_fa0828 { char pad[0x14]; };
-
-struct VObj_14_fa0828 : VBase_14_fa0828 {
-    virtual void m0();
-    virtual void m1();
-    virtual void m2();
-    virtual s32 m3();
-};
-
 struct E1C_800BF924 { u8 pad[0x1C]; };
 
 struct E2C_800BF924 { u8 pad[0x2C]; };
@@ -294,7 +283,6 @@ s32 play_sound_effect(void *, void *, int, int);
 extern u32 TObjGrass__resource_bundle;
 void TObjGrass__sub_800BFB68(O_800BFB68 *self);
 void queue_destruction__7TObjectFv(void *arg0);
-void *__dt__13TUnk_80494938Fv(void *arg0, s16 arg1);
 void *__dt__9TObjEnemyFv(TObjEnemy *arg0, s16 arg1);
 s32 free_collision_body_parts(void *);
 s32 __dl__7TObjectFPv(void *);
@@ -332,7 +320,6 @@ extern u32 lbl_805D515C;
 void TObjGrass__sub_800BCA2C(void *);
 s32 submit_cursor_candidate(void *, int);
 f32 random_ratio__9TObjCharaFv(s32 arg0);
-s32 mult_vec_array__10TObjPlayerFUll(int, int, void *, int);
 s32 scale_matrix(int, f32, f32, f32);
 void set_matrix_identity(u8 *arg0);
 s32 push_matrix();
@@ -552,7 +539,7 @@ void TObjGrass::update_dying(void *arg0_) {
             }
             play_sound_effect((void *)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003AB0A)), arg0 + 0x38, 0, 0);
             TObjPlayer::spawn_dead_spot_default((s32)(arg0 + 0x38), 0xA);
-            ((TObjPlayer *)(arg0 + 0x38))->spawn_ground_effect(0x1E);
+            spawn_ground_effect((const Vec *)(arg0 + 0x38), 0x1E);
         }
         ((TObjEnePanarms *)arg0)->scale.y -= 0.01f;
         if (((TObjEnePanarms *)arg0)->scale.y < 0.0f) {
@@ -1058,7 +1045,7 @@ void TObjGrass::sub_800BDD70() {
                 post_translate_matrix((u8 *)&this->position);
                 rotate_matrix_y(0, this->rotation_y);
                 scale_matrix(0, (1.3f), (1.3f), (1.3f));
-                mult_vec_array__10TObjPlayerFUll(0, ent, &sp14, 2);
+                matrix_mult_vec_array((f32 (*)[4])(0), (const Vec *)(ent), (Vec *)(&sp14), 2);
                 pop_matrix();
                 if (((VObj_800BDD70 **)(arg0 + 0x3CC))[idx] != NULL) {
                     ((VObj_800BDD70 **)(arg0 + 0x3CC))[idx]->m4((s32 *)&sp14, (s32 *)&sp20);
@@ -1284,13 +1271,13 @@ void TObjGrass::update_ai(void *arg0) {
     switch (o->state) {
     case 0:
         obj_setFlags30(o, 0x04040000);
-        ((TUnk_80494938 *)(&o->sub))->start_fade_in();
-        ((TBoss3Volopt *)(&o->pos))->play_area_sound_effect();
+        ((TObjGrass *)o)->fade.start_fade_in();
+        play_area_sound_and_particles_b((const Vec *)(&o->pos));
         o->state = 1;
         break;
     case 1:
         obj_setFlags30(o, 0x04040000);
-        if (o->sub.m5() == 1) {
+        if (((TObjGrass *)o)->fade.advance_toward_max() == 1) {
             o->state = 2;
             o->fB8 = 1;
             o->f3AC = 0;
@@ -1517,18 +1504,6 @@ void TObjGrass::vfunc_28() {
     }
 }
 
-struct VBase_14_d701ad { char pad[0x14]; };
-struct VObj_14_d701ad : VBase_14_d701ad {
-    virtual void m0();
-    virtual void m1();
-    virtual void m2();
-    virtual void m3();
-    virtual void m4();
-    virtual void m5();
-    virtual s32 m6(s32, s32);
-    virtual s32 m7();
-    virtual s32 m8();
-};
 struct VBase_18_ca64a0 { char pad[0x18]; };
 struct VObj_18_ca64a0 : VBase_18_ca64a0 {
     virtual void m0();
@@ -1556,7 +1531,7 @@ extern s32 chunk_polygon_flags_and_mask;
 extern s32 model_render_flags;
 struct Grass_800BF19C : VObj_18_ca64a0 {
     u8 pad1C[0x3B0 - 0x1C];
-    VObj_14_d701ad sub;
+    MaterialOpacityFade sub;
 };
 
 void TObjGrass::render() {
@@ -1577,22 +1552,22 @@ void TObjGrass::render() {
     post_translate_matrix(arg0 + 0x38);
     rotate_matrix_y(0, *(s32 *)((s8 *)arg0 + 0x60));
     scale_matrix(0, (1.3f), *(f32 *)((s8 *)arg0 + 0x6C), (1.3f));
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         draw_chunk_object((void *)(*(s32 *)((s8 *)arg0 + 0x34)));
     } else {
         TObjPlayer::toggle_particle_effect();
         TObjGrass__render_node_index = 0;
         set_chunk_model_node_callback((TObjGrass::update_camera_vec_by_stage));
         if (*(s32 *)((s8 *)arg0 + 0x3AC) == 1) {
-            if ((&self->sub)->m8() != 0) {
+            if (this->fade.has_visible_opacity() != 0) {
                 saved_model_render_flags = model_render_flags;
                 saved_chunk_polygon_flags_and_mask = chunk_polygon_flags_and_mask;
                 saved_chunk_polygon_flags_or_mask = chunk_polygon_flags_or_mask;
-                (&self->sub)->m6(chunk_polygon_flags_and_mask, model_render_flags);
+                this->fade.set_flags_and_apply_damage_color();
                 if (defer_render__7TObjectFv(self) == 0) {
                     ((TObjMotion *)self)->draw();
                 }
-                (&self->sub)->m7();
+                this->fade.clear_flag_and_notify();
                 chunk_polygon_flags_and_mask = saved_chunk_polygon_flags_and_mask;
                 chunk_polygon_flags_or_mask = saved_chunk_polygon_flags_or_mask;
                 model_render_flags = saved_model_render_flags;
@@ -1638,7 +1613,7 @@ void TObjGrass::run_task() {
     u16 temp_r3;
     u8 *temp_r3_2;
     u8 *temp_r4;
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         TObjGrass__sub_800BCA2C(arg0);
         return;
     }
@@ -1781,7 +1756,7 @@ Obj_800BF880 *__dt__9TObjGrassFv(Obj_800BF880 *arg0, s16 arg1) {
             i++;
         } while (i < 2);
         free_collision_body_parts(arg0);
-        __dt__13TUnk_80494938Fv((u8 *)arg0 + 0x3B0, -1);
+        ((TObjGrass *)arg0)->fade.MaterialOpacityFade::~MaterialOpacityFade();
         __dt__9TObjEnemyFv((TObjEnemy *)arg0, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
@@ -1794,10 +1769,10 @@ u8 *TObjGrass__ct(u8 *arg0, s32 arg1, s32 arg2) {
     s32 t;
     __ct__9TObjEnemyFP7TObject(arg0, arg1, arg2);
     *(u8 **)((s8 *)arg0 + 0x18) = __vt__9TObjGrass;
-    __ct__13TUnk_80494938Fv((arg0 + 0x3B0));
+    __ct__19MaterialOpacityFadeFv((arg0 + 0x3B0));
     *(s32 *)((s8 *)arg0 + 0) = lbl_805D2A38;
     ((TObjGrass *)(arg0))->apply_set_data((void *)arg2);
-    ((TObjPlayer *)arg0)->init_position_vectors();
+    ((TObjChara *)arg0)->initialize_position_copies();
     apply_actor_gravity(arg0, 0, (0.0f));
     t = *(s32 *)((s8 *)TObjGrass__resource_bundle + 0x430);
     *(s32 *)((s8 *)arg0 + 0xDC) = t;
@@ -1809,7 +1784,7 @@ u8 *TObjGrass__ct(u8 *arg0, s32 arg1, s32 arg2) {
     *(s32 *)&((TObjGrass *)arg0)->subtype = 0;
     ((TObjGrass *)arg0)->init_from_table_entry((s32)(*(s32 *)&((TObjGrass *)arg0)->variant));
     *(u8 * *)&((TObjGrass *)arg0)->action_table = (u8 *)TObjGrass__grass_type_param_table;
-    ((TObjMotion *)arg0)->set_field_d8((s32)(*(u8 * *)&((TObjGrass *)arg0)->action_table));
+    ((TObjMotion *)arg0)->set_action_table((TObjMotionAction *)((s32)(*(u8 * *)&((TObjGrass *)arg0)->action_table)));
     if ((0.0f) < *(f32 *)((s8 *)arg0 + 0x358)) {
         ((TObjGrass *)arg0)->m_39c = 2;
     } else {
@@ -1833,7 +1808,7 @@ u8 *TObjGrass__ct(u8 *arg0, s32 arg1, s32 arg2) {
     TObjGrass__sub_800BFB68((O_800BFB68 *)(arg0));
     ((TObjChara *)arg0)->add_flags_2e4(2);
     obj_setFlags30(arg0, 0x04040000);
-    ((VObj_14_fa0828 *)(arg0 + 0x3B0))->m3();
+    ((TObjGrass *)arg0)->fade.reset_obstruction_fade();
     *(s32 *)&((TObjGrass *)arg0)->m_3ac = 1;
     *(s32 *)&((TObjGrass *)arg0)->m_3cc = create__13TUnk_80494968FUlUl(0xA0303030, 0xFFFF0088);
     *(s32 *)&((TObjGrass *)arg0)->m_3d0 = create__13TUnk_80494968FUlUl(0xA0303030, 0xFFFF0088);

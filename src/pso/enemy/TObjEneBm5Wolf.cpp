@@ -1,4 +1,5 @@
 #include "pso/math/FloatRounding.h"
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
 struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
@@ -1263,7 +1264,7 @@ void update_state__14TObjEneBm5WolfFPv(void *ene_bm5_wolf) {
 void TObjEneBm5Wolf::render() {
     Ang_800B4AD4 rot;
     s32 var_r31;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((VObj_800B4AD4 *)((u8 *)this))->m104();
         return;
     }
@@ -3467,7 +3468,7 @@ void TObjEneBm5Wolf::run_task() {
     s16 temp_r0;
     s16 temp_r3_2;
     s32 temp_r3;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((VObj_18 *)(this))->m103();
         return;
     }
@@ -3540,8 +3541,8 @@ u8 *TObjEneBm5Wolf__ct(u8 *ene_bm5_wolf, void *arg1, void *arg2) {
     select_subtype__14TObjEneBm5WolfFv(ene_bm5_wolf);
     ((TObjEneDD *)ene_bm5_wolf)->init_position_vectors();
     init_model__9TObjEneDDFP13CollisionBodyl(ene_bm5_wolf, (void *)TObjEneBm5Wolf__collider_params, 1);
-    ((TObjMotion *)ene_bm5_wolf)->set_field_d8((s32)((void *)wolf_action_table));
-    ((TObjMotion *)ene_bm5_wolf)->set_field_dc(*(s32 *)((s8 *)(*(u32 *)&TObjEneBm5Wolf__bml_resource) + 0x430));
+    ((TObjMotion *)ene_bm5_wolf)->set_action_table((TObjMotionAction *)((s32)((void *)wolf_action_table)));
+    ((TObjMotion *)ene_bm5_wolf)->set_motion_list((BmlMotionEntry *)(*(s32 *)((s8 *)(*(u32 *)&TObjEneBm5Wolf__bml_resource) + 0x430)));
     ((TObjEneBm5Wolf *)ene_bm5_wolf)->requested_action = 0;
     ((TObjMotion *)ene_bm5_wolf)->set_animation(((TObjEneBm5Wolf *)ene_bm5_wolf)->requested_action);
     ((TObjMotion *)ene_bm5_wolf)->set_field_b8(((TObjEneBm5Wolf *)ene_bm5_wolf)->requested_action);

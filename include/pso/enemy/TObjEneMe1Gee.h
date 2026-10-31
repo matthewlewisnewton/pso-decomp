@@ -3,6 +3,7 @@ struct NJS_OBJECT;
 #define PSO_ENEMY_TOBJENEME1GEE_H
 
 #include "types.h"
+#include "pso/misc/MaterialOpacityFade.h"
 #include <stddef.h>
 #include "pso/enemy/TObjEneDD_ST.h"
 
@@ -47,7 +48,9 @@ struct TObjEneMe1Gee : public TObjEneDD_ST {
     void run_task();
     TObjEneMe1Gee *leader;
     u32 m_3e0;
-    u8 _pad3E4[0x20];
+
+    u8 _padBeforeFade[0x4];
+    MaterialOpacityFade fade;
     u32 m_404;
     u32 m_408;
     u8 _pad40C[0x4];
@@ -89,6 +92,8 @@ struct TObjEneMe1Gee : public TObjEneDD_ST {
     void set_state_flag(s32 arg1, s32 arg2);
     void update();
 };
+
+typedef char TObjEneMe1GeeFadeOffset[offsetof(TObjEneMe1Gee, fade) == 0x3CC ? 1 : -1];
 
 // The legacy field suffixes do not describe their physical offsets.
 typedef char GeeLeaderOffset[offsetof(TObjEneMe1Gee, leader) == 0x3C0 ? 1 : -1];

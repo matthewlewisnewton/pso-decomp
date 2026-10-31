@@ -1,5 +1,6 @@
 #include "pso/misc/SampledMotionPoints.h"
 #include "pso/math/FloatRounding.h"
+#include "pso/player/demo_mode.h"
 #include "pso/math/VectorNormalize.h"
 #include "pso/enemy/BattleParameters.h"
 struct NJS_OBJECT;
@@ -957,7 +958,7 @@ void render__17TObjEneDf2BringerFv(u8 *arg0) {
     s32 temp_r27;
     s32 mode;
     s32 i;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((TObjEneDf2Bringer *)(arg0))->vfunc_105();
         return;
     }
@@ -2553,7 +2554,7 @@ extern void *lbl_805D29A0;
 
 void run_task__17TObjEneDf2BringerFv(u8 *arg0) {
     s32 temp_r0;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((TObjEneDf2Bringer *)(arg0))->vfunc_83();
         return;
     }
@@ -2631,8 +2632,8 @@ void TObjEneDf2Bringer::init_enemy() {
     *(s32 *)((s8 *)arg0 + 0x34) = *(s32 *)((s8 *)(*(u8 **)((s8 *)TObjEneDf2Bringer__resource_bundle + 0x42C)) + 8);
     *(s32 *)((s8 *)arg0 + 0x24) = *(s32 *)((s8 *)(*(u8 **)((s8 *)TObjEneDf2Bringer__resource_bundle + 0x42C)) + 0xC);
     init_model__9TObjEneDDFP13CollisionBodyl(arg0, lbl_8048FA2C, 1);
-    ((TObjMotion *)arg0)->set_field_d8((s32)&lbl_8048FAF8);
-    ((TObjMotion *)arg0)->set_field_dc(*(s32 *)((s8 *)TObjEneDf2Bringer__resource_bundle + 0x430));
+    ((TObjMotion *)arg0)->set_action_table((TObjMotionAction *)((s32)&lbl_8048FAF8));
+    ((TObjMotion *)arg0)->set_motion_list((BmlMotionEntry *)(*(s32 *)((s8 *)TObjEneDf2Bringer__resource_bundle + 0x430)));
     *(s16 *)((s8 *)arg0 + 0xB8) = 0;
     ((TObjMotion *)arg0)->set_animation(*(s16 *)((s8 *)arg0 + 0xB8));
     ((TObjMotion *)arg0)->set_field_b8(*(s16 *)((s8 *)arg0 + 0xB8));

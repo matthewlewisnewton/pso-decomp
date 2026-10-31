@@ -1,6 +1,10 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/enemy/BattleParameters.h"
 struct NJS_OBJECT;
 #include "pso/unk/TUnk_80494968.h"
+#include "pso/misc/GroundEffects.h"
+#include "pso/misc/PositionSoundEffects.h"
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/TUnk_80493450.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/player/TObjChara.h"
@@ -13,27 +17,26 @@ struct NJS_OBJECT;
 #include "pso/object/TObject_80019A50.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/TParticleCtrl.h"
-#include "pso/boss/TBoss3Volopt.h"
-#include "pso/boss/TBoss3VoloptHiraisin.h"
 #include "pso/enemy/TObjEneDD.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/object/TObjFish.h"
 
-#include "pso/enemy/TUnk_80494938.h"
+#include "pso/misc/MaterialOpacityFade.h"
 
 #include "pso/system/NinjaTypes.h"
 #include "pso/system/BmlResource.h"
+#include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceDescriptor.h"
+#include "pso/npc/NpcAnimationBinding.h"
+#include "pso/npc/NpcModelRegistry.h"
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/TObjControl.h"
+#include "pso/TMainTask.h"
+#include "pso/player/TObjPlayer_80011014.h"
 #include "pso/misc/TLobby.h"
 #include "pso/misc/RenderFadeState.h"
 #include "pso/misc/TNowLoading.h"
 #include <dolphin/mtx.h>
-#include "pso/enemy/BattleParameters.h"
-#include "pso/npc/NpcModelRegistry.h"
-#include "pso/npc/NpcAnimationBinding.h"
-#include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/misc/SampledMotionPoints.h"
 #include "pso/system/SoundEffect.h"
@@ -41,6 +44,7 @@ struct NJS_OBJECT;
 #include "pso/system/MatrixOps.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
 #include "pso/math/MatrixVector.h"
+#include "pso/system/MatrixVectorArray.h"
 #include "pso/math/MatrixTransforms.h"
 #include "pso/unk/text_803D8F74.h"
 #include "pso/unk/text_803E2D70.h"
@@ -54,13 +58,11 @@ extern __declspec(section ".sdata2") const f32 shark_zero;
 extern __declspec(section ".sdata2") const f32 shark_ground_effect_y;
 extern __declspec(section ".sdata2") const f32 shark_ground_effect_height_factor;
 
-s32 mult_vec_array__10TObjPlayerFUll(int, int, void *, int);
 
-extern void *shark_attack3_trail_buffer;
-extern void *shark_attack4_trail_buffer;
+extern SampledMotionPoints *shark_attack3_trail_buffer;
+extern SampledMotionPoints *shark_attack4_trail_buffer;
 extern __declspec(section ".sdata2") const f32 shark_attack_trail_end_frame;
 
-s32 is_split_screen();
 
 s32 restore_scene_lighting();
 s32 select_actor_lighting(void *);
@@ -110,7 +112,7 @@ void TObjEneShark::vfunc_94() {
     rotate_vector_by_matrix(0, &impactPosition, &impactPosition);
     pop_matrix();
     vec3_add_to(&impactPosition, &position);
-    ((TObjPlayer *)(&impactPosition))->spawn_ground_effect(0x23);
+    spawn_ground_effect(&impactPosition, 0x23);
     TObjPlayer__sub_800D92BC((s32)&impactPosition, 0xF);
 }
 
@@ -124,11 +126,11 @@ void TObjEneShark::vfunc_93() {
     }
     switch (requested_action) {
     case 3:
-        e = ((SampledMotionPoints *)shark_attack3_trail_buffer)->lookup(frame);
+        e = shark_attack3_trail_buffer->lookup(frame);
         idx = 0;
         break;
     case 4:
-        e = ((SampledMotionPoints *)shark_attack4_trail_buffer)->lookup(frame);
+        e = shark_attack4_trail_buffer->lookup(frame);
         idx = 1;
         break;
     default:
@@ -142,7 +144,7 @@ void TObjEneShark::vfunc_93() {
     set_matrix_identity(0);
     post_translate_matrix(&position.x);
     rotate_matrix_y(0, rotation_y);
-    mult_vec_array__10TObjPlayerFUll(0, (s32)e, endpoints, 2);
+    matrix_mult_vec_array(NULL, e, endpoints, 2);
     pop_matrix();
     eff = attack_trails[idx];
     if (eff != NULL) {
@@ -150,7 +152,7 @@ void TObjEneShark::vfunc_93() {
     }
 }
 
-void TObjEneShark::apply_clamped_mode_param() {
+void TObjEneShark::configure_subtype() {
     s32 selectedSubtype;
     selectedSubtype = subtype;
     if (selectedSubtype < 0) {
@@ -181,7 +183,7 @@ void TObjEneShark::vfunc_83() {
     default:
         if (m_390 != 0) {
             appearance_fade.start_fade_in();
-            ((TBoss3Volopt *)&position)->play_area_sound_effect();
+            play_area_sound_and_particles_b(&position);
             phase = 1;
         } else {
             phase = 2;
@@ -245,7 +247,7 @@ void TObjEneShark::render() {
     translate_matrix(0, shark_zero, unk_380, shark_zero);
     post_translate_matrix(&position.x);
     rotate_matrix_y(0, rotation_y);
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         draw_chunk_object(model);
     } else {
         switch (mode) {
@@ -253,9 +255,9 @@ void TObjEneShark::render() {
         case 1:
         case 8:
         case 9: {
-            s16 *polygon = ((NJS_CNK_MODEL *)((NJS_OBJECT *)model)->child->sibling->model)->polygon_list;
+            s16 *polygon = static_cast<NJS_CNK_MODEL *>(static_cast<NJS_OBJECT *>(model)->child->sibling->model)->polygon_list;
             s16 t = polygon[3];
-            ((NJS_CNK_MODEL *)((NJS_OBJECT *)model)->child->sibling->model)->polygon_list[3] = (u8)polygon[3];
+            static_cast<NJS_CNK_MODEL *>(static_cast<NJS_OBJECT *>(model)->child->sibling->model)->polygon_list[3] = (u8)polygon[3];
             savedFirstPolygonWord3 = t;
             break;
         }
@@ -263,13 +265,13 @@ void TObjEneShark::render() {
         if (m_378 == 0) {
             s16 a;
             s16 b;
-            s16 *polygon = ((NJS_CNK_MODEL *)((NJS_OBJECT *)model)->child->sibling->sibling->model)->polygon_list;
+            s16 *polygon = static_cast<NJS_CNK_MODEL *>(static_cast<NJS_OBJECT *>(model)->child->sibling->sibling->model)->polygon_list;
             a = polygon[2];
             b = polygon[3];
             polygon[2] = -0xB4;
             savedSecondPolygonWord2 = a;
             savedSecondPolygonWord3 = b;
-            ((NJS_CNK_MODEL *)((NJS_OBJECT *)model)->child->sibling->sibling->model)->polygon_list[3] = -1;
+            static_cast<NJS_CNK_MODEL *>(static_cast<NJS_OBJECT *>(model)->child->sibling->sibling->model)->polygon_list[3] = -1;
         }
         TObjPlayer::toggle_particle_effect();
         shark_render_node_index = 0;
@@ -314,15 +316,15 @@ void TObjEneShark::render() {
         set_chunk_model_node_callback(0);
         TParticleCtrl::end_effect_render();
         if (m_378 == 0) {
-            ((NJS_CNK_MODEL *)((NJS_OBJECT *)model)->child->sibling->sibling->model)->polygon_list[2] = savedSecondPolygonWord2;
-            ((NJS_CNK_MODEL *)((NJS_OBJECT *)model)->child->sibling->sibling->model)->polygon_list[3] = savedSecondPolygonWord3;
+            static_cast<NJS_CNK_MODEL *>(static_cast<NJS_OBJECT *>(model)->child->sibling->sibling->model)->polygon_list[2] = savedSecondPolygonWord2;
+            static_cast<NJS_CNK_MODEL *>(static_cast<NJS_OBJECT *>(model)->child->sibling->sibling->model)->polygon_list[3] = savedSecondPolygonWord3;
         }
         switch (mode) {
         case 0:
         case 1:
         case 8:
         case 9:
-            ((NJS_CNK_MODEL *)((NJS_OBJECT *)model)->child->sibling->model)->polygon_list[3] = savedFirstPolygonWord3;
+            static_cast<NJS_CNK_MODEL *>(static_cast<NJS_OBJECT *>(model)->child->sibling->model)->polygon_list[3] = savedFirstPolygonWord3;
             break;
         }
     }
@@ -340,7 +342,7 @@ void TObjEneShark::render() {
         scale.x = shark_shadow_scale_x;
         scale.y = shark_one;
         scale.z = shark_shadow_scale_z;
-        draw_ground_shadow(&scale, 0);
+        TObjEnemy::draw_ground_shadow(&scale, 0);
     }
     }
 }
@@ -352,16 +354,15 @@ extern s32 game_difficulty_selection;
 
 void *mem_alloc(u32 size);
 extern const char shark_alt_archive_filename[];
-extern u8 **shark_combat_stats;
-extern u8 **shark_attack_stats;
-extern u8 **shark_resistance_stats;
+extern BattleBaseStats **shark_combat_stats;
+extern AttackParams **shark_attack_stats;
+extern ActorParamBlock **shark_resistance_stats;
 extern f32 **shark_movement_parameter_sets;
 extern __declspec(section ".sdata2") const f32 shark_attack_trail_start_frame;
 extern __declspec(section ".sdata2") const f32 shark_npc_collision_radius;
 
 void mem_free(void*);
 
-extern void *tl_04;
 
 extern "C" __declspec(section ".rodata") const char shark_model_filename_0[] = "bm1f_s_wala_body.nj";
 extern "C" __declspec(section ".rodata") const char shark_model_filename_1[] = "bm1tl_s_wala_body.nj";
@@ -395,17 +396,17 @@ BmlResourceDescriptor bm_ene_bm1_shark_resource_descriptor = {
     shark_archive_filename, bm_ene_bm1_shark_model_names, bm_ene_bm1_shark_motion_names, 3, 12
 };
 TObjMotionAction shark_actions[11] = {
-    { 1, 0, 9, 0.6f, 0x1 },
-    { 2, 0, 7, 0.6f, 0x20 },
-    { 1, 2, 11, 1.0f, 0x1 },
-    { 2, 0, 1, 1.0f, 0x4 },
-    { 2, 0, 2, 1.0f, 0x4 },
-    { 1, 0, 8, 1.0f, 0x1 },
-    { 2, 0, 3, 1.0f, 0x8 },
-    { 2, 0, 10, 0.8f, 0x20 },
-    { 3, 0, 5, 0.6f, 0x10 },
-    { 3, 0, 4, 0.6f, 0x10 },
-    { 2, 0, 6, 0.6f, 0x20 },
+    { MOTION_MODE_LOOP, 0, 9, 0.6f, 0x1 },
+    { MOTION_MODE_CHAIN, 0, 7, 0.6f, 0x20 },
+    { MOTION_MODE_LOOP, 2, 11, 1.0f, 0x1 },
+    { MOTION_MODE_CHAIN, 0, 1, 1.0f, 0x4 },
+    { MOTION_MODE_CHAIN, 0, 2, 1.0f, 0x4 },
+    { MOTION_MODE_LOOP, 0, 8, 1.0f, 0x1 },
+    { MOTION_MODE_CHAIN, 0, 3, 1.0f, 0x8 },
+    { MOTION_MODE_CHAIN, 0, 10, 0.8f, 0x20 },
+    { MOTION_MODE_ONCE, 0, 5, 0.6f, 0x10 },
+    { MOTION_MODE_ONCE, 0, 4, 0.6f, 0x10 },
+    { MOTION_MODE_CHAIN, 0, 6, 0.6f, 0x20 },
 };
 
 SharkMovementParameters shark_movement_parameters[3] = {
@@ -422,33 +423,33 @@ CollisionBody shark_collision_bodies[3] = {
 }
 
 void *TObjEneShark::create(void *setData) {
-    TObjControl *control = new TObjControl((TObject *)tl_04);
+    TObjControl *control = new TObjControl(tl_04);
     return new TObjEneShark(control, setData);
 }
 
 void TObjEneShark::free_resources() {
     if (shark_combat_stats != NULL) {
-        mem_free((void*)shark_combat_stats);
+        mem_free(shark_combat_stats);
         shark_combat_stats = NULL;
     }
     if (shark_attack_stats != NULL) {
-        mem_free((void*)shark_attack_stats);
+        mem_free(shark_attack_stats);
         shark_attack_stats = NULL;
     }
     if (shark_resistance_stats != NULL) {
-        mem_free((void*)shark_resistance_stats);
+        mem_free(shark_resistance_stats);
         shark_resistance_stats = NULL;
     }
     if (shark_movement_parameter_sets != NULL) {
-        mem_free((void*)shark_movement_parameter_sets);
+        mem_free(shark_movement_parameter_sets);
         shark_movement_parameter_sets = NULL;
     }
     if (shark_attack4_trail_buffer != NULL) {
-        delete (SampledMotionPoints *)shark_attack4_trail_buffer;
+        delete shark_attack4_trail_buffer;
         shark_attack4_trail_buffer = NULL;
     }
     if (shark_attack3_trail_buffer != NULL) {
-        delete (SampledMotionPoints *)shark_attack3_trail_buffer;
+        delete shark_attack3_trail_buffer;
         shark_attack3_trail_buffer = NULL;
     }
     if (shark_bml_resource != NULL) {
@@ -458,33 +459,29 @@ void TObjEneShark::free_resources() {
 }
 
 void TObjEneShark::load_resources() {
-    void *p;
     s32 i;
     if (TObjEneDD::check_v2_mode() != 0) {
-        shark_bml_resource = (BmlResource *)load_enemy_bml_resource_named(&bm_ene_bm1_shark_resource_descriptor, shark_alt_archive_filename);
+        shark_bml_resource = load_enemy_bml_resource_named(&bm_ene_bm1_shark_resource_descriptor, shark_alt_archive_filename);
     } else {
-        p = new BmlResource(1, &bm_ene_bm1_shark_resource_descriptor, 0, 0, 0);
-        shark_bml_resource = (BmlResource *)p;
+        shark_bml_resource = new BmlResource(1, &bm_ene_bm1_shark_resource_descriptor, 0, 0, NULL);
     }
-    p = new SampledMotionPoints(2, shark_attack_trail_start_frame, shark_attack_trail_end_frame, shark_one);
-    shark_attack3_trail_buffer = p;
-    p = new SampledMotionPoints(2, shark_attack_trail_start_frame, shark_attack_trail_end_frame, shark_one);
-    shark_attack4_trail_buffer = p;
-    ((SampledMotionPoints *)shark_attack3_trail_buffer)->sample_two_nodes((NJS_OBJECT *)shark_bml_resource->models->model, (NJS_MOTION *)shark_bml_resource->motions[shark_actions[3].motion].motion, 5, 8);
-    ((SampledMotionPoints *)shark_attack4_trail_buffer)->sample_two_nodes((NJS_OBJECT *)shark_bml_resource->models->model, (NJS_MOTION *)shark_bml_resource->motions[shark_actions[4].motion].motion, 0xA, 0xD);
-    shark_combat_stats = (u8 **)mem_alloc(0xC);
-    shark_attack_stats = (u8 **)mem_alloc(0xC);
-    shark_resistance_stats = (u8 **)mem_alloc(0xC);
+    shark_attack3_trail_buffer = new SampledMotionPoints(2, shark_attack_trail_start_frame, shark_attack_trail_end_frame, shark_one);
+    shark_attack4_trail_buffer = new SampledMotionPoints(2, shark_attack_trail_start_frame, shark_attack_trail_end_frame, shark_one);
+    shark_attack3_trail_buffer->sample_two_nodes((NJS_OBJECT *)shark_bml_resource->models->model, (NJS_MOTION *)shark_bml_resource->motions[shark_actions[3].motion].motion, 5, 8);
+    shark_attack4_trail_buffer->sample_two_nodes((NJS_OBJECT *)shark_bml_resource->models->model, (NJS_MOTION *)shark_bml_resource->motions[shark_actions[4].motion].motion, 0xA, 0xD);
+    shark_combat_stats = static_cast<BattleBaseStats **>(mem_alloc(3 * sizeof(*shark_combat_stats)));
+    shark_attack_stats = static_cast<AttackParams **>(mem_alloc(3 * sizeof(*shark_attack_stats)));
+    shark_resistance_stats = static_cast<ActorParamBlock **>(mem_alloc(3 * sizeof(*shark_resistance_stats)));
     shark_movement_parameter_sets = (f32 **)mem_alloc(0xC);
-    shark_combat_stats[0] = (u8 *)get_battle_base_stats(0x4F);
-    shark_combat_stats[1] = (u8 *)get_battle_base_stats(0x50);
-    shark_combat_stats[2] = (u8 *)get_battle_base_stats(0x51);
-    shark_attack_stats[0] = (u8 *)get_battle_attack_params(0x54);
-    shark_attack_stats[1] = (u8 *)get_battle_attack_params(0x55);
-    shark_attack_stats[2] = (u8 *)get_battle_attack_params(0x56);
-    shark_resistance_stats[0] = (u8 *)get_battle_resistance_params(0x4E);
-    shark_resistance_stats[1] = (u8 *)get_battle_resistance_params(0x4F);
-    shark_resistance_stats[2] = (u8 *)get_battle_resistance_params(0x50);
+    shark_combat_stats[0] = get_battle_base_stats(0x4F);
+    shark_combat_stats[1] = get_battle_base_stats(0x50);
+    shark_combat_stats[2] = get_battle_base_stats(0x51);
+    shark_attack_stats[0] = get_battle_attack_params(0x54);
+    shark_attack_stats[1] = get_battle_attack_params(0x55);
+    shark_attack_stats[2] = get_battle_attack_params(0x56);
+    shark_resistance_stats[0] = get_battle_resistance_params(0x4E);
+    shark_resistance_stats[1] = get_battle_resistance_params(0x4F);
+    shark_resistance_stats[2] = get_battle_resistance_params(0x50);
     shark_movement_parameter_sets[0] = (f32 *)get_battle_movement_params(0x4E);
     shark_movement_parameter_sets[1] = (f32 *)get_battle_movement_params(0x4F);
     shark_movement_parameter_sets[2] = (f32 *)get_battle_movement_params(0x50);
@@ -542,7 +539,7 @@ s32 TObjEneMoja::calc_technique_level() {
     return v;
 }
 
-extern "C" void TObjPlayer__sub_800ACA0C(void) {  }
+void TObjEneMoja::fn_800ACA0C() {  }
 
 void TObjEneShark::bind_variant_model(s32 i) {
     model = (void *)shark_bml_resource->models[i].model;
@@ -557,18 +554,19 @@ TObjEneShark::TObjEneShark(TObject *parent, void *setData)
     s32 i;
     m_name = TObjEneShark_name_ref;
     apply_set_data(setData);
-    ((TObjPlayer *)this)->init_position_vectors();
+    initialize_position_copies();
     subtype = variant;
-    apply_clamped_mode_param();
+    configure_subtype();
     bind_variant_model(variant);
     action_table = shark_actions;
-    set_field_d8((s32)action_table);
+    set_action_table(action_table);
     motion_list = shark_bml_resource->motions;
     requested_action = 0;
     set_animation(requested_action);
     set_field_b8(requested_action);
     init_collision_body_parts(this, &shark_collision_bodies[subtype], 1);
-    bind_enemy_combat_stats(shark_combat_stats[subtype], shark_attack_stats[subtype], shark_resistance_stats[subtype]);
+    bind_enemy_combat_stats(reinterpret_cast<u8 *>(shark_combat_stats[subtype]),
+        reinterpret_cast<u8 *>(shark_attack_stats[subtype]), reinterpret_cast<u8 *>(shark_resistance_stats[subtype]));
     movementParameters = &shark_movement_parameters[subtype];
     referenceHp = hp;
     update_prev_position();
@@ -625,13 +623,13 @@ TObjEneShark::TObjEneShark(TObject *parent, void *setData)
 }
 
 extern "C" {
-u8 **shark_combat_stats;
-u8 **shark_attack_stats;
-u8 **shark_resistance_stats;
+BattleBaseStats **shark_combat_stats;
+AttackParams **shark_attack_stats;
+ActorParamBlock **shark_resistance_stats;
 f32 **shark_movement_parameter_sets;
 BmlResource *shark_bml_resource;
-void *shark_attack3_trail_buffer;
-void *shark_attack4_trail_buffer;
+SampledMotionPoints *shark_attack3_trail_buffer;
+SampledMotionPoints *shark_attack4_trail_buffer;
 s32 shark_render_node_index;
 
 extern __declspec(section ".sdata2") const f32 shark_zero = 0.0f;

@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
 struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
@@ -1197,7 +1198,7 @@ void render__18TObjEneRe4SorcererFv(u8 *ene_re7_berura) {
     s32 temp_r31;
     s32 var_r28;
     s32 var_r27;
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         ((VObj_18 *)(ene_re7_berura))->m104();
         return;
     }
@@ -2288,7 +2289,7 @@ void TObjEneRe4Sorcerer::vfunc_28() {  }
 void run_task__18TObjEneRe4SorcererFv(u8 *arg0) {
     s32 i;
     void *p;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((TObjEneRe4Sorcerer *)(arg0))->vfunc_106();
         return;
     }
@@ -2354,8 +2355,8 @@ void TObjEneRe4Sorcerer::init_enemy() {
     temp_r6 = (u8 *)(*(u8 **)((s8 *)(*(u8 * *)&sorcerer_bml_resource) + 0x42C));
     *(s32 *)((s8 *)arg0 + 0x24) = (s32) *(s32 *)((s8 *)temp_r6 + 0xC);
     init_model__9TObjEneDDFP13CollisionBodyl((void *)arg0, (void *) ((void * *)re4_sorcerer_collision_body_part_table), 1, (int)temp_r6);
-    ((TObjMotion *)arg0)->set_field_d8((s32)((void *) re4_sorcerer_action_params));
-    ((TObjMotion *)arg0)->set_field_dc((int) (*(s32 *)((s8 *)(*(u8 * *)&sorcerer_bml_resource) + 0x430)));
+    ((TObjMotion *)arg0)->set_action_table((TObjMotionAction *)((s32)((void *) re4_sorcerer_action_params)));
+    ((TObjMotion *)arg0)->set_motion_list((BmlMotionEntry *)((int) (*(s32 *)((s8 *)(*(u8 * *)&sorcerer_bml_resource) + 0x430))));
     *(s16 *)((s8 *)arg0 + 0xB8) = 0;
     ((TObjMotion *)arg0)->set_animation((*(s16 *)((s8 *)arg0 + 0xB8)));
     ((TObjMotion *)arg0)->set_field_b8((int) (*(s16 *)((s8 *)arg0 + 0xB8)));

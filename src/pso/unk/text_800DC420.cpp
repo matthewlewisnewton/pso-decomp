@@ -1,3 +1,4 @@
+#include "pso/map/CsnGroundQuery.h"
 #include "types.h"
 #include "pso/unk/TUnk_80494E10.h"
 #include "pso/system/NinjaUtil.h"
@@ -63,7 +64,6 @@ struct Ang_800DC83C { s32 x, y, z; };
 
 extern "C" {
 s32 TObjPlayer__sub_800DC478(u8 *arg0, s32 arg1, f32 farg0);
-s32 *csnVecterUnder(s32 origin, s32 mask);
 extern s32 lbl_805D5254;
 f32 TObjPlayer__sub_800DC434(s32 arg0, s32 arg1);
 s32 TObjPlayer__sub_800DC420(void *self, s32 i);
@@ -155,7 +155,7 @@ void hit_object_in_radius__10TObjPlayerFPvPvPv(Src_800DC4B4 *arg0, Obj_800DC4B4 
 
 s32 TObjPlayer::snap_to_ground(s32 arg0, s32 arg1) {
     u8 *temp_r3;
-    temp_r3 = (u8 *)(csnVecterUnder(arg1, 0x16EF));
+    temp_r3 = (u8 *)(csnVecterUnder((const Vec *)arg1, 0x16EF));
     if (temp_r3 == NULL) {
         return 0;
     }

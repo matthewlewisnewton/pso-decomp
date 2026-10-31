@@ -3,6 +3,7 @@ struct NJS_OBJECT;
 #define PSO_ENEMY_TOBJENEMORFOS_H
 
 #include "types.h"
+#include "pso/misc/MaterialOpacityFade.h"
 #include "pso/enemy/TObjEneDD_ST.h"
 
 struct TObjEneMorfos : public TObjEneDD_ST {
@@ -22,8 +23,10 @@ struct TObjEneMorfos : public TObjEneDD_ST {
     u8 _pad3F0[0x18];
     void* m_408;
     u8 _pad40C[0x18];
-    void* m_424;
-    u8 _pad428[0x6C];
+
+    MaterialOpacityFade fade;
+    u8 _padAfterFade[0x54];
+
     u32 m_494;
     void* m_498;
     static int get_instance();
@@ -65,6 +68,8 @@ struct TObjEneMorfos : public TObjEneDD_ST {
     void state_rotating_projectile_burst(s32 arg1);
     s32 select_target_in_view();
 };
+
+typedef char TObjEneMorfosFadeOffset[offsetof(TObjEneMorfos, fade) == 0x408 ? 1 : -1];
 
 typedef char TObjEneMorfos_size[sizeof(TObjEneMorfos) == 0x4D8 ? 1 : -1];
 

@@ -1,5 +1,7 @@
+#include "pso/system/MatrixVectorArray.h"
 #include "pso/animation/MotionContext.h"
 #include "pso/math/FloatRounding.h"
+#include "pso/map/CsnGroundQuery.h"
 #include "pso/enemy/BattleParameters.h"
 struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
@@ -549,7 +551,6 @@ struct RecoveredGlobal_802E80F4_lbl_8058D4C0 {
 };
 
 extern "C" {
-s32 mult_vec_array__10TObjPlayerFUll(int, void *, void *, int);
 }
 void get_current_matrix(void *m);
 extern "C" {
@@ -683,7 +684,7 @@ void TObjPlayer__sub_802E8274(NJS_OBJECT *) {
     }
     if ((s32) boss7_derolle_c_motion_id == 0x33) {
         push_matrix();
-        mult_vec_array__10TObjPlayerFUll(0, (void *)&lbl_804E3BFC.value, (void *)lbl_805D692C, 4);
+        matrix_mult_vec_array((f32 (*)[4])(0), (const Vec *)((void *)&lbl_804E3BFC.value), (Vec *)((void *)lbl_805D692C), 4);
         pop_matrix();
         subtract_vector((void *)(lbl_805D692C + 0xC), (void *)lbl_805D692C);
     }
@@ -1450,7 +1451,7 @@ void TObjFish__sub_802E85E0(u8 *arg0, u32 arg1, s32 arg2) {
                         v.x = scale * sin_table_lookup(r);
                         v.y = lbl_805DEA24;
                         v.z = scale * cos_table_lookup(r);
-                        TObjBoss2Tunnel::adjust_to_ground((s32)&v, (void *)&v);
+                        adjust_point_to_ground((const Vec *)&v, (Vec *)((void *)&v));
                     }
                     for (j = 0; j != 4; j++) {
                         ((TBoss7Tentacle *)(self->kids[j]))->start_attack_at_position((u8 *)&v, self->f738);
@@ -2206,7 +2207,7 @@ void handle_tentacle_attack_state__8TObjFishFPvUii(Fish_802E9ADC *o, u32 arg1, s
                     v.x = r * sin_table_lookup(ang);
                     v.y = lbl_805DEA24;
                     v.z = r * cos_table_lookup(ang);
-                    TObjBoss2Tunnel::adjust_to_ground((s32)&v, (void *)&v);
+                    adjust_point_to_ground((const Vec *)&v, (Vec *)((void *)&v));
                 }
                 ((TBoss7Tentacle *)(o->tent[o->idx]))->start_attack_at_position((u8 *)&v, (s32)o->arg);
                 o->idx++;
