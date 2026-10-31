@@ -1,3 +1,4 @@
+#include "pso/enemy/EnemyUnknownHooks.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/enemy/TObjEnemy.h"
 extern "C" void *__ct__12TObjEneDD_STFP7TObject(void *);
@@ -851,7 +852,6 @@ void TObjEneBm3Fly__sub_800B02C8(TObjEneBm3Fly *arg0, s32 arg1);
 struct Fly_800B1684;
 void choose_attack__13TObjEneBm3FlyFPv(Fly_800B1684 *s);
 s32 clear_attack_receipts__9TObjEneDDFv();
-s32 noop__12TBoss8DragonFv(void *);
 s32 set_field_378__9TObjEneDDFl(void *, s16);
 f32 atan2_float(f32, f32);
 f32 update_scale__15TObjBoss2TunnelFv(void *);
@@ -913,7 +913,7 @@ void TObjEneBm3Fly::update_recoil_state(s32 arg1) {
         *(u32 *)((s8 *)((u8 *)this) + 0x428) &= ~1;
         *(u32 *)((s8 *)((u8 *)this) + 0x428) |= 2;
         set_field_378__9TObjEneDDFl(this, this->mode);
-        noop__12TBoss8DragonFv(this);
+        fn_800BB7D0(this);
         play_sound_effect(((TObjEnemy *)(this))->remap_sound_for_area((s32)(0x4003E425)), ((u8 *)this) + 0x38, 0, 0);
         this->m_3c0 = 0;
         break;

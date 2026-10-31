@@ -1,3 +1,4 @@
+#include "pso/enemy/EnemyUnknownHooks.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -783,8 +784,6 @@ void get_camera_ctrl__9TObjEneDDFv(s32, s32);
 s32 get_random_scaled__9TObjEneDDFv(void *);
 f32 rand_range__9TObjEneDDFff(void *, f32, f32);
 s32 clear_attack_receipts__9TObjEneDDFv();
-s32 noop__12TBoss8DragonFv(void *);
-s32 TBoss8Dragon__sub_800BB7D4(void *, s32);
 s32 pack_debug_text_position(s32, s32);
 s32 transition_enemy_state__9TObjEneDDFl(void *, s32);
 void *__dt__9TObjEneDDFv(void *arg0, s16 arg1);
@@ -1325,8 +1324,8 @@ void handle_motion_event__17TObjEneBm3FlyNestFPvi(u8 *arg0, s32 arg1) {
     switch (arg1) {
     case 4:
         ((TObjEneDD *)arg0)->vfunc_96();
-        noop__12TBoss8DragonFv(arg0);
-        TBoss8Dragon__sub_800BB7D4(arg0, 0xF1);
+        fn_800BB7D0(arg0);
+        fn_800BB7D4(arg0, 0xF1);
         ((s32 (*)(void *, void *, s32, s32))play_sound_effect)((void *)(s32)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003A829)), arg0 + 0x38, 0, 0);
         if ((s32) *(s32 *)((s8 *)arg0 + 0x3A8) != 0) {
             *(s16 *)((s8 *)arg0 + 0xB8) = 6;
