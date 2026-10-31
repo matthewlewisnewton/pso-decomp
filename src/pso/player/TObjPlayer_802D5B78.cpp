@@ -20,7 +20,15 @@ void normalize_vector(void *);
 #pragma fp_contract on
 
 void TObjPlayer__sub_802D5B78(void *arg0, void *arg1, void *arg2) {
-    W_802D5B78 w = *(W_802D5B78 *)arg2;
+    // Snapshot the input words before constructing the local normalized vector.
+    W_802D5B78 *input = (W_802D5B78 *)arg2;
+    s32 a = input->a;
+    s32 b = input->b;
+    s32 c = input->c;
+    W_802D5B78 w;
+    w.a = a;
+    w.b = b;
+    w.c = c;
     normalize_vector(&w);
     S_802D5B78 *tab = *(S_802D5B78 **)((s8 *)*(void **)arg0 + 0xA4);
     S_802D5B78 *e = (S_802D5B78 *)((s8 *)tab + *(s32 *)((s8 *)arg0 + 4) * 0x2C);
