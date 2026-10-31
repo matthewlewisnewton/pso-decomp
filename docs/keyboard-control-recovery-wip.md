@@ -131,3 +131,19 @@ guard. The independent constructor owner should evaluate it alongside the
 `0x804CFDE0` data split and `0x805D6458` symbol-localization plan. Its object
 was compiled only in `/tmp/pso-keyboard-work`; the fork branch retains the
 validated explicit-copy implementation.
+
+## Unsigned glyph-loop emission experiment
+
+Original glyph loops at `0x8026176C`, `0x80261984`, `0x80261AC4` and
+`0x80261C50` use unsigned comparisons. In an isolated temporary compile,
+using unsigned loop indices improved the glyph function from 81.26% to 83.74%
+(1,860 candidate bytes versus 1,820 original), but added the unsigned-to-float
+constant currently outside the split at `0x8044F260`. The original references
+to that constant are confined to this unit.
+
+With the proposed type-name and geometry block starting at `0x8044F110` and
+the unsigned constant included through `0x8044F268`, the temporary object's
+344 bytes of `.rodata` were byte-identical to the original. The experiment is
+not in the source branch: integration must first agree on the shared type-name
+boundary and the resulting exported-symbol and linker layout. Scores alone do
+not establish semantic correctness or a linkable unit.
