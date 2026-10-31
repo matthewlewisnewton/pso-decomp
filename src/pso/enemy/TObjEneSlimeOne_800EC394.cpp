@@ -137,7 +137,7 @@ void SlimeAnimationState::draw(s32 deferred) {
         set_cull_none();
         clear_chunk_render_flags();
     }
-    TObjPlayer::clear_global_state();
+    clear_motion_packed_rotation();
 }
 
 void SlimeAnimationState::advance() {
