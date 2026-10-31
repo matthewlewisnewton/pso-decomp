@@ -1124,7 +1124,7 @@ void TObjEneDelDepth::update_death_fade() {
     default:
         sp8 = 0x800;
         ((TObjEnemy *)enemy)->send_6x0A_enemy_state(&sp8);
-        ((TObjEnemy *)enemy)->exchange_object_state((s32)&sp8, (s16)(0));
+        ((TObjEnemy *)enemy)->exchange_object_state(&sp8, (s16)(0));
         vfunc_79(&sp8);
         ((TObjEnemy *)enemy)->send_entity_set_flags();
         TObjPlayer::apply_effect_variant_a((s32)((u8 *)&this->position), 0);
