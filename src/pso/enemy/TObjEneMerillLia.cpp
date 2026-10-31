@@ -507,7 +507,6 @@ extern const f32 lbl_805DA318;
 void beast_update_group_chase__16TObjEneMerillLiaFv(Obj_800D6110 *arg0);
 f32 fabs_float(f32);
 f64 atan2_float(f32, f32);
-void link_chain_nodes__10TObjPlayerFPvPvPv(void *, void *, void *);
 s32 approach_angle_limited(s32, s32, s32);
 s32 project_actor_to_ground(void *, void *, s32);
 s32 subtract_vector(void *, void *);
@@ -1169,12 +1168,12 @@ void TObjEneMerillLia__sub_800D59E4(u8 *arg0) {
 #define o ((Lia_800D5BCC *)arg0)
 void TObjEneMerillLia__sub_800D5BCC(u8 *arg0) {
     ((TUnk_80493450 *)o)->update_target_near_flag();
-    ((TUnk_80493450 *)o)->sub_800C4E08();
+    ((TUnk_80493450 *)o)->select_target_proximity_movement();
     ((TObjMotion *)o)->advance_animation();
     if (o->state != 1) {
         o->state = 1;
         ((TUnk_80493450 *)o)->link_into_group_chain();
-        o->f378 = ((TObjPlayer *)o)->is_action_available();
+        o->f378 = ((TObjEnemy *)o)->has_group();
     }
     o->count = ((TUnk_80493450 *)o)->countChildren();
     {
@@ -1182,11 +1181,11 @@ void TObjEneMerillLia__sub_800D5BCC(u8 *arg0) {
         if (p != NULL) {
             s32 diff = p->count - o->count;
             if (diff > 1) {
-                link_chain_nodes__10TObjPlayerFPvPvPv(o, p, o);
+                ((TObjEnemy *)o)->link_last_group_child((TObjEnemy *)p, (TObjEnemy *)o);
                 o->count++;
                 p->count--;
             } else if (diff < -1) {
-                link_chain_nodes__10TObjPlayerFPvPvPv(o, o, p);
+                ((TObjEnemy *)o)->link_last_group_child((TObjEnemy *)o, (TObjEnemy *)p);
                 o->count--;
                 p->count++;
             }
@@ -1442,7 +1441,7 @@ void TObjEneMerillLia::beast_update_approach() {
                 VecCopy((Vec *)&sp14, (const Vec *)(*(u32 *)&this->target + 0x2FC));
             }
             ((TUnk_80493450 *)arg0)->update_target_near_flag();
-            ((TUnk_80493450 *)arg0)->sub_800C4E08();
+            ((TUnk_80493450 *)arg0)->select_target_proximity_movement();
             ((TObjMotion *)arg0)->advance_animation();
             {
                 Vec_800D6618 sp8 = sp14;

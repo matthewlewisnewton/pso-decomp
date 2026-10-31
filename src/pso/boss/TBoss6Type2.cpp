@@ -3155,10 +3155,10 @@ s32 TBoss6Type2__ct(s32 arg0_, s32 parent, s32 arg2_) {
     *(s32 *)((s8 *)arg0 + 0) = lbl_805D3EB8;
     *(s32 *)((s8 *)arg0 + 0x3F8) = arg2[0];
     ((VObj_18_802BE0D4 *)(arg0))->m79(arg2 + 1);
-    if (((TObjEnemy *)arg0)->exchange_object_state((s32)&tmp, (s16)1) != 0) {
+    if (((TObjEnemy *)arg0)->exchange_object_state(&tmp, (s16)1) != 0) {
         tmp.a = 0;
         tmp.c = 0;
-        ((TObjEnemy *)arg0)->exchange_object_state((s32)&tmp, (s16)0);
+        ((TObjEnemy *)arg0)->exchange_object_state(&tmp, (s16)0);
     }
     *(s32 *)((s8 *)arg0 + 0x3FC) = TObjFish::get_fish_count();
     *(s32 *)((s8 *)arg0 + 0x24) = 0;

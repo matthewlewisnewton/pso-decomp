@@ -1339,7 +1339,7 @@ s32 TObjEneDolmOlm__sub_80301C3C(void *arg0_) {
         ((TObjBase *)arg0)->obj_clearFlags30(0x04040000);
         ((TObjCollidable *)arg0)->clear_player_status_flag(0, 0x0A000000);
         ((TUnk_80493450 *)arg0)->update_target_near_flag();
-        ((TUnk_80493450 *)arg0)->sub_800C4E08();
+        ((TUnk_80493450 *)arg0)->select_target_proximity_movement();
         break;
     }
     ((TObjPlayer *)arg0)->update_collisions();
