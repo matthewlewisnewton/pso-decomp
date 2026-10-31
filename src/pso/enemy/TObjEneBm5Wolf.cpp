@@ -1153,7 +1153,7 @@ struct VObj2_800B4820 : VBase2_800B4820 { virtual void *m0(); virtual void *m1()
 void update_state__14TObjEneBm5WolfFPv(void *arg0);
 s32 get_target_info__9TObjEneDDFv();
 
-void TObjEneBm3FlyNest::render_shadows() {  }
+
 struct VBase_18_26a62c { char pad[0x18]; };
 struct VObj_18_26a62c : VBase_18_26a62c {
     virtual void m0();
