@@ -2,6 +2,7 @@
 """Deterministic, fork-only reviewed batch validation and atomic publication."""
 from __future__ import annotations
 import argparse
+from contextlib import ExitStack
 import fcntl
 import hashlib
 import json
@@ -332,37 +333,40 @@ def main(argv=None):
     ap.add_argument('--validator-sha256')
     ap.add_argument('--environment', type=Path)
     args = ap.parse_args(argv)
-    queue = None
-    try:
-        spec = json.loads(args.batch.read_text())
-        validate_spec(spec)
-        state = args.state.resolve()
-        state.mkdir(parents=True, exist_ok=True)
-        # One process across all batches; same existing inode, never delete locks.
-        with open('/tmp/pso-mechanical-merge-queue.lock', 'a') as lock:
+    # Keep failure handling and every journal write inside the acquired lock's
+    # lifetime. A retry must not publish between failure and receipt persistence.
+    with ExitStack() as lifetime:
+        queue = None
+        try:
+            spec = json.loads(args.batch.read_text())
+            validate_spec(spec)
+            state = args.state.resolve()
+            state.mkdir(parents=True, exist_ok=True)
+            # One process across all batches; same existing inode, never delete locks.
+            lock = lifetime.enter_context(open('/tmp/pso-mechanical-merge-queue.lock', 'a'))
             fcntl.flock(lock, fcntl.LOCK_EX)
             queue = Queue(spec, state)
             queue.lock_fd = lock.fileno()
             result = queue.execute(args.mode, args.validator, args.validator_sha256, args.environment)
-        print(json.dumps(result, indent=2))
-        return 0
-    except (Rejected, OSError, ValueError, KeyError, TypeError, AttributeError) as exc:
-        error = {'state': 'rejected', 'code': getattr(exc, 'code', 'invalid_input'),
-                 'detail': getattr(exc, 'detail', str(exc))}
-        if queue:
-            state = queue.record.get('state')
-            if state in ('publishing', 'publication_uncertain', 'published_unverified',
-                         'published_metadata_pending', 'published'):
-                error.update(state='published_unverified' if queue.record.get('published_commit')
-                             else 'publication_uncertain', candidate=queue.record.get('candidate'),
-                             published_commit=queue.record.get('published_commit'),
-                             remote_head=queue.record.get('remote_head'),
-                             recovery='Rerun the identical manifest and state directory to inspect remote ancestry and metadata; do not submit a new merge')
-                queue.write(state=error['state'], last_error=error)
-            else:
-                queue.write(last_error=error)
-        print(json.dumps(error, indent=2))
-        return 1
+            print(json.dumps(result, indent=2))
+            return 0
+        except (Rejected, OSError, ValueError, KeyError, TypeError, AttributeError) as exc:
+            error = {'state': 'rejected', 'code': getattr(exc, 'code', 'invalid_input'),
+                     'detail': getattr(exc, 'detail', str(exc))}
+            if queue:
+                state = queue.record.get('state')
+                if state in ('publishing', 'publication_uncertain', 'published_unverified',
+                             'published_metadata_pending', 'published'):
+                    error.update(state='published_unverified' if queue.record.get('published_commit')
+                                 else 'publication_uncertain', candidate=queue.record.get('candidate'),
+                                 published_commit=queue.record.get('published_commit'),
+                                 remote_head=queue.record.get('remote_head'),
+                                 recovery='Rerun the identical manifest and state directory to inspect remote ancestry and metadata; do not submit a new merge')
+                    queue.write(state=error['state'], last_error=error)
+                else:
+                    queue.write(last_error=error)
+            print(json.dumps(error, indent=2))
+            return 1
 
 
 if __name__ == '__main__':

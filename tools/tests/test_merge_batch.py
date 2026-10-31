@@ -408,6 +408,68 @@ class QueueTests(unittest.TestCase):
                                 env=dict(os.environ, PSO_QUEUE_PYTHON=str(launcher)), capture_output=True, text=True)
         self.assertEqual(result.returncode, 0, result.stderr)
 
+    def test_error_journal_write_keeps_real_flock_until_persisted(self):
+        # Reproduce the reviewer's exact interleaving at the failed writer's
+        # journal update. Real nonblocking flock must prevent B from publishing
+        # before A persists its failure. No sleeps or mocked flock results.
+        self.batch['publication_freeze'] = True
+        environment = self.root / 'environment.json'; environment.write_text('{}')
+        self.batch['environment_sha256'] = m.digest(environment)
+        validator = self.root / 'validator.py'
+        validator.write_text('import json,sys,pathlib\nr=json.loads(pathlib.Path(sys.argv[1]).read_text())\n'
+                             + 'v=' + repr(self.result) + '\n'
+                             + "v.update(target=r['target'],tree=r['tree'])\n"
+                             + "pathlib.Path(r['output']).write_text(json.dumps(v))\n")
+        self.q = LocalQueue(self.batch, self.state, self.api)
+        self.q.execute('plan')
+        batch = self.root / 'batch.json'; batch.write_text(json.dumps(self.batch))
+        lockpath = self.root / 'queue.lock'
+        original_open = open
+        def private_open(path, *args, **kwargs):
+            if str(path) == '/tmp/pso-mechanical-merge-queue.lock':
+                path = lockpath
+            return original_open(path, *args, **kwargs)
+        original_write = self.q.write
+        observed = {}
+        def competing_retry(lock):
+            retry = LocalQueue(self.batch, self.state, self.api)
+            retry.lock_fd = lock.fileno()
+            return retry.execute('execute', validator, m.digest(validator), environment)
+        def error_write(**fields):
+            if 'last_error' in fields:
+                with original_open(lockpath, 'a') as other:
+                    try:
+                        m.fcntl.flock(other, m.fcntl.LOCK_EX | m.fcntl.LOCK_NB)
+                    except BlockingIOError:
+                        observed['retry_blocked'] = True
+                    else:
+                        observed['retry_blocked'] = False
+                        observed['early_publication'] = competing_retry(other)['published_commit']
+            return original_write(**fields)
+        def fail_validation(*args):
+            self.q.write(state='validating')
+            raise m.Rejected('failed_build_or_checks', 'Synthetic first validation failure')
+        output = io.StringIO()
+        with patch.object(m, 'Queue', return_value=self.q), \
+             patch.object(self.q, 'execute', side_effect=fail_validation), \
+             patch.object(self.q, 'write', side_effect=error_write), \
+             patch('builtins.open', private_open), contextlib.redirect_stdout(output):
+            code = m.main(['execute', '--batch', str(batch), '--state', str(self.state)])
+        self.assertEqual(code, 1)
+        self.assertEqual(json.loads(output.getvalue())['state'], 'rejected')
+        self.assertTrue(observed['retry_blocked'], 'A released its lock before error journaling; B published and A overwrote its receipt')
+        self.assertEqual(self.api.branch('main')['head'], self.batch['target'])
+        # Once A's error is durable and its lock is released, B can safely finish.
+        with original_open(lockpath, 'a') as other:
+            m.fcntl.flock(other, m.fcntl.LOCK_EX | m.fcntl.LOCK_NB)
+            published = competing_retry(other)
+            self.assertEqual(published['state'], 'published')
+            recovered = competing_retry(other)
+            self.assertEqual(recovered['state'], 'published')
+        saved = json.loads(self.q.journal.read_text())
+        self.assertEqual(saved['published_commit'], self.api.branch('main')['head'])
+        self.assertEqual(saved['state'], 'published')
+
 
 if __name__ == '__main__':
     unittest.main()
