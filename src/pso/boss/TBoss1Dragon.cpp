@@ -558,7 +558,7 @@ extern s32 TBoss1Dragon__data_805D4B38;
 extern s32 local_client_id;
 extern const f32 lbl_805D80C0;
 void run_task__12TBoss1DragonFv(u8 *arg0);
-void get_camera_ctrl__9TObjEneDDFv(s32, s32);
+void transform_point_to_view(s32, s32);
 void update_camera_sequence__9TObjEneDDFv(void);
 s32 mult_vec_array__10TObjPlayerFUll(int, void *, int, int);
 extern const RecoveredGlobal_8002116C_lbl_80434F20 boss1_dragon_capture_node_table;
@@ -1249,7 +1249,7 @@ void dragon_capture_node_points(void) {
     if ((s32) TBoss1Dragon__data_805D4B0C == (s32) *(s32 *)((s8 *)&boss1_dragon_capture_node_table.value + (TBoss1Dragon__data_805D4B18 * 4))) {
         temp_r4 = TBoss1Dragon__data_805D4B1C;
         TBoss1Dragon__data_805D4B1C = temp_r4 + 0xC;
-        get_camera_ctrl__9TObjEneDDFv((s32) &lbl_804FE188.x, temp_r4);
+        transform_point_to_view((s32) &lbl_804FE188.x, temp_r4);
         temp_r0 = TBoss1Dragon__data_805D4B18 + 1;
         TBoss1Dragon__data_805D4B18 = temp_r0;
         if ((temp_r0 == 7) && !(TBoss1Dragon__data_805D4B20 & 0x80)) {

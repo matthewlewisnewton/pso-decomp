@@ -1,3 +1,4 @@
+#include "pso/math/VectorNormalize.h"
 #include "pso/math/ScratchVectorStorage.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/system/vector.h"
@@ -2829,7 +2830,7 @@ void TObjChara::apply_knockback_from_attacker(u8 *arg1, f32) {
     if (scale < 0.0f) {
         scale = 0.0f;
     }
-    ((TObjBoss2Tunnel *)(&diff))->update_scale();
+    normalize_vector_checked((Vec *)(&diff));
     *(f32 *)((s8 *)((u8 *)this) + 0x308) = -scale * diff.x;
     this->movement_velocity.z = -scale * diff.z;
     }

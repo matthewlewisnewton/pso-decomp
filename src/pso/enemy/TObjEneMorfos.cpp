@@ -659,7 +659,7 @@ void TObjPlayer__sub_800A0554(void *);
 void *__dt__13TUnk_80490470Fv(void *arg0, s16 arg1);
 void enemy_set_target_id(void *, u16);
 void *__dt__12TObjEneDD_STFv(void *arg0, s16 arg1);
-s32 get_camera_ctrl__9TObjEneDDFv(void *, int);
+s32 transform_point_to_view(void *, int);
 s32 clear_attack_receipts__9TObjEneDDFv();
 void invoke_initialization_hook__9TObjEneDDFPv(void *, void *);
 void *__dt__13TUnk_80494938Fv(void *arg0, s16 arg1);
@@ -1047,7 +1047,7 @@ void TObjEneMorfos::record_camera_path_point() {
     stack.sp8 = *((s32 *) (((s8 *)&lbl_804775D8.value) + new_var));
     stack.spC = *((s32 *) (((s8 *)&lbl_804775D8.value) + 4));
     stack.sp10 = *((s32 *) (((s8 *)&lbl_804775D8.value) + 8));
-    get_camera_ctrl__9TObjEneDDFv((void *)&stack.sp8, (int) TObjEneMorfos__camera_path_cursor);
+    transform_point_to_view((void *)&stack.sp8, (int) TObjEneMorfos__camera_path_cursor);
     TObjEneMorfos__camera_path_cursor += 0xC;
   }
   TObjEneMorfos__phase += 1;

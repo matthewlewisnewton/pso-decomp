@@ -1,3 +1,4 @@
+#include "pso/math/VectorNormalize.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
@@ -780,7 +781,7 @@ void * __dt__26TObjEneBm3FlyNest_CarryFlyFv(void *arg0, s16 arg1);
 u8 * __ct__26TObjEneBm3FlyNest_CarryFlyFP7TObjectlllll(u8 *self, void *parent, s32 a, s32 b, s32 unused, s32 c, s32 d);
 s32 is_main_phase_15__9TObjEneDDFv();
 void update_player_state__9TObjEneDDFv(void *, Vec_800B23A0 *, s32);
-void get_camera_ctrl__9TObjEneDDFv(s32, s32);
+void transform_point_to_view(s32, s32);
 s32 get_random_scaled__9TObjEneDDFv(void *);
 f32 rand_range__9TObjEneDDFff(void *, f32, f32);
 s32 clear_attack_receipts__9TObjEneDDFv();
@@ -1188,7 +1189,7 @@ void handle_attachment_sample__17TObjEneBm3FlyNestFi(s32 arg0) {
         pos = lbl_805D5114;
         bm3_fly_nest_attachment_index += 1;
         lbl_805D5114 = pos + 0xC;
-        get_camera_ctrl__9TObjEneDDFv((s32) &TObjEneBm3FlyNest__attachment_sample_origin.value, pos);
+        transform_point_to_view((s32) &TObjEneBm3FlyNest__attachment_sample_origin.value, pos);
     }
     TObjEneBm3FlyNest::capture_attachment((void *)arg0);
 }
@@ -1196,7 +1197,7 @@ void handle_attachment_sample__17TObjEneBm3FlyNestFi(s32 arg0) {
 void TObjEneBm3FlyNest::capture_attachment(void * _w0) {
     switch (lbl_805D510C) {
     case 36: case 45:
-        get_camera_ctrl__9TObjEneDDFv((s32)&TObjEneBm3FlyNest__attachment_sample_origin, (s32)(TObjEneBm3FlyNest_attachment_point_ptr++));
+        transform_point_to_view((s32)&TObjEneBm3FlyNest__attachment_sample_origin, (s32)(TObjEneBm3FlyNest_attachment_point_ptr++));
         break;
     }
     ++lbl_805D510C;
@@ -2114,7 +2115,7 @@ TObjEneBm3FlyNest_CarryFly::TObjEneBm3FlyNest_CarryFly(TObject *parent, s32 a, s
     this->m_28 = d;
     VecCopy((Vec *)&v, (const Vec *)(*(void **)((s8 *)this + 0x30)));
     subtract_vector(&v, *(void **)((s8 *)this + 0x34));
-    ((TObjBoss2Tunnel *)(&v))->update_scale();
+    normalize_vector_checked((Vec *)(&v));
     this->m_40 = (s32) (lbl_8043B398[0] * atan2_float(v.x, v.z));
     *(f32 *)((s8 *)this + 0x1C) = lbl_805D9D6C * v.x;
     this->m_20 = lbl_805D9D6C;

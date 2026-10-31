@@ -409,7 +409,7 @@ struct VObj_8035EA90 : VBase_8035EA90 {
 extern "C" {
 s32 TObjEneEpsilonGuard__sub_8035DD74(u8 *arg0);
 void TObjEneEpsilonGuard__sub_8035DEC0(u8 *arg0);
-void get_camera_ctrl__9TObjEneDDFv(s32, s32);
+void transform_point_to_view(s32, s32);
 extern RecoveredGlobal_8035E374_lbl_805439E0 lbl_805439E0;
 extern s32 epsilon_guard_camera_step;
 extern s32 epsilon_guard_camera_ctrl_ptr;
@@ -700,7 +700,7 @@ void render__19TObjEneEpsilonGuardFv(u8 *ene_epsilon_guard) {
 
 void TObjEneEpsilonGuard::advance_camera_ctrl_step() {
     if ((s32) epsilon_guard_camera_step == 0) {
-        get_camera_ctrl__9TObjEneDDFv((s32) &lbl_805439E0.value, epsilon_guard_camera_ctrl_ptr);
+        transform_point_to_view((s32) &lbl_805439E0.value, epsilon_guard_camera_ctrl_ptr);
     }
     epsilon_guard_camera_step += 1;
 }

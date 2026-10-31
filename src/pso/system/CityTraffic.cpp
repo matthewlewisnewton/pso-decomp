@@ -1,3 +1,4 @@
+#include "pso/math/VectorNormalize.h"
 #pragma push
 
 #include "types.h"
@@ -177,7 +178,7 @@ void measure_traffic_path_lengths(void) {
       ((void (*)(Motion_801817AC *, f32))bind_motion_context)(m, frame);
       sample_motion_node_transform((void *)(get_city_common_model(city_aircar_model_indices[i])), (void *)&cur, (void *)&a2, (void *)&b2, (void *)&q2);
       subtract_vector(&prev, &cur);
-      total += ((TObjBoss2Tunnel *)(&prev))->update_scale();
+      total += normalize_vector_checked((Vec *)(&prev));
       VecCopy((Vec *)&prev, (const Vec *)&cur);
     }
     air_car_lane_spacing_table[i] = total;

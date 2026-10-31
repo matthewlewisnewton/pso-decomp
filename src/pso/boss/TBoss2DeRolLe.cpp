@@ -1,3 +1,4 @@
+#include "pso/math/VectorNormalize.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
@@ -773,7 +774,7 @@ struct RecoveredGlobal_8002F61C_lbl_804FE31C {
 };
 
 extern "C" {
-void get_camera_ctrl__9TObjEneDDFv(s32, s32);
+void transform_point_to_view(s32, s32);
 void update_camera_sequence__9TObjEneDDFv(void);
 s32 mult_vec_array__10TObjPlayerFUll(int, void *, void *, int);
 s32 subtract_vector(void *, void *);
@@ -795,7 +796,7 @@ typedef char RecoveredGlobal_8002F61C_lbl_804820D8_size[sizeof(RecoveredGlobal_8
 typedef char RecoveredGlobal_8002F61C_lbl_804FE31C_size[sizeof(RecoveredGlobal_8002F61C_lbl_804FE31C) == 0xC ? 1 : -1];
 void TObjPlayer__sub_8002F61C(void) {
     if ((s32) TBoss2DeRolLe__current_attack_id == (s32) *(s32 *)((s8 *)&derolle_attack_sequence_id_table.value + (TBoss2DeRolLe__sequence_match_index * 4))) {
-        get_camera_ctrl__9TObjEneDDFv((s32) &lbl_804FE31C.value, lbl_805D4BB4);
+        transform_point_to_view((s32) &lbl_804FE31C.value, lbl_805D4BB4);
         TBoss2DeRolLe__sequence_match_index += 1;
         lbl_805D4BB4 += 0xC;
     }
@@ -2009,7 +2010,7 @@ void TBoss2DeRolLe__sub_8002FE60(void *arg0, u32 arg1) {
                 VCOPY(&p, &self->pos);
                 VCOPY(&d, hit);
                 subtract_vector(&d, &p);
-                dist = ((TObjBoss2Tunnel *)(&d))->update_scale();
+                dist = normalize_vector_checked((Vec *)(&d));
                 p.x += d.x * s;
                 p.y += d.y * s;
                 p.z += d.z * s;

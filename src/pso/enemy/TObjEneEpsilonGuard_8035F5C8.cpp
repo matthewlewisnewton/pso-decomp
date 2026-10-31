@@ -521,7 +521,7 @@ extern const f32 lbl_805E022C;
 extern const f32 lbl_805E0230;
 extern const f32 lbl_805E0234;
 void TObjEneEpsilonGuard__sub_803616E4(void *arg0_, s32 arg1);
-void get_camera_ctrl__9TObjEneDDFv(void *, void *);
+void transform_point_to_view(void *, void *);
 extern u8 lbl_805439F0[];
 s32 TObjEneEpsilonGuard__sub_8035DD68();
 void TObjEneEpsilonGuard__sub_8035FB44(u8 *arg0);
@@ -807,7 +807,7 @@ void TObjEneEpsilonGuard::record_camera_angle_samples() {
     case 0x26:
     case 0x30:
     case 0x3A:
-        get_camera_ctrl__9TObjEneDDFv(lbl_805439F0, (*(f32 * *)&epsilon_guard_camera_sample_read_ptr));
+        transform_point_to_view(lbl_805439F0, (*(f32 * *)&epsilon_guard_camera_sample_read_ptr));
         *(*(s32 * *)&epsilon_guard_angle_sample_write_ptr) = (s32)((*(const f64 *)&lbl_80479E90) * atan2_float(
             (*(f32 * *)&epsilon_guard_camera_sample_read_ptr)[0] - (*(f32 * *)&epsilon_guard_camera_sample_end_ptr)[0],
             (*(f32 * *)&epsilon_guard_camera_sample_read_ptr)[2] - (*(f32 * *)&epsilon_guard_camera_sample_end_ptr)[2]));

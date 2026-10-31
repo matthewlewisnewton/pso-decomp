@@ -855,7 +855,7 @@ s32 clear_attack_receipts__9TObjEneDDFv();
 s32 noop__12TBoss8DragonFv(void *);
 s32 set_field_378__9TObjEneDDFl(void *, s16);
 f32 atan2_float(f32, f32);
-f32 update_scale__15TObjBoss2TunnelFv(void *);
+f32 normalize_vector_checked(void *);
 void update_collide_flag__13TObjEneBm3FlyFv(void *arg0);
 s32 enemy_clear_target__12TObjEneDD_STFUs(void *);
 extern const f64 TObjEneBm3Fly__data_8043B118[];
@@ -1270,7 +1270,7 @@ void TObjEneBm3Fly__sub_800B0B20(u8 *arg0, s32 arg1) {
                 vel->y = (0.0f);
                 vel->z = (0.18f) * z + vel->z;
                 VecCopy((Vec *)(arg0 + 0x430), (const Vec *)vel);
-                update_scale__15TObjBoss2TunnelFv(arg0 + 0x430);
+                normalize_vector_checked(arg0 + 0x430);
             } else {
                 I(0x3C4) = 1;
                 VecCopy((Vec *)(arg0 + 0x430), (const Vec *)(arg0 + 0x3A0));
@@ -1385,7 +1385,7 @@ void TObjEneBm3Fly__sub_800B0F70(u8 *arg0, s32 arg1) {
         R(0x430) = R(0x38) - R(0x44);
         R(0x434) = (0.0f);
         R(0x438) = R(0x40) - R(0x4C);
-        R(0x43C) = update_scale__15TObjBoss2TunnelFv(arg0 + 0x430);
+        R(0x43C) = normalize_vector_checked(arg0 + 0x430);
         break;
     }
 }
@@ -1438,7 +1438,7 @@ void TObjEneBm3Fly__sub_800B1214(u8 *arg0, s32 arg1) {
             F_800B(0x430, f32) -= F_800B(0x38, f32);
             F_800B(0x434, f32) -= F_800B(0x42C, f32);
             F_800B(0x438, f32) -= F_800B(0x40, f32);
-            F_800B(0x3E0, f32) = update_scale__15TObjBoss2TunnelFv(arg0 + 0x430);
+            F_800B(0x3E0, f32) = normalize_vector_checked(arg0 + 0x430);
             if (F_800B(0x43C, f32) < (2.0f)) {
                 F_800B(0x43C, f32) += (0.1f);
             }
@@ -2100,7 +2100,7 @@ void TObjEneBm3Fly::clamp_flight_height() {
         *(f32 *)((s8 *)arg0 + 0x42C) = (1.2f) + *(f32 *)((s8 *)arg0 + 0x3C);
     }
 #define queue_destruction__7TObjectFv (*(void (*)(void *))&queue_destruction__7TObjectFv)
-#define update_scale__15TObjBoss2TunnelFv (*(s32 (*)(void *))&update_scale__15TObjBoss2TunnelFv)
+#define normalize_vector_checked (*(s32 (*)(void *))&normalize_vector_checked)
 #define remove_child__17TObjEneBm3FlyNestFPUc (*(void (*)(Obj_800B2A5C *, u8 *))&remove_child__17TObjEneBm3FlyNestFPUc)
 #define has_free_attack_slot__17TObjEneBm3FlyNestFUs (*(s32 (*)(Obj_800B2AF4 *, u16))&has_free_attack_slot__17TObjEneBm3FlyNestFUs)
 #define clear_global_flag_400__9TObjEneDDFv (*(void (*)(void))&clear_global_flag_400__9TObjEneDDFv)
@@ -2464,7 +2464,7 @@ void TObjEneBm3Fly::load_resources() {
 }
 
 #undef queue_destruction__7TObjectFv
-#undef update_scale__15TObjBoss2TunnelFv
+#undef normalize_vector_checked
 #undef remove_child__17TObjEneBm3FlyNestFPUc
 #undef has_free_attack_slot__17TObjEneBm3FlyNestFUs
 #undef clear_global_flag_400__9TObjEneDDFv

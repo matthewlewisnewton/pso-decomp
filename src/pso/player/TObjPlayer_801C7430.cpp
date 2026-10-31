@@ -1,3 +1,4 @@
+#include "pso/math/VectorNormalize.h"
 #include "pso/math/ScratchVectorStorage.h"
 #include "pso/protocol/protocol_types.h"
 #include "pso/render/render_util.h"
@@ -1728,7 +1729,7 @@ void TObjPlayer__sub_801C75A4(u8 *player) {
     s32 sp8;
     f32 temp_f1;
     ((TObjPlayer *)player)->rotation_y = interpolate_angle__10TObjPlayerFPvUsUsPl((void *) (player), (int) (((TObjPlayer *)player)->rotation_y), (void *) (((s32 (*)(void *))TObjPlayer__sub_801D0DAC)((void *) (player))), (void *) (&sp8));
-    temp_f1 = ((TObjBoss2Tunnel *)(player + 0x308))->update_scale() - lbl_805DC364;
+    temp_f1 = normalize_vector_checked((Vec *)(player + 0x308)) - lbl_805DC364;
     if (temp_f1 < lbl_805DC364) {
         TObjPlayer__sub_8001053C((void *) (player));
     } else {

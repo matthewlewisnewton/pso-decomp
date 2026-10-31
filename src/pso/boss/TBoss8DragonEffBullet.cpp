@@ -1,3 +1,4 @@
+#include "pso/math/VectorNormalize.h"
 #include "types.h"
 #include "pso/boss/TBoss8DragonEffBullet.h"
 #include "pso/object/TObject_80019A50.h"
@@ -155,7 +156,7 @@ u8 *TBoss8DragonEffBullet__ct(u8 *boss8_dragon_eff_bullet, s32 arg1, s32 arg2, s
     VecCopy((Vec *)(boss8_dragon_eff_bullet + 0x1C), (const Vec *)(arg2));
     VecCopy((Vec *)(boss8_dragon_eff_bullet + 0x28), (const Vec *)(arg3));
     subtract_vector(boss8_dragon_eff_bullet + 0x28, boss8_dragon_eff_bullet + 0x1C);
-    ((TBoss8DragonEffBullet *)boss8_dragon_eff_bullet)->m_40 = ((TObjBoss2Tunnel *)(boss8_dragon_eff_bullet + 0x28))->update_scale();
+    ((TBoss8DragonEffBullet *)boss8_dragon_eff_bullet)->m_40 = normalize_vector_checked((Vec *)(boss8_dragon_eff_bullet + 0x28));
     *(f32 *)((s8 *)boss8_dragon_eff_bullet + 0x3C) = (f32) lbl_805DEF04;
     ((TBoss8DragonEffBullet *)boss8_dragon_eff_bullet)->m_34 = 0;
     ((TBoss8DragonEffBullet *)boss8_dragon_eff_bullet)->m_38 = 0;

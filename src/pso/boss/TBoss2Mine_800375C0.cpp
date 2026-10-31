@@ -1,3 +1,4 @@
+#include "pso/math/VectorNormalize.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/vector.h"
@@ -159,7 +160,7 @@ void TUnk_80482D04::vfunc_105(s32 arg1) {
             ((TUnk_80482D04 *)arg0)->move_mine();
             VecCopy((Vec *)&v, (const Vec *)(arg0 + 0x390));
             subtract_vector(&v, arg0 + 0x2FC);
-            if (((TObjBoss2Tunnel *)(&v))->update_scale() <= (4.5f)) {
+            if (normalize_vector_checked((Vec *)(&v)) <= (4.5f)) {
                 *(s32 *)((s8 *)arg0 + 0x3C8) = 3;
             }
             *(f32 *)((s8 *)arg0 + 0x3E0) += (0.05f);
@@ -170,7 +171,7 @@ void TUnk_80482D04::vfunc_105(s32 arg1) {
             *(f32 *)((s8 *)arg0 + 0x404) = v.x * t + *(f32 *)((s8 *)arg0 + 0x404);
             *(f32 *)((s8 *)arg0 + 0x408) = v.y * t + *(f32 *)((s8 *)arg0 + 0x408);
             *(f32 *)((s8 *)arg0 + 0x40C) = v.z * t + *(f32 *)((s8 *)arg0 + 0x40C);
-            ((TObjBoss2Tunnel *)((s32)arg0 + 0x404))->update_scale();
+            normalize_vector_checked((Vec *)((s32)arg0 + 0x404));
             *(f32 *)((s8 *)arg0 + 0x2FC) = ((Mine_800377E8 *)arg0)->vel.x * *(f32 *)((s8 *)arg0 + 0x3DC) + *(f32 *)((s8 *)arg0 + 0x2FC);
             *(f32 *)((s8 *)arg0 + 0x300) = *(f32 *)((s8 *)arg0 + 0x408) * *(f32 *)((s8 *)arg0 + 0x3DC) + *(f32 *)((s8 *)arg0 + 0x300);
             *(f32 *)((s8 *)arg0 + 0x304) = *(f32 *)((s8 *)arg0 + 0x40C) * *(f32 *)((s8 *)arg0 + 0x3DC) + *(f32 *)((s8 *)arg0 + 0x304);

@@ -1,3 +1,4 @@
+#include "pso/math/VectorNormalize.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
@@ -869,7 +870,7 @@ s32 queue_destruction__7TObjectFv(void *);
 s32 TObjPlayer__sub_800A04F0(void *);
 s32 play_effect_if_v2__10TObjPlayerFl(int);
 s32 play_sound_effect(void *, void *, int, int);
-s32 get_camera_ctrl__9TObjEneDDFv(void *, int);
+s32 transform_point_to_view(void *, int);
 s32 rotate_matrix_x(int, int);
 extern RecoveredGlobal_800975A8_lbl_805008A8 bringer_camera_ctrl_target_vec;
 extern s32 TObjEneDf2Bringer__render_node_index;
@@ -1052,7 +1053,7 @@ void bringer_render_node_callback(void) {
     case 41:
         pos = TObjEneDf2Bringer__render_point_cursor;
         TObjEneDf2Bringer__render_point_cursor = pos + 0xC;
-        get_camera_ctrl__9TObjEneDDFv(&bringer_camera_ctrl_target_vec.value, pos);
+        transform_point_to_view(&bringer_camera_ctrl_target_vec.value, pos);
         break;
     }
     TObjEneDf2Bringer__render_node_index += 1;
@@ -2863,7 +2864,7 @@ void TObjEneDf2Bringer::load_resources() {
     VecCopy((Vec *)&a, (const Vec *)&seg->p0);
     VecCopy((Vec *)&d, (const Vec *)&seg->p2);
     subtract_vector(&d, &a);
-    len = ((TObjBoss2Tunnel *)(&d))->update_scale();
+    len = normalize_vector_checked((Vec *)(&d));
     p1 = &seg->p1;
     s1 = k1 * len;
     VecCopy((Vec *)p1, (const Vec *)&a);

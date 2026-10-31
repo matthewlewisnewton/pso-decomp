@@ -1,3 +1,4 @@
+#include "pso/math/VectorNormalize.h"
 #include "pso/math/ScratchVectorStorage.h"
 #include "pso/system/ChunkMaterialState.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -6750,7 +6751,7 @@ bool TObjPlayer::is_target_in_facing_cone(void *target_arg) {
     to.x = target->x - x;
     to.y = TObjPlayer__data_805DC278;
     to.z = target->z - z;
-    ((TObjBoss2Tunnel *)(&to))->update_scale();
+    normalize_vector_checked((Vec *)(&to));
     dot = ((f32 (*)(Vec_801B92EC *, Vec_801B92EC *))vec3_dot)(&fwd, &to);
     return !(dot < cos_table_lookup(0x1555));
 }

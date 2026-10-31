@@ -1,3 +1,4 @@
+#include "pso/math/VectorNormalize.h"
 #include "pso/math/ScratchVectorStorage.h"
 #include "types.h"
 #include "pso/render/render_util.h"
@@ -434,8 +435,8 @@ s32 target_in_vertical_cone(Vec_8013BF0C *p, Vec_8013BF0C *q, s32 yaw, f32 range
             b.x = a.x;
             b.y = q->y - p->y;
             b.z = a.z;
-            ((TObjBoss2Tunnel *)(&a))->update_scale();
-            ((TObjBoss2Tunnel *)(&b))->update_scale();
+            normalize_vector_checked((Vec *)(&a));
+            normalize_vector_checked((Vec *)(&b));
             if (vec3_dot(&a, &b) < range) {
                 return 0;
             }
@@ -449,8 +450,8 @@ s32 target_in_vertical_cone(Vec_8013BF0C *p, Vec_8013BF0C *q, s32 yaw, f32 range
             b.x = a.x;
             b.y = q->y - y;
             b.z = a.z;
-            ((TObjBoss2Tunnel *)(&a))->update_scale();
-            ((TObjBoss2Tunnel *)(&b))->update_scale();
+            normalize_vector_checked((Vec *)(&a));
+            normalize_vector_checked((Vec *)(&b));
             if (vec3_dot(&a, &b) < range) {
                 return 0;
             }
@@ -475,7 +476,7 @@ s32 target_in_xz_cone(Vec_8013C0A0 *p, Vec_8013C0A0 *q, Vec_8013C0A0 *r, s32 yaw
             b.x = q->x - p->x;
             b.y = TMainCursor__data_805DB0C0;
             b.z = q->z - p->z;
-            ((TObjBoss2Tunnel *)(&b))->update_scale();
+            normalize_vector_checked((Vec *)(&b));
             if (vec3_dot(&a, &b) < range) {
                 return 0;
             }
@@ -485,14 +486,14 @@ s32 target_in_xz_cone(Vec_8013C0A0 *p, Vec_8013C0A0 *q, Vec_8013C0A0 *r, s32 yaw
             b.x = q->x - x;
             b.y = TMainCursor__data_805DB0C0;
             b.z = q->z - z;
-            ((TObjBoss2Tunnel *)(&b))->update_scale();
+            normalize_vector_checked((Vec *)(&b));
             if (vec3_dot(&a, &b) < range) {
                 return 0;
             }
             scratch_vec.vector.x = q->x - r->x;
             scratch_vec.vector.y = TMainCursor__data_805DB0C0;
             scratch_vec.vector.z = q->z - r->z;
-            ((TObjBoss2Tunnel *)(&scratch_vec.vector))->update_scale();
+            normalize_vector_checked((Vec *)(&scratch_vec.vector));
             if (vec3_dot(&a, &scratch_vec.vector) < TMainCursor__data_805DB0C0) {
                 return 0;
             }

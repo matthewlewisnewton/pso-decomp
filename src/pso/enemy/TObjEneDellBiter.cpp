@@ -93,7 +93,7 @@ s32 TObjPlayer__sub_800A04F0(void *);
 void enemy_clear_target__12TObjEneDD_STFUs(void *);
 void enemy_set_target_id(void *, u16);
 s32 update_player_state__9TObjEneDDFv(void *, void *, int);
-s32 get_camera_ctrl__9TObjEneDDFv(void *, int);
+s32 transform_point_to_view(void *, int);
 s32 pack_debug_text_position(s32, s32);
 s32 attack_target_history_add(s32, void *);
 void fn_800D8830(void *owner, void *pos);
@@ -1544,7 +1544,7 @@ void TObjEneDellBiter::step_demo_script() {
     case 32:
         pos = TObjEneDellBiter__demo_script_cursor;
         TObjEneDellBiter__demo_script_cursor = pos + 0xC;
-        get_camera_ctrl__9TObjEneDDFv(&dellbiter_demo_camera_vec, pos);
+        transform_point_to_view(&dellbiter_demo_camera_vec, pos);
         break;
     }
     TObjEneDellBiter__demo_script_step += 1;

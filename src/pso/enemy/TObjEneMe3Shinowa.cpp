@@ -1485,7 +1485,7 @@ void *__dt__12TObjEneDD_STFv(void *arg0, s16 arg1);
 s32 is_main_phase_15__9TObjEneDDFv();
 s32 update_player_state__9TObjEneDDFv(void *, void *, int);
 s32 reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(void *, int, int, int);
-void get_camera_ctrl__9TObjEneDDFv(s32, s32);
+void transform_point_to_view(s32, s32);
 s32 initialize_enemy_state__9TObjEneDDFl(void *, int);
 void TObjEneDD__sub_800BA438(s32 arg0, u8 *arg1);
 void init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, s32);
@@ -2032,7 +2032,7 @@ void TObjEneMe3ShinowaMirage::draw_model() {
 
 void TObjEneMe3ShinowaMirage::advance_camera_ctrl_step() {
     if ((s32) TObjEneMe3ShinowaMirage__render_node_index == 1) {
-        get_camera_ctrl__9TObjEneDDFv((s32) &TObjEneMe3ShinowaMirage__data_80500FC0.value, (s32) &lbl_80500FF4.value);
+        transform_point_to_view((s32) &TObjEneMe3ShinowaMirage__data_80500FC0.value, (s32) &lbl_80500FF4.value);
     }
     TObjEneMe3ShinowaMirage__render_node_index += 1;
 }

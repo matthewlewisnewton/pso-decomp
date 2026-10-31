@@ -1423,7 +1423,7 @@ void enemy_set_target_id(void *, u16);
 void *__dt__12TObjEneDD_STFv(void *arg0, s16 arg1);
 s32 reload_stats_keep_hp_tp__9TObjEneDDFv(void *, void *, int, void *);
 s32 reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(void *, int, int, int);
-void get_camera_ctrl__9TObjEneDDFv(s32, s32);
+void transform_point_to_view(s32, s32);
 void update_camera_sequence__9TObjEneDDFv(void);
 f32 rand_range__9TObjEneDDFff(void *, f32, f32);
 f32 calc_elapsed_scaled__9TObjEneDDFv(void *);
@@ -2248,7 +2248,7 @@ void TBoss8Dragon::update_camera_script() {
     if ((s32) TBoss8Dragon__data_805D698C == (s32) *(s32 *)((s8 *)&dragon_camera_script_frame_table.value + (TBoss8Dragon__data_805D6998 * 4))) {
         pos = TBoss8Dragon__data_805D699C;
         TBoss8Dragon__data_805D699C = pos + 0xC;
-        get_camera_ctrl__9TObjEneDDFv((s32) &lbl_80541DE8.value, pos);
+        transform_point_to_view((s32) &lbl_80541DE8.value, pos);
         temp_r0 = TBoss8Dragon__data_805D6998 + 1;
         TBoss8Dragon__data_805D6998 = temp_r0;
         if ((temp_r0 == 7) && !(TBoss8Dragon__data_805D69A0 & 4)) {

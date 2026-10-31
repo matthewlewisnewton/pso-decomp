@@ -1,31 +1,32 @@
 #include "types.h"
-#include "pso/boss/TObjBoss2Tunnel.h"
+#include "pso/math/VectorNormalize.h"
+#include <dolphin/mtx.h>
 
 extern "C" {
 
-s32 TCameraCtrl__sub_8006B370();
-f32 vec_squared_length();
+s32 TCameraCtrl__sub_8006B370(f32);
+f32 vec_squared_length(const Vec *);
 f32 normalize_vector(void *);
 
 extern f32 TObjBoss2Tunnel__data_805D9234;
 
-f32 TObjBoss2Tunnel::update_scale() {
+f32 normalize_vector_checked(Vec *vector) {
     f32 var_f31;
     f32 temp_f0;
 
     var_f31 = TObjBoss2Tunnel__data_805D9234;
-    if (TObjBoss2Tunnel__data_805D9234 != vec_squared_length()) {
-        var_f31 = normalize_vector(this);
-        if (TCameraCtrl__sub_8006B370() != 0) {
-            *(f32 *)&this->m_name = var_f31 = TObjBoss2Tunnel__data_805D9234;
-            *(f32 *)&this->m_flags = var_f31;
-            *(f32 *)&this->m_prev = var_f31;
+    if (TObjBoss2Tunnel__data_805D9234 != vec_squared_length(vector)) {
+        var_f31 = normalize_vector(vector);
+        if (TCameraCtrl__sub_8006B370(var_f31) != 0) {
+            vector->x = var_f31 = TObjBoss2Tunnel__data_805D9234;
+            vector->y = var_f31;
+            vector->z = var_f31;
         }
     } else {
         temp_f0 = TObjBoss2Tunnel__data_805D9234;
-        *(f32 *)&this->m_name = temp_f0;
-        *(f32 *)&this->m_flags = temp_f0;
-        *(f32 *)&this->m_prev = temp_f0;
+        vector->x = temp_f0;
+        vector->y = temp_f0;
+        vector->z = temp_f0;
     }
     return var_f31;
 }

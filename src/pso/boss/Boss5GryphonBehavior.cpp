@@ -618,7 +618,7 @@ s32 enemy_set_target_id(void *, u16);
 s32 update_velocity__9TObjEneDDFv();
 void *__dt__12TObjEneDD_STFv(void *arg0, s16 arg1);
 s32 reload_stats_keep_hp_tp__9TObjEneDDFv(void *, int, int, int);
-void get_camera_ctrl__9TObjEneDDFv(s32, s32);
+void transform_point_to_view(s32, s32);
 s32 __dt__17AreaAttackHistoryFv(s32 arg0, s16 arg1);
 void *__dt__15RenderFadeStateFv(void *arg0, s16 arg1);
 u8 *get_enemy_entity(u16 arg0);
@@ -1480,7 +1480,7 @@ void TBoss8Dragon__sub_8005E17C(void) {
     if ((s32) boss5_gryphon_render_node_index == (s32) *(s32 *)((s8 *)(&boss5_gryphon_bone_capture_node_indices.value) + (boss5_gryphon_bone_capture_index * 4))) {
         pos = boss5_gryphon_bone_capture_output;
         boss5_gryphon_bone_capture_output = pos + 0xC;
-        get_camera_ctrl__9TObjEneDDFv((s32) &boss5_gryphon_bone_capture_origin.value, pos);
+        transform_point_to_view((s32) &boss5_gryphon_bone_capture_origin.value, pos);
         boss5_gryphon_bone_capture_index += 1;
     }
     boss5_gryphon_render_node_index += 1;
