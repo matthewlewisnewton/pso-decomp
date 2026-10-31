@@ -145,8 +145,10 @@ def dol_reader(path: Path = DOL_PATH):
 def symbol_extents(path: Path = SYMBOLS_PATH) -> dict | None:
     """Section -> sorted (start, maximum end so far), or None if unavailable.
 
-    A symbol with no declared size still protects its starting address.
-    Prefix maxima allow overlap checks even with nested or overlapping symbols.
+    A symbol without a trustworthy positive size has an unknown end and
+    protects all later addresses in that section. Prefix maxima allow overlap
+    checks even with nested or overlapping symbols. Unparseable entries make
+    the whole inventory unavailable.
     """
     extents = {}
     try:
@@ -154,12 +156,17 @@ def symbol_extents(path: Path = SYMBOLS_PATH) -> dict | None:
     except OSError:
         return None
     for line in lines:
+        if not line.strip() or line.lstrip().startswith("//"):
+            continue
         match = re.match(r"\S+ = ([\w.]+):0x([0-9A-Fa-f]+);", line)
-        if match:
-            start = int(match[2], 16)
-            size_match = re.search(r"\bsize:0x([0-9A-Fa-f]+)\b", line)
-            size = int(size_match[1], 16) if size_match else 0
-            extents.setdefault(match[1], []).append((start, start + max(size, 1)))
+        if not match:
+            return None
+        start = int(match[2], 16)
+        sizes = re.findall(r"(?:^|\s)size:(\S+)", line)
+        size_match = re.fullmatch(r"0x([0-9A-Fa-f]+)", sizes[0]) if len(sizes) == 1 else None
+        size = int(size_match[1], 16) if size_match else 0
+        end = start + size if size > 0 else float("inf")
+        extents.setdefault(match[1], []).append((start, end))
     for section, intervals in extents.items():
         maximum = 0
         extents[section] = []

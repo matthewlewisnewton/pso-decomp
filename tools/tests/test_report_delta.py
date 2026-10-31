@@ -1,6 +1,7 @@
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 from tools import report_delta as delta
 
@@ -12,8 +13,8 @@ class PaddingEvidenceTests(unittest.TestCase):
     def test_symbol_inventory_includes_undotted_sections(self):
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / "symbols.txt"
-            path.write_text("entry = extab:0x80000004; // type:object\n"
-                            "other = .data:0x80000010; // type:object\n")
+            path.write_text("entry = extab:0x80000004; // type:object size:0x1\n"
+                            "other = .data:0x80000010; // type:object size:0x1\n")
             starts = delta.symbol_extents(path)
         self.assertEqual(starts["extab"], [(0x80000004, 0x80000005)])
         self.assertFalse(delta.is_alignment_padding(self.row, lambda a, n: bytes(n), starts))
@@ -86,6 +87,39 @@ class PaddingEvidenceTests(unittest.TestCase):
                             "nested = extab:0x80000002; // type:object size:0x1\n")
             self.assertFalse(delta.is_alignment_padding(self.row, lambda a, n: bytes(n),
                                                         delta.symbol_extents(path)))
+
+    def test_uncertain_inventory_cannot_hide_object_tail_loss(self):
+        def unit(name, address, size, exact, complete):
+            return {"name": name, "metadata": {"module_name": "psov3", "complete": complete},
+                    "sections": [{"name": "extab", "size": size,
+                                  "fuzzy_match_percent": 100 if exact else 0,
+                                  "metadata": {"virtual_address": address}}]}
+
+        before = {"measures": {"total_data": 16, "matched_data": 8, "complete_data": 8},
+                  "units": [unit("A", 0x80000000, 8, True, True),
+                            unit("B", 0x80000010, 8, False, False)]}
+        after = {"measures": {"total_data": 12, "matched_data": 12, "complete_data": 12},
+                 "units": [unit("A", 0x80000000, 4, True, True),
+                           unit("B", 0x80000010, 8, True, True)]}
+        cases = ["type:object", "type:object size:0xZZ", "type:object size:0x0",
+                 "type:object size:-0x8", "type:object size:8"]
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "symbols.txt"
+            lines = [f"A = extab:0x80000000; // {case}\n" for case in cases]
+            lines.append(" A = extab:0x80000000; // type:object size:0x8\n")
+            for line in lines:
+                with self.subTest(line=line):
+                    path.write_text(line + "B = extab:0x80000010; // type:object size:0x8\n")
+                    with patch.object(delta, "symbol_extents", return_value=delta.symbol_extents(path)):
+                        result = delta.compare(before, after, read=lambda a, n: bytes(n))
+                    self.assertEqual(result["data_coverage_lost"], [self.row])
+                    self.assertEqual(result["data_regressions"], [self.row])
+                    self.assertEqual(result["linked_data_lost"], [self.row])
+                    self.assertTrue(result["failures"])
+
+    def test_no_loss_does_not_require_symbol_inventory(self):
+        with patch.object(delta, "symbol_extents", side_effect=AssertionError("unneeded")):
+            self.assertFalse(delta.compare({"units": []}, {"units": []})["failures"])
 
 
 if __name__ == "__main__":
