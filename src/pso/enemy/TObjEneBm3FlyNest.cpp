@@ -780,7 +780,6 @@ void * __dt__26TObjEneBm3FlyNest_CarryFlyFv(void *arg0, s16 arg1);
 u8 * __ct__26TObjEneBm3FlyNest_CarryFlyFP7TObjectlllll(u8 *self, void *parent, s32 a, s32 b, s32 unused, s32 c, s32 d);
 s32 is_main_phase_15__9TObjEneDDFv();
 void transform_point_to_view(s32, s32);
-s32 get_random_scaled__9TObjEneDDFv(void *);
 f32 rand_range__9TObjEneDDFff(void *, f32, f32);
 s32 clear_attack_receipts__9TObjEneDDFv();
 s32 noop__12TBoss8DragonFv(void *);
@@ -1295,7 +1294,7 @@ void state_dying__17TObjEneBm3FlyNestFPvi(u8 *actor, s32 arg1) {
                 *(s32 *)((s8 *)actor + 0x4C8) += 1;
                 if (*(s32 *)((s8 *)actor + 0x4C8) >= 4) {
                     r = rand_range__9TObjEneDDFff(actor, lbl_805D9D1C, lbl_805D9D10);
-                    a = get_random_scaled__9TObjEneDDFv(actor);
+                    a = ((TObjEneDD *)actor)->get_random_scaled();
                     VecCopy((Vec *)&p, (const Vec *)(actor + 0x2FC));
                     p.x = r * sin_table_lookup(a) + p.x;
                     p.y += lbl_805D9D1C;

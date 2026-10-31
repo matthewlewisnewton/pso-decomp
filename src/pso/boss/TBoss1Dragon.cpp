@@ -437,7 +437,6 @@ extern const f32 lbl_805D8100;
 extern "C" {
 f32 sample_acceleration_curve(void *, f32);
 s32 init_acceleration_curve(void *, f32, f32, f32, f32);
-s32 get_random_scaled__9TObjEneDDFv(void *);
 void *spawn_continuous_particle_effect_with_flags(void *parent, s32 idx, s32 flags);
 
 void rotate_vec_xz(void *, void *, s32);
@@ -2990,7 +2989,7 @@ void update_dive_state__12TBoss1DragonFv(u8 *arg0, u32 arg1) {
                 ((TBoss1Dragon *)(arg0))->vfunc_94();
                 ((TBoss1Dragon *)arg0)->setPhase2();
             }
-            r = get_random_scaled__9TObjEneDDFv(arg0);
+            r = ((TObjEneDD *)arg0)->get_random_scaled();
             sn = sin_table_lookup(r);
             cs = cos_table_lookup(r);
             pos.x = (20.0f) * sn + F(f32, 0x394);
@@ -3565,7 +3564,7 @@ void TBoss1Dragon::update_air_fire_state(u32 arg1) {
             if (((TBoss1Dragon *)arg0)->select_air_fire_target(tgt) != 0) {
                 *(s32 *)((s8 *)arg0 + 0x874) = (s32)(boss1_dragon_angle_units_per_radian * atan2_float(tgt->x - *(f32 *)((s8 *)arg0 + 0x38), tgt->z - *(f32 *)((s8 *)arg0 + 0x40)));
             } else {
-                *(s32 *)((s8 *)arg0 + 0x874) = get_random_scaled__9TObjEneDDFv(arg0);
+                *(s32 *)((s8 *)arg0 + 0x874) = ((TObjEneDD *)arg0)->get_random_scaled();
                 tgt->x = lbl_805D8044 * sin_table_lookup(*(s32 *)((s8 *)arg0 + 0x874));
                 tgt->y = (0.0f);
                 tgt->z = lbl_805D8044 * cos_table_lookup(*(s32 *)((s8 *)arg0 + 0x874));
