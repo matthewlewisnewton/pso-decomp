@@ -125,7 +125,7 @@ s32 draw_chunk_object(int);
 
 extern NpcAnimationBinding lbl_8043C25C;
 extern Vec lbl_8043C26C;
-extern s32 lbl_8043C428[];
+extern const char lbl_8043C428[];
 extern NJS_OBJECT *gyaranzo_model_resources[];
 extern s32 lbl_805D2A78;
 extern s32 gyaranzo_boss_stats_handle;
@@ -241,7 +241,7 @@ TObjEneGyaranzo::TObjEneGyaranzo(TObject *parent, void *set_data)
     apply_set_data(set_data);
     VecCopy((Vec *)&m_290, VecCopy((Vec *)&m_29c, &position));
     motion_list = gyaranzo_bml_resource->motions;
-    action_table = (u8 *)gyaranzo_action_table;
+    action_table = gyaranzo_action_table;
     set_field_d8((s32)action_table);
     init_collision_body_parts(this, gyaranzo_collision_body, 1);
     variant = 0;
@@ -285,6 +285,7 @@ TObjEneGyaranzo::~TObjEneGyaranzo() {
 #pragma pop
 
 #pragma push
+#pragma opt_propagation off
 void TLobby::load_gyaranzo_resources() {
     s32 i;
     void *p;
@@ -467,7 +468,7 @@ void TObjEneGyaranzo::render() {
             saved_model_render_flags = model_render_flags;
             camera_fade = &camera_fades[camera_index];
             camera_fade->update_fast();
-            if (camera_fade->updateFromCamera(&body_center_position) != 0) {
+            if (camera_fade->updateFromCamera(&body_center_position.x) != 0) {
                 camera_fade->set_flags_and_apply_damage_color();
                 if (defer_render__7TObjectFv(this) != 0) {
                     model_render_flags = saved_model_render_flags;
@@ -505,7 +506,7 @@ void TObjEneGyaranzo::render() {
             TParticleCtrl::end_effect_render();
             if (!(this->actorFlags & 0x800) && (var_r29 != 0)) {
                 Vec sp8 = lbl_8043C26C;
-                this->render_with_position_override((u8 *)&sp8, 0);
+                draw_ground_shadow(&sp8, 0);
             }
             camera_fade->clear_flag_and_notify();
         }
@@ -634,18 +635,18 @@ void TObjEneGyaranzo::update_knockback() {
     case 1: {
         advance_animation();
         Vec v = *(Vec *)&body_center_position;
-        v.x += x_speed;
-        v.z += m_310;
+        v.x += movement_velocity.x;
+        v.z += movement_velocity.z;
         if (check_path_obstructed(this, &v) == 0) {
             move_with_wall_slide((u8 *)this);
         } else {
-            x_speed = m_310 = lbl_805DA258;
+            movement_velocity.x = movement_velocity.z = lbl_805DA258;
         }
-        x_speed *= lbl_805DA280;
-        m_310 *= lbl_805DA280;
+        movement_velocity.x *= lbl_805DA280;
+        movement_velocity.z *= lbl_805DA280;
         apply_actor_gravity(this, 0, lbl_805DA258);
         update_collisions__10TObjPlayerFv(this);
-        if (m_b4 != 8) {
+        if (action_flags != 8) {
             state = -1;
         }
         break;
@@ -1026,7 +1027,7 @@ void TObjEneGyaranzo::update_fade_state() {
         actorFlags = temp_r4;
         requested_action = 0;
         TBoss3Volopt__sub_800D8D88(&body_center_position, temp_r4);
-        TObjEneMe3SinowZoa__sub_800D758C(&fade);
+        fade.start_fade_in();
         state = 1;
     case 1:
         advance_animation();
@@ -1069,7 +1070,7 @@ void TObjEneGyaranzo::update_return_home() {
         apply_actor_gravity(this, 0, lbl_805DA258);
         VecCopy((Vec *)&m_290, (const Vec *)&body_center_position);
         calc_velocity_toward_destination(this, *(Vec *)&m_290, *(Vec *)&m_29c, ((GyaranzoMovementParameters *)movementParameters)->walk_speed);
-        turn_toward_direction( ((EnemyMoveParams *)movementParameters)->turn_speed, &x_speed);
+        turn_toward_direction(((EnemyMoveParams *)movementParameters)->turn_speed, &movement_velocity);
         move_with_wall_slide((u8 *)this);
         update_collisions__10TObjPlayerFv(this);
         if (xz_distance_squared(&position, &home_position) <= lbl_805DA25C) {
