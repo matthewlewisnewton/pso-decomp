@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/system/NinjaUtil.h"
@@ -149,7 +150,7 @@ void TLazerFenceSw::draw_laser_beam() {
     for (i = 0; i < 3; i++) {
         ((TObjDoorJung *)(lazer_fence_beam_node_table[i]))->free_children((void *)self->fE8);
     }
-    TObjFish::set_global_param(TLazerFenceSw__texture_list);
+    set_current_texture_list((GinjaTextureList *)(TLazerFenceSw__texture_list));
     if (actor_frame_tick != self->f114 && self->f110 >= 1.0f) {
         self->f114 = actor_frame_tick;
         scroll_ginja_mesh_uvs(*(u32 *)(lazer_fence_switch_scroll_node + 4), 0, (s32)self->f110, 5, 1);

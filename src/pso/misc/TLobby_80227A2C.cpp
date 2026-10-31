@@ -1,3 +1,5 @@
+#include "pso/system/SoundEffect.h"
+struct Vec;
 #include "types.h"
 #include "pso/misc/TLobby.h"
 #include "pso/item/TUnk_804CC048.h"
@@ -219,13 +221,13 @@ extern const f32 lbl_805DC768;
 s32 normalize_sound_request(u32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 s32 alloc_one_shot_sound_slot(u32 id, const void *position, s32 base, s32 flags);
 s32 play_packed_sound_once(u32 arg0, s32 arg1, s32 arg2, s32 arg3);
-int TLobby__sub_80227AF8(void* p);
+void TLobby__sub_80227AF8(s32 slot, const Vec *position);
 int release_sound_with_fade(void* p);
 int TLobby__sub_80227D38(void);
 void handle_6xB2_play_sound_from_player(void *arg0);
-s32 play_sound_effect(s32, s32, s32, s32);
+
 u16 TCameraCtrl__sub_8006A5DC();
-int TLobby__sub_8023F754(void*);
+void TLobby__sub_8023F754(s32, s32);
 int fade_out_sound_slot(void*, int);
 int fade_voice_channels__6TLobbyFi(void*);
 void *get_player_by_client_id(s32 i);
@@ -233,7 +235,7 @@ s32 bswap_6xB2_play_sound();
 s32 on_set_mode__6TLobbyFv(s32);
 void set_mode__6TLobbyFPvi(void *arg0, s32 arg1);
 
-int TLobby__sub_80227AF8(void* p) { return TLobby__sub_8023F754(p); }
+void TLobby__sub_80227AF8(s32 slot, const Vec *position) { TLobby__sub_8023F754(slot, (s32)position); }
 
 extern s32 local_client_id;
 
@@ -265,12 +267,12 @@ void handle_6xB2_play_sound_from_player(void *arg0) {
     bswap_6xB2_play_sound();
     if ((s8) *(u8 *)((s8 *)arg0 + 4) == get_current_floor_area()) {
         if (*(s16 *)((s8 *)arg0 + 6) == 0xFFFF) {
-            play_sound_effect(*(s32 *)((s8 *)arg0 + 8), 0, 0, 0);
+            play_sound_effect((s32)(*(s32 *)((s8 *)arg0 + 8)), 0, 0, 0);
             return;
         }
         player = (s32)get_player_by_client_id(local_client_id);
         if (player != 0) {
-            play_sound_effect(*(s32 *)((s8 *)arg0 + 8), player + 0x38, 0, 0);
+            play_sound_effect((s32)(*(s32 *)((s8 *)arg0 + 8)), (const Vec *)(player + 0x38), 0, 0);
         }
     }
 }

@@ -1,4 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 #include "pso/math/FloatRounding.h"
 #include "pso/misc/PositionSoundEffects.h"
 #include "pso/player/demo_mode.h"
@@ -752,7 +754,7 @@ s32 TObjEneMe1Gee::remap_gee_sound(s32 arg1) {
 }
 
 void TObjEneMe1Gee::fn_800CB968() {
-    play_persistent_sound(remap_gee_sound(0x3BC16), (s32)this, (u32)&body_center_position, 0, 0);
+    play_persistent_sound(remap_gee_sound(0x3BC16), this, &body_center_position, 0, 0);
 }
 
 s32 TObjEneMe1Gee::vfunc_104(f32 distance) {
@@ -1364,7 +1366,7 @@ void TObjEneMe1Gee::fn_800CA454(s32 reason) {
                 }
                 play_sound_effect(remap_gee_sound(0x3AD17), &body_center_position, 0, 0);
             } else {
-                play_persistent_sound((s32)(remap_gee_sound(0x3A914)), (s32)this, (u32)&body_center_position, 0, 0);
+                play_persistent_sound(remap_gee_sound(0x3A914), this, &body_center_position, 0, 0);
             }
             break;
         }
@@ -1992,7 +1994,7 @@ void TObjEneMe1Gee::render() {
             draw_ground_shadow(NULL, 0);
         }
         this->update_secondary_light();
-        TObjFish::set_global_param((int) (this->texlist));
+        set_current_texture_list((GinjaTextureList *)texlist);
         saved_model_render_flags = model_render_flags;
         TObjEneDD::clear_global_flag_400();
         TObjPlayer::toggle_particle_effect();
@@ -2082,7 +2084,7 @@ void TObjEneMe1Gee::vfunc_115() {
     if (update_object_view_visibility(lbl_805DA0BC, TObjEneMe1Gee__data_805DA0C0) != 0) {
         draw_ground_shadow(NULL, 0);
         TObjPlayer::toggle_particle_effect();
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)texlist);
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);

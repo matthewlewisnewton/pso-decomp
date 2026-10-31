@@ -1,4 +1,6 @@
 #include "pso/system/MatrixVectorArray.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/render/render_util.h"
@@ -196,7 +198,7 @@ void TObjCityDoor_Lobby::render() { if (is_phase_e__9TObjEneDDFPv(this) != 0) { 
 void TObjCityDoor_Lobby::process_lobby_action_14() {
     u8 *arg0 = (u8 *)this;
     if (((VObj_80181AE8 *)arg0)->m8(lbl_805DBBE0, lbl_805DBBE4) != 0) {
-        TObjFish::set_global_param((*(s32 *)&city_common_texture_list));
+        set_current_texture_list((GinjaTextureList *)((*(s32 *)&city_common_texture_list)));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);
@@ -488,7 +490,7 @@ extern const f32 lbl_805DBBF4;
 void TObjCityDoor_Med::render() {
     u8 *arg0 = (u8 *)this;
     if (((VObj_80181ff4 *)arg0)->m20() != 0) {
-        TObjFish::set_global_param(city_common_texture_list);
+        set_current_texture_list((GinjaTextureList *)(city_common_texture_list));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);
@@ -589,7 +591,7 @@ void render__17TObjCityDoor_WarpFv(void* o);
 
 void TObjCityDoor_Warp::render() {
  if(((CityDoorProbe*)this)->visible()!=0) {
-  TObjFish::set_global_param(city_common_texture_list);push_matrix();
+  set_current_texture_list((GinjaTextureList *)(city_common_texture_list));push_matrix();
   post_translate_matrix((u8*)this+0x38);rotate_matrix_y(0,F(this,s32,0x60));
   draw_ginja_model_with_motion(get_city_common_model(9),get_city_common_motion(8),F(this,f32,0xB4));
   draw_ginja_model_with_motion(get_city_common_model(10),get_city_common_motion(9),F(this,f32,0xB4));
@@ -612,7 +614,7 @@ void TObjCityDoor_Warp::run_task() {
 
 void city_door_tick_opening__13TUnk_804B5BA8Fv(void *);
 s32 update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
-s32 play_sound_effect(s32, s32, s32, s32);
+
 void city_door_tick_opening__17TObjCityDoor_WarpFv(u8 *arg0);
 extern const f32 lbl_805DBBF8;
 extern const f32 lbl_805DBBFC;
@@ -621,13 +623,13 @@ void city_door_play_open_sound__17TObjCityDoor_WarpFv(s32 arg0);
 
 void TObjCityDoor_Warp::city_door_play_close_sound() {
     s32 arg0 = (s32)this;
-    update_technique_slot__10TTecRaFoieFl((s32)(play_sound_effect(0x42A05, arg0 + 0x38, 0, 0)), -0x500, 0);
+    update_technique_slot__10TTecRaFoieFl((s32)(play_sound_effect(0x42A05, (const Vec *)(arg0 + 0x38), 0, 0)), -0x500, 0);
 }
 
 void TObjCityDoor_Warp::city_door_play_open_sound() {
     s32 arg0 = (s32)this;
     if (is_rader_map_active() != 0) {
-        s32 r = play_sound_effect(0x42A04, arg0 + 0x38, 0, 0);
+        s32 r = play_sound_effect(0x42A04, (const Vec *)(arg0 + 0x38), 0, 0);
         update_technique_slot__10TTecRaFoieFl((s32)(r), -0x800, 0);
     }
 }
@@ -638,7 +640,7 @@ void TObjCityDoor_Warp::city_door_tick_opening() {
     f32 temp_f1;
     temp_f1 = this->m_b4;
     if ((temp_f1 >= lbl_805DBBF8) && (temp_f1 <= lbl_805DBBFC)) {
-        update_technique_slot__10TTecRaFoieFl((s32)(play_sound_effect(0x42A04, (s32)((void *) (arg0 + 0x38)), 0, 0)), -0x500, 0);
+        update_technique_slot__10TTecRaFoieFl((s32)(play_sound_effect(0x42A04, (const Vec *)(((void *) (arg0 + 0x38))), 0, 0)), -0x500, 0);
     }
     city_door_tick_opening__13TUnk_804B5BA8Fv((void *) (arg0));
 }
@@ -737,7 +739,7 @@ void TObjCityDoor_Guild::render() {
     u8 *arg0 = (u8 *)this;
 
     if (((VObj_8018257c_8018245C *)arg0)->m20() != 0) {
-        TObjFish::set_global_param(city_common_texture_list);
+        set_current_texture_list((GinjaTextureList *)(city_common_texture_list));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);
@@ -826,7 +828,7 @@ void *TObjCityDoor_Guild__ct(void *o, void *parent, void *set) {
 void TObjCityDoor_Shop::render() {
     u8 *arg0 = (u8 *)this;
     if (((VObj_8018274C_8018262C *)arg0)->m20() != 0) {
-        TObjFish::set_global_param(city_common_texture_list);
+        set_current_texture_list((GinjaTextureList *)(city_common_texture_list));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);
@@ -1031,12 +1033,12 @@ void TUnk_804B5BA8::dispatch_state() {
 
 void TUnk_804B5BA8::city_door_play_open_sound() {
     s32 arg0 = (s32)this;
-    play_sound_effect(0x42A04, arg0 + 0x38, 0, 0);
+    play_sound_effect(0x42A04, (const Vec *)(arg0 + 0x38), 0, 0);
 }
 
 void TUnk_804B5BA8::city_door_play_close_sound() {
     s32 arg0 = (s32)this;
-    play_sound_effect(0x42A05, arg0 + 0x38, 0, 0);
+    play_sound_effect(0x42A05, (const Vec *)(arg0 + 0x38), 0, 0);
 }
 
 void TUnk_804B5BA8::check_ground_or_fall() {

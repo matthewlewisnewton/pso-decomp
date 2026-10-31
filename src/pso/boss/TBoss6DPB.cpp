@@ -1,4 +1,5 @@
 #include "pso/enemy/BattleParameters.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/TBoss6DPB.h"
 #include "pso/boss/TBoss6DPB.h"
 #include "pso/effect/TDPBShower.h"
@@ -69,7 +70,7 @@ extern s32 tl_02;
 
 u8 *__nw__7TObjectFUl(s32);
 
-s32 play_sound_effect(s32, u32, int, s32);
+
 s32 __ct__7TObjectFP7TObject(void *, void *);
 extern RecoveredGlobal_8035DB70___vt__9TBoss6DPB __vt__9TBoss6DPB;
 extern s32 TBoss6DPB__class_name;
@@ -129,7 +130,7 @@ void TBoss6DPB::run_task() {
         *(s32 *)((s8 *)arg0 + 0x30) = (s32) (*(s32 *)((s8 *)arg0 + 0x30) + 1);
         if ((f32) *(s32 *)((s8 *)arg0 + 0x30) > 5.0f) {
             ((TBoss6DPB *)arg0)->apply_shower_damage_to_players();
-            play_sound_effect(0x40069411, (u32)(arg0 + 0x20), 0, 0);
+            play_sound_effect(0x40069411, (const Vec *)((arg0 + 0x20)), 0, 0);
             ((TBoss6DPB *)arg0)->sub_8035D8B0();
             queue_destruction__7TObjectFv(arg0);
         }
@@ -159,7 +160,7 @@ u8 *__ct__9TBoss6DPBFv(u8 *object, s32 arg1, s32 arg2, f32 farg0) {
     if (0.0f == temp_f1) {
         *(f32 *)((s8 *)object + 0x38) = (f32) 1.0f;
     }
-    play_sound_effect(0x40069410, (u32)(object + 0x20), 0, 0);
+    play_sound_effect(0x40069410, (const Vec *)((object + 0x20)), 0, 0);
     *(s32 *)((s8 *)object + 0x30) = 0;
     return object;
 }

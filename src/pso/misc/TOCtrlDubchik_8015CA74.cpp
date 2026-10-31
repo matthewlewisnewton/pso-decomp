@@ -1,4 +1,6 @@
 #include "pso/player/demo_mode.h"
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/enemy/TObjEnemy.h"
@@ -141,9 +143,9 @@ extern s32 registered_player_count;
 extern s32 lbl_805D5870;
 void TOCtrlDubchik__sub_8015C9D0(u8 *);
 void submit_cursor_candidate(void *, s32);
-void *spawn_particle_effect(void *pos, s32 id);
+
 void TObjPlayer__sub_800A8C1C(u8 *arg0);
-s32 play_sound_effect(s32, void *, s32, s32);
+
 f32 receive_direct_attack__9TObjCharaFPv19DirectAttackPayloadPvll(void *, s32, Pair_8015D518, void *, s32, s32);
 f32 TOCtrlDubchik__vt21(Obj_8015D518 *arg0, s32 arg1, Pair_8015D518 arg2, void *arg3);
 void *__dt__13TOCtrlDubchikFv(void *arg0, s16 arg1);
@@ -158,11 +160,11 @@ void TOCtrlDubchik::sub_8015CA74() {
     s32 area;
     s32 i;
     u8 *p;
-    spawn_particle_effect(&this->position, 0x45);
-    spawn_particle_effect(&this->position, 0x46);
+    spawn_particle_effect((const Vec *)(&this->position), 0x45);
+    spawn_particle_effect((const Vec *)(&this->position), 0x46);
     area = get_current_floor_area();
     if (area >= 0x17 || area < 0x13) {
-        play_sound_effect(0x4003AD16, (u8 *)&this->position, 0, 0);
+        play_sound_effect(0x4003AD16, (const Vec *)((u8 *)&this->position), 0, 0);
     }
     for (i = registered_player_count; i < registered_player_count + lbl_805D5870; i++) {
         p = (u8 *)get_player_data__10TObjPlayerFi(i);

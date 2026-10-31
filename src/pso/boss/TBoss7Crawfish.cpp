@@ -1,4 +1,7 @@
+#include "pso/misc/ParticleFactory.h"
 #include "pso/enemy/TObjEnemy.h"
+#include "pso/system/SoundEffect.h"
+#include "pso/misc/PersistentSound.h"
 #include <dolphin/mtx.h>
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/object/TObjMotion.h"
@@ -104,7 +107,7 @@ Slot_803086A8 *get_attack_entry__16TObjOnlineEndingFi(s32);
 s32 apply_hit_to_target__14TBoss7CrawfishFPvPv(void *, void *);
 void TBoss7Crawfish__sub_803087D4(s32 arg0, s32 arg1);
 int TBoss7Crawfish__sub_80308BEC(void* p);
-s32 play_sound_effect(s32, s32, s32, s32);
+
 int change_state__14TBoss7CrawfishFl(void*, int);
 int scale_current_matrix(void*);
 int post_translate_matrix(void*);
@@ -148,12 +151,12 @@ void TBoss7Crawfish::register_attack_hits() {
 }
 
 void TBoss7Crawfish__sub_803087D4(s32 arg0, s32 arg1) {
-    play_persistent_sound(arg1, arg0, arg0 + 0x38, 0, 0);
+    play_persistent_sound((s32)(arg1), (const void *)(arg0), (const Vec *)(arg0 + 0x38), 0, 0);
 }
 
 void TBoss7Crawfish::spawn_effect(s32 arg1) {
     s32 arg0 = (s32)this;
-    play_sound_effect(arg1, arg0 + 0x38, 0, 0);
+    play_sound_effect((s32)(arg1), (const Vec *)(arg0 + 0x38), 0, 0);
 }
 
 typedef char RecoveredGlobal_80308840_lbl_8047559C_size[sizeof(RecoveredGlobal_80308840_lbl_8047559C) == 0xC ? 1 : -1];
@@ -180,8 +183,8 @@ void TBoss7Crawfish::spawn_ground_effects() {
     position.x = *(f32 *)((s8 *)arg0 + 0x38);
     position.y = TBoss7Crawfish__data_805DF0D8;
     position.z = *(f32 *)((s8 *)arg0 + 0x40);
-    spawn_particle_effect((&position.x), 0x20D);
-    spawn_particle_effect((&position.x), 0x20E);
+    spawn_particle_effect((const Vec *)((&position.x)), 0x20D);
+    spawn_particle_effect((const Vec *)((&position.x)), 0x20E);
 }
 
 #define arg0 ((s32)arg0_)

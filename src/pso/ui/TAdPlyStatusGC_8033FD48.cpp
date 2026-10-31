@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/ui/TAdPlyStatusGC_8033FD48.h"
@@ -51,7 +52,7 @@ void TObjPlayer__sub_8033FDB0(s32 arg0) {
   do
   {
     temp_r30 = (u8 *) (arg0 + (var_r31 & 0xFFFFFFFFFFFFFFFF));
-    TObjFish::set_global_param((int) (*((s32 *) (((s8 *) temp_r30) + 0x2C))));
+    set_current_texture_list((GinjaTextureList *)((*((s32 *) (((s8 *) temp_r30) + 0x2C)))));
     draw_model_motion((void *)(*((s32 *) (((s8 *) temp_r30) + 0x28))), (void *)(*((s32 *) (((s8 *) temp_r30) + 0x30))), (f32) lbl_805DFAF8);
     var_r29 += 1;
     var_r31 += 0xC;

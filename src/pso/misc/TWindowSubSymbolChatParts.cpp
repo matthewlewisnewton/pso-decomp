@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TWindowChoiceSetting.h"
 #include "pso/misc/TWindowSubSymbolChatPartsSet.h"
@@ -136,7 +137,7 @@ s32 refresh_parts__20TWindowSubSymbolChatFv();
 s32 get_message_10__20TWindowSubStatusDispFl(s32);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, s32);
 s32 TWindowShortListCtrl__check_controller_button(void *, s32);
-s32 play_sound_effect(s32, s32, s32, s32);
+
 void __dl__7TObjectFPv(void *);
 s32 get_draw_context__11TWindowBaseFPv();
 void construct_with_parent__13TUnk_804CDFE8FPv(void *, void *, s32, void *);
@@ -267,7 +268,7 @@ void TWindowSubSymbolChatParts::sub_80285054() {
     u8 *input;
     input = (u8 *)&controller_input_state.value + 0x20;
     if ((TWindowChoiceSetting::apply_choice((s32)input, 0xF0, 6, 1) != 0) || (TWindowChoiceSetting::apply_choice((s32)((void *) ((u8 *)&controller_input_state.value + 0x160)), 0xF0, 6, 1) != 0)) {
-        ((s32 (*)(s32, u32, s16, s32))play_sound_effect)(0x54100, 0U, 0, 0);
+        play_sound_effect(0x54100, (const Vec *)(0U), 0, 0);
         if ((TWindowChoiceSetting::apply_choice((s32)input, 0x80, 6, 1) != 0) || (TWindowChoiceSetting::apply_choice((s32)((void *) ((u8 *)&controller_input_state.value + 0x160)), 0x80, 6, 1) != 0)) {
             *(u8 *)((s8 *)((u8 *)this) + 0x72) = (u8) (*(u8 *)((s8 *)((u8 *)this) + 0x72) + 1);
         }

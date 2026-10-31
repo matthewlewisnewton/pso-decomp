@@ -1,4 +1,7 @@
 #include "pso/map/CsnGroundQuery.h"
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/SoundEffect.h"
+#include "pso/misc/PersistentSound.h"
 #include "pso/protocol/protocol_types.h"
 #include "pso/misc/TLobby_801E43E4.h"
 #include "types.h"
@@ -169,7 +172,7 @@ void TTecLuker__sub_80235048(void* p);
 int TTecLuker__sub_80235054(void* p);
 int fn_80235078(void *arg0);
 u32 get_player_by_client_id(s32);
-s32 play_sound_effect(int, void *, int, int);
+
 s32 __ct__7TObjectFP7TObject(void *, void *);
 extern s32 recovery_technique_charge_vtable[];
 u8 *construct_resta_charge_sound(u8 *arg0, s32 arg1, s32 arg2);
@@ -180,7 +183,7 @@ extern RecoveredGlobal_80233D18_lbl_804CC9A8 telepipe_field_collision_body_templ
 extern s32 telepipe_field_collider_vtable[];
 bool TTecLuker__sub_8023401C(u8 *arg0);
 extern u32 recovery_technique_charge_particle_ids[];
-void* spawn_particle_effect(float*,u32);
+
 s32 queue_destruction__7TObjectFv(void *);
 void TTecLuker__updateRecoveryTechniqueCharge(TechniqueChargeEmitter* state);
 extern u8 TTecLuker__visit_counts[4];
@@ -230,7 +233,7 @@ s32 obj_isState3_324__9TObjCharaFv(void *);
 s32 play_effect_default__10TObjPlayerFii(void *, s32);
 s32 send_6x21_inter_level_warp(void *, s32);
 s32 get_floor_map_terrain(s32);
-s32 play_persistent_sound(s32, void *, void *, s32, s32);
+
 s32 set_area__6TLobbyFl(s32 *, s32, s32);
 void run_task__9TTecLukerFv(u8 *arg0);
 f32 horizontal_distance_squared(void *, void *);
@@ -265,7 +268,7 @@ s32 submit_cursor_candidate(void *, s32);
 void TTecLuker__updateRecoveryTechniqueCharge(TechniqueChargeEmitter* state) {
     ++state->age;
     if(state->age%10==0) {
-        for(int i=0;i<2;++i)spawn_particle_effect(state->position,recovery_technique_charge_particle_ids[i]);
+        for(int i=0;i<2;++i)spawn_particle_effect((const Vec *)(state->position), (s32)(recovery_technique_charge_particle_ids[i]));
     }
     if(!((TObjPlayer *)(state->actor))->check_flag_0x80())queue_destruction__7TObjectFv(state);
     else if(state->age>=180)queue_destruction__7TObjectFv(state);
@@ -289,7 +292,7 @@ u8 *construct_resta_charge_sound(u8 *arg0, s32 arg1, s32 arg2) {
     *(s32 *)((s8 *)arg0 + 0x1C) = arg1;
     VecCopy((Vec *)(arg0 + 0x20), (const Vec *)((int) (*(s32 *)((s8 *)arg0 + 0x1C) + 0x2FC)));
     ((TUnk_804CC990 *)arg0)->m_2c = 0;
-    *(s32 *)((s8 *)arg0 + 0x30) = play_sound_effect(0x4002BC20, arg0 + 0x20, 0, 0);
+    *(s32 *)((s8 *)arg0 + 0x30) = play_sound_effect(0x4002BC20, (const Vec *)(arg0 + 0x20), 0, 0);
     return arg0;
 }
 
@@ -789,18 +792,18 @@ void run_task__9TTecLukerFv(u8 *arg0) {
             queue_destruction__7TObjectFv(arg0);
             return;
         }
-        play_persistent_sound(0x4002B219, arg0, arg0 + 0xFC, 0, 0);
+        play_persistent_sound((s32)(0x4002B219), (const void *)(arg0), (const Vec *)(arg0 + 0xFC), 0, 0);
         if ((u32) ((TTecLuker *)arg0)->m_f0 == 0U) {
             queue_destruction__7TObjectFv(arg0);
             return;
         }
         if ((get_player_by_client_id(((TTecLuker *)arg0)->m_f6) != 0) && (get_pipe_interaction_latch(*(void **)((s8 *)arg0 + 0xF0)) != 0) && (are_players_gathered_near(arg0 + 0xFC, 0, lbl_805DC858) != 0)) {
             offset_point_toward_camera(arg0 + 0xFC, (u8 *)((s32 *) &sp8), (f32)lbl_805DC858);
-            spawn_particle_effect((float *) &sp8, 0xB3);
+            spawn_particle_effect((const Vec *)((float *) &sp8), 0xB3);
             player = (u8 *)get_player_by_client_id(((TTecLuker *)arg0)->m_f6);
             if (player != NULL) {
                 play_effect_default__10TObjPlayerFii(player, 0xA);
-                play_sound_effect(0x40022D1A, player + 0x38, 0, 0);
+                play_sound_effect(0x40022D1A, (const Vec *)(player + 0x38), 0, 0);
             }
             TWindowCtrl::init_all_slots();
             ((TTecLuker *)arg0)->m_108 = 2;
@@ -951,7 +954,7 @@ void *TTecLuker__ct(void *arg0, void *arg1, void *arg2, void *arg3, void *arg4) 
             }
         }
     }
-    play_sound_effect(0x4002A818, (u8 *)arg0 + 0x20, 0, 0);
+    play_sound_effect(0x4002A818, (const Vec *)((u8 *)arg0 + 0x20), 0, 0);
     return arg0;
 }
 #undef L

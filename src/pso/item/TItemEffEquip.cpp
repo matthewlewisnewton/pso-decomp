@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/player/TObjPlayer_80011014.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/TItemEffEquip.h"
@@ -63,7 +64,7 @@ extern u8 lbl_8043E1A0[];
 
 extern "C" {
 
-s32 play_sound_effect(s32, s32, s32, s32);
+
 void *__nw__7TObjectFUl(int);
 struct Equip_80108A20 { s32 x0; u8 pad4[0x18 - 4]; void *vt; void *src; s32 x20; void *x24; };
 s32 __ct__7TObjectFP7TObject(void *, void *);

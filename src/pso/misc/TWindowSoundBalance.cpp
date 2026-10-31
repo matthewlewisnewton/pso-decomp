@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/system/ControllerInputState.h"
 #include "pso/misc/TWindowKeyBoardSoft.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
@@ -18,7 +19,7 @@
 extern "C" {
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 TWindowShortListCtrl__check_controller_button(int, int);
-s32 play_sound_effect(s32, s32, s32, s32);
+
 SoundBalanceSettings *get_global_state__23TAdSinglePlyChrSelectGCFv();
 u32 calc_text_width();
 u8 *get_array_entry__13TUnk_804CE018Fi(void *, s32);
@@ -114,7 +115,7 @@ void TWindowSoundBalance::handle_lr_input() {
     u8 *input;
     input = (u8 *)&controller_input_state.controllers[0];
     if ((TAdMultiPlyChrSelectGC::dispatch_draw_command((int)input, 0x30, 6, 1) != 0) || (TWindowChoiceSetting::apply_choice((s32)((void *) ((u8 *)&controller_input_state.keyboard)), 0x30, 6, 1) != 0)) {
-        play_sound_effect(0x54100, (s32)(0U), 0, 0);
+        play_sound_effect(0x54100, (const Vec *)((0U)), 0, 0);
         if ((TAdMultiPlyChrSelectGC::dispatch_draw_command((int)input, 0x10, 6, 1) != 0) || (TWindowChoiceSetting::apply_choice((s32)((void *) ((u8 *)&controller_input_state.keyboard)), 0x10, 6, 1) != 0)) {
             this->selection = (this->selection - 1);
         }

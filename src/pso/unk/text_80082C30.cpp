@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #pragma readonly_strings on
 #include "pso/effect/TEffect.h"
 #include "pso/render/render_util.h"
@@ -129,7 +130,7 @@ void TObjPlayer__sub_80082C30(void) {
     typedef char sp20_offset[(offsetof(Stack_80082C30, sp20) == 0x18) ? 1 : -1];
     typedef char sp24_offset[(offsetof(Stack_80082C30, sp24) == 0x1C) ? 1 : -1];
     Stack_80082C30 stack;
-    TObjFish::set_global_param(lbl_805D63F0);
+    set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
     set_draw_texture_and_color(0, -1);
     begin_screen_draw(1);
     stack.sp8 = lbl_805D93C0;

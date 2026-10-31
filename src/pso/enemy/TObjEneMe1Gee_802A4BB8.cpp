@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/enemy/TObjEneMe1Gee_802A4BB8.h"
 #include "pso/misc/TNeedleShoot_802A4668.h"
@@ -35,7 +36,7 @@ s32 draw_ginja_object();
 s32 rotate_matrix_x(int, int);
 s32 TObjFish__sub_8001EDB0(void *, int);
 s32 get_bml_model(void *, int);
-s32 set_global_param__8TObjFishFl();
+
 s32 rotate_matrix_y(int, int);
 s32 push_matrix();
 
@@ -50,8 +51,7 @@ void TObjEneMe1Gee_NEEDLE::render() {
     post_translate_matrix((u8 *)&this->m_6c);
     rotate_matrix_y(0, this->m_a4);
     rotate_matrix_x(0, this->m_a0);
-    TObjFish__sub_8001EDB0((void *)me1gee_cached_model_handle, 1);
-    set_global_param__8TObjFishFl();
+    set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0((void *)me1gee_cached_model_handle, 1)));
     get_bml_model((void *)me1gee_cached_model_handle, 1);
     draw_ginja_object();
     TParticleCtrl::end_effect_render();

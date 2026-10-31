@@ -20,15 +20,20 @@ and ground-shadow calls. Shared declarations and implementations are unchanged.
 
 The candidate also merges the current-core-aligned immutable draft stack:
 
-- `1a2361d2391bc1615b3e2621b668258be31ac983` (fork PR81): nonstatic
+- `d769df7015d21166caf915a39f27499ca7a40f5f` (fork PR81): nonstatic
   actor receiver for `TObjEneDD::get_random_scaled`.
-- `b594952657f425cb74822f27cbbe053072fed3da` (fork PR82): full-register
+- `8b7d34d0a4cceb973ee9be63a1b29062d2b6309e` (fork PR82): full-register
   `s32` result for the static main-phase predicate.
 
 This stack includes certified core `c183840fc681ebca7351734acefa2e177f14f1ed`
 with typed node callbacks, capture, collision, groups and state/checker changes.
 Gee accepts the callback's unused NJS_OBJECT pointer and registers its function
 through the canonical callback type, preserving its native camera cursor storage.
+The phase stack also includes prospective typed render/sound base
+`8fa0e6ebb852d005a628b8bd276a3c40b50d8d37`. Gee uses its current texture-list
+setter and typed persistent/one-shot sound declarations with actual actor and Vec
+pointers. The adjacent unit retains the prerequisite's mechanical texture binding
+change; no new Needle behavior or layout is recovered.
 PR82 is the immediate fork-local base. Shared full certification and this Gee
 head's full build/check/provenance and independent review remain pending. No
 generic shared definitions or compatibility shims are introduced. Earlier SHAs

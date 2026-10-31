@@ -1,4 +1,5 @@
 #include "pso/player/demo_mode.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include <stdlib.h>
@@ -47,7 +48,7 @@ void TORainbowCave01::render() {
     u32 flags;
     if (update_object_view_visibility(view_range, model_radius) != 0 && -1.0f < fade) {
         TParticleCtrl::begin_effect_render();
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         flags = model_render_flags;
         saved_model_render_flags = flags;
         model_render_flags = flags | 0x20;

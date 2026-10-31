@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TTecSifta.h"
 #include "pso/object/TObject_80019A50.h"
@@ -76,7 +77,7 @@ extern s32 __vt__9TTecSifta[];
 extern const char *lbl_805D3820;
 u8 *TTecSifta__sub_8023B17C(TTecSifta *arg0, s32 arg1, s32 arg2, s32 arg3);
 s32 update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
-s32 play_sound_effect(int, void *, int, int);
+
 s32 is_split_screen();
 s32 is_script_controlled__10TObjPlayerFv(void *);
 void *find_entity_by_id(u16 id);
@@ -96,18 +97,18 @@ void TTecSifta::play_sifta_cast_sound() {
     switch (*(s16 *)&this->m_a6) {
     case 0:
     case 1:
-        r = play_sound_effect(0x4002AD14, (u8 *)arg0 + 0x20, 0, 0);
+        r = play_sound_effect(0x4002AD14, (const Vec *)((u8 *)arg0 + 0x20), 0, 0);
         if (r >= 0) {
             update_technique_slot__10TTecRaFoieFl(r, 0x100, 0);
         }
         break;
     case 2:
     case 3:
-        play_sound_effect(0x4002AD14, (u8 *)arg0 + 0x20, 0, 0);
+        play_sound_effect(0x4002AD14, (const Vec *)((u8 *)arg0 + 0x20), 0, 0);
         break;
     case 4:
     case 5:
-        r = play_sound_effect(0x4002AD14, (u8 *)arg0 + 0x20, 0, 0);
+        r = play_sound_effect(0x4002AD14, (const Vec *)((u8 *)arg0 + 0x20), 0, 0);
         if (r >= 0) {
             update_technique_slot__10TTecRaFoieFl(r, -0x100, 0);
         }

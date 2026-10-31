@@ -1,3 +1,5 @@
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
 #include "pso/misc/TPhotonMagicSquare.h"
@@ -60,7 +62,7 @@ void TPhotonMagicSquare::render() {
     push_matrix();
     post_translate_matrix(&self->vB8);
     rotate_matrix_y(0, this->rotation_y);
-    TObjFish::set_global_param(this->texlist);
+    set_current_texture_list((GinjaTextureList *)(this->texlist));
     scale_current_matrix(&self->v68);
     Color_801ACE1C saved = self->color;
     if ((this->m_b0 % this->m_cc) == 0) {
@@ -163,7 +165,7 @@ extern RecoveredGlobal_801AD0F0___vt__18TPhotonMagicSquare __vt__18TPhotonMagicS
 extern const char *TPhotonMagicSquare__data_805D3508;
 extern u8 *photon_blast_shared_resource;
 s32 find_entity_by_id(void *);
-s32 play_sound_effect(int, int, int, int);
+
 void __dl__7TObjectFPv(void *);
 
 }

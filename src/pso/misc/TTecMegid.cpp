@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/TParticleCtrl.h"
 #include "types.h"
 #include "pso/effect/TUnk_804CCC68.h"
@@ -204,7 +205,7 @@ extern const f32 lbl_805DC884;
 u8 *TTecMegid__ct(TTecMegid *arg0, s32 _w1, s32 _w2, s32 _w3, s32 _w4);
 void construct_facing_technique__10TObjPlayerFPviPvii();
 s32 obj_isState3_324__9TObjCharaFv(void *);
-s32 play_sound_effect(s32, s32, s32, s32);
+
 s32 get_technique_caster_flags(s32, u16);
 void TTecMegid__vt6(Obj_80235490 *self, VObj_80235490 *target);
 void *find_entity_by_id(u16);
@@ -233,29 +234,29 @@ void TTecMegid::update_by_state() {
 
     switch (this->band) {
     case 0:
-        handle = play_sound_effect(0x4002A60B, (int)(arg0 + 0x20), 0, 0);
+        handle = play_sound_effect(0x4002A60B, (const Vec *)((arg0 + 0x20)), 0, 0);
         if (handle >= 0) {
             update_technique_slot__10TTecRaFoieFl(handle, 0x100, 0);
         }
         return;
     case 1:
-        play_sound_effect(0x4002A60B, (int)(arg0 + 0x20), 0, 0);
+        play_sound_effect(0x4002A60B, (const Vec *)((arg0 + 0x20)), 0, 0);
         return;
     case 2:
     case 3:
-        handle = play_sound_effect(0x4002A60B, (int)(arg0 + 0x20), 0, 0);
+        handle = play_sound_effect(0x4002A60B, (const Vec *)((arg0 + 0x20)), 0, 0);
         if (handle >= 0) {
             update_technique_slot__10TTecRaFoieFl(handle, -0x180, 0);
         }
         break;
     case 4:
-        handle = play_sound_effect(0x4002A60B, (int)(arg0 + 0x20), 0, 0);
+        handle = play_sound_effect(0x4002A60B, (const Vec *)((arg0 + 0x20)), 0, 0);
         if (handle >= 0) {
             update_technique_slot__10TTecRaFoieFl(handle, -0x250, 0);
         }
         break;
     case 5:
-        handle = play_sound_effect(0x4002A60B, (int)(arg0 + 0x20), 0, 0);
+        handle = play_sound_effect(0x4002A60B, (const Vec *)((arg0 + 0x20)), 0, 0);
         if (handle >= 0) {
             update_technique_slot__10TTecRaFoieFl(handle, -0x100, 0);
         }
@@ -364,7 +365,7 @@ void TTecMegid__vt6(Obj_80235490 *self, VObj_80235490 *target) {
         }
         HitInfo_80235490 info = tmp;
         target->m21(self->source, &info, self->contact, 0x12, -1);
-        play_sound_effect(0x4002AD29, (s32)((u8 *)target + 0x38), 0, 0);
+        play_sound_effect(0x4002AD29, (const Vec *)(((u8 *)target + 0x38)), 0, 0);
         if (self->fc8 < 12) {
             if ((get_technique_caster_flags(0x12, self->fc8) & 1) == 0) {
                 queue_destruction__7TObjectFv(self);

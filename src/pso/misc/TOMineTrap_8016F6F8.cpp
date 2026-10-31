@@ -1,3 +1,5 @@
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/TParticleCtrl.h"
 #include "types.h"
 #include "pso/system/vector.h"
@@ -101,10 +103,10 @@ extern "C" {
 s32 is_locally_controlled__10TObjPlayerFPv(u32 a0);
 s32 get_localized_text_entry(s32 arg0, s32 arg1);
 s32 get_main_phase();
-s32 play_sound_effect(s32, s32, s32, s32);
+
 extern s8 mine_trap_effect_table[];
 extern s8 mine_trap_keymachine_table[];
-void *spawn_particle_effect(void *pos, s32 id);
+
 extern f32 lbl_805DB864;
 extern f32 lbl_805DB85C;
 extern const f32 TOMineTrap__data_805DB868;
@@ -351,7 +353,7 @@ void TOMineTrap::spawn_effect() {
     s32 area = get_current_floor_area();
     s32 elem = *(s32 *)(mine_trap_effect_table + area * 4);
     if (elem != -1) {
-        play_sound_effect(elem, arg0 + 0x38, 0, 0);
+        play_sound_effect((s32)(elem), (const Vec *)(arg0 + 0x38), 0, 0);
     }
 }
 void TOMineTrap::attach_to_keymachine() {
@@ -359,20 +361,20 @@ void TOMineTrap::attach_to_keymachine() {
     s32 area = get_current_floor_area();
     s32 elem = *(s32 *)(mine_trap_keymachine_table + area * 4);
     if (elem != -1) {
-        play_sound_effect(elem, arg0 + 0x38, 0, 0);
+        play_sound_effect((s32)(elem), (const Vec *)(arg0 + 0x38), 0, 0);
     }
 }
 void TOMineTrap::detonate_if_triggered() {
     s32 arg0 = (s32)this;
     {
-        TParticleCtrl *particle = (TParticleCtrl *)spawn_particle_effect((void *)(arg0 + 0x2FC), 0x45);
+        TParticleCtrl *particle = spawn_particle_effect((const Vec *)((arg0 + 0x2FC)), 0x45);
         if (particle != NULL) {
             particle->set_scale(lbl_805DB864, lbl_805DB864);
         }
     }
 }
 void TOMine::sub_8017070C() {
-    spawn_particle_effect(((void *) (((u8 *)this) + 0x2FC)), 0x47);
+    spawn_particle_effect((const Vec *)(((void *) (((u8 *)this) + 0x2FC))), 0x47);
     this->vfunc_82();
     this->vfunc_80();
 }

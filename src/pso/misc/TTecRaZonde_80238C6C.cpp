@@ -1,3 +1,5 @@
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TTecRaZonde.h"
 #include "pso/system/vector.h"
@@ -79,7 +81,7 @@ extern RecoveredGlobal_80230D9C_lbl_804CC510 tech_high_level_linear_power_table;
 extern RecoveredGlobal_80230D9C_lbl_804CC55C lbl_804CC55C;
 u16 get_entity_id(void *);
 void update_technique_slot__10TTecRaFoieFl(s32 handle, s32 pitch, s32 c);
-s32 play_sound_effect(s32 id, void *pos, s32 a, s32 b);
+
 void *__nw__7TObjectFUl(int);
 u8 *construct_area_technique_base(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 f32 sin_table_lookup(s32);
@@ -188,7 +190,7 @@ struct VObj_18_9c98dd : VBase_18_9c98dd {
 extern "C" {
 void *find_entity_by_id(u16 id);
 void update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
-s32 play_sound_effect(s32, void *, s32, s32);
+
 void *create_particle_emitter(void *pos, s32 id);
 void *mem_alloc(u32 size);
 
@@ -256,7 +258,7 @@ struct Obj_80238F84 {
 
 extern "C" {
 void create_timed_particle_emitter(void *, s32, s32, s32, void *);
-void spawn_particle_effect(void *, s32, void *);
+
 void run_task__11TTecRaZondeFv(Obj_80238F84 *self);
 void TTecRaZonde::create(void *origin, void *level) {
     void *o;
@@ -309,7 +311,7 @@ void run_task__11TTecRaZondeFv(Obj_80238F84 *self) {
             if (i == 1) {
                 create_timed_particle_emitter((u8 *)self->source + 0x2FC, ((RProfile_80238F84 *)TTecRaZonde__band_profile_table)[self->band].entries[i].entry, 0, 60, self->source);
             } else {
-                spawn_particle_effect((u8 *)self->source + 0x2FC, ((RProfile_80238F84 *)TTecRaZonde__band_profile_table)[self->band].entries[i].entry, self->source);
+                spawn_particle_effect((const Vec *)((u8 *)self->source + 0x2FC), (s32)(((RProfile_80238F84 *)TTecRaZonde__band_profile_table)[self->band].entries[i].entry));
             }
         }
     }
@@ -378,32 +380,32 @@ void *TTecRaZonde__ct(void *self_, void *source, void *origin, void *level) {
     }
     switch (self->band) {
     case 0: {
-        s32 h = play_sound_effect(0x4002A50A, &self->pos, 0, 0);
+        s32 h = play_sound_effect(0x4002A50A, (const Vec *)(&self->pos), 0, 0);
         if (h >= 0) {
             update_technique_slot__10TTecRaFoieFl(h, 0x100, 0);
         }
         break;
     }
     case 1:
-        play_sound_effect(0x4002A50A, &self->pos, 0, 0);
+        play_sound_effect(0x4002A50A, (const Vec *)(&self->pos), 0, 0);
         break;
     case 2:
     case 3: {
-        s32 h = play_sound_effect(0x4002A50A, &self->pos, 0, 0);
+        s32 h = play_sound_effect(0x4002A50A, (const Vec *)(&self->pos), 0, 0);
         if (h >= 0) {
             update_technique_slot__10TTecRaFoieFl(h, -0x180, 0);
         }
         break;
     }
     case 4: {
-        s32 h = play_sound_effect(0x4002A50A, &self->pos, 0, 0);
+        s32 h = play_sound_effect(0x4002A50A, (const Vec *)(&self->pos), 0, 0);
         if (h >= 0) {
             update_technique_slot__10TTecRaFoieFl(h, -0x250, 0);
         }
         break;
     }
     case 5: {
-        s32 h = play_sound_effect(0x4002A50A, &self->pos, 0, 0);
+        s32 h = play_sound_effect(0x4002A50A, (const Vec *)(&self->pos), 0, 0);
         if (h >= 0) {
             update_technique_slot__10TTecRaFoieFl(h, -0x100, 0);
         }
@@ -424,18 +426,18 @@ void TTecResta::play_launch_sound() {
     switch (self->band) {
     case 0:
     case 1:
-        h = play_sound_effect(0x4002AB0E, self->pos, 0, 0);
+        h = play_sound_effect(0x4002AB0E, (const Vec *)(self->pos), 0, 0);
         if (h >= 0) {
             update_technique_slot__10TTecRaFoieFl(h, 0x100, 0);
         }
         break;
     case 2:
     case 3:
-        play_sound_effect(0x4002AB0E, self->pos, 0, 0);
+        play_sound_effect(0x4002AB0E, (const Vec *)(self->pos), 0, 0);
         break;
     case 4:
     case 5:
-        h = play_sound_effect(0x4002AB0E, self->pos, 0, 0);
+        h = play_sound_effect(0x4002AB0E, (const Vec *)(self->pos), 0, 0);
         if (h >= 0) {
             update_technique_slot__10TTecRaFoieFl(h, -0x100, 0);
         }

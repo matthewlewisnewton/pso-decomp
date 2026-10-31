@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/protocol/protocol_types.h"
 #include "types.h"
 #include "pso/misc/TOSwitchAttack.h"
@@ -64,7 +65,7 @@ void *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags);
 f32 horizontal_distance_squared(void *, void *);
 void *resolve_hittable_target(u16 actorId, s16 collider);
 void *find_entity_by_id(u16 id);
-void play_sound_effect(s32, void *, s32, s32);
+
 u8 is_current_floor_switch_set(u16);
 extern const f32 lbl_805DBA08;
 void TOSwitchAttack__sub_80177C20(void);
@@ -150,7 +151,7 @@ void TOSwitchAttack::run_task() {
             spawn_particle_effect_with_flags(&o->pos, 0x45, 0x40);
             spawn_particle_effect_with_flags(&o->pos, 0x189, 0x40);
             TCameraCtrl::set_shake_preset(2);
-            play_sound_effect(0x4001C112, &o->pos, 0, 0);
+            play_sound_effect(0x4001C112, (const Vec *)(&o->pos), 0, 0);
             break;
         case 1:
             TCameraCtrl::set_shake_preset(2);

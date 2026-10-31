@@ -1,6 +1,9 @@
 #include "pso/player/demo_mode.h"
 #include "pso/system/ModelNodePositionCapture.h"
 #include "pso/enemy/BattleParameters.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
+#include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/misc/TLobby.h"
@@ -1037,7 +1040,7 @@ void TBoss6Mag::draw_model_motion_blend() {
     set_motion_packed_rotation();
     temp_r31 = TObjFish__sub_8001EDB0(*(s32 *)((s8 *)this + 0x374), 1);
     bml_model = get_bml_model(*(s32 *)((s8 *)this + 0x374), 1);
-    TObjFish::set_global_param(temp_r31);
+    set_current_texture_list((GinjaTextureList *)(temp_r31));
     if ((0.0f) == *(f32 *)((s8 *)this + 0x3E8)) {
         ((ModelNodePositionCapture *)(*(s32 *)((s8 *)this + 0x458)))->install();
         draw_model_motion((void *)bml_model, (void *)(*(s32 *)((s8 *)this + 0x3DC)), *(f32 *)((s8 *)this + 0x3E0));
@@ -1159,7 +1162,7 @@ f32 fn_80330240(O_80330240 *arg0, void *att, P_80330240 arg2, void *coll, void *
     }
     return receive_direct_attack__9TObjCharaFPv19DirectAttackPayloadPvll(arg0, att, arg2, coll, tech, arg5);
 }
-s32 play_sound_effect(int, void *, int, int);
+
 s32 TBoss6Type2__sub_802BD340(int);
 f32 receive_physical_attack__9TObjCharaFPvf();
 
@@ -1180,7 +1183,7 @@ void TBoss6Mag::vfunc_63() {
         TBoss6Type2__sub_802BD340((int) (*(s32 *)((s8 *)arg0 + 0x378)));
         *(f32 *)((s8 *)arg0 + 0x3F8) = (f32) (1.0f);
         ((TBoss6Mag *)arg0)->set_action(4);
-        play_sound_effect(0x69E17, arg0 + 0x38, 0, 0);
+        play_sound_effect(0x69E17, (const Vec *)(arg0 + 0x38), 0, 0);
         break;
     }
 }
@@ -1188,7 +1191,7 @@ void TBoss6Mag::vfunc_63() {
 void spawn_ground_effect__10TObjPlayerFPv(u8 *arg0) {
     *(f32 *)((s8 *)arg0 + 0x3F8) = (f32) (1.0f);
     *(s32 *)((s8 *)arg0 + 0x30) = (s32) (*(s32 *)((s8 *)arg0 + 0x30) & 0xFFFFFDFF);
-    play_sound_effect(0x6A816, arg0 + 0x38, 0, 0);
+    play_sound_effect(0x6A816, (const Vec *)(arg0 + 0x38), 0, 0);
     *(f32 *)((s8 *)arg0 + 0x3BC) = (f32) (0.0f);
 }
 void TBoss6PlotFalz__sub_802AC008(f32, f32);
@@ -1200,7 +1203,6 @@ s32 post_translate_matrix(void *);
 void queue_destruction__7TObjectFv(void *object);
 s32 submit_cursor_candidate(void *, int);
 s32 add_radar_scaled_marker(void *, int, int, int, f32);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 
 void TObjPlayer::save_position() {
     s32 arg0 = (s32)this;
@@ -1246,7 +1248,7 @@ void TBoss6Mag::spawn_trap_by_stat() {
             var_r3 = 0x6B518;
         }
     }
-    play_persistent_sound((s32)var_r3, (s32)this, (u32)(((u8 *)this) + 0x38), 0, 0);
+    play_persistent_sound((s32)var_r3, (const void *)(this), (const Vec *)((u32)(((u8 *)this) + 0x38)), 0, 0);
 }
 
 void TBoss6Mag::render() { sub_8033040C(); }

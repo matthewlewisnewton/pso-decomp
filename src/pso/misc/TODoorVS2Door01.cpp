@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "pso/misc/TODoorVS2Door01.h"
 
 #include "pso/TMainTask.h"
@@ -46,7 +47,7 @@ void TODoorVS2Door01::update_open() {
     if (!(door_flags & 1) || is_any_player_within_radius_xz(10000.0f) == 0) {
         object_state = DOOR_CLOSING;
         clear_player_status_flag(0, 8);
-        play_sound_effect(0x4004AA0B, &position, 0, 0);
+        play_sound_effect(0x4004AA0B, (const Vec *)(&position), 0, 0);
     }
 }
 
@@ -62,7 +63,7 @@ void TODoorVS2Door01::update_closed() {
     if ((door_flags & 1) && is_any_player_within_radius_xz(4900.0f) != 0) {
         object_state = DOOR_OPENING;
         set_indexed_flags(0, 8);
-        play_sound_effect(0x4004AA0B, &position, 0, 0);
+        play_sound_effect(0x4004AA0B, (const Vec *)(&position), 0, 0);
     }
 }
 
@@ -76,7 +77,7 @@ void TODoorVS2Door01::render() {
         push_matrix();
         post_translate_matrix(&position.x);
         rotate_matrix_y(NULL, rotation_y);
-        TObjFish::set_global_param(texture_lists[door_flags & 1]);
+        set_current_texture_list((GinjaTextureList *)(texture_lists[door_flags & 1]));
         node = (NJS_OBJECT *)model;
         post_translate_matrix(node->pos);
         push_matrix();
