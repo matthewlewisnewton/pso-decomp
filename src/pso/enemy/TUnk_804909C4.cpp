@@ -10,7 +10,7 @@
 
 extern "C" {
 void check_enemy_body_collisions(TObjCollidable *);
-s32 TObjPlayer__sub_800A3210(s32, s32, s32);
+s32 TObjPlayer__sub_800A3210(s32);
 void vec3_add_to(Vec *, const Vec *);
 f32 atan2_float(f32, f32);
 void *spawn_particle_effect_with_rotation(void *, void *, s32, int);
@@ -40,9 +40,9 @@ s32 TUnk_804909C4::check_player_hits(u16 id) {
             if (p == NULL) {
                 break;
             }
-            if (((s32 (*)(u8 *))obj_is_hit_receivable)((u8 *)p) != 0 && p != other) {
+            if (obj_is_hit_receivable((u8 *)p) != 0 && p != other) {
                 DirectAttackPayload t = {0, 0.0f};
-                t.power = ((s32 (*)(s32))TObjPlayer__sub_800A3210)(3);
+                t.power = TObjPlayer__sub_800A3210(3);
                 DirectAttackPayload u = t;
                 p->receive_direct_attack(other, u, 0, -1, -1);
                 p->apply_knockback_from_attacker((u8 *)other, 3.0f);
