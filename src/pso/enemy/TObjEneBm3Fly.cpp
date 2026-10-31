@@ -1514,7 +1514,6 @@ extern "C" {
 void vfunc_88__13TObjEneBm3FlyFv(u8 *arg0);
 f32 fabs_float(f32);
 extern s32 TObjEneBm3Fly__attack_params;
-s32 get_random_scaled__9TObjEneDDFv(void *);
 s32 has_free_attack_slot__17TObjEneBm3FlyNestFUs(void *, u16);
 s32 enemy_set_target_id(void *, u16);
 s32 collect_enemy_target_candidates(void *, Cand_800B1684 *, f32);
@@ -1532,7 +1531,7 @@ u16 TObjEneBm3Fly::get_active_id() {
 #pragma fp_contract on
 void TObjEneBm3Fly::sub_800B1634() {
     *(f32 *)((s8 *)((u8 *)this) + 0x444) = (f32) (((2.0f) * calc_elapsed_scaled__9TObjEneDDFv(this)) + ((45.0f) + *(f32 *)((s8 *)((u8 *)this) + 0x420)));
-    *(s32 *)((s8 *)((u8 *)this) + 0x448) = get_random_scaled__9TObjEneDDFv(this);
+    *(s32 *)((s8 *)((u8 *)this) + 0x448) = ((TObjEneDD *)this)->get_random_scaled();
 }
 #pragma pop
 

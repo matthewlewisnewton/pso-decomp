@@ -1246,7 +1246,6 @@ f32 random_ratio__9TObjCharaFv(void *);
 s32 VecCopy__FP3VecPC3Vec(int, void *);
 void pick_random_target__13TBoss2DeRolLeFi(s32 arg0);
 void set_move_direction__13TBoss2DeRolLeFPv(void *, s32);
-s32 get_random_scaled__9TObjEneDDFv(void *);
 f32 sin_table_lookup(s32);
 f32 cos_table_lookup(s32);
 s32 TBoss2Tentacle__sub_80039CA0(void *);
@@ -2540,7 +2539,7 @@ void TBoss2DeRolLe__sub_800310F8(void *arg0, void *arg1, int arg2) {
                     VecCopy__FP3VecPC3Vec((int)&v, self->f390 + 0x38);
                 } else {
                     f32 r = lbl_805D8340 * random_ratio__9TObjCharaFv(self);
-                    a = get_random_scaled__9TObjEneDDFv(self);
+                    a = ((TObjEneDD *)self)->get_random_scaled();
                     v.x = r * sin_table_lookup(a);
                     v.y = lbl_805D8344;
                     v.z = r * cos_table_lookup(a);
