@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/enemy/TObjEneBalClawBody.h"
@@ -64,7 +65,7 @@ TObjEneBalClawBody::TObjEneBalClawBody(TObject *parent, BalClawSetData *set_data
     VecCopy((Vec *)&m_290, VecCopy((Vec *)&m_29c, &position));
     motion_list = lbl_805D4F20->motions;
     action_table = balclaw_body_actions;
-    set_field_d8((s32)action_table);
+    set_action_table((TObjMotionAction *)action_table);
     init_collision_body_parts(this, &balclaw_body_collision, 1);
     requested_action = 0;
     set_animation(requested_action);
@@ -114,7 +115,7 @@ void *TObjEneBalClawBody::create(void *set_data) {
 
 void TObjEneBalClawBody::run_task() {
     TObjEneBalClaw__sub_8008D68C();
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         TObjEneBalClawClaw__sub_8008DC90(this);
         fn_8008FC0C();
         return;

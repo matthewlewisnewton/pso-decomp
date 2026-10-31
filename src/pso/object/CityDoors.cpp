@@ -1,3 +1,4 @@
+#include "pso/system/MatrixVectorArray.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/render/render_util.h"
@@ -243,7 +244,6 @@ typedef struct {
 
 f32 newton_sqrtf(f32);
 void vec3_add_to(Vec_80181BAC *, Vec_80181BAC *);
-void mult_vec_array__10TObjPlayerFUll(s32, Vec_80181BAC *, Vec_80181BAC *, s32);
 void set_matrix_identity(u8 *arg0);
 s32 push_matrix(void);
 s32 pop_matrix(void);
@@ -291,7 +291,7 @@ s32 TObjCityDoor_Lobby::build_door_collision_triangles() {
         t1 += 2;
         j += 2;
     }
-    mult_vec_array__10TObjPlayerFUll(0, city_door_lobby_collision_vertices, self->verts, 10);
+    matrix_mult_vec_array((f32 (*)[4])(0), (const Vec *)(city_door_lobby_collision_vertices), (Vec *)(self->verts), 10);
     zero = lbl_805DBBE8[0];
     t = (Tri_80181BAC *)(arg0 + 0xB8);
     three = lbl_805DBBEC;

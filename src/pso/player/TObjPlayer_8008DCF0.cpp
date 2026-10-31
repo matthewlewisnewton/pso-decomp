@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"

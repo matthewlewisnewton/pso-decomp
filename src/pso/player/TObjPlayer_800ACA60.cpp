@@ -1,7 +1,9 @@
+#include "pso/system/MatrixVectorArray.h"
+#include "pso/player/TObjChara.h"
 #include "pso/misc/SampledMotionPoints.h"
+#include "pso/player/demo_mode.h"
 #include "pso/math/VectorNormalize.h"
 #include "pso/math/ScratchVectorStorage.h"
-#include "pso/player/TObjChara.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "types.h"
@@ -510,7 +512,6 @@ extern s32 lbl_8043B0B4[];
 extern s32 registered_player_count;
 extern s32 lbl_805D5870;
 void acquire_target__11TObjEneMojaFPv(u8 *arg0);
-s32 TObjPlayer__sub_800ACA0C(void *);
 
 void update_attack_jump__11TObjEneMojaFv(Obj_800ACFE8 *);
 struct Moja_800AE450;
@@ -528,7 +529,6 @@ extern const f32 lbl_805D9C30;
 
 s32 obj_is_hit_receivable();
 
-s32 mult_vec_array__10TObjPlayerFUll(int, int, void *, int);
 void set_matrix_identity(u8 *arg0);
 s32 push_matrix();
 
@@ -951,7 +951,7 @@ s32 TObjEneMoja::update_punch_attack(void *self_800ADAAC) {
                 set_matrix_identity(0);
                 post_translate_matrix(arg0 + 0x38);
                 rotate_matrix_y(0, *(s32 *)(arg0 + 0x60));
-                mult_vec_array__10TObjPlayerFUll(0, e, &sp8, 2);
+                matrix_mult_vec_array((f32 (*)[4])(0), (const Vec *)(e), (Vec *)(&sp8), 2);
                 ((s32 (*)())pop_matrix)();
                 o = *(V398_800ADAAC **)(arg0 + 0x398);
                 if (o != NULL) {
@@ -1535,7 +1535,7 @@ void render__11TObjEneMojaFv(u8 *arg0) {
         translate_matrix(0, lbl_805D9BD8, ((TObjEneMoja *)arg0)->sinkOffset, lbl_805D9BD8);
         post_translate_matrix(arg0 + 0x38);
         rotate_matrix_y(0, (int)(((TObjEneMoja *)arg0)->rotation_y));
-        if (TObjPlayer::check_demo_mode() == 1) {
+        if (check_demo_mode() == 1) {
             draw_chunk_object(*(s32 *)((s8 *)arg0 + 0x34));
         } else {
             TObjPlayer::toggle_particle_effect();
@@ -1579,8 +1579,8 @@ void TObjEneMoja::run_task() {
     u16 temp_r3;
     u8 *temp_r3_2;
     u8 *temp_r4;
-    if (TObjPlayer::check_demo_mode() == 1) {
-        TObjPlayer__sub_800ACA0C(arg0);
+    if (check_demo_mode() == 1) {
+        fn_800ACA0C();
         return;
     }
     temp_r3 = this->targetId;
@@ -1635,7 +1635,7 @@ void TObjEneMoja::run_task() {
         }
     }
     ((TObjEnemy *)arg0)->update_prev_position();
-    ((TObjChara *)arg0)->copy_body_to_center();
+    copy_body_to_center();
     submit_cursor_candidate(arg0, -1);
     temp_r4 = this->target;
     if ((temp_r4 != NULL) && (*(s32 *)((s8 *)temp_r4 + 0x30) & 0x02000800)) {

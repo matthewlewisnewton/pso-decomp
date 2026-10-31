@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
 #include "types.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
@@ -1151,9 +1152,9 @@ void *TObjEneSlimeTailAttack__ct(TObjEneSlimeTailAttack *ene_slime_tail_attack, 
   ene_slime_tail_attack->texlist = TObjFish__sub_8001EDB0((s32) inst, id);
   *((s32 *) (((s8 *) ene_slime_tail_attack) + 0x34)) = get_bml_model((s32) inst, id);
   ene_slime_tail_attack->action_table = (TObjMotionAction *)lbl_8049639C;
-  ((TObjMotion *)ene_slime_tail_attack)->set_field_d8((s32) ((u8 *) lbl_8049639C));
+  ((TObjMotion *)ene_slime_tail_attack)->set_action_table((TObjMotionAction *)((s32) ((u8 *) lbl_8049639C)));
   *((s32 *) (((s8 *) ene_slime_tail_attack) + 0xDC)) = *((s32 *) (((s8 *) inst) + 0x430));
-  ((TObjMotion *)ene_slime_tail_attack)->set_field_dc(*((s32 *) (((s8 *) inst) + 0x430)));
+  ((TObjMotion *)ene_slime_tail_attack)->set_motion_list((BmlMotionEntry *)(*((s32 *) (((s8 *) inst) + 0x430))));
   ene_slime_tail_attack->requested_action = 6;
   ((TObjMotion *)ene_slime_tail_attack)->set_animation(ene_slime_tail_attack->requested_action);
   ((TObjMotion *)ene_slime_tail_attack)->set_field_b8(ene_slime_tail_attack->requested_action);
@@ -2077,7 +2078,7 @@ void TObjEneSlimeOne::set_state(s32 arg1) {
 struct Bomb_800E9090;
 void render__15TObjEneSlimeOneFv(TObjEneSlimeOne *ene_slime_one) {
     s32 temp_r31;
-    if ((TObjPlayer::check_demo_mode() == 0) && !(ene_slime_one->m_3a0 <= lbl_805DA6B4) && (((VObj_18_26a62c *)(ene_slime_one))->m8(lbl_805DA728, lbl_805DA6E4) != 0)) {
+    if ((check_demo_mode() == 0) && !(ene_slime_one->m_3a0 <= lbl_805DA6B4) && (((VObj_18_26a62c *)(ene_slime_one))->m8(lbl_805DA728, lbl_805DA6E4) != 0)) {
         temp_r31 = defer_render__7TObjectFv(ene_slime_one);
         if (ene_slime_one->m_3a0 < lbl_805DA67C) {
             TObjPlayer__sub_800EBE48(ene_slime_one->m_3a0);
@@ -2102,7 +2103,7 @@ void render__15TObjEneSlimeOneFv(TObjEneSlimeOne *ene_slime_one) {
 }
 
 void TObjEneSlimeOne::run_task() {
-    if (TObjPlayer::check_demo_mode() == 0) {
+    if (check_demo_mode() == 0) {
         if ((s32)this->m_384 != 13 && (this->m_3f0 == 0 || ((TObject *)this->m_3f0)->all_parents_unqueued_for_destruction() == 0)) {
             set_state(13);
         }
@@ -2165,8 +2166,8 @@ void TObjEneSlimeOne::initialize_slime_instance_state() {
   *((s32 *) (((s8 *) actor) + 0x34)) = get_bml_model((s32)(((TObjEneSlimeOne *)actor)->m_380), id);
   VecCopy((Vec *)(actor + 0x44), (const Vec *)((u8 *)VecCopy((Vec *)(actor + 0x50), (const Vec *)((void *)VecCopy((Vec *)(actor + 0x74), (const Vec *)(actor + 0x38))))));
   *((s32 *) (((s8 *) actor) + 0x38C)) = init_collision_body_parts(actor, lbl_80496370, 1);
-  ((TObjMotion *)actor)->set_field_d8((s32)lbl_8049639C);
-  ((TObjMotion *)actor)->set_field_dc(*((s32 *) (((s8 *) (((TObjEneSlimeOne *)actor)->m_380)) + 0x430)));
+  ((TObjMotion *)actor)->set_action_table((TObjMotionAction *)((s32)lbl_8049639C));
+  ((TObjMotion *)actor)->set_motion_list((BmlMotionEntry *)(*((s32 *) (((s8 *) (((TObjEneSlimeOne *)actor)->m_380)) + 0x430))));
   ((TObjMotion *)actor)->set_animation(0);
   ((TObjMotion *)actor)->set_field_b8(0);
   VecCopy((Vec *)(new_var = actor + 0x2FC), (const Vec *)(actor + 0x38));

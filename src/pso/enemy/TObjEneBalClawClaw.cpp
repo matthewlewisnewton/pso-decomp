@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/npc/NpcModelRegistry.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
@@ -375,7 +376,7 @@ void TObjEneBalClawClaw::render() {
             TObjPlayer::toggle_particle_effect();
             push_matrix();
             model_render_flags &= 0xFFFFFBFF;
-            if (TObjPlayer::check_demo_mode() == 1) {
+            if (check_demo_mode() == 1) {
                 post_translate_matrix((u8 *)&this->position);
                 rotate_matrix_x(0, *(s32 *)((s8 *)arg0 + 0x5C));
                 rotate_matrix_y(0, this->rotation_y);
@@ -1144,7 +1145,7 @@ void TObjEneBalClawClaw::run_task() {
     u8 *temp_r5;
     u8 *arg0 = (u8 *)this;
     TObjEneBalClaw__sub_8008D68C();
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         TObjEneBalClawClaw__sub_80090824(arg0);
         TObjEneBalClawClaw__sub_800914A4(arg0);
         return;
@@ -1239,7 +1240,7 @@ s32 TObjEneBalClawClaw__ct(void *arg0) {
     *(s32 *)((s8 *)self + 0) = lbl_805D2978;
     *(s32 *)((s8 *)self + 0xDC) = *(s32 *)((s8 *)lbl_805D4F20 + 0x430);
     *(u8 **)((s8 *)self + 0xD8) = (u8 *)balclaw_claw_model_node_desc;
-    ((TObjMotion *)self)->set_field_d8((s32)(*(u8 **)((s8 *)self + 0xD8)));
+    ((TObjMotion *)self)->set_action_table((TObjMotionAction *)((s32)(*(u8 **)((s8 *)self + 0xD8))));
     init_collision_body_parts(self, TObjEneBalClawClaw__collision_body_template, 1);
     *(s32 *)((s8 *)self + 0x368) = 0;
     *(u8 **)((s8 *)self + 0x350) = (u8 *)lbl_8048F100;

@@ -1,3 +1,4 @@
+#include "pso/map/CsnGroundQuery.h"
 #include "pso/system/NinjaTypes.h"
 #include <dolphin/mtx.h>
 #include "pso/misc/TRaderMapCore.h"
@@ -37,7 +38,6 @@ extern const f32 lbl_805DF634;
 extern const f32 lbl_805DF644;
 extern const f32 lbl_805DF650;
 u8 *__ct__26TBoss5GryphonLightningHornFv(u8 *arg0, s32 arg1, s32 arg2, s32 arg3);
-s32 *csnVecterUnder(s32 origin, s32 mask);
 s32 __nw__7TObjectFUl(int);
 extern const f32 lbl_805D8D48;
 extern const f32 lbl_805DF654;
@@ -75,7 +75,7 @@ s32 TBoss8Dragon::spawn_ground_lightning(s32 arg0, s32 arg1, s32 arg2) {
     s32 effect;
     u8* collision;
     VecCopy(&position, (const Vec *)arg1);
-    collision = (u8 *)csnVecterUnder((s32)((s32*)&position), 0x16EF);
+    collision = (u8 *)csnVecterUnder((const Vec *)(((s32*)&position)), 0x16EF);
     if (collision == NULL) {
         position.y = lbl_805D8D48;
     } else {
