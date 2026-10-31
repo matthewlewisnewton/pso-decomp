@@ -1199,6 +1199,8 @@ s32 check_value_equals__13TUnk_804B6C24Fl(int, void *);
 s32 check_flag__10TObjPlayerFl(int, int);
 s32 fn_800660B8(void *);
 s32 test_action_mask__10TObjPlayerFl(void *, s32);
+// The original callee returns a full-register 0 or 1; callers test r3 directly.
+s32 is_valid_technique_slot__10TObjPlayerFUc(u8);
 s32 TObjPlayer__sub_80082300(void *);
 s32 is_inactive__10TObjPlayerFv();
 s32 init_entry_fields__6TLobbyFiii(int, int, void *, void *);
@@ -4642,7 +4644,9 @@ void handle_6x47_cast_technique(void *arg) {
     CastPacket_801CD550 pkt;
     u8 *player;
     s16 tech;
-    s8 level, count, valid;
+    s8 valid;
+    s32 count;
+    s8 level;
     u8 effective;
     u32 *dst, *src;
     s32 i;
@@ -4651,12 +4655,14 @@ void handle_6x47_cast_technique(void *arg) {
     ((TNpcPlayer *)&pkt)->byteswap_positions();
     if (!validate_6x47_cast_technique((u8 *)&pkt)) return;
     player = get_player_by_client_id(pkt.id);
-    if (!player || !reset_volopt_state__10TObjPlayerFv(player) || test_action_mask__10TObjPlayerFl(player, 0x8200)) return;
+    if (player == NULL) return;
+    if (reset_volopt_state__10TObjPlayerFv(player) == 0) return;
+    if (test_action_mask__10TObjPlayerFl(player, 0x8200) != 0) return;
     tech = pkt.tech;
     set_technique_id__10TObjPlayerFs((s32)(player + 0x428), tech);
     level = pkt.level;
     valid = ((TObjPlayer *)(player + 0x428))->get_valid_technique();
-    if (!TObjPlayer::is_valid_technique_slot((u8)valid)) valid = 0;
+    if (is_valid_technique_slot__10TObjPlayerFUc((u8)valid) == 0) valid = 0;
     if (level == 14) level += valid;
     if (!check_technique_level__10TObjPlayerFllUc(player + 0x428, tech, (u8)level)) level = 0;
     effective = level;
