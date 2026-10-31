@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/item/TItemData.h"
 #include "pso/object/TObjTombstone.h"
 #include "pso/object/TObjTombstone_80075DA8.h"
 #include "pso/object/TObject_80019A50.h"
@@ -35,13 +36,82 @@ extern s32 local_client_id;
 extern s32 TLobby__designated_client_id;
 extern const f32 TObjTombstone__data_805D9184;
 f32 get_distance_to_local_player_xz__13TObjTombstoneFPv(void *);
-s32 TObjTombstone__sub_80075DFC(void *);
+void TObjTombstone__sub_80075DFC(TObjTombstone *);
 void __dl__7TObjectFPv(void *);
 s32 check_owner__13TObjTombstoneFv();
 
 void TObjTombstone::init_parts() { format_player_name(); format_label(); build_name_text(); format_enemy_text(); format_quoted_name(); format_date_text(); }
 
 extern s32 tombstone_first_run_flag;
+}
+extern f32 TObjTombstone__base_matrix[];
+extern const f32 lbl_805D91AC;
+extern const f32 lbl_805D91B0;
+extern TItemData lbl_8048D278[];
+extern "C" s32 rand();
+extern "C" f32 cos_table_lookup(s32);
+extern "C" f32 sin_table_lookup(s32);
+extern "C" s32 project_actor_to_ground(TObjCollidable *, Vec *, Vec *);
+void drop_stacked_item(TItemData *, u16, f32 *);
+
+#pragma push
+#pragma fp_contract on
+#pragma opt_propagation off
+// Keep the original selection temporary live across both weighted draws.
+// The generated conversion/zero pools still need shared ownership recovery.
+void TObjTombstone__sub_80075DFC(TObjTombstone *self) {
+    self->m_234 = 1;
+    s32 count = 0;
+    f32 pick = lbl_805D91AC * rand();
+    f32 *weight = TObjTombstone__base_matrix;
+    f32 sum = *weight;
+    for (s32 i = 1; i <= 4; ++i) {
+        if (0.0f != sum && pick <= sum) {
+            count = i;
+            break;
+        }
+        sum += *++weight;
+    }
+    if (count != 0) {
+        s32 choice = 0;
+        for (s32 i = 0; i < 4; ++i) {
+            if (get_player_by_client_id(i) != NULL) ++choice;
+        }
+        if (count > choice) count = choice;
+        choice = -1;
+        pick = lbl_805D91AC * rand();
+        weight = TObjTombstone__base_matrix + 4;
+        sum = *weight;
+        for (s32 i = 0; i < 6; ++i) {
+            if (0.0f != sum && pick <= sum) {
+                choice = i;
+                break;
+            }
+            sum += *++weight;
+        }
+        if (choice != -1) {
+            s32 angle = self->rotation_y - ((count - 1) * 0x2000) / 2;
+            TItemData item = lbl_8048D278[choice];
+            s32 dropped = 0;
+            for (s32 offset = 0; offset < 0x10000; offset += 0x2000) {
+                Vec position = self->position;
+                position.x += lbl_805D91B0 * cos_table_lookup(angle);
+                position.z += lbl_805D91B0 * sin_table_lookup(angle);
+                position.y += TObjTombstone__data_805D9184;
+                if (project_actor_to_ground(self, &position, 0) != 0) {
+                    position.y += TObjTombstone__data_805D9184;
+                    item.id = -1;
+                    drop_stacked_item(&item, local_client_id, &position.x);
+                    if (++dropped >= count) break;
+                }
+                angle += 0x2000;
+            }
+        }
+    }
+}
+#pragma pop
+
+extern "C" {
 
 s32 TObjTombstone::is_player_nearby() {
     Tomb_80076098 *self = (Tomb_80076098 *)this;
