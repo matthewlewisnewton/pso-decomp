@@ -2,6 +2,7 @@
 #include "pso/math/FloatRounding.h"
 #include "pso/map/CsnGroundQuery.h"
 #include "pso/player/demo_mode.h"
+#include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
@@ -1412,8 +1413,8 @@ struct Cam_802FDC1C { s32 f0; f32 *p4; f32 *p8; };
 
 int get_player_data__10TObjPlayerFi(int a0);
 s32 get_current_floor();
-s32 register_object__6TLobbyFl(int);
-s32 register_boss__6TLobbyFl(int);
+
+
 void TBoss1Dragon__sub_80027A80(u8 *arg0, u8 *arg1);
 s32 set_frames__15ProtectionTimerFl(void *, int);
 s32 spawn_particle_effect_with_flags(void *, void *, int);
@@ -6182,11 +6183,11 @@ void handle_6xA8_gol_dragon_boss_actions(void *boss8_dragon) {
 }
 
 void TBoss8Dragon__sub_802FBE3C(TBoss8Dragon *dragon) {
-    reload_stats_keep_hp_tp__9TObjEneDDFv(dragon, TLobby::register_boss(0x12), TBoss8Dragon__data_80541DC8[TBoss8Dragon__data_804E4C28[3]], TLobby::register_object(0x12));
+    reload_stats_keep_hp_tp__9TObjEneDDFv(dragon, get_battle_base_stats(0x12), TBoss8Dragon__data_80541DC8[TBoss8Dragon__data_804E4C28[3]], get_battle_resistance_params(0x12));
 }
 
 void TBoss8Dragon__sub_802FBEA4(TBoss8Dragon *dragon) {
-    reload_stats_keep_hp_tp__9TObjEneDDFv(dragon, TLobby::register_boss(0x12), TBoss8Dragon__data_80541DC8[TBoss8Dragon__data_804E4C28[2]], TLobby::register_object(0x12));
+    reload_stats_keep_hp_tp__9TObjEneDDFv(dragon, get_battle_base_stats(0x12), TBoss8Dragon__data_80541DC8[TBoss8Dragon__data_804E4C28[2]], get_battle_resistance_params(0x12));
 }
 
 void TBoss8Dragon::reset_tail_hp() {
@@ -6195,7 +6196,7 @@ void TBoss8Dragon::reset_tail_hp() {
 }
 
 void TBoss8Dragon::reload_boss_stats() {
-    reload_stats_keep_hp_tp__9TObjEneDDFv(this, TLobby::register_boss(0x12), ((s32 *)&TBoss8Dragon__data_80541DC8)[TBoss8Dragon__data_804E4C28[0]], TLobby::register_object(0x12));
+    reload_stats_keep_hp_tp__9TObjEneDDFv(this, get_battle_base_stats(0x12), ((s32 *)&TBoss8Dragon__data_80541DC8)[TBoss8Dragon__data_804E4C28[0]], get_battle_resistance_params(0x12));
 }
 
 #pragma push
@@ -6902,7 +6903,7 @@ u8 *TBoss8Dragon__ct(u8 *arg0, void *arg1, void *arg2) {
     ((TBoss8Dragon *)arg0)->m_b8 = 0;
     ((TObjMotion *)arg0)->set_animation(((TBoss8Dragon *)arg0)->m_b8);
     ((TObjMotion *)arg0)->set_field_b8(((TBoss8Dragon *)arg0)->m_b8);
-    reset_hp__9TObjEneDDFPUcPUcPUc(arg0, register_boss__6TLobbyFl(0x12), TBoss8Dragon__data_80541DC8[TBoss8Dragon__data_804E4C28[0]], register_object__6TLobbyFl(0x12));
+    reset_hp__9TObjEneDDFPUcPUcPUc(arg0, ((s32)get_battle_base_stats(0x12)), TBoss8Dragon__data_80541DC8[TBoss8Dragon__data_804E4C28[0]], ((s32)get_battle_resistance_params(0x12)));
     ((TObjEneDD *)arg0)->check_state_flag_1();
     *(u8 **)((s8 *)arg0 + 0x350) = lbl_804E4C3C;
     initialize_enemy_state__9TObjEneDDFl(arg0, 0x4C);

@@ -1,4 +1,5 @@
 #include "pso/player/demo_mode.h"
+#include "pso/enemy/BattleParameters.h"
 #include "types.h"
 #include "pso/misc/GroundEffects.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
@@ -281,7 +282,7 @@ s32 find_nearest_hittable_enemy__10TObjPlayerFiPvf(void *, void *, f32);
 u16 find_nearest_visible_player(void *, Vec_800E0A44 *, f32);
 s32 is_split_screen();
 f64 atan2_float(f32, f32, f32);
-u8 * dispatch_shared_handler_a__6TLobbyFl(s32);
+
 s32 get_camera_mode__11TCameraCtrlFv();
 u32 csnLookAt(void *, void *);
 s32 spawn_particle_effect(void *, int, f32);
@@ -474,7 +475,7 @@ void TObjEnePanarms__sub_800DFE08(u8 *arg0) {
         ((s32 (*)(void *, s32))set_field_b8__10TObjMotionFs)(arg0, 4);
     }
     if (lbl_805DA528 == (f32) *(s32 *)((s8 *)arg0 + 0x3B4)) {
-        var_r5 = *(s32 *)((s8 *)(dispatch_shared_handler_a__6TLobbyFl(0x33)) + 0x18);
+        var_r5 = *(s32 *)((s8 *)(((u8 *)get_battle_movement_params(0x33))) + 0x18);
         if ((var_r5 < 0) || (var_r5 > 0xE)) {
             var_r5 = 0;
         }
@@ -1171,7 +1172,7 @@ void TObjEnePanarms::attack_target_player(s32 arg1) {
         }
         sc = random_ratio__9TObjCharaFv(this);
         if (sc <= *(f32 *)((s8 *)((u8 *)this) + 0x468)) {
-            lv = ((Prm_800E1608 * (*)(s32))dispatch_shared_handler_a__6TLobbyFl)(0x33)->x1c;
+            lv = ((Prm_800E1608 *)get_battle_movement_params(0x33))->x1c;
             if (lv < 0 || lv > 0xE) {
                 lv = 0;
             }
@@ -1179,7 +1180,7 @@ void TObjEnePanarms::attack_target_player(s32 arg1) {
             return;
         }
         if (sc <= *(f32 *)((s8 *)((u8 *)this) + 0x468) + this->m_46c) {
-            lv = ((Prm_800E1608 * (*)(s32))dispatch_shared_handler_a__6TLobbyFl)(0x33)->x20;
+            lv = ((Prm_800E1608 *)get_battle_movement_params(0x33))->x20;
             if (lv < 0 || lv > 0xE) {
                 lv = 0;
             }

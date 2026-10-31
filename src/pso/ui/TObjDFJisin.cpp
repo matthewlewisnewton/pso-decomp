@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #include "types.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/TParticleCtrl.h"
@@ -358,8 +359,8 @@ u8 *TObjDFHorming__ct(u8 *arg0, s32 parent, s32 arg2, u16 arg3) {
     ((TObjDFHorming *)arg0)->m_350 = lbl_805D8A78 * cos_table_lookup(ang) / scale;
     *(f32 *)((s8 *)arg0 + 0x34C) = lbl_805D8A7C / scale;
     *(f32 *)((s8 *)arg0 + 0x354) = lbl_805D8A80;
-    *(s32 *)&((TObjDFHorming *)arg0)->m_360 = *(s32 *)((s8 *)(TLobby::dispatch_shared_handler_a(0x38)) + 0x28);
-    *(f32 *)((s8 *)arg0 + 0x364) = *(f32 *)((s8 *)(TLobby::dispatch_shared_handler_a(0x38)) + 0);
+    *(s32 *)&((TObjDFHorming *)arg0)->m_360 = *(s32 *)((s8 *)(get_battle_movement_params(0x38)) + 0x28);
+    *(f32 *)((s8 *)arg0 + 0x364) = *(f32 *)((s8 *)(get_battle_movement_params(0x38)) + 0);
     if (*(f32 *)((s8 *)arg0 + 0x364) < lbl_805D8A30 || *(f32 *)((s8 *)arg0 + 0x364) > lbl_805D8A34) {
         *(f32 *)((s8 *)arg0 + 0x364) = lbl_805D8A70;
     }

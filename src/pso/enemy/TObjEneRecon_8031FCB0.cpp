@@ -1,4 +1,5 @@
 #include "pso/player/demo_mode.h"
+#include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -525,10 +526,10 @@ struct Box_80320260 { u8 pad[0x42C]; Inner_80320260 *f42C; s32 f430; };
 struct Sub_80320260 { u8 pad[0xC]; f32 f0C; };
 
 s32 is_split_screen(void *);
-s32 dispatch_shared_handler_a__6TLobbyFl(s32);
-s32 register_object__6TLobbyFl(s32);
-s32 dispatch_shared_handler_b__6TLobbyFl(s32);
-s32 register_boss__6TLobbyFl(s32);
+
+
+
+
 extern Spawn_80320260 recobox_resource_binding_desc;
 extern "C" u8 lbl_80476118[];
 extern "C" u8 lbl_80476124[];
@@ -573,10 +574,10 @@ void TObjEneRecobox::load_resources() {
         }
         (*(u32 *)&TObjEneRecobox__static_instance) = res;
     }
-    recobox_boss_register_id = register_boss__6TLobbyFl(0x41);
-    lbl_805D6B14 = dispatch_shared_handler_b__6TLobbyFl(0x41);
-    TObjEneRecobox__shared_object_handle = register_object__6TLobbyFl(0x41);
-    lbl_805D6B1C = dispatch_shared_handler_a__6TLobbyFl(0x41);
+    recobox_boss_register_id = ((s32)get_battle_base_stats(0x41));
+    lbl_805D6B14 = ((s32)get_battle_attack_params(0x41));
+    TObjEneRecobox__shared_object_handle = ((s32)get_battle_resistance_params(0x41));
+    lbl_805D6B1C = ((s32)get_battle_movement_params(0x41));
     TObjEneRecon::load_resources();
     {
         Sub_80320260 *sp = &lbl_804EC684;

@@ -1,4 +1,5 @@
 #include "pso/player/demo_mode.h"
+#include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/DelDepthData.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -129,7 +130,7 @@ extern const f32 lbl_805DF2DC;
 
 extern "C" {
 s32 is_split_screen(void);
-s32 dispatch_shared_handler_a__6TLobbyFl(s32);
+
 extern "C" const char lbl_80475BD8[];
 extern "C" const char lbl_80475BE8[];
 extern "C" const char lbl_80475BF8[];
@@ -286,7 +287,7 @@ void TObjEneDelDepth::load_assets() {
         info.motions = TObjEneDelDepth__shared_resource->motions;
         NpcModelRegistry::register_animated_chunk((s16)0x48, (void *)(TObjEneDelDepth__shared_resource->models[1].model), (void *)(TObjEneDelDepth__shared_resource->models[1].m_c), (const NpcAnimationBinding *)((s32)&info), TObjEneDelDepth_collision_body_parts[0].radius, (f32)TObjEneDelDepth__data_805DF258);
     }
-    TObjEneDelDepth__tune_params = (DelDepthParameters *)dispatch_shared_handler_a__6TLobbyFl(0x30);
+    TObjEneDelDepth__tune_params = (DelDepthParameters *)((s32)get_battle_movement_params(0x30));
 }
 
 void TObjEneDelDepth::free_shared_data() {
@@ -322,7 +323,7 @@ void TObjEneDelDepth::init() {
     this->y_speed = (f32) TObjEneDelDepth__data_805DF258;
     x_speed = (f32) TObjEneDelDepth__data_805DF258;
     this->target = 0;
-    ((TObjEnemy *)arg0)->bind_enemy_combat_stats((u8 *)(TLobby::register_boss(0x30)), (u8 *)(TLobby::dispatch_shared_handler_b(0x30)), (u8 *)(TLobby::register_object(0x30)));
+    ((TObjEnemy *)arg0)->bind_enemy_combat_stats((u8 *)(get_battle_base_stats(0x30)), (u8 *)(get_battle_attack_params(0x30)), (u8 *)(get_battle_resistance_params(0x30)));
     this->referenceHp = (s16) this->hp;
     ((TBoss3Volopt *)arg0)->reset_photon_effect();
     this->movementParameters = 0;

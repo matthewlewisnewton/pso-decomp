@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #include "pso/protocol/protocol_types.h"
 #include "types.h"
 #include "pso/boss/TBoss7Joint_802EE6E0.h"
@@ -11,9 +12,9 @@ extern "C" {
 extern const f32 lbl_805DE9F0;
 extern const f32 lbl_805DEBA8;
 extern const f32 lbl_805DEBAC;
-s32 register_object__6TLobbyFl(int);
-s32 dispatch_shared_handler_b__6TLobbyFl(int);
-s32 register_boss__6TLobbyFl(int);
+
+
+
 s32 reload_stats_keep_hp_tp__9TObjEneDDFv(void *, int, int, int);
 s32 play_sound_effect(int, void *, int, int);
 u32 __nw__7TObjectFUl(int);
@@ -42,7 +43,7 @@ int TBoss7Joint::is_part_active() { return *(u32*)((char*)this + 0x3bc) & 0x1; }
 
 void TBoss7Joint::init_boss_stats() {
     *(s32 *)((s8 *)((u8 *)this) + 0x3BC) = *(s32 *)((s8 *)((u8 *)this) + 0x3BC) | 1;
-    reload_stats_keep_hp_tp__9TObjEneDDFv(this, register_boss__6TLobbyFl(0x10), dispatch_shared_handler_b__6TLobbyFl(0xF), register_object__6TLobbyFl(0x10));
+    reload_stats_keep_hp_tp__9TObjEneDDFv(this, ((s32)get_battle_base_stats(0x10)), ((s32)get_battle_attack_params(0xF)), ((s32)get_battle_resistance_params(0x10)));
     *(s16 *)((s8 *)((u8 *)this) + 0x32C) = 0x4E20;
     *(s16 *)((s8 *)((u8 *)this) + 0x2B8) = 0x4E20;
     u32 p = __nw__7TObjectFUl(0x2C);

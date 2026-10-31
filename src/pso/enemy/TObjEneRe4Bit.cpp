@@ -1,4 +1,5 @@
 #include "pso/player/demo_mode.h"
+#include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEnemy.h"
 struct Obj_800ED4BC;
 
@@ -1144,10 +1145,10 @@ struct Inner_800EDAB4 { u8 pad0[0xC]; s32 fC; u8 pad10[8]; s32 f18; };
 struct Obj_800EDAB4 { u8 pad0[0x42C]; Inner_800EDAB4 *f42C; };
 
 extern "C" {
-s32 register_boss__6TLobbyFl(s32);
-s32 dispatch_shared_handler_b__6TLobbyFl(s32);
-s32 register_object__6TLobbyFl(s32);
-s32 dispatch_shared_handler_a__6TLobbyFl(s32);
+
+
+
+
 extern s32 lbl_8043D2B0[];
 extern s32 lbl_8043D2B8[];
 extern s32 lbl_8043D2C0[];
@@ -1183,10 +1184,10 @@ void TObjEneRe4Bit__sub_800EDAB4(void) {
     TObjEneRe4Bit__model = sorcerer_bml_resource->f42C->f18;
     re4_bit_texture_list = sorcerer_bml_resource->f42C->fC;
     for (i = 0; i < 2; i++) {
-        TObjEneRe4Bit_boss_handles[i] = register_boss__6TLobbyFl(lbl_8043D2B0[i]);
-        lbl_80501058[i] = dispatch_shared_handler_b__6TLobbyFl(lbl_8043D2B8[i]);
-        lbl_80501060[i] = register_object__6TLobbyFl(lbl_8043D2C0[i]);
-        lbl_80501068[i] = dispatch_shared_handler_a__6TLobbyFl(lbl_8043D2C8[i]);
+        TObjEneRe4Bit_boss_handles[i] = ((s32)get_battle_base_stats(lbl_8043D2B0[i]));
+        lbl_80501058[i] = ((s32)get_battle_attack_params(lbl_8043D2B8[i]));
+        lbl_80501060[i] = ((s32)get_battle_resistance_params(lbl_8043D2C0[i]));
+        lbl_80501068[i] = ((s32)get_battle_movement_params(lbl_8043D2C8[i]));
     }
 }
 

@@ -79,10 +79,6 @@ struct TLobby : public TObject {
     static void copy_data(void* a0);
     void copy_entry(void *arg1);
     void copy_from(void *arg1);
-    static void*dispatch_shared_handler_a(s32 index);
-    static void*register_object(s32 index);
-    static void*dispatch_shared_handler_b(s32 index);
-    static void*register_boss(s32 index);
     static void clamp_difficulty(s32 arg0);
     static void update_difficulty();
     static void free_boss4_rock();

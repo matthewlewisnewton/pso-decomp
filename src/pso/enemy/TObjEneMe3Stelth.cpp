@@ -6,6 +6,7 @@
 #include "pso/player/demo_mode.h"
 #include "pso/misc/MaterialOpacityFade.h"
 #include "pso/misc/RenderFadeState.h"
+#include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -3697,9 +3698,9 @@ struct Res_800F53E8 { u8 pad[0x42C]; u8 *f42C; struct Ent_800F53E8 *f430; };
 struct Tbl_800F53E8 { u8 pad[0x54]; s32 f54; u8 pad58[0xC]; s32 f64; };
 struct Atk_800F53E8 { s32 w[4]; };
 struct V3_800F53E8 { f32 x, y, z; };
-s32 register_object__6TLobbyFl(s32);
-s32 dispatch_shared_handler_b__6TLobbyFl(s32);
-s32 register_boss__6TLobbyFl(s32);
+
+
+
 void *init__11TBreakUpMdlFPviif(void *, s32, s32, f32);
 void *mem_alloc(u32 size);
 extern s32 lbl_8043D47C[];
@@ -3756,16 +3757,16 @@ void TObjEneMe3Stelth::load_shared_resources() {
         ((IV_800F53E8 *)TObjEneMe3Stelth__alternate_texture_list[0])[i].z = ((IV_800F53E8 *)TObjEneMe3Stelth__alternate_texture_list[0])[i + 3].z;
     }
     for (i = 0; i < 2; i++) {
-        TObjEneMe3Stelth__base_params_by_variant[i] = register_boss__6TLobbyFl(lbl_8043D47C[i]);
+        TObjEneMe3Stelth__base_params_by_variant[i] = ((s32)get_battle_base_stats(lbl_8043D47C[i]));
     }
     for (i = 0; i < 2; i++) {
-        TObjEneMe3Stelth__attack_params_by_variant[i] = dispatch_shared_handler_b__6TLobbyFl(lbl_8043D484[i]);
+        TObjEneMe3Stelth__attack_params_by_variant[i] = ((s32)get_battle_attack_params(lbl_8043D484[i]));
     }
     for (i = 0; i < 2; i++) {
-        TObjEneMe3Stelth__resistance_params_by_variant[i] = register_object__6TLobbyFl(lbl_8043D48C[i]);
+        TObjEneMe3Stelth__resistance_params_by_variant[i] = ((s32)get_battle_resistance_params(lbl_8043D48C[i]));
     }
     for (i = 0; i < 2; i++) {
-        TObjEneMe3Stelth__behavior_params_by_variant[i] = (u8 *)TLobby::dispatch_shared_handler_a(lbl_8043D494[i]);
+        TObjEneMe3Stelth__behavior_params_by_variant[i] = (u8 *)get_battle_movement_params(lbl_8043D494[i]);
     }
     d = TObjEneMe3Stelth__behavior_params_by_variant[0];
     TObjEneMe3Stelth::set_slot_min_clamped_value(7, *(f32 *)(d + 0xC));

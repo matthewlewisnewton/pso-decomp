@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/system/PadRumble.h"
@@ -283,7 +284,7 @@ void VecCopy__FP3VecPC3Vec(void *, void *);
 int get_player_data__10TObjPlayerFi(int a0);
 u16 get_entity_id(void *);
 f32 atan2_float(f32 y, f32 x);
-u8 * dispatch_shared_handler_a__6TLobbyFl(s32);
+
 s32 get_bml_motion(s32, s32);
 s32 TObjFish__sub_8001EDB0(s32, s32);
 s32 get_bml_model(s32, s32);
@@ -859,9 +860,9 @@ void update_tech_charge__11TBoss4Type2FPv(u8 *arg0) {
         }
         play_sound_effect(0x4003A813, arg0 + 0x38, 0, 1);
         if (idx == 0) {
-            create__11TTecRaBartaFPvPvPvPv((void *)arg0, arg0 + 0x3B8, arg0 + 0x3B8, (void *)(*(s32 *)((s8 *)(dispatch_shared_handler_a__6TLobbyFl(0x36)) + 0x1C)));
+            create__11TTecRaBartaFPvPvPvPv((void *)arg0, arg0 + 0x3B8, arg0 + 0x3B8, (void *)(*(s32 *)((s8 *)(((u8 *)get_battle_movement_params(0x36))) + 0x1C)));
         } else {
-            ((TTecRaFoie *)arg0)->create(arg0 + 0x3B8, arg0 + 0x3B8, (void *)(*(s32 *)((s8 *)(dispatch_shared_handler_a__6TLobbyFl(0x36)) + 0x18)));
+            ((TTecRaFoie *)arg0)->create(arg0 + 0x3B8, arg0 + 0x3B8, (void *)(*(s32 *)((s8 *)(((u8 *)get_battle_movement_params(0x36))) + 0x18)));
         }
         start_pad_rumble_all(0xC0, 0xF);
     }
@@ -1753,7 +1754,7 @@ Self_80054A1C *TBoss4Type1__ct(Self_80054A1C *self, s32 parent, s32 *arg2) {
     VecCopy__FP3VecPC3Vec(self->v2FC, self->v38);
     self->f308 = self->f30C = self->f310 = lbl_805D8B20;
     self->f2A8 = 0;
-    ((TObjEnemy *)self)->bind_enemy_combat_stats((u8 *)(TLobby::register_boss(0x36)), (u8 *)(TLobby::dispatch_shared_handler_b(0x36)), (u8 *)(TLobby::register_object(0x36)));
+    ((TObjEnemy *)self)->bind_enemy_combat_stats((u8 *)(get_battle_base_stats(0x36)), (u8 *)(get_battle_attack_params(0x36)), (u8 *)(get_battle_resistance_params(0x36)));
     self->f33E = self->f32C;
     ((TBoss3Volopt *)self)->reset_photon_effect();
     ((TObjEnemy *)self)->set_param(0x2F);
@@ -1773,12 +1774,12 @@ Self_80054A1C *TBoss4Type1__ct(Self_80054A1C *self, s32 parent, s32 *arg2) {
     self->f3A0 = 0;
     self->f3AC = 1;
     self->f3A8 = 1;
-    self->f3CC = *(f32 *)dispatch_shared_handler_a__6TLobbyFl(0x36);
+    self->f3CC = *(f32 *)((u8 *)get_battle_movement_params(0x36));
     if (self->f3CC < 1 || self->f3CC > 60) {
         self->f3CC = 25;
     }
     self->f3CC = (f32)self->f3CC * lbl_805D8B78;
-    self->f3C4 = *(s32 *)(dispatch_shared_handler_a__6TLobbyFl(0x39) + 0x18);
+    self->f3C4 = *(s32 *)(((u8 *)get_battle_movement_params(0x39)) + 0x18);
     if (self->f3C4 < 1) {
         self->f3C4 = 1;
     } else if (self->f3C4 > 6) {
@@ -1810,7 +1811,7 @@ void TBoss4Type2__sub_80054DA8(TBoss4Type2 *boss) {
     f32 power;
     Vec_80053914 pos;
 
-    power = (f32)*(s32 *)((u8 *)TLobby::dispatch_shared_handler_a(0x36) + 0x20);
+    power = (f32)*(s32 *)((u8 *)get_battle_movement_params(0x36) + 0x20);
     spot = (Vec_80053914 *)&TBoss4Type2__tenchu_furu_array;
     for (i = 0; i < 0x40; i++) {
         TParticleCtrl *effect = (TParticleCtrl *)spawn_particle_effect(spot, (s32)lbl_80485B08[i & 1]);

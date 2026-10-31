@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 extern "C" void *__ct__12TObjEneDD_STFP7TObject(void *);
 #include "pso/system/NinjaTypes.h"
 #include "pso/system/BmlResourceClass.h"
@@ -192,10 +193,10 @@ void *spawn_particle_effect(void *pos, s32 id);
 s16 get_validated_attack_stage(u8 *arg0);
 extern s32 knuckle_marker_joint_table[];
 void s_rank_knuckle_marker(T_80362C80 *arg0);
-s32 dispatch_shared_handler_a__6TLobbyFl(int);
-s32 register_object__6TLobbyFl(int);
-s32 dispatch_shared_handler_b__6TLobbyFl(int);
-s32 register_boss__6TLobbyFl(int);
+
+
+
+
 Node_803627DC *get_bml_model(void *, int);
 s32 TObjPlayer__sub_800F0928(void *);
 extern Quad_803627DC lbl_80479FAC;
@@ -278,14 +279,14 @@ void TObjEneEpsilonGuard::load_assets() {
         p = ((TBreakUpMdl *)p)->init_from_model((s32)(get_bml_model(lbl_805D6FA0, 6)));
     }
     lbl_805D6FA8 = p;
-    lbl_805D6F80 = register_boss__6TLobbyFl(0x23);
-    lbl_805D6F84 = dispatch_shared_handler_b__6TLobbyFl(0x23);
-    lbl_805D6F88 = register_object__6TLobbyFl(0x23);
-    lbl_805D6F8C = dispatch_shared_handler_a__6TLobbyFl(0x23);
-    epsilon_guard_boss_stat_handle = register_boss__6TLobbyFl(0x24);
-    epsilon_guard_shared_handler_b = dispatch_shared_handler_b__6TLobbyFl(0x24);
-    epsilon_guard_registered_object_handle = register_object__6TLobbyFl(0x24);
-    TObjEneEpsilonGuard__movement_params = dispatch_shared_handler_a__6TLobbyFl(0x24);
+    lbl_805D6F80 = (s32)get_battle_base_stats(0x23);
+    lbl_805D6F84 = (s32)get_battle_attack_params(0x23);
+    lbl_805D6F88 = (s32)get_battle_resistance_params(0x23);
+    lbl_805D6F8C = (s32)get_battle_movement_params(0x23);
+    epsilon_guard_boss_stat_handle = (s32)get_battle_base_stats(0x24);
+    epsilon_guard_shared_handler_b = (s32)get_battle_attack_params(0x24);
+    epsilon_guard_registered_object_handle = (s32)get_battle_resistance_params(0x24);
+    TObjEneEpsilonGuard__movement_params = (s32)get_battle_movement_params(0x24);
     epsilon_guard_part_color_table[0] = get_bml_model(lbl_805D6FA0, 0)->child->leaf->v;
     epsilon_guard_part_color_table[1] = get_bml_model(lbl_805D6FA0, 0)->child->next->child->child->next->child->child->next->next->child->leaf->v;
     epsilon_guard_part_color_table[2] = get_bml_model(lbl_805D6FA0, 0)->child->next->child->child->next->child->child->next->next->next->child->leaf->v;

@@ -1,4 +1,5 @@
 #include "pso/player/demo_mode.h"
+#include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/system/NinjaUtil.h"
@@ -198,10 +199,10 @@ void TBoss3VoloptP01::init_breakup_effect() {
     }
     TBoss3VoloptP01__breakup_model = pieces;
     volopt_p01_chunk_list = (TBoss3VoloptChunkList *)find_model_node(TBoss3VoloptP01__resource_bundle->models[17].model, 0xD);
-    volopt_p01_boss_stat_handle_a = TLobby::register_boss(0x22);
-    volopt_p01_shared_handler_b = TLobby::dispatch_shared_handler_b(0x22);
-    volopt_p01_object_handle = TLobby::register_object(0x22);
-    volopt_p01_shared_handler_handle = (TBoss3VoloptP01Params *)TLobby::dispatch_shared_handler_a(0x22);
+    volopt_p01_boss_stat_handle_a = get_battle_base_stats(0x22);
+    volopt_p01_shared_handler_b = get_battle_attack_params(0x22);
+    volopt_p01_object_handle = get_battle_resistance_params(0x22);
+    volopt_p01_shared_handler_handle = (TBoss3VoloptP01Params *)get_battle_movement_params(0x22);
     volopt_p01_breakup_color_ptr = volopt_p01_chunk_list->first->color;
 }
 

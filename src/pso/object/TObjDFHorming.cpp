@@ -1,4 +1,5 @@
 #include "pso/player/demo_mode.h"
+#include "pso/enemy/BattleParameters.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/system/vector.h"
@@ -439,7 +440,7 @@ s32 TBoss4DarkFalz::calc_rate_from_field() {
 s32 TBoss4DarkFalz::is_timer_expired() {
     s32 var_r4;
 
-    var_r4 = *(s32 *)((s8 *)(TLobby::dispatch_shared_handler_a(0x35)) + 0x18);
+    var_r4 = *(s32 *)((s8 *)(get_battle_movement_params(0x35)) + 0x18);
     if ((var_r4 < 1) || (var_r4 > 0x13)) {
         var_r4 = 2;
     }
@@ -874,9 +875,9 @@ s32 TBoss4DarkFalz__ct(s32 a0, s32 arg1, s32 a2) {
     *(f32 *)((s8 *)boss4_dark_falz + 0x308) = (f32) 0.0f;
     *(s32 *)((s8 *)boss4_dark_falz + 0x2A8) = 0;
     if ((s32) game_difficulty_selection == 0) {
-        ((TObjEnemy *)boss4_dark_falz)->bind_enemy_combat_stats((u8 *)(TLobby::register_boss(0x37)), (u8 *)(TLobby::dispatch_shared_handler_b(0x37)), (u8 *)(TLobby::register_object(0x37)));
+        ((TObjEnemy *)boss4_dark_falz)->bind_enemy_combat_stats((u8 *)(get_battle_base_stats(0x37)), (u8 *)(get_battle_attack_params(0x37)), (u8 *)(get_battle_resistance_params(0x37)));
     } else {
-        ((TObjEnemy *)boss4_dark_falz)->bind_enemy_combat_stats((u8 *)(TLobby::register_boss(0x38)), (u8 *)(TLobby::dispatch_shared_handler_b(0x38)), (u8 *)(TLobby::register_object(0x38)));
+        ((TObjEnemy *)boss4_dark_falz)->bind_enemy_combat_stats((u8 *)(get_battle_base_stats(0x38)), (u8 *)(get_battle_attack_params(0x38)), (u8 *)(get_battle_resistance_params(0x38)));
     }
     register_entity_by_id((boss4_dark_falz));
     *(s32 *)((s8 *)boss4_dark_falz + 0x30) = (s32) (*(s32 *)((s8 *)boss4_dark_falz + 0x30) | 0x02000000);
@@ -893,12 +894,12 @@ s32 TBoss4DarkFalz__ct(s32 a0, s32 arg1, s32 a2) {
     init_music_sequencer(4);
     dark_falz_form_index = 0;
     *(s32 *)((s8 *)boss4_dark_falz + 0x374) = 0;
-    temp_r0 = *(s32 *)((s8 *)(TLobby::dispatch_shared_handler_a(0x36)) + 0x18);
+    temp_r0 = *(s32 *)((s8 *)(get_battle_movement_params(0x36)) + 0x18);
     lbl_805D4D6C = temp_r0;
     if ((temp_r0 < 0) || (temp_r0 > 0xE)) {
         lbl_805D4D6C = 0;
     }
-    temp_r0_2 = *(s32 *)((s8 *)(TLobby::dispatch_shared_handler_a(0x36)) + 0x1C);
+    temp_r0_2 = *(s32 *)((s8 *)(get_battle_movement_params(0x36)) + 0x1C);
     lbl_805D4D70 = temp_r0_2;
     if ((temp_r0_2 < 0) || (temp_r0_2 > 0xE)) {
         lbl_805D4D70 = 0;

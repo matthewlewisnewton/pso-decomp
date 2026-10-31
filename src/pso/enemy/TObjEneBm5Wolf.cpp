@@ -1,5 +1,6 @@
 #include "pso/math/FloatRounding.h"
 #include "pso/player/demo_mode.h"
+#include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -3682,10 +3683,10 @@ struct Globals_800B8A40 {
 };
 
 extern "C" {
-s32 dispatch_shared_handler_a__6TLobbyFl(s32);
-s32 register_object__6TLobbyFl(s32);
-s32 dispatch_shared_handler_b__6TLobbyFl(s32);
-s32 register_boss__6TLobbyFl(s32);
+
+
+
+
 extern s32 lbl_8043B3A8[];
 extern s32 lbl_8043B3B0[];
 extern s32 lbl_8043B3B8[];
@@ -3726,10 +3727,10 @@ void TObjEneBm5Wolf::load_resources() {
     lbl_80500B60.y = (*(f32 *)&TObjEneBm5Wolf__data_805D9D78);
     lbl_80500B60.z = (*(f32 *)&TObjEneBm5Wolf__data_805D9D78);
     for (i = 0; i < 2; i++) {
-        TObjEneBm5Wolf__stat_params[i] = register_boss__6TLobbyFl(lbl_8043B3A8[i]);
-        wolf_stat_handle_a_table[i] = dispatch_shared_handler_b__6TLobbyFl(lbl_8043B3B0[i]);
-        wolf_stat_handle_b_table[i] = register_object__6TLobbyFl(lbl_8043B3B8[i]);
-        lbl_80500B58[i] = dispatch_shared_handler_a__6TLobbyFl(lbl_8043B3C0[i]);
+        TObjEneBm5Wolf__stat_params[i] = ((s32)get_battle_base_stats(lbl_8043B3A8[i]));
+        wolf_stat_handle_a_table[i] = ((s32)get_battle_attack_params(lbl_8043B3B0[i]));
+        wolf_stat_handle_b_table[i] = ((s32)get_battle_resistance_params(lbl_8043B3B8[i]));
+        lbl_80500B58[i] = ((s32)get_battle_movement_params(lbl_8043B3C0[i]));
     }
     {
     Spawn_800B86B4 sp = bm5_wolf_spawn_descriptor;

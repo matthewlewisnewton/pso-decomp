@@ -1,5 +1,6 @@
 #include "pso/misc/SampledMotionPoints.h"
 #include "pso/math/FloatRounding.h"
+#include "pso/enemy/BattleParameters.h"
 #pragma readonly_strings on
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -83,7 +84,6 @@ u32 spawn_particle_effect(void *, int);
 u32 create_particle_emitter(void *, int);
 s32 play_sound_effect(int, void *, int, int);
 f64 atan2_float(f32, f32);
-u8 * dispatch_shared_handler_a__6TLobbyFl(s32);
 
 void TBoss4Type2__sub_80057128(void *arg0);
 s32 angle_diff_s16(int, int);
@@ -976,9 +976,9 @@ void TBoss4Type2::beam_update() {
         p.x += 20.0f * *(f32 *)((s8 *)arg0 + 0x404);
         p.z += 20.0f * *(f32 *)((s8 *)arg0 + 0x40C);
         if (idx == 0) {
-            create__11TTecRaBartaFPvPvPvPv(arg0, &p, &p, *(s32 *)((s8 *)(dispatch_shared_handler_a__6TLobbyFl(0x36)) + 0x1C));
+            create__11TTecRaBartaFPvPvPvPv(arg0, &p, &p, *(s32 *)((s8 *)((u8 *)get_battle_movement_params(0x36)) + 0x1C));
         } else {
-            ((TTecRaFoie *)arg0)->create(&p, &p, (void *)(*(s32 *)((s8 *)(dispatch_shared_handler_a__6TLobbyFl(0x36)) + 0x18)));
+            ((TTecRaFoie *)arg0)->create(&p, &p, (void *)(*(s32 *)((s8 *)((u8 *)get_battle_movement_params(0x36)) + 0x18)));
         }
         add_radar_scaled_marker(&p, -0x5DB4, 1, 1, 2.5f);
         *(f32 *)((s8 *)arg0 + 0x404) *= -1.0f;
@@ -1219,7 +1219,7 @@ void TBoss4Type2::apply_resta_heal() {
 
     temp_r4 = *(void **)((s8 *)this + 0x2B0);
     temp_r31 = *(s16 *)((s8 *)temp_r4 + 2);
-    drain_player_hp(*(u16 *)((s8 *)this + 0x3C4), (temp_r31 / 5) + (s32) TTecResta::calc_heal_amount(*(s32 *)((s8 *)(((void * (*)(s32, void *))dispatch_shared_handler_a__6TLobbyFl)(0x37, temp_r4)) + 0x1C)));
+    drain_player_hp(*(u16 *)((s8 *)this + 0x3C4), (temp_r31 / 5) + (s32) TTecResta::calc_heal_amount(*(s32 *)((s8 *)get_battle_movement_params(0x37) + 0x1C)));
 }
 
 void TBoss4Type2::sub_80056998() {
@@ -1688,7 +1688,7 @@ u8 *TBoss4Type2__ct(u8 *arg0, s32 parent, s32 *arg2) {
     *(f32 *)((s8 *)arg0 + 0x30C) = 0.0f;
     *(f32 *)((s8 *)arg0 + 0x308) = 0.0f;
     *(s32 *)((s8 *)arg0 + 0x2A8) = 0;
-    ((TObjEnemy *)arg0)->bind_enemy_combat_stats((u8 *)((int) TLobby::register_boss(0x37)), (u8 *)(TLobby::dispatch_shared_handler_b(0x37)), (u8 *)(TLobby::register_object(0x37)));
+    ((TObjEnemy *)arg0)->bind_enemy_combat_stats((u8 *)((int) get_battle_base_stats(0x37)), (u8 *)(get_battle_attack_params(0x37)), (u8 *)(get_battle_resistance_params(0x37)));
     *(s16 *)((s8 *)arg0 + 0x33E) = *(s16 *)((s8 *)arg0 + 0x32C);
     ((TBoss3Volopt *)arg0)->reset_photon_effect();
     ((TObjEnemy *)arg0)->set_param(0x2F);
@@ -1708,18 +1708,18 @@ u8 *TBoss4Type2__ct(u8 *arg0, s32 parent, s32 *arg2) {
     *(s32 *)((s8 *)arg0 + 0x3A0) = 0;
     *(s32 *)((s8 *)arg0 + 0x3E0) = 0;
     *(u16 *)((s8 *)arg0 + 0x3C4) = 0xFFFF;
-    *(s32 *)((s8 *)arg0 + 0x41C) = floor_to_float(*(f32 *) dispatch_shared_handler_a__6TLobbyFl(0x37));
+    *(s32 *)((s8 *)arg0 + 0x41C) = floor_to_float(*(f32 *) get_battle_movement_params(0x37));
     if (*(s32 *)((s8 *)arg0 + 0x41C) < 1 || *(s32 *)((s8 *)arg0 + 0x41C) > 25) {
         *(s32 *)((s8 *)arg0 + 0x41C) = 4;
     }
     *(s32 *)((s8 *)arg0 + 0x41C) *= 75;
     *(s32 *)((s8 *)arg0 + 0x420) = *(s32 *)((s8 *)arg0 + 0x41C) - 7;
-    v = *(s32 *)((s8 *)(dispatch_shared_handler_a__6TLobbyFl(0x37)) + 0x18);
+    v = *(s32 *)((s8 *)((u8 *)get_battle_movement_params(0x37)) + 0x18);
     if (v < 1 || v > 4) {
         v = 1;
     }
     *(s32 *)((s8 *)arg0 + 0x424) = v + 8;
-    *(s32 *)((s8 *)arg0 + 0x428) = *(s32 *)((s8 *)(dispatch_shared_handler_a__6TLobbyFl(0x37)) + 0x1C);
+    *(s32 *)((s8 *)arg0 + 0x428) = *(s32 *)((s8 *)((u8 *)get_battle_movement_params(0x37)) + 0x1C);
     if (*(s32 *)((s8 *)arg0 + 0x428) < 0 || *(s32 *)((s8 *)arg0 + 0x428) > 14) {
         *(s32 *)((s8 *)arg0 + 0x428) = 0;
     }

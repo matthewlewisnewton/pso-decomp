@@ -1,4 +1,5 @@
 #include "pso/player/demo_mode.h"
+#include "pso/enemy/BattleParameters.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/system/ChunkMaterialState.h"
@@ -1629,11 +1630,11 @@ void TObjPlayer__sub_800A2DCC() {
     init_fish_effects__12TEneEffHamonFv();
     TObjPlayer__effect_resource = (u32)load_gvm_texture_file((s32)"re5_b_gunner_body_pika.gvm");
     for (i = 0; i < 1; i++) {
-        lbl_805D4FF8[i] = (s32)TLobby::register_boss(30 + i);
-        lbl_805D4FFC[i] = (s32)TLobby::dispatch_shared_handler_b(30 + i);
-        lbl_805D5000[i] = (s32)TLobby::register_object(30 + i);
+        lbl_805D4FF8[i] = (s32)get_battle_base_stats(30 + i);
+        lbl_805D4FFC[i] = (s32)get_battle_attack_params(30 + i);
+        lbl_805D5000[i] = (s32)get_battle_resistance_params(30 + i);
     }
-    lbl_805D5004 = (s32)TLobby::dispatch_shared_handler_a(30);
+    lbl_805D5004 = (s32)get_battle_movement_params(30);
 }
 
 Obj_800A2EDC *TObjPlayer__sub_800A2EDC(Obj_800A2EDC *arg0, s16 arg1) {

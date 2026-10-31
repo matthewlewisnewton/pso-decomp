@@ -4,6 +4,8 @@
 #include "pso/player/demo_mode.h"
 #include "pso/misc/MaterialOpacityFade.h"
 #include "pso/misc/RenderFadeState.h"
+#include "pso/enemy/BattleParameters.h"
+#include "pso/math/ScratchVectorStorage.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -304,10 +306,6 @@ s32 subtract_vector(void *, void *);
 extern s32 lbl_8043B790[];
 extern s32 registered_player_count;
 extern s32 lbl_805D5870;
-s32 dispatch_shared_handler_a__6TLobbyFl(int);
-s32 register_object__6TLobbyFl(int);
-s32 dispatch_shared_handler_b__6TLobbyFl(int);
-s32 register_boss__6TLobbyFl(int);
 void *mem_alloc(u32 size);
 extern Quad_800BF66C grass_spawn_descriptor;
 extern s32 lbl_805D5140;
@@ -1732,12 +1730,12 @@ void TObjGrass::load_resources() {
     ((SampledMotionPoints *)lbl_805D5158)->sample_two_nodes((NJS_OBJECT *)(((Data_800BF66C *)TObjGrass__resource_bundle)->f42c->f8), (NJS_MOTION *)(((Data_800BF66C *)TObjGrass__resource_bundle)->f430[TObjGrass__grass_type_param_table[9]].f4), 0x46, 0x48);
     ((SampledMotionPoints *)lbl_805D515C)->sample_two_nodes((NJS_OBJECT *)(((Data_800BF66C *)TObjGrass__resource_bundle)->f42c->f8), (NJS_MOTION *)(((Data_800BF66C *)TObjGrass__resource_bundle)->f430[TObjGrass__grass_type_param_table[13]].f4), 0x3C, 0x3E);
     TObjGrass__bml_resource = (u32) mem_alloc(0xC);
-    lbl_805D5140 = register_boss__6TLobbyFl(0x4E);
-    ((s32 *) TObjGrass__bml_resource)[0] = dispatch_shared_handler_b__6TLobbyFl(0x51);
-    ((s32 *) TObjGrass__bml_resource)[2] = dispatch_shared_handler_b__6TLobbyFl(0x52);
-    ((s32 *) TObjGrass__bml_resource)[1] = dispatch_shared_handler_b__6TLobbyFl(0x53);
-    grass_combat_stats_handle = register_object__6TLobbyFl(0x4D);
-    lbl_805D514C = dispatch_shared_handler_a__6TLobbyFl(0x4D);
+    lbl_805D5140 = (s32)get_battle_base_stats(0x4E);
+    ((s32 *) TObjGrass__bml_resource)[0] = (s32)get_battle_attack_params(0x51);
+    ((s32 *) TObjGrass__bml_resource)[2] = (s32)get_battle_attack_params(0x52);
+    ((s32 *) TObjGrass__bml_resource)[1] = (s32)get_battle_attack_params(0x53);
+    grass_combat_stats_handle = (s32)get_battle_resistance_params(0x4D);
+    lbl_805D514C = (s32)get_battle_movement_params(0x4D);
     {
     Quad_800BF66C q = grass_spawn_descriptor;
     q.a = (s32) ((Data_800BF66C *)TObjGrass__resource_bundle)->f430;

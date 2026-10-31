@@ -1,4 +1,5 @@
 #include "pso/player/demo_mode.h"
+#include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/system/NinjaUtil.h"
@@ -184,10 +185,10 @@ void *TBoss3VoloptCore::create(void *set_data) {
 
 void TBoss3VoloptCore::load_resources() {
     core_resources = boss3_volopt_resources;
-    core_combat_stats_a = TLobby::register_boss(0x21);
-    core_combat_stats_b = TLobby::dispatch_shared_handler_b(0x21);
-    core_combat_stats_c = TLobby::register_object(0x21);
-    core_orbit_speeds = (TBoss3VoloptOrbitSpeeds *)TLobby::dispatch_shared_handler_a(0x21);
+    core_combat_stats_a = get_battle_base_stats(0x21);
+    core_combat_stats_b = get_battle_attack_params(0x21);
+    core_combat_stats_c = get_battle_resistance_params(0x21);
+    core_orbit_speeds = (TBoss3VoloptOrbitSpeeds *)get_battle_movement_params(0x21);
 }
 
 void TBoss3VoloptCore::release() {}

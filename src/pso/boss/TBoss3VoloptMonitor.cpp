@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #include "pso/player/TObjChara.h"
 #include "pso/player/demo_mode.h"
 #include "types.h"
@@ -242,10 +243,10 @@ void TBoss3VoloptMonitor::load_resources() {
     for (i = 0; i < 4; i++) {
         volopt_monitor_screen_meshes[i] = ((void **)get_bml_model(volopt_monitor_resources, volopt_monitor_models[2][i]))[1];
     }
-    volopt_monitor_stats = (BossStats *)TLobby::register_boss(0x23);
-    volopt_monitor_stats_b = TLobby::dispatch_shared_handler_b(0x23);
-    volopt_monitor_object_params = TLobby::register_object(0x23);
-    volopt_monitor_stat_table = (MonitorStatTable *)TLobby::dispatch_shared_handler_a(0x23);
+    volopt_monitor_stats = (BossStats *)get_battle_base_stats(0x23);
+    volopt_monitor_stats_b = get_battle_attack_params(0x23);
+    volopt_monitor_object_params = get_battle_resistance_params(0x23);
+    volopt_monitor_stat_table = (MonitorStatTable *)get_battle_movement_params(0x23);
 }
 
 void TBoss3VoloptMonitor::release() {

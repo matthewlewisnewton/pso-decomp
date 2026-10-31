@@ -1,4 +1,5 @@
 #include "pso/player/demo_mode.h"
+#include "pso/enemy/BattleParameters.h"
 #include "pso/protocol/protocol_types.h"
 #pragma readonly_strings on
 #define TOBJECT_OUT_OF_LINE_HELPERS
@@ -377,11 +378,11 @@ void TBoss3VoloptP02::load_resources() {
     node_44_color = model_node_44->model->plist;
     node_27_color = model_node_27->model->plist;
     node_3f_color = model_node_3f->model->plist;
-    boss_stat_handle = TLobby::register_boss(0x25);
-    shared_handler_b = TLobby::dispatch_shared_handler_b(0x25);
-    object_handle = TLobby::register_object(0x25);
-    volopt_p02_params = (VoloptP02Params *)TLobby::dispatch_shared_handler_a(0x25);
-    part_params = (s32 *)TLobby::dispatch_shared_handler_a(0x2A);
+    boss_stat_handle = get_battle_base_stats(0x25);
+    shared_handler_b = get_battle_attack_params(0x25);
+    object_handle = get_battle_resistance_params(0x25);
+    volopt_p02_params = (VoloptP02Params *)get_battle_movement_params(0x25);
+    part_params = (s32 *)get_battle_movement_params(0x2A);
 }
 
 void TBoss3VoloptP02::free_resources() {

@@ -1,4 +1,6 @@
 #include "pso/player/demo_mode.h"
+#include "pso/enemy/BattleParameters.h"
+#include "pso/math/ScratchVectorStorage.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
@@ -1486,9 +1488,9 @@ struct IllGillSharedMotionSetup {
     BmlMotionEntry *motions;
     s32 unknown[3];
 };
-s32 register_object__6TLobbyFl(int);
-s32 dispatch_shared_handler_b__6TLobbyFl(int);
-s32 register_boss__6TLobbyFl(int);
+
+
+
 extern IllGillSharedMotionSetup lbl_8047A318;
 void TObjEneIllGill::load_shared_resources() {
     void *p;
@@ -1497,13 +1499,13 @@ void TObjEneIllGill::load_shared_resources() {
 
     p = (void *)new BmlResource(1, (BmlResourceDescriptor *)(&illGillResourceDescriptor), 0, 0, (void *)(0));
     illGillResource = (BmlResource *)p;
-    TObjEneIllGill__boss_registration_id = register_boss__6TLobbyFl(0x26);
-    ill_gill_combat_parameter_variants[0] = (AttackParams *)dispatch_shared_handler_b__6TLobbyFl(0x26);
-    ill_gill_combat_parameter_variants[1] = (AttackParams *)dispatch_shared_handler_b__6TLobbyFl(0x27);
-    ill_gill_combat_parameter_variants[2] = (AttackParams *)dispatch_shared_handler_b__6TLobbyFl(0x28);
-    ill_gill_combat_parameter_variants[3] = (AttackParams *)dispatch_shared_handler_b__6TLobbyFl(0x29);
-    lbl_805D6FD8 = register_object__6TLobbyFl(0x26);
-    illGillAttackBehavior = (IllGillAttackBehavior *)TLobby::dispatch_shared_handler_a(0x26);
+    TObjEneIllGill__boss_registration_id = ((s32)get_battle_base_stats(0x26));
+    ill_gill_combat_parameter_variants[0] = (AttackParams *)((s32)get_battle_attack_params(0x26));
+    ill_gill_combat_parameter_variants[1] = (AttackParams *)((s32)get_battle_attack_params(0x27));
+    ill_gill_combat_parameter_variants[2] = (AttackParams *)((s32)get_battle_attack_params(0x28));
+    ill_gill_combat_parameter_variants[3] = (AttackParams *)((s32)get_battle_attack_params(0x29));
+    lbl_805D6FD8 = ((s32)get_battle_resistance_params(0x26));
+    illGillAttackBehavior = (IllGillAttackBehavior *)get_battle_movement_params(0x26);
     illGillModelNodeIndex = 0;
     q = &illGillWeaponEffectPosition;
     q->x = q->y = q->z = TObjEneIllGill__data_805E02BC;

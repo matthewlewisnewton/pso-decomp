@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/enemy/BattleParameters.h"
 #include "pso/unk/TUnk_80494968.h"
 #include "pso/misc/GroundEffects.h"
 #include "pso/misc/PositionSoundEffects.h"
@@ -470,18 +471,18 @@ void TObjEneShark::load_resources() {
     shark_attack_stats = (u8 **)mem_alloc(0xC);
     shark_resistance_stats = (u8 **)mem_alloc(0xC);
     shark_movement_parameter_sets = (f32 **)mem_alloc(0xC);
-    shark_combat_stats[0] = (u8 *)TLobby::register_boss(0x4F);
-    shark_combat_stats[1] = (u8 *)TLobby::register_boss(0x50);
-    shark_combat_stats[2] = (u8 *)TLobby::register_boss(0x51);
-    shark_attack_stats[0] = (u8 *)TLobby::dispatch_shared_handler_b(0x54);
-    shark_attack_stats[1] = (u8 *)TLobby::dispatch_shared_handler_b(0x55);
-    shark_attack_stats[2] = (u8 *)TLobby::dispatch_shared_handler_b(0x56);
-    shark_resistance_stats[0] = (u8 *)TLobby::register_object(0x4E);
-    shark_resistance_stats[1] = (u8 *)TLobby::register_object(0x4F);
-    shark_resistance_stats[2] = (u8 *)TLobby::register_object(0x50);
-    shark_movement_parameter_sets[0] = (f32 *)TLobby::dispatch_shared_handler_a(0x4E);
-    shark_movement_parameter_sets[1] = (f32 *)TLobby::dispatch_shared_handler_a(0x4F);
-    shark_movement_parameter_sets[2] = (f32 *)TLobby::dispatch_shared_handler_a(0x50);
+    shark_combat_stats[0] = (u8 *)get_battle_base_stats(0x4F);
+    shark_combat_stats[1] = (u8 *)get_battle_base_stats(0x50);
+    shark_combat_stats[2] = (u8 *)get_battle_base_stats(0x51);
+    shark_attack_stats[0] = (u8 *)get_battle_attack_params(0x54);
+    shark_attack_stats[1] = (u8 *)get_battle_attack_params(0x55);
+    shark_attack_stats[2] = (u8 *)get_battle_attack_params(0x56);
+    shark_resistance_stats[0] = (u8 *)get_battle_resistance_params(0x4E);
+    shark_resistance_stats[1] = (u8 *)get_battle_resistance_params(0x4F);
+    shark_resistance_stats[2] = (u8 *)get_battle_resistance_params(0x50);
+    shark_movement_parameter_sets[0] = (f32 *)get_battle_movement_params(0x4E);
+    shark_movement_parameter_sets[1] = (f32 *)get_battle_movement_params(0x4F);
+    shark_movement_parameter_sets[2] = (f32 *)get_battle_movement_params(0x50);
     shark_render_node_index = 0;
     {
         s16 ids[3] = { 0x2F, 0x30, 0x31 };
