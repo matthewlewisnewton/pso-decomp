@@ -38,6 +38,7 @@
 #include "pso/enemy/TObjEneRe7Berura.h"
 #include "pso/misc/RenderFadeState.h"
 #include "pso/misc/TLobby.h"
+#include "pso/misc/TCameraCtrl.h"
 
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/npc/NpcModelRegistry.h"
@@ -50,7 +51,6 @@ s32 dispatch_shared_handler_a__6TLobbyFl(int);
 s32 register_object__6TLobbyFl(int);
 s32 dispatch_shared_handler_b__6TLobbyFl(int);
 s32 register_boss__6TLobbyFl(int);
-s32 get_camera_mode__11TCameraCtrlFv();
 void rotate_xz_pair_by_angle(f32 *arg0, f32 *arg1, s32 arg2);
 void *spawn_particle_effect(void *pos, s32 id);
 s32 is_main_phase_15__9TObjEneDDFv();
@@ -1065,7 +1065,7 @@ void TObjEneBm3FlyNest::render() {
     }
     camera = 0;
     if (is_split_screen() != 0) {
-        camera = get_camera_mode__11TCameraCtrlFv();
+        camera = TCameraCtrl::get_camera_mode();
     }
     visible = 0;
     if (mode != 9) {
