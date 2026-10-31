@@ -79,7 +79,6 @@ struct TObjEneMe3SinowZoa : public TObjEneDD_ST {
     static void set_entry_value_clamped(s32 arg0, f32 farg0);
     static void free_resources();
     static void load_resources();
-    void copy_position_vector(void* q);
     void init_death_params();
 };
 
