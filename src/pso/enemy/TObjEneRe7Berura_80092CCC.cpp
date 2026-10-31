@@ -1,5 +1,6 @@
 #include "pso/math/ViewPoint.h"
 struct NJS_OBJECT;
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
@@ -277,7 +278,7 @@ void TObjEneRe7Berura::render() {
     s32 l3;
     s32 l4;
     Berura_80092CCC *o = (Berura_80092CCC *)this;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         o->v.m104();
         return;
     }

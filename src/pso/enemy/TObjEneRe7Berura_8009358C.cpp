@@ -1,3 +1,4 @@
+#include "pso/system/MatrixVectorArray.h"
 #include "pso/misc/SampledMotionPoints.h"
 #include "pso/math/FloatRounding.h"
 #include "pso/enemy/TObjEnemy.h"
@@ -179,7 +180,6 @@ s32 push_matrix(void);
 s32 pop_matrix(void);
 f32 post_translate_matrix(void *);
 void TObjEneDD__sub_800BA378(s32 arg0, u8 *arg1);
-s32 mult_vec_array__10TObjPlayerFUll(int, int, void *, int);
 void set_matrix_identity(u8 *arg0);
 s32 rotate_matrix_y(int, int);
 extern const f32 lbl_805D9744;
@@ -486,7 +486,7 @@ void TObjEneRe7Berura::fn_80093888(s32 arg1) {
                 set_matrix_identity(0);
                 post_translate_matrix(actor + 0x38);
                 rotate_matrix_y(0, (int) (*(s32 *)((s8 *)actor + 0x60)));
-                mult_vec_array__10TObjPlayerFUll(0, entry, (void *) (&sp8), 4);
+                matrix_mult_vec_array((f32 (*)[4])(0), (const Vec *)(entry), (Vec *)((void *) (&sp8)), 4);
                 pop_matrix();
                 ((VObj_18_a5c788 *)((u8 *)(*(u8 **)((s8 *)actor + 0x440))))->m4(&sp8, &sp14);
                 ((VObj_18_a5c788 *)((u8 *)(*(u8 **)((s8 *)actor + 0x444))))->m4(&sp20, &sp2C);

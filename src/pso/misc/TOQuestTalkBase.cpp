@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "types.h"
 #include "pso/misc/TOQuestTalkBase.h"
 #include "pso/TMainTask.h"
@@ -100,7 +101,7 @@ void TOQuestTalkBase::run_task() {
     TObjPlayer *player;
     f32 frame;
     f32 end;
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         update_demo();
         return;
     }

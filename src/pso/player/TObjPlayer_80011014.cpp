@@ -1,3 +1,4 @@
+#include "pso/map/CsnGroundQuery.h"
 #include "pso/player/TObjPlayer_800F0810.h"
 #include "pso/unk/text_803D8F74.h"
 #include "pso/math/VectorNormalize.h"
@@ -895,7 +896,6 @@ f32 atan2_float(f32 y, f32 x);
 f32 newton_sqrtf(f32 x);
 u32 csnLookAt(void *, void *);
 u8 * csnVectorUnder(f32 *, void *, s32, void *, f32);
-u32 csnVecterUnder(void *, int);
 u32 csnVector(void *, void *, s32);
 u32 subtractive_rng_next();
 void create__10TObjPlayerFUiii(u32, s32, s32);
@@ -4142,7 +4142,7 @@ void move_with_wall_slide(u8 *arg0) {
   VecCopy__FP3VecPC3Vec((s32)&next, (s32)&self->cur);
   vec3_add_to(&next, &self->vel);
   next.y += (1e+01f);
-  if ((csnVecterUnder(&next, 0xE0) == 0) && (project_actor_to_ground((s32) self, (s32)&next, 0) != 0))
+  if ((csnVecterUnder((const Vec *)&next, 0xE0) == 0) && (project_actor_to_ground((s32) self, (s32)&next, 0) != 0))
   {
     VecCopy__FP3VecPC3Vec((s32)&self->pos, (s32)&next);
   }

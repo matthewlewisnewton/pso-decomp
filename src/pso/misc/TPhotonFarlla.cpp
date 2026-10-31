@@ -321,8 +321,8 @@ u8 *TPhotonFarlla__ct(u8 *arg0, u8 *arg1) {
     }
     *(s32 *)((s8 *)arg0 + 0x34) = *(s32 *)((s8 *)(*(u8 **)((s8 *)photon_blast_shared_resource + 0x42C)) + 0x8);
     ((TPhotonFarlla *)arg0)->texlist = *(s32 *)((s8 *)(*(u8 **)((s8 *)photon_blast_shared_resource + 0x42C)) + 0xC);
-    ((TObjMotion *)arg0)->set_field_d8((s32) photon_blast_farlla_params);
-    ((TObjMotion *)arg0)->set_field_dc(*(s32 *)((s8 *)photon_blast_shared_resource + 0x430));
+    ((TObjMotion *)arg0)->set_action_table((TObjMotionAction *)((s32) photon_blast_farlla_params));
+    ((TObjMotion *)arg0)->set_motion_list((BmlMotionEntry *)(*(s32 *)((s8 *)photon_blast_shared_resource + 0x430)));
     ((TPhotonFarlla *)arg0)->requested_action = 1;
     ((TObjMotion *)arg0)->set_animation(((TPhotonFarlla *)arg0)->requested_action);
     ((TObjMotion *)arg0)->set_field_b8(((TPhotonFarlla *)arg0)->requested_action);

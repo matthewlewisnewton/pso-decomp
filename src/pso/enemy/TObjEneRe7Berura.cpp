@@ -4,6 +4,7 @@
 #include "pso/math/MatrixCopy.h"
 #include "pso/animation/MotionContext.h"
 #include "pso/misc/SampledMotionPoints.h"
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -380,7 +381,7 @@ TObjEneRe7Berura::~TObjEneRe7Berura() {
 }
 
 void TObjEneRe7Berura::run_task() {
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         fn_80092C90();
         return;
     }

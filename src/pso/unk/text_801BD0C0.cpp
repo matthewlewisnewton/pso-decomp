@@ -142,7 +142,7 @@ extern const f32 TObjPlayer__data_805DC278;
 void TObjPlayer::apply_motion_entry() {
     Player_801BD0C0 *self = (Player_801BD0C0 *)this;
     Anim_801BD0C0 *a;
-    ((TObjMotion *)self)->set_field_d8(self->ctrl->m5(((TObjPlayer *)self)->has_valid_handle(), get_handle_value__10TObjPlayerFv(self)));
+    ((TObjMotion *)self)->set_action_table((TObjMotionAction *)(self->ctrl->m5(((TObjPlayer *)self)->has_valid_handle(), get_handle_value__10TObjPlayerFv(self))));
     ((TObjMotion *)self)->set_action_motion(this->requested_action);
     a = get_anim_entry__10TObjMotionFi(self, this->requested_action);
     this->play_speed = a->speed;
