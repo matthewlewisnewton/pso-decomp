@@ -815,6 +815,7 @@ pso/menu/TAdGuideTxtGC.cpp
 pso/menu/TAdGuideTxtGC_802B17D4.cpp
 pso/menu/TAdMultiOkGC.cpp
 pso/menu/TAdPlyChrSelPlateGC.cpp
+pso/menu/TAdPlyChrSelPlateGC_802C4CA0.cpp
 pso/menu/TAdRicoRing.cpp
 pso/menu/TAdRicoRing_8001BEE8.cpp
 pso/menu/TAdTimeSetGC.cpp
