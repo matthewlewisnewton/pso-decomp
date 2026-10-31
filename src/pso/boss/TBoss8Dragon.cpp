@@ -1423,7 +1423,7 @@ s32 update_linked_position__12TObjEneDD_STFf(f32);
 void enemy_clear_target__12TObjEneDD_STFUs(void *);
 void enemy_set_target_id(void *, u16);
 void *__dt__12TObjEneDD_STFv(void *arg0, s16 arg1);
-s32 reload_stats_keep_hp_tp__9TObjEneDDFv(void *, void *, int, void *);
+s32 reload_stats_keep_hp_tp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(void *, void *, int, void *);
 s32 reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(void *, int, int, int);
 void transform_point_to_view(s32, s32);
 void update_camera_sequence__9TObjEneDDFv(void);
@@ -4945,7 +4945,6 @@ struct Vec_802F8F88 { f32 x, y, z; };
 
 void rotate_vec_xz(void *, void *, s32);
 u32 spawn_continuous_particle_effect_with_flags(void *, void *, int);
-s32 get_random_scaled__9TObjEneDDFv(void *);
 s32 TBoss8DragonEffBullet__ct(void *, void *, void *, void *, s32, s32);
 extern const f32 lbl_805DEE74;
 extern const f32 lbl_805DEE78;
@@ -4992,7 +4991,7 @@ void TBoss8DragonEffBullet__sub_802F8F88(u8 *arg0, u32 arg1) {
             if (TBoss8Dragon__sub_802FC674((Obj_802FC674 *)(arg0), d) != 0) {
                 F(s32, 0x85C) = (s32)(TBoss8Dragon__data_80474B28 * atan2_float(d[0] - F(f32, 0x38), d[2] - F(f32, 0x40)));
             } else {
-                F(s32, 0x85C) = get_random_scaled__9TObjEneDDFv(arg0);
+                F(s32, 0x85C) = ((TObjEneDD *)arg0)->get_random_scaled();
                 d[0] = lbl_805DEE74 * sin_table_lookup(F(s32, 0x85C));
                 d[1] = TBoss8Dragon__data_805DED50;
                 d[2] = lbl_805DEE74 * cos_table_lookup(F(s32, 0x85C));
@@ -6183,11 +6182,11 @@ void handle_6xA8_gol_dragon_boss_actions(void *boss8_dragon) {
 }
 
 void TBoss8Dragon__sub_802FBE3C(TBoss8Dragon *dragon) {
-    reload_stats_keep_hp_tp__9TObjEneDDFv(dragon, get_battle_base_stats(0x12), TBoss8Dragon__data_80541DC8[TBoss8Dragon__data_804E4C28[3]], get_battle_resistance_params(0x12));
+    reload_stats_keep_hp_tp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(dragon, get_battle_base_stats(0x12), TBoss8Dragon__data_80541DC8[TBoss8Dragon__data_804E4C28[3]], get_battle_resistance_params(0x12));
 }
 
 void TBoss8Dragon__sub_802FBEA4(TBoss8Dragon *dragon) {
-    reload_stats_keep_hp_tp__9TObjEneDDFv(dragon, get_battle_base_stats(0x12), TBoss8Dragon__data_80541DC8[TBoss8Dragon__data_804E4C28[2]], get_battle_resistance_params(0x12));
+    reload_stats_keep_hp_tp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(dragon, get_battle_base_stats(0x12), TBoss8Dragon__data_80541DC8[TBoss8Dragon__data_804E4C28[2]], get_battle_resistance_params(0x12));
 }
 
 void TBoss8Dragon::reset_tail_hp() {
@@ -6196,7 +6195,7 @@ void TBoss8Dragon::reset_tail_hp() {
 }
 
 void TBoss8Dragon::reload_boss_stats() {
-    reload_stats_keep_hp_tp__9TObjEneDDFv(this, get_battle_base_stats(0x12), ((s32 *)&TBoss8Dragon__data_80541DC8)[TBoss8Dragon__data_804E4C28[0]], get_battle_resistance_params(0x12));
+    reload_stats_keep_hp_tp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(this, get_battle_base_stats(0x12), ((s32 *)&TBoss8Dragon__data_80541DC8)[TBoss8Dragon__data_804E4C28[0]], get_battle_resistance_params(0x12));
 }
 
 #pragma push

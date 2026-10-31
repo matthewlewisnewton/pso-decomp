@@ -1,4 +1,5 @@
 #include "pso/math/VectorNormalize.h"
+#include "pso/math/MatrixCopy.h"
 #include "pso/math/ScratchVectorStorage.h"
 #include "pso/system/ChunkMaterialState.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -6812,7 +6813,7 @@ void TObjPlayer::get_anim_node_position(s32 arg1, Vec *arg2) {
     stack.spC = TObjPlayer__data_805DC278;
     stack.sp8 = TObjPlayer__data_805DC278;
     push_matrix_from(0);
-    TObjPlayer::copy_matrix((u32)(0), (u32)((void *) (((TObjMotion *)arg0)->get_item_ptr(arg1))));
+    copy_matrix((MtxP)((u32)(0)), (const f32 (*)[4])((u32)((void *) (((TObjMotion *)arg0)->get_item_ptr(arg1)))));
     TCameraCtrl::concat_matrix(0, (int) (TCameraCtrl::get_view_matrix()));
     matrix_mult_vec(0, &stack.sp8, (void *)arg2);
     pop_matrix();

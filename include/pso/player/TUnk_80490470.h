@@ -15,6 +15,7 @@ public:
     virtual s32 advance_toward_max();
     virtual s32 has_visible_opacity();
     void calc_recoil_offsets();
+    void start_negative_fade_phase();
     f32 phase;
 };
 

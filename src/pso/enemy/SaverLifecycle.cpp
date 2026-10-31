@@ -669,7 +669,7 @@ struct VObj_18_217cff : VBase_18_217cff {
 };
 
 extern "C" {
-s32 TObjPlayer__sub_800A0554(void *);
+s32 start_negative_fade_phase__13TUnk_80490470Fv(void *);
 f32 calc_distance_to_client__10TObjPlayerFlUsUl(void *, u16, void *);
 Obj_800A4C4C *get_player_data__10TObjPlayerFi(s32);
 #define atan2_float ((f32 (*)(f32, f32))(atan2_float))
@@ -1343,7 +1343,7 @@ void TObjEneSaver::sub_800A5FA8() {
     case 0:
         ((TObjEneSaver *)arg0)->phase = 1;
         ((TBoss3Volopt *)(arg0 + 0x38))->play_area_se_with_particle();
-        TObjPlayer__sub_800A0554((u8 *)&this->m_3a4);
+        start_negative_fade_phase__13TUnk_80490470Fv((u8 *)&this->m_3a4);
         apply_actor_gravity((TObjEnemy *)(arg0), (s32 *)(0), 0.0f);
         ((TBoss3Volopt *)(arg0 + 0x38))->play_area_variant_sound();
         break;

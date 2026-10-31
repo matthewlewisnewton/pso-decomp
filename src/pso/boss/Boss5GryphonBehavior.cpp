@@ -617,7 +617,7 @@ s32 update_linked_position__12TObjEneDD_STFf(f32);
 s32 enemy_set_target_id(void *, u16);
 s32 update_velocity__9TObjEneDDFv();
 void *__dt__12TObjEneDD_STFv(void *arg0, s16 arg1);
-s32 reload_stats_keep_hp_tp__9TObjEneDDFv(void *, int, int, int);
+s32 reload_stats_keep_hp_tp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(void *, int, int, int);
 void transform_point_to_view(s32, s32);
 s32 __dt__17AreaAttackHistoryFv(s32 arg0, s16 arg1);
 void *__dt__15RenderFadeStateFv(void *arg0, s16 arg1);
@@ -4636,12 +4636,12 @@ void handle_6x9F_gal_gryphon_boss_actions(void *boss8_dragon) {
 extern "C" {
 
 s32 TBoss5Gryphon::reload_stats_for_phase(void *) {
-    reload_stats_keep_hp_tp__9TObjEneDDFv(this, (int)(((s32 *)&boss5_gryphon_base_params)[((s32 *)lbl_80487890)[2]]), (int)(((s32 *)&boss5_gryphon_attack_params)[((s32 *)lbl_8048789C)[2]]), (int)(((s32 *)&boss5_gryphon_resistance_params)[((s32 *)lbl_804878A8)[2]]));
+    reload_stats_keep_hp_tp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(this, (int)(((s32 *)&boss5_gryphon_base_params)[((s32 *)lbl_80487890)[2]]), (int)(((s32 *)&boss5_gryphon_attack_params)[((s32 *)lbl_8048789C)[2]]), (int)(((s32 *)&boss5_gryphon_resistance_params)[((s32 *)lbl_804878A8)[2]]));
 }
 
 void TBoss5Gryphon::reload_stats_for_type() {
     s32 arg0 = (s32)this;
-    reload_stats_keep_hp_tp__9TObjEneDDFv((void *)arg0, (int) (*(s32 *)((s8 *)(&boss5_gryphon_base_params) + (*(s32 *)((s8 *)(&lbl_80487848.value) + 0x48) * 4))), (int) (*(s32 *)((s8 *)(&(*(RecoveredGlobal_80064CFC_lbl_804FF5A0 *)&boss5_gryphon_attack_params).value) + (*(s32 *)((s8 *)(&lbl_80487848.value) + 0x54) * 4))), (int) (*(s32 *)((s8 *)(&boss5_gryphon_resistance_params) + (*(s32 *)((s8 *)(&lbl_80487848.value) + 0x60) * 4))));
+    reload_stats_keep_hp_tp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock((void *)arg0, (int) (*(s32 *)((s8 *)(&boss5_gryphon_base_params) + (*(s32 *)((s8 *)(&lbl_80487848.value) + 0x48) * 4))), (int) (*(s32 *)((s8 *)(&(*(RecoveredGlobal_80064CFC_lbl_804FF5A0 *)&boss5_gryphon_attack_params).value) + (*(s32 *)((s8 *)(&lbl_80487848.value) + 0x54) * 4))), (int) (*(s32 *)((s8 *)(&boss5_gryphon_resistance_params) + (*(s32 *)((s8 *)(&lbl_80487848.value) + 0x60) * 4))));
 }
 #pragma pop
 

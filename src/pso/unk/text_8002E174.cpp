@@ -1,3 +1,4 @@
+#include "pso/math/MatrixCopy.h"
 #include "pso/system/ChunkMaterialState.h"
 #include "types.h"
 #include "pso/boss/TObjBoss1Rock.h"
@@ -198,7 +199,7 @@ void TUnk_80482090::render() {
             rotate_matrix_z(0, p->f20);
             rotate_matrix_x(0, p->f18);
             translate_matrix(0, -self->f4F4.x, -self->f4F4.y, -self->f4F4.z);
-            TObjPlayer::concat_matrix(0, this->m_4f0);
+            concat_matrix((MtxP)(0), (const f32 (*)[4])(this->m_4f0));
             switch (p->f28) {
             case 0:
             case 1:
@@ -269,7 +270,7 @@ Obj_8002E62C *construct_piece_controller__10TObjPlayerFPvii(Obj_8002E62C *self, 
     self->f4F0 = arg2;
     push_matrix();
     set_matrix_identity(0);
-    TObjPlayer::concat_matrix(0, self->f4F0);
+    concat_matrix((MtxP)(0), (const f32 (*)[4])(self->f4F0));
     v = &self->f4F4;
     v->x = lbl_805D822C;
     v->y = lbl_805D822C;

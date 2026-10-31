@@ -976,7 +976,6 @@ extern Vec_802EBBC8 lbl_80473F78;
 extern Vec_802EBBC8 lbl_80473F84;
 void TObjFish__sub_802EBBC8(u8 *arg0, u32 arg1);
 f32 random_ratio__9TObjCharaFv(void *);
-s32 get_random_scaled__9TObjEneDDFv(void *);
 
 s32 TBoss7Tentacle__sub_802F0904(s32);
 void TBoss7Tentacle__sub_802F0AF0(s32);
@@ -1445,7 +1444,7 @@ void TObjFish__sub_802E85E0(u8 *arg0, u32 arg1, s32 arg2) {
                         ((s32 (*)(Vec_802E85E0 *, Vec_802E85E0 *))VecCopy__FP3VecPC3Vec)(&v, &self->target->pos);
                     } else {
                         scale = lbl_805DEA20 * random_ratio__9TObjCharaFv(self);
-                        r = get_random_scaled__9TObjEneDDFv(self);
+                        r = ((TObjEneDD *)self)->get_random_scaled();
                         v.x = scale * sin_table_lookup(r);
                         v.y = lbl_805DEA24;
                         v.z = scale * cos_table_lookup(r);
@@ -2201,7 +2200,7 @@ void handle_tentacle_attack_state__8TObjFishFPvUii(Fish_802E9ADC *o, u32 arg1, s
                     VecCopy__FP3VecPC3Vec((int)&v, o->target + 0x38);
                 } else {
                     f32 r = lbl_805DEA20 * random_ratio__9TObjCharaFv(o);
-                    ang = get_random_scaled__9TObjEneDDFv(o);
+                    ang = ((TObjEneDD *)o)->get_random_scaled();
                     v.x = r * sin_table_lookup(ang);
                     v.y = lbl_805DEA24;
                     v.z = r * cos_table_lookup(ang);
@@ -3935,7 +3934,7 @@ void TBoss7Joint__sub_802EE800(void *);
 
 
 
-s32 reload_stats_keep_hp_tp__9TObjEneDDFv(void *, s32, s32, s32);
+s32 reload_stats_keep_hp_tp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(void *, s32, s32, s32);
 void TBoss7PhotonBullet__sub_802ED5A0(void *arg0, int arg1);
 s32 update_local_colliders_from_world(void *, void *);
 #define VecCopy__FP3VecPC3Vec ((s32 (*)(void *, void *))VecCopy__FP3VecPC3Vec)
@@ -3968,7 +3967,7 @@ void TBoss7PhotonBullet__sub_802ED5A0(void *arg0, int arg1) {
         v = 0x11;
         break;
     }
-    reload_stats_keep_hp_tp__9TObjEneDDFv(arg0, ((s32)get_battle_base_stats(0xF)), ((s32)get_battle_attack_params(v)), ((s32)get_battle_resistance_params(0xF)));
+    reload_stats_keep_hp_tp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(arg0, ((s32)get_battle_base_stats(0xF)), ((s32)get_battle_attack_params(v)), ((s32)get_battle_resistance_params(0xF)));
 }
 
 void TBoss7DeRolLeC::set_state_and_send(s32 arg1) {

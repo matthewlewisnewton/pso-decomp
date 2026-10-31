@@ -280,7 +280,6 @@ struct TObjPlayer : public TObjChara {
     void drain_owner_hp_fraction(f32 farg0);
     void call_callback_1ec(s32 arg1, s32 arg2);
     void copy_wall_polygon(u8 *arg1);
-    static void copy_matrix(u32 arg0, u32 arg1);
     static s32 run_next_key_callback(s32 arg0);
     static s32 sample_next_quaternion_key(s32 arg0);
     void interpolate_motion_key(s32 arg1, s32 *arg2, f32 farg0);
@@ -1159,7 +1158,6 @@ struct TObjPlayer : public TObjChara {
     static void copy_gauge_warn_vec();
     static void free_global_805D6FB8();
     static void alloc_and_init_object_b4();
-    void set_render_rect(s32 arg1, s32 arg2, s32 arg3, s32 arg4);
     void init_record_array(s32 arg1);
     static s32 find_table_index_by_id(u32 arg0);
     static s32 find_record_index(u32 arg0, u32 arg1);
@@ -1260,7 +1258,6 @@ struct TObjPlayer : public TObjChara {
     u16 find_first_valid_target_id();
     void process_all_elements();
     static void invert_matrix_in_place(u32 arg0);
-    static void concat_matrix(u32 arg0, u32 arg1);
     void concat_quaternion_rotation();
     void apply_quat_rotation(f32 farg0);
     static s32 is_gvm_load_ok();
