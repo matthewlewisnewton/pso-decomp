@@ -393,7 +393,7 @@ void TBoss3VoloptP01::update_breakup() {
     case 2:
         break;
     }
-    ((TObjPlayer *)this)->update_collisions();
+    ((TObjCollidable *)this)->update_collisions();
 }
 
 void TBoss3VoloptP01::sub_80043758() {

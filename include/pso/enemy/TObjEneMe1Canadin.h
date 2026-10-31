@@ -1,3 +1,4 @@
+struct NJS_OBJECT;
 #ifndef PSO_ENEMY_TOBJENEME1CANADIN_H
 #define PSO_ENEMY_TOBJENEME1CANADIN_H
 
@@ -101,7 +102,7 @@ void *__dt__17TObjEneMe1CanadinFv(void *arg0, s16 arg1);
 void *__dt__23TObjEneMe1CanadinLeaderFv(void *arg0, s16 arg1);
 void advance_state_5_to_4__17TObjEneMe1CanadinFPv(void *arg0);
 void calc_move_vector__17TObjEneMe1CanadinFiPv(s32 actor, void *arg1);
-void fn_8009BD00(void);
+void fn_8009BD00(NJS_OBJECT *);
 void fn_8009E1D4(u8 *arg0, s32 arg1);
 void fn_8009E2DC(u8 *arg0);
 s32 fn_8009E300(u8 *arg0);
