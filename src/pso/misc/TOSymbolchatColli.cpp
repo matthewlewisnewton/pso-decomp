@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/render/render_util.h"
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
@@ -145,7 +146,7 @@ void TOSymbolchatColli::init_collision_params() {
 
 void TOSymbolchatColli::render() {
     u8 *arg0 = (u8 *)this;
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         NJS_ARGB color;
         color.a = lbl_805DBA2C;
         color.r = lbl_805DBA30;
