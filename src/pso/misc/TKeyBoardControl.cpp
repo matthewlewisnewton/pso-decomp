@@ -340,9 +340,29 @@ void TWindowKeyBoardSoft__sub_80260904(void *self, s32 port) {
     KeyCursor_80260904 *kb = (KeyCursor_80260904 *)self;
     SoftKeyLayout_80260904 *layout = (SoftKeyLayout_80260904 *)TWindowKeyBoardSoft__language_text_resources;
     if (!lbl_805D6458) {
-        for (s32 i = 0; i < 22; ++i) {
-            soft_keyboard_window_and_action_data.active[i] = soft_keyboard_window_and_action_data.initial[i];
-        }
+        // Individual descriptor copies preserve the original expanded initialization.
+        soft_keyboard_window_and_action_data.active[0] = soft_keyboard_window_and_action_data.initial[0];
+        soft_keyboard_window_and_action_data.active[1] = soft_keyboard_window_and_action_data.initial[1];
+        soft_keyboard_window_and_action_data.active[2] = soft_keyboard_window_and_action_data.initial[2];
+        soft_keyboard_window_and_action_data.active[3] = soft_keyboard_window_and_action_data.initial[3];
+        soft_keyboard_window_and_action_data.active[4] = soft_keyboard_window_and_action_data.initial[4];
+        soft_keyboard_window_and_action_data.active[5] = soft_keyboard_window_and_action_data.initial[5];
+        soft_keyboard_window_and_action_data.active[6] = soft_keyboard_window_and_action_data.initial[6];
+        soft_keyboard_window_and_action_data.active[7] = soft_keyboard_window_and_action_data.initial[7];
+        soft_keyboard_window_and_action_data.active[8] = soft_keyboard_window_and_action_data.initial[8];
+        soft_keyboard_window_and_action_data.active[9] = soft_keyboard_window_and_action_data.initial[9];
+        soft_keyboard_window_and_action_data.active[10] = soft_keyboard_window_and_action_data.initial[10];
+        soft_keyboard_window_and_action_data.active[11] = soft_keyboard_window_and_action_data.initial[11];
+        soft_keyboard_window_and_action_data.active[12] = soft_keyboard_window_and_action_data.initial[12];
+        soft_keyboard_window_and_action_data.active[13] = soft_keyboard_window_and_action_data.initial[13];
+        soft_keyboard_window_and_action_data.active[14] = soft_keyboard_window_and_action_data.initial[14];
+        soft_keyboard_window_and_action_data.active[15] = soft_keyboard_window_and_action_data.initial[15];
+        soft_keyboard_window_and_action_data.active[16] = soft_keyboard_window_and_action_data.initial[16];
+        soft_keyboard_window_and_action_data.active[17] = soft_keyboard_window_and_action_data.initial[17];
+        soft_keyboard_window_and_action_data.active[18] = soft_keyboard_window_and_action_data.initial[18];
+        soft_keyboard_window_and_action_data.active[19] = soft_keyboard_window_and_action_data.initial[19];
+        soft_keyboard_window_and_action_data.active[20] = soft_keyboard_window_and_action_data.initial[20];
+        soft_keyboard_window_and_action_data.active[21] = soft_keyboard_window_and_action_data.initial[21];
         lbl_805D6458 = 1;
     }
     if (((s32 (*)(void *, int))TWindowShortListCtrl__check_controller_button)(

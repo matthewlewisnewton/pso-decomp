@@ -32,13 +32,14 @@ controller, character filtering, sound, and child-dispatch paths. The data
 object and child class ownership remain provisional shared interfaces; no
 shared definitions are changed.
 
-The targeted GC/2.6 compile succeeds. Its input dispatcher is 704 bytes against
-1,324 original bytes, with objdiff reporting 40.28%; a loop expresses the
-original expanded copy and this is not an exact-code claim. The previous
+The targeted GC/2.6 compile succeeds. Individual descriptor copies reproduce
+the original expanded initialization more closely than a loop: the dispatcher
+is 1,320 bytes against 1,324 original bytes, with objdiff reporting 57.49%.
+This is not an exact-code claim. The previous
 grid renderer remains 91.09%, and targeted `.rodata` comparison remains 100%.
-The locked two-job rebuild and regression checks passed with no lost exact
-functions, data or linked units. This does not validate runtime behavior of the
-source body, which is still linked from original fallback.
+The earlier loop version passed the locked two-job rebuild and regression
+checks; the expanded version is awaiting its full regression check. Neither
+check validates runtime behavior of the fallback-linked source body.
 
 ## Glyph rendering candidate at 0x802616BC
 
@@ -52,7 +53,7 @@ provisional.
 
 The standalone GC/2.6 compile succeeds. Objdiff reports 81.26% for the new
 body (1,820 original versus 1,864 candidate bytes). The input dispatcher and
-grid frame renderer remain 40.28% and 91.09% respectively. The targeted
+grid frame renderer are 57.49% and 91.09% respectively. The targeted
 `.rodata` comparison is 100%. The locked two-job incremental rebuild and
 `tools/check_pr.py --no-build` passed with no lost exact functions, data or
 linked units (3,536 linked units checked). None of these scores proves exact
