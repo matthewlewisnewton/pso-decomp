@@ -547,11 +547,11 @@ void TOTrapAncient01::play_sounds() {
         {0.0f, 1.0f}, 0, 0, 22
     };
     {
-        f32 x = position.x, y = position.y, z = position.z;
+        f32 x = position.x, z = position.z;
         a.pos[0] = x;
-        a.pos[1] = y;
+        a.pos[1] = position.y;
         a.pos[2] = z;
-        a.floor_and_scale[0] = y;
+        a.floor_and_scale[0] = position.y;
     }
     a.model = get_bml_model((void *)TOTrapAncient01__bml_resource.value, 0);
     a.textures = TObjFish__sub_8001EDB0((void *)TOTrapAncient01__bml_resource.value, 0);
@@ -561,11 +561,11 @@ void TOTrapAncient01::play_sounds() {
         {0.0f, 1.0f}, 0, 0, 22
     };
     {
-        f32 x = position.x, y = position.y, z = position.z;
+        f32 x = position.x, z = position.z;
         b.pos[0] = x;
-        b.pos[1] = y;
+        b.pos[1] = position.y;
         b.pos[2] = z;
-        b.floor_and_scale[0] = y;
+        b.floor_and_scale[0] = position.y;
     }
     b.model = get_bml_model((void *)TOTrapAncient01__bml_resource.value, 1);
     b.textures = TObjFish__sub_8001EDB0((void *)TOTrapAncient01__bml_resource.value, 1);
@@ -575,11 +575,11 @@ void TOTrapAncient01::play_sounds() {
         {0.0f, 1.0f}, 0, 0, 22
     };
     {
-        f32 x = position.x, y = position.y, z = position.z;
+        f32 x = position.x, z = position.z;
         c.pos[0] = x;
-        c.pos[1] = y;
+        c.pos[1] = position.y;
         c.pos[2] = z;
-        c.floor_and_scale[0] = y;
+        c.floor_and_scale[0] = position.y;
     }
     c.model = get_bml_model((void *)TOTrapAncient01__bml_resource.value, 2);
     c.textures = TObjFish__sub_8001EDB0((void *)TOTrapAncient01__bml_resource.value, 2);
