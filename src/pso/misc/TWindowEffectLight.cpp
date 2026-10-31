@@ -1,5 +1,6 @@
 // Reverse definitions plus deferred emission reproduce the native vtable and jump-table order.
 #pragma defer_codegen on
+#pragma readonly_strings on
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/CurrentTextureList.h"
 #include "pso/TWindowEffectLight.h"
@@ -44,8 +45,8 @@ s32 is_window_display_enabled(void);
 void TWindowEffectLight__sub_802AD040(TWindowEffectLight *, f32);
 void begin_screen_draw(s32);
 extern s32 lbl_805D63F0;
-extern s32 lbl_805D3E60;
-extern s32 tl_window;
+extern const char *lbl_805D3E60;
+extern TObject *tl_window;
 void draw_textured_quad_at_depth(f32 *q, f32 depth);
 void set_draw_texture_and_color(s32 idx, s32 arg1);
 
@@ -71,8 +72,8 @@ void *TWindowEffectLight::create(void *arg0, void *arg1, void *arg2) {
     return o;
 }
 
-TWindowEffectLight::TWindowEffectLight(void *arg1, s16 arg2, u32 id) : TObject((TObject *)tl_window) {
-    m_name = (const char *)lbl_805D3E60;
+TWindowEffectLight::TWindowEffectLight(void *arg1, s16 arg2, u32 id) : TObject(tl_window) {
+    m_name = lbl_805D3E60;
     copy_vec2__28TWindowSubSymbolChatPartsSetFPv(&x, arg1);
     adjust_pos_for_split_screen__19TWindowKeyBoardSoftFl(&x, TCameraCtrl::get_split_screen_view_index(id));
     effect_kind = arg2;
@@ -236,3 +237,5 @@ extern const f32 lbl_805DE128 = 39.0f;
 extern const f32 lbl_805DE12C = 77.0f;
 extern const f32 lbl_805DE130 = 191.0f;
 }
+
+extern "C" { const char *lbl_805D3E60 = "TWindowEffectLight"; }
