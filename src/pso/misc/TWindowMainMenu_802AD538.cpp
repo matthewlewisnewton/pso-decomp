@@ -456,7 +456,7 @@ loop_1:
 
 void get_row_position__15TWindowMainMenuFiPvi(s32 arg0, void *arg1, s32 arg2) {
     *(f32 *)((s8 *)arg1 + 0) = (f32) 0.0f;
-    *(f32 *)((s8 *)arg1 + 4) = (f32) (lbl_805DE150 * (f32) arg2);
+    *(f32 *)((s8 *)arg1 + 4) = (f32) (16.0f * (f32) arg2);
 }
 
 s32 is_not_split_screen__15TWindowMainMenuFv(void *) {
@@ -513,7 +513,7 @@ void TWindowMainMenu::set_target_y(f32 farg0) {
 
 void TWindowMainMenu::update_scaled_position() {
     s32 arg0 = (s32)this;
-    set_target_y(lbl_805DE150 * (f32) ((s32 (*)())count_active_items__15TWindowMainMenuFi)());
+    set_target_y(16.0f * (f32) ((s32 (*)())count_active_items__15TWindowMainMenuFi)());
 }
 
 void TWindowMainMenu::draw_entries_reversed(u8 *arg1) {
