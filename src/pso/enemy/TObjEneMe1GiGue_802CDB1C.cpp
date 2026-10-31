@@ -1,3 +1,5 @@
+#include "pso/unk/text_800870BC.h"
+#include "pso/misc/ParticleFactory.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/enemy/TUnk_804E14E8.h"
 #include "pso/enemy/TObjEneMe1GiGue.h"
@@ -10,7 +12,6 @@
 
 extern "C" {
 f32 atan2_float(f32 y, f32 x);
-void *spawn_particle_effect_with_rotation(void *, void *, s32, int);
 void *find_entity_by_id(u16);
 void *find_active_entity_by_id(u16);
 void matrix_mult_vec(s32, Vec *, Vec *);
@@ -18,7 +19,6 @@ void rotate_matrix_y(s32, s32);
 void rotate_matrix_x(s32, s32);
 void push_matrix_from(void *);
 void pop_matrix();
-void *spawn_particle_effect(void *, s32);
 void vec3_add_to(void *, void *);
 void subtract_vector(void *, void *);
 extern Vec lbl_804722A8;

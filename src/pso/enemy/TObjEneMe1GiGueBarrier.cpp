@@ -1,4 +1,6 @@
 #include "types.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/enemy/TObjEneMe1GiGueBarrier.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/unk/text_803D96A8.h"
@@ -48,9 +50,7 @@ struct VObj_18_ca64a0 : VBase_18_ca64a0 {
 
 extern "C" {
 void *__nw__7TObjectFUl(int);
-s32 play_sound_effect(int, void *, int, int);
 u16 get_entity_id(void *);
-s32 set_field_d8__10TObjMotionFl(void *, void *, int);
 extern RecoveredGlobal_80325BCC_lbl_804ECD40 TObjEneMe1GiGueBarrier__animation_definitions;
 extern s32 __vt__22TObjEneMe1GiGueBarrier[];
 extern const char *lbl_805D4198;
@@ -82,7 +82,7 @@ block_6:
             push_matrix();
             post_translate_matrix((u8 *)&this->position);
             rotate_matrix_y(0, this->rotation_y);
-            TObjFish::set_global_param(this->texlist);
+            set_current_texture_list((GinjaTextureList *)this->texlist);
             TParticleCtrl::end_effect_render();
             ((TObjMotion *)arg0)->draw();
             pop_matrix();
@@ -108,9 +108,9 @@ void TObjEneMe1GiGueBarrier::run_task() {
             this->m_104 = 1;
             this->requested_action = 1;
             if (get_current_floor_area() == AREA_TOWER) {
-                play_sound_effect(0x4003A316, (u8 *)&this->position, 0, 0);
+                play_sound_effect(0x4003A316, &this->position, 0, 0);
             } else {
-                play_sound_effect(0x3A346, (u8 *)&this->position, 0, 0);
+                play_sound_effect(0x3A346, &this->position, 0, 0);
             }
         }
         break;
@@ -150,8 +150,8 @@ u8 *TObjEneMe1GiGueBarrier__ct(TObjEneMe1GiGueBarrier *ene_me1_gi_gue_barrier, s
     *(s32 *)((s8 *)ene_me1_gi_gue_barrier + 0x34) = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)(*(u8 * *)&TObjEneMe1GiGueBarrier__barrier_resource_object) + 0x42C)) + 0x28);
     temp_r5 = (u8 *)(*(u8 **)((s8 *)(*(u8 * *)&TObjEneMe1GiGueBarrier__barrier_resource_object) + 0x42C));
     ene_me1_gi_gue_barrier->texlist = (s32) *(s32 *)((s8 *)temp_r5 + 0x2C);
-    set_field_d8__10TObjMotionFl((void *)ene_me1_gi_gue_barrier, &TObjEneMe1GiGueBarrier__animation_definitions.value, (int)temp_r5);
-    ((TObjMotion *)ene_me1_gi_gue_barrier)->set_field_dc((int) (*(s32 *)((s8 *)(*(u8 * *)&TObjEneMe1GiGueBarrier__barrier_resource_object) + 0x430)));
+    ene_me1_gi_gue_barrier->set_action_table((TObjMotionAction *)&TObjEneMe1GiGueBarrier__animation_definitions.value);
+    ((TObjMotion *)ene_me1_gi_gue_barrier)->set_motion_list((BmlMotionEntry *)(*(s32 *)((s8 *)(*(u8 * *)&TObjEneMe1GiGueBarrier__barrier_resource_object) + 0x430)));
     ene_me1_gi_gue_barrier->requested_action = 0;
     ((TObjMotion *)ene_me1_gi_gue_barrier)->set_animation((ene_me1_gi_gue_barrier->requested_action));
     ((TObjMotion *)ene_me1_gi_gue_barrier)->set_field_b8(ene_me1_gi_gue_barrier->requested_action);
