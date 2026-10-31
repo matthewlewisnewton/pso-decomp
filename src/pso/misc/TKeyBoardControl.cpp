@@ -61,7 +61,9 @@ typedef char SoftKeyActionData_size_80260904[sizeof(SoftKeyActionData_80260904) 
 
 extern "C" {
 extern SoftKeyActionData_80260904 soft_keyboard_window_and_action_data;
-extern s8 lbl_805D6458;
+// Only the first byte is referenced; the remaining bytes are unclassified.
+struct SoftKeyInitStorage_80260904 { s8 initialized; u8 reserved[7]; };
+SoftKeyInitStorage_80260904 lbl_805D6458;
 s32 get_chat_shortcut(s32);
 s32 set_input_mode__20TWindowSubStatusDispFUc(s32, s32);
 s32 TWindowShortListCtrl__check_controller_button(void *, int, int);
@@ -339,7 +341,7 @@ struct KeyCursor_80260904 {
 void TWindowKeyBoardSoft__sub_80260904(void *self, s32 port) {
     KeyCursor_80260904 *kb = (KeyCursor_80260904 *)self;
     SoftKeyLayout_80260904 *layout = (SoftKeyLayout_80260904 *)TWindowKeyBoardSoft__language_text_resources;
-    if (!lbl_805D6458) {
+    if (!lbl_805D6458.initialized) {
         // Individual descriptor copies preserve the original expanded initialization.
         soft_keyboard_window_and_action_data.active[0] = soft_keyboard_window_and_action_data.initial[0];
         soft_keyboard_window_and_action_data.active[1] = soft_keyboard_window_and_action_data.initial[1];
@@ -363,7 +365,7 @@ void TWindowKeyBoardSoft__sub_80260904(void *self, s32 port) {
         soft_keyboard_window_and_action_data.active[19] = soft_keyboard_window_and_action_data.initial[19];
         soft_keyboard_window_and_action_data.active[20] = soft_keyboard_window_and_action_data.initial[20];
         soft_keyboard_window_and_action_data.active[21] = soft_keyboard_window_and_action_data.initial[21];
-        lbl_805D6458 = 1;
+        lbl_805D6458.initialized = 1;
     }
     if (((s32 (*)(void *, int))TWindowShortListCtrl__check_controller_button)(
             (u8 *)&controller_input_state.value + port * 0x50 + 0x20, 4) == 0 || kb->child == NULL) {

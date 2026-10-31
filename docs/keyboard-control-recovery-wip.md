@@ -60,3 +60,32 @@ grid frame renderer are 57.49% and 95.51% respectively. The targeted
 linked units (3,536 linked units checked), including after the pointer-typed
 cursor helper change. None of these scores proves exact code, relocations or
 runtime semantics; the DOL still uses the original unit.
+
+## Data ownership audit
+
+The original split marks `0x805D6458..0x805D6460` as automatic `.sbss`.
+Only `0x80260904` references it: a one-byte read and write guard the action
+table initialization. The source now defines the eight-byte split symbol,
+with only its first byte named; the other seven bytes remain reserved and
+unclassified. The targeted object emits an eight-byte `.sbss` symbol with no
+change in the dispatcher comparison. The split and full regression check are
+pending.
+
+The action object at `0x804CFDE0..0x804D0004` is currently automatic data.
+Its first 20 bytes are also passed as the window descriptor by the neighboring
+constructor at `0x80262740` in `TWindowKeyBoardSoft_80261440.cpp`; the same
+object contains the 22 initial and 22 runtime member-action descriptors used
+by `0x80260904`. Its shared descriptor and action storage should be assigned as
+one object only after the constructor owner and integration coordinator agree
+on the split and C++ declaration.
+
+The icon position, size and UV tables at `0x8044F164..0x8044F258` have no
+original references outside this unit. The adjacent key-offset and frame-UV
+tables at `0x8044F124..0x8044F164` likewise have only this unit as an original
+code consumer. A targeted definition emitted the data in the observed order,
+but the object's eight-byte `.rodata` alignment inserted four extra bytes before
+the existing double constant: the inferred start `0x8044F124` is only four-byte
+aligned. The preceding `TWindowKeyBoardSoft` type name at `0x8044F110` is used
+via an external type-name pointer and may be part of the same original object.
+The safe next step is a boundary/emission investigation with the constructor
+owner; merely adding the tables to this split would displace matched data.
