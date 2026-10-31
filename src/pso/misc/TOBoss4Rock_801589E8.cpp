@@ -45,38 +45,33 @@ s32 rand();
 extern s32 lbl_805D58A8;
 
 #pragma push
-#pragma dont_inline off
-#pragma auto_inline off
-#pragma inline_depth(2)
-inline void respawn_801589E8(Rock_801589E8 *self, s32 i) {
-    f32 r = (4.0f) * ((3.0517578e-05f) * (f32)rand());
-    f32 base;
-    self->models[i] = get_bml_model(lbl_805D58A8, (s32)r);
-    self->params[i] = TObjFish__sub_8001EDB0(lbl_805D58A8, (s32)r);
-    self->positions[i].x = self->spread * ((3.0517578e-05f) * (f32)rand());
-    self->positions[i].y = (0.0f);
-    self->positions[i].z = self->spread * ((3.0517578e-05f) * (f32)rand());
-    base = (0.5f) * self->f6c;
-    self->speeds[i] = base * ((3.0517578e-05f) * (f32)rand()) + base;
-    self->rots[i].x = (s32)((65535.0f) * ((3.0517578e-05f) * (f32)rand()));
-    self->rots[i].y = (s32)((65535.0f) * ((3.0517578e-05f) * (f32)rand()));
-    self->rots[i].z = (s32)((65535.0f) * ((3.0517578e-05f) * (f32)rand()));
-    self->rotspd[i].x = (s32)((4096.0f) * ((3.0517578e-05f) * (f32)rand()));
-    self->rotspd[i].y = (s32)((4096.0f) * ((3.0517578e-05f) * (f32)rand()));
-    self->rotspd[i].z = (s32)((4096.0f) * ((3.0517578e-05f) * (f32)rand()));
-}
-
 void TOBoss4Rock::run_task() {
     Rock_801589E8 *self = (Rock_801589E8 *)this;
     s32 i;
 
+    // Keep the integer index local and the explicit call-site casts: CodeWarrior
+    // otherwise reverses the argument/save register copies at 0x80158AD8.
     for (i = 0; i < self->count; i++) {
         self->rots[i].x += self->rotspd[i].x;
         self->rots[i].y += self->rotspd[i].y;
         self->rots[i].z += self->rotspd[i].z;
         self->positions[i].y += self->speeds[i];
         if (*(const f32 *)&lbl_805DB310 < self->positions[i].y) {
-            respawn_801589E8(self, i);
+            s32 model_index = (s32)((4.0f) * ((3.0517578e-05f) * (f32)rand()));
+            f32 base;
+            self->models[i] = get_bml_model(lbl_805D58A8, (s32)model_index);
+            self->params[i] = TObjFish__sub_8001EDB0(lbl_805D58A8, (s32)model_index);
+            self->positions[i].x = self->spread * ((3.0517578e-05f) * (f32)rand());
+            self->positions[i].y = (0.0f);
+            self->positions[i].z = self->spread * ((3.0517578e-05f) * (f32)rand());
+            base = (0.5f) * self->f6c;
+            self->speeds[i] = base * ((3.0517578e-05f) * (f32)rand()) + base;
+            self->rots[i].x = (s32)((65535.0f) * ((3.0517578e-05f) * (f32)rand()));
+            self->rots[i].y = (s32)((65535.0f) * ((3.0517578e-05f) * (f32)rand()));
+            self->rots[i].z = (s32)((65535.0f) * ((3.0517578e-05f) * (f32)rand()));
+            self->rotspd[i].x = (s32)((4096.0f) * ((3.0517578e-05f) * (f32)rand()));
+            self->rotspd[i].y = (s32)((4096.0f) * ((3.0517578e-05f) * (f32)rand()));
+            self->rotspd[i].z = (s32)((4096.0f) * ((3.0517578e-05f) * (f32)rand()));
         }
     }
 }
@@ -201,34 +196,6 @@ void TOBoss4__ct(void *, void *);
 extern s32 lbl_805D2EBC;
 
 #pragma push
-#pragma dont_inline off
-#pragma auto_inline off
-#pragma inline_depth(4)
-inline s32 irand_80158FB4(f32 scale) {
-    return (s32)(scale * ((3.0517578e-05f) * (f32)rand()));
-}
-
-inline void set_model_80158FB4(Rock_80158FB4 *self, s32 i, s32 k) {
-    self->models[i] = get_bml_model(lbl_805D58A8, k);
-    self->params[i] = TObjFish__sub_8001EDB0(lbl_805D58A8, k);
-}
-
-inline void respawn_80158FB4(Rock_80158FB4 *self, s32 i) {
-    f32 base;
-    set_model_80158FB4(self, i, irand_80158FB4((4.0f)));
-    self->positions[i].x = self->spread * ((3.0517578e-05f) * (f32)rand());
-    self->positions[i].y = (0.0f);
-    self->positions[i].z = self->spread * ((3.0517578e-05f) * (f32)rand());
-    base = (0.5f) * self->f6c;
-    self->speeds[i] = base * ((3.0517578e-05f) * (f32)rand()) + base;
-    self->rots[i].x = (s32)((65535.0f) * ((3.0517578e-05f) * (f32)rand()));
-    self->rots[i].y = (s32)((65535.0f) * ((3.0517578e-05f) * (f32)rand()));
-    self->rots[i].z = (s32)((65535.0f) * ((3.0517578e-05f) * (f32)rand()));
-    self->rotspd[i].x = (s32)((4096.0f) * ((3.0517578e-05f) * (f32)rand()));
-    self->rotspd[i].y = (s32)((4096.0f) * ((3.0517578e-05f) * (f32)rand()));
-    self->rotspd[i].z = (s32)((4096.0f) * ((3.0517578e-05f) * (f32)rand()));
-}
-
 #define arg0 ((u8 *)arg0_)
 #define self ((Rock_80158FB4 *)arg0_)
 void *TOBoss4Rock__ct(void *arg0_, void *arg1) {
@@ -257,8 +224,23 @@ void *TOBoss4Rock__ct(void *arg0_, void *arg1) {
     self->speeds = (f32 *)mem_alloc(self->count * 4);
     self->rots = (Rot_80158FB4 *)mem_alloc(self->count * 0xC);
     self->rotspd = (Rot_80158FB4 *)mem_alloc(self->count * 0xC);
+    // As in run_task, the local integer index preserves the native call sequence.
     for (i = 0; i < self->count; i++) {
-        respawn_80158FB4(self, i);
+        s32 model_index = (s32)((4.0f) * ((3.0517578e-05f) * (f32)rand()));
+        f32 base;
+        self->models[i] = get_bml_model(lbl_805D58A8, (s32)model_index);
+        self->params[i] = TObjFish__sub_8001EDB0(lbl_805D58A8, (s32)model_index);
+        self->positions[i].x = self->spread * ((3.0517578e-05f) * (f32)rand());
+        self->positions[i].y = (0.0f);
+        self->positions[i].z = self->spread * ((3.0517578e-05f) * (f32)rand());
+        base = (0.5f) * self->f6c;
+        self->speeds[i] = base * ((3.0517578e-05f) * (f32)rand()) + base;
+        self->rots[i].x = (s32)((65535.0f) * ((3.0517578e-05f) * (f32)rand()));
+        self->rots[i].y = (s32)((65535.0f) * ((3.0517578e-05f) * (f32)rand()));
+        self->rots[i].z = (s32)((65535.0f) * ((3.0517578e-05f) * (f32)rand()));
+        self->rotspd[i].x = (s32)((4096.0f) * ((3.0517578e-05f) * (f32)rand()));
+        self->rotspd[i].y = (s32)((4096.0f) * ((3.0517578e-05f) * (f32)rand()));
+        self->rotspd[i].z = (s32)((4096.0f) * ((3.0517578e-05f) * (f32)rand()));
     }
     return arg0;
 }
