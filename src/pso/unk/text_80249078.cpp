@@ -9,7 +9,7 @@ void TWindowChoiceSetting::sub_80249078() {
     u32 steps;
 
     if (this->m_80 & 1) {
-        steps = this->get_array_entry(this->get_field_74());
+        steps = (s32)this->get_array_entry(this->get_field_74());
         target = *(f32 *)(steps + 0xC);
     } else {
         target = 0.0f;

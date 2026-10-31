@@ -26,7 +26,7 @@ TWindowLoadItemTexture *fn_802628C0(void *layout, void *table, void *id) {
         window = (TWindowLoadItemTexture *)TWindowLoadItemTexture__ct(window, layout, table, id);
     }
     fn_80262C2C(window);
-    sprite = window->get_array_entry(0);
+    sprite = (s32)window->get_array_entry(0);
     *(f32 *)(sprite + 0x8) = 0.5f * window->m_38 - 32.0f - 4.0f;
     *(f32 *)(sprite + 0xC) = 0.5f * *(f32 *)window->unk_3C - 32.0f - 1e+01f;
     *(f32 *)(sprite + 0x10) = 64.0f;
