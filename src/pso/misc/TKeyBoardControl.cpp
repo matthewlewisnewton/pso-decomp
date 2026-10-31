@@ -109,7 +109,7 @@ struct Lines_80261DD8 {
 
 s32 draw_default_entry__9TWindowDDFl();
 int update_keyboard_close_mode(void*);
-void calc_cursor_step__19TWindowKeyBoardSoftFiPvPv(s32 arg0, s32 *arg1, s32 *arg2);
+void calc_cursor_step__19TWindowKeyBoardSoftFiPvPv(TWindowKeyBoardSoft *arg0, s32 *arg1, s32 *arg2);
 f32 calc_key_x__19TWindowKeyBoardSoftFiii(s32 arg0, s32 arg1, s32 arg2);
 s32 calc_key_index__19TWindowKeyBoardSoftFiii(s32 arg1, s32 arg2, s32 arg3);
 f32 TWindowKeyBoardSoft__sub_802606E0(TWindowKeyBoardSoft *);
@@ -158,7 +158,7 @@ extern UV_80262038 keyboard_key_frame_uv_table[];
 extern const f32 TWindowKeyBoardSoft__data_805DD090;
 extern const f32 lbl_805DD0C8;
 
-void calc_cursor_step__19TWindowKeyBoardSoftFiPvPv(s32 arg0, s32 *arg1, s32 *arg2) {
+void calc_cursor_step__19TWindowKeyBoardSoftFiPvPv(TWindowKeyBoardSoft *arg0, s32 *arg1, s32 *arg2) {
     switch (current_language) {
     case LANGUAGE_JAPANESE:
         if ((get_flag_bit5__19TWindowKeyBoardSoftFv() != 0) || (((TWindowKeyBoardSoft *)arg0)->get_flag_bit6() != 0) || (((TWindowKeyBoardSoft *)arg0)->is_cursor_locked() != 0)) {
@@ -536,7 +536,7 @@ void TWindowKeyBoardSoft::handle_page_cycle_input(s32 arg1) {
     temp_r30 = (u8 *)&controller_input_state.value + (arg1 * 0x50) + 0x20;
     if (((s32 (*)(int, int))TWindowShortListCtrl__check_controller_button)((int)temp_r30, 0x30000) != 0) {
         play_sound_effect(0x54100, 0, 0, 0);
-        calc_cursor_step__19TWindowKeyBoardSoftFiPvPv((s32)this, &spC, &sp8);
+        calc_cursor_step__19TWindowKeyBoardSoftFiPvPv(this, &spC, &sp8);
         if (((s32 (*)(int, int))TWindowShortListCtrl__check_controller_button)((int)temp_r30, 0x10000) != 0) {
             *(f32 *)((s8 *)((u8 *)this) + 0x68) = (f32) TWindowKeyBoardSoft__data_805DD088;
             *(u8 *)((s8 *)((u8 *)this) + 0x64) = (u8) (*(u8 *)((s8 *)((u8 *)this) + 0x64) + 1);
@@ -708,7 +708,7 @@ s32 TWindowKeyBoardSoft__sub_802616BC(void *self, int context) {
     set_draw_texture_and_color(3, 0xFF999999);
     f32 x = TWindowKeyBoardSoft__sub_802606E0(kb);
     s32 min_page, max_page;
-    calc_cursor_step__19TWindowKeyBoardSoftFiPvPv((s32)self, &min_page, &max_page);
+    calc_cursor_step__19TWindowKeyBoardSoftFiPvPv((TWindowKeyBoardSoft *)self, &min_page, &max_page);
     for (s32 page = 0; page < layout->page_count; ++page) {
         u32 color;
         if (page == *(s8 *)((u8 *)self + 0x64)) color = 0xFF000000;
@@ -865,9 +865,10 @@ void TWindowKeyBoardSoft::draw_key_frame(void *self, f32 *rect, u32 color, s32 i
 // Draw the key grid followed by the language-page selector. The input object
 // layout at 0x64/0x68 remains a bounded view, pending its owning type.
 s32 TWindowKeyBoardSoft__sub_8026227C(TWindowKeyBoardSoft *self, TWindowKeyBoardSoft *ctx) {
+    s32 selected;
     u8 *resources = TWindowKeyBoardSoft__language_text_resources;
     f32 scale = TWindowKeyBoardSoft__data_805DD098 / ctx->depth;
-    s32 selected = self->sub_802605DC();
+    selected = self->sub_802605DC();
     s32 count;
     u32 color;
     s32 min_page, max_page;
@@ -890,7 +891,7 @@ s32 TWindowKeyBoardSoft__sub_8026227C(TWindowKeyBoardSoft *self, TWindowKeyBoard
         }
     }
     x = TWindowKeyBoardSoft__sub_802606E0(self);
-    calc_cursor_step__19TWindowKeyBoardSoftFiPvPv((s32)self, &min_page, &max_page);
+    calc_cursor_step__19TWindowKeyBoardSoftFiPvPv(self, &min_page, &max_page);
     for (s32 page = 0; page < resources[0]; page++) {
         if (page == *(s8 *)((u8 *)self + 0x64)) { color = 0xFFFFFFFF; frame = 2; }
         else {
