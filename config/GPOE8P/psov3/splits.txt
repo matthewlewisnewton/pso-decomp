@@ -8646,8 +8646,9 @@ pso/misc/TWindowKeyBoardHard_8026038C.cpp:
 
 pso/misc/TKeyBoardControl.cpp:
 	.text       start:0x80260450 end:0x8026262C
-	.rodata     start:0x8044F258 end:0x8044F260
-	.sbss       start:0x805D6458 end:0x805D6460
+	.rodata     start:0x8044F110 end:0x8044F268
+	.data       start:0x804CFDE0 end:0x804D0004
+	.sbss       start:0x805D6458 end:0x805D6459
 	.sdata2     start:0x805DD078 end:0x805DD0C8
 
 pso/misc/TWindowKeyBoardSoft_80261440.cpp:

@@ -4,6 +4,7 @@
 #include "pso/misc/TWindowSubMag_802627D8.h"
 #include "pso/misc/TWindowSubStatusDisp_803DEE6C.h"
 #include "pso/misc/TWindowKeyBoardSoft.h"
+#include "pso/misc/SoftKeyboardWindowDescriptor.h"
 #include "pso/misc/TWindowKeyBoardSoft_8025B85C.h"
 #include "pso/misc/TWindowChoiceSetting.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC.h"
@@ -46,36 +47,23 @@ struct RecoveredFields_8026088C_arg0 {
 };
 
 typedef void (TWindowKeyBoardSoft::*SoftKeyAction)();
-struct SoftKeyActionData_80260904 {
-    u8 window_descriptor[0x14];
-    SoftKeyAction initial[22];
-    SoftKeyAction active[22];
-};
 struct SoftKeyLayout_80260904 {
     u8 page_count;
     u8 page_width;
     u8 pad[2];
     const u16 **pages;
 };
-typedef char SoftKeyActionData_size_80260904[sizeof(SoftKeyActionData_80260904) == 0x224 ? 1 : -1];
 
 extern "C" {
-extern SoftKeyActionData_80260904 soft_keyboard_window_and_action_data;
-// Only the first byte is referenced; the remaining bytes are unclassified.
-struct SoftKeyInitStorage_80260904 { s8 initialized; u8 reserved[7]; };
-SoftKeyInitStorage_80260904 lbl_805D6458;
+SoftKeyboardWindowDescriptor soft_keyboard_window_and_action_data = {
+    { 307.0f, 161.0f }, 50040.0f, NULL, 0x803
+};
 s32 get_chat_shortcut(s32);
 s32 set_input_mode__20TWindowSubStatusDispFUc(s32, s32);
 s32 TWindowShortListCtrl__check_controller_button(void *, int);
 struct RecoveredGlobal_80260808_lbl_8050E208 {
     s32 value;
     u8 remaining[0x1AC];
-};
-
-struct RecoveredGlobal_8026062C_TWindowKeyBoardSoft__data_8044F124
-{
-  s32 value;
-  u8 remaining[0x10];
 };
 
 struct RecoveredGlobal_8026062C_TWindowKeyBoardSoft__data_804CB7C8
@@ -86,11 +74,7 @@ struct RecoveredGlobal_8026062C_TWindowKeyBoardSoft__data_804CB7C8
 
 struct Win_802605DC { u8 p0[0x65]; s8 f65; s8 f66; };
 
-typedef struct RecoveredGlobal_8026062C_TWindowKeyBoardSoft__data_8044F124 RecoveredGlobal_8026062C_TWindowKeyBoardSoft__data_8044F124;
-
 typedef struct RecoveredGlobal_8026062C_TWindowKeyBoardSoft__data_804CB7C8 RecoveredGlobal_8026062C_TWindowKeyBoardSoft__data_804CB7C8;
-
-typedef char RecoveredGlobal_8026062C_TWindowKeyBoardSoft__data_8044F124_size[((sizeof(RecoveredGlobal_8026062C_TWindowKeyBoardSoft__data_8044F124)) == 0x14) ? (1) : (-1)];
 
 typedef char RecoveredGlobal_8026062C_TWindowKeyBoardSoft__data_804CB7C8_size[((sizeof(RecoveredGlobal_8026062C_TWindowKeyBoardSoft__data_804CB7C8)) == 0x70) ? (1) : (-1)];
 
@@ -118,7 +102,15 @@ f32 TWindowKeyBoardSoft__sub_802606E0(TWindowKeyBoardSoft *);
 void TWindowKeyBoardSoft__sub_80260760(void *self, s32 key, s32 *count, u32 *color);
 void TWindowKeyBoardSoft__sub_80260E30(void *self, s32 port);
 void TWindowKeyBoardSoft__sub_80261134(void *self);
-extern u8 lbl_8044F138[];
+// Soft-keyboard geometry and navigation offsets. Original references to these
+// tables are confined to this unit; their order matches the observed data range.
+extern const char keyboard_soft_type_name[] = "TWindowKeyBoardSoft";
+extern const s8 TWindowKeyBoardSoft__data_8044F124[20] = {
+    0, 0, 0, -1, 0, -1, -2, -3, 0, -1, -2, -3, -4, -5, -6, -7, -8, -9, 0, 0
+};
+extern const u8 lbl_8044F138[20] = {
+    0, 0, 1, 0, 3, 2, 1, 0, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 0, 0
+};
 void TKeyBoardControl__sub_802613A4(TKeyBoardControl *arg0);
 f32 TWindowKeyBoardSoft__sub_802614DC(u8 *, u8 *, f32, f32, f32, f32);
 s32 TWindowKeyBoardSoft__sub_802616BC(void *, int);
@@ -131,7 +123,21 @@ u8 calc_gauge_scale__20TWindowSubStatusDispFPvPvi(s32, void *, s32);
 void set_glyph_quad_extents(u8, void *);
 extern const f32 lbl_805DD09C, lbl_805DD0A0, lbl_805DD0A4, lbl_805DD0A8;
 extern const f32 lbl_805DD0AC, lbl_805DD0B0;
-extern const f32 lbl_8044F164[][2], lbl_8044F1B4[][2], lbl_8044F204[][2];
+extern const UV_80262038 keyboard_key_frame_uv_table[3] = {
+    { 185.0f, 0.0f }, { 185.0f, 119.0f }, { 185.0f, 141.0f }
+};
+extern const f32 lbl_8044F164[10][2] = {
+    { 0, 6 }, { 12, 6 }, { 0, 5 }, { 0, 0 }, { 14, 0 },
+    { 2, 6 }, { 0, 1 }, { 0, 2 }, { 0, 3 }, { 0, 4 }
+};
+extern const f32 lbl_8044F1B4[10][2] = {
+    { 37, 18 }, { 37, 18 }, { 37, 18 }, { 37, 18 }, { 37, 18 },
+    { 66, 18 }, { 18, 18 }, { 18, 18 }, { 18, 18 }, { 18, 18 }
+};
+extern const f32 lbl_8044F204[21] = {
+    62, 0, 62, 18, 62, 36, 62, 54, 62, 72, 62, 108,
+    107, 0, 107, 18, 107, 36, 107, 54, 0
+};
 void TWindowKeyBoardSoft__sub_80261DD8(TWindowKeyBoardSoft *, TWindowKeyBoardSoft *);
 s32 TWindowKeyBoardSoft__sub_8026227C(TWindowKeyBoardSoft *, TWindowKeyBoardSoft *);
 s32 get_player__20TWindowSubStatusDispFv();
@@ -142,7 +148,6 @@ extern const f32 lbl_805DD0CC;
 extern const f32 lbl_805DD0D0;
 s32 get_flag_bit5__19TWindowKeyBoardSoftFv();
 
-extern RecoveredGlobal_8026062C_TWindowKeyBoardSoft__data_8044F124 TWindowKeyBoardSoft__data_8044F124;
 extern RecoveredGlobal_8026062C_TWindowKeyBoardSoft__data_804CB7C8 TWindowKeyBoardSoft__data_804CB7C8;
 extern u8 *TWindowKeyBoardSoft__language_text_resources;
 extern const f32 TWindowKeyBoardSoft__data_805DD078;
@@ -156,7 +161,6 @@ extern const f32 lbl_805DD084;
 extern const f32 lbl_805DD08C;
 void apply_context_transform_to_rect(void *, void *);
 void draw_color_lines(Lines_80261DD8 *l, s32 n, s32 flags, f32 scale);
-extern UV_80262038 keyboard_key_frame_uv_table[];
 extern const f32 TWindowKeyBoardSoft__data_805DD090;
 extern const f32 lbl_805DD0C8;
 
@@ -208,7 +212,7 @@ void calc_cursor_step__19TWindowKeyBoardSoftFiPvPv(TWindowKeyBoardSoft *arg0, s3
 #pragma fp_contract on
 s32 TWindowKeyBoardSoft::sub_802605DC() {
     s32 idx = calc_key_index__19TWindowKeyBoardSoftFiii((s32)(((Win_802605DC *)this)), (s32)(((Win_802605DC *)this)->f65), (s32)(((Win_802605DC *)this)->f66));
-    return idx + ((s8 *)&TWindowKeyBoardSoft__data_8044F124)[((u8 *)&TWindowKeyBoardSoft__data_804CB7C8)[idx]];
+    return idx + ((s8 *)TWindowKeyBoardSoft__data_8044F124)[((u8 *)&TWindowKeyBoardSoft__data_804CB7C8)[idx]];
 }
 #pragma pop
 
@@ -220,7 +224,7 @@ f32 calc_key_x__19TWindowKeyBoardSoftFiii(s32 arg0, s32 arg1, s32 arg2) {
   s32 temp_r31;
   s32 temp_r3;
   temp_r3 = calc_key_index__19TWindowKeyBoardSoftFiii(arg0, arg1, arg2);
-  temp_r31 = arg1 + ((s8) (*((u8 *) (((s8 *) (((u8 *)&TWindowKeyBoardSoft__data_8044F124.value) + (*((u8 *) (((s8 *) (((u8 *)&TWindowKeyBoardSoft__data_804CB7C8.value) + temp_r3)) + 0))))) + 0))));
+  temp_r31 = arg1 + ((s8) (*((u8 *) (((s8 *) (((u8 *)TWindowKeyBoardSoft__data_8044F124) + (*((u8 *) (((s8 *) (((u8 *)&TWindowKeyBoardSoft__data_804CB7C8.value) + temp_r3)) + 0))))) + 0))));
   TWindowKeyBoardSoft__sub_80260760((void *) arg0, (int) temp_r3, &sp8, NULL);
   new_var = TWindowKeyBoardSoft::calc_key_coord(arg0, sp8);
   return TWindowKeyBoardSoft__data_805DD078 + ((TWindowKeyBoardSoft__data_805DD07C * ((f32) temp_r31)) + (TWindowKeyBoardSoft__data_805DD080 * new_var));
@@ -335,38 +339,34 @@ struct KeyCursor_80260904 {
     TWindowKeyBoardSoft *child;
 };
 
-// The original initializes the 22 member-function actions once by copying
-// their descriptors from the adjacent keyboard data object. The object and
-// its owner remain external; this view records only the observed boundaries.
+// CodeWarrior initializes the member-action table once from its descriptors.
 void TWindowKeyBoardSoft__sub_80260904(void *self, s32 port) {
     KeyCursor_80260904 *kb = (KeyCursor_80260904 *)self;
     SoftKeyLayout_80260904 *layout = (SoftKeyLayout_80260904 *)TWindowKeyBoardSoft__language_text_resources;
-    if (!lbl_805D6458.initialized) {
-        // Individual descriptor copies preserve the original expanded initialization.
-        soft_keyboard_window_and_action_data.active[0] = soft_keyboard_window_and_action_data.initial[0];
-        soft_keyboard_window_and_action_data.active[1] = soft_keyboard_window_and_action_data.initial[1];
-        soft_keyboard_window_and_action_data.active[2] = soft_keyboard_window_and_action_data.initial[2];
-        soft_keyboard_window_and_action_data.active[3] = soft_keyboard_window_and_action_data.initial[3];
-        soft_keyboard_window_and_action_data.active[4] = soft_keyboard_window_and_action_data.initial[4];
-        soft_keyboard_window_and_action_data.active[5] = soft_keyboard_window_and_action_data.initial[5];
-        soft_keyboard_window_and_action_data.active[6] = soft_keyboard_window_and_action_data.initial[6];
-        soft_keyboard_window_and_action_data.active[7] = soft_keyboard_window_and_action_data.initial[7];
-        soft_keyboard_window_and_action_data.active[8] = soft_keyboard_window_and_action_data.initial[8];
-        soft_keyboard_window_and_action_data.active[9] = soft_keyboard_window_and_action_data.initial[9];
-        soft_keyboard_window_and_action_data.active[10] = soft_keyboard_window_and_action_data.initial[10];
-        soft_keyboard_window_and_action_data.active[11] = soft_keyboard_window_and_action_data.initial[11];
-        soft_keyboard_window_and_action_data.active[12] = soft_keyboard_window_and_action_data.initial[12];
-        soft_keyboard_window_and_action_data.active[13] = soft_keyboard_window_and_action_data.initial[13];
-        soft_keyboard_window_and_action_data.active[14] = soft_keyboard_window_and_action_data.initial[14];
-        soft_keyboard_window_and_action_data.active[15] = soft_keyboard_window_and_action_data.initial[15];
-        soft_keyboard_window_and_action_data.active[16] = soft_keyboard_window_and_action_data.initial[16];
-        soft_keyboard_window_and_action_data.active[17] = soft_keyboard_window_and_action_data.initial[17];
-        soft_keyboard_window_and_action_data.active[18] = soft_keyboard_window_and_action_data.initial[18];
-        soft_keyboard_window_and_action_data.active[19] = soft_keyboard_window_and_action_data.initial[19];
-        soft_keyboard_window_and_action_data.active[20] = soft_keyboard_window_and_action_data.initial[20];
-        soft_keyboard_window_and_action_data.active[21] = soft_keyboard_window_and_action_data.initial[21];
-        lbl_805D6458.initialized = 1;
-    }
+    static SoftKeyAction actions[22] = {
+        &TWindowKeyBoardSoft::vt0,
+        &TWindowKeyBoardSoft::vt1,
+        &TWindowKeyBoardSoft::vt2,
+        &TWindowKeyBoardSoft::vt3,
+        &TWindowKeyBoardSoft::vt4,
+        &TWindowKeyBoardSoft::vt5,
+        &TWindowKeyBoardSoft::vt6,
+        &TWindowKeyBoardSoft::vt7,
+        &TWindowKeyBoardSoft::vt8,
+        &TWindowKeyBoardSoft::vt9,
+        &TWindowKeyBoardSoft::vt10,
+        &TWindowKeyBoardSoft::vt11,
+        &TWindowKeyBoardSoft::vt12,
+        &TWindowKeyBoardSoft::vt13,
+        &TWindowKeyBoardSoft::vt14,
+        &TWindowKeyBoardSoft::vt15,
+        &TWindowKeyBoardSoft::vt16,
+        &TWindowKeyBoardSoft::vt17,
+        &TWindowKeyBoardSoft::vt18,
+        &TWindowKeyBoardSoft::vt19,
+        &TWindowKeyBoardSoft::vt20,
+        &TWindowKeyBoardSoft::vt21,
+    };
     if (TWindowShortListCtrl__check_controller_button(
             (u8 *)&controller_input_state.value + port * 0x50 + 0x20, 4) == 0 || kb->child == NULL) {
         return;
@@ -388,7 +388,7 @@ void TWindowKeyBoardSoft__sub_80260904(void *self, s32 port) {
         play_sound_effect(0x52D01, 0, 0, 0);
     }
     if (code < 0x20) {
-        if (code < 22) (kb->child->*soft_keyboard_window_and_action_data.active[code])();
+        if (code < 22) (kb->child->*actions[code])();
         return;
     }
     if (((TWindowKeyBoardSoft *)self)->get_flag_bit5() && (code < 'A' || code > 'Z')) return;
@@ -466,7 +466,7 @@ void TWindowKeyBoardSoft__sub_80260E30(void *self, s32 port) {
         kb->cursor_x += lbl_8044F138[((u8 *)&TWindowKeyBoardSoft__data_804CB7C8.value)[(s8)kb->cursor_x + (s8)kb->cursor_y * 16]] + 1;
     }
     if (dx < 0) {
-        kb->cursor_x += ((u8 *)&TWindowKeyBoardSoft__data_8044F124.value)[((u8 *)&TWindowKeyBoardSoft__data_804CB7C8.value)[(s8)kb->cursor_x + (s8)kb->cursor_y * 16]] - 1;
+        kb->cursor_x += ((u8 *)TWindowKeyBoardSoft__data_8044F124)[((u8 *)&TWindowKeyBoardSoft__data_804CB7C8.value)[(s8)kb->cursor_x + (s8)kb->cursor_y * 16]] - 1;
     }
     kb->cursor_y += dy;
     if ((s8)kb->cursor_x < 0) {
@@ -663,9 +663,9 @@ s32 TWindowKeyBoardSoft__sub_802616BC(void *self, int context) {
     const u16 *keys = layout->pages[*(s8 *)((u8 *)self + 0x64)];
     Quad_80262038 q;
     reset_gauge__20TWindowSubStatusDispFPv(0);
-    for (s32 row = 0; row < 7; ++row) {
+    for (u32 row = 0; row < 7; ++row) {
         f32 y = TWindowKeyBoardSoft__data_805DD07C * (f32)row;
-        for (s32 col = 0; col < 16; ++col) {
+        for (u32 col = 0; col < 16; ++col) {
             u16 code = *keys++;
             if (code < 0x20) continue;
             if (kb->get_flag_bit5() && (code < 'A' || code > 'Z')) code = 0x16;
@@ -691,7 +691,7 @@ s32 TWindowKeyBoardSoft__sub_802616BC(void *self, int context) {
     render_forward__20TWindowSubStatusDispFPv();
     set_draw_texture_and_color(0, 0xFF999999);
     s32 index = calc_key_index__19TWindowKeyBoardSoftFiii((s32)self, 2, 0);
-    for (s32 i = 0; i < 12; ++i, ++index) {
+    for (u32 i = 0; i < 12; ++i, ++index) {
         q.x = TWindowKeyBoardSoft__data_805DD078 + (TWindowKeyBoardSoft__data_805DD078 + (TWindowKeyBoardSoft__data_805DD07C * (f32)(i + 2) + ctx->x));
         q.x2 = lbl_805DD0A0 + q.x;
         q.y = TWindowKeyBoardSoft__data_805DD078 + (TWindowKeyBoardSoft__data_805DD094 + ctx->y);
@@ -711,7 +711,7 @@ s32 TWindowKeyBoardSoft__sub_802616BC(void *self, int context) {
     f32 x = TWindowKeyBoardSoft__sub_802606E0(kb);
     s32 min_page, max_page;
     calc_cursor_step__19TWindowKeyBoardSoftFiPvPv((TWindowKeyBoardSoft *)self, &min_page, &max_page);
-    for (s32 page = 0; page < layout->page_count; ++page) {
+    for (u32 page = 0; page < layout->page_count; ++page) {
         u32 color;
         if (page == *(s8 *)((u8 *)self + 0x64)) color = 0xFF000000;
         else if (page < min_page || page > max_page) color = 0xFF646464;
@@ -731,13 +731,13 @@ s32 TWindowKeyBoardSoft__sub_802616BC(void *self, int context) {
         }
         x += (f32)(s32)layout->page_width;
     }
-    for (s32 i = 0; i < 10; ++i) {
+    for (u32 i = 0; i < 10; ++i) {
         s32 col = (s32)lbl_8044F164[i][0], row = (s32)lbl_8044F164[i][1];
         index = calc_key_index__19TWindowKeyBoardSoftFiii((s32)self, col, row);
         u32 color = index == selected ? 0xFF000000 : 0xFF999999;
         f32 center = ctx->x + calc_key_x__19TWindowKeyBoardSoftFiii((s32)self, col, row);
         f32 width = lbl_8044F1B4[i][0], height = lbl_8044F1B4[i][1];
-        f32 u = lbl_8044F204[i][0], v = lbl_8044F204[i][1];
+        f32 u = lbl_8044F204[i * 2], v = lbl_8044F204[i * 2 + 1];
         q.x = center - TWindowKeyBoardSoft__data_805DD080 * width;
         q.y = TWindowKeyBoardSoft__data_805DD078 + (TWindowKeyBoardSoft__data_805DD094 + (TWindowKeyBoardSoft__data_805DD07C * lbl_8044F164[i][1] + ctx->y));
         q.x2 = q.x + width;
@@ -812,7 +812,7 @@ void TWindowKeyBoardSoft::draw_key_frame(void *self, f32 *rect, u32 color, s32 i
     f32 x2;
     f32 x3;
     f32 x4;
-    UV_80262038 *uv;
+    const UV_80262038 *uv;
 
     v = TWindowKeyBoardSoft__sub_802614DC((u8 *)self, (u8 *)rect, x0, y, w, 20.0f);
     if (v <= TWindowKeyBoardSoft__data_805DD090) {

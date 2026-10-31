@@ -4,11 +4,12 @@
 #include "pso/misc/TKeyBoardControl.h"
 #include "pso/misc/TWindowKeyBoardSoft.h"
 #include "pso/misc/TWindowDD.h"
+#include "pso/misc/SoftKeyboardWindowDescriptor.h"
 #pragma fp_contract on
 
 extern "C" {
 
-s32 TWindowKeyBoardSoft__sub_80260904(void *, s32);
+void TWindowKeyBoardSoft__sub_80260904(void *, s32);
 s32 TWindowKeyBoardSoft__sub_80260E30(void *, s32);
 s32 sub_80244994__13TUnk_804CE018Fv();
 s32 update_fade__13TUnk_804CE018Fv(void *);
@@ -39,11 +40,6 @@ void TWindowKeyBoardSoft::run_task() {
 
 #pragma fp_contract off
 
-struct RecoveredGlobal_80262740___vt__19TWindowKeyBoardSoft {
-    s32 value;
-    u8 remaining[0x220];
-};
-
 struct RecoveredGlobal_80262740_lbl_804D0004 {
     s32 value;
     u8 remaining[0x18];
@@ -52,7 +48,6 @@ struct RecoveredGlobal_80262740_lbl_804D0004 {
 extern "C" {
 s32 construct_base__9TWindowDDFPUcsPUc(void *, void *, void *, int);
 s32 get_window_layout_position(int);
-extern RecoveredGlobal_80262740___vt__19TWindowKeyBoardSoft soft_keyboard_window_and_action_data;
 extern s32 __vt__19TWindowKeyBoardSoft[];
 extern s32 keyboard_soft_type_name_pointer;
 extern const f32 TWindowKeyBoardSoft__data_805DD090;
@@ -68,10 +63,9 @@ void *__dt__19TWindowKeyBoardSoftFv(void *arg0, s16 arg1) {
     }
     return arg0;
 }
-typedef char RecoveredGlobal_80262740___vt__19TWindowKeyBoardSoft_size[sizeof(RecoveredGlobal_80262740___vt__19TWindowKeyBoardSoft) == 0x224 ? 1 : -1];
 typedef char RecoveredGlobal_80262740_lbl_804D0004_size[sizeof(RecoveredGlobal_80262740_lbl_804D0004) == 0x1C ? 1 : -1];
 u8 *TWindowKeyBoardSoft__ct(u8 *arg0, s32 arg1, s16 arg2) {
-    construct_base__9TWindowDDFPUcsPUc((void *)arg0, &soft_keyboard_window_and_action_data.value, (void *)arg2, (int) (get_window_layout_position(0xBA)));
+    construct_base__9TWindowDDFPUcsPUc((void *)arg0, &soft_keyboard_window_and_action_data, (void *)arg2, (int) (get_window_layout_position(0xBA)));
     *(s32 **)((s8 *)arg0 + 0x18) = &(*(RecoveredGlobal_80262740_lbl_804D0004 *)&__vt__19TWindowKeyBoardSoft).value;
     *(s32 *)((s8 *)arg0 + 0) = (s32) keyboard_soft_type_name_pointer;
     *(s32 *)((s8 *)arg0 + 0x60) = 0;
