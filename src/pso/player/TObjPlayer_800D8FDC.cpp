@@ -108,8 +108,8 @@ void TObjPlayer::spawn_dead_spot_type2(s32 point, s32 delay) {
     TObjPlayer::spawn_dead_spot(point, 2, delay, lbl_805DA3C8);
 }
 
-void spawn_dead_spot_scale15(s32 point, s32 delay) {
-    TObjPlayer::spawn_dead_spot(point, 2, delay, lbl_805DA3CC);
+void spawn_dead_spot_scale15(const Vec *point, s32 delay) {
+    TObjPlayer::spawn_dead_spot((s32)point, 2, delay, lbl_805DA3CC);
 }
 
 void TObjPlayer__sub_800D93C4(s32 point, s32 delay) {

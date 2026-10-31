@@ -3,6 +3,8 @@
 
 #include "types.h"
 
+struct Vec;
+
 extern "C" {
 void TObjPlayer__sub_800D9290(s32 point, s32 delay);
 void TObjPlayer__sub_800D92BC(s32 point, s32 delay);
@@ -14,7 +16,7 @@ void create_dead_spot__10TObjPlayerFiiif(s32 arg0, s32 arg1, s32 arg2, f32 farg0
 void load_corpse_mark_resource(void);
 extern "C" {
 void spawn_dead_spot__10TObjPlayerFlllf(s32 point, s32 selector, s32 delay, f32 farg0);
-void spawn_dead_spot_scale15(s32 point, s32 delay);
+void spawn_dead_spot_scale15(const Vec *point, s32 delay);
 }
 void spawn_landing_dead_spot(s32 point, s32 delay);
 

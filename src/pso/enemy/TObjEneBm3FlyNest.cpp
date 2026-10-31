@@ -793,7 +793,7 @@ void *__dt__9TObjEneDDFv(void *arg0, s16 arg1);
 s32 update__15RenderFadeStateFv(void *);
 void *__dt__15RenderFadeStateFv(void *arg0, s16 arg1);
 void spawn_dead_spot_e4(Vec *, s32, f32);
-void spawn_dead_spot_scale15(s32 point, s32 delay);
+void spawn_dead_spot_scale15(const Vec *point, s32 delay);
 void *find_entity_by_id(u16 id);
 void free_collision_body_parts(void *);
 s32 send_entity_set_flags__9TObjEnemyFv();
@@ -1290,7 +1290,7 @@ void state_dying__17TObjEneBm3FlyNestFPvi(u8 *actor, s32 arg1) {
                 v.z = lbl_805D9D28;
                 rotate_xz_pair_by_angle((f32 *)&v, &v.z, *(s32 *)((s8 *)actor + 0x60));
                 vec3_add_to(&v, actor + 0x38);
-                spawn_dead_spot_scale15((s32)&v, 0x32);
+                spawn_dead_spot_scale15((const Vec *)&v, 0x32);
                 spawn_dead_spot_e4((Vec *)&v, 0x46, lbl_805D9D10);
             }
             if (*(f32 *)((s8 *)actor + 0xC0) < lbl_805D9D08) {

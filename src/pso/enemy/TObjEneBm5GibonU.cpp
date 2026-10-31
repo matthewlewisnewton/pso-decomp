@@ -1667,7 +1667,7 @@ void TObjEneBm5GibonU__sub_800CE694(u8 *arg0, s32 arg1);
 s32 is_vec_xz_cross_negative(void *, void *);
 void TObjEneBm5GibonU__sub_800CE978(u8 *arg0, s32 arg1);
 void TObjEneBm5GibonU__sub_800D095C(void *arg0, s32 arg1, s16 arg2);
-s32 spawn_dead_spot_scale15(void *, s32);
+void spawn_dead_spot_scale15(const Vec *, s32);
 s32 vec3_add_to(void *, void *);
 void TObjEneBm5GibonU__sub_800CE060(u8 *arg0, s32 arg1);
 void TObjEneBm5GibonU__sub_800CF4BC(u8 *arg0, s32 arg1);
@@ -2313,7 +2313,7 @@ void TObjEneBm5GibonU__sub_800CE060(u8 *arg0, s32 arg1) {
                 rotate_xz_pair_by_angle(&sp14.x, &sp14.z, *(s32 *)((s8 *)arg0 + 0x60));
                 vec3_add_to(&sp14, arg0 + 0x38);
                 if (*(s32 *)((s8 *)arg0 + 0x464) == 1) {
-                    spawn_dead_spot_scale15(&sp14, 0x32);
+                    spawn_dead_spot_scale15((const Vec *)&sp14, 0x32);
                 } else {
                     TObjPlayer::spawn_dead_spot_type2((s32)&sp14, 0x32);
                 }

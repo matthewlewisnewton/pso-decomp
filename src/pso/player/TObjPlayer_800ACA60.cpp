@@ -25,7 +25,7 @@ s32 apply_actor_gravity(void *, int, f32);
 void move_with_wall_slide(u8 *arg0);
 extern "C" {
 void queue_destruction__7TObjectFv(void *arg0);
-s32 spawn_dead_spot_scale15(void *, int);
+void spawn_dead_spot_scale15(const Vec *, s32);
 s32 play_sound_effect(s32, void *, int, int);
 s32 vec3_add_to(void *, void *);
 s32 rotate_vector_by_matrix(int, void *, void *);
@@ -93,7 +93,7 @@ void TObjEneMoja::update_death_state() {
         play_sound_effect(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x3AD03)), &v, 0, 0);
         TObjPlayer::play_effect_if_v2(-0x300);
         spawn_particle_effect((s32) &v, 0xF0);
-        spawn_dead_spot_scale15(&v, 0x14);
+        spawn_dead_spot_scale15((const Vec *)&v, 0x14);
         ((TObjPlayer *)(&v))->spawn_effect_at_ground(0x32);
     }
     if (this->frame < lbl_805D9BEC * (lbl_805D9BF0 * this->play_speed)) {
