@@ -759,22 +759,22 @@ s32 is_level_in_table__24TObjWaitEntryHairMoveSimFPv(Obj_800FE698 *o) {
     return 0;
 }
 
-s32 TObjWaitEntryHairMoveSim__sub_800FE73C(s32 arg0) {
+s32 fn_800FE73C(TObjPlayer *player) {
     s32 temp_r3;
     s32 var_r0;
-    if (((TCharaMaking *)(arg0 + 0x85C))->get_display_index() == 0xE) {
-        TObjTailsTailsMove::create((TObjPlayer *)arg0);
+    if (((TCharaMaking *)((char *)player + 0x85C))->get_display_index() == 0xE) {
+        TObjTailsTailsMove::create(player);
         return 0;
     }
-    if (((s32 (*)(void *))is_move_done__24TObjWaitEntryHairMoveSimFv)((void *)arg0) != 0) {
-        T_OWEHMS_Exp::create((TObjPlayer*)arg0);
+    if (((s32 (*)(void *))is_move_done__24TObjWaitEntryHairMoveSimFv)((void *)player) != 0) {
+        T_OWEHMS_Exp::create(player);
         return 0;
     }
-    if (is_level_in_table__24TObjWaitEntryHairMoveSimFPv((Obj_800FE698 *)(arg0)) != 0) {
+    if (is_level_in_table__24TObjWaitEntryHairMoveSimFPv((Obj_800FE698 *)player) != 0) {
         temp_r3 = ((s32 (*)(int))__nw__7TObjectFUl)(0x20);
         var_r0 = temp_r3;
         if (var_r0 != 0) {
-            var_r0 = ((s32)__ct__24TObjWaitEntryHairMoveSimFv((void *)temp_r3, (void *)arg0));
+            var_r0 = ((s32)__ct__24TObjWaitEntryHairMoveSimFv((void *)temp_r3, (void *)player));
         }
         return var_r0;
     }

@@ -109,10 +109,3 @@ TObjTailsTailsMove::TObjTailsTailsMove(TObjPlayer *player) : TObject(player) {
 TObjTailsTailsMove *TObjTailsTailsMove::create(TObjPlayer *player) {
     return new TObjTailsTailsMove(player);
 }
-
-extern "C" {
-int fn_800FFE04(void) { return 0; }
-void fn_800FFE0C(void) {}
-void fn_800FFE10(void) {}
-int fn_800FFE14(s32, s32, void *) { return 0; }
-}

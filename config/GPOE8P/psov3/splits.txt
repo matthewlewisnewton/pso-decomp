@@ -2373,7 +2373,7 @@ pso/player/TObjPlayer_800FFA88.cpp:
 	.text       start:0x800FFA88 end:0x800FFA98
 
 pso/object/TObjTailsTailsMove.cpp:
-	.text       start:0x800FFA98 end:0x800FFE1C
+	.text       start:0x800FFA98 end:0x800FFE04
 	.rodata     start:0x8043DF48 end:0x8043DF60
 	.data       start:0x8049DD60 end:0x8049DD78
 	.sdata      start:0x805D2B58 end:0x805D2B5C
@@ -2381,6 +2381,9 @@ pso/object/TObjTailsTailsMove.cpp:
 
 pso/misc/KeyboardCharacterMaps.cpp:
 	.data       start:0x8049DD78 end:0x8049E8F8
+
+pso/unk/text_800FFE04.cpp:
+	.text       start:0x800FFE04 end:0x800FFE1C
 
 pso/item/TItem.cpp:
 	.text       start:0x800FFE1C end:0x801031CC
