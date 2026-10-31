@@ -1,0 +1,36 @@
+--- a/src/pso/object/TObjTombstone_80074E74.cpp
++++ b/src/pso/object/TObjTombstone_80074E74.cpp
+@@ -245,6 +245,8 @@
+     f32 a;
+     f32 b;
+     u32 alpha;
++    f32 zero = TObjTombstone__data_805D9174;
++    f32 one = TObjTombstone__data_805D9178;
+     if (TObjTombstone__data_805D9174 == self->scale) return;
+     VecCopy((Vec *)&pos, (const Vec *)&self->pos);
+     pos.y += lbl_805D9188;
+@@ -256,11 +258,11 @@
+     }
+     m *= lbl_805D918C;
+     if (screen.x - m < TObjTombstone__data_805D9174 || screen.x + m > lbl_805D9190) {
+-        if ((self->alphaA += -0.16666667f) < 0.0f) self->alphaA = 0.0f;
+-        if ((self->alphaB += -0.016666668f) < 0.0f) self->alphaB = 0.0f;
++        if ((self->alphaA += lbl_805D9194) < zero) self->alphaA = zero;
++        if ((self->alphaB += lbl_805D9198) < zero) self->alphaB = zero;
+     } else {
+-        if ((self->alphaA += 0.16666667f) > 1.0f) self->alphaA = 1.0f;
+-        if ((self->alphaB += 0.16666667f) > 1.0f) self->alphaB = 1.0f;
++        if ((self->alphaA += lbl_805D919C) > one) self->alphaA = one;
++        if ((self->alphaB += lbl_805D919C) > one) self->alphaB = one;
+     }
+     a = self->scale * self->alphaA;
+     b = self->scale * self->alphaB;
+@@ -299,4 +301,7 @@
+ __declspec(section ".sdata2") extern const f32 lbl_805D9188 = 14.0f;
+ __declspec(section ".sdata2") extern const f32 lbl_805D918C = 0.5f;
+ __declspec(section ".sdata2") extern const f32 lbl_805D9190 = 640.0f;
+-}
++__declspec(section ".sdata2") extern const f32 lbl_805D9194 = -0.16666667f;
++__declspec(section ".sdata2") extern const f32 lbl_805D9198 = -0.016666668f;
++__declspec(section ".sdata2") extern const f32 lbl_805D919C = 0.16666667f;
++}

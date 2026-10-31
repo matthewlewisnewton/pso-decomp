@@ -1,0 +1,24 @@
+--- a/src/pso/object/TObjTombstone_80074E74.cpp
++++ b/src/pso/object/TObjTombstone_80074E74.cpp
+@@ -291,12 +291,12 @@
+ #pragma pop
+ 
+ extern "C" {
+-__declspec(section ".sdata2") extern const f32 TObjTombstone__data_805D9174 = 0.0f;
+-__declspec(section ".sdata2") extern const f32 TObjTombstone__data_805D9178 = 1.0f;
+-__declspec(section ".sdata2") extern const f32 TObjTombstone__data_805D917C = 50.0f;
+-__declspec(section ".sdata2") extern const f32 lbl_805D9180 = 40.0f;
+-__declspec(section ".sdata2") extern const f32 TObjTombstone__data_805D9184 = 10.0f;
+-__declspec(section ".sdata2") extern const f32 lbl_805D9188 = 14.0f;
+-__declspec(section ".sdata2") extern const f32 lbl_805D918C = 0.5f;
+-__declspec(section ".sdata2") extern const f32 lbl_805D9190 = 640.0f;
+-}
++extern const f32 TObjTombstone__data_805D9174 = 0.0f;
++extern const f32 TObjTombstone__data_805D9178 = 1.0f;
++extern const f32 TObjTombstone__data_805D917C = 50.0f;
++extern const f32 lbl_805D9180 = 40.0f;
++extern const f32 TObjTombstone__data_805D9184 = 10.0f;
++extern const f32 lbl_805D9188 = 14.0f;
++extern const f32 lbl_805D918C = 0.5f;
++extern const f32 lbl_805D9190 = 640.0f;
++}

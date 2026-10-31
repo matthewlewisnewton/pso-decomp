@@ -1,0 +1,46 @@
+{
+  ".sdata2": {
+    "original_size": 44,
+    "compiled_size": 44,
+    "original_alignment": 4,
+    "compiled_alignment": 8,
+    "bytes_exact": true
+  },
+  ".rodata": {
+    "original_size": 16,
+    "compiled_size": 16,
+    "original_alignment": 8,
+    "compiled_alignment": 8,
+    "bytes_exact": true
+  },
+  "missing_defined_data_exports": [
+    "TObjTombstone__data_804387B8",
+    "lbl_804387C0"
+  ],
+  "compile_batches": [
+    {
+      "workspace_wait_seconds": 0.0010673770448192954,
+      "capacity_wait_seconds": 5.6953984312713146e-05,
+      "legacy_gate_wait_seconds": 0.00022747996263206005,
+      "total_queue_wait_seconds": 0.0013518109917640686,
+      "slot": "development-0",
+      "lane": "development"
+    },
+    {
+      "workspace_wait_seconds": 0.00040894094854593277,
+      "capacity_wait_seconds": 2.209399826824665e-05,
+      "legacy_gate_wait_seconds": 0.00014548201579600573,
+      "total_queue_wait_seconds": 0.0005765169626101851,
+      "slot": "development-0",
+      "lane": "development"
+    },
+    {
+      "workspace_wait_seconds": 0.0007424229988828301,
+      "capacity_wait_seconds": 4.604295827448368e-05,
+      "legacy_gate_wait_seconds": 0.00022310204803943634,
+      "total_queue_wait_seconds": 0.0010115680051967502,
+      "slot": "development-0",
+      "lane": "development"
+    }
+  ]
+}

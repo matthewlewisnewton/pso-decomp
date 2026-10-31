@@ -1,0 +1,618 @@
+[
+  {
+    "experiment": "tombstone-probes-baseline",
+    "seconds": 0.02544066694099456,
+    "functions": [
+      {
+        "name": "TObjTombstone__sub_80074E74",
+        "match": 100.0
+      },
+      {
+        "name": "copy_matrix__13TObjTombstoneFPv",
+        "match": 100.0
+      },
+      {
+        "name": "reset_matrix__13TObjTombstoneFv",
+        "match": 100.0
+      },
+      {
+        "name": "handle_6x96__Fv",
+        "match": 100.0
+      },
+      {
+        "name": "check_owner__13TObjTombstoneFv",
+        "match": 100.0
+      },
+      {
+        "name": "is_other_tombstone_closer__13TObjTombstoneFv",
+        "match": 100.0
+      },
+      {
+        "name": "project_to_screen__13TObjTombstoneFPvPfPv",
+        "match": 100.0
+      },
+      {
+        "name": "update_fade_by_distance__13TObjTombstoneFv",
+        "match": 100.0
+      },
+      {
+        "name": "draw_name_labels__13TObjTombstoneFPv",
+        "match": 100.0
+      }
+    ],
+    "sections": {
+      ".rodata": {
+        "size": 16,
+        "alignment": 8
+      },
+      ".sdata2": {
+        "size": 52,
+        "alignment": 8
+      }
+    }
+  },
+  {
+    "experiment": "tombstone-probes-natural",
+    "seconds": 0.027630580007098615,
+    "functions": [
+      {
+        "name": "TObjTombstone__sub_80074E74",
+        "match": 99.82456
+      },
+      {
+        "name": "copy_matrix__13TObjTombstoneFPv",
+        "match": 100.0
+      },
+      {
+        "name": "reset_matrix__13TObjTombstoneFv",
+        "match": 100.0
+      },
+      {
+        "name": "handle_6x96__Fv",
+        "match": 100.0
+      },
+      {
+        "name": "check_owner__13TObjTombstoneFv",
+        "match": 100.0
+      },
+      {
+        "name": "is_other_tombstone_closer__13TObjTombstoneFv",
+        "match": 99.75903
+      },
+      {
+        "name": "project_to_screen__13TObjTombstoneFPvPfPv",
+        "match": 99.948456
+      },
+      {
+        "name": "update_fade_by_distance__13TObjTombstoneFv",
+        "match": 99.35897
+      },
+      {
+        "name": "draw_name_labels__13TObjTombstoneFPv",
+        "match": 99.73451
+      }
+    ],
+    "sections": {
+      ".rodata": {
+        "size": 16,
+        "alignment": 8
+      },
+      ".sdata2": {
+        "size": 20,
+        "alignment": 8
+      }
+    }
+  },
+  {
+    "experiment": "tombstone-probes-clamp_named",
+    "seconds": 0.02720930497162044,
+    "functions": [
+      {
+        "name": "TObjTombstone__sub_80074E74",
+        "match": 99.82456
+      },
+      {
+        "name": "copy_matrix__13TObjTombstoneFPv",
+        "match": 100.0
+      },
+      {
+        "name": "reset_matrix__13TObjTombstoneFv",
+        "match": 100.0
+      },
+      {
+        "name": "handle_6x96__Fv",
+        "match": 100.0
+      },
+      {
+        "name": "check_owner__13TObjTombstoneFv",
+        "match": 100.0
+      },
+      {
+        "name": "is_other_tombstone_closer__13TObjTombstoneFv",
+        "match": 99.75903
+      },
+      {
+        "name": "project_to_screen__13TObjTombstoneFPvPfPv",
+        "match": 99.948456
+      },
+      {
+        "name": "update_fade_by_distance__13TObjTombstoneFv",
+        "match": 99.35897
+      },
+      {
+        "name": "draw_name_labels__13TObjTombstoneFPv",
+        "match": 98.451324
+      }
+    ],
+    "sections": {
+      ".rodata": {
+        "size": 16,
+        "alignment": 8
+      },
+      ".sdata2": {
+        "size": 12,
+        "alignment": 8
+      }
+    }
+  },
+  {
+    "experiment": "tombstone-probes-wip_natural",
+    "seconds": 0.028475826955400407,
+    "functions": [
+      {
+        "name": "TObjTombstone__sub_80074E74",
+        "match": 99.82456
+      },
+      {
+        "name": "copy_matrix__13TObjTombstoneFPv",
+        "match": 100.0
+      },
+      {
+        "name": "reset_matrix__13TObjTombstoneFv",
+        "match": 100.0
+      },
+      {
+        "name": "handle_6x96__Fv",
+        "match": 100.0
+      },
+      {
+        "name": "check_owner__13TObjTombstoneFv",
+        "match": 100.0
+      },
+      {
+        "name": "is_other_tombstone_closer__13TObjTombstoneFv",
+        "match": 99.75903
+      },
+      {
+        "name": "project_to_screen__13TObjTombstoneFPvPfPv",
+        "match": 99.948456
+      },
+      {
+        "name": "update_fade_by_distance__13TObjTombstoneFv",
+        "match": 99.35897
+      },
+      {
+        "name": "draw_name_labels__13TObjTombstoneFPv",
+        "match": 96.814156
+      }
+    ],
+    "sections": {
+      ".rodata": {
+        "size": 16,
+        "alignment": 8
+      }
+    }
+  },
+  {
+    "experiment": "tombstone-probes-compound_named",
+    "seconds": 0.039271509973332286,
+    "functions": [
+      {
+        "name": "TObjTombstone__sub_80074E74",
+        "match": 99.82456
+      },
+      {
+        "name": "copy_matrix__13TObjTombstoneFPv",
+        "match": 100.0
+      },
+      {
+        "name": "reset_matrix__13TObjTombstoneFv",
+        "match": 100.0
+      },
+      {
+        "name": "handle_6x96__Fv",
+        "match": 100.0
+      },
+      {
+        "name": "check_owner__13TObjTombstoneFv",
+        "match": 100.0
+      },
+      {
+        "name": "is_other_tombstone_closer__13TObjTombstoneFv",
+        "match": 99.75903
+      },
+      {
+        "name": "project_to_screen__13TObjTombstoneFPvPfPv",
+        "match": 99.948456
+      },
+      {
+        "name": "update_fade_by_distance__13TObjTombstoneFv",
+        "match": 99.35897
+      },
+      {
+        "name": "draw_name_labels__13TObjTombstoneFPv",
+        "match": 98.67257
+      }
+    ],
+    "sections": {
+      ".rodata": {
+        "size": 16,
+        "alignment": 8
+      }
+    }
+  },
+  {
+    "experiment": "tombstone-probes-2-clamp_named",
+    "seconds": 0.02509139699395746,
+    "functions": [
+      {
+        "name": "TObjTombstone__sub_80074E74",
+        "match": 100.0
+      },
+      {
+        "name": "copy_matrix__13TObjTombstoneFPv",
+        "match": 100.0
+      },
+      {
+        "name": "reset_matrix__13TObjTombstoneFv",
+        "match": 100.0
+      },
+      {
+        "name": "handle_6x96__Fv",
+        "match": 100.0
+      },
+      {
+        "name": "check_owner__13TObjTombstoneFv",
+        "match": 100.0
+      },
+      {
+        "name": "is_other_tombstone_closer__13TObjTombstoneFv",
+        "match": 100.0
+      },
+      {
+        "name": "project_to_screen__13TObjTombstoneFPvPfPv",
+        "match": 100.0
+      },
+      {
+        "name": "update_fade_by_distance__13TObjTombstoneFv",
+        "match": 100.0
+      },
+      {
+        "name": "draw_name_labels__13TObjTombstoneFPv",
+        "match": 98.78319
+      }
+    ],
+    "sections": {
+      ".rodata": {
+        "size": 16,
+        "alignment": 8
+      },
+      ".sdata2": {
+        "size": 44,
+        "alignment": 8
+      }
+    }
+  },
+  {
+    "experiment": "tombstone-probes-2-wip_explicit",
+    "seconds": 0.0316935449372977,
+    "functions": [
+      {
+        "name": "TObjTombstone__sub_80074E74",
+        "match": 100.0
+      },
+      {
+        "name": "copy_matrix__13TObjTombstoneFPv",
+        "match": 100.0
+      },
+      {
+        "name": "reset_matrix__13TObjTombstoneFv",
+        "match": 100.0
+      },
+      {
+        "name": "handle_6x96__Fv",
+        "match": 100.0
+      },
+      {
+        "name": "check_owner__13TObjTombstoneFv",
+        "match": 100.0
+      },
+      {
+        "name": "is_other_tombstone_closer__13TObjTombstoneFv",
+        "match": 100.0
+      },
+      {
+        "name": "project_to_screen__13TObjTombstoneFPvPfPv",
+        "match": 100.0
+      },
+      {
+        "name": "update_fade_by_distance__13TObjTombstoneFv",
+        "match": 100.0
+      },
+      {
+        "name": "draw_name_labels__13TObjTombstoneFPv",
+        "match": 97.168144
+      }
+    ],
+    "sections": {
+      ".rodata": {
+        "size": 16,
+        "alignment": 8
+      },
+      ".sdata2": {
+        "size": 44,
+        "alignment": 8
+      }
+    }
+  },
+  {
+    "experiment": "tombstone-probes-2-compound_named",
+    "seconds": 0.032163802068680525,
+    "functions": [
+      {
+        "name": "TObjTombstone__sub_80074E74",
+        "match": 100.0
+      },
+      {
+        "name": "copy_matrix__13TObjTombstoneFPv",
+        "match": 100.0
+      },
+      {
+        "name": "reset_matrix__13TObjTombstoneFv",
+        "match": 100.0
+      },
+      {
+        "name": "handle_6x96__Fv",
+        "match": 100.0
+      },
+      {
+        "name": "check_owner__13TObjTombstoneFv",
+        "match": 100.0
+      },
+      {
+        "name": "is_other_tombstone_closer__13TObjTombstoneFv",
+        "match": 100.0
+      },
+      {
+        "name": "project_to_screen__13TObjTombstoneFPvPfPv",
+        "match": 100.0
+      },
+      {
+        "name": "update_fade_by_distance__13TObjTombstoneFv",
+        "match": 100.0
+      },
+      {
+        "name": "draw_name_labels__13TObjTombstoneFPv",
+        "match": 99.11504
+      }
+    ],
+    "sections": {
+      ".rodata": {
+        "size": 16,
+        "alignment": 8
+      },
+      ".sdata2": {
+        "size": 44,
+        "alignment": 8
+      }
+    }
+  },
+  {
+    "experiment": "tombstone-probes-3-local_result",
+    "seconds": 0.02516096201725304,
+    "functions": [
+      {
+        "name": "TObjTombstone__sub_80074E74",
+        "match": 100.0
+      },
+      {
+        "name": "copy_matrix__13TObjTombstoneFPv",
+        "match": 100.0
+      },
+      {
+        "name": "reset_matrix__13TObjTombstoneFv",
+        "match": 100.0
+      },
+      {
+        "name": "handle_6x96__Fv",
+        "match": 100.0
+      },
+      {
+        "name": "check_owner__13TObjTombstoneFv",
+        "match": 100.0
+      },
+      {
+        "name": "is_other_tombstone_closer__13TObjTombstoneFv",
+        "match": 100.0
+      },
+      {
+        "name": "project_to_screen__13TObjTombstoneFPvPfPv",
+        "match": 100.0
+      },
+      {
+        "name": "update_fade_by_distance__13TObjTombstoneFv",
+        "match": 100.0
+      },
+      {
+        "name": "draw_name_labels__13TObjTombstoneFPv",
+        "match": 99.11504
+      }
+    ],
+    "sections": {
+      ".rodata": {
+        "size": 16,
+        "alignment": 8
+      },
+      ".sdata2": {
+        "size": 44,
+        "alignment": 8
+      }
+    }
+  },
+  {
+    "experiment": "tombstone-probes-3-local_bound",
+    "seconds": 0.023969808011315763,
+    "functions": [
+      {
+        "name": "TObjTombstone__sub_80074E74",
+        "match": 100.0
+      },
+      {
+        "name": "copy_matrix__13TObjTombstoneFPv",
+        "match": 100.0
+      },
+      {
+        "name": "reset_matrix__13TObjTombstoneFv",
+        "match": 100.0
+      },
+      {
+        "name": "handle_6x96__Fv",
+        "match": 100.0
+      },
+      {
+        "name": "check_owner__13TObjTombstoneFv",
+        "match": 100.0
+      },
+      {
+        "name": "is_other_tombstone_closer__13TObjTombstoneFv",
+        "match": 100.0
+      },
+      {
+        "name": "project_to_screen__13TObjTombstoneFPvPfPv",
+        "match": 100.0
+      },
+      {
+        "name": "update_fade_by_distance__13TObjTombstoneFv",
+        "match": 100.0
+      },
+      {
+        "name": "draw_name_labels__13TObjTombstoneFPv",
+        "match": 98.539825
+      }
+    ],
+    "sections": {
+      ".rodata": {
+        "size": 16,
+        "alignment": 8
+      },
+      ".sdata2": {
+        "size": 44,
+        "alignment": 8
+      }
+    }
+  },
+  {
+    "experiment": "tombstone-probes-3-local_all",
+    "seconds": 0.032130921026691794,
+    "functions": [
+      {
+        "name": "TObjTombstone__sub_80074E74",
+        "match": 100.0
+      },
+      {
+        "name": "copy_matrix__13TObjTombstoneFPv",
+        "match": 100.0
+      },
+      {
+        "name": "reset_matrix__13TObjTombstoneFv",
+        "match": 100.0
+      },
+      {
+        "name": "handle_6x96__Fv",
+        "match": 100.0
+      },
+      {
+        "name": "check_owner__13TObjTombstoneFv",
+        "match": 100.0
+      },
+      {
+        "name": "is_other_tombstone_closer__13TObjTombstoneFv",
+        "match": 100.0
+      },
+      {
+        "name": "project_to_screen__13TObjTombstoneFPvPfPv",
+        "match": 100.0
+      },
+      {
+        "name": "update_fade_by_distance__13TObjTombstoneFv",
+        "match": 100.0
+      },
+      {
+        "name": "draw_name_labels__13TObjTombstoneFPv",
+        "match": 98.80531
+      }
+    ],
+    "sections": {
+      ".rodata": {
+        "size": 16,
+        "alignment": 8
+      },
+      ".sdata2": {
+        "size": 44,
+        "alignment": 8
+      }
+    }
+  },
+  {
+    "experiment": "tombstone-probes-3-top_bound",
+    "seconds": 0.031030468991957605,
+    "functions": [
+      {
+        "name": "TObjTombstone__sub_80074E74",
+        "match": 100.0
+      },
+      {
+        "name": "copy_matrix__13TObjTombstoneFPv",
+        "match": 100.0
+      },
+      {
+        "name": "reset_matrix__13TObjTombstoneFv",
+        "match": 100.0
+      },
+      {
+        "name": "handle_6x96__Fv",
+        "match": 100.0
+      },
+      {
+        "name": "check_owner__13TObjTombstoneFv",
+        "match": 100.0
+      },
+      {
+        "name": "is_other_tombstone_closer__13TObjTombstoneFv",
+        "match": 100.0
+      },
+      {
+        "name": "project_to_screen__13TObjTombstoneFPvPfPv",
+        "match": 100.0
+      },
+      {
+        "name": "update_fade_by_distance__13TObjTombstoneFv",
+        "match": 100.0
+      },
+      {
+        "name": "draw_name_labels__13TObjTombstoneFPv",
+        "match": 96.460175
+      }
+    ],
+    "sections": {
+      ".rodata": {
+        "size": 16,
+        "alignment": 8
+      },
+      ".sdata2": {
+        "size": 44,
+        "alignment": 8
+      }
+    }
+  }
+]
