@@ -3,7 +3,7 @@
 
 #include "types.h"
 #include "pso/enemy/TObjEneDD_ST.h"
-#include "pso/enemy/TUnk_80494938.h"
+#include "pso/misc/MaterialOpacityFade.h"
 #include "pso/system/vector.h"
 #include <stddef.h>
 
@@ -67,7 +67,7 @@ struct TObjEneMe1Canadin : public TObjEneDD_ST {
     TObjEneMe1Canadin *m_3c0;
     s32 m_3c4;
     u32 m_3c8;
-    TUnk_80494938 m_3cc;
+    MaterialOpacityFade m_3cc;
     f32 m_3e8;
     f32 m_3ec;
     f32 m_3f0;

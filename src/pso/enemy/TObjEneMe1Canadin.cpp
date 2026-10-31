@@ -1,3 +1,5 @@
+#include "pso/player/demo_mode.h"
+#include "pso/misc/MaterialOpacityFade.h"
 #pragma auto_inline off
 #pragma dont_inline off
 #pragma inline_depth(1)
@@ -17,7 +19,7 @@
 #include "pso/player/TObjChara.h"
 #include "pso/object/TObjMotion.h"
 
-#include "pso/enemy/TUnk_80494938.h"
+#include "pso/misc/MaterialOpacityFade.h"
 #include <stddef.h>
 #include "pso/system/BmlResource.h"
 #include "pso/system/BmlResourceDescriptor.h"
@@ -108,8 +110,8 @@ void init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, s32);
 s32 collect_enemy_target_candidates(void *, Entry_8009E860 *);
 void clear_attack_receipts__9TObjEneDDFv();
 void invoke_initialization_hook__9TObjEneDDFPv(void *, void *);
-s32 start_fade_in__13TUnk_80494938Fv(void *);
-void TBoss3Volopt__sub_800D8D88(s32 arg0);
+s32 start_fade_in__19MaterialOpacityFadeFv(void *);
+void play_area_sound_and_particles_a(s32 arg0);
 s32 trigger_dell_biter_events__10TObjPlayerFv(void *, f32);
 s32 approach_angle_limited(s32, s32, s32);
 void *find_entity_by_id(u16 id);
@@ -289,11 +291,11 @@ void TObjEneMe1Canadin::setup_enemy() {
     u8 *arg0 = (u8 *)this;
     s32 i;
 
-    this->init_position_vectors();
+    this->initialize_position_copies();
     this->vfunc_106();
     init_model__9TObjEneDDFP13CollisionBodyl(arg0, &lbl_8048FECC, 1);
-    ((TObjMotion *)arg0)->set_field_d8((s32)lbl_8048FF30);
-    ((TObjMotion *)arg0)->set_field_dc((s32)lbl_805D4FD0->motions);
+    ((TObjMotion *)arg0)->set_action_table((TObjMotionAction *)lbl_8048FF30);
+    ((TObjMotion *)arg0)->set_motion_list((BmlMotionEntry *)lbl_805D4FD0->motions);
     requested_action = 0;
     ((TObjMotion *)arg0)->set_animation(requested_action);
     ((TObjMotion *)arg0)->set_field_b8(requested_action);
@@ -368,7 +370,7 @@ TObjEneMe1Canadin::~TObjEneMe1Canadin() {
 void TObjEneMe1Canadin::run_task() {
     u8 *arg0 = (u8 *)this;
     TObjEneMe1Canadin *temp_r3;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->update_if_ready();
         return;
     }
@@ -870,8 +872,8 @@ void TObjEneMe1Canadin::fn_8009DE90(s32 arg1) {
         actorFlags = (s32) (actorFlags | 0x01000000);
         m_3fc = 4;
         m_4b8 = 1;
-        start_fade_in__13TUnk_80494938Fv(&m_3cc);
-        TBoss3Volopt__sub_800D8D88((s32)(&position));
+        start_fade_in__19MaterialOpacityFadeFv(&m_3cc);
+        play_area_sound_and_particles_a((s32)(&position));
         return;
     case 3:
         if (this->m_3cc.advance_toward_max() != 0) {
@@ -1882,7 +1884,7 @@ void TObjEneMe1Canadin::render() {
     s16 temp_r0_2;
     s32 var_r30;
     s32 var_r29;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->render_canadin_model_with_debug_type();
         return;
     }
@@ -2010,7 +2012,7 @@ TObjEneMe1CanadinLeader::TObjEneMe1CanadinLeader(TObject *parent, void *set_data
 TObjEneMe1CanadinLeader::~TObjEneMe1CanadinLeader() {}
 
 void TObjEneMe1CanadinLeader::run_task() {
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         update_if_ready();
         return;
     }
