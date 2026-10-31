@@ -1,3 +1,4 @@
+#include "pso/math/ViewPoint.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/player/TObjPlayer_800D8FDC.h"
@@ -93,7 +94,6 @@ s32 TObjPlayer__sub_800A04F0(void *);
 void enemy_clear_target__12TObjEneDD_STFUs(void *);
 void enemy_set_target_id(void *, u16);
 s32 update_player_state__9TObjEneDDFv(void *, void *, int);
-s32 transform_point_to_view(void *, int);
 s32 pack_debug_text_position(s32, s32);
 s32 attack_target_history_add(s32, void *);
 void fn_800D8830(void *owner, void *pos);
@@ -1544,7 +1544,7 @@ void TObjEneDellBiter::step_demo_script() {
     case 32:
         pos = TObjEneDellBiter__demo_script_cursor;
         TObjEneDellBiter__demo_script_cursor = pos + 0xC;
-        transform_point_to_view(&dellbiter_demo_camera_vec, pos);
+        transform_point_to_view(&dellbiter_demo_camera_vec, (Vec *)pos);
         break;
     }
     TObjEneDellBiter__demo_script_step += 1;
