@@ -147,3 +147,12 @@ the unsigned constant included through `0x8044F268`, the temporary object's
 not in the source branch: integration must first agree on the shared type-name
 boundary and the resulting exported-symbol and linker layout. Scores alone do
 not establish semantic correctness or a linkable unit.
+
+A follow-up temporary compile placed a 20-byte window descriptor before that
+static action array. The resulting `.data` object was 548 bytes, matching the
+original `0x804CFDE0..0x804D0004` bytes exactly; all 22 member-function
+relocation offsets and targets also matched after accounting for the original
+automatic object's leading `0x1c` bytes. The dispatcher comparison was 93.12%
+(1,356 candidate bytes versus 1,324 original). This remains an emission
+experiment: the descriptor's source-level type, initialization guard symbol,
+section ownership and linkage must be reviewed before adoption.
