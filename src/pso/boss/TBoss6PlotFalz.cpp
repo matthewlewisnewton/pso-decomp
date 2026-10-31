@@ -629,7 +629,7 @@ void TBoss6PlotFalz::award_exp_and_destroy() {
     Msg_802AB490 m;
     m.a = 0x800;
     ((TObjEnemy *)arg0)->send_6x0A_enemy_state(&m);
-    ((TObjEnemy *)arg0)->exchange_object_state((s32)&m, (s16)0);
+    ((TObjEnemy *)arg0)->exchange_object_state(&m, (s16)0);
     ((VObj_802AB490 *)arg0)->m77(&m);
     ((TObjEnemy *)arg0)->send_entity_set_flags();
     queue_destruction__7TObjectFv(arg0);
@@ -1481,10 +1481,10 @@ s32 TBoss6PlotFalz__ct(s32 self, s32 arg1, s32 arg2) {
     ((TBoss6PlotFalz *)(arg0))->apply_set_data((void *)arg2);
     TBoss4DarkFalz__sub_8004B4F0((arg0 + 0x388), (void *)arg2);
     ((TBoss6PlotFalz *)arg0)->m_38a = 0;
-    if (((TObjEnemy *)arg0)->exchange_object_state((s32)&sp8, (s16)(1)) != 0) {
+    if (((TObjEnemy *)arg0)->exchange_object_state(&sp8, (s16)(1)) != 0) {
         sp8.a = 0;
         sp8.c = 0;
-        ((TObjEnemy *)arg0)->exchange_object_state((s32)&sp8, (s16)(0));
+        ((TObjEnemy *)arg0)->exchange_object_state(&sp8, (s16)(0));
     }
     VecCopy((Vec *)(arg0 + 0x44), (const Vec *)(VecCopy((Vec *)(arg0 + 0x50), (const Vec *)(VecCopy((Vec *)(arg0 + 0x74), (const Vec *)(arg0 + 0x38))))));
     VecCopy((Vec *)(arg0 + 0x2FC), (const Vec *)(arg0 + 0x38));
