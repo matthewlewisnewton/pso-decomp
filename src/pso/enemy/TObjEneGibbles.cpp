@@ -10,6 +10,7 @@
 #include "pso/math/ScratchVectorStorage.h"
 
 #include <dolphin/mtx.h>
+#include "pso/player/TObjPlayer_801542CC.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/TObjControl.h"
 #include "types.h"
@@ -34,6 +35,8 @@
 #include "pso/object/TObjFish.h"
 
 
+s32 lerp_angle_half(s32 from, s32 to);
+
 extern "C" {
 f32 calc_xz_distance_sq(void *, void *, Vec *);
 f64 atan2_float(f32, f32);
@@ -48,7 +51,7 @@ s32 get_current_floor();
 u8 *get_enemy_entity(u16);
 
 
-void check_enemy_body_collisions(void *arg0);
+
 s32 submit_cursor_candidate(void *, int);
 TObjPlayer *get_player_by_client_id(s32);
 s32 minimap_render_dot(void *, int, int, int);
@@ -97,10 +100,10 @@ extern NpcAnimationBinding gibbles_resource_binding_desc;
 extern s32 gibbles_boss_stat_handle;
 extern s32 gibbles_combat_stats_handle;
 extern BmlResource *TObjEneGibbles__resource_bundle;
-void init_collision_body_parts(void *, void *, int);
+
 extern const char *lbl_805D3F60;
 
-u32 copy_target_state__14TObjEnePanarmsFPv(void *, u32);
+
 s32 get_main_phase();
 f32 calc_distance_to_client__10TObjPlayerFlUsUl(void *, u16, Vec *);
 s32 obj_setFlags30(void *, int);
@@ -109,10 +112,10 @@ void TCameraCtrl__sub_8006A044(s32, f32);
 s32 *csnVecterUnder(s32 origin, s32 mask);
 s32 rotate_xz_pair_by_angle(f32 *, f32 *, s32, f32);
 s32 test_action_mask__10TObjPlayerFl(void *, int);
-s32 TObjEneMe3SinowZoa__sub_800D758C(void *);
+
 void TObjPlayer__sub_800D93C4(s32 point, s32 delay);
 s32 angle_diff_s16(s32, s32);
-s32 lerp_angle_half__10TObjPlayerFUsUs(s32, s32);
+
 void mem_free(void*);
 s32 get_room__8TObjBaseFv(void *);
 s32 vec3_add_to(f32 *, void *);
@@ -213,7 +216,7 @@ extern s32 model_render_flags;
 extern const f32 lbl_805DE884;
 extern s32 lbl_80472768[];
 extern s32 lbl_80472774[];
-extern s32 lbl_805D586C;
+
 extern s32 lbl_805D5870;
 extern const f32 lbl_805DE824;
 void move_with_wall_slide(u8 *arg0);
@@ -244,7 +247,7 @@ s32 obj_is_hit_receivable(TObjChara *);
 
 extern "C" {
 
-void free_collision_body_parts(void *);
+
 
 }
 
@@ -408,7 +411,7 @@ u32 TObjEneGibbles::resolve_sound_id(u32 sound_id) {
     }
   }
   else {
-    pvVar2 = (u32)(copy_target_state__14TObjEnePanarmsFPv(this, sound_id));
+    pvVar2 = (u32)(remap_sound_for_area(sound_id));
   }
   return pvVar2;
 }
@@ -643,7 +646,7 @@ int TObjEneGibbles::test_flag_256() {
         return 1;
     }
     if ((flags & 4) && this->mode != 6 && this->m_388 > 0) {
-        for (i = 0; i < lbl_805D586C; i++) {
+        for (i = 0; i < registered_player_count; i++) {
             pl = (u8 *)TObjPlayer::get_player_data(i);
             if (pl != NULL && !(((TObjPlayer *)pl)->actorFlags & 0x800)
                 && calc_distance_to_client__10TObjPlayerFlUsUl(self, i, &v) < lbl_805DE824
@@ -1154,7 +1157,7 @@ void TObjEneGibbles::clamp_angle(s32 arg1) {
     } else if (target_rot > 0x238E) {
         target_rot = 0x238E;
     }
-    this->render_angle = lerp_angle_half__10TObjPlayerFUsUs(this->render_angle, target_rot);
+    this->render_angle = lerp_angle_half(this->render_angle, target_rot);
 }
 
 void TObjEneGibbles::turn_toward_target() {
@@ -1188,7 +1191,7 @@ void TObjEneGibbles::vfunc_28() {
         best_id = 0xFFFF;
         Vec v = *(Vec *)lbl_80472768;
         best = ((GibblesMovementParameters *)self->movementParameters)->target_range * ((GibblesMovementParameters *)self->movementParameters)->target_range;
-        for (; i < lbl_805D586C + lbl_805D5870; i++) {
+        for (; i < registered_player_count + lbl_805D5870; i++) {
             p = (u8 *)TObjPlayer::get_player_data(i);
             if (TObjPlayer::is_valid_and_active((u32)p) != 0 && p != (u8 *)self) {
                 id = get_entity_id(p);
@@ -1239,7 +1242,7 @@ void TObjEneGibbles::vfunc_28() {
         i = 0;
         best = ((GibblesMovementParameters *)self->movementParameters)->target_range * ((GibblesMovementParameters *)self->movementParameters)->target_range;
         best2 = best;
-        for (; i < lbl_805D586C; i++) {
+        for (; i < registered_player_count; i++) {
             p = (u8 *)TObjPlayer::get_player_data(i);
             if (p == NULL) continue;
             if ((u16)get_entity_id(p) >= 0x1000) continue;
@@ -1528,7 +1531,7 @@ void TObjEneGibbles::update_death_sequence() {
     case 0:
         this->phase = 1;
         this->requested_action = 5;
-        TObjEneMe3SinowZoa__sub_800D758C((void *) ((u8 *)&material_fade));
+        material_fade.start_fade_in();
         this->height_offset = (f32) lbl_805DE868;
         this->vertical_step = (f32) TObjEneGibbles__data_805DE830;
         apply_actor_gravity((TObjEnemy *)(self), NULL, TObjEneGibbles__data_805DE7E4);
