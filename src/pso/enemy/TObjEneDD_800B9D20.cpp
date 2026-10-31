@@ -80,8 +80,8 @@ void TObjEneDD::reload_stats_keep_hp_tp() {
     *(s16 *)&this->tp = d;
 }
 
-void TObjEneDD::reset_hp(u8 *base_stats, u8 *attack_stats, u8 *resistance_stats) {
-    bind_enemy_combat_stats(base_stats, attack_stats, resistance_stats);
+void TObjEneDD::reset_hp(BattleBaseStats *base_stats, AttackParams *attack_stats, ActorParamBlock *resistance_stats) {
+    bind_enemy_combat_stats((u8 *)base_stats, (u8 *)attack_stats, (u8 *)resistance_stats);
     referenceHp = hp;
 }
 int TObjEneDD::get_camera_ctrl() { return transform_to_view__11TCameraCtrlFii(this); }

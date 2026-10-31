@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "pso/enemy/TObjEnemy.h"
+#include "pso/enemy/BattleParameters.h"
 
 struct TObjEneDD : public TObjEnemy {
     TObjEneDD(TObject *parent);
@@ -63,7 +64,7 @@ struct TObjEneDD : public TObjEnemy {
     int update_primary_light();
     int update_secondary_light();
     void reload_stats_keep_hp_tp();
-    void reset_hp(u8 *base_stats, u8 *attack_stats, u8 *resistance_stats);
+    void reset_hp(BattleBaseStats *base_stats, AttackParams *attack_stats, ActorParamBlock *resistance_stats);
     int get_camera_ctrl();
     int update_camera_sequence();
     void initialize_enemy_state(s32 parameter);

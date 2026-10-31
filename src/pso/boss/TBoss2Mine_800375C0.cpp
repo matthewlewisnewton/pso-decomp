@@ -1314,7 +1314,7 @@ extern "C" {
 
 
 
-s32 reset_hp__9TObjEneDDFPUcPUcPUc(void *, int, int, int);
+s32 reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(void *, int, int, int);
 s32 init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, int, int);
 extern u8 *lbl_805D4BA4;
 void init__10TBoss2MineFPvi(u8 *arg0, s32 arg1);
@@ -1363,7 +1363,7 @@ void init__10TBoss2MineFPvi(u8 *boss2_mine, s32 arg1) {
     temp_r6 = *(u8 **)((s8 *)lbl_805D4BA4 + 0x42C);
     *(s32 *)((s8 *)boss2_mine + 0x24) = *(s32 *)((s8 *)temp_r6 + 0x2C);
     init_model__9TObjEneDDFP13CollisionBodyl(boss2_mine, (u8 *)lbl_80482CD8, 1, (int)temp_r6);
-    reset_hp__9TObjEneDDFPUcPUcPUc(boss2_mine, ((s32)get_battle_base_stats(((s32 *)boss2_mine_params)[arg1])),
+    reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(boss2_mine, ((s32)get_battle_base_stats(((s32 *)boss2_mine_params)[arg1])),
                             ((s32)get_battle_attack_params(((s32 *)lbl_80482C90)[arg1])),
                             ((s32)get_battle_resistance_params(((s32 *)lbl_80482C98)[arg1])));
     ((TObjEneDD *)boss2_mine)->check_state_flag_2();

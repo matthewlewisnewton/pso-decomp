@@ -322,7 +322,7 @@ void TObjEneDellBiter::init_params() {
     this->requested_action = 0;
     set_animation(this->requested_action);
     set_field_b8(this->requested_action);
-    reset_hp((u8 *)dellbiter_boss_stat_handle, (u8 *)TObjEneDellBiter__shared_handler_param, (u8 *)dellbiter_object_stat_handle);
+    reset_hp((BattleBaseStats *)dellbiter_boss_stat_handle, (AttackParams *)TObjEneDellBiter__shared_handler_param, (ActorParamBlock *)dellbiter_object_stat_handle);
     set_state_8();
     movementParameters = &TObjEneDellBiter__param_table;
     initialize_enemy_state(0x48);
