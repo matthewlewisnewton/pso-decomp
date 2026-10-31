@@ -1,5 +1,6 @@
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
+#include "pso/TNECFontEORFunction.h"
 #include "pso/misc/TWindowSubStatusDisp_803DEE6C.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 #include "pso/misc/TWindowCtrl.h"
@@ -11,11 +12,6 @@
 struct RecoveredGlobal_8000F764_TKeyBoardControl__data_80506270 {
     s32 value;
     u8 remaining[0xAC];
-};
-
-struct RecoveredGlobal_8000F7FC_lbl_80515F48 {
-    s32 value;
-    u8 remaining[0x24];
 };
 
 struct RecoveredGlobal_8000F9E4_lbl_804FE120 {
@@ -70,8 +66,6 @@ typedef struct Pos_8014556C
   u8 pad[0x1C];
 } Pos_8014556C;
 
-extern u8 lbl_805D56C0;
-extern RecoveredGlobal_8000F7FC_lbl_80515F48 menu_font_texture_list;
 extern const f32 lbl_805DB190;
 extern const f32 lbl_805DB194;
 extern const f32 lbl_805DB198;
@@ -86,7 +80,6 @@ void DCStoreRange(void *, u32);
 }
 extern u8 *menu_font_glyph_pixel_buffers[];
 extern u8 *menu_font_glyph_data;
-extern u32 menu_font_upload_flags;
 void upload_font_glyph(u16 c, void *arg1);
 s32 calc_ci4_tile_offset(u32 arg0, u32 arg1);
 extern const f32 lbl_805DB19C;
@@ -450,9 +443,8 @@ u8 calc_gauge_scale__20TWindowSubStatusDispFPvPvi(void *arg0, void *arg1, s32 ar
 }
 
 typedef char RecoveredGlobal_8000F764_TKeyBoardControl__data_80506270_size[sizeof(RecoveredGlobal_8000F764_TKeyBoardControl__data_80506270) == 0xB0 ? 1 : -1];
-typedef char RecoveredGlobal_8000F7FC_lbl_80515F48_size[sizeof(RecoveredGlobal_8000F7FC_lbl_80515F48) == 0x28 ? 1 : -1];
 void TWindowSubStatusDisp::set_gauge_param(s32 _w0) {
-    set_current_texture_list((GinjaTextureList *)(&menu_font_texture_list.value));
+    set_current_texture_list(&menu_font_texture_list);
 }
 typedef char RecoveredGlobal_8000F90C_lbl_804FE120_size[sizeof(RecoveredGlobal_8000F90C_lbl_804FE120) == 0x18 ? 1 : -1];
 typedef char RecoveredGlobal_8000F8FC_lbl_804FE120_size[sizeof(RecoveredGlobal_8000F8FC_lbl_804FE120) == 0x18 ? 1 : -1];
