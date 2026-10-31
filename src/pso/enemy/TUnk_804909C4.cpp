@@ -10,7 +10,7 @@
 
 extern "C" {
 void check_enemy_body_collisions(TObjCollidable *);
-s32 TObjPlayer__sub_800A3210(s32, s32, s32);
+s32 TObjPlayer__sub_800A3210(s32);
 void vec3_add_to(Vec *, const Vec *);
 f32 atan2_float(f32, f32);
 void *spawn_particle_effect_with_rotation(void *, void *, s32, int);
@@ -20,12 +20,12 @@ extern f32 player_scale_factor;
 
 CollisionBody projectile_collision_body = {{0.0f, 0.0f, 0.0f}, 0.0f, 0.0f, 0, 0x8003, {0.0f, 0.0f, 0.0f}, 0.0f};
 
-s32 TUnk_804909C4::check_player_hits(s32 id) {
+s32 TUnk_804909C4::check_player_hits(u16 id) {
     TObjCollidable *other;
     s32 result = 0;
     s32 i;
     TObjChara *p;
-    other = ((TObjCollidable *(*)(s32))find_entity_by_id)(id);
+    other = find_entity_by_id(id);
     if (other == NULL) {
         return 0;
     }
@@ -40,9 +40,9 @@ s32 TUnk_804909C4::check_player_hits(s32 id) {
             if (p == NULL) {
                 break;
             }
-            if (((s32 (*)(u8 *))obj_is_hit_receivable)((u8 *)p) != 0 && p != other) {
+            if (obj_is_hit_receivable((u8 *)p) != 0 && p != other) {
                 DirectAttackPayload t = {0, 0.0f};
-                t.power = ((s32 (*)(s32))TObjPlayer__sub_800A3210)(3);
+                t.power = TObjPlayer__sub_800A3210(3);
                 DirectAttackPayload u = t;
                 p->receive_direct_attack(other, u, 0, -1, -1);
                 p->apply_knockback_from_attacker((u8 *)other, 3.0f);

@@ -112,7 +112,7 @@ extern const f32 TWindowKeyBoardSoft__data_805DD080;
 extern const f32 TWindowKeyBoardSoft__data_805DD088;
 extern const f32 TWindowKeyBoardSoft__data_805DD094;
 extern RecoveredGlobal_80260808_lbl_8050E208 controller_input_state;
-extern void *local_client_id;
+extern s32 local_client_id;
 extern const f32 lbl_805DD084;
 extern const f32 lbl_805DD08C;
 void apply_context_transform_to_rect(void *, void *);
@@ -517,7 +517,7 @@ f32 TWindowKeyBoardSoft__sub_802614DC(u8 *window_sub_com_card, u8 *arg1, f32 far
 void TWindowKeyBoardSoft::spawn_key_effect(s32 arg1, s32 arg2) {
     s32 type;
     Vec2_802615B8 pos;
-    s32 kind;
+    s16 kind;
 
     ((void (*)(void *, s32, s32 *, s32))TWindowKeyBoardSoft__sub_80260760)(this, ((s32 (*)(void *, s32, s32))calc_key_index__19TWindowKeyBoardSoftFiii)(this, arg1, arg2), &type, 0);
     pos.x = *(f32 *)(((u8 *)this) + 0x40) + ((f32 (*)(void *, s32, s32))calc_key_x__19TWindowKeyBoardSoftFiii)(this, arg1, arg2);
@@ -536,7 +536,7 @@ void TWindowKeyBoardSoft::spawn_key_effect(s32 arg1, s32 arg2) {
         kind = 6;
         break;
     }
-    TWindowEffectLight::create(&pos, (void *)kind, (void *)local_client_id);
+    TWindowEffectLight::create(&pos, kind, local_client_id);
 }
 #pragma pop
 

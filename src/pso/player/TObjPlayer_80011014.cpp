@@ -343,7 +343,7 @@ u8 obj_isState3_324__9TObjCharaFv(u8* p);
 s32 get_type__10TObjPlayerFPv(void* p);
 void create_hit_effect__10TObjPlayerFPv(void *);
 f32 receive_direct_attack__9TObjCharaFPv19DirectAttackPayloadPvll(Actor_8001311C *self, Actor_8001311C *att, Info_8001311C *arg, Coll_8001311C *coll, s32 tech, s32 arg5);
-u8 obj_is_hit_receivable(u8 *arg0);
+s32 obj_is_hit_receivable(u8 *arg0);
 int get_player_data__10TObjPlayerFi(int a0);
 extern s32 registered_player_count;
 extern s32 lbl_805D5870;
@@ -1724,7 +1724,7 @@ u16 find_nearest_hittable_enemy__10TObjPlayerFiPvf(s32 arg0, Vec_800114D8 *arg1,
         if (p == NULL) {
             break;
         }
-        if (((s32 (*)(ObjFlags *))obj_is_hit_receivable)(p) != 0) {
+        if (obj_is_hit_receivable((u8 *)p) != 0) {
             u16 id = get_entity_id(p);
             if (id >= 0x1000 && id < 0x4000 && !(p->flags_30 & 0x02000800)) {
                 dist = ((f32 (*)(s32, ObjFlags *, void *))calc_xz_distance_sq)(arg0, p, &pos);
@@ -4820,7 +4820,7 @@ void*TObjPlayer::init_192dc_return_self(void* p) { ((int (*)(void*))reset_status
 
 void TObjCollidable::interact(s32 client) { this->interactor = client; }
 
-u8 obj_is_hit_receivable(u8 *arg0) {
+s32 obj_is_hit_receivable(u8 *arg0) {
     return (u8) (*(u16 *)((s8 *)arg0 + 0x96) == 1);
 }
 
