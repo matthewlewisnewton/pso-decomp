@@ -140,7 +140,6 @@ struct TrapChipParams {
 typedef char TrapChipParams_size[sizeof(TrapChipParams) == 0x4c ? 1 : -1];
 
 extern "C" {
-void receive_physical_attack__6TOTrapFPvf(void *, void *, f32);
 u16 get_entity_id(TObjBase *);
 void obj_set_flag_20000(TObjBase *);
 void obj_clear_flag30_20000(TObjBase *);
@@ -521,7 +520,7 @@ void TOTrapAncient01::vfunc_84() {  }
 
 f32 TOTrapAncient01::receive_physical_attack(void *arg1, f32 farg0) {
     this->release_trapped_player();
-    receive_physical_attack__6TOTrapFPvf(this, arg1, farg0);
+    return TOTrap::receive_physical_attack(arg1, farg0);
 }
 
 #pragma push
