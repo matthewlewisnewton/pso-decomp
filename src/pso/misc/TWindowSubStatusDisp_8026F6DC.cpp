@@ -4,6 +4,7 @@
 #include "pso/misc/TWindowSimpleStatus.h"
 #include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
+#include "pso/TObjCMHairMenu.h"
 #include "pso/item/TItemProShield.h"
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TWindowHelpItem.h"
@@ -16,7 +17,9 @@ struct Disp_8026F9F4 { u8 p0[0x20]; s16 id; u8 p1[0x42]; void *windows[5]; };
 
 struct Vec2_80270244 { f32 x; f32 y; };
 
-struct Params_80270244 { f32 x; f32 y; u8 pad8[0x28]; s32 f30; };
+struct Params_80270244 { f32 x; f32 y; u8 pad8[0x18]; f32 f20; f32 f24; f32 f28; f32 f2c; s32 f30; };
+
+struct Prim_8026FC5C { f32 *verts; u32 *colors; s32 flags; s32 count; };
 
 extern "C" {
 int obj_getArrWord_254(void *p, int i);
@@ -27,9 +30,10 @@ void TWindowComCard__sub_80249D7C(u8 *arg0, s32 arg1);
 void *TWindowComCard__sub_80249ED8(void *, void *, void *, s32, s32, s32);
 extern const f32 lbl_805DD38C;
 extern const f32 lbl_805DD398;
-s32 draw_photon_blast_fan(s32, Vec2_80270244 *, Params_80270244 *, u32, s32, s32, f32, f32);
+void draw_photon_blast_fan(s32, Vec2_80270244 *, Params_80270244 *, u32, s32, s32, f32, f32);
 extern u32 photon_blast_gauge_ring_color_table[];
 extern const f32 lbl_805DD388;
+extern const f32 lbl_805DD39C;
 extern const f32 lbl_805DD3C8;
 extern const f32 lbl_805DD3CC;
 extern const f32 lbl_805DD3D0;
@@ -307,6 +311,44 @@ void TWindowSimpleStatus::update_status_icons(void *ofs) {
         }
     }
 }
+
+#pragma push
+#pragma fp_contract on
+void draw_photon_blast_fan(s32 arg0, Vec2_80270244 *arg1, Params_80270244 *arg2, u32 arg3, s32 arg4, s32 arg5, f32 arg6, f32 arg7) {
+    f32 verts[6];
+    Prim_8026FC5C prim;
+    u32 colors[3];
+    s32 end = arg5;
+    s32 angle = arg4;
+    f32 amp_x;
+    f32 amp_y;
+    f32 depth;
+
+    depth = ((TWindowSimpleStatus *)arg0)->m_54 + lbl_805DD39C * arg6;
+    amp_x = arg7 * arg2->f28;
+    amp_y = arg7 * arg2->f2c;
+    prim.verts = verts;
+    prim.colors = colors;
+    prim.flags = 0;
+    prim.count = 1;
+    colors[2] = colors[1] = colors[0] = (arg3 << 8) | (arg3 >> 24);
+    verts[0] = arg2->f20 + arg2->f28 * (arg1->x - arg2->f20);
+    verts[1] = arg2->f24 + arg2->f2c * (arg1->y - arg2->f24);
+    verts[4] = amp_x * cos_table_lookup(angle) + verts[0];
+    verts[5] = amp_y * sin_table_lookup(angle) + verts[1];
+    while (angle < end) {
+        verts[2] = verts[4];
+        verts[3] = verts[5];
+        angle += 0x800;
+        if (angle > end) {
+            angle = end & 0xFFFFFFFFFFFFFFFFu;
+        }
+        verts[4] = amp_x * cos_table_lookup(angle) + verts[0];
+        verts[5] = amp_y * sin_table_lookup(angle) + verts[1];
+        ((TObjCMHairMenu *)&prim)->draw_tri_fan_2d(3, 2, depth);
+    }
+}
+#pragma pop
 
 #pragma push
 #pragma fp_contract on
