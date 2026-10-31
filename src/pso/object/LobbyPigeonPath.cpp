@@ -511,7 +511,7 @@ void TObjPlayer__sub_802C2900(void);
 void * __dt__13TUnk_804E0988Fv(void *arg0, s16 arg1);
 u8 *TObjPlayer__sub_802C2F04(u8 *arg0, s32 arg1, const void* _w2);
 void *__dt__11TObjPathObjFv(void *arg0, s16 arg1);
-void bind_motion_context(s32 arg0, f32 farg0);
+void bind_motion_context(void * arg0, f32 farg0);
 void matrix_mult_vec(void *, void *, void *);
 void translate_matrix_vec3(u8 *arg0, u8 *arg1);
 void set_matrix_identity(u8 *arg0);
@@ -1484,7 +1484,7 @@ s32 sample_clamped_path_position(void *arg0, s32 arg1, void *arg2, s32 arg3, f32
     var_r31 = 0;
     var_f1 = (f32)temp_r7;
   }
-  bind_motion_context((s32)arg2, var_f1);
+  bind_motion_context((void *)(arg2), var_f1);
   sample_motion_node_transform((void *)arg1, (void *)arg3, (void *)sp24, (void *)sp18, (void *)sp8);
   return var_r31;
 }

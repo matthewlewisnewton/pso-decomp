@@ -7,7 +7,7 @@ typedef char queue_draw_offset[(offsetof(GinjaModelQueue, draw) == 8) ? 1 : -1];
 typedef char queue_known_size[(sizeof(GinjaModelQueue) == 12) ? 1 : -1];
 extern void* model_draw_queue_models[10];
 
-void init_model_draw_queue(void (*draw)(void*));
+void init_model_draw_queue(ModelDrawCallback draw);
 void queue_model_draw_matrix(void* model, const GinjaMatrix matrix);
 
 s32 TObjPlayer__sub_803DB23C() { return 0; }
@@ -16,7 +16,7 @@ s32 TObjPlayer__sub_803DB244() { return 0; }
 #pragma push
 #pragma scheduling off
 #pragma peephole off
-void init_model_draw_queue(void (*draw)(void*)) {
+void init_model_draw_queue(ModelDrawCallback draw) {
     model_draw_queue_state.models = model_draw_queue_models;
     model_draw_queue_state.count = 0;
     model_draw_queue_state.draw = draw;

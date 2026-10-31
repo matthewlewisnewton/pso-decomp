@@ -506,7 +506,7 @@ void __destroy_arr(void *, void *, u32, u32);
 void __construct_array(void *, void *, void *, int, int);
 f32 sin_table_lookup(s32);
 f32 cos_table_lookup(s32);
-void bind_motion_context(s32 arg0, f32 farg0);
+void bind_motion_context(void * arg0, f32 farg0);
 void compose_motion_node_matrix(void *arg0);
 s32 matrix_mult_vec(int, void *, void *);
 void copy_matrix__10TObjPlayerFUlUl(int, void *);
@@ -1301,7 +1301,7 @@ void TObjEneRe7Berura::load_static_resources() {
         Elem_800959F8 *e = &TObjEneRe7Berura__detached_part_states[i];
         u8 *ent = RES->f430[TObjEneRe7Berura__animation_definitions[e->fC].f4].f4;
         set_motion_packed_rotation();
-        bind_motion_context((s32)ent, e->f14);
+        bind_motion_context((void *)(ent), e->f14);
         ((void (*)(u32, void *))apply_attack_params__16TObjEneRe7BeruraFiPv)(m, e);
         clear_motion_packed_rotation();
         e->f18 = (s32 *)find_model_node(m, e->f4);

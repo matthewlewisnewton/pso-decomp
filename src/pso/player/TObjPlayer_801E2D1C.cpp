@@ -1,17 +1,16 @@
 #include "types.h"
+#include "pso/system/ModelDrawCallback.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/player/TObjPlayer_801E2D1C.h"
 #include "pso/misc/TCameraCtrl_803D6538.h"
 
-struct G_801E2DE4 { u8 pad[0xC]; void (*draw)(); };
+typedef ModelDrawContext G_801E2DE4;
 
 extern "C" {
-void prepare_ginja_model(G_801E2DE4 *);
+void prepare_ginja_model(void);
 }
 void end_ginja_model_draw();
 extern "C" {
-void draw_ginja_model_lists();
-extern void *model_draw_context;
 s32 GXLoadNrmMtxImm(s32 *, s32);
 s32 GXLoadPosMtxImm(s32, s32);
 extern s32 (*model_node_callback)(void *);
@@ -40,7 +39,7 @@ void TObjPlayer::render_model_tree(void *arg0) {
             PSMTXInverse(current_matrix, sp8);
             PSMTXTranspose(sp8, sp38);
             GXLoadNrmMtxImm(sp38, 0);
-            (*(s32 (**)(u32, void *))((s8 *)model_draw_context + 0xC))(*(u32 *)((s8 *)var_r31 + 4), model_draw_context);
+            model_draw_context->draw(*(void **)((s8 *)var_r31 + 4));
         }
         if ((u32) *(u32 *)((s8 *)var_r31 + 0x2C) != 0U) {
             TObjPlayer::render_model_tree((void *)(*(void **)((s8 *)var_r31 + 0x2C)));
@@ -52,10 +51,10 @@ void TObjPlayer::render_model_tree(void *arg0) {
 
 void draw_ginja_motion(NJS_OBJECT *model, NJS_MOTION *motion, f32 frame) {
     G_801E2DE4 *g;
-    bind_motion_context((s32)motion, frame);
+    bind_motion_context((void *)(motion), frame);
     g = (G_801E2DE4 *)model_draw_context;
     g->draw = draw_ginja_model_lists;
-    prepare_ginja_model(g);
+    prepare_ginja_model();
     TObjPlayer::render_matrix_chain(model);
     end_ginja_model_draw();
 }
@@ -77,7 +76,7 @@ void TObjPlayer::render_matrix_chain(void *arg0) {
             PSMTXInverse(current_matrix, sp8);
             PSMTXTranspose(sp8, sp38);
             GXLoadNrmMtxImm(sp38, 0);
-            (*(s32 (**)(u32, void *))((s8 *)model_draw_context + 0xC))(*(u32 *)((s8 *)var_r31 + 4), model_draw_context);
+            model_draw_context->draw(*(void **)((s8 *)var_r31 + 4));
         }
         if ((u32) *(u32 *)((s8 *)var_r31 + 0x2C) != 0U) {
             TObjPlayer::render_matrix_chain((void *)(*(void **)((s8 *)var_r31 + 0x2C)));

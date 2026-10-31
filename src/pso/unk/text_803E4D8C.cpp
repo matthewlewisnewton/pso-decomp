@@ -49,10 +49,6 @@ struct Node_803E4E20 {
     Node_803E4E20 *next;
 };
 
-struct Ctx_803E4E20 {
-    u8 pad[0xC];
-    void (*draw)(s32 *);
-};
 
 struct G_803E4F14 {
     s32 f0;
@@ -70,9 +66,8 @@ struct Key_803E500C { u32 frame; f32 *data; };
 extern u8 *lbl_805D7818;
 extern RecoveredGlobal_803E5458_lbl_8058DC00 lbl_8058DC00;
 extern "C" {
-void bind_motion_context(s32);
-void draw_motion_node_tree_with_context(s32);
-extern u8 *model_draw_context;
+void bind_motion_context(void *, f32);
+void draw_motion_node_tree_with_context(void *);
 void compose_motion_node_matrix(void *arg0);
 void push_matrix(void);
 s32 pop_matrix(void);
@@ -92,28 +87,28 @@ typedef char RecoveredGlobal_803D77C0_lbl_804FA500_size[sizeof(RecoveredGlobal_8
 typedef char RecoveredGlobal_803D77C0_lbl_804FA50C_size[sizeof(RecoveredGlobal_803D77C0_lbl_804FA50C) == 0x10 ? 1 : -1];
 typedef char RecoveredGlobal_803D77C0_lbl_804FA51C_size[sizeof(RecoveredGlobal_803D77C0_lbl_804FA51C) == 0x24 ? 1 : -1];
 
-void draw_motion_bound__10TObjPlayerFiiPvfi(s32 child, s32 arg1, u8 *arg2, f32 farg0, s32 arg3) {
-    u8 *p = model_draw_context;
-    bind_motion_context(arg1);
-    *(s32 *)(p + 0xC) = arg3;
+void draw_motion_bound(void *child, void *arg1, void *arg2, f32 farg0, ModelDrawCallback draw) {
+    ModelDrawContext *p = model_draw_context;
+    bind_motion_context((void *)(arg1), farg0);
+    p->draw = draw;
     if (arg2 == NULL) {
         draw_motion_node_tree_with_context(child);
         return;
     }
     TObjPlayer__sub_803E5458(0);
-    TObjPlayer__sub_803E53F8(arg2, farg0);
+    TObjPlayer__sub_803E53F8((u8 *)arg2, farg0);
     ((TObjPlayer *)child)->draw_motion_node_list();
 }
 
 void TObjPlayer::draw_motion_node_list() {
     s32 arg0 = (s32)this;
     s32 tmp;
-    Ctx_803E4E20 *ctx;
+    ModelDrawContext *ctx;
     s32 *obj;
     s32 save;
     Node_803E4E20 *n;
     n = (Node_803E4E20 *)arg0;
-    ctx = (Ctx_803E4E20 *)model_draw_context;
+    ctx = model_draw_context;
     do {
         push_matrix();
         compose_motion_node_matrix(n);

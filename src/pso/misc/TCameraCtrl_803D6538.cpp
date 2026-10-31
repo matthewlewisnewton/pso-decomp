@@ -797,9 +797,9 @@ void find_motion_key_interval(void *keys, s32 stride, s32 count, f32 t, void *k0
 #pragma push
 #pragma scheduling off
 
-void bind_motion_context(s32 arg0, f32 farg0) {
+void bind_motion_context(void * arg0, f32 farg0) {
     select_motion_context(0);
-    bind_motion_channel_samplers(arg0, farg0);
+    bind_motion_channel_samplers((s32)arg0, farg0);
 }
 #pragma pop
 

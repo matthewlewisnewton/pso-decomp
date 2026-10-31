@@ -596,7 +596,7 @@ extern const f32 TBoss1Dragon__gravity_accel;
 extern const f32 TBoss1Dragon__data_805D8008;
 extern const f32 lbl_805D8020;
 extern const f32 lbl_805D8024;
-void bind_motion_context(s32 arg0, f32 farg0);
+void bind_motion_context(void * arg0, f32 farg0);
 void compose_motion_node_matrix(void *arg0);
 s32 matrix_mult_vec(int, void *, void *);
 s32 push_matrix_from(void *);
@@ -5450,7 +5450,7 @@ f32 TBoss1Dragon::sample_root_height() {
     v.z = (0.0f);
     push_matrix_from(identity_matrix);
     scale_matrix(0, (2.0f), (2.0f), (2.0f));
-    bind_motion_context((s32)this->current_motion, this->frame);
+    bind_motion_context((void *)(this->current_motion), this->frame);
     compose_motion_node_matrix(this->model);
     matrix_mult_vec(0, &v, &v);
     pop_matrix();

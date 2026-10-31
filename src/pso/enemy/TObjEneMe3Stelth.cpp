@@ -3126,7 +3126,7 @@ void send_6x26_unequip_item__10TObjPlayerFPvPv(void *, s32);
 void __dl__7TObjectFPv(void *);
 #define sin_table_lookup ((f32 (*)(s32))sin_table_lookup)
 #define cos_table_lookup ((f32 (*)(s32))cos_table_lookup)
-void bind_motion_context(s32, f32);
+void bind_motion_context(void *, f32);
 void compose_motion_node_matrix(void *arg0);
 s32 matrix_mult_vec(int, void *, void *);
 s32 push_matrix_from(void *);
@@ -3567,7 +3567,7 @@ f32 TObjEneMe3Stelth::get_node_world_y() {
     v.y = TObjEneMe3Stelth__data_805DA840;
     v.z = TObjEneMe3Stelth__data_805DA840;
     push_matrix_from(identity_matrix);
-    bind_motion_context((s32)self->current_motion, self->frame);
+    bind_motion_context((void *)(self->current_motion), self->frame);
     node = *(Node_800F4D68 * *)&self->model;
     compose_motion_node_matrix(node);
     compose_motion_node_matrix(node->child);

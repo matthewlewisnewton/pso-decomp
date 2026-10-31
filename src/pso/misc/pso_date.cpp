@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/ModelDrawCallback.h"
 #include "pso/misc/pso_date.h"
 #include "pso/misc/TCameraCtrl_803D6538.h"
 #include "pso/system/date.h"
@@ -19,9 +20,7 @@ struct DateStamp_801E2B24 {
 };
 
 extern "C" {
-void prepare_ginja_model(void *);
-void draw_ginja_model_lists();
-extern void *model_draw_context;
+void prepare_ginja_model(void);
 extern const Tbl_801E2B24 date_month_start_days[] = {
     {{0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334}}
 };
@@ -75,8 +74,8 @@ void system_reset(void) { VISetBlack(1); VIFlush(); VIWaitForRetrace(); OSResetS
 void draw_ginja_motion_link(NJS_OBJECT *model, NJS_MOTION_LINK *link, f32 frame) {
     bind_motion_blend_channels((u8 *)link, frame);
     void *g = model_draw_context;
-    *(void (**)())((s8 *)g + 0xC) = draw_ginja_model_lists;
-    prepare_ginja_model(g);
+    ((ModelDrawContext *)g)->draw = draw_ginja_model_lists;
+    prepare_ginja_model();
     TObjPlayer::render_model_tree(model);
     end_ginja_model_draw();
 }

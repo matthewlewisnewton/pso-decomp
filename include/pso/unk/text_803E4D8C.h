@@ -2,13 +2,14 @@
 #define PSO_UNK_TEXT_803E4D8C_H
 
 #include "types.h"
+#include "pso/player/TObjPlayer_803E4954.h"
 
 extern "C" {
 void TObjPlayer__sub_803E500C(void *motA, s32 keyA, void *motB, s32 keyB, f32 t, u32 *src, u32 * *out);
 void TObjPlayer__sub_803E5378(s32 n);
 void TObjPlayer__sub_803E53F8(u8 *arg0, f32 farg0);
 void TObjPlayer__sub_803E5458(s32 arg0);
-void draw_motion_bound__10TObjPlayerFiiPvfi(s32 child, s32 arg1, u8 *arg2, f32 farg0, s32 arg3);
+void draw_motion_bound(void *child, void *motion, void *shape, f32 frame, ModelDrawCallback draw);
 }
 
 // --- C functions defined in text_803E4D8C.cpp ---

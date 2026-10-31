@@ -3611,7 +3611,7 @@ struct Vec_802ED3E4 { f32 x, y, z; };
 
 extern "C" {
 extern RecoveredGlobal_802ED4AC_lbl_80472D04 lbl_80472D04;
-void bind_motion_context(s32 arg0, f32 farg0);
+void bind_motion_context(void * arg0, f32 farg0);
 void compose_motion_node_matrix(void *arg0);
 s32 scale_matrix(int, f32, f32, f32);
 s32 push_matrix_from(void *);
@@ -3795,7 +3795,7 @@ f32 TObjFish__sub_802ED3E4(u8 *arg0) {
     v.z = lbl_805DEA10;
     push_matrix_from(identity_matrix);
     scale_matrix(0, lbl_805DEB24, lbl_805DEB24, lbl_805DEB24);
-    bind_motion_context(*(s32 *)((s8 *)arg0 + 0xF8), *(f32 *)((s8 *)arg0 + 0xC0));
+    bind_motion_context((void *)(*(s32 *)((s8 *)arg0 + 0xF8)), *(f32 *)((s8 *)arg0 + 0xC0));
     compose_motion_node_matrix((void *)(*(s32 *)((s8 *)arg0 + 0x34)));
     transform_point_by_current_matrix(&v, &v);
     pop_matrix();

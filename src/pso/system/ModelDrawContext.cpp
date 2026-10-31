@@ -1,5 +1,6 @@
 #include "types.h"
 #include "pso/system/ModelDrawContext.h"
+#include "pso/system/ModelDrawCallback.h"
 
 struct RecoveredGlobal_803DCBD8_lbl_8058D380 {
     s32 value;
@@ -8,10 +9,6 @@ struct RecoveredGlobal_803DCBD8_lbl_8058D380 {
 
 typedef s32 (*RecoveredCallback_92513335c3ed)(void *);
 typedef void (*RecoveredCallback_2be3cacebb2e)(void);
-struct MotionCtx_803DC894 {
-    u8 pad[0xC];
-    void (*fn)(void);
-};
 
 struct Mtx_803DC994 { f32 m[3][4]; };
 
@@ -49,17 +46,16 @@ void compose_motion_node_matrix(void *arg0);
 s32 push_matrix();
 s32 pop_matrix();
 s32 queue_model_draw_matrix(int, void *);
-void bind_motion_context(void *motion, f32 frame);
-void init_model_draw_queue(void *);
+void bind_motion_context(void * motion, f32 frame);
+void init_model_draw_queue(ModelDrawCallback);
 }
 extern s32 model_node_callback;
 extern s32 current_matrix;
 void draw_ginja_motion_node_tree(u8 *arg0);
 void flush_model_draw_queue(void);
 extern "C" {
-void prepare_ginja_model(void *);
-void draw_ginja_model_lists(void);
-extern struct MotionCtx_803DC894 * const model_draw_context;
+void prepare_ginja_model(void);
+
 extern RecoveredCallback_2be3cacebb2e ginja_draw_end_callback;
 void copy_rotation_to_current_matrix(struct Mtx_803DC994 *src);
 void GXSetBlendMode(int, int, int, int);
@@ -67,7 +63,7 @@ __declspec(section ".rodata") extern const u32 cached_blend_factor_table[];
 void apply_cached_blend_mode(s32 arg0);
 void init_render_context(C_803DCBF0 *arg0);
 extern RecoveredCallback_1268626c296b motion_node_draw_callback;
-void draw_motion_node_tree_with_context(struct Node_803DCB40 *arg0);
+void draw_motion_node_tree_with_context(void *root);
 __declspec(section ".rodata") extern const Tbl_803DCC34 gx_blend_mode_table;
 s32 apply_quat_rotation__10TObjPlayerFf(void *, f32);
 s32 rotate_matrix_by_node_angles(void *, void *);
@@ -81,10 +77,10 @@ void set_model_node_callback(s32 arg0) {
 typedef char RecoveredGlobal_803DCBD8_lbl_8058D380_size[sizeof(RecoveredGlobal_803DCBD8_lbl_8058D380) == 0xF0 ? 1 : -1];
 
 void draw_ginja_model_with_motion(void *model, void *motion, f32 frame) {
-    bind_motion_context(motion, frame);
-    model_draw_context->fn = draw_ginja_model_lists;
-    prepare_ginja_model(model_draw_context);
-    init_model_draw_queue((void *) draw_ginja_model_lists);
+    bind_motion_context((void *)(motion), frame);
+    model_draw_context->draw = draw_ginja_model_lists;
+    prepare_ginja_model();
+    init_model_draw_queue(draw_ginja_model_lists);
     draw_ginja_motion_node_tree((u8 *)model);
     flush_model_draw_queue();
     if (ginja_draw_end_callback != NULL) {
@@ -177,7 +173,8 @@ void traverse_model_node_tree(struct N_803DC9E4 *p, s32 (*cb)(s32)) {
     } while (p != NULL);
 }
 
-void draw_motion_node_tree_with_context(struct Node_803DCB40 *arg0) {
+void draw_motion_node_tree_with_context(void *root) {
+    Node_803DCB40 *arg0 = (Node_803DCB40 *)root;
     u32 t;
     do {
         push_matrix();
@@ -187,7 +184,7 @@ void draw_motion_node_tree_with_context(struct Node_803DCB40 *arg0) {
         }
         t = arg0->f4;
         if (t != 0 && (arg0->flags & 8) == 0) {
-            ((void (*)(u32, struct MotionCtx_803DC894 *))model_draw_context->fn)(t, model_draw_context);
+            model_draw_context->draw((void *)t);
         }
         if (arg0->child != NULL) {
             draw_motion_node_tree_with_context(arg0->child);

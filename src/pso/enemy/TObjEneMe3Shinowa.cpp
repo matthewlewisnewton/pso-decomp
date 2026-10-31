@@ -1522,7 +1522,7 @@ s32 get_room__8TObjBaseFv(int);
 s32 defer_render__7TObjectFv(void *);
 void __dl__7TObjectFPv(void *);
 s32 create__10TTecDebandFlll(void *, void *, s32);
-void bind_motion_context(s32, f32);
+void bind_motion_context(void *, f32);
 void compose_motion_node_matrix(void *arg0);
 s32 matrix_mult_vec(int, void *, void *);
 s32 translate_matrix(int, f32, f32, f32);
@@ -3252,7 +3252,7 @@ f32 TObjEneMe3Shinowa::get_node_world_y() {
     v.y = TObjEneMe3ShinowaMirage__data_805DA5B8;
     v.z = TObjEneMe3ShinowaMirage__data_805DA5B8;
     push_matrix_from(identity_matrix);
-    bind_motion_context((s32)self->current_motion, self->frame);
+    bind_motion_context((void *)(self->current_motion), self->frame);
     node = *(Node_800E75AC * *)&self->model;
     compose_motion_node_matrix(node);
     compose_motion_node_matrix(node->child);
