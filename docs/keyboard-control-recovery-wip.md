@@ -68,8 +68,8 @@ Only `0x80260904` references it: a one-byte read and write guard the action
 table initialization. The source now defines the eight-byte split symbol,
 with only its first byte named; the other seven bytes remain reserved and
 unclassified. The targeted object emits an eight-byte `.sbss` symbol with no
-change in the dispatcher comparison. The split and full regression check are
-pending.
+change in the dispatcher comparison. The locked rebuild and regression check passed: matched data increased by
+eight bytes, and no existing exact functions, data or linked units were lost.
 
 The action object at `0x804CFDE0..0x804D0004` is currently automatic data.
 Its first 20 bytes are also passed as the window descriptor by the neighboring
@@ -89,3 +89,12 @@ aligned. The preceding `TWindowKeyBoardSoft` type name at `0x8044F110` is used
 via an external type-name pointer and may be part of the same original object.
 The safe next step is a boundary/emission investigation with the constructor
 owner; merely adding the tables to this split would displace matched data.
+
+## Frame clipping call
+
+At `0x80262098` the original passes the draw context in the second integer
+argument register to `0x802614DC`. The existing source cast the function to a
+signature without that parameter, relying on a register being left unchanged.
+The candidate passes the context explicitly with the actual declared argument
+list. The targeted instruction comparison is unchanged; the full regression
+check is pending.

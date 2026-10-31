@@ -814,7 +814,7 @@ void TWindowKeyBoardSoft::draw_key_frame(void *self, f32 *rect, u32 color, s32 i
     f32 x4;
     UV_80262038 *uv;
 
-    v = ((f32 (*)(void *, f32, f32, f32, f32))TWindowKeyBoardSoft__sub_802614DC)(self, x0, y, w, 20.0f);
+    v = TWindowKeyBoardSoft__sub_802614DC((u8 *)self, (u8 *)rect, x0, y, w, 20.0f);
     if (v <= TWindowKeyBoardSoft__data_805DD090) {
         return;
     }
