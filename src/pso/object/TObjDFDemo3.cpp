@@ -1,7 +1,7 @@
+#include "pso/system/ModelNodePositionCapture.h"
 #include "types.h"
 #include "pso/TObject.h"
 #include "pso/object/TObjMotion.h"
-#include "pso/object/TObjFish_800E2FFC.h"
 #include "pso/misc/TCameraCtrl_800687BC.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/player/TObjPlayer_80052374.h"
@@ -24,7 +24,6 @@ void *spawn_particle_effect(void *pos, s32 id);
 void *create_particle_emitter(void *pos, s32 id);
 s32 play_sound_effect(s32, void *, s32, s32);
 void run_task__11TObjDFDemo3Fv(u8 *arg0);
-s32 clear_render_callback__8TObjFishFv(s32);
 s32 rotate_matrix_y(s32, s32);
 s32 push_matrix();
 s32 post_translate_matrix(void *);
@@ -103,10 +102,10 @@ void TObjDFDemo3::render() {
     post_translate_matrix((u8 *)&this->m_a0);
     rotate_matrix_y(0, this->m_ac);
     TObjFish::set_global_param(this->m_98);
-    ((TObjFish *)(this->m_b8))->set_draw_callback_list();
+    ((ModelNodePositionCapture *)(this->m_b8))->install();
     set_chunk_render_flags(1);
     draw_model_motion((void *)(*(s32 *)&this->m_94), (void *)(*(s32 *)&this->m_9c), *(f32 *)&this->_padB4);
-    clear_render_callback__8TObjFishFv(this->m_b8);
+    ((ModelNodePositionCapture *)(this->m_b8))->clear();
     set_chunk_render_flags(2);
     draw_model_motion((void *)(*(s32 *)&this->m_94), (void *)(*(s32 *)&this->m_9c), *(f32 *)&this->_padB4);
     clear_chunk_render_flags();
@@ -168,7 +167,7 @@ S_EF94 *__dt__11TObjDFDemo3Fv(S_EF94 *o, s16 flag) {
     if (o != 0) {
         o->vt = __vt__11TObjDFDemo3;
         if (o->fb8 != 0) {
-            TObjFish::init_state_1(o->fb8);
+            ModelNodePositionCapture::destroy((ModelNodePositionCapture *)(o->fb8));
             o->fb8 = 0;
         }
         for (i = 0; i < 1; i++) {
@@ -220,7 +219,7 @@ u8 *TObjDFDemo3__ct(u8 *arg0, s32 parent, s32 arg2, s32 arg3) {
         set_scripted_camera_pose(arg0 + 0xA0, arg0 + 0xA0, &c);
     }
     ((TCameraCtrl *)lbl_804856E0)->cache_target_and_forward(0x1555);
-    *(s32 *)((s8 *)arg0 + 0xB8) = TObjFish__sub_800E3124(lbl_804856C0, (s32)(arg0 + 0xBC));
+    *(s32 *)((s8 *)arg0 + 0xB8) = (s32)ModelNodePositionCapture::create((ModelNodePositionEntry *)(lbl_804856C0), (Vec *)((arg0 + 0xBC)));
     *(s32 *)((s8 *)arg0 + 0xB0) = 0;
     return arg0;
 }

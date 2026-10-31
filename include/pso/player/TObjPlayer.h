@@ -316,7 +316,6 @@ struct TObjPlayer : public TObjChara {
     static void*get_pmt_record_by_index(int i);
     static bool is_hit_receivable_target(s32 arg0, u32 arg1);
     static s32 is_player_in_range(s32 arg0, s32 arg1, f32 farg0);
-    s32 is_action_available();
     void draw_trail_strip(void *arg1, s32 arg2);
     f32 calc_photon_blast_power(s32 arg1, f32 farg0);
     static s32 is_any_teammate_in_state();
@@ -574,7 +573,6 @@ struct TObjPlayer : public TObjChara {
     static void init_all_slots();
     static s32 check_flag_pair(s32 arg0, s32 arg1);
     static s32 check_flags(s32 arg0, s32 arg1);
-    void update_collisions();
     static void reset();
     static void set_camera_mode(s32 arg0);
     void reset_fields();
