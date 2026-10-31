@@ -15,14 +15,14 @@
 # Recommended alongside it: Settings → Actions → General → "Fork pull request workflows
 # in public repositories: Require approval for all outside collaborators".
 # The job itself needs no secrets and its token is read-only. It uploads the gate's
-# results as the `ci-result` artifact; ci-comment.yml (which runs from master, never
+# results as the `ci-result` artifact; ci-comment.yml (which runs from main, never
 # PR code) turns that into the pull request comment.
 
 name: CI
 
 on:
   pull_request:
-    branches: [master]
+    branches: [main]
     types: [opened, synchronize, reopened]
     paths-ignore: ['**.md']
   workflow_dispatch:
