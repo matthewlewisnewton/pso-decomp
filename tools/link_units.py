@@ -45,6 +45,7 @@ import json
 import subprocess
 import sys
 from pathlib import Path
+from typing import NamedTuple
 
 try:
     from .mwcc_parts import mwcat_discarded_text_bytes
@@ -98,12 +99,27 @@ OBJ_DIR = ROOT / "build" / "GPOE8P" / "src"
 SHF_ALLOC = 0x2
 
 
-def elf_alloc_section_layout(path: Path) -> dict[str, tuple[int, int]]:
-    """{section name: (size, alignment)} for each allocated section of a
-    big-endian ELF32 object (mwcc .o). Pure-python: no objdump needed."""
+class ElfSectionPart(NamedTuple):
+    index: int
+    name: str
+    type: int
+    offset: int
+    size: int
+    alignment: int
+    base: int
+
+
+def _elf_alloc_section_parts(path: Path) -> list[ElfSectionPart]:
+    """Allocated ELF sections as (index, name, type, file offset, size, alignment, base).
+
+    MWCC can emit several sections named .text when source files change under
+    -sym on. MWLD concatenates same-name sections in section-table order, with
+    each contribution aligned independently. Symbol st_value remains relative
+    to its specific section index, not to the concatenated output section.
+    """
     b = path.read_bytes()
     if b[:4] != b"\x7fELF":
-        return {}
+        return []
     be = lambda o, n=4: int.from_bytes(b[o:o + n], "big")
     shoff, shentsize, shnum, shstrndx = be(0x20), be(0x2E, 2), be(0x30, 2), be(0x32, 2)
     hdrs = []
@@ -112,13 +128,27 @@ def elf_alloc_section_layout(path: Path) -> dict[str, tuple[int, int]]:
         hdrs.append((be(o), be(o + 4), be(o + 8), be(o + 16), be(o + 20), be(o + 32)))
     _, _, _, stroff, strsize, _ = hdrs[shstrndx]
     strtab = b[stroff:stroff + strsize]
-    out = {}
-    for name_off, typ, flags, off, size, alignment in hdrs:
-        if not (flags & SHF_ALLOC) or size == 0 or typ == 0:
+    ends: dict[str, int] = {}
+    parts = []
+    for index, (name_off, typ, flags, off, size, alignment) in enumerate(hdrs):
+        if not (flags & SHF_ALLOC) or typ == 0:
             continue
-        end = strtab.index(b"\0", name_off)
-        out[strtab[name_off:end].decode()] = (size, alignment)
-    return out
+        name = strtab[name_off:strtab.index(b"\0", name_off)].decode()
+        alignment = max(alignment, 1)  # ELF sh_addralign 0 and 1 both mean unaligned.
+        if alignment & (alignment - 1):
+            raise ValueError(f"{path}: invalid section alignment {alignment}")
+        base = (ends.get(name, 0) + alignment - 1) & -alignment
+        ends[name] = base + size
+        parts.append(ElfSectionPart(index, name, typ, off, size, alignment, base))
+    return parts
+
+
+def elf_alloc_section_layout(path: Path) -> dict[str, tuple[int, int]]:
+    """Concatenated size and required alignment of each allocated section name."""
+    out = {}
+    for _, name, _, _, size, alignment, base in _elf_alloc_section_parts(path):
+        out[name] = (base + size, max(out.get(name, (0, 1))[1], alignment))
+    return {name: layout for name, layout in out.items() if layout[0]}
 
 
 def elf_alloc_sections(path: Path) -> dict[str, int]:
@@ -305,6 +335,7 @@ def elf_global_object_layout(path: Path) -> dict[str, tuple[str, int]]:
     hdrs = [tuple(be(shoff + i * shentsize + k) for k in (0, 4, 8, 16, 20, 24))
             for i in range(shnum)]
     shstr = b[hdrs[shstrndx][3]:hdrs[shstrndx][3] + hdrs[shstrndx][4]]
+    parts = {part.index: part for part in _elf_alloc_section_parts(path)}
     objects = {}
     for _, typ, _, off, size, link in hdrs:
         if typ != 2:
@@ -321,7 +352,7 @@ def elf_global_object_layout(path: Path) -> dict[str, tuple[str, int]]:
                 continue
             section = shstr[section_name:shstr.index(b"\0", section_name)].decode()
             name = strtab[name_off:strtab.index(b"\0", name_off)].decode()
-            objects[name] = (section, value)
+            objects[name] = (section, parts[shndx].base + value)
     return objects
 
 
@@ -361,6 +392,10 @@ def section_size_mismatch(u: dict) -> list[str]:
     a, b = elf_alloc_sections(split), elf_alloc_sections(obj)
     if ".text" in b:  # functions mwld will dead-strip (see extra_compiled_symbols)
         stripped = stripped_functions(u, split, obj)
+        if stripped and sum(part.name == ".text" for part in _elf_alloc_section_parts(obj)) > 1:
+            # Removing bytes can change the padding before a later contribution.
+            # A raw subtraction is not a proof of the resulting linker layout.
+            return [".text: cannot prove repeated-section layout after function stripping"]
         b[".text"] -= sum(stripped.values())
         # mwld drops a stripped function's exception-table entries with it
         for section, size in stripped_exception_bytes(obj, set(stripped)).items():
@@ -429,9 +464,16 @@ def _tail_has_named_symbols(path: Path, section: str, start: int, end: int) -> b
                 be(shoff + i * shentsize + 24)) for i in range(shnum)]
     _, _, stroff, strsize, _ = headers[shstrndx]
     strings = b[stroff:stroff + strsize]
-    section_index = next((i for i, (name, *_rest) in enumerate(headers)
-                          if strings[name:strings.index(b"\0", name)].decode() == section), None)
-    if section_index is None:
+    parts = [part for part in _elf_alloc_section_parts(path) if part.name == section]
+    previous_end = 0
+    for _, _, _, _, size, _, base in parts:
+        # Linker-created gaps have no stored bytes. Do not mistake synthetic
+        # zero-fill from elf_section_bytes for original padding evidence.
+        if previous_end < base and previous_end < end and base > start:
+            return True
+        previous_end = base + size
+    bases = {part.index: part.base for part in parts}
+    if not bases:
         return True
     for _, typ, off, size, link in headers:
         if typ != 2:
@@ -440,7 +482,8 @@ def _tail_has_named_symbols(path: Path, section: str, start: int, end: int) -> b
         strings = b[stroff:stroff + strsize]
         for pos in range(off, off + size, 16):
             info = b[pos + 12]
-            if be(pos + 14, 2) != section_index or info & 0xF in (3, 4):
+            section_index = be(pos + 14, 2)
+            if section_index not in bases or info & 0xF in (3, 4):
                 continue
             if info >> 4 not in (1, 2) and info & 0xF not in (1, 2):
                 continue
@@ -448,7 +491,7 @@ def _tail_has_named_symbols(path: Path, section: str, start: int, end: int) -> b
             name = strings[name_off:strings.index(b"\0", name_off)].decode()
             if not name or _DTK_GAP_RE.match(name):
                 continue
-            value, extent = be(pos + 4), max(1, be(pos + 8))
+            value, extent = bases[section_index] + be(pos + 4), max(1, be(pos + 8))
             if value < end and value + extent > start:
                 return True
     return False
@@ -476,17 +519,16 @@ def _is_alignment_pad(split: Path, section: str, start: int, split_size: int, si
 
 
 def elf_section_bytes(path: Path, section: str) -> bytes | None:
-    """Contents of `section` in a BE ELF32 .o, or None for NOBITS (.bss)."""
+    """Concatenated section contents, including alignment gaps; None for NOBITS."""
     b = path.read_bytes()
-    be = lambda o, n=4: int.from_bytes(b[o:o + n], "big")
-    shoff, shentsize, shnum, shstrndx = be(0x20), be(0x2E, 2), be(0x30, 2), be(0x32, 2)
-    strbase = be(shoff + shstrndx * shentsize + 16)
-    for i in range(shnum):
-        o = shoff + i * shentsize
-        name = b[strbase + be(o):b.index(b"\0", strbase + be(o))].decode()
-        if name == section:
-            return None if be(o + 4) == 8 else b[be(o + 16):be(o + 16) + be(o + 20)]
-    return None
+    parts = [part for part in _elf_alloc_section_parts(path) if part.name == section]
+    if not parts or any(part.type == 8 for part in parts):
+        return None
+    out = bytearray()
+    for _, _, _, off, size, _, base in parts:
+        out.extend(bytes(base - len(out)))
+        out.extend(b[off:off + size])
+    return bytes(out)
 
 
 def elf_function_sizes(path: Path, local: bool = False) -> dict[str, int]:
@@ -523,6 +565,12 @@ def stripped_exception_bytes(path: Path, names: set[str]) -> dict[str, int]:
     hdrs = [tuple(be(shoff + i * shentsize + k) for k in (0, 4, 16, 20, 24, 28)) for i in range(shnum)]
     shstr = hdrs[shstrndx][2]
     sec_name = lambda i: b[shstr + hdrs[i][0]:b.index(b"\0", shstr + hdrs[i][0])].decode()
+    # This discount parser only proves single-section exception records. Do not
+    # associate repeated extab/index sections by name: relocations identify an
+    # ELF section index. Leave their bytes counted until such proof is available.
+    if any(sum(sec_name(i) == name for i in range(shnum)) > 1
+           for name in ("extab", "extabindex")):
+        return {}
     index = next((i for i in range(shnum) if sec_name(i) == "extabindex"), None)
     extab = next((i for i in range(shnum) if sec_name(i) == "extab"), None)
     rela = next((i for i in range(shnum) if hdrs[i][1] == 4 and hdrs[i][5] == index), None)
@@ -588,6 +636,7 @@ def elf_function_order_by_section(path: Path) -> dict[str, list[str]]:
     hdrs = [tuple(be(shoff + i * shentsize + k) for k in (0, 4, 8, 16, 20, 24))
             for i in range(shnum)]
     shstr = b[hdrs[shstrndx][3]:hdrs[shstrndx][3] + hdrs[shstrndx][4]]
+    bases = {part.index: part.base for part in _elf_alloc_section_parts(path)}
     rows = []
     for _, typ, _, off, size, link in hdrs:
         if typ != 2:
@@ -603,9 +652,9 @@ def elf_function_order_by_section(path: Path) -> dict[str, list[str]]:
                 continue
             section = shstr[section_name:shstr.index(b"\0", section_name)].decode()
             name = strtab[name_off:strtab.index(b"\0", name_off)].decode()
-            rows.append((section, val, name))
+            rows.append((section, bases[shndx] + val, shndx, name))
     order: dict[str, list[str]] = {}
-    for section, _, name in sorted(rows):
+    for section, _, _, name in sorted(rows):
         order.setdefault(section, []).append(name)
     return order
 

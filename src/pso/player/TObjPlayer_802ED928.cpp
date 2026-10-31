@@ -1,3 +1,4 @@
+#include "pso/misc/TUnk_804F1C58.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/math/MatrixVector.h"
@@ -138,7 +139,6 @@ u32 __nw__7TObjectFUl(int);
 s32 fn_802E79B0(void *);
 s32 TParticleCtrl__sub_802EC550(void *);
 s32 sub_802ECB10__14TBoss7DeRolLeCFv();
-s32 apply_with_callback__10TObjPlayerFlf(int, int);
 s32 rotate_matrix_by_node_angles(void *, int);
 s32 push_matrix();
 s32 scale_current_matrix(void *);
@@ -246,8 +246,7 @@ void TBoss7DeRolLeC::run_task() {
         rotate_matrix_by_node_angles(((u8 *)this) + 0x5C, 1);
         scale_current_matrix(lbl_804E3BF0);
         this->sub_802E8234();
-        this->get_frame();
-        apply_with_callback__10TObjPlayerFlf((int) (*(u32 *)((s8 *)((u8 *)this) + 0x7AC)), (s32)this->current_motion);
+        ((TUnk_804F1C58 *)(*(u32 *)((s8 *)((u8 *)this) + 0x7AC)))->apply_with_callback((NJS_MOTION *)this->current_motion, this->get_frame());
         pop_matrix();
         clear_motion_packed_rotation();
         fn_802E79B0(this);
