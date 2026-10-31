@@ -394,13 +394,22 @@ void TOTrapAncient01::vfunc_81() {
             break;
         case AREA_VR_SPACESHIP_ALPHA: case AREA_VR_SPACESHIP_BETA:
             play_persistent_sound(0x4004b212, this, &position, 0, 0);
-            // The no-op areas below share this return path.
-        case AREA_PIONEER2_EP1: case AREA_FOREST1: case AREA_FOREST2:
-        case AREA_DRAGON: case AREA_DE_ROL_LE: case AREA_VOL_OPT:
+            // Area 0 shares this return path; the remaining no-op areas use
+            // the switch exit. Its one relocation still needs recovery.
+        case AREA_PIONEER2_EP1:
             return;
-        case AREA_DARK_FALZ: case AREA_LOBBY: case AREA_BATTLE1:
-        case AREA_BATTLE2: case AREA_PIONEER2_EP2:
-        case AREA_VR_TEMPLE_ALPHA: case AREA_VR_TEMPLE_BETA:
+        case AREA_FOREST1:
+        case AREA_FOREST2:
+        case AREA_DRAGON:
+        case AREA_DE_ROL_LE:
+        case AREA_VOL_OPT:
+        case AREA_DARK_FALZ:
+        case AREA_LOBBY:
+        case AREA_BATTLE1:
+        case AREA_BATTLE2:
+        case AREA_PIONEER2_EP2:
+        case AREA_VR_TEMPLE_ALPHA:
+        case AREA_VR_TEMPLE_BETA:
             break;
         }
     } else {
