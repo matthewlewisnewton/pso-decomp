@@ -27,26 +27,26 @@ s32 calc_shot_position__13TBoss5GryphonFPUcfff(void *, s32, f32, f32, f32);
 f64 atan2_float(f32, f32);
 
 void TObjEneEpsilon__sub_800B92AC(u8 *ene_epsilon, s32 arg1, f32 farg0) {
-    s32 sp8;
+    Vec sp8;
     ((TObjEneEpsilon *)ene_epsilon)->fire_attack_a((s32) &sp8, arg1, farg0);
     ((TObjEneEpsilon *)(ene_epsilon))->vfunc_101((u8 *)&sp8);
 }
 
 void TObjEneEpsilon__sub_800B92F8(u8 *ene_epsilon, s32 arg1, f32 farg0) {
-    s32 sp8;
+    Vec sp8;
     ((TObjEneEpsilon *)ene_epsilon)->fire_attack_b((s32) &sp8, arg1, farg0);
     ((TObjEneEpsilon *)(ene_epsilon))->vfunc_101((u8 *)&sp8);
 }
 }
 
 void enemy_turn_and_move_on_ground(u8 *arg0, s32 arg1, f32 farg0) {
-    s32 sp8;
+    Vec sp8;
     ((TObjEneEpsilon *)arg0)->fire_attack_b((s32) &sp8, arg1, farg0);
     ((TBoss5Gryphon *)arg0)->try_move_actor_xz_on_ground((u8 *)&sp8);
 }
 
 void TObjEneEpsilon__sub_800B9384(u8 *arg0, s32 arg1, f32 farg0) {
-    s32 sp8;
+    Vec sp8;
     ((TObjEneEpsilon *)arg0)->fire_attack_c((s32) &sp8, arg1, farg0);
     ((TBoss5Gryphon *)arg0)->try_move_actor_xz_on_ground((u8 *)&sp8);
 }

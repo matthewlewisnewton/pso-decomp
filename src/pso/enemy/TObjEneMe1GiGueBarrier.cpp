@@ -17,7 +17,7 @@
 #include "pso/map/FloorArea.h"
 
 // The hand-written constructors below call the base one by its symbol.
-extern "C" u8 *__ct__10TObjMotionFP7TObject(u8 *self);
+extern "C" u8 *__ct__10TObjMotionFP7TObject(u8 *self, TObject *parent);
 
 #pragma readonly_strings on
 
@@ -137,7 +137,7 @@ TObjEneMe1GiGueBarrier::~TObjEneMe1GiGueBarrier() {
 
 u8 *TObjEneMe1GiGueBarrier__ct(TObjEneMe1GiGueBarrier *ene_me1_gi_gue_barrier, s32 arg1, u8 *arg2) {
     u8 *temp_r5;
-    __ct__10TObjMotionFP7TObject((u8 *)ene_me1_gi_gue_barrier);
+    __ct__10TObjMotionFP7TObject((u8 *)ene_me1_gi_gue_barrier, (TObject *)arg1);
     *(s32 **)((s8 *)ene_me1_gi_gue_barrier + 0x18) = &(*(RecoveredGlobal_80325BCC___vt__22TObjEneMe1GiGueBarrier *)&__vt__22TObjEneMe1GiGueBarrier).value;
     *(s32 *)((s8 *)ene_me1_gi_gue_barrier + 0) = (s32) ((s32)lbl_805D4198);
     ene_me1_gi_gue_barrier->gigue = (TObjEneMe1GiGue *)arg2;

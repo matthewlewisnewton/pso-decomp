@@ -86,6 +86,7 @@ class GuardTests(unittest.TestCase):
             def run(): return subprocess.run([sys.executable,'-I',str(p),str(request)],cwd=checkout,capture_output=True,text=True)
             marker=root/'shadow';(checkout/'json.py').write_text('open('+repr(str(marker))+',"w").close()')
             proc=run();self.assertEqual(proc.returncode,0,proc.stderr);self.assertTrue(output.exists());self.assertFalse(marker.exists())
+            self.assertEqual(json.loads(output.read_text())['coverage_receipt_sha256'],sha(coverage))
             output.unlink()
             original = adapter.read_text(); adapter.write_text(original.replace("'ordered_inputs_sha256': 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'", "'ordered_inputs_sha256': 'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb'", 1))
             env_data=json.loads(env.read_text()); env_data['strict_loss_guard']['adapter']['sha256']=sha(adapter); env.write_text(json.dumps(env_data))
