@@ -11,8 +11,8 @@ views: their owner and names have not been established. The control drawing
 and texture interfaces are existing provisional declarations.
 
 A standalone CodeWarrior GC/2.6 compile succeeded. An objdiff comparison to
-the local original split object reported 91.09% for this function (856 original
-bytes versus the candidate). This is not an exact match; register
+the local original split object reported 93.82% for this function (856 original
+bytes versus 864 candidate bytes). This is not an exact match; register
 allocation, code layout and data/relocations require further work. The initial candidate failed the regression check because its unsigned
 conversion introduced an extra eight-byte .rodata constant. The current signed
 conversion preserves the original unit data in a targeted comparison; the
@@ -36,10 +36,9 @@ The targeted GC/2.6 compile succeeds. Individual descriptor copies reproduce
 the original expanded initialization more closely than a loop: the dispatcher
 is 1,320 bytes against 1,324 original bytes, with objdiff reporting 57.49%.
 This is not an exact-code claim. The previous
-grid renderer remains 91.09%, and targeted `.rodata` comparison remains 100%.
-The earlier loop version passed the locked two-job rebuild and regression
-checks; the expanded version is awaiting its full regression check. Neither
-check validates runtime behavior of the fallback-linked source body.
+grid renderer remains 93.82%, and targeted `.rodata` comparison remains 100%.
+The expanded version passed the locked two-job rebuild and regression checks.
+This does not validate runtime behavior of the fallback-linked source body.
 
 ## Glyph rendering candidate at 0x802616BC
 
@@ -53,8 +52,10 @@ provisional.
 
 The standalone GC/2.6 compile succeeds. Objdiff reports 81.26% for the new
 body (1,820 original versus 1,864 candidate bytes). The input dispatcher and
-grid frame renderer are 57.49% and 91.09% respectively. The targeted
+grid frame renderer are 57.49% and 93.82% respectively. The targeted
 `.rodata` comparison is 100%. The locked two-job incremental rebuild and
 `tools/check_pr.py --no-build` passed with no lost exact functions, data or
-linked units (3,536 linked units checked). None of these scores proves exact
+linked units (3,536 linked units checked) before the pointer-typed grid
+renderer change; its targeted comparison is available but its full regression
+check is pending. None of these scores proves exact
 code, relocations or runtime semantics; the DOL still uses the original unit.

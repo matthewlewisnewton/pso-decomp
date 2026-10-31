@@ -131,7 +131,7 @@ extern const f32 lbl_805DD09C, lbl_805DD0A0, lbl_805DD0A4, lbl_805DD0A8;
 extern const f32 lbl_805DD0AC, lbl_805DD0B0;
 extern const f32 lbl_8044F164[][2], lbl_8044F1B4[][2], lbl_8044F204[][2];
 void TWindowKeyBoardSoft__sub_80261DD8(TWindowKeyBoardSoft *, TWindowKeyBoardSoft *);
-s32 TWindowKeyBoardSoft__sub_8026227C(int, int);
+s32 TWindowKeyBoardSoft__sub_8026227C(TWindowKeyBoardSoft *, TWindowKeyBoardSoft *);
 s32 get_player__20TWindowSubStatusDispFv();
 extern GinjaTextureList *lbl_805D63F0;
 extern const f32 TWindowKeyBoardSoft__data_805DD098;
@@ -864,12 +864,10 @@ void TWindowKeyBoardSoft::draw_key_frame(void *self, f32 *rect, u32 color, s32 i
 
 // Draw the key grid followed by the language-page selector. The input object
 // layout at 0x64/0x68 remains a bounded view, pending its owning type.
-s32 TWindowKeyBoardSoft__sub_8026227C(int self, int context) {
-    TWindowKeyBoardSoft *kb = (TWindowKeyBoardSoft *)self;
-    TWindowKeyBoardSoft *ctx = (TWindowKeyBoardSoft *)context;
+s32 TWindowKeyBoardSoft__sub_8026227C(TWindowKeyBoardSoft *self, TWindowKeyBoardSoft *ctx) {
     u8 *resources = TWindowKeyBoardSoft__language_text_resources;
     f32 scale = TWindowKeyBoardSoft__data_805DD098 / ctx->depth;
-    s32 selected = kb->sub_802605DC();
+    s32 selected = self->sub_802605DC();
     s32 count;
     u32 color;
     s32 min_page, max_page;
@@ -891,7 +889,7 @@ s32 TWindowKeyBoardSoft__sub_8026227C(int self, int context) {
                 y, width, scale);
         }
     }
-    x = TWindowKeyBoardSoft__sub_802606E0(kb);
+    x = TWindowKeyBoardSoft__sub_802606E0(self);
     calc_cursor_step__19TWindowKeyBoardSoftFiPvPv((s32)self, &min_page, &max_page);
     for (s32 page = 0; page < resources[0]; page++) {
         if (page == *(s8 *)((u8 *)self + 0x64)) { color = 0xFFFFFFFF; frame = 2; }
@@ -906,7 +904,7 @@ s32 TWindowKeyBoardSoft__sub_8026227C(int self, int context) {
         x += (f32)(s32)resources[1];
     }
     set_constant_material_color(ctx->color);
-    x = TWindowKeyBoardSoft__sub_802606E0(kb);
+    x = TWindowKeyBoardSoft__sub_802606E0(self);
     fn_8026C664((u8 *)ctx, (ctx->x + x) - lbl_805DD0CC,
         lbl_805DD0B8 + (TWindowKeyBoardSoft__data_805DD098 + ctx->y),
         scale, *(f32 *)((u8 *)self + 0x68));
@@ -920,7 +918,7 @@ s32 TWindowKeyBoardSoft__sub_8026227C(int self, int context) {
 void TWindowKeyBoardSoft::render() {
     s32 temp_r3;
     temp_r3 = draw_default_entry__9TWindowDDFl();
-    TWindowKeyBoardSoft__sub_8026227C((int)this, (int)temp_r3);
+    TWindowKeyBoardSoft__sub_8026227C(this, (TWindowKeyBoardSoft *)temp_r3);
     TWindowKeyBoardSoft__sub_80261DD8(this, (TWindowKeyBoardSoft *)temp_r3);
     TWindowKeyBoardSoft__sub_802616BC(this, (int)temp_r3);
 }
