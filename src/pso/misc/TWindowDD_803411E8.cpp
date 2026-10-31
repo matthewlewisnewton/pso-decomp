@@ -31,7 +31,7 @@ void TWindowDD::update_position(s32 arg1) {
 #pragma fp_contract on
 void TWindowDD__sub_803412A0(u8 *arg0) {
     s32 temp_r3;
-    temp_r3 = ((TUnk_804CE018 *)arg0)->get_array_entry(0);
+    temp_r3 = (s32)((TUnk_804CE018 *)arg0)->get_array_entry(0);
     if (temp_r3 != 0) {
         TWindowDD::refresh_status_display();
         *(f32 *)((s8 *)arg0 + 0x38) = (f32) ((lbl_805DFC98 * TWindowDD__data_805DFB58) + *(f32 *)((s8 *)temp_r3 + 0x10));
