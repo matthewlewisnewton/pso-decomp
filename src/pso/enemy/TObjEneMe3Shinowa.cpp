@@ -1,3 +1,4 @@
+#include "pso/map/CsnGroundQuery.h"
 #include "pso/player/demo_mode.h"
 #include "pso/misc/PositionSoundEffects.h"
 #include "pso/misc/GroundEffects.h"
@@ -2330,7 +2331,7 @@ TObjEneMe3Shinowa::~TObjEneMe3Shinowa() {
 
 
 void TObjEneMe3Shinowa::run_task() {
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->update_mirage();
         return;
     }
@@ -3987,7 +3988,7 @@ void TObjEneMe3Shinowa::render() {
     s32 var_r31;
     s32 var_r30;
     s32 i;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->vfunc_118();
         return;
     }
