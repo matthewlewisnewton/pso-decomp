@@ -318,7 +318,6 @@ extern s32 gyaranzo_missile_volley_end_time;
 void spawn_missile_volley__19TObjGyaranzoMissileFPv(u8 *arg0);
 void update__19TObjGyaranzoMissileFPv(u8 *arg0);
 s32 TBoss3Volopt__sub_800D8D88(void *, s32);
-s32 TObjEneMe3SinowZoa__sub_800D758C(void *);
 
 void TObjEneGyaranzo::init_params_from_table() {
     *(f32 *)((s8 *)this->movementParameters + 4) = get_gyaranzo_missile_float_parameter(1);
@@ -338,7 +337,7 @@ void update__19TObjGyaranzoMissileFPv(u8 *arg0) {
         *(s32 *)((s8 *)arg0 + 0x30) = temp_r4;
         *(s16 *)((s8 *)arg0 + 0xB8) = 0;
         TBoss3Volopt__sub_800D8D88(arg0 + 0x2FC, temp_r4);
-        TObjEneMe3SinowZoa__sub_800D758C(arg0 + 0x3D0);
+        ((TUnk_80494938 *)(arg0 + 0x3D0))->start_fade_in();
         *(s32 *)((s8 *)arg0 + 0x37C) = 1;
     case 1:
         ((TObjMotion *)arg0)->advance_animation();

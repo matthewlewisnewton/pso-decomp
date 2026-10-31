@@ -59,6 +59,21 @@ void TLobby__sub_803FADA0(B_803FADA0 **arg0, A_803FADA0 *arg1, s32 arg2, s32 arg
 
 extern s32 lbl_805D4810;
 
+struct Obj_803FA664;
+struct Msg_803FA664;
+
+void TLobby__sub_803F9FAC(u8 *obj);
+s32 TLobby__sub_803FA318(Obj_803FA664 *fsm, Msg_803FA664 *msg, u32 src);
+s32 TLobby__sub_803FA4A4(Obj_803FA664 *fsm, Msg_803FA664 *msg, u32 src);
+s16 TLobby__sub_803FA7B0(Obj_803FA664 *fsm, Msg_803FA664 *msg, u32 src);
+s32 TLobby__sub_803FABDC(Obj_803FA664 *fsm, Msg_803FA664 *msg, u32 src);
+s32 verify_message_sequence__6TLobbyFPvPvUi(Obj_803FA664 *arg0, Msg_803FA664 *arg1, u32 arg2);
+void init_net_state_entry__6TLobbyFv(TLobby *obj);
+void TLobby__sub_803FD694(u8 *entry);
+extern const char lbl_805E1150[7];
+extern s16 lbl_805D4818[4];
+extern u32 lbl_804FD380[6];
+
 s32 TLobby__sub_803FE6CC(void *, u8, u8, void *);
 s32 TLobby__sub_803F9B94(void (*func)(Ent_803F9B48 *), u32 *out);
 s32 NetCompareStringsCaseInsensitiveN(u8 *a, u8 *b, u32 n);
@@ -444,6 +459,95 @@ s16 TLobby::check_connection_status() {
     }
     return 0;
 }
+
+#pragma push
+#pragma opt_propagation off
+struct Proto_803F9FAC {
+    const char *name;
+    u16 proto;
+    u16 h6;
+    u8 b8;
+    u8 b9;
+    u8 bA;
+    u8 bB;
+    s32 timeout;
+    void (*f10)(void);
+    void (*f14)(P_803FA2A8 *);
+    void (*f18)(u8 *);
+    void (*f1C)(TLobby *);
+    void (*f20)(void);
+    void (*f24)(s32);
+    s32 (*f28)(Obj_803FA664 *, Msg_803FA664 *, u32);
+    s16 (*f2C)(Obj_803FA664 *, Msg_803FA664 *, u32);
+    s32 (*f30)(Obj_803FA664 *, Msg_803FA664 *, u32);
+    s32 (*f34)(Obj_803FA664 *, Msg_803FA664 *, u32);
+    s32 (*f38)(Obj_803FA664 *, Msg_803FA664 *, u32);
+};
+
+struct Pair_803F9FAC {
+    u32 w[2];
+};
+
+struct Opts_803F9FAC {
+    s16 h0;
+    u8 pad2[2];
+    Pair_803F9FAC w4[3];
+    u8 pad1C[0x34 - 0x1C];
+    s16 h34;
+    u8 pad36[2];
+    Pair_803F9FAC w38[3];
+    Pair_803F9FAC w50[3];
+};
+
+struct Entry_803F9FAC {
+    u8 pad0[0xC];
+    u8 *sub;
+    u8 pad10[0x2C - 0x10];
+    Proto_803F9FAC *proto;
+    Opts_803F9FAC *opts;
+};
+
+void TLobby__sub_803F9FAC(u8 *conn) {
+    Proto_803F9FAC *proto = (Proto_803F9FAC *)ppp_ipv6cp_protocol_state;
+    Entry_803F9FAC *e = (Entry_803F9FAC *)(conn + 0xD4);
+    Opts_803F9FAC *area = (Opts_803F9FAC *)&ppp_ipv6cp_protocol_state[15];
+    const Pair_803F9FAC *tbl = (const Pair_803F9FAC *)lbl_804FD380;
+    proto->name = lbl_805E1150;
+    proto->proto = 0x8057;
+    proto->h6 = 0xFE;
+    proto->b8 = 4;
+    proto->b9 = 5;
+    proto->bA = 5;
+    proto->bB = 5;
+    proto->timeout = 3000;
+    proto->f10 = TLobby__sub_803FA234;
+    proto->f14 = TLobby__sub_803FA2A8;
+    proto->f18 = TLobby__sub_803FA238;
+    proto->f1C = init_net_state_entry__6TLobbyFv;
+    proto->f20 = TLobby__sub_803FA280;
+    proto->f24 = NetIPv6CPCancelTimer;
+    proto->f28 = TLobby__sub_803FABDC;
+    proto->f2C = TLobby__sub_803FA7B0;
+    proto->f30 = verify_message_sequence__6TLobbyFPvPvUi;
+    proto->f34 = TLobby__sub_803FA4A4;
+    proto->f38 = TLobby__sub_803FA318;
+    e->sub = conn;
+    e->proto = proto;
+    e->opts = area;
+    area->w4[0] = tbl[0];
+    area->w4[1] = tbl[1];
+    area->w4[2] = tbl[2];
+    area->h0 = lbl_805D4818[0];
+    area->w38[0] = tbl[0];
+    area->w38[1] = tbl[1];
+    area->w38[2] = tbl[2];
+    area->w50[0] = tbl[0];
+    area->w50[1] = tbl[1];
+    area->w50[2] = tbl[2];
+    area->h34 = lbl_805D4818[0];
+    TLobby__sub_803FD694((u8 *)e);
+}
+#pragma pop
 
 s32 TLobby::clear_flag_bit4(s32 arg0, u8 *arg1) {
     *(s16 *)((s8 *)arg1 + 4) = (s16) (*(s16 *)((s8 *)arg1 + 4) & 0xFFFFFFFB);

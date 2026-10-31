@@ -1,3 +1,4 @@
+#include "pso/enemy/TUnk_80494938.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/vector.h"
 #include "pso/system/NinjaTypes.h"
@@ -569,7 +570,6 @@ int vfunc_95__9TObjEneDDFv(void*);
 void TObjEneDD__sub_800BA438(void *, void *);
 s32 init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, int, int);
 s32 TObjEneMe3SinowZoa__sub_800D72A4(void *);
-s32 TObjEneMe3SinowZoa__sub_800D758C(void *);
 void *__dt__13TUnk_80494938Fv(void *arg0, s16 arg1);
 s32 TBoss3Volopt__sub_800D8D88(void *, f32);
 f32 * TBoss3Volopt__sub_800F059C(void *);
@@ -2771,7 +2771,7 @@ void TObjEneMe3SinowZoa__sub_80319B8C(u8 *ene_dd, s32 arg1) {
         ((TObjEneDD *)ene_dd)->set_field_378(0);
         ((TObjEneDD *)(ene_dd))->vfunc_95();
         *(s32 *)((s8 *)ene_dd + 0x3CC) = (s32) (*(s32 *)((s8 *)ene_dd + 0x3CC) | 7);
-        TObjEneMe3SinowZoa__sub_800D758C(ene_dd + 0x414);
+        ((TUnk_80494938 *)(ene_dd + 0x414))->start_fade_in();
         VecCopy((Vec *)(&stack.sp8), (const Vec *)(ene_dd + 0x38));
         temp_f1 = *(f32 *)((s8 *)ene_dd + 0x3E0);
         stack.spC = temp_f1 - TObjEneMe3SinowZoa__data_805DF314;
@@ -2858,7 +2858,7 @@ void TObjEneMe3SinowZoa::sub_80319E74(s32 arg1) {
         ((TObjEneMe3SinowZoa *)arg0)->vfunc_95();
         *(s32 *)((s8 *)arg0 + 0x3CC) &= 0xFFEFFFFD;
         *(s32 *)((s8 *)arg0 + 0x3CC) |= 5;
-        TObjEneMe3SinowZoa__sub_800D758C(arg0 + 0x414);
+        ((TUnk_80494938 *)(arg0 + 0x414))->start_fade_in();
         VecCopy((Vec *)&v, (const Vec *)(arg0 + 0x38));
         t = *(f32 *)((s8 *)arg0 + 0x3E0);
         v.y = t - TObjEneMe3SinowZoa__data_805DF320;

@@ -1,3 +1,4 @@
+#include "pso/enemy/TUnk_80494938.h"
 #include "types.h"
 #include "pso/enemy/TObjEneDD.h"
 #include "pso/enemy/TObjEneRecobox.h"
@@ -43,7 +44,6 @@ struct V_Sub_8031f748 : Base_Sub_8031f748 {
 
 extern "C" {
 
-s32 TObjEneMe3SinowZoa__sub_800D758C(void *);
 
 void TObjEneRecobox::sub_8031F6C0(s32 arg1) {
     s32 temp_r4;
@@ -73,7 +73,7 @@ void TObjEneRecon::handle_state(s32 arg1) {
         *(s16 *)((s8 *)arg0 + 0xB8) = 0;
         this->vfunc_95();
         ((TObjEneDD *)arg0)->set_field_378(0);
-        TObjEneMe3SinowZoa__sub_800D758C(arg0 + 0x3C0);
+        ((TUnk_80494938 *)(arg0 + 0x3C0))->start_fade_in();
         return;
     case 3:
         if (((V_Sub_8031f748 *) (arg0 + 0x3C0))->m5() != 0) {

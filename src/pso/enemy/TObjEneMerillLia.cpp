@@ -496,7 +496,6 @@ extern const f32 lbl_805DA330;
 void render__16TObjEneMerillLiaFv(u8 *arg0);
 extern u32 TObjEneMerillLia__entry_params_resource;
 extern s32 game_difficulty_selection;
-s32 TObjEneMe3SinowZoa__sub_800D758C(void *);
 s32 obj_testFlags30__14TObjCollidableFUl(void *, int);
 void vfunc_59__16TObjEneMerillLiaFv(Ene_800D51C8 *arg0);
 s16 find_nearest_visible_player(void *, s32, f32);
@@ -1017,7 +1016,7 @@ void TObjEneMerillLia::sub_800D5570() {
     default:
         this->phase = 1;
         this->requested_action = 1;
-        TObjEneMe3SinowZoa__sub_800D758C((u8 *)arg0 + 0x3A8);
+        ((TUnk_80494938 *)((u8 *)arg0 + 0x3A8))->start_fade_in();
         ((TBoss3Volopt *)(arg0->sub38))->play_area_sound_effect();
         break;
     case 1:
@@ -1043,7 +1042,7 @@ void TObjEneMerillLia::search_target(void *ov) {
         if (p != NULL) {
             s32 w;
             v = get_current_floor();
-            w = ((TObjPlayer *)p)->get_field_3e4();
+            w = ((TObjPlayer *)p)->get_floor();
             if (w == v) {
                 if (xz_distance_squared(p->pos, arg0->pos) < arg0->f3d0 * arg0->f3d0) {
                     arg0->f2a8 = p;
@@ -1372,7 +1371,7 @@ void TObjEneMerillLia::beast_update_group_chase() {
         }
         if (arg0->f338 < 0x1000) {
             Pl_800D5614 *p = (Pl_800D5614 *)get_player_by_client_id(arg0->f338);
-            if (p != NULL && ((TObjPlayer *)p)->get_field_3e4() == get_current_floor()) {
+            if (p != NULL && ((TObjPlayer *)p)->get_floor() == get_current_floor()) {
                 arg0->f2a8 = (Pl_800D6110 *)p;
                 break;
             }
@@ -1390,7 +1389,7 @@ void TObjEneMerillLia::beast_update_group_chase() {
         }
         if (arg0->f338 < 0x1000) {
             Pl_800D5614 *p = (Pl_800D5614 *)get_player_by_client_id(arg0->f338);
-            if (p != NULL && ((TObjPlayer *)p)->get_field_3e4() == get_current_floor() &&
+            if (p != NULL && ((TObjPlayer *)p)->get_floor() == get_current_floor() &&
                 xz_distance_squared(p->pos, &arg0->pos) < lbl_805DA318) {
                 arg0->f326 = 1;
                 arg0->f328 = 0;

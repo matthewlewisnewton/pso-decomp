@@ -360,7 +360,6 @@ extern s32 tl_05;
 void enemy_set_heading_velocity(f32 speed, TObjEnemy *enemy, s32 heading);
 void enemy_turn_toward_dest(void *, s32);
 f32 fabs_float(f32);
-void TObjEneMe3SinowZoa__sub_800D758C(void *);
 s32 approach_angle_limited(s32, s32, s32);
 s32 project_actor_to_ground(void *, void *, s32);
 extern Vec_800BE8FC scratch_vec;
@@ -724,7 +723,7 @@ s32 TObjGrass::update_web_attack() {
     s32 ang[3];
     if (arg0->f338 < 0x1000) {
         u8 *p = get_player_by_client_id(arg0->f338);
-        if (p != NULL && ((TObjPlayer *)p)->get_field_3e4() == get_current_floor()) {
+        if (p != NULL && ((TObjPlayer *)p)->get_floor() == get_current_floor()) {
             arg0->target = (Tgt_800BD10C *)p;
         } else {
             arg0->target = NULL;
@@ -811,7 +810,7 @@ void TObjGrass::sub_800BD4D8() {
     Grass_800BD4D8 *o = (Grass_800BD4D8 *)this;
     if (o->f338 < 0x1000) {
         u8 *p = get_player_by_client_id(o->f338);
-        if (p != NULL && ((TObjPlayer *)p)->get_field_3e4() == get_current_floor()) {
+        if (p != NULL && ((TObjPlayer *)p)->get_floor() == get_current_floor()) {
             o->target = (Tgt_800BD4D8 *)p;
         } else {
             o->target = NULL;
@@ -1292,7 +1291,7 @@ void TObjGrass::update_ai(void *arg0) {
     switch (o->state) {
     case 0:
         obj_setFlags30(o, 0x04040000);
-        TObjEneMe3SinowZoa__sub_800D758C(&o->sub);
+        ((TUnk_80494938 *)(&o->sub))->start_fade_in();
         ((TBoss3Volopt *)(&o->pos))->play_area_sound_effect();
         o->state = 1;
         break;
@@ -1509,7 +1508,7 @@ void TObjGrass::vfunc_28() {
         if (tid < 0x1000U) {
             q = get_player_by_client_id(tid);
             if (q != NULL) {
-                if (((TObjPlayer *)q)->get_field_3e4() == get_current_floor()) {
+                if (((TObjPlayer *)q)->get_floor() == get_current_floor()) {
                     this->target = q;
                     ((TObjBase *)arg0)->obj_clearFlags30(0x04040000);
                     return;
@@ -1655,7 +1654,7 @@ void TObjGrass::run_task() {
     if (temp_r3 < 0x1000U) {
         temp_r3_2 = (u8 *)(get_player_by_client_id(temp_r3));
         if (temp_r3_2 != NULL) {
-            if (((TObjPlayer *)temp_r3_2)->get_field_3e4() == get_current_floor()) {
+            if (((TObjPlayer *)temp_r3_2)->get_floor() == get_current_floor()) {
                 this->target = temp_r3_2;
                 goto done;
             }

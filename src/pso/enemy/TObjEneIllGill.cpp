@@ -124,7 +124,6 @@ extern Vec scratch_vec;
 
 int TLobby__sub_8001FE7C(void*, void*);
 void free_collision_body_parts(void *);
-s32 TObjEneMe3SinowZoa__sub_800D758C(void *);
 
 #pragma push
 #pragma opt_common_subs off
@@ -200,7 +199,7 @@ void TObjEneIllGill::update_charge_attack() {
     TObjEneIllGill *o = this;
     if (o->targetId < 0x1000) {
         s32 p = get_player_by_client_id(o->targetId);
-        if (p != 0 && ((TObjPlayer *)p)->get_field_3e4() == get_current_floor()) {
+        if (p != 0 && ((TObjPlayer *)p)->get_floor() == get_current_floor()) {
             o->target = (u8 *)p;
         } else {
             o->target = NULL;
@@ -418,7 +417,7 @@ void TObjEneIllGill::update_shadow_attack() {
     u8 *enemy = (u8 *)arg0_;
     if (this->targetId < 0x1000U) {
         pl = (u8 *)get_player_by_client_id(this->targetId);
-        if (pl != NULL && ((TObjPlayer *)pl)->get_field_3e4() == get_current_floor()) {
+        if (pl != NULL && ((TObjPlayer *)pl)->get_floor() == get_current_floor()) {
             this->target = pl;
         } else {
             this->target = NULL;
@@ -716,7 +715,7 @@ void TObjEneIllGill::update_weapon_attack() {
     temp_r3 = this->targetId;
     if (temp_r3 < 0x1000U) {
         player = (u8 *)get_player_by_client_id(temp_r3);
-        if ((player != NULL) && (((TObjPlayer *)player)->get_field_3e4() == get_current_floor())) {
+        if ((player != NULL) && (((TObjPlayer *)player)->get_floor() == get_current_floor())) {
             this->target = player;
         } else {
             this->target = NULL;
@@ -1082,7 +1081,7 @@ void TObjEneIllGill::update_idle() {
     switch (this->phase) {
     case 0:
         obj_setFlags30(arg0, 0x04040000);
-        TObjEneMe3SinowZoa__sub_800D758C(&this->fade);
+        ((TUnk_80494938 *)(&this->fade))->start_fade_in();
         ((TBoss3Volopt *)(&position))->play_area_se_with_particle();
         this->phase = 1;
         break;
@@ -1287,7 +1286,7 @@ void TObjEneIllGill::vfunc_28() {
         if (t < 0x1000) {
             ent = get_player_by_client_id(t);
             if (ent != 0) {
-                if (((TObjPlayer *)ent)->get_field_3e4() == get_current_floor()) {
+                if (((TObjPlayer *)ent)->get_floor() == get_current_floor()) {
                     target = (u8 *)ent;
                     obj_clearFlags30(0x04040000);
                     return;

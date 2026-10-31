@@ -596,6 +596,8 @@ typedef struct Row_8025930C {
     char *suffix;
 } Row_8025930C;
 
+struct Quad_8025941C { f32 v[8]; };
+
 extern "C" {
 u32 calc_text_width(char *s);
 void set_text_draw_params(s32 arg0, s32 arg1, s32 arg2, f32 farg0, f32 farg1);
@@ -691,6 +693,47 @@ void calc_row_width__20TWindowSubStatusDispFv(Row_8025930C *arg0) {
 }
 
 void*TWindowSubStatusDisp::get_entry_ptr(int a0) {  return (char*)status_disp_item_icon_coord_table + (unsigned char)(a0) * 8; }
+
+extern s32 lbl_805D63F0;
+extern const f32 lbl_805DCF1C;
+void begin_screen_draw(s32 arg0);
+void set_draw_texture_and_color(s32 idx, s32 arg1);
+s32 set_global_param__8TObjFishFl(s32);
+s32 try_open__19TWindowKeyBoardSoftFii(s32, s32);
+void draw_textured_quad_at_depth(f32 *q, f32 depth);
+
+void draw_item_list_icon(s32 win, u8 *pos, s32 icon, s32 style, f32 depth) {
+    Quad_8025941C q;
+    ItemListPosition *p;
+    f32 *entry;
+    f32 scale;
+    f32 offset;
+    f32 edge;
+
+    if ((u8)icon != 0x33) {
+        p = (ItemListPosition *)pos;
+        begin_screen_draw(1);
+        set_global_param__8TObjFishFl(lbl_805D63F0);
+        set_draw_texture_and_color(1, style);
+        entry = (f32 *)TWindowSubStatusDisp::get_entry_ptr(icon);
+        offset = lbl_805DCF14;
+        scale = lbl_805DCF1C;
+        q.v[0] = p->x;
+        q.v[1] = p->y;
+        q.v[2] = offset + p->x;
+        q.v[3] = offset + p->y;
+        q.v[4] = entry[0] * scale;
+        q.v[5] = entry[1] * scale;
+        edge = offset + entry[0];
+        q.v[6] = edge * scale;
+        edge = offset + entry[1];
+        q.v[7] = edge * scale;
+        if (try_open__19TWindowKeyBoardSoftFii(win, (s32)&q) != 0) {
+            draw_textured_quad_at_depth(q.v, depth);
+        }
+        TWindowSubStatusDisp::get_player();
+    }
+}
 }
 
 typedef struct ItemListRow ItemListRow;

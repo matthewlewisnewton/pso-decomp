@@ -47,7 +47,6 @@ extern s32 shark_render_node_index;
 extern __declspec(section ".sdata2") const f32 shark_zero;
 extern __declspec(section ".sdata2") const f32 shark_ground_effect_y;
 extern __declspec(section ".sdata2") const f32 shark_ground_effect_height_factor;
-s32 TObjEneMe3SinowZoa__sub_800D758C(void *);
 
 s32 mult_vec_array__10TObjPlayerFUll(int, int, void *, int);
 
@@ -175,7 +174,7 @@ void TObjEneShark::vfunc_83() {
     case 0:
     default:
         if (m_390 != 0) {
-            TObjEneMe3SinowZoa__sub_800D758C(&appearance_fade);
+            appearance_fade.start_fade_in();
             ((TBoss3Volopt *)&position)->play_area_sound_effect();
             phase = 1;
         } else {
