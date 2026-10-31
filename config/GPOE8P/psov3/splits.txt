@@ -11486,13 +11486,16 @@ pso/misc/TWindowSubTradeMain_803322B8.cpp:
 	.text       start:0x803322B8 end:0x803323A8
 
 pso/misc/TWindowSubTradeMain.cpp:
-	.text       start:0x803323A8 end:0x803326C4
-	.rodata     start:0x80477600 end:0x80477608
+	.text       start:0x803323A8 end:0x803323D8
 
 pso/enemy/TObjEneMorfos.cpp:
-	.text       start:0x803326C4 end:0x80335218
-	.rodata     start:0x80477608 end:0x80477610
+	.text       start:0x803323D8 end:0x80335218
+	.rodata     start:0x804774C0 end:0x80477610
 	.data       start:0x804EE0C0 end:0x804EE3AC
+	.bss        start:0x805434D0 end:0x805434E8
+	.sdata      start:0x805D4230 end:0x805D4234
+	.sbss       start:0x805D6D08 end:0x805D6D38
+	.sdata2     start:0x805DF860 end:0x805DF8AC
 
 pso/enemy/TObjEneMorfosArm_80335218.cpp:
 	.text       start:0x80335218 end:0x8033542C
@@ -11554,6 +11557,9 @@ pso/unk/text_803374F0.cpp:
 
 pso/enemy/TObjEneMorfos_80337500.cpp:
 	.text       start:0x80337500 end:0x80337910
+	.rodata     start:0x80477B70 end:0x80477B78
+	.data       start:0x804EF130 end:0x804EF168
+	.sdata2     start:0x805DF988 end:0x805DF998
 
 pso/misc/TShopDeleteItemWindow.cpp:
 	.text       start:0x80337910 end:0x803382E4

@@ -457,7 +457,7 @@ s32 TBoss2Joint::init_params() {
     self->unk34 = 0;
     self->unk24 = 0;
     init_model__9TObjEneDDFP13CollisionBodyl(self, prm->unk34, 1);
-    reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(self, get_battle_base_stats(prm->unk0)), get_battle_attack_params(prm->unk8)), ((s32)get_battle_resistance_params(prm->unk10);
+    reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(self, ((s32)get_battle_base_stats(prm->unk0)), ((s32)get_battle_attack_params(prm->unk8)), ((s32)get_battle_resistance_params(prm->unk10)));
     self->hp32C = 0x4E20;
     self->hp2B8 = 0x4E20;
     ((TObjEneDD *)self)->check_state_flag_2();
