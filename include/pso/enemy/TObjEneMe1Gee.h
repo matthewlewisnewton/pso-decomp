@@ -131,7 +131,7 @@ struct TObjEneMe1Gee : public TObjEneDD_ST {
     static void load_resources();
     static void cache_result_805D6660();
     static void queue_debug_text(s32 arg0, char *arg1);
-    static void advance_camera_ctrl_step();
+    static void advance_camera_ctrl_step(NJS_OBJECT *);
     void state_orbit(s32 arg1);
     void handle_event(s32 arg1);
     void state_return_home(s32 arg1);

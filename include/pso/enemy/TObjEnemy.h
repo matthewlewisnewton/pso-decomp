@@ -29,10 +29,12 @@ struct TObjEnemy : public TObjChara {
     virtual void apply_set_data(void *);
     virtual void clear_lobby_object_state();
     virtual s32 vfunc_74(s32);
-    s32 exchange_object_state(s32, s16);
+    s32 exchange_object_state(void *state, s16 operation);
     void sub_8002AE64();
     virtual const char *get_name();
     TObjEnemy* groupRoot();
+    s32 has_group();
+    void link_last_group_child(TObjEnemy *source, TObjEnemy *destination);
     u32 subtype;
     u16 targetId;
     s16 resetTimer;

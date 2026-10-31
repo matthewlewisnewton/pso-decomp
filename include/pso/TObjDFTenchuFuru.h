@@ -1,3 +1,4 @@
+struct NJS_OBJECT;
 #ifndef PSO_TOBJDFTENCHUFURU_H
 #define PSO_TOBJDFTENCHUFURU_H
 
@@ -16,7 +17,7 @@ public:
     virtual void run_task();
 public:
     void *create(void *arg1);
-    static void capture_matrix_by_frame();
+    static void capture_matrix_by_frame(NJS_OBJECT *);
     static void register_callback();
     void transform_node_tree();
     void draw_node_tree();

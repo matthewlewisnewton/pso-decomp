@@ -18,18 +18,21 @@ construction and destruction. The Gee source uses the foundation's free demo
 predicate, float ceiling helper, positional effects, typed motion-table setters
 and ground-shadow calls. Shared declarations and implementations are unchanged.
 
-The candidate also merges the immutable draft random/phase stack:
+The candidate also merges the current-core-aligned immutable draft stack:
 
-- `d8c77c6597a216329a7922f28e0f38d919f57d38` (fork PR81): nonstatic
+- `1a2361d2391bc1615b3e2621b668258be31ac983` (fork PR81): nonstatic
   actor receiver for `TObjEneDD::get_random_scaled`.
-- `ad9f594f4bb350d1548850df1d8b17c63f05e2ac` (fork PR82): full-register
+- `b594952657f425cb74822f27cbbe053072fed3da` (fork PR82): full-register
   `s32` result for the static main-phase predicate.
 
-PR82 is the immediate fork-local base. These shared heads have targeted owner
-object checks but their full certification is pending. This layer introduces no
-generic declarations or shims. The combined Gee draft must pass its own exact
-checks and independent review after the parent gates; prior matching results do
-not certify this reapplication.
+This stack includes certified core `c183840fc681ebca7351734acefa2e177f14f1ed`
+with typed node callbacks, capture, collision, groups and state/checker changes.
+Gee accepts the callback's unused NJS_OBJECT pointer and registers its function
+through the canonical callback type, preserving its native camera cursor storage.
+PR82 is the immediate fork-local base. Shared full certification and this Gee
+head's full build/check/provenance and independent review remain pending. No
+generic shared definitions or compatibility shims are introduced. Earlier SHAs
+are retained through normal merges.
 
 ## Native storage and emission
 
