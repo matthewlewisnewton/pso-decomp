@@ -43,8 +43,8 @@ int TObjEneDD::update_lobby_state() { return is_local_client_floor_leader(this);
 u8 TObjEneDD::is_phase_e() {
     return (u8) (get_main_phase() == 0xE);
 }
-u8 TObjEneDD::is_main_phase_15() {
-    return (u8) (get_main_phase() == 0xF);
+s32 TObjEneDD::is_main_phase_15() {
+    return (s32) (get_main_phase() == 0xF);
 }
 
 }
