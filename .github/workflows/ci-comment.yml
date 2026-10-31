@@ -4,7 +4,7 @@
 # uploads the gate's results as the `ci-result` artifact; this workflow runs after it
 # in the base repository's context, where the token may write PR comments.
 #
-# It never checks out or runs pull request code: the renderer comes from master and
+# It never checks out or runs pull request code: the renderer comes from main and
 # treats the artifact as untrusted data, and the PR number comes from the triggering
 # run's head branch and commit, not from the artifact.
 #
