@@ -154,7 +154,7 @@ void TWindowEffectLight::draw_outline_quad(s32 color) {
 }
 
 void TWindowEffectLight__sub_802AD040(TWindowEffectLight *self, f32 width) {
-    
+
     Quad_802AD1CC q;
     u32 color = self->calc_alpha() | 0x00FFFFFF;
     f32 scale = self->calc_scale();
