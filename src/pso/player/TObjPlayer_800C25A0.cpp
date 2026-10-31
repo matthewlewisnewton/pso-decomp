@@ -1,3 +1,4 @@
+struct NJS_OBJECT;
 #include "types.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/player/TObjPlayer.h"
@@ -13,7 +14,7 @@ extern s32 lbl_805D5178;
 extern s32 lbl_805D517C;
 extern s32 lbl_805D5180;
 
-void TObjPlayer::update_effect_sequence() {
+void TObjPlayer::update_effect_sequence(NJS_OBJECT *) {
     switch ((s32) lbl_805D5178) {
     case 1:
         rotate_matrix_y(0, lbl_805D517C);

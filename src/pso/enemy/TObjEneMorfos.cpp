@@ -1,3 +1,4 @@
+struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -992,7 +993,7 @@ void TObjEneMorfos::render_part(s32 idx, s32 mode) {
     rotate_matrix_y(0, this->rotation_y);
     TObjEneMorfos__phase = 0;
     TObjEneMorfos__camera_path_cursor = (s32)self->f498;
-    set_chunk_model_node_callback((s32)((void *)TObjEneMorfos::record_camera_path_point));
+    set_chunk_model_node_callback((TObjEneMorfos::record_camera_path_point));
     if (self->f3C0 & 2) {
         if (self->body.m8() != 0) {
             self->body.m6();
@@ -1014,13 +1015,13 @@ void TObjEneMorfos::render_part(s32 idx, s32 mode) {
             ((TObjEnemy *)self)->draw_motion_model();
         }
     }
-    set_chunk_model_node_callback((s32)NULL);
+    set_chunk_model_node_callback(NULL);
     pop_matrix();
     ((TObjEneDD *)self)->update_primary_light();
     TParticleCtrl::end_effect_render();
 }
 
-void TObjEneMorfos::record_camera_path_point() {
+void TObjEneMorfos::record_camera_path_point(NJS_OBJECT *) {
   int new_var;
   Stack_80332B7C stack;
   if (((s32) TObjEneMorfos__phase) != 0xA)

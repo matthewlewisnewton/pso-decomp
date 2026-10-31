@@ -2050,7 +2050,7 @@ void TObjPlayer__sub_800C220C(Obj_800C220C *o) {
         o->f3EC = lbl_805D9FB4;
         o->f3F0 = lbl_805D9FAC;
         scale_matrix(0, lbl_805D9FB8, lbl_805D9FB8, lbl_805D9FB8);
-        set_chunk_model_node_callback((s32)((void *)TObjPlayer::update_effect_sequence));
+        set_chunk_model_node_callback((TObjPlayer::update_effect_sequence));
         if (o->f326 == 8) {
             s32 c = (o->f3D8 & 0xFF) << 16;
             lbl_805D5178 = -1;

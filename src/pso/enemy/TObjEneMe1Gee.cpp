@@ -1,3 +1,4 @@
+struct NJS_OBJECT;
 #include "pso/enemy/TUnk_80494938.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
@@ -2130,7 +2131,7 @@ void render__13TObjEneMe1GeeFv(u8 *ene_me1_gee) {
             if ((s16) ((TObjEneMe1Gee *)ene_me1_gee)->mode != 0xB) {
                 TObjEneMe1Gee__render_node_index = 0;
                 gee_camera_ctrl_step_ptr = (s32)(ene_me1_gee + 0x414);
-                set_chunk_model_node_callback((s32)((void *)TObjEneMe1Gee::advance_camera_ctrl_step));
+                set_chunk_model_node_callback((TObjEneMe1Gee::advance_camera_ctrl_step));
                 if (var_r30 == 1) {
                     set_motion_packed_rotation();
                     ((TObjMotion *)ene_me1_gee)->draw();
@@ -2140,14 +2141,14 @@ void render__13TObjEneMe1GeeFv(u8 *ene_me1_gee) {
                     ((TObjEnemy *)ene_me1_gee)->draw_motion_model();
                     clear_motion_packed_rotation();
                 }
-                set_chunk_model_node_callback((s32)NULL);
+                set_chunk_model_node_callback(NULL);
             } else {
                 rotate_matrix_z(0, (int) (((TObjEneMe1Gee *)ene_me1_gee)->rotation_z));
                 TObjEneMe1Gee__render_node_index = -1;
                 gee_camera_ctrl_step_ptr = (s32)(ene_me1_gee + 0x414);
-                set_chunk_model_node_callback((s32)((void *)TObjEneMe1Gee::advance_camera_ctrl_step));
+                set_chunk_model_node_callback((TObjEneMe1Gee::advance_camera_ctrl_step));
                 ((TObjEneDD_ST *)ene_me1_gee)->draw_with_alt_model((int) (*(s32 *)((s8 *)ene_me1_gee + 0x410)));
-                set_chunk_model_node_callback((s32)NULL);
+                set_chunk_model_node_callback(NULL);
             }
         }
         temp_r0_2 = ((TObjEneMe1Gee *)ene_me1_gee)->mode;
@@ -2164,7 +2165,7 @@ void render__13TObjEneMe1GeeFv(u8 *ene_me1_gee) {
     VecCopy__FP3VecPC3Vec(ene_me1_gee + 0x420, ene_me1_gee + 0x2FC);
 }
 
-void TObjEneMe1Gee::advance_camera_ctrl_step() {
+void TObjEneMe1Gee::advance_camera_ctrl_step(NJS_OBJECT *) {
     s32 pos;
     s32 temp_r4_2;
     switch ((s32) TObjEneMe1Gee__render_node_index) {

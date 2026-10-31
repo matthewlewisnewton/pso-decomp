@@ -1,3 +1,4 @@
+struct NJS_OBJECT;
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
@@ -908,7 +909,7 @@ void render_and_get_joint_pos__14TObjEneGibblesFPvii(u8 *enemy, s32 arg1, s32 ar
     clear_motion_packed_rotation();
 }
 }
-void gibbles_render_node_callback(void);
+void gibbles_render_node_callback(NJS_OBJECT *);
 extern s32 saved_model_render_flags;
 extern s32 saved_chunk_polygon_flags_and_mask;
 extern s32 saved_chunk_polygon_flags_or_mask;
@@ -2288,7 +2289,7 @@ void TObjEneGibbles::clamp_angle(s32 arg1) {
 }
 }
 
-void gibbles_render_node_callback(void) {
+void gibbles_render_node_callback(NJS_OBJECT *) {
     if ((s32) TObjEneGibbles__render_node_index == 0x18) {
         rotate_matrix_x(0, TObjEneGibbles__render_rotation_x);
     }
@@ -2330,7 +2331,7 @@ void draw_model__14TObjEneGibblesFPv(TObjEneGibbles *arg0) {
         scale_matrix_vec3(0, (u8 *)arg0 + 0x68);
         TObjEneGibbles__render_node_index = 0;
         TObjEneGibbles__render_rotation_x = arg0->m_3bc;
-        set_chunk_model_node_callback((s32)((void *)gibbles_render_node_callback));
+        set_chunk_model_node_callback((gibbles_render_node_callback));
         TObjPlayer::toggle_particle_effect();
         switch (arg0->mode) {
         case 0:
@@ -2378,7 +2379,7 @@ void draw_model__14TObjEneGibblesFPv(TObjEneGibbles *arg0) {
             break;
         }
         TParticleCtrl::end_effect_render();
-        set_chunk_model_node_callback((s32)NULL);
+        set_chunk_model_node_callback(NULL);
         pop_matrix();
         restore_scene_lighting();
         if (!(arg0->m_374 & 1)) {

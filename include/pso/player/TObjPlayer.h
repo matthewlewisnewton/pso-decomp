@@ -1,3 +1,4 @@
+struct NJS_OBJECT;
 #ifndef PSO_PLAYER_TOBJPLAYER_H
 #define PSO_PLAYER_TOBJPLAYER_H
 
@@ -263,7 +264,7 @@ struct TObjPlayer : public TObjChara {
     void clear_counter();
     void set_cancel_flag();
     static void reset_effect_count();
-    static void step_cutscene_frame();
+    static void step_cutscene_frame(NJS_OBJECT *);
     static void free_resources();
     void enter_state_8();
     void tick_freeze_state();
@@ -440,7 +441,7 @@ struct TObjPlayer : public TObjChara {
     s32 get_action_priority();
     void draw_model_no_fog();
     void update_invincibility();
-    static void update_effect_sequence();
+    static void update_effect_sequence(NJS_OBJECT *);
     static void toggle_particle_effect();
     static void create_dead_spot(s32 arg0, s32 arg1, f32 farg0);
     static void spawn_effect_f8(s32 arg1, s32 arg2);
@@ -1151,10 +1152,6 @@ struct TObjPlayer : public TObjChara {
     void spawn_hit_effect(s32 arg1, s32 arg2, s32 arg3);
     void spawn_mirror_pair(void *arg1, s32 arg2, s32 arg3);
     void handle_hit_effect(s32 arg1, s32 arg2, s32 arg3);
-    static void process_callback_list(s32 arg0);
-    void draw_node_tree(void *arg1);
-    void draw_node_tree_if_visible();
-    void apply_with_callback(s32 arg1, f32 farg0);
     static s32 conditional_delete_ex(s32 arg0, s16 arg1);
     static void create_cane_if_ready(s32 arg0, void *position);
     static void create_cleanup_object(void *arg0);
@@ -1288,7 +1285,7 @@ struct TObjPlayer : public TObjChara {
     s32 apply_area_attack_hits(u8 *arg1, s32 arg2, u32 arg3, f32 farg0);
     void update_aim_and_fire();
     void set_flag_and_notify();
-    static void update_particle_by_phase();
+    static void update_particle_by_phase(NJS_OBJECT *);
     void draw_blob_shadows();
     void set_flag_8_if_check_passes();
     void fill_status_info(void *arg1);

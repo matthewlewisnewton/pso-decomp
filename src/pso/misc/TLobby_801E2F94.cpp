@@ -9,6 +9,7 @@
 #include "pso/system/main_loop.h"
 #include "pso/misc/TWindowCtrlMain.h"
 #include "types.h"
+#include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/TObjCMHairMenu.h"
 #include "pso/boss/TBoss8Dragon.h"
 #include "pso/misc/TLobby.h"
@@ -504,7 +505,6 @@ extern RecoveredGlobal_801E3E24_TKeyBoardControl__data_80506270 TKeyBoardControl
 s32 TKeyBoardControl__sub_801E3E24(s32 arg0, s32 arg1, s32 arg2);
 s32 GXSetViewport(f32, f32, f32, f32, f32, f32);
 s32 GXSetZMode(s32, s32, s32);
-extern s32 (*chunk_model_node_callback)(void *);
 void TKeyBoardControl__sub_8000F7FC(void);
 void compose_motion_node_matrix(void *arg0);
 
@@ -520,8 +520,8 @@ void TObjPlayer::render_tree(void *arg0) {
     do {
         push_matrix();
         compose_motion_node_matrix(var_r31);
-        if (((s32 (*)(void *)) chunk_model_node_callback) != NULL) {
-            chunk_model_node_callback(var_r31);
+        if (chunk_model_node_callback != NULL) {
+            chunk_model_node_callback((NJS_OBJECT *)var_r31);
         }
         if ((u32) *(u32 *)((s8 *)var_r31 + 0x2C) != 0U) {
             TObjPlayer::render_tree((void *)(*(void **)((s8 *)var_r31 + 0x2C)));

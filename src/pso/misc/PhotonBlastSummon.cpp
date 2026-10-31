@@ -1,3 +1,4 @@
+struct NJS_OBJECT;
 #include "types.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/misc/PhotonBlastSummon.h"
@@ -270,7 +271,7 @@ void copy_effect_params(u8 *arg0, u8 *arg1) {
     *(ByteBlock_C *)((s32) arg0 + 0xC) = *(const ByteBlock_C *)((s32) arg1 + 0xC);
     *(s32 *)((s8 *)arg0 + 0x18) = (s32) *(s32 *)((s8 *)arg1 + 0x18);
 }
-void publish_photon_blast_joint_origins(void) {
+void publish_photon_blast_joint_origins(NJS_OBJECT *) {
     s32 i;
     for (i = 0; i < photon_blast_joint_origins->count; i++) {
         struct Node_801A7578 *node = &photon_blast_joint_origins->list[i];
@@ -324,7 +325,7 @@ void TUnk_804C3248::set_photon_blast_joint_callback() {
     photon_blast_joint_index=0;
     photon_blast_joint_origins[0].list=(Node_801A7578 *)self->bindings;
     photon_blast_joint_origins[0].count=self->binding_count;
-    set_chunk_model_node_callback((s32)publish_photon_blast_joint_origins);
+    set_chunk_model_node_callback(publish_photon_blast_joint_origins);
 }
 
 void TUnk_804C3248::update_photon_blast_attachments() {

@@ -1,3 +1,4 @@
+struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
 #include "types.h"
 #include "pso/system/vector.h"
@@ -666,7 +667,7 @@ void TObjEneBm9Mericarol__sub_802CED40(void* p);
 
 extern s32 lbl_805D686C;
 
-void TObjEneBm9Mericarol::update_particle_effect() {
+void TObjEneBm9Mericarol::update_particle_effect(NJS_OBJECT *) {
     switch (lbl_805D686C) {
     case 0x21:
     case 0x2B:

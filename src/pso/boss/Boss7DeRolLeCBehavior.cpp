@@ -1,4 +1,6 @@
+struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
+#include "pso/misc/TUnk_804F1C58.h"
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
 #include "pso/system/NinjaUtil.h"
@@ -562,7 +564,7 @@ extern s32 lbl_805D692C;
 extern s32 lbl_805D6930;
 extern s32 lbl_805D6934;
 extern s32 lbl_805D6944;
-void TObjPlayer__sub_802E8274(void);
+void TObjPlayer__sub_802E8274(NJS_OBJECT *);
 s32 get_mode__11TCameraCtrlFPv(void *);
 void TObjPlayer__sub_802E7FC0(void *arg0);
 extern RecoveredGlobal_802E80F4_lbl_8050BEC0 saved_model_draw_color;
@@ -622,7 +624,7 @@ void TBoss7DeRolLeC::render() {
                 *(s32 **)((s8 *)lbl_805D693C + 0x2C) = (s32 *) lbl_805D6940;
             }
             TObjPlayer::draw_effect();
-            ((TObjPlayer *)(*(u32 *)((s8 *)((u8 *)this) + 0x7AC)))->draw_node_tree_if_visible();
+            ((TUnk_804F1C58 *)(*(u32 *)((s8 *)((u8 *)this) + 0x7AC)))->draw_node_tree_if_visible();
         }
         pop_matrix();
         TParticleCtrl::end_effect_render();
@@ -645,7 +647,7 @@ void TBoss7DeRolLeC::sub_802E8234() {
     lbl_805D692C = (long) (((u8 *)this) + 0x4DC);
     lbl_805D6944 = (long) (((u8 *)this) + 0x7B4);
 }
-void TObjPlayer__sub_802E8274(void) {
+void TObjPlayer__sub_802E8274(NJS_OBJECT *) {
     typedef char sp8_offset[(offsetof(Stack_802E8274, sp8) == 0x0) ? 1 : -1];
     typedef char spC_offset[(offsetof(Stack_802E8274, spC) == 0x4) ? 1 : -1];
     typedef char sp10_offset[(offsetof(Stack_802E8274, sp10) == 0x8) ? 1 : -1];

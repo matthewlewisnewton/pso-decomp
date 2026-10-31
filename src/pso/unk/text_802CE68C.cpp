@@ -275,7 +275,7 @@ void TObjEneBm9Mericarol::render() {
         n = self->f34->n2C->n30->n30->n30->n4->n4;
         saved = n->fA;
         n->fA = (u8)n->fA;
-        set_chunk_model_node_callback((s32)TObjEneBm9Mericarol::update_particle_effect);
+        set_chunk_model_node_callback(TObjEneBm9Mericarol::update_particle_effect);
     }
     if (self->f438 & 8) {
         if (self->f46C.m8() != 0) {

@@ -1,3 +1,4 @@
+struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
@@ -369,13 +370,13 @@ void render__16TObjEneRe7BeruraFv(Berura_80092CCC *o) {
                     f1 = 0;
                 }
                 if (f1 != 0) {
-                    set_chunk_model_node_callback((s32)((void *)TObjEneRe7Berura::demo_frame_callback));
+                    set_chunk_model_node_callback((TObjEneRe7Berura::demo_frame_callback));
                     ((TObjMotion *)o)->draw();
                     set_chunk_model_node_callback(0);
                 }
                 ((Fade_80092CCC *)fade)->v.m7();
             } else {
-                set_chunk_model_node_callback((s32)((void *)TObjEneRe7Berura::demo_frame_callback));
+                set_chunk_model_node_callback((TObjEneRe7Berura::demo_frame_callback));
                 if (mode == 1) {
                     ((TObjMotion *)o)->draw();
                 } else {
@@ -394,7 +395,7 @@ void render__16TObjEneRe7BeruraFv(Berura_80092CCC *o) {
                         f2 = 0;
                     }
                     if (f2 != 0) {
-                        set_chunk_model_node_callback((s32)((void *)TObjEneRe7Berura::advance_state));
+                        set_chunk_model_node_callback((TObjEneRe7Berura::advance_state));
                         ((TObjMotion *)o)->draw();
                         set_chunk_model_node_callback(0);
                     }
@@ -402,7 +403,7 @@ void render__16TObjEneRe7BeruraFv(Berura_80092CCC *o) {
                 }
             } else if (cam != 0) {
                 ((Fade_80092CCC *)fade)->v.m6();
-                set_chunk_model_node_callback((s32)((void *)TObjEneRe7Berura::advance_state));
+                set_chunk_model_node_callback((TObjEneRe7Berura::advance_state));
                 ((TObjMotion *)o)->draw();
                 set_chunk_model_node_callback(0);
                 ((Fade_80092CCC *)fade)->v.m7();
@@ -430,7 +431,7 @@ void render__16TObjEneRe7BeruraFv(Berura_80092CCC *o) {
     }
 }
 
-void TObjEneRe7Berura::advance_state() {
+void TObjEneRe7Berura::advance_state(NJS_OBJECT *) {
     switch ((s32) re7_berura_demo_state) {
     case 25:
         lbl_805D4F6C = model_render_flags;
@@ -443,7 +444,7 @@ void TObjEneRe7Berura::advance_state() {
     re7_berura_demo_state += 1;
 }
 
-void TObjEneRe7Berura::demo_frame_callback() {
+void TObjEneRe7Berura::demo_frame_callback(NJS_OBJECT *) {
     switch ((s32) re7_berura_demo_state) {
     case 0x2:
         lbl_805D4F6C = model_render_flags;
