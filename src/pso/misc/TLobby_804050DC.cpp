@@ -6,6 +6,7 @@
 #include "pso/network/IPv6.h"
 
 #include "types.h"
+#include "pso/network/BufferPool.h"
 #include "pso/protocol/NetworkRuntime.h"
 #include "pso/network/EthernetReceiveFilter.h"
 
@@ -259,11 +260,6 @@ struct RecoveredGlobal_8040FF0C_lbl_805C1B78 {
     u8 f14;
     u8 pad15[3];
     Ipv6Header hdr;
-};
-
-struct RecoveredGlobal_80415650_lbl_805C1BF8 {
-    s16 value;
-    u8 remaining[0xE];
 };
 
 struct RecoveredGlobal_80419A34_lbl_805C1C50 {
@@ -614,7 +610,7 @@ void TLobby__sub_803F87DC(void *);
 extern RecoveredGlobal_8040FF0C_lbl_805C1B78 ipv6_protocol_state;
 s32 NetIPv6Shutdown(void);
 void TLobby__sub_803F89D8(void *);
-extern RecoveredGlobal_80415650_lbl_805C1BF8 network_buffer_pool_state;
+extern Pool_80415690 network_buffer_pool_state;
 s32 TLobby__sub_803F8E9C();
 void TLobby__sub_80419A34(void);
 s32 TLobby__sub_80419A7C(void);
@@ -8042,30 +8038,12 @@ s32 TLobby::fill_reply_buffer(s16 h, u8 *p) {
     return 0;
 }
 
-typedef char RecoveredGlobal_80415650_lbl_805C1BF8_size[sizeof(RecoveredGlobal_80415650_lbl_805C1BF8) == 0x10 ? 1 : -1];
+typedef char Pool_80415690_size[sizeof(Pool_80415690) == 0x10 ? 1 : -1];
 s32 TLobby::reset_net_value() {
-    TLobby__sub_803F89D8((void *)((void *) (&network_buffer_pool_state.value)));
-    network_buffer_pool_state.value = 0;
+    TLobby__sub_803F89D8(&network_buffer_pool_state.count);
+    network_buffer_pool_state.count = 0;
     return 0;
 }
-
-struct Seg_80415690 {
-    s16 owner;
-    u16 offset;
-    u16 len;
-};
-struct Ent_80415690 {
-    u8 *buf;
-    s32 free_segs;
-    s32 free_bytes;
-    Seg_80415690 segs[8];
-};
-struct Pool_80415690 {
-    s16 count;
-    s16 size;
-    Ent_80415690 *ents;
-    u8 *data;
-};
 
 #pragma push
 #pragma opt_common_subs on
@@ -8076,20 +8054,20 @@ s16 TLobby__sub_80415690(void) {
     Ent_80415690 *e;
     s16 j;
 
-    ((TLobby *)&network_buffer_pool_state)->init_buffer_desc_a();
-    buf = ((Pool_80415690 *)&network_buffer_pool_state)->data;
-    e = ((Pool_80415690 *)&network_buffer_pool_state)->ents;
-    for (i = 0; i < ((Pool_80415690 *)&network_buffer_pool_state)->count; i++, e++) {
+    init_buffer_desc_a__6TLobbyFv(&network_buffer_pool_state);
+    buf = network_buffer_pool_state.data;
+    e = network_buffer_pool_state.ents;
+    for (i = 0; i < network_buffer_pool_state.count; i++, e++) {
         e->buf = buf;
-        buf += ((Pool_80415690 *)&network_buffer_pool_state)->size & 0xFFFF;
+        buf += network_buffer_pool_state.size & 0xFFFF;
         e->free_segs = 8;
-        e->free_bytes = ((Pool_80415690 *)&network_buffer_pool_state)->size;
+        e->free_bytes = network_buffer_pool_state.size;
         e->segs[0].owner = -1;
         e->segs[0].offset = 0;
-        e->segs[0].len = ((Pool_80415690 *)&network_buffer_pool_state)->size;
+        e->segs[0].len = network_buffer_pool_state.size;
         for (j = 1; j < 8; j++) {
             e->segs[j].owner = 0;
-            e->segs[j].offset = ((Pool_80415690 *)&network_buffer_pool_state)->size;
+            e->segs[j].offset = network_buffer_pool_state.size;
             e->segs[j].len = 0;
         }
     }
@@ -8118,7 +8096,7 @@ s16 TLobby__sub_80415954(NetBufferRef *ref, s32 size, s16 owner) {
     if (size < 0x400) {
         size = 0x400;
     }
-    pool = (Pool_80415690 *)&network_buffer_pool_state;
+    pool = &network_buffer_pool_state;
     e = pool->ents;
     for (i = 0; i < pool->count; i++, e++) {
         if (e->free_segs == 0 || size > e->free_bytes) {
@@ -10415,7 +10393,7 @@ typedef char OriginalBss_805C1B60_size[(sizeof(RecoveredGlobal_8040EF00_lbl_805C
 typedef char OriginalBss_805C1B78_size[(sizeof(RecoveredGlobal_8040FF0C_lbl_805C1B78) == 0x40) ? 1 : -1];
 typedef char OriginalBss_805C1BB8_size[(sizeof(RecoveredGlobal_8041123C_lbl_805C1BB8) == 0x28) ? 1 : -1];
 typedef char OriginalBss_805C1BE0_size[(sizeof(RecoveredGlobal_8041552C_lbl_805C1BE0) == 0x18) ? 1 : -1];
-typedef char OriginalBss_805C1BF8_size[(sizeof(RecoveredGlobal_80415650_lbl_805C1BF8) == 0x10) ? 1 : -1];
+typedef char OriginalBss_805C1BF8_size[(sizeof(Pool_80415690) == 0x10) ? 1 : -1];
 typedef char OriginalBss_805C1C08_size[(sizeof(G_80415B38) == 0x30) ? 1 : -1];
 G_8040A45C dns_resolver_state;
 RecoveredGlobal_8040DD68_lbl_805C1B38 ipv4_protocol_state;
@@ -10423,7 +10401,7 @@ RecoveredGlobal_8040EF00_lbl_805C1B60 ipv4_address_routing_state;
 RecoveredGlobal_8040FF0C_lbl_805C1B78 ipv6_protocol_state;
 RecoveredGlobal_8041123C_lbl_805C1BB8 ipv6_address_routing_state;
 RecoveredGlobal_8041552C_lbl_805C1BE0 network_loopback_state;
-RecoveredGlobal_80415650_lbl_805C1BF8 network_buffer_pool_state;
+Pool_80415690 network_buffer_pool_state;
 G_80415B38 ipv6_neighbor_discovery_state;
 
 typedef char OriginalBss_805C1C38_size[(sizeof(G_80418ACC) == 0x18) ? 1 : -1];
@@ -12089,11 +12067,11 @@ s32 get_adjusted_slot_count__6TLobbyFPv(u8 *arg0) {
     return *(s32 *)((s8 *)arg0 + 0x530) - *(s32 *)((s8 *)arg0 + 0x20);
 }
 
-// The packed kind-2 reference stores pool/segment indices in the top bytes
-// and an offset in the low halfword, as constructed by 80415954.
-// WIP: original control flow and layout recovered; code generation is inexact.
+// Kind 2 packs entry/segment indices above an unsigned byte offset.
+// Keep both offsets live through the native 32-bit address additions.
 #pragma push
 #pragma opt_propagation off
+#pragma opt_lifetimes off
 u8 *TLobby__sub_80406F0C(void *arg) {
     NetBufferRef *ref = (NetBufferRef *)arg;
     switch (ref->kind) {
@@ -12103,16 +12081,18 @@ u8 *TLobby__sub_80406F0C(void *arg) {
     case 2: {
         u32 value = ref->value;
         s16 index = value >> 24;
-        Pool_80415690 *pool = (Pool_80415690 *)&network_buffer_pool_state;
-        // Preserve the original strict comparison, also used by 8041579C.
-        if (pool->count < index) {
+        // The original resolver and release routine use a strict comparison.
+        if (network_buffer_pool_state.count < index) {
             return NULL;
         }
-        Ent_80415690 *entry = &pool->ents[index];
+        Ent_80415690 *entry = &network_buffer_pool_state.ents[index];
         s16 segment = (value >> 16) & 0xFF;
+        // After decoding, the opaque pointer carries only the buffer address.
+        arg = entry->buf;
         u16 offset = value;
-        u8 *base = offset + entry->buf;
-        return entry->segs[segment].offset + base;
+        u16 segment_offset = entry->segs[segment].offset;
+        arg = (void *)(offset + (u32)arg);
+        return (u8 *)(segment_offset + (u32)arg);
     }
     case 3:
         return (u8 *)ref->value;
