@@ -589,8 +589,9 @@ void draw_frame__19TWindowMenuMainMenuFv(TWindowMenuMainMenu *window, FrameConte
         offset += lbl_805DE17C;
         remaining -= lbl_805DE17C;
     } else {
-        r.x0 = context->x; r.y0 = context->y + lbl_805DE158;
-        r.x1 = r.x0 + context->width;
+        f32 x = context->x;
+        r.x0 = x; r.y0 = context->y + lbl_805DE158;
+        r.x1 = x + context->width;
         r.y1 = lbl_805DE18C + (lbl_805DE164 + r.y0);
         r.u0 = lbl_805DE184; r.v0 = lbl_805DE190;
         r.u1 = lbl_805DE158; r.v1 = lbl_805DE194;
@@ -601,11 +602,15 @@ void draw_frame__19TWindowMenuMainMenuFv(TWindowMenuMainMenu *window, FrameConte
     }
     remaining -= lbl_805DE164;
     while (remaining >= lbl_805DE198) {
-        height = remaining < lbl_805DE150 ? lbl_805DE198 : lbl_805DE150;
+        if (remaining < 16.0f) {
+            height = lbl_805DE198;
+        } else {
+            height = 16.0f;
+        }
         r.x0 = context->x; r.y0 = context->y + offset;
         r.x1 = r.x0 + context->width; r.y1 = r.y0 + height;
         r.u0 = lbl_805DE158; r.v0 = lbl_805DE188;
-        r.u1 = lbl_805DE184; r.v1 = (lbl_805DE19C + height) * lbl_805DE154;
+        r.u1 = lbl_805DE184; r.v1 = (lbl_805DE19C + height) / 256.0f;
         apply_context_transform_to_rect(context, &r);
         draw_textured_quad_at_depth((f32 *)&r, depth);
         offset += height;
