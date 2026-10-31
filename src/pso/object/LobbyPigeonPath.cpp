@@ -2,6 +2,7 @@
 #include "pso/map/CsnGroundQuery.h"
 #include "pso/player/demo_mode.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #pragma push
 
 #include "types.h"
@@ -498,7 +499,7 @@ typedef struct { u8 pad[4]; u32 n; } Anim_802C17FC;
 s32 debug_draw_line(s32 *, s32 *, s32, s32);
 
 u8 * load_gvm_texture_file(s32);
-s32 play_sound_effect(int, void *, int, int);
+
 void __dl__7TObjectFPv(void *);
 void * __nw__7TObjectFUl(int);
 
@@ -824,7 +825,7 @@ void TUnk_804E08D4::vfunc_13(s32) {
         ((s32 (*)(void *, int))rotate_matrix_y)(&m, this->rotation_y);
         translate_matrix_vec3((u8 *)&m, (u8 *)&this->unk_AC);
         ((s32 (*)(void *, void *, void *))matrix_mult_vec)(&m, &v, &v);
-        play_sound_effect(0x4BC04, (u8 *)&this->position, 0x7F, 0);
+        play_sound_effect(0x4BC04, (const Vec *)((u8 *)&this->position), 0x7F, 0);
         *(s32 *)&this->unk_CC = (s32) (((3e+01f) * ((4.0f) * ((3.0517578e-05f) * (f32) rand()))) + (1.5e+02f));
     }
 }

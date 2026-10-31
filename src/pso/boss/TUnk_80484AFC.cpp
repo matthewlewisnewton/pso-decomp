@@ -1,5 +1,6 @@
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/misc/PersistentSound.h"
 #pragma fp_contract on
 
@@ -35,7 +36,6 @@ void rotate_matrix_x(s32 matrix, s32 angle);
 void matrix_mult_vec(s32 matrix, const Vec *src, Vec *dst);
 void vec3_add_to(Vec *v, const Vec *add);
 void subtract_vector(Vec *v, const Vec *sub);
-void play_sound_effect(s32 id, const Vec *pos, s32 a2, s32 a3);
 
 s32 obj_is_hit_receivable(TObjChara *actor);
 extern GC_Mtx identity_matrix;
@@ -56,8 +56,8 @@ void TUnk_80484AFC::explode_and_destroy() {
     if (TBoss3Volopt::is_v2_mode() != 0 && 3.0517578e-05f * (f32)rand() < 0.16666667f) {
         attack.kind = 0x11;
     }
-    play_sound_effect(0x4003AD15, &position, 0, 0);
-    play_sound_effect(0x4001C112, &position, 0, 0);
+    play_sound_effect(0x4003AD15, (const Vec *)(&position), 0, 0);
+    play_sound_effect(0x4001C112, (const Vec *)(&position), 0, 0);
     bodies->radius = 15.0f;
     TObjPlayer::init_all_slots();
     ((TObjPlayer *)this)->check_object_collisions();

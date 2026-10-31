@@ -2,6 +2,7 @@
 #include "pso/misc/RenderFadeState.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/misc/ParticleFactory.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "types.h"
 #include "pso/enemy/TObjEneEpsilon.h"
@@ -67,7 +68,7 @@ u16 get_entity_id(void *);
 
 void enemy_clear_target__12TObjEneDD_STFUs(void *);
 f32 horizontal_distance_squared(void *, void *);
-void play_sound_effect(s32, void *, s32, s32);
+
 s32 is_valid_and_active__10TObjPlayerFUl();
 s32 TObjEneRecon__sub_8031DA90(u8 *arg0);
 f32 approach_value__12TObjEneReconFff(void *, f32, f32);
@@ -272,7 +273,7 @@ void TObjEneRecon__sub_8031C364(u8 *arg0, s32 arg1) {
         F(f32, 0x44C) = F(f32, 0x308);
         F(f32, 0x454) = F(f32, 0x310);
         F(f32, 0x3E4) = ((f32 (*)(void *))normalize_vector_xz__FP3Vec)(arg0 + 0x44C);
-        play_sound_effect(TObjEneRecobox::remap_area_sound_id(0x4003A80C), arg0 + 0x38, 0, 0);
+        play_sound_effect((s32)(TObjEneRecobox::remap_area_sound_id(0x4003A80C)), (const Vec *)(arg0 + 0x38), 0, 0);
         break;
     case 3:
         if (F(s32, 0x3C0) == 3) {
@@ -318,7 +319,7 @@ void TObjEneRecon__sub_8031C364(u8 *arg0, s32 arg1) {
             F(s32, 0x3C0) = 3;
             spawn_particle_effect_with_flags(arg0 + 0x38, 0x45, 0x40);
             spawn_particle_effect_with_flags(arg0 + 0x38, 0x46, 0x40);
-            play_sound_effect(TObjEneRecobox::remap_area_sound_id(0x4003A80D), arg0 + 0x38, 0, 0);
+            play_sound_effect((s32)(TObjEneRecobox::remap_area_sound_id(0x4003A80D)), (const Vec *)(arg0 + 0x38), 0, 0);
             TBoss3Volopt::create_breakup_mdl((s32)boss3_volopt_instance, (s32)recon_breakup_params, (s32)(F(s32, 0x24)), (s32)(arg0 + 0x2FC), (s32)(F(s32, 0x60)));
             break;
         }
@@ -340,7 +341,7 @@ void TObjEneRecon__sub_8031C624(u8 *arg0, s32 arg1) {
         *(s32 *)((s8 *)arg0 + 0x444) |= 2;
         ((TObjEneDD *)arg0)->set_field_378(*(s16 *)((s8 *)arg0 + 0x326));
         noop__12TBoss8DragonFv(arg0);
-        play_sound_effect(TObjEneRecobox::remap_area_sound_id(0x4003E425), arg0 + 0x38, 0, 0);
+        play_sound_effect((s32)(TObjEneRecobox::remap_area_sound_id(0x4003E425)), (const Vec *)(arg0 + 0x38), 0, 0);
         *(s32 *)((s8 *)arg0 + 0x3C0) = 0;
         break;
     case 3:
@@ -822,12 +823,12 @@ void TObjEneRecon__sub_8031CCFC(u8 *arg0, s32 arg1) {
             if (*(s32 *)((s8 *)arg0 + 0x3C4) > 0xF) {
                 *(s32 *)((s8 *)arg0 + 0x3C0) = 1;
                 ((TObjEneEpsilon *)arg0)->requested_action = 3;
-                play_sound_effect(TObjEneRecobox::remap_area_sound_id(0x4003A808), arg0 + 0x38, 0, 0);
+                play_sound_effect((s32)(TObjEneRecobox::remap_area_sound_id(0x4003A808)), (const Vec *)(arg0 + 0x38), 0, 0);
             }
             break;
         case 1:
             if (((TObjMotion *)arg0)->is_passing_frame((f32)lbl_805DF3F8) != 0) {
-                play_sound_effect(TObjEneRecobox::remap_area_sound_id(0x4003A80A), arg0 + 0x38, 0, 0);
+                play_sound_effect((s32)(TObjEneRecobox::remap_area_sound_id(0x4003A80A)), (const Vec *)(arg0 + 0x38), 0, 0);
                 TObjEneRecon::create_bomb(arg0, arg0, arg0 + 0x40C);
             } else if (((TObjEneDD *)arg0)->get_flag_b4() != 0) {
                 *(s32 *)((s8 *)arg0 + 0x3C0) = 2;
@@ -903,7 +904,7 @@ void TObjEneRecon__sub_8031CF30(u8 *arg0, s32 arg1) {
                 F(s32, 0x3C4) = 0;
                 F(s32, 0x3C0) = 2;
                 F(s16, 0xB8) = 2;
-                play_sound_effect(TObjEneRecobox::remap_area_sound_id(0x4003A808), arg0 + 0x38, 0, 0);
+                play_sound_effect((s32)(TObjEneRecobox::remap_area_sound_id(0x4003A808)), (const Vec *)(arg0 + 0x38), 0, 0);
             }
             ((TObjEneRecon *)arg0)->update_flag_0x444();
             break;
@@ -913,7 +914,7 @@ void TObjEneRecon__sub_8031CF30(u8 *arg0, s32 arg1) {
             }
             if (((TObjMotion *)arg0)->is_passing_frame((f32)lbl_805DF408) != 0) {
                 F(s32, 0x3C8) = 1;
-                play_sound_effect(TObjEneRecobox::remap_area_sound_id(0x4003A809), arg0 + 0x38, 0, 0);
+                play_sound_effect((s32)(TObjEneRecobox::remap_area_sound_id(0x4003A809)), (const Vec *)(arg0 + 0x38), 0, 0);
             } else if (((TObjMotion *)arg0)->is_passing_frame((f32)lbl_805DF40C) != 0) {
                 F(s32, 0x3C8) = 0;
             }

@@ -1,4 +1,5 @@
 #include "pso/misc/ParticleFactory.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/system/vector.h"
 #include "types.h"
 #include "pso/object/TObject_80019A50.h"
@@ -17,7 +18,7 @@ struct Ten_802F08A8;
 extern "C" {
 f64 atan2_float(f32, f32);
 s32 approach_angle_limited(s32, s32, s32);
-s32 play_sound_effect(int, void *, int, int);
+
 void TBoss7Tentacle__sub_802F0608(TBoss7Tentacle *tentacle, f32 len);
 f32 sin_table_lookup(s32);
 s32 set_matrix_identity(int);
@@ -169,7 +170,7 @@ void TBoss7Tentacle::restart_particle_effect() {
     particle_effect = TObjPlayer__sub_802E80A0();
     attach_particle_model((int) temp_r3, (int) queue_boss_effect__10TObjPlayerFPv(4), (int) particle_effect, 0, 0, (f32) (*(f32 *)&TBoss7Tentacle__data_805DEC00));
   }
-  play_sound_effect(0x3A809, (void *) (arg0 + 0x1C), 0, 0);
+  play_sound_effect(0x3A809, (const Vec *)((arg0 + 0x1C)), 0, 0);
 }
 
 s32 TBoss7Tentacle::advance_anim_time_wrapped(f32 d) {
@@ -473,7 +474,7 @@ void run_task__14TBoss7TentacleFv(u8 *boss7_tentacle) {
                         ((TBoss7PhotonBullet *)st)->emit_hit_effect(&p);
                     }
                 }
-                play_sound_effect(0x3A809, &p, 0, 0);
+                play_sound_effect(0x3A809, (const Vec *)(&p), 0, 0);
             }
             if (*(f32 *)((s8 *)boss7_tentacle + 0x158) >= lbl_805DEC44 * len) {
                 *(f32 *)((s8 *)boss7_tentacle + 0x15C) = TBoss7Tentacle__data_805DEC00;

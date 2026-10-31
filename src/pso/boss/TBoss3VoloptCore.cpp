@@ -1,6 +1,7 @@
 #include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/misc/PersistentSound.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
@@ -47,7 +48,7 @@ void *find_entity_by_id(u16 id);
 TObjPlayer *get_player_by_client_id(s32 client_id);
 void minimap_render_dot(f32 *pos, s32 color, s32, s32);
 
-void play_sound_effect(u32 id, f32 *pos, s32, s32);
+
 s32 angle_difference_abs(s32 a, s32 b);
 s32 approach_angle_limited(s32 angle, s32 target, s32 step);
 TObject *create_particle_emitter(Vec *pos, s32 id);
@@ -370,8 +371,8 @@ void TBoss3VoloptCore::update_grabbed_state() {
         obj_clearFlags30(0x02200200);
         referenceHp = hp;
         this->requested_action = 3;
-        play_sound_effect(0x4003A81F, NULL, 0, 0);
-        play_sound_effect(0x4003BC20, NULL, 0, 0);
+        play_sound_effect(0x4003A81F, (const Vec *)(NULL), 0, 0);
+        play_sound_effect(0x4003BC20, (const Vec *)(NULL), 0, 0);
         if (local_client_id == m_2d4) {
             TCameraCtrl__sub_8006A044(0x1E, 0.08f);
         }
@@ -612,7 +613,7 @@ void TBoss3VoloptCore::sub_8003F81C() {
             Vec pos = *&position;
             pos.y -= 20.0f;
             effect = create_particle_emitter(&pos, 0x31);
-            play_sound_effect(0x4003AD1E, &position.x, 0, 0);
+            play_sound_effect(0x4003AD1E, (const Vec *)(&position.x), 0, 0);
             state = 3;
         }
         break;

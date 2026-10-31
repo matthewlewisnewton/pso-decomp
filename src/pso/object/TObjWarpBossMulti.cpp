@@ -1,5 +1,6 @@
 #include "pso/player/demo_mode.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/object/TObjWarpBase.h"
@@ -391,7 +392,7 @@ void obj_clear_flag30_20000(void *arg0);
 void obj_set_flag_20000(void *arg0);
 void play_effect_default__10TObjPlayerFii(s32 arg0, s32 arg1);
 s32 send_code_45_1__10TObjPlayerFl();
-s32 play_sound_effect(s32, void *, s32, s32);
+
 char *strcpy(char *, const char *);
 s32 is_locally_controlled__10TObjPlayerFPv(u32);
 
@@ -895,7 +896,7 @@ void TObjWarpBoss::update_warp_state() {
         break;
     case 0:
         *(s32 *)((s8 *)arg0 + 0x160) = 0x12C;
-        play_sound_effect(0x40003205, arg0 + 0x38, 0, 0);
+        play_sound_effect(0x40003205, (const Vec *)(arg0 + 0x38), 0, 0);
         *(s16 *)((s8 *)arg0 + 0xE0) = 1;
         *(s32 *)((s8 *)arg0 + 0xD0) = (s32) warp_boss_model;
         *(s32 *)((s8 *)arg0 + 0xD4) = (s32) warp_boss_bml_motion;

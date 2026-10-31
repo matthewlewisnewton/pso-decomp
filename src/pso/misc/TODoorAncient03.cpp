@@ -130,7 +130,7 @@ void TODoorAncient03::update_closed() {
     if ((door_flags & DOOR_FLAG_UNLOCKED) && is_any_player_within_radius_xz(4900.0f) != 0) {
         object_state = DOOR_OPENING;
         set_indexed_flags(0, 8);
-        play_sound_effect(0x4004B708, &position, 0, 0);
+        play_sound_effect(0x4004B708, (const Vec *)(&position), 0, 0);
     }
 }
 
@@ -138,7 +138,7 @@ void TODoorAncient03::update_open() {
     if (!(door_flags & DOOR_FLAG_UNLOCKED) || is_any_player_within_radius_xz(10000.0f) == 0) {
         object_state = DOOR_CLOSING;
         clear_player_status_flag(0, 8);
-        play_sound_effect(0x4004B708, &position, 0, 0);
+        play_sound_effect(0x4004B708, (const Vec *)(&position), 0, 0);
     }
 }
 

@@ -1,6 +1,7 @@
 #include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/misc/PersistentSound.h"
 struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
@@ -809,7 +810,7 @@ extern "C" {
 s32 approach_angle_limited(s32, s32, s32);
 s32 free_collision_body_parts(void *);
 
-s32 play_sound_effect(void *, void *, int, int);
+
 void __dl__7TObjectFPv(void *);
 void * __nw__7TObjectFUl(int);
 s32 create_ex__11TTecGiBartaFPvPvPv(void *, void *, s32, s32);
@@ -1313,7 +1314,7 @@ void TObjEneRe4Sorcerer::handle_death_state(s32 arg1) {
         fn_800D911C((Vec *)(arg0 + 0x2FC));
         TObjPlayer__sub_800A04F0(arg0 + 0x3FC);
         *(f32 *)((s8 *)arg0 + 0x3F8) = (f32) TObjEneRe4Sorcerer__data_805DA790;
-        play_sound_effect((void *) (((s32)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003AD19)))), arg0 + 0x38, 0, 0);
+        play_sound_effect((s32)((void *) (((s32)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003AD19))))), (const Vec *)(arg0 + 0x38), 0, 0);
         return;
     case 0:
         ((TObjMotion *)arg0)->advance_animation();

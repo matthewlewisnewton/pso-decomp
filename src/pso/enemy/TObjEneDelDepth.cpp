@@ -1,6 +1,7 @@
 #include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/enemy/DelDepthData.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -51,7 +52,7 @@ void minimap_render_dot(void *, s32, s32, s32);
 f32 cos_table_lookup(s32);
 f32 sin_table_lookup(s32);
 f32 fabs_float(f32);
-s32 play_sound_effect(int, void *, int, int);
+
 u16 find_nearest_visible_player(void *, int, f32);
 
 TObjChara *get_battle_param__10TObjPlayerFi(s32);
@@ -594,7 +595,7 @@ void TObjEneDelDepth::fn_80314EC4() {
     if (temp_f1_4 > TObjEneDelDepth__data_805DF260) {
         if (find_nearest_visible_player(ene_del_depth, 0, TObjEneDelDepth__data_805DF26C) != 0xFFFF) {
             ene_del_depth->set_action_state(3);
-            play_sound_effect(0x4003A822, (u8 *)&ene_del_depth->position, 0, 0);
+            play_sound_effect(0x4003A822, (const Vec *)((u8 *)&ene_del_depth->position), 0, 0);
         } else {
             ene_del_depth->set_action_state(2);
         }
@@ -779,7 +780,7 @@ void TObjEneDelDepth::update_movement() {
             this->set_action_state(4);
         } else {
             this->set_action_state(3);
-            play_sound_effect(0x4003A822, &arg0->position, 0, 0);
+            play_sound_effect(0x4003A822, (const Vec *)(&arg0->position), 0, 0);
         }
     }
 }
@@ -789,7 +790,7 @@ void TObjEneDelDepth::enter_state8() {
     this->actorFlags = (s32) (this->actorFlags | 0x04000000);
     this->attackTimer = 8;
     this->motionController->set_motion(0xA);
-    play_sound_effect(0x4003A820, (u8 *)&this->position, 0, 0);
+    play_sound_effect(0x4003A820, (const Vec *)((u8 *)&this->position), 0, 0);
     this->set_draw_mode(1);
 }
 
@@ -807,7 +808,7 @@ void TObjEneDelDepth::update_state() {
 void TObjEneDelDepth::enter_appear_state() {
     this->actorFlags = (s32) (this->actorFlags | 0x04000000);
     this->attackTimer = 0x14;
-    play_sound_effect(0x4003A820, (void *) ((u8 *)&this->position), 0, 0);
+    play_sound_effect(0x4003A820, (const Vec *)(((u8 *)&this->position)), 0, 0);
     this->motionController->set_motion(0xB);
     this->set_draw_mode(1);
 }
@@ -816,7 +817,7 @@ void TObjEneDelDepth::try_enter_appear() {
     if (this->motionController->is_state_complete() == 1) {
         this->actorFlags = (s32) (this->actorFlags | 0x04000000);
         this->set_action_state(3);
-        play_sound_effect(0x4003A822, (u8 *)&this->position, 0, 0);
+        play_sound_effect(0x4003A822, (const Vec *)((u8 *)&this->position), 0, 0);
     }
 }
 
@@ -971,7 +972,7 @@ void TObjEneDelDepth::update_bomb_drop() {
         }
         pop_matrix();
         clear_motion_packed_rotation();
-        play_sound_effect(0x4003A81D, (u8 *)&this->position, 0, 0);
+        play_sound_effect(0x4003A81D, (const Vec *)((u8 *)&this->position), 0, 0);
         TObjEneDelDepthBomb::create(this, this, (Vec *)&out, TObjEneDelDepth__tune_params->techniqueLevel);
     }
     temp_r0_2 = this->timer - 1;
@@ -1042,7 +1043,7 @@ void TObjEneDelDepth::start_attack_motion() {
     this->drawScale.z = (f32) TObjEneDelDepth__data_805DF260;
     this->drawScale.y = (f32) TObjEneDelDepth__data_805DF260;
     this->drawScale.x = (f32) TObjEneDelDepth__data_805DF260;
-    play_sound_effect(0x4003A321, (void *) ((u8 *)&this->position), 0, 0);
+    play_sound_effect(0x4003A321, (const Vec *)(((u8 *)&this->position)), 0, 0);
     if (this->motionController->get_type() < 6) {
         this->motionController->set_motion(4);
     } else {
@@ -1070,7 +1071,7 @@ void TObjEneDelDepth::update_ai_state() {
                 return;
             }
             this->set_action_state(3);
-            play_sound_effect(0x4003A822, (u8 *)&this->position, 0, 0);
+            play_sound_effect(0x4003A822, (const Vec *)((u8 *)&this->position), 0, 0);
         }
     }
 }
@@ -1105,7 +1106,7 @@ void TObjEneDelDepth::update_death_fade() {
         this->timer = temp_r0_2;
         if (temp_r0_2 <= 0) {
             this->actionPhase = 1;
-            play_sound_effect(0x4003A321, (u8 *)&this->position, 0, 0);
+            play_sound_effect(0x4003A321, (const Vec *)((u8 *)&this->position), 0, 0);
             this->timer = 5;
         }
         break;

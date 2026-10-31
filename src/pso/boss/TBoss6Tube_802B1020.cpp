@@ -1,4 +1,5 @@
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/render/render_util.h"
@@ -29,7 +30,6 @@ void draw_ginja_object(void);
 extern s32 lbl_80470A54[];
 extern s32 boss6_tube_bml_resource;
 extern s32 boss6_tube_texture_list;
-s32 play_sound_effect(s32, s32, s32, s32);
 
 void TBoss6Tube::render() {
     TBoss6Tube_802B1020 *o = (TBoss6Tube_802B1020 *)this;

@@ -1,6 +1,7 @@
 #include "pso/math/VectorNormalize.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/misc/PersistentSound.h"
 #include "pso/math/ScratchVectorStorage.h"
 #include "types.h"
@@ -106,7 +107,7 @@ f32 atan2_float(f32 y, f32 x);
 f32 get_collision_body_radius(void *, s32);
 void submit_cursor_candidate(void *, s32);
 void *get_player_by_client_id(s32 i);
-void play_sound_effect(s32, void *, s32, s32);
+
 void * __nw__7TObjectFUl(int);
 void rotate_vector_by_matrix(int, void *, void *);
 s32 rotate_matrix_y(int, int);
@@ -706,7 +707,7 @@ void TOTrapAncient02R__vt79(Obj_8017A3C0 *o) {
                                 ((TTecZonde *)t)->construct_bolt_effect((u8 *)tl_07, (u8 *)(&scratch_vec.vector), (u8 *)(&lbl_8050BF00.vector), 0x14000000, 0x14, o->range, (f32)lbl_805DBA98);
                             }
                         }
-                        play_sound_effect(0x4002A408, (&scratch_vec.vector), 0, 0);
+                        play_sound_effect(0x4002A408, (const Vec *)((&scratch_vec.vector)), 0, 0);
                         break;
                     }
                     case 0:

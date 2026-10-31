@@ -1,6 +1,7 @@
 #include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/misc/PersistentSound.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
@@ -38,7 +39,7 @@
 extern "C" {
 u16 get_entity_id(void *obj);
 void obj_setFlags30(void *obj, u32 flags);
-s32 play_sound_effect(s32 id, void *pos, s32 a2, s32 a3);
+
 f32 normalize_vector(Vec *v);
 void vec3_add_to(Vec *a, const Vec *b);
 void matrix_mult_vec(s32 matrix, const Vec *in, Vec *out);
@@ -324,7 +325,7 @@ void TBoss3VoloptP01::update_state() {
                 m_388 = flags & ~1;
                 sub_80042F84();
             } else {
-                play_sound_effect(0x4003A810, &position, 0xA, 0);
+                play_sound_effect(0x4003A810, (const Vec *)(&position), 0xA, 0);
                 state = 2;
             }
         } else {
@@ -341,7 +342,7 @@ void TBoss3VoloptP01::update_state() {
                     m_388 = flags & ~1;
                     sub_80042F84();
                 } else {
-                    play_sound_effect(0x4003A810, &position, 0xA, 0);
+                    play_sound_effect(0x4003A810, (const Vec *)(&position), 0xA, 0);
                     state = 2;
                 }
             }
@@ -385,7 +386,7 @@ void TBoss3VoloptP01::update_breakup() {
             TBoss3Volopt::create_breakup_mdl((s32)TBoss3VoloptP01__breakup_model, (s32)&volopt_p01_breakup_params, texlist, (s32)&body_center_position, rotation_y);
             ((TObjPlayer *)&body_center_position)->trigger_dell_biter_events();
             m_388 |= 0x40000;
-            play_sound_effect(0x4003AD07, &position, 0, 0);
+            play_sound_effect(0x4003AD07, (const Vec *)(&position), 0, 0);
             state = 2;
             actorFlags &= ~0x800;
         }
@@ -534,7 +535,7 @@ void TBoss3VoloptP01::update_attack() {
     case 1:
         set_flags_30();
         if (--*(s16 *)&timer <= 0) {
-            play_sound_effect(0x4003A306, &position, 0xA, 0);
+            play_sound_effect(0x4003A306, (const Vec *)(&position), 0xA, 0);
             state = 2;
         }
         break;
@@ -614,7 +615,7 @@ void TBoss3VoloptP01::update_attack() {
         break;
     case 10:
         set_flags_30();
-        play_sound_effect(0x4003A810, &position, 0xA, 0);
+        play_sound_effect(0x4003A810, (const Vec *)(&position), 0xA, 0);
         state = 0xB;
     case 11:
         set_flags_30();
@@ -799,7 +800,7 @@ s32 TBoss3VoloptP01::fire_zonde_at_players() {
                 packet.send();
             }
         }
-        play_sound_effect(0x4002A509, NULL, 0, 0);
+        play_sound_effect(0x4002A509, (const Vec *)(NULL), 0, 0);
     }
     return n;
 }

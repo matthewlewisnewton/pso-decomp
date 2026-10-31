@@ -1,5 +1,6 @@
 #include "pso/system/ModelNodePositionCapture.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/TParticleCtrl.h"
@@ -193,7 +194,6 @@ s32 refresh_players_equipment__14TBoss6PlotFalzFPv();
 extern s32 __vt__25TBoss6Demo20_TYPE2_APPEAR[];
 O_8033D9E4 *__dt__25TBoss6Demo20_TYPE2_APPEARFv(O_8033D9E4 *arg0, s16 arg1);
 void *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags);
-void play_sound_effect(int, void *, int, int);
 
 extern const Ent_8033D6DC boss6_type2_appear_particle_schedule[];
 

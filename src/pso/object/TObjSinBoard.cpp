@@ -1,5 +1,6 @@
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/protocol/protocol_types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/misc/TLobby_801E43E4.h"
@@ -80,7 +81,7 @@ extern u8 signboard_texture_list[];
 extern u32 TObjSinBoard__texture_buffer;
 struct Vec_80198E84;
 extern Vec_80198E84 gogo_ball_sync_state[];
-s32 play_sound_effect(int, void *, int, int);
+
 void *__nw__7TObjectFUl(s32);
 struct Sys_80198A2C;
 extern Sys_80198A2C gogo_ball_configuration;
@@ -237,7 +238,7 @@ void TUnk_804B8DD0::update_effects() {
             VecCopy((Vec *)&v6, (const Vec *)&this->unk_1C);
             v6.y += 7.0f;
             spawn_particle_effect_with_flags(&v6, 0x20D, 0x40);
-            play_sound_effect(0x4001A82E, (u8 *)&this->unk_1C, 0, 0);
+            play_sound_effect(0x4001A82E, (const Vec *)((u8 *)&this->unk_1C), 0, 0);
         }
     } else if (*(u16 *)((s8 *)&gogo_ball_configuration + 0x48) == 2) {
         (this->m_30)++;
@@ -248,7 +249,7 @@ void TUnk_804B8DD0::update_effects() {
                 v2a.y += 7.0f;
                 spawn_particle_effect_with_flags(&v2a, 0x45, 0x40);
                 spawn_particle_effect_with_flags(&v2a, 0x189, 0x40);
-                play_sound_effect(0x4001C112, (u8 *)&this->unk_1C, 0, 0);
+                play_sound_effect(0x4001C112, (const Vec *)((u8 *)&this->unk_1C), 0, 0);
             }
         } else {
             if (this->m_30 == 1) {
@@ -257,7 +258,7 @@ void TUnk_804B8DD0::update_effects() {
                 v2b.y += 7.0f;
                 spawn_particle_effect_with_flags(&v2b, 0x45, 0x40);
                 spawn_particle_effect_with_flags(&v2b, 0x189, 0x40);
-                play_sound_effect(0x4001C112, (u8 *)&this->unk_1C, 0, 0);
+                play_sound_effect(0x4001C112, (const Vec *)((u8 *)&this->unk_1C), 0, 0);
             }
         }
     } else if (*(u16 *)((s8 *)&gogo_ball_configuration + 0x48) != 0) {
@@ -436,7 +437,6 @@ struct Sys_80198A2C { u8 pad0[0x48]; u16 mode; };
 extern "C" {
 void *spawn_particle_effect_with_rotation(void *pos, void *dir, s32 id, int e);
 
-s32 play_sound_effect(int, void *, int, int);
 extern Vec_80198A2C boss3_volopt_init_vec;
 #pragma push
 #pragma fp_contract on
@@ -453,15 +453,15 @@ void TUnk_804B8DE8::run_task() {
     if (state == 0) {
         if (self->f50 != 0) {
             if ((*(Pad_80198A2C *)&gogo_ball_sync_state).buttons & (this->m_54 != 0 ? 0x10 : 1)) {
-                play_sound_effect(0x4002A605, &self->pos, 0, 0);
-                play_sound_effect(0x40052D15, &self->pos, 0, 0);
+                play_sound_effect(0x4002A605, (const Vec *)(&self->pos), 0, 0);
+                play_sound_effect(0x40052D15, (const Vec *)(&self->pos), 0, 0);
                 this->m_4c = 1;
                 return;
             }
         } else {
             if ((*(Pad_80198A2C *)&gogo_ball_sync_state).buttons & (this->m_54 != 0 ? 0x20 : 2)) {
-                play_sound_effect(0x4002A605, &self->pos, 0, 0);
-                play_sound_effect(0x40052D15, &self->pos, 0, 0);
+                play_sound_effect(0x4002A605, (const Vec *)(&self->pos), 0, 0);
+                play_sound_effect(0x40052D15, (const Vec *)(&self->pos), 0, 0);
                 this->m_4c = 1;
                 return;
             }
@@ -575,10 +575,10 @@ void TWindowTimer::throw_gogo_ball(s32 arg1, s32 arg2) {
     stack.sp14 = *(f32 *)((s8 *)((u8 *)this) + 0);
     stack.sp18 = *(f32 *)((s8 *)((u8 *)this) + 8);
     if (is_on_current_screen__11TCameraCtrlFv((void *) ((u8 *)&controller_input_state.value + 0x20), 4) != 0) {
-        play_sound_effect(0x4001A311, this, 0, 0);
+        play_sound_effect(0x4001A311, (const Vec *)(this), 0, 0);
         stack.sp1C = 1;
     } else {
-        play_sound_effect(0x4002A600, this, 0, 0);
+        play_sound_effect(0x4002A600, (const Vec *)(this), 0, 0);
         stack.sp1C = 0;
     }
     ((TWindowTimer *)((s32)&stack.sp8))->send_gogo_ball();

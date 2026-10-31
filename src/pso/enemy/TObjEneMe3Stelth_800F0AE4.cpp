@@ -1,4 +1,5 @@
 #include "pso/misc/ParticleFactory.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/boss/TBoss8Dragon_80065C90.h"
 #include "pso/enemy/TObjEneMe3Stelth_800F0AE4.h"
@@ -26,7 +27,7 @@ extern u32 blob_shadow_texture_list;
 s32 TObjEneGibbles__sub_800D8988(void *);
 extern const f32 TObjEneMe3Stelth__data_805DA808;
 extern const f32 TObjEneMe3Stelth__data_805DA80C;
-s32 play_sound_effect(s32, s32, s32, s32);
+
 extern const f32 lbl_805DA814;
 extern const f32 lbl_805DA818;
 s32 release_texture_list(void*);
@@ -67,11 +68,11 @@ s32 TObjEneMe3Stelth::try_spawn_ground_effect(s32 arg1) {
 void TObjEneMe3Stelth::play_hit_effect() {
     s32 arg0 = (s32)this;
     if (try_spawn_ground_effect(arg0 + 0x38) != 0) {
-        play_sound_effect(0x3A836, arg0 + 0x38, 0, 0);
+        play_sound_effect(0x3A836, (const Vec *)(arg0 + 0x38), 0, 0);
         return;
     }
     spawn_particle_effect((const Vec *)((arg0 + 0x38)), 0xF3);
-    play_sound_effect(0x3A836, arg0 + 0x38, 0, 0);
+    play_sound_effect(0x3A836, (const Vec *)(arg0 + 0x38), 0, 0);
 }
 void TObjEneMe3Stelth__sub_800F0C90(u8 *arg0) {
     if ((((TObjMotion *)arg0)->is_passing_frame((f32)lbl_805DA814) != 0) || (((TObjMotion *)arg0)->is_passing_frame((f32)((f32)lbl_805DA818)) != 0)) {

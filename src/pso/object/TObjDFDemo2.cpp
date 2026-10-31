@@ -1,5 +1,6 @@
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/system/PadRumble.h"
@@ -52,7 +53,7 @@ typedef struct Obj_8004EA2C {
 extern "C" {
 void render__11TObjDFDemo2Fv(Obj_8004E918 *arg0);
 void run_task__11TObjDFDemo2Fv(Obj_8004EA2C *arg0);
-s32 play_sound_effect(s32, void *, s32, s32);
+
 s32 rotate_matrix_y(s32, s32);
 s32 push_matrix();
 s32 post_translate_matrix(void *);
@@ -146,7 +147,7 @@ void TObjDFDemo2::run_task() {
         if (e != NULL) {
             ((TParticleCtrl *)e)->set_flags(0x40);
         }
-        play_sound_effect(0x4003AD15, arg0->fac, 0, 1);
+        play_sound_effect(0x4003AD15, (const Vec *)(arg0->fac), 0, 1);
         start_pad_rumble_all(0xC0, 0xF);
     }
     while (arg0->ftimer >= 0xB4) {
@@ -208,7 +209,7 @@ void *TObjDFDemo2__ct(void *arg0, void *parent, void *arg2, void *arg3, void *ar
         set_scripted_camera_pose(self->pos, self->pos, &p);
     }
     ((TCameraCtrl *)lbl_80485680)->cache_target_and_forward(0x4444);
-    play_sound_effect(0x4003A325, self->pos, 0, 1);
+    play_sound_effect(0x4003A325, (const Vec *)(self->pos), 0, 1);
     self->bc = 0;
     return self;
 }

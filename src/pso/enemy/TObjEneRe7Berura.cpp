@@ -3,6 +3,7 @@
 #include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -502,7 +503,7 @@ s32 angle_diff_s16(s32);
 void mem_free(void*);
 void *mem_alloc(u32 size);
 void free_collision_body_parts(void *);
-s32 play_sound_effect(s32, u32, s16, s32);
+
 void __dl__7TObjectFPv(void *);
 void * __nw__7TObjectFUl(int);
 void __destroy_arr(void *, void *, u32, u32);
@@ -844,7 +845,7 @@ s32 TObjEneRe7Berura::check_death_trigger() {
 void TObjEneRe7Berura::play_band_sound() {
     u8 *arg0 = (u8 *)this;
     if ((((TObjMotion *)arg0)->is_passing_frame((f32)lbl_805D9770) != 0) || (((TObjMotion *)arg0)->is_passing_frame((f32)((f32)TObjEneRe7Berura__data_805D9764)) != 0)) {
-        play_sound_effect(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003BC1F)), (u32)(arg0 + 0x38), 0, 0);
+        play_sound_effect((s32)(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003BC1F))), (const Vec *)((arg0 + 0x38)), 0, 0);
     }
 }
 #pragma pop

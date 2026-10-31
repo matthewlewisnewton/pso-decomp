@@ -1,4 +1,5 @@
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/TMainTask.h"
@@ -187,7 +188,6 @@ void * init__13TUnk_804835D8Fv(void *arg0);
 f32 rand_signed_unit(void);
 int rand(void);
 void *__ct__13TObjBoss2DustFv(void *, void *, Vec_8003B6E8 *);
-void play_sound_effect(int, void *, int, int);
 
 void enable_fog__15TObjBoss2TunnelFv(void);
 void enable_fog__15TObjBoss2TunnelFPv(TObjBoss2Tunnel *arg0);

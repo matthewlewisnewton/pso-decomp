@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/misc/TOTrapAncient01_80226534.h"
@@ -16,7 +17,7 @@ typedef struct S_802BF6CC {
 } S_802BF6CC;
 
 extern "C" {
-s32 play_sound_effect(int, void *, int, int);
+
 extern s32 lbl_805D6750;
 extern u8 lbl_805D6754;
 extern const f32 lbl_805DE3F4;
@@ -50,7 +51,7 @@ void TBoss6Type2::start_death_sequence(u8 *arg0) {
         var_r3 = (unsigned char *) ((void *)0x68523);
         break;
     }
-    play_sound_effect((int)var_r3, boss6_type2 + 0x38, 0, 1);
+    play_sound_effect((s32)var_r3, (const Vec *)(boss6_type2 + 0x38), 0, 1);
     ((TBoss6Type2 *)boss6_type2)->destroy_part(0xD);
 }
 
@@ -143,8 +144,8 @@ void TBoss6Type2::init_attack_params() {
 void TBoss6Type2__sub_802BF834(u8 *boss6_type2) {
     s32 temp_r0;
     if (((s32) ((TBoss6Type2 *)boss6_type2)->m_460 == (s32) (*(s32 *)((s8 *)boss6_type2 + 0x45C) - 0x1E)) && ((u16) ((TBoss6Type2 *)boss6_type2)->m_466 != 0xFFFF)) {
-        play_sound_effect(0x4006A10A, boss6_type2 + 0x38, 0, 1);
-        play_sound_effect(0x69E27, boss6_type2 + 0x38, 0, 1);
+        play_sound_effect(0x4006A10A, (const Vec *)(boss6_type2 + 0x38), 0, 1);
+        play_sound_effect(0x69E27, (const Vec *)(boss6_type2 + 0x38), 0, 1);
         spawn_particle_effect_with_flags((boss6_type2 + 0x62C), 0x223, 0x40);
     }
     temp_r0 = ((TBoss6Type2 *)boss6_type2)->m_460 - 1;
@@ -186,7 +187,7 @@ void TBoss6Type2::init_timer_and_play_sound() {
     lbl_805D6750 = (s32) (lbl_805DE4DC / lbl_805DE3F4);
   }
   *((0, (s32 *) (((s8 *) arg0) + 0x460))) = (*((s32 *) (((s8 *) arg0) + 0x45C)) = (s32) lbl_805D6750);
-  play_sound_effect(0x69126, arg0 + 0x38, 0, 1);
+  play_sound_effect(0x69126, (const Vec *)(arg0 + 0x38), 0, 1);
 }
 
 void TBoss6Type2__sub_802BFA1C(u8 *arg0) {
@@ -196,7 +197,7 @@ void TBoss6Type2__sub_802BFA1C(u8 *arg0) {
     temp_r0 = ((TBoss6Type2 *)arg0)->m_460 - 1;
     ((TBoss6Type2 *)arg0)->m_460 = temp_r0;
     if (temp_r0 < 0) {
-        play_sound_effect(0x40069E13, arg0 + 0x38, 0, 1);
+        play_sound_effect(0x40069E13, (const Vec *)(arg0 + 0x38), 0, 1);
         ((TBoss6Type2 *)arg0)->set_action_state((void *)2);
     }
 }

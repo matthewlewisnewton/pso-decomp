@@ -1,5 +1,6 @@
 #include "pso/player/demo_mode.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/misc/PersistentSound.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/npc/NpcModelRegistry.h"
@@ -564,7 +565,7 @@ struct Claw_80090ECC {
 extern "C" {
 void queue_destruction__7TObjectFv(void *);
 void TObjPlayer__sub_800A04F0(void *);
-void play_sound_effect(int, void *, int, int);
+
 void TObjEneBalClawClaw__sub_80091134(Claw_80091134 *self);
 s32 check_path_obstructed(void *, void *);
 
@@ -656,7 +657,7 @@ void TObjEneBalClawClaw__sub_80090ECC(Claw_80090ECC *self) {
         SEEK_80090ECC(self, &v, (0.7f));
         ((TObjEnemy *)self)->turn_toward_direction(self->info->f8, (Vec *)self->f308);
         if (((TObjMotion *)self)->is_passing_frame((f32)(8.0f)) != 0) {
-            play_sound_effect(0x4003B032, self->f38, 0, 0);
+            play_sound_effect(0x4003B032, (const Vec *)(self->f38), 0, 0);
             if (self->target->m18(self, (1.0f)) != 0) {
                 self->target->m23(self, (3.0f));
                 self->target->m20(self, (1.0f));
@@ -688,7 +689,7 @@ void TObjEneBalClawClaw__sub_80091134(Claw_80091134 *self) {
         self->fieldB8 = 4;
         TObjPlayer__sub_800A04F0(&self->motion);
         fn_800D911C((Vec *)(self->effects));
-        play_sound_effect(0x4003AD37, self->pos, 0, 0);
+        play_sound_effect(0x4003AD37, (const Vec *)(self->pos), 0, 0);
         self->state = 1;
     case 1:
         (((TObjMotion *)self)->advance_animation());

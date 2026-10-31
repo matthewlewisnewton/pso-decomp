@@ -160,7 +160,7 @@ void TOHealGeneral::find_heal_target() {
             if (effect != NULL) {
                 effect->set_owner_id(heal_target);
             }
-            play_sound_effect(0x4002AB0E, &position, 0, 0);
+            play_sound_effect(0x4002AB0E, (const Vec *)(&position), 0, 0);
             break;
         }
     }

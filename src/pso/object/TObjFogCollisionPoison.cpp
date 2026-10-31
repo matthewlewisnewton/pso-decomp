@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/object/TUnk_804AF7B0.h"
@@ -61,7 +62,7 @@ s32 get_entity_id(s32);
 s32 is_valid_target__9TObjEneDDFv(s32);
 s32 send_6x2F_change_player_hp(s32, s32, s16);
 s32 get_player_by_client_id(u16);
-s32 play_sound_effect(s32, s32, s32, s32);
+
 u8 is_current_floor_switch_set(u16);
 s32 sub_80153A0C__22TObjFogCollisionSwitchFv();
 void *__nw__7TObjectFUl(s32);
@@ -254,14 +255,14 @@ void TObjFogCollisionPoison__sub_801535D0(s32 arg0) {
     switch (get_current_floor_area()) {
     case AREA_VR_SPACESHIP_ALPHA:
     case AREA_VR_SPACESHIP_BETA:
-        play_sound_effect(0x4004C115, arg0 + 0x38, 0, 0);
+        play_sound_effect(0x4004C115, (const Vec *)(arg0 + 0x38), 0, 0);
         break;
     case AREA_SEABED_UPPER:
     case AREA_SEABED_LOWER:
-        play_sound_effect(0x4004C123, arg0 + 0x38, 0, 0);
+        play_sound_effect(0x4004C123, (const Vec *)(arg0 + 0x38), 0, 0);
         break;
     default:
-        play_sound_effect(0x4004C11B, arg0 + 0x38, 0, 0);
+        play_sound_effect(0x4004C11B, (const Vec *)(arg0 + 0x38), 0, 0);
         break;
     }
 }

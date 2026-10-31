@@ -1,4 +1,5 @@
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TKeyBoardControl_803DE9C4.h"
 #include "pso/misc/TWindowSubStatusDisp_803DEE6C.h"
@@ -165,7 +166,7 @@ extern s32 lbl_805D67D4;
 extern const f32 lbl_805DE57C;
 extern const f32 lbl_805DE580;
 s32 TWindowShortListCtrl__check_controller_button(void *, int);
-s32 play_sound_effect(int, void *, int, int);
+
 s32 TAdMultiPlyChrSelectGC__sub_802C5F1C(void *, int);
 extern u8 controller_physical_port_bank[];
 extern Jump_802C5C84 multi_chr_select_cursor_jump_table[][5];
@@ -450,7 +451,7 @@ void TAdMultiPlyChrSelectGC::move_cursor(s32 x_, s32 y_, s32 dx, s32 dy, s32 dep
     if (TAdMultiPlyChrSelectGC__data_804E0A68[ny][nx] == 1) {
         x += dx;
         y += dy;
-        play_sound_effect(0x54100, NULL, 0, 0);
+        play_sound_effect(0x54100, (const Vec *)(NULL), 0, 0);
         self->f4EC = x - 1;
         self->f4AC[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC] = y - 1;
         return;

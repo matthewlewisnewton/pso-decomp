@@ -1,4 +1,5 @@
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/enemy/TObjEneMe1GiGueMissile.h"
@@ -28,7 +29,7 @@ f32 post_translate_matrix(void *);
 void draw_model_motion(void *arg0, void *arg1, f32 farg0);
 extern int TObjEneMe1GiGue_barrier_count;
 u16 get_entity_id(void *);
-s32 play_sound_effect(s32, u32, s16, s32);
+
 u8 * TNeedleShoot__ct(void *, s32, void *, void *);
 extern s32 __vt__22TObjEneMe1GiGueMissile[];
 extern s32 lbl_805D3F20;
@@ -84,9 +85,9 @@ void TObjEneMe1GiGueMissile::explode(void *pos) {
                 }
             }
             if (get_current_floor_area() == AREA_TOWER) {
-                play_sound_effect(0x4003A312, (u32)((u8 *)p + 0x38), 0, 0);
+                play_sound_effect(0x4003A312, (const Vec *)(((u8 *)p + 0x38)), 0, 0);
             } else {
-                play_sound_effect(0x3A81F, (u32)((u8 *)p + 0x38), 0, 0);
+                play_sound_effect(0x3A81F, (const Vec *)(((u8 *)p + 0x38)), 0, 0);
             }
         }
     }
@@ -165,7 +166,7 @@ u8 *TObjEneMe1GiGueMissile__ct(u8 *arg0, s32 arg1, u8 *from, u8 *to, f32 farg0, 
     *(s32 *)((s8 *)arg0 + 0) = (s32) lbl_805D3F20;
     ((TObjEneMe1GiGueMissile *)arg0)->m_c0 = farg1;
     *(f32 *)((s8 *)arg0 + 0xAC) = farg0;
-    play_sound_effect(0x4002A600, (u32)(arg0 + 0x6C), 0, 0);
+    play_sound_effect(0x4002A600, (const Vec *)((arg0 + 0x6C)), 0, 0);
     temp_r3 = (u8 *)(*(u8 **)((s8 *)arg0 + 0x1C));
     if (temp_r3 != NULL) {
         ((TObjEneMe1GiGueMissile *)arg0)->m_34 = get_entity_id(temp_r3);

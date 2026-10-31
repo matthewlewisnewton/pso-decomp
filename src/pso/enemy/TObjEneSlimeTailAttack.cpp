@@ -2,6 +2,7 @@
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/misc/PersistentSound.h"
 struct NJS_OBJECT;
 #include "types.h"
@@ -82,7 +83,7 @@ extern const f32 lbl_805DA724;
 void TObjPlayer__sub_800E9BCC(Obj_800E9BCC *o);
 f32 random_ratio__9TObjCharaFv(void *);
 s32 spawn_slime_in_slot(void *, s32, Vec_800EB654 *, Vec_800EB654 *);
-s32 play_sound_effect(int, void *, int, int);
+
 f32 sin_table_lookup(s32);
 f32 cos_table_lookup(s32);
 extern const f32 lbl_805DA66C;
@@ -1493,7 +1494,7 @@ void fn_800E95F4(u8 *arg0) {
     *(f32 *)((s8 *)arg0 + 0x3A8) = (f32) lbl_805DA67C;
     *(s32 *)((s8 *)arg0 + 0x390) = 5;
     ((TObjEnemy *)arg0)->distribute_experience_and_request_drop();
-    ((s32 (*)(s32, u32, s16, s32))play_sound_effect)(0x4003A81B, (u32)(arg0 + 0x38), 0, 0);
+    play_sound_effect(0x4003A81B, (const Vec *)((u32)(arg0 + 0x38)), 0, 0);
     spawn_particle_effect((const Vec *)((arg0 + 0x2FC)), 0xFE);
     ((TObjEneSlimeOne *)(*(u8 **)((s8 *)arg0 + 0x388)))->set_motion_state(5);
     set_display_mode__15TObjEneSlimeOneFPvi(arg0, 0);
@@ -1510,7 +1511,7 @@ void init_split_effect__15TObjEneSlimeOneFPv(u8 *arg0) {
     *(f32 *)((s8 *)arg0 + 0x3AC) = (f32) lbl_805DA67C;
     *(f32 *)((s8 *)arg0 + 0x3A8) = (f32) lbl_805DA67C;
     spawn_particle_effect((const Vec *)((arg0 + 0x2FC)), 0xCE);
-    play_sound_effect(0x4003A61A, arg0 + 0x38, 0, 0);
+    play_sound_effect(0x4003A61A, (const Vec *)(arg0 + 0x38), 0, 0);
     ((TObjEneSlimeOne *)(*(s32 *)((s8 *)arg0 + 0x388)))->set_motion_state(5);
     ((s32 (*)(void *, int))set_display_mode__15TObjEneSlimeOneFPvi)(arg0, 0);
 }
@@ -1592,7 +1593,7 @@ void start_tail_attack__15TObjEneSlimeOneFPv(Self_800E984C *self) {
     }
     self->f390 = 0x5A;
     ((TObjEneSlimeOne *)((void *)self->f388))->set_motion_state((s32)((void*)((void *)0)));
-    play_sound_effect(0x4003A318, &self->dest, 0, 0);
+    play_sound_effect(0x4003A318, (const Vec *)(&self->dest), 0, 0);
     ((void (*)(void *, void *, s32, void *))create__22TObjEneSlimeTailAttackFiiii)(self, &self->dest, self->f60, self);
     ((int (*)(void*, void*))set_display_mode__15TObjEneSlimeOneFPvi)(self, (void*)((void *)2));
 }
@@ -1607,7 +1608,7 @@ void update_water_bomb_timer__15TObjEneSlimeOneFPv(u8 *arg0) {
     if (temp_r0 > 0) {
         spawn_particle_effect((const Vec *)(arg0 + 0x2FC), 0xFF);
     } else if (temp_r0 == 0) {
-        ((s32 (*)(s32, void *, s32, s32))play_sound_effect)(0x4003A017, arg0 + 0x38, 0, 0);
+        play_sound_effect(0x4003A017, (const Vec *)(arg0 + 0x38), 0, 0);
         spawn_particle_effect((const Vec *)(arg0 + 0x2FC), 0xE2);
         ((TObjEneSlimeWaterBomb *)arg0)->create(arg0);
     }
@@ -1769,7 +1770,7 @@ void update_dive_timer__10TObjPlayerFPv(u8 *ene_slime_one) {
 
 void enter_appear_state__10TObjPlayerFPv(u8 *arg0) {
     *(s32 *)((s8 *)arg0 + 0x394) = 0x14;
-    ((s32 (*)(s32, void *, s32, s32))play_sound_effect)(0x4003AD1D, arg0 + 0x38, 0, 0);
+    play_sound_effect(0x4003AD1D, (const Vec *)(arg0 + 0x38), 0, 0);
     ((TObjEneSlimeOne *)(*(s32 *)((s8 *)arg0 + 0x388)))->set_motion_state((s32)((void*)(0xA)));
     ((int (*)(void*, int))set_display_mode__15TObjEneSlimeOneFPvi)(arg0, 1);
 }
@@ -1794,7 +1795,7 @@ void update_slime_timer__10TObjPlayerFPv(u8 *ene_slime_one) {
 void enter_slime_state__10TObjPlayerFPv(u8 *arg0) {
     *(s32 *)((s8 *)arg0 + 0x394) = 8;
     ((TObjEneSlimeOne *)(*(s32 *)((s8 *)arg0 + 0x388)))->set_motion_state((s32)((void*)(9)));
-    ((s32 (*)(s32, void *, s32, s32))play_sound_effect)(0x4003AD1D, arg0 + 0x38, 0, 0);
+    play_sound_effect(0x4003AD1D, (const Vec *)(arg0 + 0x38), 0, 0);
     ((int (*)(void*, int))set_display_mode__15TObjEneSlimeOneFPvi)(arg0, 1);
 }
 
@@ -2305,6 +2306,6 @@ s32 TObjEneSlimeOne::try_spawn_child(void *arg1) {
     } else {
         normalize_vector(&dir);
     }
-    play_sound_effect(0x4003A619, &pos, 0, 0);
+    play_sound_effect(0x4003A619, (const Vec *)(&pos), 0, 0);
     return spawn_slime_in_slot((void *) origin, i, &pos, &dir);
 }

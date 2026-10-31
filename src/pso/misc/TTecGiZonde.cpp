@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/misc/TTecZonde.h"
@@ -55,7 +56,7 @@ void *find_entity_by_id(u16 id);
 s32 is_parents_unqueued__9TTecLukerFUl();
 s16 get_entity_id(void *);
 s32 update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
-s32 play_sound_effect(s32, void *, s32, s32);
+
 s32 copy_technique_target_list(void *, void *);
 s32 construct_facing_technique__10TObjPlayerFPviPvii(void *, void *, void *, s32);
 extern s32 __vt__11TTecGiZonde[];
@@ -316,26 +317,26 @@ u8 *TTecGiZonde__ct(u8 *arg0, void *arg1, void *arg2, void *arg3, void * _w4) {
     copy_technique_target_list(arg0 + 0x130, arg3);
     switch (((TTecGiZonde *)arg0)->band) {
     case 0:
-        if ((h = play_sound_effect(0x4002A509, arg0 + 0x20, 0, 0)) >= 0) {
+        if ((h = play_sound_effect(0x4002A509, (const Vec *)(arg0 + 0x20), 0, 0)) >= 0) {
             update_technique_slot__10TTecRaFoieFl(h, 0x100, 0);
         }
         break;
     case 1:
-        play_sound_effect(0x4002A509, arg0 + 0x20, 0, 0);
+        play_sound_effect(0x4002A509, (const Vec *)(arg0 + 0x20), 0, 0);
         break;
     case 2:
     case 3:
-        if ((h = play_sound_effect(0x4002A509, arg0 + 0x20, 0, 0)) >= 0) {
+        if ((h = play_sound_effect(0x4002A509, (const Vec *)(arg0 + 0x20), 0, 0)) >= 0) {
             update_technique_slot__10TTecRaFoieFl(h, -0x180, 0);
         }
         break;
     case 4:
-        if ((h = play_sound_effect(0x4002A509, arg0 + 0x20, 0, 0)) >= 0) {
+        if ((h = play_sound_effect(0x4002A509, (const Vec *)(arg0 + 0x20), 0, 0)) >= 0) {
             update_technique_slot__10TTecRaFoieFl(h, -0x250, 0);
         }
         break;
     case 5:
-        if ((h = play_sound_effect(0x4002A509, arg0 + 0x20, 0, 0)) >= 0) {
+        if ((h = play_sound_effect(0x4002A509, (const Vec *)(arg0 + 0x20), 0, 0)) >= 0) {
             update_technique_slot__10TTecRaFoieFl(h, -0x100, 0);
         }
         break;

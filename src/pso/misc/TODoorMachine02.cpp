@@ -52,7 +52,7 @@ void TODoorMachine02::update_open() {
     if (!(door_flags & 1) || is_any_player_within_radius_xz(10000.0f) != 1) {
         object_state = DOOR_CLOSING;
         clear_player_status_flag(0, 8);
-        play_sound_effect(0x4004BC01, &position, 0, 0);
+        play_sound_effect(0x4004BC01, (const Vec *)(&position), 0, 0);
     }
 }
 
@@ -60,7 +60,7 @@ void TODoorMachine02::update_closed() {
     if ((door_flags & 1) && is_any_player_within_radius_xz(4900.0f) == 1) {
         object_state = DOOR_OPENING;
         set_indexed_flags(0, 8);
-        play_sound_effect(0x4004BC01, &position, 0, 0);
+        play_sound_effect(0x4004BC01, (const Vec *)(&position), 0, 0);
     }
     if (door_flags & PULSE_RISING) {
         light_color.r += 0.1f;

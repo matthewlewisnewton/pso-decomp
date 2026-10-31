@@ -1,4 +1,5 @@
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
@@ -218,7 +219,7 @@ struct Vec_8029B640 { s32 x, y, z; };
 struct Mtx_8029B640 { f32 m[12]; };
 
 extern "C" {
-s32 play_sound_effect(int, void *, int, int);
+
 extern s32 TOKeyJungleMain__data_804653C8[3];
 extern s32 game_difficulty_selection;
 void *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags);
@@ -301,7 +302,7 @@ void TODoorJungleMain::update_door_switch_state() {
             }
         }
         if (self->count > 0 && self->count != prev) {
-            play_sound_effect(0x4C123, self->xf, 0, 0);
+            play_sound_effect(0x4C123, (const Vec *)(self->xf), 0, 0);
         }
         if (self->count == 3 && is_any_player_near((s32)self) != 0) {
             self->flags |= 1;

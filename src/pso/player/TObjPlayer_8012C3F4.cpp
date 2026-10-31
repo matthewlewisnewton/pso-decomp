@@ -1,4 +1,5 @@
 #include "pso/misc/ParticleFactory.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_8012C3F4.h"
 #include "pso/player/TObjPlayer_8012C950.h"
@@ -11,7 +12,6 @@ struct Mylla_8012C384 { u8 pad[0xa4]; Ent_8012C384 *ents; s32 count; };
 
 extern "C" {
 Mylla_8012C384 *find_entity_by_id(u32);
-s32 play_sound_effect(s32, s32, s32, s32);
 
 void rocket_punch_target_impact(void *self, u32 a, u32 b, s32 idx) {
     Mylla_8012C384 *m;

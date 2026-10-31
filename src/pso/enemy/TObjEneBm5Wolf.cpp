@@ -3,6 +3,7 @@
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
@@ -325,7 +326,7 @@ void update_velocity__9TObjEneDDFv(void *);
 void play_variant_sound__14TObjEneBm5WolfFPv(void *arg0);
 void spawn_recoil_dust__14TObjEneBm5WolfFiPv(s32 arg0, u8 *arg1);
 s32 play_effect_if_v2__10TObjPlayerFl(s32);
-s32 play_sound_effect(void *, void *, s32, s32);
+
 int get_flag_bit0__14TObjEneBm5WolfFPv(void* p);
 void select_target__14TObjEneBm5WolfFPv(void *arg0);
 void schedule_pack_reaction__14TObjEneBm5WolfFPvis(void *arg0, s32 arg1, s16 arg2);
@@ -1352,7 +1353,7 @@ void TObjEneBm5Wolf::update_dying_state(s32 arg1) {
     case 4:
         this->vfunc_96();
         ((TObjEnemy *)arg0)->refresh_and_send_entity_flags();
-        play_sound_effect((void *)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x3AD1D)), arg0 + 0x38, 0, 0);
+        play_sound_effect((s32)((void *)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x3AD1D))), (const Vec *)(arg0 + 0x38), 0, 0);
         play_effect_if_v2__10TObjPlayerFl(-0x300);
         if (select_death_direction__14TObjEneBm5WolfFPvPv(arg0, tgt) == 0) {
             F(s16, 0xB8) = 0xF;
@@ -1442,7 +1443,7 @@ void TObjEneBm5Wolf::hurt_state(s32 arg1) {
         this->requested_action = 6;
         this->roamingSubstate = 0;
         if (this->referenceHp - this->hp < 0x14) {
-            play_sound_effect((void *)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x3AB1B)), (u8 *)&this->position, 0, 0);
+            play_sound_effect((s32)((void *)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x3AB1B))), (const Vec *)((u8 *)&this->position), 0, 0);
             play_effect_if_v2__10TObjPlayerFl(-0x500);
         }
         ((TObjEneDD_ST *)arg0)->set_active();
@@ -1512,7 +1513,7 @@ void TObjEneBm5Wolf::action(s32 arg1) {
         ((TObjMotion *)arg0)->advance_animation();
         advance_pose_turn__14TObjEneBm5WolfFPvi(arg0, this->rotation_y);
         if (((TObjMotion *)arg0)->is_passing_frame(TObjEneBm5Wolf__data_805D9DB4) != 0) {
-            play_sound_effect((void *)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x3AA1A)), (u8 *)&this->position, 0, 0);
+            play_sound_effect((s32)((void *)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x3AA1A))), (const Vec *)((u8 *)&this->position), 0, 0);
             play_effect_if_v2__10TObjPlayerFl(-0x100);
         }
         this->roamingSubstate = (this->roamingSubstate + 1);
@@ -1749,10 +1750,10 @@ void TObjEneBm5Wolf::update_lunge(s32 arg1) {
                 spawn_particle_effect((const Vec *)((s32)(arg0 + 0x38)), 0xF3);
             }
             if (((TObjMotion *)arg0)->is_passing_frame(lbl_805D9DE4) != 0) {
-                play_sound_effect((void *)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x3E420)), (u8 *)&this->position, 0, 0);
+                play_sound_effect((s32)((void *)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x3E420))), (const Vec *)((u8 *)&this->position), 0, 0);
             }
             if (((TObjMotion *)arg0)->is_passing_frame(TObjEneBm5Wolf__data_805D9DE8) != 0) {
-                play_sound_effect((void *)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003A821)), (u8 *)&this->position, 0, 0);
+                play_sound_effect((s32)((void *)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003A821))), (const Vec *)((u8 *)&this->position), 0, 0);
                 play_effect_if_v2__10TObjPlayerFl(-0x500);
             }
             if (((TObjMotion *)arg0)->is_passing_frame((f32) ((*(f32 *)&TObjEneBm5Wolf__data_805D9D74))) != 0) {
@@ -2239,7 +2240,7 @@ void TObjEneBm5Wolf::howling_state(s32 arg1) {
         if (this->requested_action == 0x10) {
             is_passing_frame(TObjEneBm5Wolf__data_805D9DEC);
         } else if (this->requested_action == 0xB && is_passing_frame(lbl_805D9E34) != 0) {
-            play_sound_effect((void *)((TObjEnemy *)(this))->remap_sound_for_area((s32)(0x3A819)), ((u8 *)this) + 0x38, 0, 0);
+            play_sound_effect((s32)((void *)((TObjEnemy *)(this))->remap_sound_for_area((s32)(0x3A819))), (const Vec *)(((u8 *)this) + 0x38), 0, 0);
             play_effect_if_v2__10TObjPlayerFl(-0x200);
         }
         if (this->roamingSubstate == 0x3C) {
@@ -2417,10 +2418,10 @@ void appearing_state__14TObjEneBm5WolfFPvi(Obj_800B7018 *o, s32 arg1) {
                 spawn_particle_effect((const Vec *)((s32)&o->pos), 0xF3);
             }
             if (((TObjMotion *)o)->is_passing_frame(lbl_805D9DE4) != 0) {
-                play_sound_effect((void *)((TObjEnemy *)(o))->remap_sound_for_area((s32)(0x3E420)), &o->pos, 0, 0);
+                play_sound_effect((s32)((void *)((TObjEnemy *)(o))->remap_sound_for_area((s32)(0x3E420))), (const Vec *)(&o->pos), 0, 0);
             }
             if (((TObjMotion *)o)->is_passing_frame(TObjEneBm5Wolf__data_805D9DE8) != 0) {
-                play_sound_effect((void *)((TObjEnemy *)(o))->remap_sound_for_area((s32)(0x4003A821)), &o->pos, 0, 0);
+                play_sound_effect((s32)((void *)((TObjEnemy *)(o))->remap_sound_for_area((s32)(0x4003A821))), (const Vec *)(&o->pos), 0, 0);
                 play_effect_if_v2__10TObjPlayerFl(-0x500);
             }
             if (o->fC0 <= TObjEneBm5Wolf__data_805D9DF0) {
@@ -2806,7 +2807,6 @@ struct Vec_800B79E0 { f32 x, y, z; };
 struct Obj_800B79E0 { u8 pad[0x38]; Vec_800B79E0 pos; };
 
 extern "C" {
-#define play_sound_effect ((s32 (*)(void *, void *, int, int))&play_sound_effect)
 #define play_effect_if_v2__10TObjPlayerFl ((s32 (*)(int))&play_effect_if_v2__10TObjPlayerFl)
 #define enemy_copy_target_destination__12TObjEneDD_STFv ((s32 (*)(void *))&enemy_copy_target_destination__12TObjEneDD_STFv)
 #define update_velocity__9TObjEneDDFv ((s32 (*)(void *))&update_velocity__9TObjEneDDFv)
@@ -2867,7 +2867,7 @@ f32 calc_death_slide_speed__14TObjEneBm5WolfFPvf(Obj_800B76E0 *arg0, f32 farg0) 
 void TObjEneBm5Wolf::play_proximity_effect() {
     s32 arg0 = (s32)this;
     if (((TObjMotion *)arg0)->is_passing_frame(lbl_805D9E48) != 0) {
-        play_sound_effect((void *)((TObjEnemy *)((void *)arg0))->remap_sound_for_area((s32)(0x3C618)), (void *)(arg0 + 0x38), 0, 0);
+        play_sound_effect((s32)((void *)((TObjEnemy *)((void *)arg0))->remap_sound_for_area((s32)(0x3C618))), (const Vec *)((arg0 + 0x38)), 0, 0);
         play_effect_if_v2__10TObjPlayerFl(-0x1000);
     }
 }
@@ -2877,7 +2877,7 @@ extern f32 lbl_805D9E50;
 
 void play_footsteps__14TObjEneBm5WolfFPv(u8 *ene_panarms) {
     if ((((TObjMotion *)ene_panarms)->is_passing_frame(TObjEneBm5Wolf__data_805D9DEC) != 0) || (((TObjMotion *)ene_panarms)->is_passing_frame(TObjEneBm5Wolf__data_805D9DE8) != 0)) {
-        play_sound_effect((void *)(((s32)((TObjEnemy *)(ene_panarms))->remap_sound_for_area((s32)(0x3C618)))), ene_panarms + 0x38, 0, 0);
+        play_sound_effect((s32)((void *)(((s32)((TObjEnemy *)(ene_panarms))->remap_sound_for_area((s32)(0x3C618))))), (const Vec *)(ene_panarms + 0x38), 0, 0);
         play_effect_if_v2__10TObjPlayerFl(-0x1000);
     }
 }
@@ -2978,7 +2978,6 @@ void set_state_by_timer__14TObjEneBm5WolfFi(s32 arg0) {
 #undef sin_table_lookup
 #undef cos_table_lookup
 #undef play_effect_if_v2__10TObjPlayerFl
-#undef play_sound_effect
 __declspec(section ".sdata2") extern const f32 lbl_805D9DD8 = 13.333333015441895f;
 __declspec(section ".sdata2") extern const f32 lbl_805D9DDC = -0.08888889104127884f;
 __declspec(section ".sdata2") extern const f32 TObjEneBm5Wolf__data_805D9DE0 = 5.0f;

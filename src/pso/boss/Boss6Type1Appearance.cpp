@@ -1,5 +1,6 @@
 #include "pso/system/ModelNodePositionCapture.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/system/PadRumble.h"
 #include "pso/boss/Boss6Type1Appearance.h"
@@ -41,7 +42,7 @@ struct Fish_8033CB4C
 
 extern "C" {
 void *create_particle_emitter(void *pos, s32 id);
-s32 play_sound_effect(int, int, int, int);
+
 extern const f32 lbl_805DFA48;
 extern const f32 lbl_805DFA4C;
 s32 get_bml_motion(s32, s32);

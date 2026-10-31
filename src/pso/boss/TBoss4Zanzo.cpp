@@ -4,6 +4,7 @@
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/misc/PersistentSound.h"
 #pragma readonly_strings on
 #include "types.h"
@@ -86,7 +87,7 @@ extern u32 boss4_type3_radar_marker_colors[];
 extern const f32 TBoss4Type3__data_805D8C40;
 
 u32 create_particle_emitter(void *, int);
-s32 play_sound_effect(int, void *, int, int);
+
 f64 atan2_float(f32, f32);
 
 void TBoss4Type2__sub_80057128(void *arg0);
@@ -713,7 +714,7 @@ void TBoss4Type2::md_recover_update() {
   *((int *) (((s8 *) boss4_type2) + 0x398)) = temp_r0;
   if (temp_r0 < 0)
   {
-    ((s32 (*)(s32, void *, s32, s32))play_sound_effect)(0x4003AD1A, boss4_type2 + 0x38, 0, 1);
+    play_sound_effect(0x4003AD1A, (const Vec *)(boss4_type2 + 0x38), 0, 1);
     TTecResta::create((void *)boss4_type2, boss4_type2 + 0x38, (void *)(*((int *) (((s8 *) boss4_type2) + 0x428))));
     ((TBoss4Type2 *)((void *) boss4_type2))->change_action((int) (*((int *) (((s8 *) boss4_type2) + 0x424))));
   }
@@ -724,7 +725,7 @@ void TBoss4Type2::md_recover_idle() {  }
 void TBoss4Type2::md_recover_enter() {
     u8 *arg0 = (u8 *)this;
     *(f32 *)((s8 *)arg0 + 0x3E8) = (f32) 0.0f;
-    ((s32 (*)(s32, void *, s32, s32))play_sound_effect)(0x40039E21, arg0 + 0x38, 0, 1);
+    play_sound_effect(0x40039E21, (const Vec *)(arg0 + 0x38), 0, 1);
     *(s32 *)((s8 *)arg0 + 0x398) = 0x96;
 }
 
@@ -875,7 +876,7 @@ void TBoss4Type2::tenchu_update() {
                 if (particle_emitter != 0) {
                     ((TParticleCtrl *)((void *) *(u32 *)((s8 *)arg0 + 0x438)))->set_flags(0x40U);
                 }
-                play_sound_effect(0x40039717, arg0 + 0x38, 0, 1);
+                play_sound_effect(0x40039717, (const Vec *)(arg0 + 0x38), 0, 1);
             }
             if ((u32) *(u32 *)((s8 *)arg0 + 0x43C) == 0) {
                 temp_r3_12 = create_particle_emitter(&sp14, 0x13B);
@@ -970,7 +971,7 @@ void TBoss4Type2::beam_update() {
         if (h != 0) {
             ((TParticleCtrl *)h)->set_flags(0x40);
         }
-        play_sound_effect(0x4003A813, arg0 + 0x38, 0, 1);
+        play_sound_effect(0x4003A813, (const Vec *)(arg0 + 0x38), 0, 1);
         start_pad_rumble_all(0xC0, 0xF);
     }
     if (*(s32 *)((s8 *)arg0 + 0x398) <= 0x26 && *(s32 *)((s8 *)arg0 + 0x398) >= 4 && !(*(s32 *)((s8 *)arg0 + 0x398) & 1)) {
@@ -1641,7 +1642,7 @@ void TUnk_80486924::vfunc_62() {
     *(s32 *)((s8 *)((u8 *)this) + 0x3E4) = 1;
     *(f32 *)((s8 *)((u8 *)this) + 0x3F0) = (f32) 1.0f;
     *(s32 *)((s8 *)((u8 *)this) + 0x30) = (s32) (*(s32 *)((s8 *)((u8 *)this) + 0x30) & 0xFFFFFDFF);
-    ((s32 (*)(int, void *, int, int, void *))play_sound_effect)(0x4003B723, ((u8 *)this) + 0x38, 0, 1, this);
+    play_sound_effect(0x4003B723, (const Vec *)(((u8 *)this) + 0x38), 0, 1);
 }
 
 S_800578E8 *__dt__13TUnk_80486924Fv(S_800578E8 *o, s16 flag) {

@@ -1,4 +1,5 @@
 #include "pso/misc/ParticleFactory.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/effect/TEffGuard.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/unk/text_80087278.h"
@@ -6,7 +7,7 @@
 #pragma readonly_strings on
 const char* TEffGuard__class_name = "TEffGuard";
 extern "C" {
-s32 play_sound_effect(u32, const Vec*, s32, s32);
+
 }
 
 void TEffGuard::run_task() {
@@ -39,5 +40,5 @@ TEffGuard::TEffGuard(const Vec* initial_position) : TEffect() {
 
 void TEffGuard::create(const Vec* position) {
     new TEffGuard(position);
-    play_sound_effect(0x4001AA00, position, 0, 0);
+    play_sound_effect(0x4001AA00, (const Vec *)(position), 0, 0);
 }

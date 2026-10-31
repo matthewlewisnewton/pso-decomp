@@ -1,5 +1,6 @@
 #include "pso/system/ModelNodePositionCapture.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/system/PadRumble.h"
@@ -26,7 +27,7 @@ struct Vec_8033CDF8 { f32 x, y, z; };
 struct Fish_8033CDF8 { u8 pad[0x4C]; Vec_8033CDF8 vecs[3]; };
 
 extern "C" {
-s32 play_sound_effect(int, int, int, int);
+
 extern Range_8033CDF8 fish_spawn_entry_table[];
 s32 push_matrix(void);
 f32 post_translate_matrix(void);

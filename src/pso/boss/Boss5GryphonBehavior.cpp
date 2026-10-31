@@ -1,6 +1,7 @@
 #include "pso/map/CsnGroundQuery.h"
 #include "pso/player/demo_mode.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/misc/PersistentSound.h"
 struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
@@ -229,7 +230,7 @@ s32 *TBoss8Dragon__sub_80065F08(void);
 s32 restore_player_cameras(void);
 s32 activate_camera_mode(s32 arg0);
 void set_scripted_camera_pose(void *, void *, void *);
-s32 play_sound_effect(int, void *, int, int);
+
 void play_cue_stream_file(s32 name);
 extern Vec_80062BA0 lbl_80437DB8[];
 extern const f64 lbl_80437EB0;
@@ -3707,17 +3708,17 @@ void TBoss5Gryphon::fn_800627E4(u32 arg1) {
                     ((s32 (*)(void *, void *, int))spawn_particle_effect_with_flags)((void *)sp8, (void *) (*(s32 *)((s8 *)(*(u8 **)((s8 *)this + 0x5F0)) + 0)), 0x40);
                 }
                 if (is_passing_frame((f32)lbl_805D8E70) != 0) {
-                    play_sound_effect(0x40032A00, (void *) (0), 0, 0);
+                    play_sound_effect(0x40032A00, (const Vec *)((0)), 0, 0);
                     start_pad_rumble_all(0xA0, 0x3C);
                 }
                 if ((is_passing_frame((f32)lbl_805D8D6C) != 0) || (is_passing_frame((f32)lbl_805D8E74) != 0)) {
-                    play_sound_effect(0x40033409, (void *) (0), 0, 0);
+                    play_sound_effect(0x40033409, (const Vec *)((0)), 0, 0);
                 }
                 if (is_passing_frame((f32)lbl_805D8E64) != 0) {
-                    play_sound_effect(0x40032D0D, (void *) (0), 0, 0);
+                    play_sound_effect(0x40032D0D, (const Vec *)((0)), 0, 0);
                 }
                 if (is_passing_frame((f32)lbl_805D8E78) != 0) {
-                    play_sound_effect(0x40033409, (void *) (0), 0, 0);
+                    play_sound_effect(0x40033409, (const Vec *)((0)), 0, 0);
                     start_pad_rumble_all(0x80, 7);
                 }
                 if (is_passing_frame((f32)lbl_805D8E7C) != 0) {
@@ -4741,7 +4742,7 @@ void spawn_ancient_trap__12TBoss8DragonFii(s32 arg0, s32 arg1) {
 #pragma dont_inline off
 void TBoss5Gryphon::play_se(s32 arg1) {
     s32 arg0 = (s32)this;
-    ((s32 (*)(s32, s32, s32, s32))play_sound_effect)(arg1, arg0 + 0x560, 0, 0);
+    play_sound_effect((s32)(arg1), (const Vec *)(arg0 + 0x560), 0, 0);
 }
 #pragma pop
 

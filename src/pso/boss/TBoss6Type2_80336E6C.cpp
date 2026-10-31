@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #pragma readonly_strings on
 #include "types.h"
 #include "pso/boss/TBoss6Type2_8032E708.h"
@@ -12,7 +13,7 @@ extern const f32 lbl_805DF97C;
 extern const f32 lbl_805DF980;
 extern const f32 lbl_805DF984;
 void spawn_mag_mines__11TBoss6Type2Fv();
-int play_sound_effect(void*, void*, void*, void*);
+
 s32 turn_toward_target__11TBoss6Type2Fv();
 s32 fly_toward_target__11TBoss6Type2Fv();
 s32 TBoss6Type2__sub_8032FB84();
@@ -38,7 +39,7 @@ void TBoss6Type2::update_recover_timer() {
 }
 #pragma pop
 
-void TBoss6Type2::sub_80336F00() { m_3cc = 0; play_sound_effect((void*)438292, &position, (void*)0, (void*)0); destroy_part_object((s32)((void*)((void*)0))); }
+void TBoss6Type2::sub_80336F00() { m_3cc = 0; play_sound_effect((s32)((void*)438292), (const Vec *)(&position), 0, 0); destroy_part_object((s32)((void*)((void*)0))); }
 
 #pragma push
 #pragma opt_common_subs off

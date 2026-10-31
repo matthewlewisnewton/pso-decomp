@@ -3,6 +3,7 @@
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/misc/PersistentSound.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
@@ -82,7 +83,7 @@ extern "C" u16 find_nearest_visible_player(void *, s32, f32);
 extern "C" s32 apply_actor_gravity(void *, int, f32);
 extern "C" f32 atan2_float(f32 y, f32 x);
 extern "C" s32 check_enemy_body_collisions(void *);
-extern "C" s32 play_sound_effect(int, void *, int, int);
+
 extern "C" void rotate_vector_by_matrix(int, void *, void *);
 
 extern "C" u32 get_player_by_client_id(s32);
@@ -508,7 +509,7 @@ void TObjEneNanoDrago::update_idle_state() {
         advance_animation();
         wander_around(&home_position, parameters[1]);
         if (is_passing_frame((f32)(4.0f)) != 0 || is_passing_frame((f32)(20.0f)) != 0) {
-            play_sound_effect(0x4003AD23, (u8 *)(&position), 0, 0);
+            play_sound_effect(0x4003AD23, (const Vec *)((u8 *)(&position)), 0, 0);
         }
         m_384 = m_384 - 1;
         if (m_384 <= 0) {
@@ -563,7 +564,7 @@ void TObjEneNanoDrago::update_circling_state() {
         advance_animation();
         apply_actor_gravity(((u8 *)this), 0, 0.0f);
         if (is_passing_frame((f32)(4.0f)) != 0 || is_passing_frame((f32)(20.0f)) != 0) {
-            play_sound_effect(0x4003AD23, (Vec *)&position, 0, 0);
+            play_sound_effect(0x4003AD23, (const Vec *)((Vec *)&position), 0, 0);
         }
         if (target != NULL) {
             Vec d = *(Vec *)(target + 0x38);
@@ -601,7 +602,7 @@ void TObjEneNanoDrago::update_circling_state() {
         advance_animation();
         apply_actor_gravity(((u8 *)this), 0, 0.0f);
         if (is_passing_frame((f32)(4.0f)) != 0 || is_passing_frame((f32)(20.0f)) != 0) {
-            play_sound_effect(0x4003AD23, (Vec *)&position, 0, 0);
+            play_sound_effect(0x4003AD23, (const Vec *)((Vec *)&position), 0, 0);
         }
         wanderDistance += speed;
         if (wanderDistance > 100.0f) {
@@ -661,7 +662,7 @@ void TObjEneNanoDrago::update_single_beam_state() {
                     construct_beam_effect__10TObjPlayerFPvPvPviPv(obj, &beamOrigins[0], (void *) (target + 0x2FC), (u8) !(actorFlags & 0x01000000), ((u8 *)this));
                 }
                 spawn_beam_particle(0);
-                play_sound_effect(0x4003A527, &position, 0, 0);
+                play_sound_effect(0x4003A527, (const Vec *)(&position), 0, 0);
                 state = 3;
             }
             break;
@@ -749,7 +750,7 @@ void TObjEneNanoDrago::update_multi_beam_state() {
         apply_actor_gravity(((u8 *)this), 0, 0.0f);
         ((TObjCollidable *)((u8 *)this))->update_collisions();
         if (is_passing_frame((f32)(4.0f)) != 0 || is_passing_frame((f32)(20.0f)) != 0) {
-            play_sound_effect(0x4003AD23, &position, 0, 0);
+            play_sound_effect(0x4003AD23, (const Vec *)(&position), 0, 0);
         }
         if (find_nearest_visible_player(this, 0, 50.0f) != 0xFFFF) {
             ((TObjEnemyCustom *)this)->update_if_active(0xB);
@@ -857,7 +858,7 @@ void TObjEneNanoDrago::update_flight_state() {
             }
         }
         if (TObjPlayer__sub_800DC478(((u8 *)this), 8, 42.0f) != 0) {
-            play_sound_effect(0x4003AD23, &position, 0, 0);
+            play_sound_effect(0x4003AD23, (const Vec *)(&position), 0, 0);
         }
         check_object_collisions();
         apply_actor_gravity(((u8 *)this), 0, 0.0f);
@@ -884,7 +885,7 @@ void TObjEneNanoDrago::update_growth_state() {
             scale.y = 0.1f + scale.x;
             spawn_particle_effect(&body_center_position, 0xFA);
             speed = ((NanoDragoMovementParams *)movementParameters)->baseSpeed * scale.x;
-            play_sound_effect(0x4003A824, (Vec *)&position, 0, 0);
+            play_sound_effect(0x4003A824, (const Vec *)((Vec *)&position), 0, 0);
             m_2c8 += 8;
             m_2c0 += 8;
         } else {
@@ -983,7 +984,7 @@ void TObjEneNanoDrago::update_dying_state() {
         this->distribute_experience_and_request_drop();
         send_entity_set_flags();
         timer = 0x1E;
-        play_sound_effect(0x4003A825, &position, 0, 0);
+        play_sound_effect(0x4003A825, (const Vec *)(&position), 0, 0);
         if (actorFlags & 0x01000000) {
             descentSpeed = (f32) (0.015384615f * -flightHeight);
             requested_action = 0xB;

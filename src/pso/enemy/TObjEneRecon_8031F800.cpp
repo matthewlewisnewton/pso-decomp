@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/system/vector.h"
 #include "pso/enemy/TObjEneRecobox.h"
@@ -29,7 +30,7 @@ struct Recon_8031F8C4 {
 
 extern "C" {
 extern const f32 lbl_805DF44C;
-void play_sound_effect(s32, void *, s32, s32);
+
 u32 create__12TObjEneReconFPvPvPvPvPv(void *, u16, s32, Vec_8031F8C4 *, Vec_8031F8C4 *);
 s32 alloc_child_id__12TObjEneReconFv(void *);
 s32 remap_area_sound_id__14TObjEneRecoboxFUl(s32, s32, s32);
@@ -108,7 +109,7 @@ void TObjEneRecon::update_child_spawn() {
     if (create__12TObjEneReconFPvPvPvPvPv(o, id, arg, &pos, &dir) != 0) {
         n = o->f410++;
         o->ids[n] = id;
-        play_sound_effect(remap_area_sound_id__14TObjEneRecoboxFUl(0x4003A80F, o->f414++, n), o->pos38, 0, 0);
+        play_sound_effect((s32)(remap_area_sound_id__14TObjEneRecoboxFUl(0x4003A80F, o->f414++, n)), (const Vec *)(o->pos38), 0, 0);
     }
 }
 

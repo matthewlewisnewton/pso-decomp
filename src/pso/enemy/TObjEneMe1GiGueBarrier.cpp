@@ -1,4 +1,5 @@
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/enemy/TObjEneMe1GiGueBarrier.h"
 #include "pso/object/TObject_80019A50.h"
@@ -49,7 +50,7 @@ struct VObj_18_ca64a0 : VBase_18_ca64a0 {
 
 extern "C" {
 void *__nw__7TObjectFUl(int);
-s32 play_sound_effect(int, void *, int, int);
+
 s32 is_active_state__22TObjEneMe1GiGueBarrierFv(int);
 u16 get_entity_id(void *);
 s32 set_action_table__10TObjMotionFP16TObjMotionAction(void *, void *, int);
@@ -112,9 +113,9 @@ void TObjEneMe1GiGueBarrier::run_task() {
             this->m_104 = 1;
             this->requested_action = 1;
             if (get_current_floor_area() == AREA_TOWER) {
-                play_sound_effect(0x4003A316, (u8 *)&this->position, 0, 0);
+                play_sound_effect(0x4003A316, (const Vec *)((u8 *)&this->position), 0, 0);
             } else {
-                play_sound_effect(0x3A346, (u8 *)&this->position, 0, 0);
+                play_sound_effect(0x3A346, (const Vec *)((u8 *)&this->position), 0, 0);
             }
         }
         break;

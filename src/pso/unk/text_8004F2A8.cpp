@@ -1,5 +1,6 @@
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/system/PadRumble.h"
 #include "pso/object/TObject_80019A50.h"
@@ -60,7 +61,7 @@ extern const f32 lbl_805D89F8;
 void set_scripted_camera_pose(void *, void *, void *);
 
 void *create_particle_emitter(void *pos, s32 id);
-void play_sound_effect(s32, void *, s32, s32);
+
 extern Vec_8004F3D4 lbl_804373F4[];
 extern Vec_8004F3D4 boss4_type2_effect_offset_vec[];
 extern const f32 lbl_805D89FC;
@@ -128,12 +129,12 @@ void TObjDFDemo4::run_task() {
     {
       ((TParticleCtrl *)r)->set_flags(0x40);
     }
-    play_sound_effect(0x40039E09, &self->pos, 0, 1);
+    play_sound_effect(0x40039E09, (const Vec *)(&self->pos), 0, 1);
     start_pad_rumble_all(0xC0, 0xF);
   }
   if (self->fF8 == 0x72)
   {
-    play_sound_effect(0x4003B227, &self->pos, 0, 1);
+    play_sound_effect(0x4003B227, (const Vec *)(&self->pos), 0, 1);
   }
   if (self->fF8 >= 0xAA)
   {

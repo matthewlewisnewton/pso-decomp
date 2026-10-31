@@ -1,6 +1,7 @@
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/boss/TBoss6RockChase.h"
 #include "pso/object/TObject_80019A50.h"
@@ -105,7 +106,7 @@ extern const f32 lbl_805E03D4;
 extern const f32 lbl_805E03DC;
 extern const f32 lbl_805E03E0;
 s32 query_teammate_state__9TObjEneDDFv(void);
-s32 play_sound_effect(int, void *, int, int);
+
 extern const f32 lbl_805E03C0;
 extern const f32 lbl_805E03C4;
 extern const f32 lbl_805E03C8;
@@ -184,12 +185,12 @@ void TBoss6RockChase::run_task() {
             *(f32 *)((s8 *)arg0 + 0x3C) = (f32) TBoss6RockChase__data_805E03B8;
             *(f32 *)&this->_padB8 = (f32) TBoss6RockChase__data_805E03B8;
             damage_players_in_range();
-            play_sound_effect(0x4006B51E, (u8 *)&this->position, 0, 0);
+            play_sound_effect(0x4006B51E, (const Vec *)((u8 *)&this->position), 0, 0);
             spawn_particle_effect((const Vec *)(((u8 *)&this->position)), 0x220);
             spawn_particle_effect((const Vec *)(((u8 *)&this->position)), 0x222);
             TBoss6PlotFalz::apply_radial_effect_to_players((u8 *)&this->position, 0xC0, 0xF, lbl_805E03C8);
             ((TBoss6Rock *)(arg0 + 0x38))->spawn_crush_rocks(this->m_b0);
-            play_sound_effect(0x4006AB1F, (u8 *)&this->position, 0, 0);
+            play_sound_effect(0x4006AB1F, (const Vec *)((u8 *)&this->position), 0, 0);
             queue_destruction__7TObjectFv(arg0);
         }
     }
