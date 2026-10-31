@@ -1,3 +1,5 @@
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/unk/text_8026CB5C.h"
 #include "pso/misc/TWindowLockOn.h"
@@ -134,7 +136,7 @@ void queue_destruction__7TObjectFv(void *);
 void allow_rendering__7TObjectFv(TObject *arg0);
 void disallow_rendering__7TObjectFv(TObject *);
 int copy_vec2__28TWindowSubSymbolChatPartsSetFPv(void*);
-s32 play_sound_effect(s32, s32, s32, s32);
+
 int TWindowSubComCard__sub_80244774(void);
 f32 TWindowSubComCard__sub_80244784(TWindowSubComCard *arg0);
 void save_position__13TUnk_804CE018Fv(void* p);
@@ -403,7 +405,7 @@ void TUnk_804CE018::sub_80244F2C(u8 *arg1, u8 *arg2, s16 arg3) {
     }
     temp_r3_2 = *(s32 *)((s8 *)((u8 *)this) + 0x2C);
     if ((temp_r3_2 & 1) && (temp_r3_2 & 2) && !(temp_r3_2 & 0x20)) {
-        ((s32 (*)(int, int, int, int))play_sound_effect)(0x53703, 0, 0, 0);
+        play_sound_effect(0x53703, 0, 0, 0);
     }
     if (TWindowSubStatusDisp::get_card_window_scale((int) (*(s16 *)((s8 *)((u8 *)this) + 0x20))) <= 0.0f) {
         *(s32 *)((s8 *)((u8 *)this) + 0x5C) = 0x01000000;
@@ -432,7 +434,7 @@ void draw_selection_bar(u8 *window_key_board_soft, u8 *arg1, s32 arg2) {
     z = -1.0f / (0.22424999f + *(f32 *)((s8 *)window_key_board_soft + 0x38));
     set_additive_blend();
     begin_screen_draw(1);
-    TObjFish::set_global_param(lbl_805D63F0);
+    set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
     set_draw_texture_and_color(2, -1);
     q.x0 = x - 2.0f;
     q.y0 = y;
@@ -566,7 +568,7 @@ void TWindowSubComCard__sub_802454E4(s32 texture) {
     }
     set_additive_blend();
     set_tev_swap_channels(3, 3, 3, 3);
-    TObjFish::set_global_param(lbl_805D63F0);
+    set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
     set_texture_num(texture);
     TLobby__sub_803E2EE4(1);
 }
@@ -643,7 +645,7 @@ void TUnk_804CE018::draw_quest_message_frame(void *c_arg) {
   f32 rem;
   f32 half;
   begin_screen_draw(1);
-  TObjFish::set_global_param((s32)((*(void * *)&lbl_805D63F0)));
+  set_current_texture_list((GinjaTextureList *)(((*(void * *)&lbl_805D63F0))));
   set_draw_texture_and_color(1, -1);
   if (((struct QFrameWindow_80245808 *)this)->height < 64.0f)
   {
@@ -836,7 +838,7 @@ void TUnk_804CE018::draw_window_frame(void *r) {
   f32 dy;
   f32 rem;
   begin_screen_draw(1);
-  TObjFish::set_global_param((s32)((*(void * *)&lbl_805D63F0)));
+  set_current_texture_list((GinjaTextureList *)(((*(void * *)&lbl_805D63F0))));
   set_draw_texture_and_color(1, ((Rect_80245F98 *)r)->f34);
   n = (s32) ((Card_80245F98 *)this)->f4C;
   n += (4 - (n & 3)) & 3;
@@ -942,7 +944,7 @@ void TWindowSubComCard::update_open_close() {
         if ((f32) *(s32 *)&this->m_5c >= 7.5f) {
             if (temp_r5 & 4) {
                 if (!(temp_r5 & 0x20)) {
-                    ((s32 (*)(s32, u32, s16, s32))play_sound_effect)(0x53704, 0U, 0, 0);
+                    play_sound_effect(0x53704, (const Vec *)(0U), 0, 0);
                 }
                 *(s32 *)&this->m_2c = (s32) (*(s32 *)&this->m_2c & ~5);
                 return;
@@ -960,7 +962,7 @@ void TWindowSubComCard::update_open_close() {
             card_window_flags = *(s32 *)&this->m_2c;
             if (card_window_flags & 4) {
                 if (!(card_window_flags & 0x20)) {
-                    ((s32 (*)(s32, u32, s16, s32))play_sound_effect)(0x53703, 0U, 0, 0);
+                    play_sound_effect(0x53703, (const Vec *)(0U), 0, 0);
                 }
                 *(s32 *)&this->m_2c = (s32) (*(s32 *)&this->m_2c & 0xFFFFFFFB);
                 *(s32 *)&this->m_2c = (s32) (*(s32 *)&this->m_2c | 1);

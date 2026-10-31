@@ -24,7 +24,7 @@ void TItemEffHeaven::run_task() {
         emitters[0] = spawn_continuous_particle_effect_with_flags(&position, 0x13B, 0x40);
     }
     if (frame == 15) {
-        play_sound_effect(0x4002A408, &position, 0, 0);
+        play_sound_effect(0x4002A408, (const Vec *)(&position), 0, 0);
         emitters[1] = spawn_continuous_particle_effect_with_flags(&position, 0x134, 0x40);
         rise_speed = 200.0f;
     }

@@ -2,6 +2,7 @@
 #include "pso/player/demo_mode.h"
 #include "pso/misc/MaterialOpacityFade.h"
 #include "pso/enemy/BattleParameters.h"
+#include "pso/misc/PersistentSound.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -139,7 +140,7 @@ struct VObj18_802D0D3C : VBase18_802D0D3C {
 extern "C" {
 extern const f32 lbl_805DE704;
 void run_task__19TObjEneBm9MericarolFv(u8 *arg0);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 void TObjEneBm9Mericarol__sub_802D073C(s32 arg0);
 f32 random_ratio__9TObjCharaFv(s32);
 extern const f32 lbl_805DE6F4;
@@ -442,7 +443,7 @@ u32 mericarol_phase_param_table[3];
 u32 lbl_80540B88[4];
 
 void TObjEneBm9Mericarol__sub_802D073C(s32 arg0) {
-    play_persistent_sound((((TObjEnemy *)((void *)arg0))->remap_sound_for_area((s32)(0x3A810))), (arg0), (arg0 + 0x38), 0, 0);
+    play_persistent_sound((s32)((((TObjEnemy *)((void *)arg0))->remap_sound_for_area(0x3A810))), (const void *)((arg0)), (const Vec *)((arg0 + 0x38)), 0, 0);
 }
 
 s32 TObjEneBm9Mericarol::get_phase() { return *(s32*)((char*)this + 0x45c); }

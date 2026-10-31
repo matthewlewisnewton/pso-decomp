@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "pso/TAdGameStartBackGC.h"
 #include "pso/misc/TWindowSubStatusDisp_803DEE6C.h"
 #include "pso/ui/TAdGameStartBackGC.h"
@@ -37,7 +38,7 @@ extern const f32 lbl_805DF078;
 void TAdGameStartBackGC::render_background_status() {
     u8 *arg0 = (u8 *)this;
     begin_screen_draw(1);
-    TObjFish::set_global_param(game_start_background_texture_list);
+    set_current_texture_list((GinjaTextureList *)(game_start_background_texture_list));
     set_draw_texture_and_color(0, ((*(s32 *)((s8 *)arg0 + 0x78) << 0x18) | 0xFF0000 | 0xFFFF));
     draw_textured_quad_at_depth((f32 *)(arg0 + 0x3C), lbl_805DF078);
     TWindowSubStatusDisp::get_player();

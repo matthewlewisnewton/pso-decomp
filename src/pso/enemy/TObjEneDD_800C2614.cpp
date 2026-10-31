@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/enemy/TObjEneDD_800BA138.h"
 #include "pso/enemy/TObjEneDD_800C2614.h"
@@ -17,7 +18,7 @@ struct Prm_800C2628 { f32 a, b, c, d, e; };
 
 extern "C" {
 s32 noop__9TObjEneDDFv(void *, s32);
-s32 play_sound_effect(s32, void *, s32, s32);
+
 extern Prm_800C2628 enemy_dd_attack_param_block;
 extern Prm_800C2628 lbl_8043BBA0;
 extern f32 *const lbl_805D5170;
@@ -67,7 +68,7 @@ void TObjEneDD__sub_800C2628(u8 *arg0, s32 arg1) {
                     TObjEneDD__sub_800BA5A4(arg0, &enemy_dd_attack_param_block);
                 }
             }
-            play_sound_effect(fn_800C3A60((s32)arg0, 0x4003A311), arg0 + 0x38, 0, 0);
+            play_sound_effect((s32)(fn_800C3A60((s32)arg0, 0x4003A311)), (const Vec *)(arg0 + 0x38), 0, 0);
         }
         break;
     case 0:
@@ -101,7 +102,7 @@ void TObjEneDD__sub_800C2628(u8 *arg0, s32 arg1) {
                 if (F(s32, 0x3D8) > 0xFF) {
                     F(s32, 0x3D8) = 0xFF - (F(s32, 0x3D8) - 0xFF);
                     F(s32, 0x414) = 1;
-                    play_sound_effect(fn_800C3A60((s32)arg0, 0x4003AD10), arg0 + 0x38, 0, 0);
+                    play_sound_effect((s32)(fn_800C3A60((s32)arg0, 0x4003AD10)), (const Vec *)(arg0 + 0x38), 0, 0);
                 }
             } else {
                 F(s32, 0x3D8) -= step;
@@ -133,7 +134,7 @@ void TObjEneRe2Flower::handle_event(s32 arg1) {
         *(s32 *)((s8 *)arg0 + 0x3C4) = (s32) (*(s32 *)((s8 *)arg0 + 0x3C4) & 0xFFFFFFF7);
         ((TObjEneDD *)arg0)->set_field_378(3);
         *(s32 *)((s8 *)arg0 + 0x410) = 0;
-        play_sound_effect(fn_800C3A60((s32)arg0, 0x4003A315), (u8 *)&this->position, 0, 0);
+        play_sound_effect((s32)(fn_800C3A60((s32)arg0, 0x4003A315)), (const Vec *)((u8 *)&this->position), 0, 0);
         TObjPlayer::play_effect_if_v2(-0x200);
         return;
     case 3:

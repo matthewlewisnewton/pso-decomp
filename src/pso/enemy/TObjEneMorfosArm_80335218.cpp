@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/enemy/TObjEneMorfosArm.h"
 #include "pso/enemy/TObjEneMorfosArm_80335218.h"
@@ -50,7 +51,7 @@ void TObjEneMorfosArm::render() {
     push_matrix();
     post_translate_matrix((u8 *)&this->position);
     rotate_matrix_y(0, this->rotation_y);
-    TObjFish::set_global_param(this->texlist);
+    set_current_texture_list((GinjaTextureList *)(this->texlist));
     TObjPlayer::toggle_particle_effect();
     ((TObjMotion *)arg0)->draw();
     TParticleCtrl::end_effect_render();

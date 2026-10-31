@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/misc/TMedicalCenterMes.h"
 #include "pso/misc/TRaderMapCore.h"
 #include "pso/TShopWindowBase.h"
@@ -147,7 +148,7 @@ extern s32 TMedicalCenterSequence__class_name;
 u8 *TMedicalCenterSequence__ct(u8 *arg0, s32 arg1, s32 arg2);
 f32 get_scale__15TShopWindowBaseFv(void *);
 u8 *create_yes_no_window(s32 arg0, s32 arg1, u32 arg2, u32 arg3);
-s32 play_sound_effect(s32, s32, s32, s32);
+
 s32 try_spend_actor_meseta(u8 *arg0, s32 arg1);
 int sub_802239EC__13TShopSequenceFv(void *);
 int sub_80223A48__15TShopWindowBaseFv(void *);

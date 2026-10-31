@@ -1,4 +1,5 @@
 #include "pso/enemy/BattleParameters.h"
+#include "pso/misc/ParticleFactory.h"
 extern "C" void *__ct__12TObjEneDD_STFP7TObject(void *);
 #include "pso/system/NinjaTypes.h"
 #include "pso/system/BmlResourceClass.h"
@@ -189,7 +190,7 @@ void get_weapon_color__11TItemWeaponFPv(void *, void *);
 void TObjPlayer__sub_8032E648(s32 arg0, s32 arg1, s32 arg2);
 extern const f32 lbl_805E0260;
 void init_weapon_effect_descriptor__10TObjPlayerFPvPv(void *arg0, Obj_80362DE8 *arg1);
-void *spawn_particle_effect(void *pos, s32 id);
+
 s16 get_validated_attack_stage(u8 *arg0);
 extern s32 knuckle_marker_joint_table[];
 void s_rank_knuckle_marker(T_80362C80 *arg0);
@@ -346,7 +347,7 @@ void s_rank_knuckle_marker(T_80362C80 *arg0) {
   u8 sp8[0x10];
   s32 n;
   arg0->obj->m63(knuckle_marker_joint_table[(((TObjPlayer *)(arg0->obj))->has_valid_handle() * 3) + get_validated_attack_stage(((u8 *) arg0->obj) + 0x7CC)], sp8);
-  spawn_particle_effect(sp8, 0x1D0);
+  spawn_particle_effect((const Vec *)(sp8), 0x1D0);
 }
 
 void *init_s_rank_knuckle(void *arg0, s32 _w1, void * _w2) {

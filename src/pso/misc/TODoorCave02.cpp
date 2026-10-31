@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "pso/misc/TODoorCave02.h"
 
 #include "pso/TMainTask.h"
@@ -52,13 +53,13 @@ void TODoorCave02::update_open() {
         if (is_any_player_within_radius_xz(10000.0f) != 1) {
             object_state = 3;
             clear_player_status_flag(0, 8);
-            play_sound_effect(0x42807, &position, 0, 0);
+            play_sound_effect(0x42807, (const Vec *)(&position), 0, 0);
         }
     } else {
         object_state = 3;
         texlist = texture_lists[0];
         clear_player_status_flag(0, 8);
-        play_sound_effect(0x42807, &position, 0, 0);
+        play_sound_effect(0x42807, (const Vec *)(&position), 0, 0);
     }
 }
 
@@ -77,7 +78,7 @@ void TODoorCave02::update_closed() {
     if ((door_flags & 1) && is_any_player_within_radius_xz(4900.0f) == 1) {
         object_state = 1;
         set_indexed_flags(0, 8);
-        play_sound_effect(0x42807, &position, 0, 0);
+        play_sound_effect(0x42807, (const Vec *)(&position), 0, 0);
     }
 }
 
@@ -114,11 +115,11 @@ void TODoorCave02::render() {
         post_translate_matrix(&position.x);
         rotate_matrix_y(NULL, rotation_y);
         if ((s32)object_state == DOOR_CLOSED) {
-            TObjFish::set_global_param(texture_lists[door_flags & 1]);
+            set_current_texture_list((GinjaTextureList *)(texture_lists[door_flags & 1]));
             draw_light(((NJS_OBJECT *)model)->child);
             draw_light(((NJS_OBJECT *)model)->child->sibling);
         } else {
-            TObjFish::set_global_param(texture_lists[1]);
+            set_current_texture_list((GinjaTextureList *)(texture_lists[1]));
             draw_ginja_model_with_motion(model, motion, animation_frame);
         }
         pop_matrix();

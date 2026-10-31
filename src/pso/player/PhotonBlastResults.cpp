@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/item/TItemMag.h"
 #include "types.h"
@@ -103,7 +104,7 @@ void *TObjPlayer__sub_801AA66C(void *, void *);
 void *__nw__7TObjectFUl(int);
 s16 TObjPlayer__sub_80313114(u8 *arg0);
 int get_player_data__10TObjPlayerFi(int);
-void play_sound_effect(u32 id, void *position, s32, s32);
+
 u8 *TPhotonLeilla__ct(u8 *self, u8 *params);
 u8 *TPhotonMylla__ct(u8 *self, u8 *params);
 extern u32 lbl_805D5D18;
@@ -447,7 +448,7 @@ void step_photon_blast_sequence(PhotonBlastSequence_801A9870 *seq) {
         seq->state = 0;
         break;
     case 2:
-        play_sound_effect(0x40021927, &seq->position, 0, 0);
+        play_sound_effect(0x40021927, (const Vec *)(&seq->position), 0, 0);
         deliver_photon_blast_results_animated(seq);
         seq->queue_destruction();
         break;

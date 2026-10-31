@@ -1,5 +1,7 @@
 #include "pso/misc/MaterialOpacityFade.h"
 #include "pso/misc/RenderFadeState.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/enemy/TObjEneMe3SinowZoa_80316A74.h"
@@ -112,7 +114,7 @@ struct Pair_80316A74 { s32 a; s32 b; };
 struct Vec_80316B20 { f32 x, y, z; };
 
 extern "C" {
-s32 play_sound_effect(s32, u32, s16, s32);
+
 s32 pack_debug_text_position(s32, s32);
 s32 sub_8031A454__18TObjEneMe3SinowZoaFv(void *);
 s32 is_outside_visible_range__18TObjEneMe3SinowZoaFv(void *);
@@ -392,7 +394,7 @@ void TObjEneMe3SinowZoa__sub_80317254(u8 *ene_dd, s32 arg1) {
         *(s32 *)((s8 *)ene_dd + 0x3CC) = (s32) (*(s32 *)((s8 *)ene_dd + 0x3CC) & 0xFFEFFFFD);
         *(s32 *)((s8 *)ene_dd + 0x3CC) = (s32) (*(s32 *)((s8 *)ene_dd + 0x3CC) | 5);
         ((TObjEneMe3SinowZoa *)ene_dd)->fade.set_rate_from_divisor(0x1E);
-        play_sound_effect(0x4003AD2F, (u32)(ene_dd + 0x38), 0, 0);
+        play_sound_effect(0x4003AD2F, (const Vec *)((u32)(ene_dd + 0x38)), 0, 0);
         *(s32 *)((s8 *)ene_dd + 0x434) = 0;
         break;
     case 3:
@@ -445,7 +447,7 @@ void TObjEneMe3SinowZoa::vfunc_115() {
     }
     flag = sub_8031A454__18TObjEneMe3SinowZoaFv(arg0);
     if (arg0->m8(lbl_805DF318, TObjEneMe3SinowZoa__data_805DF2F0) != 0) {
-        TObjFish::set_global_param((s32)arg0->mdl);
+        set_current_texture_list((GinjaTextureList *)(arg0->mdl));
         TObjPlayer::toggle_particle_effect();
         if (flag != 0) {
             Part_803173D0 *parts = arg0->mdl->parts;

@@ -1,4 +1,7 @@
 #include "pso/player/demo_mode.h"
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/enemy/TObjEneBalClawBody.h"
 #include "pso/system/vector.h"
@@ -203,9 +206,9 @@ extern const f32 lbl_805D9624;
 extern const f32 lbl_805D9628;
 s16 get_actor_hp(u8 *p);
 void queue_destruction__7TObjectFv(void *arg0);
-void *spawn_particle_effect(void *pos, s32 id);
+
 void *create_particle_emitter(void *pos, s32 id);
-s32 play_sound_effect(int, void *, int, int);
+
 extern const f32 lbl_805D9634;
 extern const f32 lbl_805D9638;
 void TObjPlayer__sub_8008E310(P_8008E310 *arg0);
@@ -456,13 +459,13 @@ void TObjPlayer__sub_8008E310(P_8008E310 *arg0_) {
         if (arg0_->fB8 != 0xB) {
             queue_destruction__7TObjectFv((void *)arg0_->emit1);
             arg0_->emit1 = 0;
-            spawn_particle_effect(arg0_->f2FC, 0x129);
+            spawn_particle_effect((const Vec *)(arg0_->f2FC), 0x129);
             TObjPlayer__sub_8008E934(arg0_, 1);
             ((TObjMotion *)arg0_)->advance_animation();
             arg0_->flags &= ~0x04000000;
             arg0_->f33C = 0x1E;
             arg0_->state = 3;
-            play_sound_effect(0x4003AD30, arg0_->pos, 0, 0);
+            play_sound_effect(0x4003AD30, (const Vec *)(arg0_->pos), 0, 0);
         }
         break;
     case 3:
@@ -515,7 +518,7 @@ void TObjEneBalClawBody::render() {
         temp_r3 = ((VObj18_8008e74c_8008DCF0*)arg0)->m9(lbl_805D963C, lbl_805D9640, lbl_805D9628);
         if (temp_r3 != 0) {
             var_r30 = 1;
-            TObjFish::set_global_param(((TObjEneBalClawBody *)arg0)->texlist);
+            set_current_texture_list((GinjaTextureList *)(((TObjEneBalClawBody *)arg0)->texlist));
             select_actor_lighting((s32)arg0);
             TObjPlayer::toggle_particle_effect();
             push_matrix();

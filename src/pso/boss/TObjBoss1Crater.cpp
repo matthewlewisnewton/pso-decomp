@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/boss/TBoss8Dragon_800BC53C.h"
 #include "pso/system/vector.h"
@@ -124,7 +125,7 @@ extern s32 model_render_flags;
 
 void TObjBoss1Crater::render() {
     push_matrix();
-    TObjFish::set_global_param(dragon_common_texture_list);
+    set_current_texture_list((GinjaTextureList *)(dragon_common_texture_list));
     post_translate_matrix((u8 *)&this->position);
     rotate_matrix_y(0, this->rotation_y);
     model_render_flags |= 0x01000000;

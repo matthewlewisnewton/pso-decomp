@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TWindowCtrlMain_8024674C.h"
 #include "pso/misc/TWindowSubShortMail_80246CB8.h"
@@ -56,7 +57,7 @@ void load_hud_palette_textures(void) {
     ((TLobby *)lbl_8044E658)->tmp_buf_release();
     TLobby__sub_8023E554((s32)lbl_8044E758, (s32)f256_hyouji_texlist);
     lbl_805D63F0 = (u32)f256_hyouji_texlist;
-    TObjFish::set_global_param((s32)((void *)f256_hyouji_texlist));
+    set_current_texture_list((GinjaTextureList *)(((void *)f256_hyouji_texlist)));
     TLanguage::set_entry_index(0, 0x40);
     TLanguage::set_entry_index(1, 0x41);
     TLanguage::set_entry_index(2, 0x42);

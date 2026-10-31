@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/boss/TBoss8Dragon_80065C90.h"
 #include "pso/map/CsnQuery.h"
@@ -20,7 +21,6 @@ extern const f32 TObjEneMe3SinowZoa__data_805DF2F0;
 extern const f32 TObjEneMe3SinowZoa__data_805DF2F4;
 struct VOff_803167FC_arg0 { char pad_0[0x38]; char f_38[1]; };
 
-#define DELL spawn_particle_effect
 s32 TObjEneMe3SinowZoa::check_floor_contact(void *arg1) {
     u8 *arg0 = (u8 *)this;
     Vec_80316690 v;
@@ -39,20 +39,20 @@ s32 TObjEneMe3SinowZoa::check_floor_contact(void *arg1) {
         }
         if (hit->flags & 4) {
             TObjEneGibbles__sub_800D8988((u8 *)&this->position);
-            p = DELL(hit->obj + 0x38, 0x49);
+            p = spawn_particle_effect((const Vec *)(hit->obj + 0x38), 0x49);
             if (p != 0) {
                 attach_particle_model((u8 *)p, (s32)(TParticleCtrl::get_particle_model(2)), (s32)(TParticleCtrl::get_instance()), 0, 1, (f32)TObjEneMe3SinowZoa__data_805DF2F4);
             }
-            spawn_particle_effect(hit->obj + 0x38, 0xA4);
+            spawn_particle_effect((const Vec *)(hit->obj + 0x38), 0xA4);
             return 1;
         }
         if (hit->flags & 2) {
             TObjEneGibbles__sub_800D8988((u8 *)&this->position);
-            p = DELL(hit->obj + 0x54, 0x49);
+            p = spawn_particle_effect((const Vec *)(hit->obj + 0x54), 0x49);
             if (p != 0) {
                 attach_particle_model((u8 *)p, (s32)(TParticleCtrl::get_particle_model(2)), (s32)(TParticleCtrl::get_instance()), 0, 1, (f32)TObjEneMe3SinowZoa__data_805DF2F4);
             }
-            spawn_particle_effect(hit->obj + 0x54, 0xA4);
+            spawn_particle_effect((const Vec *)(hit->obj + 0x54), 0xA4);
             return 1;
         }
     }
@@ -64,7 +64,7 @@ void TObjEneMe3SinowZoa::check_and_notify() {
     struct VOff_803167FC_arg0 *self = (struct VOff_803167FC_arg0 *)this;
     x = check_floor_contact(self->f_38);
     if (x == 0) {
-        spawn_particle_effect(self->f_38, 243);
+        spawn_particle_effect((const Vec *)(self->f_38), 243);
     }
 }
 void TObjEneMe3SinowZoa__sub_80316840(u8 *arg0) {

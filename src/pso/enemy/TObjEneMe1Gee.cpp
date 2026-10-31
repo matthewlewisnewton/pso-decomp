@@ -1,3 +1,6 @@
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
+#include "pso/misc/PersistentSound.h"
 struct NJS_OBJECT;
 #include "pso/math/FloatRounding.h"
 #include "pso/misc/PositionSoundEffects.h"
@@ -861,7 +864,7 @@ void rotate_xz_pair_by_angle(f32 *arg0, f32 *arg1, s32 arg2);
 f32 calc_elapsed_scaled__9TObjEneDDFv(void *);
 void TObjEneMe1Gee__sub_800CBC04(u8 *arg0);
 void TObjEneMe1Gee__sub_800CBC1C(u8 *arg0);
-s32 play_sound_effect(s32, u32, s16, s32);
+
 f32 subtract_vector(void *, void *);
 extern const f64 lbl_8043BF28;
 extern const f32 lbl_805DA0F0;
@@ -871,7 +874,7 @@ extern const f32 lbl_805DA0FC;
 void TObjEneMe1Gee__sub_800C9A94(void *arg0, s32 arg1);
 void TObjEneEpsilon__sub_800B92F8(u8 *arg0, s32 arg1, f32 farg0);
 void destroy_subobj__13TObjEneMe1GeeFPv(void* p, void * _w1);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 u8 *TObjEneMe1Gee_NEEDLE__ct(TObjEneMe1Gee_NEEDLE *arg0, s32 arg1, u8 *from, u8 *to, f32 farg0, f32 farg1);
 void matrix_mult_vec(void *, Vec_800CA454 *, Vec_800CA454 *);
 s32 rotate_matrix_y(int, int);
@@ -2017,7 +2020,7 @@ void TObjEneMe1Gee::vfunc_115() {
     if (((VObj_18_26a62c *)(arg0))->m8(lbl_805DA0BC, TObjEneMe1Gee__data_805DA0C0) != 0) {
         ((TObjEneDD *)(arg0))->draw_ground_shadow(0, 0);
         TObjPlayer::toggle_particle_effect();
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)(this->texlist));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);
@@ -2054,7 +2057,7 @@ void render__13TObjEneMe1GeeFv(u8 *ene_me1_gee) {
             ((TObjEneDD *)(ene_me1_gee))->draw_ground_shadow(0, 0);
         }
         ((TObjEneDD *)ene_me1_gee)->update_secondary_light();
-        TObjFish::set_global_param((int) (((TObjEneMe1Gee *)ene_me1_gee)->texlist));
+        set_current_texture_list((GinjaTextureList *)((((TObjEneMe1Gee *)ene_me1_gee)->texlist)));
         saved_model_render_flags = model_render_flags;
         TObjEneDD::clear_global_flag_400();
         TObjPlayer::toggle_particle_effect();
@@ -2185,7 +2188,7 @@ void TObjEneMe1Gee::vfunc_112(s32 arg1) {
             ((VObj_18_0f49f2 *)((u8 *)(*(u8 **)((s8 *)arg0 + 0x3C0))))->m115(arg0);
         }
         create_breakup_mdl__12TBoss3VoloptFlllll(TObjEneMe1Gee__data_805D51C4, 0, this->texlist, (s32)(arg0 + 0x2FC), this->rotation_y);
-        play_sound_effect(TObjEneMe1Gee::handle_message((s32) arg0, 0x3A843), (u32)(arg0 + 0x38), 0, 0);
+        play_sound_effect((s32)(TObjEneMe1Gee::handle_message((s32) arg0, 0x3A843)), (const Vec *)((arg0 + 0x38)), 0, 0);
         *(s32 *)((s8 *)arg0 + 0x3C8) = (s32) (*(s32 *)((s8 *)arg0 + 0x3C8) | 0x400000);
         this->actorFlags = (s32) (this->actorFlags | 0x01000000);
         ((void (*)(void *, void *))VecCopy__FP3VecPC3Vec)(&stack.sp8, (u8 *)&this->body_center_position);
@@ -2430,7 +2433,7 @@ void TObjEneMe1Gee__sub_800C9A94(void *arg0, s32 arg1) {
                     o->f448 = lbl_805DA0F8 * (o->f3E8 - o->f3F4);
                     o->ddist = lbl_805DA0F8 * (lbl_805DA0FC - o->f3AC);
                     o->dist = o->f3AC;
-                    play_sound_effect(TObjEneMe1Gee::handle_message((s32)o, 0x3AD13), (u32)o->snd, 0, 0);
+                    play_sound_effect((s32)(TObjEneMe1Gee::handle_message((s32)o, 0x3AD13)), (const Vec *)((u32)o->snd), 0, 0);
                 }
                 o->timer++;
                 if (o->timer >= 8) {
@@ -2642,7 +2645,7 @@ void TObjEneMe1Gee__sub_800C9DF8(void *o_, s32 arg1) {
                 f32 k;
                 ((TObjEneDD_ST *)o)->enemy_copy_target_destination();
                 ((TObjEneDD *)o)->update_velocity();
-                play_sound_effect(TObjEneMe1Gee::handle_message((s32)o, 0x3AD13), (u32)o->snd, 0, 0);
+                play_sound_effect((s32)(TObjEneMe1Gee::handle_message((s32)o, 0x3AD13)), (const Vec *)((u32)o->snd), 0, 0);
                 k = lbl_805DA108;
                 inv = TObjEneMe1Gee__data_805DA0EC / newton_sqrtf(k);
                 k *= inv;
@@ -2691,7 +2694,7 @@ void TObjEneMe1Gee__sub_800C9DF8(void *o_, s32 arg1) {
         case 3:
             o->fB8 = 1;
             o->mode = 4;
-            play_sound_effect(TObjEneMe1Gee::handle_message((s32)o, 0x3AD15), (u32)o->snd, 0, 0);
+            play_sound_effect((s32)(TObjEneMe1Gee::handle_message((s32)o, 0x3AD15)), (const Vec *)((u32)o->snd), 0, 0);
         case 4:
             ((TObjEneDD_ST *)o)->enemy_copy_target_destination();
             ((TObjEneDD *)o)->update_velocity();
@@ -2823,9 +2826,9 @@ void TObjEneMe1Gee__sub_800CA454(void *arg0, s32 arg1) {
                     queue_destruction__7TObjectFv(o->sub464);
                     o->sub464 = NULL;
                 }
-                play_sound_effect(TObjEneMe1Gee::handle_message((s32)o, 0x3AD17), (u32)o->snd, 0, 0);
+                play_sound_effect((s32)(TObjEneMe1Gee::handle_message((s32)o, 0x3AD17)), (const Vec *)((u32)o->snd), 0, 0);
             } else {
-                play_persistent_sound((s32)(TObjEneMe1Gee::handle_message((s32)o, 0x3A914)), (s32)o, (u32)o->snd, 0, 0);
+                play_persistent_sound((s32)((s32)(TObjEneMe1Gee::handle_message((s32)o, 0x3A914))), (const void *)((s32)o), (const Vec *)((u32)o->snd), 0, 0);
             }
             break;
         }
@@ -3421,7 +3424,7 @@ void TObjEneMe1Gee::update_fade_sequence() {
 int TObjEneMe1Gee__vt102(void* p) { return select_and_apply_target__12TObjEneDD_STFf(p); }
 
 void TObjEneMe1Gee__sub_800CB968(s32 arg0) {
-    play_persistent_sound(TObjEneMe1Gee::handle_message(arg0, 0x3BC16), arg0, arg0 + 0x2FC, 0, 0);
+    play_persistent_sound((s32)(TObjEneMe1Gee::handle_message(arg0, 0x3BC16)), (const void *)(arg0), (const Vec *)(arg0 + 0x2FC), 0, 0);
 }
 
 s32 TObjEneMe1Gee::handle_message(s32 arg0, s32 arg1) {

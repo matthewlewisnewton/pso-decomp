@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "pso/misc/TODoorAncient06.h"
 
 #include "pso/TMainTask.h"
@@ -35,7 +36,7 @@ void TODoorAncient06::render() {
         push_matrix();
         post_translate_matrix(&position.x);
         rotate_matrix_y(NULL, rotation_y);
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         if (motion != NULL && 0.0f != animation_frame) {
             draw_ginja_model_with_motion(model, motion, animation_frame);
         } else {
@@ -55,13 +56,13 @@ void TODoorAncient06::update_open() {
         if (is_any_player_within_radius_xz(10000.0f) != 1) {
             object_state = 3;
             clear_player_status_flag(0, 8);
-            play_sound_effect(0x4004B708, &position, 0, 0);
+            play_sound_effect(0x4004B708, (const Vec *)(&position), 0, 0);
         }
     } else {
         object_state = 3;
         texlist = texture_lists[0];
         clear_player_status_flag(0, 8);
-        play_sound_effect(0x4004B708, &position, 0, 0);
+        play_sound_effect(0x4004B708, (const Vec *)(&position), 0, 0);
     }
 }
 
@@ -71,7 +72,7 @@ void TODoorAncient06::update_closed() {
         if (is_any_player_within_radius_xz(4900.0f) == 1) {
             object_state = 1;
             set_indexed_flags(0, 8);
-            play_sound_effect(0x4004B708, &position, 0, 0);
+            play_sound_effect(0x4004B708, (const Vec *)(&position), 0, 0);
         }
     } else {
         texlist = texture_lists[0];

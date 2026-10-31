@@ -1,5 +1,8 @@
 #include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
+#include "pso/misc/PersistentSound.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/system/NinjaUtil.h"
@@ -36,7 +39,7 @@
 extern "C" {
 u16 get_entity_id(void *obj);
 void obj_setFlags30(void *obj, u32 flags);
-s32 play_sound_effect(s32 id, void *pos, s32 a2, s32 a3);
+
 f32 normalize_vector(Vec *v);
 void vec3_add_to(Vec *a, const Vec *b);
 void matrix_mult_vec(s32 matrix, const Vec *in, Vec *out);
@@ -266,7 +269,7 @@ void TBoss3VoloptP01::render() {
     u32 flags;
 
     if (!(actorFlags & 0x02000000) && update_object_view_visibility(400.0f, 40.0f) != 0) {
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         select_actor_lighting((s32)this);
         TObjPlayer::toggle_particle_effect();
         push_matrix();
@@ -322,7 +325,7 @@ void TBoss3VoloptP01::update_state() {
                 m_388 = flags & ~1;
                 sub_80042F84();
             } else {
-                play_sound_effect(0x4003A810, &position, 0xA, 0);
+                play_sound_effect(0x4003A810, (const Vec *)(&position), 0xA, 0);
                 state = 2;
             }
         } else {
@@ -339,7 +342,7 @@ void TBoss3VoloptP01::update_state() {
                     m_388 = flags & ~1;
                     sub_80042F84();
                 } else {
-                    play_sound_effect(0x4003A810, &position, 0xA, 0);
+                    play_sound_effect(0x4003A810, (const Vec *)(&position), 0xA, 0);
                     state = 2;
                 }
             }
@@ -383,7 +386,7 @@ void TBoss3VoloptP01::update_breakup() {
             TBoss3Volopt::create_breakup_mdl((s32)TBoss3VoloptP01__breakup_model, (s32)&volopt_p01_breakup_params, texlist, (s32)&body_center_position, rotation_y);
             ((TObjPlayer *)&body_center_position)->trigger_dell_biter_events();
             m_388 |= 0x40000;
-            play_sound_effect(0x4003AD07, &position, 0, 0);
+            play_sound_effect(0x4003AD07, (const Vec *)(&position), 0, 0);
             state = 2;
             actorFlags &= ~0x800;
         }
@@ -532,7 +535,7 @@ void TBoss3VoloptP01::update_attack() {
     case 1:
         set_flags_30();
         if (--*(s16 *)&timer <= 0) {
-            play_sound_effect(0x4003A306, &position, 0xA, 0);
+            play_sound_effect(0x4003A306, (const Vec *)(&position), 0xA, 0);
             state = 2;
         }
         break;
@@ -566,7 +569,7 @@ void TBoss3VoloptP01::update_attack() {
         state = 5;
     }
     case 5:
-        play_persistent_sound(0x4002B51E, (s32)this, (u32)&position, 0, 0);
+        play_persistent_sound((s32)(0x4002B51E), (const void *)(this), (const Vec *)((u32)&position), 0, 0);
         if (--attack_timer <= 0) {
             if (charge_effect != NULL) {
                 charge_effect->queue_destruction();
@@ -612,7 +615,7 @@ void TBoss3VoloptP01::update_attack() {
         break;
     case 10:
         set_flags_30();
-        play_sound_effect(0x4003A810, &position, 0xA, 0);
+        play_sound_effect(0x4003A810, (const Vec *)(&position), 0xA, 0);
         state = 0xB;
     case 11:
         set_flags_30();
@@ -797,7 +800,7 @@ s32 TBoss3VoloptP01::fire_zonde_at_players() {
                 packet.send();
             }
         }
-        play_sound_effect(0x4002A509, NULL, 0, 0);
+        play_sound_effect(0x4002A509, (const Vec *)(NULL), 0, 0);
     }
     return n;
 }

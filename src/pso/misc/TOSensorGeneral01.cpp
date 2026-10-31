@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/TMainTask.h"
 #include "pso/TParticleCtrl.h"
@@ -64,27 +65,27 @@ void TOSensorGeneral01::render() {
         rotate_matrix_y(NULL, rotation_y);
         object = (NJS_OBJECT *)model;
         translate_matrix(0, object->pos[0], object->pos[1], object->pos[2]);
-        TObjFish::set_global_param(TOSensorGeneral01__texture_lists[0]);
+        set_current_texture_list((GinjaTextureList *)(TOSensorGeneral01__texture_lists[0]));
         draw_ginja_model((s32)object->model);
         TParticleCtrl::begin_effect_render();
         object = object->child;
         translate_matrix(0, object->pos[0], object->pos[1], object->pos[2]);
-        TObjFish::set_global_param(TOSensorGeneral01__texture_lists[lamps_dark < 1]);
+        set_current_texture_list((GinjaTextureList *)(TOSensorGeneral01__texture_lists[lamps_dark < 1]));
         draw_ginja_model((s32)object->model);
         object = object->sibling;
         translate_matrix(0, object->pos[0], object->pos[1], object->pos[2]);
-        TObjFish::set_global_param(TOSensorGeneral01__texture_lists[lamps_dark < 2]);
+        set_current_texture_list((GinjaTextureList *)(TOSensorGeneral01__texture_lists[lamps_dark < 2]));
         draw_ginja_model((s32)object->model);
         object = object->sibling;
         translate_matrix(0, object->pos[0], object->pos[1], object->pos[2]);
-        TObjFish::set_global_param(TOSensorGeneral01__texture_lists[lamps_dark < 3]);
+        set_current_texture_list((GinjaTextureList *)(TOSensorGeneral01__texture_lists[lamps_dark < 3]));
         draw_ginja_model((s32)object->model);
         TParticleCtrl::end_effect_render();
         object = object->sibling;
         push_matrix();
         translate_matrix(0, object->pos[0], object->pos[1], object->pos[2]);
         rotate_matrix_y(NULL, head_angle);
-        TObjFish::set_global_param(TOSensorGeneral01__texture_lists[1]);
+        set_current_texture_list((GinjaTextureList *)(TOSensorGeneral01__texture_lists[1]));
         draw_ginja_model((s32)object->model);
         pop_matrix();
         pop_matrix();
