@@ -82,7 +82,7 @@ When your change makes a whole unit match, run `python tools/link_units.py scan 
   and avoid artificial units, references or hand-written tables. Source definition order is a readability preference,
   not a substitute for matching the emitted object. In CodeWarrior, deferred emission can change function, vtable
   and switch-table ordering: ascending definitions in the Gee investigation retained instruction bytes but changed
-  relocation positions and vtable layout ([evidence](docs/compiler-emission-evidence.md)). This is evidence for an
+  relocation positions and vtable layout ([evidence](docs/evidence/compiler-emission-evidence.md)). This is evidence for an
   exception, not proof of the original source order.
   Check code, data, alignment and relocations, not function scores alone.
 - No assembly, anywhere. A function Nintendo or Metrowerks wrote in assembly keeps its C signature with the body

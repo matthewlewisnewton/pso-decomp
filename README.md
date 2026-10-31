@@ -74,6 +74,7 @@ in assembly: `tools/orig_asm.py` rebuilds their bodies from your disc before any
 
 [CONTRIBUTING.md](CONTRIBUTING.md) covers what a change can do and the rules for it.
 [docs/architecture.md](docs/architecture.md) describes how the executable and the source tree are laid out.
+The [documentation index](docs/README.md) links to contributor guides and recovery evidence.
 
 ## Credits
 
