@@ -336,7 +336,7 @@ void TWindowSubStatusDisp::render() {
     s32 temp_r3;
 
     if (get_player_by_client_id(this->m_20) != 0U) {
-        temp_r3 = this->setup_window_draw_context((s32)(((u8 *)this) + 0x6C));
+        temp_r3 = (s32)this->setup_window_draw_context((s32)(((u8 *)this) + 0x6C));
         draw_window_frame((void *)temp_r3);
         draw_visible_window_entries(this, ((u8 *)this) + 0x24, temp_r3);
         draw_list_page_indicator(this->m_68, temp_r3);

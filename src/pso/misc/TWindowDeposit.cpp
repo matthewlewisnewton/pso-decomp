@@ -44,7 +44,7 @@ void TWindowDeposit::render_status(s32 arg1) {
 
 void render__14TWindowDepositFv(s32 arg0) {
     s32 ctx;
-    ctx = ((TUnk_804CE018 *)arg0)->setup_window_draw_context(arg0 + 0x64);
+    ctx = (s32)((TUnk_804CE018 *)arg0)->setup_window_draw_context(arg0 + 0x64);
     ((TWindowDeposit *)arg0)->render_status(ctx);
     draw_visible_window_entries((void *)arg0, (void *)(arg0 + 0x24), (int)ctx);
 }

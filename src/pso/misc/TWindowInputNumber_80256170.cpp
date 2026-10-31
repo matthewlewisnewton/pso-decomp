@@ -211,7 +211,7 @@ void draw_arrows__18TWindowInputNumberFv(TWindowInputNumber *self, Ctx_802563A0 
 void render__18TWindowInputNumberFv(TWindowInputNumber *arg0) {
     s32 temp_r3;
 
-    temp_r3 = ((TUnk_804CE018 *)arg0)->setup_window_draw_context((s32)((u8 *)arg0 + 0x74));
+    temp_r3 = (s32)((TUnk_804CE018 *)arg0)->setup_window_draw_context((s32)((u8 *)arg0 + 0x74));
     ((TUnk_804CE018 *)arg0)->draw_window_frame((void *)temp_r3);
     draw_visible_window_entries(arg0, (u8 *)arg0 + 0x24, temp_r3);
     draw_arrows__18TWindowInputNumberFv(arg0, (Ctx_802563A0 *)temp_r3, (Digit_802561E8 *)((TUnk_804CE018 *)arg0)->get_array_entry(arg0->selectedDigit), arg0->is_confirmed());
