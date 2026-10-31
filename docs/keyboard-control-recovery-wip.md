@@ -113,3 +113,21 @@ locally. A targeted object comparison retains 100% for `0x80260808`,
 `0x8026088C` and `0x80261204`, and leaves the new dispatcher unchanged. The locked two-job rebuild and
 regression checks passed with eight matched data bytes gained and no loss of
 existing exact functions, data or linked units.
+
+## Static action-array emission experiment
+
+In an isolated temporary compile, a function-local static array of the 22
+observed `TWindowKeyBoardSoft::vt0` through `vt21` member pointers produced
+92.90% for `0x80260904` (1,356 candidate bytes against 1,324 original), versus
+57.49% for the checked-in explicit copy. CodeWarrior emitted 22 three-word
+initial descriptors followed by a 264-byte runtime array in `.data`, and a
+one-byte static initialization guard in `.sbss`. This matches the observed
+structure of the original action-data range and the guard's use, but not yet
+the complete instruction sequence, symbol names, section layout or linkage.
+
+The experiment was not committed as implementation because adopting the static
+array changes ownership of the shared window descriptor/action object and its
+guard. The independent constructor owner should evaluate it alongside the
+`0x804CFDE0` data split and `0x805D6458` symbol-localization plan. Its object
+was compiled only in `/tmp/pso-keyboard-work`; the fork branch retains the
+validated explicit-copy implementation.
