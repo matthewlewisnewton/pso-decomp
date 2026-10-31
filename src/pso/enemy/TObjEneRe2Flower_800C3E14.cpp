@@ -1,3 +1,5 @@
+#include "pso/player/demo_mode.h"
+#include "pso/misc/MaterialOpacityFade.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
@@ -190,15 +192,15 @@ TObjEneRe2Flower::TObjEneRe2Flower(TObject *parent, void *setData)
     } else if (random_ratio() <= lbl_805D9FFC) {
         flowerFlags |= 0x400;
     }
-    init_position_vectors();
+    initialize_position_copies();
     model = (void *)((BmlResource *)lbl_805D5174)->models->model;
     texlist = ((BmlResource *)lbl_805D5174)->models->m_c;
     if (get_flag_11())
         init_model(flower_tower_collision_parts, 2);
     else
         init_model(flower_normal_collision_parts, 2);
-    set_field_d8((s32)TObjEneRe2Flower__animation_descriptors);
-    set_field_dc((s32)((BmlResource *)lbl_805D5174)->motions);
+    set_action_table((TObjMotionAction *)TObjEneRe2Flower__animation_descriptors);
+    set_motion_list((BmlMotionEntry *)((BmlResource *)lbl_805D5174)->motions);
     requested_action = 1;
     set_animation(requested_action);
     set_field_b8(requested_action);
@@ -255,7 +257,7 @@ TObjEneRe2Flower::~TObjEneRe2Flower() {
 
 void TObjEneRe2Flower::run_task() {
     s16 currentMode;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->vfunc_105();
         return;
     }

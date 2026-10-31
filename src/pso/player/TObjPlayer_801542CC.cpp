@@ -1,3 +1,4 @@
+#include "pso/map/CsnGroundQuery.h"
 #include "pso/math/ScratchVectorStorage.h"
 #include "types.h"
 #include "pso/system/FlagWord.h"
@@ -183,7 +184,6 @@ u16 get_entity_id(int);
 extern const f32 lbl_805DB29C;
 void *memcpy(void *, const void *, u32);
 s32 *csnVectorUnder(s32 arg0, u32 *arg1, s32 arg2);
-s32 *csnVecterUnder(s32 origin, s32 mask);
 u16 TObjRoomId__sub_801A1DB8(u16);
 extern const f32 lbl_805DB2A0;
 s32 project_actor_to_ground(Obj_80156844 *self, Vec_80156844 *pos, Vec_80156844 *normal);
@@ -1140,7 +1140,7 @@ s32 project_actor_to_ground(Obj_80156844 *self, Vec_80156844 *pos, Vec_80156844 
     if (coll != 0) {
         hit = (Hit_80156844 *)csnVectorUnder((s32)&v, (u32 *)coll, flags);
     } else {
-        hit = (Hit_80156844 *)csnVecterUnder((s32)&v, flags);
+        hit = (Hit_80156844 *)csnVecterUnder((const Vec *)&v, flags);
     }
     if (hit == NULL) {
         return 0;

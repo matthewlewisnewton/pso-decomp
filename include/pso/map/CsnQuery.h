@@ -2,6 +2,7 @@
 #define PSO_MAP_CSNQUERY_H
 
 #include "types.h"
+#include "pso/map/CsnGroundQuery.h"
 #include <stddef.h>
 #include <dolphin/mtx.h>
 
@@ -32,12 +33,16 @@ struct CsnContact {
     u32 flags;
 };
 
-// The result csnVector returns (one static record, NULL when nothing is hit).
+// The shared query result (one static record, NULL when nothing is hit).
 struct CsnHit {
     u8 pad_0[0x4];
     CsnContact *contact;
     u8 pad_8[0x38];
 };
+
+typedef char CsnContactSize[sizeof(CsnContact) == 0x1C ? 1 : -1];
+typedef char CsnContactNormalOffset[offsetof(CsnContact, normal) == 0xC ? 1 : -1];
+typedef char CsnHitContactOffset[offsetof(CsnHit, contact) == 4 ? 1 : -1];
 
 extern "C" {
 CsnHit *csnVector(const Vec *from, const Vec *to, u32 mask);
@@ -53,7 +58,6 @@ void TObjPlayer__sub_8007911C(void);
 void TObjPlayer__sub_80079120(s32 _w0);
 void TObjPlayer__sub_80079124(void *_w0, void *_w1);
 s32 *csnLookAt(s32 arg0, s32 arg1);
-s32 *csnVecterUnder(s32 origin, s32 mask);
 s32 *csnVectorUnder(Vec *arg0, u32 *arg1, s32 arg2);
 s32 get_csn_group_flags(u8 arg0);
 }

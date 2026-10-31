@@ -1,5 +1,7 @@
+#include "pso/system/MatrixVectorArray.h"
 #include "pso/animation/MotionContext.h"
 #include "pso/math/FloatRounding.h"
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
@@ -562,7 +564,6 @@ extern const f32 lbl_805D80C0;
 void run_task__12TBoss1DragonFv(u8 *arg0);
 void transform_point_to_view(s32, s32);
 void update_camera_sequence__9TObjEneDDFv(void);
-s32 mult_vec_array__10TObjPlayerFUll(int, void *, int, int);
 extern const RecoveredGlobal_8002116C_lbl_80434F20 boss1_dragon_capture_node_table;
 extern DragonModelVector lbl_804FE188;
 extern DragonCaptureVectors lbl_804FE194;
@@ -1042,7 +1043,7 @@ void TBoss1Dragon::render_shadows() {
     u8 *temp_r4;
 
     var_r31 = 0;
-    if (TObjPlayer::check_demo_mode() == 0) {
+    if (check_demo_mode() == 0) {
         if (is_split_screen() != 0) {
             var_r31 = get_camera_mode__11TCameraCtrlFv();
         }
@@ -1077,7 +1078,7 @@ void TBoss1Dragon::render() {
     s32 hit;
     f32 dist;
     view = 0;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->render_low_detail();
         return;
     }
@@ -1243,7 +1244,7 @@ void dragon_capture_node_points(void) {
     if ((s32) TBoss1Dragon__data_805D4B0C == (s32) lbl_805D4B10) {
         push_matrix();
         update_camera_sequence__9TObjEneDDFv();
-        mult_vec_array__10TObjPlayerFUll(0, (void *)&lbl_804FE194.vectors[0].x, TBoss1Dragon__data_805D4B14, 3);
+        matrix_mult_vec_array((f32 (*)[4])(0), (const Vec *)((void *)&lbl_804FE194.vectors[0].x), (Vec *)(TBoss1Dragon__data_805D4B14), 3);
         pop_matrix();
     }
     if ((s32) TBoss1Dragon__data_805D4B0C == (s32) *(s32 *)((s8 *)&boss1_dragon_capture_node_table.value + (TBoss1Dragon__data_805D4B18 * 4))) {
@@ -5630,7 +5631,7 @@ void TBoss1Dragon::run_task() {
     s32 temp_r30;
     s32 temp_r30_2;
     u8 *arg0 = (u8 *)this;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((TBoss1Dragon *)(arg0))->vfunc_105();
         return;
     }
@@ -5805,8 +5806,8 @@ u8 *TBoss1Dragon__ct(u8 *arg0, void *arg1, void *arg2) {
     F_29DE4(arg0, s32, 0x24) = F_29DE4(F_29DE4(TBoss1Dragon__data_805D4B08, u8 *, 0x42C), s32, 0xC);
     init_model__9TObjEneDDFP13CollisionBodyl(arg0, (void *)boss1_dragon_collision_body_parts, 7);
     F_29DE4(arg0, s32, 0xB0) = 0;
-    ((TObjMotion *)arg0)->set_field_d8((s32)((void *)lbl_80481010));
-    ((TObjMotion *)arg0)->set_field_dc(F_29DE4(TBoss1Dragon__data_805D4B08, u32, 0x430));
+    ((TObjMotion *)arg0)->set_action_table((TObjMotionAction *)((s32)((void *)lbl_80481010)));
+    ((TObjMotion *)arg0)->set_motion_list((BmlMotionEntry *)(F_29DE4(TBoss1Dragon__data_805D4B08, u32, 0x430)));
     F_29DE4(arg0, s16, 0xB8) = 0;
     ((TObjMotion *)arg0)->set_animation(F_29DE4(arg0, s16, 0xB8));
     ((TObjMotion *)arg0)->set_field_b8(F_29DE4(arg0, s16, 0xB8));
@@ -6319,8 +6320,8 @@ void TObjMotion::set_field_b8(s16 v) { this->requested_action = v; }
 
 extern s32 TLobby__data_805D6144;
 
-void TObjMotion::set_field_dc(s32 v) { *(s32 *)&this->motion_list = v; }
-void TObjMotion::set_field_d8(s32 v) { (*(s32 *)&this->action_table) = v; }
+void TObjMotion::set_motion_list(BmlMotionEntry *v) { motion_list = v; }
+void TObjMotion::set_action_table(TObjMotionAction *v) { action_table = v; }
 void TObjPlayer::reset_lobby_model() { reset_type(); }
 void TObjPlayer::reset_type() { *(s32*)((char*)this + 0x0) = 0; }
 void ProtectionTimer::set_frames(s32 v) { frames = v; }

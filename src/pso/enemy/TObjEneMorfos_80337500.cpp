@@ -1,3 +1,4 @@
+#include "pso/map/CsnGroundQuery.h"
 #include "types.h"
 #include "pso/enemy/TUnk_804EF130.h"
 #include "pso/system/vector.h"
@@ -42,7 +43,6 @@ struct O_80337644 {
 };
 
 extern "C" {
-s32 *csnVecterUnder(s32 origin, s32 mask);
 f32 xz_distance_squared(void *, void *);
 void subtract_vector(void *, void *);
 extern P_80337500 lbl_80477B70[];
@@ -87,7 +87,7 @@ void hit_target_in_range__13TObjEneMorfosFPvPvPv(O_80337500 *arg0, V_80337500 *a
 
 s32 TObjEneMorfos::snap_to_ground(s32 arg0, s32 arg1) {
     u8 *temp_r3;
-    temp_r3 = (u8 *)(csnVecterUnder(arg1, 0x16EF));
+    temp_r3 = (u8 *)(csnVecterUnder((const Vec *)arg1, 0x16EF));
     if (temp_r3 == NULL) {
         return 0;
     }

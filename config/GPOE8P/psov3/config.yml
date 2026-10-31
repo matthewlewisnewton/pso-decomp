@@ -2715,7 +2715,7 @@ force_active:
   - apply_battle_ctrl_effect__Fi
   - apply_blend_mode_1__10TObjPlayerFv
   - apply_bonuses
-  - apply_clamped_mode_param__12TObjEneSharkFv
+  - configure_subtype__12TObjEneSharkFv
   - apply_confusion_status__12TBoss1DragonFv
   - apply_confusion_status__13TObjEneRe4BitFv
   - apply_contact_damage__10TBoss4ZakoFv
@@ -12856,7 +12856,7 @@ force_active:
   - spawn_particle_at_entity_slot__10TObjPlayerFllll
   - spawn_particle_emitters__9TTecMegidFv
   - spawn_particle_if_in_band__17TObjEneDf2BringerFPv
-  - spawn_particles_at__12TBoss3VoloptFi
+  - spawn_position_particles
   - spawn_parts__12TBoss3VoloptFv
   - spawn_player_hit_effects__14TBoss6PlotFalzFv
   - spawn_player_tombstones2__6TLobbyFv
@@ -13036,7 +13036,7 @@ force_active:
   - sub_800D10A0__16TObjEneBm5GibonUFv
   - sub_800D4200__13TUnk_8049442CFv
   - sub_800D47B4__19TObjGyaranzoMissileFv
-  - sub_800D741C__13TUnk_80494938Fv
+  - update_alpha__19MaterialOpacityFadeFv
   - sub_800DA1F4__16TObjEneNanoDragoFv
   - sub_800DA2A0__16TObjEneNanoDragoFv
   - sub_800DB970__16TObjEneNanoDragoFv

@@ -1,3 +1,5 @@
+#include "pso/player/demo_mode.h"
+#include "pso/misc/MaterialOpacityFade.h"
 #include "pso/enemy/BattleParameters.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
@@ -1060,7 +1062,7 @@ void TObjEneLappy::run_task() {
     u8 *temp_r3;
     u8 *temp_r3_2;
     sub_800C20C0__12TObjEneLappyFv();
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         apply_variant_speeds__12TObjEneLappyFv((Obj_800BFCD4 *)(this));
         TObjPlayer__sub_800BFF54(this);
         return;
@@ -1732,7 +1734,7 @@ u8 *TObjEneLappy__ct(u8 *self, s32 arg1, Set_800C1C4C *set) {
     add_flags_2e4__9TObjCharaFUl(self, 1, scale, lbl_805D9F84);
     *(u32 *)(self + 0x30) |= 0x40000;
     *(void **)(self + 0xD8) = (u8 *)rappy_variant_speed_table;
-    ((TObjMotion *)self)->set_field_d8((s32)(*(void **)(self + 0xD8)));
+    ((TObjMotion *)self)->set_action_table((TObjMotionAction *)(*(void **)(self + 0xD8)));
     *(s16 *)(self + 0xB8) = 0;
     ((TObjMotion *)self)->set_animation(*(s16 *)(self + 0xB8));
     ((TObjMotion *)self)->set_field_b8(*(s16 *)(self + 0xB8));
@@ -1843,7 +1845,7 @@ void TObjEneRe2Flower::render() {
     s32 visible;
     s32 savedTexture0;
     s32 savedTexture1;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         vfunc_106();
         return;
     }
