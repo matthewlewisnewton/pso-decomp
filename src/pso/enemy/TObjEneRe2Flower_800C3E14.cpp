@@ -17,7 +17,6 @@
 #include "pso/player/TUnk_804928CC.h"
 #include "pso/system/BmlResourceDescriptor.h"
 #include "pso/system/BmlResource.h"
-#include "pso/system/EnemyBmlResource.h"
 #include "pso/npc/NpcAnimationBinding.h"
 #include "pso/system/vector.h"
 #include "pso/animation/ActorAnimationState.h"
