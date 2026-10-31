@@ -1,4 +1,5 @@
 #include "pso/math/FloatRounding.h"
+struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/system/vector.h"
@@ -576,7 +577,7 @@ void translate_matrix(u32 arg0, f32 x, f32 y, f32 z);
 s32 push_matrix();
 s32 pop_matrix();
 s32 post_translate_matrix(void *);
-void fn_8009BD00(void);
+void fn_8009BD00(NJS_OBJECT *);
 extern s32 lbl_8043A268[];
 extern s32 lbl_8043A274[];
 extern u32 lbl_805D4FD4;
@@ -2875,7 +2876,7 @@ void TObjEneMe1Canadin::render() {
                 TObjEneMe1Canadin__render_point_cursor = (s32)(arg0 + 0x414);
                 VecCopy((Vec *)(arg0 + 0x438), (const Vec *)(lbl_8043A268));
                 VecCopy((Vec *)(arg0 + 0x420), (const Vec *)(lbl_8043A274));
-                set_chunk_model_node_callback((s32)&fn_8009BD00);
+                set_chunk_model_node_callback(&fn_8009BD00);
                 if (var_r30 == 1) {
                     ((TObjMotion *)arg0)->draw();
                 } else {
@@ -2888,7 +2889,7 @@ void TObjEneMe1Canadin::render() {
                 TObjEneMe1Canadin__render_point_cursor = (s32)(arg0 + 0x414);
                 VecCopy((Vec *)(arg0 + 0x438), (const Vec *)(lbl_8043A268));
                 VecCopy((Vec *)(arg0 + 0x420), (const Vec *)(lbl_8043A274));
-                set_chunk_model_node_callback((s32)&fn_8009BD00);
+                set_chunk_model_node_callback(&fn_8009BD00);
                 ((TObjEneDD_ST *)arg0)->draw_with_alt_model((int) (*(s32 *)((s8 *)arg0 + 0x410)));
                 set_chunk_model_node_callback(NULL);
             }
@@ -2912,7 +2913,7 @@ void TObjEneMe1Canadin::render() {
     VecCopy((Vec *)(arg0 + 0x45C), (const Vec *)(arg0 + 0x2FC));
 }
 
-void fn_8009BD00(void) {
+void fn_8009BD00(NJS_OBJECT *) {
     s32 temp_r4;
     s32 pos;
     s32 temp_r5;

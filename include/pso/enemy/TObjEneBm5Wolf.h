@@ -1,3 +1,4 @@
+struct NJS_OBJECT;
 #ifndef PSO_ENEMY_TOBJENEBM5WOLF_H
 #define PSO_ENEMY_TOBJENEBM5WOLF_H
 
@@ -58,7 +59,7 @@ struct TObjEneBm5Wolf : public TObjEneDD_ST {
     u8 unk_460[0x4];
     f32 m_464;
     s32 nearTarget;
-    static void advance_spawn_timer();
+    static void advance_spawn_timer(NJS_OBJECT *);
     void despawn_state(s32 msg);
     void update_dying_state(s32 arg1);
     void hurt_state(s32 arg1);

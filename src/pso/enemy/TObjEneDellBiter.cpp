@@ -1,5 +1,6 @@
 #include "pso/math/ViewPoint.h"
 #include "pso/enemy/BattleParameters.h"
+struct NJS_OBJECT;
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/player/TObjPlayer_800D8FDC.h"
 #include "pso/system/EnemyBmlResource.h"
@@ -1510,7 +1511,7 @@ void TObjEneDellBiter::state_death(s32 reason) {
     }
 }
 
-void TObjEneDellBiter::step_demo_script() {
+void TObjEneDellBiter::step_demo_script(NJS_OBJECT *) {
     s32 pos;
     switch (TObjEneDellBiter__demo_script_step) {
     case 9:
@@ -1613,13 +1614,13 @@ void TObjEneDellBiter::render() {
             post_translate_matrix(&position);
             rotate_matrix_y(0, rotation_y);
             scale_matrix(0, TObjEneDellBiter__data_805DEFB8, TObjEneDellBiter__data_805DEFB8, TObjEneDellBiter__data_805DEFB8);
-            set_chunk_model_node_callback((s32)((void *)TObjEneDellBiter::step_demo_script));
+            set_chunk_model_node_callback((TObjEneDellBiter::step_demo_script));
             if (vis == 1) {
                 this->draw();
             } else {
                 draw_motion_model();
             }
-            set_chunk_model_node_callback((s32)NULL);
+            set_chunk_model_node_callback(NULL);
             pop_matrix();
         }
         if (flags & 2) {

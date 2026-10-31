@@ -1,3 +1,4 @@
+struct NJS_OBJECT;
 #ifndef PSO_ENEMY_TOBJENESLIMETAILATTACK_H
 #define PSO_ENEMY_TOBJENESLIMETAILATTACK_H
 
@@ -21,7 +22,7 @@ void TObjEneSlimeOne__sub_800E969C(TObjEneSlimeOne *arg0);
 void *TObjEneSlimeTailAttack__ct(TObjEneSlimeTailAttack *arg0, void *arg1, s32 arg2, s32 arg3, s32 arg4);
 void *TObjEneSlimeWaterBomb__ct(TObjEneSlimeWaterBomb *arg0, void *arg1, void *arg2);
 void TObjPlayer__sub_800E80C0(u8 *dst);
-void TObjPlayer__sub_800E8128(void);
+void TObjPlayer__sub_800E8128(NJS_OBJECT *);
 void TObjPlayer__sub_800E81A8(void);
 void sub_800E841C__22TObjEneSlimeTailAttackFv(u8 *arg0);
 void render__22TObjEneSlimeTailAttackFv(u8 *arg0);

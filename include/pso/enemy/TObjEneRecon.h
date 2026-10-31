@@ -1,3 +1,4 @@
+struct NJS_OBJECT;
 #ifndef PSO_ENEMY_TOBJENERECON_H
 #define PSO_ENEMY_TOBJENERECON_H
 
@@ -44,7 +45,7 @@ struct TObjEneRecon : public TObjEneDD_ST {
     static void set_active();
     static void *create_bomb(void *arg0, void *arg1, void *arg2);
     void render_shadows();
-    static void advance_intro_stage();
+    static void advance_intro_stage(NJS_OBJECT *);
     void update_ground_probe();
     u8 is_anim_5();
     void spawn_trap_a();

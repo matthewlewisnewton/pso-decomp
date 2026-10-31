@@ -1,3 +1,4 @@
+struct NJS_OBJECT;
 #include "types.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/quest/TQuestListVM_8007EAF8.h"
@@ -27,7 +28,7 @@ u8 * fn_800E31C4(void *, void *, s32);
 extern State_800E2FFC TObjFish_draw_callback_state;
 void transform_to_view__11TCameraCtrlFii(s32 arg0, s32 arg1);
 
-void TObjFish::draw_callback_transform_to_view() {
+void TObjFish::draw_callback_transform_to_view(NJS_OBJECT *) {
     Entry_800E2FFC *p = TObjFish_draw_callback_state.list;
     Param_800E2FFC *q = TObjFish_draw_callback_state.params;
     s32 id;
@@ -46,7 +47,7 @@ void TObjFish::set_draw_callback_list() {
     (*(State_800E3074 *)&TObjFish_draw_callback_state).counter = 0;
     (*(State_800E3074 *)&TObjFish_draw_callback_state).list = arg->list;
     (*(State_800E3074 *)&TObjFish_draw_callback_state).params = arg->params;
-    set_chunk_model_node_callback((s32)((void *)TObjFish::draw_callback_transform_to_view));
+    set_chunk_model_node_callback((TObjFish::draw_callback_transform_to_view));
 }
 
 s32 TObjFish::is_entry_table_valid() {

@@ -1,5 +1,6 @@
 #include "pso/misc/SampledMotionPoints.h"
 #include "pso/enemy/BattleParameters.h"
+struct NJS_OBJECT;
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
@@ -1854,7 +1855,7 @@ extern void *tl_04;
 
 typedef char RecoveredGlobal_800A6BE0_lbl_804FF5E8_size[sizeof(RecoveredGlobal_800A6BE0_lbl_804FF5E8) == 0x28 ? 1 : -1];
 typedef char RecoveredGlobal_800A6BE0_lbl_80500978_size[sizeof(RecoveredGlobal_800A6BE0_lbl_80500978) == 0x10 ? 1 : -1];
-void TObjPlayer::step_cutscene_frame() {
+void TObjPlayer::step_cutscene_frame(NJS_OBJECT *) {
     if ((s32) lbl_805D505C == 0x15) {
         rotate_matrix_x(0, (void *)lbl_805D5060);
     }
@@ -1879,7 +1880,7 @@ void TObjEneSaver::render() {
         rotate_matrix_y(0, ((TObjEneSaver *)arg0)->rotation_y);
         lbl_805D505C = 0;
         lbl_805D5060 = *(s32 *)((s8 *)arg0 + 0x39C);
-        set_chunk_model_node_callback((s32)((void *)TObjPlayer::step_cutscene_frame));
+        set_chunk_model_node_callback((TObjPlayer::step_cutscene_frame));
         TObjPlayer::toggle_particle_effect();
         switch (((TObjEneSaver *)arg0)->mode) {
         case 11:
@@ -1919,7 +1920,7 @@ void TObjEneSaver::render() {
             break;
         }
         TParticleCtrl::end_effect_render();
-        set_chunk_model_node_callback((s32)NULL);
+        set_chunk_model_node_callback(NULL);
         VecCopy((Vec *)((Vec_800A6B14 *)(arg0 + 0x390)), (const Vec *)((Vec_800A6B14 *)&lbl_80500978));
         pop_matrix();
         restore_scene_lighting();

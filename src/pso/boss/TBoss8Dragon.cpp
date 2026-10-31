@@ -1,5 +1,6 @@
 #include "pso/math/FloatRounding.h"
 #include "pso/enemy/BattleParameters.h"
+struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
@@ -2221,7 +2222,7 @@ void TBoss8Dragon::render_body_model() {
     TBoss8Dragon__data_805D6998 = 0;
     TBoss8Dragon__data_805D699C = (s32)((Obj_802F44D8 *)this)->f434;
     TBoss8Dragon__data_805D69A0 = ((Obj_802F44D8 *)this)->f3C0;
-    set_chunk_model_node_callback((s32)(TBoss8Dragon::update_camera_script));
+    set_chunk_model_node_callback((TBoss8Dragon::update_camera_script));
     push_matrix();
     set_motion_packed_rotation();
     post_translate_matrix(((Obj_802F44D8 *)this)->v38);
@@ -2232,11 +2233,11 @@ void TBoss8Dragon::render_body_model() {
     draw_motion((NJS_OBJECT *)((Obj_802F44D8 *)this)->f34, (NJS_MOTION *)((Obj_802F44D8 *)this)->fF8, ((TObjEneDD_ST *)this)->get_motion_frame());
     clear_motion_packed_rotation();
     pop_matrix();
-    set_chunk_model_node_callback((s32)NULL);
+    set_chunk_model_node_callback(NULL);
     ((Obj_802F44D8 *)this)->f34 = saved;
 }
 
-void TBoss8Dragon::update_camera_script() {
+void TBoss8Dragon::update_camera_script(NJS_OBJECT *) {
     s32 temp_r0;
     s32 pos;
     if ((s32) TBoss8Dragon__data_805D698C == (s32) lbl_805D6990) {

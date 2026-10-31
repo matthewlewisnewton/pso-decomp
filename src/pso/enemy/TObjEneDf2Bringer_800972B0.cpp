@@ -2,6 +2,7 @@
 #include "pso/math/FloatRounding.h"
 #include "pso/math/VectorNormalize.h"
 #include "pso/enemy/BattleParameters.h"
+struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -82,7 +83,7 @@ void vfunc_28__17TObjEneDf2BringerFv(void);
 void run_task__17TObjEneDf2BringerFv(u8 *arg0);
 void * TObjEneDf2Bringer__ct(void *arg0, void *arg1, void *arg2);
 }
-void bringer_render_node_callback(void);
+void bringer_render_node_callback(NJS_OBJECT *);
 struct RecoveredGlobal_8031B170_lbl_804E8880
 {
   s32 value;
@@ -1011,7 +1012,7 @@ void render__17TObjEneDf2BringerFv(u8 *arg0) {
             push_matrix();
             post_translate_matrix(arg0 + 0x38);
             rotate_matrix_y(0, *(s32 *)((s8 *)arg0 + 0x60));
-            set_chunk_model_node_callback((s32)&bringer_render_node_callback);
+            set_chunk_model_node_callback(&bringer_render_node_callback);
             set_motion_packed_rotation();
             if (var_r31 == 1) {
                 ((TObjMotion *)arg0)->draw();
@@ -1040,7 +1041,7 @@ void render__17TObjEneDf2BringerFv(u8 *arg0) {
 }
 #pragma pop
 
-void bringer_render_node_callback(void) {
+void bringer_render_node_callback(NJS_OBJECT *) {
     s32 pos;
     switch (TObjEneDf2Bringer__render_node_index) {
     case 8:

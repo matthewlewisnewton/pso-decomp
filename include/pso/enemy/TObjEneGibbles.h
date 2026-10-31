@@ -1,3 +1,4 @@
+struct NJS_OBJECT;
 #ifndef PSO_ENEMY_TOBJENEGIBBLES_H
 #define PSO_ENEMY_TOBJENEGIBBLES_H
 #include "types.h"
@@ -75,7 +76,7 @@ void TObjEneGibbles__sub_802D8E8C(u8 *arg0);
 s32 TObjEneGibbles__sub_802D9A04(void *target);
 void draw_model__14TObjEneGibblesFPv(TObjEneGibbles *arg0);
 }
-void gibbles_render_node_callback(void);
+void gibbles_render_node_callback(NJS_OBJECT *);
 extern "C" {
 void render_and_get_joint_pos__14TObjEneGibblesFPvii(u8 *arg0, s32 arg1, s32 arg2);
 void run_task__14TObjEneGibblesFv(TObjEneGibbles *arg0);
