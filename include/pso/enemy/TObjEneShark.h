@@ -7,15 +7,6 @@
 #include "pso/unk/TUnk_80494968.h"
 #include "pso/system/BmlResource.h"
 
-struct SharkNpcAnimationBinding {
-    BmlMotionEntry *motions;
-    TObjMotionAction *actions;
-    s16 unknown_08;
-    s16 mode_2_action;
-    s16 unknown_0c;
-    s16 reserved;
-};
-
 struct SharkMovementParameters {
     f32 target_range;
     f32 movement_speed;
@@ -26,7 +17,6 @@ struct SharkMovementParameters {
     u32 unknown_18;
 };
 
-typedef char SharkNpcBindingSize[sizeof(SharkNpcAnimationBinding) == 0x10 ? 1 : -1];
 typedef char SharkMovementParamsSize[sizeof(SharkMovementParameters) == 0x1C ? 1 : -1];
 
 class TObjEneShark : public TUnk_80493450 {

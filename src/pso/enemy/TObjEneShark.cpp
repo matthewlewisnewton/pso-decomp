@@ -30,6 +30,8 @@
 #include "pso/misc/TNowLoading.h"
 #include <dolphin/mtx.h>
 #include "pso/enemy/BattleParameters.h"
+#include "pso/npc/NpcModelRegistry.h"
+#include "pso/npc/NpcAnimationBinding.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/misc/SampledMotionPoints.h"
@@ -348,7 +350,6 @@ extern BmlResource *shark_bml_resource;
 extern s32 game_difficulty_selection;
 
 void *mem_alloc(u32 size);
-void spawn_npc_enemy__6TLobbyFslllff(int, int, int, void *, f32, f32);
 extern const char shark_alt_archive_filename[];
 extern u8 **shark_combat_stats;
 extern u8 **shark_attack_stats;
@@ -489,9 +490,9 @@ void TObjEneShark::load_resources() {
     shark_render_node_index = 0;
     {
         s16 ids[3] = { 0x2F, 0x30, 0x31 };
-        SharkNpcAnimationBinding anim = { shark_bml_resource->motions, shark_actions, 0, 2, 12, 0 };
+        NpcAnimationBinding anim = { shark_bml_resource->motions, shark_actions, 0, 2, 12 };
         for (i = 0; i < 3; i++) {
-            spawn_npc_enemy__6TLobbyFslllff(ids[i], shark_bml_resource->models[i].model, shark_bml_resource->models[i].m_c, &anim,
+            NpcModelRegistry::register_animated_chunk(ids[i], (void *)shark_bml_resource->models[i].model, (void *)shark_bml_resource->models[i].m_c, &anim,
                 shark_npc_collision_radius, shark_zero);
         }
     }
