@@ -21,6 +21,8 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/map/FloorArea.h"
+#include "pso/misc/ParticleFactory.h"
+#include "pso/player/TObjPlayer_801AF2F0.h"
 
 struct RecoveredGlobal_80179E34_lbl_804B4834
 {
@@ -127,12 +129,17 @@ struct Trap_80179B8C : VObj_80179B8C {
     Fade_80179B8C fades[4];
 };
 
+struct TObjEnemy;
 extern "C" {
 void receive_physical_attack__6TOTrapFPvf(void *, void *, f32);
-u16 get_entity_id(void *);
-void obj_clear_flag30_20000(void *arg0);
+u16 get_entity_id(TObjBase *);
+void obj_set_flag_20000(TObjBase *);
+void obj_clear_flag30_20000(TObjBase *);
+u16 find_nearest_visible_player(TObjEnemy *, Vec *, f32);
+f32 horizontal_distance_squared(const Vec *, const Vec *);
+s32 obj_is_hit_receivable(u8 *);
+
 s32 check_player_flag1__6TLobbyFv();
-void *get_player_by_client_id(s32 i);
 extern s32 local_client_id;
 s32 TObjFish__sub_8001EDB0(void *, s32);
 s32 get_bml_model(void *, s32);
@@ -156,7 +163,6 @@ extern const f32 lbl_805DBA54;
 extern const f32 lbl_805DBA6C;
 extern const f32 lbl_805DBA74;
 VObj_801797D4 *get_battle_param__10TObjPlayerFi(s32);
-s32 obj_is_hit_receivable(void *);
 s32 check_value_equals__13TUnk_804B6C24Fl(void *, s32);
 void submit_cursor_candidate(void *, s32);
 
@@ -208,21 +214,21 @@ void TOTrapAncient01::release_trapped_player() {
     s32 temp_r3_2;
     if (TRaderMapCore::is_not_split_screen() == 1) {
         if (this->target != NULL) {
-            temp_r3 = (s32)get_player_by_client_id((get_entity_id(this->target)));
+            temp_r3 = (s32)get_player_by_client_id((get_entity_id((TObjBase *)this->target)));
             if (temp_r3 != 0) {
                 if (check_player_flag1__6TLobbyFv() != 0) {
                     TObjPlayer::send_code_45_1(temp_r3);
                 }
-                obj_clear_flag30_20000((void *)temp_r3);
+                obj_clear_flag30_20000((TObjBase *)temp_r3);
             }
         }
-    } else if ((this->target != NULL) && ((s32) local_client_id == (s32) get_entity_id(this->target))) {
+    } else if ((this->target != NULL) && ((s32) local_client_id == (s32) get_entity_id((TObjBase *)this->target))) {
         temp_r3_2 = (s32)get_player_by_client_id(local_client_id);
         if (temp_r3_2 != 0) {
             if (check_player_flag1__6TLobbyFv() != 0) {
                 TObjPlayer::send_code_45_1(temp_r3_2);
             }
-            obj_clear_flag30_20000((void *)temp_r3_2);
+            obj_clear_flag30_20000((TObjBase *)temp_r3_2);
         }
     }
 }
@@ -251,7 +257,7 @@ void TOTrapAncient01::vfunc_82() {
             if (p == 0) {
                 break;
             }
-            if (obj_is_hit_receivable(p) == 0) {
+            if (obj_is_hit_receivable((u8 *)p) == 0) {
                 break;
             }
             if (check_value_equals__13TUnk_804B6C24Fl(p, lbl_805D3530) == 0) {
@@ -314,6 +320,58 @@ void TOTrapAncient01::vfunc_82() {
         break;
     case AREA_VR_TEMPLE_BETA:
         return;
+    }
+}
+
+// The fields at 0x34c and 0x326 are used by this state; their original names
+// and the complete derived layout have not yet been established.
+void TOTrapAncient01::vfunc_81() {
+    f32 &step = *(f32 *)((u8 *)this + 0x34c);
+    scale.y += step;
+    if (scale.y > TOTrapAncient01__data_805DBA4C) {
+        switch (get_current_floor_area()) {
+        case AREA_CAVE1: case AREA_CAVE2: case AREA_CAVE3:
+            play_persistent_sound(0x4321a, this, &position, 0, 0);
+            break;
+        case AREA_MINE1: case AREA_MINE2:
+            play_persistent_sound(0x4004b211, this, &position, 0, 0);
+            break;
+        case AREA_RUINS1: case AREA_RUINS2: case AREA_RUINS3:
+            play_persistent_sound(0x4004b217, this, &position, 0, 0);
+            break;
+        case AREA_VR_SPACESHIP_ALPHA: case AREA_VR_SPACESHIP_BETA:
+            play_persistent_sound(0x4004b212, this, &position, 0, 0);
+            break;
+        }
+    } else {
+        *(s16 *)((u8 *)this + 0x326) = 3;
+        scale.y = TOTrapAncient01__data_805DBA4C;
+        calc_attach_pos();
+        clear_player_status_flag(0, 0x08001f04);
+        set_indexed_flags(0, 0x8003);
+        obj_clearFlags30(0x40000);
+        spawn_particle_effect(&position, 0x8f);
+        spawn_particle_effect(&position, 0x8f);
+        player = find_nearest_visible_player((TObjEnemy *)this, NULL, range);
+        if (player != 0xffff) {
+            TObjPlayer *p = (TObjPlayer *)get_player_by_client_id(player);
+            target = (u8 *)p;
+            if (target != NULL) {
+                f32 d = horizontal_distance_squared(&p->position, &position);
+                dist -= TObjPlayer__sub_8017A1A4((Obj_8017A1A4 *)p, 0);
+                if (d < dist * dist) {
+                    if (TObjPlayer::is_locally_controlled(target)) {
+                        send_6x2C_impose_hold(p, &position, -1, 0, dist);
+                        obj_set_flag_20000(p);
+                    }
+                } else {
+                    player = 0xffff;
+                    target = NULL;
+                }
+            }
+        } else {
+            target = NULL;
+        }
     }
 }
 
