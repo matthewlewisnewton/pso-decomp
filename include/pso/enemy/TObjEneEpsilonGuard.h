@@ -22,7 +22,7 @@ struct TObjEneEpsilonGuard : public TObjEneEpsilon {
     void vfunc_28();
     void render();
     void run_task();
-    u8 unk_3A8[0x90];
+    u8 unk_3C0[0x78];
     s32 m_438; // 0x438
     u8 unk_43C[0x4];
     s32 m_440; // 0x440

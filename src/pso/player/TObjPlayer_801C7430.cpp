@@ -1,3 +1,5 @@
+#include "pso/math/VectorNormalize.h"
+#include "pso/math/ScratchVectorStorage.h"
 #include "pso/protocol/protocol_types.h"
 #include "pso/render/render_util.h"
 #include "pso/misc/TLobby_801E43E4.h"
@@ -1577,7 +1579,7 @@ u32 __nw__7TObjectFUl(s32);
 s32 capture_technique_targets__10TObjPlayerFv(void *, void *);
 void launch_technique__10TObjPlayerFv(s32, s32, void *);
 Rec_801CCEDC * calc_technique_parameters(s32 tech, s32 level, s32 id);
-s32 construct_actor_light_task(void *, f32 *, f32 *, int, void *, f32, s32);
+s32 construct_actor_light_task(void *, f32 *, Vec *, int, void *, f32, s32);
 s32 construct_revival_particle_effect(void *, void *, s32);
 s32 TObjPlayer__sub_8024ABDC(void *);
 void TLobby__sub_8024AC20(s32 arg0);
@@ -1656,7 +1658,6 @@ extern u8 lbl_80447138[0x20];
 extern const f64 lbl_80447148;
 extern RecoveredGlobal_801D2CF4_lbl_804C43CC attack_type_accuracy_scales;
 extern RecoveredGlobal_801D2CF4_lbl_804C43D8 attack_combo_accuracy_multipliers;
-extern f32 scratch_vec[];
 extern f32 player_feedback_light_color[];
 extern void *player_slot_table[];
 extern u8 *lbl_805D3530;
@@ -1728,7 +1729,7 @@ void TObjPlayer__sub_801C75A4(u8 *player) {
     s32 sp8;
     f32 temp_f1;
     ((TObjPlayer *)player)->rotation_y = interpolate_angle__10TObjPlayerFPvUsUsPl((void *) (player), (int) (((TObjPlayer *)player)->rotation_y), (void *) (((s32 (*)(void *))TObjPlayer__sub_801D0DAC)((void *) (player))), (void *) (&sp8));
-    temp_f1 = ((TObjBoss2Tunnel *)(player + 0x308))->update_scale() - lbl_805DC364;
+    temp_f1 = normalize_vector_checked((Vec *)(player + 0x308)) - lbl_805DC364;
     if (temp_f1 < lbl_805DC364) {
         TObjPlayer__sub_8001053C((void *) (player));
     } else {
@@ -3445,7 +3446,7 @@ void TObjPlayer::begin_fall_reaction() {
     f32 x;
     f32 z;
     Pkt_801CADA4 pkt;
-    z = this->m_310;
+    z = this->movement_velocity.z;
     x = *(f32 *)((s8 *)this + 0x308);
     if (newton_sqrtf(x * x + z * z) > lbl_805DC390) {
         this->rotation_y = (s32) ((s32) (lbl_80447148 * atan2_float(x, z)) + 0x8000);
@@ -5002,13 +5003,13 @@ void TObjPlayer::start_attack_preparation() {
         *(s16 *)(arg0 + 0x328) = 1;
         ((TObjPlayer *)arg0)->set_state_flags(0x80);
         ((TObjPlayer *)(arg0 + 0x384))->request_heavy_attack_particles();
-        scratch_vec[1] = scratch_vec[0] = 0.0f;
-        player_feedback_light_color[0] = scratch_vec[2] = 1.0f;
+        scratch_vec.vector.y = scratch_vec.vector.x = 0.0f;
+        player_feedback_light_color[0] = scratch_vec.vector.z = 1.0f;
         player_feedback_light_color[2] = player_feedback_light_color[1] = lbl_805DC3A8;
         player_feedback_light_color[3] = 1.0f;
         p = ((void * (*)(u32))__nw__7TObjectFUl)(0x64);
         if (p != NULL) {
-            construct_actor_light_task(p, player_feedback_light_color, scratch_vec, 8, arg0, TObjPlayer__data_805DC39C, tl_07);
+            construct_actor_light_task(p, player_feedback_light_color, (&scratch_vec.vector), 8, arg0, TObjPlayer__data_805DC39C, tl_07);
         }
         publish_actor_light_scalars(get_entity_id(arg0), TObjPlayer__data_805DC360, TObjPlayer__data_805DC3AC);
         ((TObjPlayer *)arg0)->play_sound_if_on_floor(0x1AD1C);
@@ -5017,13 +5018,13 @@ void TObjPlayer::start_attack_preparation() {
         *(s16 *)(arg0 + 0x328) = 1;
         ((TObjPlayer *)arg0)->set_state_flags(0x80);
         dispatch_weapon_special_effect(arg0, 0, 0, 0);
-        scratch_vec[1] = scratch_vec[0] = 0.0f;
-        player_feedback_light_color[0] = scratch_vec[2] = 1.0f;
+        scratch_vec.vector.y = scratch_vec.vector.x = 0.0f;
+        player_feedback_light_color[0] = scratch_vec.vector.z = 1.0f;
         player_feedback_light_color[2] = player_feedback_light_color[1] = lbl_805DC3A8;
         player_feedback_light_color[3] = 1.0f;
         p = ((void * (*)(u32))__nw__7TObjectFUl)(0x64);
         if (p != NULL) {
-            construct_actor_light_task(p, player_feedback_light_color, scratch_vec, 8, arg0, TObjPlayer__data_805DC39C, tl_07);
+            construct_actor_light_task(p, player_feedback_light_color, (&scratch_vec.vector), 8, arg0, TObjPlayer__data_805DC39C, tl_07);
         }
         publish_actor_light_scalars(get_entity_id(arg0), TObjPlayer__data_805DC360, TObjPlayer__data_805DC3AC);
         ((TObjPlayer *)arg0)->play_sound_if_on_floor(0x1AD1D);
@@ -5277,7 +5278,7 @@ void TObjPlayer::apply_movement_if_ready() {
 
     temp_r3 = get_handle_value__10TObjPlayerFv();
     if ((temp_r3 != 0x11) && ((temp_r3 >= 0x11) || (temp_r3 >= 0xA) || (temp_r3 < 6)) && (((TObjPlayer *)arg0)->is_flag_b0_4() == 0) && ((s16) this->requested_action == (s16) this->current_action) && (this->action_flags & 0x20000000) && (((s32 (*)(void *))TObjPlayer__sub_801D2680)(arg0) == 0)) {
-        if (TObjPlayer__data_805DC36C > get_root_motion_step(&this->x_speed, &this->m_310)) {
+        if (TObjPlayer__data_805DC36C > get_root_motion_step(&this->movement_velocity.x, &this->movement_velocity.z)) {
             TObjPlayer__sub_8001053C(arg0);
         }
         if (((TObjPlayer *)arg0)->check_actor_blocking_move() != 0) {

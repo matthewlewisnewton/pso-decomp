@@ -964,6 +964,7 @@ pso/misc/TLoadCtrl_80227390.cpp
 pso/misc/TLoadingCur.cpp
 pso/misc/TLoadingCur_801A6DE0.cpp
 pso/misc/TLobby.cpp
+pso/misc/TLobbyEventTheme.cpp
 pso/misc/TLobby_80019E24.cpp
 pso/misc/TLobby_8001D6A0.cpp
 pso/misc/TLobby_8002C140.cpp
@@ -1129,7 +1130,6 @@ pso/misc/TLobby_8033A810.cpp
 pso/misc/TLobby_8033ECB0.cpp
 pso/misc/TLobby_8034C18C.cpp
 pso/misc/TLobby_8034C23C.cpp
-pso/misc/TLobbyEventTheme.cpp
 pso/misc/TLobby_8035D540.cpp
 pso/misc/TLobby_8036A37C.cpp
 pso/misc/TLobby_8036B204.cpp
@@ -1293,6 +1293,7 @@ pso/misc/TOFenceAncient01.cpp
 pso/misc/TOFenceAncient02.cpp
 pso/misc/TOFenceAncient03.cpp
 pso/misc/TOFenceAncient04.cpp
+pso/misc/TOFenceBase.cpp
 pso/misc/TOGrassJungle.cpp
 pso/misc/TOGrassJungle_8029CD90.cpp
 pso/misc/TOHangceilingCave01.cpp
@@ -1326,6 +1327,7 @@ pso/misc/TOMineTrap_8016ED9C.cpp
 pso/misc/TOMonitorMachine01.cpp
 pso/misc/TOMonumentAncient01.cpp
 pso/misc/TOMonumentAncient02.cpp
+pso/misc/TOQuestTalkBase.cpp
 pso/misc/TORainbowCave01.cpp
 pso/misc/TORevlightCave01.cpp
 pso/misc/TORockCave.cpp
@@ -1580,8 +1582,6 @@ pso/misc/TTecZarua.cpp
 pso/misc/TTecZonde.cpp
 pso/misc/TTecZondeEff.cpp
 pso/misc/TUdpSocket.cpp
-pso/misc/TOFenceBase.cpp
-pso/misc/TOQuestTalkBase.cpp
 pso/misc/TUserAns.cpp
 pso/misc/TUserAns_801E0198.cpp
 pso/misc/TWindow.cpp
@@ -2715,7 +2715,6 @@ pso/ui/TAdSinglePlyChrSelectGC_8001C5E8.cpp
 pso/ui/TAdSinglePlyChrSelectGC_8001ED80.cpp
 pso/ui/TAdSinglePlyChrSelectGC_8007B7E4.cpp
 pso/ui/TAdSinglePlyChrSelectGC_8007EB94.cpp
-pso/ui/TAdSinglePlyChrSelectGC_800FFC34.cpp
 pso/ui/TAdSinglePlyChrSelectGC_801334D4.cpp
 pso/ui/TAdSinglePlyChrSelectGC_80145778.cpp
 pso/ui/TAdSinglePlyChrSelectGC_801A6D60.cpp
@@ -2901,7 +2900,7 @@ pso/unk/text_800FA7E0.cpp
 pso/unk/text_800FCC78.cpp
 pso/unk/text_800FD8A0.cpp
 pso/unk/text_800FD930.cpp
-pso/unk/text_800FFC6C.cpp
+pso/unk/text_800FFE04.cpp
 pso/unk/text_80103674.cpp
 pso/unk/text_801036CC.cpp
 pso/unk/text_80104F4C.cpp

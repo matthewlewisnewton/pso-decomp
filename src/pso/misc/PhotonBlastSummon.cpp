@@ -209,7 +209,7 @@ extern "C" {
 void set_active_camera_pose_from_params(u8 *arg0);
 void approach_vector_fixed_distance(Vec_801A73B0 *, Vec_801A73B0 *, Vec_801A73B0 *, f32);
 void update_photon_blast_camera_pose(struct PbCamera_801A73B0 *self);
-void get_camera_ctrl__9TObjEneDDFv(Vec_801A7578 *, Vec_801A7578 *);
+void transform_point_to_view(Vec_801A7578 *, Vec_801A7578 *);
 extern Vec_801A7578 lbl_80446A44;
 extern struct Reg_801A7578 photon_blast_joint_origins[];
 extern s32 photon_blast_joint_index;
@@ -276,7 +276,7 @@ void publish_photon_blast_joint_origins(void) {
         struct Node_801A7578 *node = &photon_blast_joint_origins->list[i];
         if (photon_blast_joint_index == node->id) {
             Vec_801A7578 origin = lbl_80446A44;
-            get_camera_ctrl__9TObjEneDDFv(&origin, &node->pos);
+            transform_point_to_view(&origin, &node->pos);
         }
     }
     photon_blast_joint_index += 1;

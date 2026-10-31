@@ -152,7 +152,6 @@ s32 push_matrix();
 s32 pop_matrix();
 f32 random_ratio__9TObjCharaFv(s32 arg0);
 s32 minimap_render_dot(void *, int, int, int);
-s32 refresh_lobby_state__10TObjPlayerFv(void *, void *);
 
 struct Obj_800A48C4;
 struct Obj_800A4C4C;
@@ -399,7 +398,7 @@ void TObjEneSaver::update_collapse_and_destroy() {
         step_angle_clamped__10TObjPlayerFPvi(arg0, 0);
         move_with_wall_slide(arg0);
         *(f32 *)((s8 *)arg0 + 0x308) *= 0.5f;
-        ((TObjEneSaver *)arg0)->m_310*= 0.5f;
+        ((TObjEneSaver *)arg0)->movement_velocity.z*= 0.5f;
         if (((VObj1 *)(arg0 + 0x3A4))->m4() == 1) {
             TObjPlayer::apply_effect_variant_a((s32)(arg0 + 0x38), 0);
             ((TObjEneSaver *)arg0)->phase = 2;
@@ -426,7 +425,7 @@ void TObjEneSaver::vfunc_63() {
         }
         temp_r4 = this->bodies;
         *(s32 *)((s8 *)temp_r4 + 0x18) = (s32) (*(s32 *)((s8 *)temp_r4 + 0x18) & 0xFFFFFFFE);
-        refresh_lobby_state__10TObjPlayerFv(this, temp_r4);
+        this->distribute_experience_and_request_drop();
         send_entity_set_flags();
     }
 }
@@ -442,7 +441,7 @@ void TObjEneSaver::update_entry_motion() {
         apply_actor_gravity((TObjEnemy *)(this), (s32 *)(0), 0.0f);
         break;
     case 1:
-        this->m_310 = (f32) 0.0f;
+        this->movement_velocity.z = (f32) 0.0f;
         *(f32 *)((s8 *)((u8 *)this) + 0x308) = (f32) 0.0f;
         apply_actor_gravity((TObjEnemy *)(this), (s32 *)(0), 0.0f);
         if ((u32) this->action_flags != 8U) {
@@ -518,7 +517,7 @@ void TObjEneSaver::update_knockback_state() {
     case 1:
         move_with_wall_slide(((u8 *)this));
         *(f32 *)((s8 *)((u8 *)this) + 0x308) *= 0.5f;
-        this->m_310 *= 0.5f;
+        this->movement_velocity.z *= 0.5f;
         if ((u32) this->action_flags != 8U) {
             this->requested_action = 7;
             this->phase = 2;
@@ -865,7 +864,7 @@ void TObjEneSaver::sub_800A4D9C() {
                 copy_position_if_valid__10TObjPlayerFii((s32)arg0, (s32)&pos);
             }
             VecCopy((Vec *)&d, (const Vec *)(arg0 + 0x29C));
-            subtract_vector(&d, (u8 *)&this->m_2fc);
+            subtract_vector(&d, (u8 *)&this->body_center_position);
             {
                 f32 dist = newton_sqrtf(d.x * d.x + d.z * d.z);
                 dist -= 15.0f;

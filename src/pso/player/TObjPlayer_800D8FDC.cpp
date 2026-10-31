@@ -17,7 +17,6 @@ extern "C" {
 s32 __nw__7TObjectFUl(s32);
 void *create_timed_particle_emitter(void *owner, s32 id, s32 b, s32 c);
 extern void * player_corpse_mark_resource;
-#define create_dead_spot__10TObjPlayerFiiif ((s32 (*)(s32, s32, s32))create_dead_spot__10TObjPlayerFiiif)
 
 extern s32 tl_05;
 
@@ -34,11 +33,10 @@ void TObjPlayer::spawn_effect_f8(s32 arg1, s32 arg2) {
     create_timed_particle_emitter((void *)arg1, 0xF8, 0, (arg2));
 }
 
-void TObjPlayer::set_field_e4(s32 arg1, s32 arg2) {
-    create_dead_spot__10TObjPlayerFiiif(arg1, 0xE4, arg2);
+void spawn_dead_spot_e4(Vec *position, s32 lifetime, f32 radius) {
+    create_dead_spot__10TObjPlayerFiiif((s32)position, 0xE4, lifetime, radius);
 }
 
-#undef create_dead_spot__10TObjPlayerFiiif
 
 void *spawn_particle_effect(void *pos, s32 id);
 
@@ -114,8 +112,8 @@ void TObjPlayer::spawn_dead_spot_type2(s32 point, s32 delay) {
     TObjPlayer::spawn_dead_spot(point, 2, delay, lbl_805DA3C8);
 }
 
-void spawn_dead_spot_scale15(s32 point, s32 delay) {
-    TObjPlayer::spawn_dead_spot(point, 2, delay, lbl_805DA3CC);
+void spawn_dead_spot_scale15(const Vec *point, s32 delay) {
+    TObjPlayer::spawn_dead_spot((s32)point, 2, delay, lbl_805DA3CC);
 }
 
 void TObjPlayer__sub_800D93C4(s32 point, s32 delay) {

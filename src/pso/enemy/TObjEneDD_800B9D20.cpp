@@ -1,6 +1,8 @@
 #include "types.h"
 #include "pso/render/render_util.h"
 #include "pso/math/MatrixTransforms.h"
+#include "pso/math/ViewPoint.h"
+#include "pso/misc/TCameraCtrl_800687BC.h"
 #include "pso/player/TObjPlayer_800F0810.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/enemy/TObjEneDD.h"
@@ -28,7 +30,6 @@ s32 post_translate_matrix(void *);
 extern const f32 TObjEneDD__data_805D9E8C;
 extern const f32 lbl_805D9E90;
 int bind_enemy_combat_stats__9TObjEnemyFPUcPUcPUc(void*);
-int transform_to_view__11TCameraCtrlFii(void*);
 int apply_split_screen_view_matrix__11TCameraCtrlFv(void*);
 int restore_scene_lighting(void*);
 int select_actor_lighting(void*);
@@ -81,11 +82,11 @@ void TObjEneDD::reload_stats_keep_hp_tp() {
     *(s16 *)&this->tp = d;
 }
 
-void TObjEneDD::reset_hp(u8 *base_stats, u8 *attack_stats, u8 *resistance_stats) {
-    bind_enemy_combat_stats(base_stats, attack_stats, resistance_stats);
+void TObjEneDD::reset_hp(BattleBaseStats *base_stats, AttackParams *attack_stats, ActorParamBlock *resistance_stats) {
+    bind_enemy_combat_stats((u8 *)base_stats, (u8 *)attack_stats, (u8 *)resistance_stats);
     referenceHp = hp;
 }
-int TObjEneDD::get_camera_ctrl() { return transform_to_view__11TCameraCtrlFii(this); }
+void transform_point_to_view(const Vec *source, Vec *destination) { transform_to_view__11TCameraCtrlFii((s32)source, (s32)destination); }
 int TObjEneDD::update_camera_sequence() { return apply_split_screen_view_matrix__11TCameraCtrlFv(this); }
 void TObjEneDD::initialize_enemy_state(s32 parameter) {
     set_param(parameter);

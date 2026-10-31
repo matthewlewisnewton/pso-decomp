@@ -3,6 +3,7 @@
 #include "pso/protocol/protocol_types.h"
 #pragma readonly_strings on
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/enemy/TObjEnemy.h"
 
 // Built with -inline deferred (GAME_EXCEPTIONS in configure.py), which emits functions
 // in reverse source order: bodies here run from the highest address down.
@@ -19,7 +20,7 @@
 #include "pso/boss/TUnk_80484840.h"
 #include "pso/boss/TUnk_80484870.h"
 #include "pso/enemy/TObjEneGyaranzo.h"
-#include "pso/enemy/TObjEneMe1GiGue.h"
+#include "pso/enemy/TObjEnemyCustom.h"
 #include "pso/math/AngleLookup.h"
 #include "pso/misc/TBreakUpMdl.h"
 #include "pso/misc/TCameraCtrl.h"
@@ -466,7 +467,7 @@ void TBoss3VoloptP02::run_state() {
 
 void TBoss3VoloptP02::render() {
     if (!(actorFlags & 0x02000000) && (((ViewCulledObject *)this)->update_object_view_visibility(400.0f, 40.0f) != 0)) {
-        if (fade.updateFromCamera((const f32 *)&m_2fc) != 0) {
+        if (fade.updateFromCamera((const f32 *)&body_center_position) != 0) {
             fade.set_flags_and_apply_damage_color();
         }
         TObjFish::set_global_param(texlist);
@@ -501,7 +502,7 @@ void TBoss3VoloptP02::check_and_trigger() {
     if ((obj_testFlags30(0x800) == 0) && !(m_388 & 0x40000)) {
         check_and_notify();
         m_388 &= ~1;
-        ((TObjEneMe1GiGue *)this)->update_if_active(0xB);
+        ((TObjEnemyCustom *)this)->update_if_active(0xB);
     }
 }
 
@@ -509,7 +510,7 @@ void TBoss3VoloptP02::set_motion(u16 target_id) {
     if ((obj_testFlags30(0x800) == 0) && !(m_388 & 0x10000) && (mode != 9)) {
         targetId = target_id;
         m_388 &= ~1;
-        ((TObjEneMe1GiGue *)this)->update_if_active(9);
+        ((TObjEnemyCustom *)this)->update_if_active(9);
     }
 }
 
@@ -519,7 +520,7 @@ void TBoss3VoloptP02::set_action_wait(u16 target_id) {
         if (target_id != 0xFFFF) {
             targetId = target_id;
             m_388 &= ~1;
-            ((TObjEneMe1GiGue *)this)->update_if_active(0xA);
+            ((TObjEnemyCustom *)this)->update_if_active(0xA);
         }
     }
 }
@@ -860,7 +861,7 @@ void TBoss3VoloptP02::fn_800465B0() {
                 for (i = 0; i < 10; i++) {
                     s32 dir = i < 5 ? 1 : -1;
                     get_anim_node_position(chain_node_ids[i], &chain_positions[i]);
-                    new TUnk_80484840(&chain_positions[i], (Vec *)&cage->m_2fc, dir, timer);
+                    new TUnk_80484840(&chain_positions[i], (Vec *)&cage->body_center_position, dir, timer);
                 }
                 play_sound_effect(0x4003B20D, &position, -10, 0);
             } else {
@@ -1034,7 +1035,7 @@ void TBoss3VoloptP02::update_pillar_heal_state() {
                 heal_emitter = NULL;
             }
             n = TBoss3VoloptP02::get_int_param(3) / 5;
-            TBoss3Volopt__sub_800FD344((s32)&m_2fc, (s32)(0xFF00FF00), 0x1E, (void *)"HP", (void *)n);
+            TBoss3Volopt__sub_800FD344((s32)&body_center_position, (s32)(0xFF00FF00), 0x1E, (void *)"HP", (void *)n);
             hp = min_s32(hp + n, hpmax);
             for (s32 i = 0; i < 4; i++) {
                 if (part_hp[i] > 0) {
@@ -1159,9 +1160,9 @@ void TBoss3VoloptP02::update_death_sequence() {
         spawn_ambient_particles();
         position.y = 0.5319149f * this->frame;
         if (this->frame >= 47.0f) {
-            TBoss3Volopt::create_breakup_mdl((s32)breakup_model, (s32)&death_breakup_params, texlist, (s32)&m_2fc, rotation_y);
-            ((TObjPlayer *)&m_2fc)->trigger_dell_biter_events();
-            ((TObjPlayer *)this)->refresh_lobby_state();
+            TBoss3Volopt::create_breakup_mdl((s32)breakup_model, (s32)&death_breakup_params, texlist, (s32)&body_center_position, rotation_y);
+            ((TObjPlayer *)&body_center_position)->trigger_dell_biter_events();
+            ((TObjEnemy *)this)->distribute_experience_and_request_drop();
             volopt_death_active = 1;
             if (TBoss3Volopt::is_death_active() != 0) {
                 send_entity_set_flags();
@@ -1290,7 +1291,7 @@ void TBoss3VoloptP02::trigger_breakup() {
         bodies[3].flags &= ~0x10000001;
         render_anim_model_at_pos();
         get_anim_node_position(0x29, &pos);
-        TBoss3Volopt::create_breakup_mdl((s32)breakup_models[4], (s32)&part_breakup_params, texlist, (s32)&m_2fc, rotation_y);
+        TBoss3Volopt::create_breakup_mdl((s32)breakup_models[4], (s32)&part_breakup_params, texlist, (s32)&body_center_position, rotation_y);
         hide_model_nodes((NJS_OBJECT **)breakup_flags_d);
         play_sound_effect(0x4003A80F, &position, 0, 1);
     }
@@ -1339,8 +1340,8 @@ s16 TBoss3VoloptP02::collect_targets_in_front() {
             continue;
         }
         {
-            Vec v = *(Vec *)&player->m_2fc;
-            subtract_vector(&v, &m_2fc);
+            Vec v = player->body_center_position;
+            subtract_vector(&v, &body_center_position);
             if (angle_difference_abs(rotation_y + 0x8000, (s32)((65536.0 / (2.0 * 3.141592f)) * atan2_float(v.x, v.z))) > 0x1C71) {
                 continue;
             }
@@ -1371,8 +1372,8 @@ u16 TBoss3VoloptP02::find_facing_player() {
             continue;
         }
         {
-            Vec v = *(Vec *)&player->m_2fc;
-            subtract_vector(&v, &m_2fc);
+            Vec v = player->body_center_position;
+            subtract_vector(&v, &body_center_position);
             d = ABS(angle_difference_abs(rotation_y + 0x8000, (s32)((65536.0 / (2.0 * 3.141592f)) * atan2_float(v.x, v.z))));
             if (d <= best) {
                 best = d;
@@ -1505,8 +1506,8 @@ void TBoss3VoloptP02::collect_targets_in_arc() {
             continue;
         }
         {
-            Vec v = *(Vec *)&player->m_2fc;
-            subtract_vector(&v, &m_2fc);
+            Vec v = player->body_center_position;
+            subtract_vector(&v, &body_center_position);
             if (angle_difference_abs(rotation_y + 0x4000, (s32)((65536.0 / (2.0 * 3.141592f)) * atan2_float(v.x, v.z))) > limit) {
                 continue;
             }
@@ -1585,7 +1586,7 @@ void TBoss3VoloptP02::apply_hit_reaction(f32 delay) {
         check_and_notify();
         ring_radius = 55.0f + delay;
         m_388 &= ~1;
-        ((TObjEneMe1GiGue *)this)->update_if_active(0xC);
+        ((TObjEnemyCustom *)this)->update_if_active(0xC);
     }
 }
 

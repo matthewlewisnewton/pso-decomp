@@ -1,53 +1,111 @@
+#pragma readonly_strings on
 #include "pso/TObjTailsTailsMove.h"
-#include "pso/object/TObjTailsTailsMove.h"
-
-#include "types.h"
-#include "pso/item/TItemObject.h"
+#include "pso/render/render_util.h"
 #include "pso/player/TObjPlayer.h"
 
 extern "C" {
-s32 advance_field28__23TAdSinglePlyChrSelectGCFv();
-s32 sub_800FFC6C__18TObjTailsTailsMoveFv();
-void *__nw__7TObjectFUl(int);
-void __ct__7TObjectFP7TObject(void *);
+const char *TObjTailsTailsMove_name = "TObjTailsTailsMove";
+f32 sin_table_lookup(s32);
+}
 
-extern s32 __vt__18TObjTailsTailsMove[];
-extern void *TObjTailsTailsMove__name;
+#pragma push
+#pragma fp_contract on
+s32 TObjTailsTailsMove::interpolate_along_curve(f32 *vertex) {
+    f32 z;
+    f32 distance;
+    f32 fraction;
+    z = vertex[2];
+    if ((z < -8.0f) || (z > -1.0f)) {
+        return 0;
+    }
+    distance = z - -1.0f;
+    fraction = distance / -7.0f;
+    vertex[0] = (0.25f * fraction) * sin_table_lookup(m_phase + (s32) (-16384.0f * fraction)) + vertex[0];
+    return 1;
+}
+#pragma pop
+
+void TObjTailsTailsMove::transform_vertex_list() {
+    f32 v[3];
+    s32 stride;
+    u32 *p;
+    s32 i;
+    s32 n;
+    s32 kind;
+    i = 0;
+    p = m_vertices;
+    do {
+        switch ((u8)p[0]) {
+        case 0x29:
+            kind = 3;
+            break;
+        case 0x2C:
+            kind = 4;
+            break;
+        default:
+            kind = -1;
+            break;
+        }
+        if (kind < 0) {
+            return;
+        }
+        n = p[1] >> 16;
+        stride = (kind + 3) * 4;
+        p += 2;
+        while (n > 0) {
+            v[0] = bits_to_f32(p[0]);
+            v[1] = bits_to_f32(p[1]);
+            v[2] = bits_to_f32(p[2]);
+            if (interpolate_along_curve(v) != 0) {
+                p[0] = f32_bits(v[0]);
+                p[1] = f32_bits(v[1]);
+                p[2] = f32_bits(v[2]);
+            }
+            p = (u32 *)((u8 *)p + stride);
+            n--;
+        }
+        i++;
+    } while (i < 1000);
+}
+
+void TObjTailsTailsMove::advance_phase() {
+    transform_vertex_list();
+    m_phase += 0x444;
+}
+
+void TObjTailsTailsMove::find_vertex_list() {
+    if (m_player->m_cfc != 0) return;
+    NJS_OBJECT *root = (NJS_OBJECT *)m_player->model;
+    if (root == NULL) return;
+    NJS_OBJECT *child = root->child;
+    if (child == NULL) return;
+    NJS_OBJECT *tail = child->child;
+    if (tail == NULL) return;
+    NJS_CNK_MODEL *model = (NJS_CNK_MODEL *)tail->model;
+    if (model == NULL || model->vertex_list == NULL) return;
+    m_vertices = (u32 *)model->vertex_list;
+    m_state = 1;
+}
 
 void TObjTailsTailsMove::run_task() {
-    u8 *arg0 = (u8 *)this;
-    switch (*(s32 *)((s8 *)arg0 + 0x24)) {
+    switch (m_state) {
     case 0:
-        sub_800FFC6C__18TObjTailsTailsMoveFv();
+        find_vertex_list();
         return;
     case 1:
-        advance_field28__23TAdSinglePlyChrSelectGCFv();
+        advance_phase();
         return;
     }
 }
 
 TObjTailsTailsMove::~TObjTailsTailsMove() {}
-void *TObjTailsTailsMove__ct(void *tails_tails_move, void *arg1) {
-    __ct__7TObjectFP7TObject(tails_tails_move);
-    *(s32 **)((s8 *)tails_tails_move + 0x18) = __vt__18TObjTailsTailsMove;
-    *(void * *)&((TObjTailsTailsMove *)tails_tails_move)->m_name = TObjTailsTailsMove__name;
-    *(void **)((s8 *)tails_tails_move + 0x1C) = arg1;
-    *(u32 *)((s8 *)tails_tails_move + 0x24) = 0;
-    return tails_tails_move;
+
+TObjTailsTailsMove::TObjTailsTailsMove(TObjPlayer *player) : TObject(player) {
+    m_name = TObjTailsTailsMove_name;
+    m_player = player;
+    m_state = 0;
 }
 
-void *TObjTailsTailsMove::create(void *arg0) {
-    void *o;
-    o = __nw__7TObjectFUl(0x2C);
-    if (o != NULL) {
-        o = TObjTailsTailsMove__ct(o, arg0);
-    }
-    return o;
-}
-
-int TObjTailsTailsMove__sub_800FFE04(void) { return 0; }
-void TObjTailsTailsMove__sub_800FFE0C(void) {  }
-void TObjTailsTailsMove__sub_800FFE10(void) {  }
-int TObjTailsTailsMove__sub_800FFE14(void) { return 0; }
-
+TObjTailsTailsMove *TObjTailsTailsMove::create(TObjPlayer *player) {
+    return new TObjTailsTailsMove(player);
 }

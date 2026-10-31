@@ -51,8 +51,6 @@ struct TObjEneMe1GiGue : public TObjEnemyCustom {
     static void delete_barrier();
     static void load_resources();
     void load_params_from_table(s32 i);
-    void update_if_active(s32 _w1);
-    void set_state(s32 arg1);
     u8 unk_44C[0xC];
     static int get_barrier_count();
     void apply_hit_shake(u32 arg1);

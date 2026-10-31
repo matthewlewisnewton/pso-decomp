@@ -9,7 +9,7 @@
 #include "pso/player/TUnk_80490470.h"
 #include "pso/enemy/TObjEneBalClaw.h"
 #include "pso/enemy/TObjEneBalClawClaw.h"
-#include "pso/enemy/TObjEneMe1GiGue.h"
+#include "pso/enemy/TObjEnemyCustom.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/boss/TBoss3Volopt.h"
@@ -160,7 +160,7 @@ extern u32 lbl_805D4F20;
 
 void TObjEneBalClaw::vfunc_62() {
     u8 *arg0 = (u8 *)this;
-    ((TObjEneMe1GiGue *)arg0)->set_state(4);
+    ((TObjEnemyCustom *)arg0)->set_state(4);
     this->m_388 = (s32) (this->m_388 | 1);
 }
 

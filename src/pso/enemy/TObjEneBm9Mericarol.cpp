@@ -1,6 +1,11 @@
 #include "pso/misc/SampledMotionPoints.h"
 #include "pso/player/demo_mode.h"
 #include "pso/misc/MaterialOpacityFade.h"
+#include "pso/enemy/BattleParameters.h"
+#include "pso/enemy/TObjEnemy.h"
+#include "pso/system/EnemyBmlResource.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/misc/RenderFadeState.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEnemy.h"
@@ -342,7 +347,7 @@ void __ct__12TObjEneDD_STFP7TObject(void *, void *);
 void __construct_array(void *, void *, void *, u32, u32);
 void invoke_initialization_hook__9TObjEneDDFPv(void *, s32);
 void init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, s32);
-void reset_hp__9TObjEneDDFPUcPUcPUc(void *, s32, s32, s32);
+void reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(void *, s32, s32, s32);
 s32 create__13TUnk_80494968FUlUl(s32, s32);
 void initialize_enemy_state__9TObjEneDDFl(void *, s32);
 void *__ct__14TObjCollidableFP7TObject(void *, s32);
@@ -498,13 +503,13 @@ s32 TObjEneBm9Mericarol::try_set_mode8_if_flag2() {
 void TObjEneBm9Mericarol__sub_802D093C(void) {  }
 void TObjEneBm9Mericarol__sub_802D0940(void) {  }
 void TObjEneBm9Mericarol::vfunc_88() {
-    *(f32 *)((s8 *)this->bodies + 4) = (f32) (this->m_300 - *(f32 *)((s8 *)this + 0x3C));
+    *(f32 *)((s8 *)this->bodies + 4) = (f32) (this->body_center_position.y - *(f32 *)((s8 *)this + 0x3C));
 }
 
 void TObjEneBm9Mericarol::sync_center_position() {
     u8 *arg0 = (u8 *)this;
     VecCopy((Vec *)(arg0 + 0x2FC), (const Vec *)(arg0 + 0x38));
-    this->m_300 = (f32) (this->m_300 + lbl_805DE704);
+    this->body_center_position.y = (f32) (this->body_center_position.y + lbl_805DE704);
     VecCopy((Vec *)(arg0 + 0x74), (const Vec *)(arg0 + 0x2FC));
 }
 
@@ -588,10 +593,10 @@ void TObjEneBm9Mericarol::run_task() {
     }
     temp_r3 = this->m_454;
     if (temp_r3 & 0x10) {
-        if ((u32) this->m_390 == 0U) {
+        if ((u32) this->target == 0U) {
             this->m_454 = (s32) (temp_r3 & 0xFFFFFFEF);
         }
-    } else if ((u32) this->m_390 != 0U) {
+    } else if ((u32) this->target != 0U) {
         this->m_454 = (s32) (temp_r3 | 0x10);
     }
     if (this->vfunc_83() != 4) {
@@ -671,7 +676,7 @@ Obj_802D0D3C *TObjEneBm9Mericarol__ct(Obj_802D0D3C *self, void *parent, s32 arg2
     ((TObjMotion *)self)->set_animation(self->fB8);
     ((TObjMotion *)self)->set_field_b8(self->fB8);
     ph = ((TObjEneBm9Mericarol *)self)->get_phase();
-    reset_hp__9TObjEneDDFPUcPUcPUc(self, bm9_mericarol_phase_hp_table[ph], lbl_80540B64[ph], lbl_80540B70[ph]);
+    reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(self, bm9_mericarol_phase_hp_table[ph], lbl_80540B64[ph], lbl_80540B70[ph]);
     self->f3C0 = create__13TUnk_80494968FUlUl(0xA0303030, lbl_80472318[ph]);
     self->f3C4 = create__13TUnk_80494968FUlUl(0xA0303030, lbl_80472318[ph]);
     ((TObjChara *)self)->add_flags_2e4(0x12);

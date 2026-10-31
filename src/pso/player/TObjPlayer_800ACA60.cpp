@@ -2,6 +2,8 @@
 #include "pso/player/TObjChara.h"
 #include "pso/misc/SampledMotionPoints.h"
 #include "pso/player/demo_mode.h"
+#include "pso/math/VectorNormalize.h"
+#include "pso/math/ScratchVectorStorage.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "types.h"
@@ -26,7 +28,7 @@ s32 apply_actor_gravity(void *, int, f32);
 void move_with_wall_slide(u8 *arg0);
 extern "C" {
 void queue_destruction__7TObjectFv(void *arg0);
-s32 spawn_dead_spot_scale15(void *, int);
+void spawn_dead_spot_scale15(const Vec *, s32);
 s32 play_sound_effect(s32, void *, int, int);
 s32 vec3_add_to(void *, void *);
 s32 rotate_vector_by_matrix(int, void *, void *);
@@ -94,13 +96,13 @@ void TObjEneMoja::update_death_state() {
         play_sound_effect(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x3AD03)), &v, 0, 0);
         TObjPlayer::play_effect_if_v2(-0x300);
         spawn_particle_effect((s32) &v, 0xF0);
-        spawn_dead_spot_scale15(&v, 0x14);
+        spawn_dead_spot_scale15((const Vec *)&v, 0x14);
         ((TObjPlayer *)(&v))->spawn_effect_at_ground(0x32);
     }
     if (this->frame < lbl_805D9BEC * (lbl_805D9BF0 * this->play_speed)) {
         move_with_wall_slide(arg0);
-        (*(f32 *)&this->unk_308) *= lbl_805D9BEC;
-        this->m_310 *= lbl_805D9BEC;
+        (this->movement_velocity.x) *= lbl_805D9BEC;
+        this->movement_velocity.z *= lbl_805D9BEC;
     } else if (!((this->actorFlags) & 0x800000)) {
         apply_actor_gravity(arg0, 0, lbl_805D9BD8);
     }
@@ -119,7 +121,7 @@ void TObjEneMoja::vfunc_63() {
         temp_r6 = (u8 *)this->bodies;
         *(s32 *)((s8 *)temp_r6 + 0x18) = (s32) (*(s32 *)((s8 *)temp_r6 + 0x18) & 0xFFFF7FFE);
         spawn_particle_effect((s32)(arg0 + 0x2FC), 0xF1);
-        ((TObjPlayer *)arg0)->refresh_lobby_state();
+        ((TObjEnemy *)arg0)->distribute_experience_and_request_drop();
         ((TObjEnemy *)arg0)->send_entity_set_flags();
         this->appearance = 0;
     }
@@ -135,8 +137,8 @@ void TObjPlayer::update_ground_effect() {
         ((s32 (*)(void *, void *, int, int))play_sound_effect)((void *)((TObjEnemy *)(this))->remap_sound_for_area((s32)(0x3A807)), (void *) (((u8 *)this) + 0x38), 0, 0);
         TObjPlayer::play_effect_if_v2(-0x300);
     }
-    this->m_310 = (f32) lbl_805D9BD8;
-    *(f32 *)&this->unk_308 = (f32) lbl_805D9BD8;
+    this->movement_velocity.z = (f32) lbl_805D9BD8;
+    this->movement_velocity.x = (f32) lbl_805D9BD8;
     apply_actor_gravity(this, 0, lbl_805D9BD8);
     this->update_collisions();
     if ((u32) this->action_flags != 8U) {
@@ -574,7 +576,6 @@ void render__11TObjEneMojaFv(u8 *arg0);
 
 s32 approach_angle_limited(s32, s32, s32);
 
-extern Vec_800AE450 scratch_vec;
 void update_appearance_drop__11TObjEneMojaFv(Moja_800AE450 *self);
 
 s32 enemy_turn_toward_dest(void *, s32);
@@ -822,7 +823,7 @@ s32 TObjEneMoja::update_technique_state(void *self_800AD3D8) {
                     ((s32 (*)(void *, int))spawn_particle_effect)(&pos, 0xB9);
                     ((s32 (*)(void *, int))spawn_particle_effect)(&pos, 0xBA);
                     if (ang2 < ((AttackParams *)(self->f318))->get_attack_angle() / 2) {
-                        if (((TObjBoss2Tunnel *)(&dir))->update_scale() < lbl_805D9C1C) {
+                        if (normalize_vector_checked((Vec *)(&dir)) < lbl_805D9C1C) {
                             dir.y = dir.x = lbl_805D9BD8;
                             dir.z = lbl_805D9BDC;
                             ((s32 (*)(void *))push_matrix_from)(identity_matrix);
@@ -1188,10 +1189,10 @@ void update_appearance_drop__11TObjEneMojaFv(Moja_800AE450 *self) {
     switch (self->phase) {
     case 0:
     default:
-        VecCopy((Vec *)&scratch_vec, (const Vec *)&self->home);
-        subtract_vector(&scratch_vec, &self->pos);
+        VecCopy((Vec *)&scratch_vec.vector, (const Vec *)&self->home);
+        subtract_vector(&scratch_vec.vector, &self->pos);
         self->angle = approach_angle_limited(self->angle,
-            (s32)(lbl_8043B0C8[0] * atan2_float(scratch_vec.x, scratch_vec.z)),
+            (s32)(lbl_8043B0C8[0] * atan2_float(scratch_vec.vector.x, scratch_vec.vector.z)),
             self->turn->step);
         if (self->angle >= self->turn->step) {
             return;
@@ -1202,11 +1203,11 @@ void update_appearance_drop__11TObjEneMojaFv(Moja_800AE450 *self) {
         }
         VecCopy((Vec *)&self->dest, (const Vec *)&self->home);
         VecCopy((Vec *)&self->from, (const Vec *)&self->pos);
-        self->speed = newton_sqrtf(scratch_vec.x * scratch_vec.x + scratch_vec.z * scratch_vec.z);
+        self->speed = newton_sqrtf(scratch_vec.vector.x * scratch_vec.vector.x + scratch_vec.vector.z * scratch_vec.vector.z);
         ticks = lbl_805D9C04 / self->fC8;
         self->speed = self->speed / ticks;
         ((s32 (*)(void *, Vec_800AE450, Vec_800AE450, f32))calc_velocity_toward_destination)(self, self->from, self->dest, self->speed);
-        self->vel.y = scratch_vec.y / ticks;
+        self->vel.y = scratch_vec.vector.y / ticks;
         self->phase = 1;
         break;
     case 1:

@@ -1,6 +1,7 @@
 #include "pso/misc/SampledMotionPoints.h"
 #include "pso/math/FloatRounding.h"
 #include "pso/player/demo_mode.h"
+#include "pso/math/VectorNormalize.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
@@ -871,7 +872,7 @@ s32 queue_destruction__7TObjectFv(void *);
 s32 TObjPlayer__sub_800A04F0(void *);
 s32 play_effect_if_v2__10TObjPlayerFl(int);
 s32 play_sound_effect(void *, void *, int, int);
-s32 get_camera_ctrl__9TObjEneDDFv(void *, int);
+s32 transform_point_to_view(void *, int);
 s32 rotate_matrix_x(int, int);
 extern RecoveredGlobal_800975A8_lbl_805008A8 bringer_camera_ctrl_target_vec;
 extern s32 TObjEneDf2Bringer__render_node_index;
@@ -1052,7 +1053,7 @@ void bringer_render_node_callback(void) {
     case 41:
         pos = TObjEneDf2Bringer__render_point_cursor;
         TObjEneDf2Bringer__render_point_cursor = pos + 0xC;
-        get_camera_ctrl__9TObjEneDDFv(&bringer_camera_ctrl_target_vec.value, pos);
+        transform_point_to_view(&bringer_camera_ctrl_target_vec.value, pos);
         break;
     }
     TObjEneDf2Bringer__render_node_index += 1;
@@ -2577,7 +2578,7 @@ void run_task__17TObjEneDf2BringerFv(u8 *arg0) {
 struct Vec_80099800 { f32 x, y, z; };
 struct Slot_80099800 { u8 pad[0x1C]; };
 
-s32 reset_hp__9TObjEneDDFPUcPUcPUc(void *, int, int, int);
+s32 reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(void *, int, int, int);
 void initialize_enemy_state__9TObjEneDDFl(void *, s32);
 void init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, s32);
 u8 *__ct__17AreaAttackHistoryFl(u8 *arg0, s32 arg1);
@@ -2635,7 +2636,7 @@ void TObjEneDf2Bringer::init_enemy() {
     *(s16 *)((s8 *)arg0 + 0xB8) = 0;
     ((TObjMotion *)arg0)->set_animation(*(s16 *)((s8 *)arg0 + 0xB8));
     ((TObjMotion *)arg0)->set_field_b8(*(s16 *)((s8 *)arg0 + 0xB8));
-    reset_hp__9TObjEneDDFPUcPUcPUc(arg0, bringer_boss_stats_handle, bringer_boss_stats_ptr_b, bringer_object_handle);
+    reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(arg0, bringer_boss_stats_handle, bringer_boss_stats_ptr_b, bringer_object_handle);
     ((TObjEneDD *)arg0)->set_state_8();
     *(void **)((s8 *)arg0 + 0x350) = bringer_init_params;
     initialize_enemy_state__9TObjEneDDFl(arg0, 0x24);
@@ -2854,7 +2855,7 @@ void TObjEneDf2Bringer::load_resources() {
     VecCopy((Vec *)&a, (const Vec *)&seg->p0);
     VecCopy((Vec *)&d, (const Vec *)&seg->p2);
     subtract_vector(&d, &a);
-    len = ((TObjBoss2Tunnel *)(&d))->update_scale();
+    len = normalize_vector_checked((Vec *)(&d));
     p1 = &seg->p1;
     s1 = k1 * len;
     VecCopy((Vec *)p1, (const Vec *)&a);

@@ -543,7 +543,7 @@ void TObjEneMe3ShinowaReal::vfunc_114(s32 arg1) {
         if (this->get_flag_b4() != 0) {
             I(0x3B8) = I(0x3BC);
             ok = 0;
-            if (V->m97() != 0 || is_player_entity_id(this->m_38c) != 0) {
+            if (V->m97() != 0 || is_player_entity_id(this->target_entity_id) != 0) {
                 if (transform_relative_position__9TObjEneDDFPv(this, P(0x390)) != 0) {
                     ok = 1;
                 }

@@ -19,12 +19,6 @@ struct TObjEneRecobox : public TObjEneDD_ST {
     void vfunc_62();
     void vfunc_61();
     void vfunc_28();
-    u8 unk_374[0x8];
-    f32 m_37c;
-    u8 unk_380[0x24];
-    void* m_3c0;
-
-    u8 _padBeforeFade[0x18];
     MaterialOpacityFade fade;
 
     u32 m_3f8;

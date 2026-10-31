@@ -2,6 +2,7 @@
 #include "pso/animation/MotionContext.h"
 #include "pso/math/FloatRounding.h"
 #include "pso/map/CsnGroundQuery.h"
+#include "pso/math/VectorNormalize.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
@@ -777,7 +778,7 @@ struct RecoveredGlobal_8002F61C_lbl_804FE31C {
 };
 
 extern "C" {
-void get_camera_ctrl__9TObjEneDDFv(s32, s32);
+void transform_point_to_view(s32, s32);
 void update_camera_sequence__9TObjEneDDFv(void);
 s32 subtract_vector(void *, void *);
 s32 push_matrix();
@@ -798,7 +799,7 @@ typedef char RecoveredGlobal_8002F61C_lbl_804820D8_size[sizeof(RecoveredGlobal_8
 typedef char RecoveredGlobal_8002F61C_lbl_804FE31C_size[sizeof(RecoveredGlobal_8002F61C_lbl_804FE31C) == 0xC ? 1 : -1];
 void TObjPlayer__sub_8002F61C(void) {
     if ((s32) TBoss2DeRolLe__current_attack_id == (s32) *(s32 *)((s8 *)&derolle_attack_sequence_id_table.value + (TBoss2DeRolLe__sequence_match_index * 4))) {
-        get_camera_ctrl__9TObjEneDDFv((s32) &lbl_804FE31C.value, lbl_805D4BB4);
+        transform_point_to_view((s32) &lbl_804FE31C.value, lbl_805D4BB4);
         TBoss2DeRolLe__sequence_match_index += 1;
         lbl_805D4BB4 += 0xC;
     }
@@ -2011,7 +2012,7 @@ void TBoss2DeRolLe__sub_8002FE60(void *arg0, u32 arg1) {
                 VCOPY(&p, &self->pos);
                 VCOPY(&d, hit);
                 subtract_vector(&d, &p);
-                dist = ((TObjBoss2Tunnel *)(&d))->update_scale();
+                dist = normalize_vector_checked((Vec *)(&d));
                 p.x += d.x * s;
                 p.y += d.y * s;
                 p.z += d.z * s;
@@ -5553,7 +5554,7 @@ void *TBoss2Mine__sub_800381B8(void *, void *, u16, int);
 void *__ct__14TBoss2TentacleFP7TObjectll(void *, void *, void *, s32);
 s32 __ct__12TObjEneDD_STFP7TObject(void *, void *);
 s32 is_main_phase_15__9TObjEneDDFv();
-s32 reset_hp__9TObjEneDDFPUcPUcPUc(void *, int, int, int);
+s32 reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(void *, int, int, int);
 s32 initialize_enemy_state__9TObjEneDDFl(void *, int);
 s32 init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, int, void *);
 s32 invoke_initialization_hook__9TObjEneDDFPv(void *, void *);
@@ -5819,7 +5820,7 @@ void *TBoss2DeRolLe__ct(void *arg0, void *arg1, void *arg2) {
     ((TBoss2DeRolLe *)self)->requested_action = 0;
     ((TObjMotion *)self)->set_animation(((TBoss2DeRolLe *)self)->requested_action);
     ((TObjMotion *)self)->set_field_b8(((TBoss2DeRolLe *)self)->requested_action);
-    reset_hp__9TObjEneDDFPUcPUcPUc(self, TBoss2DeRolLe__base_params, ((s32 *)TBoss2DeRolLe__attack_params_table)[0], TBoss2DeRolLe__resistance_params);
+    reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(self, TBoss2DeRolLe__base_params, ((s32 *)TBoss2DeRolLe__attack_params_table)[0], TBoss2DeRolLe__resistance_params);
     ((TObjEneDD *)self)->check_state_flag_2();
     ((TBoss2DeRolLe *)self)->movementParameters = (u8 *)lbl_8048228C;
     initialize_enemy_state__9TObjEneDDFl(self, 0x2D);

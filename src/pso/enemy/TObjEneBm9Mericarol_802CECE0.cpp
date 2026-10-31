@@ -960,15 +960,15 @@ void TObjEneBm9Mericarol__sub_802CF4F8(u8 *ene_bm9_mericarol, s32 arg1) {
         {
           ((TObjEneBm9Mericarol_EffCurse3 *)temp_r3_2)->construct((s32)((void *) ene_bm9_mericarol), (s32)((int) temp_r3));
         }
-        ((TObjEneBm9Mericarol *)ene_bm9_mericarol)->m_390 = temp_r3;
+        ((TObjEneBm9Mericarol *)ene_bm9_mericarol)->target = (void *)temp_r3;
         *((s32 *) (((s8 *) ene_bm9_mericarol) + 0x494)) = 1;
         play_sound_effect((s32)((void *) ((s32)((TObjEnemy *)((void *)((void *) ene_bm9_mericarol)))->remap_sound_for_area((s32)(0x3A808)))), ene_bm9_mericarol + 0x38, 0, 0);
       }
     }
     else
-      if (((temp_r0 == 0x19) && (((s32) (*((s32 *) (((s8 *) ene_bm9_mericarol) + 0x494)))) != 0)) && (is_alive__8TObjBaseFv((int) (((TObjEneBm9Mericarol *)ene_bm9_mericarol)->m_390)) != 0))
+      if (((temp_r0 == 0x19) && (((s32) (*((s32 *) (((s8 *) ene_bm9_mericarol) + 0x494)))) != 0)) && (is_alive__8TObjBaseFv((int) (((TObjEneBm9Mericarol *)ene_bm9_mericarol)->target)) != 0))
     {
-      ((TObjPlayer *)(((TObjEneBm9Mericarol *)ene_bm9_mericarol)->m_390))->set_tp(0);
+      ((TObjPlayer *)(((TObjEneBm9Mericarol *)ene_bm9_mericarol)->target))->set_tp(0);
     }
       temp_r4 = ((TObjEneBm9Mericarol *)ene_bm9_mericarol)->m_4ac;
       ((TObjEneBm9Mericarol *)ene_bm9_mericarol)->m_4ac = (temp_r4 + 1);
@@ -1248,7 +1248,7 @@ void TObjEneBm9Mericarol::handle_shot_state(s32 arg1) {
             TObjPlayer__sub_802CE68C(arg0, arg0 + 0x460, 0x43);
             obj = __nw__7TObjectFUl(0x118);
             if (obj != 0) {
-                ((s32 (*)(void *, void *, void *, void *, f32, f32, s32))TObjEneBm9Mericarol__sub_802D1880)((void *)obj, arg0, arg0 + 0x460, (void *)(this->m_390 + 0x38),
+                ((s32 (*)(void *, void *, void *, void *, f32, f32, s32))TObjEneBm9Mericarol__sub_802D1880)((void *)obj, arg0, arg0 + 0x460, (void *)((u8 *)this->target + 0x38),
                     *(f32 *)((s8 *)mericarol_phase_param_table[PHASE(arg0)] + 0x8), *(f32 *)((s8 *)mericarol_phase_param_table[PHASE(arg0)] + 0xC),
                     ((f32 (*)(void *))random_ratio__9TObjCharaFv)(arg0) <= (f32)*(s32 *)((s8 *)mericarol_phase_param_table[PHASE(arg0)] + 0x2C) / lbl_805DE720);
             }
@@ -1256,7 +1256,7 @@ void TObjEneBm9Mericarol::handle_shot_state(s32 arg1) {
         }
         ((TObjEneDD_ST *)arg0)->enemy_copy_target_destination();
         ((TObjEneDD *)arg0)->update_velocity();
-        *(s32 *)((s8 *)arg0 + 0x4A0) = (s32)(lbl_804724B8 * atan2_float(this->m_3a0, *(f32 *)((s8 *)arg0 + 0x3A8)));
+        *(s32 *)((s8 *)arg0 + 0x4A0) = (s32)(lbl_804724B8 * atan2_float(this->target_direction.x, *(f32 *)((s8 *)arg0 + 0x3A8)));
         this->rotation_y = approach_angle_limited(this->rotation_y, *(s32 *)((s8 *)arg0 + 0x4A0), (void *)*(s32 *)((s8 *)(this->movementParameters) + 8));
         this->rotation_y = (s16)this->rotation_y;
         ((TObjEneDD *)(arg0))->vfunc_102();
@@ -1330,7 +1330,7 @@ void TObjEneBm9Mericarol__sub_802D01D8(u8 *actor, s32 arg1) {
                     enemy_set_target_id(actor, var_r30);
                 }
             }
-        } else if (((TObjEneEpsilon *)actor)->update_death_check() == 0) {
+        } else if (((TObjEneDD_ST *)actor)->check_target_validity() == 0) {
             break;
         }
         ((TObjEneDD_ST *)actor)->enemy_copy_target_destination();

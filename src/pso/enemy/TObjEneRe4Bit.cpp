@@ -1,4 +1,5 @@
 #include "pso/player/demo_mode.h"
+#include "pso/math/VectorNormalize.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEnemy.h"
 struct Obj_800ED4BC;
@@ -578,9 +579,9 @@ void TObjEneRe4Bit__sub_800ECD28(u8 *ene_dd, s32 arg1) {
     case 0:
       *((s32 *) (((s8 *) ene_dd) + 0x408)) = (s32) ((*((s32 *) (((s8 *) ene_dd) + 0x408))) + 1);
       VecCopy((Vec *)(ene_dd + 0x2FC), (const Vec *)((int) (*((s32 *) (((s8 *) ene_dd) + 0x3C0)))));
-      ((TObjEneDD *)ene_dd)->m_300 = (f32) ((((TObjEneDD *)ene_dd)->m_300) + (*((f32 *) (((s8 *) ene_dd) + 0x3D8))));
-      ((TObjEneDD *)ene_dd)->m_2fc = (f32) ((((TObjEneDD *)ene_dd)->m_2fc) + calc_elapsed_scaled__9TObjEneDDFv((void *) ene_dd));
-      ((TObjEneDD *)ene_dd)->m_304 = (f32) ((((TObjEneDD *)ene_dd)->m_304) + calc_elapsed_scaled__9TObjEneDDFv((void *) ene_dd));
+      ((TObjEneDD *)ene_dd)->body_center_position.y = (f32) ((((TObjEneDD *)ene_dd)->body_center_position.y) + (*((f32 *) (((s8 *) ene_dd) + 0x3D8))));
+      ((TObjEneDD *)ene_dd)->body_center_position.x = (f32) ((((TObjEneDD *)ene_dd)->body_center_position.x) + calc_elapsed_scaled__9TObjEneDDFv((void *) ene_dd));
+      ((TObjEneDD *)ene_dd)->body_center_position.z = (f32) ((((TObjEneDD *)ene_dd)->body_center_position.z) + calc_elapsed_scaled__9TObjEneDDFv((void *) ene_dd));
       (((TObjEneDD *)(ene_dd))->vfunc_102());
       return;
     case 5:
@@ -995,7 +996,7 @@ void TObjEneRe4Bit::update_homing_velocity() {
     VecCopy((Vec *)(&sp), (const Vec *)(this->m_3dc));
     sp.y = sp.y + arg0->f3D8;
     subtract_vector(&sp, &arg0->v2FC);
-    s = lbl_805DA77C * ((TObjBoss2Tunnel *)(&sp))->update_scale();
+    s = lbl_805DA77C * normalize_vector_checked((Vec *)(&sp));
     arg0->v3F8.x = lbl_805DA780 * (sp.x * s + arg0->v3F8.x);
     arg0->v3F8.y = lbl_805DA780 * (sp.y * s + arg0->v3F8.y);
     arg0->v3F8.z = lbl_805DA780 * (sp.z * s + arg0->v3F8.z);
@@ -1017,7 +1018,7 @@ void TObjEneRe4Bit::update_position_flag() {
 }
 
 void TObjEneRe4Bit::vfunc_88() {
-    *(f32 *)((s8 *)this->bodies + 4) = (f32) (this->m_300 - *(f32 *)((s8 *)this + 0x3C));
+    *(f32 *)((s8 *)this->bodies + 4) = (f32) (this->body_center_position.y - *(f32 *)((s8 *)this + 0x3C));
 }
 void TObjEneRe4Bit::copy_pos() { VecCopy((Vec *)((char*)this + 0x74), (const Vec *)((char*)this + 0x2fc)); }
 void TObjEneRe4Bit::vfunc_61() {  }
@@ -1079,7 +1080,7 @@ void *__dt__13TObjEneRe4BitFv(void *arg0, s16 arg1) {
     return arg0;
 }
 
-int reset_hp__9TObjEneDDFPUcPUcPUc(void *, s32, s32, s32);
+int reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(void *, s32, s32, s32);
 int initialize_enemy_state__9TObjEneDDFl(void *, int);
 int init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, int);
 extern s32 TObjEneRe4Bit__model;
@@ -1094,7 +1095,7 @@ void init__13TObjEneRe4BitFPv(Bit_800ED7FC *self) {
     self->x24 = re4_bit_texture_list;
     init_model__9TObjEneDDFP13CollisionBodyl(self, re4_bit_model_node_desc, 1);
     i = self->kind == 1 ? 0 : 1;
-    reset_hp__9TObjEneDDFPUcPUcPUc(self, TObjEneRe4Bit_boss_handles[i], lbl_80501058[i], lbl_80501060[i]);
+    reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(self, TObjEneRe4Bit_boss_handles[i], lbl_80501058[i], lbl_80501060[i]);
     ((TObjEneDD *)self)->set_state_8();
     self->x350 = re4_bit_init_params;
     if (self->kind == 1) {

@@ -1056,8 +1056,8 @@ s32 TObjPlayer__sub_800E85BC(TObjEneSlimeTailAttack *self) {
             TObjPlayer *pl = (TObjPlayer *)e;
             f32 lo = pl->position.y - lbl_805DA6AC;
             f32 hi = lbl_805DA6AC + (pl->position.y + pl->m_d48);
-            if (!(self->m_300 < lo) && !(self->m_300 > hi) &&
-                !(horizontal_distance_squared(&self->m_2fc, &pl->position) > lbl_805DA6B0)) {
+            if (!(self->body_center_position.y < lo) && !(self->body_center_position.y > hi) &&
+                !(horizontal_distance_squared(&self->body_center_position, &pl->position) > lbl_805DA6B0)) {
                 if (e->m21(*(s32 *)((u8 *)self + 0x374), hit, 0, -1, -1) != lbl_805DA6B4) {
                     e->m23(self);
                 }
@@ -1071,7 +1071,7 @@ s32 TObjPlayer__sub_800E85BC(TObjEneSlimeTailAttack *self) {
         void *owner = *(void **)((u8 *)self + 0x374);
         if (owner == NULL || id2 != (u16)get_entity_id(owner)) {
             e2 = (Ent_800E8AD0 *)get_enemy_entity(id2);
-            if (e2 != NULL && !(horizontal_distance_squared(&self->m_2fc, (u8 *)e2 + 0x2FC) > lbl_805DA6B0)) {
+            if (e2 != NULL && !(horizontal_distance_squared(&self->body_center_position, (u8 *)e2 + 0x2FC) > lbl_805DA6B0)) {
                 if (e2->m21(*(s32 *)((u8 *)self + 0x374), hit, 0, -1, -1) != lbl_805DA6B4) {
                     e2->m23(self);
                 }
@@ -1489,7 +1489,7 @@ void fn_800E95F4(u8 *arg0) {
     *(f32 *)((s8 *)arg0 + 0x3AC) = (f32) lbl_805DA67C;
     *(f32 *)((s8 *)arg0 + 0x3A8) = (f32) lbl_805DA67C;
     *(s32 *)((s8 *)arg0 + 0x390) = 5;
-    ((TObjPlayer *)arg0)->refresh_lobby_state();
+    ((TObjEnemy *)arg0)->distribute_experience_and_request_drop();
     ((s32 (*)(s32, u32, s16, s32))play_sound_effect)(0x4003A81B, (u32)(arg0 + 0x38), 0, 0);
     spawn_particle_effect((arg0 + 0x2FC), 0xFE);
     ((TObjEneSlimeOne *)(*(u8 **)((s8 *)arg0 + 0x388)))->set_motion_state(5);
@@ -2171,7 +2171,7 @@ void TObjEneSlimeOne::initialize_slime_instance_state() {
   ((TObjMotion *)actor)->set_animation(0);
   ((TObjMotion *)actor)->set_field_b8(0);
   VecCopy((Vec *)(new_var = actor + 0x2FC), (const Vec *)(actor + 0x38));
-  ((TObjEneSlimeOne *)actor)->m_310 = lbl_805DA6B4;
+  ((TObjEneSlimeOne *)actor)->movement_velocity.z = lbl_805DA6B4;
   *((f32 *) (((s8 *) actor) + 0x30C)) = lbl_805DA6B4;
   *((f32 *) (((s8 *) actor) + 0x308)) = lbl_805DA6B4;
   *((s32 *) (((s8 *) actor) + 0x2A8)) = 0;

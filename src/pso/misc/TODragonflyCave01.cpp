@@ -159,24 +159,24 @@ void TODragonfly::update_flee_flight() {
 }
 
 s32 TODragonfly::pick_random_destination(f32 height) {
-    scratch_vec.x = 0.0f;
-    scratch_vec.y = height;
-    scratch_vec.z = wander_radius * (3.0517578e-05f * (f32)rand());
+    scratch_vec.vector.x = 0.0f;
+    scratch_vec.vector.y = height;
+    scratch_vec.vector.z = wander_radius * (3.0517578e-05f * (f32)rand());
     scratch_rotation.y = 182.04445f * (360.0f * (3.0517578e-05f * (f32)rand()));
     push_matrix_from(&identity_matrix);
     rotate_matrix_y(NULL, scratch_rotation.y);
-    rotate_vector_by_matrix(0, &scratch_vec, &scratch_vec);
+    rotate_vector_by_matrix(0, &scratch_vec.vector, &scratch_vec.vector);
     pop_matrix();
-    vec3_add_to(&scratch_vec, &home_position);
-    VecCopy(&destination, &scratch_vec);
-    subtract_vector(&scratch_vec, &position);
-    if (normalize_if_nonzero(&scratch_vec) == 1) {
+    vec3_add_to(&scratch_vec.vector, &home_position);
+    VecCopy(&destination, &scratch_vec.vector);
+    subtract_vector(&scratch_vec.vector, &position);
+    if (normalize_if_nonzero(&scratch_vec.vector) == 1) {
         object_state = 1;
         wait_timer = 0;
-        rotation_y = (32768.0 / 3.141592f) * atan2_float(scratch_vec.x, scratch_vec.z);
-        step.x = scratch_vec.x * scale.z;
-        step.y = scratch_vec.y * scale.z;
-        step.z = scratch_vec.z * scale.z;
+        rotation_y = (32768.0 / 3.141592f) * atan2_float(scratch_vec.vector.x, scratch_vec.vector.z);
+        step.x = scratch_vec.vector.x * scale.z;
+        step.y = scratch_vec.vector.y * scale.z;
+        step.z = scratch_vec.vector.z * scale.z;
         return 1;
     }
     return 0;

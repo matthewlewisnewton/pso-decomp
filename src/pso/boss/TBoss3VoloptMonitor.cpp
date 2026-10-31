@@ -7,7 +7,7 @@
 #include "pso/boss/TBoss3VoloptMonitor.h"
 #include "pso/boss/TBoss3Volopt.h"
 #include "pso/boss/TBoss3VoloptHiraisin.h"
-#include "pso/enemy/TObjEneMe1GiGue.h"
+#include "pso/enemy/TObjEnemyCustom.h"
 #include "pso/misc/TLobby.h"
 #include "pso/object/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
@@ -391,7 +391,7 @@ void TBoss3VoloptMonitor::sub_80041E88() {
     case 1:
         if (--*(s16 *)&timer <= 0) {
             obj_clearFlags30(0x200200);
-            ((TObjEneMe1GiGue *)this)->update_if_active(0);
+            ((TObjEnemyCustom *)this)->update_if_active(0);
             m_388 &= ~1;
         }
         break;
@@ -482,8 +482,8 @@ void TBoss3VoloptMonitor::spawn_effects() {
     angle[0] = 0;
     angle[1] = rotation_y;
     angle[2] = 0;
-    spawn_directional_particle(&m_2fc, angle, (slot & 3) == 0 ? 0x62 : 0x61);
-    spawn_particle_effect(&m_2fc, 0x45);
+    spawn_directional_particle(&body_center_position, angle, (slot & 3) == 0 ? 0x62 : 0x61);
+    spawn_particle_effect(&body_center_position, 0x45);
 }
 
 void TBoss3VoloptMonitor::set_hit_flags_and_notify() {

@@ -1,3 +1,4 @@
+#include "pso/math/VectorNormalize.h"
 #include "types.h"
 #include "pso/boss/TBoss1DragonEffBullet.h"
 #include "pso/system/vector.h"
@@ -143,7 +144,7 @@ u8 *TBoss1DragonEffBullet__ct(u8 *boss1_dragon_eff_bullet, s32 arg1, s32 arg2, s
     VecCopy((Vec *)(boss1_dragon_eff_bullet + 0x1C), (const Vec *)(arg2));
     VecCopy((Vec *)(boss1_dragon_eff_bullet + 0x28), (const Vec *)(arg3));
     subtract_vector(boss1_dragon_eff_bullet + 0x28, boss1_dragon_eff_bullet + 0x1C);
-    ((TBoss1DragonEffBullet *)boss1_dragon_eff_bullet)->m_40 = ((TObjBoss2Tunnel *)(boss1_dragon_eff_bullet + 0x28))->update_scale();
+    ((TBoss1DragonEffBullet *)boss1_dragon_eff_bullet)->m_40 = normalize_vector_checked((Vec *)(boss1_dragon_eff_bullet + 0x28));
     *(f32 *)((s8 *)boss1_dragon_eff_bullet + 0x3C) = (f32) lbl_805D8144;
     ((TBoss1DragonEffBullet *)boss1_dragon_eff_bullet)->m_34 = 0;
     ((TBoss1DragonEffBullet *)boss1_dragon_eff_bullet)->m_38 = 0;

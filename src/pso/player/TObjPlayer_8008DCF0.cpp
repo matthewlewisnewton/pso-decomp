@@ -10,7 +10,7 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/boss/TBoss3Volopt.h"
 #include "pso/boss/TBoss4Type2.h"
-#include "pso/enemy/TObjEneMe1GiGue.h"
+#include "pso/enemy/TObjEnemyCustom.h"
 #include "pso/misc/TNowLoading.h"
 
 struct Row_8008ED48 { u32 *p[11]; };
@@ -471,7 +471,7 @@ void TObjPlayer::run_death_sequence() {
     u8 *p;
     switch (this->m_37c) {
     case 0:
-        ((TObjPlayer *)arg0)->refresh_lobby_state();
+        ((TObjEnemy *)arg0)->distribute_experience_and_request_drop();
         *(s32 *)((s8 *)arg0 + 0x388) &= ~0x20000;
         if (((TObjPlayer *)arg0)->get_flag_0x388_b24() != 0) {
             this->requested_action = 4;
@@ -565,7 +565,7 @@ void TObjPlayer__sub_8008F910(u8 *arg0) {
                     var_r30 = 2;
                 }
             }
-            ((TObjEneMe1GiGue *)arg0)->update_if_active(var_r30);
+            ((TObjEnemyCustom *)arg0)->update_if_active(var_r30);
         }
         break;
     }

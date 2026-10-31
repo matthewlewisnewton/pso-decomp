@@ -482,7 +482,7 @@ void TObjEneDD::state_chase_target(s32 arg1) {
                     enemy_set_target_id(arg0, idx);
                 }
             }
-        } else if (((TObjEneEpsilon *)arg0)->update_death_check() == 0) {
+        } else if (((TObjEneDD_ST *)arg0)->check_target_validity() == 0) {
             break;
         }
         ((TObjEneDD_ST *)arg0)->enemy_copy_target_destination();

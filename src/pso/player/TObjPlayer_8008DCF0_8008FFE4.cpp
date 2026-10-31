@@ -27,7 +27,7 @@ void TObjPlayer::update_control_state() {
         return;
     }
     if ((*(s32 *)&this->unk_388 & 0x02000000) && (((TObjPlayer *)arg0)->get_flag_0x388_b24() == 0)) {
-        ((TObjEneMe1GiGue *)arg0)->update_if_active(2);
+        ((TObjEnemyCustom *)arg0)->update_if_active(2);
     } else {
         ((TObjEneBalClawBody *)arg0)->sub_8008FC10();
     }
@@ -43,8 +43,8 @@ void TObjPlayer::update_control_state() {
     ((TObjEneBalClaw *)arg0)->update_wobble();
     ((TObjEneBalClaw *)arg0)->update_claw_angle();
     VecCopy((Vec *)(arg0 + 0x2FC), (const Vec *)(arg0 + 0x38));
-    temp_f2 = *(f32 *)&this->m_300;
-    *(f32 *)&this->m_300 = (f32) (temp_f2 + (*(f32 *)&this->m_3b4 + *(f32 *)&this->m_3bc));
+    temp_f2 = *(f32 *)&this->body_center_position.y;
+    *(f32 *)&this->body_center_position.y = (f32) (temp_f2 + (*(f32 *)&this->m_3b4 + *(f32 *)&this->m_3bc));
     temp_f1 = *(f32 *)&this->m_3b4;
     temp_r5 = (unsigned char *) (*(void * *)&this->bodies);
     *(f32 *)((s8 *)temp_r5 + 4) = (f32) (temp_f1 + *(f32 *)&this->m_3bc);

@@ -505,7 +505,7 @@ extern "C" {
 int select_and_apply_target__12TObjEneDD_STFf(void*);
 void *__dt__12TObjEneDD_STFv(void *arg0, s16 arg1);
 s32 check_v2_mode__9TObjEneDDFv(s32, s32);
-s32 reset_hp__9TObjEneDDFPUcPUcPUc(void *, int, int, int);
+s32 reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(void *, int, int, int);
 s32 initialize_enemy_state__9TObjEneDDFl(void *, int);
 int vfunc_96__9TObjEneDDFv(void*);
 int vfunc_95__9TObjEneDDFv(void*);
@@ -2064,7 +2064,7 @@ void TObjEneMe3SinowZoa__sub_80318C0C(void *arg0_, s32 arg1) {
             ((TObjMotion *)ene_epsilon)->advance_animation();
             ((VObj_18_4f5f2e *)(ene_epsilon))->m103();
             if (*(f32 *)((s8 *)ene_epsilon + 0xC0) < TObjEneMe3SinowZoa__data_805DF320) {
-                if (((TObjEneEpsilon *)ene_epsilon)->update_death_check() != 0) {
+                if (((TObjEneDD_ST *)ene_epsilon)->check_target_validity() != 0) {
                     ((TObjEneDD_ST *)ene_epsilon)->enemy_copy_target_destination();
                     ((TObjEneDD *)ene_epsilon)->update_velocity();
                     var_r4 = (s32) (TObjEneMe3SinowZoa__data_804760A0 * atan2_float(*(f32 *)((s8 *)ene_epsilon + 0x3A0), *(f32 *)((s8 *)ene_epsilon + 0x3A8)));
@@ -2247,7 +2247,7 @@ void TObjEneMe3SinowZoa__sub_80318F7C(Ene_80318F7C *self, s32 arg1) {
         case 1: {
             s32 target;
             ((TObjMotion *)self)->advance_animation();
-            if (((TObjEneEpsilon *)self)->update_death_check() != 0) {
+            if (((TObjEneDD_ST *)self)->check_target_validity() != 0) {
                 ((TObjEneDD_ST *)self)->enemy_copy_target_destination();
                 ((TObjEneDD *)self)->update_velocity();
                 target = (s32)(TObjEneMe3SinowZoa__data_804760A0 * atan2_float(self->f3A0, self->f3A8));
@@ -2264,7 +2264,7 @@ void TObjEneMe3SinowZoa__sub_80318F7C(Ene_80318F7C *self, s32 arg1) {
         }
         case 2:
             ((TObjMotion *)self)->advance_animation();
-            if (((TObjEneEpsilon *)self)->update_death_check() != 0) {
+            if (((TObjEneDD_ST *)self)->check_target_validity() != 0) {
                 ((TObjEneDD_ST *)self)->enemy_copy_target_destination();
                 ((TObjEneDD *)self)->update_velocity();
             }
@@ -3243,7 +3243,7 @@ void TObjEneMe3SinowZoaReal::init_enemy() {
         s32 *a = tbl->t[0];
         s32 *b = tbl->t[1];
         s32 *c = tbl->t[2];
-        reset_hp__9TObjEneDDFPUcPUcPUc((void *)this, a[temp_r0], b[temp_r0], c[temp_r0]);
+        reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock((void *)this, a[temp_r0], b[temp_r0], c[temp_r0]);
     }
     this->check_state_flag_4();
     *(void **)((s8 *)((u8 *)this) + 0x350) = TObjEneMe3SinowZoa_init_params;

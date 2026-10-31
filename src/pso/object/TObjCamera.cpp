@@ -27,7 +27,7 @@ AnimationMotion *get_bml_motion(u32, int);
 s32 get_bml_model(u32, int);
 void TObjFish__sub_8001EDB0(u32, int);
 void set_global_param__8TObjFishFl();
-void get_camera_ctrl__9TObjEneDDFv(const Vec *, Vec *);
+void transform_point_to_view(const Vec *, Vec *);
 }
 
 __declspec(section ".data") const char *fe_obj_cam_model_names[2] = { "fe_obj_cam840_841.gj", NULL };
@@ -92,7 +92,7 @@ void TObjCamera::update_camera_slots() {
     for (i = 0; i < 8; i++) {
         if (camera_slot_scan_index == camera_slot_id_table[i]) {
             Vec v = { 0.0f, 0.0f, 0.0f };
-            get_camera_ctrl__9TObjEneDDFv(&v, &camera_slot_positions[i]);
+            transform_point_to_view(&v, &camera_slot_positions[i]);
         }
     }
     camera_slot_scan_index += 1;

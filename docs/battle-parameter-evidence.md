@@ -20,3 +20,13 @@ The index's original signedness and the ownership of the loaded storage are
 also not established. Existing callers still use integer-held addresses and
 local overlays in places; these declarations describe the lookup interface,
 not a proof of those overlays' C++ object lifetime or aliasing semantics.
+
+`TObjEneDD::reset_hp` accepts base, attack, and resistance records in that
+order and forwards them to the enemy combat-stat binding before copying HP to
+its reference HP. Callers also pass null for individual records, including
+attack-only updates. For a null argument, the binding retains the installed
+record, or returns early if no record is installed; `reset_hp` still copies
+current HP afterward. The binding itself still exposes byte pointers. Legacy
+hand-mangled calls to `reset_hp` remain compatibility declarations, including
+some integer return types and an extra argument at one call site; recovering
+the member signature does not make those declarations type-safe.

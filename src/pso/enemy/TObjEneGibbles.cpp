@@ -812,19 +812,19 @@ void TObjEneGibbles__sub_802D7DAC(s32 arg0) {
 void TObjEneGibbles__sub_802D7E3C(void) {  }
 
 void TObjEneGibbles::update_shadow_height() {
-    *(f32 *)((s8 *)this->bodies + 4) = (f32) (this->m_300 - this->position.y);
+    *(f32 *)((s8 *)this->bodies + 4) = (f32) (this->body_center_position.y - this->position.y);
 }
 
 void TObjEneGibbles::update_position() {
     u8 *arg0 = (u8 *)this;
 
     VecCopy((Vec *)(arg0 + 0x2FC), &this->position);
-    this->m_300 = (f32) (this->m_300 + TObjEneGibbles__data_805DE7E8);
+    this->body_center_position.y = (f32) (this->body_center_position.y + TObjEneGibbles__data_805DE7E8);
     switch (this->mode) {
     case 2:
     case 6:
     case 0xA:
-        this->m_300 = (f32) (this->m_300 + this->m_38c);
+        this->body_center_position.y = (f32) (this->body_center_position.y + this->m_38c);
         break;
     }
 }
@@ -994,7 +994,7 @@ void TObjEneGibbles::vfunc_63() {
         this->requested_action = 9;
         temp_r4 = this->bodies;
         *(s32 *)((s8 *)temp_r4 + 0x18) = (s32) (*(s32 *)((s8 *)temp_r4 + 0x18) & 0xFFFFFFFE);
-        ((TObjPlayer *)this)->refresh_lobby_state();
+        ((TObjEnemy *)this)->distribute_experience_and_request_drop();
         send_entity_set_flags();
     }
 }
@@ -1014,8 +1014,8 @@ void TObjEneGibbles::update_action_state() {
         play_sound_effect(((TObjEneGibbles*)((void *)((void *)(arg0))))->resolve_sound_id((u32)(0x3AD34)), (void *) (arg0 + 0x38), 0, 0);
         break;
     case 1:
-        this->m_310 = (f32) TObjEneGibbles__data_805DE7E4;
-        (*(f32 *)&this->unk_308) = (f32) TObjEneGibbles__data_805DE7E4;
+        this->movement_velocity.z = (f32) TObjEneGibbles__data_805DE7E4;
+        (this->movement_velocity.x) = (f32) TObjEneGibbles__data_805DE7E4;
         apply_actor_gravity((TObjEnemy *)(arg0), (s32 *)(0), TObjEneGibbles__data_805DE7E4);
         if ((u32) this->action_flags != 8U) {
             this->phase = 3;
@@ -1614,7 +1614,7 @@ void TObjEneGibbles::vfunc_60() {
     case 0:
     default: {
         VecCopy((Vec *)((Vec_800A6B14 *) &v), (const Vec *)((Vec_800A6B14 *) (this->target + 0x2FC)));
-        subtract_vector(&v, (u8 *)&this->m_2fc);
+        subtract_vector(&v, (u8 *)&this->body_center_position);
         f64 t = atan2_float(v.x, v.z);
         this->mode = 4;
         if ((s32) (TObjEneGibbles__data_80472798 * t) < 0x10) {

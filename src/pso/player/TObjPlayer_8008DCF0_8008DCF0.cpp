@@ -171,7 +171,7 @@ struct VObj_18_4841bb : VBase_18_4841bb {
 struct Self_8008E934 { u8 pad[0x3C4]; s32 ids[4]; };
 
 extern "C" {
-int update_if_active__15TObjEneMe1GiGueFl(void*, int);
+int update_if_active__15TObjEnemyCustomFl(void*, int);
 int get_player_data__10TObjPlayerFi(int a0);
 u16 get_entity_id(void *);
 void enter_hit_state__18TObjEneBalClawClawFs(u32, u16);
@@ -237,7 +237,7 @@ void select_actor_lighting(s32 obj);
 void translate_matrix(u32 arg0, f32 x, f32 y, f32 z);
 s32 defer_render__7TObjectFv(void *);
 
-int TObjPlayer::reset_enemy_state() { return update_if_active__15TObjEneMe1GiGueFl(this, 0); }
+int TObjPlayer::reset_enemy_state() { return update_if_active__15TObjEnemyCustomFl(this, 0); }
 
 extern s32 saved_model_render_flags;
 extern s32 model_render_flags;
@@ -501,7 +501,7 @@ void TObjPlayer__sub_8008E310(P_8008E310 *arg0_) {
 }
 
 void TObjPlayer::update_me1_gigue_state() {
-    update_if_active__15TObjEneMe1GiGueFl(this, (int)(get_flag_0x388_b24() ? 9 : 2));
+    update_if_active__15TObjEnemyCustomFl(this, (int)(get_flag_0x388_b24() ? 9 : 2));
 }
 
 void TObjEneBalClawBody::render() {

@@ -350,10 +350,10 @@ void TObjEneDD::init_position_vectors() {
     VecCopy(&this->home_position, (const Vec *)&this->position);
     VecCopy(&this->center, (const Vec *)&this->position);
     ((TBoss3Volopt *)arg0)->reset_photon_effect();
-    VecCopy((Vec *)&this->m_2fc, (const Vec *)&this->position);
+    VecCopy((Vec *)&this->body_center_position, (const Vec *)&this->position);
     *(f32 *)((s8 *)arg0 + 0x308) = (f32) TObjEneDD__data_805D9E8C;
     *(f32 *)((s8 *)arg0 + 0x30C) = (f32) TObjEneDD__data_805D9E8C;
-    this->m_310 = (f32) TObjEneDD__data_805D9E8C;
+    this->movement_velocity.z = (f32) TObjEneDD__data_805D9E8C;
     this->ground_normal.x = (f32) TObjEneDD__data_805D9E8C;
     ground_normal.y = (f32) TObjEneDD__data_805D9E8C;
     this->ground_normal.z = (f32) TObjEneDD__data_805D9E8C;

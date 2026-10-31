@@ -1,5 +1,6 @@
 #include "pso/player/TObjChara.h"
 #include "pso/player/demo_mode.h"
+#include "pso/math/ScratchVectorStorage.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "types.h"
 #include "pso/boss/TBoss3VoloptHiraisin.h"
@@ -66,8 +67,6 @@ s32 rotate_matrix_y(int, int);
 s32 subtract_vector(void *, void *);
 s32 push_matrix_from(void *);
 s32 pop_matrices(int);
-extern Vec scratch_vec;
-extern Vec lbl_8050BF00;
 extern u8 identity_matrix[];
 
 s32 apply_actor_gravity(void *, int, f32);
@@ -153,8 +152,8 @@ void TUnk_80493450::beast_update_dead() {
     }
     if (this->frame < (BEAST_DEATH_SLIDE_FRAME_SCALE * (BEAST_DEATH_SLIDE_FRAME_COUNT * this->play_speed))) {
         move_with_wall_slide((arg0));
-        x_speed *= BEAST_HORIZONTAL_SPEED_DAMPING;
-        m_310 *= BEAST_HORIZONTAL_SPEED_DAMPING;
+        movement_velocity.x *= BEAST_HORIZONTAL_SPEED_DAMPING;
+        movement_velocity.z *= BEAST_HORIZONTAL_SPEED_DAMPING;
     } else if (obj_testFlags30__14TObjCollidableFUl(arg0, 0x800000) == 0) {
         apply_actor_gravity(arg0, 0, BEAST_GROUND_HEIGHT_OFFSET);
     }
@@ -163,28 +162,28 @@ void TUnk_80493450::beast_update_dead() {
         this->beast_retire_corpse();
     }
 }
-void TUnk_80493450::vfunc_63() { if (this->mode != 8) { this->mode = 8; this->requested_action = 8; unlink_enemy_group_relations__13TUnk_80493450Fv(this); clear_player_status_flag((s32)((void*)0), (u32)((void*)1)); ((TObjPlayer *)this)->refresh_lobby_state(); send_entity_set_flags__9TObjEnemyFv(this); } }
+void TUnk_80493450::vfunc_63() { if (this->mode != 8) { this->mode = 8; this->requested_action = 8; unlink_enemy_group_relations__13TUnk_80493450Fv(this); clear_player_status_flag((s32)((void*)0), (u32)((void*)1)); ((TObjEnemy *)this)->distribute_experience_and_request_drop(); send_entity_set_flags__9TObjEnemyFv(this); } }
 void TUnk_80493450::beast_update_hurt() {
     u8 *arg0 = (u8 *)this;
     Vec v;
 
     advance_animation();
-    VecCopy(&v, (const Vec *)&m_2fc);
-    scratch_vec.x = scratch_vec.y = BEAST_ZERO_VECTOR_COMPONENT;
-    scratch_vec.z = get_collision_body_radius(this, 0);
-    ((void (*)(void *, void *))push_matrix_from)(identity_matrix, &scratch_vec);
+    VecCopy(&v, (const Vec *)&body_center_position);
+    scratch_vec.vector.x = scratch_vec.vector.y = BEAST_ZERO_VECTOR_COMPONENT;
+    scratch_vec.vector.z = get_collision_body_radius(this, 0);
+    ((void (*)(void *, void *))push_matrix_from)(identity_matrix, &scratch_vec.vector);
     rotate_matrix_y(0, -rotation_y);
-    rotate_vector_by_matrix(0, &scratch_vec, &scratch_vec);
+    rotate_vector_by_matrix(0, &scratch_vec.vector, &scratch_vec.vector);
     pop_matrix();
-    vec3_add_to(&v, &scratch_vec);
-    v.x += x_speed;
-    v.z += m_310;
+    vec3_add_to(&v, &scratch_vec.vector);
+    v.x += movement_velocity.x;
+    v.z += movement_velocity.z;
     if (check_path_obstructed(this, &v) == 0) {
         move_with_wall_slide(arg0);
-        x_speed *= BEAST_HORIZONTAL_SPEED_DAMPING;
-        m_310 *= BEAST_HORIZONTAL_SPEED_DAMPING;
+        movement_velocity.x *= BEAST_HORIZONTAL_SPEED_DAMPING;
+        movement_velocity.z *= BEAST_HORIZONTAL_SPEED_DAMPING;
     } else {
-        x_speed = m_310 = BEAST_ZERO_SPEED;
+        movement_velocity.x = movement_velocity.z = BEAST_ZERO_SPEED;
     }
     ((TObjPlayer *)this)->update_collisions();
     if (is_passing_frame(BEAST_ANIMATION_START_FRAME) != 0) {
@@ -352,9 +351,9 @@ void TUnk_80493450::beast_update_group_chase() {
         break;
     }
     if (target != NULL) {
-        Vec v = *(Vec *)&((TObjChara *)target)->m_2fc;
+        Vec v = *(Vec *)&((TObjChara *)target)->body_center_position;
         d = enemy_backstep_from_point(this, &v, m_398);
-        turn_toward_direction((s32)((Sub350_800C57F0 *)movementParameters)->p8, (Vec *)&x_speed);
+        turn_toward_direction((s32)((Sub350_800C57F0 *)movementParameters)->p8, (Vec *)&movement_velocity.x);
         r = m_398 + bodies->radius;
         if (d < r * r) {
             mode = 3;
@@ -389,11 +388,11 @@ void TUnk_80493450::beast_update_approach() {
                 if (this->m_38c++ < BEAST_HOME_CHASE_FRAME_COUNT) {
                     VecCopy(&sp14, &this->home_position);
                 } else {
-                    VecCopy(&sp14, (const Vec *)&((TObjChara *)this->target)->m_2fc);
+                    VecCopy(&sp14, (const Vec *)&((TObjChara *)this->target)->body_center_position);
                 }
             } else {
                 this->m_38c = 0U;
-                VecCopy(&sp14, (const Vec *)&((TObjChara *)this->target)->m_2fc);
+                VecCopy(&sp14, (const Vec *)&((TObjChara *)this->target)->body_center_position);
             }
             update_target_near_flag();
             sub_800C4E08();
@@ -434,8 +433,8 @@ void TUnk_80493450::update_turn_toward_target() {
     case 1:
         if (arg0->target != NULL && arg0->is_actor_cadence_frame(0x1E) != 0) {
             Vec d;
-            VecCopy(&d, (const Vec *)&((TObjChara *)arg0->target)->m_2fc);
-            subtract_vector(&d, &arg0->m_2fc);
+            VecCopy(&d, (const Vec *)&((TObjChara *)arg0->target)->body_center_position);
+            subtract_vector(&d, &arg0->body_center_position);
             ang = arg0->turn_toward_direction((s32)((Ctl_800C5B10 *)arg0->movementParameters)->field_8, &d);
             if (d.x * d.x + d.z * d.z < BEAST_GROUP_APPROACH_DISTANCE_SQ || arg0->children == 0) {
                 arg0->mode = 3;
@@ -450,8 +449,8 @@ void TUnk_80493450::update_turn_toward_target() {
     case 2:
         if (arg0->target != NULL && arg0->is_actor_cadence_frame(0x1E) != 0) {
             Vec d;
-            VecCopy(&d, (const Vec *)&((TObjChara *)arg0->target)->m_2fc);
-            subtract_vector(&d, &arg0->m_2fc);
+            VecCopy(&d, (const Vec *)&((TObjChara *)arg0->target)->body_center_position);
+            subtract_vector(&d, &arg0->body_center_position);
             ang = angle_difference_abs(arg0->rotation_y, (s32)(BEAST_ANGLE_UNITS_PER_RADIAN * atan2_float(d.x, d.z)));
             if (d.x * d.x + d.z * d.z < BEAST_GROUP_APPROACH_DISTANCE_SQ || arg0->children == 0) {
                 arg0->mode = 3;
@@ -539,59 +538,59 @@ void TUnk_80493450::beast_idle_update() {
     range = *(f32 *)((s8 *)arg0 + 0x358) + (*(f32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 4) + *(f32 *)((s8 *)(*(u8 * *)&this->bodies) + 0xC));
     if (range * range < dist) {
         VecCopy((Vec *)&this->m_29c, &this->home_position);
-        VecCopy((Vec *)&this->m_290, (const Vec *)&this->m_2fc);
+        VecCopy((Vec *)&this->m_290, (const Vec *)&this->body_center_position);
         VecCopy(&this->prev_position, &this->position);
-        VecCopy(&scratch_vec, &this->home_position);
-        subtract_vector(&scratch_vec, (u8 *)&this->position);
-        angle = BEAST_ANGLE_UNITS_PER_RADIAN * atan2_float(scratch_vec.x, scratch_vec.z);
-        lbl_8050BF00.x = lbl_8050BF00.y = BEAST_ZERO_VECTOR_COMPONENT;
-        lbl_8050BF00.z = this->unk_394;
+        VecCopy(&scratch_vec.vector, &this->home_position);
+        subtract_vector(&scratch_vec.vector, (u8 *)&this->position);
+        angle = BEAST_ANGLE_UNITS_PER_RADIAN * atan2_float(scratch_vec.vector.x, scratch_vec.vector.z);
+        lbl_8050BF00.vector.x = lbl_8050BF00.vector.y = BEAST_ZERO_VECTOR_COMPONENT;
+        lbl_8050BF00.vector.z = this->unk_394;
         push_matrix_from(identity_matrix);
         rotate_matrix_y(0, angle);
-        rotate_vector_by_matrix(0, &lbl_8050BF00, &lbl_8050BF00);
+        rotate_vector_by_matrix(0, &lbl_8050BF00.vector, &lbl_8050BF00.vector);
         pop_matrices(1);
-        vec3_add_to(&lbl_8050BF00, (u8 *)&this->position);
-        if (project_actor_to_ground(arg0, &lbl_8050BF00, 0) == 1) {
+        vec3_add_to(&lbl_8050BF00.vector, (u8 *)&this->position);
+        if (project_actor_to_ground(arg0, &lbl_8050BF00.vector, 0) == 1) {
             this->requested_action = 2;
-            VecCopy(&this->position, &lbl_8050BF00);
+            VecCopy(&this->position, &lbl_8050BF00.vector);
             this->rotation_y = approach_angle_limited(this->rotation_y, angle, *(s32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 8));
             goto end;
         }
-        r = fabs_float(scratch_vec.z);
-        if (fabs_float(scratch_vec.x) < r) {
-            angle = BEAST_ANGLE_UNITS_PER_RADIAN * atan2_float(scratch_vec.x, BEAST_ZERO_VECTOR_COMPONENT);
+        r = fabs_float(scratch_vec.vector.z);
+        if (fabs_float(scratch_vec.vector.x) < r) {
+            angle = BEAST_ANGLE_UNITS_PER_RADIAN * atan2_float(scratch_vec.vector.x, BEAST_ZERO_VECTOR_COMPONENT);
         } else {
-            angle = BEAST_ANGLE_UNITS_PER_RADIAN * atan2_float(BEAST_ZERO_VECTOR_COMPONENT, scratch_vec.z);
+            angle = BEAST_ANGLE_UNITS_PER_RADIAN * atan2_float(BEAST_ZERO_VECTOR_COMPONENT, scratch_vec.vector.z);
         }
-        lbl_8050BF00.x = lbl_8050BF00.y = BEAST_ZERO_VECTOR_COMPONENT;
-        lbl_8050BF00.z = this->unk_394;
+        lbl_8050BF00.vector.x = lbl_8050BF00.vector.y = BEAST_ZERO_VECTOR_COMPONENT;
+        lbl_8050BF00.vector.z = this->unk_394;
         push_matrix_from(identity_matrix);
         rotate_matrix_y(0, angle);
-        rotate_vector_by_matrix(0, &lbl_8050BF00, &lbl_8050BF00);
+        rotate_vector_by_matrix(0, &lbl_8050BF00.vector, &lbl_8050BF00.vector);
         pop_matrices(1);
-        vec3_add_to(&lbl_8050BF00, (u8 *)&this->position);
-        if (project_actor_to_ground(arg0, &lbl_8050BF00, 0) == 1) {
+        vec3_add_to(&lbl_8050BF00.vector, (u8 *)&this->position);
+        if (project_actor_to_ground(arg0, &lbl_8050BF00.vector, 0) == 1) {
             this->requested_action = 2;
-            VecCopy(&this->position, &lbl_8050BF00);
+            VecCopy(&this->position, &lbl_8050BF00.vector);
             this->rotation_y = approach_angle_limited(this->rotation_y, angle, *(s32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 8));
             goto end;
         }
-        r = fabs_float(scratch_vec.z);
-        if (fabs_float(scratch_vec.x) < r) {
-            angle2 = BEAST_ANGLE_UNITS_PER_RADIAN * atan2_float(BEAST_ZERO_VECTOR_COMPONENT, scratch_vec.z);
+        r = fabs_float(scratch_vec.vector.z);
+        if (fabs_float(scratch_vec.vector.x) < r) {
+            angle2 = BEAST_ANGLE_UNITS_PER_RADIAN * atan2_float(BEAST_ZERO_VECTOR_COMPONENT, scratch_vec.vector.z);
         } else {
-            angle2 = BEAST_ANGLE_UNITS_PER_RADIAN * atan2_float(scratch_vec.x, BEAST_ZERO_VECTOR_COMPONENT);
+            angle2 = BEAST_ANGLE_UNITS_PER_RADIAN * atan2_float(scratch_vec.vector.x, BEAST_ZERO_VECTOR_COMPONENT);
         }
-        lbl_8050BF00.x = lbl_8050BF00.y = BEAST_ZERO_VECTOR_COMPONENT;
-        lbl_8050BF00.z = this->unk_394;
+        lbl_8050BF00.vector.x = lbl_8050BF00.vector.y = BEAST_ZERO_VECTOR_COMPONENT;
+        lbl_8050BF00.vector.z = this->unk_394;
         push_matrix_from(identity_matrix);
         rotate_matrix_y(0, angle2);
-        rotate_vector_by_matrix(0, &lbl_8050BF00, &lbl_8050BF00);
+        rotate_vector_by_matrix(0, &lbl_8050BF00.vector, &lbl_8050BF00.vector);
         pop_matrices(1);
-        vec3_add_to(&lbl_8050BF00, (u8 *)&this->position);
-        if (project_actor_to_ground(arg0, &lbl_8050BF00, 0) == 1) {
+        vec3_add_to(&lbl_8050BF00.vector, (u8 *)&this->position);
+        if (project_actor_to_ground(arg0, &lbl_8050BF00.vector, 0) == 1) {
             this->requested_action = 2;
-            VecCopy(&this->position, &lbl_8050BF00);
+            VecCopy(&this->position, &lbl_8050BF00.vector);
             this->rotation_y = approach_angle_limited(this->rotation_y, angle2, *(s32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 8));
         } else {
             this->requested_action = 2;
@@ -684,11 +683,11 @@ void TUnk_80493450::vfunc_28() {
                 }
                 id = get_entity_id(player);
                 if (id < 0x4000 && id != self->entity_id && player->obj_testFlags30(0x03000800) == 0) {
-                    VecCopy(&d, (Vec *)&player->m_2fc);
-                    subtract_vector(&d, &self->m_2fc);
+                    VecCopy(&d, (Vec *)&player->body_center_position);
+                    subtract_vector(&d, &self->body_center_position);
                     dist = d.x * d.x + d.z * d.z;
-                    if (dist < best_dist && check_path_obstructed(self, &player->m_2fc) != 1 &&
-                        csnVector(&self->m_2fc, &player->m_2fc, -1) == 0) {
+                    if (dist < best_dist && check_path_obstructed(self, &player->body_center_position) != 1 &&
+                        csnVector(&self->body_center_position, &player->body_center_position, -1) == 0) {
                         best = id;
                         best_dist = dist;
                     }

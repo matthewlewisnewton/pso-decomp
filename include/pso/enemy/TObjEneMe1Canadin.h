@@ -28,13 +28,7 @@ struct TObjEneMe1Canadin : public TObjEneDD_ST {
     void vfunc_61();
     void vfunc_28();
     void render();
-    u8 unk_374[0x30];
-    u32 m_3c0;
-    u32 m_3c4;
-    u32 m_3c8;
-    void* m_3cc;
-
-    u8 _padBeforeFade[0x18];
+    u8 _padBeforeFade[0xC];
     MaterialOpacityFade fade;
 
     u32 m_404;

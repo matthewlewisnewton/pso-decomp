@@ -152,7 +152,6 @@ extern const f32 lbl_805DA4BC;
 extern const f32 lbl_805DA4D4;
 void TObjEnePanarms__sub_800DDED8(u8 *arg0);
 void TObjEnePanarms__sub_800E1D38(void *arg0);
-s32 refresh_lobby_state__10TObjPlayerFv();
 void TObjEnePanarms__sub_800DDAD8(u8 *arg0);
 extern const f32 lbl_805DA4E8;
 extern const f32 lbl_805DA4EC;
@@ -558,7 +557,7 @@ void TObjEnePanarms__sub_800DDAD8(u8 *ene_panarms) {
     s16 st;
     Vec_800DDAD8 v;
     ((TObjEnePanarms *)ene_panarms)->m_388 = 0xA4;
-    refresh_lobby_state__10TObjPlayerFv();
+    ((TObjEnemy *)ene_panarms)->distribute_experience_and_request_drop();
     ((TObjEnemy *)ene_panarms)->send_entity_set_flags();
     st = 5;
     if (find_nearest_visible_player(ene_panarms, &v.x, lbl_805DA4B4) != 0xFFFF) {
@@ -1050,7 +1049,7 @@ void TObjEnePanarms::draw_shadow() {
 
 #pragma pop
 
-void TObjEnePanarms__sub_800DEEF8(void* p) { push_matrix(p); post_translate_matrix((char*)p + 0x38); rotate_matrix_y((void*)0, *(void**)((char*)p + 0x60)); TObjFish::set_global_param((s32)(*(void**)((char*)p + 0x24))); ((TObjFish *)(((TObjEneRe7Berura *)p)->m_39c))->set_draw_callback_list(); ((TObjMotion *)p)->draw(); clear_render_callback__8TObjFishFv(((TObjEneRe7Berura *)p)->m_39c); pop_matrix(); }
+void TObjEnePanarms__sub_800DEEF8(void* p) { push_matrix(p); post_translate_matrix((char*)p + 0x38); rotate_matrix_y((void*)0, *(void**)((char*)p + 0x60)); TObjFish::set_global_param((s32)(*(void**)((char*)p + 0x24))); ((TObjFish *)(((TObjEnePanarms *)p)->m_39c))->set_draw_callback_list(); ((TObjMotion *)p)->draw(); clear_render_callback__8TObjFishFv((void *)((TObjEnePanarms *)p)->m_39c); pop_matrix(); }
 
 #include "pso/misc/RenderFadeState.h"
 #include "pso/npc/NpcModelRegistry.h"
@@ -1112,7 +1111,7 @@ void TObjEnePanarms::render() {
     saved_model_render_flags = model_render_flags;
     fade = &((Obj_800DEF5C *)this)->fades[cam];
     update__15RenderFadeStateFv(fade);
-    if (fade->updateFromCamera(&this->m_2fc) != 0) {
+    if (fade->updateFromCamera(&this->body_center_position.x) != 0) {
         ((VFade_800DEF5C *)fade)->begin_draw();
         draw = 1;
         if (defer_render__7TObjectFv(this) != 0) {
@@ -1154,7 +1153,7 @@ void TObjEnePanarms::run_task() {
                 advance_animation();
             }
             if ((*(s32 *)&this->m_3dc != 0 && *(s32 *)&this->unk_374 != 4) || *(s32 *)&this->unk_374 == 1) {
-                minimap_render_dot(&this->m_2fc, -0x5DB4, 1, 0);
+                minimap_render_dot(&this->body_center_position, -0x5DB4, 1, 0);
             }
         }
     }

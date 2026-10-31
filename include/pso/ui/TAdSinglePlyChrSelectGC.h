@@ -39,7 +39,6 @@ struct TAdSinglePlyChrSelectGC : public TObject {
     static u8 *get_global_state();
     static int get_state();
     static void safe_free(u32 arg0);
-    void advance_field28();
     s32 get_selected_slot();
     void set_position(void* q);
     void noop_laser();
@@ -152,7 +151,6 @@ struct TAdSinglePlyChrSelectGC : public TObject {
     s32 m_5c;
     static void free_all_resources();
     u8 load_and_verify_character_save(char *desc);
-    void transform_vertex_list();
     static void remove_matching_entries(s32 arg0);
     static s32 free_chardata(s32 arg0, s16 arg1);
     u8 *copy_character_data(u8 *arg1);

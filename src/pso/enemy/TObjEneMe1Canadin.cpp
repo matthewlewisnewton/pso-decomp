@@ -1821,8 +1821,8 @@ void TObjEneEpsilon__sub_800B92AC(u8 *arg0, s32 arg1, f32 farg0);
 int select_and_apply_target__12TObjEneDD_STFf(void*);
 s32 set_target_player__12TObjEneDD_STFPv(void *);
 void *__dt__12TObjEneDD_STFv(void *arg0, s16 arg1);
-void reset_hp__9TObjEneDDFPUcPUcPUc(void *, s32, s32, s32);
-s32 get_camera_ctrl__9TObjEneDDFv(void *, int);
+void reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(void *, s32, s32, s32);
+s32 transform_point_to_view(void *, int);
 s32 update_camera_sequence__9TObjEneDDFv();
 void initialize_enemy_state__9TObjEneDDFl(void *, s32);
 void TObjEneDD__sub_800BA5A4(void *, void *, void *);
@@ -2297,7 +2297,7 @@ void TObjEneMe1CanadinLeader__vt110(Leader_8009AB4C *obj, s32 mode) {
         }
         self->flags3C8 |= 0x400000;
         play_sound_effect(0x4003B71D, self->pos2FC, 0, 0);
-        ((TObjPlayer *)self)->refresh_lobby_state();
+        ((TObjEnemy *)self)->distribute_experience_and_request_drop();
         break;
     case 0:
         if (obj->m107() != 0) {
@@ -2901,7 +2901,7 @@ void fn_8009BD00(void) {
     case 14:
         pos = TObjEneMe1Canadin__render_point_cursor;
         TObjEneMe1Canadin__render_point_cursor = pos + 0xC;
-        get_camera_ctrl__9TObjEneDDFv(&lbl_80500960.value, pos);
+        transform_point_to_view(&lbl_80500960.value, pos);
         break;
     }
     lbl_805D4FD4 += 1;
@@ -3350,7 +3350,7 @@ void TObjEneMe1Canadin__sub_8009CC74(void *arg0, s32 arg1) {
             if (((TObjEneDD_ST *)o)->update_linked_position(TObjEneMe1Canadin__data_805D988C) == 0) {
                 break;
             }
-        } else if (((TObjEneEpsilon *)o)->update_death_check() == 0) {
+        } else if (((TObjEneDD_ST *)o)->check_target_validity() == 0) {
             break;
         }
         switch (o->mode) {
@@ -3532,7 +3532,7 @@ void TObjEneMe1Canadin__sub_8009D320(void *arg0, s32 arg1) {
             if (((TObjEneDD_ST *)o)->update_linked_position(TObjEneMe1Canadin__data_805D988C) == 0) {
                 break;
             }
-        } else if (((TObjEneEpsilon *)o)->update_death_check() == 0) {
+        } else if (((TObjEneDD_ST *)o)->check_target_validity() == 0) {
             break;
         }
         ((TObjEneDD_ST *)o)->enemy_copy_target_destination();
@@ -4411,7 +4411,7 @@ void TObjEneMe1Canadin::setup_enemy() {
     *(s16 *)((s8 *)arg0 + 0xB8) = 0;
     ((TObjMotion *)arg0)->set_animation(*(s16 *)((s8 *)arg0 + 0xB8));
     ((TObjMotion *)arg0)->set_field_b8(*(s16 *)((s8 *)arg0 + 0xB8));
-    reset_hp__9TObjEneDDFPUcPUcPUc(arg0, lbl_80500930[*(s32 *)((s8 *)arg0 + 0x3C4)], lbl_8050093C[*(s32 *)((s8 *)arg0 + 0x3C4)], lbl_80500948[*(s32 *)((s8 *)arg0 + 0x3C4)]);
+    reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(arg0, lbl_80500930[*(s32 *)((s8 *)arg0 + 0x3C4)], lbl_8050093C[*(s32 *)((s8 *)arg0 + 0x3C4)], lbl_80500948[*(s32 *)((s8 *)arg0 + 0x3C4)]);
     ((TObjEneDD *)arg0)->check_state_flag_4();
     *(void **)((s8 *)arg0 + 0x350) = canadin_setup_param_block;
     initialize_enemy_state__9TObjEneDDFl(arg0, 0x1C);

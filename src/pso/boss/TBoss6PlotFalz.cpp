@@ -621,9 +621,9 @@ void TBoss6PlotFalz::award_exp_and_destroy() {
         u8 *pl = ((u8 *(*)(s32))get_player_by_client_id)(local_client_id);
         if (pl != NULL) {
             V3_802AB490 saved = *(V3_802AB490 *)(arg0 + 0x2FC);
-            VecCopy((Vec *)&this->m_2fc, (const Vec *)(pl + 0x2FC));
+            VecCopy((Vec *)&this->body_center_position, (const Vec *)(pl + 0x2FC));
             ((TObjEnemy *)arg0)->distribute_experience();
-            VecCopy((Vec *)&this->m_2fc, (const Vec *)&saved);
+            VecCopy((Vec *)&this->body_center_position, (const Vec *)&saved);
         }
     }
     Msg_802AB490 m;
@@ -1488,7 +1488,7 @@ s32 TBoss6PlotFalz__ct(s32 self, s32 arg1, s32 arg2) {
     }
     VecCopy((Vec *)(arg0 + 0x44), (const Vec *)(VecCopy((Vec *)(arg0 + 0x50), (const Vec *)(VecCopy((Vec *)(arg0 + 0x74), (const Vec *)(arg0 + 0x38))))));
     VecCopy((Vec *)(arg0 + 0x2FC), (const Vec *)(arg0 + 0x38));
-    ((TBoss6PlotFalz *)arg0)->m_310 = (f32) 0.0f;
+    ((TBoss6PlotFalz *)arg0)->movement_velocity.z = (f32) 0.0f;
     *(f32 *)((s8 *)arg0 + 0x30C) = (f32) 0.0f;
     *(f32 *)((s8 *)arg0 + 0x308) = (f32) 0.0f;
     *(s32 *)((s8 *)arg0 + 0x2A8) = 0;

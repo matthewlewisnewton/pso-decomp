@@ -572,9 +572,9 @@ void TBoss4DarkFalz::handle_defeat() {
         p = get_player_by_client_id((void *) ((u16) local_client_id));
         if (p != 0) {
             save = *(struct V3_8004B654 *)(arg0 + 0x2FC);
-            VecCopy((Vec *)&this->m_2fc, (const Vec *)(p + 0x2FC));
+            VecCopy((Vec *)&this->body_center_position, (const Vec *)(p + 0x2FC));
             ((TObjEnemy *)arg0)->distribute_experience();
-            VecCopy((Vec *)&this->m_2fc, (const Vec *)&save);
+            VecCopy((Vec *)&this->body_center_position, (const Vec *)&save);
         }
     }
     flags[0] = 0x800;

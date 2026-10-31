@@ -75,7 +75,6 @@ s32 TObjFish__sub_8001EDB0(u8 *, int);
 
 s32 get_mode__11TCameraCtrlFPv(void *);
 void draw_blob_shadow(s32 arg0);
-s32 refresh_lobby_state__10TObjPlayerFv();
 s32 free_collision_body_parts(void *);
 s32 init_collision_body_parts(void *, void *, int);
 void create__11TTecRaBartaFPvPvPvPv(void *source, void *origin, void *pos, void *level);
@@ -318,10 +317,10 @@ void TObjEneDelDepth::init() {
     ((TObjMotion *)arg0)->set_motion_list((BmlMotionEntry *)((int) (TObjEneDelDepth__shared_resource->motions)));
     ((TObjMotion *)arg0)->set_animation(0);
     ((TObjMotion *)arg0)->set_field_b8(0);
-    VecCopy((Vec *)((u8 *)&this->m_2fc), &this->position);
-    this->m_310 = (f32) TObjEneDelDepth__data_805DF258;
-    this->y_speed = (f32) TObjEneDelDepth__data_805DF258;
-    x_speed = (f32) TObjEneDelDepth__data_805DF258;
+    VecCopy((Vec *)((u8 *)&this->body_center_position), &this->position);
+    this->movement_velocity.z = (f32) TObjEneDelDepth__data_805DF258;
+    this->movement_velocity.y = (f32) TObjEneDelDepth__data_805DF258;
+    movement_velocity.x = (f32) TObjEneDelDepth__data_805DF258;
     this->target = 0;
     ((TObjEnemy *)arg0)->bind_enemy_combat_stats((u8 *)(get_battle_base_stats(0x30)), (u8 *)(get_battle_attack_params(0x30)), (u8 *)(get_battle_resistance_params(0x30)));
     this->referenceHp = (s16) this->hp;
@@ -372,7 +371,7 @@ void TObjEneDelDepth::run_task() {
     motionController->update_animation_frame();
     this->sub_803152A0();
     if (this->action != 0xD) {
-        minimap_render_dot(&o->m_2fc, -0x5DB4, 1, 0);
+        minimap_render_dot(&o->body_center_position, -0x5DB4, 1, 0);
     }
     update_ground_check();
 }
@@ -1079,7 +1078,7 @@ void TObjEneDelDepth::init_move() {
     this->drawScale.z = (f32) TObjEneDelDepth__data_805DF260;
     this->drawScale.y = (f32) TObjEneDelDepth__data_805DF260;
     this->drawScale.x = (f32) TObjEneDelDepth__data_805DF260;
-    refresh_lobby_state__10TObjPlayerFv();
+    this->distribute_experience_and_request_drop();
     this->actionPhase = 0;
     if (this->motionController->get_type() < 6) {
         this->timer = 0x22;

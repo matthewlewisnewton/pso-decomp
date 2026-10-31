@@ -1274,7 +1274,7 @@ force_active:
   - demo_step__15TObjSuisouLobbyFv
   - sub_80369D68__15TObjSuisouLobbyFv
   - TObjTagChallenge__ct
-  - TObjTailsTailsMove__ct
+  - __ct__18TObjTailsTailsMoveFP10TObjPlayer
   - TObjTank__ct
   - TObjTradeCollision__ct
   - TObjTreeLobby__ct
@@ -4086,7 +4086,7 @@ force_active:
   - draw_background__13TWindowStatusFPUc
   - draw_background__17TAdGameStartSubGCFPv
   - draw_background__18TWindowPartyStatusFPUc
-  - draw_blend_motion_tree__10TObjPlayerFiii
+  - draw_blend_motion_tree
   - draw_body__13TBoss5GryphonFv
   - draw_body__13TObjEneMorfosFv
   - draw_bottom_bar__20TWindowSubStatusDispFv
@@ -4150,7 +4150,7 @@ force_active:
   - draw_model_set__11TBoss4Type3FPClf
   - draw_model_with_arg__10TObjPlayerFPv
   - draw_motion_node_list__10TObjPlayerFv
-  - draw_motion_tree__10TObjPlayerFPvPvi
+  - draw_motion_tree
   - draw_node_tree__16TObjEneRe7BeruraFPv
   - draw_node_tree__18TObjLaboDesignBaseFiPv
   - draw_node_tree__19TODoorFourLightBaseFPUc
@@ -5242,7 +5242,7 @@ force_active:
   - insert_sorted_by_id__5TItemFv
   - interact_player_neg1__11TOVS2Wall01Fv
   - interp_position_between_nodes__11TBoss4Type3Fv
-  - interpolate_along_curve__10TObjPlayerFPv
+  - interpolate_along_curve__18TObjTailsTailsMoveFPf
   - invoke_callback_16C_and_destroy__23TShopJudgmentItemWindowFv
   - invoke_callback_170_and_destroy__23TShopJudgmentItemWindowFv
   - invoke_callback_174_and_destroy__23TShopJudgmentItemWindowFv

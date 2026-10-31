@@ -438,7 +438,7 @@ s32 TBoss6Mine__ct(s32 arg0, s32 parent, s32 arg2) {
     VecCopyP(THIS + 0x44, VecCopyP(THIS + 0x50, VecCopyP(THIS + 0x74, THIS + 0x38)));
     init_collision_body_parts(THIS, TBoss6Mine__collision_body_template, 1);
     VecCopyP(THIS + 0x2FC, THIS + 0x38);
-    ((TBoss3Volopt *)THIS)->m_310 = 0.0f;
+    ((TBoss3Volopt *)THIS)->movement_velocity.z = 0.0f;
     *(f32 *)((s8 *)THIS + 0x30C) = 0.0f;
     *(f32 *)((s8 *)THIS + 0x308) = 0.0f;
     *(s32 *)((s8 *)THIS + 0x2A8) = 0;

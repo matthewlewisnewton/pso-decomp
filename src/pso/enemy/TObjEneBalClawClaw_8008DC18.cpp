@@ -4,7 +4,7 @@
 
 #include <stddef.h>
 #include "pso/enemy/TObjEneBalClawClaw.h"
-#include "pso/enemy/TObjEneMe1GiGue.h"
+#include "pso/enemy/TObjEnemyCustom.h"
 #include "pso/misc/TLobby.h"
 #include "pso/npc/NpcModelRegistry.h"
 struct Stack_8008DC18 {
@@ -58,10 +58,10 @@ extern f32 lbl_805D961C;
 void TObjEneBalClawBody::vfunc_58() {
     s32 arg0 = (s32)this;
     if (xz_distance_squared(arg0 + 0x38, arg0 + 0x50) > lbl_805D961C) {
-        ((TObjEneMe1GiGue *)arg0)->update_if_active(8);
+        ((TObjEnemyCustom *)arg0)->update_if_active(8);
         return;
     }
-    ((TObjEneMe1GiGue *)arg0)->update_if_active(0);
+    ((TObjEnemyCustom *)arg0)->update_if_active(0);
 }
 
 }

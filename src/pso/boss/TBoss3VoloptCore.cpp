@@ -7,7 +7,7 @@
 #include "pso/boss/TBoss3VoloptMonitor.h"
 #include "pso/boss/TBoss3Volopt.h"
 #include "pso/boss/TUnk_80484888.h"
-#include "pso/enemy/TObjEneMe1GiGue.h"
+#include "pso/enemy/TObjEnemyCustom.h"
 #include "pso/object/TObjFish.h"
 #include "pso/object/TObjGyaranzoMissile.h"
 #include "pso/misc/TLobby.h"
@@ -95,7 +95,7 @@ static TBoss3VoloptCoreBodyPart core_body_parts[1] = {
 
 extern int player_battle_param_table[];
 
-void TObjEneMe1GiGue::set_state(s32 action) {
+void TObjEnemyCustom::set_state(s32 action) {
     s16 current = mode;
     if (current != action) {
         m_380 = current;
@@ -103,7 +103,7 @@ void TObjEneMe1GiGue::set_state(s32 action) {
     }
 }
 
-void TObjEneMe1GiGue::update_if_active(s32 action) {
+void TObjEnemyCustom::update_if_active(s32 action) {
     if (!(m_388 & 1)) {
         set_state(action);
     }
@@ -229,7 +229,7 @@ void TBoss3VoloptCore::run_task() {
         dispatch_reaction_state();
         position.y = (position.y > 7.0f) ? position.y : 7.0f;
         update_prev_position();
-        TBoss3Volopt::set_camera_focus((Vec *)&m_2fc);
+        TBoss3Volopt::set_camera_focus((Vec *)&body_center_position);
         clear_all_status_effects();
     }
 }
@@ -308,9 +308,9 @@ void TBoss3VoloptCore::update_charge_state() {
         }
         break;
     case 1:
-        VecCopy((Vec *)unk_308, &((TObjPlayer *)target)->position);
-        subtract_vector((Vec *)unk_308, &position);
-        turn_toward_direction(0x800, (Vec *)unk_308);
+        VecCopy(&movement_velocity, &((TObjPlayer *)target)->position);
+        subtract_vector(&movement_velocity, &position);
+        turn_toward_direction(0x800, &movement_velocity);
         if (--charge_timer <= 0) {
             charge_timer = 0x96;
             charge_step = 2;
@@ -328,11 +328,11 @@ void TBoss3VoloptCore::update_charge_state() {
             state = 4;
             return;
         }
-        VecCopy((Vec *)unk_308, (Vec *)&player->m_2fc);
-        subtract_vector((Vec *)unk_308, &position);
-        vec_set_length((Vec *)unk_308, 5.0f);
-        turn_toward_direction(0x800, (Vec *)unk_308);
-        vec3_add_to(&position, (Vec *)unk_308);
+        VecCopy(&movement_velocity, (Vec *)&player->body_center_position);
+        subtract_vector(&movement_velocity, &position);
+        vec_set_length(&movement_velocity, 5.0f);
+        turn_toward_direction(0x800, &movement_velocity);
+        vec3_add_to(&position, &movement_velocity);
         if (check_target_collision() != 0) {
             charge_step = 4;
             state = 4;
@@ -343,11 +343,11 @@ void TBoss3VoloptCore::update_charge_state() {
         }
         break;
     case 4:
-        VecCopy((Vec *)unk_308, &home_pos);
-        subtract_vector((Vec *)unk_308, &position);
-        distance = vec_set_length((Vec *)unk_308, 5.0f);
-        turn_toward_direction(0x800, (Vec *)unk_308);
-        vec3_add_to(&position, (Vec *)unk_308);
+        VecCopy(&movement_velocity, &home_pos);
+        subtract_vector(&movement_velocity, &position);
+        distance = vec_set_length(&movement_velocity, 5.0f);
+        turn_toward_direction(0x800, &movement_velocity);
+        vec3_add_to(&position, &movement_velocity);
         check_target_collision();
         if (distance < 10.0f) {
             targetId = 0xFFFF;
@@ -382,7 +382,7 @@ void TBoss3VoloptCore::update_grabbed_state() {
             if (m_388 & 0x40000) {
                 set_grabbed_state(0xF);
             } else {
-                ((TObjEneMe1GiGue *)this)->update_if_active(m_380);
+                this->update_if_active(m_380);
             }
         }
         return;
@@ -578,7 +578,7 @@ void TBoss3VoloptCore::update_orbit_state() {
             }
         } else if (sweep_angle < -0x1555) {
             drop_angle = orbit_angle;
-            ((TObjEneMe1GiGue *)this)->update_if_active(9);
+            this->update_if_active(9);
         }
         play_persistent_sound(0x4003BC05, this, &position.x, 0, 0);
         break;
@@ -709,7 +709,7 @@ void TBoss3VoloptCore::update_topple_state() {
 void TBoss3VoloptCore::set_grabbed_state(s32 delay) {
     TBoss3VoloptCore *core = (TBoss3VoloptCore *)find_entity_by_id(volopt_core_id);
     if (core != NULL && core->mode != 10) {
-        ((TObjEneMe1GiGue *)core)->update_if_active(10);
+        core->update_if_active(10);
         core->delay = delay;
     }
 }

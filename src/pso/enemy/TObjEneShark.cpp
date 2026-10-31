@@ -36,11 +36,12 @@
 #include "pso/misc/RenderFadeState.h"
 #include "pso/misc/TNowLoading.h"
 #include <dolphin/mtx.h>
+#include "pso/system/BmlResourceClass.h"
+#include "pso/misc/SampledMotionPoints.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/system/MatrixStack.h"
 #include "pso/system/MatrixOps.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
-#include "pso/misc/SampledMotionPoints.h"
 #include "pso/math/MatrixVector.h"
 #include "pso/system/MatrixVectorArray.h"
 #include "pso/math/MatrixTransforms.h"
@@ -236,7 +237,7 @@ void TObjEneShark::render() {
     if (TObjEneDD::check_v2_mode() != 0) {
         RenderFadeState *f = &camera_fades[camera];
         f->update();
-        fadeActive = f->updateFromCamera(&m_2fc);
+        fadeActive = f->updateFromCamera(&body_center_position.x);
     }
     select_actor_lighting(this);
     model_render_flags |= 1;
