@@ -3133,7 +3133,7 @@ void TObjEneMe3Shinowa::vfunc_88() {
     *(f32 *)((s8 *)this->bodies + 4) = (f32) (*(f32 *)((s8 *)arg0 + 0x3CC) + (this->body_center_position.y - *(f32 *)((s8 *)arg0 + 0x3C)));
 }
 
-void TObjEneMe3Shinowa::copy_position_vector() { VecCopy(&center, (const Vec *)&m_2fc); }
+void TObjEneMe3Shinowa::copy_position_vector() { VecCopy(&center, &body_center_position); }
 
 void TObjEneMe3Shinowa::vfunc_61() {  }
 
