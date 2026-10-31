@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/unk/text_80104FCC.h"
 #include "types.h"
 #include "pso/protocol/protocol_types.h"
@@ -194,7 +195,7 @@ extern s32 local_client_id;
 extern const f32 lbl_805DC708;
 void *TShopJudgmentItemWindow__ct(TShopJudgmentItemWindow *arg0, void *arg1, void *arg2, void *arg3);
 void *__dt__23TShopJudgmentItemWindowFv(TShopJudgmentItemWindow *arg0, s16 arg1);
-s32 play_sound_effect(s32, s32, s32, s32);
+
 s32 sub_802239EC__13TShopSequenceFv(void *);
 s32 sub_80223A48__15TShopWindowBaseFv(void *);
 void *__ct__15TShopWindowBaseFv(void *arg0);

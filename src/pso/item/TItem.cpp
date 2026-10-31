@@ -1410,7 +1410,7 @@ void TItem::apply_switch_attack(s32 effect) {
 
 void TItem::notify_owner(s32 sound) {
     if (owner != NULL && owner->is_body_collision_inactive() == 0) {
-        play_sound_effect(sound, &owner->position, 0, 0);
+        play_sound_effect((s32)(sound), (const Vec *)(&owner->position), 0, 0);
     }
 }
 

@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TTecJelin.h"
 #include "pso/object/TObject_80019A50.h"
@@ -141,7 +142,7 @@ void run_task__9TTecJelinFv(struct Self_802336F0 *self);
 void construct_area_technique_base(void *);
 extern const char *tec_jelin_class_name_ptr;
 extern s32 __vt__9TTecJelin[];
-s32 play_sound_effect(int, void *, int, int);
+
 s32 update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
 s32 get_entity_id(void *);
 Jelin_80233958 *construct__9TTecJelinFPviiii(Jelin_80233958 *self, s32 _w1, s32 _w2, s32 _w3, s32 _w4);
@@ -227,18 +228,18 @@ Jelin_80233808 *TTecJelin__ct(Jelin_80233808 *self, void *_w1, void *_w2, void *
     switch (self->level) {
     case 0:
     case 1:
-        r = play_sound_effect(0x4002A315, &self->pos, 0, 0);
+        r = play_sound_effect(0x4002A315, (const Vec *)(&self->pos), 0, 0);
         if (r >= 0) {
             update_technique_slot__10TTecRaFoieFl(r, 0x100, 0);
         }
         break;
     case 2:
     case 3:
-        play_sound_effect(0x4002A315, &self->pos, 0, 0);
+        play_sound_effect(0x4002A315, (const Vec *)(&self->pos), 0, 0);
         break;
     case 4:
     case 5:
-        r = play_sound_effect(0x4002A315, &self->pos, 0, 0);
+        r = play_sound_effect(0x4002A315, (const Vec *)(&self->pos), 0, 0);
         if (r >= 0) {
             update_technique_slot__10TTecRaFoieFl(r, -0x100, 0);
         }
@@ -265,18 +266,18 @@ Jelin_80233958 *construct__9TTecJelinFPviiii(Jelin_80233958 *self, s32 _w1, s32 
     switch (self->level) {
     case 0:
     case 1:
-        r = play_sound_effect(0x4002A315, &self->pos, 0, 0);
+        r = play_sound_effect(0x4002A315, (const Vec *)(&self->pos), 0, 0);
         if (r >= 0) {
             update_technique_slot__10TTecRaFoieFl(r, 0x100, 0);
         }
         break;
     case 2:
     case 3:
-        play_sound_effect(0x4002A315, &self->pos, 0, 0);
+        play_sound_effect(0x4002A315, (const Vec *)(&self->pos), 0, 0);
         break;
     case 4:
     case 5:
-        r = play_sound_effect(0x4002A315, &self->pos, 0, 0);
+        r = play_sound_effect(0x4002A315, (const Vec *)(&self->pos), 0, 0);
         if (r >= 0) {
             update_technique_slot__10TTecRaFoieFl(r, -0x100, 0);
         }

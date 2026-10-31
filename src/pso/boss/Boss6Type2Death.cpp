@@ -1,5 +1,6 @@
 #include "pso/system/ModelNodePositionCapture.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/system/PadRumble.h"
@@ -81,7 +82,6 @@ f32 vector_length(void *);
 void subtract_vector(void *, void *);
 void normalize_vector(void *);
 #define __vt__23TBoss6Demo21_TYPE2_DEAD ((u8 *)__vt__23TBoss6Demo21_TYPE2_DEAD)
-s32 play_sound_effect(int, void *, int, int);
 
 int get_player_data__10TObjPlayerFi(int a0);
 s32 is_locally_controlled__10TObjPlayerFPv(void *);

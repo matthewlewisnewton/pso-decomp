@@ -1,4 +1,5 @@
 #include "pso/misc/ParticleFactory.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
 #include "pso/unk/text_80087278.h"
@@ -166,7 +167,7 @@ struct Self_80108020 {
 };
 
 extern "C" {
-void play_sound_effect(u32, void *, s32, s32);
+
 f32 xyz_distance(Vec_80108164 *, Vec_80108164 *);
 void *__nw__7TObjectFUl(u32);
 
@@ -203,7 +204,7 @@ void TObjPlayer::spawn_appearance_effect(u16 client) {
             if (o != 0) {
                 TItemEffArmor__ct((Self_80108020 *)(o), (u8 *)p, s, v);
             }
-            play_sound_effect(0x4000B20A, (u8 *)p + 0x38, 0, 0);
+            play_sound_effect(0x4000B20A, (const Vec *)((u8 *)p + 0x38), 0, 0);
         }
     }
 }

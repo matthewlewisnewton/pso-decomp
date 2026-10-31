@@ -1,4 +1,5 @@
 #include "pso/misc/ParticleFactory.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/TParticleCtrl.h"
 #include "types.h"
 #include "pso/system/vector.h"
@@ -102,7 +103,7 @@ extern "C" {
 s32 is_locally_controlled__10TObjPlayerFPv(u32 a0);
 s32 get_localized_text_entry(s32 arg0, s32 arg1);
 s32 get_main_phase();
-s32 play_sound_effect(s32, s32, s32, s32);
+
 extern s8 mine_trap_effect_table[];
 extern s8 mine_trap_keymachine_table[];
 
@@ -352,7 +353,7 @@ void TOMineTrap::spawn_effect() {
     s32 area = get_current_floor_area();
     s32 elem = *(s32 *)(mine_trap_effect_table + area * 4);
     if (elem != -1) {
-        play_sound_effect(elem, arg0 + 0x38, 0, 0);
+        play_sound_effect((s32)(elem), (const Vec *)(arg0 + 0x38), 0, 0);
     }
 }
 void TOMineTrap::attach_to_keymachine() {
@@ -360,7 +361,7 @@ void TOMineTrap::attach_to_keymachine() {
     s32 area = get_current_floor_area();
     s32 elem = *(s32 *)(mine_trap_keymachine_table + area * 4);
     if (elem != -1) {
-        play_sound_effect(elem, arg0 + 0x38, 0, 0);
+        play_sound_effect((s32)(elem), (const Vec *)(arg0 + 0x38), 0, 0);
     }
 }
 void TOMineTrap::detonate_if_triggered() {

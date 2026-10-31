@@ -1,4 +1,5 @@
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/TAdMultiOkGC.h"
 #include "pso/menu/TAdMultiOkGC.h"
 #include "pso/misc/TWindowSubStatusDisp_803DEE6C.h"
@@ -84,7 +85,7 @@ extern const f32 lbl_805DF060;
 extern const f32 lbl_805DF064;
 extern "C" {
 s32 TWindowShortListCtrl__check_controller_button(void *, int);
-s32 play_sound_effect(int, void *, int, int);
+
 extern Ports_80306DF4 multi_ok_player_port_index_table;
 extern Pad_80306DF4 controller_physical_port_bank[];
 extern s32 multi_confirm_texture_list;

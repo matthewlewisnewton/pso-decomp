@@ -2,6 +2,7 @@
 #include "pso/misc/MaterialOpacityFade.h"
 #include "pso/misc/RenderFadeState.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/misc/PersistentSound.h"
 struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
@@ -402,7 +403,7 @@ s32 is_main_phase_15__9TObjEneDDFv();
 
 void render__19TObjEneEpsilonGuardFv(u8 *);
 void TObjEneEpsilonGuard__sub_8035E578(u8 *, s32);
-void play_sound_effect(int, void *, int, int);
+
 extern u8 epsilon_guard_breakup_params[];
 extern s32 lbl_805D6FA8;
 struct G_8035E430;
@@ -734,7 +735,7 @@ void TObjEneEpsilonGuard::handle_break_state(s32 arg1) {
         if (((G_8035E430 *)this)->x434 >= 0x14) {
             ((VO_8035E430 *)((G_8035E430 *)this))->m94();
             TBoss3Volopt::create_breakup_mdl((s32)lbl_805D6FA8, (s32)epsilon_guard_breakup_params, (s32)(((G_8035E430 *)this)->x24), (s32)(((G_8035E430 *)this)->x38), (s32)(((G_8035E430 *)this)->x60));
-            play_sound_effect(0x4003AD4C, ((G_8035E430 *)this)->x2FC, 0, 0);
+            play_sound_effect(0x4003AD4C, (const Vec *)(((G_8035E430 *)this)->x2FC), 0, 0);
             ((TObjPlayer *)(((G_8035E430 *)this)->x2FC))->trigger_dell_biter_events();
             ((G_8035E430 *)this)->x430 = 1;
         }

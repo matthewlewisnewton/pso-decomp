@@ -1,4 +1,5 @@
 #include "pso/misc/ParticleFactory.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/system/NinjaUtil.h"
 #include "pso/enemy/TUnk_804E14E8.h"
@@ -75,7 +76,7 @@ void queue_destruction__7TObjectFv(void *);
 u32 csnVector(void *, void *, s32);
 
 VEnt_802CDB1C *find_active_entity_by_id(u16);
-s32 play_sound_effect(s32, void *, s32, s32);
+
 s32 vec3_add_to(void *, void *);
 s32 subtract_vector(void *, void *);
 extern Hit_802CDB1C lbl_804722B4[];
@@ -107,10 +108,10 @@ void TObjPlayer__sub_802CDB1C(u8 *arg0) {
             VecCopy((Vec *)&self->pos, (const Vec *)self->start);
             self->state = 1;
             if (get_current_floor_area() == AREA_TOWER) {
-                play_sound_effect(0x4003A313, &self->pos, 0, 0);
+                play_sound_effect(0x4003A313, (const Vec *)(&self->pos), 0, 0);
                 return;
             }
-            play_sound_effect(0x3A820, &self->pos, 0, 0);
+            play_sound_effect(0x3A820, (const Vec *)(&self->pos), 0, 0);
             return;
         }
         if (self->ptcl0 != NULL) {

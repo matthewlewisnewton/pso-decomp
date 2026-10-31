@@ -1,5 +1,6 @@
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/system/vector.h"
 #include "pso/enemy/TObjEneGyaranzo.h"
@@ -77,7 +78,7 @@ u8 *get_battle_param__10TObjPlayerFi(s32);
 s32 remap_area_sound_id(s32 arg0, s32 arg1);
 void *find_entity_by_id(u16 id);
 void check_enemy_body_collisions(void *arg0);
-s32 play_sound_effect(void *, void *, int, int);
+
 extern Hit_800D4200 lbl_8043C440[];
 
 s32 rotate_matrix_y(s32, s32);
@@ -165,7 +166,7 @@ void TUnk_8049442C::sub_800D4200() {
         }
     }
     spawn_particle_effect((const Vec *)(arg0 + 0x38), 0xFB);
-    play_sound_effect((void *)remap_area_sound_id(0x4003A80C, 0x19), arg0 + 0x38, 0, 0);
+    play_sound_effect((s32)((void *)remap_area_sound_id(0x4003A80C, 0x19)), (const Vec *)(arg0 + 0x38), 0, 0);
     queue_destruction__7TObjectFv(arg0);
 }
 
@@ -274,7 +275,6 @@ void queue_destruction__7TObjectFv(void *);
 s32 remap_area_sound_id(s32 arg0, s32 arg1);
 void *find_entity_by_id(u16);
 void check_enemy_body_collisions(void *);
-s32 play_sound_effect(void *, void *, int, int);
 
 u32 csnVector(void *, void *, int);
 }

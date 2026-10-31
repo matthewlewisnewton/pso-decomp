@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/misc/TLobby_80227A2C.h"
@@ -24,7 +25,7 @@ extern SndEnt_8022675C lbl_805145F0[40];
 extern s32 last_sound_effect_slot;
 extern s32 lbl_805D62B0;
 extern s32 lbl_805DC748;
-s32 play_sound_effect(s32 id, Vec_8022675C *src, s32 a2, s32 flags);
+
 s32 check_sound_admission_range(const Vec *);
 
 s32 TOTrapAncient01::check_trigger_flag(s32 arg0, s32 arg1) {
@@ -95,7 +96,7 @@ s32 play_persistent_sound(s32 id, const void *a1, const Vec *src, s32 a3, s32 fl
     }
     return idx;
 }
-s32 play_sound_effect(s32 id, Vec_8022675C *src, s32 a2, s32 flags) {
+s32 play_sound_effect(s32 id, const Vec *src, s32 a2, s32 flags) {
     s32 i;
     s32 idx;
     Vec_8022675C *pos;
@@ -125,7 +126,7 @@ s32 play_sound_effect(s32 id, Vec_8022675C *src, s32 a2, s32 flags) {
         if (flags & 1) {
             lbl_805145F0[idx].flags |= 0x2000;
         }
-        lbl_805145F0[idx].src = src;
+        lbl_805145F0[idx].src = (Vec_8022675C *)src;
         lbl_805145F0[idx].prio = 0x96;
         lbl_805145F0[idx].x1a = a2;
         lbl_805145F0[idx].id = id;

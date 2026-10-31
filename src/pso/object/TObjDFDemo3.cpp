@@ -1,6 +1,7 @@
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/ModelNodePositionCapture.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/TObject.h"
 #include "pso/object/TObjMotion.h"
@@ -24,7 +25,7 @@
 extern "C" {
 
 void *create_particle_emitter(void *pos, s32 id);
-s32 play_sound_effect(s32, void *, s32, s32);
+
 void run_task__11TObjDFDemo3Fv(u8 *arg0);
 s32 rotate_matrix_y(s32, s32);
 s32 push_matrix();
@@ -151,7 +152,7 @@ void TObjDFDemo3::run_task() {
     }
     temp_r0 = this->m_b0;
     if ((temp_r0 == 0x28) || (temp_r0 == 0x3C)) {
-        play_sound_effect(0x4003D03A, (u8 *)&this->m_a0, 0, 1);
+        play_sound_effect(0x4003D03A, (const Vec *)((u8 *)&this->m_a0), 0, 1);
     }
     if ((*(f32 *)&this->_padB4 += 1.0f) > 119.0f) {
         *(f32 *)&this->_padB4 = 119.0f;

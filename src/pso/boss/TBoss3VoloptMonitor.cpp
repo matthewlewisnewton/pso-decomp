@@ -1,6 +1,7 @@
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/player/TObjChara.h"
 #include "pso/player/demo_mode.h"
 #include "types.h"
@@ -23,7 +24,7 @@
 
 
 extern "C" {
-s32 play_sound_effect(s32 id, Vec *pos, s32 a2, s32 flags);
+
 void obj_setFlags30(TObject *obj, u32 mask);
 void *find_entity_by_id(u16 id);
 void submit_cursor_candidate(TObject *obj, s32 a1);
@@ -384,7 +385,7 @@ void TBoss3VoloptMonitor::sub_80041E88() {
         anim_timer = 3;
         anim_frame = 0;
         m_388 |= 0x10000;
-        play_sound_effect(0x4003BC03, &position, 0, 0);
+        play_sound_effect(0x4003BC03, (const Vec *)(&position), 0, 0);
         damage_player_if_aligned();
         referenceHp = hp;
         *(s16 *)&timer = 3;
@@ -407,7 +408,7 @@ void TBoss3VoloptMonitor::sub_80041D3C() {
     TBoss3VoloptMonitor *other;
     switch (state) {
     case 0:
-        play_sound_effect(0x4003A804, &position, 0, 0);
+        play_sound_effect(0x4003A804, (const Vec *)(&position), 0, 0);
         damage_player_if_aligned();
         spawn_effects();
         volopt_target_slot_used[slot] = 1;

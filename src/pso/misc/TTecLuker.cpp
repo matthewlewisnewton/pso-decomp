@@ -1,5 +1,6 @@
 #include "pso/map/CsnGroundQuery.h"
 #include "pso/misc/ParticleFactory.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/misc/PersistentSound.h"
 #include "pso/protocol/protocol_types.h"
 #include "pso/misc/TLobby_801E43E4.h"
@@ -171,7 +172,7 @@ void TTecLuker__sub_80235048(void* p);
 int TTecLuker__sub_80235054(void* p);
 int fn_80235078(void *arg0);
 u32 get_player_by_client_id(s32);
-s32 play_sound_effect(int, void *, int, int);
+
 s32 __ct__7TObjectFP7TObject(void *, void *);
 extern s32 recovery_technique_charge_vtable[];
 u8 *construct_resta_charge_sound(u8 *arg0, s32 arg1, s32 arg2);
@@ -291,7 +292,7 @@ u8 *construct_resta_charge_sound(u8 *arg0, s32 arg1, s32 arg2) {
     *(s32 *)((s8 *)arg0 + 0x1C) = arg1;
     VecCopy((Vec *)(arg0 + 0x20), (const Vec *)((int) (*(s32 *)((s8 *)arg0 + 0x1C) + 0x2FC)));
     ((TUnk_804CC990 *)arg0)->m_2c = 0;
-    *(s32 *)((s8 *)arg0 + 0x30) = play_sound_effect(0x4002BC20, arg0 + 0x20, 0, 0);
+    *(s32 *)((s8 *)arg0 + 0x30) = play_sound_effect(0x4002BC20, (const Vec *)(arg0 + 0x20), 0, 0);
     return arg0;
 }
 
@@ -802,7 +803,7 @@ void run_task__9TTecLukerFv(u8 *arg0) {
             player = (u8 *)get_player_by_client_id(((TTecLuker *)arg0)->m_f6);
             if (player != NULL) {
                 play_effect_default__10TObjPlayerFii(player, 0xA);
-                play_sound_effect(0x40022D1A, player + 0x38, 0, 0);
+                play_sound_effect(0x40022D1A, (const Vec *)(player + 0x38), 0, 0);
             }
             TWindowCtrl::init_all_slots();
             ((TTecLuker *)arg0)->m_108 = 2;
@@ -953,7 +954,7 @@ void *TTecLuker__ct(void *arg0, void *arg1, void *arg2, void *arg3, void *arg4) 
             }
         }
     }
-    play_sound_effect(0x4002A818, (u8 *)arg0 + 0x20, 0, 0);
+    play_sound_effect(0x4002A818, (const Vec *)((u8 *)arg0 + 0x20), 0, 0);
     return arg0;
 }
 #undef L

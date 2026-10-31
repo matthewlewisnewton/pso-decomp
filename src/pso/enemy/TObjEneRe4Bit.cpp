@@ -2,6 +2,7 @@
 #include "pso/math/VectorNormalize.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/enemy/TObjEnemy.h"
 struct Obj_800ED4BC;
 
@@ -297,7 +298,7 @@ extern "C" {
 void set_state_flags__18TObjEneRe4SorcererFPv(u8 *arg0);
 void set_hold_flags__18TObjEneRe4SorcererFPv(u8 *arg0);
 void TObjEneRe4Sorcerer__sub_800ED47C(void* p);
-s32 play_sound_effect(s32, void *, int, int);
+
 extern const f32 TObjEneRe4Bit__data_805DA770;
 void TObjEneRe4Bit__sub_800ECC14(u8 *arg0, s32 arg1);
 f32 calc_elapsed_scaled__9TObjEneDDFv(void *);
@@ -534,11 +535,11 @@ void TObjEneRe4Bit__sub_800ECC14(u8 *ene_panarms, s32 arg1) {
         ((TObjEnePanarms *)ene_panarms)->m_408 = 0;
         ((s32 (*)(void *))set_hold_flags__18TObjEneRe4SorcererFPv)(ene_panarms);
         ((TObjEnePanarms *)ene_panarms)->m_3cc = (s32) (((TObjEnePanarms *)ene_panarms)->m_3cc | 0x400);
-        play_sound_effect(((TObjEnemy *)(ene_panarms))->remap_sound_for_area((s32)(0x4003A815)), ene_panarms + 0x38, 0, 0);
+        play_sound_effect((s32)(((TObjEnemy *)(ene_panarms))->remap_sound_for_area((s32)(0x4003A815))), (const Vec *)(ene_panarms + 0x38), 0, 0);
         break;
     case 3:
         if (((TObjEnePanarms *)ene_panarms)->m_3cc & 8) {
-            play_sound_effect(((TObjEnemy *)(ene_panarms))->remap_sound_for_area((s32)(0x4003AD16)), ene_panarms + 0x38, 0, 0);
+            play_sound_effect((s32)(((TObjEnemy *)(ene_panarms))->remap_sound_for_area((s32)(0x4003AD16))), (const Vec *)(ene_panarms + 0x38), 0, 0);
             ((TObjEneDD *)ene_panarms)->transition_enemy_state(1);
         }
         break;

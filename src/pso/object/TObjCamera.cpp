@@ -61,7 +61,7 @@ void TObjCamera::play_sound_events() {
     s32 i;
     for (i = 0; i < 8; i++) {
         if (sound_events[i].played == 0 && animation_frame >= sound_events[i].frame) {
-            play_sound_effect(sound_events[i].sound_id, &sound_events[i].position, 0, 0);
+            play_sound_effect((s32)(sound_events[i].sound_id), (const Vec *)(&sound_events[i].position), 0, 0);
             sound_events[i].played = 1;
         }
     }

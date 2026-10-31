@@ -1,4 +1,5 @@
 #include "pso/misc/ParticleFactory.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/misc/TOVS2Wall01_8017BCC8.h"
@@ -8,7 +9,7 @@
 
 extern "C" {
 
-s32 play_sound_effect(s32, s32, s32, s32);
+
 s32 is_locally_controlled__10TObjPlayerFPv(u32);
 u16 get_entity_id(u32);
 
@@ -23,7 +24,7 @@ void init__11TOVS2Wall01Fi(s32 arg0) {
     } while (var_r31 <= 0xF);
     spawn_particle_effect((const Vec *)((arg0 + 0x38)), 0x45);
     spawn_particle_effect((const Vec *)((arg0 + 0x38)), 0x46);
-    play_sound_effect(0x4004BC05, arg0 + 0x38, 0, 0);
+    play_sound_effect(0x4004BC05, (const Vec *)(arg0 + 0x38), 0, 0);
 }
 
 extern const f32 lbl_805DBAA8;

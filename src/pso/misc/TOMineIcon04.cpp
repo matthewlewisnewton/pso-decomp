@@ -1,4 +1,5 @@
 #include "pso/misc/ParticleFactory.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/TObject.h"
 #include "pso/misc/TOMine.h"
@@ -55,7 +56,7 @@ struct Icon_80171E7C {
 };
 
 extern "C" {
-s32 play_sound_effect(int, void *, int, int);
+
 void vfunc_80__12TOMineIcon04Fv(s32 arg0);
 s32 TObjFish__sub_8001EDB0(void *, s32);
 s32 get_bml_model(void *, s32);
@@ -255,39 +256,39 @@ void TOMineIcon04::vfunc_80() {
     switch (area) {
     case AREA_FOREST1:
     case AREA_FOREST2:
-        play_sound_effect(0x4C111, (void *)(arg0 + 0x38), 0, 0);
+        play_sound_effect(0x4C111, (const Vec *)((arg0 + 0x38)), 0, 0);
         return;
     case AREA_CAVE1:
     case AREA_CAVE2:
     case AREA_CAVE3:
-        play_sound_effect(0x44110, (void *)(arg0 + 0x38), 0, 0);
+        play_sound_effect(0x44110, (const Vec *)((arg0 + 0x38)), 0, 0);
         return;
     case AREA_MINE1:
     case AREA_MINE2:
-        play_sound_effect(0x4004C10A, (void *)(arg0 + 0x38), 0, 0);
+        play_sound_effect(0x4004C10A, (const Vec *)((arg0 + 0x38)), 0, 0);
         return;
     case AREA_RUINS1:
     case AREA_RUINS2:
     case AREA_RUINS3:
-        play_sound_effect(0x4004C111, (void *)(arg0 + 0x38), 0, 0);
+        play_sound_effect(0x4004C111, (const Vec *)((arg0 + 0x38)), 0, 0);
         return;
     case AREA_VR_TEMPLE_ALPHA:
     case AREA_VR_TEMPLE_BETA:
-        play_sound_effect(0x4BC07, (void *)(arg0 + 0x38), 0, 0);
+        play_sound_effect(0x4BC07, (const Vec *)((arg0 + 0x38)), 0, 0);
         return;
     case AREA_VR_SPACESHIP_ALPHA:
     case AREA_VR_SPACESHIP_BETA:
-        play_sound_effect(0x4004BC07, (void *)(arg0 + 0x38), 0, 0);
+        play_sound_effect(0x4004BC07, (const Vec *)((arg0 + 0x38)), 0, 0);
         return;
     case AREA_CENTRAL_CONTROL_AREA:
     case AREA_JUNGLE_NORTH:
     case AREA_JUNGLE_EAST:
     case AREA_MOUNTAIN:
     case AREA_SEASIDE:
-        play_sound_effect(0x4BC19, (void *)(arg0 + 0x38), 0, 0);
+        play_sound_effect(0x4BC19, (const Vec *)((arg0 + 0x38)), 0, 0);
     case AREA_SEABED_UPPER:
     case AREA_SEABED_LOWER:
-        play_sound_effect(0x4004BC19, (void *)(arg0 + 0x38), 0, 0);
+        play_sound_effect(0x4004BC19, (const Vec *)((arg0 + 0x38)), 0, 0);
     default:
         return;
     }

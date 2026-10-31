@@ -1,5 +1,6 @@
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/system/BmlResourceClass.h"
 void set_constant_material(const NJS_ARGB *color);
@@ -483,7 +484,6 @@ s32 vector_length(void *);
 s32 subtract_vector(void *, void *);
 void TBoss6PlotFalz__sub_802AB684(s32 arg0);
 
-int play_sound_effect(int, int, int, int);
 int TBoss6Thanks__sub_8035D270();
 f64 atan2_float(f32, f32);
 s32 get_nth_view_player_id__11TCameraCtrlFl();

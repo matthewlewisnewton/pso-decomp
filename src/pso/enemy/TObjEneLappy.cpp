@@ -2,6 +2,7 @@
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
@@ -301,7 +302,7 @@ void move_with_wall_slide(u8 *arg0);
 extern "C" {
 void sub_800C20B0__12TObjEneLappyFv(void *arg0);
 #define sub_800C20B0__12TObjEneLappyFv (*(s32 (*)())&sub_800C20B0__12TObjEneLappyFv)
-s32 play_sound_effect(s32, u32, s32, s32);
+
 void vfunc_63__12TObjEneLappyFv(u8 *arg0);
 void *get_player_by_client_id(s32 i);
 void vfunc_62__12TObjEneLappyFv(u8 *arg0);
@@ -483,7 +484,7 @@ loop_7:
 void TObjEneLappy::play_walk_sound() {
     u8 *arg0 = (u8 *)this;
     if (((s16) this->requested_action == 3) && ((((TObjMotion *)arg0)->is_passing_frame((f32)lbl_805D9F28) != 0) || (((TObjMotion *)arg0)->is_passing_frame((f32)((f32)lbl_805D9F2C)) != 0))) {
-        play_sound_effect(remap_area_sound_id(0x3D20C, 5), (u32)(arg0 + 0x38), 0, 0);
+        play_sound_effect((s32)(remap_area_sound_id(0x3D20C, 5)), (const Vec *)((arg0 + 0x38)), 0, 0);
     }
 }
 void TObjPlayer__sub_800BFF54(void * _w0) {  }
@@ -570,7 +571,7 @@ void TObjEneLappy::vfunc_63() {
     if (temp_r3 & 2) {
         if (!(temp_r3 & 4)) {
             this->m_374 = (s16) (temp_r3 | 4);
-            play_sound_effect((s32)(((s32)remap_area_sound_id(0x3AD13, 5))), (u32)(((u8 *)this) + 0x38), 0, 0);
+            play_sound_effect((s32)(((s32)remap_area_sound_id(0x3AD13, 5))), (const Vec *)((u32)(((u8 *)this) + 0x38)), 0, 0);
             ((TObjEnemy *)((u8 *)this))->request_standard_drop();
             this->requested_action = 8;
         }
@@ -578,7 +579,7 @@ void TObjEneLappy::vfunc_63() {
         this->mode = 5;
         this->requested_action = 7;
         if (!(this->m_374 & 0x10)) {
-            play_sound_effect((s32)(((s32)remap_area_sound_id(0x3AE10, 5))), (u32)(((u8 *)this) + 0x38), 0, 0);
+            play_sound_effect((s32)((s32)(((s32)remap_area_sound_id(0x3AE10, 5)))), (const Vec *)((((u8 *)this) + 0x38)), 0, 0);
             this->distribute_experience();
             ((TObjPlayer *)((u8 *)this))->set_flag_and_notify();
         }
@@ -627,7 +628,7 @@ void TObjEneLappy::vfunc_62() {
             this->m_374 = (s16) (this->m_374 | 2);
             ((TObjPlayer *)((u8 *)this))->set_flag_and_notify();
         }
-        play_sound_effect((s32)((void*)((s32)remap_area_sound_id(0x3B10F, 5))), (u32)(((u8 *)this) + 0x38), 0, 0);
+        play_sound_effect((s32)((s32)((void*)((s32)remap_area_sound_id(0x3B10F, 5)))), (const Vec *)((((u8 *)this) + 0x38)), 0, 0);
     }
 }
 
@@ -683,7 +684,7 @@ void TObjEneLappy::update_attacking() {
                 ((VObj_18_800C0588 *) this->target)->m20(arg0, lbl_805D9F60);
                 ((VObj_18_800C0588 *) this->target)->m23(arg0, lbl_805D9F64);
             }
-            play_sound_effect(remap_area_sound_id(0x3BC0D, 5), (u32)(arg0 + 0x38), 0, 0);
+            play_sound_effect((s32)(remap_area_sound_id(0x3BC0D, 5)), (const Vec *)((arg0 + 0x38)), 0, 0);
             this->phase = 2;
             *(s16 *)&this->timer = 0x1E;
         }
@@ -821,10 +822,10 @@ void TObjEneLappy::update_moving() {
             if ((u32) this->action_flags == 1U) {
                 *(s32 *)&this->actorFlags = (*(s32 *)&this->actorFlags & 0xFBFFFFFF);
                 *(s16 *)&this->m_37a = 4;
-                play_sound_effect(remap_area_sound_id(0x3AF12, 5), (u32)(arg0 + 0x38), 0, 0);
+                play_sound_effect((s32)(remap_area_sound_id(0x3AF12, 5)), (const Vec *)((arg0 + 0x38)), 0, 0);
             }
             if (((TObjMotion *)arg0)->is_passing_frame(lbl_805D9F2C) != 0) {
-                play_sound_effect(remap_area_sound_id(0x3AA11, 5), (u32)(arg0 + 0x38), 0, 0);
+                play_sound_effect((s32)(remap_area_sound_id(0x3AA11, 5)), (const Vec *)((arg0 + 0x38)), 0, 0);
             }
             goto block_48;
         case 4:
@@ -922,7 +923,7 @@ void TObjEneLappy::update_idle_state(void *ov) {
         case 1:
             (*(s16 *)((s8 *)arg0 + 0x37E))--;
             if (*(s16 *)((s8 *)arg0 + 0x37E) < 0) {
-                play_sound_effect(remap_area_sound_id(0x3B20B, 5), (u32)(arg0 + 0x38), 0, 0);
+                play_sound_effect((s32)(remap_area_sound_id(0x3B20B, 5)), (const Vec *)((arg0 + 0x38)), 0, 0);
                 ((TObjPlayer *)arg0)->phase = 2;
             }
             break;
@@ -944,7 +945,7 @@ void TObjEneLappy::update_idle_state(void *ov) {
         ((TObjMotion *)arg0)->advance_animation();
         (*(s16 *)((s8 *)arg0 + 0x37E))--;
         if (*(s16 *)((s8 *)arg0 + 0x37E) < 0) {
-            play_sound_effect(remap_area_sound_id(0x3B20B, 5), (u32)(arg0 + 0x38), 0, 0);
+            play_sound_effect((s32)(remap_area_sound_id(0x3B20B, 5)), (const Vec *)((arg0 + 0x38)), 0, 0);
             *(s16 *)((s8 *)arg0 + 0x37E) = (s16) (lbl_805D9F2C * (lbl_805D9F84 * (lbl_805D9F60 + random_ratio__9TObjCharaFv(arg0))));
         }
         break;
@@ -1106,9 +1107,9 @@ void TObjEneLappy::run_task() {
         if (((RecoveredFields_800C1478_arg0 *)((u8 *)this))->field_30 & 0x800000) {
             ((RecoveredFields_800C1478_arg0 *)((u8 *)this))->field_374 = (s16) (((RecoveredFields_800C1478_arg0 *)((u8 *)this))->field_374 & 0xFFFFFFBF);
             if (TLobby::get_instance() == 1) {
-                play_sound_effect(0x3AB44, (u32)(((u8 *)this) + 0x38), 0, 0);
+                play_sound_effect(0x3AB44, (const Vec *)((((u8 *)this) + 0x38)), 0, 0);
             } else {
-                play_sound_effect(0x4003AB33, (u32)(((u8 *)this) + 0x38), 0, 0);
+                play_sound_effect(0x4003AB33, (const Vec *)((((u8 *)this) + 0x38)), 0, 0);
             }
             temp_r3_2 = (unsigned char *) (((RecoveredFields_800C1478_arg0 *)((u8 *)this))->field_A4);
             ((RecoveredFields_800C1478_temp_r3_2 *)temp_r3_2)->field_18 = (s32) (((RecoveredFields_800C1478_temp_r3_2 *)temp_r3_2)->field_18 | 1);

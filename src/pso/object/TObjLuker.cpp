@@ -1,4 +1,5 @@
 #include "pso/misc/ParticleFactory.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/object/TObjMotion.h"
@@ -79,7 +80,7 @@ struct Luker_801A1260
 
 extern "C" {
 void allow_rendering__7TObjectFv(TObject *);
-s32 play_sound_effect(s32, u32, s16, s32);
+
 void disallow_rendering__7TObjectFv(TObject *w);
 void close_windows__9TObjLukerFPv(Obj_801A0DB4 *self);
 Ctrl_801A0E38 *get_player_by_client_id(u16 id);
@@ -136,7 +137,7 @@ void TObjLuker::show_part(s32 arg1) {
     temp_r3 = (u8 *)(*(u8 **)((s8 *)temp_r31 + 0x90));
     if (temp_r3 != NULL) {
         if (*(u16 *)((s8 *)temp_r3 + 4) & 4) {
-            play_sound_effect(0x53703, 0U, 0, 0);
+            play_sound_effect(0x53703, (const Vec *)(0U), 0, 0);
         }
         ((TQuestVmDownLoadServer *)(*(u8 **)((s8 *)temp_r31 + 0x90)))->clear_flag4_bit4();
         allow_rendering__7TObjectFv((TObject *)(*(u8 **)((s8 *)temp_r31 + 0x90)));
@@ -446,7 +447,7 @@ void TObjLuker::run_task() {
                         p = PBC_801A1418(local_client_id);
                         if (p != NULL) {
                             play_effect_default__10TObjPlayerFii(p, 0xA);
-                            play_sound_effect(0x40022D1A, (u32)(arg0 + 0x38), 0, 0);
+                            play_sound_effect(0x40022D1A, (const Vec *)((arg0 + 0x38)), 0, 0);
                         }
                         TWindowCtrl::init_all_slots();
                         *(s32 *)&this->m_b8 = 1;

@@ -1,4 +1,5 @@
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/misc/MaterialColorFade.h"
@@ -96,7 +97,7 @@ extern u8 door_key_beam_color_table[][0x10];
 extern s32 actor_frame_tick;
 extern s32 saved_model_render_flags;
 extern s32 model_render_flags;
-void play_sound_effect(int, void *, int, int);
+
 void *spawn_continuous_particle_effect_with_flags(void *parent, s32 idx, s32 flags);
 s32 init_collision_body_parts(void *, void *, int);
 s32 init_key__5TOKeyFPv(void *, void *);
@@ -217,18 +218,18 @@ void TObjDoorKey::trigger_activate_sound() {
     case AREA_CAVE1:
     case AREA_CAVE2:
     case AREA_CAVE3:
-        play_sound_effect(0x42D0A, ((u8 *)this) + 0x38, 0, 0);
+        play_sound_effect(0x42D0A, (const Vec *)(((u8 *)this) + 0x38), 0, 0);
         break;
     case AREA_VR_TEMPLE_ALPHA:
     case AREA_VR_TEMPLE_BETA:
-        play_sound_effect(0x4C601, ((u8 *)this) + 0x38, 0, 0);
+        play_sound_effect(0x4C601, (const Vec *)(((u8 *)this) + 0x38), 0, 0);
         break;
     case AREA_VR_SPACESHIP_ALPHA:
     case AREA_VR_SPACESHIP_BETA:
-        play_sound_effect(0x4004C601, ((u8 *)this) + 0x38, 0, 0);
+        play_sound_effect(0x4004C601, (const Vec *)(((u8 *)this) + 0x38), 0, 0);
         break;
     default:
-        play_sound_effect(0x4C60A, ((u8 *)this) + 0x38, 0, 0);
+        play_sound_effect(0x4C60A, (const Vec *)(((u8 *)this) + 0x38), 0, 0);
         break;
     }
     this->m_e8 = 1;

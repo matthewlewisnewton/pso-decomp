@@ -2,6 +2,7 @@
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -216,7 +217,7 @@ extern "C" {
 void draw_model_motion(void *arg0, void *arg1, f32 farg0);
 extern const f32 TBoss6Type2__data_805DE410;
 u8 * get_player_data__10TObjPlayerFi(s32);
-s32 play_sound_effect(s32, void *, s32, s32);
+
 void spawn__15TBoss6RockChaseFll(void *, void *);
 s32 rand(void);
 f32 sin_table_lookup(int);
@@ -879,7 +880,7 @@ void TBoss6Type2::update_footstep_effects() {
       if ((*((f32 *) (((s8 *) temp_r29) + 4))) < boss6_type2_footstep_height_threshold)
       {
         *((s32 *) (((s8 *) (((u8 *) arg0) + temp_r4)) + 0)) = 1;
-        ((s32 (*)(s32, u32, s16, s32))play_sound_effect)(0x4006A300, (u32) temp_r29, 0, 0);
+        play_sound_effect(0x4006A300, (const Vec *)((u32) temp_r29), 0, 0);
         spawn_particle_effect_with_flags(temp_r29, 0x220, 0x40);
         if (((s32)this->m_418) == 0)
         {
@@ -1004,7 +1005,7 @@ void TBoss6Type2::sub_802BA078() {
                 spawn_particle_effect_with_flags(&v, 0x223, 0x40);
             }
             if (this->is_target_valid() == 0) {
-                ((s32 (*)(s32, u32, s16, s32))play_sound_effect)(0x4000AD13, 0, 0, 0);
+                play_sound_effect(0x4000AD13, 0, 0, 0);
             }
         }
     }
@@ -1114,7 +1115,7 @@ void TBoss6Type2::update_possess_target() {
             spawn_flow_soul__11TBoss6Type2Fiii((s32)this, (s32)&v, 0x1E);
             ((TBoss6EffHyoui *)(*(u16 *)((s8 *)((u8 *)this) + 0x55C)))->create((void *)1, (void *)0x1E);
             if (this->is_target_valid() == 0) {
-                play_sound_effect(0x40069E13, ((u8 *)this) + 0x38, 0, 1);
+                play_sound_effect(0x40069E13, (const Vec *)(((u8 *)this) + 0x38), 0, 1);
             }
             spawn_particle_effect((const Vec *)(pl + 0x38), 0x36);
             done = 1;
@@ -1297,7 +1298,7 @@ s32 TBoss6Type2::turn_toward_target_position() {
         m_60 = approach_angle_limited((s32)((int) ((s32)m_60)), (s32)((s32) ((s32) (TBoss6Type2__data_804713C0 * atan2_float(sp8.f.x, sp8.f.z)))), var_r31);
         if (var_r31 == angle_difference_abs(temp_r30, (int) ((s32)m_60))) {
             if ((s32) m_508 == 0) {
-                play_sound_effect(0x4006A602, &position, 0, 0);
+                play_sound_effect(0x4006A602, (const Vec *)(&position), 0, 0);
                 m_508 = 1;
             }
         } else {
@@ -1388,7 +1389,7 @@ void TBoss6Type2::spawn_rocks_around_players() {
         spawn__15TBoss6RockChaseFll(this, &q);
         n++;
     }
-    play_sound_effect(0x4006AB1D, &TBoss6Type2__data_8047105C, 0, 1);
+    play_sound_effect(0x4006AB1D, (const Vec *)(&TBoss6Type2__data_8047105C), 0, 1);
 }
 #pragma pop
 
@@ -1448,7 +1449,7 @@ void TBoss6Type2::drop_random_rocks(s32 arg0, s32 arg1) {
     }
     TBoss6Type2__sub_80356E50(buf, cnt, arg1);
     mem_free(buf);
-    ((s32 (*)(int, void *, int, int))play_sound_effect)(0x4006AB1D, ((u8 *)&TBoss6Type2__data_8047105C), 0, 1);
+    play_sound_effect(0x4006AB1D, (const Vec *)(((u8 *)&TBoss6Type2__data_8047105C)), 0, 1);
 }
 
 void TBoss6Type2::request_default_follow_camera() {
@@ -1825,7 +1826,7 @@ void TBoss6Type2__sub_802BBC74(TBoss6Type2 *self) {
         break;
     }
     TBoss6SwordWave::create((s32)self, (s32)&self->position, start_angle, end_angle, radius);
-    play_sound_effect(sound, &self->position, 0, 1);
+    play_sound_effect((s32)(sound), (const Vec *)(&self->position), 0, 1);
 }
 
 void TBoss6Type2::set_owner_flag_bit0() {
@@ -2047,14 +2048,14 @@ void TBoss6Type2::play_phase_sound() {
             var_r3 = 0x6852B;
             break;
         }
-        play_sound_effect(var_r3, arg0 + 0x38, 0, 1);
+        play_sound_effect((s32)(var_r3), (const Vec *)(arg0 + 0x38), 0, 1);
     }
 }
 
 void TBoss6Type2::play_sound_if_no_target() {
     u8 *arg0 = (u8 *)this;
     if (is_target_valid() == 0) {
-        play_sound_effect((s32)(*(s32 *)((s8 *)&TBoss6Type2__no_target_sound_ids.value + (TBoss6Type2::find_index_in_table(this->m_2e4) * 4))), arg0 + 0x38, 0, 1);
+        play_sound_effect((s32)((s32)(*(s32 *)((s8 *)&TBoss6Type2__no_target_sound_ids.value + (TBoss6Type2::find_index_in_table(this->m_2e4) * 4)))), (const Vec *)(arg0 + 0x38), 0, 1);
     }
 }
 
@@ -2710,7 +2711,7 @@ void TBoss6Type2__vt60(TBoss6Type2 *boss6_type2) {
         }
     }
     if ((s32) boss6_type2->m_418 != 0) {
-        ((s32 (*)(int, void *, int, int))play_sound_effect)(0x68A24, (u8 *)boss6_type2 + 0x38, 0, 1);
+        play_sound_effect(0x68A24, (const Vec *)((u8 *)boss6_type2 + 0x38), 0, 1);
     }
 }
 #pragma pop

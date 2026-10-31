@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/object/TUnk_804CC948.h"
 #include "pso/misc/TLobby_80226070.h"
@@ -7,7 +8,7 @@
 
 extern "C" {
 
-s32 play_sound_effect(int, void *, int, int);
+
 void __dl__7TObjectFPv(void *);
 void __dt__7TObjectFv(void *, int);
 
@@ -30,5 +31,5 @@ TUnk_804CC948::TUnk_804CC948(s32 arg1, s32 arg2) : TObject((TObject *)((void *)a
     *(s32 *)((s8 *)this + 0x1C) = arg1;
     VecCopy((Vec *)(((u8 *)this) + 0x20), (const Vec *)(*(s32 *)((s8 *)this + 0x1C) + 0x2FC));
     this->m_2c = 0;
-    *(s32 *)((s8 *)this + 0x30) = play_sound_effect(0x4002B21D, ((u8 *)this) + 0x20, 0, 0);
+    *(s32 *)((s8 *)this + 0x30) = play_sound_effect(0x4002B21D, (const Vec *)(((u8 *)this) + 0x20), 0, 0);
 }

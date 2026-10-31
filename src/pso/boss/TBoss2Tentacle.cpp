@@ -1,4 +1,5 @@
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/system/vector.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/TBoss2Tentacle.h"
@@ -97,7 +98,7 @@ void TBoss2Tentacle__sub_80039D64(void* a0);
 void TBoss2Tentacle__sub_80039DBC(void* p);
 void TBoss2Tentacle__sub_80039DD4(void* p);
 s32 approach_angle_limited(s32, s32, s32);
-s32 play_sound_effect(int, void *, int, int);
+
 f32 sin_table_lookup(s32);
 s32 matrix_mult_vec(int, void *, void *);
 s32 set_matrix_identity(int);
@@ -264,7 +265,7 @@ void run_task__14TBoss2TentacleFv(u8 *arg0) {
                 if (inst != NULL) {
                     emit_effect_and_step__13TBoss2DeRolLeFPvPv(inst, &pos);
                 }
-                play_sound_effect(0x4003A507, &pos, 0, 0);
+                play_sound_effect(0x4003A507, (const Vec *)(&pos), 0, 0);
             }
             if (F(f32, 0x138) >= 0.4f * len) {
                 F(f32, 0x13C) = (*(const f32 *)&TBoss2Tentacle__data_805D8530);

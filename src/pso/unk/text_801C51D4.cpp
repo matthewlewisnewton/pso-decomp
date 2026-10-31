@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/unk/TUnk_804C3F48.h"
 
@@ -30,7 +31,7 @@ void queue_destruction__7TObjectFv(void *);
 f32 xz_distance_squared(void *, void *);
 void *get_player_by_client_id(s32 i);
 void update_technique_slot__10TTecRaFoieFl(void *, s32, s32);
-void *play_sound_effect(s32, s32, s32, s32, f32);
+
 typedef char RecoveredGlobal_801C5380_lbl_804C3F48_size[sizeof(RecoveredGlobal_801C5380_lbl_804C3F48) == 0x18 ? 1 : -1];
 
 typedef char RecoveredGlobal_801C5320_lbl_804C3F48_size[sizeof(RecoveredGlobal_801C5320_lbl_804C3F48) == 0x18 ? 1 : -1];
@@ -61,7 +62,7 @@ void TUnk_804C3F48::run_task() {
             f = newton_sqrtf(min) > 200.0f ? newton_sqrtf(min) : 200.0f;
             f -= 200.0f;
             min = 1.0f - 0.00076923077f * f;
-            update_technique_slot__10TTecRaFoieFl(play_sound_effect(0x23230, 0, 0, 0, f), 256.0f * min, 0);
+            update_technique_slot__10TTecRaFoieFl((void *)play_sound_effect(0x23230, 0, 0, 0), 256.0f * min, 0);
             self->timer = (s32)(-53.0f * min) + 0x3C;
         }
     }

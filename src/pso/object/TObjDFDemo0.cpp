@@ -1,5 +1,6 @@
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #pragma push
 
 #define TOBJECT_OUT_OF_LINE_HELPERS
@@ -250,7 +251,7 @@ extern "C" {
 f32 sin_table_lookup(s32);
 f32 cos_table_lookup(s32);
 void vec3_add_to(f32 *, f32 *);
-void play_sound_effect(int, void *, int, int);
+
 extern DFDemo1Emitter lbl_80485590[];
 }
 
@@ -293,7 +294,7 @@ void TObjDFDemo1::run_task() {
         start_pad_rumble_all(0xC0, 0xF);
     }
     if (self->timer == 0x7C) {
-        play_sound_effect(0x4003AA26, self->pos, 0, 1);
+        play_sound_effect(0x4003AA26, (const Vec *)(self->pos), 0, 1);
     }
     if ((m_114 += 0.5f) > 149.0f) {
         m_114 = 149.0f;

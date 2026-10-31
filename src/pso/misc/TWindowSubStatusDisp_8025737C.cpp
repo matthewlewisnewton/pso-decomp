@@ -1,4 +1,5 @@
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TWindowSubStatusDisp_8025737C.h"
 #include "pso/system/memory.h"
@@ -120,7 +121,7 @@ struct Bar_8025799C {
 };
 
 void update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
-s32 play_sound_effect(u32, s32, s32, s32);
+
 #define destroy__13TUnk_804CF930Fs ((s32 (*)(s32, s32 *))destroy__13TUnk_804CF930Fs)
 #define sub_80256BDC__13TUnk_804CF930Fs ((int (*)(void*, int))sub_80256BDC__13TUnk_804CF930Fs)
 #define calc_bar_width__20TWindowSubStatusDispFPv ((s32 (*)())calc_bar_width__20TWindowSubStatusDispFPv)

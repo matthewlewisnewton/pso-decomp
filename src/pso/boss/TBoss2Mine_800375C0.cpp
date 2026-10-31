@@ -2,6 +2,7 @@
 #include "pso/math/VectorNormalize.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/vector.h"
 #include "pso/system/ChunkMaterialState.h"
@@ -21,7 +22,7 @@
 struct Mine_80038760; struct O_80038908;
 extern "C" {
 s32 transition_enemy_state__9TObjEneDDFl(void *, int);
-s32 play_sound_effect(int, void *, int, int);
+
 f32 calc_elapsed_scaled__9TObjEneDDFv(void *);
 void init_params__10TBoss2MineFlf(u8 *arg0, s32 arg1, f32 farg0);
 void update_pulse_state__10TBoss2MineFv(Mine_80038760 *self);
@@ -135,7 +136,7 @@ void TUnk_80482D04::vfunc_105(s32 arg1) {
             (*(s32 *)((s8 *)arg0 + 0x3CC))++;
             if (*(s32 *)((s8 *)arg0 + 0x3CC) >= 0xF) {
                 *(s32 *)((s8 *)arg0 + 0x3C8) = 1;
-                play_sound_effect(0x4003A804, arg0 + 0x2FC, 0, 0);
+                play_sound_effect(0x4003A804, (const Vec *)(arg0 + 0x2FC), 0, 0);
             }
             *(f32 *)((s8 *)arg0 + 0x2FC) = *(f32 *)((s8 *)arg0 + 0x404) * *(f32 *)((s8 *)arg0 + 0x3DC) + *(f32 *)((s8 *)arg0 + 0x2FC);
             *(f32 *)((s8 *)arg0 + 0x304) = *(f32 *)((s8 *)arg0 + 0x40C) * *(f32 *)((s8 *)arg0 + 0x3DC) + *(f32 *)((s8 *)arg0 + 0x304);
@@ -253,7 +254,6 @@ void *__dt__13TUnk_80482D04Fv(void *arg0, s16 arg1) {
 
 #define init_params__10TBoss2MineFlf ((s32 (*)(void *, int, f32))init_params__10TBoss2MineFlf)
 #define calc_elapsed_scaled__9TObjEneDDFv ((f32 (*)(void *, int, int))calc_elapsed_scaled__9TObjEneDDFv)
-#define play_sound_effect ((s32 (*)(int, void *, int, int, int))play_sound_effect)
 #define update_pulse_state__10TBoss2MineFv ((s32 (*)(void *))update_pulse_state__10TBoss2MineFv)
 
 struct VBase { char pad[0x18]; };
@@ -301,7 +301,7 @@ void TUnk_80482EC0::vfunc_106(s32 arg1) {
         *(s32 *)((s8 *)((u8 *)this) + 0x3C8) = 0;
         temp_r7 = (s32) ((3e+01f) * calc_elapsed_scaled__9TObjEneDDFv(this, 0x8000, temp_r5));
         *(s32 *)((s8 *)((u8 *)this) + 0x3CC) = (temp_r7 + 0xB4);
-        play_sound_effect(0x4003A804, (void *) (((u8 *)this) + 0x2FC), 0, 0, temp_r7);
+        play_sound_effect(0x4003A804, (const Vec *)((((u8 *)this) + 0x2FC)), 0, 0);
         init_params__10TBoss2MineFlf(this, 0x1E, (f32) ((0.25f)));
         return;
     case 3:
@@ -411,9 +411,7 @@ void TBoss2Mine::set_launch_position_velocity(u8 *arg1, u8 *arg2) {
 
 #undef init_params__10TBoss2MineFlf
 #undef calc_elapsed_scaled__9TObjEneDDFv
-#undef play_sound_effect
 #undef update_pulse_state__10TBoss2MineFv
-#define play_sound_effect ((s32 (*)(s32, u32, s16, s32))play_sound_effect)
 #define TBoss2Mine__ct ((void *(*)(void *, s32, s16, s16, s32))TBoss2Mine__ct)
 #define set_node_offsets__10TBoss2MineFv ((void (*)(void *))set_node_offsets__10TBoss2MineFv)
 
@@ -757,7 +755,7 @@ void TBoss2Mine::vfunc_107(s32 arg1) {
       TObjEneDD__sub_800BA5A4(arg0, copy_storage_800384C8.bytes);
       spawn_particle_effect_with_flags((void *)((*((s32 *) (((s8 *) arg0) + 0xA4))) + 0x1C), 0x16B, 0x40);
       *((s32 *) (((s8 *) arg0) + 0x3CC)) = 2;
-      play_sound_effect(0x4003AD05, (u32)(arg0 + 0x2FC), 0, 0);
+      play_sound_effect(0x4003AD05, (const Vec *)((arg0 + 0x2FC)), 0, 0);
     }
       break;
   }
@@ -768,7 +766,6 @@ void TBoss2Mine::vfunc_105(s32) {  }
 
 }
 
-#undef play_sound_effect
 #undef TBoss2Mine__ct
 #undef set_node_offsets__10TBoss2MineFv
 #define transition_enemy_state__9TObjEneDDFl ((int (*)(void *, void *))transition_enemy_state__9TObjEneDDFl)

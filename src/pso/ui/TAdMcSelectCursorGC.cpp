@@ -1,4 +1,5 @@
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TWindowSubStatusDisp_803DEE6C.h"
 #include "pso/ui/TAdMcSelectCursorGC_8032A610.h"
@@ -39,7 +40,7 @@ extern s32 lbl_805D41D0;
 extern const f32 lbl_805DF740;
 extern const f32 lbl_805DF744;
 Obj_8032A574 *TAdMcSelectCursorGC__ct(Obj_8032A574 *arg0);
-void play_sound_effect(s32, s32, s32, s32);
+
 extern u8 controller_input_state[];
 extern u8 controller_physical_port_bank[];
 extern const f32 lbl_805DF72C;

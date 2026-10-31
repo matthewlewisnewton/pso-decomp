@@ -1,5 +1,6 @@
 #include "pso/enemy/BattleParameters.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/player/TObjChara.h"
 #include "pso/player/demo_mode.h"
 #include "types.h"
@@ -19,7 +20,7 @@
 #include "pso/unk/text_803E2D70.h"
 
 extern "C" {
-s32 play_sound_effect(s32 id, Vec *pos, s32 a2, s32 flags);
+
 s32 TObjFish__sub_8001EDB0(BmlResource *resource, s32 index);
 void obj_setFlags30(TObject *obj, u32 mask);
 void submit_cursor_candidate(TObject *obj, s32 a1);
@@ -130,7 +131,7 @@ void TBoss3VoloptHiraisin::sub_80040FDC() {
         actorFlags |= 0x40000;
         ((CollisionState *)bodies)->flags |= 4;
         ((CollisionState *)bodies)->flags &= ~2;
-        play_sound_effect(0x4003A306, &position, 0, 0);
+        play_sound_effect(0x4003A306, (const Vec *)(&position), 0, 0);
         state = 1;
     case 1:
         position.y -= 0.5f;
@@ -151,7 +152,7 @@ void TBoss3VoloptHiraisin::start_attack() {
     TBoss3Volopt::create_breakup_mdl((s32)volopt_hiraisin_breakup_model, (s32)&volopt_hiraisin_breakup_params,
                                      TObjFish__sub_8001EDB0(volopt_hiraisin_resources, 0x10), (s32)&body_center_position, rotation_y);
     trigger_dell_biter_events__10TObjPlayerFv((Vec *)&body_center_position);
-    play_sound_effect(0x4001C112, &position, 0, 0);
+    play_sound_effect(0x4001C112, (const Vec *)(&position), 0, 0);
     m_388 &= ~1;
     max_hp = hpmax;
     referenceHp = max_hp;
@@ -192,7 +193,7 @@ void TBoss3VoloptHiraisin::update_drop() {
             state = 2;
             ((CollisionState *)bodies)->flags &= ~4;
             ((CollisionState *)bodies)->flags |= 2;
-            play_sound_effect(0x4003A808, &position, 0, 0);
+            play_sound_effect(0x4003A808, (const Vec *)(&position), 0, 0);
         }
         break;
     case 2:

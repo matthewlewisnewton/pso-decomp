@@ -1,6 +1,7 @@
 #include "pso/system/MatrixVectorArray.h"
 #include "pso/misc/SampledMotionPoints.h"
 #include "pso/math/FloatRounding.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/misc/PersistentSound.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/unk/TUnk_80494968.h"
@@ -182,7 +183,7 @@ void TObjEneRe7Berura__sub_800940E8(TObjEneRe7Berura *arg0, s32 arg1);
 f32 random_ratio__9TObjCharaFv(s32);
 s32 get_field_3D4_shifted__16TObjEneRe7BeruraFPv(void *);
 s32 enemy_validate_retained_target(u8 *arg0);
-s32 play_sound_effect(s32, u32, s16, s32);
+
 s32 push_matrix(void);
 s32 pop_matrix(void);
 f32 post_translate_matrix(void *);
@@ -475,7 +476,7 @@ void TObjEneRe7Berura__sub_80093888(u8 *actor, s32 arg1) {
             break;
         case 1:
             if (((TObjMotion *)actor)->is_passing_frame((f32)lbl_805D9744) != 0) {
-                play_sound_effect(((TObjEnemy *)(actor))->remap_sound_for_area((s32)(0x4003AD22)), (u32) (actor + 0x38), 0, 0);
+                play_sound_effect((s32)(((TObjEnemy *)(actor))->remap_sound_for_area((s32)(0x4003AD22))), (const Vec *)((actor + 0x38)), 0, 0);
             }
             if ((((TObjMotion *)actor)->is_passing_frame((f32)lbl_805D9748) != 0) && (((TObjEneDD_ST *)actor)->enemy_check_target_valid() != 0)) {
                 if (((VObj_18_a5c788 *)((u8 *)(*(u8 **)((s8 *)actor + 0x390))))->m18(actor, lbl_805D974C) != 0) {
@@ -553,7 +554,7 @@ void TObjEneRe7Berura__sub_80093C80(u8 *arg0, s32 arg1) {
             TObjEneRe7Berura__animation_definitions[0x48 / 4] = TObjEneRe7Berura__data_805D9738;
             TObjEneRe7Berura__animation_definitions[0x38 / 4] = TObjEneRe7Berura__data_805D9738;
         }
-        play_sound_effect(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003BC20)), (u32)(arg0 + 0x38), 0, 0);
+        play_sound_effect((s32)(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003BC20))), (const Vec *)((arg0 + 0x38)), 0, 0);
         TObjPlayer::play_effect_if_v2(-0x100);
         break;
     case 3:
@@ -600,7 +601,7 @@ void TObjEneRe7Berura__sub_80093C80(u8 *arg0, s32 arg1) {
                 launch__21TObjEneRe7BeruraPunchFll(F(s32, 0x3F8), F(s32, 0x3F4), &v, arg0 + 0x394);
                 F(s32, 0x4C0) = 1;
                 ((TObjEneRe7Berura *)arg0)->destroy_parts();
-                play_sound_effect(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003A321)), (u32)(arg0 + 0x38), 0, 0);
+                play_sound_effect((s32)(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003A321))), (const Vec *)((arg0 + 0x38)), 0, 0);
                 TObjPlayer::play_effect_if_v2(-0x100);
             }
             break;

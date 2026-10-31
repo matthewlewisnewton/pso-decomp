@@ -7,6 +7,7 @@
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/misc/PersistentSound.h"
 struct NJS_OBJECT;
 #include "pso/math/ScratchVectorStorage.h"
@@ -282,7 +283,7 @@ extern "C" {
 s32 apply_actor_gravity(void *, s32, f32);
 s32 minimap_render_dot(void *, s32, s32, s32);
 
-s32 play_sound_effect(void *, void *, int, int);
+
 extern u32 TObjGrass__resource_bundle;
 void TObjGrass__sub_800BFB68(O_800BFB68 *self);
 void queue_destruction__7TObjectFv(void *arg0);
@@ -504,7 +505,7 @@ void TObjGrass::update_dying(void *arg0_) {
     case 0:
         apply_actor_gravity(arg0, 0, (0.0f));
         if (((TObjMotion *)arg0)->is_passing_frame((f32)(0.0f)) != 0) {
-            play_sound_effect((void *)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003A804)), arg0 + 0x38, 0, 0);
+            play_sound_effect((s32)((void *)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003A804))), (const Vec *)(arg0 + 0x38), 0, 0);
             ((TObjEnePanarms *)arg0)->phase = 1;
         }
         break;
@@ -540,7 +541,7 @@ void TObjGrass::update_dying(void *arg0_) {
                 break;
             }
             }
-            play_sound_effect((void *)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003AB0A)), arg0 + 0x38, 0, 0);
+            play_sound_effect((s32)((void *)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003AB0A))), (const Vec *)(arg0 + 0x38), 0, 0);
             TObjPlayer::spawn_dead_spot_default((s32)(arg0 + 0x38), 0xA);
             spawn_ground_effect((const Vec *)(arg0 + 0x38), 0x1E);
         }
@@ -636,7 +637,7 @@ s32 TObjGrass::sub_800BCE44() {
   ((TObjCollidable *)arg0)->update_collisions();
   if (((TObjMotion *)arg0)->is_passing_frame((f32) (0.0f)) != 0)
   {
-    play_sound_effect((void *) ((s32)((TObjEnemy *)((void *)((void *) arg0)))->remap_sound_for_area((s32)(0x4003A603))), (u8 *)&this->position, 0, 0);
+    play_sound_effect((s32)((void *) ((s32)((TObjEnemy *)((void *)((void *) arg0)))->remap_sound_for_area((s32)(0x4003A603)))), (const Vec *)((u8 *)&this->position), 0, 0);
     TObjPlayer::play_effect_if_v2(-0x200);
   }
   if ((this->action_flags) != 8U)
@@ -846,7 +847,7 @@ void TObjGrass::sub_800BD4D8() {
                     obj_setFlags30(o, 0x4000000);
                     ((TObjCollidable *)o)->set_indexed_flags(0, 0x80);
                     copy_position_if_valid__10TObjPlayerFii(o, o->p2fc);
-                    play_sound_effect((void *)((TObjEnemy *)(o))->remap_sound_for_area((s32)(0x4003A806)), &o->pos, 0, 0);
+                    play_sound_effect((s32)((void *)((TObjEnemy *)(o))->remap_sound_for_area((s32)(0x4003A806))), (const Vec *)(&o->pos), 0, 0);
                     TObjPlayer::play_effect_if_v2(-0x200);
                 } else {
                     if (o->f338 == 0xFFFF) {
@@ -1012,19 +1013,19 @@ void TObjGrass::sub_800BDD70() {
             case AREA_CAVE1:
             case AREA_CAVE2:
             case AREA_CAVE3:
-                play_sound_effect((void *)0x4003A60D, (u8 *)&this->position, 0, 0);
+                play_sound_effect((s32)((void *)0x4003A60D), (const Vec *)((u8 *)&this->position), 0, 0);
                 break;
             case AREA_BATTLE1:
             case AREA_BATTLE2:
                 if (enable_v2_features == 1) {
-                    play_sound_effect((void *)0x30022, (u8 *)&this->position, 0, 0);
+                    play_sound_effect((s32)((void *)0x30022), (const Vec *)((u8 *)&this->position), 0, 0);
                 }
                 break;
             case AREA_PIONEER2_EP2:
                 break;
             case AREA_VR_TEMPLE_ALPHA:
             case AREA_VR_TEMPLE_BETA:
-                play_sound_effect((void *)0x3A316, (u8 *)&this->position, 0, 0);
+                play_sound_effect((s32)((void *)0x3A316), (const Vec *)((u8 *)&this->position), 0, 0);
                 break;
             }
         }

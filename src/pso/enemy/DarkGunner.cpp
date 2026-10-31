@@ -2,6 +2,7 @@
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/misc/PersistentSound.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
 #include "pso/system/BmlResourceClass.h"
@@ -129,7 +130,7 @@ s32 update_if_active__15TObjEnemyCustomFl(void *, s32);
 s32 TObjPlayer__sub_800A3210(s32 i, s32 _w1, s32 _w2);
 u8 *TObjPlayer__sub_800A4204(u8 *arg0, u8 *arg1, s32 arg2, s32 arg3, s32 arg4);
 s32 submit_cursor_candidate(void *, s32);
-s32 play_sound_effect(int, void *, int, int);
+
 void * __nw__7TObjectFUl(int);
 s32 TObjPlayer__sub_800A1FEC(void *arg0);
 void enemy_set_heading_velocity(f32 speed, TObjEnemy *enemy, s32 heading);
@@ -909,7 +910,7 @@ void TObjEneDarkGunner::vfunc_61() {
     u8 *arg0 = (u8 *)this;
     ((TObjBase *)arg0)->obj_clearFlags30((s32)(0x100U));
     spawn_particle_effect((const Vec *)(((u8 *)&this->body_center_position)), 0xD7);
-    play_sound_effect(0x4003B22D, (u8 *)&this->position, 0, 0);
+    play_sound_effect(0x4003B22D, (const Vec *)((u8 *)&this->position), 0, 0);
 }
 
 int TObjPlayer__sub_800A1808(void* p) { return (*(u32*)((char*)p + 0x30) >> 23) & 0x1; }
@@ -1139,7 +1140,7 @@ void TObjPlayer__sub_800A1C84(TObjPlayer *enemy) {
         TObjPlayer__sub_800A04F0((u8 *)enemy + 0x408);
         fn_800D911C((Vec *)((u8 *)enemy + 0x2FC));
         *(s32 *)((s8 *)enemy + 0x388) |= 4;
-        play_sound_effect(0x4003AD37, (u8 *)enemy + 0x38, 0, 0);
+        play_sound_effect(0x4003AD37, (const Vec *)((u8 *)enemy + 0x38), 0, 0);
         enemy->m_37c = 1;
         break;
     case 1:
@@ -1231,8 +1232,8 @@ s32 TObjPlayer__sub_800A1FEC(void *arg0) {
         self->f388 &= 0xFFB7FFFF;
         self->count = 0;
         self->fB8 = 3;
-        play_sound_effect(0x4003B52F, &self->pos, 0, 0);
-        play_sound_effect(0x4003AD29, (u8 *)arg0 + 0x38, 0, 0);
+        play_sound_effect(0x4003B52F, (const Vec *)(&self->pos), 0, 0);
+        play_sound_effect(0x4003AD29, (const Vec *)((u8 *)arg0 + 0x38), 0, 0);
         self->state = 1;
         break;
     case 1:
@@ -1243,7 +1244,7 @@ s32 TObjPlayer__sub_800A1FEC(void *arg0) {
         self->f388 |= 0x200000;
         self->timer = ((s32 (*)(s32))TObjPlayer__sub_800A3210)(0);
         self->state = 2;
-        play_sound_effect(0x4003B52A, &self->pos, 0, 0);
+        play_sound_effect(0x4003B52A, (const Vec *)(&self->pos), 0, 0);
         {
             s32 i;
             for (i = 0; i < 4; i++) {
@@ -1288,7 +1289,7 @@ s32 TObjPlayer__sub_800A1FEC(void *arg0) {
         {
             u8 *p = (u8 *)new TUnk_804909C4((u8 *)self, (s32)&self->f3B4, (s32)(self->target + 0x2FC));
         }
-        play_sound_effect(0x40039E2B, &self->pos, 0, 0);
+        play_sound_effect(0x40039E2B, (const Vec *)(&self->pos), 0, 0);
         break;
     case 4:
         self->f394 = 1.6088889f;

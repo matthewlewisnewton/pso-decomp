@@ -2,6 +2,7 @@
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -344,7 +345,7 @@ s32 project_actor_to_ground(void *, void *, int);
 s32 submit_cursor_candidate(void *, s32);
 s32 add_radar_scaled_marker(void *, s32, s16, s32, f32);
 
-s32 play_sound_effect(int, void *, int, int);
+
 void __dl__7TObjectFPv(void *);
 s32 __nw__7TObjectFUl(s32);
 void create__11TTecRaBartaFPvPvPvPv(void *source, void *origin, void *pos, void *level);
@@ -774,7 +775,7 @@ void TBoss4Type2__sub_800525AC(u8 *boss4_type2) {
                 if (particle_emitter != 0) {
                     ((TParticleCtrl *)((void *) *(u32 *)((s8 *)boss4_type2 + 0x41C)))->set_flags(0x40U);
                 }
-                play_sound_effect(0x40039717, boss4_type2 + 0x38, 0, 1);
+                play_sound_effect(0x40039717, (const Vec *)(boss4_type2 + 0x38), 0, 1);
             }
             if ((u32) *(u32 *)((s8 *)boss4_type2 + 0x420) == 0) {
                 temp_r3_12 = (u32)create_particle_emitter((temp_r31), 0x13B);
@@ -861,7 +862,7 @@ void update_tech_charge__11TBoss4Type2FPv(u8 *arg0) {
         if ((r = (u32)spawn_particle_effect((const Vec *)(ent), 0xFD)) != 0) {
             ((TParticleCtrl *)r)->set_flags(0x40);
         }
-        play_sound_effect(0x4003A813, arg0 + 0x38, 0, 1);
+        play_sound_effect(0x4003A813, (const Vec *)(arg0 + 0x38), 0, 1);
         if (idx == 0) {
             create__11TTecRaBartaFPvPvPvPv((void *)arg0, arg0 + 0x3B8, arg0 + 0x3B8, (void *)(*(s32 *)((s8 *)(((u8 *)get_battle_movement_params(0x36))) + 0x1C)));
         } else {
@@ -901,7 +902,7 @@ void init_child_and_set_timer__11TBoss4Type2FPv(void *arg0) {
 void update_attack_countdown__11TBoss4Type2FPv(u8 *boss4_type2) {
     s32 temp_r0;
     if ((s32) *(s32 *)((s8 *)boss4_type2 + 0x398) == 0x2D) {
-        play_sound_effect(0x4003AD11, (void *)(&((Foo *) boss4_type2)->arr[*(s32 *)((s8 *)boss4_type2 + 0x3A8)]), 0, 1);
+        play_sound_effect(0x4003AD11, (const Vec *)((&((Foo *) boss4_type2)->arr[*(s32 *)((s8 *)boss4_type2 + 0x3A8)])), 0, 1);
     }
     temp_r0 = *(s32 *)((s8 *)boss4_type2 + 0x398) - 1;
     *(s32 *)((s8 *)boss4_type2 + 0x398) = temp_r0;
@@ -949,14 +950,14 @@ void update_spawn_uro__14TBoss4DarkFalzFPv(Obj_80052CDC *arg0) {
             VecCopy__FP3VecPC3Vec(&p.pos, s);
             if (create__9TBoss4UroFi(&p) != NULL) {
                 spawn_particle_effect((const Vec *)(s), 0x7D);
-                play_sound_effect(0x4003A810, s, 0, 1);
+                play_sound_effect(0x4003A810, (const Vec *)(s), 0, 1);
                 arg0->count++;
             }
         }
     }
     TBoss4DarkFalz__sub_8004D990(arg0->owner);
     if (arg0->timer == 0x106) {
-        play_sound_effect(0x4003AD0F, s, 0, 1);
+        play_sound_effect(0x4003AD0F, (const Vec *)(s), 0, 1);
     }
     if (--arg0->timer < 0) {
         arg0->f3d0 = 5;
@@ -1612,7 +1613,7 @@ void fn_800548E4(u8 *arg0) {
     *(s32 *)((s8 *)arg0 + 0x30) = (s32) (*(s32 *)((s8 *)arg0 + 0x30) & 0xFFFFFDFF);
     *(s32 *)((s8 *)arg0 + 0x3D4) = 1;
     *(f32 *)((s8 *)arg0 + 0x3DC) = (f32) lbl_805D8B18;
-    ((s32 (*)(s32, u32, s16, s32))play_sound_effect)(0x4003A822, (u32)(arg0 + 0x38), 0, 1);
+    play_sound_effect(0x4003A822, (const Vec *)((arg0 + 0x38)), 0, 1);
 }
 
 S_80054938 *__dt__11TBoss4Type1Fv(S_80054938 *o, s16 flag) {

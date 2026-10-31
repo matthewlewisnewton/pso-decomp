@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/protocol/protocol_types.h"
 #include "pso/item/TItem.h"
@@ -216,7 +217,7 @@ s32 get_window_layout_position(s32);
 extern const s32 local_client_id;
 s32 sub_802239EC__13TShopSequenceFv(void *);
 s32 sub_80223A48__15TShopWindowBaseFv(void *);
-s32 play_sound_effect(int, int, int, int);
+
 void send_6x26_unequip_item__10TObjPlayerFPvPv(s32, s32);
 void send_6x25_equip_item(s32, s32, s32);
 void handle_buy_confirm__20TShopArmorListWindowFv(Win_8021A634 *w);

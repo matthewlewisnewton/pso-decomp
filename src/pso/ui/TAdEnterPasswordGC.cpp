@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/ui/TAdEnterBaseGC_8032B38C.h"
 #include "pso/ui/TAdEnterPasswordGC.h"
@@ -93,7 +94,7 @@ void mem_free(void *p);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 TWindowShortListCtrl__check_controller_button(void *, int);
 s32 get_field_118__22TAdEnterSerialAccessGCFv(void);
-s32 play_sound_effect(int, int, int, int);
+
 s32 forward_input__22TAdEnterSerialAccessGCFPv(void *, int, s32);
 s32 strlen(s32);
 extern u8 controller_input_state[];

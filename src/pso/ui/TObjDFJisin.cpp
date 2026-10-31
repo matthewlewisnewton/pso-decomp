@@ -1,5 +1,6 @@
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
+#include "pso/system/SoundEffect.h"
 struct NJS_OBJECT;
 #include "types.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
@@ -771,7 +772,7 @@ void *__vt__13TObjDFRecover[] = {
     (void *)render__7TObjectFv,
     (void *)render_shadows__7TObjectFv,
 };
-s32 play_sound_effect(int, int, int, int);
+
 }
 
 #pragma push

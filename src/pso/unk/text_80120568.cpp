@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/item/TItemEquipBase.h"
 #include "pso/item/TItem.h"
@@ -175,7 +176,7 @@ void clear_technique_boosts__14TItemEquipBaseFv(s32 arg0);
 s32 get_entity_id(s32);
 s32 test_flags_any(void *, s32);
 s32 update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
-s32 play_sound_effect(s32, s32, s32, s32);
+
 void set_flag_8_if_check_passes__10TObjPlayerFv();
 extern void *tl_05;
 
@@ -214,7 +215,7 @@ void TItemWeapon::on_equip() {
             if (((TItemWeapon *)arg0)->test_weapon_flags(0x200) != 0U) {
                 TItemEffEquip::create((void *)tl_05, (void *)(get_entity_id(*(s32 *)((s8 *)arg0 + 0xF0))), (void *)0x23, (void *)0x9D, (void *)0x9E);
             }
-            update_technique_slot__10TTecRaFoieFl(play_sound_effect(0x4000B20A, *(s32 *)((s8 *)arg0 + 0xF0) + 0x38, 0, 0), 0x300, 0);
+            update_technique_slot__10TTecRaFoieFl(play_sound_effect(0x4000B20A, (const Vec *)(*(s32 *)((s8 *)arg0 + 0xF0) + 0x38), 0, 0), 0x300, 0);
         }
     } else {
         ((TObjPlayer *)(*(void **)((s8 *)arg0 + 0xF0)))->set_action_provider_variant(0);

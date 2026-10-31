@@ -1,4 +1,5 @@
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/system/vector.h"
@@ -394,7 +395,7 @@ void send_6x21_inter_level_warp(void *obj, s32 value);
 void send_6x55_intra_map_warp(u16 id, void *pos, s32 c);
 s32 init__23TAdSinglePlyChrSelectGCFv();
 s32 get_floor_map_terrain(s32);
-s32 play_sound_effect(s32, s32, s32, s32);
+
 void set_area__6TLobbyFl(void *, int, int);
 void __dl__7TObjectFPv(void *);
 void * __nw__7TObjectFUl(int);
@@ -1054,7 +1055,7 @@ void confirm_area_transfer__12TObjAreaWarpFPvi(u8 *arg0, s32 arg1) {
     ((TObjAreaWarpQuest *)(&lbl_80515BA0.value))->get_dest_area();
     ((s32 (*)(void))send_inter_level_warp_all__10TNpcPlayerFl)();
     send_6x21_inter_level_warp((void *)arg1, (((TObjAreaWarpQuest *)(&lbl_80515BA0.value))->get_dest_area()));
-    ((s32 (*)(s32, u32, s16, s32))play_sound_effect)(0x40003205, 0U, 0, 0);
+    play_sound_effect(0x40003205, (const Vec *)(0U), 0, 0);
 }
 
 void handle_6x94_inter_level_warp(Pkt_8019C988 *arg0) {

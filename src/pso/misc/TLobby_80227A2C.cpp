@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 struct Vec;
 #include "types.h"
 #include "pso/misc/TLobby.h"
@@ -224,7 +225,7 @@ void TLobby__sub_80227AF8(s32 slot, const Vec *position);
 int release_sound_with_fade(void* p);
 int TLobby__sub_80227D38(void);
 void handle_6xB2_play_sound_from_player(void *arg0);
-s32 play_sound_effect(s32, s32, s32, s32);
+
 u16 TCameraCtrl__sub_8006A5DC();
 void TLobby__sub_8023F754(s32, s32);
 int fade_out_sound_slot(void*, int);
@@ -266,12 +267,12 @@ void handle_6xB2_play_sound_from_player(void *arg0) {
     bswap_6xB2_play_sound();
     if ((s8) *(u8 *)((s8 *)arg0 + 4) == get_current_floor_area()) {
         if (*(s16 *)((s8 *)arg0 + 6) == 0xFFFF) {
-            play_sound_effect(*(s32 *)((s8 *)arg0 + 8), 0, 0, 0);
+            play_sound_effect((s32)(*(s32 *)((s8 *)arg0 + 8)), 0, 0, 0);
             return;
         }
         player = (s32)get_player_by_client_id(local_client_id);
         if (player != 0) {
-            play_sound_effect(*(s32 *)((s8 *)arg0 + 8), player + 0x38, 0, 0);
+            play_sound_effect((s32)(*(s32 *)((s8 *)arg0 + 8)), (const Vec *)(player + 0x38), 0, 0);
         }
     }
 }

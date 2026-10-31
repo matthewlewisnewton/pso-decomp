@@ -1,5 +1,6 @@
 #include "pso/player/demo_mode.h"
 #include "pso/misc/ParticleFactory.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/object/TObjChip.h"
 #include "pso/object/TObject_80019A50.h"
@@ -33,14 +34,14 @@ extern void *rock_cave_model_resource;
 extern s32 tl_05;
 void *__ct__18TORockCaveBrakableFv(void *arg0);
 void *__dt__18TORockCaveBrakableFv(void *arg0, s16 arg1);
-int play_sound_effect(void*, void*, void*, void*);
+
 u8 is_current_floor_switch_set(u16);
 void *__ct__10TORockCaveFv(void *arg0);
 void __dl__7TObjectFPv(void *);
 void *__dt__10TORockCaveFv(void *arg0, s16 arg1);
 
 void TORockCaveBrakable::vfunc_19() {  }
-void TORockCaveBrakable::vfunc_18() { play_sound_effect((void*)277521, (char*)this + 0x38, (void*)0, (void*)0); }
+void TORockCaveBrakable::vfunc_18() { play_sound_effect((s32)((void*)277521), (const Vec *)((char*)this + 0x38), 0, 0); }
 
 void TORockCaveBrakable::vfunc_16() {
     u8 *arg0 = (u8 *)this;

@@ -1,6 +1,7 @@
 #include "pso/player/demo_mode.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/map/FloorArea.h"
@@ -224,7 +225,6 @@ f32 horizontal_distance_squared(void *, void *);
 void TContainerAncient01__sub_8018A584(Obj_8018A584 *self, f32 range);
 
 void *get_player_by_client_id(s32 i);
-s32 play_sound_effect(int, void *, int, int);
 
 extern s32 registered_player_count;
 
@@ -421,16 +421,16 @@ s32 TContainerAncient01R::sub_8018A688() {
         case AREA_JUNGLE_EAST:
         case AREA_MOUNTAIN:
         case AREA_SEASIDE:
-            play_sound_effect(0x4BC1C, (u8 *)self + 0x38, 0, 0);
+            play_sound_effect(0x4BC1C, (const Vec *)((u8 *)self + 0x38), 0, 0);
             break;
         case AREA_SEASIDE_NIGHT:
-            play_sound_effect(0x4004BC1C, (u8 *)self + 0x38, 0, 0);
+            play_sound_effect(0x4004BC1C, (const Vec *)((u8 *)self + 0x38), 0, 0);
             break;
         case AREA_TOWER:
-            play_sound_effect(0x4004BC1C, (u8 *)self + 0x38, 0, 0);
+            play_sound_effect(0x4004BC1C, (const Vec *)((u8 *)self + 0x38), 0, 0);
             break;
         default:
-            play_sound_effect(0x4004BC16, (u8 *)self + 0x38, 0, 0);
+            play_sound_effect(0x4004BC16, (const Vec *)((u8 *)self + 0x38), 0, 0);
             break;
         }
     }
@@ -741,16 +741,16 @@ void TContainerAncient01::sub_8018B284() {
         case AREA_JUNGLE_EAST:
         case AREA_MOUNTAIN:
         case AREA_SEASIDE:
-            play_sound_effect(0x4BC1C, self->pos, 0, 0);
+            play_sound_effect(0x4BC1C, (const Vec *)(self->pos), 0, 0);
             break;
         case AREA_SEASIDE_NIGHT:
-            play_sound_effect(0x4004BC1C, self->pos, 0, 0);
+            play_sound_effect(0x4004BC1C, (const Vec *)(self->pos), 0, 0);
             break;
         case AREA_TOWER:
-            play_sound_effect(0x4004BC1C, self->pos, 0, 0);
+            play_sound_effect(0x4004BC1C, (const Vec *)(self->pos), 0, 0);
             break;
         default:
-            play_sound_effect(0x4004BC16, self->pos, 0, 0);
+            play_sound_effect(0x4004BC16, (const Vec *)(self->pos), 0, 0);
             break;
         }
     }

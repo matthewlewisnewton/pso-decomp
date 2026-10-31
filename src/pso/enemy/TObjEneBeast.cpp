@@ -3,6 +3,7 @@
 #include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/unk/TUnk_80494968.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -40,7 +41,7 @@ s32 pop_matrix();
 
 s32 defer_render__7TObjectFv(void *);
 extern s32 model_render_flags;
-void play_sound_effect(int, void *, int, int);
+
 }
 #include "pso/boss/TBoss3Volopt.h"
 #include "pso/enemy/TObjEneDD.h"
@@ -128,31 +129,30 @@ s32 is_split_screen();
 s32 get_camera_mode__11TCameraCtrlFv();
 s32 update__15RenderFadeStateFv(void *);
 extern s32 saved_model_render_flags;
-#define play_sound_effect (*(s32 (*)(s32, s32, s32, s32))&play_sound_effect)
 extern "C" void render_shadows__9TObjEnemyFv(u8 *arg0);
 void TObjEneBeast::vfunc_101() {  }
 void TObjEneBeast::vfunc_99() {
     s32 arg0 = (s32)this;
-    play_sound_effect(0x4003E431, arg0 + 0x38, 0, 0);
+    play_sound_effect(0x4003E431, (const Vec *)(arg0 + 0x38), 0, 0);
 }
 void TObjEneBeast::vfunc_98() {
     s32 arg0 = (s32)this;
-    play_sound_effect(0x4003AB2D, arg0 + 0x38, 0, 0);
+    play_sound_effect(0x4003AB2D, (const Vec *)(arg0 + 0x38), 0, 0);
     TObjPlayer::play_effect_if_v2(-0x200);
 }
 void TObjEneBeast::vfunc_97() {
     s32 arg0 = (s32)this;
-    play_sound_effect(0x4003A32E, arg0 + 0x38, 0, 0);
+    play_sound_effect(0x4003A32E, (const Vec *)(arg0 + 0x38), 0, 0);
     TObjPlayer::play_effect_if_v2(-0x100);
 }
 void TObjEneBeast::vfunc_96() {
     s32 arg0 = (s32)this;
-    play_sound_effect(0x4003A62F, arg0 + 0x38, 0, 0);
+    play_sound_effect(0x4003A62F, (const Vec *)(arg0 + 0x38), 0, 0);
     TObjPlayer::play_effect_if_v2(-0x100);
 }
 void TObjEneBeast::vfunc_95() {
     s32 arg0 = (s32)this;
-    play_sound_effect(0x4003A82C, arg0 + 0x38, 0, 0);
+    play_sound_effect(0x4003A82C, (const Vec *)(arg0 + 0x38), 0, 0);
     TObjPlayer::play_effect_if_v2(-0x200);
 }
 
@@ -245,7 +245,7 @@ void TObjEneBeast::vfunc_83() {
             *(s16 *)((s8 *)arg0 + 0xB8) = 0xB;
             ((TObjCollidable *)arg0)->set_indexed_flags(0, 0x0A000000);
             obj_setFlags30(arg0, 0x04000000);
-            play_sound_effect(0x4003AB32, (s32)(arg0 + 0x38), 0, 0);
+            play_sound_effect(0x4003AB32, (const Vec *)((arg0 + 0x38)), 0, 0);
         }
         break;
     case 1:
@@ -343,7 +343,6 @@ void render__12TObjEneBeastFPv(Obj_8009211C *o) {
 #undef post_translate_matrix
 #undef obj_clearFlags30__8TObjBaseFUl
 #undef obj_setFlags30
-#undef play_sound_effect
 #undef translate_matrix
 #undef draw_chunk_object
 #undef update_if_active__15TObjEnemyCustomFl

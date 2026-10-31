@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TWindowCtrl_8024A054.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
@@ -31,7 +32,7 @@ s32 __dt__7TObjectFv(void *, int);
 extern s32 __vt__15TWindowSubTrade[];
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 TWindowShortListCtrl__check_controller_button(void *, int, int);
-s32 play_sound_effect(int, int, int, int);
+
 s32 get_selected_menu_value(int);
 u32 TWindowSubComCard__sub_802B1C1C(void *);
 extern s32 controller_input_state[];

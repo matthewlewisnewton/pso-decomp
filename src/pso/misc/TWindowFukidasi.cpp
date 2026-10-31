@@ -1,4 +1,5 @@
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TUnk_804CF0B8.h"
@@ -208,7 +209,7 @@ Ent_802511E4 * find_entity_by_id(u16);
 u32 get_battle_ctrl_flag__10TObjPlayerFUs(u16);
 u32 get_player_by_client_id(u32);
 s32 get_array_entry__13TUnk_804CE018Fi(void *, s32);
-s32 play_sound_effect(int, int, int, int);
+
 View_80252764 * get_draw_context__11TWindowBaseFPv(void *);
 s32 get_field_20__17TWindowSubComCardFv();
 s32 set_field_1c__6TLobbyFf(f32);

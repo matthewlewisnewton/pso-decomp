@@ -1,4 +1,5 @@
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/boss/TBoss4Type2_800874F4.h"
 #include "pso/object/TObject_80019A50.h"
@@ -76,7 +77,7 @@ int get_player_data__10TObjPlayerFi(int a0);
 f32 xyz_distance(void *, void *);
 extern const f32 lbl_805E0198;
 u8 fn_8035CAE0(void);
-s32 play_sound_effect(s32, s32, s32, s32);
+
 int dispatch_by_main_phase__14TBoss4DarkFalzFUs(void*);
 
 u8 fn_8035CAE0(void) {

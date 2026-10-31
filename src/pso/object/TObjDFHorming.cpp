@@ -1,6 +1,7 @@
 #include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/system/vector.h"
@@ -89,7 +90,7 @@ s32 TBoss4Type3__sub_8005254C(s16);
 s32 rand(void);
 extern s32 registered_player_count;
 
-void play_sound_effect(s32, s32, s32, s32);
+
 s32 rand();
 
 int TBoss4DarkFalz__sub_8004C1AC(void);

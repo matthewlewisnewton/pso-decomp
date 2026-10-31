@@ -1,5 +1,6 @@
 #include "pso/system/MatrixVectorArray.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/render/render_util.h"
@@ -613,7 +614,7 @@ void TObjCityDoor_Warp::run_task() {
 
 void city_door_tick_opening__13TUnk_804B5BA8Fv(void *);
 s32 update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
-s32 play_sound_effect(s32, s32, s32, s32);
+
 void city_door_tick_opening__17TObjCityDoor_WarpFv(u8 *arg0);
 extern const f32 lbl_805DBBF8;
 extern const f32 lbl_805DBBFC;
@@ -622,13 +623,13 @@ void city_door_play_open_sound__17TObjCityDoor_WarpFv(s32 arg0);
 
 void TObjCityDoor_Warp::city_door_play_close_sound() {
     s32 arg0 = (s32)this;
-    update_technique_slot__10TTecRaFoieFl((s32)(play_sound_effect(0x42A05, arg0 + 0x38, 0, 0)), -0x500, 0);
+    update_technique_slot__10TTecRaFoieFl((s32)(play_sound_effect(0x42A05, (const Vec *)(arg0 + 0x38), 0, 0)), -0x500, 0);
 }
 
 void TObjCityDoor_Warp::city_door_play_open_sound() {
     s32 arg0 = (s32)this;
     if (is_rader_map_active() != 0) {
-        s32 r = play_sound_effect(0x42A04, arg0 + 0x38, 0, 0);
+        s32 r = play_sound_effect(0x42A04, (const Vec *)(arg0 + 0x38), 0, 0);
         update_technique_slot__10TTecRaFoieFl((s32)(r), -0x800, 0);
     }
 }
@@ -639,7 +640,7 @@ void TObjCityDoor_Warp::city_door_tick_opening() {
     f32 temp_f1;
     temp_f1 = this->m_b4;
     if ((temp_f1 >= lbl_805DBBF8) && (temp_f1 <= lbl_805DBBFC)) {
-        update_technique_slot__10TTecRaFoieFl((s32)(play_sound_effect(0x42A04, (s32)((void *) (arg0 + 0x38)), 0, 0)), -0x500, 0);
+        update_technique_slot__10TTecRaFoieFl((s32)(play_sound_effect(0x42A04, (const Vec *)(((void *) (arg0 + 0x38))), 0, 0)), -0x500, 0);
     }
     city_door_tick_opening__13TUnk_804B5BA8Fv((void *) (arg0));
 }
@@ -1032,12 +1033,12 @@ void TUnk_804B5BA8::dispatch_state() {
 
 void TUnk_804B5BA8::city_door_play_open_sound() {
     s32 arg0 = (s32)this;
-    play_sound_effect(0x42A04, arg0 + 0x38, 0, 0);
+    play_sound_effect(0x42A04, (const Vec *)(arg0 + 0x38), 0, 0);
 }
 
 void TUnk_804B5BA8::city_door_play_close_sound() {
     s32 arg0 = (s32)this;
-    play_sound_effect(0x42A05, arg0 + 0x38, 0, 0);
+    play_sound_effect(0x42A05, (const Vec *)(arg0 + 0x38), 0, 0);
 }
 
 void TUnk_804B5BA8::check_ground_or_fall() {

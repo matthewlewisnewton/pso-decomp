@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TWindowSubTechnique_80286BD4.h"
 #include "pso/misc/TWindowSubComCardList.h"
@@ -141,7 +142,7 @@ s32 send_and_handle__6TLobbyFii(int, void *, int);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, s32);
 s32 TWindowShortListCtrl__check_controller_button(void *, s32);
 s32 try_equip_item__10TObjPlayerFii(s32, s32);
-void play_sound_effect(s32, s32, s32, s32);
+
 void TWindow__close(u8 *arg0);
 // set_field_1c__6TLobbyFf declared above
 s32 is_player_input_active(s32);

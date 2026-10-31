@@ -4,6 +4,7 @@
 #include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/misc/PersistentSound.h"
 struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
@@ -460,7 +461,7 @@ s32 clearState__12TBoss1DragonFv(void *);
 s32 isV2Mode__12TBoss1DragonFv(void);
 u8 *__nw__7TObjectFUl(s32);
 u8 *__ct__16TBoss1DragonDemoFv(u8 *arg0, s32 arg1, s32 arg2, f32 farg0);
-s32 play_sound_effect(s32, s32, s32, s32);
+
 void *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags);
 s32 play_cue_stream_file(void *, int);
 u32 spawn_particle_effect_with_rotation(void *, void *, void *, int);
@@ -5267,7 +5268,7 @@ void spawn_trap__12TBoss1DragonFii(s32 arg0, s32 arg1) {
 }
 
 void play_se_at_pos__12TBoss1DragonFii(s32 arg0, s32 arg1) {
-    play_sound_effect(arg1, arg0 + 0x63C, 0, 0);
+    play_sound_effect((s32)(arg1), (const Vec *)(arg0 + 0x63C), 0, 0);
 }
 
 s32 select_forward_target__12TBoss1DragonFPv(u8 *self) {

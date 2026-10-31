@@ -1,5 +1,6 @@
 #include "pso/math/VectorNormalize.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/math/ScratchVectorStorage.h"
 #include "types.h"
 #include "pso/render/render_util.h"
@@ -64,7 +65,7 @@ u8 TMainCursor__sub_8013E358(void *);
 s8 fn_8013F24C(void *, s32);
 s32 check_flag_100__10TObjPlayerFPv(void *);
 s32 is_invalid_slot__10TObjPlayerFUc(u8);
-s32 play_sound_effect(s32, void *, s32, s32);
+
 s32 can_pickup_item_by_id__10TObjPlayerFP5TItem(u32, s32);
 
 extern "C" u8 lbl_8043F090[];
@@ -256,10 +257,10 @@ void TMainCursor::run_task() {
             this->m_1c = 1;
             if (((TMainCursor *)arg0)->init_render_flags() == 0) {
                 if (((TMainCursor *)arg0)->update() != 0) {
-                    play_sound_effect(0x3816, (u8 *)&this->m_40, 0, 1);
+                    play_sound_effect(0x3816, (const Vec *)((u8 *)&this->m_40), 0, 1);
                     return;
                 }
-                play_sound_effect(0x3111, (u8 *)&this->m_40, 0, 1);
+                play_sound_effect(0x3111, (const Vec *)((u8 *)&this->m_40), 0, 1);
             }
         }
     case 1:

@@ -1,4 +1,5 @@
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
 #include "pso/misc/TPhotonMagicSquare.h"
@@ -164,7 +165,7 @@ extern RecoveredGlobal_801AD0F0___vt__18TPhotonMagicSquare __vt__18TPhotonMagicS
 extern const char *TPhotonMagicSquare__data_805D3508;
 extern u8 *photon_blast_shared_resource;
 s32 find_entity_by_id(void *);
-s32 play_sound_effect(int, int, int, int);
+
 void __dl__7TObjectFPv(void *);
 
 }

@@ -1,6 +1,7 @@
 #include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/misc/PersistentSound.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
@@ -83,7 +84,7 @@ f32 vec3_add_to(void *, void *);
 f32 subtract_vector(void *, void *);
 f32 normalize_vector(void *);
 int get_player_data__10TObjPlayerFi(int a0);
-s32 play_sound_effect(int, void *, int, int);
+
 f64 atan2_float(f32, f32);
 s32 approach_angle_limited(s32, s32, s32);
 f64 TBoss5GryphonLightningWing__sub_80324CEC(f32);
@@ -206,7 +207,7 @@ void TBoss6Mine::explode_damage_players() {
             }
         }
     }
-    play_sound_effect(0x4003BA1E, (u8 *)&this->position, 0, 0);
+    play_sound_effect(0x4003BA1E, (const Vec *)((u8 *)&this->position), 0, 0);
 }
 
 void TBoss6Mine::state_7() {
@@ -262,7 +263,7 @@ void TBoss6Mine::state_4() {
     if (frames > (s32)this->arm_delay) {
         this->state_frames = 0;
         this->state = 5;
-        play_sound_effect(0x4003B51D, &this->position, 0, 0);
+        play_sound_effect(0x4003B51D, (const Vec *)(&this->position), 0, 0);
     }
 }
 

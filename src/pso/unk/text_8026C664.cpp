@@ -1,4 +1,5 @@
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TWindowSubStatusDisp_803DEE6C.h"
 #include "pso/unk/text_8026C664.h"
@@ -163,7 +164,7 @@ struct Pad_8026C9DC {
 
 extern "C" {
 s32 TWindowShortListCtrl__check_controller_button(void *, u32);
-void play_sound_effect(s32, s32, s32, s32);
+
 extern Pad_8026C9DC controller_input_state[];
 
 s32 handle_list_page_flip_input(Ctl_8026C9DC *arg0) {

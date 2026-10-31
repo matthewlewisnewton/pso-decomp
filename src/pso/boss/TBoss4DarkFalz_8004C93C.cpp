@@ -1,4 +1,5 @@
 #include "pso/player/demo_mode.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/misc/PersistentSound.h"
 #include "pso/protocol/protocol_types.h"
 #include "pso/misc/TLobby_801E43E4.h"
@@ -317,7 +318,6 @@ void TBoss4DarkFalz__sub_8004CA80(void);
 void TBoss4DarkFalz__sub_8004CBBC(void);
 void TBoss4DarkFalz__sub_8004CE90(void);
 void update_parts__14TBoss4DarkFalzFi(s32 arg0);
-s32 play_sound_effect(s32, s32, s32, s32);
 
 s32 is_timer_expired__14TBoss4DarkFalzFv();
 

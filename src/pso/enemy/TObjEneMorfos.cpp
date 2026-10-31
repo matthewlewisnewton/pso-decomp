@@ -6,6 +6,7 @@
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
@@ -381,7 +382,6 @@ extern const f32 lbl_805DF890;
 void TObjEneMorfos__sub_80333AD0(u8 *arg0, s32 arg1);
 s32 get_flag_b4__9TObjEneDDFv();
 
-s32 play_sound_effect(s32, u32, s16, s32);
 u8 * TObjEneMorfos__sub_80337824(void *, void *, s32, s32);
 void * __nw__7TObjectFUl(int);
 extern const f32 TObjEneMorfos__data_805DF884;
@@ -1015,7 +1015,7 @@ void TObjEneMorfos::state_death(s32 arg1) {
         this->m_4b4 = 0;
         *(s32 *)((s8 *)arg0 + 0x4B0) = 0;
         ((TObjEneMorfos *)arg0)->fade.start_fade_out();
-        play_sound_effect(0x4003A626, (u32)(arg0 + 0x38), 0, 0);
+        play_sound_effect(0x4003A626, (const Vec *)((u32)(arg0 + 0x38)), 0, 0);
         return;
     case 3:
         if ((s32) this->m_4b4 == 2) {
@@ -1031,7 +1031,7 @@ void TObjEneMorfos::state_death(s32 arg1) {
             temp_r30 = ((TObjEneMorfos *)arg0)->fade.decay_value_toward_floor();
             if ((((s32 (*)(void *))get_flag_b4__9TObjEneDDFv)(arg0) != 0) && (temp_r30 != 0)) {
                 fn_800D911C((Vec *)(arg0 + 0x38));
-                play_sound_effect(0x4003A830, (u32)(arg0 + 0x38), 0, 0);
+                play_sound_effect(0x4003A830, (const Vec *)((arg0 + 0x38)), 0, 0);
                 TObjPlayer__sub_800A04F0((u8 *)&this->m_408);
                 *(s32 *)((s8 *)arg0 + 0x3C0) = (s32) (*(s32 *)((s8 *)arg0 + 0x3C0) | 2);
                 this->m_4b4 = 1;
@@ -1161,7 +1161,7 @@ void TObjEneMorfos__sub_80332FD4(TObjEneMorfos *arg0, s32 arg1) {
                 if (arg0->approach_value((s32) (TObjEneMorfos__data_80477610 * atan2_float(arg0->target_direction.x, *(f32 *)((s8 *)arg0 + 0x3A8))), *(s32 *)((s8 *)((u8 *)TObjEneMorfos__param_table) + 0x1C)) != 0) {
                     *(s32 *)((s8 *)arg0 + 0x4B0) = 1;
                     arg0->requested_action = 1;
-                    play_sound_effect(0x4003A725, (u32)((u8 *)arg0 + 0x38), 0, 0);
+                    play_sound_effect(0x4003A725, (const Vec *)(((u8 *)arg0 + 0x38)), 0, 0);
                     TObjEneMorfosArm::create((void *)arg0, (void *)arg0);
                 } else if (*(f32 *)((s8 *)arg0 + 0x3AC) >= lbl_805DF87C) {
                     *(s32 *)((s8 *)arg0 + 0x4B0) = 3;
@@ -1278,7 +1278,7 @@ void TObjEneMorfos::state_rotating_projectile_burst(s32 arg1) {
             break;
         case 3:
             if (((TObjMotion *)arg0)->is_passing_frame((f32)lbl_805DF88C) != 0) {
-                play_sound_effect(0x4003AD24, (u32)(arg0 + 0x38), 0, 0);
+                play_sound_effect(0x4003AD24, (const Vec *)((arg0 + 0x38)), 0, 0);
                 p = __nw__7TObjectFUl(0xFC);
                 if (p != NULL) {
                     TObjEneMorfos__sub_80337824(p, arg0 + 0x498, (u16)(F(0x60, s32) + 0x8000), (s32)arg0);
@@ -1330,7 +1330,7 @@ void TObjEneMorfos__sub_80333690(TObjEneMorfos *arg0, s32 arg1) {
             *(s32 *)((s8 *)arg0 + 0x4B0) = 0;
             arg0->m_4b4 = 0;
             arg0->requested_action = 0;
-            play_sound_effect(0x4003A528, (u32)((u8 *)arg0 + 0x38), 0, 0);
+            play_sound_effect(0x4003A528, (const Vec *)(((u8 *)arg0 + 0x38)), 0, 0);
             return;
         }
         *(s32 *)((s8 *)arg0 + 0x4B0) = 6;
@@ -1359,7 +1359,7 @@ void TObjEneMorfos__sub_80333690(TObjEneMorfos *arg0, s32 arg1) {
             break;
         case 2:
             if (((TObjMotion *)arg0)->is_passing_frame((f32)lbl_805DF88C) != 0) {
-                play_sound_effect(0x4003AD24, (u32)((u8 *)arg0 + 0x38), 0, 0);
+                play_sound_effect(0x4003AD24, (const Vec *)(((u8 *)arg0 + 0x38)), 0, 0);
                 temp_r3 = (u8 *)(__nw__7TObjectFUl(0xFC));
                 if (temp_r3 != NULL) {
                     TObjEneMorfos__sub_80337824(temp_r3, (u8 *)arg0 + 0x498, (s32) (u16) (arg0->m_4bc + 0x8000), (s32) arg0);
@@ -1386,7 +1386,7 @@ void TObjEneMorfos__sub_80333690(TObjEneMorfos *arg0, s32 arg1) {
                     if ((s32) arg0->m_4b4 >= 2) {
                         arg0->m_4bc = (s32) (TObjEneMorfos__data_80477610 * atan2_float(arg0->target_direction.x, *(f32 *)((s8 *)arg0 + 0x3A8)));
                         *(s32 *)((s8 *)arg0 + 0x4B0) = 5;
-                        play_sound_effect(0x4003A528, (u32)((u8 *)arg0 + 0x38), 0, 0);
+                        play_sound_effect(0x4003A528, (const Vec *)(((u8 *)arg0 + 0x38)), 0, 0);
                     } else {
                         arg0->requested_action = 0;
                         *(s32 *)((s8 *)arg0 + 0x4B0) = 4;
@@ -1406,7 +1406,7 @@ void TObjEneMorfos__sub_80333690(TObjEneMorfos *arg0, s32 arg1) {
                     ((TObjEneDD *)arg0)->update_velocity();
                     arg0->m_4bc = (s32) (u16) ((s32) (TObjEneMorfos__data_80477610 * atan2_float(arg0->target_direction.x, *(f32 *)((s8 *)arg0 + 0x3A8))) + 0x8000);
                     *(s32 *)((s8 *)arg0 + 0x4B0) = 0;
-                    play_sound_effect(0x4003A528, (u32)((u8 *)arg0 + 0x38), 0, 0);
+                    play_sound_effect(0x4003A528, (const Vec *)(((u8 *)arg0 + 0x38)), 0, 0);
                 } else {
                     *(s32 *)((s8 *)arg0 + 0x4B0) = 6;
                 }
@@ -1710,7 +1710,7 @@ s32 TObjEneMorfos__sub_803344F0(void *arg0) {
 void TObjEneMorfos::play_sound_in_band() {
     u8 *arg0 = (u8 *)this;
     if ((((TObjMotion *)arg0)->is_passing_frame((f32)lbl_805DF898) != 0) || (((TObjMotion *)arg0)->is_passing_frame((f32)((f32)TObjEneMorfos__data_805DF89C)) != 0)) {
-        play_sound_effect(0x4003A823, (u32)(arg0 + 0x38), 0, 0);
+        play_sound_effect(0x4003A823, (const Vec *)((arg0 + 0x38)), 0, 0);
     }
 }
 

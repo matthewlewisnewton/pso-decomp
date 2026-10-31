@@ -1,4 +1,5 @@
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/object/TObjMapWarp.h"
@@ -174,7 +175,7 @@ void TObjAreaWarp__ct(void *);
 void *__dt__11TObjMapWarpFv(void *arg0, s16 arg1);
 void TObjMapWarp__ct(void *);
 int vfunc_14__12TObjWarpBaseFv(void*);
-s32 play_sound_effect(s32, s32, s32, s32);
+
 void __dl__7TObjectFPv(void *);
 void * __nw__7TObjectFUl(int);
 s32 get_selected_menu_value(void *);

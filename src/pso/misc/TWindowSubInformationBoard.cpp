@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/object/TObject_80019A50.h"
@@ -23,7 +24,7 @@ extern "C" {
 void mem_free(void *p);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 TWindowShortListCtrl__check_controller_button(void *, int);
-s32 play_sound_effect(int, int, int, int);
+
 s32 get_selected_menu_value(int);
 s32 get_cursor_pos__20TWindowShortListCtrlFv(int);
 s32 set_info_board_text__6TLobbyFv();

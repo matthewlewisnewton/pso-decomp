@@ -1,4 +1,5 @@
 #include "pso/misc/ParticleFactory.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_80128AE4.h"
 #include "pso/unk/text_80087278.h"
@@ -11,7 +12,6 @@ struct Obj_80128A74 { u8 pad[0xa4]; Elem_80128A74 *elems; s32 count; };
 
 extern "C" {
 Obj_80128A74 *find_entity_by_id(s32);
-s32 play_sound_effect(s32, s32, s32, s32);
 
 void TObjPlayer__sub_80128A74(s32 a, u32 b, s32 c, s32 d) {
     Obj_80128A74 *o;

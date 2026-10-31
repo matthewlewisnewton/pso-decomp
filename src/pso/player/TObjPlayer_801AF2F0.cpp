@@ -1,5 +1,6 @@
 #include "pso/math/VectorNormalize.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/math/ScratchVectorStorage.h"
 #include "pso/system/ChunkMaterialState.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -2430,7 +2431,7 @@ void update_all_units__10TObjPlayerFll(void *, u8);
 s32 TAdPlayerLoadGC__sub_801E1B50(s32);
 int is_item_area_enabled(void);
 s32 __ct__17TMedicalCenterMesFP7TObjectP10TObjPlayer(void *, void *, void *);
-s32 play_sound_effect(s32, s32, s32, s32);
+
 void set_area__6TLobbyFl(void *, int, int);
 void TWindowSubStatusDisp__sub_80228F5C(s32 arg0);
 void text_builder_append(u8 *str);
@@ -3846,7 +3847,7 @@ void TObjPlayer__sub_801B1C8C(void) {
 
 void TObjPlayer::play_sound_if_on_floor(s32 sound_id) {
     if (((s32 (*)(void))is_on_current_floor__10TObjPlayerFi)() != 0) {
-        play_sound_effect(sound_id, (s32)get_position_ptr(), 0, 0);
+        play_sound_effect((s32)(sound_id), (const Vec *)((s32)get_position_ptr()), 0, 0);
     }
 }
 
@@ -5539,7 +5540,7 @@ void TObjPlayer::select_contextual_pickup_action() {
                             } else {
                                 type = 0;
                                 if (check_flag_100__10TObjPlayerFPv(this) == 0 && ((TObjPlayer *)(((u8 *)this) + 0x550))->check_action_usable(4) != 0) {
-                                    play_sound_effect(0x3816, ((s32 (*)(s32))get_position_ptr__10TObjPlayerFv)(ent), 0, 1);
+                                    play_sound_effect(0x3816, (const Vec *)(((s32 (*)(s32))get_position_ptr__10TObjPlayerFv)(ent)), 0, 1);
                                 }
                             }
                         }
@@ -5752,7 +5753,7 @@ void TObjPlayer::copy_stats(void *arg1) {
     *(s16 *)((s8 *)this + 0xC) = (s16) *(s16 *)((s8 *)arg1 + 0xC);
 }
 
-void TObjPlayer::notify_volopt_if_ready(void* p) { if (((int (*)(void*))is_locally_controlled__10TObjPlayerFPv)(p) != 0) { ((int (*)(void*, void*, void*, void*))play_sound_effect)((void*)335646, (void*)0, (void*)0, (void*)0); } }
+void TObjPlayer::notify_volopt_if_ready(void* p) { if (((int (*)(void*))is_locally_controlled__10TObjPlayerFPv)(p) != 0) { play_sound_effect((s32)((void*)335646), (const Vec *)((void*)0), 0, 0); } }
 
 void spawn_level_change_feedback__10TObjPlayerFv(s32 arg0, s32 arg1) {
     void *p;
@@ -6516,7 +6517,7 @@ void TObjPlayer::request_item_drop(s32 arg1, s32 arg2) {
     if (check_player_action_allowed() != 0 &&
         (TAdPlayerLoadGC__sub_801E1B50(get_chr_select_state__23TAdSinglePlyChrSelectGCFv()) != 0 ||
          ((TAdPlayerLoadGC *)(get_chr_select_state__23TAdSinglePlyChrSelectGCFv()))->probe_card_slot() != 1)) {
-        ((void (*)(s32, s32, s32, s32))play_sound_effect)(0x53F06, 0, 0, 0);
+        play_sound_effect(0x53F06, 0, 0, 0);
         return;
     }
     if (start_inventory_update__10TObjPlayerFi(*(s32 *)(((u8 *)this) + 0xD00), arg1) == 0) {

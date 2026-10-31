@@ -1,6 +1,7 @@
 #include "pso/player/demo_mode.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/enemy/TObjEneBalClawBody.h"
 #include "pso/system/vector.h"
@@ -207,7 +208,7 @@ s16 get_actor_hp(u8 *p);
 void queue_destruction__7TObjectFv(void *arg0);
 
 void *create_particle_emitter(void *pos, s32 id);
-s32 play_sound_effect(int, void *, int, int);
+
 extern const f32 lbl_805D9634;
 extern const f32 lbl_805D9638;
 void TObjPlayer__sub_8008E310(P_8008E310 *arg0);
@@ -464,7 +465,7 @@ void TObjPlayer__sub_8008E310(P_8008E310 *arg0_) {
             arg0_->flags &= ~0x04000000;
             arg0_->f33C = 0x1E;
             arg0_->state = 3;
-            play_sound_effect(0x4003AD30, arg0_->pos, 0, 0);
+            play_sound_effect(0x4003AD30, (const Vec *)(arg0_->pos), 0, 0);
         }
         break;
     case 3:

@@ -1,4 +1,5 @@
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/misc/PersistentSound.h"
 struct NJS_OBJECT;
 #include "pso/math/FloatRounding.h"
@@ -863,7 +864,7 @@ void rotate_xz_pair_by_angle(f32 *arg0, f32 *arg1, s32 arg2);
 f32 calc_elapsed_scaled__9TObjEneDDFv(void *);
 void TObjEneMe1Gee__sub_800CBC04(u8 *arg0);
 void TObjEneMe1Gee__sub_800CBC1C(u8 *arg0);
-s32 play_sound_effect(s32, u32, s16, s32);
+
 f32 subtract_vector(void *, void *);
 extern const f64 lbl_8043BF28;
 extern const f32 lbl_805DA0F0;
@@ -2187,7 +2188,7 @@ void TObjEneMe1Gee::vfunc_112(s32 arg1) {
             ((VObj_18_0f49f2 *)((u8 *)(*(u8 **)((s8 *)arg0 + 0x3C0))))->m115(arg0);
         }
         create_breakup_mdl__12TBoss3VoloptFlllll(TObjEneMe1Gee__data_805D51C4, 0, this->texlist, (s32)(arg0 + 0x2FC), this->rotation_y);
-        play_sound_effect(TObjEneMe1Gee::handle_message((s32) arg0, 0x3A843), (u32)(arg0 + 0x38), 0, 0);
+        play_sound_effect((s32)(TObjEneMe1Gee::handle_message((s32) arg0, 0x3A843)), (const Vec *)((arg0 + 0x38)), 0, 0);
         *(s32 *)((s8 *)arg0 + 0x3C8) = (s32) (*(s32 *)((s8 *)arg0 + 0x3C8) | 0x400000);
         this->actorFlags = (s32) (this->actorFlags | 0x01000000);
         ((void (*)(void *, void *))VecCopy__FP3VecPC3Vec)(&stack.sp8, (u8 *)&this->body_center_position);
@@ -2432,7 +2433,7 @@ void TObjEneMe1Gee__sub_800C9A94(void *arg0, s32 arg1) {
                     o->f448 = lbl_805DA0F8 * (o->f3E8 - o->f3F4);
                     o->ddist = lbl_805DA0F8 * (lbl_805DA0FC - o->f3AC);
                     o->dist = o->f3AC;
-                    play_sound_effect(TObjEneMe1Gee::handle_message((s32)o, 0x3AD13), (u32)o->snd, 0, 0);
+                    play_sound_effect((s32)(TObjEneMe1Gee::handle_message((s32)o, 0x3AD13)), (const Vec *)((u32)o->snd), 0, 0);
                 }
                 o->timer++;
                 if (o->timer >= 8) {
@@ -2644,7 +2645,7 @@ void TObjEneMe1Gee__sub_800C9DF8(void *o_, s32 arg1) {
                 f32 k;
                 ((TObjEneDD_ST *)o)->enemy_copy_target_destination();
                 ((TObjEneDD *)o)->update_velocity();
-                play_sound_effect(TObjEneMe1Gee::handle_message((s32)o, 0x3AD13), (u32)o->snd, 0, 0);
+                play_sound_effect((s32)(TObjEneMe1Gee::handle_message((s32)o, 0x3AD13)), (const Vec *)((u32)o->snd), 0, 0);
                 k = lbl_805DA108;
                 inv = TObjEneMe1Gee__data_805DA0EC / newton_sqrtf(k);
                 k *= inv;
@@ -2693,7 +2694,7 @@ void TObjEneMe1Gee__sub_800C9DF8(void *o_, s32 arg1) {
         case 3:
             o->fB8 = 1;
             o->mode = 4;
-            play_sound_effect(TObjEneMe1Gee::handle_message((s32)o, 0x3AD15), (u32)o->snd, 0, 0);
+            play_sound_effect((s32)(TObjEneMe1Gee::handle_message((s32)o, 0x3AD15)), (const Vec *)((u32)o->snd), 0, 0);
         case 4:
             ((TObjEneDD_ST *)o)->enemy_copy_target_destination();
             ((TObjEneDD *)o)->update_velocity();
@@ -2825,7 +2826,7 @@ void TObjEneMe1Gee__sub_800CA454(void *arg0, s32 arg1) {
                     queue_destruction__7TObjectFv(o->sub464);
                     o->sub464 = NULL;
                 }
-                play_sound_effect(TObjEneMe1Gee::handle_message((s32)o, 0x3AD17), (u32)o->snd, 0, 0);
+                play_sound_effect((s32)(TObjEneMe1Gee::handle_message((s32)o, 0x3AD17)), (const Vec *)((u32)o->snd), 0, 0);
             } else {
                 play_persistent_sound((s32)((s32)(TObjEneMe1Gee::handle_message((s32)o, 0x3A914))), (const void *)((s32)o), (const Vec *)((u32)o->snd), 0, 0);
             }
