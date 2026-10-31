@@ -129,13 +129,13 @@ struct Trap_80179B8C : VObj_80179B8C {
     Fade_80179B8C fades[4];
 };
 
-struct TObjEnemy;
 extern "C" {
 void receive_physical_attack__6TOTrapFPvf(void *, void *, f32);
 u16 get_entity_id(TObjBase *);
 void obj_set_flag_20000(TObjBase *);
 void obj_clear_flag30_20000(TObjBase *);
-u16 find_nearest_visible_player(TObjEnemy *, Vec *, f32);
+// Trap callers show this receiver is not restricted to TObjEnemy.
+u16 find_nearest_visible_player(void *, Vec *, f32);
 f32 horizontal_distance_squared(const Vec *, const Vec *);
 s32 obj_is_hit_receivable(u8 *);
 
@@ -328,8 +328,11 @@ void TOTrapAncient01::vfunc_82() {
 void TOTrapAncient01::vfunc_81() {
     f32 &step = *(f32 *)((u8 *)this + 0x34c);
     scale.y += step;
-    if (scale.y > TOTrapAncient01__data_805DBA4C) {
+    if (TOTrapAncient01__data_805DBA4C < scale.y) {
         switch (get_current_floor_area()) {
+        case AREA_PIONEER2_EP1: return;
+        case AREA_FOREST1: break;
+        case AREA_FOREST2: return;
         case AREA_CAVE1: case AREA_CAVE2: case AREA_CAVE3:
             play_persistent_sound(0x4321a, this, &position, 0, 0);
             break;
@@ -342,6 +345,16 @@ void TOTrapAncient01::vfunc_81() {
         case AREA_VR_SPACESHIP_ALPHA: case AREA_VR_SPACESHIP_BETA:
             play_persistent_sound(0x4004b212, this, &position, 0, 0);
             break;
+        case AREA_DRAGON: break;
+        case AREA_DE_ROL_LE: return;
+        case AREA_VOL_OPT: break;
+        case AREA_DARK_FALZ: return;
+        case AREA_LOBBY: break;
+        case AREA_BATTLE1: return;
+        case AREA_BATTLE2: break;
+        case AREA_PIONEER2_EP2: return;
+        case AREA_VR_TEMPLE_ALPHA: break;
+        case AREA_VR_TEMPLE_BETA: return;
         }
     } else {
         *(s16 *)((u8 *)this + 0x326) = 3;
@@ -352,7 +365,7 @@ void TOTrapAncient01::vfunc_81() {
         obj_clearFlags30(0x40000);
         spawn_particle_effect(&position, 0x8f);
         spawn_particle_effect(&position, 0x8f);
-        player = find_nearest_visible_player((TObjEnemy *)this, NULL, range);
+        player = find_nearest_visible_player(this, NULL, range);
         if (player != 0xffff) {
             TObjPlayer *p = (TObjPlayer *)get_player_by_client_id(player);
             target = (u8 *)p;
