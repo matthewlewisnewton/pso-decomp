@@ -4,8 +4,8 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/unk/text_803E2D70.h"
+#include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 
-typedef void (*RecoveredCallback_1268626c296b)(void *);
 struct Node_803E49FC {
     u32 flags;
     u32 f4;
@@ -28,7 +28,6 @@ void compose_motion_node_matrix(void *arg0);
 }
 void select_motion_context(s32 arg0);
 void draw_model_blend_motion(void *arg0, void *arg1, f32 farg0);
-extern RecoveredCallback_1268626c296b chunk_model_node_callback;
 void draw_object_tree_recursive(void *arg);
 void traverse_animated_node_tree(void *arg);
 extern s32 chunk_render_flags;
@@ -64,7 +63,7 @@ void draw_object_tree_recursive(void *arg) {
         push_matrix();
         ((TObjPlayer *)arg0)->apply_motion_node_transform();
         if (chunk_model_node_callback != NULL) {
-            chunk_model_node_callback(arg0);
+            chunk_model_node_callback((NJS_OBJECT *)arg0);
         }
         t = arg0->f4;
         if (t != 0 && (arg0->flags & 8) == 0) {
@@ -118,7 +117,7 @@ void traverse_animated_node_tree(void *arg) {
         push_matrix();
         compose_motion_node_matrix(arg0);
         if (chunk_model_node_callback != NULL) {
-            chunk_model_node_callback(arg0);
+            chunk_model_node_callback((NJS_OBJECT *)arg0);
         }
         t = arg0->f4;
         if (t != 0 && (arg0->flags & 8) == 0) {

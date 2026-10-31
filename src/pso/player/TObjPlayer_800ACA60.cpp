@@ -899,7 +899,7 @@ s32 TObjEneMoja::update_technique_state(void *self_800AD3D8) {
         break;
     }
     ((s32 (*)(void *, s32, f32))apply_actor_gravity)(self, 0, lbl_805D9BD8);
-    ((TObjPlayer *)self)->update_collisions();
+    ((TObjCollidable *)self)->update_collisions();
 }
 #undef self
 #pragma pop
@@ -996,7 +996,7 @@ s32 TObjEneMoja::update_punch_attack(void *self_800ADAAC) {
         break;
     }
     ((s32 (*)(void *, s32, f32))apply_actor_gravity)(arg0, 0, lbl_805D9BD8);
-    ((TObjPlayer *)arg0)->update_collisions();
+    ((TObjCollidable *)arg0)->update_collisions();
 }
 #undef arg0
 
@@ -1145,7 +1145,7 @@ s32 TObjEneMoja::update_approach_state() {
         break;
     }
     ((TObjMotion *)arg0)->advance_animation();
-    ((TObjPlayer *)arg0)->update_collisions();
+    ((TObjCollidable *)arg0)->update_collisions();
 }
 
 void TObjEneMoja::vfunc_59() {

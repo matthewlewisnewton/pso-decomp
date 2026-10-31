@@ -1,3 +1,4 @@
+struct NJS_OBJECT;
 #ifndef PSO_ENEMY_TOBJENEBM3FLYNEST_H
 #define PSO_ENEMY_TOBJENEBM3FLYNEST_H
 
@@ -35,7 +36,7 @@ struct TObjEneBm3FlyNest : public TObjEneDD {
     u32 m_4cc;
     u32 m_4d0;
     u32 m_4d4;
-    static void capture_attachment(void * _w0);
+    static void capture_attachment(NJS_OBJECT * _w0);
     static int init(void* p);
     void remove_child(u8 *child);
     s32 has_free_attack_slot(u16 id);
@@ -63,7 +64,7 @@ void *__dt__26TObjEneBm3FlyNest_CarryFlyFv(void *arg0, s16 arg1);
 int copy_target_state__17TObjEneBm3FlyNestFPv(void *p, s32 sound_id);
 void dispatch_state__17TObjEneBm3FlyNestFiUii(s32 arg0, u32 arg1, s32 arg2);
 void handle_appear__17TObjEneBm3FlyNestFPvi(u8 *arg0, s32 arg1);
-void handle_attachment_sample__17TObjEneBm3FlyNestFi(s32 arg0);
+void handle_attachment_sample__17TObjEneBm3FlyNestFi(NJS_OBJECT *arg0);
 void handle_event__17TObjEneBm3FlyNestFPvi(void *arg0, s32 arg1);
 void handle_motion_event__17TObjEneBm3FlyNestFPvi(u8 *arg0, s32 arg1);
 void handle_state__17TObjEneBm3FlyNestFPvi(void *arg0, s32 arg1);
