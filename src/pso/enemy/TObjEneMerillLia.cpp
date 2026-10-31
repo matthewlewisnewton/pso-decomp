@@ -1042,7 +1042,7 @@ void TObjEneMerillLia::search_target(void *ov) {
         if (p != NULL) {
             s32 w;
             v = get_current_floor();
-            w = ((TObjPlayer *)p)->get_field_3e4();
+            w = ((TObjPlayer *)p)->get_floor();
             if (w == v) {
                 if (xz_distance_squared(p->pos, arg0->pos) < arg0->f3d0 * arg0->f3d0) {
                     arg0->f2a8 = p;
@@ -1371,7 +1371,7 @@ void TObjEneMerillLia::beast_update_group_chase() {
         }
         if (arg0->f338 < 0x1000) {
             Pl_800D5614 *p = (Pl_800D5614 *)get_player_by_client_id(arg0->f338);
-            if (p != NULL && ((TObjPlayer *)p)->get_field_3e4() == get_current_floor()) {
+            if (p != NULL && ((TObjPlayer *)p)->get_floor() == get_current_floor()) {
                 arg0->f2a8 = (Pl_800D6110 *)p;
                 break;
             }
@@ -1389,7 +1389,7 @@ void TObjEneMerillLia::beast_update_group_chase() {
         }
         if (arg0->f338 < 0x1000) {
             Pl_800D5614 *p = (Pl_800D5614 *)get_player_by_client_id(arg0->f338);
-            if (p != NULL && ((TObjPlayer *)p)->get_field_3e4() == get_current_floor() &&
+            if (p != NULL && ((TObjPlayer *)p)->get_floor() == get_current_floor() &&
                 xz_distance_squared(p->pos, &arg0->pos) < lbl_805DA318) {
                 arg0->f326 = 1;
                 arg0->f328 = 0;

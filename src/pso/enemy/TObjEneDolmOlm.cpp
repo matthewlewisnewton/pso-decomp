@@ -1407,7 +1407,7 @@ s32 TObjEneDolmOlm__sub_8030177C(void *arg0_) {
     if (arg0->f338 < 0x1000) {
         Obj_8030177C *tgt = (Obj_8030177C *)get_player_by_client_id(arg0->f338);
         f32 d = horizontal_distance_squared(&tgt->pos, &arg0->pos);
-        if (tgt != 0 && ((TObjPlayer *)tgt)->get_field_3e4() == get_current_floor() &&
+        if (tgt != 0 && ((TObjPlayer *)tgt)->get_floor() == get_current_floor() &&
             d < (*(Param_8030177C ** *)&TObjEneDolmOlm__behavior_params_by_variant)[arg0->kind]->range * (*(Param_8030177C ** *)&TObjEneDolmOlm__behavior_params_by_variant)[arg0->kind]->range) {
             arg0->target = tgt;
         } else {
@@ -1610,7 +1610,7 @@ void TObjEneDolmOlm::vfunc_60() {
             if (player != NULL) {
                 temp_f31 = horizontal_distance_squared(player + 0x38, (void *) (((u8 *)this) + 0x38));
                 var_f30 = fabs_float(*(f32 *)((s8 *)player + 0x3C) - *(f32 *)((s8 *)((u8 *)this) + 0x3C));
-                if (((TObjPlayer *)player)->get_field_3e4() == get_current_floor()) {
+                if (((TObjPlayer *)player)->get_floor() == get_current_floor()) {
                     if ((temp_f31 < (*(f32 *)((s8 *)(*(s32 *)((s8 *)TObjEneDolmOlm__behavior_params_by_variant + (this->variant * 4))) + 0x10) * *(f32 *)((s8 *)(*(s32 *)((s8 *)TObjEneDolmOlm__behavior_params_by_variant + (this->variant * 4))) + 0x10))) && (((f32 (*)(void *)) random_ratio__9TObjCharaFv)(this) < this->m_3d0)) {
                         var_r29 = 1;
                     }
