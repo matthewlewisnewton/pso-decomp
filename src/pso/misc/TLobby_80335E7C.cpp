@@ -134,7 +134,6 @@ void *get_title_texture_list(void) {
 void*TLobby::get_record(int a0) {  return (char*)lobby_record_table + a0 * 32; }
 
 typedef char RecoveredGlobal_8000F764_TKeyBoardControl__data_80506270_size[sizeof(RecoveredGlobal_8000F764_TKeyBoardControl__data_80506270) == 0xB0 ? 1 : -1];
-typedef char RecoveredGlobal_8000F7FC_lbl_80515F48_size[sizeof(RecoveredGlobal_8000F7FC_lbl_80515F48) == 0x28 ? 1 : -1];
 void bind_title_texture_list(void) {
     set_texlist((u32)&title_texture_list);
 }

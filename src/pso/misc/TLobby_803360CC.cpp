@@ -258,7 +258,6 @@ u8 *TUnk_804EEF64::construct_title_scene() {
     return arg0;
 }
 
-typedef char RecoveredGlobal_8033670C_lbl_804EE58C_size[sizeof(RecoveredGlobal_8033670C_lbl_804EE58C) == 0x50 ? 1 : -1];
 void TLobby::destroy_global_object() {
     u32 temp_r4;
     temp_r4 = (u32) call_funcs_reverse__6TLobbyFPvUi(lobby_load_callback_table, 0x20);
