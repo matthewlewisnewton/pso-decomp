@@ -1018,7 +1018,7 @@ void *TObjEneShark__ct(void *arg0, void *arg1, void *arg2) {
     ((TObjEneShark *)self)->apply_clamped_mode_param();
     ((TObjEneShark *)self)->sub_800AC9DC(self->f368);
     self->fD8 = TObjEneShark__action_table;
-    ((TObjMotion *)self)->set_field_d8((s32)self->fD8);
+    ((TObjMotion *)self)->set_action_table((TObjMotionAction *)((s32)self->fD8));
     self->fDC = *(s32 *)(shark_bml_resource + 0x430);
     self->fB8 = 0;
     ((TObjMotion *)self)->set_animation(self->fB8);

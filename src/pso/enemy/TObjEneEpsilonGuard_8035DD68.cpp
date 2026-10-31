@@ -1372,8 +1372,8 @@ void TObjEneEpsilonGuard::init_model_and_state() {
     *(s32 *)((s8 *)arg0 + 0x34) = get_bml_model(lbl_805D6FA0, 2);
     *(s32 *)((s8 *)arg0 + 0x24) = TObjFish__sub_8001EDB0(lbl_805D6FA0, 0);
     init_model__9TObjEneDDFP13CollisionBodyl(arg0, TObjEneEpsilonGuard__model_desc, 1);
-    ((TObjMotion *)arg0)->set_field_d8((s32)lbl_804F2024);
-    ((TObjMotion *)arg0)->set_field_dc(*(s32 *)((s8 *)lbl_805D6FA0 + 0x430));
+    ((TObjMotion *)arg0)->set_action_table((TObjMotionAction *)((s32)lbl_804F2024));
+    ((TObjMotion *)arg0)->set_motion_list((BmlMotionEntry *)(*(s32 *)((s8 *)lbl_805D6FA0 + 0x430)));
     *(s16 *)((s8 *)arg0 + 0xB8) = 0;
     ((TObjMotion *)arg0)->set_animation(*(s16 *)((s8 *)arg0 + 0xB8));
     ((TObjMotion *)arg0)->set_field_b8(*(s16 *)((s8 *)arg0 + 0xB8));

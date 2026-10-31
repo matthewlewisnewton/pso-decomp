@@ -433,8 +433,8 @@ void TObjEneRecon::init_state() {
     temp_r6 = (u8 *)(*(u8 **)((s8 *)TObjEneRecon__recobox_static_instance + 0x42C));
     *(s32 *)((s8 *)arg0 + 0x24) = (s32) *(s32 *)((s8 *)temp_r6 + 0xC);
     init_model__9TObjEneDDFP13CollisionBodyl((void *)arg0, (void *) TObjEneRecon__collision_body_template, 1, (int)temp_r6);
-    ((TObjMotion *)arg0)->set_field_d8((s32)((void *) TObjEneRecon__animation_entries));
-    ((TObjMotion *)arg0)->set_field_dc((int) (*(s32 *)((s8 *)TObjEneRecon__recobox_static_instance + 0x430)));
+    ((TObjMotion *)arg0)->set_action_table((TObjMotionAction *)((s32)((void *) TObjEneRecon__animation_entries)));
+    ((TObjMotion *)arg0)->set_motion_list((BmlMotionEntry *)((int) (*(s32 *)((s8 *)TObjEneRecon__recobox_static_instance + 0x430))));
     *(s16 *)((s8 *)arg0 + 0xB8) = 0;
     ((TObjMotion *)arg0)->set_animation((*(s16 *)((s8 *)arg0 + 0xB8)));
     ((TObjMotion *)arg0)->set_field_b8((int) (*(s16 *)((s8 *)arg0 + 0xB8)));

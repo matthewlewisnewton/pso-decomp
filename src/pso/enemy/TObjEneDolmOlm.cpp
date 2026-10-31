@@ -946,7 +946,7 @@ u8 *TObjEneDolmOlm__ct(u8 *arg0, s32 arg1, s32 arg2) {
     ((TObjPlayer *)arg0)->init_position_vectors();
     ((TObjEneDolmOlm *)arg0)->sub_80301148();
     *(void * *)&((TObjEneDolmOlm *)arg0)->action_table = TObjEneDolmOlm__param_table;
-    ((TObjMotion *)arg0)->set_field_d8((s32)(*(void * *)&((TObjEneDolmOlm *)arg0)->action_table));
+    ((TObjMotion *)arg0)->set_action_table((TObjMotionAction *)((s32)(*(void * *)&((TObjEneDolmOlm *)arg0)->action_table)));
     *(s32 *)((s8 *)arg0 + 0xDC) = *(s32 *)((s8 *)TObjEneDolmOlm__resource_bundle + 0x430);
     ((TObjEneDolmOlm *)arg0)->requested_action = 0;
     ((TObjMotion *)arg0)->set_animation(((TObjEneDolmOlm *)arg0)->requested_action);

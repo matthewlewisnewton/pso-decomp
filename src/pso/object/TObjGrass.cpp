@@ -1822,7 +1822,7 @@ u8 *TObjGrass__ct(u8 *arg0, s32 arg1, s32 arg2) {
     *(s32 *)&((TObjGrass *)arg0)->subtype = 0;
     ((TObjGrass *)arg0)->init_from_table_entry((s32)(*(s32 *)&((TObjGrass *)arg0)->variant));
     *(u8 * *)&((TObjGrass *)arg0)->action_table = (u8 *)TObjGrass__grass_type_param_table;
-    ((TObjMotion *)arg0)->set_field_d8((s32)(*(u8 * *)&((TObjGrass *)arg0)->action_table));
+    ((TObjMotion *)arg0)->set_action_table((TObjMotionAction *)((s32)(*(u8 * *)&((TObjGrass *)arg0)->action_table)));
     if ((0.0f) < *(f32 *)((s8 *)arg0 + 0x358)) {
         ((TObjGrass *)arg0)->m_39c = 2;
     } else {

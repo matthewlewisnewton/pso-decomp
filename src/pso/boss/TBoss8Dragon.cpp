@@ -6896,8 +6896,8 @@ u8 *TBoss8Dragon__ct(u8 *arg0, void *arg1, void *arg2) {
     ((TBoss8Dragon *)arg0)->m_70 = TBoss8Dragon__data_805DED60;
     init_model__9TObjEneDDFP13CollisionBodyl(arg0, lbl_804E4C58, 7);
     ((TBoss8Dragon *)arg0)->m_b0 = 0;
-    ((TObjMotion *)arg0)->set_field_d8((s32)lbl_804E4E18);
-    ((TObjMotion *)arg0)->set_field_dc(*(s32 *)((s8 *)TBoss8Dragon__data_805D6988 + 0x430));
+    ((TObjMotion *)arg0)->set_action_table((TObjMotionAction *)((s32)lbl_804E4E18));
+    ((TObjMotion *)arg0)->set_motion_list((BmlMotionEntry *)(*(s32 *)((s8 *)TBoss8Dragon__data_805D6988 + 0x430)));
     ((TBoss8Dragon *)arg0)->m_b8 = 0;
     ((TObjMotion *)arg0)->set_animation(((TBoss8Dragon *)arg0)->m_b8);
     ((TObjMotion *)arg0)->set_field_b8(((TBoss8Dragon *)arg0)->m_b8);

@@ -5021,8 +5021,8 @@ TBoss5Gryphon *TBoss5Gryphon__ct(TBoss5Gryphon *self, void *parent, void *data) 
     self->texlist = *(s32 *)(*(u8 **)(boss5_gryphon_body_bml_resource + 0x42C) + 0xC);
     init_model__9TObjEneDDFP13CollisionBodyl(self, lbl_804878D0, 10);
     self->motion_flags = 0;
-    self->set_field_d8((s32)lbl_80487B1C);
-    self->set_field_dc(*(s32 *)(boss5_gryphon_body_bml_resource + 0x430));
+    self->set_action_table((TObjMotionAction *)((s32)lbl_80487B1C));
+    self->set_motion_list((BmlMotionEntry *)(*(s32 *)(boss5_gryphon_body_bml_resource + 0x430)));
     self->requested_action = 0;
     self->set_animation(self->requested_action);
     self->set_field_b8(self->requested_action);

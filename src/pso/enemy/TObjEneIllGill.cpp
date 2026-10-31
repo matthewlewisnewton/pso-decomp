@@ -1423,7 +1423,7 @@ TObjEneIllGill::TObjEneIllGill(TObject *parent, void *setData) : TObjEnemy(paren
     texlist = illGillResource->models->m_c;
     motion_list = illGillResource->motions;
     action_table = illGillActions;
-    this->set_field_d8((s32)action_table);
+    this->set_action_table((TObjMotionAction *)((s32)action_table));
     requested_action = 0;
     this->set_animation(requested_action);
     this->set_field_b8(requested_action);

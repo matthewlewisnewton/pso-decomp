@@ -2633,8 +2633,8 @@ void TObjEneDf2Bringer::init_enemy() {
     *(s32 *)((s8 *)arg0 + 0x34) = *(s32 *)((s8 *)(*(u8 **)((s8 *)TObjEneDf2Bringer__resource_bundle + 0x42C)) + 8);
     *(s32 *)((s8 *)arg0 + 0x24) = *(s32 *)((s8 *)(*(u8 **)((s8 *)TObjEneDf2Bringer__resource_bundle + 0x42C)) + 0xC);
     init_model__9TObjEneDDFP13CollisionBodyl(arg0, lbl_8048FA2C, 1);
-    ((TObjMotion *)arg0)->set_field_d8((s32)&lbl_8048FAF8);
-    ((TObjMotion *)arg0)->set_field_dc(*(s32 *)((s8 *)TObjEneDf2Bringer__resource_bundle + 0x430));
+    ((TObjMotion *)arg0)->set_action_table((TObjMotionAction *)((s32)&lbl_8048FAF8));
+    ((TObjMotion *)arg0)->set_motion_list((BmlMotionEntry *)(*(s32 *)((s8 *)TObjEneDf2Bringer__resource_bundle + 0x430)));
     *(s16 *)((s8 *)arg0 + 0xB8) = 0;
     ((TObjMotion *)arg0)->set_animation(*(s16 *)((s8 *)arg0 + 0xB8));
     ((TObjMotion *)arg0)->set_field_b8(*(s16 *)((s8 *)arg0 + 0xB8));

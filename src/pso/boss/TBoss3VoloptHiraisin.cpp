@@ -351,7 +351,7 @@ void TBoss3VoloptHiraisin::init_params() {
     copy_body_to_center();
     motion_list = volopt_hiraisin_resources->motions;
     action_table = volopt_hiraisin_motions;
-    set_field_d8((s32)action_table);
+    set_action_table((TObjMotionAction *)((s32)action_table));
     init_collision_body_parts(this, volopt_hiraisin_body_parts, 1);
     variant = 0;
     movementParameters = &volopt_hiraisin_movement;

@@ -5804,8 +5804,8 @@ u8 *TBoss1Dragon__ct(u8 *arg0, void *arg1, void *arg2) {
     F_29DE4(arg0, s32, 0x24) = F_29DE4(F_29DE4(TBoss1Dragon__data_805D4B08, u8 *, 0x42C), s32, 0xC);
     init_model__9TObjEneDDFP13CollisionBodyl(arg0, (void *)boss1_dragon_collision_body_parts, 7);
     F_29DE4(arg0, s32, 0xB0) = 0;
-    ((TObjMotion *)arg0)->set_field_d8((s32)((void *)lbl_80481010));
-    ((TObjMotion *)arg0)->set_field_dc(F_29DE4(TBoss1Dragon__data_805D4B08, u32, 0x430));
+    ((TObjMotion *)arg0)->set_action_table((TObjMotionAction *)((s32)((void *)lbl_80481010)));
+    ((TObjMotion *)arg0)->set_motion_list((BmlMotionEntry *)(F_29DE4(TBoss1Dragon__data_805D4B08, u32, 0x430)));
     F_29DE4(arg0, s16, 0xB8) = 0;
     ((TObjMotion *)arg0)->set_animation(F_29DE4(arg0, s16, 0xB8));
     ((TObjMotion *)arg0)->set_field_b8(F_29DE4(arg0, s16, 0xB8));
@@ -6318,8 +6318,8 @@ void TObjMotion::set_field_b8(s16 v) { this->requested_action = v; }
 
 extern s32 TLobby__data_805D6144;
 
-void TObjMotion::set_field_dc(s32 v) { *(s32 *)&this->motion_list = v; }
-void TObjMotion::set_field_d8(s32 v) { (*(s32 *)&this->action_table) = v; }
+void TObjMotion::set_motion_list(BmlMotionEntry *v) { motion_list = v; }
+void TObjMotion::set_action_table(TObjMotionAction *v) { action_table = v; }
 void TObjPlayer::reset_lobby_model() { reset_type(); }
 void TObjPlayer::reset_type() { *(s32*)((char*)this + 0x0) = 0; }
 void ProtectionTimer::set_frames(s32 v) { frames = v; }

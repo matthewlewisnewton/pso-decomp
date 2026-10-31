@@ -2583,7 +2583,7 @@ u8 *TObjEneGibbles__ct(u8 *arg0, void *parent, s32 arg2) {
     ((TObjEneGibbles *)arg0)->subtype = 0;
     ((TObjEneGibbles *)arg0)->sub_802DBC94(((TObjEneGibbles *)arg0)->variant);
     ((TObjEneGibbles *)arg0)->action_table = gibbles_action_table;
-    ((TObjMotion *)arg0)->set_field_d8((s32)(((TObjEneGibbles *)arg0)->action_table));
+    ((TObjMotion *)arg0)->set_action_table((TObjMotionAction *)((s32)(((TObjEneGibbles *)arg0)->action_table)));
     *(s32 *)((s8 *)arg0 + 0xDC) = *(s32 *)((s8 *)TObjEneGibbles__resource_bundle + 0x430);
     ((TObjEneGibbles *)arg0)->requested_action = 0;
     ((TObjMotion *)arg0)->set_animation(((TObjEneGibbles *)arg0)->requested_action);

@@ -684,7 +684,7 @@ void *TContainerAncient01R__ct(Obj_8018B030 *self, void *arg1, void *parent) {
     self->x34 = get_bml_model(TContainerAncient01R__bml_resource, 0);
     self->x24 = TObjFish__sub_8001EDB0(TContainerAncient01R__bml_resource, 0);
     self->animTbl = (void *)TContainerAncient01__anim_table;
-    ((TObjMotion *)self)->set_field_d8((s32)self->animTbl);
+    ((TObjMotion *)self)->set_action_table((TObjMotionAction *)((s32)self->animTbl));
     self->xdc = ((Res_8018B030 *)TContainerAncient01R__bml_resource)->x430;
     self->anim = 0;
     ((TObjMotion *)self)->set_animation(self->anim);
@@ -1158,7 +1158,7 @@ u8 *TContainerAncient01__ct(u8 *arg0, s32 arg1, s32 arg2) {
     *(s32 *)((s8 *)arg0 + 0x34) = get_bml_model((int) ((*(u8 * *)&TContainerAncient01__bml_resource)), 0);
     ((TContainerAncient01 *)arg0)->texlist = TObjFish__sub_8001EDB0((int) ((*(u8 * *)&TContainerAncient01__bml_resource)), 0);
     ((TContainerAncient01 *)arg0)->action_table = TContainerAncient01__anim_table;
-    ((TObjMotion *)arg0)->set_field_d8((s32)((void *) (((TContainerAncient01 *)arg0)->action_table)));
+    ((TObjMotion *)arg0)->set_action_table((TObjMotionAction *)((s32)((void *) (((TContainerAncient01 *)arg0)->action_table))));
     *(s32 *)((s8 *)arg0 + 0xDC) = (s32) *(s32 *)((s8 *)(*(u8 * *)&TContainerAncient01__bml_resource) + 0x430);
     ((TContainerAncient01 *)arg0)->requested_action = 0;
     ((TObjMotion *)arg0)->set_animation((((TContainerAncient01 *)arg0)->requested_action));

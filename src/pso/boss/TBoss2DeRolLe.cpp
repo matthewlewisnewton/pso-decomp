@@ -5813,8 +5813,8 @@ void *TBoss2DeRolLe__ct(void *arg0, void *arg1, void *arg2) {
         init_model__9TObjEneDDFP13CollisionBodyl(self, (u8 *)lbl_804822A8, 3, q);
     }
     ((TBoss2DeRolLe *)self)->motion_flags = 0;
-    ((TObjMotion *)self)->set_field_d8((s32)((u8 *)lbl_804823A8));
-    ((TObjMotion *)self)->set_field_dc(*(s32 *)((s8 *)lbl_805D4BA4 + 0x430));
+    ((TObjMotion *)self)->set_action_table((TObjMotionAction *)((s32)((u8 *)lbl_804823A8)));
+    ((TObjMotion *)self)->set_motion_list((BmlMotionEntry *)(*(s32 *)((s8 *)lbl_805D4BA4 + 0x430)));
     ((TBoss2DeRolLe *)self)->requested_action = 0;
     ((TObjMotion *)self)->set_animation(((TBoss2DeRolLe *)self)->requested_action);
     ((TObjMotion *)self)->set_field_b8(((TBoss2DeRolLe *)self)->requested_action);

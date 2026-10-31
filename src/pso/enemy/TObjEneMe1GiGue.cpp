@@ -2135,7 +2135,7 @@ u8 *TObjEneMe1GiGue__ct(u8 *arg0, s32 enemy_custom, u8 *arg2) {
     ((TObjEneMe1GiGue *)arg0)->state36C = *(s16 *)((s8 *)arg2 + 0x3E);
     ((TObjEneMe1GiGue *)arg0)->load_params_from_table(((TObjEneMe1GiGue *)arg0)->variant);
     ((TObjEneMe1GiGue *)arg0)->action_table = gigue_enemy_param_table;
-    ((TObjMotion *)arg0)->set_field_d8((s32)(((TObjEneMe1GiGue *)arg0)->action_table));
+    ((TObjMotion *)arg0)->set_action_table((TObjMotionAction *)((s32)(((TObjEneMe1GiGue *)arg0)->action_table)));
     init_collision_body_parts(arg0, lbl_804E1304, 2);
     *(u32 *)((s8 *)(((TObjEneMe1GiGue *)arg0)->bodies) + 0x44) &= ~1;
     ((TObjEneMe1GiGue *)arg0)->movementParameters = lbl_804E12E8;
