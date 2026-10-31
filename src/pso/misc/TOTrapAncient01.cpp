@@ -280,7 +280,7 @@ void TOTrapAncient01::play_sounds() {
     o = __nw__7TObjectFUl(0x234);
     if (o != NULL) __ct__8TObjChipFP7TObjectP14TObjChipParams((u8 *)o, (u8 *)tl_06, (u8 *)&c);
     TParticleCtrl *particle = spawn_particle_effect(&position, 0x8b);
-    if (particle != NULL) particle->set_scale(lbl_805DBA50, lbl_805DBA50);
+    if (particle != NULL) particle->set_scale(1.25f, 1.25f);
     switch (get_current_floor_area()) {
     case AREA_SEABED_UPPER: case AREA_SEABED_LOWER:
         play_sound_effect(0x4004c118, &position, 0, 0); return;
@@ -316,9 +316,9 @@ void TOTrapAncient01::vfunc_82() {
     s32 i;
     VObj_801797D4 *p;
     this->calc_attach_pos();
-    ((Trap_801797D4 *)this)->f354 -= lbl_805DBA48;
-    if (((Trap_801797D4 *)this)->f354 < TOTrapAncient01__data_805DBA4C) {
-        ((Trap_801797D4 *)this)->fA4->fC = lbl_805DBA54;
+    ((Trap_801797D4 *)this)->f354 -= 1.0f;
+    if (((Trap_801797D4 *)this)->f354 < 0.0f) {
+        ((Trap_801797D4 *)this)->fA4->fC = 15.0f;
         set_indexed_flags(0, 0x100);
         TObjPlayer::init_all_slots();
         ((TObjPlayer *)this)->check_object_collisions();
@@ -338,10 +338,10 @@ void TOTrapAncient01::vfunc_82() {
             p->m21(this, &v, 0, -1, -1);
             }
             if (((Trap_801797D4 *)this)->f344.a < 5) {
-                p->m23(((Trap_801797D4 *)this), TOTrapAncient01__data_805DBA4C);
+                p->m23(((Trap_801797D4 *)this), 0.0f);
             }
         }
-        ((Trap_801797D4 *)this)->m20(((Trap_801797D4 *)this)->f2A8, lbl_805DBA48);
+        ((Trap_801797D4 *)this)->m20(((Trap_801797D4 *)this)->f2A8, 1.0f);
     }
     submit_cursor_candidate(((Trap_801797D4 *)this), -1);
     switch (get_current_floor_area()) {
@@ -398,7 +398,7 @@ void TOTrapAncient01::vfunc_82() {
 void TOTrapAncient01::vfunc_81() {
     f32 &step = *(f32 *)((u8 *)this + 0x34c);
     scale.y += step;
-    if (TOTrapAncient01__data_805DBA4C < scale.y) {
+    if (0.0f < scale.y) {
         switch (get_current_floor_area()) {
         case AREA_PIONEER2_EP1: return;
         case AREA_FOREST1: break;
@@ -428,7 +428,7 @@ void TOTrapAncient01::vfunc_81() {
         }
     } else {
         *(s16 *)((u8 *)this + 0x326) = 3;
-        scale.y = TOTrapAncient01__data_805DBA4C;
+        scale.y = 0.0f;
         calc_attach_pos();
         clear_player_status_flag(0, 0x08001f04);
         set_indexed_flags(0, 0x8003);
@@ -472,7 +472,7 @@ void render__15TOTrapAncient01Fv(Trap_80179B8C *self) {
     }
     fade = &self->fades[i];
     update__15RenderFadeStateFv(fade);
-    self->f340 = self->m8(lbl_805DBA58, lbl_805DBA5C);
+    self->f340 = self->m8(400.0f, 20.0f);
     if (self->f340 == 1) {
         if (((RenderFadeState *)fade)->updateFromCamera((const f32*)(self->pos38)) == 1) {
             saved_model_render_flags = model_render_flags;
@@ -483,16 +483,16 @@ void render__15TOTrapAncient01Fv(Trap_80179B8C *self) {
         push_matrix();
         post_translate_matrix(self->pos38);
         rotate_matrix_y(0, self->f60);
-        if (check_demo_mode() != 1 && self->f6C <= TOTrapAncient01__data_805DBA4C) {
-            v.x = lbl_805DBA60 * (lbl_805DBA64 * (f32)rand()) - lbl_805DBA68;
-            v.y = TOTrapAncient01__data_805DBA4C;
-            v.z = lbl_805DBA60 * (lbl_805DBA64 * (f32)rand()) - lbl_805DBA68;
+        if (check_demo_mode() != 1 && self->f6C <= 0.0f) {
+            v.x = 0.1f * (0.000030517578125f * (f32)rand()) - 0.05f;
+            v.y = 0.0f;
+            v.z = 0.1f * (0.000030517578125f * (f32)rand()) - 0.05f;
             post_translate_matrix(&v);
         }
         set_current_texture_list((GinjaTextureList *)(self->f24));
         n = self->model;
         push_matrix();
-        translate_matrix(0, TOTrapAncient01__data_805DBA4C, self->f6C, TOTrapAncient01__data_805DBA4C);
+        translate_matrix(0, 0.0f, self->f6C, 0.0f);
         post_translate_matrix(n->mtx);
         draw_ginja_model(self->model->f4);
         n = n->child;
@@ -534,7 +534,7 @@ extern s32 trap_ancient_light_color[];
 typedef struct RecoveredGlobal_80179E34_lbl_804B4834 RecoveredGlobal_80179E34_lbl_804B4834;
 void TOTrapAncient01::load_resources() {
   TOTrapAncient01__bml_resource = (u32)new BmlResource(1, (BmlResourceDescriptor *)&bm_o_trap_ancient01_resource_descriptor.value, 0, 0, NULL);
-  TMotorcycle::add_entry(0x39, get_bml_model((void *)TOTrapAncient01__bml_resource, 3), TObjFish__sub_8001EDB0((void *)TOTrapAncient01__bml_resource, 3), lbl_805DBA5C, TOTrapAncient01__data_805DBA4C);
+  TMotorcycle::add_entry(0x39, get_bml_model((void *)TOTrapAncient01__bml_resource, 3), TObjFish__sub_8001EDB0((void *)TOTrapAncient01__bml_resource, 3), 20.0f, 0.0f);
 }
 
 Self_80179EC0 *__dt__15TOTrapAncient01Fv(Self_80179EC0 *self, s16 flag) {
@@ -574,7 +574,7 @@ void *TOTrapAncient01__ct(void *arg0, void *arg1, void *arg2) {
         *(f32 *)((s8 *)self + 0x70) = 1.0f;
     }
     *(f32 *)((s8 *)self + 0x34C) = -*(f32 *)((s8 *)self + 0x6C) / *(f32 *)((s8 *)self + 0x70);
-    *(f32 *)((s8 *)self + 0x350) = lbl_805DBA6C + (f32)*(s32 *)((s8 *)self + 0x8C);
+    *(f32 *)((s8 *)self + 0x350) = 30.0f + (f32)*(s32 *)((s8 *)self + 0x8C);
     if (get_main_phase() == 0xE) {
         *(f32 *)((s8 *)self + 0x350) *= lbl_805DBA74;
     }
@@ -592,7 +592,7 @@ void *TOTrapAncient01__ct(void *arg0, void *arg1, void *arg2) {
         *(s32 *)((s8 *)self + 0x88) = 5;
     }
     *(s32 *)((s8 *)self + 0x344) = *(s32 *)((s8 *)self + 0x88);
-    *(f32 *)((s8 *)self + 0x338) = lbl_805DBA54;
+    *(f32 *)((s8 *)self + 0x338) = 15.0f;
     *(u16 *)((s8 *)self + 0x33C) = 0xFFFF;
     init_collision_body_parts(arg0, lbl_804B4844, 1);
     ((TObjCollidable *)arg0)->refresh_collision_body_centers();
