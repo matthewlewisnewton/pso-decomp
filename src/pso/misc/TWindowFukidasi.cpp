@@ -1080,12 +1080,12 @@ extern "C" void draw_name_plate__15TWindowFukidasiFv(void *window, View_80252764
         q.x0 = pos[0]; q.y0 = pos[1]; q.x1 = lbl_805DCD68 + pos[0]; q.y1 = lbl_805DCD10 + pos[1];
         q.u0 = lbl_805DCD6C; q.v0 = lbl_805DCD70; q.u1 = lbl_805DCD74; q.v1 = TWindowFukidasi__data_805DCCE8;
         apply_context_transform_to_rect(ctx, &q); draw_textured_quad_at_depth(&q.x0, depth);
-        f32 right;
+        f64 right;
         if (width < TWindowFukidasi__data_805DCCFC)
             right = lbl_805DCD78 + ((TWindowFukidasi__data_805DCCFC + pos[0]) - lbl_805DCD68);
         else
             right = lbl_805DCD78 + ((pos[0] + width) - lbl_805DCD68);
-        q.x0 = right; q.y0 = pos[1]; q.x1 = lbl_805DCD68 + right; q.y1 = lbl_805DCD10 + pos[1];
+        q.x0 = right; q.y0 = pos[1]; q.x1 = lbl_805DCD68 + (f32)right; q.y1 = lbl_805DCD10 + pos[1];
         q.u0 = lbl_805DCD7C; q.v0 = lbl_805DCD70; q.u1 = lbl_805DCD80; q.v1 = TWindowFukidasi__data_805DCCE8;
         apply_context_transform_to_rect(ctx, &q); draw_textured_quad_at_depth(&q.x0, depth);
         if (width > TWindowFukidasi__data_805DCCFC) {
