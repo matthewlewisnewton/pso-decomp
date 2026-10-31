@@ -158,16 +158,7 @@ s32 transition_enemy_state__9TObjEneDDFl(void *, int);
 void advance_animation_playback(void *);
 s32 play_sound_effect(s32, void *, s32, s32);
 extern const f32 lbl_805DF334;
-struct VBase_14_948132 { char pad[0x14]; };
 
-struct VObj_14_948132 : VBase_14_948132 {
-    virtual void m0();
-    virtual void m1();
-    virtual void m2();
-    virtual void m3();
-    virtual void m4();
-    virtual s32 m5();
-};
 
 struct Stack_80319B8C {
     s32 sp8;
@@ -451,28 +442,9 @@ struct VObj_8031A538 : Base_8031A538 {
 
 struct VObj8031A598_Base { char pad[0x14]; };
 
-struct VObj8031A598 : VObj8031A598_Base {
-    virtual void m0();
-    virtual void m1();
-    virtual void m2();
-    virtual void m3();
-    virtual void m4();
-    virtual void m5();
-    virtual void m6();
-    virtual void m7();
-};
 
 struct VObj8031A5E0_Base { char pad[0x14]; };
 
-struct VObj8031A5E0 : VObj8031A5E0_Base {
-    virtual void m0();
-    virtual void m1();
-    virtual void m2();
-    virtual void m3();
-    virtual void m4();
-    virtual void m5();
-    virtual void m6();
-};
 
 struct RecoveredGlobal_800E7324_lbl_8043CF94 {
     s32 value;
@@ -491,25 +463,9 @@ struct Obj_800E750C { u8 pad0[0x60]; s32 f60; u8 pad1[0xA4 - 0x64]; Sub_800E750C
 
 typedef char RecoveredGlobal_800E7324_lbl_8043CF94_size[sizeof(RecoveredGlobal_800E7324_lbl_8043CF94) == 0xC ? 1 : -1];
 
-struct VBase_14_c143b1 { char pad[0x14]; };
 
-struct VObj_14_c143b1 : VBase_14_c143b1 {
-    virtual void m0();
-    virtual void m1();
-    virtual void m2();
-    virtual void m3();
-    virtual s32 m4();
-    virtual s32 m5();
-};
 
-struct VBase_14_2ab9de { char pad[0x14]; };
 
-struct VObj_14_2ab9de : VBase_14_2ab9de {
-    virtual void m0();
-    virtual void m1();
-    virtual void m2();
-    virtual s32 m3();
-};
 
 s32 is_locally_controlled__10TObjPlayerFPv(void *);
 u32 get_item_field_6__10TObjPlayerFPv(void *);
@@ -691,17 +647,6 @@ TObjMotionAction lbl_804E8880[13] = {
     {3, 0, 8, 1.0f, 0x00000000}
 };
 
-struct VBase_14_aa9368 { char pad[0x14]; };
-struct VObj_14_aa9368 : VBase_14_aa9368 {
-    virtual void m0();
-    virtual void m1();
-    virtual void m2();
-    virtual void m3();
-    virtual void m4();
-    virtual void m5();
-    virtual s32 m6();
-    virtual s32 m7();
-};
 struct VBase_18_fc0b09 { char pad[0x18]; };
 struct VObj_18_fc0b09 : VBase_18_fc0b09 {
     virtual void m0();
@@ -852,14 +797,6 @@ extern const f32 lbl_805D9E84;
 extern const f32 lbl_805D9E88;
 extern const f32 lbl_805DF318;
 
-struct VBase_14_c5778e { char pad[0x14]; };
-struct VObj_14_c5778e : VBase_14_c5778e {
-    virtual void m0();
-    virtual s32 m1(s32);
-    virtual void m2();
-    virtual void m3();
-    virtual s32 m4();
-};
 struct Vec_80317B50 { f32 x, y, z; };
 u32 csnVectorUnder(void *, void *, int);
 u32 csnVector(void *, void *, int);
@@ -870,14 +807,6 @@ void TObjEneMe3SinowZoa__sub_80317B50(void *arg0_, s32 arg1);
 
 void TObjEneMe3SinowZoa__sub_80317F90(u8 *arg0, s32 arg1);
 
-struct VBase_14_803182F8 { char pad[0x14]; };
-struct VObj_14_803182F8 : VBase_14_803182F8 {
-    virtual void m0();
-    virtual void m1(s32);
-    virtual void m2();
-    virtual void m3();
-    virtual s32 m4();
-};
 
 extern "C" {
 
@@ -988,14 +917,6 @@ struct VObj_80318564 : Base18_80318564 {
     virtual void m98();
     virtual void m99();
     virtual void m100();
-};
-struct Base14_80318564 { char pad[0x14]; };
-struct VSub_80318564 : Base14_80318564 {
-    virtual void s0();
-    virtual void s1();
-    virtual void s2();
-    virtual void s3();
-    virtual s32 s4();
 };
 
 extern "C" {
@@ -1121,14 +1042,6 @@ extern const f32 lbl_805DF340;
 extern const f32 lbl_805DF344;
 void TObjEneMe3SinowZoa__sub_8031884C(void *arg0_, s32 arg1);
 
-struct VBase_14_6ea8ee { char pad[0x14]; };
-struct VObj_14_6ea8ee : VBase_14_6ea8ee {
-    virtual void m0();
-    virtual void m1();
-    virtual void m2();
-    virtual s32 m3();
-    virtual s32 m4();
-};
 struct VBase_18_4f5f2e { char pad[0x18]; };
 struct VObj_18_4f5f2e : VBase_18_4f5f2e {
     virtual void m0();
@@ -1250,14 +1163,6 @@ void TObjEneMe3SinowZoa__sub_80318C0C(void *arg0_, s32 arg1);
 
 struct Vec_80318F7C { f32 x, y, z; };
 
-struct SubBase_80318F7C { char pad[0x14]; };
-struct Sub_80318F7C : SubBase_80318F7C {
-    virtual void m0();
-    virtual void m1();
-    virtual void m2();
-    virtual void m3();
-    virtual s32 m4();
-};
 
 struct TgtBase_80318F7C { char pad[0x18]; };
 struct Tgt_80318F7C : TgtBase_80318F7C {
@@ -1528,7 +1433,6 @@ inline void configure_sinow_animation_speeds(const SinowZoaKindParameters *param
 #define sinow_zoa_collision_parts ((u8 *)sinow_zoa_collision_parts)
 #define F(T, o) (*(T *)(arg0 + (o)))
 #define VO ((VObj_80318564 *)arg0)
-#define VS ((VSub_80318564 *)(arg0 + 0x414))
 #define TBL(o) (((s32 *)TObjEneMe3SinowZoa__kind_param_tbls[F(s32, 0x3C8)])[(o) / 4])
 #pragma opt_common_subs off
 void TObjEneMe3SinowZoa::load_resources() {
@@ -2821,7 +2725,6 @@ void TObjEneMe3SinowZoa__sub_80318564(u8 *arg0, s32 arg1) {
 
 #undef F
 #undef VO
-#undef VS
 #undef TBL
 void TObjEneMe3SinowZoa::handle_state_substate(s32 arg1) {
     switch (arg1) {
