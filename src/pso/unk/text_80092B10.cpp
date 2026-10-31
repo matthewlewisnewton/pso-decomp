@@ -24,7 +24,6 @@ extern "C" {
 
 int TObjEneRe7Berura__sub_80095328(void*);
 
-typedef struct { s32 x, y, z; } Vec_80092B10;
 typedef struct { u32 pad0; u32 count; } Motion_80092B10;
 typedef struct { u32 pad0; Motion_80092B10 *motion; } MotEnt_80092B10;
 typedef struct { u32 pad0; s32 index; u32 pad8[2]; } Anim_80092B10;
@@ -47,12 +46,11 @@ typedef struct {
     f32 f358;
 } Ene_80092B10;
 
-void update_player_state__9TObjEneDDFv(void *, Vec_80092B10 *, s32);
 s32 rotate_matrix_y(int, int);
 void push_matrix(void);
 void post_translate_matrix(void *);
 void draw_model_motion(void *arg0, void *arg1, f32 farg0);
-extern Vec_80092B10 re7_berura_init_vec;
+extern Vec re7_berura_init_vec;
 extern const f32 TObjEneRe7Berura__data_805D9724;
 extern const f32 lbl_805D9728;
 extern const f32 TObjEneRe7Berura__data_805D972C;
@@ -66,8 +64,8 @@ void TObjEneRe7Berura::vfunc_105() {
     ((TObjEneDD *)self)->get_target_info();
     if (self->v.m8(TObjEneRe7Berura__data_805D9724, lbl_805D9728) != 0) {
         if (self->f326 != 0xB) {
-            Vec_80092B10 v = re7_berura_init_vec;
-            update_player_state__9TObjEneDDFv(self, &v, 0);
+            Vec v = re7_berura_init_vec;
+            ((TObjEneDD *)(self))->draw_ground_shadow(&v, 0);
         }
         TObjPlayer::toggle_particle_effect();
         TObjFish::set_global_param(self->f24);

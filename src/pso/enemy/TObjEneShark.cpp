@@ -160,12 +160,6 @@ struct Owner_800ABDD8
   Fade_800ABDD8 fades[4];
 };
 
-struct Vec_800ABDD8
-{
-  f32 x;
-  f32 y;
-  f32 z;
-};
 
 extern "C" {
 s32 post_translate_matrix(void *);
@@ -372,7 +366,6 @@ typedef struct VBase_14_800ABDD8 VBase_14_800ABDD8;
 typedef struct VBase_18_800ABDD8 VBase_18_800ABDD8;
 typedef struct VObj_14_800ABDD8 VObj_14_800ABDD8;
 typedef struct VObj_18_800ABDD8 VObj_18_800ABDD8;
-typedef struct Vec_800ABDD8 Vec_800ABDD8;
 #define PSO_VCALL_VObj_18_800ABDD8_m9(_self, _arg0, _arg1, _arg2) (((VObj_18_800ABDD8 *)(_self))->m9((_arg0), (_arg1), (_arg2)))
 }
 
@@ -530,11 +523,11 @@ void TObjEneShark::render() {
       return;
     default:
     {
-      Vec_800ABDD8 v;
+      Vec v;
       v.x = lbl_805D9BBC;
       v.y = lbl_805D9BC0;
       v.z = lbl_805D9BC4;
-      ((TObjEnemy *)arg0)->render_with_position_override((u8 *)&v, 0);
+      ((TObjEnemy *)arg0)->draw_ground_shadow(&v, 0);
     }
   }
 }

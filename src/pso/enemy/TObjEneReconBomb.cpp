@@ -160,7 +160,7 @@ void TObjEneReconBomb::render() {
     pop_matrix();
     push_matrix();
     translate_matrix(0, (f32) (*(f32 *)((s8 *)arg0 + 0x38)), (f32) ((0.1f) + this->m_348), (f32) (*(f32 *)((s8 *)arg0 + 0x40)));
-    direction_to_rotation_xz(((u8 *)&this->m_248), (&spC), (&sp8));
+    direction_to_rotation_xz(((u8 *)&this->ground_normal), (&spC), (&sp8));
     rotate_matrix_z(0, sp8);
     rotate_matrix_x(0, (void *)(spC + 0x4000));
     var_f1 = *(f32 *)((s8 *)arg0 + 0x3C) - this->m_348;

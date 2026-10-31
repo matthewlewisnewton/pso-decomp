@@ -72,7 +72,6 @@ static Ent_8008D68C balclaw_parts[7] = {
 static s32 balclaw_part_base[4] = { 0x1C, 0x26, 0x30, 0x3A };
 const char *balclaw_class_name = balclaw_class_name_text;
 
-struct V_8008D700 { f32 x, y, z; };
 
 struct O_8008D700 { u8 pad0[0x30]; u32 flags; u8 pad34[0x378]; f32 f3ac; f32 f3b0; f32 f3b4; u8 pad3b8[4]; f32 f3bc; };
 
@@ -106,11 +105,11 @@ void TObjEneBalClaw::render_scaled(s32 arg1) {
     if (!(this->actorFlags & 0x800) && arg1 != 0) {
         a = this->m_3ac;
         t = 1.0f - (0.5f * ((this->m_3b4 + arg0->f3bc) - a)) * (1.0f / (arg0->f3b0 - a));
-        V_8008D700 v = { 0.0f, 0.0f, 0.0f };
+        Vec v = { 0.0f, 0.0f, 0.0f };
         v.x = t;
         v.y = t;
         v.z = t;
-        ((TObjEnemy *)arg0)->render_with_position_override((u8 *)&v, 0);
+        ((TObjEnemy *)arg0)->draw_ground_shadow(&v, 0);
     }
 }
 

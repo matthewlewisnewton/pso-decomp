@@ -26,7 +26,6 @@ extern "C" {
 
 void vfunc_106__18TObjEneRe4SorcererFv(u8 *arg0);
 s32 post_translate_matrix(void *);
-s32 update_player_state__9TObjEneDDFv(void *, int, int);
 s32 TObjEneRe4Sorcerer__sub_801E3F1C(f32, f32);
 s32 get_target_info__9TObjEneDDFv();
 s32 scroll_strip_uvs(int, int, int);
@@ -75,7 +74,7 @@ void TObjEneRe4Sorcerer::vfunc_106() {
     u8 *arg0 = (u8 *)this;
     get_target_info__9TObjEneDDFv();
     if (((VObj *)arg0)->m8(lbl_805DA788, TObjEneRe4Sorcerer__data_805DA78C) != 0) {
-        update_player_state__9TObjEneDDFv(arg0, 0, 0);
+        ((TObjEneDD *)(arg0))->draw_ground_shadow(0, 0);
         TObjFish::set_global_param(*(s32 *)((s8 *)arg0 + 0x24));
         ((s32 (*)())push_matrix)();
         ((s32 (*)(void *))post_translate_matrix)(arg0 + 0x38);
@@ -1218,7 +1217,7 @@ void render__18TObjEneRe4SorcererFv(u8 *ene_re7_berura) {
     }
     if (var_r28 != 0) {
         if (*(s32 *)((s8 *)ene_re7_berura + 0x3C8) & 0x10) {
-            update_player_state__9TObjEneDDFv(ene_re7_berura, 0, 0);
+            ((TObjEneDD *)(ene_re7_berura))->draw_ground_shadow(0, 0);
         }
         ((TObjEneDD *)ene_re7_berura)->update_secondary_light();
         TObjFish::set_global_param((int) (*(s32 *)((s8 *)ene_re7_berura + 0x24)));

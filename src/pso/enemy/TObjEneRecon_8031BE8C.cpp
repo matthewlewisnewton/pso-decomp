@@ -136,17 +136,15 @@ struct VObj_18_1fdb47 : VBase_18_1fdb47 {
     virtual s32 m104();
 };
 
-struct Vec_8031BE8C { f32 x, y, z; };
 
 struct Recon_8031BE8C { u8 pad[0x480]; VObj_14_fddec9 fade; };
 
 extern "C" {
 s32 is_main_phase_15__9TObjEneDDFv();
-s32 update_player_state__9TObjEneDDFv(void *, void *, int);
 s32 defer_render__7TObjectFv(void *);
 s32 rotate_matrix_y(int, int);
 s32 push_matrix();
-extern Vec_8031BE8C lbl_804760FC;
+extern Vec lbl_804760FC;
 extern s32 saved_model_render_flags;
 extern s32 saved_chunk_polygon_flags_and_mask;
 extern s32 saved_chunk_polygon_flags_or_mask;
@@ -191,8 +189,8 @@ void render__12TObjEneReconFv(u8 *ene_recon) {
                 }
                 if (var_r29 != 0) {
                     if ((*(s32 *)((s8 *)ene_recon + 0x444) & 2) && !(*(s32 *)((s8 *)ene_recon + 0x418) & 0x4000)) {
-                        Vec_8031BE8C v = lbl_804760FC;
-                        update_player_state__9TObjEneDDFv(ene_recon, &v, 0);
+                        Vec v = lbl_804760FC;
+                        ((TObjEneDD *)(ene_recon))->draw_ground_shadow(&v, 0);
                     }
                     ((TObjEneDD *)ene_recon)->update_secondary_light();
                     TObjFish::set_global_param((int) (*(s32 *)((s8 *)ene_recon + 0x24)));

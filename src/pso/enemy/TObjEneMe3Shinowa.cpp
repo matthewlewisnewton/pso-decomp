@@ -1398,16 +1398,7 @@ struct VObj_18_c44252 : VBase_18_c44252 {
     virtual s32 m23(void *, f32);
 };
 
-struct Stack_800E7324 {
-    s32 sp8;
-    s32 spC;
-    s32 sp10;
-};
 
-struct RecoveredGlobal_800E7324_lbl_8043CF94 {
-    s32 value;
-    u8 remaining[0x8];
-};
 
 struct Vec_800E75AC { f32 x; f32 y; f32 z; };
 
@@ -1421,7 +1412,6 @@ struct Obj_800E750C;
 
 struct E_800E728C { u8 pad[0x60]; s32 f60; u8 pad64[0x390 - 0x64]; s32 f390; u8 pad394[0x3AC - 0x394]; f32 f3ac; u8 pad3b0[0x3C4 - 0x3B0]; s32 f3c4; };
 
-typedef char RecoveredGlobal_800E7324_lbl_8043CF94_size[sizeof(RecoveredGlobal_800E7324_lbl_8043CF94) == 0xC ? 1 : -1];
 
 struct VBase_800E7884 { u8 pad[0x14]; };
 
@@ -1485,7 +1475,6 @@ s32 update_linked_position__12TObjEneDD_STFf(f32);
 int select_and_apply_target__12TObjEneDD_STFf(void*);
 void *__dt__12TObjEneDD_STFv(void *arg0, s16 arg1);
 s32 is_main_phase_15__9TObjEneDDFv();
-s32 update_player_state__9TObjEneDDFv(void *, void *, int);
 s32 reset_hp__9TObjEneDDFPUcPUcPUc(void *, int, int, int);
 void get_camera_ctrl__9TObjEneDDFv(s32, s32);
 s32 initialize_enemy_state__9TObjEneDDFl(void *, int);
@@ -1536,7 +1525,7 @@ extern s32 TObjEneMe3ShinowaMirage__data_805D52A4;
 extern s32 TObjEneMe3ShinowaMirage__data_805D52A8;
 extern s32 __vt__17TObjEneMe3Shinowa[];
 extern u8 shinowa_mirage_breakup_params[];
-extern RecoveredGlobal_800E7324_lbl_8043CF94 lbl_8043CF94;
+extern Vec lbl_8043CF94;
 extern RecoveredGlobal_800F4758_lbl_8050110C lbl_80500FEC;
 extern RecoveredGlobal_800E4D7C_lbl_80500FF4 lbl_80500FF4;
 extern s32 *lbl_80501000[];
@@ -3168,15 +3157,9 @@ u8 TObjEneMe3Shinowa::can_hit_same_target() {
 #pragma fp_contract on
 void TObjEneMe3Shinowa::update_player_state_default() {
     u8 *arg0 = (u8 *)this;
-    typedef char sp8_offset[(offsetof(Stack_800E7324, sp8) == 0x0) ? 1 : -1];
-    typedef char spC_offset[(offsetof(Stack_800E7324, spC) == 0x4) ? 1 : -1];
-    typedef char sp10_offset[(offsetof(Stack_800E7324, sp10) == 0x8) ? 1 : -1];
-    Stack_800E7324 stack;
     if (!(*(s32 *)((s8 *)arg0 + 0x3C4) & 0x80000)) {
-        stack.sp8 = *(s32 *)((s8 *)&lbl_8043CF94.value + 0);
-        stack.spC = *(s32 *)((s8 *)&lbl_8043CF94.value + 4);
-        stack.sp10 = *(s32 *)((s8 *)&lbl_8043CF94.value + 8);
-        update_player_state__9TObjEneDDFv(arg0, (void *)&stack.sp8, 0);
+        Vec stack = lbl_8043CF94;
+        ((TObjEneDD *)(arg0))->draw_ground_shadow(&stack, 0);
     }
 }
 #pragma pop

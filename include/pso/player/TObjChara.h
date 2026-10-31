@@ -179,9 +179,7 @@ public:
     u8 unk_228[0x4];
     void* m_22c;
     u8 unk_230[0x18];
-    f32 m_248;
-    u8 unk_24C[0x4];
-    f32 m_250;
+    Vec ground_normal;
     u8 unk_254[0x20];
     void* m_274;
     u8 unk_278[0x8];
@@ -259,5 +257,7 @@ public:
 };
 
 extern "C" void *__dt__9TObjCharaFv(void *, s16);
+
+typedef char TObjCharaGroundNormalOffset[offsetof(TObjChara, ground_normal) == 0x248 ? 1 : -1];
 
 #endif

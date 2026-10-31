@@ -32,7 +32,6 @@ int transform_to_view__11TCameraCtrlFii(void*);
 int apply_split_screen_view_matrix__11TCameraCtrlFv(void*);
 int restore_scene_lighting(void*);
 int select_actor_lighting(void*);
-int render_with_position_override__9TObjEnemyFPUcl(void*);
 
     extern int model_render_flags;
 
@@ -44,7 +43,9 @@ void TObjEneDD::vfunc_100() {
 
 void TObjEneDD::clear_global_flag_400() { model_render_flags = (model_render_flags & 0xfffffbff); }
 
-int TObjEneDD::update_player_state() { return render_with_position_override__9TObjEnemyFPUcl(this); }
+void TObjEneDD::draw_ground_shadow(const Vec *scale, s32 forceDraw) {
+    TObjEnemy::draw_ground_shadow(scale, forceDraw);
+}
 
 void TObjEneDD::draw_oriented_shadow(s32 arg1, s32 arg2, u32 arg3) {
     s32 arg0 = (s32)this;

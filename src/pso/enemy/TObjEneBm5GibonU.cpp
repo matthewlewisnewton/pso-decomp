@@ -189,7 +189,6 @@ struct Obj_800D0F44 { u8 pad0[0x38]; Vec_800D0F44 pos; u8 pad44[0x60 - 0x44]; s3
 struct Spawn_800D1990 { s32 a, b, c, d; };
 
 extern "C" {
-s32 update_player_state__9TObjEneDDFv(void *, s32, s32);
 s32 get_target_info__9TObjEneDDFv();
 s32 pack_debug_text_position(s32, s32);
 Ene_800D17E8 *find_enemy_by_id__16TObjEneBm5GibonUFi(s32 id);
@@ -1852,7 +1851,7 @@ void TObjEneBm5GibonU::render_debug() {
         debug_printf_at(pack_debug_text_position(0, 6), lbl_8043C0D8);
     }
     if (self->m8(lbl_805DA180, TObjEneBm5GibonU__data_805DA184) != 0) {
-        update_player_state__9TObjEneDDFv(self, 0, 0);
+        ((TObjEneDD *)(self))->draw_ground_shadow(0, 0);
         TObjFish::set_global_param(self->f24);
         push_matrix();
         post_translate_matrix(&self->pos);

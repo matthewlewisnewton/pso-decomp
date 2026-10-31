@@ -1928,7 +1928,7 @@ void TObjEneSaver::render() {
         pop_matrix();
         restore_scene_lighting();
         if (!(*(s32 *)((s8 *)arg0 + 0x374) & 1)) {
-            ((TObjEnemy *)arg0)->render_with_position_override(0, 0);
+            ((TObjEnemy *)arg0)->draw_ground_shadow(0, 0);
         }
     } else {
         push_matrix_from(identity_matrix);

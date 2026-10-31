@@ -37,7 +37,6 @@ struct VObj_18_26a62c : VBase_18_26a62c {
     virtual s32 m8(f32, f32);
 };
 
-struct Vec_80097100 { f32 x, y, z; };
 
 struct Motion_80097100 { u8 pad0[4]; u32 count; };
 
@@ -64,9 +63,8 @@ extern "C" {
 s32 push_matrix();
 s32 post_translate_matrix(void *);
 void rotate_matrix_y(s32, s32);
-s32 update_player_state__9TObjEneDDFv(void *, void *, int);
 void draw_model_motion(void *arg0, void *arg1, f32 farg0);
-extern Vec_80097100 lbl_8043A0E0;
+extern Vec lbl_8043A0E0;
 extern const f32 lbl_805D97D8;
 extern const f32 lbl_805D97DC;
 extern const f32 TObjEneDf2Bringer__data_805D97E0;
@@ -79,8 +77,8 @@ void TObjEneDf2Bringer::vfunc_105() {
     Motion_80097100 *mot;
     ((TObjEneDD *)self)->get_target_info();
     if (self->m8(lbl_805D97D8, lbl_805D97DC) != 0) {
-        Vec_80097100 v = lbl_8043A0E0;
-        update_player_state__9TObjEneDDFv(self, &v, 0);
+        Vec v = lbl_8043A0E0;
+        ((TObjEneDD *)(self))->draw_ground_shadow(&v, 0);
         TObjPlayer::toggle_particle_effect();
         TObjFish::set_global_param((s32)self->texlist);
         push_matrix();
