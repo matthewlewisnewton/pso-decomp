@@ -174,7 +174,7 @@ void TObjEnemyCustom::update_wander_state() {
             turn_toward_direction(((EnemyMoveParams *)movementParameters)->turn_speed, velocity());
         }
         apply_actor_gravity(this, NULL, 0.0f);
-        ((TObjPlayer *)this)->update_collisions();
+        ((TObjCollidable *)this)->update_collisions();
         return;
     }
 }
@@ -196,7 +196,7 @@ void TObjEnemyCustom::update() {
                 ((TObjEnemyCustomVictim *)target)->apply_knockback_from_attacker(this, 3.0f);
             }
         }
-        ((TObjPlayer *)this)->update_collisions();
+        ((TObjCollidable *)this)->update_collisions();
         if (this->action_flags != 4) {
             state = -1;
         }
@@ -223,7 +223,7 @@ void TObjEnemyCustom::update_state_machine() {
         if (!(actorFlags & 0x800000)) {
             apply_actor_gravity(this, NULL, 0.0f);
         }
-        ((TObjPlayer *)this)->update_collisions();
+        ((TObjCollidable *)this)->update_collisions();
         remaining = timer;
         timer = remaining - 1;
         if (remaining < 0) {
@@ -256,7 +256,7 @@ void TObjEnemyCustom::update_knockback_state() {
         velocity()->x *= 0.5f;
         movement_velocity.z *= 0.5f;
         apply_actor_gravity(this, NULL, 0.0f);
-        ((TObjPlayer *)this)->update_collisions();
+        ((TObjCollidable *)this)->update_collisions();
         if (this->action_flags != 8) {
             state = -1;
         }
@@ -290,7 +290,7 @@ void TObjEnemyCustom::update_dying_state() {
     case 1:
         advance_animation();
         apply_actor_gravity(this, NULL, 0.0f);
-        ((TObjPlayer *)this)->update_collisions();
+        ((TObjCollidable *)this)->update_collisions();
         if (this->frame < 0.5f * (30.0f * this->play_speed)) {
             move_with_wall_slide((u8 *)this);
             velocity()->x *= 0.5f;
