@@ -1,6 +1,7 @@
 #include "pso/player/demo_mode.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/misc/PersistentSound.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/math/ScratchVectorStorage.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
@@ -21,6 +22,7 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/map/FloorArea.h"
+#include "pso/object/TObjChip.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/player/TObjPlayer_801AF2F0.h"
 
@@ -168,6 +170,9 @@ void submit_cursor_candidate(void *, s32);
 
 extern s32 lbl_805D3530;
 extern const f32 lbl_805DBA48;
+extern const f32 lbl_805DBA50;
+extern const TObjChipParams lbl_80442D80, lbl_80442DCC, lbl_80442E18;
+extern void *tl_06;
 s32 is_split_screen();
 s32 get_camera_mode__11TCameraCtrlFv();
 void update__15RenderFadeStateFv(void *);
@@ -230,6 +235,45 @@ void TOTrapAncient01::release_trapped_player() {
             }
             obj_clear_flag30_20000((TObjBase *)temp_r3_2);
         }
+    }
+}
+
+// Parameter templates are still owned by original-data ranges pending a split audit.
+void TOTrapAncient01::play_sounds() {
+    TObjChipParams a = lbl_80442D80;
+    a.pos[0] = position.x; a.pos[1] = position.y; a.pos[2] = position.z;
+    a.pad_38[0] = position.y;
+    a.model = get_bml_model((void *)TOTrapAncient01__bml_resource, 0);
+    a.textures = TObjFish__sub_8001EDB0((void *)TOTrapAncient01__bml_resource, 0);
+    TObjChipParams b = lbl_80442DCC;
+    b.pos[0] = position.x; b.pos[1] = position.y; b.pos[2] = position.z;
+    b.pad_38[0] = position.y;
+    b.model = get_bml_model((void *)TOTrapAncient01__bml_resource, 1);
+    b.textures = TObjFish__sub_8001EDB0((void *)TOTrapAncient01__bml_resource, 1);
+    TObjChipParams c = lbl_80442E18;
+    c.pos[0] = position.x; c.pos[1] = position.y; c.pos[2] = position.z;
+    c.pad_38[0] = position.y;
+    c.model = get_bml_model((void *)TOTrapAncient01__bml_resource, 2);
+    c.textures = TObjFish__sub_8001EDB0((void *)TOTrapAncient01__bml_resource, 2);
+    void *o = __nw__7TObjectFUl(0x234);
+    if (o != NULL) __ct__8TObjChipFP7TObjectP14TObjChipParams((u8 *)o, (u8 *)tl_06, (u8 *)&a);
+    o = __nw__7TObjectFUl(0x234);
+    if (o != NULL) __ct__8TObjChipFP7TObjectP14TObjChipParams((u8 *)o, (u8 *)tl_06, (u8 *)&b);
+    o = __nw__7TObjectFUl(0x234);
+    if (o != NULL) __ct__8TObjChipFP7TObjectP14TObjChipParams((u8 *)o, (u8 *)tl_06, (u8 *)&c);
+    TParticleCtrl *particle = spawn_particle_effect(&position, 0x8b);
+    if (particle != NULL) particle->set_scale(lbl_805DBA50, lbl_805DBA50);
+    switch (get_current_floor_area()) {
+    case AREA_VR_TEMPLE_ALPHA: case AREA_VR_TEMPLE_BETA:
+        play_sound_effect(0x4bc07, &position, 0, 0); break;
+    case AREA_VR_SPACESHIP_ALPHA: case AREA_VR_SPACESHIP_BETA:
+        play_sound_effect(0x4004bc07, &position, 0, 0); break;
+    case AREA_SEABED_UPPER: case AREA_SEABED_LOWER:
+        play_sound_effect(0x4004c118, &position, 0, 0); break;
+    case AREA_SEASIDE_NIGHT: case AREA_TOWER:
+        play_sound_effect(0x4004bc19, &position, 0, 0); break;
+    default:
+        play_sound_effect(0x4004bc12, &position, 0, 0); break;
     }
 }
 
