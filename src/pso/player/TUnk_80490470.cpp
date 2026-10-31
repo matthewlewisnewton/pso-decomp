@@ -100,7 +100,6 @@ extern "C" {
 
 void TObjPlayer__sub_800A04F0(Obj_800A04F0 *self);
 
-void TObjPlayer__sub_800A0554(Obj_800A0554 *self);
 void TUnk_80490470::set_rate_from_divisor(s32 arg1) {
     this->rate = (f32) (2.0f / (f32) arg1);
 }
@@ -116,13 +115,13 @@ void TObjPlayer__sub_800A04F0(Obj_800A04F0 *self) {
 }
 #pragma pop
 
-void TObjPlayer__sub_800A0554(Obj_800A0554 *self) {
-    self->m1(10);
-    self->f18 = -(2e+01f * self->rate);
-    self->v0 = 0.0f;
-    self->v4 = 0.0f;
-    self->v8 = 0.0f;
-    self->vc = 0.0f;
+void TUnk_80490470::start_negative_fade_phase() {
+    set_rate_from_divisor(10);
+    phase = -(2e+01f * rate);
+    color.a = 0.0f;
+    color.r = 0.0f;
+    color.g = 0.0f;
+    color.b = 0.0f;
 }
 
 

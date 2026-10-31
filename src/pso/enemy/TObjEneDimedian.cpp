@@ -117,8 +117,7 @@ struct Player_800A7CA4 : VBase18_800A7CA4 {
 };
 
 extern "C" {
-
-s32 TObjPlayer__sub_800A0554(void *);
+s32 start_negative_fade_phase__13TUnk_80490470Fv(void *);
 s32 rotate_matrix_y(int, int);
 s32 push_matrix();
 s32 post_translate_matrix(void *);
@@ -295,7 +294,7 @@ void TObjEneDimedian::vfunc_83() {
         if (this->m_390 == 1) {
             this->phase = 1;
             ((TBoss3Volopt *)(arg0->sub38))->play_area_se_with_particle();
-            TObjPlayer__sub_800A0554((u8 *)arg0 + 0x3A8);
+            start_negative_fade_phase__13TUnk_80490470Fv((u8 *)arg0 + 0x3A8);
         } else {
             this->phase = 2;
         }

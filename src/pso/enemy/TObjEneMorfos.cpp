@@ -602,7 +602,7 @@ s32 get_mode__11TCameraCtrlFPv(void *);
 u32 csnLookAt(void *, void *);
 s32 is_patrol_active__21TObjEneRe7BeruraPunchFv(void *);
 s32 TObjPlayer__sub_800A04F0(void *);
-void TObjPlayer__sub_800A0554(void *);
+void start_negative_fade_phase__13TUnk_80490470Fv(void *);
 void *__dt__13TUnk_80490470Fv(void *arg0, s16 arg1);
 void enemy_set_target_id(void *, u16);
 void *__dt__12TObjEneDD_STFv(void *arg0, s16 arg1);
@@ -1654,7 +1654,7 @@ void TObjEneMorfos__sub_803342B8(u8 *ene_dd, s32 arg1) {
         *(s32 *)((s8 *)ene_dd + 0x3C0) = (s32) (*(s32 *)((s8 *)ene_dd + 0x3C0) & ~5);
         *(s32 *)((s8 *)ene_dd + 0x3C0) = (s32) (*(s32 *)((s8 *)ene_dd + 0x3C0) | 2);
         ((TObjEneDD *)ene_dd)->set_field_378(3);
-        TObjPlayer__sub_800A0554(ene_dd + 0x3EC);
+        start_negative_fade_phase__13TUnk_80490470Fv(ene_dd + 0x3EC);
         ((TObjEneMorfos *)ene_dd)->fade.start_fade_in();
         ((TBoss3Volopt *)(ene_dd + 0x38))->play_area_se_with_particle();
         return;
