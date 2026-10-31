@@ -14,6 +14,7 @@ detect_strings: true
 mw_comment_version: 10
 # --- force_active (BEGIN) ---
 force_active:
+  - __vt__13TUnk_804E14E8
   - "@14"
   - "@28@__dt__17TMedicalCenterMesFv"
   - "@28@__dt__22TQuestVmDownLoadServerFv"
@@ -988,18 +989,18 @@ force_active:
   - TObjEneMe1Gee__sub_800CBDBC
   - TObjEneMe1GiGueBarrier__ct
   - TObjEneMe1GiGueMissile__ct
-  - TObjEneMe1GiGue__ct
-  - TObjEneMe1GiGue__model_filename_table
-  - TObjEneMe1GiGue__sub_802CB03C
-  - TObjEneMe1GiGue__sub_802CB10C
-  - TObjEneMe1GiGue__sub_802CB378
-  - TObjEneMe1GiGue__sub_802CB824
-  - TObjEneMe1GiGue__sub_802CC45C
-  - TObjEneMe1GiGue__sub_802CC614
-  - TObjEneMe1GiGue__sub_802CC900
-  - TObjEneMe1GiGue__sub_802CCBAC
-  - TObjEneMe1GiGue__sub_802CD054
-  - TObjEneMe1GiGue__sub_802CDAE8
+  - __ct__15TObjEneMe1GiGueFP7TObjectPv
+  - gigue_model_filenames
+  - update_animation_nodes__15TObjEneMe1GiGueFv
+  - collect_targets__15TObjEneMe1GiGueFv
+  - update_landing__15TObjEneMe1GiGueFv
+  - spawn_needle__15TObjEneMe1GiGueFl
+  - update_techniques__15TObjEneMe1GiGueFv
+  - update_needle_attack__15TObjEneMe1GiGueFv
+  - update_missile_attack__15TObjEneMe1GiGueFv
+  - update_search__15TObjEneMe1GiGueFv
+  - fn_802CD054__15TObjEneMe1GiGueFv
+  - fn_802CDAE8__15TObjEneMe1GiGueFv
   - TObjEneMe3ShinowaReal__ct
   - TObjEneMe3SinowZoaReal__ct
   - TObjEneMe3SinowZoa__sub_80317B50
@@ -2596,7 +2597,7 @@ force_active:
   - accumulate_mag_axis_oscillation__FPfPlP28MagAxisOscillationParameters
   - action__13TObjEneBm3FlyFPvi
   - action__14TObjEneBm5WolfFl
-  - action__15TObjEneMe1GiGueFPv
+  - update_barrier__15TObjEneMe1GiGueFv
   - action__16TObjEneBm5GibonUFPvi
   - action__16TObjEneMe3StelthFPvi
   - action__17TObjEneDf2BringerFPvi
@@ -2613,7 +2614,7 @@ force_active:
   - add_mag_stat_bonuses__9TItemDataFv
   - add_meseta_purpose_actions__14TWindowSubItemFll
   - add_shield_stat_contribution__9TItemDataFPviiPv
-  - add_target_in_cone__15TObjEneMe1GiGueFPvPv
+  - add_target_in_cone__15TObjEneMe1GiGueFP9TObjChara
   - add_target_in_front_arc__10TObjPlayerFPv
   - add_weapon_stat_bonuses__9TItemDataFlPslPsl
   - advance_afterimage__11TBoss4Type2Fv
@@ -3515,7 +3516,7 @@ force_active:
   - check_trigger_flag__15TOTrapAncient01Fll
   - check_type_and_enabled__11TMainCursorFPvPv
   - check_valid_state__6TLobbyFi
-  - check_vector_bit__15TObjEneMe1GiGueFl
+  - check_vector_bit__15TObjEneMe1GiGueFP3Vec
   - choose_attack__13TObjEneBm3FlyFPv
   - choose_attack_heading_sector__11TBoss4Type3Fv
   - choose_burrow_ring_destination__12TBoss1DragonFPvPv
@@ -3949,7 +3950,7 @@ force_active:
   - decrypt_network_info_cipher_round__FPUlPUl
   - deduct_cap_excess__14TItemEquipBaseFlPss
   - deldepth_actions
-  - deleting_dtor__15TObjEneMe1GiGueFPvs
+  - __dt__15TObjEneMe1GiGueFv
   - deleting_dtor__18TObjEneBalClawClawFPvs
   - deliver_chain_hits__11TTecGiZondeFv
   - deliver_delayed_weapon_hit
@@ -4137,7 +4138,7 @@ force_active:
   - draw_model__11TObjDoaEx01Fv
   - draw_model__12TObjComputerFv
   - draw_model__15TODoorAncient09Fv
-  - draw_model__15TObjEneMe1GiGueFPv
+  - render__15TObjEneMe1GiGueFv
   - draw_model__15TObjLazerFence4Fv
   - draw_model__16TObjEneMe3StelthFPv
   - draw_model__17TBoss5GryphonDemoFPvl
@@ -4389,7 +4390,7 @@ force_active:
   - find_nearest_enemy__15TObjEnemyCustomFP3Vecf
   - find_nearest_target__10TObjPlayerFPv
   - find_open_direction__10TObjPlayerFPvPv
-  - find_open_direction__15TObjEneMe1GiGueFPvPv
+  - find_open_direction__15TObjEneMe1GiGueFP3Vec
   - find_pack_leader__14TObjEneBm5WolfFi
   - find_placement_obstruction
   - find_player_on_floor__12TBoss1DragonFPv
@@ -4743,8 +4744,8 @@ force_active:
   - get_floor_surface_type__10TObjPlayerFv
   - get_floor_switch_flag__FUls
   - get_function_key_menu__16TKeyBoardControlFPv
-  - get_gigue_float_parameter__Fll
-  - get_gigue_int_parameter__Fll
+  - get_float_parameter__15TObjEneMe1GiGueFl
+  - get_int_parameter__15TObjEneMe1GiGueFl
   - get_group_id__14TObjEneBm5WolfFPv
   - get_gstream_buffered_bytes__Fv
   - get_input_mode__11TWindowChatFv
@@ -4829,7 +4830,7 @@ force_active:
   - get_viewport_offset__19TWindowKeyBoardSoftFi
   - get_weapon_set_multiplier__9TItemDataFPUc
   - get_window_control_state__Fl
-  - gi_gue_njm_name_table
+  - gigue_split_screen_motion_filenames
   - gibon_collision_body_templates
   - gibon_u_animation_file_table
   - gibon_u_animation_name_table
@@ -5032,7 +5033,7 @@ force_active:
   - init__13TUnk_804F28E0FlPv
   - init__15PSOV3EncryptionFUl
   - init__15TObjEneDelDepthFv
-  - init__15TObjEneMe1GiGueFPv
+  - update_spawn__15TObjEneMe1GiGueFv
   - init__17TObjEneBm3FlyNestFPv
   - init__17TWindowSubComCardFi
   - init__18TChallenge4PResultFv
@@ -5771,8 +5772,8 @@ force_active:
   - lbl_804DDAF4
   - lbl_804DDB40
   - lbl_804DDB8C
-  - lbl_804E1210
-  - lbl_804E135C
+  - gigue_split_screen_model_filenames
+  - __vt__15TObjEneMe1GiGue
   - lbl_804E1548
   - lbl_804E15BC
   - lbl_804E15C4
@@ -6463,7 +6464,7 @@ force_active:
   - md_stop_update__11TBoss4Type2Fv
   - me1_gee_dispatch_table
   - me1_gee_init_params
-  - me1_gi_gue_motion_filename_table
+  - gigue_motion_filenames
   - me3_stelth_bml_resource_desc
   - megid_projectile_weapon_vtable
   - menu_font_render_rects
@@ -6495,7 +6496,7 @@ force_active:
   - morning_glory_ct__FPvlPv
   - motorcycle_resource_descriptor
   - move_along_angle__13TBoss5GryphonFPvif
-  - move_around_center__15TObjEneMe1GiGueFPvPvf
+  - move_around_center__15TObjEneMe1GiGueFP3Vecf
   - move_cursor_prev__11TWindowMenuFv
   - move_enter__11TBoss4Type2Fv
   - move_idle__11TBoss4Type2Fv
@@ -11279,7 +11280,7 @@ force_active:
   - rebuild_com_card_list__17TWindowSubComCardFii
   - rebuild_item_list__18TShopGetItemWindowFv
   - rebuild_parts__15TBoss3VoloptP02Fv
-  - receive_attack__15TObjEneMe1GiGueFPviii
+  - receive_direct_attack__15TObjEneMe1GiGueFPv19DirectAttackPayloadPvll
   - receive_direct_attack__15TBoss3VoloptP02FPv19DirectAttackPayloadPvll
   - receive_direct_attack__20TContainerAncient01RFPv19DirectAttackPayloadPvll
   - receive_physical_attack__15TBoss3VoloptP02FPvf
@@ -11374,7 +11375,7 @@ force_active:
   - reload_stats_for_phase__13TBoss5GryphonFPv
   - reload_stats_for_type__13TBoss5GryphonFv
   - remap_sequence_after_recovery__12TBoss1DragonFv
-  - remap_sound_id__15TObjEneMe1GiGueFPvl
+  - remap_sound_id__15TObjEneMe1GiGueFl
   - remove_duplicate_bindings__21TWindowSubCustomEquipFPv
   - remove_entry_at__6TLobbyFi
   - remove_equip_effects__14TItemEquipBaseFv
@@ -13121,9 +13122,9 @@ force_active:
   - sub_802C2548__13TUnk_804E094CFv
   - sub_802C2A10__13TUnk_804E0988Fv
   - sub_802C2C48__13TUnk_804E0988Fv
-  - sub_802CACD8__15TObjEneMe1GiGueFv
-  - sub_802CB6D4__15TObjEneMe1GiGueFv
-  - sub_802CCF2C__15TObjEneMe1GiGueFv
+  - reset_spawn_after_hold__15TObjEneMe1GiGueFv
+  - select_next_action__15TObjEneMe1GiGueFv
+  - update_idle__15TObjEneMe1GiGueFv
   - sub_802D4E08__23TAdSinglePlyChrSelectGCFv
   - sub_802D577C__13TUnk_804E21F8Fv
   - sub_802D7444__12TObjNpcEnemyFv
@@ -13670,7 +13671,7 @@ force_active:
   - update_room_visibility_from_camera__6TSceneFv
   - update_rotate_anim__21TWindowSubCustomEquipFv
   - update_rotation_ramp__9TBoss6MagFv
-  - update_rush_attack__15TObjEneMe1GiGueFPv
+  - update_rush_attack__15TObjEneMe1GiGueFv
   - update_scale_pulse__15TObjEneDelDepthFv
   - update_scale_sound__11TBoss4Type3Fv
   - update_scroll_close__6TLobbyFv

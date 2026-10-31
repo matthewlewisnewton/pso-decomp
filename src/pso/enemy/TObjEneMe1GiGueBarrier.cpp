@@ -1,6 +1,6 @@
+#include "types.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
-#include "types.h"
 #include "pso/enemy/TObjEneMe1GiGueBarrier.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/unk/text_803D96A8.h"
@@ -50,11 +50,7 @@ struct VObj_18_ca64a0 : VBase_18_ca64a0 {
 
 extern "C" {
 void *__nw__7TObjectFUl(int);
-
-s32 is_active_state__22TObjEneMe1GiGueBarrierFv(int);
 u16 get_entity_id(void *);
-s32 set_action_table__10TObjMotionFP16TObjMotionAction(void *, void *, int);
-void TObjEneMe1GiGueBarrier__sub_802CABF4(void *p);
 extern RecoveredGlobal_80325BCC_lbl_804ECD40 TObjEneMe1GiGueBarrier__animation_definitions;
 extern s32 __vt__22TObjEneMe1GiGueBarrier[];
 extern const char *lbl_805D4198;
@@ -86,7 +82,7 @@ block_6:
             push_matrix();
             post_translate_matrix((u8 *)&this->position);
             rotate_matrix_y(0, this->rotation_y);
-            set_current_texture_list((GinjaTextureList *)(this->texlist));
+            set_current_texture_list((GinjaTextureList *)this->texlist);
             TParticleCtrl::end_effect_render();
             ((TObjMotion *)arg0)->draw();
             pop_matrix();
@@ -97,15 +93,14 @@ block_6:
 
 void TObjEneMe1GiGueBarrier::run_task() {
     u8 *arg0 = (u8 *)this;
-    u32 temp_r0;
-    temp_r0 = this->m_fc;
-    if (temp_r0 == 0U) {
+    TObjEneMe1GiGue *owner = gigue;
+    if (owner == NULL) {
         queue_destruction__7TObjectFv((arg0));
         return;
     }
-    VecCopy((Vec *)(arg0 + 0x38), (const Vec *)(((TObjEneMe1GiGueBarrier *)temp_r0)->update_and_get_pos()));
-    this->rotation_y = ((TObjEneMe1GiGueBarrier *)(this->m_fc))->get_timer();
-    ((TObjMotion *)arg0)->advance_animation();
+    VecCopy(&position, owner->update_barrier_origin());
+    rotation_y = gigue->get_barrier_rotation();
+    advance_animation();
     this->m_108 = (this->m_108 - 1);
     switch (this->m_104) {
     case 0:
@@ -113,9 +108,9 @@ void TObjEneMe1GiGueBarrier::run_task() {
             this->m_104 = 1;
             this->requested_action = 1;
             if (get_current_floor_area() == AREA_TOWER) {
-                play_sound_effect(0x4003A316, (const Vec *)((u8 *)&this->position), 0, 0);
+                play_sound_effect(0x4003A316, &this->position, 0, 0);
             } else {
-                play_sound_effect(0x3A346, (const Vec *)((u8 *)&this->position), 0, 0);
+                play_sound_effect(0x3A346, &this->position, 0, 0);
             }
         }
         break;
@@ -126,7 +121,7 @@ void TObjEneMe1GiGueBarrier::run_task() {
         break;
     default:
     case 1:
-        if (((s32) this->m_108 <= 0) || (is_active_state__22TObjEneMe1GiGueBarrierFv(this->m_fc) != 0)) {
+        if (((s32) this->m_108 <= 0) || (gigue->should_end_barrier() != 0)) {
             this->m_104 = 2;
             this->requested_action = 2;
         }
@@ -136,7 +131,7 @@ void TObjEneMe1GiGueBarrier::run_task() {
 
 }
 TObjEneMe1GiGueBarrier::~TObjEneMe1GiGueBarrier() {
-    if (*(void **)((s8 *)this + 0xFC) != NULL) { ((TObjEneMe1GiGueBarrier *)(*(void **)((s8 *)this + 0xFC)))->clear_flag388_bit80000(); }
+    if (gigue != NULL) { gigue->clear_barrier_active(); }
 }
 
 
@@ -145,18 +140,18 @@ u8 *TObjEneMe1GiGueBarrier__ct(TObjEneMe1GiGueBarrier *ene_me1_gi_gue_barrier, s
     __ct__10TObjMotionFP7TObject((u8 *)ene_me1_gi_gue_barrier);
     *(s32 **)((s8 *)ene_me1_gi_gue_barrier + 0x18) = &(*(RecoveredGlobal_80325BCC___vt__22TObjEneMe1GiGueBarrier *)&__vt__22TObjEneMe1GiGueBarrier).value;
     *(s32 *)((s8 *)ene_me1_gi_gue_barrier + 0) = (s32) ((s32)lbl_805D4198);
-    *(u8 **)((s8 *)ene_me1_gi_gue_barrier + 0xFC) = arg2;
-    ene_me1_gi_gue_barrier->m_100 = get_entity_id(*(u8 **)((s8 *)ene_me1_gi_gue_barrier + 0xFC));
-    VecCopy((Vec *)((u8 *)ene_me1_gi_gue_barrier + 0x38), (const Vec *)((void *) (((TObjEneMe1GiGueBarrier *)((s32) *(u8 **)((s8 *)ene_me1_gi_gue_barrier + 0xFC)))->update_and_get_pos())));
-    ene_me1_gi_gue_barrier->rotation_y = ((TObjEneMe1GiGueBarrier *)(*(u8 **)((s8 *)ene_me1_gi_gue_barrier + 0xFC)))->get_timer();
-    ene_me1_gi_gue_barrier->m_108 = ((TObjEneMe1GiGueBarrier *)(*(u8 **)((s8 *)ene_me1_gi_gue_barrier + 0xFC)))->get_field_44c();
-    TObjEneMe1GiGueBarrier__sub_802CABF4((*(u8 **)((s8 *)ene_me1_gi_gue_barrier + 0xFC)));
+    ene_me1_gi_gue_barrier->gigue = (TObjEneMe1GiGue *)arg2;
+    ene_me1_gi_gue_barrier->m_100 = get_entity_id(ene_me1_gi_gue_barrier->gigue);
+    VecCopy(&ene_me1_gi_gue_barrier->position, ene_me1_gi_gue_barrier->gigue->update_barrier_origin());
+    ene_me1_gi_gue_barrier->rotation_y = ene_me1_gi_gue_barrier->gigue->get_barrier_rotation();
+    ene_me1_gi_gue_barrier->m_108 = ene_me1_gi_gue_barrier->gigue->get_barrier_duration();
+    ene_me1_gi_gue_barrier->gigue->set_barrier_active();
     ene_me1_gi_gue_barrier->m_104 = 0;
     *(s32 *)((s8 *)ene_me1_gi_gue_barrier + 0x34) = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)(*(u8 * *)&TObjEneMe1GiGueBarrier__barrier_resource_object) + 0x42C)) + 0x28);
     temp_r5 = (u8 *)(*(u8 **)((s8 *)(*(u8 * *)&TObjEneMe1GiGueBarrier__barrier_resource_object) + 0x42C));
     ene_me1_gi_gue_barrier->texlist = (s32) *(s32 *)((s8 *)temp_r5 + 0x2C);
-    set_action_table__10TObjMotionFP16TObjMotionAction((void *)ene_me1_gi_gue_barrier, &TObjEneMe1GiGueBarrier__animation_definitions.value, (int)temp_r5);
-    ((TObjMotion *)ene_me1_gi_gue_barrier)->set_motion_list((BmlMotionEntry *)((int) (*(s32 *)((s8 *)(*(u8 * *)&TObjEneMe1GiGueBarrier__barrier_resource_object) + 0x430))));
+    ene_me1_gi_gue_barrier->set_action_table((TObjMotionAction *)&TObjEneMe1GiGueBarrier__animation_definitions.value);
+    ((TObjMotion *)ene_me1_gi_gue_barrier)->set_motion_list((BmlMotionEntry *)(*(s32 *)((s8 *)(*(u8 * *)&TObjEneMe1GiGueBarrier__barrier_resource_object) + 0x430)));
     ene_me1_gi_gue_barrier->requested_action = 0;
     ((TObjMotion *)ene_me1_gi_gue_barrier)->set_animation((ene_me1_gi_gue_barrier->requested_action));
     ((TObjMotion *)ene_me1_gi_gue_barrier)->set_field_b8(ene_me1_gi_gue_barrier->requested_action);
@@ -175,6 +170,6 @@ void *TObjEneMe1GiGueBarrier::create(void *arg0, void *arg1) {
 }
 
 void TObjEneMe1GiGueBarrier::init_global() {
-    TObjEneMe1GiGueBarrier__barrier_resource_object = TObjEneMe1GiGue::get_barrier_count();
+    TObjEneMe1GiGueBarrier__barrier_resource_object = (s32)TObjEneMe1GiGue::get_resources();
 }
 
