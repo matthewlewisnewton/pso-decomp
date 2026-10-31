@@ -1,3 +1,4 @@
+#include "pso/math/MatrixCopy.h"
 #include "types.h"
 #include "pso/unk/text_803D853C.h"
 #include "pso/unk/text_803D96A8.h"
@@ -34,7 +35,7 @@ void TUnk_804F1C58::draw_node_tree(NJS_OBJECT *arg1) {
     do {
         temp_r31 = *(s32 *)((s8 *)var_r30 + 0);
         push_matrix();
-        TObjPlayer::concat_matrix(0, node_matrix_array_base + (this->m_30 * 0x30));
+        concat_matrix((MtxP)(0), (const f32 (*)[4])(node_matrix_array_base + (this->m_30 * 0x30)));
         this->m_30 = (this->m_30 + 1);
         temp_r12 = draw_callback;
         if (temp_r12 != NULL) {

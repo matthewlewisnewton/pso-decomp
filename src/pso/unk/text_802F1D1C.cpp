@@ -1,3 +1,4 @@
+#include "pso/math/MatrixCopy.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/boss/TBoss8DragonDemo.h"
@@ -42,7 +43,7 @@ void draw_tunnel_segment(u8 *boss7_tunnel_col) {
         push_matrix();
         var_r4 = (var_r30 + 0x48);
         var_r3 = NULL;
-        TObjPlayer::concat_matrix(0, (int)var_r4);
+        concat_matrix((MtxP)(0), (const f32 (*)[4])((int)var_r4));
         var_r3 = boss7_common_bml_resource;
         var_r3 = (u8 *)(*(u8 **)((s8 *)var_r3 + 0x42C));
         var_r3 += var_r31 * 0x10;
@@ -59,7 +60,7 @@ void fn_802F1DAC(u8 *arg0) {
         set_draw_list_mask(2);
         set_current_texture_list((GinjaTextureList *)(boss7_common_texture_list));
         push_matrix();
-        TObjPlayer::concat_matrix(0, (int)(arg0 + 0x48));
+        concat_matrix((MtxP)(0), (const f32 (*)[4])((int)(arg0 + 0x48)));
         ((s32 (*)(int, void *))draw_ginja_object)((*(GE_802F1DAC **)((s8 *)boss7_common_bml_resource + 0x42C))[(*(s32 **)((s8 *)arg0 + 0x3C))[1]].obj, boss7_common_bml_resource);
         if ((s32) *(s32 *)((s8 *)arg0 + 0x38) == 4) {
             ((s32 (*)(int, void *))draw_ginja_object)((*(GE_802F1DAC **)((s8 *)boss7_common_bml_resource + 0x42C))[(*(s32 **)((s8 *)arg0 + 0x3C))[2]].obj, boss7_common_bml_resource);
@@ -74,7 +75,7 @@ void fn_802F1E54(u8 *arg0) {
         set_draw_list_mask(1);
         set_current_texture_list((GinjaTextureList *)(boss7_common_texture_list));
         push_matrix();
-        TObjPlayer::concat_matrix(0, (int)(arg0 + 0x48));
+        concat_matrix((MtxP)(0), (const f32 (*)[4])((int)(arg0 + 0x48)));
         ((s32 (*)(int, void *))draw_ginja_object)((*(GE_802F1E54 **)((s8 *)boss7_common_bml_resource + 0x42C))[(*(s32 **)((s8 *)arg0 + 0x3C))[0]].obj, boss7_common_bml_resource);
         pop_matrix();
         restore_draw_list_mask();
