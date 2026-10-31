@@ -14,6 +14,11 @@ public:
     f32 calc_scale();
     u32 calc_alpha();
     static void *create(void *arg0, void *arg1, void *arg2);
+    f32 x, y;
+    s16 effect_kind, age;
+    u32 player_id;
 };
+
+typedef char TWindowEffectLight_size[sizeof(TWindowEffectLight) == 0x2C ? 1 : -1];
 
 #endif
