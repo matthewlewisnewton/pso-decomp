@@ -10,7 +10,6 @@ struct Obj_800ED4BC;
 #include "pso/player/TObjPlayer.h"
 #include "pso/player/TObjChara.h"
 #include "pso/enemy/TObjEneDD.h"
-#include "pso/enemy/TObjEnePanarms.h"
 #include "pso/enemy/TObjEneRe4Bit.h"
 extern "C" void has_flag_0x800__9TObjCharaFv();
 extern "C" void test_flag30_512__9TObjCharaFv();
@@ -526,37 +525,37 @@ void render__13TObjEneRe4BitFv(Bit_800ECA40 *self) {
 
 #pragma push
 #pragma fp_contract on
-void TObjEneRe4Bit__sub_800ECC14(u8 *ene_panarms, s32 arg1) {
+void TObjEneRe4Bit__sub_800ECC14(u8 *bit, s32 arg1) {
     s32 temp_r4;
     switch (arg1) {
     case 4:
-        ((TObjEnePanarms *)ene_panarms)->m_408 = 0;
-        ((s32 (*)(void *))set_hold_flags__18TObjEneRe4SorcererFPv)(ene_panarms);
-        ((TObjEnePanarms *)ene_panarms)->m_3cc = (s32) (((TObjEnePanarms *)ene_panarms)->m_3cc | 0x400);
-        play_sound_effect(((TObjEnemy *)(ene_panarms))->remap_sound_for_area((s32)(0x4003A815)), ene_panarms + 0x38, 0, 0);
+        ((TObjEneRe4Bit *)bit)->m_408 = 0;
+        ((s32 (*)(void *))set_hold_flags__18TObjEneRe4SorcererFPv)(bit);
+        ((TObjEneRe4Bit *)bit)->state_flags = (s32) (((TObjEneRe4Bit *)bit)->state_flags | 0x400);
+        play_sound_effect(((TObjEnemy *)(bit))->remap_sound_for_area((s32)(0x4003A815)), bit + 0x38, 0, 0);
         break;
     case 3:
-        if (((TObjEnePanarms *)ene_panarms)->m_3cc & 8) {
-            play_sound_effect(((TObjEnemy *)(ene_panarms))->remap_sound_for_area((s32)(0x4003AD16)), ene_panarms + 0x38, 0, 0);
-            ((TObjEneDD *)ene_panarms)->transition_enemy_state(1);
+        if (((TObjEneRe4Bit *)bit)->state_flags & 8) {
+            play_sound_effect(((TObjEnemy *)(bit))->remap_sound_for_area((s32)(0x4003AD16)), bit + 0x38, 0, 0);
+            ((TObjEneDD *)bit)->transition_enemy_state(1);
         }
         break;
     case 0:
-        ((TObjEnePanarms *)ene_panarms)->m_408 = (s32) (((TObjEnePanarms *)ene_panarms)->m_408 + 1);
-        if ((s32) ((TObjEnePanarms *)ene_panarms)->m_408 >= 0x384) {
-            temp_r4 = ((TObjEnePanarms *)ene_panarms)->m_3cc;
+        ((TObjEneRe4Bit *)bit)->m_408 = (s32) (((TObjEneRe4Bit *)bit)->m_408 + 1);
+        if ((s32) ((TObjEneRe4Bit *)bit)->m_408 >= 0x384) {
+            temp_r4 = ((TObjEneRe4Bit *)bit)->state_flags;
             if (!(temp_r4 & 0x10)) {
-                ((TObjEnePanarms *)ene_panarms)->m_3cc = (s32) (temp_r4 & 0xFFFFFBFF);
-                ((s32 (*)(void *))set_state_flags__18TObjEneRe4SorcererFPv)(ene_panarms);
+                ((TObjEneRe4Bit *)bit)->state_flags = (s32) (temp_r4 & 0xFFFFFBFF);
+                ((s32 (*)(void *))set_state_flags__18TObjEneRe4SorcererFPv)(bit);
                 return;
             }
         }
         break;
     case 5:
-        ((TObjEnePanarms *)ene_panarms)->actorFlags = (s32) (((TObjEnePanarms *)ene_panarms)->actorFlags & 0xFFFFF7FF);
-        ((TObjEnePanarms *)ene_panarms)->hp = (s16) ((TObjEnePanarms *)ene_panarms)->hpmax;
+        ((TObjEneRe4Bit *)bit)->actorFlags = (s32) (((TObjEneRe4Bit *)bit)->actorFlags & 0xFFFFF7FF);
+        ((TObjEneRe4Bit *)bit)->hp = (s16) ((TObjEneRe4Bit *)bit)->hpmax;
         ((s32 (*)())TObjEneRe4Sorcerer__sub_800ED47C)();
-        *(f32 *)((s8 *)ene_panarms + 0x3D8) = (f32) TObjEneRe4Bit__data_805DA770;
+        *(f32 *)((s8 *)bit + 0x3D8) = (f32) TObjEneRe4Bit__data_805DA770;
         break;
     }
 }

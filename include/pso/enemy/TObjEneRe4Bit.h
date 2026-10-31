@@ -28,7 +28,9 @@ struct TObjEneRe4Bit : public TObjEneDD_ST {
     void render();
     void run_task();
     void* m_3dc;
-    u8 _pad3E0[0x10];
+    u8 _pad3C4[0x8];
+    u32 state_flags;
+    u8 _pad3D0[0x4];
     u32 m_3f0;
     u8 _pad3F4[0x10];
     u32 m_404;
@@ -46,6 +48,8 @@ struct TObjEneRe4Bit : public TObjEneDD_ST {
     static void *create(void *arg0, void *arg1, void *arg2, void *arg3, void *arg4);
 };
 
+typedef char Re4BitStateFlagsOffset[offsetof(TObjEneRe4Bit, state_flags) == 0x3CC ? 1 : -1];
+typedef char Re4BitTimerOffset[offsetof(TObjEneRe4Bit, m_408) == 0x408 ? 1 : -1];
 typedef char TObjEneRe4Bit_size[sizeof(TObjEneRe4Bit) == 0x410 ? 1 : -1];
 
 extern "C" {
