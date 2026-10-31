@@ -1,4 +1,7 @@
 #include "pso/enemy/BattleParameters.h"
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/player/TObjChara.h"
 #include "pso/player/demo_mode.h"
 #pragma readonly_strings on
@@ -35,7 +38,7 @@ s32 push_matrix(void);
 void post_translate_matrix(const Vec *v);
 void rotate_matrix_y(s32 matrix, s32 angle);
 s32 rand(void);
-void play_sound_effect(s32 id, const Vec *pos, s32 a2, s32 a3);
+
 TObjPlayer *get_player_by_client_id(s32 id);
 s32 obj_setFlags30(TObjBase *actor, s32 flags);
 void send_6x2C_impose_hold(TObjPlayer *player, const Vec *pos, s32 a2, s32 a3, f32 time);
@@ -87,7 +90,7 @@ void TObjVoloptCage::update_breakup() {
     case -1:
         break;
     case 0:
-        play_sound_effect(0x4001C112, &position, 0, 0);
+        play_sound_effect(0x4001C112, (const Vec *)(&position), 0, 0);
         create_breakup_mdl__12TBoss3VoloptFlllll(volopt_cage_breakup_model, &volopt_cage_breakup_params,
                                                  volopt_cage_textures, (Vec *)&body_center_position, rotation_y);
         create_breakup_mdl__12TBoss3VoloptFlllll(volopt_cage_breakup_model, &volopt_cage_breakup_params,
@@ -103,7 +106,7 @@ void TObjVoloptCage::update_breakup() {
             pos.x = 20.0f * cos_table_lookup(angle) + body_center_position.x;
             pos.y = 20.0f * (3.0517578e-05f * (f32)rand()) + body_center_position.y;
             pos.z = 20.0f * sin_table_lookup(angle) + body_center_position.z;
-            spawn_particle_effect(&pos, 0xFB);
+            spawn_particle_effect((const Vec *)(&pos), 0xFB);
         }
         if ((timer -= 1) <= 0) {
             queue_destruction();
@@ -166,7 +169,7 @@ void TObjVoloptCage::sub_80049000() {
     case 0:
         actorFlags |= 0x40000;
         state = 1;
-        play_sound_effect(0x4003A80A, &position, 10, 0);
+        play_sound_effect(0x4003A80A, (const Vec *)(&position), 10, 0);
         break;
     case 1:
         position.y += 5.0f;
@@ -202,7 +205,7 @@ void TObjVoloptCage::init_break_model() {
 
 void TObjVoloptCage::render() {
     if (update_object_view_visibility(400.0f, 40.0f) != 0) {
-        TObjFish::set_global_param(volopt_cage_textures);
+        set_current_texture_list((GinjaTextureList *)(volopt_cage_textures));
         push_matrix();
         model_render_flags &= ~0x400;
         post_translate_matrix(&position);

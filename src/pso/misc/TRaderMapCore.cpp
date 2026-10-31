@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/system/ChunkMaterialState.h"
 #include "types.h"
@@ -1157,7 +1158,7 @@ void TRaderMapCore::render_region_records(void * _w1) {
     model_render_flags |= arg0->m_194;
     set_chunk_material_override_pair(-0xFF01, 0x900);
     if (MAP_801FAAEC->tex != 0) {
-        TObjFish::set_global_param(MAP_801FAAEC->tex);
+        set_current_texture_list((GinjaTextureList *)(MAP_801FAAEC->tex));
     }
     i = 0;
     {

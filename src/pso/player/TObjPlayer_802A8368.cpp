@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/effect/TEffIndirectCtrl.h"
 #include "pso/player/TObjPlayer.h"
@@ -121,7 +122,7 @@ s32 setup_indirect_tev_ordinary(s32 arg0, s32 sampler, s32 scale, s32 second) {
         m1[1][2] = lbl_805DE024;
         GXSetIndTexMtx(1, m1, 1);
     }
-    TObjFish::set_global_param(((Owner_802A8448 *)arg0)->list);
+    set_current_texture_list((GinjaTextureList *)(((Owner_802A8448 *)arg0)->list));
     load_list_texture(0, sampler, sampler, 5);
 }
 
@@ -142,7 +143,7 @@ s32 setup_indirect_tev_alternate(s32 arg0, s32 unused, s32 sampler, s32 arg3) {
         mtx[1][1] = lbl_805DE020;
         mtx[1][2] = lbl_805DE024;
         GXSetIndTexMtx(1, mtx, 1);
-        TObjFish::set_global_param(((Owner_802A85F0 *)arg0)->list);
+        set_current_texture_list((GinjaTextureList *)(((Owner_802A85F0 *)arg0)->list));
         load_list_texture(0, sampler, sampler, 5);
     }
 }

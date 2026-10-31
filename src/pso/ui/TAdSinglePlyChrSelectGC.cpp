@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC_802E0FC8.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
@@ -40,7 +41,7 @@ extern s32 lbl_805D3F40;
 u8 *TAdSinglePlyChrSelectGC__ct(u8 *arg0, void *parent);
 void *__dt__23TAdSinglePlyChrSelectGCFv(void *arg0, s16 arg1);
 s32 *get_localized_text_entry(s32, s32);
-s32 play_sound_effect(s32, s32, s32, s32);
+
 s32 TWindowShortListCtrl__check_controller_button(void *, s32);
 void __dl__7TObjectFPv(void *);
 void __dt__7TObjectFv(void *, int);

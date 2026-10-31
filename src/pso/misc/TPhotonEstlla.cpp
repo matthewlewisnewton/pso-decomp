@@ -1,3 +1,5 @@
+#include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/system/ChunkMaterialState.h"
@@ -80,7 +82,7 @@ s32 spawn_photon_blast_attachment_effects(void *, int);
 }
 u8 *construct_photon_magic_square_normal(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 extern "C" {
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 u32 __nw__7TObjectFUl(int);
 
 s32 TPhotonLine__ct(void *, void *, void *, u16);
@@ -140,7 +142,7 @@ void TPhotonEstlla::render() {
     if (*(s32 *)&this->m_19c != 0) {
         scroll_strip_uvs(estlla_photon_blast_model, self->f14C, 0);
         TParticleCtrl::begin_effect_render();
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)(this->texlist));
         push_matrix();
         translate_matrix(0, self->pos.x, self->pos.y, self->pos.z);
         rotate_matrix_y(0, this->rotation_y);
@@ -210,7 +212,7 @@ void TPhotonEstlla::run_task() {
         }
     }
     if ((s32) *(s32 *)&this->m_19c != 0) {
-        play_persistent_sound(0x4002462F, (s32)arg0, 0, 0, 0);
+        play_persistent_sound((s32)(0x4002462F), (const void *)((s32)arg0), (const Vec *)(0), 0, 0);
     }
 }
 }

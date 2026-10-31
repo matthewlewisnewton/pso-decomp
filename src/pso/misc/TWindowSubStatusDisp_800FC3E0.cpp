@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "pso/TFontSmallHelp.h"
 #include "pso/misc/TWindowSubStatusDisp_800FBD74.h"
 #include "types.h"
@@ -42,7 +43,7 @@ void TWindowSubStatusDisp::render_forward(void *context) {
 }
 
 void TWindowSubStatusDisp::begin_render(s32) {
-    TObjFish::set_global_param(localized_alphabet_list);
+    set_current_texture_list((GinjaTextureList *)(localized_alphabet_list));
 }
 
 void TFontSmallHelp::set_color(u32 text_color) {

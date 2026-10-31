@@ -1,4 +1,6 @@
 #include "pso/player/demo_mode.h"
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/unk/text_80087278.h"
@@ -151,8 +153,8 @@ void TOTrap::find_target_player() {
 
 void TOTrap::play_sounds() {
     s32 arg0 = (s32)this;
-    spawn_particle_effect((void *)(arg0 + 0x2FC), 0x45);
-    spawn_particle_effect((void *)(arg0 + 0x2FC), 0x46);
+    spawn_particle_effect((const Vec *)((arg0 + 0x2FC)), 0x45);
+    spawn_particle_effect((const Vec *)((arg0 + 0x2FC)), 0x46);
 }
 
 void TOTrap::vfunc_6(s16 *arg1, s32 arg2) {
@@ -255,7 +257,7 @@ void TOTrap::render() {
             push_matrix();
             post_translate_matrix((u8 *)&this->position);
             rotate_matrix_y(0, this->rotation_y);
-            TObjFish::set_global_param(this->texlist);
+            set_current_texture_list((GinjaTextureList *)(this->texlist));
             if (check_demo_mode() == 1) {
                 draw_chunk_object(this->model);
             } else {

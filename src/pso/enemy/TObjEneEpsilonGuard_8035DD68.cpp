@@ -1,6 +1,9 @@
 #include "pso/player/demo_mode.h"
 #include "pso/misc/MaterialOpacityFade.h"
 #include "pso/misc/RenderFadeState.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
+#include "pso/misc/PersistentSound.h"
 struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
@@ -400,7 +403,7 @@ s32 is_main_phase_15__9TObjEneDDFv();
 
 void render__19TObjEneEpsilonGuardFv(u8 *);
 void TObjEneEpsilonGuard__sub_8035E578(u8 *, s32);
-void play_sound_effect(int, void *, int, int);
+
 extern u8 epsilon_guard_breakup_params[];
 extern s32 lbl_805D6FA8;
 struct G_8035E430;
@@ -570,7 +573,7 @@ void TObjEneEpsilonGuard::render_guard_effect() {
     f32 temp_f1;
 
     if ((*(s32 *)((s8 *)((u8 *)this) + 0x46C) & 0x20) && (get_mode__11TCameraCtrlFPv((void *) (((s32 *)&main_task))) & 0x200)) {
-        TObjFish::set_global_param((int) (*(s32 *)((s8 *)((u8 *)this) + 0x24)));
+        set_current_texture_list((GinjaTextureList *)((*(s32 *)((s8 *)((u8 *)this) + 0x24))));
         push_matrix();
         post_translate_matrix((void *) (((u8 *)this) + 0x38));
         translate_matrix(0, 0.0f, 24.0f, 0.0f);
@@ -618,7 +621,7 @@ void render_with_fade__19TObjEneEpsilonGuardFPvi(u8 *ene_re7_berura, s32 arg1) {
         return;
     }
     ((TObjEneDD *)ene_re7_berura)->update_secondary_light();
-    TObjFish::set_global_param(*(s32 *)((s8 *)ene_re7_berura + 0x24));
+    set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)ene_re7_berura + 0x24)));
     push_matrix();
     post_translate_matrix(ene_re7_berura + 0x38);
     translate_matrix(0, 0.0f, 24.0f, 0.0f);
@@ -732,7 +735,7 @@ void TObjEneEpsilonGuard::handle_break_state(s32 arg1) {
         if (((G_8035E430 *)this)->x434 >= 0x14) {
             ((VO_8035E430 *)((G_8035E430 *)this))->m94();
             TBoss3Volopt::create_breakup_mdl((s32)lbl_805D6FA8, (s32)epsilon_guard_breakup_params, (s32)(((G_8035E430 *)this)->x24), (s32)(((G_8035E430 *)this)->x38), (s32)(((G_8035E430 *)this)->x60));
-            play_sound_effect(0x4003AD4C, ((G_8035E430 *)this)->x2FC, 0, 0);
+            play_sound_effect(0x4003AD4C, (const Vec *)(((G_8035E430 *)this)->x2FC), 0, 0);
             ((TObjPlayer *)(((G_8035E430 *)this)->x2FC))->trigger_dell_biter_events();
             ((G_8035E430 *)this)->x430 = 1;
         }
@@ -979,7 +982,7 @@ void TObjEneEpsilonGuard::sub_8035EA90() {
 
 void vfunc_88__19TObjEneEpsilonGuardFv(void *);
 void vfunc_89__19TObjEneEpsilonGuardFv(void *);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 s32 vfunc_89__9TObjEneDDFv();
 s32 TObjEneEpsilonGuard__sub_8035F950();
 s16 get_entity_id(int);
@@ -1003,12 +1006,12 @@ void TObjEneEpsilonGuard::update_guard_state() {
             sub_8035EA90();
         }
         if (*(s32 *)((s8 *)((u8 *)this) + 0x46C) & 0x20) {
-            play_persistent_sound(0x4003A846, (s32)this, (u32)(((u8 *)this) + 0x38), 0, 0);
+            play_persistent_sound((s32)(0x4003A846), (const void *)(this), (const Vec *)((u32)(((u8 *)this) + 0x38)), 0, 0);
             return;
         }
         temp_r0 = *(s16 *)((s8 *)((u8 *)this) + 0x326);
         if ((temp_r0 != 4) && (temp_r0 != 5)) {
-            play_persistent_sound(0x4003AD43, (s32)this, (u32)(((u8 *)this) + 0x38), 0, 0);
+            play_persistent_sound((s32)(0x4003AD43), (const void *)(this), (const Vec *)((u32)(((u8 *)this) + 0x38)), 0, 0);
         }
     }
 }

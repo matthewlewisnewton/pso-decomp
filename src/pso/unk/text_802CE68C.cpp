@@ -1,6 +1,7 @@
 #include "pso/player/demo_mode.h"
 #include "pso/misc/MaterialOpacityFade.h"
 #include "pso/misc/RenderFadeState.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -170,7 +171,7 @@ void TObjEneBm9Mericarol::draw_color_variant() {
             (**(s32 ** *)&this->texlist)[8] = (**(s32 ** *)&this->texlist)[26];
             break;
         }
-        TObjFish::set_global_param((s32)(*(void * *)&this->texlist));
+        set_current_texture_list((GinjaTextureList *)((*(void * *)&this->texlist)));
         push_matrix();
         post_translate_matrix(((u8 *)this) + 0x38);
         rotate_matrix_y(0, this->rotation_y);
@@ -251,7 +252,7 @@ void TObjEneBm9Mericarol::render() {
         break;
     }
     saved_model_render_flags = model_render_flags;
-    TObjFish::set_global_param((s32)self->f24);
+    set_current_texture_list((GinjaTextureList *)(self->f24));
     push_matrix();
     post_translate_matrix(self->pos);
     rotate_matrix_y(0, self->f60);

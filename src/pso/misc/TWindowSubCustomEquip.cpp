@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TWindowCtrl_8024A054.h"
 #include "pso/misc/TUnk_804CE018.h"
@@ -47,7 +48,7 @@ extern const f32 lbl_805DD5A0;
 s32 fn_8002AE08(int);
 s32 TWindowShortListCtrl__check_controller_button(int, int);
 s32 apply_choice__20TWindowChoiceSettingFllll(void *, int, int, int);
-s32 play_sound_effect(s32, s32, s32, s32);
+
 extern RecoveredGlobal_80276D14_lbl_8050E208 controller_input_state;
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 extern const f32 lbl_805DD5A4;

@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC_801FBF54.h"
@@ -10,7 +11,7 @@ extern "C" {
 
 s32 TAdMultiPlyChrSelectGC__sub_802C6848();
 s32 TAdMultiPlyChrSelectGC__sub_802DBEC4(void *, s32 *);
-s32 play_sound_effect(s32, s32, s32, s32);
+
 s32 TAdMultiPlyChrSelectGC__sub_802DFFE8(s32);
 s32 get_card_index__22TAdMultiPlyChrSelectGCFv(s32, s32);
 

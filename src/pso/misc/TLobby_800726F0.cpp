@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/protocol/protocol_types.h"
 #include "pso/misc/TLobby_801E43E4.h"
 #include "types.h"
@@ -52,7 +53,7 @@ u8 is_challenge_lobby__6TLobbyFv(void);
 void queue_destruction__7TObjectFv(void *arg0);
 s32 TLobby__sub_80070DA8();
 void play_player_default_effect__6TLobbyFv(s32 _w0);
-s32 play_sound_effect(s32, s32, s32, s32);
+
 void play_cue_stream_file(s32 name);
 s32 TWindowShortListCtrl__check_controller_button(void *, s32);
 s32 get_selected_menu_value(u32);

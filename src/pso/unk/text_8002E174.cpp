@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/ChunkMaterialState.h"
 #include "types.h"
 #include "pso/boss/TObjBoss1Rock.h"
@@ -190,7 +191,7 @@ void TUnk_80482090::render() {
     {
         Color_8002E3D4 c = player_part_model_white_color;
         n = mesh->nodes;
-        TObjFish::set_global_param(model->f2C);
+        set_current_texture_list((GinjaTextureList *)(model->f2C));
         push_matrix();
         for (i = 0; i < 0x1C; i++, n = n->next, p++) {
             push_matrix();
