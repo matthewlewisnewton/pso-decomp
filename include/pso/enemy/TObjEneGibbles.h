@@ -116,6 +116,6 @@ typedef char GibblesAttackBody_offset[offsetof(TObjEneGibbles, attack_body) == 0
 typedef char GibblesMaterialFade_offset[offsetof(TObjEneGibbles, material_fade) == 0x3C0 ? 1 : -1];
 typedef char GibblesCameraFades_offset[offsetof(TObjEneGibbles, camera_fades) == 0x3DC ? 1 : -1];
 
-void gibbles_render_node_callback(void);
+void gibbles_render_node_callback(NJS_OBJECT *);
 
 #endif

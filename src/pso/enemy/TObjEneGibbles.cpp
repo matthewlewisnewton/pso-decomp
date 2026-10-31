@@ -205,7 +205,7 @@ CollisionBody gibbles_collision_body_templates[3] = {
 };
 
 }
-void gibbles_render_node_callback(void);
+void gibbles_render_node_callback(NJS_OBJECT *);
 extern s32 saved_model_render_flags;
 extern s32 saved_chunk_polygon_flags_and_mask;
 extern s32 saved_chunk_polygon_flags_or_mask;
@@ -1083,7 +1083,7 @@ void TObjEneGibbles::render() {
         scale_matrix_vec3(0, (u8 *)&self->scale);
         TObjEneGibbles__render_node_index = 0;
         TObjEneGibbles__render_rotation_x = self->render_angle;
-        set_chunk_model_node_callback((s32)((void *)gibbles_render_node_callback));
+        set_chunk_model_node_callback(gibbles_render_node_callback);
         TObjPlayer::toggle_particle_effect();
         switch (self->mode) {
         case 0:
@@ -1131,7 +1131,7 @@ void TObjEneGibbles::render() {
             break;
         }
         TParticleCtrl::end_effect_render();
-        set_chunk_model_node_callback((s32)NULL);
+        set_chunk_model_node_callback(NULL);
         pop_matrix();
         restore_scene_lighting();
         if (!(self->flags & 1)) {
@@ -1142,7 +1142,7 @@ void TObjEneGibbles::render() {
     }
 }
 
-void gibbles_render_node_callback(void) {
+void gibbles_render_node_callback(NJS_OBJECT *) {
     if ((s32) TObjEneGibbles__render_node_index == 0x18) {
         rotate_matrix_x(0, TObjEneGibbles__render_rotation_x);
     }

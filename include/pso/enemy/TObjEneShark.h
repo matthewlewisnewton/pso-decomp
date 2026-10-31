@@ -1,3 +1,4 @@
+struct NJS_OBJECT;
 #ifndef PSO_ENEMY_TOBJENESHARK_H
 #define PSO_ENEMY_TOBJENESHARK_H
 
@@ -41,7 +42,7 @@ public:
     static void *create(void *setData);
     static void free_resources();
     static void load_resources();
-    static void update_node_particle_state();
+    static void update_node_particle_state(NJS_OBJECT *);
 };
 
 typedef char SharkFadeOffset[offsetof(TObjEneShark, appearance_fade) == 0x3A8 ? 1 : -1];
