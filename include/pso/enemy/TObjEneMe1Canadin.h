@@ -42,7 +42,7 @@ struct TObjEneMe1Canadin : public TObjEneDD_ST {
     TObjEneMe1Canadin(TObject *parent, void *set_data, s32 kind);
     virtual ~TObjEneMe1Canadin();
     virtual void dispatch_action(u32, s32);
-    virtual void vfunc_104(f32);
+    virtual s32 vfunc_104(f32);
     virtual void vfunc_88();
     virtual u8 *vfunc_101(u8 *);
     virtual void vfunc_89();
@@ -159,7 +159,7 @@ struct TObjEneMe1Canadin : public TObjEneDD_ST {
 
 typedef char TObjEneMe1Canadin_size[sizeof(TObjEneMe1Canadin) == 0x4CC ? 1 : -1];
 
-typedef char CanadinTargetOffset[offsetof(TObjEneMe1Canadin, m_390) == 0x390 ? 1 : -1];
+typedef char CanadinTargetOffset[offsetof(TObjEneMe1Canadin, target) == 0x390 ? 1 : -1];
 typedef char CanadinFadeOffset[offsetof(TObjEneMe1Canadin, m_3cc) == 0x3CC ? 1 : -1];
 typedef char CanadinHistoryOffset[offsetof(TObjEneMe1Canadin, m_414) == 0x414 ? 1 : -1];
 typedef char CanadinColorOffset[offsetof(TObjEneMe1Canadin, m_4b4) == 0x4B4 ? 1 : -1];
