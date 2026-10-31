@@ -35,6 +35,9 @@
 void move_with_wall_slide(u8 *arg0);
 
 extern "C" {
+// The shared u8 declaration adds result masking; retain the existing integer
+// call boundary without asserting the original C++ return type.
+s32 test_elt_flag__13TUnk_80493450Fll(void *, int, int);
 s32 play_sound_effect(void *, void *, int, int);
 void TObjPlayer__sub_800D92BC(s32 point, s32 delay);
 f32 vec3_add_to(void *, void *);
@@ -604,7 +607,7 @@ void TObjEneMerillLia::beast_update_approach() {
 
         spawn_ground_effect();
         if (target != NULL) {
-            if (test_elt_flag(0, 0x300000) != 0) {
+            if (test_elt_flag__13TUnk_80493450Fll(this, 0, 0x300000) != 0) {
                 if (this->m_38c++ < lbl_805DA31C) {
                     VecCopy((Vec *)&sp14, &this->home_position);
                 } else {
