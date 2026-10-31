@@ -204,3 +204,25 @@ constructor declaration and use of the 20-byte descriptor compile with all
 three functions exact, but the inherited base-constructor free declaration
 remains an ABI-repair prerequisite described above. Independent review is
 required for this checkpoint.
+
+### Remaining small constants and constructor constraint
+
+The original `0x805DD078..0x805DD0C8` section contains twenty floats. A
+standalone experiment defining all twenty exported constants in source emitted
+those 80 bytes followed by another 80 bytes of compiler-generated literals.
+That 160-byte `.sdata2` is not linkable at the original 80-byte split, so the
+experiment was not adopted. The zero float at `0x805DD090` is also referenced
+by the neighboring constructor; original code references to the other nineteen
+are confined to this unit. Reconciling the literal pool and exported zero
+constant needs an emission-aware follow-up, not a second hand-written table.
+
+The actual base constructor is `TWindowDD::construct_base(u8 *, s16, u8 *)`.
+A direct member call with the existing `s16` keyboard-constructor parameter
+changes the original `extsh r5,r31` to `mr r5,r31`, losing the constructor's
+exact match. An isolated test with a 32-bit incoming parameter and an explicit
+short conversion restored the exact constructor, but caused the already
+source-linked `TKeyBoardControl__ct` caller to gain an `extsh` instruction.
+Neither alternative meets the no-regression rule without a coordinated caller
+solution. The original free declaration remains in place as a known provisional
+ABI defect; the descriptor type, address and dispatcher return declaration are
+corrected independently.
