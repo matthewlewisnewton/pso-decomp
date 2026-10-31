@@ -1,5 +1,6 @@
 #include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
+struct NJS_OBJECT;
 #include "types.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjChara.h"
@@ -298,13 +299,12 @@ u16 find_nearest_visible_player(void *, void *, f32);
 void queue_destruction__7TObjectFv(void *);
 
 u8 * get_bml_motion(s32, s32);
-s32 exchange_object_state__9TObjEnemyFls(void *, void *, int);
 void transform_to_view__11TCameraCtrlFii(s32, s32);
 void *spawn_particle_effect(void *pos, s32 id);
 void *create_particle_emitter(void *pos, s32 id);
 void TObjPlayer__sub_800E80C0(u8 *arg0);
 S_800E80E8 * TObjPlayer__sub_800E80E8(S_800E80E8 *dst, S_800E80E8 *src);
-void TObjPlayer__sub_800E8128(void);
+void TObjPlayer__sub_800E8128(NJS_OBJECT *);
 void TObjPlayer__sub_800E81A8(void);
 void render__22TObjEneSlimeTailAttackFv(u8 *arg0);
 s32 TObjPlayer__sub_800E85BC(TObjEneSlimeTailAttack *self);
@@ -887,7 +887,7 @@ S_800E80E8 *TObjPlayer__sub_800E80E8(S_800E80E8 *dst, S_800E80E8 *src) {
 #pragma inline_depth(1)
 #pragma auto_inline off
 #pragma dont_inline off
-void TObjPlayer__sub_800E8128(void) {
+void TObjPlayer__sub_800E8128(NJS_OBJECT *) {
     if ((s32) (*(s32 *)&lbl_805D52B4) == 7) {
         transform_to_view__11TCameraCtrlFii((s32) &slime_tail_attack_zero_vec.value, (s32) &lbl_80501010.value);
     }
@@ -983,7 +983,7 @@ void TObjEneSlimeTailAttack::sub_800E841C() {
     TObjFish::set_global_param((int) (((TObjEneSlimeTailAttack *)arg0)->texlist));
     if ((s32) *(s32 *)((s8 *)arg0 + 0x378) != 0) {
         TObjPlayer__sub_800E81A8();
-        set_chunk_model_node_callback((s32)TObjPlayer__sub_800E8128);
+        set_chunk_model_node_callback(TObjPlayer__sub_800E8128);
         ((TObjMotion *)arg0)->draw();
         set_chunk_model_node_callback(NULL);
         TObjPlayer__sub_800E80C0(arg0 + 0x390);
@@ -992,7 +992,7 @@ void TObjEneSlimeTailAttack::sub_800E841C() {
         TObjPlayer__sub_800EBE48((f32) (*(f32 *)((s8 *)arg0 + 0x38C)));
         scale_matrix_vec3(0, (arg0 + 0x380));
         TObjPlayer__sub_800E81A8();
-        set_chunk_model_node_callback((s32)TObjPlayer__sub_800E8128);
+        set_chunk_model_node_callback(TObjPlayer__sub_800E8128);
         ((TObjMotion *)arg0)->draw();
         set_chunk_model_node_callback(NULL);
         TObjPlayer__sub_800E80C0(arg0 + 0x390);
@@ -2113,7 +2113,7 @@ void TObjEneSlimeOne::run_task() {
             (((TSlime_800EAE78 *)this)->*a)();
         }
         update_prev_position();
-        ((TObjPlayer *)this)->update_collisions();
+        ((TObjCollidable *)this)->update_collisions();
         if ((s32)this->m_3ec != 0) {
             submit_cursor_candidate(this, -1);
         }
@@ -2208,10 +2208,10 @@ u8 *TObjEneSlimeOne__ct(u8 *actor, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     *(s32 *)((s8 *)actor + 0) = (s32) TObjEneSlimeOne_class_name;
     ((TObjChara *)actor)->add_flags_2e4(2);
     ((TObjEneSlimeOne *)(actor))->apply_set_data((void *)arg3);
-    if (exchange_object_state__9TObjEnemyFls(actor, &stack.sp8, 1) != 0) {
+    if (((TObjEnemy *)(actor))->exchange_object_state(&stack.sp8, 1) != 0) {
         stack.sp8 = 0;
         stack.spE = 0;
-        exchange_object_state__9TObjEnemyFls(actor, &stack.sp8, 0);
+        ((TObjEnemy *)(actor))->exchange_object_state(&stack.sp8, 0);
     }
     ((TObjEneSlimeOne *)actor)->m_3f0 = arg2;
     VecCopy((Vec *)(actor + 0x3DC), (const Vec *)(arg4));
@@ -2229,10 +2229,10 @@ u8 *init__15TObjEneSlimeOneFPviii(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
     *(s32 *)((s8 *)arg0 + 0) = (s32) TObjEneSlimeOne_class_name;
     ((TObjChara *)arg0)->add_flags_2e4(2);
     ((TObjEneSlimeOne *)(arg0))->apply_set_data((void *)arg3);
-    if (exchange_object_state__9TObjEnemyFls(arg0, &stack.sp8, 1) != 0) {
+    if (((TObjEnemy *)(arg0))->exchange_object_state(&stack.sp8, 1) != 0) {
         stack.sp8 = 0;
         stack.spE = 0;
-        exchange_object_state__9TObjEnemyFls(arg0, &stack.sp8, 0);
+        ((TObjEnemy *)(arg0))->exchange_object_state(&stack.sp8, 0);
     }
     ((TObjEneSlimeOne *)arg0)->m_3f0 = arg2;
     ((TObjEneSlimeOne *)arg0)->initialize_slime_instance_state();
