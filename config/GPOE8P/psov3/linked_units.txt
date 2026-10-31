@@ -485,6 +485,7 @@ pso/enemy/TObjEneMe3ShinowaReal.cpp
 pso/enemy/TObjEneMe3SinowZoa.cpp
 pso/enemy/TObjEneMe3SinowZoaReal.cpp
 pso/enemy/TObjEneMe3SinowZoaReal_8031B220.cpp
+pso/misc/MaterialOpacityFade.cpp
 pso/enemy/TObjEneMe3SinowZoa_80316690.cpp
 pso/enemy/TObjEneMe3SinowZoa_80317788.cpp
 pso/enemy/TObjEneMe3SinowZoa_80317828.cpp
@@ -827,7 +828,6 @@ pso/misc/CreationMotion.cpp
 pso/misc/EndingSceneTables.cpp
 pso/misc/GbaDownloadRuntime.cpp
 pso/misc/KeyboardCharacterMaps.cpp
-pso/misc/MaterialOpacityFade.cpp
 pso/misc/RenderFadeState.cpp
 pso/misc/ShopToolStock.cpp
 pso/misc/ShopWeaponStock.cpp
