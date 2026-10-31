@@ -1,4 +1,5 @@
 #include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/system/NinjaUtil.h"
 #include "pso/system/vector.h"
@@ -88,7 +89,6 @@ s32 draw_chunk_object();
 void translate_matrix(u32 arg0, f32 x, f32 y, f32 z);
 s32 push_matrix();
 void __dl__7TObjectFPv(void *);
-s32 set_global_param__8TObjFishFl();
 
 extern s32 model_render_flags;
 
@@ -121,8 +121,7 @@ void TObjGyaranzoMissile::sub_800D47B4() {
 }
 
 void TObjGyaranzoMissile::render() {
-    TObjFish__sub_8001EDB0((void *)gyaranzo_bml_resource, 6);
-    set_global_param__8TObjFishFl();
+    set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0((void *)gyaranzo_bml_resource, 6)));
     push_matrix();
     post_translate_matrix((u8 *)&this->position);
     rotate_matrix_x(0, (int)this->rotation_x);

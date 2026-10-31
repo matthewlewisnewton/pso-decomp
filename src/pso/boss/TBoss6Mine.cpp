@@ -1,5 +1,6 @@
 #include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
+#include "pso/system/CurrentTextureList.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -138,7 +139,7 @@ void TBoss6Mine::draw() {
     temp_r31 = TObjFish__sub_8001EDB0(this->m_374, 2);
     bml_model = get_bml_model(this->m_374, 2);
     bml_motion = get_bml_motion(this->m_374, 0);
-    TObjFish::set_global_param(temp_r31);
+    set_current_texture_list((GinjaTextureList *)(temp_r31));
     TBoss6PlotFalz__sub_802AC008(this->fade_amount, 0.0f);
     draw_model_motion((void *)bml_model, (void *)bml_motion, this->anim_frame);
     TBoss6PlotFalz::update_camera_target();

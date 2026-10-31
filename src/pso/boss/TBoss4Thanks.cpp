@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/boss/TBoss4Type2_800874F4.h"
 #include "pso/object/TObject_80019A50.h"
@@ -154,7 +155,7 @@ void TBoss4Thanks::render() {
     push_matrix();
     set_motion_packed_rotation();
     post_translate_matrix(TBoss4Thanks__data_80479B40);
-    TObjFish::set_global_param(texture_list);
+    set_current_texture_list((GinjaTextureList *)(texture_list));
     draw_model_motion((void *)model, (void *)motions[current_motion], motion_frame);
     clear_motion_packed_rotation();
     pop_matrix();

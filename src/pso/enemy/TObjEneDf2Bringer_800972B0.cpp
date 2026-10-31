@@ -4,6 +4,7 @@
 #include "pso/math/VectorNormalize.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
 struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
@@ -1004,7 +1005,7 @@ void render__17TObjEneDf2BringerFv(u8 *arg0) {
             }
         }
         scroll_strip_uvs(TObjEneDf2Bringer__uv_scroll_buffer, (s16) *(s32 *)((s8 *)arg0 + 0x4A8), 0);
-        TObjFish::set_global_param((s32)S->f24);
+        set_current_texture_list((GinjaTextureList *)(S->f24));
         {
             Ent_800972B0 *e = *S->f24;
             temp_r27 = *(s32 *)((s8 *)e + 0x14);

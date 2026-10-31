@@ -4,6 +4,7 @@
 #include "pso/map/CsnGroundQuery.h"
 #include "pso/math/VectorNormalize.h"
 #include "pso/enemy/BattleParameters.h"
+#include "pso/system/CurrentTextureList.h"
 struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
@@ -459,7 +460,7 @@ void TBoss2DeRolLe::render_body() {
     }
     fn_8002F5AC((u8 *)self);
     set_chunk_model_node_callback(TObjPlayer__sub_8002F61C);
-    TObjFish::set_global_param(this->texlist);
+    set_current_texture_list((GinjaTextureList *)(this->texlist));
     draw_model_motion((void *)self->x34, (void *)model, (f32)frame);
     set_chunk_model_node_callback(NULL);
     TObjLight__sub_801337F8(current_scene_light);
@@ -663,7 +664,7 @@ void TBoss2DeRolLe::render() {
         derolle_texture_list_handle->tex = lbl_805D4BCC;
     }
     fn_8002F5AC(((u8 *)this));
-    TObjFish::set_global_param(e->f24);
+    set_current_texture_list((GinjaTextureList *)(e->f24));
     set_chunk_model_node_callback((TObjPlayer__sub_8002F61C));
     {
     Vec4_8002F258 saved;

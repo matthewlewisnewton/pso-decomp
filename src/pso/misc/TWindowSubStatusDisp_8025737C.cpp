@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TWindowSubStatusDisp_8025737C.h"
 #include "pso/system/memory.h"
@@ -265,7 +266,7 @@ void draw_gauge__20TWindowSubStatusDispFPvPv(Gauge_80257784 *self, Parent_802577
         sz = self->f8;
         scale = -1.0f / (0.299f * sz + parent->f38);
         begin_screen_draw(1, sz, 0.299f, -1.0f);
-        TObjFish::set_global_param(lbl_805D63F0);
+        set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
         set_draw_texture_and_color(0xB, -1);
         if (self->flags & 8) {
             TWindowSubStatusDisp__sub_80256C40(self, parent, &pos, scale);

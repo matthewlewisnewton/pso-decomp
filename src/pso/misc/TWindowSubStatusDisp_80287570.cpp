@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TWindowSubStatusDisp_80287570.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
@@ -66,7 +67,7 @@ void draw_window_tab(Obj_80287580 *obj, f32 *pos, u8 idx, f32 width) {
     w = width;
     w += (8e+01f);
     begin_screen_draw(1);
-    TObjFish::set_global_param(lbl_805D63F0);
+    set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
     set_draw_texture_and_color(1, obj->f34);
     r1.x0 = pos[0];
     r1.y0 = pos[1];

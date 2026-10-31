@@ -1,6 +1,7 @@
 #include "pso/system/ModelNodePositionCapture.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/system/PadRumble.h"
@@ -353,7 +354,7 @@ void vec3_add_to(Vec_80053440 *, Vec_80053440 *);
 void subtract_vector(Vec_80053D4C *, Vec_80053D4C *);
 void normalize_vector(void *);
 int post_translate_matrix(void*);
-s32 set_global_param__8TObjFishFl();
+
 f32 xyz_distance(Vec_80053914 *, Vec_80053914 *);
 void draw_model_motion(void *arg0, void *arg1, f32 farg0);
 
@@ -1481,8 +1482,7 @@ void TBoss4Type1::draw_parts() {
     s32 a;
     set_motion_packed_rotation();
     for (i = 0; i < 6; i++) {
-        TObjFish__sub_8001EDB0(*(s32 *)((s8 *)arg0 + 0x390), lbl_80485EB0[i]);
-        set_global_param__8TObjFishFl();
+        set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0(*(s32 *)((s8 *)arg0 + 0x390), lbl_80485EB0[i])));
         switch (i) {
         case 2:
         case 3:

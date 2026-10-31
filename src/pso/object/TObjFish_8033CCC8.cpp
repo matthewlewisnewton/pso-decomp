@@ -1,4 +1,5 @@
 #include "pso/system/ModelNodePositionCapture.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/system/PadRumble.h"
 #include "pso/misc/TOTrapAncient01_80226534.h"
@@ -55,9 +56,9 @@ void TBoss6Demo11_TYPE1_DEAD::render_fade_model() {
         push_matrix();
         set_motion_packed_rotation();
         ((f32 (*)(void *))post_translate_matrix)(arg0 + 0x1C);
-        TObjFish::set_global_param(*(s32 *)&(*(void * *)((u8 *)this + 0x2C)));
+        set_current_texture_list((GinjaTextureList *)(*(s32 *)&(*(void * *)((u8 *)this + 0x2C))));
         draw_model_motion((void *)(*(s32 *)&(this->m_28)), (void *)(*(s32 *)&(this->m_30)), this->m_40);
-        TObjFish::set_global_param(this->m_38);
+        set_current_texture_list((GinjaTextureList *)(this->m_38));
         ((ModelNodePositionCapture *)((this->m_88)))->install();
         draw_model_motion((void *)(*(s32 *)&(*(void * *)((u8 *)this + 0x34))), (void *)(*(s32 *)((s8 *)arg0 + 0x3C)), this->m_40);
         ((ModelNodePositionCapture *)(this->m_88))->clear();

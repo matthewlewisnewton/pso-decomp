@@ -1,4 +1,5 @@
 #include "pso/player/demo_mode.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/system/GinjaMaterial.h"
@@ -99,7 +100,7 @@ void TObjCityMainWarpChallenge::render() {
     }
     if (((CityMainWarpChalVObj_80187824*)arg0)->m8(lbl_805DBCBC, lbl_805DBCC0) != 0) {
 block_4:
-        TObjFish::set_global_param(city_common_texture_list);
+        set_current_texture_list((GinjaTextureList *)(city_common_texture_list));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);

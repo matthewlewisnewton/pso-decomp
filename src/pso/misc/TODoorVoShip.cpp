@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "pso/misc/TODoorVoShip.h"
 
 #include "pso/TMainTask.h"
@@ -71,9 +72,9 @@ void TODoorVoShip::render() {
         push_matrix();
         post_translate_matrix(&position.x);
         rotate_matrix_y(NULL, rotation_y);
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         draw_chunk_model_with_shape_motion(model, motion, shape_motion, animation_frame);
-        TObjFish::set_global_param(light_texlist);
+        set_current_texture_list((GinjaTextureList *)(light_texlist));
         u32 flags = model_render_flags;
         saved_model_render_flags = flags;
         model_render_flags = flags | 0x20;

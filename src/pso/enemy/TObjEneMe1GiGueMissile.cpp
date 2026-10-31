@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/enemy/TObjEneMe1GiGueMissile.h"
@@ -124,7 +125,7 @@ void TObjEneMe1GiGueMissile::render() {
   bml_motion = this->m_a4;
   rotate_matrix_y(0, bml_motion);
   rotate_matrix_x(0, this->m_a0);
-  TObjFish::set_global_param((s32)((void *) (*((s32 *) (((s8 *) (*((u8 **) (((s8 *) (*(u8 * *)&TObjEneMe1GiGue_barrier_count)) + 0x42C)))) + 0x1C)))));
+  set_current_texture_list((GinjaTextureList *)(((void *) (*((s32 *) (((s8 *) (*((u8 **) (((s8 *) (*(u8 * *)&TObjEneMe1GiGue_barrier_count)) + 0x42C)))) + 0x1C))))));
   set_motion_packed_rotation();
   bml_motion = get_bml_motion((void *) (*(u8 * *)&TObjEneMe1GiGue_barrier_count), 5);
   draw_model_motion((void *) get_bml_model((void *) (*(u8 * *)&TObjEneMe1GiGue_barrier_count), 1), (void *)bml_motion, (f32) (*((f32 *) (((s8 *) arg0) + 0xBC))));

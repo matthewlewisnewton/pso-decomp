@@ -1,5 +1,6 @@
 #include "pso/player/demo_mode.h"
 #include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/object/TObjMotion.h"
@@ -666,7 +667,7 @@ void TUnk_804B2578::render() {
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);
-        TObjFish::set_global_param(*(s32 *)((s8 *)turiten_singo_texture_lists + 8));
+        set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)turiten_singo_texture_lists + 8)));
         if (this->model != NULL && this->current_motion != NULL) {
             draw_ginja_model_with_motion(*(void * *)&this->model, *(void * *)&this->current_motion, this->frame);
         }
@@ -678,7 +679,7 @@ void TUnk_804B2578::render() {
                 temp_r29 = temp_f2 <= temp_f1;
                 temp_r30 = temp_f2 <= (2.0f * temp_f1);
                 temp_r31 = temp_f2 <= (3.0f * temp_f1);
-                TObjFish::set_global_param(*(s32 *)((s8 *)turiten_singo_texture_lists + 4));
+                set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)turiten_singo_texture_lists + 4)));
                 if (temp_r29 == 1) {
                     draw_ginja_model((*(s32 *)((s8 *)(*(u8 **)((s8 *)TOHangceilingCave01__model_root + 0x2C)) + 4)));
                 }
@@ -688,7 +689,7 @@ void TUnk_804B2578::render() {
                 if (temp_r31 == 1) {
                     draw_ginja_model((*(s32 *)((s8 *)(*(void **)((s8 *)(*(void **)((s8 *)(*(u8 **)((s8 *)TOHangceilingCave01__model_root + 0x2C)) + 0x2C)) + 0x2C)) + 4)));
                 }
-                TObjFish::set_global_param(*(s32 *)((s8 *)turiten_singo_texture_lists + 0));
+                set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)turiten_singo_texture_lists + 0)));
                 if (temp_r29 == 0) {
                     draw_ginja_model((*(s32 *)((s8 *)(*(u8 **)((s8 *)TOHangceilingCave01__model_root + 0x2C)) + 4)));
                 }
@@ -700,9 +701,9 @@ void TUnk_804B2578::render() {
                 }
             } else {
                 if (is_current_floor_switch_set((int) ((u16) *(s32 *)((s8 *)arg0 + 0x35C))) == 1) {
-                    TObjFish::set_global_param(*(s32 *)((s8 *)turiten_singo_texture_lists + 0));
+                    set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)turiten_singo_texture_lists + 0)));
                 } else {
-                    TObjFish::set_global_param(*(s32 *)((s8 *)turiten_singo_texture_lists + 4));
+                    set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)turiten_singo_texture_lists + 4)));
                 }
                 draw_ginja_object((TOHangceilingCave01__model_root));
             }

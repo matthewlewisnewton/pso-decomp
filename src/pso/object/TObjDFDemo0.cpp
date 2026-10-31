@@ -1,4 +1,5 @@
 #include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
 #pragma push
 
 #define TOBJECT_OUT_OF_LINE_HELPERS
@@ -160,7 +161,7 @@ void TObjDFDemo1::sub_8004E068() {
   rotate_matrix_y(0, this->m_10c);
   for (j = 0; j < 2; j++)
   {
-    TObjFish::set_global_param(self->recs[j].b);
+    set_current_texture_list((GinjaTextureList *)(self->recs[j].b));
     draw_model_motion((void *)((*(&self->recs[j])).a), (void *)self->recs[j].c, this->m_114);
   }
   clear_motion_packed_rotation();
@@ -194,7 +195,7 @@ void TObjDFDemo1::draw_fading_model() {
     rotate_matrix_y(0, this->m_10c);
     max = 30.0f;
     for (i = 0; i < 6; i++) {
-        TObjFish::set_global_param(arg0->recs[i].b);
+        set_current_texture_list((GinjaTextureList *)(arg0->recs[i].b));
         f = this->m_114;
         switch (i) {
         case 0:

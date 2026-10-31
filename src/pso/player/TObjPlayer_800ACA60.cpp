@@ -1,5 +1,6 @@
 #include "pso/system/MatrixVectorArray.h"
 #include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/math/ScratchVectorStorage.h"
 #include "pso/player/TObjChara.h"
 #include "pso/misc/SampledMotionPoints.h"
@@ -1514,7 +1515,7 @@ void render__11TObjEneMojaFv(u8 *arg0) {
         return;
     }
     select_actor_lighting(arg0);
-    TObjFish::set_global_param(((TObjEneMoja *)arg0)->texlist);
+    set_current_texture_list((GinjaTextureList *)(((TObjEneMoja *)arg0)->texlist));
     id = model_render_flags;
     fade = &((Body_800AF080 *)arg0)->fades[cam];
     saved_model_render_flags = id;

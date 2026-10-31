@@ -1,4 +1,5 @@
 #include "pso/player/demo_mode.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/npc/NpcModelRegistry.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
@@ -297,7 +298,7 @@ s32 rotate_matrix_y(s32, s32);
 s32 translate_matrix(s32, f32, f32, f32);
 s32 push_matrix();
 s32 pop_matrix();
-s32 set_global_param__8TObjFishFl(s32);
+
 s32 defer_render__7TObjectFv(void *);
 
 void TObjEneBalClawClaw::clear_flag() {
@@ -370,7 +371,7 @@ void TObjEneBalClawClaw::render() {
         temp_r3 = ((VA_80090950 *)arg0)->m9((1.2e+02f), (4e+02f), (1e+01f));
         if (temp_r3 != 0) {
             var_r30 = 1;
-            set_global_param__8TObjFishFl(this->texlist);
+            set_current_texture_list((GinjaTextureList *)(this->texlist));
             select_actor_lighting(arg0);
             TObjPlayer::toggle_particle_effect();
             push_matrix();

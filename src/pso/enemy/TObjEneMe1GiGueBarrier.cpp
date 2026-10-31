@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/enemy/TObjEneMe1GiGueBarrier.h"
 #include "pso/object/TObject_80019A50.h"
@@ -84,7 +85,7 @@ block_6:
             push_matrix();
             post_translate_matrix((u8 *)&this->position);
             rotate_matrix_y(0, this->rotation_y);
-            TObjFish::set_global_param(this->texlist);
+            set_current_texture_list((GinjaTextureList *)(this->texlist));
             TParticleCtrl::end_effect_render();
             ((TObjMotion *)arg0)->draw();
             pop_matrix();

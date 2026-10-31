@@ -8,6 +8,7 @@
 #include "pso/misc/MaterialOpacityFade.h"
 #include "pso/misc/RenderFadeState.h"
 #include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
 struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
@@ -1926,7 +1927,7 @@ void TObjEneMe3ShinowaMirage::draw_model() {
     }
     if (var_r31 != 0) {
         this->update_player_state_default();
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)(this->texlist));
         this->update_secondary_light();
         saved_model_render_flags = model_render_flags;
         TObjEneDD::clear_global_flag_400();

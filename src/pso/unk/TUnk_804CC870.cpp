@@ -1,4 +1,5 @@
 #include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/ChunkMaterialState.h"
 // ---- pso/unk/text_80232934
 #include "types.h"
@@ -269,7 +270,7 @@ void TUnk_804CC870::render() {
     post_translate_matrix(arg0->f20);
     scale_matrix(0, arg0->pos.x, arg0->pos.y, arg0->pos.z);
     translate_matrix(0, 0.0f, 1e+01f, 0.0f);
-    TObjFish::set_global_param((s32)lbl_804CC868);
+    set_current_texture_list((GinjaTextureList *)(lbl_804CC868));
     get_bml_model(technique_effect_bml, 10);
     draw_ginja_object();
     pop_matrix();

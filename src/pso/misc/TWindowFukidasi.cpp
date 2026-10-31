@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TUnk_804CF0B8.h"
@@ -1126,7 +1127,7 @@ void TUnk_804CF0B8::draw_body(void *ctx, u32 argb, f32 *offset, f32 depth) {
     s.f2c = 0.0f;
     s.f30 = 0.0f;
     begin_screen_draw(1);
-    TObjFish::set_global_param((s32)lbl_805D63F0);
+    set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
     set_draw_texture_and_color(1, argb);
     if (((struct Fukidasi_80252558 *)this)->size[1] < lbl_805DCD98) {
         capY = TWindowFukidasi__data_805DCD0C * ((struct Fukidasi_80252558 *)this)->size[1];

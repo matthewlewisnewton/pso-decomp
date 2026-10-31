@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/object/TObjTreeLobby.h"
 #include "pso/object/TQuestDamageTask.h"
@@ -110,7 +111,7 @@ void TObjTreeLobby::run_task() {
 void TObjTreeLobby::render() {
     if (fade_state != 0) {
         TParticleCtrl::begin_effect_render();
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         push_matrix();
         post_translate_matrix(&position.x);
         rotate_matrix_y(NULL, rotation_y);

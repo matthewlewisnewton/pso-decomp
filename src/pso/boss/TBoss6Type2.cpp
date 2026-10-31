@@ -1,6 +1,7 @@
 #include "pso/system/ModelNodePositionCapture.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/system/NinjaUtil.h"
@@ -2295,7 +2296,7 @@ void TBoss6Type2::draw_body_models() {
                 if (a < TBoss6Type2__data_805DE40C) {
                     TBoss6PlotFalz::set_fade_material_color(a);
                 }
-                TObjFish::set_global_param(p0);
+                set_current_texture_list((GinjaTextureList *)(p0));
                 if (TBoss6Type2__data_805DE410 == *(f32 *)((s8 *)arg0 + 0x4A4)) {
                     if (done != 0) {
                         draw_model_motion((void *)p1, (void *)(*(s32 *)((s8 *)arg0 + 0x498)), *(f32 *)((s8 *)arg0 + 0x49C));

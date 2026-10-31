@@ -1,4 +1,5 @@
 #include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/system/PadRumble.h"
@@ -128,7 +129,7 @@ void TObjDFDemo2::render() {
     post_translate_matrix(arg0->fac);
     rotate_matrix_y(0, arg0->fb8);
     for (i = 0; i < 2; i++) {
-        TObjFish::set_global_param(arg0->recs[i].b);
+        set_current_texture_list((GinjaTextureList *)(arg0->recs[i].b));
         draw_model_motion((void *)arg0->recs[i].a, (void *)arg0->recs[i].c, arg0->fc0);
     }
     clear_motion_packed_rotation();

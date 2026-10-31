@@ -1,6 +1,7 @@
 #include "pso/player/demo_mode.h"
 #include "pso/math/VectorNormalize.h"
 #include "pso/enemy/BattleParameters.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/enemy/TObjEnemy.h"
 struct Obj_800ED4BC;
 
@@ -497,7 +498,7 @@ void render__13TObjEneRe4BitFv(Bit_800ECA40 *self) {
     m = *self->x24;
     saved = m->x2C;
     m->x2C = m->ents[self->idx].c;
-    TObjFish::set_global_param((s32)self->x24);
+    set_current_texture_list((GinjaTextureList *)(self->x24));
     saved_model_render_flags = model_render_flags;
     TObjEneDD::clear_global_flag_400();
     TObjPlayer::toggle_particle_effect();

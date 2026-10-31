@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "pso/TAdMultiOkGC.h"
 #include "pso/menu/TAdMultiOkGC.h"
 #include "pso/misc/TWindowSubStatusDisp_803DEE6C.h"
@@ -120,7 +121,7 @@ void TAdMultiOkGC::draw_entry(int arg1) {
     e = (E_80306B04 *)this;
     if (e[arg1].flags & 2) {
         begin_screen_draw(1);
-        TObjFish::set_global_param(multi_confirm_texture_list);
+        set_current_texture_list((GinjaTextureList *)(multi_confirm_texture_list));
         e += arg1;
         base = lbl_805DF040 * (f32)arg1;
         for (i = 0; i < 5; i++) {

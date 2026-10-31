@@ -2,6 +2,7 @@
 #include "pso/misc/SampledMotionPoints.h"
 #include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -335,7 +336,7 @@ void draw_actor_model__10TObjPlayerFPv(Player_800A7CA4 *self) {
         fading = ((RenderFadeState *)(&self->fades[mode]))->updateFromCamera((const f32*)(self->cam));
     }
     select_actor_lighting(self);
-    TObjFish::set_global_param(self->f24);
+    set_current_texture_list((GinjaTextureList *)(self->f24));
     push_matrix();
     post_translate_matrix(self->pos);
     rotate_matrix_y(0, self->f60);

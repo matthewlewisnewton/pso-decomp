@@ -1,4 +1,5 @@
 #include "pso/system/ModelNodePositionCapture.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/system/PadRumble.h"
 #include "pso/boss/Boss6Type2Death.h"
@@ -116,7 +117,7 @@ void TBoss6Demo21_TYPE2_DEAD::draw_model_13() {
         push_matrix();
         set_motion_packed_rotation();
         post_translate_matrix((void *) (((u8 *)this) + 0x58));
-        TObjFish::set_global_param((int) (*(s32 *)((s8 *)((u8 *)this) + 0x44)));
+        set_current_texture_list((GinjaTextureList *)((*(s32 *)((s8 *)((u8 *)this) + 0x44))));
         ((ModelNodePositionCapture *)(this->m_9c))->install();
         draw_model_motion((void *)this->m_40, (void *)this->m_48, (f32) (*(f32 *)((s8 *)((u8 *)this) + 0x4C)));
         ((ModelNodePositionCapture *)(this->m_9c))->clear();
@@ -151,7 +152,7 @@ void TBoss6Demo21_TYPE2_DEAD::draw_fading_model_8(void *p) {
         push_matrix();
         set_motion_packed_rotation();
         post_translate_matrix(arg0 + 0x58);
-        TObjFish::set_global_param(*(s32 *)(arg0 + 0x38));
+        set_current_texture_list((GinjaTextureList *)(*(s32 *)(arg0 + 0x38)));
         ((ModelNodePositionCapture *)(*(s32 *)(arg0 + 0x80)))->install();
         draw_model_motion((void *)(*(s32 *)(arg0 + 0x34)), (void *)(*(s32 *)(arg0 + 0x3C)), *(f32 *)(arg0 + 0x4C));
         ((ModelNodePositionCapture *)(*(s32 *)(arg0 + 0x80)))->clear();
@@ -186,7 +187,7 @@ void TBoss6Demo21_TYPE2_DEAD::draw_fading_model_5(void *p) {
         push_matrix();
         set_motion_packed_rotation();
         post_translate_matrix(arg0 + 0x58);
-        TObjFish::set_global_param(*(s32 *)(arg0 + 0x2C));
+        set_current_texture_list((GinjaTextureList *)(*(s32 *)(arg0 + 0x2C)));
         ((ModelNodePositionCapture *)(*(s32 *)(arg0 + 0x70)))->install();
         draw_model_motion((void *)(*(s32 *)(arg0 + 0x28)), (void *)(*(s32 *)(arg0 + 0x30)), *(f32 *)(arg0 + 0x4C));
         ((ModelNodePositionCapture *)(*(s32 *)(arg0 + 0x70)))->clear();
@@ -217,7 +218,7 @@ void TBoss6Demo21_TYPE2_DEAD::draw_fading_model_4() {
         push_matrix();
         set_motion_packed_rotation();
         post_translate_matrix(((u8 *)this) + 0x58);
-        TObjFish::set_global_param(this->m_20);
+        set_current_texture_list((GinjaTextureList *)(this->m_20));
         ((ModelNodePositionCapture *)(this->m_70))->install();
         draw_model_motion((void *)(*(s32 *)((s8 *)((u8 *)this) + 0x1C)), (void *)(*(s32 *)((s8 *)((u8 *)this) + 0x24)), *(f32 *)((s8 *)((u8 *)this) + 0x4C));
         ((ModelNodePositionCapture *)(this->m_70))->clear();

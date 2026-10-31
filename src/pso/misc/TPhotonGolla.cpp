@@ -1,4 +1,5 @@
 #include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/system/ChunkMaterialState.h"
@@ -307,7 +308,7 @@ void TPhotonGolla::render() {
     if (this->m_1c4 != 0) {
         scroll_strip_uvs(golla_photon_blast_buffer_pair, self->f14C, 0);
         TParticleCtrl::begin_effect_render();
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)(this->texlist));
         push_matrix();
         post_translate_matrix(&self->pos);
         rotate_matrix_y(0, this->rotation_y);

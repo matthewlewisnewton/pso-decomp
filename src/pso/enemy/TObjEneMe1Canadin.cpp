@@ -3,6 +3,7 @@
 #include "pso/player/demo_mode.h"
 #include "pso/misc/MaterialOpacityFade.h"
 #include "pso/misc/RenderFadeState.h"
+#include "pso/system/CurrentTextureList.h"
 struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
@@ -2781,7 +2782,7 @@ void TObjEneMe1Canadin::render_canadin_model_with_debug_type() {
     if (((VObj_18_26a62c *)(arg0))->m8(lbl_805D98A0, lbl_805D98A4) != 0) {
         ((TObjEneDD *)(arg0))->draw_ground_shadow(0, 0);
         TObjPlayer::toggle_particle_effect();
-        TObjFish::set_global_param((int) (*(s32 *)((s8 *)arg0 + 0x24)));
+        set_current_texture_list((GinjaTextureList *)((*(s32 *)((s8 *)arg0 + 0x24))));
         push_matrix();
         post_translate_matrix(arg0 + 0x38);
         rotate_matrix_y(0, (int) (*(s32 *)((s8 *)arg0 + 0x60)));
@@ -2818,7 +2819,7 @@ void TObjEneMe1Canadin::render() {
             ((TObjEneDD *)(arg0))->draw_ground_shadow(0, 0);
         }
         ((TObjEneDD *)arg0)->update_secondary_light();
-        TObjFish::set_global_param((int) (*(s32 *)((s8 *)arg0 + 0x24)));
+        set_current_texture_list((GinjaTextureList *)((*(s32 *)((s8 *)arg0 + 0x24))));
         saved_model_render_flags = model_render_flags;
         TObjEneDD::clear_global_flag_400();
         TObjPlayer::toggle_particle_effect();

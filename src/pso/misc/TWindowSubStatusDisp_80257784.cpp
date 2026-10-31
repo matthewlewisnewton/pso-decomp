@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/system/memory.h"
 #include "pso/misc/TCameraCtrl.h"
@@ -698,7 +699,7 @@ extern s32 lbl_805D63F0;
 extern const f32 lbl_805DCF1C;
 void begin_screen_draw(s32 arg0);
 void set_draw_texture_and_color(s32 idx, s32 arg1);
-s32 set_global_param__8TObjFishFl(s32);
+
 s32 try_open__19TWindowKeyBoardSoftFii(s32, s32);
 void draw_textured_quad_at_depth(f32 *q, f32 depth);
 
@@ -713,7 +714,7 @@ void draw_item_list_icon(s32 win, u8 *pos, s32 icon, s32 style, f32 depth) {
     if ((u8)icon != 0x33) {
         p = (ItemListPosition *)pos;
         begin_screen_draw(1);
-        set_global_param__8TObjFishFl(lbl_805D63F0);
+        set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
         set_draw_texture_and_color(1, style);
         entry = (f32 *)TWindowSubStatusDisp::get_entry_ptr(icon);
         offset = lbl_805DCF14;

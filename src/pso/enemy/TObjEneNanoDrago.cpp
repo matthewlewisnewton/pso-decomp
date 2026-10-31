@@ -2,6 +2,7 @@
 #include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/misc/GroundEffects.h"
@@ -444,7 +445,7 @@ void TObjEneNanoDrago::render() {
                 return;
             }
         }
-        TObjFish::set_global_param((int) (texlist));
+        set_current_texture_list((GinjaTextureList *)((texlist)));
         select_actor_lighting(this);
         TObjPlayer::toggle_particle_effect();
         rendered = 1;

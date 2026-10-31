@@ -1,5 +1,6 @@
 #include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
+#include "pso/system/CurrentTextureList.h"
 struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
@@ -80,7 +81,7 @@ void TObjEneRe4Sorcerer::vfunc_106() {
     get_target_info__9TObjEneDDFv();
     if (((VObj *)arg0)->m8(lbl_805DA788, TObjEneRe4Sorcerer__data_805DA78C) != 0) {
         ((TObjEneDD *)(arg0))->draw_ground_shadow(0, 0);
-        TObjFish::set_global_param(*(s32 *)((s8 *)arg0 + 0x24));
+        set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)arg0 + 0x24)));
         ((s32 (*)())push_matrix)();
         ((s32 (*)(void *))post_translate_matrix)(arg0 + 0x38);
         ((s32 (*)(s32, f32, f32, f32))translate_matrix)(0, TObjEneRe4Sorcerer__data_805DA790, TObjEneRe4Sorcerer__data_805DA794, TObjEneRe4Sorcerer__data_805DA790);
@@ -1223,7 +1224,7 @@ void render__18TObjEneRe4SorcererFv(u8 *ene_re7_berura) {
             ((TObjEneDD *)(ene_re7_berura))->draw_ground_shadow(0, 0);
         }
         ((TObjEneDD *)ene_re7_berura)->update_secondary_light();
-        TObjFish::set_global_param((int) (*(s32 *)((s8 *)ene_re7_berura + 0x24)));
+        set_current_texture_list((GinjaTextureList *)((*(s32 *)((s8 *)ene_re7_berura + 0x24))));
         saved_model_render_flags = model_render_flags;
         TObjEneDD::clear_global_flag_400();
         scroll_strip_uvs((int) ((*(s32 *)&TObjEneRe4Sorcerer__uv_scroll_buffer)), (int) (*(s16 *)((s8 *)ene_re7_berura + 0x3C0)), 0);

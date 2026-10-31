@@ -1,6 +1,7 @@
 #include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
 struct NJS_OBJECT;
 #include "types.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
@@ -963,7 +964,7 @@ void TObjEneSlimeTailAttack::draw_stretched_segment(void *arg1, void *arg2, f32 
         f32 r = lbl_805DA67C - t;
         scale_matrix(0, lbl_805DA67C, lbl_805DA678, r * len / lbl_805DA66C);
     }
-    TObjFish::set_global_param(this->texlist);
+    set_current_texture_list((GinjaTextureList *)(this->texlist));
     TObjPlayer__sub_800EBE48(lbl_805DA688 * t + lbl_805DA684);
     saved = this->frame;
     this->frame = lbl_805DA68C;
@@ -983,7 +984,7 @@ void TObjEneSlimeTailAttack::sub_800E841C() {
     push_matrix();
     post_translate_matrix((u8 *)&this->position);
     rotate_matrix_y(0, (int) (((TObjEneSlimeTailAttack *)arg0)->rotation_y));
-    TObjFish::set_global_param((int) (((TObjEneSlimeTailAttack *)arg0)->texlist));
+    set_current_texture_list((GinjaTextureList *)((((TObjEneSlimeTailAttack *)arg0)->texlist)));
     if ((s32) *(s32 *)((s8 *)arg0 + 0x378) != 0) {
         TObjPlayer__sub_800E81A8();
         set_chunk_model_node_callback(TObjPlayer__sub_800E8128);
@@ -1356,7 +1357,7 @@ void TObjEneSlimeOne::sub_800E9090() {
     rotate_matrix_y(0, ang);
     scale_matrix_vec3((u8 *)(0), (u8 *)&b);
     t = slime_tail_attack_id_pair[self->f3F4];
-    TObjFish::set_global_param(TObjFish__sub_8001EDB0(self->f380, t));
+    set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0(self->f380, t)));
     draw_chunk_object((void *)(get_bml_model(self->f380, t)));
     ((int (*)(void))pop_matrix)();
     TObjPlayer::init_render_globals();

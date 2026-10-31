@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TWindowSubStatusDisp_803DEE6C.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
@@ -14,7 +15,7 @@ void draw_move_plate_quads(Obj_80325660 *arg0) {
     u32 i;
     for (i = 0; i < arg0->count; i++) {
         begin_screen_draw(1);
-        TObjFish::set_global_param(chr_sel_move_plate_texture);
+        set_current_texture_list((GinjaTextureList *)(chr_sel_move_plate_texture));
         set_draw_texture_and_color(0, (arg0->col[i] << 24) | 0xFFFFFF);
         draw_textured_quad_at_depth((f32 *)&arg0->ents[i], lbl_805DF600);
         TWindowSubStatusDisp::get_player();

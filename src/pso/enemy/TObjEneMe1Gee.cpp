@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 struct NJS_OBJECT;
 #include "pso/math/FloatRounding.h"
 #include "pso/misc/PositionSoundEffects.h"
@@ -2017,7 +2018,7 @@ void TObjEneMe1Gee::vfunc_115() {
     if (((VObj_18_26a62c *)(arg0))->m8(lbl_805DA0BC, TObjEneMe1Gee__data_805DA0C0) != 0) {
         ((TObjEneDD *)(arg0))->draw_ground_shadow(0, 0);
         TObjPlayer::toggle_particle_effect();
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)(this->texlist));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);
@@ -2054,7 +2055,7 @@ void render__13TObjEneMe1GeeFv(u8 *ene_me1_gee) {
             ((TObjEneDD *)(ene_me1_gee))->draw_ground_shadow(0, 0);
         }
         ((TObjEneDD *)ene_me1_gee)->update_secondary_light();
-        TObjFish::set_global_param((int) (((TObjEneMe1Gee *)ene_me1_gee)->texlist));
+        set_current_texture_list((GinjaTextureList *)((((TObjEneMe1Gee *)ene_me1_gee)->texlist)));
         saved_model_render_flags = model_render_flags;
         TObjEneDD::clear_global_flag_400();
         TObjPlayer::toggle_particle_effect();

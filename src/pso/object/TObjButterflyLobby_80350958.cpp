@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/object/TObjButterflyLobby_80350958.h"
@@ -87,7 +88,7 @@ void TObjButterflyLobby::init_params() {
 
 void TObjButterflyLobby::render() {
     if ((((ButterflyLobbyVObj_80350958*)this)->m8(400.0f, 20.0f) != 0) && ((s32) this->m_90 != 0)) {
-        TObjFish::set_global_param(this->m_c8);
+        set_current_texture_list((GinjaTextureList *)(this->m_c8));
         render__18TObjButterflyLobbyFPv((TObjButterflyLobby *)((u8 *)this));
     }
 }

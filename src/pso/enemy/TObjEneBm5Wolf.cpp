@@ -2,6 +2,7 @@
 #include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
 struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
@@ -1201,7 +1202,7 @@ void render_debug__14TObjEneBm5WolfFPv(u8 *ene_bm5_wolf) {
     }
     if (((VObj_18_26a62c *)(ene_bm5_wolf))->m8(lbl_805D9D70, TObjEneBm5Wolf__data_805D9D74) != 0) {
         ((TObjEneDD *)(ene_bm5_wolf))->draw_ground_shadow(0, 0);
-        TObjFish::set_global_param(((TObjEneBm5Wolf *)ene_bm5_wolf)->texlist);
+        set_current_texture_list((GinjaTextureList *)(((TObjEneBm5Wolf *)ene_bm5_wolf)->texlist));
         push_matrix();
         post_translate_matrix(ene_bm5_wolf + 0x38);
         rotate_matrix_y(0, ((TObjEneBm5Wolf *)ene_bm5_wolf)->rotation_y);
@@ -1293,7 +1294,7 @@ void TObjEneBm5Wolf::render() {
                 pop_matrix();
             }
             this->update_secondary_light();
-            TObjFish::set_global_param(this->texlist);
+            set_current_texture_list((GinjaTextureList *)(this->texlist));
             push_matrix();
             post_translate_matrix(((u8 *)this) + 0x38);
             rotate_matrix_y(0, this->rotation_y);

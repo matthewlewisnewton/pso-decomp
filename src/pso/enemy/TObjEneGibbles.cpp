@@ -4,6 +4,7 @@
 #include "pso/misc/RenderFadeState.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
 struct NJS_OBJECT;
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/system/BmlResourceClass.h"
@@ -2260,7 +2261,7 @@ void draw_model__14TObjEneGibblesFPv(TObjEneGibbles *arg0) {
         update__15RenderFadeStateFv(&self->fades[cam]);
         fade = ((RenderFadeState *)(&self->fades[cam]))->updateFromCamera((const f32*)((u8 *)arg0 + 0x2FC));
         select_actor_lighting((s32)arg0);
-        TObjFish::set_global_param(arg0->texlist);
+        set_current_texture_list((GinjaTextureList *)(arg0->texlist));
         push_matrix_from(0);
         VecCopy((Vec *)&v, (const Vec *)((Vec_800A6B14 *)((u8 *)arg0 + 0x38)));
         switch (arg0->mode) {

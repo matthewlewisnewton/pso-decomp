@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "pso/misc/TODoorAncient08.h"
 
 #include "pso/TMainTask.h"
@@ -174,7 +175,7 @@ void TODoorAncient08::render() {
             push_matrix();
             post_translate_matrix(&position.x);
             rotate_matrix_y(NULL, rotation_y);
-            TObjFish::set_global_param(texlist);
+            set_current_texture_list((GinjaTextureList *)(texlist));
             draw_ginja_model_with_motion(model, motion, animation_frame);
             pop_matrix();
             return;
@@ -182,7 +183,7 @@ void TODoorAncient08::render() {
             push_matrix();
             post_translate_matrix(&position.x);
             rotate_matrix_y(NULL, rotation_y);
-            TObjFish::set_global_param(texlist);
+            set_current_texture_list((GinjaTextureList *)(texlist));
             draw_ginja_model_with_motion(model, motion, animation_end_frame - 1.0f);
             pop_matrix();
             return;
@@ -231,7 +232,7 @@ void TODoorAncient08::draw_switch_lights() {
     }
     on[3] = set;
     push_matrix();
-    TObjFish::set_global_param(texture_lists[1]);
+    set_current_texture_list((GinjaTextureList *)(texture_lists[1]));
     post_translate_matrix(&position.x);
     post_translate_matrix(root->pos);
     rotate_matrix_y(NULL, rotation_y);
@@ -240,9 +241,9 @@ void TODoorAncient08::draw_switch_lights() {
     TParticleCtrl::begin_effect_render();
     for (i = 0; i < 4; i++) {
         if (on[i] != 0) {
-            TObjFish::set_global_param(texture_lists[0]);
+            set_current_texture_list((GinjaTextureList *)(texture_lists[0]));
         } else {
-            TObjFish::set_global_param(texture_lists[1]);
+            set_current_texture_list((GinjaTextureList *)(texture_lists[1]));
         }
         push_matrix();
         pair = pairs[i];
