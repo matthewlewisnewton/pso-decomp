@@ -9,9 +9,7 @@
 
 #include "types.h"
 #include "pso/TParticleCtrl.h"
-#include "pso/misc/TWindowKeyBoardSoft.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
-#include "pso/misc/TWindowSubSymbolChatPartsSet.h"
 #include "pso/object/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
 
@@ -56,6 +54,8 @@ void set_draw_texture_and_color(s32 idx, s32 arg1);
 extern "C" {
 
 void *__nw__7TObjectFUl(int);
+void copy_vec2__28TWindowSubSymbolChatPartsSetFPv(f32 *destination, const void *source);
+void adjust_pos_for_split_screen__19TWindowKeyBoardSoftFl(f32 *position, s32 view_index);
 
 #pragma fp_contract on
 
@@ -73,8 +73,8 @@ void *TWindowEffectLight::create(void *arg0, void *arg1, void *arg2) {
 
 TWindowEffectLight::TWindowEffectLight(void *arg1, s16 arg2, u32 id) : TObject((TObject *)tl_window) {
     m_name = (const char *)lbl_805D3E60;
-    ((TWindowSubSymbolChatPartsSet *)(((u8 *)this) + 0x1C))->copy_vec2(arg1);
-    ((TWindowKeyBoardSoft *)(((u8 *)this) + 0x1C))->adjust_pos_for_split_screen(TCameraCtrl::get_split_screen_view_index(id));
+    copy_vec2__28TWindowSubSymbolChatPartsSetFPv(&x, arg1);
+    adjust_pos_for_split_screen__19TWindowKeyBoardSoftFl(&x, TCameraCtrl::get_split_screen_view_index(id));
     effect_kind = arg2;
     age = -1;
     player_id = id;
