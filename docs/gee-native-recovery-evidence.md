@@ -18,18 +18,18 @@ construction and destruction. The Gee source uses the foundation's free demo
 predicate, float ceiling helper, positional effects, typed motion-table setters
 and ground-shadow calls. Shared declarations and implementations are unchanged.
 
-Two reviewed contracts remain missing from that foundation:
+The candidate also merges the immutable draft random/phase stack:
 
-- `028902d2ca5bacfde2ec6cb4f37865f7ed53b57c`: nonstatic actor receiver
-  for `TObjEneDD::get_random_scaled` (the foundation declares it static).
-- `e2267dabd4c903e79b5f7f13b98c8f987858590d`: full-register `s32`
-  result for the static main-phase predicate (the foundation declares `u8`).
+- `d8c77c6597a216329a7922f28e0f38d919f57d38` (fork PR81): nonstatic
+  actor receiver for `TObjEneDD::get_random_scaled`.
+- `ad9f594f4bb350d1548850df1d8b17c63f05e2ac` (fork PR82): full-register
+  `s32` result for the static main-phase predicate.
 
-The integration lead supplies coherent equivalents on a fork-local common base.
-This layer introduces no generic declarations or shims to fill those gaps. The
-combined draft remains unvalidated; prior matching results do not certify this
-reapplication. Full builds and review wait for the prerequisite base. The initial
-623d preparation additionally lacked MaterialOpacityFade; that gap is now closed.
+PR82 is the immediate fork-local base. These shared heads have targeted owner
+object checks but their full certification is pending. This layer introduces no
+generic declarations or shims. The combined Gee draft must pass its own exact
+checks and independent review after the parent gates; prior matching results do
+not certify this reapplication.
 
 ## Native storage and emission
 
