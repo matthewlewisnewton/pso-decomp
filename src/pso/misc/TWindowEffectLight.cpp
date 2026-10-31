@@ -179,7 +179,7 @@ void TWindowEffectLight__sub_802AD040(TWindowEffectLight *self, f32 width) {
     draw_textured_quad_at_depth((f32 *)&q, TWindowEffectLight__data_805DE0E4);
     q.x0 = self->x + half_width;
     q.y0 = self->y - half_height;
-    q.x1 = self->x + half_width + half_height;
+    q.x1 = q.x0 + half_height;
     q.y1 = self->y + half_height;
     q.u0 = lbl_805DE100;
     q.v0 = TWindowEffectLight__data_805DE0E4;
@@ -193,7 +193,7 @@ void TWindowEffectLight__sub_802AD040(TWindowEffectLight *self, f32 width) {
         q.y1 = self->y + half_height;
         q.u0 = lbl_805DE100;
         q.v0 = TWindowEffectLight__data_805DE0E4;
-        q.u1 = lbl_805DE100;
+        q.u1 = q.u0;
         q.v1 = lbl_805DE104;
         draw_textured_quad_at_depth((f32 *)&q, TWindowEffectLight__data_805DE0E4);
     }
