@@ -188,6 +188,8 @@ class Queue:
             run(['git', 'init', str(self.repo)])
             self.git('remote', 'add', 'origin', REMOTE)
         require(self.git('remote', 'get-url', 'origin') == REMOTE, 'wrong_repository', 'Unexpected checkout remote')
+        require(not self.git('status', '--porcelain', '--untracked-files=no'),
+                'dirty_state_checkout', 'Preserve and investigate tracked state edits; no reset is performed')
         # Fetch only immutable selected objects, never fetch/push a wildcard refspec.
         self.git('fetch', '--no-tags', 'origin', self.spec['target'], *[p['head'] for p in self.spec['prs']])
         current = self.spec['target']
@@ -284,6 +286,8 @@ class Queue:
         self.verify(validator, validator_hash, environment)
         self.live_guard()
         if mode == 'execute':
+            require(self.spec.get('publication_freeze') is True, 'missing_publication_freeze',
+                    'Coordinator must freeze selected heads and other merge writers during publication')
             self.publish()
         else:
             self.write(state='dry_run_pass')

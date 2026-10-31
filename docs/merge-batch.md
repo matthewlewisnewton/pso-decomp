@@ -32,7 +32,8 @@ that atomically asserts multiple PR heads and updates the default ref. The tool
 rechecks every live head/base/check immediately before push, and normal fast-forward
 semantics reject a divergent target race, but cannot eliminate an external head
 update racing *after* the last read. This is a cooperative local queue, not a server
-side merge queue or a security sandbox. Do not use it when that freeze is unavailable.
+side merge queue or a security sandbox. `execute` additionally requires the explicit
+`publication_freeze: true` attestation. Do not set it when that freeze is unavailable.
 Branch rules that require a different merge route cause rejection, never bypass.
 
 State directories are private, retained evidence. Do not share them or commit them:
@@ -53,6 +54,7 @@ Save a JSON manifest with this shape (replace every placeholder):
   "target": "CURRENT_DEFAULT_COMMIT_40_HEX",
   "policy": "recovery",
   "authorization": "Parent batch selection and publication-freeze reference",
+  "publication_freeze": true,
   "commit_epoch": 1793476000,
   "environment_sha256": "SHA256_OF_LOCAL_ENVIRONMENT_JSON",
   "prs": [{

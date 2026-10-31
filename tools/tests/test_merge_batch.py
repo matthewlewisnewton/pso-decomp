@@ -264,6 +264,12 @@ class QueueTests(unittest.TestCase):
                        check=True, capture_output=True)
         self.assertEqual(json.loads(output.read_text())['checks'], {'source': True})
 
+    def test_dirty_state_checkout_is_preserved(self):
+        self.q.execute('plan')
+        (self.q.repo / 'file').write_text('preserve local work')
+        self.rejects('dirty_state_checkout', self.q.construct)
+        self.assertEqual((self.q.repo / 'file').read_text(), 'preserve local work')
+
 
 if __name__ == '__main__':
     unittest.main()
