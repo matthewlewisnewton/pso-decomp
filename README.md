@@ -11,10 +11,10 @@ Nothing from the game is included here. You need your own copy of the game to bu
 <!-- progress-table -->
 | | Matched | Linked |
 |:--|--:|--:|
-| Code | 94.19% | 73.26% |
-| Data | 72.39% | 52.21% |
-| Functions | 98.73% (27,221 of 27,572) | |
-| Units | | 69.51% (3,539 of 5,091) |
+| Code | 94.21% | 73.43% |
+| Data | 72.45% | 52.27% |
+| Functions | 98.73% (27,223 of 27,572) | |
+| Units | | 69.57% (3,539 of 5,087) |
 <!-- /progress-table -->
 
 Measured on `PsoV3.dol`. A function is matched when it compiles to the original's exact bytes. Code, data and
