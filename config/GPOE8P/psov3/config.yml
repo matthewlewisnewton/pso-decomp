@@ -14188,6 +14188,66 @@ force_active:
   - update_short_action__8TItemMagFv
   - update_wait_action__8TItemMagFv
   - write_item_data__8TItemMagFP9TItemData
+  - TObjEneGibbles__model_filenames
+  - TObjEneGibbles__motion_names_and_resource_descriptor
+  - __ct__14TObjEneGibblesFP7TObjectPv
+  - __dt__14TObjEneGibblesFv
+  - __vt__14TObjEneGibbles
+  - apply_landing_area_attack__14TObjEneGibblesFv
+  - attack_from_joint_31__14TObjEneGibblesFlf
+  - attack_from_joint_53__14TObjEneGibblesFlf
+  - clamp_angle__14TObjEneGibblesFl
+  - fn_802D7A54__14TObjEneGibblesFv
+  - fn_802D7E3C__14TObjEneGibblesFv
+  - fn_802D8034__14TObjEneGibblesFv
+  - fn_802D8580__14TObjEneGibblesFv
+  - fn_802D8E8C__14TObjEneGibblesFv
+  - fn_802D9110__14TObjEneGibblesFv
+  - get_center__14TObjEneGibblesFv
+  - gibbles_collision_body_templates
+  - gibbles_motion_name_table
+  - gibbles_movement_parameters
+  - gibbles_render_node_callback__Fv
+  - init_params__14TObjEneGibblesFv
+  - init_state__14TObjEneGibblesFv
+  - is_target_in_attack_range__14TObjEneGibblesFv
+  - lbl_804E285C
+  - lbl_804E286C
+  - lbl_804E28A0
+  - play_distance_sound__14TObjEneGibblesFv
+  - play_ground_contact_sound__14TObjEneGibblesFv
+  - render__14TObjEneGibblesFv
+  - render_and_get_joint_pos__14TObjEneGibblesFP3Vecl
+  - resolve_sound_id__14TObjEneGibblesFUl
+  - run_task__14TObjEneGibblesFv
+  - set_min_clamped_entry_value__14TObjEneGibblesFlf
+  - slam_damage_players__14TObjEneGibblesFl
+  - spawn_ground_contact_effect__14TObjEneGibblesFv
+  - spawn_ground_impact_effects__14TObjEneGibblesFPC3Vecf
+  - sub_802D8140__14TObjEneGibblesFv
+  - sub_802D8984__14TObjEneGibblesFv
+  - sub_802DA0BC__14TObjEneGibblesFv
+  - sub_802DA7A4__14TObjEneGibblesFv
+  - sub_802DBC94__14TObjEneGibblesFl
+  - sync_state__14TObjEneGibblesFv
+  - test_flag_256__14TObjEneGibblesFv
+  - turn_toward_target__14TObjEneGibblesFv
+  - update_action_hold_status__14TObjEneGibblesFv
+  - update_action_state__14TObjEneGibblesFv
+  - update_death_sequence__14TObjEneGibblesFv
+  - update_move_state__14TObjEneGibblesFv
+  - update_movement_status__14TObjEneGibblesFv
+  - update_position__14TObjEneGibblesFv
+  - update_shadow_height__14TObjEneGibblesFv
+  - update_spawn_state__14TObjEneGibblesFv
+  - update_wander__14TObjEneGibblesFv
+  - vfunc_28__14TObjEneGibblesFv
+  - vfunc_58__14TObjEneGibblesFv
+  - vfunc_59__14TObjEneGibblesFv
+  - vfunc_60__14TObjEneGibblesFv
+  - vfunc_61__14TObjEneGibblesFv
+  - vfunc_62__14TObjEneGibblesFv
+  - vfunc_63__14TObjEneGibblesFv
 # --- force_active (END) ---
 # False pointers: packed data words whose values happen to land on code/data
 # addresses. dtk would emit a relocation and export the target symbol.
