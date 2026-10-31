@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/math/VectorNormalize.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/player/PlayerAttackParams.h"
@@ -209,7 +210,7 @@ void TObjEneBm3Fly__vt104(TObjEneBm3Fly *arg0) {
 
 void render__13TObjEneBm3FlyFv(VObj_800AFBF0 *o) {
     s32 kind;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         o->v104();
         return;
     }
@@ -2229,7 +2230,7 @@ void TObjEneBm3Fly::run_task() {
   u8 *temp_r3_2;
   u8 *temp_r3_3;
   u8 *temp_r3_4;
-  if (TObjPlayer::check_demo_mode() != 0)
+  if (check_demo_mode() != 0)
   {
     (((VObj_18_6eb1ad *)(arg0))->m103());
     return;
@@ -2338,8 +2339,8 @@ s32 TObjEneBm3Fly::init_child_params() {
     *(s32 *)((s8 *)this + 0x34) = *(s32 *)((s8 *)(*(u8 **)((s8 *)bm3_fly_nest_resources + 0x42C)) + 8);
     this->texlist = *(s32 *)((s8 *)(*(u8 **)((s8 *)bm3_fly_nest_resources + 0x42C)) + 0xC);
     init_model__9TObjEneDDFP13CollisionBodyl(this, &bm3_fly_collider_params, 1);
-    set_field_d8((s32)bm3_fly_action_table);
-    set_field_dc(*(s32 *)((s8 *)bm3_fly_nest_resources + 0x430));
+    set_action_table((TObjMotionAction *)((s32)bm3_fly_action_table));
+    set_motion_list((BmlMotionEntry *)(*(s32 *)((s8 *)bm3_fly_nest_resources + 0x430)));
     this->requested_action = 0;
     set_animation(this->requested_action);
     set_field_b8(this->requested_action);

@@ -245,6 +245,7 @@ public:
     // The destination still uses split storage.
     Vec *destination() { return (Vec *)&m_29c; }
     void copy_body_to_center();
+    void initialize_position_copies();
     Vec *body_center() { return &body_center_position; }
     Vec *velocity() { return &movement_velocity; }
 };

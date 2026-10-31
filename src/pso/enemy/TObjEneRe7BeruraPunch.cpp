@@ -1,3 +1,4 @@
+#include "pso/map/CsnGroundQuery.h"
 #include "types.h"
 #include "pso/enemy/TObjEneDD_800BA138.h"
 #include "pso/enemy/TObjEneRe7BeruraPunch_80095E18.h"
@@ -260,7 +261,6 @@ struct Vec_8009640C { f32 x, y, z; };
 struct Ang_8009640C { s32 x, y, z; };
 
 extern "C" {
-s32 *csnVecterUnder(s32 origin, s32 mask);
 
 u16 get_entity_id(void *);
 extern RecoveredGlobal_80096750_lbl_8048F930 TObjEneRe7BeruraPunch__collision_body_templates;
@@ -305,7 +305,7 @@ void TObjEneRe7BeruraPunch::snap_to_ground() {
   u8 *temp_r3;
   VecCopy((Vec *)(&stack.sp8), (const Vec *)(arg0 + 0xDC));
   stack.spC = 2e+01f;
-  temp_r3 = (u8 *)csnVecterUnder((s32)&stack.sp8, 0x16EF);
+  temp_r3 = (u8 *)csnVecterUnder((const Vec *)&stack.sp8, 0x16EF);
   if (temp_r3 != 0)
   {
     VecCopy((Vec *)(arg0 + 0x38), (const Vec *)(*((s32 *) (((s8 *) temp_r3) + 4))));

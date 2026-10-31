@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/protocol/protocol_types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "types.h"
@@ -737,7 +738,7 @@ f32 TOTrapChainSaw::scale_by_level(f32 farg0) {
 void TOTrapChainSaw::update_demo() {
     s32 temp_r31;
 
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         temp_r31 = *(s32 *)((s8 *)this + 0x60);
         *(s32 *)((s8 *)this + 0x60) = (s32) (temp_r31 + *(s32 *)((s8 *)this + 0xD4));
         TOTrapAncient02R__sub_80154D78(this);

@@ -1,6 +1,7 @@
 #pragma defer_codegen on
 #pragma readonly_strings on
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/player/demo_mode.h"
 #include "pso/misc/PersistentSound.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/misc/ParticleFactory.h"
@@ -440,7 +441,7 @@ TObjEneBm3FlyNest::~TObjEneBm3FlyNest() { free_collision_body_parts(this); }
 #pragma push
 #pragma fp_contract on
 void TObjEneBm3FlyNest::run_task() {
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         init();
         return;
     }
@@ -1075,7 +1076,7 @@ void TObjEneBm3FlyNest::render() {
     s32 detail;
     s32 draw_now;
     f32 factor;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         render_with_state_debug();
         return;
     }

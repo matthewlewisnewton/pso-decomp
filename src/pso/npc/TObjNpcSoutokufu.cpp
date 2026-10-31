@@ -82,7 +82,7 @@ u8 *TObjNpcSoutokufu__ct(u8 *player, s32 arg1, s32 arg2) {
     *(s32 **)((s8 *)player + 0x18) = &(*(RecoveredGlobal_80289680___vt__16TObjNpcSoutokufu *)&__vt__16TObjNpcSoutokufu).value;
     *(s32 *)((s8 *)player + 0) = (s32) TObjNpcSoutokufu__name;
     ((TObjNpcSoutokufu *)(player))->apply_set_data((void *)arg2);
-    ((TObjPlayer *)player)->init_position_vectors();
+    ((TObjChara *)player)->initialize_position_copies();
     *(s32 *)((s8 *)player + 0x34) = get_bml_model((int) ((*(s32 *)&TObjNpcSoutokufu__shared_model_resource)), 0);
     ((TObjNpcSoutokufu *)player)->texlist = TObjFish__sub_8001EDB0((int) ((*(s32 *)&TObjNpcSoutokufu__shared_model_resource)), 0);
     ((TObjNpcBase *)player)->setup_common();

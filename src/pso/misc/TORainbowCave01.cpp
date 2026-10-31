@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include <stdlib.h>
@@ -51,7 +52,7 @@ void TORainbowCave01::render() {
         saved_model_render_flags = flags;
         model_render_flags = flags | 0x20;
         color.b = color.g = color.r = 0.0f;
-        if (TObjPlayer::check_demo_mode() == 1) {
+        if (check_demo_mode() == 1) {
             color.a = 0.0f;
         } else {
             color.a = fade;

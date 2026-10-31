@@ -1,3 +1,4 @@
+#include "pso/map/CsnGroundQuery.h"
 #include "types.h"
 #include "pso/boss/TBoss5GryphonTornado.h"
 #include "pso/object/TObject_80019A50.h"
@@ -44,7 +45,6 @@ s32 get_bml_motion(s32, s32);
 s32 get_bml_model(s32, s32);
 void TBoss8Dragon__sub_800640A4(s32, Vec_80355570 *);
 void attach_particle_model(void *, s32, s32, s32, s32, f32);
-Res_80355570 *csnVecterUnder(Vec_80355570 *, s32);
 void add_radar_scaled_marker(Vec_80355570 *, s32, s32, s32, f32);
 void play_persistent_sound(s32, void *, Vec_80355570 *, s32, s32);
 extern s32 boss5_gryphon_bml_resource;
@@ -75,7 +75,7 @@ void TBoss5GryphonTornado::run_task() {
         o->state = 1;
     case 1:
         o->pos.y = lbl_805D8D48;
-        r = csnVecterUnder(&o->pos, 0x16EF);
+        r = (Res_80355570 *)csnVecterUnder((const Vec *)&o->pos, 0x16EF);
         if (r == NULL) {
             queue_destruction__7TObjectFv(o);
             return;
