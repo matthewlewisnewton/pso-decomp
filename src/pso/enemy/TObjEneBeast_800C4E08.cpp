@@ -75,16 +75,14 @@ s32 apply_actor_gravity(void *, int, f32);
 void move_with_wall_slide(u8 *arg0);
 extern "C" {
 s32 obj_testFlags30__14TObjCollidableFUl(void *, int);
-int unlink_enemy_group_relations__13TUnk_80493450Fv(void*);
 int send_entity_set_flags__9TObjEnemyFv(void*);
 s32 obj_setFlags30(void *, s32);
-s32 update_movement_status__9TObjCharaFv(void *);
 s32 submit_cursor_candidate(void *, int);
-s32 update_action_hold_status__9TObjCharaFv(void *);
 u16 get_entity_id(void *);
 int queue_destruction__7TObjectFv(void*);
-f32 random_ratio__9TObjCharaFv(s32 arg0);
 s32 enemy_move_toward(void *, s32, void *, int, f32);
+// Keep the existing integer query boundary: the current shared u8 return
+// declaration adds result masking in this caller. Its source type is unresolved.
 s32 test_elt_flag__13TUnk_80493450Fll(void *, int, int);
 s32 enemy_turn_toward_dest(void *, s32);
 s32 get_current_floor(void);
@@ -162,7 +160,7 @@ void TUnk_80493450::beast_update_dead() {
         this->beast_retire_corpse();
     }
 }
-void TUnk_80493450::vfunc_63() { if (this->mode != 8) { this->mode = 8; this->requested_action = 8; unlink_enemy_group_relations__13TUnk_80493450Fv(this); clear_player_status_flag((s32)((void*)0), (u32)((void*)1)); ((TObjEnemy *)this)->distribute_experience_and_request_drop(); send_entity_set_flags__9TObjEnemyFv(this); } }
+void TUnk_80493450::vfunc_63() { if (this->mode != 8) { this->mode = 8; this->requested_action = 8; unlink_enemy_group_relations(); clear_player_status_flag((s32)((void*)0), (u32)((void*)1)); ((TObjEnemy *)this)->distribute_experience_and_request_drop(); send_entity_set_flags__9TObjEnemyFv(this); } }
 void TUnk_80493450::beast_update_hurt() {
     u8 *arg0 = (u8 *)this;
     Vec v;
@@ -280,7 +278,7 @@ void TUnk_80493450::vfunc_60() {
     default:
         this->mode = 5;
         this->phase = 1;
-        if (BEAST_ATTACK_CHOICE_THRESHOLD < random_ratio__9TObjCharaFv((s32)this)) {
+        if (BEAST_ATTACK_CHOICE_THRESHOLD < random_ratio()) {
             this->requested_action = 3;
         } else {
             this->requested_action = 4;
@@ -294,7 +292,7 @@ void TUnk_80493450::vfunc_60() {
 
 s32 TUnk_80493450::update_movement_status() {
     u8 *arg0 = (u8 *)this;
-  if (update_movement_status__9TObjCharaFv((void *) arg0) != 0)
+  if (TObjChara::update_movement_status() != 0)
   {
     if ((this->mode) != 0)
     {
@@ -318,7 +316,7 @@ s32 TUnk_80493450::update_movement_status() {
 
 s32 TUnk_80493450::update_action_hold_status() {
     u8 *arg0 = (u8 *)this;
-  if (update_action_hold_status__9TObjCharaFv((void *) arg0) != 0)
+  if (TObjChara::update_action_hold_status() != 0)
   {
     if ((this->mode) != 0)
     {
