@@ -25,7 +25,6 @@ struct TObjEneMe1CanadinLeader : public TObjEneMe1Canadin
     s32 m_4f4;
     void update_formation_state();
     static void *create(void *arg0);
-    static f32 get_status_value_f32();
     static TObjEneMe1Canadin *create_canadin(TObjEneMe1Canadin *leader, Vec *position, s32 id, s32 index);
 };
 

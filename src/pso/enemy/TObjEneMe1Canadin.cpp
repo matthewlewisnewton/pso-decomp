@@ -90,7 +90,7 @@ f32 random_ratio__9TObjCharaFv(s32);
 u16 get_entity_id(void *);
 f32 newton_sqrtf(f32);
 f32 floor_to_float(f32);
-f32 get_status_value_f32__23TObjEneMe1CanadinLeaderFv(f32);
+f32 ceil_to_float(f32);
 void *create_timed_particle_emitter(void *owner, s32 id, s32 b, s32 c);
 void * __dt__26TObjEneDf2Bringer_Eff_RushFv(void *arg0, s16 arg1);
 
@@ -2054,7 +2054,7 @@ void TObjEneMe1CanadinLeader::vfunc_107() {
     s32 i;
     s32 j;
     Vec v;
-    n = (s32)get_status_value_f32__23TObjEneMe1CanadinLeaderFv((f32)self->m_4cc / (f32)self->m_468->field_2c);
+    n = (s32)ceil_to_float((f32)self->m_4cc / (f32)self->m_468->field_2c);
     if (n < 1) {
         n = 1;
     }
@@ -2111,7 +2111,7 @@ void TObjEneMe1CanadinLeader::vfunc_117(TObjEneMe1Canadin *member) {
         }
     }
     if (self->m_4f4 == 3) {
-        s32 k = get_status_value_f32__23TObjEneMe1CanadinLeaderFv((f32)self->m_4cc / (f32)self->m_468->field_2c);
+        s32 k = ceil_to_float((f32)self->m_4cc / (f32)self->m_468->field_2c);
         if (self->m_4d0 <= self->m_4cc - k) {
             self->m_3c0 = (TObjEneMe1Canadin *)find_entity_by_id(self->m_4c8);
             self->m_3c0->set_flag3c8_bit8();
