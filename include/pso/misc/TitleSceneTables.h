@@ -9,7 +9,8 @@ typedef char TitleStateHandlerSize[sizeof(TitleStateHandler) == 12 ? 1 : -1];
 
 extern "C" {
 extern NJS_TEXNAME title_texture_entries[21];
-extern NJS_TEXLIST title_texture_list;
+// This eight-byte object belongs to the shared .data pool, not .sdata.
+__declspec(section ".data") extern NJS_TEXLIST title_texture_list;
 extern void (*lobby_load_callback_table[8])();
 extern TitleStateHandler TLobby__state_handler_pmf_table[4];
 }
