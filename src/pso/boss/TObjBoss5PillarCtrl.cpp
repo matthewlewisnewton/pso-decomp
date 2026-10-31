@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/boss/TObjBoss5PillarCtrl.h"
 #include "pso/object/TObject_80019A50.h"
@@ -38,7 +39,7 @@ void __ct__7TObjectFP7TObject(void *, void *);
 extern const char *lbl_805D3B38;
 extern Game_8028B23C *lbl_805D4DD8;
 Ctrl_8028B23C *TObjBoss5PillarCtrl__ct(Ctrl_8028B23C *arg0, void *arg1);
-s32 play_sound_effect(s32, s32, s32, s32);
+
 int TObjBoss5Pillar__sub_8028B70C(void*);
 int TObjBoss5Pillar__sub_8028B710(void*);
 

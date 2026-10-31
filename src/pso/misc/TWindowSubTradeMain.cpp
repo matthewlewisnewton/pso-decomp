@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/map/CsnQuery.h"
@@ -77,7 +78,7 @@ void TObjEneMorfos::vfunc_106() {
             ((TObjEneDD *)(arg0))->draw_ground_shadow(&v, 0);
         }
         TObjPlayer::toggle_particle_effect();
-        TObjFish::set_global_param(arg0->f24);
+        set_current_texture_list((GinjaTextureList *)(arg0->f24));
         push_matrix();
         post_translate_matrix((u8 *)arg0 + 0x38);
         rotate_matrix_y(0, arg0->f60);

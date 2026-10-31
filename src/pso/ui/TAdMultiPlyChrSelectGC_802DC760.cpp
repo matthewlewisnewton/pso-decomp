@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC_802DBCC4.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
@@ -32,7 +33,7 @@ struct Pair_802DC8A0 { u8 d[8]; };
 
 extern "C" {
 s32 TWindowShortListCtrl__check_controller_button(void *, s32);
-s32 play_sound_effect(s32, s32, s32, s32);
+
 s32 TAdMultiPlyChrSelectGC__sub_802C5A44(int, void *, int);
 extern RecoveredGlobal_802DCA20_TAdMultiPlyChrSelectGC__data_804727B0 TAdMultiPlyChrSelectGC__character_slot_positions;
 extern RecoveredGlobal_802DCA20_lbl_804727E8 multi_chr_select_item_rect_table;

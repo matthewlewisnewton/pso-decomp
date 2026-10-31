@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/player/TUnk_804820A8.h"
 #include "pso/boss/TBoss8Dragon_8002CC48.h"
@@ -152,7 +153,7 @@ void TUnk_804820A8::render() {
     scale.x = lbl_805D8260;
     scale.y = lbl_805D8260;
     scale.z = lbl_805D8260;
-    TObjFish::set_global_param(*(s32 *)(res + 0x2C));
+    set_current_texture_list((GinjaTextureList *)(*(s32 *)(res + 0x2C)));
     for (i = 0; i < 19; i++) {
         push_matrix();
         post_translate_matrix(&p->pos);

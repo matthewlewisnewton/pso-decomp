@@ -1,3 +1,5 @@
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TOGrassJungle_8029CD90.h"
 #include "pso/unk/text_803D96A8.h"
@@ -29,7 +31,7 @@ struct VObj_8029CD90 : Base_8029CD90 {
     virtual s32 m8(f32, f32);
 };
 
-s32 play_sound_effect(s32, s32, s32, s32);
+
 s32 post_translate_matrix(void *);
 s32 draw_ginja_object();
 s32 get_bml_model(s32, s32);
@@ -45,7 +47,7 @@ extern const f32 lbl_805DDD34;
 void TOGrassJungle::render() {
     u8 *arg0 = (u8 *)this;
     if (((VObj_8029CD90 *)arg0)->m8(lbl_805DDD30, lbl_805DDD34) == 1) {
-        TObjFish::set_global_param(TOGrassJungle__grass_gvm_texture);
+        set_current_texture_list((GinjaTextureList *)(TOGrassJungle__grass_gvm_texture));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);
@@ -97,7 +99,7 @@ void TOKeyJungleMain::play_activate_sound() {
         var_r31 = 0x4004AD12;
         break;
     }
-    play_sound_effect(var_r31, arg0 + 0x38, 0, 0);
+    play_sound_effect((s32)(var_r31), (const Vec *)(arg0 + 0x38), 0, 0);
 }
 
 }

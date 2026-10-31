@@ -3,6 +3,8 @@
 #include "pso/map/CsnGroundQuery.h"
 #include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
+#include "pso/system/SoundEffect.h"
+#include "pso/misc/PersistentSound.h"
 struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/BmlResourceClass.h"
@@ -1442,8 +1444,8 @@ void free_collision_body_parts(void *);
 void send_6x2F_change_player_hp(s32 arg0, s32 arg1, s32 arg2);
 s32 check_flag_100__10TObjPlayerFPv();
 s32 start_freeze__10TObjPlayerFv(int);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
-s32 play_sound_effect(s32, s32, s32, s32);
+
+
 void __dl__7TObjectFPv(void *);
 void __dt__7TObjectFv(void *, s32);
 s32 is_closest_part__12TBoss8DragonFv();
@@ -6258,11 +6260,11 @@ void TBoss8Dragon::try_spawn_trap() {
 }
 
 void spawn_trap__12TBoss8DragonFii(s32 arg0, s32 arg1) {
-    play_persistent_sound(arg1, arg0, arg0 + 0x634, 0, 0);
+    play_persistent_sound((s32)(arg1), (const void *)(arg0), (const Vec *)(arg0 + 0x634), 0, 0);
 }
 
 void spawn_effect__12TBoss8DragonFii(s32 arg0, s32 arg1) {
-    play_sound_effect(arg1, arg0 + 0x634, 0, 0);
+    play_sound_effect((s32)(arg1), (const Vec *)(arg0 + 0x634), 0, 0);
 }
 
 s32 select_target_in_front__12TBoss8DragonFPv(u8 *ene_dd_st) {

@@ -1,4 +1,7 @@
 #include "pso/player/demo_mode.h"
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/map/FloorArea.h"
@@ -222,13 +225,12 @@ f32 horizontal_distance_squared(void *, void *);
 void TContainerAncient01__sub_8018A584(Obj_8018A584 *self, f32 range);
 
 void *get_player_by_client_id(s32 i);
-s32 play_sound_effect(int, void *, int, int);
 
 extern s32 registered_player_count;
 
 s32 TContainerAncient01__sub_8018BE90(void);
 
-void *spawn_particle_effect(void *pos, s32 id);
+
 extern s32 TContainerAncient01__effect_id_table[];
 void TContainerAncient01__sub_8018B180(Obj_8018B180 *self, f32 range);
 
@@ -419,16 +421,16 @@ s32 TContainerAncient01R::sub_8018A688() {
         case AREA_JUNGLE_EAST:
         case AREA_MOUNTAIN:
         case AREA_SEASIDE:
-            play_sound_effect(0x4BC1C, (u8 *)self + 0x38, 0, 0);
+            play_sound_effect(0x4BC1C, (const Vec *)((u8 *)self + 0x38), 0, 0);
             break;
         case AREA_SEASIDE_NIGHT:
-            play_sound_effect(0x4004BC1C, (u8 *)self + 0x38, 0, 0);
+            play_sound_effect(0x4004BC1C, (const Vec *)((u8 *)self + 0x38), 0, 0);
             break;
         case AREA_TOWER:
-            play_sound_effect(0x4004BC1C, (u8 *)self + 0x38, 0, 0);
+            play_sound_effect(0x4004BC1C, (const Vec *)((u8 *)self + 0x38), 0, 0);
             break;
         default:
-            play_sound_effect(0x4004BC16, (u8 *)self + 0x38, 0, 0);
+            play_sound_effect(0x4004BC16, (const Vec *)((u8 *)self + 0x38), 0, 0);
             break;
         }
     }
@@ -580,7 +582,7 @@ s32 is_within_range__19TContainerAncient01Fii(s32 arg0, s32 arg1) {
 void TContainerAncient01R::render() {
     u8 *arg0 = (u8 *)this;
     if (((VObj8018AD04_8018A584 *) arg0)->m8(3e+02f, 2e+01f) != 0) {
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)(this->texlist));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);
@@ -703,7 +705,7 @@ void *TContainerAncient01R__ct(Obj_8018B030 *self, void *arg1, void *parent) {
 }
 #pragma pop
 
-void TContainerAncient01::spawn_effect(void* p, void* a1, void* a2) { spawn_particle_effect(a1, (s32)a2); }
+void TContainerAncient01::spawn_effect(void* p, void* a1, void* a2) { spawn_particle_effect((const Vec *)(a1), (s32)a2); }
 
 void TContainerAncient01__sub_8018B180(Obj_8018B180 *self, f32 range) {
     u16 i;
@@ -739,16 +741,16 @@ void TContainerAncient01::sub_8018B284() {
         case AREA_JUNGLE_EAST:
         case AREA_MOUNTAIN:
         case AREA_SEASIDE:
-            play_sound_effect(0x4BC1C, self->pos, 0, 0);
+            play_sound_effect(0x4BC1C, (const Vec *)(self->pos), 0, 0);
             break;
         case AREA_SEASIDE_NIGHT:
-            play_sound_effect(0x4004BC1C, self->pos, 0, 0);
+            play_sound_effect(0x4004BC1C, (const Vec *)(self->pos), 0, 0);
             break;
         case AREA_TOWER:
-            play_sound_effect(0x4004BC1C, self->pos, 0, 0);
+            play_sound_effect(0x4004BC1C, (const Vec *)(self->pos), 0, 0);
             break;
         default:
-            play_sound_effect(0x4004BC16, self->pos, 0, 0);
+            play_sound_effect(0x4004BC16, (const Vec *)(self->pos), 0, 0);
             break;
         }
     }
@@ -949,7 +951,7 @@ s32 TContainerAncient01__vt18(s32 arg0, s32 arg1) {
 void TContainerAncient01::render() {
     u8 *arg0 = (u8 *)this;
     if (((VObj8018B8BC_8018B79C *) arg0)->m8(3e+02f, 2e+01f) != 0) {
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)(this->texlist));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);

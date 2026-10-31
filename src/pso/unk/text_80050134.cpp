@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/system/PadRumble.h"
 #include "pso/TObject.h"
@@ -42,7 +43,7 @@ s32 TObjFish__sub_8001EDB0(s32, s32);
 s32 get_bml_model(s32, s32);
 void set_scripted_camera_pose(void *, void *, void *);
 void __ct__8TObjBaseFP7TObject(void *, void *);
-void play_sound_effect(s32, void *, s32, s32);
+
 extern s32 TObjDFDemoF__name;
 extern const f32 lbl_805D8A28;
 void vfunc_6__8TObjBaseFPsl();

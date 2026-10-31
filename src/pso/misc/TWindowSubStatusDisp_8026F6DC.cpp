@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TWindowComCard.h"
 #include "pso/misc/TWindowLockOn.h"
@@ -475,7 +476,7 @@ void TWindowSimpleStatus::draw_background(u8 *arg1) {
     size.y = lbl_805DD3E8;
     scale = lbl_805DD3EC / this->m_54;
     begin_screen_draw(1);
-    TObjFish::set_global_param(lbl_805D63F0);
+    set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
     set_draw_texture_and_color(0xB, *(s32 *)((s8 *)arg1 + 0x34));
     r.x0 = pos.x;
     r.y0 = pos.y;

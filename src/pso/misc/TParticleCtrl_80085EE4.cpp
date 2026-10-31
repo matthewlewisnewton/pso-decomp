@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "pso/render/render_util.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/system/ChunkMaterialState.h"
@@ -273,7 +274,7 @@ void TUnk_8048E778::draw_sprite_quad(s32 kind) {
     sx = sy * (480.0f / (480.0f * lbl_8058D4F8.aspect));
     TParticleCtrl::begin_effect_render();
     begin_screen_draw(1);
-    TObjFish::set_global_param(lbl_804C5820[kind].param);
+    set_current_texture_list((GinjaTextureList *)(lbl_804C5820[kind].param));
     set_draw_texture_and_color(lbl_804C5820[kind].tex, lbl_804C5820[kind].color);
     uv = &lbl_804C5820[kind].uvs[p->f94];
     quad.u = uv->u0;
@@ -365,7 +366,7 @@ void TUnk_8048E728::draw_particle_refraction_quad() {
     rotate_matrix_y(0, *(s32 *)(camera_ctrl_instance + 0x194));
     rotate_matrix_x(0, *(s32 *)(camera_ctrl_instance + 0x190));
     load_projected_texture_matrix(1.1333334f);
-    TObjFish::set_global_param(*(s32 *)((u8 *)lbl_804C5820 + 0x16C));
+    set_current_texture_list((GinjaTextureList *)(*(s32 *)((u8 *)lbl_804C5820 + 0x16C)));
     set_texture_num(self->tex);
     TParticleCtrl::setup_particle_draw(1);
     GXSetNumTevStages(2);

@@ -15,7 +15,6 @@ struct Node_803E49FC {
 };
 
 extern "C" {
-s32 setup_model_draw_state__10TObjPlayerFPv();
 struct B_803E4BDC { u8 pad[0x28]; s32 f28; };
 void draw_motion_tree(NJS_OBJECT *model, NJS_MOTION *motion, f32 frame, ModelDrawCallback draw_model);
 extern s32 motion_angle_sampler_table[];
@@ -78,20 +77,20 @@ void draw_object_tree_recursive(void *arg) {
 }
 
 void draw_model_blend_motion(void *arg0, void *arg1, f32 farg0) {
-    setup_model_draw_state__10TObjPlayerFPv();
-    draw_blend_motion_tree((NJS_OBJECT *)arg0, (NJS_MOTION_LINK *)arg1, farg0, draw_chunk_vertices_cached__10TObjPlayerFPv);
+    TObjPlayer::setup_model_draw_state(arg0);
+    draw_blend_motion_tree((NJS_OBJECT *)arg0, (NJS_MOTION_LINK *)arg1, farg0, draw_chunk_vertices_cached);
     TObjPlayer::end_chunk_draw();
 }
 
 void draw_model_motion(void *arg0, void *arg1, f32 farg0) {
-    setup_model_draw_state__10TObjPlayerFPv();
-    draw_motion_tree((NJS_OBJECT *)arg0, (NJS_MOTION *)arg1, farg0, draw_chunk_vertices_cached__10TObjPlayerFPv);
+    TObjPlayer::setup_model_draw_state(arg0);
+    draw_motion_tree((NJS_OBJECT *)arg0, (NJS_MOTION *)arg1, farg0, draw_chunk_vertices_cached);
     TObjPlayer::end_chunk_draw();
 }
 
 void draw_chunk_model_with_shape_motion(void *child, void *arg1, void *arg2, f32 farg0) {
-    setup_model_draw_state__10TObjPlayerFPv();
-    draw_shape_motion_tree((NJS_OBJECT *)child, (NJS_MOTION *)arg1, (NJS_MOTION *)arg2, farg0, draw_chunk_vertices_cached__10TObjPlayerFPv);
+    TObjPlayer::setup_model_draw_state(child);
+    draw_shape_motion_tree((NJS_OBJECT *)child, (NJS_MOTION *)arg1, (NJS_MOTION *)arg2, farg0, draw_chunk_vertices_cached);
     TObjPlayer::end_chunk_draw();
 }
 

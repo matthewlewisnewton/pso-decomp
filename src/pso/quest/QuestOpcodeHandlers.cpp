@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/protocol/protocol_types.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/item/TItemMag.h"
@@ -1874,7 +1875,7 @@ void unhide_room_set_objects(s32 a, s16 b, s16 c, s32 d);
 s32 TCheckRoomSequence__sub_80210D44(u8 *item, s32 slot);
 s32 handle_main_phase__6TLobbyFl();
 void try_close__6TLobbyFPv(void *p);
-s32 play_sound_effect(int, int, int, int);
+
 void play_cue_stream_file(s32 name);
 int TLobby__sub_802272B4(void*);
 int TLobby__sub_8022733C(void*);
@@ -6088,7 +6089,7 @@ void qst_op_bgm(void) {
 }
 
 void qst_op_se(void) {
-    play_sound_effect((int) (*(s32 *)((s8 *)((u8 *)(&quest_sound_effect_ids.value) + (qst_args[0] * 4)) + 0)), 0, 0, 0);
+    play_sound_effect((s32)((int) (*(s32 *)((s8 *)((u8 *)(&quest_sound_effect_ids.value) + (qst_args[0] * 4)) + 0))), 0, 0, 0);
 }
 
 void qst_op_fadeout(void) { TLobby::init_fadeout_state((s32)((void*)0)); qst_suspend_reason = QST_WAIT_FADE; }

@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TWindowCtrl_8024A054.h"
 #include "pso/misc/TWindowHelpItem_80243408.h"
@@ -53,7 +54,7 @@ s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 TWindowShortListCtrl__check_controller_button(int, int);
 extern RecoveredGlobal_80277928_lbl_8050E208 controller_input_state;
 extern const f32 lbl_805DD5E4;
-s32 play_sound_effect(s32, s32, s32, s32);
+
 s32 apply_choice__20TWindowChoiceSettingFllll(void *, int, int, int);
 s32 get_message_10__20TWindowSubStatusDispFl(int);
 void *get_player_by_client_id(s32 i);
@@ -127,7 +128,7 @@ void TWindowSubCustomSelect::handle_grid_navigation() {
     u8 *window_choice_setting;
     window_choice_setting = (u8 *)&(*(RecoveredGlobal_80277408_lbl_8050E208 *)&controller_input_state).value + (is_player_input_active(((s32) this->m_20)) * 0x50) + 0x20;
     if ((apply_choice__20TWindowChoiceSettingFllll(window_choice_setting, 0xF0, 6, 1) != 0) || (apply_choice__20TWindowChoiceSettingFllll((void *) ((u8 *)&(*(RecoveredGlobal_80277408_lbl_8050E208 *)&controller_input_state).value + 0x160), 0xF0, 6, 1) != 0)) {
-        play_sound_effect(0x54100, (s32)(0U), 0, 0);
+        play_sound_effect(0x54100, (const Vec *)((0U)), 0, 0);
         if ((apply_choice__20TWindowChoiceSettingFllll(window_choice_setting, 0x10, 6, 1) != 0) || (apply_choice__20TWindowChoiceSettingFllll((void *) ((u8 *)&(*(RecoveredGlobal_80277408_lbl_8050E208 *)&controller_input_state).value + 0x160), 0x10, 6, 1) != 0)) {
             this->m_71 = (this->m_71 - 1);
         }

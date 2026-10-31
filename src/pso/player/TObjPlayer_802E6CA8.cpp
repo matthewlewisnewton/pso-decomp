@@ -1,4 +1,5 @@
 #include "pso/math/MatrixCopy.h"
+#include "pso/misc/ParticleFactory.h"
 #include "pso/system/ChunkMaterialState.h"
 #include "types.h"
 #include "pso/system/NinjaUtil.h"
@@ -193,7 +194,7 @@ void TUnk_804E3BA8::run_task() {
     }
     for (i = 0, off = 0; i < m_24; i++, off += 0x2C) {
         if (TObjPlayer__sub_802E76C8(*(u8 **)unk_28 + off) != 0 && i % 2 == 0) {
-            spawn_particle_effect(*(u8 **)unk_28 + off, 0x200);
+            spawn_particle_effect((const Vec *)(*(u8 **)unk_28 + off), 0x200);
         }
     }
 }
@@ -289,7 +290,7 @@ void TUnk_804E3BC0::run_task() {
     }
     for (i = 0, off = 0; i < m_24; i++, off += 0x2C) {
         if (TObjPlayer__sub_802E76C8(*(u8 **)unk_28 + off) != 0 && i % 2 == 0) {
-            spawn_particle_effect(*(u8 **)unk_28 + off, 0x200);
+            spawn_particle_effect((const Vec *)(*(u8 **)unk_28 + off), 0x200);
         }
     }
 }

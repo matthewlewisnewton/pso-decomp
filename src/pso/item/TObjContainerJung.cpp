@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "pso/misc/RenderFadeState.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/system/vector.h"
@@ -191,7 +192,7 @@ void TObjContainerJungEnemy::vfunc_81() {
 
     switch (this->mode) {
     case 0:
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)(this->texlist));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);
@@ -363,7 +364,6 @@ s32 submit_cursor_candidate(void *, s32);
 s32 rotate_matrix_y(s32, s32);
 s32 push_matrix();
 s32 __dl__7TObjectFPv(void *);
-s32 set_global_param__8TObjFishFl();
 
 void *TObjContainerJungEx::create(void *arg0) {
     void *o = __nw__7TObjectFUl(0x368);
@@ -437,8 +437,7 @@ void TObjContainerJungEx::vfunc_81() {
 
     switch (this->mode) {
     case 0:
-        TObjContainerJungEx__sub_8018D900(0);
-        set_global_param__8TObjFishFl();
+        set_current_texture_list((GinjaTextureList *)(TObjContainerJungEx__sub_8018D900(0)));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);
@@ -659,7 +658,7 @@ void TObjContainerJung::vfunc_81() {
     if ((void *)(*(u8 **)&TObjContainerJung__bml_model_resource) != NULL) {
         switch (this->mode) {
         case 0:
-            TObjFish::set_global_param(TObjContainerJung__bml_aux_handle);
+            set_current_texture_list((GinjaTextureList *)(TObjContainerJung__bml_aux_handle));
             push_matrix();
             post_translate_matrix((u8 *)&this->position);
             rotate_matrix_y(0, this->rotation_y);

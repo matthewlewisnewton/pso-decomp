@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #ifndef PSO_TADSELECTCURGC_H
 #define PSO_TADSELECTCURGC_H
 #include "pso/TObject.h"
@@ -56,7 +57,7 @@ extern u32 menu_selection_cursor_texture_list;
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 TWindowShortListCtrl__check_controller_button(void *, int);
 s32 check_flag_0x48__14TAdSelectCurGCFv(void *, int);
-void play_sound_effect(int, int, int, int);
+
 void fn_802AEAA4(void *, s32);
 extern u8 controller_input_state[];
 extern u8 controller_physical_port_bank[];

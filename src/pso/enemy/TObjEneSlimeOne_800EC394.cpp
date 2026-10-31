@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/render/render_util.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -125,7 +126,7 @@ void TObjEneSlimeOne::draw_part(s32 arg1) {
         return;
     }
     if (state < 7) {
-        TObjFish::set_global_param(TObjFish__sub_8001EDB0(TObjEneSlimeOne::get_instance(), slime_one_part_texture_index_table[((TObjEneSlimeOne *)(*(void * *)&this->m_name))->get_attack_target()]));
+        set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0(TObjEneSlimeOne::get_instance(), slime_one_part_texture_index_table[((TObjEneSlimeOne *)(*(void * *)&this->m_name))->get_attack_target()])));
         if (arg1 != 0) {
             model_render_flags |= 0x400000;
             set_chunk_render_flags(1);
@@ -144,7 +145,7 @@ void TObjEneSlimeOne::draw_part(s32 arg1) {
         return;
     }
     if (state < 9) {
-        TObjFish::set_global_param(*(s32 *)&this->m_next);
+        set_current_texture_list((GinjaTextureList *)(*(s32 *)&this->m_next));
         if (arg1 != 0) {
             model_render_flags |= 0x400000;
             set_chunk_render_flags(1);
@@ -162,13 +163,13 @@ void TObjEneSlimeOne::draw_part(s32 arg1) {
         clear_chunk_render_flags();
         return;
     }
-    TObjFish::set_global_param(*(s32 *)&this->m_next);
+    set_current_texture_list((GinjaTextureList *)(*(s32 *)&this->m_next));
     set_motion_packed_rotation();
     if (arg1 != 0) {
         model_render_flags |= 0x400000;
         set_chunk_render_flags(1);
         draw_model_motion((void *)(*(s32 *)&this->m_prev), (void *)(*(s32 *)&this->m_up), *(f32 *)&this->actorFlags);
-        TObjFish::set_global_param(*(s32 *)&this->entity_id);
+        set_current_texture_list((GinjaTextureList *)(*(s32 *)&this->entity_id));
         draw_model_motion((void *)(*(s32 *)((s8 *)arg0 + 0x18)), (void *)(*(s32 *)&this->m_20), *(f32 *)&this->actorFlags);
         clear_chunk_render_flags();
         model_render_flags &= ~0x400000;
@@ -178,7 +179,7 @@ void TObjEneSlimeOne::draw_part(s32 arg1) {
         draw_model_motion((void *)(*(s32 *)&this->m_prev), (void *)(*(s32 *)&this->m_up), *(f32 *)&this->actorFlags);
         set_cull_front();
         draw_model_motion((void *)(*(s32 *)&this->m_prev), (void *)(*(s32 *)&this->m_up), *(f32 *)&this->actorFlags);
-        TObjFish::set_global_param(*(s32 *)&this->entity_id);
+        set_current_texture_list((GinjaTextureList *)(*(s32 *)&this->entity_id));
         set_cull_back();
         draw_model_motion((void *)(*(s32 *)((s8 *)arg0 + 0x18)), (void *)(*(s32 *)&this->m_20), *(f32 *)&this->actorFlags);
         set_cull_front();

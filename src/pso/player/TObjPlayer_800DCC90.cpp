@@ -1,3 +1,5 @@
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/enemy/TObjEneNanoDrago.h"
 #include "types.h"
 #include "pso/system/NinjaUtil.h"
@@ -48,11 +50,11 @@ struct Me_800DC9EC {
 extern "C" { u8 *find_entity_by_id(s16);
 Obj_800DC4B4 *find_active_entity_by_id(u16);
 void queue_destruction__7TObjectFv(void *);
-s32 play_sound_effect(int, void *, int, int);
+
 s32 subtract_vector(void *, void *);
 s32 vec3_add_to(void *, void *);
 u32 csnVector(void *, void *, int);
-void spawn_particle_effect(void *, int);
+
 s32 is_split_screen();
 extern const f32 lbl_805D5260;
 extern const f32 lbl_805D5268;
@@ -76,7 +78,7 @@ void TObjPlayer::update_homing_shot() {
             arg0->timer = 0;
             VecCopy((Vec *)&arg0->pos, (const Vec *)arg0->target);
             this->m_fc = 1;
-            play_sound_effect(0x4003A328, &arg0->pos, 0, 0);
+            play_sound_effect(0x4003A328, (const Vec *)(&arg0->pos), 0, 0);
             return;
         }
         if (arg0->effect != NULL) {
@@ -119,8 +121,8 @@ void TObjPlayer::update_homing_shot() {
             if (obj->flags & 0x800) {
                 ((TObjEneNanoDrago *)att)->request_growth();
             }
-            spawn_particle_effect(obj->pos, 0xFB);
-            spawn_particle_effect(obj->pos, 0xFC);
+            spawn_particle_effect((const Vec *)(obj->pos), 0xFB);
+            spawn_particle_effect((const Vec *)(obj->pos), 0xFC);
             if (is_split_screen() == 0 && local_client_id == arg0->owner) {
                 ((TObjEneNanoDrago *)att)->trigger_hit_camera_shake((u32)obj);
             }
