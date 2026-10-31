@@ -197,8 +197,8 @@ s32 TWindowSubSymbolChatParts::calc_symbol_index() {
 
 #pragma push
 #pragma fp_contract on
-void TWindowSubSymbolChat::select_index_and_scroll(s32 arg1) {
-    Win_80284D68 *arg0 = (Win_80284D68 *)this;
+void select_index_and_scroll__20TWindowSubSymbolChatFl(TWindowSubSymbolChatParts *self, s32 arg1) {
+    Win_80284D68 *arg0 = (Win_80284D68 *)self;
     Vec2_80284D68 v;
 
     if (arg1 >= arg0->count) {
@@ -448,17 +448,17 @@ void fn_802857C4(Win_802857C4 *arg0, Rect_802857C4 *ctx) {
 }
 #pragma pop
 
-void TWindowSubSymbolChat::update_height() {
-    *(s16 *)((s8 *)this + 0x76) = TWindowSubSymbolChat::compute_total_height();
-    ((s32 (*)(void *))fn_80284C04)(this);
-    *(s8 *)((s8 *)this + 0x71) = 2;
+void update_height__20TWindowSubSymbolChatFv(TWindowSubSymbolChatParts *self) {
+    *(s16 *)((s8 *)self + 0x76) = TWindowSubSymbolChat::compute_total_height();
+    ((s32 (*)(void *))fn_80284C04)(self);
+    *(s8 *)((s8 *)self + 0x71) = 2;
 }
 
-void TWindowSubSymbolChat::open(s32 arg1) {
-    *(s32 *)((s8 *)this + 0x78) = arg1;
-    *(s16 *)((s8 *)this + 0x76) = 0xC0;
-    ((s32 (*)(void *))fn_80284C04)(this);
-    *(s8 *)((s8 *)this + 0x71) = 1;
+void open__20TWindowSubSymbolChatFl(TWindowSubSymbolChatParts *self, s32 arg1) {
+    *(s32 *)((s8 *)self + 0x78) = arg1;
+    *(s16 *)((s8 *)self + 0x76) = 0xC0;
+    ((s32 (*)(void *))fn_80284C04)(self);
+    *(s8 *)((s8 *)self + 0x71) = 1;
 }
 
 struct Win_80285A28 {
