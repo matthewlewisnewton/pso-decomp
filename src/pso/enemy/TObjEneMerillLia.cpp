@@ -1,3 +1,6 @@
+#include "pso/misc/PositionSoundEffects.h"
+#include "pso/misc/GroundEffects.h"
+#include "pso/player/demo_mode.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/npc/NpcAnimationBinding.h"
 #include "pso/npc/NpcModelRegistry.h"
@@ -224,7 +227,7 @@ void TObjEneMerillLia::vfunc_94() {
     rotate_vector_by_matrix(0, &stack, &stack);
     pop_matrix();
     vec3_add_to((void *)&stack.x, &position);
-    ((TObjPlayer *)(&stack.x))->spawn_ground_effect(0x23);
+    ::spawn_ground_effect(&stack, 0x23);
     TObjPlayer__sub_800D92BC((s32)&stack.x, 0xF);
 }
 
@@ -329,12 +332,12 @@ TObjEneMerillLia::TObjEneMerillLia(TObject *parent, void *arg2) : TUnk_80493450(
     m_name = (const char *)lbl_805D2A88;
     apply_set_data(arg2);
     this->init_params_from_position();
-    ((TObjPlayer *)this)->init_position_vectors();
+    initialize_position_copies();
     this->subtype = this->variant;
     this->clamp_and_apply_mode_param();
     this->load_entry_params(this->variant);
     action_table = merill_lia_motion_actions;
-    this->set_field_d8((s32)(action_table));
+    this->set_action_table(action_table);
     motion_list = TObjEneMerillLia__entry_params_resource->motions;
     this->requested_action = 0;
     this->set_animation(this->requested_action);
@@ -442,7 +445,7 @@ void *TObjEneMerillLia__create(void *set_data) {
 
 void TObjEneMerillLia::run_task() {
     s16 current_mode;
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         this->vfunc_101();
         return;
     }
@@ -541,7 +544,7 @@ void TObjEneMerillLia::render() {
         translate_matrix(0, (f32) TObjEneMerillLia__data_805DA300, (f32) unk_380, (f32) TObjEneMerillLia__data_805DA300);
         post_translate_matrix(&position);
         rotate_matrix_y(0, (int) rotation_y);
-        if (TObjPlayer::check_demo_mode() == 1) {
+        if (check_demo_mode() == 1) {
             draw_chunk_object(model);
         } else {
             TObjPlayer::toggle_particle_effect();
@@ -1048,7 +1051,7 @@ void TObjEneMerillLia::update_fade_transition() {
         this->phase = 1;
         this->requested_action = 1;
         fade.start_fade_in();
-        ((TBoss3Volopt *)&position)->play_area_sound_effect();
+        play_area_sound_and_particles_b(&position);
         break;
     case 1:
 

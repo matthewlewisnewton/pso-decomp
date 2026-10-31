@@ -2,7 +2,7 @@
 #define PSO_ENEMY_TOBJENESHARK_H
 
 #include "pso/enemy/TUnk_80493450.h"
-#include "pso/enemy/TUnk_80494938.h"
+#include "pso/misc/MaterialOpacityFade.h"
 #include "pso/misc/RenderFadeState.h"
 #include "pso/unk/TUnk_80494968.h"
 #include "pso/system/BmlResource.h"
@@ -24,7 +24,7 @@ public:
     TObjEneShark(TObject *parent, void *setData);
     virtual ~TObjEneShark();
     void bind_variant_model(s32);
-    void apply_clamped_mode_param();
+    void configure_subtype();
     virtual void vfunc_83();
     virtual void vfunc_101();
     virtual void vfunc_98();
@@ -35,7 +35,7 @@ public:
     virtual void vfunc_93();
     virtual void render();
 
-    TUnk_80494938 appearance_fade;
+    MaterialOpacityFade appearance_fade;
     TUnk_80494968 *attack_trails[2];
     RenderFadeState camera_fades[4];
     static void *create(void *setData);
@@ -49,7 +49,4 @@ typedef char SharkTrailsOffset[offsetof(TObjEneShark, attack_trails) == 0x3C4 ? 
 typedef char SharkCameraFadesOffset[offsetof(TObjEneShark, camera_fades) == 0x3CC ? 1 : -1];
 typedef char SharkSize[sizeof(TObjEneShark) == 0x43C ? 1 : -1];
 
-extern "C" {
-void TObjPlayer__sub_800ACA0C(void);
-}
 #endif

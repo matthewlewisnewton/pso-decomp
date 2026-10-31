@@ -4,7 +4,7 @@
 #include "types.h"
 #include <stddef.h>
 #include "pso/enemy/TUnk_80493450.h"
-#include "pso/enemy/TUnk_80494938.h"
+#include "pso/misc/MaterialOpacityFade.h"
 
 struct MerillLiaMovementParameters {
     f32 range;
@@ -69,7 +69,7 @@ struct TObjEneMerillLia : public TUnk_80493450 {
     void select_action_by_distance();
     static void destroy_rocks();
     void load_entry_params(s32 i);
-    TUnk_80494938 fade;
+    MaterialOpacityFade fade;
     f32 melee_probability;
     f32 kafun_probability;
     f32 hurt_hp_fraction;

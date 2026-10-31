@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/protocol/protocol_types.h"
 #include "pso/misc/TLobby_801E43E4.h"
 #include "types.h"
@@ -524,7 +525,6 @@ void TBoss4DarkFalz__sub_8004B8F8(TBoss4DarkFalz *arg0);
 }
 void set_dark_falz_music_request(s32 arg0);
 extern "C" {
-int check_demo_mode__10TObjPlayerFv(void*);
 int create__14TObjDFUsoTowerFPv(void);
 void fn_8036A514(s32 flag);
 
@@ -575,7 +575,7 @@ void TBoss4DarkFalz::check_players_near_center(void *self) {
     }
 }
 
-void TBoss4DarkFalz__sub_8004D29C(void* p) { if (check_demo_mode__10TObjPlayerFv(p) == 0) { ((TBoss4DarkFalz *)p)->change_state((s32)((void*)1)); } }
+void TBoss4DarkFalz__sub_8004D29C(void* p) { if (check_demo_mode() == 0) { ((TBoss4DarkFalz *)p)->change_state((s32)((void*)1)); } }
 
 void get_defeat_params__14TBoss4DarkFalzFPvPvPvPv(Obj_8004D8C8 *self, u16 *a, u16 *b, u16 *out) {
     s32 i;

@@ -92,7 +92,7 @@ void *TOMineIcon02__ct(void *arg0, void *arg1, void *arg2) {
     self->vt = ((void * *)&__vt__12TOMineIcon02);
     self->f0 = TOMineIcon02__name;
     ((VIcon_801717C0 *)self)->m5(arg2);
-    ((TObjPlayer *)self)->init_position_vectors();
+    ((TObjChara *)self)->initialize_position_copies();
     ((TObjChara *)self)->calc_attach_pos();
     self->f34 = get_bml_model(lbl_805D5A50, 5);
     self->f24 = TObjFish__sub_8001EDB0(lbl_805D5A50, 5);

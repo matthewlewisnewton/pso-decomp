@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -1254,7 +1255,7 @@ void TBoss6Mag::run_task() {
     u8 *arg0 = (u8 *)this;
     s32 var_r4;
 
-    if (TObjPlayer::check_demo_mode() == 0) {
+    if (check_demo_mode() == 0) {
         if (TBoss6PlotFalz::is_boss_active() == 0) {
             *(s32 *)((s8 *)arg0 + 0x378) = 0;
             queue_destruction__7TObjectFv(arg0);
