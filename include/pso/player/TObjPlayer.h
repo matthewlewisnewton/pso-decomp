@@ -33,7 +33,6 @@ struct TObjPlayer : public TObjChara {
     void setup_radar_marker(void *, void *);
     void fire_spread_shot(void *);
     void draw_weapon_if_not_hidden(void *);
-    void draw_chunk_vertices_cached(void *);
     void draw_actor_model(void *);
     s32 destroy_char_data(int, s16);
     s32 create_shoot_model(int, int, int, f32);

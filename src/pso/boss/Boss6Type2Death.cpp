@@ -1,4 +1,7 @@
 #include "pso/system/ModelNodePositionCapture.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
+#include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/system/PadRumble.h"
 #include "pso/boss/Boss6Type2Death.h"
@@ -79,8 +82,7 @@ f32 vector_length(void *);
 void subtract_vector(void *, void *);
 void normalize_vector(void *);
 #define __vt__23TBoss6Demo21_TYPE2_DEAD ((u8 *)__vt__23TBoss6Demo21_TYPE2_DEAD)
-s32 play_sound_effect(int, void *, int, int);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 int get_player_data__10TObjPlayerFi(int a0);
 s32 is_locally_controlled__10TObjPlayerFPv(void *);
 s32 is_state_1f__14TBoss6PlotFalzFUi(u32 arg0);
@@ -116,7 +118,7 @@ void TBoss6Demo21_TYPE2_DEAD::draw_model_13() {
         push_matrix();
         set_motion_packed_rotation();
         post_translate_matrix((void *) (((u8 *)this) + 0x58));
-        TObjFish::set_global_param((int) (*(s32 *)((s8 *)((u8 *)this) + 0x44)));
+        set_current_texture_list((GinjaTextureList *)((*(s32 *)((s8 *)((u8 *)this) + 0x44))));
         ((ModelNodePositionCapture *)(this->m_9c))->install();
         draw_model_motion((void *)this->m_40, (void *)this->m_48, (f32) (*(f32 *)((s8 *)((u8 *)this) + 0x4C)));
         ((ModelNodePositionCapture *)(this->m_9c))->clear();
@@ -151,7 +153,7 @@ void TBoss6Demo21_TYPE2_DEAD::draw_fading_model_8(void *p) {
         push_matrix();
         set_motion_packed_rotation();
         post_translate_matrix(arg0 + 0x58);
-        TObjFish::set_global_param(*(s32 *)(arg0 + 0x38));
+        set_current_texture_list((GinjaTextureList *)(*(s32 *)(arg0 + 0x38)));
         ((ModelNodePositionCapture *)(*(s32 *)(arg0 + 0x80)))->install();
         draw_model_motion((void *)(*(s32 *)(arg0 + 0x34)), (void *)(*(s32 *)(arg0 + 0x3C)), *(f32 *)(arg0 + 0x4C));
         ((ModelNodePositionCapture *)(*(s32 *)(arg0 + 0x80)))->clear();
@@ -186,7 +188,7 @@ void TBoss6Demo21_TYPE2_DEAD::draw_fading_model_5(void *p) {
         push_matrix();
         set_motion_packed_rotation();
         post_translate_matrix(arg0 + 0x58);
-        TObjFish::set_global_param(*(s32 *)(arg0 + 0x2C));
+        set_current_texture_list((GinjaTextureList *)(*(s32 *)(arg0 + 0x2C)));
         ((ModelNodePositionCapture *)(*(s32 *)(arg0 + 0x70)))->install();
         draw_model_motion((void *)(*(s32 *)(arg0 + 0x28)), (void *)(*(s32 *)(arg0 + 0x30)), *(f32 *)(arg0 + 0x4C));
         ((ModelNodePositionCapture *)(*(s32 *)(arg0 + 0x70)))->clear();
@@ -217,7 +219,7 @@ void TBoss6Demo21_TYPE2_DEAD::draw_fading_model_4() {
         push_matrix();
         set_motion_packed_rotation();
         post_translate_matrix(((u8 *)this) + 0x58);
-        TObjFish::set_global_param(this->m_20);
+        set_current_texture_list((GinjaTextureList *)(this->m_20));
         ((ModelNodePositionCapture *)(this->m_70))->install();
         draw_model_motion((void *)(*(s32 *)((s8 *)((u8 *)this) + 0x1C)), (void *)(*(s32 *)((s8 *)((u8 *)this) + 0x24)), *(f32 *)((s8 *)((u8 *)this) + 0x4C));
         ((ModelNodePositionCapture *)(this->m_70))->clear();
@@ -253,10 +255,10 @@ void run_task__23TBoss6Demo21_TYPE2_DEADFv(Fish_8033E0F0 *arg0) {
         break;
     }
     if (arg0->timer >= 0x12C && arg0->timer <= 0x1AC) {
-        play_persistent_sound(0x4003352E, (s32)arg0, 0, 0, 0);
+        play_persistent_sound((s32)(0x4003352E), (const void *)((s32)arg0), (const Vec *)(0), 0, 0);
     }
     if (arg0->timer >= 0x1D7 && arg0->timer <= 0x23A) {
-        play_persistent_sound(0x32D2F, (s32)arg0, 0, 0, 0);
+        play_persistent_sound((s32)(0x32D2F), (const void *)((s32)arg0), (const Vec *)(0), 0, 0);
     }
     switch (arg0->timer) {
     case 0xAE:

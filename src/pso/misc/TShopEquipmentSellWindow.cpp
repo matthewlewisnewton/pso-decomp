@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/item/TItemData.h"
 #include "types.h"
 #include "pso/misc/TShopWindowBase.h"
@@ -166,7 +167,7 @@ extern const f32 lbl_805DC6D8;
 f32 get_scale__15TShopWindowBaseFv(void *);
 int sub_802239EC__13TShopSequenceFv(void *);
 int sub_80223A48__15TShopWindowBaseFv(void *);
-s32 play_sound_effect(s32, s32, s32, s32);
+
 void *__ct__18TWindowInputNumberFPvllls(void *, s32, s32, s32, s32, s16);
 s32 align_menu_entry_positions(u32);
 s32 forward_trade_action_default__16TObjCityMainWarpFPviii(u32, s32, s32, s32);

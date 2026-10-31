@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/boss/TBoss6EmptyWarp.h"
 #include "pso/boss/TBoss6EmptyWarp_802B0E2C.h"
@@ -57,7 +58,7 @@ void *TBoss6EmptyWarp__ct(void *boss6_empty_warp) {
     return boss6_empty_warp;
 }
 
-s32 play_sound_effect(s32, s32, s32, s32);
+
 void *__nw__7TObjectFUl(int);
 
 extern void *tl_02;

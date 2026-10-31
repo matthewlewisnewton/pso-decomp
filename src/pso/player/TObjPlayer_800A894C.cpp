@@ -5,6 +5,9 @@
 #include "pso/misc/MaterialOpacityFade.h"
 #include "pso/misc/RenderFadeState.h"
 #include "pso/enemy/BattleParameters.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
+#include "pso/misc/PersistentSound.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -131,7 +134,7 @@ void *create_particle_emitter(void *pos, s32 id);
 s32 __ct__13TUnk_80491460FPvlll(void *, void *, s32, void *, s32);
 s32 render_anim_model_at_pos__15TObjEnemyCustomFv();
 void check_enemy_body_collisions(void *arg0);
-s32 play_sound_effect(s32, void *, int, int);
+
 void *__nw__7TObjectFUl(int);
 void TObjPlayer__sub_800A8FB4(void *arg0_);
 
@@ -257,7 +260,7 @@ extern const f32 lbl_805D9B18;
 extern const f32 lbl_805D9B1C;
 s32 update_enemy_wander_move(void *, Vec_800A9E9C *, s32, f32);
 s32 sub_8004292C__15TObjEnemyCustomFv();
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 void TObjPlayer__sub_800A9E9C(void *arg0_);
 s32 update_shock_clock__9TObjCharaFv();
 s32 update_movement_status__9TObjCharaFv();
@@ -618,7 +621,7 @@ void TObjPlayer__sub_800A8FB4(void *arg0_) {
                 queue_destruction__7TObjectFv(*(void **)((s8 *)arg0 + 0x3A8));
                 *(u32 *)((s8 *)arg0 + 0x3A8) = 0U;
             }
-            play_sound_effect(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003AD04)), arg0 + 0x38, 0, 0);
+            play_sound_effect((s32)(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003AD04))), (const Vec *)(arg0 + 0x38), 0, 0);
         }
         break;
     case 4:
@@ -710,7 +713,7 @@ void TObjPlayer__sub_800A93E4(void *arg0_) {
             act = 3;
         }
         if (act >= 0) {
-            play_sound_effect(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003AD03)), &e->pos, 0, 0);
+            play_sound_effect((s32)(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003AD03))), (const Vec *)(&e->pos), 0, 0);
             if (e->target != NULL && e->target->m18(arg0, 1.0f) != 0) {
                 e->target->m20(arg0, 1.0f);
                 e->target->m23(arg0, 3.0f);
@@ -759,7 +762,7 @@ void TObjPlayer__sub_800A9C38(void *arg0_) {
             *(s16 *)((s8 *)arg0 + 0xB8) = 3;
             enemy_set_heading_velocity((f32)lbl_805D9AFC, (TObjEnemy *)arg0, (s32)(*(s32 *)((s8 *)arg0 + 0x60)));
             *(s32 *)((s8 *)arg0 + 0x37C) = 1;
-            play_sound_effect(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003A806)), arg0 + 0x38, 0, 0);
+            play_sound_effect((s32)(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003A806))), (const Vec *)(arg0 + 0x38), 0, 0);
             *(s32 *)((s8 *)arg0 + 0x3CC) = TObjPlayer__sub_800AAF98(arg0, 2);
         }
         *(u32 *)((s8 *)arg0 + 0x30) &= ~0x200000;
@@ -842,7 +845,7 @@ void TObjPlayer__sub_800A9E9C(void *arg0_) {
             }
             *(s32 *)((s8 *)arg0 + 0x37C) = 2;
         } else {
-            play_sound_effect(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003B205)), arg0 + 0x38, 0, 0);
+            play_sound_effect((s32)(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003B205))), (const Vec *)(arg0 + 0x38), 0, 0);
             *(s32 *)((s8 *)arg0 + 0x37C) = 1;
         }
         if (*(u8 **)((s8 *)arg0 + 0x2A8) != NULL) {
@@ -870,7 +873,7 @@ void TObjPlayer__sub_800A9E9C(void *arg0_) {
         } else {
             var_r0 = ((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003B200));
         }
-        play_persistent_sound((s32)var_r0, (s32)arg0, (u32)(arg0 + 0x38), 0, 0);
+        play_persistent_sound((s32)var_r0, (const void *)((s32)arg0), (const Vec *)((u32)(arg0 + 0x38)), 0, 0);
         if (*(u8 **)((s8 *)arg0 + 0x2A8) != NULL) {
             if (*(s16 *)((s8 *)arg0 + 0x392) != 0) {
                 var_f31 = ((TObjEneDubchik *)arg0)->sub_800AAF78(2);
@@ -956,9 +959,9 @@ void TObjPlayer__sub_800AA334(u8 *arg0) {
             select_actor_lighting((s32)arg0);
             TObjPlayer::toggle_particle_effect();
             if (*(s16 *)((s8 *)arg0 + 0x392) != 0) {
-                TObjFish::set_global_param(lbl_805D5094);
+                set_current_texture_list((GinjaTextureList *)(lbl_805D5094));
             } else {
-                TObjFish::set_global_param((s32)((void *) (((TObjEneDubchik *)arg0)->texlist)));
+                set_current_texture_list((GinjaTextureList *)(((void *) (((TObjEneDubchik *)arg0)->texlist))));
             }
             var_r30 = 1;
             push_matrix();

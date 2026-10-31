@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TWindowKeyBoardSoft_8024E68C.h"
 #include "pso/misc/TWindowSubStatusDisp_8025B050.h"
@@ -99,7 +100,7 @@ void draw_window_uv_sprite_part(Win_8025B0D0 *arg0, Ref_8025B0D0 *arg1) {
     } else {
         begin_screen_draw(0);
     }
-    TObjFish::set_global_param(*arg0->p30);
+    set_current_texture_list((GinjaTextureList *)(*arg0->p30));
     set_draw_texture_and_color(arg0->i34, arg0->i2C);
     w = arg0->f10;
     lo = (0.5f) - len;

@@ -1,4 +1,8 @@
 #include "pso/math/VectorNormalize.h"
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
+#include "pso/misc/PersistentSound.h"
 #include "pso/math/ScratchVectorStorage.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
@@ -99,11 +103,11 @@ extern "C" {
 u16 find_nearest_visible_player(void *, int, f32);
 s32 get_current_floor(void);
 f32 atan2_float(f32 y, f32 x);
-void *spawn_particle_effect(void *pos, s32 id);
+
 f32 get_collision_body_radius(void *, s32);
 void submit_cursor_candidate(void *, s32);
 void *get_player_by_client_id(s32 i);
-void play_sound_effect(s32, void *, s32, s32);
+
 void * __nw__7TObjectFUl(int);
 void rotate_vector_by_matrix(int, void *, void *);
 s32 rotate_matrix_y(int, int);
@@ -343,7 +347,7 @@ void render__15TOTrapAncient02Fv(void *arg0);
 void * __dt__15TOTrapAncient02Fv(void *arg0, s16 arg1);
 void * TOTrapAncient02__ct(void *arg0, void *arg1, void *arg2);
 void submit_cursor_and_notify__16TOTrapAncient02RFv(void *arg0);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 u8 is_current_floor_switch_set(u16);
 void __dl__7TObjectFPv(void *);
 void scroll_ginja_mesh_uvs(u32, s32, s32, u16, s32);
@@ -695,15 +699,15 @@ void TOTrapAncient02R__vt79(Obj_8017A3C0 *o) {
                         dmg.type = 3;
                         dmg.v = ((TOTrapAncient02R *)o)->vfunc_87(lbl_805DBA94 * (f32)o->level + lbl_805DBA90);
                         ((Trap_8017A3C0 *)o->target)->m21(o, dmg, 0, -1, -1);
-                        spawn_particle_effect((&scratch_vec.vector), 0xB9);
-                        spawn_particle_effect((&scratch_vec.vector), 0xBA);
+                        spawn_particle_effect((const Vec *)((&scratch_vec.vector)), 0xB9);
+                        spawn_particle_effect((const Vec *)((&scratch_vec.vector)), 0xBA);
                         {
                             void *t = __nw__7TObjectFUl(0x260);
                             if (t != NULL) {
                                 ((TTecZonde *)t)->construct_bolt_effect((u8 *)tl_07, (u8 *)(&scratch_vec.vector), (u8 *)(&lbl_8050BF00.vector), 0x14000000, 0x14, o->range, (f32)lbl_805DBA98);
                             }
                         }
-                        play_sound_effect(0x4002A408, (&scratch_vec.vector), 0, 0);
+                        play_sound_effect(0x4002A408, (const Vec *)((&scratch_vec.vector)), 0, 0);
                         break;
                     }
                     case 0:
@@ -790,8 +794,8 @@ f32 TOTrapAncient02R::receive_physical_attack(void *, f32) {
     if (self->id >= 0x4000 && self->x80 != 0) {
         Vec_8017A988 v = self->pos;
         v.y += self->x344 + self->x348;
-        spawn_particle_effect(&v, 0x1D0);
-        spawn_particle_effect(&v, 1);
+        spawn_particle_effect((const Vec *)(&v), 0x1D0);
+        spawn_particle_effect((const Vec *)(&v), 1);
         if (--self->timer <= 0) {
             self->timer = 0;
             if (((TObjCollidable *)self)->access_object_saved_state(&msg, 1) != 0) {
@@ -890,20 +894,20 @@ void TOTrapAncient02::vfunc_84() {
         case AREA_CAVE1:
         case AREA_CAVE2:
         case AREA_CAVE3:
-            play_persistent_sound(0x4461B, (s32)self, (u32)((u8 *)self + 0x38), 0, 0);
+            play_persistent_sound((s32)(0x4461B), (const void *)(self), (const Vec *)((u32)((u8 *)self + 0x38)), 0, 0);
             return;
         case AREA_MINE1:
         case AREA_MINE2:
-            play_persistent_sound(0x4004C612, (s32)self, (u32)((u8 *)self + 0x38), 0, 0);
+            play_persistent_sound((s32)(0x4004C612), (const void *)(self), (const Vec *)((u32)((u8 *)self + 0x38)), 0, 0);
             return;
         case AREA_RUINS1:
         case AREA_RUINS2:
         case AREA_RUINS3:
-            play_persistent_sound(0x4004C618, (s32)self, (u32)((u8 *)self + 0x38), 0, 0);
+            play_persistent_sound((s32)(0x4004C618), (const void *)(self), (const Vec *)((u32)((u8 *)self + 0x38)), 0, 0);
             return;
         case AREA_VR_SPACESHIP_ALPHA:
         case AREA_VR_SPACESHIP_BETA:
-            play_persistent_sound(0x4004C610, (s32)self, (u32)((u8 *)self + 0x38), 0, 0);
+            play_persistent_sound((s32)(0x4004C610), (const void *)(self), (const Vec *)((u32)((u8 *)self + 0x38)), 0, 0);
         case AREA_PIONEER2_EP1:
             return;
         case AREA_FOREST1:
@@ -1069,7 +1073,7 @@ void TOTrapAncient02::render_particle_chain() {
     temp_r31 = (unsigned char *) (this->model);
     translate_matrix(0, (f32) (*(f32 *)((s8 *)temp_r31 + 8)), (f32) (*(f32 *)((s8 *)temp_r31 + 0xC) + this->h344), (f32) (*(f32 *)((s8 *)temp_r31 + 0x10)));
     setup_particle_tev(0);
-    TObjFish::set_global_param(this->texlist);
+    set_current_texture_list((GinjaTextureList *)(this->texlist));
     load_projection_tex_matrix(0x38E);
     draw_ginja_model((*(s32 *)((s8 *)temp_r31 + 4)));
     reset_particle_tev();
@@ -1077,7 +1081,7 @@ void TOTrapAncient02::render_particle_chain() {
     temp_r31_2 = (unsigned char *) (*(void **)((s8 *)temp_r31 + 0x2C));
     translate_matrix(0, (f32) (*(f32 *)((s8 *)temp_r31_2 + 8)), (f32) (*(f32 *)((s8 *)temp_r31_2 + 0xC) + this->h348), (f32) (*(f32 *)((s8 *)temp_r31_2 + 0x10)));
     setup_particle_tev(0);
-    TObjFish::set_global_param(this->texlist);
+    set_current_texture_list((GinjaTextureList *)(this->texlist));
     load_projection_tex_matrix(0x38E);
     draw_ginja_model((*(s32 *)((s8 *)temp_r31_2 + 4)));
     reset_particle_tev();
@@ -1086,7 +1090,7 @@ void TOTrapAncient02::render_particle_chain() {
     temp_r31_3 = (unsigned char *) (*(void **)((s8 *)temp_r31_2 + 0x2C));
     post_translate_matrix(temp_r31_3 + 8);
     setup_particle_tev(1);
-    TObjFish::set_global_param(this->texlist);
+    set_current_texture_list((GinjaTextureList *)(this->texlist));
     load_projection_tex_matrix(0x38E);
     draw_ginja_model((*(s32 *)((s8 *)temp_r31_3 + 4)));
     reset_particle_tev();
@@ -1096,7 +1100,7 @@ void TOTrapAncient02::render_particle_chain() {
     post_translate_matrix(temp_r31_4 + 8);
     rotate_matrix_y(0, this->m_34c);
     setup_particle_tev(0);
-    TObjFish::set_global_param(this->texlist);
+    set_current_texture_list((GinjaTextureList *)(this->texlist));
     load_projection_tex_matrix(0x38E);
     draw_ginja_model((*(s32 *)((s8 *)temp_r31_4 + 4)));
     reset_particle_tev();
@@ -1113,7 +1117,7 @@ void TOTrapAncient02::draw_effect_chain() {
     u8 *temp_r31_4;
 
     push_matrix();
-    TObjFish::set_global_param(this->texlist);
+    set_current_texture_list((GinjaTextureList *)(this->texlist));
     post_translate_matrix((u8 *)&this->position);
     rotate_matrix_y(0, this->rotation_y);
     temp_r31 = (unsigned char *) (this->model);

@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/object/TObjAreaWarp.h"
 #include "pso/misc/TWindowMenu.h"
@@ -162,7 +163,7 @@ void TObjWarpJungMain::render() {
             }
             break;
         }
-        TObjFish::set_global_param((s32)((void *)warp_jung_model_handle));
+        set_current_texture_list((GinjaTextureList *)(((void *)warp_jung_model_handle)));
         push_matrix();
         post_translate_matrix((u8 *)arg0 + 0x38);
         rotate_matrix_y(0, *(s32 *)((s8 *)arg0 + 0x60));
@@ -333,7 +334,7 @@ f32 TObjWarpJung::get_static_field4_as_float() {
     return (f32) *(u32 *)((s8 *)warp_jung_beam_motion + 4);
 }
 
-void TObjWarpJung::set_global_render_param() { TObjFish::set_global_param(warp_jung_model_handle); }
+void TObjWarpJung::set_global_render_param() { set_current_texture_list((GinjaTextureList *)(warp_jung_model_handle)); }
 
 void TObjWarpJung::render_warp_effect(s32 arg0, s32 arg1) {
     s32 bml_model;

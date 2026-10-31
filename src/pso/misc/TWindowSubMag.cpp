@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/item/MagStats.h"
 #include "types.h"
 #include "pso/misc/TCameraCtrl.h"
@@ -102,7 +103,7 @@ s32 get_selected_menu_value(void *);
 s32 update_help_item__13TWindowSubMagFv(void *, s32);
 s32 TWindowShortListCtrl__check_controller_button(void *, int);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
-s32 play_sound_effect(s32, s32, s32, s32);
+
 s32 are_status_entries_ready__13TWindowSubMagFi(void *);
 s32 fn_8025373C(u8 *self);
 void *TWindowSubMagPhoton__ct(void *, s32, s32, s32);

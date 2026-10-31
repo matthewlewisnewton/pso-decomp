@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/system/GinjaMaterial.h"
@@ -73,7 +74,7 @@ void TKomorebi::render() {
             komorebi_last_uv_update_frame = actor_frame_tick;
         }
         push_matrix();
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)(this->texlist));
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_yxz(0, *(s32 *)&this->rotation_x, this->rotation_y, this->rotation_z);
         temp_f1 = this->scale.z;

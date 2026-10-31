@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/boss/TObjBoss2Tunnel_8007CF0C.h"
 #include "pso/boss/TObjBoss2Tunnel_803E2BAC.h"
@@ -200,7 +201,7 @@ void draw_snapshot_capture_overlay(void) {
     TObjBoss2Tunnel__sub_803E2D10(1);
     draw_projected_quads__15TObjBoss2TunnelFPvi(v, 4);
     TObjBoss2Tunnel::reset_player_state();
-    TObjFish::set_global_param(lbl_805D63F0);
+    set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
     set_draw_texture_and_color(1, -1);
     begin_screen_draw(1);
     q.x0 = TObjBoss2Tunnel__data_8048DF2C.x - 27.0f;

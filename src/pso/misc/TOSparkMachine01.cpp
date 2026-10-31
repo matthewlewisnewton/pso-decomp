@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/misc/TOSparkMachine01.h"
@@ -146,7 +147,7 @@ void TOSparkMachine01::render() {
         push_matrix();
         post_translate_matrix(self->m38);
         rotate_matrix_y(0, self->unk60);
-        TObjFish::set_global_param(self->unk24);
+        set_current_texture_list((GinjaTextureList *)(self->unk24));
         r = self->res;
         n = r->head;
         begin_effect_render__13TParticleCtrlFv(r);

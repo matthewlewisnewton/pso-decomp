@@ -1,4 +1,5 @@
 #include "pso/system/GinjaTextureInput.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/TNECFontEORFunction.h"
 #include "pso/unk/text_80145804.h"
@@ -74,7 +75,7 @@ void load_menu_font(void) {
     menu_font_palette[1] = 0x3FFF;
     menu_font_palette[2] = 0x5FFF;
     menu_font_palette[3] = 0x7FFF;
-    TObjFish::set_global_param((s32)&menu_font_texture_list);
+    set_current_texture_list(&menu_font_texture_list);
     for (i = 0; i < 2; i++) {
         TLanguage::set_entry_index(i, 0);
     }

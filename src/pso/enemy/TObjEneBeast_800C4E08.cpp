@@ -1,3 +1,5 @@
+#include "pso/misc/ParticleFactory.h"
+#include "pso/math/ScratchVectorStorage.h"
 #include "pso/player/TObjChara.h"
 #include "pso/player/demo_mode.h"
 #include "pso/math/ScratchVectorStorage.h"
@@ -73,7 +75,6 @@ s32 apply_actor_gravity(void *, int, f32);
 void move_with_wall_slide(u8 *arg0);
 extern "C" {
 s32 obj_testFlags30__14TObjCollidableFUl(void *, int);
-void *spawn_particle_effect(void *pos, s32 id);
 int unlink_enemy_group_relations__13TUnk_80493450Fv(void*);
 int send_entity_set_flags__9TObjEnemyFv(void*);
 s32 obj_setFlags30(void *, s32);
@@ -146,7 +147,7 @@ void TUnk_80493450::beast_update_dead() {
         this->vfunc_98();
     }
     if (((TObjMotion *)arg0)->is_passing_frame(BEAST_DEATH_EFFECT_FRAME) != 0) {
-        spawn_particle_effect(((u8 *)&this->position), 0xF3);
+        spawn_particle_effect(&this->position, 0xF3);
         this->vfunc_94();
     }
     if (this->frame < (BEAST_DEATH_SLIDE_FRAME_SCALE * (BEAST_DEATH_SLIDE_FRAME_COUNT * this->play_speed))) {

@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 // The bridges: TObjHashiBase and its three set objects TObjHashi,
 // TObjHashiVersus1 and TObjHashiVersus2, and the packet 6x78 slot timers.
 //
@@ -169,7 +170,7 @@ void TObjHashiBase::render() {
         push_matrix();
         post_translate_matrix(&position.x);
         rotate_matrix_y(NULL, rotation_y);
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         if (motion != NULL) {
             draw_model_motion(model, motion, animation_frame);
         } else {

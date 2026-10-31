@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/ShortMail.h"
 #include "pso/misc/TPlyGuildCardTag_8007B434.h"
@@ -165,7 +166,6 @@ s32 find_free_slot__6TLobbyFv(void) {
 }
 }
 
-extern "C" s32 play_sound_effect(int, void *, int, int);
 
 void TLobby__sub_80225A08(void *p) {
     s32 slot = find_free_slot__6TLobbyFv();

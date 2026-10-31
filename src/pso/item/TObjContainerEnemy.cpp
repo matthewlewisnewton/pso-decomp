@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/object/TObjChip.h"
 #include "pso/misc/TWindowKeyBoardHard_801FBA48.h"
@@ -172,7 +173,7 @@ void TObjContainerItem::vfunc_81() {
     if (lbl_805D5B78 != 0) {
         switch (self->state) {
         case 0:
-            TObjFish::set_global_param(lbl_805D5B7C);
+            set_current_texture_list((GinjaTextureList *)(lbl_805D5B7C));
             push_matrix();
             post_translate_matrix(self->pos);
             rotate_matrix_y(0, self->rot);

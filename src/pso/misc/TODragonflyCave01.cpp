@@ -1,4 +1,5 @@
 #include "pso/player/demo_mode.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TODragonfly.h"
 #include "pso/misc/TODragonflyCave01.h"
@@ -90,7 +91,7 @@ void TODragonfly::render() {
         translate_matrix(0, 0.0f, bob_offset, 0.0f);
         post_translate_matrix(&position.x);
         rotate_matrix_y(NULL, rotation_y);
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         draw_ginja_model_with_motion(model, motion, animation_frame);
         pop_matrix();
     }
