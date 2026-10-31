@@ -63,7 +63,7 @@ void TObjEneBalClawBody::sub_8008FC10() {
         case 0:
         case 1:
             if (F(s32, 0x3D4) > 0x708 || F(s16, 0x3DA) >= 2) {
-                ((TObjEneMe1GiGue *)((u8 *)this))->update_if_active(0xB);
+                ((TObjEnemyCustom *)((u8 *)this))->update_if_active(0xB);
                 return;
             }
             break;
@@ -75,7 +75,7 @@ void TObjEneBalClawBody::sub_8008FC10() {
         case 0:
         case 8:
             if (F(u32, 0x2A8) != 0) {
-                ((TObjEneMe1GiGue *)((u8 *)this))->update_if_active(1);
+                ((TObjEnemyCustom *)((u8 *)this))->update_if_active(1);
                 F(s32, 0x38C) = 2;
             } else {
                 ((TObjEnemyCustom *)((u8 *)this))->sub_800C73F4();
@@ -107,7 +107,7 @@ void TObjEneBalClawBody::sub_8008FC10() {
                 if (old != F(s32, 0x38C)) {
                     switch (F(s32, 0x38C)) {
                     case 0:
-                        ((TObjEneMe1GiGue *)((u8 *)this))->update_if_active(9);
+                        ((TObjEnemyCustom *)((u8 *)this))->update_if_active(9);
                         break;
                     case 1:
                         ((TObjEneBalClaw *)((u8 *)this))->clear_attack_flag();
@@ -118,7 +118,7 @@ void TObjEneBalClawBody::sub_8008FC10() {
                     }
                 }
             } else {
-                ((TObjEneMe1GiGue *)((u8 *)this))->update_if_active(8);
+                ((TObjEnemyCustom *)((u8 *)this))->update_if_active(8);
             }
             break;
         }
@@ -129,14 +129,14 @@ void TObjEneBalClawBody::sub_8008FC10() {
         switch (F(s16, 0x326)) {
         case 0:
             if (VO->m17(0x1E) != 0 && F(u32, 0x2A8) == 0) {
-                ((TObjEneMe1GiGue *)((u8 *)this))->update_if_active(0xA);
+                ((TObjEnemyCustom *)((u8 *)this))->update_if_active(0xA);
                 return;
             }
             break;
         case 1:
         case 12:
             if (F(s32, 0x3D4) > 0x708) {
-                ((TObjEneMe1GiGue *)((u8 *)this))->update_if_active(0xA);
+                ((TObjEnemyCustom *)((u8 *)this))->update_if_active(0xA);
                 return;
             }
             break;
@@ -145,14 +145,14 @@ void TObjEneBalClawBody::sub_8008FC10() {
         case 0:
         case 8:
             if (F(u32, 0x2A8) != 0) {
-                ((TObjEneMe1GiGue *)((u8 *)this))->update_if_active(0xC);
+                ((TObjEnemyCustom *)((u8 *)this))->update_if_active(0xC);
             } else {
                 ((TObjEnemyCustom *)((u8 *)this))->sub_800C73F4();
             }
             break;
         case 1:
             if (F(u32, 0x2A8) == 0) {
-                ((TObjEneMe1GiGue *)((u8 *)this))->update_if_active(8);
+                ((TObjEnemyCustom *)((u8 *)this))->update_if_active(8);
             }
             break;
         }
