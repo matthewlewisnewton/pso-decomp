@@ -4305,7 +4305,7 @@ void calc_move_vector__17TObjEneMe1CanadinFiPv(s32 actor, void *arg1) {
     f32 temp_f31;
     s32 random_scaled;
 
-    random_scaled = TObjEneDD::get_random_scaled();
+    random_scaled = ((TObjEneDD *)actor)->get_random_scaled();
     f32 fv = random_ratio__9TObjCharaFv(actor);
     temp_f31 = (lbl_805D98D0 * fv) + lbl_805D989C;
     temp_f1 = temp_f31 * ((f32 (*)(s32, f32))sin_table_lookup)(random_scaled, fv);

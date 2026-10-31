@@ -4948,7 +4948,6 @@ struct Vec_802F8F88 { f32 x, y, z; };
 
 void rotate_vec_xz(void *, void *, s32);
 u32 spawn_continuous_particle_effect_with_flags(void *, void *, int);
-s32 get_random_scaled__9TObjEneDDFv(void *);
 s32 TBoss8DragonEffBullet__ct(void *, void *, void *, void *, s32, s32);
 extern const f32 lbl_805DEE74;
 extern const f32 lbl_805DEE78;
@@ -4995,7 +4994,7 @@ void TBoss8DragonEffBullet__sub_802F8F88(u8 *arg0, u32 arg1) {
             if (TBoss8Dragon__sub_802FC674((Obj_802FC674 *)(arg0), d) != 0) {
                 F(s32, 0x85C) = (s32)(TBoss8Dragon__data_80474B28 * atan2_float(d[0] - F(f32, 0x38), d[2] - F(f32, 0x40)));
             } else {
-                F(s32, 0x85C) = get_random_scaled__9TObjEneDDFv(arg0);
+                F(s32, 0x85C) = ((TObjEneDD *)arg0)->get_random_scaled();
                 d[0] = lbl_805DEE74 * sin_table_lookup(F(s32, 0x85C));
                 d[1] = TBoss8Dragon__data_805DED50;
                 d[2] = lbl_805DEE74 * cos_table_lookup(F(s32, 0x85C));
