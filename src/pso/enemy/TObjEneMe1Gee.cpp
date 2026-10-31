@@ -195,7 +195,6 @@ typedef struct Gee_800CBB34 {
 } Gee_800CBB34;
 
 f32 newton_sqrtf(f32);
-f32 get_random_float__21TObjEneMe3ShinowaRealFv(f32);
 s32 set_target_player__12TObjEneDD_STFPv();
 void translate_matrix(u32 arg0, f32 x, f32 y, f32 z);
 extern s32 saved_model_render_flags;
@@ -522,12 +521,12 @@ void TObjEneMe1Gee::vfunc_88() {
 #pragma push
 #pragma opt_common_subs off
 void TObjEneMe1Gee::apply_behavior_parameters() {
-        if ((s32) get_random_float__21TObjEneMe3ShinowaRealFv((f32) (this->parameters[0])) == 0) {
+        if ((s32) floor_to_float((f32) (this->parameters[0])) == 0) {
         this->set_in_fighter();
     } else {
         this->set_out_fighter();
     }
-    if ((s32) get_random_float__21TObjEneMe3ShinowaRealFv((f32) (this->parameters[1])) == 0) {
+    if ((s32) floor_to_float((f32) (this->parameters[1])) == 0) {
         this->set_low_appearance();
     } else {
         this->set_high_appearance();
