@@ -101,7 +101,7 @@ void TBoss3Volopt::play_area_se_with_particle() {
     VecCopy((Vec *)&v, (const Vec *)arg0);
     y = v.y;
     v.y = y + lbl_805DA3C0;
-    spawn_particle_effect(&v, 0xE6);
+    spawn_particle_effect((const Vec *)&v, 0xE6);
 }
 
 void play_area_sound_and_particles_a(const Vec *position) {
