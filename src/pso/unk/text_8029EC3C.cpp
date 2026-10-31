@@ -1,3 +1,4 @@
+#include "pso/map/CsnGroundQuery.h"
 #include "types.h"
 #include "pso/system/vector.h"
 #include "pso/object/TObjMotion.h"
@@ -19,7 +20,6 @@ extern "C" {
 void *get_player_by_client_id(s32);
 f32 vec_squared_length(u8 *arg0);
 void reflect_matrix_in_plane(s32, void *);
-s32 *csnVecterUnder(s32 origin, s32 mask);
 Hit_8029EC3C *csnVector(void *, void *, s32);
 extern s32 local_client_id;
 extern Vec_8029EC3C sora_reflection_ray_direction;
@@ -67,7 +67,7 @@ s32 fn_8029EC3C(Vec_8029EC3C *pos, s32 arg1) {
         return 1;
     }
     if (lbl_805DDD8C == sora_reflection_ray_direction.x && lbl_805DDD8C == sora_reflection_ray_direction.z) {
-        r = (Hit_8029EC3C *)csnVecterUnder((s32)&a, arg1);
+        r = (Hit_8029EC3C *)csnVecterUnder((const Vec *)&a, arg1);
     } else {
         r = csnVector(&a, &b, arg1);
     }

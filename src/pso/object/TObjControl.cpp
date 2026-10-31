@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "types.h"
 #include "pso/system/vector.h"
 #include "pso/player/TObjChara.h"
@@ -477,7 +478,7 @@ void TObjControl::run_task() {
         queue_destruction__7TObjectFv(this);
         return;
     }
-    if (TObjPlayer::check_demo_mode() == 0) {
+    if (check_demo_mode() == 0) {
         if (((EnemyControlDispatch *)(enemy))->m31() != 0) {
             resume_update__7TObjectFv((enemy));
             ((EnemyControlDispatch *)(enemy))->m61();

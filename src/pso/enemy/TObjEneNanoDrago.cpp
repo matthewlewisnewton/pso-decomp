@@ -1,6 +1,9 @@
+#include "pso/misc/PositionSoundEffects.h"
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/misc/GroundEffects.h"
 #include "pso/TObjControl.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/BmlResourceDescriptor.h"
@@ -16,7 +19,7 @@
 #include "pso/enemy/TObjEnemyCustom.h"
 #include "pso/misc/TCameraCtrl.h"
 
-#include "pso/enemy/TUnk_80494938.h"
+#include "pso/misc/MaterialOpacityFade.h"
 
 extern "C" s32 TObjPlayer__sub_800DC420(void *self, s32 i);
 extern "C" f32 TObjPlayer__sub_800DC434(s32 arg0, s32 arg1);
@@ -80,8 +83,6 @@ extern "C" s32 play_sound_effect(int, void *, int, int);
 extern "C" void rotate_vector_by_matrix(int, void *, void *);
 
 extern "C" u32 get_player_by_client_id(s32);
-extern "C" s32 play_area_sound_effect__12TBoss3VoloptFv(void *, s32);
-
 void move_with_wall_slide(u8 *arg0);
 
 struct BeamRotation { s32 x, y, z; };
@@ -250,7 +251,7 @@ TObjEneNanoDrago::TObjEneNanoDrago(TObject *parent, void *setData) : TObjEnemyCu
     state36C = *(s16 *)((s8 *)arg2 + 0x3E);
     load_entry_params_nanodrago(variant);
     action_table = nanodrago_action_table;
-    set_field_d8((s32)(action_table));
+    set_action_table((TObjMotionAction *)((s32)(action_table)));
     init_collision_body_parts(this, nano_drago_bodies, 2);
     bodies[1].flags &= ~1;
     movementParameters = &nano_drago_movement;
@@ -329,7 +330,7 @@ void *TObjEneNanoDrago::create(void *arg0) {
 void TObjEneNanoDrago::run_task() {
     s32 cooldown;
 
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         update_attack_parameters();
         run_demo_task();
         return;
@@ -431,7 +432,7 @@ void TObjEneNanoDrago::render() {
     if (is_split_screen() != 0) {
         cameraIndex = TCameraCtrl::get_camera_mode();
     }
-    if (!(actorFlags & 0x02000000) && (viewDetail = classify_actor_view_detail(150.0f, 400.0f, 20.0f), viewDetail != 0) && ((TObjPlayer::check_demo_mode() == 1) || !(m_388 & 0x40000))) {
+    if (!(actorFlags & 0x02000000) && (viewDetail = classify_actor_view_detail(150.0f, 400.0f, 20.0f), viewDetail != 0) && ((check_demo_mode() == 1) || !(m_388 & 0x40000))) {
         saved_model_render_flags = model_render_flags;
         fade = &cameraFades[cameraIndex];
         fade->update();
@@ -452,7 +453,7 @@ void TObjEneNanoDrago::render() {
         modelScale = scale.x;
         scale_matrix(0, modelScale, modelScale, modelScale);
         model_render_flags &= 0xFFFFFBFF;
-        if (TObjPlayer::check_demo_mode() == 1) {
+        if (check_demo_mode() == 1) {
             draw_chunk_object((int) (model));
         } else if (m_388 & 4) {
             if (appearFade.has_visible_opacity() != 0) {
@@ -1015,7 +1016,7 @@ void TObjEneNanoDrago::update_dying_state() {
     case 3:
         timer = (s16) (timer - 1);
         if (timer <= 0) {
-            ((TObjPlayer *)(&position))->spawn_ground_effect(0x1E);
+            spawn_ground_effect((const Vec *)(&position), 0x1E);
             TObjPlayer__sub_800D92BC((s32)(&position), 0xF);
             state = 4;
             return;
@@ -1140,8 +1141,8 @@ void TObjEneNanoDrago::update_fade_in_state() {
         flags = actorFlags | 0x04000000;
         actorFlags = flags;
         requested_action = 0;
-        play_area_sound_effect__12TBoss3VoloptFv((u8 *)(&body_center_position), flags);
-        ((TUnk_80494938 *)((u8 *)(&appearFade)))->start_fade_in();
+        play_area_sound_and_particles_b((const Vec *)((u8 *)(&body_center_position)));
+        appearFade.start_fade_in();
         state = 1;
     case 1:
         advance_animation();

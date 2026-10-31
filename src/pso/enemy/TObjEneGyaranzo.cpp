@@ -1,3 +1,8 @@
+#include "pso/player/demo_mode.h"
+#include "pso/misc/PositionSoundEffects.h"
+#include "pso/misc/GroundEffects.h"
+#include "pso/map/CsnGroundQuery.h"
+#include "pso/system/MatrixVectorArray.h"
 #include "pso/npc/NpcModelRegistry.h"
 #include "pso/npc/NpcAnimationBinding.h"
 #include "pso/enemy/BattleParameters.h"
@@ -19,8 +24,6 @@
 #include "pso/enemy/TObjEneGyaranzo.h"
 #include "pso/system/vector.h"
 #include "pso/object/TObjGyaranzoMissile.h"
-#include "pso/enemy/TUnk_80494938.h"
-#include <stddef.h>
 #include "dolphin/mtx.h"
 #include "pso/misc/TLobby.h"
 #include "pso/TParticleCtrl.h"
@@ -30,14 +33,12 @@
 #include "pso/enemy/TObjEneMe3SinowZoa.h"
 #include "pso/enemy/TObjEnePanarms.h"
 #include "pso/enemy/TObjEneRe7Berura.h"
-#include "pso/misc/RenderFadeState.h"
 #include "pso/object/TObjFish.h"
 
 typedef char GyaranzoPositionOffset[offsetof(TObjEneGyaranzo, position) == 0x38 ? 1 : -1];
 typedef char GyaranzoYawOffset[offsetof(TObjEneGyaranzo, rotation_y) == 0x60 ? 1 : -1];
 
 extern "C" {
-s32 TBoss3Volopt__sub_800D8D88(void *, s32);
 s32 spawn_particle_effect(void *, int);
 u8 * TObjGyaranzoMissile__sub_800D4668(void *, void *, void *, s32, s32);
 s32 play_sound_effect(int, void *, int, int);
@@ -349,7 +350,7 @@ void *TObjEneGyaranzo::create(void *set_data) {
 void TObjEneGyaranzo::run_task() {
     s32 temp_r3;
 
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         update_demo();
         return;
     }
@@ -482,7 +483,7 @@ void TObjEneGyaranzo::render() {
             push_matrix();
             post_translate_matrix(&position);
             rotate_matrix_y(0, this->rotation_y);
-            if (TObjPlayer::check_demo_mode() == 1) {
+            if (check_demo_mode() == 1) {
                 draw_chunk_object((int) (model));
             } else if (this->m_388 & 4) {
                 if (fade.has_visible_opacity() != 0) {

@@ -74,8 +74,6 @@ struct TObjBoss2Tunnel : public TObject {
     static s32 maybe_delete(s32 arg0, s16 arg1);
     static s32 reset_coords_pass(s32 arg0);
     static s32 decrement_packed_timer(u32 *arg0, s32 arg1);
-    static s32 spawn_effect(s32 arg0, void *arg1, void *arg2);
-    static s32 adjust_to_ground(s32 arg0, void *arg1);
     void init_zako(void* a1, s32 _w2);
     static s16 turn_toward_angle_limited(s32 arg0, s32 cur, s32 target, s32 step, s32 limit);
     s32 count_tree_nodes();

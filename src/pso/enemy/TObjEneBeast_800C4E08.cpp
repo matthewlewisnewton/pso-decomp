@@ -1,5 +1,6 @@
-#include "pso/math/ScratchVectorStorage.h"
 #include "pso/player/TObjChara.h"
+#include "pso/player/demo_mode.h"
+#include "pso/math/ScratchVectorStorage.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "types.h"
 #include "pso/boss/TBoss3VoloptHiraisin.h"
@@ -91,7 +92,7 @@ u8 *get_enemy_entity(u16 arg0);
 TObjPlayer *get_player_by_client_id(s32 i);
 f32 enemy_backstep_from_point(void *, void *, f32);
 s32 angle_difference_abs(s32, s32);
-void TUnk_80493450::sub_800C4E08() {
+void TUnk_80493450::select_target_proximity_movement() {
     if (obj_testFlags30__14TObjCollidableFUl(this, 0x100000) != 0) {
         this->unk_394 = this->unk_39C;
         this->play_speed = this->unk_3A4;
@@ -101,7 +102,7 @@ void TUnk_80493450::sub_800C4E08() {
     this->play_speed = this->m_3a0;
 }
 
-s32 TUnk_80493450::update_target_near_flag() {
+void TUnk_80493450::update_target_near_flag() {
     f32 temp_f31;
     u8 *temp_r0;
     u8 *temp_r31;
@@ -394,7 +395,7 @@ void TUnk_80493450::beast_update_approach() {
                 VecCopy(&sp14, (const Vec *)&((TObjChara *)this->target)->body_center_position);
             }
             update_target_near_flag();
-            sub_800C4E08();
+            select_target_proximity_movement();
             ((TObjMotion *)arg0)->advance_animation();
             {
                 Vec sp8 = sp14;
@@ -512,7 +513,7 @@ void TUnk_80493450::beast_idle_update() {
     u8 *other;
 
     ((TUnk_80493450 *)arg0)->update_target_near_flag();
-    ((TUnk_80493450 *)arg0)->sub_800C4E08();
+    ((TUnk_80493450 *)arg0)->select_target_proximity_movement();
     ((TObjMotion *)arg0)->advance_animation();
     if (this->phase != 1) {
         this->phase = 1;
@@ -737,7 +738,7 @@ TUnk_80493450::~TUnk_80493450() {}
 void TUnk_80493450::run_task() {
     u8 *arg0 = (u8 *)this;
   s16 temp_r0;
-  if (TObjPlayer::check_demo_mode() == 1)
+  if (check_demo_mode() == 1)
   {
     (this->vfunc_101());
     return;

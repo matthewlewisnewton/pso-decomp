@@ -173,7 +173,7 @@ u8 *TObjNpcLappy__ct(u8 *self, void *parent, s32 arg2) {
     *(u8 **)(self + 0x18) = (u8 *)__vt__12TObjNpcLappy;
     *(s32 *)(self + 0) = TObjNpcLappy__name;
     ((TObjNpcLappy *)self)->apply_set_data((void *)arg2);
-    ((TObjPlayer *)self)->init_position_vectors();
+    ((TObjChara *)self)->initialize_position_copies();
     ((TObjNpcLappy *)self)->apply_set_params(0, 1);
     *(s32 *)(self + 0x34) = *(s32 *)(*(u8 **)(rappy_bml_resource + 0x42C) + 8);
     *(s32 *)(self + 0x24) = *(s32 *)(*(u8 **)(rappy_bml_resource + 0x42C) + 0xC);
