@@ -127,7 +127,6 @@ void reset_hp__9TObjEneDDFPUcPUcPUc(void *, s32, s32, s32);
 void initialize_enemy_state__9TObjEneDDFl(void *, int);
 void init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, int);
 void invoke_initialization_hook__9TObjEneDDFPv(void *, void *);
-void TObjEneMe3SinowZoa__sub_800D758C(void *);
 void *__dt__13TUnk_80494938Fv(void *arg0, s16 arg1);
 void *__dt__15RenderFadeStateFv(void *arg0, s16 arg1);
 void __ct__15RenderFadeStateFv();
@@ -444,7 +443,7 @@ u8 *TObjEneRecobox__ct(u8 *ene_recobox, s32 arg1, u8 *arg2) {
     }
     *(s32 *)((s8 *)ene_recobox + 0x40C) = 0;
     *(s32 *)((s8 *)ene_recobox + 0x40C) |= 1;
-    TObjEneMe3SinowZoa__sub_800D758C(ene_recobox + 0x3C0);
+    ((TUnk_80494938 *)(ene_recobox + 0x3C0))->start_fade_in();
     *(s32 *)((s8 *)ene_recobox + 0x410) = 0;
     *(s32 *)((s8 *)ene_recobox + 0x414) = 0;
     for (i = 0; i < 30; i++) {

@@ -75,14 +75,6 @@ void TObjEneMe3SinowZoa::set_field_10(f32 v) { *(f32 *)&this->m_up = v; }
 
 }
 
-struct B_800D758C { f32 f0; f32 f4; f32 f8; f32 fc; f32 f10; };
-
-struct V_800D758C : B_800D758C {
-    virtual void m0();
-    virtual void m1(s32 x);
-    f32 f18;
-};
-
 struct B_800D7524 { f32 f0; f32 f4; f32 f8; f32 fc; f32 f10; };
 
 struct V_800D7524 : B_800D7524 {
@@ -95,7 +87,6 @@ extern "C" {
 extern const f32 lbl_805DA360;
 extern const f32 lbl_805DA350;
 extern const f32 lbl_805DA348;
-void TObjEneMe3SinowZoa__sub_800D758C(V_800D758C *self);
 extern const f32 lbl_805DA35C;
 void TUnk_80494938::set_rate_from_divisor(s32 arg1) {
     this->rate = (f32) (lbl_805DA34C / (f32) arg1);
@@ -113,13 +104,13 @@ void TObjEneMe3SinowZoa::init_death_params() {
 }
 #pragma pop
 
-void TObjEneMe3SinowZoa__sub_800D758C(V_800D758C *self) {
-    self->m1(10);
-    self->f18 = -(lbl_805DA360 * self->f10);
-    self->f0 = lbl_805DA350;
-    self->f4 = lbl_805DA348;
-    self->f8 = lbl_805DA348;
-    self->fc = lbl_805DA348;
+void TUnk_80494938::start_fade_in() {
+    set_rate_from_divisor(10);
+    value = -(lbl_805DA360 * rate);
+    color.a = lbl_805DA350;
+    color.r = lbl_805DA348;
+    color.g = lbl_805DA348;
+    color.b = lbl_805DA348;
 }
 
 TUnk_80494938::~TUnk_80494938() {}

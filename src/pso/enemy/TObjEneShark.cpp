@@ -188,7 +188,6 @@ extern const f32 lbl_805D9BA0;
 extern const f32 lbl_805D9BA4;
 extern const f32 lbl_805D9BA8;
 void vfunc_94__12TObjEneSharkFv(u8 *arg0);
-s32 TObjEneMe3SinowZoa__sub_800D758C(void *);
 void vfunc_83__12TObjEneSharkFv(Obj_800ABCBC *arg0);
 s32 mult_vec_array__10TObjPlayerFUll(int, int, void *, int);
 void set_matrix_identity(u8 *arg0);
@@ -333,7 +332,7 @@ void TObjEneShark::vfunc_83() {
     case 0:
     default:
         if (*(s32 *)&this->m_390 != 0) {
-            TObjEneMe3SinowZoa__sub_800D758C((u8 *)arg0 + 0x3A8);
+            ((TUnk_80494938 *)((u8 *)arg0 + 0x3A8))->start_fade_in();
             ((TBoss3Volopt *)(arg0->sub38))->play_area_sound_effect();
             *(s16 *)&this->m_328 = 1;
         } else {

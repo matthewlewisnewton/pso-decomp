@@ -1,3 +1,4 @@
+#include "pso/enemy/TUnk_80494938.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -448,7 +449,6 @@ s32 draw_line_list(void *, int, int);
 extern RecoveredGlobal_80360638_lbl_804F22CC TObjEneEpsilonGuard__debug_line_list;
 extern RecoveredGlobal_80360638_lbl_805439FC lbl_805439FC;
 extern RecoveredGlobal_8035F8F0_lbl_80479E6C epsilon_guard_table_value_set;
-void TObjEneMe3SinowZoa__sub_800D758C(void *);
 void TObjEneEpsilonGuard__sub_80361C70(u8 *arg0, s32 arg1);
 s32 is_split_screen();
 s32 get_camera_mode__11TCameraCtrlFv();
@@ -1576,7 +1576,7 @@ void TObjEneEpsilonGuard__sub_80361C70(u8 *arg0, s32 arg1) {
         temp_r4 = ((TObjEneEpsilonBody *)arg0)->m_438;
         ((TObjEneEpsilonBody *)arg0)->m_438 = (s32) (temp_r4 & ~0x201);
         set_guard_state__18TObjEneEpsilonBodyFl(arg0, temp_r4);
-        TObjEneMe3SinowZoa__sub_800D758C(arg0 + 0x4C0);
+        ((TUnk_80494938 *)(arg0 + 0x4C0))->start_fade_in();
         break;
     case 3:
         if (((VObj_14_948132 *)(arg0 + (1216)))->m5() != 0) {

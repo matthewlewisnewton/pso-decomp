@@ -496,7 +496,6 @@ extern const f32 lbl_805DA330;
 void render__16TObjEneMerillLiaFv(u8 *arg0);
 extern u32 TObjEneMerillLia__entry_params_resource;
 extern s32 game_difficulty_selection;
-s32 TObjEneMe3SinowZoa__sub_800D758C(void *);
 s32 obj_testFlags30__14TObjCollidableFUl(void *, int);
 void vfunc_59__16TObjEneMerillLiaFv(Ene_800D51C8 *arg0);
 s16 find_nearest_visible_player(void *, s32, f32);
@@ -1017,7 +1016,7 @@ void TObjEneMerillLia::sub_800D5570() {
     default:
         this->phase = 1;
         this->requested_action = 1;
-        TObjEneMe3SinowZoa__sub_800D758C((u8 *)arg0 + 0x3A8);
+        ((TUnk_80494938 *)((u8 *)arg0 + 0x3A8))->start_fade_in();
         ((TBoss3Volopt *)(arg0->sub38))->play_area_sound_effect();
         break;
     case 1:

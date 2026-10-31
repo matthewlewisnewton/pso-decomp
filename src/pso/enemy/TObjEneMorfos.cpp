@@ -659,7 +659,6 @@ void *__dt__12TObjEneDD_STFv(void *arg0, s16 arg1);
 s32 get_camera_ctrl__9TObjEneDDFv(void *, int);
 s32 clear_attack_receipts__9TObjEneDDFv();
 void invoke_initialization_hook__9TObjEneDDFPv(void *, void *);
-void TObjEneMe3SinowZoa__sub_800D758C(void *);
 void *__dt__13TUnk_80494938Fv(void *arg0, s16 arg1);
 s32 update__15RenderFadeStateFv(void *);
 s32 angle_difference_abs(s32, s32);
@@ -1707,7 +1706,7 @@ void TObjEneMorfos__sub_803342B8(u8 *ene_dd, s32 arg1) {
         *(s32 *)((s8 *)ene_dd + 0x3C0) = (s32) (*(s32 *)((s8 *)ene_dd + 0x3C0) | 2);
         ((TObjEneDD *)ene_dd)->set_field_378(3);
         TObjPlayer__sub_800A0554(ene_dd + 0x3EC);
-        TObjEneMe3SinowZoa__sub_800D758C(ene_dd + 0x408);
+        ((TUnk_80494938 *)(ene_dd + 0x408))->start_fade_in();
         ((TBoss3Volopt *)(ene_dd + 0x38))->play_area_se_with_particle();
         return;
     case 3:

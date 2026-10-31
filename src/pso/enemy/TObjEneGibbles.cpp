@@ -345,7 +345,6 @@ void TCameraCtrl__sub_8006A044(s32, f32);
 s32 *csnVecterUnder(s32 origin, s32 mask);
 s32 rotate_xz_pair_by_angle(f32 *, f32 *, s32, f32);
 s32 test_action_mask__10TObjPlayerFl(void *, int);
-s32 TObjEneMe3SinowZoa__sub_800D758C(void *);
 void TObjPlayer__sub_800D93C4(s32 point, s32 delay);
 void * __ct__11TObjControlFP7TObject(void *, void *);
 s32 angle_diff_s16(s32, s32);
@@ -1834,7 +1833,7 @@ void TObjEneGibbles::update_death_sequence() {
     case 0:
         this->phase = 1;
         this->requested_action = 5;
-        TObjEneMe3SinowZoa__sub_800D758C((void *) (arg0 + 0x3C0));
+        ((TUnk_80494938 *)((void *) (arg0 + 0x3C0)))->start_fade_in();
         this->m_38c = (f32) lbl_805DE868;
         *(f32 *)&this->unk_390 = (f32) TObjEneGibbles__data_805DE830;
         apply_actor_gravity((TObjEnemy *)(arg0), (s32 *)(0), TObjEneGibbles__data_805DE7E4);

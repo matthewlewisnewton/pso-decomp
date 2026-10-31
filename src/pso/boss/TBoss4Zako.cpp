@@ -187,6 +187,23 @@ u32 TBoss4Zako_collision_body_parts[11] = {
  0, 0x40f00000, 0, 0x40a00000, 0, 0, 0x807a, 0, 0, 0, 0,
 };
 
+struct StateHandlerPmfWords { s32 delta; s32 delta2; void *fn; };
+union StateHandlerPmfOverlay { StateHandlerPmfWords w; void (TBoss4Zako::*pmf)(); };
+
+void update_rise_state__10TBoss4ZakoFv(void *);
+void update_move_to_target_state__10TBoss4ZakoFv(void *);
+void update_surround_player_state__10TBoss4ZakoFv(void *);
+void update_sink_state__10TBoss4ZakoFv(void *);
+
+static StateHandlerPmfOverlay TBoss4Zako_rise_state_handler_pmf = { {0, -1, (void *)update_rise_state__10TBoss4ZakoFv} };
+static StateHandlerPmfOverlay TBoss4Zako_move_to_target_state_handler_pmf = { {0, -1, (void *)update_move_to_target_state__10TBoss4ZakoFv} };
+static StateHandlerPmfOverlay TBoss4Zako_surround_player_state_handler_pmf = { {0, -1, (void *)update_surround_player_state__10TBoss4ZakoFv} };
+static StateHandlerPmfOverlay TBoss4Zako_sink_state_handler_pmf = { {0, -1, (void *)update_sink_state__10TBoss4ZakoFv} };
+static StateHandlerPmfOverlay TBoss4Zako_state_handlers[5] = {
+    {{0, 0, 0}}, {{0, 0, 0}}, {{0, 0, 0}}, {{0, 0, 0}}, {{0, 0, 0}},
+};
+static s8 TBoss4Zako_state_handlers_initialized;
+
 extern s32 tl_04;
 
 struct Vec_8005C6E4 { f32 x, y, z; };
@@ -287,9 +304,12 @@ void render__9TBoss4UroFv(void);
 #pragma readonly_strings on
 
 extern "C" {
-const char *lbl_805D27E8 = "TBoss4Zako";
-const char *lbl_805D27EC = "TBoss4Uro";
-const char *lbl_805D27F0 = "TBoss4Bishi";
+static const char lbl_80437898[] = "TBoss4Zako";
+static const char lbl_804378A4[] = "TBoss4Uro";
+static const char lbl_804378B0[] = "TBoss4Bishi";
+const char *lbl_805D27E8 = lbl_80437898;
+const char *lbl_805D27EC = lbl_804378A4;
+const char *lbl_805D27F0 = lbl_804378B0;
 }
 
 extern "C" TObjEnemy *__ct__9TObjEnemyFP7TObject(void *, void *);
@@ -464,12 +484,14 @@ void TBoss4Zako::run_task() {
             self->m_3a8 = 1;
         }
     }
-    {
-        static void (TBoss4Zako::*tbl[5])() = {
-            &TBoss4Zako::update_rise_state, &TBoss4Zako::update_move_to_target_state, &TBoss4Zako::update_surround_player_state, &TBoss4Zako::update_sink_state,
-        };
-        fn = tbl[self->m_374];
+    if (!TBoss4Zako_state_handlers_initialized) {
+        TBoss4Zako_state_handlers[0].pmf = TBoss4Zako_rise_state_handler_pmf.pmf;
+        TBoss4Zako_state_handlers[1].pmf = TBoss4Zako_move_to_target_state_handler_pmf.pmf;
+        TBoss4Zako_state_handlers[2].pmf = TBoss4Zako_surround_player_state_handler_pmf.pmf;
+        TBoss4Zako_state_handlers[3].pmf = TBoss4Zako_sink_state_handler_pmf.pmf;
+        TBoss4Zako_state_handlers_initialized = 1;
     }
+    fn = TBoss4Zako_state_handlers[self->m_374].pmf;
     if (fn) {
         (self->*fn)();
         if (self->m_374 == 1 || self->m_374 == 2) {
@@ -780,6 +802,16 @@ void clamp_min_player_distance__9TBoss4UroFPv(Obj_8005C6E4 *arg0) {
     arg0->pos.z = lbl_805D8CDC * d.z + target.z;
 }
 #pragma pop
+union UroStateHandlerPmf { StateHandlerPmfWords w; void (TBoss4Uro::*pmf)(); };
+
+static UroStateHandlerPmf TBoss4Uro_state2_handler_pmf = { {0, -1, (void *)vt4__9TBoss4UroFv} };
+static UroStateHandlerPmf TBoss4Uro_state3_handler_pmf = { {0, -1, (void *)vt5__9TBoss4UroFv} };
+static UroStateHandlerPmf TBoss4Uro_state4_handler_pmf = { {0, -1, (void *)vt6__9TBoss4UroFv} };
+static UroStateHandlerPmf TBoss4Uro_state_handlers[5] = {
+    {{0, 0, 0}}, {{0, 0, 0}}, {{0, 0, 0}}, {{0, 0, 0}}, {{0, 0, 0}},
+};
+static s8 lbl_805D4D89;
+
 #pragma push
 #pragma fp_contract on
 void run_task__9TBoss4UroFv(TBoss4Uro *self) {
@@ -788,10 +820,15 @@ void run_task__9TBoss4UroFv(TBoss4Uro *self) {
         self->f374 = 3;
         return;
     }
-    static Act_8005C49C tbl[5] = {
-        0, 0, &TBoss4Uro::vt4, &TBoss4Uro::vt5, &TBoss4Uro::vt6,
-    };
-    Act_8005C49C a = tbl[self->f374];
+    if (!lbl_805D4D89) {
+        TBoss4Uro_state_handlers[0].pmf = 0;
+        TBoss4Uro_state_handlers[1].pmf = 0;
+        TBoss4Uro_state_handlers[2].pmf = TBoss4Uro_state2_handler_pmf.pmf;
+        TBoss4Uro_state_handlers[3].pmf = TBoss4Uro_state3_handler_pmf.pmf;
+        TBoss4Uro_state_handlers[4].pmf = TBoss4Uro_state4_handler_pmf.pmf;
+        lbl_805D4D89 = 1;
+    }
+    Act_8005C49C a = TBoss4Uro_state_handlers[self->f374].pmf;
     if (a) {
         (self->*a)();
         if (self->f374 == 2) {
@@ -995,16 +1032,31 @@ void try_enter_state_3__11TBoss4BishiFPv(void* p) { if (*(int*)((char*)p + 0x374
 void enter_state_3__11TBoss4BishiFPv(void* p) { if (*(int*)((char*)p + 0x374) != 3) { TBoss4Uro__sub_8005D6D4(*(void**)((char*)p + 0x378)); *(int*)((char*)p + 0x374) = 3; } }
 #pragma pop
 #pragma push
+union BishiStateHandlerPmf { StateHandlerPmfWords w; void (TBoss4Bishi::*pmf)(); };
+
+static BishiStateHandlerPmf TBoss4Bishi_state0_handler_pmf = { {0, -1, (void *)vt0__11TBoss4BishiFv} };
+static BishiStateHandlerPmf TBoss4Bishi_state2_handler_pmf = { {0, -1, (void *)vt1__11TBoss4BishiFv} };
+static BishiStateHandlerPmf TBoss4Bishi_state3_handler_pmf = { {0, -1, (void *)vt2__11TBoss4BishiFv} };
+static BishiStateHandlerPmf TBoss4Bishi_state_handlers[5] = {
+    {{0, 0, 0}}, {{0, 0, 0}}, {{0, 0, 0}}, {{0, 0, 0}}, {{0, 0, 0}},
+};
+static s8 lbl_805D4D8A;
+
 #pragma fp_contract on
 void TBoss4Zako__sub_8005BC4C(TBoss4Bishi *self) {
     if (self->f374 != 3 && get_phase__9TBoss4UroFv(self->f378) != 8) {
         enter_state_3__11TBoss4BishiFPv(self);
         return;
     }
-    static Act_8005BC4C tbl[5] = {
-        &TBoss4Bishi::vt0, 0, &TBoss4Bishi::vt1, &TBoss4Bishi::vt2, 0,
-    };
-    Act_8005BC4C a = tbl[self->f374];
+    if (!lbl_805D4D8A) {
+        TBoss4Bishi_state_handlers[0].pmf = TBoss4Bishi_state0_handler_pmf.pmf;
+        TBoss4Bishi_state_handlers[1].pmf = 0;
+        TBoss4Bishi_state_handlers[2].pmf = TBoss4Bishi_state2_handler_pmf.pmf;
+        TBoss4Bishi_state_handlers[3].pmf = TBoss4Bishi_state3_handler_pmf.pmf;
+        TBoss4Bishi_state_handlers[4].pmf = 0;
+        lbl_805D4D8A = 1;
+    }
+    Act_8005BC4C a = TBoss4Bishi_state_handlers[self->f374].pmf;
     if (a) {
         (self->*a)();
         if (self->f374 == 2) {

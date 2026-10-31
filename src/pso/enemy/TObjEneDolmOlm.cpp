@@ -407,7 +407,6 @@ s32 TObjEneDolmOlm__sub_80301C3C(void *);
 extern const f32 TObjEneDolmOlm__data_805DEF50;
 void run_task__14TObjEneDolmOlmFv(u8 *arg0);
 extern u32 TObjEneDolmOlm__resource_bundle;
-void TObjEneMe3SinowZoa__sub_800D758C(void *);
 void vfunc_83__14TObjEneDolmOlmFv(Ene_80302004 *self);
 void queue_destruction__7TObjectFv(void *);
 void __dt__13TUnk_80493450Fv(void *, int);
@@ -1300,7 +1299,7 @@ void TObjEneDolmOlm::vfunc_83() {
     case 0:
     default:
         if (this->m_390 != 0) {
-            TObjEneMe3SinowZoa__sub_800D758C(&self->obj);
+            ((TUnk_80494938 *)(&self->obj))->start_fade_in();
             ((TBoss3Volopt *)(self->sub38))->play_area_sound_effect();
             this->phase = 1;
             return;

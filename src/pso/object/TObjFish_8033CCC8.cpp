@@ -183,4 +183,8 @@ void *TBoss6PlotFalz::create(void *arg0, void *arg1) {
     return o;
 }
 
+__declspec(section ".rodata") double lbl_80477F08 = 4503601774854144.0;
+__declspec(section ".sdata2") f32 lbl_805DFA64 = 0.7f;
+__declspec(section ".sdata2") f32 lbl_805DFA68[2] = { 179.0f, 0.0f };
+
 }
