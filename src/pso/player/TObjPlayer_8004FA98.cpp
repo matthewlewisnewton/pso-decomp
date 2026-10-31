@@ -1,4 +1,5 @@
 #include "pso/system/ModelNodePositionCapture.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/system/PadRumble.h"
 #include "pso/misc/TCameraCtrl_800687BC.h"
@@ -28,7 +29,7 @@ void TObjPlayer::release_subobjects() {
         set_motion_packed_rotation();
         post_translate_matrix((u8 *)&this->override_blend_speed);
         rotate_matrix_y(0, (*(s32 *)&this->joint_matrices));
-        TObjFish::set_global_param(*(s32 *)&this->blend_speed);
+        set_current_texture_list((GinjaTextureList *)(*(s32 *)&this->blend_speed));
         ((ModelNodePositionCapture *)(this->m_108))->install();
         draw_model_motion((void *)(*(s32 *)&this->play_speed), (void *)(*(s32 *)&this->override_speed), *(f32 *)&this->blend.motion[1]);
         ((ModelNodePositionCapture *)(this->m_108))->clear();
@@ -58,14 +59,14 @@ int TObjPlayer::draw_fading_motion() {
     set_motion_packed_rotation();
     post_translate_matrix((u8 *)&this->override_blend_speed);
     rotate_matrix_y(0, (*(s32 *)&this->joint_matrices));
-    TObjFish::set_global_param(this->body_count);
+    set_current_texture_list((GinjaTextureList *)(this->body_count));
     (*(ModelNodePositionCapture **)&this->blend.frame[0])->install();
     draw_model_motion((void *)(*(s32 *)&this->bodies), (void *)(*(s32 *)&this->extra), *(f32 *)&this->blend.motion[1]);
     (*(ModelNodePositionCapture **)&this->blend.frame[0])->clear();
     frac = (s32)*(f32 *)&this->blend.motion[1] % 30;
-    TObjFish::set_global_param(*(s32 *)&this->action_flags);
+    set_current_texture_list((GinjaTextureList *)(*(s32 *)&this->action_flags));
     draw_model_motion((void *)(*(s32 *)&this->motion_flags), (void *)(*(s32 *)&this->requested_action), frac);
-    TObjFish::set_global_param((*(s32 *)&this->frame));
+    set_current_texture_list((GinjaTextureList *)((*(s32 *)&this->frame)));
     draw_model_motion((void *)(*(s32 *)&this->previous_action), (void *)(*(s32 *)&this->frame_count), frac);
     clear_motion_packed_rotation();
     pop_matrix();

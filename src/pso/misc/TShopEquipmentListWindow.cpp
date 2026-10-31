@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/item/TItemData.h"
 #include "types.h"
 #include "pso/protocol/protocol_types.h"
@@ -228,7 +229,7 @@ f32 get_scale__15TShopWindowBaseFv(void *);
 u32 create_yes_no_window(int, u16, int, int);
 s32 sub_802239EC__13TShopSequenceFv(void *);
 s32 sub_80223A48__15TShopWindowBaseFv(void *);
-void play_sound_effect(int, int, int, int);
+
 void *__dt__24TShopEquipmentListWindowFv(TShopEquipmentListWindow *arg0, s16 arg1);
 s32 create_window_menu(s32 arg0, s32 arg1, s32 arg2);
 s32 align_menu_entry_positions(u32);

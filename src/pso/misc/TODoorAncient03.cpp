@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TODoorAncient03.h"
 #include "pso/TMainTask.h"
@@ -96,7 +97,7 @@ void TODoorAncient03::render() {
         push_matrix();
         post_translate_matrix(&position.x);
         rotate_matrix_y(NULL, rotation_y);
-        TObjFish::set_global_param(door_ancient03_texlists[door_flags & DOOR_FLAG_UNLOCKED]);
+        set_current_texture_list((GinjaTextureList *)(door_ancient03_texlists[door_flags & DOOR_FLAG_UNLOCKED]));
         if (object_state == DOOR_CLOSED) {
             NJS_OBJECT *node = (NJS_OBJECT *)model;
             post_translate_matrix(node->pos);
@@ -129,7 +130,7 @@ void TODoorAncient03::update_closed() {
     if ((door_flags & DOOR_FLAG_UNLOCKED) && is_any_player_within_radius_xz(4900.0f) != 0) {
         object_state = DOOR_OPENING;
         set_indexed_flags(0, 8);
-        play_sound_effect(0x4004B708, &position, 0, 0);
+        play_sound_effect(0x4004B708, (const Vec *)(&position), 0, 0);
     }
 }
 
@@ -137,7 +138,7 @@ void TODoorAncient03::update_open() {
     if (!(door_flags & DOOR_FLAG_UNLOCKED) || is_any_player_within_radius_xz(10000.0f) == 0) {
         object_state = DOOR_CLOSING;
         clear_player_status_flag(0, 8);
-        play_sound_effect(0x4004B708, &position, 0, 0);
+        play_sound_effect(0x4004B708, (const Vec *)(&position), 0, 0);
     }
 }
 

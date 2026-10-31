@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "pso/TParticleCtrl.h"
 #include "types.h"
 #include "pso/unk/text_8016F1C0.h"
@@ -145,7 +146,7 @@ void TOMineTrap__sub_8017141C(void *);
 s32 check_value_equals__13TUnk_804B6C24Fl(u32, int);
 extern s32 TOMineTrap__data_805D3080;
 f32 TOMineTrap__vt20(Obj_8016F5B4 *arg0, u32 arg1);
-void *spawn_particle_effect(void *pos, s32 id);
+
 extern const f32 lbl_805DB864;
 int get_player_data__10TObjPlayerFi(int a0);
 s16 TOMineTrap__sub_80171340(void *);
@@ -253,7 +254,7 @@ void TOMineTrap::vfunc_82() {
     u32 r;
     switch (this->m_354) {
     default:
-        r = (u32)spawn_particle_effect(arg0->sub, 0x45);
+        r = (u32)spawn_particle_effect((const Vec *)(arg0->sub), 0x45);
         if (r != 0U) {
             ((TParticleCtrl *)r)->set_scale(lbl_805DB864, lbl_805DB864);
         }
@@ -262,13 +263,13 @@ void TOMineTrap::vfunc_82() {
     case 16:
     case 17:
     case 18:
-        spawn_particle_effect(arg0->sub, 0x8E);
-        spawn_particle_effect(arg0->sub, 0x8E);
+        spawn_particle_effect((const Vec *)(arg0->sub), 0x8E);
+        spawn_particle_effect((const Vec *)(arg0->sub), 0x8E);
         break;
     case 6:
     case 7:
-        spawn_particle_effect(arg0->sub, 0x8D);
-        spawn_particle_effect(arg0->sub, 0x8D);
+        spawn_particle_effect((const Vec *)(arg0->sub), 0x8D);
+        spawn_particle_effect((const Vec *)(arg0->sub), 0x8D);
         break;
     }
 }

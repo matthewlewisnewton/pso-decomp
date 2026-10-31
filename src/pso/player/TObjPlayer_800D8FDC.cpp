@@ -1,6 +1,7 @@
 #include "pso/misc/SampledMotionPoints.h"
 #include "pso/math/FloatRounding.h"
 #include "pso/map/CsnGroundQuery.h"
+#include "pso/misc/ParticleFactory.h"
 #include "pso/system/ChunkMaterialState.h"
 #include "pso/system/BmlResourceClass.h"
 #include "types.h"
@@ -38,7 +39,6 @@ void spawn_dead_spot_e4(Vec *position, s32 lifetime, f32 radius) {
 }
 
 
-void *spawn_particle_effect(void *pos, s32 id);
 
 void create_dead_spot__10TObjPlayerFiiif(s32 arg0, s32 arg1, s32 arg2, f32 farg0) {
     s32 temp_r3;
@@ -54,7 +54,7 @@ void fn_800D911C(Vec *position) {
     create_timed_particle_emitter(position, 236, 10, 1);
 }
 
-void TObjPlayer::trigger_dell_biter_events() { spawn_particle_effect(this, (s32)((void*)251)); spawn_particle_effect(this, (s32)((void*)252)); spawn_particle_effect(this, (s32)((void*)227)); }
+void TObjPlayer::trigger_dell_biter_events() { spawn_particle_effect((const Vec *)(this), 251); spawn_particle_effect((const Vec *)(this), 252); spawn_particle_effect((const Vec *)(this), 227); }
 
 void spawn_ground_effect(const Vec *position, s32 lifetime) {
     Vec ground_position;

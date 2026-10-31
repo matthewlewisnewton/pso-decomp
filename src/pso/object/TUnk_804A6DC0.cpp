@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/item/TItemEquipVariant_80120CF8.h"
 #include "pso/object/TObjGyaranzoMissile_80131100.h"
@@ -70,7 +71,7 @@ void TUnk_804A6DC0::emit_marker_effects() {
     u8 buf[0x18];
     self->state = 2;
     ((TItemWeapon *)self)->get_gun_point(buf);
-    spawn_particle_effect(buf, 9);
+    spawn_particle_effect((const Vec *)(buf), 9);
 }
 
 void *__dt__13TUnk_804A6DC0Fv(void *arg0, s16 arg1) {

@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TKeyBoardControl_8000F764.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
@@ -16,7 +17,6 @@ extern s32 multi_chr_select_serial_access_state;
 void TAdMultiPlyChrSelectGC__sub_802DCCA4(Obj_802DCCA4 *arg0);
 s32 set_entry_value__22TAdMultiPlyChrSelectGCFlUl(s32, s32, s32 *);
 s32 TWindowShortListCtrl__check_controller_button(char *, s32);
-s32 play_sound_effect(s32, s32, s32, s32);
 
 extern char controller_physical_port_bank[];
 extern s32 TAdMultiPlyChrSelectGC__data_805DE898;

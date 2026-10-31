@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TWindowSubStatusDisp_803DEE6C.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
@@ -21,7 +22,7 @@ void draw_select_cursor_quads(Obj_802AE978 *o) {
     u32 i;
     for (i = 0; i < o->count; i++) {
         begin_screen_draw(1);
-        TObjFish::set_global_param(menu_selection_cursor_texture_list);
+        set_current_texture_list((GinjaTextureList *)(menu_selection_cursor_texture_list));
         set_draw_texture_and_color(0, (o->colors[i] << 24) | 0xFFFFFF);
         draw_textured_quad_at_depth((f32 *)&o->cards[i], o->scale);
         draw_textured_quad_at_depth((f32 *)&o->cards[i + 16], o->scale);

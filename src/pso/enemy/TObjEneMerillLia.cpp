@@ -4,6 +4,9 @@
 #include "pso/misc/MaterialOpacityFade.h"
 #include "pso/misc/RenderFadeState.h"
 #include "pso/enemy/BattleParameters.h"
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/math/ScratchVectorStorage.h"
 #include "types.h"
 #include "pso/misc/GroundEffects.h"
@@ -427,7 +430,7 @@ void move_with_wall_slide(u8 *arg0);
 
 extern "C" {
 f32 random_ratio__9TObjCharaFv(void *);
-s32 play_sound_effect(void *, void *, int, int);
+
 void TObjEneMerillLia__sub_800D4EC8(s32 arg0);
 void vfunc_99__16TObjEneMerillLiaFv(s32 arg0);
 void vfunc_98__16TObjEneMerillLiaFv(s32 arg0);
@@ -492,7 +495,6 @@ extern const f32 lbl_805DA320;
 void beast_update_approach__16TObjEneMerillLiaFv(u8 *arg0);
 void attach_particle_model(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
 s32 *csnVectorUnder(s32 arg0, u32 *arg1, s32 arg2);
-void *spawn_particle_effect(void *pos, s32 id);
 s32 rand(void);
 extern s32 actor_frame_tick;
 extern const f32 lbl_805DA2F0;
@@ -739,11 +741,11 @@ void spawn_ground_effect__16TObjEneMerillLiaFPv(u8 *arg0) {
     temp_r3 = (u8 *)(csnVectorUnder((s32)&stack.sp8, (u32 *)(arg0 + 0x120), 5));
     if ((temp_r3 != NULL) && (*(s32 *)((s8 *)temp_r3 + 0) & 4)) {
         if (((s32) ((f32) actor_frame_tick * (lbl_805DA2F0 * (f32) rand())) % 5) == 0) {
-            particle_effect = (s32)spawn_particle_effect((void *)(*(s32 *)((s8 *)temp_r3 + 4) + 0x38), 0x49);
+            particle_effect = (s32)spawn_particle_effect((const Vec *)((*(s32 *)((s8 *)temp_r3 + 4) + 0x38)), 0x49);
             if (particle_effect != 0) {
                 attach_particle_model((u8 *)particle_effect, (s32)(TParticleCtrl::get_particle_model(2)), (s32)(TParticleCtrl::get_instance()), 0, 1, (f32)TObjEneMerillLia__data_805DA2F4);
             }
-            spawn_particle_effect((void *)(*(s32 *)((s8 *)temp_r3 + 4) + 0x38), 0xA4);
+            spawn_particle_effect((const Vec *)((*(s32 *)((s8 *)temp_r3 + 4) + 0x38)), 0xA4);
         }
         if ((((TObjMotion *)arg0)->is_passing_frame((f32)lbl_805DA2F8) != 0) || (((TObjMotion *)arg0)->is_passing_frame((f32)((f32)lbl_805DA2FC)) != 0)) {
             play_floor_area_sound_effect((Vec *)(arg0 + 0x38));
@@ -752,31 +754,31 @@ void spawn_ground_effect__16TObjEneMerillLiaFPv(u8 *arg0) {
 }
 
 void TObjEneMerillLia__sub_800D4EC8(s32 arg0) {
-    play_sound_effect((void *) (((TObjEnemy *)((void *)arg0))->remap_sound_for_area((s32)(0x3AD04))), (void *)(arg0 + 0x38), 0, 0);
+    play_sound_effect((s32)((void *) (((TObjEnemy *)((void *)arg0))->remap_sound_for_area((s32)(0x3AD04)))), (const Vec *)((arg0 + 0x38)), 0, 0);
 }
 
 void TObjEneMerillLia::vfunc_99() {
     s32 arg0 = (s32)this;
-    play_sound_effect((void *) (((TObjEnemy *)((void *)arg0))->remap_sound_for_area((s32)(0x3B205))), (void *)(arg0 + 0x38), 0, 0);
+    play_sound_effect((s32)((void *) (((TObjEnemy *)((void *)arg0))->remap_sound_for_area((s32)(0x3B205)))), (const Vec *)((arg0 + 0x38)), 0, 0);
 }
 
 void TObjEneMerillLia::vfunc_98() {
     s32 arg0 = (s32)this;
-    play_sound_effect((void *) (((TObjEnemy *)((void *)arg0))->remap_sound_for_area((s32)(0x3AD00))), (void *)(arg0 + 0x38), 0, 0);
+    play_sound_effect((s32)((void *) (((TObjEnemy *)((void *)arg0))->remap_sound_for_area((s32)(0x3AD00)))), (const Vec *)((arg0 + 0x38)), 0, 0);
 }
 
 void TObjEneMerillLia::vfunc_97() {
     s32 arg0 = (s32)this;
-    play_sound_effect((void *) (((TObjEnemy *)((void *)arg0))->remap_sound_for_area((s32)(0x3B201))), (void *)(arg0 + 0x38), 0, 0);
+    play_sound_effect((s32)((void *) (((TObjEnemy *)((void *)arg0))->remap_sound_for_area((s32)(0x3B201)))), (const Vec *)((arg0 + 0x38)), 0, 0);
 }
 
 void TObjEneMerillLia::vfunc_96() {
     s32 arg0 = (s32)this;
-    play_sound_effect((void *) (((TObjEnemy *)((void *)arg0))->remap_sound_for_area((s32)(0x3AB02))), (void *)(arg0 + 0x38), 0, 0);
+    play_sound_effect((s32)((void *) (((TObjEnemy *)((void *)arg0))->remap_sound_for_area((s32)(0x3AB02)))), (const Vec *)((arg0 + 0x38)), 0, 0);
 }
 
 void TObjEneMerillLia__sub_800D501C(s32 arg0) {
-    play_sound_effect((void *) (((TObjEnemy *)((void *)arg0))->remap_sound_for_area((s32)(0x3B206))), (void *)(arg0 + 0x38), 0, 0);
+    play_sound_effect((s32)((void *) (((TObjEnemy *)((void *)arg0))->remap_sound_for_area((s32)(0x3B206)))), (const Vec *)((arg0 + 0x38)), 0, 0);
 }
 
 void TObjEneMerillLia::vfunc_94() {
@@ -1473,7 +1475,7 @@ void TObjEneMerillLia::render() {
   {
     saved_model_render_flags = model_render_flags;
     select_actor_lighting((s32)this);
-    TObjFish::set_global_param((int) ((RecoveredFields_800D6810_arg0 *) ((u8 *)this))->field_24);
+    set_current_texture_list((GinjaTextureList *)(((RecoveredFields_800D6810_arg0 *) ((u8 *)this))->field_24));
     push_matrix();
     translate_matrix(0, (f32) TObjEneMerillLia__data_805DA300, (f32) ((RecoveredFields_800D6810_arg0 *) ((u8 *)this))->field_380, (f32) TObjEneMerillLia__data_805DA300);
     post_translate_matrix(((u8 *)this) + 0x38);

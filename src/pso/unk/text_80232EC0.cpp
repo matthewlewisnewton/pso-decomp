@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/system/vector.h"
 #include "pso/unk/TUnk_804CC888.h"
@@ -25,7 +26,7 @@ u16 get_entity_id(void *);
 void *spawn_continuous_particle_effect_with_flags(void *parent, s32 idx, s32 flags);
 void *mem_alloc(u32 size);
 s32 update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
-s32 play_sound_effect(s32, void *, s32, s32);
+
 extern Profile_80232EC0 grants_effect_emitter_table[];
 }
 TUnk_804CC888::TUnk_804CC888(u8 *src, s32 level, TObject *parent) : TObject(parent) {
@@ -49,29 +50,29 @@ TUnk_804CC888::TUnk_804CC888(u8 *src, s32 level, TObject *parent) : TObject(pare
     }
     switch (((Task_80232EC0 *)this)->tier) {
     case 0:
-        ((Task_80232EC0 *)this)->sound = play_sound_effect(0x4002A90C, ((Task_80232EC0 *)this)->pos, 0, 0);
+        ((Task_80232EC0 *)this)->sound = play_sound_effect(0x4002A90C, (const Vec *)(((Task_80232EC0 *)this)->pos), 0, 0);
         if (((Task_80232EC0 *)this)->sound >= 0) {
             update_technique_slot__10TTecRaFoieFl(((Task_80232EC0 *)this)->sound, 0x100, 0);
         }
         break;
     case 1:
-        ((Task_80232EC0 *)this)->sound = play_sound_effect(0x4002A90C, ((Task_80232EC0 *)this)->pos, 0, 0);
+        ((Task_80232EC0 *)this)->sound = play_sound_effect(0x4002A90C, (const Vec *)(((Task_80232EC0 *)this)->pos), 0, 0);
         break;
     case 2:
     case 3:
-        ((Task_80232EC0 *)this)->sound = play_sound_effect(0x4002A90C, ((Task_80232EC0 *)this)->pos, 0, 0);
+        ((Task_80232EC0 *)this)->sound = play_sound_effect(0x4002A90C, (const Vec *)(((Task_80232EC0 *)this)->pos), 0, 0);
         if (((Task_80232EC0 *)this)->sound >= 0) {
             update_technique_slot__10TTecRaFoieFl(((Task_80232EC0 *)this)->sound, -0x180, 0);
         }
         break;
     case 4:
-        ((Task_80232EC0 *)this)->sound = play_sound_effect(0x4002A90C, ((Task_80232EC0 *)this)->pos, 0, 0);
+        ((Task_80232EC0 *)this)->sound = play_sound_effect(0x4002A90C, (const Vec *)(((Task_80232EC0 *)this)->pos), 0, 0);
         if (((Task_80232EC0 *)this)->sound >= 0) {
             update_technique_slot__10TTecRaFoieFl(((Task_80232EC0 *)this)->sound, -0x250, 0);
         }
         break;
     case 5:
-        ((Task_80232EC0 *)this)->sound = play_sound_effect(0x4002A90C, ((Task_80232EC0 *)this)->pos, 0, 0);
+        ((Task_80232EC0 *)this)->sound = play_sound_effect(0x4002A90C, (const Vec *)(((Task_80232EC0 *)this)->pos), 0, 0);
         if (((Task_80232EC0 *)this)->sound >= 0) {
             update_technique_slot__10TTecRaFoieFl(((Task_80232EC0 *)this)->sound, -0x100, 0);
         }

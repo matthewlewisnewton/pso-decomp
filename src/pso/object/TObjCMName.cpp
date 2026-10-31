@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/ui/MenuText.h"
 #include "pso/menu/CreationInput.h"
@@ -115,7 +116,7 @@ struct Auto_802952E0
 
 extern "C" {
 s32 queue_destruction__7TObjectFv(void *);
-s32 play_sound_effect(s32, s32, s32, s32);
+
 extern const f32 lbl_805DDA70;
 extern const f32 lbl_805DDA90;
 extern const f32 lbl_805DDAA8;
@@ -588,7 +589,7 @@ void TObjCMName::run_task() {
             strncpy((char *)appearance->name, name, 12);
             appearance->name[12] = 0;
             mem_free(buf);
-            play_sound_effect(sound, 0, 0, 0);
+            play_sound_effect((s32)(sound), 0, 0, 0);
             TObjCMMainMenu::clear_task_state();
             keyboard->queue_destruction();
             keyboard = NULL;
@@ -792,7 +793,7 @@ void TObjCMProportion::run_task() {
             temp_r3_4->height = (f32) lbl_805DDA90;
         }
         if (creation_buttons_pressed(6) != 0) {
-            ((void (*)(s32, s32, s32, s32))play_sound_effect)(0x53704, 0, 0, 0);
+            play_sound_effect(0x53704, 0, 0, 0);
             TObjCMMainMenu::clear_task_state();
             arg0->active = 0;
         }
@@ -1042,14 +1043,14 @@ void TObjCMHairMenu::run_task() {
             if (temp_r0 >= 4) {
                 selection = 0;
             }
-            ((s32 (*)(int, int, int, int))play_sound_effect)(0x54100, 0, 0, 0);
+            play_sound_effect(0x54100, 0, 0, 0);
         } else if (creation_direction_repeated(0x10) != 0) {
             temp_r0_2 = selection - 1;
             selection = temp_r0_2;
             if (temp_r0_2 < 0) {
                 selection = 3;
             }
-            ((s32 (*)(int, int, int, int))play_sound_effect)(0x54100, 0, 0, 0);
+            play_sound_effect(0x54100, 0, 0, 0);
         }
         temp_r3 = selection;
         if (temp_r3 == 0) {
@@ -1058,12 +1059,12 @@ void TObjCMHairMenu::run_task() {
                 if (++app->hair >= count) {
                     app->hair = 0;
                 }
-                ((s32 (*)(int, int, int, int))play_sound_effect)(0x54100, 0, 0, 0);
+                play_sound_effect(0x54100, 0, 0, 0);
             } else if (creation_direction_repeated(0x40) != 0) {
                 if (--app->hair < 0) {
                     app->hair = count - 1;
                 }
-                ((s32 (*)(int, int, int, int))play_sound_effect)(0x54100, 0, 0, 0);
+                play_sound_effect(0x54100, 0, 0, 0);
             }
         } else {
             app = appearance;
@@ -1085,7 +1086,7 @@ void TObjCMHairMenu::run_task() {
             }
         }
         if (creation_buttons_pressed(6) != 0) {
-            ((s32 (*)(int, int, int, int))play_sound_effect)(0x53704, 0, 0, 0);
+            play_sound_effect(0x53704, 0, 0, 0);
             TObjCMMainMenu::clear_task_state();
             active = 0;
         }
@@ -1631,7 +1632,7 @@ void open_hair_menu__14TObjCMMainMenuFPv(void *arg0) {
 }
 
 void open_assign_menu__14TObjCMMainMenuFPv(u8 *arg0) {
-    play_sound_effect(0x52D01, (s32)(0U), 0, 0);
+    play_sound_effect(0x52D01, (const Vec *)((0U)), 0, 0);
     TObjCMMainMenu__data_805D659C = 1;
     ((s32 (*)(s32, s32))create__16TObjCMAssignMenuFPvPv)(*(s32 *)((s8 *)arg0 + 0x50), *(s32 *)((s8 *)&TObjCMMainMenu__data_804DB9C8.value + (*(s32 *)((s8 *)(*(s32 *)((s8 *)arg0 + 0x24)) + (*(s32 *)((s8 *)arg0 + 0x2C) * 4)) * 0x10)));
 }

@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TLanguage_801E4874.h"
 #include "pso/unk/text_800F9B84.h"
@@ -35,7 +36,7 @@ struct Npc_801480FC {
 };
 
 extern "C" {
-s32 play_sound_effect(int, void *, int, int);
+
 extern s32 __vt__12TObjNpcARW00[];
 extern s32 TObjNpcARW00__name;
 extern u32 TObjNpcARW00__static_model;
@@ -94,7 +95,7 @@ u8 *TObjNpcARW00__ct(u8 *arg0, s32 arg1, s32 arg2) {
 
 void TObjNpcARW00::play_voice() {
     s32 arg0 = (s32)this;
-    play_sound_effect(0x40004C15, (void *)(arg0 + 0x38), 0, 0);
+    play_sound_effect(0x40004C15, (const Vec *)((arg0 + 0x38)), 0, 0);
 }
 
 void TObjNpcBase::vfunc_92() {  }

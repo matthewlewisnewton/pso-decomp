@@ -1,4 +1,7 @@
 #include "pso/player/demo_mode.h"
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/object/TObjMotion.h"
@@ -194,7 +197,7 @@ void init_base__27TOHangceilingCave01KeyQuickFll(void *);
 void set_scale__13TUnk_804B2578Ff(void *, f32);
 void * get_player_by_client_id(s32);
 u8 *load_gvm_texture_file(s32 arg0);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 u8 is_current_floor_switch_set(int);
 }
 void clear_current_floor_switch(s32 id);
@@ -545,7 +548,7 @@ void TUnk_804B2578::sub_80168398() {
         break;
     }
     if (id != 0) {
-        play_persistent_sound((s32)id, (s32)this, (u32)(((u8 *)this) + 0x38), 0, 0);
+        play_persistent_sound((s32)id, (const void *)(this), (const Vec *)((u32)(((u8 *)this) + 0x38)), 0, 0);
     }
 }
 
@@ -620,7 +623,7 @@ struct VObj_18_26a62c : VBase_18_26a62c {
 };
 
 bool sub_801688C0__13TUnk_804B2578Fv(u8 *);
-void *spawn_particle_effect(void *pos, s32 id);
+
 f32 xz_distance_squared(void *, void *);
 s32 transform_point_by_current_matrix(void *, void *);
 extern s32 camera_ctrl_instance;
@@ -665,7 +668,7 @@ void TUnk_804B2578::render() {
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);
-        TObjFish::set_global_param(*(s32 *)((s8 *)turiten_singo_texture_lists + 8));
+        set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)turiten_singo_texture_lists + 8)));
         if (this->model != NULL && this->current_motion != NULL) {
             draw_ginja_model_with_motion(*(void * *)&this->model, *(void * *)&this->current_motion, this->frame);
         }
@@ -677,7 +680,7 @@ void TUnk_804B2578::render() {
                 temp_r29 = temp_f2 <= temp_f1;
                 temp_r30 = temp_f2 <= (2.0f * temp_f1);
                 temp_r31 = temp_f2 <= (3.0f * temp_f1);
-                TObjFish::set_global_param(*(s32 *)((s8 *)turiten_singo_texture_lists + 4));
+                set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)turiten_singo_texture_lists + 4)));
                 if (temp_r29 == 1) {
                     draw_ginja_model((*(s32 *)((s8 *)(*(u8 **)((s8 *)TOHangceilingCave01__model_root + 0x2C)) + 4)));
                 }
@@ -687,7 +690,7 @@ void TUnk_804B2578::render() {
                 if (temp_r31 == 1) {
                     draw_ginja_model((*(s32 *)((s8 *)(*(void **)((s8 *)(*(void **)((s8 *)(*(u8 **)((s8 *)TOHangceilingCave01__model_root + 0x2C)) + 0x2C)) + 0x2C)) + 4)));
                 }
-                TObjFish::set_global_param(*(s32 *)((s8 *)turiten_singo_texture_lists + 0));
+                set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)turiten_singo_texture_lists + 0)));
                 if (temp_r29 == 0) {
                     draw_ginja_model((*(s32 *)((s8 *)(*(u8 **)((s8 *)TOHangceilingCave01__model_root + 0x2C)) + 4)));
                 }
@@ -699,9 +702,9 @@ void TUnk_804B2578::render() {
                 }
             } else {
                 if (is_current_floor_switch_set((int) ((u16) *(s32 *)((s8 *)arg0 + 0x35C))) == 1) {
-                    TObjFish::set_global_param(*(s32 *)((s8 *)turiten_singo_texture_lists + 0));
+                    set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)turiten_singo_texture_lists + 0)));
                 } else {
-                    TObjFish::set_global_param(*(s32 *)((s8 *)turiten_singo_texture_lists + 4));
+                    set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)turiten_singo_texture_lists + 4)));
                 }
                 draw_ginja_object((TOHangceilingCave01__model_root));
             }
@@ -717,7 +720,7 @@ void TUnk_804B2578::run_task() {
         this->vfunc_80();
         ((TUnk_804B2578 *)arg0)->sub_80168398();
         if ((((s32 (*)(void *))sub_801688C0__13TUnk_804B2578Fv)(arg0) != 0) && ((s16) this->mode != 3) && (((TObjMotion *)arg0)->is_passing_frame((f32)8.0f) != 0)) {
-            spawn_particle_effect(&this->position, 0x64);
+            spawn_particle_effect((const Vec *)(&this->position), 0x64);
         }
     }
 }

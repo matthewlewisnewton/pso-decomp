@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/TMainTask.h"
 #include "pso/ui/TAdPlayerLoadGC_801E0C30.h"
@@ -42,7 +43,7 @@ s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 TWindowShortListCtrl__check_controller_button(void *, int);
 s32 TAdPlayerLoadGC__sub_801E1B50(int);
 s32 load_player__23TAdSinglePlyChrSelectGCFv();
-s32 play_sound_effect(int, int, int, int);
+
 u32 TAdChrSelASlotGC__sub_8030CB08(TAdChrSelASlotGC *arg0, s32 kind, s32 text);
 extern RecoveredGlobal_802D4730_lbl_804C89BC lbl_804C89BC;
 extern RecoveredGlobal_802D4730_lbl_8050E208 controller_input_state;

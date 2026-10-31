@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/item/TItemProArmor.h"
 #include "pso/player/TObjPlayer_80121370.h"
@@ -17,7 +18,7 @@ void TUnk_804A08B8::emit_marker_effects() {
 
     if (is_mode_two_and_ready() != 0) {
         ((TItemWeapon *)arg0)->get_joint_position(2, &sp8);
-        spawn_particle_effect(&sp8, 0x1BE);
+        spawn_particle_effect((const Vec *)(&sp8), 0x1BE);
     }
 }
 }

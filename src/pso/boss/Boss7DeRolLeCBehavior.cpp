@@ -3,6 +3,9 @@
 #include "pso/math/FloatRounding.h"
 #include "pso/map/CsnGroundQuery.h"
 #include "pso/enemy/BattleParameters.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
+#include "pso/misc/PersistentSound.h"
 struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/misc/TUnk_804F1C58.h"
@@ -586,7 +589,6 @@ void TObjPlayer__sub_802E80A0(void);
 int get_bml_motion(void*, void*);
 int TObjFish__sub_8001EDB0(void*, void*);
 int get_bml_model(void*, void*);
-int set_global_param__8TObjFishFl(void);
 
     extern int lbl_805D6918;
 void TObjPlayer::notify_fish_obj(void* a0) { get_bml_motion((void*)lbl_805D6918, a0); }
@@ -595,7 +597,7 @@ void queue_boss_effect__10TObjPlayerFPv(void* a0) { get_bml_model((void*)lbl_805
 
 void TObjPlayer__sub_802E80A0(void) { TObjFish__sub_8001EDB0((void*)lbl_805D6918, (void*)0); }
 
-void TObjPlayer::draw_effect() { TObjFish__sub_8001EDB0((void*)lbl_805D6918, (void*)0); set_global_param__8TObjFishFl(); }
+void TObjPlayer::draw_effect() { set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0((void*)lbl_805D6918, (void*)0))); }
 
 typedef char RecoveredGlobal_802E80F4_lbl_8050BEC0_size[sizeof(RecoveredGlobal_802E80F4_lbl_8050BEC0) == 0x20 ? 1 : -1];
 typedef char RecoveredGlobal_802E80F4_main_task_size[sizeof(RecoveredGlobal_802E80F4_main_task) == 0x34 ? 1 : -1];
@@ -972,7 +974,6 @@ u8 *get_scripted_camera_playback();
 void *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags);
 void *spawn_continuous_particle_effect_with_flags(void *parent, s32 idx, s32 flags);
 s32 query_teammate_state__9TObjEneDDFv();
-int play_sound_effect(void*, void*, void*, void*);
 
 extern Vec_802EBBC8 lbl_80473F78;
 extern Vec_802EBBC8 lbl_80473F84;
@@ -1273,7 +1274,7 @@ s32 enemy_set_target_id(void * a0 = 0, u16 a1 = 0);
 void project_sound_origin_from_camera(s32 arg0, u8 *arg1, f32 farg0);
 s32 is_alive__8TObjBaseFv();
 u8 *get_enemy_entity(u16 arg0);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 #define TObjFish__sub_802E7B40 ((s32 (*)(void *))TObjFish__sub_802E7B40)
 #define TObjFish__sub_802E7B94 ((s32 (*)(void *))TObjFish__sub_802E7B94)
 void TObjFish__sub_802E8AD4(Fish_802E8AD4* o, u32 k);
@@ -1684,7 +1685,7 @@ void TObjFish::handle_death_state(u32 arg1) {
         if (((TObjMotion *)o)->is_passing_frame((f32)lbl_805DEA2C) != 0) {
             Vec_802E8B50 v = lbl_80473F90[0];
             create_timed_particle_emitter_with_flags(&v, 0x20C, 0, 0xA0, 0x40);
-            play_sound_effect((void *)0x39614, 0, 0, 0);
+            play_sound_effect((s32)((void *)0x39614), 0, 0, 0);
         }
         if (((TObjMotion *)o)->is_passing_frame((f32)lbl_805DEA30) != 0) {
             ((TObjFish *)o)->destroy_child();
@@ -2986,7 +2987,7 @@ void TObjFish__sub_802EBBC8(u8 *arg0, u32 arg1) {
         } else {
             ((TObjMotion *)arg0)->advance_animation();
             if (((TObjMotion *)arg0)->is_passing_frame((f32)lbl_805DEB54) != 0) {
-                play_sound_effect((void *) 0x39E00, 0, 0, 0);
+                play_sound_effect((s32)((void *) 0x39E00), 0, 0, 0);
             }
             if (((TObjMotion *)arg0)->is_passing_frame((f32)lbl_805DEB78) != 0) {
                 ((TObjFish *)arg0)->destroy_child();
@@ -3002,7 +3003,7 @@ void TObjFish__sub_802EBBC8(u8 *arg0, u32 arg1) {
             if (((TObjMotion *)arg0)->is_passing_frame((f32)lbl_805DEB80) != 0) {
                 Vec_802EBBC8 w = lbl_80473F84;
                 spawn_particle_effect_with_flags(&w, 0x20F, 0x40);
-                play_sound_effect((void *) 0x39906, 0, 0, 0);
+                play_sound_effect((s32)((void *) 0x39906), 0, 0, 0);
             }
             ((TObjFish *)arg0)->update_attached_orientation();
             if (*(u16 *) (get_scripted_camera_playback() + 2) & 1) {
@@ -3227,10 +3228,10 @@ void TBoss7DeRolLeC__dispatch_state(u8 *arg0, u32 arg1, u32 arg2) {
 }
 
 void TObjFish::spawn_via_trap(s32 arg0, s32 arg1, s32 arg2) {
-    play_persistent_sound(arg1, arg0, arg2, 0, 0);
+    play_persistent_sound((s32)(arg1), (const void *)(arg0), (const Vec *)(arg2), 0, 0);
 }
 
-void TObjFish::set_effect_target_position(void* p, void* a1, void* a2) { play_sound_effect(a1, a2, (void*)0, (void*)0); }
+void TObjFish::set_effect_target_position(void* p, void* a1, void* a2) { play_sound_effect((s32)(a1), (const Vec *)(a2), 0, 0); }
 
 void TObjFish__sub_802EC32C(void) {  }
 
@@ -3601,7 +3602,7 @@ void TObjFish__sub_802ECE90(void *arg0, int idx, int arg) {
     if (o != NULL) {
         __ct__15TBoss7PhotonPadFllll((u8 *)o, (s32)((Boss_802ECE90 *)arg0)->nodes, (s32)&((Boss_802ECE90 *)arg0)->pads[idx], (s32)&dir, arg);
     }
-    play_sound_effect((void *)0x39D11, &((Boss_802ECE90 *)arg0)->pads[idx], (void *)0, (void *)1);
+    play_sound_effect((s32)((void *)0x39D11), (const Vec *)(&((Boss_802ECE90 *)arg0)->pads[idx]), 0, (s32)((void *)1));
 }
 
 struct RecoveredGlobal_802ED4AC_lbl_80472D04 {

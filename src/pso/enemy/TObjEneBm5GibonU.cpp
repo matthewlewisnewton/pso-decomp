@@ -6,6 +6,9 @@
 #include "pso/misc/RenderFadeState.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/EnemyUnknownHooks.h"
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 struct NJS_OBJECT;
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/system/EnemyBmlResource.h"
@@ -225,7 +228,7 @@ void TObjEneBm5GibonU__sub_800CCD8C(u8 *arg0);
 s32 TObjEneBm5GibonU__sub_800D0968(u8 *arg0, int);
 void turn_toward_angle__16TObjEneBm5GibonUFPvi(Ene_800D0FDC *arg0, s32 arg1);
 s32 approach_angle_limited(s32, s32, s32);
-s32 play_sound_effect(void *, void *, s32, s32);
+
 void TObjEneBm5GibonU__sub_800CEBD8(u8 *arg0, s32 arg1);
 extern const f64 TObjEneBm5GibonU__data_8043C0F8;
 
@@ -1619,7 +1622,6 @@ extern s32 game_difficulty_selection;
 u8 check_hit_sphere__16TObjEneBm5GibonUFPvif(Ene_800CCB74 *arg0, s32 arg1, f32 scale);
 void attach_particle_model(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
 Hit_800CCC6C *csnVectorUnder(Vec_800CCC6C *, void *, s32);
-void *spawn_particle_effect(void *, s32);
 void TObjEneBm5GibonU__sub_800D02F8(Gibon_800D02F8 *g, s32 arg1);
 void TObjEneBm5GibonU__sub_800CFE30(u8 *arg0, s32 arg1);
 void TObjEneBm5GibonU__sub_800CFA48(TObjEneBm5GibonU *self, s32 arg1);
@@ -1729,20 +1731,20 @@ int spawn_landing_effect__16TObjEneBm5GibonUFPvPv(Ene_800CCC6C *arg0, void *arg1
     v.y += TObjEneBm5GibonU__data_805DA164;
     hit = csnVectorUnder(&v, arg0->f120, 5);
     if (hit != NULL && (hit->flags & 4)) {
-        p = spawn_particle_effect(hit->obj + 0x38, 0x49);
+        p = spawn_particle_effect((const Vec *)(hit->obj + 0x38), 0x49);
         if (p != NULL) {
             attach_particle_model((u8 *)p, (s32)(TParticleCtrl::get_particle_model(2)), (s32)(TParticleCtrl::get_instance()), 0, 1, (f32)TObjEneBm5GibonU__data_805DA168);
             if (arg0->f464 == 1) {
                 ((TParticleCtrl *)p)->set_scale(TObjEneBm5GibonU__data_805DA16C, TObjEneBm5GibonU__data_805DA168);
             }
         }
-        p = spawn_particle_effect(hit->obj + 0x38, 0xA4);
+        p = spawn_particle_effect((const Vec *)(hit->obj + 0x38), 0xA4);
         if (p != NULL && arg0->f464 == 1) {
             ((TParticleCtrl *)p)->set_scale(TObjEneBm5GibonU__data_805DA16C, TObjEneBm5GibonU__data_805DA168);
         }
         return play_floor_area_sound_effect((Vec *)&arg0->pos);
     }
-    return ((s32)play_sound_effect((void *)((void *)((s32)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x3BC21)))), &arg0->pos, 0, 0));
+    return ((s32)play_sound_effect((s32)((void *)((void *)((s32)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x3BC21))))), (const Vec *)(&arg0->pos), 0, 0));
 }
 
 #pragma push
@@ -1830,7 +1832,7 @@ void TObjEneBm5GibonU::render_debug() {
     }
     if (self->m8(lbl_805DA180, TObjEneBm5GibonU__data_805DA184) != 0) {
         ((TObjEneDD *)(self))->draw_ground_shadow(0, 0);
-        TObjFish::set_global_param(self->f24);
+        set_current_texture_list((GinjaTextureList *)(self->f24));
         push_matrix();
         post_translate_matrix(&self->pos);
         rotate_matrix_y(0, self->rot_y);
@@ -1929,7 +1931,7 @@ void TObjEneBm5GibonU::render() {
                 pop_matrix();
             }
             this->update_secondary_light();
-            TObjFish::set_global_param(this->texlist);
+            set_current_texture_list((GinjaTextureList *)(this->texlist));
             push_matrix();
             if (this->mode == 1 || this->mode == 2) {
                 this->fade.set_flags_and_apply_damage_color();
@@ -2069,7 +2071,7 @@ void TObjEneBm5GibonU::state_cast_technique(s32 arg1) {
                         } else {
                             TTecMegid::create_ex((s32)arg0, (s32)&p, (s32)(F(s32, 0x60)), (s32)(CB24(arg0)));
                         }
-                        play_sound_effect((void *)0x4002A60B, &p, 0, 0);
+                        play_sound_effect((s32)((void *)0x4002A60B), (const Vec *)(&p), 0, 0);
                         break;
                     default:
                         if (r < ((AttackParams *)(F(s32, 0x318)))->get_attack_angle() / 2 && F(u32, 0x390) != 0) {
@@ -2080,8 +2082,8 @@ void TObjEneBm5GibonU::state_cast_technique(s32 arg1) {
                             ((TTecGiZonde *)arg0)->create(&p, arg0 + 0x4B0, (void *)(CB24(arg0)));
                         } else {
                             void *e;
-                            spawn_particle_effect(&p, 0xB9);
-                            spawn_particle_effect(&p, 0xBA);
+                            spawn_particle_effect((const Vec *)(&p), 0xB9);
+                            spawn_particle_effect((const Vec *)(&p), 0xBA);
                             v.x = 0.0f;
                             v.y = 0.0f;
                             v.z = TObjEneBm5GibonU__data_805DA168;
@@ -2094,7 +2096,7 @@ void TObjEneBm5GibonU::state_cast_technique(s32 arg1) {
                                 ((TTecZonde *)e)->construct_bolt_effect((u8 *)tl_07, (u8 *)&p, (u8 *)&v, 0x14000000, 20, (f32)(((AttackParams *)(F(s32, 0x318)))->get_attack_range()), (f32)lbl_805DA1A0);
                             }
                         }
-                        play_sound_effect((void *)0x4002A408, &p, 0, 0);
+                        play_sound_effect((s32)((void *)0x4002A408), (const Vec *)(&p), 0, 0);
                         break;
                     }
                 } else {
@@ -2205,7 +2207,7 @@ void TObjEneBm5GibonU__sub_800CDB98(Obj_800CDB98 *actor, s32 arg1) {
             }
             TObjEneBm5GibonU__sub_800CCD8C((u8 *)actor);
             if (((TObjMotion *)actor)->is_passing_frame(TObjEneBm5GibonU__data_805DA160) != 0) {
-                play_sound_effect((void *)((TObjEnemy *)(actor))->remap_sound_for_area((s32)(0x3B22A)), &actor->pos, 0, 0);
+                play_sound_effect((s32)((void *)((TObjEnemy *)(actor))->remap_sound_for_area((s32)(0x3B22A))), (const Vec *)(&actor->pos), 0, 0);
             }
             if (((TObjMotion *)actor)->is_passing_frame(lbl_805DA1AC) != 0) {
                 actor->m90();
@@ -2254,7 +2256,7 @@ void TObjEneBm5GibonU__sub_800CE060(u8 *arg0, s32 arg1) {
     case 4:
         ((TObjEneDD *)arg0)->vfunc_96();
         ((TObjEnemy *)arg0)->refresh_and_send_entity_flags();
-        play_sound_effect((void *)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x3A826)), arg0 + 0x38, 0, 0);
+        play_sound_effect((s32)((void *)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x3A826))), (const Vec *)(arg0 + 0x38), 0, 0);
         *(s16 *)((s8 *)arg0 + 0xB8) = 0xB;
         fn_800BB7D4(arg0, 0xF1);
         *(s32 *)((s8 *)arg0 + 0x518) = 0;
@@ -2340,7 +2342,7 @@ void TObjEneBm5GibonU__sub_800CE370(u8 *arg0, s32 arg1) {
         *(s16 *)((s8 *)arg0 + 0xB8) = 6;
         *(s32 *)((s8 *)arg0 + 0x518) = 0;
         if (*(s16 *)((s8 *)arg0 + 0x33E) - *(s16 *)((s8 *)arg0 + 0x32C) < 0x14) {
-            play_sound_effect((void *) ((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x3A824)), arg0 + 0x38, 0, 0);
+            play_sound_effect((s32)((void *) ((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x3A824))), (const Vec *)(arg0 + 0x38), 0, 0);
         }
         ((TObjEneDD_ST *)arg0)->set_active();
         break;
@@ -2409,7 +2411,7 @@ void action__16TObjEneBm5GibonUFPvi(TObjEneBm5GibonU *ene_bm5_gibon_u, s32 arg1)
         ene_bm5_gibon_u->advance_animation();
         turn_toward_angle__16TObjEneBm5GibonUFPvi(ene_bm5_gibon_u, ene_bm5_gibon_u->rotation_y);
         if (((TObjMotion *)ene_bm5_gibon_u)->is_passing_frame(TObjEneBm5GibonU__data_805DA178) != 0) {
-            play_sound_effect((void *)((TObjEnemy *)(ene_bm5_gibon_u))->remap_sound_for_area((s32)(0x3AA22)), (u8 *)ene_bm5_gibon_u + 0x38, 0, 0);
+            play_sound_effect((s32)((void *)((TObjEnemy *)(ene_bm5_gibon_u))->remap_sound_for_area((s32)(0x3AA22))), (const Vec *)((u8 *)ene_bm5_gibon_u + 0x38), 0, 0);
         }
         *(s32 *)((s8 *)ene_bm5_gibon_u + 0x518) = (s32) (*(s32 *)((s8 *)ene_bm5_gibon_u + 0x518) + 1);
         temp_r0 = *(s32 *)((s8 *)ene_bm5_gibon_u + 0x518);
@@ -2664,10 +2666,10 @@ void TObjEneBm5GibonU__sub_800CEBD8(u8 *actor, s32 arg1) {
             }
             TObjEneBm5GibonU__sub_800CCD8C(actor);
             if (((TObjMotion *)actor)->is_passing_frame(TObjEneBm5GibonU__data_805DA160) != 0) {
-                play_sound_effect((void *)(((TObjEnemy *)(actor))->remap_sound_for_area((s32)(0x3A828))), actor + 0x38, 0, 0);
+                play_sound_effect((s32)((void *)(((TObjEnemy *)(actor))->remap_sound_for_area((s32)(0x3A828)))), (const Vec *)(actor + 0x38), 0, 0);
             }
             if (((TObjMotion *)actor)->is_passing_frame(lbl_805DA1DC) != 0) {
-                play_sound_effect((void *)(((TObjEnemy *)(actor))->remap_sound_for_area((s32)(0x3A529))), actor + 0x38, 0, 0);
+                play_sound_effect((s32)((void *)(((TObjEnemy *)(actor))->remap_sound_for_area((s32)(0x3A529)))), (const Vec *)(actor + 0x38), 0, 0);
             }
             if (((TObjMotion *)actor)->is_passing_frame(lbl_805DA1DC) != 0) {
                 *(s32 *)((s8 *)actor + 0x564) = 0;
@@ -3490,7 +3492,7 @@ void TObjEneBm5GibonU__sub_800CFE34(u8 *ene_dd_st, s32 arg1) {
         (*(s32 *)((s8 *)ene_dd_st + 0x518))++;
         ((TObjMotion *)ene_dd_st)->advance_animation();
         if (((TObjMotion *)ene_dd_st)->is_passing_frame(TObjEneBm5GibonU__data_805DA184) != 0) {
-            play_sound_effect((void *)((TObjEnemy *)(ene_dd_st))->remap_sound_for_area((s32)(0x3A523)), ene_dd_st + 0x38, 0, 0);
+            play_sound_effect((s32)((void *)((TObjEnemy *)(ene_dd_st))->remap_sound_for_area((s32)(0x3A523))), (const Vec *)(ene_dd_st + 0x38), 0, 0);
         }
         if (*(s32 *)((s8 *)ene_dd_st + 0x518) == 0x3C) {
             for (n = (*(List_800CFE34 *)&TObjEneBm5GibonU__enemy_list).head; n != NULL; n = n->next) {
@@ -3537,7 +3539,7 @@ void TObjEneBm5GibonU__sub_800CFFBC(u8 *ene_bm5_gibon_u, s32 arg1) {
       ((TObjMotion *)ene_bm5_gibon_u)->advance_animation();
       if (((TObjMotion *)ene_bm5_gibon_u)->is_passing_frame((f32) TObjEneBm5GibonU__data_805DA184) != 0)
     {
-      play_sound_effect((void *)((void *) ((s32)((TObjEnemy *)((void *)((void *) ene_bm5_gibon_u)))->remap_sound_for_area((s32)(0x3A523)))), ene_bm5_gibon_u + 0x38, 0, 0);
+      play_sound_effect((s32)((void *)((void *) ((s32)((TObjEnemy *)((void *)((void *) ene_bm5_gibon_u)))->remap_sound_for_area((s32)(0x3A523))))), (const Vec *)(ene_bm5_gibon_u + 0x38), 0, 0);
     }
       if (enemy_validate_retained_target((void *) ene_bm5_gibon_u) != 0)
     {
@@ -3694,10 +3696,10 @@ void TObjEneBm5GibonU__sub_800D0420(u8 *arg0, s32 arg1) {
         if (!(*(s32 *)((s8 *)arg0 + 0xB0) & 4)) {
             TObjEneBm5GibonU__sub_800CCD8C(arg0);
             if (((TObjMotion *)arg0)->is_passing_frame(TObjEneBm5GibonU__data_805DA160) != 0) {
-                play_sound_effect((void *) ((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x3A828)), arg0 + 0x38, 0, 0);
+                play_sound_effect((s32)((void *) ((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x3A828))), (const Vec *)(arg0 + 0x38), 0, 0);
             }
             if (((TObjMotion *)arg0)->is_passing_frame(lbl_805DA1DC) != 0) {
-                play_sound_effect((void *) ((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x3A529)), arg0 + 0x38, 0, 0);
+                play_sound_effect((s32)((void *) ((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x3A529))), (const Vec *)(arg0 + 0x38), 0, 0);
             }
             if (*(f32 *)((s8 *)arg0 + 0xC0) > TObjEneBm5GibonU__data_805DA174) {
                 *(f32 *)((s8 *)arg0 + 0x530) *= TObjEneBm5GibonU__data_805DA1B8;

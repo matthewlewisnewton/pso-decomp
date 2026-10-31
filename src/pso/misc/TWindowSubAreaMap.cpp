@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TWindowSubAreaMap.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
@@ -31,7 +32,7 @@ struct RecoveredGlobal_802715F0_lbl_8050E208 {
 extern "C" {
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 TWindowShortListCtrl__check_controller_button(void *, int);
-s32 play_sound_effect(int, int, int, int);
+
 extern RecoveredGlobal_80271480_lbl_8050E208 controller_input_state;
 s32 is_flag_set__11TLoadingCurFv(void *, int);
 s32 is_on_current_screen__11TCameraCtrlFv(int, int);

@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "pso/protocol/protocol_types.h"
 #include "pso/system/NinjaTypes.h"
 // TItem, the base of every item object, with the item registry, the item
@@ -473,7 +474,7 @@ void TItem::place_on_ground(s16 floor, f32 *pos, s32 quiet) {
     snap_to_ground();
     refresh_collision_body_centers();
     if (item_ground_placement_enabled != 0) {
-        spawn_particle_effect(&position, 0x9B);
+        spawn_particle_effect((const Vec *)(&position), 0x9B);
     }
 }
 
@@ -557,7 +558,7 @@ void TItem::handle_pickup(s16 floor, TObjPlayer *player) {
 
 void TItem::send_field_state(s16 floor, TObjPlayer *player) {
     if (floor == get_current_floor()) {
-        spawn_particle_effect(&position, 0x9B);
+        spawn_particle_effect((const Vec *)(&position), 0x9B);
         player->play_sound_if_on_floor(0x52802);
     }
 }
@@ -1409,7 +1410,7 @@ void TItem::apply_switch_attack(s32 effect) {
 
 void TItem::notify_owner(s32 sound) {
     if (owner != NULL && owner->is_body_collision_inactive() == 0) {
-        play_sound_effect(sound, &owner->position, 0, 0);
+        play_sound_effect((s32)(sound), (const Vec *)(&owner->position), 0, 0);
     }
 }
 

@@ -1,4 +1,5 @@
 #include "pso/player/demo_mode.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/object/TObjCurtainLobby.h"
 #include "pso/TMainTask.h"
@@ -41,7 +42,7 @@ void TObjCurtainLobby::demo_step() {}
 void TObjCurtainLobby::render() {
     if (state != 0 && (u32)texlist != 0) {
         TParticleCtrl::begin_effect_render();
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         push_matrix();
         post_translate_matrix(&position.x);
         rotate_matrix_y(NULL, rotation_y);

@@ -6,6 +6,9 @@
 #include "pso/misc/MaterialOpacityFade.h"
 #include "pso/misc/RenderFadeState.h"
 #include "pso/enemy/BattleParameters.h"
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 struct NJS_OBJECT;
 #include "pso/render/reflection.h"
 #include "pso/system/BmlResourceClass.h"
@@ -356,7 +359,7 @@ struct Res_80302784 { u8 pad[0x42C]; Ent_80302784 *x42C; Pair_80302784 *x430; };
 extern "C" {
 s32 TObjEneDolmOlm__sub_80300CF0(void);
 extern s32 TObjEneDolmOlm__effect_render_state;
-s32 play_sound_effect(void *, void *, int, int);
+
 void vfunc_98__14TObjEneDolmOlmFv(s32 arg0);
 void vfunc_97__14TObjEneDolmOlmFv(s32 arg0);
 void vfunc_96__14TObjEneDolmOlmFv(s32 arg0);
@@ -396,7 +399,6 @@ extern const f32 lbl_805DEF60;
 void vfunc_93__14TObjEneDolmOlmFv(Obj_800A7A14 *o);
 void attach_particle_model(s32, s32, s32, s32, s32, f32);
 Hit_80300D00 *csnVectorUnder(void *, void *, s32, f32);
-s32 spawn_particle_effect(void *, int);
 extern s32 actor_frame_tick;
 extern const f32 lbl_805DEF4C;
 void spawn_ground_effects__14TObjEneDolmOlmFPvPv(u8 *arg0, Vec_80300D00 *arg1);
@@ -1134,7 +1136,7 @@ void TObjEneDolmOlm::render() {
     if (vis != 0 && ((TObjEneDolmOlm *)arg0)->render_model_if_visible() == 0) {
     select_actor_lighting(arg0);
     model_render_flags |= 1;
-    TObjFish::set_global_param(arg0->f24);
+    set_current_texture_list((GinjaTextureList *)(arg0->f24));
     push_matrix();
     translate_matrix(0, TObjEneDolmOlm__data_805DEF54, arg0->f380, TObjEneDolmOlm__data_805DEF54);
     post_translate_matrix(arg0->pos);
@@ -1214,7 +1216,7 @@ void TObjEneDolmOlm::render() {
 s32 TObjEneDolmOlm::render_model_if_visible() {
     if (get_mode__11TCameraCtrlFPv(((s32 *)&main_task)) & 0x20) {
         if (push_reflection_matrix((Vec *)(((u8 *)this) + 0x3D8)) != 0) {
-            TObjFish::set_global_param(this->texlist);
+            set_current_texture_list((GinjaTextureList *)(this->texlist));
             push_matrix();
             post_translate_matrix((void *) (((u8 *)this) + 0x38));
             rotate_matrix_y(0, this->rotation_y);
@@ -1301,7 +1303,7 @@ s32 TObjEneDolmOlm__sub_80301C3C(void *arg0_) {
                 VecCopy((Vec *)&v, (const Vec *)(*(u8 **)((s8 *)arg0 + 0x2A8) + 0x2FC));
             }
             ((TObjMotion *)arg0)->advance_animation();
-            play_sound_effect((void *)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003B205)), arg0 + 0x38, 0, 0);
+            play_sound_effect((s32)((void *)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003B205))), (const Vec *)(arg0 + 0x38), 0, 0);
             if (horizontal_distance_squared(arg0 + 0x29C, arg0 + 0x38) < lbl_805DEF78 || ((VObj_18_cc39a7 *)(arg0))->m17(0x1E) != 0) {
                 Vec_80301C3C a = v;
                 if (select_enemy_destination(arg0, &a, 1) != 0) {
@@ -1405,8 +1407,8 @@ s32 TObjEneDolmOlm__sub_8030177C(void *arg0_) {
             if (((TObjEnemy *)arg0)->turn_toward_direction(arg0->move->turn, (Vec *)&v) < (*(Param_8030177C ** *)&TObjEneDolmOlm__behavior_params_by_variant)[arg0->kind]->angle) {
                 arg0->f328 = 3;
                 arg0->fb8 = 0xC;
-                play_sound_effect((void *)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003A804)), &arg0->pos, 0, 0);
-                spawn_particle_effect(&arg0->pos, 0x20E);
+                play_sound_effect((s32)((void *)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003A804))), (const Vec *)(&arg0->pos), 0, 0);
+                spawn_particle_effect((const Vec *)(&arg0->pos), 0x20E);
             }
         } else {
             arg0->fb8 = arg0->f328 = 2;
@@ -1689,19 +1691,19 @@ void TObjEneDolmOlm::vfunc_94() {
 }
 void TObjEneDolmOlm::vfunc_95() {
     s32 arg0 = (s32)this;
-    play_sound_effect((void *) (((TObjEnemy *)((void *)arg0))->remap_sound_for_area((s32)(0x4003AD00))), (void *)(arg0 + 0x38), 0, 0);
+    play_sound_effect((s32)((void *) (((TObjEnemy *)((void *)arg0))->remap_sound_for_area((s32)(0x4003AD00)))), (const Vec *)((arg0 + 0x38)), 0, 0);
 }
 void TObjEneDolmOlm::vfunc_96() {
     s32 arg0 = (s32)this;
-    play_sound_effect((void *) (((TObjEnemy *)((void *)arg0))->remap_sound_for_area((s32)(0x4003B203))), (void *)(arg0 + 0x38), 0, 0);
+    play_sound_effect((s32)((void *) (((TObjEnemy *)((void *)arg0))->remap_sound_for_area((s32)(0x4003B203)))), (const Vec *)((arg0 + 0x38)), 0, 0);
 }
 void TObjEneDolmOlm::vfunc_97() {
     s32 arg0 = (s32)this;
-    play_sound_effect((void *) (((TObjEnemy *)((void *)arg0))->remap_sound_for_area((s32)(0x4003A802))), (void *)(arg0 + 0x38), 0, 0);
+    play_sound_effect((s32)((void *) (((TObjEnemy *)((void *)arg0))->remap_sound_for_area((s32)(0x4003A802)))), (const Vec *)((arg0 + 0x38)), 0, 0);
 }
 void TObjEneDolmOlm::vfunc_98() {
     s32 arg0 = (s32)this;
-    play_sound_effect((void *) (((TObjEnemy *)((void *)arg0))->remap_sound_for_area((s32)(0x4003A801))), (void *)(arg0 + 0x38), 0, 0);
+    play_sound_effect((s32)((void *) (((TObjEnemy *)((void *)arg0))->remap_sound_for_area((s32)(0x4003A801)))), (const Vec *)((arg0 + 0x38)), 0, 0);
 }
 void TObjEneDolmOlm::init_body_sub() {
     spawn_ground_effects__14TObjEneDolmOlmFPvPv((u8 *)this, (Vec_80300D00 *)((s8 *)this + 0x38));
@@ -1720,20 +1722,20 @@ void spawn_ground_effects__14TObjEneDolmOlmFPvPv(u8 *arg0, Vec_80300D00 *arg1) {
             if (actor_frame_tick % 5 == 0) {
                 play_floor_area_sound_effect((Vec *)(arg0 + 0x38));
             }
-            e = spawn_particle_effect(hit->obj + 0x38, 0x49);
+            e = (u32)spawn_particle_effect((const Vec *)(hit->obj + 0x38), 0x49);
             if (e != 0) {
                 attach_particle_model(e, TParticleCtrl::get_particle_model(2), TParticleCtrl::get_instance(), 0, 1, TObjEneDolmOlm__data_805DEF50);
             }
-            spawn_particle_effect(hit->obj + 0x38, 0xA4);
+            spawn_particle_effect((const Vec *)(hit->obj + 0x38), 0xA4);
         } else if (hit->flags & 2) {
             if (actor_frame_tick % 10 == 0) {
                 play_floor_area_sound_effect((Vec *)(arg0 + 0x38));
             }
-            e = spawn_particle_effect(hit->obj + 0x54, 0x49);
+            e = (u32)spawn_particle_effect((const Vec *)(hit->obj + 0x54), 0x49);
             if (e != 0) {
                 attach_particle_model(e, TParticleCtrl::get_particle_model(2), TParticleCtrl::get_instance(), 0, 1, TObjEneDolmOlm__data_805DEF50);
             }
-            spawn_particle_effect(hit->obj + 0x54, 0xA4);
+            spawn_particle_effect((const Vec *)(hit->obj + 0x54), 0xA4);
         }
         *(s32 *)(arg0 + 0x3E4) = *(s32 *)(hit->obj + 0x18);
         if (*(s32 *)(arg0 + 0x3E4) & 0x4000) {

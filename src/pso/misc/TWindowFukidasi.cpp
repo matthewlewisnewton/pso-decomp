@@ -1,3 +1,5 @@
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TUnk_804CF0B8.h"
@@ -207,7 +209,7 @@ Ent_802511E4 * find_entity_by_id(u16);
 u32 get_battle_ctrl_flag__10TObjPlayerFUs(u16);
 u32 get_player_by_client_id(u32);
 s32 get_array_entry__13TUnk_804CE018Fi(void *, s32);
-s32 play_sound_effect(int, int, int, int);
+
 View_80252764 * get_draw_context__11TWindowBaseFPv(void *);
 s32 get_field_20__17TWindowSubComCardFv();
 s32 set_field_1c__6TLobbyFf(f32);
@@ -1126,7 +1128,7 @@ void TUnk_804CF0B8::draw_body(void *ctx, u32 argb, f32 *offset, f32 depth) {
     s.f2c = 0.0f;
     s.f30 = 0.0f;
     begin_screen_draw(1);
-    TObjFish::set_global_param((s32)lbl_805D63F0);
+    set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
     set_draw_texture_and_color(1, argb);
     if (((struct Fukidasi_80252558 *)this)->size[1] < lbl_805DCD98) {
         capY = TWindowFukidasi__data_805DCD0C * ((struct Fukidasi_80252558 *)this)->size[1];

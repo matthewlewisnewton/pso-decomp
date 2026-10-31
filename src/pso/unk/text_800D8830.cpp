@@ -1,3 +1,5 @@
+#include "pso/system/SoundEffect.h"
+#include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/unk/text_800D8830.h"
 #include "pso/misc/TOTrapAncient01_80226534.h"
@@ -13,7 +15,6 @@ enum FloorAreaSoundRequest {
 };
 
 extern "C" {
-s32 play_sound_effect(int, void *, int, int);
 
 void play_floor_area_persistent_sound(TObject *owner, Vec *pos) {
     switch (get_current_floor_area()) {
@@ -22,14 +23,14 @@ void play_floor_area_persistent_sound(TObject *owner, Vec *pos) {
     case AREA_JUNGLE_EAST:
     case AREA_MOUNTAIN:
     case AREA_SEASIDE:
-        play_persistent_sound(FLOOR_SOUND_CCA_JUNGLE_MOUNTAIN_SEASIDE_PERSISTENT, (s32)owner, (u32)pos, 0, 0);
+        play_persistent_sound(FLOOR_SOUND_CCA_JUNGLE_MOUNTAIN_SEASIDE_PERSISTENT, owner, pos, 0, 0);
         break;
     case AREA_SEASIDE_NIGHT:
-        play_persistent_sound(FLOOR_SOUND_SEASIDE_NIGHT_PERSISTENT, (s32)owner, (u32)pos, 0, 0);
+        play_persistent_sound(FLOOR_SOUND_SEASIDE_NIGHT_PERSISTENT, owner, pos, 0, 0);
         break;
     case AREA_SEABED_UPPER:
     case AREA_SEABED_LOWER:
-        play_persistent_sound(FLOOR_SOUND_SEABED_PERSISTENT, (s32)owner, (u32)pos, 0, 0);
+        play_persistent_sound(FLOOR_SOUND_SEABED_PERSISTENT, owner, pos, 0, 0);
         break;
     }
 }

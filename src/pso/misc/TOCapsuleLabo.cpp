@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/misc/TOCapsuleLabo.h"
@@ -56,7 +57,7 @@ void TOCapsuleLabo::render() {
     NJS_OBJECT *light;
     visible = update_object_view_visibility(view_range, model_radius);
     if (visible == 1) {
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         if (active == 1) {
             if (light_node != NULL) {
                 light_node->evalflags &= ~NJD_EVAL_HIDE;

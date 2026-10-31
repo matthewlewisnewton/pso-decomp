@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "pso/misc/TODoorCave01.h"
 
 #include "pso/TMainTask.h"
@@ -105,7 +106,7 @@ void TODoorCave01::update_open() {
     if ((u8)!(door_flags & 1) == 1 || is_any_player_within_radius_xz(10000.0f) != 1) {
         object_state = 3;
         clear_player_status_flag(0, 8);
-        play_sound_effect(0x42807, &position, 0, 0);
+        play_sound_effect(0x42807, (const Vec *)(&position), 0, 0);
     }
 }
 
@@ -113,7 +114,7 @@ void TODoorCave01::update_closed() {
     if ((door_flags & 1) && is_any_player_within_radius_xz(4900.0f) == 1) {
         object_state = 1;
         set_indexed_flags(0, 8);
-        play_sound_effect(0x42807, &position, 0, 0);
+        play_sound_effect(0x42807, (const Vec *)(&position), 0, 0);
     }
     if (door_flags & PULSE_RISING) {
         light_color.r += 0.1f;
@@ -189,7 +190,7 @@ void TODoorCave01::update_door_switch_state() {
 void TODoorCave01::draw_switch_light(NJS_OBJECT *node, s32 lit) {
     u32 flags;
     NJS_OBJECT *child;
-    TObjFish::set_global_param(texture_lists[lit]);
+    set_current_texture_list((GinjaTextureList *)(texture_lists[lit]));
     push_matrix();
     translate_matrix(0, node->pos[0], node->pos[1], node->pos[2]);
     draw_ginja_model((s32)node->model);
@@ -234,7 +235,7 @@ void TODoorCave01::render() {
                 node = node->sibling;
             } while (i < 4);
         } else {
-            TObjFish::set_global_param(texture_lists[1]);
+            set_current_texture_list((GinjaTextureList *)(texture_lists[1]));
             draw_ginja_model_with_motion(model, motion, animation_frame);
         }
         pop_matrix();

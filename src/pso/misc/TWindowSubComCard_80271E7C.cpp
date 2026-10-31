@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/quest/TQuestThread.h"
 #include "pso/map/FloorArea.h"
 #pragma push
@@ -679,7 +680,7 @@ s32 update_press__17TWindowSubComCardFv(int);
 void TWindowSubShortMail__sub_80131998(void *arg0);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 TWindowShortListCtrl__check_controller_button(void *, int);
-s32 play_sound_effect(int, int, int, int);
+
 void find_and_load_com_card__6TLobbyFUi(u32 arg0);
 s32 TLobby__sub_8024259C();
 s32 fn_80244958(int, int);

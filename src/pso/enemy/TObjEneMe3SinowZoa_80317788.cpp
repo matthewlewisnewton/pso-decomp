@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "pso/render/reflection.h"
 #include "types.h"
 #include "pso/object/TObjMotion.h"
@@ -21,7 +22,7 @@ extern const f32 TObjEneMe3SinowZoa__data_805DF31C;
 s32 TObjEneMe3SinowZoa::render_model_if_visible() {
     if (get_mode__11TCameraCtrlFPv(((s32 *)&main_task)) & 0x20) {
         if (push_reflection_matrix((Vec *)(((u8 *)this) + 0x3D4)) != 0) {
-            TObjFish::set_global_param((int) (*(s32 *)((s8 *)((u8 *)this) + 0x24)));
+            set_current_texture_list((GinjaTextureList *)((*(s32 *)((s8 *)((u8 *)this) + 0x24))));
             push_matrix();
             post_translate_matrix((void *) (((u8 *)this) + 0x38));
             translate_matrix(0, TObjEneMe3SinowZoa__data_805DF31C, (f32) (*(f32 *)((s8 *)((u8 *)this) + 0x3E4)), TObjEneMe3SinowZoa__data_805DF31C);

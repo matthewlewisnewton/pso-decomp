@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/items/TItemWeapon.h"
 #include "pso/player/TObjPlayer_80122B74.h"
@@ -14,7 +15,7 @@ void TObjPlayer::cast_foie() {
     void *owner;
 
     ((TItemWeapon *)this)->get_joint_position(2, &sp8);
-    spawn_particle_effect(&sp8, 0x1BF);
+    spawn_particle_effect((const Vec *)(&sp8), 0x1BF);
     if (((TItemWeapon *)this)->is_mode_two_and_ready() != 0) {
         owner = *(void * *)&this->blend.frame[1];
         TTecFoie::create((void *)owner, &sp8, (void *)(*(s32 *)((s8 *)owner + 0x60)), (void *)3);
