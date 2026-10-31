@@ -1,10 +1,13 @@
-#include "pso/player/demo_mode.h"
-#include "pso/misc/MaterialOpacityFade.h"
-#include "pso/misc/RenderFadeState.h"
+#include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/misc/PersistentSound.h"
-struct NJS_OBJECT;
+#include "pso/player/demo_mode.h"
+#include "pso/misc/PositionSoundEffects.h"
+#include "pso/misc/GroundEffects.h"
+#include "pso/map/CsnGroundQuery.h"
+#include "pso/system/MatrixVectorArray.h"
+#include "pso/unk/TObjEneEpsilonBody.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -399,7 +402,7 @@ void transform_point_to_view(s32, s32);
 extern RecoveredGlobal_8035E374_lbl_805439E0 lbl_805439E0;
 extern s32 epsilon_guard_camera_step;
 extern s32 epsilon_guard_camera_ctrl_ptr;
-s32 is_main_phase_15__9TObjEneDDFv();
+
 
 void render__19TObjEneEpsilonGuardFv(u8 *);
 void TObjEneEpsilonGuard__sub_8035E578(u8 *, s32);
@@ -466,7 +469,6 @@ struct VObj_8035E3B8_8035DD68 : Base_8035E3B8_8035DD68 {
 
 int TObjEneEpsilonGuard__sub_8035DD68(void* p);
 s32 scale_matrix(int, f32, f32, f32);
-int TObjEneEpsilonGuard__sub_8035F95C(void *p);
 int TObjEneEpsilonGuard__sub_8035F968(void);
 void draw_model_motion(void *arg0, void *arg1, f32 farg0);
 
@@ -573,7 +575,7 @@ void TObjEneEpsilonGuard::render_guard_effect() {
     f32 temp_f1;
 
     if ((*(s32 *)((s8 *)((u8 *)this) + 0x46C) & 0x20) && (get_mode__11TCameraCtrlFPv((void *) (((s32 *)&main_task))) & 0x200)) {
-        set_current_texture_list((GinjaTextureList *)((*(s32 *)((s8 *)((u8 *)this) + 0x24))));
+        set_current_texture_list((GinjaTextureList *)((int) (*(s32 *)((s8 *)((u8 *)this) + 0x24))));
         push_matrix();
         post_translate_matrix((void *) (((u8 *)this) + 0x38));
         translate_matrix(0, 0.0f, 24.0f, 0.0f);
@@ -632,7 +634,7 @@ void render_with_fade__19TObjEneEpsilonGuardFPvi(u8 *ene_re7_berura, s32 arg1) {
     *(f32 *)((s8 *)ene_re7_berura + 0x460) = 0.0f;
     *(f32 *)((s8 *)ene_re7_berura + 0x464) = 0.0f;
     *(f32 *)((s8 *)ene_re7_berura + 0x468) = 0.0f;
-    set_chunk_model_node_callback((TObjEneEpsilonGuard::advance_camera_ctrl_step));
+    set_chunk_model_node_callback(TObjEneEpsilonGuard::advance_camera_ctrl_step);
     TObjPlayer::toggle_particle_effect();
     if (arg1 == 1) {
         ((TObjMotion *)ene_re7_berura)->draw();
@@ -660,7 +662,7 @@ void render__19TObjEneEpsilonGuardFv(u8 *ene_epsilon_guard) {
     if ((check_demo_mode() == 0) && !(*(s32 *)((s8 *)ene_epsilon_guard + 0x30) & 0x02000000)) {
         var_r31 = 0;
         if (!(*(s32 *)((s8 *)ene_epsilon_guard + 0x46C) & 0x10)) {
-            if (is_main_phase_15__9TObjEneDDFv() != 0) {
+            if (TObjEneDD::is_main_phase_15() != 0) {
                 var_r31 = ((VObj_18_6ff2a2 *)(ene_epsilon_guard))->m9(6e+02f, 6e+02f, 15.0f);
             } else if (((VObj_18_6ff2a2 *)(ene_epsilon_guard))->m8(6e+02f, 15.0f) != 0) {
                 var_r31 = 1;
@@ -735,7 +737,7 @@ void TObjEneEpsilonGuard::handle_break_state(s32 arg1) {
         if (((G_8035E430 *)this)->x434 >= 0x14) {
             ((VO_8035E430 *)((G_8035E430 *)this))->m94();
             TBoss3Volopt::create_breakup_mdl((s32)lbl_805D6FA8, (s32)epsilon_guard_breakup_params, (s32)(((G_8035E430 *)this)->x24), (s32)(((G_8035E430 *)this)->x38), (s32)(((G_8035E430 *)this)->x60));
-            play_sound_effect(0x4003AD4C, (const Vec *)(((G_8035E430 *)this)->x2FC), 0, 0);
+            play_sound_effect((s32)(0x4003AD4C), (const Vec *)(((G_8035E430 *)this)->x2FC), 0, 0);
             ((TObjPlayer *)(((G_8035E430 *)this)->x2FC))->trigger_dell_biter_events();
             ((G_8035E430 *)this)->x430 = 1;
         }
@@ -810,7 +812,7 @@ void TObjEneEpsilonGuard::state_orbit(s32 arg1) {
                 if (TObjEneEpsilonGuard__sub_8035F968() == 1) {
                     *(s32 *)((s8 *)this + 0x46C) = (s32) (*(s32 *)((s8 *)this + 0x46C) & 0xFFFFFFFB);
                     *(s32 *)((s8 *)this + 0x430) = 2;
-                } else if (TObjEneEpsilonGuard__sub_8035F95C((void *)temp_r3) != 1) {
+                } else if (((TObjEneEpsilonBody *)temp_r3)->has_state_flag_0x20() != 1) {
                     goto block_23;
                 }
             } else {
@@ -984,7 +986,6 @@ void vfunc_88__19TObjEneEpsilonGuardFv(void *);
 void vfunc_89__19TObjEneEpsilonGuardFv(void *);
 
 s32 vfunc_89__9TObjEneDDFv();
-s32 TObjEneEpsilonGuard__sub_8035F950();
 s16 get_entity_id(int);
 
 void TObjEneEpsilonGuard::update_guard_state() {
@@ -993,7 +994,7 @@ void TObjEneEpsilonGuard::update_guard_state() {
 
     if (!(*(s32 *)((s8 *)((u8 *)this) + 0x46C) & 0x40)) {
         entity = (s32)find_entity_by_id((*(u16 *)((s8 *)((u8 *)this) + 0x470)));
-        if ((entity == 0) || (TObjEneEpsilonGuard__sub_8035F950() == 1)) {
+        if ((entity == 0) || (((TObjEneEpsilonBody *)entity)->has_state_flag_0x800() == 1)) {
             if (*(s32 *)((s8 *)((u8 *)this) + 0x46C) & 0x10) {
                 transition_enemy_state(5);
             } else {
@@ -1006,12 +1007,12 @@ void TObjEneEpsilonGuard::update_guard_state() {
             sub_8035EA90();
         }
         if (*(s32 *)((s8 *)((u8 *)this) + 0x46C) & 0x20) {
-            play_persistent_sound((s32)(0x4003A846), (const void *)(this), (const Vec *)((u32)(((u8 *)this) + 0x38)), 0, 0);
+            play_persistent_sound(0x4003A846, (const void *)((s32)this), (const Vec *)((u32)(((u8 *)this) + 0x38)), 0, 0);
             return;
         }
         temp_r0 = *(s16 *)((s8 *)((u8 *)this) + 0x326);
         if ((temp_r0 != 4) && (temp_r0 != 5)) {
-            play_persistent_sound((s32)(0x4003AD43), (const void *)(this), (const Vec *)((u32)(((u8 *)this) + 0x38)), 0, 0);
+            play_persistent_sound(0x4003AD43, (const void *)((s32)this), (const Vec *)((u32)(((u8 *)this) + 0x38)), 0, 0);
         }
     }
 }
@@ -1093,7 +1094,6 @@ extern s32 epsilon_guard_boss_stat_handle;
 extern s32 epsilon_guard_shared_handler_b;
 extern s32 epsilon_guard_registered_object_handle;
 extern u8 *lbl_805D6FA0;
-s32 TObjEneEpsilon__ct();
 extern s32 TObjEneEpsilonGuard__class_name;
 void *TObjEneEpsilonGuard__ct(void *arg0, void *arg1, void *arg2, void *arg3, void *arg4, void *arg5, void *arg6);
 s32 free_collision_body_parts(void *);
@@ -1314,13 +1314,13 @@ void run_task__19TObjEneEpsilonGuardFv(u8 *arg0) {
 }
 #pragma pop
 
-void *TObjEneEpsilonGuard::create(void *arg1, void *arg2, void *arg3, void *arg4) {
+TObjBase *TObjEneEpsilonBody::create_guard(u32 entityId, s32 setIndex, const Vec *position, s32 yaw) {
     void *o;
     o = __nw__7TObjectFUl(0x4D8);
     if (o != NULL) {
-        o = TObjEneEpsilonGuard__ct(o, tl_04, this, arg1, arg2, arg3, arg4);
+        o = TObjEneEpsilonGuard__ct(o, tl_04, this, (void *)(u32)entityId, (void *)setIndex, (void *)position, (void *)yaw);
     }
-    return o;
+    return (TObjBase *)o;
 }
 
 u8 *__dt__19TObjEneEpsilonGuardFv(u8 *arg0, s16 arg1) {
@@ -1393,7 +1393,7 @@ void TObjEneEpsilonGuard::init_model_and_state() {
 
 void *TObjEneEpsilonGuard__ct(void *ene_epsilon_guard, void *arg1, void *arg2, void *arg3, void *arg4, void *arg5, void *arg6) {
     s32 i;
-    TObjEneEpsilon__ct();
+    __ct__14TObjEneEpsilonFP7TObject(ene_epsilon_guard, (TObject *)arg1);
     *(void ***)((s8 *)ene_epsilon_guard + 0x18) = __vt__19TObjEneEpsilonGuard;
     __ct__19MaterialOpacityFadeFv(((u8 *)ene_epsilon_guard + 0x4BC));
     *(s32 *)((s8 *)ene_epsilon_guard + 0) = (s32) TObjEneEpsilonGuard__class_name;
