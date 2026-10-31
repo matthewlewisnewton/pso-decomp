@@ -3,7 +3,7 @@
 
 #include "types.h"
 #include "pso/enemy/TObjEneDD_ST.h"
-#include "pso/enemy/TUnk_80494938.h"
+#include "pso/misc/MaterialOpacityFade.h"
 
 struct SinowZoaMoveParameters { s32 unknown; f32 speed; s32 turn_speed; };
 struct SinowZoaTargetParameters { s32 unknown[3]; s32 angle_range; };
@@ -53,7 +53,7 @@ struct TObjEneMe3SinowZoa : public TObjEneDD_ST {
     s32 attack_count;
     u8 unk_400[8];
     Vec strike_position;
-    TUnk_80494938 fade;
+    MaterialOpacityFade fade;
     s32 m_430;
     s32 substate;
     s32 state_timer;

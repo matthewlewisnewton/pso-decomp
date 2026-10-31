@@ -485,7 +485,7 @@ pso/enemy/TObjEneMe1GiGueMissile_802A4628.cpp
 pso/enemy/TObjEneMe1GiGue_802CDB1C.cpp
 pso/enemy/TObjEneMe3Shinowa.cpp
 pso/enemy/TObjEneMe3SinowZoa.cpp
-pso/enemy/TObjEneMe3SinowZoa_800D72A4.cpp
+pso/misc/MaterialOpacityFade.cpp
 pso/enemy/TObjEneMe3SinowZoa_80316690.cpp
 pso/enemy/TObjEneMe3Stelth.cpp
 pso/enemy/TObjEneMe3StelthReal.cpp

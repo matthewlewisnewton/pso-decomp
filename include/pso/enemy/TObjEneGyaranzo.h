@@ -4,7 +4,7 @@
 #include "types.h"
 #include "dolphin/mtx.h"
 #include "pso/enemy/TObjEnemyCustom.h"
-#include "pso/enemy/TUnk_80494938.h"
+#include "pso/misc/MaterialOpacityFade.h"
 #include "pso/misc/RenderFadeState.h"
 
 struct TObjEneGyaranzo : public TObjEnemyCustom {
@@ -49,7 +49,7 @@ struct TObjEneGyaranzo : public TObjEnemyCustom {
     s32 hit_debris_cooldown;
     u32 target_ids[4];
     s32 target_count;
-    TUnk_80494938 fade;
+    MaterialOpacityFade fade;
     RenderFadeState camera_fades[4];
     static void *create(void *set_data);
     static void free_static_instances();

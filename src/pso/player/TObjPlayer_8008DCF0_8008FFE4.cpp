@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "types.h"
 #include "pso/system/vector.h"
 #include "pso/enemy/TObjEneBalClawBody.h"
@@ -20,7 +21,7 @@ void TObjPlayer::update_control_state() {
     u8 *temp_r5;
 
     TObjEneBalClaw__sub_8008D68C();
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         TObjEneBalClawClaw__sub_8008DC90(arg0);
         TObjEneMe1GiGue__sub_8008FC0C(arg0);
         return;

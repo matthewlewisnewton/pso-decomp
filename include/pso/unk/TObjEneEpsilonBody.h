@@ -1,7 +1,7 @@
 #ifndef PSO_UNK_TOBJENEEPSILONBODY_H
 #define PSO_UNK_TOBJENEEPSILONBODY_H
 #include "types.h"
-#include "pso/enemy/TUnk_80494938.h"
+#include "pso/misc/MaterialOpacityFade.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/enemy/TObjEneEpsilon.h"
 
@@ -51,7 +51,7 @@ public:
     NJS_ARGB color;
     f32 field_4b0;
     f32 color_steps[3];
-    TUnk_80494938 fade;
+    MaterialOpacityFade fade;
     u16 guard_ids[4];
     s32 m_4e4;
     s32 field_4e8;

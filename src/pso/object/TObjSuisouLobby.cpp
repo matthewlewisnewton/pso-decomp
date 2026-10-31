@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "types.h"
 #include "pso/object/TObjSuisouLobby.h"
 #include "pso/TMainTask.h"
@@ -50,7 +51,7 @@ void TObjSuisouLobby::render() {
 }
 
 void TObjSuisouLobby::run_task() {
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         demo_step();
     }
     switch (fade_state) {

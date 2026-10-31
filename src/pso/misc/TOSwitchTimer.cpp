@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/render/render_util.h"
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
@@ -33,7 +34,7 @@ u8 is_current_floor_switch_set(u16);
 void *__nw__7TObjectFUl(int);
 
 void TOSwitchTimer::render() {
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         NJS_ARGB color;
         color.a = 0.3f;
         color.r = 0.6f;

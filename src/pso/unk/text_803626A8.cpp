@@ -1,3 +1,8 @@
+#include "pso/player/demo_mode.h"
+#include "pso/misc/PositionSoundEffects.h"
+#include "pso/misc/GroundEffects.h"
+#include "pso/map/CsnGroundQuery.h"
+#include "pso/system/MatrixVectorArray.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/object/TObjMotion.h"
