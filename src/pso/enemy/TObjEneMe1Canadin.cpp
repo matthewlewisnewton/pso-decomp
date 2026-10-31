@@ -19,7 +19,6 @@
 #include "pso/player/TObjChara.h"
 #include "pso/object/TObjMotion.h"
 
-#include "pso/misc/MaterialOpacityFade.h"
 #include <stddef.h>
 #include "pso/system/BmlResource.h"
 #include "pso/system/BmlResourceDescriptor.h"
@@ -110,7 +109,6 @@ void init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, s32);
 s32 collect_enemy_target_candidates(void *, Entry_8009E860 *);
 void clear_attack_receipts__9TObjEneDDFv();
 void invoke_initialization_hook__9TObjEneDDFPv(void *, void *);
-s32 start_fade_in__19MaterialOpacityFadeFv(void *);
 void play_area_sound_and_particles_a(s32 arg0);
 s32 trigger_dell_biter_events__10TObjPlayerFv(void *, f32);
 s32 approach_angle_limited(s32, s32, s32);
@@ -872,7 +870,7 @@ void TObjEneMe1Canadin::fn_8009DE90(s32 arg1) {
         actorFlags = (s32) (actorFlags | 0x01000000);
         m_3fc = 4;
         m_4b8 = 1;
-        start_fade_in__19MaterialOpacityFadeFv(&m_3cc);
+        m_3cc.start_fade_in();
         play_area_sound_and_particles_a((s32)(&position));
         return;
     case 3:
