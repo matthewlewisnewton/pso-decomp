@@ -1,3 +1,4 @@
+#include "pso/player/TUnk_80490470.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/misc/PersistentSound.h"
 #include "pso/misc/ParticleFactory.h"
@@ -197,7 +198,6 @@ extern u8 identity_matrix[];
 extern const f32 lbl_805D9638;
 extern const f32 lbl_805D965C;
 extern const f32 lbl_805D9660;
-s32 TObjPlayer__sub_800A0554(void *);
 void TObjEneBalClawBody::update_dragon_boss_state() {
 
     switch (this->state) {
@@ -225,7 +225,7 @@ void TObjEneBalClawBody::fn_8008EC3C() {
         *(s32 *)((s8 *)enemy + 0x30) = (s32) (*(s32 *)((s8 *)enemy + 0x30) | 0x04000000);
         *(s16 *)((s8 *)enemy + 0xB8) = (*(s32 *)((s8 *)enemy + 0x388) & 0x01000000) ? 0 : 5;
         ((TBoss3Volopt *)(enemy + 0x38))->play_area_se_with_particle();
-        TObjPlayer__sub_800A0554(enemy + 0x390);
+        ((TUnk_80490470 *)(enemy + 0x390))->start_negative_fade_phase();
         *(s32 *)((s8 *)enemy + 0x37C) = 1;
     case 1:
         ((TObjMotion *)enemy)->advance_animation();
