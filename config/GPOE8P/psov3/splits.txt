@@ -2017,13 +2017,14 @@ pso/player/TObjPlayer_800DCC90.cpp:
 	.rodata     start:0x8043C920 end:0x8043C948
 
 pso/enemy/TObjEnePanarms_800DCEB8.cpp:
-	.text       start:0x800DCEB8 end:0x800DF6E0
+	.text       start:0x800DCEB8 end:0x800DFB00
+	.ctors      start:0x80433F60 end:0x80433F64
 	.rodata     start:0x8043CD18 end:0x8043CD20
+	.data       start:0x80494E80 end:0x80495458
 	.sdata2     start:0x805DA490 end:0x805DA4C4
 
-pso/enemy/TObjEnePanarms_800DF6E0.cpp:
-	.text       start:0x800DF6E0 end:0x800DFB74
-	.ctors      start:0x80433F60 end:0x80433F64
+pso/enemy/TObjEnePanarms_800DFB00.cpp:
+	.text       start:0x800DFB00 end:0x800DFB74
 
 pso/enemy/TObjEnePanarms_800DFB74.cpp:
 	.text       start:0x800DFB74 end:0x800DFBD0
@@ -2031,8 +2032,11 @@ pso/enemy/TObjEnePanarms_800DFB74.cpp:
 pso/enemy/TObjEnePanarms.cpp:
 	.text       start:0x800DFBD0 end:0x800E2FFC
 	.ctors      start:0x80433F64 end:0x80433F68
-	.rodata     start:0x8043CDC8 end:0x8043CDD0
-	.sdata2     start:0x805DA524 end:0x805DA584
+	.rodata     start:0x8043CD28 end:0x8043CDD8
+	.data       start:0x80495458 end:0x80495A80
+	.sdata      start:0x805D2AB8 end:0x805D2ABC
+	.sbss       start:0x805D5288 end:0x805D5298
+	.sdata2     start:0x805DA520 end:0x805DA5A0
 
 pso/object/TObjFish_800E2FFC.cpp:
 	.text       start:0x800E2FFC end:0x800E31C4
