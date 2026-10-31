@@ -16,8 +16,7 @@ extern const f32 lbl_805DEBAC;
 
 
 
-s32 reload_stats_keep_hp_tp__9TObjEneDDFv(void *, int, int, int);
-
+s32 reload_stats_keep_hp_tp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(void *, int, int, int);
 u32 __nw__7TObjectFUl(int);
 s32 TObjPlayer__sub_802E72DC(void *, void *, void *, int);
 s32 vfunc_93__9TObjEneDDFv(void *);
@@ -44,7 +43,7 @@ int TBoss7Joint::is_part_active() { return *(u32*)((char*)this + 0x3bc) & 0x1; }
 
 void TBoss7Joint::init_boss_stats() {
     *(s32 *)((s8 *)((u8 *)this) + 0x3BC) = *(s32 *)((s8 *)((u8 *)this) + 0x3BC) | 1;
-    reload_stats_keep_hp_tp__9TObjEneDDFv(this, ((s32)get_battle_base_stats(0x10)), ((s32)get_battle_attack_params(0xF)), ((s32)get_battle_resistance_params(0x10)));
+    reload_stats_keep_hp_tp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(this, ((s32)get_battle_base_stats(0x10)), ((s32)get_battle_attack_params(0xF)), ((s32)get_battle_resistance_params(0x10)));
     *(s16 *)((s8 *)((u8 *)this) + 0x32C) = 0x4E20;
     *(s16 *)((s8 *)((u8 *)this) + 0x2B8) = 0x4E20;
     u32 p = __nw__7TObjectFUl(0x2C);

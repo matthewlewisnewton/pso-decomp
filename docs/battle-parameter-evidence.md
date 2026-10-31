@@ -30,3 +30,10 @@ current HP afterward. The binding itself still exposes byte pointers. Legacy
 hand-mangled calls to `reset_hp` remain compatibility declarations, including
 some integer return types and an extra argument at one call site; recovering
 the member signature does not make those declarations type-safe.
+
+`TObjEneDD::reload_stats_keep_hp_tp` takes the same three records in the same
+order. It saves HP, maximum HP, TP and maximum TP, calls the binding, and
+restores all four fields even if the binding returns early. Existing callers
+still use hand-mangled compatibility declarations with integer or `void *`
+parameters and, in most cases, an integer return; this member signature does
+not make those declarations type-safe.

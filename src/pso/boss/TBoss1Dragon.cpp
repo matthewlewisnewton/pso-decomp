@@ -574,7 +574,7 @@ extern DragonModelState lbl_804FE1B8;
 extern s32 lbl_805D4B10;
 s32 TBoss1Dragon__sub_80027590(void* object, void* action);
 extern const RecoveredGlobal_80027AAC_lbl_80434EB4 boss1_dragon_ground_impact_params;
-s32 reload_stats_keep_hp_tp__9TObjEneDDFv(void *, int, int, int);
+s32 reload_stats_keep_hp_tp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(void *, int, int, int);
 extern s32 TBoss1Dragon__data_805D4B00;
 extern s32 TBoss1Dragon__data_805D4B04;
 extern s32 TBoss1Dragon__data_805D4B2C;
@@ -5146,11 +5146,11 @@ typedef char RecoveredGlobal_80064CFC_lbl_804FF5A0_size[sizeof(RecoveredGlobal_8
 typedef char RecoveredGlobal_8002885C_TBoss1Dragon__data_804FE168_size[sizeof(RecoveredGlobal_8002885C_TBoss1Dragon__data_804FE168) == 0x14 ? 1 : -1];
 
 void TBoss1Dragon::reload_impact_stats() {
-    reload_stats_keep_hp_tp__9TObjEneDDFv(this, (&TBoss1Dragon__data_805D4B00)[boss1_dragon_base_stat_indices[3]], ((s32 *)&TBoss1Dragon__part_hp_stats)[boss1_dragon_attack_stat_indices[3]], (&TBoss1Dragon__data_805D4B04)[boss1_dragon_resistance_stat_indices[3]]);
+    reload_stats_keep_hp_tp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(this, (&TBoss1Dragon__data_805D4B00)[boss1_dragon_base_stat_indices[3]], ((s32 *)&TBoss1Dragon__part_hp_stats)[boss1_dragon_attack_stat_indices[3]], (&TBoss1Dragon__data_805D4B04)[boss1_dragon_resistance_stat_indices[3]]);
 }
 
 void TBoss1Dragon::reload_stats_for_phase(int _w1) {
-    reload_stats_keep_hp_tp__9TObjEneDDFv(this, (&TBoss1Dragon__data_805D4B00)[boss1_dragon_base_stat_indices[2]], ((s32 *)&TBoss1Dragon__part_hp_stats)[boss1_dragon_attack_stat_indices[2]], (&TBoss1Dragon__data_805D4B04)[boss1_dragon_resistance_stat_indices[2]]);
+    reload_stats_keep_hp_tp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(this, (&TBoss1Dragon__data_805D4B00)[boss1_dragon_base_stat_indices[2]], ((s32 *)&TBoss1Dragon__part_hp_stats)[boss1_dragon_attack_stat_indices[2]], (&TBoss1Dragon__data_805D4B04)[boss1_dragon_resistance_stat_indices[2]]);
 }
 
 void TBoss1Dragon::reset_tail_hp() {
@@ -5159,7 +5159,7 @@ void TBoss1Dragon::reset_tail_hp() {
 }
 
 void TBoss1Dragon::reload_difficulty_stats() {
-    reload_stats_keep_hp_tp__9TObjEneDDFv(this,
+    reload_stats_keep_hp_tp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(this,
         (&TBoss1Dragon__data_805D4B00)[boss1_dragon_base_stat_indices[0]],
         ((s32 *)&TBoss1Dragon__part_hp_stats)[boss1_dragon_attack_stat_indices[0]],
         (&TBoss1Dragon__data_805D4B04)[boss1_dragon_resistance_stat_indices[0]]);

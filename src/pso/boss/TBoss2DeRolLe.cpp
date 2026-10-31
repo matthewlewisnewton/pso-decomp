@@ -4601,7 +4601,7 @@ extern u8 identity_matrix[];
 extern const f32 TBoss2DeRolLe__data_805D827C;
 extern const f32 TBoss2DeRolLe__data_805D82A0;
 f32 calc_node_height__13TBoss2DeRolLeFPv(Obj_80034B60 *self);
-s32 reload_stats_keep_hp_tp__9TObjEneDDFv(void *, s32, s32, s32);
+s32 reload_stats_keep_hp_tp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(void *, s32, s32, s32);
 extern s32 TBoss2DeRolLe__attack_params_table[];
 extern s32 TBoss2DeRolLe__base_params[2];
 extern s32 TBoss2DeRolLe__resistance_params[2];
@@ -4785,7 +4785,7 @@ void reload_stats_for_phase__13TBoss2DeRolLeFPvi(void *self, s32 kind) {
         b = 0;
         break;
     }
-    reload_stats_keep_hp_tp__9TObjEneDDFv(self, TBoss2DeRolLe__base_params[a], TBoss2DeRolLe__attack_params_table[i], TBoss2DeRolLe__resistance_params[b]);
+    reload_stats_keep_hp_tp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(self, TBoss2DeRolLe__base_params[a], TBoss2DeRolLe__attack_params_table[i], TBoss2DeRolLe__resistance_params[b]);
 }
 
 void set_state_and_send__13TBoss2DeRolLeFPvi(Obj_80034E90 *self, s32 kind) {
