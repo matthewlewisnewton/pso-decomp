@@ -62,12 +62,17 @@ def run(args, cwd=None, env=None):
     return result.stdout.strip()
 
 
+def source_maintenance_path(path):
+    # Only C/C++ source and headers in project source trees; no graph/config/tool edits.
+    return bool(re.fullmatch(r'(?:src|include)/[A-Za-z0-9_./+\-]+\.(?:c|cc|cpp|h|hpp)', path)) and all(part not in ('', '.', '..') for part in path.split('/'))
+
+
 def validate_spec(spec):
     require(spec.get('version') == 1 and spec.get('repository') == REPOSITORY,
             'wrong_repository', 'Only schema 1 and the personal fork are supported')
     require(spec.get('default_branch') in ('master', 'main'), 'wrong_base', 'Unsupported default branch')
     require(SHA.fullmatch(spec.get('target', '')), 'invalid_spec', 'Immutable target SHA required')
-    require(spec.get('policy') in ('recovery', 'maintenance'), 'invalid_policy', 'Recovery or maintenance required')
+    require(spec.get('policy') in ('recovery', 'maintenance', 'source-maintenance'), 'invalid_policy', 'Recognized operator policy required')
     require(isinstance(spec.get('commit_epoch'), int) and spec['commit_epoch'] > 0,
             'invalid_spec', 'Positive fixed commit_epoch required')
     require(spec.get('authorization'), 'missing_authorization', 'Record parent/user batch authorization')
@@ -84,9 +89,11 @@ def validate_spec(spec):
         require(review.get('verdict') == 'pass' and review.get('independent') is True
                 and review.get('head') == pr['head'] and review.get('base') == pr['review_base']
                 and review.get('reviewer'), 'missing_review', f'PR {number}: independent exact-head review required')
-        require(pr.get('kind') in ('recovery', 'prerequisite', 'maintenance'), 'invalid_spec', 'PR kind required')
+        require(pr.get('kind') in ('recovery', 'prerequisite', 'maintenance', 'source-maintenance'), 'invalid_spec', 'PR kind required')
         require(pr['kind'] != 'prerequisite' or pr.get('reason'), 'missing_prerequisite_reason', number)
         require(spec['policy'] != 'maintenance' or pr['kind'] == 'maintenance', 'invalid_policy', number)
+        require(spec['policy'] != 'source-maintenance' or pr['kind'] == 'source-maintenance', 'invalid_policy', number)
+        require(spec['policy'] == 'source-maintenance' or pr['kind'] != 'source-maintenance', 'invalid_policy', number)
         require(isinstance(pr.get('required_checks'), list) and pr['required_checks'],
                 'missing_checks', f'PR {number}: explicit hosted check names required')
 
@@ -117,12 +124,21 @@ def check_validation(spec, result, tree):
             and result.get('tree') == tree, 'wrong_validation_tree', result)
     needed = {'source'} if spec['policy'] == 'maintenance' else CHECKS
     require(all(result.get('checks', {}).get(k) is True for k in needed), 'failed_checks', result.get('checks'))
-    if spec['policy'] == 'recovery':
+    if spec['policy'] in ('recovery', 'source-maintenance'):
         require(result.get('losses') == {'code': 0, 'data': 0, 'link': 0}, 'coverage_loss', result.get('losses'))
         delta = result.get('delta', {})
         keys = ('matched_code', 'matched_data', 'complete_code', 'complete_data')
         require(all(type(delta.get(k)) in (int, float) and math.isfinite(delta[k]) and delta[k] >= 0 for k in keys), 'coverage_loss', delta)
-        require(any(delta[k] > 0 for k in keys), 'zero_gain', 'Prerequisites require a net-positive recovery batch')
+        if spec['policy'] == 'recovery':
+            require(any(delta[k] > 0 for k in keys), 'zero_gain', 'Prerequisites require a net-positive recovery batch')
+        else:
+            ranges = ('code_coverage', 'code_exact', 'code_linked', 'data_coverage', 'data_exact', 'data_linked', 'function_coverage', 'function_exact', 'function_linked')
+            raw_ranges = result.get('zero_lost_address_ranges')
+            require(isinstance(raw_ranges, dict) and set(raw_ranges) == set(ranges) and all(type(v) is int and v == 0 for v in raw_ranges.values()), 'missing_extent_gate', raw_ranges)
+            extra = ('matched_functions', 'total_functions', 'total_code', 'total_data')
+            require(all(type(delta.get(k)) is int and delta[k] >= 0 for k in extra), 'coverage_loss', delta)
+            hashes = result.get('raw_report_sha256')
+            require(isinstance(hashes, dict) and set(hashes) == {'baseline', 'candidate'} and all(isinstance(v, str) and re.fullmatch(r'[0-9a-f]{64}', v) for v in hashes.values()), 'missing_raw_reports', hashes)
         require(result.get('dol_sha1') == '0d85744b51d7379efb025a943d0cd5aaae2191a3', 'wrong_dol', result.get('dol_sha1'))
 
 
@@ -222,6 +238,16 @@ class Queue:
             paths = self.git('diff', '--name-only', self.spec['target'], current).splitlines()
             require(all(p.startswith(('tools/', 'docs/', '.github/')) or p in ('README.md', 'CONTRIBUTING.md', 'AGENTS.md')
                         for p in paths), 'maintenance_scope', paths)
+        if self.spec['policy'] == 'source-maintenance':
+            # Preserve every filename byte: the normal git helper strips stdout.
+            diff = subprocess.run(['git', '-c', 'core.hooksPath=/dev/null', '-C', str(self.repo),
+                                   'diff', '--no-renames', '--name-only', '-z', self.spec['target'], current],
+                                  capture_output=True)
+            require(diff.returncode == 0, 'command_failed', {'command': 'git diff --name-only -z', 'returncode': diff.returncode})
+            raw = diff.stdout
+            require(bool(raw) and raw.endswith(b'\0'), 'source_maintenance_scope', 'Empty or malformed path list')
+            paths = [os.fsdecode(path) for path in raw[:-1].split(b'\0')]
+            require(all(source_maintenance_path(p) for p in paths), 'source_maintenance_scope', paths)
         self.write(state='planned', candidate=current, tree=tree, commits=commits)
         return current, tree
 

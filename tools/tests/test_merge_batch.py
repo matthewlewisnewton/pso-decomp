@@ -135,6 +135,61 @@ class QueueTests(unittest.TestCase):
         self.result['delta']['matched_code'] = 0
         self.rejects('zero_gain', lambda: m.check_validation(self.batch, self.result, self.result['tree']))
 
+    def test_source_maintenance_zero_gain_and_guard_evidence(self):
+        self.batch['policy'] = 'source-maintenance'
+        self.batch['prs'][0]['kind'] = 'source-maintenance'
+        m.validate_spec(self.batch)
+        self.result['delta'] = dict.fromkeys(('matched_code', 'matched_data', 'complete_code', 'complete_data', 'matched_functions', 'total_functions', 'total_code', 'total_data'), 0)
+        ranges = ('code_coverage', 'code_exact', 'code_linked', 'data_coverage', 'data_exact', 'data_linked', 'function_coverage', 'function_exact', 'function_linked')
+        self.result['zero_lost_address_ranges'] = dict.fromkeys(ranges, 0)
+        self.result['raw_report_sha256'] = {'baseline': 'a' * 64, 'candidate': 'b' * 64}
+        m.check_validation(self.batch, self.result, self.result['tree'])
+        for field in ('zero_lost_address_ranges', 'raw_report_sha256'):
+            bad = copy.deepcopy(self.result); del bad[field]
+            self.rejects('missing_extent_gate' if field.startswith('zero') else 'missing_raw_reports', lambda: m.check_validation(self.batch, bad, bad['tree']))
+        bad = copy.deepcopy(self.result); bad['zero_lost_address_ranges']['code_exact'] = False
+        self.rejects('missing_extent_gate', lambda: m.check_validation(self.batch, bad, bad['tree']))
+        bad = copy.deepcopy(self.result); bad['delta']['matched_functions'] = -1
+        self.rejects('coverage_loss', lambda: m.check_validation(self.batch, bad, bad['tree']))
+
+    def test_source_maintenance_scope_and_mode(self):
+        for path in ('src/game/foo.cpp', 'include/game/foo.h'):
+            self.assertTrue(m.source_maintenance_path(path))
+        for path in ('tools/check_pr.py', 'configure.py', 'src/../tools/check.cpp', 'src/build.ninja', 'docs/foo.cpp', 'src/foo.cpp\n', ''):
+            self.assertFalse(m.source_maintenance_path(path), path)
+        self.batch['policy'] = 'source-maintenance'
+        self.rejects('invalid_policy', lambda: m.validate_spec(self.batch))
+        self.batch['prs'][0]['kind'] = 'source-maintenance'
+        self.batch['policy'] = 'recovery'
+        self.rejects('invalid_policy', lambda: m.validate_spec(self.batch))
+
+    def test_source_maintenance_construct_checks_unmodified_git_paths(self):
+        cases = [('src/good.cpp', True), ('include/sub/good.h', True),
+                 ('tools/no.cpp', False), (' src/outside.cpp', False),
+                 ('\nsrc/outside.cpp', False), ('src/trailing.cpp ', False),
+                 ('src/leading name.cpp', False), ('src/tab\tname.cpp', False),
+                 ('src/odd\nname.cpp', False), ('src/unicode-é.cpp', False)]
+        for i, (name, allowed) in enumerate(cases):
+            with self.subTest(name=repr(name)):
+                branch = 'scope' + str(i)
+                git(self.author, 'checkout', '-b', branch, self.batch['target'])
+                path = self.author / name; path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text('fixture\n')
+                git(self.author, 'add', '--', name); git(self.author, 'commit', '-m', 'scope case')
+                git(self.author, 'push', 'origin', branch)
+                batch = copy.deepcopy(self.batch); batch['policy'] = 'source-maintenance'
+                pr = batch['prs'][0]; pr['kind'] = 'source-maintenance'
+                pr['head'] = git(self.author, 'rev-parse', 'HEAD'); pr['head_ref'] = branch
+                pr['review']['head'] = pr['head']
+                state = self.root / ('scope-state-' + str(i)); state.mkdir()
+                queue = LocalQueue(batch, state, LocalAPI(self.remote, batch))
+                with patch.object(m, 'REMOTE', str(self.remote)):
+                    if allowed:
+                        queue.construct()
+                        self.assertEqual(queue.record['state'], 'planned')
+                    else:
+                        self.rejects('source_maintenance_scope', queue.construct)
+
     def test_validation_wrong_tree(self):
         self.rejects('wrong_validation_tree', lambda: m.check_validation(self.batch, self.result, 'f' * 40))
 
