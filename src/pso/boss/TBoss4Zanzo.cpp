@@ -1,3 +1,4 @@
+#include "pso/system/ModelNodePositionCapture.h"
 #include "pso/misc/SampledMotionPoints.h"
 #include "pso/math/FloatRounding.h"
 #include "pso/enemy/BattleParameters.h"
@@ -467,7 +468,6 @@ void * __ct__13TObjBs4CutAtkFv(void *arg0, s32 arg1, s32 arg2, s32 arg3);
 s32 create__11TBoss4BishiFi(void *);
 s32 request_follow_camera_offsets(void *, void *, int);
 int toggle_particle_effect__10TObjPlayerFv(void*);
-s32 clear_render_callback__8TObjFishFv(s32);
 s32 __ct__11TObjControlFP7TObject(s32, s32);
 void __dt__9TObjEnemyFv(void *, s32);
 s32 approach_angle_limited(s32, s32, s32);
@@ -512,7 +512,6 @@ extern s32 registered_player_count;
 struct Def_804867C8 { s32 value; s32 remaining[39]; };
 
 void init_model_node_tables(void *, void *, int);
-s32 TObjFish__sub_800E3124(void *, void *, f32);
 s32 init_collision_body_parts(void *, void *, int);
 const char *boss4_type2_class_name = "TBoss4Type2";
 
@@ -1491,11 +1490,11 @@ void TUnk_80486924::draw_hanger() {
         case 1:
             model_render_flags |= 0x20000;
             TObjEneRe4Sorcerer__sub_801E3F1C(0.0f, arg0->f3c0);
-            ((TObjFish *)(arg0->f44c))->set_draw_callback_list();
+            ((ModelNodePositionCapture *)(arg0->f44c))->install();
             draw_model_motion((void *)get_bml_model(arg0->f390, boss4_zanzo_bml_index_table[i]),
                 (void *)get_bml_motion(arg0->f390, (s32)(((Row_80057270 *)&TBoss4Type2__attack_pattern_table)[arg0->f3c8].c[i])),
                 arg0->f3d0);
-            clear_render_callback__8TObjFishFv(arg0->f44c);
+            ((ModelNodePositionCapture *)(arg0->f44c))->clear();
             model_render_flags &= ~0x20000;
             break;
         default:
@@ -1653,7 +1652,7 @@ S_800578E8 *__dt__13TUnk_80486924Fv(S_800578E8 *o, s16 flag) {
                 o->ptr[i] = 0;
             }
         }
-        TObjFish::init_state_1(o->f44c);
+        ModelNodePositionCapture::destroy((ModelNodePositionCapture *)(o->f44c));
         o->f44c = 0;
         free_collision_body_parts(o);
         o->f394 = 0;
@@ -1697,7 +1696,7 @@ u8 *TBoss4Type2__ct(u8 *arg0, s32 parent, s32 *arg2) {
     *(s32 *)((s8 *)arg0 + 0x3D8) = 0;
     *(f32 *)((s8 *)arg0 + 0x3D4) = 0.4f;
     *(f32 *)((s8 *)arg0 + 0x3D0) = 0.0f;
-    *(s32 *)((s8 *)arg0 + 0x44C) = TObjFish__sub_800E3124(lbl_80486868, arg0 + 0x450, 0.4f);
+    *(s32 *)((s8 *)arg0 + 0x44C) = (s32)ModelNodePositionCapture::create((ModelNodePositionEntry *)(lbl_80486868), (Vec *)( arg0 + 0x450));
     for (i = 0; i < 2; i++) {
         ((Arr_800579A0 *) arg0)->f42C[i] = create_particle_emitter(arg0 + 0x38, boss4_type2_emitter_ids[i]);
     }

@@ -2,91 +2,66 @@ struct NJS_OBJECT;
 #include "types.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/quest/TQuestListVM_8007EAF8.h"
-#include "pso/object/TObjFish_800E2FFC.h"
+#include "pso/system/ModelNodePositionCapture.h"
 #include "pso/object/TObjFish.h"
 #include "pso/enemy/TObjEneRe7Berura.h"
-#include "pso/ui/TAdSinglePlyChrSelectGC.h"
 
-struct Entry_800E2FFC { s32 id; u8 data[0xC]; };
-
-struct Param_800E2FFC { s32 a; s32 b; s32 c; };
-
-struct State_800E2FFC { s32 counter; Entry_800E2FFC *list; Param_800E2FFC *params; s32 pad; };
-
-struct Entry_800E30BC { s32 id; u8 data[0xC]; };
-
-struct Entry_800E3074 { s32 id; u8 data[0xC]; };
-
-struct Param_800E3074 { s32 a; s32 b; s32 c; };
-
-struct State_800E3074 { s32 counter; Entry_800E3074 *list; Param_800E3074 *params; s32 pad; };
-
-struct Arg_800E3074 { Entry_800E3074 *list; Param_800E3074 *params; };
+struct ModelNodePositionCaptureState {
+    s32 node_index;
+    ModelNodePositionEntry *entries;
+    Vec *positions;
+    s32 unknown_0c;
+};
 
 extern "C" {
-u8 * fn_800E31C4(void *, void *, s32);
-extern State_800E2FFC TObjFish_draw_callback_state;
-void transform_to_view__11TCameraCtrlFii(s32 arg0, s32 arg1);
+extern ModelNodePositionCaptureState model_node_position_capture_state;
+void transform_to_view__11TCameraCtrlFii(s32, s32);
+}
 
-void TObjFish::draw_callback_transform_to_view(NJS_OBJECT *) {
-    Entry_800E2FFC *p = TObjFish_draw_callback_state.list;
-    Param_800E2FFC *q = TObjFish_draw_callback_state.params;
-    s32 id;
-    while ((id = p->id) != -1) {
-        if (id == TObjFish_draw_callback_state.counter) {
-            transform_to_view__11TCameraCtrlFii((s32)p->data, (s32)q);
+void ModelNodePositionCapture::capture_node(NJS_OBJECT *) {
+    ModelNodePositionEntry *entry = model_node_position_capture_state.entries;
+    Vec *position = model_node_position_capture_state.positions;
+    s32 index;
+    while ((index = entry->node_index) != -1) {
+        if (index == model_node_position_capture_state.node_index) {
+            transform_to_view__11TCameraCtrlFii((s32)&entry->offset, (s32)position);
         }
-        p++;
-        q++;
+        entry++;
+        position++;
     }
-    TObjFish_draw_callback_state.counter++;
+    model_node_position_capture_state.node_index++;
 }
 
-void TObjFish::set_draw_callback_list() {
-    Arg_800E3074 *arg = (Arg_800E3074 *)this;
-    (*(State_800E3074 *)&TObjFish_draw_callback_state).counter = 0;
-    (*(State_800E3074 *)&TObjFish_draw_callback_state).list = arg->list;
-    (*(State_800E3074 *)&TObjFish_draw_callback_state).params = arg->params;
-    set_chunk_model_node_callback((TObjFish::draw_callback_transform_to_view));
+void ModelNodePositionCapture::install() {
+    model_node_position_capture_state.node_index = 0;
+    model_node_position_capture_state.entries = entries;
+    model_node_position_capture_state.positions = positions;
+    set_chunk_model_node_callback(capture_node);
 }
 
-s32 TObjFish::is_entry_table_valid() {
-    Entry_800E30BC *p = (Entry_800E30BC *)this;
-    s32 i;
-    if (p == 0) {
+s32 ModelNodePositionCapture::is_valid(ModelNodePositionEntry *entries) {
+    ModelNodePositionEntry *entry = entries;
+    s32 count;
+    if (entry == 0) {
         return 0;
     }
-    for (i = 0; p->id != -1; i++, p++) {
-        if (i >= 0x40) {
+    for (count = 0; entry->node_index != -1; count++, entry++) {
+        if (count >= 0x40) {
             return 0;
         }
     }
     return 1;
 }
 
-void TObjFish::init_state_1(void *arg0) {
-    TObjFish__sub_800E3188((s32)arg0, (s16)(1));
+void ModelNodePositionCapture::destroy(ModelNodePositionCapture *capture) {
+    delete capture;
 }
 
-s32 TObjFish__sub_800E3124(u8 *list, s32 vecs) {
-    s32 temp_r3;
-    s32 var_r0;
-    if (((TObjFish *)list)->is_entry_table_valid() != 0) {
-        temp_r3 = (int)::operator new(8);
-        var_r0 = temp_r3;
-        if (var_r0 != 0) {
-            var_r0 = (long) (fn_800E31C4((void *) temp_r3, list, vecs));
-        }
-        return var_r0;
+ModelNodePositionCapture *ModelNodePositionCapture::create(ModelNodePositionEntry *entries, Vec *positions) {
+    if (is_valid(entries) != 0) {
+        return new ModelNodePositionCapture(entries, positions);
     }
     return 0;
 }
 
-s32 TObjFish__sub_800E3188(s32 arg0, s16 arg1) {
-    if ((arg0 != 0) && (arg1 > 0)) {
-        __dl__FPv();
-    }
-    return arg0;
-}
-
-}
+ModelNodePositionCapture::~ModelNodePositionCapture() {}
