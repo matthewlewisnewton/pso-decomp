@@ -1,3 +1,4 @@
+#include "pso/enemy/TObjEnemy.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "types.h"
 #include "pso/enemy/TObjEneEpsilon.h"
@@ -260,7 +261,7 @@ void TObjEneRecon__sub_8031C364(u8 *arg0, s32 arg1) {
         ((TObjEneDD *)(arg0))->vfunc_96();
         F(s32, 0x444) &= ~3;
         F(s32, 0x80) = 0;
-        ((TObjPlayer *)arg0)->refresh_lobby_state();
+        ((TObjEnemy *)arg0)->distribute_experience_and_request_drop();
         TBoss8Dragon__sub_800BB7DC(arg0);
         TBoss8Dragon__sub_800BB7D8(arg0, 0xF1, lbl_805DF3CC);
         F(s32, 0x3C0) = 0;

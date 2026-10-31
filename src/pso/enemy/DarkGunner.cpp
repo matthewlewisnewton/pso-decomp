@@ -1131,7 +1131,7 @@ void TObjPlayer__sub_800A1C84(TObjPlayer *enemy) {
     switch (enemy->m_37c) {
     case 0:
         enemy->requested_action = 7;
-        enemy->refresh_lobby_state();
+        ((TObjEnemy *)enemy)->distribute_experience_and_request_drop();
         ((TObjEnemy *)enemy)->send_entity_set_flags();
         TObjPlayer__sub_800A04F0((u8 *)enemy + 0x408);
         fn_800D911C((Vec *)((u8 *)enemy + 0x2FC));

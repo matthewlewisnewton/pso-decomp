@@ -1263,7 +1263,7 @@ void state_dying__17TObjEneBm3FlyNestFPvi(u8 *actor, s32 arg1) {
         *(s16 *)((s8 *)actor + 0xB8) = 7;
         ((TObjEneDD *)(actor))->vfunc_96();
         *(f32 *)((s8 *)actor + 0x4B0) = 0.0f;
-        ((TObjPlayer *)actor)->refresh_lobby_state();
+        ((TObjEnemy *)actor)->distribute_experience_and_request_drop();
         *(s32 *)((s8 *)actor + 0x4C8) = 4;
         *(s32 *)((s8 *)actor + 0x4CC) = 0x14;
         *(s32 *)((s8 *)actor + 0x4D0) = 0;

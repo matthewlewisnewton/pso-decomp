@@ -567,7 +567,7 @@ void TObjEneLappy::vfunc_63() {
         if (!(temp_r3 & 4)) {
             this->m_374 = (s16) (temp_r3 | 4);
             play_sound_effect((s32)(((s32)remap_area_sound_id(0x3AD13, 5))), (u32)(((u8 *)this) + 0x38), 0, 0);
-            ((TObjPlayer *)((u8 *)this))->query_lobby_state();
+            ((TObjEnemy *)((u8 *)this))->request_standard_drop();
             this->requested_action = 8;
         }
     } else if ((s16) this->mode != 5) {

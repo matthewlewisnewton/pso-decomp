@@ -2,6 +2,7 @@
 #include "pso/protocol/protocol_types.h"
 #pragma readonly_strings on
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/enemy/TObjEnemy.h"
 
 // Built with -inline deferred (GAME_EXCEPTIONS in configure.py), which emits functions
 // in reverse source order: bodies here run from the highest address down.
@@ -1160,7 +1161,7 @@ void TBoss3VoloptP02::update_death_sequence() {
         if (this->frame >= 47.0f) {
             TBoss3Volopt::create_breakup_mdl((s32)breakup_model, (s32)&death_breakup_params, texlist, (s32)&body_center_position, rotation_y);
             ((TObjPlayer *)&body_center_position)->trigger_dell_biter_events();
-            ((TObjPlayer *)this)->refresh_lobby_state();
+            ((TObjEnemy *)this)->distribute_experience_and_request_drop();
             volopt_death_active = 1;
             if (TBoss3Volopt::is_death_active() != 0) {
                 send_entity_set_flags();

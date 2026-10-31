@@ -309,7 +309,6 @@ u8 is_below_half_hp__14TObjEnePanarmsFPv(void *arg0);
 s32 TObjEnePanarms__sub_800E2FB4(O_800E2FB4 *self);
 void clear_render_callback__8TObjFishFv(void);
 s32 __ct__11TObjControlFP7TObject(s32, s32);
-void refresh_lobby_state__10TObjPlayerFv();
 void *__dt__9TObjEnemyFv(TObjEnemy *arg0, s16 arg1);
 f32 horizontal_distance_squared(void *, void *);
 s32 angle_difference_abs(s32, s32);
@@ -819,7 +818,7 @@ void TObjEnePanarms__sub_800E0A44(u8 *ene_panarms) {
     s16 var_r30;
     *(s32 *)((s8 *)ene_panarms + 0x384) = 1;
     ((TObjEnePanarms *)ene_panarms)->m_388 = 0;
-    refresh_lobby_state__10TObjPlayerFv();
+    ((TObjEnemy *)ene_panarms)->distribute_experience_and_request_drop();
     var_r30 = 7;
     ((TObjEnePanarms *)ene_panarms)->motion_flags &= ~1;
     if (find_nearest_visible_player(ene_panarms, &v, TObjEnePanarms__data_805DA560) != 0xFFFF) {

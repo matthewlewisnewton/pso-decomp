@@ -1051,7 +1051,7 @@ void TObjEneGibbles::vfunc_63() {
         this->requested_action = 9;
         temp_r4 = this->bodies;
         *(s32 *)((s8 *)temp_r4 + 0x18) = (s32) (*(s32 *)((s8 *)temp_r4 + 0x18) & 0xFFFFFFFE);
-        ((TObjPlayer *)this)->refresh_lobby_state();
+        ((TObjEnemy *)this)->distribute_experience_and_request_drop();
         send_entity_set_flags();
     }
 }
