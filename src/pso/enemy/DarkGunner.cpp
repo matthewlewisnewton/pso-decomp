@@ -127,7 +127,7 @@ s32 minimap_render_dot(void *, s32, s32, s32);
 void TObjPlayer__sub_800A16C4(u8 *arg0);
 void queue_destruction__7TObjectFv(void *arg0);
 s32 update_if_active__15TObjEnemyCustomFl(void *, s32);
-s32 TObjPlayer__sub_800A3210(s32 i, s32 _w1, s32 _w2);
+s32 TObjPlayer__sub_800A3210(s32 i);
 u8 *TObjPlayer__sub_800A4204(u8 *arg0, u8 *arg1, s32 arg2, s32 arg3, s32 arg4);
 s32 submit_cursor_candidate(void *, s32);
 
@@ -789,7 +789,7 @@ s32 TObjPlayer::update_hide_sequence() {
         temp_r4 = temp_r5 & 0xFFB7FFFF;
         *(s32 *)&this->unk_388 = temp_r4;
         this->requested_action = 8;
-        this->m_39c = TObjPlayer__sub_800A3210(1, temp_r4, temp_r5);
+        this->m_39c = TObjPlayer__sub_800A3210(1);
         this->m_37c = 1;
     case 1:
         ((TObjMotion *)arg0)->advance_animation();
@@ -1242,7 +1242,7 @@ s32 TObjPlayer__sub_800A1FEC(void *arg0) {
         }
         if (self->fB8 != 4) break;
         self->f388 |= 0x200000;
-        self->timer = ((s32 (*)(s32))TObjPlayer__sub_800A3210)(0);
+        self->timer = TObjPlayer__sub_800A3210(0);
         self->state = 2;
         play_sound_effect(0x4003B52A, (const Vec *)(&self->pos), 0, 0);
         {
@@ -1287,7 +1287,7 @@ s32 TObjPlayer__sub_800A1FEC(void *arg0) {
         ((TObjEnemyCustom *)self)->find_target_in_range(200.0f);
         if (self->f338 == 0xFFFF) break;
         {
-            u8 *p = (u8 *)new TUnk_804909C4((u8 *)self, (s32)&self->f3B4, (s32)(self->target + 0x2FC));
+            u8 *p = (u8 *)new TUnk_804909C4((u8 *)self, (const Vec *)&self->f3B4, (const Vec *)(self->target + 0x2FC));
         }
         play_sound_effect(0x40039E2B, (const Vec *)(&self->pos), 0, 0);
         break;
@@ -1530,7 +1530,7 @@ void TObjPlayer__sub_800A28A4(VObj_18_800A28A4 *self) {
     if ((self->flags & 0x400000) && ((TObjEnemy *)self)->obj_testFlags30(0x22) == 0) {
         s32 phase = self->material_phase;
         self->material_phase = phase + 0x800;
-        self->motion->blend = ((s32 (*)(s32, s32))TObjPlayer__sub_800A3210)(2, phase);
+        self->motion->blend = TObjPlayer__sub_800A3210(2);
     } else {
         self->motion->blend = 0.0f;
     }
@@ -1736,7 +1736,7 @@ f32 TObjPlayer__sub_800A3200(s32 arg0) {
     return *(f32 *)((s8 *)(lbl_805D5004 + (arg0 * 4)) + 0);
 }
 
-s32 TObjPlayer__sub_800A3210(s32 i, s32 _w1, s32 _w2) {
+s32 TObjPlayer__sub_800A3210(s32 i) {
     return (*(G_800A3210 * *)&lbl_805D5004)->arr[i];
 }
 

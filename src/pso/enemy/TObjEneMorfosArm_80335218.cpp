@@ -1,5 +1,6 @@
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
+#include "pso/enemy/TObjEneMorfos.h"
 #include "pso/enemy/TObjEneMorfosArm.h"
 #include "pso/enemy/TObjEneMorfosArm_80335218.h"
 #include "pso/object/TObject_80019A50.h"
@@ -30,8 +31,6 @@ struct RecoveredGlobal_80335354___vt__16TObjEneMorfosArm { s32 value; u8 remaini
 typedef char RecoveredGlobal_80335354___vt__16TObjEneMorfosArm_size[sizeof(RecoveredGlobal_80335354___vt__16TObjEneMorfosArm) == 0x38 ? 1 : -1];
 
 extern "C" {
-void *TObjEneMorfosArm__sub_803326B4(void *p);
-s32 TObjEneMorfosArm__sub_803326BC(void *);
 u16 get_entity_id(void *);
 s32 set_action_table__10TObjMotionFP16TObjMotionAction(void *, void *, int);
 extern RecoveredGlobal_80335354_lbl_804EE3B0 morfos_arm_motion_params;
@@ -67,8 +66,8 @@ void TObjEneMorfosArm::run_task() {
         queue_destruction__7TObjectFv((arg0));
         return;
     }
-    VecCopy((Vec *)(arg0 + 0x38), (const Vec *)(TObjEneMorfosArm__sub_803326B4(temp_r3)));
-    this->rotation_y = TObjEneMorfosArm__sub_803326BC(*(u8 * *)&this->m_fc);
+    VecCopy((Vec *)(arg0 + 0x38), (const Vec *)(((TObjEneMorfos *)temp_r3)->get_arm_position()));
+    this->rotation_y = ((TObjEneMorfos *)this->m_fc)->get_heading();
     if (this->motion_flags & 0x10) {
         queue_destruction__7TObjectFv((arg0));
     }
@@ -86,8 +85,8 @@ u8 *TObjEneMorfosArm__ct(TObjEneMorfosArm *ene_morfos_arm, s32 arg1, u8 *arg2) {
     *(s32 *)((s8 *)ene_morfos_arm + 0) = (s32) ((s32)TObjEneMorfosArm__name);
     *(u8 **)((s8 *)ene_morfos_arm + 0xFC) = arg2;
     ene_morfos_arm->m_100 = get_entity_id(*(u8 **)((s8 *)ene_morfos_arm + 0xFC));
-    VecCopy((Vec *)((u8 *)ene_morfos_arm + 0x38), (const Vec *)((void *) (((s32)TObjEneMorfosArm__sub_803326B4((void *)((s32) *(u8 **)((s8 *)ene_morfos_arm + 0xFC)))))));
-    ene_morfos_arm->rotation_y = TObjEneMorfosArm__sub_803326BC(*(u8 **)((s8 *)ene_morfos_arm + 0xFC));
+    VecCopy((Vec *)((u8 *)ene_morfos_arm + 0x38), (const Vec *)((void *) (((s32)((TObjEneMorfos *)ene_morfos_arm->m_fc)->get_arm_position()))));
+    ene_morfos_arm->rotation_y = ((TObjEneMorfos *)ene_morfos_arm->m_fc)->get_heading();
     *(s32 *)((s8 *)ene_morfos_arm + 0x34) = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)(*(u8 * *)&TObjEneMorfosArm__parent_morfos_instance) + 0x42C)) + 8);
     temp_r5 = (u8 *)(*(u8 **)((s8 *)(*(u8 * *)&TObjEneMorfosArm__parent_morfos_instance) + 0x42C));
     ene_morfos_arm->texlist = (s32) *(s32 *)((s8 *)temp_r5 + 0xC);
