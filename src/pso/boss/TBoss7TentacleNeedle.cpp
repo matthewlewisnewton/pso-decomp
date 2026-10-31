@@ -327,7 +327,7 @@ void render__14TBoss7TentacleFv(u8 *arg0) {
         TObjPlayer::concat_matrix(0, (int) (*(s32 *)((s8 *)arg0 + 0x130)));
         rotate_matrix_y(0, (int) (*(s32 *)((s8 *)arg0 + 0x13C)));
         scale_current_matrix((void *) ((u8 *)(arg0) + 0x24));
-        ((s32 (*)(void *, int, f32))draw_model_motion)((void *) (*(s32 **)((s8 *)arg0 + 0x1C)), (int) (*(s32 *)((s8 *)arg0 + 0x20)), (f32) (*(f32 *)((s8 *)arg0 + 0x134)));
+        draw_model_motion((void *) (*(s32 **)((s8 *)arg0 + 0x1C)), (void *) (*(s32 *)((s8 *)arg0 + 0x20)), (f32) (*(f32 *)((s8 *)arg0 + 0x134)));
         clear_motion_packed_rotation();
         break;
     case 1:
@@ -337,7 +337,7 @@ void render__14TBoss7TentacleFv(u8 *arg0) {
         TObjPlayer::concat_matrix(0, (int) (*(s32 *)((s8 *)arg0 + 0x130)));
         rotate_matrix_zyx(0, (*(s32 *)((s8 *)arg0 + 0x140)), (*(s32 *)((s8 *)arg0 + 0x13C)), 0);
         scale_current_matrix((void *) ((u8 *)(arg0) + 0x24));
-        ((s32 (*)(void *, int, f32))draw_model_motion)((void *) (*(s32 **)((s8 *)arg0 + 0x1C)), (int) (*(s32 *)((s8 *)arg0 + 0x20)), (f32) (*(f32 *)((s8 *)arg0 + 0x134)));
+        draw_model_motion((void *) (*(s32 **)((s8 *)arg0 + 0x1C)), (void *) (*(s32 *)((s8 *)arg0 + 0x20)), (f32) (*(f32 *)((s8 *)arg0 + 0x134)));
         clear_motion_packed_rotation();
         break;
     case 2:
