@@ -1,7 +1,7 @@
 #include "types.h"
 #include "pso/object/TObject_80019A50.h"
-#include "pso/boss/TBoss2LaserLight.h"
 #include "pso/boss/TUnk_80482C58.h"
+#include "pso/boss/TBoss2LaserLight.h"
 #include "pso/object/TObjLight.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 
@@ -26,7 +26,6 @@ struct Obj_800372F0 {
 };
 
 extern "C" {
-extern const f32 TBoss2LaserLight__data_805D849C;
 s32 noop_laser__23TAdSinglePlyChrSelectGCFv(void *);
 s32 TAdSinglePlyChrSelectGC__sub_80133508(void *);
 extern const f32 lbl_805D84A8;
@@ -45,9 +44,9 @@ TUnk_80482C58::~TUnk_80482C58() {
 TUnk_80482C58::TUnk_80482C58(TObject *parent, s32 arg2, s32 arg3) : TObject(parent) {
     s32 i;
     for (i = 0; i < 20; i++) {
-        ((S_80037264 *)this)->recs[i].x = TBoss2LaserLight__data_805D849C;
-        ((S_80037264 *)this)->recs[i].y = TBoss2LaserLight__data_805D849C;
-        ((S_80037264 *)this)->recs[i].z = TBoss2LaserLight__data_805D849C;
+        ((S_80037264 *)this)->recs[i].x = 0.0f;
+        ((S_80037264 *)this)->recs[i].y = 0.0f;
+        ((S_80037264 *)this)->recs[i].z = 0.0f;
     }
     ((S_80037264 *)this)->a10c = 0;
     ((S_80037264 *)this)->a110 = 0;
@@ -116,6 +115,10 @@ void TBoss2LaserLight::run_task() {
 void TBoss2LaserLight__sub_80037474(void* p) { *(s32*)((char*)p + 0x24) = 2; }
 void TBoss2LaserLight__sub_80037480(void* p) { *(s32*)((char*)p + 0x24) = 1; }
 
+TBoss2LaserLight::~TBoss2LaserLight() {
+    if (*(void **)((s8 *)this + 0x40) != NULL) { ((TObjLight *)(*(void **)((s8 *)this + 0x40)))->unregister_and_free(); this->m_40 = 0; }
+}
+
 struct LaserLightParams_80037500 {
     u8 pad0[0x28];
     f32 position[2];
@@ -138,8 +141,8 @@ extern "C" TBoss2LaserLight *TBoss2LaserLight__ct(TBoss2LaserLight *self, TObjec
     p->position[1] = lbl_805D84AC;
     p->f30 = lbl_805D84B0;
     p->f34 = lbl_805D84B4;
-    p->f38 = TBoss2LaserLight__data_805D849C;
-    p->f3C = TBoss2LaserLight__data_805D849C;
+    p->f38 = 0.0f;
+    p->f3C = 0.0f;
     self->m_40 = TObjLight::alloc_light_slot();
     if (self->m_40 == 0) {
         self->queue_destruction();
@@ -149,8 +152,4 @@ extern "C" TBoss2LaserLight *TBoss2LaserLight__ct(TBoss2LaserLight *self, TObjec
     ((TAdSinglePlyChrSelectGC *)self->m_40)->set_position(&p->position);
     ((TAdSinglePlyChrSelectGC *)self->m_40)->forward_to_field_0x14(&p->f38);
     return self;
-}
-
-TBoss2LaserLight::~TBoss2LaserLight() {
-    if (*(void **)((s8 *)this + 0x40) != NULL) { ((TObjLight *)(*(void **)((s8 *)this + 0x40)))->unregister_and_free(); this->m_40 = 0; }
 }
