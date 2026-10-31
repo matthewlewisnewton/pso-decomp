@@ -19,6 +19,22 @@ conversion preserves the original unit data in a targeted comparison; the
 locked two-job rebuild and `tools/check_pr.py --no-build` passed: no exact
 functions, data ranges or linked units regressed, and all 3,536 linked units
 passed. The baseline DOL hash passed; this unit still uses original fallback
-for linking, so that hash does not establish correctness of the new body. Functions at `0x80260904` and
-`0x802616BC` still have no source body, and the unit is not linked from source.
+for linking, so that hash does not establish correctness of the new body. The function at `0x802616BC` still has no source body, and the unit is not
+linked from source.
 No original binaries or generated objects are included in this checkpoint.
+
+## Input dispatch candidate at 0x80260904
+
+The original data object's first 22 three-word member-function descriptors
+refer to `vt0` through `vt21`, and the function copies them to a second array
+on first use, guarded by a byte at `0x805D6458`. The candidate accesses that
+existing object through a size-checked local view and retains the observed
+controller, character filtering, sound, and child-dispatch paths. The data
+object and child class ownership remain provisional shared interfaces; no
+shared definitions are changed.
+
+The targeted GC/2.6 compile succeeds. Its input dispatcher is 704 bytes against
+1,324 original bytes, with objdiff reporting 40.28%; a loop expresses the
+original expanded copy and this is not an exact-code claim. The previous
+grid renderer remains 91.09%, and targeted `.rodata` comparison remains 100%.
+The full regression check for the new dispatcher is pending.

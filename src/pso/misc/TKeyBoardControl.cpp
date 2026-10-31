@@ -10,6 +10,7 @@
 #include "pso/ui/Language.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/unk/text_8026C664.h"
+#include "pso/misc/TWindowKeyBoardBase.h"
 
 struct UV_80262038 {
     f32 u;
@@ -44,7 +45,25 @@ struct RecoveredFields_8026088C_arg0 {
     u32 field_6C;
 };
 
+typedef void (TWindowKeyBoardSoft::*SoftKeyAction)();
+struct SoftKeyActionData_80260904 {
+    u8 window_descriptor[0x14];
+    SoftKeyAction initial[22];
+    SoftKeyAction active[22];
+};
+struct SoftKeyLayout_80260904 {
+    u8 page_count;
+    u8 page_width;
+    u8 pad[2];
+    const u16 **pages;
+};
+typedef char SoftKeyActionData_size_80260904[sizeof(SoftKeyActionData_80260904) == 0x224 ? 1 : -1];
+
 extern "C" {
+extern SoftKeyActionData_80260904 soft_keyboard_window_and_action_data;
+extern s8 lbl_805D6458;
+s32 get_chat_shortcut(s32);
+s32 set_input_mode__20TWindowSubStatusDispFUc(s32, s32);
 s32 TWindowShortListCtrl__check_controller_button(void *, int, int);
 struct RecoveredGlobal_80260808_lbl_8050E208 {
     s32 value;
@@ -292,6 +311,59 @@ void TWindowKeyBoardSoft::update_keyboard_child_input_from_controller(s32 arg1) 
             }
         }
     }
+}
+
+struct KeyCursor_80260904 {
+    u8 pad0[0x60];
+    u32 flags;
+    s8 page;
+    s8 cursor_x;
+    s8 cursor_y;
+    u8 pad67[5];
+    TWindowKeyBoardSoft *child;
+};
+
+// The original initializes the 22 member-function actions once by copying
+// their descriptors from the adjacent keyboard data object. The object and
+// its owner remain external; this view records only the observed boundaries.
+void TWindowKeyBoardSoft__sub_80260904(void *self, s32 port) {
+    KeyCursor_80260904 *kb = (KeyCursor_80260904 *)self;
+    SoftKeyLayout_80260904 *layout = (SoftKeyLayout_80260904 *)TWindowKeyBoardSoft__language_text_resources;
+    if (!lbl_805D6458) {
+        for (s32 i = 0; i < 22; ++i) {
+            soft_keyboard_window_and_action_data.active[i] = soft_keyboard_window_and_action_data.initial[i];
+        }
+        lbl_805D6458 = 1;
+    }
+    if (((s32 (*)(void *, int))TWindowShortListCtrl__check_controller_button)(
+            (u8 *)&controller_input_state.value + port * 0x50 + 0x20, 4) == 0 || kb->child == NULL) {
+        return;
+    }
+    if (!(kb->flags & 1)) ((TWindowKeyBoardSoft *)self)->update_focus_flags();
+    ((TWindowKeyBoardSoft *)self)->spawn_key_effect(kb->cursor_x, kb->cursor_y);
+    if (kb->flags & 0x10) {
+        kb->child->vt0();
+        if (!kb->child->is_key_state_2()) kb->flags &= ~0x10;
+        return;
+    }
+    u16 code = layout->pages[kb->page][kb->cursor_y * 16 + kb->cursor_x];
+    if (code >= 3 && code <= 14) {
+        if (TWindowSubMag__sub_80262808(kb->child)) play_sound_effect(0x53F06, 0, 0, 0);
+        else if (*(s32 *)get_chat_shortcut(code + 5) != 3) play_sound_effect(0x52D01, 0, 0, 0);
+    } else if (code == 2 && (kb->flags & 8)) {
+        play_sound_effect(0x53F06, 0, 0, 0);
+    } else {
+        play_sound_effect(0x52D01, 0, 0, 0);
+    }
+    if (code < 0x20) {
+        if (code < 22) (kb->child->*soft_keyboard_window_and_action_data.active[code])();
+        return;
+    }
+    if (((TWindowKeyBoardSoft *)self)->get_flag_bit5() && (code < 'A' || code > 'Z')) return;
+    if (((TWindowKeyBoardSoft *)self)->get_flag_bit6() && !is_alnum__19TWindowKeyBoardSoftFUs(code)) return;
+    if (((TWindowKeyBoardSoft *)self)->is_cursor_locked() && (code < '0' || code > '9')) return;
+    set_input_mode__20TWindowSubStatusDispFUc((s32)kb->child, 2);
+    ((TWindowKeyBoardBase *)kb->child)->insert_character(code);
 }
 
 struct KeyCursor_80260E30 {
