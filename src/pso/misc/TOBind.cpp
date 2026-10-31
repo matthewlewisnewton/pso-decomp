@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "types.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/misc/TOBind.h"
@@ -23,7 +24,7 @@ void TOBind::sub_8015860C() {
 }
 
 void TOBind::run_task() {
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         TOBind__sub_80158608(this);
         return;
     }

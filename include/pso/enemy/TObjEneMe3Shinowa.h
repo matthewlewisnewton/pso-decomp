@@ -3,7 +3,7 @@
 
 #include "types.h"
 #include "pso/enemy/TObjEneDD_ST.h"
-#include "pso/enemy/TUnk_80494938.h"
+#include "pso/misc/MaterialOpacityFade.h"
 
 struct TObjEneMe3Shinowa : public TObjEneDD_ST {
     TObjEneMe3Shinowa(TObject *parent);
@@ -50,7 +50,7 @@ struct TObjEneMe3Shinowa : public TObjEneDD_ST {
     u8 unk_3de[2];
     TObject *effect_3e0;
     TObject *effect_3e4;
-    TUnk_80494938 fade;
+    MaterialOpacityFade fade;
     s32 m_404;
     s32 m_408;
     s32 m_40c;

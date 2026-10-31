@@ -1,14 +1,10 @@
 #include "types.h"
-#include "pso/boss/TBoss3Volopt_800D8ACC.h"
+#include "pso/misc/PositionSoundEffects.h"
+#include "pso/unk/text_80087278.h"
 #include "pso/enemy/TObjEneRe4Sorcerer_800EDB98.h"
 #include "pso/system/vector.h"
 #include "pso/boss/TBoss3Volopt.h"
 #include "pso/map/FloorArea.h"
-
-struct Stack_800D8F78 {
-    s32 sp8;
-    f32 spC;
-};
 
 typedef struct Vec_800D8C48 {
     f32 x, y, z;
@@ -16,7 +12,6 @@ typedef struct Vec_800D8C48 {
 
 extern "C" {
 void *create_timed_particle_emitter(void *owner, s32 id, s32 b, s32 c);
-s32 spawn_particle_effect(void *, int, f32);
 extern const f32 lbl_805DA3C0;
 s32 play_sound_effect(int, void *, int, int);
 s32 TBreakUpMdl__ct(void*, s32, s32, s32, s32, s32, s32);
@@ -104,10 +99,11 @@ void TBoss3Volopt::play_area_se_with_particle() {
     VecCopy((Vec *)&v, (const Vec *)arg0);
     y = v.y;
     v.y = y + lbl_805DA3C0;
-    spawn_particle_effect(&v, 0xE6, y);
+    spawn_particle_effect(&v, 0xE6);
 }
 
-void TBoss3Volopt__sub_800D8D88(s32 arg0) {
+void play_area_sound_and_particles_a(const Vec *position) {
+    s32 arg0 = (s32)position;
     switch (get_current_floor_area()) {
     case AREA_CENTRAL_CONTROL_AREA:
     case AREA_JUNGLE_NORTH:
@@ -130,11 +126,11 @@ void TBoss3Volopt__sub_800D8D88(s32 arg0) {
         play_sound_effect(TBoss3Volopt::remap_area_sound_id(0x4003AB20), (void *)arg0, 0, 0);
         break;
     }
-    spawn_particles_at__12TBoss3VoloptFi(arg0);
+    spawn_position_particles((const Vec *)arg0);
 }
 
-void TBoss3Volopt::play_area_sound_effect() {
-    s32 arg0 = (s32)this;
+void play_area_sound_and_particles_b(const Vec *position) {
+    s32 arg0 = (s32)position;
     switch (get_current_floor_area()) {
     case AREA_CENTRAL_CONTROL_AREA:
     case AREA_JUNGLE_NORTH:
@@ -157,17 +153,17 @@ void TBoss3Volopt::play_area_sound_effect() {
         play_sound_effect(TBoss3Volopt::remap_area_sound_id(0x4003AB37), (void *)arg0, 0, 0);
         break;
     }
-    spawn_particles_at__12TBoss3VoloptFi(arg0);
+    spawn_position_particles((const Vec *)arg0);
 }
 
-void spawn_particles_at__12TBoss3VoloptFi(s32 arg0) {
-    Stack_800D8F78 stack;
-    f32 temp_f1;
-    VecCopy((Vec *)(&stack.sp8), (const Vec *)(arg0));
-    create_timed_particle_emitter((void *)arg0, 0xEA, 0xA, 0x1E);
-    temp_f1 = stack.spC;
-    stack.spC = temp_f1 + lbl_805DA3C0;
-    spawn_particle_effect(&stack.sp8, 0xE9, temp_f1);
+void spawn_position_particles(const Vec *position) {
+    Vec shifted_position;
+    f32 y;
+    VecCopy(&shifted_position, position);
+    create_timed_particle_emitter((void *)position, 0xEA, 0xA, 0x1E);
+    y = shifted_position.y;
+    shifted_position.y = y + lbl_805DA3C0;
+    spawn_particle_effect(&shifted_position, 0xE9);
 }
 
 }
