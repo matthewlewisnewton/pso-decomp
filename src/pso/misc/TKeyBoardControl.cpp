@@ -698,7 +698,7 @@ s32 TWindowKeyBoardSoft__sub_8026227C(int self, int context) {
         }
         TWindowKeyBoardSoft::draw_key_frame((void *)self, (f32 *)ctx, color, frame, x,
             TWindowKeyBoardSoft__data_805DD098, (f32)(resources[1] + 1), scale);
-        x += (f32)resources[1];
+        x += (f32)(s32)resources[1];
     }
     set_constant_material_color(ctx->color);
     x = TWindowKeyBoardSoft__sub_802606E0(kb);
