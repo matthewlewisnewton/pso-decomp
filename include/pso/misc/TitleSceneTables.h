@@ -1,10 +1,10 @@
 #ifndef PSO_MISC_TITLE_SCENE_TABLES_H
 #define PSO_MISC_TITLE_SCENE_TABLES_H
 
-#include "pso/misc/TLobby.h"
+#include "pso/misc/TUnk_804EEF64.h"
 #include "pso/system/NinjaTypes.h"
 
-typedef void (TLobby::*TitleStateHandler)();
+typedef void (TUnk_804EEF64::*TitleStateHandler)();
 typedef char TitleStateHandlerSize[sizeof(TitleStateHandler) == 12 ? 1 : -1];
 
 extern "C" {

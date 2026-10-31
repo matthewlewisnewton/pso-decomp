@@ -129,18 +129,18 @@ void TLobby::set_flag_and_clear_download() {
 }
 
 void TLobby__sub_803361FC(void) {  }
-void TLobby::open_keyboard() { lobby_game_mode_state = 3; TKeyBoardControl__sub_8000F9CC((s32)((void*)19)); }
-void TLobby::request_change_game_mode() { lobby_game_mode_state = 2; TAdMultiChgGameModeGC::set_mode_change_state(); }
-void TLobby::enter_game_mode_change() { lobby_game_mode_state = 1; TAdMultiChgGameModeGC::set_game_mode_state(); }
-void TLobby::enter_chg_game_mode() { lobby_game_mode_state = 0; TAdMultiChgGameModeGC::set_mode_0x15(); }
-void TLobby__sub_803362A4(void *arg0_) {
+void TUnk_804EEF64::open_keyboard() { lobby_game_mode_state = 3; TKeyBoardControl__sub_8000F9CC((s32)((void*)19)); }
+void TUnk_804EEF64::request_change_game_mode() { lobby_game_mode_state = 2; TAdMultiChgGameModeGC::set_mode_change_state(); }
+void TUnk_804EEF64::enter_game_mode_change() { lobby_game_mode_state = 1; TAdMultiChgGameModeGC::set_game_mode_state(); }
+void TUnk_804EEF64::enter_chg_game_mode() { lobby_game_mode_state = 0; TAdMultiChgGameModeGC::set_mode_0x15(); }
+void TLobby__sub_803362A4(TUnk_804EEF64 *arg0_) {
     u8 *arg0 = (u8 *)arg0_;
     if (TAdTrialAgreementGC__sub_80335958(*(s32 *)(arg0 + 0x24)) != 0) {
         TKeyBoardControl__sub_8000F90C(2);
         if (((TAdSinglePlyChrSelectGC *)arg0)->start_offline_seq() != 0) {
             ((void (*)(void *))TLobby__sub_803361FC)(arg0);
             TitleStateHandler m = TLobby__state_handler_pmf_table[TLobby__sub_80336030(arg0)];
-            (((TLobby *)arg0)->*m)();
+            (arg0_->*m)();
         }
     }
 }
@@ -164,7 +164,7 @@ void TUnk_804EEF64::run_task() {
         if ((((TKeyBoardControl *)(&TKeyBoardControl__global_key_state.value))->has_any_key_pressed() != 0) || (TKeyBoardControl::any_pad_input_active() != 0)) {
             *(s32 *)((s8 *)((Obj_80336340 *)this) + 0x34) = 0;
         }
-        TLobby__sub_803362A4(((Obj_80336340 *)this));
+        TLobby__sub_803362A4(this);
     }
     if ((s32) ((TUnk_804EEF64 *)((Obj_80336340 *)this))->m_38 == (s32) *(s32 *)((s8 *)((Obj_80336340 *)this) + 0x34)) {
         ((TObject *)(*(void **)((s8 *)((Obj_80336340 *)this) + 0x24)))->suspend_update();

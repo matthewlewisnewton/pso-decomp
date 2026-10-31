@@ -1,5 +1,4 @@
 #include "types.h"
-#include "pso/misc/TLobby.h"
 #include "pso/misc/TitleSceneTables.h"
 #include "pso/misc/TLobby_80335E08.h"
 #include "pso/misc/TLobby_80336E00.h"
@@ -64,9 +63,9 @@ void (*lobby_load_callback_table[8])() = {
 };
 
 TitleStateHandler TLobby__state_handler_pmf_table[4] = {
-    &TLobby::enter_chg_game_mode,
-    &TLobby::enter_game_mode_change,
-    &TLobby::request_change_game_mode,
-    &TLobby::open_keyboard
+    &TUnk_804EEF64::enter_chg_game_mode,
+    &TUnk_804EEF64::enter_game_mode_change,
+    &TUnk_804EEF64::request_change_game_mode,
+    &TUnk_804EEF64::open_keyboard
 };
 }

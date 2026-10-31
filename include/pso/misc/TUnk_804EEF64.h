@@ -11,6 +11,10 @@ public:
     u8 *construct_title_scene();
     void *destroy(s16);
     void sub_8033645C();
+    void open_keyboard();
+    void request_change_game_mode();
+    void enter_game_mode_change();
+    void enter_chg_game_mode();
     u8 unk_1C[0x4];
     void * m_20;
     u8 unk_24[0x4];
