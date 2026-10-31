@@ -1375,7 +1375,7 @@ void TObjEneMe3ShinowaMirage__sub_800E69F0(u8 *arg0, s32 arg1);
 void action__17TObjEneMe3ShinowaFl(u8 *arg0, s32 arg1);
 void dispatch_action__17TObjEneMe3ShinowaFUll(TObjEneMe3Shinowa *, u32, s32);
 void TObjEneMe3ShinowaMirage__sub_800E6F0C(Obj_800E6F0C *self);
-void vfunc_104__17TObjEneMe3ShinowaFf(TObjEneMe3Shinowa *, f32);
+s32 vfunc_104__17TObjEneMe3ShinowaFf(TObjEneMe3Shinowa *, f32);
 void vfunc_89__17TObjEneMe3ShinowaFv(void *arg0);
 void vfunc_111__17TObjEneMe3ShinowaFv(void);
 void TObjEneMe3Shinowa__sub_800E7268(u8 *arg0);
@@ -2928,7 +2928,7 @@ s32 TObjEneMe3Shinowa::sub_800E6FE0() {
     return *(f32 *)((s8 *)arg0 + 0x358) >= TObjEneMe3ShinowaMirage__data_805DA5DC;
 }
 
-void TObjEneMe3Shinowa::vfunc_104(f32 distance) { select_and_apply_target(distance); }
+s32 TObjEneMe3Shinowa::vfunc_104(f32 distance) { return select_and_apply_target(distance); }
 
 s32 TObjEneMe3Shinowa::sub_800E701C() {
     u8 *arg0 = (u8 *)this;
