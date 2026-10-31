@@ -1,6 +1,6 @@
+#include "pso/system/ModelNodePositionCapture.h"
 #include "types.h"
 #include "pso/system/PadRumble.h"
-#include "pso/object/TObjFish_800E2FFC.h"
 #include "pso/boss/Boss6Type1Appearance.h"
 #include "pso/misc/TCameraCtrl_800687BC.h"
 #include "pso/object/TObject_80019A50.h"
@@ -65,7 +65,6 @@ s32 refresh_players_equipment__14TBoss6PlotFalzFPv();
 s32 post_translate_matrix(s32 *);
 s32 push_matrix();
 void *__nw__7TObjectFUl(int);
-s32 clear_render_callback__8TObjFishFv(s32);
 
 void TBoss6Demo10_TYPE1_APPEAR::sub_8033C7C8() {
     push_matrix();
@@ -74,9 +73,9 @@ void TBoss6Demo10_TYPE1_APPEAR::sub_8033C7C8() {
     TObjFish::set_global_param(this->m_20);
     draw_model_motion((void *)(*(s32 *)((s8 *)this + 0x1C)), (void *)(*(s32 *)((s8 *)this + 0x24)), *(f32 *)((s8 *)this + 0x34));
     TObjFish::set_global_param(*(s32 *)((s8 *)this + 0x2C));
-    ((TObjFish *)(this->m_60))->set_draw_callback_list();
+    ((ModelNodePositionCapture *)(this->m_60))->install();
     draw_model_motion((void *)this->m_28, (void *)this->m_30, *(f32 *)((s8 *)this + 0x34));
-    clear_render_callback__8TObjFishFv(this->m_60);
+    ((ModelNodePositionCapture *)(this->m_60))->clear();
     clear_motion_packed_rotation();
     pop_matrix();
 }
@@ -163,7 +162,7 @@ TBoss6Demo10_TYPE1_APPEAR::~TBoss6Demo10_TYPE1_APPEAR() {
     refresh_players_equipment__14TBoss6PlotFalzFPv();
     ((TBoss6PlotFalz *)(((u8 *)this) + 0x40))->free_buffer_pairs();
     if ((u32) this->m_60 != 0U) {
-        TObjFish::init_state_1(*(void **)((s8 *)this + 0x60));
+        ModelNodePositionCapture::destroy((ModelNodePositionCapture *)(*(void **)((s8 *)this + 0x60)));
         this->m_60 = 0U;
     }
     if ((u32) *(u32 *)((s8 *)this + 0x64) != 0U) {
@@ -191,7 +190,7 @@ TBoss6Demo10_TYPE1_APPEAR::TBoss6Demo10_TYPE1_APPEAR(TObject *parent) : TObject(
       ((Fish_8033CB4C *)this)->tbl[i].b = TObjFish__sub_8001EDB0(n, k);
       ((Fish_8033CB4C *)this)->tbl[i].c = get_bml_motion(n, boss6_type1_appear_motion_indices[i]);
     }
-    ((Fish_8033CB4C *)this)->x60 = TObjFish__sub_800E3124((u8 *)boss6_type1_appear_node_desc, (s32)(((Fish_8033CB4C *)this)->x54));
+    ((Fish_8033CB4C *)this)->x60 = (s32)ModelNodePositionCapture::create((ModelNodePositionEntry *)(boss6_type1_appear_node_desc), (Vec *)((((Fish_8033CB4C *)this)->x54)));
     ((Fish_8033CB4C *)this)->x64 = 0;
     build_tables__14TBoss6PlotFalzFPvPvi(((Fish_8033CB4C *)this)->x40, boss6_type1_appear_model_node_descriptors, 2);
     activate_camera_mode(5);

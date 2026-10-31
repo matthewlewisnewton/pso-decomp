@@ -41,7 +41,7 @@ void translate_matrix(u32 arg0, f32 x, f32 y, f32 z);
 s32 push_matrix();
 s32 pop_matrix();
 s32 post_translate_matrix(void *);
-void fn_8009BD00(void);
+void fn_8009BD00(NJS_OBJECT *);
 extern s32 lbl_8043A268[];
 extern s32 lbl_8043A274[];
 extern u32 lbl_805D4FD4;
@@ -1846,7 +1846,7 @@ void TObjEneMe1Canadin::update_by_state(s32 arg1) {
     }
 }
 
-void fn_8009BD00(void) {
+void fn_8009BD00(NJS_OBJECT *) {
     s32 temp_r4;
     s32 pos;
     s32 temp_r5;
@@ -1923,7 +1923,7 @@ void TObjEneMe1Canadin::render() {
                 TObjEneMe1Canadin__render_point_cursor = (s32)(&m_414[0]);
                 VecCopy((Vec *)(&m_414[3]), (const Vec *)(lbl_8043A268));
                 VecCopy((Vec *)(&m_414[1]), (const Vec *)(lbl_8043A274));
-                set_chunk_model_node_callback((s32)&fn_8009BD00);
+                set_chunk_model_node_callback(&fn_8009BD00);
                 if (var_r30 == 1) {
                     ((TObjMotion *)arg0)->draw();
                 } else {
@@ -1936,7 +1936,7 @@ void TObjEneMe1Canadin::render() {
                 TObjEneMe1Canadin__render_point_cursor = (s32)(&m_414[0]);
                 VecCopy((Vec *)(&m_414[3]), (const Vec *)(lbl_8043A268));
                 VecCopy((Vec *)(&m_414[1]), (const Vec *)(lbl_8043A274));
-                set_chunk_model_node_callback((s32)&fn_8009BD00);
+                set_chunk_model_node_callback(&fn_8009BD00);
                 this->draw_with_alt_model((int) (m_410));
                 set_chunk_model_node_callback(NULL);
             }
