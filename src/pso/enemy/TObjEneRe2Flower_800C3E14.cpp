@@ -191,7 +191,7 @@ TObjEneRe2Flower::TObjEneRe2Flower(TObject *parent, void *setData)
     } else if (random_ratio() <= lbl_805D9FFC) {
         flowerFlags |= 0x400;
     }
-    initialize_position_copies();
+    init_position_vectors();
     model = (void *)((BmlResource *)lbl_805D5174)->models->model;
     texlist = ((BmlResource *)lbl_805D5174)->models->m_c;
     if (get_flag_11())
