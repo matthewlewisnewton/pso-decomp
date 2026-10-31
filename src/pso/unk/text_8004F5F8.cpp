@@ -1,3 +1,4 @@
+#include "pso/system/ModelNodePositionCapture.h"
 #include "types.h"
 #include "pso/misc/TCameraCtrl_800687BC.h"
 #include "pso/boss/TBoss4Type2.h"
@@ -25,7 +26,7 @@ S_8004F5F8 *__dt__11TObjDFDemo4Fv(S_8004F5F8 *o, s16 flag) {
         o->vt = lbl_80485764;
         fn_8004AA04(o->f90);
         if (o->f100 != 0) {
-            TObjFish::init_state_1(o->f100);
+            ModelNodePositionCapture::destroy((ModelNodePositionCapture *)(o->f100));
             o->f100 = 0;
         }
         for (i = 0; i < 2; i++) {

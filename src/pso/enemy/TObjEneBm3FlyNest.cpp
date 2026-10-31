@@ -2,6 +2,7 @@
 #include "pso/math/VectorNormalize.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/EnemyUnknownHooks.h"
+struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -753,7 +754,7 @@ void rotate_xz_pair_by_angle(f32 *arg0, f32 *arg1, s32 arg2);
 void *spawn_particle_effect(void *pos, s32 id);
 void render_with_state_debug__17TObjEneBm3FlyNestFv(u8 *arg0);
 void render__17TObjEneBm3FlyNestFv(u8 *arg0);
-void handle_attachment_sample__17TObjEneBm3FlyNestFi(s32 arg0);
+void handle_attachment_sample__17TObjEneBm3FlyNestFi(NJS_OBJECT *arg0);
 int copy_target_state__17TObjEneBm3FlyNestFPv(void* p, s32 sound_id);
 void* TObjEneBm3FlyNest__sub_800B2A54(void* p);
 void handle_state__17TObjEneBm3FlyNestFPvi(void *arg0, s32 arg1);
@@ -1151,9 +1152,9 @@ void TObjEneBm3FlyNest::render() {
                 if (self->f326 == 0) {
                     bm3_fly_nest_attachment_index = 0;
                     lbl_805D5114 = (s32)self->f3E0;
-                    set_chunk_model_node_callback((s32)((void *)handle_attachment_sample__17TObjEneBm3FlyNestFi));
+                    set_chunk_model_node_callback((handle_attachment_sample__17TObjEneBm3FlyNestFi));
                 } else {
-                    set_chunk_model_node_callback((s32)((void *)TObjEneBm3FlyNest::capture_attachment));
+                    set_chunk_model_node_callback((TObjEneBm3FlyNest::capture_attachment));
                 }
                 ((s32 (*)(int, int))rotate_matrix_y)(0, self->f60);
                 TObjEneDD::clear_global_flag_400();
@@ -1164,7 +1165,7 @@ void TObjEneBm3FlyNest::render() {
                     this->draw_motion_model();
                 }
                 TParticleCtrl::end_effect_render();
-                set_chunk_model_node_callback((s32)NULL);
+                set_chunk_model_node_callback(NULL);
                 pop_matrix();
             }
             this->update_primary_light();
@@ -1179,7 +1180,7 @@ void TObjEneBm3FlyNest::render() {
     VecCopy((Vec *)&self->f2FC, (const Vec *)&self->f3C8);
 }
 
-void handle_attachment_sample__17TObjEneBm3FlyNestFi(s32 arg0) {
+void handle_attachment_sample__17TObjEneBm3FlyNestFi(NJS_OBJECT *arg0) {
     s32 pos;
     if ((s32) lbl_805D510C == (s32) *(s32 *)((s8 *)&bm3_fly_nest_attachment_sample_table.value + (bm3_fly_nest_attachment_index * 4))) {
         pos = lbl_805D5114;
@@ -1187,10 +1188,10 @@ void handle_attachment_sample__17TObjEneBm3FlyNestFi(s32 arg0) {
         lbl_805D5114 = pos + 0xC;
         transform_point_to_view((s32) &TObjEneBm3FlyNest__attachment_sample_origin.value, pos);
     }
-    TObjEneBm3FlyNest::capture_attachment((void *)arg0);
+    TObjEneBm3FlyNest::capture_attachment(arg0);
 }
 
-void TObjEneBm3FlyNest::capture_attachment(void * _w0) {
+void TObjEneBm3FlyNest::capture_attachment(NJS_OBJECT * _w0) {
     switch (lbl_805D510C) {
     case 36: case 45:
         transform_point_to_view((s32)&TObjEneBm3FlyNest__attachment_sample_origin, (s32)(TObjEneBm3FlyNest_attachment_point_ptr++));

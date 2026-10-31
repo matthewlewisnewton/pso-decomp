@@ -340,7 +340,7 @@ void TObjPlayer__sub_8008EDE8(P_8008EDE8 *arg0) {
     }
     ((TObjMotion *)arg0)->advance_animation();
     apply_actor_gravity((TObjEnemy *)((u8 *)arg0), (s32 *)(0), lbl_805D9620);
-    ((TObjPlayer *)arg0)->update_collisions();
+    ((TObjCollidable *)arg0)->update_collisions();
 }
 
 #pragma push
@@ -546,7 +546,7 @@ void TObjPlayer__sub_8008F910(u8 *arg0) {
         *(f32 *)((s8 *)arg0 + 0x308) *= lbl_805D966C;
         *(f32 *)((s8 *)arg0 + 0x310) *= lbl_805D966C;
         apply_actor_gravity((TObjEnemy *)arg0, (s32 *)(0), lbl_805D9620);
-        ((TObjPlayer *)arg0)->update_collisions();
+        ((TObjCollidable *)arg0)->update_collisions();
         if (*(u32 *)((s8 *)arg0 + 0xB4) != 8U) {
             var_r30 = 0;
             *(s16 *)((s8 *)arg0 + 0x33E) = *(s16 *)((s8 *)arg0 + 0x32C);
@@ -601,7 +601,7 @@ void TObjPlayer__sub_8008FAD0(u8 *arg0) {
         ((TObjEnemy *)arg0)->turn_toward_direction(*(s32 *)((u8 *)((TObjEnemy *)arg0)->movementParameters + 8), (Vec *)((u8 *)arg0 + 0x308));
         ((TObjMotion *)arg0)->advance_animation();
         apply_actor_gravity((TObjEnemy *)arg0, (s32 *)(0), lbl_805D9620);
-        ((TObjPlayer *)arg0)->update_collisions();
+        ((TObjCollidable *)arg0)->update_collisions();
         break;
     case -1:
         break;

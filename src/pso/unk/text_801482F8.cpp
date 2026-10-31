@@ -531,7 +531,7 @@ void TObjNpcBase::update_conversation() {
         F(void *, 0x3B0) = 0;
         break;
     }
-    ((TObjPlayer *)arg0)->update_collisions();
+    ((TObjCollidable *)arg0)->update_collisions();
 }
 
 void TObjNpcBase::update_wandering() {
@@ -590,7 +590,7 @@ void TObjNpcBase::update_wandering() {
         }
         break;
     }
-    ((TObjPlayer *)arg0)->update_collisions();
+    ((TObjCollidable *)arg0)->update_collisions();
 }
 
 void TObjNpcBase::update_standing() {
