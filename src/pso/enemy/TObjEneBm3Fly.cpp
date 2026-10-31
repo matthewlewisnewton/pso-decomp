@@ -2,6 +2,7 @@
 #include "pso/math/VectorNormalize.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/enemy/TObjEnemy.h"
 extern "C" void *__ct__12TObjEneDD_STFP7TObject(void *);
@@ -840,7 +841,7 @@ struct VObj_800B044C : VBase_800B044C {
 struct Vec_800B0F70 { f32 x, y, z; };
 
 extern "C" {
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 void TObjEneBm3Fly__play_orbit_flight_sound(s32 arg0);
 f32 calc_scaled_value__15TObjBoss2TunnelFlf(int, int, f32, f32);
 void sub_800B1634__13TObjEneBm3FlyFv(u8 *arg0);
@@ -1470,12 +1471,12 @@ void TObjEneBm3Fly__vt102(void *arg0, f32 farg0) {
     select_nearest_target__12TObjEneDD_STFf(arg0, farg0);
 }
 void TObjEneBm3Fly__play_orbit_flight_sound(s32 arg0) {
-    play_persistent_sound((((s32)((TObjEnemy *)((void *)arg0))->remap_sound_for_area((s32)(0x4003AB23)))), (arg0), (arg0 + 0x38), 0, 0);
+    play_persistent_sound((s32)((((s32)((TObjEnemy *)((void *)arg0))->remap_sound_for_area(0x4003AB23)))), (const void *)((arg0)), (const Vec *)((arg0 + 0x38)), 0, 0);
     TObjPlayer::play_effect_if_v2(-0x400);
 }
 void TObjEneBm3Fly::play_pitched_cue() {
     s32 arg0 = (s32)this;
-    play_persistent_sound((((s32)((TObjEnemy *)((void *)arg0))->remap_sound_for_area((s32)(0x40039E22)))), (arg0), (arg0 + 0x38), 0, 0);
+    play_persistent_sound((s32)((((s32)((TObjEnemy *)((void *)arg0))->remap_sound_for_area(0x40039E22)))), (const void *)((arg0)), (const Vec *)((arg0 + 0x38)), 0, 0);
     TObjPlayer::play_effect_if_v2(-0x400);
 }
 

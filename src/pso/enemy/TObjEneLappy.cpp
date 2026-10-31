@@ -2,6 +2,7 @@
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
@@ -363,7 +364,7 @@ s32 queue_destruction__7TObjectFv(void *);
 
 s32 angle_difference_abs(int, int);
 s32 lerp_angle_half__Fll(int, int);
-s32 play_persistent_sound(s32, void *, void *, int, int);
+
 extern const f64 lbl_8043BA18;
 s32 update_action_hold_status__12TObjEneLappyFv(s32 arg0);
 s32 update_movement_status__12TObjEneLappyFv(s32 arg0);
@@ -847,7 +848,7 @@ void TObjEneLappy::update_moving() {
                     spawn_particle_effect(&this->position, 0xF3);
                     *(s16 *)&this->m_396 = 2;
                 }
-                play_persistent_sound(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x3AF12)), arg0, (u8 *)&this->position, 0, 0);
+                play_persistent_sound((s32)(((TObjEnemy *)(arg0))->remap_sound_for_area(0x3AF12)), (const void *)(arg0), (const Vec *)((u8 *)&this->position), 0, 0);
                 goto block_47;
             }
 block_47:

@@ -1,6 +1,7 @@
 #include "pso/system/MatrixVectorArray.h"
 #include "pso/misc/SampledMotionPoints.h"
 #include "pso/math/FloatRounding.h"
+#include "pso/misc/PersistentSound.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/unk/TUnk_80494968.h"
 #include "types.h"
@@ -199,7 +200,6 @@ extern const f32 lbl_805D9758;
 struct Vec3_80093888 { f32 x, y, z; };
 struct Timers_80093888 { u8 pad[0x440]; s32 t[2]; };
 
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 extern const f32 lbl_805D976C;
 void TObjEneRe7Berura__sub_8009472C(u8 *arg0, s32 arg1);
 void rotate_xz_pair_by_angle(f32 *arg0, f32 *arg1, s32 arg2);
@@ -407,7 +407,7 @@ void TObjEneRe7Berura::run_flash_warning_state(s32 arg1) {
         this->vfunc_102();
         this->vfunc_89();
         ((void (*)(s32, s32, s32))update_technique_slot__10TTecRaFoieFl)(
-            play_persistent_sound((s32)(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003C61E))), (s32)arg0, (u32)&this->position, 0, 0),
+            play_persistent_sound((s32)((s32)(((TObjEnemy *)(arg0))->remap_sound_for_area(0x4003C61E))), (const void *)((s32)arg0), (const Vec *)((u32)&this->position), 0, 0),
             0x400, 0);
         break;
     case 5:
@@ -868,7 +868,7 @@ void TObjEneRe7Berura__sub_8009472C(u8 *arg0, s32 arg1) {
                 }
                 *(s32 *)((s8 *)arg0 + 0x3C8) = (s32) (var_r4_2 | ((var_r4_2 << 0x10) | 0xFF000000 | (var_r4_2 << 8)));
             }
-            play_persistent_sound((s32)(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003C61E))), (s32)arg0, (u32)(arg0 + 0x38), 0, 0);
+            play_persistent_sound((s32)((s32)(((TObjEnemy *)(arg0))->remap_sound_for_area(0x4003C61E))), (const void *)((s32)arg0), (const Vec *)((u32)(arg0 + 0x38)), 0, 0);
             TObjPlayer::play_effect_if_v2(-0x100);
             break;
         }

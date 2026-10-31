@@ -1,3 +1,4 @@
+#include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/misc/TOTrapAncient01_80226534.h"
 #include "pso/boss/TBoss6Type2_802BF558.h"
@@ -191,7 +192,7 @@ void TBoss6Type2::init_timer_and_play_sound() {
 void TBoss6Type2__sub_802BFA1C(u8 *arg0) {
     s32 temp_r0;
 
-    play_persistent_sound(0x4006A612, (s32)arg0, (u32)(arg0 + 0x38), 0, 1);
+    play_persistent_sound((s32)(0x4006A612), (const void *)((s32)arg0), (const Vec *)((u32)(arg0 + 0x38)), 0, 1);
     temp_r0 = ((TBoss6Type2 *)arg0)->m_460 - 1;
     ((TBoss6Type2 *)arg0)->m_460 = temp_r0;
     if (temp_r0 < 0) {

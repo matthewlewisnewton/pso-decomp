@@ -1,5 +1,6 @@
 #include "pso/system/ModelNodePositionCapture.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/system/PadRumble.h"
 #include "pso/misc/TOTrapAncient01_80226534.h"
@@ -103,7 +104,7 @@ void TBoss6Demo11_TYPE1_DEAD::run_task() {
         break;
     }
     if (F(s32, 0x44) >= 0x89) {
-        play_persistent_sound(0x4003A424, (s32)arg0, 0, 0, 0);
+        play_persistent_sound((s32)(0x4003A424), (const void *)((s32)arg0), (const Vec *)(0), 0, 0);
     }
     switch (F(s32, 0x44)) {
     case 0xE:

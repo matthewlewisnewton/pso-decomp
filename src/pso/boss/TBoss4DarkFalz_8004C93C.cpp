@@ -1,4 +1,5 @@
 #include "pso/player/demo_mode.h"
+#include "pso/misc/PersistentSound.h"
 #include "pso/protocol/protocol_types.h"
 #include "pso/misc/TLobby_801E43E4.h"
 #include "types.h"
@@ -317,7 +318,7 @@ void TBoss4DarkFalz__sub_8004CBBC(void);
 void TBoss4DarkFalz__sub_8004CE90(void);
 void update_parts__14TBoss4DarkFalzFi(s32 arg0);
 s32 play_sound_effect(s32, s32, s32, s32);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 s32 is_timer_expired__14TBoss4DarkFalzFv();
 
 void TBoss4DarkFalz__sub_8004C93C(void) {  }
@@ -407,7 +408,7 @@ void TBoss4DarkFalz::start_demo1() {
 
 void TBoss4DarkFalz::spawn_ancient_trap(s32 arg0) {
     if (((s32 (*)(void))TBoss4DarkFalz__sub_8004D990)() > 0) {
-        play_persistent_sound(0x4003A30A, (arg0), 0, -0x20, 2);
+        play_persistent_sound((s32)(0x4003A30A), (const void *)((arg0)), (const Vec *)(0), -0x20, 2);
     }
 }
 
@@ -475,7 +476,7 @@ void TBoss4DarkFalz::start_effect() {
     *(s32 *)((s8 *)this + 0x380) = 0;
 }
 void TBoss4DarkFalz::spawn_trap(s32 arg0) {
-    play_persistent_sound(0x4003A30A, (arg0), 0, -0x18, 2);
+    play_persistent_sound((s32)(0x4003A30A), (const void *)((arg0)), (const Vec *)(0), -0x18, 2);
 }
 void TBoss4DarkFalz::check_timeout(s32 arg0) {
     if ((is_timer_expired__14TBoss4DarkFalzFv() != 0) || (TBoss4DarkFalz__sub_8004B07C(arg0) != 0)) {

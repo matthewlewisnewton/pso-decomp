@@ -1,4 +1,5 @@
 #include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 struct NJS_OBJECT;
 #include "pso/math/FloatRounding.h"
 #include "pso/misc/PositionSoundEffects.h"
@@ -872,7 +873,7 @@ extern const f32 lbl_805DA0FC;
 void TObjEneMe1Gee__sub_800C9A94(void *arg0, s32 arg1);
 void TObjEneEpsilon__sub_800B92F8(u8 *arg0, s32 arg1, f32 farg0);
 void destroy_subobj__13TObjEneMe1GeeFPv(void* p, void * _w1);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 u8 *TObjEneMe1Gee_NEEDLE__ct(TObjEneMe1Gee_NEEDLE *arg0, s32 arg1, u8 *from, u8 *to, f32 farg0, f32 farg1);
 void matrix_mult_vec(void *, Vec_800CA454 *, Vec_800CA454 *);
 s32 rotate_matrix_y(int, int);
@@ -2826,7 +2827,7 @@ void TObjEneMe1Gee__sub_800CA454(void *arg0, s32 arg1) {
                 }
                 play_sound_effect(TObjEneMe1Gee::handle_message((s32)o, 0x3AD17), (u32)o->snd, 0, 0);
             } else {
-                play_persistent_sound((s32)(TObjEneMe1Gee::handle_message((s32)o, 0x3A914)), (s32)o, (u32)o->snd, 0, 0);
+                play_persistent_sound((s32)((s32)(TObjEneMe1Gee::handle_message((s32)o, 0x3A914))), (const void *)((s32)o), (const Vec *)((u32)o->snd), 0, 0);
             }
             break;
         }
@@ -3422,7 +3423,7 @@ void TObjEneMe1Gee::update_fade_sequence() {
 int TObjEneMe1Gee__vt102(void* p) { return select_and_apply_target__12TObjEneDD_STFf(p); }
 
 void TObjEneMe1Gee__sub_800CB968(s32 arg0) {
-    play_persistent_sound(TObjEneMe1Gee::handle_message(arg0, 0x3BC16), arg0, arg0 + 0x2FC, 0, 0);
+    play_persistent_sound((s32)(TObjEneMe1Gee::handle_message(arg0, 0x3BC16)), (const void *)(arg0), (const Vec *)(arg0 + 0x2FC), 0, 0);
 }
 
 s32 TObjEneMe1Gee::handle_message(s32 arg0, s32 arg1) {

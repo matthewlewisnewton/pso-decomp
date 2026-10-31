@@ -1,4 +1,5 @@
 #include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/misc/TOBarrierEnergy01.h"
 #include "pso/TMainTask.h"
@@ -151,21 +152,21 @@ void TOBarrierEnergy01::play_ambient_loop_sound() {
     switch (get_current_floor_area()) {
     case AREA_FOREST1:
     case AREA_FOREST2:
-        play_persistent_sound(0x4CB09, (s32)this, (u32)&position, 0, 0);
+        play_persistent_sound((s32)(0x4CB09), (const void *)(this), (const Vec *)((u32)&position), 0, 0);
         return;
     case AREA_CAVE1:
     case AREA_CAVE2:
     case AREA_CAVE3:
-        play_persistent_sound(0x44B08, (s32)this, (u32)&position, 0, 0);
+        play_persistent_sound((s32)(0x44B08), (const void *)(this), (const Vec *)((u32)&position), 0, 0);
         return;
     case AREA_MINE1:
     case AREA_MINE2:
-        play_persistent_sound(0x4004CB02, (s32)this, (u32)&position, 0, 0);
+        play_persistent_sound((s32)(0x4004CB02), (const void *)(this), (const Vec *)((u32)&position), 0, 0);
         return;
     case AREA_RUINS1:
     case AREA_RUINS2:
     case AREA_RUINS3:
-        play_persistent_sound(0x4004CB09, (s32)this, (u32)&position, 0, 0);
+        play_persistent_sound((s32)(0x4004CB09), (const void *)(this), (const Vec *)((u32)&position), 0, 0);
         return;
     case AREA_PIONEER2_EP1:
         return;

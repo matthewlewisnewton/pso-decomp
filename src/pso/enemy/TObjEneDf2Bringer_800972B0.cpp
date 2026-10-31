@@ -5,6 +5,7 @@
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
@@ -915,7 +916,7 @@ s32 TObjEneDf2Bringer__sub_80099248(void *);
 s32 enemy_validate_retained_target(void *);
 u32 enemy_probe_wall_ahead__13TBoss5GryphonFfff(void *, f32, f32, f32);
 s32 approach_angle_limited(s32, s32, s32);
-s32 play_persistent_sound(s32, void *, void *, s32, s32);
+
 f32 sin_table_lookup(s32);
 f32 cos_table_lookup(s32);
 s32 subtract_vector(void *, void *);
@@ -1294,7 +1295,7 @@ void action__17TObjEneDf2BringerFPvi(u8 *arg0, s32 arg1) {
         }
         ((TObjEneDD *)arg0)->vfunc_102();
         ((TObjEneDD *)arg0)->vfunc_89();
-        play_persistent_sound(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003AD0F)), arg0, arg0 + 0x38, 0, 0);
+        play_persistent_sound((s32)(((TObjEnemy *)(arg0))->remap_sound_for_area(0x4003AD0F)), (const void *)(arg0), (const Vec *)(arg0 + 0x38), 0, 0);
         return;
     case 5:
         if ((u32) *(u32 *)((s8 *)arg0 + 0x4C4) != 0U) {
@@ -1466,7 +1467,7 @@ void TObjEneDf2Bringer__sub_8009813C(u8 *arg0, s32 arg1) {
                 play_sound_effect((void *)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003B40E)), arg0 + 0x38, 0, 0);
                 play_effect_if_v2__10TObjPlayerFl(-0x200);
             }
-            play_persistent_sound(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003AD09)), arg0, arg0 + 0x38, 0, 0);
+            play_persistent_sound((s32)(((TObjEnemy *)(arg0))->remap_sound_for_area(0x4003AD09)), (const void *)(arg0), (const Vec *)(arg0 + 0x38), 0, 0);
             break;
         case 2:
             F(s32, 0x4B0)++;
@@ -1960,7 +1961,6 @@ s32 rotate_xz_pair_by_angle(f32 *, f32 *, s32, f32, f32);
 
 s32 vec3_add_to(f32 *, void *);
 extern const f32 lbl_805D9830;
-#define play_persistent_sound ((s32 (*)(void *, void *, void *, int, int))play_persistent_sound)
 Obj_80098FF4 *get_player_data__10TObjPlayerFi(s32);
 u16 get_entity_id(void *);
 u32 csnLookAt(void *, void *);
@@ -2116,7 +2116,7 @@ void TObjEneDf2Bringer__vt102(void *ene_epsilon, f32 farg0) {
 }
 
 void TObjEneDf2Bringer__sub_80098EB4(s32 arg0) {
-    play_persistent_sound((void *) (((TObjEnemy *)((void *)arg0))->remap_sound_for_area((s32)(0x4003B708))), (void *)arg0, (void *)(arg0 + 0x38), 0, 0);
+    play_persistent_sound((s32)((void *) (((TObjEnemy *)((void *)arg0))->remap_sound_for_area(0x4003B708))), (const void *)((void *)arg0), (const Vec *)((void *)(arg0 + 0x38)), 0, 0);
 }
 
 s32 attack_visible_players__17TObjEneDf2BringerFPv(Obj_80098EFC *self) {
@@ -2284,7 +2284,6 @@ void update_attack_child__17TObjEneDf2BringerFPv(Bringer_800993E8 *obj) {
     }
 }
 
-#undef play_persistent_sound
 #undef update_linked_position__12TObjEneDD_STFf
 #undef enemy_validate_retained_target
 #undef __nw__7TObjectFUl

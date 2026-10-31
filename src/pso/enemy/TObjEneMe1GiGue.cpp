@@ -5,6 +5,7 @@
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/TParticleCtrl.h"
@@ -713,7 +714,6 @@ s32 calc_velocity_toward_destination(void *, void *, void *, f32);
 #define update_if_active__15TObjEnemyCustomFl ((s32 (*)(void *, s32, s32))update_if_active__15TObjEnemyCustomFl)
 s32 sub_8004292C__15TObjEnemyCustomFv(void *);
 
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 s32 play_sound_effect(void *, void *, s32, s32);
 }
 
@@ -785,7 +785,7 @@ void TObjEneMe1GiGue__sub_802CB378(u8 *arg0) {
                 spawn_particle_effect((const Vec *)((arg0 + 0x38)), 0xF0);
             }
         }
-        play_persistent_sound((s32)(TObjEneMe1GiGue::remap_sound_id(arg0, 0x3A819)), (s32)arg0, (u32)(arg0 + 0x38), 0, 0);
+        play_persistent_sound((s32)(TObjEneMe1GiGue::remap_sound_id(arg0, 0x3A819)), (const void *)((s32)arg0), (const Vec *)((u32)(arg0 + 0x38)), 0, 0);
         ((TObjCollidable *)arg0)->update_collisions();
         break;
     case -1:
@@ -1154,7 +1154,7 @@ void update_rush_attack__15TObjEneMe1GiGueFPv(Obj_802CBCC0 *o) {
         if (o->f3EC >= 50.0f) {
             o->state = 3;
         }
-        play_persistent_sound((s32)(TObjEneMe1GiGue::remap_sound_id(o, 0x3A819)), (s32)o, (u32)&o->pos, 0, 0);
+        play_persistent_sound((s32)((s32)(TObjEneMe1GiGue::remap_sound_id(o, 0x3A819))), (const void *)((s32)o), (const Vec *)((u32)&o->pos), 0, 0);
         break;
     }
     case 3:
@@ -1180,7 +1180,7 @@ void update_rush_attack__15TObjEneMe1GiGueFPv(Obj_802CBCC0 *o) {
         if (o->f3EC > 15.0f) {
             ((TObjEnemy *)o)->turn_toward_direction(o->f350->f8 * 2, (Vec *)&o->v308);
         }
-        play_persistent_sound((s32)(TObjEneMe1GiGue::remap_sound_id(o, 0x3A819)), (s32)o, (u32)&o->pos, 0, 0);
+        play_persistent_sound((s32)((s32)(TObjEneMe1GiGue::remap_sound_id(o, 0x3A819))), (const void *)((s32)o), (const Vec *)((u32)&o->pos), 0, 0);
         project_actor_to_ground(o, &o->pos, 0);
         break;
     case 4:
@@ -1210,7 +1210,7 @@ void update_rush_attack__15TObjEneMe1GiGueFPv(Obj_802CBCC0 *o) {
                 spawn_particle_effect((const Vec *)(&o->pos), 0xF0);
             }
         }
-        play_persistent_sound((s32)(TObjEneMe1GiGue::remap_sound_id(o, 0x3A819)), (s32)o, (u32)&o->pos, 0, 0);
+        play_persistent_sound((s32)((s32)(TObjEneMe1GiGue::remap_sound_id(o, 0x3A819))), (const void *)((s32)o), (const Vec *)((u32)&o->pos), 0, 0);
         check_object_collisions__14TObjCollidableFv(o);
         check_enemy_body_collisions(o);
         update_enemy_collision_flags__14TObjCollidableFv(o);
@@ -1375,7 +1375,7 @@ void TObjEneMe1GiGue__sub_802CC614(u8 *enemy) {
             }
             break;
         case 2:
-            play_persistent_sound((s32)(TObjEneMe1GiGue::remap_sound_id(enemy, 0x3A820)), (s32)enemy, (u32)(enemy + 0x38), 0, 0);
+            play_persistent_sound((s32)((s32)(TObjEneMe1GiGue::remap_sound_id(enemy, 0x3A820))), (const void *)((s32)enemy), (const Vec *)((u32)(enemy + 0x38)), 0, 0);
             if (*(f32 *)((s8 *)enemy + 0xC0) >= 10.0f) {
                 TObjEneMe1GiGue__sub_802CB03C(enemy);
                 n = *(s32 *)((s8 *)enemy + 0x3C0);
@@ -1510,7 +1510,7 @@ void TObjEneMe1GiGue__sub_802CC900(u8 *arg0) {
             }
             break;
         case 2:
-            play_persistent_sound((s32)(TObjEneMe1GiGue::remap_sound_id(o, 0x3A81D)), (s32)o, (u32)&o->pos, 0, 0);
+            play_persistent_sound((s32)((s32)(TObjEneMe1GiGue::remap_sound_id(o, 0x3A81D))), (const void *)((s32)o), (const Vec *)((u32)&o->pos), 0, 0);
             if (o->fC0 >= 20.0f) {
                 TObjEneMe1GiGue__sub_802CB03C((u8 *)o);
                 if ((r = (u32)spawn_particle_effect((const Vec *)(o->f39C), 0x203)) != 0) {

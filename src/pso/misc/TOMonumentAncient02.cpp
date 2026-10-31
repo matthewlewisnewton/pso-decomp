@@ -1,4 +1,5 @@
 #include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/render/render_util.h"
@@ -121,7 +122,7 @@ void TOMonumentAncient02::run_task() {
         }
         break;
     case 2:
-        play_persistent_sound(sound_id, (s32)this, (u32)&position, 0, 0);
+        play_persistent_sound((s32)(sound_id), (const void *)(this), (const Vec *)((u32)&position), 0, 0);
         break;
     }
 }

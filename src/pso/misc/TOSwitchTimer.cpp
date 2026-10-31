@@ -1,4 +1,5 @@
 #include "pso/player/demo_mode.h"
+#include "pso/misc/PersistentSound.h"
 #include "pso/render/render_util.h"
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
@@ -69,7 +70,7 @@ void TOSwitchTimer::run_task() {
                     play_sound_effect(0x53218, 0, 0, 0);
                 }
             } else {
-                play_persistent_sound(0x53218, (s32)this, 0, 0, 0);
+                play_persistent_sound((s32)(0x53218), (const void *)(this), (const Vec *)(0), 0, 0);
             }
         }
         temp_r3_2 = *(s32 *)&this->m_94;

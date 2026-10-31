@@ -1,3 +1,4 @@
+#include "pso/misc/PersistentSound.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
@@ -169,7 +170,7 @@ extern const f32 lbl_805D9664;
 extern const f32 lbl_805D9668;
 s32 update_enemy_wander_move(void *, Vec_8008FAD0 *, int, f32);
 s32 reset_enemy_state__10TObjPlayerFv();
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 void TObjPlayer__sub_8008FAD0(u8 *arg0);
 f32 random_ratio__9TObjCharaFv(s32 arg0);
 void calc_velocity_toward_destination(void *, Vec_8008F910, Vec_8008F910, f32);
@@ -592,7 +593,7 @@ void TObjPlayer__sub_8008FAD0(u8 *arg0) {
             reset_enemy_state__10TObjPlayerFv();
             break;
         }
-        play_persistent_sound(0x4003B235, (s32)arg0, (u32)(arg0 + 0x38), 0, 0);
+        play_persistent_sound((s32)(0x4003B235), (const void *)((s32)arg0), (const Vec *)((u32)(arg0 + 0x38)), 0, 0);
         *(f32 *)((s8 *)arg0 + 0x30C) = lbl_805D9620;
         {
             Vec_8008FAD0 pos = *(Vec_8008FAD0 *)(*(u8 **)((s8 *)arg0 + 0x2A8) + 0x2FC);

@@ -1,4 +1,5 @@
 #include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/render/render_util.h"
 
@@ -29,7 +30,6 @@ extern s32 lbl_80470A54[];
 extern s32 boss6_tube_bml_resource;
 extern s32 boss6_tube_texture_list;
 s32 play_sound_effect(s32, s32, s32, s32);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 
 void TBoss6Tube::render() {
     TBoss6Tube_802B1020 *o = (TBoss6Tube_802B1020 *)this;
@@ -141,7 +141,7 @@ void TBoss6Tube::update_wobble() {
 void TBoss6Tube::spawn_trap() {
     s32 arg0 = (s32)this;
     TBoss6Tube__sub_802B129C((u8 *)arg0);
-    play_persistent_sound(0x40033520, arg0, 0, 0, 0);
+    play_persistent_sound((s32)(0x40033520), (const void *)(arg0), (const Vec *)(0), 0, 0);
 }
 
 void TBoss6Tube::update_timer() {

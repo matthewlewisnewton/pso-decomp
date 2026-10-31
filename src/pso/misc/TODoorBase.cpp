@@ -1,4 +1,5 @@
 #include "pso/player/demo_mode.h"
+#include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/misc/TODoorBase.h"
 #include "pso/misc/TOTrapAncient01_80226534.h"
@@ -143,7 +144,7 @@ void TODoorBase::update_opening() {
         break;
     case AREA_FOREST1:
     case AREA_FOREST2:
-        play_persistent_sound(0x49E08, (s32)this, (u32)&position, 0, 0);
+        play_persistent_sound((s32)(0x49E08), (const void *)(this), (const Vec *)((u32)&position), 0, 0);
         break;
     case AREA_DARK_FALZ:
         return;
@@ -202,7 +203,7 @@ void TODoorBase::update_closing() {
         break;
     case AREA_FOREST1:
     case AREA_FOREST2:
-        play_persistent_sound(0x49E08, (s32)this, (u32)&position, 0, 0);
+        play_persistent_sound((s32)(0x49E08), (const void *)(this), (const Vec *)((u32)&position), 0, 0);
         break;
     case AREA_DARK_FALZ:
         return;

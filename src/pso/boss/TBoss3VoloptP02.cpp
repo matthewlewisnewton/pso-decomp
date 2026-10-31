@@ -2,6 +2,7 @@
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 #include "pso/protocol/protocol_types.h"
 #pragma readonly_strings on
 #define TOBJECT_OUT_OF_LINE_HELPERS
@@ -54,7 +55,7 @@ s32 push_matrix();
 extern s32 model_render_flags;
 void free_collision_body_parts(void *);
 void init_collision_body_parts(void *, void *, s32);
-s32 play_persistent_sound(s32, void *, void *, s16, s32);
+
 s32 rand(void);
 extern s32 actor_frame_tick;
 s32 minimap_render_dot(void *, s32, s16, s32);
@@ -602,9 +603,9 @@ void TBoss3VoloptP02::fn_80046CB8() {
             vfunc_58();
             break;
         }
-        play_persistent_sound(0x4003C616, this, &position, 0, 0);
+        play_persistent_sound((s32)(0x4003C616), (const void *)(this), (const Vec *)(&position), (s16)(0), 0);
         turn_toward_point((Vec *)(target + 0x38), 0x566, -0x4000);
-        play_persistent_sound(0x4003A60E, this, &position, 0, 0);
+        play_persistent_sound((s32)(0x4003A60E), (const void *)(this), (const Vec *)(&position), (s16)(0), 0);
         advance_animation();
         render_anim_model_at_pos();
         get_anim_node_position(0x3C, &line_origin);
@@ -621,9 +622,9 @@ void TBoss3VoloptP02::fn_80046CB8() {
             vfunc_58();
             break;
         }
-        play_persistent_sound(0x4003C616, this, &position, 0, 0);
+        play_persistent_sound((s32)(0x4003C616), (const void *)(this), (const Vec *)(&position), (s16)(0), 0);
         turn_toward_point((Vec *)(target + 0x38), 0x566, -0x4000);
-        play_persistent_sound(0x4003A60E, this, &position, 0, 0);
+        play_persistent_sound((s32)(0x4003A60E), (const void *)(this), (const Vec *)(&position), (s16)(0), 0);
         advance_animation();
         render_anim_model_at_pos();
         get_anim_node_position(0x3C, &line_origin);
@@ -646,7 +647,7 @@ void TBoss3VoloptP02::fn_80046CB8() {
             break;
         }
         turn_toward_point((Vec *)(target + 0x38), 0x566, -0x4000);
-        play_persistent_sound(0x4003C616, this, &position, 0, 0);
+        play_persistent_sound((s32)(0x4003C616), (const void *)(this), (const Vec *)(&position), (s16)(0), 0);
         render_anim_model_at_pos();
         get_anim_node_position(0x3C, &line_origin);
         push_matrix_from(identity_matrix);
@@ -660,7 +661,7 @@ void TBoss3VoloptP02::fn_80046CB8() {
         if (emitter != NULL) {
             ((TParticleCtrl *)emitter)->set_position(&out);
         }
-        play_persistent_sound(0x4003AD1A, this, &position, 0, 0);
+        play_persistent_sound((s32)(0x4003AD1A), (const void *)(this), (const Vec *)(&position), (s16)(0), 0);
         if (--*(s16 *)&timer <= 0) {
             if (emitter != NULL) {
                 emitter->queue_destruction();
@@ -686,7 +687,7 @@ void TBoss3VoloptP02::fn_80046CB8() {
         state = 6;
         push_players_out_of_radius();
     case 6:
-        play_persistent_sound(0x4003C616, this, &position, 0, 0);
+        play_persistent_sound((s32)(0x4003C616), (const void *)(this), (const Vec *)(&position), (s16)(0), 0);
         if (--*(s16 *)&timer <= 0) {
             destroy_children();
             if (TBoss3Volopt::is_v2_mode() != 0) {
@@ -764,7 +765,7 @@ void TBoss3VoloptP02::fn_800465B0() {
             advance_animation();
             push_players_out_of_radius();
             turn = turn_toward_point((Vec *)(target + 0x38), 0x566, 0);
-            play_persistent_sound(0x4003A60E, this, &position, 0, 0);
+            play_persistent_sound((s32)(0x4003A60E), (const void *)(this), (const Vec *)(&position), (s16)(0), 0);
             if ((turn < 0 ? -turn : turn) <= 0x566) {
                 timer = 45;
                 emitter = (TObject *)create_particle_emitter(&position, 0x11F);
@@ -816,7 +817,7 @@ void TBoss3VoloptP02::fn_800465B0() {
         f32 blend;
         f32 inverse;
         turn_toward_point((Vec *)(target + 0x38), 0x566, 0);
-        play_persistent_sound(0x4003A30C, this, &position, 0, 0);
+        play_persistent_sound((s32)(0x4003A30C), (const void *)(this), (const Vec *)(&position), (s16)(0), 0);
         for (i = 0; i < 5; i++) {
             if (*(s16 *)&timer < (duration / 6) * (5 - i)) {
                 chain_nodes_a[i]->evalflags &= ~8;
@@ -847,7 +848,7 @@ void TBoss3VoloptP02::fn_800465B0() {
         break;
     }
     case 6:
-        play_persistent_sound(0x4003A81B, this, &position, 0, 0);
+        play_persistent_sound((s32)(0x4003A81B), (const void *)(this), (const Vec *)(&position), (s16)(0), 0);
         if (--*(s16 *)&timer <= 0) {
             TObjEnemy *cage;
             if (emitter != NULL) {
@@ -1187,7 +1188,7 @@ void TBoss3VoloptP02::update_death_sequence() {
     case -1:
         return;
     }
-    play_persistent_sound(0x4003AD21, this, 0, 0, 0);
+    play_persistent_sound((s32)(0x4003AD21), (const void *)(this), (const Vec *)(0), (s16)(0), 0);
 }
 
 #pragma push
@@ -1204,7 +1205,7 @@ void TBoss3VoloptP02::spawn_ambient_particles() {
         pos.z = (radius * sin_table_lookup(angle)) + position.z;
         spawn_particle_effect((const Vec *)(&pos), 0xFB);
     }
-    play_persistent_sound(0x4003AD21, this, &position, 0, 0);
+    play_persistent_sound((s32)(0x4003AD21), (const void *)(this), (const Vec *)(&position), (s16)(0), 0);
 }
 #pragma pop
 
@@ -1616,7 +1617,7 @@ void TBoss3VoloptP02::fn_80044680() {
         state = 1;
         break;
     case 1:
-        play_persistent_sound(0x4003C616, this, &position, 0, 0);
+        play_persistent_sound((s32)(0x4003C616), (const void *)(this), (const Vec *)(&position), (s16)(0), 0);
         advance_animation();
         if (this->frame >= 33.0f) {
             render_anim_model_at_pos();
@@ -1630,7 +1631,7 @@ void TBoss3VoloptP02::fn_80044680() {
         }
         break;
     case 2: {
-        play_persistent_sound(0x4003C616, this, &position, 0, 0);
+        play_persistent_sound((s32)(0x4003C616), (const void *)(this), (const Vec *)(&position), (s16)(0), 0);
         push_matrix_from(identity_matrix);
         Vec v = {38.0f, 31.0f, 0.0f};
         rotate_matrix_y(0, rotation_y);
@@ -1640,7 +1641,7 @@ void TBoss3VoloptP02::fn_80044680() {
         if (emitter != NULL) {
             ((TParticleCtrl *)emitter)->set_position(&out);
         }
-        play_persistent_sound(0x4003AD1A, this, &position, 0, 0);
+        play_persistent_sound((s32)(0x4003AD1A), (const void *)(this), (const Vec *)(&position), (s16)(0), 0);
         if (--*(s16 *)&timer <= 0) {
             if (emitter != NULL) {
                 emitter->queue_destruction();
@@ -1657,7 +1658,7 @@ void TBoss3VoloptP02::fn_80044680() {
         push_players_out_of_radius();
         ring_timer = wave_index == 0 ? TObjVoloptCage::get_int_param(1) * 0x180 : 0x1555;
     case 4: {
-        play_persistent_sound(0x4003C616, this, &position, 0, 0);
+        play_persistent_sound((s32)(0x4003C616), (const void *)(this), (const Vec *)(&position), (s16)(0), 0);
         ring_angle += 0x180;
         ring_timer -= 0x180;
         if (wave_index == 0) {
@@ -1707,7 +1708,7 @@ void TBoss3VoloptP02::fn_80044680() {
         state = 6;
         push_players_out_of_radius();
     case 6:
-        play_persistent_sound(0x4003C616, this, &position, 0, 0);
+        play_persistent_sound((s32)(0x4003C616), (const void *)(this), (const Vec *)(&position), (s16)(0), 0);
         if (--*(s16 *)&timer <= 0) {
             timer = 0x14;
             state = 7;

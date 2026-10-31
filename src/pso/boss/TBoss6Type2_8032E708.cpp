@@ -2,6 +2,7 @@
 #include "pso/system/ModelNodePositionCapture.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/misc/TLobby.h"
@@ -1201,7 +1202,6 @@ s32 post_translate_matrix(void *);
 void queue_destruction__7TObjectFv(void *object);
 s32 submit_cursor_candidate(void *, int);
 s32 add_radar_scaled_marker(void *, int, int, int, f32);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 
 void TObjPlayer::save_position() {
     s32 arg0 = (s32)this;
@@ -1247,7 +1247,7 @@ void TBoss6Mag::spawn_trap_by_stat() {
             var_r3 = 0x6B518;
         }
     }
-    play_persistent_sound((s32)var_r3, (s32)this, (u32)(((u8 *)this) + 0x38), 0, 0);
+    play_persistent_sound((s32)var_r3, (const void *)(this), (const Vec *)((u32)(((u8 *)this) + 0x38)), 0, 0);
 }
 
 void TBoss6Mag::render() { sub_8033040C(); }

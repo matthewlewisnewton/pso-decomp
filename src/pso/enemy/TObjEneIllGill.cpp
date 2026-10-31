@@ -2,6 +2,7 @@
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 struct NJS_OBJECT;
 #include "pso/math/ScratchVectorStorage.h"
 #include "pso/player/PlayerAttackParams.h"
@@ -56,7 +57,7 @@ s32 spawn_continuous_particle_with_direction(void *, void *, s32);
 s32 angle_difference_abs(s32, s32);
 s32 get_player_by_client_id(u16);
 s32 minimap_render_dot(void *, int, int, int);
-s32 play_persistent_sound(int, void *, void *, int, int);
+
 void *__nw__7TObjectFUl(int);
 void TObjIllGillKage__ct(void *, s32, void *);
 void subtract_vector(void *, void *);
@@ -383,7 +384,7 @@ void TObjEneIllGill::update_charge_attack() {
                 o->chargeFrames = c + 1;
             }
         }
-        play_persistent_sound(0x4003A34F, o, &o->position, 0, 0);
+        play_persistent_sound((s32)(0x4003A34F), (const void *)(o), (const Vec *)(&o->position), 0, 0);
         if (o->primaryEffect != 0 && ((TObject *)(o->primaryEffect))->all_parents_unqueued_for_destruction() != 0) {
             ((TParticleCtrl *)o->primaryEffect)->set_position(&o->chargeEffectPosition1);
         }
@@ -470,7 +471,7 @@ void TObjEneIllGill::update_shadow_attack() {
         }
         break;
     case 2:
-        play_persistent_sound(0x4003A356, enemy, &position, 0, 0);
+        play_persistent_sound((s32)(0x4003A356), (const void *)(enemy), (const Vec *)(&position), 0, 0);
         apply_actor_gravity(enemy, 0, TObjEneIllGill__data_805E02BC);
         if (this->target != NULL) {
             Vec w;

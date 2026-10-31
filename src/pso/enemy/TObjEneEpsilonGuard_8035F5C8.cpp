@@ -2,6 +2,7 @@
 #include "pso/misc/MaterialOpacityFade.h"
 #include "pso/misc/RenderFadeState.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
@@ -474,7 +475,7 @@ extern s32 chunk_polygon_flags_or_mask;
 extern s32 chunk_polygon_flags_and_mask;
 extern s32 model_render_flags;
 void draw_with_fade__19TObjEneEpsilonGuardFPvi(u8 *arg0, s32 arg1);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 extern Vec4_80360D9C lbl_80479CAC[];
 s32 check_path_obstructed(void *, void *);
 int get_player_data__10TObjPlayerFi(int a0);
@@ -1164,7 +1165,7 @@ void TObjEneEpsilonGuard::handle_warp_state(s32 arg1) {
                 g->vy = (lbl_80479CAC[g->idx].z - g->pos.z) / 30.0f;
                 g->vz = (lbl_80479CAC[g->idx].w - g->pos.w) / 30.0f;
             }
-            play_persistent_sound(0x4003A349, (s32)this, (u32)(((u8 *)this) + 0x38), 0, 0);
+            play_persistent_sound((s32)(0x4003A349), (const void *)(this), (const Vec *)((u32)(((u8 *)this) + 0x38)), 0, 0);
             break;
         case 1:
             g->timer--;
@@ -1176,7 +1177,7 @@ void TObjEneEpsilonGuard::handle_warp_state(s32 arg1) {
                 g->alpha = 1.0f;
                 g->state = 2;
             }
-            play_persistent_sound(0x4003A349, (s32)this, (u32)(((u8 *)this) + 0x38), 0, 0);
+            play_persistent_sound((s32)(0x4003A349), (const void *)(this), (const Vec *)((u32)(((u8 *)this) + 0x38)), 0, 0);
             break;
         case 2:
             g->alpha = g->alpha - 0.033333335f;
@@ -1185,7 +1186,7 @@ void TObjEneEpsilonGuard::handle_warp_state(s32 arg1) {
                 g->state = 3;
                 play_sound_effect(0x40039F4A, ((u8 *)this) + 0x38, 0, 0);
             } else {
-                play_persistent_sound(0x4003A349, (s32)this, (u32)(((u8 *)this) + 0x38), 0, 0);
+                play_persistent_sound((s32)(0x4003A349), (const void *)(this), (const Vec *)((u32)(((u8 *)this) + 0x38)), 0, 0);
             }
             break;
         }
@@ -1494,7 +1495,7 @@ void TObjEneEpsilonGuard__sub_803616E4(void *arg0_, s32 arg1) {
                 F(s32, 0x4E8) = 2;
                 F(s32, 0x4EC) = *(s32 *)(GP + 0x1C);
             }
-            play_persistent_sound(0x4003BC47, (s32)arg0, (u32)(arg0 + 0x38), 0, 0);
+            play_persistent_sound((s32)(0x4003BC47), (const void *)((s32)arg0), (const Vec *)((u32)(arg0 + 0x38)), 0, 0);
             break;
         }
         case 2:
