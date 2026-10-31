@@ -66,9 +66,9 @@ TObjEneBalClawBody::TObjEneBalClawBody(TObject *parent, BalClawSetData *set_data
     action_table = balclaw_body_actions;
     set_field_d8((s32)action_table);
     init_collision_body_parts(this, &balclaw_body_collision, 1);
-    m_b8 = 0;
-    set_animation(m_b8);
-    set_field_b8(m_b8);
+    requested_action = 0;
+    set_animation(requested_action);
+    set_field_b8(requested_action);
     hp = hpmax;
     tp = tpmax;
     referenceHp = hp;
@@ -136,7 +136,7 @@ void TObjEneBalClawBody::run_task() {
     update_wobble();
     update_claw_angle();
     VecCopy(body_center(), &position);
-    m_300 += m_3b4 + m_3bc;
+    body_center_position.y += m_3b4 + m_3bc;
     bodies->offset.y = m_3b4 + m_3bc;
     submit_cursor_candidate(this, -1);
     minimap_render_dot(&position, -0x5DB4, 1, 0);

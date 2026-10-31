@@ -3,8 +3,10 @@
 
 #include "types.h"
 #include "pso/enemy/TObjEnemyCustom.h"
+#include "pso/player/TUnk_80490470.h"
 
 struct TObjEneBalClaw : public TObjEnemyCustom {
+    TObjEneBalClaw(TObject *parent);
     virtual ~TObjEneBalClaw();
     void set_attack_distance_flag();
     void clear_attack_flag();

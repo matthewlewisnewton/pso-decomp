@@ -473,7 +473,7 @@ void TObjEneBalClawBody::run_death_sequence() {
         ((TObjEnemy *)arg0)->distribute_experience_and_request_drop();
         *(s32 *)((s8 *)arg0 + 0x388) &= ~0x20000;
         if (((TObjEneBalClawBody *)arg0)->get_flag_0x388_b24() != 0) {
-            this->m_b8 = 4;
+            this->requested_action = 4;
             state = 1;
             for (i = 0; i < ((P_8008F730 *)arg0)->n; i++) {
                 p = (u8 *)find_entity_by_id(((P_8008F730 *)arg0)->ids[i]);

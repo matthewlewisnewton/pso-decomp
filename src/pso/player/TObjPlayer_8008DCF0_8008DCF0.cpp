@@ -407,7 +407,7 @@ void TObjEneBalClawBody::fn_8008E310() {
         break;
     case 1:
         ((TParticleCtrl *)((P_8008E310 *)this)->emit1)->set_position(((P_8008E310 *)this)->f2FC);
-        advance_animation__10TObjMotionFv(this);
+        advance_animation();
         apply_actor_gravity((TObjEnemy *)((u8 *)this), (s32 *)(0), lbl_805D9620);
         all = 1;
         cnt = 0;
@@ -446,7 +446,7 @@ void TObjEneBalClawBody::fn_8008E310() {
         break;
     case 2:
         ((TParticleCtrl *)((P_8008E310 *)this)->emit1)->set_position(((P_8008E310 *)this)->f2FC);
-        advance_animation__10TObjMotionFv(this);
+        advance_animation();
         apply_actor_gravity((TObjEnemy *)((u8 *)this), (s32 *)(0), lbl_805D9620);
         if (((P_8008E310 *)this)->fC0 < lbl_805D9638) {
             ((TParticleCtrl *)(((P_8008E310 *)this)->emit2))->enable();
@@ -459,7 +459,7 @@ void TObjEneBalClawBody::fn_8008E310() {
             ((P_8008E310 *)this)->emit1 = 0;
             spawn_particle_effect(((P_8008E310 *)this)->f2FC, 0x129);
             ((TObjEneBalClawBody *)this)->set_form(1);
-            advance_animation__10TObjMotionFv(this);
+            advance_animation();
             ((P_8008E310 *)this)->flags &= ~0x04000000;
             ((P_8008E310 *)this)->f33C = 0x1E;
             ((P_8008E310 *)this)->state = 3;
@@ -468,7 +468,7 @@ void TObjEneBalClawBody::fn_8008E310() {
         break;
     case 3:
         ((TParticleCtrl *)((P_8008E310 *)this)->emit2)->set_position(((P_8008E310 *)this)->f2FC);
-        advance_animation__10TObjMotionFv(this);
+        advance_animation();
         apply_actor_gravity((TObjEnemy *)((u8 *)this), (s32 *)(0), lbl_805D9620);
         if (--((P_8008E310 *)this)->f33C <= 0) {
             ((P_8008E310 *)this)->flags &= ~1;
@@ -478,7 +478,7 @@ void TObjEneBalClawBody::fn_8008E310() {
     case -1:
         if (((P_8008E310 *)this)->flags & 0x04000000) {
             ((TObjEneBalClawBody *)this)->set_form(1);
-            advance_animation__10TObjMotionFv(this);
+            advance_animation();
         }
         if (((TObjEneBalClawBody *)this)->get_flag_0x388_b24() == 0) {
             for (s32 i = 0; i < ((P_8008E310 *)this)->count; i++) {
