@@ -1377,6 +1377,8 @@ force_active:
   - TWindowDuelResult__layout_entries
   - TWindowDuelResult__sub_8024F330
   - TWindowDuelResult__sub_8024F3CC
+  - TWindowEffectLight__data_805DE0E4
+  - TWindowEffectLight__sub_802AD040
   - TWindowFukidasi__sub_80249788
   - TWindowGetComCard__sub_8007B60C
   - TWindowHelpItem__item_layout_entries
@@ -1630,6 +1632,7 @@ force_active:
   - __ct__18TObjItemNameSelectFP7TObject
   - __ct__18TObjTailsTailsMoveFP10TObjPlayer
   - __ct__18TPlayerLobbyMarkerFP7TObjectsSc
+  - __ct__18TWindowEffectLightFPvsUl
   - __ct__19TBoss3VoloptMonitorFP7TObjectPv
   - __ct__19TOChatSensorCaptureFP7TObject
   - __ct__19TObjEZBoneRotPlayerFv
@@ -2032,6 +2035,7 @@ force_active:
   - __dt__18TPhotonConcentrateFv
   - __dt__18TPhotonMagicSquareFv
   - __dt__18TPlayerLobbyMarkerFv
+  - __dt__18TWindowEffectLightFv
   - __dt__18TWindowMessagePageFv
   - __dt__19TAdGameStartShineGCFv
   - __dt__19TAdTrialAgreementGCFv
@@ -2523,6 +2527,7 @@ force_active:
   - __vt__18TPhotonConcentrate
   - __vt__18TPhotonMagicSquare
   - __vt__18TPlayerLobbyMarker
+  - __vt__18TWindowEffectLight
   - __vt__18TWindowMessagePage
   - __vt__19MaterialOpacityFade
   - __vt__19TAdGameStartShineGC
@@ -3384,6 +3389,7 @@ force_active:
   - byteswap_telepipe_packet__9TTecLukerFv
   - c2r$433
   - cached_blend_factor_table
+  - calc_alpha__18TWindowEffectLightFv
   - calc_alpha_shifted__6TLobbyFf
   - calc_angle_to_target__19TObjEneEpsilonGuardFv
   - calc_anim_speed__16TObjEneBm5GibonUFPvf
@@ -3443,6 +3449,7 @@ force_active:
   - calc_rotated_hex_point__23TObjOnlineEndingHexLineFPvPv
   - calc_rotated_vector__14TObjEneBm5WolfFPviPvPv
   - calc_rotated_vector__16TObjEneBm5GibonUFPviPvPv
+  - calc_scale__18TWindowEffectLightFv
   - calc_segment_uvs__25TBoss5GryphonLightningEffFPv
   - calc_shock_chance__FP10TObjPlayerP10TObjPlayerP10TObjPlayer
   - calc_slot_offset_position__10TObjPlayerFPviPvPv
@@ -4334,6 +4341,7 @@ force_active:
   - draw_object_tree__11TObjDoaEx01Fl
   - draw_object_tree__14TOTrapSeabed01FPUc
   - draw_object_tree_recursive__FPv
+  - draw_outline_quad__18TWindowEffectLightFl
   - draw_palette_cells__22TWindowSubCustomSelectFi
   - draw_part_models__15TODoorMachine01FPUcl
   - draw_parts__12TODoorCave02FPv
@@ -6711,6 +6719,26 @@ force_active:
   - lbl_805DD648
   - lbl_805DD668
   - lbl_805DE040
+  - lbl_805DE0E0
+  - lbl_805DE0E8
+  - lbl_805DE0EC
+  - lbl_805DE0F0
+  - lbl_805DE0F4
+  - lbl_805DE0F8
+  - lbl_805DE0FC
+  - lbl_805DE100
+  - lbl_805DE104
+  - lbl_805DE108
+  - lbl_805DE10C
+  - lbl_805DE110
+  - lbl_805DE114
+  - lbl_805DE118
+  - lbl_805DE11C
+  - lbl_805DE120
+  - lbl_805DE124
+  - lbl_805DE128
+  - lbl_805DE12C
+  - lbl_805DE130
   - lbl_805DE620
   - lbl_805DE640
   - lbl_805DE648
@@ -12040,6 +12068,7 @@ force_active:
   - render__18TPhotonConcentrateFv
   - render__18TPhotonMagicSquareFv
   - render__18TPlayerLobbyMarkerFv
+  - render__18TWindowEffectLightFv
   - render__18TWindowMessagePageFv
   - render__19TAdGameStartShineGCFv
   - render__19TBoss1DragonColli_CFv
@@ -12600,6 +12629,7 @@ force_active:
   - run_task__18TPhotonConcentrateFv
   - run_task__18TPhotonMagicSquareFv
   - run_task__18TPlayerLobbyMarkerFv
+  - run_task__18TWindowEffectLightFv
   - run_task__18TWindowMessagePageFv
   - run_task__19TAdGameStartShineGCFv
   - run_task__19TAdTrialAgreementGCFv
