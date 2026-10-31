@@ -1,0 +1,151 @@
+{
+  "main": "8b2bed362369acac93353019a3ef57870eaf4e70",
+  "tree": "9f2f53f7b45481338f5bd7fbac12e44de3388ae5",
+  "baseline_commit": "623d9415a5edb3e27c686135385dcf98b5fa36bc",
+  "generated_epoch": 1793480233.290889,
+  "metrics": {
+    "matched_functions": {
+      "baseline": 27223,
+      "baseline_denominator": 27572,
+      "baseline_percent": 98.73422312490933,
+      "current": 27248,
+      "current_denominator": 27572,
+      "current_percent": 98.82489482083272,
+      "delta": 25
+    },
+    "matched_code": {
+      "baseline": 4101056,
+      "baseline_denominator": 4353092,
+      "baseline_percent": 94.21018439307049,
+      "current": 4116324,
+      "current_denominator": 4353092,
+      "current_percent": 94.56092359178258,
+      "delta": 15268
+    },
+    "matched_data": {
+      "baseline": 1276059,
+      "baseline_denominator": 1761407,
+      "baseline_percent": 72.44543708523925,
+      "current": 1288019,
+      "current_denominator": 1761375,
+      "current_percent": 73.12576822085019,
+      "delta": 11960
+    },
+    "complete_code": {
+      "baseline": 3196360,
+      "baseline_denominator": 4353092,
+      "baseline_percent": 73.42734773351907,
+      "current": 3330428,
+      "current_denominator": 4353092,
+      "current_percent": 76.5071815619794,
+      "delta": 134068
+    },
+    "complete_data": {
+      "baseline": 920643,
+      "baseline_denominator": 1761407,
+      "baseline_percent": 52.267477079403,
+      "current": 938775,
+      "current_denominator": 1761375,
+      "current_percent": 53.29784969129231,
+      "delta": 18132
+    },
+    "complete_units": {
+      "baseline": 3539,
+      "baseline_denominator": 5087,
+      "baseline_percent": 69.5694908590525,
+      "current": 3538,
+      "current_denominator": 5067,
+      "current_percent": 69.82435366094336,
+      "delta": -1
+    }
+  },
+  "actual_source_inputs": 3538,
+  "actual_original_object_fallbacks": 1529,
+  "actual_total_link_inputs": 5067,
+  "objdiff_version": "objdiff-cli 3.6.1",
+  "baseline_configured_objdiff_version": "v3.6.1",
+  "baseline_tool_binary_hash_recorded": false,
+  "report_schema": 2,
+  "tool_hashes": {
+    "objdiff-cli": "72688707d5a7f30daebf5a4f65f74c6dab17ee6e09a230a187e327900345eecf",
+    "ninja": "08639e194fffa7f08b259fc4abfa4803aff66b64de52549cee42ec527d55cea6",
+    "merge_batch_validate.py": "53fbc0e215a4e6c9f6e181626f8304eb1f1de6faf9a07e12cf08c421b00d2c92",
+    "tools/check_pr.py": "9a76212ef1df18d0c72198b30297f234854e4653c3a20ccae0c5f396d7916a66",
+    "tools/report_delta.py": "f258692b53ec0f2d0a2ef70f166816805749123e9afe47d8afbe7e5ee4854115",
+    "tools/link_units.py": "7bbdaaa49123fa3dab92609f85f26a664f199dc8ea72477443979b230a72c74b"
+  },
+  "fresh_report_sha256": "37b640867349c4605b021241d7a76f16621ff234abd8ea8257dc76345e25c4a2",
+  "baseline_report_sha256": "8f35b8465e007a80b440f2492f96a4c21a3339ee1e55f8cc6b3afc5df383dce0",
+  "report_command": "objdiff-cli report generate --config functionRelocDiffs=data_value -o build/GPOE8P/report.json",
+  "address_check_command": "trusted-python tools/check_pr.py --no-build --baseline BASELINE_REPORT --json RESULT",
+  "validation": {
+    "fresh_report": true,
+    "exact_main_objects_reused": true,
+    "objects_rehashed_unchanged": 8776,
+    "original_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "starting_baseline_address_check": "pass",
+    "function_regressions": 0,
+    "data_regressions": 0,
+    "linked_functions_lost": 0,
+    "linked_data_lost": 0,
+    "padding_ranges_no_longer_counted": [
+      {
+        "module": "psov3",
+        "section": ".data",
+        "address": "0x804909FC",
+        "size": 4
+      },
+      {
+        "module": "psov3",
+        "section": ".data",
+        "address": "0x804920CC",
+        "size": 4
+      },
+      {
+        "module": "psov3",
+        "section": ".data",
+        "address": "0x804962F4",
+        "size": 4
+      },
+      {
+        "module": "psov3",
+        "section": ".data",
+        "address": "0x804E14E4",
+        "size": 4
+      },
+      {
+        "module": "psov3",
+        "section": ".sdata",
+        "address": "0x805D2A64",
+        "size": 4
+      },
+      {
+        "module": "psov3",
+        "section": ".sdata",
+        "address": "0x805D4234",
+        "size": 4
+      },
+      {
+        "module": "psov3",
+        "section": ".sdata2",
+        "address": "0x805DA364",
+        "size": 4
+      },
+      {
+        "module": "psov3",
+        "section": ".sdata2",
+        "address": "0x805DF8AC",
+        "size": 4
+      }
+    ],
+    "post_main_source_ci": "https://github.com/matthewlewisnewton/pso-decomp/actions/runs/41241180024",
+    "post_main_source_ci_result": "success"
+  },
+  "notes": [
+    "Matched coverage includes exact compiled functions/data in units that may still use original-object fallback. Source-linked coverage separately measures selected source objects.",
+    "Unit counts change with translation-unit consolidation; the net linked-unit count decrease from 3539 to 3538 is not source coverage loss. Address-based preservation passes.",
+    "Current data denominator is 32 bytes smaller: eight 4-byte padding ranges are no longer counted. Both original and current denominators are supplied.",
+    "Starting baseline is a retained verified report, not regenerated today. Its source config pins objdiff v3.6.1 and schema matches; its historical executable SHA256 was not recorded. Both reports were compared today by the same current address-check tooling.",
+    "Detailed reports, object hashes, build logs and original inputs remain local. This published summary contains aggregate metrics, source addresses and tool hashes only."
+  ]
+}
