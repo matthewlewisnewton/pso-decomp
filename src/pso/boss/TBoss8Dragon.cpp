@@ -1423,7 +1423,7 @@ s32 update_linked_position__12TObjEneDD_STFf(f32);
 void enemy_clear_target__12TObjEneDD_STFUs(void *);
 void enemy_set_target_id(void *, u16);
 void *__dt__12TObjEneDD_STFv(void *arg0, s16 arg1);
-s32 reload_stats_keep_hp_tp__9TObjEneDDFv(void *, void *, int, void *);
+s32 reload_stats_keep_hp_tp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(void *, void *, int, void *);
 s32 reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(void *, int, int, int);
 void transform_point_to_view(s32, s32);
 void update_camera_sequence__9TObjEneDDFv(void);
@@ -6182,11 +6182,11 @@ void handle_6xA8_gol_dragon_boss_actions(void *boss8_dragon) {
 }
 
 void TBoss8Dragon__sub_802FBE3C(TBoss8Dragon *dragon) {
-    reload_stats_keep_hp_tp__9TObjEneDDFv(dragon, get_battle_base_stats(0x12), TBoss8Dragon__data_80541DC8[TBoss8Dragon__data_804E4C28[3]], get_battle_resistance_params(0x12));
+    reload_stats_keep_hp_tp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(dragon, get_battle_base_stats(0x12), TBoss8Dragon__data_80541DC8[TBoss8Dragon__data_804E4C28[3]], get_battle_resistance_params(0x12));
 }
 
 void TBoss8Dragon__sub_802FBEA4(TBoss8Dragon *dragon) {
-    reload_stats_keep_hp_tp__9TObjEneDDFv(dragon, get_battle_base_stats(0x12), TBoss8Dragon__data_80541DC8[TBoss8Dragon__data_804E4C28[2]], get_battle_resistance_params(0x12));
+    reload_stats_keep_hp_tp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(dragon, get_battle_base_stats(0x12), TBoss8Dragon__data_80541DC8[TBoss8Dragon__data_804E4C28[2]], get_battle_resistance_params(0x12));
 }
 
 void TBoss8Dragon::reset_tail_hp() {
@@ -6195,7 +6195,7 @@ void TBoss8Dragon::reset_tail_hp() {
 }
 
 void TBoss8Dragon::reload_boss_stats() {
-    reload_stats_keep_hp_tp__9TObjEneDDFv(this, get_battle_base_stats(0x12), ((s32 *)&TBoss8Dragon__data_80541DC8)[TBoss8Dragon__data_804E4C28[0]], get_battle_resistance_params(0x12));
+    reload_stats_keep_hp_tp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(this, get_battle_base_stats(0x12), ((s32 *)&TBoss8Dragon__data_80541DC8)[TBoss8Dragon__data_804E4C28[0]], get_battle_resistance_params(0x12));
 }
 
 #pragma push

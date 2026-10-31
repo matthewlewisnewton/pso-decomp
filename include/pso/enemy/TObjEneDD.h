@@ -63,7 +63,7 @@ struct TObjEneDD : public TObjEnemy {
     void draw_oriented_shadow(s32 arg1, s32 arg2, u32 arg3);
     int update_primary_light();
     int update_secondary_light();
-    void reload_stats_keep_hp_tp();
+    void reload_stats_keep_hp_tp(BattleBaseStats *base_stats, AttackParams *attack_stats, ActorParamBlock *resistance_stats);
     void reset_hp(BattleBaseStats *base_stats, AttackParams *attack_stats, ActorParamBlock *resistance_stats);
     int update_camera_sequence();
     void initialize_enemy_state(s32 parameter);
