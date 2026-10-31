@@ -8,17 +8,9 @@
 #pragma inline_depth(1)
 #pragma auto_inline off
 #pragma dont_inline off
-struct ByteBlock_28 { u8 bytes[0x28]; };
-
-struct RecoveredGlobal_80074FAC_lbl_8043878C {
-    s32 value;
-    u8 remaining[0x28];
-};
-
-struct RecoveredGlobal_80074FAC_TObjTombstone__data_8048D250 {
-    s32 value;
-    u8 remaining[0x24];
-};
+// The two callers pass a ten-float drop distribution, not a TObject.
+struct TombstoneDropWeights { f32 values[10]; };
+typedef char TombstoneDropWeights_size[sizeof(TombstoneDropWeights) == 0x28 ? 1 : -1];
 
 struct V_80075070 { f32 x, y, z; };
 
@@ -67,8 +59,10 @@ extern const f32 TObjTombstone__data_805D9178;
 extern const f32 TObjTombstone__data_805D917C;
 extern const f32 lbl_805D9180;
 extern const f32 TObjTombstone__data_805D9184;
-extern RecoveredGlobal_80074FAC_lbl_8043878C tombstone_reset_matrix_template;
-extern RecoveredGlobal_80074FAC_TObjTombstone__data_8048D250 TObjTombstone__base_matrix;
+extern const TombstoneDropWeights tombstone_reset_matrix_template;
+extern f32 TObjTombstone__base_matrix[10];
+// Retain the provisional linker label while correcting its receiver model.
+void copy_matrix__13TObjTombstoneFPv(f32 *destination, const f32 *source);
 f32 vector_length(void *);
 void subtract_vector(void *, void *);
 extern V_80075070 tombstone_position_table[];
@@ -115,17 +109,30 @@ void TObjTombstone__sub_80074E74(f32 *w) {
         sum > one) {
         return;
     }
-    ((TObjTombstone *)(&TObjTombstone__base_matrix.value))->copy_matrix(w);
+    copy_matrix__13TObjTombstoneFPv(TObjTombstone__base_matrix, w);
 }
 
-void TObjTombstone::copy_matrix(void* q) { *(f32 *)&this->m_name = *(f32*)((char*)q + 0x0); *(f32 *)&this->m_flags = *(f32*)((char*)q + 0x4); *(f32 *)&this->m_prev = *(f32*)((char*)q + 0x8); *(f32 *)&this->m_next = *(f32*)((char*)q + 0xc); *(f32 *)&this->m_up = *(f32*)((char*)q + 0x10); *(f32 *)&this->m_down = *(f32*)((char*)q + 0x14); *(f32*)((char*)this + 0x18) = *(f32*)((char*)q + 0x18); *(f32 *)&this->entity_id = *(f32*)((char*)q + 0x1c); *(f32 *)&this->m_20 = *(f32*)((char*)q + 0x20); *(f32 *)&this->texlist = *(f32*)((char*)q + 0x24); }
+// GC/2.6 otherwise schedules alternating float registers for this array copy.
+// The original copies each of the ten weights with one load/store pair.
+#pragma push
+#pragma scheduling off
+void copy_matrix__13TObjTombstoneFPv(f32 *destination, const f32 *source) {
+    destination[0] = source[0];
+    destination[1] = source[1];
+    destination[2] = source[2];
+    destination[3] = source[3];
+    destination[4] = source[4];
+    destination[5] = source[5];
+    destination[6] = source[6];
+    destination[7] = source[7];
+    destination[8] = source[8];
+    destination[9] = source[9];
+}
+#pragma pop
 
-typedef char RecoveredGlobal_80074FAC_lbl_8043878C_size[sizeof(RecoveredGlobal_80074FAC_lbl_8043878C) == 0x2C ? 1 : -1];
-typedef char RecoveredGlobal_80074FAC_TObjTombstone__data_8048D250_size[sizeof(RecoveredGlobal_80074FAC_TObjTombstone__data_8048D250) == 0x28 ? 1 : -1];
 void TObjTombstone::reset_matrix() {
-    ByteBlock_28 sp8;
-    sp8 = *(const ByteBlock_28 *)((s32) ((u8 *)&tombstone_reset_matrix_template.value + -4) + 4);
-    ((TObjTombstone *)(&TObjTombstone__base_matrix.value))->copy_matrix((void*)&sp8);
+    TombstoneDropWeights defaults = tombstone_reset_matrix_template;
+    copy_matrix__13TObjTombstoneFPv(TObjTombstone__base_matrix, defaults.values);
 }
 }
 extern Off_800753DC tombstone_name_label_offset_table[];

@@ -26,7 +26,6 @@ struct TObjTombstone : public TObjCollidable {
     void format_label();
     void format_player_name();
     void reset_entries_and_format_name();
-    void copy_matrix(void* q);
     static void reset_matrix();
     s32 check_owner();
     s32 is_other_tombstone_closer();
