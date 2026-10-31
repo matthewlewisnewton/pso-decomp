@@ -294,9 +294,9 @@ void TObjEneBalClawBody::fn_8008EDE8() {
                     move_with_wall_slide((u8 *)((P_8008EDE8 *)this));
                 }
             }
-            ((TObjPlayer *)((P_8008EDE8 *)this))->update_angle((s32)((P_8008EDE8 *)this)->f350->f8, &((P_8008EDE8 *)this)->vel);
+            turn_toward_direction((s32)((P_8008EDE8 *)this)->f350->f8, (Vec *)&((P_8008EDE8 *)this)->vel);
             ((P_8008EDE8 *)this)->f3C0 = xz_distance_squared(&((P_8008EDE8 *)this)->pos, &((P_8008EDE8 *)this)->target->pos);
-            if (((P_8008EDE8 *)this)->f3C0 <= ((TObjPlayer *)(((P_8008EDE8 *)this)->f318))->get_pos_x() * ((TObjPlayer *)(((P_8008EDE8 *)this)->f318))->get_pos_x()) {
+            if (((P_8008EDE8 *)this)->f3C0 <= ((AttackParams *)(((P_8008EDE8 *)this)->f318))->get_attack_range() * ((AttackParams *)(((P_8008EDE8 *)this)->f318))->get_attack_range()) {
                 ((P_8008EDE8 *)this)->fB8 = 2;
                 ((P_8008EDE8 *)this)->state = 2;
                 play_sound_effect(0x4003B033, ((P_8008EDE8 *)this)->pos38, 0, 0);
@@ -318,7 +318,7 @@ void TObjEneBalClawBody::fn_8008EDE8() {
                     move_with_wall_slide((u8 *)((P_8008EDE8 *)this));
                 }
             }
-            if (objInBand((GameObj *)((P_8008EDE8 *)this), (f32)lbl_805D964C) != 0) {
+            if (is_passing_frame((f32)lbl_805D964C) != 0) {
                 if (((P_8008EDE8 *)this)->target->m18(((P_8008EDE8 *)this), lbl_805D9650) != 0) {
                     if (random_ratio__9TObjCharaFv((s32)((P_8008EDE8 *)this)) <= lbl_805D9654) {
                         Pair_8008EDE8 q = lbl_80439B54[0];
@@ -337,7 +337,7 @@ void TObjEneBalClawBody::fn_8008EDE8() {
     case -1:
         break;
     }
-    advance_animation__10TObjMotionFv(((P_8008EDE8 *)this));
+    advance_animation();
     apply_actor_gravity((TObjEnemy *)((u8 *)((P_8008EDE8 *)this)), (s32 *)(0), lbl_805D9620);
     ((TObjPlayer *)((P_8008EDE8 *)this))->update_collisions();
 }
@@ -491,8 +491,8 @@ void TObjEneBalClawBody::run_death_sequence() {
         play_sound_effect(0x4003AD37, (u8 *)&this->position, 0, 0);
         break;
     case 1:
-        advance_animation__10TObjMotionFv(arg0);
-        if (this->m_c0 >= lbl_805D9668) {
+        ((TObjMotion *)arg0)->advance_animation();
+        if (this->frame >= lbl_805D9668) {
             state = 3;
         }
         break;
