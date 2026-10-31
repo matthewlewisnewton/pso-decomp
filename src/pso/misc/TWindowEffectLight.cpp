@@ -59,8 +59,9 @@ void TWindowEffectLight__sub_802AD040(TWindowEffectLight *self, f32 width) {
     u32 color = self->calc_alpha() | 0x00FFFFFF;
     f32 scale = self->calc_scale();
     set_draw_texture_and_color(2, color);
+    f32 half_height;
     f32 half_width = TWindowEffectLight__data_805DE0E4 * (width - lbl_805DE0F4);
-    f32 half_height = lbl_805DE0F8 * scale;
+    half_height = lbl_805DE0F8 * scale;
     q.x0 = self->x - half_width - half_height;
     q.y0 = self->y - half_height;
     q.x1 = self->x - half_width;
