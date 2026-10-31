@@ -513,6 +513,67 @@ s32 build_save_file_image__15TAdPlayerLoadGCFPvPv(u8 *arg0, Src_801E17F4 *arg1) 
     return size / 8192 + 3;
 }
 
+s32 TAdPlayerLoadGC__sub_801E1944(s32 chan, const char *name, void *buf, u32 blocks) {
+    u32 size;
+    CARDStat_801E2048 st;
+    if (chan >= 2) {
+        return 0;
+    }
+    switch (CARDOpen(chan, name, &TAdPlayerLoadGC__data_80511EE8)) {
+    case -3:
+        TAdPlayerLoadGC__card_result_code = -0xFF;
+        return -0xFF;
+    case -4:
+        TAdPlayerLoadGC__card_result_code = -0xFF;
+        return -0xFB;
+    case -1:
+        TAdPlayerLoadGC__card_result_code = -1;
+        return -1;
+    case -6:
+    case -10:
+    case -128:
+    default:
+        TAdPlayerLoadGC__card_result_code = -0xFD;
+        return -0xFD;
+    case 0:
+        break;
+    }
+    CARDGetSectorSize(chan, &size);
+    if (size != 0x2000) {
+        TAdPlayerLoadGC__card_result_code = -0xFD;
+        return -0xFD;
+    }
+    if (blocks != 0) {
+        size = blocks * size;
+    } else {
+        CARDGetStatus(chan, TAdPlayerLoadGC__data_80511EE8.fileNo, &st);
+        size = st.length;
+    }
+    switch (CARDReadAsync(&TAdPlayerLoadGC__data_80511EE8, buf, (s32)size, 0, NULL)) {
+    case -3:
+        TAdPlayerLoadGC__card_result_code = -0xFF;
+        return -0xFF;
+    case -1:
+        TAdPlayerLoadGC__card_result_code = -1;
+        return -1;
+    case -4:
+        TAdPlayerLoadGC__card_result_code = -0xFF;
+        return -0xFB;
+    case 0:
+        TAdPlayerLoadGC__card_slot_state_flags |= 0x40 << chan;
+        TAdPlayerLoadGC__card_result_code = 0;
+        return 0;
+    case -5:
+    case -11:
+    case -10:
+    case -14:
+    case -128:
+        break;
+    }
+    TAdPlayerLoadGC__card_result_code = -0xF9;
+    return -0xF9;
+}
+
 s32 TAdPlayerLoadGC__sub_801E1B50(s32 chan) {
     s32 result;
     if (chan >= 2) {
