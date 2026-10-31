@@ -1633,6 +1633,7 @@ force_active:
   - __ct__18TItemEffNeedleBaseFP7TObjectP5TItem
   - __ct__18TItemReverseTechBGFv
   - __ct__18TOExplosiveMachineFv
+  - __ct__18TObjEneBalClawBodyFP7TObjectP14BalClawSetData
   - __ct__18TObjItemNameSelectFP7TObject
   - __ct__18TPlayerLobbyMarkerFP7TObjectsSc
   - __ct__19TBoss3VoloptMonitorFP7TObjectPv
@@ -2005,6 +2006,7 @@ force_active:
   - __dt__18TOTrapChainSawEdgeFv
   - __dt__18TObjChallengeRetryFv
   - __dt__18TObjCityDoor_LobbyFPvs
+  - __dt__18TObjEneBalClawBodyFv
   - __dt__18TObjEneRe4SorcererFv
   - __dt__18TObjItemNameSelectFv
   - __dt__18TObjQuestColApcINWFv
@@ -2474,6 +2476,7 @@ force_active:
   - __vt__18TObjChallengeRetry
   - __vt__18TObjCityDoor_Guild
   - __vt__18TObjCityDoor_Lobby
+  - __vt__18TObjEneBalClawBody
   - __vt__18TObjEneBalClawClaw
   - __vt__18TObjEneRe4Sorcerer
   - __vt__18TObjItemNameSelect
@@ -4553,6 +4556,7 @@ force_active:
   - fn_8007A6C8
   - fn_8007F560
   - fn_8007FE78
+  - fn_8008FC0C__18TObjEneBalClawBodyFv
   - fn_800BC758
   - fn_800E322C
   - fn_800E3374
@@ -13120,6 +13124,8 @@ force_active:
   - sub_8007313C__18TObjChallengeRetryFv
   - sub_8007FF28__17TDuelEffectNumberFl
   - sub_8007FFF4__17TDuelEffectNumberFl
+  - sub_8008FC10__18TObjEneBalClawBodyFv
+  - sub_8008FF50__18TObjEneBalClawBodyFv
   - sub_80090798__18TObjEneBalClawClawFv
   - sub_80090D3C__18TObjEneBalClawClawFv
   - sub_80096150__21TObjEneRe7BeruraPunchFv
