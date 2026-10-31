@@ -34,7 +34,7 @@ void TObjPlayer__sub_800A887C(u8 *arg0) {
       play_sound_effect(((TObjEnemy *)((void *) arg0))->remap_sound_for_area((s32)(0x4003AD16)), (u32)(arg0 + 0x38), 0, 0);
     }
     TBoss3Volopt::create_breakup_mdl((s32)((void *) breakup_model_ptr), (s32)&lbl_80491260.value, (s32)((int) (*((s32 *) (((s8 *) arg0) + 0x24)))), (s32)(arg0 + 0x2FC), (s32)((int) (*((s32 *) (((s8 *) arg0) + 0x60)))));
-    ((TObjPlayer *)arg0)->refresh_lobby_state();
+    ((TObjEnemy *)arg0)->distribute_experience_and_request_drop();
     ((TObjEnemy *)arg0)->send_entity_set_flags();
     ((TObjPlayer *)(arg0 + 0x2FC))->trigger_dell_biter_events();
     obj_setFlags30((void *) arg0, 0x800);

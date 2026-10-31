@@ -683,7 +683,7 @@ void TObjEneBalClawClaw__sub_80090ECC(Claw_80090ECC *self) {
 void TObjEneBalClawClaw__sub_80091134(Claw_80091134 *self) {
     switch (self->state) {
     case 0:
-        ((TObjPlayer *)self)->refresh_lobby_state();
+        ((TObjEnemy *)self)->distribute_experience_and_request_drop();
         self->fieldB8 = 4;
         TObjPlayer__sub_800A04F0(&self->motion);
         fn_800D911C((Vec *)(self->effects));

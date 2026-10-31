@@ -471,7 +471,7 @@ void TObjPlayer::run_death_sequence() {
     u8 *p;
     switch (this->m_37c) {
     case 0:
-        ((TObjPlayer *)arg0)->refresh_lobby_state();
+        ((TObjEnemy *)arg0)->distribute_experience_and_request_drop();
         *(s32 *)((s8 *)arg0 + 0x388) &= ~0x20000;
         if (((TObjPlayer *)arg0)->get_flag_0x388_b24() != 0) {
             this->requested_action = 4;

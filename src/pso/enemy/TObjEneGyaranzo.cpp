@@ -1250,7 +1250,7 @@ void TObjPlayer::update_death_breakup() {
     switch (this->m_37c) {
     case 0:
         this->requested_action = 4;
-        ((TObjPlayer *)arg0)->refresh_lobby_state();
+        ((TObjEnemy *)arg0)->distribute_experience_and_request_drop();
         arg0->timer = 0x5A;
         create_dead_spot__10TObjPlayerFllf(arg0->v2FC, 0x5A, lbl_805DA27C);
         create_dead_spot__10TObjPlayerFllf(arg0->v2FC, 0x5A, lbl_805DA27C);

@@ -150,7 +150,6 @@ extern const f32 lbl_805DA4BC;
 extern const f32 lbl_805DA4D4;
 void TObjEnePanarms__sub_800DDED8(u8 *arg0);
 void TObjEnePanarms__sub_800E1D38(void *arg0);
-s32 refresh_lobby_state__10TObjPlayerFv();
 void TObjEnePanarms__sub_800DDAD8(u8 *arg0);
 extern const f32 lbl_805DA4E8;
 extern const f32 lbl_805DA4EC;
@@ -557,7 +556,7 @@ void TObjEnePanarms__sub_800DDAD8(u8 *ene_panarms) {
     s16 st;
     Vec_800DDAD8 v;
     ((TObjEnePanarms *)ene_panarms)->m_388 = 0xA4;
-    refresh_lobby_state__10TObjPlayerFv();
+    ((TObjEnemy *)ene_panarms)->distribute_experience_and_request_drop();
     ((TObjEnemy *)ene_panarms)->send_entity_set_flags();
     st = 5;
     if (find_nearest_visible_player(ene_panarms, &v.x, lbl_805DA4B4) != 0xFFFF) {

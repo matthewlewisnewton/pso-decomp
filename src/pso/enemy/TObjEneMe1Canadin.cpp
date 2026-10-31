@@ -2334,7 +2334,7 @@ void TObjEneMe1CanadinLeader__vt110(Leader_8009AB4C *obj, s32 mode) {
         }
         self->flags3C8 |= 0x400000;
         play_sound_effect(0x4003B71D, self->pos2FC, 0, 0);
-        ((TObjPlayer *)self)->refresh_lobby_state();
+        ((TObjEnemy *)self)->distribute_experience_and_request_drop();
         break;
     case 0:
         if (obj->m107() != 0) {
