@@ -14,6 +14,11 @@ detect_strings: true
 mw_comment_version: 10
 # --- force_active (BEGIN) ---
 force_active:
+  - check_player_hits__13TUnk_804909C4Fl
+  - run_task__13TUnk_804909C4Fv
+  - projectile_collision_body
+  - __vt__13TUnk_804909C4
+  - __dt__13TUnk_804909C4Fv
   - "@14"
   - "@28@__dt__17TMedicalCenterMesFv"
   - "@28@__dt__22TQuestVmDownLoadServerFv"
