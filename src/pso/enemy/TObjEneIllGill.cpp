@@ -1,6 +1,5 @@
 #include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
-#include "pso/math/ScratchVectorStorage.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"

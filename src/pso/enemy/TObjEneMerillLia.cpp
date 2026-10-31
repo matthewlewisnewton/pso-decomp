@@ -3,7 +3,6 @@
 #include "pso/misc/MaterialOpacityFade.h"
 #include "pso/misc/RenderFadeState.h"
 #include "pso/enemy/BattleParameters.h"
-#include "pso/math/ScratchVectorStorage.h"
 #include "types.h"
 #include "pso/misc/GroundEffects.h"
 #include "pso/player/TObjPlayer_803E4954.h"
