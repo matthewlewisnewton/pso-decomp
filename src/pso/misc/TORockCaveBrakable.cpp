@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "types.h"
 #include "pso/object/TObjChip.h"
 #include "pso/object/TObject_80019A50.h"
@@ -79,7 +80,7 @@ void TORockCaveBrakable::spawn_break_effect() {
 void TORockCaveBrakable::run_task() {
     s32 temp_r0_2;
 
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         this->vfunc_19();
         return;
     }

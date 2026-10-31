@@ -286,7 +286,7 @@ u8 *TObjNpcEnemy__ct(u8 *arg0, s32 arg1, s32 arg2) {
     *(s32 **)((s8 *)arg0 + 0x18) = &(*(RecoveredGlobal_802D78A0___vt__12TObjNpcEnemy *)&__vt__12TObjNpcEnemy).value;
     *(s32 *)((s8 *)arg0 + 0) = (s32) TObjNpcEnemy_class_name;
     ((TObjNpcEnemy *)(arg0))->apply_set_data((void *)arg2);
-    ((TObjPlayer *)arg0)->init_position_vectors();
+    ((TObjChara *)arg0)->initialize_position_copies();
     ((TObjNpcEnemy *)(arg0))->apply_set_params(0, 1);
     ((TObjNpcEnemy *)arg0)->movementParameters = &npc_movement_parameters.value;
     ((TObjChara *)arg0)->set_motion_params(&npc_default_battle_stats.value);
