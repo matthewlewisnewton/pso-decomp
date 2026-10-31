@@ -27,7 +27,6 @@ s32 scale_current_matrix(void *);
 s32 post_translate_matrix(void *);
 extern const f32 TObjEneDD__data_805D9E8C;
 extern const f32 lbl_805D9E90;
-int bind_enemy_combat_stats__9TObjEnemyFPUcPUcPUc(void*);
 int transform_to_view__11TCameraCtrlFii(void*);
 int apply_split_screen_view_matrix__11TCameraCtrlFv(void*);
 int restore_scene_lighting(void*);
@@ -67,13 +66,12 @@ void TObjEneDD::draw_oriented_shadow(s32 arg1, s32 arg2, u32 arg3) {
 int TObjEneDD::update_primary_light() { return restore_scene_lighting(this); }
 int TObjEneDD::update_secondary_light() { return select_actor_lighting(this); }
 
-void TObjEneDD::reload_stats_keep_hp_tp() {
-    Obj_800B9E84 *self = (Obj_800B9E84 *)this;
+void TObjEneDD::reload_stats_keep_hp_tp(BattleBaseStats *base_stats, AttackParams *attack_stats, ActorParamBlock *resistance_stats) {
     s16 a = this->hpmax;
     s16 c = this->hp;
     s16 b = this->tpmax;
     s16 d = *(s16 *)&this->tp;
-    bind_enemy_combat_stats__9TObjEnemyFPUcPUcPUc(self);
+    bind_enemy_combat_stats((u8 *)base_stats, (u8 *)attack_stats, (u8 *)resistance_stats);
     this->hpmax = a;
     this->hp = c;
     this->tpmax = b;
