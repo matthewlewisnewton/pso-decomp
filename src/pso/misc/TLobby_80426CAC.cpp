@@ -134,6 +134,9 @@ s32 TLobby__sub_8042787C(Ent_80427D40 *e, u8 *p, u16 len);
 s32 TLobby__sub_80427F48(s16 slot, u8 *frame, u16 len);
 s16 TLobby__sub_80426D80(Ent_80427D40 *e);
 s32 TLobby__sub_80426574(s32);
+s16 TLobby__sub_80426EB8(Ent_80427D40 *e);
+s16 TLobby__sub_804270C0(Ent_80427D40 *e);
+s16 TLobby__sub_80426660(u8 *arg0);
 Ent_80427D40 *TLobby__sub_80427B6C(u8 *p, u16 len);
 void TLobby__sub_80427378(Ent_80427D40 *e);
 s16 TLobby__sub_804275B0(s32, u16);
@@ -267,6 +270,79 @@ inline s16 put_end_of_list(u8 **p) {
     return ret;
 }
 
+inline s16 put_end_of_list3(u8 **p) {
+    s32 tag;
+    u16 type;
+    u16 len;
+    s16 ret;
+    tag = 0;
+    type = 0;
+    NetMemcpy(*p, &type, 2);
+    len = 0;
+    NetMemcpy(*p + 2, &len, 2);
+    *p += 4;
+    ret = 4;
+    return ret;
+}
+
+#pragma push
+#pragma opt_propagation off
+s16 TLobby__sub_80426D80(Ent_80427D40 *e) {
+    void *src;
+    u8 *p;
+    s16 n;
+    u16 type;
+    u8 flag;
+    s32 padA;
+    s32 padB;
+    s32 padC;
+    switch (e->state) {
+    case 0:
+    case 1:
+        n = TLobby__sub_804270C0(e);
+        if (n >= 0) {
+            src = e->m_16;
+            type = 0x8863;
+            flag = 9;
+            break;
+        }
+        goto out;
+    case 2:
+    case 3:
+        n = TLobby__sub_80426EB8(e);
+        if (n >= 0) {
+            src = e->m_20;
+            type = 0x8863;
+            flag = 0x19;
+            break;
+        }
+        goto out;
+    case 5:
+        if (e->id == 0) {
+            n = -1;
+            goto out;
+        }
+        p = e->frame + 0x14;
+        n = put_end_of_list3(&p);
+        if (n >= 0) {
+            src = e->m_20;
+            type = 0x8863;
+            n = 2 + 2;
+            flag = 0xA7;
+            break;
+        }
+        goto out;
+    case 4:
+    default:
+        n = -1;
+        goto out;
+    }
+    n = ((TLobby *)e->frame)->build_ethernet_frame_header(src, e->m_10, type, flag, e->id, n);
+    e->frame_len = n;
+out:
+    return n;
+}
+#pragma pop
 s16 TLobby__sub_80426EB8(Ent_80427D40 *e) {
     u8 *p;
     s16 n;
@@ -782,6 +858,56 @@ s32 TLobby__sub_80428094(s16 slot) {
         break;
     }
     return 0;
+}
+
+s16 TLobby__sub_804281DC(u8 *arg0) {
+    Ent_80427D40 *tbl;
+    Ent_80427D40 *p;
+    Ent_80427D40 *e;
+    s32 now;
+    s32 stamp;
+    s16 i;
+    s16 slot;
+    s16 set;
+    tbl = (0, (Ent_80427D40 *)&lobby_pppoe_slot_table);
+    set = 0;
+    for (p = &tbl[0], i = 0; i < 1; p++, (i++) & 0xFFFFFFFFFFFFFFFF) {
+        if (p->state == 6) {
+            p->state = -1;
+            set = 1;
+            break;
+        }
+    }
+    for (p = &tbl[0], i = 0, e = NULL; i < 1; p++, i++) {
+        e = p;
+        if (e->state == -1) {
+            slot = i;
+            break;
+        }
+    }
+    if (e == NULL) {
+        return -1;
+    }
+    if (TLobby__sub_80426660((u8 *)&tbl[1]) < 0) {
+        return -1;
+    }
+    e->names = *(PppoeNames *)arg0;
+    e->m_4 = set;
+    stamp = (s32)e;
+    TLobby::get_time_ms(&now);
+    NetMemcpy(e->m_32, &stamp, 4);
+    NetMemcpy(e->m_32 + 4, &now, 4);
+    NetMemcpy(e->m_10, (u8 *)&tbl[1], 6);
+    NetMemcpy(e->m_16, (u8 *)&tbl[1] + 6, 6);
+    e->m_24 = NULL;
+    e->m_2C = NULL;
+    e->m_6 = 0;
+    e->timeout = 0;
+    e->state = 0;
+    TLobby::get_time_ms(&e->last);
+    e->timeout = 200;
+    e->m_6 = 50;
+    return slot;
 }
 
 s32 TLobby__sub_80428358(void) {
