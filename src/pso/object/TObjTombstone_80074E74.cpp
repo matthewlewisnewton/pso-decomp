@@ -256,11 +256,11 @@ s32 TObjTombstone::draw_name_labels(void *arg0_) {
     }
     m *= lbl_805D918C;
     if (screen.x - m < TObjTombstone__data_805D9174 || screen.x + m > lbl_805D9190) {
-        if ((self->alphaA += lbl_805D9194) < TObjTombstone__data_805D9174) self->alphaA = TObjTombstone__data_805D9174;
-        if ((self->alphaB += lbl_805D9198) < TObjTombstone__data_805D9174) self->alphaB = TObjTombstone__data_805D9174;
+        if ((self->alphaA = lbl_805D9194 + self->alphaA) < TObjTombstone__data_805D9174) self->alphaA = TObjTombstone__data_805D9174;
+        if ((self->alphaB = lbl_805D9198 + self->alphaB) < TObjTombstone__data_805D9174) self->alphaB = TObjTombstone__data_805D9174;
     } else {
-        if ((self->alphaA += lbl_805D919C) > TObjTombstone__data_805D9178) self->alphaA = TObjTombstone__data_805D9178;
-        if ((self->alphaB += lbl_805D919C) > TObjTombstone__data_805D9178) self->alphaB = TObjTombstone__data_805D9178;
+        if ((self->alphaA = lbl_805D919C + self->alphaA) > TObjTombstone__data_805D9178) self->alphaA = TObjTombstone__data_805D9178;
+        if ((self->alphaB = lbl_805D919C + self->alphaB) > TObjTombstone__data_805D9178) self->alphaB = TObjTombstone__data_805D9178;
     }
     a = self->scale * self->alphaA;
     b = self->scale * self->alphaB;
