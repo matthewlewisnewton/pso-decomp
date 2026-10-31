@@ -1,5 +1,6 @@
 #include "pso/system/MatrixVectorArray.h"
 #include "pso/misc/SampledMotionPoints.h"
+#include "pso/enemy/EnemyUnknownHooks.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/misc/GroundEffects.h"
 #include "types.h"
@@ -611,7 +612,6 @@ extern const f32 lbl_805DE714;
 extern const f32 lbl_805DE718;
 f32 random_ratio__9TObjCharaFv(s32);
 s32 clear_attack_receipts__9TObjEneDDFv();
-s32 TBoss8Dragon__sub_800BB7D4(void *, int);
 extern const f32 lbl_805DE71C;
 void TObjEneBm9Mericarol__sub_802CF368(u8 *arg0, s32 arg1);
 s32 is_alive__8TObjBaseFv(int);
@@ -831,7 +831,7 @@ void TObjEneBm9Mericarol::state_burrow(s32 arg1) {
       TObjEneBm9Mericarol__sub_802D093C((void *) arg0);
       *((s32 *) (((s8 *) arg0) + 0x438)) = (s32) ((*((s32 *) (((s8 *) arg0) + 0x438))) & (~0x28));
       ((TObjEnemy *)arg0)->refresh_and_send_entity_flags();
-      TBoss8Dragon__sub_800BB7D4((void *) arg0, 0xF2);
+      fn_800BB7D4((void *) arg0, 0xF2);
       *((s32 *) (((s8 *) arg0) + 0x490)) = 0;
       *((f32 *) (((s8 *) arg0) + 0x4A4)) = (f32) lbl_805DE70C;
       play_sound_effect((s32)((void *) ((s32)((TObjEnemy *)((void *)((void *) arg0)))->remap_sound_for_area((s32)(0x3AA0B)))), arg0 + 0x38, 0, 0);
@@ -886,7 +886,7 @@ void TObjEneBm9Mericarol__sub_802CF368(u8 *actor, s32 arg1) {
       (((TObjEneDD *)(actor))->vfunc_96());
       TObjEneBm9Mericarol__sub_802D093C((void *) actor);
       *((s32 *) (((s8 *) actor) + 0x438)) = (s32) ((*((s32 *) (((s8 *) actor) + 0x438))) & (~0x28));
-      TBoss8Dragon__sub_800BB7D4((void *)((void *) actor), 0xF2);
+      fn_800BB7D4((void *)((void *) actor), 0xF2);
       play_sound_effect((s32)(((s32)((TObjEnemy *)((void *)((void *) actor)))->remap_sound_for_area((s32)(0x3AA0C)))), actor + 0x38, 0, 0);
       return;
     case 3:

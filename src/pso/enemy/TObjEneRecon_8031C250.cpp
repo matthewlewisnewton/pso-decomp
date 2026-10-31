@@ -1,6 +1,7 @@
 #include "pso/misc/MaterialOpacityFade.h"
 #include "pso/misc/RenderFadeState.h"
 #include "pso/enemy/TObjEnemy.h"
+#include "pso/enemy/EnemyUnknownHooks.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "types.h"
 #include "pso/enemy/TObjEneEpsilon.h"
@@ -237,7 +238,6 @@ struct Vec_8031C364 { f32 x, y, z; };
 extern "C" {
 f32 normalize_vector_xz__FP3Vec(void *, s32);
 void clear_attack_receipts__9TObjEneDDFv(void);
-void noop__12TBoss8DragonFv(void *);
 void set_flag2__12TObjEneReconFv(void *, f32, f32, f32);
 extern const f32 TObjEneRecon__data_805DF3E0;
 extern const f32 TObjEneRecon__data_805DF3E4;
@@ -338,7 +338,7 @@ void TObjEneRecon__sub_8031C624(u8 *arg0, s32 arg1) {
         *(s32 *)((s8 *)arg0 + 0x444) &= ~1;
         *(s32 *)((s8 *)arg0 + 0x444) |= 2;
         ((TObjEneDD *)arg0)->set_field_378(*(s16 *)((s8 *)arg0 + 0x326));
-        noop__12TBoss8DragonFv(arg0);
+        fn_800BB7D0(arg0);
         play_sound_effect(TObjEneRecobox::remap_area_sound_id(0x4003E425), arg0 + 0x38, 0, 0);
         *(s32 *)((s8 *)arg0 + 0x3C0) = 0;
         break;

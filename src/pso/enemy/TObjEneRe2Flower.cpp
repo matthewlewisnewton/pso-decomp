@@ -1,3 +1,4 @@
+#include "pso/enemy/EnemyUnknownHooks.h"
 #include "types.h"
 #include "pso/enemy/TObjEneDD.h"
 #include "pso/system/vector.h"
@@ -6,9 +7,8 @@
 extern "C" {
 extern const f32 lbl_805D9FF8;
 s32 get_flag_11__16TObjEneRe2FlowerFv();
-int TBoss8Dragon__sub_800BB7D4(void*, void*);
 
-void TObjEneRe2Flower::begin_state_242() { if (*(int*)((char*)this + 0x3d4) == 0) { TBoss8Dragon__sub_800BB7D4(this, (void*)242); *(int*)((char*)this + 0x3d4) = 20; } }
+void TObjEneRe2Flower::begin_state_242() { if (*(int*)((char*)this + 0x3d4) == 0) { fn_800BB7D4(this, 242); *(int*)((char*)this + 0x3d4) = 20; } }
 
 s32 TObjEneRe2Flower::check_hit_flag() {
     if (*(s32 *)((s8 *)this + 0x3C4) & 2) {

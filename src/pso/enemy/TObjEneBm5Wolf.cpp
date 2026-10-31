@@ -1,6 +1,7 @@
 #include "pso/math/FloatRounding.h"
 #include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
+#include "pso/enemy/EnemyUnknownHooks.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -1084,7 +1085,6 @@ void queue_destruction__7TObjectFv(void *self);
 void appearing_state__14TObjEneBm5WolfFPvi(Obj_800B7018 *o, s32 arg1);
 void dispatch_state__14TObjEneBm5WolfFPvUii(TObjEneBm5Wolf *arg0, u32 state, s32 event);
 #define spawn_recoil_dust__14TObjEneBm5WolfFiPv ((s32 (*)(void *, void *))&spawn_recoil_dust__14TObjEneBm5WolfFiPv)
-s32 TBoss8Dragon__sub_800BB7D4(void *, int);
 extern const f32 lbl_805D9DA0;
 void returning_state__14TObjEneBm5WolfFPvi(u8 *arg0, s32 arg1);
 s32 get_flag_b4__9TObjEneDDFv();
@@ -1356,7 +1356,7 @@ void TObjEneBm5Wolf::update_dying_state(s32 arg1) {
         } else {
             F(s16, 0xB8) = 0xE;
         }
-        TBoss8Dragon__sub_800BB7D4(arg0, 0xF1);
+        fn_800BB7D4(arg0, 0xF1);
         F(s32, 0x41C) = 0;
         F(f32, 0x434) = calc_death_slide_speed__14TObjEneBm5WolfFPvf(arg0, F(u8 *, 0xD8), *(f32 *)((s8 *)(F(u8 *, 0xD8)) + 0x98));
         F(f32, 0x37C) = F(f32, 0x43C) = TObjEneBm5Wolf__data_805D9D78;
@@ -1433,7 +1433,7 @@ void TObjEneBm5Wolf::hurt_state(s32 arg1) {
     switch (arg1) {
     case 4:
         this->vfunc_96();
-        TBoss8Dragon__sub_800BB7D4(arg0, 0xF1);
+        fn_800BB7D4(arg0, 0xF1);
         this->roamingTimer = 0;
         this->m_42c = 0;
         this->requested_action = 6;

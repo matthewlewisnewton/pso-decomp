@@ -1,4 +1,5 @@
 #include "pso/enemy/TObjEnemy.h"
+#include "pso/enemy/EnemyUnknownHooks.h"
 #include "types.h"
 #include "pso/boss/TBoss8Dragon_800BB650.h"
 #include "pso/enemy/TObjEneBm3Fly.h"
@@ -63,8 +64,8 @@ void TObjEneDD::clear_attack_receipts() {
     }
 }
 
-void TBoss8Dragon::noop() {  }
-void TBoss8Dragon__sub_800BB7D4(void) {  }
+void fn_800BB7D0(void *) { }
+void fn_800BB7D4(void *, s32) { }
 void TBoss8Dragon__sub_800BB7D8(void) {  }
 void TBoss8Dragon__sub_800BB7DC(void) {  }
 int TObjEnemy::submit_default_cursor_candidate() { return submit_cursor_candidate(this, -1); }
