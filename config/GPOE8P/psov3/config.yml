@@ -14189,6 +14189,50 @@ force_active:
   - update_short_action__8TItemMagFv
   - update_wait_action__8TItemMagFv
   - write_item_data__8TItemMagFP9TItemData
+  - __ct__16TObjEneMerillLiaFP7TObjectPv
+  - __dt__16TObjEneMerillLiaFv
+  - __vt__16TObjEneMerillLia
+  - beast_idle_update__16TObjEneMerillLiaFv
+  - beast_update_approach__16TObjEneMerillLiaFv
+  - beast_update_group_chase__16TObjEneMerillLiaFv
+  - beast_update_hurt__16TObjEneMerillLiaFv
+  - bm_ene_re8_merill_lia_low_resource_descriptor
+  - bm_ene_re8_merill_lia_resource_descriptor
+  - clamp_and_apply_mode_param__16TObjEneMerillLiaFv
+  - fn_800D501C__16TObjEneMerillLiaFv
+  - get_clamped_level__16TObjEneMerillLiaFv
+  - init_attack_state__16TObjEneMerillLiaFv
+  - init_params_from_position__16TObjEneMerillLiaFv
+  - lbl_80494650
+  - lbl_804946A4
+  - load_entry_params__16TObjEneMerillLiaFl
+  - merill_lia_low_model_names
+  - merill_lia_low_motion_names
+  - merill_lia_model_names
+  - merill_lia_motion_actions
+  - merill_lia_motion_names
+  - play_kafun_attack_sound__16TObjEneMerillLiaFv
+  - render__16TObjEneMerillLiaFv
+  - reset_action_state__16TObjEneMerillLiaFv
+  - reset_state_clear_status__16TObjEneMerillLiaFv
+  - run_task__16TObjEneMerillLiaFv
+  - search_target__16TObjEneMerillLiaFv
+  - select_action_by_distance__16TObjEneMerillLiaFv
+  - spawn_ground_effect__16TObjEneMerillLiaFv
+  - update_emerge_state__16TObjEneMerillLiaFv
+  - update_fade_transition__16TObjEneMerillLiaFv
+  - update_kafun_attack__16TObjEneMerillLiaFv
+  - vfunc_101__16TObjEneMerillLiaFv
+  - vfunc_58__16TObjEneMerillLiaFv
+  - vfunc_59__16TObjEneMerillLiaFv
+  - vfunc_60__16TObjEneMerillLiaFv
+  - vfunc_83__16TObjEneMerillLiaFv
+  - vfunc_93__16TObjEneMerillLiaFv
+  - vfunc_94__16TObjEneMerillLiaFv
+  - vfunc_96__16TObjEneMerillLiaFv
+  - vfunc_97__16TObjEneMerillLiaFv
+  - vfunc_98__16TObjEneMerillLiaFv
+  - vfunc_99__16TObjEneMerillLiaFv
 # --- force_active (END) ---
 # False pointers: packed data words whose values happen to land on code/data
 # addresses. dtk would emit a relocation and export the target symbol.
