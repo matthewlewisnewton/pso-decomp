@@ -1,3 +1,5 @@
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/system/NinjaUtil.h"
@@ -185,7 +187,7 @@ extern s32 local_client_id;
 void check_hold_player__14TOTrapSeabed01FPv(u8 *arg0);
 void vfunc_81__14TOTrapSeabed01Fv(u8 *arg0);
 s32 get_bml_model(int, int);
-void *spawn_particle_effect(void *pos, s32 id);
+
 u8 *copy_transform__8TObjChipFPvPv(u8 *arg0, u8 *arg1);
 void *__nw__7TObjectFUl(int);
 s32 __ct__13TObjSuisoChipFP8TObjBaseP19TObjChipSpawnParams(void *, void *, void *);
@@ -239,7 +241,7 @@ void TOTrapSeabed01__vt83(Trap_802C9E3C *self) {
         rotate_matrix_y(&m, self->rotY);
         matrix_mult_vec(&m, &v, &v);
         {
-            TParticleCtrl *particle = (TParticleCtrl *)spawn_particle_effect(&v, 0x8B);
+            TParticleCtrl *particle = spawn_particle_effect((const Vec *)(&v), 0x8B);
             if (particle != NULL) {
                 particle->set_scale(lbl_805DE648, lbl_805DE648);
             }
@@ -377,7 +379,7 @@ extern s32 lbl_805D681C;
 extern s32 seabed01_ginja_mesh_index;
 
 void TOTrapSeabed01::render_effect_layers() {
-    TObjFish::set_global_param(TOTrapSeabed01__texture_file);
+    set_current_texture_list((GinjaTextureList *)(TOTrapSeabed01__texture_file));
     if ((s32) actor_frame_tick != (s32) lbl_805D681C) {
         if (((void *) (*(u8 **)&TOTrapSeabed01__ginja_model) != NULL) && ((s32) seabed01_ginja_mesh_index != -1)) {
             scroll_ginja_mesh_uvs((int) (*(s32 *)((s8 *)(*(u8 **)&TOTrapSeabed01__ginja_model) + 4)), 0, -0x14, (void *) ((u16) seabed01_ginja_mesh_index), 1);
@@ -425,7 +427,7 @@ void TOTrapSeabed01::draw_object_tree(u8 *arg1) {
         if (!(temp_r31 & 8)) {
             if ((s32) this->m_34c != 0) {
                 setup_particle_tev(0);
-                TObjFish::set_global_param(TOTrapSeabed01__texture_file);
+                set_current_texture_list((GinjaTextureList *)(TOTrapSeabed01__texture_file));
                 load_projection_tex_matrix(0x38E);
                 draw_ginja_model((*(s32 *)((s8 *)var_r30 + 4)));
                 reset_particle_tev();
@@ -449,7 +451,7 @@ void TOTrapSeabed01::draw() {
         set_depth_buffer_settings_3();
         set_draw_list_mask(1);
         TParticleCtrl::begin_effect_render();
-        TObjFish::set_global_param(TOTrapSeabed01__texture_file);
+        set_current_texture_list((GinjaTextureList *)(TOTrapSeabed01__texture_file));
         push_matrix();
         post_translate_matrix(((u8 *)this) + 0x38);
         ((s32 (*)(int, int))rotate_matrix_y)(0, (int)(*(s32 *)((s8 *)((u8 *)this) + 0x60)));

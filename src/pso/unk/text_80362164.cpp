@@ -1,4 +1,5 @@
 #include "pso/player/demo_mode.h"
+#include "pso/misc/PersistentSound.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "types.h"
 #include "pso/enemy/TObjEneDD.h"
@@ -21,7 +22,7 @@ void TObjEneEpsilonBody::run_task() {
         transition_enemy_state(0);
     }
     if ((s16) this->mode != 9) {
-        play_persistent_sound(0x4003AD43, (s32)this, (u32)(((u8 *)this) + 0x38), 0, 0);
+        play_persistent_sound((s32)(0x4003AD43), (const void *)(this), (const Vec *)((u32)(((u8 *)this) + 0x38)), 0, 0);
     }
     this->vfunc_88();
     ((TObjEneEpsilonGuard *)((u8 *)this))->update_position();

@@ -1,4 +1,5 @@
 #include "pso/system/GinjaTextureInput.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_80083B38.h"
 #include "pso/system/main_loop.h"
@@ -143,7 +144,7 @@ extern const f32 lbl_805D9444;
 
 void TObjPlayer::draw_if_all_ready() {
     if ((is_split_screen() == 0) && (TObjPlayer::check_all_players_ready() != 0)) {
-        TObjFish::set_global_param((s32)lbl_8048E5C8);
+        set_current_texture_list((GinjaTextureList *)(lbl_8048E5C8));
         load_list_texture(0, 0, 0, 1);
     }
 }
@@ -291,7 +292,7 @@ void TObjPlayer::draw_screen_quad(u32 arg0, s32 arg1, f32 farg0) {
     u32 temp_r31;
     void *temp_r4;
     void *temp_r4_2;
-    TObjFish::set_global_param((s32)((s32 *)&shared_capture_texture_list));
+    set_current_texture_list((GinjaTextureList *)(((s32 *)&shared_capture_texture_list)));
     if (arg1 != 0) {
         temp_r4 = shared_capture_texture_list.a->b->c;
         *(s32 *)((s8 *)temp_r4 + 0x10) = 0x100;
@@ -345,7 +346,7 @@ void TObjPlayer::draw_textured_screen_quad(u32 arg0, f32 *arg1, f32 *arg2, s32 a
     u32 temp_r31;
     void *temp_r4;
     void *temp_r4_2;
-    TObjFish::set_global_param((s32)((s32 *)&shared_capture_texture_list));
+    set_current_texture_list((GinjaTextureList *)(((s32 *)&shared_capture_texture_list)));
     if (arg3 != 0) {
         temp_r4 = (*(G_800842A4 *)&shared_capture_texture_list).a->b->c;
         *(s32 *)((s8 *)temp_r4 + 0x10) = 0x100;
@@ -391,7 +392,7 @@ void TObjPlayer::draw_textured_screen_quad(u32 arg0, f32 *arg1, f32 *arg2, s32 a
 }
 
 void TObjPlayer__sub_80084500(void) {
-    TObjFish::set_global_param((s32)((s32 *)(((u8 *)&shared_capture_texture_list))));
+    set_current_texture_list((GinjaTextureList *)(((s32 *)(((u8 *)&shared_capture_texture_list)))));
     load_list_texture(0, 0, 0, 0);
 }
 

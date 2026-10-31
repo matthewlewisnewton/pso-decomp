@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
@@ -25,8 +26,7 @@
 extern "C" {
 AnimationMotion *get_bml_motion(u32, int);
 s32 get_bml_model(u32, int);
-void TObjFish__sub_8001EDB0(u32, int);
-void set_global_param__8TObjFishFl();
+s32 TObjFish__sub_8001EDB0(u32, int);
 void transform_point_to_view(const Vec *, Vec *);
 }
 
@@ -61,7 +61,7 @@ void TObjCamera::play_sound_events() {
     s32 i;
     for (i = 0; i < 8; i++) {
         if (sound_events[i].played == 0 && animation_frame >= sound_events[i].frame) {
-            play_sound_effect(sound_events[i].sound_id, &sound_events[i].position, 0, 0);
+            play_sound_effect((s32)(sound_events[i].sound_id), (const Vec *)(&sound_events[i].position), 0, 0);
             sound_events[i].played = 1;
         }
     }
@@ -131,8 +131,7 @@ s32 TObjCamera::update_object_view_visibility(f32 radius, f32 depth) {
 void TObjCamera::render() {
     s32 i;
     if (update_object_view_visibility(400.0f, 20.0f) != 0) {
-        TObjFish__sub_8001EDB0(model_resource, 0);
-        set_global_param__8TObjFishFl();
+        set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0(model_resource, 0)));
         push_matrix();
         post_translate_matrix(&position.x);
         rotate_matrix_y(0, rotation_y);

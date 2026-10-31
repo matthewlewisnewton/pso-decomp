@@ -1,3 +1,5 @@
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/misc/TOVS2Wall01_8017BCC8.h"
@@ -7,7 +9,7 @@
 
 extern "C" {
 
-s32 play_sound_effect(s32, s32, s32, s32);
+
 s32 is_locally_controlled__10TObjPlayerFPv(u32);
 u16 get_entity_id(u32);
 
@@ -20,9 +22,9 @@ void init__11TOVS2Wall01Fi(s32 arg0) {
         ((TOVS2Wall01 *)arg0)->spawn_debris(var_r31);
         var_r31 += 1;
     } while (var_r31 <= 0xF);
-    spawn_particle_effect((void *)(arg0 + 0x38), 0x45);
-    spawn_particle_effect((void *)(arg0 + 0x38), 0x46);
-    play_sound_effect(0x4004BC05, arg0 + 0x38, 0, 0);
+    spawn_particle_effect((const Vec *)((arg0 + 0x38)), 0x45);
+    spawn_particle_effect((const Vec *)((arg0 + 0x38)), 0x46);
+    play_sound_effect(0x4004BC05, (const Vec *)(arg0 + 0x38), 0, 0);
 }
 
 extern const f32 lbl_805DBAA8;
@@ -43,8 +45,8 @@ f32 take_hit__11TOVS2Wall01FPvUi(u8 *ovs2_wall01, u32 arg1) {
         } else {
             ((TOVS2Wall01 *)ovs2_wall01)->save_and_send_state(0);
         }
-        spawn_particle_effect((ovs2_wall01 + 0x38), 0x1D0);
-        spawn_particle_effect((ovs2_wall01 + 0x38), 1);
+        spawn_particle_effect((const Vec *)((ovs2_wall01 + 0x38)), 0x1D0);
+        spawn_particle_effect((const Vec *)((ovs2_wall01 + 0x38)), 1);
     }
     return lbl_805DBAA8;
 }

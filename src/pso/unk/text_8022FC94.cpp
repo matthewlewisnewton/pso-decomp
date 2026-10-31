@@ -1,3 +1,5 @@
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/TParticleCtrl.h"
 #include "types.h"
 #include "pso/unk/text_80086D50.h"
@@ -97,7 +99,7 @@ s32 clamp_nonnegative_int(s32 x);
 extern RecoveredGlobal_8022FE84_lbl_804CC510 tech_high_level_linear_power_table;
 extern RecoveredGlobal_8022FE84_lbl_804CC55C lbl_804CC55C;
 extern "C" {
-s32 play_sound_effect(s32 id, void *pos, s32 a, s32 b);
+
 void queue_destruction__7TObjectFv(void *self);
 void mem_free(void *p);
 void __dl__7TObjectFPv(void *);
@@ -110,7 +112,7 @@ void *spawn_continuous_particle_effect_with_flags(void *, s32, u16);
 s32 mem_alloc(s32);
 extern s32 lbl_805D63B0;
 extern const f32 lbl_805DC7F8;
-void *spawn_particle_effect(void *pos, s32 id);
+
 void *TTecFoie__ct(void *, void *, void *, void *, void *);
 void *construct_aimed__8TTecFoieFlPUcPUcs(void *, void *, void *, void *, void *);
 void *__nw__7TObjectFUl(int);
@@ -190,8 +192,8 @@ void TTecFoie::init_projectile_params() {
 
 void TTecFoie::vfunc_6() {
     s32 arg0 = (s32)this;
-    spawn_particle_effect((void *)(arg0 + 0x20), 0x1DC);
-    spawn_particle_effect((void *)(arg0 + 0x20), 0x1DD);
+    spawn_particle_effect((const Vec *)((arg0 + 0x20)), 0x1DC);
+    spawn_particle_effect((const Vec *)((arg0 + 0x20)), 0x1DD);
 }
 
 void TTecFoie::vfunc_8(void *target_arg) {
@@ -200,7 +202,7 @@ void TTecFoie::vfunc_8(void *target_arg) {
     d.kind = 1;
     d.amount = this->power;
     target->receive(((Tec_80230004 *)this)->owner, d, ((Tec_80230004 *)this)->f8, 0, -1);
-    play_sound_effect(0x4002A828, target->pos, 0, 0);
+    play_sound_effect(0x4002A828, (const Vec *)(target->pos), 0, 0);
     queue_destruction__7TObjectFv(this);
 }
 

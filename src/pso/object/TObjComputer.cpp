@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "pso/render/render_util.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/system/NinjaTypes.h"
@@ -155,7 +156,7 @@ s32 TObjComputer::draw_model() {
     if (self->model == NULL) {
         return;
     }
-    TObjFish::set_global_param(TObjComputer__texture_gvm_handle);
+    set_current_texture_list((GinjaTextureList *)(TObjComputer__texture_gvm_handle));
     push_matrix();
     post_translate_matrix(self->pos38);
     rotate_matrix_y(0, self->yaw60);
@@ -367,7 +368,7 @@ void TObjContainerAbeEnemy::vfunc_81() {
     if (container_breakup_model_archive != 0) {
         switch (this->mode) {
         case 0:
-            TObjFish::set_global_param(lbl_805D5B8C);
+            set_current_texture_list((GinjaTextureList *)(lbl_805D5B8C));
             push_matrix();
             post_translate_matrix(self->pos);
             rotate_matrix_y(0, this->rotation_y);

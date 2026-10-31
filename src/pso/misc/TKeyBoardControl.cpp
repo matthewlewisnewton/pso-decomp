@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TKeyBoardControl_8025CB70.h"
 #include "pso/misc/TWindowSubMag_802627D8.h"
@@ -84,7 +85,7 @@ struct Lines_80261DD8 {
     s32 count;
 };
 
-s32 play_sound_effect(int, int, int, int);
+
 s32 draw_default_entry__9TWindowDDFl();
 int update_keyboard_close_mode(void*);
 void calc_cursor_step__19TWindowKeyBoardSoftFiPvPv(s32 arg0, s32 *arg1, s32 *arg2);

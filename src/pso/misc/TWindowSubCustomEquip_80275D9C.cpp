@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TWindowSubCustomEquip.h"
 #include "pso/misc/TWindowSubCustomSelect.h"
@@ -56,7 +57,7 @@ void draw_cursor_sprite__21TWindowSubCustomEquipFPvPvif(u8 *arg0, Vec2_80275DE8 
     scale = lbl_805DD550 / (lbl_805DD554 * farg0 + *(f32 *)((s8 *)arg0 + 0x38));
     set_additive_blend();
     begin_screen_draw(1);
-    TObjFish::set_global_param(lbl_805D63F0);
+    set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
     set_draw_texture_and_color(0xC, -1);
     r.x0 = arg1->x + *(f32 *)((s8 *)arg0 + 0x10);
     r.y0 = arg1->y + *(f32 *)((s8 *)arg0 + 0x14);

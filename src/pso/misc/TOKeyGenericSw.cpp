@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/TMainTask.h"
@@ -57,7 +58,7 @@ void TOKeyGenericSw::render() {
     model = (void *)TOKeyGenericSw__shared_resource_ptrs[0]->models[0].model;
     post_translate_matrix(&position.x);
     rotate_matrix_y(NULL, rotation_y);
-    TObjFish::set_global_param(texlist);
+    set_current_texture_list((GinjaTextureList *)(texlist));
     draw_ginja_object(model);
     pop_matrix();
     TParticleCtrl::begin_effect_render();
@@ -73,7 +74,7 @@ void TOKeyGenericSw::render() {
     model = (void *)TOKeyGenericSw__shared_resource_ptrs[1]->models[0].model;
     post_translate_matrix(&position.x);
     rotate_matrix_y(NULL, rotation_y);
-    TObjFish::set_global_param(texlist);
+    set_current_texture_list((GinjaTextureList *)(texlist));
     draw_ginja_model_with_motion(model, motion, animation_frame);
     pop_matrix();
     TParticleCtrl::end_effect_render();

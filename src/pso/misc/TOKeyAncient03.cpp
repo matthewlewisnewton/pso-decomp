@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/TMainTask.h"
@@ -71,11 +72,11 @@ void TOKeyAncient03::send_switch_changed(s32 flags) {
 }
 
 void TOKeyAncient03::trigger_deactivate_sound() {
-    play_sound_effect(0x4004B20D, &position, 0, 0);
+    play_sound_effect(0x4004B20D, (const Vec *)(&position), 0, 0);
 }
 
 void TOKeyAncient03::trigger_activate_sound() {
-    play_sound_effect(0x4004B20D, &position, 0, 0);
+    play_sound_effect(0x4004B20D, (const Vec *)(&position), 0, 0);
 }
 
 void TOKeyAncient03::update_switch_off() {
@@ -125,7 +126,7 @@ void TOKeyAncient03::render() {
     u32 flags;
 
     if (update_object_view_visibility(view_range, model_radius) != 0) {
-        TObjFish::set_global_param(TOKeyAncient03__texture_variants[is_on]);
+        set_current_texture_list((GinjaTextureList *)(TOKeyAncient03__texture_variants[is_on]));
         push_matrix();
         post_translate_matrix(&position.x);
         rotate_matrix_y(NULL, rotation_y);

@@ -1,4 +1,5 @@
 #include "pso/player/demo_mode.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/object/TObjLobbyMain.h"
 #include "pso/TMainTask.h"
@@ -215,7 +216,7 @@ void TObjLobbyMain::render() {
         if (fade_state != 2) {
             scale_matrix(NULL, fade_scale, 1.0f, fade_scale);
         }
-        TObjFish::set_global_param(lobby_texlist);
+        set_current_texture_list((GinjaTextureList *)(lobby_texlist));
         index = model_index;
         motion = lobby_main_model_motions[index];
         if (motion != 5) {

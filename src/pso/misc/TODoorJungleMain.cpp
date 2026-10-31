@@ -1,3 +1,6 @@
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
+#include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/object/TObjMotion.h"
@@ -193,10 +196,10 @@ extern const f32 lbl_805DDCEC;
 extern const f32 lbl_805DDCF0;
 void *get_bml_model(u32, int);
 s32 rotate_matrix_y(int, int);
-int push_matrix(void *);
+s32 push_matrix(void);
 s32 pop_matrix(void);
 int post_translate_matrix(void *);
-void *set_global_param__8TObjFishFl(void *);
+
 void draw_ginja_object(void *child);
 s32 draw_ginja_model_with_motion(void *, int, f32);
 extern Ids_8029B428 door_jungle_main_ids;
@@ -216,12 +219,12 @@ struct Vec_8029B640 { s32 x, y, z; };
 struct Mtx_8029B640 { f32 m[12]; };
 
 extern "C" {
-s32 play_sound_effect(int, void *, int, int);
+
 extern s32 TOKeyJungleMain__data_804653C8[3];
 extern s32 game_difficulty_selection;
 void *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags);
 s32 minimap_render_gate(void *, u32, u16, s32, s32);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 s32 matrix_mult_vec(void *, void *, void *);
 void translate_matrix_vec3(u8 *arg0, u8 *arg1);
 void set_matrix_identity(u8 *arg0);
@@ -266,7 +269,8 @@ void TODoorJungleMain::render() {
     Ids_8029B428 ids = door_jungle_main_ids;
     s32 i;
     if (self->m8(self->fc0, self->fc4) == 1) {
-        push_matrix(set_global_param__8TObjFishFl((void *)door_jungle_main_gvm_texture));
+        set_current_texture_list((GinjaTextureList *)(door_jungle_main_gvm_texture));
+        push_matrix();
         post_translate_matrix(self->xf);
         rotate_matrix_y(0, self->f60);
         if (self->flags & 1) {
@@ -298,7 +302,7 @@ void TODoorJungleMain::update_door_switch_state() {
             }
         }
         if (self->count > 0 && self->count != prev) {
-            play_sound_effect(0x4C123, self->xf, 0, 0);
+            play_sound_effect(0x4C123, (const Vec *)(self->xf), 0, 0);
         }
         if (self->count == 3 && is_any_player_near((s32)self) != 0) {
             self->flags |= 1;
@@ -338,7 +342,7 @@ void TODoorJungleMain::run_task() {
             flag = 0;
             *(f32 *)&this->animation_end_frame = (f32)(u32)(*(s32 *)((s8 *)(*(u8 * *)&this->motion) + 4) - 1);
         } else {
-            play_persistent_sound(0x43220, (s32)arg0, (u32)&this->position, 0, 0);
+            play_persistent_sound((s32)(0x43220), (const void *)((s32)arg0), (const Vec *)((u32)&this->position), 0, 0);
         }
         if (flag != 0) {
             if (++*(s32 *)&this->m_d8 % 30 == 0) {

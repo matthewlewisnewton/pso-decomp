@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/ui/TWindowInputNumber.h"
 #include "pso/misc/TWindowHelpItem.h"
@@ -6,7 +7,7 @@
 
 extern "C" {
 
-s32 play_sound_effect(s32 a0 = 0, s32 a1 = 0, s32 a2 = 0, s32 a3 = 0);
+
 s32 is_confirmed__18TWindowInputNumberFv();
 s32 save_position__13TUnk_804CE018Fv();
 

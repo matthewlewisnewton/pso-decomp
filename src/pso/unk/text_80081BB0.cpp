@@ -1,3 +1,5 @@
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/TParticleCtrl.h"
 #include "types.h"
 #include "pso/misc/MaterialColorFade.h"
@@ -49,7 +51,7 @@ s32 obj_testFlags30__14TObjCollidableFUl(s32, s32);
 s32 get_bml_motion(s32, s32);
 s32 TObjFish__sub_8001EDB0(s32, s32);
 s32 get_bml_model(s32, s32);
-void *spawn_particle_effect(void *pos, s32 id);
+
 extern s32 freeze_shell_bml_resource;
 extern s32 technique_effect_bml;
 extern s32 lbl_805D63B0;
@@ -57,7 +59,7 @@ extern const f32 lbl_805D9384;
 s32 push_matrix();
 s32 scale_current_matrix(void *);
 s32 post_translate_matrix(void *);
-s32 set_global_param__8TObjFishFl();
+
 extern u8 chunk_material_color_half_alpha_f32[];
 extern s32 saved_model_render_flags;
 extern s32 model_render_flags;
@@ -77,11 +79,11 @@ s32 TUnk_8048E1A4::freeze_shell_hold() {
         }
     }
     *(s32 *)((s8 *)this + 0x334) = 2;
-    p = (s32)spawn_particle_effect((u8 *)this + 0x35C, 0x153);
+    p = (s32)spawn_particle_effect((const Vec *)((u8 *)this + 0x35C), 0x153);
     if (p != 0) {
         attach_particle_model((u8 *)p, (s32)(get_bml_model(technique_effect_bml, 5)), (s32)lbl_805D63B0, 0, 0, (f32)lbl_805D9384);
     }
-    p = (s32)spawn_particle_effect((u8 *)this + 0x38, 0x33);
+    p = (s32)spawn_particle_effect((const Vec *)((u8 *)this + 0x38), 0x33);
     if (p != 0) {
         attach_particle_model((u8 *)p, (s32)(get_bml_model(freeze_shell_bml_resource, 0)), (s32)(TObjFish__sub_8001EDB0(freeze_shell_bml_resource, 1)), (s32)(get_bml_motion(freeze_shell_bml_resource, 0)), 0, (f32)lbl_805D9384);
         ((TParticleCtrl *)p)->set_scale(this->scale.x, this->scale.y);
@@ -161,8 +163,7 @@ void TUnk_8048E1A4::render() {
         ok = p->m8(lbl_805D9390, lbl_805D9394);
     }
     if (ok != 0) {
-        TObjFish__sub_8001EDB0((s32)((void *)freeze_shell_bml_resource), 1);
-        set_global_param__8TObjFishFl();
+        set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0((s32)((void *)freeze_shell_bml_resource), 1)));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);

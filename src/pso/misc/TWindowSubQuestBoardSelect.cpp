@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/quest/TQuestThread.h"
 #include "pso/misc/TWindowChoiceSetting.h"
@@ -186,7 +187,7 @@ void TWindowSubQuestBoardSelect__sub_8027D444(TWindowSubQuestBoardSelect *self, 
     draw_color_lines(&d, 3, 0x10, depth);
 }
 
-void play_sound_effect(s32, s32, s32, s32);
+
 s32 is_open__26TWindowSubQuestBoardSelectFv();
 
 void TWindowSubQuestBoardSelect::handle_cancel() {

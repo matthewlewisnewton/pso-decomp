@@ -1,5 +1,8 @@
 #include "pso/player/demo_mode.h"
+#include "pso/misc/ParticleFactory.h"
 #include "pso/system/ModelNodePositionCapture.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/misc/GroundEffects.h"
@@ -98,7 +101,7 @@ struct Obj_800DDC30 {
 extern "C" {
 s32 obj_setFlags30(void *, int);
 int TObjEnePanarms__sub_800E1D94(void *);
-void *spawn_particle_effect(void *pos, s32 id);
+
 extern const f32 TObjEnePanarms__data_805DA490;
 extern const f32 lbl_805DA494;
 extern const f32 TObjEnePanarms__data_805DA49C;
@@ -110,7 +113,7 @@ f32 cos_table_lookup(int);
 void TObjEnePanarms__sub_800DD7F4(u8 *arg0);
 void *spawn_directional_particle(void *pos, void *dir, s32 id);
 void TObjEnePanarms__sub_800DD5C8(u8 *arg0);
-s32 play_sound_effect(s32, void *, s32, s32);
+
 void TObjEnePanarms__sub_800DCFE0(u8 *arg0);
 void set_field_b8__10TObjMotionFs(void *, int);
 void TObjEnePanarms__sub_800DD488(u8 *arg0);
@@ -240,7 +243,7 @@ void TObjEnePanarms::update_state_effect() {
     f32 temp_f1;
     temp_f1 = this->frame;
     if ((temp_f1 >= TObjEnePanarms__data_805DA490) && (temp_f1 < lbl_805DA494)) {
-        spawn_particle_effect((((u8 *)this) + 0x38), 0xF0);
+        spawn_particle_effect((const Vec *)((((u8 *)this) + 0x38)), 0xF0);
     }
     if (this->motion_flags & 0x10) {
         set_state((s32)((void*)(3)));
@@ -254,8 +257,8 @@ void TObjEnePanarms__sub_800DCFE0(u8 *ene_panarms) {
     *(s32 *)((s8 *)temp_r5 + 0x18) = (s32) (*(s32 *)((s8 *)temp_r5 + 0x18) & 0xFFFFFFFE);
     ((TObjBase *)ene_panarms)->obj_clearFlags30((u32)(0x40000));
     obj_setFlags30(ene_panarms, 0x04000000);
-    play_sound_effect((s32)((void *) (((s32)((TObjEnemy *)(ene_panarms))->remap_sound_for_area((s32)(0x4003BC31))))), ene_panarms + 0x3AC, 0, 0);
-    play_sound_effect((s32)((void *) (((s32)((TObjEnemy *)(ene_panarms))->remap_sound_for_area((s32)(0x4003BC30))))), ene_panarms + 0x3C4, 0, 0);
+    play_sound_effect((s32)((s32)((void *) (((s32)((TObjEnemy *)(ene_panarms))->remap_sound_for_area((s32)(0x4003BC31)))))), (const Vec *)(ene_panarms + 0x3AC), 0, 0);
+    play_sound_effect((s32)((s32)((void *) (((s32)((TObjEnemy *)(ene_panarms))->remap_sound_for_area((s32)(0x4003BC30)))))), (const Vec *)(ene_panarms + 0x3C4), 0, 0);
     ((TObjEnePanarms *)ene_panarms)->init(0xA);
 }
 
@@ -273,7 +276,7 @@ void TObjEnePanarms::update_timed_action() {
         return;
     }
     if ((s32) this->m_388 == 0x13) {
-        play_sound_effect(((TObjEnemy *)(this))->remap_sound_for_area((s32)(0x4003BC32)), ((u8 *)this) + 0x38, 0, 0);
+        play_sound_effect((s32)(((TObjEnemy *)(this))->remap_sound_for_area((s32)(0x4003BC32))), (const Vec *)(((u8 *)this) + 0x38), 0, 0);
     }
 }
 
@@ -345,7 +348,7 @@ void TObjEnePanarms__sub_800DD368(u8 *ene_panarms) {
     *(s32 *)((s8 *)ene_panarms + 0x3DC) = 0;
     ((TObjEnePanarms *)ene_panarms)->m_388 = 0x384;
     ((TObjEnePanarms *)ene_panarms)->m_3f8 = 1;
-    play_sound_effect((s32)((void *) (((s32)((TObjEnemy *)(ene_panarms))->remap_sound_for_area((s32)(0x4003BC2E))))), ene_panarms + 0x38, 0, 0);
+    play_sound_effect((s32)((s32)((void *) (((s32)((TObjEnemy *)(ene_panarms))->remap_sound_for_area((s32)(0x4003BC2E)))))), (const Vec *)(ene_panarms + 0x38), 0, 0);
     if (TObjEnePanarms__sub_800DFB44((s32)((int) (((TObjEnePanarms *)ene_panarms)->m_3e4))) == 0) {
         TObjEnePanarms__sub_800E1E14((u8 *)(((TObjEnePanarms *)ene_panarms)->m_3e4));
     }
@@ -358,7 +361,7 @@ void TObjEnePanarms::update_hit_effect() {
     f32 temp_f1;
     temp_f1 = this->frame;
     if ((temp_f1 >= TObjEnePanarms__data_805DA490) && (temp_f1 < lbl_805DA494)) {
-        spawn_particle_effect((((u8 *)this) + 0x38), 0xF0);
+        spawn_particle_effect((const Vec *)((((u8 *)this) + 0x38)), 0xF0);
     }
     if (this->motion_flags & 0x10) {
         set_state((s32)((void*)(0xA)));
@@ -372,8 +375,8 @@ void TObjEnePanarms__sub_800DD488(u8 *ene_panarms) {
     ((TObjBase *)ene_panarms)->obj_clearFlags30((u32)(0x40000));
     obj_setFlags30(ene_panarms, 0x04000000);
     TObjEnePanarms__sub_800DE430((s32)ene_panarms, 0x22, 0x3C);
-    play_sound_effect((s32)((void *) (((s32)((TObjEnemy *)(ene_panarms))->remap_sound_for_area((s32)(0x4003BC2D))))), ene_panarms + 0x3AC, 0, 0);
-    play_sound_effect((s32)((void *) (((s32)((TObjEnemy *)(ene_panarms))->remap_sound_for_area((s32)(0x4003BC2C))))), ene_panarms + 0x3C4, 0, 0);
+    play_sound_effect((s32)((s32)((void *) (((s32)((TObjEnemy *)(ene_panarms))->remap_sound_for_area((s32)(0x4003BC2D)))))), (const Vec *)(ene_panarms + 0x3AC), 0, 0);
+    play_sound_effect((s32)((s32)((void *) (((s32)((TObjEnemy *)(ene_panarms))->remap_sound_for_area((s32)(0x4003BC2C)))))), (const Vec *)(ene_panarms + 0x3C4), 0, 0);
     set_field_b8__10TObjMotionFs(ene_panarms, 0xA);
 }
 
@@ -529,7 +532,7 @@ void TObjEnePanarms__sub_800DD9A0(u8 *object) {
     if ((temp_f2 >= lbl_805DA4A8) && (temp_f2 < (lbl_805DA4A8 + lbl_805D527C))) {
         VecCopy((Vec *)(&stack.sp14), (const Vec *)(object + 0x2FC));
         stack.sp18 += TObjEnePanarms__data_805DA49C;
-        spawn_particle_effect((&stack.sp14), 0xF0);
+        spawn_particle_effect((const Vec *)((&stack.sp14)), 0xF0);
     }
     temp_r0 = *(s32 *)((s8 *)object + 0x388);
     if (temp_r0 <= 0x78) {
@@ -566,8 +569,8 @@ void TObjEnePanarms__sub_800DDAD8(u8 *ene_panarms) {
         }
     }
     set_field_b8__10TObjMotionFs(ene_panarms, st);
-    play_sound_effect(((TObjEnemy *)(ene_panarms))->remap_sound_for_area((s32)(0x4003B836)), ene_panarms + 0x3AC, 0, 0);
-    play_sound_effect(((TObjEnemy *)(ene_panarms))->remap_sound_for_area((s32)(0x4003BB35)), ene_panarms + 0x3C4, 0, 0);
+    play_sound_effect((s32)(((TObjEnemy *)(ene_panarms))->remap_sound_for_area((s32)(0x4003B836))), (const Vec *)(ene_panarms + 0x3AC), 0, 0);
+    play_sound_effect((s32)(((TObjEnemy *)(ene_panarms))->remap_sound_for_area((s32)(0x4003BB35))), (const Vec *)(ene_panarms + 0x3C4), 0, 0);
     if (*(s32 *)((s8 *)ene_panarms + 0x3DC) != 0) {
         if (TObjEnePanarms__sub_800DFB44(((TObjEnePanarms *)ene_panarms)->m_3e4) == 0) {
             ((TObjEnePanarms *)(((TObjEnePanarms *)ene_panarms)->m_3e4))->reset_split();
@@ -686,7 +689,7 @@ void TObjEnePanarms::update_fall() {
     if ((*((f32 *) (((s8 *) arg0) + 0x3C))) <= (*((f32 *) (((s8 *) arg0) + 0x384))))
     {
       *((f32 *) (((s8 *) arg0) + 0x3C)) = *((f32 *) (((s8 *) arg0) + 0x384));
-      spawn_particle_effect(((u8 *)&this->position), 0xF0);
+      spawn_particle_effect((const Vec *)(((u8 *)&this->position)), 0xF0);
       set_state((s32)((void*)(3)));
       return;
     }
@@ -696,7 +699,7 @@ void TObjEnePanarms::update_fall() {
   {
     VecCopy((Vec *)(&stack.sp8), (const Vec *)(arg0 + 0x2FC));
     stack.spC = TObjEnePanarms__data_805DA49C + (*((f32 *) (((s8 *) arg0) + 0x384)));
-    spawn_particle_effect((&stack.sp8), 0xF0);
+    spawn_particle_effect((const Vec *)((&stack.sp8)), 0xF0);
   }
 }
 
@@ -757,8 +760,8 @@ void TObjEnePanarms::vfunc_62() {
         return;
     default:
         arg0->f30 &= 0xFFFFFDFF;
-        play_sound_effect((s32)(((int)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003BC34)))), arg0->f3AC, 0, 0);
-        play_sound_effect((s32)(((int)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003BC33)))), arg0->f3C4, 0, 0);
+        play_sound_effect((s32)((s32)(((int)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003BC34))))), (const Vec *)(arg0->f3AC), 0, 0);
+        play_sound_effect((s32)((s32)(((int)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003BC33))))), (const Vec *)(arg0->f3C4), 0, 0);
         break;
     }
 }
@@ -1049,7 +1052,7 @@ void TObjEnePanarms::draw_shadow() {
 
 #pragma pop
 
-void TObjEnePanarms__sub_800DEEF8(void* p) { push_matrix(p); post_translate_matrix((char*)p + 0x38); rotate_matrix_y((void*)0, *(void**)((char*)p + 0x60)); TObjFish::set_global_param((s32)(*(void**)((char*)p + 0x24))); ((ModelNodePositionCapture *)(((TObjEnePanarms *)p)->m_39c))->install(); ((TObjMotion *)p)->draw(); ((ModelNodePositionCapture *)((TObjEnePanarms *)p)->m_39c)->clear(); pop_matrix(); }
+void TObjEnePanarms__sub_800DEEF8(void* p) { push_matrix(p); post_translate_matrix((char*)p + 0x38); rotate_matrix_y((void*)0, *(void**)((char*)p + 0x60)); set_current_texture_list((GinjaTextureList *)((*(void**)((char*)p + 0x24)))); ((ModelNodePositionCapture *)(((TObjEnePanarms *)p)->m_39c))->install(); ((TObjMotion *)p)->draw(); ((ModelNodePositionCapture *)((TObjEnePanarms *)p)->m_39c)->clear(); pop_matrix(); }
 
 #include "pso/misc/RenderFadeState.h"
 #include "pso/npc/NpcModelRegistry.h"

@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/unk/text_803D96A8.h"
@@ -68,7 +69,7 @@ void TObjEneRe7Berura::vfunc_105() {
             ((TObjEneDD *)(self))->draw_ground_shadow(&v, 0);
         }
         TObjPlayer::toggle_particle_effect();
-        TObjFish::set_global_param(self->f24);
+        set_current_texture_list((GinjaTextureList *)(self->f24));
         push_matrix();
         post_translate_matrix(self->f38);
         rotate_matrix_y(0, self->f60);

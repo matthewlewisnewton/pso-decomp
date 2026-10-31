@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "pso/math/ScratchVectorStorage.h"
 #include "types.h"
 #include "pso/misc/TOBoss4Bird.h"
@@ -10,7 +11,7 @@ extern "C" {
 s32 TObjFish__sub_8001EDB0(s32,s32);
 s32 get_bml_model(s32,s32);
 s32 rotate_matrix_y(int,int);
-s32 set_global_param__8TObjFishFl(int);
+
 void draw_ginja_object(void *child);
 void *mem_alloc(u32 size);
 void TOBoss4__ct(void*,void*);
@@ -134,7 +135,7 @@ void TOBoss4Rock::render() {
         push_matrix();
         post_translate_matrix(&self->pos);
         for (i = 0; i < self->count; i++) {
-            set_global_param__8TObjFishFl(self->params[i]);
+            set_current_texture_list((GinjaTextureList *)(self->params[i]));
             push_matrix();
             post_translate_matrix(&self->positions[i]);
             rotate_matrix_z(0, self->rots[i].z);
@@ -270,7 +271,6 @@ void *TOBoss4Rock__ct(void *arg0_, void *arg1) {
 #define TObjFish__sub_8001EDB0 ((s32 (*)(void*,int))TObjFish__sub_8001EDB0)
 #define get_bml_model ((s32 (*)(void*,int))get_bml_model)
 #define rotate_matrix_y ((s32 (*)(s32,s32))rotate_matrix_y)
-#define set_global_param__8TObjFishFl ((s32 (*)(s32))set_global_param__8TObjFishFl)
 #define TOBoss4__ct ((s32 (*)(void))TOBoss4__ct)
 
 struct RecoveredGlobal_80159514___vt__12TOBoss4Tower {
@@ -311,7 +311,7 @@ void TOBoss4Tower::render() {
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);
-        set_global_param__8TObjFishFl(this->texlist);
+        set_current_texture_list((GinjaTextureList *)(this->texlist));
         draw_ginja_object(this->model);
         pop_matrix();
     }
@@ -337,7 +337,6 @@ u8 *TOBoss4Tower__ct(u8 *boss4_tower, s32 arg1) {
 #undef TObjFish__sub_8001EDB0
 #undef get_bml_model
 #undef rotate_matrix_y
-#undef set_global_param__8TObjFishFl
 #undef TOBoss4__ct
 struct Vec_8015959C { f32 x, y, z; };
 
@@ -467,7 +466,7 @@ void TOBoss4Bird::render() {
     if (self->m8(self->f90, self->f94) != 0) {
         push_matrix();
         post_translate_matrix(&self->pos);
-        set_global_param__8TObjFishFl(self->param);
+        set_current_texture_list((GinjaTextureList *)(self->param));
         for (i = 0; i < self->count; i++) {
             push_matrix();
             translate_matrix(0, (0.0f), self->fD4, (0.0f));

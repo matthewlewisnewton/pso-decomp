@@ -1,3 +1,4 @@
+#include "pso/system/ModelDrawCallback.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_803DF7A8.h"
 #include "pso/player/TObjPlayer_803E21B8.h"
@@ -115,7 +116,7 @@ void GXSetAlphaCompare(int comp0, int ref0, int op, int comp1, int ref1);
 extern s32 chunk_vertex_cache_buffer;
 extern s32 lbl_805D77FC;
 extern s32 chunk_render_flags;
-void transform_chunk_object_tree(void *, void (*)(void *));
+void transform_chunk_object_tree(void *, ModelDrawCallback);
 extern s32 current_matrix;
 s32 __cvt_fp2unsigned(f32);
 void apply_quat_rotation__10TObjPlayerFf(f32 *arg0, f32 farg0);
@@ -225,7 +226,7 @@ void TObjPlayer::copy_matrix3x3_for_chunk_tree() {
 #pragma pop
 
 #define node ((ChunkNode_803E2F78 *)arg0)
-void transform_chunk_object_tree(void *arg0, void (*cb)(void *)) {
+void transform_chunk_object_tree(void *arg0, ModelDrawCallback cb) {
     u32 flags;
     s32 r;
 
@@ -237,7 +238,7 @@ void transform_chunk_object_tree(void *arg0, void (*cb)(void *)) {
         }
         if ((flags & 7) == 7) {
             if (!(flags & 8)) {
-                r = ((s32 (*)(s32))cb)(node->obj);
+                r = cb((void *)node->obj);
             }
             if (!(flags & 0x10) && (!(flags & 0x100) || r == 0)) {
                 transform_chunk_object_tree(node->child, cb);
@@ -260,7 +261,7 @@ void transform_chunk_object_tree(void *arg0, void (*cb)(void *)) {
                 scale_current_matrix(node->scl);
             }
             if (!(flags & 8)) {
-                r = ((s32 (*)(s32))cb)(node->obj);
+                r = cb((void *)node->obj);
             }
             if (!(flags & 0x10) && (!(flags & 0x100) || r == 0)) {
                 transform_chunk_object_tree(node->child, cb);
@@ -707,7 +708,7 @@ void TObjPlayer::end_chunk_draw() {
 }
 #pragma pop
 
-s32 draw_chunk_vertices_cached__10TObjPlayerFPv(void* arg) {
+s32 draw_chunk_vertices_cached(void* arg) {
     ChunkModel_803E44D4* model = (ChunkModel_803E44D4*)arg;
     s32 cache;
     s32 count = 0;
@@ -746,7 +747,7 @@ s32 draw_chunk_vertices_cached__10TObjPlayerFPv(void* arg) {
 
 void draw_chunk_model(void *arg0) {
     TObjPlayer::setup_model_draw_state(arg0);
-    draw_chunk_vertices_cached__10TObjPlayerFPv(arg0);
+    draw_chunk_vertices_cached(arg0);
     TObjPlayer::end_chunk_draw();
 }
 
@@ -755,7 +756,7 @@ void draw_chunk_model(void *arg0) {
 extern "C" {
 void draw_chunk_object(void *child) {
     TObjPlayer::setup_model_draw_state(child);
-    transform_chunk_object_tree(child, (void (*)(void *))draw_chunk_vertices_cached__10TObjPlayerFPv);
+    transform_chunk_object_tree(child, draw_chunk_vertices_cached);
     TObjPlayer::end_chunk_draw();
 }
 #pragma pop

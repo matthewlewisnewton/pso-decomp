@@ -1,3 +1,6 @@
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/system/PadRumble.h"
@@ -50,7 +53,7 @@ typedef struct Obj_8004EA2C {
 extern "C" {
 void render__11TObjDFDemo2Fv(Obj_8004E918 *arg0);
 void run_task__11TObjDFDemo2Fv(Obj_8004EA2C *arg0);
-s32 play_sound_effect(s32, void *, s32, s32);
+
 s32 rotate_matrix_y(s32, s32);
 s32 push_matrix();
 s32 post_translate_matrix(void *);
@@ -127,7 +130,7 @@ void TObjDFDemo2::render() {
     post_translate_matrix(arg0->fac);
     rotate_matrix_y(0, arg0->fb8);
     for (i = 0; i < 2; i++) {
-        TObjFish::set_global_param(arg0->recs[i].b);
+        set_current_texture_list((GinjaTextureList *)(arg0->recs[i].b));
         draw_model_motion((void *)arg0->recs[i].a, (void *)arg0->recs[i].c, arg0->fc0);
     }
     clear_motion_packed_rotation();
@@ -140,16 +143,16 @@ void TObjDFDemo2::run_task() {
     Obj_8004EA2C *arg0 = (Obj_8004EA2C *)this;
     void *e;
     if (arg0->ftimer == 0x90) {
-        e = (void *)spawn_particle_effect(arg0->fac, 0xC3);
+        e = (void *)spawn_particle_effect((const Vec *)(arg0->fac), 0xC3);
         if (e != NULL) {
             ((TParticleCtrl *)e)->set_flags(0x40);
         }
-        play_sound_effect(0x4003AD15, arg0->fac, 0, 1);
+        play_sound_effect(0x4003AD15, (const Vec *)(arg0->fac), 0, 1);
         start_pad_rumble_all(0xC0, 0xF);
     }
     while (arg0->ftimer >= 0xB4) {
         if (arg0->fa8 != 0 || arg0->ftimer <= 0xDC) {
-            e = (void *)spawn_particle_effect(arg0->fac, 0x14E);
+            e = (void *)spawn_particle_effect((const Vec *)(arg0->fac), 0x14E);
             if (e != NULL) {
                 ((TParticleCtrl *)e)->set_flags(0x40);
             }
@@ -206,7 +209,7 @@ void *TObjDFDemo2__ct(void *arg0, void *parent, void *arg2, void *arg3, void *ar
         set_scripted_camera_pose(self->pos, self->pos, &p);
     }
     ((TCameraCtrl *)lbl_80485680)->cache_target_and_forward(0x4444);
-    play_sound_effect(0x4003A325, self->pos, 0, 1);
+    play_sound_effect(0x4003A325, (const Vec *)(self->pos), 0, 1);
     self->bc = 0;
     return self;
 }

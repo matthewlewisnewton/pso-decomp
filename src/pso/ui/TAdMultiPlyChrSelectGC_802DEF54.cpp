@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC_802D50A0.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC_802E0FC8.h"
@@ -48,7 +49,6 @@ extern s32 tl_02;
 extern s32 tl_clipout;
 extern s32 TAdMultiPlyChrSelectGC__data_805DE898;
 s32 TWindowShortListCtrl__check_controller_button(void *, s32, s32);
-s32 play_sound_effect(s32, s32, s32, s32);
 
 extern s8 controller_physical_port_bank[];
 extern u32 multi_chr_select_serial_access_state;

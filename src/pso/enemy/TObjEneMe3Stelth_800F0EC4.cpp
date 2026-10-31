@@ -1,6 +1,7 @@
 #include "pso/enemy/TObjEneMe3Stelth.h"
 #include "pso/misc/MaterialOpacityFade.h"
 #include "pso/misc/RenderFadeState.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/object/TObjMotion.h"
@@ -231,7 +232,6 @@ struct Ent_800F0F84 { u8 pad0[0x18]; u32 f18; };
 
 extern "C" {
 s32 is_split_screen();
-s32 play_sound_effect(int, void *, int, int);
 extern const NJS_ARGB stelth_fade_color;
 extern const f32 lbl_805DA828;
 extern const f32 lbl_805DA82C;
@@ -422,7 +422,7 @@ void TObjEneMe3Stelth__sub_800F1440(u8 *arg0, s32 arg1) {
         F(s32, 0x3CC) |= 0x40000;
         ((TObjCollidable *)arg0)->clear_player_status_flag(0, 0x08000000);
         F(s32, 0x424) = 0;
-        play_sound_effect(0x3B23B, arg0 + 0x38, 0, 0);
+        play_sound_effect(0x3B23B, (const Vec *)(arg0 + 0x38), 0, 0);
         break;
     case 3:
         if (F(s32, 0x424) == 3) {

@@ -1,3 +1,6 @@
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/protocol/protocol_types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/misc/TLobby_801E43E4.h"
@@ -78,7 +81,7 @@ extern u8 signboard_texture_list[];
 extern u32 TObjSinBoard__texture_buffer;
 struct Vec_80198E84;
 extern Vec_80198E84 gogo_ball_sync_state[];
-s32 play_sound_effect(int, void *, int, int);
+
 void *__nw__7TObjectFUl(s32);
 struct Sys_80198A2C;
 extern Sys_80198A2C gogo_ball_configuration;
@@ -107,7 +110,7 @@ void TObjSinBoard::render() {
         d.col = col;
         d.count = 4;
         set_default_alpha_blend();
-        TObjFish::set_global_param((int) signboard_texture_list);
+        set_current_texture_list((GinjaTextureList *)(signboard_texture_list));
         set_texture_num(0);
         TParticleCtrl::begin_effect_render();
         push_matrix();
@@ -167,9 +170,9 @@ void TUnk_804B8DD0::render() {
     bml_model = (u8 *)(get_bml_model((void *)gogo_ball_bml_resource, 1));
     if (bml_model != NULL) {
         if ((s32) this->m_28 != 0) {
-            TObjFish::set_global_param((int) (*(s32 *)((s8 *)lobby_gvm_texture_handles + 0x1C)));
+            set_current_texture_list((GinjaTextureList *)((*(s32 *)((s8 *)lobby_gvm_texture_handles + 0x1C))));
         } else {
-            TObjFish::set_global_param((int) (*(s32 *)((s8 *)lobby_gvm_texture_handles + 0x20)));
+            set_current_texture_list((GinjaTextureList *)((*(s32 *)((s8 *)lobby_gvm_texture_handles + 0x20))));
         }
         push_matrix();
         post_translate_matrix((u8 *)&this->unk_1C);
@@ -235,7 +238,7 @@ void TUnk_804B8DD0::update_effects() {
             VecCopy((Vec *)&v6, (const Vec *)&this->unk_1C);
             v6.y += 7.0f;
             spawn_particle_effect_with_flags(&v6, 0x20D, 0x40);
-            play_sound_effect(0x4001A82E, (u8 *)&this->unk_1C, 0, 0);
+            play_sound_effect(0x4001A82E, (const Vec *)((u8 *)&this->unk_1C), 0, 0);
         }
     } else if (*(u16 *)((s8 *)&gogo_ball_configuration + 0x48) == 2) {
         (this->m_30)++;
@@ -246,7 +249,7 @@ void TUnk_804B8DD0::update_effects() {
                 v2a.y += 7.0f;
                 spawn_particle_effect_with_flags(&v2a, 0x45, 0x40);
                 spawn_particle_effect_with_flags(&v2a, 0x189, 0x40);
-                play_sound_effect(0x4001C112, (u8 *)&this->unk_1C, 0, 0);
+                play_sound_effect(0x4001C112, (const Vec *)((u8 *)&this->unk_1C), 0, 0);
             }
         } else {
             if (this->m_30 == 1) {
@@ -255,7 +258,7 @@ void TUnk_804B8DD0::update_effects() {
                 v2b.y += 7.0f;
                 spawn_particle_effect_with_flags(&v2b, 0x45, 0x40);
                 spawn_particle_effect_with_flags(&v2b, 0x189, 0x40);
-                play_sound_effect(0x4001C112, (u8 *)&this->unk_1C, 0, 0);
+                play_sound_effect(0x4001C112, (const Vec *)((u8 *)&this->unk_1C), 0, 0);
             }
         }
     } else if (*(u16 *)((s8 *)&gogo_ball_configuration + 0x48) != 0) {
@@ -364,9 +367,9 @@ typedef char RecoveredGlobal_80198960_lbl_8050DD58_size[sizeof(RecoveredGlobal_8
 void TUnk_804B8DE8::render() {
     if ((((u32) gogo_ball_bml_resource != 0U) || ((u32) *(u32 *)((s8 *)lobby_gvm_texture_handles + 0x10) != 0U)) && ((u16) *(u16 *)((s8 *)&gogo_ball_configuration + 0x48) != 6)) {
         if ((s32) *(s32 *)((s8 *)((u8 *)this) + 0x50) == 1) {
-            TObjFish::set_global_param((int) (*(u32 *)((s8 *)lobby_gvm_texture_handles + 0x10)));
+            set_current_texture_list((GinjaTextureList *)((*(u32 *)((s8 *)lobby_gvm_texture_handles + 0x10))));
         } else {
-            TObjFish::set_global_param((int) (*(u32 *)((s8 *)lobby_gvm_texture_handles + 0x14)));
+            set_current_texture_list((GinjaTextureList *)((*(u32 *)((s8 *)lobby_gvm_texture_handles + 0x14))));
         }
         push_matrix();
         post_translate_matrix(((u8 *)this) + 0x1C);
@@ -433,8 +436,7 @@ struct Sys_80198A2C { u8 pad0[0x48]; u16 mode; };
 
 extern "C" {
 void *spawn_particle_effect_with_rotation(void *pos, void *dir, s32 id, int e);
-void *spawn_particle_effect(void *pos, s32 id);
-s32 play_sound_effect(int, void *, int, int);
+
 extern Vec_80198A2C boss3_volopt_init_vec;
 #pragma push
 #pragma fp_contract on
@@ -451,15 +453,15 @@ void TUnk_804B8DE8::run_task() {
     if (state == 0) {
         if (self->f50 != 0) {
             if ((*(Pad_80198A2C *)&gogo_ball_sync_state).buttons & (this->m_54 != 0 ? 0x10 : 1)) {
-                play_sound_effect(0x4002A605, &self->pos, 0, 0);
-                play_sound_effect(0x40052D15, &self->pos, 0, 0);
+                play_sound_effect(0x4002A605, (const Vec *)(&self->pos), 0, 0);
+                play_sound_effect(0x40052D15, (const Vec *)(&self->pos), 0, 0);
                 this->m_4c = 1;
                 return;
             }
         } else {
             if ((*(Pad_80198A2C *)&gogo_ball_sync_state).buttons & (this->m_54 != 0 ? 0x20 : 2)) {
-                play_sound_effect(0x4002A605, &self->pos, 0, 0);
-                play_sound_effect(0x40052D15, &self->pos, 0, 0);
+                play_sound_effect(0x4002A605, (const Vec *)(&self->pos), 0, 0);
+                play_sound_effect(0x40052D15, (const Vec *)(&self->pos), 0, 0);
                 this->m_4c = 1;
                 return;
             }
@@ -481,7 +483,7 @@ void TUnk_804B8DE8::run_task() {
             Vec_80198A2C v;
             VecCopy((Vec *)&v, (const Vec *)&self->pos);
             v.y += (18.0f);
-            spawn_particle_effect(&v, 0x1DB);
+            spawn_particle_effect((const Vec *)(&v), 0x1DB);
         }
         self->pos.y = (0.001f) * (f32)(self->timer * self->timer) + self->pos.y;
         if (self->effect != NULL) {
@@ -573,10 +575,10 @@ void TWindowTimer::throw_gogo_ball(s32 arg1, s32 arg2) {
     stack.sp14 = *(f32 *)((s8 *)((u8 *)this) + 0);
     stack.sp18 = *(f32 *)((s8 *)((u8 *)this) + 8);
     if (is_on_current_screen__11TCameraCtrlFv((void *) ((u8 *)&controller_input_state.value + 0x20), 4) != 0) {
-        play_sound_effect(0x4001A311, this, 0, 0);
+        play_sound_effect(0x4001A311, (const Vec *)(this), 0, 0);
         stack.sp1C = 1;
     } else {
-        play_sound_effect(0x4002A600, this, 0, 0);
+        play_sound_effect(0x4002A600, (const Vec *)(this), 0, 0);
         stack.sp1C = 0;
     }
     ((TWindowTimer *)((s32)&stack.sp8))->send_gogo_ball();
@@ -1175,7 +1177,7 @@ void draw_model__8TObjFishFPv(u8 *arg0) {
     if (lobby_gvm_texture_handles != 0 && (*(void**)&gogo_ball_bml_resource) != 0) {
         switch ((*(Glob_80199A44 *)&gogo_ball_configuration).kind) {
         case 0:
-            TObjFish::set_global_param(lobby_gvm_texture_handles[0]);
+            set_current_texture_list((GinjaTextureList *)(lobby_gvm_texture_handles[0]));
             set_cull_back();
             draw_chunk_object(get_bml_model((*(void**)&gogo_ball_bml_resource), 3));
             set_cull_front();
@@ -1183,7 +1185,7 @@ void draw_model__8TObjFishFPv(u8 *arg0) {
             set_cull_none();
             break;
         case 1:
-            TObjFish::set_global_param(lobby_gvm_texture_handles[1]);
+            set_current_texture_list((GinjaTextureList *)(lobby_gvm_texture_handles[1]));
             set_cull_back();
             draw_chunk_object(get_bml_model((*(void**)&gogo_ball_bml_resource), 0));
             set_cull_front();
@@ -1191,7 +1193,7 @@ void draw_model__8TObjFishFPv(u8 *arg0) {
             set_cull_none();
             break;
         case 2:
-            TObjFish::set_global_param(lobby_gvm_texture_handles[2]);
+            set_current_texture_list((GinjaTextureList *)(lobby_gvm_texture_handles[2]));
             set_cull_back();
             draw_chunk_object(get_bml_model((*(void**)&gogo_ball_bml_resource), 0));
             set_cull_front();
@@ -1199,7 +1201,7 @@ void draw_model__8TObjFishFPv(u8 *arg0) {
             set_cull_none();
             break;
         case 3:
-            TObjFish::set_global_param(lobby_gvm_texture_handles[3]);
+            set_current_texture_list((GinjaTextureList *)(lobby_gvm_texture_handles[3]));
             set_cull_back();
             draw_chunk_object(get_bml_model((*(void**)&gogo_ball_bml_resource), 0));
             set_cull_front();
@@ -1207,7 +1209,7 @@ void draw_model__8TObjFishFPv(u8 *arg0) {
             set_cull_none();
             break;
         case 6:
-            TObjFish::set_global_param(lobby_gvm_texture_handles[6]);
+            set_current_texture_list((GinjaTextureList *)(lobby_gvm_texture_handles[6]));
             set_cull_back();
             draw_chunk_object(get_bml_model((*(void**)&gogo_ball_bml_resource), 2));
             set_cull_front();

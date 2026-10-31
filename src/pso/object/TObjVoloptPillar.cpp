@@ -1,3 +1,5 @@
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #pragma fp_contract on
 
 #include "pso/object/TObjVoloptPillar.h"
@@ -31,7 +33,7 @@ void post_translate_matrix(const Vec *v);
 void rotate_matrix_x(s32 matrix, s32 angle);
 void scale_matrix(s32 matrix, f32 x, f32 y, f32 z);
 void matrix_mult_vec(s32 matrix, const Vec *src, Vec *dst);
-void play_sound_effect(s32 id, const Vec *pos, s32 a2, s32 a3);
+
 extern GC_Mtx identity_matrix;
 }
 
@@ -52,12 +54,12 @@ void TObjVoloptPillar::render() {
         TObjPlayer::toggle_particle_effect();
         push_matrix();
         post_translate_matrix(&position);
-        TObjFish::set_global_param(volopt_pillar_textures);
+        set_current_texture_list((GinjaTextureList *)(volopt_pillar_textures));
         draw_chunk_object((void *)volopt_pillar_model);
         pop_matrix();
         push_matrix();
         translate_matrix(0, position.x, start_y, position.z);
-        TObjFish::set_global_param(volopt_pillar_base_textures);
+        set_current_texture_list((GinjaTextureList *)(volopt_pillar_base_textures));
         draw_chunk_object((void *)volopt_pillar_base_model);
         pop_matrix();
         restore_scene_lighting();
@@ -130,7 +132,7 @@ void TObjVoloptPillar::run_task() {
                 new TUnk_80484888(&pos, 0x11E, 0xF, NULL, 0.25f, 40.0f);
             }
             TCameraCtrl::set_shake_preset(1);
-            play_sound_effect(0x4003AD09, &position, 0, 0);
+            play_sound_effect(0x4003AD09, (const Vec *)(&position), 0, 0);
         }
         break;
     case 3:

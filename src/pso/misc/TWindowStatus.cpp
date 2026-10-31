@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TWindowSimpleStatus.h"
 #include "pso/misc/TUnk_804CE018.h"
@@ -112,7 +113,7 @@ void TWindowStatus::draw_background(u8 *arg1) {
         draw_photon_blast_gauge_ring((s32)this, arg1, lbl_8044F650, *(s32 *)((s8 *)e + 0x20), lbl_805DD434);
     }
     begin_screen_draw(1);
-    TObjFish::set_global_param((s32)lbl_805D63F0);
+    set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
     set_draw_texture_and_color(0xB, *(s32 *)((s8 *)arg1 + 0x34));
     { f32 r = TWindowSubComCard__sub_80244784((TWindowSubComCard *)this);
     s = -1.0f / (0.0598f + this->m_54);

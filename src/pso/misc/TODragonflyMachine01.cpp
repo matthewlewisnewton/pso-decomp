@@ -1,4 +1,5 @@
 #include "pso/player/demo_mode.h"
+#include "pso/system/CurrentTextureList.h"
 struct NJS_OBJECT;
 #include "types.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
@@ -121,7 +122,7 @@ void TODragonflyMachine01::render() {
             rotate_matrix_y(NULL, rotation_y);
             break;
         }
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         node_index = 0;
         node_yaw = animation_yaw;
         set_chunk_model_node_callback(&rotate_animated_node);

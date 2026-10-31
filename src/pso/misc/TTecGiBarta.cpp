@@ -1,3 +1,5 @@
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/TParticleCtrl.h"
 #include "types.h"
 #include "pso/boss/TBoss4Type2_800874F4.h"
@@ -157,7 +159,7 @@ extern s32 tec_gibarta_class_name_ptr;
 extern const f32 lbl_805DC80C;
 TTecGiBarta_80230C58 *TTecGiBarta__ct(TTecGiBarta_80230C58 *self, void * _w1, void * _w2, void * _w3, void * _w4);
 void construct_facing_technique__10TObjPlayerFPviPvii();
-s32 play_sound_effect(s32, s32, s32, s32);
+
 void *find_entity_by_id(u16 id);
 void *__nw__7TObjectFUl(int);
 s32 update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
@@ -168,29 +170,29 @@ void TTecGiBarta::update_technique_by_phase() {
 
     switch (this->band) {
     case 0:
-        handle = play_sound_effect(0x4002A605, (int)(arg0 + 0x20), 0, 0);
+        handle = play_sound_effect(0x4002A605, (const Vec *)((arg0 + 0x20)), 0, 0);
         if (handle >= 0) {
             update_technique_slot__10TTecRaFoieFl(handle, 0x100, 0);
         }
         return;
     case 1:
-        play_sound_effect(0x4002A605, (int)(arg0 + 0x20), 0, 0);
+        play_sound_effect(0x4002A605, (const Vec *)((arg0 + 0x20)), 0, 0);
         return;
     case 2:
     case 3:
-        handle = play_sound_effect(0x4002A605, (int)(arg0 + 0x20), 0, 0);
+        handle = play_sound_effect(0x4002A605, (const Vec *)((arg0 + 0x20)), 0, 0);
         if (handle >= 0) {
             update_technique_slot__10TTecRaFoieFl(handle, -0x180, 0);
         }
         break;
     case 4:
-        handle = play_sound_effect(0x4002A605, (int)(arg0 + 0x20), 0, 0);
+        handle = play_sound_effect(0x4002A605, (const Vec *)((arg0 + 0x20)), 0, 0);
         if (handle >= 0) {
             update_technique_slot__10TTecRaFoieFl(handle, -0x250, 0);
         }
         break;
     case 5:
-        handle = play_sound_effect(0x4002A605, (int)(arg0 + 0x20), 0, 0);
+        handle = play_sound_effect(0x4002A605, (const Vec *)((arg0 + 0x20)), 0, 0);
         if (handle >= 0) {
             update_technique_slot__10TTecRaFoieFl(handle, -0x100, 0);
         }
@@ -255,11 +257,11 @@ void TTecGiBarta::create_particles() {
     if (shot->band == 5) {
         VecCopy((Vec *)&v, (const Vec *)&shot->pos);
         v.y -= lbl_805DC808;
-        spawn_particle_effect(&v, 0x1E0);
-        spawn_particle_effect(&v, 0x1E1);
+        spawn_particle_effect((const Vec *)(&v), 0x1E0);
+        spawn_particle_effect((const Vec *)(&v), 0x1E1);
         src = (u8 *)find_entity_by_id(shot->source);
         if (src != NULL) {
-            emitter = spawn_particle_effect(src + 0x38, 0x18B);
+            emitter = spawn_particle_effect((const Vec *)(src + 0x38), 0x18B);
             if (emitter != NULL) {
                 attach_particle_model((u8 *)emitter, (s32)(get_bml_model(technique_effect_bml, 6)), (s32)lbl_805D63B0, (s32)(get_bml_motion(technique_effect_bml, 2)), 0, (f32)lbl_805DC804);
             }

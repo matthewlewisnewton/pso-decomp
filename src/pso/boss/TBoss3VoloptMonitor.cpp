@@ -1,4 +1,7 @@
 #include "pso/enemy/BattleParameters.h"
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/player/TObjChara.h"
 #include "pso/player/demo_mode.h"
 #include "types.h"
@@ -21,7 +24,7 @@
 
 
 extern "C" {
-s32 play_sound_effect(s32 id, Vec *pos, s32 a2, s32 flags);
+
 void obj_setFlags30(TObject *obj, u32 mask);
 void *find_entity_by_id(u16 id);
 void submit_cursor_candidate(TObject *obj, s32 a1);
@@ -362,7 +365,7 @@ void TBoss3VoloptMonitor::render() {
             }
         }
         volopt_monitor_screen.entries = &volopt_monitor_textures->entries[frame];
-        TObjFish::set_global_param((s32)&volopt_monitor_screen);
+        set_current_texture_list((GinjaTextureList *)(&volopt_monitor_screen));
         set_draw_list_mask(3);
         push_matrix();
         model_render_flags &= ~0x400;
@@ -382,7 +385,7 @@ void TBoss3VoloptMonitor::sub_80041E88() {
         anim_timer = 3;
         anim_frame = 0;
         m_388 |= 0x10000;
-        play_sound_effect(0x4003BC03, &position, 0, 0);
+        play_sound_effect(0x4003BC03, (const Vec *)(&position), 0, 0);
         damage_player_if_aligned();
         referenceHp = hp;
         *(s16 *)&timer = 3;
@@ -405,7 +408,7 @@ void TBoss3VoloptMonitor::sub_80041D3C() {
     TBoss3VoloptMonitor *other;
     switch (state) {
     case 0:
-        play_sound_effect(0x4003A804, &position, 0, 0);
+        play_sound_effect(0x4003A804, (const Vec *)(&position), 0, 0);
         damage_player_if_aligned();
         spawn_effects();
         volopt_target_slot_used[slot] = 1;
@@ -483,7 +486,7 @@ void TBoss3VoloptMonitor::spawn_effects() {
     angle[1] = rotation_y;
     angle[2] = 0;
     spawn_directional_particle(&body_center_position, angle, (slot & 3) == 0 ? 0x62 : 0x61);
-    spawn_particle_effect(&body_center_position, 0x45);
+    spawn_particle_effect((const Vec *)(&body_center_position), 0x45);
 }
 
 void TBoss3VoloptMonitor::set_hit_flags_and_notify() {

@@ -3,6 +3,8 @@
 #include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/math/MatrixCopy.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -502,7 +504,7 @@ s32 angle_diff_s16(s32);
 void mem_free(void*);
 void *mem_alloc(u32 size);
 void free_collision_body_parts(void *);
-s32 play_sound_effect(s32, u32, s16, s32);
+
 void __dl__7TObjectFPv(void *);
 void * __nw__7TObjectFUl(int);
 void __destroy_arr(void *, void *, u32, u32);
@@ -516,7 +518,7 @@ void translate_matrix(u32 arg0, f32 x, f32 y, f32 z);
 s32 push_matrix_from(void *, int, int, int);
 s32 push_matrix();
 s32 pop_matrix();
-s32 set_global_param__8TObjFishFl(s32, void *);
+
 }
 void *destroy_buffer_pair(void *arg0, s16 arg1);
 void get_current_matrix(void *);
@@ -842,7 +844,7 @@ s32 TObjEneRe7Berura::check_death_trigger() {
 void TObjEneRe7Berura::play_band_sound() {
     u8 *arg0 = (u8 *)this;
     if ((((TObjMotion *)arg0)->is_passing_frame((f32)lbl_805D9770) != 0) || (((TObjMotion *)arg0)->is_passing_frame((f32)((f32)TObjEneRe7Berura__data_805D9764)) != 0)) {
-        play_sound_effect(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003BC1F)), (u32)(arg0 + 0x38), 0, 0);
+        play_sound_effect((s32)(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003BC1F))), (const Vec *)((arg0 + 0x38)), 0, 0);
     }
 }
 #pragma pop
@@ -942,7 +944,7 @@ s32 get_field_3D4_shifted__16TObjEneRe7BeruraFPv(void *arg0) {
 void TObjEneRe7Berura::init_part(s32 arg0) {
     s32 *temp_r3;
 
-    set_global_param__8TObjFishFl(*(s32 *)((s8 *)(*(void **)((s8 *)(*(void * *)&TObjEneRe7Berura__shared_resource) + 0x42C)) + 0xC), (*(void * *)&TObjEneRe7Berura__shared_resource));
+    set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)(*(void **)((s8 *)(*(void * *)&TObjEneRe7Berura__shared_resource) + 0x42C)) + 0xC)));
     temp_r3 = (s32 *)((s8 *)((s32 *)TObjEneRe7Berura__detached_part_states) + (arg0 * 0x64));
     ((s32 (*)(void *, s32))set_data_and_draw_node_tree__16TObjEneRe7BeruraFii)((s32 *)((s8 *)temp_r3 + 0x20), *temp_r3);
 }
