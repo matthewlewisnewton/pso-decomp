@@ -1191,7 +1191,7 @@ void TObjEneMerillLia__sub_800D59E4(u8 *arg0) {
 #define o ((Lia_800D5BCC *)arg0)
 void TObjEneMerillLia__sub_800D5BCC(u8 *arg0) {
     ((TUnk_80493450 *)o)->update_target_near_flag();
-    ((TUnk_80493450 *)o)->sub_800C4E08();
+    ((TUnk_80493450 *)o)->select_target_proximity_movement();
     ((TObjMotion *)o)->advance_animation();
     if (o->state != 1) {
         o->state = 1;
@@ -1464,7 +1464,7 @@ void TObjEneMerillLia::beast_update_approach() {
                 VecCopy((Vec *)&sp14, (const Vec *)(*(u32 *)&this->target + 0x2FC));
             }
             ((TUnk_80493450 *)arg0)->update_target_near_flag();
-            ((TUnk_80493450 *)arg0)->sub_800C4E08();
+            ((TUnk_80493450 *)arg0)->select_target_proximity_movement();
             ((TObjMotion *)arg0)->advance_animation();
             {
                 Vec_800D6618 sp8 = sp14;
