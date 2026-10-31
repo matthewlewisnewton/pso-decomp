@@ -1420,6 +1420,8 @@ void TObjEneEpsilonGuard::draw_debug_line() {
     set_default_alpha_blend();
 }
 
+#pragma push
+#pragma opt_common_subs off
 extern "C" void draw_with_fade__19TObjEneEpsilonGuardFPvi(u8 *arg0, s32 arg1) {
     s32 i;
     MaterialColorFade *r;
@@ -1503,6 +1505,8 @@ extern "C" void draw_with_fade__19TObjEneEpsilonGuardFPvi(u8 *arg0, s32 arg1) {
     chunk_polygon_flags_and_mask = saved_chunk_polygon_flags_and_mask;
     chunk_polygon_flags_or_mask = saved_chunk_polygon_flags_or_mask;
 }
+#pragma pop
+
 
 void TObjEneEpsilonBody::render_body_effect() {
     u8 *arg0 = (u8 *)this;
