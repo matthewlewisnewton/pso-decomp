@@ -10,8 +10,14 @@ coordinated idle transition; adding these files does not deploy the scheduler.
 Run `tools/local_build_capacity/build_capacity.py` from this repository. Every job
 supplies its own absolute `--repo` and unique absolute `.json` `--receipt` paths.
 The checkout root must exist; receipt parent directories are created as needed.
-Use `PSO_BUILD_NINJA=/absolute/path/to/ninja` to select a reviewed executable; the
-default is `ninja` on PATH. All workers must use a stable compatible Ninja version.
+Set `PSO_BUILD_NINJA=/absolute/path/to/ninja` to an explicitly reviewed executable.
+There is no PATH fallback: missing or relative settings are rejected before any
+subprocess changes directory. The configured and resolved paths must be outside the
+current candidate and all registered writable checkout roots. The same canonical
+absolute executable is used throughout each operation. Its path, SHA-256 and file
+identity are bound into preparation evidence and checked before Ninja queries,
+preflight, execution, and after execution; stale or replaced tools reject admission.
+All workers must use a stable compatible Ninja version.
 Do not change tool binaries or environment configuration during admitted work.
 
 All workers on a host share these coordination paths:
@@ -151,7 +157,8 @@ a rollout receipt. An initial marker has this form:
 ```
 
 Resume only when deployed source and marker agree. Every job still needs its own
-fresh preparation and reviewed graph proof. Build using:
+fresh preparation and reviewed graph proof, including the pinned Ninja identity.
+Receipts from older wrappers without that tool evidence must be regenerated. Build using:
 
 ```bash
 python3 tools/local_build_capacity/build_capacity.py \
@@ -173,7 +180,7 @@ incomplete receipt after interruption as unknown, never successful.
 PYTHONDONTWRITEBYTECODE=1 python3 tools/local_build_capacity/test_build_capacity.py
 ```
 
-Configure PSO_BUILD_NINJA if Ninja is not on PATH. Tests use private lock/marker
+Set PSO_BUILD_NINJA to an explicitly reviewed absolute Ninja executable. Tests use private lock/marker
 namespaces and synthetic input files; no original assets or production builds are
 needed. Coverage includes graph freshness, path isolation, proof/marker rejection,
 qualified-audit overlap, maintenance exclusion, default exclusive behavior, reserved

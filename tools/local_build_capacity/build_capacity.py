@@ -18,7 +18,8 @@ ENABLE = Path('/tmp/pso-build-capacity-v2-enabled.json')
 PROTOCOL = 'pso-build-capacity-v2'
 REVISION = 4
 # All workers must use the same stable, reviewed Ninja executable.
-NINJA = os.environ.get('PSO_BUILD_NINJA', 'ninja')
+NINJA = os.environ.get('PSO_BUILD_NINJA', '')
+PINNED_NINJA = None
 BLOCKED_RULES = {'configure', 'split', 'download_tool'}
 KNOWN_RULES = BLOCKED_RULES | {'decompctx', 'link', 'elf2dol', 'mwcc', 'mwcc_sjis',
     'mwcc_extab', 'mwcc_sjis_extab', 'as', 'mwcc_pch', 'mwcc_pch_sjis', 'orig_asm',
@@ -29,6 +30,37 @@ FIXED = ['build.ninja', 'objdiff.json', 'compile_commands.json', '.ninja_log', '
 
 def digest(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def pin_ninja(repo, expected=None):
+    """Require an explicitly reviewed absolute tool; never search candidate PATH."""
+    global PINNED_NINJA
+    configured = Path(NINJA)
+    if not NINJA or not configured.is_absolute():
+        raise RuntimeError('PSO_BUILD_NINJA must name an explicit reviewed absolute executable')
+    executable = configured.resolve(strict=True)
+    roots = [repo.resolve()]
+    registry = CAPACITY / 'roots.json'
+    if registry.exists():
+        roots.extend(Path(root).resolve() for root in json.loads(registry.read_text()))
+    if any(executable.is_relative_to(root) or configured.is_relative_to(root) for root in roots):
+        raise RuntimeError('Ninja executable is inside a candidate writable workspace')
+    if not executable.is_file() or not os.access(executable, os.X_OK):
+        raise RuntimeError('Ninja is not an executable regular file')
+    stat = executable.stat()
+    identity = dict(path=str(executable), sha256=digest(executable),
+                    device=stat.st_dev, inode=stat.st_ino, size=stat.st_size,
+                    mtime_ns=stat.st_mtime_ns)
+    if expected is not None and identity != expected:
+        raise RuntimeError('Ninja identity differs from preparation evidence')
+    if PINNED_NINJA is not None and identity != PINNED_NINJA:
+        raise RuntimeError('Ninja executable changed during operation')
+    PINNED_NINJA = identity
+    return identity
+
+
+def ninja_command(repo):
+    return pin_ninja(repo)['path']
 
 
 def safe_destination(repo, path):
@@ -91,7 +123,7 @@ def frozen_graph(text):
 def setup_preflight(repo, original_snapshot):
     """Dry-run the unmodified graph; never execute or rewrite a setup command."""
     entries = json.loads(subprocess.check_output(
-        [NINJA, '-f', str(original_snapshot), '-t', 'compdb', *sorted(BLOCKED_RULES)],
+        [ninja_command(repo), '-f', str(original_snapshot), '-t', 'compdb', *sorted(BLOCKED_RULES)],
         cwd=repo, text=True))
     blocked = {entry['command'] for entry in entries}
     if any('\n' in command for command in blocked):
@@ -99,7 +131,7 @@ def setup_preflight(repo, original_snapshot):
     evidence = []
     env = dict(os.environ, NINJA_STATUS='[%f/%t] ', LC_ALL='C')
     for target in ('build.ninja', 'progress'):
-        proc = subprocess.run([NINJA, '-f', str(original_snapshot), '-n', '-v', target],
+        proc = subprocess.run([ninja_command(repo), '-f', str(original_snapshot), '-n', '-v', target],
                               cwd=repo, text=True, capture_output=True, env=env)
         if proc.returncode:
             raise RuntimeError(f'preflight failed for {target}: {proc.stdout} {proc.stderr}')
@@ -189,7 +221,7 @@ def audit(repo):
         path = safe_destination(repo, repo / value)
         if not path.is_relative_to(repo / 'build'):
             raise RuntimeError(f'side output outside build tree: {value}')
-    rows = subprocess.check_output([NINJA, '-t', 'targets', 'all'], cwd=repo, text=True).splitlines()
+    rows = subprocess.check_output([ninja_command(repo), '-t', 'targets', 'all'], cwd=repo, text=True).splitlines()
     outputs = []
     for row in rows:
         value, rule = row.rsplit(': ', 1)
@@ -220,7 +252,7 @@ def audit(repo):
         raise RuntimeError(f'original extraction would be needed: {missing}')
     return dict(protocol=PROTOCOL, revision=REVISION, repo=str(repo), admitted=True,
                 ninja_sha256=digest(repo / 'build.ninja'),
-                inputs_sha256=inputs_fingerprint(repo), output_count=len(outputs),
+                inputs_sha256=inputs_fingerprint(repo), ninja_tool=pin_ninja(repo), output_count=len(outputs),
                 original_root=str(disc.resolve()), no_original_extraction_needed=True,
                 limitation='Reviewed PSO commands only; shared inputs/tools must remain immutable.')
 
@@ -358,7 +390,7 @@ def check_prepared(repo, prepared, reviewed_sha, current):
     if not prior.get('prepared') or prior.get('returncode') != 0:
         raise RuntimeError('successful exclusive preparation receipt required')
     old = prior['admission']
-    for key in ('protocol', 'revision', 'repo', 'ninja_sha256', 'inputs_sha256'):
+    for key in ('protocol', 'revision', 'repo', 'ninja_sha256', 'inputs_sha256', 'ninja_tool'):
         if old.get(key) != current[key]:
             raise RuntimeError(f'preparation is stale: {key}')
     if reviewed_sha != current['ninja_sha256']:
@@ -384,6 +416,9 @@ def qualified_audit(repo, prepared, reviewed_sha, enabled):
     prior = json.loads(prepared.read_text())
     if prior.get('mode') != 'legacy':
         raise RuntimeError('exclusive preparation receipt required')
+    if 'ninja_tool' not in prior.get('admission', {}):
+        raise RuntimeError('preparation receipt lacks pinned Ninja evidence')
+    pin_ninja(repo, prior['admission']['ninja_tool'])
     current = audit(repo)
     check_prepared(repo, prepared, reviewed_sha, current)
     temporary = Path(tempfile.mkdtemp(prefix='capacity-audit-', dir=repo / 'build'))
@@ -393,6 +428,7 @@ def qualified_audit(repo, prepared, reviewed_sha, enabled):
     preflight = setup_preflight(repo, original)
     if inputs_fingerprint(repo) != current['inputs_sha256']:
         raise RuntimeError('inputs changed during qualified audit; result invalid')
+    pin_ninja(repo)
     return current, preflight
 
 
@@ -409,6 +445,7 @@ def main():
     ap.add_argument('--reviewed-graph-sha256')
     args = ap.parse_args()
     repo = args.repo.resolve(strict=True)
+    pin_ninja(repo)
     isolated = args.mode == 'isolated'
     if args.prepare_only and isolated:
         raise RuntimeError('preparation must hold legacy exclusive lock')
@@ -447,7 +484,7 @@ def main():
             else:
                 env = os.environ.copy()
                 if Path(NINJA).is_absolute():
-                    env['PATH'] = str(Path(NINJA).parent) + ':' + env['PATH']
+                    env['PATH'] = str(Path(ninja_command(repo)).parent) + ':' + env['PATH']
                 env['PYTHONDONTWRITEBYTECODE'] = '1'
                 env.pop('GITHUB_STEP_SUMMARY', None)
                 writable_trees(repo)
@@ -455,10 +492,14 @@ def main():
                 temporary = Path(tempfile.mkdtemp(prefix='capacity-tmp-', dir=repo / 'build'))
                 safe_destination(repo, temporary)
                 env.update(TMPDIR=str(temporary), TMP=str(temporary), TEMP=str(temporary))
-                command = [NINJA, '-j2']
+                command = [ninja_command(repo), '-j2']
                 if args.prepare_only:
                     command += ['build.ninja']
                 elif isolated:
+                    prior = json.loads(args.prepared_receipt.read_text())
+                    if 'ninja_tool' not in prior.get('admission', {}):
+                        raise RuntimeError('preparation receipt lacks pinned Ninja evidence')
+                    pin_ninja(repo, prior['admission']['ninja_tool'])
                     current = audit(repo)
                     check_prepared(repo, args.prepared_receipt, args.reviewed_graph_sha256, current)
                     record['admission'] = current
@@ -476,6 +517,7 @@ def main():
                     child = subprocess.run(['/usr/bin/time', '-f', fmt, '-o', str(timing), *command],
                         cwd=repo, env=env, stdout=output, stderr=subprocess.STDOUT,
                         pass_fds=tuple(h.fileno() for h in handles))
+                pin_ninja(repo)
                 code = child.returncode
                 record['finished_epoch'] = time.time()
                 record['measurement'] = json.loads(timing.read_text().splitlines()[-1])

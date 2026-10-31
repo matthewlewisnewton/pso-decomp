@@ -132,6 +132,28 @@ class Admission(unittest.TestCase):
             self.assertFalse(c.resources_available('acceptance'))
             self.assertFalse(c.resources_available('development'))
 
+    def test_ninja_requires_absolute_external_executable(self):
+        for value in ('', 'ninja', './ninja', 'relative/bin/ninja'):
+            with self.subTest(value=value), patch.object(c, 'NINJA', value), patch.object(c, 'PINNED_NINJA', None):
+                with self.assertRaisesRegex(RuntimeError, 'explicit reviewed absolute'):
+                    c.pin_ninja(self.repo)
+        candidate = self.repo/'build/ninja'
+        candidate.write_text('#!/bin/sh\nexit 0\n');candidate.chmod(0o700)
+        with patch.object(c, 'NINJA', str(candidate)), patch.object(c, 'PINNED_NINJA', None):
+            with self.assertRaisesRegex(RuntimeError, 'candidate writable'):
+                c.pin_ninja(self.repo)
+
+    def test_ninja_identity_replacement_and_stale_evidence(self):
+        executable = self.root/'reviewed-ninja'
+        executable.write_text('#!/bin/sh\nexit 0\n');executable.chmod(0o700)
+        with patch.object(c, 'NINJA', str(executable)), patch.object(c, 'PINNED_NINJA', None):
+            identity = c.pin_ninja(self.repo)
+            executable.write_text('#!/bin/sh\nexit 1\n')
+            with self.assertRaisesRegex(RuntimeError, 'changed during operation'):
+                c.ninja_command(self.repo)
+            with self.assertRaisesRegex(RuntimeError, 'differs from preparation'):
+                c.pin_ninja(self.repo, identity)
+
     def test_preparation_receipt(self):
         current = c.audit(self.repo)
         p = self.root / 'prepared.json'
@@ -295,7 +317,7 @@ with ExitStack() as stack:
             wrapper_sha256=c.digest(SCRIPT))))
         return repo, prepared, marker, current['ninja_sha256']
 
-    def audit_worker(self, fixture, label='audit', qualified=True):
+    def audit_worker(self, fixture, label='audit', qualified=True, environment=None):
         repo, prepared, marker, graph = fixture
         code = r"""
 import importlib.util,sys
@@ -315,7 +337,7 @@ c.main()
 """
         process = subprocess.Popen([sys.executable, '-B', '-c', code, str(SCRIPT), str(self.root),
             str(repo), str(prepared), str(marker), graph, label, str(qualified)],
-            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, env=environment)
         self.children.append(process)
         return process
 
@@ -367,6 +389,31 @@ c.main()
                 path.write_text(value)
                 self.assertNotEqual(self.audit_worker(fixture, label=f'stale{i}').wait(timeout=5), 0)
                 path.write_text(initial[path])
+
+    def test_qualified_audit_rejects_candidate_path_ninja_without_execution(self):
+        fixture = self.audit_fixture()
+        repo = fixture[0]
+        sentinel = self.root/'outside-write'
+        stub = repo/'ninja'
+        stub.write_text('#!/bin/sh\nprintf executed > "'+str(sentinel)+'"\nexit 0\n')
+        stub.chmod(0o700)
+        for i, configured in enumerate((None, './ninja', str(stub))):
+            environment = dict(os.environ, PATH='.:/usr/bin')
+            if configured is None:
+                environment.pop('PSO_BUILD_NINJA', None)
+            else:
+                environment['PSO_BUILD_NINJA'] = configured
+            process = self.audit_worker(fixture, label=f'unsafe-tool{i}', environment=environment)
+            self.assertNotEqual(process.wait(timeout=5), 0)
+            self.assertFalse(sentinel.exists())
+        # A different explicit external tool must also fail preparation proof
+        # before any Ninja query invokes it.
+        external = self.root/'different-ninja'
+        external.write_bytes(stub.read_bytes());external.chmod(0o700)
+        process = self.audit_worker(fixture, label='different-tool',
+            environment=dict(os.environ, PSO_BUILD_NINJA=str(external)))
+        self.assertNotEqual(process.wait(timeout=5), 0)
+        self.assertFalse(sentinel.exists())
 
     def test_qualified_audit_rechecks_marker_after_wait(self):
         fixture = self.audit_fixture()
