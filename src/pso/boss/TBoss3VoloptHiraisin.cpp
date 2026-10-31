@@ -33,7 +33,6 @@ void scale_matrix(void *mtx, f32 x, f32 y, f32 z);
 
 TUnk_8048FA00 *init_from_model__11TBreakUpMdlFl(TUnk_8048FA00 *obj, s32 model);
 void trigger_dell_biter_events__10TObjPlayerFv(Vec *pos);
-void update_collisions__10TObjPlayerFv(TObjEnemy *obj);
 
 extern u32 model_render_flags;
 extern u32 saved_model_render_flags;
@@ -206,7 +205,7 @@ void TBoss3VoloptHiraisin::update_drop() {
     case 3:
         break;
     }
-    update_collisions__10TObjPlayerFv(this);
+    ((TObjCollidable *)(this))->update_collisions();
 }
 
 void TBoss3VoloptHiraisin::sub_80041314() {
