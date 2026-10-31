@@ -4643,13 +4643,14 @@ struct CastPacket_801CD550 {
 void handle_6x47_cast_technique(void *arg) {
     CastPacket_801CD550 pkt;
     u8 *player;
-    s16 tech;
-    s8 valid;
-    s32 count;
-    s8 level;
-    u8 effective;
-    u32 *dst, *src;
     s32 i;
+    u32 *src;
+    u8 effective;
+    s8 valid;
+    s8 level;
+    u32 *dst;
+    s16 tech;
+    s32 count;
     ((TNpcPlayer *)&pkt)->init_cast_technique_cmd();
     TObjPlayer__sub_801D21CC((u8 *)&pkt, (u8 *)arg);
     ((TNpcPlayer *)&pkt)->byteswap_positions();
@@ -4659,7 +4660,7 @@ void handle_6x47_cast_technique(void *arg) {
     if (reset_volopt_state__10TObjPlayerFv(player) == 0) return;
     if (test_action_mask__10TObjPlayerFl(player, 0x8200) != 0) return;
     tech = pkt.tech;
-    set_technique_id__10TObjPlayerFs((s32)(player + 0x428), tech);
+    ((TObjPlayer *)(player + 0x428))->set_technique_id(tech);
     level = (s8)pkt.level;
     valid = ((TObjPlayer *)(player + 0x428))->get_valid_technique();
     if (is_valid_technique_slot__10TObjPlayerFUc((u8)valid) == 0) valid = 0;
