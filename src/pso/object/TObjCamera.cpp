@@ -26,7 +26,7 @@
 extern "C" {
 AnimationMotion *get_bml_motion(u32, int);
 s32 get_bml_model(u32, int);
-void TObjFish__sub_8001EDB0(u32, int);
+s32 TObjFish__sub_8001EDB0(u32, int);
 void transform_point_to_view(const Vec *, Vec *);
 }
 
