@@ -291,6 +291,7 @@ void TUnk_80493450::vfunc_60() {
 }
 
 s32 TUnk_80493450::update_movement_status() {
+    u8 *arg0 = (u8 *)this;
   if (TObjChara::update_movement_status() != 0)
   {
     if ((this->mode) != 0)
@@ -314,6 +315,7 @@ s32 TUnk_80493450::update_movement_status() {
 }
 
 s32 TUnk_80493450::update_action_hold_status() {
+    u8 *arg0 = (u8 *)this;
   if (TObjChara::update_action_hold_status() != 0)
   {
     if ((this->mode) != 0)
