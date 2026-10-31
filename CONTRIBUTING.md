@@ -1,9 +1,9 @@
 # Contributing
 
 This is a matching decompilation: a function counts when its compiled code is byte-identical to the original,
-lives in the unit that owns its address, is a real member of its class and is named on evidence. objdiff's report
-(`build/GPOE8P/report.json`) is the only measure of progress. Use whatever tools you like; send a clean pull
-request.
+lives in the unit that owns its address, and uses ownership and names supported by evidence. The objdiff report
+(`build/GPOE8P/report.json`) measures matches; the linked-unit checks and actual linker inputs separately show
+what the build takes from source. Use whatever tools you like; send a reviewable pull request.
 
 ## Setup
 
@@ -26,10 +26,12 @@ it: `orig/` and `build/` are ignored.
 
 1. Find the unit that owns its address in `config/GPOE8P/psov3/splits.txt`; its source file has the same path
    under `src/`.
-2. Write the function as a member of its class, using the class's header in `include/` and the declarations of what
-   it calls. If the class has no header yet, add one: fields, the virtual functions in slot order, the methods.
+2. Use an evidence-backed member or free function and shared declarations where known. If ownership or a type is
+   unresolved, keep the boundary provisional and document it rather than inventing a class interface. Keep virtual
+   declarations in the verified slot order.
 3. Open the repository in objdiff, select the unit and compare. objdiff rebuilds the unit when you save.
-4. Keep the bodies in a unit in address order.
+4. Prefer address order when it produces the correct object. Where it does not, use the source order and supported
+   compiler settings that reproduce the original emitted layout; explain the reason and validate the complete object.
 
 ## Checking a change
 
@@ -75,15 +77,25 @@ When your change makes a whole unit match, run `python tools/link_units.py scan 
 ## Rules
 
 - Nothing that matches or links today may stop matching or linking: `tools/check_pr.py` must pass.
-- One source file per unit, functions in address order, class declarations in `include/`.
+- Normally keep one source file per unit and shared class declarations in `include/`. Compiler-supported header and
+  source organization may differ where needed to reproduce native code and data emission; explain the arrangement
+  and avoid artificial units, references or hand-written tables. Source definition order is a readability preference,
+  not a substitute for matching the emitted object. In CodeWarrior, deferred emission can change function, vtable
+  and switch-table ordering: ascending definitions in the Gee investigation retained instruction bytes but changed
+  relocation positions and vtable layout ([evidence](docs/compiler-emission-evidence.md)). This is evidence for an
+  exception, not proof of the original source order.
+  Check code, data, alignment and relocations, not function scores alone.
 - No assembly, anywhere. A function Nintendo or Metrowerks wrote in assembly keeps its C signature with the body
   `#include "orig_asm/<unit>/<function>.inc"`, and `tools/orig_asm.py` generates that body from the disc during the
   build. Never write assembly by hand; a function that can only be matched that way stays unmatched.
 - No data copied out of the game: no byte dumps of textures, models, sounds or other assets.
-- Write source, not decompiler output: use class members and real types instead of raw pointer offsets,
-  `void *` parameters, hand-mangled names, decompiler helper macros or hand-written vtables.
-- No commented-out code, address comments, or notes about how a match was found. Comment only what the code
-  can't say itself.
+- Write readable source and prefer evidence-backed members and real types. Unresolved offsets, opaque pointers and
+  legacy declarations may remain at a bounded interface when the evidence is incomplete; document their uncertainty
+  and improve them as the evidence permits. Do not fabricate ownership or use casts to conceal incompatible APIs.
+  Do not write vtables by hand.
+- Explain non-obvious matching constraints, ABI boundaries and uncertain ownership in concise comments or evidence
+  documents. Addresses can identify the relevant original code. Avoid commented-out code and speculative claims: a
+  reproducible explanation helps future contributors avoid undoing a necessary arrangement.
 - Names come from evidence in the executable: strings, class-name tables, vtables, call patterns. Keep the
   placeholder (`fn_<address>`) rather than guess.
 - Code copied or adapted from another project keeps its notices. Add the project to `third_party/README.md`,
@@ -95,5 +107,8 @@ When your change makes a whole unit match, run `python tools/link_units.py scan 
 - Title it with the result: `Match TObjEneDimedian`, `Link TLobby.cpp`, `Split TBoss8Dragon into its units`.
 - Say what changed: matched functions and code and data bytes before and after (the first lines of
   `report_delta.py`), and the evidence for any unit boundary or name.
-- Base it on the current `master` and run `tools/check_pr.py` again after rebasing.
-- Commits are one short line in plain words, under your own name. Pull requests are squash-merged.
+- Base independent work on the current fork `master`; a dependency stack may use an explicit fork-local base.
+  Identify prerequisite PRs and immutable commits, and validate both the incremental change and its combined base.
+  Re-run `tools/check_pr.py` after rebasing or integration.
+- Use clear commit messages and describe the result, validation and remaining uncertainties in the pull request.
+  Fork maintainers choose the merge method that preserves useful history and dependency context.
