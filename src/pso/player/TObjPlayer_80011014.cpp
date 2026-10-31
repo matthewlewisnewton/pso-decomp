@@ -833,7 +833,7 @@ s32 consume_timer_field__9TObjCharaFl(u8 *arg0, s32 arg1);
 s32 add_actor_exp__9TObjCharaFl(u8 *arg0, s32 arg1);
 s32 add_actor_tp_bonus(O_80011274 *self, s32 x);
 s32 add_actor_hp_bonus(O_80011378 *self, s32 x);
-u16 find_nearest_visible_player(u8 *arg0, Vec_800115C4 *arg1, f32 farg0);
+u16 find_nearest_visible_player(TObjChara *arg0, Vec *arg1, f32 farg0);
 s32 is_actor_cadence_frame__9TObjCharaFl(O_80011704 *self, s32 x);
 void apply_actor_gravity(TObjEnemy *arg0, s32 *arg1, f32 farg0);
 void apply_knockback_from_attacker__9TObjCharaFPUcf(u8 *arg0, u8 *arg1);
@@ -1741,7 +1741,7 @@ u16 find_nearest_hittable_enemy__10TObjPlayerFiPvf(s32 arg0, Vec_800114D8 *arg1,
     return result;
 }
 
-u16 find_nearest_visible_player(u8 *arg0, Vec_800115C4 *arg1, f32 farg0) {
+u16 find_nearest_visible_player(TObjChara *arg0, Vec *arg1, f32 farg0) {
     f32 best = farg0 * farg0;
     u16 result = 0xFFFF;
     Vec_800115C4 diff = lbl_80434074;
@@ -1753,7 +1753,7 @@ u16 find_nearest_visible_player(u8 *arg0, Vec_800115C4 *arg1, f32 farg0) {
         if (player != NULL && player->id < 0x1000 && !(player->flags & 0x02000800)) {
             if (((TObjPlayer *)player)->get_floor() == get_current_floor()) {
                 ((s32 (*)(void *, void *))VecCopy__FP3VecPC3Vec)(&diff, &player->pos);
-                ((s32 (*)(void *, void *))subtract_vector)(&diff, arg0 + 0x2FC);
+                ((s32 (*)(void *, void *))subtract_vector)(&diff, (u8 *)arg0 + 0x2FC);
                 dist = (diff.x * diff.x) + (diff.z * diff.z);
                 if (dist < best && ((s32 (*)(void *, void *))check_path_obstructed)(arg0, &player->pos) == 0) {
                     best = dist;
