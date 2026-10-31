@@ -87,8 +87,13 @@ but the object's eight-byte `.rodata` alignment inserted four extra bytes before
 the existing double constant: the inferred start `0x8044F124` is only four-byte
 aligned. The preceding `TWindowKeyBoardSoft` type name at `0x8044F110` is used
 via an external type-name pointer and may be part of the same original object.
-The safe next step is a boundary/emission investigation with the constructor
-owner; merely adding the tables to this split would displace matched data.
+A second temporary compile included the preceding type name and emitted a
+336-byte block at the proposed `0x8044F110..0x8044F260` boundary, byte-identical
+to the original name, geometry tables and existing double constant. The name
+is referenced by the automatic `keyboard_soft_type_name_pointer` in sdata,
+which the neighboring constructor reads. Confirm assignment of this shared
+type-name boundary with that owner before claiming it; the experiment is not
+in the source branch.
 
 ## Frame clipping call
 
@@ -105,5 +110,6 @@ The helper at `0x801A6DA0` takes a controller pointer and button mask. The
 unit previously declared three parameters and cast several calls to incompatible
 function-pointer types. The candidate uses the observed two-argument interface
 locally. A targeted object comparison retains 100% for `0x80260808`,
-`0x8026088C` and `0x80261204`, and leaves the new dispatcher unchanged. The
-full regression check is pending.
+`0x8026088C` and `0x80261204`, and leaves the new dispatcher unchanged. The locked two-job rebuild and
+regression checks passed with eight matched data bytes gained and no loss of
+existing exact functions, data or linked units.
