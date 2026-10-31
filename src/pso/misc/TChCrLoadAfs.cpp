@@ -1,3 +1,4 @@
+#include "pso/system/GinjaTextureInput.h"
 #include "types.h"
 #include "pso/misc/TChCrLoadAfs.h"
 #include "pso/object/TObject_80019A50.h"
@@ -88,7 +89,7 @@ struct Ent_8028BE00 { u8 pad[0xC]; };
 
 struct List_8028BE00 { Ent_8028BE00 *ents; };
 
-struct Rect_8028BE00 { u8 pad[0x24]; };
+typedef GinjaTextureInput Rect_8028BE00;
 
 struct Ld_8028BE00 {
     u8 pad0[0x1C];
@@ -290,7 +291,7 @@ void TChCrLoadAfsTextureReq::update_loading(void *) {
         return;
     }
     for (i = 0; i < arg0->f58; i++) {
-        ((TObjPlayer *)(&arg0->rects[i]))->set_render_rect(arg0->bufs[i], 0, 0, 0);
+        arg0->rects[i].configure((void *)arg0->bufs[i], 0, 0, 0);
         set_texture_name(&arg0->f30->ents[i], &arg0->rects[i], 0, 0x40000000);
     }
     if (load_texture_list(arg0->f30) != -1) {

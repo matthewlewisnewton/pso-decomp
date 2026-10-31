@@ -1,3 +1,4 @@
+#include "pso/system/GinjaTextureInput.h"
 #include "types.h"
 #include "pso/enemy/TObjEneRe2Flower_EffCurse3.h"
 #include "pso/enemy/TObjEneRe2Flower_800C4B78.h"
@@ -131,7 +132,7 @@ TObjEneRe2Flower_EffCurse3::TObjEneRe2Flower_EffCurse3(s32 arg1, s32 arg2) : TOb
 extern "C" {
 
 struct Node_800C4D88 { void *p; s32 v; };
-struct A_800C4D88 { u8 x[0x24]; };
+typedef GinjaTextureInput A_800C4D88;
 struct B_800C4D88 { u8 x[0xC]; };
 A_800C4D88 player_render_target;
 B_800C4D88 player_render_texture_name;
@@ -153,7 +154,7 @@ void *mem_alloc(u32 size);
 void pso_load_texture__6TLobbyFv(void *, void *);
 void set_texture_name(void *, void *, s32, s32);
 void TObjPlayer::create_render_texture() {
-    ((TObjPlayer *)(&player_render_target))->set_render_rect((s32)(player_render_texture_buffer = mem_alloc(0x800)), 0x902, 0x20, 0x20);
+    player_render_target.configure((void *)(player_render_texture_buffer = mem_alloc(0x800)), 0x902, 0x20, 0x20);
     set_texture_name(&player_render_texture_name, &player_render_target, 0x18696, 0x40800000);
     ((Node_800C4D88 *)lbl_80500C30)->p = &player_render_texture_name;
     ((Node_800C4D88 *)lbl_80500C30)->v = 1;
