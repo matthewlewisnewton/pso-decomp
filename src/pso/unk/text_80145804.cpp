@@ -1,3 +1,4 @@
+#include "pso/system/GinjaTextureInput.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/unk/text_80144AC8.h"
@@ -6,7 +7,7 @@
 #include "pso/misc/TLanguage.h"
 #include "pso/object/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
-typedef struct Rect_80145804 { u8 pad[0x24]; } Rect_80145804;
+typedef GinjaTextureInput Rect_80145804;
 
 typedef struct Tex_80145804 { u8 pad[0xC]; } Tex_80145804;
 
@@ -77,7 +78,7 @@ void load_menu_font(void) {
     menu_font_glyph_data = set_stream_and_load_file__6TLobbyFi(lbl_8043F3D8);
     TLobby::release_menu_font();
     for (i = 0; i < 2; i++) {
-        ((TObjPlayer *)(menu_font_render_rects + i))->set_render_rect(0, 0x208, 0x100, 0x100);
+        menu_font_render_rects[i].configure(0, 0x208, 0x100, 0x100);
         set_texture_name(lbl_8050C090 + i, menu_font_render_rects + i, i + 0xDCF28, 0x08800000);
     }
     load_texture_list(menu_font_texture_list);
