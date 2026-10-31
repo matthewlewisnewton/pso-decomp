@@ -1,7 +1,6 @@
 #include "pso/misc/SampledMotionPoints.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
-#include "pso/boss/TBoss4Type3_800D9960.h"
 #include "pso/enemy/TObjEneMe3ShinowaMirage_800E7A70.h"
 #include "pso/enemy/TObjEneMe3ShinowaMirage.h"
 

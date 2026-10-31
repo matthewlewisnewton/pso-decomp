@@ -147,7 +147,6 @@ extern void *breakup_model_ptr;
 s32 get_bml_motion(void *, int);
 s32 get_bml_model(void *, int);
 void TObjPlayer__sub_800A4294(void);
-Res_800AA82C *load_enemy_bml_resource_named(void *, void *);
 u8 *load_gvm_texture_file(s32 arg0);
 extern u8 lbl_8043ACA4[];
 extern u8 lbl_8043ACBC[];

@@ -485,7 +485,6 @@ extern const f32 lbl_805DEF74;
 extern const f32 lbl_805DEF78;
 extern const f32 lbl_805DEF7C;
 extern const f32 lbl_805DEF80;
-u8 *load_resource_from_descriptor(void *, int, void *, int, int, int);
 u8 *mem_alloc(s32);
 extern u32 dolm_olm_combat_stat_id_pair;
 extern u32 TObjEneDolmOlm__shared_handler_ids;

@@ -37,7 +37,6 @@
 #include "pso/system/MatrixStack.h"
 #include "pso/system/MatrixOps.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
-#include "pso/boss/TBoss4Type3_800D9960.h"
 #include "pso/math/MatrixVector.h"
 #include "pso/math/MatrixTransforms.h"
 #include "pso/unk/text_803D8F74.h"
@@ -114,7 +113,7 @@ void TObjEneShark::vfunc_94() {
 
 void TObjEneShark::vfunc_93() {
     Vec endpoints[2];
-    u32 e;
+    Vec *e;
     s32 idx;
     TUnk_80494968 *eff;
     if (!(frame < shark_attack_trail_end_frame)) {
@@ -122,11 +121,11 @@ void TObjEneShark::vfunc_93() {
     }
     switch (requested_action) {
     case 3:
-        e = TObjPlayer::lookup_entry_by_value((void *)shark_attack3_trail_buffer, frame);
+        e = ((SampledMotionPoints *)shark_attack3_trail_buffer)->lookup(frame);
         idx = 0;
         break;
     case 4:
-        e = TObjPlayer::lookup_entry_by_value((void *)shark_attack4_trail_buffer, frame);
+        e = ((SampledMotionPoints *)shark_attack4_trail_buffer)->lookup(frame);
         idx = 1;
         break;
     default:
@@ -140,7 +139,7 @@ void TObjEneShark::vfunc_93() {
     set_matrix_identity(0);
     post_translate_matrix(&position.x);
     rotate_matrix_y(0, rotation_y);
-    mult_vec_array__10TObjPlayerFUll(0, e, endpoints, 2);
+    mult_vec_array__10TObjPlayerFUll(0, (s32)e, endpoints, 2);
     pop_matrix();
     eff = attack_trails[idx];
     if (eff != NULL) {
@@ -234,7 +233,7 @@ void TObjEneShark::render() {
     if (TObjEneDD::check_v2_mode() != 0) {
         RenderFadeState *f = &camera_fades[camera];
         f->update();
-        fadeActive = f->updateFromCamera(&body_center_position);
+        fadeActive = f->updateFromCamera(&body_center_position.x);
     }
     select_actor_lighting(this);
     model_render_flags |= 1;
@@ -338,7 +337,7 @@ void TObjEneShark::render() {
         scale.x = shark_shadow_scale_x;
         scale.y = shark_one;
         scale.z = shark_shadow_scale_z;
-        render_with_position_override((u8 *)&scale, 0);
+        draw_ground_shadow(&scale, 0);
     }
     }
 }
@@ -571,7 +570,7 @@ TObjEneShark::TObjEneShark(TObject *parent, void *setData)
     movementParameters = &shark_movement_parameters[subtype];
     referenceHp = hp;
     update_prev_position();
-    ((TBoss3VoloptHiraisin *)this)->copy_position();
+    copy_body_to_center();
     initialize_enemy_photon_effect(this);
     m_2ac = (s32)(shark_angle_units_per_degree * (shark_full_circle_degrees * random_ratio()));
     resetTimer = 0xF;

@@ -319,8 +319,6 @@ s32 subtract_vector(void *, void *);
 extern s32 lbl_8043B790[];
 extern s32 registered_player_count;
 extern s32 lbl_805D5870;
-u8 *load_resource_from_descriptor(void *, int, void *, int, int, int);
-u8 *load_enemy_bml_resource_named(void *, void *);
 void *mem_alloc(u32 size);
 extern Quad_800BF66C grass_spawn_descriptor;
 extern s32 lbl_805D5140;

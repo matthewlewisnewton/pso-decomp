@@ -479,8 +479,6 @@ struct Sub_800A8530 { u8 b[0x1C]; };
 struct Self_800A8530 { u8 pad[0x3CC]; Sub_800A8530 subs[4]; };
 
 extern "C" {
-u8 *load_enemy_bml_resource_named(void *, void *);
-u8 *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 s32 *mem_alloc(s32);
 extern u8 lbl_8043AAA4[];
 extern s32 dimedian_resource_handles[];

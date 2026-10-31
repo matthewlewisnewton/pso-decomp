@@ -2784,8 +2784,6 @@ struct Path_80099BD4
 }
 void init_bringer_effect_tables(void);
 extern "C" {
-u32 load_enemy_bml_resource_named(void *, void *);
-s32 load_enemy_bml_resource(u8 *arg0);
 extern Sp_80099BD4 lbl_8043A0BC[];
 extern u8 lbl_8043A108[];
 extern const f32 lbl_805D9848;
