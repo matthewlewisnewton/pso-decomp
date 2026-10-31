@@ -165,7 +165,7 @@ extern s32 lbl_805D5868;
 extern const f32 TObjPlayer__data_805DB298;
 void TObjPlayer__sub_80156934(void);
 f32 horizontal_distance_squared(void *, void *);
-s16 angle_diff_s16(s32 a, s32 b);
+s32 angle_diff_s16(s32 a, s32 b);
 s32 normalize_vector(void *);
 void* refresh_actor_body_spheres(CollisionBody_80155FBC, CollisionBody_80155FBC);
 extern s32 TObjPlayer__data_8050D460[];
