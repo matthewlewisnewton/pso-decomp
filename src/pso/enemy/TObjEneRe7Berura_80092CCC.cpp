@@ -1,3 +1,5 @@
+#include "pso/math/ViewPoint.h"
+struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
@@ -16,18 +18,6 @@
 #include "pso/misc/RenderFadeState.h"
 #include "pso/object/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
-
-struct BeruraBase_800931C8_80093180 { char pad[0x14]; };
-struct BeruraV_800931C8_80093180 : BeruraBase_800931C8_80093180 {
-    virtual void m0();
-    virtual void m1();
-    virtual void m2();
-    virtual void m3();
-    virtual void m4();
-    virtual void m5();
-    virtual void m6();
-    virtual void m7();
-};
 
 struct Vec_80093470 { f32 x, y, z; };
 
@@ -222,7 +212,6 @@ struct VObj_18_1fdb47 : VBase_18_1fdb47 {
 };
 
 
-struct Elem_80092CCC { u8 data[0x64]; };
 
 struct Berura_80092CCC {
     VObj_18_1fdb47 v;
@@ -256,13 +245,10 @@ extern "C" {
 s32 transition_enemy_state__9TObjEneDDFl(void *, s32);
 s32 play_sound_effect(s32, void *, s32, s32);
 extern const f32 TObjEneRe7Berura__data_805D9738;
-void TObjEneRe7Berura__sub_80093470(Berura_80093470 *obj, s32 mode);
 void TObjEneRe7BeruraPunch__sub_800962F4(void *p);
 void TObjPlayer__sub_800A04F0(void *);
 s32 is_split_screen();
 s32 get_camera_mode__11TCameraCtrlFv();
-s32 fn_80095DD0(void *);
-s32 fn_80095DF4(void *);
 s32 is_main_phase_15__9TObjEneDDFv();
 s32 update__15RenderFadeStateFv(void *);
 s32 scroll_strip_uvs(s32, int, int);
@@ -271,16 +257,6 @@ s32 rotate_matrix_y(int, int);
 s32 push_matrix();
 s32 post_translate_matrix(void *);
 extern Vec lbl_80439EC4[];
-extern Elem_80092CCC TObjEneRe7Berura__detached_part_states[];
-extern s32 re7_berura_demo_state;
-extern s32 lbl_805D4F6C;
-extern s32 re7_berura_demo_camera_ptr;
-extern s32 berura_demo_flag;
-extern s32 re7_berura_demo_flag;
-extern void *TObjEneRe7Berura__demo_target;
-extern s32 *berura_node_matrix_ptr_a;
-extern s16 *berura_node_matrix_ptr_b;
-extern s32 belra_uv_animation_buffer;
 extern s32 saved_model_render_flags;
 extern s32 model_render_flags;
 extern const f32 TObjEneRe7Berura__data_805D9724;
@@ -290,10 +266,8 @@ extern const f32 TObjEneRe7Berura__data_805D9730;
 extern const f32 lbl_805D9734;
 extern const f32 lbl_805D9E84;
 extern const f32 lbl_805D9E88;
-void render__16TObjEneRe7BeruraFv(Berura_80092CCC *o);
-s32 transform_point_to_view(s32, s32);
 
-void render__16TObjEneRe7BeruraFv(Berura_80092CCC *o) {
+void TObjEneRe7Berura::render() {
     s32 fade;
     s32 mode;
     s32 cam;
@@ -302,6 +276,7 @@ void render__16TObjEneRe7BeruraFv(Berura_80092CCC *o) {
     s32 f2;
     s32 l3;
     s32 l4;
+    Berura_80092CCC *o = (Berura_80092CCC *)this;
     if (TObjPlayer::check_demo_mode() != 0) {
         o->v.m104();
         return;
@@ -331,13 +306,13 @@ void render__16TObjEneRe7BeruraFv(Berura_80092CCC *o) {
         TObjPlayer::toggle_particle_effect();
         for (i = 0; i < 2; i++) {
             if (o->f418[i] & 1) {
-                fn_80095DF4(&TObjEneRe7Berura__detached_part_states[i]);
+                TObjEneRe7Berura__detached_part_states[i].hide_end_nodes();
             }
         }
         *berura_node_matrix_ptr_a = o->f3C4;
         berura_node_matrix_ptr_b[0] = o->f3C8;
         berura_node_matrix_ptr_b[1] = o->f3C8 >> 16;
-        scroll_strip_uvs(belra_uv_animation_buffer, (s16)o->f3D0, 0);
+        scroll_strip_uvs((s32)belra_uv_animation_buffer, (s16)o->f3D0, 0);
         fade = (s32)&o->fades[cam];
         update__15RenderFadeStateFv((void *)fade);
         cam = ((RenderFadeState *)fade)->updateFromCamera((const f32*)(&o->f2FC));
@@ -348,7 +323,7 @@ void render__16TObjEneRe7BeruraFv(Berura_80092CCC *o) {
         if (o->f326 == 5) {
             re7_berura_demo_state = 0;
             lbl_805D4F6C = 0;
-            (*(void * *)&re7_berura_demo_camera_ptr) = o->f420;
+            re7_berura_demo_camera_ptr = part_positions;
             o->f420[0].x = lbl_805D9728;
             o->f420[0].y = TObjEneRe7Berura__data_805D972C;
             o->f420[0].z = TObjEneRe7Berura__data_805D9730;
@@ -357,7 +332,7 @@ void render__16TObjEneRe7BeruraFv(Berura_80092CCC *o) {
             o->f420[1].z = lbl_805D9734;
             berura_demo_flag = (o->f418[0] >> 2) & 1;
             re7_berura_demo_flag = (o->f418[1] >> 2) & 1;
-            TObjEneRe7Berura__demo_target = o->f3FC;
+            TObjEneRe7Berura__demo_target = &part_fade;
             if (cam != 0) {
                 re7_berura_demo_flag = 0;
                 berura_demo_flag = 0;
@@ -367,13 +342,13 @@ void render__16TObjEneRe7BeruraFv(Berura_80092CCC *o) {
                     f1 = 0;
                 }
                 if (f1 != 0) {
-                    set_chunk_model_node_callback((s32)((void *)TObjEneRe7Berura::demo_frame_callback));
+                    set_chunk_model_node_callback((TObjEneRe7Berura::demo_frame_callback));
                     ((TObjMotion *)o)->draw();
                     set_chunk_model_node_callback(0);
                 }
                 ((Fade_80092CCC *)fade)->v.m7();
             } else {
-                set_chunk_model_node_callback((s32)((void *)TObjEneRe7Berura::demo_frame_callback));
+                set_chunk_model_node_callback((TObjEneRe7Berura::demo_frame_callback));
                 if (mode == 1) {
                     ((TObjMotion *)o)->draw();
                 } else {
@@ -392,7 +367,7 @@ void render__16TObjEneRe7BeruraFv(Berura_80092CCC *o) {
                         f2 = 0;
                     }
                     if (f2 != 0) {
-                        set_chunk_model_node_callback((s32)((void *)TObjEneRe7Berura::advance_state));
+                        set_chunk_model_node_callback((TObjEneRe7Berura::advance_state));
                         ((TObjMotion *)o)->draw();
                         set_chunk_model_node_callback(0);
                     }
@@ -400,7 +375,7 @@ void render__16TObjEneRe7BeruraFv(Berura_80092CCC *o) {
                 }
             } else if (cam != 0) {
                 ((Fade_80092CCC *)fade)->v.m6();
-                set_chunk_model_node_callback((s32)((void *)TObjEneRe7Berura::advance_state));
+                set_chunk_model_node_callback((TObjEneRe7Berura::advance_state));
                 ((TObjMotion *)o)->draw();
                 set_chunk_model_node_callback(0);
                 ((Fade_80092CCC *)fade)->v.m7();
@@ -414,7 +389,7 @@ void render__16TObjEneRe7BeruraFv(Berura_80092CCC *o) {
         ((TObjEneDD *)o)->update_primary_light();
         for (l3 = 0; l3 < 2; l3++) {
             if (o->f418[l3] & 1) {
-                fn_80095DD0(&TObjEneRe7Berura__detached_part_states[l3]);
+                TObjEneRe7Berura__detached_part_states[l3].show_end_nodes();
             }
         }
         TParticleCtrl::end_effect_render();
@@ -428,7 +403,7 @@ void render__16TObjEneRe7BeruraFv(Berura_80092CCC *o) {
     }
 }
 
-void TObjEneRe7Berura::advance_state() {
+void TObjEneRe7Berura::advance_state(NJS_OBJECT *) {
     switch ((s32) re7_berura_demo_state) {
     case 25:
         lbl_805D4F6C = model_render_flags;
@@ -441,7 +416,7 @@ void TObjEneRe7Berura::advance_state() {
     re7_berura_demo_state += 1;
 }
 
-void TObjEneRe7Berura::demo_frame_callback() {
+void TObjEneRe7Berura::demo_frame_callback(NJS_OBJECT *) {
     switch ((s32) re7_berura_demo_state) {
     case 0x2:
         lbl_805D4F6C = model_render_flags;
@@ -453,26 +428,26 @@ void TObjEneRe7Berura::demo_frame_callback() {
     case 0x4C:
     case 0x50:
         transform_point_to_view(re7_berura_demo_camera_ptr, re7_berura_demo_camera_ptr);
-        re7_berura_demo_camera_ptr += 0xC;
+        re7_berura_demo_camera_ptr++;
         break;
     case 0x21:
         if ((s32) berura_demo_flag != 0) {
-            ((BeruraV_800931C8_80093180 *)TObjEneRe7Berura__demo_target)->m6();
+            TObjEneRe7Berura__demo_target->set_flags_and_apply_damage_color();
         }
         break;
     case 0x38:
         if ((s32) re7_berura_demo_flag != 0) {
-            ((BeruraV_800931C8_80093180 *)TObjEneRe7Berura__demo_target)->m6();
+            TObjEneRe7Berura__demo_target->set_flags_and_apply_damage_color();
         }
         break;
     case 0x32:
         if ((s32) berura_demo_flag != 0) {
-            ((BeruraV_800931C8_80093180 *)TObjEneRe7Berura__demo_target)->m7();
+            TObjEneRe7Berura__demo_target->clear_flag_and_notify();
         }
         break;
     case 0x49:
         if ((s32) re7_berura_demo_flag != 0) {
-            ((BeruraV_800931C8_80093180 *)TObjEneRe7Berura__demo_target)->m7();
+            TObjEneRe7Berura__demo_target->clear_flag_and_notify();
         }
         break;
     }
@@ -518,14 +493,14 @@ void TObjEneRe7Berura::update_death_state(s32 mode) {
     }
 }
 
-void TObjEneRe7Berura__sub_80093470(Berura_80093470 *obj, s32 mode) {
-    Fields_80093470 *self = (Fields_80093470 *)obj;
+void TObjEneRe7Berura::fn_80093470(s32 mode) {
+    Fields_80093470 *self = (Fields_80093470 *)this;
     Vec_80093470 v;
     f32 speed;
     switch (mode) {
     case 4:
         self->fieldB8 = 6;
-        obj->m94();
+        vfunc_96();
         self->field3C0 &= ~7;
         ((TObjMotion *)self)->advance_animation();
         play_sound_effect(((TObjEnemy *)(self))->remap_sound_for_area((s32)(0x4003A826)), &self->pos, 0, 0);

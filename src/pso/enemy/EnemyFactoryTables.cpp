@@ -1,3 +1,4 @@
+#include "pso/enemy/TObjEneRe7Berura.h"
 #include "pso/enemy/EnemyFactoryTables.h"
 #include "pso/enemy/TObjEneBalClawClaw.h"
 #include "pso/enemy/TObjEneDf2Bringer.h"
@@ -87,7 +88,6 @@ extern "C" {
 void* create__12TBoss1DragonFl(void* placement);
 void* create__14TBoss4DarkFalzFl(void* placement);
 void* create__18TObjEneBalClawClawFv(void* placement);
-void* create__16TObjEneRe7BeruraFv(void* placement);
 void* create__17TObjEneDf2BringerFv(void* placement);
 void* create__14TObjEnePanarmsFl(void* placement);
 void* TObjEneMe3ShinowaMirage__sub_800E7B74(void* placement);
@@ -231,7 +231,7 @@ EnemyFactoryEntry enemy_factories_floors_06_07[8] = {
 EnemyFactoryEntry enemy_factories_floor_08[8] = {
     { 0x00A0, create_ene_saver, 250000.0f, 0 },
     { 0x00A1, create__18TObjEneRe4SorcererFv, 250000.0f, 2 },
-    { 0x00A5, create__16TObjEneRe7BeruraFv, 250000.0f, 0 },
+    { 0x00A5, TObjEneRe7Berura::create, 250000.0f, 0 },
     { 0x00A6, TObjEneDimedian::create, 250000.0f, 0 },
     { 0x00A7, TObjEneBalClawBody::create, 250000.0f, 4 },
     { 0x00A8, create__18TObjEneBalClawClawFv, 250000.0f, 0 },
@@ -257,7 +257,7 @@ EnemyFactoryEntry enemy_factories_floor_10[11] = {
     { 0x00A2, TObjPlayer::create_instance, 250000.0f, 0 },
     { 0x00A3, TObjEneDarkGunCenter::create, 250000.0f, 0 },
     { 0x00A4, create__17TObjEneDf2BringerFv, 250000.0f, 0 },
-    { 0x00A5, create__16TObjEneRe7BeruraFv, 250000.0f, 0 },
+    { 0x00A5, TObjEneRe7Berura::create, 250000.0f, 0 },
     { 0x00A6, TObjEneDimedian::create, 250000.0f, 0 },
     { 0x00A7, TObjEneBalClawBody::create, 250000.0f, 4 },
     { 0x00A8, create__18TObjEneBalClawClawFv, 250000.0f, 0 },
@@ -412,7 +412,7 @@ EnemyFactoryEntry enemy_factories_floors_19_20[9] = {
     { 0x0061, TObjEneRe2Flower::create, 250000.0f, 0 },
     { 0x0042, TObjEneBm3FlyNest::create, 250000.0f, 30 },
     { 0x00A6, TObjEneDimedian::create, 250000.0f, 0 },
-    { 0x00A5, create__16TObjEneRe7BeruraFv, 250000.0f, 0 },
+    { 0x00A5, TObjEneRe7Berura::create, 250000.0f, 0 },
     { 0x0033, TObjNpcEnemy__create, 250000.0f, 0 },
     { -1, 0, 250000.0f, 0 },
 };

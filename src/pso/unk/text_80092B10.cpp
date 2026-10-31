@@ -22,7 +22,6 @@ struct VObj_80092B10 : VBase_80092B10 {
 
 extern "C" {
 
-int TObjEneRe7Berura__sub_80095328(void*);
 
 typedef struct { u32 pad0; u32 count; } Motion_80092B10;
 typedef struct { u32 pad0; Motion_80092B10 *motion; } MotEnt_80092B10;
@@ -55,7 +54,7 @@ extern const f32 TObjEneRe7Berura__data_805D9724;
 extern const f32 lbl_805D9728;
 extern const f32 TObjEneRe7Berura__data_805D972C;
 
-void TObjEneRe7Berura::vfunc_105() {
+void TObjEneRe7Berura::fn_80092B10() {
     Ene_80092B10 *self = (Ene_80092B10 *)this;
     s32 idx;
     Motion_80092B10 *mot;
@@ -92,6 +91,6 @@ void TObjEneRe7Berura::vfunc_105() {
         TParticleCtrl::end_effect_render();
     }
 }
-void TObjEneRe7Berura::vfunc_83() { if (get_target_info() != 0) { TObjEneRe7Berura__sub_80095328(this); } }
+void TObjEneRe7Berura::fn_80092C90() { if (get_target_info() != 0) { fn_80095328(); } }
 
 }
