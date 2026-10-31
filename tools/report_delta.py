@@ -6,7 +6,7 @@ Save report.json before editing, then run:
 
 A data range that leaves coverage only fails the check when it could hold
 data. Alignment padding passes: in the original DOL its bytes are zero, no
-symbol starts inside it, and it is shorter than the alignment of the address
+named symbol overlaps it, and it is shorter than the alignment of the address
 it ends on (at least 8). Splitting a unit off at an aligned address leaves
 such a gap outside every unit. The same padding passes when it was exact or
 linked before (a hand-written table that spelled the pad out as a zero entry).
@@ -142,36 +142,54 @@ def dol_reader(path: Path = DOL_PATH):
     return read
 
 
-def symbol_starts(path: Path = SYMBOLS_PATH) -> dict:
-    """{section: sorted symbol addresses} from symbols.txt."""
-    starts = {}
+def symbol_extents(path: Path = SYMBOLS_PATH) -> dict | None:
+    """Section -> sorted (start, maximum end so far), or None if unavailable.
+
+    A symbol without a trustworthy positive size has an unknown end and
+    protects all later addresses in that section. Prefix maxima allow overlap
+    checks even with nested or overlapping symbols. Unparseable entries make
+    the whole inventory unavailable.
+    """
+    extents = {}
     try:
         lines = path.read_text().splitlines()
     except OSError:
-        return starts
+        return None
     for line in lines:
-        match = re.match(r"\S+ = (\.\w+):0x([0-9A-Fa-f]+);", line)
-        if match:
-            starts.setdefault(match[1], []).append(int(match[2], 16))
-    for addresses in starts.values():
-        addresses.sort()
-    return starts
+        if not line.strip() or line.lstrip().startswith("//"):
+            continue
+        match = re.match(r"\S+ = ([\w.]+):0x([0-9A-Fa-f]+);", line)
+        if not match:
+            return None
+        start = int(match[2], 16)
+        sizes = re.findall(r"(?:^|\s)size:(\S+)", line)
+        size_match = re.fullmatch(r"0x([0-9A-Fa-f]+)", sizes[0]) if len(sizes) == 1 else None
+        size = int(size_match[1], 16) if size_match else 0
+        end = start + size if size > 0 else float("inf")
+        extents.setdefault(match[1], []).append((start, end))
+    for section, intervals in extents.items():
+        maximum = 0
+        extents[section] = []
+        for start, end in sorted(intervals):
+            maximum = max(maximum, end)
+            extents[section].append((start, maximum))
+    return extents or None
 
 
 def is_alignment_padding(row: dict, read, starts: dict) -> bool:
-    if read is None or row["module"] != DOL_MODULE:
+    if read is None or starts is None or row["module"] != DOL_MODULE:
         return False
     start, size = int(row["address"], 16), row["size"]
     end = start + size
     alignment = min(end & -end, 32)
     if alignment < 8 or size >= alignment:
         return False
-    addresses = starts.get(row["section"], [])
-    first = bisect.bisect_left(addresses, start)
-    if first < len(addresses) and addresses[first] < end:
+    intervals = starts.get(row["section"], [])
+    last = bisect.bisect_left(intervals, (end,)) - 1
+    if last >= 0 and intervals[last][1] > start:
         return False
     data = read(start, size)
-    return data is not None and not any(data)
+    return data is not None and len(data) == size and not any(data)
 
 
 def compare(before: dict, after: dict, read=None, starts=None) -> dict:
@@ -201,7 +219,7 @@ def compare(before: dict, after: dict, read=None, starts=None) -> dict:
     linked_data_lost = lost_data_ranges(before, after, exact_only=False, complete_only=True)
     if data_coverage_lost or data_regressions or linked_data_lost:
         read = read if read is not None else dol_reader()
-        starts = starts if starts is not None else symbol_starts()
+        starts = starts if starts is not None else symbol_extents()
     padding_lost = [row for row in data_coverage_lost if is_alignment_padding(row, read, starts)]
     data_coverage_lost = [row for row in data_coverage_lost if row not in padding_lost]
     # The same alignment padding may also have been exact or linked before
