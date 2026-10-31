@@ -1,5 +1,6 @@
 #include "pso/system/ModelNodePositionCapture.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/system/PadRumble.h"
@@ -221,7 +222,7 @@ void run_task__25TBoss6Demo20_TYPE2_APPEARFv(O_8033D6DC *self) {
         play_sound_effect(0x40031C2B, 0, 0, 0);
         break;
     }
-    play_persistent_sound(0x4003C627, (s32)self, 0, 0, 0);
+    play_persistent_sound((s32)(0x4003C627), (const void *)(self), (const Vec *)(0), 0, 0);
     switch (self->frame) {
     case 0xB9:
         spawn_particle_effect_with_flags(self->obj40, 0x220, 0x40);

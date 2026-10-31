@@ -1,3 +1,4 @@
+#include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/unk/text_800D8830.h"
 #include "pso/misc/TOTrapAncient01_80226534.h"
@@ -13,14 +14,14 @@ void fn_800D8830(void *owner, void *pos) {
     case AREA_JUNGLE_EAST:
     case AREA_MOUNTAIN:
     case AREA_SEASIDE:
-        play_persistent_sound(0x3A842, (s32)owner, (u32)pos, 0, 0);
+        play_persistent_sound((s32)(0x3A842), (const void *)((s32)owner), (const Vec *)((u32)pos), 0, 0);
         break;
     case AREA_SEASIDE_NIGHT:
-        play_persistent_sound(0x4003B22D, (s32)owner, (u32)pos, 0, 0);
+        play_persistent_sound((s32)(0x4003B22D), (const void *)((s32)owner), (const Vec *)((u32)pos), 0, 0);
         break;
     case AREA_SEABED_UPPER:
     case AREA_SEABED_LOWER:
-        play_persistent_sound(0x4003A835, (s32)owner, (u32)pos, 0, 0);
+        play_persistent_sound((s32)(0x4003A835), (const void *)((s32)owner), (const Vec *)((u32)pos), 0, 0);
         break;
     }
 }

@@ -1,4 +1,5 @@
 #include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/misc/TOTrapAncient01_80226534.h"
 #include "pso/object/TObject_80019A50.h"
@@ -142,11 +143,11 @@ void TObjCityAirCar_Car::run_task() {
     if ((((Car_80180E70 *)this)->path == 1 && ((Car_80180E70 *)this)->frame >= lbl_805DBBA8 && ((Car_80180E70 *)this)->frame <= lbl_805DBBAC) ||
         (((Car_80180E70 *)this)->path == 2 && ((Car_80180E70 *)this)->frame >= lbl_805DBBB0 && ((Car_80180E70 *)this)->frame <= lbl_805DBBB4)) {
         if (((Car_80180E70 *)this)->model == 4) {
-            play_persistent_sound(0x4004CB02, (s32)((Car_80180E70 *)this), (u32)&((Car_80180E70 *)this)->pos, 0, 0);
+            play_persistent_sound((s32)(0x4004CB02), (const void *)((s32)((Car_80180E70 *)this)), (const Vec *)((u32)&((Car_80180E70 *)this)->pos), 0, 0);
         } else if (((Car_80180E70 *)this)->model == 0) {
-            update_technique_slot__10TTecRaFoieFl(play_persistent_sound(0x4004C101, (s32)((Car_80180E70 *)this), (u32)&((Car_80180E70 *)this)->pos, 0, 0), -0x200, 0);
+            update_technique_slot__10TTecRaFoieFl(play_persistent_sound((s32)(0x4004C101), (const void *)((s32)((Car_80180E70 *)this)), (const Vec *)((u32)&((Car_80180E70 *)this)->pos), 0, 0), -0x200, 0);
         } else {
-            play_persistent_sound(0x4004C101, (s32)((Car_80180E70 *)this), (u32)&((Car_80180E70 *)this)->pos, 0, 0);
+            play_persistent_sound((s32)(0x4004C101), (const void *)((s32)((Car_80180E70 *)this)), (const Vec *)((u32)&((Car_80180E70 *)this)->pos), 0, 0);
         }
     }
     if (city_air_car_model_resource != 0) {

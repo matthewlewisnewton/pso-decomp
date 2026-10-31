@@ -4,6 +4,7 @@
 #include "pso/misc/MaterialOpacityFade.h"
 #include "pso/misc/RenderFadeState.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
@@ -1841,7 +1842,7 @@ s32 approach_angle_limited(s32, s32, s32);
 void *find_entity_by_id(u16 id);
 void free_collision_body_parts(void *);
 void *get_player_by_client_id(s32 i);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 void __dl__7TObjectFPv(void *);
 void __dt__7TObjectFv(void *, int);
 s32 __ct__7TObjectFP7TObject(void *, void *);
@@ -3103,7 +3104,7 @@ void TObjEneMe1Canadin__sub_8009C2EC(u8 *arg0, s32 arg1) {
         } else {
             *(s32 *)((s8 *)arg0 + 0x410) = 0xFF000000;
         }
-        play_persistent_sound(0x4003B71D, (s32)arg0, (u32)(arg0 + 0x2FC), 0, 0);
+        play_persistent_sound((s32)(0x4003B71D), (const void *)((s32)arg0), (const Vec *)((u32)(arg0 + 0x2FC)), 0, 0);
         ((TObjEneMe1Canadin *)arg0)->vfunc_89();
         break;
     }

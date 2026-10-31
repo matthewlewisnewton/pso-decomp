@@ -1,6 +1,7 @@
 #include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -86,7 +87,6 @@ s32 play_sound_effect(int, void *, int, int);
 f64 atan2_float(f32, f32);
 s32 approach_angle_limited(s32, s32, s32);
 f64 TBoss5GryphonLightningWing__sub_80324CEC(f32);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 void *create_particle_emitter(void *pos, s32 id);
 s32 init_collision_body_parts(void *, void *, int);
 static u32 TBoss6Mine__collision_body_template[11] = {
@@ -302,7 +302,7 @@ void TBoss6Mine::state_2() {
         this->state_frames = 0;
         this->state = 3;
     }
-    play_persistent_sound(0x4003B21C, (s32)this, (u32)&this->position, 0, 0);
+    play_persistent_sound((s32)(0x4003B21C), (const void *)(this), (const Vec *)((u32)&this->position), 0, 0);
 }
 
 void TBoss6Mine::state_1() {

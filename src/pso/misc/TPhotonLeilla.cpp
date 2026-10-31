@@ -1,4 +1,5 @@
 #include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/system/ChunkMaterialState.h"
@@ -57,7 +58,7 @@ void *find_entity_by_id(u16 id);
 }
 u8 *construct_photon_magic_square_normal(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 extern "C" {
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 s32 spawn_photon_blast_attachment_effects(void *, int);
 u8 *__nw__7TObjectFUl(s32, f32);
 extern const f64 lbl_80446DE8;
@@ -159,7 +160,7 @@ void TPhotonLeilla::run_task() {
         }
     }
     if ((s32) *(s32 *)&this->m_19c != 0) {
-        play_persistent_sound(0x4002462F, (s32)arg0, (u32)(0U), 0, 0);
+        play_persistent_sound((s32)(0x4002462F), (const void *)((s32)arg0), (const Vec *)((u32)(0U)), 0, 0);
     }
 }
 }

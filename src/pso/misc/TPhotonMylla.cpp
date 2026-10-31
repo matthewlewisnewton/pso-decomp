@@ -1,5 +1,6 @@
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/system/ChunkMaterialState.h"
@@ -113,7 +114,7 @@ u16 get_entity_id(void *);
 
 void *find_entity_by_id(u16 id);
 u8 *TPhotonMagicSquare__ct(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 s32 queue_photon_blast_hit(int, int, int, f32);
 s32 spawn_photon_blast_attachment_effects(void *, int);
 u8 *__nw__7TObjectFUl(s32, f32);
@@ -292,7 +293,7 @@ void TPhotonMylla::run_task() {
         }
     }
     if ((s32) ((RecoveredFields_801AD5D8_arg0 *)arg0)->field_1A0 != 0) {
-        play_persistent_sound(0x4002462F, (s32)arg0, (u32)(0U), 0, 0);
+        play_persistent_sound((s32)(0x4002462F), (const void *)((s32)arg0), (const Vec *)((u32)(0U)), 0, 0);
     }
 }
 #pragma pop

@@ -3,6 +3,7 @@
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
@@ -798,7 +799,7 @@ void spawn_dead_spot_scale15(const Vec *point, s32 delay);
 void *find_entity_by_id(u16 id);
 void free_collision_body_parts(void *);
 s32 send_entity_set_flags__9TObjEnemyFv();
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 s32 play_sound_effect(void *, void *, int, int);
 s32 defer_render__7TObjectFv(void *);
 void __dl__7TObjectFPv(void *);
@@ -2060,7 +2061,7 @@ void update_monest_carrier(u8 *self) {
             ((TObjEneBm3FlyNest_CarryFly *)self)->m_60 = lbl_805D9D5C / (*(f32 *)((s8 *)self + 0x5C) * *(f32 *)((s8 *)self + 0x5C));
             *(f32 *)((s8 *)self + 0x64) = lbl_805D9D60;
         }
-        play_persistent_sound((s32)(((s32 (*)(s32, s32))copy_target_state__17TObjEneBm3FlyNestFPv)(*(s32 *)((s8 *)self + 0x10), 0x4003A828)), (s32)self, (u32)(((TObjEneBm3FlyNest_CarryFly *)self)->m_30), 0, 0);
+        play_persistent_sound((s32)((s32)(((s32 (*)(s32, s32))copy_target_state__17TObjEneBm3FlyNestFPv)(*(s32 *)((s8 *)self + 0x10), 0x4003A828))), (const void *)(self), (const Vec *)((u32)(((TObjEneBm3FlyNest_CarryFly *)self)->m_30)), 0, 0);
         TObjPlayer::play_effect_if_v2(-0x400);
         break;
     case 1:
@@ -2069,7 +2070,7 @@ void update_monest_carrier(u8 *self) {
             *(s32 *)((s8 *)self + 0x2C) = 2;
             *(f32 *)((s8 *)self + 0x54) = lbl_805D9D64 * *(f32 *)((s8 *)self + 0x5C);
         }
-        play_persistent_sound((s32)(((s32 (*)(s32, s32))copy_target_state__17TObjEneBm3FlyNestFPv)(*(s32 *)((s8 *)self + 0x10), 0x4003A828)), (s32)self, (u32)(((TObjEneBm3FlyNest_CarryFly *)self)->m_30), 0, 0);
+        play_persistent_sound((s32)((s32)(((s32 (*)(s32, s32))copy_target_state__17TObjEneBm3FlyNestFPv)(*(s32 *)((s8 *)self + 0x10), 0x4003A828))), (const void *)(self), (const Vec *)((u32)(((TObjEneBm3FlyNest_CarryFly *)self)->m_30)), 0, 0);
         TObjPlayer::play_effect_if_v2(-0x400);
         break;
     case 2:
@@ -2088,7 +2089,7 @@ void update_monest_carrier(u8 *self) {
         v = lbl_805D9D64 * *(f32 *)((s8 *)self + 0x5C) + v;
         *(f32 *)((s8 *)self + 0x1C) = ((TObjEneBm3FlyNest_CarryFly *)self)->m_50 * v;
         *(f32 *)((s8 *)self + 0x24) = ((TObjEneBm3FlyNest_CarryFly *)self)->m_58 * v;
-        play_persistent_sound((s32)(((s32 (*)(s32, s32))copy_target_state__17TObjEneBm3FlyNestFPv)(*(s32 *)((s8 *)self + 0x10), 0x4003A828)), (s32)self, (u32)(*(s32 *)((s8 *)self + 0x34)), 0, 0);
+        play_persistent_sound((s32)((s32)(((s32 (*)(s32, s32))copy_target_state__17TObjEneBm3FlyNestFPv)(*(s32 *)((s8 *)self + 0x10), 0x4003A828))), (const void *)(self), (const Vec *)((u32)(*(s32 *)((s8 *)self + 0x34))), 0, 0);
         TObjPlayer::play_effect_if_v2(-0x400);
         break;
     }

@@ -4,6 +4,7 @@
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 #pragma readonly_strings on
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -90,7 +91,7 @@ f64 atan2_float(f32, f32);
 
 void TBoss4Type2__sub_80057128(void *arg0);
 s32 angle_diff_s16(int, int);
-s32 play_persistent_sound(int, void *, void *, int, int);
+
 s32 create__11TTecRaBartaFPvPvPvPv(void *, void *, void *, s32);
 f32 sin_table_lookup(s32);
 f32 cos_table_lookup(s32);
@@ -916,7 +917,7 @@ void TBoss4Type2::tenchu_update() {
         }
     }
     if ((s32) *(s32 *)((s8 *)arg0 + 0x398) > 6) {
-        play_persistent_sound(0x4003AD16, arg0, arg0 + 0x38, 0, 1);
+        play_persistent_sound((s32)(0x4003AD16), (const void *)(arg0), (const Vec *)(arg0 + 0x38), 0, 1);
     }
     temp_r0_2 = *(s32 *)((s8 *)arg0 + 0x398) - 1;
     *(s32 *)((s8 *)arg0 + 0x398) = temp_r0_2;
@@ -961,7 +962,7 @@ void TBoss4Type2::beam_update() {
             }
         }
         if (*(f32 *)((s8 *)arg0 + 0x3D0) >= 8.0f && *(f32 *)((s8 *)arg0 + 0x3D0) <= 17.0f) {
-            play_persistent_sound(0x4003B512, arg0, arg0 + 0x38, 0, 1);
+            play_persistent_sound((s32)(0x4003B512), (const void *)(arg0), (const Vec *)(arg0 + 0x38), 0, 1);
         }
     }
     if (*(s32 *)((s8 *)arg0 + 0x398) == 0x26) {
@@ -1065,7 +1066,7 @@ void TBoss4Type2::jisin_update() {
         TBoss4Type2::create_jisin((void *)arg0, (void *)(*(s32 *)((s8 *)arg0 + 0x3A0)));
     }
     if ((s32) *(s32 *)((s8 *)arg0 + 0x398) <= 0x1E) {
-        play_persistent_sound(0x4003AD16, arg0, arg0 + 0x38, 0, 1);
+        play_persistent_sound((s32)(0x4003AD16), (const void *)(arg0), (const Vec *)(arg0 + 0x38), 0, 1);
     }
     temp_r0 = *(s32 *)((s8 *)arg0 + 0x398) - 1;
     *(s32 *)((s8 *)arg0 + 0x398) = temp_r0;

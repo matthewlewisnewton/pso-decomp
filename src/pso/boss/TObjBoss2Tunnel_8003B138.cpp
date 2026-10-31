@@ -1,4 +1,5 @@
 #include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/TMainTask.h"
 #include "pso/TParticleCtrl.h"
@@ -187,7 +188,7 @@ f32 rand_signed_unit(void);
 int rand(void);
 void *__ct__13TObjBoss2DustFv(void *, void *, Vec_8003B6E8 *);
 void play_sound_effect(int, void *, int, int);
-void play_persistent_sound(int, void *, int, int, int);
+
 void enable_fog__15TObjBoss2TunnelFv(void);
 void enable_fog__15TObjBoss2TunnelFPv(TObjBoss2Tunnel *arg0);
 void TObjBoss2Tunnel__sub_801339EC(f32, f32, f32);
@@ -503,7 +504,7 @@ void run_task__15TObjBoss2TunnelFv(Tunnel_8003B6E8 *o) {
                 o->f50 = o->f4c;
                 play_sound_effect(0x4003A80E, 0, 0, 0);
             } else {
-                play_persistent_sound(0x4003B20C, o, 0, 0, 0);
+                play_persistent_sound((s32)(0x4003B20C), (const void *)(o), (const Vec *)(0), 0, 0);
             }
         } else {
             f32 lim;
@@ -535,7 +536,7 @@ void run_task__15TObjBoss2TunnelFv(Tunnel_8003B6E8 *o) {
         break;
     }
     if (o->f24 == 1 || o->f24 == 2) {
-        play_persistent_sound(0x4003B20C, o, 0, 0, 0);
+        play_persistent_sound((s32)(0x4003B20C), (const void *)(o), (const Vec *)(0), 0, 0);
     }
     ((TObjBoss2Tunnel *)o)->update_particles();
     if (TObjBoss2Tunnel__global_flags & 2) {

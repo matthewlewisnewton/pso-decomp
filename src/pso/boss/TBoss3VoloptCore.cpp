@@ -1,6 +1,7 @@
 #include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/system/NinjaUtil.h"
@@ -45,7 +46,7 @@ extern u32 model_render_flags;
 void *find_entity_by_id(u16 id);
 TObjPlayer *get_player_by_client_id(s32 client_id);
 void minimap_render_dot(f32 *pos, s32 color, s32, s32);
-void play_persistent_sound(u32 id, TObject *source, f32 *pos, s32, s32);
+
 void play_sound_effect(u32 id, f32 *pos, s32, s32);
 s32 angle_difference_abs(s32 a, s32 b);
 s32 approach_angle_limited(s32 angle, s32 target, s32 step);
@@ -581,7 +582,7 @@ void TBoss3VoloptCore::update_orbit_state() {
             drop_angle = orbit_angle;
             this->update_if_active(9);
         }
-        play_persistent_sound(0x4003BC05, this, &position.x, 0, 0);
+        play_persistent_sound((s32)(0x4003BC05), (const void *)(this), (const Vec *)(&position.x), 0, 0);
         break;
     case -1:
         break;
@@ -690,7 +691,7 @@ void TBoss3VoloptCore::update_topple_state() {
         }
         break;
     case 3:
-        play_persistent_sound(0x4003BC05, this, &position.x, 0, 0);
+        play_persistent_sound((s32)(0x4003BC05), (const void *)(this), (const Vec *)(&position.x), 0, 0);
         advance_animation();
         orbit_angle -= get_orbit_speed(0);
         sweep_angle -= get_orbit_speed(0);

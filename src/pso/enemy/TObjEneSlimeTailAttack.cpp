@@ -2,6 +2,7 @@
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 struct NJS_OBJECT;
 #include "types.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
@@ -674,7 +675,7 @@ extern "C" {
 void receive_direct_attack__9TObjCharaFPv19DirectAttackPayloadPvll();
 s32 submit_cursor_candidate(void *, s32);
 s32 minimap_render_dot(void *, s32, s32, s32);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 }
 extern "C" {
 void receive_physical_attack__9TObjCharaFPvf();
@@ -2122,7 +2123,7 @@ void TObjEneSlimeOne::run_task() {
             submit_cursor_candidate(this, -1);
         }
         ((TObjEneSlimeOne *)this->m_388)->advance_animation_state();
-        play_persistent_sound(0x4003B21C, (s32)this, (u32)&this->position, 0, 0);
+        play_persistent_sound((s32)(0x4003B21C), (const void *)(this), (const Vec *)((u32)&this->position), 0, 0);
         fn_800E9238((s32)this);
         clear_child_flag();
         if ((s32)this->m_384 != 13) {

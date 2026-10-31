@@ -1,3 +1,4 @@
+#include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/render/render_util.h"
 #include "pso/unk/text_803D96A8.h"
@@ -141,7 +142,7 @@ extern s32 TLoadingCur__class_name;
 s32 is_split_screen(void);
 
 s32 is_flag_set__11TLoadingCurFv(void *, s32);
-s32 play_persistent_sound(int, void *, void *, int, int);
+
 extern Pad_8001CD90 controller_input_state;
 
 s32 project_world_to_screen(int, void *, void *);
@@ -251,9 +252,9 @@ void TLoadingCur::run_task() {
     update_camera_facing_offset();
     if (0.0f != x || 0.0f != y) {
         if (is_split_screen() != 0) {
-            play_persistent_sound(0x53C10, this, (u8 *)this + 0x2C, 0, 1);
+            play_persistent_sound((s32)(0x53C10), (const void *)(this), (const Vec *)((u8 *)this + 0x2C), 0, 1);
         } else {
-            play_persistent_sound(0x53C10, this, (u8 *)this + 0x2C, 0, 0);
+            play_persistent_sound((s32)(0x53C10), (const void *)(this), (const Vec *)((u8 *)this + 0x2C), 0, 0);
         }
     }
 }

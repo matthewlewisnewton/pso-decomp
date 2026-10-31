@@ -1,5 +1,6 @@
 #include "pso/player/demo_mode.h"
 #include "pso/misc/ParticleFactory.h"
+#include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/boss/TBoss6GravBall.h"
 #include "pso/object/TObject_80019A50.h"
@@ -238,7 +239,7 @@ extern s32 lbl_8047667C[];
 extern s32 __vt__14TBoss6GravBall[];
 extern s32 TBoss6GravBall__name;
 
-s32 play_persistent_sound(int, void *, void *, int, int);
+
 s32 play_sound_effect(int, void *, int, int);
 s32 get_state__14TBoss6GravBallFv(int);
 s32 fn_80323134(void *);
@@ -258,7 +259,7 @@ void update_charge_effects__14TBoss6GravBallFPv(u8 *self) {
     s32 temp_r0_3;
 
     TBoss6GravBall__sub_803233AC(self);
-    play_persistent_sound(0x4003C418, self, self + 0xC8, 0, 0);
+    play_persistent_sound((s32)(0x4003C418), (const void *)(self), (const Vec *)(self + 0xC8), 0, 0);
     temp_r0 = *(s32 *)((s8 *)self + 0xB8);
     if (temp_r0 >= 0x96) {
         if (temp_r0 == 0x96) {
@@ -334,7 +335,7 @@ void update_state__14TBoss6GravBallFPv(u8 *arg0) {
             }
         }
         TBoss6GravBall__sub_80323544((arg0));
-        play_persistent_sound(0x4003B51A, arg0, arg0 + 0xC8, 0, 0);
+        play_persistent_sound((s32)(0x4003B51A), (const void *)(arg0), (const Vec *)(arg0 + 0xC8), 0, 0);
         switch (get_state__14TBoss6GravBallFv((int) (*(s32 *)((s8 *)arg0 + 0xAC)))) {
         case 0x27:
             return;

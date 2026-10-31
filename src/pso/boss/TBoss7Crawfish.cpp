@@ -1,5 +1,6 @@
 #include "pso/misc/ParticleFactory.h"
 #include "pso/enemy/TObjEnemy.h"
+#include "pso/misc/PersistentSound.h"
 #include <dolphin/mtx.h>
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/object/TObjMotion.h"
@@ -149,7 +150,7 @@ void TBoss7Crawfish::register_attack_hits() {
 }
 
 void TBoss7Crawfish__sub_803087D4(s32 arg0, s32 arg1) {
-    play_persistent_sound(arg1, arg0, arg0 + 0x38, 0, 0);
+    play_persistent_sound((s32)(arg1), (const void *)(arg0), (const Vec *)(arg0 + 0x38), 0, 0);
 }
 
 void TBoss7Crawfish::spawn_effect(s32 arg1) {

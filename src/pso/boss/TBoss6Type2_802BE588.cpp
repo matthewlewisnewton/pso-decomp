@@ -1,4 +1,5 @@
 #include "pso/misc/ParticleFactory.h"
+#include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/boss/TBoss6Type2_802BE588.h"
 #include "pso/unk/text_80087278.h"
@@ -30,7 +31,7 @@ extern u8 lbl_805D675C;
 extern const f32 lbl_805DE3F8;
 extern f32 lbl_805DE4DC;
 extern const f32 lbl_805DE4F0;
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 extern const f32 lbl_805DE4E0;
 extern const f32 lbl_805DE4E4;
 void *get_player_by_client_id(s32 i);
@@ -181,7 +182,7 @@ void TBoss6Type2::update_charge_timer() {
     } else if (temp_f1 > lbl_805DE4E4) {
         *(f32 *)((s8 *)((u8 *)this) + 0x41C) = (f32) lbl_805DE4E4;
     }
-    play_persistent_sound(0x4006A30B, ((s32) this), (0U), 0, 0);
+    play_persistent_sound((s32)(0x4006A30B), (const void *)(((s32) this)), (const Vec *)((0U)), 0, 0);
     temp_r0 = *(s32 *)((s8 *)((u8 *)this) + 0x460) - 1;
     *(s32 *)((s8 *)((u8 *)this) + 0x460) = temp_r0;
     if (temp_r0 < 0) {
@@ -224,7 +225,7 @@ void update_attack_timer__11TBoss6Type2FPv(u8 *arg0) {
     s32 temp_r0;
     u32 player;
 
-    play_persistent_sound(0x4006A30B, (s32)arg0, (u32)(arg0 + 0x38), 0, 1);
+    play_persistent_sound((s32)(0x4006A30B), (const void *)((s32)arg0), (const Vec *)((u32)(arg0 + 0x38)), 0, 1);
     temp_r0 = *(s32 *)((s8 *)arg0 + 0x460) - 1;
     *(s32 *)((s8 *)arg0 + 0x460) = temp_r0;
     if (temp_r0 < 0) {
@@ -272,7 +273,7 @@ void TBoss6Type2__sub_802BEC28(TBoss6Type2 *arg0) {
     } else if (temp_f1 > lbl_805DE4E4) {
         *(f32 *)((s8 *)arg0 + 0x41C) = (f32) lbl_805DE4E4;
     }
-    play_persistent_sound(0x4006A30B, (s32)arg0, (u32)((u8 *)arg0 + 0x38), 0, 1);
+    play_persistent_sound((s32)(0x4006A30B), (const void *)((s32)arg0), (const Vec *)((u32)((u8 *)arg0 + 0x38)), 0, 1);
     temp_r0 = *(s32 *)((s8 *)arg0 + 0x460) - 1;
     *(s32 *)((s8 *)arg0 + 0x460) = temp_r0;
     if (temp_r0 < 0) {

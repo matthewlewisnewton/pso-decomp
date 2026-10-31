@@ -1,6 +1,7 @@
 #include "pso/math/VectorNormalize.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 #include "pso/math/ScratchVectorStorage.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
@@ -345,7 +346,7 @@ void render__15TOTrapAncient02Fv(void *arg0);
 void * __dt__15TOTrapAncient02Fv(void *arg0, s16 arg1);
 void * TOTrapAncient02__ct(void *arg0, void *arg1, void *arg2);
 void submit_cursor_and_notify__16TOTrapAncient02RFv(void *arg0);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 u8 is_current_floor_switch_set(u16);
 void __dl__7TObjectFPv(void *);
 void scroll_ginja_mesh_uvs(u32, s32, s32, u16, s32);
@@ -892,20 +893,20 @@ void TOTrapAncient02::vfunc_84() {
         case AREA_CAVE1:
         case AREA_CAVE2:
         case AREA_CAVE3:
-            play_persistent_sound(0x4461B, (s32)self, (u32)((u8 *)self + 0x38), 0, 0);
+            play_persistent_sound((s32)(0x4461B), (const void *)(self), (const Vec *)((u32)((u8 *)self + 0x38)), 0, 0);
             return;
         case AREA_MINE1:
         case AREA_MINE2:
-            play_persistent_sound(0x4004C612, (s32)self, (u32)((u8 *)self + 0x38), 0, 0);
+            play_persistent_sound((s32)(0x4004C612), (const void *)(self), (const Vec *)((u32)((u8 *)self + 0x38)), 0, 0);
             return;
         case AREA_RUINS1:
         case AREA_RUINS2:
         case AREA_RUINS3:
-            play_persistent_sound(0x4004C618, (s32)self, (u32)((u8 *)self + 0x38), 0, 0);
+            play_persistent_sound((s32)(0x4004C618), (const void *)(self), (const Vec *)((u32)((u8 *)self + 0x38)), 0, 0);
             return;
         case AREA_VR_SPACESHIP_ALPHA:
         case AREA_VR_SPACESHIP_BETA:
-            play_persistent_sound(0x4004C610, (s32)self, (u32)((u8 *)self + 0x38), 0, 0);
+            play_persistent_sound((s32)(0x4004C610), (const void *)(self), (const Vec *)((u32)((u8 *)self + 0x38)), 0, 0);
         case AREA_PIONEER2_EP1:
             return;
         case AREA_FOREST1:

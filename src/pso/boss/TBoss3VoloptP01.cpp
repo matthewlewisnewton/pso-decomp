@@ -1,6 +1,7 @@
 #include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/system/NinjaUtil.h"
@@ -567,7 +568,7 @@ void TBoss3VoloptP01::update_attack() {
         state = 5;
     }
     case 5:
-        play_persistent_sound(0x4002B51E, (s32)this, (u32)&position, 0, 0);
+        play_persistent_sound((s32)(0x4002B51E), (const void *)(this), (const Vec *)((u32)&position), 0, 0);
         if (--attack_timer <= 0) {
             if (charge_effect != NULL) {
                 charge_effect->queue_destruction();

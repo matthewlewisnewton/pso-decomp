@@ -2,6 +2,7 @@
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/system/PadRumble.h"
@@ -342,7 +343,7 @@ void free_collision_body_parts(void *);
 s32 project_actor_to_ground(void *, void *, int);
 s32 submit_cursor_candidate(void *, s32);
 s32 add_radar_scaled_marker(void *, s32, s16, s32, f32);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 s32 play_sound_effect(int, void *, int, int);
 void __dl__7TObjectFPv(void *);
 s32 __nw__7TObjectFUl(s32);
@@ -854,7 +855,7 @@ void update_tech_charge__11TBoss4Type2FPv(u8 *arg0) {
         }
     }
     if (*(f32 *)((s8 *)arg0 + 0x3E8) >= lbl_805D8B14 && *(f32 *)((s8 *)arg0 + 0x3E8) <= lbl_805D8B10) {
-        play_persistent_sound(0x4003B512, (s32)arg0, (u32)(arg0 + 0x38), 0, 1);
+        play_persistent_sound((s32)(0x4003B512), (const void *)((s32)arg0), (const Vec *)((u32)(arg0 + 0x38)), 0, 1);
     }
     if (*(s32 *)((s8 *)arg0 + 0x398) == 0x26) {
         if ((r = (u32)spawn_particle_effect((const Vec *)(ent), 0xFD)) != 0) {
@@ -1000,7 +1001,7 @@ void TBoss4Type2__sub_80052EF8(O_80052EF8 *o) {
         ((s32 (*)(void *, Vec_80052EF8 *, Vec_80052EF8 *))set_pos_from_scaled_offset__11TBoss4Type2FPvPvPv)(o, &a, &b);
     }
     ((TBoss4Type2 *)o)->calc_scaled_field(((s32 (*)(void *, s32, s32))TBoss4Type2__sub_80054384)(o, o->f3a4, o->f3ac), ((s32 (*)(void *, s32, s32))TBoss4Type2__sub_80054384)(o, o->f3a0, o->f3a8));
-    play_persistent_sound(0x4003A80D, (s32)o, (u32)o->f38, 0, 0);
+    play_persistent_sound((s32)(0x4003A80D), (const void *)((s32)o), (const Vec *)((u32)o->f38), 0, 0);
     if (--o->f398 < 0) {
         o->f3a4 = o->f3a0;
         o->f3ac = o->f3a8;
@@ -1115,7 +1116,7 @@ void TBoss4Type1::sub_80053440() {
         }
     }
     ((TBoss4Type2 *)(arg0->f378))->scroll_strips();
-    play_persistent_sound(0x4003BC0E, (s32)arg0, (u32)&arg0->pos, 0x40, 2);
+    play_persistent_sound((s32)(0x4003BC0E), (const void *)((s32)arg0), (const Vec *)((u32)&arg0->pos), 0x40, 2);
 }
 
 void TBoss4Type2__sub_80053504(TBoss4Type2 *boss4_type2) {

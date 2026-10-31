@@ -2,6 +2,7 @@
 #include "pso/misc/MaterialOpacityFade.h"
 #include "pso/misc/RenderFadeState.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
@@ -980,7 +981,7 @@ void TObjEneEpsilonGuard::sub_8035EA90() {
 
 void vfunc_88__19TObjEneEpsilonGuardFv(void *);
 void vfunc_89__19TObjEneEpsilonGuardFv(void *);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 s32 vfunc_89__9TObjEneDDFv();
 s32 TObjEneEpsilonGuard__sub_8035F950();
 s16 get_entity_id(int);
@@ -1004,12 +1005,12 @@ void TObjEneEpsilonGuard::update_guard_state() {
             sub_8035EA90();
         }
         if (*(s32 *)((s8 *)((u8 *)this) + 0x46C) & 0x20) {
-            play_persistent_sound(0x4003A846, (s32)this, (u32)(((u8 *)this) + 0x38), 0, 0);
+            play_persistent_sound((s32)(0x4003A846), (const void *)(this), (const Vec *)((u32)(((u8 *)this) + 0x38)), 0, 0);
             return;
         }
         temp_r0 = *(s16 *)((s8 *)((u8 *)this) + 0x326);
         if ((temp_r0 != 4) && (temp_r0 != 5)) {
-            play_persistent_sound(0x4003AD43, (s32)this, (u32)(((u8 *)this) + 0x38), 0, 0);
+            play_persistent_sound((s32)(0x4003AD43), (const void *)(this), (const Vec *)((u32)(((u8 *)this) + 0x38)), 0, 0);
         }
     }
 }

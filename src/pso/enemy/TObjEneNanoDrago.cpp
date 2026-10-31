@@ -3,6 +3,7 @@
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/misc/GroundEffects.h"
@@ -99,7 +100,7 @@ extern "C" f32 cos_table_lookup(s32);
 extern "C" s32 enemy_turn_half_toward_dest(void *);
 
 extern "C" s32 construct_beam_effect__10TObjPlayerFPvPvPviPv(u32, void *, void *, u8, void *);
-extern "C" s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 extern "C" s32 check_path_obstructed(void *, Vec *);
 extern "C" void calc_velocity_toward_destination(void *, Vec, Vec, f32);
 extern "C" s32 TObjPlayer__sub_800DC478(u8 *arg0, s32 arg1, f32 farg0);
@@ -652,7 +653,7 @@ void TObjEneNanoDrago::update_single_beam_state() {
             }
             break;
         case 2:
-            play_persistent_sound(0x4003AD1E, (s32)((u8 *)this), (u32)(&position), 0, 0);
+            play_persistent_sound((s32)(0x4003AD1E), (const void *)((s32)((u8 *)this)), (const Vec *)((u32)(&position)), 0, 0);
             if (frame >= 20.0f) {
                 capture_beam_origins();
                 u32 obj = __nw__7TObjectFUl(0x100);
@@ -722,7 +723,7 @@ void TObjEneNanoDrago::update_multi_beam_state() {
             }
             break;
         case 2:
-            play_persistent_sound(0x4003AD1E, (s32)((u8 *)this), (u32)&position, 0, 0);
+            play_persistent_sound((s32)(0x4003AD1E), (const void *)((s32)((u8 *)this)), (const Vec *)((u32)&position), 0, 0);
             if (frame >= 20.0f) {
                 capture_beam_origins();
                 for (i = 0; i < beamTargetCount; i++) {

@@ -1,5 +1,6 @@
 #include "pso/player/demo_mode.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 #include "pso/math/ScratchVectorStorage.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
@@ -158,7 +159,7 @@ VObj_801797D4 *get_battle_param__10TObjPlayerFi(s32);
 s32 obj_is_hit_receivable(void *);
 s32 check_value_equals__13TUnk_804B6C24Fl(void *, s32);
 void submit_cursor_candidate(void *, s32);
-void play_persistent_sound(s32, void *, void *, s32, s32);
+
 extern s32 lbl_805D3530;
 extern const f32 lbl_805DBA48;
 s32 is_split_screen();
@@ -271,11 +272,11 @@ void TOTrapAncient01::vfunc_82() {
     case AREA_RUINS1:
     case AREA_RUINS2:
     case AREA_RUINS3:
-        play_persistent_sound(0x4004C618, ((Trap_801797D4 *)this), (u8 *)((Trap_801797D4 *)this) + 0x38, 0, 0);
+        play_persistent_sound((s32)(0x4004C618), (const void *)(((Trap_801797D4 *)this)), (const Vec *)((u8 *)((Trap_801797D4 *)this) + 0x38), 0, 0);
         break;
     case AREA_VR_SPACESHIP_ALPHA:
     case AREA_VR_SPACESHIP_BETA:
-        play_persistent_sound(0x4004C610, ((Trap_801797D4 *)this), (u8 *)((Trap_801797D4 *)this) + 0x38, 0, 0);
+        play_persistent_sound((s32)(0x4004C610), (const void *)(((Trap_801797D4 *)this)), (const Vec *)((u8 *)((Trap_801797D4 *)this) + 0x38), 0, 0);
         break;
     case AREA_PIONEER2_EP1:
         return;

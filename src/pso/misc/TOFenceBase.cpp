@@ -1,5 +1,6 @@
 #include "pso/player/demo_mode.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/misc/TOFenceBase.h"
 #include "pso/misc/TOTrapAncient01_80226534.h"
@@ -51,7 +52,7 @@ void TOFenceBase::update_trigger() {
         }
         break;
     }
-    play_persistent_sound(0x4004C10F, (s32)this, (u32)&position, 0, 0);
+    play_persistent_sound((s32)(0x4004C10F), (const void *)(this), (const Vec *)((u32)&position), 0, 0);
 }
 
 void TOFenceBase::run_task() {

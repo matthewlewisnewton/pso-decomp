@@ -1,5 +1,6 @@
 #include "pso/player/demo_mode.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/npc/NpcModelRegistry.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
@@ -566,7 +567,7 @@ void TObjPlayer__sub_800A04F0(void *);
 void play_sound_effect(int, void *, int, int);
 void TObjEneBalClawClaw__sub_80091134(Claw_80091134 *self);
 s32 check_path_obstructed(void *, void *);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 void TObjEneBalClawClaw__sub_80091200(Claw_80091200 *self);
 Claw_80091354 *find_active_entity_by_id(u16);
 void update_chase__18TObjEneBalClawClawFPv(Claw_80091354 *self);
@@ -722,7 +723,7 @@ void TObjEneBalClawClaw__sub_80091200(Claw_80091200 *self) {
         self->vel.z *= (0.9f);
         apply_actor_gravity((TObjEnemy *)((u8 *)self), (s32 *)(0), (0.0f));
         ((TObjCollidable *)(self))->update_collisions();
-        play_persistent_sound(0x4003B235, (s32)self, (u32)((u8 *)self + 0x38), 0, 0);
+        play_persistent_sound((s32)(0x4003B235), (const void *)((s32)self), (const Vec *)((u32)((u8 *)self + 0x38)), 0, 0);
         if (self->fB4 != 8) {
             self->f30 &= ~0x200;
             self->f388 &= ~1;
@@ -758,7 +759,7 @@ void update_chase__18TObjEneBalClawClawFPv(Claw_80091354 *self) {
             RESET(self);
             break;
         }
-        play_persistent_sound(0x4003B235, (s32)self, (u32)((u8 *)self + 0x38), 0, 0);
+        play_persistent_sound((s32)(0x4003B235), (const void *)(self), (const Vec *)((u32)((u8 *)self + 0x38)), 0, 0);
         Vec_80091354 v = self->target->pos;
         update_enemy_wander_move(self, &v, 1, self->info, self->info->f4);
         ((TObjEnemy *)self)->turn_toward_direction(self->info->f8, (Vec *)((u8 *)self + 0x308));

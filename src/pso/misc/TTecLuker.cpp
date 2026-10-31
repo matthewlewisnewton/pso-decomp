@@ -1,5 +1,6 @@
 #include "pso/map/CsnGroundQuery.h"
 #include "pso/misc/ParticleFactory.h"
+#include "pso/misc/PersistentSound.h"
 #include "pso/protocol/protocol_types.h"
 #include "pso/misc/TLobby_801E43E4.h"
 #include "types.h"
@@ -231,7 +232,7 @@ s32 obj_isState3_324__9TObjCharaFv(void *);
 s32 play_effect_default__10TObjPlayerFii(void *, s32);
 s32 send_6x21_inter_level_warp(void *, s32);
 s32 get_floor_map_terrain(s32);
-s32 play_persistent_sound(s32, void *, void *, s32, s32);
+
 s32 set_area__6TLobbyFl(s32 *, s32, s32);
 void run_task__9TTecLukerFv(u8 *arg0);
 f32 horizontal_distance_squared(void *, void *);
@@ -790,7 +791,7 @@ void run_task__9TTecLukerFv(u8 *arg0) {
             queue_destruction__7TObjectFv(arg0);
             return;
         }
-        play_persistent_sound(0x4002B219, arg0, arg0 + 0xFC, 0, 0);
+        play_persistent_sound((s32)(0x4002B219), (const void *)(arg0), (const Vec *)(arg0 + 0xFC), 0, 0);
         if ((u32) ((TTecLuker *)arg0)->m_f0 == 0U) {
             queue_destruction__7TObjectFv(arg0);
             return;

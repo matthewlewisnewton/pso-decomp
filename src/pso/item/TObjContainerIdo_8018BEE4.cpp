@@ -1,5 +1,6 @@
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 #include "pso/misc/RenderFadeState.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/system/vector.h"
@@ -171,7 +172,7 @@ u8 is_current_floor_switch_set(u16);
 f32 xyz_distance(void *, void *);
 s32 push_matrix_from(void *);
 void rotate_vector_by_matrix(int, void *, void *);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 void play_sound_effect(s32, void *, s32, s32);
 s32 rand();
 
@@ -221,7 +222,7 @@ void run_task__16TObjContainerIdoFv(Ido_8018C18C *self) {
             self->pos.y -= v.y;
             self->pos.z -= v.z;
             self->e0 |= 0x04000000;
-            play_persistent_sound(0x4B717, (s32)self, (u32)&self->pos, 0, 0);
+            play_persistent_sound((s32)(0x4B717), (const void *)(self), (const Vec *)((u32)&self->pos), 0, 0);
         } else if (!(self->e0 & 0x01000000)) {
             play_sound_effect(0x4C118, &self->pos, 0, 0);
             self->e0 |= 0x01000000;
@@ -239,7 +240,7 @@ void run_task__16TObjContainerIdoFv(Ido_8018C18C *self) {
             self->pos.y += w.y;
             self->pos.z += w.z;
             self->e0 |= 0x04000000;
-            play_persistent_sound(0x4B717, (s32)self, (u32)&self->pos, 0, 0);
+            play_persistent_sound((s32)(0x4B717), (const void *)(self), (const Vec *)((u32)&self->pos), 0, 0);
         } else if (!(self->e0 & 0x01000000)) {
             play_sound_effect(0x4C118, &self->pos, 0, 0);
             self->e0 |= 0x01000000;

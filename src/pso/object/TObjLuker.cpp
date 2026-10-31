@@ -1,4 +1,5 @@
 #include "pso/misc/ParticleFactory.h"
+#include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/misc/TRaderMapCore.h"
@@ -102,7 +103,7 @@ s32 check_flag_100__10TObjPlayerFPv(void *);
 void queue_destruction__7TObjectFv(void *);
 
 s32 play_effect_default__10TObjPlayerFii(void *, int);
-s32 play_persistent_sound(int, void *, void *, int, int);
+
 void *__nw__7TObjectFUl(int);
 s32 TTecLuker__sub_8023401C(void *);
 void *create_telepipe_visual(void *, void *, int, int);
@@ -420,7 +421,7 @@ void TObjLuker::run_task() {
                 *(void * *)&this->m_a4 = o;
                 *(s32 *)&this->m_b4 = 0;
             }
-            play_persistent_sound(0x4002B219, arg0, (u8 *)&this->position, 0, 0);
+            play_persistent_sound((s32)(0x4002B219), (const void *)(arg0), (const Vec *)((u8 *)&this->position), 0, 0);
             switch (this->m_b0) {
             case 0:
                 sp8 = 0;

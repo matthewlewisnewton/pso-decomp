@@ -1,6 +1,7 @@
 #include "pso/player/demo_mode.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/object/TObjMotion.h"
@@ -196,7 +197,7 @@ void init_base__27TOHangceilingCave01KeyQuickFll(void *);
 void set_scale__13TUnk_804B2578Ff(void *, f32);
 void * get_player_by_client_id(s32);
 u8 *load_gvm_texture_file(s32 arg0);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 u8 is_current_floor_switch_set(int);
 }
 void clear_current_floor_switch(s32 id);
@@ -547,7 +548,7 @@ void TUnk_804B2578::sub_80168398() {
         break;
     }
     if (id != 0) {
-        play_persistent_sound((s32)id, (s32)this, (u32)(((u8 *)this) + 0x38), 0, 0);
+        play_persistent_sound((s32)id, (const void *)(this), (const Vec *)((u32)(((u8 *)this) + 0x38)), 0, 0);
     }
 }
 
