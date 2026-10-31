@@ -203,7 +203,6 @@ extern const f32 lbl_805DA50C;
 extern const f32 lbl_805DA510;
 extern const f32 lbl_805DA514;
 extern const f32 lbl_805DA518;
-int check_demo_mode__10TObjPlayerFv(void*);
 
 extern const f32 lbl_805DA4E0;
 
@@ -741,7 +740,7 @@ void TObjEnePanarms::init_state() {
     this->state_timer = (s32) this->m_478;
 }
 
-void TObjEnePanarms::try_activate() { if (check_demo_mode__10TObjPlayerFv(this) == 0) { set_state(1); } }
+void TObjEnePanarms::try_activate() { if (check_demo_mode() == 0) { set_state(1); } }
 
 void TObjEnePanarms::fn_800DE2B0() {
     shadow_enabled = 1; visible = 1; }
