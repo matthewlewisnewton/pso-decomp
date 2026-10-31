@@ -1,5 +1,8 @@
 """Local-only fixtures: no GitHub writes, original game files or compiler builds."""
 import copy
+import contextlib
+import io
+import os
 import hashlib
 import importlib.util
 import json
@@ -39,6 +42,10 @@ class LocalAPI:
 
 
 class LocalQueue(m.Queue):
+    def publication_destination(self):
+        with patch.object(m, 'REMOTE', str(self.api.remote)):
+            return super().publication_destination()
+
     # Deliberate test-only transport: production code has no local-remote override.
     def git(self, *args, **kw):
         if args == ('remote', 'get-url', 'origin'):
@@ -269,6 +276,137 @@ class QueueTests(unittest.TestCase):
         (self.q.repo / 'file').write_text('preserve local work')
         self.rejects('dirty_state_checkout', self.q.construct)
         self.assertEqual((self.q.repo / 'file').read_text(), 'preserve local work')
+
+    def test_omitted_review_base_cannot_import_unreviewed_commit(self):
+        hidden = self.batch['prs'][0]['head']
+        (self.author / 'selected').write_text('selected delta')
+        git(self.author, 'add', 'selected'); git(self.author, 'commit', '-m', 'selected')
+        git(self.author, 'push', 'origin', 'feature')
+        p = self.batch['prs'][0]
+        p.update(head=git(self.author, 'rev-parse', 'HEAD'), review_base=hidden)
+        p['review'].update(head=p['head'], base=hidden)
+        self.rejects('unreviewed_prerequisite', lambda: self.q.execute('plan'))
+        self.assertEqual(self.api.branch('main')['head'], self.batch['target'])
+
+    def wrong_remote(self):
+        wrong = self.root / 'wrong.git'
+        subprocess.run(['git', 'clone', '--bare', str(self.remote), str(wrong)], check=True, capture_output=True)
+        return wrong
+
+    def test_actual_pushurl_is_checked_not_fetch_url(self):
+        self.q.execute('plan')
+        wrong = self.wrong_remote()
+        git(self.q.repo, 'config', 'remote.origin.pushurl', str(wrong))
+        self.rejects('unsafe_publication_destination', self.q.publish)
+        self.assertEqual(git(wrong, 'rev-parse', 'main'), self.batch['target'])
+        self.assertEqual(self.api.branch('main')['head'], self.batch['target'])
+
+    def test_additional_push_destination_rejected(self):
+        self.q.execute('plan')
+        wrong = self.wrong_remote()
+        git(self.q.repo, 'config', '--add', 'remote.origin.pushurl', str(self.remote))
+        git(self.q.repo, 'config', '--add', 'remote.origin.pushurl', str(wrong))
+        self.rejects('unsafe_publication_destination', self.q.publish)
+        self.assertEqual(git(wrong, 'rev-parse', 'main'), self.batch['target'])
+
+    def test_effective_rewritten_push_destination_rejected(self):
+        self.q.execute('plan')
+        wrong = self.wrong_remote()
+        git(self.q.repo, 'config', 'url.' + str(wrong) + '.pushInsteadOf', str(self.remote))
+        self.assertEqual(git(self.q.repo, 'remote', 'get-url', '--push', 'origin'), str(wrong))
+        self.rejects('unsafe_publication_destination', self.q.publish)
+        self.assertEqual(git(wrong, 'rev-parse', 'main'), self.batch['target'])
+
+    def test_exact_old_lease_rejects_selected_ancestor_race(self):
+        self.q.execute('plan')
+        original = self.q.live_guard
+        def guard_then_race():
+            original()
+            git(self.author, 'push', 'origin', self.batch['prs'][0]['head'] + ':refs/heads/main')
+        self.q.live_guard = guard_then_race
+        self.rejects('publication_diverged', self.q.publish)
+        self.assertEqual(self.api.branch('main')['head'], self.batch['prs'][0]['head'])
+        self.assertNotEqual(self.api.branch('main')['head'], self.q.record['candidate'])
+        self.assertNotEqual(self.q.record['push_returncode'], 0)
+
+    def invoke_main_publication(self):
+        batch = self.root / 'batch.json'; batch.write_text(json.dumps(self.batch))
+        original_open = open
+        def private_lock(path, *args, **kwargs):
+            if str(path) == '/tmp/pso-mechanical-merge-queue.lock':
+                path = self.root / 'private.lock'
+            return original_open(path, *args, **kwargs)
+        out = io.StringIO()
+        with patch.object(m, 'Queue', return_value=self.q), \
+             patch.object(self.q, 'execute', side_effect=lambda *a: self.q.publish()), \
+             patch('builtins.open', private_lock), contextlib.redirect_stdout(out):
+            code = m.main(['execute', '--batch', str(batch), '--state', str(self.state)])
+        return code, json.loads(out.getvalue())
+
+    def test_postpush_api_outage_reports_uncertain_not_rejected(self):
+        self.q.execute('plan')
+        with patch.object(self.q, 'recover_publication', side_effect=m.Rejected('command_failed', 'API unavailable')):
+            code, output = self.invoke_main_publication()
+        self.assertEqual(code, 1)
+        self.assertEqual(output['state'], 'publication_uncertain')
+        self.assertEqual(output['candidate'], self.api.branch('main')['head'])
+        self.assertIn('Rerun', output['recovery'])
+        self.assertEqual(json.loads(self.q.journal.read_text())['state'], 'publication_uncertain')
+        self.assertTrue(self.q.recover_publication())
+
+    def test_proven_publication_is_durable_before_metadata_failure(self):
+        self.q.execute('plan')
+        original = self.api.prs
+        calls = []
+        def metadata_failure(spec):
+            calls.append(1)
+            if len(calls) > 1:
+                raise m.Rejected('command_failed', 'Metadata unavailable')
+            return original(spec)
+        with patch.object(self.api, 'prs', side_effect=metadata_failure):
+            code, output = self.invoke_main_publication()
+        self.assertEqual(code, 1)
+        self.assertEqual(output['state'], 'published_unverified')
+        self.assertEqual(output['published_commit'], self.api.branch('main')['head'])
+        self.assertEqual(json.loads(self.q.journal.read_text())['published_commit'], output['published_commit'])
+        self.assertTrue(self.q.recover_publication())
+
+    def test_candidate_root_cannot_shadow_unittest(self):
+        (self.author / 'configure.py').write_text('')
+        (self.author / 'tools/tests').mkdir(parents=True)
+        (self.author / 'tools/__init__.py').write_text('')
+        (self.author / 'tools/tests/test_fails.py').write_text(
+            'import unittest\nclass T(unittest.TestCase):\n def test_fails(self): self.fail("must run")\n')
+        git(self.author, 'add', 'configure.py', 'tools'); git(self.author, 'commit', '-m', 'trusted test')
+        target = git(self.author, 'rev-parse', 'HEAD')
+        (self.author / 'unittest.py').write_text('from pathlib import Path\nPath("shadow-ran").touch()\n')
+        git(self.author, 'add', 'unittest.py'); git(self.author, 'commit', '-m', 'shadow')
+        head = git(self.author, 'rev-parse', 'HEAD')
+        environment = self.root / 'environment.json'; environment.write_text('{}')
+        request = self.root / 'request.json'; output = self.root / 'result.json'
+        request.write_text(json.dumps({'checkout': str(self.author), 'state': str(self.state), 'target': target,
+            'candidate': head, 'tree': git(self.author, 'rev-parse', 'HEAD^{tree}'),
+            'environment': str(environment), 'policy': 'recovery', 'output': str(output)}))
+        result = subprocess.run([m.sys.executable, '-I', str(MODULE.with_name('merge_batch_validate.py')), str(request)],
+                                capture_output=True, text=True)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn('must run', result.stderr)
+        self.assertFalse((self.author / 'shadow-ran').exists())
+        self.assertFalse(output.exists())
+
+    def test_controlled_configure_and_child_checker_imports(self):
+        loader = importlib.util.spec_from_file_location('validator_fixture', MODULE.with_name('merge_batch_validate.py'))
+        validator = importlib.util.module_from_spec(loader); loader.loader.exec_module(validator)
+        (self.author / 'tools').mkdir()
+        (self.author / 'tools/__init__.py').write_text('')
+        (self.author / 'json.py').write_text('raise RuntimeError("root shadow ran")')
+        (self.author / 'tools/check.py').write_text('import json\nassert json.loads("1") == 1\n')
+        (self.author / 'configure.py').write_text('import json,subprocess,sys\nassert json.loads("1") == 1\n'
+                                                'subprocess.run([sys.executable,"tools/check.py"],check=True)\n')
+        launcher = validator.python_launcher(self.state, [self.author])
+        result = subprocess.run([str(launcher), 'configure.py'], cwd=self.author,
+                                env=dict(os.environ, PSO_QUEUE_PYTHON=str(launcher)), capture_output=True, text=True)
+        self.assertEqual(result.returncode, 0, result.stderr)
 
 
 if __name__ == '__main__':

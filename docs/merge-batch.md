@@ -2,8 +2,8 @@
 
 `tools/merge_batch.py` takes an explicit ordered selection from the coordinator,
 constructs the actual combined tree against the current personal-fork default
-branch, validates it, and publishes all merge commits with one normal atomic push.
-It only supports `matthewlewisnewton/pso-decomp`. It never forces a push, changes
+branch, validates it, and publishes all merge commits with one atomic expected-old ref update.
+It only supports `matthewlewisnewton/pso-decomp`. It never rewrites history, changes
 branch rules, deletes branches, submits approvals, or uploads build artifacts.
 
 The coordinator selects the batch and records independent exact-head review.
@@ -16,11 +16,18 @@ no conflict resolver or automatic switch to a weaker merge path.
 ## Publication and interruption contract
 
 The tool makes one local two-parent merge commit per PR, in the supplied order.
-The final ref update is one fast-forward push to the default branch. Thus a push
+The final ref update uses an exact expected-old SHA lease to the default branch,
+after independently proving the expected old commit is an ancestor of the candidate.
+This narrowly scoped `--force-with-lease=REF:EXPECTED_SHA` is compare-and-swap, not
+permission to discard history; unconditional force and divergent candidates are
+never allowed. A target move to even a selected ancestor rejects publication. Thus a push
 rejection publishes **no prefix of the batch**. Every original PR head remains an
 ancestor, allowing GitHub to recognize it as merged; metadata is verified afterward.
-The journal distinguishes `publishing`, `not_published`, `published_metadata_pending`
-and `published`. If the push response is lost, rerun the same command/state: it
+The journal distinguishes `publishing`, `publication_uncertain`, `not_published`,
+`published_unverified`, `published_metadata_pending` and `published`. A public error
+after an uncertain push includes the exact candidate and recovery action; it never
+claims rejection when publication may have happened. Proven remote ancestry is
+recorded durably before PR metadata is fetched. If the push response is lost, rerun the same command/state: it
 checks remote ancestry and PR metadata before retrying any mutation. It can report
 publication success with metadata still pending; do not submit duplicate merges.
 If the remote has diverged after an uncertain attempt, it rejects for investigation.
@@ -29,12 +36,16 @@ All CLI invocations serialize on `/tmp/pso-mechanical-merge-queue.lock`; do not 
 or replace that lock. The coordinator must pause other merge writers and freeze the
 selected PR heads for the short final publication phase. GitHub offers no transaction
 that atomically asserts multiple PR heads and updates the default ref. The tool
-rechecks every live head/base/check immediately before push, and normal fast-forward
-semantics reject a divergent target race, but cannot eliminate an external head
+rechecks every live head/base/check immediately before push, and the exact-SHA lease
+rejects every target change, but cannot eliminate an external PR-head
 update racing *after* the last read. This is a cooperative local queue, not a server
 side merge queue or a security sandbox. `execute` additionally requires the explicit
 `publication_freeze: true` attestation. Do not set it when that freeze is unavailable.
-Branch rules that require a different merge route cause rejection, never bypass.
+The effective `origin` push URLs (including pushurl and URL rewrites) are resolved
+immediately before publication; exactly one personal-fork URL is required. Extra
+or different destinations reject before any write. Client Git hooks are disabled
+for queue Git operations. Branch rules that require a different merge route cause
+rejection, never bypass.
 
 State directories are private, retained evidence. Do not share them or commit them:
 they contain local original inputs and build logs. Source publication is only the
@@ -83,8 +94,8 @@ exact PR head; queued self-hosted checks are not a pass. Select the actual manda
 hosted source checks; binary correctness comes from local full validation. The tool
 requires PRs to be ready, not drafts. The coordinator handles that transition after
 review. `base_sha` must match current GitHub metadata; `review_base` preserves the
-independent review boundary. Each base must already be an ancestor of the accumulated
-candidate; order dependencies explicitly. No hidden discovery broadens the batch.
+independent review boundary. Both the live base and the independent review base must already be ancestors of
+the accumulated candidate; order dependencies explicitly. No hidden discovery broadens the batch.
 
 A `recovery` batch requires no lost exact code/data/address coverage or source links,
 plus positive matched code/data or source-linked code/data gain across the whole
@@ -113,7 +124,13 @@ with separately reviewed invariants.
 Recovery batches may not change `configure.py` or anything in `tools/`: the existing
 check/build scripts must be byte-identical to the trusted target. This prevents a
 candidate from weakening its own harness. Land independently reviewed tooling as
-maintenance first. The harness checks:
+maintenance first. All child Python entry points use a pinned isolated launcher:
+stdlib unittest is loaded before the reviewed tools package, the candidate root
+is never an import directory, and configure/generated Ninja/check subprocesses
+use that same controlled launcher. Root modules such as `unittest.py` cannot
+shadow the harness. Candidate-local `.venv` interpreters are rejected for recovery.
+Build children inherit the legacy lock descriptor so interruption cannot release
+the gate while a compiler/build child is still running. The harness checks:
 
 - Syntax, synthetic tests, and changed-line whitespace.
 - Fresh baseline and candidate full builds and original DOL SHA1.

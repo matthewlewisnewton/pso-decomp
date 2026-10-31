@@ -177,7 +177,7 @@ class Queue:
         save(self.journal, self.record)
 
     def git(self, *args, env=None):
-        return run(['git', '-C', str(self.repo), *args], env=env)
+        return run(['git', '-c', 'core.hooksPath=/dev/null', '-C', str(self.repo), *args], env=env)
 
     def live_guard(self):
         evidence(self.spec)
@@ -203,6 +203,10 @@ class Queue:
             # An explicit ordered batch can include structural bases, but never omit one.
             self.git('merge-base', '--is-ancestor', pr['base_sha'], current)
             self.git('merge-base', '--is-ancestor', pr['review_base'], pr['head'])
+            covered = subprocess.run(['git', '-C', str(self.repo), 'merge-base', '--is-ancestor',
+                                      pr['review_base'], current], capture_output=True)
+            require(covered.returncode == 0, 'unreviewed_prerequisite',
+                    {'pr': pr['number'], 'review_base': pr['review_base'], 'accumulated': current})
             merged = subprocess.run(['git', '-C', str(self.repo), 'merge-tree', '--write-tree', current, pr['head']],
                                     text=True, capture_output=True)
             require(merged.returncode == 0, 'conflict', {'pr': pr['number'], 'diagnostic': merged.stdout[-2000:]})
@@ -236,7 +240,8 @@ class Queue:
         # Validator code is supplied by the operator, never by candidate content.
         with (self.state / 'validator.log').open('a') as log:
             result = subprocess.run([sys.executable, '-I', str(validator), str(request)], text=True,
-                                    stdout=log, stderr=subprocess.STDOUT)
+                                    stdout=log, stderr=subprocess.STDOUT,
+                                    pass_fds=(self.lock_fd,) if hasattr(self, 'lock_fd') else ())
         require(result.returncode == 0 and output.is_file(), 'failed_build_or_checks', {'returncode': result.returncode, 'log': str(self.state / 'validator.log')})
         require(digest(validator) == expected_hash and digest(environment) == self.spec['environment_sha256'],
                 'changed_validator', 'Harness/environment changed during validation')
@@ -251,9 +256,14 @@ class Queue:
         self.git('fetch', '--no-tags', 'origin', current)
         result = subprocess.run(['git', '-C', str(self.repo), 'merge-base', '--is-ancestor', self.record['candidate'], current], capture_output=True)
         if result.returncode != 0:
+            require(not self.record.get('published_commit'), 'publication_diverged',
+                    'Previously verified publication is no longer reachable; investigate, never republish blindly')
             require(current == self.spec['target'], 'publication_diverged', {'remote': current, 'candidate': self.record['candidate']})
             self.write(state='not_published', remote_head=current)
             return False
+        # Persist proven publication before any fallible metadata API lookup.
+        self.write(state='published_unverified', remote_head=current,
+                   published_commit=self.record['candidate'])
         prs = self.api.prs(self.spec)
         pending = [p['number'] for p in self.spec['prs'] if not prs[p['number']]['merged']]
         self.write(state='published_metadata_pending' if pending else 'published', remote_head=current,
@@ -261,19 +271,38 @@ class Queue:
                    pr_statuses={str(n): {'merged': p['merged'], 'merge_commit': p['merge_commit']} for n, p in prs.items()})
         return True
 
+    def publication_destination(self):
+        # get-url --push --all resolves pushurl and url.* rewrites. Inspect the
+        # effective write destinations, not merely the fetch URL. No extra target.
+        urls = self.git('remote', 'get-url', '--push', '--all', 'origin').splitlines()
+        require(urls == [REMOTE], 'unsafe_publication_destination',
+                'Expected exactly the personal-fork publication URL; pushurl/rewrite/additional destination rejected')
+        return urls[0]
+
     def publish(self):
         self.live_guard()
-        # No force, admin bypass, branch deletion, or approval submission.
+        self.publication_destination()
+        # The lease is a narrowly scoped expected-old compare-and-swap. Prove
+        # ancestry independently so this operation cannot discard any history.
+        self.git('merge-base', '--is-ancestor', self.spec['target'], self.record['candidate'])
+        require(self.git('rev-parse', self.record['candidate'] + '^{tree}') == self.record['tree'],
+                'candidate_changed', 'Candidate tree changed before publication')
         self.write(state='publishing')  # fsync before any remote mutation
-        result = subprocess.run(['git', '-C', str(self.repo), 'push', '--atomic', 'origin',
-                                 self.record['candidate'] + ':refs/heads/' + self.spec['default_branch']],
-                                text=True, capture_output=True)
+        # Re-resolve immediately before the write; do not use a literal URL that
+        # can have different pushInsteadOf semantics from an explicit pushurl.
+        self.publication_destination()
+        ref = 'refs/heads/' + self.spec['default_branch']
+        result = subprocess.run(['git', '-c', 'core.hooksPath=/dev/null', '-C', str(self.repo),
+                                 'push', '--atomic', '--force-with-lease=' + ref + ':' + self.spec['target'],
+                                 'origin', self.record['candidate'] + ':' + ref],
+                                text=True, capture_output=True,
+                                pass_fds=(self.lock_fd,) if hasattr(self, 'lock_fd') else ())
         self.write(push_returncode=result.returncode, push_diagnostic=result.stderr[-2000:])
         # Even an error can be an interrupted response after successful publication.
         require(self.recover_publication(), 'publication_rejected', self.record.get('push_diagnostic'))
 
     def execute(self, mode, validator=None, validator_hash=None, environment=None):
-        if self.record['state'] in ('publishing', 'published', 'published_metadata_pending'):
+        if self.record['state'] in ('publishing', 'publication_uncertain', 'published_unverified', 'published', 'published_metadata_pending'):
             if self.recover_publication():
                 return self.record
         self.live_guard()
@@ -313,15 +342,25 @@ def main(argv=None):
         with open('/tmp/pso-mechanical-merge-queue.lock', 'a') as lock:
             fcntl.flock(lock, fcntl.LOCK_EX)
             queue = Queue(spec, state)
+            queue.lock_fd = lock.fileno()
             result = queue.execute(args.mode, args.validator, args.validator_sha256, args.environment)
         print(json.dumps(result, indent=2))
         return 0
-    except (Rejected, OSError, ValueError, KeyError) as exc:
+    except (Rejected, OSError, ValueError, KeyError, TypeError, AttributeError) as exc:
         error = {'state': 'rejected', 'code': getattr(exc, 'code', 'invalid_input'),
                  'detail': getattr(exc, 'detail', str(exc))}
         if queue:
-            # Preserve publishing state for uncertain recovery; errors are additive.
-            queue.write(last_error=error)
+            state = queue.record.get('state')
+            if state in ('publishing', 'publication_uncertain', 'published_unverified',
+                         'published_metadata_pending', 'published'):
+                error.update(state='published_unverified' if queue.record.get('published_commit')
+                             else 'publication_uncertain', candidate=queue.record.get('candidate'),
+                             published_commit=queue.record.get('published_commit'),
+                             remote_head=queue.record.get('remote_head'),
+                             recovery='Rerun the identical manifest and state directory to inspect remote ancestry and metadata; do not submit a new merge')
+                queue.write(state=error['state'], last_error=error)
+            else:
+                queue.write(last_error=error)
         print(json.dumps(error, indent=2))
         return 1
 
