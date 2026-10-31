@@ -55,7 +55,7 @@ struct VObj_80178EF8_80178BC0 : Base_80178EF8_80178BC0 {
 #undef VM
 };
 
-f32 TOTrap::scale_by_table_value(f32 farg0) {
+f32 TOTrap::vfunc_87(f32 farg0) {
     u32 v[4];
     v[0] = trap_scale_factor_table[0];
     v[1] = trap_scale_factor_table[1];
@@ -370,30 +370,28 @@ s32 TOTrap::try_start_action(s32 arg1, s32) {
     return (u8) (arg1 != *(s32 *)&this->target);
 }
 
-u8 TOTrap__sub_801792CC(u8 *arg0, s32 arg1) {
-    return (u8) (arg1 != *(s32 *)((s8 *)arg0 + 0x2A8));
+s32 TOTrap::roll_physical_accuracy(void *source, s32, f32) {
+    return source != target;
 }
 
-u8 TOTrap__sub_801792E4(u8 *arg0, s32 arg1) {
-    return (u8) (arg1 != *(s32 *)((s8 *)arg0 + 0x2A8));
+s32 TOTrap::select_melee_contact_body(void *source, f32) {
+    return source != target;
 }
 
-u8 TOTrap__sub_801792FC(u8 *arg0, s32 arg1) {
-    return (u8) (arg1 != *(s32 *)((s8 *)arg0 + 0x2A8));
+int TOTrap::calc_distance_accuracy_penalty(void *source, void *, void *, f32) {
+    return source != target;
 }
 
-f32 TOTrap::check_trigger_range(u32 arg1) {
-    struct VObj_80179314_801792AC *arg0 = (struct VObj_80179314_801792AC *)this;
-    if (arg1 != *(u32 *)((s8 *)arg0 + 0x2A8)) {
-        arg0->m20(0, 1.0f);
+f32 TOTrap::receive_direct_attack(void *source, DirectAttackPayload, void *, s32, s32) {
+    if (source != target) {
+        receive_physical_attack(NULL, 1.0f);
     }
     return 0.0f;
 }
 
-f32 TOTrap::get_scale(u32 arg1) {
-    struct VObj_80179358_801792AC *arg0 = (struct VObj_80179358_801792AC *)this;
-    if (arg1 != *(u32 *)((s8 *)arg0 + 0x2A8)) {
-        arg0->m20(0, 1.0f);
+f32 TOTrap::receive_weapon_special_attack(void *source, void *) {
+    if (source != target) {
+        receive_physical_attack(NULL, 1.0f);
     }
     return 0.0f;
 }
