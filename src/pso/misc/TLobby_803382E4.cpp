@@ -4,6 +4,7 @@
 #include "pso/misc/TLobby_803382E4.h"
 #include "pso/unk/text_800F7DAC.h"
 #include "pso/render/render_util.h"
+#include "pso/render/SpriteDescriptor.h"
 #include "pso/unk/text_803DA798.h"
 #include "pso/unk/text_803E2D70.h"
 
@@ -101,16 +102,12 @@ void *lbl_804EF344[24] = {
     (void *)0x0, (void *)0xffffffff, (void *)0x441c0000, (void *)0x43f00000,
     (void *)0x3f000000, (void *)0x3f800000, (void *)0x3f800000, (void *)0xffffffff,
 };
-void *lbl_804EF3A4[15] = {
-    (void *)0x400040, (void *)0x200020, (void *)0x0, (void *)0x1000100,
-    (void *)0x20000, (void *)0x400040, (void *)0x200020, (void *)0x0,
-    (void *)0x1000100, (void *)0x20000, (void *)0x400040, (void *)0x200020,
-    (void *)0x0, (void *)0x1000100, (void *)0x20000,
+SpriteFrame lbl_804EF3A4[3] = {
+    { 64, 64, 32, 32, 0, 0, 256, 256, 2, 0 },
+    { 64, 64, 32, 32, 0, 0, 256, 256, 2, 0 },
+    { 64, 64, 32, 32, 0, 0, 256, 256, 2, 0 },
 };
-void *lbl_804EF3E0[8] = {
-    (void *)0x43f80000, (void *)0x43d00000, (void *)0x0, (void *)0x3f800000,
-    (void *)0x3f800000, (void *)0x0, (void *)&lbl_804EF1DC, (void *)&lbl_804EF3A4,
-};
+SpriteDescriptor lbl_804EF3E0 = { 496.0f, 416.0f, 0.0f, 1.0f, 1.0f, 0, &lbl_804EF1DC, lbl_804EF3A4 };
 
 #define lbl_804EF1B8 (*(G_80338534 *)lbl_804EF1B8)
 #define lbl_804EF1DC ((s32 *)lbl_804EF1DC)
@@ -126,14 +123,12 @@ static inline s32 step_803382E4(Fx_803382E4 *fx) {
 }
 #pragma fp_contract on
 void TLobby__sub_803382E4(void) {
-    Fx_803382E4 *fx;
     f32 v;
     f32 alpha;
 
     if (lobby_request_flags & 2) {
-        fx = (Fx_803382E4 *)(lbl_804EF3E0);
-        fx->angle += 0x16C;
-        v = lbl_805DF9A4 + cos_table_lookup(fx->angle);
+        lbl_804EF3E0.rotation += 0x16C;
+        v = lbl_805DF9A4 + cos_table_lookup(lbl_804EF3E0.rotation);
         alpha = v * lbl_805DF9A8 + lbl_805DF9A0;
         set_perspective_projection_from_fov(0x3555, lbl_805DF9AC, lbl_805DF9A4, lbl_805DF9B0, lbl_805DF9A8, v);
         set_depth_buffer_settings_2();
@@ -150,7 +145,7 @@ void TLobby__sub_803382E4(void) {
         draw_projected_textured_strip(lbl_804EF344, 4);
         TLobby::reset_player_state();
         set_additive_blend();
-        ((TObjPlayer *)lbl_804EF3E0)->draw_compass_sprite(2, (__cvt_fp2unsigned(lbl_805DF9B4 * alpha) << 24) | 0xFFFFFF, 0x21, lbl_805DF9A0);
+        draw_compass_sprite__10TObjPlayerFlllf(&lbl_804EF3E0, 2, (__cvt_fp2unsigned(lbl_805DF9B4 * alpha) << 24) | 0xFFFFFF, 0x21, lbl_805DF9A0);
         set_default_alpha_blend();
         TCameraCtrl__sub_80068EF0();
         TParticleCtrl::end_effect_render();
