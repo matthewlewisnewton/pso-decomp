@@ -5798,7 +5798,7 @@ u8 *TBoss1Dragon__ct(u8 *arg0, void *arg1, void *arg2) {
     }
     invoke_initialization_hook__9TObjEneDDFPv(arg0, arg2);
     F_29DE4(arg0, s32, 0x3C0) = 0;
-    if (((TObjEnemy *)arg0)->exchange_object_state((s32)sp8, (s16)1) != 0 && (sp8[0] & 0x12008) == 0x12008) {
+    if (((TObjEnemy *)arg0)->exchange_object_state(sp8, (s16)1) != 0 && (sp8[0] & 0x12008) == 0x12008) {
         F_29DE4(arg0, s32, 0x3C0) |= 0x40;
     }
     ((TObjEneDD *)arg0)->init_position_vectors();
@@ -6330,17 +6330,17 @@ void TObjPlayer::bswap_6x12_packet() { ((G_ClientIDHeader *)this)->bswap(); bswa
 void TObjPlayer::set_type_dragon() { *(u8*)((char*)this + 0x0) = 18; *(u8*)((char*)this + 0x1) = 5; }
 void TObjPlayer::bswap_dragon_boss_fields() { ((G_ClientIDHeader *)this)->bswap(); bswap_16((u16 *)((char*)this + 0x4)); bswap_16((u16 *)((char*)this + 0x6)); bswap_32((u32 *)((char*)this + 0x8)); }
 void TObjPlayer::bswap_stats() { ((G_ClientIDHeader *)this)->bswap(); bswap_16((u16 *)((char*)this + 0x4)); bswap_16((u16 *)((char*)this + 0x6)); bswap_32((u32 *)((char*)this + 0x8)); }
-s32 TObjEnemy::exchange_object_state(s32 arg1, s16 arg2) {
+s32 TObjEnemy::exchange_object_state(void *state, s16 operation) {
     s16 temp_r31;
     temp_r31 = *(s16 *)&this->set_index;
     if ((temp_r31 < 0) || (temp_r31 > 0xB4F)) {
         return 0;
     }
-    if (arg2 == 0) {
-        ((TLobby *)(TLobby__data_805D6144 + (temp_r31 * 0xC)))->copy_header((void *)arg1);
+    if (operation == 0) {
+        ((TLobby *)(TLobby__data_805D6144 + (temp_r31 * 0xC)))->copy_header(state);
     }
-    if (arg2 == 1) {
-        ((TLobby *)arg1)->copy_header((void *) (TLobby__data_805D6144 + (temp_r31 * 0xC)));
+    if (operation == 1) {
+        ((TLobby *)state)->copy_header((void *) (TLobby__data_805D6144 + (temp_r31 * 0xC)));
     }
     return 1;
 }

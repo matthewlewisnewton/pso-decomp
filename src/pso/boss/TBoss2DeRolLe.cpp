@@ -5801,7 +5801,7 @@ void *TBoss2DeRolLe__ct(void *arg0, void *arg1, void *arg2) {
     self->f3C0 = 0;
     {
 
-        if (((TObjEnemy *)self)->exchange_object_state((s32)&locals.flags, (s16)1) != 0 && (locals.flags & 0x12008) == 0x12008) {
+        if (((TObjEnemy *)self)->exchange_object_state(&locals.flags, (s16)1) != 0 && (locals.flags & 0x12008) == 0x12008) {
             self->f3C0 |= 0x8000;
         }
     }

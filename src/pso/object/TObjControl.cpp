@@ -427,7 +427,6 @@ void obj_setFlags30(void *, s32);
 s32 is_split_screen();
 s32 get_current_floor();
 void queue_destruction__7TObjectFv(void *arg0);
-s32 exchange_object_state__9TObjEnemyFls(void *, void *, int);
 void pause_update__7TObjectFv(void *arg0);
 s32 is_quest_active();
 s32 is_flag_set__6TLobbyFv();
@@ -648,7 +647,7 @@ void TObjEnemy::send_6x0A_enemy_state(void *state_in) {
     u32 new_flags;
     if (((Pkt_800F65D0 *)state_in) != NULL) {
         ((TLobby *)(&state))->copy_header(((Pkt_800F65D0 *)state_in));
-    } else if (this->exchange_object_state((s32)&state, 1) == 0) {
+    } else if (this->exchange_object_state(&state, 1) == 0) {
         return;
     }
     init_6x0A_enemy_state_packet(&msg);
@@ -674,7 +673,7 @@ s32 TObjEnemy::vfunc_74(s32 kind) {
     s32 ret;
     ret = 0;
     if (this->entity_id >= 0x1000 && this->entity_id < 0x4000) {
-        exchange_object_state__9TObjEnemyFls(this, &pkt, 1);
+        exchange_object_state(&pkt, 1);
         pkt.diff = this->hpmax - this->hp;
         pkt.id = this->actorFlags;
         switch (kind) {
@@ -689,7 +688,7 @@ s32 TObjEnemy::vfunc_74(s32 kind) {
             pkt.bv = lbl_805DA8C0 * ((f32)TObjPlayer__sub_8001943C(this, 3) / lbl_805DA8C4 - lbl_805DA8C8);
             break;
         }
-        ret = exchange_object_state__9TObjEnemyFls(this, &pkt, 0);
+        ret = exchange_object_state(&pkt, 0);
         if (ret != 0) {
             send_6x0A_enemy_state(&pkt);
         }
