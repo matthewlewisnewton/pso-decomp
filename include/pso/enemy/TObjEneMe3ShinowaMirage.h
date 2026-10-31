@@ -1,3 +1,4 @@
+struct NJS_OBJECT;
 #ifndef PSO_ENEMY_TOBJENEME3SHINOWAMIRAGE_H
 #define PSO_ENEMY_TOBJENEME3SHINOWAMIRAGE_H
 
@@ -20,7 +21,7 @@ struct TObjEneMe3ShinowaMirage : public TObjEneMe3Shinowa {
     u16 m_42c;
     u8 unk_42e[2];
     f32 m_430;
-    static void advance_camera_ctrl_step();
+    static void advance_camera_ctrl_step(NJS_OBJECT *);
     void state_break_apart(s32 arg1);
     void state_cast_support(s32 arg1);
     void state_chase_target(s32 arg1);

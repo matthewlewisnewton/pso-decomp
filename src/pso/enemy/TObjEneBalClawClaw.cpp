@@ -137,7 +137,6 @@ void calc_velocity_toward_destination(void *self, Vec_80090850 pos, Vec_80090850
 void update_move_to_target__18TObjEneBalClawClawFPv(Claw_80090850 *self);
 int update_if_active__15TObjEnemyCustomFl(void*, int);
 void move_along_ground_avoiding_walls__15TObjEnemyCustomF3Vecff(void *, Vec_80090504, void *, f32, f32);
-s32 update_collisions__10TObjPlayerFv(void *);
 void TObjEneBalClawClaw__sub_80090824(void);
 void vfunc_58__18TObjEneBalClawClawFv(void);
 
@@ -165,7 +164,7 @@ void TObjEneBalClawClaw::update_chase_state() {
         turn_toward_direction(*(s32 *)((s8 *)this->movementParameters + 8), &movement_velocity);
         advance_animation();
         apply_actor_gravity((TObjEnemy *)this, (s32 *)(0), (0.0f));
-        update_collisions__10TObjPlayerFv(this);
+        ((TObjCollidable *)(this))->update_collisions();
         break;
     }
 }
@@ -446,7 +445,6 @@ void TObjEneBalClawClaw::sub_80090D3C() {
 
 
 #define reset_active_state__18TObjEneBalClawClawFPv (*(s32 (*)(void *, s32, s32))&reset_active_state__18TObjEneBalClawClawFPv)
-#define update_collisions__10TObjPlayerFv (*(s32 (*)(void *))&update_collisions__10TObjPlayerFv)
 #define update_enemy_wander_move (*(s32 (*)(void *, void *, int, void *, f32))&update_enemy_wander_move)
 #define update_if_active__15TObjEnemyCustomFl (*(s32 (*)(void *, int))&update_if_active__15TObjEnemyCustomFl)
 #define clear_attack_flag__14TObjEneBalClawFv (*(s32 (*)(void *))&clear_attack_flag__14TObjEneBalClawFv)
@@ -678,7 +676,7 @@ void TObjEneBalClawClaw__sub_80090ECC(Claw_80090ECC *self) {
     }
     ((TObjMotion *)self)->advance_animation();
     apply_actor_gravity((TObjEnemy *)((u8 *)self), (s32 *)(0), (0.0f));
-    update_collisions__10TObjPlayerFv(self);
+    ((TObjCollidable *)(self))->update_collisions();
 }
 
 void TObjEneBalClawClaw__sub_80091134(Claw_80091134 *self) {
@@ -722,7 +720,7 @@ void TObjEneBalClawClaw__sub_80091200(Claw_80091200 *self) {
         self->vel.x *= (0.9f);
         self->vel.z *= (0.9f);
         apply_actor_gravity((TObjEnemy *)((u8 *)self), (s32 *)(0), (0.0f));
-        update_collisions__10TObjPlayerFv(self);
+        ((TObjCollidable *)(self))->update_collisions();
         play_persistent_sound(0x4003B235, (s32)self, (u32)((u8 *)self + 0x38), 0, 0);
         if (self->fB4 != 8) {
             self->f30 &= ~0x200;
@@ -765,7 +763,7 @@ void update_chase__18TObjEneBalClawClawFPv(Claw_80091354 *self) {
         ((TObjEnemy *)self)->turn_toward_direction(self->info->f8, (Vec *)((u8 *)self + 0x308));
         ((TObjMotion *)self)->advance_animation();
         apply_actor_gravity((TObjEnemy *)((u8 *)self), (s32 *)(0), (0.0f));
-        update_collisions__10TObjPlayerFv(self);
+        ((TObjCollidable *)(self))->update_collisions();
         break;
     }
     case -1:
