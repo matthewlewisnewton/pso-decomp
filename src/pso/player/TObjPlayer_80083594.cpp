@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_80083594.h"
 #include "pso/unk/text_803D96A8.h"
@@ -44,7 +45,7 @@ void TObjPlayer::setup_tev_stage() {
         GXSetTevOrder(1, 1, 1, 4);
         GXSetTevOp(1, 2);
         TObjPlayer::set_tex_coord_gen(1, 0, 0, 0x1E);
-        TObjFish::set_global_param((s32)shared_capture_texture_list);
+        set_current_texture_list((GinjaTextureList *)(shared_capture_texture_list));
         load_list_texture(0, 0, 0, 1);
         model_render_flags |= 0x80000;
         set_ginja_post_tev_stage_count(1);
@@ -61,7 +62,7 @@ void setup_particle_tev(s32 arg0) {
             GXSetTevOp(1, 1);
         }
         TObjPlayer::set_tex_coord_gen(1, 0, 0, 0x1E);
-        TObjFish::set_global_param((s32)shared_capture_texture_list);
+        set_current_texture_list((GinjaTextureList *)(shared_capture_texture_list));
         load_list_texture(0, 0, 0, 1);
         model_render_flags |= 0x80000;
         set_ginja_post_tev_stage_count(1);

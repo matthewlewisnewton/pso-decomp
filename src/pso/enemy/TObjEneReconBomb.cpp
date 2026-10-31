@@ -1,3 +1,5 @@
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/math/MatrixTransforms.h"
 #include "pso/object/TObject_80019A50.h"
@@ -91,7 +93,7 @@ s32 fn_8031B618(Obj_8031B618 *arg0);
 int get_player_data__10TObjPlayerFi(int a0);
 u32 csnVector(void *, void *, int);
 s32 project_actor_to_ground(void *, void *, void *);
-s32 play_sound_effect(s32, void *, int, int);
+
 s32 TObjEneRecon__sub_8031C250(u32);
 s32 vec3_add_to(void *, void *);
 extern s32 lbl_805D5868;
@@ -155,7 +157,7 @@ void TObjEneReconBomb::render() {
     push_matrix();
     translate_matrix(0, (f32) (*(f32 *)((s8 *)arg0 + 0x38)), (f32) ((2.0f) + *(f32 *)((s8 *)arg0 + 0x3C)), (f32) (*(f32 *)((s8 *)arg0 + 0x40)));
     rotate_matrix_zyx(0, (*(s32 *)&this->rotation_x), (this->rotation_y), (this->rotation_z));
-    TObjFish::set_global_param(temp_r30);
+    set_current_texture_list((GinjaTextureList *)(temp_r30));
     draw_chunk_object((void *)bml_model);
     pop_matrix();
     push_matrix();
@@ -225,7 +227,7 @@ void TObjEneReconBomb::run_task() {
         break;
     case 3:
     default:
-        play_sound_effect(TObjEneRecobox::remap_area_sound_id(0x4003A80B), &arg0->pos, 0, 0);
+        play_sound_effect((s32)(TObjEneRecobox::remap_area_sound_id(0x4003A80B)), (const Vec *)(&arg0->pos), 0, 0);
         spawn_particle_effect_with_flags(&arg0->pos, 0x45, 0x40);
         spawn_particle_effect_with_flags(&arg0->pos, 0x46, 0x40);
         for (i = 0; i < lbl_805D5868; i++) {

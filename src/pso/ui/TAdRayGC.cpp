@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "pso/TAdRayGC.h"
 #include "pso/ui/TAdRayGC.h"
 
@@ -29,7 +30,7 @@ void TAdRayGC::draw_ray_quads(s32 arg0, u8 *arg1, void *arg2, s32 arg3) {
         p = (E_8029BCB4 *)arg1;
         for (i = 0; i < 2; i++) {
             begin_screen_draw(1);
-            TObjFish::set_global_param((s32)((void *) TAdRayGC__ray_texture_list));
+            set_current_texture_list((GinjaTextureList *)(((void *) TAdRayGC__ray_texture_list)));
             set_draw_texture_and_color(p, arg2);
             draw_textured_quad_at_depth(&TAdRayGC_ray_quad_table[i], lbl_805DDD10);
             TWindowSubStatusDisp::get_player();
@@ -39,7 +40,7 @@ void TAdRayGC::draw_ray_quads(s32 arg0, u8 *arg1, void *arg2, s32 arg3) {
         p = (E_8029BCB4 *)(arg1 + 0x14);
         for (i = 2; i < 4; i++) {
             begin_screen_draw(1);
-            TObjFish::set_global_param((s32)((void *) TAdRayGC__ray_texture_list));
+            set_current_texture_list((GinjaTextureList *)(((void *) TAdRayGC__ray_texture_list)));
             set_draw_texture_and_color(p, arg2);
             draw_textured_quad_at_depth(&TAdRayGC_ray_quad_table[i], lbl_805DDD10);
             TWindowSubStatusDisp::get_player();

@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC_802DCD14.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC.h"
@@ -15,7 +16,7 @@ s32 TAdPlyPltAnimCtrlGC__sub_80355148();
 extern const f32 lbl_805DE89C;
 s32 queue_destruction__7TObjectFv(void *);
 s32 TWindowShortListCtrl__check_controller_button(void *, s32, s32);
-s32 play_sound_effect(s32, s32, s32, s32);
+
 s32 get_instance__22TAdMultiPlyChrSelectGCFv(s32);
 extern s8 controller_physical_port_bank[];
 s32 clear_entries__18TAdChrMoveEffectGCFv();

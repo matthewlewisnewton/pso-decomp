@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TPhotonRainbow.h"
 #include "pso/unk/text_803D96A8.h"
@@ -26,14 +27,14 @@ void TPhotonRainbow::render() {
     this->texlist = (s32) this->m_90;
     post_translate_matrix((u8 *)&this->position);
     rotate_matrix_y(0, (s32) this->rotation_y / 2);
-    TObjFish::set_global_param(this->texlist);
+    set_current_texture_list((GinjaTextureList *)(this->texlist));
     draw_chunk_object((void *)this->m_98);
     pop_matrix();
     push_matrix();
     this->texlist = (s32) this->m_94;
     post_translate_matrix((u8 *)&this->position);
     rotate_matrix_y(0, 0x10000 - this->rotation_y);
-    TObjFish::set_global_param(this->texlist);
+    set_current_texture_list((GinjaTextureList *)(this->texlist));
     draw_chunk_object((void *)this->m_9c);
     pop_matrix();
     TParticleCtrl::end_effect_render();

@@ -1,3 +1,5 @@
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TKeyBoardControl_803DE9C4.h"
 #include "pso/misc/TWindowSubStatusDisp_803DEE6C.h"
@@ -164,7 +166,7 @@ extern s32 lbl_805D67D4;
 extern const f32 lbl_805DE57C;
 extern const f32 lbl_805DE580;
 s32 TWindowShortListCtrl__check_controller_button(void *, int);
-s32 play_sound_effect(int, void *, int, int);
+
 s32 TAdMultiPlyChrSelectGC__sub_802C5F1C(void *, int);
 extern u8 controller_physical_port_bank[];
 extern Jump_802C5C84 multi_chr_select_cursor_jump_table[][5];
@@ -213,7 +215,7 @@ void TAdMultiPlyChrSelectGC__sub_802C50EC(s32 arg0) {
     for (i = 0; i < 4; i++) {
         if (TAdMultiPlyChrSelectGC__data_804E0AE0[i] == 1) {
             begin_screen_draw(1);
-            TObjFish::set_global_param(lbl_805D67D0);
+            set_current_texture_list((GinjaTextureList *)(lbl_805D67D0));
             set_draw_texture_and_color(0, ((s32)(lbl_805DE564 * TAdMultiPlyChrSelectGC__data_804E0AF0[i] + lbl_805DE560) << 24) | 0xFFFFFF);
             q.u0 = self->quad[i + 4][0].u0;
             q.u1 = self->quad[i + 4][0].u1;
@@ -240,7 +242,7 @@ void TAdMultiPlyChrSelectGC__sub_802C522C(s32 arg0) {
         if (TAdMultiPlyChrSelectGC__data_804E0AE0[i] == 1) {
             s32 alpha = (s32)(lbl_805DE564 * TAdMultiPlyChrSelectGC__data_804E0AF0[i] + lbl_805DE560);
             begin_screen_draw(1);
-            TObjFish::set_global_param(lbl_805D67D0);
+            set_current_texture_list((GinjaTextureList *)(lbl_805D67D0));
             set_draw_texture_and_color(0, (alpha << 24) | 0xFFFFFF);
             draw_textured_quad_at_depth(&self->quad[i + 4][0].x, lbl_805DE570);
             TWindowSubStatusDisp::get_player();
@@ -289,7 +291,7 @@ void TAdMultiPlyChrSelectGC::draw_selection_cursors() {
                 set_color_blending_mode(0, 8);
                 set_color_blending_mode(1, 0xA);
                 begin_screen_draw(1);
-                TObjFish::set_global_param(lbl_805D67D4);
+                set_current_texture_list((GinjaTextureList *)(lbl_805D67D4));
                 set_draw_texture_and_color(0, self->sel[i][j]);
                 draw_textured_quad_at_depth(self->r324, lbl_805DE580);
                 draw_textured_quad_at_depth(self->r344, lbl_805DE580);
@@ -449,7 +451,7 @@ void TAdMultiPlyChrSelectGC::move_cursor(s32 x_, s32 y_, s32 dx, s32 dy, s32 dep
     if (TAdMultiPlyChrSelectGC__data_804E0A68[ny][nx] == 1) {
         x += dx;
         y += dy;
-        play_sound_effect(0x54100, NULL, 0, 0);
+        play_sound_effect(0x54100, (const Vec *)(NULL), 0, 0);
         self->f4EC = x - 1;
         self->f4AC[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC] = y - 1;
         return;

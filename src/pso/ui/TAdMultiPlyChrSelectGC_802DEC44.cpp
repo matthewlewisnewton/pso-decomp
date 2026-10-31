@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC_802DEC44.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC.h"
@@ -20,7 +21,7 @@ struct RecoveredGlobal_802DEDA8_lbl_8050E3B8 {
 extern "C" {
 s32 TWindowShortListCtrl__check_controller_button(void *, s32);
 s32 is_slot_active__23TAdSinglePlyChrSelectGCFUi();
-s32 play_sound_effect(s32, s32, s32, s32);
+
 s32 TAdMultiPlyChrSelectGC__sub_802C5A44(int, void *, int);
 s32 is_multiplayer_character_slot_selected(int);
 s32 TAdMultiPlyChrSelectGC__sub_802C6558();

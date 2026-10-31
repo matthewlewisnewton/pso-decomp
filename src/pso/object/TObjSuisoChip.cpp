@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 // The seabed tanks: the set object TObjSeabedSuiso_CH, the breakable tank
 // TObjSeabedSuisoBrakable and its debris chip TObjSuisoChip. The tank
 // resources they share are loaded by TObjSeabedSuisoBrakable.cpp.
@@ -203,7 +204,7 @@ void TObjSeabedSuiso_CH::render() {
     if (update_object_view_visibility(view_range, model_radius) != 0) {
         TParticleCtrl::end_effect_render();
         update_state();
-        TObjFish::set_global_param(TObjSeabedSuisoBrakable::get_texlist(0));
+        set_current_texture_list((GinjaTextureList *)(TObjSeabedSuisoBrakable::get_texlist(0)));
         push_matrix();
         post_translate_matrix(&position.x);
         rotate_matrix_y(NULL, rotation_y);

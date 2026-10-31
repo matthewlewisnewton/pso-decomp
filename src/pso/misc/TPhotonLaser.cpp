@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/system/vector.h"
 #include "pso/object/TObjMotion.h"
@@ -66,7 +67,7 @@ extern s32 __vt__12TPhotonLaser[];
 extern const char *lbl_805D34F0;
 Laser_801AC36C *TPhotonLaser__ct(Laser_801AC36C *self, Params_801AC36C *p, void *parent, s16 arg3);
 void queue_destruction__7TObjectFv(void *arg0);
-void *spawn_particle_effect(void *pos, s32 id);
+
 void *find_entity_by_id(u16);
 void vec3_add_to(void *, void *);
 void rotate_vector_by_matrix(int, void *, void *);
@@ -115,7 +116,7 @@ void run_task__12TPhotonLaserFv(Laser_801AC17C *o) {
         o->f34C.x = 0.0f;
         o->f34C.y = 0.0f;
         o->f34C.z = 0.0f;
-        spawn_particle_effect(&o->f340, 0x13D);
+        spawn_particle_effect((const Vec *)(&o->f340), 0x13D);
         queue_destruction__7TObjectFv(o);
     }
 }

@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/object/TObjMotion.h"
@@ -169,7 +170,7 @@ void TObjDoorJung::render() {
                 free_children__12TObjDoorJungFPv(TObjDoorJung__child_table[j], lbl_805D5BE8);
             }
         }
-        TObjFish::set_global_param((s32)((void *)lbl_805D5BD4));
+        set_current_texture_list((GinjaTextureList *)(((void *)lbl_805D5BD4)));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);

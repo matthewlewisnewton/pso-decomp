@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/TMainTask.h"
@@ -90,12 +91,12 @@ void TOKeyCave01::trigger_deactivate_sound() {
     if (enable_v2_features == 1 && (get_current_floor_area() == AREA_BATTLE1 || get_current_floor_area() == AREA_BATTLE2)) {
         sound = key_cave01_switch_sounds[get_current_floor_area()];
         if (sound >= 0) {
-            play_sound_effect(sound, &position, 0, 0);
+            play_sound_effect((s32)(sound), (const Vec *)(&position), 0, 0);
         }
     } else {
         sound = key_cave01_switch_sounds[get_current_floor_area()];
         if (sound >= 0) {
-            play_sound_effect(sound, &position, 0, 0);
+            play_sound_effect((s32)(sound), (const Vec *)(&position), 0, 0);
         }
     }
 }
@@ -105,12 +106,12 @@ void TOKeyCave01::trigger_activate_sound() {
     if (enable_v2_features == 1 && (get_current_floor_area() == AREA_BATTLE1 || get_current_floor_area() == AREA_BATTLE2)) {
         sound = key_cave01_switch_sounds[get_current_floor_area()];
         if (sound >= 0) {
-            play_sound_effect(sound, &position, 0, 0);
+            play_sound_effect((s32)(sound), (const Vec *)(&position), 0, 0);
         }
     } else {
         sound = key_cave01_switch_sounds[get_current_floor_area()];
         if (sound >= 0) {
-            play_sound_effect(sound, &position, 0, 0);
+            play_sound_effect((s32)(sound), (const Vec *)(&position), 0, 0);
         }
     }
 }
@@ -168,7 +169,7 @@ void TOKeyCave01::render() {
     u32 flags;
 
     if (update_object_view_visibility(view_range, model_radius) != 0) {
-        TObjFish::set_global_param(TOKeyCave01__texture_lists[is_on]);
+        set_current_texture_list((GinjaTextureList *)(TOKeyCave01__texture_lists[is_on]));
         push_matrix();
         post_translate_matrix(&position.x);
         rotate_matrix_y(NULL, rotation_y);

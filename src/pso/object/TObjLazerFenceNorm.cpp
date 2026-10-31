@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/object/TObjDoorJung.h"
@@ -44,7 +45,7 @@ extern void *lazer_fence_norm_texture_list;
 static const f32 lbl_805DBE58[1] = {0.0f};
 
 void TObjLazerFenceExtra::render_lazer_fence_model() {
-    TObjFish::set_global_param((s32)lazer_fence_norm_texture_list);
+    set_current_texture_list((GinjaTextureList *)(lazer_fence_norm_texture_list));
     push_matrix();
     post_translate_matrix((void *)((char *)this + 56));
     rotate_matrix_y(0, *(void * *)&this->rotation_y);
@@ -230,7 +231,7 @@ void TObjLazerFenceNorm::draw_animated_beam() {
     for (i = 0; i < 4; i++) {
         ((TObjDoorJung *)(((Obj_80192B5C *)this)->fC8[i]))->free_children((void *)(lbl_80445B7C[((Obj_80192B5C *)this)->fAC]));
     }
-    TObjFish::set_global_param((s32)lazer_fence_norm_texture_list);
+    set_current_texture_list((GinjaTextureList *)(lazer_fence_norm_texture_list));
     push_matrix();
     post_translate_matrix(((Obj_80192B5C *)this)->f38);
     rotate_matrix_y(0, (void *)((Obj_80192B5C *)this)->f60);
@@ -263,7 +264,7 @@ struct TObjLazerFenceNorm_80192CCC {
 };
 
 void TObjLazerFenceNorm::draw_model() {
-    TObjFish::set_global_param((s32)lazer_fence_norm_texture_list);
+    set_current_texture_list((GinjaTextureList *)(lazer_fence_norm_texture_list));
     push_matrix();
     post_translate_matrix((void *)((char *)this + 56));
     rotate_matrix_y(0, *(void * *)&this->rotation_y);

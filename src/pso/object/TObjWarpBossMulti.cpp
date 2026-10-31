@@ -1,4 +1,6 @@
 #include "pso/player/demo_mode.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/object/TObjWarpBase.h"
@@ -390,7 +392,7 @@ void obj_clear_flag30_20000(void *arg0);
 void obj_set_flag_20000(void *arg0);
 void play_effect_default__10TObjPlayerFii(s32 arg0, s32 arg1);
 s32 send_code_45_1__10TObjPlayerFl();
-s32 play_sound_effect(s32, void *, s32, s32);
+
 char *strcpy(char *, const char *);
 s32 is_locally_controlled__10TObjPlayerFPv(u32);
 
@@ -527,10 +529,10 @@ block_4:
         push_matrix();
         post_translate_matrix(warp_boss_multi + 0x38);
         rotate_matrix_y(0, ((TObjWarpBossMulti *)warp_boss_multi)->rotation_y);
-        TObjFish::set_global_param(*(s32 *)((s8 *)warp_boss_multi + 0xE8));
+        set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)warp_boss_multi + 0xE8)));
         draw_ginja_object((void *)(((TObjWarpBossMulti *)warp_boss_multi)->m_f0));
         TParticleCtrl::begin_effect_render();
-        TObjFish::set_global_param(*(s32 *)((s8 *)warp_boss_multi + 0xEC));
+        set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)warp_boss_multi + 0xEC)));
         switch (*(s32 *)((s8 *)warp_boss_multi + 0xF0)) {
         case 0:
             draw_ginja_model_with_motion(((TObjWarpBossMulti *)warp_boss_multi)->m_f4, *(s32 *)((s8 *)warp_boss_multi + 0xE0), ((TObjWarpBossMulti *)warp_boss_multi)->m_f8);
@@ -894,7 +896,7 @@ void TObjWarpBoss::update_warp_state() {
         break;
     case 0:
         *(s32 *)((s8 *)arg0 + 0x160) = 0x12C;
-        play_sound_effect(0x40003205, arg0 + 0x38, 0, 0);
+        play_sound_effect(0x40003205, (const Vec *)(arg0 + 0x38), 0, 0);
         *(s16 *)((s8 *)arg0 + 0xE0) = 1;
         *(s32 *)((s8 *)arg0 + 0xD0) = (s32) warp_boss_model;
         *(s32 *)((s8 *)arg0 + 0xD4) = (s32) warp_boss_bml_motion;
@@ -1183,11 +1185,11 @@ block_4:
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);
-        TObjFish::set_global_param(warp_boss_model_handle);
+        set_current_texture_list((GinjaTextureList *)(warp_boss_model_handle));
         draw_ginja_object((void *)boss_warp_base_model);
         if (*(void **)((s8 *)arg0 + 0xD0) != 0) {
             TParticleCtrl::begin_effect_render();
-            TObjFish::set_global_param(lbl_805D5CA4);
+            set_current_texture_list((GinjaTextureList *)(lbl_805D5CA4));
             ((s32 (*)(u32, s32, f32))draw_ginja_model_with_motion)(*(u32 *)((s8 *)arg0 + 0xD0), *(s32 *)((s8 *)arg0 + 0xD4), *(f32 *)((s8 *)arg0 + 0xC4));
             TParticleCtrl::end_effect_render();
         }

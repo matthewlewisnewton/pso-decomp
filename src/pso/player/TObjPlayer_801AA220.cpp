@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/misc/TPhotonMagicSquare.h"
 #include "pso/player/TObjPlayer.h"
@@ -5,7 +6,7 @@
 
 extern "C" {
 
-void *spawn_particle_effect(void *pos, s32 id);
+
 s32 is_locally_controlled__10TObjPlayerFPv(s32);
 s32 get_player_by_client_id(u16);
 u32 __nw__7TObjectFUl(s32);
@@ -24,7 +25,7 @@ void TObjPlayer::start_photon_blast(s32 arg0, u16 arg1) {
         if (is_locally_controlled__10TObjPlayerFPv(temp_r3) != 0) {
             play_effect_default__10TObjPlayerFii(temp_r3, *(s16 *)((s8 *)photon_blast_entry + 0x20));
         }
-        spawn_particle_effect((void *)(temp_r3 + 0x38), 0x13D);
+        spawn_particle_effect((const Vec *)((temp_r3 + 0x38)), 0x13D);
         TCameraCtrl::set_shake_preset(0);
         switch (arg0) {
         case 2:

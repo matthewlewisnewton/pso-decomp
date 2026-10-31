@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/ChunkMaterialState.h"
 #pragma defer_codegen on
 #include "types.h"
@@ -53,7 +54,6 @@ s32 rotate_matrix_y(int, int);
 s32 push_matrix_from();
 s32 push_matrix();
 s32 pop_matrix();
-s32 set_global_param__8TObjFishFl();
 
 }
 
@@ -402,21 +402,18 @@ void TObjPlayer::update_chara_making() {
     push_matrix();
     post_translate_matrix((u8 *)&this->position);
     rotate_matrix_y(0, this->rotation_y);
-    ((TAdPlyStatusGC *)(this->m_170))->get_status_sub();
-    set_global_param__8TObjFishFl();
+    set_current_texture_list((GinjaTextureList *)(((TAdPlyStatusGC *)(this->m_170))->get_status_sub()));
     draw_model_with_arg((void*)((int) (((TAdPlyStatusGC *)(this->m_170))->get_field_4a4())));
     ((TObjMotion *)arg0)->get_item_ptr(0x3A);
     push_matrix_from();
-    ((TAdPlyStatusGC *)(this->m_170))->get_status_data();
-    set_global_param__8TObjFishFl();
+    set_current_texture_list((GinjaTextureList *)(((TAdPlyStatusGC *)(this->m_170))->get_status_data()));
     ((TAdPlyStatusGC *)(this->m_170))->get_field_4a0();
     ((s32 (*)())play_phase_transition_sound__10TObjPlayerFl)();
     pop_matrix();
     if (((TAdPlyStatusGC *)(this->m_170))->get_field_49c() != 0U) {
         ((TObjMotion *)arg0)->get_item_ptr(0x3B);
         push_matrix_from();
-        ((TAdPlyStatusGC *)(this->m_170))->get_chara_making_data();
-        set_global_param__8TObjFishFl();
+        set_current_texture_list((GinjaTextureList *)(((TAdPlyStatusGC *)(this->m_170))->get_chara_making_data()));
         TCharaMaking::enable_making();
         ((TAdPlyStatusGC *)(this->m_170))->get_field_49c();
         ((s32 (*)())play_phase_transition_sound__10TObjPlayerFl)();
@@ -426,8 +423,7 @@ void TObjPlayer::update_chara_making() {
     if (((TAdPlyStatusGC *)(this->m_170))->get_field_498() != 0U) {
         ((TObjMotion *)arg0)->get_item_ptr(0x3B);
         push_matrix_from();
-        ((TAdPlyStatusGC *)(this->m_170))->get_chara_making_data();
-        set_global_param__8TObjFishFl();
+        set_current_texture_list((GinjaTextureList *)(((TAdPlyStatusGC *)(this->m_170))->get_chara_making_data()));
         TCharaMaking::enable_making();
         TObjPlayer__sub_802E0580(arg0, (int)((int) (((TAdPlyStatusGC *)(this->m_170))->get_field_498())), (u8 *)&this->m_120);
         TCharaMaking::clear_flag_bit0();

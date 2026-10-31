@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TParticleCtrl_800867E4.h"
 #include "pso/object/TObject_80019A50.h"
@@ -17,25 +18,25 @@ const char *TTecAnti_name_ref = "TTecAnti";
 struct Obj_8022ACB4 { u8 pad[0xA6]; s16 state; };
 extern "C" {
 s32 update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
-s32 play_sound_effect(int, void *, int, int);
+
 void TTecAnti::play_anti_cast_sound() {
     Obj_8022ACB4 *arg0 = (Obj_8022ACB4 *)this;
     s32 r;
     switch (*(s16 *)&this->m_a6) {
     case 0:
     case 1:
-        r = play_sound_effect(0x4002AB10, (u8 *)arg0 + 0x20, 0, 0);
+        r = play_sound_effect(0x4002AB10, (const Vec *)((u8 *)arg0 + 0x20), 0, 0);
         if (r >= 0) {
             update_technique_slot__10TTecRaFoieFl(r, 0x100, 0);
         }
         break;
     case 2:
     case 3:
-        play_sound_effect(0x4002AB10, (u8 *)arg0 + 0x20, 0, 0);
+        play_sound_effect(0x4002AB10, (const Vec *)((u8 *)arg0 + 0x20), 0, 0);
         break;
     case 4:
     case 5:
-        r = play_sound_effect(0x4002AB10, (u8 *)arg0 + 0x20, 0, 0);
+        r = play_sound_effect(0x4002AB10, (const Vec *)((u8 *)arg0 + 0x20), 0, 0);
         if (r >= 0) {
             update_technique_slot__10TTecRaFoieFl(r, -0x100, 0);
         }

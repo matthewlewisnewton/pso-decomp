@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/quest/TQuestListVM_8007EAF8.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -48,21 +49,21 @@ void DelDepthMotion::draw_model_part() {
     temp_r0 = motion;
     if (temp_r0 != -1) {
         if (temp_r0 < 6) {
-            TObjFish::set_global_param(TObjFish__sub_8001EDB0((s32)TObjEneDelDepth::get_data(), 0));
+            set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0((s32)TObjEneDelDepth::get_data(), 0)));
             actor->draw();
             return;
         }
         if (temp_r0 < 0xA) {
-            TObjFish::set_global_param((int) (texture));
+            set_current_texture_list((GinjaTextureList *)((texture)));
             set_motion_packed_rotation();
             draw_model_motion((void *)(model), (void *)(animation), (f32) (frame));
             clear_motion_packed_rotation();
             return;
         }
         set_motion_packed_rotation();
-        TObjFish::set_global_param((int) (texture));
+        set_current_texture_list((GinjaTextureList *)((texture)));
         draw_model_motion((void *)(model), (void *)(animation), (f32) (frame));
-        TObjFish::set_global_param((int) (secondTexture));
+        set_current_texture_list((GinjaTextureList *)((secondTexture)));
         draw_model_motion((void *)(secondModel), (void *)(secondAnimation), (f32) (frame));
         clear_motion_packed_rotation();
     }

@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 // ---- pso/object/TObjGoalWarpAncient_8017CB60
 #pragma push
 
@@ -80,12 +81,12 @@ void render__19TObjGoalWarpAncientFv(TObjGoalWarpAncient *goal_warp_ancient) {
         post_translate_matrix((u8 *)goal_warp_ancient + 0x38);
         rotate_matrix_y(0, goal_warp_ancient->rotation_y);
         TParticleCtrl::begin_effect_render();
-        TObjFish::set_global_param(*(s32 *)((s8 *)goal_warp_ancient + 0xD8));
+        set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)goal_warp_ancient + 0xD8)));
         draw_ginja_model_with_motion(goal_warp_ancient->m_e8, *(s32 *)((s8 *)goal_warp_ancient + 0xE4), *(f32 *)((s8 *)goal_warp_ancient + 0xC4));
-        TObjFish::set_global_param(*(s32 *)((s8 *)goal_warp_ancient + 0xE0));
+        set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)goal_warp_ancient + 0xE0)));
         draw_ginja_model_with_motion(*(s32 *)((s8 *)goal_warp_ancient + 0xD4), *(s32 *)((s8 *)goal_warp_ancient + 0xE8), *(f32 *)((s8 *)goal_warp_ancient + 0xC8));
         TParticleCtrl::end_effect_render();
-        TObjFish::set_global_param(*(s32 *)((s8 *)goal_warp_ancient + 0xDC));
+        set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)goal_warp_ancient + 0xDC)));
         draw_ginja_object((void *)(*(s32 *)((s8 *)goal_warp_ancient + 0xD0)));
         pop_matrix();
     }
@@ -211,13 +212,13 @@ void TObjMapWarpAncient::render() {
         rotate_matrix_y(0, this->rotation_y);
         TParticleCtrl::begin_effect_render();
         if ((s32) *(s32 *)((s8 *)arg0 + 0x88) >= 0) {
-            TObjFish::set_global_param(this->m_10c);
+            set_current_texture_list((GinjaTextureList *)(this->m_10c));
             draw_ginja_model_with_motion(*(s32 *)&this->m_100, *(s32 *)&this->m_118, *(f32 *)&this->unk_FC);
         }
-        TObjFish::set_global_param(this->m_110);
+        set_current_texture_list((GinjaTextureList *)(this->m_110));
         draw_ginja_object((void *)this->m_104);
         TParticleCtrl::end_effect_render();
-        TObjFish::set_global_param(this->m_114);
+        set_current_texture_list((GinjaTextureList *)(this->m_114));
         draw_ginja_object((void *)this->m_108);
         pop_matrix();
     }

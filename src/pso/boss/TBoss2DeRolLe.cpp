@@ -4,6 +4,9 @@
 #include "pso/map/CsnGroundQuery.h"
 #include "pso/math/VectorNormalize.h"
 #include "pso/enemy/BattleParameters.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
+#include "pso/misc/PersistentSound.h"
 struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
@@ -459,7 +462,7 @@ void TBoss2DeRolLe::render_body() {
     }
     fn_8002F5AC((u8 *)self);
     set_chunk_model_node_callback(TObjPlayer__sub_8002F61C);
-    TObjFish::set_global_param(this->texlist);
+    set_current_texture_list((GinjaTextureList *)(this->texlist));
     draw_model_motion((void *)self->x34, (void *)model, (f32)frame);
     set_chunk_model_node_callback(NULL);
     TObjLight__sub_801337F8(current_scene_light);
@@ -663,7 +666,7 @@ void TBoss2DeRolLe::render() {
         derolle_texture_list_handle->tex = lbl_805D4BCC;
     }
     fn_8002F5AC(((u8 *)this));
-    TObjFish::set_global_param(e->f24);
+    set_current_texture_list((GinjaTextureList *)(e->f24));
     set_chunk_model_node_callback((TObjPlayer__sub_8002F61C));
     {
     Vec4_8002F258 saved;
@@ -1276,7 +1279,7 @@ s32 restore_player_cameras();
 s32 activate_camera_mode(int);
 void set_scripted_camera_pose(void *, void *, void *);
 f32 calc_elapsed_scaled__9TObjEneDDFv(void *);
-int play_sound_effect(void*, int, int, int);
+
 void play_cue_stream_file(s32 name);
 f32 cos_table_lookup(s32);
 extern const char lbl_804359F8[] = "deldeath.adx";
@@ -1306,7 +1309,7 @@ void get_node_world_pos__13TBoss2DeRolLeFPvPv(u8 *arg0, u8 *arg1);
 s32 vec3_add_to(int, void *);
 f32 calc_elapsed_scaled__9TObjEneDDFv(void *);
 void spawn_ceil_junk__13TBoss2DeRolLeFii(s32 arg1, s32 arg2);
-int play_sound_effect(void*, int, int, int);
+
 s32 get_flag_b4__9TObjEneDDFv(void *);
 Play_80032E38 *get_scripted_camera_playback(void);
 s32 restore_player_cameras();
@@ -1554,8 +1557,8 @@ f32 calc_elapsed_scaled__9TObjEneDDFv(void *);
 s32 vfunc_93__9TObjEneDDFv();
 s32 is_alive__8TObjBaseFv();
 u8 *get_enemy_entity(u16 arg0);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
-int play_sound_effect(void*, int, int, int);
+
+
 s32 vec3_add_to(int, void *);
 
 extern Vec_80030720 TBoss2DeRolLe__mine_ground_targets[];
@@ -1711,9 +1714,9 @@ void handle_death_state__13TBoss2DeRolLeFPvPv(void *arg0, void *arg1) {
             if (((TObjMotion *)o)->is_passing_frame(lbl_805D8290) != 0) {
                 play_cue_stream_file((s32)lbl_804359F8);
             } else if (((TObjMotion *)o)->is_passing_frame(TBoss2DeRolLe__data_805D8294) != 0) {
-                play_sound_effect((void *)0x4003AD11, 0, 0, 0);
+                play_sound_effect((s32)((void *)0x4003AD11), 0, 0, 0);
             } else if (((TObjMotion *)o)->is_passing_frame(lbl_805D8298) != 0) {
-                play_sound_effect((void *)0x4003AD12, 0, 0, 0);
+                play_sound_effect((s32)((void *)0x4003AD12), 0, 0, 0);
                 start_pad_rumble_all(0xC0, 0xF);
             }
             o->f6E4++;
@@ -3603,9 +3606,9 @@ void TBoss2DeRolLe__sub_80032E38(void *arg0, void *arg1) {
                 ((void (*)(void *, void *))spawn_ceil_junk__13TBoss2DeRolLeFii)(o, &v3);
             }
             if (((TObjMotion *)o)->is_passing_frame(lbl_805D8420) != 0 || ((TObjMotion *)o)->is_passing_frame(lbl_805D8424) != 0) {
-                play_sound_effect((void *)0x4003AD11, 0, 0, 0);
+                play_sound_effect((s32)((void *)0x4003AD11), 0, 0, 0);
             } else if (((TObjMotion *)o)->is_passing_frame(lbl_805D8428) != 0) {
-                play_sound_effect((void *)0x4003AD12, 0, 0, 0);
+                play_sound_effect((s32)((void *)0x4003AD12), 0, 0, 0);
             }
             if (o->fC0 >= lbl_805D8410) {
                 o->pos.x -= TBoss2DeRolLe__data_805D82BC;
@@ -3829,9 +3832,9 @@ void advance_phase_wrap__13TBoss2DeRolLeFPv(u8 *arg0) {
 extern int fold_flush_1;
 #pragma pop
 
-int spawn_trap__13TBoss2DeRolLeFPvii(void* p, int a1, int a2) { return play_persistent_sound((s32)p, (a1), (a2), 0, 0); }
+int spawn_trap__13TBoss2DeRolLeFPvii(void* p, int a1, int a2) { return play_persistent_sound((s32)p, (const void *)((a1)), (const Vec *)((a2)), 0, 0); }
 
-int play_sound(void* p, int a1) { return play_sound_effect(p, a1, 0, 0); }
+int play_sound(void* p, int a1) { return play_sound_effect((s32)(p), (const Vec *)(a1), 0, 0); }
 
 void TBoss2DeRolLe__sub_800338BC(void) {  }
 
@@ -3850,7 +3853,7 @@ void update_projectile_spawns__13TBoss2DeRolLeFPv(u8 *arg0) {
         *(s32 *)((s8 *)arg0 + 0x53C) = 0;
     }
     if ((s32) *(s32 *)((s8 *)arg0 + 0x53C) <= 0x10) {
-        play_persistent_sound(0x4003AD00, (s32)arg0, (u32)(arg0 + 0x530), 0, 0);
+        play_persistent_sound((s32)(0x4003AD00), (const void *)((s32)arg0), (const Vec *)((u32)(arg0 + 0x530)), 0, 0);
         *(s32 *)((s8 *)arg0 + 0x53C) = (s32) (*(s32 *)((s8 *)arg0 + 0x53C) + 1);
     }
 }
@@ -4178,7 +4181,6 @@ void pick_random_target__13TBoss2DeRolLeFi(s32 actor) {
 #undef TBoss2DeRolLe__sub_800344A4
 
 #define VecCopy__FP3VecPC3Vec ((void (*)(void *, void *))VecCopy__FP3VecPC3Vec)
-#define play_sound_effect ((void (*)(s32, Vec_800344A4 *, s32, s32))play_sound_effect)
 s32 advance_scalar_motion_profile(void *);
 extern const f32 TBoss2DeRolLe__data_805D8280;
 extern const f32 TBoss2DeRolLe__data_805D8328;
@@ -4258,7 +4260,7 @@ void TBoss2DeRolLe__sub_800344A4(DeRolLe_800344A4 *self, s32 idx, s32 arg2) {
     if (p != NULL) {
         __ct__15TBoss2PhotonPadFv(p, self->unk3D8, &self->pts[idx], &v, arg2);
     }
-    play_sound_effect(0x4003B708, &self->pts[idx], 0, 1);
+    play_sound_effect(0x4003B708, (const Vec *)(&self->pts[idx]), 0, 1);
     ((TBoss2Joint *)(self->joints[idx]))->call_36A90_with_1();
 }
 
@@ -4410,7 +4412,6 @@ u8 update_phase_is_done__13TBoss2DeRolLeFPv(u8 *arg0) {
 }
 
 #undef VecCopy__FP3VecPC3Vec
-#undef play_sound_effect
 
 }
 #pragma pop

@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "pso/ui/MenuText.h"
 #include "types.h"
 #include "pso/unk/text_800F7DAC.h"
@@ -886,7 +887,7 @@ void TLobby::draw_fullscreen_texture_quad() {
     v[3] = 432.0f;
     v[5] = v[4] = 0.0f;
     v[7] = v[6] = 1.0f;
-    TObjFish::set_global_param((s32)lbl_8049C61C);
+    set_current_texture_list((GinjaTextureList *)(lbl_8049C61C));
     begin_screen_draw(0);
     set_draw_texture_and_color((s32)this, -1);
     draw_textured_quad_at_depth(v, (0.5f));

@@ -1,3 +1,6 @@
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/system/ChunkMaterialState.h"
 #include "types.h"
@@ -86,8 +89,7 @@ s32 is_split_screen();
 void get_bml_model(void *, s32);
 #define get_bml_model ((void * (*)(void *, int))get_bml_model)
 void attach_particle_model(void *, void *, void *, int, int, f32);
-void spawn_particle_effect(void *, s32, void *);
-#define spawn_particle_effect ((void * (*)(Vec_80237FB8 *, int))spawn_particle_effect)
+
 s32 is_parents_unqueued__9TTecLukerFUl();
 s32 is_valid_and_active__10TObjPlayerFUl(int);
 #define is_valid_and_active__10TObjPlayerFUl ((s32 (*)(TObjPlayer_80237FB8 *))is_valid_and_active__10TObjPlayerFUl)
@@ -98,8 +100,7 @@ void __dl__7TObjectFPv(void *);
 #define __dl__7TObjectFPv ((s32 (*)(void *))__dl__7TObjectFPv)
 void __dt__13TUnk_804CC148Fv(void *, int);
 #define __dt__13TUnk_804CC148Fv ((s32 (*)(void *, int))__dt__13TUnk_804CC148Fv)
-s32 play_sound_effect(s32 id, void *pos, s32 a, s32 b);
-#define play_sound_effect ((s32 (*)(s32, s32, s32, s32))play_sound_effect)
+
 void *__nw__7TObjectFUl(int);
 void update_technique_slot__10TTecRaFoieFl(s32 handle, s32 pitch, s32 c);
 #define update_technique_slot__10TTecRaFoieFl ((s32 (*)(s32, s32, s32))update_technique_slot__10TTecRaFoieFl)
@@ -159,29 +160,29 @@ void TTecRaFoie::vfunc_9() {
 
     switch (*(s16 *)&this->unk_7A) {
     case 0:
-        handle = play_sound_effect(0x4002A602, (int)(arg0 + 0x7C), 0, 0);
+        handle = play_sound_effect(0x4002A602, (const Vec *)((arg0 + 0x7C)), 0, 0);
         if (handle >= 0) {
             update_technique_slot__10TTecRaFoieFl(handle, 0x100, 0);
         }
         return;
     case 1:
-        play_sound_effect(0x4002A602, (int)(arg0 + 0x7C), 0, 0);
+        play_sound_effect(0x4002A602, (const Vec *)((arg0 + 0x7C)), 0, 0);
         return;
     case 2:
     case 3:
-        handle = play_sound_effect(0x4002A602, (int)(arg0 + 0x7C), 0, 0);
+        handle = play_sound_effect(0x4002A602, (const Vec *)((arg0 + 0x7C)), 0, 0);
         if (handle >= 0) {
             update_technique_slot__10TTecRaFoieFl(handle, -0x180, 0);
         }
         break;
     case 4:
-        handle = play_sound_effect(0x4002A602, (int)(arg0 + 0x7C), 0, 0);
+        handle = play_sound_effect(0x4002A602, (const Vec *)((arg0 + 0x7C)), 0, 0);
         if (handle >= 0) {
             update_technique_slot__10TTecRaFoieFl(handle, -0x250, 0);
         }
         break;
     case 5:
-        handle = play_sound_effect(0x4002A602, (int)(arg0 + 0x7C), 0, 0);
+        handle = play_sound_effect(0x4002A602, (const Vec *)((arg0 + 0x7C)), 0, 0);
         if (handle >= 0) {
             update_technique_slot__10TTecRaFoieFl(handle, -0x100, 0);
         }
@@ -194,23 +195,23 @@ void TTecRaFoie::vfunc_8(void *) {
     TObjPlayer_80237FB8 *target;
     if (self->explicit_position == 1) {
         if (is_split_screen() != 0) {
-            spawn_particle_effect(&self->target, 0x39);
+            spawn_particle_effect((const Vec *)(&self->target), 0x39);
         } else {
-            emitter = spawn_particle_effect(&self->target, 0x1A);
+            emitter = spawn_particle_effect((const Vec *)(&self->target), 0x1A);
             if (emitter != NULL) {
                 attach_particle_model(emitter, get_bml_model(technique_effect_bml, 9), lbl_805D63B0, 0, 1, (1.0f));
             }
         }
-        spawn_particle_effect(&self->target, 0x3A);
-        spawn_particle_effect(&self->target, 0x3B);
+        spawn_particle_effect((const Vec *)(&self->target), 0x3A);
+        spawn_particle_effect((const Vec *)(&self->target), 0x3B);
         return;
     }
     if (self->target_count != 0) {
         target = (TObjPlayer_80237FB8 *) find_entity_by_id(self->first_id);
         if (is_parents_unqueued__9TTecLukerFUl() != 0 && is_valid_and_active__10TObjPlayerFUl(target) != 0) {
             Vec_80237FB8 point = target->pos;
-            spawn_particle_effect(&point, 0x39);
-            emitter = spawn_particle_effect(&point, 0x1A);
+            spawn_particle_effect((const Vec *)(&point), 0x39);
+            emitter = spawn_particle_effect((const Vec *)(&point), 0x1A);
             if (emitter != NULL) {
                 attach_particle_model(emitter, get_bml_model(technique_effect_bml, 9), lbl_805D63B0, 0, 1, (1.0f));
             }
@@ -222,14 +223,12 @@ void TTecRaFoie::vfunc_8(void *) {
 
 #undef get_bml_model
 #undef update_technique_slot__10TTecRaFoieFl
-#undef play_sound_effect
 #undef construct_area_technique_base
 #undef __dl__7TObjectFPv
 #undef is_valid_and_active__10TObjPlayerFUl
 #undef apply_technique_to_area_targets__13TUnk_804CC148Fv
 
 #undef __dt__13TUnk_804CC148Fv
-#undef spawn_particle_effect
 #define spawn_rafoie_explosion_bursts__13TUnk_804CCB28Fv ((s32 (*)(void *))spawn_rafoie_explosion_bursts__13TUnk_804CCB28Fv)
 
 #include <stddef.h>
@@ -376,7 +375,7 @@ void TUnk_804CCB28::render() {
     post_translate_matrix(o->m28);
     scale_matrix(0, x, y, z);
     rotate_matrix_y(0, *(s32 *)(camera_ctrl_instance + 0x194));
-    TObjFish::set_global_param((s32)lbl_805D63B0);
+    set_current_texture_list((GinjaTextureList *)(lbl_805D63B0));
     set_cull_back();
     set_draw_list_mask(3);
     get_bml_model(technique_effect_bml, 0xB);
@@ -553,7 +552,7 @@ struct Sub_80238AE8 { u8 pad[0xA4]; u8 *inner; };
 extern "C" {
 void run_task__10TTecRaFoieFv(TTecRaFoie *arg0);
 void update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
-s32 play_sound_effect(s32, void *, s32, s32);
+
 extern s32 tl_particle;
 s32 __ct__7TObjectFP7TObject(void *, void *);
 u8 *create_fire_explosion_effect(u8 *arg0, s32 *arg1, s16 arg2, s32 arg3, f32 farg0);
@@ -690,29 +689,29 @@ void TTecRaFoie::update_detonation(void *arg1) {
     }
     switch (self->band) {
     case 0:
-        h = play_sound_effect(0x4002A803, self->target, 0, 0);
+        h = play_sound_effect(0x4002A803, (const Vec *)(self->target), 0, 0);
         if (h >= 0) {
             update_technique_slot__10TTecRaFoieFl(h, 0x100, 0);
         }
         break;
     case 1:
-        play_sound_effect(0x4002A803, self->target, 0, 0);
+        play_sound_effect(0x4002A803, (const Vec *)(self->target), 0, 0);
         break;
     case 2:
     case 3:
-        h = play_sound_effect(0x4002A803, self->target, 0, 0);
+        h = play_sound_effect(0x4002A803, (const Vec *)(self->target), 0, 0);
         if (h >= 0) {
             update_technique_slot__10TTecRaFoieFl(h, -0x180, 0);
         }
         break;
     case 4:
-        h = play_sound_effect(0x4002A803, self->target, 0, 0);
+        h = play_sound_effect(0x4002A803, (const Vec *)(self->target), 0, 0);
         if (h >= 0) {
             update_technique_slot__10TTecRaFoieFl(h, -0x250, 0);
         }
         break;
     case 5:
-        h = play_sound_effect(0x4002A803, self->target, 0, 0);
+        h = play_sound_effect(0x4002A803, (const Vec *)(self->target), 0, 0);
         if (h >= 0) {
             update_technique_slot__10TTecRaFoieFl(h, -0x100, 0);
         }

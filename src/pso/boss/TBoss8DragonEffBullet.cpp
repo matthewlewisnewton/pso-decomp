@@ -1,4 +1,5 @@
 #include "pso/math/VectorNormalize.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/boss/TBoss8DragonEffBullet.h"
 #include "pso/object/TObject_80019A50.h"
@@ -49,7 +50,7 @@ struct RecoveredFields_802FE0E4_arg0 {
 };
 
 extern "C" {
-s32 play_sound_effect(int, void *, int, int);
+
 s32 __ct__7TObjectFP7TObject(void *, void *);
 f32 subtract_vector(void *, void *);
 extern RecoveredGlobal_802FE378_lbl_80474B68 lbl_80474B68;
@@ -120,7 +121,7 @@ void TBoss8DragonEffBullet::run_task() {
                 queue_destruction__7TObjectFv(temp_r3_4);
                 arg0->field_4C = NULL;
             }
-            play_sound_effect(0x4003AD0C, &arg0->field_1C, 0, 0);
+            play_sound_effect(0x4003AD0C, (const Vec *)(&arg0->field_1C), 0, 0);
             TBoss8Dragon__sub_802FB220(get_enemy_entity((u16)arg0->field_48), (int)&arg0->field_1C, arg0->field_44);
         }
         if ((s32) arg0->field_34 <= 2) {
@@ -164,7 +165,7 @@ u8 *TBoss8DragonEffBullet__ct(u8 *boss8_dragon_eff_bullet, s32 arg1, s32 arg2, s
     ((TBoss8DragonEffBullet *)boss8_dragon_eff_bullet)->m_48 = arg5;
     ((TBoss8DragonEffBullet *)boss8_dragon_eff_bullet)->m_4c = 0;
     ((TBoss8DragonEffBullet *)boss8_dragon_eff_bullet)->m_50 = 0;
-    play_sound_effect(0x4003B20B, boss8_dragon_eff_bullet + 0x1C, 0, 0);
+    play_sound_effect(0x4003B20B, (const Vec *)(boss8_dragon_eff_bullet + 0x1C), 0, 0);
     switch (((TBoss8DragonEffBullet *)boss8_dragon_eff_bullet)->m_44) {
     case 1:
         *(s32 **)((s8 *)boss8_dragon_eff_bullet + 0x54) = &lbl_80474B68.value;

@@ -1,3 +1,7 @@
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
+#include "pso/misc/PersistentSound.h"
 #include "pso/misc/RenderFadeState.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/system/vector.h"
@@ -121,7 +125,7 @@ void render__16TObjContainerIdoFv(u8 *container_ido) {
             extern const u32 container_ido_texture_gvm_handle;
             u32 temp = (u32) container_ido_texture_gvm_handle;
             if (temp != 0U) {
-                TObjFish::set_global_param(temp);
+                set_current_texture_list((GinjaTextureList *)(temp));
             }
         }
         push_matrix();
@@ -169,10 +173,10 @@ u8 is_current_floor_switch_set(u16);
 f32 xyz_distance(void *, void *);
 s32 push_matrix_from(void *);
 void rotate_vector_by_matrix(int, void *, void *);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
-void play_sound_effect(s32, void *, s32, s32);
+
+
 s32 rand();
-void *spawn_particle_effect(void *pos, s32 id);
+
 int update__15RenderFadeStateFv(void*);
 extern const Vec3_8018C18C lbl_80445110;
 extern const Vec3_8018C18C lbl_8044511C;
@@ -219,9 +223,9 @@ void run_task__16TObjContainerIdoFv(Ido_8018C18C *self) {
             self->pos.y -= v.y;
             self->pos.z -= v.z;
             self->e0 |= 0x04000000;
-            play_persistent_sound(0x4B717, (s32)self, (u32)&self->pos, 0, 0);
+            play_persistent_sound((s32)(0x4B717), (const void *)(self), (const Vec *)((u32)&self->pos), 0, 0);
         } else if (!(self->e0 & 0x01000000)) {
-            play_sound_effect(0x4C118, &self->pos, 0, 0);
+            play_sound_effect(0x4C118, (const Vec *)(&self->pos), 0, 0);
             self->e0 |= 0x01000000;
         }
     } else {
@@ -237,9 +241,9 @@ void run_task__16TObjContainerIdoFv(Ido_8018C18C *self) {
             self->pos.y += w.y;
             self->pos.z += w.z;
             self->e0 |= 0x04000000;
-            play_persistent_sound(0x4B717, (s32)self, (u32)&self->pos, 0, 0);
+            play_persistent_sound((s32)(0x4B717), (const void *)(self), (const Vec *)((u32)&self->pos), 0, 0);
         } else if (!(self->e0 & 0x01000000)) {
-            play_sound_effect(0x4C118, &self->pos, 0, 0);
+            play_sound_effect(0x4C118, (const Vec *)(&self->pos), 0, 0);
             self->e0 |= 0x01000000;
         }
     }
@@ -259,9 +263,9 @@ void run_task__16TObjContainerIdoFv(Ido_8018C18C *self) {
             rotate_matrix_y(0, self->f60);
             rotate_matrix_x(0, self->f5c);
             matrix_mult_vec(0, &a, &out);
-            spawn_particle_effect(&out, 0x42);
+            spawn_particle_effect((const Vec *)(&out), 0x42);
             matrix_mult_vec(0, &b, &out);
-            spawn_particle_effect(&out, 0x42);
+            spawn_particle_effect((const Vec *)(&out), 0x42);
             pop_matrix();
         }
     }

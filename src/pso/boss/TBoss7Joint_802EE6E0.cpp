@@ -1,4 +1,5 @@
 #include "pso/enemy/BattleParameters.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/protocol/protocol_types.h"
 #include "types.h"
 #include "pso/boss/TBoss7Joint_802EE6E0.h"
@@ -16,7 +17,7 @@ extern const f32 lbl_805DEBAC;
 
 
 s32 reload_stats_keep_hp_tp__9TObjEneDDFv(void *, int, int, int);
-s32 play_sound_effect(int, void *, int, int);
+
 u32 __nw__7TObjectFUl(int);
 s32 TObjPlayer__sub_802E72DC(void *, void *, void *, int);
 s32 vfunc_93__9TObjEneDDFv(void *);
@@ -50,7 +51,7 @@ void TBoss7Joint::init_boss_stats() {
     if (p != 0U) {
         TObjPlayer__sub_802E72DC((void *)p, this, ((u8 *)this) + 0x38, *(s32 *)((s8 *)((u8 *)this) + 0x3B8));
     }
-    play_sound_effect(0x3A312, ((u8 *)this) + 0x38, 0, 0);
+    play_sound_effect(0x3A312, (const Vec *)(((u8 *)this) + 0x38), 0, 0);
 }
 
 void TBoss7Joint::vfunc_93() {

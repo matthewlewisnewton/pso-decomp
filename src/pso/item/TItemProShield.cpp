@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/item/TItemDrop_800F93F0.h"
 #include "types.h"
 #include "pso/item/TItemProShield.h"
@@ -25,7 +26,7 @@ struct ShieldSoundCue {
 extern "C" {
 // Defined in files that have no headers yet.
 void *lookup_item_pmt_record(u8 *item);
-s32 play_sound_effect(s32 id, Vec *position, s32 a, s32 b);
+
 s32 play_shield_sound_cue(ShieldSoundCue *cue);
 s32 add_actor_hp(TObjPlayer *actor, s16 amount);
 s32 add_actor_tp(TObjPlayer *actor, s32 amount);
@@ -137,7 +138,7 @@ void TItemProShield::on_equip() {
     u8 index;
     void *event;
     if (is_hidden() == 0) {
-        play_sound_effect(0x4000B20A, &owner->position, 0, 0);
+        play_sound_effect(0x4000B20A, (const Vec *)(&owner->position), 0, 0);
     }
     if (effect_objects != NULL) {
         index = get_item_index();

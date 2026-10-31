@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/boss/TObjBoss2Tunnel_803E2BAC.h"
 #include "pso/misc/TLobby_803382E4.h"
@@ -139,7 +140,7 @@ void TLobby__sub_803382E4(void) {
         TParticleCtrl::begin_effect_render();
         TCameraCtrl::restore_full_screen_view();
         set_default_alpha_blend();
-        TObjFish::set_global_param((s32)lbl_804EF1DC);
+        set_current_texture_list((GinjaTextureList *)(lbl_804EF1DC));
         set_texture_num(0);
         TLobby__sub_803E2EE4(0);
         draw_projected_textured_strip(lbl_804EF2E4, 4);
@@ -212,7 +213,7 @@ void TLobby__sub_80338534(void) {
     draw_projected_quads__15TObjBoss2TunnelFPvi(t->a, 4);
     TObjBoss2Tunnel::reset_player_state();
     if ((u32)info_icon_texture != 0) {
-        TObjFish::set_global_param(info_icon_texture);
+        set_current_texture_list((GinjaTextureList *)(info_icon_texture));
         if (lobby_request_flags & 4) {
             set_texture_num(1);
         } else {
@@ -223,7 +224,7 @@ void TLobby__sub_80338534(void) {
         draw_projected_textured_strip(t->b, 4);
         TLobby::reset_player_state();
         set_default_alpha_blend();
-        TObjFish::set_global_param(lbl_805D63F0);
+        set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
         set_texture_num(5);
         TLobby__sub_803E2EE4(1);
         draw_projected_textured_strip(t->c, 4);

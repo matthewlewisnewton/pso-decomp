@@ -1,4 +1,6 @@
 #include "pso/player/demo_mode.h"
+#include "pso/system/SoundEffect.h"
+#include "pso/misc/PersistentSound.h"
 #include "pso/render/render_util.h"
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
@@ -29,7 +31,7 @@ void __dl__7TObjectFPv(s32);
 extern RecoveredGlobal_8017858C___vt__13TOSwitchTimer __vt__13TOSwitchTimer;
 s32 __ct__8TObjBaseFP7TObject(void *);
 extern const char *lbl_805D3188;
-s32 play_sound_effect(s32, s32, s32, s32);
+
 u8 is_current_floor_switch_set(u16);
 void *__nw__7TObjectFUl(int);
 
@@ -69,7 +71,7 @@ void TOSwitchTimer::run_task() {
                     play_sound_effect(0x53218, 0, 0, 0);
                 }
             } else {
-                play_persistent_sound(0x53218, (s32)this, 0, 0, 0);
+                play_persistent_sound((s32)(0x53218), (const void *)(this), (const Vec *)(0), 0, 0);
             }
         }
         temp_r3_2 = *(s32 *)&this->m_94;

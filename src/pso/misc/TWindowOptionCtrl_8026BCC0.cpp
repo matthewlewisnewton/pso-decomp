@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/boss/TObjBoss2Tunnel_8007C5C0.h"
 #include "pso/misc/TKeyBoardControl_8000F764.h"
@@ -51,7 +52,7 @@ void *create_option_menu__17TWindowOptionCtrlFv(void *);
 void set_field_value__17TWindowOptionCtrlFls(s32 arg0, s16 arg1);
 s32 TWindowShortListCtrl__check_controller_button(void *, int);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
-void play_sound_effect(int, int, int, int);
+
 extern u8 controller_input_state[];
 void TWindowOptionCtrl::run_task() {
     Opt_8026BCC0 *self = (Opt_8026BCC0 *)this;

@@ -2,6 +2,7 @@
 #define PSO_MISC_TLOBBY_80227A2C_H
 
 #include "types.h"
+struct Vec;
 
 extern "C" {
 int TLobby__sub_80227A4C(void *p);
@@ -10,7 +11,7 @@ int TLobby__sub_80227A70(void *p);
 void TLobby__sub_80227A90(void);
 void TLobby__sub_80227A94(void);
 void TLobby__sub_80227AA8(s32 arg0);
-int TLobby__sub_80227AF8(void *p);
+void TLobby__sub_80227AF8(s32 slot, const Vec *position);
 int TLobby__sub_80227D38(void);
 void TLobby__sub_8022804C(void);
 void TLobby__sub_8022809C(void);

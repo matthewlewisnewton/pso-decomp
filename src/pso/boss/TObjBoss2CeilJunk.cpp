@@ -1,4 +1,6 @@
 #include "pso/map/CsnGroundQuery.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/system/vector.h"
 #include "types.h"
 #include "pso/boss/TObjBoss2CeilJunk.h"
@@ -133,7 +135,7 @@ int get_player_data__10TObjPlayerFi(int a0);
 void forward_switch_phase_stats__13TBoss2DeRolLeFi(s32 arg0);
 s32 create_particle__17TObjBoss2CeilJunkFv(void *, int);
 s32 is_valid_target__9TObjEneDDFv(void *);
-s32 play_sound_effect(int, void *, int, int);
+
 f32 sin_table_lookup(int);
 f32 cos_table_lookup(int);
 s32 vec3_add_to(void *, void *);
@@ -172,7 +174,7 @@ void TObjBoss2CeilJunk::render() {
     set_chunk_blend(0x2500);
   }
   push_matrix();
-  TObjFish::set_global_param(lbl_805D4BEC);
+  set_current_texture_list((GinjaTextureList *)(lbl_805D4BEC));
   post_translate_matrix(self->pos);
   rotate_matrix_y(0, this->rotation_y);
   rotate_matrix_x(0, self->f5C);
@@ -262,7 +264,7 @@ void run_task__17TObjBoss2CeilJunkFv(Junk_8003A314 *o) {
                 o->vel.x = (2.0f) * sin_table_lookup(o->f60);
                 o->vel.z = (2.0f) * cos_table_lookup(o->f60);
                 o->fA8 = 3;
-                play_sound_effect(0x4003A801, &o->pos, 0, 0);
+                play_sound_effect(0x4003A801, (const Vec *)(&o->pos), 0, 0);
                 TCameraCtrl::set_shake_preset(0);
             }
         }

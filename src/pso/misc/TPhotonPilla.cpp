@@ -1,3 +1,5 @@
+#include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "types.h"
@@ -66,7 +68,7 @@ void vec3_add_to(void *, void *);
 extern Packet_801ADD10 photon_pilla_laser_packet;
 extern void *photon_pilla_laser_offset_table[];
 
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 s32 spawn_photon_blast_attachment_effects(void *, s32);
 u8 *TPhotonMagicSquare__ct(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
 void *find_entity_by_id(u16 id);
@@ -118,7 +120,7 @@ void TPhotonPilla::render() {
     if (this->m_1a4 != 0) {
         scroll_strip_uvs(pilla_photon_buffer_pair, self->f14C, 0);
         TParticleCtrl::begin_effect_render();
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)(this->texlist));
         push_matrix();
         translate_matrix(0, self->pos.x, self->pos.y, self->pos.z);
         rotate_matrix_y(0, this->rotation_y);
@@ -182,7 +184,7 @@ void TPhotonPilla::run_task() {
         this->apply_photon_blast_effects();
     }
     if ((s32) this->m_1a4 != 0) {
-        play_persistent_sound(0x4002462F, (s32)this, 0, 0, 0);
+        play_persistent_sound((s32)(0x4002462F), (const void *)(this), (const Vec *)(0), 0, 0);
     }
 }
 
