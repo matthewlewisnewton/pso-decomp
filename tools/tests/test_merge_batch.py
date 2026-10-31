@@ -192,6 +192,73 @@ class QueueTests(unittest.TestCase):
         fresh = LocalQueue(self.batch, self.state, self.api)
         self.assertEqual(fresh.execute('execute')['state'], 'published')
 
+    def readme_transaction(self, improvement=True):
+        self.q.execute('plan')
+        git(self.q.repo, 'config', 'user.name', 'Fixture'); git(self.q.repo, 'config', 'user.email', 'fixture@localhost')
+        (self.q.repo / 'README.md').write_text((MODULE.parents[1] / 'README.md').read_text())
+        git(self.q.repo, 'add', 'README.md'); git(self.q.repo, 'commit', '-m', 'source fixture')
+        source = git(self.q.repo, 'rev-parse', 'HEAD')
+        self.q.record.update(candidate=source, tree=git(self.q.repo, 'rev-parse', 'HEAD^{tree}'))
+        def report(matched):
+            return {'measures': {'total_code': 10, 'matched_code': matched, 'complete_code': 4,
+                    'total_data': 10, 'matched_data': 5, 'complete_data': 4, 'total_functions': 10,
+                    'matched_functions': 5, 'total_units': 2, 'complete_units': 1}, 'units':[{},{}]}
+        files = {}
+        for role, n in (('baseline', 5), ('candidate', 6 if improvement else 5)):
+            path=self.root/(role+'-report.json'); path.write_text(json.dumps(report(n))); files[role]=str(path)
+        coverage=self.state/'coverage.json'; coverage.write_text('{}')
+        provenance={'ordered_inputs_sha256':'a'*64,'source_inputs':1,'fallback_inputs':1}
+        review=self.root/'graph-review.json'; review.write_text('{}')
+        env=self.root/'readme-env.json'; env.write_text(json.dumps({'acceptance_capacity':{'review':{'path':str(review),'sha256':m.digest(review)}}}))
+        result={'review_sha256':m.digest(review), 'raw_report_paths':files, 'raw_report_sha256':{k:m.digest(v) for k,v in files.items()},
+                'coverage_receipt':str(coverage), 'acceptance_builds':{k:{'provenance':provenance} for k in files}}
+        validation=self.state/'validated.json'; validation.write_text(json.dumps(result))
+        self.q.record.update(validation=str(validation),validation_sha256=m.digest(validation))
+        generator=MODULE.with_name('merge_batch_readme.py')
+        self.batch['readme_update']={'generator':str(generator),'sha256':m.digest(generator)}
+        self.q.record['spec_sha256'] = hashlib.sha256(m.canonical(self.batch).encode()).hexdigest()
+        return files
+
+    def test_readme_atomic_publication_and_crash_recovery(self):
+        self.readme_transaction()
+        self.q.prepare_readme(self.root/'readme-env.json')
+        source=self.q.record['candidate']; publication=self.q.record['publication_candidate']
+        self.assertNotEqual(source,publication)
+        self.assertEqual(git(self.q.repo,'show','-s','--format=%P',publication),source)
+        self.q.prepare_readme(self.root/'readme-env.json'); self.assertEqual(self.q.record['publication_candidate'],publication)
+        self.q.write(state='publishing')
+        git(self.q.repo,'push','--atomic','origin',publication+':refs/heads/main')
+        fresh=LocalQueue(self.batch,self.state,self.api)
+        self.assertEqual(fresh.execute('execute')['published_commit'],publication)
+
+    def test_readme_no_gain_and_stale_evidence(self):
+        files=self.readme_transaction(False); self.q.prepare_readme(self.root/'readme-env.json')
+        self.assertEqual(self.q.record['publication_candidate'],self.q.record['candidate'])
+        Path(files['candidate']).write_text('{}')
+        self.rejects('stale_readme_evidence',self.q.check_readme_publication)
+
+    def test_readme_rejects_tampered_publication_tree(self):
+        self.readme_transaction(); self.q.prepare_readme(self.root/'readme-env.json')
+        final=self.q.record['publication_candidate']
+        git(self.q.repo,'checkout','--detach',final)
+        (self.q.repo/'other').write_text('unexpected')
+        git(self.q.repo,'add','other');git(self.q.repo,'commit','-m','unexpected')
+        self.q.record['publication_candidate']=git(self.q.repo,'rev-parse','HEAD')
+        self.q.record['publication_tree']=git(self.q.repo,'rev-parse','HEAD^{tree}')
+        self.rejects('readme_scope',self.q.check_readme_publication)
+
+    def test_readme_stale_generator_pin_rejected(self):
+        self.readme_transaction()
+        self.batch['readme_update']['sha256']='0'*64
+        self.rejects('stale_readme_generator',lambda:self.q.prepare_readme(self.root/'readme-env.json'))
+
+    def test_readme_generator_cannot_change_unrelated_content(self):
+        self.readme_transaction()
+        generator=self.root/'bad_generator.py'
+        generator.write_text("import json,sys\nfrom pathlib import Path\nr=json.loads(Path(sys.argv[1]).read_text()); Path(r['output']).write_text(Path(r['readme']).read_text().replace('## Legal','## Changed'))\n")
+        self.batch['readme_update']={'generator':str(generator),'sha256':m.digest(generator)}
+        self.rejects('readme_scope',lambda:self.q.prepare_readme(self.root/'readme-env.json'))
+
     def test_push_failure_changes_no_remote_prefix(self):
         self.q.execute('plan')
         hook = self.remote / 'hooks/pre-receive'
@@ -441,6 +508,7 @@ class QueueTests(unittest.TestCase):
         # journal update. Real nonblocking flock must prevent B from publishing
         # before A persists its failure. No sleeps or mocked flock results.
         self.batch['publication_freeze'] = True
+        self.batch['readme_update'] = {'generator': 'fixture', 'sha256': 'fixture'}
         environment = self.root / 'environment.json'; environment.write_text('{}')
         self.batch['environment_sha256'] = m.digest(environment)
         validator = self.root / 'validator.py'
@@ -462,7 +530,8 @@ class QueueTests(unittest.TestCase):
         def competing_retry(lock):
             retry = LocalQueue(self.batch, self.state, self.api)
             retry.lock_fd = lock.fileno()
-            return retry.execute('execute', validator, m.digest(validator), environment)
+            with patch.object(retry, 'prepare_readme'), patch.object(retry, 'check_readme_publication', side_effect=lambda: retry.record['candidate']):
+                return retry.execute('execute', validator, m.digest(validator), environment)
         def error_write(**fields):
             if 'last_error' in fields:
                 with original_open(lockpath, 'a') as other:

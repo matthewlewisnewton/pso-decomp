@@ -256,7 +256,7 @@ class Queue:
                        'candidate': self.record['candidate'], 'tree': self.record['tree'],
                        'checkout': str(self.repo), 'state': str(self.state), 'policy': self.spec['policy'],
                        'environment': str(environment), 'output': str(output)})
-        self.write(state='validating', validator_sha256=expected_hash)
+        self.write(state='validating', validator_sha256=expected_hash, validator_path=str(validator), environment_path=str(environment))
         # Validator code is supplied by the operator, never by candidate content.
         with (self.state / 'validator.log').open('a') as log:
             result = subprocess.run([sys.executable, '-I', str(validator), str(request)], text=True,
@@ -270,11 +270,89 @@ class Queue:
                 not self.git('status', '--porcelain', '--untracked-files=no'), 'candidate_changed', 'Tracked tree changed during validation')
         self.write(state='validated', validation=str(output), validation_sha256=digest(output))
 
+    def prepare_readme(self, environment):
+        # Opt-in migration: the operator pins trusted code outside the checkout.
+        config = self.spec.get('readme_update')
+        if config is None:
+            return
+        require(self.spec['policy'] == 'recovery', 'invalid_readme_policy', 'Only fresh recovery measurements update README')
+        generator = Path(config.get('generator', ''))
+        require(generator.is_absolute() and generator.is_file() and not generator.is_symlink() and
+                not generator.resolve().is_relative_to(self.repo.resolve()) and digest(generator) == config.get('sha256'),
+                'stale_readme_generator', str(generator))
+        validation = Path(self.record['validation'])
+        require(digest(validation) == self.record['validation_sha256'], 'stale_validation', str(validation))
+        data = json.loads(validation.read_text())
+        env_data = json.loads(Path(environment).read_text())
+        review = env_data['acceptance_capacity']['review']
+        review_path = Path(review['path'])
+        require(review_path.is_absolute() and not review_path.is_symlink() and digest(review_path) == review['sha256'] == data.get('review_sha256'), 'stale_review', '')
+        reports = data.get('raw_report_paths', {})
+        report_hashes = data.get('raw_report_sha256', {})
+        builds = data.get('acceptance_builds', {})
+        require(set(reports) == set(report_hashes) == {'baseline', 'candidate'} and set(builds) == {'baseline', 'candidate'}, 'missing_readme_evidence', '')
+        entries = {}
+        for role in ('baseline', 'candidate'):
+            path = Path(reports[role])
+            require(path.is_absolute() and path.resolve() == path and path.is_file() and not path.is_symlink() and digest(path) == report_hashes[role], 'stale_raw_report', role)
+            entries[role] = {'path': str(path), 'sha256': report_hashes[role]}
+        inputs = {role: builds[role]['provenance'] for role in ('baseline', 'candidate')}
+        coverage = Path(data['coverage_receipt'])
+        require(coverage.is_absolute() and coverage.resolve() == coverage and coverage.is_file() and coverage.is_relative_to(self.state.resolve()), 'invalid_coverage_receipt', '')
+        coverage_sha = digest(coverage)
+        source = self.record['candidate']
+        mode = self.git('ls-tree', source, '--', 'README.md').split()
+        require(len(mode) == 4 and mode[0:2] == ['100644', 'blob'] and mode[3] == 'README.md', 'invalid_readme_mode', mode)
+        original = self.state / ('readme-input-' + str(time.time_ns()))
+        original.write_bytes(subprocess.check_output(['git', '-C', str(self.repo), 'show', source + ':README.md']))
+        req = self.state / ('readme-request-' + str(time.time_ns()) + '.json')
+        first = self.state / ('readme-output-' + str(time.time_ns()))
+        args = {'reports': entries, 'inputs': inputs, 'readme': str(original), 'source': source,
+                'epoch': self.spec['commit_epoch'], 'output': str(first)}
+        save(req, args)
+        for output in (first, self.state / ('readme-repeat-' + str(time.time_ns()))):
+            args['output'] = str(output); save(req, args)
+            run([sys.executable, '-I', str(generator), str(req)], cwd=self.state)
+            require(output.is_file() and not output.is_symlink(), 'invalid_readme_output', '')
+            require(output.read_bytes() == first.read_bytes(), 'nondeterministic_readme', '')
+        require(digest(generator) == config['sha256'] and digest(validation) == self.record['validation_sha256'] and digest(coverage) == coverage_sha and all(digest(Path(v['path'])) == v['sha256'] for v in entries.values()), 'stale_readme_evidence', '')
+        old, new = original.read_bytes(), first.read_bytes()
+        start, end = b'<!-- progress-table -->', b'\n## Target\n'
+        require(old.count(start) == new.count(start) == old.count(end) == new.count(end) == 1 and old.split(start, 1)[0] == new.split(start, 1)[0] and old.split(end, 1)[1] == new.split(end, 1)[1], 'readme_scope', 'Content outside progress region changed')
+        if new == old:
+            self.write(publication_candidate=source, publication_tree=self.record['tree'], readme_evidence={'generator': str(generator), 'generator_sha256': config['sha256'], 'reports': entries, 'coverage': str(coverage), 'coverage_sha256': coverage_sha, 'review': str(review_path), 'review_sha256': review['sha256']})
+            return
+        blob = subprocess.check_output(['git', '-C', str(self.repo), 'hash-object', '-w', '--stdin'], input=first.read_bytes()).decode().strip()
+        index = self.state / ('readme-index-' + str(time.time_ns()))
+        env = os.environ.copy(); env['GIT_INDEX_FILE'] = str(index)
+        self.git('read-tree', source, env=env)
+        self.git('update-index', '--add', '--cacheinfo', '100644,' + blob + ',README.md', env=env)
+        tree = self.git('write-tree', env=env)
+        require(self.git('diff-tree', '--no-commit-id', '--name-only', '-r', source, tree) == 'README.md', 'readme_scope', '')
+        env.update(GIT_AUTHOR_NAME='PSO mechanical queue', GIT_AUTHOR_EMAIL='queue@localhost', GIT_COMMITTER_NAME='PSO mechanical queue', GIT_COMMITTER_EMAIL='queue@localhost', GIT_AUTHOR_DATE=f"@{self.spec['commit_epoch']} +0000", GIT_COMMITTER_DATE=f"@{self.spec['commit_epoch']} +0000")
+        final = self.git('commit-tree', tree, '-p', source, '-m', 'Update README progress from validated source', env=env)
+        self.write(publication_candidate=final, publication_tree=tree, readme_blob=blob,
+                   readme_evidence={'generator': str(generator), 'generator_sha256': config['sha256'], 'reports': entries, 'coverage': str(coverage), 'coverage_sha256': coverage_sha, 'review': str(review_path), 'review_sha256': review['sha256']})
+
+    def check_readme_publication(self):
+        if 'publication_candidate' not in self.record:
+            require(self.spec.get('readme_update') is None, 'missing_readme_transaction', '')
+            return self.record['candidate']
+        evidence = self.record['readme_evidence']
+        if self.record.get('validator_path'):
+            require(digest(self.record['validator_path']) == self.record['validator_sha256'] and digest(self.record['environment_path']) == self.spec['environment_sha256'], 'stale_validation_pins', '')
+        require(digest(evidence['review']) == evidence['review_sha256'] and digest(evidence['generator']) == evidence['generator_sha256'] and digest(evidence['coverage']) == evidence['coverage_sha256'] and digest(self.record['validation']) == self.record['validation_sha256'] and all(digest(v['path']) == v['sha256'] for v in evidence['reports'].values()), 'stale_readme_evidence', '')
+        source, final = self.record['candidate'], self.record['publication_candidate']
+        require(self.git('rev-parse', final + '^{tree}') == self.record['publication_tree'], 'readme_tree_changed', '')
+        if final != source:
+            require(self.git('show', '-s', '--format=%P', final) == source and self.git('diff-tree', '--no-commit-id', '--name-only', '-r', source, final) == 'README.md' and self.git('rev-parse', final + ':README.md') == self.record['readme_blob'] and self.git('ls-tree', final, '--', 'README.md').startswith('100644 blob '), 'readme_scope', '')
+        return final
+
     def recover_publication(self):
         # A lost push response is never blindly retried. Inspect the remote graph first.
         current = self.api.branch(self.spec['default_branch'])['head']
         self.git('fetch', '--no-tags', 'origin', current)
-        result = subprocess.run(['git', '-C', str(self.repo), 'merge-base', '--is-ancestor', self.record['candidate'], current], capture_output=True)
+        result = subprocess.run(['git', '-C', str(self.repo), 'merge-base', '--is-ancestor', self.record.get('publication_candidate', self.record['candidate']), current], capture_output=True)
         if result.returncode != 0:
             require(not self.record.get('published_commit'), 'publication_diverged',
                     'Previously verified publication is no longer reachable; investigate, never republish blindly')
@@ -283,11 +361,11 @@ class Queue:
             return False
         # Persist proven publication before any fallible metadata API lookup.
         self.write(state='published_unverified', remote_head=current,
-                   published_commit=self.record['candidate'])
+                   published_commit=self.record.get('publication_candidate', self.record['candidate']))
         prs = self.api.prs(self.spec)
         pending = [p['number'] for p in self.spec['prs'] if not prs[p['number']]['merged']]
         self.write(state='published_metadata_pending' if pending else 'published', remote_head=current,
-                   published_commit=self.record['candidate'], pending_pr_metadata=pending,
+                   published_commit=self.record.get('publication_candidate', self.record['candidate']), pending_pr_metadata=pending,
                    pr_statuses={str(n): {'merged': p['merged'], 'merge_commit': p['merge_commit']} for n, p in prs.items()})
         return True
 
@@ -307,6 +385,10 @@ class Queue:
         self.git('merge-base', '--is-ancestor', self.spec['target'], self.record['candidate'])
         require(self.git('rev-parse', self.record['candidate'] + '^{tree}') == self.record['tree'],
                 'candidate_changed', 'Candidate tree changed before publication')
+        publication = self.check_readme_publication()
+        self.git('merge-base', '--is-ancestor', self.spec['target'], publication)
+        for pr in self.spec['prs']:
+            self.git('merge-base', '--is-ancestor', pr['head'], publication)
         self.write(state='publishing')  # fsync before any remote mutation
         # Re-resolve immediately before the write; do not use a literal URL that
         # can have different pushInsteadOf semantics from an explicit pushurl.
@@ -314,7 +396,7 @@ class Queue:
         ref = 'refs/heads/' + self.spec['default_branch']
         result = subprocess.run(['git', '-c', 'core.hooksPath=/dev/null', '-C', str(self.repo),
                                  'push', '--atomic', '--force-with-lease=' + ref + ':' + self.spec['target'],
-                                 'origin', self.record['candidate'] + ':' + ref],
+                                 'origin', publication + ':' + ref],
                                 text=True, capture_output=True,
                                 pass_fds=(self.lock_fd,) if hasattr(self, 'lock_fd') else ())
         self.write(push_returncode=result.returncode, push_diagnostic=result.stderr[-2000:])
@@ -333,6 +415,9 @@ class Queue:
                 'missing_validator', 'Pinned external validator and environment required')
         # Rebuild on retry: no unverifiable reuse of a successful-looking receipt.
         self.verify(validator, validator_hash, environment)
+        if mode == 'execute' and self.spec['policy'] == 'recovery':
+            require(self.spec.get('readme_update') is not None, 'missing_readme_transaction', 'Recovery publication requires pinned README generator')
+        self.prepare_readme(environment)
         self.live_guard()
         if mode == 'execute':
             require(self.spec.get('publication_freeze') is True, 'missing_publication_freeze',
