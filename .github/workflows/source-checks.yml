@@ -1,0 +1,46 @@
+# Source-only checks: no original game data or compiler is required.
+# Passing these checks does not establish binary correctness; CI owns that gate.
+name: Source checks
+
+on:
+  # No base-branch filter: dependency stacks need checks too.
+  pull_request:
+  push:
+    branches: [master]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: source-checks-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  source-checks:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Python syntax
+        run: python3 -m compileall -q configure.py tools
+
+      - name: Synthetic tool tests
+        run: python3 -m unittest discover -s tools/tests -p 'test_*.py' -v
+
+      - name: Changed-line whitespace
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          # A branch's first push has no previous commit.
+          if [[ "$BASE_SHA" == 0000000000000000000000000000000000000000 ]]; then
+            BASE_SHA=$(git hash-object -t tree /dev/null)
+          fi
+          git diff --check "$BASE_SHA" HEAD
