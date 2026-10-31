@@ -3,14 +3,8 @@
 
 #include "types.h"
 
-extern "C" {
-void fn_800F93B4(s32 arg0, s32 arg1, void *arg2);
-}
+struct GslArchiveEntry;
 
-// --- C functions defined in text_800F93B4.cpp ---
-extern "C" {
-void fn_800F93B4(s32 arg0, s32 arg1, void *arg2);
-}
-// --- end of C functions
+extern "C" void fn_800F93B4(char *filename, GslArchiveEntry *entries, s32 count);
 
 #endif

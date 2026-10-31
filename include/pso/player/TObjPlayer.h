@@ -461,7 +461,6 @@ struct TObjPlayer : public TObjChara {
     static void clear_alt_model_flag();
     static void set_alt_model_flag();
     void *create_hairmove(void *arg1, void *arg2);
-    s32 interpolate_along_curve(void *arg1);
     void set_tp(s16 tp);
     s32 get_tp_bonus();
     s32 get_hp_bonus();
