@@ -3643,7 +3643,7 @@ force_active:
   - check_player_contact__14TOTrapChainSawFv
   - check_player_contact__17TOTrapChainSawKeyFv
   - check_player_distance__8TOKurageFv
-  - check_player_hits__13TUnk_804909C4Fl
+  - check_player_hits__13TUnk_804909C4FUs
   - check_player_hits__15TBoss6SwordWaveFv
   - check_player_in_range__13TUnk_804B5BA8Flf
   - check_player_proximity__12TOChatSensorFv
