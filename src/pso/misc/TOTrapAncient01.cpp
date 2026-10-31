@@ -400,9 +400,6 @@ void TOTrapAncient01::vfunc_81() {
     scale.y += step;
     if (0.0f < scale.y) {
         switch (get_current_floor_area()) {
-        case AREA_PIONEER2_EP1: return;
-        case AREA_FOREST1: break;
-        case AREA_FOREST2: return;
         case AREA_CAVE1: case AREA_CAVE2: case AREA_CAVE3:
             play_persistent_sound(0x4321a, this, &position, 0, 0);
             break;
@@ -415,16 +412,13 @@ void TOTrapAncient01::vfunc_81() {
         case AREA_VR_SPACESHIP_ALPHA: case AREA_VR_SPACESHIP_BETA:
             play_persistent_sound(0x4004b212, this, &position, 0, 0);
             break;
-        case AREA_DRAGON: break;
-        case AREA_DE_ROL_LE: return;
-        case AREA_VOL_OPT: break;
-        case AREA_DARK_FALZ: return;
-        case AREA_LOBBY: break;
-        case AREA_BATTLE1: return;
-        case AREA_BATTLE2: break;
-        case AREA_PIONEER2_EP2: return;
-        case AREA_VR_TEMPLE_ALPHA: break;
-        case AREA_VR_TEMPLE_BETA: return;
+        case AREA_PIONEER2_EP1: case AREA_FOREST1: case AREA_FOREST2:
+        case AREA_DRAGON: case AREA_DE_ROL_LE: case AREA_VOL_OPT:
+            return;
+        case AREA_DARK_FALZ: case AREA_LOBBY: case AREA_BATTLE1:
+        case AREA_BATTLE2: case AREA_PIONEER2_EP2:
+        case AREA_VR_TEMPLE_ALPHA: case AREA_VR_TEMPLE_BETA:
+            break;
         }
     } else {
         *(s16 *)((u8 *)this + 0x326) = 3;
@@ -440,7 +434,7 @@ void TOTrapAncient01::vfunc_81() {
             TObjPlayer *p = (TObjPlayer *)get_player_by_client_id(player);
             target = (u8 *)p;
             if (target != NULL) {
-                f32 d = horizontal_distance_squared(&p->position, &position);
+                f32 d = horizontal_distance_squared((const Vec *)(target + 0x38), &position);
                 dist -= TObjPlayer__sub_8017A1A4((Obj_8017A1A4 *)p, 0);
                 if (d < dist * dist) {
                     if (TObjPlayer::is_locally_controlled(target)) {
