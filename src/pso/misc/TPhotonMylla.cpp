@@ -324,8 +324,8 @@ void *TPhotonMylla__ct(Mylla_801AD970 *self, Pkt_801AD970 *pkt) {
     }
     F_801AD970(self, s32, 0x34) = photon_blast_shared_resource->res->fA8;
     F_801AD970(self, s32, 0x24) = photon_blast_shared_resource->res->fAC;
-    ((TObjMotion *)self)->set_field_d8((s32)lbl_804C39D8);
-    ((TObjMotion *)self)->set_field_dc(photon_blast_shared_resource->f430);
+    ((TObjMotion *)self)->set_action_table((TObjMotionAction *)((s32)lbl_804C39D8));
+    ((TObjMotion *)self)->set_motion_list((BmlMotionEntry *)(photon_blast_shared_resource->f430));
     F_801AD970(self, s16, 0xB8) = 1;
     ((TObjMotion *)self)->set_animation(F_801AD970(self, s16, 0xB8));
     ((TObjMotion *)self)->set_field_b8(F_801AD970(self, s16, 0xB8));

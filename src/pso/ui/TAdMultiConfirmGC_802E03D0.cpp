@@ -373,8 +373,8 @@ void TUnk_804E3008::run_task() {
 }
 
 void TUnk_804E3008::sub_802E0784() {
-    this->set_field_d8((s32)&lbl_804E2F78.value);
-    this->set_field_dc((int) (*(s32 *)((s8 *)TAdMultiPlyChrSelectGC__resource_bundle + 0x430)));
+    this->set_action_table((TObjMotionAction *)((s32)&lbl_804E2F78.value));
+    this->set_motion_list((BmlMotionEntry *)((int) (*(s32 *)((s8 *)TAdMultiPlyChrSelectGC__resource_bundle + 0x430))));
     set_cursor_index__13TUnk_804E3008Fl(this, 0);
     set_animation((this->requested_action));
 }

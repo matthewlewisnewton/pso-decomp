@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "types.h"
 #include "pso/misc/TODoorBase.h"
 #include "pso/misc/TOTrapAncient01_80226534.h"
@@ -27,7 +28,7 @@ TODoorBase::TODoorBase(TObject *parent) : TObjMapObject(parent) {
 TODoorBase::~TODoorBase() {}
 
 void TODoorBase::run_task() {
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         update_demo();
         return;
     }

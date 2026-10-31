@@ -37,6 +37,7 @@ struct TObjEneMoja : public TObjEnemy {
     u8 unknown_398[0x74];
     static void *create(void *arg0);
     static void free_resources();
+    void fn_800ACA0C();
     s32 calc_technique_level();
     void select_rare_variant();
     void update_death_state();

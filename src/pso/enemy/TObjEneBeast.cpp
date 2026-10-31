@@ -1,4 +1,6 @@
+#include "pso/system/MatrixVectorArray.h"
 #include "pso/misc/SampledMotionPoints.h"
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/unk/TUnk_80494968.h"
 #include "pso/system/EnemyBmlResource.h"
@@ -118,7 +120,6 @@ f32 vec3_add_to(void *, void *);
 s32 rotate_vector_by_matrix(int, void *, void *);
 s32 push_matrix_from(void *);
 extern RecoveredGlobal_80091E08_lbl_8058D490 identity_matrix;
-void mult_vec_array__10TObjPlayerFUll(int, u32, void *, int);
 void set_matrix_identity(u8 *arg0);
 extern void *beast_claw_trail_instance;
 extern void *boss4_type3_instance;
@@ -197,7 +198,7 @@ void TObjEneBeast::vfunc_93() {
             set_matrix_identity(0);
             post_translate_matrix(&self->pos);
             rotate_matrix_y(0, this->rotation_y);
-            mult_vec_array__10TObjPlayerFUll(0, entry, &pos, 2);
+            matrix_mult_vec_array((f32 (*)[4])(0), (const Vec *)(entry), (Vec *)(&pos), 2);
             pop_matrix();
             eff = self->effects[idx];
             if (eff != NULL) {
@@ -288,7 +289,7 @@ void render__12TObjEneBeastFPv(Obj_8009211C *o) {
     translate_matrix(0, 0.0f, o->f380, 0.0f);
     post_translate_matrix(o->f38);
     rotate_matrix_y(0, o->f60);
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         draw_chunk_object(o->f34);
     } else {
         TObjPlayer::toggle_particle_effect();
@@ -754,12 +755,12 @@ void *TObjEneBeast__ct(void *arg0v, void *arg1, void *arg2) {
     __construct_array(arg0 + 0x3B0, __ct__15RenderFadeStateFv, __dt__15RenderFadeStateFv, 0x1C, 4);
     F(arg0, s32, 0) = lbl_805D2980;
     ((VObj_800927DC *)arg0)->m79(arg2);
-    ((TObjPlayer *)arg0)->init_position_vectors();
+    ((TObjChara *)arg0)->initialize_position_copies();
     F(arg0, s32, 0x334) = F(arg0, s32, 0x368);
     ((TObjEneBeast *)arg0)->select_subtype();
     ((TObjEneBeast *)arg0)->select_model_record(F(arg0, s32, 0x368));
     F(arg0, u8 *, 0xD8) = (u8 *)beast_action_table;
-    ((TObjMotion *)arg0)->set_field_d8((s32)(F(arg0, u8 *, 0xD8)));
+    ((TObjMotion *)arg0)->set_action_table((TObjMotionAction *)((s32)(F(arg0, u8 *, 0xD8))));
     F(arg0, u32, 0xDC) = F(ene_beast_bml_resource, u32, 0x430);
     F(arg0, s16, 0xB8) = 0;
     ((TObjMotion *)arg0)->set_animation(F(arg0, s16, 0xB8));

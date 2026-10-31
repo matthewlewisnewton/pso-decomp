@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/object/TObjMotion.h"
@@ -660,7 +661,7 @@ void TUnk_804B2578::render() {
     s32 temp_r29;
     s32 temp_r30;
     s32 temp_r31;
-    if ((((s32 (*)(u8 *))sub_801688C0__13TUnk_804B2578Fv)(arg0) != 0) || (TObjPlayer::check_demo_mode() == 1)) {
+    if ((((s32 (*)(u8 *))sub_801688C0__13TUnk_804B2578Fv)(arg0) != 0) || (check_demo_mode() == 1)) {
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);
@@ -712,7 +713,7 @@ void TUnk_804B2578::render() {
 
 void TUnk_804B2578::run_task() {
     u8 *arg0 = (u8 *)this;
-    if (TObjPlayer::check_demo_mode() == 0) {
+    if (check_demo_mode() == 0) {
         this->vfunc_80();
         ((TUnk_804B2578 *)arg0)->sub_80168398();
         if ((((s32 (*)(void *))sub_801688C0__13TUnk_804B2578Fv)(arg0) != 0) && ((s16) this->mode != 3) && (((TObjMotion *)arg0)->is_passing_frame((f32)8.0f) != 0)) {
