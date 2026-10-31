@@ -168,14 +168,10 @@ The seven-byte tail before the next aligned `.sbss` object is not an explicit
 second guard. The constructor takes the exported descriptor address and its
 ignored-result dispatcher declaration now agrees with the definition.
 
-The candidate has passed standalone compilation; the constructor's three
-functions compare at 100% in the targeted object test. The complete split,
-section and regression checks are pending. The constructor's inherited
-free-function declaration for the base call remains unresolved: calling the
-correct `TWindowDD::construct_base` member directly removes the original
-`extsh` instruction, while widening the constructor's input to recover that
-instruction changes an already source-linked caller. This checkpoint preserves
-the existing exact constructor and caller instead of masking that conflict.
+The native-data checkpoint passed standalone compilation and the regression
+checks below. Its original constructor base-call conflict was subsequently
+resolved by the coordinated caller change documented in
+`keyboard-constructor-abi-evidence.md`.
 
 ### Native-data verification
 
@@ -201,9 +197,9 @@ The latest report scores the dispatcher, glyph renderer and grid renderer at
 95.22%, 79.10% and 95.51% respectively. Earlier percentage figures describe
 individual experiments and are not the scores of this combined object. The
 constructor declaration and use of the 20-byte descriptor compile with all
-three functions exact, but the inherited base-constructor free declaration
-remains an ABI-repair prerequisite described above. Independent review is
-required for this checkpoint.
+three functions exact. The subsequent base-constructor ABI repair and its
+validation are documented separately. Independent review is required for
+both checkpoints.
 
 ### Remaining small constants and constructor constraint
 
@@ -222,7 +218,6 @@ changes the original `extsh r5,r31` to `mr r5,r31`, losing the constructor's
 exact match. An isolated test with a 32-bit incoming parameter and an explicit
 short conversion restored the exact constructor, but caused the already
 source-linked `TKeyBoardControl__ct` caller to gain an `extsh` instruction.
-Neither alternative meets the no-regression rule without a coordinated caller
-solution. The original free declaration remains in place as a known provisional
-ABI defect; the descriptor type, address and dispatcher return declaration are
-corrected independently.
+The subsequent coordinated caller solution preserves both constructors and
+the chat caller. It replaces the free declaration with the typed member call;
+see `keyboard-constructor-abi-evidence.md` for the full evidence and limits.
