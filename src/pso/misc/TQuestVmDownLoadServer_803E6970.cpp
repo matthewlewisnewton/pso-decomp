@@ -3903,6 +3903,57 @@ u8 *TQuestVmDownLoadServer::find_keyword_entry(u16 *start, u16 *end) {
     return NULL;
 }
 
+#pragma push
+#pragma dont_inline off
+#pragma inline_depth(1)
+inline u8 Upper_803EDDA4(s32 code) {
+    u8 ch = code;
+    if ((u8)code >= 0x61U && (u8)code <= 0x7aU) {
+        ch -= 0x20;
+    }
+    return ch;
+}
+extern u8 lbl_8047F9B8[];
+extern u8 *lbl_8047FBD4[];
+u8 *TQuestVmDownLoadServer__sub_803EDDA4(u16 *start, u16 *end) {
+    s32 len = end - start;
+    s32 index;
+    u8 **entry;
+    u8 *p;
+    u8 *limit;
+    s32 ch;
+    if (len == 0) {
+        return lbl_8047F9B8 + 1;
+    }
+    if ((u32)(len - 1) <= 1) {
+        s32 first = (u8)start[0];
+        if (first >= 'a' && first <= 'z') {
+            index = first - 'a';
+        } else if (first >= 'A' && first <= 'Z') {
+            index = first - 'A';
+        } else {
+            return NULL;
+        }
+        entry = lbl_8047FBD4 + index;
+        p = *entry;
+        if (len == 1) {
+            return p + 1;
+        }
+        do {
+            limit = *++entry;
+        } while (limit == NULL);
+        ch = Upper_803EDDA4(start[1] & 0xff);
+        for (p += 11; p < limit; p += 11) {
+            if (*p == ch) {
+                return p + 1;
+            }
+        }
+    }
+    return NULL;
+}
+
+#pragma pop
+
 void TQuestVmDownLoadServer__sub_803EE2E4(void) {
     lbl_8058DC98.value = 0;
 }
