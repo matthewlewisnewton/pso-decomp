@@ -529,23 +529,47 @@ f32 TOTrapAncient01::receive_physical_attack(void *arg1, f32 farg0) {
 #pragma opt_lifetimes off
 void TOTrapAncient01::play_sounds() {
     TrapChipParams a = {
-        {0.5f, 0.03f, 0.15f}, {position.x, position.y, position.z},
+        {0.5f, 0.03f, 0.15f}, {0.0f, 0.0f, 0.0f},
         {3.0f, 5.0f, 3.0f}, {0x800, 0x100, 0x800}, {4, 30},
-        {position.y, 1.0f}, get_bml_model((void *)TOTrapAncient01__bml_resource.value, 0),
-        TObjFish__sub_8001EDB0((void *)TOTrapAncient01__bml_resource.value, 0), 22
+        {0.0f, 1.0f}, 0, 0, 22
     };
+    {
+        f32 x = position.x, y = position.y, z = position.z;
+        a.pos[0] = x;
+        a.pos[1] = y;
+        a.pos[2] = z;
+        a.floor_and_scale[0] = y;
+    }
+    a.model = get_bml_model((void *)TOTrapAncient01__bml_resource.value, 0);
+    a.textures = TObjFish__sub_8001EDB0((void *)TOTrapAncient01__bml_resource.value, 0);
     TrapChipParams b = {
-        {0.5f, 0.03f, 0.15f}, {position.x, position.y, position.z},
+        {0.5f, 0.03f, 0.15f}, {0.0f, 0.0f, 0.0f},
         {3.0f, 5.0f, 3.0f}, {0x800, 0x100, 0x800}, {4, 30},
-        {position.y, 1.0f}, get_bml_model((void *)TOTrapAncient01__bml_resource.value, 1),
-        TObjFish__sub_8001EDB0((void *)TOTrapAncient01__bml_resource.value, 1), 22
+        {0.0f, 1.0f}, 0, 0, 22
     };
+    {
+        f32 x = position.x, y = position.y, z = position.z;
+        b.pos[0] = x;
+        b.pos[1] = y;
+        b.pos[2] = z;
+        b.floor_and_scale[0] = y;
+    }
+    b.model = get_bml_model((void *)TOTrapAncient01__bml_resource.value, 1);
+    b.textures = TObjFish__sub_8001EDB0((void *)TOTrapAncient01__bml_resource.value, 1);
     TrapChipParams c = {
-        {0.5f, 0.03f, 0.15f}, {position.x, position.y, position.z},
+        {0.5f, 0.03f, 0.15f}, {0.0f, 0.0f, 0.0f},
         {3.0f, 5.0f, 3.0f}, {0x800, 0x100, 0x800}, {4, 30},
-        {position.y, 1.0f}, get_bml_model((void *)TOTrapAncient01__bml_resource.value, 2),
-        TObjFish__sub_8001EDB0((void *)TOTrapAncient01__bml_resource.value, 2), 22
+        {0.0f, 1.0f}, 0, 0, 22
     };
+    {
+        f32 x = position.x, y = position.y, z = position.z;
+        c.pos[0] = x;
+        c.pos[1] = y;
+        c.pos[2] = z;
+        c.floor_and_scale[0] = y;
+    }
+    c.model = get_bml_model((void *)TOTrapAncient01__bml_resource.value, 2);
+    c.textures = TObjFish__sub_8001EDB0((void *)TOTrapAncient01__bml_resource.value, 2);
     void *o = __nw__7TObjectFUl(0x234);
     if (o != NULL) __ct__8TObjChipFP7TObjectP14TObjChipParams((u8 *)o, (u8 *)tl_06, (u8 *)&a);
     o = __nw__7TObjectFUl(0x234);
