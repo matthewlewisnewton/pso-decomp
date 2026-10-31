@@ -1,3 +1,4 @@
+struct NJS_OBJECT;
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
 #include "pso/item/TItem.h"
@@ -91,7 +92,7 @@ WeaponArgb get_weapon_color__11TItemWeaponFPv(TItemWeapon *weapon);
 extern u8 lbl_805DACA4;
 }
 
-void apply_weapon_node_material() {
+void apply_weapon_node_material(NJS_OBJECT *) {
     const s32 node = TObjPlayer::get_player_list();
     TItem::end_material_color();
     TItem::end_effect_render();

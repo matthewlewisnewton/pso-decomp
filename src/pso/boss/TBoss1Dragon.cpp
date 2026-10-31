@@ -3,6 +3,7 @@
 #include "pso/math/FloatRounding.h"
 #include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
+struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -519,7 +520,7 @@ void set_chunk_material_override_pair(s32, s32);
 void render__12TBoss1DragonFv(u8 *arg0);
 }
 void direction_to_rotation_xz(u8 *arg0, s32 *arg1, s32 *arg2);
-void dragon_capture_node_points(void);
+void dragon_capture_node_points(NJS_OBJECT *);
 extern Color_80020B54 dragon_boss1_render_color;
 extern u8 lbl_804FE1D0[0xC];
 extern u8 lbl_804FE1DC[0xC];
@@ -1192,11 +1193,11 @@ void TBoss1Dragon::render() {
             rotate_matrix_x(0, *(s32 *)((s8 *)((u8 *)this) + 0x5C));
             rotate_matrix_z(0, ((TBoss1Dragon *)((u8 *)this))->rotation_z);
             scale_matrix(0, (2.0f), (2.0f), (2.0f));
-            set_chunk_model_node_callback((s32)((s32 *) dragon_capture_node_points));
+            set_chunk_model_node_callback(( dragon_capture_node_points));
             TObjPlayer::toggle_particle_effect();
             ((TObjMotion *)((u8 *)this))->draw();
             TParticleCtrl::end_effect_render();
-            set_chunk_model_node_callback((s32)NULL);
+            set_chunk_model_node_callback(NULL);
             TObjLight__sub_801337F8(current_scene_light);
             pop_matrix();
         }
@@ -1223,7 +1224,7 @@ void TBoss1Dragon::draw() {
 
     temp_r31 = *(s32 *)&this->model;
     *(s32 *)&this->model = (s32) TBoss1Dragon__data_805D4B28;
-    set_chunk_model_node_callback((s32)(((s32 *)dragon_capture_node_points)));
+    set_chunk_model_node_callback(((dragon_capture_node_points)));
     push_matrix();
     post_translate_matrix(((u8 *)this) + 0x38);
     translate_matrix(0, (0.0f), this->heightOffset, (0.0f));
@@ -1233,11 +1234,11 @@ void TBoss1Dragon::draw() {
     scale_matrix(0, (2.0f), (2.0f), (2.0f));
     ((TObjMotion *)((u8 *)this))->draw();
     pop_matrix();
-    set_chunk_model_node_callback((s32)NULL);
+    set_chunk_model_node_callback(NULL);
     *(s32 *)&this->model = temp_r31;
 }
 
-void dragon_capture_node_points(void) {
+void dragon_capture_node_points(NJS_OBJECT *) {
     s32 temp_r0;
     s32 temp_r4;
     if ((s32) TBoss1Dragon__data_805D4B0C == (s32) lbl_805D4B10) {
@@ -5797,7 +5798,7 @@ u8 *TBoss1Dragon__ct(u8 *arg0, void *arg1, void *arg2) {
     }
     invoke_initialization_hook__9TObjEneDDFPv(arg0, arg2);
     F_29DE4(arg0, s32, 0x3C0) = 0;
-    if (((TObjEnemy *)arg0)->exchange_object_state((s32)sp8, (s16)1) != 0 && (sp8[0] & 0x12008) == 0x12008) {
+    if (((TObjEnemy *)arg0)->exchange_object_state(sp8, (s16)1) != 0 && (sp8[0] & 0x12008) == 0x12008) {
         F_29DE4(arg0, s32, 0x3C0) |= 0x40;
     }
     ((TObjEneDD *)arg0)->init_position_vectors();
@@ -6329,17 +6330,17 @@ void TObjPlayer::bswap_6x12_packet() { ((G_ClientIDHeader *)this)->bswap(); bswa
 void TObjPlayer::set_type_dragon() { *(u8*)((char*)this + 0x0) = 18; *(u8*)((char*)this + 0x1) = 5; }
 void TObjPlayer::bswap_dragon_boss_fields() { ((G_ClientIDHeader *)this)->bswap(); bswap_16((u16 *)((char*)this + 0x4)); bswap_16((u16 *)((char*)this + 0x6)); bswap_32((u32 *)((char*)this + 0x8)); }
 void TObjPlayer::bswap_stats() { ((G_ClientIDHeader *)this)->bswap(); bswap_16((u16 *)((char*)this + 0x4)); bswap_16((u16 *)((char*)this + 0x6)); bswap_32((u32 *)((char*)this + 0x8)); }
-s32 TObjEnemy::exchange_object_state(s32 arg1, s16 arg2) {
+s32 TObjEnemy::exchange_object_state(void *state, s16 operation) {
     s16 temp_r31;
     temp_r31 = *(s16 *)&this->set_index;
     if ((temp_r31 < 0) || (temp_r31 > 0xB4F)) {
         return 0;
     }
-    if (arg2 == 0) {
-        ((TLobby *)(TLobby__data_805D6144 + (temp_r31 * 0xC)))->copy_header((void *)arg1);
+    if (operation == 0) {
+        ((TLobby *)(TLobby__data_805D6144 + (temp_r31 * 0xC)))->copy_header(state);
     }
-    if (arg2 == 1) {
-        ((TLobby *)arg1)->copy_header((void *) (TLobby__data_805D6144 + (temp_r31 * 0xC)));
+    if (operation == 1) {
+        ((TLobby *)state)->copy_header((void *) (TLobby__data_805D6144 + (temp_r31 * 0xC)));
     }
     return 1;
 }
