@@ -1,4 +1,7 @@
 #include "pso/player/demo_mode.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
+#include "pso/misc/PersistentSound.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/npc/NpcModelRegistry.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
@@ -297,7 +300,7 @@ s32 rotate_matrix_y(s32, s32);
 s32 translate_matrix(s32, f32, f32, f32);
 s32 push_matrix();
 s32 pop_matrix();
-s32 set_global_param__8TObjFishFl(s32);
+
 s32 defer_render__7TObjectFv(void *);
 
 void TObjEneBalClawClaw::clear_flag() {
@@ -370,7 +373,7 @@ void TObjEneBalClawClaw::render() {
         temp_r3 = ((VA_80090950 *)arg0)->m9((1.2e+02f), (4e+02f), (1e+01f));
         if (temp_r3 != 0) {
             var_r30 = 1;
-            set_global_param__8TObjFishFl(this->texlist);
+            set_current_texture_list((GinjaTextureList *)(this->texlist));
             select_actor_lighting(arg0);
             TObjPlayer::toggle_particle_effect();
             push_matrix();
@@ -562,10 +565,10 @@ struct Claw_80090ECC {
 extern "C" {
 void queue_destruction__7TObjectFv(void *);
 void TObjPlayer__sub_800A04F0(void *);
-void play_sound_effect(int, void *, int, int);
+
 void TObjEneBalClawClaw__sub_80091134(Claw_80091134 *self);
 s32 check_path_obstructed(void *, void *);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 void TObjEneBalClawClaw__sub_80091200(Claw_80091200 *self);
 Claw_80091354 *find_active_entity_by_id(u16);
 void update_chase__18TObjEneBalClawClawFPv(Claw_80091354 *self);
@@ -654,7 +657,7 @@ void TObjEneBalClawClaw__sub_80090ECC(Claw_80090ECC *self) {
         SEEK_80090ECC(self, &v, (0.7f));
         ((TObjEnemy *)self)->turn_toward_direction(self->info->f8, (Vec *)self->f308);
         if (((TObjMotion *)self)->is_passing_frame((f32)(8.0f)) != 0) {
-            play_sound_effect(0x4003B032, self->f38, 0, 0);
+            play_sound_effect(0x4003B032, (const Vec *)(self->f38), 0, 0);
             if (self->target->m18(self, (1.0f)) != 0) {
                 self->target->m23(self, (3.0f));
                 self->target->m20(self, (1.0f));
@@ -686,7 +689,7 @@ void TObjEneBalClawClaw__sub_80091134(Claw_80091134 *self) {
         self->fieldB8 = 4;
         TObjPlayer__sub_800A04F0(&self->motion);
         fn_800D911C((Vec *)(self->effects));
-        play_sound_effect(0x4003AD37, self->pos, 0, 0);
+        play_sound_effect(0x4003AD37, (const Vec *)(self->pos), 0, 0);
         self->state = 1;
     case 1:
         (((TObjMotion *)self)->advance_animation());
@@ -721,7 +724,7 @@ void TObjEneBalClawClaw__sub_80091200(Claw_80091200 *self) {
         self->vel.z *= (0.9f);
         apply_actor_gravity((TObjEnemy *)((u8 *)self), (s32 *)(0), (0.0f));
         ((TObjCollidable *)(self))->update_collisions();
-        play_persistent_sound(0x4003B235, (s32)self, (u32)((u8 *)self + 0x38), 0, 0);
+        play_persistent_sound((s32)(0x4003B235), (const void *)((s32)self), (const Vec *)((u32)((u8 *)self + 0x38)), 0, 0);
         if (self->fB4 != 8) {
             self->f30 &= ~0x200;
             self->f388 &= ~1;
@@ -757,7 +760,7 @@ void update_chase__18TObjEneBalClawClawFPv(Claw_80091354 *self) {
             RESET(self);
             break;
         }
-        play_persistent_sound(0x4003B235, (s32)self, (u32)((u8 *)self + 0x38), 0, 0);
+        play_persistent_sound((s32)(0x4003B235), (const void *)(self), (const Vec *)((u32)((u8 *)self + 0x38)), 0, 0);
         Vec_80091354 v = self->target->pos;
         update_enemy_wander_move(self, &v, 1, self->info, self->info->f4);
         ((TObjEnemy *)self)->turn_toward_direction(self->info->f8, (Vec *)((u8 *)self + 0x308));

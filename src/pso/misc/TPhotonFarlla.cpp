@@ -1,3 +1,6 @@
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "types.h"
@@ -107,7 +110,7 @@ void TPhotonFarlla::render() {
     if (this->m_1a0 != 0) {
         scroll_strip_uvs(farlla_photon_blast_model_buffers, self->f14C, 0);
         TParticleCtrl::begin_effect_render();
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)(this->texlist));
         push_matrix();
         translate_matrix(0, self->pos.x, self->pos.y, self->pos.z);
         rotate_matrix_y(0, this->rotation_y);
@@ -150,7 +153,7 @@ s32 spawn_photon_blast_attachment_effects(void *, int);
 }
 u8 *construct_photon_magic_square_normal(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 extern "C" {
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 u32 __nw__7TObjectFUl(int);
 
 #pragma push
@@ -204,9 +207,9 @@ void TPhotonFarlla::run_task() {
             VecCopy((Vec *)(&stack.sp14), (const Vec *)(temp_r3_3 + 0x38));
         }
         stack.sp18 += 1e+01f;
-        spawn_particle_effect((&stack.sp14), 0x151);
+        spawn_particle_effect((const Vec *)((&stack.sp14)), 0x151);
         stack.sp18 += 5.0f;
-        spawn_particle_effect((&stack.sp14), 0x15F);
+        spawn_particle_effect((const Vec *)((&stack.sp14)), 0x15F);
     }
     temp_r3_4 = *(s32 *)&this->unk_1A4;
     if ((133.0f == (f32) temp_r3_4) || (135.0f == (f32) temp_r3_4)) {
@@ -215,7 +218,7 @@ void TPhotonFarlla::run_task() {
             VecCopy((Vec *)(&stack.sp8), (const Vec *)(temp_r3_5 + 0x38));
             stack.spC += 1e+01f;
         }
-        spawn_particle_effect((&stack.sp8), 0x151);
+        spawn_particle_effect((const Vec *)((&stack.sp8)), 0x151);
     }
     if ((f32) *(s32 *)&this->unk_1A4 > 138.0f) {
         temp_f1 = this->m_184;
@@ -224,7 +227,7 @@ void TPhotonFarlla::run_task() {
         }
     }
     if ((s32) this->m_1a0 != 0) {
-        play_persistent_sound(0x4002462F, (s32)arg0, 0, 0, 0);
+        play_persistent_sound((s32)(0x4002462F), (const void *)((s32)arg0), (const Vec *)(0), 0, 0);
     }
 }
 }

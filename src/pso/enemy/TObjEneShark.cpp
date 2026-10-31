@@ -1,5 +1,7 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/enemy/BattleParameters.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 struct NJS_OBJECT;
 #include "pso/unk/TUnk_80494968.h"
 #include "pso/misc/GroundEffects.h"
@@ -84,21 +86,21 @@ extern __declspec(section ".sdata2") const f32 shark_shadow_scale_z;
 void TObjEneShark::vfunc_101() {  }
 
 void TObjEneShark::vfunc_98() {
-    play_sound_effect(remap_sound_for_area(0x4003A60C), &position, 0, 0);
+    play_sound_effect((s32)(remap_sound_for_area(0x4003A60C)), &position, 0, 0);
     TObjPlayer::play_effect_if_v2(-0x300);
 }
 
 void TObjEneShark::vfunc_97() {
-    play_sound_effect(remap_sound_for_area(0x4003A60B), &position, 0, 0);
+    play_sound_effect((s32)(remap_sound_for_area(0x4003A60B)), &position, 0, 0);
     TObjPlayer::play_effect_if_v2(-0x300);
 }
 
 void TObjEneShark::vfunc_96() {
-    play_sound_effect(remap_sound_for_area(0x4003A60D), &position, 0, 0);
+    play_sound_effect((s32)(remap_sound_for_area(0x4003A60D)), &position, 0, 0);
 }
 
 void TObjEneShark::vfunc_95() {
-    play_sound_effect(remap_sound_for_area(0x4003A60B), &position, 0, 0);
+    play_sound_effect((s32)(remap_sound_for_area(0x4003A60B)), &position, 0, 0);
     TObjPlayer::play_effect_if_v2(-0x300);
 }
 
@@ -242,7 +244,7 @@ void TObjEneShark::render() {
     }
     select_actor_lighting(this);
     model_render_flags |= 1;
-    TObjFish::set_global_param(texlist);
+    set_current_texture_list((GinjaTextureList *)(texlist));
     push_matrix();
     translate_matrix(0, shark_zero, unk_380, shark_zero);
     post_translate_matrix(&position.x);

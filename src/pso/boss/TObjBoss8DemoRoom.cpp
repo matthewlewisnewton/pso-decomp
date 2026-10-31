@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "pso/TObjBoss8DemoRoom.h"
 #include "pso/misc/TOComputerMachine01_8023DD0C.h"
 #include "pso/boss/TObjBoss8DemoRoom.h"
@@ -19,7 +20,7 @@ s32 push_matrix();
 extern void *TObjBoss8DemoRoom__shared_resource_object;
 
 void TObjBoss8DemoRoom::render() {
-    TObjFish::set_global_param(*(s32 *)((s8 *)(*(void **)((s8 *)TObjBoss8DemoRoom__shared_resource_object + 0x42C)) + 0xC));
+    set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)(*(void **)((s8 *)TObjBoss8DemoRoom__shared_resource_object + 0x42C)) + 0xC)));
     push_matrix();
     draw_chunk_object((void *)(*(s32 *)((s8 *)(*(void **)((s8 *)TObjBoss8DemoRoom__shared_resource_object + 0x42C)) + 8)));
     set_default_alpha_blend();

@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/ui/TAdDrawLineCtrl.h"
 #include "pso/ui/TAdPlayerLoadGC.h"
@@ -95,7 +96,6 @@ s32 TAdChrSelASlotGC__sub_8030C688(TAdChrSelASlotGC *self, s32 kind);
 s32 check_room_seq_4__16TAdChrSelASlotGCFl(void *pos, s32 arg1);
 s32 TAdChrSelSlotGC__sub_802C7498(s32, s32);
 s32 TAdSubPlyItemGC__sub_802D6D88(s32);
-s32 play_sound_effect(s32, s32, s32, s32);
 
 extern f32 lbl_805DF210;
 

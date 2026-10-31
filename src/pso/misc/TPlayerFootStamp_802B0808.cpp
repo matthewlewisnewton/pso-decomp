@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/boss/Boss6Type1Appearance.h"
 #include "pso/misc/TLoadCtrl_80227390.h"
@@ -7,7 +8,7 @@
 
 extern "C" {
 
-s32 play_sound_effect(s32, s32, s32, s32);
+
 s32 TBoss6PlotFalz__sub_802ABADC();
 int refresh_players_equipment__14TBoss6PlotFalzFPv(void);
 int end_cutscene_camera__14TBoss6PlotFalzFPv(void*);

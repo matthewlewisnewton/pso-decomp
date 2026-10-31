@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TWindowSubStatusDisp_8024FBA8.h"
 #include "pso/misc/TLobby_80132ED0.h"
@@ -49,7 +50,7 @@ s32 verify_snapshot_checksum__15TObjBoss2TunnelFv(void);
 extern RecoveredGlobal_802A80A0_lbl_804DDEB4 window_snapshot_layout;
 extern s32 __vt__15TWindowSnapShot[];
 extern s32 TWindowSnapShot__name;
-s32 play_sound_effect(s32, s32, s32, s32);
+
 void __dl__7TObjectFPv(void *);
 
 void TWindowSnapShot::free_shared_instance() {

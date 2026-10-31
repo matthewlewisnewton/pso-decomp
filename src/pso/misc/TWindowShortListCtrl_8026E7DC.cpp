@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TWindowSubItem.h"
 #include "pso/misc/TWindowSubTechnique.h"
@@ -78,7 +79,7 @@ s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 try_send_6x27_use_item(void *arg0, s32 arg1);
 s32 decrement_clamped(s32 *arg0, s32 arg1);
 s32 try_equip_item__10TObjPlayerFii(u8 *, s32);
-void play_sound_effect(int, int, int, int);
+
 void *__nw__7TObjectFUl(u32);
 s32 TWindowCtrl__sub_8024A228(s32);
 void *__ct__15TWindowHelpItemFPvUs(void *, s32, s32);

@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/misc/TLobby_80207DA8.h"
@@ -68,7 +69,7 @@ u8 *TSceneSora__ct(TSceneSora *arg0, s32 _w1);
 s32 draw_ginja_model_with_motion(int, int, f32);
 s32 rotate_matrix_y(int, int);
 s32 push_matrix();
-s32 set_global_param__8TObjFishFl();
+
 void *get_current_floor();
 u32 TLobby__sub_8002058C(void *, int, Res_80207478 *, Res_80207478 *, int, int, int);
 s32 lookup_scene_object__6TLobbyFPv(void *, Ref_80207478 *);
@@ -86,8 +87,7 @@ typedef char RecoveredGlobal_802072E0___vt__10TSceneSora_size[sizeof(RecoveredGl
 void TSceneSora::render() {
     if ((s32) TSceneSora__sky_active_flag != 0) {
         TParticleCtrl::begin_effect_render();
-        TObjFish__sub_8001EDB0((int) ((*(s32 *)&TSceneSora__sky_bml_resource)), 0);
-        set_global_param__8TObjFishFl();
+        set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0((int) ((*(s32 *)&TSceneSora__sky_bml_resource)), 0)));
         push_matrix();
         rotate_matrix_y(0, this->rotation_y);
         if ((u32) this->m_94 != 0U) {

@@ -2,6 +2,9 @@
 #include "pso/misc/SampledMotionPoints.h"
 #include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 struct NJS_OBJECT;
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/system/BmlResourceClass.h"
@@ -137,7 +140,7 @@ void move_with_wall_slide(u8 *arg0);
 extern "C" {
 s32 TObjPlayer__sub_800A04F0(void *);
 #define step_angle_clamped__10TObjPlayerFPvi ((s32 (*)(void*, int))(step_angle_clamped__10TObjPlayerFPvi))
-s32 play_sound_effect(s32, void *, s32, s32);
+
 struct VDisp_800a42c4_800A4288 { char pad[0x18]; virtual void m0(); virtual void m1(); virtual void m2(); virtual void m3(); virtual void m4(void *, void *); };
 
 void TObjPlayer__sub_800A42C0(void);
@@ -393,7 +396,7 @@ void TObjEneSaver::update_collapse_and_destroy() {
         TObjPlayer__sub_800A04F0((u8 *)&this->m_3a4);
         apply_actor_gravity((TObjEnemy *)(arg0), (s32 *)(0), 0.0f);
         prev_r3 = ((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003B207));
-        play_sound_effect(prev_r3, (u8 *)&this->position, 0, 0);
+        play_sound_effect((s32)(prev_r3), (const Vec *)((u8 *)&this->position), 0, 0);
         return;
     case 1:
         step_angle_clamped__10TObjPlayerFPvi(arg0, 0);
@@ -691,12 +694,11 @@ s32 calc_velocity_toward_destination(void *, Vec_800A5DC4, Vec_800A5DC4, f32);
 s32 get_current_floor();
 s32 get_floor__10TObjPlayerFv(void *);
 f32 newton_sqrtf(f32);
-void *spawn_particle_effect(void *pos, s32 id);
+
 #define step_angle_clamped__10TObjPlayerFPvi ((s32 (*)(void*, int))(step_angle_clamped__10TObjPlayerFPvi))
 u8 *get_enemy_entity(u16);
 
 #define get_player_by_client_id ((u8* (*)(u16))(get_player_by_client_id))
-#define play_sound_effect ((s32 (*)(int, void*, int, int))(play_sound_effect))
 void TObjPlayer__sub_800A54B4(u8 *arg0);
 #define apply_lookup_entry_effect__12TObjEneSaverFv ((s32 (*)(void*))(apply_lookup_entry_effect__12TObjEneSaverFv))
 s32 check_path_obstructed(void *, void *);
@@ -732,7 +734,7 @@ void TObjPlayer__sub_800A49B4(TObjEneSaver *self) {
             }
         }
         self->actorFlags |= 0x04000000;
-        play_sound_effect(((TObjEnemy *)(self))->remap_sound_for_area((s32)(0x4003AD05)), &self->position, 0, 0);
+        play_sound_effect((s32)(((TObjEnemy *)(self))->remap_sound_for_area((s32)(0x4003AD05))), (const Vec *)(&self->position), 0, 0);
         break;
     case 1:
         if (((TObjMotion *)self)->is_passing_frame(5.0f) != 0) {
@@ -871,12 +873,12 @@ void TObjEneSaver::sub_800A4D9C() {
                 dist -= 15.0f;
                 calc_velocity_toward_destination(arg0, F(Vec_800A5DC4, 0x290), F(Vec_800A5DC4, 0x29C), 0.058333334f * dist);
             }
-            play_sound_effect(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003AD03)), (u8 *)&this->position, 0, 0);
+            play_sound_effect((s32)(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003AD03))), (const Vec *)((u8 *)&this->position), 0, 0);
             goto done;
         fail:
             F(s16, 0x328) = 2;
         done:
-            spawn_particle_effect((u8 *)&this->position, 0xF3);
+            spawn_particle_effect((const Vec *)((u8 *)&this->position), 0xF3);
         }
         break;
     case 1:
@@ -899,8 +901,8 @@ void TObjEneSaver::sub_800A4D9C() {
             check_enemy_body_collisions(arg0);
             F(s16, 0x328) = 2;
             TObjPlayer__sub_800A5960(arg0);
-            spawn_particle_effect((u8 *)&this->position, 0xF3);
-            play_sound_effect(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003AD04)), (u8 *)&this->position, 0, 0);
+            spawn_particle_effect((const Vec *)((u8 *)&this->position), 0xF3);
+            play_sound_effect((s32)(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003AD04))), (const Vec *)((u8 *)&this->position), 0, 0);
             F(u32, 0x374) &= ~0x10;
         }
         break;
@@ -1000,7 +1002,7 @@ void TObjPlayer__sub_800A5154(void *arg0) {
     case 0:
         o->phase = 1;
         apply_actor_gravity((TObjEnemy *)((u8 *)o), (s32 *)(0), 0.0f);
-        play_sound_effect(((TObjEnemy *)(o))->remap_sound_for_area((s32)(0x4003AD02)), &o->pos, 0, 0);
+        play_sound_effect((s32)(((TObjEnemy *)(o))->remap_sound_for_area((s32)(0x4003AD02))), (const Vec *)(&o->pos), 0, 0);
         break;
     case 1:
         if (!(o->flags & 0x800000)) {
@@ -1015,7 +1017,7 @@ void TObjPlayer__sub_800A5154(void *arg0) {
                 if (o->f38A < o->f388) {
                     o->f388 = o->f38A;
                 }
-                play_sound_effect(((TObjEnemy *)(o))->remap_sound_for_area((s32)(0x4003B241)), o->snd, 0, 0);
+                play_sound_effect((s32)(((TObjEnemy *)(o))->remap_sound_for_area((s32)(0x4003B241))), (const Vec *)(o->snd), 0, 0);
             }
         }
         if (0.0f <= o->fC0 && o->fC0 <= 7.0f) {
@@ -1102,7 +1104,7 @@ void TObjPlayer__sub_800A54B4(u8 *arg0) {
         F(s16, 0xB8) = 2;
         if (((TObjMotion *)arg0)->is_passing_frame((f32)12.0f) != 0) {
             F(s16, 0x328) = 2;
-            play_sound_effect(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003A801)), arg0 + 0x38, 0, 0);
+            play_sound_effect((s32)(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003A801))), (const Vec *)(arg0 + 0x38), 0, 0);
         }
         break;
     case 2:
@@ -1122,7 +1124,7 @@ void TObjPlayer__sub_800A54B4(u8 *arg0) {
         move_with_wall_slide(arg0);
         if (((TObjMotion *)arg0)->is_passing_frame((f32)32.0f) != 0) {
             F(s16, 0x328) = 4;
-            play_sound_effect(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003A801)), arg0 + 0x38, 0, 0);
+            play_sound_effect((s32)(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003A801))), (const Vec *)(arg0 + 0x38), 0, 0);
         }
         break;
     case 4:
@@ -1142,7 +1144,7 @@ void TObjPlayer__sub_800A54B4(u8 *arg0) {
         move_with_wall_slide(arg0);
         if (((TObjMotion *)arg0)->is_passing_frame((f32)52.0f) != 0) {
             F(s16, 0x328) = 6;
-            play_sound_effect(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003A801)), arg0 + 0x38, 0, 0);
+            play_sound_effect((s32)(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003A801))), (const Vec *)(arg0 + 0x38), 0, 0);
         }
         break;
     case 6:
@@ -1389,7 +1391,6 @@ void TObjEneSaver::advance_motion_state() {
 #undef turn_toward_target__12TObjEneSaverFv
 #undef step_angle_clamped__10TObjPlayerFPvi
 #undef get_player_by_client_id
-#undef play_sound_effect
 #undef apply_lookup_entry_effect__12TObjEneSaverFv
 #undef calc_move_state__12TObjEneSaverFv
 
@@ -1873,7 +1874,7 @@ void TObjEneSaver::render() {
     v = ((VObj_800A6C54_b *)arg0)->m9(300.0f, 600.0f, 30.0f);
     if (v != 0) {
         select_actor_lighting((s32)arg0);
-        TObjFish::set_global_param(((TObjEneSaver *)arg0)->texlist);
+        set_current_texture_list((GinjaTextureList *)(((TObjEneSaver *)arg0)->texlist));
         push_matrix_from(NULL);
         translate_matrix_vec3(0, (u8 *)&this->position);
         rotate_matrix_y(0, ((TObjEneSaver *)arg0)->rotation_y);

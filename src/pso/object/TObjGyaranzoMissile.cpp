@@ -1,3 +1,6 @@
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/system/NinjaUtil.h"
 #include "pso/system/vector.h"
@@ -58,12 +61,12 @@ extern f32 TObjGyaranzoMissile__speed_scale;
 u8 *TObjGyaranzoMissile__ct(u8 *arg0, u8 *arg1, u8 *arg2, s16 arg3);
 void queue_destruction__7TObjectFv(void *);
 Obj_800D47B4 *get_battle_param__10TObjPlayerFi(s32);
-void *spawn_particle_effect(void *pos, s32 id);
+
 s32 remap_area_sound_id(s32 arg0, s32 arg1);
 void *find_entity_by_id(u16);
 void init_all_slots__10TObjPlayerFv(void *);
 void check_enemy_body_collisions(void *);
-s32 play_sound_effect(void *, void *, int, int);
+
 extern Parm_800D47B4 lbl_8043C464[];
 u32 csnVector(void *, void *, int);
 Target_800D4990 *find_active_entity_by_id(u16);
@@ -87,7 +90,6 @@ s32 draw_chunk_object();
 void translate_matrix(u32 arg0, f32 x, f32 y, f32 z);
 s32 push_matrix();
 void __dl__7TObjectFPv(void *);
-s32 set_global_param__8TObjFishFl();
 
 extern s32 model_render_flags;
 
@@ -114,14 +116,13 @@ void TObjGyaranzoMissile::sub_800D47B4() {
             }
         }
     }
-    spawn_particle_effect(&position, 0xFB);
-    play_sound_effect((void *)remap_area_sound_id(0x4003A80C, 0x19), &position, 0, 0);
+    spawn_particle_effect((const Vec *)(&position), 0xFB);
+    play_sound_effect((s32)((void *)remap_area_sound_id(0x4003A80C, 0x19)), &position, 0, 0);
     queue_destruction__7TObjectFv(this);
 }
 
 void TObjGyaranzoMissile::render() {
-    TObjFish__sub_8001EDB0((void *)gyaranzo_bml_resource, 6);
-    set_global_param__8TObjFishFl();
+    set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0((void *)gyaranzo_bml_resource, 6)));
     push_matrix();
     post_translate_matrix((u8 *)&this->position);
     rotate_matrix_x(0, (int)this->rotation_x);

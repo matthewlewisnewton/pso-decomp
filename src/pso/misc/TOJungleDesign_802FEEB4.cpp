@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TOJungleDesign_802FEEB4.h"
 #include "pso/system/GinjaMaterial.h"
@@ -48,7 +49,7 @@ extern const f32 lbl_805DEF24;
 void TOJungleDesign::render() {
     u8 *arg0 = (u8 *)this;
     if (((JDVObj_802feeb4 *)arg0)->m8(lbl_805DEF20, lbl_805DEF24) == 1) {
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)(this->texlist));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_yxz(0, (*(s32 *)&this->rotation_x), (this->rotation_y), (this->rotation_z));

@@ -1,5 +1,7 @@
 #include "pso/system/ModelNodePositionCapture.h"
 #include "pso/enemy/BattleParameters.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/protocol/protocol_types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/misc/TLobby_801E43E4.h"
@@ -449,7 +451,6 @@ void rotate_matrix_x(int matrix, int angle);
 void rotate_vector_by_matrix(int matrix, const Vec *in, Vec *out);
 extern Tbl_802B79DC TBoss6Type1__part_position_sources[];
 extern Entry_802B865C boss6_type1_action_table[];
-s32 play_sound_effect(int, void *, int, int, void *);
 
 u8 *fn_8035648C(s32 arg0, s32 arg1, s32 arg2, f32 farg0);
 extern f32 TBoss6Type1__sword_shot_hit_radii[];
@@ -1478,7 +1479,7 @@ void TBoss6Type1__sub_802B73AC(Boss_802B73AC *self) {
         }
         fn_8035648C((s32)self, (s32)&p, flag, sc);
         if (flag != 0) {
-            ((s32 (*)(int, void *, int, int))play_sound_effect)(0x4003B210, &p, 0, 0);
+            play_sound_effect(0x4003B210, (const Vec *)(&p), 0, 0);
             TBoss6PlotFalz::apply_radial_effect_to_players(&p, 0xC0, 0xF, TBoss6Type1__data_805DE318);
         }
     }
@@ -1543,7 +1544,7 @@ void TBoss6Type1::update_beam_attack() {
     {
     f32 end = lbl_805DE398 + self->f468;
     if (t >= lbl_805DE398 && t < end) {
-        ((s32 (*)(int, void *, int, int))play_sound_effect)(0x40039209, &self->b, 0, 0);
+        play_sound_effect(0x40039209, (const Vec *)(&self->b), 0, 0);
     }
     }
     ((TBoss6Type1 *)self)->init_parts();
@@ -1608,7 +1609,7 @@ void TBoss6Type1::update_beam_attack() {
         VecCopy((Vec *)&self->f56C, (const Vec *)&c);
     }
     {
-        ((s32 (*)(int, void *, int, int))play_sound_effect)(0x4003B00A, &c, 0, 0);
+        play_sound_effect(0x4003B00A, (const Vec *)(&c), 0, 0);
         TBoss6PlotFalz::apply_radial_effect_to_players(&c, 0xC0, 0xF, TBoss6Type1__data_805DE318);
     }
 }
@@ -1889,7 +1890,7 @@ void TBoss6Type1::draw_part_motions() {
         cb = arg0->f650[i];
         a = &arg0->anim[i];
         if (cb != 0) {
-            TObjFish::set_global_param(p);
+            set_current_texture_list((GinjaTextureList *)(p));
             if (TBoss6Type1__data_805DE2D0 == a->blend) {
                 ((ModelNodePositionCapture *)cb)->install();
                 draw_model_motion((void *)id, (void *)a->id, a->t);
@@ -2087,7 +2088,7 @@ void TBoss6Type1::vfunc_63() { if (*(int *)&this->m_374 != 40) { set_action_stat
 void TBoss6Type1::vfunc_62() {
     this->actorFlags = (s32) (this->actorFlags & 0xFFFFFDFF);
     this->m_4d4 = (f32) TBoss6Type1__data_805DE2E4;
-    play_sound_effect(0x39E01, ((u8 *)this) + 0x584, 0, 1, this);
+    play_sound_effect(0x39E01, (const Vec *)(((u8 *)this) + 0x584), 0, 1);
 }
 
 /* 6xA4: the Olga Flow boss action sent by send_6xA4_action. */

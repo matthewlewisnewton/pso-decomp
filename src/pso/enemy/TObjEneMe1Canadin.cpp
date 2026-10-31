@@ -3,6 +3,9 @@
 #include "pso/player/demo_mode.h"
 #include "pso/misc/MaterialOpacityFade.h"
 #include "pso/misc/RenderFadeState.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
+#include "pso/misc/PersistentSound.h"
 struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
@@ -603,7 +606,7 @@ void TObjEneMe1Canadin_EffDischarge__ct(void *, void *, void *, void *);
 u8 *TObjEneMe1Canadin_EffLine__ct(u8 *arg0, s32 arg1, s32 arg2, s32 arg3);
 void TObjEneEpsilon__sub_800B92F8(u8 *arg0, s32 arg1, f32 farg0);
 s32 transition_enemy_state__9TObjEneDDFl(void *, s32);
-s32 play_sound_effect(s32, void *, s32, s32);
+
 void * __nw__7TObjectFUl(int);
 extern const s32 canadin_formation_reset_vec4[];
 extern u8 TObjEneMe1Canadin__map_core_default_vec4[];
@@ -1840,7 +1843,7 @@ s32 approach_angle_limited(s32, s32, s32);
 void *find_entity_by_id(u16 id);
 void free_collision_body_parts(void *);
 void *get_player_by_client_id(s32 i);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 void __dl__7TObjectFPv(void *);
 void __dt__7TObjectFv(void *, int);
 s32 __ct__7TObjectFP7TObject(void *, void *);
@@ -2297,7 +2300,7 @@ void TObjEneMe1CanadinLeader__vt110(Leader_8009AB4C *obj, s32 mode) {
             ((TObjEneMe1CanadinLeader *)(self->members[i]))->set_flag3c8_bit20();
         }
         self->flags3C8 |= 0x400000;
-        play_sound_effect(0x4003B71D, self->pos2FC, 0, 0);
+        play_sound_effect(0x4003B71D, (const Vec *)(self->pos2FC), 0, 0);
         ((TObjEnemy *)self)->distribute_experience_and_request_drop();
         break;
     case 0:
@@ -2377,7 +2380,7 @@ void TObjEneMe1CanadinLeader__vt108(u8 *arg0, s32 arg1) {
             if (self->timer <= 0) {
                 self->f4B8 = 2;
                 self->sub = 1;
-                play_sound_effect(0x4003B21A, arg0 + 0x2FC, 0, 0);
+                play_sound_effect(0x4003B21A, (const Vec *)(arg0 + 0x2FC), 0, 0);
             }
             break;
         case 1:
@@ -2421,7 +2424,7 @@ void TObjEneMe1CanadinLeader::update_formation_state(void *arg0) {
     case 1:
         ((s32 (*)(void *, s32))TObjEneMe1CanadinLeader__sub_8009E4AC)(arg0, 0);
         self->state = 2;
-        play_sound_effect(0x4003AD1B, self->pos, 0, 0);
+        play_sound_effect(0x4003AD1B, (const Vec *)(self->pos), 0, 0);
         break;
     case 2:
         if (self->f4B8 == 0) {
@@ -2443,7 +2446,7 @@ void TObjEneMe1CanadinLeader::update_formation_state(void *arg0) {
     case 4:
         ((s32 (*)(void *, s32))TObjEneMe1CanadinLeader__sub_8009E4AC)(arg0, 2);
         self->state = 5;
-        play_sound_effect(0x4003AD1C, self->pos, 0, 0);
+        play_sound_effect(0x4003AD1C, (const Vec *)(self->pos), 0, 0);
         break;
     case 5:
         if (self->f4B8 == 0) {
@@ -2461,7 +2464,7 @@ void TObjEneMe1CanadinLeader::update_formation_state(void *arg0) {
     case 7:
         ((s32 (*)(void *, s32))TObjEneMe1CanadinLeader__sub_8009E4AC)(arg0, 4);
         self->state = 8;
-        play_sound_effect(0x4003AD1B, self->pos, 0, 0);
+        play_sound_effect(0x4003AD1B, (const Vec *)(self->pos), 0, 0);
         break;
     case 8:
         if (self->f4B8 == 0) {
@@ -2781,7 +2784,7 @@ void TObjEneMe1Canadin::render_canadin_model_with_debug_type() {
     if (((VObj_18_26a62c *)(arg0))->m8(lbl_805D98A0, lbl_805D98A4) != 0) {
         ((TObjEneDD *)(arg0))->draw_ground_shadow(0, 0);
         TObjPlayer::toggle_particle_effect();
-        TObjFish::set_global_param((int) (*(s32 *)((s8 *)arg0 + 0x24)));
+        set_current_texture_list((GinjaTextureList *)((*(s32 *)((s8 *)arg0 + 0x24))));
         push_matrix();
         post_translate_matrix(arg0 + 0x38);
         rotate_matrix_y(0, (int) (*(s32 *)((s8 *)arg0 + 0x60)));
@@ -2818,7 +2821,7 @@ void TObjEneMe1Canadin::render() {
             ((TObjEneDD *)(arg0))->draw_ground_shadow(0, 0);
         }
         ((TObjEneDD *)arg0)->update_secondary_light();
-        TObjFish::set_global_param((int) (*(s32 *)((s8 *)arg0 + 0x24)));
+        set_current_texture_list((GinjaTextureList *)((*(s32 *)((s8 *)arg0 + 0x24))));
         saved_model_render_flags = model_render_flags;
         TObjEneDD::clear_global_flag_400();
         TObjPlayer::toggle_particle_effect();
@@ -2971,7 +2974,7 @@ void TObjEneMe1Canadin::vfunc_112(s32 arg1) {
         stack.spC = temp_f1 - TObjEneMe1Canadin__data_805D98AC;
         trigger_dell_biter_events__10TObjPlayerFv(&stack.sp8, temp_f1);
         ((TObjEnemy *)arg0)->refresh_and_send_entity_flags();
-        ((s32 (*)(int, void *, int, int))play_sound_effect)(0x4003AA1E, arg0 + 0x2FC, 0, 0);
+        play_sound_effect(0x4003AA1E, (const Vec *)(arg0 + 0x2FC), 0, 0);
         return;
     case 0:
         ((s32 (*)(void))queue_destruction__7TObjectFv)();
@@ -3046,7 +3049,7 @@ void TObjEneMe1Canadin__sub_8009C178(u8 *arg0, s32 arg1) {
         create_timed_particle_emitter((arg0 + 0x2FC), 0x118, 0x19, 0xF);
         ((TObjEneMe1Canadin *)arg0)->fade.set_rate_from_divisor(0x19);
         ((TObjEneMe1Canadin *)arg0)->fade.reset_color();
-        ((s32 (*)(int, void *, int, int))play_sound_effect)(0x4003AD18, arg0 + 0x2FC, 0, 0);
+        play_sound_effect(0x4003AD18, (const Vec *)(arg0 + 0x2FC), 0, 0);
         return;
     case 3:
         if ((((TObjEneMe1Canadin *)arg0)->fade.decay_value_toward_floor() != 0) && (((VObj_18_p4 *)(arg0))->m107() != 0)) {
@@ -3075,7 +3078,7 @@ void TObjEneMe1Canadin__sub_8009C2EC(u8 *arg0, s32 arg1) {
             ((void (*)(void *, s16))transition_enemy_state__9TObjEneDDFl)(arg0, 0xD);
             *(s16 *)((s8 *)arg0 + 0x32C) = 0;
             *(s32 *)((s8 *)arg0 + 0x30) |= 0x800;
-            ((s32 (*)(int, void *, int, int))play_sound_effect)(0x4003AD1F, arg0 + 0x2FC, 0, 0);
+            play_sound_effect(0x4003AD1F, (const Vec *)(arg0 + 0x2FC), 0, 0);
         }
         break;
     case 1:
@@ -3102,7 +3105,7 @@ void TObjEneMe1Canadin__sub_8009C2EC(u8 *arg0, s32 arg1) {
         } else {
             *(s32 *)((s8 *)arg0 + 0x410) = 0xFF000000;
         }
-        play_persistent_sound(0x4003B71D, (s32)arg0, (u32)(arg0 + 0x2FC), 0, 0);
+        play_persistent_sound((s32)(0x4003B71D), (const void *)((s32)arg0), (const Vec *)((u32)(arg0 + 0x2FC)), 0, 0);
         ((TObjEneMe1Canadin *)arg0)->vfunc_89();
         break;
     }
@@ -3412,7 +3415,7 @@ void TObjEneMe1Canadin__sub_8009CC74(void *arg0, s32 arg1) {
                 }
                 o->speed = lbl_805D98F8 * len;
                 o->dheight = lbl_805D98F8 * (o->f3EC - o->f3F4);
-                play_sound_effect(0x4003AD18, o->snd, 0, 0);
+                play_sound_effect(0x4003AD18, (const Vec *)(o->snd), 0, 0);
             }
             TObjEneMe1Canadin__sub_8009E948((u8 *)o);
             o->timer++;
@@ -3466,7 +3469,7 @@ void TObjEneMe1Canadin__sub_8009CC74(void *arg0, s32 arg1) {
                         ((VObj_8009CC74 *)o->target)->m72(0);
                     }
                 }
-                play_sound_effect(0x4003B219, o->snd, 0, 0);
+                play_sound_effect(0x4003B219, (const Vec *)(o->snd), 0, 0);
             } else if (o->timer > 50) {
                 if (o->f404 >= 3) {
                     o->mode = 4;
@@ -3562,8 +3565,8 @@ void TObjEneMe1Canadin__sub_8009D320(void *arg0, s32 arg1) {
                     p = TObjEneMe1Canadin_EffLine__ct((u8 *)p, (s32)o, (s32)o->f414, (s32)pos);
                 }
                 o->f49C = p;
-                play_sound_effect(0x4002B71B, o->snd, 0, 0);
-                play_sound_effect(0x4002B51E, o->snd, 0, 0);
+                play_sound_effect(0x4002B71B, (const Vec *)(o->snd), 0, 0);
+                play_sound_effect(0x4002B51E, (const Vec *)(o->snd), 0, 0);
             }
             break;
         case 3: {
@@ -3614,7 +3617,7 @@ void TObjEneMe1Canadin__sub_8009D320(void *arg0, s32 arg1) {
                         TObjEneMe1Canadin_EffDischarge__ct(q, o, o->f414, pos);
                     }
                 }
-                play_sound_effect(0x4002A408, o->snd, 0, 0);
+                play_sound_effect(0x4002A408, (const Vec *)(o->snd), 0, 0);
             }
             break;
         case 5:
@@ -3788,7 +3791,7 @@ void TObjEneMe1Canadin::vfunc_110(s32 arg1) {
             if ((s32) *(s32 *)((s8 *)arg0 + 0x400) <= 0) {
                 *(s32 *)((s8 *)arg0 + 0x4B8) = 2;
                 *(s32 *)((s8 *)arg0 + 0x470) = 1;
-                play_sound_effect(0x4003B21A, arg0 + 0x2FC, 0, 0);
+                play_sound_effect(0x4003B21A, (const Vec *)(arg0 + 0x2FC), 0, 0);
             }
             break;
         case 1:

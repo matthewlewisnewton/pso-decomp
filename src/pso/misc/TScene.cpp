@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/map/FloorArea.h"
 #include "pso/misc/TContainerAncient01.h"
@@ -1567,7 +1568,7 @@ void TScene::render_map_sections() {
             TScene__render_callback();
         }
         if (*(void **)((u8 *)TScene__data_805D5FCC + 0x14) != NULL) {
-            TObjFish::set_global_param((s32)(*(void **)((u8 *)TScene__data_805D5FCC + 0x14)));
+            set_current_texture_list((GinjaTextureList *)((*(void **)((u8 *)TScene__data_805D5FCC + 0x14))));
         }
         sec = TScene__data_805D5FCC->sections;
         prepare_ginja_model();
@@ -1671,7 +1672,7 @@ void TScene::render_static_map_section(SceneMaterialSection *scene_material_sect
                 } else {
                     TObjEneRecon::notify_scene(-1);
                 }
-                TObjFish::set_global_param((s32)((void *)*(s32 *)((s8 *)TScene__data_805D5FCC + 0x14)));
+                set_current_texture_list((GinjaTextureList *)(((void *)*(s32 *)((s8 *)TScene__data_805D5FCC + 0x14))));
                 set_material_alpha_compare_reference(TScene__data_805D5FCC->flags);
                 draw_ginja_object(node);
                 TObjEneRecon::update_particle_if_active();
@@ -1697,7 +1698,7 @@ void TScene::render_static_map_section(SceneMaterialSection *scene_material_sect
                 if (m != NULL) {
                     if (m->tex != NULL) {
                         draw_field_1c__6TSceneFlll(tex = m->tex, m->f8, m->fE, 0);
-                        TObjFish::set_global_param((s32)((void *)*(s32 *)((s8 *)TScene__data_805D5FCC + 0x14)));
+                        set_current_texture_list((GinjaTextureList *)(((void *)*(s32 *)((s8 *)TScene__data_805D5FCC + 0x14))));
                         set_material_alpha_compare_reference(TScene__data_805D5FCC->flags);
                         draw_ginja_object(node);
                         TScene::set_indirect_tev((u32)tex, 0);
@@ -1795,7 +1796,7 @@ void TScene::render_animated_map_section(SceneMaterialSection *scene_material_se
         if (tex != 0)
         {
           draw_field_1c__6TSceneFlll(texture = tex, m->f8, m->fE, 0);
-          TObjFish::set_global_param((s32)((void *) (*((s32 *) (((s8 *) TScene__data_805D5FCC) + 0x14)))));
+          set_current_texture_list((GinjaTextureList *)(((void *) (*((s32 *) (((s8 *) TScene__data_805D5FCC) + 0x14))))));
           set_material_alpha_compare_reference(TScene__data_805D5FCC->flags);
           draw_ginja_model_with_motion(node, e->motion, e->frame);
           TScene::set_indirect_tev((u32) texture, 0);

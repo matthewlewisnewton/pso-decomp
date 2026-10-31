@@ -1,6 +1,9 @@
 #include "pso/player/demo_mode.h"
 #include "pso/misc/MaterialOpacityFade.h"
 #include "pso/misc/RenderFadeState.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
+#include "pso/misc/PersistentSound.h"
 struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
@@ -453,7 +456,7 @@ extern const f32 lbl_805E0210;
 f32 receive_weapon_special_attack__9TObjCharaFPvPv(void *, void *, void *);
 s32 obj_testFlags30__14TObjCollidableFUl(void *, int);
 u16 get_entity_id(void *);
-void play_sound_effect(s32, void *, s32, s32);
+
 void handle_guard_action_state__19TObjEneEpsilonGuardFPvi(W_80361508 *self, s32 arg1);
 void queue_destruction__7TObjectFv(void *);
 void *create_particle_emitter(void *pos, s32 id);
@@ -473,7 +476,7 @@ extern s32 chunk_polygon_flags_or_mask;
 extern s32 chunk_polygon_flags_and_mask;
 extern s32 model_render_flags;
 void draw_with_fade__19TObjEneEpsilonGuardFPvi(u8 *arg0, s32 arg1);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 extern Vec4_80360D9C lbl_80479CAC[];
 s32 check_path_obstructed(void *, void *);
 int get_player_data__10TObjPlayerFi(int a0);
@@ -803,7 +806,7 @@ void TObjEneEpsilonBody::render_body_effect() {
         rotate_matrix_y(0, (int) (this->rotation_y));
         temp_f1 = this->m_4f8;
         scale_matrix(0, temp_f1, lbl_805E0218, temp_f1);
-        TObjFish::set_global_param((int) (this->texlist));
+        set_current_texture_list((GinjaTextureList *)((this->texlist)));
         TObjPlayer::toggle_particle_effect();
         get_bml_model((s32)(lbl_805D6FA0), 4);
         draw_chunk_object();
@@ -860,7 +863,7 @@ void draw_with_fade__19TObjEneEpsilonGuardFPvi(u8 *arg0, s32 arg1) {
         return;
     }
     ((TObjEneDD *)arg0)->update_secondary_light();
-    TObjFish::set_global_param(((TObjEneDD_ST *)arg0)->texlist);
+    set_current_texture_list((GinjaTextureList *)(((TObjEneDD_ST *)arg0)->texlist));
     push_matrix();
     post_translate_matrix(arg0 + 0x38);
     translate_matrix(0, lbl_805E0208, lbl_805E0214, lbl_805E0208);
@@ -1013,7 +1016,7 @@ void TObjEneEpsilonGuard::action_destroy(s32 arg1) {
             if (*(s32 *)((s8 *)arg0 + 0x4E8) >= 0x14) {
                 ((TObjEneEpsilonBody *)(arg0))->vfunc_95();
                 TBoss3Volopt::create_breakup_mdl((s32)lbl_805D6FA4, (s32)epsilon_guard_destroy_breakup_params, (s32)(this->texlist), (s32)(arg0 + 0x2FC), (s32)(this->rotation_y));
-                play_sound_effect(0x4003AD4C, (u8 *)&this->body_center_position, 0, 0);
+                play_sound_effect(0x4003AD4C, (const Vec *)((u8 *)&this->body_center_position), 0, 0);
                 ((TObjPlayer *)(arg0 + 0x2FC))->trigger_dell_biter_events();
                 this->m_438 |= 1;
                 *(s32 *)((s8 *)arg0 + 0x4E4) = 1;
@@ -1163,7 +1166,7 @@ void TObjEneEpsilonGuard::handle_warp_state(s32 arg1) {
                 g->vy = (lbl_80479CAC[g->idx].z - g->pos.z) / 30.0f;
                 g->vz = (lbl_80479CAC[g->idx].w - g->pos.w) / 30.0f;
             }
-            play_persistent_sound(0x4003A349, (s32)this, (u32)(((u8 *)this) + 0x38), 0, 0);
+            play_persistent_sound((s32)(0x4003A349), (const void *)(this), (const Vec *)((u32)(((u8 *)this) + 0x38)), 0, 0);
             break;
         case 1:
             g->timer--;
@@ -1175,16 +1178,16 @@ void TObjEneEpsilonGuard::handle_warp_state(s32 arg1) {
                 g->alpha = 1.0f;
                 g->state = 2;
             }
-            play_persistent_sound(0x4003A349, (s32)this, (u32)(((u8 *)this) + 0x38), 0, 0);
+            play_persistent_sound((s32)(0x4003A349), (const void *)(this), (const Vec *)((u32)(((u8 *)this) + 0x38)), 0, 0);
             break;
         case 2:
             g->alpha = g->alpha - 0.033333335f;
             if (g->alpha <= 0.0f) {
                 g->alpha = 0.0f;
                 g->state = 3;
-                play_sound_effect(0x40039F4A, ((u8 *)this) + 0x38, 0, 0);
+                play_sound_effect(0x40039F4A, (const Vec *)(((u8 *)this) + 0x38), 0, 0);
             } else {
-                play_persistent_sound(0x4003A349, (s32)this, (u32)(((u8 *)this) + 0x38), 0, 0);
+                play_persistent_sound((s32)(0x4003A349), (const void *)(this), (const Vec *)((u32)(((u8 *)this) + 0x38)), 0, 0);
             }
             break;
         }
@@ -1212,7 +1215,7 @@ void TObjEneEpsilonGuard__sub_803610D0(u8 *arg0, s32 arg1) {
         if (F_8036(0x434, u32) != 0) {
             ((TParticleCtrl *)(F_8036(0x434, void *)))->enable();
         }
-        play_sound_effect(0x4003A64B, arg0 + 0x38, 0, 0);
+        play_sound_effect(0x4003A64B, (const Vec *)(arg0 + 0x38), 0, 0);
         break;
     case 3:
         if (F_8036(0x4E4, s32) == 5) {
@@ -1255,7 +1258,7 @@ void TObjEneEpsilonGuard__sub_803610D0(u8 *arg0, s32 arg1) {
                 ((void (*)(void *))set_guard_state__18TObjEneEpsilonBodyFl)(arg0);
                 F_8036(0x4E4, s32) = 3;
                 F_8036(0x4E8, s32) = 8;
-                play_sound_effect(0x4003A344, arg0 + 0x38, 0, 0);
+                play_sound_effect(0x4003A344, (const Vec *)(arg0 + 0x38), 0, 0);
             }
             if (F_8036(0x434, u32) != 0) {
                 ((TParticleCtrl *)F_8036(0x434, void *))->set_position(arg0 + 0x38);
@@ -1343,7 +1346,7 @@ void handle_guard_action_state__19TObjEneEpsilonGuardFPvi(W_80361508 *self, s32 
         ((void (*)(void *))set_guard_state__18TObjEneEpsilonBodyFl)(self);
         self->state = 0;
         self->timer = 0xF;
-        play_sound_effect(0x4003A64B, (u8 *)self + 0x38, 0, 0);
+        play_sound_effect(0x4003A64B, (const Vec *)((u8 *)self + 0x38), 0, 0);
         break;
     case 3:
         if (self->state == 3) {
@@ -1371,7 +1374,7 @@ void handle_guard_action_state__19TObjEneEpsilonGuardFPvi(W_80361508 *self, s32 
         case 1:
             self->timer--;
             if (self->timer == 0xF) {
-                play_sound_effect(0x4003A345, (u8 *)self + 0x38, 0, 0);
+                play_sound_effect(0x4003A345, (const Vec *)((u8 *)self + 0x38), 0, 0);
             }
             if (TObjEneEpsilonGuard__sub_8035FBBC((W_8035FBBC *)self) != 0 || self->timer <= 0) {
                 self->state = 3;
@@ -1493,7 +1496,7 @@ void TObjEneEpsilonGuard__sub_803616E4(void *arg0_, s32 arg1) {
                 F(s32, 0x4E8) = 2;
                 F(s32, 0x4EC) = *(s32 *)(GP + 0x1C);
             }
-            play_persistent_sound(0x4003BC47, (s32)arg0, (u32)(arg0 + 0x38), 0, 0);
+            play_persistent_sound((s32)(0x4003BC47), (const void *)((s32)arg0), (const Vec *)((u32)(arg0 + 0x38)), 0, 0);
             break;
         }
         case 2:
@@ -1506,7 +1509,7 @@ void TObjEneEpsilonGuard__sub_803616E4(void *arg0_, s32 arg1) {
                 if (e != 0) {
                     ((void (*)(void *, f32, void *, s32, s32))create_fire_explosion_effect)(e, lbl_805E0230, d, 0, tl_07);
                 }
-                play_sound_effect(0x4003A348, arg0 + 0x38, 0, 0);
+                play_sound_effect(0x4003A348, (const Vec *)(arg0 + 0x38), 0, 0);
                 for (i = 0; i < 4; i++) {
                     p = (u8 *)get_player_by_client_id(i);
                     if (p != 0 && horizontal_distance_squared((const Vec *)(p + 0x38), (const Vec *)d) <= lbl_805E0234) {
@@ -1517,7 +1520,7 @@ void TObjEneEpsilonGuard__sub_803616E4(void *arg0_, s32 arg1) {
                         if (((VObj_18_a39899 *)p)->m21(arg0, &s, 0, -1, -1) > lbl_805E0208) {
                             obj_setFlags30(p, 0x600);
                         }
-                        play_sound_effect(0x4002A828, p + 0x38, 0, 0);
+                        play_sound_effect(0x4002A828, (const Vec *)(p + 0x38), 0, 0);
                     }
                 }
                 F(s32, 0x4EC) = 30;

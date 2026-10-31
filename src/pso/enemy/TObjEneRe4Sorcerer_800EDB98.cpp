@@ -1,5 +1,8 @@
 #include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
+#include "pso/misc/PersistentSound.h"
 struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
@@ -80,7 +83,7 @@ void TObjEneRe4Sorcerer::vfunc_106() {
     get_target_info__9TObjEneDDFv();
     if (((VObj *)arg0)->m8(lbl_805DA788, TObjEneRe4Sorcerer__data_805DA78C) != 0) {
         ((TObjEneDD *)(arg0))->draw_ground_shadow(0, 0);
-        TObjFish::set_global_param(*(s32 *)((s8 *)arg0 + 0x24));
+        set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)arg0 + 0x24)));
         ((s32 (*)())push_matrix)();
         ((s32 (*)(void *))post_translate_matrix)(arg0 + 0x38);
         ((s32 (*)(s32, f32, f32, f32))translate_matrix)(0, TObjEneRe4Sorcerer__data_805DA790, TObjEneRe4Sorcerer__data_805DA794, TObjEneRe4Sorcerer__data_805DA790);
@@ -806,8 +809,8 @@ void *destroy_buffer_pair(void *arg0, s16 arg1);
 extern "C" {
 s32 approach_angle_limited(s32, s32, s32);
 s32 free_collision_body_parts(void *);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
-s32 play_sound_effect(void *, void *, int, int);
+
+
 void __dl__7TObjectFPv(void *);
 void * __nw__7TObjectFUl(int);
 s32 create_ex__11TTecGiBartaFPvPvPv(void *, void *, s32, s32);
@@ -1223,7 +1226,7 @@ void render__18TObjEneRe4SorcererFv(u8 *ene_re7_berura) {
             ((TObjEneDD *)(ene_re7_berura))->draw_ground_shadow(0, 0);
         }
         ((TObjEneDD *)ene_re7_berura)->update_secondary_light();
-        TObjFish::set_global_param((int) (*(s32 *)((s8 *)ene_re7_berura + 0x24)));
+        set_current_texture_list((GinjaTextureList *)((*(s32 *)((s8 *)ene_re7_berura + 0x24))));
         saved_model_render_flags = model_render_flags;
         TObjEneDD::clear_global_flag_400();
         scroll_strip_uvs((int) ((*(s32 *)&TObjEneRe4Sorcerer__uv_scroll_buffer)), (int) (*(s16 *)((s8 *)ene_re7_berura + 0x3C0)), 0);
@@ -1311,7 +1314,7 @@ void TObjEneRe4Sorcerer::handle_death_state(s32 arg1) {
         fn_800D911C((Vec *)(arg0 + 0x2FC));
         TObjPlayer__sub_800A04F0(arg0 + 0x3FC);
         *(f32 *)((s8 *)arg0 + 0x3F8) = (f32) TObjEneRe4Sorcerer__data_805DA790;
-        play_sound_effect((void *) (((s32)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003AD19)))), arg0 + 0x38, 0, 0);
+        play_sound_effect((s32)((void *) (((s32)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003AD19))))), (const Vec *)(arg0 + 0x38), 0, 0);
         return;
     case 0:
         ((TObjMotion *)arg0)->advance_animation();
@@ -1414,7 +1417,7 @@ void TObjEneRe4Sorcerer__sub_800EE1CC(u8 *arg0, s32 arg1) {
                 *(s16 *)((s8 *)arg0 + 0xB8) = 4;
                 *(s32 *)((s8 *)arg0 + 0x4E8) = 3;
             }
-            play_persistent_sound((s32)(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003A814))), (s32)arg0, (u32)(arg0 + 0x38), 0, 0);
+            play_persistent_sound((s32)((s32)(((TObjEnemy *)(arg0))->remap_sound_for_area(0x4003A814))), (const void *)((s32)arg0), (const Vec *)((u32)(arg0 + 0x38)), 0, 0);
             break;
         case 2:
         case 3:
@@ -1949,16 +1952,16 @@ void TObjEneRe4Sorcerer__vt85(s32 arg0p, u32 arg1, s32 arg1p) {
 }
 
 void TObjEneRe4Sorcerer__sub_800EF214(s32 arg0) {
-    play_persistent_sound((s32)((void *) (((s32)((TObjEnemy *)((void *)arg0))->remap_sound_for_area((s32)(0x4003A81D))))), (s32)arg0, arg0 + 0x38, 0, 0);
+    play_persistent_sound((s32)((s32)((void *) (((s32)((TObjEnemy *)((void *)arg0))->remap_sound_for_area(0x4003A81D))))), (const void *)((s32)arg0), (const Vec *)(arg0 + 0x38), 0, 0);
 }
 
 void TObjEneRe4Sorcerer::create_effect() {
     u8 *arg0 = (u8 *)this;
     if ((s32) *(s32 *)((s8 *)arg0 + 0x3E8) == 0) {
-        play_persistent_sound((s32)(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003A812))), (s32)arg0, (u32)(arg0 + 0x38), 0, 0);
+        play_persistent_sound((s32)((s32)(((TObjEnemy *)(arg0))->remap_sound_for_area(0x4003A812))), (const void *)((s32)arg0), (const Vec *)((u32)(arg0 + 0x38)), 0, 0);
         return;
     }
-    play_persistent_sound((s32)(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003AB13))), (s32)arg0, (u32)(arg0 + 0x38), 0, 0);
+    play_persistent_sound((s32)((s32)(((TObjEnemy *)(arg0))->remap_sound_for_area(0x4003AB13))), (const void *)((s32)arg0), (const Vec *)((u32)(arg0 + 0x38)), 0, 0);
 }
 
 s32 TObjEneRe4Sorcerer::cast_resta() {

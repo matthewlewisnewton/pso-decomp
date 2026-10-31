@@ -1,3 +1,6 @@
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/system/PadRumble.h"
 #include "pso/object/TObject_80019A50.h"
@@ -56,9 +59,9 @@ void post_translate_matrix(void *);
 extern const f32 lbl_805D89F4;
 extern const f32 lbl_805D89F8;
 void set_scripted_camera_pose(void *, void *, void *);
-void *spawn_particle_effect(void *pos, s32 id);
+
 void *create_particle_emitter(void *pos, s32 id);
-void play_sound_effect(s32, void *, s32, s32);
+
 extern Vec_8004F3D4 lbl_804373F4[];
 extern Vec_8004F3D4 boss4_type2_effect_offset_vec[];
 extern const f32 lbl_805D89FC;
@@ -82,7 +85,7 @@ void TObjDFDemo4::sub_8004F2A8() {
     post_translate_matrix(arg0->fe8);
     rotate_matrix_y(0, *(s32 *)&this->m_f4);
     for (i = 0; i < 2; i++) {
-        TObjFish::set_global_param(arg0->recs[i].b);
+        set_current_texture_list((GinjaTextureList *)(arg0->recs[i].b));
         draw_model_motion((void *)arg0->recs[i].a, (void *)arg0->recs[i].c, lbl_805D89F8);
     }
     clear_motion_packed_rotation();
@@ -105,33 +108,33 @@ void TObjDFDemo4::run_task() {
   u32 r;
   u32 *p;
   s32 i;
-  if ((self->fF8 <= 0x3C) && ((r = (u32)spawn_particle_effect(&self->pos, 0x14E)) != 0))
+  if ((self->fF8 <= 0x3C) && ((r = (u32)spawn_particle_effect((const Vec *)(&self->pos), 0x14E)) != 0))
   {
     ((TParticleCtrl *)r)->set_flags(0x40);
   }
   if (self->fF8 == 0x44)
   {
-    if ((r = (u32)spawn_particle_effect(&self->pos, 0x17B)) != 0)
+    if ((r = (u32)spawn_particle_effect((const Vec *)(&self->pos), 0x17B)) != 0)
     {
       ((TParticleCtrl *)r)->set_flags(0x40);
     }
-    if ((r = (u32)spawn_particle_effect(&self->pos, 0x17C)) != 0)
+    if ((r = (u32)spawn_particle_effect((const Vec *)(&self->pos), 0x17C)) != 0)
     {
       ((TParticleCtrl *)r)->set_flags(0x40);
     }
   }
   if (self->fF8 == 0x48)
   {
-    if ((r = (u32)spawn_particle_effect(&self->pos, 0x17A)) != 0)
+    if ((r = (u32)spawn_particle_effect((const Vec *)(&self->pos), 0x17A)) != 0)
     {
       ((TParticleCtrl *)r)->set_flags(0x40);
     }
-    play_sound_effect(0x40039E09, &self->pos, 0, 1);
+    play_sound_effect(0x40039E09, (const Vec *)(&self->pos), 0, 1);
     start_pad_rumble_all(0xC0, 0xF);
   }
   if (self->fF8 == 0x72)
   {
-    play_sound_effect(0x4003B227, &self->pos, 0, 1);
+    play_sound_effect(0x4003B227, (const Vec *)(&self->pos), 0, 1);
   }
   if (self->fF8 >= 0xAA)
   {

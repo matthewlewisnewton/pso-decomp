@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TLobby_80132ED0.h"
 #include "pso/misc/TWindowCtrl_8024A054.h"
@@ -142,7 +143,7 @@ s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, s32);
 s32 TWindowShortListCtrl__check_controller_button(void *, s32);
 u32 is_action_active__10TObjPlayerFv(s32);
 void decrement_clamped(void *, s32);
-void play_sound_effect(s32, s32, s32, s32);
+
 s32 __nw__7TObjectFUl(s32);
 void TWindow__close(void *);
 s32 TWindowCtrl__sub_8024A228(s32);

@@ -1,3 +1,5 @@
+#include "pso/system/SoundEffect.h"
+#include "pso/misc/PersistentSound.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
@@ -163,13 +165,13 @@ void TObjPlayer__sub_8008F910(u8 *arg0);
 void queue_destruction__7TObjectFv(void *arg0);
 s32 TObjPlayer__sub_800A04F0(void *);
 void *find_entity_by_id(u16 id);
-s32 play_sound_effect(int, void *, int, int);
+
 extern const f32 lbl_805D964C;
 extern const f32 lbl_805D9664;
 extern const f32 lbl_805D9668;
 s32 update_enemy_wander_move(void *, Vec_8008FAD0 *, int, f32);
 s32 reset_enemy_state__10TObjPlayerFv();
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 void TObjPlayer__sub_8008FAD0(u8 *arg0);
 f32 random_ratio__9TObjCharaFv(s32 arg0);
 void calc_velocity_toward_destination(void *, Vec_8008F910, Vec_8008F910, f32);
@@ -300,7 +302,7 @@ void TObjPlayer__sub_8008EDE8(P_8008EDE8 *arg0) {
             if (arg0->f3C0 <= ((AttackParams *)(arg0->f318))->get_attack_range() * ((AttackParams *)(arg0->f318))->get_attack_range()) {
                 arg0->fB8 = 2;
                 arg0->state = 2;
-                play_sound_effect(0x4003B033, arg0->pos38, 0, 0);
+                play_sound_effect(0x4003B033, (const Vec *)(arg0->pos38), 0, 0);
             }
         }
         break;
@@ -432,7 +434,7 @@ void TObjPlayer__sub_8008F1DC(void *arg0) {
         }
         ((TObjEnemy *)o)->turn_toward_direction((s32)o->f350->f8, (Vec *)&o->vel);
         if (((TObjMotion *)o)->is_passing_frame((f32)lbl_805D964C) != 0) {
-            play_sound_effect(0x4003B034, (u8 *)o + 0x38, 0, 0);
+            play_sound_effect(0x4003B034, (const Vec *)((u8 *)o + 0x38), 0, 0);
             if (FLD(T_8008F1DC *, 0x2A8)->m18(o, lbl_805D9650) != 0) {
                 FLD(T_8008F1DC *, 0x2A8)->m20(o, lbl_805D9650);
                 FLD(T_8008F1DC *, 0x2A8)->m23(o, lbl_805D9658);
@@ -488,7 +490,7 @@ void TObjPlayer::run_death_sequence() {
             *(f32 *)((s8 *)arg0 + 0x30C) = *(f32 *)((s8 *)arg0 + 0x3B4) / lbl_805D9664;
             this->m_37c = 2;
         }
-        play_sound_effect(0x4003AD37, (u8 *)&this->position, 0, 0);
+        play_sound_effect(0x4003AD37, (const Vec *)((u8 *)&this->position), 0, 0);
         break;
     case 1:
         ((TObjMotion *)arg0)->advance_animation();
@@ -592,7 +594,7 @@ void TObjPlayer__sub_8008FAD0(u8 *arg0) {
             reset_enemy_state__10TObjPlayerFv();
             break;
         }
-        play_persistent_sound(0x4003B235, (s32)arg0, (u32)(arg0 + 0x38), 0, 0);
+        play_persistent_sound((s32)(0x4003B235), (const void *)((s32)arg0), (const Vec *)((u32)(arg0 + 0x38)), 0, 0);
         *(f32 *)((s8 *)arg0 + 0x30C) = lbl_805D9620;
         {
             Vec_8008FAD0 pos = *(Vec_8008FAD0 *)(*(u8 **)((s8 *)arg0 + 0x2A8) + 0x2FC);

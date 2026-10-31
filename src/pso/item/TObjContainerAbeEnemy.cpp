@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/object/TObjChip.h"
 #include "pso/object/TObject_80019A50.h"
@@ -179,7 +180,7 @@ void TObjContainerBase::vfunc_81() {
     if (container_breakup_model_archive != 0) {
         switch (this->mode) {
         case 0:
-            TObjFish::set_global_param(lbl_805D5B8C);
+            set_current_texture_list((GinjaTextureList *)(lbl_805D5B8C));
             push_matrix();
             post_translate_matrix(self->pos);
             rotate_matrix_y(0, this->rotation_y);

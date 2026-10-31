@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/item/TItem.h"
 #include "pso/system/NinjaUtil.h"
@@ -146,7 +147,7 @@ s32 init_collision_body_parts(void *, void *, int);
 extern s32 __vt__17TObjContainerItem[];
 extern s32 TObjContainerItem__name;
 u8 *TObjContainerItem__ct(u8 *arg0, s32 arg1, s32 arg2);
-s32 play_sound_effect(int, void *, int, int);
+
 void *__dt__21TObjContainerAbeEnemyFv(void *arg0, s16 arg1);
 void run_task__13TUnk_804B6C24Fv();
 void render__13TUnk_804B6C24Fv();
@@ -378,50 +379,50 @@ void play_container_break_sound(s32 arg0) {
     switch (area) {
     case AREA_FOREST1:
     case AREA_FOREST2:
-        play_sound_effect(0x4BC10, (void *)(arg0 + 0x38), 0, 0);
+        play_sound_effect(0x4BC10, (const Vec *)((arg0 + 0x38)), 0, 0);
         return;
     case AREA_CAVE1:
     case AREA_CAVE2:
     case AREA_CAVE3:
-        play_sound_effect(0x43C0F, (void *)(arg0 + 0x38), 0, 0);
+        play_sound_effect(0x43C0F, (const Vec *)((arg0 + 0x38)), 0, 0);
         return;
     case AREA_MINE1:
     case AREA_MINE2:
-        play_sound_effect(0x4004BC09, (void *)(arg0 + 0x38), 0, 0);
+        play_sound_effect(0x4004BC09, (const Vec *)((arg0 + 0x38)), 0, 0);
         return;
     case AREA_RUINS1:
     case AREA_RUINS2:
     case AREA_RUINS3:
-        play_sound_effect(0x4004BC10, (void *)(arg0 + 0x38), 0, 0);
+        play_sound_effect(0x4004BC10, (const Vec *)((arg0 + 0x38)), 0, 0);
         return;
     case AREA_BATTLE1:
     case AREA_BATTLE2:
-        play_sound_effect(0x4004BC05, (void *)(arg0 + 0x38), 0, 0);
+        play_sound_effect(0x4004BC05, (const Vec *)((arg0 + 0x38)), 0, 0);
         return;
     case AREA_VR_TEMPLE_ALPHA:
     case AREA_VR_TEMPLE_BETA:
-        play_sound_effect(0x4BC05, (void *)(arg0 + 0x38), 0, 0);
+        play_sound_effect(0x4BC05, (const Vec *)((arg0 + 0x38)), 0, 0);
         return;
     case AREA_VR_SPACESHIP_ALPHA:
     case AREA_VR_SPACESHIP_BETA:
-        play_sound_effect(0x4004BC05, (void *)(arg0 + 0x38), 0, 0);
+        play_sound_effect(0x4004BC05, (const Vec *)((arg0 + 0x38)), 0, 0);
         return;
     case AREA_CENTRAL_CONTROL_AREA:
     case AREA_JUNGLE_NORTH:
     case AREA_JUNGLE_EAST:
     case AREA_MOUNTAIN:
     case AREA_SEASIDE:
-        play_sound_effect(0x4BC16, (void *)(arg0 + 0x38), 0, 0);
+        play_sound_effect(0x4BC16, (const Vec *)((arg0 + 0x38)), 0, 0);
         return;
     case AREA_SEABED_UPPER:
     case AREA_SEABED_LOWER:
-        play_sound_effect(0x4004BC16, (void *)(arg0 + 0x38), 0, 0);
+        play_sound_effect(0x4004BC16, (const Vec *)((arg0 + 0x38)), 0, 0);
         return;
     case AREA_SEASIDE_NIGHT:
-        play_sound_effect(0x4004BC16, (void *)(arg0 + 0x38), 0, 0);
+        play_sound_effect(0x4004BC16, (const Vec *)((arg0 + 0x38)), 0, 0);
         return;
     case AREA_TOWER:
-        play_sound_effect(0x4004BC16, (void *)(arg0 + 0x38), 0, 0);
+        play_sound_effect(0x4004BC16, (const Vec *)((arg0 + 0x38)), 0, 0);
     default:
         return;
     }

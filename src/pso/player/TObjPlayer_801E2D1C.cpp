@@ -7,7 +7,7 @@
 
 
 extern "C" {
-void prepare_ginja_model(void *);
+void prepare_ginja_model(void);
 }
 void end_ginja_model_draw();
 extern "C" {
@@ -54,7 +54,7 @@ void draw_ginja_motion(NJS_OBJECT *model, NJS_MOTION *motion, f32 frame) {
     bind_motion_context((NJS_MOTION *)motion, frame);
     g = model_draw_context;
     g->draw = draw_ginja_model_lists;
-    prepare_ginja_model(g);
+    prepare_ginja_model();
     TObjPlayer::render_matrix_chain(model);
     end_ginja_model_draw();
 }

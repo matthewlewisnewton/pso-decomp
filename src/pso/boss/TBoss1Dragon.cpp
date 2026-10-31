@@ -3,6 +3,9 @@
 #include "pso/math/FloatRounding.h"
 #include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
+#include "pso/misc/PersistentSound.h"
 struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
@@ -457,7 +460,7 @@ s32 clearState__12TBoss1DragonFv(void *);
 s32 isV2Mode__12TBoss1DragonFv(void);
 u8 *__nw__7TObjectFUl(s32);
 u8 *__ct__16TBoss1DragonDemoFv(u8 *arg0, s32 arg1, s32 arg2, f32 farg0);
-s32 play_sound_effect(s32, s32, s32, s32);
+
 void *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags);
 s32 play_cue_stream_file(void *, int);
 u32 spawn_particle_effect_with_rotation(void *, void *, void *, int);
@@ -957,7 +960,7 @@ void sweep_body_attack_spheres__12TBoss1DragonFv(u8 *arg0, f32 a, f32 b, f32 c);
 s32 check_flag_100__10TObjPlayerFPv();
 u8 *get_enemy_entity(u16 arg0);
 s32 angle_diff_s16(s32, s32);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 void *init_base__13TUnk_80481B34Fv(void *arg0);
 void __ct__13TUnk_804928CCFP7TObjectP8TObjBase(void *);
 s32 update_linked_position__12TObjEneDD_STFf(f32);
@@ -1002,7 +1005,7 @@ void TBoss1Dragon::render_low_detail() {
     if (((TBoss1Dragon*)self)->update_object_view_visibility((400.0f), (20.0f)) == 0) {
         return;
     }
-    TObjFish::set_global_param(self->texlist);
+    set_current_texture_list((GinjaTextureList *)(self->texlist));
     push_matrix();
     post_translate_matrix(&self->position.x);
     rotate_matrix_y(0, self->rotation_y);
@@ -1113,7 +1116,7 @@ void TBoss1Dragon::render() {
             *(s32 *)((s8 *)((u8 *)this) + 0x34) = saved;
             pop_matrix();
         }
-        TObjFish::set_global_param(((TBoss1Dragon *)((u8 *)this))->texlist);
+        set_current_texture_list((GinjaTextureList *)(((TBoss1Dragon *)((u8 *)this))->texlist));
         TObjEneDD::clear_global_flag_400();
         saved_model_render_flags = model_render_flags;
         set_material_alpha_compare_reference(0);
@@ -5260,11 +5263,11 @@ void TBoss1Dragon__sub_80028BE0(u8 *arg0) {
 }
 
 void spawn_trap__12TBoss1DragonFii(s32 arg0, s32 arg1) {
-    play_persistent_sound(arg1, arg0, arg0 + 0x63C, 0, 0);
+    play_persistent_sound((s32)(arg1), (const void *)(arg0), (const Vec *)(arg0 + 0x63C), 0, 0);
 }
 
 void play_se_at_pos__12TBoss1DragonFii(s32 arg0, s32 arg1) {
-    play_sound_effect(arg1, arg0 + 0x63C, 0, 0);
+    play_sound_effect((s32)(arg1), (const Vec *)(arg0 + 0x63C), 0, 0);
 }
 
 s32 select_forward_target__12TBoss1DragonFPv(u8 *self) {
