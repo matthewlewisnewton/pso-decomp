@@ -841,6 +841,7 @@ pso/misc/TBGLightningCtrl.cpp
 pso/misc/TBreakUpMdl.cpp
 pso/misc/TButterfly.cpp
 pso/misc/TButterfly_8017F364.cpp
+pso/misc/TCameraCtrl.cpp
 pso/misc/TCameraCtrl_80067654.cpp
 pso/misc/TCameraCtrl_8006782C.cpp
 pso/misc/TCameraCtrl_80067C88.cpp
@@ -848,7 +849,6 @@ pso/misc/TCameraCtrl_80067CE8.cpp
 pso/misc/TCameraCtrl_80067F44.cpp
 pso/misc/TCameraCtrl_80067F8C.cpp
 pso/misc/TCameraCtrl_80067FC0.cpp
-pso/misc/TCameraCtrl_8006A03C.cpp
 pso/misc/TCameraCtrl_8006B3D8.cpp
 pso/misc/TCameraCtrl_8006BA68.cpp
 pso/misc/TCameraCtrl_8006BCD8.cpp
@@ -3428,6 +3428,7 @@ pso/unk/text_8032AACC.cpp
 pso/unk/text_8032AC9C.cpp
 pso/unk/text_8032B318.cpp
 pso/unk/text_8032DA60.cpp
+pso/unk/text_803367F4.cpp
 pso/unk/text_803369C8.cpp
 pso/unk/text_803374F0.cpp
 pso/unk/text_80338F3C.cpp

@@ -1,4 +1,9 @@
-# CI: build every PR and run the repo's own zero-regression gate
+# Personal fork: binary CI is manual-only while no matching runner is available.
+# The local mechanical queue remains authoritative for full binary, code/data
+# regression, and link validation; hosted Source checks still run on every PR.
+# Retain this inherited workflow for deliberate future runner-backed validation.
+#
+# Binary gate
 # (tools/check_pr.py: ninja + DOL SHA-1 + report_delta --check vs the base commit's
 # baseline + link_units check).
 #
@@ -21,10 +26,6 @@
 name: CI
 
 on:
-  pull_request:
-    branches: [main]
-    types: [opened, synchronize, reopened]
-    paths-ignore: ['**.md']
   workflow_dispatch:
 
 permissions:

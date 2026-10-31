@@ -36,7 +36,7 @@ class Renderer(unittest.TestCase):
         bad=dict(self.i, fallback_inputs=0)
         with self.assertRaises(ValueError):r.render(self.readme,self.a,self.b,self.i,bad,'a'*40,1793476000)
     def test_reject_ambiguous_and_malicious_progress(self):
-        for text in (self.readme.replace('<!-- progress-table -->','<!-- progress-table -->\n<!-- progress-table -->'), self.readme.replace('A function is matched','<script>bad</script>\nA function is matched'),self.readme.replace('94.56%', '<script>bad</script>'),self.readme.replace('## Target','## Other')):
+        for text in (self.readme.replace('<!-- progress-table -->','<!-- progress-table -->\n<!-- progress-table -->'), self.readme.replace('A function is matched','<script>bad</script>\nA function is matched'),self.readme.replace('| Code |', '| Code | <script>bad</script>'),self.readme.replace('## Target','## Other')):
             with self.subTest(),self.assertRaises(ValueError):r.render(text,self.a,self.b,self.i,self.i,'a'*40,1793476000)
 
 if __name__ == '__main__': unittest.main()
