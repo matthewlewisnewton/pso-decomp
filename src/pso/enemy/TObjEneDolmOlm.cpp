@@ -1,3 +1,4 @@
+#include "pso/unk/text_800D8830.h"
 #include "pso/system/MatrixVectorArray.h"
 #include "pso/misc/SampledMotionPoints.h"
 #include "pso/misc/PositionSoundEffects.h"
@@ -395,7 +396,6 @@ void vfunc_93__14TObjEneDolmOlmFv(Obj_800A7A14 *o);
 void attach_particle_model(s32, s32, s32, s32, s32, f32);
 Hit_80300D00 *csnVectorUnder(void *, void *, s32, f32);
 s32 spawn_particle_effect(void *, int);
-void fn_800D88E4(void *);
 extern s32 actor_frame_tick;
 extern const f32 lbl_805DEF4C;
 void spawn_ground_effects__14TObjEneDolmOlmFPvPv(u8 *arg0, Vec_80300D00 *arg1);
@@ -1717,7 +1717,7 @@ void spawn_ground_effects__14TObjEneDolmOlmFPvPv(u8 *arg0, Vec_80300D00 *arg1) {
     if (hit != NULL) {
         if (hit->flags & 4) {
             if (actor_frame_tick % 5 == 0) {
-                fn_800D88E4(arg0 + 0x38);
+                play_floor_area_sound_effect((Vec *)(arg0 + 0x38));
             }
             e = spawn_particle_effect(hit->obj + 0x38, 0x49);
             if (e != 0) {
@@ -1726,7 +1726,7 @@ void spawn_ground_effects__14TObjEneDolmOlmFPvPv(u8 *arg0, Vec_80300D00 *arg1) {
             spawn_particle_effect(hit->obj + 0x38, 0xA4);
         } else if (hit->flags & 2) {
             if (actor_frame_tick % 10 == 0) {
-                fn_800D88E4(arg0 + 0x38);
+                play_floor_area_sound_effect((Vec *)(arg0 + 0x38));
             }
             e = spawn_particle_effect(hit->obj + 0x54, 0x49);
             if (e != 0) {
