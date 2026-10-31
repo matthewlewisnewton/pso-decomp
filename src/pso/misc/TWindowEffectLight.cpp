@@ -3,7 +3,6 @@
 #pragma readonly_strings on
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/CurrentTextureList.h"
-#include "pso/TWindowEffectLight.h"
 #include "pso/misc/TWindowEffectLight.h"
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/render/render_util.h"
@@ -54,7 +53,6 @@ void set_draw_texture_and_color(s32 idx, s32 arg1);
 
 extern "C" {
 
-void *__nw__7TObjectFUl(int);
 void copy_vec2__28TWindowSubSymbolChatPartsSetFPv(f32 *destination, const void *source);
 void adjust_pos_for_split_screen__19TWindowKeyBoardSoftFl(f32 *position, s32 view_index);
 
@@ -63,13 +61,8 @@ void adjust_pos_for_split_screen__19TWindowKeyBoardSoftFl(f32 *position, s32 vie
 }
 
 extern "C" {
-void *TWindowEffectLight::create(void *arg0, void *arg1, void *arg2) {
-    void *o;
-    o = __nw__7TObjectFUl(0x2C);
-    if (o != NULL) {
-        o = ((void *(*)(void *, void *, void *, void *))__ct__18TWindowEffectLightFPvsUl)(o, arg0, arg1, arg2);
-    }
-    return o;
+void *TWindowEffectLight::create(void *arg0, s16 arg1, u32 arg2) {
+    return new TWindowEffectLight(arg0, arg1, arg2);
 }
 
 TWindowEffectLight::TWindowEffectLight(void *arg1, s16 arg2, u32 id) : TObject(tl_window) {
