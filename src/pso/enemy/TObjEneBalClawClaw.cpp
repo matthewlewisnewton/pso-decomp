@@ -584,7 +584,7 @@ struct En0VObj_80090DD0 : En0Base_80090DD0 {
 void TObjEneBalClawClaw__sub_800914A4(void);
 void action__18TObjEneBalClawClawFPv(u8 *arg0);
 s32 play_area_se_with_particle__12TBoss3VoloptFv(void *, s32);
-s32 TObjPlayer__sub_800A0554(void *);
+s32 start_negative_fade_phase__13TUnk_80490470Fv(void *);
 
 void action__18TObjEneBalClawClawFPv(u8 *ene_bal_claw_claw) {
     s32 temp_r4;
@@ -598,7 +598,7 @@ void action__18TObjEneBalClawClawFPv(u8 *ene_bal_claw_claw) {
         ((TObjEneBalClawClaw *)ene_bal_claw_claw)->actorFlags = temp_r4;
         ((TObjEneBalClawClaw *)ene_bal_claw_claw)->requested_action = 0;
         play_area_se_with_particle__12TBoss3VoloptFv(ene_bal_claw_claw + 0x38, temp_r4);
-        TObjPlayer__sub_800A0554(ene_bal_claw_claw + 0x390);
+        start_negative_fade_phase__13TUnk_80490470Fv(ene_bal_claw_claw + 0x390);
         ((TObjEneBalClawClaw *)ene_bal_claw_claw)->state = 1;
     case 1:
         ((TObjMotion *)ene_bal_claw_claw)->advance_animation();

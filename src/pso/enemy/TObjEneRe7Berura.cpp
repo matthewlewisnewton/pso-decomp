@@ -481,7 +481,7 @@ void * TObjEneRe7Berura__ct(void *arg0, void *arg1, void *arg2);
 void fn_80095DD0(u8 *arg0);
 void fn_80095DF4(u8 *arg0);
 s32 spawn_punch__16TObjEneRe7BeruraFPv(void *);
-s32 TObjPlayer__sub_800A0554(void *);
+s32 start_negative_fade_phase__13TUnk_80490470Fv(void *);
 void *__dt__13TUnk_80490470Fv(void *arg0, s16 arg1);
 s32 enemy_set_target_id(void *, u16);
 void *__dt__12TObjEneDD_STFv(void *arg0, s16 arg1);
@@ -758,7 +758,7 @@ void TObjEneRe7Berura::state_attack(s32 arg1) {
         *(s32 *)((s8 *)arg0 + 0x3C0) = (s32) (temp_r5 & ~5);
         *(s32 *)((s8 *)arg0 + 0x3C0) = (s32) (*(s32 *)((s8 *)arg0 + 0x3C0) | 2);
         set_field_378__9TObjEneDDFl(arg0, 3, temp_r5);
-        TObjPlayer__sub_800A0554(arg0 + 0x3D8);
+        start_negative_fade_phase__13TUnk_80490470Fv(arg0 + 0x3D8);
         ((TBoss3Volopt *)(arg0 + 0x38))->play_area_se_with_particle();
         init_fields4B8();
         return;

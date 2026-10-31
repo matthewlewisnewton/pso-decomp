@@ -198,7 +198,7 @@ extern const f32 lbl_805D9638;
 extern const f32 lbl_805D965C;
 extern const f32 lbl_805D9660;
 void TObjPlayer__sub_8008F1DC(void *arg0);
-s32 TObjPlayer__sub_800A0554(void *);
+s32 start_negative_fade_phase__13TUnk_80490470Fv(void *);
 void TObjPlayer__sub_8008EC3C(u8 *arg0);
 void TObjEneBalClawBody::update_dragon_boss_state() {
 
@@ -226,7 +226,7 @@ void TObjPlayer__sub_8008EC3C(u8 *enemy) {
         *(s32 *)((s8 *)enemy + 0x30) = (s32) (*(s32 *)((s8 *)enemy + 0x30) | 0x04000000);
         *(s16 *)((s8 *)enemy + 0xB8) = (*(s32 *)((s8 *)enemy + 0x388) & 0x01000000) ? 0 : 5;
         ((TBoss3Volopt *)(enemy + 0x38))->play_area_se_with_particle();
-        TObjPlayer__sub_800A0554(enemy + 0x390);
+        start_negative_fade_phase__13TUnk_80490470Fv(enemy + 0x390);
         *(s32 *)((s8 *)enemy + 0x37C) = 1;
     case 1:
         ((TObjMotion *)enemy)->advance_animation();
