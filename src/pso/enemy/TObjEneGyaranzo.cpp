@@ -243,7 +243,7 @@ TObjEneGyaranzo::TObjEneGyaranzo(TObject *parent, void *set_data)
     VecCopy((Vec *)&m_290, VecCopy((Vec *)&m_29c, &position));
     motion_list = gyaranzo_bml_resource->motions;
     action_table = gyaranzo_action_table;
-    set_field_d8((s32)action_table);
+    set_action_table(action_table);
     init_collision_body_parts(this, gyaranzo_collision_body, 1);
     variant = 0;
     movementParameters = &gyaranzo_movement_parameters;
@@ -1027,7 +1027,7 @@ void TObjEneGyaranzo::update_fade_state() {
         temp_r4 = actorFlags | 0x04000000;
         actorFlags = temp_r4;
         requested_action = 0;
-        TBoss3Volopt__sub_800D8D88(&body_center_position, temp_r4);
+        play_area_sound_and_particles_a(&body_center_position, temp_r4);
         fade.start_fade_in();
         state = 1;
     case 1:
