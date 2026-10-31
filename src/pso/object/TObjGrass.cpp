@@ -5,6 +5,8 @@
 #include "pso/misc/MaterialOpacityFade.h"
 #include "pso/misc/RenderFadeState.h"
 #include "pso/enemy/BattleParameters.h"
+struct NJS_OBJECT;
+#include "pso/math/ScratchVectorStorage.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -567,7 +569,7 @@ Vec grass_render_vec;
 Vec grass_origin_vec;
 
 extern u8 lbl_804FF5E8[];
-void TObjGrass::update_camera_vec_by_stage() {
+void TObjGrass::update_camera_vec_by_stage(NJS_OBJECT *) {
     Vec *v;
 
     switch (TObjGrass__render_node_index) {
@@ -628,7 +630,7 @@ s32 TObjGrass::sub_800BCE44() {
   this->movement_velocity.z = (f32) (0.0f);
   *((f32 *) (((s8 *) arg0) + 0x308)) = (f32) (0.0f);
   apply_actor_gravity((void *)((void *) arg0), 0, (f32) (0.0f));
-  ((TObjPlayer *)arg0)->update_collisions();
+  ((TObjCollidable *)arg0)->update_collisions();
   if (((TObjMotion *)arg0)->is_passing_frame((f32) (0.0f)) != 0)
   {
     play_sound_effect((void *) ((s32)((TObjEnemy *)((void *)((void *) arg0)))->remap_sound_for_area((s32)(0x4003A603))), (u8 *)&this->position, 0, 0);
@@ -673,7 +675,7 @@ s32 TObjGrass::update() {
     if (!(*(s32 *)&this->actorFlags & 0x800000)) {
         apply_actor_gravity(arg0, 0, (0.0f));
     }
-    ((TObjPlayer *)arg0)->update_collisions();
+    ((TObjCollidable *)arg0)->update_collisions();
     play_persistent_sound(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003A801)), arg0, (u8 *)&this->position, 0, 0);
     TObjPlayer::play_effect_if_v2(-0x200);
     temp_r4 = *(s16 *)&this->timer;
@@ -776,7 +778,7 @@ s32 TObjGrass::update_web_attack() {
         }
         break;
     }
-    ((TObjPlayer *)arg0)->update_collisions();
+    ((TObjCollidable *)arg0)->update_collisions();
     play_persistent_sound(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003A801)), arg0, &arg0->pos, 0, 0);
     TObjPlayer::play_effect_if_v2(-0x200);
     minimap_render_dot(&arg0->pos, -0x5DB4, 1, 0);
@@ -1065,7 +1067,7 @@ void TObjGrass::sub_800BDD70() {
         }
         break;
     }
-    ((TObjPlayer *)arg0)->update_collisions();
+    ((TObjCollidable *)arg0)->update_collisions();
     play_persistent_sound(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003A801)), arg0, (u8 *)&this->position, 0, 0);
     TObjPlayer::play_effect_if_v2(-0x200);
     minimap_render_dot((u8 *)&this->position, -0x5DB4, 1, 0);
@@ -1211,7 +1213,7 @@ void TObjGrass::update_chase_target(void *arg0_) {
             *(u8 **)((s8 *)arg0 + 0x2A8) = NULL;
         }
     }
-    ((TObjPlayer *)arg0)->update_collisions();
+    ((TObjCollidable *)arg0)->update_collisions();
     minimap_render_dot(arg0 + 0x38, -0x5DB4, 1, 0);
 }
 #undef arg0
@@ -1555,7 +1557,7 @@ void TObjGrass::render() {
     } else {
         TObjPlayer::toggle_particle_effect();
         TObjGrass__render_node_index = 0;
-        set_chunk_model_node_callback((s32)((void *)TObjGrass::update_camera_vec_by_stage));
+        set_chunk_model_node_callback((TObjGrass::update_camera_vec_by_stage));
         if (*(s32 *)((s8 *)arg0 + 0x3AC) == 1) {
             if (this->fade.has_visible_opacity() != 0) {
                 saved_model_render_flags = model_render_flags;
@@ -1581,7 +1583,7 @@ void TObjGrass::render() {
         }
         TParticleCtrl::end_effect_render();
     }
-    set_chunk_model_node_callback((s32)NULL);
+    set_chunk_model_node_callback(NULL);
     pop_matrix();
     restore_scene_lighting();
     VecCopy((Vec *)(arg0 + 0x374), (const Vec *)&grass_camera_vec);

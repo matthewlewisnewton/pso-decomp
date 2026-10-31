@@ -313,7 +313,7 @@ void TObjEneBalClawBody::update_move_to_target() {
         }
         ((TObjMotion *)self)->advance_animation();
         apply_actor_gravity((TObjEnemy *)((u8 *)self), (s32 *)(0), lbl_805D9620);
-        ((TObjPlayer *)self)->update_collisions();
+        ((TObjCollidable *)self)->update_collisions();
         break;
     }
     }

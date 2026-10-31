@@ -1,3 +1,4 @@
+struct NJS_OBJECT;
 #ifndef PSO_PLAYER_TOBJPLAYER_H
 #define PSO_PLAYER_TOBJPLAYER_H
 
@@ -263,7 +264,7 @@ struct TObjPlayer : public TObjChara {
     void clear_counter();
     void set_cancel_flag();
     static void reset_effect_count();
-    static void step_cutscene_frame();
+    static void step_cutscene_frame(NJS_OBJECT *);
     static void free_resources();
     void enter_state_8();
     void tick_freeze_state();
@@ -316,7 +317,6 @@ struct TObjPlayer : public TObjChara {
     static void*get_pmt_record_by_index(int i);
     static bool is_hit_receivable_target(s32 arg0, u32 arg1);
     static s32 is_player_in_range(s32 arg0, s32 arg1, f32 farg0);
-    s32 is_action_available();
     void draw_trail_strip(void *arg1, s32 arg2);
     f32 calc_photon_blast_power(s32 arg1, f32 farg0);
     static s32 is_any_teammate_in_state();
@@ -430,7 +430,7 @@ struct TObjPlayer : public TObjChara {
     s32 get_action_priority();
     void draw_model_no_fog();
     void update_invincibility();
-    static void update_effect_sequence();
+    static void update_effect_sequence(NJS_OBJECT *);
     static void toggle_particle_effect();
     static void create_dead_spot(s32 arg0, s32 arg1, f32 farg0);
     static void spawn_effect_f8(s32 arg1, s32 arg2);
@@ -568,7 +568,6 @@ struct TObjPlayer : public TObjChara {
     static void init_all_slots();
     static s32 check_flag_pair(s32 arg0, s32 arg1);
     static s32 check_flags(s32 arg0, s32 arg1);
-    void update_collisions();
     static void reset();
     static void set_camera_mode(s32 arg0);
     void reset_fields();
@@ -1137,10 +1136,6 @@ struct TObjPlayer : public TObjChara {
     void spawn_hit_effect(s32 arg1, s32 arg2, s32 arg3);
     void spawn_mirror_pair(void *arg1, s32 arg2, s32 arg3);
     void handle_hit_effect(s32 arg1, s32 arg2, s32 arg3);
-    static void process_callback_list(s32 arg0);
-    void draw_node_tree(void *arg1);
-    void draw_node_tree_if_visible();
-    void apply_with_callback(s32 arg1, f32 farg0);
     static s32 conditional_delete_ex(s32 arg0, s16 arg1);
     static void create_cane_if_ready(s32 arg0, void *position);
     static void create_cleanup_object(void *arg0);

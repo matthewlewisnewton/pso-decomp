@@ -1,3 +1,4 @@
+#include "pso/system/ModelNodePositionCapture.h"
 #include "types.h"
 #include "pso/system/PadRumble.h"
 #include "pso/misc/TCameraCtrl_800687BC.h"
@@ -19,7 +20,6 @@ extern "C" {
 s32 post_translate_matrix(void *);
 s32 rotate_matrix_y(s32, s32);
 s32 push_matrix();
-s32 clear_render_callback__8TObjFishFv(s32);
 void TObjPlayer::release_subobjects() {
     u8 *arg0 = (u8 *)this;
     if ((s32) *(s32 *)((s8 *)arg0 + 0xE4) >= 0xB4) {
@@ -29,9 +29,9 @@ void TObjPlayer::release_subobjects() {
         post_translate_matrix((u8 *)&this->override_blend_speed);
         rotate_matrix_y(0, (*(s32 *)&this->joint_matrices));
         TObjFish::set_global_param(*(s32 *)&this->blend_speed);
-        ((TObjFish *)(this->m_108))->set_draw_callback_list();
+        ((ModelNodePositionCapture *)(this->m_108))->install();
         draw_model_motion((void *)(*(s32 *)&this->play_speed), (void *)(*(s32 *)&this->override_speed), *(f32 *)&this->blend.motion[1]);
-        clear_render_callback__8TObjFishFv(this->m_108);
+        ((ModelNodePositionCapture *)(this->m_108))->clear();
         clear_motion_packed_rotation();
         pop_matrix();
         TObjPlayer::sync_player_globals();
@@ -59,9 +59,9 @@ int TObjPlayer::draw_fading_motion() {
     post_translate_matrix((u8 *)&this->override_blend_speed);
     rotate_matrix_y(0, (*(s32 *)&this->joint_matrices));
     TObjFish::set_global_param(this->body_count);
-    (*(TObjFish **)&this->blend.frame[0])->set_draw_callback_list();
+    (*(ModelNodePositionCapture **)&this->blend.frame[0])->install();
     draw_model_motion((void *)(*(s32 *)&this->bodies), (void *)(*(s32 *)&this->extra), *(f32 *)&this->blend.motion[1]);
-    clear_render_callback__8TObjFishFv(*(s32 *)&this->blend.frame[0]);
+    (*(ModelNodePositionCapture **)&this->blend.frame[0])->clear();
     frac = (s32)*(f32 *)&this->blend.motion[1] % 30;
     TObjFish::set_global_param(*(s32 *)&this->action_flags);
     draw_model_motion((void *)(*(s32 *)&this->motion_flags), (void *)(*(s32 *)&this->requested_action), frac);
@@ -123,11 +123,11 @@ Obj_8004FD50 *__dt__11TObjDFDemo5Fv(Obj_8004FD50 *arg0, s16 arg1) {
     if (arg0 != NULL) {
         arg0->vt = lbl_804857F4;
         if (arg0->fec != NULL) {
-            TObjFish::init_state_1(arg0->fec);
+            ModelNodePositionCapture::destroy((ModelNodePositionCapture *)(arg0->fec));
             arg0->fec = NULL;
         }
         if (arg0->f108 != NULL) {
-            TObjFish::init_state_1(arg0->f108);
+            ModelNodePositionCapture::destroy((ModelNodePositionCapture *)(arg0->f108));
             arg0->f108 = NULL;
         }
         for (i = 0; i < 5; i++) {
