@@ -28,7 +28,7 @@ extern const f32 TWindowEffectLight__data_805DE0E4;
 s32 is_split_screen(void);
 void TCameraCtrl__sub_80068EF0(void);
 s32 is_window_display_enabled(void);
-void TWindowEffectLight__sub_802AD040(void *, f32);
+void TWindowEffectLight__sub_802AD040(TWindowEffectLight *, f32);
 void begin_screen_draw(s32);
 extern s32 lbl_805D63F0;
 extern const f32 lbl_805DE0F4;
@@ -46,6 +46,51 @@ extern const f32 lbl_805DE118;
 extern const f32 lbl_805DE11C;
 extern const f32 lbl_805DE120;
 extern const f32 lbl_805DE124;
+
+extern const f32 lbl_805DE0F8;
+extern const f32 lbl_805DE0FC;
+extern const f32 lbl_805DE100;
+extern const f32 lbl_805DE104;
+extern const f32 lbl_805DE108;
+
+void TWindowEffectLight__sub_802AD040(TWindowEffectLight *self, f32 width) {
+    Light_802AD1CC *position = (Light_802AD1CC *)self;
+    Quad_802AD1CC q;
+    u32 color = self->calc_alpha() | 0x00FFFFFF;
+    f32 scale = self->calc_scale();
+    set_draw_texture_and_color(2, color);
+    f32 half_height = lbl_805DE0F8 * scale;
+    f32 half_width = TWindowEffectLight__data_805DE0E4 * (width - lbl_805DE0F4);
+    q.x0 = position->x - half_width - half_height;
+    q.y0 = position->y - half_height;
+    q.x1 = position->x - half_width;
+    q.y1 = position->y + half_height;
+    q.u0 = lbl_805DE0FC;
+    q.v0 = TWindowEffectLight__data_805DE0E4;
+    q.u1 = lbl_805DE100;
+    q.v1 = lbl_805DE104;
+    draw_textured_quad_at_depth((f32 *)&q, TWindowEffectLight__data_805DE0E4);
+    q.x0 = position->x + half_width;
+    q.y0 = position->y - half_height;
+    q.x1 = position->x + half_width + half_height;
+    q.y1 = position->y + half_height;
+    q.u0 = lbl_805DE100;
+    q.v0 = TWindowEffectLight__data_805DE0E4;
+    q.u1 = lbl_805DE108;
+    q.v1 = lbl_805DE104;
+    draw_textured_quad_at_depth((f32 *)&q, TWindowEffectLight__data_805DE0E4);
+    if (width > lbl_805DE0F4) {
+        q.x0 = position->x - half_width;
+        q.y0 = position->y - half_height;
+        q.x1 = position->x + half_width;
+        q.y1 = position->y + half_height;
+        q.u0 = lbl_805DE100;
+        q.v0 = TWindowEffectLight__data_805DE0E4;
+        q.u1 = lbl_805DE100;
+        q.v1 = lbl_805DE104;
+        draw_textured_quad_at_depth((f32 *)&q, TWindowEffectLight__data_805DE0E4);
+    }
+}
 
 void TWindowEffectLight::draw_outline_quad(s32 color) {
     Quad_802AD1CC q;
@@ -125,16 +170,16 @@ void render__18TWindowEffectLightFv(u8 *window_effect_light) {
           ((TWindowEffectLight *)window_effect_light)->draw_outline_quad(0xFFFFFF);
           break;
         case 3:
-          TWindowEffectLight__sub_802AD040(window_effect_light, lbl_805DE0F4);
+          TWindowEffectLight__sub_802AD040((TWindowEffectLight *)window_effect_light, lbl_805DE0F4);
           break;
         case 4:
-          TWindowEffectLight__sub_802AD040(window_effect_light, lbl_805DE128);
+          TWindowEffectLight__sub_802AD040((TWindowEffectLight *)window_effect_light, lbl_805DE128);
           break;
         case 5:
-          TWindowEffectLight__sub_802AD040(window_effect_light, lbl_805DE12C);
+          TWindowEffectLight__sub_802AD040((TWindowEffectLight *)window_effect_light, lbl_805DE12C);
           break;
         case 6:
-          TWindowEffectLight__sub_802AD040(window_effect_light, lbl_805DE130);
+          TWindowEffectLight__sub_802AD040((TWindowEffectLight *)window_effect_light, lbl_805DE130);
           break;
       }
     }
