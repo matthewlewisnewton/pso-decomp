@@ -1,3 +1,4 @@
+#include "pso/map/CsnGroundQuery.h"
 #ifndef PSO_TDEADSPOT_H
 #define PSO_TDEADSPOT_H
 #include "pso/TObject.h"
@@ -102,7 +103,6 @@ void update_fade_in_alpha__9TDeadSpotFPv(Obj_800D7FD4 *arg0);
 extern s32 lbl_80494A10[];
 Obj_800D80E4 *init_corner_vertices__9TDeadSpotFPv(Obj_800D80E4 *arg0, void * _w1, Vec_800D8314 * _w2, void * _w3, s32 _w4, s32 _w5, f32 _w6);
 void run_task__9TDeadSpotFv(Obj_800D8228 *arg0);
-Ground_800D8314 *csnVecterUnder(void *, s32);
 }
 void direction_to_rotation_yx(u8 *arg0, s32 *arg1, s32 *arg2);
 extern "C" {
@@ -143,7 +143,7 @@ void TUnk_804949D8::vfunc_6() {
     stack.sp8 = temp_f1;
     stack.sp10 = this->m_28 * cos_table_lookup(temp_r3);
     vec3_add_to(&stack.sp8, (u8 *)&this->unk_1C);
-    TObjBoss2Tunnel::adjust_to_ground((s32)&stack.sp8, &stack.sp8);
+    adjust_point_to_ground((const Vec *)&stack.sp8, (Vec *)&stack.sp8);
     ((TParticleCtrl *)this->m_34)->set_position(&stack.sp8);
 }
 #pragma pop
@@ -357,7 +357,7 @@ Mark_800D8314 *__ct__9TDeadSpotFv(Mark_800D8314 *self, void *parent, Vec_800D831
     self->vtx[3].color = -1;
     VecCopy((Vec *)&probe, (const Vec *)point);
     probe.y += lbl_805DA3A0;
-    ground = csnVecterUnder(&probe, 0x16EF);
+    ground = (Ground_800D8314 *)csnVecterUnder((const Vec *)&probe, 0x16EF);
     if (ground == NULL) {
         queue_destruction__7TObjectFv(self);
         return self;
@@ -420,7 +420,7 @@ Mark_800D8314 *__ct__9TDeadSpotFv(Mark_800D8314 *self, void *parent, Vec_800D831
             tmp.y += c->corners[0].y * scale;
             tmp.z += self->corners[i].z * scale;
             bad = 0;
-            ground = csnVecterUnder(&tmp, 0x16EF);
+            ground = (Ground_800D8314 *)csnVecterUnder((const Vec *)&tmp, 0x16EF);
             if (ground != NULL) {
                 if (ground->plane->point.y - tmp.y < lbl_805DA3B8) {
                     bad = 1;

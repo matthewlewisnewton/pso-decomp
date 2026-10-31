@@ -396,7 +396,6 @@ struct TObjPlayer : public TObjChara {
     void clear_header_struct();
     void clear_velocity_vectors();
     static void set_com_card_window(s32 arg0);
-    static s32 check_demo_mode();
     static s32 is_locally_controlled(void *player);
     static TObjPlayer *get_player_data(int index);
     int queue_destruction();
@@ -420,7 +419,6 @@ struct TObjPlayer : public TObjChara {
     void update_me1_gigue_state();
     void update_control_state();
     int get_flag_0x388_b24();
-    void init_position_vectors();
     void trigger_targets_action();
     s16 get_field_2c8();
     void set_flag_start_effect();
@@ -444,7 +442,6 @@ struct TObjPlayer : public TObjChara {
     static void create_dead_spot(s32 arg0, s32 arg1, f32 farg0);
     static void spawn_effect_f8(s32 arg1, s32 arg2);
     void trigger_dell_biter_events();
-    void spawn_ground_effect(s32 arg1);
     void spawn_effect_at_ground(s32 arg1);
     static void apply_effect_variant_a(s32 arg0, s32 arg1);
     static void apply_effect_variant_b(s32 arg0, s32 arg1);
@@ -1259,7 +1256,6 @@ struct TObjPlayer : public TObjChara {
     void create_party_effects(s32 id);
     u16 find_first_valid_target_id();
     void process_all_elements();
-    static void mult_vec_array(u32 arg0, s32 arg1);
     static void invert_matrix_in_place(u32 arg0);
     static void concat_matrix(u32 arg0, u32 arg1);
     void concat_quaternion_rotation();

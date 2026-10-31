@@ -1,4 +1,6 @@
+#include "pso/system/MatrixVectorArray.h"
 #include "pso/misc/SampledMotionPoints.h"
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
 #include "pso/system/EnemyBmlResource.h"
@@ -115,7 +117,6 @@ struct Player_800A7CA4 : VBase18_800A7CA4 {
 extern "C" {
 s32 play_sound_effect(s32, s32, s32, s32);
 s32 TObjPlayer__sub_800A0554(void *);
-s32 mult_vec_array__10TObjPlayerFUll(int, int, void *, int);
 s32 rotate_matrix_y(int, int);
 s32 push_matrix();
 s32 post_translate_matrix(void *);
@@ -244,7 +245,7 @@ void TObjEneDimedian::vfunc_93() {
     set_matrix_identity(0);
     post_translate_matrix(&o->pos);
     rotate_matrix_y(0, this->rotation_y);
-    mult_vec_array__10TObjPlayerFUll(0, e, &a, 2);
+    matrix_mult_vec_array((f32 (*)[4])(0), (const Vec *)(e), (Vec *)(&a), 2);
     pop_matrix();
     eff = o->effs[idx];
     if (eff != NULL) {
@@ -338,7 +339,7 @@ void draw_actor_model__10TObjPlayerFPv(Player_800A7CA4 *self) {
     push_matrix();
     post_translate_matrix(self->pos);
     rotate_matrix_y(0, self->f60);
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         draw_chunk_object(self->f34);
     } else {
         switch (self->f326) {
@@ -828,12 +829,12 @@ void *TObjEneDimedian__ct(void *arg0_, void *arg1_, void *arg2_) {
     __construct_array(arg0 + 0x3CC, (void *)&__ct__15RenderFadeStateFv, (void *)&__dt__15RenderFadeStateFv, 0x1C, 4);
     *(s32 *)((s8 *)arg0 + 0) = TObjEneDimedian_name_ref;
     ((VObj_18_c99286 *)arg0)->m79(arg2);
-    ((TObjPlayer *)arg0)->init_position_vectors();
+    ((TObjChara *)arg0)->initialize_position_copies();
     *(s32 *)((s8 *)arg0 + 0x334) = *(s32 *)((s8 *)arg0 + 0x368);
     ((TObjEneDimedian *)arg0)->sub_800A7B54();
     ((TObjEneDimedian *)arg0)->load_dimedian_param_entry(*(s32 *)((s8 *)arg0 + 0x368));
     *(u8 **)((s8 *)arg0 + 0xD8) = dimedian_action_table;
-    ((TObjMotion *)arg0)->set_field_d8((s32)(*(u8 **)((s8 *)arg0 + 0xD8)));
+    ((TObjMotion *)arg0)->set_action_table((TObjMotionAction *)((s32)(*(u8 **)((s8 *)arg0 + 0xD8))));
     *(s32 *)((s8 *)arg0 + 0xDC) = *(s32 *)((s8 *)(*(u8 **)&dimedian_resource_ptr) + 0x430);
     *(s16 *)((s8 *)arg0 + 0xB8) = 0;
     ((TObjMotion *)arg0)->set_animation(*(s16 *)((s8 *)arg0 + 0xB8));

@@ -399,8 +399,8 @@ void TObjMotion::change_action(s16 action) {
 }
 
 void TObjMotion::init_motion(TObjMotionAction *actions, BmlMotionEntry *motions, s16 action) {
-    set_field_d8((s32)actions);
-    set_field_dc((s32)motions);
+    set_action_table(actions);
+    set_motion_list(motions);
     set_animation(action);
 }
 

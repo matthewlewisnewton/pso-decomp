@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
 struct NJS_OBJECT;
 #include "pso/math/ScratchVectorStorage.h"
@@ -19,7 +20,7 @@ struct NJS_OBJECT;
 #include "pso/object/TObjMotion.h"
 #include "pso/enemy/TObjEneIllGill.h"
 extern "C" void render__15TObjIllGillKageFv();
-#include "pso/enemy/TUnk_80494938.h"
+#include "pso/misc/MaterialOpacityFade.h"
 
 #include "pso/boss/TBoss3Volopt.h"
 #include "pso/boss/TBoss4Type2.h"
@@ -1082,7 +1083,7 @@ void TObjEneIllGill::update_idle() {
     switch (this->phase) {
     case 0:
         obj_setFlags30(arg0, 0x04040000);
-        ((TUnk_80494938 *)(&this->fade))->start_fade_in();
+        fade.start_fade_in();
         ((TBoss3Volopt *)(&position))->play_area_se_with_particle();
         this->phase = 1;
         break;
@@ -1333,8 +1334,8 @@ void TObjEneIllGill::render() {
         rotate_matrix_y(0, this->rotation_y);
         scale_matrix(0, this->scale.x, this->scale.y, this->scale.z);
         illGillModelNodeIndex = 0;
-        set_chunk_model_node_callback((TObjEneIllGill::capture_effect_positions));
-        if (this->fadingIn != 0 && TObjPlayer::check_demo_mode() == 0) {
+        set_chunk_model_node_callback((s32)((void *)TObjEneIllGill::capture_effect_positions));
+        if (this->fadingIn != 0 && check_demo_mode() == 0) {
             if (fade.has_visible_opacity() != 0) {
                 saved_model_render_flags = model_render_flags;
                 saved_chunk_polygon_flags_and_mask = chunk_polygon_flags_and_mask;
@@ -1419,13 +1420,13 @@ TObjEneIllGill::TObjEneIllGill(TObject *parent, void *setData) : TObjEnemy(paren
     this->set_param(0x52);
     this->apply_set_data(setData);
     this->clear_lobby_object_state();
-    ((TObjPlayer *)self)->init_position_vectors();
+    ((TObjChara *)self)->initialize_position_copies();
     apply_actor_gravity(self, 0, TObjEneIllGill__data_805E02BC);
     model = (void *)illGillResource->models->model;
     texlist = illGillResource->models->m_c;
     motion_list = illGillResource->motions;
     action_table = illGillActions;
-    this->set_field_d8((s32)action_table);
+    this->set_action_table((TObjMotionAction *)((s32)action_table));
     requested_action = 0;
     this->set_animation(requested_action);
     this->set_field_b8(requested_action);

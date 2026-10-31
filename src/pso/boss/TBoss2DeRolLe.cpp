@@ -1,5 +1,7 @@
+#include "pso/system/MatrixVectorArray.h"
 #include "pso/animation/MotionContext.h"
 #include "pso/math/FloatRounding.h"
+#include "pso/map/CsnGroundQuery.h"
 #include "pso/math/VectorNormalize.h"
 #include "pso/enemy/BattleParameters.h"
 struct NJS_OBJECT;
@@ -779,7 +781,6 @@ struct RecoveredGlobal_8002F61C_lbl_804FE31C {
 extern "C" {
 void transform_point_to_view(s32, s32);
 void update_camera_sequence__9TObjEneDDFv(void);
-s32 mult_vec_array__10TObjPlayerFUll(int, void *, void *, int);
 s32 subtract_vector(void *, void *);
 s32 push_matrix();
 s32 pop_matrix();
@@ -806,7 +807,7 @@ void TObjPlayer__sub_8002F61C(NJS_OBJECT *) {
     if ((s32) TBoss2DeRolLe__current_attack_id == 0x33) {
         push_matrix();
         update_camera_sequence__9TObjEneDDFv();
-        mult_vec_array__10TObjPlayerFUll(0, (void *)&derolle_part_transform_template.value, (void *)lbl_805D4BB8, 4);
+        matrix_mult_vec_array((f32 (*)[4])(0), (const Vec *)((void *)&derolle_part_transform_template.value), (Vec *)((void *)lbl_805D4BB8), 4);
         pop_matrix();
         subtract_vector((void *)(lbl_805D4BB8 + 0xC), (void *)lbl_805D4BB8);
     }
@@ -2548,7 +2549,7 @@ void TBoss2DeRolLe__sub_800310F8(void *arg0, void *arg1, int arg2) {
                     v.x = r * sin_table_lookup(a);
                     v.y = lbl_805D8344;
                     v.z = r * cos_table_lookup(a);
-                    TObjBoss2Tunnel::adjust_to_ground((s32)&v, &v);
+                    adjust_point_to_ground((const Vec *)&v, (Vec *)&v);
                 }
                 {
                     Self_800310F8 *o = (Self_800310F8 *)arg0;
@@ -5815,8 +5816,8 @@ void *TBoss2DeRolLe__ct(void *arg0, void *arg1, void *arg2) {
         init_model__9TObjEneDDFP13CollisionBodyl(self, (u8 *)lbl_804822A8, 3, q);
     }
     ((TBoss2DeRolLe *)self)->motion_flags = 0;
-    ((TObjMotion *)self)->set_field_d8((s32)((u8 *)lbl_804823A8));
-    ((TObjMotion *)self)->set_field_dc(*(s32 *)((s8 *)lbl_805D4BA4 + 0x430));
+    ((TObjMotion *)self)->set_action_table((TObjMotionAction *)((s32)((u8 *)lbl_804823A8)));
+    ((TObjMotion *)self)->set_motion_list((BmlMotionEntry *)(*(s32 *)((s8 *)lbl_805D4BA4 + 0x430)));
     ((TBoss2DeRolLe *)self)->requested_action = 0;
     ((TObjMotion *)self)->set_animation(((TBoss2DeRolLe *)self)->requested_action);
     ((TObjMotion *)self)->set_field_b8(((TBoss2DeRolLe *)self)->requested_action);
@@ -6054,7 +6055,7 @@ void load_resources__13TBoss2DeRolLeFv(void) {
     TBoss2Tentacle__sub_8003A0AC();
     TBoss2Mine__sub_80038D88();
     for (k = 0; k < 5; k++) {
-        TObjBoss2Tunnel::adjust_to_ground((s32)(lbl_804356C0 + k * 0xC), (u8 *)TBoss2DeRolLe__mine_ground_targets + k * 0xC);
+        adjust_point_to_ground((const Vec *)((lbl_804356C0 + k * 0xC)), (Vec *)((u8 *)TBoss2DeRolLe__mine_ground_targets + k * 0xC));
     }
     TBoss2Fin::init_effect_table();
     res = (*(u8 * *)&lbl_805D4BA4);

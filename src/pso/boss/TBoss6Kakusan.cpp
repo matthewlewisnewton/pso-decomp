@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
 #include "types.h"
 #include "pso/boss/TBoss6Kakusan.h"
@@ -198,7 +199,7 @@ void TBoss6Kakusan::run_task() {
     Vec_803226C0 a;
     f32 speed;
     u8 *pl;
-    if (TObjPlayer::check_demo_mode() != 0) return;
+    if (check_demo_mode() != 0) return;
     if (query_teammate_state__9TObjEneDDFv() != 0) return;
     VecCopy((Vec *)&this->m_48, (const Vec *)&this->m_30);
     if ((s8)boss6_kakusan_homing_start_initialized == 0) {

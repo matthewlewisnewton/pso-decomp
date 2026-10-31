@@ -1,3 +1,5 @@
+#include "pso/map/CsnGroundQuery.h"
+#include "pso/player/demo_mode.h"
 struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
@@ -184,7 +186,6 @@ int VecCopy__FP3VecPC3Vec(void*, void*);
 void queue_destruction__7TObjectFv(void *);
 s32 get_flag_bit6__12TBoss8DragonFv();
 void TBoss8Dragon__sub_8005FB90(u8 *arg0);
-int check_demo_mode__10TObjPlayerFv(void*);
 void project_sound_origin_from_camera(s32 arg0, u8 *arg1, f32 farg0);
 s32 query_teammate_state__9TObjEneDDFv();
 s32 is_main_phase_15__9TObjEneDDFv();
@@ -216,7 +217,6 @@ extern const f32 lbl_805D8D80;
 extern const f32 lbl_805D8E5C;
 extern const f32 lbl_805D8E9C;
 extern const f32 lbl_805D8EA0;
-u8 * csnVecterUnder(s32 *, s32);
 extern const f32 lbl_805D8D70;
 extern const f32 lbl_805D8D74;
 extern const f32 lbl_805D8D90;
@@ -1304,7 +1304,7 @@ void TBoss8Dragon__sub_8005D9BC(u8 *arg0, s32 arg1, s32 arg2) {
         out.y = *(f32 *)((s8 *)arg0 + 0x3C);
         out.z = r * cos_table_lookup(ang) + *(f32 *)((s8 *)arg0 + 0x40);
         ((void (*)(void *, void *))VecCopy__FP3VecPC3Vec)(&tmp, &out);
-        p = ((u8 * (*)(void *, s32))csnVecterUnder)(&tmp, 0x16EF);
+        p = (u8 *)csnVecterUnder((const Vec *)&tmp, 0x16EF);
         if (p == NULL || *(f32 *)((s8 *)(*(u8 **)((s8 *)p + 4)) + 4) > lbl_805D8D70) {
             out.x = lbl_805D8D6C * sin_table_lookup(ang) + *(f32 *)((s8 *)arg0 + 0x38);
             out.y = *(f32 *)((s8 *)arg0 + 0x3C);
@@ -1418,11 +1418,11 @@ void TBoss5Gryphon::render_model() {
     pop_matrix();
 }
 
-void TBoss5Gryphon::render_shadows() { if (check_demo_mode__10TObjPlayerFv(this) == 0) { render_model(); } }
+void TBoss5Gryphon::render_shadows() { if (check_demo_mode() == 0) { render_model(); } }
 
 void TBoss8Dragon__sub_8005DF60(TBoss5Gryphon *self) {
     s32 view = 0;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         self->vfunc_105();
         return;
     }
@@ -1636,7 +1636,7 @@ void TBoss5Gryphon::update_ground_effects() {
     p[4].z = lbl_805D8D74 * (arg0->cp[6].z + arg0->cp[7].z);
     q = pts;
     for (i = 0; i < 16; i++, q++) {
-        Hit_8005E594 *hit = (Hit_8005E594 *)csnVecterUnder((s32 *)q, 0x16EF);
+        Hit_8005E594 *hit = (Hit_8005E594 *)csnVecterUnder((const Vec *)q, 0x16EF);
         if (hit == NULL) {
             q->y = lbl_805D8D94;
         } else {
@@ -2397,7 +2397,7 @@ void TBoss5Gryphon::fn_80060020(u32 arg1) {
                         v.x = r * sin_table_lookup(ang) + ((Vec_80060020 *)(pl + 0x38))->x;
                         v.y = lbl_805D8DD0 + ((Vec_80060020 *)(pl + 0x38))->y;
                         v.z = r * cos_table_lookup(ang) + ((Vec_80060020 *)(pl + 0x38))->z;
-                        hit = (Hit_80060020 *)csnVecterUnder((s32 *)&v, 0x16EF);
+                        hit = (Hit_80060020 *)csnVecterUnder((const Vec *)&v, 0x16EF);
                         ang += 0x2000;
                     } while (hit == NULL || hit->p->y > lbl_805D8D70);
                     found = 1;
@@ -2410,7 +2410,7 @@ void TBoss5Gryphon::fn_80060020(u32 arg1) {
                     v.x = r * sin_table_lookup(ang);
                     v.y = lbl_805D8D5C;
                     v.z = r * cos_table_lookup(ang);
-                    hit = (Hit_80060020 *)csnVecterUnder((s32 *)&v, 0x16EF);
+                    hit = (Hit_80060020 *)csnVecterUnder((const Vec *)&v, 0x16EF);
                     r -= lbl_805D8DCC;
                 } while (hit == NULL || hit->p->y > lbl_805D8D70);
             }
@@ -4232,7 +4232,7 @@ void TBoss5Gryphon::spawn_ground_splash() {
     f32 temp_f1;
     u8 *temp_r3;
     VecCopy__FP3VecPC3Vec((void*)((void *) (&stack.sp8)), (void*)((void *) (((u8 *)this) + 0x38)));
-    temp_r3 = csnVecterUnder(&stack.sp8, 0x16EF);
+    temp_r3 = (u8 *)csnVecterUnder((const Vec *)&stack.sp8, 0x16EF);
     if (temp_r3 != NULL) {
         temp_f1 = *(f32 *)((s8 *)(*(void **)((s8 *)temp_r3 + 4)) + 4);
         if (!(temp_f1 > lbl_805D8D70)) {
@@ -4883,7 +4883,7 @@ void TBoss5Gryphon::run_task() {
     s32 var_r30;
     s32 i;
     u8 *arg0 = (u8 *)this;
-    if (((int (*)())check_demo_mode__10TObjPlayerFv)() != 0) {
+    if (check_demo_mode() != 0) {
         ((TBoss5Gryphon *)(arg0))->vfunc_83();
         return;
     }
@@ -5022,8 +5022,8 @@ TBoss5Gryphon *TBoss5Gryphon__ct(TBoss5Gryphon *self, void *parent, void *data) 
     self->texlist = *(s32 *)(*(u8 **)(boss5_gryphon_body_bml_resource + 0x42C) + 0xC);
     init_model__9TObjEneDDFP13CollisionBodyl(self, lbl_804878D0, 10);
     self->motion_flags = 0;
-    self->set_field_d8((s32)lbl_80487B1C);
-    self->set_field_dc(*(s32 *)(boss5_gryphon_body_bml_resource + 0x430));
+    self->set_action_table((TObjMotionAction *)((s32)lbl_80487B1C));
+    self->set_motion_list((BmlMotionEntry *)(*(s32 *)(boss5_gryphon_body_bml_resource + 0x430)));
     self->requested_action = 0;
     self->set_animation(self->requested_action);
     self->set_field_b8(self->requested_action);

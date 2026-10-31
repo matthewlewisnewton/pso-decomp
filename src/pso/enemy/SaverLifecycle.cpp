@@ -1,4 +1,6 @@
+#include "pso/system/MatrixVectorArray.h"
 #include "pso/misc/SampledMotionPoints.h"
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
 struct NJS_OBJECT;
 #include "pso/player/PlayerAttackParams.h"
@@ -145,7 +147,6 @@ void update_entry_motion__12TObjEneSaverFv(u8 *arg0);
 s32 post_translate_matrix(void *);
 void check_enemy_body_collisions(void *arg0);
 s32 submit_cursor_candidate(void *, int);
-s32 mult_vec_array__10TObjPlayerFUll(int, int, void *, int);
 void set_matrix_identity(u8 *arg0);
 s32 rotate_matrix_y(int, int);
 s32 push_matrix();
@@ -323,7 +324,7 @@ void TObjEneSaver::apply_lookup_entry_effect() {
         set_matrix_identity(0);
         post_translate_matrix((void *) (((u8 *)this) + 0x38));
         rotate_matrix_y(0, this->rotation_y);
-        mult_vec_array__10TObjPlayerFUll(0, entry, &sp8, 2);
+        matrix_mult_vec_array((f32 (*)[4])(0), (const Vec *)(entry), (Vec *)(&sp8), 2);
         pop_matrix();
         temp_r3_2 = (unsigned char *) (*(void **)((s8 *)((u8 *)this) + 0x3C0));
         if (temp_r3_2 != NULL) {
@@ -696,7 +697,6 @@ u8 *get_enemy_entity(u16);
 
 #define get_player_by_client_id ((u8* (*)(u16))(get_player_by_client_id))
 #define play_sound_effect ((s32 (*)(int, void*, int, int))(play_sound_effect))
-#define mult_vec_array__10TObjPlayerFUll ((s32 (*)(int, s32, void*, int))(mult_vec_array__10TObjPlayerFUll))
 void TObjPlayer__sub_800A54B4(u8 *arg0);
 #define apply_lookup_entry_effect__12TObjEneSaverFv ((s32 (*)(void*))(apply_lookup_entry_effect__12TObjEneSaverFv))
 s32 check_path_obstructed(void *, void *);
@@ -887,7 +887,7 @@ void TObjEneSaver::sub_800A4D9C() {
                 set_matrix_identity(0);
                 post_translate_matrix((u8 *)&this->position);
                 rotate_matrix_y(0, F(s32, 0x60));
-                mult_vec_array__10TObjPlayerFUll(0, e, m44, 2);
+                matrix_mult_vec_array((f32 (*)[4])(0), (const Vec *)(e), (Vec *)(m44), 2);
                 pop_matrix();
                 if (F(VObj18_800A4D9C *, 0x3C4) != NULL) {
                     F(VObj18_800A4D9C *, 0x3C4)->m4(m44, m50);
@@ -1025,7 +1025,7 @@ void TObjPlayer__sub_800A5154(void *arg0) {
                 set_matrix_identity(0);
                 post_translate_matrix(&o->pos);
                 rotate_matrix_y(0, o->angle);
-                mult_vec_array__10TObjPlayerFUll(0, entry, &v, 2);
+                matrix_mult_vec_array((f32 (*)[4])(0), (const Vec *)(entry), (Vec *)(&v), 2);
                 pop_matrix();
                 if (o->cb != NULL) {
                     o->cb->m4(&v, &w);
@@ -1390,7 +1390,6 @@ void TObjEneSaver::advance_motion_state() {
 #undef step_angle_clamped__10TObjPlayerFPvi
 #undef get_player_by_client_id
 #undef play_sound_effect
-#undef mult_vec_array__10TObjPlayerFUll
 #undef apply_lookup_entry_effect__12TObjEneSaverFv
 #undef calc_move_state__12TObjEneSaverFv
 
@@ -1951,7 +1950,7 @@ void TObjEneSaver::run_task() {
         lbl_805D5058 = actor_frame_tick;
         TObjPlayer__sub_8023DEE0((s16 *)lbl_805D5054, 0xE, 0, 0);
     }
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         TObjPlayer__sub_800A42C0(this);
         return;
     }
@@ -2128,7 +2127,7 @@ u8 *TObjEneSaver__ct(TObjEneSaver *arg0, void *arg1, void *arg2) {
     __ct__13TUnk_80490470Fv(((u8 *)arg0 + 0x3A4));
     *(s32 *)((s8 *)arg0 + 0) = TObjEneSaver__class_name;
     arg0->apply_set_data(arg2);
-    ((TObjPlayer *)arg0)->init_position_vectors();
+    ((TObjChara *)arg0)->initialize_position_copies();
     *(f32 *)((s8 *)arg0 + 0x70) = 1.0f;
     arg0->scale.y = 1.0f;
     arg0->scale.x = 1.0f;
@@ -2149,7 +2148,7 @@ u8 *TObjEneSaver__ct(TObjEneSaver *arg0, void *arg1, void *arg2) {
     arg0->subtype = 0;
     arg0->sub_800A7734(arg0->variant);
     arg0->action_table = saver_action_table;
-    ((TObjMotion *)arg0)->set_field_d8((s32)arg0->action_table);
+    ((TObjMotion *)arg0)->set_action_table((TObjMotionAction *)((s32)arg0->action_table));
     *(s32 *)((s8 *)arg0 + 0xDC) = *(s32 *)((s8 *)(*(u8 * *)&saver_bml_resource) + 0x430);
     arg0->requested_action = 0;
     ((TObjMotion *)arg0)->set_animation(arg0->requested_action);

@@ -1,6 +1,8 @@
+#include "pso/system/MatrixVectorArray.h"
 #include "pso/misc/SampledMotionPoints.h"
 struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
+#include "pso/misc/GroundEffects.h"
 #include "types.h"
 #include "pso/system/vector.h"
 #include "pso/boss/TBoss5Gryphon.h"
@@ -633,7 +635,6 @@ void TObjEneDD__sub_802CF7B4(u8 *arg0, s32 arg1);
 s32 obj_is_hit_receivable();
 u8 *get_battle_param__10TObjPlayerFi(s32);
 s32 TObjEneBm9Mericarol__sub_802D0940(void *);
-s32 mult_vec_array__10TObjPlayerFUll(int, int, void *, int);
 s32 set_matrix_identity(int);
 s32 rotate_matrix_y(int, int);
 s32 push_matrix();
@@ -858,7 +859,7 @@ void TObjEneBm9Mericarol::state_burrow(s32 arg1) {
         stack.sp10 = lbl_805DE710 * cos_table_lookup((int) (*((s32 *) (((s8 *) arg0) + 0x60))));
         vec3_add_to(&stack.sp8, arg0 + 0x38);
         TObjPlayer::spawn_dead_spot_here((s32)&stack.sp8, 0x32);
-        ((TObjPlayer *)(&stack.sp8))->spawn_ground_effect(0x46);
+        spawn_ground_effect((const Vec *)(&stack.sp8), 0x46);
       }
         (this->vfunc_102());
         return;
@@ -1187,8 +1188,8 @@ void TObjPlayer__sub_802CFB64(u8 *player, s32 arg1) {
                 set_matrix_identity(0);
                 post_translate_matrix(player + 0x38);
                 rotate_matrix_y(0, *(s32 *)((s8 *)player + 0x60));
-                mult_vec_array__10TObjPlayerFUll(0, e0, &sp20, 2);
-                mult_vec_array__10TObjPlayerFUll(0, e1, &sp8, 2);
+                matrix_mult_vec_array((f32 (*)[4])(0), (const Vec *)(e0), (Vec *)(&sp20), 2);
+                matrix_mult_vec_array((f32 (*)[4])(0), (const Vec *)(e1), (Vec *)(&sp8), 2);
                 pop_matrix();
                 if (*(u8 **)((s8 *)player + 0x3C0) != NULL) {
                     ((VObj_18 *)*(u8 **)((s8 *)player + 0x3C0))->m4((s32 *)&sp20, (s32 *)&sp2C);

@@ -1147,8 +1147,8 @@ void *TCMCharacter__ct(void *motion, void *arg1) {
     char_select_current_entry = 0;
     ((void (*)(int))TAdSinglePlyChrSelectGC__sub_8028ED54)(0);
     char_select_current_entry = 0;
-    ((TObjMotion *)motion)->set_field_d8((s32)((void *)character_making_action_table));
-    ((TObjMotion *)motion)->set_field_dc(*(s32 *)((s8 *)creation_menu_main_obj + 0x430));
+    ((TObjMotion *)motion)->set_action_table((TObjMotionAction *)((s32)((void *)character_making_action_table)));
+    ((TObjMotion *)motion)->set_motion_list((BmlMotionEntry *)(*(s32 *)((s8 *)creation_menu_main_obj + 0x430)));
     ((TObjMotion *)motion)->requested_action = creation_motion_group(creation_player_character);
     ((TObjMotion *)motion)->set_animation(((TObjMotion *)motion)->requested_action);
     *(s32 *)((s8 *)motion + 0xE0) = (s32)mem_alloc(0xC00);
