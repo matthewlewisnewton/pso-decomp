@@ -4660,10 +4660,10 @@ void handle_6x47_cast_technique(void *arg) {
     if (test_action_mask__10TObjPlayerFl(player, 0x8200) != 0) return;
     tech = pkt.tech;
     set_technique_id__10TObjPlayerFs((s32)(player + 0x428), tech);
-    level = pkt.level;
+    level = (s8)pkt.level;
     valid = ((TObjPlayer *)(player + 0x428))->get_valid_technique();
     if (is_valid_technique_slot__10TObjPlayerFUc((u8)valid) == 0) valid = 0;
-    if (level == 14) level += valid;
+    if ((s32)level == 14) level += valid;
     if (!check_technique_level__10TObjPlayerFllUc(player + 0x428, tech, (u8)level)) level = 0;
     effective = level;
     ((TObjPlayer *)(player + 0x428))->set_technique_id(effective);
