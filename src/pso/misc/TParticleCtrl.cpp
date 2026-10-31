@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/render/render_util.h"
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
@@ -234,7 +235,7 @@ extern s32 local_client_id;
 
 void TUnk_8048E6A8::render() {
     Obj_80085798 *self = (Obj_80085798 *)this;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         NJS_ARGB color = demo_mode_particle_color;
         debug_draw_sphere((const Vec *)self->target, &color, 40.0f);
     }

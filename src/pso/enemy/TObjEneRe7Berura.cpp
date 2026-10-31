@@ -1,5 +1,6 @@
 #include "pso/animation/MotionContext.h"
 #include "pso/misc/SampledMotionPoints.h"
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
@@ -1109,7 +1110,7 @@ void TObjEneRe7Berura::vfunc_63() { if (this->mode != 11) { transition_enemy_sta
 void TObjEneRe7Berura::vfunc_28() {  }
 
 void run_task__16TObjEneRe7BeruraFv(TObjEneRe7Berura *ene_re7_berura) {
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((TObjEneRe7Berura *)(ene_re7_berura))->vfunc_83();
         return;
     }
@@ -1159,8 +1160,8 @@ void TObjEneRe7Berura::init_enemy() {
     *(s32 *)((s8 *)arg0 + 0x34) = *(s32 *)((s8 *)(*(u8 **)((s8 *)(*(u8 * *)&TObjEneRe7Berura__shared_resource) + 0x42C)) + 8);
     *(s32 *)((s8 *)arg0 + 0x24) = *(s32 *)((s8 *)(*(u8 **)((s8 *)(*(u8 * *)&TObjEneRe7Berura__shared_resource) + 0x42C)) + 0xC);
     init_model__9TObjEneDDFP13CollisionBodyl(arg0, lbl_8048F66C, 1);
-    ((TObjMotion *)arg0)->set_field_d8((s32)(((u8 *)TObjEneRe7Berura__animation_definitions)));
-    ((TObjMotion *)arg0)->set_field_dc(*(s32 *)((s8 *)(*(u8 * *)&TObjEneRe7Berura__shared_resource) + 0x430));
+    ((TObjMotion *)arg0)->set_action_table((TObjMotionAction *)((s32)(((u8 *)TObjEneRe7Berura__animation_definitions))));
+    ((TObjMotion *)arg0)->set_motion_list((BmlMotionEntry *)(*(s32 *)((s8 *)(*(u8 * *)&TObjEneRe7Berura__shared_resource) + 0x430)));
     *(s16 *)((s8 *)arg0 + 0xB8) = 0;
     ((TObjMotion *)arg0)->set_animation(*(s16 *)((s8 *)arg0 + 0xB8));
     ((TObjMotion *)arg0)->set_field_b8(*(s16 *)((s8 *)arg0 + 0xB8));

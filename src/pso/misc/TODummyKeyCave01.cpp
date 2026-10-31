@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "types.h"
 #include "pso/misc/TODummyKeyCave01.h"
 #include "pso/misc/MaterialColorFade.h"
@@ -113,7 +114,7 @@ void TODummyKeyCave01::run_task() {
     u32 st;
     u8 skip;
     void *o;
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         ((TObjBase *)self)->obj_clearFlags30(0x08000000);
     }
     if (this->m_98 < 0x100) {

@@ -28,7 +28,7 @@ force_active:
   - TObjEneEpsilonGuard__sub_80361C70
   - __ct__18TObjEneEpsilonBodyFP7TObjectPl
   - __dt__18TObjEneEpsilonBodyFv
-  - __vt__13TUnk_80494938
+  - __vt__19MaterialOpacityFade
   - __vt__14TObjEneEpsilon
   - __vt__18TObjEneEpsilonBody
   - action__19TObjEneEpsilonGuardFPvi
@@ -49,7 +49,7 @@ force_active:
   - record_camera_angle_samples__19TObjEneEpsilonGuardFv
   - render__18TObjEneEpsilonBodyFv
   - render_body_effect__18TObjEneEpsilonBodyFv
-  - reset_obstruction_fade__13TUnk_80494938Fv
+  - reset_obstruction_fade__19MaterialOpacityFadeFv
   - run_task__18TObjEneEpsilonBodyFv
   - select_attack_target__18TObjEneEpsilonBodyFl
   - set_guard_state__18TObjEneEpsilonBodyFv
@@ -2751,7 +2751,7 @@ force_active:
   - advance_thanks_state__12TBoss6ThanksFv
   - advance_to_preparation_phase__20TShopArmorListWindowFv
   - advance_toward_max__13TUnk_80490470Fv
-  - advance_toward_max__13TUnk_80494938Fv
+  - advance_toward_max__19MaterialOpacityFadeFv
   - advance_wait_next__11TBoss4Type3Fv
   - advance_wrap_offset__13TUnk_804B2578Fv
   - alerted_state__14TObjEneBm5WolfFl
@@ -2801,7 +2801,7 @@ force_active:
   - apply_battle_ctrl_effect__Fi
   - apply_blend_mode_1__10TObjPlayerFv
   - apply_bonuses
-  - apply_clamped_mode_param__12TObjEneSharkFv
+  - configure_subtype__12TObjEneSharkFv
   - apply_confusion_status__12TBoss1DragonFv
   - apply_confusion_status__13TObjEneRe4BitFv
   - apply_contact_damage__10TBoss4ZakoFv
@@ -4040,7 +4040,7 @@ force_active:
   - debug_render_overlay__9TMainTaskFv
   - decay_glow_and_calc_hp_ratio__9TBoss6MagFv
   - decay_value_toward_floor__13TUnk_80490470Fv
-  - decay_value_toward_floor__13TUnk_80494938Fv
+  - decay_value_toward_floor__19MaterialOpacityFadeFv
   - decode_adx_stereo__FPSclPsPsPsPsss
   - decode_adx_stereo_downmix__FPSclPsPsPsPsss
   - decode_packed_name_chars__9TItemDataFPSc
@@ -5113,7 +5113,7 @@ force_active:
   - has_serial_input__22TAdEnterSerialAccessGCFv
   - has_valid_slot__23TAdSinglePlyChrSelectGCFv
   - has_visible_opacity__13TUnk_80490470Fv
-  - has_visible_opacity__13TUnk_80494938Fv
+  - has_visible_opacity__19MaterialOpacityFadeFv
   - heaven_punisher_strike_locks__13TUnk_804A4B80Fv
   - hide__5TItemFv
   - hide_part__9TObjLukerFPvUs
@@ -11859,7 +11859,7 @@ force_active:
   - reset_by_door__19TObjLazerFenceExtraFPv
   - reset_camera_if_fullscreen__6TLobbyFPv
   - reset_color__13TUnk_80490470Fv
-  - reset_color__13TUnk_80494938Fv
+  - reset_color__19MaterialOpacityFadeFv
   - reset_cursor__17TAdMultiConfirmGCFPv
   - reset_effect_entries__18TAdChrMoveEffectGCFv
   - reset_effects__10TObjPlayerFv
@@ -12525,7 +12525,7 @@ force_active:
   - set_flag_and_clear_download__6TLobbyFv
   - set_flag_and_notify__10TObjPlayerFv
   - set_flags_and_apply_damage_color__13TUnk_80490470Fv
-  - set_flags_and_apply_damage_color__13TUnk_80494938Fv
+  - set_flags_and_apply_damage_color__19MaterialOpacityFadeFv
   - set_flags_and_apply_damage_color__15RenderFadeStateFv
   - set_flight_height__13TBoss5GryphonFv
   - set_gauge_param__20TWindowSubStatusDispFl
@@ -12592,7 +12592,7 @@ force_active:
   - set_random_enemies_mode__Fv
   - set_random_param__12TBoss8DragonFPUc
   - set_rate_from_divisor__13TUnk_80490470Fl
-  - set_rate_from_divisor__13TUnk_80494938Fl
+  - set_rate_from_divisor__19MaterialOpacityFadeFl
   - set_result_flag__12TBoss1DragonFll
   - set_scale__13TUnk_804B2578Ff
   - set_scene_light_diffuse__FPv
@@ -13171,7 +13171,7 @@ force_active:
   - sub_800D10A0__16TObjEneBm5GibonUFv
   - sub_800D4200__13TUnk_8049442CFv
   - sub_800D47B4__19TObjGyaranzoMissileFv
-  - sub_800D741C__13TUnk_80494938Fv
+  - update_alpha__19MaterialOpacityFadeFv
   - sub_800DA1F4__16TObjEneNanoDragoFv
   - sub_800DA2A0__16TObjEneNanoDragoFv
   - sub_800DB970__16TObjEneNanoDragoFv
