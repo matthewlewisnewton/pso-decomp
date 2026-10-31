@@ -239,8 +239,15 @@ class Queue:
             require(all(p.startswith(('tools/', 'docs/', '.github/')) or p in ('README.md', 'CONTRIBUTING.md', 'AGENTS.md')
                         for p in paths), 'maintenance_scope', paths)
         if self.spec['policy'] == 'source-maintenance':
-            paths = self.git('diff', '--no-renames', '--name-only', '-z', self.spec['target'], current).rstrip('\0').split('\0')
-            require(paths and all(source_maintenance_path(p) for p in paths), 'source_maintenance_scope', paths)
+            # Preserve every filename byte: the normal git helper strips stdout.
+            diff = subprocess.run(['git', '-c', 'core.hooksPath=/dev/null', '-C', str(self.repo),
+                                   'diff', '--no-renames', '--name-only', '-z', self.spec['target'], current],
+                                  capture_output=True)
+            require(diff.returncode == 0, 'command_failed', {'command': 'git diff --name-only -z', 'returncode': diff.returncode})
+            raw = diff.stdout
+            require(bool(raw) and raw.endswith(b'\0'), 'source_maintenance_scope', 'Empty or malformed path list')
+            paths = [os.fsdecode(path) for path in raw[:-1].split(b'\0')]
+            require(all(source_maintenance_path(p) for p in paths), 'source_maintenance_scope', paths)
         self.write(state='planned', candidate=current, tree=tree, commits=commits)
         return current, tree
 

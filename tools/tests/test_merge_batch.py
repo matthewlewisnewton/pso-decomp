@@ -163,6 +163,33 @@ class QueueTests(unittest.TestCase):
         self.batch['policy'] = 'recovery'
         self.rejects('invalid_policy', lambda: m.validate_spec(self.batch))
 
+    def test_source_maintenance_construct_checks_unmodified_git_paths(self):
+        cases = [('src/good.cpp', True), ('include/sub/good.h', True),
+                 ('tools/no.cpp', False), (' src/outside.cpp', False),
+                 ('\nsrc/outside.cpp', False), ('src/trailing.cpp ', False),
+                 ('src/leading name.cpp', False), ('src/tab\tname.cpp', False),
+                 ('src/odd\nname.cpp', False), ('src/unicode-é.cpp', False)]
+        for i, (name, allowed) in enumerate(cases):
+            with self.subTest(name=repr(name)):
+                branch = 'scope' + str(i)
+                git(self.author, 'checkout', '-b', branch, self.batch['target'])
+                path = self.author / name; path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text('fixture\n')
+                git(self.author, 'add', '--', name); git(self.author, 'commit', '-m', 'scope case')
+                git(self.author, 'push', 'origin', branch)
+                batch = copy.deepcopy(self.batch); batch['policy'] = 'source-maintenance'
+                pr = batch['prs'][0]; pr['kind'] = 'source-maintenance'
+                pr['head'] = git(self.author, 'rev-parse', 'HEAD'); pr['head_ref'] = branch
+                pr['review']['head'] = pr['head']
+                state = self.root / ('scope-state-' + str(i)); state.mkdir()
+                queue = LocalQueue(batch, state, LocalAPI(self.remote, batch))
+                with patch.object(m, 'REMOTE', str(self.remote)):
+                    if allowed:
+                        queue.construct()
+                        self.assertEqual(queue.record['state'], 'planned')
+                    else:
+                        self.rejects('source_maintenance_scope', queue.construct)
+
     def test_validation_wrong_tree(self):
         self.rejects('wrong_validation_tree', lambda: m.check_validation(self.batch, self.result, 'f' * 40))
 
