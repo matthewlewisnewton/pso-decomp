@@ -1,3 +1,4 @@
+#include "pso/system/GinjaTextureInput.h"
 #include "types.h"
 #include "pso/effect/TEffIndirectCtrl.h"
 #include "pso/effect/TEffIndirectCtrl_802A88AC.h"
@@ -108,7 +109,7 @@ Ctrl_802A8B58 *TEffIndirectCtrl__ct(Ctrl_802A8B58 *self, s32 kind, void *parent)
     tex = (u8 *)get_indirect_source_id(self->f24) + k * 1000;
     self->f2c->a = self->f30;
     self->f2c->b = 1;
-    ((TObjPlayer *)(self->f28))->set_render_rect(0, 1, 0x40, 0x40);
+    ((GinjaTextureInput *)(self->f28))->configure(0, 1, 0x40, 0x40);
     set_texture_name(self->f30, self->f28, tex, 0x8800000);
     load_texture_list(self->f2c);
     self->f1c = *(u32 *)(*(u8 **)(*(u8 **)((u8 *)self->f2c->a + 8) + 0xC) + 0x20);

@@ -1,3 +1,4 @@
+#include "pso/system/GinjaTextureInput.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_80083B38.h"
 #include "pso/system/main_loop.h"
@@ -19,9 +20,9 @@ struct A_800845F8 { u8 pad[0x8]; B_800845F8 *b; };
 
 struct G_800845F8 { A_800845F8 *a; u8 pad[0x1c]; };
 
-struct Rect_80083F38 { u8 data[0x20]; };
+typedef GinjaTextureInput Rect_80083F38;
 
-struct Rect_800846C8 { u8 data[0x20]; };
+typedef GinjaTextureInput Rect_800846C8;
 
 struct G_800846C8 { void *a; u8 pad[0x1c]; };
 
@@ -252,7 +253,7 @@ void **TObjPlayer__sub_80083F04(void) {
 
 void TObjPlayer__sub_80083F38(void) {
     Rect_80083F38 r;
-    ((TObjPlayer *)(&r))->set_render_rect(0, 2, 0x100, 0x100);
+    r.configure(0, 2, 0x100, 0x100);
     set_texture_name((void *)((s32 *)&lbl_8048E5C8)[0], &r, 0x2EE1, 0x08800000);
     load_texture_list(((s32 *)&lbl_8048E5C8));
     lbl_805D4EE0 = 0;
@@ -440,7 +441,7 @@ void init_capture_texture(s32 wide) {
         w = 640;
         h = 480;
     }
-    ((TObjPlayer *)(&r))->set_render_rect(0, mode, w, h);
+    r.configure(0, mode, w, h);
     set_texture_name((*(G_800846C8 *)&shared_capture_texture_list).a, &r, 0x2EE0, 0x08800000);
     load_texture_list(&shared_capture_texture_list);
 }
