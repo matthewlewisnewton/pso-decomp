@@ -9973,8 +9973,10 @@ pso/misc/TWindowSubSymbolChat_802ACF5C.cpp:
 
 pso/misc/TWindowEffectLight.cpp:
 	.text       start:0x802ACF9C end:0x802AD538
-	.rodata     start:0x80470620 end:0x80470628
-	.data       start:0x804DE3A8 end:0x804DE3C4
+	.rodata     start:0x80470608 end:0x80470628
+	.data       start:0x804DE390 end:0x804DE3C4
+	.sdata      start:0x805D3E60 end:0x805D3E64
+	.sdata2     start:0x805DE0E0 end:0x805DE134
 
 pso/misc/TWindowMainMenu_802AD538.cpp:
 	.text       start:0x802AD538 end:0x802AE730

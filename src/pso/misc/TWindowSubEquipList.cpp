@@ -1,3 +1,4 @@
+#include "pso/misc/TWindowDrawContext.h"
 #include "types.h"
 #include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TWindowSubStatusDisp_802671F0.h"
@@ -17,7 +18,6 @@ struct RecoveredGlobal_802793E4___vt__19TWindowSubEquipList { s32 value; u8 rema
 typedef char RecoveredGlobal_802793E4___vt__19TWindowSubEquipList_size[sizeof(RecoveredGlobal_802793E4___vt__19TWindowSubEquipList) == 0x20 ? 1 : -1];
 
 extern "C" {
-s32 get_draw_context__11TWindowBaseFPv();
 s32 draw_visible_window_entries(void *, void *, int);
 s32 forward_render__20TWindowSubStatusDispFv(void *, int);
 u8 *__nw__7TObjectFUl(s32);
@@ -42,7 +42,7 @@ u8 *create_equip_list_window(s32 arg0, s32 arg1, s16 arg2) {
 #pragma fp_contract on
 void TWindowSubEquipList::render() {
     s32 temp_r3;
-    temp_r3 = get_draw_context__11TWindowBaseFPv();
+    temp_r3 = (s32)get_draw_context__11TWindowBaseFPv(this);
     draw_window_frame((void *)temp_r3);
     draw_visible_window_entries(this, (void *) (((u8 *)this) + 0x24), temp_r3);
     draw_selected_list_entry(temp_r3);

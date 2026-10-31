@@ -1,3 +1,4 @@
+#include "pso/misc/TWindowDrawContext.h"
 #include "types.h"
 #include "pso/misc/TUnk_804CE018.h"
 #include "pso/unk/text_80268384.h"
@@ -13,7 +14,6 @@ struct RecoveredGlobal_80278FE0___vt__19TWindowSubEquipKind {
 extern "C" {
 extern s32 __vt__19TWindowSubEquipKind[];
 extern s32 TWindowSubEquipKind__class_name;
-s32 get_draw_context__11TWindowBaseFPv();
 s32 draw_visible_window_entries(void *, void *, s32);
 s32 run_task__13TUnk_804D0618Fv();
 s32 draw_window_scrollbar(s32, s32, void *);
@@ -23,7 +23,7 @@ s32 forward_render__20TWindowSubStatusDispFv(s32, s32);
 void render__19TWindowSubEquipKindFv(u8 *arg0) {
     s32 temp_r3;
 
-    temp_r3 = get_draw_context__11TWindowBaseFPv();
+    temp_r3 = (s32)get_draw_context__11TWindowBaseFPv(arg0);
     ((TUnk_804CE018 *)arg0)->draw_window_frame((void *)temp_r3);
     draw_visible_window_entries(arg0, arg0 + 0x24, temp_r3);
     ((TUnk_804D0618 *)arg0)->draw_selected_list_entry(temp_r3);

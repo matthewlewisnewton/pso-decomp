@@ -1,3 +1,4 @@
+#include "pso/misc/TWindowDrawContext.h"
 #include "types.h"
 #include "pso/misc/TWindowCtrl_8024A054.h"
 #include "pso/misc/TWindowSubStatusDisp_80248BE8.h"
@@ -24,7 +25,6 @@ s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 TWindowShortListCtrl__check_controller_button(int, int);
 extern RecoveredGlobal_80248CF4_lbl_8050E208 controller_input_state;
 extern const f32 lbl_805DCBA8;
-s32 get_draw_context__11TWindowBaseFPv();
 s32 draw_visible_window_entries(void *, void *, s32);
 s32 draw_window_scrollbar(s32, s32, void *);
 void __dl__7TObjectFPv(void *);
@@ -51,7 +51,7 @@ void *TWindowSubStatusDisp::refresh_with_default_list(s32 a, s32 b) {
 void TWindowSubStatusDisp::render_status_and_children() {
     s32 temp_r3;
 
-    temp_r3 = get_draw_context__11TWindowBaseFPv();
+    temp_r3 = (s32)get_draw_context__11TWindowBaseFPv(this);
     draw_window_frame((void *)temp_r3);
     draw_visible_window_entries(this, ((u8 *)this) + 0x24, temp_r3);
     ((TUnk_804D0618 *)((u8 *)this))->draw_selected_list_entry(temp_r3);

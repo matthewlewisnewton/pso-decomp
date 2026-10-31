@@ -24,7 +24,7 @@ void spawn_action_palette_slot_light(Win_802437C4 *arg0, s32 arg1);
 #pragma fp_contract on
 void spawn_action_palette_slot_light(Win_802437C4 *arg0, s32 arg1) {
     Pt_802437C4 pt;
-    s32 kind;
+    s16 kind;
     Ent_802437C4 *e;
     f32 s;
     f32 hw;
@@ -61,7 +61,7 @@ void spawn_action_palette_slot_light(Win_802437C4 *arg0, s32 arg1) {
         pt.x = lbl_805DCA2C * e->w + (arg0->x + e->x);
         pt.y = lbl_805DCA2C * e->h + (arg0->y + e->y);
     }
-    TWindowEffectLight::create(&pt, (void *)kind, (void *)arg0->id);
+    TWindowEffectLight::create(&pt, kind, arg0->id);
 }
 #pragma pop
 
