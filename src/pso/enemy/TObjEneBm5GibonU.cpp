@@ -4,6 +4,7 @@
 #include "pso/misc/MaterialOpacityFade.h"
 #include "pso/misc/RenderFadeState.h"
 #include "pso/enemy/BattleParameters.h"
+struct NJS_OBJECT;
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -1946,7 +1947,7 @@ void TObjEneBm5GibonU::render() {
             }
             TObjEneBm5GibonU__render_node_index = 0;
             TObjEneBm5GibonU__render_joint_y_rotation = -(*(s32 *)((s8 *)((u8 *)this) + 0x478) / 2);
-            set_chunk_model_node_callback((s32)((s32 *)TObjEneBm5GibonU::advance_anim_frame));
+            set_chunk_model_node_callback((TObjEneBm5GibonU::advance_anim_frame));
             TObjEneDD::clear_global_flag_400();
             TObjPlayer::toggle_particle_effect();
             if (fade != 0) {
@@ -1962,7 +1963,7 @@ void TObjEneBm5GibonU::render() {
             } else {
                 this->draw_motion_model();
             }
-            set_chunk_model_node_callback((s32)NULL);
+            set_chunk_model_node_callback(NULL);
             if (this->mode == 1 || this->mode == 2) {
                 this->fade.clear_flag_and_notify();
             } else if (fade != 0) {
@@ -1975,7 +1976,7 @@ void TObjEneBm5GibonU::render() {
     }
 }
 
-void TObjEneBm5GibonU::advance_anim_frame() {
+void TObjEneBm5GibonU::advance_anim_frame(NJS_OBJECT *) {
     if (((s32) TObjEneBm5GibonU__render_node_index >= 0x30) && ((s32) TObjEneBm5GibonU__render_node_index < 0x32)) {
         rotate_matrix_y(0, TObjEneBm5GibonU__render_joint_y_rotation);
     }

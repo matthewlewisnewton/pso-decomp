@@ -5,6 +5,8 @@
 #include "pso/misc/MaterialOpacityFade.h"
 #include "pso/misc/RenderFadeState.h"
 #include "pso/enemy/BattleParameters.h"
+struct NJS_OBJECT;
+#include "pso/math/ScratchVectorStorage.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -567,7 +569,7 @@ Vec grass_render_vec;
 Vec grass_origin_vec;
 
 extern u8 lbl_804FF5E8[];
-void TObjGrass::update_camera_vec_by_stage() {
+void TObjGrass::update_camera_vec_by_stage(NJS_OBJECT *) {
     Vec *v;
 
     switch (TObjGrass__render_node_index) {
@@ -1555,7 +1557,7 @@ void TObjGrass::render() {
     } else {
         TObjPlayer::toggle_particle_effect();
         TObjGrass__render_node_index = 0;
-        set_chunk_model_node_callback((s32)((void *)TObjGrass::update_camera_vec_by_stage));
+        set_chunk_model_node_callback((TObjGrass::update_camera_vec_by_stage));
         if (*(s32 *)((s8 *)arg0 + 0x3AC) == 1) {
             if (this->fade.has_visible_opacity() != 0) {
                 saved_model_render_flags = model_render_flags;
@@ -1581,7 +1583,7 @@ void TObjGrass::render() {
         }
         TParticleCtrl::end_effect_render();
     }
-    set_chunk_model_node_callback((s32)NULL);
+    set_chunk_model_node_callback(NULL);
     pop_matrix();
     restore_scene_lighting();
     VecCopy((Vec *)(arg0 + 0x374), (const Vec *)&grass_camera_vec);

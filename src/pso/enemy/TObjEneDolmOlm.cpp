@@ -5,6 +5,7 @@
 #include "pso/misc/MaterialOpacityFade.h"
 #include "pso/misc/RenderFadeState.h"
 #include "pso/enemy/BattleParameters.h"
+struct NJS_OBJECT;
 #include "pso/render/reflection.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/misc/GroundEffects.h"
@@ -1156,7 +1157,7 @@ void TObjEneDolmOlm::render() {
         }
         TObjPlayer::toggle_particle_effect();
         TObjEneDolmOlm__effect_render_state = 0;
-        set_chunk_model_node_callback((s32)((void *)TObjEneDolmOlm::toggle_effect_render));
+        set_chunk_model_node_callback((TObjEneDolmOlm::toggle_effect_render));
         if (arg0->f390 == 1) {
             if (this->fade.has_visible_opacity() != 0) {
                 saved_model_render_flags = model_render_flags;
@@ -1178,7 +1179,7 @@ void TObjEneDolmOlm::render() {
         } else {
             ((TObjEnemy *)arg0)->draw_motion_model();
         }
-        set_chunk_model_node_callback((s32)NULL);
+        set_chunk_model_node_callback(NULL);
         TParticleCtrl::end_effect_render();
         switch (arg0->state) {
         case 0:
@@ -1225,7 +1226,7 @@ s32 TObjEneDolmOlm::render_model_if_visible() {
     }
     return 0;
 }
-void TObjEneDolmOlm::toggle_effect_render() {
+void TObjEneDolmOlm::toggle_effect_render(NJS_OBJECT *) {
     switch (TObjEneDolmOlm__effect_render_state) {
     case 0x15:
     case 0x1d:

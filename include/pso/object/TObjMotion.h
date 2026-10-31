@@ -1,3 +1,4 @@
+struct NJS_OBJECT;
 #ifndef PSO_OBJECT_TOBJMOTION_H
 #define PSO_OBJECT_TOBJMOTION_H
 #include "pso/TObject.h"
@@ -268,7 +269,7 @@ void write_node_flags(NJS_OBJECT *object);
 void make_node_flag_table(NJS_OBJECT *object, NodeFlagEntry *table);
 // The model node callback that stores each node's matrix at
 // player_joint_matrix_write_ptr and steps it on.
-void save_joint_matrix_callback();
+void save_joint_matrix_callback(NJS_OBJECT *);
 
 extern NodeFlagEntry *node_flag_cursor;
 // The joint matrices calc_joint_matrices(f32) stores (110 of them).

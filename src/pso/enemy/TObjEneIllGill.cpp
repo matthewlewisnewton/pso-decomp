@@ -1,5 +1,6 @@
 #include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
+struct NJS_OBJECT;
 #include "pso/math/ScratchVectorStorage.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
@@ -512,7 +513,7 @@ void TObjEneIllGill::update_shadow_attack() {
 }
 extern u8 lbl_804FF5E8[];
 extern s32 illGillModelNodeIndex;
-void TObjEneIllGill::capture_effect_positions() {
+void TObjEneIllGill::capture_effect_positions(NJS_OBJECT *) {
     Vec *v;
     switch (illGillModelNodeIndex) {
     case 50:
@@ -1333,7 +1334,7 @@ void TObjEneIllGill::render() {
         rotate_matrix_y(0, this->rotation_y);
         scale_matrix(0, this->scale.x, this->scale.y, this->scale.z);
         illGillModelNodeIndex = 0;
-        set_chunk_model_node_callback((s32)((void *)TObjEneIllGill::capture_effect_positions));
+        set_chunk_model_node_callback(TObjEneIllGill::capture_effect_positions);
         if (this->fadingIn != 0 && check_demo_mode() == 0) {
             if (fade.has_visible_opacity() != 0) {
                 saved_model_render_flags = model_render_flags;
@@ -1351,7 +1352,7 @@ void TObjEneIllGill::render() {
         } else {
             ((TObjEnemy *)arg0)->draw_motion_model();
         }
-        set_chunk_model_node_callback((s32)NULL);
+        set_chunk_model_node_callback(NULL);
         VecCopy(&weaponEffectPosition, (const Vec *)&illGillWeaponEffectPosition);
         VecCopy(&shadowEffectPosition, (const Vec *)&illGillShadowEffectPosition);
         VecCopy(&chargeEffectPosition1, (const Vec *)&illGillChargeEffectPosition1);
