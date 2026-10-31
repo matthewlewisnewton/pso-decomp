@@ -434,7 +434,7 @@ void TOTrapAncient01::vfunc_81() {
             TObjPlayer *p = (TObjPlayer *)get_player_by_client_id(player);
             target = (u8 *)p;
             if (target != NULL) {
-                f32 d = horizontal_distance_squared((const Vec *)(target + 0x38), &position);
+                f32 d = horizontal_distance_squared(&((TObjPlayer *)target)->position, &position);
                 dist -= TObjPlayer__sub_8017A1A4((Obj_8017A1A4 *)p, 0);
                 if (d < dist * dist) {
                     if (TObjPlayer::is_locally_controlled(target)) {
