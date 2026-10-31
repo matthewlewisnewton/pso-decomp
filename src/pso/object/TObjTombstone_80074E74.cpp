@@ -63,10 +63,10 @@ u16 get_nth_view_player_id__11TCameraCtrlFl();
 void *get_player_by_client_id(s32 i);
 f32 xyz_distance(void *, void *);
 extern const f32 TObjTombstone__data_805D9174;
-extern f32 TObjTombstone__data_805D9178;
-extern f32 TObjTombstone__data_805D917C;
+extern const f32 TObjTombstone__data_805D9178;
+extern const f32 TObjTombstone__data_805D917C;
 extern const f32 lbl_805D9180;
-extern f32 TObjTombstone__data_805D9184;
+extern const f32 TObjTombstone__data_805D9184;
 extern RecoveredGlobal_80074FAC_lbl_8043878C tombstone_reset_matrix_template;
 extern RecoveredGlobal_80074FAC_TObjTombstone__data_8048D250 TObjTombstone__base_matrix;
 f32 vector_length(void *);
@@ -132,6 +132,9 @@ extern Off_800753DC tombstone_name_label_offset_table[];
 extern const f32 lbl_805D9188;
 extern const f32 lbl_805D918C;
 extern const f32 lbl_805D9190;
+extern const f32 lbl_805D9194;
+extern const f32 lbl_805D9198;
+extern const f32 lbl_805D919C;
 extern const f32 lbl_805D91A0;
 void handle_6x96(void);
 void handle_6x96(void) {  }
@@ -253,11 +256,11 @@ s32 TObjTombstone::draw_name_labels(void *arg0_) {
     }
     m *= lbl_805D918C;
     if (screen.x - m < TObjTombstone__data_805D9174 || screen.x + m > lbl_805D9190) {
-        if ((self->alphaA += -0.16666667f) < 0.0f) self->alphaA = 0.0f;
-        if ((self->alphaB += -0.016666668f) < 0.0f) self->alphaB = 0.0f;
+        if ((self->alphaA += lbl_805D9194) < TObjTombstone__data_805D9174) self->alphaA = TObjTombstone__data_805D9174;
+        if ((self->alphaB += lbl_805D9198) < TObjTombstone__data_805D9174) self->alphaB = TObjTombstone__data_805D9174;
     } else {
-        if ((self->alphaA += 0.16666667f) > 1.0f) self->alphaA = 1.0f;
-        if ((self->alphaB += 0.16666667f) > 1.0f) self->alphaB = 1.0f;
+        if ((self->alphaA += lbl_805D919C) > TObjTombstone__data_805D9178) self->alphaA = TObjTombstone__data_805D9178;
+        if ((self->alphaB += lbl_805D919C) > TObjTombstone__data_805D9178) self->alphaB = TObjTombstone__data_805D9178;
     }
     a = self->scale * self->alphaA;
     b = self->scale * self->alphaB;
@@ -286,3 +289,17 @@ s32 TObjTombstone::draw_name_labels(void *arg0_) {
 }
 #undef self
 #pragma pop
+
+extern "C" {
+__declspec(section ".sdata2") extern const f32 TObjTombstone__data_805D9174 = 0.0f;
+__declspec(section ".sdata2") extern const f32 TObjTombstone__data_805D9178 = 1.0f;
+__declspec(section ".sdata2") extern const f32 TObjTombstone__data_805D917C = 50.0f;
+__declspec(section ".sdata2") extern const f32 lbl_805D9180 = 40.0f;
+__declspec(section ".sdata2") extern const f32 TObjTombstone__data_805D9184 = 10.0f;
+__declspec(section ".sdata2") extern const f32 lbl_805D9188 = 14.0f;
+__declspec(section ".sdata2") extern const f32 lbl_805D918C = 0.5f;
+__declspec(section ".sdata2") extern const f32 lbl_805D9190 = 640.0f;
+__declspec(section ".sdata2") extern const f32 lbl_805D9194 = -0.16666667f;
+__declspec(section ".sdata2") extern const f32 lbl_805D9198 = -0.016666668f;
+__declspec(section ".sdata2") extern const f32 lbl_805D919C = 0.16666667f;
+}
