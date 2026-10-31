@@ -66,7 +66,7 @@ struct SoftKeyInitStorage_80260904 { s8 initialized; u8 reserved[7]; };
 SoftKeyInitStorage_80260904 lbl_805D6458;
 s32 get_chat_shortcut(s32);
 s32 set_input_mode__20TWindowSubStatusDispFUc(s32, s32);
-s32 TWindowShortListCtrl__check_controller_button(void *, int, int);
+s32 TWindowShortListCtrl__check_controller_button(void *, int);
 struct RecoveredGlobal_80260808_lbl_8050E208 {
     s32 value;
     u8 remaining[0x1AC];
@@ -301,7 +301,7 @@ void TWindowKeyBoardSoft__sub_80260760(void *self, s32 key, s32 *count, u32 *col
 void TWindowKeyBoardSoft::sub_80260808(s32 arg1) {
     s32 temp_r5;
     temp_r5 = arg1 * 0x50;
-    if ((TWindowShortListCtrl__check_controller_button((void *) ((u8 *)&controller_input_state.value + temp_r5 + 0x20), 2, temp_r5) != 0) && ((u32) *(u32 *)((s8 *)((u8 *)this) + 0x6C) != 0U)) {
+    if ((TWindowShortListCtrl__check_controller_button((void *) ((u8 *)&controller_input_state.value + temp_r5 + 0x20), 2) != 0) && ((u32) *(u32 *)((s8 *)((u8 *)this) + 0x6C) != 0U)) {
         this->m_7c = (s32) (this->m_7c & 0xFFFFFFEF);
         play_sound_effect(0x52F16, 0, 0, 0);
         ((TWindowKeyBoardSoft *)(*(u32 *)((s8 *)((u8 *)this) + 0x6C)))->handle_backspace();
@@ -314,7 +314,7 @@ typedef char RecoveredFields_8026088C_arg0_60_offset[offsetof(RecoveredFields_80
 typedef char RecoveredFields_8026088C_arg0_6C_offset[offsetof(RecoveredFields_8026088C_arg0, field_6C) == 0x6C ? 1 : -1];
 void TWindowKeyBoardSoft::update_keyboard_child_input_from_controller(s32 arg1) {
     u32 temp_r3;
-    if (((s32 (*)(void *, int))TWindowShortListCtrl__check_controller_button)((void *)((void *) ((u8 *)&(*(RecoveredGlobal_8026088C_lbl_8050E208 *)&controller_input_state).value + (arg1 * 0x50) + 0x20)), 0x400) != 0) {
+    if (TWindowShortListCtrl__check_controller_button((void *)((void *) ((u8 *)&(*(RecoveredGlobal_8026088C_lbl_8050E208 *)&controller_input_state).value + (arg1 * 0x50) + 0x20)), 0x400) != 0) {
         temp_r3 = ((RecoveredFields_8026088C_arg0 *)((u8 *)this))->field_6C;
         if (temp_r3 != 0U) {
             ((TWindowKeyBoardSoft *)temp_r3)->update_input_state2();
@@ -367,7 +367,7 @@ void TWindowKeyBoardSoft__sub_80260904(void *self, s32 port) {
         soft_keyboard_window_and_action_data.active[21] = soft_keyboard_window_and_action_data.initial[21];
         lbl_805D6458.initialized = 1;
     }
-    if (((s32 (*)(void *, int))TWindowShortListCtrl__check_controller_button)(
+    if (TWindowShortListCtrl__check_controller_button(
             (u8 *)&controller_input_state.value + port * 0x50 + 0x20, 4) == 0 || kb->child == NULL) {
         return;
     }
@@ -536,14 +536,14 @@ void TWindowKeyBoardSoft::handle_page_cycle_input(s32 arg1) {
     s32 sp8;
     u8 *temp_r30;
     temp_r30 = (u8 *)&controller_input_state.value + (arg1 * 0x50) + 0x20;
-    if (((s32 (*)(int, int))TWindowShortListCtrl__check_controller_button)((int)temp_r30, 0x30000) != 0) {
+    if (TWindowShortListCtrl__check_controller_button((void *)temp_r30, 0x30000) != 0) {
         play_sound_effect(0x54100, 0, 0, 0);
         calc_cursor_step__19TWindowKeyBoardSoftFiPvPv(this, &spC, &sp8);
-        if (((s32 (*)(int, int))TWindowShortListCtrl__check_controller_button)((int)temp_r30, 0x10000) != 0) {
+        if (TWindowShortListCtrl__check_controller_button((void *)temp_r30, 0x10000) != 0) {
             *(f32 *)((s8 *)((u8 *)this) + 0x68) = (f32) TWindowKeyBoardSoft__data_805DD088;
             *(u8 *)((s8 *)((u8 *)this) + 0x64) = (u8) (*(u8 *)((s8 *)((u8 *)this) + 0x64) + 1);
         }
-        if (((s32 (*)(int, int))TWindowShortListCtrl__check_controller_button)((int)temp_r30, 0x20000) != 0) {
+        if (TWindowShortListCtrl__check_controller_button((void *)temp_r30, 0x20000) != 0) {
             *(f32 *)((s8 *)((u8 *)this) + 0x68) = (f32) lbl_805DD08C;
             *(u8 *)((s8 *)((u8 *)this) + 0x64) = (u8) (*(u8 *)((s8 *)((u8 *)this) + 0x64) - 1);
         }

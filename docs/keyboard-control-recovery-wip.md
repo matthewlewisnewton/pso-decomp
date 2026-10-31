@@ -96,5 +96,14 @@ At `0x80262098` the original passes the draw context in the second integer
 argument register to `0x802614DC`. The existing source cast the function to a
 signature without that parameter, relying on a register being left unchanged.
 The candidate passes the context explicitly with the actual declared argument
-list. The targeted instruction comparison is unchanged; the full regression
-check is pending.
+list. The targeted instruction comparison is unchanged, and the locked two-job
+rebuild and regression checks passed without lost exact or linked coverage.
+
+## Controller-button call
+
+The helper at `0x801A6DA0` takes a controller pointer and button mask. The
+unit previously declared three parameters and cast several calls to incompatible
+function-pointer types. The candidate uses the observed two-argument interface
+locally. A targeted object comparison retains 100% for `0x80260808`,
+`0x8026088C` and `0x80261204`, and leaves the new dispatcher unchanged. The
+full regression check is pending.
