@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/item/TObjContainerJungEx_8018D900.h"
@@ -210,7 +211,7 @@ extern s32 model_render_flags;
 s32 get_bml_motion(s32, s32);
 
 s32 rotate_matrix_y(s32, s32);
-s32 set_global_param__8TObjFishFl();
+
 s32 draw_ginja_model_with_motion(s32, s32, f32);
 extern s32 TObjDoaEx01__resource_bundle;
 
@@ -270,8 +271,7 @@ void TObjDoaEx01::try_open() {
     if (((TObjDoaEx01_VObj*)((u8 *)this))->m8(4e+02f, 2e+01f) != 0) {
         ((TObjDoorJung *)(*(s32 *)((s8 *)TObjDoaEx01__alpha_model_node + 4)))->free_children((void *)1);
         ((TObjDoorJung *)(*(s32 *)((s8 *)TObjDoaEx01__alpha_model_sibling + 4)))->free_children((void *)1);
-        TObjFish__sub_8001EDB0((void *)TObjDoaEx01__resource_bundle, 0);
-        set_global_param__8TObjFishFl();
+        set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0((void *)TObjDoaEx01__resource_bundle, 0)));
         push_matrix();
         post_translate_matrix(((u8 *)this) + 0x38);
         rotate_matrix_y(0, this->rotation_y);
@@ -287,8 +287,7 @@ void TObjDoaEx01::draw_model() {
         ((TObjDoorJung *)(*(s32 *)((s8 *)TObjDoaEx01__alpha_model_node + 4)))->free_children((void *)0);
         ((TObjDoorJung *)(*(s32 *)((s8 *)TObjDoaEx01__alpha_model_sibling + 4)))->free_children((void *)0);
         temp_r31 = (s32)get_bml_model((void *)(TObjDoaEx01__resource_bundle), 0);
-        TObjFish__sub_8001EDB0((void *)(TObjDoaEx01__resource_bundle), 0);
-        set_global_param__8TObjFishFl();
+        set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0((void *)(TObjDoaEx01__resource_bundle), 0)));
         push_matrix();
         post_translate_matrix((void *) (((u8 *)this) + 0x38));
         rotate_matrix_y(0, (this->rotation_y));

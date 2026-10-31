@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/unk/text_803D96A8.h"
@@ -29,7 +30,7 @@ void TObjBoss8Piller::render() {
         } else {
             var_r31 = *(s32 *)((s8 *)(*(void **)((s8 *)TObjBoss8Piller__shared_resource + 0x42C)) + 8);
         }
-        TObjFish::set_global_param((s32)((void *) (*(s32 *)((s8 *)(*(void **)((s8 *)TObjBoss8Piller__shared_resource + 0x42C)) + 0xC))));
+        set_current_texture_list((GinjaTextureList *)(((void *) (*(s32 *)((s8 *)(*(void **)((s8 *)TObjBoss8Piller__shared_resource + 0x42C)) + 0xC)))));
         push_matrix();
         post_translate_matrix(arg0 + 0x1C);
         scale_matrix(0, lbl_805DF150, lbl_805DF150, lbl_805DF150);

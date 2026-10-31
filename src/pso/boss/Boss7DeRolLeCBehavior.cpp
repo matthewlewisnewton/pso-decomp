@@ -3,6 +3,7 @@
 #include "pso/math/FloatRounding.h"
 #include "pso/map/CsnGroundQuery.h"
 #include "pso/enemy/BattleParameters.h"
+#include "pso/system/CurrentTextureList.h"
 struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/misc/TUnk_804F1C58.h"
@@ -586,7 +587,6 @@ void TObjPlayer__sub_802E80A0(void);
 int get_bml_motion(void*, void*);
 int TObjFish__sub_8001EDB0(void*, void*);
 int get_bml_model(void*, void*);
-int set_global_param__8TObjFishFl(void);
 
     extern int lbl_805D6918;
 void TObjPlayer::notify_fish_obj(void* a0) { get_bml_motion((void*)lbl_805D6918, a0); }
@@ -595,7 +595,7 @@ void queue_boss_effect__10TObjPlayerFPv(void* a0) { get_bml_model((void*)lbl_805
 
 void TObjPlayer__sub_802E80A0(void) { TObjFish__sub_8001EDB0((void*)lbl_805D6918, (void*)0); }
 
-void TObjPlayer::draw_effect() { TObjFish__sub_8001EDB0((void*)lbl_805D6918, (void*)0); set_global_param__8TObjFishFl(); }
+void TObjPlayer::draw_effect() { set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0((void*)lbl_805D6918, (void*)0))); }
 
 typedef char RecoveredGlobal_802E80F4_lbl_8050BEC0_size[sizeof(RecoveredGlobal_802E80F4_lbl_8050BEC0) == 0x20 ? 1 : -1];
 typedef char RecoveredGlobal_802E80F4_main_task_size[sizeof(RecoveredGlobal_802E80F4_main_task) == 0x34 ? 1 : -1];

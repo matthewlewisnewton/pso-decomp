@@ -1,4 +1,5 @@
 #include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
 #pragma fp_contract on
 
 #include "pso/boss/TUnk_80484AFC.h"
@@ -75,7 +76,7 @@ void TUnk_80484AFC::explode_and_destroy() {
 }
 
 void TUnk_80484AFC::render() {
-    TObjFish::set_global_param(textures);
+    set_current_texture_list((GinjaTextureList *)(textures));
     push_matrix();
     post_translate_matrix(&position);
     rotate_matrix_x(0, rotation_x);

@@ -8,6 +8,7 @@
 #include "pso/misc/RenderFadeState.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -189,7 +190,7 @@ s32 rotate_matrix_y(int, int);
 s32 push_matrix();
 s32 pop_matrix();
 s32 post_translate_matrix(void *);
-s32 set_global_param__8TObjFishFl(void *);
+
 }
 void set_ginja_draw_list_mask(s32 arg0);
 extern "C" {
@@ -240,7 +241,7 @@ void TObjEneMe3Stelth::draw_with_debug_info() {
     }
     flag = sub_800F47D4__16TObjEneMe3StelthFv(arg0);
     if (arg0->m8(lbl_805DA83C, TObjEneMe3Stelth__data_805DA808) != 0) {
-        set_global_param__8TObjFishFl(arg0->mdl);
+        set_current_texture_list((GinjaTextureList *)(arg0->mdl));
         TObjPlayer::toggle_particle_effect();
         if (flag != 0) {
             Part_800F18C8 *parts = arg0->mdl->parts;
@@ -448,7 +449,6 @@ s32 defer_render__7TObjectFv(void *);
 s32 dispatch_input_to_instance__18TAdEnterPasswordGCFi(void *);
 #define rotate_matrix_y ((s32 (*)(s32, s32))rotate_matrix_y)
 void translate_matrix(u32 arg0, f32 x, f32 y, f32 z);
-#define set_global_param__8TObjFishFl ((s32 (*)(s32))set_global_param__8TObjFishFl)
 void set_color_blend_mode(s32 a, s32 b, s32 c, s32 d);
 void set_model_node_callback(s32 arg0);
 void set_chunk_material_override_pair(s32 arg0, s32 arg1);
@@ -533,7 +533,7 @@ void TObjEneMe3Stelth::render() {
                 set_chunk_material_override_pair(0xFF00, 0x800);
             }
             if (draw != 0) {
-                set_global_param__8TObjFishFl(F(s32, 0x24));
+                set_current_texture_list((GinjaTextureList *)(F(s32, 0x24)));
                 push_matrix();
                 post_translate_matrix((u8 *)&this->position);
                 translate_matrix(0, TObjEneMe3Stelth__data_805DA840, F(f32, 0x3D4), TObjEneMe3Stelth__data_805DA840);
@@ -572,7 +572,7 @@ void TObjEneMe3Stelth::render() {
                 set_constant_material((const NJS_ARGB *)(((f32 *)&c)));
                 set_color_blend_mode(1, 4, 5, 0);
             }
-            set_global_param__8TObjFishFl(F(s32, 0x24));
+            set_current_texture_list((GinjaTextureList *)(F(s32, 0x24)));
             for (i = 0; i < 3; i++) {
                 if (TObjEneMe3Stelth__material_color_pointers[i] != 0) {
                     *TObjEneMe3Stelth__material_color_pointers[i] = F(s32, 0x3E8);
@@ -616,7 +616,6 @@ void TObjEneMe3Stelth::render() {
 }
 
 #undef rotate_matrix_y
-#undef set_global_param__8TObjFishFl
 #undef TObjEneMe3Stelth__material_color_pointers
 #undef sub_800F47D4__16TObjEneMe3StelthFv
 void TObjEneMe3Stelth::add_instance() { load_projection_tex_matrix(*(int *)&stelth_projection_texture_handle); (*(int *)&TObjEneMe3Stelth__render_node_index) = ((*(int *)&TObjEneMe3Stelth__render_node_index) + 0x1); }

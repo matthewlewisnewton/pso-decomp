@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TScene_800838C4.h"
 #include "pso/system/GinjaMaterial.h"
@@ -32,6 +33,6 @@ void TObjPlayer::draw_shadowed_node_tree() {
     }
 }
 
-void TObjBoss5FloorStone::render_impl(void* a1) { draw_if_all_ready__10TObjPlayerFv(this); TObjFish::set_global_param((s32)this); push_matrix(); ((TObjPlayer *)a1)->draw_shadowed_node_tree(); pop_matrix(); }
+void TObjBoss5FloorStone::render_impl(void* a1) { draw_if_all_ready__10TObjPlayerFv(this); set_current_texture_list((GinjaTextureList *)(this)); push_matrix(); ((TObjPlayer *)a1)->draw_shadowed_node_tree(); pop_matrix(); }
 
 }

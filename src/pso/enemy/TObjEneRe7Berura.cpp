@@ -2,6 +2,7 @@
 #include "pso/misc/SampledMotionPoints.h"
 #include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -517,7 +518,7 @@ s32 concat_matrix__10TObjPlayerFUlUl(s32, s32);
 s32 push_matrix_from(void *, int, int, int);
 s32 push_matrix();
 s32 pop_matrix();
-s32 set_global_param__8TObjFishFl(s32, void *);
+
 }
 void *destroy_buffer_pair(void *arg0, s16 arg1);
 void get_current_matrix(void *);
@@ -943,7 +944,7 @@ s32 get_field_3D4_shifted__16TObjEneRe7BeruraFPv(void *arg0) {
 void TObjEneRe7Berura::init_part(s32 arg0) {
     s32 *temp_r3;
 
-    set_global_param__8TObjFishFl(*(s32 *)((s8 *)(*(void **)((s8 *)(*(void * *)&TObjEneRe7Berura__shared_resource) + 0x42C)) + 0xC), (*(void * *)&TObjEneRe7Berura__shared_resource));
+    set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)(*(void **)((s8 *)(*(void * *)&TObjEneRe7Berura__shared_resource) + 0x42C)) + 0xC)));
     temp_r3 = (s32 *)((s8 *)((s32 *)TObjEneRe7Berura__detached_part_states) + (arg0 * 0x64));
     ((s32 (*)(void *, s32))set_data_and_draw_node_tree__16TObjEneRe7BeruraFii)((s32 *)((s8 *)temp_r3 + 0x20), *temp_r3);
 }

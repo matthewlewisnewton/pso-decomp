@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/system/vector.h"
@@ -905,7 +906,7 @@ void TObjMapWarpForest::run_task() {
 void TObjMapWarpForest::render() {
     u8 *arg0 = (u8 *)this;
     if (((VObj8019CF38_8019CCF0 *) arg0)->m8(400.0f, 20.0f) != 0) {
-        TObjFish::set_global_param(*(s32 *)&this->textures);
+        set_current_texture_list((GinjaTextureList *)(*(s32 *)&this->textures));
         ((s32 (*)(void))push_matrix)();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);
@@ -1151,7 +1152,7 @@ void TObjAreaWarpForest::render() {
             n = n->next2C;
         }
         m = self->fD0;
-        TObjFish::set_global_param(self->fDC);
+        set_current_texture_list((GinjaTextureList *)(self->fDC));
         push_matrix();
         ((void (*)(void *))post_translate_matrix)(self->f38);
         ((void (*)(int, int))rotate_matrix_y)(0, this->rotation_y);
@@ -1262,7 +1263,7 @@ void TObjAreaWarpQuest::render() {
             n = n->next2C;
         }
         m = self->fD0;
-        TObjFish::set_global_param(self->fDC);
+        set_current_texture_list((GinjaTextureList *)(self->fDC));
         push_matrix();
         ((void (*)(void *))post_translate_matrix)(self->f38);
         ((void (*)(int, int))rotate_matrix_y)(0, self->f60);
@@ -1401,7 +1402,7 @@ void TObjAreaWarpEnding::render() {
         }
     }
     root = arg0->fCC;
-    TObjFish::set_global_param(arg0->fD8);
+    set_current_texture_list((GinjaTextureList *)(arg0->fD8));
     push_matrix();
     ((void (*)(void *))post_translate_matrix)(arg0->pos);
     ((void (*)(int, int))rotate_matrix_y)(0, arg0->f60);

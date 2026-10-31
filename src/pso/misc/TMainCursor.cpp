@@ -1,4 +1,5 @@
 #include "pso/math/VectorNormalize.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/math/ScratchVectorStorage.h"
 #include "types.h"
 #include "pso/render/render_util.h"
@@ -234,7 +235,7 @@ void TMainCursor::render() {
     default:
         return;
     }
-    TObjFish::set_global_param((s32)shared_effect_texture_list);
+    set_current_texture_list((GinjaTextureList *)(shared_effect_texture_list));
     render__11TMainCursorFPv(arg0);
 }
 
@@ -1198,7 +1199,7 @@ void TLockOnCursor::renderSecondaryCursor(u8 *arg1, s32 arg2, s32 arg3) {
         if (player != 0U) {
             temp_r3_2 = check_visible__11TMainCursorFv((void *)(player + 0x500), (void *)player, arg2, arg3);
             if (temp_r3_2 != -1) {
-                TObjFish::set_global_param((s32)&shared_effect_texture_list);
+                set_current_texture_list((GinjaTextureList *)(&shared_effect_texture_list));
                 temp_f31 = *(f32 *)((s8 *)arg1 + 0xC);
                 push_matrix();
                 offset_point_toward_camera(arg1 + 0x1C, (u8 *)&sp8, (f32)temp_f31);

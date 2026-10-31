@@ -1,6 +1,7 @@
 #include "pso/player/demo_mode.h"
 #include "pso/misc/MaterialOpacityFade.h"
 #include "pso/misc/RenderFadeState.h"
+#include "pso/system/CurrentTextureList.h"
 struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
@@ -570,7 +571,7 @@ void TObjEneEpsilonGuard::render_guard_effect() {
     f32 temp_f1;
 
     if ((*(s32 *)((s8 *)((u8 *)this) + 0x46C) & 0x20) && (get_mode__11TCameraCtrlFPv((void *) (((s32 *)&main_task))) & 0x200)) {
-        TObjFish::set_global_param((int) (*(s32 *)((s8 *)((u8 *)this) + 0x24)));
+        set_current_texture_list((GinjaTextureList *)((*(s32 *)((s8 *)((u8 *)this) + 0x24))));
         push_matrix();
         post_translate_matrix((void *) (((u8 *)this) + 0x38));
         translate_matrix(0, 0.0f, 24.0f, 0.0f);
@@ -618,7 +619,7 @@ void render_with_fade__19TObjEneEpsilonGuardFPvi(u8 *ene_re7_berura, s32 arg1) {
         return;
     }
     ((TObjEneDD *)ene_re7_berura)->update_secondary_light();
-    TObjFish::set_global_param(*(s32 *)((s8 *)ene_re7_berura + 0x24));
+    set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)ene_re7_berura + 0x24)));
     push_matrix();
     post_translate_matrix(ene_re7_berura + 0x38);
     translate_matrix(0, 0.0f, 24.0f, 0.0f);

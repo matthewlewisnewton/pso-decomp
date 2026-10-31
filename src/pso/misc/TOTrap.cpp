@@ -1,5 +1,6 @@
 #include "pso/player/demo_mode.h"
 #include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/unk/text_80087278.h"
@@ -256,7 +257,7 @@ void TOTrap::render() {
             push_matrix();
             post_translate_matrix((u8 *)&this->position);
             rotate_matrix_y(0, this->rotation_y);
-            TObjFish::set_global_param(this->texlist);
+            set_current_texture_list((GinjaTextureList *)(this->texlist));
             if (check_demo_mode() == 1) {
                 draw_chunk_object(this->model);
             } else {

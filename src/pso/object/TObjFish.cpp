@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -116,7 +117,7 @@ s32 TObjFish__sub_8001EDB0(s32, s32);
 s32 get_bml_model(s32, s32);
 s32 rotate_matrix_y(s32, s32);
 s32 push_matrix();
-s32 set_global_param__8TObjFishFl();
+
 extern u32 TOKeyJungleMain__static_model_resource;
 void render__15TOKeyJungleMainFv(TOKeyJungleMain *arg0);
 void free_collision_body_parts(void *);
@@ -179,8 +180,7 @@ void render__15TOKeyJungleMainFv(TOKeyJungleMain *key_jungle_main) {
     if (((VObj_8029CF68 *)key_jungle_main)->m8(key_jungle_main->view_range, *(f32 *)((s8 *)key_jungle_main + 0xC4)) == 1) {
         switch (key_jungle_main->is_on) {
         case 0:
-            TObjFish__sub_8001EDB0((*(s32 *)&TOKeyJungleMain__static_model_resource), 1);
-            set_global_param__8TObjFishFl();
+            set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0((*(s32 *)&TOKeyJungleMain__static_model_resource), 1)));
             push_matrix();
             post_translate_matrix((u8 *)key_jungle_main + 0x38);
             rotate_matrix_y(0, key_jungle_main->rotation_y);
@@ -189,8 +189,7 @@ void render__15TOKeyJungleMainFv(TOKeyJungleMain *key_jungle_main) {
             pop_matrix();
             return;
         case 1:
-            TObjFish__sub_8001EDB0((*(s32 *)&TOKeyJungleMain__static_model_resource), 1);
-            set_global_param__8TObjFishFl();
+            set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0((*(s32 *)&TOKeyJungleMain__static_model_resource), 1)));
             push_matrix();
             post_translate_matrix((u8 *)key_jungle_main + 0x38);
             rotate_matrix_y(0, key_jungle_main->rotation_y);
@@ -458,20 +457,17 @@ void render__8TObjFishFv(u8 *arg0) {
             if (get_current_floor_area() == AREA_SEABED_UPPER) {
                 switch (f->kind) {
                 case 1:
-                    TObjFish__sub_8001EDB0(TObjFish__area_bml_resource, 1);
-                    set_global_param__8TObjFishFl();
+                    set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0(TObjFish__area_bml_resource, 1)));
                     get_bml_model(TObjFish__area_bml_resource, 1);
                     draw_ginja_object();
                     break;
                 case 2:
-                    TObjFish__sub_8001EDB0(TObjFish__area_bml_resource, 2);
-                    set_global_param__8TObjFishFl();
+                    set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0(TObjFish__area_bml_resource, 2)));
                     get_bml_model(TObjFish__area_bml_resource, 2);
                     draw_ginja_object();
                     break;
                 default:
-                    TObjFish__sub_8001EDB0(TObjFish__area_bml_resource, 0);
-                    set_global_param__8TObjFishFl();
+                    set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0(TObjFish__area_bml_resource, 0)));
                     get_bml_model(TObjFish__area_bml_resource, 0);
                     draw_ginja_object();
                     break;
@@ -480,18 +476,15 @@ void render__8TObjFishFv(u8 *arg0) {
                 set_motion_packed_rotation();
                 switch (f->kind) {
                 case 1:
-                    TObjFish__sub_8001EDB0(TObjFish__area_bml_resource, 1);
-                    set_global_param__8TObjFishFl();
+                    set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0(TObjFish__area_bml_resource, 1)));
                     draw_ginja_model_with_motion(get_bml_model(TObjFish__area_bml_resource, 1), get_bml_motion(TObjFish__area_bml_resource, 1), f->frame);
                     break;
                 case 2:
-                    TObjFish__sub_8001EDB0(TObjFish__area_bml_resource, 2);
-                    set_global_param__8TObjFishFl();
+                    set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0(TObjFish__area_bml_resource, 2)));
                     draw_ginja_model_with_motion(get_bml_model(TObjFish__area_bml_resource, 2), get_bml_motion(TObjFish__area_bml_resource, 2), f->frame);
                     break;
                 default:
-                    TObjFish__sub_8001EDB0(TObjFish__area_bml_resource, 0);
-                    set_global_param__8TObjFishFl();
+                    set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0(TObjFish__area_bml_resource, 0)));
                     draw_ginja_model_with_motion(get_bml_model(TObjFish__area_bml_resource, 0), get_bml_motion(TObjFish__area_bml_resource, 0), f->frame);
                     break;
                 }

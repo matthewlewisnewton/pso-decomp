@@ -1,4 +1,5 @@
 #include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/system/GinjaMaterial.h"
@@ -165,7 +166,7 @@ void TUnk_804F1280::render() {
         rotate_matrix_y(0, this->m_34);
         rotate_matrix_x(0, (int) (*(s32 *)&this->unk_30));
         rotate_matrix_z(0, (int) (*(s32 *)&this->unk_38));
-        TObjFish::set_global_param(this->m_3c);
+        set_current_texture_list((GinjaTextureList *)(this->m_3c));
         TBoss6PlotFalz::set_fade_material_color(TBoss6Rock__data_805DFF4C);
         draw_ginja_object((void *)(*(s32 *)&this->unk_40));
         TObjFish::reset_fish_globals();
@@ -567,7 +568,7 @@ void TBoss6Rock::draw_model() {
     rotate_matrix_y(0, arg0->f60);
     rotate_matrix_x(0, arg0->f5C);
     rotate_matrix_z(0, arg0->f64);
-    TObjFish::set_global_param((*(s32 *)&TBoss6Rock__data_805D6EF4));
+    set_current_texture_list((GinjaTextureList *)((*(s32 *)&TBoss6Rock__data_805D6EF4)));
     draw_ginja_object((void *)(get_bml_model((*(s32 *)&TBoss6Rock__data_805D6EF0), ((E_803546B0 *)&TBoss6Rock__data_80479258)[arg0->fB4].id)));
     pop_matrix();
 }

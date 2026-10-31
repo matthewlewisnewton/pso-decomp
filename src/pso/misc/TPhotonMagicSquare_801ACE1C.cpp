@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
 #include "pso/misc/TPhotonMagicSquare.h"
@@ -60,7 +61,7 @@ void TPhotonMagicSquare::render() {
     push_matrix();
     post_translate_matrix(&self->vB8);
     rotate_matrix_y(0, this->rotation_y);
-    TObjFish::set_global_param(this->texlist);
+    set_current_texture_list((GinjaTextureList *)(this->texlist));
     scale_current_matrix(&self->v68);
     Color_801ACE1C saved = self->color;
     if ((this->m_b0 % this->m_cc) == 0) {

@@ -1,5 +1,6 @@
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/ModelNodePositionCapture.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/TObject.h"
 #include "pso/object/TObjMotion.h"
@@ -102,7 +103,7 @@ void TObjDFDemo3::render() {
     set_motion_packed_rotation();
     post_translate_matrix((u8 *)&this->m_a0);
     rotate_matrix_y(0, this->m_ac);
-    TObjFish::set_global_param(this->m_98);
+    set_current_texture_list((GinjaTextureList *)(this->m_98));
     ((ModelNodePositionCapture *)(this->m_b8))->install();
     set_chunk_render_flags(1);
     draw_model_motion((void *)(*(s32 *)&this->m_94), (void *)(*(s32 *)&this->m_9c), *(f32 *)&this->_padB4);

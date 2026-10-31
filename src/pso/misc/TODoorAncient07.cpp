@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "pso/misc/TODoorAncient07.h"
 
 #include "pso/TMainTask.h"
@@ -40,7 +41,7 @@ void TODoorAncient07::render() {
         push_matrix();
         post_translate_matrix(&position.x);
         rotate_matrix_y(NULL, rotation_y);
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         if (motion != NULL && 0.0f != animation_frame) {
             draw_ginja_model_with_motion(model, motion, animation_frame);
         } else {

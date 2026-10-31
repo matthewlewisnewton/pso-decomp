@@ -1,5 +1,6 @@
 #include "pso/misc/MaterialOpacityFade.h"
 #include "pso/misc/RenderFadeState.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/enemy/TObjEneMe3SinowZoa_80316A74.h"
@@ -445,7 +446,7 @@ void TObjEneMe3SinowZoa::vfunc_115() {
     }
     flag = sub_8031A454__18TObjEneMe3SinowZoaFv(arg0);
     if (arg0->m8(lbl_805DF318, TObjEneMe3SinowZoa__data_805DF2F0) != 0) {
-        TObjFish::set_global_param((s32)arg0->mdl);
+        set_current_texture_list((GinjaTextureList *)(arg0->mdl));
         TObjPlayer::toggle_particle_effect();
         if (flag != 0) {
             Part_803173D0 *parts = arg0->mdl->parts;

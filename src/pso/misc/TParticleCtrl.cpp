@@ -1,4 +1,5 @@
 #include "pso/player/demo_mode.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/render/render_util.h"
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
@@ -344,7 +345,7 @@ void TUnk_8048E6DC::render() {
     }
     set_additive_blend();
     begin_screen_draw(1);
-    TObjFish::set_global_param(lbl_804C5820[31].param);
+    set_current_texture_list((GinjaTextureList *)(lbl_804C5820[31].param));
     set_draw_texture_and_color(lbl_804C5820[31].tex, -1);
     if (self->f94 < 0.0f) {
         color.a = 0;

@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/enemy/BattleParameters.h"
+#include "pso/system/CurrentTextureList.h"
 struct NJS_OBJECT;
 #include "pso/unk/TUnk_80494968.h"
 #include "pso/misc/GroundEffects.h"
@@ -242,7 +243,7 @@ void TObjEneShark::render() {
     }
     select_actor_lighting(this);
     model_render_flags |= 1;
-    TObjFish::set_global_param(texlist);
+    set_current_texture_list((GinjaTextureList *)(texlist));
     push_matrix();
     translate_matrix(0, shark_zero, unk_380, shark_zero);
     post_translate_matrix(&position.x);

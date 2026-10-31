@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TODoorAncient01.h"
 #include "pso/TMainTask.h"
@@ -96,7 +97,7 @@ void TODoorAncient01::render() {
         push_matrix();
         post_translate_matrix(&position.x);
         rotate_matrix_y(NULL, rotation_y);
-        TObjFish::set_global_param(door_ancient01_texlists[door_flags & DOOR_FLAG_UNLOCKED]);
+        set_current_texture_list((GinjaTextureList *)(door_ancient01_texlists[door_flags & DOOR_FLAG_UNLOCKED]));
         if (object_state == DOOR_CLOSED) {
             NJS_OBJECT *node = (NJS_OBJECT *)model;
             post_translate_matrix(node->pos);

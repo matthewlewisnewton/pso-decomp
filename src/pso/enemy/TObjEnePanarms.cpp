@@ -2,6 +2,7 @@
 #include "pso/system/ModelNodePositionCapture.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/GroundEffects.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
@@ -1446,7 +1447,7 @@ void TObjEnePanarms::update_linked_effect() {
     }
 }
 
-void TObjEnePanarms::draw() { ((int (*)(void*))push_matrix)(this); ((int (*)(void*))post_translate_matrix)((char*)this + 0x38); ((int (*)(void*, void*))rotate_matrix_y)((void*)0, *(void* *)&this->rotation_y); TObjFish::set_global_param((s32)(*(void* *)&this->texlist)); ((ModelNodePositionCapture *)(this->m_3dc))->install(); draw__10TObjMotionFv(this); ((ModelNodePositionCapture *)(this->m_3dc))->clear(); ((int (*)(void))pop_matrix)(); }
+void TObjEnePanarms::draw() { ((int (*)(void*))push_matrix)(this); ((int (*)(void*))post_translate_matrix)((char*)this + 0x38); ((int (*)(void*, void*))rotate_matrix_y)((void*)0, *(void* *)&this->rotation_y); set_current_texture_list((GinjaTextureList *)((*(void* *)&this->texlist))); ((ModelNodePositionCapture *)(this->m_3dc))->install(); draw__10TObjMotionFv(this); ((ModelNodePositionCapture *)(this->m_3dc))->clear(); ((int (*)(void))pop_matrix)(); }
 
 void TObjEnePanarms::draw_with_fade() {
     s32 temp_r4;

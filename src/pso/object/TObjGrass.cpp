@@ -6,6 +6,7 @@
 #include "pso/misc/RenderFadeState.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
 struct NJS_OBJECT;
 #include "pso/math/ScratchVectorStorage.h"
 #include "pso/player/PlayerAttackParams.h"
@@ -1547,7 +1548,7 @@ void TObjGrass::render() {
         return;
     }
     select_actor_lighting((s32)self);
-    TObjFish::set_global_param(*(s32 *)((s8 *)arg0 + 0x24));
+    set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)arg0 + 0x24)));
     push_matrix();
     translate_matrix(0, (0.0f), *(f32 *)((s8 *)arg0 + 0x35C), (0.0f));
     post_translate_matrix(arg0 + 0x38);

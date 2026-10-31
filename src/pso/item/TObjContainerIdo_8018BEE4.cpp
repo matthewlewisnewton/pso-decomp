@@ -1,4 +1,5 @@
 #include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/misc/RenderFadeState.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/system/vector.h"
@@ -122,7 +123,7 @@ void render__16TObjContainerIdoFv(u8 *container_ido) {
             extern const u32 container_ido_texture_gvm_handle;
             u32 temp = (u32) container_ido_texture_gvm_handle;
             if (temp != 0U) {
-                TObjFish::set_global_param(temp);
+                set_current_texture_list((GinjaTextureList *)(temp));
             }
         }
         push_matrix();

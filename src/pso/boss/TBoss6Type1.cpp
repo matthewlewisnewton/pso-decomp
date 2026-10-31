@@ -1,5 +1,6 @@
 #include "pso/system/ModelNodePositionCapture.h"
 #include "pso/enemy/BattleParameters.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/protocol/protocol_types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/misc/TLobby_801E43E4.h"
@@ -1889,7 +1890,7 @@ void TBoss6Type1::draw_part_motions() {
         cb = arg0->f650[i];
         a = &arg0->anim[i];
         if (cb != 0) {
-            TObjFish::set_global_param(p);
+            set_current_texture_list((GinjaTextureList *)(p));
             if (TBoss6Type1__data_805DE2D0 == a->blend) {
                 ((ModelNodePositionCapture *)cb)->install();
                 draw_model_motion((void *)id, (void *)a->id, a->t);

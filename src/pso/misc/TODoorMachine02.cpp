@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "pso/misc/TODoorMachine02.h"
 
 #include "pso/TMainTask.h"
@@ -82,7 +83,7 @@ void TODoorMachine02::render() {
         post_translate_matrix(&position.x);
         rotate_matrix_y(NULL, rotation_y);
         unlocked = door_flags & 1;
-        TObjFish::set_global_param(texture_lists[door_flags & 1]);
+        set_current_texture_list((GinjaTextureList *)(texture_lists[door_flags & 1]));
         if (object_state == DOOR_CLOSED) {
             node = ((NJS_OBJECT *)model)->child;
             post_translate_matrix(node->pos);

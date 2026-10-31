@@ -1,6 +1,7 @@
 #include "pso/player/demo_mode.h"
 #include "pso/math/VectorNormalize.h"
 #include "pso/enemy/BattleParameters.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/enemy/TObjEnemy.h"
 extern "C" void *__ct__12TObjEneDD_STFP7TObject(void *);
@@ -158,7 +159,6 @@ s32 rotate_matrix_y(s32, s32);
 void translate_matrix(u32 arg0, f32 x, f32 y, f32 z);
 s32 push_matrix();
 s32 pop_matrix();
-s32 set_global_param__8TObjFishFl(s32);
 extern Vec lbl_8043B10C;
 extern const f32 lbl_805D9E84;
 extern const f32 lbl_805D9E88;
@@ -197,7 +197,7 @@ void TObjEneMoja::bindModel(int index) {
 void TObjEneBm3Fly__vt104(TObjEneBm3Fly *arg0) {
     if (((VObj800AFB60_800AFB28 *) arg0)->m8((4e+02f), (15.0f)) != 0) {
         ((TObjEneDD *)(arg0))->draw_ground_shadow(0, 0);
-        set_global_param__8TObjFishFl(arg0->texlist);
+        set_current_texture_list((GinjaTextureList *)(arg0->texlist));
         push_matrix();
         post_translate_matrix((u8 *)arg0 + 0x38);
         rotate_matrix_y(0, arg0->rotation_y);
@@ -231,7 +231,7 @@ void render__13TObjEneBm3FlyFv(VObj_800AFBF0 *o) {
             ((TObjEneDD *)(o))->draw_ground_shadow(&v, 0);
         }
         ((TObjEneDD *)o)->update_secondary_light();
-        set_global_param__8TObjFishFl(((TObjEneBm3Fly *)o)->texlist);
+        set_current_texture_list((GinjaTextureList *)(((TObjEneBm3Fly *)o)->texlist));
         push_matrix();
         translate_matrix(0, *(f32 *)((s8 *)o + 0x38), *(f32 *)((s8 *)o + 0x42C), *(f32 *)((s8 *)o + 0x40));
         rotate_matrix_y(0, ((TObjEneBm3Fly *)o)->rotation_y);
@@ -2108,7 +2108,6 @@ void TObjEneBm3Fly::clamp_flight_height() {
 #define end_effect_render__13TParticleCtrlFv (*(void (*)(void))&end_effect_render__13TParticleCtrlFv)
 #define play_sound_effect (*(s32 (*)(void *, void *, int, int))&play_sound_effect)
 #define rotate_matrix_y (*(void (*)(s32, s32))&rotate_matrix_y)
-#define set_global_param__8TObjFishFl (*(void (*)(s32))&set_global_param__8TObjFishFl)
 #define vfunc_89__9TObjEneDDFv (*(void (*)())&vfunc_89__9TObjEneDDFv)
 #define render__13TObjEneBm3FlyFv (*(void (*)())&render__13TObjEneBm3FlyFv)
     this->body_center_position.y = *(f32 *)((s8 *)arg0 + 0x42C);
@@ -2470,7 +2469,6 @@ void TObjEneBm3Fly::load_resources() {
 #undef end_effect_render__13TParticleCtrlFv
 #undef play_sound_effect
 #undef rotate_matrix_y
-#undef set_global_param__8TObjFishFl
 #undef vfunc_89__9TObjEneDDFv
 #undef render__13TObjEneBm3FlyFv
 #undef VBase_18

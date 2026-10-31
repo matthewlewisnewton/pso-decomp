@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
 #include "pso/item/TItem.h"
@@ -95,7 +96,7 @@ void TUnk_804F0BF0::render() {
             model_render_flags |= 0x20;
             set_constant_material((const NJS_ARGB *)((arg0 + 0x28)));
             TParticleCtrl::begin_effect_render();
-            TObjFish::set_global_param((int) (*(s32 *)((s8 *)arg0 + 0x24)));
+            set_current_texture_list((GinjaTextureList *)((*(s32 *)((s8 *)arg0 + 0x24))));
             push_matrix();
             post_translate_matrix((u8 *)&this->unk_5C);
             push_matrix();

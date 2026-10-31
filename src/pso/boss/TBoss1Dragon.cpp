@@ -3,6 +3,7 @@
 #include "pso/math/FloatRounding.h"
 #include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
+#include "pso/system/CurrentTextureList.h"
 struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/EnemyBmlResource.h"
@@ -1003,7 +1004,7 @@ void TBoss1Dragon::render_low_detail() {
     if (((TBoss1Dragon*)self)->update_object_view_visibility((400.0f), (20.0f)) == 0) {
         return;
     }
-    TObjFish::set_global_param(self->texlist);
+    set_current_texture_list((GinjaTextureList *)(self->texlist));
     push_matrix();
     post_translate_matrix(&self->position.x);
     rotate_matrix_y(0, self->rotation_y);
@@ -1114,7 +1115,7 @@ void TBoss1Dragon::render() {
             *(s32 *)((s8 *)((u8 *)this) + 0x34) = saved;
             pop_matrix();
         }
-        TObjFish::set_global_param(((TBoss1Dragon *)((u8 *)this))->texlist);
+        set_current_texture_list((GinjaTextureList *)(((TBoss1Dragon *)((u8 *)this))->texlist));
         TObjEneDD::clear_global_flag_400();
         saved_model_render_flags = model_render_flags;
         set_material_alpha_compare_reference(0);

@@ -4,6 +4,7 @@
 #include "pso/misc/RenderFadeState.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/TParticleCtrl.h"
@@ -1823,7 +1824,7 @@ void draw_model__15TObjEneMe1GiGueFPv(Obj_802CD058 *self) {
             return;
         }
     }
-    TObjFish::set_global_param(self->f24);
+    set_current_texture_list((GinjaTextureList *)(self->f24));
     select_actor_lighting((s32)self);
     TObjPlayer::toggle_particle_effect();
     ok = 1;

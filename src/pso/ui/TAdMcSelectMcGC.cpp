@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TWindowSubStatusDisp_803DEE6C.h"
 #include "pso/ui/TAdMcSelectCursorGC_8032A610.h"
@@ -37,7 +38,7 @@ extern const f32 lbl_805DF748;
 void TAdMcSelectMcGC::draw_status_window() {
     u8 *arg0 = (u8 *)this;
     begin_screen_draw(1);
-    TObjFish::set_global_param(TAdMcSelectMcGC__texture_list_ptr);
+    set_current_texture_list((GinjaTextureList *)(TAdMcSelectMcGC__texture_list_ptr));
     set_draw_texture_and_color(0, ((*(s32 *)((s8 *)arg0 + 0x120) << 0x18) | 0xFF0000 | 0xFFFF));
     draw_textured_quad_at_depth((f32 *)(arg0 + 0x20), lbl_805DF748);
     TWindowSubStatusDisp::get_player();

@@ -1,4 +1,5 @@
 #include "pso/player/demo_mode.h"
+#include "pso/system/CurrentTextureList.h"
 struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
@@ -343,7 +344,7 @@ void render__16TObjEneRe7BeruraFv(Berura_80092CCC *o) {
         fade = (s32)&o->fades[cam];
         update__15RenderFadeStateFv((void *)fade);
         cam = ((RenderFadeState *)fade)->updateFromCamera((const f32*)(&o->f2FC));
-        TObjFish::set_global_param(o->f24);
+        set_current_texture_list((GinjaTextureList *)(o->f24));
         push_matrix();
         post_translate_matrix(&o->pos);
         rotate_matrix_y(0, o->f60);

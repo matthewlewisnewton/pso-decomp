@@ -1,6 +1,7 @@
 #include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
 struct NJS_OBJECT;
 #include "pso/math/ScratchVectorStorage.h"
 #include "pso/player/PlayerAttackParams.h"
@@ -1329,7 +1330,7 @@ void TObjEneIllGill::render() {
     this->viewDetail = classify_actor_view_detail(lbl_805E0300, lbl_805E0304, lbl_805E02F4);
     if (this->viewDetail != 0) {
         select_actor_lighting((s32)arg0);
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)(this->texlist));
         push_matrix();
         post_translate_matrix(&position);
         rotate_matrix_y(0, this->rotation_y);

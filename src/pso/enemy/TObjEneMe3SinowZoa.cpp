@@ -5,6 +5,7 @@
 #include "pso/misc/MaterialOpacityFade.h"
 #include "pso/misc/RenderFadeState.h"
 #include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/vector.h"
 #include "pso/system/NinjaTypes.h"
@@ -1186,7 +1187,7 @@ void TObjEneMe3SinowZoa::render() {
             TObjEneDD::clear_global_flag_400();
         }
         TObjPlayer::toggle_particle_effect();
-        TObjFish::set_global_param(*(s32 *)(((u8 *)this) + 0x24));
+        set_current_texture_list((GinjaTextureList *)(*(s32 *)(((u8 *)this) + 0x24)));
         for (i = 0; i < 3; i++) {
             if (lbl_80542FF0[i] != NULL) {
                 *lbl_80542FF0[i] = o->f3F8;

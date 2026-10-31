@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "pso/render/render_util.h"
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
@@ -220,7 +221,7 @@ void TObjContainerEnemy::vfunc_81() {
     }
     switch (self->mode) {
     case 0:
-        TObjFish::set_global_param(lbl_805D5B7C);
+        set_current_texture_list((GinjaTextureList *)(lbl_805D5B7C));
         push_matrix();
         post_translate_matrix(self->f38);
         rotate_matrix_y(0, self->f60);

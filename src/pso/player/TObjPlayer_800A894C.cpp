@@ -5,6 +5,7 @@
 #include "pso/misc/MaterialOpacityFade.h"
 #include "pso/misc/RenderFadeState.h"
 #include "pso/enemy/BattleParameters.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/system/EnemyBmlResource.h"
 #include "pso/system/BmlResourceClass.h"
@@ -956,9 +957,9 @@ void TObjPlayer__sub_800AA334(u8 *arg0) {
             select_actor_lighting((s32)arg0);
             TObjPlayer::toggle_particle_effect();
             if (*(s16 *)((s8 *)arg0 + 0x392) != 0) {
-                TObjFish::set_global_param(lbl_805D5094);
+                set_current_texture_list((GinjaTextureList *)(lbl_805D5094));
             } else {
-                TObjFish::set_global_param((s32)((void *) (((TObjEneDubchik *)arg0)->texlist)));
+                set_current_texture_list((GinjaTextureList *)(((void *) (((TObjEneDubchik *)arg0)->texlist))));
             }
             var_r30 = 1;
             push_matrix();

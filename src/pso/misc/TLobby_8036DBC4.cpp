@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TLobby_8036DBC4.h"
 #include "pso/misc/TCameraCtrl.h"
@@ -7,7 +8,7 @@
 
 extern "C" {
 u8 *load_gvm_texture_file(s32 arg0);
-void set_global_param__8TObjFishFl();
+
 extern u8 lbl_8047AD08[];
 extern u8 lbl_8047AD14[];
 extern u8 lbl_8047AD20[];
@@ -29,7 +30,7 @@ void TBGMulti__ct(void) {
         TLanguage::draw_string(lbl_8047AD14, sp8, 0x4D);
         ((TLobby *)lbl_8047AD08)->tmp_buf_release();
         (*(s32 *)&TBGMulti__textures) = (s32)load_gvm_texture_file((s32)lbl_8047AD20);
-        set_global_param__8TObjFishFl();
+        set_current_texture_list((GinjaTextureList *)(TBGMulti__textures));
         TLanguage::set_entry_index(0, 0x4D);
     }
     split_screen_hud_animation_frame = 0x384;

@@ -2,6 +2,7 @@
 #include "pso/math/ViewPoint.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
 struct NJS_OBJECT;
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/player/TObjPlayer_800D8FDC.h"
@@ -1610,7 +1611,7 @@ void TObjEneDellBiter::render() {
                 draw = 0;
             }
         }
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         if (draw != 0) {
             push_matrix();
             post_translate_matrix(&position);
@@ -1659,7 +1660,7 @@ void TObjEneDellBiter::vfunc_106() {
         Vec v = lbl_804752A0[0];
         TObjEneDD::draw_ground_shadow(&v, 0);
         TObjPlayer::toggle_particle_effect();
-        TObjFish::set_global_param((int) (texlist));
+        set_current_texture_list((GinjaTextureList *)((texlist)));
         push_matrix();
         post_translate_matrix(&position);
         rotate_matrix_y(0, (int) (rotation_y));
@@ -1675,7 +1676,7 @@ void TObjEneDellBiter::vfunc_106() {
 s32 TObjEneDellBiter::render_model_if_visible() {
     if (get_mode__11TCameraCtrlFPv(((s32 *)&main_task)) & 0x20) {
         if (push_reflection_matrix(&reflection_position) != 0) {
-            TObjFish::set_global_param(texlist);
+            set_current_texture_list((GinjaTextureList *)(texlist));
             push_matrix();
             post_translate_matrix(&position);
             rotate_matrix_y(0, rotation_y);
