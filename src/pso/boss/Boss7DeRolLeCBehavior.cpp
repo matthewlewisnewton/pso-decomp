@@ -1,3 +1,5 @@
+#include "pso/animation/MotionContext.h"
+#include "pso/math/FloatRounding.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
@@ -1263,7 +1265,6 @@ struct Fish_802ECC44 {
 };
 
 int get_player_data__10TObjPlayerFi(int a0);
-f32 get_random_float__21TObjEneMe3ShinowaRealFv(f32);
 s32 enemy_clear_target__12TObjEneDD_STFUs(void *);
 s32 enemy_set_target_id(void * a0 = 0, u16 a1 = 0);
 void project_sound_origin_from_camera(s32 arg0, u8 *arg1, f32 farg0);
@@ -3530,7 +3531,7 @@ void TObjFish::pick_random_target() {
         ((TObjEneDD_ST *)((u8 *)this))->set_target_player(p);
         return;
     }
-    idx = (s32)get_random_float__21TObjEneMe3ShinowaRealFv((f32)n * random_ratio__9TObjCharaFv(this));
+    idx = (s32)floor_to_float((f32)n * random_ratio__9TObjCharaFv(this));
     enemy_clear_target__12TObjEneDD_STFUs(this);
     for (i = 0; i < n; i++) {
         p = (u8 *)get_player_data__10TObjPlayerFi(idx);
@@ -3609,7 +3610,6 @@ struct Vec_802ED3E4 { f32 x, y, z; };
 
 extern "C" {
 extern RecoveredGlobal_802ED4AC_lbl_80472D04 lbl_80472D04;
-void bind_motion_context(s32 arg0, f32 farg0);
 void compose_motion_node_matrix(void *arg0);
 s32 scale_matrix(int, f32, f32, f32);
 s32 push_matrix_from(void *);
@@ -3793,7 +3793,7 @@ f32 TObjFish__sub_802ED3E4(u8 *arg0) {
     v.z = lbl_805DEA10;
     push_matrix_from(identity_matrix);
     scale_matrix(0, lbl_805DEB24, lbl_805DEB24, lbl_805DEB24);
-    bind_motion_context(*(s32 *)((s8 *)arg0 + 0xF8), *(f32 *)((s8 *)arg0 + 0xC0));
+    bind_motion_context((NJS_MOTION *)*(s32 *)((s8 *)arg0 + 0xF8), *(f32 *)((s8 *)arg0 + 0xC0));
     compose_motion_node_matrix((void *)(*(s32 *)((s8 *)arg0 + 0x34)));
     transform_point_by_current_matrix(&v, &v);
     pop_matrix();

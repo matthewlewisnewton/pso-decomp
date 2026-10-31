@@ -1,3 +1,5 @@
+#include "pso/animation/MotionContext.h"
+#include "pso/math/FloatRounding.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/protocol/protocol_types.h"
@@ -595,7 +597,6 @@ extern const f32 TBoss1Dragon__gravity_accel;
 extern const f32 TBoss1Dragon__data_805D8008;
 extern const f32 lbl_805D8020;
 extern const f32 lbl_805D8024;
-void bind_motion_context(s32 arg0, f32 farg0);
 void compose_motion_node_matrix(void *arg0);
 s32 matrix_mult_vec(int, void *, void *);
 s32 push_matrix_from(void *);
@@ -603,7 +604,6 @@ extern u8 identity_matrix[];
 extern const f32 lbl_805D808C;
 f32 TBoss1Dragon__sub_80027010(Obj_80027010 *arg0, f32 farg0, f32 farg1, f32 farg2);
 f32 random_ratio__9TObjCharaFv(void);
-f32 get_random_float__21TObjEneMe3ShinowaRealFv(f32);
 f32 rand_range__9TObjEneDDFff(void *, f32, f32);
 
 s32 choose_burrow_ring_destination__12TBoss1DragonFPvPv(Dragon_80028EA8 *arg0, Vec_80028EA8 *arg1);
@@ -5303,7 +5303,7 @@ s32 select_forward_target__12TBoss1DragonFPv(u8 *self) {
         enemy_set_target_id(self, selected[0]);
         return 1;
     }
-    enemy_set_target_id(self, selected[(s32)get_random_float__21TObjEneMe3ShinowaRealFv((f32)n * ((f32 (*)(void *))random_ratio__9TObjCharaFv)(self))]);
+    enemy_set_target_id(self, selected[(s32)floor_to_float((f32)n * ((f32 (*)(void *))random_ratio__9TObjCharaFv)(self))]);
     return 1;
 }
 
@@ -5325,7 +5325,7 @@ void prepare_flight_destination__12TBoss1DragonFPv(u8 *arg0) {
 s32 choose_burrow_ring_destination__12TBoss1DragonFPvPv(Dragon_80028EA8 *arg0, Vec_80028EA8 *arg1) {
     s32 idx;
     f32 r;
-    idx = (s32)get_random_float__21TObjEneMe3ShinowaRealFv((12.0f) * random_ratio__9TObjCharaFv());
+    idx = (s32)floor_to_float((12.0f) * random_ratio__9TObjCharaFv());
     if (arg0->count < 12) {
         arg0->count++;
         while ((0.0f) != arg0->slots[idx]) {
@@ -5450,7 +5450,7 @@ f32 TBoss1Dragon::sample_root_height() {
     v.z = (0.0f);
     push_matrix_from(identity_matrix);
     scale_matrix(0, (2.0f), (2.0f), (2.0f));
-    bind_motion_context((s32)this->current_motion, this->frame);
+    bind_motion_context((NJS_MOTION *)this->current_motion, this->frame);
     compose_motion_node_matrix(this->model);
     matrix_mult_vec(0, &v, &v);
     pop_matrix();
@@ -6294,12 +6294,12 @@ s32 TCameraCtrl::get_camera_mode() {
 }
 
 extern "C" {
-f64 floor();
+f64 floor(f64);
 
 int TObjEneDD::get_flag_b4() { return (this->motion_flags >> 4) & 0x1; }
 
-f32 TObjEneMe3ShinowaReal::get_random_float() {
-    return (f32) floor();
+f32 floor_to_float(f32 value) {
+    return (f32) floor((f64)value);
 }
 s32 fn_8002AE08(void *p) {
     return ((TBoss8Dragon *)p)->test_card_flag_2() ? 0x20000 : 0x10000;

@@ -1,3 +1,4 @@
+#include "pso/misc/SampledMotionPoints.h"
 #include "pso/render/reflection.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -429,7 +430,6 @@ void fn_800D88E4(void *);
 extern s32 actor_frame_tick;
 extern const f32 lbl_805DEF4C;
 void spawn_ground_effects__14TObjEneDolmOlmFPvPv(u8 *arg0, Vec_80300D00 *arg1);
-s32 draw_trail_with_colors(u32, s32, s32, int, int);
 extern const f32 lbl_805DEF64;
 s32 obj_testFlags30__14TObjCollidableFUl(void *, u32);
 void vfunc_59__14TObjEneDolmOlmFv(u8 *arg0);
@@ -489,7 +489,6 @@ s32 register_object__6TLobbyFl(int);
 s32 dispatch_shared_handler_b__6TLobbyFl(int);
 s32 register_boss__6TLobbyFl(int);
 u8 *load_resource_from_descriptor(void *, int, void *, int, int, int);
-u8 *init_trail_buffer__11TBoss4Type3FPvifff(void *, int, f32, f32, f32);
 u8 *mem_alloc(s32);
 s32 spawn_npc_enemy__6TLobbyFslllff(s16, s32, s32, void *, f32, f32);
 extern u32 dolm_olm_combat_stat_id_pair;
@@ -508,7 +507,6 @@ void vfunc_58__14TObjEneDolmOlmFv(void *arg0);
 void TLobby__sub_8001FE7C(void*, int);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 u8 *TObjEneDolmOlm__ct(u8 *, s32, s32);
-void __dt__11TBoss4Type3FPvs(void*, int);
 void *__nw__7TObjectFUl(int);
 void mem_free(void*);
 s32 get_mode__11TCameraCtrlFPv(void *);
@@ -1030,21 +1028,13 @@ void TObjEneDolmOlm::load_shared_resources() {
         }
         TObjEneDolmOlm__resource_bundle = (u32) p;
     }
-    p = (u8 *)::operator new(0x18);
-    if (p != NULL) {
-        p = init_trail_buffer__11TBoss4Type3FPvifff(p, 2, TObjEneDolmOlm__data_805DEF54, TObjEneDolmOlm__data_805DEF6C, lbl_805DEF90);
-    }
+    p = (u8 *)new SampledMotionPoints(2, TObjEneDolmOlm__data_805DEF54, TObjEneDolmOlm__data_805DEF6C, lbl_805DEF90);
     TObjEneDolmOlm__data_805D6A14 = (u32) p;
-    p = (u8 *)::operator new(0x18);
-    if (p != NULL) {
-        p = init_trail_buffer__11TBoss4Type3FPvifff(p, 2, TObjEneDolmOlm__data_805DEF54, TObjEneDolmOlm__data_805DEF6C, lbl_805DEF90);
-    }
+    p = (u8 *)new SampledMotionPoints(2, TObjEneDolmOlm__data_805DEF54, TObjEneDolmOlm__data_805DEF6C, lbl_805DEF90);
     TObjEneDolmOlm__data_805D6A18 = (u32) p;
     set_motion_packed_rotation();
-    draw_trail_with_colors(TObjEneDolmOlm__data_805D6A14, ((Res_80302784 *)TObjEneDolmOlm__resource_bundle)->x42C->f8,
-        ((Res_80302784 *)TObjEneDolmOlm__resource_bundle)->x430[((s32 *) TObjEneDolmOlm__param_table)[13]].b, 0x1C, 0x1D);
-    draw_trail_with_colors(TObjEneDolmOlm__data_805D6A18, ((Res_80302784 *)TObjEneDolmOlm__resource_bundle)->x42C->f8,
-        ((Res_80302784 *)TObjEneDolmOlm__resource_bundle)->x430[((s32 *) TObjEneDolmOlm__param_table)[17]].b, 0x14, 0x15);
+    ((SampledMotionPoints *)TObjEneDolmOlm__data_805D6A14)->sample_two_nodes((NJS_OBJECT *)((Res_80302784 *)TObjEneDolmOlm__resource_bundle)->x42C->f8, (NJS_MOTION *)((Res_80302784 *)TObjEneDolmOlm__resource_bundle)->x430[((s32 *) TObjEneDolmOlm__param_table)[13]].b, 0x1C, 0x1D);
+    ((SampledMotionPoints *)TObjEneDolmOlm__data_805D6A18)->sample_two_nodes((NJS_OBJECT *)((Res_80302784 *)TObjEneDolmOlm__resource_bundle)->x42C->f8, (NJS_MOTION *)((Res_80302784 *)TObjEneDolmOlm__resource_bundle)->x430[((s32 *) TObjEneDolmOlm__param_table)[17]].b, 0x14, 0x15);
     clear_motion_packed_rotation();
     dolm_olm_combat_stat_id_pair = (u32) mem_alloc(8);
     TObjEneDolmOlm__shared_handler_ids = (u32) mem_alloc(8);
@@ -1086,11 +1076,11 @@ void TObjEneDolmOlm::free_shared_resources() {
         TObjEneDolmOlm__behavior_params_by_variant = 0U;
     }
     if ((u32) TObjEneDolmOlm__data_805D6A18 != 0U) {
-        __dt__11TBoss4Type3FPvs((void*)TObjEneDolmOlm__data_805D6A18, 1);
+        delete (SampledMotionPoints *)TObjEneDolmOlm__data_805D6A18;
         TObjEneDolmOlm__data_805D6A18 = 0U;
     }
     if ((u32) TObjEneDolmOlm__data_805D6A14 != 0U) {
-        __dt__11TBoss4Type3FPvs((void*)TObjEneDolmOlm__data_805D6A14, 1);
+        delete (SampledMotionPoints *)TObjEneDolmOlm__data_805D6A14;
         TObjEneDolmOlm__data_805D6A14 = 0U;
     }
     if ((u32) TObjEneDolmOlm__resource_bundle != 0U) {
@@ -1680,12 +1670,8 @@ void TObjEneDolmOlm::sub_80301148() {
     }
     this->load_params_from_table(*(s32 *)&this->variant);
     set_motion_packed_rotation();
-    draw_trail_with_colors(TObjEneDolmOlm__data_805D6A14,
-        ((T_80301148 *)TObjEneDolmOlm__resource_bundle)->a[*(s32 *)&this->variant].v,
-        ((T_80301148 *)TObjEneDolmOlm__resource_bundle)->b[TObjEneDolmOlm__param_table[13]].v, 0x1C, 0x1D);
-    draw_trail_with_colors(TObjEneDolmOlm__data_805D6A18,
-        ((T_80301148 *)TObjEneDolmOlm__resource_bundle)->a[*(s32 *)&this->variant].v,
-        ((T_80301148 *)TObjEneDolmOlm__resource_bundle)->b[TObjEneDolmOlm__param_table[17]].v, 0x14, 0x15);
+    ((SampledMotionPoints *)TObjEneDolmOlm__data_805D6A14)->sample_two_nodes((NJS_OBJECT *)((T_80301148 *)TObjEneDolmOlm__resource_bundle)->a[*(s32 *)&this->variant].v, (NJS_MOTION *)((T_80301148 *)TObjEneDolmOlm__resource_bundle)->b[TObjEneDolmOlm__param_table[13]].v, 0x1C, 0x1D);
+    ((SampledMotionPoints *)TObjEneDolmOlm__data_805D6A18)->sample_two_nodes((NJS_OBJECT *)((T_80301148 *)TObjEneDolmOlm__resource_bundle)->a[*(s32 *)&this->variant].v, (NJS_MOTION *)((T_80301148 *)TObjEneDolmOlm__resource_bundle)->b[TObjEneDolmOlm__param_table[17]].v, 0x14, 0x15);
     clear_motion_packed_rotation();
     *(f32 *)((s8 *)((u8 *)this) + 0x3CC) = lbl_805DEF64 + *(f32 *)((s8 *)((u8 *)this) + 0x35C);
     this->m_3d0 = lbl_805DEF64 + *(f32 *)((s8 *)((u8 *)this) + 0x360);
@@ -1702,11 +1688,11 @@ void TObjEneDolmOlm::vfunc_93() {
     }
     switch (this->requested_action) {
     case 3:
-        e = TObjPlayer::lookup_entry_by_value((void *)(*(s32 *)&TObjEneDolmOlm__data_805D6A14), this->frame);
+        e = (s32)((SampledMotionPoints *)((void *)(*(s32 *)&TObjEneDolmOlm__data_805D6A14)))->lookup(this->frame);
         idx = 0;
         break;
     case 4:
-        e = TObjPlayer::lookup_entry_by_value((void *)(*(s32 *)&TObjEneDolmOlm__data_805D6A18), this->frame);
+        e = (s32)((SampledMotionPoints *)((void *)(*(s32 *)&TObjEneDolmOlm__data_805D6A18)))->lookup(this->frame);
         idx = 1;
         break;
     default:

@@ -1,3 +1,4 @@
+#include "pso/misc/SampledMotionPoints.h"
 #include "pso/unk/TUnk_80494968.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "types.h"
@@ -274,11 +275,11 @@ void TObjEneShark::vfunc_93() {
     }
     switch (this->m_b8) {
     case 3:
-        e = TObjPlayer::lookup_entry_by_value((void *)TObjEneShark__attack_motion_3_trail, this->m_c0);
+        e = (s32)((SampledMotionPoints *)((void *)TObjEneShark__attack_motion_3_trail))->lookup(this->m_c0);
         idx = 0;
         break;
     case 4:
-        e = TObjPlayer::lookup_entry_by_value((void *)shark_attack4_trail_buffer, this->m_c0);
+        e = (s32)((SampledMotionPoints *)((void *)shark_attack4_trail_buffer))->lookup(this->m_c0);
         idx = 1;
         break;
     default:
@@ -585,8 +586,6 @@ s32 dispatch_shared_handler_b__6TLobbyFl(int);
 s32 register_boss__6TLobbyFl(int);
 u8 *load_enemy_bml_resource_named(void *, void *);
 u8 *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
-void draw_trail_with_colors(u8 *boss4_type3, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
-void *init_trail_buffer__11TBoss4Type3FPvifff(void *, s32, f32, f32, f32);
 void *mem_alloc(u32 size);
 void spawn_npc_enemy__6TLobbyFslllff(int, int, int, void *, f32, f32);
 extern u8 lbl_8043AEDC[];
@@ -599,7 +598,6 @@ extern const f32 lbl_805D9BCC;
 void vfunc_99__13TUnk_80493450Fv(void);
 void TLobby__sub_8001FE7C(void*, int);
 void *__ct__11TObjControlFP7TObject(void *, void *);
-s32 *__dt__11TBoss4Type3FPvs(s32 *arg0, s16 arg1);
 void mem_free(void*);
 
 extern void *tl_04;
@@ -818,11 +816,11 @@ void TObjEneShark::free_resources() {
         shark_resource_buffer = 0U;
     }
     if ((u32) shark_attack4_trail_buffer != 0U) {
-        __dt__11TBoss4Type3FPvs((s32 *)shark_attack4_trail_buffer, 1);
+        delete (SampledMotionPoints *)shark_attack4_trail_buffer;
         shark_attack4_trail_buffer = 0U;
     }
     if ((u32) TObjEneShark__attack_motion_3_trail != 0U) {
-        __dt__11TBoss4Type3FPvs((s32 *)TObjEneShark__attack_motion_3_trail, 1);
+        delete (SampledMotionPoints *)TObjEneShark__attack_motion_3_trail;
         TObjEneShark__attack_motion_3_trail = 0U;
     }
     if ((u32) shark_bml_resource != 0U) {
@@ -851,18 +849,12 @@ void TLobby::load_shark_resources() {
         }
         G_B8 = (u8 *)p;
     }
-    p = ::operator new(0x18);
-    if (p != NULL) {
-        p = init_trail_buffer__11TBoss4Type3FPvifff(p, 2, lbl_805D9BC8, lbl_805D9BAC, lbl_805D9BC0);
-    }
+    p = new SampledMotionPoints(2, lbl_805D9BC8, lbl_805D9BAC, lbl_805D9BC0);
     G_BC = p;
-    p = ::operator new(0x18);
-    if (p != NULL) {
-        p = init_trail_buffer__11TBoss4Type3FPvifff(p, 2, lbl_805D9BC8, lbl_805D9BAC, lbl_805D9BC0);
-    }
+    p = new SampledMotionPoints(2, lbl_805D9BC8, lbl_805D9BAC, lbl_805D9BC0);
     G_C0 = p;
-    draw_trail_with_colors((u8 *)G_BC, RES->bodies->model, RES->motions[TObjEneShark__action_table[3].idx].b, 5, 8);
-    draw_trail_with_colors((u8 *)G_C0, RES->bodies->model, RES->motions[TObjEneShark__action_table[4].idx].b, 0xA, 0xD);
+    ((SampledMotionPoints *)G_BC)->sample_two_nodes((NJS_OBJECT *)RES->bodies->model, (NJS_MOTION *)RES->motions[TObjEneShark__action_table[3].idx].b, 5, 8);
+    ((SampledMotionPoints *)G_C0)->sample_two_nodes((NJS_OBJECT *)RES->bodies->model, (NJS_MOTION *)RES->motions[TObjEneShark__action_table[4].idx].b, 0xA, 0xD);
     G_A8 = (s32 *)mem_alloc(0xC);
     G_AC = (s32 *)mem_alloc(0xC);
     G_B0 = (s32 *)mem_alloc(0xC);

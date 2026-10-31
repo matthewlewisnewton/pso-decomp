@@ -1,3 +1,6 @@
+#include "pso/animation/MotionContext.h"
+#include "pso/misc/SampledMotionPoints.h"
+#include "pso/math/FloatRounding.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/unk/TUnk_80494968.h"
@@ -528,7 +531,6 @@ extern const f32 TObjEneMe3ShinowaMirage__data_805DA5DC;
 extern const f32 TObjEneMe3ShinowaMirage__data_805DA5E4;
 void TObjEneMe3ShinowaMirage__sub_800E5F64(u8 *arg0, s32 arg1);
 struct Tgt_800E54E8 { u16 id; u8 pad[6]; };
-f32 get_random_float__21TObjEneMe3ShinowaRealFv(f32, f32);
 void rotate_xz_pair_by_angle(f32 *arg0, f32 *arg1, s32 arg2);
 void *create_particle_emitter(void *, s32);
 s32 enemy_set_target_id(void *, u16);
@@ -1521,7 +1523,6 @@ s32 get_room__8TObjBaseFv(int);
 s32 defer_render__7TObjectFv(void *);
 void __dl__7TObjectFPv(void *);
 s32 create__10TTecDebandFlll(void *, void *, s32);
-void bind_motion_context(s32, f32);
 void compose_motion_node_matrix(void *arg0);
 s32 matrix_mult_vec(int, void *, void *);
 s32 translate_matrix(int, f32, f32, f32);
@@ -2284,7 +2285,7 @@ void TObjEneMe3ShinowaMirage__sub_800E54E8(void *arg0_, s32 arg1) {
         F(s32, 0x408) = 0;
         F(f32, 0x410) = TObjEneMe3ShinowaMirage__data_805DA5DC;
         F(f32, 0x37C) = lbl_805DA5F8;
-        F(s32, 0x40C) = ((F(s32, 0x3D4) - (s32)get_random_float__21TObjEneMe3ShinowaRealFv(lbl_805DA5FC, TObjEneMe3ShinowaMirage__data_805DA5DC)) * 0x3333) / 40;
+        F(s32, 0x40C) = ((F(s32, 0x3D4) - (s32)floor_to_float(lbl_805DA5FC)) * 0x3333) / 40;
         VecCopy((Vec *)home, (const Vec *)(arg0 + 0x38));
         F(void *, 0x424) = 0;
         F(void *, 0x428) = 0;
@@ -2702,7 +2703,7 @@ void TObjEneMe3ShinowaMirage__sub_800E5F64(u8 *arg0, s32 arg1) {
             break;
         }
         if (*(s32 *)((s8 *)arg0 + 0x404) != 0) {
-            entry = TObjPlayer::lookup_entry_by_value((void *)TObjEneMe3ShinowaMirage__data_805D52AC, *(f32 *)((s8 *)arg0 + 0xC0));
+            entry = (s32)((SampledMotionPoints *)((void *)TObjEneMe3ShinowaMirage__data_805D52AC))->lookup(*(f32 *)((s8 *)arg0 + 0xC0));
             if (entry != 0) {
                 push_matrix();
                 set_matrix_identity(0);
@@ -3091,12 +3092,12 @@ void TObjEneMe3Shinowa::apply_effect_pair() {
     set_matrix_identity(0);
     post_translate_matrix((u8 *)&this->position);
     rotate_matrix_y(0, this->rotation_y);
-    entry = TObjPlayer::lookup_entry_by_value((void *)TObjEneMe3ShinowaMirage__data_805D52A4, this->frame);
+    entry = (s32)((SampledMotionPoints *)((void *)TObjEneMe3ShinowaMirage__data_805D52A4))->lookup(this->frame);
     if (entry != 0U) {
         mult_vec_array__10TObjPlayerFUll(0, entry, &sp8, 2);
         ((VObj18b_800e70d4_800E47DC *) ((unsigned char *) (*(void **)((s8 *)arg0 + 0x3E0))))->m4(&sp8, &sp8[3]);
     }
-    temp_r3_3 = TObjPlayer::lookup_entry_by_value((void *)TObjEneMe3ShinowaMirage__data_805D52A8, this->frame);
+    temp_r3_3 = (s32)((SampledMotionPoints *)((void *)TObjEneMe3ShinowaMirage__data_805D52A8))->lookup(this->frame);
     if (temp_r3_3 != 0U) {
         mult_vec_array__10TObjPlayerFUll(0, temp_r3_3, &sp8, 2);
         ((VObj18b_800e70d4_800E47DC *) ((unsigned char *) (*(void **)((s8 *)arg0 + 0x3E4))))->m4(&sp8, &sp8[3]);
@@ -3251,7 +3252,7 @@ f32 TObjEneMe3Shinowa::get_node_world_y() {
     v.y = TObjEneMe3ShinowaMirage__data_805DA5B8;
     v.z = TObjEneMe3ShinowaMirage__data_805DA5B8;
     push_matrix_from(identity_matrix);
-    bind_motion_context((s32)self->current_motion, self->frame);
+    bind_motion_context((NJS_MOTION *)self->current_motion, self->frame);
     node = *(Node_800E75AC * *)&self->model;
     compose_motion_node_matrix(node);
     compose_motion_node_matrix(node->child);

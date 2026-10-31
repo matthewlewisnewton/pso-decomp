@@ -1,3 +1,5 @@
+#include "pso/animation/MotionContext.h"
+#include "pso/misc/SampledMotionPoints.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/system/vector.h"
@@ -493,8 +495,6 @@ Res_800959F8 * load_enemy_bml_resource_named(void *, void *);
 s32 load_enemy_bml_resource(u8 *arg0);
 s32 set_field_378__9TObjEneDDFl(void *, s32, s32);
 s32 create__13TUnk_80494968FUlUl(s32, s32);
-s32 *__dt__11TBoss4Type3FPvs(s32 *arg0, s16 arg1);
-void * init_trail_buffer__11TBoss4Type3FPvifff(void *arg0, s32 segs, f32 start, f32 end, f32 step);
 s32 angle_diff_s16(s32);
 void mem_free(void*);
 void *mem_alloc(u32 size);
@@ -506,7 +506,6 @@ void __destroy_arr(void *, void *, u32, u32);
 void __construct_array(void *, void *, void *, int, int);
 f32 sin_table_lookup(s32);
 f32 cos_table_lookup(s32);
-void bind_motion_context(s32 arg0, f32 farg0);
 void compose_motion_node_matrix(void *arg0);
 s32 matrix_mult_vec(int, void *, void *);
 void copy_matrix__10TObjPlayerFUlUl(int, void *);
@@ -1227,7 +1226,7 @@ void *TObjEneRe7Berura__ct(void *ene_re7_berura, void *arg1, void *arg2) {
 
 void TObjEneRe7Berura::destroy_children() {
     if ((u32) belra_trail_buffer != 0U) {
-        __dt__11TBoss4Type3FPvs((s32 *)belra_trail_buffer, 1);
+        delete (SampledMotionPoints *)belra_trail_buffer;
         belra_trail_buffer = 0U;
     }
     if ((u32) belra_uv_animation_buffer != 0U) {
@@ -1301,7 +1300,7 @@ void TObjEneRe7Berura::load_static_resources() {
         Elem_800959F8 *e = &TObjEneRe7Berura__detached_part_states[i];
         u8 *ent = RES->f430[TObjEneRe7Berura__animation_definitions[e->fC].f4].f4;
         set_motion_packed_rotation();
-        bind_motion_context((s32)ent, e->f14);
+        bind_motion_context((NJS_MOTION *)ent, e->f14);
         ((void (*)(u32, void *))apply_attack_params__16TObjEneRe7BeruraFiPv)(m, e);
         clear_motion_packed_rotation();
         e->f18 = (s32 *)find_model_node(m, e->f4);
@@ -1327,11 +1326,8 @@ void TObjEneRe7Berura::load_static_resources() {
         p = ((TLobby *)p)->alloc_tables(*(s32 *)(RES->f42C + 8), 2);
     }
     belra_uv_animation_buffer = (u32)p;
-    p = ::operator new(0x18);
-    if (p != NULL) {
-        p = init_trail_buffer__11TBoss4Type3FPvifff(p, 4, lbl_805D9780, lbl_805D9784, TObjEneRe7Berura__data_805D9738);
-    }
-    belra_trail_buffer = (u32)p;
+    SampledMotionPoints *sampled = new SampledMotionPoints(4, lbl_805D9780, lbl_805D9784, TObjEneRe7Berura__data_805D9738);
+    belra_trail_buffer = (u32)sampled;
     pair[0] = 0x2E;
     pair[1] = 0x2E;
     pair[2] = 0x45;
@@ -1343,7 +1339,7 @@ void TObjEneRe7Berura::load_static_resources() {
     }
     vecs[0].x = TObjEneRe7Berura__data_805D9730;
     vecs[2].x = TObjEneRe7Berura__data_805D9730;
-    ((TBoss4Type3 *)p)->draw_motion_trail((s32)(*(s32 *)(RES->f42C + 8)), (s32)((RES->f430 + TObjEneRe7Berura__animation_definitions[2].f4)->f4), (s32)pair, (s32)vecs);
+    sampled->sample((NJS_OBJECT *)(*(s32 *)(RES->f42C + 8)), (NJS_MOTION *)((RES->f430 + TObjEneRe7Berura__animation_definitions[2].f4)->f4), (const s32 *)pair, (const Vec *)vecs);
     for (i = 0; i < 1; i++) {
         TObjEneRe7Berura__stat_handle_table[i] = register_boss__6TLobbyFl(lbl_805D9718[i]);
     }

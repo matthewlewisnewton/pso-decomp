@@ -1,3 +1,4 @@
+#include "pso/animation/MotionContext.h"
 #include "pso/render/DebugFont.h"
 #include "pso/render/render_util.h"
 #include "pso/misc/TLobby_801E2F94.h"
@@ -486,7 +487,7 @@ void TLobby__sub_801E3CF0(u32 *p) {
 }
 
 void draw_motion(NJS_OBJECT *model, NJS_MOTION *motion, f32 frame) {
-    bind_motion_context((s32)motion, frame);
+    bind_motion_context((NJS_MOTION *)motion, frame);
     TObjPlayer::render_tree(model);
 }
 

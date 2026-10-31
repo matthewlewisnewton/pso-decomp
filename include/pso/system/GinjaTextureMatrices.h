@@ -1,12 +1,13 @@
 #ifndef PSO_GINJA_TEXTURE_MATRICES_H
 #define PSO_GINJA_TEXTURE_MATRICES_H
 #include "types.h"
+#include "pso/system/ModelDrawCallback.h"
 
 typedef f32 GinjaMatrix[3][4];
 struct GinjaModelQueue {
     void** models;
     u32 count;
-    void (*draw)(void*);
+    ModelDrawCallback draw;
 };
 extern GinjaMatrix* current_matrix;
 extern u32 model_render_flags;
@@ -14,7 +15,7 @@ extern GinjaModelQueue model_draw_queue_state;
 extern GinjaMatrix model_draw_queue_texture_matrices[10];
 extern void* model_draw_queue_models[10];
 extern "C" {
-void init_model_draw_queue(void (*draw)(void*));
+void init_model_draw_queue(ModelDrawCallback draw);
 void queue_model_draw_matrix(void* model, const GinjaMatrix matrix);
 }
 void flush_model_draw_queue();

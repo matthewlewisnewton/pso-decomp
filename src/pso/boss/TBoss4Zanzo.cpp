@@ -1,3 +1,5 @@
+#include "pso/misc/SampledMotionPoints.h"
+#include "pso/math/FloatRounding.h"
 #pragma readonly_strings on
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -465,7 +467,6 @@ void * __ct__13TObjBs4CutAtkFv(void *arg0, s32 arg1, s32 arg2, s32 arg3);
 s32 create__11TBoss4BishiFi(void *);
 s32 request_follow_camera_offsets(void *, void *, int);
 int toggle_particle_effect__10TObjPlayerFv(void*);
-void __dt__11TBoss4Type3FPvs(void *, s16);
 s32 clear_render_callback__8TObjFishFv(s32);
 s32 __ct__11TObjControlFP7TObject(s32, s32);
 void __dt__9TObjEnemyFv(void *, s32);
@@ -510,7 +511,6 @@ extern s32 local_client_id;
 extern s32 registered_player_count;
 struct Def_804867C8 { s32 value; s32 remaining[39]; };
 
-f32 get_random_float__21TObjEneMe3ShinowaRealFv(f32);
 void init_model_node_tables(void *, void *, int);
 s32 TObjFish__sub_800E3124(void *, void *, f32);
 s32 init_collision_body_parts(void *, void *, int);
@@ -1708,7 +1708,7 @@ u8 *TBoss4Type2__ct(u8 *arg0, s32 parent, s32 *arg2) {
     *(s32 *)((s8 *)arg0 + 0x3A0) = 0;
     *(s32 *)((s8 *)arg0 + 0x3E0) = 0;
     *(u16 *)((s8 *)arg0 + 0x3C4) = 0xFFFF;
-    *(s32 *)((s8 *)arg0 + 0x41C) = get_random_float__21TObjEneMe3ShinowaRealFv(*(f32 *) dispatch_shared_handler_a__6TLobbyFl(0x37));
+    *(s32 *)((s8 *)arg0 + 0x41C) = floor_to_float(*(f32 *) dispatch_shared_handler_a__6TLobbyFl(0x37));
     if (*(s32 *)((s8 *)arg0 + 0x41C) < 1 || *(s32 *)((s8 *)arg0 + 0x41C) > 25) {
         *(s32 *)((s8 *)arg0 + 0x41C) = 4;
     }

@@ -1,3 +1,5 @@
+#include "pso/animation/MotionContext.h"
+#include "pso/misc/SampledMotionPoints.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/system/vector.h"
@@ -2237,7 +2239,7 @@ void TObjEneMe3Stelth__sub_800F348C(u8 *arg0, s32 arg1) {
             break;
         }
         if (F(s32, 0x424) != 0) {
-            entry = TObjPlayer::lookup_entry_by_value((void *)TObjEneMe3Stelth__trail_buffer, (f32)(F(f32, 0xC0)));
+            entry = (s32)((SampledMotionPoints *)((void *)TObjEneMe3Stelth__trail_buffer))->lookup((f32)(F(f32, 0xC0)));
             if (entry != 0) {
                 push_matrix();
                 set_matrix_identity(0);
@@ -3124,7 +3126,6 @@ void send_6x26_unequip_item__10TObjPlayerFPvPv(void *, s32);
 void __dl__7TObjectFPv(void *);
 #define sin_table_lookup ((f32 (*)(s32))sin_table_lookup)
 #define cos_table_lookup ((f32 (*)(s32))cos_table_lookup)
-void bind_motion_context(s32, f32);
 void compose_motion_node_matrix(void *arg0);
 s32 matrix_mult_vec(int, void *, void *);
 s32 push_matrix_from(void *);
@@ -3565,7 +3566,7 @@ f32 TObjEneMe3Stelth::get_node_world_y() {
     v.y = TObjEneMe3Stelth__data_805DA840;
     v.z = TObjEneMe3Stelth__data_805DA840;
     push_matrix_from(identity_matrix);
-    bind_motion_context((s32)self->current_motion, self->frame);
+    bind_motion_context((NJS_MOTION *)self->current_motion, self->frame);
     node = *(Node_800F4D68 * *)&self->model;
     compose_motion_node_matrix(node);
     compose_motion_node_matrix(node->child);
@@ -3749,7 +3750,6 @@ struct VO_800F5324 : VB_800F5324 { virtual ~VO_800F5324(); };
 
 extern "C" {
 s32 TLobby__sub_8001FE7C(void *, s32);
-s32 *__dt__11TBoss4Type3FPvs(s32 *arg0, s16 arg1);
 void mem_free(void *p);
 #define TObjEneMe3Stelth__alternate_texture_list ((void * *)&TObjEneMe3Stelth__alternate_texture_list)
 typedef struct RecoveredGlobal_8031B170_lbl_804E8880 RecoveredGlobal_8031B170_lbl_804E8880;
@@ -3768,7 +3768,7 @@ void TObjEneMe3Stelth::set_slot_min_clamped_value(s32 arg0, f32 farg0) {
 }
 void TObjEneMe3Stelth::free_shared_resources() {
     if ((*(void **)&TObjEneMe3Stelth__trail_buffer) != 0) {
-        __dt__11TBoss4Type3FPvs((s32 *)(*(void **)&TObjEneMe3Stelth__trail_buffer), 1);
+        delete (SampledMotionPoints *)(*(void **)&TObjEneMe3Stelth__trail_buffer);
         (*(void **)&TObjEneMe3Stelth__trail_buffer) = 0;
     }
     if ((*(VO_800F5324 **)&TObjEneMe3Stelth__breakup_model) != 0) {
@@ -3804,8 +3804,6 @@ s32 register_object__6TLobbyFl(s32);
 s32 dispatch_shared_handler_b__6TLobbyFl(s32);
 s32 register_boss__6TLobbyFl(s32);
 void *init__11TBreakUpMdlFPviif(void *, s32, s32, f32);
-void TObjEneMe3ShinowaMirage__sub_800D98D8(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, u8 *arg4, u8 *arg5);
-void *init_trail_buffer__11TBoss4Type3FPvifff(void *arg0, s32 segs, f32 start, f32 end, f32 step);
 void *mem_alloc(u32 size);
 extern s32 lbl_8043D47C[];
 extern s32 lbl_8043D484[];
@@ -3927,12 +3925,9 @@ void TObjEneMe3Stelth::load_shared_resources() {
         vb.y = TObjEneMe3Stelth__data_805DA840;
         vb.z = TObjEneMe3Stelth__data_805DA840;
         ent2 = (r->f430 + idx)->f4;
-        p = ::operator new(0x18);
-        if (p != NULL) {
-            p = init_trail_buffer__11TBoss4Type3FPvifff(p, 2, lbl_805DA8B4, lbl_805DA8B8, lbl_805DA8BC);
-        }
+        p = new SampledMotionPoints(2, lbl_805DA8B4, lbl_805DA8B8, lbl_805DA8BC);
         TObjEneMe3Stelth__trail_buffer = (s32)p;
-        TObjEneMe3ShinowaMirage__sub_800D98D8((u8 *)p, mdl, (s32)ent2, 0x22, (u8 *)&va, (u8 *)&vb);
+        ((SampledMotionPoints *)p)->sample_node_offsets((NJS_OBJECT *)mdl, (NJS_MOTION *)ent2, 0x22, (const Vec *)&va, (const Vec *)&vb);
     }
     {
         Atk_800F53E8 a = stelth_attack_binding_desc_a;

@@ -1,5 +1,5 @@
+#include "pso/misc/SampledMotionPoints.h"
 #include "types.h"
-#include "pso/boss/TBoss4Type3_800D9960.h"
 #include "pso/enemy/TObjEneMe3ShinowaMirage_800E7A70.h"
 #include "pso/enemy/TObjEneMe3ShinowaMirage.h"
 
@@ -43,15 +43,15 @@ void TObjEneMe3ShinowaMirage::set_slot_min_clamped_value(s32 arg0, f32 farg0) {
 
 void TObjEneMe3ShinowaMirage::free_shared_resources() {
     if (TObjEneMe3ShinowaMirage__data_805D52A8 != 0) {
-        __dt__11TBoss4Type3FPvs((s32 *)TObjEneMe3ShinowaMirage__data_805D52A8, 1);
+        delete (SampledMotionPoints *)TObjEneMe3ShinowaMirage__data_805D52A8;
         TObjEneMe3ShinowaMirage__data_805D52A8 = 0;
     }
     if (TObjEneMe3ShinowaMirage__data_805D52A4 != 0) {
-        __dt__11TBoss4Type3FPvs((s32 *)TObjEneMe3ShinowaMirage__data_805D52A4, 1);
+        delete (SampledMotionPoints *)TObjEneMe3ShinowaMirage__data_805D52A4;
         TObjEneMe3ShinowaMirage__data_805D52A4 = 0;
     }
     if (TObjEneMe3ShinowaMirage__data_805D52AC != 0) {
-        __dt__11TBoss4Type3FPvs((s32 *)TObjEneMe3ShinowaMirage__data_805D52AC, 1);
+        delete (SampledMotionPoints *)TObjEneMe3ShinowaMirage__data_805D52AC;
         TObjEneMe3ShinowaMirage__data_805D52AC = 0;
     }
     if (TObjEneMe3ShinowaMirage__data_805D52A0 != 0) {

@@ -1,3 +1,4 @@
+#include "pso/misc/SampledMotionPoints.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "types.h"
 #include "pso/system/vector.h"
@@ -1179,8 +1180,8 @@ void TObjPlayer__sub_802CFB64(u8 *player, s32 arg1) {
                 } else if (((TObjMotion *)player)->is_passing_frame(lbl_805DE730) != 0) {
                     play_sound_effect(((TObjEnemy *)(player))->remap_sound_for_area((s32)(0x3A40D)), player + 0x38, 0, 0);
                 }
-                e0 = TObjPlayer::lookup_entry_by_value((void *)TBoss4Type3_shared_instance, *(f32 *)((s8 *)player + 0xC0));
-                e1 = TObjPlayer::lookup_entry_by_value((void *)lbl_805D6864, *(f32 *)((s8 *)player + 0xC0));
+                e0 = (s32)((SampledMotionPoints *)((void *)TBoss4Type3_shared_instance))->lookup(*(f32 *)((s8 *)player + 0xC0));
+                e1 = (s32)((SampledMotionPoints *)((void *)lbl_805D6864))->lookup(*(f32 *)((s8 *)player + 0xC0));
                 push_matrix();
                 set_matrix_identity(0);
                 post_translate_matrix(player + 0x38);

@@ -1,3 +1,4 @@
+#include "pso/math/FloatRounding.h"
 #include "types.h"
 #include "pso/enemy/BringerEffects.h"
 #include "pso/misc/TParticleCtrl_800867E4.h"
@@ -229,8 +230,6 @@ struct Obj_8009A4B8 {
 
 extern "C" {
 extern Vec_8009A640 bringer_effect_vec_table[6];
-f32 get_random_float__21TObjEneMe3ShinowaRealFv(f32);
-u32 __cvt_fp2unsigned();
 extern u32 bringer_effect_color_table[];
 
 void TUnk_8048FE7C::run_task() {
@@ -266,8 +265,7 @@ void TUnk_8048FE7C::sub_8009A598() {
     s32 n;
     Ent_8009A598 *p;
     u32 c;
-    get_random_float__21TObjEneMe3ShinowaRealFv(255.0f * this->m_2c);
-    c = __cvt_fp2unsigned() << 24;
+    c = (u32)floor_to_float(255.0f * this->m_2c) << 24;
     n = arg0->n;
     p = arg0->ents;
     for (i = n; i < 12; i++) {
@@ -381,14 +379,14 @@ void init_bringer_effect_tables(void) {
     v++;
   }
 
-  b = (u8) ((u32) get_random_float__21TObjEneMe3ShinowaRealFv(255.0f * (3.0517578125e-05f * rand())));
-  new_var = get_random_float__21TObjEneMe3ShinowaRealFv(255.0f * (3.0517578125e-05f * rand()));
+  b = (u8) ((u32) floor_to_float(255.0f * (3.0517578125e-05f * rand())));
+  new_var = floor_to_float(255.0f * (3.0517578125e-05f * rand()));
   c = (((u8) ((u32) new_var)) << 8) | b;
   p = bringer_effect_color_table;
   for (j = 0; j < 12; j++)
   {
     c = ((u16) c) << 8;
-    c |= (u8) ((u32) get_random_float__21TObjEneMe3ShinowaRealFv(255.0f * (3.0517578125e-05f * rand())));
+    c |= (u8) ((u32) floor_to_float(255.0f * (3.0517578125e-05f * rand())));
     *p = c;
     p++;
   }

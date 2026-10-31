@@ -1,3 +1,5 @@
+#include "pso/animation/MotionContext.h"
+#include "pso/math/FloatRounding.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/system/vector.h"
@@ -1498,7 +1500,6 @@ s32 VecCopy__FP3VecPC3Vec(int, void *);
 int get_player_data__10TObjPlayerFi(int a0);
 void queue_destruction__7TObjectFv(void *);
 s32 get_flag_b4__9TObjEneDDFv(void *);
-f32 get_random_float__21TObjEneMe3ShinowaRealFv(f32);
 void TBoss2DeRolLe__sub_8002F73C(Obj_8002F73C *self, u32 kind);
 void TBoss2DeRolLe__sub_8002FCE4(Obj_8002FCE4 *self, u32 kind);
 void TBoss2DeRolLe__sub_8002FD9C(DeRolLe_8002FD9C *self, u32 arg1, s32 arg2);
@@ -4148,7 +4149,7 @@ void pick_random_target__13TBoss2DeRolLeFi(s32 actor) {
         ((TObjEneDD_ST *)actor)->set_target_player((void *)p);
         return;
     }
-    j = (s32) get_random_float__21TObjEneMe3ShinowaRealFv((f32) n * random_ratio__9TObjCharaFv((void *)actor));
+    j = (s32) floor_to_float((f32) n * random_ratio__9TObjCharaFv((void *)actor));
     enemy_clear_target__12TObjEneDD_STFUs((void *)actor);
     for (i = 0; i < n; i++) {
         p = get_player_data__10TObjPlayerFi(j);
@@ -4576,7 +4577,6 @@ s32 VecCopy__FP3VecPC3Vec(s32, s32);
 f32 subtract_vector(void *, void *);
 extern RecoveredGlobal_80034C90_lbl_8043567C TBoss2DeRolLe__position_point_table;
 void set_move_target_point__13TBoss2DeRolLeFPvi(u8 *arg0, s32 arg1);
-void bind_motion_context(s32 arg0, f32 farg0);
 void compose_motion_node_matrix(void *arg0);
 s32 matrix_mult_vec(int, void *, void *);
 s32 set_matrix_identity(int);
@@ -4586,7 +4586,6 @@ s32 scale_current_matrix(void *);
 extern const RecoveredGlobal_80034AC8_lbl_804359CC lbl_804359CC;
 extern const f32 TBoss2DeRolLe__data_805D827C;
 void get_node_world_pos__13TBoss2DeRolLeFPvPv(u8 *arg0, u8 *arg1);
-void bind_motion_context(s32 arg0, f32 farg0);
 void compose_motion_node_matrix(void *arg0);
 s32 matrix_mult_vec(int, void *, void *);
 s32 scale_matrix(int, f32, f32, f32);
@@ -4667,7 +4666,7 @@ void get_node_world_pos__13TBoss2DeRolLeFPvPv(u8 *arg0, u8 *arg1) {
     stack.spC = *(s32 *)((s8 *)&lbl_804359CC.value + 4);
     stack.sp10 = *(s32 *)((s8 *)&lbl_804359CC.value + 8);
     scale_current_matrix((void *)&stack.sp8);
-    bind_motion_context((*(s32 *)((s8 *)arg0 + 0xF8)), (f32) (*(f32 *)((s8 *)arg0 + 0xC0)));
+    bind_motion_context((NJS_MOTION *)(*(s32 *)((s8 *)arg0 + 0xF8)), (f32) (*(f32 *)((s8 *)arg0 + 0xC0)));
     compose_motion_node_matrix((void *)(*(s32 *)((s8 *)arg0 + 0x34)));
     matrix_mult_vec(0, arg1, arg1);
     pop_matrix();
@@ -4680,7 +4679,7 @@ f32 calc_node_height__13TBoss2DeRolLeFPv(Obj_80034B60 *self) {
     v.z = TBoss2DeRolLe__data_805D827C;
     push_matrix_from(identity_matrix);
     scale_matrix(0, TBoss2DeRolLe__data_805D82A0, TBoss2DeRolLe__data_805D82A0, TBoss2DeRolLe__data_805D82A0);
-    bind_motion_context(self->fF8, self->fC0);
+    bind_motion_context((NJS_MOTION *)self->fF8, self->fC0);
     compose_motion_node_matrix((void *)self->f34);
     matrix_mult_vec(0, &v, &v);
     pop_matrix();
