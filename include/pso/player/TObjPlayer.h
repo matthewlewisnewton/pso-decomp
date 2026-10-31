@@ -155,7 +155,7 @@ struct TObjPlayer : public TObjChara {
     s32 m_3d8;
     s32 m_3dc;
     u8 unk_3E0[0x4];
-    s32 m_3e4;
+    s32 current_floor;
     u8 unk_3E8[0x4];
     s32 m_3ec;
     u8 unk_3F0[0x4];
@@ -369,7 +369,7 @@ struct TObjPlayer : public TObjChara {
     void bswap_head16();
     void send_head();
     void init_packet_9a();
-    s32 get_field_3e4();
+    s32 get_floor();
     static s32 get_player_count();
     s32 register_object();
     void clear_ground_candidates();
@@ -1283,7 +1283,6 @@ struct TObjPlayer : public TObjChara {
     s32 apply_area_attack_hits(u8 *arg1, s32 arg2, u32 arg3, f32 farg0);
     void update_aim_and_fire();
     void set_flag_and_notify();
-    static void update_particle_by_phase();
     void draw_blob_shadows();
     void set_flag_8_if_check_passes();
     void fill_status_info(void *arg1);

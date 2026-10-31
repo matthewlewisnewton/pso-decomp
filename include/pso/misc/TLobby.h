@@ -32,7 +32,6 @@ struct TLobby : public TObject {
     static void load_dimedian_resources();
     static void load_gyaranzo_resources();
     static void cleanup_handles();
-    static void load_shark_resources();
     static s32 clear_record_flags_a();
     static s32 clear_record_flags_b();
     static void free_nodes_with_id(u32 arg0);

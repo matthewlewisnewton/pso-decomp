@@ -1076,8 +1076,8 @@ force_active:
   - TObjEneRecon__vt85
   - TObjEneSaver__ct
   - TObjEneSaver__vtable
-  - TObjEneShark__action_table
-  - TObjEneShark__ct
+  - shark_actions
+  - __ct__12TObjEneSharkFP7TObjectPv
   - TObjEneSlime__sub_800EB9F0
   - TObjEnvSoundEx__ct
   - TObjEnvSound__ct
@@ -2260,6 +2260,7 @@ force_active:
   - __vt__13TUnk_80488AD8
   - __vt__13TUnk_8048DF58
   - __vt__13TUnk_80490470
+  - __vt__13TUnk_80493450
   - __vt__13TUnk_80494E10
   - __vt__13TUnk_8049EFB8
   - __vt__13TUnk_8049F038
@@ -5410,23 +5411,23 @@ force_active:
   - lbl_804394A4
   - lbl_804394BC
   - lbl_804394D4
-  - lbl_8043AD10
-  - lbl_8043AD24
-  - lbl_8043AD3C
-  - lbl_8043AD50
-  - lbl_8043AD6C
-  - lbl_8043AD88
-  - lbl_8043ADA4
-  - lbl_8043ADC0
-  - lbl_8043ADDC
-  - lbl_8043ADF8
-  - lbl_8043AE14
-  - lbl_8043AE30
-  - lbl_8043AE48
-  - lbl_8043AE64
-  - lbl_8043AE80
-  - lbl_8043AE9C
-  - lbl_8043AEDC
+  - shark_model_filename_0
+  - shark_model_filename_1
+  - shark_model_filename_2
+  - shark_appear_motion_filename
+  - shark_left_attack_motion_filename
+  - shark_right_attack_motion_filename
+  - shark_damage_motion_filename
+  - shark_deadb_motion_filename
+  - shark_death_motion_filename
+  - shark_leader_motion_filename
+  - shark_mihari_motion_filename
+  - shark_run_motion_filename
+  - shark_stund_motion_filename
+  - shark_wakeup_motion_filename
+  - shark_walk_motion_filename
+  - shark_archive_filename
+  - shark_alt_archive_filename
   - lbl_8043B380
   - lbl_8043B398
   - lbl_8043BC10
@@ -13004,7 +13005,7 @@ force_active:
   - sub_800A62D4__12TObjEneSaverFv
   - sub_800A7734__12TObjEneSaverFl
   - sub_800A7B54__15TObjEneDimedianFv
-  - sub_800AC9DC__12TObjEneSharkFl
+  - bind_variant_model__12TObjEneSharkFl
   - sub_800B1634__13TObjEneBm3FlyFv
   - sub_800BCE44__9TObjGrassFv
   - sub_800BD4D8__9TObjGrassFv
@@ -13610,7 +13611,7 @@ force_active:
   - update_pad_recalibration
   - update_palette_sprite__20TWindowSubStatusDispFv
   - update_particle__15TObjSuisouLobbyFv
-  - update_particle_by_phase__10TObjPlayerFv
+  - update_node_particle_state__12TObjEneSharkFv
   - update_particle_emitters__12TBoss4ThanksFv
   - update_particle_emitters__12TBoss6ThanksFv
   - update_particle_emitters__16TObjEneDellBiterFv
