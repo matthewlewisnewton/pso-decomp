@@ -317,8 +317,8 @@ void TObjEneDellBiter::init_params() {
     texlist = ((BmlResource *)TObjEneDellBiter__shared_model_resource)->models->m_c;
     init_model((CollisionBody *)lbl_804E6B8C, 1);
     bodies->flags |= 0x400000;
-    set_field_d8((s32)&dell_biter_param_table);
-    set_field_dc((s32)((BmlResource *)TObjEneDellBiter__shared_model_resource)->motions);
+    set_action_table((TObjMotionAction *)((s32)&dell_biter_param_table));
+    set_motion_list((BmlMotionEntry *)((s32)((BmlResource *)TObjEneDellBiter__shared_model_resource)->motions));
     this->requested_action = 0;
     set_animation(this->requested_action);
     set_field_b8(this->requested_action);

@@ -665,8 +665,8 @@ Obj_802D0D3C *TObjEneBm9Mericarol__ct(Obj_802D0D3C *self, void *parent, s32 arg2
     self->f34 = ((Res_802D0D3C *)lbl_805D6868)->f42C[2];
     self->f24 = ((Res_802D0D3C *)lbl_805D6868)->f42C[3];
     init_model__9TObjEneDDFP13CollisionBodyl(self, lbl_804E1564, 1);
-    ((TObjMotion *)self)->set_field_d8((s32)lbl_804E1634);
-    ((TObjMotion *)self)->set_field_dc(((Res_802D0D3C *)lbl_805D6868)->f430);
+    ((TObjMotion *)self)->set_action_table((TObjMotionAction *)((s32)lbl_804E1634));
+    ((TObjMotion *)self)->set_motion_list((BmlMotionEntry *)(((Res_802D0D3C *)lbl_805D6868)->f430));
     self->fB8 = 2;
     ((TObjMotion *)self)->set_animation(self->fB8);
     ((TObjMotion *)self)->set_field_b8(self->fB8);

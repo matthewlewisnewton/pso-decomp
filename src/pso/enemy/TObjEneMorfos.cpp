@@ -2046,8 +2046,8 @@ void TObjEneMorfos::init_instance() {
     *(s32 *)((s8 *)this + 0x34) = ((Mgr_80334D74 *)TObjEneMorfos__instance)->res->f18;
     this->texlist = ((Mgr_80334D74 *)TObjEneMorfos__instance)->res->f1C;
     init_model__9TObjEneDDFP13CollisionBodyl(this, lbl_804EE0DC, 1);
-    set_field_d8((s32)morfos_motion_param_table);
-    set_field_dc(((Mgr_80334D74 *)TObjEneMorfos__instance)->f430);
+    set_action_table((TObjMotionAction *)((s32)morfos_motion_param_table));
+    set_motion_list((BmlMotionEntry *)(((Mgr_80334D74 *)TObjEneMorfos__instance)->f430));
     this->requested_action = 0;
     set_animation(this->requested_action);
     set_field_b8(this->requested_action);

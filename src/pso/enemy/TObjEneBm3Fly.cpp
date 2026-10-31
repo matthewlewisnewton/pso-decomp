@@ -2343,8 +2343,8 @@ s32 TObjEneBm3Fly::init_child_params() {
     *(s32 *)((s8 *)this + 0x34) = *(s32 *)((s8 *)(*(u8 **)((s8 *)bm3_fly_nest_resources + 0x42C)) + 8);
     this->texlist = *(s32 *)((s8 *)(*(u8 **)((s8 *)bm3_fly_nest_resources + 0x42C)) + 0xC);
     init_model__9TObjEneDDFP13CollisionBodyl(this, &bm3_fly_collider_params, 1);
-    set_field_d8((s32)bm3_fly_action_table);
-    set_field_dc(*(s32 *)((s8 *)bm3_fly_nest_resources + 0x430));
+    set_action_table((TObjMotionAction *)((s32)bm3_fly_action_table));
+    set_motion_list((BmlMotionEntry *)(*(s32 *)((s8 *)bm3_fly_nest_resources + 0x430)));
     this->requested_action = 0;
     set_animation(this->requested_action);
     set_field_b8(this->requested_action);

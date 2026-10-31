@@ -557,7 +557,7 @@ TObjEneShark::TObjEneShark(TObject *parent, void *setData)
     configure_subtype();
     bind_variant_model(variant);
     action_table = shark_actions;
-    set_field_d8((s32)action_table);
+    set_action_table(action_table);
     motion_list = shark_bml_resource->motions;
     requested_action = 0;
     set_animation(requested_action);
