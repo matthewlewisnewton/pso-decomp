@@ -1028,10 +1028,10 @@ void TUnk_804CF0B8::sub_80251DF0(s16 arg1, s32 str, s16 arg3, f32 farg0) {
     this->m_20 = arg3;
     if (str != 0) {
         temp_r3 = TWindowKeyBoardSoft::strnlen((s8 *)str, (u32)0x18);
-        *(s32 *)((s8 *)this + 0x78) = (s32)mem_alloc(temp_r3 + 1);
-        strncpy(*(s32 *)((s8 *)this + 0x78), str, temp_r3 + 1);
+        this->name = (char *)mem_alloc(temp_r3 + 1);
+        strncpy((s32)this->name, str, temp_r3 + 1);
     } else {
-        *(s32 *)((s8 *)this + 0x78) = 0;
+        this->name = NULL;
     }
     ((s32 (*)(void *, s16))set_color__13TUnk_804CF0B8FUs)(this, arg1);
     *(f32 *)((s8 *)this + 0x80) = (f32) TWindowFukidasi__data_805DCD30;

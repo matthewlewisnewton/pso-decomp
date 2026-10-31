@@ -20,9 +20,9 @@ u8 *__dt__13TUnk_804CF0B8Fv(u8 *arg0, s16 arg1) {
             ((TUnk_804CF0B8 *)arg0)->clear_visible_flag();
             TWindowCtrl::release_slot((s8 *)(arg0 + 0x73));
         }
-        if ((u32) *(u32 *)((s8 *)arg0 + 0x78) != 0U) {
-            mem_free(*(void **)((s8 *)arg0 + 0x78));
-            *(u32 *)((s8 *)arg0 + 0x78) = 0U;
+        if (((TUnk_804CF0B8 *)arg0)->name != NULL) {
+            mem_free(((TUnk_804CF0B8 *)arg0)->name);
+            ((TUnk_804CF0B8 *)arg0)->name = NULL;
         }
         ((TUnk_804CDFE8 *)arg0)->destroy_window(0);
         if (arg1 > 0) {
