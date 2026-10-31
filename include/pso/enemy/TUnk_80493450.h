@@ -11,8 +11,8 @@ public:
     virtual void vfunc_28();
     virtual void vfunc_58();
     virtual void vfunc_63();
-    s32 update_target_near_flag();
-    void sub_800C4E08();
+    void update_target_near_flag();
+    void select_target_proximity_movement();
     virtual void vfunc_62();
     u8 test_elt_flag(s32, s32);
     s32 countChildren();
