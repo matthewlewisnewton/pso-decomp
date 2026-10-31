@@ -3116,6 +3116,31 @@ u16 TQuestVmDownLoadServer::jis_to_sjis(u16 arg0) {
     return (hi << 8) | lo;
 }
 
+// The callers validate Shift-JIS lead bytes; this conversion checks the trail byte.
+s32 TQuestVmDownLoadServer__sub_803EC69C(int code) {
+    u32 lo = code & 0xff;
+    u8 hi = ((u32)code >> 8) & 0xff;
+    code = hi;
+    u32 row;
+    u8 outlo;
+    if (lo < 0x40 || lo > 0xfc || lo == 0x7f) {
+        return 0;
+    }
+    if ((u32)code >= 0xe0) {
+        code -= 0x40;
+    }
+    row = ((u8)code - 0x81) * 2 + 0x21;
+    if ((u8)lo >= 0x9f) {
+        row++;
+        outlo = lo - 0x7e;
+    } else if ((u8)lo >= 0x80) {
+        outlo = lo - 0x20;
+    } else {
+        outlo = lo - 0x1f;
+    }
+    return ((row << 8) & 0xff00) | outlo;
+}
+
 s32 TQuestVmDownLoadServer::is_valid_sjis_code(u16 arg0) {
     s32 var_r0;
     if ((arg0 >= 0x2120U) && (arg0 < 0x3020U)) {
