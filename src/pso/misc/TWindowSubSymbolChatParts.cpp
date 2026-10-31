@@ -7,6 +7,7 @@
 
 #include <stddef.h>
 #include "pso/misc/TWindowSubSymbolChat.h"
+#include "pso/misc/TWindowDrawContext.h"
 #include "pso/misc/TWindowSubSymbolChatParts.h"
 #include "pso/misc/TWindowAddition.h"
 #include "pso/misc/TWindowDD.h"
@@ -139,7 +140,6 @@ s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, s32);
 s32 TWindowShortListCtrl__check_controller_button(void *, s32);
 
 void __dl__7TObjectFPv(void *);
-s32 get_draw_context__11TWindowBaseFPv();
 void construct_with_parent__13TUnk_804CDFE8FPv(void *, void *, s32, void *);
 void clamp_list_scroll_offset(s32, Vec2_80284D68 *, Vec2_80284D68 *);
 s32 draw_window_scrollbar(s32, s32, void *);
@@ -487,9 +487,9 @@ extern "C" void fn_80285A28(Win_80285A28 *self, s32 *help) {
 }
 
 void render__25TWindowSubSymbolChatPartsFv(u8 *window_sub_symbol_chat_parts) {
-    s32 temp_r3;
+    TWindowDrawContext *temp_r3;
 
-    temp_r3 = get_draw_context__11TWindowBaseFPv();
+    temp_r3 = get_draw_context__11TWindowBaseFPv(window_sub_symbol_chat_parts);
     ((TUnk_804CE018 *)window_sub_symbol_chat_parts)->draw_window_frame((void *)temp_r3);
     switch ((s8) (((TWindowSubSymbolChatParts *)window_sub_symbol_chat_parts)->m_71)) {
     case 0:
@@ -502,9 +502,9 @@ void render__25TWindowSubSymbolChatPartsFv(u8 *window_sub_symbol_chat_parts) {
         fn_80285314((Win_802857C4 *)(window_sub_symbol_chat_parts), (Rect_802857C4 *)(temp_r3));
         break;
     }
-    draw_window_scrollbar(((TWindowSubSymbolChatParts *)window_sub_symbol_chat_parts)->m_8c, temp_r3, window_sub_symbol_chat_parts + 0x68);
+    draw_window_scrollbar(((TWindowSubSymbolChatParts *)window_sub_symbol_chat_parts)->m_8c, (s32)temp_r3, window_sub_symbol_chat_parts + 0x68);
     ((TWindowSubSymbolChatParts *)window_sub_symbol_chat_parts)->sub_80285274((u8 *)temp_r3);
-    forward_render__20TWindowSubStatusDispFv(((TWindowSubSymbolChatParts *)window_sub_symbol_chat_parts)->m_88, temp_r3);
+    forward_render__20TWindowSubStatusDispFv(((TWindowSubSymbolChatParts *)window_sub_symbol_chat_parts)->m_88, (s32)temp_r3);
 }
 
 void run_task__25TWindowSubSymbolChatPartsFv(Parts_80285B84 *arg0) {
