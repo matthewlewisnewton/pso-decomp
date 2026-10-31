@@ -8,6 +8,8 @@
 #include "pso/misc/TWindowChoiceSetting.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC.h"
 #include "pso/ui/Language.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/unk/text_8026C664.h"
 
 struct UV_80262038 {
     f32 u;
@@ -100,7 +102,13 @@ void TKeyBoardControl__sub_802613A4(TKeyBoardControl *arg0);
 f32 TWindowKeyBoardSoft__sub_802614DC(u8 *, u8 *, f32, f32, f32, f32);
 s32 TWindowKeyBoardSoft__sub_802616BC(void *, int);
 void TWindowKeyBoardSoft__sub_80261DD8(TWindowKeyBoardSoft *, TWindowKeyBoardSoft *);
-s32 TWindowKeyBoardSoft__sub_8026227C(void *, int);
+s32 TWindowKeyBoardSoft__sub_8026227C(int, int);
+s32 get_player__20TWindowSubStatusDispFv();
+extern GinjaTextureList *lbl_805D63F0;
+extern const f32 TWindowKeyBoardSoft__data_805DD098;
+extern const f32 lbl_805DD0B8;
+extern const f32 lbl_805DD0CC;
+extern const f32 lbl_805DD0D0;
 s32 get_flag_bit5__19TWindowKeyBoardSoftFv();
 
 extern RecoveredGlobal_8026062C_TWindowKeyBoardSoft__data_8044F124 TWindowKeyBoardSoft__data_8044F124;
@@ -649,10 +657,65 @@ void TWindowKeyBoardSoft::draw_key_frame(void *self, f32 *rect, u32 color, s32 i
     draw_textured_quad_at_depth((f32 *)&q, scale);
 }
 
+// Draw the key grid followed by the language-page selector. The input object
+// layout at 0x64/0x68 remains a bounded view, pending its owning type.
+s32 TWindowKeyBoardSoft__sub_8026227C(int self, int context) {
+    TWindowKeyBoardSoft *kb = (TWindowKeyBoardSoft *)self;
+    TWindowKeyBoardSoft *ctx = (TWindowKeyBoardSoft *)context;
+    u8 *resources = TWindowKeyBoardSoft__language_text_resources;
+    f32 scale = TWindowKeyBoardSoft__data_805DD098 / ctx->depth;
+    s32 selected = kb->sub_802605DC();
+    s32 count;
+    u32 color;
+    s32 min_page, max_page;
+    s32 frame;
+    f32 x;
+    begin_screen_draw(1);
+    set_current_texture_list(lbl_805D63F0);
+    set_draw_texture_and_color(0, -1);
+    for (s32 row = 0; row < 7; row++) {
+        f32 y = TWindowKeyBoardSoft__data_805DD07C * (f32)row + TWindowKeyBoardSoft__data_805DD094;
+        for (s32 col = 0; col < 16; col += count) {
+            s32 index = calc_key_index__19TWindowKeyBoardSoftFiii((s32)self, col, row);
+            TWindowKeyBoardSoft__sub_80260760((void *)self, index, &count, &color);
+            f32 width = TWindowKeyBoardSoft::calc_key_coord((s32)self, count);
+            if (index == selected) { color = 0xFFFFFFFF; frame = 1; }
+            else { frame = 0; }
+            TWindowKeyBoardSoft::draw_key_frame((void *)self, (f32 *)ctx, color, frame,
+                TWindowKeyBoardSoft__data_805DD07C * (f32)col + TWindowKeyBoardSoft__data_805DD078,
+                y, width, scale);
+        }
+    }
+    x = TWindowKeyBoardSoft__sub_802606E0(kb);
+    calc_cursor_step__19TWindowKeyBoardSoftFiPvPv((s32)self, &min_page, &max_page);
+    for (s32 page = 0; page < resources[0]; page++) {
+        if (page == *(s8 *)((u8 *)self + 0x64)) { color = 0xFFFFFFFF; frame = 2; }
+        else {
+            if (page < min_page) color = 0xFF4D4D4D;
+            else if (page > max_page) color = 0xFF4D4D4D;
+            else color = 0xFF0C5B38;
+            frame = 0;
+        }
+        TWindowKeyBoardSoft::draw_key_frame((void *)self, (f32 *)ctx, color, frame, x,
+            TWindowKeyBoardSoft__data_805DD098, (f32)(resources[1] + 1), scale);
+        x += (f32)resources[1];
+    }
+    set_constant_material_color(ctx->color);
+    x = TWindowKeyBoardSoft__sub_802606E0(kb);
+    fn_8026C664((u8 *)ctx, (ctx->x + x) - lbl_805DD0CC,
+        lbl_805DD0B8 + (TWindowKeyBoardSoft__data_805DD098 + ctx->y),
+        scale, *(f32 *)((u8 *)self + 0x68));
+    fn_8026C708((u8 *)ctx,
+        lbl_805DD0D0 + (ctx->x + (x + (TWindowKeyBoardSoft__data_805DD078 + (f32)(resources[1] * resources[0])))),
+        lbl_805DD0B8 + (TWindowKeyBoardSoft__data_805DD098 + ctx->y),
+        scale, *(f32 *)((u8 *)self + 0x68));
+    return get_player__20TWindowSubStatusDispFv();
+}
+
 void TWindowKeyBoardSoft::render() {
     s32 temp_r3;
     temp_r3 = draw_default_entry__9TWindowDDFl();
-    TWindowKeyBoardSoft__sub_8026227C(this, (int)temp_r3);
+    TWindowKeyBoardSoft__sub_8026227C((int)this, (int)temp_r3);
     TWindowKeyBoardSoft__sub_80261DD8(this, (TWindowKeyBoardSoft *)temp_r3);
     TWindowKeyBoardSoft__sub_802616BC(this, (int)temp_r3);
 }
