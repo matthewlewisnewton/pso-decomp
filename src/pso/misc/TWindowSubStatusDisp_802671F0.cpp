@@ -1,3 +1,4 @@
+#include "pso/misc/TWindowDrawContext.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TLobby_80132ED0.h"
@@ -129,7 +130,6 @@ u8 *__nw__7TObjectFUl(s32);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 TWindowShortListCtrl__check_controller_button(int, int);
 s32 is_player_input_active(s32 param_1);
-s32 get_draw_context__11TWindowBaseFPv();
 s32 draw_visible_window_entries(void *, void *, s32);
 s32 draw_window_scrollbar(s32, s32, void *);
 void __dl__7TObjectFPv(void *);
@@ -685,7 +685,7 @@ void TShopJudgmentItemWindow__sub_80267F9C(V_80267F9C v, s32 x) {
 void TUnk_804D0618::render() {
     s32 temp_r3;
 
-    temp_r3 = get_draw_context__11TWindowBaseFPv();
+    temp_r3 = (s32)get_draw_context__11TWindowBaseFPv(this);
     draw_window_frame((void *)temp_r3);
     draw_visible_window_entries(this, ((u8 *)this) + 0x24, temp_r3);
     this->draw_selected_list_entry(temp_r3);

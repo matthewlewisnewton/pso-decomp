@@ -1,3 +1,4 @@
+#include "pso/misc/TWindowDrawContext.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TWindowCtrl_8024A054.h"
@@ -41,7 +42,6 @@ struct Stack_80277368
 struct Ent_802776D0 { u16 id; u16 sub; };
 
 extern "C" {
-s32 get_draw_context__11TWindowBaseFPv();
 s32 draw_window_scrollbar(int, int, void *);
 s32 forward_render__20TWindowSubStatusDispFv(int, int);
 void draw_cursor_sprite__21TWindowSubCustomEquipFPvPvif(void *, void *, s32, f32);
@@ -223,7 +223,7 @@ void TWindowSubCustomSelect::draw_palette_cells(int ctx) {
 
 void render__22TWindowSubCustomSelectFv(TWindowSubCustomSelect *window_sub_custom_select) {
     s32 temp_r3;
-    temp_r3 = get_draw_context__11TWindowBaseFPv();
+    temp_r3 = (s32)get_draw_context__11TWindowBaseFPv(window_sub_custom_select);
     ((TUnk_804CE018 *)window_sub_custom_select)->draw_window_frame((void *)temp_r3);
     window_sub_custom_select->draw_palette_cells(temp_r3);
     window_sub_custom_select->draw_cursor((u8 *)temp_r3);

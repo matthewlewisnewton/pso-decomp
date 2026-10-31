@@ -1,3 +1,4 @@
+#include "pso/misc/TWindowDrawContext.h"
 #include "types.h"
 #include "pso/misc/TWindowChoiceSetting_80249240.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC.h"
@@ -15,7 +16,6 @@ struct RecoveredGlobal_802492C8_lbl_8050E208 {
 };
 
 extern "C" {
-s32 get_draw_context__11TWindowBaseFPv();
 s32 draw_visible_window_entries(void *, void *, s32);
 s32 draw_window_scrollbar(s32, s32, void *);
 s32 forward_render__20TWindowSubStatusDispFv(s32, s32);
@@ -30,7 +30,7 @@ extern s32 __vt__20TWindowChoiceSetting[];
 
 void render__20TWindowChoiceSettingFv(u8 *arg0) {
     s32 temp_r3;
-    temp_r3 = get_draw_context__11TWindowBaseFPv();
+    temp_r3 = (s32)get_draw_context__11TWindowBaseFPv(arg0);
     ((TUnk_804CE018 *)arg0)->draw_window_frame((void *)temp_r3);
     draw_visible_window_entries(arg0, arg0 + 0x24, temp_r3);
     ((TUnk_804D0658 *)arg0)->draw_setting(temp_r3);
