@@ -256,11 +256,11 @@ s32 TObjTombstone::draw_name_labels(void *arg0_) {
     }
     m *= lbl_805D918C;
     if (screen.x - m < TObjTombstone__data_805D9174 || screen.x + m > lbl_805D9190) {
-        if ((self->alphaA += lbl_805D9194) < TObjTombstone__data_805D9174) self->alphaA = TObjTombstone__data_805D9174;
-        if ((self->alphaB += lbl_805D9198) < TObjTombstone__data_805D9174) self->alphaB = TObjTombstone__data_805D9174;
+        if ((self->alphaA += -0.16666667f) < 0.0f) self->alphaA = 0.0f;
+        if ((self->alphaB += -0.016666668f) < 0.0f) self->alphaB = 0.0f;
     } else {
-        if ((self->alphaA += lbl_805D919C) > TObjTombstone__data_805D9178) self->alphaA = TObjTombstone__data_805D9178;
-        if ((self->alphaB += lbl_805D919C) > TObjTombstone__data_805D9178) self->alphaB = TObjTombstone__data_805D9178;
+        if ((self->alphaA += 0.16666667f) > 1.0f) self->alphaA = 1.0f;
+        if ((self->alphaB += 0.16666667f) > 1.0f) self->alphaB = 1.0f;
     }
     a = self->scale * self->alphaA;
     b = self->scale * self->alphaB;
@@ -299,7 +299,4 @@ __declspec(section ".sdata2") extern const f32 TObjTombstone__data_805D9184 = 10
 __declspec(section ".sdata2") extern const f32 lbl_805D9188 = 14.0f;
 __declspec(section ".sdata2") extern const f32 lbl_805D918C = 0.5f;
 __declspec(section ".sdata2") extern const f32 lbl_805D9190 = 640.0f;
-__declspec(section ".sdata2") extern const f32 lbl_805D9194 = -0.16666667f;
-__declspec(section ".sdata2") extern const f32 lbl_805D9198 = -0.016666668f;
-__declspec(section ".sdata2") extern const f32 lbl_805D919C = 0.16666667f;
 }
