@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "types.h"
 #include "pso/misc/TOHealGeneral.h"
 #include "pso/TMainTask.h"
@@ -166,7 +167,7 @@ void TOHealGeneral::find_heal_target() {
 #pragma pop
 
 void TOHealGeneral::run_task() {
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         update_demo();
         return;
     }

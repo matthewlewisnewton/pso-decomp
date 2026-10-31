@@ -2600,10 +2600,10 @@ s32 calc_stat_threshold__10TObjPlayerFPv(void *arg0) {
 
 void TObjPlayer::update_facing_from_lock() {
     if (((VObj_801AF3C4 *)*(void **)((s8 *)this + 0x380))->m8() != 0) {
-        this->set_field_dc(((VObj_801AF3C4 *)*(void **)((s8 *)this + 0x380))->m75(1));
+        this->set_motion_list((BmlMotionEntry *)(((VObj_801AF3C4 *)*(void **)((s8 *)this + 0x380))->m75(1)));
         return;
     }
-    this->set_field_dc(((VObj_801AF3C4 *)*(void **)((s8 *)this + 0x380))->m75(0));
+    this->set_motion_list((BmlMotionEntry *)(((VObj_801AF3C4 *)*(void **)((s8 *)this + 0x380))->m75(0)));
 }
 
 void TObjPlayer::sub_801AF454(s32 x) {
