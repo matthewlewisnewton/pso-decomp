@@ -8,6 +8,7 @@ import importlib.util
 import json
 from pathlib import Path
 import subprocess
+import sys
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -190,6 +191,103 @@ class QueueTests(unittest.TestCase):
                     else:
                         self.rejects('source_maintenance_scope', queue.construct)
 
+    def test_external_checkout_filter_is_rejected_before_planning(self):
+        marker=self.root/'filter-ran'
+        git(self.q.repo,'config','filter.fixture.smudge','touch '+str(marker))
+        with patch.object(m,'REMOTE',str(self.remote)):
+            self.rejects('unsafe_local_git_config',self.q.construct)
+        self.assertFalse(marker.exists())
+
+    def test_dirty_checkout_filter_never_runs_before_boundary(self):
+        git(self.q.repo,'checkout','main')
+        marker=self.root/'filter-callback';script=self.root/'filter.sh'
+        script.write_text('#!/bin/sh\ntouch '+str(marker)+'\ncat\n');script.chmod(0o755)
+        (self.q.repo/'file').write_text('XXXX\n')
+        (self.q.repo/'.git/info/attributes').write_text('file filter=fixture\n')
+        git(self.q.repo,'config','filter.fixture.clean',str(script))
+        git(self.q.repo,'config','filter.fixture.process',str(script))
+        with patch.object(m,'REMOTE',str(self.remote)):
+            self.rejects('unsafe_local_git_config',self.q.construct)
+        self.assertFalse(marker.exists())
+
+    def test_global_and_environment_filter_configuration_is_ignored(self):
+        root=self.root/'env-fixture';root.mkdir();git(root,'init','-q')
+        git(root,'config','user.name','Fixture');git(root,'config','user.email','fixture@localhost')
+        (root/'.gitattributes').write_text('file filter=fixture\n');(root/'file').write_text('test\n')
+        git(root,'add','.gitattributes','file');git(root,'commit','-qm','fixture')
+        (root/'file').write_text('xxxx\n')
+        marker=self.root/'global-filter';script=self.root/'global.sh'
+        script.write_text('#!/bin/sh\ntouch '+str(marker)+'\ncat\n');script.chmod(0o755)
+        config=self.root/'global.config';config.write_text('[filter "fixture"]\n clean = '+str(script)+'\n')
+        with patch.dict(os.environ,{'GIT_CONFIG_GLOBAL':str(config),'GIT_CONFIG_COUNT':'1','GIT_CONFIG_KEY_0':'filter.fixture.clean','GIT_CONFIG_VALUE_0':str(script)}):
+            m._safety.boundary(root.resolve())
+            self.assertTrue(m._safety.git(root,'status','--porcelain'))
+        self.assertFalse(marker.exists())
+
+    def test_recovery_rejects_gratuitous_config_packet(self):
+        self.batch['config_admission']={'checker':{'path':str(self.review),'sha256':m.digest(self.review)},
+                                        'packet':{'path':str(self.review),'sha256':m.digest(self.review)}}
+        with patch.object(m,'REMOTE',str(self.remote)):
+            self.rejects('invalid_config_admission',self.q.construct)
+
+    def test_recovery_config_requires_exact_operator_packet_at_construction(self):
+        from tools import merge_batch_config_delta as c
+        git(self.author,'checkout','main')
+        base=(b'from typing import Dict, Any\nGAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {\n'
+              b'    "other.cpp": {"cflags": []},\n}\n')
+        config=self.author/'configure.py';config.write_bytes(base);config.chmod(0o755)
+        git(self.author,'add','configure.py');git(self.author,'commit','-m','base config');git(self.author,'push','origin','main')
+        target=git(self.author,'rev-parse','HEAD');git(self.author,'checkout','-b','config-feature')
+        config.write_bytes(base.replace(b'    "other.cpp"',b'    "pso/misc/TOTrapAncient01.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},\n    "other.cpp"'))
+        git(self.author,'commit','-qam','config');git(self.author,'push','origin','config-feature');head=git(self.author,'rev-parse','HEAD')
+        batch=copy.deepcopy(self.batch);batch['target']=target
+        pr=batch['prs'][0];pr.update(head=head,head_ref='config-feature',base_sha=target,review_base=target)
+        pr['review'].update(head=head,base=target)
+        state=self.root/'config-plan';state.mkdir();queue=LocalQueue(batch,state,LocalAPI(self.remote,batch))
+        with patch.object(m,'REMOTE',str(self.remote)):
+            self.rejects('invalid_config_admission',queue.construct)
+            tree=git(queue.repo,'merge-tree','--write-tree',target,head).splitlines()[0]
+            env=os.environ.copy();env.update(GIT_AUTHOR_NAME='PSO mechanical queue',GIT_AUTHOR_EMAIL='queue@localhost',
+                GIT_COMMITTER_NAME='PSO mechanical queue',GIT_COMMITTER_EMAIL='queue@localhost',
+                GIT_AUTHOR_DATE=f"@{batch['commit_epoch']} +0000",GIT_COMMITTER_DATE=f"@{batch['commit_epoch']} +0000")
+            candidate=subprocess.check_output(['git','-C',str(queue.repo),'commit-tree',tree,'-p',target,'-p',head,'-m','Merge reviewed fork PR #1'],env=env,text=True).strip()
+            commits=[{'pr':1,'commit':candidate,'tree':tree,'head':head}]
+            checker=Path(c.__file__).resolve();tool=self.root/'reviewed-tool';tool.write_text('fixture')
+            td=self.root/'config-tool-dir';td.mkdir();(td/'compiler').write_text('compiler')
+            pin=lambda x:{'path':str(x),'sha256':m.digest(x)}
+            inventory=[['compiler',m.digest(td/'compiler'),(td/'compiler').stat().st_mode & 0o777]]
+            dirpin={'path':str(td),'sha256':c.tree_digest(td)}
+            pins={name:pin(tool) for name in c.PIN_NAMES}
+            pins.update(cli=pin(Path(m.__file__).resolve()),checker=pin(checker),python=pin(Path(sys.executable).resolve()),git=pin(Path('/usr/bin/git').resolve()),compiler=pin(td/'compiler'))
+            change=c.step(queue.repo,target,candidate)
+            packet={'version':1,'repository':c.REPO,'policy':'recovery','target':target,'candidate':candidate,'tree':tree,
+                    'prs':[{'number':1,'head':head,'base_sha':target,'review_base':target,'review':{'path':str(self.review),'sha256':m.digest(self.review)}}],
+                    'steps':[change],'cumulative':change,'pins':pins,'effective_argv':[str(tool),str(td/'compiler'),'-inline','off,deferred','-c','src/'+c.UNIT],
+                    'configure_paths':{name:(dirpin if name in ('compilers','binutils') else pin(tool)) for name in ('dtk','objdiff','wrapper','compilers','binutils')},
+                    'originals':{role:{'tree_sha256':'a'*64,'dol_sha256':'b'*64} for role in ('baseline','candidate')},
+                    'dependent_compile':[], 'ordered_inputs':{role:{'ordered_inputs_sha256':'c'*64,'source_inputs':1,'fallback_inputs':0} for role in ('baseline','candidate')},
+                    'verdict':'pass','independent':True,'reviewer':'independent fixture'}
+            path=self.root/'config-packet.json';path.write_text(json.dumps(packet))
+            batch['config_admission']={'checker':pin(checker),'packet':pin(path)}
+            queue.construct();self.assertEqual(queue.record['candidate'],candidate)
+            self.assertEqual(queue.record['config_plan']['packet_sha256'],m.digest(path))
+            path.write_text('{}');self.rejects('stale_config_admission',queue.live_guard)
+
+    def test_config_prepublish_rechecks_pinned_adapter_and_request(self):
+        self.q.execute('plan')
+        config={'checker':{'path':str(self.review),'sha256':m.digest(self.review)},'packet':{'path':str(self.review),'sha256':m.digest(self.review)}}
+        self.batch['config_admission']=config
+        adapter=self.root/'config-adapter.py';adapter.write_text('import sys\nassert sys.argv[1] == "--check-config"\n')
+        environment=self.root/'config-env.json';environment.write_text(json.dumps({'strict_loss_guard':{'adapter':{'path':str(adapter),'sha256':m.digest(adapter)}}}))
+        validator=self.root/'guard.py';validator.write_text('# fixture')
+        self.batch['environment_sha256']=m.digest(environment)
+        request=self.root/'request.json';request.write_text(json.dumps({'candidate':self.q.record['candidate'],'tree':self.q.record['tree'],
+               'target':self.batch['target'],'config_admission':config,'environment':str(environment),
+               'prs':self.batch['prs'],'commits':self.q.record['commits']}))
+        self.q.record.update(environment_path=str(environment),validator_path=str(validator),validator_sha256=m.digest(validator),
+                             validation_request=str(request),validation_request_sha256=m.digest(request))
+        self.q.check_config_before_publication()
+        request.write_text('{}');self.rejects('stale_config_request',self.q.check_config_before_publication)
     def test_symbol_rename_parser_rejects_metadata_and_collisions(self):
         before=(b'set_flag2__12TObjEneReconFv = .text:0x8031DDDC; // type:function size:0x50\n'
                 b'other = .text:0x8031DE2C; // type:function size:0x5C scope:local\n')
