@@ -42,6 +42,16 @@ union LensFlareColor {
     u32 packed;
     struct { u8 a, r, g, b; } channels;
 };
+// Convert through signed int before truncating to the eight-bit field. This
+// preserves fctiwz/stb wrapping without a float-to-unsigned-byte range assumption.
+union LensFlareGlareColor {
+    u32 packed;
+    struct { signed int a:8; u8 r, g, b; } channels;
+};
+typedef char LensFlareGlareColorSize[sizeof(LensFlareGlareColor) == 4 ? 1 : -1];
+typedef char LensFlareGlareColorRGBOffsets[offsetof(LensFlareGlareColor, channels.r) == 1 &&
+    offsetof(LensFlareGlareColor, channels.g) == 2 &&
+    offsetof(LensFlareGlareColor, channels.b) == 3 ? 1 : -1];
 // Matches the sprite-node layout consumed by TQuadSpriteSclColRot::render.
 // The link and type byte are unused in this stack scratch; do not initialize
 // or dereference them to manufacture observable effects.
@@ -148,9 +158,9 @@ void TEF_LensFlare::render() {
             if (alignment > 0.99f) {
                 f32 glow = 50.0f * (alignment - 0.98f);
                 glow *= glow;
-                LensFlareColor color;
+                LensFlareGlareColor color;
                 color.channels.r = 255; color.channels.g = 255; color.channels.b = 255;
-                color.channels.a = (s32)(255.0f * (0.9f * glow));
+                color.channels.a = 255.0f * (0.9f * glow);
                 point.x = screen[0]; point.y = screen[1]; point.z = 0.0f;
                 sprite->color = color.packed;
                 VecCopy(sprite_position, &point);
