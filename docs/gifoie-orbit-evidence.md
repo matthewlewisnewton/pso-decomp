@@ -59,8 +59,10 @@ and the eight owned data bytes. The new update is **not exact**: its native body
 is 892 bytes versus 900 original bytes, with 98.26667% objdiff instruction
 similarity. Remaining differences are the double-factor address materialization
 and the adjacent emitter-loop zero/register setup. This is zero new exact code
-bytes, and source linkage remains unchanged. No split, symbol owner, compiler
-configuration, linked-unit list, shared header, or original input was changed.
+bytes, and source linkage remains unchanged. This continuation adopts only the
+constructor/vtable symbol changes, the 24-byte orbit-vtable extent, and bias
+localization described below. Compiler settings, shared headers, linked-unit
+selection, and original inputs are unchanged.
 
 Local probes covered expression/local order, native pointer and aggregate
 access, loop-counter types/scope/reuse, and supported optimizer controls.
@@ -77,8 +79,8 @@ A separate read-only object audit found no extra allocated sections/globals,
 section-alignment changes, function-order changes, or global-layout changes.
 The outstanding export is `lbl_8044D350`, the compiler-generated integer-conversion
 bias. No undefined references to that name were found in 8,776 historical original
-and compiled objects. Localization remains a proposal until the scan is refreshed
-against the final full development inputs.
+and compiled objects. The reviewed localization is adopted; the scan must be
+refreshed against final full development inputs before acceptance.
 
 Further valid source forms show the original 900-byte update size and two-step
 angle-constant address load are reachable under the same compiler. Those forms
