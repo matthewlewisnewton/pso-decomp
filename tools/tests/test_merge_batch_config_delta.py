@@ -282,7 +282,8 @@ class DarkFalzRealGraphTests(unittest.TestCase):
             self.graph(root,argv)
     def test_darkfalz_argv_rejects_conflicts(self):
         c.require_compile_argv(self.argv,c.DARKFALZ_UNIT,'/wrapper','/compiler26','deferred')
-        cases=[self.argv+['-sym','on'],self.argv+['-sdata','4'],self.argv+['-O0'],self.argv+['-sdata2=8'],self.argv+['-g'],
+        reordered=self.argv[:2]+['-sym','on','-O4,s','-inline','deferred','-sdata2','4','-c','src/'+c.DARKFALZ_UNIT]
+        cases=[reordered,self.argv+['-sym','on'],self.argv+['-sdata','4'],self.argv+['-O0'],self.argv+['-sdata2=8'],self.argv+['-g'],
                [x for x in self.argv if x!='-sym'],[('off' if x=='on' else x) for x in self.argv],
                [('off,deferred' if x=='deferred' else x) for x in self.argv]]
         for argv in cases:
