@@ -25,10 +25,6 @@ units are linked when the build takes them from compiled source instead of the o
 The build still uses 1,526 original-object fallback units; matched functions in those units are not counted as
 source-linked coverage. Unit counts can change when translation units are consolidated.
 
-The GiFoie orbit task now reproduces its original 900-byte update in targeted compiler checks, preserving the
-unit's other functions and native task vtable. Its candidate source selection still awaits the full build,
-original-address regression checks and proof that the linker takes the compiled object.
-
 ## Target
 
 | | |
@@ -76,6 +72,10 @@ in assembly: `tools/orig_asm.py` rebuilds their bodies from your disc before any
 - **Check for regressions.** Run `ninja baseline` before a change and `python tools/check_pr.py` after it. It
   rebuilds, compares the reports by original address, so renaming, folding or splitting units never hides a lost
   match, and checks that every linked unit still links from source.
+
+The GiFoie orbit task now reproduces its original 900-byte update in targeted compiler checks, preserving the
+unit's other functions and native task vtable. Its candidate source selection still awaits the full build,
+original-address regression checks and proof that the linker takes the compiled object.
 
 [CONTRIBUTING.md](CONTRIBUTING.md) covers what a change can do and the rules for it.
 [docs/architecture.md](docs/architecture.md) describes how the executable and the source tree are laid out.
