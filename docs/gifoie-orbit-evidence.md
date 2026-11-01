@@ -2,11 +2,10 @@
 
 The missing `run_task__13TUnk_804CC800Fv` at `0x80230EA0` belongs to the
 0x4C-byte orbit task constructed at `0x802312E4`, rather than the 0x13C-byte
-`TTecGiFoie` receiver. The private `TUnk_804CC800` declaration is a layout view of that allocation.
+`TTecGiFoie` receiver. The private `TUnk_804CC800` declaration derives from the established `TObject` base.
 Its member update retains the receiver and method name established by the
 original symbol; `GiFoieOrbitTask` is an alias used by the existing factory ABI.
-No new inheritance hierarchy is proposed. Constructor and destructor interfaces
-remain provisional C boundaries.
+Its constructor and virtual destructor now use native C++ lifetime handling.
 
 ## State and lifetime evidence
 
@@ -18,7 +17,7 @@ reads a word axis angle at 0x48. The observed constructor does not initialize
 that last word; this change deliberately adds no initialization or ownership
 assumption about its dormant alternate mode.
 
-The constructor allocates one pointer for the single-emitter path or four bytes
+The native constructor allocates one pointer for the single-emitter path or four bytes
 per profile entry otherwise. Both particle factories return emitter objects
 subsequently passed to `TParticleCtrl::set_scale`. The destructor queues those
 same emitters, frees their pointer array, and calls the original base destructor.
@@ -71,8 +70,8 @@ those settings are not part of this checkpoint. No assembly, volatile effects,
 manual register assignments, raw constant casts, or data-range reassignment were
 used to force the remaining sequence.
 
-Full build, `check_pr`, DOL hash verification, and source-link acceptance have
-not been run for this inexact checkpoint. It remains draft work.
+Full build, `check_pr`, DOL hash verification, and source-link acceptance remain
+pending. The update stays inexact and the whole unit stays on fallback.
 
 A separate read-only object audit found no extra allocated sections/globals,
 section-alignment changes, function-order changes, or global-layout changes.
@@ -85,3 +84,32 @@ Further valid source forms show the original 900-byte update size and two-step
 angle-constant address load are reachable under the same compiler. Those forms
 still differ in induction state/registers. Failed variants exclude only themselves;
 there is no impossibility or assembly-origin conclusion.
+
+## Allocated native orbit lifetime closure
+
+The orbit class can use the established `TObject` base, a native constructor,
+virtual destructor, update method, and inherited allocation functions. The
+original base calls, 0x4C allocation, 0x18 vptr offset, and six-entry vtable
+constrain that relationship. No shared header needs changing.
+
+The original caller passes the band as a word loaded with `lha`. A byte-typed
+native constructor argument adds an extra caller truncation absent in the
+original; a signed word parameter followed by the observed byte field store
+preserves both caller and constructor. The old hand-mangled factory name
+attributed this allocation to TTecGiFoie and advertised a byte argument. The
+proposal gives the constructor the orbit receiver name and its consistent word
+parameter contract at the same original address 0x802312E4.
+
+A diagnostic symbol-only mapping preserves every original allocated byte and
+compares all nine pre-existing functions exactly against the native class form.
+Its emitted vtable has the original 24-byte layout and four original relocation
+targets: the orbit destructor/update and inherited TObject render/shadow methods.
+The proposed .data ownership is only 0x804CC800..0x804CC818. Neighboring vtables,
+particle tables, vectors, strings, and constants retain their current owners.
+
+The reviewed constructor/vtable names, 24-byte data extent, and bias localization
+are adopted on the private continuation. Actual split regeneration, refreshed
+all-input localization checks, scheduled development gates, and independent
+exact-head review remain necessary. The symbol-mapped diagnostic is not a
+substitute for those gates. Do not select the whole unit from source while its
+update differs.
