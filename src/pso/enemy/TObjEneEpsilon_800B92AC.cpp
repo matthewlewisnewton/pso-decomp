@@ -32,10 +32,11 @@ void TObjEneEpsilon__sub_800B92AC(u8 *ene_epsilon, s32 arg1, f32 farg0) {
     ((TObjEneEpsilon *)(ene_epsilon))->vfunc_101((u8 *)&sp8);
 }
 
-u8 *TObjEneEpsilon__sub_800B92F8(u8 *ene_epsilon, s32 arg1, f32 farg0) {
-    Vec sp8;
-    ((TObjEneEpsilon *)ene_epsilon)->fire_attack_b((s32) &sp8, arg1, farg0);
-    return ((TObjEneEpsilon *)(ene_epsilon))->vfunc_101((u8 *)&sp8);
+u8 *TObjEneEpsilon__sub_800B92F8(u8 *actor, s32 max_step, f32 distance) {
+    Vec destination;
+    TObjEneEpsilon *receiver = (TObjEneEpsilon *)actor;
+    receiver->fire_attack_b((s32)&destination, max_step, distance);
+    return receiver->vfunc_101((u8 *)&destination);
 }
 }
 
