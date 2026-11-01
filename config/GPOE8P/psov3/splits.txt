@@ -1065,7 +1065,7 @@ pso/object/TObjMapCsn_8007A720.cpp:
 pso/unk/text_8007A7A0.cpp:
 	.text       start:0x8007A7A0 end:0x8007A7B8
 
-pso/unk/text_8007A7B8.cpp:
+pso/player/TObjPlayer_8007A7B8.cpp:
 	.text       start:0x8007A7B8 end:0x8007A7E8
 
 pso/player/TObjPlayer_8007A7E8.cpp:

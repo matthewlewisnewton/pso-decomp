@@ -2217,6 +2217,7 @@ pso/player/TObjPlayer_80052374.cpp
 pso/player/TObjPlayer_80055678.cpp
 pso/player/TObjPlayer_800666B0.cpp
 pso/player/TObjPlayer_80072218.cpp
+pso/player/TObjPlayer_8007A7B8.cpp
 pso/player/TObjPlayer_8007A7E8.cpp
 pso/player/TObjPlayer_8007B4F8.cpp
 pso/player/TObjPlayer_80080750.cpp
@@ -2840,7 +2841,6 @@ pso/unk/text_80077AE8.cpp
 pso/unk/text_80077B34.cpp
 pso/unk/text_8007A6C8.cpp
 pso/unk/text_8007A7A0.cpp
-pso/unk/text_8007A7B8.cpp
 pso/unk/text_8007B370.cpp
 pso/unk/text_8007C0CC.cpp
 pso/unk/text_8007F4B8.cpp
