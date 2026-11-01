@@ -31,7 +31,7 @@ void lsc_poll(LscStream *lsc_stream) {
             TLobby::log_printf("E0007: lsc->fp=NULL");
         } else {
             entry = &lsc_stream->entries[lsc_stream->read_index];
-            status = ((s32 (*)(u8 *))TLobby__sub_803C8B2C)((u8 *)lsc_stream->file_handle);
+            status = TLobby__sub_803C8B2C((u8 *)lsc_stream->file_handle);
             if (status == 4) {
                 lsc_stream->state = 3;
             } else if (status == 2) {

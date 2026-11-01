@@ -214,7 +214,7 @@ struct Obj_803C7748 {
 extern "C" {
 void TLobby__sub_803C89C4(u8 *arg0);
 void TLobby__sub_803C8B38(u8 *arg0);
-short TLobby__sub_803C8B2C(u8 *arg0);
+s32 TLobby__sub_803C8B2C(u8 *arg0);
 extern RecoveredGlobal_803C90B0_lbl_80575140 adx_stream_read_requests;
 extern RecoveredGlobal_803C6830_lbl_80573AC0 adx_encoder_context_pool;
 void TLobby__sub_803C9DB4(u8 *arg0);
@@ -969,7 +969,7 @@ s32 TLobby::set_scroll_offset(s32 arg1) {
     return ((TLobby *)(*(s32 *)&this->m_prev))->cv_fs_tell() - *(s32 *)&this->m_up;
 }
 
-short TLobby__sub_803C8B2C(u8 *arg0) {
+s32 TLobby__sub_803C8B2C(u8 *arg0) {
   u8 *new_var;
   s8 *new_var2;
   new_var = arg0;
