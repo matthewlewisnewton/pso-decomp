@@ -1,44 +1,30 @@
-#include "types.h"
+#define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/object/TObjMotion.h"
 
-struct W_802D5B78 { s32 a; s32 b; s32 c; };
+extern "C" f32 normalize_vector(Vec *);
 
-struct S_802D5B78 {
-    u8 pad0[0xC];
-    f32 scale;
-    u8 pad10[0xC];
-    f32 f1C;
-    f32 f20;
-    f32 f24;
-    u8 pad28[4];
-};
-
-extern "C" {
-
-void normalize_vector(void *);
+// Keep the callback boundary provisional while using the established hit/body
+// layout internally. The incoming vector is copied before normalization.
+// Preserve x/y/z store order: output may overlap a body center.
+typedef char HitTargetOffset[offsetof(ActorBodyHit,target)==0 ? 1 : -1];
+typedef char HitBodyOffset[offsetof(ActorBodyHit,body)==4 ? 1 : -1];
+typedef char BodiesOffset[offsetof(TObjCollidable,bodies)==0xA4 ? 1 : -1];
+typedef char BodyRadiusOffset[offsetof(CollisionBody,radius)==0xC ? 1 : -1];
+typedef char BodyCenterOffset[offsetof(CollisionBody,center)==0x1C ? 1 : -1];
+typedef char BodyStride[sizeof(CollisionBody)==0x2C ? 1 : -1];
+typedef char VectorSize[sizeof(Vec)==12 ? 1 : -1];
 
 #pragma push
 #pragma fp_contract on
-
-void TObjPlayer__sub_802D5B78(void *arg0, void *arg1, void *arg2) {
-    // Snapshot the input words before constructing the local normalized vector.
-    W_802D5B78 *input = (W_802D5B78 *)arg2;
-    s32 a = input->a;
-    s32 b = input->b;
-    s32 c = input->c;
-    W_802D5B78 w;
-    w.a = a;
-    w.b = b;
-    w.c = c;
-    normalize_vector(&w);
-    S_802D5B78 *tab = *(S_802D5B78 **)((s8 *)*(void **)arg0 + 0xA4);
-    S_802D5B78 *e = (S_802D5B78 *)((s8 *)tab + *(s32 *)((s8 *)arg0 + 4) * 0x2C);
-    f32 s = e->scale;
-    f32 *out = (f32 *)arg1;
-    out[0] = e->f1C - (*(f32 *)&w.a) * s;
-    out[1] = e->f20 - (*(f32 *)&w.b) * s;
-    out[2] = e->f24 - (*(f32 *)&w.c) * s;
+extern "C" void TObjPlayer__sub_802D5B78(void *arg0, void *arg1, const void *arg2) {
+    ActorBodyHit *hit = static_cast<ActorBodyHit *>(arg0);
+    Vec *output = static_cast<Vec *>(arg1);
+    Vec normalized = *static_cast<const Vec *>(arg2);
+    (void)normalize_vector(&normalized);
+    CollisionBody *body = &hit->target->bodies[hit->body];
+    f32 radius = body->radius;
+    output->x = body->center.x - normalized.x * radius;
+    output->y = body->center.y - normalized.y * radius;
+    output->z = body->center.z - normalized.z * radius;
 }
-
 #pragma pop
-
-}
