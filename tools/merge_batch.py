@@ -2,6 +2,7 @@
 """Deterministic, fork-only reviewed batch validation and atomic publication."""
 from __future__ import annotations
 import argparse
+from collections import Counter
 from contextlib import ExitStack
 import fcntl
 import hashlib
@@ -67,6 +68,83 @@ def source_maintenance_path(path):
     return bool(re.fullmatch(r'(?:src|include)/[A-Za-z0-9_./+\-]+\.(?:c|cc|cpp|h|hpp)', path)) and all(part not in ('', '.', '..') for part in path.split('/'))
 
 
+SYMBOL_FILE = 'config/GPOE8P/psov3/symbols.txt'
+SYMBOL_LINE = re.compile(r'([^\s=]+) = ([^\s:]+):0x([0-9A-Fa-f]+); // (.+)')
+SYMBOL_NAME = re.compile(r'[A-Za-z0-9_.$@]+')
+SYMBOL_ATTRIBUTE = re.compile(r'[A-Za-z_][A-Za-z0-9_]*:[A-Za-z0-9_.$+\-]+|hidden')
+
+
+def method_identity(name):
+    match = re.fullmatch(r'([A-Za-z_][A-Za-z0-9_]*)__([1-9][0-9]*)(.*)', name)
+    if not match: raise ValueError('unsupported symbol ownership')
+    method, length, remainder = match.groups()
+    length = int(length)
+    owner, signature = remainder[:length], remainder[length:]
+    if len(owner) != length or not re.fullmatch(r'[A-Za-z_][A-Za-z0-9_]*', owner) or not re.fullmatch(r'F(?:v|[bcsilxfd]+)', signature):
+        raise ValueError('unsupported symbol ownership')
+    return method, owner, signature
+
+
+def symbol_renames(before, after):
+    # Parse every record, retain exact suffix bytes and line position. Existing
+    # local names may repeat; the old and new names of a rename must not.
+    def parse(data):
+        # Operate on Git blob bytes; only literal LF separates records. No
+        # text-mode or universal-newline decoding may normalize other bytes.
+        if not data or not data.endswith(b'\n') or any(byte != 10 and not 32 <= byte <= 126 for byte in data):
+            raise ValueError('invalid symbol file framing')
+        rows = []
+        for raw_line in data[:-1].split(b'\n'):
+            line = raw_line.decode('ascii')
+            match = SYMBOL_LINE.fullmatch(line)
+            if not match:
+                raise ValueError('malformed symbol record')
+            name, section, address, attributes = match.groups()
+            if not re.fullmatch(r'[A-Za-z_.][A-Za-z0-9_.]*', section) or int(address, 16) > 0xffffffff:
+                raise ValueError('invalid symbol section or address')
+            tokens = attributes.split(' ')
+            if any(not SYMBOL_ATTRIBUTE.fullmatch(token) for token in tokens):
+                raise ValueError('malformed symbol attributes')
+            keys = [token.split(':', 1)[0] for token in tokens]
+            if len(keys) != len(set(keys)) or 'type' not in keys:
+                raise ValueError('duplicate or missing symbol attributes')
+            rows.append((name, section, address, tokens, line[len(name):]))
+        return rows
+    old, new = parse(before), parse(after)
+    if len(old) != len(new): raise ValueError('symbol record count changed')
+    old_names, new_names = Counter(r[0] for r in old), Counter(r[0] for r in new)
+    changes = []
+    for a, b in zip(old, new):
+        if a == b: continue
+        if a[4] != b[4] or a[0] == b[0]: raise ValueError('symbol metadata or order changed')
+        if not SYMBOL_NAME.fullmatch(a[0]) or not SYMBOL_NAME.fullmatch(b[0]): raise ValueError('invalid renamed symbol')
+        old_method, old_owner, old_sig = method_identity(a[0])
+        new_method, new_owner, new_sig = method_identity(b[0])
+        if (old_method, old_owner) != (new_method, new_owner) or old_sig == new_sig:
+            raise ValueError('symbol method ownership changed')
+        if old_names[a[0]] != 1 or new_names[b[0]] != 1 or old_names[b[0]] or new_names[a[0]]:
+            raise ValueError('symbol rename collision')
+        attrs = dict(t.split(':', 1) for t in a[3] if ':' in t)
+        if attrs['type'] not in ('function', 'object') or not re.fullmatch(r'0x[0-9A-Fa-f]+', attrs.get('size', '')) or int(attrs['size'], 16) == 0 or int(a[2], 16) + int(attrs['size'], 16) > 0x100000000:
+            raise ValueError('invalid symbol type or extent')
+        changes.append({'old': a[0], 'new': b[0], 'section': a[1], 'address': '0x' + a[2], 'size': attrs['size']})
+    if not changes: raise ValueError('empty symbol rename')
+    return changes
+
+
+def symbol_review(spec):
+    entry = spec.get('symbol_rename_review')
+    if entry is None: return None
+    require(spec['policy'] == 'source-maintenance' and isinstance(entry, dict), 'invalid_symbol_review', '')
+    path = Path(entry.get('path', ''))
+    require(path.is_absolute() and path.is_file() and not path.is_symlink(), 'stale_symbol_review', '')
+    raw = path.read_bytes()
+    require(hashlib.sha256(raw).hexdigest() == entry.get('sha256') and digest(path) == entry.get('sha256'), 'stale_symbol_review', '')
+    review = json.loads(raw)
+    require(review.get('version') == 1 and review.get('verdict') == 'pass' and review.get('independent') is True and isinstance(review.get('reviewer'), str) and bool(review['reviewer'].strip()) and review.get('target') == spec['target'] and review.get('heads') == [p['head'] for p in spec['prs']] and review.get('path') == SYMBOL_FILE, 'stale_symbol_review', '')
+    return review
+
+
 def validate_spec(spec):
     require(spec.get('version') == 1 and spec.get('repository') == REPOSITORY,
             'wrong_repository', 'Only schema 1 and the personal fork are supported')
@@ -99,6 +177,7 @@ def validate_spec(spec):
 
 
 def evidence(spec):
+    symbol_review(spec)
     for pr in spec['prs']:
         r = pr['review']
         path = Path(r.get('path', ''))
@@ -247,7 +326,24 @@ class Queue:
             raw = diff.stdout
             require(bool(raw) and raw.endswith(b'\0'), 'source_maintenance_scope', 'Empty or malformed path list')
             paths = [os.fsdecode(path) for path in raw[:-1].split(b'\0')]
-            require(all(source_maintenance_path(p) for p in paths), 'source_maintenance_scope', paths)
+            review = symbol_review(self.spec)
+            require(all(source_maintenance_path(p) or (p == SYMBOL_FILE and review is not None) for p in paths), 'source_maintenance_scope', paths)
+            require((SYMBOL_FILE in paths) == (review is not None), 'invalid_symbol_review', 'Explicit review must match the symbol delta')
+            if review is not None:
+                review_path = Path(self.spec['symbol_rename_review']['path']).resolve()
+                require(not review_path.is_relative_to(self.repo.resolve()), 'invalid_symbol_review', 'Review must be external')
+                for commit in (self.spec['target'], current):
+                    item = self.git('ls-tree', commit, '--', SYMBOL_FILE).split()
+                    require(len(item) == 4 and item[:2] == ['100644', 'blob'] and item[3] == SYMBOL_FILE, 'invalid_symbol_file', '')
+                def read_blob(commit):
+                    return subprocess.check_output(['git', '-C', str(self.repo), 'show', commit + ':' + SYMBOL_FILE])
+                before, after = read_blob(self.spec['target']), read_blob(current)
+                require(hashlib.sha256(before).hexdigest() == review.get('before_sha256') and hashlib.sha256(after).hexdigest() == review.get('after_sha256'), 'stale_symbol_review', 'Symbol file hashes differ')
+                try:
+                    changes = symbol_renames(before, after)
+                except ValueError as exc:
+                    raise Rejected('invalid_symbol_delta', str(exc)) from exc
+                require(changes == review.get('renames'), 'stale_symbol_review', 'Rename list differs')
         self.write(state='planned', candidate=current, tree=tree, commits=commits)
         return current, tree
 

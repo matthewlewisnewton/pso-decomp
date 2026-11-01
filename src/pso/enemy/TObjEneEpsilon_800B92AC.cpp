@@ -32,10 +32,10 @@ void TObjEneEpsilon__sub_800B92AC(u8 *ene_epsilon, s32 arg1, f32 farg0) {
     ((TObjEneEpsilon *)(ene_epsilon))->vfunc_101((u8 *)&sp8);
 }
 
-void TObjEneEpsilon__sub_800B92F8(u8 *ene_epsilon, s32 arg1, f32 farg0) {
+u8 *TObjEneEpsilon__sub_800B92F8(u8 *ene_epsilon, s32 arg1, f32 farg0) {
     Vec sp8;
     ((TObjEneEpsilon *)ene_epsilon)->fire_attack_b((s32) &sp8, arg1, farg0);
-    ((TObjEneEpsilon *)(ene_epsilon))->vfunc_101((u8 *)&sp8);
+    return ((TObjEneEpsilon *)(ene_epsilon))->vfunc_101((u8 *)&sp8);
 }
 }
 

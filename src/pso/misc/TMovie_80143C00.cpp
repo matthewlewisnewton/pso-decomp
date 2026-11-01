@@ -15,7 +15,8 @@ extern s32 lbl_805D56A4;
 extern s32 lbl_805D56A8;
 extern RecoveredCallback_6d14191ba232 lbl_805D6BF4;
 void TMovie::flip_frame_buffer() {
-    u32 sp8[4];
+    // The movie module callback writes three plane addresses and three strides.
+    u32 sp8[6];
     if (lbl_805D56A0 != 0U) {
         if (movie_flip_counter & 1) {
             movie_current_frame_buffer = lbl_805D5690;

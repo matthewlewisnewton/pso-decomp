@@ -14,6 +14,7 @@
 #include "pso/system/vector.h"
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
+#include "pso/enemy/EnemyMovement.h"
 #include "pso/enemy/TObjEneEpsilon.h"
 #include "pso/enemy/TObjEneDD.h"
 #include "pso/enemy/TObjEneDD_ST.h"
@@ -72,7 +73,6 @@ extern const f32 lbl_805D98E4;
 void *create_particle_emitter(void *, s32);
 void TObjEneMe1Canadin_EffDischarge__ct(void *, void *, void *, void *);
 u8 *TObjEneMe1Canadin_EffLine__ct(u8 *arg0, s32 arg1, s32 arg2, s32 arg3);
-void TObjEneEpsilon__sub_800B92F8(u8 *arg0, s32 arg1, f32 farg0);
 s32 transition_enemy_state__9TObjEneDDFl(void *, s32);
 void * __nw__7TObjectFUl(int);
 extern const s32 canadin_formation_reset_vec4[];

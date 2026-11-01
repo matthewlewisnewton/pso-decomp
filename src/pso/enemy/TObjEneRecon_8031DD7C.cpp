@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/enemy/EnemyMovement.h"
 #include "pso/enemy/TObjEneDD.h"
 #include "pso/enemy/TObjEneRecon.h"
 
@@ -22,8 +23,6 @@ VV(91)VV(92)VV(93)VV(94)VV(95)VV(96)VV(97)VV(98)VV(99)
 
 extern "C" {
 
-u32 move_with_wall_slide_commit__9TObjEneDDFfff();
-u32 TObjEneEpsilon__sub_800B92F8(void *, s32, void *, f32);
 
 extern f32 *TObjEneRecon__data_805D6AFC;
 
@@ -31,15 +30,15 @@ void TObjEneRecon::update_collide_flag() {
     void *temp_r5;
 
     temp_r5 = this->movementParameters;
-    if (TObjEneEpsilon__sub_800B92F8(this, *(s32 *)((s8 *)temp_r5 + 8), temp_r5, *TObjEneRecon__data_805D6AFC) != 0U) {
+    if (TObjEneEpsilon__sub_800B92F8((u8 *)this, *(s32 *)((s8 *)temp_r5 + 8), *TObjEneRecon__data_805D6AFC) != 0U) {
         *(s32 *)((s8 *)this + 0x444) = (s32) (*(s32 *)((s8 *)this + 0x444) | 2);
         return;
     }
     *(s32 *)((s8 *)this + 0x444) = (s32) (*(s32 *)((s8 *)this + 0x444) & 0xFFFFFFFD);
 }
 
-void TObjEneRecon::set_flag2() {
-    if (move_with_wall_slide_commit__9TObjEneDDFfff() != 0U) {
+void TObjEneRecon::set_flag2(f32 dx, f32 dz, f32 distance) {
+    if (move_with_wall_slide_commit(dx, dz, distance) != NULL) {
         *(s32 *)((s8 *)this + 0x444) = (s32) (*(s32 *)((s8 *)this + 0x444) | 2);
         return;
     }

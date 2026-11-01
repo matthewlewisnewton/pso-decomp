@@ -240,7 +240,6 @@ struct Vec_8031C364 { f32 x, y, z; };
 extern "C" {
 f32 normalize_vector_xz__FP3Vec(void *, s32);
 void clear_attack_receipts__9TObjEneDDFv(void);
-void set_flag2__12TObjEneReconFv(void *, f32, f32, f32);
 extern const f32 TObjEneRecon__data_805DF3E0;
 extern const f32 TObjEneRecon__data_805DF3E4;
 void TObjEneRecon__sub_8031C624(u8 *arg0, s32 arg1);
@@ -287,7 +286,7 @@ void TObjEneRecon__sub_8031C364(u8 *arg0, s32 arg1) {
         switch (F(s32, 0x3C0)) {
         case 0:
         case 1:
-            set_flag2__12TObjEneReconFv(arg0, F(f32, 0x44C), F(f32, 0x454), F(f32, 0x3E4));
+            ((TObjEneRecon *)arg0)->set_flag2( F(f32, 0x44C), F(f32, 0x454), F(f32, 0x3E4));
             {
                 Vec_8031C364 v = F(Vec_8031C364, 0x38);
                 v.y += F(f32, 0x448);
@@ -364,7 +363,7 @@ void TObjEneRecon__sub_8031C624(u8 *arg0, s32 arg1) {
         *(f32 *)((s8 *)arg0 + 0x44C) = *(f32 *)((s8 *)arg0 + 0x308);
         *(f32 *)((s8 *)arg0 + 0x454) = *(f32 *)((s8 *)arg0 + 0x310);
         v = normalize_vector_xz__FP3Vec(arg0 + 0x44C, n);
-        set_flag2__12TObjEneReconFv(arg0, *(f32 *)((s8 *)arg0 + 0x44C), *(f32 *)((s8 *)arg0 + 0x454), v);
+        ((TObjEneRecon *)arg0)->set_flag2( *(f32 *)((s8 *)arg0 + 0x44C), *(f32 *)((s8 *)arg0 + 0x454), v);
         ((TObjEneRecon *)arg0)->clamp_min_height();
         *(f32 *)((s8 *)arg0 + 0x308) *= TObjEneRecon__data_805DF3E0;
         *(f32 *)((s8 *)arg0 + 0x310) *= TObjEneRecon__data_805DF3E0;
@@ -765,7 +764,7 @@ void TObjEneRecon__sub_8031C920(u8 *arg0, s32 arg1) {
                 break;
             }
             VecCopy((Vec *)(arg0 + 0x44C), (const Vec *)(arg0 + 0x3A0));
-            set_flag2__12TObjEneReconFv(arg0, F(f32, 0x44C), F(f32, 0x454), r);
+            ((TObjEneRecon *)arg0)->set_flag2( F(f32, 0x44C), F(f32, 0x454), r);
             F(f32, 0x448) = approach_value__12TObjEneReconFff(arg0, F(f32, 0x448), F(f32, 0x398) + h);
             ((TObjEneRecon *)arg0)->clamp_min_height();
             t = F(Obj_8031C920 *, 0x390);

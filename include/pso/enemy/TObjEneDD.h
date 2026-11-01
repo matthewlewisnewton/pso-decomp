@@ -87,7 +87,7 @@ struct TObjEneDD : public TObjEnemy {
     void clear_field_388();
     int has_move_failures(s32 arg1);
     void move_to_wall_clamped_destination(f32 farg0, f32 farg1, f32 farg2);
-    void move_with_wall_slide_commit(f32 farg0, f32 farg1, f32 farg2);
+    u8 *move_with_wall_slide_commit(f32 farg0, f32 farg1, f32 farg2);
     void move_with_wall_stop(f32 farg0, f32 farg1, f32 farg2);
     void move_clamped_on_ground(f32 farg0, f32 farg1, f32 farg2);
     void move_with_wall_slide_on_ground(f32 farg0, f32 farg1, f32 farg2);
