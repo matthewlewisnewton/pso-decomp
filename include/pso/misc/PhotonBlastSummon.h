@@ -3,9 +3,11 @@ struct NJS_OBJECT;
 #define PSO_MISC_PHOTONBLASTSUMMON_H
 
 #include "types.h"
+class TUnk_804C3248;
 
 extern "C" {
 void apply_all_default__8TFogCtrlFv(void);
+void spawn_photon_blast_attachment_effects(TUnk_804C3248 *, s32);
 }
 void clear_deferred_photon_blast_hits(void);
 void clear_photon_blast_hits(void);

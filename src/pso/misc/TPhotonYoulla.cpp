@@ -59,7 +59,6 @@ extern s32 chunk_polygon_flags_and_mask;
 extern s32 model_render_flags;
 void *find_entity_by_id(u16 id);
 void sub_801AE72C__13TPhotonYoullaFv(void *, u8);
-s32 spawn_photon_blast_attachment_effects(void *, s32);
 extern u8 photon_blast_youlla_params[];
 extern s32 __vt__13TPhotonYoulla[];
 extern const char *lbl_805D3528;

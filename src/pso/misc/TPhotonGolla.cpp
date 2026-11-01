@@ -122,7 +122,6 @@ extern u32 farlla_photon_blast_model_buffers;
 extern "C" {
 
 void *find_entity_by_id(u16 id);
-s32 spawn_photon_blast_attachment_effects(void *, int);
 u8 *TPhotonMagicSquare__ct(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
 
 u32 __nw__7TObjectFUl(int);
@@ -360,7 +359,7 @@ void TPhotonGolla::run_task() {
         ((TUnk_804C3248 *)arg0)->begin_photon_summon_camera(5);
         *(s32 *)&this->unk_1C8 = 0;
         ((TObjMotion *)arg0)->set_field_b8(0);
-        spawn_photon_blast_attachment_effects(arg0, 2);
+        spawn_photon_blast_attachment_effects(this, 2);
     }
     this->m_1b8 = (s16) this->requested_action;
     ((TUnk_804C3248 *)arg0)->update_state();
@@ -369,7 +368,7 @@ void TPhotonGolla::run_task() {
     *(s16 *)((s8 *)arg0 + 0x14C) = (s16) (*(s16 *)((s8 *)arg0 + 0x14C) + 0xF);
     *(s16 *)((s8 *)arg0 + 0x14C) = (s16) (u8) *(s16 *)((s8 *)arg0 + 0x14C);
     if ((s32) *(s32 *)&this->unk_1C8 == 0x50) {
-        VecCopy((Vec *)(arg0 + 0x1AC), (const Vec *)(this->m_148 + 0x44));
+        VecCopy((Vec *)(arg0 + 0x1AC), &this->m_148[2].position);
         spawn_particle_effect((const Vec *)((arg0 + 0x1AC)), 0x133);
         TPhotonGolla::spawn_concentrate(arg0);
     }
@@ -541,7 +540,7 @@ u8 *TPhotonGolla__ct(u8 *arg0, u8 *arg1) {
         if (p != NULL) {
             TPhotonMagicSquare__ct((u8 *)p, (s32)arg0, 3, (s32)&pos, 0x96, (f32)0.5f);
         }
-        spawn_photon_blast_attachment_effects(arg0, 2);
+        spawn_photon_blast_attachment_effects((TPhotonGolla *)arg0, 2);
         play_cue_stream_file((s32)lbl_80446DA8);
     } else {
         spawn_photon_blast_opening_effects(2, *(u16 *)((s8 *)arg0 + 0x158));

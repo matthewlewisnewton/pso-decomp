@@ -6,6 +6,7 @@
 #include "pso/system/ChunkMaterialState.h"
 #include "types.h"
 #include "pso/misc/TPhotonMylla.h"
+#include "pso/misc/PhotonBlastSummon.h"
 #include "pso/misc/TRaderMapCore.h"
 #include "pso/misc/MaterialColorFade.h"
 #include "pso/object/TObjMotion.h"
@@ -115,8 +116,6 @@ u16 get_entity_id(void *);
 void *find_entity_by_id(u16 id);
 u8 *TPhotonMagicSquare__ct(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
 
-s32 queue_photon_blast_hit(int, int, int, f32);
-s32 spawn_photon_blast_attachment_effects(void *, int);
 u8 *__nw__7TObjectFUl(s32, f32);
 extern const f32 lbl_805DC1FC;
 extern const f32 lbl_805DC200;
@@ -215,7 +214,7 @@ void TPhotonMylla::render() {
 }
 
 void TPhotonMylla::run_task() {
-    u8 *arg0 = (u8 *)this;
+    TPhotonMylla *arg0 = this;
     typedef char sp8_offset[(offsetof(Stack_801AD5D8, sp8) == 0x0) ? 1 : -1];
     typedef char spC_offset[(offsetof(Stack_801AD5D8, spC) == 0x4) ? 1 : -1];
     typedef char sp14_offset[(offsetof(Stack_801AD5D8, sp14) == 0xC) ? 1 : -1];
@@ -249,7 +248,7 @@ void TPhotonMylla::run_task() {
         ((TUnk_804C3248 *)arg0)->begin_photon_summon_camera(3);
         ((RecoveredFields_801AD5D8_arg0 *)arg0)->field_1A4 = 0;
         ((TObjMotion *)arg0)->set_field_b8(0);
-        spawn_photon_blast_attachment_effects((void *) (arg0), 5);
+        spawn_photon_blast_attachment_effects(this, 5);
     }
     ((RecoveredFields_801AD5D8_arg0 *)arg0)->field_194 = (s16) ((RecoveredFields_801AD5D8_arg0 *)arg0)->field_B8;
     ((TUnk_804C3248 *)arg0)->update_state();
@@ -393,7 +392,7 @@ void *TPhotonMylla__ct(Mylla_801AD970 *self, Pkt_801AD970 *pkt) {
         if (o != NULL) {
             TPhotonMagicSquare__ct((u8 *)o, (s32)self, 5, (s32)&v, 0xAA, (f32)lbl_805DC200);
         }
-        spawn_photon_blast_attachment_effects(self, 5);
+        spawn_photon_blast_attachment_effects((TPhotonMylla *)self, 5);
         play_cue_stream_file((s32)lbl_80446E80);
     } else {
         spawn_photon_blast_opening_effects(5, F_801AD970(self, u16, 0x17C));
