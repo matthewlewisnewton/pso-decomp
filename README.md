@@ -190,3 +190,63 @@ and development claims pass for the observed head and no requests remain
 pending. It does not replace independent review, project-specific gates, queue
 admission, current-main acceptance, or publication. Labels never grant admission.
 Run the synthetic tests with `python3 -m unittest tools.tests.test_handoff_report`.
+
+The separate `tools/handoff_state.py` module provides a durable routing reducer
+for a future sole-queue adapter. `handoff_report.py` remains read-only. Store its
+SQLite database and receipt files outside the repository; no live integration or
+dispatch adapter is included. Import `Store` and `PinnedReceipts` from Python.
+
+- `Store.observe(item, head, main, revision, owners, now_ms)` records an explicit
+  inventory refresh. `owners` must supply all five stage owners. Inventory
+  revisions must increase when inputs change; old or conflicting observations
+  are rejected. An observation cannot establish a passing stage.
+- `PinnedReceipts({request_id: sha256})` is the trust boundary. A separate
+  independent verifier must issue each pin **after** checking the receipt and
+  its underlying evidence, including stage, result, immutable head/base and
+  reviewer independence. Do not automatically hash arbitrary files to make pins.
+  The module enforces integrity and the closed envelope schema, not the quality
+  or identity of the external verifier. It has no CLI for issuing pins.
+- `Store.ingest(verifier, request_id, path, now_ms)` records a pinned receipt
+  and its routing event atomically. Each JSON envelope has exactly `request_id`,
+  `item`, `head`, `base`, `stage`, `verdict`, `producer`, `reviewer`, and
+  `completed_ms`. Commit IDs and stages follow the report contract above;
+  verdicts are `pass`, `fail`, `unknown`, `hold`, `denied`, or `uncertain`.
+  Producer and reviewer must differ. Times are nonnegative integer milliseconds
+  on a common clock. Request IDs are globally unique: identical replay is safe,
+  but conflicting reuse fails.
+- `Store.current(item)` returns one current `event_id`, `next_owner`, typed
+  `next_action`, stage observations and any `blocked_reason`.
+  `Store.events(item)` is historical audit data, including superseded events;
+  it must never be treated as a dispatch queue. `Store.close()` closes the store.
+
+The typed actions are requests for source review, development validation,
+graph review, the sole queue transaction, and publication reconciliation.
+`request_queue_transaction` leaves all admission, fresh applicability, strict
+no-loss, DOL, ordered-link and CAS gates to the existing queue. Its existing
+transaction already validates and publishes; adding another dry-run or build
+would duplicate work. A publication reconciliation request checks an observed
+outcome and conveys no authority to push. Source/development receipts remain
+historical when main advances, while graph/acceptance/publication must bind the
+current main. Head changes require fresh evidence. Nonpassing receipts block;
+conflicting pass receipts cannot erase a HOLD or failure. Denied and uncertain
+outcomes remain blocked even across head changes. This first version has no
+unblock or denial-retry API; resolution requires independent human handling.
+
+SQLite uses a full-synchronous transaction for the receipt reference, retained
+receipt body, event and current pointer. A crash before commit rolls all back;
+replaying after commit returns the same logical event ID. Receipt arrival order
+and duplicate delivery cannot create another event for the same next action.
+There is no external dispatch, so this does not promise exactly-once remote
+execution. Any future adapter must be independently reviewed, consume only the
+current event, deduplicate its ID, recheck live authority and bind the existing
+queue journal; uncertain remote outcomes require reconciliation before retry.
+
+Run `python3 -m unittest tools.tests.test_handoff_state -v`. The sequential
+fixture defines a parent relay as one receipt-read/next-owner message after a
+stage completes: four receipts require four relays in the manual baseline.
+The reducer yields four durable action IDs (zero duplicate IDs on replay),
+which a future adapter could consume without those relays. Receipt-to-next-action
+latency is the event's `created_ms` minus its triggering receipt's
+`completed_ms`: all four fixture values are 7 ms. These are synthetic routing
+measurements, not measured live latency or realized compute savings; dispatch
+is disabled and live parent relays remain necessary.
