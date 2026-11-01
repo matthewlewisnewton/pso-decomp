@@ -198,6 +198,12 @@ class QueueTests(unittest.TestCase):
             self.rejects('unsafe_local_git_config',self.q.construct)
         self.assertFalse(marker.exists())
 
+    def test_recovery_rejects_gratuitous_config_packet(self):
+        self.batch['config_admission']={'checker':{'path':str(self.review),'sha256':m.digest(self.review)},
+                                        'packet':{'path':str(self.review),'sha256':m.digest(self.review)}}
+        with patch.object(m,'REMOTE',str(self.remote)):
+            self.rejects('invalid_config_admission',self.q.construct)
+
     def test_recovery_config_requires_exact_operator_packet_at_construction(self):
         from tools import merge_batch_config_delta as c
         git(self.author,'checkout','main')
