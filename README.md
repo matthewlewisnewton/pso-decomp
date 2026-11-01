@@ -11,18 +11,18 @@ Nothing from the game is included here. You need your own copy of the game to bu
 <!-- progress-table -->
 | | Matched | Linked |
 |:--|--:|--:|
-| Code | 94.76% (4,124,860 of 4,353,092) | 77.03% (3,353,104 of 4,353,092) |
-| Data | 73.16% (1,288,623 of 1,761,375) | 53.36% (939,891 of 1,761,375) |
-| Functions | 98.90% (27,268 of 27,572) | |
-| Units | | 69.94% (3,544 of 5,067) |
+| Code | 94.78% (4,125,944 of 4,353,092) | 77.34% (3,366,716 of 4,353,092) |
+| Data | 73.16% (1,288,655 of 1,761,375) | 53.46% (941,659 of 1,761,375) |
+| Functions | 98.91% (27,271 of 27,572) | |
+| Units | | 70.06% (3,549 of 5,066) |
 <!-- /progress-table -->
 
 Measured on `PsoV3.dol` on 2026-11-01 at validated source commit
-[`59b6c72cc6`](https://github.com/matthewlewisnewton/pso-decomp/commit/59b6c72cc647b571c3e9349d6697d308afd32c7f).
+[`1e0c8215d2`](https://github.com/matthewlewisnewton/pso-decomp/commit/1e0c8215d23c7c96f4d534d916f5e16044fbb1f6).
 The README-only publication commit records the measurements of its parent source tree.
 A function is matched when it compiles to the original's exact bytes. Code, data and
 units are linked when the build takes them from compiled source instead of the original. Data includes `.bss`.
-The build still uses 1,523 original-object fallback units; matched functions in those units are not counted as
+The build still uses 1,517 original-object fallback units; matched functions in those units are not counted as
 source-linked coverage. Unit counts can change when translation units are consolidated.
 
 ## Target
