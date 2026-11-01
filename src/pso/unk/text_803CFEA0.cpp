@@ -171,16 +171,6 @@ void TLobby__sub_803D006C(void *arg) {
 
 #pragma pop
 
-s32 TLobby::get_handle_field_1c() {
-    u8 *arg0 = (u8 *)this;
-    if (arg0 == NULL) {
-        if (((s32 (*)(s32, s32 *, s32)) lbl_805D760C) != NULL) {
-            lbl_805D760C(lbl_805D7608, &lbl_8047DAE4.value, 0);
-        }
-        return 0;
-    }
-    return *(s32 *)((s8 *)arg0 + 0x1c);
-}
 extern s32 dvd_synchronous_read_enabled;
 void DCInvalidateRange(void *, u32);
 s32 DVDGetTransferredSize(void *);
@@ -312,6 +302,18 @@ s32 TLobby__sub_803D0214(void *arg, s32 count, void *buf) {
 }
 #pragma pop
 
+// Keep this definition after 803D0214 to preserve the original link order.
+s32 TLobby::get_handle_field_1c() {
+    u8 *arg0 = (u8 *)this;
+    if (arg0 == NULL) {
+        if (((s32 (*)(s32, s32 *, s32)) lbl_805D760C) != NULL) {
+            lbl_805D760C(lbl_805D7608, &lbl_8047DAE4.value, 0);
+        }
+        return 0;
+    }
+    return *(s32 *)((s8 *)arg0 + 0x1c);
+}
+
 s32 TLobby__sub_803D0654(struct File_803D0654 *arg0, s32 arg1, s32 arg2) {
     if (arg0 == NULL) {
         if (lbl_805D760C != NULL) {
@@ -343,6 +345,7 @@ void TLobby__sub_803D0714(void *arg) {
     u32 elapsed;
     s32 result;
 
+    // Both null tests reproduce the original's unreachable report block.
     if (r == NULL) {
         return;
     }
@@ -368,6 +371,7 @@ void TLobby__sub_803D0714(void *arg) {
         }
         start = OSGetTick() / (*(u32 *)0x800000F8 / 4 / 1000);
         neg1 = -1 - start;
+        // This empty array-address test preserves MWCC's register allocation.
         if (rr->block && rr->block) { }
         while (!dvd_request_idle(rr)) {
             rr->status = DVDGetCommandBlockStatus(rr->block);
