@@ -11,7 +11,7 @@ s32 TAdMultiPlyChrSelectGC__sub_802C6848(s32 arg0);
 // The original non-static helper receives the selection object but does not inspect it.
 s32 find_active_slot__22TAdMultiPlyChrSelectGCFv(void *selection);
 u32 get_multiplayer_controller_active_index(int param_1);
-bool is_multiplayer_character_slot_selected(s32 arg0);
+s32 is_multiplayer_character_slot_selected(s32 arg0);
 }
 
 #endif
