@@ -427,7 +427,6 @@ extern s32 chunk_polygon_flags_and_mask;
 extern s32 model_render_flags;
 
 void render_with_fade__19TObjEneEpsilonGuardFPvi(u8 *arg0, s32 arg1);
-s32 move_with_wall_slide_commit__9TObjEneDDFfff(void *, void *, f32, f32, f32);
 extern void *TObjEneEpsilonGuard__movement_params;
 void TObjEneEpsilonGuard__sub_8035E8C0(void *, s32);
 s32 VecCopy__FP3VecPC3Vec(void *);
@@ -820,7 +819,7 @@ block_23:
                 *(s32 *)((s8 *)this + 0x438) = (s32) (*(s32 *)((s8 *)this + 0x438) + *(s32 *)((s8 *)this + 0x43C));
                 set_orbit_destination(*(s32 *)((s8 *)this + 0x438));
                 this->update_velocity();
-                move_with_wall_slide_commit__9TObjEneDDFfff(this, TObjEneEpsilonGuard__movement_params, *(f32 *)((s8 *)this + 0x3A0), *(f32 *)((s8 *)this + 0x3A8), *(f32 *)((s8 *)TObjEneEpsilonGuard__movement_params + 8));
+                this->move_with_wall_slide_commit( *(f32 *)((s8 *)this + 0x3A0), *(f32 *)((s8 *)this + 0x3A8), *(f32 *)((s8 *)TObjEneEpsilonGuard__movement_params + 8));
             }
             break;
         case 2:
@@ -861,7 +860,7 @@ void TObjEneEpsilonGuard__sub_8035E8C0(void *ene_epsilon_guard, s32 arg1) {
             if (*(f32 *)((s8 *)ene_epsilon_guard + 0x3AC) > d[0] + d[1]) {
                 *(s32 *)((s8 *)ene_epsilon_guard + 0x46C) |= 0x200;
             } else {
-                move_with_wall_slide_commit__9TObjEneDDFfff(ene_epsilon_guard, d, -*(f32 *)((s8 *)ene_epsilon_guard + 0x3A0), -*(f32 *)((s8 *)ene_epsilon_guard + 0x3A8), d[1]);
+                ((TObjEneDD *)ene_epsilon_guard)->move_with_wall_slide_commit( -*(f32 *)((s8 *)ene_epsilon_guard + 0x3A0), -*(f32 *)((s8 *)ene_epsilon_guard + 0x3A8), d[1]);
             }
         }
         *(s32 *)((s8 *)ene_epsilon_guard + 0x60) = ((TObjEneEpsilonGuard *)ene_epsilon_guard)->calc_angle_to_target();

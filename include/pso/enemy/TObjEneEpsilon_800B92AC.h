@@ -2,10 +2,10 @@
 #define PSO_ENEMY_TOBJENEEPSILON_800B92AC_H
 
 #include "types.h"
+#include "pso/enemy/EnemyMovement.h"
 
 extern "C" {
 void TObjEneEpsilon__sub_800B92AC(u8 *arg0, s32 arg1, f32 farg0);
-void TObjEneEpsilon__sub_800B92F8(u8 *arg0, s32 arg1, f32 farg0);
 void TObjEneEpsilon__sub_800B9384(u8 *arg0, s32 arg1, f32 farg0);
 int vfunc_104__12TObjEneDD_STFf(void *p);
 s32 enemy_bind_or_clear_target(void *self, u16 x);
@@ -19,7 +19,6 @@ void select_nearest_target__12TObjEneDD_STFf(s32 arg0);
 // --- C functions defined in TObjEneEpsilon_800B92AC.cpp ---
 extern "C" {
 void TObjEneEpsilon__sub_800B92AC(u8 *ene_epsilon, s32 arg1, f32 farg0);
-void TObjEneEpsilon__sub_800B92F8(u8 *ene_epsilon, s32 arg1, f32 farg0);
 void TObjEneEpsilon__sub_800B9384(u8 *arg0, s32 arg1, f32 farg0);
 int vfunc_104__12TObjEneDD_STFf(void *p);
 s32 enemy_bind_or_clear_target(void *self, u16 x);
