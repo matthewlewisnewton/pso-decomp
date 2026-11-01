@@ -55,6 +55,8 @@ It must end in `PASS`. It runs these checks, which you can also run one at a tim
 - `python tools/link_units.py check` checks that every unit in `linked_units.txt` still links from source. objdiff
   can score a unit 100% while its object won't link. One example is a constant or string turned into a literal
   that `symbols.txt` still exports as a global.
+- `python tools/link_units.py force-active --check` fails if the generated `config.yml` retention list differs
+  from the current linkset and split references. It reads inputs without changing metadata.
 
 When `link_units.py` reports a problem, run `python tools/link_units.py scan`. It writes every reason for each unit
 to `config/GPOE8P/psov3/linked_units_blocked.json`:
@@ -73,6 +75,20 @@ would keep the unit from linking anyway.
 
 When your change makes a whole unit match, run `python tools/link_units.py scan --write` to link it, then
 `python configure.py` and `ninja` again, and commit the updated `linked_units.txt` and `config.yml`.
+
+The `force_active` block is generated globally: changing a split, symbol name or reference can affect other units.
+Start from a current-main baseline whose retention check passes. Use fresh split objects and
+`build/GPOE8P/config.json` produced for the exact checked-in splits and symbols, with the pinned tools and original
+inputs used for validation. The scanner uses the active object inventory in that generated config, including
+unlinked original units; neither a directory of old `.o` files nor a function-match report establishes provenance.
+The retention check compares metadata; it cannot authenticate a copied build directory.
+
+If unchanged main fails the retention check, reproduce and explain the drift in a separate synchronization PR.
+Normalize once with `python tools/link_units.py force-active --write`, which leaves `linked_units.txt` unchanged,
+then rebuild and run the full checks against main before merging. Include additions and removals in the review;
+removing a retention entry needs original-DOL and code/data/function/link no-loss validation. Rebase later unit
+PRs onto that synchronized base so their generated changes reflect their unit work. Do not silently restore
+stale entries to make a diff smaller or include unrelated normalization without explaining its separate scope.
 
 ## Rules
 

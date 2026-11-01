@@ -17,6 +17,7 @@ Usage:
   link_units.py scan --write    # add candidates, drop regressions, write list
   link_units.py bisect          # after a build.sha1 failure: find the culprit
   link_units.py force-active --write   # list unreferenced symbols of linked units in config.yml
+  link_units.py force-active --check   # fail if that generated list is out of date (no writes)
 
 ``scan`` also writes ``linked_units_blocked.json`` next to the list: units
 whose functions all match but whose object fails a link check, with every
@@ -942,7 +943,7 @@ def _force_active_names(linked: set[str], symbols: list[tuple[str, int, str]]) -
     return want
 
 
-def _update_force_active(want: list[str], write: bool) -> None:
+def _update_force_active(want: list[str], write: bool) -> bool:
     have = _read_force_active()
     add = sorted(set(want) - set(have))
     drop = sorted(set(have) - set(want))
@@ -951,13 +952,25 @@ def _update_force_active(want: list[str], write: bool) -> None:
         _write_force_active(want)
         print(f"  wrote {CONFIG_YML.relative_to(ROOT)} force_active block ({len(want)} names); "
               "dtk re-splits + regenerates ldscript FORCEACTIVE on the next ninja")
+    return bool(add or drop)
 
 
-def force_active(write: bool) -> int:
+def force_active(write: bool, check: bool = False) -> int:
+    """Compare the current linkset using fresh split inputs supplied by the build.
+
+    This is a metadata consistency check, not proof that a copied build directory
+    belongs to this revision or that removing retention entries preserves the DOL.
+    """
+    if not LINKED.is_file():
+        sys.exit(f"missing linked-unit inventory {LINKED}; no outputs written")
     snapshot, symbols = _read_symbol_inventory()
     want = _force_active_names(set(_read_list(LINKED)), symbols)
     _check_symbol_inventory(snapshot)
-    _update_force_active(want, write)
+    changed = _update_force_active(want, write)
+    if check and changed:
+        print("FAIL: force_active is out of date; regenerate from fresh build inputs "
+              "with `link_units.py force-active --write`, then rebuild and validate")
+        return 1
     return 0
 
 
@@ -1050,15 +1063,17 @@ def main() -> int:
     s.add_argument("--write", action="store_true")
     sub.add_parser("check")
     sub.add_parser("bisect")
-    f = sub.add_parser("force-active", help="tag unreferenced symbols of linked units in symbols.txt")
-    f.add_argument("--write", action="store_true")
+    f = sub.add_parser("force-active", help="synchronize unreferenced linked-unit symbols in config.yml")
+    mode = f.add_mutually_exclusive_group()
+    mode.add_argument("--write", action="store_true")
+    mode.add_argument("--check", action="store_true", help="fail on drift without writing files")
     a = ap.parse_args()
     if a.cmd == "scan":
         return scan(a.write)
     if a.cmd == "check":
         return check()
     if a.cmd == "force-active":
-        return force_active(a.write)
+        return force_active(a.write, a.check)
     return bisect()
 
 
