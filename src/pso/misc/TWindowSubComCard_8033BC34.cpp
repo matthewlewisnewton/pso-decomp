@@ -1,10 +1,8 @@
-#include "types.h"
-#include "pso/misc/TWindowSubComCard.h"
+#include "pso/misc/TCheckMemoryCard.h"
 
-extern "C" {
+extern "C" void fn_8033BCDC(TCheckMemoryCard *card, s32 kind, s32 menu, s32 first, s32 second);
 
-void fn_8033BCDC(TWindowSubComCard *card, s32 kind, s32 menu_kind, s32 sub_entry, s32 alt_sub_entry);
-
-void TWindowSubComCard::update_card_display(void* a1, void* a2, void* a3, void* a4) { close_windows(); fn_8033BCDC((TWindowSubComCard *)this, (s32)a1, (s32)a2, (s32)a3, (s32)a4); }
-
+void TCheckMemoryCard::update_card_display(s32 kind, s32 menu, s32 first, s32 second) {
+    close_windows();
+    fn_8033BCDC(this, kind, menu, first, second);
 }

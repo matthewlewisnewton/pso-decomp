@@ -1,11 +1,6 @@
-#include "types.h"
-#include "pso/misc/TQuestVmDownLoadServer.h"
+#include "pso/misc/TCheckMemoryCard.h"
 
-extern "C" {
-
-int create_message_and_menu__17TWindowSubComCardFUllUlUl(void*, void*, void*, void*, void*);
-int close_windows__17TWindowSubComCardFv(void*);
-
-void TQuestVmDownLoadServer::init(void* a1, void* a2, void* a3, void* a4) { close_windows__17TWindowSubComCardFv(this); create_message_and_menu__17TWindowSubComCardFUllUlUl(this, a1, a2, a3, a4); }
-
+void TCheckMemoryCard::init(u32 message, s32 selection, u32 first, u32 second) {
+    close_windows();
+    create_message_and_menu(message, selection, first, second);
 }
