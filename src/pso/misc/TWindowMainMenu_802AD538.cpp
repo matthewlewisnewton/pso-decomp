@@ -8,6 +8,8 @@ struct TWindowSubComCard;
 #include "pso/misc/TWindowMainMenu.h"
 #include "pso/misc/TLanguage.h"
 #include "pso/misc/TWindowKeyBoardSoft.h"
+#include "pso/misc/TWindowKeyBoardSoft_8024E68C.h"
+#include "pso/unk/text_8026CB5C.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 
 struct Item_802AE4DC { u8 pad[0x12]; u8 sel; };
@@ -68,7 +70,6 @@ struct RecoveredGlobal_802AE59C_lbl_8050E208 {
     u8 remaining[0x1AC];
 };
 
-struct Rect_802AE2B0 { f32 x, y, w, h; u8 pad[0x34 - 0x10]; u32 color; };
 
 typedef char RecoveredGlobal_802AE59C_lbl_8050E208_size[sizeof(RecoveredGlobal_802AE59C_lbl_8050E208) == 0x1B0 ? 1 : -1];
 
@@ -84,19 +85,9 @@ struct Item_802AD538 {
     s8 x14;
 };
 
-struct Win_802AD538 {
-    u8 pad[0x38];
-    f32 x38;
-    f32 x3c;
-    f32 x40;
-};
 
 struct UV_802AD538 { f32 u, v; };
 
-struct Rect_802AD538 {
-    f32 x0, y0, x1, y1;
-    f32 u0, v0, u1, v1;
-};
 
 struct Item_802AD7F0 {
     f32 x0;
@@ -119,16 +110,13 @@ s32 apply_choice__20TWindowChoiceSettingFllll(void *, int, int, int);
 f32 TWindowSubComCard__sub_80244784(TWindowSubComCard *);
 s32 is_window_reveal_complete__13TUnk_804CE018Fv();
 s32 sub_80246948__13TUnk_804CE018Fv();
-s32 try_open__19TWindowKeyBoardSoftFii(s32 arg0, s32 arg1);
-Rect_802AE2B0 * open_singleton__19TWindowKeyBoardSoftFiiii(void *, void *, s32, f32, s32);
-s32 fn_8026CB68();
-void draw_item_labels__15TWindowMainMenuFv(Item_802AD538 *p, Win_802AD538 *w);
+void draw_item_labels__15TWindowMainMenuFv(Item_802AD538 *p, TWindowDrawContext *context);
 void park_selection__15TWindowMainMenuFPv(Menu_802AD980 *arg0);
 void copy_color_entry__15TWindowMainMenuFPvPv(Col_802ADA48 *arg0, Col_802ADA48 *arg1);
 void TWindowMainMenu__sub_802ADADC(Obj_802ADADC *self, s8 i);
 int find_free_item_slot__15TWindowMainMenuFPv(Obj_802ADC04 *self);
 s32 append_child_rows__15TWindowMainMenuFPvi(Menu_802ADD38 *arg0, s32 arg1);
-Rect_802AE2B0 * setup_content_frame__15TWindowMainMenuFPv(u8 *arg0);
+TWindowDrawContext *setup_content_frame__15TWindowMainMenuFPv(TWindowMenuMainMenu *menu);
 void begin_screen_draw(s32 arg0);
 void draw_textured_quad_at_depth(f32 *q, f32 depth);
 void set_draw_texture_and_color(s32 idx, s32 arg1);
@@ -148,8 +136,8 @@ extern f32 lbl_805DE164;
 extern const f32 lbl_805DE1A4;
 extern f32 lbl_805DE1A8;
 
-void draw_item_labels__15TWindowMainMenuFv(Item_802AD538 *p, Win_802AD538 *w) {
-    Rect_802AD538 r;
+void draw_item_labels__15TWindowMainMenuFv(Item_802AD538 *p, TWindowDrawContext *context) {
+    f32 quad[8];
     f32 scale;
     UV_802AD538 *uv;
     u32 color;
@@ -157,7 +145,7 @@ void draw_item_labels__15TWindowMainMenuFv(Item_802AD538 *p, Win_802AD538 *w) {
     f32 a;
 
     if (((TWindowMainMenu *)p)->is_item_active() != 0 && p->x10 > 0) {
-        scale = -1.0f / (0.299f + w->x38);
+        scale = -1.0f / (0.299f + context->depth);
         uv = &main_menu_label_uv_table[p->x11];
         begin_render__20TWindowSubStatusDispFl();
         switch (p->x12) {
@@ -184,16 +172,16 @@ void draw_item_labels__15TWindowMainMenuFv(Item_802AD538 *p, Win_802AD538 *w) {
         }
         begin_screen_draw(1);
         set_draw_texture_and_color(2, color);
-        r.x0 = w->x3c + p->x8;
-        r.y0 = w->x40 + p->xc;
-        r.x1 = 98.0f + r.x0;
-        r.y1 = 16.0f + r.y0;
-        r.u0 = uv->u / 256.0f;
-        r.v0 = uv->v / 256.0f;
-        r.u1 = (98.0f + uv->u) / 256.0f;
-        r.v1 = (16.0f + uv->v) / 256.0f;
-        if (try_open__19TWindowKeyBoardSoftFii((s32)w, (s32)&r) != 0) {
-            draw_textured_quad_at_depth((f32 *)&r, scale);
+        quad[0] = context->clip_left + p->x8;
+        quad[1] = context->clip_top + p->xc;
+        quad[2] = 98.0f + quad[0];
+        quad[3] = 16.0f + quad[1];
+        quad[4] = uv->u / 256.0f;
+        quad[5] = uv->v / 256.0f;
+        quad[6] = (98.0f + uv->u) / 256.0f;
+        quad[7] = (16.0f + uv->v) / 256.0f;
+        if (try_open__19TWindowKeyBoardSoftFii(context, quad) != 0) {
+            draw_textured_quad_at_depth(quad, scale);
         }
         TWindowSubStatusDisp::get_player();
         TLanguage::set_entry_index(2, 0x4B);
@@ -529,25 +517,15 @@ void TWindowMainMenu::draw_entries_reversed(u8 *arg1) {
     } while (var_r31 < 8);
 }
 
-// The caller passes the content-frame context returned by setup_content_frame.
-struct FrameContext_802ADF20 {
-    f32 x, y, width;
-    u8 pad0c[0x10];
-    f32 height;
-    u8 pad20[0x14];
-    u32 color;
-};
-
 extern GinjaTextureList *lbl_805D63F0;
-void apply_context_transform_to_rect(void *, f32 *);
 extern const f32 lbl_805DE154;
 
-void draw_frame__19TWindowMenuMainMenuFv(TWindowMenuMainMenu *window, FrameContext_802ADF20 *context) {
+void draw_frame__19TWindowMenuMainMenuFv(TWindowMenuMainMenu *window, TWindowDrawContext *context) {
     // Rectangle coordinates followed by texture coordinates.
     f32 quad[8];
     f32 depth = -1.0f / (0.299f + window->m_54);
     f32 offset = 0.0f;
-    f32 remaining = context->height;
+    f32 remaining = context->inner_h;
     f32 height;
     begin_screen_draw(1);
     set_current_texture_list(lbl_805D63F0);
@@ -565,7 +543,7 @@ void draw_frame__19TWindowMenuMainMenuFv(TWindowMenuMainMenu *window, FrameConte
         offset += 28.0f;
         remaining -= 28.0f;
         quad[0] = context->x; quad[1] = context->y + offset;
-        quad[2] = quad[0] + context->width; quad[3] = 23.0f + quad[1];
+        quad[2] = quad[0] + context->w; quad[3] = 23.0f + quad[1];
         quad[4] = 0.0f; quad[5] = 0.3125f;
         quad[6] = 0.453125f; quad[7] = 0.40234375f;
         apply_context_transform_to_rect(context, quad);
@@ -576,7 +554,7 @@ void draw_frame__19TWindowMenuMainMenuFv(TWindowMenuMainMenu *window, FrameConte
         f32 x = context->x;
         quad[0] = x; f32 zero = 0.0f;
         quad[1] = context->y + zero;
-        quad[2] = x + context->width;
+        quad[2] = x + context->w;
         f32 edge = 39.0f + quad[1];
         quad[3] = 3.0f + edge;
         quad[4] = 0.453125f; quad[5] = 0.6796875f;
@@ -594,7 +572,7 @@ void draw_frame__19TWindowMenuMainMenuFv(TWindowMenuMainMenu *window, FrameConte
             height = 16.0f;
         }
         quad[0] = context->x; quad[1] = context->y + offset;
-        quad[2] = quad[0] + context->width; quad[3] = quad[1] + height;
+        quad[2] = quad[0] + context->w; quad[3] = quad[1] + height;
         quad[4] = 0.0f; quad[5] = 0.40234375f;
         quad[6] = 0.453125f; quad[7] = (103.0f + height) / 256.0f;
         apply_context_transform_to_rect(context, quad);
@@ -603,7 +581,7 @@ void draw_frame__19TWindowMenuMainMenuFv(TWindowMenuMainMenu *window, FrameConte
         remaining -= height;
     }
     quad[0] = context->x; quad[1] = context->y + offset;
-    quad[2] = quad[0] + context->width; quad[3] = 39.0f + quad[1];
+    quad[2] = quad[0] + context->w; quad[3] = 39.0f + quad[1];
     quad[4] = 0.0f; quad[5] = 0.52734375f;
     quad[6] = 0.453125f; quad[7] = 0.6796875f;
     apply_context_transform_to_rect(context, quad);
@@ -611,16 +589,16 @@ void draw_frame__19TWindowMenuMainMenuFv(TWindowMenuMainMenu *window, FrameConte
     TWindowSubStatusDisp::get_player();
 }
 
-Rect_802AE2B0 *setup_content_frame__15TWindowMainMenuFPv(u8 *window_menu_main_menu) {
+TWindowDrawContext *setup_content_frame__15TWindowMainMenuFPv(TWindowMenuMainMenu *window_menu_main_menu) {
     f32 v;
-    Rect_802AE2B0 *r;
-    r = open_singleton__19TWindowKeyBoardSoftFiiii(window_menu_main_menu + 0x40, window_menu_main_menu + 0x48, fn_8026CB68(), ((TWindowMenuMainMenu *)window_menu_main_menu)->m_54, ((TWindowMenuMainMenu *)window_menu_main_menu)->m_2c);
+    TWindowDrawContext *r;
+    r = open_singleton__19TWindowKeyBoardSoftFiiii(window_menu_main_menu->position, window_menu_main_menu->size, fn_8026CB68(), window_menu_main_menu->m_2c, window_menu_main_menu->m_54);
     if (is_not_split_screen__15TWindowMainMenuFv(window_menu_main_menu) != 0) {
         v = 51.0f;
     } else {
         v = 39.0f;
     }
-    ((TWindowKeyBoardSoft *)r)->set_bounds(10.0f + r->x, r->y + v, (r->x + r->w) - 10.0f, (r->y + r->h) - 39.0f);
+    set_bounds__19TWindowKeyBoardSoftFffff(r, 10.0f + r->x, r->y + v, (r->x + r->w) - 10.0f, (r->y + r->h) - 39.0f);
     r->color = ((s32)(255.0f * TWindowSubComCard__sub_80244784((TWindowSubComCard *)window_menu_main_menu)) << 24) | 0xFF0000 | 0xFFFF;
     return r;
 }
