@@ -742,7 +742,9 @@ void TAdMultiPlyChrSelectGC__sub_802C6660(S_802C50EC *self) {
             self->quad[i + 4][0].v0 = (f32)(s32)i * lbl_80471CE0[1] * TAdMultiPlyChrSelectGC__data_805DE584;
             self->quad[i + 4][0].u1 = lbl_80471CE0[0] * TAdMultiPlyChrSelectGC__data_805DE584;
             self->quad[i + 4][0].v1 = ((f32)(s32)i * lbl_80471CE0[1] + lbl_80471CE0[1]) * TAdMultiPlyChrSelectGC__data_805DE584;
-            TAdMultiPlyChrSelectGC__data_804E0A68[row + 1][col + 1] = -1;
+            s32 y = row + 1;
+            s32 x = col + 1;
+            TAdMultiPlyChrSelectGC__data_804E0A68[y][x] = -1;
         }
     }
     TAdMultiPlyChrSelectGC__data_805D67D8 = find_active_slot__22TAdMultiPlyChrSelectGCFv(self);
