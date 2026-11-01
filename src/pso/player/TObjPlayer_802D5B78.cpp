@@ -3,8 +3,8 @@
 
 extern "C" f32 normalize_vector(Vec *);
 
-// WIP: the incoming Vec copy is still inexact. Keep the callback boundary
-// provisional while using the established hit/body layout internally.
+// Keep the callback boundary provisional while using the established hit/body
+// layout internally. The incoming vector is copied before normalization.
 // Preserve x/y/z store order: output may overlap a body center.
 typedef char HitTargetOffset[offsetof(ActorBodyHit,target)==0 ? 1 : -1];
 typedef char HitBodyOffset[offsetof(ActorBodyHit,body)==4 ? 1 : -1];
@@ -16,10 +16,10 @@ typedef char VectorSize[sizeof(Vec)==12 ? 1 : -1];
 
 #pragma push
 #pragma fp_contract on
-extern "C" void TObjPlayer__sub_802D5B78(void *arg0, void *arg1, void *arg2) {
+extern "C" void TObjPlayer__sub_802D5B78(void *arg0, void *arg1, const void *arg2) {
     ActorBodyHit *hit = static_cast<ActorBodyHit *>(arg0);
     Vec *output = static_cast<Vec *>(arg1);
-    Vec normalized = *static_cast<Vec *>(arg2);
+    Vec normalized = *static_cast<const Vec *>(arg2);
     (void)normalize_vector(&normalized);
     CollisionBody *body = &hit->target->bodies[hit->body];
     f32 radius = body->radius;
