@@ -67,6 +67,15 @@ void get_current_matrix(void *m) {
 #pragma pop
 
 #pragma push
+#pragma fp_contract on
+extern "C" f32 vec3_dot(const Vec *a, const Vec *b) {
+    f32 dot = b->x * a->x;
+    dot = a->y * b->y + dot;
+    return a->z * b->z + dot;
+}
+#pragma pop
+
+#pragma push
 #pragma scheduling off
 
 void TObjPlayer::invert_matrix_in_place(u32 arg0) {
