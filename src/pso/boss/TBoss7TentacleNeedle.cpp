@@ -703,3 +703,9 @@ TBoss7Tentacle::TBoss7Tentacle(TObject *object, s32 arg2, s32 arg3) : TObject(ob
 }
 
 void TObjPlayer__sub_802F0D2C(void) {  }
+
+extern "C" {
+Node_802EFF24 lbl_80541528[14];
+V_802F0A5C TBoss7Tentacle__segment_offsets[14];
+u32 TBoss7Tentacle__needle_offsets[14];
+}
