@@ -10,6 +10,16 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/map/FloorArea.h"
+#include "pso/system/NinjaTypes.h"
+#include "pso/system/MatrixStack.h"
+#include "pso/system/MatrixOps.h"
+#include "pso/math/MatrixTransforms.h"
+#include "pso/unk/text_803D8F74.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/GinjaMaterial.h"
+#include "pso/TParticleCtrl.h"
+
+void direction_to_rotation_xz(u8 *, s32 *, s32 *);
 
 struct VBase_18_65b835 { char pad[0x18]; };
 
@@ -132,6 +142,10 @@ extern s32 __vt__13TOCtrlDubchik[];
 extern s32 lbl_805D2F1C;
 extern const f32 TOCtrlDubchik__data_805DB3A8;
 extern const f32 lbl_805DB3BC;
+extern const f32 lbl_805DB3C0;
+extern const f32 lbl_805DB3C4;
+
+void draw_blob_shadow(s32);
 extern const f32 lbl_805DB3C8;
 u8 *TOCtrlDubchik__ct(TOCtrlDubchik *arg0, s32 arg1, s32 arg2);
 f32 sin_table_lookup(s32);
@@ -317,6 +331,60 @@ void TOCtrlDubchik::run_task() {
     VecCopy((Vec *)&this->body_center_position, (const Vec *)&this->position);
     ((TObjCollidable *)arg0)->refresh_collision_body_centers();
     submit_cursor_candidate(arg0, -1);
+}
+
+void TOCtrlDubchik::render() {
+    NJS_OBJECT *node;
+    s32 rot_x, rot_z;
+
+    m_39c = update_object_view_visibility(unk_374, m_378);
+    if ((s32)m_39c == 1) {
+        push_matrix();
+        post_translate_matrix(&position.x);
+        rotate_matrix_y(NULL, rotation_y);
+        set_current_texture_list((GinjaTextureList *)texlist);
+        node = (NJS_OBJECT *)model;
+        post_translate_matrix(node->pos);
+        draw_ginja_model((s32)node->model);
+        push_matrix();
+        node = node->child;
+        translate_matrix(0, node->pos[0], node->pos[1] + unk_384, node->pos[2]);
+        draw_ginja_model((s32)node->model);
+        pop_matrix();
+        push_matrix();
+        node = node->sibling;
+        translate_matrix(0, node->pos[0], node->pos[1] - unk_384, node->pos[2]);
+        draw_ginja_model((s32)node->model);
+        pop_matrix();
+        push_matrix();
+        node = node->sibling;
+        post_translate_matrix(node->pos);
+        rotate_matrix_y(NULL, m_38c);
+        draw_ginja_model((s32)node->model);
+        TParticleCtrl::begin_effect_render();
+        push_matrix();
+        node = node->child;
+        post_translate_matrix(node->pos);
+        scale_matrix(NULL, m_388, TOCtrlDubchik__data_805DB3AC, m_388);
+        draw_ginja_model((s32)node->model);
+        pop_matrix();
+        TParticleCtrl::end_effect_render();
+        pop_matrix();
+        pop_matrix();
+    }
+    push_matrix();
+    direction_to_rotation_xz((u8 *)this + 0x248, &rot_x, &rot_z);
+    translate_matrix(0, m_390.x, lbl_805DB3C0 + m_390.y, m_390.z);
+    rotate_matrix_z(NULL, rot_z);
+    rotate_matrix_x(NULL, rot_x);
+    rotate_matrix_y(NULL, rotation_y);
+    rotate_matrix_x(NULL, -0x4000);
+    Vec shadow_scale;
+    shadow_scale.x = shadow_scale.y = (shadow_scale.z = TOCtrlDubchik__data_805DB3AC) -
+        lbl_805DB3C4 * (m_37c - TOCtrlDubchik__data_805DB3B8);
+    scale_current_matrix(&shadow_scale.x);
+    draw_blob_shadow(0);
+    pop_matrix();
 }
 
 void *TOCtrlDubchik::create(void *arg0) {
