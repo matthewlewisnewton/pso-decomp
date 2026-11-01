@@ -909,6 +909,7 @@ pso/misc/TDLGraph_8007F7DC.cpp
 pso/misc/TDLGraph_8007F85C.cpp
 pso/misc/TDeadSpot.cpp
 pso/misc/TDuelEffectNumber.cpp
+pso/misc/TDuelEffectNumber_80080290.cpp
 pso/misc/TDuelEffectNumber_80080460.cpp
 pso/misc/TEnding.cpp
 pso/misc/TEndingAB.cpp
