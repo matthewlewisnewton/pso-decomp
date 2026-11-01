@@ -107,7 +107,7 @@ An unchanged aggregate coverage report is not proof of binary equivalence.
 Both JSON snapshots have `version: 1`, a full 40-character `revision`, an
 absolute `root`, `proofs`, `global_inputs`, and a nonempty `consumers` object.
 Every file entry is `{"path": "relative/path", "sha256": "<lowercase 64-digit SHA-256>"}`;
-paths must resolve to regular files inside the snapshot root. `proofs` contains
+paths must be root-relative, contain no parent traversal, and resolve to regular files inside the snapshot root. Both the supplied path and its resolved root-relative path are compared, so a rename or changed symlink target is treated as a change even when bytes match. `proofs` contains
 `graph` and `inventory_review`; the baseline also contains
 `development_receipt`. Each is a file entry. `global_inputs` contains nonempty
 file-entry maps under each of `source`, `tool`, `compiler`, `config`, and

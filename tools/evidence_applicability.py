@@ -35,13 +35,16 @@ def checked_files(root, entries, label, errors):
                 raise ValueError('invalid entry')
             if set(item) != {'path', 'sha256'} or not HEX.fullmatch(item['sha256']):
                 raise ValueError('expected path and lowercase SHA-256')
-            path = (root / item['path']).resolve(strict=True)
+            lexical = item['path']
+            if not isinstance(lexical, str) or not lexical or Path(lexical).is_absolute() or '..' in Path(lexical).parts:
+                raise ValueError('path must be root-relative without parent traversal')
+            path = (root / lexical).resolve(strict=True)
             if not path.is_relative_to(root) or not path.is_file():
                 raise ValueError('file outside root or not a regular file')
             digest = hashlib.sha256(path.read_bytes()).hexdigest()
             if digest != item['sha256']:
                 raise ValueError('content hash mismatch')
-            result[name] = digest
+            result[name] = {'path': lexical, 'resolved_path': path.relative_to(root).as_posix(), 'sha256': digest}
         except (OSError, TypeError, ValueError, KeyError) as exc:
             errors.append(f'{label}/{name}: {exc}')
     return result
@@ -78,8 +81,8 @@ def snapshot(path, baseline):
             parsed[name] = {'inputs': checked_files(root, entry['inputs'], f'consumer/{name}/inputs', errors)}
             if baseline:
                 checked = checked_files(root, entry['outputs'], f'consumer/{name}/outputs', errors)
-                parsed[name]['outputs'] = {key: {'path': str((root / entry['outputs'][key]['path']).resolve()), 'sha256': digest}
-                                           for key, digest in checked.items()}
+                parsed[name]['outputs'] = {key: {'path': str((root / entry['outputs'][key]['path']).resolve()), 'sha256': value['sha256']}
+                                           for key, value in checked.items()}
         return {'revision': raw['revision'], 'global': global_inputs, 'consumers': parsed}, errors
     except (OSError, ValueError, TypeError, KeyError, json.JSONDecodeError) as exc:
         return None, [f'{path}: {exc}']

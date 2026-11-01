@@ -71,6 +71,46 @@ class ComparisonTests(unittest.TestCase):
                 self.assertIn(category, r['global_changes'])
                 self.assertEqual(set(r['affected_consumers']), {'one', 'two'})
 
+    def test_identical_bytes_renamed_consumer_inputs_are_affected(self):
+        for consumer, key in (('one', 'source'), ('one', 'header'), ('two', 'helper')):
+            with self.subTest(consumer=consumer, key=key):
+                doc = json.loads(self.paths[1].read_text())
+                item = doc['consumers'][consumer]['inputs'][key]
+                root = Path(doc['root'])
+                renamed = item['path'] + '.renamed'
+                (root / item['path']).rename(root / renamed)
+                item['path'] = renamed
+                self.paths[1].write_text(json.dumps(doc))
+                result = self.run_compare()
+                self.assertIn(consumer, result['affected_consumers'])
+                self.assertNotIn(consumer, result['potentially_reusable_baseline_outputs'])
+
+    def test_identical_bytes_renamed_global_inputs_affect_all(self):
+        for category in ('source', 'tool', 'compiler', 'config', 'generated'):
+            with self.subTest(category=category):
+                doc = json.loads(self.paths[1].read_text())
+                item = doc['global_inputs'][category][category]
+                root = Path(doc['root'])
+                renamed = item['path'] + '.renamed'
+                (root / item['path']).rename(root / renamed)
+                item['path'] = renamed
+                self.paths[1].write_text(json.dumps(doc))
+                result = self.run_compare()
+                self.assertIn(category, result['global_changes'])
+                self.assertEqual(set(result['affected_consumers']), {'one', 'two'})
+
+    def test_changed_symlink_target_with_same_bytes_is_affected(self):
+        for side in (0, 1):
+            doc = json.loads(self.paths[side].read_text())
+            root = Path(doc['root'])
+            original = root / 'header.h'
+            target = root / ('old-target' if side == 0 else 'new-target')
+            original.rename(target)
+            original.symlink_to(target.name)
+        result = self.run_compare()
+        self.assertIn('one', result['affected_consumers'])
+        self.assertNotIn('one', result['potentially_reusable_baseline_outputs'])
+
     def test_stale_output_fails_closed(self):
         (self.base / 'old' / 'one.o').write_text('stale')
         r = self.run_compare()
