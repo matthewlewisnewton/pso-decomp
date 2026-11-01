@@ -1,18 +1,18 @@
 #include "types.h"
 #include "pso/item/TItemEffPG_8034FE28.h"
+#include "pso/item/TItemEffPG_8034FF4C.h"
 #include "pso/item/TUnk_804F0C08.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/player/TObjPlayer_801AF2F0.h"
 
 extern "C" {
 
-void TItemEffPG__ct(void *);
 void *__nw__7TObjectFUl(int);
 
 extern s32 lbl_804F0C08[];
 
 void *TUnk_804F0C08::initialize(void *arg1, void *arg2, void *arg3) {
-    TItemEffPG__ct(this);
+    TItemEffPG__ct((u8 *)this, (s32)arg1, (u8 *)arg2);
     *(s32 **)((s8 *)this + 0x18) = lbl_804F0C08;
     *(void * *)&this->unk_D4 = arg3;
     return this;
