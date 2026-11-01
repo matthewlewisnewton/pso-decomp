@@ -3,6 +3,7 @@
 #include "pso/misc/TWindowSubStatusDisp_803DEE6C.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
+#include "pso/render/SpriteDescriptor.h"
 
 struct Ent_8023DD0C { u8 type; u8 pad[3]; u32 f4; };
 
@@ -17,10 +18,6 @@ struct UV_8023DDC8 { s16 u; s16 v; };
 struct Arr_8023DDC8 { u8 type; u8 pad; u16 count; u8 pad2[4]; UV_8023DDC8 *uv; u8 pad3[4]; };
 
 struct Model_8023DDC8 { Arr_8023DDC8 *arrays; u8 pad[4]; void *s0; void *s1; };
-
-struct Spr_8023E0FC { s16 x0, y0, cx, cy, u0, v0, u1, v1; u8 pad[4]; };
-
-struct Self_8023E0FC { f32 x, y; u8 pad8[4]; f32 sx, sy; s32 rot; u8 pad18[4]; Spr_8023E0FC *sprs; };
 
 struct Vtx_8023E0FC { f32 x, y, z, u, v; s32 color; };
 
@@ -172,12 +169,11 @@ void TObjPlayer__sub_8023E034(void **arg0) {
 }
 #pragma push
 #pragma fp_contract on
-void TObjPlayer::draw_compass_sprite(s32 idx, s32 color, s32 flags, f32 z) {
-    Self_8023E0FC *self = (Self_8023E0FC *)this;
+void draw_compass_sprite__10TObjPlayerFlllf(SpriteDescriptor *self, s32 idx, s32 color, s32 flags, f32 z) {
     Vtx_8023E0FC v[4];
     Info_8023E0FC info;
     s32 i;
-    Spr_8023E0FC *s;
+    SpriteFrame *s;
     f32 x;
     f32 y;
     f32 l;
@@ -192,18 +188,18 @@ void TObjPlayer::draw_compass_sprite(s32 idx, s32 color, s32 flags, f32 z) {
         v[i].z = 1.0f / -z;
         v[i].color = color;
     }
-    s = &self->sprs[idx];
-    cx = s->cx;
-    cy = s->cy;
-    l = -cx * self->sx;
-    t = -cy * self->sy;
-    r = self->sx * (s->x0 - cx);
-    b = self->sy * (s->y0 - cy);
+    s = &self->frames[idx];
+    cx = s->center_x;
+    cy = s->center_y;
+    l = -cx * self->scale_x;
+    t = -cy * self->scale_y;
+    r = self->scale_x * (s->width - cx);
+    b = self->scale_y * (s->height - cy);
     x = self->x;
     y = self->y;
     if (flags & 1) {
-        sn = sin_table_lookup(self->rot);
-        cs = cos_table_lookup(self->rot);
+        sn = sin_table_lookup(self->rotation);
+        cs = cos_table_lookup(self->rotation);
         v[0].x = (cs * l + x) + sn * t;
         v[1].x = (cs * l + x) + sn * b;
         v[2].x = (cs * r + x) + sn * t;
