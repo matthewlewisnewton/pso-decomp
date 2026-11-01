@@ -52,14 +52,29 @@ The class's offset-90 field is now a descriptor pointer. The existing constructo
 stores the descriptor table's address there. Its size remains 0x94, and the sole
 other source consumer (`TWindowKeyBoardBase_8008102C.cpp`) compiles identically
 with the previous and refined headers. No camera, math, graphics, or particle
-shared header is changed. The legacy constructor representation remains bounded
-and is not broadened by this recovery.
+shared header is changed. The constructor now uses the typed descriptor pointer
+and class-name pointer directly, retaining its exact body.
 
 Targeted GC/2.6 probes preserve all five existing exact functions, including the
 constructor. Remaining differences involve register allocation and local
 instruction scheduling. Aggregate quad initialization introduced a constant
 copy loop and extra data and was rejected; scalar quad construction is retained.
-A higher-similarity direct float-to-byte variant was rejected in favor of the
-explicit signed alpha conversion above. Full build, address-loss, data/export,
-linker-input, and original-DOL gates remain outstanding until an exact candidate
-justifies development-lane admission.
+The glare alpha uses a private signed-int bitfield of width eight. Assignment
+first converts to signed int; the target compiler then stores the low eight
+bits. This preserves the signed truncation and wrapping without a direct
+float-to-unsigned-byte range assumption. Compiler checks establish its four-byte
+size and RGB byte offsets 1,2,3. The reflected alpha retains its explicit signed
+intermediate. The glare block now matches; the complete renderer remains
+nonexact.
+
+The source also defines the ten descriptor records, class-name string and
+pointer, compiler-generated vtable, and forward vector. Their native payloads
+and relocation targets match the original data, with four-byte zero alignment
+tails. The scalar literals pool naturally in the original order. These source
+definitions are a checkpoint: owning section ranges and inferred symbol extents
+still need coordinated configuration changes, and anonymous scalar labels still
+need the ordinary export audit. No data range is claimed or unit linked by this
+source-only change.
+
+Full build, address-loss, data/export, linker-input, and original-DOL gates
+remain outstanding until admission for a meaningful candidate.

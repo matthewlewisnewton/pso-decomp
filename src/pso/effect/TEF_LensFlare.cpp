@@ -184,7 +184,7 @@ void TEF_LensFlare::render() {
                 draw_textured_quad_at_depth(quad, 0.5f);
                 TWindowSubStatusDisp::get_player();
             }
-            
+
             if (alignment > 0.6f) strength = 3.0f * (alignment - 0.6f);
             else strength = 0.0f;
             strength *= strength * strength * strength;
