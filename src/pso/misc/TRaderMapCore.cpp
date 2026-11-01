@@ -1,3 +1,4 @@
+#include <string.h>
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/system/ChunkMaterialState.h"
@@ -11,6 +12,12 @@
 #include "pso/system/NinjaUtil.h"
 #include "pso/map/FloorArea.h"
 #include "pso/render/render_util.h"
+// Avoid unused out-of-line math constants from the SDK's type header.
+#define PSO_SDK_COMPACT_MATH
+#include <dolphin/gx/GXEnum.h>
+#include <dolphin/gx/GXCull.h>
+#include <dolphin/gx/GXTransform.h>
+#undef PSO_SDK_COMPACT_MATH
 
 struct RecoveredGlobal_801FA964_lbl_804C8784 {
     s32 value;
@@ -312,14 +319,12 @@ void disallow_rendering__7TObjectFv(TObject *);
 extern void *TRaderMapCore__instance;
 void allow_rendering__7TObjectFv(TObject *);
 void TCameraCtrl__sub_801E32D8(f32 farg0, f32 farg1);
-s32 GXSetScissorBoxOffset(int, int);
 extern Rect_801F9228 radar_map_view_scissor_table[3];
 extern s32 camera_ctrl_instance;
 extern const f32 radar_screen_center_x_f32;
 extern const f32 radar_screen_center_y_f32;
 extern f32 lbl_805D35F4;
 extern f32 lbl_805D35F8;
-s32 memset(void *, int, int);
 extern RecoveredGlobal_801FA9D8_lbl_8044A770 lbl_8044A770;
 extern RecoveredGlobal_801FA9D8_lbl_8044A77C lbl_8044A77C;
 extern RadarViewRect_801FA9D8 radar_map_view_rect_table[3];
@@ -333,7 +338,6 @@ s32 save_floor_discovery__13TRaderMapCoreFiPv(s32 arg0, Map_801F9418* arg1);
 void* __ct__5THeapFUli(void*, u32, s32);
 void* __nw__5THeapFUl(u32);
 void TRaderMapCore__sub_801F95CC(void);
-void GXSetScissor(u32, u32, u32, u32);
 s32 TCameraCtrl__sub_80069304();
 int check_flag_100__10TObjPlayerFPv(void *p);
 void *get_player_by_client_id(s32 i);
@@ -399,13 +403,13 @@ s32 apply_packed_flags__13TRaderMapCoreFllll(void *, s32, s32, s32);
 extern Pad_801FAF24 controller_input_state[];
 extern const f32 TRaderMapCore__data_805DC58C;
 extern const f32 lbl_805DC598;
-void GXSetViewport(f32, f32, f32, f32, f32, f32);
 extern const f32 radar_screen_width_f32;
 extern const f32 radar_screen_height_f32;
 
 int __dt__5THeapFv(void*, void*);
 s32 is_card_flag_set__19TWindowKeyBoardHardFv(u16);
 s32 is_technique_ready__8TTecCtrlFv();
+}
 
 s32 TRaderMapCore::is_render_admitted_default() {
     return is_render_admitted((void *)TRaderMapCore__view_mode);
@@ -441,7 +445,6 @@ void TRaderMapCore::show_radar() {
         ((TRaderMapCore *)(*(u8 * *)&TRaderMapCore__instance))->reset_counter();
         allow_rendering__7TObjectFv((TObject *)(*(u8 * *)&TRaderMapCore__instance));
     }
-}
 }
 void set_camera_look_at(u8 *eye, u8 *target, u8 *up);
 #pragma fp_contract on
