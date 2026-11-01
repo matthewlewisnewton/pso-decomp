@@ -170,8 +170,11 @@ class PreparationTests(unittest.TestCase):
             review_path.write_text(json.dumps(changed_review))
             changed_env=json.loads(old_environment);changed_env['acceptance_capacity']['review']=self.pin(review_path)
             env_path.write_text(json.dumps(changed_env))
-            bad=subprocess.run([str(self.launcher),*progress],cwd=self.repo,env=graph_env,capture_output=True,text=True,pass_fds=(held.fileno(),))
-            self.assertNotEqual(bad.returncode,0)
+            alias_request=json.loads(request_path.read_bytes());alias_request['environment_sha256']=self.pin(env_path)['sha256']
+            alias_request_path=self.root/'alias-request.json';alias_request_path.write_text(json.dumps(alias_request))
+            alias_env=dict(graph_env,PSO_CONFIG_REQUEST_PATH=str(alias_request_path),PSO_CONFIG_REQUEST_SHA256=self.pin(alias_request_path)['sha256'])
+            bad=subprocess.run([str(self.launcher),*progress],cwd=self.repo,env=alias_env,capture_output=True,text=True,pass_fds=(held.fileno(),))
+            self.assertNotEqual(bad.returncode,0);self.assertIn('unreviewed execution root',bad.stderr)
             review_path.write_bytes(old_review);env_path.write_bytes(old_environment)
             baseline_before=self.marker.read_text()
             valid=subprocess.run([str(self.launcher),*progress],cwd=baseline,env=graph_env,capture_output=True,text=True,pass_fds=(held.fileno(),))
