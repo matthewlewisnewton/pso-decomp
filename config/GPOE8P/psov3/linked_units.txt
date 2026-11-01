@@ -212,6 +212,7 @@ pso/boss/TBoss2LaserLight.cpp
 pso/boss/TBoss2Mine.cpp
 pso/boss/TBoss2Mine_800375C0.cpp
 pso/boss/TBoss2PhotonBullet_80038DCC.cpp
+pso/boss/TBoss2Tentacle.cpp
 pso/boss/TBoss3Volopt.cpp
 pso/boss/TBoss3VoloptCore.cpp
 pso/boss/TBoss3VoloptCtrl.cpp
