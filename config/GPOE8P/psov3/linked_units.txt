@@ -2570,6 +2570,7 @@ pso/system/ChunkTextureStripCollector.cpp
 pso/system/CityTraffic.cpp
 pso/system/GinjaModelQueue.cpp
 pso/system/ItemEffects.cpp
+pso/system/LscServer.cpp
 pso/system/LscStream.cpp
 pso/system/MaterialAlphaCompare.cpp
 pso/system/Mfci.cpp

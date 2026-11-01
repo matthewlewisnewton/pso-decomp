@@ -2,6 +2,7 @@
 #include "pso/misc/TLobby_803CE200.h"
 #include "pso/misc/TLobby_803CE478.h"
 #include "pso/misc/TLobby.h"
+#include "pso/system/AdxStreamRuntime.h"
 
 void TLobby::update_scroll() {
     u8 *arg0 = (u8 *)this;
@@ -15,9 +16,9 @@ void TLobby::update_scroll() {
     if (((s32) *(u8 *)((s8 *)arg0 + 0x1A9) == 1) && ((s32) *(s32 *)((s8 *)arg0 + 0x1B0) < ((TLobby *)(*(s32 *)&this->m_flags))->get_scroll_offset())) {
         TLobby__sub_803CE220();
         ((TLobby *)(*(s32 *)&this->m_flags))->get_entry_pair((s32)((int) (*(s32 *)((s8 *)arg0 + 0x1B0))), &spC, &sp8);
-        ((TLobby *)(*(s32 *)&this->m_prev))->set_scroll_offset((int) (spC / 2048));
+        set_scroll_offset__6TLobbyFl((AdxStreamFile *)this->m_prev, spC / 2048);
         ((TLobby *)(*(s32 *)&this->m_prev))->set_scroll_position((s32)((void *) ((s32) (spC + sp8) / 2048)));
-        ((TLobby *)(*(s32 *)&this->m_prev))->init_stream_position();
+        init_stream_position__6TLobbyFv((AdxStreamFile *)this->m_prev);
         TLobby::update_scroll_impl();
     }
 }

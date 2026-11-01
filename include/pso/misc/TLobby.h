@@ -1106,13 +1106,9 @@ struct TLobby : public TObject {
     static s32 write_zero_padded_block(void *arg0p);
     void set_field_10_and_notify(s32 arg1);
     void set_buffer(void **arg1);
-    s32 get_field_14();
     void update_stream_read();
     void set_scroll_position(s32 arg1);
     void set_coords(s32 arg1, s32 arg2);
-    s32 init_stream_position();
-    s32 get_file_offset_relative();
-    s32 set_scroll_offset(s32 arg1);
     static void si_get_type_async();
     static s32 clear_buffer_a00();
     static void on_set_mode();
