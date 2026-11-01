@@ -3,6 +3,8 @@
 
 #include "types.h"
 #include "pso/TObject.h"
+#include <dolphin/mtx/GeoTypes.h>
+#include <stddef.h>
 
 struct TCameraCtrl : public TObject {
     virtual ~TCameraCtrl();
@@ -52,9 +54,7 @@ struct TCameraCtrl : public TObject {
     int m_110;
     u8 unk_114[0x60];
     u32 m_174;
-    f32 m_178;
-    f32 m_17c;
-    f32 m_180;
+    Vec position;
     f32 m_184;
     u8 unk_188[0x4];
     f32 m_18c;
@@ -161,6 +161,9 @@ struct TCameraCtrl : public TObject {
 };
 
 typedef char TCameraCtrl_size[sizeof(TCameraCtrl) == 0x1D4 ? 1 : -1];
+typedef char TCameraCtrl_position_offset[offsetof(TCameraCtrl, position) == 0x178 ? 1 : -1];
+typedef char TCameraCtrl_position_size[sizeof(Vec) == 0xC ? 1 : -1];
+typedef char TCameraCtrl_after_position_offset[offsetof(TCameraCtrl, m_184) == 0x184 ? 1 : -1];
 // The camera's right axis, which screen tests offset points along.
 extern f32 camera_right[3];
 
