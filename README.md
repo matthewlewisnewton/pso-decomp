@@ -95,3 +95,66 @@ obtained copy of the game, on your machine, when you build.
 ## License
 
 [MIT](LICENSE). Code adapted from other projects keeps its original notices.
+
+## Handoff snapshot report
+
+`python3 tools/handoff_report.py snapshot.json` prints a JSON report and does
+not change the snapshot, queue, repository, or evidence files. The snapshot is
+an operator-supplied inventory, not a scheduler or an admission decision. Keep
+private snapshots and receipts outside the repository. Refresh observed heads
+and current main from authoritative sources before relying on the report.
+
+A version 1 snapshot has this shape (replace the illustrative IDs and hashes):
+
+```json
+{
+  "version": 1,
+  "current_main": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "items": [{
+    "id": "PR-1",
+    "owner": "author",
+    "state": "turn_complete",
+    "head": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "observed_head": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "evidence": [{
+      "stage": "development",
+      "verdict": "pass",
+      "head": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "base": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "path": "development-receipt.json",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    }],
+    "requests": [{
+      "id": "review-1",
+      "kind": "review",
+      "state": "pending",
+      "owner": "reviewer",
+      "head": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    }],
+    "slot": {"state": "held", "owner": "queue"}
+  }]
+}
+```
+
+Use full lowercase 40-character commit IDs and SHA-256 digests. Evidence paths
+are relative to the snapshot directory (absolute paths also work). Each stage
+may appear once: `source`, `development`, `graph`, `acceptance`, and
+`publication` are separate claims. Verdicts are `pass`, `fail`, or
+`unknown`. The report checks file bytes against the supplied digest, and
+checks claimed head and base bindings; it does **not** parse receipts, verify
+their authors, or prove their contents support the supplied claims. Missing or
+changed files are unverified. Development and source evidence retain their
+recorded base when main advances; graph, acceptance, and publication claims
+must name current main. Refresh current-main acceptance after a main change.
+
+Item states are `active`, `turn_complete`, and `complete`. Request kinds
+are `review` and `admission`, and request states are `pending`, `done`,
+and `cancelled`. Identical repeated request IDs within an item are deduplicated;
+conflicting duplicates and invalid input fail the whole report. Pending requests
+name the owner who owes the next action, including requests whose head is stale.
+A held slot on a finished turn is a prompt to confirm release, not proof of
+release. The `ready_eligible` field only means the supplied, hash-verified source
+and development claims pass for the observed head and no requests remain
+pending. It does not replace independent review, project-specific gates, queue
+admission, current-main acceptance, or publication. Labels never grant admission.
+Run the synthetic tests with `python3 -m unittest tools.tests.test_handoff_report`.
