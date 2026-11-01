@@ -45,6 +45,8 @@ class NinjaDiscoveryTests(unittest.TestCase):
 
     def test_path_and_explicit_setting_resolve_same_real_executable(self):
         found=discover_test_ninja()
+        with patch.dict(os.environ, {'PATH': str(found.parent)}, clear=True):
+            self.assertEqual(discover_test_ninja(),found)
         with patch.dict(os.environ, {'PSO_TEST_NINJA': str(found)}, clear=True):
             self.assertEqual(discover_test_ninja(),found)
 
