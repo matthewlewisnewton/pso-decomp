@@ -1,3 +1,4 @@
+extern "C" float vfunc_87__6TOTrapFf(void *, float);
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
@@ -701,9 +702,9 @@ void vfunc_89__6TOTrapFv();
 void vfunc_86__6TOTrapFv();
 void vfunc_88__6TOTrapFv();
 void try_start_action__6TOTrapFll();
-u8 TOTrap__sub_801792CC(u8 *arg0, s32 arg1);
-u8 TOTrap__sub_801792E4(u8 *arg0, s32 arg1);
-u8 TOTrap__sub_801792FC(u8 *arg0, s32 arg1);
+s32 roll_physical_accuracy__6TOTrapFPvlf(void *, void *, s32, f32);
+s32 select_melee_contact_body__6TOTrapFPvf(void *, void *, f32);
+int calc_distance_accuracy_penalty__6TOTrapFPvPvPvf(void *, void *, void *, void *, f32);
 void apply_knockback_from_attacker__6TOTrapFPUcf();
 void vfunc_29__9TObjCharaFv();
 void vfunc_74__9TObjCharaFl();
@@ -733,7 +734,7 @@ void apply_poison_status__9TObjCharaFv();
 void apply_shock_status__9TObjCharaFv();
 void apply_slow_status__9TObjCharaFv();
 void apply_switch_attack__9TObjCharaFv();
-void check_trigger_range__6TOTrapFUl();
+f32 receive_direct_attack__6TOTrapFPv19DirectAttackPayloadPvll(void *, void *, DirectAttackPayload, void *, s32, s32);
 void classify_actor_view_detail__8TObjBaseFfff();
 void clear_all_status_effects__9TObjCharaFv();
 void clear_harmful_statuses__9TObjCharaFv();
@@ -751,7 +752,7 @@ void vfunc_75__9TObjCharaFf();
 void get_center__9TObjCharaFv();
 void get_actor_level_index__9TObjCharaFv();
 void get_pos__9TObjCharaFl();
-void get_scale__6TOTrapFUl();
+f32 receive_weapon_special_attack__6TOTrapFPvPv(void *, void *, void *);
 void is_actor_cadence_frame__9TObjCharaFl();
 void is_any_player_matching_stat__6TOTrapFv();
 void is_target_in_attack_range__9TObjCharaFv();
@@ -809,14 +810,14 @@ void *__vt__14TOTrapSeabed01[91] = {
     (void *)&update_actor_ground_y__9TObjCharaFv,
     (void *)&vfunc_18__9TObjCharaFPUc,
     (void *)&is_actor_cadence_frame__9TObjCharaFl,
-    (void *)&TOTrap__sub_801792E4,
-    (void *)&TOTrap__sub_801792FC,
+    (void *)&select_melee_contact_body__6TOTrapFPvf,
+    (void *)&calc_distance_accuracy_penalty__6TOTrapFPvPvPvf,
     (void *)&TOTrapSeabed01__vt20,
-    (void *)&check_trigger_range__6TOTrapFUl,
-    (void *)&get_scale__6TOTrapFUl,
+    (void *)&receive_direct_attack__6TOTrapFPv19DirectAttackPayloadPvll,
+    (void *)&receive_weapon_special_attack__6TOTrapFPvPv,
     (void *)&apply_knockback_from_attacker__6TOTrapFPUcf,
     (void *)&try_start_action__6TOTrapFll,
-    (void *)&TOTrap__sub_801792CC,
+    (void *)&roll_physical_accuracy__6TOTrapFPvlf,
     (void *)&vfunc_28__9TObjCharaFv,
     (void *)&vfunc_29__9TObjCharaFv,
     (void *)&is_target_in_attack_range__9TObjCharaFv,
@@ -876,7 +877,7 @@ void *__vt__14TOTrapSeabed01[91] = {
     (void *)&vfunc_84__14TOTrapSeabed01Fv,
     (void *)&TOTrapSeabed01__vt83,
     (void *)&vfunc_86__6TOTrapFv,
-    (void *)&TOTrap::scale_by_table_value,
+    (void *)&vfunc_87__6TOTrapFf,
     (void *)&vfunc_88__6TOTrapFv,
     (void *)&vfunc_89__6TOTrapFv,
     0

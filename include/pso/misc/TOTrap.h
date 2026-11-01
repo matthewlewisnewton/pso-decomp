@@ -27,10 +27,12 @@ struct TOTrap : public TObjChara {
     u16 player;
     u8 _pad33E[0x2];
     u32 m_340;
-    static f32 scale_by_table_value(f32 farg0);
     virtual void render();
-    f32 check_trigger_range(u32 arg1);
-    f32 get_scale(u32 arg1);
+    virtual s32 select_melee_contact_body(void *, f32);
+    virtual int calc_distance_accuracy_penalty(void *, void *, void *, f32);
+    virtual f32 receive_direct_attack(void *, DirectAttackPayload, void *, s32, s32);
+    virtual f32 receive_weapon_special_attack(void *, void *);
+    virtual s32 roll_physical_accuracy(void *, s32, f32);
 };
 
 typedef char TOTrap_size[sizeof(TOTrap) == 0x344 ? 1 : -1];
