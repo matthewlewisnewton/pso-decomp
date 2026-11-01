@@ -16,13 +16,12 @@
 #include "pso/item/TItem.h"
 
 
-struct Vec_802D52E8 { f32 x, y, z; };
 
 extern "C" {
 u8 *__nw__5TItemFUl(s32);
 extern s32 tl_05;
-void TObjPlayer__sub_802D5B78(void *a, void *b);
-void do_action_447_from_packet__10TObjPlayerFPvPv(void *self, void *arg);
+void TObjPlayer__sub_802D5B78(void *a, void *b, const void *direction);
+void do_action_447_from_packet__10TObjPlayerFPvPv(void *self, void *arg, const void *direction);
 void *__dt__13TUnk_804E1BB0Fv(void *arg0, s16 arg1);
 void *__dt__13TUnk_804E1CA8Fv(void *arg0, s16 arg1);
 
@@ -75,11 +74,15 @@ void *__dt__13TUnk_804E1CA8Fv(void *arg0, s16 arg1) {
     return arg0;
 }
 
-int TObjPlayer::do_action_447() { return (s32)spawn_particle_effect((const Vec *)(this), 447); }
-void do_action_447_from_packet__10TObjPlayerFPvPv(void *self, void *arg) {
-    Vec_802D52E8 v;
-    TObjPlayer__sub_802D5B78(arg, &v);
-    ((TObjPlayer *)(&v))->do_action_447();
+// Preserve the existing exported name while keeping ownership provisional.
+// Its original caller passes a Vec, not a TObjPlayer receiver.
+TParticleCtrl *do_action_447__10TObjPlayerFv(const Vec *position) {
+    return spawn_particle_effect(position, 447);
+}
+void do_action_447_from_packet__10TObjPlayerFPvPv(void *self, void *arg, const void *direction) {
+    Vec v;
+    TObjPlayer__sub_802D5B78(arg, &v, direction);
+    do_action_447__10TObjPlayerFv(&v);
 }
 
 }
@@ -123,7 +126,7 @@ struct P_802D5478 { f32 x; f32 y; f32 z; };
 extern "C" {
 s32 VecCopy__FP3VecPC3Vec(void *);
 void spawn_hit_particles_at_vec__10TObjPlayerFiii(s32 arg0, s32 arg1, s32 arg2);
-s32 TObjPlayer__sub_802D5B78(void *, void *);
+
 void spawn_hit_particles_at__10TObjPlayerFiii(s32 arg0, s32 arg1, s32 arg2);
 extern const f64 lbl_804725B8[];
 f32 atan2_float(f32 y, f32 x);
@@ -164,8 +167,8 @@ void spawn_hit_particles_at_vec__10TObjPlayerFiii(s32 arg0, s32 arg1, s32 arg2) 
     spawn_hit_particles__10TObjPlayerFiPv((s32)&sp8, (const P_802D5478 *)(arg2));
 }
 void spawn_hit_particles_at__10TObjPlayerFiii(s32 arg0, s32 arg1, s32 arg2) {
-    s32 sp8;
-    TObjPlayer__sub_802D5B78((void *)arg1, &sp8);
+    Vec sp8;
+    TObjPlayer__sub_802D5B78((void *)arg1, &sp8, (const void *)arg2);
     spawn_hit_particles__10TObjPlayerFiPv((s32)&sp8, (const P_802D5478 *)(arg2));
 }
 
