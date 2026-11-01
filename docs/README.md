@@ -1,9 +1,15 @@
 # Documentation
 
-## Contributor and operator guides
+## Contributor guides
 
 The [contributor index](contributors/README.md) links to onboarding, project
-architecture, validation, and operator guidance.
+architecture, and validation.
+
+## Queue and tool operations
+
+The [operations index](operations/README.md) links to reusable local queue and
+evidence-tool reference material, separate from human contribution instructions.
+Live snapshots, per-worker status and private handoff packets remain local.
 
 ## Recovery and verification evidence
 
