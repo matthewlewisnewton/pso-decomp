@@ -14,6 +14,71 @@ import re
 import subprocess
 import sys
 import time
+import types
+
+# This sibling is part of the trusted CLI installation, never candidate imports.
+_safety = types.ModuleType('_trusted_queue_git_safety')
+exec(compile(r'''#!/usr/bin/env python3
+"""Callback-free Git boundary and raw checkout checks for trusted queue tools."""
+import hashlib
+import os
+from pathlib import Path
+import re
+import subprocess
+
+
+def environment(base=None):
+    env={k:v for k,v in (os.environ if base is None else base).items() if not k.startswith('GIT_')}
+    env.update(GIT_CONFIG_GLOBAL='/dev/null',GIT_CONFIG_NOSYSTEM='1',GIT_ATTR_NOSYSTEM='1',
+               GIT_TERMINAL_PROMPT='0',LC_ALL='C')
+    return env
+
+
+def git(root,*args):
+    return subprocess.check_output(['/usr/bin/git','-c','core.hooksPath=/dev/null',
+        '-c','core.fsmonitor=false','-c','diff.external=', '-C',str(root),*args],env=environment())
+
+
+def boundary(root):
+    root=Path(root)
+    if not root.is_absolute() or root.resolve()!=root or not root.is_dir(): raise ValueError('invalid Git root')
+    dot=root/'.git'
+    if dot.is_symlink() or not dot.is_dir() or dot.resolve()!=dot: raise ValueError('unsupported Git metadata')
+    for path in (dot/'config',dot/'config.worktree',dot/'info/attributes'):
+        if path.is_symlink() or path.resolve()!=path or (path.exists() and not path.is_file()): raise ValueError('unsafe Git configuration path')
+    for path in (dot/'config.worktree',dot/'info/attributes'):
+        if path.exists() and path.read_bytes(): raise ValueError('unsafe Git attribute or worktree config')
+    raw=git(root,'config','--local','--no-includes','--null','--list')
+    for row in raw.split(b'\0'):
+        if not row: continue
+        key=row.split(b'\n',1)[0].decode('utf-8').lower()
+        if (key.startswith(('filter.','include.','includeif.')) or
+            key in ('core.attributesfile','core.fsmonitor','core.hookspath','core.sshcommand','extensions.worktreeconfig','diff.external') or
+            re.fullmatch(r'merge\..*\.driver',key) or re.fullmatch(r'diff\..*\.(command|textconv)',key)):
+            raise ValueError('unsafe local Git configuration: '+key)
+
+
+def raw_tree(root,commit):
+    root=Path(root);boundary(root)
+    if not re.fullmatch(r'[0-9a-f]{40}',commit): raise ValueError('invalid commit')
+    for record in git(root,'ls-tree','-r','-z',commit).split(b'\0'):
+        if not record: continue
+        metadata,raw_path=record.split(b'\t',1);mode,kind,blob=metadata.split(b' ')
+        if kind!=b'blob' or mode not in (b'100644',b'100755'): raise ValueError('invalid tracked tree mode')
+        path=root/os.fsdecode(raw_path)
+        if path.is_symlink() or path.resolve()!=path or not path.is_file() or not path.resolve().is_relative_to(root): raise ValueError('invalid tracked path')
+        raw=path.read_bytes();oid=hashlib.sha1(b'blob '+str(len(raw)).encode()+b'\0'+raw).hexdigest().encode()
+        if oid!=blob or bool(path.stat().st_mode & 0o111)!=(mode==b'100755'): raise ValueError('tracked tree differs')
+
+
+def ignored_inputs(root, *, generated):
+    root=Path(root);boundary(root)
+    for raw in git(root,'ls-files','--others','--ignored','--exclude-standard','-z').split(b'\0'):
+        if not raw: continue
+        if raw.endswith((b'.py',b'.pyc',b'.pth',b'.so')) or b'__pycache__/' in raw: raise ValueError('untracked Python import')
+        if raw.startswith(b'orig/') or (generated and (raw.startswith(b'build/') or raw in (b'build.ninja',b'objdiff.json',b'compile_commands.json',b'.ninja_log',b'.ninja_deps'))): continue
+        raise ValueError('unexpected ignored input')
+''', '<trusted queue git boundary>', 'exec'), _safety.__dict__)
 
 REPOSITORY = 'matthewlewisnewton/pso-decomp'
 REMOTE = 'git@github.com:' + REPOSITORY + '.git'
@@ -178,6 +243,13 @@ def validate_spec(spec):
 
 def evidence(spec):
     symbol_review(spec)
+    config=spec.get('config_admission')
+    if config is not None:
+        require(spec['policy']=='recovery' and isinstance(config, dict) and set(config)=={'checker','packet'}, 'invalid_config_admission', '')
+        for entry in config.values():
+            require(isinstance(entry, dict) and set(entry)=={'path','sha256'}, 'invalid_config_admission', '')
+            path=Path(entry['path'])
+            require(path.is_absolute() and path.is_file() and not path.is_symlink() and digest(path)==entry['sha256'], 'stale_config_admission', '')
     for pr in spec['prs']:
         r = pr['review']
         path = Path(r.get('path', ''))
@@ -273,7 +345,21 @@ class Queue:
         save(self.journal, self.record)
 
     def git(self, *args, env=None):
-        return run(['git', '-c', 'core.hooksPath=/dev/null', '-C', str(self.repo), *args], env=env)
+        if args[:3] == ('remote','get-url','--push'):
+            process_env=env  # Inspect the effective destination used by the push.
+        else:
+            process_env=_safety.environment(env)
+            if env is not None:
+                process_env.update({k:v for k,v in env.items() if k in ('GIT_AUTHOR_NAME','GIT_AUTHOR_EMAIL','GIT_AUTHOR_DATE','GIT_COMMITTER_NAME','GIT_COMMITTER_EMAIL','GIT_COMMITTER_DATE')})
+                if 'GIT_INDEX_FILE' in env:
+                    index=Path(env['GIT_INDEX_FILE'])
+                    require(index.is_absolute() and index.resolve().is_relative_to(self.state.resolve()), 'invalid_private_index', '')
+                    process_env['GIT_INDEX_FILE']=str(index)
+        return run(['/usr/bin/git', '-c', 'core.hooksPath=/dev/null', '-c', 'core.fsmonitor=false', '-C', str(self.repo), *args], env=process_env)
+
+    def git_boundary(self):
+        try: _safety.boundary(self.repo.resolve())
+        except (ValueError,OSError,subprocess.CalledProcessError) as exc: raise Rejected('unsafe_local_git_config', str(exc)) from exc
 
     def live_guard(self):
         evidence(self.spec)
@@ -281,8 +367,10 @@ class Queue:
 
     def construct(self):
         if not self.repo.exists():
-            run(['git', 'init', str(self.repo)])
+            run(['/usr/bin/git', '-c', 'init.templateDir=', 'init', str(self.repo)], env=_safety.environment())
+            self.git_boundary()
             self.git('remote', 'add', 'origin', REMOTE)
+        self.git_boundary()
         require(self.git('remote', 'get-url', 'origin') == REMOTE, 'wrong_repository', 'Unexpected checkout remote')
         require(not self.git('status', '--porcelain', '--untracked-files=no'),
                 'dirty_state_checkout', 'Preserve and investigate tracked state edits; no reset is performed')
@@ -295,6 +383,10 @@ class Queue:
                    GIT_COMMITTER_NAME='PSO mechanical queue', GIT_COMMITTER_EMAIL='queue@localhost',
                    GIT_AUTHOR_DATE=f"@{self.spec['commit_epoch']} +0000",
                    GIT_COMMITTER_DATE=f"@{self.spec['commit_epoch']} +0000")
+        safe_git_env = {k:v for k,v in env.items() if not k.startswith('GIT_')}
+        safe_git_env.update(GIT_CONFIG_GLOBAL='/dev/null', GIT_CONFIG_NOSYSTEM='1', GIT_ATTR_NOSYSTEM='1')
+        local_drivers=subprocess.run(['git','-C',str(self.repo),'config','--local','--get-regexp',r'^(merge\..*\.driver|filter\..*)$'],env=safe_git_env,capture_output=True)
+        require(local_drivers.returncode==1 and not local_drivers.stdout, 'unsafe_local_git_config', 'External merge or filter drivers are not admitted')
         for pr in self.spec['prs']:
             # An explicit ordered batch can include structural bases, but never omit one.
             self.git('merge-base', '--is-ancestor', pr['base_sha'], current)
@@ -304,15 +396,14 @@ class Queue:
             require(covered.returncode == 0, 'unreviewed_prerequisite',
                     {'pr': pr['number'], 'review_base': pr['review_base'], 'accumulated': current})
             merged = subprocess.run(['git', '-C', str(self.repo), 'merge-tree', '--write-tree', current, pr['head']],
-                                    text=True, capture_output=True)
+                                    text=True, capture_output=True, env=safe_git_env)
             require(merged.returncode == 0, 'conflict', {'pr': pr['number'], 'diagnostic': merged.stdout[-2000:]})
             tree = merged.stdout.splitlines()[0]
             require(SHA.fullmatch(tree), 'invalid_tree', pr['number'])
             current = self.git('commit-tree', tree, '-p', current, '-p', pr['head'], '-m',
                                f"Merge reviewed fork PR #{pr['number']}", env=env)
             commits.append({'pr': pr['number'], 'commit': current, 'tree': tree, 'head': pr['head']})
-        self.git('checkout', '--detach', current)
-        self.git('diff', '--check', self.spec['target'], current)
+        self.git('diff', '--no-ext-diff', '--no-textconv', '--check', self.spec['target'], current, env=safe_git_env)
         if self.spec['policy'] == 'maintenance':
             paths = self.git('diff', '--name-only', self.spec['target'], current).splitlines()
             require(all(p.startswith(('tools/', 'docs/', '.github/')) or p in ('README.md', 'CONTRIBUTING.md', 'AGENTS.md')
@@ -344,6 +435,32 @@ class Queue:
                 except ValueError as exc:
                     raise Rejected('invalid_symbol_delta', str(exc)) from exc
                 require(changes == review.get('renames'), 'stale_symbol_review', 'Rename list differs')
+        if self.spec['policy'] == 'recovery':
+            changed = subprocess.run(['git','-c','core.hooksPath=/dev/null','-C',str(self.repo),
+                                      'diff','--no-ext-diff','--name-only','-z',self.spec['target'],current,'--','configure.py'],capture_output=True)
+            require(changed.returncode==0, 'command_failed', 'config diff')
+            config = self.spec.get('config_admission')
+            require(bool(changed.stdout)==(config is not None), 'invalid_config_admission', 'Configuration change requires exactly one reviewed packet')
+            if config is not None:
+                evidence(self.spec)
+                checker=Path(config['checker']['path'])
+                require(not checker.resolve().is_relative_to(self.repo.resolve()), 'invalid_config_admission', 'Checker must be external')
+                request=self.state/('config-plan-request-'+str(time.time_ns())+'.json')
+                output=self.state/('config-plan-result-'+str(time.time_ns())+'.json')
+                save(request, {'mode':'plan','repo':str(self.repo.resolve()),'packet':config['packet'],'checker':config['checker'],
+                               'cli':{'path':str(Path(__file__).resolve()),'sha256':digest(Path(__file__).resolve())},
+                               'target':self.spec['target'],'candidate':current,'tree':tree,'prs':self.spec['prs'],
+                               'commits':commits,'output':str(output.resolve())})
+                result=subprocess.run([sys.executable,'-I',str(checker),str(request.resolve())],capture_output=True,text=True)
+                require(result.returncode==0 and output.is_file() and not output.is_symlink(), 'config_preflight_rejected', result.stderr[-2000:])
+                plan=json.loads(output.read_text())
+                require(isinstance(plan,dict) and set(plan)=={'packet_sha256','target','candidate','tree','effective_argv'} and plan['packet_sha256']==config['packet']['sha256'] and plan['target']==self.spec['target'] and plan['candidate']==current and plan['tree']==tree and isinstance(plan['effective_argv'],list) and bool(plan['effective_argv']), 'config_preflight_rejected', 'Invalid plan receipt')
+                require(digest(checker)==config['checker']['sha256'] and digest(config['packet']['path'])==config['packet']['sha256'], 'stale_config_admission', '')
+                self.record['config_plan']={'path':str(output),'sha256':digest(output),'packet_sha256':config['packet']['sha256']}
+        self.git('checkout', '--detach', current, env=safe_git_env)
+        if self.spec.get('config_admission') is not None:
+            try: _safety.raw_tree(self.repo.resolve(),current); _safety.ignored_inputs(self.repo.resolve(),generated=False)
+            except (ValueError,OSError,subprocess.CalledProcessError) as exc: raise Rejected('candidate_changed',str(exc)) from exc
         self.write(state='planned', candidate=current, tree=tree, commits=commits)
         return current, tree
 
@@ -358,7 +475,11 @@ class Queue:
         save(request, {'version': 1, 'repository': REPOSITORY, 'target': self.spec['target'],
                        'candidate': self.record['candidate'], 'tree': self.record['tree'],
                        'checkout': str(self.repo), 'state': str(self.state), 'policy': self.spec['policy'],
-                       'environment': str(environment), 'output': str(output)})
+                       'environment': str(environment), 'environment_sha256':self.spec['environment_sha256'], 'output': str(output),
+                       'config_admission': self.spec.get('config_admission'), 'config_plan':self.record.get('config_plan'), 'prs': self.spec['prs'], 'commits': self.record['commits'],
+                       'validator': {'path':str(validator), 'sha256':expected_hash},
+                       'cli': {'path':str(Path(__file__).resolve()), 'sha256':digest(Path(__file__).resolve())}})
+        request_sha256=digest(request)
         self.write(state='validating', validator_sha256=expected_hash, validator_path=str(validator), environment_path=str(environment))
         # Validator code is supplied by the operator, never by candidate content.
         with (self.state / 'validator.log').open('a') as log:
@@ -366,12 +487,12 @@ class Queue:
                                     stdout=log, stderr=subprocess.STDOUT,
                                     pass_fds=(self.lock_fd,) if hasattr(self, 'lock_fd') else ())
         require(result.returncode == 0 and output.is_file(), 'failed_build_or_checks', {'returncode': result.returncode, 'log': str(self.state / 'validator.log')})
-        require(digest(validator) == expected_hash and digest(environment) == self.spec['environment_sha256'],
+        require(digest(validator) == expected_hash and digest(environment) == self.spec['environment_sha256'] and digest(request)==request_sha256,
                 'changed_validator', 'Harness/environment changed during validation')
         check_validation(self.spec, json.loads(output.read_text()), self.record['tree'])
         require(self.git('rev-parse', 'HEAD') == self.record['candidate'] and
                 not self.git('status', '--porcelain', '--untracked-files=no'), 'candidate_changed', 'Tracked tree changed during validation')
-        self.write(state='validated', validation=str(output), validation_sha256=digest(output))
+        self.write(state='validated', validation=str(output), validation_sha256=digest(output), validation_request=str(request), validation_request_sha256=request_sha256)
 
     def prepare_readme(self, environment):
         # Opt-in migration: the operator pins trusted code outside the checkout.
@@ -484,9 +605,30 @@ class Queue:
                 'Expected exactly the personal-fork publication URL; pushurl/rewrite/additional destination rejected')
         return urls[0]
 
+    def check_config_before_publication(self):
+        if self.spec.get('config_admission') is None: return
+        self.git_boundary()
+        try: _safety.raw_tree(self.repo.resolve(),self.record['candidate']); _safety.ignored_inputs(self.repo.resolve(),generated=False)
+        except (ValueError,OSError,subprocess.CalledProcessError) as exc: raise Rejected('candidate_changed',str(exc)) from exc
+        require(self.spec['policy']=='recovery' and self.record.get('validation_request'), 'missing_config_validation', '')
+        environment=Path(self.record['environment_path'])
+        require(digest(environment)==self.spec['environment_sha256'] and digest(self.record['validator_path'])==self.record['validator_sha256'], 'stale_config_admission', '')
+        data=json.loads(environment.read_text())
+        entry=data['strict_loss_guard']['adapter']
+        adapter=Path(entry['path'])
+        require(adapter.is_absolute() and adapter.is_file() and not adapter.is_symlink() and not adapter.resolve().is_relative_to(self.repo.resolve()) and digest(adapter)==entry['sha256'], 'stale_config_adapter', '')
+        request=Path(self.record['validation_request'])
+        require(digest(request)==self.record.get('validation_request_sha256'), 'stale_config_request', '')
+        values=json.loads(request.read_text())
+        require(values.get('prs')==self.spec['prs'] and values.get('commits')==self.record['commits'] and values.get('config_plan')==self.record.get('config_plan'), 'stale_config_request', '')
+        require(values.get('candidate')==self.record['candidate'] and values.get('tree')==self.record['tree'] and values.get('target')==self.spec['target'] and values.get('config_admission')==self.spec['config_admission'] and values.get('environment')==str(environment), 'stale_config_request', '')
+        result=subprocess.run([sys.executable,'-I',str(adapter),'--check-config',str(request)],capture_output=True,text=True)
+        require(result.returncode==0 and digest(adapter)==entry['sha256'] and digest(environment)==self.spec['environment_sha256'] and digest(request)==self.record['validation_request_sha256'], 'stale_config_admission', result.stderr[-2000:])
+
     def publish(self):
         self.live_guard()
         self.publication_destination()
+        self.check_config_before_publication()
         # The lease is a narrowly scoped expected-old compare-and-swap. Prove
         # ancestry independently so this operation cannot discard any history.
         self.git('merge-base', '--is-ancestor', self.spec['target'], self.record['candidate'])
