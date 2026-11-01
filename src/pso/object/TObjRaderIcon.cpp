@@ -20,6 +20,7 @@ void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
 
 extern void *tl_05;
+}
 
 void *TObjRaderIcon__create(void *arg0) {
     void *o = __nw__7TObjectFUl(0xA4);
@@ -90,11 +91,9 @@ void TObjRaderIcon::initialize_from_placement() {
     }
 }
 
-}
 TObjRaderIcon::~TObjRaderIcon() {
 
 }
-extern "C" {
 typedef char RecoveredGlobal_8019733C___vt__13TObjRaderIcon_size[sizeof(RecoveredGlobal_8019733C___vt__13TObjRaderIcon) == 0x34 ? 1 : -1];
 u8 *TObjRaderIcon__ct(u8 *rader_icon, s32 arg1, s32 arg2) {
     __ct__8TObjBaseFP7TObject(rader_icon);
@@ -104,6 +103,4 @@ u8 *TObjRaderIcon__ct(u8 *rader_icon, s32 arg1, s32 arg2) {
     ((TObjRaderIcon *)rader_icon)->initialize_from_placement();
     disallow_rendering__7TObjectFv((TObject *)(rader_icon));
     return rader_icon;
-}
-
 }

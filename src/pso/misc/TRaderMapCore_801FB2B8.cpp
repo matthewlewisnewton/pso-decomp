@@ -4,6 +4,7 @@
 #include "pso/misc/TRaderMapCore.h"
 #include "pso/misc/RadarMapData.h"
 #include "pso/object/TObjMotion.h"
+#include "pso/math/AngleLookup.h"
 
 #pragma fp_contract on
 
@@ -62,11 +63,11 @@ extern const f32 lbl_805DC594;
 extern const f32 lbl_805DC5A4;
 extern const f32 lbl_805DC5A8;
 Core_801FB490 *TRaderMapCore__ct(Core_801FB490 *arg0, void *parent);
-f32 sin_table_lookup(s32);
 
 extern const f32 TRaderMapCore__data_805DC534;
 extern const f32 lbl_805DC59C;
 extern const f32 lbl_805DC5A0;
+}
 
 void TRaderMapCore::advance_scroll() {
     this->m_198 = (this->m_198 + 0x888);
@@ -192,5 +193,3 @@ Core_801FB490 *TRaderMapCore__ct(Core_801FB490 *arg0, void *parent) {
     return arg0;
 }
 #pragma pop
-
-}
