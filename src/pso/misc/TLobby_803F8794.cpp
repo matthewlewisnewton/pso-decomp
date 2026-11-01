@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/network/BufferPool.h"
 #include "pso/misc/TLobby.h"
 #include "pso/protocol/NetworkRuntime.h"
 
@@ -73,15 +74,9 @@ struct RecoveredGlobal_803F89A4_lbl_805B5454 {
     u8 remaining[0x64];
 };
 
-struct RecoveredGlobal_803F89DC_lbl_805B54BC {
-    s32 value;
-    u8 remaining[0x3FFC];
-};
 
-struct RecoveredGlobal_803F89DC_lbl_805B94BC {
-    s32 value;
-    u8 remaining[0x74];
-};
+
+
 
 struct RecoveredGlobal_803F8A28_lbl_805AEEB0 {
     s32 value;
@@ -508,8 +503,8 @@ u32 lbl_805B3BB8[1267];
 u32 lbl_805B4F84[212];
 u32 lbl_805B52D4[96];
 u32 lbl_805B5454[26];
-u32 lbl_805B54BC[4096];
-u32 lbl_805B94BC[30];
+u8 lbl_805B54BC[0x4000];
+Ent_80415690 lbl_805B94BC[2];
 u32 lbl_805B9534[1059];
 u32 lbl_805BA5C0[3115];
 u32 lobby_net_recv_desc[641];
@@ -519,8 +514,6 @@ u32 lobby_net_recv_desc[641];
 #define lbl_805B4F84 (*(RecoveredGlobal_803F8930_lbl_805B4F84 *)lbl_805B4F84)
 #define lbl_805B52D4 (*(RecoveredGlobal_803F89A4_lbl_805B52D4 *)lbl_805B52D4)
 #define lbl_805B5454 (*(RecoveredGlobal_803F89A4_lbl_805B5454 *)lbl_805B5454)
-#define lbl_805B54BC (*(RecoveredGlobal_803F89DC_lbl_805B54BC *)lbl_805B54BC)
-#define lbl_805B94BC (*(RecoveredGlobal_803F89DC_lbl_805B94BC *)lbl_805B94BC)
 #define lbl_805B9534 (*(RecoveredGlobal_803F8A0C_lbl_805B9534 *)lbl_805B9534)
 #define lbl_805BA5C0 (*(RecoveredGlobal_803F8AA0_lbl_805BA5C0 *)lbl_805BA5C0)
 #define lobby_net_recv_desc (*(RecoveredGlobal_803F8B7C_lbl_805BD66C *)lobby_net_recv_desc)
@@ -664,15 +657,13 @@ void TLobby__sub_803F89D8(void * _w0) {
 
 }
 
-typedef char RecoveredGlobal_803F89DC_lbl_805B54BC_size[sizeof(RecoveredGlobal_803F89DC_lbl_805B54BC) == 0x4000 ? 1 : -1];
-typedef char RecoveredGlobal_803F89DC_lbl_805B94BC_size[sizeof(RecoveredGlobal_803F89DC_lbl_805B94BC) == 0x78 ? 1 : -1];
-void TLobby::init_buffer_desc_a() {
-    u8 *arg0 = (u8 *)this;
-    struct Fields_arg0 { s16 field_0; s16 field_2; s32 * field_4; s32 * field_8; };
-    ((Fields_arg0*)arg0)->field_0 = 2;
-    ((Fields_arg0*)arg0)->field_2 = 0x2000;
-    ((Fields_arg0*)arg0)->field_4 = &lbl_805B94BC.value;
-    ((Fields_arg0*)arg0)->field_8 = &lbl_805B54BC.value;
+typedef char BufferPoolStorageSize[sizeof(lbl_805B54BC) == 0x4000 ? 1 : -1];
+typedef char BufferPoolEntriesSize[sizeof(lbl_805B94BC) == 0x78 ? 1 : -1];
+extern "C" void init_buffer_desc_a__6TLobbyFv(Pool_80415690 *pool) {
+    pool->count = 2;
+    pool->size = 0x2000;
+    pool->ents = lbl_805B94BC;
+    pool->data = lbl_805B54BC;
 }
 
 void TLobby__sub_803F8A08(void * _w0) {
