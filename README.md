@@ -250,3 +250,78 @@ latency is the event's `created_ms` minus its triggering receipt's
 `completed_ms`: all four fixture values are 7 ms. These are synthetic routing
 measurements, not measured live latency or realized compute savings; dispatch
 is disabled and live parent relays remain necessary.
+
+The optional `tools/handoff_resume.py` source implements a **disabled-by-default
+local trial** for `resume_released_development_build`. It has no daemon, CLI,
+peer messaging, acceptance or publication action. The repository wrapper copy
+supports `--resume-control`; deployed wrappers and live queue files are separate
+and must not be changed until independent executable-source review and a
+controlled trial are authorized. Reducer `next_action` events alone cannot
+activate this adapter.
+
+Integration instructions for the sole queue:
+
+1. Independently review the exact adapter, local wrapper patch and tests. Copy
+   the reviewed files together to a trusted installation with this layout:
+   `handoff_resume.py` beside `local_build_capacity/build_capacity.py`. Pin both
+   installed source hashes and the resolved `/usr/bin/python3` hash. Existing
+   runtime adoption, capacity policy and independent graph review remain gates.
+2. At the queue's **existing RELEASED decision**, call
+   `publish_companion(release, destination)` once to serialize that same finite
+   release. It creates an exclusive, fsynced immutable JSON companion, returning
+   its path/hash. It never decides whether to release work. The closed schema
+   is `FIELDS` in the module; `test_handoff_resume.py:setUp` is a complete
+   synthetic example. Supply the real existing release notice pin and reviewed
+   root/head, prepared receipt, graph/input hashes, launcher and Ninja pins,
+   fixed output receipt, item and unique release ID. Do not reuse or reinterpret
+   a historical release whose owner may already have acted.
+3. Supply an independently issued approved-receipt envelope, matching the
+   closed schema in `load()`. Its pin must come from the independent verifier
+   after checking all underlying evidence, not from automatically hashing an
+   arbitrary PASS document. The schema binds action, item, immutable head,
+   prepared receipt, actual root, graph/input hashes, reviewer and producer.
+   The queue-owned control file separately pins this approval and the entire
+   release companion. This control file is a trusted authorization boundary;
+   untrusted candidate code must never create or edit it.
+4. Create the private control JSON with exactly `version: 1`, `enabled: false`,
+   `trial_id`, `companion: {path, sha256}`, `approval_sha256`, `adapter_sha256`,
+   `wrapper_sha256`, `python_sha256`, and an absolute private `journal` path.
+   Keep it and the journal outside all build roots. Preserve one journal across
+   process restarts and trial IDs; never reset it to evade a consumed release.
+   Independently review these exact bindings before explicitly enabling one
+   controlled release. No enabled control file ships with this patch.
+5. At the same local handoff boundary, the sole queue explicitly calls
+   `resume_one(control_path)` synchronously. It uses only the fixed local
+   wrapper and isolated development arguments, sanitizes the environment,
+   persists intent before invoking the wrapper, and returns a structured result.
+   The wrapper retains its normal resource/lock admission and frozen-graph
+   checks, rechecks control/pins after waiting, then atomically consumes the
+   release immediately before launch. No new slot or permission is issued.
+6. A `finished` result means only that this wrapper invocation returned zero.
+   The owner still owes raw no-loss, original DOL, ordered-input/source gates,
+   final review and explicit slot-release reporting. No PASS receipt is created
+   by the adapter. Return HOLD, review requests, failures and uncertain outcomes
+   through the queue's existing parent result route; never call a peer directly.
+
+Set `enabled: false` to stop new launches; the wrapper checks again after its
+admission wait. The final check cannot retroactively cancel a launch that has
+already crossed that boundary. Let running work finish and preserve all locks,
+receipts and journals. On rollback, remove the optional adapter invocation and
+restore the prior independently reviewed wrapper only after active work is
+terminal. Never delete intent to get another attempt. A crash before/after
+spawn leaves `intent`/`started` without a definitive completion and blocks
+relaunch. There is at most one automatic launch attempt per consumed release;
+exactly-once completion across arbitrary process crashes is not promised.
+
+Run `python3 -m unittest tools.tests.test_handoff_resume -v` before adoption.
+The fixtures exercise concurrent/duplicate calls, actual process death around
+intent/launch, drift, unsupported actions, HOLD/denial, off-switch changes during
+capacity wait, uncertain outcomes, and the actual local wrapper hook with a
+synthetic child. They acquire no production locks and run no game builds.
+For the controlled trial, `started_ns - observed_ns` measures actual local
+receipt-observation-to-resume latency on one monotonic clock; `intent_ns` and
+`finished_ns` separate dispatch and completion, and the existing wrapper receipt
+records admission wait. Count actual parent relay messages for the same local
+handoff: baseline one, adapter target zero. Record launch count (must equal one),
+replay launch count (must equal zero), and blocked outcomes. These live metrics
+are acceptance criteria, not claims of a trial already performed.

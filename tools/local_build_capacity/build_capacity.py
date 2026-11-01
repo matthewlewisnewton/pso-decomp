@@ -442,9 +442,31 @@ def main():
     operation.add_argument('--prepare-only', action='store_true')
     ap.add_argument('--lane', choices=['acceptance', 'development'], default='development')
     ap.add_argument('--prepared-receipt', type=Path)
+    ap.add_argument('--resume-control', type=Path, help='Reviewed one-shot local trial only')
     ap.add_argument('--reviewed-graph-sha256')
     args = ap.parse_args()
     repo = args.repo.resolve(strict=True)
+    resume = None
+    resume_started = False
+    if args.resume_control:
+        # Load only this installation's companion module after verifying its
+        # bytes against queue-owned trial control. No plugin/command path input.
+        if args.mode != 'isolated' or args.lane != 'development' or args.audit_only or args.prepare_only:
+            raise RuntimeError('resume supports isolated development builds only')
+        import types
+        adapter = Path(__file__).resolve().parents[1] / 'handoff_resume.py'
+        control = json.loads(args.resume_control.read_bytes())
+        raw = adapter.read_bytes()
+        if hashlib.sha256(raw).hexdigest() != control['adapter_sha256']:
+            raise RuntimeError('resume adapter changed')
+        resume = types.ModuleType('_reviewed_handoff_resume')
+        resume.__file__ = str(adapter)
+        exec(compile(raw, str(adapter), 'exec'), resume.__dict__)
+        config, release = resume.load(args.resume_control)
+        if (release['root'] != str(repo) or release['output'] != str(args.receipt)
+                or release['prepared']['path'] != str(args.prepared_receipt)
+                or release['graph_sha256'] != args.reviewed_graph_sha256):
+            raise RuntimeError('resume invocation binding mismatch')
     pin_ninja(repo)
     isolated = args.mode == 'isolated'
     if args.prepare_only and isolated:
@@ -512,6 +534,9 @@ def main():
                     # Setup edges are inert existing-file leaves after a clean original preflight.
                     command += ['-f', str(snapshot), 'progress']
                 fmt = '{"wall_seconds":%e,"user_seconds":%U,"sys_seconds":%S,"max_rss_kib":%M,"exit_status":%x}'
+                if resume:
+                    resume.claim(args.resume_control)
+                    resume_started = True
                 record['started_epoch'] = time.time()
                 with log.open('w') as output:
                     child = subprocess.run(['/usr/bin/time', '-f', fmt, '-o', str(timing), *command],
@@ -534,6 +559,11 @@ def main():
     finally:
         record['returncode'] = code
         receipt.write_text(json.dumps(record, indent=2) + '\n')
+        if resume:
+            with receipt.open('rb') as completed:
+                os.fsync(completed.fileno())
+            resume.fsync_dir(receipt.parent)
+            resume.finish(args.resume_control, code, resume_started)
     print(json.dumps(record, indent=2))
     raise SystemExit(code)
 
