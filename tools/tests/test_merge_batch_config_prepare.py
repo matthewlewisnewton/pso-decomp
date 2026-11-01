@@ -329,6 +329,65 @@ class PreparationTests(unittest.TestCase):
         with self.assertRaises(ValueError):self.run_prep()
         self.assertEqual(self.marker.read_text(),'x')
 
+    def test_darkfalz_two_stage_preparation_and_both_graph_contracts(self):
+        # Only the fixture checker substitutes a synthetic compiler identity;
+        # production retains the fixed reviewed GC/2.6 SHA-256.
+        self.git('checkout','-B','dark-test',self.target)
+        tool=str(self.tool);compiler=self.packet['pins']['compiler']['path']
+        prefix=(f"rule split\n  command = {tool} dol split $in $out_dir\n  depfile = $out_dir/dep\n  deps = gcc\n"
+                f"build build/GPOE8P/config.json: split config/GPOE8P/psov3/config.yml | {tool}\n  out_dir = build/GPOE8P\n"
+                "rule configure\n  command = false\n  generator = 1\nbuild build.ninja: configure | build/GPOE8P/config.json configure.py\n")
+        script=("from typing import Dict, Any\nfrom pathlib import Path\n"
+                "GAME_COMPILER = 'GC/2.6'\ncflags_pso=[]\ndef _switch(*args): return []\n"
+                "GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {\n    \"other.cpp\": {\"cflags\": []},\n}\n"
+                f"Path({str(self.marker)!r}).write_text('configured')\n"
+                f"flag = 'deferred -sdata2 4 -sym on' if {c.DARKFALZ_UNIT!r} in GAME_EXCEPTIONS else 'off -sdata2 4'\n"
+                f"command = {str(tool+' '+compiler+' -O4,s -inline ')!r}+flag+{str(' -c src/'+c.DARKFALZ_UNIT+' && true')!r}\n"
+                f"Path('build.ninja').write_text({prefix!r}+'rule mwcc\\n  command = '+command+'\\nbuild unit.o: mwcc src/{c.DARKFALZ_UNIT}\\n')\n")
+        config=self.repo/'configure.py';config.write_text(script);config.chmod(0o755)
+        self.git('commit','-qam','dark baseline');self.target=self.git('rev-parse','HEAD')
+        entry='    "pso/boss/TBoss4DarkFalz_8004C93C.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sym on")},\n'
+        config.write_text(script.replace('    "other.cpp"',entry+'    "other.cpp"'))
+        self.git('commit','-qam','dark profile');self.head=self.git('rev-parse','HEAD');self.tree=self.git('rev-parse','HEAD^{tree}')
+        self.candidate=self.git('commit-tree',self.tree,'-p',self.target,'-p',self.head,'-m','dark merge');self.git('checkout','--detach',self.candidate)
+        fake_sha=self.packet['pins']['compiler']['sha256']
+        self.checker.write_text(Path(c.__file__).read_text().replace(c.CALLER_COMPILER_SHA256,fake_sha))
+        self.packet['pins']['checker']=self.pin(self.checker);self.packet['pins']['adapter']=self.pin(Path(adapter.__file__).resolve())
+        change=c.step(self.repo,self.target,self.candidate,c.DARKFALZ_UNIT)
+        self.pr.update(head=self.head,base_sha=self.target,review_base=self.target);self.pr['review'].update(head=self.head,base=self.target)
+        self.commits=[{'pr':1,'head':self.head,'commit':self.candidate,'tree':self.tree}]
+        self.packet.update(target=self.target,candidate=self.candidate,tree=self.tree,steps=[change],cumulative=change,
+            prs=[{'number':1,'head':self.head,'base_sha':self.target,'review_base':self.target,'review':self.pin(self.review)}],
+            effective_argv=[tool,compiler,'-O4,s','-inline','deferred','-sdata2','4','-sym','on','-c','src/'+c.DARKFALZ_UNIT])
+        self.write_packet();self.make_plan()
+        self.request.update(packet=self.pin(self.packet_file),target=self.target,candidate=self.candidate,tree=self.tree,prs=[self.pr],commits=self.commits,plan_receipt=self.pin(self.plan_output))
+        frozen_packet=self.packet_file.read_bytes();self.packet_file.write_bytes(frozen_packet+b' ')
+        with self.assertRaises(ValueError):self.run_prep()
+        self.assertFalse(self.marker.exists());self.assertFalse(Path(self.request['receipt']).exists())
+        self.packet_file.write_bytes(frozen_packet)
+        candidate_receipt=self.run_prep()
+        baseline=self.root/'dark-baseline';subprocess.run(['git','clone','-q',str(self.repo),str(baseline)],check=True)
+        subprocess.run(['git','-C',str(baseline),'checkout','-q','--detach',self.target],check=True)
+        dol=baseline/'orig/GPOE8P/files/PsoV3.dol';dol.parent.mkdir(parents=True);dol.write_bytes(b'fixture')
+        other=dict(self.request,repo=str(baseline),role='baseline',receipt=str(self.root/'dark-baseline-receipt.json'))
+        with patch.object(p,'DOL_SHA1',self.original_sha1):base_receipt=p.prepare(other,str(self.checker),self.pin(self.checker)['sha256'],lock_path=self.lock)
+        roots={'baseline':baseline,'candidate':self.repo};graphs={}
+        for role,receipt,path in (('baseline',base_receipt,Path(other['receipt'])),('candidate',candidate_receipt,Path(self.request['receipt']))):
+            graphs[role]={'commit':receipt['root_commit'],'tree':receipt['root_tree'],'graph_sha256':receipt['graph_sha256'],
+                          'original_tree_sha256':receipt['original_tree_sha256'],'config_preflight':self.pin(path)}
+        config_admission={'checker':self.pin(self.checker),'packet':self.pin(self.packet_file)}
+        request={'checkout':str(self.repo),'policy':'recovery','target':self.target,'candidate':self.candidate,'tree':self.tree,'prs':[self.pr],'commits':self.commits,
+                 'config_admission':config_admission,'cli':self.packet['pins']['cli'],'validator':self.packet['pins']['guard'],
+                 'config_plan':dict(self.pin(self.plan_output),packet_sha256=self.pin(self.packet_file)['sha256'])}
+        env={'config_admission':config_admission,'ninja':str(self.ninja),**{name:self.packet['configure_paths'][name]['path'] for name in ('dtk','objdiff','wrapper','compilers','binutils')},
+             'acceptance_capacity':{'wrapper':self.packet['pins']['wrapper'],'base_validator':self.packet['pins']['base_validator']}}
+        review={'config_plan_sha256':self.pin(self.plan_output)['sha256'],'config_packet_sha256':self.pin(self.packet_file)['sha256'],'effective_compile_argv':self.packet['effective_argv'],
+                'configuration_edge_review':True,'unlisted_edges_unchanged':True,'compiler_binding_reviewed':True,'no_setup_execution':True,
+                'ordered_input_provenance':self.packet['ordered_inputs'],'dependent_compile':[],'roots':graphs}
+        adapter.config_contract(request,env,review,roots)
+        wrong=baseline/'build.ninja';saved=wrong.read_text();wrong.write_text(saved.replace('-inline off','-inline deferred'))
+        with self.assertRaises(ValueError):adapter.config_contract(request,env,review,roots)
+
     def test_malicious_top_level_configuration_never_starts(self):
         evil=self.root/'evil-sentinel';config=self.repo/'configure.py'
         config.write_text(config.read_text()+f"\nPath({str(evil)!r}).touch()\n")

@@ -167,6 +167,40 @@ class PacketTests(unittest.TestCase):
             self.packet['pins']['compiler']['sha256']='f'*64
             with self.assertRaises(ValueError):c.read_packet(self.write(),[self.repo])
 
+    def test_darkfalz_packet_binds_reviewed_profile_compiler_and_full_argv(self):
+        self.git('checkout','-B','dark',self.target)
+        path=self.repo/'configure.py';before=path.read_bytes()+b'GAME_COMPILER = "GC/2.6"\n'
+        path.write_bytes(before);self.git('commit','-qam','baseline');target=self.git('rev-parse','HEAD')
+        entry=b'    "pso/boss/TBoss4DarkFalz_8004C93C.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sym on")},\n'
+        path.write_bytes(before.replace(b'    "other.cpp"',entry+b'    "other.cpp"'))
+        self.git('commit','-qam','candidate');head=self.git('rev-parse','HEAD');tree=self.git('rev-parse','HEAD^{tree}')
+        candidate=self.git('commit-tree',tree,'-p',target,'-p',head,'-m','candidate merge');self.git('checkout','--detach',candidate)
+        change=c.step(self.repo,target,candidate,c.DARKFALZ_UNIT)
+        pr=copy.deepcopy(self.pr);pr.update(head=head,base_sha=target,review_base=target);pr['review'].update(head=head,base=target)
+        commits=[{'pr':1,'head':head,'commit':candidate,'tree':tree}]
+        self.packet.update(target=target,candidate=candidate,tree=tree,steps=[change],cumulative=change,
+            prs=[{'number':1,'head':head,'base_sha':target,'review_base':target,'review':{'path':pr['review']['path'],'sha256':pr['review']['sha256']}}])
+        compiler=self.packet['pins']['compiler'];wrapper=self.packet['pins']['compiler_wrapper']['path']
+        self.packet['effective_argv']=[wrapper,compiler['path'],'-O4,s','-inline','deferred','-sdata2','4','-sym','on','-c','src/'+c.DARKFALZ_UNIT]
+        with patch.object(c,'CALLER_COMPILER_SHA256',compiler['sha256']):
+            packet=c.read_packet(self.write(),[self.repo]);c.verify_plan(self.repo,packet,target,candidate,tree,[pr],commits)
+            original=copy.deepcopy(self.packet)
+            for field in ('target','candidate','tree'):
+                bad=copy.deepcopy(packet);bad[field]='f'*40
+                with self.subTest(field=field),self.assertRaises(ValueError):c.verify_plan(self.repo,bad,target,candidate,tree,[pr],commits)
+            self.packet['pins']['compiler']['sha256']='f'*64
+            with self.assertRaises(ValueError):c.read_packet(self.write(),[self.repo])
+            self.packet=copy.deepcopy(original);self.packet['configure_paths']['compilers']['sha256']='f'*64
+            with self.assertRaises(ValueError):c.read_packet(self.write(),[self.repo])
+            self.packet=copy.deepcopy(original);self.packet['pins']['compiler_wrapper']['sha256']='f'*64
+            with self.assertRaises(ValueError):c.read_packet(self.write(),[self.repo])
+            self.packet=copy.deepcopy(original);self.packet['dependent_compile']=[{'unit':'other'}]
+            with self.assertRaises(ValueError):c.read_packet(self.write(),[self.repo])
+            self.packet=copy.deepcopy(original);self.packet['steps'][0]['unit']=c.UNIT
+            with self.assertRaises(ValueError):c.read_packet(self.write(),[self.repo])
+            self.packet=copy.deepcopy(original);self.review.write_text('stale review')
+            with self.assertRaises(ValueError):c.read_packet(self.write(),[self.repo])
+
     def test_duplicate_unknown_or_stale_packet_rejected(self):
         raw=self.file.read_text();self.file.write_text(raw[:-1]+',"version":1}')
         pin={'path':str(self.file),'sha256':hashlib.sha256(self.file.read_bytes()).hexdigest()}
@@ -248,7 +282,7 @@ class DarkFalzRealGraphTests(unittest.TestCase):
             self.graph(root,argv)
     def test_darkfalz_argv_rejects_conflicts(self):
         c.require_compile_argv(self.argv,c.DARKFALZ_UNIT,'/wrapper','/compiler26','deferred')
-        cases=[self.argv+['-sym','on'],self.argv+['-sdata','4'],self.argv+['-O0'],
+        cases=[self.argv+['-sym','on'],self.argv+['-sdata','4'],self.argv+['-O0'],self.argv+['-sdata2=8'],self.argv+['-g'],
                [x for x in self.argv if x!='-sym'],[('off' if x=='on' else x) for x in self.argv],
                [('off,deferred' if x=='deferred' else x) for x in self.argv]]
         for argv in cases:

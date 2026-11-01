@@ -211,7 +211,7 @@ def require_compile_argv(argv, unit, wrapper, compiler, inline):
     if unit in (PLAYER_UNIT,PLAYER_CALLER,DARKFALZ_UNIT) and (argv.count('-O4,s')!=1 or argv.count('-sdata2')!=1 or pairs('-sdata2','4')!=1):
         fail('default flags changed')
     if unit == DARKFALZ_UNIT:
-        if argv.count('-sym')!=1 or pairs('-sym','on')!=1 or any(x == '-sdata' or x.startswith(('-sym=', '-inline=', '-sdata=')) or (x.startswith('-O') and x != '-O4,s') for x in argv):
+        if argv.count('-sym')!=1 or pairs('-sym','on')!=1 or any((x.startswith('-sdata') and x != '-sdata2') or (x.startswith('-sym') and x != '-sym') or x.startswith('-inline=') or x in ('-g','-g1','-g2','-g3','-gdwarf','-debug') or (x.startswith('-O') and x != '-O4,s') for x in argv):
             fail('wrong Dark Falz profile flags')
 
 
