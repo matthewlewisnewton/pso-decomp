@@ -1,4 +1,6 @@
 """No real builds, production locks, release files or network operations."""
+from contextlib import redirect_stdout
+import io
 import copy
 import importlib.util
 import json
@@ -13,6 +15,7 @@ import unittest
 from unittest.mock import patch
 
 from tools import handoff_resume as h
+from tools.tests.test_merge_batch_config_development import discover_test_ninja
 
 
 class ResumeTests(unittest.TestCase):
@@ -29,21 +32,35 @@ class ResumeTests(unittest.TestCase):
         self.git('add', 'source')
         self.git('commit', '-qm', 'fixture')
         head = self.git('rev-parse', 'HEAD')
-        (self.repo / 'build.ninja').write_text('rule progress\n  command = true\nbuild progress: progress\n')
+        (self.repo / 'build.ninja').write_text('rule progress\n  command = true\nbuild progress: progress\nbuild build.ninja: phony\n')
         self.launcher = self.file('launcher', 'synthetic pinned launcher')
-        self.ninja = self.file('ninja', 'synthetic pinned Ninja')
-        self.prepared = self.file('prepared.json', json.dumps(dict(
-            prepared=True, returncode=0, admission=dict(repo=str(self.repo),
-            ninja_sha256=h.digest(self.repo / 'build.ninja'), inputs_sha256='b' * 64,
-            ninja_tool=self.ninja))))
+        executable = discover_test_ninja()
+        self.ninja = dict(path=str(executable), sha256=h.digest(executable))
+        for directory in ('build', 'config/GPOE8P', 'orig/GPOE8P/files'):
+            (self.repo / directory).mkdir(parents=True, exist_ok=True)
+        (self.repo / 'objdiff.json').write_text('{}')
+        (self.repo / 'config/GPOE8P/data.json').write_text('{"files":[]}')
+        (self.repo / 'orig/GPOE8P/files/PsoV3.dol').write_bytes(b'synthetic fixture only')
+        # Obtain an actual preparation receipt from wrapper main with a real
+        # Ninja. Only capacity/lock admission is replaced by a private fixture.
+        capacity = self.capacity()
+        prepared = self.root / 'prepared.json'
+        with patch.object(sys, 'argv', [str(h.WRAPPER), '--repo', str(self.repo),
+                '--receipt', str(prepared), '--prepare-only']), \
+             patch.object(capacity, 'acquire', return_value=([], {})), redirect_stdout(io.StringIO()):
+            with self.assertRaises(SystemExit) as exc:
+                capacity.main()
+            self.assertEqual(exc.exception.code, 0)
+        self.prepared = dict(path=str(prepared), sha256=h.digest(prepared))
+        self.admission = json.loads(prepared.read_text())['admission']
         self.approval = self.file('approved.json', json.dumps(dict(
             version=1, independent=True, producer='worker', reviewer='independent',
             verdict='pass', item='fixture', head=head, root=str(self.repo),
             prepared_sha256=self.prepared['sha256'], graph_sha256=h.digest(self.repo / 'build.ninja'),
-            inputs_sha256='b' * 64, action=h.ACTION)))
+            inputs_sha256=self.admission['inputs_sha256'], action=h.ACTION)))
         self.release = dict(version=1, queue=h.QUEUE, action=h.ACTION, release_id='release-one',
             item='fixture', head=head, root=str(self.repo), prepared=self.prepared,
-            graph_sha256=h.digest(self.repo / 'build.ninja'), inputs_sha256='b' * 64,
+            graph_sha256=h.digest(self.repo / 'build.ninja'), inputs_sha256=self.admission['inputs_sha256'],
             approval=self.approval, notice=self.file('release-notice', 'Existing RELEASED decision'),
             launcher=self.launcher, ninja=self.ninja, output=str(self.root / 'result.json'), issued_ms=100)
         companion = h.publish_companion(self.release, self.root / 'companion.json')
@@ -71,10 +88,11 @@ class ResumeTests(unittest.TestCase):
         self.assertNotIn('PYTHONPATH', env)
         self.assertNotIn('PYTHONHOME', env)
         self.assertEqual(argv[argv.index('--lane') + 1], 'development')
-        h.claim(self.control)
+        invocation = h.capture(self.control)
+        h.claim(invocation)
         self.launches += 1
         Path(self.release['output']).write_text('{"synthetic_returncode":0}')
-        h.finish(self.control, 0, True)
+        h.finish(invocation, 0, True)
         return types.SimpleNamespace(returncode=0)
 
     def fake_process(self, run=None):
@@ -154,7 +172,7 @@ class ResumeTests(unittest.TestCase):
             self.config['enabled'] = False
             self.save_control()
             with self.assertRaisesRegex(ValueError, 'disabled'):
-                h.claim(self.control)
+                h.claim(h.capture(self.control))
         with self.fake_process(disable):
             row = h.resume_one(self.control)
         self.assertEqual(row['state'], 'intent')
@@ -180,8 +198,8 @@ resume_one(sys.argv[1], crash)
         # Claim then process death leaves a started attempt, not a new release.
         script = '''
 import os, sys
-from tools.handoff_resume import claim
-claim(sys.argv[1], lambda phase: os._exit(19))
+from tools.handoff_resume import claim, capture
+claim(capture(sys.argv[1]), lambda phase: os._exit(19))
 '''
         result = subprocess.run([sys.executable, '-c', script, str(self.control)])
         self.assertEqual(result.returncode, 19)
@@ -201,50 +219,198 @@ claim(sys.argv[1], lambda phase: os._exit(19))
 
     def test_wrapper_failure_and_uncertain_return_are_blocked(self):
         def uncertain(*args, **kwargs):
-            h.claim(self.control)
+            h.claim(h.capture(self.control))
             return types.SimpleNamespace(returncode=1)
         with self.fake_process(uncertain):
             row = h.resume_one(self.control)
         self.assertEqual(row['state'], 'started')
         self.assertIsNotNone(row['blocked_reason'])
-        h.finish(self.control, 1, True)
+        h.finish(h.capture(self.control), 1, True)
         with self.fake_process(): row = h.resume_one(self.control)
         self.assertEqual(row['state'], 'failed')
         self.assertIsNotNone(row['blocked_reason'])
         self.assertEqual(self.launches, 0)
 
-    def test_local_wrapper_hook_reaches_one_synthetic_child(self):
+    def capacity(self):
         spec = importlib.util.spec_from_file_location('fixture_capacity', h.WRAPPER)
         capacity = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(capacity)
-        admission = json.loads(Path(self.prepared['path']).read_text())['admission']
-        def synthetic_child(argv, **kwargs):
-            self.launches += 1
-            Path(argv[4]).write_text('{"exit_status":0}')
-            return types.SimpleNamespace(returncode=0)
-        def invoke_wrapper(argv, **kwargs):
+        capacity.NINJA = self.ninja['path']
+        capacity.CAPACITY = self.root / 'private-capacity'
+        return capacity
+
+    def invoke_actual_wrapper(self, acquire=None, on_child=None):
+        capacity = self.capacity()
+        real_run = subprocess.run
+        def child(argv, **kwargs):
+            if argv[0] == '/usr/bin/time':
+                self.launches += 1
+                if on_child:
+                    on_child()
+            return real_run(argv, **kwargs)
+        def invoke(argv, **kwargs):
             with patch.object(sys, 'argv', argv[3:]), \
-                 patch.object(capacity, 'pin_ninja'), \
                  patch.object(capacity, 'enabled_policy', return_value={}), \
                  patch.object(capacity, 'capacity_policy', return_value=1), \
-                 patch.object(capacity, 'acquire', return_value=([], {})), \
-                 patch.object(capacity, 'writable_trees'), \
-                 patch.object(capacity, 'ninja_command', return_value=self.ninja['path']), \
-                 patch.object(capacity, 'audit', return_value=admission), \
-                 patch.object(capacity, 'check_prepared'), \
-                 patch.object(capacity, 'setup_preflight', return_value={}), \
-                 patch.object(capacity, 'inputs_fingerprint', return_value=self.release['inputs_sha256']), \
-                 patch.object(capacity, 'subprocess', types.SimpleNamespace(run=synthetic_child, STDOUT=subprocess.STDOUT)):
-                with self.assertRaises(SystemExit) as exc:
-                    capacity.main()
-                self.assertEqual(exc.exception.code, 0)
-        with self.fake_process(invoke_wrapper):
+                 patch.object(capacity, 'acquire', side_effect=acquire or (lambda *a, **k: ([], {}))), \
+                 patch.object(capacity, 'subprocess', types.SimpleNamespace(
+                     run=child, check_output=subprocess.check_output, STDOUT=subprocess.STDOUT)), \
+                 redirect_stdout(io.StringIO()):
+                capacity.main()
+        return invoke
+
+    def run_actual_wrapper(self, acquire=None, on_child=None):
+        invoke = self.invoke_actual_wrapper(acquire, on_child)
+        def run(argv, **kwargs):
+            try:
+                invoke(argv, **kwargs)
+            except SystemExit as exc:
+                self.assertEqual(exc.code, 0)
+        return run
+
+    def reserve_other(self, other):
+        other.release['release_id'] = 'release-B'
+        other.config['trial_id'] = 'trial-B'
+        other.config['companion'] = h.publish_companion(other.release, other.root / 'companion-B.json')
+        other.save_control()
+        invocation = h.capture(other.control)
+        c, d = invocation.config, invocation.release
+        db = h.connect(c['journal'])
+        db.execute('INSERT INTO attempts VALUES (?, ?, ?, ?, ?, ?, NULL, NULL, NULL, NULL)',
+                   (d['release_id'], c['companion']['sha256'], c['trial_id'], 'intent', 1, 1))
+        db.close()
+        return invocation
+
+    def row(self, journal, release):
+        db = h.connect(journal)
+        try:
+            return h.status(db, release)
+        finally:
+            db.close()
+
+    def test_local_wrapper_hook_real_preparation_and_real_ninja_identity(self):
+        full = self.admission['ninja_tool']
+        self.assertEqual(set(full), {'path', 'sha256', 'device', 'inode', 'size', 'mtime_ns'})
+        self.assertEqual(self.capacity().pin_ninja(self.repo, full), full)
+        h.load(self.control)
+        with self.fake_process(self.run_actual_wrapper()):
             row = h.resume_one(self.control)
             h.resume_one(self.control)
         self.assertEqual(row['state'], 'finished')
         self.assertEqual(self.launches, 1)
         result = json.loads(Path(self.release['output']).read_text())
         self.assertEqual(result['returncode'], 0)
+        self.assertEqual(result['admission']['ninja_tool'], full)
+
+    def test_real_identity_stat_drift_rejected_even_when_file_pin_matches(self):
+        prior = json.loads(Path(self.prepared['path']).read_text())
+        prior['admission']['ninja_tool']['inode'] += 1
+        prepared = self.file('bad-prepared.json', json.dumps(prior))
+        release = copy.deepcopy(self.release)
+        release['prepared'] = prepared
+        approved = json.loads(Path(self.approval['path']).read_text())
+        approved['prepared_sha256'] = prepared['sha256']
+        release['approval'] = self.file('bad-approved.json', json.dumps(approved))
+        self.config['companion'] = h.publish_companion(release, self.root / 'bad-companion.json')
+        self.config['approval_sha256'] = release['approval']['sha256']
+        self.save_control()
+        with self.assertRaisesRegex(ValueError, 'Ninja identity differs'):
+            h.resume_one(self.control)
+
+    def test_actual_wrapper_control_replacement_during_admission_blocks_both_roots(self):
+        for different_journal in (False, True):
+            with self.subTest(different_journal=different_journal):
+                # Each case uses real wrapper-generated preparation receipts.
+                a, b = ResumeTests(), ResumeTests()
+                a.setUp(); b.setUp()
+                try:
+                    if not different_journal:
+                        b.config['journal'] = a.config['journal']
+                    self.reserve_other(b)
+                    def replace(*args, **kwargs):
+                        a.control.write_text(json.dumps(b.config))
+                        return [], {}
+                    with a.fake_process(a.invoke_actual_wrapper(acquire=replace)):
+                        with self.assertRaisesRegex(ValueError, 'control changed during admission'):
+                            h.resume_one(a.control)
+                    self.assertEqual(a.launches, 0)
+                    self.assertEqual(self.row(a.config['journal'], 'release-one')['state'], 'preflight_failed')
+                    self.assertEqual(self.row(b.config['journal'], 'release-B')['state'], 'intent')
+                    self.assertFalse(Path(b.release['output']).exists())
+                finally:
+                    a.doCleanups(); b.doCleanups()
+
+    def test_actual_wrapper_rejects_trial_or_journal_only_change_during_wait(self):
+        for field, value in (('trial_id', 'changed-trial'),
+                             ('journal', str(self.root / 'different.sqlite'))):
+            with self.subTest(field=field):
+                a = ResumeTests(); a.setUp()
+                try:
+                    original = copy.deepcopy(a.config)
+                    def replace(*args, **kwargs):
+                        replacement = dict(a.config, **{field: value})
+                        a.control.write_text(json.dumps(replacement))
+                        return [], {}
+                    with a.fake_process(a.invoke_actual_wrapper(acquire=replace)):
+                        with self.assertRaisesRegex(ValueError, 'control changed during admission'):
+                            h.resume_one(a.control)
+                    self.assertEqual(a.launches, 0)
+                    self.assertEqual(self.row(original['journal'], 'release-one')['state'], 'preflight_failed')
+                finally:
+                    a.doCleanups()
+
+    def test_actual_wrapper_finishes_original_after_control_disabled_or_removed(self):
+        for change in ('disable', 'remove'):
+            with self.subTest(change=change):
+                a = ResumeTests(); a.setUp()
+                try:
+                    def mutate():
+                        if change == 'remove':
+                            a.control.unlink()
+                        else:
+                            a.config['enabled'] = False
+                            a.save_control()
+                    with a.fake_process(a.run_actual_wrapper(on_child=mutate)):
+                        row = h.resume_one(a.control)
+                    self.assertEqual(row['state'], 'finished')
+                    self.assertEqual(a.launches, 1)
+                    self.assertEqual(self.row(a.config['journal'], 'release-one')['state'], 'finished')
+                finally:
+                    a.doCleanups()
+
+    def test_actual_wrapper_completion_retains_original_after_control_replacement(self):
+        b = ResumeTests(); b.setUp()
+        try:
+            self.reserve_other(b)
+            original = copy.deepcopy(self.config)
+            def replace():
+                self.control.write_text(json.dumps(b.config))
+            with self.fake_process(self.run_actual_wrapper(on_child=replace)):
+                row = h.resume_one(self.control)
+            self.assertEqual(row['state'], 'finished')
+            self.assertEqual(self.launches, 1)
+            self.assertEqual(self.row(original['journal'], 'release-one')['state'], 'finished')
+            self.assertEqual(self.row(b.config['journal'], 'release-B')['state'], 'intent')
+            self.assertFalse(Path(b.release['output']).exists())
+        finally:
+            b.doCleanups()
+
+    def test_control_replacement_before_wrapper_entry_cannot_rebind_parent_intent(self):
+        b = ResumeTests(); b.setUp()
+        try:
+            self.reserve_other(b)
+            invoke = self.invoke_actual_wrapper()
+            def replace(argv, **kwargs):
+                self.control.write_text(json.dumps(b.config))
+                return invoke(argv, **kwargs)
+            with self.fake_process(replace):
+                with self.assertRaisesRegex(RuntimeError, 'identity changed before wrapper entry'):
+                    h.resume_one(self.control)
+            self.assertEqual(self.launches, 0)
+            self.assertEqual(self.row(self.config['journal'], 'release-one')['state'], 'intent')
+            self.assertEqual(self.row(b.config['journal'], 'release-B')['state'], 'intent')
+        finally:
+            b.doCleanups()
 
 
 if __name__ == '__main__':

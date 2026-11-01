@@ -3,6 +3,7 @@
 Control files are queue-owned activation/configuration, not untrusted requests.
 Receipt pins are supplied by an independent verifier, never inferred here.
 """
+from dataclasses import dataclass
 import hashlib
 import json
 import os
@@ -138,7 +139,18 @@ def load(control_path):
     for key, expected in {'repo': d['root'], 'ninja_sha256': d['graph_sha256'],
                           'inputs_sha256': d['inputs_sha256']}.items():
         require(admitted.get(key) == expected, 'preparation binding mismatch')
-    require(admitted.get('ninja_tool') == d['ninja'], 'Ninja preparation mismatch')
+    expected_ninja = admitted.get('ninja_tool')
+    require(isinstance(expected_ninja, dict) and set(expected_ninja) == {
+        'path', 'sha256', 'device', 'inode', 'size', 'mtime_ns'}, 'full Ninja preparation identity required')
+    require({key: expected_ninja[key] for key in ('path', 'sha256')} == d['ninja'],
+            'Ninja preparation pin mismatch')
+    executable = pin(d['ninja'])
+    stat = executable.stat()
+    actual_ninja = dict(path=str(executable), sha256=digest(executable),
+                        device=stat.st_dev, inode=stat.st_ino, size=stat.st_size,
+                        mtime_ns=stat.st_mtime_ns)
+    require(os.access(executable, os.X_OK) and actual_ninja == expected_ninja,
+            'Ninja identity differs from preparation evidence')
     root = Path(d['root'])
     require(digest(root / 'build.ninja') == d['graph_sha256'], 'graph drift')
     # Isolated Git observation disables local hooks, includes and executable
@@ -178,11 +190,43 @@ def status(db, release):
     return dict(row) if row else None
 
 
-def claim(control_path, fault=lambda phase: None):
-    """Called by the LOCAL wrapper after admission/preflight, before Ninja.
-    Does not acquire a slot or attest any build/validation result.
+@dataclass(frozen=True)
+class Invocation:
+    # Canonical strings prevent caller-owned dictionaries from mutating the
+    # identity captured before admission. Completion never reloads control.
+    control_path: str
+    config_json: str
+    release_json: str
+
+    @property
+    def config(self):
+        return json.loads(self.config_json)
+
+    @property
+    def release(self):
+        return json.loads(self.release_json)
+
+    @property
+    def sha256(self):
+        return hashlib.sha256((self.config_json + '\n' + self.release_json).encode()).hexdigest()
+
+
+def capture(control_path):
+    c, d = load(control_path)
+    return Invocation(str(absolute(control_path)), json.dumps(c, sort_keys=True),
+                      json.dumps(d, sort_keys=True))
+
+
+def claim(invocation, fault=lambda phase: None):
+    """Consume only the invocation captured before admission.
+
+    Re-read mutable control for disable/drift checks, but never select a new
+    release, root, companion, trial or journal from it after waiting.
     """
-    c, d = load(control_path)  # off switch, all pins and head rechecked here
+    require(type(invocation) is Invocation, 'captured invocation required')
+    current = capture(invocation.control_path)
+    require(current == invocation, 'control changed during admission')
+    c, d = invocation.config, invocation.release
     db = connect(c['journal'])
     try:
         db.execute('BEGIN IMMEDIATE')
@@ -198,11 +242,13 @@ def claim(control_path, fault=lambda phase: None):
         db.close()
 
 
-def finish(control_path, returncode, started):
-    """Record wrapper completion. No PASS synthesis and no automatic retry."""
-    # Off switch must not prevent recording an already running job's result.
-    c = read(control_path)
-    d = read(pin(c['companion']))
+def finish(invocation, returncode, started):
+    """Attribute completion to the captured original, even after disable/rebind.
+
+    No read of the mutable control, companion, or other release files occurs.
+    """
+    require(type(invocation) is Invocation, 'captured invocation required')
+    c, d = invocation.config, invocation.release
     db = connect(c['journal'])
     try:
         db.execute('BEGIN IMMEDIATE')
@@ -222,7 +268,8 @@ def finish(control_path, returncode, started):
 def resume_one(control_path, fault=lambda phase: None):
     """Explicit synchronous queue call. No polling, retry or arbitrary argv."""
     observed = time.monotonic_ns()
-    c, d = load(control_path)
+    invocation = capture(control_path)
+    c, d = invocation.config, invocation.release
     db = connect(c['journal'])
     try:
         db.execute('BEGIN IMMEDIATE')
@@ -250,7 +297,8 @@ def resume_one(control_path, fault=lambda phase: None):
                 '--receipt', d['output'], '--mode', 'isolated', '--lane', 'development',
                 '--prepared-receipt', d['prepared']['path'],
                 '--reviewed-graph-sha256', d['graph_sha256'],
-                '--resume-control', str(absolute(control_path))]
+                '--resume-control', invocation.control_path,
+                '--resume-invocation-sha256', invocation.sha256]
         subprocess.run(argv, env=env, check=False)
         fault('after_wrapper')
         row = status(db, d['release_id'])

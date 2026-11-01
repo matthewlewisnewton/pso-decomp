@@ -313,7 +313,7 @@ spawn leaves `intent`/`started` without a definitive completion and blocks
 relaunch. There is at most one automatic launch attempt per consumed release;
 exactly-once completion across arbitrary process crashes is not promised.
 
-Run `python3 -m unittest tools.tests.test_handoff_resume -v` before adoption.
+Run `PSO_TEST_NINJA=/absolute/real/ninja python3 -m unittest tools.tests.test_handoff_resume -v` before adoption.
 The fixtures exercise concurrent/duplicate calls, actual process death around
 intent/launch, drift, unsupported actions, HOLD/denial, off-switch changes during
 capacity wait, uncertain outcomes, and the actual local wrapper hook with a
@@ -325,3 +325,15 @@ records admission wait. Count actual parent relay messages for the same local
 handoff: baseline one, adapter target zero. Record launch count (must equal one),
 replay launch count (must equal zero), and blocked outcomes. These live metrics
 are acceptance criteria, not claims of a trial already performed.
+
+Resume invocation binding: the adapter captures the full verified control and
+companion before reservation and sends their identity digest to the fixed wrapper
+using `--resume-invocation-sha256`. The wrapper retains an immutable captured
+invocation, checks that digest at entry, and compares the complete capture again
+after admission. A changed companion, root, output, trial or journal cannot
+select another attempt. Completion uses only the captured original journal and
+release, even if control is replaced, disabled or removed after launch. The
+companion Ninja pin remains path/hash; preparation retains the wrapper's full
+path/hash/device/inode/size/mtime identity, which is verified without rewriting
+the receipt. Resume fixtures obtain preparation receipts from actual wrapper
+main with real Ninja, replacing only production admission with a private fixture.

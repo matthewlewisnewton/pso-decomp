@@ -443,11 +443,15 @@ def main():
     ap.add_argument('--lane', choices=['acceptance', 'development'], default='development')
     ap.add_argument('--prepared-receipt', type=Path)
     ap.add_argument('--resume-control', type=Path, help='Reviewed one-shot local trial only')
+    ap.add_argument('--resume-invocation-sha256')
     ap.add_argument('--reviewed-graph-sha256')
     args = ap.parse_args()
     repo = args.repo.resolve(strict=True)
     resume = None
     resume_started = False
+    resume_invocation = None
+    if args.resume_invocation_sha256 and not args.resume_control:
+        raise RuntimeError('resume control required')
     if args.resume_control:
         # Load only this installation's companion module after verifying its
         # bytes against queue-owned trial control. No plugin/command path input.
@@ -462,7 +466,10 @@ def main():
         resume = types.ModuleType('_reviewed_handoff_resume')
         resume.__file__ = str(adapter)
         exec(compile(raw, str(adapter), 'exec'), resume.__dict__)
-        config, release = resume.load(args.resume_control)
+        resume_invocation = resume.capture(args.resume_control)
+        if resume_invocation.sha256 != args.resume_invocation_sha256:
+            raise RuntimeError('resume invocation identity changed before wrapper entry')
+        config, release = resume_invocation.config, resume_invocation.release
         if (release['root'] != str(repo) or release['output'] != str(args.receipt)
                 or release['prepared']['path'] != str(args.prepared_receipt)
                 or release['graph_sha256'] != args.reviewed_graph_sha256):
@@ -535,7 +542,7 @@ def main():
                     command += ['-f', str(snapshot), 'progress']
                 fmt = '{"wall_seconds":%e,"user_seconds":%U,"sys_seconds":%S,"max_rss_kib":%M,"exit_status":%x}'
                 if resume:
-                    resume.claim(args.resume_control)
+                    resume.claim(resume_invocation)
                     resume_started = True
                 record['started_epoch'] = time.time()
                 with log.open('w') as output:
@@ -563,7 +570,7 @@ def main():
             with receipt.open('rb') as completed:
                 os.fsync(completed.fileno())
             resume.fsync_dir(receipt.parent)
-            resume.finish(args.resume_control, code, resume_started)
+            resume.finish(resume_invocation, code, resume_started)
     print(json.dumps(record, indent=2))
     raise SystemExit(code)
 
