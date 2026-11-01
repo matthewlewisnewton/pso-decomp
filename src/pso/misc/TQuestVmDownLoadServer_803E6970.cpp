@@ -3143,33 +3143,39 @@ s32 TQuestVmDownLoadServer__sub_803EC69C(int code) {
 
 #pragma push
 #pragma dont_inline off
-#pragma inline_depth(2)
+#pragma inline_depth(3)
 static inline s32 Kind_803EC71C(u16 ch) { return (ch >> 8) & 0xf; }
-static inline s32 IsJisByte_803EC71C(s32 ch) {
+// The promoted cursor result and validation references preserve the original
+// inlined frame and validation register lifetimes.
+static inline u32 ReadNext_803EC71C(u16 *&text) { return *++text; }
+static inline s32 IsJisByte_803EC71C(const s32 &ch) {
     s32 result = 0;
     if (ch >= 0x21U && ch <= 0x7eU) {
         result = 1;
     }
     return result;
 }
-static inline s32 IsJisPair_803EC71C(s32 lo, s32 hi) {
+static inline s32 IsJisPair_803EC71C(const s32 &lo, const s32 &hi) {
     s32 result = 0;
     if (IsJisByte_803EC71C(hi) && IsJisByte_803EC71C(lo)) {
         result = 1;
     }
     return result;
 }
+static inline s32 IsJis_803EC71C(u16 code) {
+    s32 lo = code & 0xff;
+    s32 hi = (code >> 8) & 0xff;
+    return IsJisPair_803EC71C(lo, hi);
+}
 // The encoder supplies nonzero character classes as odd/even pairs.
 // Preserve the original cursor advances when a pair is rejected.
 s32 TQuestVmDownLoadServer__sub_803EC71C(u16 *text, u8 *out, s32 count) {
     s32 i;
     u8 *dst;
-    u16 next;
-    s32 kind;
     u16 ch;
+    s32 kind;
+    u16 next;
     u16 pair;
-    s32 hi;
-    s32 lo;
     dst = out;
     i = 0;
     while (i < count) {
@@ -3181,16 +3187,15 @@ s32 TQuestVmDownLoadServer__sub_803EC71C(u16 *text, u8 *out, s32 count) {
             dst++;
             i++;
         } else if (kind & 1) {
-            next = *++text;
+            next = ReadNext_803EC71C(text);
             i++;
-            pair = (ch & 0xff) << 8;
-            if (kind + 1 == Kind_803EC71C(next)) {
+            // Narrowing to u16 retains only the first payload byte.
+            pair = ch << 8;
+            if (((next >> 8) & 0xf) == kind + 1) {
                 pair |= next & 0xff;
-                hi = (pair >> 8) & 0xff;
-                lo = pair & 0xff;
                 text++;
                 i++;
-                if (IsJisPair_803EC71C(lo, hi)) {
+                if (IsJis_803EC71C(pair)) {
                     pair = TQuestVmDownLoadServer::jis_to_sjis(pair);
                 }
                 dst[0] = (s8)(pair >> 8);
