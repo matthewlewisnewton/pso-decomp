@@ -302,6 +302,10 @@ class Queue:
                    GIT_COMMITTER_NAME='PSO mechanical queue', GIT_COMMITTER_EMAIL='queue@localhost',
                    GIT_AUTHOR_DATE=f"@{self.spec['commit_epoch']} +0000",
                    GIT_COMMITTER_DATE=f"@{self.spec['commit_epoch']} +0000")
+        safe_git_env = {k:v for k,v in env.items() if not k.startswith('GIT_')}
+        safe_git_env.update(GIT_CONFIG_GLOBAL='/dev/null', GIT_CONFIG_NOSYSTEM='1', GIT_ATTR_NOSYSTEM='1')
+        local_drivers=subprocess.run(['git','-C',str(self.repo),'config','--local','--get-regexp',r'^(merge\..*\.driver|filter\..*)$'],env=safe_git_env,capture_output=True)
+        require(local_drivers.returncode==1 and not local_drivers.stdout, 'unsafe_local_git_config', 'External merge or filter drivers are not admitted')
         for pr in self.spec['prs']:
             # An explicit ordered batch can include structural bases, but never omit one.
             self.git('merge-base', '--is-ancestor', pr['base_sha'], current)
@@ -311,14 +315,14 @@ class Queue:
             require(covered.returncode == 0, 'unreviewed_prerequisite',
                     {'pr': pr['number'], 'review_base': pr['review_base'], 'accumulated': current})
             merged = subprocess.run(['git', '-C', str(self.repo), 'merge-tree', '--write-tree', current, pr['head']],
-                                    text=True, capture_output=True)
+                                    text=True, capture_output=True, env=safe_git_env)
             require(merged.returncode == 0, 'conflict', {'pr': pr['number'], 'diagnostic': merged.stdout[-2000:]})
             tree = merged.stdout.splitlines()[0]
             require(SHA.fullmatch(tree), 'invalid_tree', pr['number'])
             current = self.git('commit-tree', tree, '-p', current, '-p', pr['head'], '-m',
                                f"Merge reviewed fork PR #{pr['number']}", env=env)
             commits.append({'pr': pr['number'], 'commit': current, 'tree': tree, 'head': pr['head']})
-        self.git('diff', '--check', self.spec['target'], current)
+        self.git('diff', '--no-ext-diff', '--no-textconv', '--check', self.spec['target'], current, env=safe_git_env)
         if self.spec['policy'] == 'maintenance':
             paths = self.git('diff', '--name-only', self.spec['target'], current).splitlines()
             require(all(p.startswith(('tools/', 'docs/', '.github/')) or p in ('README.md', 'CONTRIBUTING.md', 'AGENTS.md')
@@ -372,9 +376,7 @@ class Queue:
                 require(isinstance(plan,dict) and set(plan)=={'packet_sha256','target','candidate','tree','effective_argv'} and plan['packet_sha256']==config['packet']['sha256'] and plan['target']==self.spec['target'] and plan['candidate']==current and plan['tree']==tree and isinstance(plan['effective_argv'],list) and bool(plan['effective_argv']), 'config_preflight_rejected', 'Invalid plan receipt')
                 require(digest(checker)==config['checker']['sha256'] and digest(config['packet']['path'])==config['packet']['sha256'], 'stale_config_admission', '')
                 self.record['config_plan']={'path':str(output),'sha256':digest(output),'packet_sha256':config['packet']['sha256']}
-        checkout_env = {k:v for k,v in env.items() if not k.startswith('GIT_')}
-        checkout_env.update(GIT_CONFIG_GLOBAL='/dev/null', GIT_CONFIG_NOSYSTEM='1', GIT_ATTR_NOSYSTEM='1')
-        self.git('checkout', '--detach', current, env=checkout_env)
+        self.git('checkout', '--detach', current, env=safe_git_env)
         self.write(state='planned', candidate=current, tree=tree, commits=commits)
         return current, tree
 

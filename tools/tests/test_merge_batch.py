@@ -191,6 +191,13 @@ class QueueTests(unittest.TestCase):
                     else:
                         self.rejects('source_maintenance_scope', queue.construct)
 
+    def test_external_checkout_filter_is_rejected_before_planning(self):
+        marker=self.root/'filter-ran'
+        git(self.q.repo,'config','filter.fixture.smudge','touch '+str(marker))
+        with patch.object(m,'REMOTE',str(self.remote)):
+            self.rejects('unsafe_local_git_config',self.q.construct)
+        self.assertFalse(marker.exists())
+
     def test_recovery_config_requires_exact_operator_packet_at_construction(self):
         from tools import merge_batch_config_delta as c
         git(self.author,'checkout','main')
