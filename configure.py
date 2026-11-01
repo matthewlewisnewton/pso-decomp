@@ -638,8 +638,10 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Metrowerks' GCN_Mem_Alloc.c (runtime library code at -O4,p); belongs
     # in the runtime lib under its own name.
     "pso/unk/text_8039739C.cpp": {"cflags": _switch(cflags_pso, "-O4,p")},
-    # Auto-inline the 12-byte copy constructor to retain the original copy schedule.
-    "pso/player/TObjPlayer_802D5B78.cpp": {"cflags": _switch(cflags_pso, "-inline auto")},
+    # The hit-vector helper (0x802D5B78): GC/1.3.2 with default flags. Only
+    # 1.3.2 keeps the incoming vector's three integer loads grouped before the
+    # normalizer call; the caller unit keeps GC/2.6 and its default flags.
+    "pso/player/TObjPlayer_802D5B78.cpp": {"mw_version": "GC/1.3.2"},
     "pso/quest/QuestOpcodeHandlers.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
     "pso/quest/TQuestThread.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
 }
