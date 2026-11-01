@@ -12,6 +12,7 @@ import unicodedata
 
 UNIT = 'pso/misc/TOTrapAncient01.cpp'
 PLAYER_UNIT = 'pso/player/TObjPlayer_802D5B78.cpp'
+DARKFALZ_UNIT = 'pso/boss/TBoss4DarkFalz_8004C93C.cpp'
 PLAYER_CALLER = 'pso/player/TObjPlayer_802D5174.cpp'
 PLAYER_COMPILER_SHA256 = '7cbae0a5bd81e07d7fa8975bbc4e969b5dea265cc29c5ee6bae0453a6e25f225'
 CALLER_COMPILER_SHA256 = '316e2a98236c23f3fc902243b157eaebf8ef2ad6edb88cfd632a15b6676fa9a8'
@@ -21,12 +22,14 @@ PROFILES = {
         'gc20-deferred': '{"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred")}',
     },
     PLAYER_UNIT: {'gc132-default-flags': '{"mw_version": "GC/1.3.2"}'},
+    DARKFALZ_UNIT: {'gc26-deferred-sym-on': '{"cflags": _switch(cflags_pso, "-inline deferred", "-sym on")}'},
 }
 DUMPS = {unit: {name: ast.dump(ast.parse(expression, mode='eval').body)
                 for name, expression in profiles.items()} for unit, profiles in PROFILES.items()}
 TRANSITIONS = {
     UNIT: {('absent', 'gc26-deferred'), ('gc26-deferred', 'gc20-deferred'), ('absent', 'gc20-deferred')},
     PLAYER_UNIT: {('absent', 'gc132-default-flags')},
+    DARKFALZ_UNIT: {('absent', 'gc26-deferred-sym-on')},
 }
 
 
@@ -50,11 +53,11 @@ def shape(raw, unit=UNIT):
             for key in mapping.keys]
     if None in keys or len(keys) != len(set(keys)):
         raise ValueError('nonliteral or duplicate unit keys')
-    if unit == PLAYER_UNIT:
+    if unit in (PLAYER_UNIT, DARKFALZ_UNIT):
         defaults=[node for node in tree.body if isinstance(node,ast.Assign) and len(node.targets)==1 and isinstance(node.targets[0],ast.Name) and node.targets[0].id=='GAME_COMPILER']
         stores=[node for node in ast.walk(tree) if isinstance(node,ast.Name) and isinstance(node.ctx,ast.Store) and node.id=='GAME_COMPILER']
-        if len(defaults)!=1 or len(stores)!=1 or not isinstance(defaults[0].value,ast.Constant) or defaults[0].value.value!='GC/2.6' or PLAYER_CALLER in keys:
-            raise ValueError('caller default compiler changed')
+        if len(defaults)!=1 or len(stores)!=1 or not isinstance(defaults[0].value,ast.Constant) or defaults[0].value.value!='GC/2.6' or (unit == PLAYER_UNIT and PLAYER_CALLER in keys):
+            raise ValueError('default compiler changed')
     if unit not in keys:
         return {'profile': 'absent', 'outside': raw, 'span': b''}
     index = keys.index(unit)
@@ -205,8 +208,18 @@ def require_compile_argv(argv, unit, wrapper, compiler, inline):
     def pairs(flag,value): return sum(argv[i:i+2]==[flag,value] for i in range(len(argv)-1))
     if pairs('-c','src/'+unit)!=1 or argv.count('-inline')!=1 or pairs('-inline',inline)!=1:
         fail('wrong compile target or inline profile')
-    if unit in (PLAYER_UNIT,PLAYER_CALLER) and (argv.count('-O4,s')!=1 or argv.count('-sdata2')!=1 or pairs('-sdata2','4')!=1):
-        fail('player default flags changed')
+    if unit in (PLAYER_UNIT,PLAYER_CALLER,DARKFALZ_UNIT) and (argv.count('-O4,s')!=1 or argv.count('-sdata2')!=1 or pairs('-sdata2','4')!=1):
+        fail('default flags changed')
+    if unit == DARKFALZ_UNIT:
+        if argv.count('-sym')!=1 or pairs('-sym','on')!=1 or argv.index('-inline')>argv.index('-sym') or any((x.startswith('-sdata') and x != '-sdata2') or (x.startswith('-sym') and x != '-sym') or x.startswith('-inline=') or x in ('-g','-g1','-g2','-g3','-gdwarf','-debug') or (x.startswith('-O') and x != '-O4,s') for x in argv):
+            fail('wrong Dark Falz profile flags')
+
+
+def darkfalz_baseline_argv(candidate):
+    baseline=list(candidate)
+    inline=baseline.index('-inline');baseline[inline+1]='off'
+    sym=baseline.index('-sym');del baseline[sym:sym+2]
+    return baseline
 
 
 def check_compile_graph(root,packet,role):
@@ -220,7 +233,9 @@ def check_compile_graph(root,packet,role):
     rows=strict_json(raw)
     if type(rows) is not list: fail('invalid compile database')
     checks=[]
-    if role=='candidate': checks.append((packet['cumulative']['unit'],packet['effective_argv']))
+    unit=packet['cumulative']['unit']
+    if role=='candidate': checks.append((unit,packet['effective_argv']))
+    elif role=='baseline' and unit==DARKFALZ_UNIT: checks.append((unit,darkfalz_baseline_argv(packet['effective_argv'])))
     checks.extend((dep['unit'],dep['argv']) for dep in packet['dependent_compile'])
     for unit,expected in checks:
         found=[row for row in rows if isinstance(row,dict) and row.get('file')=='src/'+unit]
@@ -268,7 +283,9 @@ def read_packet(entry, forbidden_roots=()):
     unit=packet['cumulative'].get('unit') if isinstance(packet['cumulative'],dict) else None
     if unit not in PROFILES or any(not isinstance(x,dict) or x.get('unit')!=unit for x in packet['steps']): fail('mixed or unsupported units')
     if type(packet['dependent_compile']) is not list: fail('invalid dependent compile')
-    require_compile_argv(packet['effective_argv'],unit,packet['pins']['compiler_wrapper']['path'],packet['pins']['compiler']['path'],'off' if unit==PLAYER_UNIT else 'off,deferred')
+    inline={UNIT:'off,deferred',PLAYER_UNIT:'off',DARKFALZ_UNIT:'deferred'}[unit]
+    require_compile_argv(packet['effective_argv'],unit,packet['pins']['compiler_wrapper']['path'],packet['pins']['compiler']['path'],inline)
+    if unit==DARKFALZ_UNIT and packet['pins']['compiler']['sha256']!=CALLER_COMPILER_SHA256: fail('unapproved Dark Falz compiler')
     if unit==PLAYER_UNIT:
         if packet['pins']['compiler']['sha256']!=PLAYER_COMPILER_SHA256 or len(packet['dependent_compile'])!=1: fail('unapproved player compiler')
         dep=packet['dependent_compile'][0];exact_keys(dep,('unit','compiler','argv'))

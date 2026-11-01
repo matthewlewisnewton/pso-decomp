@@ -52,6 +52,33 @@ class StaticConfigDelta(unittest.TestCase):
             with self.subTest(altered=altered[:80]),self.assertRaises((ValueError,SyntaxError)):
                 c.check(self.base,altered,c.PLAYER_UNIT)
 
+    def test_darkfalz_exact_reviewed_blobs_and_adversarial_profiles(self):
+        base=subprocess.check_output(['git','show','1f86b6699d129d93d5c2b81c16883600b42ef803:configure.py'])
+        self.assertEqual(hashlib.sha256(base).hexdigest(),'3db524955b1840a4f896168a0df5d3df6ed839211f7145b155fa2e143eb64eaf')
+        entry=(b'    # Source-file sections put the native initializer before its shared helpers.\n'
+               b'    "pso/boss/TBoss4DarkFalz_8004C93C.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sym on")},\n')
+        marker=b'GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {\n'
+        after=base.replace(marker,marker+entry)
+        self.assertEqual(hashlib.sha256(after).hexdigest(),'d75b6ce618d66ea7e8bf5b451904e5f5b24ab983b5626aaf538d4a59327da27c')
+        result=c.check(base,after,c.DARKFALZ_UNIT)
+        self.assertEqual((result['old_profile'],result['new_profile']),('absent','gc26-deferred-sym-on'))
+        self.assertEqual(c.shape(base,c.DARKFALZ_UNIT)['outside'],c.shape(after,c.DARKFALZ_UNIT)['outside'])
+        cases=[after.replace(b'-sym on',b'-sym off'),after.replace(b'-inline deferred',b'-inline off,deferred'),
+               after.replace(b'-inline deferred',b'-inline auto'),after.replace(b'"-inline deferred", "-sym on"',b'"-sym on", "-inline deferred"'),
+               after.replace(b'"-sym on"',b'"-sym on", "-sym on"'),after.replace(b'"-sym on"',b'"-sdata 4", "-sym on"'),
+               after.replace(b'{"cflags": _switch(cflags_pso, "-inline deferred", "-sym on")}',b'{"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline deferred", "-sym on")}'),
+               after.replace(b'{"cflags": _switch(cflags_pso, "-inline deferred", "-sym on")}',b'{"drop": True}'),
+               after.replace(b'-sym on',b'-sym on\x00'),after.replace(entry,entry+entry),
+               after.replace(b'GAME_COMPILER = "GC/2.6"',b'GAME_COMPILER = "GC/2.0"'),
+               after.replace(entry,entry+b'    "other.cpp": {"cflags": []},\n'),
+               after.replace(b'TBoss4DarkFalz_8004C93C.cpp',b'TBoss4DarkFalz_other.cpp'),
+               after.replace(b'"-sym on"',b'computed()'),after+b'# unrelated\n']
+        for bad in cases:
+            with self.subTest(bad=hashlib.sha256(bad).hexdigest()[:12]),self.assertRaises((ValueError,SyntaxError,UnicodeError)):
+                c.check(base,bad,c.DARKFALZ_UNIT)
+        with self.assertRaises(ValueError):c.check(after,base,c.DARKFALZ_UNIT)
+        with self.assertRaises(ValueError):c.check(after,after,c.DARKFALZ_UNIT)
+
     def test_reject_unreviewed_changes_and_malformed_code(self):
         one,two=self.add(self.one),self.add(self.two)
         bad=[self.base, one+b'open("/tmp/sentinel", "w")\n',
@@ -140,6 +167,40 @@ class PacketTests(unittest.TestCase):
             self.packet['pins']['compiler']['sha256']='f'*64
             with self.assertRaises(ValueError):c.read_packet(self.write(),[self.repo])
 
+    def test_darkfalz_packet_binds_reviewed_profile_compiler_and_full_argv(self):
+        self.git('checkout','-B','dark',self.target)
+        path=self.repo/'configure.py';before=path.read_bytes()+b'GAME_COMPILER = "GC/2.6"\n'
+        path.write_bytes(before);self.git('commit','-qam','baseline');target=self.git('rev-parse','HEAD')
+        entry=b'    "pso/boss/TBoss4DarkFalz_8004C93C.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sym on")},\n'
+        path.write_bytes(before.replace(b'    "other.cpp"',entry+b'    "other.cpp"'))
+        self.git('commit','-qam','candidate');head=self.git('rev-parse','HEAD');tree=self.git('rev-parse','HEAD^{tree}')
+        candidate=self.git('commit-tree',tree,'-p',target,'-p',head,'-m','candidate merge');self.git('checkout','--detach',candidate)
+        change=c.step(self.repo,target,candidate,c.DARKFALZ_UNIT)
+        pr=copy.deepcopy(self.pr);pr.update(head=head,base_sha=target,review_base=target);pr['review'].update(head=head,base=target)
+        commits=[{'pr':1,'head':head,'commit':candidate,'tree':tree}]
+        self.packet.update(target=target,candidate=candidate,tree=tree,steps=[change],cumulative=change,
+            prs=[{'number':1,'head':head,'base_sha':target,'review_base':target,'review':{'path':pr['review']['path'],'sha256':pr['review']['sha256']}}])
+        compiler=self.packet['pins']['compiler'];wrapper=self.packet['pins']['compiler_wrapper']['path']
+        self.packet['effective_argv']=[wrapper,compiler['path'],'-O4,s','-inline','deferred','-sdata2','4','-sym','on','-c','src/'+c.DARKFALZ_UNIT]
+        with patch.object(c,'CALLER_COMPILER_SHA256',compiler['sha256']):
+            packet=c.read_packet(self.write(),[self.repo]);c.verify_plan(self.repo,packet,target,candidate,tree,[pr],commits)
+            original=copy.deepcopy(self.packet)
+            for field in ('target','candidate','tree'):
+                bad=copy.deepcopy(packet);bad[field]='f'*40
+                with self.subTest(field=field),self.assertRaises(ValueError):c.verify_plan(self.repo,bad,target,candidate,tree,[pr],commits)
+            self.packet['pins']['compiler']['sha256']='f'*64
+            with self.assertRaises(ValueError):c.read_packet(self.write(),[self.repo])
+            self.packet=copy.deepcopy(original);self.packet['configure_paths']['compilers']['sha256']='f'*64
+            with self.assertRaises(ValueError):c.read_packet(self.write(),[self.repo])
+            self.packet=copy.deepcopy(original);self.packet['pins']['compiler_wrapper']['sha256']='f'*64
+            with self.assertRaises(ValueError):c.read_packet(self.write(),[self.repo])
+            self.packet=copy.deepcopy(original);self.packet['dependent_compile']=[{'unit':'other'}]
+            with self.assertRaises(ValueError):c.read_packet(self.write(),[self.repo])
+            self.packet=copy.deepcopy(original);self.packet['steps'][0]['unit']=c.UNIT
+            with self.assertRaises(ValueError):c.read_packet(self.write(),[self.repo])
+            self.packet=copy.deepcopy(original);self.review.write_text('stale review')
+            with self.assertRaises(ValueError):c.read_packet(self.write(),[self.repo])
+
     def test_duplicate_unknown_or_stale_packet_rejected(self):
         raw=self.file.read_text();self.file.write_text(raw[:-1]+',"version":1}')
         pin={'path':str(self.file),'sha256':hashlib.sha256(self.file.read_bytes()).hexdigest()}
@@ -194,6 +255,40 @@ class PacketTests(unittest.TestCase):
             self.packet['effective_argv'].pop()
         self.packet['pins']['launcher']['sha256']='f'*64
         with self.assertRaises(ValueError):c.read_packet(self.write(),[self.repo])
+
+class DarkFalzRealGraphTests(unittest.TestCase):
+    def setUp(self):
+        from tools.tests.test_merge_batch_config_prepare import discover_test_ninja
+        self.tmp=tempfile.TemporaryDirectory();self.addCleanup(self.tmp.cleanup)
+        self.root=Path(self.tmp.name);self.ninja=discover_test_ninja()
+        self.argv=['/wrapper','/compiler26','-O4,s','-inline','deferred','-sdata2','4','-sym','on','-c','src/'+c.DARKFALZ_UNIT]
+        self.packet={'cumulative':{'unit':c.DARKFALZ_UNIT},'effective_argv':self.argv,'dependent_compile':[],
+                     'pins':{'ninja':{'path':str(self.ninja),'sha256':hashlib.sha256(self.ninja.read_bytes()).hexdigest()}}}
+    def graph(self,root,argv,duplicate=False):
+        root.mkdir(exist_ok=True)
+        text='rule mwcc\n  command = '+shlex.join(argv)+' && true\nbuild output.o: mwcc src/'+c.DARKFALZ_UNIT+'\n'
+        if duplicate:text+='build output2.o: mwcc src/'+c.DARKFALZ_UNIT+'\n'
+        (root/'build.ninja').write_text(text)
+    def test_actual_ninja_baseline_and_candidate_commands(self):
+        candidate=self.root/'candidate';baseline=self.root/'baseline'
+        self.graph(candidate,self.argv);self.graph(baseline,c.darkfalz_baseline_argv(self.argv))
+        c.check_compile_graph(candidate,self.packet,'candidate');c.check_compile_graph(baseline,self.packet,'baseline')
+        for root,role,argv in ((candidate,'candidate',self.argv),(baseline,'baseline',c.darkfalz_baseline_argv(self.argv))):
+            for altered in (argv+['-sym','on'],argv[:-1]+['src/wrong.cpp'],[('/wrong' if x=='/compiler26' else x) for x in argv]):
+                self.graph(root,altered)
+                with self.assertRaises(ValueError):c.check_compile_graph(root,self.packet,role)
+            self.graph(root,argv,duplicate=True)
+            with self.assertRaises(ValueError):c.check_compile_graph(root,self.packet,role)
+            self.graph(root,argv)
+    def test_darkfalz_argv_rejects_conflicts(self):
+        c.require_compile_argv(self.argv,c.DARKFALZ_UNIT,'/wrapper','/compiler26','deferred')
+        reordered=self.argv[:2]+['-sym','on','-O4,s','-inline','deferred','-sdata2','4','-c','src/'+c.DARKFALZ_UNIT]
+        cases=[reordered,self.argv+['-sym','on'],self.argv+['-sdata','4'],self.argv+['-O0'],self.argv+['-sdata2=8'],self.argv+['-g'],
+               [x for x in self.argv if x!='-sym'],[('off' if x=='on' else x) for x in self.argv],
+               [('off,deferred' if x=='deferred' else x) for x in self.argv]]
+        for argv in cases:
+            with self.subTest(argv=argv),self.assertRaises(ValueError):c.require_compile_argv(argv,c.DARKFALZ_UNIT,'/wrapper','/compiler26','deferred')
+
 
 class CompileGraphTests(unittest.TestCase):
     def setUp(self):
