@@ -401,7 +401,7 @@ void TObjPlayer::update_chara_making() {
     u8 *arg0 = (u8 *)this;
     push_matrix();
     post_translate_matrix((u8 *)&this->position);
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     set_current_texture_list((GinjaTextureList *)(((TAdPlyStatusGC *)(this->m_170))->get_status_sub()));
     draw_model_with_arg((void*)((int) (((TAdPlyStatusGC *)(this->m_170))->get_field_4a4())));
     ((TObjMotion *)arg0)->get_item_ptr(0x3A);

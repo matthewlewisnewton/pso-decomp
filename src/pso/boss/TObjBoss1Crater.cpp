@@ -127,7 +127,7 @@ void TObjBoss1Crater::render() {
     push_matrix();
     set_current_texture_list((GinjaTextureList *)(dragon_common_texture_list));
     post_translate_matrix((u8 *)&this->position);
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     model_render_flags |= 0x01000000;
     draw_chunk_object((void *)(*(s32 *)((s8 *)(*(void **)((s8 *)lbl_805D4B50 + 0x42C)) + 8)));
     model_render_flags &= 0xFEFFFFFF;

@@ -1,3 +1,4 @@
+#include "pso/misc/CameraHelpers.h"
 #include "pso/system/MatrixVectorArray.h"
 #include "pso/math/FloatRounding.h"
 #include "pso/map/CsnGroundQuery.h"
@@ -3614,11 +3615,11 @@ extern "C" {
 
 struct Vec_802F6838 { f32 x, y, z; };
 struct Rot_802F6838 { s32 x, y, z; };
-struct Cam_802F6838 { s8 a; s8 b; s16 c; f32 d; f32 e; };
+
 
 s32 restore_player_cameras(void);
 void activate_camera_mode(s32, f32);
-void set_scripted_camera_pose(void *, void *, void *);
+
 void rotate_xz_pair_by_angle(f32 *arg0, f32 *arg1, s32 arg2);
 void refresh_and_send_entity_flags__9TObjEnemyFv(void);
 void vec3_add_to(void *, void *);
@@ -3637,7 +3638,7 @@ void TBoss8Dragon__sub_802F6838(u8 *arg0, u32 arg1) {
     extern const f32 lbl_805DEDF4;
     extern const f32 lbl_805DEDF8;
     extern const f32 lbl_805DEDFC;
-    Cam_802F6838 cam;
+    CameraPlayback cam;
     Rot_802F6838 r;
     Vec_802F6838 v;
 
@@ -3654,14 +3655,14 @@ void TBoss8Dragon__sub_802F6838(u8 *arg0, u32 arg1) {
         *(void **)((s8 *)arg0 + 0x894) = 0;
         play_cue_stream_file((s32)lbl_80474B30);
         TWindowCtrl::init_all_slots();
-        cam.a = 2;
-        cam.b = 0;
-        cam.c = 0;
-        cam.d = TBoss8Dragon__data_805DED50;
-        cam.e = TBoss8Dragon__data_805DEDA8;
+        cam.bank = 2;
+        cam.index = 0;
+        cam.flags = 0;
+        cam.frame = TBoss8Dragon__data_805DED50;
+        cam.frame_step = TBoss8Dragon__data_805DEDA8;
         activate_camera_mode(5, TBoss8Dragon__data_805DED50);
-        ((TCameraCtrl *)(&cam))->cache_target_and_forward(0x31C7);
-        set_scripted_camera_pose(arg0 + 0x38, arg0 + 0x38, arg0 + 0x5C);
+        cache_target_and_forward__11TCameraCtrlFl(&cam, 0x31C7);
+        set_scripted_camera_pose(&static_cast<TObjEneDD_ST*>(static_cast<void*>(arg0))->position, &static_cast<TObjEneDD_ST*>(static_cast<void*>(arg0))->position, &static_cast<TObjEneDD_ST*>(static_cast<void*>(arg0))->rotation);
         break;
     }
     case 2:
@@ -5781,7 +5782,7 @@ void TBoss8Dragon::freeze_player_at_self() {
             ((TObjPlayer *)player)->actorFlags = (s32) (((TObjPlayer *)player)->actorFlags & 0xFFEFFFDF);
             VecCopy__FP3VecPC3Vec(player + 0x38, (u8 *)&this->m_38);
             *(f32 *)((s8 *)player + 0x3C) = (f32) (*(f32 *)((s8 *)player + 0x3C) - lbl_805DEEB8);
-            ((TObjPlayer *)player)->rotation_y = (s32) this->m_60;
+            ((TObjPlayer *)player)->rotation.yaw = (s32) this->m_60;
             return;
         }
     }
@@ -5942,8 +5943,8 @@ void draw_beam_segments__12TBoss8DragonFPvfff(u8 *ene_dd, f32 a, f32 b, f32 c) {
 
     *(f32 *)((s8 *)&fx + 8) = a - TBoss8Dragon__data_805DED60;
     fill_value_array(*(s32 *)((s8 *)ene_dd + 0x680));
-    sn = sin_table_lookup(((TObjEneDD *)ene_dd)->rotation_y);
-    cs = cos_table_lookup(((TObjEneDD *)ene_dd)->rotation_y);
+    sn = sin_table_lookup(((TObjEneDD *)ene_dd)->rotation.yaw);
+    cs = cos_table_lookup(((TObjEneDD *)ene_dd)->rotation.yaw);
     VecCopy__FP3VecPC3Vec(&v1, ene_dd + 0x38);
     v1.x += lbl_805DEEC8 * cs;
     v1.y = TBoss8Dragon__data_805DED50;

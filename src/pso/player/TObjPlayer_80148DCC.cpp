@@ -156,7 +156,7 @@ void TObjPlayer::draw_model() {
         set_current_texture_list((GinjaTextureList *)(this->texlist));
         push_matrix_from(0);
         translate_matrix_vec3((u8 *)(0), (u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         set_motion_packed_rotation();
         if ((s32) this->m_394 != 0) {
             draw_chunk_object(this->model);

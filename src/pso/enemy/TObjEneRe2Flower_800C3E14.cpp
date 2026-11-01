@@ -221,7 +221,7 @@ TObjEneRe2Flower::TObjEneRe2Flower(TObject *parent, void *setData)
     m_37c = lbl_805D9FBC;
     enemy_init_acquire_period(30);
     enemy_init_validate_period(30);
-    renderRotationY = rotation_y;
+    renderRotationY = this->rotation.yaw;
     renderOffsetY = lbl_805D9FAC;
     m_3cc = 0;
     m_3d0 = 0;

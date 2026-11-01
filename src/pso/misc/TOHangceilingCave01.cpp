@@ -667,7 +667,7 @@ void TUnk_804B2578::render() {
     if ((((s32 (*)(u8 *))sub_801688C0__13TUnk_804B2578Fv)(arg0) != 0) || (check_demo_mode() == 1)) {
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)turiten_singo_texture_lists + 8)));
         if (this->model != NULL && this->current_motion != NULL) {
             draw_ginja_model_with_motion(*(void * *)&this->model, *(void * *)&this->current_motion, this->frame);

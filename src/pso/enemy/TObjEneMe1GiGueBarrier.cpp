@@ -81,7 +81,7 @@ block_6:
         if (defer_render__7TObjectFv(arg0) == 0) {
             push_matrix();
             post_translate_matrix((u8 *)&this->position);
-            rotate_matrix_y(0, this->rotation_y);
+            rotate_matrix_y(0, this->rotation.yaw);
             set_current_texture_list((GinjaTextureList *)this->texlist);
             TParticleCtrl::end_effect_render();
             ((TObjMotion *)arg0)->draw();
@@ -99,7 +99,7 @@ void TObjEneMe1GiGueBarrier::run_task() {
         return;
     }
     VecCopy(&position, owner->update_barrier_origin());
-    rotation_y = gigue->get_barrier_rotation();
+    this->rotation.yaw = gigue->get_barrier_rotation();
     advance_animation();
     this->m_108 = (this->m_108 - 1);
     switch (this->m_104) {
@@ -143,7 +143,7 @@ u8 *TObjEneMe1GiGueBarrier__ct(TObjEneMe1GiGueBarrier *ene_me1_gi_gue_barrier, s
     ene_me1_gi_gue_barrier->gigue = (TObjEneMe1GiGue *)arg2;
     ene_me1_gi_gue_barrier->m_100 = get_entity_id(ene_me1_gi_gue_barrier->gigue);
     VecCopy(&ene_me1_gi_gue_barrier->position, ene_me1_gi_gue_barrier->gigue->update_barrier_origin());
-    ene_me1_gi_gue_barrier->rotation_y = ene_me1_gi_gue_barrier->gigue->get_barrier_rotation();
+    ene_me1_gi_gue_barrier->rotation.yaw = ene_me1_gi_gue_barrier->gigue->get_barrier_rotation();
     ene_me1_gi_gue_barrier->m_108 = ene_me1_gi_gue_barrier->gigue->get_barrier_duration();
     ene_me1_gi_gue_barrier->gigue->set_barrier_active();
     ene_me1_gi_gue_barrier->m_104 = 0;

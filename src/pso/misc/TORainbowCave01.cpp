@@ -61,7 +61,7 @@ void TORainbowCave01::render() {
         set_constant_material(&color);
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
+        rotate_matrix_y(NULL, this->rotation.yaw);
         scale_current_matrix(&model_scale.x);
         draw_ginja_object(model);
         pop_matrix();

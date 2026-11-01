@@ -371,7 +371,7 @@ void TObjContainerAbeEnemy::vfunc_81() {
             set_current_texture_list((GinjaTextureList *)(lbl_805D5B8C));
             push_matrix();
             post_translate_matrix(self->pos);
-            rotate_matrix_y(0, this->rotation_y);
+            rotate_matrix_y(0, this->rotation.yaw);
             dispatch_fish_event__6TLobbyFPv((void *)2);
             draw_ginja_box_tree();
             pop_matrix();

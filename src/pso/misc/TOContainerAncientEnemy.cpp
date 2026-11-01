@@ -169,7 +169,7 @@ void TOContainerAncientEnemy::vfunc_81() {
         case 0:
             push_matrix();
             post_translate_matrix((u8 *)&this->position);
-            rotate_matrix_y(0, this->rotation_y);
+            rotate_matrix_y(0, this->rotation.yaw);
             set_current_texture_list((GinjaTextureList *)(this->texlist));
             temp_r31 = (unsigned char *) (this->model);
             push_matrix();

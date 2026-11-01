@@ -227,7 +227,7 @@ void TObjEneMerillLia::vfunc_94() {
     stack.y = lbl_805DA304;
     stack.z = TObjEneMerillLia__data_805DA308 * ((MerillLiaAttackParameters *)m_2b0)->field_10;
     push_matrix_from((void *)&identity_matrix);
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     rotate_vector_by_matrix(0, &stack, &stack);
     pop_matrix();
     vec3_add_to((void *)&stack.x, &position);
@@ -547,7 +547,7 @@ void TObjEneMerillLia::render() {
         push_matrix();
         translate_matrix(0, (f32) TObjEneMerillLia__data_805DA300, (f32) unk_380, (f32) TObjEneMerillLia__data_805DA300);
         post_translate_matrix(&position);
-        rotate_matrix_y(0, (int) rotation_y);
+        rotate_matrix_y(0, (int) this->rotation.yaw);
         if (check_demo_mode() == 1) {
             draw_chunk_object(model);
         } else {
@@ -826,7 +826,7 @@ void TObjEneMerillLia::beast_idle_update() {
             if (project_actor_to_ground(this, &lbl_8050BF00.vector, 0) == 1) {
                 this->requested_action = 2;
                 VecCopy((Vec *)&this->position, (const Vec *)&lbl_8050BF00.vector);
-                this->rotation_y = approach_angle_limited(this->rotation_y, ang, ((MerillLiaMovementParameters *)this->movementParameters)->turn_speed);
+                this->rotation.yaw = approach_angle_limited(this->rotation.yaw, ang, ((MerillLiaMovementParameters *)this->movementParameters)->turn_speed);
             } else {
                 f32 rr = fabs_float(d->z);
                 if (fabs_float(scratch_vec.vector.x) < rr) {
@@ -845,7 +845,7 @@ void TObjEneMerillLia::beast_idle_update() {
                 if (project_actor_to_ground(this, &lbl_8050BF00.vector, 0) == 1) {
                     this->requested_action = 2;
                     VecCopy((Vec *)&this->position, (const Vec *)&lbl_8050BF00.vector);
-                    this->rotation_y = approach_angle_limited(this->rotation_y, ang, ((MerillLiaMovementParameters *)this->movementParameters)->turn_speed);
+                    this->rotation.yaw = approach_angle_limited(this->rotation.yaw, ang, ((MerillLiaMovementParameters *)this->movementParameters)->turn_speed);
                 } else {
                     s32 ang2;
                     rr = fabs_float(d->z);
@@ -865,7 +865,7 @@ void TObjEneMerillLia::beast_idle_update() {
                     if (project_actor_to_ground(this, &lbl_8050BF00.vector, 0) == 1) {
                         this->requested_action = 2;
                         VecCopy((Vec *)&this->position, (const Vec *)&lbl_8050BF00.vector);
-                        this->rotation_y = approach_angle_limited(this->rotation_y, ang2, ((MerillLiaMovementParameters *)this->movementParameters)->turn_speed);
+                        this->rotation.yaw = approach_angle_limited(this->rotation.yaw, ang2, ((MerillLiaMovementParameters *)this->movementParameters)->turn_speed);
                     } else {
                         this->requested_action = 2;
                     }
@@ -902,7 +902,7 @@ void TObjEneMerillLia::beast_update_hurt() {
     scratch_vec.vector.x = TObjEneMerillLia__data_805DA300;
     scratch_vec.vector.z = get_collision_body_radius(this, 0);
     push_matrix_from(&identity_matrix);
-    rotate_matrix_y(0, -this->rotation_y);
+    rotate_matrix_y(0, -this->rotation.yaw);
     rotate_vector_by_matrix(0, &scratch_vec.vector, &scratch_vec.vector);
     pop_matrix();
     vec3_add_to(&pos, &scratch_vec.vector);
@@ -949,7 +949,7 @@ void TObjEneMerillLia::update_kafun_attack() {
             advance_animation();
             push_matrix_from(&identity_matrix);
             post_translate_matrix(&position);
-            rotate_matrix_y(0, this->rotation_y);
+            rotate_matrix_y(0, this->rotation.yaw);
             this->calc_joint_matrices(lbl_805DA30C);
             pop_matrix();
             push_matrix_from((void *)&anim_model_matrix_array[23]);

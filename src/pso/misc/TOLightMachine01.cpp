@@ -62,7 +62,7 @@ void TOLightMachine01::render() {
     if (((VObj_8016E9F4_8016E998 *)arg0)->m8(*(f32 *)&this->unk_90, this->m_94) != 0) {
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         set_current_texture_list((GinjaTextureList *)(this->texlist));
         draw_ginja_model(*(s32 *)((s8 *)this->model + 4));
         push_matrix();

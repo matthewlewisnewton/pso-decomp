@@ -860,8 +860,8 @@ void TObjEneDarkGunner::sub_800A159C() {
     o->hover_height = (o->hover_height < 0.0f) ? 0.0f : ((o->hover_height < 9.0f) ? o->hover_height : 9.0f);
     push_matrix_from(identity_matrix);
     post_translate_matrix((s32)&o->pos);
-    rotate_matrix_z(0, this->rotation_z);
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_z(0, this->rotation.roll);
+    rotate_matrix_y(0, this->rotation.yaw);
     Vec t = lbl_8043A6A4;
     lo = 5.0f + o->hover_height;
     t.y = lo + this->render_y_offset;
@@ -1464,7 +1464,7 @@ void TObjPlayer__sub_800A27CC(TObjPlayer *player) {
     case 0:
         if (((TObjEneDarkGunner *)player)->m_388 & 0x10000) {
             player->actorFlags |= 0x04040000;
-            player->rotation_z = 0x8000;
+            player->rotation.roll = 0x8000;
             player->m_37c = 1;
         } else {
             player->requested_action = 0;

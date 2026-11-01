@@ -180,7 +180,7 @@ void TObjNpcEnemy::draw_debug_info() {
     debug_printf_at(0x130018, lbl_80472600);
     debug_printf_at(0x13001A, lbl_80472610);
     TObjNpcEnemy::set_global_count(0xF0F0F0FF);
-    p = TObjNpcEnemy::get_entry_by_index((s16) this->rotation_x);
+    p = TObjNpcEnemy::get_entry_by_index((s16) this->rotation.pitch);
     if (p != *(s16 * *)&this->m_3b8) {
         ((TObjNpcEnemy *)arg0)->set_npc_data(p);
     }
@@ -198,13 +198,13 @@ void TObjNpcEnemy::draw_debug_info() {
         break;
     case 1:
     case 3:
-        if (p[0x10] <= this->rotation_z || this->rotation_z < 0) {
+        if (p[0x10] <= this->rotation.roll || this->rotation.roll < 0) {
             TObjNpcEnemy::set_global_count(0xFF0000FF);
             debug_printf_at(0x24001A, lbl_80472620);
             TObjNpcEnemy::set_global_count(0xF0F0F0FF);
             this->requested_action = 0;
         } else {
-            this->requested_action = this->rotation_z;
+            this->requested_action = this->rotation.roll;
         }
         ((TObjMotion *)arg0)->advance_animation();
         break;
@@ -254,7 +254,7 @@ void TObjNpcEnemy::render() {
         translate_matrix_vec3(0, ((u8 *)&this->position));
         temp_r4 = (unsigned char *) (this->m_3b8);
         translate_matrix(0, (int)temp_r4, (f32)lbl_805DE7D8, (f32) (*(f32 *)((s8 *)temp_r4 + 4)), (f32)lbl_805DE7D8);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         update_state();
         pop_matrix();
         if (((TObjNpcEnemy *)arg0)->sub_802D7444() != 0) {

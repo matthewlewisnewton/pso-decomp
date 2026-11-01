@@ -383,9 +383,9 @@ void TObjEneRe7Berura::run_flash_warning_state(s32 arg1) {
             *(s32 *)((s8 *)arg0 + 0x4C8) = t - 0xB;
             v = (*(s32 *)((s8 *)arg0 + 0x4C8) > 0x100) ? 0x100 : *(s32 *)((s8 *)arg0 + 0x4C8);
             if (this->accumulated_turn > 0) {
-                this->rotation_y += v;
+                this->rotation.yaw += v;
             } else {
-                this->rotation_y -= v;
+                this->rotation.yaw -= v;
             }
         }
         if ((*(s32 *)((s8 *)arg0 + 0x4C0) & 0x1F) < 0x10) {
@@ -668,14 +668,14 @@ void TObjEneRe7Berura::fn_800940E8(s32 arg1) {
             if (((TObjEneDD_ST *)arg0)->enemy_has_live_target() != 0) {
                 *(s32 *)((s8 *)arg0 + 0x4C8) = (s32) (u16) (s32) (lbl_80439EF0 * atan2_float((f32) (*(f32 *)((s8 *)arg0 + 0x3A0)), (f32) (*(f32 *)((s8 *)arg0 + 0x3A8))));
             } else {
-                *(s32 *)((s8 *)arg0 + 0x4C8) = (s32) arg0->rotation_y;
+                *(s32 *)((s8 *)arg0 + 0x4C8) = (s32) arg0->rotation.yaw;
             }
             arg0->m_4c4 = 1;
         case 1:
             if (arg0->turn_toward_heading((int) (*(s32 *)((s8 *)arg0 + 0x4C8)), 0x100) != 0) {
                 arg0->m_4c4 = 2;
-                arg0->m_4d8 = sin_table_lookup((int) (arg0->rotation_y));
-                arg0->m_4e0 = cos_table_lookup((int) (arg0->rotation_y));
+                arg0->m_4d8 = sin_table_lookup((int) (arg0->rotation.yaw));
+                arg0->m_4e0 = cos_table_lookup((int) (arg0->rotation.yaw));
                 arg0->reset_turn_limit();
             }
             ((TObjEneDD *)(arg0))->vfunc_102();
@@ -690,7 +690,7 @@ void TObjEneRe7Berura::fn_800940E8(s32 arg1) {
                     if (((TObjEneDD_ST *)arg0)->enemy_has_live_target() != 0) {
                         *(s32 *)((s8 *)arg0 + 0x4C8) = (s32) (u16) (s32) (lbl_80439EF0 * atan2_float((f32) (*(f32 *)((s8 *)arg0 + 0x3A0)), (f32) (*(f32 *)((s8 *)arg0 + 0x3A8))));
                     } else {
-                        *(s32 *)((s8 *)arg0 + 0x4C8) = (s32) arg0->rotation_y;
+                        *(s32 *)((s8 *)arg0 + 0x4C8) = (s32) arg0->rotation.yaw;
                     }
                     arg0->turn_toward_heading((int) (*(s32 *)((s8 *)arg0 + 0x4C8)), 0x100);
                 }

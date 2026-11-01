@@ -12,9 +12,7 @@ struct TObjDFDemo3 : public TObjBase {
     u32 m_94;
     u32 m_98;
     u32 m_9c;
-    u32 m_a0;
-    u32 m_a4;
-    u32 m_a8;
+    Vec camera_position;
     u32 m_ac;
     u32 m_b0;
     u8 _padB4[0x4];
@@ -25,4 +23,5 @@ struct TObjDFDemo3 : public TObjBase {
 };
 
 typedef char TObjDFDemo3_size[sizeof(TObjDFDemo3) == 0xC8 ? 1 : -1];
+typedef char TObjDFDemo3_camera_position_offset[offsetof(TObjDFDemo3, camera_position)==0xa0?1:-1];
 #endif

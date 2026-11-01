@@ -102,11 +102,11 @@ void TOChatSensor::init_params() {
     f32 temp_f0;
     s32 temp_r5;
 
-    this->m_90 = (u32) *(u32 *)&this->rotation_x;
+    this->m_90 = (u32) *(u32 *)&this->rotation.pitch;
     if ((u32) this->m_90 >= 2U) {
         this->m_90 = 0U;
     }
-    this->m_98 = (u32) *(u32 *)&this->rotation_y;
+    this->m_98 = (u32) *(u32 *)&this->rotation.yaw;
     if ((u32) this->m_98 >= 2U) {
         this->m_90 = 0U;
     }

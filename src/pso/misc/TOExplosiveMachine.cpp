@@ -97,7 +97,7 @@ void TOExplosiveMachine::render() {
     if (update_object_view_visibility(view_distance, view_radius) != 0) {
         push_matrix();
         post_translate_matrix(&position);
-        rotate_matrix_y(0, rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         set_current_texture_list((GinjaTextureList *)(texlist));
         draw_ginja_object(model);
         pop_matrix();

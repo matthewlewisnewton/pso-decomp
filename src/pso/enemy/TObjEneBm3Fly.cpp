@@ -202,7 +202,7 @@ void TObjEneBm3Fly__vt104(TObjEneBm3Fly *arg0) {
         set_current_texture_list((GinjaTextureList *)(arg0->texlist));
         push_matrix();
         post_translate_matrix((u8 *)arg0 + 0x38);
-        rotate_matrix_y(0, arg0->rotation_y);
+        rotate_matrix_y(0, arg0->rotation.yaw);
         clear_global_flag_400__9TObjEneDDFv();
         toggle_particle_effect__10TObjPlayerFv();
         draw_chunk_object((void *)(*(s32 *)((s8 *)arg0 + 0x34)));
@@ -236,7 +236,7 @@ void render__13TObjEneBm3FlyFv(VObj_800AFBF0 *o) {
         set_current_texture_list((GinjaTextureList *)(((TObjEneBm3Fly *)o)->texlist));
         push_matrix();
         translate_matrix(0, *(f32 *)((s8 *)o + 0x38), *(f32 *)((s8 *)o + 0x42C), *(f32 *)((s8 *)o + 0x40));
-        rotate_matrix_y(0, ((TObjEneBm3Fly *)o)->rotation_y);
+        rotate_matrix_y(0, ((TObjEneBm3Fly *)o)->rotation.yaw);
         clear_global_flag_400__9TObjEneDDFv();
         toggle_particle_effect__10TObjPlayerFv();
         set_alpha_ref_override(0x8F);
@@ -1131,8 +1131,8 @@ void TObjEneBm3Fly::execute_action(s32 arg1) {
                 update_height_offset();
             }
             this->update_velocity();
-            *(f32 *)((s8 *)((u8 *)this) + 0x430) = sin_table_lookup(this->rotation_y);
-            *(f32 *)((s8 *)((u8 *)this) + 0x438) = cos_table_lookup(this->rotation_y);
+            *(f32 *)((s8 *)((u8 *)this) + 0x430) = sin_table_lookup(this->rotation.yaw);
+            *(f32 *)((s8 *)((u8 *)this) + 0x438) = cos_table_lookup(this->rotation.yaw);
             update_state_flag();
             *(f32 *)((s8 *)((u8 *)this) + 0x42C) = approach_value__13TObjEneBm3FlyFff(this, (f32) (*(f32 *)((s8 *)((u8 *)this) + 0x42C)), this->target_destination.y);
             clamp_flight_height__13TObjEneBm3FlyFv(this);
@@ -2269,8 +2269,8 @@ void TObjEneBm3Fly::run_task() {
         {
           var_f30 *= (3.0f);
         }
-        temp_f31 = var_f30 * ((f32 (*)(s32))cos_table_lookup)(rotation_y);
-        temp_f2 = var_f30 * (-((f32 (*)(s32))sin_table_lookup)(rotation_y));
+        temp_f31 = var_f30 * ((f32 (*)(s32))cos_table_lookup)(this->rotation.yaw);
+        temp_f2 = var_f30 * (-((f32 (*)(s32))sin_table_lookup)(this->rotation.yaw));
         *((f32 *) ((particle_effect) + 0x60)) = (f32) ((this->body_center_position.x) + temp_f31);
         *((f32 *) ((particle_effect) + 0x64)) = (f32) ((-1.5f) + (this->body_center_position.y));
         *((f32 *) ((particle_effect) + 0x68)) = (f32) ((this->body_center_position.z) + temp_f2);

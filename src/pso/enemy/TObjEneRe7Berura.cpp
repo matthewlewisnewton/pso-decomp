@@ -440,8 +440,8 @@ s32 TObjEneRe7Berura::acquire_target_in_view() {
     best = TObjEneRe7Berura__data_805D972C;
     id = 0xFFFF;
     limit = cos_table_lookup(0xAAA);
-    s = sin_table_lookup(rotation_y);
-    c = cos_table_lookup(rotation_y);
+    s = sin_table_lookup(this->rotation.yaw);
+    c = cos_table_lookup(this->rotation.yaw);
     n = TLobby::get_game_mode();
     for (i = 0; i < n; i++) {
         p = TObjPlayer::get_player_data(i);
@@ -563,9 +563,9 @@ s32 TObjEneRe7Berura::turn_toward_heading(s32 heading, s32 max_step) {
     s32 reached_heading;
 
     reached_heading = 0;
-    difference = angle_diff_s16(this->rotation_y, heading);
+    difference = angle_diff_s16(this->rotation.yaw, heading);
     if (difference > max_step) {
-        this->rotation_y = (s32) (this->rotation_y + max_step);
+        this->rotation.yaw = (s32) (this->rotation.yaw + max_step);
         previous_turn = this->accumulated_turn;
         if (previous_turn < 0) {
             this->accumulated_turn = 0;
@@ -573,7 +573,7 @@ s32 TObjEneRe7Berura::turn_toward_heading(s32 heading, s32 max_step) {
             this->accumulated_turn = (s32) (previous_turn + max_step);
         }
     } else if (difference < (s32) -max_step) {
-        this->rotation_y = (s32) (this->rotation_y - max_step);
+        this->rotation.yaw = (s32) (this->rotation.yaw - max_step);
         previous_negative_turn = this->accumulated_turn;
         if (previous_negative_turn > 0) {
             this->accumulated_turn = 0;
@@ -581,7 +581,7 @@ s32 TObjEneRe7Berura::turn_toward_heading(s32 heading, s32 max_step) {
             this->accumulated_turn = (s32) (previous_negative_turn - max_step);
         }
     } else {
-        this->rotation_y = heading;
+        this->rotation.yaw = heading;
         reached_heading = 1;
     }
     return reached_heading;

@@ -165,7 +165,7 @@ void TObjEneBeast::vfunc_94() {
     stack.spC = 1e+01f;
     stack.sp10 = 0.5f * *(f32 *)(this->m_2b0 + 0x10);
     push_matrix_from(&identity_matrix.value);
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     rotate_vector_by_matrix(0, &stack.sp8, &stack.sp8);
     pop_matrix();
     vec3_add_to(&stack.sp8, (u8 *)&this->position);
@@ -198,7 +198,7 @@ void TObjEneBeast::vfunc_93() {
             push_matrix();
             set_matrix_identity(0);
             post_translate_matrix(&self->pos);
-            rotate_matrix_y(0, this->rotation_y);
+            rotate_matrix_y(0, this->rotation.yaw);
             matrix_mult_vec_array((f32 (*)[4])(0), (const Vec *)(entry), (Vec *)(&pos), 2);
             pop_matrix();
             eff = self->effects[idx];

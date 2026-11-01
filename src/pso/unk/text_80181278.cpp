@@ -25,7 +25,7 @@ u8 *construct_city_air_car(TObjCityAirCar_Car *city_air_car_car, s32 arg1, s32 a
     city_air_car_car->m_a4 = 0;
     *(s32 *)((s8 *)city_air_car_car + 0xA8) = 0;
     city_air_car_car->update_path_motion();
-    city_air_car_car->rotation_z = 0;
+    city_air_car_car->rotation.roll = 0;
     return (u8 *)city_air_car_car;
 }
 

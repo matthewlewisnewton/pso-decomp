@@ -156,7 +156,7 @@ void TObjEneReconBomb::render() {
     temp_r30 = TObjFish__sub_8001EDB0((void *)recon_bomb_bml_resource, 2);
     push_matrix();
     translate_matrix(0, (f32) (*(f32 *)((s8 *)arg0 + 0x38)), (f32) ((2.0f) + *(f32 *)((s8 *)arg0 + 0x3C)), (f32) (*(f32 *)((s8 *)arg0 + 0x40)));
-    rotate_matrix_zyx(0, (*(s32 *)&this->rotation_x), (this->rotation_y), (this->rotation_z));
+    rotate_matrix_zyx(0, (*(s32 *)&this->rotation.pitch), (this->rotation.yaw), (this->rotation.roll));
     set_current_texture_list((GinjaTextureList *)(temp_r30));
     draw_chunk_object((void *)bml_model);
     pop_matrix();
@@ -275,10 +275,10 @@ u8 *TObjEneReconBomb__ct(TObjEneReconBomb *ene_recon_bomb, s32 arg1, s32 arg2, s
     *(f32 *)((s8 *)ene_recon_bomb + 0x354) = TObjEneRecon__sub_8031C2BC(ene_recon_bomb->m_334);
     ene_recon_bomb->m_358 = calc_scaled_value__12TObjEneReconFv(ene_recon_bomb->m_334);
     temp_r5 = (unsigned char *) (ene_recon_bomb->m_up);
-    ene_recon_bomb->rotation_y = (s32) *(s32 *)((s8 *)temp_r5 + 0x60);
+    ene_recon_bomb->rotation.yaw = (s32) *(s32 *)((s8 *)temp_r5 + 0x60);
     VecCopy__FP3VecPC3Vec((u8 *)ene_recon_bomb + 0x38, (void *)arg3, (int)temp_r5);
-    temp_f31 = sin_table_lookup(ene_recon_bomb->rotation_y);
-    temp_f1 = cos_table_lookup(ene_recon_bomb->rotation_y);
+    temp_f31 = sin_table_lookup(ene_recon_bomb->rotation.yaw);
+    temp_f1 = cos_table_lookup(ene_recon_bomb->rotation.yaw);
     *(f32 *)((s8 *)ene_recon_bomb + 0x33C) = (f32) (*(f32 *)((s8 *)ene_recon_bomb + 0x354) * temp_f31);
     *(f32 *)((s8 *)ene_recon_bomb + 0x340) = (f32) (0.0f);
     ene_recon_bomb->m_344 = (f32) (*(f32 *)((s8 *)ene_recon_bomb + 0x354) * temp_f1);

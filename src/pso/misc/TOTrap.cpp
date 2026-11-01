@@ -256,7 +256,7 @@ void TOTrap::render() {
         if ((s32) this->m_340 == 1) {
             push_matrix();
             post_translate_matrix((u8 *)&this->position);
-            rotate_matrix_y(0, this->rotation_y);
+            rotate_matrix_y(0, this->rotation.yaw);
             set_current_texture_list((GinjaTextureList *)(this->texlist));
             if (check_demo_mode() == 1) {
                 draw_chunk_object(this->model);

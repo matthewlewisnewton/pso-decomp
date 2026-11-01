@@ -17,7 +17,7 @@ void TButterfly::draw_model() {
     Self_8017E900 *self = (Self_8017E900 *)this;
     push_matrix();
     post_translate_matrix(self->pos);
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     rotate_matrix_x(0, -0x2000);
     draw_ginja_model_with_motion(get_bml_model(butterfly_bml_resource, 0), get_bml_motion(butterfly_bml_resource, 0), self->fa8);
     pop_matrix();

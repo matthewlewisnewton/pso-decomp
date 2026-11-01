@@ -85,7 +85,7 @@ void TObjParticle::run_task() {
     }
     if ((u32) this->m_90 != 0U) {
         ((TParticleCtrl *)this->m_90)->set_position((u8 *)&this->position);
-        ((TParticleCtrl *)(this->m_90))->set_direction((u8 *)&this->rotation_x);
+        ((TParticleCtrl *)(this->m_90))->set_direction((u8 *)&this->rotation.pitch);
     }
 }
 

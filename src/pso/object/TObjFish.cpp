@@ -183,7 +183,7 @@ void render__15TOKeyJungleMainFv(TOKeyJungleMain *key_jungle_main) {
             set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0((*(s32 *)&TOKeyJungleMain__static_model_resource), 1)));
             push_matrix();
             post_translate_matrix((u8 *)key_jungle_main + 0x38);
-            rotate_matrix_y(0, key_jungle_main->rotation_y);
+            rotate_matrix_y(0, key_jungle_main->rotation.yaw);
             get_bml_model((*(s32 *)&TOKeyJungleMain__static_model_resource), 1);
             draw_ginja_object();
             pop_matrix();
@@ -192,7 +192,7 @@ void render__15TOKeyJungleMainFv(TOKeyJungleMain *key_jungle_main) {
             set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0((*(s32 *)&TOKeyJungleMain__static_model_resource), 1)));
             push_matrix();
             post_translate_matrix((u8 *)key_jungle_main + 0x38);
-            rotate_matrix_y(0, key_jungle_main->rotation_y);
+            rotate_matrix_y(0, key_jungle_main->rotation.yaw);
             draw_ginja_model_with_motion(get_bml_model((*(s32 *)&TOKeyJungleMain__static_model_resource), 1), get_bml_motion((*(s32 *)&TOKeyJungleMain__static_model_resource), 1), key_jungle_main->m_e8);
             TParticleCtrl::begin_effect_render();
             draw_ginja_model_with_motion(get_bml_model((*(s32 *)&TOKeyJungleMain__static_model_resource), 0), get_bml_motion((*(s32 *)&TOKeyJungleMain__static_model_resource), 0), *(f32 *)((s8 *)key_jungle_main + 0xEC));

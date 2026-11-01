@@ -106,7 +106,7 @@ extern s32 game_difficulty_selection;
 void TOSwitchAttack::init_params() {
     f32 temp_f0;
 
-    this->m_a7 = (u8) this->rotation_x;
+    this->m_a7 = (u8) this->rotation.pitch;
     temp_f0 = this->scale.x;
     this->m_94 = (f32) (temp_f0 * temp_f0);
     *(f32 *)&this->unk_98 = (f32) (this->scale.y * (2.0f * (game_difficulty_selection + 1)));

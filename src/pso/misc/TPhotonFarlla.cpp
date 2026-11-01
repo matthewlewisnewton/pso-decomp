@@ -113,7 +113,7 @@ void TPhotonFarlla::render() {
         set_current_texture_list((GinjaTextureList *)(this->texlist));
         push_matrix();
         translate_matrix(0, self->pos.x, self->pos.y, self->pos.z);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         ((TUnk_804C3248 *)self)->set_photon_blast_joint_callback();
         saved_model_render_flags = model_render_flags;
         copy_argb((NJS_ARGB *)&saved_model_draw_color, (NJS_ARGB *)&model_material_color);
@@ -149,7 +149,6 @@ struct Stack_801AB018 {
 
 extern "C" {
 void *find_entity_by_id(u16 id);
-s32 spawn_photon_blast_attachment_effects(void *, int);
 }
 u8 *construct_photon_magic_square_normal(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 extern "C" {
@@ -190,7 +189,7 @@ void TPhotonFarlla::run_task() {
         ((TUnk_804C3248 *)arg0)->begin_photon_summon_camera(1);
         *(s32 *)&this->unk_1A4 = 0;
         ((TObjMotion *)arg0)->set_field_b8(0);
-        spawn_photon_blast_attachment_effects(arg0, 0);
+        spawn_photon_blast_attachment_effects(this, 0);
     }
     this->m_194 = (s16) this->requested_action;
     ((TUnk_804C3248 *)arg0)->update_state();
@@ -320,7 +319,7 @@ u8 *TPhotonFarlla__ct(u8 *arg0, u8 *arg1) {
     ((TPhotonFarlla *)arg0)->m_180 = (u8 *)find_entity_by_id(((TPhotonFarlla *)arg0)->m_17c);
     e = ((TPhotonFarlla *)arg0)->m_180;
     if (e != NULL) {
-        ((TPhotonFarlla *)arg0)->rotation_y = *(s32 *)((s8 *)e + 0x60);
+        ((TPhotonFarlla *)arg0)->rotation.yaw = *(s32 *)((s8 *)e + 0x60);
     }
     *(s32 *)((s8 *)arg0 + 0x34) = *(s32 *)((s8 *)(*(u8 **)((s8 *)photon_blast_shared_resource + 0x42C)) + 0x8);
     ((TPhotonFarlla *)arg0)->texlist = *(s32 *)((s8 *)(*(u8 **)((s8 *)photon_blast_shared_resource + 0x42C)) + 0xC);
@@ -371,7 +370,7 @@ u8 *TPhotonFarlla__ct(u8 *arg0, u8 *arg1) {
         if (p != NULL) {
             construct_photon_magic_square_normal((u8 *)p, (s32)arg0, 0, (s32)&pos, 0x78);
         }
-        spawn_photon_blast_attachment_effects(arg0, 0);
+        spawn_photon_blast_attachment_effects((TPhotonFarlla *)arg0, 0);
         play_cue_stream_file((s32)lbl_80446D40);
     } else {
         spawn_photon_blast_opening_effects(0, ((TPhotonFarlla *)arg0)->m_17c);

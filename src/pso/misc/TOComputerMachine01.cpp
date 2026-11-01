@@ -35,7 +35,7 @@ s32 TOComputerMachine01::last_scroll_frame;
 void *TOComputerMachine01::screen_meshes[4];
 
 s32 TOComputerMachine01::update_object_view_visibility(f32 range, f32 radius) {
-    if (xz_distance_squared(&position, (Vec *)&camera_ctrl_instance->m_178) < radius * radius) {
+    if (xz_distance_squared(&position, &camera_ctrl_instance->position) < radius * radius) {
         visibility = 1;
         return visibility;
     }
@@ -56,7 +56,7 @@ void TOComputerMachine01::render() {
         }
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
+        rotate_matrix_y(NULL, this->rotation.yaw);
         set_current_texture_list((GinjaTextureList *)(texlist));
         body = (NJS_OBJECT *)model;
         draw_ginja_model((s32)body->model);

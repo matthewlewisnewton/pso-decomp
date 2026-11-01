@@ -74,15 +74,15 @@ void TUnk_80484A94::run_task() {
     }
     VecCopy(&prev_position, &position);
     vec3_add_to(&position, &velocity);
-    direction_to_rotation_yx((u8 *)&velocity, &rotation_y, &rotation_z);
-    rotation_z -= 0x4000;
+    direction_to_rotation_yx((u8 *)&velocity, &this->rotation.yaw, &this->rotation.roll);
+    this->rotation.roll -= 0x4000;
     if (trail != NULL) {
         ((TParticleCtrl *)trail)->set_position(&position);
-        ((TParticleCtrl *)trail)->set_direction(&rotation_x);
+        ((TParticleCtrl *)trail)->set_direction(&this->rotation.pitch);
     }
     if (glow != NULL) {
         ((TParticleCtrl *)glow)->set_position(&position);
-        ((TParticleCtrl *)glow)->set_direction(&rotation_x);
+        ((TParticleCtrl *)glow)->set_direction(&this->rotation.pitch);
     }
     if (csnVector(&prev_position, &position, -1) != 0) {
         queue_destruction();
@@ -116,14 +116,14 @@ TUnk_80484A94::TUnk_80484A94(TObjEnemy *owner, Vec *pos, s32 target) : TObjColli
     entity_id = get_entity_id(owner);
     VecCopy(&position, pos);
     target_id = target;
-    rotation_x = 0;
-    trail = spawn_particle_effect_with_rotation(&position, &rotation_x, 0x11C, 2);
-    glow = spawn_particle_effect_with_rotation(&position, &rotation_x, 0x11D, 2);
+    this->rotation.pitch = 0;
+    trail = spawn_particle_effect_with_rotation(&position, &this->rotation.pitch, 0x11C, 2);
+    glow = spawn_particle_effect_with_rotation(&position, &this->rotation.pitch, 0x11D, 2);
     push_matrix_from(identity_matrix);
     {
         Vec dir = volopt_shot_forward;
         dir.z = fn_800499FC(0);
-        rotate_matrix_y(0, ((TObjBase *)owner)->rotation_y);
+        rotate_matrix_y(0, ((TObjBase *)owner)->rotation.yaw);
         rotate_vector_by_matrix(0, &dir, &velocity);
     }
     pop_matrix();

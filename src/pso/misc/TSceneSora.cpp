@@ -89,7 +89,7 @@ void TSceneSora::render() {
         TParticleCtrl::begin_effect_render();
         set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0((int) ((*(s32 *)&TSceneSora__sky_bml_resource)), 0)));
         push_matrix();
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         if ((u32) this->m_94 != 0U) {
             draw_ginja_model_with_motion(this->m_90, this->m_94, this->m_a0);
         } else {

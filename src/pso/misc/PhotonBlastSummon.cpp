@@ -13,18 +13,13 @@ struct NJS_OBJECT;
 #include "pso/misc/TScene.h"
 #include "pso/misc/TUnk_804C3248.h"
 #include "pso/map/FloorArea.h"
-extern "C" { void setup_photon_blast_camera__13TUnk_804C3248Fv(u8 *); }
+#include "pso/misc/CameraHelpers.h"
 #pragma push
 
 #include <stddef.h>
+inline void *operator new[](size_t, void *p) { return p; }
 #include "pso/TParticleCtrl.h"
-struct Stack_801A7310 {
-    s8 sp8;
-    s8 sp9;
-    s16 spA;
-    f32 spC;
-    f32 sp10;
-};
+
 
 struct RecoveredGlobal_801A7310_TCameraCtrl__data_804FF628 {
     s32 value;
@@ -36,7 +31,7 @@ struct Ent_801A70C8 { s32 a; f32 b; s32 c; };
 struct Ent_801A710C { u32 a; f32 b; s32 c; };
 
 extern "C" {
-s32 set_scripted_camera_pose(int, int, void *);
+void cache_target_and_forward__11TCameraCtrlFl(const CameraPlayback *, s32);
 extern RecoveredGlobal_801A7310_TCameraCtrl__data_804FF628 TCameraCtrl__view_state;
 extern struct Ent_801A70C8 deferred_photon_blast_hit_queue[32];
 extern s32 deferred_photon_blast_hit_count;
@@ -67,7 +62,7 @@ void clear_photon_blast_hits(void) {
     }
 }
 
-void queue_deferred_photon_blast_hit(u32 arg0, s32 arg1, s32 arg2) {
+void queue_deferred_photon_blast_hit(u32 arg0, s32 arg1, s32 arg2, f32 unused) {
     s32 found = 0;
     if (deferred_photon_blast_hit_count < 0x20) {
         const f32 *e = get_photon_blast_entry__10TObjPlayerFi(arg1);
@@ -113,35 +108,28 @@ void queue_photon_blast_hit(u32 identity, s32 kind, s32 allow_duplicate, f32 sca
     }
 }
 
-void queue_deferred_photon_blast_support(void) {
-    ((s32 (*)(f32))queue_deferred_photon_blast_hit)(1.0f);
+void queue_deferred_photon_blast_support(u32 identity, s32 kind, s32 allow_duplicate) {
+    queue_deferred_photon_blast_hit(identity, kind, allow_duplicate, 1.0f);
 }
 
-void queue_photon_blast_support(void) {
-    ((s32 (*)(f32))queue_photon_blast_hit)(1.0f);
+void queue_photon_blast_support(u32 identity, s32 kind, s32 allow_duplicate) {
+    queue_photon_blast_hit(identity, kind, allow_duplicate, 1.0f);
 }
 typedef char RecoveredGlobal_801A7310_TCameraCtrl__data_804FF628_size[sizeof(RecoveredGlobal_801A7310_TCameraCtrl__data_804FF628) == 0xC ? 1 : -1];
 
 void TUnk_804C3248::begin_photon_summon_camera(s8 arg1) {
     u8 *arg0 = (u8 *)this;
-    typedef char sp8_offset[(offsetof(Stack_801A7310, sp8) == 0x0) ? 1 : -1];
-    typedef char sp9_offset[(offsetof(Stack_801A7310, sp9) == 0x1) ? 1 : -1];
-    typedef char spA_offset[(offsetof(Stack_801A7310, spA) == 0x2) ? 1 : -1];
-    typedef char spC_offset[(offsetof(Stack_801A7310, spC) == 0x4) ? 1 : -1];
-    typedef char sp10_offset[(offsetof(Stack_801A7310, sp10) == 0x8) ? 1 : -1];
-    Stack_801A7310 stack;
-    s32 temp_r3;
-    stack.sp9 = arg1;
-    stack.sp8 = get_current_floor_area() == AREA_DARK_FALZ;
-    stack.spA = 0;
-    stack.spC = 0.0f;
-    stack.sp10 = 1.0f;
+    CameraPlayback stack;
+    stack.index = arg1;
+    if (get_current_floor_area() == AREA_DARK_FALZ) stack.bank = 1; else stack.bank = 0;
+    stack.flags = 0;
+    stack.frame = 0.0f;
+    stack.frame_step = 1.0f;
     if ((*(s32 *)((s8 *)&TCameraCtrl__view_state.value + 8) & 4) || (*(s32 *)((s8 *)&TCameraCtrl__view_state.value + 8) & 8)) {
         TCameraCtrl::select_active_controller(5);
     }
-    ((TCameraCtrl *)(&stack.sp8))->cache_target_and_forward(0x4222);
-    temp_r3 = (long) (arg0 + 0x38);
-    set_scripted_camera_pose(temp_r3, temp_r3, (u8 *)&this->rotation_x);
+    cache_target_and_forward__11TCameraCtrlFl(&stack, 0x4222);
+    set_scripted_camera_pose(&position, &position, &rotation);
     *(s32 *)((s8 *)arg0 + 0xFC) = 1;
 }
 
@@ -154,36 +142,17 @@ void TUnk_804C3248::begin_photon_summon_camera(s8 arg1) {
 #pragma dont_inline off
 struct ByteBlock_C { u8 bytes[0xc]; };
 
-typedef struct Vec_801A73B0 { f32 x, y, z; } Vec_801A73B0;
-
-struct PbCamera_801A73B0 {
-    u8 pad0[0x104];
-    Vec_801A73B0 target;
-    Vec_801A73B0 position;
-    Vec_801A73B0 destination_target;
-    Vec_801A73B0 destination_position;
-};
-
 struct PbCameraParams_801A73B0 {
     u8 pad0[0x14];
     s32 projection;
     s32 pad18;
-    Vec_801A73B0 position;
-    Vec_801A73B0 target;
+    Vec position;
+    Vec target;
     u8 pad34[0x50 - 0x34];
 };
 
-typedef struct Vec_801A7578 { f32 x, y, z; } Vec_801A7578;
-
-struct Node_801A7578 {
-    u8 pad0[4];
-    Vec_801A7578 pos;
-    s32 id;
-    u8 pad1[0x20 - 0x14];
-};
-
 struct Reg_801A7578 {
-    struct Node_801A7578 *list;
+    PhotonAttachment *list;
     s32 count;
 };
 
@@ -193,8 +162,15 @@ struct Rec_801A7428 { s32 a, b, c; Vec_801A7428 v; s32 d; };
 
 struct Entry_801A7428 { u8 bytes[0x1C]; };
 
+struct PhotonAttachmentSpec {
+    s32 effect_id, arg1, arg2, joint;
+    s32 rotation[3];
+    s32 flags;
+};
+
 struct Group_801A7428 {
-    u8 pad0[8];
+    PhotonAttachmentSpec *attachments;
+    u32 attachment_count;
     Entry_801A7428 *entries;
     s32 count;
 };
@@ -208,10 +184,10 @@ struct Obj_801A7428 {
 
 extern "C" {
 void set_active_camera_pose_from_params(u8 *arg0);
-void approach_vector_fixed_distance(Vec_801A73B0 *, Vec_801A73B0 *, Vec_801A73B0 *, f32);
-void update_photon_blast_camera_pose(struct PbCamera_801A73B0 *self);
-void transform_point_to_view(Vec_801A7578 *, Vec_801A7578 *);
-extern Vec_801A7578 lbl_80446A44;
+void approach_vector_fixed_distance(Vec *, Vec *, Vec *, f32);
+void update_photon_blast_camera_pose(TUnk_804C3248 *self, f32 unused);
+void transform_point_to_view(Vec *, Vec *);
+extern Vec lbl_80446A44;
 extern struct Reg_801A7578 photon_blast_joint_origins[];
 extern s32 photon_blast_joint_index;
 void *create_timed_particle_emitter(void *owner, s32 id, s32 b, s32 c);
@@ -222,12 +198,12 @@ s32 push_matrix_from(void *src);
 s32 pop_matrices(s32 arg0);
 extern Group_801A7428 photon_blast_attachment_table[];
 extern u8 identity_matrix[];
-void update_photon_blast_camera_pose(struct PbCamera_801A73B0 *self) {
+void update_photon_blast_camera_pose(TUnk_804C3248 *self, f32 unused) {
     struct PbCameraParams_801A73B0 parameters;
-    approach_vector_fixed_distance(&self->position, &self->destination_position, &self->position, 0.48f);
-    approach_vector_fixed_distance(&self->target, &self->destination_target, &self->target, 0.55f);
-    VecCopy((Vec *)&parameters.position, (const Vec *)&self->position);
-    VecCopy((Vec *)&parameters.target, (const Vec *)&self->target);
+    approach_vector_fixed_distance(&self->camera_position, &self->camera_destination_position, &self->camera_position, 0.48f);
+    approach_vector_fixed_distance(&self->camera_target, &self->camera_destination_target, &self->camera_target, 0.55f);
+    VecCopy((Vec *)&parameters.position, (const Vec *)&self->camera_position);
+    VecCopy((Vec *)&parameters.target, (const Vec *)&self->camera_target);
     parameters.projection = 0x4222;
     set_active_camera_pose_from_params((u8 *)&parameters);
 }
@@ -274,10 +250,10 @@ void copy_effect_params(u8 *arg0, u8 *arg1) {
 void publish_photon_blast_joint_origins(NJS_OBJECT *) {
     s32 i;
     for (i = 0; i < photon_blast_joint_origins->count; i++) {
-        struct Node_801A7578 *node = &photon_blast_joint_origins->list[i];
-        if (photon_blast_joint_index == node->id) {
-            Vec_801A7578 origin = lbl_80446A44;
-            transform_point_to_view(&origin, &node->pos);
+        PhotonAttachment *node = &photon_blast_joint_origins->list[i];
+        if (photon_blast_joint_index == node->joint_index) {
+            Vec origin = lbl_80446A44;
+            transform_point_to_view(&origin, &node->position);
         }
     }
     photon_blast_joint_index += 1;
@@ -287,70 +263,103 @@ void publish_photon_blast_joint_origins(NJS_OBJECT *) {
 
 #pragma push
 
-struct PhotonAttachment_801A7638;
-struct PhotonDrawOwner_801A7638 {
-    u8 unknown00[0x100];
-    s32 binding_count;
-    u8 unknown104[0x44];
-    PhotonAttachment_801A7638 *bindings;
-};
+struct PhotonAngles { s32 x, y, z; };
 
-typedef struct Vec_801A7680 { f32 x, y, z; } Vec_801A7680;
-
-struct Eff_801A7680 {
-    void *obj;
-    Vec_801A7680 pos;
-    s32 flag;
-    u8 pad[0x20 - 0x14];
-};
-
-struct Self_801A7680 {
-    u8 pad0[0x38];
-    Vec_801A7680 pos;
-    u8 pad1[0x100 - 0x44];
-    u32 count;
-    u8 pad2[0x148 - 0x104];
-    struct Eff_801A7680 *effects;
-};
+extern Vec_801A7428 lbl_80446A38;
+extern "C" {
+void *mem_alloc(u32);
+void rotate_matrix_x(s32, s32);
+void rotate_matrix_z(s32, s32);
+}
+void direction_to_rotation_xz(u8 *, s32 *, s32 *);
+void *create_timed_particle_emitter_with_angles(void *, void *, s32, s32, s32, s32);
 
 extern "C" {
 
 void mem_free(void *p);
-int update_all__8TFogCtrlFl(void*);
 
 void TObjPlayer::clear_render_context() { set_chunk_model_node_callback(0); }
 
 void TUnk_804C3248::set_photon_blast_joint_callback() {
-    PhotonDrawOwner_801A7638 *self = (PhotonDrawOwner_801A7638 *)this;
-    photon_blast_joint_index=0;
-    photon_blast_joint_origins[0].list=(Node_801A7578 *)self->bindings;
-    photon_blast_joint_origins[0].count=self->binding_count;
+    photon_blast_joint_index = 0;
+    photon_blast_joint_origins[0].list = m_148;
+    photon_blast_joint_origins[0].count = m_100;
     set_chunk_model_node_callback(publish_photon_blast_joint_origins);
 }
 
 void TUnk_804C3248::update_photon_blast_attachments() {
-    struct Self_801A7680 *self = (struct Self_801A7680 *)this;
     u32 i;
-    struct Eff_801A7680 *e;
-    for (i = 0; i < self->count; i++) {
-        if (((TObject *)(self->effects[i].obj))->all_parents_unqueued_for_destruction() == 0) {
-            self->effects[i].obj = NULL;
+    PhotonAttachment *e;
+    for (i = 0; i < m_100; i++) {
+        if (m_148[i].particle->all_parents_unqueued_for_destruction() == 0) {
+            m_148[i].particle = NULL;
         }
-        e = &self->effects[i];
-        if (e->obj != NULL) {
-            if (e->flag >= 0) {
-                ((TParticleCtrl *)e->obj)->set_position(&e->pos);
+        e = &m_148[i];
+        if (e->particle != NULL) {
+            if (e->joint_index >= 0) {
+                e->particle->set_position(&e->position);
             } else {
-                ((TParticleCtrl *)e->obj)->set_position(&self->pos);
+                e->particle->set_position(&position);
             }
         }
     }
 }
 
-void TUnk_804C3248::free_photon() { void* m = *(void* *)&this->m_148; if (m) mem_free(m); }
+void TUnk_804C3248::free_photon() { if (m_148) mem_free(m_148); }
 
-int update_all_default__8TFogCtrlFv(void) { return update_all__8TFogCtrlFl((void*)(0)); }
-void apply_all_default__8TFogCtrlFv(void) { TFogCtrl::apply_all((s32)((void*)63), (s32)((void*)0)); }
+#pragma push
+#pragma inline_depth(1)
+#pragma dont_inline off
+#pragma auto_inline off
+void spawn_photon_blast_attachment_effects(TUnk_804C3248 *self, s32 kind) {
+    Group_801A7428 *group = &photon_blast_attachment_table[kind];
+    self->m_100 = group->attachment_count;
+    if (self->m_100 != 0) {
+        struct { s32 arg1; s32 arg2; s32 effect_id; } params;
+        PhotonAngles rotation;
+        PhotonAttachmentSpec *spec;
+        PhotonAttachmentSpec *specs;
+        u32 i;
+        self->m_148 = new (mem_alloc(self->m_100 * sizeof(PhotonAttachment))) PhotonAttachment[self->m_100];
+        specs = group->attachments;
+        for (i = 0; i < self->m_100; i++) {
+            spec = &specs[i];
+            params.arg1 = spec->arg1;
+            params.arg2 = spec->arg2;
+            params.effect_id = spec->effect_id;
+            copy_xyz(&rotation, spec->rotation);
+            s32 flags = spec->flags;
+            s32 angles[3];
+            Vec_801A7428 direction = lbl_80446A38;
+            if (rotation.z || rotation.x || rotation.y) {
+                push_matrix_from(identity_matrix);
+                rotate_matrix_z(0, rotation.z);
+                rotate_matrix_x(0, rotation.x);
+                rotate_matrix_y(0, rotation.y);
+                matrix_mult_vec(0, &direction, &direction);
+                pop_matrices(1);
+                push_matrix_from(identity_matrix);
+                rotate_matrix_y(0, self->rotation.yaw);
+                matrix_mult_vec(0, &direction, &direction);
+                pop_matrices(1);
+                direction_to_rotation_xz((u8 *)&direction, &angles[0], &angles[2]);
+                angles[1] = 0;
+            } else {
+                angles[0] = 0;
+                angles[1] = 0;
+                angles[2] = 0;
+            }
+            self->m_148[i].particle = (TParticleCtrl *)create_timed_particle_emitter_with_angles(&self->position, &angles, params.effect_id, params.arg1, params.arg2, flags & 0xffff);
+            self->m_148[i].joint_index = spec->joint;
+            copy_xyz(self->m_148[i].rotation, &rotation);
+        }
+    }
+}
+
+#pragma pop
+
+s32 update_all_default__8TFogCtrlFv(TUnk_804C3248 *) { return TFogCtrl::update_all(0); }
+void apply_all_default__8TFogCtrlFv(TUnk_804C3248 *) { TFogCtrl::apply_all(63, 0); }
 
 #pragma pop
 
@@ -358,7 +367,7 @@ void apply_all_default__8TFogCtrlFv(void) { TFogCtrl::apply_all((s32)((void*)63)
 extern s32 TSceneSora__sky_active_flag;
 extern u32 TSceneSora__instance;
 u16 TCameraCtrl__sub_8006A5DC();
-void *get_scripted_camera_playback();
+
 
 s32 queue_destruction__7TObjectFv(void *);
 void allow_rendering__7TObjectFv(TObject *arg0);
@@ -371,7 +380,7 @@ void TUnk_804C3248::update_if_active() {
     if (!(*(s32 *)&this->unk_154 & 1)) {
         TCameraCtrl::update();
         TSceneSora::update((s32)this);
-        ((s32 (*)(void *))update_all_default__8TFogCtrlFv)(this);
+        update_all_default__8TFogCtrlFv(this);
         TObjPlayer__sub_800D8A6C();
     }
     if (tl_05 != 0) {
@@ -381,9 +390,9 @@ void TUnk_804C3248::update_if_active() {
 
 void TUnk_804C3248::enter_scene() {
     s32 arg0 = (s32)this;
-    ((s32 (*)(void))setup_photon_blast_camera__13TUnk_804C3248Fv)();
+    setup_photon_blast_camera();
     reset_state__10TSceneSoraFv(arg0);
-    ((s32 (*)(s32))apply_all_default__8TFogCtrlFv)(arg0);
+    apply_all_default__8TFogCtrlFv(this);
     TObjPlayer__sub_800D8A60();
     if (tl_05 != NULL) {
         disallow_rendering__7TObjectFv((TObject *)tl_05);
@@ -404,10 +413,10 @@ void reset_state__10TSceneSoraFv(s32 _w0) {
 void TUnk_804C3248::update_state() {
     switch (*(s32 *)((s8 *)this + 0xFC)) {
     case 0:
-        ((s32 (*)(f32))update_photon_blast_camera_pose)(1.0f);
+        update_photon_blast_camera_pose(this, 1.0f);
         return;
     case 1:
-        if ((*(u16 *)((s8 *)(get_scripted_camera_playback()) + 2) & 1) || (TCameraCtrl__sub_8006A5DC() != 5)) {
+        if ((get_scripted_camera_playback()->flags & 1) || (TCameraCtrl__sub_8006A5DC() != 5)) {
             queue_destruction__7TObjectFv(this);
         }
         return;
@@ -479,10 +488,10 @@ void TUnk_804C3248::setup_photon_blast_camera() {
     d.x += *((f32 *) (p - -0x38));
     d.y += *((f32 *)(p + 0x3C));
     d.z += *((f32 *)(p + 0x40));
-    VecCopy((Vec *)(arg0 + 0x110), (const Vec *)&a);
-    VecCopy((Vec *)(arg0 + 0x128), (const Vec *)&b);
-    VecCopy((Vec *)(arg0 + 0x104), (const Vec *)&c);
-    VecCopy((Vec *)(arg0 + 0x11C), (const Vec *)&d);
+    VecCopy(&camera_position, (const Vec *)&a);
+    VecCopy(&camera_destination_position, (const Vec *)&b);
+    VecCopy(&camera_target, (const Vec *)&c);
+    VecCopy(&camera_destination_target, (const Vec *)&d);
     activate_camera_mode(9);
   }
 }
@@ -515,18 +524,18 @@ void *photon_base_ct(void *arg0) {
     ((TUnk_804C3248 *)arg0)->m_148 = 0;
     *(u16 *)((s8 *)arg0 + 0x14C) = 0;
     *(u32 *)((s8 *)arg0 + 0xFC) = 0;
-    *(f32 *)((s8 *)arg0 + 0x104) = 0.0f;
-    ((TUnk_804C3248 *)arg0)->m_108 = 0.0f;
-    *(f32 *)((s8 *)arg0 + 0x10C) = 0.0f;
-    ((TUnk_804C3248 *)arg0)->m_110 = 0.0f;
-    *(f32 *)((s8 *)arg0 + 0x114) = 0.0f;
-    ((TUnk_804C3248 *)arg0)->m_118 = 0.0f;
-    *(f32 *)((s8 *)arg0 + 0x11C) = 0.0f;
-    ((TUnk_804C3248 *)arg0)->m_120 = 0.0f;
-    *(f32 *)((s8 *)arg0 + 0x124) = 1.0f;
-    ((TUnk_804C3248 *)arg0)->m_128 = 0.0f;
-    *(f32 *)((s8 *)arg0 + 0x12C) = 0.0f;
-    ((TUnk_804C3248 *)arg0)->m_130 = 1.0f;
+    ((TUnk_804C3248 *)arg0)->camera_target.x = 0.0f;
+    ((TUnk_804C3248 *)arg0)->camera_target.y = 0.0f;
+    ((TUnk_804C3248 *)arg0)->camera_target.z = 0.0f;
+    ((TUnk_804C3248 *)arg0)->camera_position.x = 0.0f;
+    ((TUnk_804C3248 *)arg0)->camera_position.y = 0.0f;
+    ((TUnk_804C3248 *)arg0)->camera_position.z = 0.0f;
+    ((TUnk_804C3248 *)arg0)->camera_destination_target.x = 0.0f;
+    ((TUnk_804C3248 *)arg0)->camera_destination_target.y = 0.0f;
+    ((TUnk_804C3248 *)arg0)->camera_destination_target.z = 1.0f;
+    ((TUnk_804C3248 *)arg0)->camera_destination_position.x = 0.0f;
+    ((TUnk_804C3248 *)arg0)->camera_destination_position.y = 0.0f;
+    ((TUnk_804C3248 *)arg0)->camera_destination_position.z = 1.0f;
     return arg0;
 }
 

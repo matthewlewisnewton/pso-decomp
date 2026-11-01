@@ -19,7 +19,7 @@ void TObjDFDemo4::sub_8004F1FC() {
     if ((s32) this->m_f8 >= 0x44) {
         push_matrix();
         set_motion_packed_rotation();
-        post_translate_matrix((u8 *)&this->m_e8);
+        post_translate_matrix((u8 *)&this->camera_position);
         rotate_matrix_y(0, this->m_f4);
         var_r29 = 0;
         var_r31 = 0;

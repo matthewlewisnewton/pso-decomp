@@ -105,7 +105,7 @@ void TODoorCave03::render() {
         set_current_texture_list((GinjaTextureList *)(texlist));
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
+        rotate_matrix_y(NULL, this->rotation.yaw);
         node = (NJS_OBJECT *)model;
         post_translate_matrix(node->pos);
         draw_ginja_model((s32)node->model);
