@@ -39,7 +39,8 @@ frozen constructor checkpoint. Its full development validation passed: one
 additional exact function, 500 matched code bytes and eight matched data bytes,
 with all 3,540 existing linked units preserved and the original DOL SHA-1
 verified. Source-link selection is unchanged; independent review follows
-separately on PR #148.
+separately. PR #148 subsequently merged; the continuation uses current fork main
+as its baseline.
 
 ## Whole-unit continuation
 
@@ -50,18 +51,34 @@ allocation. Doubled angles double the signed integer before converting to float.
 wrap; signed divisions truncate toward zero. The native compiler reuses repeated
 conversion terms without handwritten arithmetic or instruction injection.
 
-Targeted compilation now reproduces all 1,508 instruction bytes across the five
-functions, including the complete 828-byte task. All 41 text relocations resolve
-to their original addresses under the proposed native data section bases. The
-comparison uses unmodified original and compiler objects, without comparison
-aliases. This is a bounded byte/relocation audit, not an adopted repository
-mapping or a source-link result: additional data ownership remains a separate
-coordinated proposal, and the continuation has not passed full development gates.
+The independently reviewed data mappings are now adopted. Fresh original split
+objects and native output under the normal per-unit compiler flags compare at
+100% in the normal report: all five functions, 1,508 code bytes and 109 data
+bytes. Direct comparison also verifies section sizes/alignment, global symbol
+bindings/types and all 46 allocated relocation tuples, including 41 text
+relocations. No comparison aliases or object mutations are used.
 
 Native definitions now reproduce all 109 bytes of the unit's data: the six tint
 presets, fixed-size class name and descriptor, compiler-generated vtable,
 conversion constants, local static scale/guard, and floating constants. Direct
 comparison against original DOL ranges, resolving only native ADDR32 data
 relocations through the symbol map, verifies bytes, offsets and alignment. The
-remaining three bytes after the local static guard are not claimed. No metadata
-or source-link selection is changed by the continuation checkpoint.
+remaining three bytes after the local static guard are not assigned to this
+unit. Only the seven proven private compiler constants/static symbols are
+localized; the table, string, descriptor and native vtable remain exported.
+
+The localization guard covers 5,065 freshly generated original objects and
+3,707 native objects from the accepted current-main build, with this unit, its
+sole constructor caller and both header consumers freshly rebuilt. The three
+consumer objects remain byte-identical to current main. The normal link scan
+finds the unit eligible, and the committed selection adds only this unit. The
+generated graph selects its native object; all 3,541 selected units pass the
+link-eligibility check. Actual DOL linkage and full development gates still
+require a scheduled build.
+
+The targeted report records +828 matched code bytes, +101 matched data bytes
+and no exact-function regression. It also exposes three alignment bytes after
+the BSS guard leaving DTK report coverage when the five-byte static/guard range
+is carved out. These bytes remain outside the unit; fallback coverage retention
+is a separate coordination item before queue acceptance. This checkpoint does
+not claim a preserved data denominator or completed source-linked build.
