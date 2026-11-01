@@ -289,7 +289,6 @@ void *create_timed_particle_emitter_with_angles(void *, void *, s32, s32, s32, s
 extern "C" {
 
 void mem_free(void *p);
-int update_all__8TFogCtrlFl(s32);
 
 void TObjPlayer::clear_render_context() { set_chunk_model_node_callback(0); }
 
@@ -371,7 +370,7 @@ void spawn_photon_blast_attachment_effects(TUnk_804C3248 *self, s32 kind) {
 
 #pragma pop
 
-int update_all_default__8TFogCtrlFv(TUnk_804C3248 *) { return update_all__8TFogCtrlFl(0); }
+s32 update_all_default__8TFogCtrlFv(TUnk_804C3248 *) { return TFogCtrl::update_all(0); }
 void apply_all_default__8TFogCtrlFv(TUnk_804C3248 *) { TFogCtrl::apply_all(63, 0); }
 
 #pragma pop

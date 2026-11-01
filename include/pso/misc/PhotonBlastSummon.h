@@ -26,7 +26,7 @@ void queue_photon_blast_support(u32 identity, s32 kind, s32 allow_duplicate);
 extern "C" {
 void reset_state__10TSceneSoraFv(s32 _w0);
 void spawn_photon_blast_opening_effects(s32 arg0, s32 arg1);
-int update_all_default__8TFogCtrlFv(TUnk_804C3248 *);
+s32 update_all_default__8TFogCtrlFv(TUnk_804C3248 *);
 }
 
 #endif
