@@ -2,6 +2,7 @@
 #define PSO_SYSTEM_GCCI_REQUESTS_H
 #include "types.h"
 #include <stddef.h>
+#include <dolphin/dvd.h>
 
 struct GcciRequest {
     u8 active;
@@ -15,7 +16,8 @@ struct GcciRequest {
     s32 pos;
     s32 done;
     s32 count;
-    u8 block[0x3C];
+    // Real SDK subobjects live with each statically allocated request record.
+    DVDFileInfo block;
 };
 
 struct GcciStatus {
@@ -33,6 +35,9 @@ typedef char GcciRequestPosition[offsetof(GcciRequest, pos) == 0x1C ? 1 : -1];
 typedef char GcciRequestDone[offsetof(GcciRequest, done) == 0x20 ? 1 : -1];
 typedef char GcciRequestCount[offsetof(GcciRequest, count) == 0x24 ? 1 : -1];
 typedef char GcciRequestDvdInfo[offsetof(GcciRequest, block) == 0x28 ? 1 : -1];
+typedef char GcciRequestDvdInfoSize[sizeof(DVDFileInfo) == 0x3C ? 1 : -1];
+typedef char GcciRequestCommandBlock[offsetof(DVDFileInfo, cb) == 0 ? 1 : -1];
+typedef char GcciRequestDvdLength[offsetof(DVDFileInfo, length) == 0x34 ? 1 : -1];
 typedef char GcciStatusSize[sizeof(GcciStatus) == 12 ? 1 : -1];
 typedef char GcciStatusState[offsetof(GcciStatus, state) == 4 ? 1 : -1];
 #endif
