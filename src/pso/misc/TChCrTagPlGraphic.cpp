@@ -1,7 +1,5 @@
 #include "pso/TChCrTagPlGraphic.h"
 
-TChCrTagPlGraphic::~TChCrTagPlGraphic() {}
-
 #include "types.h"
 #include "pso/TChCrCharSelect.h"
 #include "pso/misc/TWindowSubSymbolChatPartsSet.h"
@@ -11,15 +9,10 @@ struct TChCrTagPlGraphic__data_804664A4 {
     u8 remaining[0x11C];
 };
 
-struct RecoveredGlobal_802A3454___vt__17TChCrTagPlGraphic {
-    s32 value;
-    u8 remaining[0x1C];
-};
-
 extern "C" {
 u8 * __ct__8TChCrTagFP7TObjectPv(void *, s32);
 extern const TChCrTagPlGraphic__data_804664A4 TChCrTagPlGraphic__data_804664A4;
-extern RecoveredGlobal_802A3454___vt__17TChCrTagPlGraphic __vt__17TChCrTagPlGraphic;
+extern void *__vt__17TChCrTagPlGraphic[];
 extern s32 ch_cr_tag_pl_graphic_class_name;
 extern const f32 lbl_805DDF18;
 extern const f32 lbl_805DDF2C;
@@ -34,6 +27,7 @@ void run_task__17TChCrTagPlGraphicFv(void* p);
 void TChCrTagPlGraphic__sub_802A3230(u8 *tag);
 void update_fade__8TChCrTagFPv(u8 *arg0);
 void *__nw__7TObjectFUl(int);
+void render_shadows__7TObjectFv();
 void restore_saved_depth_alpha_state(void);
 int set_depth_buffer_settings_1__Fv(void*);
 
@@ -82,7 +76,6 @@ void run_task__17TChCrTagPlGraphicFv(void* p) { update_fade__8TChCrTagFPv((u8 *)
 extern void *tl_03;
 
 typedef char RecoveredGlobal_802A3454_TChCrTagPlGraphic__data_804664A4_size[sizeof(TChCrTagPlGraphic__data_804664A4) == 0x120 ? 1 : -1];
-typedef char RecoveredGlobal_802A3454___vt__17TChCrTagPlGraphic_size[sizeof(RecoveredGlobal_802A3454___vt__17TChCrTagPlGraphic) == 0x20 ? 1 : -1];
 
 s32 TChCrTagPlGraphic__vt4(u8 *arg0) {
     switch (TChCrCharSelect::get_selected_index()) {
@@ -100,10 +93,12 @@ s32 TChCrTagPlGraphic__vt4(u8 *arg0) {
     return 0;
 }
 
+TChCrTagPlGraphic::~TChCrTagPlGraphic() {}
+
 u8 *__ct__17TChCrTagPlGraphicFv(u8 *ch_cr_tag, s32 arg1, s32 _w2) {
     u8 *temp_r5;
     __ct__8TChCrTagFP7TObjectPv(ch_cr_tag, arg1);
-    *(s32 **)((s8 *)ch_cr_tag + 0x18) = &__vt__17TChCrTagPlGraphic.value;
+    *(s32 **)((s8 *)ch_cr_tag + 0x18) = (s32 *)__vt__17TChCrTagPlGraphic;
     *(s32 *)((s8 *)ch_cr_tag + 0) = (s32) ch_cr_tag_pl_graphic_class_name;
     *(f32 *)((s8 *)ch_cr_tag + 0x28) = (f32) lbl_805DDF2C;
     *(f32 *)((s8 *)ch_cr_tag + 0x2C) = (f32) lbl_805DDF30;
@@ -138,5 +133,16 @@ void TChCrTagPlGraphic::create_matching_tags() {
         }
     }
 }
+
+void __dt__17TChCrTagPlGraphicFv();
+void *__vt__17TChCrTagPlGraphic[8] = {
+    0, 0,
+    (void *)__dt__17TChCrTagPlGraphicFv,
+    (void *)run_task__17TChCrTagPlGraphicFv,
+    (void *)render__17TChCrTagPlGraphicFv,
+    (void *)render_shadows__7TObjectFv,
+    (void *)TChCrTagPlGraphic__vt4,
+    0,
+};
 
 }
