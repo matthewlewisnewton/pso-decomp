@@ -30,7 +30,9 @@ class PreparationTests(unittest.TestCase):
         after=base.replace(b'    "other.cpp"',b'    "pso/misc/TOTrapAncient01.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},\n    "other.cpp"')
         config=self.repo/'configure.py';config.write_bytes(base);config.chmod(0o755)
         (self.repo/'.gitignore').write_text('orig/\nbuild.ninja\n')
-        self.git('add','configure.py','.gitignore');self.git('commit','-qm','base');self.target=self.git('rev-parse','HEAD')
+        source=self.repo/'src/unit.cpp';source.parent.mkdir();source.write_text('source\n')
+        header=self.repo/'include/unit.h';header.parent.mkdir();header.write_text('header\n')
+        self.git('add','configure.py','.gitignore','src/unit.cpp','include/unit.h');self.git('commit','-qm','base');self.target=self.git('rev-parse','HEAD')
         config.write_bytes(after);self.git('commit','-qam','candidate');self.head=self.git('rev-parse','HEAD');self.tree=self.git('rev-parse','HEAD^{tree}')
         self.candidate=self.git('commit-tree',self.tree,'-p',self.target,'-p',self.head,'-m','candidate merge');self.git('checkout','--detach',self.candidate)
         dol=self.repo/'orig/GPOE8P/files/PsoV3.dol';dol.parent.mkdir(parents=True);dol.write_bytes(b'fixture')
@@ -40,7 +42,7 @@ class PreparationTests(unittest.TestCase):
         self.launcher=self.root/'launcher';self.launcher.write_text('#!/usr/bin/python3\nimport os,sys\nos.execv('+repr(sys.executable)+',['+repr(sys.executable)+',"-I",*sys.argv[1:]])\n');self.launcher.chmod(0o755)
         td=self.root/'tool-dir';td.mkdir();(td/'a').write_text('fixture')
         entries=[['a',hashlib.sha256((td/'a').read_bytes()).hexdigest(),(td/'a').stat().st_mode & 0o777]]
-        directory={'path':str(td),'sha256':hashlib.sha256(json.dumps(entries,separators=(',',':')).encode()).hexdigest()}
+        directory={'path':str(td),'sha256':c.tree_digest(td)}
         self.checker=self.root/'checker.py';self.checker.write_bytes(Path(c.__file__).read_bytes());preparer=Path(p.__file__).resolve()
         pins={name:self.pin(self.tool) for name in c.PIN_NAMES}
         pins.update(compiler=self.pin(td/'a'),checker=self.pin(self.checker),preparer=self.pin(preparer),python=self.pin(Path(sys.executable).resolve()),git=self.pin(Path('/usr/bin/git').resolve()),launcher=self.pin(self.launcher))
@@ -50,8 +52,10 @@ class PreparationTests(unittest.TestCase):
         self.packet={'version':1,'repository':c.REPO,'policy':'recovery','target':self.target,'candidate':self.candidate,'tree':self.tree,'prs':[{'number':1,'head':self.head,'base_sha':self.target,'review_base':self.target,'review':{'path':self.pr['review']['path'],'sha256':self.pr['review']['sha256']}}],'steps':[change],'cumulative':change,'pins':pins,
                      'configure_paths':{name:(directory if name in ('compilers','binutils') else self.pin(self.tool)) for name in ('dtk','objdiff','wrapper','compilers','binutils')},
                      'originals':{role:{'tree_sha256':p.original_tree_sha256(self.repo),'dol_sha256':self.original_sha} for role in ('baseline','candidate')},
-                     'ordered_inputs':{role:{'ordered_inputs_sha256':'c'*64,'source_inputs':1,'fallback_inputs':0} for role in ('baseline','candidate')},
-                     'effective_argv':[str(self.tool),str(td/'a'),'-inline','off,deferred'],'verdict':'pass','independent':True,'reviewer':'fixture'}
+                     'dependent_compile':[], 'ordered_inputs':{role:{'ordered_inputs_sha256':'c'*64,'source_inputs':1,'fallback_inputs':0} for role in ('baseline','candidate')},
+                     'effective_argv':[str(self.tool),str(td/'a'),'-inline','off,deferred','-c','src/'+c.UNIT],'verdict':'pass','independent':True,'reviewer':'fixture'}
+        self.ninja=self.root/'ninja';self.ninja.write_text('#!/usr/bin/python3\nimport json\nprint('+repr(json.dumps([{'file':'src/'+c.UNIT,'command':' '.join(self.packet['effective_argv'])+' && fixture'}]))+')\n');self.ninja.chmod(0o755)
+        self.packet['pins']['ninja']=self.pin(self.ninja)
         self.packet_file=self.root/'packet.json';self.write_packet();self.make_plan()
         self.request={'packet':self.pin(self.packet_file),'repo':str(self.repo),'role':'candidate','target':self.target,'candidate':self.candidate,'tree':self.tree,'prs':[self.pr],'commits':self.commits,'receipt':str(self.root/'receipt.json'),'original_sha256':self.original_sha,'original_tree_sha256':p.original_tree_sha256(self.repo),'plan_receipt':self.pin(self.plan_output)}
     def git(self,*args):return subprocess.check_output(['git','-C',str(self.repo),*args],stderr=subprocess.DEVNULL,text=True).strip()
@@ -96,7 +100,7 @@ class PreparationTests(unittest.TestCase):
                      'acceptance_capacity':{'wrapper':self.packet['pins']['wrapper'],'base_validator':self.packet['pins']['base_validator']}}
         review={'config_plan_sha256':self.pin(self.plan_output)['sha256'],'config_packet_sha256':config['packet']['sha256'],'effective_compile_argv':self.packet['effective_argv'],
                 'configuration_edge_review':True,'unlisted_edges_unchanged':True,'compiler_binding_reviewed':True,'no_setup_execution':True,
-                'ordered_input_provenance':self.packet['ordered_inputs'],'roots':graph}
+                'ordered_input_provenance':self.packet['ordered_inputs'],'dependent_compile':[],'roots':graph}
         adapter.config_contract(request,environment,review,roots)
         # Recheck through the real isolated adapter entry point before publication.
         for role,root in roots.items():
@@ -170,6 +174,22 @@ class PreparationTests(unittest.TestCase):
                         orig(held,fcntl.LOCK_UN);thread.join(5)
                 self.assertFalse(thread.is_alive());self.assertTrue(errors);self.assertFalse(self.marker.exists());self.assertFalse(Path(self.request['receipt']).exists())
                 path.write_bytes(saved)
+
+    def test_assume_unchanged_source_and_header_drift_are_rejected(self):
+        for name in ('src/unit.cpp','include/unit.h'):
+            with self.subTest(name=name):
+                self.git('update-index','--assume-unchanged',name)
+                path=self.repo/name;saved=path.read_bytes();path.write_bytes(saved+b'drift')
+                self.assertEqual(self.git('status','--porcelain','--untracked-files=all'),'')
+                with self.assertRaises(ValueError):self.run_prep()
+                self.assertFalse(self.marker.exists())
+                path.write_bytes(saved);self.git('update-index','--no-assume-unchanged',name)
+
+    def test_ignored_header_in_source_tree_rejected(self):
+        hidden=self.repo/'include/hidden.h';hidden.write_text('malicious')
+        (self.repo/'.git/info/exclude').write_text('include/hidden.h\n')
+        with self.assertRaisesRegex(ValueError,'unexpected ignored input'):self.run_prep()
+        self.assertFalse(self.marker.exists())
 
     def test_hidden_python_module_and_dirty_closure_rejected_before_execution(self):
         hidden=self.repo/'tools/__pycache__/malicious.pyc';hidden.parent.mkdir(parents=True);hidden.write_bytes(b'fixture')

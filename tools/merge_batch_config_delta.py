@@ -11,17 +11,28 @@ import hashlib
 import unicodedata
 
 UNIT = 'pso/misc/TOTrapAncient01.cpp'
+PLAYER_UNIT = 'pso/player/TObjPlayer_802D5B78.cpp'
+PLAYER_CALLER = 'pso/player/TObjPlayer_802D5174.cpp'
+PLAYER_COMPILER_SHA256 = '7cbae0a5bd81e07d7fa8975bbc4e969b5dea265cc29c5ee6bae0453a6e25f225'
+CALLER_COMPILER_SHA256 = '316e2a98236c23f3fc902243b157eaebf8ef2ad6edb88cfd632a15b6676fa9a8'
 PROFILES = {
-    'gc26-deferred': '{"cflags": _switch(cflags_pso, "-inline off,deferred")}',
-    'gc20-deferred': '{"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred")}',
+    UNIT: {
+        'gc26-deferred': '{"cflags": _switch(cflags_pso, "-inline off,deferred")}',
+        'gc20-deferred': '{"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred")}',
+    },
+    PLAYER_UNIT: {'gc132-default-flags': '{"mw_version": "GC/1.3.2"}'},
 }
-DUMPS = {name: ast.dump(ast.parse(expression, mode='eval').body)
-         for name, expression in PROFILES.items()}
-TRANSITIONS = {('absent', 'gc26-deferred'), ('gc26-deferred', 'gc20-deferred'),
-               ('absent', 'gc20-deferred')}
+DUMPS = {unit: {name: ast.dump(ast.parse(expression, mode='eval').body)
+                for name, expression in profiles.items()} for unit, profiles in PROFILES.items()}
+TRANSITIONS = {
+    UNIT: {('absent', 'gc26-deferred'), ('gc26-deferred', 'gc20-deferred'), ('absent', 'gc20-deferred')},
+    PLAYER_UNIT: {('absent', 'gc132-default-flags')},
+}
 
 
-def shape(raw):
+
+def shape(raw, unit=UNIT):
+    if unit not in PROFILES: raise ValueError('unsupported unit')
     if not isinstance(raw, bytes) or not raw.endswith(b'\n') or any((b < 32 and b != 10) or b == 127 for b in raw):
         raise ValueError('invalid configuration framing')
     text = raw.decode('utf-8')
@@ -39,19 +50,24 @@ def shape(raw):
             for key in mapping.keys]
     if None in keys or len(keys) != len(set(keys)):
         raise ValueError('nonliteral or duplicate unit keys')
-    if UNIT not in keys:
+    if unit == PLAYER_UNIT:
+        defaults=[node for node in tree.body if isinstance(node,ast.Assign) and len(node.targets)==1 and isinstance(node.targets[0],ast.Name) and node.targets[0].id=='GAME_COMPILER']
+        stores=[node for node in ast.walk(tree) if isinstance(node,ast.Name) and isinstance(node.ctx,ast.Store) and node.id=='GAME_COMPILER']
+        if len(defaults)!=1 or len(stores)!=1 or not isinstance(defaults[0].value,ast.Constant) or defaults[0].value.value!='GC/2.6' or PLAYER_CALLER in keys:
+            raise ValueError('caller default compiler changed')
+    if unit not in keys:
         return {'profile': 'absent', 'outside': raw, 'span': b''}
-    index = keys.index(UNIT)
+    index = keys.index(unit)
     key, value = mapping.keys[index], mapping.values[index]
     if not isinstance(value, ast.Dict): raise ValueError('unsupported profile')
     fields = [k.value if isinstance(k, ast.Constant) and type(k.value) is str else None for k in value.keys]
     if None in fields or len(fields) != len(set(fields)):
         raise ValueError('nonliteral or duplicate profile fields')
-    profiles = [name for name, dump in DUMPS.items() if ast.dump(value) == dump]
+    profiles = [name for name, dump in DUMPS[unit].items() if ast.dump(value) == dump]
     if len(profiles) != 1: raise ValueError('unsupported profile')
     lines = raw.split(b'\n')
     first, last = key.lineno - 1, value.end_lineno
-    if key.lineno != value.end_lineno or not lines[first].startswith(b'    "' + UNIT.encode() + b'":') or not lines[first].rstrip().endswith(b'},'):
+    if key.lineno != value.end_lineno or not lines[first].startswith(b'    "' + unit.encode() + b'":') or not lines[first].rstrip().endswith(b'},'):
         raise ValueError('invalid entry framing')
     while first > mapping.lineno and lines[first - 1].startswith(b'    #'):
         first -= 1
@@ -60,11 +76,11 @@ def shape(raw):
             'span': b'\n'.join(lines[first:last]) + b'\n'}
 
 
-def check(before, after):
-    old, new = shape(before), shape(after)
-    if old['outside'] != new['outside'] or (old['profile'], new['profile']) not in TRANSITIONS:
+def check(before, after, unit=UNIT):
+    old, new = shape(before,unit), shape(after,unit)
+    if old['outside'] != new['outside'] or (old['profile'], new['profile']) not in TRANSITIONS[unit]:
         raise ValueError('configuration change outside reviewed profiles')
-    return {'unit': UNIT, 'old_profile': old['profile'], 'new_profile': new['profile'],
+    return {'unit': unit, 'old_profile': old['profile'], 'new_profile': new['profile'],
             'before_sha256': hashlib.sha256(before).hexdigest(),
             'after_sha256': hashlib.sha256(after).hexdigest(),
             'before_span_sha256': hashlib.sha256(old['span']).hexdigest(),
@@ -76,6 +92,7 @@ import json
 import os
 from pathlib import Path
 import re
+import shlex
 import subprocess
 import sys
 
@@ -85,7 +102,7 @@ REPO = 'matthewlewisnewton/pso-decomp'
 PIN_NAMES = frozenset(('checker', 'cli', 'python', 'launcher', 'wrapper', 'adapter',
                        'guard', 'base_validator', 'compiler', 'compiler_wrapper', 'git', 'preparer', 'ninja'))
 PACKET_FIELDS = frozenset(('version', 'repository', 'policy', 'target', 'candidate', 'tree',
-                           'prs', 'steps', 'cumulative', 'pins', 'effective_argv', 'configure_paths', 'originals', 'ordered_inputs', 'verdict', 'independent', 'reviewer'))
+                           'prs', 'steps', 'cumulative', 'pins', 'effective_argv', 'configure_paths', 'originals', 'ordered_inputs', 'dependent_compile', 'verdict', 'independent', 'reviewer'))
 STEP_FIELDS = frozenset(('before', 'after', 'before_blob', 'after_blob', 'diff_sha256',
                          'unit', 'old_profile', 'new_profile', 'before_sha256', 'after_sha256',
                          'before_span_sha256', 'after_span_sha256'))
@@ -127,14 +144,16 @@ def file_pin(entry, forbidden_roots=()):
 
 def tree_digest(path):
     if path.is_symlink() or not path.is_dir(): fail('invalid input directory')
-    entries=[]
+    entries=[['.','directory',path.stat().st_mode & 0o777]]
     for parent, dirs, files in os.walk(path,followlinks=False):
         for name in sorted(dirs+files):
             item=Path(parent)/name
             if item.is_symlink(): fail('input symlink')
-            if item.is_file(): entries.append([str(item.relative_to(path)),hashlib.sha256(item.read_bytes()).hexdigest(),item.stat().st_mode & 0o777])
-            elif not item.is_dir(): fail('unsupported input')
-    if not entries: fail('empty input directory')
+            relative=str(item.relative_to(path)); mode=item.stat().st_mode & 0o777
+            if item.is_file(): entries.append([relative,'file',mode,hashlib.sha256(item.read_bytes()).hexdigest()])
+            elif item.is_dir(): entries.append([relative,'directory',mode])
+            else: fail('unsupported input')
+    if len(entries)==1: fail('empty input directory')
     return hashlib.sha256(json.dumps(sorted(entries),separators=(',',':')).encode()).hexdigest()
 
 
@@ -148,23 +167,14 @@ def path_pin(entry, forbidden_roots=()):
     if path.is_file():
         value=hashlib.sha256(path.read_bytes()).hexdigest()
     elif path.is_dir():
-        entries=[]
-        for parent, dirs, files in os.walk(path, followlinks=False):
-            for name in sorted(dirs+files):
-                item=Path(parent)/name
-                if item.is_symlink(): fail('symlink in tool directory')
-                if item.is_file():
-                    entries.append([str(item.relative_to(path)), hashlib.sha256(item.read_bytes()).hexdigest(), item.stat().st_mode & 0o777])
-                elif not item.is_dir(): fail('unsupported tool entry')
-        if not entries: fail('empty tool directory')
-        value=hashlib.sha256(json.dumps(sorted(entries),separators=(',',':')).encode()).hexdigest()
+        value=tree_digest(path)
     else: fail('invalid tool type')
     if value != entry['sha256']: fail('stale tool path')
     return path
 
 
 def git_bytes(repo, *args):
-    return subprocess.check_output(['/usr/bin/git', '-c', 'core.hooksPath=/dev/null', '-c', 'diff.algorithm=myers',
+    return subprocess.check_output(['/usr/bin/git', '-c', 'core.hooksPath=/dev/null', '-c', 'core.fsmonitor=false', '-c', 'diff.algorithm=myers',
                                     '-c', 'diff.noprefix=false', '-c', 'diff.mnemonicprefix=false',
                                     '-c', 'core.quotepath=true', '-C', str(repo), *args],
                                    env={'PATH': '/usr/bin:/bin', 'LC_ALL':'C', 'GIT_CONFIG_NOSYSTEM':'1',
@@ -178,15 +188,47 @@ def blob(repo, commit):
     return match.group(1).decode(), git_bytes(repo, 'show', commit + ':configure.py')
 
 
-def step(repo, before, after):
+def step(repo, before, after, unit=UNIT):
     before_blob, a = blob(repo, before)
     after_blob, b = blob(repo, after)
     if a == b: return None
-    result = check(a, b)
+    result = check(a, b, unit)
     diff = git_bytes(repo, 'diff', '--no-ext-diff', '--no-textconv', '--no-renames',
                      '--full-index', '--binary', before, after, '--', 'configure.py')
     return dict(before=before, after=after, before_blob=before_blob, after_blob=after_blob,
                 diff_sha256=hashlib.sha256(diff).hexdigest(), **result)
+
+
+def require_compile_argv(argv, unit, wrapper, compiler, inline):
+    if type(argv) is not list or len(argv)<3 or argv[:2]!=[wrapper,compiler] or any(type(x) is not str or not x or '@' in x or '..' in x or any(ord(ch)<32 or ord(ch)==127 or ch in ';|&`$\\' for ch in x) for x in argv):
+        fail('invalid compile argv')
+    def pairs(flag,value): return sum(argv[i:i+2]==[flag,value] for i in range(len(argv)-1))
+    if pairs('-c','src/'+unit)!=1 or argv.count('-inline')!=1 or pairs('-inline',inline)!=1:
+        fail('wrong compile target or inline profile')
+    if unit in (PLAYER_UNIT,PLAYER_CALLER) and (argv.count('-O4,s')!=1 or argv.count('-sdata2')!=1 or pairs('-sdata2','4')!=1):
+        fail('player default flags changed')
+
+
+def check_compile_graph(root,packet,role):
+    """Compare actual reviewed Ninja compdb commands without executing a build."""
+    ninja=file_pin(packet['pins']['ninja'],[root])
+    graph=Path(root)/'build.ninja'
+    if graph.is_symlink() or not graph.is_file(): fail('missing reviewed graph')
+    graph_sha=hashlib.sha256(graph.read_bytes()).hexdigest()
+    raw=subprocess.check_output([str(ninja),'-f',str(graph),'-t','compdb','mwcc','mwcc_sjis'],cwd=root,
+                                env={'PATH':'/usr/bin:/bin','LC_ALL':'C'})
+    rows=strict_json(raw)
+    if type(rows) is not list: fail('invalid compile database')
+    checks=[]
+    if role=='candidate': checks.append((packet['cumulative']['unit'],packet['effective_argv']))
+    checks.extend((dep['unit'],dep['argv']) for dep in packet['dependent_compile'])
+    for unit,expected in checks:
+        found=[row for row in rows if isinstance(row,dict) and row.get('file')=='src/'+unit]
+        if len(found)!=1 or not isinstance(found[0].get('command'),str): fail('missing unique compile edge')
+        tokens=shlex.split(found[0]['command'])
+        if tokens.count('&&')!=1 or tokens[:tokens.index('&&')]!=expected: fail('compile argv differs from reviewed graph')
+    if hashlib.sha256(graph.read_bytes()).hexdigest()!=graph_sha: fail('graph changed during query')
+    file_pin(packet['pins']['ninja'],[root])
 
 
 def read_packet(entry, forbidden_roots=()):
@@ -222,8 +264,19 @@ def read_packet(entry, forbidden_roots=()):
     if packet['configure_paths']['wrapper'] != packet['pins']['compiler_wrapper'] or not Path(packet['pins']['compiler']['path']).is_relative_to(Path(packet['configure_paths']['compilers']['path'])):
         fail('compiler or wrapper binding mismatch')
     if type(packet['effective_argv']) is not list or not packet['effective_argv'] or any(type(x) is not str or not x or '@' in x or '..' in x or any(ord(c)<32 or ord(c)==127 or c in ';|&`$\\' for c in x) for x in packet['effective_argv']): fail('invalid effective argv')
-    if len(packet['effective_argv']) < 3 or packet['effective_argv'][:2] != [packet['pins']['compiler_wrapper']['path'],packet['pins']['compiler']['path']]: fail('compiler argv binding mismatch')
     if type(packet['steps']) is not list or not packet['steps']: fail('missing incremental steps')
+    unit=packet['cumulative'].get('unit') if isinstance(packet['cumulative'],dict) else None
+    if unit not in PROFILES or any(not isinstance(x,dict) or x.get('unit')!=unit for x in packet['steps']): fail('mixed or unsupported units')
+    if type(packet['dependent_compile']) is not list: fail('invalid dependent compile')
+    require_compile_argv(packet['effective_argv'],unit,packet['pins']['compiler_wrapper']['path'],packet['pins']['compiler']['path'],'off' if unit==PLAYER_UNIT else 'off,deferred')
+    if unit==PLAYER_UNIT:
+        if packet['pins']['compiler']['sha256']!=PLAYER_COMPILER_SHA256 or len(packet['dependent_compile'])!=1: fail('unapproved player compiler')
+        dep=packet['dependent_compile'][0];exact_keys(dep,('unit','compiler','argv'))
+        if dep['unit']!=PLAYER_CALLER or dep['compiler']['sha256']!=CALLER_COMPILER_SHA256: fail('unapproved caller compiler')
+        file_pin(dep['compiler'],forbidden_roots)
+        if not Path(dep['compiler']['path']).is_relative_to(Path(packet['configure_paths']['compilers']['path'])): fail('caller compiler outside toolchain')
+        require_compile_argv(dep['argv'],PLAYER_CALLER,packet['pins']['compiler_wrapper']['path'],dep['compiler']['path'],'off')
+    elif packet['dependent_compile']: fail('unexpected dependent compiler')
     for entry in [*packet['steps'], packet['cumulative']]:
         exact_keys(entry, STEP_FIELDS)
         for key in ('before', 'after', 'before_blob', 'after_blob'): full_sha(entry[key], SHA1)
@@ -243,8 +296,10 @@ def verify_plan(repo, packet, target, candidate, tree, prs, commits):
                      'review': {'path': p['review']['path'], 'sha256': p['review']['sha256']}} for p in prs]
     if packet['prs'] != expected_prs or [p['head'] for p in prs] != [c['head'] for c in commits]: fail('stale ordered reviews')
     if git_bytes(root, 'rev-parse', candidate+'^{tree}').strip().decode() != tree: fail('stale candidate tree')
-    if git_bytes(root, 'diff', '--no-ext-diff', '--name-only', '-z', target, candidate, '--', 'tools'):
-        fail('trusted tools changed')
+    changed=git_bytes(root, 'diff', '--no-ext-diff', '--no-textconv', '--no-renames', '--name-only', '-z', target, candidate)
+    paths=changed.split(b'\0')
+    if any(path==b'tools' or path.startswith(b'tools/') or path.split(b'/')[-1] in (b'.gitattributes',b'.gitmodules') for path in paths if path):
+        fail('trusted tools or checkout attributes changed')
     chain=[target] + [c['commit'] for c in commits]
     if len(commits)!=len(prs) or chain[-1] != candidate: fail('invalid candidate chain')
     for index,(pr,record) in enumerate(zip(prs,commits)):
@@ -259,12 +314,13 @@ def verify_plan(repo, packet, target, candidate, tree, prs, commits):
         for later in (chain[index],pr['head']):
             try: git_bytes(root,'merge-base','--is-ancestor',pr['review_base'],later)
             except subprocess.CalledProcessError: fail('unreviewed prerequisite')
+    unit=packet['cumulative']['unit']
     observed=[]
     for before, after in zip(chain, chain[1:]):
-        change=step(root,before,after)
+        change=step(root,before,after,unit)
         if change: observed.append(change)
     if not observed or observed != packet['steps']: fail('stale incremental configuration')
-    if step(root,target,candidate) != packet['cumulative']: fail('stale cumulative configuration')
+    if step(root,target,candidate,unit) != packet['cumulative']: fail('stale cumulative configuration')
     return {'packet_sha256': None, 'target':target, 'candidate':candidate, 'tree':tree,
             'effective_argv': packet['effective_argv']}
 

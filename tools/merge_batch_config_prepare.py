@@ -32,25 +32,28 @@ def load_checker(path, expected, roots):
 def original_tree_sha256(root):
     base=root/'orig/GPOE8P/files'
     if base.is_symlink() or base.resolve()!=base or not base.is_dir(): raise ValueError('missing original tree')
-    entries=[]
+    entries=[['.','directory',base.stat().st_mode & 0o777]]
     for parent, dirs, files in os.walk(base,followlinks=False):
         for name in sorted(dirs+files):
             item=Path(parent)/name
             if item.is_symlink(): raise ValueError('original input symlink')
-            if item.is_file(): entries.append([str(item.relative_to(base)),hashlib.sha256(item.read_bytes()).hexdigest(),item.stat().st_mode & 0o777])
-            elif not item.is_dir(): raise ValueError('invalid original input')
-    if not entries: raise ValueError('empty original tree')
+            relative=str(item.relative_to(base));mode=item.stat().st_mode & 0o777
+            if item.is_file(): entries.append([relative,'file',mode,hashlib.sha256(item.read_bytes()).hexdigest()])
+            elif item.is_dir(): entries.append([relative,'directory',mode])
+            else: raise ValueError('invalid original input')
+    if len(entries)==1: raise ValueError('empty original tree')
     return hashlib.sha256(json.dumps(sorted(entries),separators=(',',':')).encode()).hexdigest()
 
 
-def validate_tracked_python(checker, root):
-    # Do not rely on Git's stat cache or assume-unchanged bits for import closure.
-    records=checker.git_bytes(root,'ls-files','-s','-z','--','*.py','tools').split(b'\0')
+def validate_tracked_tree(checker, root, commit):
+    # Compare every tracked worktree byte directly to the reviewed commit tree;
+    # Git's stat cache and assume-unchanged bits are not evidence.
+    records=checker.git_bytes(root,'ls-tree','-r','-z',commit).split(b'\0')
     for record in records:
         if not record: continue
         metadata,raw_path=record.split(b'\t',1)
-        mode,blob,stage=metadata.split(b' ')
-        if stage != b'0' or mode not in (b'100644',b'100755'): raise ValueError('invalid import closure mode')
+        mode,kind,blob=metadata.split(b' ')
+        if kind != b'blob' or mode not in (b'100644',b'100755'): raise ValueError('invalid tracked tree mode')
         path=root/os.fsdecode(raw_path)
         if path.is_symlink() or path.resolve()!=path or not path.is_file() or not path.resolve().is_relative_to(root): raise ValueError('invalid import closure path')
         raw=path.read_bytes()
@@ -62,13 +65,16 @@ def validate_checkout(checker, root, expected_commit, expected_tree, original_sh
     if not root.is_absolute() or root.resolve()!=root or not root.is_dir(): raise ValueError('invalid root')
     if checker.git_bytes(root,'rev-parse','HEAD').strip().decode()!=expected_commit or checker.git_bytes(root,'rev-parse','HEAD^{tree}').strip().decode()!=expected_tree: raise ValueError('stale checkout')
     if checker.git_bytes(root,'status','--porcelain','--untracked-files=all'): raise ValueError('dirty checkout')
-    validate_tracked_python(checker,root)
+    validate_tracked_tree(checker,root,expected_commit)
     if (root/'.venv').exists() or (root/'venv').exists(): raise ValueError('candidate interpreter')
     if fresh and any((root/name).exists() for name in ('build','build.ninja','objdiff.json','compile_commands.json','.ninja_log','.ninja_deps')): raise ValueError('reused generated state')
     # Ignored Python startup/module files can still influence configure imports.
     ignored=checker.git_bytes(root,'ls-files','--others','--ignored','--exclude-standard','-z').split(b'\0')
     for raw in ignored:
-        if raw and (raw.endswith((b'.py',b'.pyc',b'.pth',b'.so')) or b'__pycache__/' in raw): raise ValueError('untracked Python import')
+        if not raw: continue
+        if raw.endswith((b'.py',b'.pyc',b'.pth',b'.so')) or b'__pycache__/' in raw: raise ValueError('untracked Python import')
+        if raw.startswith(b'orig/') or (not fresh and (raw.startswith(b'build/') or raw in (b'build.ninja',b'objdiff.json',b'compile_commands.json'))): continue
+        raise ValueError('unexpected ignored input')
     _, blob=checker.blob(root,expected_commit)
     config=root/'configure.py'
     if config.is_symlink() or config.resolve()!=config or config.read_bytes()!=blob: raise ValueError('configuration worktree differs')

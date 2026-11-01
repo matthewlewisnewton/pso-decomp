@@ -207,22 +207,26 @@ class QueueTests(unittest.TestCase):
         state=self.root/'config-plan';state.mkdir();queue=LocalQueue(batch,state,LocalAPI(self.remote,batch))
         with patch.object(m,'REMOTE',str(self.remote)):
             self.rejects('invalid_config_admission',queue.construct)
-            candidate=git(queue.repo,'rev-parse','HEAD');tree=git(queue.repo,'rev-parse','HEAD^{tree}')
+            tree=git(queue.repo,'merge-tree','--write-tree',target,head).splitlines()[0]
+            env=os.environ.copy();env.update(GIT_AUTHOR_NAME='PSO mechanical queue',GIT_AUTHOR_EMAIL='queue@localhost',
+                GIT_COMMITTER_NAME='PSO mechanical queue',GIT_COMMITTER_EMAIL='queue@localhost',
+                GIT_AUTHOR_DATE=f"@{batch['commit_epoch']} +0000",GIT_COMMITTER_DATE=f"@{batch['commit_epoch']} +0000")
+            candidate=subprocess.check_output(['git','-C',str(queue.repo),'commit-tree',tree,'-p',target,'-p',head,'-m','Merge reviewed fork PR #1'],env=env,text=True).strip()
             commits=[{'pr':1,'commit':candidate,'tree':tree,'head':head}]
             checker=Path(c.__file__).resolve();tool=self.root/'reviewed-tool';tool.write_text('fixture')
             td=self.root/'config-tool-dir';td.mkdir();(td/'compiler').write_text('compiler')
             pin=lambda x:{'path':str(x),'sha256':m.digest(x)}
             inventory=[['compiler',m.digest(td/'compiler'),(td/'compiler').stat().st_mode & 0o777]]
-            dirpin={'path':str(td),'sha256':hashlib.sha256(json.dumps(inventory,separators=(',',':')).encode()).hexdigest()}
+            dirpin={'path':str(td),'sha256':c.tree_digest(td)}
             pins={name:pin(tool) for name in c.PIN_NAMES}
             pins.update(cli=pin(Path(m.__file__).resolve()),checker=pin(checker),python=pin(Path(sys.executable).resolve()),git=pin(Path('/usr/bin/git').resolve()),compiler=pin(td/'compiler'))
             change=c.step(queue.repo,target,candidate)
             packet={'version':1,'repository':c.REPO,'policy':'recovery','target':target,'candidate':candidate,'tree':tree,
                     'prs':[{'number':1,'head':head,'base_sha':target,'review_base':target,'review':{'path':str(self.review),'sha256':m.digest(self.review)}}],
-                    'steps':[change],'cumulative':change,'pins':pins,'effective_argv':[str(tool),str(td/'compiler'),'-inline','off,deferred'],
+                    'steps':[change],'cumulative':change,'pins':pins,'effective_argv':[str(tool),str(td/'compiler'),'-inline','off,deferred','-c','src/'+c.UNIT],
                     'configure_paths':{name:(dirpin if name in ('compilers','binutils') else pin(tool)) for name in ('dtk','objdiff','wrapper','compilers','binutils')},
                     'originals':{role:{'tree_sha256':'a'*64,'dol_sha256':'b'*64} for role in ('baseline','candidate')},
-                    'ordered_inputs':{role:{'ordered_inputs_sha256':'c'*64,'source_inputs':1,'fallback_inputs':0} for role in ('baseline','candidate')},
+                    'dependent_compile':[], 'ordered_inputs':{role:{'ordered_inputs_sha256':'c'*64,'source_inputs':1,'fallback_inputs':0} for role in ('baseline','candidate')},
                     'verdict':'pass','independent':True,'reviewer':'independent fixture'}
             path=self.root/'config-packet.json';path.write_text(json.dumps(packet))
             batch['config_admission']={'checker':pin(checker),'packet':pin(path)}
@@ -245,6 +249,89 @@ class QueueTests(unittest.TestCase):
                              validation_request=str(request),validation_request_sha256=m.digest(request))
         self.q.check_config_before_publication()
         request.write_text('{}');self.rejects('stale_config_request',self.q.check_config_before_publication)
+    def test_symbol_rename_parser_rejects_metadata_and_collisions(self):
+        before=(b'set_flag2__12TObjEneReconFv = .text:0x8031DDDC; // type:function size:0x50\n'
+                b'other = .text:0x8031DE2C; // type:function size:0x5C scope:local\n')
+        after=before.replace(b'ReconFv',b'ReconFfff')
+        self.assertEqual(m.symbol_renames(before, after), [{'old':'set_flag2__12TObjEneReconFv','new':'set_flag2__12TObjEneReconFfff','section':'.text','address':'0x8031DDDC','size':'0x50'}])
+        cases=[after.replace(b'8031DDDC',b'8031DDDD'), after.replace(b'size:0x50',b'size:0x54'),
+               after.replace(b'.text:0x8031DDDC',b'.data:0x8031DDDC'),
+               after.replace(b'size:0x50',b'size:0x50 scope:local'), after.replace(b'TObjEneReconFfff',b'TObjEneOtherFfff'), after.replace(b'set_flag2__',b'otherfunc__'), after.replace(b'ReconFfff',b'ReconFbad'),
+               after.replace(b'set_flag2__12TObjEneReconFfff',b'other'), after.replace(b'type:function',b'type:function bad!',1),
+               after.replace(b'ReconFfff',b'ReconFv'), after+b'broken record\n',
+               b'\n'.join(reversed(after.splitlines()))+b'\n', after.replace(b'0x50',b'0x00')]
+        for altered in cases:
+            with self.subTest(altered=altered[:60]), self.assertRaises(ValueError): m.symbol_renames(before, altered)
+        existing_dupes=before+b'local = .text:0x8031DEF0; // type:function size:0x4\n'+b'local = .text:0x8031DEF4; // type:function size:0x4\n'
+        self.assertEqual(len(m.symbol_renames(existing_dupes, existing_dupes.replace(b'ReconFv',b'ReconFfff'))),1)
+
+    def test_symbol_rename_raw_record_framing_and_real_inventory(self):
+        base=(b'set_flag2__12TObjEneReconFv = .text:0x8031DDDC; // type:function size:0x50\n'
+              b'other = .text:0x8031DE2C; // type:function size:0x5C\n')
+        renamed=base.replace(b'ReconFv',b'ReconFfff')
+        self.assertEqual(len(m.symbol_renames(base, renamed)),1)
+        for separator in (b'\x0b',b'\x0c',b'\x1c',b'\x1d',b'\x1e',b'\r',b'\r\n',b'\x00',b'\x7f',b'\x85'):
+            altered=renamed.replace(b'\n',separator,1)
+            with self.subTest(separator=repr(separator)), self.assertRaises(ValueError): m.symbol_renames(base,altered)
+        inventory=(MODULE.parents[1]/m.SYMBOL_FILE).read_bytes()
+        original=b'set_flag2__12TObjEneReconFv = .text:0x8031DDDC; // type:function size:0x50'
+        self.assertEqual(inventory.count(original),1)
+        self.assertEqual(len(m.symbol_renames(inventory,inventory.replace(original,original.replace(b'ReconFv',b'ReconFfff')))),1)
+
+    def test_symbol_rename_real_git_construction_and_review_binding(self):
+        old=(b'set_flag2__12TObjEneReconFv = .text:0x8031DDDC; // type:function size:0x50\n'
+             b'other = .text:0x8031DE2C; // type:function size:0x5C\n')
+        new=old.replace(b'ReconFv',b'ReconFfff')
+        git(self.author,'checkout','main')
+        symbol=self.author/m.SYMBOL_FILE; symbol.parent.mkdir(parents=True);symbol.write_bytes(old)
+        git(self.author,'add',m.SYMBOL_FILE);git(self.author,'commit','-m','symbol baseline');git(self.author,'push','origin','main')
+        target=git(self.author,'rev-parse','HEAD')
+        cases=('accept','missing-review','wrong-head','stale-review-file','stale-after','unexpected-config','changed-size','collision','wrong-target','not-independent','wrong-rename',
+               'framing-0b','framing-0c','framing-1c','framing-1d','framing-1e','framing-cr','framing-crlf')
+        for i,case in enumerate(cases):
+            with self.subTest(case=case):
+                branch='symbol'+str(i);git(self.author,'checkout','-b',branch,target)
+                candidate=new
+                if case=='changed-size':candidate=new.replace(b'0x50',b'0x54')
+                if case=='collision':candidate=new+b'set_flag2__12TObjEneReconFfff = .text:0x8031DDFC; // type:function size:0x4\n'
+                if case.startswith('framing-'):
+                    separators={'framing-0b':b'\x0b','framing-0c':b'\x0c','framing-1c':b'\x1c','framing-1d':b'\x1d','framing-1e':b'\x1e','framing-cr':b'\r','framing-crlf':b'\r\n'}
+                    candidate=candidate.replace(b'\n',separators[case],1)
+                symbol.write_bytes(candidate)
+                if case=='unexpected-config':
+                    extra=self.author/'config/other.txt';extra.write_text('forbidden')
+                git(self.author,'add','config')
+                # Write and stage exact blob bytes, bypassing Git worktree text filters.
+                blob=subprocess.check_output(['git','-C',str(self.author),'hash-object','-w','--stdin'],input=candidate).decode().strip()
+                git(self.author,'update-index','--cacheinfo','100644,'+blob+','+m.SYMBOL_FILE)
+                git(self.author,'commit','-m','source rename');git(self.author,'push','origin',branch)
+                head=git(self.author,'rev-parse','HEAD')
+                batch=copy.deepcopy(self.batch);batch.update(target=target,policy='source-maintenance')
+                pr=batch['prs'][0];pr.update(head=head,head_ref=branch,base_sha=target,review_base=target,kind='source-maintenance')
+                pr['review'].update(head=head,base=target)
+                doc={'version':1,'verdict':'pass','independent':True,'reviewer':'independent fixture','target':target,'heads':[head],
+                     'path':m.SYMBOL_FILE,'before_sha256':hashlib.sha256(old).hexdigest(),
+                     'after_sha256':hashlib.sha256(candidate).hexdigest(),'renames':[{'old':'set_flag2__12TObjEneReconFv',
+                      'new':'set_flag2__12TObjEneReconFfff','section':'.text','address':'0x8031DDDC','size':'0x50'}]}
+                if case=='wrong-head':doc['heads']=['f'*40]
+                if case=='wrong-target':doc['target']='f'*40
+                if case=='not-independent':doc['independent']=False
+                if case=='wrong-rename':doc['renames'][0]['new']='wrong'
+                if case=='stale-after':doc['after_sha256']='f'*64
+                review=self.root/('symbol-review-'+str(i)+'.json');review.write_text(json.dumps(doc))
+                if case!='missing-review':batch['symbol_rename_review']={'path':str(review),'sha256':m.digest(review)}
+                if case=='stale-review-file':review.write_text('{}')
+                state=self.root/('symbol-state-'+str(i));state.mkdir()
+                queue=LocalQueue(batch,state,LocalAPI(self.remote,batch))
+                expected={'missing-review':'source_maintenance_scope','wrong-head':'stale_symbol_review','stale-review-file':'stale_symbol_review',
+                          'stale-after':'stale_symbol_review','wrong-target':'stale_symbol_review','not-independent':'stale_symbol_review','wrong-rename':'stale_symbol_review','unexpected-config':'source_maintenance_scope','changed-size':'invalid_symbol_delta','collision':'invalid_symbol_delta'}
+                with patch.object(m,'REMOTE',str(self.remote)):
+                    if case=='accept':
+                        queue.construct();self.assertEqual(queue.record['state'],'planned');m.evidence(batch)
+                    elif case.startswith('framing-'):
+                        with self.assertRaises(m.Rejected) as rejected: queue.construct()
+                        self.assertIn(rejected.exception.code, ('invalid_symbol_delta','command_failed') if case in ('framing-cr','framing-crlf') else ('invalid_symbol_delta',))
+                    else:self.rejects(expected[case],queue.construct)
 
     def test_validation_wrong_tree(self):
         self.rejects('wrong_validation_tree', lambda: m.check_validation(self.batch, self.result, 'f' * 40))
