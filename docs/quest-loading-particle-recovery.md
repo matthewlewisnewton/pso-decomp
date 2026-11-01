@@ -36,3 +36,25 @@ header consumers (`TBoss6Kakusan.cpp` and `TBoss6GravBall_80323134.cpp`) retain
 byte-identical complete objects. The task body remains unrecovered in this
 checkpoint. Whole-program validation is pending, and source-link selection is
 unchanged.
+
+## Whole-unit continuation
+
+The continuation reconstructs the task's input/tint control flow and keeps
+integer truncation inside each per-axis expression. Doubled angles double the
+signed integer before converting to float. Word accumulators retain unsigned
+wrap; signed divisions truncate toward zero. The native compiler reuses repeated
+conversion terms without handwritten arithmetic or instruction injection.
+
+The retained task has 828 bytes and 99.4686% targeted similarity. Its remaining
+instruction differences exchange f4 and f5 for the signed-conversion bias and
+angular factor. The constructor's instruction bytes and previously exact helper
+bodies are preserved. This continuation is not exact or source-linked yet; its
+additional data mappings remain a separate coordinated proposal.
+
+Native definitions now reproduce all 109 bytes of the unit's data: the six tint
+presets, fixed-size class name and descriptor, compiler-generated vtable,
+conversion constants, local static scale/guard, and floating constants. Direct
+comparison against original DOL ranges, resolving only native ADDR32 data
+relocations through the symbol map, verifies bytes, offsets and alignment. The
+remaining three bytes after the local static guard are not claimed. No metadata
+or source-link selection is changed by the continuation checkpoint.
