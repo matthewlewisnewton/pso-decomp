@@ -22,14 +22,22 @@ class PreparationTests(unittest.TestCase):
         self.root=Path(self.temp.name);self.repo=self.root/'repo';self.repo.mkdir()
         self.git('init','-q');self.git('config','user.name','fixture');self.git('config','user.email','fixture@localhost')
         self.marker=self.root/'configured';self.lock=self.root/'legacy.lock'
+        split_tool=str(self.root/'tool')
+        compile_cmd=f"{split_tool} {self.root/'tool-dir/a'} -inline off,deferred -c src/{c.UNIT} && fixture"
+        graph=(f"rule split\n  command = {split_tool} dol split $in $out_dir\n  depfile = $out_dir/dep\n  deps = gcc\n"
+               f"build build/GPOE8P/config.json: split config/GPOE8P/psov3/config.yml | {split_tool}\n  out_dir = build/GPOE8P\n"
+               "rule configure\n  command = false\n  generator = 1\n"
+               "build build.ninja: configure | build/GPOE8P/config.json configure.py\n"
+               f"rule mwcc\n  command = {compile_cmd}\nbuild unit.o: mwcc src/{c.UNIT}\n")
         base=("from typing import Dict, Any\nfrom pathlib import Path\n"
               "def _switch(*args): return []\ncflags_pso=[]\n"
               "GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {\n"
               "    \"other.cpp\": {\"cflags\": []},\n}\n"
-              f"Path({str(self.marker)!r}).write_text(Path({str(self.marker)!r}).read_text()+'x' if Path({str(self.marker)!r}).exists() else 'x')\nPath('build.ninja').write_text('final graph' if Path('build/GPOE8P/config.json').exists() else 'bootstrap graph')\n").encode()
+              f"Path({str(self.marker)!r}).write_text(Path({str(self.marker)!r}).read_text()+'x' if Path({str(self.marker)!r}).exists() else 'x')\n"
+              f"Path('build.ninja').write_text({graph!r}+('# final\\n' if Path('build/GPOE8P/config.json').exists() else '# bootstrap\\n'))\n").encode()
         after=base.replace(b'    "other.cpp"',b'    "pso/misc/TOTrapAncient01.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},\n    "other.cpp"')
         config=self.repo/'configure.py';config.write_bytes(base);config.chmod(0o755)
-        (self.repo/'.gitignore').write_text('orig/\nbuild/\nbuild.ninja\n')
+        (self.repo/'.gitignore').write_text('orig/\nbuild/\nbuild.ninja\n.ninja_*\n')
         split_config=self.repo/'config/GPOE8P/psov3/config.yml';split_config.parent.mkdir(parents=True);split_config.write_text('fixture')
         source=self.repo/'src/unit.cpp';source.parent.mkdir();source.write_text('source\n')
         header=self.repo/'include/unit.h';header.parent.mkdir();header.write_text('header\n')
@@ -40,7 +48,7 @@ class PreparationTests(unittest.TestCase):
         dol=self.repo/'orig/GPOE8P/files/PsoV3.dol';dol.parent.mkdir(parents=True);dol.write_bytes(b'fixture')
         self.original_sha=hashlib.sha256(dol.read_bytes()).hexdigest();self.original_sha1=hashlib.sha1(dol.read_bytes()).hexdigest()
         self.review=self.root/'review.json';self.review.write_text('{}')
-        self.tool=self.root/'tool';self.tool.write_text("#!/usr/bin/python3\nfrom pathlib import Path\np=Path('build/GPOE8P/config.json');p.parent.mkdir(parents=True,exist_ok=True);p.write_text('split')\n");self.tool.chmod(0o755)
+        self.tool=self.root/'tool';self.tool.write_text("#!/usr/bin/python3\nfrom pathlib import Path\np=Path('build/GPOE8P/config.json');p.parent.mkdir(parents=True,exist_ok=True);p.write_text('split');Path('build/GPOE8P/dep').write_text('build/GPOE8P/config.json: config/GPOE8P/psov3/config.yml\\n')\n");self.tool.chmod(0o755)
         self.launcher=self.root/'graph-launcher';self.launcher.write_text(Path('tools/merge_batch_config_graph_python.py').read_text().replace('/tmp/pso-decomp-full-build.lock',str(self.lock)));self.launcher.chmod(0o755)
         td=self.root/'tool-dir';td.mkdir();(td/'a').write_text('fixture')
         entries=[['a',hashlib.sha256((td/'a').read_bytes()).hexdigest(),(td/'a').stat().st_mode & 0o777]]
@@ -56,7 +64,7 @@ class PreparationTests(unittest.TestCase):
                      'originals':{role:{'tree_sha256':p.original_tree_sha256(self.repo),'dol_sha256':self.original_sha} for role in ('baseline','candidate')},
                      'dependent_compile':[], 'ordered_inputs':{role:{'ordered_inputs_sha256':'c'*64,'source_inputs':1,'fallback_inputs':0} for role in ('baseline','candidate')},
                      'effective_argv':[str(self.tool),str(td/'a'),'-inline','off,deferred','-c','src/'+c.UNIT],'verdict':'pass','independent':True,'reviewer':'fixture'}
-        self.ninja=self.root/'ninja';self.ninja.write_text('#!/usr/bin/python3\nimport json,sys\nprint("ninja: no work to do." if "-n" in sys.argv else '+repr(json.dumps([{'file':'src/'+c.UNIT,'command':' '.join(self.packet['effective_argv'])+' && fixture'}]))+')\n');self.ninja.chmod(0o755)
+        self.ninja=Path('/home/matt/workspace/pso-decomp/build/ninja-venv/bin/ninja').resolve()
         self.packet['pins']['ninja']=self.pin(self.ninja)
         self.packet_file=self.root/'packet.json';self.write_packet();self.make_plan()
         self.request={'packet':self.pin(self.packet_file),'repo':str(self.repo),'role':'candidate','target':self.target,'candidate':self.candidate,'tree':self.tree,'prs':[self.pr],'commits':self.commits,'receipt':str(self.root/'receipt.json'),'original_sha256':self.original_sha,'original_tree_sha256':p.original_tree_sha256(self.repo),'plan_receipt':self.pin(self.plan_output)}
@@ -77,6 +85,12 @@ class PreparationTests(unittest.TestCase):
         self.assertEqual(result['packet_sha256'],self.request['packet']['sha256'])
         self.assertEqual(json.loads(Path(self.request['receipt']).read_text()),result)
         with self.assertRaises(ValueError):self.run_prep()
+        # An altered tracked splitter dependency must make the real graph dirty;
+        # dry-run never executes either split or configure.
+        before=self.marker.read_text()
+        dep=self.repo/'config/GPOE8P/psov3/config.yml';dep.write_text('altered dependency')
+        out=subprocess.check_output([str(self.ninja),'-n','-v','build.ninja'],cwd=self.repo,text=True)
+        self.assertIn('dol split',out);self.assertEqual(self.marker.read_text(),before)
     def test_preparation_receipts_bind_into_acceptance_contract(self):
         self.packet['pins']['adapter']=self.pin(Path(adapter.__file__).resolve())
         self.write_packet();self.request['packet']=self.pin(self.packet_file);self.make_plan();self.request['plan_receipt']=self.pin(self.plan_output)
@@ -121,7 +135,7 @@ class PreparationTests(unittest.TestCase):
         checkout=self.root/'checkout'
         subprocess.run(['git','clone','-q',str(self.repo),str(checkout)],check=True)
         subprocess.run(['git','-C',str(checkout),'checkout','-q','--detach',self.candidate],check=True)
-        request.update(environment=str(env_path),state=str(state),checkout=str(checkout))
+        request.update(environment=str(env_path),environment_sha256=self.pin(env_path)['sha256'],state=str(state),checkout=str(checkout))
         request_path=self.root/'adapter-request.json';request_path.write_text(json.dumps(request))
         cmd=[sys.executable,'-I',str(Path(adapter.__file__).resolve()),'--check-config',str(request_path)]
         result=subprocess.run(cmd,capture_output=True,text=True);self.assertEqual(result.returncode,0,result.stderr)
@@ -137,6 +151,31 @@ class PreparationTests(unittest.TestCase):
             fcntl.flock(held,fcntl.LOCK_SH)
             run=subprocess.run([str(self.launcher),*progress],cwd=self.repo,env=graph_env,capture_output=True,text=True,pass_fds=(held.fileno(),))
             self.assertEqual(run.returncode,0,run.stderr);self.assertEqual(self.marker.read_text(),before+'x')
+            valid_tool=subprocess.run([str(self.launcher),'tools/check.py'],cwd=self.repo,env=graph_env,capture_output=True,text=True,pass_fds=(held.fileno(),))
+            self.assertEqual(valid_tool.returncode,0,valid_tool.stderr)
+            foreign=self.root/'foreign';foreign.mkdir();(foreign/'tools').mkdir()
+            sentinel=self.root/'foreign-executed'
+            (foreign/'configure.py').write_text('from pathlib import Path; Path('+repr(str(sentinel))+').touch()')
+            (foreign/'tools/evil.py').write_text('from pathlib import Path; Path('+repr(str(sentinel))+').touch()')
+            for cwd,argv in ((foreign,progress),(foreign,['tools/evil.py']),(self.repo,[str(foreign/'tools/evil.py')])):
+                bad=subprocess.run([str(self.launcher),*argv],cwd=cwd,env=graph_env,capture_output=True,text=True,pass_fds=(held.fileno(),))
+                self.assertNotEqual(bad.returncode,0);self.assertFalse(sentinel.exists())
+            swapped=self.root/'other-packet.json';swapped.write_bytes(self.packet_file.read_bytes()+b' ')
+            swapped_env=dict(graph_env,PSO_CONFIG_PACKET_PATH=str(swapped),PSO_CONFIG_PACKET_SHA256=self.pin(swapped)['sha256'])
+            bad=subprocess.run([str(self.launcher),*progress],cwd=self.repo,env=swapped_env,capture_output=True,text=True,pass_fds=(held.fileno(),))
+            self.assertNotEqual(bad.returncode,0);self.assertEqual(self.marker.read_text(),before+'x')
+            alias=self.root/'candidate-alias';alias.symlink_to(self.repo,target_is_directory=True)
+            old_review=review_path.read_bytes();old_environment=env_path.read_bytes()
+            changed_review=json.loads(old_review);changed_review['roots']['candidate']['path']=str(alias)
+            review_path.write_text(json.dumps(changed_review))
+            changed_env=json.loads(old_environment);changed_env['acceptance_capacity']['review']=self.pin(review_path)
+            env_path.write_text(json.dumps(changed_env))
+            bad=subprocess.run([str(self.launcher),*progress],cwd=self.repo,env=graph_env,capture_output=True,text=True,pass_fds=(held.fileno(),))
+            self.assertNotEqual(bad.returncode,0)
+            review_path.write_bytes(old_review);env_path.write_bytes(old_environment)
+            baseline_before=self.marker.read_text()
+            valid=subprocess.run([str(self.launcher),*progress],cwd=baseline,env=graph_env,capture_output=True,text=True,pass_fds=(held.fileno(),))
+            self.assertEqual(valid.returncode,0,valid.stderr);self.assertEqual(self.marker.read_text(),baseline_before+'x')
             source=self.repo/'src/unit.cpp';saved=source.read_bytes();source.write_bytes(saved+b'drift')
             before=self.marker.read_text()
             run=subprocess.run([str(self.launcher),*progress],cwd=self.repo,env=graph_env,capture_output=True,text=True,pass_fds=(held.fileno(),))
@@ -191,15 +230,16 @@ class PreparationTests(unittest.TestCase):
 
     def test_final_graph_is_bound_and_frozen_launcher_rejects_configure(self):
         result=self.run_prep()
-        self.assertEqual((self.repo/'build.ninja').read_text(),'final graph')
-        self.assertEqual(result['graph_sha256'],hashlib.sha256(b'final graph').hexdigest())
+        self.assertIn('# final', (self.repo/'build.ninja').read_text())
+        self.assertEqual(result['graph_sha256'],hashlib.sha256((self.repo/'build.ninja').read_bytes()).hexdigest())
+        self.assertIn('no work to do',subprocess.check_output([str(self.ninja),'-n','build.ninja'],cwd=self.repo,text=True))
         env=dict(os.environ,PSO_CONFIG_PACKET_PATH=str(self.packet_file),PSO_CONFIG_PACKET_SHA256=self.pin(self.packet_file)['sha256'])
         proc=subprocess.run([str(self.launcher),'configure.py'],cwd=self.repo,env=env,capture_output=True)
         self.assertNotEqual(proc.returncode,0)
 
     def test_split_drift_rejected_before_second_configure(self):
         source=self.repo/'src/unit.cpp'
-        self.tool.write_text("#!/usr/bin/python3\nfrom pathlib import Path\np=Path('build/GPOE8P/config.json');p.parent.mkdir(parents=True,exist_ok=True);p.write_text('split')\nPath('src/unit.cpp').write_text('unreviewed')\n")
+        self.tool.write_text("#!/usr/bin/python3\nfrom pathlib import Path\np=Path('build/GPOE8P/config.json');p.parent.mkdir(parents=True,exist_ok=True);p.write_text('split');Path('build/GPOE8P/dep').write_text('build/GPOE8P/config.json: config/GPOE8P/psov3/config.yml\\n')\nPath('src/unit.cpp').write_text('unreviewed')\n")
         pin=self.pin(self.tool)
         for name,entry in self.packet['pins'].items():
             if entry['path']==str(self.tool):self.packet['pins'][name]=pin
@@ -218,7 +258,7 @@ class PreparationTests(unittest.TestCase):
         self.assertFalse(marker.exists());self.assertFalse(self.marker.exists())
 
     def test_split_packet_change_rejected_before_second_configure(self):
-        self.tool.write_text("#!/usr/bin/python3\nfrom pathlib import Path\np=Path('build/GPOE8P/config.json');p.parent.mkdir(parents=True,exist_ok=True);p.write_text('split')\nPath("+repr(str(self.packet_file))+").write_text('{}')\n")
+        self.tool.write_text("#!/usr/bin/python3\nfrom pathlib import Path\np=Path('build/GPOE8P/config.json');p.parent.mkdir(parents=True,exist_ok=True);p.write_text('split');Path('build/GPOE8P/dep').write_text('build/GPOE8P/config.json: config/GPOE8P/psov3/config.yml\\n')\nPath("+repr(str(self.packet_file))+").write_text('{}')\n")
         pin=self.pin(self.tool)
         for mapping in (self.packet['pins'],self.packet['configure_paths']):
             for name,entry in mapping.items():
@@ -229,7 +269,7 @@ class PreparationTests(unittest.TestCase):
         self.assertFalse(Path(self.request['receipt']).exists())
 
     def test_split_tool_change_rejected_before_second_configure(self):
-        self.tool.write_text("#!/usr/bin/python3\nfrom pathlib import Path\np=Path('build/GPOE8P/config.json');p.parent.mkdir(parents=True,exist_ok=True);p.write_text('split')\nPath(__file__).write_text('changed')\n")
+        self.tool.write_text("#!/usr/bin/python3\nfrom pathlib import Path\np=Path('build/GPOE8P/config.json');p.parent.mkdir(parents=True,exist_ok=True);p.write_text('split');Path('build/GPOE8P/dep').write_text('build/GPOE8P/config.json: config/GPOE8P/psov3/config.yml\\n')\nPath(__file__).write_text('changed')\n")
         pin=self.pin(self.tool)
         for mapping in (self.packet['pins'],self.packet['configure_paths']):
             for name,entry in mapping.items():

@@ -84,6 +84,19 @@ class AcceptanceAdapterTests(unittest.TestCase):
         return a.build(self.env['acceptance_capacity']['wrapper'],self.roots['candidate'],
                        self.state/'run.json',os.environ.copy())
 
+    def test_ordinary_adapter_never_imports_sibling_cli(self):
+        script=self.root/'merge_batch_validate_acceptance.py'
+        script.write_bytes(Path(a.__file__).read_bytes())
+        sibling=self.root/'merge_batch.py';marker=self.root/'sibling-executed'
+        for content in (None,'raise RuntimeError("modified sibling")',
+                        'from pathlib import Path; Path('+repr(str(marker))+').touch()'):
+            if content is None: sibling.unlink(missing_ok=True)
+            else: sibling.write_text(content)
+            spec=importlib.util.spec_from_file_location('isolated_adapter_fixture',script)
+            module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+            self.assertEqual(module.git(self.root/'candidate','rev-parse','HEAD'),self.roots['candidate']['commit'])
+            self.assertFalse(marker.exists())
+
     def test_explicit_review_contract(self):
         _,_,roots=a.load_contract(self.request,self.env)
         self.assertEqual(roots['candidate'],self.root/'candidate')

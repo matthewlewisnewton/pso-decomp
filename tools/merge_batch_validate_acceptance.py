@@ -32,23 +32,72 @@ def canonical_hash(value):
     return hashlib.sha256(json.dumps(value, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
 
 
-def load_git_boundary(entry):
-    path=pinned(entry)
-    module=types.ModuleType('_reviewed_queue_cli');module.__file__=str(path)
-    exec(compile(path.read_bytes(),str(path),'exec'),module.__dict__)
-    return module._safety
+_safety = types.ModuleType('_trusted_queue_git_safety')
+exec(compile(r'''#!/usr/bin/env python3
+"""Callback-free Git boundary and raw checkout checks for trusted queue tools."""
+import hashlib
+import os
+from pathlib import Path
+import re
+import subprocess
 
 
-_safety = None
+def environment(base=None):
+    env={k:v for k,v in (os.environ if base is None else base).items() if not k.startswith('GIT_')}
+    env.update(GIT_CONFIG_GLOBAL='/dev/null',GIT_CONFIG_NOSYSTEM='1',GIT_ATTR_NOSYSTEM='1',
+               GIT_TERMINAL_PROMPT='0',LC_ALL='C')
+    return env
+
+
+def git(root,*args):
+    return subprocess.check_output(['/usr/bin/git','-c','core.hooksPath=/dev/null',
+        '-c','core.fsmonitor=false','-c','diff.external=', '-C',str(root),*args],env=environment())
+
+
+def boundary(root):
+    root=Path(root)
+    if not root.is_absolute() or root.resolve()!=root or not root.is_dir(): raise ValueError('invalid Git root')
+    dot=root/'.git'
+    if dot.is_symlink() or not dot.is_dir() or dot.resolve()!=dot: raise ValueError('unsupported Git metadata')
+    for path in (dot/'config',dot/'config.worktree',dot/'info/attributes'):
+        if path.is_symlink() or path.resolve()!=path or (path.exists() and not path.is_file()): raise ValueError('unsafe Git configuration path')
+    for path in (dot/'config.worktree',dot/'info/attributes'):
+        if path.exists() and path.read_bytes(): raise ValueError('unsafe Git attribute or worktree config')
+    raw=git(root,'config','--local','--no-includes','--null','--list')
+    for row in raw.split(b'\0'):
+        if not row: continue
+        key=row.split(b'\n',1)[0].decode('utf-8').lower()
+        if (key.startswith(('filter.','include.','includeif.')) or
+            key in ('core.attributesfile','core.fsmonitor','core.hookspath','core.sshcommand','extensions.worktreeconfig','diff.external') or
+            re.fullmatch(r'merge\..*\.driver',key) or re.fullmatch(r'diff\..*\.(command|textconv)',key)):
+            raise ValueError('unsafe local Git configuration: '+key)
+
+
+def raw_tree(root,commit):
+    root=Path(root);boundary(root)
+    if not re.fullmatch(r'[0-9a-f]{40}',commit): raise ValueError('invalid commit')
+    for record in git(root,'ls-tree','-r','-z',commit).split(b'\0'):
+        if not record: continue
+        metadata,raw_path=record.split(b'\t',1);mode,kind,blob=metadata.split(b' ')
+        if kind!=b'blob' or mode not in (b'100644',b'100755'): raise ValueError('invalid tracked tree mode')
+        path=root/os.fsdecode(raw_path)
+        if path.is_symlink() or path.resolve()!=path or not path.is_file() or not path.resolve().is_relative_to(root): raise ValueError('invalid tracked path')
+        raw=path.read_bytes();oid=hashlib.sha1(b'blob '+str(len(raw)).encode()+b'\0'+raw).hexdigest().encode()
+        if oid!=blob or bool(path.stat().st_mode & 0o111)!=(mode==b'100755'): raise ValueError('tracked tree differs')
+
+
+def ignored_inputs(root, *, generated):
+    root=Path(root);boundary(root)
+    for raw in git(root,'ls-files','--others','--ignored','--exclude-standard','-z').split(b'\0'):
+        if not raw: continue
+        if raw.endswith((b'.py',b'.pyc',b'.pth',b'.so')) or b'__pycache__/' in raw: raise ValueError('untracked Python import')
+        if raw.startswith(b'orig/') or (generated and (raw.startswith(b'build/') or raw in (b'build.ninja',b'objdiff.json',b'compile_commands.json',b'.ninja_log',b'.ninja_deps'))): continue
+        raise ValueError('unexpected ignored input')
+''', '<trusted queue git boundary>', 'exec'), _safety.__dict__)
 
 def git(repo, *args):
-    global _safety
-    if _safety is None:
-        path=Path(__file__).resolve().with_name('merge_batch.py')
-        _safety=load_git_boundary({'path':str(path),'sha256':digest(path)})
     _safety.boundary(Path(repo).resolve())
     return _safety.git(repo,*args).decode().strip()
-
 
 def checked_root(entry):
     root = Path(entry['path'])
@@ -129,7 +178,7 @@ def load_contract(request, environment):
     require(roots['candidate']['commit'] == request['candidate']
             and roots['candidate']['tree'] == request['tree'], 'wrong_candidate_commit')
     if request.get('config_admission') is not None:
-        global _safety
+        require(digest(request['environment'])==request.get('environment_sha256'), 'stale_config_environment')
         checkout=Path(request['checkout']).resolve()
         all_roots=[checkout,*(Path(entry['path']).resolve() for entry in roots.values())]
         config=request['config_admission']
@@ -139,7 +188,6 @@ def load_contract(request, environment):
         exec(compile(checker_path.read_bytes(),str(checker_path),'exec'),checker.__dict__)
         packet=checker.read_packet(config['packet'],all_roots)
         require(packet['pins']['checker']==config['checker'] and packet['pins']['cli']==request['cli'], 'stale_config_runtime')
-        _safety=load_git_boundary(packet['pins']['cli'])
         _safety.boundary(checkout)
         _safety.raw_tree(checkout,request['candidate'])
         _safety.ignored_inputs(checkout,generated=False)

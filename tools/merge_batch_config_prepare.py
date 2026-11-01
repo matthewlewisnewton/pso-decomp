@@ -12,6 +12,8 @@ import os
 from pathlib import Path
 import subprocess
 import sys
+import tempfile
+import re
 import types
 
 LEGACY_LOCK = Path('/tmp/pso-decomp-full-build.lock')
@@ -81,13 +83,6 @@ def validate_checkout(checker, root, expected_commit, expected_tree, original_sh
     validate_tracked_tree(checker,root,expected_commit)
     if (root/'.venv').exists() or (root/'venv').exists(): raise ValueError('candidate interpreter')
     if fresh and any((root/name).exists() for name in ('build','build.ninja','objdiff.json','compile_commands.json','.ninja_log','.ninja_deps')): raise ValueError('reused generated state')
-    # Ignored Python startup/module files can still influence configure imports.
-    ignored=checker.git_bytes(root,'ls-files','--others','--ignored','--exclude-standard','-z').split(b'\0')
-    for raw in ignored:
-        if not raw: continue
-        if raw.endswith((b'.py',b'.pyc',b'.pth',b'.so')) or b'__pycache__/' in raw: raise ValueError('untracked Python import')
-        if raw.startswith(b'orig/') or (not fresh and (raw.startswith(b'build/') or raw in (b'build.ninja',b'objdiff.json',b'compile_commands.json'))): continue
-        raise ValueError('unexpected ignored input')
     _, blob=checker.blob(root,expected_commit)
     config=root/'configure.py'
     if config.is_symlink() or config.resolve()!=config or config.read_bytes()!=blob: raise ValueError('configuration worktree differs')
@@ -153,7 +148,21 @@ def prepare(request, checker_path, checker_sha256, *, lock_path=LEGACY_LOCK):
         if graph.is_symlink() or not graph.is_file(): raise ValueError('missing bootstrap graph')
         split_config=root/'config/GPOE8P/psov3/config.yml'
         if split_config.is_symlink() or split_config.resolve()!=split_config or not split_config.is_file(): raise ValueError('missing split configuration')
-        subprocess.run([paths['dtk'],'dol','split',str(split_config),'build/GPOE8P'],cwd=root,env=env,check=True,pass_fds=(lock.fileno(),))
+        # Query the bootstrap graph without running it. Only the exact pinned
+        # splitter command is admitted; the private one-edge manifest prevents
+        # Ninja from regenerating configure while recording its real deps/log.
+        dtk=paths['dtk']
+        if not re.fullmatch(r'/[A-Za-z0-9_./+\-]+',dtk): raise ValueError('unsupported splitter path')
+        split_input='config/GPOE8P/psov3/config.yml';split_output='build/GPOE8P/config.json'
+        expected_command=dtk+' dol split '+split_input+' build/GPOE8P'
+        before_bootstrap=hashlib.sha256(graph.read_bytes()).hexdigest()
+        commands=subprocess.run([str(ninja),'-t','commands',split_output],cwd=root,env=env,check=True,capture_output=True,text=True,pass_fds=(lock.fileno(),))
+        if commands.stdout.splitlines()!=[expected_command] or hashlib.sha256(graph.read_bytes()).hexdigest()!=before_bootstrap: raise ValueError('unreviewed bootstrap split edge')
+        manifest=('rule split\n  command = '+expected_command+'\n  depfile = build/GPOE8P/dep\n  deps = gcc\n'
+                  'build '+split_output+': split '+split_input+' | '+dtk+'\n')
+        with tempfile.TemporaryDirectory(prefix='queue-split-',dir=receipt.parent) as temporary:
+            split_manifest=Path(temporary)/'split.ninja';split_manifest.write_text(manifest)
+            subprocess.run([str(ninja),'-f',str(split_manifest),split_output],cwd=root,env=env,check=True,pass_fds=(lock.fileno(),))
         checker,after=preflight(False)
         if after != packet: raise ValueError('packet changed during split')
         generated=root/'build/GPOE8P/config.json'

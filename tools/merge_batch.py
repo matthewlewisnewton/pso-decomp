@@ -475,7 +475,7 @@ class Queue:
         save(request, {'version': 1, 'repository': REPOSITORY, 'target': self.spec['target'],
                        'candidate': self.record['candidate'], 'tree': self.record['tree'],
                        'checkout': str(self.repo), 'state': str(self.state), 'policy': self.spec['policy'],
-                       'environment': str(environment), 'output': str(output),
+                       'environment': str(environment), 'environment_sha256':self.spec['environment_sha256'], 'output': str(output),
                        'config_admission': self.spec.get('config_admission'), 'config_plan':self.record.get('config_plan'), 'prs': self.spec['prs'], 'commits': self.record['commits'],
                        'validator': {'path':str(validator), 'sha256':expected_hash},
                        'cli': {'path':str(Path(__file__).resolve()), 'sha256':digest(Path(__file__).resolve())}})
