@@ -73,6 +73,10 @@ in assembly: `tools/orig_asm.py` rebuilds their bodies from your disc before any
   rebuilds, compares the reports by original address, so renaming, folding or splitting units never hides a lost
   match, and checks that every linked unit still links from source.
 
+The GiFoie orbit task now reproduces its original 900-byte update in targeted compiler checks, preserving the
+unit's other functions and native task vtable. Its candidate source selection still awaits the full build,
+original-address regression checks and proof that the linker takes the compiled object.
+
 [CONTRIBUTING.md](CONTRIBUTING.md) covers what a change can do and the rules for it.
 [docs/architecture.md](docs/architecture.md) describes how the executable and the source tree are laid out.
 The [documentation index](docs/README.md) links to contributor guides and recovery evidence.

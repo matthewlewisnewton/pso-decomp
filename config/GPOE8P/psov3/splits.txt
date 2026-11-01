@@ -7904,6 +7904,7 @@ pso/misc/TTecGiBarta.cpp:
 pso/misc/TTecGiFoie.cpp:
 	.text       start:0x80230D9C end:0x80231AF0
 	.rodata     start:0x8044D350 end:0x8044D358
+	.data       start:0x804CC800 end:0x804CC818
 
 pso/unk/text_80231AF0.cpp:
 	.text       start:0x80231AF0 end:0x80231BF4
