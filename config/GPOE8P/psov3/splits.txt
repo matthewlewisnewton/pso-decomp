@@ -1226,6 +1226,7 @@ pso/misc/TDuelEffectNumber.cpp:
 
 pso/misc/TDuelEffectNumber_80080290.cpp:
 	.text       start:0x80080290 end:0x80080460
+	.sdata2     start:0x805D9308 end:0x805D9310
 
 pso/misc/TDuelEffectNumber_80080460.cpp:
 	.text       start:0x80080460 end:0x80080750

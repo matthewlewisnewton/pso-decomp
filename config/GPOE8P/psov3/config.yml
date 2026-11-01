@@ -385,6 +385,7 @@ force_active:
   - TContainerAncient01__sub_8018B180
   - TContainerAncient01__sub_8018BE90
   - TDPBShower__ct
+  - TDuelEffectNumber__sub_800802F8
   - TEffGuard__class_name
   - TEffHit__class_name
   - TEffStarLight2D_class_name
