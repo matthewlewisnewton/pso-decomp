@@ -84,7 +84,7 @@ u8 *TItemEffPG__ct(u8 *item_eff_pg, s32 arg1, u8 *arg2) {
         *(f32 *)((s8 *)item_eff_pg + 0xC4) = (f32) (*(const f32 *)&lbl_805DFE14);
     }
     ((TItemEffPG *)item_eff_pg)->m_c8 = (f32) *(f32 *)((s8 *)arg2 + 0x30);
-    *(f32 *)((s8 *)item_eff_pg + 0xCC) = (f32) *(f32 *)((s8 *)arg2 + 0x2C);
+    ((TItemEffPG *)item_eff_pg)->m_cc = (f32) *(f32 *)((s8 *)arg2 + 0x2C);
     *(f32 *)((s8 *)item_eff_pg + 0xB0) = (f32) (*(f32 *)((s8 *)item_eff_pg + 0xB0) * lbl_805DFE18);
     temp_r3 = ((s32)__nw__7TObjectFUl(0x68));
     var_r0 = temp_r3;
