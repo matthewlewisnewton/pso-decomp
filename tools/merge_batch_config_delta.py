@@ -69,3 +69,221 @@ def check(before, after):
             'after_sha256': hashlib.sha256(after).hexdigest(),
             'before_span_sha256': hashlib.sha256(old['span']).hexdigest(),
             'after_span_sha256': hashlib.sha256(new['span']).hexdigest()}
+
+# Strict, private operator packet. This module is intended to be installed and
+# pinned outside every candidate root; candidate code is never imported here.
+import json
+import os
+from pathlib import Path
+import re
+import subprocess
+import sys
+
+SHA1 = re.compile(r'[0-9a-f]{40}')
+SHA256 = re.compile(r'[0-9a-f]{64}')
+REPO = 'matthewlewisnewton/pso-decomp'
+PIN_NAMES = frozenset(('checker', 'cli', 'python', 'launcher', 'wrapper', 'adapter',
+                       'guard', 'base_validator', 'compiler', 'compiler_wrapper', 'git', 'preparer', 'ninja'))
+PACKET_FIELDS = frozenset(('version', 'repository', 'policy', 'target', 'candidate', 'tree',
+                           'prs', 'steps', 'cumulative', 'pins', 'effective_argv', 'configure_paths', 'originals', 'ordered_inputs', 'verdict', 'independent', 'reviewer'))
+STEP_FIELDS = frozenset(('before', 'after', 'before_blob', 'after_blob', 'diff_sha256',
+                         'unit', 'old_profile', 'new_profile', 'before_sha256', 'after_sha256',
+                         'before_span_sha256', 'after_span_sha256'))
+
+
+def fail(message):
+    raise ValueError(message)
+
+
+def strict_json(raw):
+    def pairs(items):
+        result = {}
+        for key, value in items:
+            if key in result: fail('duplicate JSON key')
+            result[key] = value
+        return result
+    return json.loads(raw, object_pairs_hook=pairs, parse_constant=lambda _: fail('invalid JSON constant'))
+
+
+def exact_keys(value, keys):
+    if type(value) is not dict or set(value) != set(keys): fail('invalid packet fields')
+
+
+def full_sha(value, regex):
+    if not isinstance(value, str) or not regex.fullmatch(value): fail('invalid digest')
+    return value
+
+
+def file_pin(entry, forbidden_roots=()):
+    exact_keys(entry, ('path', 'sha256'))
+    path = Path(entry['path'])
+    if not path.is_absolute() or path.is_symlink() or path.resolve() != path or not path.is_file(): fail('invalid pinned file')
+    if any(path.is_relative_to(Path(root).resolve()) for root in forbidden_roots): fail('pin inside writable root')
+    full_sha(entry['sha256'], SHA256)
+    raw = path.read_bytes()
+    if hashlib.sha256(raw).hexdigest() != entry['sha256']: fail('stale pinned file')
+    return path
+
+
+def tree_digest(path):
+    if path.is_symlink() or not path.is_dir(): fail('invalid input directory')
+    entries=[]
+    for parent, dirs, files in os.walk(path,followlinks=False):
+        for name in sorted(dirs+files):
+            item=Path(parent)/name
+            if item.is_symlink(): fail('input symlink')
+            if item.is_file(): entries.append([str(item.relative_to(path)),hashlib.sha256(item.read_bytes()).hexdigest(),item.stat().st_mode & 0o777])
+            elif not item.is_dir(): fail('unsupported input')
+    if not entries: fail('empty input directory')
+    return hashlib.sha256(json.dumps(sorted(entries),separators=(',',':')).encode()).hexdigest()
+
+
+def path_pin(entry, forbidden_roots=()):
+    """Pin a regular file or a complete, symlink-free tool directory."""
+    exact_keys(entry, ('path', 'sha256'))
+    path = Path(entry['path'])
+    if not path.is_absolute() or path.is_symlink() or path.resolve() != path or not path.exists(): fail('invalid tool path')
+    if any(path.is_relative_to(Path(root).resolve()) or Path(root).resolve().is_relative_to(path) for root in forbidden_roots): fail('tool/root overlap')
+    full_sha(entry['sha256'], SHA256)
+    if path.is_file():
+        value=hashlib.sha256(path.read_bytes()).hexdigest()
+    elif path.is_dir():
+        entries=[]
+        for parent, dirs, files in os.walk(path, followlinks=False):
+            for name in sorted(dirs+files):
+                item=Path(parent)/name
+                if item.is_symlink(): fail('symlink in tool directory')
+                if item.is_file():
+                    entries.append([str(item.relative_to(path)), hashlib.sha256(item.read_bytes()).hexdigest(), item.stat().st_mode & 0o777])
+                elif not item.is_dir(): fail('unsupported tool entry')
+        if not entries: fail('empty tool directory')
+        value=hashlib.sha256(json.dumps(sorted(entries),separators=(',',':')).encode()).hexdigest()
+    else: fail('invalid tool type')
+    if value != entry['sha256']: fail('stale tool path')
+    return path
+
+
+def git_bytes(repo, *args):
+    return subprocess.check_output(['/usr/bin/git', '-c', 'core.hooksPath=/dev/null', '-c', 'diff.algorithm=myers',
+                                    '-c', 'diff.noprefix=false', '-c', 'diff.mnemonicprefix=false',
+                                    '-c', 'core.quotepath=true', '-C', str(repo), *args],
+                                   env={'PATH': '/usr/bin:/bin', 'LC_ALL':'C', 'GIT_CONFIG_NOSYSTEM':'1',
+                                        'GIT_CONFIG_GLOBAL':'/dev/null', 'GIT_ATTR_NOSYSTEM':'1', 'GIT_TERMINAL_PROMPT':'0'})
+
+
+def blob(repo, commit):
+    line = git_bytes(repo, 'ls-tree', commit, '--', 'configure.py')
+    match = re.fullmatch(rb'100755 blob ([0-9a-f]{40})\tconfigure\.py\n', line)
+    if not match: fail('configure mode or path changed')
+    return match.group(1).decode(), git_bytes(repo, 'show', commit + ':configure.py')
+
+
+def step(repo, before, after):
+    before_blob, a = blob(repo, before)
+    after_blob, b = blob(repo, after)
+    if a == b: return None
+    result = check(a, b)
+    diff = git_bytes(repo, 'diff', '--no-ext-diff', '--no-textconv', '--no-renames',
+                     '--full-index', '--binary', before, after, '--', 'configure.py')
+    return dict(before=before, after=after, before_blob=before_blob, after_blob=after_blob,
+                diff_sha256=hashlib.sha256(diff).hexdigest(), **result)
+
+
+def read_packet(entry, forbidden_roots=()):
+    path = file_pin(entry, forbidden_roots)
+    raw = path.read_bytes()
+    if hashlib.sha256(raw).hexdigest() != entry['sha256']: fail('packet changed')
+    packet = strict_json(raw)
+    exact_keys(packet, PACKET_FIELDS)
+    if type(packet['version']) is not int or packet['version'] != 1 or packet['repository'] != REPO or packet['policy'] != 'recovery' or packet['verdict'] != 'pass' or packet['independent'] is not True or not isinstance(packet['reviewer'], str) or not packet['reviewer'].strip(): fail('wrong packet scope')
+    for key in ('target', 'candidate', 'tree'): full_sha(packet[key], SHA1)
+    if type(packet['prs']) is not list or not packet['prs']: fail('missing ordered PRs')
+    for pr in packet['prs']:
+        exact_keys(pr, ('number', 'head', 'review_base', 'review'))
+        if type(pr['number']) is not int or pr['number'] <= 0: fail('invalid PR number')
+        for key in ('head', 'review_base'): full_sha(pr[key], SHA1)
+        file_pin(pr['review'], forbidden_roots)
+    exact_keys(packet['pins'], PIN_NAMES)
+    for value in packet['pins'].values(): file_pin(value, forbidden_roots)
+    for mapping, fields in (('originals', ('tree_sha256','dol_sha256')), ('ordered_inputs', ('ordered_inputs_sha256','source_inputs','fallback_inputs'))):
+        exact_keys(packet[mapping], ('baseline','candidate'))
+        for item in packet[mapping].values():
+            exact_keys(item, fields)
+            if mapping=='originals':
+                for value in item.values(): full_sha(value,SHA256)
+            else:
+                full_sha(item['ordered_inputs_sha256'],SHA256)
+                if any(type(item[k]) is not int or item[k] < 0 for k in ('source_inputs','fallback_inputs')) or item['source_inputs']+item['fallback_inputs']==0: fail('invalid ordered input counts')
+    exact_keys(packet['configure_paths'], ('dtk', 'objdiff', 'wrapper', 'compilers', 'binutils'))
+    for name, item in packet['configure_paths'].items():
+        tool=path_pin(item, forbidden_roots)
+        if name in ('compilers','binutils') and not tool.is_dir(): fail('tool directory required')
+        if name in ('dtk','objdiff','wrapper') and not tool.is_file(): fail('tool executable required')
+    if packet['configure_paths']['wrapper'] != packet['pins']['compiler_wrapper'] or not Path(packet['pins']['compiler']['path']).is_relative_to(Path(packet['configure_paths']['compilers']['path'])):
+        fail('compiler or wrapper binding mismatch')
+    if type(packet['effective_argv']) is not list or not packet['effective_argv'] or any(type(x) is not str or not x or x.startswith('@') or any(ord(c)<32 or ord(c)==127 or c in ';|&`$' for c in x) for x in packet['effective_argv']): fail('invalid effective argv')
+    if len(packet['effective_argv']) < 3 or packet['effective_argv'][:2] != [packet['pins']['compiler_wrapper']['path'],packet['pins']['compiler']['path']]: fail('compiler argv binding mismatch')
+    if type(packet['steps']) is not list or not packet['steps']: fail('missing incremental steps')
+    for entry in [*packet['steps'], packet['cumulative']]:
+        exact_keys(entry, STEP_FIELDS)
+        for key in ('before', 'after', 'before_blob', 'after_blob'): full_sha(entry[key], SHA1)
+        for key in ('diff_sha256', 'before_sha256', 'after_sha256', 'before_span_sha256', 'after_span_sha256'): full_sha(entry[key], SHA256)
+    return packet
+
+
+def verify_plan(repo, packet, target, candidate, tree, prs, commits):
+    root = Path(repo).resolve()
+    if (packet['target'],packet['candidate'],packet['tree']) != (target,candidate,tree): fail('stale candidate binding')
+    expected_prs = [{'number': p['number'], 'head': p['head'], 'review_base': p['review_base'],
+                     'review': {'path': p['review']['path'], 'sha256': p['review']['sha256']}} for p in prs]
+    if packet['prs'] != expected_prs or [p['head'] for p in prs] != [c['head'] for c in commits]: fail('stale ordered reviews')
+    if git_bytes(root, 'rev-parse', candidate+'^{tree}').strip().decode() != tree: fail('stale candidate tree')
+    if git_bytes(root, 'diff', '--no-ext-diff', '--name-only', '-z', target, candidate, '--', 'tools'):
+        fail('trusted tools changed')
+    chain=[target] + [c['commit'] for c in commits]
+    if len(commits)!=len(prs) or chain[-1] != candidate: fail('invalid candidate chain')
+    for index,(pr,record) in enumerate(zip(prs,commits)):
+        if set(record) != {'pr','commit','tree','head'} or record['head'] != pr['head'] or record['pr'] != pr['number']:
+            fail('invalid merge record')
+        full_sha(record['commit'],SHA1); full_sha(record['tree'],SHA1)
+        parents=git_bytes(root,'show','-s','--format=%P',record['commit']).strip().decode().split()
+        if parents != [chain[index],pr['head']] or git_bytes(root,'rev-parse',record['commit']+'^{tree}').strip().decode()!=record['tree']:
+            fail('invalid merge ancestry')
+        for later in (chain[index],pr['head']):
+            try: git_bytes(root,'merge-base','--is-ancestor',pr['review_base'],later)
+            except subprocess.CalledProcessError: fail('unreviewed prerequisite')
+    observed=[]
+    for before, after in zip(chain, chain[1:]):
+        change=step(root,before,after)
+        if change: observed.append(change)
+    if not observed or observed != packet['steps']: fail('stale incremental configuration')
+    if step(root,target,candidate) != packet['cumulative']: fail('stale cumulative configuration')
+    return {'packet_sha256': None, 'target':target, 'candidate':candidate, 'tree':tree,
+            'effective_argv': packet['effective_argv']}
+
+
+def plan_request(request):
+    exact_keys(request, ('mode','repo','packet','checker','target','candidate','tree','prs','commits','output'))
+    if request['mode'] != 'plan': fail('invalid checker mode')
+    repo=Path(request['repo']).resolve()
+    checker=file_pin(request['checker'],[repo])
+    if checker != Path(__file__).resolve() or request['checker']['sha256'] != hashlib.sha256(Path(__file__).read_bytes()).hexdigest(): fail('checker identity mismatch')
+    packet=read_packet(request['packet'],[repo])
+    if packet['pins']['checker'] != request['checker']: fail('checker packet mismatch')
+    if Path(packet['pins']['python']['path']) != Path(sys.executable).resolve(): fail('python identity mismatch')
+    if Path(packet['pins']['git']['path']) != Path('/usr/bin/git').resolve(): fail('git identity mismatch')
+    result=verify_plan(repo,packet,request['target'],request['candidate'],request['tree'],request['prs'],request['commits'])
+    result['packet_sha256']=request['packet']['sha256']
+    output=Path(request['output'])
+    if not output.is_absolute() or output.is_symlink() or output.exists() or output.resolve()!=output or output.is_relative_to(repo): fail('invalid output path')
+    with output.open('x') as out:
+        json.dump(result,out,sort_keys=True);out.write('\n');out.flush();os.fsync(out.fileno())
+
+
+def main():
+    if len(sys.argv)!=2: fail('request file required')
+    request=Path(sys.argv[1])
+    if not request.is_absolute() or request.is_symlink(): fail('invalid request file')
+    plan_request(strict_json(request.read_bytes()))
+
+if __name__ == '__main__': main()

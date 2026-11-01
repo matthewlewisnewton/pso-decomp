@@ -56,6 +56,38 @@ def checked_root(entry):
     return root
 
 
+def config_contract(request, environment, review, roots):
+    config=request.get('config_admission')
+    if config is None: return
+    require(request.get('policy')=='recovery' and config==environment.get('config_admission'), 'stale_config_admission')
+    checker_path=pinned(config['checker'])
+    for root in [Path(request['checkout']).resolve(),*roots.values()]:
+        require(not checker_path.resolve().is_relative_to(root), 'checker_inside_root')
+    checker=types.ModuleType('_reviewed_config_checker');checker.__file__=str(checker_path)
+    exec(compile(checker_path.read_bytes(),str(checker_path),'exec'),checker.__dict__)
+    packet=checker.read_packet(config['packet'],[Path(request['checkout']),*roots.values()])
+    require(packet['pins']['checker']==config['checker'] and packet['pins']['cli']==request['cli'] and packet['pins']['guard']==request['validator'], 'stale_config_runtime')
+    require(packet['pins']['adapter']=={'path':str(Path(__file__).resolve()),'sha256':digest(Path(__file__).resolve())}, 'stale_config_adapter')
+    require(Path(packet['pins']['python']['path'])==Path(sys.executable).resolve() and Path(packet['pins']['ninja']['path'])==Path(environment['ninja']).resolve() and Path(packet['pins']['compiler_wrapper']['path'])==Path(environment['wrapper']).resolve(), 'stale_config_tools')
+    require(all(Path(packet['configure_paths'][name]['path']) == Path(environment[name]).resolve() for name in ('dtk','objdiff','wrapper','compilers','binutils')), 'stale_config_paths')
+    require(packet['pins']['wrapper']==environment['acceptance_capacity']['wrapper'] and packet['pins']['base_validator']==environment['acceptance_capacity']['base_validator'], 'stale_config_harness')
+    checker.verify_plan(request['checkout'],packet,request['target'],request['candidate'],request['tree'],request['prs'],request['commits'])
+    require(review.get('config_packet_sha256')==config['packet']['sha256'] and review.get('effective_compile_argv')==packet['effective_argv'] and review.get('configuration_edge_review') is True and review.get('unlisted_edges_unchanged') is True and review.get('compiler_binding_reviewed') is True and review.get('no_setup_execution') is True and review.get('ordered_input_provenance') == packet['ordered_inputs'], 'missing_config_graph_review')
+    expected_argv=hashlib.sha256(json.dumps(packet['effective_argv'],separators=(',',':')).encode()).hexdigest()
+    for role in ('baseline','candidate'):
+        root=roots[role];entry=review['roots'][role];receipt=pinned(entry['config_preflight'])
+        require(not receipt.resolve().is_relative_to(root), 'config_receipt_inside_root')
+        pre=checker.strict_json(receipt.read_bytes())
+        expected={'version':1,'prepared_config':True,'packet_sha256':config['packet']['sha256'],
+                  'root':str(root),'role':role,'target':request['target'],'candidate':request['candidate'],
+                  'tree':request['tree'],'root_commit':entry['commit'],'root_tree':entry['tree'],
+                  'graph_sha256':entry['graph_sha256'],'checker_sha256':config['checker']['sha256'],
+                  'preparer_sha256':packet['pins']['preparer']['sha256'],
+                  'original_tree_sha256':entry['original_tree_sha256'],'effective_argv_sha256':expected_argv}
+        require(pre==expected and entry['original_tree_sha256']==packet['originals'][role]['tree_sha256'] and checker.tree_digest(root/'orig/GPOE8P/files')==packet['originals'][role]['tree_sha256'], 'stale_config_preparation')
+    require(digest(checker_path)==config['checker']['sha256'], 'config_checker_changed')
+
+
 def load_contract(request, environment):
     capacity = environment['acceptance_capacity']
     require(capacity.get('lane') == 'acceptance', 'acceptance_lane_required')
@@ -86,6 +118,7 @@ def load_contract(request, environment):
         for evidence in (wrapper, base_validator, review_path, Path(request['environment']),
                          Path(request['state']), Path(__file__).resolve()):
             require(not evidence.resolve().is_relative_to(root), 'evidence_inside_build_root')
+    config_contract(request, environment, review, paths)
     return capacity, review, paths
 
 
@@ -134,8 +167,9 @@ def validate(request):
     require(git(repo, 'rev-parse', 'HEAD') == request['candidate']
             and git(repo, 'rev-parse', 'HEAD^{tree}') == request['tree'], 'wrong_cli_candidate')
     require(not git(repo, 'status', '--porcelain', '--untracked-files=no'), 'dirty_cli_candidate')
-    require(not git(repo, 'diff', '--name-only', request['target'], request['candidate'],
-                    '--', 'tools', 'configure.py'), 'unsupported_harness_change')
+    require(not git(repo, 'diff', '--name-only', request['target'], request['candidate'], '--', 'tools'), 'unsupported_harness_change')
+    config_changed=bool(git(repo, 'diff', '--name-only', request['target'], request['candidate'], '--', 'configure.py'))
+    require(config_changed == (request.get('config_admission') is not None), 'unsupported_config_change')
     git(repo, 'diff', '--check', request['target'], request['candidate'])
     toolnames = ('ninja', 'dtk', 'objdiff', 'wrapper', 'compilers', 'binutils')
     require(all(Path(environment[name]).is_absolute() for name in toolnames), 'absolute_tools_required')
@@ -177,6 +211,8 @@ def validate(request):
         results[role] = {'receipt': str(receipt), 'measurement': record.get('measurement'),
                          'waits': {k: v for k, v in record.items() if k.endswith('wait_seconds')},
                          'provenance': base.selected_inputs(root, tools['ninja'], env)}
+    if request.get('config_admission') is not None:
+        require(all(results[role]['provenance']==review['ordered_input_provenance'][role] for role in ('baseline','candidate')), 'ordered_input_provenance_changed')
     check = state / ('acceptance-coverage-' + str(time.time_ns()) + '.json')
     base.run([str(launcher), 'tools/check_pr.py', '--no-build', '--baseline',
               str(roots['baseline'] / 'build/GPOE8P/report.json'), '--json', str(check)], candidate, env)
@@ -195,6 +231,12 @@ def validate(request):
 
 
 def main():
+    if len(sys.argv)==3 and sys.argv[1]=='--check-config':
+        request=json.loads(Path(sys.argv[2]).read_text())
+        require(request.get('config_admission') is not None, 'missing_config_admission')
+        environment=json.loads(Path(request['environment']).read_text())
+        load_contract(request,environment)
+        return
     request = json.loads(Path(sys.argv[1]).read_text())
     result = validate(request)
     # No success artifact on rejection; the unchanged CLI journals the failure.

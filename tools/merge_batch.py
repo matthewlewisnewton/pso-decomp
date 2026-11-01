@@ -99,6 +99,13 @@ def validate_spec(spec):
 
 
 def evidence(spec):
+    config=spec.get('config_admission')
+    if config is not None:
+        require(spec['policy']=='recovery' and isinstance(config, dict) and set(config)=={'checker','packet'}, 'invalid_config_admission', '')
+        for entry in config.values():
+            require(isinstance(entry, dict) and set(entry)=={'path','sha256'}, 'invalid_config_admission', '')
+            path=Path(entry['path'])
+            require(path.is_absolute() and path.is_file() and not path.is_symlink() and digest(path)==entry['sha256'], 'stale_config_admission', '')
     for pr in spec['prs']:
         r = pr['review']
         path = Path(r.get('path', ''))
@@ -248,6 +255,27 @@ class Queue:
             require(bool(raw) and raw.endswith(b'\0'), 'source_maintenance_scope', 'Empty or malformed path list')
             paths = [os.fsdecode(path) for path in raw[:-1].split(b'\0')]
             require(all(source_maintenance_path(p) for p in paths), 'source_maintenance_scope', paths)
+        if self.spec['policy'] == 'recovery':
+            changed = subprocess.run(['git','-c','core.hooksPath=/dev/null','-C',str(self.repo),
+                                      'diff','--no-ext-diff','--name-only','-z',self.spec['target'],current,'--','configure.py'],capture_output=True)
+            require(changed.returncode==0, 'command_failed', 'config diff')
+            config = self.spec.get('config_admission')
+            require(bool(changed.stdout)==(config is not None), 'invalid_config_admission', 'Configuration change requires exactly one reviewed packet')
+            if config is not None:
+                evidence(self.spec)
+                checker=Path(config['checker']['path'])
+                require(not checker.resolve().is_relative_to(self.repo.resolve()), 'invalid_config_admission', 'Checker must be external')
+                request=self.state/('config-plan-request-'+str(time.time_ns())+'.json')
+                output=self.state/('config-plan-result-'+str(time.time_ns())+'.json')
+                save(request, {'mode':'plan','repo':str(self.repo.resolve()),'packet':config['packet'],'checker':config['checker'],
+                               'target':self.spec['target'],'candidate':current,'tree':tree,'prs':self.spec['prs'],
+                               'commits':commits,'output':str(output.resolve())})
+                result=subprocess.run([sys.executable,'-I',str(checker),str(request.resolve())],capture_output=True,text=True)
+                require(result.returncode==0 and output.is_file() and not output.is_symlink(), 'config_preflight_rejected', result.stderr[-2000:])
+                plan=json.loads(output.read_text())
+                require(isinstance(plan,dict) and set(plan)=={'packet_sha256','target','candidate','tree','effective_argv'} and plan['packet_sha256']==config['packet']['sha256'] and plan['target']==self.spec['target'] and plan['candidate']==current and plan['tree']==tree and isinstance(plan['effective_argv'],list) and bool(plan['effective_argv']), 'config_preflight_rejected', 'Invalid plan receipt')
+                require(digest(checker)==config['checker']['sha256'] and digest(config['packet']['path'])==config['packet']['sha256'], 'stale_config_admission', '')
+                self.record['config_plan']={'path':str(output),'sha256':digest(output),'packet_sha256':config['packet']['sha256']}
         self.write(state='planned', candidate=current, tree=tree, commits=commits)
         return current, tree
 
@@ -262,7 +290,11 @@ class Queue:
         save(request, {'version': 1, 'repository': REPOSITORY, 'target': self.spec['target'],
                        'candidate': self.record['candidate'], 'tree': self.record['tree'],
                        'checkout': str(self.repo), 'state': str(self.state), 'policy': self.spec['policy'],
-                       'environment': str(environment), 'output': str(output)})
+                       'environment': str(environment), 'output': str(output),
+                       'config_admission': self.spec.get('config_admission'), 'prs': self.spec['prs'], 'commits': self.record['commits'],
+                       'validator': {'path':str(validator), 'sha256':expected_hash},
+                       'cli': {'path':str(Path(__file__).resolve()), 'sha256':digest(Path(__file__).resolve())}})
+        request_sha256=digest(request)
         self.write(state='validating', validator_sha256=expected_hash, validator_path=str(validator), environment_path=str(environment))
         # Validator code is supplied by the operator, never by candidate content.
         with (self.state / 'validator.log').open('a') as log:
@@ -270,12 +302,12 @@ class Queue:
                                     stdout=log, stderr=subprocess.STDOUT,
                                     pass_fds=(self.lock_fd,) if hasattr(self, 'lock_fd') else ())
         require(result.returncode == 0 and output.is_file(), 'failed_build_or_checks', {'returncode': result.returncode, 'log': str(self.state / 'validator.log')})
-        require(digest(validator) == expected_hash and digest(environment) == self.spec['environment_sha256'],
+        require(digest(validator) == expected_hash and digest(environment) == self.spec['environment_sha256'] and digest(request)==request_sha256,
                 'changed_validator', 'Harness/environment changed during validation')
         check_validation(self.spec, json.loads(output.read_text()), self.record['tree'])
         require(self.git('rev-parse', 'HEAD') == self.record['candidate'] and
                 not self.git('status', '--porcelain', '--untracked-files=no'), 'candidate_changed', 'Tracked tree changed during validation')
-        self.write(state='validated', validation=str(output), validation_sha256=digest(output))
+        self.write(state='validated', validation=str(output), validation_sha256=digest(output), validation_request=str(request), validation_request_sha256=request_sha256)
 
     def prepare_readme(self, environment):
         # Opt-in migration: the operator pins trusted code outside the checkout.
@@ -388,9 +420,27 @@ class Queue:
                 'Expected exactly the personal-fork publication URL; pushurl/rewrite/additional destination rejected')
         return urls[0]
 
+    def check_config_before_publication(self):
+        if self.spec.get('config_admission') is None: return
+        require(self.spec['policy']=='recovery' and self.record.get('validation_request'), 'missing_config_validation', '')
+        environment=Path(self.record['environment_path'])
+        require(digest(environment)==self.spec['environment_sha256'] and digest(self.record['validator_path'])==self.record['validator_sha256'], 'stale_config_admission', '')
+        data=json.loads(environment.read_text())
+        entry=data['strict_loss_guard']['adapter']
+        adapter=Path(entry['path'])
+        require(adapter.is_absolute() and adapter.is_file() and not adapter.is_symlink() and not adapter.resolve().is_relative_to(self.repo.resolve()) and digest(adapter)==entry['sha256'], 'stale_config_adapter', '')
+        request=Path(self.record['validation_request'])
+        require(digest(request)==self.record.get('validation_request_sha256'), 'stale_config_request', '')
+        values=json.loads(request.read_text())
+        require(values.get('prs')==self.spec['prs'] and values.get('commits')==self.record['commits'], 'stale_config_request', '')
+        require(values.get('candidate')==self.record['candidate'] and values.get('tree')==self.record['tree'] and values.get('target')==self.spec['target'] and values.get('config_admission')==self.spec['config_admission'] and values.get('environment')==str(environment), 'stale_config_request', '')
+        result=subprocess.run([sys.executable,'-I',str(adapter),'--check-config',str(request)],capture_output=True,text=True)
+        require(result.returncode==0 and digest(adapter)==entry['sha256'] and digest(environment)==self.spec['environment_sha256'] and digest(request)==self.record['validation_request_sha256'], 'stale_config_admission', result.stderr[-2000:])
+
     def publish(self):
         self.live_guard()
         self.publication_destination()
+        self.check_config_before_publication()
         # The lease is a narrowly scoped expected-old compare-and-swap. Prove
         # ancestry independently so this operation cannot discard any history.
         self.git('merge-base', '--is-ancestor', self.spec['target'], self.record['candidate'])

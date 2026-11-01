@@ -8,6 +8,7 @@ import importlib.util
 import json
 from pathlib import Path
 import subprocess
+import sys
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -189,6 +190,61 @@ class QueueTests(unittest.TestCase):
                         self.assertEqual(queue.record['state'], 'planned')
                     else:
                         self.rejects('source_maintenance_scope', queue.construct)
+
+    def test_recovery_config_requires_exact_operator_packet_at_construction(self):
+        from tools import merge_batch_config_delta as c
+        git(self.author,'checkout','main')
+        base=(b'from typing import Dict, Any\nGAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {\n'
+              b'    "other.cpp": {"cflags": []},\n}\n')
+        config=self.author/'configure.py';config.write_bytes(base);config.chmod(0o755)
+        git(self.author,'add','configure.py');git(self.author,'commit','-m','base config');git(self.author,'push','origin','main')
+        target=git(self.author,'rev-parse','HEAD');git(self.author,'checkout','-b','config-feature')
+        config.write_bytes(base.replace(b'    "other.cpp"',b'    "pso/misc/TOTrapAncient01.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},\n    "other.cpp"'))
+        git(self.author,'commit','-qam','config');git(self.author,'push','origin','config-feature');head=git(self.author,'rev-parse','HEAD')
+        batch=copy.deepcopy(self.batch);batch['target']=target
+        pr=batch['prs'][0];pr.update(head=head,head_ref='config-feature',base_sha=target,review_base=target)
+        pr['review'].update(head=head,base=target)
+        state=self.root/'config-plan';state.mkdir();queue=LocalQueue(batch,state,LocalAPI(self.remote,batch))
+        with patch.object(m,'REMOTE',str(self.remote)):
+            self.rejects('invalid_config_admission',queue.construct)
+            candidate=git(queue.repo,'rev-parse','HEAD');tree=git(queue.repo,'rev-parse','HEAD^{tree}')
+            commits=[{'pr':1,'commit':candidate,'tree':tree,'head':head}]
+            checker=Path(c.__file__).resolve();tool=self.root/'reviewed-tool';tool.write_text('fixture')
+            td=self.root/'config-tool-dir';td.mkdir();(td/'compiler').write_text('compiler')
+            pin=lambda x:{'path':str(x),'sha256':m.digest(x)}
+            inventory=[['compiler',m.digest(td/'compiler'),(td/'compiler').stat().st_mode & 0o777]]
+            dirpin={'path':str(td),'sha256':hashlib.sha256(json.dumps(inventory,separators=(',',':')).encode()).hexdigest()}
+            pins={name:pin(tool) for name in c.PIN_NAMES}
+            pins.update(checker=pin(checker),python=pin(Path(sys.executable).resolve()),git=pin(Path('/usr/bin/git').resolve()),compiler=pin(td/'compiler'))
+            change=c.step(queue.repo,target,candidate)
+            packet={'version':1,'repository':c.REPO,'policy':'recovery','target':target,'candidate':candidate,'tree':tree,
+                    'prs':[{'number':1,'head':head,'review_base':target,'review':{'path':str(self.review),'sha256':m.digest(self.review)}}],
+                    'steps':[change],'cumulative':change,'pins':pins,'effective_argv':[str(tool),str(td/'compiler'),'-inline','off,deferred'],
+                    'configure_paths':{name:(dirpin if name in ('compilers','binutils') else pin(tool)) for name in ('dtk','objdiff','wrapper','compilers','binutils')},
+                    'originals':{role:{'tree_sha256':'a'*64,'dol_sha256':'b'*64} for role in ('baseline','candidate')},
+                    'ordered_inputs':{role:{'ordered_inputs_sha256':'c'*64,'source_inputs':1,'fallback_inputs':0} for role in ('baseline','candidate')},
+                    'verdict':'pass','independent':True,'reviewer':'independent fixture'}
+            path=self.root/'config-packet.json';path.write_text(json.dumps(packet))
+            batch['config_admission']={'checker':pin(checker),'packet':pin(path)}
+            queue.construct();self.assertEqual(queue.record['candidate'],candidate)
+            self.assertEqual(queue.record['config_plan']['packet_sha256'],m.digest(path))
+            path.write_text('{}');self.rejects('stale_config_admission',queue.live_guard)
+
+    def test_config_prepublish_rechecks_pinned_adapter_and_request(self):
+        self.q.execute('plan')
+        config={'checker':{'path':str(self.review),'sha256':m.digest(self.review)},'packet':{'path':str(self.review),'sha256':m.digest(self.review)}}
+        self.batch['config_admission']=config
+        adapter=self.root/'config-adapter.py';adapter.write_text('import sys\nassert sys.argv[1] == "--check-config"\n')
+        environment=self.root/'config-env.json';environment.write_text(json.dumps({'strict_loss_guard':{'adapter':{'path':str(adapter),'sha256':m.digest(adapter)}}}))
+        validator=self.root/'guard.py';validator.write_text('# fixture')
+        self.batch['environment_sha256']=m.digest(environment)
+        request=self.root/'request.json';request.write_text(json.dumps({'candidate':self.q.record['candidate'],'tree':self.q.record['tree'],
+               'target':self.batch['target'],'config_admission':config,'environment':str(environment),
+               'prs':self.batch['prs'],'commits':self.q.record['commits']}))
+        self.q.record.update(environment_path=str(environment),validator_path=str(validator),validator_sha256=m.digest(validator),
+                             validation_request=str(request),validation_request_sha256=m.digest(request))
+        self.q.check_config_before_publication()
+        request.write_text('{}');self.rejects('stale_config_request',self.q.check_config_before_publication)
 
     def test_validation_wrong_tree(self):
         self.rejects('wrong_validation_tree', lambda: m.check_validation(self.batch, self.result, 'f' * 40))
