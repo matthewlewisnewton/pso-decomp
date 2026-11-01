@@ -67,7 +67,8 @@ The frozen repair's update is still **892/900 bytes**, **98.26667% instruction
 similarity**, with **zero new exact code gain and zero actual source-link gain**.
 Current work targets the final constant-address/loop-zero initialization cluster.
 
-The following private GC/2.6 probes used the frozen native-repair source context,
+This execution session ran 21 private GC/2.6 probes using the frozen native-repair
+source context,
 strict illegal-pragma diagnostics, unique output objects, and source/object/tool/
 reference hashes. All compiled successfully and preserved the nine prior exact
 functions in diagnostic name-mapped comparisons. None is adopted:
@@ -80,6 +81,16 @@ functions in diagnostic name-mapped comparisons. None is adopted:
 | Level 3, common-subexpression optimization disabled | 892 | 98.18667% |
 | Separate processed-count and cursor induction variables | 892 | 97.888885% |
 | Same counted cursor with alternate initializer/increment order | 892 | 97.835556% |
+| One-based cursor with an inclusive bound (default/strict on/strict off) | 908 | 98.71555% |
+| Zero-based cursor with an inclusive bound (three settings) | 896 | 97.77778% |
+| Callback-compatible angle-word storage views (three variants) | 892 | 98.26667% |
+| Typed unsigned byte cursor (three settings) | 896 | 97.37334% |
+| In-class/explicit-inline virtual member emission (three variants) | 892 | 98.26667% |
+
+The inline-member trials emitted the update as a weak out-of-line function; its
+instruction body still had the same shortfall, and emission order also changed.
+No trial produced an exact update or was adopted. The source in the update branch
+therefore remains the frozen PR178 implementation.
 
 These results exclude only the tested forms. Earlier native pre-increment code
 reached 900 bytes and the original two-step factor-address load, but still differed
