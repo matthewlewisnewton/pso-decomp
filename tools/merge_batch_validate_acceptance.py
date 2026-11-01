@@ -32,9 +32,22 @@ def canonical_hash(value):
     return hashlib.sha256(json.dumps(value, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
 
 
+def load_git_boundary(entry):
+    path=pinned(entry)
+    module=types.ModuleType('_reviewed_queue_cli');module.__file__=str(path)
+    exec(compile(path.read_bytes(),str(path),'exec'),module.__dict__)
+    return module._safety
+
+
+_safety = None
+
 def git(repo, *args):
-    return subprocess.check_output(['git', '-c', 'core.hooksPath=/dev/null', *args],
-                                   cwd=repo, text=True).strip()
+    global _safety
+    if _safety is None:
+        path=Path(__file__).resolve().with_name('merge_batch.py')
+        _safety=load_git_boundary({'path':str(path),'sha256':digest(path)})
+    _safety.boundary(Path(repo).resolve())
+    return _safety.git(repo,*args).decode().strip()
 
 
 def checked_root(entry):
@@ -115,6 +128,26 @@ def load_contract(request, environment):
     require(roots['baseline']['commit'] == request['target'], 'wrong_baseline_commit')
     require(roots['candidate']['commit'] == request['candidate']
             and roots['candidate']['tree'] == request['tree'], 'wrong_candidate_commit')
+    if request.get('config_admission') is not None:
+        global _safety
+        checkout=Path(request['checkout']).resolve()
+        all_roots=[checkout,*(Path(entry['path']).resolve() for entry in roots.values())]
+        config=request['config_admission']
+        checker_path=pinned(config['checker'])
+        require(all(not checker_path.resolve().is_relative_to(root) for root in all_roots), 'checker_inside_root')
+        checker=types.ModuleType('_preflight_config_checker');checker.__file__=str(checker_path)
+        exec(compile(checker_path.read_bytes(),str(checker_path),'exec'),checker.__dict__)
+        packet=checker.read_packet(config['packet'],all_roots)
+        require(packet['pins']['checker']==config['checker'] and packet['pins']['cli']==request['cli'], 'stale_config_runtime')
+        _safety=load_git_boundary(packet['pins']['cli'])
+        _safety.boundary(checkout)
+        _safety.raw_tree(checkout,request['candidate'])
+        _safety.ignored_inputs(checkout,generated=False)
+        for entry in roots.values():
+            root=Path(entry['path']).resolve()
+            _safety.boundary(root)
+            _safety.raw_tree(root,entry['commit'])
+            _safety.ignored_inputs(root,generated=True)
     paths = {role: checked_root(entry) for role, entry in roots.items()}
     require(not paths['baseline'].is_relative_to(paths['candidate'])
             and not paths['candidate'].is_relative_to(paths['baseline']), 'overlapping_prepared_roots')
@@ -196,12 +229,20 @@ def validate(request):
     env.pop('GITHUB_STEP_SUMMARY', None)
     env['PYTHONDONTWRITEBYTECODE'] = '1'
     env['PSO_BUILD_NINJA'] = str(tools['ninja'])
+    if request.get('config_admission') is not None:
+        env['PSO_CONFIG_PACKET_PATH']=request['config_admission']['packet']['path']
+        env['PSO_CONFIG_PACKET_SHA256']=request['config_admission']['packet']['sha256']
+        request_file=Path(sys.argv[1]).resolve()
+        require(request_file.is_file() and json.loads(request_file.read_text())==request, 'stale_config_request')
+        env['PSO_CONFIG_REQUEST_PATH']=str(request_file)
+        env['PSO_CONFIG_REQUEST_SHA256']=digest(request_file)
     # Existing prepared graph commands use independently reviewed pinned launchers.
     # This new isolated launcher is only for post-build checks, never configure.
+    base.PYTHON_DRIVER = 'import sys; sys.dont_write_bytecode=True\n' + base.PYTHON_DRIVER
     launcher = base.python_launcher(state, list(roots.values()))
     env['PSO_QUEUE_PYTHON'] = str(launcher)
     candidate = roots['candidate']
-    base.run([sys.executable, '-I', '-m', 'compileall', '-q', 'configure.py', 'tools'], candidate, env)
+    base.run([sys.executable, '-I', '-B', '-c', "import pathlib; [compile(p.read_bytes(),str(p),'exec') for p in [pathlib.Path('configure.py'),*pathlib.Path('tools').rglob('*.py')]]"], candidate, env)
     base.run([sys.executable, '-I', '-c', base.PYTHON_DRIVER, str(candidate), '--queue-tests'], candidate, env)
     results = {}
     for role in ('baseline', 'candidate'):

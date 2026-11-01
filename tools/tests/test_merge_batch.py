@@ -198,6 +198,32 @@ class QueueTests(unittest.TestCase):
             self.rejects('unsafe_local_git_config',self.q.construct)
         self.assertFalse(marker.exists())
 
+    def test_dirty_checkout_filter_never_runs_before_boundary(self):
+        git(self.q.repo,'checkout','main')
+        marker=self.root/'filter-callback';script=self.root/'filter.sh'
+        script.write_text('#!/bin/sh\ntouch '+str(marker)+'\ncat\n');script.chmod(0o755)
+        (self.q.repo/'file').write_text('XXXX\n')
+        (self.q.repo/'.git/info/attributes').write_text('file filter=fixture\n')
+        git(self.q.repo,'config','filter.fixture.clean',str(script))
+        git(self.q.repo,'config','filter.fixture.process',str(script))
+        with patch.object(m,'REMOTE',str(self.remote)):
+            self.rejects('unsafe_local_git_config',self.q.construct)
+        self.assertFalse(marker.exists())
+
+    def test_global_and_environment_filter_configuration_is_ignored(self):
+        root=self.root/'env-fixture';root.mkdir();git(root,'init','-q')
+        git(root,'config','user.name','Fixture');git(root,'config','user.email','fixture@localhost')
+        (root/'.gitattributes').write_text('file filter=fixture\n');(root/'file').write_text('test\n')
+        git(root,'add','.gitattributes','file');git(root,'commit','-qm','fixture')
+        (root/'file').write_text('xxxx\n')
+        marker=self.root/'global-filter';script=self.root/'global.sh'
+        script.write_text('#!/bin/sh\ntouch '+str(marker)+'\ncat\n');script.chmod(0o755)
+        config=self.root/'global.config';config.write_text('[filter "fixture"]\n clean = '+str(script)+'\n')
+        with patch.dict(os.environ,{'GIT_CONFIG_GLOBAL':str(config),'GIT_CONFIG_COUNT':'1','GIT_CONFIG_KEY_0':'filter.fixture.clean','GIT_CONFIG_VALUE_0':str(script)}):
+            m._safety.boundary(root.resolve())
+            self.assertTrue(m._safety.git(root,'status','--porcelain'))
+        self.assertFalse(marker.exists())
+
     def test_recovery_rejects_gratuitous_config_packet(self):
         self.batch['config_admission']={'checker':{'path':str(self.review),'sha256':m.digest(self.review)},
                                         'packet':{'path':str(self.review),'sha256':m.digest(self.review)}}

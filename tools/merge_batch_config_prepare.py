@@ -29,6 +29,18 @@ def load_checker(path, expected, roots):
     return module
 
 
+def load_git_boundary(packet, roots):
+    entry=packet['pins']['cli']
+    path=Path(entry['path'])
+    if not path.is_absolute() or path.is_symlink() or path.resolve()!=path or any(path.is_relative_to(Path(root).resolve()) for root in roots):
+        raise ValueError('invalid trusted CLI path')
+    raw=path.read_bytes()
+    if hashlib.sha256(raw).hexdigest()!=entry['sha256']: raise ValueError('stale trusted CLI')
+    module=types.ModuleType('_reviewed_queue_cli');module.__file__=str(path)
+    exec(compile(raw,str(path),'exec'),module.__dict__)
+    return module._safety
+
+
 def original_tree_sha256(root):
     base=root/'orig/GPOE8P/files'
     if base.is_symlink() or base.resolve()!=base or not base.is_dir(): raise ValueError('missing original tree')
@@ -61,8 +73,9 @@ def validate_tracked_tree(checker, root, commit):
         if oid != blob or bool(path.stat().st_mode & 0o111) != (mode==b'100755'): raise ValueError('import closure differs')
 
 
-def validate_checkout(checker, root, expected_commit, expected_tree, original_sha256, original_tree_hash, *, fresh):
+def validate_checkout(checker, root, expected_commit, expected_tree, original_sha256, original_tree_hash, *, fresh, safety):
     if not root.is_absolute() or root.resolve()!=root or not root.is_dir(): raise ValueError('invalid root')
+    safety.boundary(root); safety.raw_tree(root,expected_commit); safety.ignored_inputs(root,generated=not fresh)
     if checker.git_bytes(root,'rev-parse','HEAD').strip().decode()!=expected_commit or checker.git_bytes(root,'rev-parse','HEAD^{tree}').strip().decode()!=expected_tree: raise ValueError('stale checkout')
     if checker.git_bytes(root,'status','--porcelain','--untracked-files=all'): raise ValueError('dirty checkout')
     validate_tracked_tree(checker,root,expected_commit)
@@ -96,6 +109,9 @@ def prepare(request, checker_path, checker_sha256, *, lock_path=LEGACY_LOCK):
     for key in ('original_sha256','original_tree_sha256'):
         checker.full_sha(request[key],checker.SHA256)
     expected=request['target'] if request['role']=='baseline' else request['candidate']
+    initial_packet=checker.read_packet(request['packet'],[root])
+    safety=load_git_boundary(initial_packet,[root])
+    safety.boundary(root)
     expected_tree=checker.git_bytes(root,'rev-parse',expected+'^{tree}').strip().decode()
     if request['role']=='candidate' and expected_tree!=request['tree']: raise ValueError('candidate tree mismatch')
     def preflight(fresh):
@@ -111,24 +127,49 @@ def prepare(request, checker_path, checker_sha256, *, lock_path=LEGACY_LOCK):
         if plan != expected_plan: raise ValueError('stale plan receipt')
         original=packet['originals'][request['role']]
         if original != {'dol_sha256':request['original_sha256'],'tree_sha256':request['original_tree_sha256']}: raise ValueError('original packet mismatch')
+        safety=load_git_boundary(packet,[root]); safety.boundary(root)
         current.verify_plan(root,packet,request['target'],request['candidate'],request['tree'],request['prs'],request['commits'])
-        validate_checkout(current,root,expected,expected_tree,request['original_sha256'],request['original_tree_sha256'],fresh=fresh)
+        validate_checkout(current,root,expected,expected_tree,request['original_sha256'],request['original_tree_sha256'],fresh=fresh,safety=safety)
         return current,packet
     preflight(True)
     with open(lock_path,'a') as lock:
         fcntl.flock(lock,fcntl.LOCK_EX)
         checker,packet=preflight(True)  # revalidate after waiting, immediately before configure
         launcher=checker.file_pin(packet['pins']['launcher'],[root])
+        if Path(sys.executable).resolve()!=Path('/usr/bin/python3').resolve(): raise ValueError('graph launcher requires pinned system Python')
         paths={k:str(checker.path_pin(v,[root])) for k,v in packet['configure_paths'].items()}
-        command=[str(launcher),'configure.py']
+        base_path=checker.file_pin(packet['pins']['base_validator'],[root])
+        base=types.ModuleType('_pinned_config_driver');base.__file__=str(base_path)
+        exec(compile(base_path.read_bytes(),str(base_path),'exec'),base.__dict__)
+        code='import sys; sys.dont_write_bytecode=True\n'+base.PYTHON_DRIVER
+        command=[str(sys.executable),'-I','-B','-c',code,str(root),'configure.py']
         for key in ('dtk','objdiff','wrapper','compilers','binutils'):command += ['--'+key,paths[key]]
         ninja=checker.file_pin(packet['pins']['ninja'],[root])
-        env={'PATH':str(ninja.parent)+':/usr/bin:/bin','PSO_BUILD_NINJA':str(ninja),'PYTHONDONTWRITEBYTECODE':'1','PSO_QUEUE_PYTHON':str(launcher),'LC_ALL':'C'}
+        env={'PATH':str(ninja.parent)+':/usr/bin:/bin','PSO_BUILD_NINJA':str(ninja),'PYTHONDONTWRITEBYTECODE':'1','PSO_QUEUE_PYTHON':str(launcher),'PSO_CONFIG_PACKET_PATH':request['packet']['path'],'PSO_CONFIG_PACKET_SHA256':request['packet']['sha256'],'LC_ALL':'C'}
         subprocess.run(command,cwd=root,env=env,check=True,pass_fds=(lock.fileno(),))
         checker,after=preflight(False)
-        if after != packet: raise ValueError('packet changed during configure')
+        if after != packet: raise ValueError('packet changed during bootstrap configure')
         graph=root/'build.ninja'
-        if graph.is_symlink() or not graph.is_file(): raise ValueError('missing configured graph')
+        if graph.is_symlink() or not graph.is_file(): raise ValueError('missing bootstrap graph')
+        split_config=root/'config/GPOE8P/psov3/config.yml'
+        if split_config.is_symlink() or split_config.resolve()!=split_config or not split_config.is_file(): raise ValueError('missing split configuration')
+        subprocess.run([paths['dtk'],'dol','split',str(split_config),'build/GPOE8P'],cwd=root,env=env,check=True,pass_fds=(lock.fileno(),))
+        checker,after=preflight(False)
+        if after != packet: raise ValueError('packet changed during split')
+        generated=root/'build/GPOE8P/config.json'
+        if generated.is_symlink() or not generated.is_file(): raise ValueError('missing split output')
+        split_hash=checker.tree_digest(root/'build/GPOE8P')
+        # Every configure execution has a fresh packet/tree/original/tool preflight.
+        subprocess.run(command,cwd=root,env=env,check=True,pass_fds=(lock.fileno(),))
+        checker,after=preflight(False)
+        if after != packet: raise ValueError('packet changed during final configure')
+        if checker.tree_digest(root/'build/GPOE8P')!=split_hash: raise ValueError('split outputs changed during final configure')
+        if graph.is_symlink() or not graph.is_file(): raise ValueError('missing final graph')
+        before=hashlib.sha256(graph.read_bytes()).hexdigest()
+        dry=subprocess.run([str(ninja),'-n','-v','build.ninja'],cwd=root,env=env,check=True,capture_output=True,text=True,pass_fds=(lock.fileno(),))
+        if 'no work to do' not in dry.stdout or hashlib.sha256(graph.read_bytes()).hexdigest()!=before: raise ValueError('graph not stable')
+        checker,after=preflight(False)
+        if after != packet: raise ValueError('packet changed after graph check')
         result={'version':1,'prepared_config':True,'packet_sha256':request['packet']['sha256'],
                 'root':str(root),'role':request['role'],'target':request['target'],'candidate':request['candidate'],
                 'tree':request['tree'],'root_commit':expected,'root_tree':expected_tree,
