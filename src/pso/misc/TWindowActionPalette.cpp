@@ -15,6 +15,7 @@ typedef char palette_scale_offset[offsetof(TWindowActionPalette, scale) == 0x70 
 typedef char palette_size[sizeof(TWindowActionPalette) == 0x78 ? 1 : -1];
 
 #include "types.h"
+#include "pso/misc/TWindowDrawContext.h"
 #include "pso/item/TItemMag.h"
 #include "pso/misc/TMainCursor.h"
 #include "pso/misc/TWindowSubComCard.h"
@@ -112,7 +113,7 @@ extern const f32 lbl_805DCA94;
 extern const f32 lbl_805DCA98;
 extern const f32 lbl_805DCA9C;
 s32 TObjPlayer__sub_80354C7C(s32);
-s32 setup_window_draw_context__13TUnk_804CE018Fl(void *, void *);
+TWindowDrawContext *setup_window_draw_context__13TUnk_804CE018Fl(void *, s32);
 void draw_visible_window_entries(void *, void *, int);
 void __dl__7TObjectFPv(void *);
 void __destroy_arr(void *, void *, int, int);
@@ -235,7 +236,7 @@ void TWindowActionPalette::draw_frame(int arg1) {
 #pragma pop
 
 void TWindowActionPalette::render() {
-    s32 context = setup_window_draw_context__13TUnk_804CE018Fl(this, &scale);
+    s32 context = (s32)setup_window_draw_context__13TUnk_804CE018Fl(this, (s32)&scale);
     draw_visible_window_entries(this, &children, context);
     draw_frame(context);
 }
