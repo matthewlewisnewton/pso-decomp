@@ -1,3 +1,4 @@
+#include "pso/misc/CameraHelpers.h"
 #include "pso/system/MatrixVectorArray.h"
 #include "pso/animation/MotionContext.h"
 #include "pso/math/FloatRounding.h"
@@ -371,7 +372,7 @@ struct Dragon_80021490 {
 #pragma inline_depth(1)
 #pragma auto_inline off
 #pragma dont_inline off
-struct Cam_80022EE0 { u8 mode; u8 sub; s16 c; f32 d; f32 e; };
+
 
 struct Eff_80022EE0 { u32 w[5]; };
 
@@ -473,7 +474,7 @@ void TBoss1Dragon__sub_800275BC(u8 *arg0, s32 arg1, u8 *arg2, s32 arg3);
 s32 beginHeightTransition__12TBoss1DragonFv(void *);
 s32 restore_player_cameras(void);
 s32 activate_camera_mode(s32);
-s32 set_scripted_camera_pose(void *, void *, void *);
+
 void rotate_xz_pair_by_angle(f32 *arg0, f32 *arg1, s32 arg2);
 s32 reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(void *, int, int, int);
 s32 vec3_add_to(void *, void *);
@@ -2271,7 +2272,7 @@ void TBoss1Dragon::update_fade_state(u32 arg1) {
 void update_death_state__12TBoss1DragonFv(u8 *arg0, u32 arg1) {
     Eff_80022EE0 eff1;
     Eff_80022EE0 eff2;
-    Cam_80022EE0 cam;
+    CameraPlayback cam;
     Vec_80022EE0 rot;
     Vec_80022EE0 v;
     switch (arg1) {
@@ -2289,24 +2290,24 @@ void update_death_state__12TBoss1DragonFv(u8 *arg0, u32 arg1) {
         TWindowCtrl::init_all_slots();
         switch (isV2Mode__12TBoss1DragonFv()) {
         case 0:
-            cam.sub = 0;
-            cam.mode = 2;
-            cam.c = 0;
-            cam.d = (0.0f);
-            cam.e = (0.5f);
+            cam.index = 0;
+            cam.bank = 2;
+            cam.flags = 0;
+            cam.frame = (0.0f);
+            cam.frame_step = (0.5f);
             activate_camera_mode(5);
-            ((TCameraCtrl *)(&cam))->cache_target_and_forward(0x31C7);
-            set_scripted_camera_pose(arg0 + 0x38, arg0 + 0x38, arg0 + 0x5C);
+            cache_target_and_forward__11TCameraCtrlFl(&cam, 0x31C7);
+            set_scripted_camera_pose(&static_cast<TBoss1Dragon*>(static_cast<void*>(arg0))->position, &static_cast<TBoss1Dragon*>(static_cast<void*>(arg0))->position, &static_cast<TBoss1Dragon*>(static_cast<void*>(arg0))->rotation);
             break;
         case 1:
-            cam.sub = 1;
-            cam.mode = 2;
-            cam.c = 0;
-            cam.d = (0.0f);
-            cam.e = (0.5f);
+            cam.index = 1;
+            cam.bank = 2;
+            cam.flags = 0;
+            cam.frame = (0.0f);
+            cam.frame_step = (0.5f);
             activate_camera_mode(5);
-            ((TCameraCtrl *)(&cam))->cache_target_and_forward(0x3333);
-            set_scripted_camera_pose(arg0 + 0x38, arg0 + 0x38, arg0 + 0x5C);
+            cache_target_and_forward__11TCameraCtrlFl(&cam, 0x3333);
+            set_scripted_camera_pose(&static_cast<TBoss1Dragon*>(static_cast<void*>(arg0))->position, &static_cast<TBoss1Dragon*>(static_cast<void*>(arg0))->position, &static_cast<TBoss1Dragon*>(static_cast<void*>(arg0))->rotation);
             break;
         }
         break;

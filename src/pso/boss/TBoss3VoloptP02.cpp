@@ -1,3 +1,4 @@
+#include "pso/misc/CameraHelpers.h"
 #include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
@@ -73,8 +74,7 @@ void vec3_add_to(void *, void *);
 s32 restore_player_cameras(void);
 s32 activate_camera_mode(int, f32);
 s32 TCameraCtrl__sub_8006A044(int, f32);
-s32 set_scripted_camera_pose(void *, void *, void *);
-u8 *get_scripted_camera_playback(s16);
+
 s32 TObjPlayer__sub_801BA42C();
 s32 approach_angle_limited(s32, s32, s32);
 u8 *get_player_by_client_id(s32);
@@ -124,13 +124,7 @@ struct VoloptBreakupParams {
     f32 values[6];
 };
 
-struct VoloptCameraCommand {
-    s8 a;
-    s8 b;
-    s16 c;
-    f32 d;
-    f32 e;
-};
+
 
 class ViewCulledObject {
 public:
@@ -1122,7 +1116,7 @@ void TBoss3VoloptP02::update_fade_state() {
 #pragma pop
 
 void TBoss3VoloptP02::update_death_sequence() {
-    VoloptCameraCommand cam;
+    CameraPlayback cam;
     switch ((s32)state) {
     case 0:
         destroy_children();
@@ -1134,21 +1128,21 @@ void TBoss3VoloptP02::update_death_sequence() {
         TBoss3Volopt::start_rumble();
         break;
     case 1:
-        cam.b = 1;
-        cam.a = 2;
-        cam.c = 0;
-        cam.d = 0.0f;
-        cam.e = 1.0f;
+        cam.index = 1;
+        cam.bank = 2;
+        cam.flags = 0;
+        cam.frame = 0.0f;
+        cam.frame_step = 1.0f;
         activate_camera_mode(5, 0.0f);
-        ((TCameraCtrl *)&cam)->cache_target_and_forward(0x160A);
+        cache_target_and_forward__11TCameraCtrlFl(&cam, 0x160A);
         this->rotation.yaw = 0;
-        set_scripted_camera_pose(&boss3_volopt_spawn_pos, &boss3_volopt_spawn_pos, &this->rotation.pitch);
+        set_scripted_camera_pose(&boss3_volopt_spawn_pos, &boss3_volopt_spawn_pos, &this->rotation);
         TObjPlayer::freeze_all_players();
         TWindowCtrl::init_all_slots();
         state = 2;
         break;
     case 2:
-        if ((*(u16 *)(get_scripted_camera_playback((*(s16 *)&timer)--) + 2) & 1) || *(s16 *)&timer < 0) {
+        if ((((*(s16 *)&timer)--, get_scripted_camera_playback())->flags & 1) || *(s16 *)&timer < 0) {
             restore_player_cameras();
             TWindowCtrl::init_all_slots2();
             TObjPlayer__sub_801BA42C();

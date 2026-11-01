@@ -19,13 +19,7 @@ struct NJS_OBJECT;
 #include <stddef.h>
 inline void *operator new[](size_t, void *p) { return p; }
 #include "pso/TParticleCtrl.h"
-struct Stack_801A7310 {
-    s8 sp8;
-    s8 sp9;
-    s16 spA;
-    f32 spC;
-    f32 sp10;
-};
+
 
 struct RecoveredGlobal_801A7310_TCameraCtrl__data_804FF628 {
     s32 value;
@@ -125,11 +119,6 @@ typedef char RecoveredGlobal_801A7310_TCameraCtrl__data_804FF628_size[sizeof(Rec
 
 void TUnk_804C3248::begin_photon_summon_camera(s8 arg1) {
     u8 *arg0 = (u8 *)this;
-    typedef char sp8_offset[(offsetof(Stack_801A7310, sp8) == 0x0) ? 1 : -1];
-    typedef char sp9_offset[(offsetof(Stack_801A7310, sp9) == 0x1) ? 1 : -1];
-    typedef char spA_offset[(offsetof(Stack_801A7310, spA) == 0x2) ? 1 : -1];
-    typedef char spC_offset[(offsetof(Stack_801A7310, spC) == 0x4) ? 1 : -1];
-    typedef char sp10_offset[(offsetof(Stack_801A7310, sp10) == 0x8) ? 1 : -1];
     CameraPlayback stack;
     stack.index = arg1;
     if (get_current_floor_area() == AREA_DARK_FALZ) stack.bank = 1; else stack.bank = 0;
@@ -427,7 +416,7 @@ void TUnk_804C3248::update_state() {
         update_photon_blast_camera_pose(this, 1.0f);
         return;
     case 1:
-        if ((*(u16 *)((s8 *)(get_scripted_camera_playback()) + 2) & 1) || (TCameraCtrl__sub_8006A5DC() != 5)) {
+        if ((get_scripted_camera_playback()->flags & 1) || (TCameraCtrl__sub_8006A5DC() != 5)) {
             queue_destruction__7TObjectFv(this);
         }
         return;
