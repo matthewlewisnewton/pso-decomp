@@ -59,7 +59,6 @@ void *find_entity_by_id(u16 id);
 u8 *construct_photon_magic_square_normal(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 extern "C" {
 
-s32 spawn_photon_blast_attachment_effects(void *, int);
 u8 *__nw__7TObjectFUl(s32, f32);
 extern const f64 lbl_80446DE8;
 
@@ -139,7 +138,7 @@ void TPhotonLeilla::run_task() {
         ((TUnk_804C3248 *)arg0)->begin_photon_summon_camera(2);
         *(s32 *)&this->m_1ac = 0;
         ((TObjMotion *)arg0)->set_field_b8(0);
-        spawn_photon_blast_attachment_effects(arg0, 4);
+        spawn_photon_blast_attachment_effects(this, 4);
     }
     *(s16 *)&this->m_190 = (s16) this->requested_action;
     ((TUnk_804C3248 *)arg0)->update_state();
@@ -221,7 +220,6 @@ struct Game_801AC808 { u8 pad[0x42C]; Res_801AC808 *res; s32 f430; };
 
 extern "C" {
 void *find_entity_by_id(u16 id);
-s32 spawn_photon_blast_attachment_effects(void *, int);
 void sub_801AC444__13TPhotonLeillaFv(void *, u8);
 }
 u8 *construct_photon_magic_square_normal(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
@@ -300,7 +298,7 @@ void *TPhotonLeilla__ct(Leilla_801AC808 *self, Pkt_801AC808 *pkt) {
         if (o != NULL) {
             construct_photon_magic_square_normal((u8 *)o, (s32)self, 4, (s32)&v, 0x78);
         }
-        spawn_photon_blast_attachment_effects(self, 4);
+        spawn_photon_blast_attachment_effects((TPhotonLeilla *)self, 4);
         play_cue_stream_file((s32)lbl_80446DF8);
     } else {
         spawn_photon_blast_opening_effects(4, F_801AC808(self, u16, 0x17C));

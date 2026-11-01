@@ -149,7 +149,6 @@ struct Stack_801AB018 {
 
 extern "C" {
 void *find_entity_by_id(u16 id);
-s32 spawn_photon_blast_attachment_effects(void *, int);
 }
 u8 *construct_photon_magic_square_normal(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 extern "C" {
@@ -190,7 +189,7 @@ void TPhotonFarlla::run_task() {
         ((TUnk_804C3248 *)arg0)->begin_photon_summon_camera(1);
         *(s32 *)&this->unk_1A4 = 0;
         ((TObjMotion *)arg0)->set_field_b8(0);
-        spawn_photon_blast_attachment_effects(arg0, 0);
+        spawn_photon_blast_attachment_effects(this, 0);
     }
     this->m_194 = (s16) this->requested_action;
     ((TUnk_804C3248 *)arg0)->update_state();
@@ -371,7 +370,7 @@ u8 *TPhotonFarlla__ct(u8 *arg0, u8 *arg1) {
         if (p != NULL) {
             construct_photon_magic_square_normal((u8 *)p, (s32)arg0, 0, (s32)&pos, 0x78);
         }
-        spawn_photon_blast_attachment_effects(arg0, 0);
+        spawn_photon_blast_attachment_effects((TPhotonFarlla *)arg0, 0);
         play_cue_stream_file((s32)lbl_80446D40);
     } else {
         spawn_photon_blast_opening_effects(0, ((TPhotonFarlla *)arg0)->m_17c);

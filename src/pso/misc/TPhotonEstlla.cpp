@@ -78,7 +78,6 @@ struct Self_801AA818 {
 
 extern "C" {
 void *find_entity_by_id(u16 id);
-s32 spawn_photon_blast_attachment_effects(void *, int);
 }
 u8 *construct_photon_magic_square_normal(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 extern "C" {
@@ -194,7 +193,7 @@ void TPhotonEstlla::run_task() {
         ((TUnk_804C3248 *)arg0)->begin_photon_summon_camera(0);
         *(s32 *)&this->m_1a0 = 0;
         ((TObjMotion *)arg0)->set_field_b8(0);
-        spawn_photon_blast_attachment_effects(arg0, 1);
+        spawn_photon_blast_attachment_effects(this, 1);
     }
     *(s16 *)&this->m_190 = (s16) this->requested_action;
     ((TUnk_804C3248 *)arg0)->update_state();
@@ -328,7 +327,7 @@ u8 *TPhotonEstlla__ct(u8 *photon_estlla, u8 *arg1) {
         if (p != NULL) {
             construct_photon_magic_square_normal((u8 *)p, (s32)photon_estlla, 1, (s32)&pos, 0x78);
         }
-        spawn_photon_blast_attachment_effects(photon_estlla, 1);
+        spawn_photon_blast_attachment_effects((TPhotonEstlla *)photon_estlla, 1);
         play_cue_stream_file((s32)lbl_80446D10);
     } else {
         spawn_photon_blast_opening_effects(1, ((TPhotonEstlla *)photon_estlla)->m_17c);

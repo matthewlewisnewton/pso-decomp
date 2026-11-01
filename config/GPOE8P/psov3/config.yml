@@ -2795,6 +2795,7 @@ force_active:
   - append_text__24TMessageWindowControllerFPCc
   - append_title_string__24TMessageWindowControllerFv
   - apply__16CameraViewParamsFv
+  - apply_all_default__8TFogCtrlFv
   - apply_armor_effect_flags__13TItemProArmorFv
   - apply_attack_stat_status__13TObjEneRe4BitFPv
   - apply_balance__19TWindowSoundBalanceFPv
@@ -3917,6 +3918,7 @@ force_active:
   - copy_debris_params__8TObjChipFPvPv
   - copy_drop_node__FPUcPUc
   - copy_effect_data__18TAdChrMoveEffectGCFPvPv
+  - copy_effect_params__FPUcPUc
   - copy_fog_entry__FPUcPUc
   - copy_from__11TMainCursorFPv
   - copy_from__13TItemAttackerFPv
@@ -11686,6 +11688,7 @@ force_active:
   - prune_weapon_attributes__9TItemDropFPvPv
   - psycho_wand_ct__FPUcPUcl
   - publish_light__15TEndingPicStageFv
+  - publish_photon_blast_joint_origins__FP10NJS_OBJECT
   - push_actors_out__12TBoss3VoloptFl
   - push_attack_target_entry__FPUcl
   - push_key_to_buffer__16TKeyBoardControlFUc
@@ -11726,6 +11729,7 @@ force_active:
   - quest_list_battle_stage_table
   - quest_list_challenge_stage_table
   - quest_vm_load__12TQuestListVMFv
+  - queue_deferred_photon_blast_hit__FUlllf
   - queue_destruction__12TObjGrassWebFv
   - queue_destruction__12TQuestThreadFPv
   - queue_destruction__13TObjDFHormingFPv
@@ -12288,6 +12292,7 @@ force_active:
   - reset_slime_tail_node_index
   - reset_spawn_after_hold__15TObjEneMe1GiGueFv
   - reset_state
+  - reset_state__10TSceneSoraFv
   - reset_state__13TObjWarnChimeFv
   - reset_state__14TObjEnePanBARAFv
   - reset_state__15TFontSmallLobbyFv
@@ -13107,6 +13112,7 @@ force_active:
   - setup_list__13TWindowSubMagFv
   - setup_mode_menu__21TAdMultiChgGameModeGCFPvl
   - setup_move_bounds__18TObjEneMe3SinowZoaFv
+  - setup_photon_blast_camera__13TUnk_804C3248Fv
   - setup_projection_tex_matrix__10TObjPlayerFv
   - setup_projection_texture__10TObjPlayerFlll
   - setup_sound__18TObjEnvSoundGlobalFv
@@ -14019,7 +14025,9 @@ force_active:
   - unregister_from_world__5TItemFv
   - unregister_item__5TItemFv
   - updateFacingPosition__12TBoss1DragonFv
+  - update__10TSceneSoraFl
   - update__10TTecSlicerFv
+  - update__11TCameraCtrlFv
   - update__12TObjWarpBossFv
   - update__13TObjEneBm3FlyFv
   - update__13TObjEneMe1GeeFv
@@ -14051,6 +14059,7 @@ force_active:
   - update_ai_state__15TObjEneDelDepthFv
   - update_aim_and_fire__15TObjEneGyaranzoFv
   - update_air_fire_state__12TBoss1DragonFUl
+  - update_all_default__8TFogCtrlFv
   - update_all_parts__11TBoss6Type2FPv
   - update_all_slots__13TPhotonFarllaFv
   - update_alpha__19MaterialOpacityFadeFv
@@ -14413,6 +14422,7 @@ force_active:
   - update_phase__11TBoss6Type1Fv
   - update_phase_timer__11TBoss4Type2Fv
   - update_phase_timer__11TBoss4Type3Fv
+  - update_photon_blast_camera_pose
   - update_photon_mylla__16TObjEneBm5GibonUFPv
   - update_photon_target__13TObjEneMe1GeeFv
   - update_pillar_heal_state__15TBoss3VoloptP02Fv
