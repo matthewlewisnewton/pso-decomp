@@ -125,6 +125,7 @@ force_active:
   - TAdADXlogo_name
   - TAdBackTxtGC_backtext_tex_list
   - TAdChrMoveEffectGC__sub_80349194
+  - TAdChrSelASlotGC__sub_8030C45C
   - TAdChrSelBSlotGC__sub_8030E3BC
   - TAdChrSelBSlotGC__sub_8030EF74
   - TAdChrSelBSlotGC__sub_8030F13C
@@ -1598,6 +1599,7 @@ force_active:
   - __ct__15TObjNewFloorWinFP7TObjectPv
   - __ct__15TObjSoloPlayWinFP7TObject
   - __ct__15TRecvGenerateIDFRC15TRecvGenerateID
+  - __ct__16TAdChrSelASlotGCFP7TObjectPv
   - __ct__16TAdGuideButtonGCFP7TObject
   - __ct__16TBoss3VoloptCoreFP7TObjectPv
   - __ct__16TGenGuildCardTagFRC16TGenGuildCardTag
@@ -1932,6 +1934,7 @@ force_active:
   - __dt__15TObjSuisouLobbyFv
   - __dt__15TPlyOnCountOverFv
   - __dt__15TWindowCtrlMainFv
+  - __dt__16TAdChrSelASlotGCFv
   - __dt__16TAdChrSelBSlotGCFv
   - __dt__16TAdGuideButtonGCFv
   - __dt__16TAdStorySelectGCFv
@@ -2424,6 +2427,7 @@ force_active:
   - __vt__15TObjSuisouLobby
   - __vt__15TShopWindowBase
   - __vt__15TWindowCtrlMain
+  - __vt__16TAdChrSelASlotGC
   - __vt__16TAdGuideButtonGC
   - __vt__16TAdStorySelectGC
   - __vt__16TBGLightningCtrl
@@ -3635,6 +3639,7 @@ force_active:
   - check_hits__22TObjEneSlimeTailAttackFv
   - check_hold_player__14TOTrapSeabed01FPv
   - check_in_range__23TObjEneMe3ShinowaMirageFPv
+  - check_load_state__16TAdChrSelASlotGCFv
   - check_local_player_in_range__12TObjRaderColFPv
   - check_low_hp_transition__16TObjEneDellBiterFv
   - check_low_hp_trigger__13TObjEneMorfosFv
@@ -3823,6 +3828,7 @@ force_active:
   - close_windows__12TObjWarpBossFv
   - close_windows__12TQuestListVMFv
   - close_windows__14TWindowSubItemFl
+  - close_windows__16TAdChrSelASlotGCFv
   - close_windows__16TAdChrSelBSlotGCFPv
   - close_windows__19TQuestListChallengeFPv
   - close_windows__23TAdSinglePlyChrSelectGCFPv
@@ -4022,6 +4028,7 @@ force_active:
   - create_ch_cr_tag_occ_header__FPv
   - create_challenge4p__6TLobbyFv
   - create_chat_symbol_window__20TWindowSubSymbolChatFll
+  - create_children__16TAdChrSelASlotGCFl
   - create_chr_warp__23TAdSinglePlyChrSelectGCFll
   - create_confirm_menu_window__19TWindowSubShortMailFv
   - create_confirm_window__20TWindowSubSymbolChatFv
@@ -5080,6 +5087,7 @@ force_active:
   - get_part_id__12TBoss3VoloptFl
   - get_particle__20TPlayerParticleOwnerFv
   - get_pipe_interaction_latch__FPv
+  - get_plate_value_for_slot__16TAdChrSelASlotGCFl
   - get_player__11TPlayerSoulFv
   - get_player_entry__6TLobbyFii
   - get_player_load_state__Fv
@@ -5105,6 +5113,7 @@ force_active:
   - get_shield_set_multiplier__9TItemDataFPUc
   - get_slime_tail_pose
   - get_slot_flag__26TWindowSubQuestBoardSelectFic
+  - get_slot_index__16TAdChrSelASlotGCFv
   - get_sock_status_name__Fs
   - get_spawn_point__17TObjEneBm3FlyNestFv
   - get_speaker_balloon_anchor__11TWindowCtrlFPviPvPv
@@ -5357,6 +5366,7 @@ force_active:
   - init__13TUnk_804F28E0FlPv
   - init__15PSOV3EncryptionFUl
   - init__15TObjEneDelDepthFv
+  - init__16TAdChrSelASlotGCFl
   - init__17TObjEneBm3FlyNestFv
   - init__17TWindowSubComCardFi
   - init__18TChallenge4PResultFv
@@ -5523,6 +5533,7 @@ force_active:
   - init_s_rank_knuckle__FPvlPv
   - init_scale_global__10TObjPlayerFv
   - init_segment_angle_range__11TBoss6Type2Fv
+  - init_selection__16TAdChrSelASlotGCFv
   - init_sin_cos_table__Fv
   - init_size_tier_and_offsets__19TObjEneBm9MericarolFv
   - init_slime_display__15TObjEneSlimeOneFv
@@ -12007,6 +12018,7 @@ force_active:
   - render__15TObjSuisouLobbyFv
   - render__15TPlyPhotonChairFPvPv
   - render__15TWindowCtrlMainFv
+  - render__16TAdChrSelASlotGCFv
   - render__16TAdGuideButtonGCFv
   - render__16TAdStorySelectGCFv
   - render__16TBGLightningCtrlFv
@@ -12553,6 +12565,7 @@ force_active:
   - run_task__15TObjSoloPlayWinFv
   - run_task__15TObjSuisouLobbyFv
   - run_task__15TWindowCtrlMainFv
+  - run_task__16TAdChrSelASlotGCFv
   - run_task__16TAdGuideButtonGCFv
   - run_task__16TAdStorySelectGCFv
   - run_task__16TBGLightningCtrlFv
@@ -13067,6 +13080,7 @@ force_active:
   - set_state__14TObjEnePanBARAFl
   - set_state__14TObjEnePanarmsFl
   - set_state__15TObjEneSlimeOneFl
+  - set_state__16TAdChrSelASlotGCFv
   - set_state__21TAdMultiChgGameModeGCFl
   - set_state_by_distance__10TBoss2MineFl
   - set_state_by_timer__14TObjEneBm5WolfFi
@@ -13817,6 +13831,12 @@ force_active:
   - sub_80301148__14TObjEneDolmOlmFv
   - sub_803055C8__16TObjEneDellBiterFv
   - sub_8030B818__18TObjLiveCameraCtrlFi
+  - sub_8030CBD0__16TAdChrSelASlotGCFv
+  - sub_8030CBD4__16TAdChrSelASlotGCFv
+  - sub_8030CCE0__16TAdChrSelASlotGCFv
+  - sub_8030CCE4__16TAdChrSelASlotGCFv
+  - sub_8030CEEC__16TAdChrSelASlotGCFv
+  - sub_8030D5DC__16TAdChrSelASlotGCFv
   - sub_803152A0__15TObjEneDelDepthFv
   - sub_803152C0__15TObjEneDelDepthFv
   - sub_80319E74__18TObjEneMe3SinowZoaFl
@@ -14340,6 +14360,7 @@ force_active:
   - update_list_scroll__22TWindowSubCustomSelectFv
   - update_live_camera__12TBoss8DragonFv
   - update_load_progress__12TChCrLoadReqFv
+  - update_load_state__16TAdChrSelASlotGCFv
   - update_load_state__9TItemLoadFv
   - update_load_status__12TQuestListVMFv
   - update_lobby_pigeon_visibility__13TUnk_804E0898Fv
@@ -14501,6 +14522,11 @@ force_active:
   - update_sink_state__10TBoss4ZakoFv
   - update_slide_in__12TChCrTagNameFPv
   - update_slime_timer__15TObjEneSlimeOneFv
+  - update_slot1__16TAdChrSelASlotGCFv
+  - update_slot2__16TAdChrSelASlotGCFv
+  - update_slot3__16TAdChrSelASlotGCFv
+  - update_slot4__16TAdChrSelASlotGCFv
+  - update_slot5__16TAdChrSelASlotGCFv
   - update_slot_display_flags__26TWindowSubQuestBoardSelectFv
   - update_slot_icon__20TWindowActionPaletteFPviii
   - update_slot_sprites__20TWindowActionPaletteFiiUs
@@ -14637,6 +14663,11 @@ force_active:
   - update_weapon_attack__14TObjEneIllGillFv
   - update_web_attack__9TObjGrassFv
   - update_when_camera_active__13TObjWarnChimeFv
+  - update_window_6c__16TAdChrSelASlotGCFv
+  - update_window_70__16TAdChrSelASlotGCFv
+  - update_window_74__16TAdChrSelASlotGCFv
+  - update_window_78__16TAdChrSelASlotGCFv
+  - update_window_7c__16TAdChrSelASlotGCFv
   - update_with_default_state__14TObjEneBm5WolfFv
   - update_yaw_animation__20TODragonflyMachine01Fv
   - upload_font_glyph__FUsPv
