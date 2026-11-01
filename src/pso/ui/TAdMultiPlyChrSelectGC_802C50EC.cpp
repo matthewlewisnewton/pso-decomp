@@ -369,7 +369,8 @@ void TAdMultiPlyChrSelectGC__sub_802C561C(S_802C50EC *self) {
 #pragma fp_contract on
 void TAdMultiPlyChrSelectGC__sub_802C5688(S_802C50EC *self) {
     u32 cell[2];
-    s32 row = self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC] + 1;
+    s32 *selected = self->sel[TAdMultiPlyChrSelectGC__data_805D67D8];
+    s32 row = selected[self->f4EC] + 1;
     s32 col = self->f4EC + 1;
     s32 *entry = &TAdMultiPlyChrSelectGC__data_804E0A68[row][col];
     if (*entry == -1) {
@@ -378,8 +379,8 @@ void TAdMultiPlyChrSelectGC__sub_802C5688(S_802C50EC *self) {
     }
     TAdMultiPlyChrSelectGC__data_804E0AE0[TAdMultiPlyChrSelectGC__data_805D67D8] = 1;
     *entry = -1;
-    ((s32 *)&TAdMultiPlyChrSelectGC__data_804E0A48)[TAdMultiPlyChrSelectGC__data_805D67D8] = self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC] + self->f4EC * 4;
-    self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].x = self->quad[self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC]][self->f4EC].x;
+    ((s32 *)&TAdMultiPlyChrSelectGC__data_804E0A48)[TAdMultiPlyChrSelectGC__data_805D67D8] = selected[self->f4EC] + self->f4EC * 4;
+    self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].x = self->quad[selected[self->f4EC]][self->f4EC].x;
     self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].z = self->quad[self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC]][self->f4EC].z;
     self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].y = self->quad[self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC]][self->f4EC].y;
     self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].w = self->quad[self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC]][self->f4EC].w;
