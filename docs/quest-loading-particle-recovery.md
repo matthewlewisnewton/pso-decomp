@@ -29,27 +29,34 @@ The compiler emits an unsigned conversion double. Its original eight-byte
 range `0x80476640..0x80476648` is assigned to this unit and localized; both
 original and compiled values are the native `2^52` bias with alignment 8.
 Original-object and compiled-object reference scans found no other consumer.
-Neighboring tables, strings, and signed conversion data retain their ownership.
+Neighboring tables, strings, and signed conversion data retain their ownership
+in the frozen constructor checkpoint.
 
 Targeted compilation preserves all three existing exact functions. Both other
 header consumers (`TBoss6Kakusan.cpp` and `TBoss6GravBall_80323134.cpp`) retain
-byte-identical complete objects. The task body remains unrecovered in this
-checkpoint. Whole-program validation is pending, and source-link selection is
-unchanged.
+byte-identical complete objects. The task body remains unrecovered in the
+frozen constructor checkpoint. Its full development validation passed: one
+additional exact function, 500 matched code bytes and eight matched data bytes,
+with all 3,540 existing linked units preserved and the original DOL SHA-1
+verified. Source-link selection is unchanged; independent review follows
+separately on PR #148.
 
 ## Whole-unit continuation
 
 The continuation reconstructs the task's input/tint control flow and keeps
-integer truncation inside each per-axis expression. Doubled angles double the
-signed integer before converting to float. Word accumulators retain unsigned
+integer truncation after each scaled input. Explicit float inputs followed by
+signed scaled integers reproduce the original conversion order and register
+allocation. Doubled angles double the signed integer before converting to float. Word accumulators retain unsigned
 wrap; signed divisions truncate toward zero. The native compiler reuses repeated
 conversion terms without handwritten arithmetic or instruction injection.
 
-The retained task has 828 bytes and 99.4686% targeted similarity. Its remaining
-instruction differences exchange f4 and f5 for the signed-conversion bias and
-angular factor. The constructor's instruction bytes and previously exact helper
-bodies are preserved. This continuation is not exact or source-linked yet; its
-additional data mappings remain a separate coordinated proposal.
+Targeted compilation now reproduces all 1,508 instruction bytes across the five
+functions, including the complete 828-byte task. All 41 text relocations resolve
+to their original addresses under the proposed native data section bases. The
+comparison uses unmodified original and compiler objects, without comparison
+aliases. This is a bounded byte/relocation audit, not an adopted repository
+mapping or a source-link result: additional data ownership remains a separate
+coordinated proposal, and the continuation has not passed full development gates.
 
 Native definitions now reproduce all 109 bytes of the unit's data: the six tint
 presets, fixed-size class name and descriptor, compiler-generated vtable,

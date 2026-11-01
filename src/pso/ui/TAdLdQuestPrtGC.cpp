@@ -47,12 +47,16 @@ void TAdLdQuestPrtGC::run_task() {
     if (get_abs__15TAdLdQuestPrtGCFv(x) > 0 || get_abs__15TAdLdQuestPrtGCFv(y) > 0) {
         static f32 input_scale = 0.02f;
         const f32 multiplier = input_scale;
-        angle_steps[0].x = (s32)(182.04445f * (f32)-((s32)((f32)x * multiplier))) / 5;
-        angle_steps[0].z = (s32)(182.04445f * (f32)-((s32)((f32)y * multiplier))) / 5;
-        angle_steps[1].x = (s32)(182.04445f * (f32)(-((s32)((f32)x * multiplier)) * 2)) / 4;
-        angle_steps[1].z = (s32)(182.04445f * (f32)(-((s32)((f32)y * multiplier)) * 2)) / 3;
-        angle_steps[2].x = (s32)(182.04445f * (f32)-((s32)((f32)y * multiplier))) / 2;
-        angle_steps[2].z = (s32)(182.04445f * (f32)((s32)((f32)x * multiplier))) / 6;
+        const f32 x_input = (f32)x;
+        const s32 scaled_x = (s32)(x_input * multiplier);
+        angle_steps[0].x = (s32)(182.04445f * (f32)-scaled_x) / 5;
+        const f32 y_input = (f32)y;
+        const s32 scaled_y = (s32)(y_input * multiplier);
+        angle_steps[0].z = (s32)(182.04445f * (f32)-scaled_y) / 5;
+        angle_steps[1].x = (s32)(182.04445f * (f32)(-scaled_x * 2)) / 4;
+        angle_steps[1].z = (s32)(182.04445f * (f32)(-scaled_y * 2)) / 3;
+        angle_steps[2].x = (s32)(182.04445f * (f32)-scaled_y) / 2;
+        angle_steps[2].z = (s32)(182.04445f * (f32)scaled_x) / 6;
         // Angles are word accumulators: unsigned addition preserves their wrap.
         angles[0].x += angle_steps[0].x;
         angles[1].x += angle_steps[1].x;
