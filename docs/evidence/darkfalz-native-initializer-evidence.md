@@ -29,11 +29,26 @@ original instructions and resolved relocation targets. Corrected callback helper
 calls pass the actual receiver explicitly, including the timer predicate and
 8004D990; floating-point operations keep their original order.
 
-This checkpoint is still work in progress. The existing 8004B07C declaration and
-definition disagree about an unused receiver parameter; their bounded correction
-requires coordinated adoption. The compiler places the generated initializer
-after four existing helpers rather than before them, so whole-object function
-order does not yet qualify this unit for source linkage. No source-selection or
-compiler-setting change is made. Exact function/data progress must be confirmed
-by the normal full report and zero-loss gates; fallback DOL equality alone would
-not establish native unit linkage.
+The source-link continuation uses the compiler's supported deferred generation
+and debug source-file sections (`-inline deferred -sym on`), as already used by
+the Panarms recovery. Ordinary definitions are reversed, and the four final
+helpers live in a source-private header. The resulting two `.text` contributions
+concatenate to the original layout: controller methods, native initializer, then
+helpers. Their definitions remain ordinary C++ functions, with their existing
+linkage and floating-point settings; no inline-only export or manual constructor
+registration is introduced. This arrangement is an implementation choice and
+does not establish historical filenames or compiler switches.
+
+A successful private production compile reproduces all 56 original function
+positions, sizes and instruction bytes, all 6,140 code bytes, all 1,308 owned data
+bytes across `.ctors`, `.rodata`, `.data` and `.sdata2`, and all 272 resolved
+relocations. The compiler accepts the switches/pragmas without diagnostics. The
+three compiler constants are referenced only within this original unit; using
+native literals and their compiler-local metadata removes unnecessary exports
+without changing data addresses, extents or relocation targets.
+
+Shared adoption of the bounded compiler exception and private-constant metadata
+is pending coordination. The existing 8004B07C declaration/definition mismatch
+also has a separately probed, instruction-preserving parameter correction awaiting
+allocation. Full development, source-selection, original-DOL and independent
+review gates remain required before this continuation can claim source linkage.
