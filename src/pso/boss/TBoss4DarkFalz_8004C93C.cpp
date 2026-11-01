@@ -9,6 +9,7 @@
 
 #include <stddef.h>
 #include "pso/boss/TBoss4DarkFalz.h"
+#include "pso/boss/TBoss4DarkFalzState.h"
 #include "pso/boss/TBoss4Thanks.h"
 #include "pso/boss/TBoss4Type3.h"
 #include "pso/misc/TLobby.h"
@@ -44,23 +45,18 @@ s32 obj_setArrS16_FC(void *, s32, u16);
 extern s32 lbl_80485454[];
 extern int TBoss4DarkFalz__type3_instance;
     extern int dark_falz_form_index;
-void TBoss4DarkFalz__sub_8004C540(void);
 s32 TBoss4DarkFalz__sub_8004B07C(s32);
 int TBoss4DarkFalz__sub_8004B7DC(void);
 void play_area_music(char *name);
 extern s32 lbl_80437298[];
 extern s32 game_difficulty_selection;
-void TBoss4DarkFalz__sub_8004C8A8(void);
-s32 TBoss4DarkFalz__sub_8004B730(void *, f32, int);
+void TBoss4DarkFalz__sub_8004B730(u8 *self, s32 color, f32 alpha);
 extern const f32 TBoss4DarkFalz__data_805D893C;
 extern const f32 lbl_805D8944;
 void TBoss4DarkFalz__sub_8004B4F0(void *arg0p, void *arg1p);
 extern RecoveredGlobal_8004C5E8_TBoss4DarkFalz__data_804FF1E8 TBoss4DarkFalz__data_804FF1E8;
 extern const f32 lbl_805D8940;
-void TBoss4DarkFalz__sub_8004C5E8(u8 *arg0);
-void TBoss4DarkFalz__sub_8004C2D8(void *arg0);
 s32 is_ending_or_split_screen__14TBoss4DarkFalzFv();
-void TBoss4DarkFalz__sub_8004C7E8(TBoss4DarkFalz *arg0);
 int TBoss4DarkFalz__sub_8004C1AC(void);
 s32 TBoss4DarkFalz__sub_8004C1B4(void);
 int bswap_16__FPUs(void*);
@@ -96,7 +92,8 @@ void TBoss4DarkFalz::swap_and_send() { swap_bytes(); send_subcommand((u8 *)this)
 void TBoss4DarkFalz::swap_bytes() { ((G_ClientIDHeader *)this)->bswap(); bswap_16__FPUs((char*)this + 0x4); bswap_16__FPUs((char*)this + 0x6); bswap_32__FPUl((char*)this + 0x8); bswap_32__FPUl((char*)this + 0xc); }
 void TBoss4DarkFalz::set_code_25_4() { *(u8 *)&this->m_name = 25; *(u8*)((char*)this + 0x1) = 4; }
 
-void TBoss4DarkFalz__sub_8004C2D8(void *arg0) {
+void TBoss4DarkFalz::sub_8004C2D8() {
+    TBoss4DarkFalz *arg0 = this;
     f32 v;
     s32 t;
     t = *(s32 *)((s8 *)arg0 + 0x380);
@@ -105,7 +102,7 @@ void TBoss4DarkFalz__sub_8004C2D8(void *arg0) {
         if (v > 1.0f) {
             v = 1.0f;
         }
-        TBoss4DarkFalz__sub_8004B730(arg0, v, 0xFFFFFF);
+        TBoss4DarkFalz__sub_8004B730((u8 *)arg0, 0xFFFFFF, v);
     }
     t = *(s32 *)((s8 *)arg0 + 0x380) - 1;
     *(s32 *)((s8 *)arg0 + 0x380) = t;
@@ -127,7 +124,7 @@ void TBoss4DarkFalz::update_fade_countdown() {
             if (v > 1.0f) {
                 v = 1.0f;
             }
-            TBoss4DarkFalz__sub_8004B730(this, v, 0xFFFFFF);
+            TBoss4DarkFalz__sub_8004B730((u8 *)this, 0xFFFFFF, v);
         }
     }
     t = *(s32 *)((s8 *)this + 0x380) - 1;
@@ -165,9 +162,10 @@ void TBoss4DarkFalz::begin_defeat_sequence() {
     }
     *(s32 *)((s8 *)((u8 *)this) + 0x380) = 0x12E;
 }
-void TBoss4DarkFalz__sub_8004C540(void) {  }
-void TBoss4DarkFalz::request_action_e(s32 arg0) {
-    if (((u32) (*(u32 *)&TBoss4DarkFalz__type3_instance) == 0U) || (((TBoss4DarkFalz *)(*(u32 *)&TBoss4DarkFalz__type3_instance))->get_action_state() == 3) || (((TBoss4DarkFalz *)(*(u32 *)&TBoss4DarkFalz__type3_instance))->get_action_state() == 2) || (TBoss4DarkFalz__sub_8004B07C(arg0) != 0)) {
+void TBoss4DarkFalz::sub_8004C540() {  }
+void TBoss4DarkFalz::request_action_e() {
+    TBoss4DarkFalz *arg0 = this;
+    if (((u32) (*(u32 *)&TBoss4DarkFalz__type3_instance) == 0U) || (((TBoss4DarkFalz *)(*(u32 *)&TBoss4DarkFalz__type3_instance))->get_action_state() == 3) || (((TBoss4DarkFalz *)(*(u32 *)&TBoss4DarkFalz__type3_instance))->get_action_state() == 2) || (TBoss4DarkFalz__sub_8004B07C((s32)arg0) != 0)) {
         ((TBoss4DarkFalz *)arg0)->send_action_packet(0xE);
     }
 }
@@ -176,7 +174,7 @@ void TBoss4DarkFalz::start_phase() { TBoss4DarkFalz::end_player_camera_pans(this
 #pragma push
 #pragma fp_contract on
 typedef char RecoveredGlobal_8004C5E8_TBoss4DarkFalz__data_804FF1E8_size[sizeof(RecoveredGlobal_8004C5E8_TBoss4DarkFalz__data_804FF1E8) == 0x40 ? 1 : -1];
-void TBoss4DarkFalz__sub_8004C5E8(u8 *arg0) {
+void TBoss4DarkFalz::sub_8004C5E8() {
     typedef char sp8_offset[(offsetof(Stack_8004C5E8, sp8) == 0x0) ? 1 : -1];
     typedef char spC_offset[(offsetof(Stack_8004C5E8, spC) == 0x4) ? 1 : -1];
     typedef char sp12_offset[(offsetof(Stack_8004C5E8, sp12) == 0xA) ? 1 : -1];
@@ -184,19 +182,19 @@ void TBoss4DarkFalz__sub_8004C5E8(u8 *arg0) {
     Stack_8004C5E8 stack;
     f32 temp_f1;
     s32 temp_r0;
-    temp_f1 = (f32) *(s32 *)((s8 *)arg0 + 0x380) / lbl_805D8940;
-    TBoss4DarkFalz__sub_8004B730(arg0, (f32) (temp_f1 * (temp_f1 * (temp_f1 * temp_f1))), 0xFFFFFF);
-    temp_r0 = *(s32 *)((s8 *)arg0 + 0x380) - 1;
-    *(s32 *)((s8 *)arg0 + 0x380) = temp_r0;
+    temp_f1 = (f32) *(s32 *)((s8 *)this + 0x380) / lbl_805D8940;
+    TBoss4DarkFalz__sub_8004B730((u8 *)this, 0xFFFFFF, (f32) (temp_f1 * (temp_f1 * (temp_f1 * temp_f1))));
+    temp_r0 = *(s32 *)((s8 *)this + 0x380) - 1;
+    *(s32 *)((s8 *)this + 0x380) = temp_r0;
     if (temp_r0 <= 0) {
         TBoss4DarkFalz::dispatch_by_main_phase((s32)((int) (0x36U)));
-        stack.sp8 = arg0;
+        stack.sp8 = (u8 *)this;
         TBoss4DarkFalz__sub_8004B4F0((&stack.spC), (&TBoss4DarkFalz__data_804FF1E8.value));
         stack.sp14 = 2;
-        stack.spC = *(s16 *)((s8 *)arg0 + 0x2C) + 0x1FE;
-        stack.sp12 = ((TBoss4DarkFalz *)arg0)->entity_id + 0x1FE;
+        stack.spC = *(s16 *)((s8 *)this + 0x2C) + 0x1FE;
+        stack.sp12 = ((TBoss4DarkFalz *)this)->entity_id + 0x1FE;
         (*(s32 *)&TBoss4DarkFalz__type3_instance) = TBoss4Type3::create((s32)&stack.sp8);
-        ((TBoss4DarkFalz *)arg0)->change_state(0xD);
+        ((TBoss4DarkFalz *)this)->change_state(0xD);
     }
 }
 #pragma pop
@@ -207,7 +205,7 @@ void TBoss4DarkFalz::update_countdown_shrink() {
     f32 temp_f1;
     s32 temp_r0;
     temp_f1 = TBoss4DarkFalz__data_805D893C - ((f32) *(s32 *)((s8 *)((u8 *)this) + 0x380) / lbl_805D8944);
-    TBoss4DarkFalz__sub_8004B730(this, (f32) (temp_f1 * (temp_f1 * (temp_f1 * temp_f1))), 0xFFFFFF);
+    TBoss4DarkFalz__sub_8004B730((u8 *)this, 0xFFFFFF, (f32) (temp_f1 * (temp_f1 * (temp_f1 * temp_f1))));
     temp_r0 = *(s32 *)((s8 *)((u8 *)this) + 0x380) - 1;
     *(s32 *)((s8 *)((u8 *)this) + 0x380) = temp_r0;
     if (temp_r0 <= 0) {
@@ -222,7 +220,8 @@ void TBoss4DarkFalz::init_state() {
     *(u32 *)((s8 *)this + 0x380) = 114;
 }
 
-void TBoss4DarkFalz__sub_8004C7E8(TBoss4DarkFalz *boss4_dark_falz) {
+void TBoss4DarkFalz::sub_8004C7E8() {
+    TBoss4DarkFalz *boss4_dark_falz = this;
     f32 v;
     s32 t;
     if (is_ending_or_split_screen__14TBoss4DarkFalzFv() != 0) {
@@ -232,7 +231,7 @@ void TBoss4DarkFalz__sub_8004C7E8(TBoss4DarkFalz *boss4_dark_falz) {
             if (v > 1.0f) {
                 v = 1.0f;
             }
-            TBoss4DarkFalz__sub_8004B730(boss4_dark_falz, v, 0xFFFFFF);
+            TBoss4DarkFalz__sub_8004B730((u8 *)boss4_dark_falz, 0xFFFFFF, v);
         }
     }
     t = *(s32 *)((s8 *)boss4_dark_falz + 0x380) - 1;
@@ -246,7 +245,7 @@ void TBoss4DarkFalz__sub_8004C7E8(TBoss4DarkFalz *boss4_dark_falz) {
     }
 }
 
-void TBoss4DarkFalz__sub_8004C8A8(void) {  }
+void TBoss4DarkFalz::sub_8004C8A8() {  }
 void TBoss4DarkFalz::enter_state_142() { freeze_all_players__14TBoss4DarkFalzFPv(this); TObjDFDemo3::create(this, (char*)this + 0x39c, *(void**)((char*)this + 0x3a8)); *(int*)((char*)this + 0x380) = 142; }
 void TBoss4DarkFalz::update_timer() {
     s32 temp_r0;
@@ -313,15 +312,9 @@ void *create__11TBoss4Type2Fl(void *);
 void normalize_vector(Vec_8004C940 *);
 extern const f32 lbl_805D8948;
 extern const f32 lbl_805D894C;
-void TBoss4DarkFalz__sub_8004C93C(void);
-void TBoss4DarkFalz__sub_8004CA80(void);
-void TBoss4DarkFalz__sub_8004CBBC(void);
-void TBoss4DarkFalz__sub_8004CE90(void);
-void update_parts__14TBoss4DarkFalzFi(s32 arg0);
 
-s32 is_timer_expired__14TBoss4DarkFalzFv();
 
-void TBoss4DarkFalz__sub_8004C93C(void) {  }
+void TBoss4DarkFalz::sub_8004C93C() {  }
 
 #pragma fp_contract on
 void TBoss4DarkFalz::enter_demo2_phase() {
@@ -361,10 +354,11 @@ void TBoss4DarkFalz::enter_demo2_phase() {
     arg0->f380 = 0x118;
 }
 
-void TBoss4DarkFalz__sub_8004CA80(void) {  }
+void TBoss4DarkFalz::sub_8004CA80() {  }
 
-void TBoss4DarkFalz::request_action_9(s32 arg0) {
-    if (((u32) TBoss4DarkFalz__type2_instance == 0U) || (((TBoss4DarkFalz *)TBoss4DarkFalz__type2_instance)->get_phase() == 3) || (((TBoss4DarkFalz *)TBoss4DarkFalz__type2_instance)->get_phase() == 2) || (TBoss4DarkFalz__sub_8004B07C(arg0) != 0)) {
+void TBoss4DarkFalz::request_action_9() {
+    TBoss4DarkFalz *arg0 = this;
+    if (((u32) TBoss4DarkFalz__type2_instance == 0U) || (((TBoss4DarkFalz *)TBoss4DarkFalz__type2_instance)->get_phase() == 3) || (((TBoss4DarkFalz *)TBoss4DarkFalz__type2_instance)->get_phase() == 2) || (TBoss4DarkFalz__sub_8004B07C((s32)arg0) != 0)) {
         ((TBoss4DarkFalz *)arg0)->send_action_packet(9);
     }
 }
@@ -387,7 +381,7 @@ void TBoss4DarkFalz::update_spawn_type2_countdown() {
     }
 }
 
-void TBoss4DarkFalz__sub_8004CBBC(void) {  }
+void TBoss4DarkFalz::sub_8004CBBC() {  }
 
 typedef char RecoveredGlobal_8004CBC0_lbl_80485448_size[sizeof(RecoveredGlobal_8004CBC0_lbl_80485448) == 0xC ? 1 : -1];
 void TBoss4DarkFalz::start_demo1() {
@@ -406,14 +400,16 @@ void TBoss4DarkFalz::start_demo1() {
     *(s32 *)((s8 *)arg0 + 0x380) = 0x12C;
 }
 
-void TBoss4DarkFalz::spawn_ancient_trap(s32 arg0) {
-    if (((s32 (*)(void))TBoss4DarkFalz__sub_8004D990)() > 0) {
+void TBoss4DarkFalz::spawn_ancient_trap() {
+    TBoss4DarkFalz *arg0 = this;
+    if (TBoss4DarkFalz__sub_8004D990((u8 *)this) > 0) {
         play_persistent_sound((s32)(0x4003A30A), (const void *)((arg0)), (const Vec *)(0), -0x20, 2);
     }
 }
 
-void TBoss4DarkFalz::request_action_7(s32 arg0) {
-    if (((u32) TBoss4DarkFalz__type1_instance == 0U) || (((TBoss4DarkFalz *)TBoss4DarkFalz__type1_instance)->get_state() == 3) || (((TBoss4DarkFalz *)TBoss4DarkFalz__type1_instance)->get_state() == 4) || (TBoss4DarkFalz__sub_8004B07C(arg0) != 0)) {
+void TBoss4DarkFalz::request_action_7() {
+    TBoss4DarkFalz *arg0 = this;
+    if (((u32) TBoss4DarkFalz__type1_instance == 0U) || (((TBoss4DarkFalz *)TBoss4DarkFalz__type1_instance)->get_state() == 3) || (((TBoss4DarkFalz *)TBoss4DarkFalz__type1_instance)->get_state() == 4) || (TBoss4DarkFalz__sub_8004B07C((s32)arg0) != 0)) {
         ((TBoss4DarkFalz *)arg0)->send_action_packet(7);
     }
 }
@@ -468,22 +464,25 @@ void TBoss4DarkFalz::update_intro_demo() {
     *(s32 *)((s8 *)this + 0x380) = (temp_r3 + 1);
 }
 
-void TBoss4DarkFalz__sub_8004CE90(void) {  }
+void TBoss4DarkFalz::sub_8004CE90() {  }
 void TBoss4DarkFalz::start_effect() {
     ((s32 (*)(void))freeze_all_players__14TBoss4DarkFalzFPv)();
     TLobby::stop_audio_streams();
     play_sound_effect(0x4003A80B, 0, 0, 0);
     *(s32 *)((s8 *)this + 0x380) = 0;
 }
-void TBoss4DarkFalz::spawn_trap(s32 arg0) {
+void TBoss4DarkFalz::spawn_trap() {
+    TBoss4DarkFalz *arg0 = this;
     play_persistent_sound((s32)(0x4003A30A), (const void *)((arg0)), (const Vec *)(0), -0x18, 2);
 }
-void TBoss4DarkFalz::check_timeout(s32 arg0) {
-    if ((is_timer_expired__14TBoss4DarkFalzFv() != 0) || (TBoss4DarkFalz__sub_8004B07C(arg0) != 0)) {
+void TBoss4DarkFalz::check_timeout() {
+    TBoss4DarkFalz *arg0 = this;
+    if ((is_timer_expired() != 0) || (TBoss4DarkFalz__sub_8004B07C((s32)arg0) != 0)) {
         ((TBoss4DarkFalz *)arg0)->send_action_packet(5);
     }
 }
-void update_parts__14TBoss4DarkFalzFi(s32 arg0) {
+void TBoss4DarkFalz::sub_8004CF6C() {
+    TBoss4DarkFalz *arg0 = this;
     play_sound_effect(0x4003AD0C, 0, 0, 0);
     TBoss4DarkFalz::end_player_camera_pans((void*)arg0);
     TBoss4DarkFalz::refresh_player_equipment((void*)arg0);
@@ -492,16 +491,16 @@ void update_parts__14TBoss4DarkFalzFi(s32 arg0) {
 
 extern const f32 lbl_805D8954;
 
-void TBoss4DarkFalz__sub_8004CFC4(u8 *boss4_dark_falz) {
+void TBoss4DarkFalz::sub_8004CFC4() {
     f32 temp_f1;
     s32 temp_r0;
 
-    temp_f1 = (f32) *(s32 *)((s8 *)boss4_dark_falz + 0x380) / lbl_805D8954;
-    TBoss4DarkFalz__sub_8004B730(boss4_dark_falz, temp_f1 * (temp_f1 * (temp_f1 * temp_f1)), 0xFFFFFF);
-    temp_r0 = *(s32 *)((s8 *)boss4_dark_falz + 0x380) - 1;
-    *(s32 *)((s8 *)boss4_dark_falz + 0x380) = temp_r0;
+    temp_f1 = (f32) *(s32 *)((s8 *)this + 0x380) / lbl_805D8954;
+    TBoss4DarkFalz__sub_8004B730((u8 *)this, 0xFFFFFF, temp_f1 * (temp_f1 * (temp_f1 * temp_f1)));
+    temp_r0 = *(s32 *)((s8 *)this + 0x380) - 1;
+    *(s32 *)((s8 *)this + 0x380) = temp_r0;
     if (temp_r0 <= 0) {
-        ((TBoss4DarkFalz *)boss4_dark_falz)->change_state(4);
+        ((TBoss4DarkFalz *)this)->change_state(4);
     }
 }
 
@@ -521,7 +520,6 @@ extern s32 registered_player_count;
 extern const f32 lbl_805D895C;
 extern const f32 lbl_805D8960;
 extern const f32 lbl_805D8964;
-void TBoss4DarkFalz__sub_8004D29C(void* p);
 void TBoss4DarkFalz__sub_8004B8F8(TBoss4DarkFalz *arg0);
 }
 void set_dark_falz_music_request(s32 arg0);
@@ -532,7 +530,8 @@ void fn_8036A514(s32 flag);
 void TBoss4DarkFalz::init_timer() { *(int*)((char*)this + 0x380) = 30; dark_falz_form_index = 1; this->m_394 = create__14TObjDFUsoTowerFPv(); TBoss4DarkFalz::refresh_player_equipment(this); }
 
 extern const f32 lbl_805D8958;
-void TBoss4DarkFalz__sub_8004D098(u8 *boss4_dark_falz) {
+void TBoss4DarkFalz::sub_8004D098() {
+    u8 *boss4_dark_falz = (u8 *)this;
     f32 t;
     s32 temp_r4;
 
@@ -540,14 +539,14 @@ void TBoss4DarkFalz__sub_8004D098(u8 *boss4_dark_falz) {
     if (temp_r4 > 0x71) {
         t = (temp_r4 - 0x71) / lbl_805D8958;
         t *= t;
-        ((void (*)(void *, s32, f32))TBoss4DarkFalz__sub_8004B730)(boss4_dark_falz, 0xFFFFFF, t);
+        TBoss4DarkFalz__sub_8004B730(boss4_dark_falz, 0xFFFFFF, t);
     } else if (temp_r4 < 0x20) {
         t = TBoss4DarkFalz__data_805D893C - ((temp_r4 - 2) / lbl_805D8954);
         if (t > TBoss4DarkFalz__data_805D893C) {
             t = TBoss4DarkFalz__data_805D893C;
         }
         t *= t;
-        ((void (*)(void *, s32, f32))TBoss4DarkFalz__sub_8004B730)(boss4_dark_falz, 0xFFFFFF, t);
+        TBoss4DarkFalz__sub_8004B730(boss4_dark_falz, 0xFFFFFF, t);
     }
     if (--*(s32 *)((s8 *)boss4_dark_falz + 0x380) < 0) {
         ((TBoss4DarkFalz *)boss4_dark_falz)->change_state(3);
@@ -556,7 +555,8 @@ void TBoss4DarkFalz__sub_8004D098(u8 *boss4_dark_falz) {
 
 void TBoss4DarkFalz::start_demo() { TBoss4DarkFalz__sub_8004B8F8((TBoss4DarkFalz *)((void *)this)); TBoss4DarkFalz::push_players_out_of_zone((s32)this, (s32)((void*)1)); freeze_all_players__14TBoss4DarkFalzFPv(this); TObjDFDemoF::create(this); set_dark_falz_music_request((s32)((void*)1)); fn_8036A514((s32)((void*)23)); *(int*)((char*)this + 0x380) = 120; }
 
-void TBoss4DarkFalz::check_players_near_center(void *self) {
+void TBoss4DarkFalz::check_players_near_center() {
+    TBoss4DarkFalz *self = this;
     V_8004D1E4 v;
     void *p;
     s32 i;
@@ -571,12 +571,13 @@ void TBoss4DarkFalz::check_players_near_center(void *self) {
             return;
         }
     }
-    if (((s32 (*)(void *))TBoss4DarkFalz__sub_8004B07C)(self) != 0) {
+    if (TBoss4DarkFalz__sub_8004B07C((s32)self) != 0) {
         ((TBoss4DarkFalz *)self)->send_action_packet(2);
     }
 }
 
-void TBoss4DarkFalz__sub_8004D29C(void* p) { if (check_demo_mode() == 0) { ((TBoss4DarkFalz *)p)->change_state((s32)((void*)1)); } }
+void TBoss4DarkFalz::sub_8004D29C() {
+    TBoss4DarkFalz *p = this; if (check_demo_mode() == 0) { ((TBoss4DarkFalz *)p)->change_state((s32)((void*)1)); } }
 
 void get_defeat_params__14TBoss4DarkFalzFPvPvPvPv(Obj_8004D8C8 *self, u16 *a, u16 *b, u16 *out) {
     s32 i;
@@ -601,4 +602,41 @@ s32 TBoss4DarkFalz__sub_8004D990(u8 *arg0) {
 }
 
 void TBoss4DarkFalz__sub_8004D9A0(void* p, s32 v) { *(s32*)((char*)p + 0x90) = v; }
+}
+
+extern "C" {
+extern const char lbl_804371E0[];
+extern const char lbl_804371E8[];
+extern const char lbl_804371F4[];
+extern const char lbl_80437200[];
+extern const char lbl_8043720C[];
+extern const char lbl_80437214[];
+extern const char lbl_80437220[];
+extern const char lbl_80437228[];
+extern const char lbl_80437234[];
+extern const char lbl_8043723C[];
+extern const char lbl_80437248[];
+extern const char lbl_80437254[];
+extern const char lbl_80437260[];
+extern const char lbl_8043726C[];
+extern const char lbl_80437274[];
+extern const char lbl_80437280[];
+DarkFalzState TBoss4DarkFalz__data_80485108[16] = {
+    {lbl_804371E0, 0, 0, &TBoss4DarkFalz::sub_8004D29C, 0},
+    {lbl_804371E8, 0, 0, &TBoss4DarkFalz::check_players_near_center, 0},
+    {lbl_804371F4, &TBoss4DarkFalz::start_demo, 0, 0, &TBoss4DarkFalz::sub_8004D098},
+    {lbl_80437200, &TBoss4DarkFalz::init_timer, 0, 0, &TBoss4DarkFalz::sub_8004CFC4},
+    {lbl_8043720C, &TBoss4DarkFalz::sub_8004CF6C, 0, &TBoss4DarkFalz::check_timeout, &TBoss4DarkFalz::spawn_trap},
+    {lbl_80437214, &TBoss4DarkFalz::start_effect, 0, &TBoss4DarkFalz::sub_8004CE90, &TBoss4DarkFalz::update_intro_demo},
+    {lbl_80437220, &TBoss4DarkFalz::spawn_type1, 0, &TBoss4DarkFalz::request_action_7, &TBoss4DarkFalz::spawn_ancient_trap},
+    {lbl_80437228, &TBoss4DarkFalz::start_demo1, 0, &TBoss4DarkFalz::sub_8004CBBC, &TBoss4DarkFalz::update_spawn_type2_countdown},
+    {lbl_80437234, &TBoss4DarkFalz::update_parts, 0, &TBoss4DarkFalz::request_action_9, &TBoss4DarkFalz::sub_8004CA80},
+    {lbl_8043723C, &TBoss4DarkFalz::enter_demo2_phase, 0, &TBoss4DarkFalz::sub_8004C93C, &TBoss4DarkFalz::update_timer},
+    {lbl_80437248, &TBoss4DarkFalz::enter_state_142, 0, &TBoss4DarkFalz::sub_8004C8A8, &TBoss4DarkFalz::sub_8004C7E8},
+    {lbl_80437254, &TBoss4DarkFalz::init_state, 0, 0, &TBoss4DarkFalz::update_countdown_shrink},
+    {lbl_80437260, &TBoss4DarkFalz::enter_state_126, 0, 0, &TBoss4DarkFalz::sub_8004C5E8},
+    {lbl_8043726C, &TBoss4DarkFalz::start_phase, 0, &TBoss4DarkFalz::request_action_e, &TBoss4DarkFalz::sub_8004C540},
+    {lbl_80437274, &TBoss4DarkFalz::begin_defeat_sequence, 0, 0, &TBoss4DarkFalz::update_fade_countdown},
+    {lbl_80437280, &TBoss4DarkFalz::set_state, 0, 0, &TBoss4DarkFalz::sub_8004C2D8},
+};
 }
