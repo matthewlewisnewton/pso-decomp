@@ -1562,6 +1562,7 @@ pso/misc/TTecDeband.cpp
 pso/misc/TTecFoie.cpp
 pso/misc/TTecFoie_802301EC.cpp
 pso/misc/TTecGiBarta.cpp
+pso/misc/TTecGiFoie.cpp
 pso/misc/TTecGiZonde.cpp
 pso/misc/TTecGiZonde_8023CDC4.cpp
 pso/misc/TTecGrants.cpp

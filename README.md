@@ -25,6 +25,10 @@ units are linked when the build takes them from compiled source instead of the o
 The build still uses 1,526 original-object fallback units; matched functions in those units are not counted as
 source-linked coverage. Unit counts can change when translation units are consolidated.
 
+The GiFoie orbit task now reproduces its original 900-byte update in targeted compiler checks, preserving the
+unit's other functions and native task vtable. Its candidate source selection still awaits the full build,
+original-address regression checks and proof that the linker takes the compiled object.
+
 ## Target
 
 | | |
