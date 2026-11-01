@@ -7,6 +7,8 @@
 #include "pso/TObject.h"
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/misc/TRaderMapCore.h"
+#include "pso/misc/RadarMapData.h"
+#include "pso/system/NinjaUtil.h"
 #include "pso/map/FloorArea.h"
 #include "pso/render/render_util.h"
 
@@ -134,7 +136,7 @@ typedef Vec Vec_801F9B8C;
 
 struct Dot_801F9B8C { f32 x, z, w; s16 c; s16 type; s32 color; };
 
-struct Vec_801F9D84 { f32 x, y, z; };
+typedef Vec Vec_801F9D84;
 
 struct Model_801F9D84 { u8 pad[8]; Vec_801F9D84 a; Vec_801F9D84 b; };
 
@@ -315,7 +317,6 @@ extern Rect_801F9228 radar_map_view_scissor_table[3];
 extern s32 camera_ctrl_instance;
 extern const f32 radar_screen_center_x_f32;
 extern const f32 radar_screen_center_y_f32;
-extern RecoveredGlobal_801F9720_TRaderMapCore__data_80513708 TRaderMapCore__map_view_state;
 extern f32 lbl_805D35F4;
 extern f32 lbl_805D35F8;
 s32 memset(void *, int, int);
@@ -338,7 +339,6 @@ int check_flag_100__10TObjPlayerFPv(void *p);
 void *get_player_by_client_id(s32 i);
 extern u8 TCameraCtrl__view_state[];
 extern s32 TRaderMapCore__render_mode;
-f32 xz_distance_squared(void *, void *);
 extern Gate_801FA1E0 TRaderMapCore__marker_buffer[128];
 extern const f32 lbl_805DC564;
 s32 minimap_render_dot(Vec_801F9B8C *arg0, s32 arg1, s16 arg2, s32 arg3);
@@ -585,13 +585,13 @@ void TRaderMapCore__sub_801F967C(TRaderMapCore *self, u32 color) {
 void TRaderMapCore::add_zoom_distance(f32 farg0) {
     f32 temp_f0;
     if (((s32) TRaderMapCore__view_mode == 1) || ((s32) TRaderMapCore__view_mode == 2)) {
-        temp_f0 = *(f32 *)((s8 *)&TRaderMapCore__map_view_state.value + 0x2C) + farg0;
-        *(f32 *)((s8 *)&TRaderMapCore__map_view_state.value + 0x2C) = temp_f0;
+        temp_f0 = TRaderMapCore__map_view_state[1].position.y + farg0;
+        TRaderMapCore__map_view_state[1].position.y = temp_f0;
         if (temp_f0 < lbl_805D35F4) {
-            *(f32 *)((s8 *)&TRaderMapCore__map_view_state.value + 0x2C) = (f32) lbl_805D35F4;
+            TRaderMapCore__map_view_state[1].position.y = (f32) lbl_805D35F4;
         }
-        if (*(f32 *)((s8 *)&TRaderMapCore__map_view_state.value + 0x2C) > lbl_805D35F8) {
-            *(f32 *)((s8 *)&TRaderMapCore__map_view_state.value + 0x2C) = (f32) lbl_805D35F8;
+        if (TRaderMapCore__map_view_state[1].position.y > lbl_805D35F8) {
+            TRaderMapCore__map_view_state[1].position.y = (f32) lbl_805D35F8;
         }
     }
 }
@@ -652,6 +652,27 @@ void TRaderMapCore::pan_horizontal(f32 farg0) {
             break;
         }
     }
+}
+
+// The original returns zero when the queue is full or the marker is too far
+// away, and one after copying the marker into the 128-entry buffer.
+s32 add_radar_scaled_gate(Vec *pos, u32 color, u16 rot, s16 kind, s32 flags, f32 scale) {
+    RadarMapViewState *cam = TRaderMapCore__map_view_state;
+    Vec v;
+    if (TRaderMapCore__data_805D5F30 > 0x7f) return 0;
+    if (!(flags & 1)) {
+        v.x = cam->position.x;
+        v.z = cam->position.z;
+        if (xz_distance_squared(pos, &v) > lbl_805DC564) return 0;
+    }
+    TRaderMapCore__marker_buffer[TRaderMapCore__data_805D5F30].x = pos->x;
+    TRaderMapCore__marker_buffer[TRaderMapCore__data_805D5F30].z = pos->z;
+    TRaderMapCore__marker_buffer[TRaderMapCore__data_805D5F30].scale = scale;
+    TRaderMapCore__marker_buffer[TRaderMapCore__data_805D5F30].color = color;
+    TRaderMapCore__marker_buffer[TRaderMapCore__data_805D5F30].kind = kind;
+    TRaderMapCore__marker_buffer[TRaderMapCore__data_805D5F30].rot = rot;
+    TRaderMapCore__data_805D5F30++;
+    return 1;
 }
 
 s32 add_radar_scaled_marker(Vec_801F9B8C *pos, s32 arg1, s16 arg2, s32 arg3, f32 scale) {
@@ -787,7 +808,7 @@ void update_radar_auto_discovery(s32 arg0, s32 arg1, void *pos) {
                     v.y = r->y + r->model->m->a.y;
                     v.z = r->z + r->model->m->a.z;
                 }
-                if (xz_distance_squared(&v, pos) < r->radius * r->radius) {
+                if (xz_distance_squared(&v, static_cast<Vec *>(pos)) < r->radius * r->radius) {
                     r->flags &= ~1;
                     r->fade = TRaderMapCore__data_805DC568;
                 }

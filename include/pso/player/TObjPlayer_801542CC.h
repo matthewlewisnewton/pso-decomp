@@ -18,7 +18,8 @@ TObjCollidable *find_entity_by_id(u16 id);
 // The actor with this entity id if it can be hit on that collision body now,
 // else NULL.
 TObjChara *resolve_hittable_target(u16 actor_id, s16 collider);
-s32 project_actor_to_ground(TObjChara *actor, Vec *pos, s32 flags);
+// Projects an actor position onto ground; optionally returns the surface normal.
+s32 project_actor_to_ground(TObjCollidable *actor, Vec *pos, Vec *normal);
 // The radius of the actor's collision body, or a default without bodies.
 f32 get_collision_body_radius(TObjCollidable *actor, s32 body);
 }

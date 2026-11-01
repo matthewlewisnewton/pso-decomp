@@ -3,41 +3,24 @@
 
 #include "types.h"
 #include "pso/TObject.h"
+#include <dolphin/mtx/GeoTypes.h>
+
+class TParticleCtrl;
 
 struct TAdLdQuestPrtGC : public TObject {
+    TAdLdQuestPrtGC(TObject *parent);
     virtual ~TAdLdQuestPrtGC();
     virtual void run_task();
-    u8 _pad1C[0x40];
-    u32 m_5c;
-    u8 _pad60[0x4];
-    u32 m_64;
-    u32 m_68;
-    u8 _pad6C[0x4];
-    u32 m_70;
-    u32 m_74;
-    u8 _pad78[0x4];
-    u32 m_7c;
-    u32 m_80;
-    u8 _pad84[0x4];
-    u32 m_88;
-    u32 m_8c;
-    u8 _pad90[0x4];
-    u32 m_94;
-    u32 m_98;
-    u8 _pad9C[0x4];
-    u32 m_a0;
-    u32 m_a4;
-    u8 _padA8[0x4];
-    u32 m_ac;
-    u32 m_b0;
-    u8 _padB4[0x4];
-    u32 m_b8;
-    u32 m_bc;
-    u32 m_c0;
-    u32 m_c4;
+    TParticleCtrl *particles[4]; // 0x1c: queued for destruction by the owner
+    Vec positions[4];           // 0x2c: retained by the particle factory
+    struct Angles { u32 x, y, z; } angles[4]; // 0x5c
+    struct AngleSteps { s32 x, y, z; } angle_steps[4];      // 0x8c
+    u32 color_index;            // 0xbc
+    u32 color_frames;           // 0xc0
+    u32 frames;                 // 0xc4
     virtual void render();
-    int get_abs();
-    u8 unk_C8[0x90];
+    // Only RGBA are initialized here; the remaining record fields are unresolved.
+    struct ColorRecord { f32 r, g, b, a; u8 remaining[0x14]; } colors[4]; // 0xc8
 };
 
 typedef char TAdLdQuestPrtGC_size[sizeof(TAdLdQuestPrtGC) == 0x158 ? 1 : -1];

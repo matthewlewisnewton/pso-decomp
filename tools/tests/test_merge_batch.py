@@ -190,6 +190,101 @@ class QueueTests(unittest.TestCase):
                     else:
                         self.rejects('source_maintenance_scope', queue.construct)
 
+    def test_symbol_rename_parser_rejects_metadata_and_collisions(self):
+        before=(b'set_flag2__12TObjEneReconFv = .text:0x8031DDDC; // type:function size:0x50\n'
+                b'other = .text:0x8031DE2C; // type:function size:0x5C scope:local\n')
+        after=before.replace(b'ReconFv',b'ReconFfff')
+        self.assertEqual(m.symbol_renames(before, after), [{'old':'set_flag2__12TObjEneReconFv','new':'set_flag2__12TObjEneReconFfff','section':'.text','address':'0x8031DDDC','size':'0x50'}])
+        cases=[after.replace(b'8031DDDC',b'8031DDDD'), after.replace(b'size:0x50',b'size:0x54'),
+               after.replace(b'.text:0x8031DDDC',b'.data:0x8031DDDC'),
+               after.replace(b'size:0x50',b'size:0x50 scope:local'), after.replace(b'TObjEneReconFfff',b'TObjEneOtherFfff'), after.replace(b'set_flag2__',b'otherfunc__'), after.replace(b'ReconFfff',b'ReconFbad'),
+               after.replace(b'set_flag2__12TObjEneReconFfff',b'other'), after.replace(b'type:function',b'type:function bad!',1),
+               after.replace(b'ReconFfff',b'ReconFv'), after+b'broken record\n',
+               b'\n'.join(reversed(after.splitlines()))+b'\n', after.replace(b'0x50',b'0x00')]
+        for altered in cases:
+            with self.subTest(altered=altered[:60]), self.assertRaises(ValueError): m.symbol_renames(before, altered)
+        existing_dupes=before+b'local = .text:0x8031DEF0; // type:function size:0x4\n'+b'local = .text:0x8031DEF4; // type:function size:0x4\n'
+        self.assertEqual(len(m.symbol_renames(existing_dupes, existing_dupes.replace(b'ReconFv',b'ReconFfff'))),1)
+
+    def test_symbol_rename_raw_record_framing_and_real_inventory(self):
+        base=(b'set_flag2__12TObjEneReconFv = .text:0x8031DDDC; // type:function size:0x50\n'
+              b'other = .text:0x8031DE2C; // type:function size:0x5C\n')
+        renamed=base.replace(b'ReconFv',b'ReconFfff')
+        self.assertEqual(len(m.symbol_renames(base, renamed)),1)
+        for separator in (b'\x0b',b'\x0c',b'\x1c',b'\x1d',b'\x1e',b'\r',b'\r\n',b'\x00',b'\x7f',b'\x85'):
+            altered=renamed.replace(b'\n',separator,1)
+            with self.subTest(separator=repr(separator)), self.assertRaises(ValueError): m.symbol_renames(base,altered)
+        inventory=(MODULE.parents[1]/m.SYMBOL_FILE).read_bytes()
+        original=b'set_flag2__12TObjEneReconFv = .text:0x8031DDDC; // type:function size:0x50\n'
+        renamed=original.replace(b'ReconFv',b'ReconFfff')
+        self.assertIn((inventory.count(original),inventory.count(renamed)),((1,0),(0,1)))
+        before=inventory.replace(renamed,original) if renamed in inventory else inventory
+        after=before.replace(original,renamed)
+        # Both real pre- and post-rename inventories must reconstruct the exact
+        # same forward check. Neither missing nor duplicate records are accepted.
+        for state in (before,after):
+            with self.subTest(inventory='pre' if state==before else 'post'):
+                self.assertIn((state.count(original),state.count(renamed)),((1,0),(0,1)))
+                reconstructed=state.replace(renamed,original) if renamed in state else state
+                self.assertEqual(m.symbol_renames(reconstructed,reconstructed.replace(original,renamed)),
+                    [{'old':'set_flag2__12TObjEneReconFv','new':'set_flag2__12TObjEneReconFfff',
+                      'section':'.text','address':'0x8031DDDC','size':'0x50'}])
+
+    def test_symbol_rename_real_git_construction_and_review_binding(self):
+        old=(b'set_flag2__12TObjEneReconFv = .text:0x8031DDDC; // type:function size:0x50\n'
+             b'other = .text:0x8031DE2C; // type:function size:0x5C\n')
+        new=old.replace(b'ReconFv',b'ReconFfff')
+        git(self.author,'checkout','main')
+        symbol=self.author/m.SYMBOL_FILE; symbol.parent.mkdir(parents=True);symbol.write_bytes(old)
+        git(self.author,'add',m.SYMBOL_FILE);git(self.author,'commit','-m','symbol baseline');git(self.author,'push','origin','main')
+        target=git(self.author,'rev-parse','HEAD')
+        cases=('accept','missing-review','wrong-head','stale-review-file','stale-after','unexpected-config','changed-size','collision','wrong-target','not-independent','wrong-rename',
+               'framing-0b','framing-0c','framing-1c','framing-1d','framing-1e','framing-cr','framing-crlf')
+        for i,case in enumerate(cases):
+            with self.subTest(case=case):
+                branch='symbol'+str(i);git(self.author,'checkout','-b',branch,target)
+                candidate=new
+                if case=='changed-size':candidate=new.replace(b'0x50',b'0x54')
+                if case=='collision':candidate=new+b'set_flag2__12TObjEneReconFfff = .text:0x8031DDFC; // type:function size:0x4\n'
+                if case.startswith('framing-'):
+                    separators={'framing-0b':b'\x0b','framing-0c':b'\x0c','framing-1c':b'\x1c','framing-1d':b'\x1d','framing-1e':b'\x1e','framing-cr':b'\r','framing-crlf':b'\r\n'}
+                    candidate=candidate.replace(b'\n',separators[case],1)
+                symbol.write_bytes(candidate)
+                if case=='unexpected-config':
+                    extra=self.author/'config/other.txt';extra.write_text('forbidden')
+                git(self.author,'add','config')
+                # Write and stage exact blob bytes, bypassing Git worktree text filters.
+                blob=subprocess.check_output(['git','-C',str(self.author),'hash-object','-w','--stdin'],input=candidate).decode().strip()
+                git(self.author,'update-index','--cacheinfo','100644,'+blob+','+m.SYMBOL_FILE)
+                git(self.author,'commit','-m','source rename');git(self.author,'push','origin',branch)
+                head=git(self.author,'rev-parse','HEAD')
+                batch=copy.deepcopy(self.batch);batch.update(target=target,policy='source-maintenance')
+                pr=batch['prs'][0];pr.update(head=head,head_ref=branch,base_sha=target,review_base=target,kind='source-maintenance')
+                pr['review'].update(head=head,base=target)
+                doc={'version':1,'verdict':'pass','independent':True,'reviewer':'independent fixture','target':target,'heads':[head],
+                     'path':m.SYMBOL_FILE,'before_sha256':hashlib.sha256(old).hexdigest(),
+                     'after_sha256':hashlib.sha256(candidate).hexdigest(),'renames':[{'old':'set_flag2__12TObjEneReconFv',
+                      'new':'set_flag2__12TObjEneReconFfff','section':'.text','address':'0x8031DDDC','size':'0x50'}]}
+                if case=='wrong-head':doc['heads']=['f'*40]
+                if case=='wrong-target':doc['target']='f'*40
+                if case=='not-independent':doc['independent']=False
+                if case=='wrong-rename':doc['renames'][0]['new']='wrong'
+                if case=='stale-after':doc['after_sha256']='f'*64
+                review=self.root/('symbol-review-'+str(i)+'.json');review.write_text(json.dumps(doc))
+                if case!='missing-review':batch['symbol_rename_review']={'path':str(review),'sha256':m.digest(review)}
+                if case=='stale-review-file':review.write_text('{}')
+                state=self.root/('symbol-state-'+str(i));state.mkdir()
+                queue=LocalQueue(batch,state,LocalAPI(self.remote,batch))
+                expected={'missing-review':'source_maintenance_scope','wrong-head':'stale_symbol_review','stale-review-file':'stale_symbol_review',
+                          'stale-after':'stale_symbol_review','wrong-target':'stale_symbol_review','not-independent':'stale_symbol_review','wrong-rename':'stale_symbol_review','unexpected-config':'source_maintenance_scope','changed-size':'invalid_symbol_delta','collision':'invalid_symbol_delta'}
+                with patch.object(m,'REMOTE',str(self.remote)):
+                    if case=='accept':
+                        queue.construct();self.assertEqual(queue.record['state'],'planned');m.evidence(batch)
+                    elif case.startswith('framing-'):
+                        with self.assertRaises(m.Rejected) as rejected: queue.construct()
+                        self.assertIn(rejected.exception.code, ('invalid_symbol_delta','command_failed') if case in ('framing-cr','framing-crlf') else ('invalid_symbol_delta',))
+                    else:self.rejects(expected[case],queue.construct)
+
     def test_validation_wrong_tree(self):
         self.rejects('wrong_validation_tree', lambda: m.check_validation(self.batch, self.result, 'f' * 40))
 
@@ -218,6 +313,101 @@ class QueueTests(unittest.TestCase):
         self.assertEqual(self.api.branch('main')['head'], self.q.record['candidate'])
         fresh = LocalQueue(self.batch, self.state, self.api)
         self.assertEqual(fresh.execute('execute')['state'], 'published')
+
+    def readme_transaction(self, improvement=True):
+        self.q.execute('plan')
+        git(self.q.repo, 'config', 'user.name', 'Fixture'); git(self.q.repo, 'config', 'user.email', 'fixture@localhost')
+        (self.q.repo / 'README.md').write_text((MODULE.parents[1] / 'README.md').read_text())
+        git(self.q.repo, 'add', 'README.md'); git(self.q.repo, 'commit', '-m', 'source fixture')
+        source = git(self.q.repo, 'rev-parse', 'HEAD')
+        self.q.record.update(candidate=source, tree=git(self.q.repo, 'rev-parse', 'HEAD^{tree}'))
+        def report(matched):
+            return {'measures': {'total_code': 10, 'matched_code': matched, 'complete_code': 4,
+                    'total_data': 10, 'matched_data': 5, 'complete_data': 4, 'total_functions': 10,
+                    'matched_functions': 5, 'total_units': 2, 'complete_units': 1}, 'units':[{},{}]}
+        files = {}
+        for role, n in (('baseline', 5), ('candidate', 6 if improvement else 5)):
+            path=self.root/(role+'-report.json'); path.write_text(json.dumps(report(n))); files[role]=str(path)
+        coverage=self.state/'coverage.json'; coverage.write_text('{}')
+        provenance={'ordered_inputs_sha256':'a'*64,'source_inputs':1,'fallback_inputs':1}
+        review=self.root/'graph-review.json'; review.write_text('{}')
+        env=self.root/'readme-env.json'; env.write_text(json.dumps({'acceptance_capacity':{'review':{'path':str(review),'sha256':m.digest(review)}}}))
+        result={'review_sha256':m.digest(review), 'raw_report_paths':files, 'raw_report_sha256':{k:m.digest(v) for k,v in files.items()},
+                'coverage_receipt':str(coverage), 'coverage_receipt_sha256':m.digest(coverage), 'acceptance_builds':{k:{'provenance':provenance} for k in files}}
+        validation=self.state/'validated.json'; validation.write_text(json.dumps(result))
+        self.q.record.update(validation=str(validation),validation_sha256=m.digest(validation))
+        generator=MODULE.with_name('merge_batch_readme.py')
+        self.batch['readme_update']={'generator':str(generator),'sha256':m.digest(generator)}
+        self.q.record['spec_sha256'] = hashlib.sha256(m.canonical(self.batch).encode()).hexdigest()
+        return files
+
+    def test_readme_atomic_publication_and_crash_recovery(self):
+        self.readme_transaction()
+        self.q.prepare_readme(self.root/'readme-env.json')
+        source=self.q.record['candidate']; publication=self.q.record['publication_candidate']
+        self.assertNotEqual(source,publication)
+        self.assertEqual(git(self.q.repo,'show','-s','--format=%P',publication),source)
+        self.q.prepare_readme(self.root/'readme-env.json'); self.assertEqual(self.q.record['publication_candidate'],publication)
+        self.q.write(state='publishing')
+        git(self.q.repo,'push','--atomic','origin',publication+':refs/heads/main')
+        fresh=LocalQueue(self.batch,self.state,self.api)
+        self.assertEqual(fresh.execute('execute')['published_commit'],publication)
+
+    def test_readme_no_gain_and_stale_evidence(self):
+        files=self.readme_transaction(False); self.q.prepare_readme(self.root/'readme-env.json')
+        self.assertEqual(self.q.record['publication_candidate'],self.q.record['candidate'])
+        Path(files['candidate']).write_text('{}')
+        self.rejects('stale_readme_evidence',self.q.check_readme_publication)
+
+    def test_readme_rejects_coverage_replaced_after_validation(self):
+        self.readme_transaction()
+        coverage=self.state/'coverage.json'; coverage.write_text('{"result":"fail"}')
+        self.rejects('stale_coverage_receipt', lambda: self.q.prepare_readme(self.root/'readme-env.json'))
+        self.assertNotIn('publication_candidate', self.q.record)
+
+    def test_readme_requires_validation_coverage_hash(self):
+        for value in (None, '', '0'*63, 'Z'*64, True, '0'*64):
+            with self.subTest(value=value):
+                self.readme_transaction()
+                validation=Path(self.q.record['validation']); data=json.loads(validation.read_text())
+                if value is None: del data['coverage_receipt_sha256']
+                else: data['coverage_receipt_sha256']=value
+                validation.write_text(json.dumps(data)); self.q.record['validation_sha256']=m.digest(validation)
+                code='stale_coverage_receipt' if value == '0'*64 else 'missing_coverage_binding'
+                self.rejects(code, lambda: self.q.prepare_readme(self.root/'readme-env.json'))
+
+    def test_readme_journals_original_coverage_binding(self):
+        self.readme_transaction(); self.q.prepare_readme(self.root/'readme-env.json')
+        validation=json.loads(Path(self.q.record['validation']).read_text())
+        self.assertEqual(self.q.record['readme_evidence']['coverage_sha256'], validation['coverage_receipt_sha256'])
+        self.q.check_readme_publication()
+        self.q.record['readme_evidence']['coverage_sha256']='0'*64
+        self.rejects('coverage_binding_mismatch',self.q.check_readme_publication)
+        self.q.record['readme_evidence']['coverage_sha256']=validation['coverage_receipt_sha256']
+        (self.state/'coverage.json').write_text('{"result":"fail"}')
+        self.rejects('stale_readme_evidence',self.q.check_readme_publication)
+
+    def test_readme_rejects_tampered_publication_tree(self):
+        self.readme_transaction(); self.q.prepare_readme(self.root/'readme-env.json')
+        final=self.q.record['publication_candidate']
+        git(self.q.repo,'checkout','--detach',final)
+        (self.q.repo/'other').write_text('unexpected')
+        git(self.q.repo,'add','other');git(self.q.repo,'commit','-m','unexpected')
+        self.q.record['publication_candidate']=git(self.q.repo,'rev-parse','HEAD')
+        self.q.record['publication_tree']=git(self.q.repo,'rev-parse','HEAD^{tree}')
+        self.rejects('readme_scope',self.q.check_readme_publication)
+
+    def test_readme_stale_generator_pin_rejected(self):
+        self.readme_transaction()
+        self.batch['readme_update']['sha256']='0'*64
+        self.rejects('stale_readme_generator',lambda:self.q.prepare_readme(self.root/'readme-env.json'))
+
+    def test_readme_generator_cannot_change_unrelated_content(self):
+        self.readme_transaction()
+        generator=self.root/'bad_generator.py'
+        generator.write_text("import json,sys\nfrom pathlib import Path\nr=json.loads(Path(sys.argv[1]).read_text()); Path(r['output']).write_text(Path(r['readme']).read_text().replace('## Legal','## Changed'))\n")
+        self.batch['readme_update']={'generator':str(generator),'sha256':m.digest(generator)}
+        self.rejects('readme_scope',lambda:self.q.prepare_readme(self.root/'readme-env.json'))
 
     def test_push_failure_changes_no_remote_prefix(self):
         self.q.execute('plan')
@@ -468,6 +658,7 @@ class QueueTests(unittest.TestCase):
         # journal update. Real nonblocking flock must prevent B from publishing
         # before A persists its failure. No sleeps or mocked flock results.
         self.batch['publication_freeze'] = True
+        self.batch['readme_update'] = {'generator': 'fixture', 'sha256': 'fixture'}
         environment = self.root / 'environment.json'; environment.write_text('{}')
         self.batch['environment_sha256'] = m.digest(environment)
         validator = self.root / 'validator.py'
@@ -489,7 +680,8 @@ class QueueTests(unittest.TestCase):
         def competing_retry(lock):
             retry = LocalQueue(self.batch, self.state, self.api)
             retry.lock_fd = lock.fileno()
-            return retry.execute('execute', validator, m.digest(validator), environment)
+            with patch.object(retry, 'prepare_readme'), patch.object(retry, 'check_readme_publication', side_effect=lambda: retry.record['candidate']):
+                return retry.execute('execute', validator, m.digest(validator), environment)
         def error_write(**fields):
             if 'last_error' in fields:
                 with original_open(lockpath, 'a') as other:
