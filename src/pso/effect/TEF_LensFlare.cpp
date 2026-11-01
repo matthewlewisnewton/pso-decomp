@@ -66,21 +66,6 @@ extern LensFlareSpriteDefinition lbl_804C5820[];
 extern const Vec lbl_80438E40;
 f32 vec3_dot(const Vec *, const Vec *);
 f32 normalize_vector(Vec *);
-extern const f32 lbl_805D9338;
-extern const f32 lbl_805D933C;
-extern const f32 lbl_805D9340;
-extern const f32 lbl_805D9344;
-extern const f32 lbl_805D9348;
-extern const f32 lbl_805D934C;
-extern const f32 lbl_805D9350;
-extern const f32 lbl_805D9354;
-extern const f32 lbl_805D9358;
-extern const f32 lbl_805D935C;
-extern const f32 lbl_805D9360;
-extern const f32 lbl_805D9364;
-extern const f32 lbl_805D9368;
-extern const f32 lbl_805D936C;
-extern const f32 lbl_805D9370;
 }
 
 struct Base_8008194C_80081278 { char pad[0x50]; };
@@ -89,26 +74,36 @@ struct VObj_8008194C_80081278 : Base_8008194C_80081278 {
     virtual void m1();
 };
 
-struct RecoveredGlobal_800818D8_lbl_8048E040 {
-    s32 value;
-    u8 remaining[0xEC];
-};
-
-struct RecoveredGlobal_800818D8_lbl_8048E130 {
-    s32 value;
-    u8 remaining[0x34];
-};
-
 extern "C" {
 s32 __ct__8TObjBaseFP7TObject(void *, void *);
-extern RecoveredGlobal_800818D8_lbl_8048E040 lens_flare_reflected_element_descriptors;
+extern LensFlareElement lens_flare_reflected_element_descriptors[10];
 extern s32 __vt__13TEF_LensFlare[];
-extern s32 TEF_LensFlare__class_name;
+extern const char *TEF_LensFlare__class_name;
 u8 *TEF_LensFlare__ct(u8 *arg0, s32 arg1, s32 arg2);
 void *__dt__13TEF_LensFlareFv(void *arg0, s16 arg1);
 void __dl__7TObjectFPv(void *);
 
 }
+extern "C" {
+extern const char TEF_LensFlare__class_name_string[] = "TEF_LensFlare";
+const char *TEF_LensFlare__class_name = TEF_LensFlare__class_name_string;
+
+// Static configuration, not frame data. The final word of each entry is
+// retained as a float even though this renderer does not consume it.
+LensFlareElement lens_flare_reflected_element_descriptors[10] = {
+    {1, 0.1f, 0.8f, 0.0f, 0.7f, -10.0f},
+    {2, 0.4f, 0.6f, 0.5f, 0.7f, -10.1f},
+    {3, 0.6f, 0.8f, 0.6f, 0.7f, -10.2f},
+    {1, 0.8f, 1.2f, 0.6f, 0.4f, -10.3f},
+    {3, 1.0f, 1.2f,-0.3f, 0.7f, -10.4f},
+    {4, 1.2f, 0.7f, 1.0f, 0.7f, -10.5f},
+    {2, 1.4f, 1.7f, 0.0f, 0.7f, -10.6f},
+    {5, 1.5f, 0.6f, 1.0f, 0.7f, -10.7f},
+    {6, 1.8f, 1.5f, 0.0f, 0.7f, -10.8f},
+    {2, 0.0f, 4.0f, 2.0f, 0.4f, -10.9f},
+};
+}
+
 TEF_LensFlare::~TEF_LensFlare() {
 
 }
@@ -120,14 +115,14 @@ void TEF_LensFlare::render() {
         LensFlareSprite sprite_storage;
         Vec *sprite_position;
         LensFlareSprite *sprite = &sprite_storage;
-        sprite->position.x = lbl_805D9338; sprite->position.y = lbl_805D9338; sprite->position.z = lbl_805D9338;
-        sprite->reserved[0] = lbl_805D9338; sprite->reserved[1] = lbl_805D9338; sprite->reserved[2] = lbl_805D9338;
-        sprite->scale_x = lbl_805D9338; sprite->scale_y = lbl_805D9338;
+        sprite->position.x = 0.0f; sprite->position.y = 0.0f; sprite->position.z = 0.0f;
+        sprite->reserved[0] = 0.0f; sprite->reserved[1] = 0.0f; sprite->reserved[2] = 0.0f;
+        sprite->scale_x = 0.0f; sprite->scale_y = 0.0f;
         sprite->color = 0; sprite->flags = 0; sprite->angle = 0;
         sprite_position = &sprite_storage.position;
         set_additive_blend();
-        if (scale.x >= lbl_805D9338) {
-            f32 radius = lbl_805D933C * scale.x;
+        if (scale.x >= 0.0f) {
+            f32 radius = 10.0f * scale.x;
             if (is_player_near(radius * radius)) return;
         }
         TParticleCtrl::begin_effect_render();
@@ -135,7 +130,7 @@ void TEF_LensFlare::render() {
         direction.x = position.x - camera_ctrl_instance->m_178;
         direction.y = position.y - camera_ctrl_instance->m_17c;
         direction.z = position.z - camera_ctrl_instance->m_180;
-        if (lbl_805D9338 != vec_squared_length(&direction)) normalize_vector(&direction);
+        if (0.0f != vec_squared_length(&direction)) normalize_vector(&direction);
         push_matrix_from(identity_matrix);
         Vec facing;
         Vec forward = lbl_80438E40;
@@ -143,22 +138,23 @@ void TEF_LensFlare::render() {
         rotate_matrix_x(NULL, camera_ctrl_instance->m_190);
         rotate_vector_by_matrix(0, &forward, &facing);
         pop_matrix();
+        f32 center_x, center_y, inverse_strength, strength;
         f32 alignment = vec3_dot(&facing, &direction);
-        if (alignment > lbl_805D9338) {
+        if (alignment > 0.0f) {
             set_depth_buffer_settings_1();
             f32 screen[2];
             project_world_to_screen(NULL, &position, screen);
             Vec point;
-            if (alignment > lbl_805D9340) {
-                f32 glow = lbl_805D9344 * (alignment - lbl_805D9348);
+            if (alignment > 0.99f) {
+                f32 glow = 50.0f * (alignment - 0.98f);
                 glow *= glow;
                 LensFlareColor color;
-                color.channels.a = (s32)(lbl_805D934C * (lbl_805D9350 * glow));
                 color.channels.r = 255; color.channels.g = 255; color.channels.b = 255;
-                point.x = screen[0]; point.y = screen[1]; point.z = lbl_805D9338;
+                color.channels.a = (s32)(255.0f * (0.9f * glow));
+                point.x = screen[0]; point.y = screen[1]; point.z = 0.0f;
                 sprite->color = color.packed;
                 VecCopy(sprite_position, &point);
-                sprite->scale_x = lbl_805D9354 * glow; sprite->scale_y = sprite->scale_x;
+                sprite->scale_x = 20.0f * glow; sprite->scale_y = sprite->scale_x;
                 begin_screen_draw(1);
                 set_current_texture_list(lbl_804C5820[15].texture_list);
                 set_draw_texture_and_color(lbl_804C5820[15].texture, -1);
@@ -166,30 +162,30 @@ void TEF_LensFlare::render() {
                 f32 y = point.y;
                 f32 half_width = lbl_804C5820[15].width;
                 f32 half_height = lbl_804C5820[15].height;
-                f32 sx = lbl_805D9358 * sprite->scale_x;
-                f32 sy = lbl_805D9358 * sprite->scale_y;
+                f32 sx = 2.0f * sprite->scale_x;
+                f32 sy = 2.0f * sprite->scale_y;
                 half_width *= sx; half_height *= sy;
                 f32 quad[8];
                 quad[0] = x - half_width; quad[2] = x + half_width;
                 quad[1] = y - half_height; quad[3] = y + half_height;
-                quad[4] = lbl_805D9338; quad[5] = lbl_805D9338;
-                quad[6] = lbl_805D935C; quad[7] = lbl_805D935C;
+                quad[4] = 0.0f; quad[5] = 0.0f;
+                quad[6] = 1.0f; quad[7] = 1.0f;
                 set_constant_material_color(sprite->color);
-                draw_textured_quad_at_depth(quad, lbl_805D9360);
+                draw_textured_quad_at_depth(quad, 0.5f);
                 TWindowSubStatusDisp::get_player();
             }
-            f32 strength;
-            if (alignment > lbl_805D9368) strength = lbl_805D9364 * (alignment - lbl_805D9368);
-            else strength = lbl_805D9338;
-            strength = strength * (strength * (strength * strength));
-            f32 center_x = lbl_805D936C - screen[0];
-            f32 center_y = lbl_805D9370 - screen[1];
+            
+            if (alignment > 0.6f) strength = 3.0f * (alignment - 0.6f);
+            else strength = 0.0f;
+            strength *= strength * strength * strength;
+            center_x = 320.0f - screen[0];
+            center_y = 240.0f - screen[1];
             LensFlareColor color;
             color.channels.a = 255; color.channels.r = 255; color.channels.g = 255; color.channels.b = 255;
-            point.x = screen[0]; point.y = screen[1]; point.z = lbl_805D9338;
+            point.x = screen[0]; point.y = screen[1]; point.z = 0.0f;
             sprite->color = color.packed;
             VecCopy(sprite_position, &point);
-            sprite->scale_x = lbl_805D935C; sprite->scale_y = sprite->scale_x;
+            sprite->scale_x = 1.0f; sprite->scale_y = sprite->scale_x;
             begin_screen_draw(1);
             set_current_texture_list(lbl_804C5820[9].texture_list);
             set_draw_texture_and_color(lbl_804C5820[9].texture, -1);
@@ -197,31 +193,31 @@ void TEF_LensFlare::render() {
             f32 y = point.y;
             f32 half_width = lbl_804C5820[9].width;
             f32 half_height = lbl_804C5820[9].height;
-            f32 sx = lbl_805D9358 * sprite->scale_x;
-            f32 sy = lbl_805D9358 * sprite->scale_y;
+            f32 sx = 2.0f * sprite->scale_x;
+            f32 sy = 2.0f * sprite->scale_y;
             half_width *= sx; half_height *= sy;
             f32 quad[8];
             quad[0] = x - half_width; quad[2] = x + half_width;
             quad[1] = y - half_height; quad[3] = y + half_height;
-            quad[4] = lbl_805D9338; quad[5] = lbl_805D9338;
-            quad[6] = lbl_805D935C; quad[7] = lbl_805D935C;
+            quad[4] = 0.0f; quad[5] = 0.0f;
+            quad[6] = 1.0f; quad[7] = 1.0f;
             set_constant_material_color(sprite->color);
-            draw_textured_quad_at_depth(quad, lbl_805D9360);
+            draw_textured_quad_at_depth(quad, 0.5f);
             TWindowSubStatusDisp::get_player();
             LensFlareElement *element = elements;
-            f32 inverse_strength = lbl_805D935C - strength;
+            inverse_strength = 1.0f - strength;
             s32 i = 1;
             do {
-                f32 size = element->scale * (lbl_805D935C - inverse_strength * element->attenuation);
-                if (size < lbl_805D9338) size = lbl_805D9338;
+                f32 size = element->scale * (1.0f - inverse_strength * element->attenuation);
+                if (size < 0.0f) size = 0.0f;
                 LensFlareColor color;
                 // fctiwz followed by stb: signed truncation, then low-byte wrapping.
-                color.channels.a = (s32)(lbl_805D934C * (strength * element->alpha));
                 color.channels.r = 255; color.channels.g = 255; color.channels.b = 255;
+                color.channels.a = (s32)(255.0f * (strength * element->alpha));
                 sprite->color = color.packed;
                 point.x = center_x * element->displacement + screen[0];
                 point.y = center_y * element->displacement + screen[1];
-                point.z = lbl_805D9338;
+                point.z = 0.0f;
                 VecCopy(sprite_position, &point);
                 sprite->scale_x = size; sprite->scale_y = sprite->scale_x;
                 begin_screen_draw(1);
@@ -231,19 +227,18 @@ void TEF_LensFlare::render() {
                 f32 y = point.y;
                 f32 half_width = lbl_804C5820[9 + element->texture].width;
                 f32 half_height = lbl_804C5820[9 + element->texture].height;
-                f32 sx = lbl_805D9358 * sprite->scale_x;
-                f32 sy = lbl_805D9358 * sprite->scale_y;
+                f32 sx = 2.0f * sprite->scale_x;
+                f32 sy = 2.0f * sprite->scale_y;
                 half_width *= sx; half_height *= sy;
                 f32 quad[8];
                 quad[0] = x - half_width; quad[2] = x + half_width;
                 quad[1] = y - half_height; quad[3] = y + half_height;
-                quad[4] = lbl_805D9338; quad[5] = lbl_805D9338;
-                quad[6] = lbl_805D935C; quad[7] = lbl_805D935C;
+                quad[4] = 0.0f; quad[5] = 0.0f;
+                quad[6] = 1.0f; quad[7] = 1.0f;
                 set_constant_material_color(sprite->color);
-                draw_textured_quad_at_depth(quad, lbl_805D9360);
+                draw_textured_quad_at_depth(quad, 0.5f);
                 TWindowSubStatusDisp::get_player();
-                ++element;
-            } while (i++ < 9);
+            } while ((++element, i++) < 9);
             restore_saved_depth_alpha_state();
         }
         TParticleCtrl::end_effect_render();
@@ -253,14 +248,12 @@ void TEF_LensFlare::render() {
 
 extern "C" {
 
-typedef char RecoveredGlobal_800818D8_lbl_8048E040_size[sizeof(RecoveredGlobal_800818D8_lbl_8048E040) == 0xF0 ? 1 : -1];
-typedef char RecoveredGlobal_800818D8_lbl_8048E130_size[sizeof(RecoveredGlobal_800818D8_lbl_8048E130) == 0x38 ? 1 : -1];
 u8 *TEF_LensFlare__ct(u8 *ef_lens_flare, s32 parent, s32 arg2) {
     __ct__8TObjBaseFP7TObject((void *)ef_lens_flare, (void *)parent);
-    *(s32 **)((s8 *)ef_lens_flare + 0x18) = &(*(RecoveredGlobal_800818D8_lbl_8048E130 *)&__vt__13TEF_LensFlare).value;
-    *(s32 *)((s8 *)ef_lens_flare + 0) = (s32) TEF_LensFlare__class_name;
+    *(s32 **)((s8 *)ef_lens_flare + 0x18) = __vt__13TEF_LensFlare;
+    ((TEF_LensFlare *)ef_lens_flare)->m_name = TEF_LensFlare__class_name;
     ((TEF_LensFlare *)(ef_lens_flare))->apply_object_set_data((void *)arg2);
-    *(s32 **)((s8 *)ef_lens_flare + 0x90) = &lens_flare_reflected_element_descriptors.value;
+    ((TEF_LensFlare *)ef_lens_flare)->elements = lens_flare_reflected_element_descriptors;
     return ef_lens_flare;
 }
 
@@ -273,3 +266,5 @@ void TEF_PvrWave::run_task() {
 }
 
 }
+
+extern "C" __declspec(section ".rodata") const Vec lbl_80438E40 = {0.0f, 0.0f, -1.0f};
