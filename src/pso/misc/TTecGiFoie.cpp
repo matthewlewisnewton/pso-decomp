@@ -47,7 +47,8 @@ typedef char RecoveredGlobal_80230D9C_lbl_804CC510_size[((sizeof(RecoveredGlobal
 
 typedef char RecoveredGlobal_80230D9C_lbl_804CC55C_size[((sizeof(RecoveredGlobal_80230D9C_lbl_804CC55C)) == 0x98) ? (1) : (-1)];
 
-struct GiFoieOrbitTask;
+struct TUnk_804CC800;
+typedef TUnk_804CC800 GiFoieOrbitTask;
 
 struct RecoveredGlobal_80231638___vt__10TTecGiFoie
 {
@@ -104,7 +105,8 @@ struct Part_802312E4 { s32 id; u32 flags; u8 pad8[4]; };
 
 struct Profile_802312E4 { Part_802312E4 *parts; u32 count; };
 
-struct GiFoieOrbitTask {
+// Unit-local layout view; base construction/destruction stay at their proven C ABI.
+struct TUnk_804CC800 {
     u8 pad0[0x18];
     void **vt;
     TParticleCtrl **emitters;
@@ -118,6 +120,7 @@ struct GiFoieOrbitTask {
     u8 orbit_mode;
     u8 single;
     s32 axis_yaw;
+    void run_task();
 };
 
 typedef char OrbitTask_size[sizeof(GiFoieOrbitTask) == 0x4C ? 1 : -1];
@@ -180,7 +183,7 @@ s32 pop_matrices(s32 arg0);
 
 extern const f32 TTecGiFoie__data_805DC81C;
 extern RecoveredGlobal_80231638___vt__10TTecGiFoie __vt__10TTecGiFoie;
-extern Profile_802312E4 TTecGiFoie__emitter_profile_table[];
+extern const Profile_802312E4 TTecGiFoie__emitter_profile_table[];
 extern u8 lbl_8044D324[];
 extern Vec_8023179C lbl_8044D32C;
 extern RecoveredGlobal_80230D9C_lbl_804CC510 tech_high_level_linear_power_table;
@@ -218,10 +221,10 @@ void TTecGiFoie::calc_params() {
 // Keep the two motion paths' float/double operations and callback order intact.
 #pragma push
 #pragma fp_contract on
-void run_task__13TUnk_804CC800Fv(GiFoieOrbitTask *self) {
+void TUnk_804CC800::run_task() {
     Rot_802312E4 direction;
     s32 index;
-    switch (self->band) {
+    switch (this->band) {
     case 0: index = 0; break;
     case 1: index = 1; break;
     case 2: index = 2; break;
@@ -230,49 +233,49 @@ void run_task__13TUnk_804CC800Fv(GiFoieOrbitTask *self) {
     case 5: index = 2; break;
     default: index = 0; break;
     }
-    self->ticks++;
-    if (self->orbit_mode != 0) {
+    this->ticks++;
+    if (this->orbit_mode != 0) {
         Vec_802312E4 offset;
-        self->radius = self->radius + lbl_8044D358;
-        self->phase += 0x1C71;
-        offset.x = self->radius * cos_table_lookup(self->phase);
-        offset.z = self->radius * sin_table_lookup(self->phase);
+        this->radius = this->radius + lbl_8044D358;
+        this->phase += 0x1C71;
+        offset.x = this->radius * cos_table_lookup(this->phase);
+        offset.z = this->radius * sin_table_lookup(this->phase);
         offset.y = lbl_805DC810;
         push_matrix_from(identity_matrix);
-        rotate_matrix_y(0, self->axis_yaw);
+        rotate_matrix_y(0, this->axis_yaw);
         rotate_matrix_x(0, 0x4000);
         rotate_vector_by_matrix(0, &offset, &offset);
         pop_matrix();
-        self->position.x = self->origin.x + offset.x;
-        self->position.y = self->origin.y + offset.y;
-        self->position.z = self->origin.z + offset.z;
+        this->position.x = this->origin.x + offset.x;
+        this->position.y = this->origin.y + offset.y;
+        this->position.z = this->origin.z + offset.z;
     } else {
-        self->radius += lbl_805DC814;
-        self->phase += (s32)(lbl_805DC818 * (f32)(self->band + 9));
-        self->position.y = self->origin.y + lbl_8044D338[index] * sin_table_lookup((s32)(lbl_805DC818 * (f32)(self->ticks * 15)));
-        self->position.x = self->origin.x + self->radius * cos_table_lookup(self->phase);
-        self->position.z = self->origin.z + self->radius * sin_table_lookup(self->phase);
+        this->radius += lbl_805DC814;
+        this->phase += (s32)(lbl_805DC818 * (f32)(this->band + 9));
+        this->position.y = this->origin.y + lbl_8044D338[index] * sin_table_lookup((s32)(lbl_805DC818 * (f32)(this->ticks * 15)));
+        this->position.x = this->origin.x + this->radius * cos_table_lookup(this->phase);
+        this->position.z = this->origin.z + this->radius * sin_table_lookup(this->phase);
     }
-    if (self->single != 0) {
+    if (this->single != 0) {
         Vec_802312E4 offset = lbl_8044D344;
         push_matrix_from(identity_matrix);
-        rotate_matrix_y(0, self->axis_yaw);
+        rotate_matrix_y(0, this->axis_yaw);
         rotate_vector_by_matrix(0, &offset, &offset);
         pop_matrix();
         direction.x = 0;
         direction.y = 0;
         direction.z = 0;
         direction_to_rotation_xz((u8 *)&offset, &direction.x, &direction.z);
-        self->emitters[0]->set_position(&self->position);
-        self->emitters[0]->set_direction(&direction);
+        this->emitters[0]->set_position(&this->position);
+        this->emitters[0]->set_direction(&direction);
     } else {
-        direction.y = (s32)(lbl_8044D360[0] * atan2_float(self->position.x - self->origin.x, self->position.z - self->origin.z));
+        direction.y = (s32)(lbl_8044D360[0] * atan2_float(this->position.x - this->origin.x, this->position.z - this->origin.z));
         direction.z = 0x4000;
         direction.x = direction.y - 0x8000;
         direction.y = 0;
-        for (index = 0; index < TTecGiFoie__emitter_profile_table[self->band].count; index++) {
-            self->emitters[index]->set_position(&self->position);
-            self->emitters[index]->set_direction(&direction);
+        for (index = 0; index < TTecGiFoie__emitter_profile_table[this->band].count; index++) {
+            this->emitters[index]->set_position(&this->position);
+            this->emitters[index]->set_direction(&direction);
         }
     }
 }

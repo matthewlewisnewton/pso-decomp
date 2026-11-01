@@ -2,9 +2,11 @@
 
 The missing `run_task__13TUnk_804CC800Fv` at `0x80230EA0` belongs to the
 0x4C-byte orbit task constructed at `0x802312E4`, rather than the 0x13C-byte
-`TTecGiFoie` receiver. The private `GiFoieOrbitTask` is a layout view of that
-existing allocation, not a proposed new inheritance hierarchy or original class
-name. Constructor and destructor interfaces remain provisional C boundaries.
+`TTecGiFoie` receiver. The private `TUnk_804CC800` declaration is a layout view of that allocation.
+Its member update retains the receiver and method name established by the
+original symbol; `GiFoieOrbitTask` is an alias used by the existing factory ABI.
+No new inheritance hierarchy is proposed. Constructor and destructor interfaces
+remain provisional C boundaries.
 
 ## State and lifetime evidence
 
@@ -71,3 +73,15 @@ used to force the remaining sequence.
 
 Full build, `check_pr`, DOL hash verification, and source-link acceptance have
 not been run for this inexact checkpoint. It remains draft work.
+
+A separate read-only object audit found no extra allocated sections/globals,
+section-alignment changes, function-order changes, or global-layout changes.
+The outstanding export is `lbl_8044D350`, the compiler-generated integer-conversion
+bias. No undefined references to that name were found in 8,776 historical original
+and compiled objects. Localization remains a proposal until the scan is refreshed
+against the final full development inputs.
+
+Further valid source forms show the original 900-byte update size and two-step
+angle-constant address load are reachable under the same compiler. Those forms
+still differ in induction state/registers. Failed variants exclude only themselves;
+there is no impossibility or assembly-origin conclusion.
