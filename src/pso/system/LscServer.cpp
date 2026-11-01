@@ -12,10 +12,7 @@ s32 set_range__6TLobbyFPvii(u8 *file, s32 min_bytes, s32 capacity);
 
 void lsc_poll(LscStream *lsc_stream) {
     LscQueueEntry *entry;
-    s32 range_length;
-    s32 range_offset;
     s32 status;
-    s32 open_mode;
 
     if ((s32)lsc_stream->paused == 1) {
         return;
@@ -43,19 +40,29 @@ void lsc_poll(LscStream *lsc_stream) {
         }
     }
     if (lsc_stream->entries[lsc_stream->read_index].status == 2) {
-        open_mode = 0;
-        range_offset = open_mode;
-        range_length = open_mode;
+        struct {
+            s32 open_mode;
+            s32 range_offset;
+            s32 range_length;
+        } repeat_range;
+        repeat_range.open_mode = 0;
+        repeat_range.range_offset = repeat_range.open_mode;
+        repeat_range.range_length = repeat_range.open_mode;
         if (lsc_stream->file_handle != 0) {
             TLobby__sub_803C8B38((u8 *)lsc_stream->file_handle);
             lsc_stream->file_handle = 0;
             if ((s32)lsc_stream->repeat == 1) {
                 entry = &lsc_stream->entries[lsc_stream->read_index];
                 memcpy(lsc_repeat_filename, entry->filename, 0x27);
-                open_mode = entry->open_mode;
-                range_offset = entry->range_offset;
-                range_length = entry->range_length;
+                repeat_range.open_mode = entry->open_mode;
+                repeat_range.range_offset = entry->range_offset;
+                repeat_range.range_length = entry->range_length;
             }
+            // Freeze the repeat arguments before notifying the queue-empty callback.
+            // GC/2.6 retains the native copies when this snapshot stays distinct.
+            const s32 saved_range_length = repeat_range.range_length;
+            const s32 saved_range_offset = repeat_range.range_offset;
+            const s32 saved_open_mode = repeat_range.open_mode;
             lsc_stream->queued_count--;
             lsc_stream->read_index = (lsc_stream->read_index + 1) % 16;
             if (lsc_stream->queued_count <= 0) {
@@ -63,7 +70,7 @@ void lsc_poll(LscStream *lsc_stream) {
                 lsc_stream->state = 1;
             }
             if ((s32)lsc_stream->repeat == 1) {
-                lsc_enqueue_range(lsc_stream, lsc_repeat_filename, open_mode, range_offset, range_length);
+                lsc_enqueue_range(lsc_stream, lsc_repeat_filename, saved_open_mode, saved_range_offset, saved_range_length);
             }
         }
     }
