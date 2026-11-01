@@ -1,6 +1,7 @@
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TRaderMapCore.h"
+#include "pso/misc/RadarCompass.h"
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TScene.h"
 #include "pso/object/TObjFish.h"
@@ -8,7 +9,6 @@
 
 struct Ent_801FB798 { s32 a; char *name; };
 
-extern u32 TRaderMapCore__data_805D5F4C;
 extern "C" {
 s32 get_current_floor();
 s32 save_floor_discovery__13TRaderMapCoreFiPv(int, int);
@@ -97,9 +97,9 @@ void TRaderMapCore::load_map_resources() {
     TRaderMapCore__render_mode = 1;
 }
 
-s32 TRaderMapCore::apply_compass_param() {
-    if ((u32) TRaderMapCore__data_805D5F4C != 0U) {
-        set_current_texture_list((GinjaTextureList *)(TRaderMapCore__data_805D5F4C));
+s32 apply_compass_param__13TRaderMapCoreFv(const s32 *ignored) {
+    if (TRaderMapCore__data_805D5F4C != NULL) {
+        set_current_texture_list(TRaderMapCore__data_805D5F4C);
         return 1;
     }
     return -1;
