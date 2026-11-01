@@ -284,7 +284,7 @@ pso/boss/TBoss2Tentacle.cpp:
 	.rodata     start:0x80435BA8 end:0x80435BC0
 	.data       start:0x804832B0 end:0x804832C8
 	.bss        start:0x804FE5D8 end:0x804FE9C8
-	.sdata2     start:0x805D853C end:0x805D8548
+	.sdata2     start:0x805D8528 end:0x805D8548
 
 pso/boss/TObjBoss2CeilJunk.cpp:
 	.text       start:0x8003A1B4 end:0x8003A81C

@@ -238,6 +238,19 @@ force_active:
   - TBoss2PhotonBullet__ct
   - TBoss2PhotonBullet__name
   - TBoss2PhotonPad__name
+  - TBoss2Tentacle__segment_point_defaults
+  - TBoss2Tentacle__segment_points
+  - TBoss2Tentacle__sub_8003998C
+  - TBoss2Tentacle__sub_80039990
+  - TBoss2Tentacle__sub_80039994
+  - TBoss2Tentacle__sub_80039CB4
+  - TBoss2Tentacle__sub_80039D50
+  - TBoss2Tentacle__sub_80039D64
+  - TBoss2Tentacle__sub_80039D98
+  - TBoss2Tentacle__sub_80039DB0
+  - TBoss2Tentacle__sub_80039DBC
+  - TBoss2Tentacle__sub_80039DC8
+  - TBoss2Tentacle__sub_80039DD4
   - TBoss3VoloptP02_name
   - TBoss3Volopt__sub_8004DA7C
   - TBoss4Bishi__ct
@@ -1863,6 +1876,7 @@ force_active:
   - __dt__14TAdLoadQuestGCFv
   - __dt__14TAdSelectCurGCFv
   - __dt__14TAdSelectTxtGCFv
+  - __dt__14TBoss2TentacleFv
   - __dt__14TBoss4ZakoDrawFv
   - __dt__14TBoss6EffHyouiFv
   - __dt__14TChCrEffCtrlPlFv
@@ -2356,6 +2370,7 @@ force_active:
   - __vt__14TAdSelectCurGC
   - __vt__14TAdSelectTxtGC
   - __vt__14TAdYesNoBaseGC
+  - __vt__14TBoss2Tentacle
   - __vt__14TBoss6EffHyoui
   - __vt__14TChCrEffCtrlPl
   - __vt__14TChCrEffTagStr
@@ -2729,6 +2744,7 @@ force_active:
   - advance_manual__14CreationCameraFv
   - advance_motion_entry__13TBoss5GryphonFv
   - advance_motion_frame__13TObjLobbyMainFv
+  - advance_motion_position__14TBoss2TentacleFv
   - advance_motion_state__12TObjEneSaverFv
   - advance_motion_timer__13TBoss5GryphonFv
   - advance_past_disabled_menu_rows__11TWindowMenuFv
@@ -5466,6 +5482,7 @@ force_active:
   - init_model_and_state__19TObjEneEpsilonGuardFv
   - init_model_by_type__10TODoorLaboFv
   - init_models__15TObjLazerFence4Fv
+  - init_motion_from_table__14TBoss2TentacleFv
   - init_move__15TObjEneDelDepthFv
   - init_move__15TObjEneMe1GiGueFv
   - init_move_attack__11TBoss6Type1Fv
@@ -11961,6 +11978,7 @@ force_active:
   - render__14TAdGameStartGCFv
   - render__14TAdLoadQuestGCFv
   - render__14TAdSelectTxtGCFv
+  - render__14TBoss2TentacleFv
   - render__14TBoss4ZakoDrawFv
   - render__14TChCrEffCtrlPlFv
   - render__14TChCrEffTagStrFv
@@ -12237,6 +12255,7 @@ force_active:
   - reserved_53__13TUnk_804A204CFv
   - resetTechniqueContactQuery__Fv
   - reset__11TItemMagSubFv
+  - reset__14TBoss2TentacleFv
   - reset__14TItemEquipBaseFv
   - reset__14TObjEneBm5WolfFv
   - reset__16TObjEneBm5GibonUFv
@@ -12284,6 +12303,7 @@ force_active:
   - reset_random_enemies_mode__19TPlayerBattleCtrl4PFv
   - reset_random_enemies_mode__6TLobbyFv
   - reset_request__12TChCrLoadReqFv
+  - reset_segment_points__14TBoss2TentacleFv
   - reset_selection__21TWindowSubCustomEquipFv
   - reset_slime_tail_node_index
   - reset_spawn_after_hold__15TObjEneMe1GiGueFv
@@ -12498,6 +12518,7 @@ force_active:
   - run_task__14TAdLoadQuestGCFv
   - run_task__14TAdSelectCurGCFv
   - run_task__14TAdSelectTxtGCFv
+  - run_task__14TBoss2TentacleFv
   - run_task__14TBoss4ZakoDrawFv
   - run_task__14TBoss6EffHyouiFv
   - run_task__14TChCrEffCtrlPlFv
@@ -13628,6 +13649,8 @@ force_active:
   - sub_800194C4__9TObjCharaFv
   - sub_8001CCD4__11TLoadingCurFv
   - sub_8002E1CC__13TObjBoss1RockFPUcPUcl
+  - sub_80039D88__14TBoss2TentacleFv
+  - sub_80039DA4__14TBoss2TentacleFv
   - sub_8003C21C__15TObjBoss2TunnelFv
   - sub_8003F81C__16TBoss3VoloptCoreFv
   - sub_80040558__16TBoss3VoloptCoreFv
@@ -13894,6 +13917,7 @@ force_active:
   - tenchu_enter__11TBoss4Type2Fv
   - tenchu_idle__11TBoss4Type2Fv
   - tenchu_update__11TBoss4Type2Fv
+  - tentacle_model_nodes
   - test_body_collision__16TObjEneMe3StelthFlf
   - test_flag_256__12TObjEneLappyFv
   - test_flag_256__12TObjEneSaverFv
