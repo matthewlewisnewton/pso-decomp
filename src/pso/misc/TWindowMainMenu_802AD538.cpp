@@ -539,11 +539,12 @@ struct FrameContext_802ADF20 {
 };
 
 extern GinjaTextureList *lbl_805D63F0;
-void apply_context_transform_to_rect(void *, void *);
+void apply_context_transform_to_rect(void *, f32 *);
 extern const f32 lbl_805DE154;
 
 void draw_frame__19TWindowMenuMainMenuFv(TWindowMenuMainMenu *window, FrameContext_802ADF20 *context) {
-    Rect_802AD538 r;
+    // Rectangle coordinates followed by texture coordinates.
+    f32 quad[8];
     f32 depth = -1.0f / (0.299f + window->m_54);
     f32 offset = 0.0f;
     f32 remaining = context->height;
@@ -552,36 +553,36 @@ void draw_frame__19TWindowMenuMainMenuFv(TWindowMenuMainMenu *window, FrameConte
     set_current_texture_list(lbl_805D63F0);
     set_draw_texture_and_color(11, context->color);
     if (is_not_split_screen__15TWindowMainMenuFv(window)) {
-        r.x0 = context->x;
+        quad[0] = context->x;
         f32 zero = 0.0f;
-        r.y0 = context->y + zero;
-        r.x1 = 18.0f + r.x0;
-        r.y1 = 28.0f + r.y0;
-        r.u0 = 0.8984375f; r.v0 = 0.0f;
-        r.u1 = 0.96875f; r.v1 = 0.109375f;
-        apply_context_transform_to_rect(context, &r);
-        draw_textured_quad_at_depth((f32 *)&r, depth);
+        quad[1] = context->y + zero;
+        quad[2] = 18.0f + quad[0];
+        quad[3] = 28.0f + quad[1];
+        quad[4] = 0.8984375f; quad[5] = 0.0f;
+        quad[6] = 0.96875f; quad[7] = 0.109375f;
+        apply_context_transform_to_rect(context, quad);
+        draw_textured_quad_at_depth(quad, depth);
         offset += 28.0f;
         remaining -= 28.0f;
-        r.x0 = context->x; r.y0 = context->y + offset;
-        r.x1 = r.x0 + context->width; r.y1 = 23.0f + r.y0;
-        r.u0 = 0.0f; r.v0 = 0.3125f;
-        r.u1 = 0.453125f; r.v1 = 0.40234375f;
-        apply_context_transform_to_rect(context, &r);
-        draw_textured_quad_at_depth((f32 *)&r, depth);
+        quad[0] = context->x; quad[1] = context->y + offset;
+        quad[2] = quad[0] + context->width; quad[3] = 23.0f + quad[1];
+        quad[4] = 0.0f; quad[5] = 0.3125f;
+        quad[6] = 0.453125f; quad[7] = 0.40234375f;
+        apply_context_transform_to_rect(context, quad);
+        draw_textured_quad_at_depth(quad, depth);
         offset += 23.0f;
         remaining -= 23.0f;
     } else {
         f32 x = context->x;
-        r.x0 = x; f32 zero = 0.0f;
-        r.y0 = context->y + zero;
-        r.x1 = x + context->width;
-        f32 edge = 39.0f + r.y0;
-        r.y1 = 3.0f + edge;
-        r.u0 = 0.453125f; r.v0 = 0.6796875f;
-        r.u1 = 0.0f; r.v1 = 0.515625f;
-        apply_context_transform_to_rect(context, &r);
-        draw_textured_quad_at_depth((f32 *)&r, depth);
+        quad[0] = x; f32 zero = 0.0f;
+        quad[1] = context->y + zero;
+        quad[2] = x + context->width;
+        f32 edge = 39.0f + quad[1];
+        quad[3] = 3.0f + edge;
+        quad[4] = 0.453125f; quad[5] = 0.6796875f;
+        quad[6] = 0.0f; quad[7] = 0.515625f;
+        apply_context_transform_to_rect(context, quad);
+        draw_textured_quad_at_depth(quad, depth);
         offset += 42.0f;
         remaining -= 42.0f;
     }
@@ -592,21 +593,21 @@ void draw_frame__19TWindowMenuMainMenuFv(TWindowMenuMainMenu *window, FrameConte
         } else {
             height = 16.0f;
         }
-        r.x0 = context->x; r.y0 = context->y + offset;
-        r.x1 = r.x0 + context->width; r.y1 = r.y0 + height;
-        r.u0 = 0.0f; r.v0 = 0.40234375f;
-        r.u1 = 0.453125f; r.v1 = (103.0f + height) / 256.0f;
-        apply_context_transform_to_rect(context, &r);
-        draw_textured_quad_at_depth((f32 *)&r, depth);
+        quad[0] = context->x; quad[1] = context->y + offset;
+        quad[2] = quad[0] + context->width; quad[3] = quad[1] + height;
+        quad[4] = 0.0f; quad[5] = 0.40234375f;
+        quad[6] = 0.453125f; quad[7] = (103.0f + height) / 256.0f;
+        apply_context_transform_to_rect(context, quad);
+        draw_textured_quad_at_depth(quad, depth);
         offset += height;
         remaining -= height;
     }
-    r.x0 = context->x; r.y0 = context->y + offset;
-    r.x1 = r.x0 + context->width; r.y1 = 39.0f + r.y0;
-    r.u0 = 0.0f; r.v0 = 0.52734375f;
-    r.u1 = 0.453125f; r.v1 = 0.6796875f;
-    apply_context_transform_to_rect(context, &r);
-    draw_textured_quad_at_depth((f32 *)&r, depth);
+    quad[0] = context->x; quad[1] = context->y + offset;
+    quad[2] = quad[0] + context->width; quad[3] = 39.0f + quad[1];
+    quad[4] = 0.0f; quad[5] = 0.52734375f;
+    quad[6] = 0.453125f; quad[7] = 0.6796875f;
+    apply_context_transform_to_rect(context, quad);
+    draw_textured_quad_at_depth(quad, depth);
     TWindowSubStatusDisp::get_player();
 }
 
