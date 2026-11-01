@@ -552,7 +552,7 @@ inline s32 open_803CD3A8(Slot_803CD16C *s, u32 name, s32 mode) {
         return -1;
     }
     s->f4 = h;
-    sz = ((TLobby *)h)->get_field_14();
+    sz = get_field_14__6TLobbyFv((AdxStreamFile *)h);
     s->fc = (sz + 0x7FF) / 2048;
     s->f10 = sz;
     return 0;

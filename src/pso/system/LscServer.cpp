@@ -35,7 +35,7 @@ void lsc_poll(LscStream *lsc_stream) {
             if (status == 4) {
                 lsc_stream->state = 3;
             } else if (status == 2) {
-                entry->progress = ((TLobby *)lsc_stream->file_handle)->get_file_offset_relative();
+                entry->progress = get_file_offset_relative__6TLobbyFv((AdxStreamFile *)lsc_stream->file_handle);
             } else if (status == 3) {
                 entry->progress = lsc_stream->file_sector_count;
                 entry->status = 2;
@@ -76,15 +76,15 @@ void lsc_poll(LscStream *lsc_stream) {
                     TLobby::log_printf("E0004: Can not open '%s'", entry->filename);
                 }
                 // Keep the byte reset independent of the sector-count store.
-                s32 sector_count = (((TLobby *)lsc_stream->file_handle)->get_field_14() + 0x7FF) / 0x800;
+                s32 sector_count = (get_field_14__6TLobbyFv((AdxStreamFile *)lsc_stream->file_handle) + 0x7FF) / 0x800;
                 lsc_stream->read_started = 0;
                 lsc_stream->file_sector_count = sector_count;
                 entry->progress = 0;
             }
             if (lsc_stream->read_started == 0) {
                 set_range__6TLobbyFPvii((u8 *)lsc_stream->file_handle, lsc_stream->min_buffer_bytes, lsc_stream->buffer_capacity);
-                ((TLobby *)lsc_stream->file_handle)->set_scroll_offset(0);
-                ((TLobby *)lsc_stream->file_handle)->init_stream_position();
+                set_scroll_offset__6TLobbyFl((AdxStreamFile *)lsc_stream->file_handle, 0);
+                init_stream_position__6TLobbyFv((AdxStreamFile *)lsc_stream->file_handle);
                 lsc_stream->read_started = 1;
             }
             entry->status = 1;

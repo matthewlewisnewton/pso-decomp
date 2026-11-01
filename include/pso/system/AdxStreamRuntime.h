@@ -6,6 +6,13 @@
 struct AdxStreamFile;
 
 extern "C" {
+s32 get_field_14__6TLobbyFv(AdxStreamFile *file);
+s32 get_file_offset_relative__6TLobbyFv(AdxStreamFile *file);
+s32 set_scroll_offset__6TLobbyFl(AdxStreamFile *file, s32 offset);
+s32 init_stream_position__6TLobbyFv(AdxStreamFile *file);
+}
+
+extern "C" {
 AdxStreamFile *TLobby__sub_803C8BAC(const char *name, s32 arg);
 void TLobby__sub_803C5D00(u8 *arg0);
 void TLobby__sub_803C5D24(u8 *arg0);
