@@ -165,9 +165,14 @@ s32 get_field_20__22TAdMultiPlyChrSelectGCFv();
 extern s32 lbl_805D67D4;
 extern const f32 lbl_805DE57C;
 extern const f32 lbl_805DE580;
+extern const f32 lbl_80471CE0[2];
+extern const f32 TAdMultiPlyChrSelectGC__data_805DE584;
+extern const f32 lbl_805DE588, lbl_805DE58C, lbl_805DE590, lbl_805DE594;
+extern const f32 lbl_805DE598, lbl_805DE59C, lbl_805DE5A0;
+s32 find_active_slot__22TAdMultiPlyChrSelectGCFv(void);
 s32 TWindowShortListCtrl__check_controller_button(void *, int);
 
-s32 TAdMultiPlyChrSelectGC__sub_802C5F1C(void *, int);
+void TAdMultiPlyChrSelectGC__sub_802C5F1C(void *, int);
 extern u8 controller_physical_port_bank[];
 extern Jump_802C5C84 multi_chr_select_cursor_jump_table[][5];
 extern void *TAdMultiPlyChrSelectGC__data_804E0A48[4];
@@ -360,6 +365,39 @@ void TAdMultiPlyChrSelectGC__sub_802C561C(S_802C50EC *self) {
     }
 }
 
+// The selected-cell table has four 12-byte rows; -1 marks an occupied cell.
+#pragma push
+#pragma fp_contract on
+void TAdMultiPlyChrSelectGC__sub_802C5688(S_802C50EC *self) {
+    u32 cell[2];
+    s32 row = self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC] + 1;
+    s32 col = self->f4EC + 1;
+    s32 *entry = &TAdMultiPlyChrSelectGC__data_804E0A68[row][col];
+    if (*entry == -1) {
+        play_sound_effect(0x53f06, NULL, 0, 0);
+        return;
+    }
+    TAdMultiPlyChrSelectGC__data_804E0AE0[TAdMultiPlyChrSelectGC__data_805D67D8] = 1;
+    *entry = -1;
+    ((s32 *)&TAdMultiPlyChrSelectGC__data_804E0A48)[TAdMultiPlyChrSelectGC__data_805D67D8] = self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC] + self->f4EC * 4;
+    self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].x = self->quad[self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC]][self->f4EC].x;
+    self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].z = self->quad[self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC]][self->f4EC].z;
+    self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].y = self->quad[self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC]][self->f4EC].y;
+    self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].w = self->quad[self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC]][self->f4EC].w;
+    self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].u0 = TAdMultiPlyChrSelectGC__data_805DE56C;
+    self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].v0 = (f32)TAdMultiPlyChrSelectGC__data_805D67D8 * lbl_80471CE0[1] * TAdMultiPlyChrSelectGC__data_805DE584;
+    self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].u1 = lbl_80471CE0[0] * TAdMultiPlyChrSelectGC__data_805DE584;
+    self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].v1 = ((f32)TAdMultiPlyChrSelectGC__data_805D67D8 * lbl_80471CE0[1] + lbl_80471CE0[1]) * TAdMultiPlyChrSelectGC__data_805DE584;
+    self->a[self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC]][self->f4EC] = 0;
+    TAdMultiPlyChrSelectGC::add_selected_slot();
+    TAdMultiPlyChrSelectGC__data_805D67D8 = find_active_slot__22TAdMultiPlyChrSelectGCFv();
+    TAdMultiPlyChrSelectGC::find_first_open_cell((s32)self, cell);
+    self->f4EC = cell[1] - 1;
+    self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC] = cell[0] - 1;
+}
+
+#pragma pop
+
 void TAdMultiPlyChrSelectGC::init_slot_position(s32 arg1, s32 arg2, s32 arg3) {
     S_802C5944 *arg0 = (S_802C5944 *)this;
     copy_vec2__28TWindowSubSymbolChatPartsSetFPv(&arg0->v[arg2][arg3]);
@@ -522,6 +560,36 @@ void TAdMultiPlyChrSelectGC::move_cursor(s32 x_, s32 y_, s32 dx, s32 dy, s32 dep
     }
 }
 
+// Rebuild the texture coordinates for the current player's selection quads.
+void TAdMultiPlyChrSelectGC__sub_802C5F1C(void *object, int) {
+    S_802C50EC *self = (S_802C50EC *)object;
+    u32 i;
+    u32 j;
+    for (i = 0; i < 4; i++) {
+        for (j = 0; j < 3; j++) {
+            s32 slot = 3;
+            if (TAdMultiPlyChrSelectGC__data_805D67D8 < 4) slot = TAdMultiPlyChrSelectGC__data_805D67D8;
+            self->quad[i][j].u0 = TAdMultiPlyChrSelectGC__data_805DE56C;
+            f32 v = lbl_805DE588 * (f32)slot;
+            self->quad[i][j].v0 = v * TAdMultiPlyChrSelectGC__data_805DE584;
+            self->quad[i][j].u1 = lbl_805DE58C;
+            self->quad[i][j].v1 = TAdMultiPlyChrSelectGC__data_805DE584 * (lbl_805DE588 + v);
+        }
+    }
+    self->cursor[0][4] = lbl_805DE590;
+    self->cursor[0][5] = lbl_805DE594;
+    self->cursor[0][6] = lbl_805DE598;
+    self->cursor[0][7] = lbl_805DE59C;
+    self->cursor[1][4] = TAdMultiPlyChrSelectGC__data_805DE56C;
+    self->cursor[1][5] = lbl_805DE594;
+    self->cursor[1][6] = lbl_805DE590;
+    self->cursor[1][7] = lbl_805DE59C;
+    self->cursor[2][4] = lbl_805DE598;
+    self->cursor[2][5] = lbl_805DE594;
+    self->cursor[2][6] = lbl_805DE5A0;
+    self->cursor[2][7] = lbl_805DE59C;
+}
+
 void TAdMultiPlyChrSelectGC::update_option_cursor() {
     S_802C6008 *self = (S_802C6008 *)this;
     TAdMultiPlyChrSelectGC__sub_802C5F1C(self, self->f1C++);
@@ -655,6 +723,34 @@ void TAdMultiPlyChrSelectGC__sub_802C65C0(s32 arg0) {
     ((s32 *)&TAdMultiPlyChrSelectGC__data_804E0A48)[arg0] = -1;
     TAdMultiPlyChrSelectGC::remove_selected_slot(arg0);
 }
+
+// Restore the visible quads and occupied cells from the saved slot selections.
+#pragma push
+#pragma fp_contract on
+void TAdMultiPlyChrSelectGC__sub_802C6660(S_802C50EC *self) {
+    s32 col, row;
+    u32 cell[2];
+    for (u32 i = 0; i < 4; i++) {
+        if (is_multiplayer_character_slot_selected(i)) {
+            TAdMultiPlyChrSelectGC__data_804E0AE0[i] = 1;
+            TAdMultiPlyChrSelectGC::split_slot_index(i, &col, &row);
+            self->quad[i + 4][0].x = self->quad[row][col].x;
+            self->quad[i + 4][0].z = self->quad[row][col].z;
+            self->quad[i + 4][0].y = self->quad[row][col].y;
+            self->quad[i + 4][0].w = self->quad[row][col].w;
+            self->quad[i + 4][0].u0 = TAdMultiPlyChrSelectGC__data_805DE56C;
+            self->quad[i + 4][0].v0 = (f32)(s32)i * lbl_80471CE0[1] * TAdMultiPlyChrSelectGC__data_805DE584;
+            self->quad[i + 4][0].u1 = lbl_80471CE0[0] * TAdMultiPlyChrSelectGC__data_805DE584;
+            self->quad[i + 4][0].v1 = ((f32)(s32)i * lbl_80471CE0[1] + lbl_80471CE0[1]) * TAdMultiPlyChrSelectGC__data_805DE584;
+            TAdMultiPlyChrSelectGC__data_804E0A68[row + 1][col + 1] = -1;
+        }
+    }
+    TAdMultiPlyChrSelectGC__data_805D67D8 = find_active_slot__22TAdMultiPlyChrSelectGCFv();
+    TAdMultiPlyChrSelectGC::find_first_open_cell((s32)self, cell);
+    self->f4EC = cell[1] - 1;
+    self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC] = cell[0] - 1;
+}
+#pragma pop
 
 typedef char RecoveredGlobal_802C6848_lbl_804E0B00_size[sizeof(RecoveredGlobal_802C6848_lbl_804E0B00) == 0x10 ? 1 : -1];
 s32 TAdMultiPlyChrSelectGC__sub_802C6848(s32 arg0) {
