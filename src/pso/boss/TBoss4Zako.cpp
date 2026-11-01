@@ -1169,7 +1169,7 @@ void enemy_spawn_jellen_effect__9TObjCharaFv();
 void apply_switch_attack__9TObjCharaFv();
 void vfunc_78__9TObjCharaFl();
 void vfunc_77__9TObjCharaFv();
-void vfunc_76__9TObjCharaFv();
+void vfunc_76__9TObjCharaFf();
 void vfunc_75__9TObjCharaFf();
 void vfunc_28__9TObjCharaFv();
 void get_actor_level_index__9TObjCharaFv();
@@ -1311,7 +1311,7 @@ s32 __vt__11TBoss4Bishi[83] = {
     (s32)recalc_stats__9TObjCharaFv,
     (s32)vfunc_74__9TObjEnemyFl,
     (s32)vfunc_75__9TObjCharaFf,
-    (s32)vfunc_76__9TObjCharaFv,
+    (s32)vfunc_76__9TObjCharaFf,
     (s32)vfunc_77__9TObjCharaFv,
     (s32)vfunc_78__9TObjCharaFl,
     (s32)vfunc_79__9TObjEnemyFPl,
@@ -1396,7 +1396,7 @@ s32 __vt__9TBoss4Uro[83] = {
     (s32)recalc_stats__9TObjCharaFv,
     (s32)vfunc_74__9TObjEnemyFl,
     (s32)vfunc_75__9TObjCharaFf,
-    (s32)vfunc_76__9TObjCharaFv,
+    (s32)vfunc_76__9TObjCharaFf,
     (s32)vfunc_77__9TObjCharaFv,
     (s32)vfunc_78__9TObjCharaFl,
     (s32)vfunc_79__9TObjEnemyFPl,
@@ -1481,7 +1481,7 @@ s32 __vt__10TBoss4Zako[83] = {
     (s32)recalc_stats__9TObjCharaFv,
     (s32)vfunc_74__9TObjEnemyFl,
     (s32)vfunc_75__9TObjCharaFf,
-    (s32)vfunc_76__9TObjCharaFv,
+    (s32)vfunc_76__9TObjCharaFf,
     (s32)vfunc_77__9TObjCharaFv,
     (s32)vfunc_78__9TObjCharaFl,
     (s32)vfunc_79__9TObjEnemyFPl,

@@ -135,7 +135,7 @@ void enemy_spawn_jellen_effect__9TObjCharaFv();
 void enemy_spawn_zalure_effect__9TObjCharaFv();
 void vfunc_78__9TObjCharaFl();
 void vfunc_77__9TObjCharaFv();
-void vfunc_76__9TObjCharaFv();
+void vfunc_76__9TObjCharaFf();
 void vfunc_75__9TObjCharaFf();
 void get_center__9TObjCharaFv();
 void get_actor_level_index__9TObjCharaFv();
@@ -236,7 +236,7 @@ void *__vt__12TOMineIcon04[87] = {
     (void *)recalc_stats__9TObjCharaFv,
     (void *)vfunc_74__9TObjCharaFl,
     (void *)vfunc_75__9TObjCharaFf,
-    (void *)vfunc_76__9TObjCharaFv,
+    (void *)vfunc_76__9TObjCharaFf,
     (void *)vfunc_77__9TObjCharaFv,
     (void *)vfunc_78__9TObjCharaFl,
     (void *)vfunc_79__6TOMineFv,

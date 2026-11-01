@@ -5622,6 +5622,7 @@ force_active:
   - init_work__11TBoss6Type1Fv
   - init_zeroed_object__10TObjPlayerFv
   - initialize__13TUnk_804A05C8FP15TItemHeapObjectUsll
+  - initialize__13TUnk_804F0C08FPvPvPv
   - initialize__16TItemWeaponRifleFlPUc
   - initialize__20TODragonflyMachine01FPv
   - initialize_battle__19TPlayerBattleCtrl4PFv
@@ -6334,6 +6335,7 @@ force_active:
   - lbl_805D3F08
   - lbl_805D3FB0
   - lbl_805D4220
+  - lbl_805D4350
   - lbl_805D4630
   - lbl_805D4638
   - lbl_805D4640
