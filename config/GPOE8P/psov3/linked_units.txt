@@ -297,6 +297,7 @@ pso/boss/TBoss6Type2_8036DC80.cpp
 pso/boss/TBoss7Crawfish.cpp
 pso/boss/TBoss7Crawfish_80308C10.cpp
 pso/boss/TBoss7Crawfish_80308C84.cpp
+pso/boss/TBoss7Crawfish_80308E0C.cpp
 pso/boss/TBoss7Crawfish_8030908C.cpp
 pso/boss/TBoss7DeRolLeC.cpp
 pso/boss/TBoss7DeRolLeC_802EE4E0.cpp
