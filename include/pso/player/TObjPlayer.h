@@ -1017,7 +1017,7 @@ struct TObjPlayer : public TObjChara {
     void validate_and_clear_slot();
     static u8 is_invalid_slot(u8 arg0);
     static u8 is_valid_technique_id(s16 arg0);
-    static u8 is_valid_technique_slot(u8 arg0);
+    static s32 is_valid_technique_slot(u8 arg0);
     void set_tech_level(s16 arg1);
     void reset_slots();
     void set_field_1c(f32 v);
