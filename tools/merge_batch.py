@@ -268,6 +268,7 @@ class Queue:
                 request=self.state/('config-plan-request-'+str(time.time_ns())+'.json')
                 output=self.state/('config-plan-result-'+str(time.time_ns())+'.json')
                 save(request, {'mode':'plan','repo':str(self.repo.resolve()),'packet':config['packet'],'checker':config['checker'],
+                               'cli':{'path':str(Path(__file__).resolve()),'sha256':digest(Path(__file__).resolve())},
                                'target':self.spec['target'],'candidate':current,'tree':tree,'prs':self.spec['prs'],
                                'commits':commits,'output':str(output.resolve())})
                 result=subprocess.run([sys.executable,'-I',str(checker),str(request.resolve())],capture_output=True,text=True)
@@ -291,7 +292,7 @@ class Queue:
                        'candidate': self.record['candidate'], 'tree': self.record['tree'],
                        'checkout': str(self.repo), 'state': str(self.state), 'policy': self.spec['policy'],
                        'environment': str(environment), 'output': str(output),
-                       'config_admission': self.spec.get('config_admission'), 'prs': self.spec['prs'], 'commits': self.record['commits'],
+                       'config_admission': self.spec.get('config_admission'), 'config_plan':self.record.get('config_plan'), 'prs': self.spec['prs'], 'commits': self.record['commits'],
                        'validator': {'path':str(validator), 'sha256':expected_hash},
                        'cli': {'path':str(Path(__file__).resolve()), 'sha256':digest(Path(__file__).resolve())}})
         request_sha256=digest(request)
@@ -432,7 +433,7 @@ class Queue:
         request=Path(self.record['validation_request'])
         require(digest(request)==self.record.get('validation_request_sha256'), 'stale_config_request', '')
         values=json.loads(request.read_text())
-        require(values.get('prs')==self.spec['prs'] and values.get('commits')==self.record['commits'], 'stale_config_request', '')
+        require(values.get('prs')==self.spec['prs'] and values.get('commits')==self.record['commits'] and values.get('config_plan')==self.record.get('config_plan'), 'stale_config_request', '')
         require(values.get('candidate')==self.record['candidate'] and values.get('tree')==self.record['tree'] and values.get('target')==self.spec['target'] and values.get('config_admission')==self.spec['config_admission'] and values.get('environment')==str(environment), 'stale_config_request', '')
         result=subprocess.run([sys.executable,'-I',str(adapter),'--check-config',str(request)],capture_output=True,text=True)
         require(result.returncode==0 and digest(adapter)==entry['sha256'] and digest(environment)==self.spec['environment_sha256'] and digest(request)==self.record['validation_request_sha256'], 'stale_config_admission', result.stderr[-2000:])

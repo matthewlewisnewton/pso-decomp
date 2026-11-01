@@ -215,10 +215,10 @@ class QueueTests(unittest.TestCase):
             inventory=[['compiler',m.digest(td/'compiler'),(td/'compiler').stat().st_mode & 0o777]]
             dirpin={'path':str(td),'sha256':hashlib.sha256(json.dumps(inventory,separators=(',',':')).encode()).hexdigest()}
             pins={name:pin(tool) for name in c.PIN_NAMES}
-            pins.update(checker=pin(checker),python=pin(Path(sys.executable).resolve()),git=pin(Path('/usr/bin/git').resolve()),compiler=pin(td/'compiler'))
+            pins.update(cli=pin(Path(m.__file__).resolve()),checker=pin(checker),python=pin(Path(sys.executable).resolve()),git=pin(Path('/usr/bin/git').resolve()),compiler=pin(td/'compiler'))
             change=c.step(queue.repo,target,candidate)
             packet={'version':1,'repository':c.REPO,'policy':'recovery','target':target,'candidate':candidate,'tree':tree,
-                    'prs':[{'number':1,'head':head,'review_base':target,'review':{'path':str(self.review),'sha256':m.digest(self.review)}}],
+                    'prs':[{'number':1,'head':head,'base_sha':target,'review_base':target,'review':{'path':str(self.review),'sha256':m.digest(self.review)}}],
                     'steps':[change],'cumulative':change,'pins':pins,'effective_argv':[str(tool),str(td/'compiler'),'-inline','off,deferred'],
                     'configure_paths':{name:(dirpin if name in ('compilers','binutils') else pin(tool)) for name in ('dtk','objdiff','wrapper','compilers','binutils')},
                     'originals':{role:{'tree_sha256':'a'*64,'dol_sha256':'b'*64} for role in ('baseline','candidate')},

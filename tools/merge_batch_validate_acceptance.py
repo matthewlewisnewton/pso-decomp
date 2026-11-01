@@ -71,8 +71,12 @@ def config_contract(request, environment, review, roots):
     require(Path(packet['pins']['python']['path'])==Path(sys.executable).resolve() and Path(packet['pins']['ninja']['path'])==Path(environment['ninja']).resolve() and Path(packet['pins']['compiler_wrapper']['path'])==Path(environment['wrapper']).resolve(), 'stale_config_tools')
     require(all(Path(packet['configure_paths'][name]['path']) == Path(environment[name]).resolve() for name in ('dtk','objdiff','wrapper','compilers','binutils')), 'stale_config_paths')
     require(packet['pins']['wrapper']==environment['acceptance_capacity']['wrapper'] and packet['pins']['base_validator']==environment['acceptance_capacity']['base_validator'], 'stale_config_harness')
+    plan_entry=request['config_plan']
+    require(isinstance(plan_entry,dict) and set(plan_entry)=={'path','sha256','packet_sha256'} and plan_entry['packet_sha256']==config['packet']['sha256'], 'missing_config_plan')
+    plan=checker.strict_json(checker.file_pin({'path':plan_entry['path'],'sha256':plan_entry['sha256']},[Path(request['checkout']),*roots.values()]).read_bytes())
+    require(plan=={'packet_sha256':config['packet']['sha256'],'target':request['target'],'candidate':request['candidate'],'tree':request['tree'],'effective_argv':packet['effective_argv']}, 'stale_config_plan')
     checker.verify_plan(request['checkout'],packet,request['target'],request['candidate'],request['tree'],request['prs'],request['commits'])
-    require(review.get('config_packet_sha256')==config['packet']['sha256'] and review.get('effective_compile_argv')==packet['effective_argv'] and review.get('configuration_edge_review') is True and review.get('unlisted_edges_unchanged') is True and review.get('compiler_binding_reviewed') is True and review.get('no_setup_execution') is True and review.get('ordered_input_provenance') == packet['ordered_inputs'], 'missing_config_graph_review')
+    require(review.get('config_plan_sha256')==plan_entry['sha256'] and review.get('config_packet_sha256')==config['packet']['sha256'] and review.get('effective_compile_argv')==packet['effective_argv'] and review.get('configuration_edge_review') is True and review.get('unlisted_edges_unchanged') is True and review.get('compiler_binding_reviewed') is True and review.get('no_setup_execution') is True and review.get('ordered_input_provenance') == packet['ordered_inputs'], 'missing_config_graph_review')
     expected_argv=hashlib.sha256(json.dumps(packet['effective_argv'],separators=(',',':')).encode()).hexdigest()
     for role in ('baseline','candidate'):
         root=roots[role];entry=review['roots'][role];receipt=pinned(entry['config_preflight'])
@@ -83,7 +87,7 @@ def config_contract(request, environment, review, roots):
                   'tree':request['tree'],'root_commit':entry['commit'],'root_tree':entry['tree'],
                   'graph_sha256':entry['graph_sha256'],'checker_sha256':config['checker']['sha256'],
                   'preparer_sha256':packet['pins']['preparer']['sha256'],
-                  'original_tree_sha256':entry['original_tree_sha256'],'effective_argv_sha256':expected_argv}
+                  'original_tree_sha256':entry['original_tree_sha256'],'plan_sha256':plan_entry['sha256'],'effective_argv_sha256':expected_argv}
         require(pre==expected and entry['original_tree_sha256']==packet['originals'][role]['tree_sha256'] and checker.tree_digest(root/'orig/GPOE8P/files')==packet['originals'][role]['tree_sha256'], 'stale_config_preparation')
     require(digest(checker_path)==config['checker']['sha256'], 'config_checker_changed')
 

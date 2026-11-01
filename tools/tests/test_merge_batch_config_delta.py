@@ -66,14 +66,14 @@ class PacketTests(unittest.TestCase):
         self.git('checkout','--detach',self.candidate)
         self.review=self.root/'source-review.json';self.review.write_text('{}')
         pin={'path':str(self.review),'sha256':hashlib.sha256(self.review.read_bytes()).hexdigest()}
-        self.pr={'number':1,'head':self.head,'review_base':self.target,'review':pin}
+        self.pr={'number':1,'head':self.head,'base_sha':self.target,'review_base':self.target,'review':dict(pin,verdict='pass',independent=True,reviewer='fixture',head=self.head,base=self.target)}
         self.commits=[{'pr':1,'head':self.head,'commit':self.candidate,'tree':self.tree}]
         change=c.step(self.repo,self.target,self.candidate)
         tool_dir=self.root/'tools-dir'; tool_dir.mkdir(); (tool_dir/'tool').write_text('fixture')
         entries=[['tool',hashlib.sha256((tool_dir/'tool').read_bytes()).hexdigest(),(tool_dir/'tool').stat().st_mode & 0o777]]
         dir_pin={'path':str(tool_dir),'sha256':hashlib.sha256(json.dumps(entries,separators=(',',':')).encode()).hexdigest()}
         self.packet={'version':1,'repository':c.REPO,'policy':'recovery','target':self.target,
-                     'candidate':self.candidate,'tree':self.tree,'prs':[{k:self.pr[k] for k in ('number','head','review_base','review')}],'steps':[change],
+                     'candidate':self.candidate,'tree':self.tree,'prs':[{'number':1,'head':self.head,'base_sha':self.target,'review_base':self.target,'review':{'path':self.pr['review']['path'],'sha256':self.pr['review']['sha256']}}],'steps':[change],
                      'cumulative':change,'pins':{name:({'path':str(tool_dir/'tool'),'sha256':hashlib.sha256((tool_dir/'tool').read_bytes()).hexdigest()} if name=='compiler' else pin.copy()) for name in c.PIN_NAMES},
                      'effective_argv':[str(self.review),str(tool_dir/'tool'),'-inline','off,deferred'],
                      'configure_paths':{name:(dir_pin if name in ('compilers','binutils') else pin) for name in ('dtk','objdiff','wrapper','compilers','binutils')},
@@ -104,10 +104,30 @@ class PacketTests(unittest.TestCase):
         with self.assertRaises(ValueError):c.verify_plan(self.repo,p,self.target,self.candidate,self.tree,[self.pr],self.commits)
         self.review.write_text('stale')
         with self.assertRaises(ValueError):c.read_packet(self.write(),[self.repo])
+    def test_prerequisite_and_source_review_binding_rejected(self):
+        for change in ('base_sha','review_head','duplicate_pr'):
+            prs=copy.deepcopy([self.pr]);commits=copy.deepcopy(self.commits)
+            if change=='base_sha':prs[0]['base_sha']='f'*40
+            elif change=='review_head':prs[0]['review']['head']='f'*40
+            else:prs.append(copy.deepcopy(prs[0]));commits.append(copy.deepcopy(commits[0]))
+            with self.subTest(change=change),self.assertRaises((ValueError,subprocess.CalledProcessError)):
+                c.verify_plan(self.repo,self.packet,self.target,self.candidate,self.tree,prs,commits)
+
+    def test_changed_config_mode_and_symlink_rejected(self):
+        for case in ('mode','symlink'):
+            self.git('checkout','-B','bad-'+case,self.target)
+            path=self.repo/'configure.py'
+            if case=='mode':path.chmod(0o644)
+            else:path.unlink();path.symlink_to('other.py')
+            self.git('add','configure.py');self.git('commit','-qm','invalid mode');head=self.git('rev-parse','HEAD')
+            with self.subTest(case=case),self.assertRaises(ValueError):c.step(self.repo,self.target,head)
+
     def test_tool_pin_and_response_file_injection_rejected(self):
-        self.packet['effective_argv'].append('@unreviewed')
-        with self.assertRaises(ValueError):c.read_packet(self.write(),[self.repo])
-        self.packet['effective_argv'].pop();self.packet['pins']['launcher']['sha256']='f'*64
+        for value in ('@unreviewed','-I../../escape','shell;command','safe\\evil'):
+            self.packet['effective_argv'].append(value)
+            with self.subTest(value=value),self.assertRaises(ValueError):c.read_packet(self.write(),[self.repo])
+            self.packet['effective_argv'].pop()
+        self.packet['pins']['launcher']['sha256']='f'*64
         with self.assertRaises(ValueError):c.read_packet(self.write(),[self.repo])
 
 if __name__=='__main__': unittest.main()

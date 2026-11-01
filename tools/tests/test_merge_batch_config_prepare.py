@@ -44,19 +44,26 @@ class PreparationTests(unittest.TestCase):
         self.checker=self.root/'checker.py';self.checker.write_bytes(Path(c.__file__).read_bytes());preparer=Path(p.__file__).resolve()
         pins={name:self.pin(self.tool) for name in c.PIN_NAMES}
         pins.update(compiler=self.pin(td/'a'),checker=self.pin(self.checker),preparer=self.pin(preparer),python=self.pin(Path(sys.executable).resolve()),git=self.pin(Path('/usr/bin/git').resolve()),launcher=self.pin(self.launcher))
-        self.pr={'number':1,'head':self.head,'review_base':self.target,'review':self.pin(self.review)}
+        self.pr={'number':1,'head':self.head,'base_sha':self.target,'review_base':self.target,'review':dict(self.pin(self.review),verdict='pass',independent=True,reviewer='fixture',head=self.head,base=self.target)}
         self.commits=[{'pr':1,'head':self.head,'commit':self.candidate,'tree':self.tree}]
         change=c.step(self.repo,self.target,self.candidate)
-        self.packet={'version':1,'repository':c.REPO,'policy':'recovery','target':self.target,'candidate':self.candidate,'tree':self.tree,'prs':[{k:self.pr[k] for k in ('number','head','review_base','review')}],'steps':[change],'cumulative':change,'pins':pins,
+        self.packet={'version':1,'repository':c.REPO,'policy':'recovery','target':self.target,'candidate':self.candidate,'tree':self.tree,'prs':[{'number':1,'head':self.head,'base_sha':self.target,'review_base':self.target,'review':{'path':self.pr['review']['path'],'sha256':self.pr['review']['sha256']}}],'steps':[change],'cumulative':change,'pins':pins,
                      'configure_paths':{name:(directory if name in ('compilers','binutils') else self.pin(self.tool)) for name in ('dtk','objdiff','wrapper','compilers','binutils')},
                      'originals':{role:{'tree_sha256':p.original_tree_sha256(self.repo),'dol_sha256':self.original_sha} for role in ('baseline','candidate')},
                      'ordered_inputs':{role:{'ordered_inputs_sha256':'c'*64,'source_inputs':1,'fallback_inputs':0} for role in ('baseline','candidate')},
                      'effective_argv':[str(self.tool),str(td/'a'),'-inline','off,deferred'],'verdict':'pass','independent':True,'reviewer':'fixture'}
-        self.packet_file=self.root/'packet.json';self.write_packet()
-        self.request={'packet':self.pin(self.packet_file),'repo':str(self.repo),'role':'candidate','target':self.target,'candidate':self.candidate,'tree':self.tree,'prs':[self.pr],'commits':self.commits,'receipt':str(self.root/'receipt.json'),'original_sha256':self.original_sha,'original_tree_sha256':p.original_tree_sha256(self.repo)}
+        self.packet_file=self.root/'packet.json';self.write_packet();self.make_plan()
+        self.request={'packet':self.pin(self.packet_file),'repo':str(self.repo),'role':'candidate','target':self.target,'candidate':self.candidate,'tree':self.tree,'prs':[self.pr],'commits':self.commits,'receipt':str(self.root/'receipt.json'),'original_sha256':self.original_sha,'original_tree_sha256':p.original_tree_sha256(self.repo),'plan_receipt':self.pin(self.plan_output)}
     def git(self,*args):return subprocess.check_output(['git','-C',str(self.repo),*args],stderr=subprocess.DEVNULL,text=True).strip()
     def pin(self,path):return {'path':str(path),'sha256':hashlib.sha256(path.read_bytes()).hexdigest()}
     def write_packet(self):self.packet_file.write_text(json.dumps(self.packet))
+    def make_plan(self):
+        self.plan_output=self.root/'plan-result.json'
+        if self.plan_output.exists():self.plan_output.unlink()
+        req={'mode':'plan','repo':str(self.repo),'packet':self.pin(self.packet_file),'checker':self.pin(self.checker),'cli':self.packet['pins']['cli'],
+             'target':self.target,'candidate':self.candidate,'tree':self.tree,'prs':[self.pr],'commits':self.commits,'output':str(self.plan_output)}
+        file=self.root/'plan-request.json';file.write_text(json.dumps(req))
+        subprocess.run([sys.executable,'-I',str(self.checker),str(file)],check=True,capture_output=True)
     def run_prep(self):
         with patch.object(p,'DOL_SHA1',self.original_sha1):return p.prepare(self.request,str(self.checker),self.pin(self.checker)['sha256'],lock_path=self.lock)
     def test_valid_preflight_executes_and_receipt_binds_packet(self):
@@ -66,13 +73,8 @@ class PreparationTests(unittest.TestCase):
         with self.assertRaises(ValueError):self.run_prep()
     def test_preparation_receipts_bind_into_acceptance_contract(self):
         self.packet['pins']['adapter']=self.pin(Path(adapter.__file__).resolve())
-        self.write_packet();self.request['packet']=self.pin(self.packet_file)
-        plan_output=self.root/'plan-result.json'
-        plan={'mode':'plan','repo':str(self.repo),'packet':self.pin(self.packet_file),'checker':self.pin(self.checker),
-              'target':self.target,'candidate':self.candidate,'tree':self.tree,'prs':[self.pr],'commits':self.commits,'output':str(plan_output)}
-        plan_request=self.root/'plan-request.json';plan_request.write_text(json.dumps(plan))
-        subprocess.run([sys.executable,'-I',str(self.checker),str(plan_request)],check=True)
-        self.assertEqual(json.loads(plan_output.read_text())['packet_sha256'],self.pin(self.packet_file)['sha256'])
+        self.write_packet();self.request['packet']=self.pin(self.packet_file);self.make_plan();self.request['plan_receipt']=self.pin(self.plan_output)
+        self.assertEqual(json.loads(self.plan_output.read_text())['packet_sha256'],self.pin(self.packet_file)['sha256'])
         candidate_receipt=self.run_prep()
         baseline=self.root/'baseline'
         subprocess.run(['git','clone','-q',str(self.repo),str(baseline)],check=True)
@@ -88,10 +90,11 @@ class PreparationTests(unittest.TestCase):
         config={'checker':self.pin(self.checker),'packet':self.pin(self.packet_file)}
         request={'checkout':str(self.repo),'policy':'recovery','target':self.target,'candidate':self.candidate,'tree':self.tree,
                  'prs':[self.pr],'commits':self.commits,'config_admission':config,
-                 'cli':self.packet['pins']['cli'],'validator':self.packet['pins']['guard']}
+                 'cli':self.packet['pins']['cli'],'validator':self.packet['pins']['guard'],
+                 'config_plan':dict(self.pin(self.plan_output),packet_sha256=config['packet']['sha256'])}
         environment={'config_admission':config,'ninja':self.packet['pins']['ninja']['path'],**{name:self.packet['configure_paths'][name]['path'] for name in ('dtk','objdiff','wrapper','compilers','binutils')},
                      'acceptance_capacity':{'wrapper':self.packet['pins']['wrapper'],'base_validator':self.packet['pins']['base_validator']}}
-        review={'config_packet_sha256':config['packet']['sha256'],'effective_compile_argv':self.packet['effective_argv'],
+        review={'config_plan_sha256':self.pin(self.plan_output)['sha256'],'config_packet_sha256':config['packet']['sha256'],'effective_compile_argv':self.packet['effective_argv'],
                 'configuration_edge_review':True,'unlisted_edges_unchanged':True,'compiler_binding_reviewed':True,'no_setup_execution':True,
                 'ordered_input_provenance':self.packet['ordered_inputs'],'roots':graph}
         adapter.config_contract(request,environment,review,roots)
@@ -118,6 +121,25 @@ class PreparationTests(unittest.TestCase):
         review['effective_compile_argv']=self.packet['effective_argv']
         Path(other['receipt']).write_text('{}')
         with self.assertRaisesRegex(RuntimeError,'stale_pinned_file'):adapter.config_contract(request,environment,review,roots)
+
+    def test_malicious_top_level_configuration_never_starts(self):
+        evil=self.root/'evil-sentinel';config=self.repo/'configure.py'
+        config.write_text(config.read_text()+f"\nPath({str(evil)!r}).touch()\n")
+        self.git('commit','-qam','malicious top level');head=self.git('rev-parse','HEAD');tree=self.git('rev-parse','HEAD^{tree}')
+        candidate=self.git('commit-tree',tree,'-p',self.target,'-p',head,'-m','malicious merge');self.git('checkout','--detach',candidate)
+        pr=copy.deepcopy(self.pr);pr['head']=head;pr['review']['head']=head
+        commits=[{'pr':1,'head':head,'commit':candidate,'tree':tree}]
+        self.packet.update(candidate=candidate,tree=tree)
+        self.packet['prs']=[{'number':1,'head':head,'base_sha':self.target,'review_base':self.target,
+                             'review':{'path':pr['review']['path'],'sha256':pr['review']['sha256']}}]
+        for item in (self.packet['steps'][0],self.packet['cumulative']):item['after']=candidate
+        self.write_packet()
+        plan={'packet_sha256':self.pin(self.packet_file)['sha256'],'target':self.target,'candidate':candidate,'tree':tree,'effective_argv':self.packet['effective_argv']}
+        self.plan_output.write_text(json.dumps(plan))
+        req=dict(self.request,packet=self.pin(self.packet_file),candidate=candidate,tree=tree,prs=[pr],commits=commits,plan_receipt=self.pin(self.plan_output))
+        with patch.object(p,'DOL_SHA1',self.original_sha1), self.assertRaises(ValueError):
+            p.prepare(req,str(self.checker),self.pin(self.checker)['sha256'],lock_path=self.lock)
+        self.assertFalse(evil.exists());self.assertFalse(self.marker.exists());self.assertFalse(Path(req['receipt']).exists())
 
     def test_changed_packet_or_source_prevents_execution(self):
         for case in ('packet','source'):

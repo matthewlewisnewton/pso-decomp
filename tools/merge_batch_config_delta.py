@@ -199,9 +199,9 @@ def read_packet(entry, forbidden_roots=()):
     for key in ('target', 'candidate', 'tree'): full_sha(packet[key], SHA1)
     if type(packet['prs']) is not list or not packet['prs']: fail('missing ordered PRs')
     for pr in packet['prs']:
-        exact_keys(pr, ('number', 'head', 'review_base', 'review'))
+        exact_keys(pr, ('number', 'head', 'base_sha', 'review_base', 'review'))
         if type(pr['number']) is not int or pr['number'] <= 0: fail('invalid PR number')
-        for key in ('head', 'review_base'): full_sha(pr[key], SHA1)
+        for key in ('head', 'base_sha', 'review_base'): full_sha(pr[key], SHA1)
         file_pin(pr['review'], forbidden_roots)
     exact_keys(packet['pins'], PIN_NAMES)
     for value in packet['pins'].values(): file_pin(value, forbidden_roots)
@@ -221,7 +221,7 @@ def read_packet(entry, forbidden_roots=()):
         if name in ('dtk','objdiff','wrapper') and not tool.is_file(): fail('tool executable required')
     if packet['configure_paths']['wrapper'] != packet['pins']['compiler_wrapper'] or not Path(packet['pins']['compiler']['path']).is_relative_to(Path(packet['configure_paths']['compilers']['path'])):
         fail('compiler or wrapper binding mismatch')
-    if type(packet['effective_argv']) is not list or not packet['effective_argv'] or any(type(x) is not str or not x or x.startswith('@') or any(ord(c)<32 or ord(c)==127 or c in ';|&`$' for c in x) for x in packet['effective_argv']): fail('invalid effective argv')
+    if type(packet['effective_argv']) is not list or not packet['effective_argv'] or any(type(x) is not str or not x or '@' in x or '..' in x or any(ord(c)<32 or ord(c)==127 or c in ';|&`$\\' for c in x) for x in packet['effective_argv']): fail('invalid effective argv')
     if len(packet['effective_argv']) < 3 or packet['effective_argv'][:2] != [packet['pins']['compiler_wrapper']['path'],packet['pins']['compiler']['path']]: fail('compiler argv binding mismatch')
     if type(packet['steps']) is not list or not packet['steps']: fail('missing incremental steps')
     for entry in [*packet['steps'], packet['cumulative']]:
@@ -234,7 +234,12 @@ def read_packet(entry, forbidden_roots=()):
 def verify_plan(repo, packet, target, candidate, tree, prs, commits):
     root = Path(repo).resolve()
     if (packet['target'],packet['candidate'],packet['tree']) != (target,candidate,tree): fail('stale candidate binding')
-    expected_prs = [{'number': p['number'], 'head': p['head'], 'review_base': p['review_base'],
+    if type(prs) is not list or not prs or len({p.get('number') for p in prs}) != len(prs): fail('invalid PR selection')
+    for pr in prs:
+        review=pr.get('review',{})
+        if review.get('verdict')!='pass' or review.get('independent') is not True or not isinstance(review.get('reviewer'),str) or not review['reviewer'].strip() or review.get('head')!=pr.get('head') or review.get('base')!=pr.get('review_base'):
+            fail('missing exact-head source review')
+    expected_prs = [{'number': p['number'], 'head': p['head'], 'base_sha': p['base_sha'], 'review_base': p['review_base'],
                      'review': {'path': p['review']['path'], 'sha256': p['review']['sha256']}} for p in prs]
     if packet['prs'] != expected_prs or [p['head'] for p in prs] != [c['head'] for c in commits]: fail('stale ordered reviews')
     if git_bytes(root, 'rev-parse', candidate+'^{tree}').strip().decode() != tree: fail('stale candidate tree')
@@ -249,6 +254,8 @@ def verify_plan(repo, packet, target, candidate, tree, prs, commits):
         parents=git_bytes(root,'show','-s','--format=%P',record['commit']).strip().decode().split()
         if parents != [chain[index],pr['head']] or git_bytes(root,'rev-parse',record['commit']+'^{tree}').strip().decode()!=record['tree']:
             fail('invalid merge ancestry')
+        try: git_bytes(root,'merge-base','--is-ancestor',pr['base_sha'],chain[index])
+        except subprocess.CalledProcessError: fail('missing PR prerequisite')
         for later in (chain[index],pr['head']):
             try: git_bytes(root,'merge-base','--is-ancestor',pr['review_base'],later)
             except subprocess.CalledProcessError: fail('unreviewed prerequisite')
@@ -263,13 +270,13 @@ def verify_plan(repo, packet, target, candidate, tree, prs, commits):
 
 
 def plan_request(request):
-    exact_keys(request, ('mode','repo','packet','checker','target','candidate','tree','prs','commits','output'))
+    exact_keys(request, ('mode','repo','packet','checker','cli','target','candidate','tree','prs','commits','output'))
     if request['mode'] != 'plan': fail('invalid checker mode')
     repo=Path(request['repo']).resolve()
     checker=file_pin(request['checker'],[repo])
     if checker != Path(__file__).resolve() or request['checker']['sha256'] != hashlib.sha256(Path(__file__).read_bytes()).hexdigest(): fail('checker identity mismatch')
     packet=read_packet(request['packet'],[repo])
-    if packet['pins']['checker'] != request['checker']: fail('checker packet mismatch')
+    if packet['pins']['checker'] != request['checker'] or packet['pins']['cli'] != request['cli']: fail('checker or CLI packet mismatch')
     if Path(packet['pins']['python']['path']) != Path(sys.executable).resolve(): fail('python identity mismatch')
     if Path(packet['pins']['git']['path']) != Path('/usr/bin/git').resolve(): fail('git identity mismatch')
     result=verify_plan(repo,packet,request['target'],request['candidate'],request['tree'],request['prs'],request['commits'])

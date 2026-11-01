@@ -80,11 +80,15 @@ def validate_checkout(checker, root, expected_commit, expected_tree, original_sh
 
 
 def prepare(request, checker_path, checker_sha256, *, lock_path=LEGACY_LOCK):
-    if set(request) != {'packet','repo','role','target','candidate','tree','prs','commits','receipt','original_sha256','original_tree_sha256'}: raise ValueError('invalid preparation request')
+    if set(request) != {'packet','repo','role','target','candidate','tree','prs','commits','receipt','original_sha256','original_tree_sha256','plan_receipt'}: raise ValueError('invalid preparation request')
     root=Path(request['repo']); receipt=Path(request['receipt'])
     if not receipt.is_absolute() or receipt.resolve()!=receipt or receipt.is_relative_to(root.resolve()) or receipt.exists() or receipt.is_symlink(): raise ValueError('invalid receipt path')
     if request['role'] not in ('baseline','candidate'): raise ValueError('invalid root role')
     checker=load_checker(checker_path,checker_sha256,[root])
+    for key in ('target','candidate','tree'):
+        checker.full_sha(request[key],checker.SHA1)
+    for key in ('original_sha256','original_tree_sha256'):
+        checker.full_sha(request[key],checker.SHA256)
     expected=request['target'] if request['role']=='baseline' else request['candidate']
     expected_tree=checker.git_bytes(root,'rev-parse',expected+'^{tree}').strip().decode()
     if request['role']=='candidate' and expected_tree!=request['tree']: raise ValueError('candidate tree mismatch')
@@ -95,6 +99,10 @@ def prepare(request, checker_path, checker_sha256, *, lock_path=LEGACY_LOCK):
         if Path(packet['pins']['python']['path']) != Path(sys.executable).resolve(): raise ValueError('python identity mismatch')
         if Path(packet['pins']['preparer']['path']) != Path(__file__).resolve(): raise ValueError('preparer identity mismatch')
         if Path(packet['pins']['git']['path']) != Path('/usr/bin/git').resolve(): raise ValueError('git identity mismatch')
+        plan_path=current.file_pin(request['plan_receipt'],[root])
+        plan=current.strict_json(plan_path.read_bytes())
+        expected_plan={'packet_sha256':request['packet']['sha256'],'target':request['target'],'candidate':request['candidate'],'tree':request['tree'],'effective_argv':packet['effective_argv']}
+        if plan != expected_plan: raise ValueError('stale plan receipt')
         original=packet['originals'][request['role']]
         if original != {'dol_sha256':request['original_sha256'],'tree_sha256':request['original_tree_sha256']}: raise ValueError('original packet mismatch')
         current.verify_plan(root,packet,request['target'],request['candidate'],request['tree'],request['prs'],request['commits'])
@@ -120,7 +128,7 @@ def prepare(request, checker_path, checker_sha256, *, lock_path=LEGACY_LOCK):
                 'tree':request['tree'],'root_commit':expected,'root_tree':expected_tree,
                 'graph_sha256':hashlib.sha256(graph.read_bytes()).hexdigest(),
                 'checker_sha256':checker_sha256,'preparer_sha256':packet['pins']['preparer']['sha256'],
-                'original_tree_sha256':request['original_tree_sha256'],
+                'original_tree_sha256':request['original_tree_sha256'],'plan_sha256':request['plan_receipt']['sha256'],
                 'effective_argv_sha256':hashlib.sha256(json.dumps(packet['effective_argv'],separators=(',',':')).encode()).hexdigest()}
         with receipt.open('x') as out:
             json.dump(result,out,sort_keys=True);out.write('\n');out.flush();os.fsync(out.fileno())
