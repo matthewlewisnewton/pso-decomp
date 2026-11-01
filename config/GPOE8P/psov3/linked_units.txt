@@ -1364,6 +1364,7 @@ pso/misc/TOSwitchItem.cpp
 pso/misc/TOSwitchTimer.cpp
 pso/misc/TOSymbolchatColli.cpp
 pso/misc/TOTrap.cpp
+pso/misc/TOTrapAncient01.cpp
 pso/misc/TOTrapAncient01_80226534.cpp
 pso/misc/TOTrapAncient02.cpp
 pso/misc/TOTrapAncient02R.cpp

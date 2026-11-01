@@ -653,6 +653,10 @@ force_active:
   - TOSwitchAttack__ct
   - TOSwitchTimer__ct
   - TOSymbolchatColli__ct
+  - TOTrapAncient01__bml_resource
+  - TOTrapAncient01__class_name
+  - TOTrapAncient01__ct
+  - TOTrapAncient01__data_805DBA4C
   - TOTrapAncient02R__ct
   - TOTrapAncient02R__vt79
   - TOTrapAncient02__ct
@@ -1911,6 +1915,7 @@ force_active:
   - __dt__15TItemEffBringerFv
   - __dt__15TItemEffLandHitFv
   - __dt__15TItemMagGrowEffFv
+  - __dt__15TOTrapAncient01Fv
   - __dt__15TObjBoss8PillerFv
   - __dt__15TObjDeadListWinFv
   - __dt__15TObjEneDelDepthFv
@@ -2399,6 +2404,7 @@ force_active:
   - __vt__15TEndingPicStage
   - __vt__15TItemEffBringer
   - __vt__15TItemMagGrowEff
+  - __vt__15TOTrapAncient01
   - __vt__15TObjBoss5Pillar
   - __vt__15TObjBoss8Piller
   - __vt__15TObjDeadListWin
@@ -3197,6 +3203,9 @@ force_active:
   - bm_o_rock_cave03_motion_names
   - bm_o_rock_cave03_resource_bundle
   - bm_o_rock_jungle_model_names
+  - bm_o_trap_ancient01_model_names
+  - bm_o_trap_ancient01_motion_names
+  - bm_o_trap_ancient01_resource_descriptor
   - bm_obj_boss7_common_model_names
   - bm_obj_boss7_common_motion_names
   - bm_obj_boss8_piller_model_names
@@ -6081,6 +6090,7 @@ force_active:
   - lbl_804A044C
   - lbl_804A0458
   - lbl_804A0468
+  - lbl_804B4844
   - lbl_804B8A10
   - lbl_804B8D80
   - lbl_804B8D94
@@ -6644,6 +6654,16 @@ force_active:
   - lbl_805DB09C
   - lbl_805DB0A0
   - lbl_805DB0A4
+  - lbl_805DBA48
+  - lbl_805DBA50
+  - lbl_805DBA54
+  - lbl_805DBA58
+  - lbl_805DBA5C
+  - lbl_805DBA60
+  - lbl_805DBA64
+  - lbl_805DBA68
+  - lbl_805DBA6C
+  - lbl_805DBA70
   - lbl_805DBBE0
   - lbl_805DBBE4
   - lbl_805DBBE8
@@ -7210,6 +7230,7 @@ force_active:
   - play_sifta_cast_sound__9TTecSiftaFv
   - play_sound__14TObjEneBm5WolfFPv
   - play_sound_variant__16TObjEneBm5GibonUFv
+  - play_sounds__15TOTrapAncient01Fv
   - play_variant_sound__14TObjEneBm5WolfFPv
   - play_walk_sound__12TObjEneLappyFv
   - player_action_motion_buffer
@@ -11736,6 +11757,7 @@ force_active:
   - receive_direct_attack__20TContainerAncient01RFPv19DirectAttackPayloadPvll
   - receive_physical_attack__13TObjEneMorfosFPvf
   - receive_physical_attack__15TBoss3VoloptP02FPvf
+  - receive_physical_attack__15TOTrapAncient01FPvf
   - receive_physical_attack__15TObjEneMe1GiGueFPvf
   - receive_physical_attack__16TOTrapAncient02RFPvf
   - receive_physical_attack__18TObjEneEpsilonBodyFPvf
@@ -11827,6 +11849,7 @@ force_active:
   - release_split_slimes__12TObjEneSlimeFv
   - release_subobjects__10TObjPlayerFv
   - release_trail_buffer__17TItemEffectWeaponFPv
+  - release_trapped_player__15TOTrapAncient01Fv
   - reload_floor_scene__6TLobbyFv
   - reload_impact_stats__12TBoss1DragonFv
   - reload_lobby_floor_scene__Fv
@@ -11957,6 +11980,7 @@ force_active:
   - render__15TBoss7PhotonPadFv
   - render__15TDuelEffectCtrlFv
   - render__15TEndingPicStageFv
+  - render__15TOTrapAncient01Fv
   - render__15TObjEneDelDepthFv
   - render__15TObjEneGyaranzoFv
   - render__15TObjEneMe1GiGueFv
@@ -14841,6 +14865,7 @@ force_active:
   - vfunc_6__11TTecRaZondeFPv
   - vfunc_6__12TNeedleShootFv
   - vfunc_6__14TOTrapSeabed01FPsl
+  - vfunc_6__15TOTrapAncient01FPsl
   - vfunc_6__17TAdExNetConfirmGCFv
   - vfunc_6__17TAdLicAgreementGCFv
   - vfunc_6__17TWindowMainMenu4PFv
@@ -14861,8 +14886,10 @@ force_active:
   - vfunc_7__9TTecSiftaFPv
   - vfunc_80__12TOMineIcon04Fv
   - vfunc_81__14TOTrapSeabed01Fv
+  - vfunc_81__15TOTrapAncient01Fv
   - vfunc_82__12TOMineIcon04Fv
   - vfunc_82__14TOTrapSeabed01Fv
+  - vfunc_82__15TOTrapAncient01Fv
   - vfunc_82__16TOTrapAncient02RFv
   - vfunc_83__12TObjEneBeastFv
   - vfunc_83__12TObjEneSharkFv
@@ -14873,12 +14900,15 @@ force_active:
   - vfunc_83__18TObjEneRe4SorcererFv
   - vfunc_84__12TOMineIcon04Fv
   - vfunc_84__14TOTrapSeabed01Fv
+  - vfunc_84__15TOTrapAncient01Fv
+  - vfunc_86__15TOTrapAncient01Fv
   - vfunc_88__12TBoss1DragonFv
   - vfunc_88__13TBoss5GryphonFv
   - vfunc_88__13TObjEneBm3FlyFv
   - vfunc_88__13TObjEneMorfosFv
   - vfunc_88__13TObjEneRe4BitFv
   - vfunc_88__14TObjEneBm5WolfFv
+  - vfunc_88__15TOTrapAncient01Fv
   - vfunc_88__16TObjEneBm5GibonUFv
   - vfunc_88__16TObjEneDellBiterFv
   - vfunc_88__16TObjEneRe7BeruraFv
