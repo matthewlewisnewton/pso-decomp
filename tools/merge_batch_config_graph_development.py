@@ -99,6 +99,23 @@ def main():
         if args != expected: fail('frozen graph cannot regenerate configuration')
     elif not script.is_relative_to(root/'tools') or script.suffix!='.py':
         fail('unreviewed graph Python entry point')
+    # Directory membership is insufficient: the exact script must be a blob
+    # of the reviewed commit. The adapter just checked the complete raw tree.
+    relative=script.relative_to(root).as_posix()
+    git_env={k:v for k,v in os.environ.items() if not k.startswith('GIT_')}
+    git_env.update(GIT_CONFIG_GLOBAL='/dev/null',GIT_CONFIG_NOSYSTEM='1',
+                   GIT_ATTR_NOSYSTEM='1',GIT_TERMINAL_PROMPT='0',LC_ALL='C')
+    rows=subprocess.check_output(['/usr/bin/git','-c','core.hooksPath=/dev/null',
+        '-c','core.fsmonitor=false','-c','diff.external=','-C',str(root),
+        'ls-tree','-z',expected_commit,'--',relative],env=git_env).split(b'\0')
+    rows=[row for row in rows if row]
+    if len(rows)!=1: fail('unreviewed graph Python source')
+    metadata, name=rows[0].split(b'\t',1)
+    mode,kind,blob=metadata.split(b' ')
+    raw=script.read_bytes()
+    oid=hashlib.sha1(b'blob '+str(len(raw)).encode()+b'\0'+raw).hexdigest().encode()
+    if name != os.fsencode(relative) or kind != b'blob' or mode not in (b'100644',b'100755') or blob != oid:
+        fail('unreviewed graph Python source')
     env=os.environ.copy();env['PSO_QUEUE_PYTHON']=str(launcher)
     code='import sys; sys.dont_write_bytecode=True\n'+base.PYTHON_DRIVER
     os.execve(str(python),[str(python),'-I','-B','-c',code,str(root),*args],env)

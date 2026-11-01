@@ -86,13 +86,29 @@ def raw_tree(root,commit):
         if oid!=blob or bool(path.stat().st_mode & 0o111)!=(mode==b'100755'): raise ValueError('tracked tree differs')
 
 
-def ignored_inputs(root, *, generated):
+def untracked_inputs(root, *, generated):
     root=Path(root);boundary(root)
-    for raw in git(root,'ls-files','--others','--ignored','--exclude-standard','-z').split(b'\0'):
-        if not raw: continue
-        if raw.endswith((b'.py',b'.pyc',b'.pth',b'.so')) or b'__pycache__/' in raw: raise ValueError('untracked Python import')
-        if raw.startswith(b'orig/') or (generated and (raw.startswith(b'build/') or raw in (b'build.ninja',b'objdiff.json',b'compile_commands.json',b'.ninja_log',b'.ninja_deps'))): continue
-        raise ValueError('unexpected ignored input')
+    # These are disjoint inventories: Git's --ignored reports only ignored
+    # paths, while --exclude-standard alone reports ordinary untracked paths.
+    for options in (('--others','--exclude-standard'),
+                    ('--others','--ignored','--exclude-standard')):
+        for raw in git(root,'ls-files',*options,'-z').split(b'\0'):
+            if not raw: continue
+            path=root/os.fsdecode(raw)
+            if path.is_symlink() or path.resolve()!=path or not path.is_file(): raise ValueError('invalid untracked input')
+            if path.stat().st_mode & 0o111: raise ValueError('untracked executable')
+            lower=raw.lower()
+            if lower.endswith((b'.py',b'.pyc',b'.pyo',b'.pth',b'.so',b'.pyd',b'.h',b'.hpp',b'.hh',b'.hxx',b'.c',b'.cc',b'.cpp',b'.cxx',b'.sh',b'.bash',b'.pl',b'.rb',b'.js',b'.exe',b'.dll',b'.jar')) or b'__pycache__/' in lower:
+                raise ValueError('untracked source or import input')
+            # The original copy and reviewed generated graph outputs are the
+            # only untracked trees permitted. Source and imports remain forbidden
+            # even within these trees. Generated .s and .inc files are outputs
+            # used by the existing reviewed build graph.
+            if raw.startswith(b'orig/GPOE8P/files/'):
+                continue
+            if generated and (raw.startswith(b'build/GPOE8P/') or raw.startswith(b'build/capacity-tmp-') or raw in (b'build.ninja',b'objdiff.json',b'compile_commands.json',b'.ninja_log',b'.ninja_deps')):
+                continue
+            raise ValueError('unexpected untracked input')
 ''', '<trusted queue git boundary>', 'exec'), _safety.__dict__)
 
 def git(repo, *args):
@@ -190,12 +206,12 @@ def load_contract(request, environment):
         require(packet['pins']['checker']==config['checker'] and packet['pins']['cli']==request['cli'], 'stale_config_runtime')
         _safety.boundary(checkout)
         _safety.raw_tree(checkout,request['candidate'])
-        _safety.ignored_inputs(checkout,generated=False)
+        _safety.untracked_inputs(checkout,generated=False)
         for entry in roots.values():
             root=Path(entry['path']).resolve()
             _safety.boundary(root)
             _safety.raw_tree(root,entry['commit'])
-            _safety.ignored_inputs(root,generated=True)
+            _safety.untracked_inputs(root,generated=True)
     paths = {role: checked_root(entry) for role, entry in roots.items()}
     require(not paths['baseline'].is_relative_to(paths['candidate'])
             and not paths['candidate'].is_relative_to(paths['baseline']), 'overlapping_prepared_roots')
@@ -290,7 +306,9 @@ def validate(request):
     launcher = base.python_launcher(state, list(roots.values()))
     env['PSO_QUEUE_PYTHON'] = str(launcher)
     candidate = roots['candidate']
+    load_contract(request, environment)
     base.run([sys.executable, '-I', '-B', '-c', "import pathlib; [compile(p.read_bytes(),str(p),'exec') for p in [pathlib.Path('configure.py'),*pathlib.Path('tools').rglob('*.py')]]"], candidate, env)
+    load_contract(request, environment)
     base.run([sys.executable, '-I', '-c', base.PYTHON_DRIVER, str(candidate), '--queue-tests'], candidate, env)
     results = {}
     for role in ('baseline', 'candidate'):
@@ -308,6 +326,7 @@ def validate(request):
     if request.get('config_admission') is not None:
         require(all(results[role]['provenance']==review['ordered_input_provenance'][role] for role in ('baseline','candidate')), 'ordered_input_provenance_changed')
     check = state / ('development-coverage-' + str(time.time_ns()) + '.json')
+    load_contract(request, environment)
     base.run([str(launcher), 'tools/check_pr.py', '--no-build', '--baseline',
               str(roots['baseline'] / 'build/GPOE8P/report.json'), '--json', str(check)], candidate, env)
     coverage = json.loads(check.read_text())

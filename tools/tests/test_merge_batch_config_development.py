@@ -192,6 +192,42 @@ class PreparationTests(unittest.TestCase):
             self.assertEqual(run.returncode,0,run.stderr);self.assertEqual(self.marker.read_text(),before+'x')
             valid_tool=subprocess.run([str(self.launcher),'tools/check.py'],cwd=self.repo,env=graph_env,capture_output=True,text=True,pass_fds=(held.fileno(),slot.fileno()))
             self.assertEqual(valid_tool.returncode,0,valid_tool.stderr)
+            # Inject ordinary untracked code and source in every role. Check
+            # the actual adapter gate, graph command and isolated test driver.
+            sentinel=self.root/'untracked-executed'
+            import types
+            harness=types.ModuleType('fixture_driver');base_path=Path(self.packet['pins']['base_validator']['path'])
+            harness.__file__=str(base_path);exec(compile(base_path.read_bytes(),str(base_path),'exec'),harness.__dict__)
+            for role,root in [('checkout',checkout),*roots.items()]:
+                for name in ('tools/unreviewed.py','tools/tests/test_unreviewed.py',
+                             'tools/__init__.py','tools/helper.py','include/unreviewed.h',
+                             'build/GPOE8P/unreviewed.py','build/GPOE8P/unreviewed.h',
+                             'build/GPOE8P/unreviewed.sh','build/GPOE8P/unreviewed-executable'):
+                    with self.subTest(role=role,untracked=name):
+                        path=root/name;path.parent.mkdir(parents=True,exist_ok=True)
+                        path.write_text('from pathlib import Path; Path('+repr(str(sentinel))+').touch()')
+                        if name.endswith('unreviewed-executable'): path.chmod(0o755)
+                        blocked=subprocess.run(cmd,capture_output=True,text=True)
+                        self.assertNotEqual(blocked.returncode,0,(role,name))
+                        with self.assertRaises((ValueError, RuntimeError)):
+                            adapter.validate(request)
+                        # The real source stage launches discovery only after
+                        # the same contract check succeeds.
+                        if blocked.returncode==0:
+                            subprocess.run([sys.executable,'-I','-B','-c',harness.PYTHON_DRIVER,str(self.repo),'--queue-tests'],cwd=self.repo,env=graph_env,capture_output=True)
+                        blocked_progress=subprocess.run([str(self.launcher),*progress],cwd=self.repo,env=graph_env,capture_output=True,text=True,pass_fds=(held.fileno(),slot.fileno()))
+                        self.assertNotEqual(blocked_progress.returncode,0,(role,name))
+                        if role=='candidate' and name=='tools/unreviewed.py':
+                            blocked_tool=subprocess.run([str(self.launcher),name],cwd=self.repo,env=graph_env,capture_output=True,text=True,pass_fds=(held.fileno(),slot.fileno()))
+                            self.assertNotEqual(blocked_tool.returncode,0)
+                        self.assertFalse(sentinel.exists())
+                        path.unlink()
+            # Normal discovery still works after the injected inputs are gone.
+            normal=subprocess.run(cmd,capture_output=True,text=True)
+            self.assertEqual(normal.returncode,0,normal.stderr)
+            discovery=subprocess.run([sys.executable,'-I','-B','-c',harness.PYTHON_DRIVER,str(self.repo),'--queue-tests'],cwd=self.repo,env=graph_env,capture_output=True,text=True)
+            self.assertEqual(discovery.returncode,0,discovery.stderr)
+
             foreign=self.root/'foreign';foreign.mkdir();(foreign/'tools').mkdir()
             sentinel=self.root/'foreign-executed'
             (foreign/'configure.py').write_text('from pathlib import Path; Path('+repr(str(sentinel))+').touch()')
