@@ -2599,6 +2599,7 @@ pso/ui/TAdBackGC.cpp
 pso/ui/TAdBackGC_8029A7B0.cpp
 pso/ui/TAdBackTxtGC.cpp
 pso/ui/TAdChrMoveEffectGC.cpp
+pso/ui/TAdChrSelASlotGC.cpp
 pso/ui/TAdChrSelASlotGC_802A596C.cpp
 pso/ui/TAdChrSelBSlotGC.cpp
 pso/ui/TAdChrSelBSlotGC_8030E354.cpp
