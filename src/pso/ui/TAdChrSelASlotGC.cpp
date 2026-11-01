@@ -62,7 +62,7 @@ void *__ct__16TAdChrSelASlotGCFP7TObjectPv(void *arg0, void *arg1, void *arg2);
 u8 *__nw__7TObjectFUl(s32);
 // The factory below owns this singleton; keep it before the local-static guard.
 // Together they occupy .sbss at 0x805D6A98 and 0x805D6A9C.
-u32 TAdChrSel__global_slot_data;
+int TAdChrSel__global_slot_data;
 u8 *get_or_create_slot_window__22TAdMultiPlyChrSelectGCFii(s32 arg0, s32 arg1);
 s32 __ct__19TAdPlyChrSelPlateGCFv(int, void *, void *);
 s32 __ct__15TAdChrSelSlotGCFP7TObject(int, void *);
