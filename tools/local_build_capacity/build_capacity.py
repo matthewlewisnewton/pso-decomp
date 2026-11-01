@@ -385,13 +385,16 @@ def reserve_receipts(path):
     return paths
 
 
-def check_prepared(repo, prepared, reviewed_sha, current):
+def check_prepared(repo, prepared, reviewed_sha, current, legacy_ninja_identity=None):
     prior = json.loads(prepared.read_text())
     if not prior.get('prepared') or prior.get('returncode') != 0:
         raise RuntimeError('successful exclusive preparation receipt required')
     old = prior['admission']
     for key in ('protocol', 'revision', 'repo', 'ninja_sha256', 'inputs_sha256', 'ninja_tool'):
-        if old.get(key) != current[key]:
+        expected = old.get(key)
+        if key == 'ninja_tool' and key not in old and legacy_ninja_identity is not None:
+            expected = legacy_ninja_identity  # separate verified current identity, never receipt mutation
+        if expected != current[key]:
             raise RuntimeError(f'preparation is stale: {key}')
     if reviewed_sha != current['ninja_sha256']:
         raise RuntimeError('explicitly reviewed graph SHA-256 required')
@@ -526,11 +529,18 @@ def main():
                     command += ['build.ninja']
                 elif isolated:
                     prior = json.loads(args.prepared_receipt.read_text())
+                    legacy_ninja = None
                     if 'ninja_tool' not in prior.get('admission', {}):
-                        raise RuntimeError('preparation receipt lacks pinned Ninja evidence')
-                    pin_ninja(repo, prior['admission']['ninja_tool'])
+                        if not resume:
+                            raise RuntimeError('preparation receipt lacks pinned Ninja evidence')
+                        # Only the captured reviewed resume contract can supply
+                        # the separate legacy manifest/current-identity binding.
+                        legacy_ninja = resume.preparation_ninja(resume_invocation.release, prior)
+                    expected_ninja = prior['admission'].get('ninja_tool', legacy_ninja)
+                    pin_ninja(repo, expected_ninja)
                     current = audit(repo)
-                    check_prepared(repo, args.prepared_receipt, args.reviewed_graph_sha256, current)
+                    check_prepared(repo, args.prepared_receipt, args.reviewed_graph_sha256,
+                                   current, legacy_ninja_identity=legacy_ninja)
                     record['admission'] = current
                     original = temporary / 'prepared.ninja'
                     original.write_bytes((repo / 'build.ninja').read_bytes())

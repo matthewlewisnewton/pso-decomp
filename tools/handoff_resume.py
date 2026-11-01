@@ -4,6 +4,7 @@ Control files are queue-owned activation/configuration, not untrusted requests.
 Receipt pins are supplied by an independent verifier, never inferred here.
 """
 from dataclasses import dataclass
+import ast
 import hashlib
 import json
 import os
@@ -23,6 +24,8 @@ COMMIT = re.compile(r'^[a-f0-9]{40}$')
 FIELDS = {'version', 'queue', 'action', 'release_id', 'item', 'head', 'root',
           'prepared', 'graph_sha256', 'inputs_sha256', 'approval', 'notice',
           'launcher', 'ninja', 'output', 'issued_ms'}
+LEGACY_WRAPPERS = {'f3dce1112a33dff0a8c4c8185faec2ed529da0c34a72d5af9a11f6832a0a160b'}
+NINJA_FIELDS = {'path', 'sha256', 'device', 'inode', 'size', 'mtime_ns'}
 CONTROL = {'version', 'enabled', 'trial_id', 'companion', 'approval_sha256',
            'adapter_sha256', 'wrapper_sha256', 'python_sha256', 'journal'}
 
@@ -90,7 +93,7 @@ def fsync_dir(path):
 
 
 def validate(data):
-    require(isinstance(data, dict) and set(data) == FIELDS, 'closed release schema required')
+    require(isinstance(data, dict) and set(data) in (FIELDS, FIELDS | {'legacy_preparation'}), 'closed release schema required')
     require(data['version'] == 1 and data['queue'] == QUEUE and data['action'] == ACTION,
             'unsupported queue/action/version')
     for key in ('release_id', 'item'):
@@ -106,6 +109,79 @@ def validate(data):
         require(not path.is_relative_to(root), 'trusted pin inside build root')
     output = absolute(data['output'])
     require(output.suffix == '.json' and not output.is_relative_to(root), 'invalid output receipt')
+
+
+def current_ninja(file_pin, expected):
+    require(isinstance(expected, dict) and set(expected) == NINJA_FIELDS,
+            'full Ninja preparation identity required')
+    require({key: expected[key] for key in ('path', 'sha256')} == file_pin,
+            'Ninja preparation pin mismatch')
+    executable = pin(file_pin)
+    stat = executable.stat()
+    actual = dict(path=str(executable), sha256=digest(executable),
+                  device=stat.st_dev, inode=stat.st_ino, size=stat.st_size,
+                  mtime_ns=stat.st_mtime_ns)
+    require(os.access(executable, os.X_OK) and actual == expected,
+            'Ninja identity differs from preparation evidence')
+    return actual
+
+
+def legacy_binding_hash(legacy):
+    return hashlib.sha256(json.dumps(legacy, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
+
+
+def preparation_ninja(d, prior):
+    """Verify original evidence, never normalize/rewrite a historical receipt.
+
+    Legacy current_ninja_tool is a separately reviewed *current* identity. It
+    makes no assertion about historical inode/mtime, which were not recorded.
+    This mechanical verifier confers no review/admission authority.
+    """
+    if 'ninja_tool' in prior['admission']:
+        require('legacy_preparation' not in d, 'legacy override on modern receipt forbidden')
+        return current_ninja(d['ninja'], prior['admission']['ninja_tool'])
+    legacy = d.get('legacy_preparation')
+    require(isinstance(legacy, dict) and set(legacy) == {'packet', 'current_ninja_tool'},
+            'full Ninja preparation identity required')
+    packet = read(pin(legacy['packet']))
+    require(isinstance(packet, dict), 'invalid legacy preparation packet')
+    plan = read(pin(packet['plan']))
+    wrapper = pin(packet['wrapper'])
+    require(packet['wrapper']['sha256'] in LEGACY_WRAPPERS, 'unsupported legacy wrapper')
+    # This finite wrapper version is reviewed to invoke this literal Ninja path.
+    assignments = [node.value.value for node in ast.parse(wrapper.read_bytes()).body
+                   if isinstance(node, ast.Assign) and isinstance(node.value, ast.Constant)
+                   and any(isinstance(t, ast.Name) and t.id == 'NINJA' for t in node.targets)]
+    require(assignments == [d['ninja']['path']] and plan['tools']['ninja'] == d['ninja']['path'],
+            'legacy executable path provenance mismatch')
+    manifest = read(pin(packet['tool_manifest']))
+    require(plan['tool_manifest_sha256'] == packet['tool_manifest']['sha256'],
+            'legacy plan/manifest mismatch')
+    roots = packet['roots']
+    matches = [(role, entry) for role, entry in roots.items() if entry['path'] == d['root']]
+    require(len(matches) == 1, 'legacy root not uniquely bound')
+    role, entry = matches[0]
+    require({k: entry['preparation'][k] for k in ('path', 'sha256')} == d['prepared'],
+            'legacy preparation pin mismatch')
+    require(plan['roots'][role]['path'] == d['root'] and plan['roots'][role]['head'] == d['head'],
+            'legacy root/head provenance mismatch')
+    for key, expected in (('head', d['head']), ('graph_sha256', d['graph_sha256']),
+                          ('inputs_sha256', d['inputs_sha256'])):
+        require(entry[key] == expected, 'legacy packet binding mismatch: ' + key)
+    require(read(pin(d['prepared'])) == prior, 'legacy receipt differs from authenticated packet')
+    require(prior.get('protocol') == 'pso-build-capacity-v2' and prior.get('revision') == 4
+            and prior.get('mode') == 'legacy' and prior.get('prepared') is True
+            and prior.get('returncode') == 0, 'unsupported legacy preparation')
+    for key, expected in (('protocol', 'pso-build-capacity-v2'), ('revision', 4),
+                          ('repo', d['root']), ('ninja_sha256', d['graph_sha256']),
+                          ('inputs_sha256', d['inputs_sha256'])):
+        require(prior['admission'].get(key) == expected, 'legacy admission mismatch: ' + key)
+    identity = current_ninja(d['ninja'], legacy['current_ninja_tool'])
+    historical = manifest[d['ninja']['path']]
+    require(historical['sha256'] == identity['sha256'] and historical['bytes'] == identity['size']
+            and historical['mode'] == oct(pin(d['ninja']).stat().st_mode & 0o777),
+            'legacy Ninja content manifest mismatch')
+    return identity
 
 
 def load(control_path):
@@ -126,31 +202,24 @@ def load(control_path):
     approval = read(pin(d['approval']))
     require(isinstance(approval, dict) and set(approval) == {
         'version', 'independent', 'reviewer', 'producer', 'verdict', 'item', 'head',
-        'root', 'prepared_sha256', 'graph_sha256', 'inputs_sha256', 'action'}, 'closed approval schema required')
+        'root', 'prepared_sha256', 'graph_sha256', 'inputs_sha256', 'action'}
+        | ({'legacy_preparation_sha256'} if 'legacy_preparation' in d else set()), 'closed approval schema required')
     require(approval['version'] == 1 and approval['independent'] is True
             and approval['verdict'] == 'pass' and bool(approval['reviewer'])
             and approval['reviewer'] != approval['producer'], 'independent approval required')
     for key in ('item', 'head', 'root', 'graph_sha256', 'inputs_sha256', 'action'):
         require(approval[key] == d[key], 'approval binding mismatch: ' + key)
     require(approval['prepared_sha256'] == d['prepared']['sha256'], 'preparation review mismatch')
+    if 'legacy_preparation' in d:
+        require(approval['legacy_preparation_sha256'] == legacy_binding_hash(d['legacy_preparation']),
+                'legacy provenance binding not independently approved')
     prior = read(pin(d['prepared']))
     require(prior.get('prepared') is True and prior.get('returncode') == 0, 'preparation incomplete')
     admitted = prior['admission']
     for key, expected in {'repo': d['root'], 'ninja_sha256': d['graph_sha256'],
                           'inputs_sha256': d['inputs_sha256']}.items():
         require(admitted.get(key) == expected, 'preparation binding mismatch')
-    expected_ninja = admitted.get('ninja_tool')
-    require(isinstance(expected_ninja, dict) and set(expected_ninja) == {
-        'path', 'sha256', 'device', 'inode', 'size', 'mtime_ns'}, 'full Ninja preparation identity required')
-    require({key: expected_ninja[key] for key in ('path', 'sha256')} == d['ninja'],
-            'Ninja preparation pin mismatch')
-    executable = pin(d['ninja'])
-    stat = executable.stat()
-    actual_ninja = dict(path=str(executable), sha256=digest(executable),
-                        device=stat.st_dev, inode=stat.st_ino, size=stat.st_size,
-                        mtime_ns=stat.st_mtime_ns)
-    require(os.access(executable, os.X_OK) and actual_ninja == expected_ninja,
-            'Ninja identity differs from preparation evidence')
+    preparation_ninja(d, prior)
     root = Path(d['root'])
     require(digest(root / 'build.ninja') == d['graph_sha256'], 'graph drift')
     # Isolated Git observation disables local hooks, includes and executable

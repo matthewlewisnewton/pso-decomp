@@ -340,6 +340,68 @@ claim(capture(sys.argv[1]), lambda phase: os._exit(19))
                 finally:
                     a.doCleanups(); b.doCleanups()
 
+    def legacy_contract(self):
+        # Synthetic copy emulates the legacy schema; the real modern receipt
+        # remains unchanged. Live RLC originals are checked separately read-only.
+        original = json.loads(Path(self.prepared['path']).read_bytes())
+        identity = original['admission'].pop('ninja_tool')
+        self.prepared = self.file('legacy-prepared.json', json.dumps(original))
+        self.release['prepared'] = self.prepared
+        wrapper = self.file('legacy-wrapper.py', 'NINJA = ' + repr(self.ninja['path']) + '\n')
+        stat = Path(self.ninja['path']).stat()
+        manifest = self.file('legacy-tools.json', json.dumps({self.ninja['path']: dict(
+            sha256=self.ninja['sha256'], bytes=stat.st_size, mode=oct(stat.st_mode & 0o777))}))
+        root = dict(path=self.release['root'], head=self.release['head'],
+                    preparation=self.prepared, graph_sha256=self.release['graph_sha256'],
+                    inputs_sha256=self.release['inputs_sha256'])
+        plan = self.file('legacy-plan.json', json.dumps(dict(
+            tools=dict(ninja=self.ninja['path']), tool_manifest_sha256=manifest['sha256'],
+            roots={'baseline': root})))
+        packet = self.file('legacy-packet.json', json.dumps(dict(
+            plan=plan, wrapper=wrapper, tool_manifest=manifest, roots={'baseline': root})))
+        self.release['legacy_preparation'] = dict(packet=packet, current_ninja_tool=identity)
+        approval = json.loads(Path(self.approval['path']).read_text())
+        approval['prepared_sha256'] = self.prepared['sha256']
+        approval['legacy_preparation_sha256'] = h.legacy_binding_hash(self.release['legacy_preparation'])
+        self.release['approval'] = self.file('legacy-approved.json', json.dumps(approval))
+        self.config['approval_sha256'] = self.release['approval']['sha256']
+        self.config['companion'] = h.publish_companion(self.release, self.root / 'legacy-companion.json')
+        self.save_control()
+        return wrapper['sha256'], original
+
+    def test_legacy_manifest_binding_preserves_original_and_strict_wrapper_checks(self):
+        wrapper_sha, original = self.legacy_contract()
+        raw = Path(self.prepared['path']).read_bytes()
+        with patch.object(h, 'LEGACY_WRAPPERS', {wrapper_sha}):
+            h.load(self.control)
+            identity = h.preparation_ninja(self.release, original)
+        capacity = self.capacity()
+        current = dict(original['admission'], ninja_tool=identity)
+        capacity.check_prepared(self.repo, Path(self.prepared['path']),
+            self.release['graph_sha256'], current, legacy_ninja_identity=identity)
+        with self.assertRaisesRegex(RuntimeError, 'ninja_tool'):
+            capacity.check_prepared(self.repo, Path(self.prepared['path']),
+                                   self.release['graph_sha256'], current)
+        self.assertEqual(Path(self.prepared['path']).read_bytes(), raw)
+        self.assertNotIn('ninja_tool', json.loads(raw)['admission'])
+
+    def test_legacy_evidence_requires_pinned_supported_chain_and_current_identity(self):
+        wrapper_sha, original = self.legacy_contract()
+        with self.assertRaisesRegex(ValueError, 'unsupported legacy wrapper'):
+            h.preparation_ninja(self.release, original)
+        with patch.object(h, 'LEGACY_WRAPPERS', {wrapper_sha}):
+            changed = copy.deepcopy(self.release)
+            changed['legacy_preparation']['current_ninja_tool']['inode'] += 1
+            with self.assertRaisesRegex(ValueError, 'Ninja identity differs'):
+                h.preparation_ninja(changed, original)
+            changed = copy.deepcopy(self.release)
+            changed['head'] = 'c' * 40
+            with self.assertRaisesRegex(ValueError, 'root/head provenance'):
+                h.preparation_ninja(changed, original)
+            Path(self.prepared['path']).write_text('{}')
+            with self.assertRaisesRegex(ValueError, 'changed pinned file'):
+                h.preparation_ninja(self.release, original)
+
     def test_actual_wrapper_rejects_trial_or_journal_only_change_during_wait(self):
         for field, value in (('trial_id', 'changed-trial'),
                              ('journal', str(self.root / 'different.sqlite'))):

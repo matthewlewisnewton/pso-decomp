@@ -337,3 +337,28 @@ companion Ninja pin remains path/hash; preparation retains the wrapper's full
 path/hash/device/inode/size/mtime identity, which is verified without rewriting
 the receipt. Resume fixtures obtain preparation receipts from actual wrapper
 main with real Ninja, replacing only production admission with a private fixture.
+
+A finite legacy-preparation path supports the reviewed protocol-4 wrapper with
+source hash `f3dce1112a33dff0a8c4c8185faec2ed529da0c34a72d5af9a11f6832a0a160b`.
+It does not modify or normalize old receipts. If `admission.ninja_tool` is absent,
+the companion must additionally supply `legacy_preparation` with exactly:
+
+- `packet`: a path/hash pin to the authenticated original preparation packet;
+- `current_ninja_tool`: a full, separately observed current identity using the
+  six fields required by the modern wrapper.
+
+The independently issued approval must also bind `legacy_preparation_sha256`
+to `legacy_binding_hash(companion['legacy_preparation'])`. This is a binding to
+existing historical evidence and current observations; the adapter issues no
+approval, and source/runtime re-review is required before use. The verifier
+checks the packet's pinned original receipt, plan, supported legacy wrapper and
+tool manifest; fixed wrapper/plan Ninja paths; root/head, graph and input
+bindings; recorded executable content hash/size/mode; and current full identity.
+Historical inode/mtime are **not** inferred. Modern receipts retain their exact
+full-identity requirement and reject legacy overrides. Without the captured
+verified resume contract, ordinary wrapper and acceptance-audit behavior stays
+strict. This path supplies a separate current identity only to the existing
+prepared-receipt comparison and never rewrites the original admission object.
+If any provenance binding is missing, retain the hold and use a future ordinary
+fresh preparation for the trial; do not repeat completed preparation merely to
+make the trial eligible or block the owner's ordinary released work.
