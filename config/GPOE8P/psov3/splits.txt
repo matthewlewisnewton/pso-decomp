@@ -11208,6 +11208,9 @@ pso/ui/TAdLdQuestPrtGC.cpp:
 	.sbss       start:0x805D6C38 end:0x805D6C3D
 	.sdata2     start:0x805DF540 end:0x805DF550
 
+particle_sbss_alignment_padding:
+	.sbss       start:0x805D6C3D end:0x805D6C40 align:1
+
 pso/boss/TBoss6GravBall_80323134.cpp:
 	.text       start:0x80323134 end:0x80323348
 
