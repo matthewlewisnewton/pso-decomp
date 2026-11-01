@@ -11729,7 +11729,7 @@ force_active:
   - quest_list_battle_stage_table
   - quest_list_challenge_stage_table
   - quest_vm_load__12TQuestListVMFv
-  - queue_deferred_photon_blast_hit__FUlll
+  - queue_deferred_photon_blast_hit__FUlllf
   - queue_destruction__12TObjGrassWebFv
   - queue_destruction__12TQuestThreadFPv
   - queue_destruction__13TObjDFHormingFPv
