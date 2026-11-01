@@ -1412,6 +1412,7 @@ force_active:
   - TWindowLockOn__update_for_other_player
   - TWindowMessagePage__ct
   - TWindowQuantity__ct
+  - TWindowSnapShot__sub_802A605C
   - TWindowSubComCard__sub_8007AC7C
   - TWindowSubComCard__sub_80245A10
   - TWindowSubComCard__sub_80249220
@@ -2760,6 +2761,7 @@ force_active:
   - alloc_boss_target_slot__16TBoss3VoloptCoreFv
   - alloc_breakup_model__13TUnk_804E3BD8Fl
   - alloc_breakup_piece_records
+  - alloc_buffer__15TWindowSnapShotFPv
   - alloc_char_records__23TAdSinglePlyChrSelectGCFi
   - alloc_download_buffer__13TUnk_804EF8C0Fv
   - alloc_download_quest__6TLobbyFlPl
@@ -4850,6 +4852,9 @@ force_active:
   - fn_80271848
   - fn_8028DBC4
   - fn_80293D84
+  - fn_802A5C7C
+  - fn_802A5CB8
+  - fn_802A5CC4
   - fn_802A9DF4
   - fn_802A9F48
   - fn_802CD054__15TObjEneMe1GiGueFv
@@ -4921,6 +4926,7 @@ force_active:
   - frame_menu_selection__14CreationCameraFv
   - free__23TAdSinglePlyChrSelectGCFv
   - free_buffer__13TUnk_804EF8C0Fv
+  - free_buffer__15TWindowSnapShotFv
   - free_buffer__23TAdSinglePlyChrSelectGCFv
   - free_buffers__22TQuestVmDownLoadServerFv
   - free_char_data_slots__23TAdSinglePlyChrSelectGCFPv
@@ -4998,11 +5004,13 @@ force_active:
   - get_boss_warp_model
   - get_boss_warp_model_handle
   - get_boss_warp_motion
+  - get_buffer_size__15TWindowSnapShotFv
   - get_center__12TObjEneSaverFv
   - get_center__13TUnk_8049F038Fv
   - get_center__14TObjEneGibblesFv
   - get_character_creation_selected_entry_id__Fv
   - get_charge__16PhotonBlastGaugeFv
+  - get_chunk_count__9RlcHeaderFv
   - get_clamped_level__16TObjEneBm5GibonUFv
   - get_clamped_level__16TObjEneMerillLiaFv
   - get_clamped_level__19TObjEneBm9MericarolFv
@@ -5357,6 +5365,7 @@ force_active:
   - init__13TUnk_804F28E0FlPv
   - init__15PSOV3EncryptionFUl
   - init__15TObjEneDelDepthFv
+  - init__15TWindowSnapShotFPvi
   - init__17TObjEneBm3FlyNestFv
   - init__17TWindowSubComCardFi
   - init__18TChallenge4PResultFv
@@ -7179,6 +7188,7 @@ force_active:
   - open_session__6TLobbyFi
   - open_ship_block_select_menu__6TLobbyFiPvPv
   - open_status_window__19TWindowSubTradeMainFi
+  - open_stream__15TWindowSnapShotFl
   - open_trade_equip_window__19TWindowSubTradeMainFv
   - open_warp_menu__6TLobbyFv
   - open_window__15TObjNewFloorWinFv
@@ -11752,6 +11762,8 @@ force_active:
   - re_b_mark_base_motion_names
   - react_to_events__8TItemMagFSc
   - read_be16_field2_forward__FPv
+  - read_be32__17RlcDirectoryEntryFPCSc
+  - read_be32__9RlcHeaderFPCSc
   - read_be_u16
   - read_be_u32__Fv
   - read_byte__24TMessageWindowControllerFv
@@ -12239,6 +12251,7 @@ force_active:
   - reset__11TItemMagSubFv
   - reset__14TItemEquipBaseFv
   - reset__14TObjEneBm5WolfFv
+  - reset__15TWindowSnapShotFv
   - reset__16TObjEneBm5GibonUFv
   - reset__21TObjEneRe7BeruraPunchFv
   - reset__6TLobbyFi
@@ -13005,6 +13018,7 @@ force_active:
   - set_message_by_index__9TSaveChCrFl
   - set_min_clamped_entry_value__14TObjEneGibblesFlf
   - set_min_clamped_entry_value__16TObjEneDellBiterFlf
+  - set_mode__15TWindowSnapShotFl
   - set_mode_floats__13TUnk_804ED298FlPv
   - set_mode_index_from_state__13TObjLobbyMainFv
   - set_model__11TItemMagSubFPvUlPv
