@@ -96,6 +96,38 @@ obtained copy of the game, on your machine, when you build.
 
 [MIT](LICENSE). Code adapted from other projects keeps its original notices.
 
+### Development evidence comparison
+
+`python3 tools/evidence_applicability.py BASELINE.json CURRENT.json` compares
+independently prepared, reviewed inventories. It prints JSON and exits nonzero
+when evidence is missing or a file hash does not match. It never changes a
+receipt, runs a build, authorizes reuse, or establishes acceptance freshness.
+An unchanged aggregate coverage report is not proof of binary equivalence.
+
+Both JSON snapshots have `version: 1`, a full 40-character `revision`, an
+absolute `root`, `proofs`, `global_inputs`, and a nonempty `consumers` object.
+Every file entry is `{"path": "relative/path", "sha256": "<lowercase 64-digit SHA-256>"}`;
+paths must be root-relative, contain no parent traversal, and resolve to regular files inside the snapshot root. Both the supplied path and its resolved root-relative path are compared, so a rename or changed symlink target is treated as a change even when bytes match. `proofs` contains
+`graph` and `inventory_review`; the baseline also contains
+`development_receipt`. Each is a file entry. `global_inputs` contains nonempty
+file-entry maps under each of `source`, `tool`, `compiler`, `config`, and
+`generated`. Each consumer has a nonempty `inputs` file-entry map. The baseline
+consumer also has a nonempty `outputs` map. Stable keys identify equivalent
+inputs across snapshots; all relevant compiler flags, transitive headers,
+imported helpers, generated inputs, tools and output artifacts must be covered.
+Output paths and hashes in the report identify baseline files only.
+
+These inventories and proof files are **inputs to review**, not independently
+verified claims of completeness, successful builds, or proof authenticity. The
+operator must independently verify the graph and receipt semantics, the review
+binding to both exact inventories, and their completeness before considering the
+comparison. Whole-graph hashes from existing preparation receipts alone are not
+per-consumer dependency inventories. Missing or stale files make the comparison
+incomplete; changed global inputs affect every consumer, and changed consumer
+inputs affect that consumer. New or removed consumers are affected. The queue
+alone decides whether any artifact may be used, after independent review and
+all applicable current-main, raw no-loss, DOL and ordered-link-input gates.
+
 ## Handoff snapshot report
 
 `python3 tools/handoff_report.py snapshot.json` prints a JSON report and does
