@@ -602,6 +602,7 @@ force_active:
   - TOChatSensor__ct
   - TOComputerMachine01__ct
   - TOContainerAncientItemCommon__ct
+  - TOCtrlDubchik__ct
   - TODoorAncient06__ct
   - TODoorAncient07__ct
   - TODoorAncient08__ct
@@ -1340,6 +1341,7 @@ force_active:
   - TTecDeband__ct
   - TTecDeband__sub_8022F948
   - TTecGiBarta__ct
+  - TTecGiFoie__ct
   - TTecGiZonde__ct
   - TTecGrants__ct
   - TTecLuker__ct
@@ -1413,6 +1415,7 @@ force_active:
   - TWindowLockOn__update_for_other_player
   - TWindowMessagePage__ct
   - TWindowQuantity__ct
+  - TWindowSnapShot__sub_802A605C
   - TWindowSubComCard__sub_8007AC7C
   - TWindowSubComCard__sub_80245A10
   - TWindowSubComCard__sub_80249220
@@ -1554,6 +1557,7 @@ force_active:
   - __ct__13TUnk_804C8678FP7TObjectPCc
   - __ct__13TUnk_804C8678FP7TObjectPCcl
   - __ct__13TUnk_804C8678FP7TObjectPvl
+  - __ct__13TUnk_804CC800FP3VeclllP7TObjectUc
   - __ct__13TUnk_804E4BF0FP7TObjectPv
   - __ct__13TUnk_804E6FA8FP7TObjectPUc
   - __ct__13TUnk_804F0C48FP7TObjectPUc
@@ -1838,6 +1842,7 @@ force_active:
   - __dt__13TUnk_804AF7B0Fv
   - __dt__13TUnk_804C4498Fv
   - __dt__13TUnk_804C8678Fv
+  - __dt__13TUnk_804CC800Fv
   - __dt__13TUnk_804CC870Fv
   - __dt__13TUnk_804CC888Fv
   - __dt__13TUnk_804CCA90Fv
@@ -2334,6 +2339,7 @@ force_active:
   - __vt__13TUnk_804C57F0
   - __vt__13TUnk_804C8678
   - __vt__13TUnk_804CC148
+  - __vt__13TUnk_804CC800
   - __vt__13TUnk_804CC870
   - __vt__13TUnk_804CCAA8
   - __vt__13TUnk_804CCD78
@@ -2764,6 +2770,7 @@ force_active:
   - alloc_boss_target_slot__16TBoss3VoloptCoreFv
   - alloc_breakup_model__13TUnk_804E3BD8Fl
   - alloc_breakup_piece_records
+  - alloc_buffer__15TWindowSnapShotFPv
   - alloc_char_records__23TAdSinglePlyChrSelectGCFi
   - alloc_download_buffer__13TUnk_804EF8C0Fv
   - alloc_download_quest__6TLobbyFlPl
@@ -3444,6 +3451,7 @@ force_active:
   - calc_offset__17TWindowSubComCardFv
   - calc_orb_positions__18TObjEneRe4SorcererFv
   - calc_parameters__11TTecRaBartaFv
+  - calc_params__10TTecGiFoieFv
   - calc_params__11TTecGiBartaFv
   - calc_params__12TBoss8DragonFPvl
   - calc_part_position__14TObjEnePanBARAFP3VecPl
@@ -3846,6 +3854,7 @@ force_active:
   - collect_targets_in_arc__15TBoss3VoloptP02Fv
   - collect_targets_in_front__15TBoss3VoloptP02Fv
   - commit_composition_text__19TWindowKeyBoardSoftFv
+  - complete_and_destroy__13TOCtrlDubchikFv
   - compute_follow_target__11TCameraCtrlFv
   - compute_random_dir_vec__11TBoss6Type2FlPUcll
   - compute_range_end__6TLobbyFlUl
@@ -4121,6 +4130,8 @@ force_active:
   - debug_print_ranges__8TOKurageFv
   - debug_render_overlay__9TMainTaskFv
   - decay_glow_and_calc_hp_ratio__9TBoss6MagFv
+  - decay_timer_and_clear_flag__13TOCtrlDubchikFv
+  - decay_timer_and_finish__13TOCtrlDubchikFv
   - decay_value_toward_floor__13TUnk_80490470Fv
   - decay_value_toward_floor__19MaterialOpacityFadeFv
   - decode_adx_stereo__FPSclPsPsPsPsss
@@ -4857,6 +4868,9 @@ force_active:
   - fn_80271848
   - fn_8028DBC4
   - fn_80293D84
+  - fn_802A5C7C
+  - fn_802A5CB8
+  - fn_802A5CC4
   - fn_802A9DF4
   - fn_802A9F48
   - fn_802CD054__15TObjEneMe1GiGueFv
@@ -4928,6 +4942,7 @@ force_active:
   - frame_menu_selection__14CreationCameraFv
   - free__23TAdSinglePlyChrSelectGCFv
   - free_buffer__13TUnk_804EF8C0Fv
+  - free_buffer__15TWindowSnapShotFv
   - free_buffer__23TAdSinglePlyChrSelectGCFv
   - free_buffers__22TQuestVmDownLoadServerFv
   - free_char_data_slots__23TAdSinglePlyChrSelectGCFPv
@@ -5005,11 +5020,13 @@ force_active:
   - get_boss_warp_model
   - get_boss_warp_model_handle
   - get_boss_warp_motion
+  - get_buffer_size__15TWindowSnapShotFv
   - get_center__12TObjEneSaverFv
   - get_center__13TUnk_8049F038Fv
   - get_center__14TObjEneGibblesFv
   - get_character_creation_selected_entry_id__Fv
   - get_charge__16PhotonBlastGaugeFv
+  - get_chunk_count__9RlcHeaderFv
   - get_clamped_level__16TObjEneBm5GibonUFv
   - get_clamped_level__16TObjEneMerillLiaFv
   - get_clamped_level__19TObjEneBm9MericarolFv
@@ -5366,6 +5383,7 @@ force_active:
   - init__13TUnk_804F28E0FlPv
   - init__15PSOV3EncryptionFUl
   - init__15TObjEneDelDepthFv
+  - init__15TWindowSnapShotFPvi
   - init__16TAdChrSelASlotGCFl
   - init__17TObjEneBm3FlyNestFv
   - init__17TWindowSubComCardFi
@@ -7190,6 +7208,7 @@ force_active:
   - open_session__6TLobbyFi
   - open_ship_block_select_menu__6TLobbyFiPvPv
   - open_status_window__19TWindowSubTradeMainFi
+  - open_stream__15TWindowSnapShotFl
   - open_trade_equip_window__19TWindowSubTradeMainFv
   - open_warp_menu__6TLobbyFv
   - open_window__15TObjNewFloorWinFv
@@ -11763,6 +11782,8 @@ force_active:
   - re_b_mark_base_motion_names
   - react_to_events__8TItemMagFSc
   - read_be16_field2_forward__FPv
+  - read_be32__17RlcDirectoryEntryFPCSc
+  - read_be32__9RlcHeaderFPCSc
   - read_be_u16
   - read_be_u32__Fv
   - read_byte__24TMessageWindowControllerFv
@@ -12251,6 +12272,7 @@ force_active:
   - reset__11TItemMagSubFv
   - reset__14TItemEquipBaseFv
   - reset__14TObjEneBm5WolfFv
+  - reset__15TWindowSnapShotFv
   - reset__16TObjEneBm5GibonUFv
   - reset__21TObjEneRe7BeruraPunchFv
   - reset__6TLobbyFi
@@ -12487,6 +12509,7 @@ force_active:
   - run_task__13TUnk_804B5C08Fv
   - run_task__13TUnk_804C8678Fv
   - run_task__13TUnk_804CC148Fv
+  - run_task__13TUnk_804CC800Fv
   - run_task__13TUnk_804CC870Fv
   - run_task__13TUnk_804CC888Fv
   - run_task__13TUnk_804CCA90Fv
@@ -13018,6 +13041,7 @@ force_active:
   - set_message_by_index__9TSaveChCrFl
   - set_min_clamped_entry_value__14TObjEneGibblesFlf
   - set_min_clamped_entry_value__16TObjEneDellBiterFlf
+  - set_mode__15TWindowSnapShotFl
   - set_mode_floats__13TUnk_804ED298FlPv
   - set_mode_index_from_state__13TObjLobbyMainFv
   - set_model__11TItemMagSubFPvUlPv
@@ -13735,6 +13759,9 @@ force_active:
   - sub_800FED0C__17TObjEZBoneRotBaseFv
   - sub_80140F44__11TMapCsnCtrlFv
   - sub_8015860C__6TOBindFv
+  - sub_8015CA74__13TOCtrlDubchikFv
+  - sub_8015CCF4__13TOCtrlDubchikFv
+  - sub_8015CE80__13TOCtrlDubchikFv
   - sub_80160968__15TODoorAncient09Fv
   - sub_80168244__13TUnk_804B2578FUl
   - sub_80168280__13TUnk_804B2578FUl
@@ -14116,6 +14143,7 @@ force_active:
   - update_best_time__13TUnk_804B8E18Fv
   - update_blink_state__16TOCakeshopCave01Fl
   - update_block_jump_list__6TLobbyFv
+  - update_bobbing__13TOCtrlDubchikFv
   - update_body_center__13TObjEneMorfosFv
   - update_bomb_drop__15TObjEneDelDepthFv
   - update_breakup__14TObjVoloptCageFv
@@ -14536,6 +14564,7 @@ force_active:
   - update_spawn_state__14TObjEneGibblesFv
   - update_spawning__20TContainerAncient01RFv
   - update_special_pose__11TItemMagSubFv
+  - update_spin__13TOCtrlDubchikFv
   - update_spin__14TObjEnePanarmsFv
   - update_spinning_projectile_attack__12TBoss1DragonFUl
   - update_stat_comparison__15TWindowHelpItemFv

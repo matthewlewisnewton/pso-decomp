@@ -1270,6 +1270,7 @@ pso/misc/TOContainerAncientItemCommon.cpp
 pso/misc/TOContainerAncientItemNone.cpp
 pso/misc/TOContainerAncientItemNone_8015BF38.cpp
 pso/misc/TOContainerAncientItemRare.cpp
+pso/misc/TOCtrlDubchik_8015CA74.cpp
 pso/misc/TODoorAncient01.cpp
 pso/misc/TODoorAncient03.cpp
 pso/misc/TODoorAncient04.cpp
@@ -1562,6 +1563,7 @@ pso/misc/TTecDeband.cpp
 pso/misc/TTecFoie.cpp
 pso/misc/TTecFoie_802301EC.cpp
 pso/misc/TTecGiBarta.cpp
+pso/misc/TTecGiFoie.cpp
 pso/misc/TTecGiZonde.cpp
 pso/misc/TTecGiZonde_8023CDC4.cpp
 pso/misc/TTecGrants.cpp
@@ -1779,6 +1781,7 @@ pso/misc/TWindowShortListCtrl_80221828.cpp
 pso/misc/TWindowShortListCtrl_80277D3C.cpp
 pso/misc/TWindowSimpleStatus.cpp
 pso/misc/TWindowSnapShot.cpp
+pso/misc/TWindowSnapShot_802A5B2C.cpp
 pso/misc/TWindowSnapShot_802A7D68.cpp
 pso/misc/TWindowSoundBalance.cpp
 pso/misc/TWindowStatus.cpp

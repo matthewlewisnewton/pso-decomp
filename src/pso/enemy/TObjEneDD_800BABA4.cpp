@@ -159,11 +159,10 @@ void TObjEneDD::move_to_wall_clamped_destination(f32 farg0, f32 farg1, f32 dist)
     this->vfunc_101((u8 *)&sp8);
 }
 
-u8 *TObjEneDD::move_with_wall_slide_commit(f32 dx, f32 dz, f32 dist) {
-    u8 *arg0 = (u8 *)this;
-    Vec sp8;
-    calc_wall_slide_destination(arg0, &sp8, dx, dz, dist);
-    return this->vfunc_101((u8 *)&sp8);
+u8 *TObjEneDD::move_with_wall_slide_commit(f32 dx, f32 dz, f32 distance) {
+    Vec destination;
+    calc_wall_slide_destination(this, &destination, dx, dz, distance);
+    return vfunc_101((u8 *)&destination);
 }
 
 void TObjEneDD::move_with_wall_stop(f32 farg0, f32 farg1, f32 farg2) {

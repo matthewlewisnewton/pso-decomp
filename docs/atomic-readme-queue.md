@@ -6,4 +6,21 @@ The strict external validator must return its bound raw-report paths and hashes,
 
 The queue constructs a deterministic one-parent README-only commit without changing the validated working tree. The durable journal records both the source candidate and publication candidate, the documentation tree/blob, and hashes of the validator output, reports, coverage receipt and generator before the push. Immediately before publication it rechecks evidence, the one-parent/README-only relation, source tree, selected ancestry, live PR readiness and target, and performs one exact-old CAS. A lost push response is reconciled against the recorded publication commit; the generator is not rerun during recovery of an uncertain outcome. No second game build is required for the audited README-only child.
 
-This is a source proposal, not a deployed queue. An independent reviewer must assess the new transaction and its trust boundaries, then the coordinator must pin all tools and authorize a fresh pilot against current main, reviewed prepared roots and the exact selected heads. Do not alter a frozen batch or reuse prior successful-looking evidence. Raw reports, private paths, original assets and logs remain local.
+Source availability does not establish installation in a live queue. Runtime changes require independent review, exact installed tool pins and applicable current-main graph and execution qualification. Do not alter a frozen batch or reuse prior successful-looking evidence. Raw reports, private paths, original assets and logs remain local.
+
+## README content scope
+
+Keep the main README focused on the project, build/contributor entry points and
+current measured aggregate progress with its validated source attribution. A stats
+refresh changes the bounded measurement region only; it must not append worker
+status, handoff schemas, queue snapshots, frozen-checkpoint narratives or temporary
+validation logs. Preserve the current main README's organization when composing
+older branches, rather than restoring removed status material from a branch base.
+
+Reusable, source-safe queue/tool instructions belong in the
+[operations reference](operations/README.md), separate from human contributor
+guidance. Temporary handoff packets, per-worker reports, detailed coverage reports
+and machine-specific evidence stay local; do not mechanically relocate them into
+committed documentation. The renderer retains unrelated README bytes, so review
+source changes for this scope before publication. This content guidance does not
+change executable validation, publication or authorization gates.

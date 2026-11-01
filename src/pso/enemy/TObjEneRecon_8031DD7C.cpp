@@ -23,26 +23,26 @@ VV(91)VV(92)VV(93)VV(94)VV(95)VV(96)VV(97)VV(98)VV(99)
 
 extern "C" {
 
-
 extern f32 *TObjEneRecon__data_805D6AFC;
 
 void TObjEneRecon::update_collide_flag() {
-    void *temp_r5;
-
-    temp_r5 = this->movementParameters;
-    if (TObjEneEpsilon__sub_800B92F8((u8 *)this, *(s32 *)((s8 *)temp_r5 + 8), *TObjEneRecon__data_805D6AFC) != 0U) {
-        *(s32 *)((s8 *)this + 0x444) = (s32) (*(s32 *)((s8 *)this + 0x444) | 2);
+    void *parameters = movementParameters;
+    // The current m_444 declaration is at 0x428; retain the verified flag offset.
+    s32 &flags = *(s32 *)((s8 *)this + 0x444);
+    if (TObjEneEpsilon__sub_800B92F8((u8 *)this, *(s32 *)((s8 *)parameters + 8), *TObjEneRecon__data_805D6AFC) != NULL) {
+        flags |= 2;
         return;
     }
-    *(s32 *)((s8 *)this + 0x444) = (s32) (*(s32 *)((s8 *)this + 0x444) & 0xFFFFFFFD);
+    flags &= ~2;
 }
 
 void TObjEneRecon::set_flag2(f32 dx, f32 dz, f32 distance) {
+    s32 &flags = *(s32 *)((s8 *)this + 0x444);
     if (move_with_wall_slide_commit(dx, dz, distance) != NULL) {
-        *(s32 *)((s8 *)this + 0x444) = (s32) (*(s32 *)((s8 *)this + 0x444) | 2);
+        flags |= 2;
         return;
     }
-    *(s32 *)((s8 *)this + 0x444) = (s32) (*(s32 *)((s8 *)this + 0x444) & 0xFFFFFFFD);
+    flags &= ~2;
 }
 
 void TObjEneRecon::update_flag_0x444() {
