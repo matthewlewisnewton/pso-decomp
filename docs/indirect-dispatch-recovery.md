@@ -87,3 +87,31 @@ signed modulo cadence, a single-case switch, the compiler's native memory-copy
 operation for initialization and assignment, and generated aggregate assignment
 under its supported always_inline pragma. None reached exact code; the checkpoint
 continues to use the clearer explicit native PMF assignments.
+
+## Source-link closure in progress
+
+The scroll helper now expresses the same owned angle scale as the other wave
+helpers: the single-precision literal `182.04445f`. This removes an undefined
+self-reference to `TEffIndirectCtrl__data_805DE02C` that would otherwise survive
+when the unit is selected from source. The complete targeted object still retains
+all ten existing exact functions and the same 16 bytes of `.rodata` and four bytes
+of `.sdata2`. The dispatcher now uses the runtime's canonical `int rand(void)`
+declaration from `<stdlib.h>` instead of a provisional long-return declaration;
+the complete emitted object is unchanged by that interface correction.
+
+A census of 7,414 existing original/compiled objects, substituting the candidate
+for this unit's compiled object, finds no undefined references to the two pooled
+conversion-bias names or the owned angle-scale name. The original assembly census
+also finds their references only inside this unit. This supports a future narrow
+`scope:local` proposal for those three split-artifact names once matching and all
+link guards are satisfied. No such symbol-scope changes are included yet.
+
+The latest probes record exact source, compiler, launcher and object hashes plus
+the complete command and diagnostics. Size/performance modes, optimization levels,
+single-pass/disabled scheduling, peephole control, adjacent installed compiler
+patch releases, native record/array copying, deferred generation, and genuine
+inline copy operators have not produced an exact dispatcher yet. These results
+rule out those specific variants only. One failed alignment-declaration syntax
+produced no object; the repository's supported alignment syntax compiled and
+produced the unchanged best object. No impossibility or assembly-origin claim is
+made. The owner continues with source-form and export/layout closure.

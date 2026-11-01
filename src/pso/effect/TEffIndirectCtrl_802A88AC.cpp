@@ -1,5 +1,6 @@
 #include "pso/system/GinjaTextureInput.h"
 #include "types.h"
+#include <stdlib.h>
 #include "pso/player/demo_mode.h"
 #include "pso/effect/TEffIndirectCtrl.h"
 #include "pso/effect/TEffIndirectCtrl_802A88AC.h"
@@ -16,7 +17,6 @@ typedef char IndirectTaskTable_size[sizeof(IndirectTaskTable) == 36 ? 1 : -1];
 extern "C" {
 extern IndirectTaskTable eff_indirect_task_table;
 extern const IndirectTaskTable lbl_8046FBE8;
-s32 rand();
 extern s32 actor_frame_tick;
 extern const f32 lbl_805DE028;
 }
@@ -71,7 +71,6 @@ extern s32 __vt__16TEffIndirectCtrl[];
 extern s32 TEffIndirectCtrl__name;
 extern const f32 lbl_805DE024;
 Ctrl_802A8B58 *TEffIndirectCtrl__ct(Ctrl_802A8B58 *self, s32 kind, void *parent);
-extern const f32 TEffIndirectCtrl__data_805DE02C;
 s32 DCFlushRange(s32, s32);
 void release_texture_list(void *);
 s32 memcpy(s32, s32, s32);
@@ -235,7 +234,7 @@ void deform_indirect_texture_scroll(u8 *p, u32 px, u32 py, u8 amp, u32 phase) {
   u32 w;
   flags = 0;
   count = 0;
-  offset = (s32) (((f32) amp) * sin_table_lookup((s32) (TEffIndirectCtrl__data_805DE02C * ((f32) phase))));
+  offset = (s32) (((f32) amp) * sin_table_lookup((s32) (182.04445f * ((f32) phase))));
   if (px != 0)
   {
     flags |= 1;
