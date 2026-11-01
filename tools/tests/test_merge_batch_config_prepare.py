@@ -4,6 +4,7 @@ import fcntl
 import hashlib
 import json
 import os
+import shutil
 from pathlib import Path
 import subprocess
 import sys
@@ -15,6 +16,38 @@ from unittest.mock import patch
 from tools import merge_batch_config_delta as c
 from tools import merge_batch_config_prepare as p
 from tools import merge_batch_validate_acceptance as adapter
+
+def discover_test_ninja():
+    """Resolve the real Ninja dependency; never substitute a fake or skip tests."""
+    configured=os.environ.get('PSO_TEST_NINJA')
+    if configured is not None:
+        candidate=Path(configured)
+        if not candidate.is_absolute(): raise RuntimeError('PSO_TEST_NINJA must be an absolute executable path')
+    else:
+        found=shutil.which('ninja')
+        if not found: raise RuntimeError('real Ninja required: install ninja-build or set PSO_TEST_NINJA')
+        candidate=Path(found)
+    try: candidate=candidate.resolve(strict=True)
+    except OSError as exc: raise RuntimeError('test Ninja does not exist') from exc
+    if not candidate.is_file() or not os.access(candidate,os.X_OK): raise RuntimeError('test Ninja is not executable')
+    return candidate
+
+
+class NinjaDiscoveryTests(unittest.TestCase):
+    def test_missing_ninja_fails_closed(self):
+        with patch.dict(os.environ, {'PATH': ''}, clear=True), self.assertRaisesRegex(RuntimeError, 'real Ninja required'):
+            discover_test_ninja()
+
+    def test_relative_or_missing_explicit_path_fails_closed(self):
+        for path in ('relative/ninja', '/nonexistent/pso-test-ninja'):
+            with self.subTest(path=path), patch.dict(os.environ, {'PSO_TEST_NINJA': path}, clear=True), self.assertRaises(RuntimeError):
+                discover_test_ninja()
+
+    def test_path_and_explicit_setting_resolve_same_real_executable(self):
+        found=discover_test_ninja()
+        with patch.dict(os.environ, {'PSO_TEST_NINJA': str(found)}, clear=True):
+            self.assertEqual(discover_test_ninja(),found)
+
 
 class PreparationTests(unittest.TestCase):
     def setUp(self):
@@ -64,7 +97,7 @@ class PreparationTests(unittest.TestCase):
                      'originals':{role:{'tree_sha256':p.original_tree_sha256(self.repo),'dol_sha256':self.original_sha} for role in ('baseline','candidate')},
                      'dependent_compile':[], 'ordered_inputs':{role:{'ordered_inputs_sha256':'c'*64,'source_inputs':1,'fallback_inputs':0} for role in ('baseline','candidate')},
                      'effective_argv':[str(self.tool),str(td/'a'),'-inline','off,deferred','-c','src/'+c.UNIT],'verdict':'pass','independent':True,'reviewer':'fixture'}
-        self.ninja=Path('/home/matt/workspace/pso-decomp/build/ninja-venv/bin/ninja').resolve()
+        self.ninja=discover_test_ninja()
         self.packet['pins']['ninja']=self.pin(self.ninja)
         self.packet_file=self.root/'packet.json';self.write_packet();self.make_plan()
         self.request={'packet':self.pin(self.packet_file),'repo':str(self.repo),'role':'candidate','target':self.target,'candidate':self.candidate,'tree':self.tree,'prs':[self.pr],'commits':self.commits,'receipt':str(self.root/'receipt.json'),'original_sha256':self.original_sha,'original_tree_sha256':p.original_tree_sha256(self.repo),'plan_receipt':self.pin(self.plan_output)}
