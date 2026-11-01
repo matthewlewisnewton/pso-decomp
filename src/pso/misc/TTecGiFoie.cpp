@@ -216,6 +216,7 @@ void TTecGiFoie::calc_params() {
 // Keep the two motion paths' float/double operations and callback order intact.
 #pragma push
 #pragma fp_contract on
+#pragma opt_propagation off
 void TUnk_804CC800::run_task() {
     Rot_802312E4 direction;
     s32 index;
@@ -267,10 +268,13 @@ void TUnk_804CC800::run_task() {
         direction.y = (s32)(lbl_8044D360[0] * atan2_float(this->position.x - this->origin.x, this->position.z - this->origin.z));
         direction.z = 0x4000;
         direction.x = direction.y - 0x8000;
-        direction.y = 0;
-        for (index = 0; index < TTecGiFoie__emitter_profile_table[this->band].count; index++) {
-            this->emitters[index]->set_position(&this->position);
-            this->emitters[index]->set_direction(&direction);
+        // GC/2.6 needs a named zero and a fresh counter, with propagation off,
+        // to keep this field reset separate from the loop's two initializers.
+        s32 direction_y = 0;
+        direction.y = direction_y;
+        for (s32 emitter_index = 0; emitter_index < TTecGiFoie__emitter_profile_table[this->band].count; emitter_index++) {
+            this->emitters[emitter_index]->set_position(&this->position);
+            this->emitters[emitter_index]->set_direction(&direction);
         }
     }
 }
