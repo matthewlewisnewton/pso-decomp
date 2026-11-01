@@ -5,7 +5,7 @@
 
 extern "C" {
 char *fn_8026CB5C(void);
-char *fn_8026CB68(void);
+const f32 *fn_8026CB68(void);
 char *get_zero_vec2(void);
 }
 

@@ -150,7 +150,7 @@ Win_80244DFC * find_overlapping_balloon__15TWindowFukidasiFPvPvPvPv(Win_80244DFC
 s32 sub_80246948__13TUnk_804CE018Fv();
 int TWindowFukidasi__sub_8024695C(void *p);
 s32 TWindowCtrlMain__sub_8024CE24();
-TWindowDrawContext *open_singleton__19TWindowKeyBoardSoftFiiii(f32 *, f32 *, f32 *, u32, f32);
+TWindowDrawContext *open_singleton__19TWindowKeyBoardSoftFiiii(const f32 *, const f32 *, const f32 *, u32, f32);
 void apply_window_closing_stretch__FPUci(TWindowDrawContext *, int);
 void animate_scale__19TWindowKeyBoardSoftFv(TWindowDrawContext *);
 void shrink_clip_right__19TWindowKeyBoardSoftFv(TWindowDrawContext *);
