@@ -12,7 +12,7 @@ void set_bounds__19TWindowKeyBoardSoftFffff(TWindowDrawContext *, f32, f32, f32,
 void shrink_clip_right__19TWindowKeyBoardSoftFv(TWindowDrawContext *);
 void animate_scale__19TWindowKeyBoardSoftFv(TWindowDrawContext *);
 s32 is_point_in_bounds__19TWindowKeyBoardSoftFPv(TWindowDrawContext *, void *);
-TWindowDrawContext *open_singleton__19TWindowKeyBoardSoftFiiii(f32 *pos, f32 *size, f32 *scale, u32 flags, f32 depth);
+TWindowDrawContext *open_singleton__19TWindowKeyBoardSoftFiiii(const f32 *pos, const f32 *size, const f32 *scale, u32 flags, f32 depth);
 TWindowDrawContext *get_or_create_instance__19TWindowKeyBoardSoftFv();
 TWindowDrawContext *free_singleton__19TWindowKeyBoardSoftFUls(TWindowDrawContext *, s16);
 TWindowDrawContext *init_layout__19TWindowKeyBoardSoftFv(TWindowDrawContext *);

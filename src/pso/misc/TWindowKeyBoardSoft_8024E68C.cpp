@@ -32,7 +32,7 @@ extern const f32 lbl_805DCC98;
 extern const f32 lbl_805DCC9C;
 extern const f32 lbl_805DCCA0;
 extern const f32 lbl_805DCCA4;
-TWindowDrawContext *init_text_window_layout(TWindowDrawContext *win, f32 *pos, f32 *size, f32 *scale, u32 flags, f32 depth);
+TWindowDrawContext *init_text_window_layout(TWindowDrawContext *win, const f32 *pos, const f32 *size, const f32 *scale, u32 flags, f32 depth);
 
 #pragma fp_contract on
 
@@ -141,7 +141,7 @@ s32 try_open__19TWindowKeyBoardSoftFii(s32 arg0, s32 arg1) {
 
 #pragma push
 #pragma fp_contract on
-TWindowDrawContext *init_text_window_layout(TWindowDrawContext *win, f32 *pos, f32 *size, f32 *scale, u32 flags, f32 depth) {
+TWindowDrawContext *init_text_window_layout(TWindowDrawContext *win, const f32 *pos, const f32 *size, const f32 *scale, u32 flags, f32 depth) {
     f32 mx;
     f32 my;
     s32 cam;
@@ -226,7 +226,7 @@ Vec2_8024EC34 *get_viewport_offset__19TWindowKeyBoardSoftFi(s32 i) {
     return get_zero_vec2();
 }
 
-extern "C" TWindowDrawContext *open_singleton__19TWindowKeyBoardSoftFiiii(f32 *pos, f32 *size, f32 *scale, u32 flags, f32 depth) {
+extern "C" TWindowDrawContext *open_singleton__19TWindowKeyBoardSoftFiiii(const f32 *pos, const f32 *size, const f32 *scale, u32 flags, f32 depth) {
     if (soft_keyboard_instance == NULL) return NULL;
     init_text_window_layout(soft_keyboard_instance, pos, size, scale, flags, depth);
     return soft_keyboard_instance;
