@@ -7,6 +7,7 @@
 #include "pso/system/vector.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/boss/TBoss4DarkFalz.h"
+#include "pso/boss/TBoss4DarkFalzState.h"
 
 struct Vec_8004AB90 { f32 x, y, z; };
 
@@ -173,32 +174,6 @@ u16 TBoss4Type3::pick_random_target_player() {
 #include "pso/boss/TBoss3Volopt.h"
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TWindowCtrl.h"
-struct Stack_8004B084 {
-    s32 sp8;
-    s32 spC;
-    s32 sp10;
-};
-
-union MemberActionStorage_8004B084 { s32 words[3]; void (TBoss4DarkFalz::*action)(); };
-
-struct RecoveredGlobal_8004B084_TBoss4DarkFalz__data_80485108 {
-    s32 value;
-    u8 remaining[0x33C];
-};
-
-struct Stack_8004B0F8 {
-    s32 sp8;
-    s32 spC;
-    s32 sp10;
-};
-
-union MemberActionStorage_8004B0F8 { s32 words[3]; void (TBoss4DarkFalz::*action)(); };
-
-struct RecoveredGlobal_8004B0F8_TBoss4DarkFalz__data_80485108 {
-    s32 value;
-    u8 remaining[0x33C];
-};
-
 struct Msg_8004B16C { u8 code; u8 size; u16 id; s16 a; u8 pad6[2]; s32 b; u8 padc[4]; };
 
 struct Msg_8004B1BC { u8 code; u8 size; u16 id; s16 a; u8 pad6[2]; s32 b; u8 padc[4]; };
@@ -241,21 +216,6 @@ typedef struct Hit_8004B8F8 {
 
 struct Desc_8004BD58 { s16 f0; s16 f2; u8 pad4[0x3C]; };
 
-struct Boss_8004B20C {
-    u8 pad0[0x37C];
-    s32 state;
-};
-
-typedef void (Boss_8004B20C::*Act_8004B20C)();
-
-struct Entry_8004B20C {
-    s32 f0;
-    Act_8004B20C enter;
-    Act_8004B20C leave;
-    Act_8004B20C a;
-    Act_8004B20C b;
-};
-
 struct VBase_18_8004B654 { char pad[0x18]; };
 struct VObj_18_8004B654 : VBase_18_8004B654 {
 #define V(n) virtual void m##n();
@@ -275,7 +235,6 @@ s32 TBoss4DarkFalz__sub_8004AF5C(u8 *arg0, s16 *arg1, s16 *arg2);
 void fn_803594B4(void *, s32, f32);
 
 void TBoss4DarkFalz__sub_8004B730(u8 *arg0, s32 arg1, f32 farg0);
-extern RecoveredGlobal_8004B084_TBoss4DarkFalz__data_80485108 TBoss4DarkFalz__data_80485108;
 void release_all_players_control_lock(void);
 
 s32 TBoss4Thanks__sub_8035C96C();
@@ -299,7 +258,7 @@ extern "C" {
 void TBoss4DarkFalz__sub_8004B7DC(TBoss4DarkFalz *arg0);
 extern Vec_8004B8F8 lbl_804371BC;
 void TBoss4DarkFalz__sub_8004B8F8(TBoss4DarkFalz *arg0);
-int TBoss4DarkFalz__sub_8004B07C(void);
+int TBoss4DarkFalz__sub_8004B07C(TBoss4DarkFalz *);
 s32 is_local_client_floor_leader();
 s32 get_main_phase();
 
@@ -343,40 +302,20 @@ u8 TBoss4DarkFalz::is_ending_or_split_screen() {
     }
     return (u8)var_r31;
 }
-int TBoss4DarkFalz__sub_8004B07C(void) { return 0; }
+int TBoss4DarkFalz__sub_8004B07C(TBoss4DarkFalz *) { return 0; }
 
-typedef char MemberActionStorage_8004B084_size[sizeof(MemberActionStorage_8004B084) == 12 ? 1 : -1];
-typedef char RecoveredGlobal_8004B084_TBoss4DarkFalz__data_80485108_size[sizeof(RecoveredGlobal_8004B084_TBoss4DarkFalz__data_80485108) == 0x340 ? 1 : -1];
 void TBoss4DarkFalz::sub_8004B084() {
-  MemberActionStorage_8004B084 member_action;
-  Stack_8004B084 stack;
-  u8 *temp_r6;
-  temp_r6 = (u8 *)&TBoss4DarkFalz__data_80485108.value;
-  temp_r6 = temp_r6 + ((this->m_37c) * 0x34);
-  member_action.words[0] = *((s32 *) (((s8 *) temp_r6) + 0x28));
-  member_action.words[1] = *((s32 *) (((s8 *) temp_r6) + 0x2C));
-  member_action.words[2] = *((s32 *) (((s8 *) temp_r6) + 0x30));
-  if (member_action.action != 0)
-  {
-    (this->*( member_action.action))();
-  }
+    DarkFalzStateAction action = TBoss4DarkFalz__data_80485108[m_37c].update;
+    if (action != 0) {
+        (this->*action)();
+    }
 }
 
-typedef char MemberActionStorage_8004B0F8_size[sizeof(MemberActionStorage_8004B0F8) == 12 ? 1 : -1];
-typedef char RecoveredGlobal_8004B0F8_TBoss4DarkFalz__data_80485108_size[sizeof(RecoveredGlobal_8004B0F8_TBoss4DarkFalz__data_80485108) == 0x340 ? 1 : -1];
 void TBoss4DarkFalz::sub_8004B0F8() {
-  MemberActionStorage_8004B0F8 member_action;
-  Stack_8004B0F8 stack;
-  u8 *temp_r6;
-  temp_r6 = (u8 *) (&(*(RecoveredGlobal_8004B0F8_TBoss4DarkFalz__data_80485108 *)&TBoss4DarkFalz__data_80485108).value);
-  temp_r6 = temp_r6 + ((this->m_37c) * 0x34);
-  member_action.words[0] = *((s32 *) (((s8 *) temp_r6) + 0x1C));
-  member_action.words[1] = *((s32 *) (((s8 *) temp_r6) + 0x20));
-  member_action.words[2] = *((s32 *) (((s8 *) temp_r6) + 0x24));
-  if (member_action.action != 0)
-  {
-    (this->*( member_action.action))();
-  }
+    DarkFalzStateAction action = TBoss4DarkFalz__data_80485108[m_37c].tick;
+    if (action != 0) {
+        (this->*action)();
+    }
 }
 
 void TBoss4DarkFalz::send_code_25_4(s32 arg) {
@@ -400,24 +339,19 @@ void TBoss4DarkFalz::send_action_packet(s32 arg) {
 }
 
 void TBoss4DarkFalz::change_state(s32 arg1) {
-    Boss_8004B20C *arg0 = (Boss_8004B20C *)this;
     if (arg1 < 0 || arg1 >= 16) {
         return;
     }
-    if (*(s32 *)&this->m_37c != -1) {
-        u8 *t = (u8 *)&TBoss4DarkFalz__data_80485108.value;
-        t = t + *(s32 *)&this->m_37c * 0x34;
-        Act_8004B20C f = ((Entry_8004B20C *)t)->leave;
-        if (f) {
-            (arg0->*f)();
+    if ((s32)m_37c != -1) {
+        DarkFalzStateAction action = TBoss4DarkFalz__data_80485108[(s32)m_37c].leave;
+        if (action != 0) {
+            (this->*action)();
         }
     }
-    *(s32 *)&this->m_37c = arg1;
-    u8 *t2 = (u8 *)&TBoss4DarkFalz__data_80485108.value;
-    t2 = t2 + *(s32 *)&this->m_37c * 0x34;
-    Act_8004B20C g = ((Entry_8004B20C *)t2)->enter;
-    if (g) {
-        (arg0->*g)();
+    m_37c = arg1;
+    DarkFalzStateAction action = TBoss4DarkFalz__data_80485108[(s32)m_37c].enter;
+    if (action != 0) {
+        (this->*action)();
     }
 }
 
