@@ -215,9 +215,20 @@ class QueueTests(unittest.TestCase):
             altered=renamed.replace(b'\n',separator,1)
             with self.subTest(separator=repr(separator)), self.assertRaises(ValueError): m.symbol_renames(base,altered)
         inventory=(MODULE.parents[1]/m.SYMBOL_FILE).read_bytes()
-        original=b'set_flag2__12TObjEneReconFv = .text:0x8031DDDC; // type:function size:0x50'
-        self.assertEqual(inventory.count(original),1)
-        self.assertEqual(len(m.symbol_renames(inventory,inventory.replace(original,original.replace(b'ReconFv',b'ReconFfff')))),1)
+        original=b'set_flag2__12TObjEneReconFv = .text:0x8031DDDC; // type:function size:0x50\n'
+        renamed=original.replace(b'ReconFv',b'ReconFfff')
+        self.assertIn((inventory.count(original),inventory.count(renamed)),((1,0),(0,1)))
+        before=inventory.replace(renamed,original) if renamed in inventory else inventory
+        after=before.replace(original,renamed)
+        # Both real pre- and post-rename inventories must reconstruct the exact
+        # same forward check. Neither missing nor duplicate records are accepted.
+        for state in (before,after):
+            with self.subTest(inventory='pre' if state==before else 'post'):
+                self.assertIn((state.count(original),state.count(renamed)),((1,0),(0,1)))
+                reconstructed=state.replace(renamed,original) if renamed in state else state
+                self.assertEqual(m.symbol_renames(reconstructed,reconstructed.replace(original,renamed)),
+                    [{'old':'set_flag2__12TObjEneReconFv','new':'set_flag2__12TObjEneReconFfff',
+                      'section':'.text','address':'0x8031DDDC','size':'0x50'}])
 
     def test_symbol_rename_real_git_construction_and_review_binding(self):
         old=(b'set_flag2__12TObjEneReconFv = .text:0x8031DDDC; // type:function size:0x50\n'
