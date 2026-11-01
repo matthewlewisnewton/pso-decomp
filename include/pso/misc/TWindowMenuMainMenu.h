@@ -2,6 +2,7 @@
 #define PSO_MISC_TWINDOWMENUMAINMENU_H
 
 #include "types.h"
+#include <stddef.h>
 #include "pso/misc/TUnk_804CE018.h"
 
 struct TWindowMenuMainMenu : public TUnk_804CE018 {
@@ -17,7 +18,10 @@ struct TWindowMenuMainMenu : public TUnk_804CE018 {
     u16 m_20;
     u8 unk_22[0xA];
     s32 m_2c;
-    u8 unk_30[0x24];
+    u8 unk_30[0x10];
+    f32 position[2];
+    f32 size[2];
+    u8 unk_50[4];
     f32 m_54;
     u8 unk_58[0x8];
     u8 m_60;
@@ -27,6 +31,9 @@ struct TWindowMenuMainMenu : public TUnk_804CE018 {
     u8 unk_68[0xDC];
 };
 
+typedef char TWindowMenuMainMenu_position_offset[offsetof(TWindowMenuMainMenu, position) == 0x40 ? 1 : -1];
+typedef char TWindowMenuMainMenu_size_offset[offsetof(TWindowMenuMainMenu, size) == 0x48 ? 1 : -1];
+typedef char TWindowMenuMainMenu_depth_offset[offsetof(TWindowMenuMainMenu, m_54) == 0x54 ? 1 : -1];
 typedef char TWindowMenuMainMenu_size[sizeof(TWindowMenuMainMenu) == 0x144 ? 1 : -1];
 
 extern "C" {
