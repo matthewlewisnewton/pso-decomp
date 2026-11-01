@@ -2,9 +2,9 @@
 #define PSO_MISC_TUNK_804CF0B8_H
 #include "types.h"
 #include <stddef.h>
-#include "pso/misc/TUnk_804CDFE8.h"
+#include "pso/misc/TWindowAddition.h"
 
-class TUnk_804CF0B8 : public TUnk_804CDFE8 {
+class TUnk_804CF0B8 : public TWindowAddition {
 public:
     virtual ~TUnk_804CF0B8();
     void draw_body(void *, u32, f32 *, f32);
