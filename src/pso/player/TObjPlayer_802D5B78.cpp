@@ -1,6 +1,20 @@
 #include "types.h"
 
-struct W_802D5B78 { s32 a; s32 b; s32 c; };
+struct W_802D5B78 {
+    s32 a;
+    s32 b;
+    s32 c;
+
+    // Volatile reads keep all three loads ahead of the original three stores.
+    W_802D5B78(const volatile W_802D5B78 &other) {
+        s32 a = other.a;
+        s32 b = other.b;
+        s32 c = other.c;
+        this->a = a;
+        this->b = b;
+        this->c = c;
+    }
+};
 
 struct S_802D5B78 {
     u8 pad0[0xC];
