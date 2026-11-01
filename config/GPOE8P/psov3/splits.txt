@@ -9782,6 +9782,7 @@ pso/unk/text_802A3138.cpp:
 
 pso/misc/TChCrTagPlGraphic.cpp:
 	.text       start:0x802A31F8 end:0x802A35B4
+	.data       start:0x804DCC78 end:0x804DCC98
 
 pso/misc/TWindowSubStatusDisp_802A35B4.cpp:
 	.text       start:0x802A35B4 end:0x802A3608
