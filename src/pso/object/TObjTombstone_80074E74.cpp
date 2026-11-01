@@ -15,16 +15,7 @@ typedef char TombstoneDropWeights_size[sizeof(TombstoneDropWeights) == 0x28 ? 1 
 
 typedef Vec V_80075070;
 
-struct V_800751BC { f32 x, y, z; };
-
-struct View_800751BC {
-    u8 pad0[0x178];
-    V_800751BC pos;
-    u8 pad184[0xC];
-    s32 f190;
-    s32 f194;
-    s32 f198;
-};
+typedef Vec V_800751BC;
 
 struct P_800753DC { f32 values[2]; };
 
@@ -61,7 +52,7 @@ void push_matrix();
 void pop_matrix();
 extern V_800751BC lbl_80438780;
 extern u8 identity_matrix[];
-extern View_800751BC *camera_ctrl_instance;
+extern TCameraCtrl *camera_ctrl_instance;
 u32 calc_text_width(const char *);
 void draw_menu_font_string(const char *, u32, s32, f32, f32, f32);
 f32 sin_table_lookup(s32);
@@ -179,13 +170,13 @@ s32 TObjTombstone::project_to_screen(void *arg0, f32 *arg1, void *arg2) {
     V_800751BC d;
     V_800751BC v = lbl_80438780;
     push_matrix_from(identity_matrix);
-    rotate_matrix_y(0, camera_ctrl_instance->f194);
-    rotate_matrix_x(0, camera_ctrl_instance->f190);
-    rotate_matrix_z(0, camera_ctrl_instance->f198);
+    rotate_matrix_y(0, static_cast<s32>(camera_ctrl_instance->m_194));
+    rotate_matrix_x(0, static_cast<s32>(camera_ctrl_instance->m_190));
+    rotate_matrix_z(0, static_cast<s32>(camera_ctrl_instance->m_198));
     rotate_vector_by_matrix(0, &v, &v);
     pop_matrix();
-    VecCopy((Vec *)&d, (const Vec *)arg2);
-    subtract_vector(&d, &camera_ctrl_instance->pos);
+    VecCopy(&d, static_cast<const Vec *>(arg2));
+    subtract_vector(&d, &camera_ctrl_instance->position);
     if (vec3_dot(&v, &d) <= TObjTombstone__data_805D9174) {
         return 0;
     }
