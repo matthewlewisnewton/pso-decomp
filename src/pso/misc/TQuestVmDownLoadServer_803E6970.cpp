@@ -3189,8 +3189,9 @@ s32 TQuestVmDownLoadServer__sub_803EC71C(u16 *text, u8 *out, s32 count) {
         } else if (kind & 1) {
             next = ReadNext_803EC71C(text);
             i++;
-            pair = (ch & 0xff) << 8;
-            if (Kind_803EC71C(next) == kind + 1) {
+            // Narrowing to u16 retains only the first payload byte.
+            pair = ch << 8;
+            if (((next >> 8) & 0xf) == kind + 1) {
                 pair |= next & 0xff;
                 text++;
                 i++;
