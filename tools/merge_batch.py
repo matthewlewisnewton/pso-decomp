@@ -210,7 +210,27 @@ def symbol_review(spec):
     return review
 
 
+def development_record(value):
+    """Scope is provenance, not a verdict which another mode may promote."""
+    if isinstance(value, dict):
+        if (value.get('development_only') is True or value.get('publication_authorized') is False
+                or value.get('purpose') == 'plan-development'
+                or value.get('kind') == 'development-only'
+                or value.get('state') in ('planning-development', 'development-planned')):
+            return True
+        return any(development_record(child) for child in value.values())
+    if isinstance(value, list):
+        return any(development_record(child) for child in value)
+    return False
+
+
+def require_normal(*values):
+    require(not any(development_record(v) for v in values), 'development_only',
+            'Development planning is not acceptance evidence; use a fresh normal plan once ready')
+
+
 def validate_spec(spec):
+    require_normal(spec)
     require(spec.get('version') == 1 and spec.get('repository') == REPOSITORY,
             'wrong_repository', 'Only schema 1 and the personal fork are supported')
     require(spec.get('default_branch') in ('master', 'main'), 'wrong_base', 'Unsupported default branch')
@@ -257,20 +277,26 @@ def evidence(spec):
         require(digest(path) == r.get('sha256'), 'stale_review', pr['number'])
 
 
-def check_live(spec, live, branch):
+def _check_live(spec, live, branch, *, development_planning):
     require(branch['name'] == spec['default_branch'] and branch['head'] == spec['target'],
             'stale_target', branch)
     for pr in spec['prs']:
         actual = live[pr['number']]
         expected = {k: pr[k] for k in ('head', 'base_sha', 'base_ref', 'head_ref')}
         require(actual['repository'] == REPOSITORY, 'wrong_repository', pr['number'])
-        require(actual['state'] == 'open' and not actual['draft'], 'unresolved_pr', pr['number'])
+        require(actual['state'] == 'open' and (development_planning or not actual['draft']), 'unresolved_pr', pr['number'])
         require(all(actual[k] == v for k, v in expected.items()), 'stale_pr', {'pr': pr['number'], 'expected': expected, 'actual': actual})
         require(all(actual['checks'].get(c) == 'success' for c in pr['required_checks']),
                 'missing_checks', {'pr': pr['number'], 'required': pr['required_checks'], 'actual': actual['checks']})
 
 
+def check_live(spec, live, branch):
+    require_normal(spec)
+    _check_live(spec, live, branch, development_planning=False)
+
+
 def check_validation(spec, result, tree):
+    require_normal(spec, result)
     require(result.get('version') == 1 and result.get('target') == spec['target']
             and result.get('tree') == tree, 'wrong_validation_tree', result)
     needed = {'source'} if spec['policy'] == 'maintenance' else CHECKS
@@ -331,6 +357,7 @@ class GitHub:
 class Queue:
     def __init__(self, spec, state, api=None):
         self.spec, self.state = spec, state
+        self._development_planning = False
         self.api = api or GitHub()
         self.repo = state / 'checkout'
         self.journal = state / 'receipt.json'
@@ -340,9 +367,18 @@ class Queue:
             require(self.record['spec_sha256'] == hashlib.sha256(canonical(spec).encode()).hexdigest(),
                     'different_batch', 'Use a new state directory for a changed manifest')
 
+        self._development_only = development_record(self.record)
+
     def write(self, **fields):
         self.record.update(fields)
+        if self._development_only:
+            self.record.update(development_only=True, publication_authorized=False, purpose='plan-development')
         save(self.journal, self.record)
+
+    def normal_only(self):
+        require(not self._development_only, 'development_only',
+                'Use a fresh state directory and normal plan once every PR is ready')
+        require_normal(self.spec, self.record)
 
     def git(self, *args, env=None):
         if args[:3] == ('remote','get-url','--push'):
@@ -362,10 +398,18 @@ class Queue:
         except (ValueError,OSError,subprocess.CalledProcessError) as exc: raise Rejected('unsafe_local_git_config', str(exc)) from exc
 
     def live_guard(self):
+        if not self._development_planning:
+            self.normal_only()
         evidence(self.spec)
-        check_live(self.spec, self.api.prs(self.spec), self.api.branch(self.spec['default_branch']))
+        live, branch = self.api.prs(self.spec), self.api.branch(self.spec['default_branch'])
+        if self._development_planning:
+            _check_live(self.spec, live, branch, development_planning=True)
+        else:
+            check_live(self.spec, live, branch)
 
     def construct(self):
+        if not self._development_planning:
+            self.normal_only()
         if not self.repo.exists():
             run(['/usr/bin/git', '-c', 'init.templateDir=', 'init', str(self.repo)], env=_safety.environment())
             self.git_boundary()
@@ -465,6 +509,7 @@ class Queue:
         return current, tree
 
     def verify(self, validator, expected_hash, environment):
+        self.normal_only()
         require(validator.is_absolute() and validator.is_file() and not validator.is_symlink(), 'untrusted_validator', str(validator))
         require(not validator.is_relative_to(self.repo.resolve()) and digest(validator) == expected_hash,
                 'untrusted_validator', 'Validator must be pinned outside candidate checkout')
@@ -495,6 +540,7 @@ class Queue:
         self.write(state='validated', validation=str(output), validation_sha256=digest(output), validation_request=str(request), validation_request_sha256=request_sha256)
 
     def prepare_readme(self, environment):
+        self.normal_only()
         # Opt-in migration: the operator pins trusted code outside the checkout.
         config = self.spec.get('readme_update')
         if config is None:
@@ -561,6 +607,7 @@ class Queue:
                    readme_evidence={'generator': str(generator), 'generator_sha256': config['sha256'], 'reports': entries, 'coverage': str(coverage), 'coverage_sha256': coverage_sha, 'review': str(review_path), 'review_sha256': review['sha256']})
 
     def check_readme_publication(self):
+        self.normal_only()
         if 'publication_candidate' not in self.record:
             require(self.spec.get('readme_update') is None, 'missing_readme_transaction', '')
             return self.record['candidate']
@@ -577,6 +624,7 @@ class Queue:
         return final
 
     def recover_publication(self):
+        self.normal_only()
         # A lost push response is never blindly retried. Inspect the remote graph first.
         current = self.api.branch(self.spec['default_branch'])['head']
         self.git('fetch', '--no-tags', 'origin', current)
@@ -598,6 +646,7 @@ class Queue:
         return True
 
     def publication_destination(self):
+        self.normal_only()
         # get-url --push --all resolves pushurl and url.* rewrites. Inspect the
         # effective write destinations, not merely the fetch URL. No extra target.
         urls = self.git('remote', 'get-url', '--push', '--all', 'origin').splitlines()
@@ -606,6 +655,7 @@ class Queue:
         return urls[0]
 
     def check_config_before_publication(self):
+        self.normal_only()
         if self.spec.get('config_admission') is None: return
         self.git_boundary()
         try: _safety.raw_tree(self.repo.resolve(),self.record['candidate']); _safety.ignored_inputs(self.repo.resolve(),generated=False)
@@ -626,6 +676,7 @@ class Queue:
         require(result.returncode==0 and digest(adapter)==entry['sha256'] and digest(environment)==self.spec['environment_sha256'] and digest(request)==self.record['validation_request_sha256'], 'stale_config_admission', result.stderr[-2000:])
 
     def publish(self):
+        self.normal_only()
         self.live_guard()
         self.publication_destination()
         self.check_config_before_publication()
@@ -653,6 +704,26 @@ class Queue:
         require(self.recover_publication(), 'publication_rejected', self.record.get('push_diagnostic'))
 
     def execute(self, mode, validator=None, validator_hash=None, environment=None):
+        require(mode in ('plan', 'plan-development', 'dry-run', 'execute'), 'invalid_mode', mode)
+        validate_spec(self.spec)
+        if mode == 'plan-development':
+            require(self.record['state'] in ('new', 'planning-development', 'development-planned')
+                    or (self._development_only and self.record['state'] == 'planned'),
+                    'different_planning_scope', 'Development planning needs a new or development-only state directory')
+            # Persist the scope before any planning operation; failures/crashes
+            # cannot leave a journal which a normal mode would resume.
+            self._development_only = True
+            self.write(state='planning-development')
+            self._development_planning = True
+            try:
+                self.live_guard()
+                self.construct()
+                self.live_guard()  # reject head/base/target/CI drift during planning
+                self.write(state='development-planned')
+                return self.record
+            finally:
+                self._development_planning = False
+        self.normal_only()
         if self.record['state'] in ('publishing', 'publication_uncertain', 'published_unverified', 'published', 'published_metadata_pending'):
             if self.recover_publication():
                 return self.record
@@ -679,7 +750,7 @@ class Queue:
 
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument('mode', choices=('plan', 'dry-run', 'execute'))
+    ap.add_argument('mode', choices=('plan', 'plan-development', 'dry-run', 'execute'))
     ap.add_argument('--batch', type=Path, required=True)
     ap.add_argument('--state', type=Path, required=True, help='Unique private state directory; retained for recovery')
     ap.add_argument('--validator', type=Path)
@@ -706,7 +777,11 @@ def main(argv=None):
         except (Rejected, OSError, ValueError, KeyError, TypeError, AttributeError) as exc:
             error = {'state': 'rejected', 'code': getattr(exc, 'code', 'invalid_input'),
                      'detail': getattr(exc, 'detail', str(exc))}
-            if queue:
+            if args.mode == 'plan-development' or (queue and queue._development_only):
+                error.update(development_only=True, publication_authorized=False, purpose='plan-development')
+            # A rejected scope switch must not poison an existing normal
+            # journal with development-only diagnostic metadata.
+            if queue and not (args.mode == 'plan-development' and not queue._development_only):
                 state = queue.record.get('state')
                 if state in ('publishing', 'publication_uncertain', 'published_unverified',
                              'published_metadata_pending', 'published'):

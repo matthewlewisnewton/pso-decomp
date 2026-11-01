@@ -107,6 +107,11 @@ def selected_inputs(repo, ninja, env):
 
 def main():
     request = json.loads(Path(sys.argv[1]).read_text())
+    if (request.get('development_only') is True or request.get('publication_authorized') is False
+            or request.get('purpose') == 'plan-development'
+            or request.get('kind') == 'development-only'
+            or request.get('state') in ('planning-development', 'development-planned')):
+        raise RuntimeError('development_plan_not_validation')
     repo = Path(request['checkout']).resolve()
     state = Path(request['state']).resolve()
     environment = json.loads(Path(request['environment']).read_text())

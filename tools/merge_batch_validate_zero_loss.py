@@ -130,6 +130,11 @@ def require_zero_loss(coverage, before, after):
     return {key: 0 for key in old}
 
 def validate(request):
+    if (request.get('development_only') is True or request.get('publication_authorized') is False
+            or request.get('purpose') == 'plan-development'
+            or request.get('kind') == 'development-only'
+            or request.get('state') in ('planning-development', 'development-planned')):
+        raise RuntimeError('development_plan_not_validation')
     environment = json.loads(Path(request['environment']).read_text())
     entry = environment['strict_loss_guard']['adapter']
     path = Path(entry['path'])

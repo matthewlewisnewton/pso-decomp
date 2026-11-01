@@ -156,6 +156,11 @@ def config_contract(request, environment, review, roots):
 
 
 def load_contract(request, environment):
+    if (request.get('development_only') is True or request.get('publication_authorized') is False
+            or request.get('purpose') == 'plan-development'
+            or request.get('kind') == 'development-only'
+            or request.get('state') in ('planning-development', 'development-planned')):
+        raise RuntimeError('development_plan_not_validation')
     capacity = environment['acceptance_capacity']
     require(capacity.get('lane') == 'acceptance', 'acceptance_lane_required')
     wrapper = pinned(capacity['wrapper'])
@@ -241,6 +246,11 @@ def check_shared(base, paths, expected):
 
 
 def validate(request):
+    if (request.get('development_only') is True or request.get('publication_authorized') is False
+            or request.get('purpose') == 'plan-development'
+            or request.get('kind') == 'development-only'
+            or request.get('state') in ('planning-development', 'development-planned')):
+        raise RuntimeError('development_plan_not_validation')
     require(request['policy'] in ('recovery', 'source-maintenance'), 'acceptance_adapter_source_only')
     environment = json.loads(Path(request['environment']).read_text())
     capacity, review, roots = load_contract(request, environment)
