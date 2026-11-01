@@ -155,6 +155,8 @@ force_active:
   - TAdMultiSaveGC__sub_802FF2B4
   - TAdMultiSaveGC__sub_802FF314
   - TAdPlayerLoadGC__network_info_payload_buffer
+  - TAdPlayerLoadGC__sub_801E101C
+  - TAdPlayerLoadGC__sub_801E26DC
   - TAdPlyPltAnimCtrlGC__ct
   - TAdPlyPltAnimCtrlGC__sub_80355168
   - TAdPlyPltAnimGC__ct
@@ -14099,6 +14101,7 @@ force_active:
   - unlink_list_node__16TObjEneBm5GibonUFPPPvPPv
   - unload_floor_resources__Fl
   - unload_texture__12TItemTexLoadFv
+  - unmount_card_and_clear_flags__15TAdPlayerLoadGCFl
   - unregister_from_world__5TItemFv
   - unregister_item__5TItemFv
   - updateFacingPosition__12TBoss1DragonFv
