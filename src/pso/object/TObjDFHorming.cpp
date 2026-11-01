@@ -258,7 +258,7 @@ extern "C" {
 void TBoss4DarkFalz__sub_8004B7DC(TBoss4DarkFalz *arg0);
 extern Vec_8004B8F8 lbl_804371BC;
 void TBoss4DarkFalz__sub_8004B8F8(TBoss4DarkFalz *arg0);
-int TBoss4DarkFalz__sub_8004B07C(void);
+int TBoss4DarkFalz__sub_8004B07C(TBoss4DarkFalz *);
 s32 is_local_client_floor_leader();
 s32 get_main_phase();
 
@@ -302,7 +302,7 @@ u8 TBoss4DarkFalz::is_ending_or_split_screen() {
     }
     return (u8)var_r31;
 }
-int TBoss4DarkFalz__sub_8004B07C(void) { return 0; }
+int TBoss4DarkFalz__sub_8004B07C(TBoss4DarkFalz *) { return 0; }
 
 void TBoss4DarkFalz::sub_8004B084() {
     DarkFalzStateAction action = TBoss4DarkFalz__data_80485108[m_37c].update;

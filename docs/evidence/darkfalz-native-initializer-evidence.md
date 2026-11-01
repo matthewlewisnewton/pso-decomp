@@ -29,9 +29,10 @@ original instructions and resolved relocation targets. Corrected callback helper
 calls pass the actual receiver explicitly, including the timer predicate and
 8004D990; floating-point operations keep their original order.
 
-The source-link continuation uses the compiler's supported deferred generation
-and debug source-file sections (`-inline deferred -sym on`), as already used by
-the Panarms recovery. Ordinary definitions are reversed, and the four final
+The matching source arrangement requires the compiler's supported deferred
+generation and debug source-file sections (`-inline deferred -sym on`), as
+already used by the Panarms recovery. This setting is still a separately
+reviewed admission proposal; configure.py is unchanged. Ordinary definitions are reversed, and the four final
 helpers live in a source-private header. The resulting two `.text` contributions
 concatenate to the original layout: controller methods, native initializer, then
 helpers. Their definitions remain ordinary C++ functions, with their existing
@@ -39,7 +40,7 @@ linkage and floating-point settings; no inline-only export or manual constructor
 registration is introduced. This arrangement is an implementation choice and
 does not establish historical filenames or compiler switches.
 
-A successful private production compile reproduces all 56 original function
+The independently reviewed pre-adoption private compile reproduces all 56 original function
 positions, sizes and instruction bytes, all 6,140 code bytes, all 1,308 owned data
 bytes across `.ctors`, `.rodata`, `.data` and `.sdata2`, and all 272 resolved
 relocations. The compiler accepts the switches/pragmas without diagnostics. The
@@ -47,8 +48,23 @@ three compiler constants are referenced only within this original unit; using
 native literals and their compiler-local metadata removes unnecessary exports
 without changing data addresses, extents or relocation targets.
 
-Shared adoption of the bounded compiler exception and private-constant metadata
-is pending coordination. The existing 8004B07C declaration/definition mismatch
-also has a separately probed, instruction-preserving parameter correction awaiting
-allocation. Full development, source-selection, original-DOL and independent
-review gates remain required before this continuation can claim source linkage.
+The allocated helper repair now consistently declares the existing C helper at
+8004B07C as `int (TBoss4DarkFalz *)`; it ignores the argument and still returns
+zero. All five original callers explicitly forward the same controller receiver.
+This removes the former no-argument/long-return declaration mismatch without
+changing the C symbol, code, or receiver lifetime. The owned constant aliases and
+38 PMF labels have also been prepared within their existing addresses/extents.
+
+After integration with current main, all 44 class/helper-header consumers produce
+byte-identical complete objects before and after this bounded repair under their
+current configured compiler settings. The current PR125 consumer also compiles
+identically without edits to its source. No other worker's source or metadata
+range is modified.
+
+The deferred/debug compiler profile has not been admitted. Alias names remain
+provisional until refreshed from the final admitted production compile. No
+configure.py or source-selection change is made here. Actual split/report
+regeneration, all-input localization guards, source-link eligibility, scheduled
+full development, original-DOL equality, zero-loss coverage, linker provenance,
+and independent exact-head review remain required before readiness or a native
+source-linkage claim.

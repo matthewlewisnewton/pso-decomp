@@ -45,7 +45,7 @@ s32 obj_setArrS16_FC(void *, s32, u16);
 extern s32 lbl_80485454[];
 extern int TBoss4DarkFalz__type3_instance;
     extern int dark_falz_form_index;
-s32 TBoss4DarkFalz__sub_8004B07C(s32);
+int TBoss4DarkFalz__sub_8004B07C(TBoss4DarkFalz *self);
 int TBoss4DarkFalz__sub_8004B7DC(void);
 void play_area_music(char *name);
 extern s32 lbl_80437298[];
@@ -259,7 +259,7 @@ void TBoss4DarkFalz::check_players_near_center() {
             return;
         }
     }
-    if (TBoss4DarkFalz__sub_8004B07C((s32)self) != 0) {
+    if (TBoss4DarkFalz__sub_8004B07C(self) != 0) {
         ((TBoss4DarkFalz *)self)->send_action_packet(2);
     }
 }
@@ -314,7 +314,7 @@ void TBoss4DarkFalz::sub_8004CF6C() {
 
 void TBoss4DarkFalz::check_timeout() {
     TBoss4DarkFalz *arg0 = this;
-    if ((is_timer_expired() != 0) || (TBoss4DarkFalz__sub_8004B07C((s32)arg0) != 0)) {
+    if ((is_timer_expired() != 0) || (TBoss4DarkFalz__sub_8004B07C(arg0) != 0)) {
         ((TBoss4DarkFalz *)arg0)->send_action_packet(5);
     }
 }
@@ -382,7 +382,7 @@ void TBoss4DarkFalz::spawn_type1() {
 
 void TBoss4DarkFalz::request_action_7() {
     TBoss4DarkFalz *arg0 = this;
-    if (((u32) TBoss4DarkFalz__type1_instance == 0U) || (((TBoss4DarkFalz *)TBoss4DarkFalz__type1_instance)->get_state() == 3) || (((TBoss4DarkFalz *)TBoss4DarkFalz__type1_instance)->get_state() == 4) || (TBoss4DarkFalz__sub_8004B07C((s32)arg0) != 0)) {
+    if (((u32) TBoss4DarkFalz__type1_instance == 0U) || (((TBoss4DarkFalz *)TBoss4DarkFalz__type1_instance)->get_state() == 3) || (((TBoss4DarkFalz *)TBoss4DarkFalz__type1_instance)->get_state() == 4) || (TBoss4DarkFalz__sub_8004B07C(arg0) != 0)) {
         ((TBoss4DarkFalz *)arg0)->send_action_packet(7);
     }
 }
@@ -432,7 +432,7 @@ void TBoss4DarkFalz::update_parts() { TBoss4DarkFalz::end_player_camera_pans(thi
 
 void TBoss4DarkFalz::request_action_9() {
     TBoss4DarkFalz *arg0 = this;
-    if (((u32) TBoss4DarkFalz__type2_instance == 0U) || (((TBoss4DarkFalz *)TBoss4DarkFalz__type2_instance)->get_phase() == 3) || (((TBoss4DarkFalz *)TBoss4DarkFalz__type2_instance)->get_phase() == 2) || (TBoss4DarkFalz__sub_8004B07C((s32)arg0) != 0)) {
+    if (((u32) TBoss4DarkFalz__type2_instance == 0U) || (((TBoss4DarkFalz *)TBoss4DarkFalz__type2_instance)->get_phase() == 3) || (((TBoss4DarkFalz *)TBoss4DarkFalz__type2_instance)->get_phase() == 2) || (TBoss4DarkFalz__sub_8004B07C(arg0) != 0)) {
         ((TBoss4DarkFalz *)arg0)->send_action_packet(9);
     }
 }
@@ -572,7 +572,7 @@ void TBoss4DarkFalz::start_phase() { TBoss4DarkFalz::end_player_camera_pans(this
 
 void TBoss4DarkFalz::request_action_e() {
     TBoss4DarkFalz *arg0 = this;
-    if (((u32) (*(u32 *)&TBoss4DarkFalz__type3_instance) == 0U) || (((TBoss4DarkFalz *)(*(u32 *)&TBoss4DarkFalz__type3_instance))->get_action_state() == 3) || (((TBoss4DarkFalz *)(*(u32 *)&TBoss4DarkFalz__type3_instance))->get_action_state() == 2) || (TBoss4DarkFalz__sub_8004B07C((s32)arg0) != 0)) {
+    if (((u32) (*(u32 *)&TBoss4DarkFalz__type3_instance) == 0U) || (((TBoss4DarkFalz *)(*(u32 *)&TBoss4DarkFalz__type3_instance))->get_action_state() == 3) || (((TBoss4DarkFalz *)(*(u32 *)&TBoss4DarkFalz__type3_instance))->get_action_state() == 2) || (TBoss4DarkFalz__sub_8004B07C(arg0) != 0)) {
         ((TBoss4DarkFalz *)arg0)->send_action_packet(0xE);
     }
 }
