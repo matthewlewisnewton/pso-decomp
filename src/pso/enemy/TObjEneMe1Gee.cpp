@@ -14,6 +14,7 @@
 #include "pso/system/vector.h"
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
+#include "pso/enemy/EnemyMovement.h"
 #include "pso/system/NinjaUtil.h"
 #include "pso/misc/TBreakUpMdl.h"
 #include "pso/enemy/TObjEneDD.h"
@@ -154,7 +155,6 @@ extern const f32 lbl_805DA0F0;
 extern const f32 lbl_805DA0F4;
 extern const f32 lbl_805DA0F8;
 extern const f32 lbl_805DA0FC;
-void TObjEneEpsilon__sub_800B92F8(u8 *arg0, s32 arg1, f32 farg0);
 
 void matrix_mult_vec(void *, Vec *, Vec *);
 s32 rotate_matrix_y(int, int);
