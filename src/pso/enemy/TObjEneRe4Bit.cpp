@@ -615,7 +615,7 @@ void TObjEneRe4Bit__sub_800ECE04(TObjEneRe4Bit *ene_re4_bit, s32 arg1) {
         if (*(f32 *)((s8 *)ene_re4_bit + 0x3D8) < TObjEneRe4Bit__data_805DA770) {
             *(f32 *)((s8 *)ene_re4_bit + 0x3D8) = (f32) TObjEneRe4Bit__data_805DA770;
         }
-        ene_re4_bit->rotation_y = (ene_re4_bit->rotation_y - 0x1800);
+        ene_re4_bit->rotation.yaw = (ene_re4_bit->rotation.yaw - 0x1800);
         ene_re4_bit->update_homing_velocity();
         ene_re4_bit->update_position_flag();
         break;
@@ -654,7 +654,7 @@ void TObjEneRe4Bit__sub_800ECED0(TObjEneRe4Bit *ene_re4_bit, s32 arg1) {
                 ene_re4_bit->m_408 = 1;
                 *(s32 *)((s8 *)ene_re4_bit + 0x404) = 2;
             }
-            ene_re4_bit->rotation_y = (ene_re4_bit->rotation_y + 0x1800);
+            ene_re4_bit->rotation.yaw = (ene_re4_bit->rotation.yaw + 0x1800);
             break;
         }
         ene_re4_bit->update_homing_velocity();

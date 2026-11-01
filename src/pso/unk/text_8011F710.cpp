@@ -204,7 +204,7 @@ void TItemWeapon::perform_action() {
     WeaponVector gun_point;
     WeaponVector fallback_point;
     if (((TItemWeapon *)self)->is_active_in_game() && !((TItem *)self)->is_hidden() && is_current_area_item_enabled()) {
-        self->rotation_y=self->owner->rotation_y;
+        self->rotation.yaw=self->owner->rotation.yaw;
         self->stage=((TItemWeapon *)self)->get_attack_stage();
         ((TObjPlayer *)(&packet))->reset_status_block();
         packet.kind=((TItem *)self)->get_item_group();

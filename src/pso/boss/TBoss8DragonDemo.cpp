@@ -1,3 +1,4 @@
+#include "pso/misc/CameraHelpers.h"
 #include "pso/TBoss8DragonDemo.h"
 #include "pso/boss/TBoss8DragonColli.h"
 #include "pso/boss/TBoss8DragonDemo.h"
@@ -11,13 +12,7 @@
 #include "pso/misc/TCameraCtrl.h"
 
 #pragma readonly_strings on
-struct Stack_802F2D8C {
-    s8 sp8;
-    s8 sp9;
-    s16 spA;
-    f32 spC;
-    f32 sp10;
-};
+
 
 struct RecoveredGlobal_802F2D8C___vt__16TBoss8DragonDemo {
     s32 value;
@@ -32,7 +27,6 @@ struct RecoveredGlobal_802F2CC4_lbl_804E4A44 {
 struct Obj_8002B118 { u8 pad[0x1c]; void *colli[3]; };
 
 extern "C" {
-u8 *get_scripted_camera_playback();
 s32 __ct__7TObjectFP7TObject(void *, void *);
 extern RecoveredGlobal_802F2D8C___vt__16TBoss8DragonDemo __vt__16TBoss8DragonDemo;
 extern const char *lbl_805D3FF8;
@@ -55,7 +49,7 @@ void TBoss8DragonDemo::render() {  }
 
 void TBoss8DragonDemo::run_task() {
     u8 *arg0 = (u8 *)this;
-    if ((*(u16 *)((s8 *)(get_scripted_camera_playback()) + 2) & 1) || ((s32) **(s32 **)((s8 *)arg0 + 0x24) == 0)) {
+    if ((get_scripted_camera_playback()->flags & 1) || ((s32) **(s32 **)((s8 *)arg0 + 0x24) == 0)) {
         restore_player_cameras();
         queue_destruction__7TObjectFv((arg0));
     }
@@ -63,25 +57,20 @@ void TBoss8DragonDemo::run_task() {
 typedef char RecoveredGlobal_802F2D8C___vt__16TBoss8DragonDemo_size[sizeof(RecoveredGlobal_802F2D8C___vt__16TBoss8DragonDemo) == 0x18 ? 1 : -1];
 TBoss8DragonDemo::~TBoss8DragonDemo() {}
 u8 *__ct__16TBoss8DragonDemoFv(u8 *object, s32 arg1, s32 arg2, f32 farg0) {
-    typedef char sp8_offset[(offsetof(Stack_802F2D8C, sp8) == 0x0) ? 1 : -1];
-    typedef char sp9_offset[(offsetof(Stack_802F2D8C, sp9) == 0x1) ? 1 : -1];
-    typedef char spA_offset[(offsetof(Stack_802F2D8C, spA) == 0x2) ? 1 : -1];
-    typedef char spC_offset[(offsetof(Stack_802F2D8C, spC) == 0x4) ? 1 : -1];
-    typedef char sp10_offset[(offsetof(Stack_802F2D8C, sp10) == 0x8) ? 1 : -1];
-    Stack_802F2D8C stack;
+    CameraPlayback stack;
     __ct__7TObjectFP7TObject((void *)object, (void *)arg1);
     *(s32 **)((s8 *)object + 0x18) = &__vt__16TBoss8DragonDemo.value;
     *(s32 *)((s8 *)object + 0) = (s32) ((s32)lbl_805D3FF8);
     *(f32 *)((s8 *)object + 0x1C) = farg0;
     *(f32 *)((s8 *)object + 0x20) = (f32) lbl_805DED18;
     *(s32 *)((s8 *)object + 0x24) = arg2;
-    stack.sp8 = 1;
-    stack.sp9 = 0;
-    stack.spA = 0;
-    stack.spC = *(f32 *)((s8 *)object + 0x20);
-    stack.sp10 = *(f32 *)((s8 *)object + 0x1C);
+    stack.bank = 1;
+    stack.index = 0;
+    stack.flags = 0;
+    stack.frame = *(f32 *)((s8 *)object + 0x20);
+    stack.frame_step = *(f32 *)((s8 *)object + 0x1C);
     activate_camera_mode(5);
-    ((TCameraCtrl *)(&stack.sp8))->cache_target_and_forward(0x3333);
+    cache_target_and_forward__11TCameraCtrlFl(&stack, 0x3333);
     return object;
 }
 void TBoss8Dragon::update_colli_parts() {

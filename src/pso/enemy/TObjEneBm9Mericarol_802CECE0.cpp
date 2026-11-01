@@ -1259,8 +1259,8 @@ void TObjEneBm9Mericarol::handle_shot_state(s32 arg1) {
         ((TObjEneDD_ST *)arg0)->enemy_copy_target_destination();
         ((TObjEneDD *)arg0)->update_velocity();
         *(s32 *)((s8 *)arg0 + 0x4A0) = (s32)(lbl_804724B8 * atan2_float(this->target_direction.x, *(f32 *)((s8 *)arg0 + 0x3A8)));
-        this->rotation_y = approach_angle_limited(this->rotation_y, *(s32 *)((s8 *)arg0 + 0x4A0), (void *)*(s32 *)((s8 *)(this->movementParameters) + 8));
-        this->rotation_y = (s16)this->rotation_y;
+        this->rotation.yaw = approach_angle_limited(this->rotation.yaw, *(s32 *)((s8 *)arg0 + 0x4A0), (void *)*(s32 *)((s8 *)(this->movementParameters) + 8));
+        this->rotation.yaw = (s16)this->rotation.yaw;
         ((TObjEneDD *)(arg0))->vfunc_102();
         ((TObjEneDD *)(arg0))->vfunc_88();
         TObjEneBm9Mericarol__sub_802D073C(arg0);

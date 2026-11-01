@@ -187,7 +187,7 @@ s32 TODoorFourLightSpace::draw_lights() {
     push_matrix();
     set_current_texture_list((GinjaTextureList *)(this->texlist));
     post_translate_matrix((u8 *)&this->position);
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     post_translate_matrix(mdl + 8);
     push_matrix();
     post_translate_matrix(*(u8 **)((s8 *)mdl + 0x2C) + 8);
@@ -236,7 +236,7 @@ void TODoorFourLightSpace::render() {
             push_matrix();
             set_current_texture_list((GinjaTextureList *)(TBoss8Dragon::get_instance()));
             post_translate_matrix((u8 *)&this->position);
-            rotate_matrix_y(0, this->rotation_y);
+            rotate_matrix_y(0, this->rotation.yaw);
             draw_ginja_model_with_motion(*(s32 *)&this->m_d4, *(s32 *)&this->motion, this->animation_frame);
             pop_matrix();
             return;
@@ -244,7 +244,7 @@ void TODoorFourLightSpace::render() {
             push_matrix();
             set_current_texture_list((GinjaTextureList *)(TBoss8Dragon::get_instance()));
             post_translate_matrix((u8 *)&this->position);
-            rotate_matrix_y(0, this->rotation_y);
+            rotate_matrix_y(0, this->rotation.yaw);
             draw_ginja_model_with_motion(*(s32 *)&this->m_d4, *(s32 *)&this->motion, *(f32 *)&this->animation_end_frame);
             pop_matrix();
             return;
@@ -257,7 +257,7 @@ void TODoorFourLightSpace::render() {
             push_matrix();
             set_current_texture_list((GinjaTextureList *)(TBoss8Dragon::get_instance()));
             post_translate_matrix((u8 *)&this->position);
-            rotate_matrix_y(0, this->rotation_y);
+            rotate_matrix_y(0, this->rotation.yaw);
             draw_ginja_object((void *)(*(s32 *)&this->m_d4));
             pop_matrix();
             break;
@@ -465,7 +465,7 @@ void TODoorFourLightRuins::render() {
             push_matrix();
             set_current_texture_list((GinjaTextureList *)(TBoss8Dragon::get_instance()));
             post_translate_matrix((u8 *)&this->position);
-            rotate_matrix_y(0, this->rotation_y);
+            rotate_matrix_y(0, this->rotation.yaw);
             draw_ginja_model_with_motion(*(s32 *)&this->m_d4, *(s32 *)&this->motion, this->animation_frame);
             pop_matrix();
             return;
@@ -473,7 +473,7 @@ void TODoorFourLightRuins::render() {
             push_matrix();
             set_current_texture_list((GinjaTextureList *)(TBoss8Dragon::get_instance()));
             post_translate_matrix((u8 *)&this->position);
-            rotate_matrix_y(0, this->rotation_y);
+            rotate_matrix_y(0, this->rotation.yaw);
             draw_ginja_model_with_motion(*(s32 *)&this->m_d4, *(s32 *)&this->motion, this->animation_end_frame);
             pop_matrix();
             return;
@@ -486,7 +486,7 @@ void TODoorFourLightRuins::render() {
             push_matrix();
             set_current_texture_list((GinjaTextureList *)(TBoss8Dragon::get_instance()));
             post_translate_matrix((u8 *)&this->position);
-            rotate_matrix_y(0, this->rotation_y);
+            rotate_matrix_y(0, this->rotation.yaw);
             draw_ginja_object((void *)(*(s32 *)&this->m_d4));
             pop_matrix();
             break;

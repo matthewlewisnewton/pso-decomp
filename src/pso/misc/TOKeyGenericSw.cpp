@@ -57,7 +57,7 @@ void TOKeyGenericSw::render() {
     texlist = TOKeyGenericSw__texture_lists[0];
     model = (void *)TOKeyGenericSw__shared_resource_ptrs[0]->models[0].model;
     post_translate_matrix(&position.x);
-    rotate_matrix_y(NULL, rotation_y);
+    rotate_matrix_y(NULL, this->rotation.yaw);
     set_current_texture_list((GinjaTextureList *)(texlist));
     draw_ginja_object(model);
     pop_matrix();
@@ -73,7 +73,7 @@ void TOKeyGenericSw::render() {
     }
     model = (void *)TOKeyGenericSw__shared_resource_ptrs[1]->models[0].model;
     post_translate_matrix(&position.x);
-    rotate_matrix_y(NULL, rotation_y);
+    rotate_matrix_y(NULL, this->rotation.yaw);
     set_current_texture_list((GinjaTextureList *)(texlist));
     draw_ginja_model_with_motion(model, motion, animation_frame);
     pop_matrix();

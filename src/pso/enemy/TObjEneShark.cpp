@@ -110,7 +110,7 @@ void TObjEneShark::vfunc_94() {
     impactPosition.y = shark_ground_effect_y;
     impactPosition.z = shark_ground_effect_height_factor * *(f32 *)(m_2b0 + 0x10);
     push_matrix_from(&identity_matrix);
-    rotate_matrix_y(0, rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     rotate_vector_by_matrix(0, &impactPosition, &impactPosition);
     pop_matrix();
     vec3_add_to(&impactPosition, &position);
@@ -145,7 +145,7 @@ void TObjEneShark::vfunc_93() {
     push_matrix();
     set_matrix_identity(0);
     post_translate_matrix(&position.x);
-    rotate_matrix_y(0, rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     matrix_mult_vec_array(NULL, e, endpoints, 2);
     pop_matrix();
     eff = attack_trails[idx];
@@ -248,7 +248,7 @@ void TObjEneShark::render() {
     push_matrix();
     translate_matrix(0, shark_zero, unk_380, shark_zero);
     post_translate_matrix(&position.x);
-    rotate_matrix_y(0, rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     if (check_demo_mode() == 1) {
         draw_chunk_object(model);
     } else {

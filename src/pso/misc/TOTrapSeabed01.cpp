@@ -390,7 +390,7 @@ void TOTrapSeabed01::render_effect_layers() {
     set_model_node_callback((s32)TOTrapSeabed01::trigger_by_id);
     push_matrix();
     post_translate_matrix((void *) (((u8 *)this) + 0x38));
-    ((s32 (*)(int, int))rotate_matrix_y)(0, this->rotation_y);
+    ((s32 (*)(int, int))rotate_matrix_y)(0, this->rotation.yaw);
     set_depth_buffer_settings_3();
     set_draw_list_mask(1);
     draw_ginja_model_with_motion((int) (*(s32 *)((s8 *)((u8 *)this) + 0x34)), (s32)this->current_motion, this->frame);

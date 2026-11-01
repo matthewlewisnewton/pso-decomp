@@ -198,11 +198,11 @@ TBoss3VoloptMonitor::TBoss3VoloptMonitor(TObjBase *parent, u16 id, s32 index, s3
     variant = slot_index & 3;
     timer = start_timer;
     init_params();
-    rotation_y = 182.04445f * (f32)((slot_index / 4) * 60);
+    this->rotation.yaw = 182.04445f * (f32)((slot_index / 4) * 60);
     set_model(volopt_monitor_models[0][variant]);
     push_matrix();
     set_matrix_identity(NULL);
-    rotate_matrix_y(NULL, rotation_y);
+    rotate_matrix_y(NULL, this->rotation.yaw);
     matrix_mult_vec(NULL, &volopt_monitor_offsets[variant], &position);
     pop_matrix();
     VecCopy(&volopt_slot_positions[slot], &position);
@@ -369,7 +369,7 @@ void TBoss3VoloptMonitor::render() {
         set_draw_list_mask(3);
         push_matrix();
         model_render_flags &= ~0x400;
-        rotate_matrix_y(NULL, rotation_y);
+        rotate_matrix_y(NULL, this->rotation.yaw);
         draw_ginja_object(model);
         pop_matrix();
         restore_draw_list_mask();
@@ -483,7 +483,7 @@ void TBoss3VoloptMonitor::damage_player_if_aligned() {
 void TBoss3VoloptMonitor::spawn_effects() {
     s32 angle[3];
     angle[0] = 0;
-    angle[1] = rotation_y;
+    angle[1] = this->rotation.yaw;
     angle[2] = 0;
     spawn_directional_particle(&body_center_position, angle, (slot & 3) == 0 ? 0x62 : 0x61);
     spawn_particle_effect((const Vec *)(&body_center_position), 0x45);

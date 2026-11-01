@@ -407,9 +407,9 @@ void TBoss6Rock::sub_80353F5C() {
 #pragma fp_contract on
 void TBoss6Rock::randomize_motion() {
     u8 *arg0 = (u8 *)this;
-    *(s32 *)&this->rotation_x = (s32) (lbl_805DFF68 * ((lbl_805DFF6C * (f32) rand()) - TBoss6Rock__data_805DFF4C));
-    this->rotation_y = (s32) (lbl_805DFF70 * (lbl_805DFF6C * (f32) rand()));
-    this->rotation_z = (s32) (lbl_805DFF68 * ((lbl_805DFF6C * (f32) rand()) - TBoss6Rock__data_805DFF4C));
+    *(s32 *)&this->rotation.pitch = (s32) (lbl_805DFF68 * ((lbl_805DFF6C * (f32) rand()) - TBoss6Rock__data_805DFF4C));
+    this->rotation.yaw = (s32) (lbl_805DFF70 * (lbl_805DFF6C * (f32) rand()));
+    this->rotation.roll = (s32) (lbl_805DFF68 * ((lbl_805DFF6C * (f32) rand()) - TBoss6Rock__data_805DFF4C));
     this->m_d0 = (s32) (lbl_805DFF74 * ((lbl_805DFF6C * (f32) rand()) - TBoss6Rock__data_805DFF4C));
     VecCopy((Vec *)((void *)(arg0 + 0x38)), (const Vec *)((const void *)((void *)(arg0 + 0xD4))));
     *(f32 *)((s8 *)arg0 + 0x3C) = (f32) lbl_805DFF78;
@@ -511,7 +511,7 @@ void TBoss6Rock::update_fall() {
     f32 var_f2;
     var_f1 = lbl_805DFF94;
     var_f2 = lbl_805DFF98;
-    this->rotation_y = (s32) (this->rotation_y + this->m_d0);
+    this->rotation.yaw = (s32) (this->rotation.yaw + this->m_d0);
     if ((s32) this->m_bc == 1) {
         var_f1 = lbl_805DFF9C;
         var_f2 = lbl_805DFFA0;

@@ -133,7 +133,7 @@ void TObjPlayer__sub_802CE68C(u8 *enemy, s32 arg1, s32 arg2) {
     set_motion_packed_rotation();
     push_matrix_from((void *)&identity_matrix.value);
     post_translate_matrix(enemy + 0x38);
-    rotate_matrix_y(0, (int) (((TObjEnemy *)enemy)->rotation_y));
+    rotate_matrix_y(0, (int) (((TObjEnemy *)enemy)->rotation.yaw));
     set_motion_packed_rotation();
     ((TObjEnemy *)enemy)->calc_joint_matrices((f32) (((TObjEnemy *)enemy)->frame));
     clear_motion_packed_rotation();
@@ -174,7 +174,7 @@ void TObjEneBm9Mericarol::draw_color_variant() {
         set_current_texture_list((GinjaTextureList *)((*(void * *)&this->texlist)));
         push_matrix();
         post_translate_matrix(((u8 *)this) + 0x38);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         TObjEneDD::clear_global_flag_400();
         TObjPlayer::toggle_particle_effect();
         set_alpha_ref_override(0);

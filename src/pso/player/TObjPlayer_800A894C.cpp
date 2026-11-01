@@ -968,7 +968,7 @@ void TObjPlayer__sub_800AA334(u8 *arg0) {
             saved_model_render_flags = model_render_flags;
             ((TObjEneDubchik *)arg0)->sub_800A8A7C();
             post_translate_matrix(arg0 + 0x38);
-            rotate_matrix_y(0, (int) (((TObjEneDubchik *)arg0)->rotation_y));
+            rotate_matrix_y(0, (int) (((TObjEneDubchik *)arg0)->rotation.yaw));
             scale_matrix(0, lbl_805D9B30, lbl_805D9B30, lbl_805D9B30);
             model_render_flags &= 0xFFFFFBFF;
             if (check_demo_mode() == 1) {

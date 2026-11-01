@@ -90,7 +90,7 @@ void TODragonfly::render() {
         push_matrix();
         translate_matrix(0, 0.0f, bob_offset, 0.0f);
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
+        rotate_matrix_y(NULL, this->rotation.yaw);
         set_current_texture_list((GinjaTextureList *)(texlist));
         draw_ginja_model_with_motion(model, motion, animation_frame);
         pop_matrix();
@@ -174,7 +174,7 @@ s32 TODragonfly::pick_random_destination(f32 height) {
     if (normalize_if_nonzero(&scratch_vec.vector) == 1) {
         object_state = 1;
         wait_timer = 0;
-        rotation_y = (32768.0 / 3.141592f) * atan2_float(scratch_vec.vector.x, scratch_vec.vector.z);
+        this->rotation.yaw = (32768.0 / 3.141592f) * atan2_float(scratch_vec.vector.x, scratch_vec.vector.z);
         step.x = scratch_vec.vector.x * scale.z;
         step.y = scratch_vec.vector.y * scale.z;
         step.z = scratch_vec.vector.z * scale.z;

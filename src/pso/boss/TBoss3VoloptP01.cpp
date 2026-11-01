@@ -152,7 +152,7 @@ TBoss3VoloptP01::TBoss3VoloptP01(TBoss3Volopt *parent, s32 index, u16 id, s32 an
     position.x = 76.0f * cos_table_lookup(angle) + boss3_volopt_spawn_pos.x;
     position.z = 76.0f * sin_table_lookup(angle) + boss3_volopt_spawn_pos.z;
     position.y = 0.0f;
-    rotation_y = -0x4000 - angle;
+    this->rotation.yaw = -0x4000 - angle;
     shutter = new TObjVoloptShutter(index);
 }
 #pragma pop
@@ -275,11 +275,11 @@ void TBoss3VoloptP01::render() {
         push_matrix();
         if (check_demo_mode() == 1) {
             post_translate_matrix(&position);
-            rotate_matrix_y(0, rotation_y);
+            rotate_matrix_y(0, this->rotation.yaw);
             draw_chunk_object(model);
         } else {
             translate_matrix(0, position.x, position.y + y_offset, position.z);
-            rotate_matrix_y(0, rotation_y);
+            rotate_matrix_y(0, this->rotation.yaw);
             flags = m_388;
             if (flags & 0x40000) {
                 draw_chunk_model(((TBoss3VoloptP01Model *)model)->pieces->root);
@@ -383,7 +383,7 @@ void TBoss3VoloptP01::update_breakup() {
         advance_animation();
         (*(s16 *)&timer)--;
         if (*(s16 *)&timer < 0) {
-            TBoss3Volopt::create_breakup_mdl((s32)TBoss3VoloptP01__breakup_model, (s32)&volopt_p01_breakup_params, texlist, (s32)&body_center_position, rotation_y);
+            TBoss3Volopt::create_breakup_mdl((s32)TBoss3VoloptP01__breakup_model, (s32)&volopt_p01_breakup_params, texlist, (s32)&body_center_position, this->rotation.yaw);
             ((TObjPlayer *)&body_center_position)->trigger_dell_biter_events();
             m_388 |= 0x40000;
             play_sound_effect(0x4003AD07, (const Vec *)(&position), 0, 0);
@@ -697,7 +697,7 @@ void TBoss3VoloptP01::sub_80042F84() {
 void TBoss3VoloptP01::get_node_position(s32 node, Vec *out) {
     push_matrix_from(identity_matrix);
     translate_matrix(0, position.x, position.y + y_offset, position.z);
-    rotate_matrix_y(0, rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     calc_joint_matrices(frame);
     pop_matrix();
     Vec origin = volopt_p01_node_origin;

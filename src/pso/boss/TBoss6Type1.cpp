@@ -486,8 +486,8 @@ void TBoss6Type1::draw_model() {
     Vec pos = *&position;
     pos.y = pos.y + m_4e8;
     post_translate_matrix(&pos);
-    rotate_matrix_y(0, rotation_y);
-    rotate_matrix_x(0, rotation_x);
+    rotate_matrix_y(0, this->rotation.yaw);
+    rotate_matrix_x(0, this->rotation.pitch);
     TBoss6PlotFalz__sub_802AC008(m_4d4, m_4d8);
     draw_part_motions();
     TBoss6PlotFalz::update_camera_target();
@@ -513,14 +513,14 @@ void TBoss6Type1::spawn_map_csn() {
     VecCopy(&data.position, &position);
     push_matrix();
     set_matrix_identity(0);
-    rotate_matrix_y(0, rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     rotate_vector_by_matrix(0, &boss6_map_csn_offset, &offset);
     data.position.x += offset.x;
     data.position.y = TBoss6Type1__data_805DE2D0;
     data.position.z += offset.z;
     pop_matrix();
     data.rotation_x = 0;
-    data.rotation_y = rotation_y;
+    data.rotation_y = this->rotation.yaw;
     data.rotation_z = 0;
     VecCopy(&data.scale, &boss6_map_csn_scale);
     data.params[0] = 2;
@@ -1698,7 +1698,7 @@ void TBoss6Type1::update_part_positions() {
             subtract_vector(&v, &arg0->pos);
             push_matrix();
             set_matrix_identity(0);
-            rotate_matrix_y(0, -this->rotation_y);
+            rotate_matrix_y(0, -this->rotation.yaw);
             matrix_mult_vec(0, &v, e);
             pop_matrix();
             VecCopy((Vec *)&e->n, (const Vec *)e);
@@ -1799,12 +1799,12 @@ void TBoss6Type1::update_turn_to_center() {
       var_r4 += 0x8000;
     }
     var_r5 = 0x1555;
-    new_var = this->rotation_y;
+    new_var = this->rotation.yaw;
     if ((this->m_414) == 0)
     {
       var_r5 = 0x1B4;
     }
-    this->rotation_y = approach_angle_limited(new_var, (int) var_r4, (int) var_r5);
+    this->rotation.yaw = approach_angle_limited(new_var, (int) var_r4, (int) var_r5);
   }
 }
 
@@ -2133,7 +2133,7 @@ void TBoss6Type1__sub_802B8A70(TBoss6Type1 *self) {
     s8 v;
     f32 ratio;
     s32 total;
-    v = ((u32)self->rotation_y >> 8) & 0xFF;
+    v = ((u32)self->rotation.yaw >> 8) & 0xFF;
     v = lbl_805DE3D4 * (TBoss6Type1__data_805DE304 * (f32)rand() - TBoss6Type1__data_805DE30C) + v;
     ratio = TBoss6Type1__data_805DE30C;
     atk.b1 = 0x1C;

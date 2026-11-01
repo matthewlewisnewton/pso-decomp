@@ -910,7 +910,7 @@ void TObjMapWarpForest::render() {
         set_current_texture_list((GinjaTextureList *)(*(s32 *)&this->textures));
         ((s32 (*)(void))push_matrix)();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         draw_ginja_object(this->baseModel);
         TParticleCtrl::begin_effect_render();
         ((s32 (*)(s32, s32, f32))draw_ginja_model_with_motion)(*(s32 *)&this->beamModel, *(s32 *)&this->motion, this->frame);
@@ -1156,7 +1156,7 @@ void TObjAreaWarpForest::render() {
         set_current_texture_list((GinjaTextureList *)(self->fDC));
         push_matrix();
         ((void (*)(void *))post_translate_matrix)(self->f38);
-        ((void (*)(int, int))rotate_matrix_y)(0, this->rotation_y);
+        ((void (*)(int, int))rotate_matrix_y)(0, this->rotation.yaw);
         push_matrix();
         ((void (*)(void *))post_translate_matrix)(m->f8);
         draw_ginja_model((s32)m->f4);
@@ -1744,7 +1744,7 @@ void TObjAreaWarpEndingJung::render() {
         TObjWarpJung::set_global_render_param();
         ((s32 (*)(void))push_matrix)();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         TObjWarpJung::render_warp(0);
         TParticleCtrl::begin_effect_render();
         TObjWarpJung::render_warp_effect(1, (s32) this->m_c4);

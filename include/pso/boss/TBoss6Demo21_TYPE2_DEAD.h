@@ -1,6 +1,8 @@
 #ifndef PSO_BOSS_TBOSS6DEMO21_TYPE2_DEAD_H
 #define PSO_BOSS_TBOSS6DEMO21_TYPE2_DEAD_H
 #include "types.h"
+#include <dolphin/mtx.h>
+#include <stddef.h>
 #include "pso/TObject.h"
 
 class TBoss6Demo21_TYPE2_DEAD : public TObject {
@@ -16,7 +18,9 @@ public:
     s32 m_48;
     u8 unk_4C[0x4];
     s32 m_50;
-    u8 unk_54[0x1C];
+    u8 unk_54[0x4];
+    Vec camera_position;
+    u8 unk_64[0xC];
     s32 m_70;
     u8 unk_74[0x28];
     s32 m_9c;
@@ -29,4 +33,5 @@ public:
 };
 typedef char TBoss6Demo21_TYPE2_DEAD_size[sizeof(TBoss6Demo21_TYPE2_DEAD) == 0xB4 ? 1 : -1];
 
+typedef char TBoss6Demo21_TYPE2_DEAD_camera_position_offset[offsetof(TBoss6Demo21_TYPE2_DEAD, camera_position)==0x58?1:-1];
 #endif

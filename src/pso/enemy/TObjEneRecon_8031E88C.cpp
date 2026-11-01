@@ -193,7 +193,7 @@ void TObjEneRecobox::draw_with_debug_info() {
         set_current_texture_list((GinjaTextureList *)(this->texlist));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         switch (this->m_3f8) {
         case 1:
             rotate_matrix_x(0, 0x8000);
@@ -210,7 +210,7 @@ void TObjEneRecobox::draw_with_debug_info() {
     }
     push_matrix();
     post_translate_matrix((u8 *)&this->position);
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     draw_chunk_object((void *)debug_chunk_object);
     pop_matrix();
 }
@@ -281,7 +281,7 @@ block_23:
                 set_current_texture_list((GinjaTextureList *)((((TObjEneRecobox *)arg0)->texlist)));
                 push_matrix();
                 post_translate_matrix((u8 *)&this->position);
-                rotate_matrix_y(0, (int) (((TObjEneRecobox *)arg0)->rotation_y));
+                rotate_matrix_y(0, (int) (((TObjEneRecobox *)arg0)->rotation.yaw));
                 switch (((TObjEneRecobox *)arg0)->m_3f8) {
                 case 1:
                     rotate_matrix_x(0, 0x8000);
