@@ -17,7 +17,7 @@ u8 TObjPlayer::is_valid_technique_id(s16 arg0) {
     return (u8)var_r4;
 }
 
-u8 TObjPlayer::is_valid_technique_slot(u8 arg0) {
+s32 TObjPlayer::is_valid_technique_slot(u8 arg0) {
     return (u8) (arg0 <= 0xFU);
 }
 
