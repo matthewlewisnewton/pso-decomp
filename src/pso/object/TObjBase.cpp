@@ -82,7 +82,7 @@ void TObjBase::apply_object_set_data(void *data) {
     s32 i;
     entity_id = src->entity_id;
     VecCopy(&home_position, VecCopy(&position, &src->position));
-    copy_xyz(&rotation_x, src->rotation);
+    copy_xyz(&this->rotation.pitch, src->rotation);
     VecCopy(&scale, &src->scale);
     room = src->room;
     for (i = 0; i < 3; i++) {
@@ -286,9 +286,9 @@ void TObjBase::reset_motion_fields() {
     home_position.z = lbl_805DC098;
     home_position.y = lbl_805DC098;
     home_position.x = lbl_805DC098;
-    rotation_z = 0;
-    rotation_y = 0;
-    rotation_x = 0;
+    this->rotation.roll = 0;
+    this->rotation.yaw = 0;
+    this->rotation.pitch = 0;
     center.z = lbl_805DC098;
     center.y = lbl_805DC098;
     center.x = lbl_805DC098;
@@ -320,9 +320,9 @@ TObjBase::TObjBase(TObject *parent) : TObject(parent) {
     position.z = lbl_805DC098;
     VecCopy(&prev_position, &position);
     VecCopy(&home_position, &position);
-    rotation_x = 0;
-    rotation_y = 0;
-    rotation_z = 0;
+    this->rotation.pitch = 0;
+    this->rotation.yaw = 0;
+    this->rotation.roll = 0;
     scale.x = lbl_805DC0A0;
     scale.y = lbl_805DC0A0;
     scale.z = lbl_805DC0A0;

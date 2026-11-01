@@ -426,9 +426,9 @@ void TBoss2DeRolLe::render_body() {
     TObjEneDD::clear_global_flag_400();
     push_matrix();
     post_translate_matrix(self->pos);
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     rotate_matrix_x(0, self->rotX);
-    rotate_matrix_z(0, this->rotation_z);
+    rotate_matrix_z(0, this->rotation.roll);
     Vec_8002EFE8 scale = lbl_804359E4;
     TObjEneDD::check_v2_mode();
     scale_current_matrix(&scale);
@@ -3393,7 +3393,7 @@ void handle_debug_pad_input__13TBoss2DeRolLeFPvPv(void *arg0_, void *arg1_) {
         *(s32 *)((s8 *)arg0 + 0x3C0) &= ~4;
         *(s32 *)((s8 *)arg0 + 0x3C0) |= 0x100;
         *(f32 *)((s8 *)arg0 + 0x6A4) = TBoss2DeRolLe__data_805D827C;
-        ((TBoss2DeRolLe *)arg0)->rotation_z = 0;
+        ((TBoss2DeRolLe *)arg0)->rotation.roll = 0;
         *(s32 *)((s8 *)arg0 + 0x6E4) = 1;
         *(s32 *)((s8 *)arg0 + 0x6E8) = 0;
         *(s32 *)((s8 *)arg0 + 0x6E0) = 0;

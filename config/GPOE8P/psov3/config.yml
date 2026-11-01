@@ -3845,7 +3845,7 @@ force_active:
   - compute_random_dir_vec__11TBoss6Type2FlPUcll
   - compute_range_end__6TLobbyFlUl
   - compute_wave_offset__11TBoss4Type2Ff
-  - configure_scripted_camera_playback__FPUcl
+  - configure_scripted_camera_playback__FP14CameraPlaybackl
   - configure_subtype__12TObjEneSharkFv
   - confirm_and_close_if_valid__15TShopWindowBaseFv
   - confirm_and_free__17TWindowSubComCardFv

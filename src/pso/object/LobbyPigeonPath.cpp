@@ -793,7 +793,7 @@ void TUnk_804E08D4::vfunc_14() {
     set_current_texture_list((GinjaTextureList *)((*(s32 *)&lobby_kamome_texture_gvm_handle)));
     push_matrix();
     post_translate_matrix((u8 *)&this->position);
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     post_translate_matrix((u8 *)&this->unk_AC);
     rotate_matrix_y(0, this->m_b8);
     rotate_matrix_z(0, this->m_c0);
@@ -822,7 +822,7 @@ void TUnk_804E08D4::vfunc_13(s32) {
         Vec_802C17FC v = lbl_80471908;
         set_matrix_identity((u8 *)&m);
         translate_matrix_vec3((u8 *)&m, (u8 *)&this->position);
-        ((s32 (*)(void *, int))rotate_matrix_y)(&m, this->rotation_y);
+        ((s32 (*)(void *, int))rotate_matrix_y)(&m, this->rotation.yaw);
         translate_matrix_vec3((u8 *)&m, (u8 *)&this->unk_AC);
         ((s32 (*)(void *, void *, void *))matrix_mult_vec)(&m, &v, &v);
         play_sound_effect(0x4BC04, (const Vec *)((u8 *)&this->position), 0x7F, 0);
@@ -988,7 +988,7 @@ void TUnk_804E0910::vfunc_14() {
     set_current_texture_list((GinjaTextureList *)((*(s32 *)&lobby_pigeon_texture_gvm)));
     push_matrix();
     post_translate_matrix((u8 *)&this->position);
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     post_translate_matrix((u8 *)&this->unk_AC);
     rotate_matrix_y(0, this->m_b8);
     rotate_matrix_z(0, this->m_c0);
@@ -1199,7 +1199,7 @@ void TUnk_804E094C::vfunc_14() {
     set_current_texture_list((GinjaTextureList *)((*(s32 *)&jungle_ebi_texture_gvm_handle)));
     push_matrix();
     post_translate_matrix((u8 *)&this->position);
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     post_translate_matrix((u8 *)&this->unk_AC);
     rotate_matrix_y(0, this->m_b8);
     rotate_matrix_z(0, this->m_c0);
@@ -1384,7 +1384,7 @@ void TUnk_804E0988::vfunc_14() {
     set_current_texture_list((GinjaTextureList *)(seabed_dolphin_texture_handle));
     push_matrix();
     post_translate_matrix((u8 *)&this->position);
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     post_translate_matrix((u8 *)&this->unk_AC);
     rotate_matrix_y(0, this->m_b8);
     rotate_matrix_z(0, this->m_c0);
@@ -1465,7 +1465,7 @@ void draw_line_strip__10TObjPlayerFPviif(u8 *path_obj, s32 arg1, s32 arg2, f32 f
                                                               sp8, var_f31);
       push_matrix();
       post_translate_matrix(path_obj + 0x38);
-      rotate_matrix_y(0, ((TObjPathObj *)path_obj)->rotation_y);
+      rotate_matrix_y(0, ((TObjPathObj *)path_obj)->rotation.yaw);
       debug_draw_line(sp14, sp8, 0xF0F0F0FF, 0xF0F0F0FF);
       pop_matrix();
     } while (temp_r30 != 0);

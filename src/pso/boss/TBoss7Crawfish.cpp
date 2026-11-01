@@ -129,7 +129,7 @@ void TBoss7Crawfish::register_attack_hits() {
     msg.p = (u8 *)this + 0x374;
     msg.one = 1;
     VecCopy((Vec *)&msg.pos, (const Vec *)((u8 *)this + 0x38));
-    msg.id = this->rotation_y;
+    msg.id = this->rotation.yaw;
     TObjPlayer::apply_status_effect((s32)&msg);
     for (i = 0; i != TObjOnlineEnding::get_instance(); i++) {
         if ((u32)((Obj_803086A8 *)this)->count < 4) {
@@ -225,7 +225,7 @@ s32 TBoss7Crawfish::sub_80308AA8() {
     return TBoss7Crawfish__data_805DF0D8 == *(f32 *)((s8 *)((u8 *)this) + 0x354);
 }
 
-void TBoss7Crawfish::render() { if (is_visible() != 0) { set_texlist(this->texlist); set_motion_packed_rotation(); push_matrix(); post_translate_matrix((char*)this + 0x38); rotate_matrix_yxz((s32)((void*)0), (s32)this->rotation_x, this->rotation_y, this->rotation_z); scale_current_matrix((char*)this + 0x68); draw(); pop_matrix(); clear_motion_packed_rotation(); } }
+void TBoss7Crawfish::render() { if (is_visible() != 0) { set_texlist(this->texlist); set_motion_packed_rotation(); push_matrix(); post_translate_matrix((char*)this + 0x38); rotate_matrix_yxz((s32)((void*)0), (s32)this->rotation.pitch, this->rotation.yaw, this->rotation.roll); scale_current_matrix((char*)this + 0x68); draw(); pop_matrix(); clear_motion_packed_rotation(); } }
 
 extern const f32 lbl_805DF0EC;
 

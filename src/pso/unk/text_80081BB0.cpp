@@ -72,7 +72,7 @@ s32 TUnk_8048E1A4::freeze_shell_hold() {
     if (p == 0) {
         return;
     }
-    this->rotation_y += 0x10;
+    this->rotation.yaw += 0x10;
     if (obj_testFlags30__14TObjCollidableFUl(p, 0x800) == 0) {
         if (obj_testFlags30__14TObjCollidableFUl(p, 0x20) != 0) {
             return;
@@ -98,7 +98,7 @@ void TUnk_8048E1A4::freeze_shell_grow() {
     typedef char sp10_offset[(offsetof(Stack_80081CD0, sp10) == 0x8) ? 1 : -1];
     Stack_80081CD0 stack;
     f32 temp_f0;
-    this->rotation_y = (this->rotation_y + 0x1000);
+    this->rotation.yaw = (this->rotation.yaw + 0x1000);
     this->scale.z = (f32) (this->scale.z + lbl_805D9388);
     temp_f0 = this->scale.z;
     this->scale.y = temp_f0;
@@ -112,7 +112,7 @@ void TUnk_8048E1A4::freeze_shell_grow() {
         stack.spC = lbl_805D9378;
         stack.sp10 = lbl_805D938C * this->scale.x;
         push_matrix_from(&identity_matrix.value);
-        rotate_matrix_y(0, (int) (this->rotation_y * 2));
+        rotate_matrix_y(0, (int) (this->rotation.yaw * 2));
         rotate_vector_by_matrix(0, &stack.sp8, &stack.sp8);
         pop_matrix();
         vec3_add_to(&stack.sp8, (u8 *)&this->position);
@@ -166,7 +166,7 @@ void TUnk_8048E1A4::render() {
         set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0((s32)((void *)freeze_shell_bml_resource), 1)));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         scale_current_matrix((u8 *)&this->scale);
         switch (*(s32 *)((s8 *)arg0 + 0x334)) {
         case 0:

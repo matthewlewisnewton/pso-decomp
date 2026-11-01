@@ -144,7 +144,7 @@ void TPhotonEstlla::render() {
         set_current_texture_list((GinjaTextureList *)(this->texlist));
         push_matrix();
         translate_matrix(0, self->pos.x, self->pos.y, self->pos.z);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         ((TUnk_804C3248 *)self)->set_photon_blast_joint_callback();
         saved_model_render_flags = model_render_flags;
         copy_argb((NJS_ARGB *)&saved_model_draw_color, (NJS_ARGB *)&model_material_color);
@@ -275,7 +275,7 @@ u8 *TPhotonEstlla__ct(u8 *photon_estlla, u8 *arg1) {
     ((TPhotonEstlla *)photon_estlla)->m_17c = *(u16 *)((s8 *)arg1 + 0xC);
     e = (u8 *)find_entity_by_id(((TPhotonEstlla *)photon_estlla)->m_17c);
     if (e != NULL) {
-        ((TPhotonEstlla *)photon_estlla)->rotation_y = *(s32 *)((s8 *)e + 0x60);
+        ((TPhotonEstlla *)photon_estlla)->rotation.yaw = *(s32 *)((s8 *)e + 0x60);
     }
     *(s32 *)((s8 *)photon_estlla + 0x34) = *(s32 *)((s8 *)(*(u8 **)((s8 *)photon_blast_shared_resource + 0x42C)) + 0x98);
     ((TPhotonEstlla *)photon_estlla)->texlist = *(s32 *)((s8 *)(*(u8 **)((s8 *)photon_blast_shared_resource + 0x42C)) + 0x9C);

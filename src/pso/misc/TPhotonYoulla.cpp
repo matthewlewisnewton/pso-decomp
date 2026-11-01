@@ -78,7 +78,7 @@ void TPhotonYoulla::render() {
         set_current_texture_list((GinjaTextureList *)(this->texlist));
         push_matrix();
         post_translate_matrix(&self->pos);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         saved_model_render_flags = model_render_flags;
         copy_argb((NJS_ARGB *)&saved_model_draw_color, (NJS_ARGB *)&model_material_color);
         saved_chunk_polygon_flags_and_mask = chunk_polygon_flags_and_mask;
@@ -155,7 +155,7 @@ u8 *TPhotonYoulla__ct(TPhotonYoulla *photon_youlla, u8 *arg1) {
     *(u8 **)((s8 *)photon_youlla + 0x180) = (u8 *)find_entity_by_id(photon_youlla->m_17c);
     temp_r3 = (u8 *)(*(u8 **)((s8 *)photon_youlla + 0x180));
     if (temp_r3 != NULL) {
-        photon_youlla->rotation_y = (s32) *(s32 *)((s8 *)temp_r3 + 0x60);
+        photon_youlla->rotation.yaw = (s32) *(s32 *)((s8 *)temp_r3 + 0x60);
     }
     *(s32 *)((s8 *)photon_youlla + 0x34) = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)photon_blast_shared_resource + 0x42C)) + 0xB8);
     photon_youlla->texlist = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)photon_blast_shared_resource + 0x42C)) + 0xBC);

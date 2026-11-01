@@ -13,6 +13,7 @@ struct NJS_OBJECT;
 #include "pso/misc/TScene.h"
 #include "pso/misc/TUnk_804C3248.h"
 #include "pso/map/FloorArea.h"
+#include "pso/misc/CameraHelpers.h"
 #pragma push
 
 #include <stddef.h>
@@ -36,7 +37,7 @@ struct Ent_801A70C8 { s32 a; f32 b; s32 c; };
 struct Ent_801A710C { u32 a; f32 b; s32 c; };
 
 extern "C" {
-s32 set_scripted_camera_pose(int, int, void *);
+void cache_target_and_forward__11TCameraCtrlFl(const CameraPlayback *, s32);
 extern RecoveredGlobal_801A7310_TCameraCtrl__data_804FF628 TCameraCtrl__view_state;
 extern struct Ent_801A70C8 deferred_photon_blast_hit_queue[32];
 extern s32 deferred_photon_blast_hit_count;
@@ -129,19 +130,17 @@ void TUnk_804C3248::begin_photon_summon_camera(s8 arg1) {
     typedef char spA_offset[(offsetof(Stack_801A7310, spA) == 0x2) ? 1 : -1];
     typedef char spC_offset[(offsetof(Stack_801A7310, spC) == 0x4) ? 1 : -1];
     typedef char sp10_offset[(offsetof(Stack_801A7310, sp10) == 0x8) ? 1 : -1];
-    Stack_801A7310 stack;
-    s32 temp_r3;
-    stack.sp9 = arg1;
-    stack.sp8 = get_current_floor_area() == AREA_DARK_FALZ;
-    stack.spA = 0;
-    stack.spC = 0.0f;
-    stack.sp10 = 1.0f;
+    CameraPlayback stack;
+    stack.index = arg1;
+    if (get_current_floor_area() == AREA_DARK_FALZ) stack.bank = 1; else stack.bank = 0;
+    stack.flags = 0;
+    stack.frame = 0.0f;
+    stack.frame_step = 1.0f;
     if ((*(s32 *)((s8 *)&TCameraCtrl__view_state.value + 8) & 4) || (*(s32 *)((s8 *)&TCameraCtrl__view_state.value + 8) & 8)) {
         TCameraCtrl::select_active_controller(5);
     }
-    ((TCameraCtrl *)(&stack.sp8))->cache_target_and_forward(0x4222);
-    temp_r3 = (long) (arg0 + 0x38);
-    set_scripted_camera_pose(temp_r3, temp_r3, (u8 *)&this->rotation_x);
+    cache_target_and_forward__11TCameraCtrlFl(&stack, 0x4222);
+    set_scripted_camera_pose(&position, &position, &rotation);
     *(s32 *)((s8 *)arg0 + 0xFC) = 1;
 }
 
@@ -351,7 +350,7 @@ void spawn_photon_blast_attachment_effects(TUnk_804C3248 *self, s32 kind) {
                 matrix_mult_vec(0, &direction, &direction);
                 pop_matrices(1);
                 push_matrix_from(identity_matrix);
-                rotate_matrix_y(0, self->rotation_y);
+                rotate_matrix_y(0, self->rotation.yaw);
                 matrix_mult_vec(0, &direction, &direction);
                 pop_matrices(1);
                 direction_to_rotation_xz((u8 *)&direction, &angles[0], &angles[2]);
@@ -379,7 +378,7 @@ void apply_all_default__8TFogCtrlFv(TUnk_804C3248 *) { TFogCtrl::apply_all(63, 0
 extern s32 TSceneSora__sky_active_flag;
 extern u32 TSceneSora__instance;
 u16 TCameraCtrl__sub_8006A5DC();
-void *get_scripted_camera_playback();
+
 
 s32 queue_destruction__7TObjectFv(void *);
 void allow_rendering__7TObjectFv(TObject *arg0);

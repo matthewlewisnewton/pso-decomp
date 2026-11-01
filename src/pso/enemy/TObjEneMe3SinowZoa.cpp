@@ -3131,7 +3131,7 @@ void TObjEneMe3SinowZoa::vfunc_115() {
         }
         push_matrix();
         post_translate_matrix(&position);
-        rotate_matrix_y(0, rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         scale_matrix(0, TObjEneMe3SinowZoa__data_805DF2F4, TObjEneMe3SinowZoa__data_805DF2F4, TObjEneMe3SinowZoa__data_805DF2F4);
         {
             s32 i;
@@ -3281,7 +3281,7 @@ void TObjEneMe3SinowZoa::fn_80316C3C(s32 arg1) {
                 copy_position_if_valid__10TObjPlayerFii(this, *((Vec *)&body_center_position));
                 body_center_position.y += TObjEneMe3SinowZoa__data_805DF308;
                 angle = enemy_turn_toward_dest(this, ((SinowZoaMoveParameters *)movementParameters)->turn_speed);
-                enemy_set_heading_velocity(((SinowZoaMoveParameters *)movementParameters)->speed, this, rotation_y);
+                enemy_set_heading_velocity(((SinowZoaMoveParameters *)movementParameters)->speed, this, this->rotation.yaw);
                 move_with_wall_slide((u8 *)this);
             } else {
                 VecCopy(&diff, &target_destination);
@@ -3319,7 +3319,7 @@ void TObjEneMe3SinowZoa::fn_80316C3C(s32 arg1) {
                 advance_animation();
                 push_matrix_from(identity_matrix);
                 post_translate_matrix(&position);
-                rotate_matrix_y(0, rotation_y);
+                rotate_matrix_y(0, this->rotation.yaw);
                 set_motion_packed_rotation();
                 calc_joint_matrices(TObjEneMe3SinowZoa__data_805DF314);
                 clear_motion_packed_rotation();
@@ -3340,7 +3340,7 @@ void TObjEneMe3SinowZoa::fn_80316C3C(s32 arg1) {
                         create__11TTecRaBartaFPvPvPvPv(this, &out, &position,
                             TObjEneDD::clamp_frame_index(TObjEneMe3SinowZoa__kind_param_tbls[kind]->barta_level));
                     } else {
-                        ((TTecGiBarta *)this)->create_ex(&out, (void *)rotation_y, (void *)(TObjEneDD::clamp_frame_index(TObjEneMe3SinowZoa__kind_param_tbls[kind]->barta_level)));
+                        ((TTecGiBarta *)this)->create_ex(&out, (void *)this->rotation.yaw, (void *)(TObjEneDD::clamp_frame_index(TObjEneMe3SinowZoa__kind_param_tbls[kind]->barta_level)));
                     }
                 } else if (state_flags & 0x100000) {
                     substate = 4;

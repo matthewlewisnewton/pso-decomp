@@ -2,6 +2,7 @@ struct NJS_OBJECT;
 #ifndef PSO_OBJECT_TOBJMOTION_H
 #define PSO_OBJECT_TOBJMOTION_H
 #include "pso/TObject.h"
+#include "pso/system/AngleTypes.h"
 #include "pso/object/CursorAction.h"
 #include "pso/system/FlagWord.h"
 #include <stddef.h>
@@ -46,9 +47,7 @@ public:
     Vec position;
     Vec prev_position;  // where it stood before this frame's move
     Vec home_position;  // the set position it returns to
-    s32 rotation_x;
-    s32 rotation_y;
-    s32 rotation_z;
+    CameraAngles rotation;
     Vec scale;        // the set entry's params 1-3, a scale for most objects
     Vec center;         // the point the virtual center getter returns
     void *set_entry;    // its row of the floor's object or enemy set
@@ -291,4 +290,7 @@ typedef char WorldActorModelOffset[offsetof(TObjBase,model)==0x34?1:-1];
 typedef char MotionActionsOffset[offsetof(TObjMotion,action_table)==0xD8?1:-1];
 typedef char MotionListOffset[offsetof(TObjMotion,motion_list)==0xDC?1:-1];
 typedef char JointMatricesOffset[offsetof(TObjMotion,joint_matrices)==0xE0?1:-1];
+typedef char ActorAnglesOffset[offsetof(TObjBase, rotation)==0x5C?1:-1];
+typedef char ActorAnglesSize[sizeof(CameraAngles)==12?1:-1];
+typedef char ActorScaleOffset[offsetof(TObjBase, scale)==0x68?1:-1];
 #endif

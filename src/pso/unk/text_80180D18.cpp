@@ -102,9 +102,9 @@ void render__18TObjCityAirCar_CarFPv(TObjCityAirCar_Car *city_air_car_car) {
         TParticleCtrl::end_effect_render();
         push_matrix();
         post_translate_matrix((void *) ((u8 *)city_air_car_car + 0x38));
-        rotate_matrix_y(0, city_air_car_car->rotation_y);
+        rotate_matrix_y(0, city_air_car_car->rotation.yaw);
         if ((s32) city_air_car_car->m_9c != 0) {
-            rotate_matrix_z(0, city_air_car_car->rotation_z);
+            rotate_matrix_z(0, city_air_car_car->rotation.roll);
         }
         set_current_texture_list((GinjaTextureList *)(city_common_texture_list));
         get_city_common_model((*(s32 *)((s8 *)((u8 *)city_aircar_model_indices + (city_air_car_car->m_9c * 4)) + 0)));

@@ -207,7 +207,7 @@ void TObjSeabedSuiso_CH::render() {
         set_current_texture_list((GinjaTextureList *)(TObjSeabedSuisoBrakable::get_texlist(0)));
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
+        rotate_matrix_y(NULL, this->rotation.yaw);
         if (motion != NULL) {
             draw_ginja_model_with_motion(kind_model, motion, animation_frame);
         } else {
@@ -415,7 +415,7 @@ TObjSuisoChip::TObjSuisoChip(TObjBase *owner, TObjChipParams *params) : TObjChip
     m_name = class_name;
     if (owner != NULL) {
         VecCopy(&origin, &owner->position);
-        rotation_y = owner->rotation_y;
+        rotation_y = owner->rotation.yaw;
     } else {
         origin.y = 0.0f;
         origin.y = 0.0f;
@@ -430,7 +430,7 @@ TObjSuisoChip::TObjSuisoChip(TObjBase *owner, TObjChipSpawnParams *params) : TOb
     m_name = class_name;
     if (owner != NULL) {
         VecCopy(&origin, &owner->position);
-        rotation_y = owner->rotation_y;
+        rotation_y = owner->rotation.yaw;
     } else {
         origin.y = 0.0f;
         origin.y = 0.0f;

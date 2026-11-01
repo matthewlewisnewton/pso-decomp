@@ -174,7 +174,7 @@ void TODoorAncient08::render() {
         case 3:
             push_matrix();
             post_translate_matrix(&position.x);
-            rotate_matrix_y(NULL, rotation_y);
+            rotate_matrix_y(NULL, this->rotation.yaw);
             set_current_texture_list((GinjaTextureList *)(texlist));
             draw_ginja_model_with_motion(model, motion, animation_frame);
             pop_matrix();
@@ -182,7 +182,7 @@ void TODoorAncient08::render() {
         case 2:
             push_matrix();
             post_translate_matrix(&position.x);
-            rotate_matrix_y(NULL, rotation_y);
+            rotate_matrix_y(NULL, this->rotation.yaw);
             set_current_texture_list((GinjaTextureList *)(texlist));
             draw_ginja_model_with_motion(model, motion, animation_end_frame - 1.0f);
             pop_matrix();
@@ -235,7 +235,7 @@ void TODoorAncient08::draw_switch_lights() {
     set_current_texture_list((GinjaTextureList *)(texture_lists[1]));
     post_translate_matrix(&position.x);
     post_translate_matrix(root->pos);
-    rotate_matrix_y(NULL, rotation_y);
+    rotate_matrix_y(NULL, this->rotation.yaw);
     draw_ginja_model((s32)root->model);
     draw_ginja_model((s32)root->child->model);
     TParticleCtrl::begin_effect_render();

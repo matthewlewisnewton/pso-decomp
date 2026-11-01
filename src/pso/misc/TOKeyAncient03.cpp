@@ -129,7 +129,7 @@ void TOKeyAncient03::render() {
         set_current_texture_list((GinjaTextureList *)(TOKeyAncient03__texture_variants[is_on]));
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
+        rotate_matrix_y(NULL, this->rotation.yaw);
         object = (NJS_OBJECT *)model;
         post_translate_matrix(object->pos);
         draw_ginja_model((s32)object->model);

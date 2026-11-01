@@ -34,7 +34,7 @@ void TObjPlayer::draw_if_visible() {
         set_current_texture_list((GinjaTextureList *)(this->texlist));
         push_matrix_from(0);
         translate_matrix_vec3((u8 *)(0), (u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         ((TObjMotion *)arg0)->draw();
         pop_matrix();
         model_render_flags &= 0xFFFFFFFE;
