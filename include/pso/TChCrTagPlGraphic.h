@@ -5,6 +5,7 @@
 
 class TChCrTagPlGraphic : public TChCrTag {
 public:
+    virtual void render_shadows();
     virtual ~TChCrTagPlGraphic();
     virtual void render();
     virtual void run_task();
