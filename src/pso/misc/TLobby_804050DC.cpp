@@ -12089,4 +12089,37 @@ s32 get_adjusted_slot_count__6TLobbyFPv(u8 *arg0) {
     return *(s32 *)((s8 *)arg0 + 0x530) - *(s32 *)((s8 *)arg0 + 0x20);
 }
 
+// The packed kind-2 reference stores pool/segment indices in the top bytes
+// and an offset in the low halfword, as constructed by 80415954.
+// WIP: original control flow and layout recovered; code generation is inexact.
+#pragma push
+#pragma opt_propagation off
+u8 *TLobby__sub_80406F0C(void *arg) {
+    NetBufferRef *ref = (NetBufferRef *)arg;
+    switch (ref->kind) {
+    case 1:
+    case 4:
+        return (u8 *)ref->value;
+    case 2: {
+        u32 value = ref->value;
+        s16 index = value >> 24;
+        Pool_80415690 *pool = (Pool_80415690 *)&network_buffer_pool_state;
+        // Preserve the original strict comparison, also used by 8041579C.
+        if (pool->count < index) {
+            return NULL;
+        }
+        Ent_80415690 *entry = &pool->ents[index];
+        s16 segment = (value >> 16) & 0xFF;
+        u16 offset = value;
+        u8 *base = offset + entry->buf;
+        return entry->segs[segment].offset + base;
+    }
+    case 3:
+        return (u8 *)ref->value;
+    default:
+        return NULL;
+    }
+}
+#pragma pop
+
 }
