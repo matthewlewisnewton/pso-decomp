@@ -95,9 +95,42 @@ therefore remains the frozen PR178 implementation.
 These results exclude only the tested forms. Earlier native pre-increment code
 reached 900 bytes and the original two-step factor-address load, but still differed
 in induction state/registers. There is no impossibility or assembly-origin claim.
-Next work is a focused comparison of that reachable 900-byte path against the
-normal pre-test loop's zero coalescing, while queued repair validation proceeds.
+A follow-up session compared that reachable path against the normal pre-test
+loop's zero coalescing, while leaving the repair checkpoint frozen.
 
-The bounded probing session is complete when this checkpoint is published; no
-compiler or full-build process is represented as running afterward. Task-37 retains
-the unfinished work for the next execution session and scheduled review/validation.
+## Follow-up: isolated compiler question
+
+Six additional full-function probes compiled successfully with strict pragma
+checking and preserved the nine prior exact functions in diagnostic comparisons:
+
+| New hypothesis | Trials | Update bytes | Similarity |
+| --- | ---: | ---: | ---: |
+| Explicit borrowed scale/profile helper arguments, both orders and propagation default/off | 4 | 892 | 98.26667% |
+| Scope-commit destructor executing the original emitter loop, pointer/reference captures | 2 | 908 | 94.44889% |
+
+No source variant was adopted. Four borrowed-argument forms emitted exactly the
+same candidate object as the frozen repair. Both scope-commit forms emitted the
+same larger object as each other. All source/object/report hashes and empty
+compiler logs were checked; no full build or preparation was run.
+
+A self-contained three-source compiler reproducer now isolates the remaining
+question without repository headers or game assets. Its flat zero-based loop is
+200 bytes; changing only to pre-increment produces 208 bytes and restores the
+separate scale-address addition/load, but initializes the induction values to
+-1/-4. Explicit borrowed arguments produce 200 bytes and fold the address again.
+A second compilation from the packaged runner reproduced all three object files
+byte for byte. These sizes describe the diagnostic functions, not new matches.
+
+The precise specialist question is how a defined C++ form can retain the original
+zero-based pre-test traversal while keeping the scale-address temporary alive
+across the profile-base register overwrite, and keeping the direction-field zero
+separate from the two loop-initialization zeros. The source-only packet includes
+fixed GC/2.6 options, source/tool/object hashes, callback and FP constraints, and
+the exact residual original addresses. Raw reports and original disassembly stay
+local. Parent routing of this question is the next concrete compiler handoff;
+there is no impossibility or assembly-origin claim.
+
+Task-37 retains implementation and source-link ownership. PR178 development
+validation still awaits scheduler release. At the end of this bounded session no
+compiler or full-build process is represented as running; expert follow-up and
+scheduled validation are pending, and the original completion gates remain open.
