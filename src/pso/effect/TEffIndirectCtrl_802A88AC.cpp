@@ -1,11 +1,25 @@
 #include "pso/system/GinjaTextureInput.h"
 #include "types.h"
+#include "pso/player/demo_mode.h"
 #include "pso/effect/TEffIndirectCtrl.h"
 #include "pso/effect/TEffIndirectCtrl_802A88AC.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/system/memory.h"
 
 #include "pso/player/TObjPlayer.h"
+
+// Original table entries are native PMFs with this controller as their receiver.
+typedef void (TEffIndirectCtrl::*IndirectTask)();
+struct IndirectTaskTable { IndirectTask entries[3]; };
+typedef char IndirectTask_size[sizeof(IndirectTask) == 12 ? 1 : -1];
+typedef char IndirectTaskTable_size[sizeof(IndirectTaskTable) == 36 ? 1 : -1];
+extern "C" {
+extern IndirectTaskTable eff_indirect_task_table;
+extern const IndirectTaskTable lbl_8046FBE8;
+s32 rand();
+extern s32 actor_frame_tick;
+extern const f32 lbl_805DE028;
+}
 
 struct RecoveredGlobal_802A9234_TEffIndirectCtrl__data_80540AF0 {
     s32 value;
@@ -63,6 +77,30 @@ void release_texture_list(void *);
 s32 memcpy(s32, s32, s32);
 
 void TEffIndirectCtrl::render() {  }
+
+void TEffIndirectCtrl::run_task() {
+    IndirectTaskTable *table = &eff_indirect_task_table;
+    if (!check_demo_mode() && m_46 != 0) {
+        return;
+    }
+    m_3c += ((s8 *)m_20)[4];
+    m_40 += ((s8 *)m_20)[5];
+    m_48 = ((s8 *)m_20)[1];
+    m_4c = ((s8 *)m_20)[2];
+    // The original snapshots the native PMFs on the stack before dispatch.
+    IndirectTaskTable tasks = lbl_8046FBE8;
+    tasks.entries[0] = table->entries[0];
+    tasks.entries[1] = table->entries[1];
+    tasks.entries[2] = table->entries[2];
+    if ((actor_frame_tick & 31) == 0) {
+        m_50 = ((s8 *)m_20)[3] * (lbl_805DE028 * rand());
+    }
+    if (((u8 *)m_20)[0] < 3) {
+        (this->*tasks.entries[((u8 *)m_20)[0]])();
+    }
+    m_24 = ((u8 *)m_20)[7];
+    sub_802A955C();
+}
 
 void TEffIndirectCtrl::copy_and_flush_texture(s32 arg1) {
     memcpy(this->m_1c, arg1, 0x1000);
