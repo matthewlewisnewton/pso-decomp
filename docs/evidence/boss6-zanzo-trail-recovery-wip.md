@@ -22,13 +22,20 @@ receiver and pointer lifetime. This function remains in its existing split.
 
 In private targeted GC/2.6 comparisons, the original functions outside the new
 trail renderer retained their instruction bytes after the symbol renames. The
-new renderer is still inexact: objdiff reports 94.81% similarity, not an exact
-match. The 45 other direct consumers of the changed class headers and the 15
-separately checked helper and caller objects retained their allocated-section
-bytes and relocation targets after normalizing the named symbol migrations.
-These targeted results do not replace a configured graph, full build,
-address-based no-loss check, real link-input audit, DOL hash or independent
-review.
+renderer remains inexact: the scoped propagation setting gives 96.03% objdiff
+similarity, not an exact match. Independent review found source holds in the
+legacy owner constructors, the REL filename-size provider, and the ruler's
+original static fan backing. The pragma is a compiler experiment, not proof of
+source correctness.
+
+The first donor comparison used a different checkout. A corrected targeted
+comparison compiled 51 affected units from separate clean `3ba538f` and draft
+`980b2f058` trees using copied GC/2.6 tools and identical per-unit commands.
+All 50 non-target objects retained allocated-section bytes and normalized
+relocation targets. This predates the Rico backing-data change below and does
+not establish current configured graph identity. These targeted results do not
+replace a full build, address-based no-loss check, real link-input audit, DOL
+hash or independent review of the eventual head.
 
 The original vtable at `0x804EC968..0x804EC980` has four relocations to the
 native destructor, task, render and inherited shadow-render functions. The
@@ -37,3 +44,15 @@ constants emitted for the renderer match the original bytes at
 `0x80476470..0x80476480`; original-reference inspection found no other unit
 using either constant. The split records these ranges for the eventual link,
 but generated graph and symbol-localization checks remain pending.
+
+The Rico ring's static 3D fan now uses an actual four-element `Vec` array. The
+native definitions cover the packed colors, positions, descriptor and 2D
+positions at `0x804809D0..0x80480A40`, immediately before the existing vtable.
+The original descriptor points to the position and color arrays, and the 2D
+render parameters point to the following 2D array. A targeted compile retained
+the original unit's complete code bytes; the added data bytes and two pointer
+relocations match the original auto object, and the pre-existing vtable bytes
+and four targets remain unchanged. The expanded split and real linked build
+are not yet validated. A proposed native ruler data definition was not retained:
+the original start is four-byte aligned, while the compiler emits an eight-byte
+aligned data section. Its storage and linkage remain unresolved.

@@ -1,4 +1,5 @@
 #include "pso/render/TriangleFan3D.h"
+#include "pso/TMath.h"
 #include "types.h"
 #include "pso/system/FlagWord.h"
 #include "pso/object/TObject_80019A50.h"
@@ -64,8 +65,18 @@ extern s8 lbl_805D4A30;
 extern s8 lbl_805D4A31;
 extern const f32 lbl_80434828[];
 extern const u32 rico_ring_render_params[];
-extern char lbl_804809E0[];
-extern TriangleFan3D lbl_80480A10;
+__declspec(section ".data") u32 lbl_804809D0[4] = { 0xB0, 0xB0, 0xB0, 0xB0 };
+__declspec(section ".data") Vec lbl_804809E0[4] = {
+    { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f },
+    { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }
+};
+__declspec(section ".data") TriangleFan3D lbl_80480A10 = {
+    lbl_804809E0, lbl_804809D0, 0, 4
+};
+__declspec(section ".data") vec2f lbl_80480A20[4] = {
+    { 350.0f, 0.0f }, { 640.0f, 0.0f },
+    { 640.0f, 600.0f }, { 350.0f, 600.0f }
+};
 extern u32 lbl_804FE138[];
 u32 __cvt_fp2unsigned(f32);
 
@@ -101,6 +112,8 @@ void TAdRicoRingCtrl::start_fade_all(f32 x) {
 
 #pragma push
 #pragma opt_common_subs off
+// Preserve the original floating-point register allocation with Vec storage.
+#pragma opt_dead_assignments off
 void TAdRicoRingCtrl::render() {
     f32 t = *(f32 *)&this->unk_24;
     if (t >= TAdRicoRingCtrl__data_805D7E50) {
@@ -137,19 +150,19 @@ void TAdRicoRingCtrl::render() {
         f32 a = lbl_805D4A04;
         f32 e = lbl_805D4A14;
         f32 g = lbl_805D4A2C;
-        f32 *v = (f32 *)lbl_804809E0;
-        v[0] = a;
-        v[1] = b;
-        v[2] = c;
-        v[3] = d;
-        v[4] = b;
-        v[5] = c;
-        v[6] = d;
-        v[7] = e;
-        v[8] = g;
-        v[9] = a;
-        v[10] = e;
-        v[11] = g;
+        Vec *v = lbl_804809E0;
+        v[0].x = a;
+        v[0].y = b;
+        v[0].z = c;
+        v[1].x = d;
+        v[1].y = b;
+        v[1].z = c;
+        v[2].x = d;
+        v[2].y = e;
+        v[2].z = g;
+        v[3].x = a;
+        v[3].y = e;
+        v[3].z = g;
         lbl_805D4A31 = 1;
     }
     draw_tri_fan_3d(&lbl_80480A10, 4, 6);

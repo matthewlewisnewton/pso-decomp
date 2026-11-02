@@ -61,6 +61,8 @@ void TBoss6Zanzo__sub_803205A0(Boss6TrailPoint *dest, const Boss6TrailPoint *sou
 }
 #pragma pop
 
+#pragma push
+#pragma opt_propagation off
 void TBoss6Zanzo::draw_trail() {
     Boss6TrailFrame *frame;
     Boss6TrailFrame *end;
@@ -121,6 +123,8 @@ void TBoss6Zanzo::draw_trail() {
         fade -= step;
     }
 }
+
+#pragma pop
 
 void TBoss6Zanzo::render() { set_depth_buffer_settings_1(); draw_trail(); restore_saved_depth_alpha_state(); }
 
