@@ -82,9 +82,9 @@ void TFontSmallHelp::render() {
     rotate_matrix_z(NULL, camera_ctrl_instance->m_198);
     rotate_vector_by_matrix(NULL, &forward, &forward);
     pop_matrix();
-    diff.x = pos.x - camera_ctrl_instance->m_178;
-    diff.y = pos.y - camera_ctrl_instance->m_17c;
-    diff.z = pos.z - camera_ctrl_instance->m_180;
+    diff.x = pos.x - camera_ctrl_instance->position.x;
+    diff.y = pos.y - camera_ctrl_instance->position.y;
+    diff.z = pos.z - camera_ctrl_instance->position.z;
     {
         f32 xx = diff.x * diff.x;
         f32 yy = diff.y * diff.y;
