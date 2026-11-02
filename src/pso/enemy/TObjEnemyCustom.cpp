@@ -308,7 +308,7 @@ void TObjEnemyCustom::render() {
         set_current_texture_list((GinjaTextureList *)(texlist));
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(0, rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         model_render_flags &= ~0x400;
         if (check_demo_mode() == 1) {
             draw_chunk_object(model);
@@ -328,7 +328,7 @@ void TObjEnemyCustom::run_demo_task() {
 void TObjEnemyCustom::render_anim_model_at_pos() {
     push_matrix_from(identity_matrix);
     post_translate_matrix(&position.x);
-    rotate_matrix_y(0, rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     calc_joint_matrices(frame);
     pop_matrix();
 }
@@ -389,8 +389,8 @@ s32 TObjEnemyCustom::turn_toward_point(Vec *point, s32 max_step, s32 angle_offse
     Vec delta = *point;
     subtract_vector(&delta, &position);
     angle_offset += (s32)(10430.38043493439 * atan2_float(delta.x, delta.z));
-    rotation_y = approach_angle_limited(rotation_y, angle_offset, max_step);
-    return angle_difference_abs(rotation_y, angle_offset);
+    this->rotation.yaw = approach_angle_limited(this->rotation.yaw, angle_offset, max_step);
+    return angle_difference_abs(this->rotation.yaw, angle_offset);
 }
 
 void TObjEnemyCustom::sub_800C73F4() {

@@ -9,6 +9,7 @@
 #include "pso/enemy/TObjEnemy.h"
 extern "C" void *__ct__12TObjEneDD_STFP7TObject(void *);
 #include "types.h"
+#include "pso/enemy/EnemyMovement.h"
 #include "pso/enemy/TObjEneDD.h"
 #include "pso/enemy/TObjEneDD_ST.h"
 #include "pso/player/TObjPlayer.h"
@@ -168,7 +169,7 @@ extern const f32 lbl_805D9E88;
 void render__13TObjEneBm3FlyFv(VObj_800AFBF0 *o);
 f32 normalize_vector_xz__FP3Vec(void *);
 void clamp_flight_height__13TObjEneBm3FlyFv(u8 *arg0);
-void update_dd_flag__13TObjEneBm3FlyFPv(void *arg0);
+void update_dd_flag__13TObjEneBm3FlyFPv(void *arg0, f32 dx, f32 dz, f32 distance);
 s32 refresh_and_send_entity_flags__9TObjEnemyFv(void *, s32);
 s32 TBoss8Dragon__sub_800BB7DC(void *);
 s32 transition_enemy_state__9TObjEneDDFl(void *, s32);
@@ -180,7 +181,6 @@ extern "C" {
 void *find_entity_by_id(u16 id);
 
 #define clamp_flight_height__13TObjEneBm3FlyFv (*(s32 (*)(void *))&clamp_flight_height__13TObjEneBm3FlyFv)
-#define update_dd_flag__13TObjEneBm3FlyFPv (*(s32 (*)(void *, f32, f32, f32))&update_dd_flag__13TObjEneBm3FlyFPv)
 void TObjEneBm3Fly__vt103(void);
 void TObjEneBm3Fly__vt104(TObjEneBm3Fly *arg0);
 void action__13TObjEneBm3FlyFPvi(u8 *arg0, s32 arg1);
@@ -202,7 +202,7 @@ void TObjEneBm3Fly__vt104(TObjEneBm3Fly *arg0) {
         set_current_texture_list((GinjaTextureList *)(arg0->texlist));
         push_matrix();
         post_translate_matrix((u8 *)arg0 + 0x38);
-        rotate_matrix_y(0, arg0->rotation_y);
+        rotate_matrix_y(0, arg0->rotation.yaw);
         clear_global_flag_400__9TObjEneDDFv();
         toggle_particle_effect__10TObjPlayerFv();
         draw_chunk_object((void *)(*(s32 *)((s8 *)arg0 + 0x34)));
@@ -236,7 +236,7 @@ void render__13TObjEneBm3FlyFv(VObj_800AFBF0 *o) {
         set_current_texture_list((GinjaTextureList *)(((TObjEneBm3Fly *)o)->texlist));
         push_matrix();
         translate_matrix(0, *(f32 *)((s8 *)o + 0x38), *(f32 *)((s8 *)o + 0x42C), *(f32 *)((s8 *)o + 0x40));
-        rotate_matrix_y(0, ((TObjEneBm3Fly *)o)->rotation_y);
+        rotate_matrix_y(0, ((TObjEneBm3Fly *)o)->rotation.yaw);
         clear_global_flag_400__9TObjEneDDFv();
         toggle_particle_effect__10TObjPlayerFv();
         set_alpha_ref_override(0x8F);
@@ -375,7 +375,6 @@ void action__13TObjEneBm3FlyFPvi(u8 *arg0, s32 arg1) {
 }
 
 #undef clamp_flight_height__13TObjEneBm3FlyFv
-#undef update_dd_flag__13TObjEneBm3FlyFPv
 
 struct VBaseB0_800b07d0 { char pad[0x18]; };
 struct VObjB0_800b07d0 : VBaseB0_800b07d0 {
@@ -929,7 +928,6 @@ void TObjEneBm3Fly::update_recoil_state(s32 arg1) {
 #define transition_enemy_state__9TObjEneDDFl (*(s32 (*)(void *, int))&transition_enemy_state__9TObjEneDDFl)
 #define normalize_vector_xz__FP3Vec (*(f32 (*)(void *, s32))&normalize_vector_xz__FP3Vec)
 #define choose_attack__13TObjEneBm3FlyFPv (*(s32 (*)(void *))&choose_attack__13TObjEneBm3FlyFPv)
-#define update_dd_flag__13TObjEneBm3FlyFPv (*(s32 (*)(void *, f32, f32, f32))&update_dd_flag__13TObjEneBm3FlyFPv)
 #define update_collide_flag__13TObjEneBm3FlyFv (*(s32 (*)(void *))&update_collide_flag__13TObjEneBm3FlyFv)
             if (this->m_378 == 3) {
                 choose_attack__13TObjEneBm3FlyFPv(this);
@@ -1133,8 +1131,8 @@ void TObjEneBm3Fly::execute_action(s32 arg1) {
                 update_height_offset();
             }
             this->update_velocity();
-            *(f32 *)((s8 *)((u8 *)this) + 0x430) = sin_table_lookup(this->rotation_y);
-            *(f32 *)((s8 *)((u8 *)this) + 0x438) = cos_table_lookup(this->rotation_y);
+            *(f32 *)((s8 *)((u8 *)this) + 0x430) = sin_table_lookup(this->rotation.yaw);
+            *(f32 *)((s8 *)((u8 *)this) + 0x438) = cos_table_lookup(this->rotation.yaw);
             update_state_flag();
             *(f32 *)((s8 *)((u8 *)this) + 0x42C) = approach_value__13TObjEneBm3FlyFff(this, (f32) (*(f32 *)((s8 *)((u8 *)this) + 0x42C)), this->target_destination.y);
             clamp_flight_height__13TObjEneBm3FlyFv(this);
@@ -1487,7 +1485,6 @@ void TObjEneBm3Fly::play_pitched_cue() {
 #undef transition_enemy_state__9TObjEneDDFl
 #undef normalize_vector_xz__FP3Vec
 #undef choose_attack__13TObjEneBm3FlyFPv
-#undef update_dd_flag__13TObjEneBm3FlyFPv
 #undef update_collide_flag__13TObjEneBm3FlyFv
 
 #define cos_table_lookup (*(f32 (*)())&cos_table_lookup)
@@ -1928,10 +1925,8 @@ void vfunc_28__13TObjEneBm3FlyFv(void);
 void TObjEneBm3Fly__vt85(s32 arg0, u32 arg1, s32 arg2);
 void * __dt__13TObjEneBm3FlyFv(void *arg0, s16 arg1);
 u8 * TObjEneBm3Fly__ct(u8 *arg0, s32 arg1, u8 *arg2, s32 arg3, s32 arg4, u8 *arg5, u8 *arg6);
-u32 TObjEneEpsilon__sub_800B92F8(void *, void *, f32);
 s32 enemy_copy_target_destination__12TObjEneDD_STFv();
 void *__dt__12TObjEneDD_STFv(void *arg0, s16 arg1);
-u32 move_with_wall_slide_commit__9TObjEneDDFfff();
 s32 was_hit_by_ranged__13TObjEneBm3FlyFv();
 void free_collision_body_parts(void *);
 void __dl__7TObjectFPv(void *);
@@ -1995,7 +1990,7 @@ void enemy_spawn_jellen_effect__9TObjCharaFv();
 void enemy_spawn_zalure_effect__9TObjCharaFv();
 void vfunc_78__9TObjCharaFl();
 void vfunc_77__9TObjCharaFv();
-void vfunc_76__9TObjCharaFv();
+void vfunc_76__9TObjCharaFf();
 void vfunc_75__9TObjCharaFf();
 void clear_lobby_object_state__9TObjEnemyFv();
 void get_center__9TObjCharaFv();
@@ -2076,7 +2071,7 @@ void *__vt__13TObjEneBm3Fly[107] = {
     (void *)&reset_pose__9TObjCharaFv, (void *)&get_anim_node_position__9TObjCharaFlP3Vec, (void *)&vfunc_66__9TObjCharaFv, (void *)&vfunc_67__9TObjCharaFf,
     (void *)&get_pos__9TObjCharaFl, (void *)&apply_switch_attack__9TObjCharaFv, (void *)&enemy_spawn_jellen_effect__9TObjCharaFv, (void *)&trigger_switch_attack__9TObjCharaFv,
     (void *)&enemy_spawn_zalure_effect__9TObjCharaFv, (void *)&recalc_stats__9TObjCharaFv, (void *)&vfunc_74__9TObjEnemyFl, (void *)&vfunc_75__9TObjCharaFf,
-    (void *)&vfunc_76__9TObjCharaFv, (void *)&vfunc_77__9TObjCharaFv, (void *)&vfunc_78__9TObjCharaFl, (void *)&vfunc_79__9TObjEneDDFPl,
+    (void *)&vfunc_76__9TObjCharaFf, (void *)&vfunc_77__9TObjCharaFv, (void *)&vfunc_78__9TObjCharaFl, (void *)&vfunc_79__9TObjEneDDFPl,
     (void *)&apply_hit_message_flags__9TObjEnemyFPv, (void *)&apply_set_data__9TObjEnemyFPv, (void *)&clear_lobby_object_state__9TObjEnemyFv, (void *)&vfunc_83__12TObjEneDD_STFv,
     (void *)&vfunc_84__9TObjEneDDFv, (void *)&vfunc_85__9TObjEneDDFv, (void *)&vfunc_86__9TObjEneDDFv, (void *)&TObjEneBm3Fly__vt85,
     (void *)&vfunc_88__13TObjEneBm3FlyFv, (void *)&vfunc_89__13TObjEneBm3FlyFv, (void *)&vfunc_90__9TObjEneDDFv, (void *)&vfunc_91__9TObjEneDDFv,
@@ -2118,15 +2113,15 @@ void TObjEneBm3Fly::store_position() {
 
 void TObjEneBm3Fly::update_state_flag() {
 
-    if (TObjEneEpsilon__sub_800B92F8(this, *(void **)((s8 *)this->movementParameters + 8), *(*(f32 **)&lbl_805D50EC)) != 0U) {
+    if (TObjEneEpsilon__sub_800B92F8((u8 *)this, *(s32 *)((s8 *)this->movementParameters + 8), *(*(f32 **)&lbl_805D50EC)) != 0U) {
         *(s32 *)((s8 *)this + 0x428) = (s32) (*(s32 *)((s8 *)this + 0x428) | 2);
         return;
     }
     *(s32 *)((s8 *)this + 0x428) = (s32) (*(s32 *)((s8 *)this + 0x428) & 0xFFFFFFFD);
 }
 
-void update_dd_flag__13TObjEneBm3FlyFPv(void *arg0) {
-    if (move_with_wall_slide_commit__9TObjEneDDFfff() != 0U) {
+void update_dd_flag__13TObjEneBm3FlyFPv(void *arg0, f32 dx, f32 dz, f32 distance) {
+    if (((TObjEneDD *)arg0)->move_with_wall_slide_commit(dx, dz, distance) != NULL) {
         *(s32 *)((s8 *)arg0 + 0x428) = (s32) (*(s32 *)((s8 *)arg0 + 0x428) | 2);
         return;
     }
@@ -2274,8 +2269,8 @@ void TObjEneBm3Fly::run_task() {
         {
           var_f30 *= (3.0f);
         }
-        temp_f31 = var_f30 * ((f32 (*)(s32))cos_table_lookup)(rotation_y);
-        temp_f2 = var_f30 * (-((f32 (*)(s32))sin_table_lookup)(rotation_y));
+        temp_f31 = var_f30 * ((f32 (*)(s32))cos_table_lookup)(this->rotation.yaw);
+        temp_f2 = var_f30 * (-((f32 (*)(s32))sin_table_lookup)(this->rotation.yaw));
         *((f32 *) ((particle_effect) + 0x60)) = (f32) ((this->body_center_position.x) + temp_f31);
         *((f32 *) ((particle_effect) + 0x64)) = (f32) ((-1.5f) + (this->body_center_position.y));
         *((f32 *) ((particle_effect) + 0x68)) = (f32) ((this->body_center_position.z) + temp_f2);
