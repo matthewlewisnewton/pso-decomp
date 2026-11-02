@@ -69,3 +69,44 @@ unit folds, rather than relying on unit counts. Actual retained linker response
 inputs must equal the Ninja link edge, and every complete unit must select its
 compiled source object. Alignment gaps are reported separately and the final DOL
 must retain the original hash. No source-linked unit may be demoted to fallback.
+
+
+## Source-review repairs and deferred buffer ownership
+
+The Boss7 laser setup now keeps a live parameter record. Its source constant
+initializes the `params` member of `Boss7AttackParameterCopy`; trivial whole-union
+assignment copies that active member's representation, then the caller updates
+its real float member. The representation array is never selected or accessed.
+This preserves the original word-copy behavior without an unrelated aggregate
+lvalue, a pointer before the object, or float writes into character-array storage.
+The existing setup routine synchronously borrows that live record. Targeted
+GC/2.6 comparisons preserve every function and allocated non-code byte, symbol,
+alignment and relocation in the complete behavior object; this is separate from
+final current-main build and linkage acceptance.
+
+The newly introduced `QuestDownloadBuffers.cpp` and its single BSS split/link
+claim are deferred. They defined ten shared objects as raw arrays despite
+incompatible consumer record types and unresolved original source ownership.
+Removing only this added unit restores original fallback storage for
+`0x8058DE08..0x80596668`; it does not remove a source-linked unit from the PR base.
+The ten symbol entries remain unchanged from the base and have no generated
+force-active entries in this candidate. No other source recovery, symbol extent,
+retention entry, compiler profile or existing linked unit is removed by this
+bounded deferral. A fresh generated graph, retention check, original DOL and
+address-based no-loss comparison remain final merge checks.
+
+Task8 owns completion and integration of this deferred scope, coordinated with
+existing Quest owner task48. The exact incoming definitions and evidence remain
+preserved at `6afe7bb34e2862958ba8d3f048a723c02524a4c8` and in local frozen branch
+`codex/fork-pr226-quest-buffers-frozen`. Task48's public #203 supplies the real
+`QuestDownloadSlot[80]` contract; its private input-entry correction concerns a
+different table and is not a fix for all ten buffers. Task48 is retaining the
+shared record, text-buffer phase/lifetime and original-owner investigation. No
+parallel whole-buffer recovery is introduced here.
+
+The former candidate's reported 34,912-byte exact/linked gain for this buffer
+unit is therefore not part of the repaired candidate. Earlier aggregate metrics
+and full-build results apply to their named historical heads, not this repair.
+The user's merge process owns fresh current-main coverage, build, original-DOL
+and actual linker-input checks. The two upstream commit histories are retained,
+but this explicit deferral means their complete source scope is not all adopted.

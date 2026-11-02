@@ -59,6 +59,15 @@ typedef char Boss7AttackParamsSize[sizeof(Boss7AttackParams) == 0x14 ? 1 : -1];
 typedef char Boss7AttackParamsScale[offsetof(Boss7AttackParams, field_4) == 4 ? 1 : -1];
 typedef char Boss7AttackParamsRadius[offsetof(Boss7AttackParams, field_8) == 8 ? 1 : -1];
 typedef char Boss7AttackParamsTail[offsetof(Boss7AttackParams, field_C) == 0xC ? 1 : -1];
+// The native copy preserves the complete parameter representation. Trivial
+// union assignment expresses that copy while keeping params as the live member;
+// it also prevents MWCC from replacing the copy with floating-point field loads.
+// No access selects the representation member.
+union Boss7AttackParameterCopy {
+    Boss7AttackParams params;
+    u8 representation[sizeof(Boss7AttackParams)];
+};
+typedef char Boss7AttackCopyLayout[sizeof(Boss7AttackParameterCopy) == 0x14 && offsetof(Boss7AttackParameterCopy, params) == 0 ? 1 : -1];
 
 extern const s32 lbl_80472CB0[21] = {0x18, 0x1a, 0x1c, 0x1d, 0x1e, 0x1f, 0x22, 0x45, 0x4a, 0x5f, 0x60, 0x61, 0x62, 0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, -1};
 extern const Vec lbl_80472D04[10] = {
@@ -74,7 +83,7 @@ extern const Vec lbl_80472D04[10] = {
     {0.0f, -100.0f, 25.0f}
 };
 extern const Boss7AttackParams lbl_80472D7C = {0, 0.0f, 8.0f, 5.0f, 1};
-extern const Boss7AttackParams boss7_laser_particle_params = {0, 120.0f, 16.0f, 20.0f, 1};
+extern const Boss7AttackParameterCopy boss7_laser_particle_params = {{0, 120.0f, 16.0f, 20.0f, 1}};
 extern const Ent_802E88F8 lbl_80472DA4[68] = {
     {1, 0}, {3, 0}, {8, 0}, {15, 0}, {3, 0}, {40, 0}, {60, 0}, {50, 0},
     {68, 0}, {57, 0}, {61, 0}, {41, 0}, {17, 0}, {63, 10}, {21, 0}, {17, 0},
@@ -1938,7 +1947,7 @@ void TObjFish__sub_802E8EEC(u8 *arg0, u32 arg1, s32 _w2) {
 
 struct Fish_802ECBDC;
 void TBoss7LaserPtcl__sub_802E8FCC(u8 *arg0, u32 arg1) {
-    Boss7AttackParams copy_storage_802E8FCC;
+    Boss7AttackParameterCopy copy_storage_802E8FCC;
     struct { f32 v[3]; } sp8;
     s32 temp_r4_2;
     u32 boss7_laser_ptcl;
@@ -2053,7 +2062,7 @@ void TBoss7LaserPtcl__sub_802E8FCC(u8 *arg0, u32 arg1) {
                 }
             }
             copy_storage_802E8FCC = boss7_laser_particle_params;
-            copy_storage_802E8FCC.field_4 = **(f32 **)(arg0 + 0x620);
+            copy_storage_802E8FCC.params.field_4 = **(f32 **)(arg0 + 0x620);
             // The existing setup ABI borrows the representation of this live
             // parameter object; its float accesses select real float members.
             TObjEneDD::setup_instance((s32)((void *)arg0), (s32)((int)src), (u8 *)&copy_storage_802E8FCC, (s32)((int) (*(s32 *)((s8 *)arg0 + 0x718))));
