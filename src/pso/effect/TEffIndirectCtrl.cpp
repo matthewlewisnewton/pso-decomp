@@ -1,11 +1,11 @@
 #include "types.h"
 #include "pso/system/memory.h"
 #include "pso/effect/TEffIndirectCtrl.h"
+#include "pso/effect/TEffIndirectCtrl_802A88AC.h"
 
 extern u32 indirect_effect_tile_buffer;
 extern "C" {
 void read_disc_file(void *, void *);
-s16 calc_i8_tiled_texel_offset(u8, u8, s32);
 void *memset(void *, s32, u32);
 extern void *indinfo_dat_filename;
 extern u32 indirect_recipe_buffer;
