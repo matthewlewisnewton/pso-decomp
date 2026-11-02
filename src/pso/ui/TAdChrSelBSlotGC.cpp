@@ -21,7 +21,7 @@ void TAdChrSelBSlotGC::create_children() {
     if (o2 != NULL) {
         o2 = __ct__19TAdPlyChrSelPlateGCFv(o2, this, chr_sel_b_slot_plate_layout);
     }
-    *(void * *)&this->m_2c = o2;
+    this->m_2c = (TAdPlyChrSelPlateGC *)o2;
     o3 = __nw__7TObjectFUl(0x48C);
     if (o3 != NULL) {
         o3 = __ct__15TAdSubPlyItemGCFv(o3, this);
