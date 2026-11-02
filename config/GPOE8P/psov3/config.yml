@@ -469,6 +469,9 @@ force_active:
   - TItemEquipBase__sub_801191D0
   - TItemList__sub_801D39C8
   - TItemList__sub_801D58C8
+  - TItemList__sub_801D5A0C
+  - TItemList__sub_801D5A64
+  - TItemList__sub_801D5CF8
   - TItemLockCountCtrl__sub_80119238
   - TItemLockCountCtrl__sub_8011926C
   - TItemLockCountCtrl__sub_801192A0
@@ -4401,6 +4404,7 @@ force_active:
   - close__16TOFenceAncient04Fv
   - close__17TObjVoloptShutterFv
   - close__18TShopGetItemWindowFv
+  - close__19TShopKeepItemWindowFv
   - close__19TWindowSubShortMailFv
   - close__20TShopItemTecSequenceFPv
   - close__22TQuestVmDownLoadServerFv
@@ -4449,6 +4453,8 @@ force_active:
   - close_windows__9TObjLukerFPv
   - close_windows_and_advance__17TAdEnterPPPPassGCFPv
   - close_with_callback__22TChallenge4PItemSelectFv
+  - close_with_cancel_callback__19TShopKeepItemWindowFv
+  - close_with_ok_callback__19TShopKeepItemWindowFv
   - collect_beam_targets__16TObjEneNanoDragoFv
   - collect_body_contacts__10TObjPlayerFiPvPv
   - collect_candidate_players__12TBoss3VoloptFv
@@ -6037,6 +6043,8 @@ force_active:
   - handle_decide__26TWindowSubQuestBoardSelectFv
   - handle_decide__28TWindowSubSymbolChatPartsSetFv
   - handle_deposit_choice__18TCheckRoomSequenceFv
+  - handle_deposit_confirm__19TShopKeepItemWindowFv
+  - handle_deposit_list_select__19TShopKeepItemWindowFv
   - handle_descend_state__13TBoss5GryphonFl
   - handle_dpad_shortcuts__11TWindowChatFv
   - handle_equip_offer__20TShopArmorListWindowFv
@@ -12984,6 +12992,7 @@ force_active:
   - rebuild_area_keep_players__6TLobbyFv
   - rebuild_com_card_list__17TWindowSubComCardFii
   - rebuild_item_list__18TShopGetItemWindowFv
+  - rebuild_item_list__19TShopKeepItemWindowFv
   - rebuild_parts__15TBoss3VoloptP02Fv
   - receive_direct_attack__15TBoss3VoloptP02FPv19DirectAttackPayloadPvll
   - receive_direct_attack__15TObjEneMe1GiGueFPv19DirectAttackPayloadPvll
@@ -13573,6 +13582,7 @@ force_active:
   - reset_oscillation__11TItemMagSubFll
   - reset_pad_rumble_effects_and_channels__Fs
   - reset_placement_search_ring__13TUnk_804C4498Fv
+  - reset_position__9TItemListFPv
   - reset_quest_list_vm__22THunterGuildSeqOfflineFv
   - reset_random_enemies_mode__19TPlayerBattleCtrl4PFv
   - reset_random_enemies_mode__6TLobbyFv
@@ -15891,6 +15901,7 @@ force_active:
   - update_needle_attack__15TObjEneMe1GiGueFv
   - update_node_oscillation__11TItemMagSubFP10NJS_OBJECT
   - update_node_particle_state__12TObjEneSharkFP10NJS_OBJECT
+  - update_number_input__19TShopKeepItemWindowFv
   - update_object_view_visibility__10TObjCameraFff
   - update_object_view_visibility__13TObjHashiBaseFff
   - update_object_view_visibility__19TOComputerMachine01Fff
