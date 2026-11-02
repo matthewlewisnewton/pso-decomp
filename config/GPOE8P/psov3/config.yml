@@ -1825,6 +1825,7 @@ force_active:
   - __ct__17TObjParticleLobbyFP7TObjectPv
   - __ct__17TQuestThreadBoardFP7TObjectl
   - __ct__18G_BuyShopItem_6x5EFv
+  - __ct__18G_DropItem_DC_6x5FFv
   - __ct__18TAdLoadQuestCellGCFP7TObjectPv
   - __ct__18TAdLoadQuestLineGCFP7TObjectPv
   - __ct__18TChCrTagOccupationFv
@@ -6286,7 +6287,6 @@ force_active:
   - init_geometry__13TUnk_804B2578Fv
   - init_gx_lighting_defaults__Fv
   - init_hanger__13TUnk_80486924Fv
-  - init_header__6TLobbyFv
   - init_header__9TWindowDDFv
   - init_help_texts__15TWindowHelpItemFv
   - init_hp_and_state__11TBoss6Type1Fv
@@ -12880,7 +12880,7 @@ force_active:
   - prepare_save_data__23TAdSinglePlyChrSelectGCFv
   - present_frame_and_wait_vsync__Fv
   - process_download_entry__12TQuestListVMFv
-  - process_enemy_drop_request__FScsisiff
+  - process_enemy_drop_request__Flsisiff
   - process_key_input__19TWindowKeyBoardHardFUc
   - process_keyboard_input__17TObjItemNameEntryFv
   - process_lobby_action_14__18TObjCityDoor_LobbyFv
