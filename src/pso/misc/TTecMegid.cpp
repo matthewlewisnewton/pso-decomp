@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/TParticleCtrl.h"
 #include "types.h"
@@ -193,7 +194,7 @@ s32 is_technique_ready__8TTecCtrlFv();
 extern RecoveredGlobal_80235348_lbl_804CC510 tech_high_level_linear_power_table;
 extern RecoveredGlobal_80235348_lbl_804CC55C lbl_804CC55C;
 void queue_destruction__7TObjectFv(void *arg0);
-void mem_free(void *p);
+
 void __dl__7TObjectFPv(void *);
 extern TTecGiBartaData_80230B48 TTecMegid__emitter_bands[];
 extern void *__vt__9TTecMegid[];
@@ -221,7 +222,7 @@ void *get_bml_model(s32, u32);
 s32 attach_particle_model(void *, void *, s32, int, int, f32);
 void *spawn_particle_effect_with_rotation(void *, void *, u32, u16);
 void *spawn_continuous_particle_effect_with_flags(void *, u32, u16);
-void **mem_alloc(u32, s32);
+
 extern s32 technique_effect_bml;
 extern s32 lbl_805D63B0;
 extern const f32 lbl_805DC880;
@@ -288,7 +289,7 @@ void TTecMegid::spawn_particle_emitters() {
   sp8.a = self->f54;
   sp8.b = 0;
   sp8.c = self->f5c;
-  self->emitters = mem_alloc(TTecMegid__emitter_bands[this->band].count * 4, self->f54);
+  self->emitters = static_cast<void **>(::operator new[](TTecMegid__emitter_bands[this->band].count * 4));
   for (i = 0; i < ((Data_802351B4 *) TTecMegid__emitter_bands)[this->band].count; i++)
   {
     mode = 0;
@@ -403,7 +404,7 @@ TTecGiBarta_80230B48 *__dt__9TTecMegidFv(TTecGiBarta_80230B48 *self, s16 deletin
                 queue_destruction__7TObjectFv((self->emitters[i]));
             }
         }
-        mem_free(self->emitters);
+        ::operator delete[](self->emitters);
         ((TObjPlayer *)self)->destroy_technique_effect_resources(0);
         if (deleting > 0) __dl__7TObjectFPv(self);
     }

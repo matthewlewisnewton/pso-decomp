@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
@@ -192,7 +193,6 @@ void *find_entity_by_id(u16 id);
 void update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
 
 void *create_particle_emitter(void *pos, s32 id);
-void *mem_alloc(u32 size);
 
 typedef struct RecoveredFields_80238D10_arg0 RecoveredFields_80238D10_arg0;
 typedef struct RecoveredGlobal_80238D10_lbl_804CC510 RecoveredGlobal_80238D10_lbl_804CC510;
@@ -207,7 +207,7 @@ typedef char RecoveredGlobal_80238D10_lbl_804CC55C_size[((sizeof(RecoveredGlobal
 void TTecRaZonde::vfunc_8(void *) {
     struct Self_80238C6C *self = (struct Self_80238C6C *)this;
     u32 i;
-    self->emitters = (s32 *)mem_alloc(TTecRaZonde__band_profile_table[self->band].count * 4);
+    self->emitters = (s32 *)::operator new[](TTecRaZonde__band_profile_table[self->band].count * 4);
     for (i = 0; i < TTecRaZonde__band_profile_table[self->band].count; i++) {
         self->emitters[i] = (s32)create_particle_emitter(&self->points[i], TTecRaZonde__band_profile_table[self->band].entries[i].entry);
     }
@@ -277,10 +277,6 @@ struct Self_80238EC8 {
     u8 pad2[0xEC - 0x7C];
     void **objs;
 };
-extern "C" {
-void mem_free(void *);
-
-}
 TTecRaZonde::~TTecRaZonde() {
     u32 i;
     for (i = 0; i < ((RProfile_80238F84 *)TTecRaZonde__band_profile_table)[((Self_80238EC8 *)this)->band].count; i++) {
@@ -289,7 +285,7 @@ TTecRaZonde::~TTecRaZonde() {
             ((Self_80238EC8 *)this)->objs[i] = 0;
         }
     }
-    mem_free(((Self_80238EC8 *)this)->objs);
+    ::operator delete[](((Self_80238EC8 *)this)->objs);
 }
 
 

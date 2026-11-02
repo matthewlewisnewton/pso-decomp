@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/ModelNodePositionCapture.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
@@ -578,8 +579,6 @@ void *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags);
 void *create_particle_emitter(void *pos, s32 id);
 s32 __ct__11TObjControlFP7TObject(s32, s32);
 s32 angle_diff_s16(s32, s32);
-s32 mem_free(s32 *);
-s32 * mem_alloc(s32);
 s32 project_actor_to_ground(void *, void *, int);
 s32 __nw__7TObjectFUl(s32);
 int pick_random_active_player__14TBoss6PlotFalzFv(void*);
@@ -1431,7 +1430,7 @@ void TBoss6Type2::drop_random_rocks(s32 arg0, s32 arg1) {
     if (cnt > avail) {
         cnt = avail;
     }
-    buf = mem_alloc(cnt * 4);
+    buf = static_cast<s32*>(::operator new[](cnt * 4));
     step = (s32)(31.0f * (3.0517578e-05f * (f32)rand()));
     j = 0;
     for (k = 0; k < cnt; k++) {
@@ -1449,7 +1448,7 @@ void TBoss6Type2::drop_random_rocks(s32 arg0, s32 arg1) {
         avail_tbl[j] = 0;
     }
     TBoss6Type2__sub_80356E50(buf, cnt, arg1);
-    mem_free(buf);
+    ::operator delete[](buf);
     play_sound_effect(0x4006AB1D, (const Vec *)(((u8 *)&TBoss6Type2__data_8047105C)), 0, 1);
 }
 

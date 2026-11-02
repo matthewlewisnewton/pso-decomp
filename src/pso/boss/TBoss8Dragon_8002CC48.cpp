@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/vector.h"
 #include "pso/system/NinjaTypes.h"
@@ -184,8 +185,6 @@ void set_chunk_material_override_pair(s32, s32, s32, s32);
 void draw_chunk_object(void *);
 void queue_destruction__7TObjectFv();
 void *__nw__7TObjectFUl(int);
-void mem_free(void *p);
-void *mem_alloc(u32);
 f32 newton_sqrtf(f32);
 f32 calc_nearest_crater_distance(void *);
 f32 horizontal_distance_squared(void *, void *);
@@ -459,7 +458,7 @@ void update_dragon_trail_uvs(Obj_8002D4C0 *self) {
     }
 }
 
-void TBoss8Dragon::free_resources() { mem_free((void *)lbl_805D4B78); lbl_805D4B78 = 0; mem_free((void *)lbl_805D4B6C); lbl_805D4B6C = 0; ((int (*)(void*, void*))destroy__12TBoss8DragonFPvs)((void*)lbl_805D4B64, (void*)1); lbl_805D4B64 = 0; ((int (*)(void*, void*))destroy__12TBoss8DragonFPvs)((void*)lbl_805D4B68, (void*)1); lbl_805D4B68 = 0; ((int (*)(void*, void*))destroy__12TBoss8DragonFPvs)((void*)lbl_805D4B60, (void*)1); lbl_805D4B60 = 0; }
+void TBoss8Dragon::free_resources() { ::operator delete[]((void *)lbl_805D4B78); lbl_805D4B78 = 0; ::operator delete[]((void *)lbl_805D4B6C); lbl_805D4B6C = 0; ((int (*)(void*, void*))destroy__12TBoss8DragonFPvs)((void*)lbl_805D4B64, (void*)1); lbl_805D4B64 = 0; ((int (*)(void*, void*))destroy__12TBoss8DragonFPvs)((void*)lbl_805D4B68, (void*)1); lbl_805D4B68 = 0; ((int (*)(void*, void*))destroy__12TBoss8DragonFPvs)((void*)lbl_805D4B60, (void*)1); lbl_805D4B60 = 0; }
 
 s32 TBoss8Dragon__sub_8002DAEC(void *arg0) {
     return *(s32 *)((s8 *)arg0 + 0x14) + ((*(s32 *)((s8 *)arg0 + 0xC) + 3) * 2);
@@ -471,9 +470,9 @@ s32 TBoss8Dragon__sub_8002DB04(void *arg0) {
 
 void *destroy__12TBoss8DragonFPvs(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
-        mem_free((void *)(*(s32 *)((s8 *)arg0 + 0x10)));
+        ::operator delete[]((void *)(*(s32 *)((s8 *)arg0 + 0x10)));
         *(s32 *)((s8 *)arg0 + 0x10) = 0;
-        mem_free((void *)(*(s32 *)((s8 *)arg0 + 0x14)));
+        ::operator delete[]((void *)(*(s32 *)((s8 *)arg0 + 0x14)));
         *(s32 *)((s8 *)arg0 + 0x14) = 0;
         *(s32 *)((s8 *)arg0 + 0x18) = 0;
         *(s32 *)((s8 *)arg0 + 0x1C) = 0;
@@ -498,8 +497,8 @@ Grid_8002DB7C *init_grid_mesh__12TBoss8DragonFPviiiPv(Grid_8002DB7C *g, s32 widt
     g->strips = strips;
     g->materialWords = materialWords;
     g->stripWords = g->width * 6 + 1;
-    g->polygons = (u16 *)mem_alloc((g->materialWords + 5 + g->stripWords * g->strips) * 2);
-    g->vertices = (u32 *)mem_alloc((g->width * (g->strips + 1) * 6 + 3) * 4);
+    g->polygons = (u16 *)::operator new[]((g->materialWords + 5 + g->stripWords * g->strips) * 2);
+    g->vertices = (u32 *)::operator new[]((g->width * (g->strips + 1) * 6 + 3) * 4);
     p = (s16 *)g->polygons;
     for (i = 0; i < g->materialWords; i++) {
         *p++ = *material++;

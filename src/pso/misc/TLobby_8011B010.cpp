@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/protocol/protocol_types.h"
 #include "types.h"
 #include "pso/misc/TLobby_801E43E4.h"
@@ -11,22 +12,20 @@
 extern "C" void *__ct__9FloorItemFv(void *item);
 
 extern "C" {
-void *mem_alloc(u32 size);
 extern s32 item_sync_counter_table;
 extern s32 item_id_counter_table;
 extern s32 quest_object_entries;
-void mem_free(void *p);
 
 TItemIdCounters::~TItemIdCounters() {
-    mem_free((void *)item_sync_counter_table);
+    ::operator delete[]((void *)item_sync_counter_table);
     item_sync_counter_table = 0;
-    mem_free((void *)item_id_counter_table);
+    ::operator delete[]((void *)item_id_counter_table);
     item_id_counter_table = 0;
 }
 
 TItemIdCounters::TItemIdCounters() {
-    item_id_counter_table = (s32)mem_alloc(48);
-    item_sync_counter_table = (s32)mem_alloc(48);
+    item_id_counter_table = (s32)::operator new[](48);
+    item_sync_counter_table = (s32)::operator new[](48);
     TLobby::reset_item_id_counters();
     lbl_805D54E0 = 0;
     build_item_id_mode = 0;

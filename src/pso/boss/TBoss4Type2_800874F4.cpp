@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/system/BmlResourceClass.h"
 #include "types.h"
@@ -180,12 +181,10 @@ struct GenEntry_8008767C { s32 id; Gen_8008767C fn; };
 extern "C" {
 void set_particle_tint_color(u8 *arg0, void *arg1);
 s32 release_texture_list(void*);
-void mem_free(void *p);
 extern s32 particle_area_entry_table;
 extern u32 TParticleCtrl__regular_bml_resource;
 extern u32 TParticleCtrl__texture_list;
 s32 read_disc_file(s32, s32);
-s32 mem_alloc(s32);
 // particle_pool_limit: declared s32 above (part 1)
 // particle_global_entry_table: declared s32 above (part 1)
 u8 *create_ballistic_particle(u8 *arg0, u8 *arg1, u8 *arg2, s32 arg3, u16 arg4, s16 arg5);
@@ -639,9 +638,9 @@ void set_particle_tint_color(u8 *arg0, void *arg1) {
 
 void set_particle_draw_scale(void* p, f32 a, f32 b) { *(f32*)((char*)p + 0xa4) = a; *(f32*)((char*)p + 0xa8) = b; }
 
-void TParticleCtrl::free_system() { mem_free((void *)particle_global_entry_table); particle_global_entry_table = 0; }
+void TParticleCtrl::free_system() { ::operator delete[]((void *)particle_global_entry_table); particle_global_entry_table = 0; }
 void TParticleCtrl::free_all() {
-    mem_free((void *)particle_area_entry_table);
+    ::operator delete[]((void *)particle_area_entry_table);
     particle_area_entry_table = 0;
     if ((u32) TParticleCtrl__regular_bml_resource != 0U) {
         delete (BmlResource *)((void*)TParticleCtrl__regular_bml_resource);
@@ -655,7 +654,7 @@ void TParticleCtrl::free_all() {
 }
 void TParticleCtrl::init_particle_buffer() {
     s32 temp_r3;
-    temp_r3 = read_disc_file((s32)TParticleCtrl__particle_entry_path, ((*(s32 *)&particle_global_entry_table) = mem_alloc(0x13000)));
+    temp_r3 = read_disc_file((s32)TParticleCtrl__particle_entry_path, ((*(s32 *)&particle_global_entry_table) = reinterpret_cast<s32>(::operator new[](0x13000))));
     particle_pool_limit = 0;
     if (temp_r3 >= 0) {
         particle_pool_limit = (u32) temp_r3 / 152U;
@@ -684,7 +683,7 @@ void load_particle_entry_resources(void) {
     } else {
         sprintf(name, lbl_804394BC, area);
     }
-    read_disc_file((s32)name, particle_area_entry_table = mem_alloc(0x2600));
+    read_disc_file((s32)name, particle_area_entry_table = reinterpret_cast<s32>(::operator new[](0x2600)));
     p = new BmlResource(1, (BmlResourceDescriptor *)(particle_regular_bml_descriptor), 0, 0, (void *)(0));
     TParticleCtrl__regular_bml_resource = (u32)p;
     TParticleCtrl__texture_list = (u32)load_gvm_texture_file((s32)lbl_804394D4);

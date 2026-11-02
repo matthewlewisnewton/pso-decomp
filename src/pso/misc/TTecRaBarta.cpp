@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/TParticleCtrl.h"
@@ -158,7 +159,6 @@ void *get_bml_motion(void *, int);
 void *get_bml_model(void *, int);
 void attach_particle_model(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
 
-void *mem_alloc(u32 size);
 extern void *technique_effect_bml;
 extern void *lbl_805D63B0;
 s32 is_technique_ready__8TTecCtrlFv();
@@ -200,7 +200,7 @@ void TTecRaBarta::vfunc_8(void *pos) {
   u32 i;
   Vec_80237494 point;
   Emitter_80237494 *binding;
-  self->emitters = (void **)mem_alloc(rabarta_band_emitter_table[self->band].count * 4);
+  self->emitters = (void **)::operator new[](rabarta_band_emitter_table[self->band].count * 4);
   for (i = 0; i < rabarta_band_emitter_table[self->band].count; i++)
   {
     VecCopy((Vec *)&point, (const Vec *)(self->source + 0x38));
@@ -399,7 +399,6 @@ struct Self_80237A94 {
     void **objs;
 };
 
-void mem_free(void *p);
 
 void *TTecRaBarta__ct(void *self_, void *source, void *origin, void *pos, void *level);
 void create__11TTecRaBartaFPvPvPvPv(void *arg0, void *arg1, void *arg2, void *arg3);
@@ -433,7 +432,7 @@ struct Self_80237A94 *__dt__11TTecRaBartaFv(struct Self_80237A94 *self, s16 arg1
             }
         }
         stop_sound_request((s32)self->emitters);
-        mem_free(self->objs);
+        ::operator delete[](self->objs);
         __dt__13TUnk_804CC148Fv((void *)((TUnk_804CC148 *)self), 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(self);
