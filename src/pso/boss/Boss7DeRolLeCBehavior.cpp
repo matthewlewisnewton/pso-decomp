@@ -55,6 +55,10 @@ struct Boss7AttackParams {
     f32 field_C;
     s32 field_10;
 };
+typedef char Boss7AttackParamsSize[sizeof(Boss7AttackParams) == 0x14 ? 1 : -1];
+typedef char Boss7AttackParamsScale[offsetof(Boss7AttackParams, field_4) == 4 ? 1 : -1];
+typedef char Boss7AttackParamsRadius[offsetof(Boss7AttackParams, field_8) == 8 ? 1 : -1];
+typedef char Boss7AttackParamsTail[offsetof(Boss7AttackParams, field_C) == 0xC ? 1 : -1];
 
 extern const s32 lbl_80472CB0[21] = {0x18, 0x1a, 0x1c, 0x1d, 0x1e, 0x1f, 0x22, 0x45, 0x4a, 0x5f, 0x60, 0x61, 0x62, 0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, -1};
 extern const Vec lbl_80472D04[10] = {
@@ -879,7 +883,6 @@ void set_swim_direction__8TObjFishFPv(void *arg0);
 #define release_laser_light__15TBoss7LaserPtclFPv ((s32 (*)(void *, int))release_laser_light__15TBoss7LaserPtclFPv)
 #define set_swim_direction__8TObjFishFPv ((void (*)(void *, s32))set_swim_direction__8TObjFishFPv)
 
-struct ByteBlock_14 { u8 bytes[0x14]; };
 
 struct Pt_802E95F8 { f32 x, y, z; };
 
@@ -1935,8 +1938,7 @@ void TObjFish__sub_802E8EEC(u8 *arg0, u32 arg1, s32 _w2) {
 
 struct Fish_802ECBDC;
 void TBoss7LaserPtcl__sub_802E8FCC(u8 *arg0, u32 arg1) {
-    struct CopyStack_802E8FCC { u8 bytes[0x14]; };
-    CopyStack_802E8FCC copy_storage_802E8FCC;
+    Boss7AttackParams copy_storage_802E8FCC;
     struct { f32 v[3]; } sp8;
     s32 temp_r4_2;
     u32 boss7_laser_ptcl;
@@ -2050,9 +2052,11 @@ void TBoss7LaserPtcl__sub_802E8FCC(u8 *arg0, u32 arg1) {
                     (*(TUnk_804E4788 **)((s8 *)arg0 + 0x720))->push_ring_point((const Vec *)src);
                 }
             }
-            *(ByteBlock_14 *)(copy_storage_802E8FCC.bytes) = *(const ByteBlock_14 *)((s32) ((u8 *)((void *)((u8 *)&boss7_laser_particle_params + -4))) + 4);
-            (*(f32 *)(copy_storage_802E8FCC.bytes + 0x4)) = *(f32 *)((s8 *)(*(f32 **)((s8 *)arg0 + 0x620)) + 0);
-            TObjEneDD::setup_instance((s32)((void *)arg0), (s32)((int)src), (u8 *)copy_storage_802E8FCC.bytes, (s32)((int) (*(s32 *)((s8 *)arg0 + 0x718))));
+            copy_storage_802E8FCC = boss7_laser_particle_params;
+            copy_storage_802E8FCC.field_4 = **(f32 **)(arg0 + 0x620);
+            // The existing setup ABI borrows the representation of this live
+            // parameter object; its float accesses select real float members.
+            TObjEneDD::setup_instance((s32)((void *)arg0), (s32)((int)src), (u8 *)&copy_storage_802E8FCC, (s32)((int) (*(s32 *)((s8 *)arg0 + 0x718))));
             if ((u32) *(u32 *)((s8 *)arg0 + 0x7A8) != 0U) {
                 if (is_state_2__15TBoss7LaserPtclFv(*(void **)((s8 *)arg0 + 0x7A8)) != 0) {
                     *(s32 *)((s8 *)arg0 + 0x728) = 3;
