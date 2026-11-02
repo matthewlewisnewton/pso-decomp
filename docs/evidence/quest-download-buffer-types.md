@@ -79,9 +79,10 @@ replaced duplicate cache-entry/page views with the reviewed field types and
 filename accesses with the actual character array. The two cached-name readers
 now use the actual 80 bucket heads and read encoded name bytes at offsets 2/3,
 without treating the name as a one-element array. The exact-match output carries
-a byte pointer. The prefix-match output retains its legacy pointer boundary
-until the separate primary-query reader is repaired; no complete query-interface
-or variable-record-bound qualification is claimed.
+a byte pointer. At the `57cff1c8` checkpoint the prefix-match output retained its
+legacy pointer boundary. That bounded access rewrite passed
+[independent review](https://github.com/matthewlewisnewton/pso-decomp/pull/238#issuecomment-6569570341);
+complete source integration and storage lifetime remained on hold.
 
 A retained-original census covers all static references to the two cache globals
 and 30 identified encoded-record producer/consumer interfaces across 5,067
@@ -104,6 +105,28 @@ retained object, preserving all four of its recovered functions. Only copied,
 pinned headers and an isolated source snapshot were used; the other worker's
 files were not edited. This is composition evidence for that immutable candidate,
 not adoption of #203 or current-main acceptance.
+
+The next released follow-up repairs the two query callers. `803F0268` now gives
+the cached-name lookup an actual `Out_803E8B1C` local and reads its `id` and byte
+pointer fields; it no longer passes an unrelated `Info_803F0138` through a cast.
+`803F0500` reads the encoded prefix at byte offsets 2/3, and the prefix output
+now carries a byte pointer. Signatures, failure branches and acquisition
+arguments are preserved. Both lookup misses initialize their offset/ID sentinel;
+record pointers are read only on success. A separate existing concern remains:
+the primary lookup does not initialize `i1.id` on failure, yet a cached-only
+success passes it to slot acquisition. This follow-up does not initialize it or
+claim that branch's source contract is valid.
+
+Two fresh development provider compiles checked this follow-up. The first is
+whole-object identical to the retained 153-function baseline. The second
+composes the released edits with published #203
+`1602f9b5732df211bdf63e6bf907ca8d1c4d8d82` and the frozen reviewed ID API; it is
+whole-object identical to #203's retained provider object, including its four
+recovered functions. All actual baseline compile inputs were independently
+rebound to that published head and its main base
+`909d120b21f7e875e71a5c1d0d3a7799a08078e9`. The complete private composition is
+prepared for later validation; neither the API overlay nor #203 is adopted by
+this checkpoint, and no duplicate full build was launched.
 
 Two common-base experiments remain failed diagnostics. Directly naming the
 separate cache/header objects loses the existing exact matches for
@@ -166,6 +189,16 @@ that base plus +0x990 for the following slot table. `803EA428` passes +0x8C0 to
 the item-query producers and reads halfwords at +0x8C0/+0x8C8 and a word at
 +0x8C4. This identifies a result workspace in the final 0xD0 bytes, but does
 not establish the first 0x8C0 bytes' object type or a complete aggregate owner.
+
+A further native relocation census and straight-line argument analysis found
+15 constant request IDs among the dispatcher's callers. None selects the
+primary-dictionary mutation commands 30/31 or command 24, the only observed
+route to `EE580`. The shipped primary records have at most 15 distinct query
+key pairs. These findings narrow the earlier hypothetical query-list overflow;
+they do not demonstrate a reachable original-binary defect. They are bounded
+static-route evidence, not a general API guarantee or proof against raw-address
+entry, corruption, replacement assets or callbacks. Complete producer and
+storage contracts remain required.
 
 The slot-table definition must adopt #203's canonical record header together
 with its reviewed consumers and allocator interfaces. The four exact functions

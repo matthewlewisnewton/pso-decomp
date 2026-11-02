@@ -253,9 +253,7 @@ struct Buf_803E82AC {
     u8 hdr[0x400];
 };
 
-struct Ent_803E8C2C { u8 pad[2]; u8 len; char name[1]; };
-
-struct Out_803E8C2C { s16 a; s16 id; s16 len; s16 pre; u8 pad[4]; Ent_803E8C2C *ent; };
+struct Out_803E8C2C { s16 a; s16 id; s16 len; s16 pre; u8 pad[4]; u8 *ent; };
 
 struct Ent_803E9DE0 { u8 a; u8 b; u8 off; u8 d; };
 
@@ -1733,9 +1731,7 @@ s32 TQuestVmDownLoadServer__sub_803E8C2C(char *arg0, s16 arg1, Out_803E8C2C *arg
     arg2->id = ((off / 1024) << 12) | (off % 1024);
     arg2->len = blen;
     arg2->pre = pre;
-    // Preserve the legacy primary-query output boundary until its reader is
-    // repaired; this lookup only interprets the encoded record as bytes.
-    arg2->ent = reinterpret_cast<Ent_803E8C2C *>(found);
+    arg2->ent = found;
     return 1;
 }
 #pragma pop
@@ -4603,7 +4599,7 @@ s32 find_symbol_entry__22TQuestVmDownLoadServerFPvsPv(const char *name, s16 len,
 s32 TQuestVmDownLoadServer__sub_803F0268(const char *name, s16 len, Out_803F0268 *out) {
     char buf[0x50];
     Info_803F0138 i1;
-    Info_803F0138 i2;
+    Out_803E8B1C i2;
     s32 max;
     s32 r1;
     s32 r2;
@@ -4614,7 +4610,7 @@ s32 TQuestVmDownLoadServer__sub_803F0268(const char *name, s16 len, Out_803F0268
     strncpy(buf, name, len);
     buf[len] = 0;
     r1 = find_symbol_entry__22TQuestVmDownLoadServerFPvsPv(buf, len, &i1);
-    r2 = lookup_name_entry__22TQuestVmDownLoadServerFPvsPv((char *)(buf), len, (Out_803E8B1C *)(&i2));
+    r2 = lookup_name_entry__22TQuestVmDownLoadServerFPvsPv((char *)(buf), len, &i2);
     if (r1 == 0 && r2 == 0) {
         return 0;
     }
@@ -4627,9 +4623,9 @@ s32 TQuestVmDownLoadServer__sub_803F0268(const char *name, s16 len, Out_803F0268
         out->count = TQuestVmDownLoadServer__sub_803F03B4(i1.p, out->ents, 0, &max);
     }
     if (r2 == 1) {
-        out->count = TQuestVmDownLoadServer__sub_803F03B4(i2.p, out->ents, out->count, &max);
+        out->count = TQuestVmDownLoadServer__sub_803F03B4(i2.ent, out->ents, out->count, &max);
     }
-    out->x4 = r = TQuestVmDownLoadServer::acquire_slot_entry(i1.id, i1.off, i2.off, max);
+    out->x4 = r = TQuestVmDownLoadServer::acquire_slot_entry(i1.id, i1.off, i2.id, max);
     if (r == 0xFFFFFFFF) {
         return 0;
     }
@@ -4662,13 +4658,13 @@ s32 TQuestVmDownLoadServer__sub_803F0500(u8 *name, s16 len, Out_803E8C2C *out) {
         for (; (u16)(p[0] + (p[1] << 8)) != 0; p += (u16)(p[0] + (p[1] << 8))) {
             s16 m;
             s32 r;
-            Ent_803E8C2C *e = (Ent_803E8C2C *)p;
-            n = e->len;
-            m = TQuestVmDownLoadServer::match_prefix_length((u8 *)e->name, name, (s16)n);
+            u8 *e = p;
+            n = e[2];
+            m = TQuestVmDownLoadServer::match_prefix_length(e + 3, name, (s16)n);
             if (m >= pre) {
                 pre = m + 1;
             }
-            r = strncmp(e->name, (char *)name, (s16)n);
+            r = strncmp((const char *)(e + 3), (char *)name, (s16)n);
             if (r == 0) {
                 if ((s16)n == len && first) {
                     return 2;
@@ -4676,7 +4672,7 @@ s32 TQuestVmDownLoadServer__sub_803F0500(u8 *name, s16 len, Out_803E8C2C *out) {
                 blen = n;
                 found = p;
             } else if (r > 0) {
-                if (strncmp(e->name, (char *)name, len) == 0 && first) {
+                if (strncmp((const char *)(e + 3), (char *)name, len) == 0 && first) {
                     return 2;
                 }
                 break;
@@ -4698,7 +4694,7 @@ s32 TQuestVmDownLoadServer__sub_803F0500(u8 *name, s16 len, Out_803E8C2C *out) {
     out->id = found - page;
     out->len = blen;
     out->pre = pre;
-    out->ent = (Ent_803E8C2C *)found;
+    out->ent = found;
     return 1;
 }
 
