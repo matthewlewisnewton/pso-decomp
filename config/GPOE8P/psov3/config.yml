@@ -1419,6 +1419,7 @@ force_active:
   - TQuestListChallenge__name
   - TQuestListChallenge__stage_table
   - TQuestListChallenge__vt9
+  - TQuestListVM__class_name_string
   - TQuestListVM__sub_8021884C
   - TQuestThreadBoard__class_name
   - TQuestThread__class_name
