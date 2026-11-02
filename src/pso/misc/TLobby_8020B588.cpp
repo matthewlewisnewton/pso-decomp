@@ -1,5 +1,9 @@
-#include "types.h"
 #include "pso/system/byteswap.h"
-#include "pso/misc/TLobby.h"
+#include "pso/unk/text_8020B47C.h"
 
-void TLobby::bswap_4_words() { bswap_32((u32 *)this); bswap_32((u32 *)((char*)this + 0x4)); bswap_32((u32 *)((char*)this + 0x8)); bswap_32((u32 *)((char*)this + 0xc)); }
+extern "C" void bswap_4_words__6TLobbyFv(FloorFlagsBuffer *buffer) {
+    bswap_32(&buffer->object_offset);
+    bswap_32(&buffer->word_04);
+    bswap_32(&buffer->enemy_offset);
+    bswap_32(&buffer->word_0c);
+}
