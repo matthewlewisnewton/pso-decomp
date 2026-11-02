@@ -180,6 +180,15 @@ extern const f32 lbl_805DE568;
 extern const f32 lbl_805DE570;
 extern const f32 lbl_805DE574;
 extern const f32 lbl_805DE578;
+extern const f32 TAdMultiPlyChrSelectGC__data_805DE584;
+extern const f32 lbl_805DE588;
+extern const f32 lbl_805DE58C;
+extern const f32 lbl_805DE590;
+extern const f32 lbl_805DE594;
+extern const f32 lbl_805DE598;
+extern const f32 lbl_805DE59C;
+extern const f32 lbl_805DE5A0;
+extern const f32 lbl_80471CE0[2];
 
 void *TAdMultiPlyChrSelectGC__data_804E0A48[4] = {
     (void *)0x0, (void *)0x0, (void *)0x0, (void *)0x0,
@@ -360,6 +369,39 @@ void TAdMultiPlyChrSelectGC__sub_802C561C(S_802C50EC *self) {
     }
 }
 
+#pragma push
+#pragma fp_contract on
+void TAdMultiPlyChrSelectGC__sub_802C5688(s32 arg0) {
+    S_802C50EC *self = (S_802C50EC *)arg0;
+    u32 cell[2];
+    s32 *selected = self->sel[TAdMultiPlyChrSelectGC__data_805D67D8];
+    s32 row = selected[self->f4EC] + 1;
+    s32 col = self->f4EC + 1;
+    s32 *entry = &TAdMultiPlyChrSelectGC__data_804E0A68[row][col];
+    if (*entry == -1) {
+        play_sound_effect(0x53F06, (const Vec *)NULL, 0, 0);
+        return;
+    }
+    TAdMultiPlyChrSelectGC__data_804E0AE0[TAdMultiPlyChrSelectGC__data_805D67D8] = 1;
+    *entry = -1;
+    ((s32 *)&TAdMultiPlyChrSelectGC__data_804E0A48)[TAdMultiPlyChrSelectGC__data_805D67D8] = selected[self->f4EC] + self->f4EC * 4;
+    self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].x = self->quad[selected[self->f4EC]][self->f4EC].x;
+    self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].z = self->quad[self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC]][self->f4EC].z;
+    self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].y = self->quad[self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC]][self->f4EC].y;
+    self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].w = self->quad[self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC]][self->f4EC].w;
+    self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].u0 = TAdMultiPlyChrSelectGC__data_805DE56C;
+    self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].v0 = (f32)TAdMultiPlyChrSelectGC__data_805D67D8 * lbl_80471CE0[1] * TAdMultiPlyChrSelectGC__data_805DE584;
+    self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].u1 = lbl_80471CE0[0] * TAdMultiPlyChrSelectGC__data_805DE584;
+    self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].v1 = ((f32)TAdMultiPlyChrSelectGC__data_805D67D8 * lbl_80471CE0[1] + lbl_80471CE0[1]) * TAdMultiPlyChrSelectGC__data_805DE584;
+    self->a[self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC]][self->f4EC] = 0;
+    TAdMultiPlyChrSelectGC::add_selected_slot();
+    TAdMultiPlyChrSelectGC__data_805D67D8 = ((s32 (*)(void *))find_active_slot__22TAdMultiPlyChrSelectGCFv)(self);
+    TAdMultiPlyChrSelectGC::find_first_open_cell((s32)self, cell);
+    self->f4EC = cell[1] - 1;
+    self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC] = cell[0] - 1;
+}
+#pragma pop
+
 void TAdMultiPlyChrSelectGC::init_slot_position(s32 arg1, s32 arg2, s32 arg3) {
     S_802C5944 *arg0 = (S_802C5944 *)this;
     copy_vec2__28TWindowSubSymbolChatPartsSetFPv(&arg0->v[arg2][arg3]);
@@ -522,6 +564,55 @@ void TAdMultiPlyChrSelectGC::move_cursor(s32 x_, s32 y_, s32 dx, s32 dy, s32 dep
     }
 }
 
+s32 TAdMultiPlyChrSelectGC__sub_802C5F1C(void *arg0, int arg1) {
+    S_802C50EC *self = (S_802C50EC *)arg0;
+    u32 i;
+    u32 j;
+    s32 cnt;
+    s32 idx;
+    f32 uu;
+    f32 a;
+    f32 b;
+
+    /* Per-player 4x3 grid of selection quads: cell texture coords scale the shared
+       (u,v) page, with the active-slot column clamped to 3. */
+    for (i = 0; i < 4; i++) {
+        for (j = 0; j < 3; j++) {
+            cnt = TAdMultiPlyChrSelectGC__data_805D67D8;
+            uu = TAdMultiPlyChrSelectGC__data_805DE56C;
+            idx = 3;
+            if (cnt < 4) {
+                idx = cnt;
+            }
+            /* All quad stores route through the re-cast arg0, and the identity
+               i++/i-- pair between the v0 and u1 stores is load-bearing: it
+               re-ties the allocator onto orig's row-pointer/clamp numbering. */
+            ((S_802C50EC *)arg0)->quad[i][j].u0 = uu;
+            a = lbl_805DE588 * (f32)idx;
+            b = lbl_805DE588 + a;
+            ((S_802C50EC *)arg0)->quad[i][j].v0 = a * TAdMultiPlyChrSelectGC__data_805DE584;
+            i++;
+            i--;
+            ((S_802C50EC *)arg0)->quad[i][j].u1 = lbl_805DE58C;
+            ((S_802C50EC *)arg0)->quad[i][j].v1 = b * TAdMultiPlyChrSelectGC__data_805DE584;
+        }
+    }
+
+    /* Fixed home slots for the trailing (unpaired) columns. */
+    self->cursor[0][4] = lbl_805DE590;
+    self->cursor[0][5] = lbl_805DE594;
+    ((S_802C50EC *)arg0)->cursor[0][6] = lbl_805DE598;
+    ((S_802C50EC *)arg0)->cursor[0][7] = lbl_805DE59C;
+    ((S_802C50EC *)arg0)->cursor[1][4] = TAdMultiPlyChrSelectGC__data_805DE56C;
+    ((S_802C50EC *)arg0)->cursor[1][5] = lbl_805DE594;
+    ((S_802C50EC *)arg0)->cursor[1][6] = lbl_805DE590;
+    ((S_802C50EC *)arg0)->cursor[1][7] = lbl_805DE59C;
+    ((S_802C50EC *)arg0)->cursor[2][4] = lbl_805DE598;
+    ((S_802C50EC *)arg0)->cursor[2][5] = lbl_805DE594;
+    ((S_802C50EC *)arg0)->cursor[2][6] = lbl_805DE5A0;
+    ((S_802C50EC *)arg0)->cursor[2][7] = lbl_805DE59C;
+}
+
 void TAdMultiPlyChrSelectGC::update_option_cursor() {
     S_802C6008 *self = (S_802C6008 *)this;
     TAdMultiPlyChrSelectGC__sub_802C5F1C(self, self->f1C++);
@@ -599,11 +690,11 @@ s32 TAdMultiPlyChrSelectGC::is_selection_confirmed() {
 }
 
 typedef char RecoveredGlobal_802C64D0_TAdMultiPlyChrSelectGC__data_804E0A48_size[sizeof(RecoveredGlobal_802C64D0_TAdMultiPlyChrSelectGC__data_804E0A48) == 0x10 ? 1 : -1];
-bool is_multiplayer_character_slot_selected(s32 arg0) {
+s32 is_multiplayer_character_slot_selected(s32 arg0) {
     if ((arg0 < 0) || ((u32) arg0 > 3U)) {
         return 0;
     }
-    return ((s32 *)&TAdMultiPlyChrSelectGC__data_804E0A48)[arg0] != -1;
+    return ((s32 *)&TAdMultiPlyChrSelectGC__data_804E0A48)[arg0] != -1 ? 1 : 0;
 }
 
 s32 TAdMultiPlyChrSelectGC::count_ready() {
@@ -657,6 +748,38 @@ void TAdMultiPlyChrSelectGC__sub_802C65C0(s32 arg0) {
 }
 
 typedef char RecoveredGlobal_802C6848_lbl_804E0B00_size[sizeof(RecoveredGlobal_802C6848_lbl_804E0B00) == 0x10 ? 1 : -1];
+#pragma push
+#pragma fp_contract on
+void TAdMultiPlyChrSelectGC__sub_802C6660(s32 arg0) {
+    s32 col, row;
+    u32 cell[2];
+    for (u32 i = 0; i < 4; i++) {
+        if (is_multiplayer_character_slot_selected(i)) {
+            TAdMultiPlyChrSelectGC__data_804E0AE0[i] = 1;
+            TAdMultiPlyChrSelectGC::split_slot_index(i, &col, &row);
+            ((S_802C50EC *)arg0)->quad[i + 4][0].x = ((S_802C50EC *)arg0)->quad[row][col].x;
+            ((S_802C50EC *)arg0)->quad[i + 4][0].z = ((S_802C50EC *)arg0)->quad[row][col].z;
+            ((S_802C50EC *)arg0)->quad[i + 4][0].y = ((S_802C50EC *)arg0)->quad[row][col].y;
+            ((S_802C50EC *)arg0)->quad[i + 4][0].w = ((S_802C50EC *)arg0)->quad[row][col].w;
+            ((S_802C50EC *)arg0)->quad[i + 4][0].u0 = TAdMultiPlyChrSelectGC__data_805DE56C;
+            ((S_802C50EC *)arg0)->quad[i + 4][0].v0 = (f32)(s32)i * lbl_80471CE0[1] * TAdMultiPlyChrSelectGC__data_805DE584;
+            ((S_802C50EC *)arg0)->quad[i + 4][0].u1 = lbl_80471CE0[0] * TAdMultiPlyChrSelectGC__data_805DE584;
+            ((S_802C50EC *)arg0)->quad[i + 4][0].v1 = ((f32)(s32)i * lbl_80471CE0[1] + lbl_80471CE0[1]) * TAdMultiPlyChrSelectGC__data_805DE584;
+            {
+                s32 y = row + 1;
+                s32 x = col + 1;
+                TAdMultiPlyChrSelectGC__data_804E0A68[y][x] = -1;
+            }
+        }
+    }
+    S_802C50EC *self = (S_802C50EC *)arg0;
+    TAdMultiPlyChrSelectGC__data_805D67D8 = ((s32 (*)(void *))find_active_slot__22TAdMultiPlyChrSelectGCFv)(self);
+    TAdMultiPlyChrSelectGC::find_first_open_cell((s32)self, cell);
+    self->f4EC = cell[1] - 1;
+    self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC] = cell[0] - 1;
+}
+#pragma pop
+
 s32 TAdMultiPlyChrSelectGC__sub_802C6848(s32 arg0) {
     if ((arg0 < 0) || (arg0 > 3)) {
         return 0;
