@@ -13175,6 +13175,7 @@ force_active:
   - render_with_fade__19TObjEneEpsilonGuardFPvi
   - render_with_state_debug__17TObjEneBm3FlyNestFv
   - replace_gvm_texture_directory
+  - replace_owned_string__20TWindowSubStatusDispFPviiii
   - repositioning_state__14TObjEneBm5WolfFl
   - request_action__8TItemMagFl
   - request_aram_load_state__16TAdWarningBaseGCFPv
@@ -13801,6 +13802,7 @@ force_active:
   - select_death_direction__14TObjEneBm5WolfFPvPv
   - select_farthest_visible_player__16TObjEneDellBiterFv
   - select_forward_target__12TBoss1DragonFPv
+  - select_item_icon__20TWindowSubStatusDispFPviUcUci
   - select_lobby_pigeon_model__13TUnk_804E0898Fv
   - select_models__18TObjLazerFenceNormFv
   - select_next__26TWindowSubQuestBoardSelectFv
@@ -15456,6 +15458,8 @@ force_active:
   - update_invincibility_action__8TItemMagFv
   - update_invuln_timer__12TObjEneLappyFv
   - update_inward_orbit_point__13TUnk_804F166CFv
+  - update_item_colors__20TWindowSubStatusDispFl
+  - update_item_icon_colors__20TWindowSubStatusDispFPvPv
   - update_item_select__21TShopDeleteItemWindowFPv
   - update_judge_confirm__23TShopJudgmentItemWindowFv
   - update_kafun_attack__16TObjEneMerillLiaFv
@@ -15692,6 +15696,8 @@ force_active:
   - update_spinning_projectile_attack__12TBoss1DragonFUl
   - update_stat_comparison__15TWindowHelpItemFv
   - update_stat_disp2__15TWindowHelpItemFPv
+  - update_stat_line__20TWindowSubStatusDispFPvi
+  - update_stat_line_if_positive__20TWindowSubStatusDispFPvi
   - update_stat_messages__17TWindowSetLevelUpFv
   - update_state3__10TBoss4ZakoFPv
   - update_state_3__12TBoss8DragonFv
