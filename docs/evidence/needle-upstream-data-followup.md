@@ -1,21 +1,23 @@
 # Needle upstream data follow-up
 
-This draft imports the Needle portion of upstream
-`1eadd7feea746a6f5bd1c4d905ff7700e6b724b1` and preserves the authored builder
+This draft preserves Scott Lowry's upstream Needle work: the scoped bank import
+from `1eadd7feea746a6f5bd1c4d905ff7700e6b724b1`, followed by the authored builder
 commit `c5e453d76e407c851294cd61442585d8336f9ae6` with a cherry-pick trailer.
-Both are Scott Lowry's work. The unrelated equipment jump table in the first
-commit remains excluded. The fork base is
-`0ea667b2ae02f09c65cd9464314c0d5993618c6c`.
+The unrelated equipment jump table remains excluded. The fork base is
+`0ea667b2ae02f09c65cd9464314c0d5993618c6c`; corrective commits follow the imports.
 
-The corrective commit gives Needle a genuine constructor/destructor, a live
-`Vec` position, particle/motion pointers and twelve target flags. State dispatch
-passes the actual receiver. Legacy helper labels are retained as typed free
-boundaries because their old Tentacle class association was false. The spawn
-caller uses the player's existing position. Shared resource getters use their
-index argument and consistent declarations in their immediate consumers.
+The corrections give Needle a genuine constructor/destructor, a live `Vec`
+position, particle/motion pointers and twelve target flags. State dispatch passes
+the actual receiver. Legacy helper labels remain typed free boundaries where
+the former Tentacle class association was false. The spawn caller uses the
+player's existing position. The constructor initializes its emitter position as
+a real local `Vec`.
 
-The node bank uses actual `DragonModelNode` objects with child/sibling fields;
-the vector bank uses `Vec`. Their expected extents are:
+The model getter consistently returns opaque, pointer-fixed resource bytes. It
+does not assert a live source `DragonModelNode`. Traversal reads child/sibling
+address representations into live `u32` locals with `__memcpy`; the destination
+bank contains real `DragonModelNode` objects. This improves the boundary but
+does not prove the shared helper's final float access or the resource graph.
 
 | Bank | Start | Bytes | Elements |
 | --- | --- | --- | --- |
@@ -23,67 +25,79 @@ the vector bank uses `Vec`. Their expected extents are:
 | Segment positions | `0x80541838` | 168 | 14 × 12 |
 | Angles | `0x805418E0` | 56 | 14 × 4 |
 
-The adjacent motion-state symbol is not claimed. Only its three observed
-pointer slots are declared; the original fallback retains its trailing bytes.
-No buffer or padding object is invented.
+The emitted banks occupy exactly 1,008 bytes with alignment 8, at offsets 0,
+784 and 952. Adjacent motion-state storage is not defined: only its three
+observed pointer slots are declared, leaving its trailing bytes in fallback.
 
-## Bounded native follow-up
+## Bounded native evidence
 
-The released `copy_model_node` provider now uses the compiler-supported
-`__memcpy` representation copy for its first 52 bytes. The final four-byte float
-access is retained and explicitly unresolved. Ordinary `memcpy` produced a
-180-byte function; using the intrinsic for a temporary float produced 128 bytes.
-Keeping the original float access produces the original 116 bytes. Under the
-unchanged GC/2.6 profile, the owning Dragon object's allocated sections and all
-2,591 relocations into allocated sections are identical to its paired baseline, and all
-reported code/data sections remain exact. This removes integer/byte-block
-prefix overlays; it does not qualify the tail storage or create a new gain.
-The vendor documents the intrinsic as an inline block copy (Metrowerks
+The released `copy_model_node` provider uses the compiler-supported `__memcpy`
+representation copy for its first 52 bytes. It remains 116 bytes, and the owning
+Dragon object's allocated sections and all 2,591 relocations into allocated
+sections equal the paired baseline. Its final four-byte float access remains a
+source hold. This is a native-exact partial representation-copy repair, not full
+provider qualification or a new gain. The vendor documents the intrinsic as an
+inline block copy (Metrowerks
 [MPC5xx Targeting Manual, page 161](https://www.nxp.com/docs/en/user-guide/MPC5xxUG.pdf)).
 
-Paired native diagnostics compiled Needle, Behavior and the immediate Player
-consumer against exact baseline/candidate header snapshots. They found and
-corrected signed timer comparisons, the Tentacle predicate's return width, and
-a texture getter that was declared `void` while its caller consumed a result.
-The getter now returns the underlying provider's existing integer address and
-uses its canonical declaration. Needle also uses the canonical particle-attach
-declaration. The particle restart helper retains the baseline source's local
-address reuse because separating those locals introduced an extra MWCC move;
-this is an emission constraint, not a claim about the original source locals.
+The first six free helpers retain immediate emission. The remaining 34 existing
+function definitions, including the empty sentinel, use a scoped supported
+`defer_codegen` region in reverse address order. Bodies, linkage and their
+individual pragmas are preserved. This produces the original emitted order and
+both genuine class vtables; no table is handwritten. Every function has its
+original offset and size except the final builder, which is 252 rather than
+244 bytes. The constructor is back to 416 bytes but still has different load
+scheduling. The bounded comparison reports 39 exact functions; this is not a
+new-gain claim.
 
-The final bounded checks show no prior-exact function regressions in Needle or
-Player. Player's object is unchanged. Behavior retains one raw constructor-call
-relocation mismatch after the known constructor-symbol rename; final
-address-aware relocation and link proof remains pending. The genuine Needle
-destructor, state dispatcher, signed comparisons and predicate callers are exact. The constructor remains
-nonexact (408 bytes against 416), including a remaining `memcpy` call and float
-scheduling differences. The genuine constructor also emits the 24-byte Needle
-vtable after the Tentacle vtable, whereas its original address `804E4830`
-precedes the current unit claim at `804E4848`. Its ownership and emitted order
-need explicit repair before source linking; the current split is not expanded
-to conceal this mismatch. The builder's report also needs address-aware treatment
-of the new section-base relocations; its raw symbol score is not acceptance.
+The two vtables occupy `0x804E4830..0x804E4860`, Needle first and Tentacle second.
+The candidate's 48 bytes and all eight physical relocation positions, types and
+original-address targets agree. Extending the owned range alone caused DTK to
+omit the preceding four bytes through its alignment-gap handling. The explicit
+`auto_07_804E482C_data` split therefore retains `0x804E482C..0x804E4830` as an
+original-only container. Fresh extraction confirms its four unchanged bytes,
+alignment 4 and zero relocations. It is recorded as `autogenerated:false`
+because the split is explicit; it has no source configuration or source storage.
+This preserves an existing fallback container, without asserting translation-unit
+ownership or waiving the bytes as padding. Build selection uses the extracted
+original object; actual ordered linker consumption remains unproved.
 
-The candidate Needle object emits exactly 1,008 `.bss` bytes with alignment 8:
-node bank at offset 0, positions at 784, angles at 952. The adjacent motion-state
-storage is not defined. The inherited `.rodata` and `.sdata2` mismatches also remain.
-This proves emitted bank layout, not native source
-linkage: this unit is still held and remains fallback in the final link policy.
-All native diagnostics used scheduled development capacity. Unchanged baseline
-objects were reused; no configure, full link or acceptance lane was used.
+Paired immediate-consumer diagnostics reuse frozen source/header snapshots.
+Behavior's allocated bytes and all 1,330 allocated-section relocations agree
+with baseline after resolving defined symbols by their object sections and
+undefined symbols by original addresses. The renamed constructor resolves to
+`0x802EFD08` on both sides. Player is byte-identical, including all 159
+allocated-section relocations. This closes the raw constructor-name comparison
+for these objects, not final linkage. The signed timer, predicate return width,
+texture-address return and canonical particle declaration corrections remain.
+
+The owned angle factor is now defined after the compiler-generated conversion
+biases; the complete 24-byte `.rodata` section matches without extra storage.
+The remaining `.sdata2` layout is held: the candidate emits eight bytes against
+twelve original bytes. A full float-definition repair remains private because
+one placement changed a previously exact function's register allocation and
+another duplicated the constant pool. Neither result was adopted.
+
+All diagnostics used scheduled development capacity and reused unchanged
+baseline evidence. No configure, full link or acceptance-lane run occurred.
+The unit remains fallback under the unchanged linked-unit policy.
 
 ## Open qualification
 
-The provider's final `f32` access at offset `0x34` still requires a live float
-in both records. `NJS_OBJECT` and Dragon8's local node declare byte tails there;
-identical offsets do not establish compatible objects. Their owners must resolve
-the shared storage contract. The Needle resource getter and traversal also need
-proof of the loaded BML graph's node types, terminal links and borrowed payload
-lifetime. No reinterpret cast or matching instruction result closes these holds.
+The helper's final `f32` access at offset `0x34` still needs a valid shared source
+contract. `NJS_OBJECT` and Dragon8's local node currently declare byte tails;
+equal offsets do not establish compatible live objects. Only the narrow helper
+and call-boundary hunks were released, so their layout/loader owners must
+coordinate the remaining repair.
 
-This draft is not source-qualified or ready to merge. Pending checks are the
-remaining constructor and address-aware builder comparison, complete affected
-consumer qualification, actual ordered native source inputs and retained fallback
-coverage, followed by the merge owner's current-main original-DOL and strict
-no-loss acceptance. No new exact or linked gain is claimed. Existing #226 data
-and active-union repairs remain; README and linked-unit policy are unchanged.
+The BML graph's extent, terminal child/sibling links and borrowed payload
+lifetime remain unproved. The exact model resource is
+`bm_boss7_de_rol_le_c.bml`; matching the copy helper does not supply this evidence.
+Constructor scheduling, the builder's byte-safe traversal emission, complete
+affected-consumer qualification, native source inputs and retained fallback
+consumption also remain held. The separate merge owner must still establish
+current-main original-DOL equality and strict no-loss acceptance.
+
+This is not source-qualified or ready to merge. No new exact or linked gain is
+claimed. Existing #226 repairs remain; README, checkers and linked-unit policy
+are unchanged.

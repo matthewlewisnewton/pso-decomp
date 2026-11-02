@@ -767,7 +767,7 @@ AnimationMotion *get_bml_motion(BmlResource *, s32);
     extern int lbl_805D6918;
 AnimationMotion *notify_fish_obj__10TObjPlayerFPv(s32 index) { return get_bml_motion((BmlResource *)lbl_805D6918, index); }
 
-DragonModelNode *queue_boss_effect__10TObjPlayerFPv(s32 index) { return (DragonModelNode *)get_bml_model((BmlResource *)lbl_805D6918, index); }
+u8 *queue_boss_effect__10TObjPlayerFPv(s32 index) { return (u8 *)get_bml_model((BmlResource *)lbl_805D6918, index); }
 
 s32 TObjPlayer__sub_802E80A0(void) {
     return TObjFish__sub_8001EDB0((BmlResource *)lbl_805D6918, 0);
