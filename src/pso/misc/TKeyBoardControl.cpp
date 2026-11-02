@@ -381,8 +381,10 @@ void TWindowKeyBoardSoft__sub_80260904(void *self, s32 port) {
         if (!kb->child->is_key_state_2()) kb->flags &= ~0x10;
         return;
     }
-    const u16 (*rows)[16] = (const u16 (*)[16])layout->pages[kb->page];
-    s32 code = rows[kb->cursor_y][kb->cursor_x];
+    // The original scales the row and column terms separately (x*2 + y*32)
+    // instead of scaling the combined index, so keep the flat byte offset.
+    const u16 *row = (const u16 *)layout->pages[kb->page];
+    s32 code = *(row + (s8)kb->cursor_x + (s8)kb->cursor_y * 16);
     if ((u32)code >= 3 && (u32)code <= 14) {
         if (TWindowSubMag__sub_80262808(kb->child)) play_sound_effect(0x53F06, 0, 0, 0);
         else if (*(u32 *)get_chat_shortcut(code + 5) != 3) play_sound_effect(0x52D01, 0, 0, 0);
@@ -658,8 +660,13 @@ void TWindowKeyBoardSoft::spawn_key_effect(s32 arg1, s32 arg2) {
 
 // Glyphs and icon rectangles use external tables owned by neighboring data
 // ranges. Their precise source-level types and the rendering API are provisional.
+// The original references each glyph/quad table through its own named
+// relocation, so disable constant pooling; it also does not hoist the third
+// loop's table loads, so disable loop-invariant motion.
 #pragma push
 #pragma fp_contract on
+#pragma pool_data off
+#pragma opt_loop_invariants off
 s32 TWindowKeyBoardSoft__sub_802616BC(void *self, int context) {
     TWindowKeyBoardSoft *kb = (TWindowKeyBoardSoft *)self;
     TWindowKeyBoardSoft *ctx = (TWindowKeyBoardSoft *)context;
@@ -739,10 +746,9 @@ s32 TWindowKeyBoardSoft__sub_802616BC(void *self, int context) {
         x += (f32)(s32)layout->page_width;
     }
     for (u32 i = 0; i < 10; ++i) {
-        s32 col = (s32)lbl_8044F164[i][0], row = (s32)lbl_8044F164[i][1];
-        index = calc_key_index__19TWindowKeyBoardSoftFiii((s32)self, col, row);
+        index = calc_key_index__19TWindowKeyBoardSoftFiii((s32)self, (s32)lbl_8044F164[i][0], (s32)lbl_8044F164[i][1]);
         u32 color = index == selected ? 0xFF000000 : 0xFF999999;
-        f32 center = ctx->x + calc_key_x__19TWindowKeyBoardSoftFiii((s32)self, col, row);
+        f32 center = ctx->x + calc_key_x__19TWindowKeyBoardSoftFiii((s32)self, (s32)lbl_8044F164[i][0], (s32)lbl_8044F164[i][1]);
         f32 width = lbl_8044F1B4[i][0], height = lbl_8044F1B4[i][1];
         f32 u = lbl_8044F204[i * 2], v = lbl_8044F204[i * 2 + 1];
         q.x = center - TWindowKeyBoardSoft__data_805DD080 * width;
@@ -889,9 +895,11 @@ s32 TWindowKeyBoardSoft__sub_8026227C(TWindowKeyBoardSoft *self, TWindowKeyBoard
     begin_screen_draw(1);
     set_current_texture_list(lbl_805D63F0);
     set_draw_texture_and_color(0, -1);
+    s32 col;
+    f32 y;
     for (s32 row = 0; row < 7; row++) {
-        f32 y = TWindowKeyBoardSoft__data_805DD07C * (f32)row + TWindowKeyBoardSoft__data_805DD094;
-        for (s32 col = 0; col < 16; col += count) {
+        y = TWindowKeyBoardSoft__data_805DD07C * (f32)row + TWindowKeyBoardSoft__data_805DD094;
+        for (col = 0; col < 16; col += count) {
             s32 index = calc_key_index__19TWindowKeyBoardSoftFiii((s32)self, col, row);
             TWindowKeyBoardSoft__sub_80260760((void *)self, index, &count, &color);
             f32 width = TWindowKeyBoardSoft::calc_key_coord((s32)self, count);
@@ -914,7 +922,9 @@ s32 TWindowKeyBoardSoft__sub_8026227C(TWindowKeyBoardSoft *self, TWindowKeyBoard
         }
         TWindowKeyBoardSoft::draw_key_frame((void *)self, (f32 *)ctx, color, frame, x,
             TWindowKeyBoardSoft__data_805DD098, (f32)(resources[1] + 1), scale);
-        x += (f32)(s32)resources[1];
+        // Implicit u8 -> float selects the original's signed conversion
+        // sequence; explicit (s32) casts emit the unsigned sequence instead.
+        x += (f32)resources[1];
     }
     set_constant_material_color(ctx->color);
     x = TWindowKeyBoardSoft__sub_802606E0(self);
