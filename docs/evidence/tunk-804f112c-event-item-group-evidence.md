@@ -19,25 +19,28 @@ The decompressed `ItemPMT.prs` root points at a 24-entry type table at root
 has 12 records at payload offset `0x2A5C`. Each record's first word is its text
 ID:
 
-| Text ID | TextEnglish index | Item |
-|---|---|---|
-| `0x78` | 120 | Chocolate |
-| `0x79` | 121 | Candy |
-| `0x7A` | 122 | Copper Weapons Badge |
-| `0x7C` | 124 | Gold Badge |
-| `0x7D` | 125 | Crystal Badge |
-| `0x7E` | 126 | Iron Badge |
-| `0x7F` | 127 | Aluminum Badge |
-| `0x80` | 128 | Leather Badge |
-| `0x81` | 129 | Bone Badge |
-| `0x82` | 130 | Bouquet |
-| `0x83` | 131 | Decoction |
-| `0x84` | 132 | Christmas Present |
+| Text ID | Item |
+|---|---|
+| `0x78` | Chocolate |
+| `0x79` | Candy |
+| `0x7A` | Cake |
+| `0x7C` | Siver Badge (retail spelling) |
+| `0x7D` | Gold Badge |
+| `0x7E` | Crystal Badge |
+| `0x7F` | Iron Badge |
+| `0x80` | Aluminum Badge |
+| `0x81` | Leather Badge |
+| `0x82` | Bone Badge |
+| `0x83` | Bouquet |
+| `0x84` | Decoction |
 
-`get_text_collection(id)` (`.text:0x8010EEDC`) indexes the first text group's
-pointer array by `id`; the `TextEnglish` string order matches the IDs above.
-These are event items whose use effect dispatches the technique-indexed
-`TEndingPic` handler in `TUnk_804F112C::apply_use_effect`.
+Text ID `0x7B` is Copper Weapons Badge but type 20 does not select it;
+`0x85` (Christmas Present) belongs to type 21. `get_text_collection(id)`
+(`.text:0x8010EEDC`) resolves these through the first text group's pointer
+array, which is at payload offset `0x17810` in the decompressed `TextEnglish`
+pair. Type 0's IDs 0/1/2 resolve to Monomate/Dimate/Trimate and type 21's
+`0x85`/`0x86`/`0x87` resolve to Christmas Present/Easter Egg/Jack-O'-Lantern,
+confirming the array order.
 
 The group therefore identifies the class semantically as the event-item use
 effect, but it does not supply the original class name. Keep `TUnk_804F112C`

@@ -3,11 +3,11 @@
 #include "types.h"
 #include "pso/item/TItemObject.h"
 
-// Tool group 20 (item data byte 1): Chocolate, Candy, the event badges,
-// Bouquet, Decoction and Christmas Present. ItemPMT type 20 records point at
-// text IDs 0x78-0x84, and use dispatches the technique-indexed TEndingPic
-// handler. The executable has no class-name string or vtable RTTI for this
-// class, so it keeps its vtable-address placeholder. See
+// Tool group 20 (item data byte 1): Chocolate, Candy, Cake, the seven event
+// badges, Bouquet and Decoction. ItemPMT type 20 records point at text IDs
+// 0x78-0x84 (skipping 0x7B), and use dispatches the technique-indexed
+// TEndingPic handler. The executable has no class-name string or vtable RTTI
+// for this class, so it keeps its vtable-address placeholder. See
 // docs/evidence/tunk-804f112c-event-item-group-evidence.md.
 class TUnk_804F112C : public TItemObject {
 public:
