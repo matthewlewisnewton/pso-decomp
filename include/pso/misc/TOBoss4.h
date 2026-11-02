@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "pso/object/TObjMotion.h"
+#include "pso/system/BmlResource.h"
 
 struct BmlResource;
 

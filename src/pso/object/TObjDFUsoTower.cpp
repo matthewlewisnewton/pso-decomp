@@ -17,7 +17,6 @@ struct RecoveredGlobal_80052200___vt__14TObjDFUsoTower {
 
 extern "C" {
 s32 TObjFish__sub_8001EDB0(void *, s32);
-s32 get_bml_model(void *, s32);
 u8 * __ct__8TObjBaseFP7TObject(void *);
 extern RecoveredGlobal_80052200_lbl_804858A8 lbl_804858A8;
 extern s32 __vt__14TObjDFUsoTower[];
