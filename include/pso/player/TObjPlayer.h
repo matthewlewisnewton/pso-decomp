@@ -296,7 +296,6 @@ struct TObjPlayer : public TObjChara {
     void draw_shadow_quad(s32 arg1, s32 flags);
     void draw_tri_fan_3d(s32 n, u32 flags);
     static void render_tree(void *arg0);
-    void draw_compass_sprite(s32 idx, s32 color, s32 flags, f32 z);
     void init_vec_record();
     s32 get_entrance_id();
     void copy_efb_to_texture();
@@ -391,7 +390,6 @@ struct TObjPlayer : public TObjChara {
     static void sync_player_globals();
     void*get_position_ptr();
     void clear_header_struct();
-    void clear_velocity_vectors();
     static void set_com_card_window(s32 arg0);
     static s32 is_locally_controlled(void *player);
     static TObjPlayer *get_player_data(int index);
@@ -1527,7 +1525,6 @@ struct TObjPlayer : public TObjChara {
     void build_shop_item_list();
     void reset_action_palette();
     u8 *create_state_513();
-    int do_action_447();
     static void set_radar_marker_pos(int a0, void* a1);
     static void spawn_item_from_arg(s32 arg0, s32 arg1);
     u8 *init_breakup_pieces(void *arg1, s32 arg2);
