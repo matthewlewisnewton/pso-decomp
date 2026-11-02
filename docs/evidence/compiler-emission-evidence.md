@@ -17,5 +17,5 @@ review confirmed the central comparison; it did not certify a new integrated bui
 
 For another unit, compare against its own original split object with the actual compiler and settings. Check code,
 data, alignment, symbols and relocations, then run the full build, original-hash, address-coverage and source-link
-checks in [CONTRIBUTING.md](../CONTRIBUTING.md). Explain a non-obvious source arrangement and its evidence in the
+checks in [CONTRIBUTING.md](../../CONTRIBUTING.md). Explain a non-obvious source arrangement and its evidence in the
 change. A matching source arrangement is an implementation choice, not evidence of the historical source order.

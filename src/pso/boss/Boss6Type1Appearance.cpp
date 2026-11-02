@@ -1,3 +1,4 @@
+#include "pso/misc/CameraHelpers.h"
 #include "pso/system/ModelNodePositionCapture.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
@@ -48,13 +49,13 @@ extern const f32 lbl_805DFA4C;
 s32 get_bml_motion(s32, s32);
 s32 TObjFish__sub_8001EDB0(s32, s32);
 s32 get_bml_model(s32, s32);
-int set_scripted_camera_pose(void *, void *, void *);
+
 int build_tables__14TBoss6PlotFalzFPvPvi(void *, void *, int);
-extern s32 lbl_80477DEC[];
+extern Vec lbl_80477DEC;
 extern s32 boss6_type1_appear_node_desc[];
 extern s32 boss6_type1_appear_model_node_descriptors[];
-extern s32 lbl_80477E30[];
-extern s32 lbl_80477E3C[];
+extern CameraAngles lbl_80477E30;
+extern CameraPlayback lbl_80477E3C;
 extern s32 lbl_804DF614[];
 extern s32 boss6_type1_appear_motion_indices[];
 extern const s32 __vt__25TBoss6Demo10_TYPE1_APPEAR[];
@@ -64,14 +65,14 @@ struct AppearanceZero { f32 value; u32 padding; };
 __declspec(section ".sdata2") extern const AppearanceZero lbl_805DFA50;
 Fish_8033CB4C *__ct__25TBoss6Demo10_TYPE1_APPEARFP7TObject(Fish_8033CB4C *self, void *parent);
 s32 refresh_players_equipment__14TBoss6PlotFalzFPv();
-s32 post_translate_matrix(s32 *);
+void post_translate_matrix(const f32 *);
 s32 push_matrix();
 void *__nw__7TObjectFUl(int);
 
 void TBoss6Demo10_TYPE1_APPEAR::sub_8033C7C8() {
     push_matrix();
     set_motion_packed_rotation();
-    post_translate_matrix(lbl_80477DEC);
+    post_translate_matrix(&lbl_80477DEC.x);
     set_current_texture_list((GinjaTextureList *)(this->m_20));
     draw_model_motion((void *)(*(s32 *)((s8 *)this + 0x1C)), (void *)(*(s32 *)((s8 *)this + 0x24)), *(f32 *)((s8 *)this + 0x34));
     set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)this + 0x2C)));
@@ -196,8 +197,8 @@ TBoss6Demo10_TYPE1_APPEAR::TBoss6Demo10_TYPE1_APPEAR(TObject *parent) : TObject(
     ((Fish_8033CB4C *)this)->x64 = 0;
     build_tables__14TBoss6PlotFalzFPvPvi(((Fish_8033CB4C *)this)->x40, boss6_type1_appear_model_node_descriptors, 2);
     activate_camera_mode(5);
-    set_scripted_camera_pose(lbl_80477DEC, lbl_80477DEC, lbl_80477E30);
-    ((TCameraCtrl *)lbl_80477E3C)->cache_target_and_forward(0x416C);
+    set_scripted_camera_pose(&lbl_80477DEC, &lbl_80477DEC, &lbl_80477E30);
+    cache_target_and_forward__11TCameraCtrlFl(&lbl_80477E3C, 0x416C);
     ((Fish_8033CB4C *)this)->x34 = lbl_805DFA50.value;
     ((Fish_8033CB4C *)this)->x38 = 0;
 }
@@ -214,11 +215,11 @@ void *TBoss6Demo10_TYPE1_APPEAR__create(void *parent) {
 
 extern const char TBoss6Demo10_TYPE1_APPEAR__class_name[];
 __declspec(section ".rodata") const char TBoss6Demo10_TYPE1_APPEAR__class_name[] ATTRIBUTE_ALIGN(4) = "TBoss6Demo10_TYPE1_APPEAR";
-__declspec(section ".rodata") s32 lbl_80477DEC[] = {0x00000000, 0x41C80000, 0x42960000};
+__declspec(section ".rodata") Vec lbl_80477DEC = {0.0f, 25.0f, 75.0f};
 __declspec(section ".rodata") s32 boss6_type1_appear_node_desc[] = {0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x00000000, 0x00000000, 0x00000000};
 __declspec(section ".rodata") s32 boss6_type1_appear_model_node_descriptors[] = {0x00000003, 0x00000001, 0x00000000, 0x00000006, 0x00000001, 0x00000000};
-__declspec(section ".rodata") s32 lbl_80477E30[] = {0x00000000, 0x00000000, 0x00000000};
-__declspec(section ".rodata") s32 lbl_80477E3C[] = {0x01020000, 0x00000000, 0x3F333333};
+__declspec(section ".rodata") CameraAngles lbl_80477E30 = {0, 0, 0};
+__declspec(section ".rodata") CameraPlayback lbl_80477E3C = {1, 2, 0, 0.0f, 0.7f};
 s32 boss6_type1_appear_motion_indices[] = {35, 36};
 extern __declspec(section ".data") const s32 __vt__25TBoss6Demo10_TYPE1_APPEAR[];
 __declspec(section ".sdata") AppearanceClassTag TBoss6Demo10_TYPE1_APPEAR__name = {TBoss6Demo10_TYPE1_APPEAR__class_name, 0};

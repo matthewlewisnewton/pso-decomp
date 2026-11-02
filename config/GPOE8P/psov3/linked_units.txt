@@ -212,6 +212,7 @@ pso/boss/TBoss2LaserLight.cpp
 pso/boss/TBoss2Mine.cpp
 pso/boss/TBoss2Mine_800375C0.cpp
 pso/boss/TBoss2PhotonBullet_80038DCC.cpp
+pso/boss/TBoss2Tentacle.cpp
 pso/boss/TBoss3Volopt.cpp
 pso/boss/TBoss3VoloptCore.cpp
 pso/boss/TBoss3VoloptCtrl.cpp
@@ -296,6 +297,7 @@ pso/boss/TBoss6Type2_8036DC80.cpp
 pso/boss/TBoss7Crawfish.cpp
 pso/boss/TBoss7Crawfish_80308C10.cpp
 pso/boss/TBoss7Crawfish_80308C84.cpp
+pso/boss/TBoss7Crawfish_80308E0C.cpp
 pso/boss/TBoss7Crawfish_8030908C.cpp
 pso/boss/TBoss7DeRolLeC.cpp
 pso/boss/TBoss7DeRolLeC_802EE4E0.cpp
@@ -488,7 +490,6 @@ pso/enemy/TObjEneMe1GiGueMissile_802A4628.cpp
 pso/enemy/TObjEneMe1GiGue_802CDB1C.cpp
 pso/enemy/TObjEneMe3Shinowa.cpp
 pso/enemy/TObjEneMe3SinowZoa.cpp
-pso/misc/MaterialOpacityFade.cpp
 pso/enemy/TObjEneMe3SinowZoa_80316690.cpp
 pso/enemy/TObjEneMe3Stelth.cpp
 pso/enemy/TObjEneMe3StelthReal.cpp
@@ -612,7 +613,7 @@ pso/item/TItemEffLavis.cpp
 pso/item/TItemEffNeedle.cpp
 pso/item/TItemEffOrgaFlowShot.cpp
 pso/item/TItemEffPG.cpp
-pso/item/TItemEffPG_8034FF4C.cpp
+pso/item/TItemEffPG_8034FE28.cpp
 pso/item/TItemEffShield.cpp
 pso/item/TItemEffShield_8010A390.cpp
 pso/item/TItemEffectWeapon.cpp
@@ -816,6 +817,7 @@ pso/menu/TAdGuideTxtGC.cpp
 pso/menu/TAdGuideTxtGC_802B17D4.cpp
 pso/menu/TAdMultiOkGC.cpp
 pso/menu/TAdPlyChrSelPlateGC.cpp
+pso/menu/TAdPlyChrSelPlateGC_802C4CA0.cpp
 pso/menu/TAdRicoRing.cpp
 pso/menu/TAdRicoRing_8001BEE8.cpp
 pso/menu/TAdTimeSetGC.cpp
@@ -831,6 +833,8 @@ pso/misc/CreationMotion.cpp
 pso/misc/EndingSceneTables.cpp
 pso/misc/GbaDownloadRuntime.cpp
 pso/misc/KeyboardCharacterMaps.cpp
+pso/misc/MaterialOpacityFade.cpp
+pso/misc/PhotonBlastSummon.cpp
 pso/misc/RenderFadeState.cpp
 pso/misc/ShopToolStock.cpp
 pso/misc/ShopWeaponStock.cpp
@@ -840,6 +844,7 @@ pso/misc/TBGLightningCtrl.cpp
 pso/misc/TBreakUpMdl.cpp
 pso/misc/TButterfly.cpp
 pso/misc/TButterfly_8017F364.cpp
+pso/misc/TCameraCtrl.cpp
 pso/misc/TCameraCtrl_80067654.cpp
 pso/misc/TCameraCtrl_8006782C.cpp
 pso/misc/TCameraCtrl_80067C88.cpp
@@ -847,7 +852,6 @@ pso/misc/TCameraCtrl_80067CE8.cpp
 pso/misc/TCameraCtrl_80067F44.cpp
 pso/misc/TCameraCtrl_80067F8C.cpp
 pso/misc/TCameraCtrl_80067FC0.cpp
-pso/misc/TCameraCtrl_8006A03C.cpp
 pso/misc/TCameraCtrl_8006B3D8.cpp
 pso/misc/TCameraCtrl_8006BA68.cpp
 pso/misc/TCameraCtrl_8006BCD8.cpp
@@ -908,6 +912,7 @@ pso/misc/TDLGraph_8007F7DC.cpp
 pso/misc/TDLGraph_8007F85C.cpp
 pso/misc/TDeadSpot.cpp
 pso/misc/TDuelEffectNumber.cpp
+pso/misc/TDuelEffectNumber_80080290.cpp
 pso/misc/TDuelEffectNumber_80080460.cpp
 pso/misc/TEnding.cpp
 pso/misc/TEndingAB.cpp
@@ -1269,6 +1274,7 @@ pso/misc/TOContainerAncientItemCommon.cpp
 pso/misc/TOContainerAncientItemNone.cpp
 pso/misc/TOContainerAncientItemNone_8015BF38.cpp
 pso/misc/TOContainerAncientItemRare.cpp
+pso/misc/TOCtrlDubchik_8015CA74.cpp
 pso/misc/TODoorAncient01.cpp
 pso/misc/TODoorAncient03.cpp
 pso/misc/TODoorAncient04.cpp
@@ -1561,6 +1567,7 @@ pso/misc/TTecDeband.cpp
 pso/misc/TTecFoie.cpp
 pso/misc/TTecFoie_802301EC.cpp
 pso/misc/TTecGiBarta.cpp
+pso/misc/TTecGiFoie.cpp
 pso/misc/TTecGiZonde.cpp
 pso/misc/TTecGiZonde_8023CDC4.cpp
 pso/misc/TTecGrants.cpp
@@ -1778,6 +1785,7 @@ pso/misc/TWindowShortListCtrl_80221828.cpp
 pso/misc/TWindowShortListCtrl_80277D3C.cpp
 pso/misc/TWindowSimpleStatus.cpp
 pso/misc/TWindowSnapShot.cpp
+pso/misc/TWindowSnapShot_802A5B2C.cpp
 pso/misc/TWindowSnapShot_802A7D68.cpp
 pso/misc/TWindowSoundBalance.cpp
 pso/misc/TWindowStatus.cpp
@@ -2566,6 +2574,7 @@ pso/system/ChunkTextureStripCollector.cpp
 pso/system/CityTraffic.cpp
 pso/system/GinjaModelQueue.cpp
 pso/system/ItemEffects.cpp
+pso/system/LscServer.cpp
 pso/system/LscStream.cpp
 pso/system/MaterialAlphaCompare.cpp
 pso/system/Mfci.cpp
@@ -2591,6 +2600,7 @@ pso/ui/TAdBackGC.cpp
 pso/ui/TAdBackGC_8029A7B0.cpp
 pso/ui/TAdBackTxtGC.cpp
 pso/ui/TAdChrMoveEffectGC.cpp
+pso/ui/TAdChrSelASlotGC.cpp
 pso/ui/TAdChrSelASlotGC_802A596C.cpp
 pso/ui/TAdChrSelBSlotGC.cpp
 pso/ui/TAdChrSelBSlotGC_8030E354.cpp
@@ -2634,6 +2644,7 @@ pso/ui/TAdGameStartLineGC.cpp
 pso/ui/TAdGameStartShadowGC.cpp
 pso/ui/TAdGameStartShineGC.cpp
 pso/ui/TAdGuideButtonGC.cpp
+pso/ui/TAdLdQuestPrtGC.cpp
 pso/ui/TAdLicAgreementGC.cpp
 pso/ui/TAdLoadNetworkGC.cpp
 pso/ui/TAdLoadNetworkGC_803084AC.cpp
@@ -2686,6 +2697,7 @@ pso/ui/TAdMultiSelGameModeGC_802D5098.cpp
 pso/ui/TAdPlayerLoadGC.cpp
 pso/ui/TAdPlayerLoadGC_80076BBC.cpp
 pso/ui/TAdPlayerLoadGC_800F9EF8.cpp
+pso/ui/TAdPlayerLoadGC_801E0C30.cpp
 pso/ui/TAdPlayerLoadGC_8033BB14.cpp
 pso/ui/TAdPlayerLoadGC_803F3CF4.cpp
 pso/ui/TAdPlyPltAnimCtrlGC.cpp
@@ -3427,6 +3439,7 @@ pso/unk/text_8032AACC.cpp
 pso/unk/text_8032AC9C.cpp
 pso/unk/text_8032B318.cpp
 pso/unk/text_8032DA60.cpp
+pso/unk/text_803367F4.cpp
 pso/unk/text_803369C8.cpp
 pso/unk/text_803374F0.cpp
 pso/unk/text_80338F3C.cpp
@@ -3491,6 +3504,7 @@ pso/unk/text_803CD840.cpp
 pso/unk/text_803CE1D8.cpp
 pso/unk/text_803CE1F4.cpp
 pso/unk/text_803CE240.cpp
+pso/unk/text_803CFEA0.cpp
 pso/unk/text_803D0C34.cpp
 pso/unk/text_803D2F1C.cpp
 pso/unk/text_803D31A4.cpp

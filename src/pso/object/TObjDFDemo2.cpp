@@ -1,3 +1,4 @@
+#include "pso/misc/CameraHelpers.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
@@ -70,11 +71,11 @@ struct Obj_8004EB78 {
     s32 bc;
     f32 c0;
 };
-struct Pose_8004EB78 { s32 a; s32 b; s32 c; };
+typedef CameraAngles Pose_8004EB78;
 s32 get_bml_motion(s32, s32);
 s32 TObjFish__sub_8001EDB0(s32, s32);
 s32 get_bml_model(s32, s32);
-void set_scripted_camera_pose(void *, void *, void *);
+
 s32 __ct__8TObjBaseFP7TObject(void *, void *);
 extern s32 boss4_zanzo_bml_index_table[];
 void *__dt__11TObjDFDemo2Fv(void *arg0, s16 arg1);
@@ -96,9 +97,7 @@ __declspec(section ".rodata") Pose_8004EB78 lbl_80437384 = {0, 0, 0};
 __declspec(section ".data") void *TObjDFDemo2__motion_index_table[2] = {
     (void *)0x12, (void *)0x11,
 };
-void *lbl_80485680[3] = {
-    (void *)0x0, (void *)0x0, (void *)0x3f000000,
-};
+CameraPlayback lbl_80485680 = {0, 0, 0, 0.0f, 0.5f};
 void *__vt__11TObjDFDemo2[13] = {
     (void *)0x0, (void *)0x0, (void *)&__dt__11TObjDFDemo2Fv, (void *)&run_task__11TObjDFDemo2Fv,
     (void *)&render__11TObjDFDemo2Fv, (void *)&render_shadows__7TObjectFv, (void *)&vfunc_6__8TObjBaseFPsl, (void *)&apply_object_set_data__8TObjBaseFPv,
@@ -205,10 +204,10 @@ void *TObjDFDemo2__ct(void *arg0, void *parent, void *arg2, void *arg3, void *ar
     activate_camera_mode(5);
     {
         Pose_8004EB78 p = lbl_80437384;
-        p.b = (s32) self->b8;
-        set_scripted_camera_pose(self->pos, self->pos, &p);
+        p.yaw = (s32) self->b8;
+        set_scripted_camera_pose(&static_cast<TObjDFDemo2*>(static_cast<void*>(arg0))->camera_position, &static_cast<TObjDFDemo2*>(static_cast<void*>(arg0))->camera_position, &p);
     }
-    ((TCameraCtrl *)lbl_80485680)->cache_target_and_forward(0x4444);
+    cache_target_and_forward__11TCameraCtrlFl(&lbl_80485680, 0x4444);
     play_sound_effect(0x4003A325, (const Vec *)(self->pos), 0, 1);
     self->bc = 0;
     return self;

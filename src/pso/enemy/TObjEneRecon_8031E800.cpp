@@ -22,7 +22,7 @@ s32 TObjEneRecobox::render_trap_model_if_visible() {
             set_current_texture_list((GinjaTextureList *)(this->texlist));
             push_matrix();
             post_translate_matrix((void *) (((u8 *)this) + 0x38));
-            rotate_matrix_y(0, this->rotation_y);
+            rotate_matrix_y(0, this->rotation.yaw);
             this->draw();
             pop_matrix();
             restore_render_scissor(1);

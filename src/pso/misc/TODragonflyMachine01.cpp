@@ -116,10 +116,10 @@ void TODragonflyMachine01::render() {
         switch (yaw_animation_state) {
         case 3:
         case 4:
-            rotate_matrix_y(NULL, rotation_y - animation_yaw);
+            rotate_matrix_y(NULL, this->rotation.yaw - animation_yaw);
             break;
         default:
-            rotate_matrix_y(NULL, rotation_y);
+            rotate_matrix_y(NULL, this->rotation.yaw);
             break;
         }
         set_current_texture_list((GinjaTextureList *)(texlist));

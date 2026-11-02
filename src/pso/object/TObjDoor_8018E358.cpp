@@ -516,9 +516,9 @@ void run_task__8TObjDoorFv(VObj_8018EF70 *self) {
     }
     (self->*((Pmf_8018EF70 *)lbl_804B7760)[((TObjDoor *)self)->state])();
     if (((TObjDoor *)self)->state == 0) {
-        minimap_render_gate((u8 *)self + 0x38, 0xFFFF0000, ((TObjDoor *)self)->rotation_y, 0, 0);
+        minimap_render_gate((u8 *)self + 0x38, 0xFFFF0000, ((TObjDoor *)self)->rotation.yaw, 0, 0);
     } else {
-        minimap_render_gate((u8 *)self + 0x38, 0xFF00FF00, ((TObjDoor *)self)->rotation_y, 0, 0);
+        minimap_render_gate((u8 *)self + 0x38, 0xFF00FF00, ((TObjDoor *)self)->rotation.yaw, 0, 0);
     }
     if (TObjDoor__data_805D5BC8 != 0) {
         ((TObjDoor *)self)->state = saved;
