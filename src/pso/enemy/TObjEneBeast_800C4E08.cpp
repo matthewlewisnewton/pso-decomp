@@ -170,7 +170,7 @@ void TUnk_80493450::beast_update_hurt() {
     scratch_vec.vector.x = scratch_vec.vector.y = BEAST_ZERO_VECTOR_COMPONENT;
     scratch_vec.vector.z = get_collision_body_radius(this, 0);
     ((void (*)(void *, void *))push_matrix_from)(identity_matrix, &scratch_vec.vector);
-    rotate_matrix_y(0, -rotation_y);
+    rotate_matrix_y(0, -this->rotation.yaw);
     rotate_vector_by_matrix(0, &scratch_vec.vector, &scratch_vec.vector);
     pop_matrix();
     vec3_add_to(&v, &scratch_vec.vector);
@@ -449,7 +449,7 @@ void TUnk_80493450::update_turn_toward_target() {
             Vec d;
             VecCopy(&d, (const Vec *)&((TObjChara *)arg0->target)->body_center_position);
             subtract_vector(&d, &arg0->body_center_position);
-            ang = angle_difference_abs(arg0->rotation_y, (s32)(BEAST_ANGLE_UNITS_PER_RADIAN * atan2_float(d.x, d.z)));
+            ang = angle_difference_abs(arg0->rotation.yaw, (s32)(BEAST_ANGLE_UNITS_PER_RADIAN * atan2_float(d.x, d.z)));
             if (d.x * d.x + d.z * d.z < BEAST_GROUP_APPROACH_DISTANCE_SQ || arg0->children == 0) {
                 arg0->mode = 3;
                 arg0->phase = 1;
@@ -551,7 +551,7 @@ void TUnk_80493450::beast_idle_update() {
         if (project_actor_to_ground(arg0, &lbl_8050BF00.vector, 0) == 1) {
             this->requested_action = 2;
             VecCopy(&this->position, &lbl_8050BF00.vector);
-            this->rotation_y = approach_angle_limited(this->rotation_y, angle, *(s32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 8));
+            this->rotation.yaw = approach_angle_limited(this->rotation.yaw, angle, *(s32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 8));
             goto end;
         }
         r = fabs_float(scratch_vec.vector.z);
@@ -570,7 +570,7 @@ void TUnk_80493450::beast_idle_update() {
         if (project_actor_to_ground(arg0, &lbl_8050BF00.vector, 0) == 1) {
             this->requested_action = 2;
             VecCopy(&this->position, &lbl_8050BF00.vector);
-            this->rotation_y = approach_angle_limited(this->rotation_y, angle, *(s32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 8));
+            this->rotation.yaw = approach_angle_limited(this->rotation.yaw, angle, *(s32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 8));
             goto end;
         }
         r = fabs_float(scratch_vec.vector.z);
@@ -589,7 +589,7 @@ void TUnk_80493450::beast_idle_update() {
         if (project_actor_to_ground(arg0, &lbl_8050BF00.vector, 0) == 1) {
             this->requested_action = 2;
             VecCopy(&this->position, &lbl_8050BF00.vector);
-            this->rotation_y = approach_angle_limited(this->rotation_y, angle2, *(s32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 8));
+            this->rotation.yaw = approach_angle_limited(this->rotation.yaw, angle2, *(s32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 8));
         } else {
             this->requested_action = 2;
         }

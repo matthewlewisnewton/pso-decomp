@@ -92,9 +92,9 @@ void TObjVoloptCage::update_breakup() {
     case 0:
         play_sound_effect(0x4001C112, (const Vec *)(&position), 0, 0);
         create_breakup_mdl__12TBoss3VoloptFlllll(volopt_cage_breakup_model, &volopt_cage_breakup_params,
-                                                 volopt_cage_textures, (Vec *)&body_center_position, rotation_y);
+                                                 volopt_cage_textures, (Vec *)&body_center_position, this->rotation.yaw);
         create_breakup_mdl__12TBoss3VoloptFlllll(volopt_cage_breakup_model, &volopt_cage_breakup_params,
-                                                 volopt_cage_textures, (Vec *)&body_center_position, rotation_y);
+                                                 volopt_cage_textures, (Vec *)&body_center_position, this->rotation.yaw);
         ((TObjPlayer *)&body_center_position)->trigger_dell_biter_events();
         timer = 12;
         disallow_rendering();
@@ -209,7 +209,7 @@ void TObjVoloptCage::render() {
         push_matrix();
         model_render_flags &= ~0x400;
         post_translate_matrix(&position);
-        rotate_matrix_y(0, rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         draw_chunk_object((void *)volopt_cage_model);
         pop_matrix();
     }

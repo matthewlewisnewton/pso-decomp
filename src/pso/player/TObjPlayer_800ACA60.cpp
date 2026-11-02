@@ -92,7 +92,7 @@ void TObjEneMoja::update_death_state() {
         v.y = lbl_805D9BE8;
         v.z = lbl_805D9BEC * *(f32 *)(this->m_2b0 + 0x10);
         push_matrix_from(identity_matrix);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         rotate_vector_by_matrix(0, &v, &v);
         pop_matrix();
         vec3_add_to(&v, (u8 *)&this->position);
@@ -1040,7 +1040,7 @@ s32 TObjEneMoja::is_target_in_attack_range() {
     if (this->mode > 1 && (t = this->target) != NULL &&
         this->m_318 != 0 && !(*(u32 *)((s8 *)t + 0x30) & 0x02000800)) {
         dist = calc_xz_distance_sq(this, t, &d);
-        angd = angle_difference_abs(this->rotation_y,
+        angd = angle_difference_abs(this->rotation.yaw,
                                     (s32)(lbl_8043B0C8[0] * atan2_float(d.x, d.z)));
         c = *(u8 **)(this->target + 0xA4);
         if (c != NULL) {
@@ -1537,7 +1537,7 @@ void render__11TObjEneMojaFv(u8 *arg0) {
         push_matrix();
         translate_matrix(0, lbl_805D9BD8, ((TObjEneMoja *)arg0)->sinkOffset, lbl_805D9BD8);
         post_translate_matrix(arg0 + 0x38);
-        rotate_matrix_y(0, (int)(((TObjEneMoja *)arg0)->rotation_y));
+        rotate_matrix_y(0, (int)(((TObjEneMoja *)arg0)->rotation.yaw));
         if (check_demo_mode() == 1) {
             draw_chunk_object(*(s32 *)((s8 *)arg0 + 0x34));
         } else {
