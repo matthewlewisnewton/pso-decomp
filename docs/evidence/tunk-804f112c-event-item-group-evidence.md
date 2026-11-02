@@ -38,7 +38,7 @@ Text ID `0x7B` is Copper Weapons Badge but type 20 does not select it;
 `0x85` (Christmas Present) belongs to type 21. `get_text_collection(id)`
 (`.text:0x8010EEDC`) resolves these through the first text group's pointer
 array, which is at payload offset `0x17810` in the decompressed `TextEnglish`
-pair. Type 0's IDs 0/1/2 resolve to Monomate/Dimate/Trimate and type 21's
+pair. Type 0's IDs 0/1/2 resolve to Monmate (retail spelling)/Dimate/Trimate and type 21's
 `0x85`/`0x86`/`0x87` resolve to Christmas Present/Easter Egg/Jack-O'-Lantern,
 confirming the array order.
 
