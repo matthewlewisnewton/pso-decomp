@@ -272,6 +272,7 @@ force_active:
   - TBoss4DarkFalz__ct
   - TBoss4DarkFalz__name
   - TBoss4DarkFalz__sub_8004B5A0
+  - TBoss4DarkFalz__sub_8004D9A0
   - TBoss4DarkFalz__sub_801D94C0
   - TBoss4Thanks__sub_8035C480
   - TBoss4Type2__attack_pattern_table
@@ -3448,6 +3449,7 @@ force_active:
   - beast_update_hurt__16TObjEneMerillLiaFv
   - beginHeightTransition__12TBoss1DragonFv
   - begin_appear__15TObjEneSlimeOneFv
+  - begin_defeat_sequence__14TBoss4DarkFalzFv
   - begin_hidden_flight__16TObjEneNanoDragoFv
   - begin_meseta_deposit__18TCheckRoomSequenceFPv
   - begin_meseta_withdrawal__18TCheckRoomSequenceFPv
@@ -4234,6 +4236,7 @@ force_active:
   - check_player_hits__15TBoss6SwordWaveFv
   - check_player_in_range__13TUnk_804B5BA8Flf
   - check_player_proximity__12TOChatSensorFv
+  - check_players_near_center__14TBoss4DarkFalzFv
   - check_players_ready__21TAdMultiChgGameModeGCFPv
   - check_purchase_eligibility__20TShopArmorListWindowFv
   - check_purchase_eligibility__24TShopEquipmentListWindowFv
@@ -4246,6 +4249,7 @@ force_active:
   - check_target__17TObjEneMe1CanadinFv
   - check_target_collision__16TBoss3VoloptCoreFv
   - check_team_balance__6TLobbyFPvi
+  - check_timeout__14TBoss4DarkFalzFv
   - check_timeout__6TLobbyFPv
   - check_trigger__11TOFenceBaseFv
   - check_trigger_flag__15TOTrapAncient01Fll
@@ -5187,6 +5191,7 @@ force_active:
   - enter_cut__11TBoss4Type3Fv
   - enter_dark_magic__11TBoss4Type3Fv
   - enter_dead__11TBoss4Type3Fv
+  - enter_demo2_phase__14TBoss4DarkFalzFv
   - enter_down_state__14TObjEnePanarmsFv
   - enter_fall_to_ground__15TObjEneDelDepthFv
   - enter_flag800_state__11TBoss6Type1Fv
@@ -5203,6 +5208,8 @@ force_active:
   - enter_serial_formatted_buffer
   - enter_slime_state__15TObjEneSlimeOneFv
   - enter_state8__15TObjEneDelDepthFv
+  - enter_state_126__14TBoss4DarkFalzFv
+  - enter_state_142__14TBoss4DarkFalzFv
   - enter_state_3__11TBoss4BishiFPv
   - enter_state_513__13TUnk_804A1570Fv
   - enter_state_804F27E0__13TUnk_804F27E0FlPv
@@ -5810,6 +5817,8 @@ force_active:
   - get_color__8MagStatsFv
   - get_committed_target__13TObjEneMe1GeeFv
   - get_container_param
+  - get_defeat_params__14TBoss4DarkFalzFPvPvPvPv
+  - get_demo2_params__14TBoss4DarkFalzFPUsPUsPUs
   - get_destroy_event_obj__6TLobbyFv
   - get_dominant_stats__8TItemMagFv
   - get_drop_item_mode__6TLobbyFv
@@ -6387,6 +6396,7 @@ force_active:
   - init_state__10TObjPlayerFv
   - init_state__11TBoss6Type1Fv
   - init_state__13TObjEneMe1GeeFv
+  - init_state__14TBoss4DarkFalzFv
   - init_state__14TObjEneGibblesFv
   - init_state__14TObjEnePanarmsFv
   - init_state__15TObjEneDelDepthFv
@@ -6404,6 +6414,7 @@ force_active:
   - init_text_window_layout
   - init_texture_table__22TChCrLoadAfsTextureReqFPv
   - init_timer__13TObjCHTimeWinFv
+  - init_timer__14TBoss4DarkFalzFv
   - init_timer__18TChallenge4PResultFv
   - init_timer_event__13TUnk_804A0608Fv
   - init_vertex_table__17TObjEneBm3FlyNestFv
@@ -13488,7 +13499,10 @@ force_active:
   - replace_gvm_texture_directory
   - replace_owned_string__20TWindowSubStatusDispFPviiii
   - repositioning_state__14TObjEneBm5WolfFl
+  - request_action_7__14TBoss4DarkFalzFv
+  - request_action_9__14TBoss4DarkFalzFv
   - request_action__8TItemMagFl
+  - request_action_e__14TBoss4DarkFalzFv
   - request_aram_load_state__16TAdWarningBaseGCFPv
   - request_close__22THunterGuildSeqOfflineFv
   - request_death_effect__18TObjEneRe4SorcererFv
@@ -14406,6 +14420,7 @@ force_active:
   - set_state3__10TBoss4ZakoFv
   - set_state_0x34__11TBoss6Type2Fv
   - set_state_2__12TBoss8DragonFv
+  - set_state__14TBoss4DarkFalzFv
   - set_state__14TObjEnePanBARAFl
   - set_state__14TObjEnePanarmsFl
   - set_state__15TObjEneSlimeOneFl
@@ -14823,6 +14838,7 @@ force_active:
   - spawn_afterimages__11TBoss4Type2Fv
   - spawn_ambient_particles__15TBoss3VoloptP02Fv
   - spawn_ancient_trap__12TBoss8DragonFii
+  - spawn_ancient_trap__14TBoss4DarkFalzFv
   - spawn_beam_particle__16TObjEneNanoDragoFl
   - spawn_bishi_around_players__11TBoss4Type2Fv
   - spawn_break_effect__23TObjSeabedSuisoBrakableFv
@@ -14891,7 +14907,9 @@ force_active:
   - spawn_targeted_beam__16TObjEneNanoDragoFl
   - spawn_title_screen__12TAdDialingGCFl
   - spawn_trap__12TBoss1DragonFii
+  - spawn_trap__14TBoss4DarkFalzFv
   - spawn_trap_by_stat__9TBoss6MagFv
+  - spawn_type1__14TBoss4DarkFalzFv
   - spawn_wave_ring_particles__15TBoss6SwordWaveFv
   - split_bit_index__15TBoss6SwordWaveFlUcPvPv
   - standing_state__14TObjEneBm5WolfFl
@@ -14908,8 +14926,11 @@ force_active:
   - start_color_sequence__13TObjEneMe1GeeFl
   - start_count_format
   - start_countdown_sound_state__11TBoss6Type2Fv
+  - start_demo1__14TBoss4DarkFalzFv
+  - start_demo__14TBoss4DarkFalzFv
   - start_download__12TChCrLoadAfsFv
   - start_duel_battle__6TLobbyFv
+  - start_effect__14TBoss4DarkFalzFv
   - start_effect__14TItemEquipBaseFUlUl
   - start_entry_timer__6TLobbyFUsl
   - start_fade__15TAdRicoRingCtrlFf
@@ -14926,6 +14947,7 @@ force_active:
   - start_phase2__12TBoss3VoloptFv
   - start_phase2_timer150__14TObjEnePanBARAFv
   - start_phase3_timer12__14TObjEnePanBARAFv
+  - start_phase__14TBoss4DarkFalzFv
   - start_preview_loads__23TAdSinglePlyChrSelectGCFPv
   - start_quest_mission__Fv
   - start_rise__15TBoss3VoloptP01Fv
@@ -15033,6 +15055,19 @@ force_active:
   - sub_8004AFB8__14TBoss4DarkFalzFv
   - sub_8004B084__14TBoss4DarkFalzFv
   - sub_8004B0F8__14TBoss4DarkFalzFv
+  - sub_8004C2D8__14TBoss4DarkFalzFv
+  - sub_8004C540__14TBoss4DarkFalzFv
+  - sub_8004C5E8__14TBoss4DarkFalzFv
+  - sub_8004C7E8__14TBoss4DarkFalzFv
+  - sub_8004C8A8__14TBoss4DarkFalzFv
+  - sub_8004C93C__14TBoss4DarkFalzFv
+  - sub_8004CA80__14TBoss4DarkFalzFv
+  - sub_8004CBBC__14TBoss4DarkFalzFv
+  - sub_8004CE90__14TBoss4DarkFalzFv
+  - sub_8004CF6C__14TBoss4DarkFalzFv
+  - sub_8004CFC4__14TBoss4DarkFalzFv
+  - sub_8004D098__14TBoss4DarkFalzFv
+  - sub_8004D29C__14TBoss4DarkFalzFv
   - sub_8004F2A8__11TObjDFDemo4Fv
   - sub_80056998__11TBoss4Type2Fv
   - sub_80056F90__11TBoss4Type2Fll
@@ -15622,6 +15657,7 @@ force_active:
   - update_countdown__11TBoss6Type1Fv
   - update_countdown__11TBoss6Type2Fv
   - update_countdown__15TObjDeadListWinFv
+  - update_countdown_shrink__14TBoss4DarkFalzFv
   - update_countdown_state__11TBoss6Type1Fv
   - update_customize_help_text__13TUnk_804D1160FPv
   - update_cut__11TBoss4Type3Fv
@@ -15716,6 +15752,7 @@ force_active:
   - update_fade__18TObjButterflyLobbyFv
   - update_fade__19TObjEneEpsilonGuardFl
   - update_fade_alphas__15TWindowCtrlMainFv
+  - update_fade_countdown__14TBoss4DarkFalzFv
   - update_fade_in__13TObjLobbyMainFv
   - update_fade_in__14TObjWarpStringFPv
   - update_fade_in_state__16TObjEneNanoDragoFv
@@ -15797,6 +15834,7 @@ force_active:
   - update_input__19TWindowKeyBoardSoftFPv
   - update_input_number__18TShopGetItemWindowFv
   - update_intro_cutscene__12TBoss3VoloptFv
+  - update_intro_demo__14TBoss4DarkFalzFv
   - update_intro_phase__19TPlayerBattleCtrl4PFv
   - update_invincibility__10TObjPlayerFv
   - update_invincibility_action__8TItemMagFv
@@ -15922,6 +15960,7 @@ force_active:
   - update_particle_positions__13TBoss5GryphonFv
   - update_particles__13TObjLobbyMainFv
   - update_particles__15TObjBoss2TunnelFv
+  - update_parts__14TBoss4DarkFalzFv
   - update_parts_entries__28TWindowSubSymbolChatFaceTypeFv
   - update_parts_flags__11TBoss6Type2Fv
   - update_password_input__17TAdEnterPPPPassGCFPv
@@ -16040,6 +16079,7 @@ force_active:
   - update_spark_toggle__16TOSparkMachine01Fl
   - update_spawn__15TObjEneMe1GiGueFv
   - update_spawn_state__14TObjEneGibblesFv
+  - update_spawn_type2_countdown__14TBoss4DarkFalzFv
   - update_spawning__20TContainerAncient01RFv
   - update_special_pose__11TItemMagSubFv
   - update_spin__13TOCtrlDubchikFv
@@ -16144,6 +16184,7 @@ force_active:
   - update_timed_action__14TObjEnePanarmsFv
   - update_timed_wait__6TLobbyFPv
   - update_timer__11TBoss6Type1Fv
+  - update_timer__14TBoss4DarkFalzFv
   - update_timer__5TItemFv
   - update_timer__8TObjDoorFPv
   - update_timer_state__11TBoss6Type1Fv
