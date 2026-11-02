@@ -13884,11 +13884,11 @@ pso/misc/TQuestVmDownLoadServer_803E5668.cpp:
 	.bss        start:0x8058DC48 end:0x8058DE08
 	.sdata2     start:0x805E10C0 end:0x805E10C8
 
-pso/misc/TWindowKeyBoardSoft_803E6610.cpp:
-	.text       start:0x803E6610 end:0x803E6970
-
 pso/misc/QuestDownloadBuffers.cpp:
 	.bss        start:0x8058DE08 end:0x80595008
+
+pso/misc/TWindowKeyBoardSoft_803E6610.cpp:
+	.text       start:0x803E6610 end:0x803E6970
 
 pso/misc/TQuestVmDownLoadServer_803E6970.cpp:
 	.text       start:0x803E6970 end:0x803F0C50
