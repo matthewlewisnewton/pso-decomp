@@ -7007,12 +7007,9 @@ pso/unk/text_801E0C08.cpp:
 pso/ui/TAdPlayerLoadGC_801E0C30.cpp:
 	.text       start:0x801E0C30 end:0x801E283C
 
-pso/unk/text_801E283C.cpp:
-	.text       start:0x801E283C end:0x801E2B24
-
 pso/misc/pso_date.cpp:
-	.text       start:0x801E2B24 end:0x801E2D1C
-	.rodata     start:0x804496D0 end:0x80449700
+	.text       start:0x801E283C end:0x801E2D1C
+	.rodata     start:0x804496D0 end:0x80449730
 
 pso/player/TObjPlayer_801E2D1C.cpp:
 	.text       start:0x801E2D1C end:0x801E2EFC
