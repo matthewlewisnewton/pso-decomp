@@ -944,3 +944,19 @@ s32 TObjPlayer__sub_803D7FD0(void) {
 s32 TObjPlayer__sub_803D7FD8(void) {
     return 0;
 }
+
+struct FloatColor_803D7FE0 { f32 a, r, g, b; };
+struct ByteColor_803D7FE0 { u8 r, g, b, a; };
+
+// The original bodies quantise float channels through GQR1 and store them with
+// paired-single instructions; MWCC has no paired-single intrinsics, so keep the
+// original assembly via tools/orig_asm.py.
+extern "C" {
+asm void convert_color_f32_to_u8(const FloatColor_803D7FE0 *src, ByteColor_803D7FE0 *dst) {
+#include "orig_asm/pso/misc/TCameraCtrl_803D6538/convert_color_f32_to_u8.inc"
+}
+
+asm void convert_color_u8_to_f32(const ByteColor_803D7FE0 *src, FloatColor_803D7FE0 *dst) {
+#include "orig_asm/pso/misc/TCameraCtrl_803D6538/convert_color_u8_to_f32.inc"
+}
+}
