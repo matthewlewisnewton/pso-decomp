@@ -1,3 +1,4 @@
+#include "pso/system/SoundSlotPitch.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/TParticleCtrl.h"
 #include "types.h"
@@ -145,7 +146,6 @@ List_8022BD74 *find_area_contact__13TUnk_804CC148Fl(Tec_8022BD74 *, void *);
 List_8022BD74 *collect_body_contacts_for_target__10TObjPlayerFl(Tec_8022BD74 *, void *);
 
 void *__nw__7TObjectFUl(int);
-s32 update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
 
 void TTecBarta::update_technique_by_state() {
     u8 *arg0 = (u8 *)this;

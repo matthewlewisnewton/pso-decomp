@@ -1,3 +1,4 @@
+#include "pso/system/SoundSlotPitch.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/math/AngleLookup.h"
 #include "pso/system/MatrixStack.h"
@@ -161,7 +162,6 @@ void mem_free(void *);
 void *mem_alloc(u32 size);
 void * find_entity_by_id(u16);
 s32 is_technique_ready__8TTecCtrlFv();
-s32 update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
 
 void __dl__7TObjectFPv(void *);
 void * __nw__7TObjectFUl(int);

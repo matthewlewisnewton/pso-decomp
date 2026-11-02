@@ -1,3 +1,4 @@
+#include "pso/system/SoundSlotPitch.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/TParticleCtrl.h"
 #include "types.h"
@@ -226,7 +227,6 @@ extern s32 technique_effect_bml;
 extern s32 lbl_805D63B0;
 extern const f32 lbl_805DC880;
 u32 __nw__7TObjectFUl(s32 a0 = 0);
-s32 update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
 
 void TTecMegid::update_by_state() {
     u8 *arg0 = (u8 *)this;
