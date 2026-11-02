@@ -466,6 +466,8 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/menu/TAdMultiOkGC.cpp": {"mw_version": "GC/1.3.2"},
     "pso/misc/TLobby_802A5120.cpp": {"mw_version": "GC/1.3.2"},
     "pso/unk/text_8032B318.cpp": {"mw_version": "GC/1.3.2"},
+    # The player hit-vector snapshot needs 1.3.2's const-input copy scheduling.
+    "pso/player/TObjPlayer_802D5B78.cpp": {"mw_version": "GC/1.3.2"},
     # GC/1.3: the compiler-generated TMenuList<> copy constructor.
     "pso/misc/TRegister.cpp": {"mw_version": "GC/1.3"},
     "pso/misc/TPlyGuildCardTag_801E0284.cpp": {"mw_version": "GC/1.3"},
