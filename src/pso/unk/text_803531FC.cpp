@@ -5,8 +5,9 @@
 typedef void (TEndingPic::*Handler)();
 
 // The ending item's use effect advances the ending sequence one step for each
-// technique index. The handlers live on TEndingPic; the item object has the
-// same leading layout, so the table is invoked on this after reinterpretation.
+// technique index. The handlers live on TEndingPic; the item shares the object
+// prefix they use (including the +0xF0 owner/player slot), so the original
+// code invokes them on this after reinterpretation.
 void TUnk_804F112C::apply_use_effect() {
     Handler handlers[9] = {
         &TEndingPic::sub_803531F8,
