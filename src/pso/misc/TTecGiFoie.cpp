@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/SoundSlotPitch.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/math/AngleLookup.h"
@@ -158,8 +159,6 @@ void queue_destruction__7TObjectFv(void *arg0);
 void *spawn_particle_effect_with_rotation(void *pos, void *dir, s32 id, int e);
 void *spawn_continuous_particle_with_direction(void *pos, void *dir, s32 id);
 f32 horizontal_distance_squared(void *, void *);
-void mem_free(void *);
-void *mem_alloc(u32 size);
 void * find_entity_by_id(u16);
 s32 is_technique_ready__8TTecCtrlFv();
 
@@ -290,7 +289,7 @@ TUnk_804CC800::~TUnk_804CC800() {
             queue_destruction__7TObjectFv(emitters[i]);
         }
     }
-    mem_free(emitters);
+    ::operator delete[](emitters);
 }
 
 TUnk_804CC800::TUnk_804CC800(Vec_802312E4 *pos, s32 arg2, s32 band, s32 arg4, TObject *parent, u8 single) : TObject(parent) {
@@ -308,7 +307,7 @@ TUnk_804CC800::TUnk_804CC800(Vec_802312E4 *pos, s32 arg2, s32 band, s32 arg4, TO
     self->single = single;
     if (self->single != 0) {
         Rot_802312E4 r;
-        self->emitters = (TParticleCtrl **)mem_alloc(4);
+        self->emitters = (TParticleCtrl **)::operator new[](4);
         r.x = 0;
         r.y = 0;
         r.z = 0x4000;
@@ -316,7 +315,7 @@ TUnk_804CC800::TUnk_804CC800(Vec_802312E4 *pos, s32 arg2, s32 band, s32 arg4, TO
         self->radius = TTecGiFoie__data_805DC81C;
     } else {
         s32 i;
-        self->emitters = (TParticleCtrl **)mem_alloc(TTecGiFoie__emitter_profile_table[self->band].count * 4);
+        self->emitters = (TParticleCtrl **)::operator new[](TTecGiFoie__emitter_profile_table[self->band].count * 4);
         for (i = 0; i < TTecGiFoie__emitter_profile_table[self->band].count; i++) {
             Rot_802312E4 r;
             Part_802312E4 *p;

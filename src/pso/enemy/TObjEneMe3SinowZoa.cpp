@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
@@ -1405,14 +1406,12 @@ extern void *lbl_805D4120;
 extern "C" {
 
 extern const f32 lbl_805DF38C;
-void mem_free(void *p);
 
 }
 
 extern "C" {
 
 s32 is_split_screen();
-void *mem_alloc(u32);
 void *init__11TBreakUpMdlFPviif(void *, s32, s32, f32);
 extern const s32 lbl_80475E0C[];
 extern const s32 lbl_80475E14[];
@@ -1458,7 +1457,7 @@ void TObjEneMe3SinowZoa::load_resources() {
     source = (NJS_TEXLIST *)TObjEneMe3SinowZoa__data_805D6AD8->models[0].m_c;
     count = source->nbTexture;
     lbl_80542FDC.nbTexture = count;
-    lbl_80542FDC.textures = (NJS_TEXNAME *)mem_alloc(count * sizeof(NJS_TEXNAME));
+    lbl_80542FDC.textures = (NJS_TEXNAME *)::operator new[](count * sizeof(NJS_TEXNAME));
     for (i = 0; i < count; ++i) {
         ((TObjPlayer *)&lbl_80542FDC.textures[i])->copy_vec3(&source->textures[i]);
     }
@@ -1532,7 +1531,7 @@ void TObjEneMe3SinowZoa::free_resources() {
         TObjEneMe3SinowZoa__data_805D6AE0 = 0;
     }
     if (lbl_80542FDC.textures != 0) {
-        mem_free((void *)lbl_80542FDC.textures);
+        ::operator delete[]((void *)lbl_80542FDC.textures);
         lbl_80542FDC.textures = 0;
     }
     if (TObjEneMe3SinowZoa__data_805D6AD8 != 0) {

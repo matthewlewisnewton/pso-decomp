@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/misc/TODoorMachine02.h"
 
@@ -126,7 +127,7 @@ void TODoorMachine02::destroy() {
     if (texture_lists != NULL) {
         TObjPlayer::free_if_valid(texture_lists[0]);
         if (texture_lists != NULL) {
-            mem_free(texture_lists);
+            ::operator delete[](texture_lists);
             texture_lists = NULL;
         }
     }
@@ -138,7 +139,7 @@ void TODoorMachine02::destroy() {
 
 void TODoorMachine02::load_resources() {
     BmlResource *resource;
-    texture_lists = (s32 *)mem_alloc(8);
+    texture_lists = (s32 *)::operator new[](8);
     if (enable_v2_features == 1 && TLobby::is_online_ready() != 0) {
         resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&door_machine02_a_resource_descriptor), 0, 0, (void *)(0));
         bml_resource = resource;

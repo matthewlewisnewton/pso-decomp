@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/SoundSlotPitch.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/TParticleCtrl.h"
@@ -116,7 +117,6 @@ extern RecoveredGlobal_8022B6FC_lbl_804CC55C lbl_804CC55C;
 extern TechniqueContactVtable __vt__9TTecBarta;
 extern TechniqueEmitterSourceTable TTecBarta__emitter_bands[];
 void queue_destruction__7TObjectFv(void *arg0);
-void mem_free(void *p);
 void __dl__7TObjectFPv(TTecBarta*);
 TTecBarta* __dt__9TTecBartaFv(TTecBarta* self,s16 deleting);
 u16 get_entity_id(void *);
@@ -140,7 +140,6 @@ extern "C" {
 s32 get_bml_motion(s32, s32);
 void *spawn_continuous_particle_with_direction(void *pos, void *dir, s32 id);
 void *create_particle_emitter(void *pos, s32 id);
-void *mem_alloc(u32 size);
 s32 get_type__10TObjPlayerFPv(void *);
 List_8022BD74 *find_area_contact__13TUnk_804CC148Fl(Tec_8022BD74 *, void *);
 List_8022BD74 *collect_body_contacts_for_target__10TObjPlayerFl(Tec_8022BD74 *, void *);
@@ -199,7 +198,7 @@ void TTecBarta::create_particle_emitters() {
     angles[0] = self->angles[0];
     angles[1] = 0;
     angles[2] = self->angles[2];
-    self->emitters = (TechniqueParticleEmitter **)mem_alloc(TTecBarta__emitter_bands[self->band].count * 4);
+    self->emitters = (TechniqueParticleEmitter **)::operator new[](TTecBarta__emitter_bands[self->band].count * 4);
     for (i = 0; i < TTecBarta__emitter_bands[self->band].count; i++) {
         row = &TTecBarta__emitter_bands[self->band].rows[i];
         flags = row->flags;
@@ -294,7 +293,7 @@ TTecBarta* __dt__9TTecBartaFv(TTecBarta* self,s16 deleting) {
                 self->emitters[i]=0;
             }
         }
-        mem_free(self->emitters);
+        ::operator delete[](self->emitters);
         ((TObjPlayer *)self)->destroy_technique_effect_resources(0);
         if(deleting>0)__dl__7TObjectFPv(self);
     }

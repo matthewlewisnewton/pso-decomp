@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/enemy/BattleParameters.h"
@@ -46,8 +47,6 @@ extern "C" {
 
 u32 csnLookAt(void *, void *);
 s32 enemy_set_target_id(void *, u16);
-void mem_free(void*);
-void *mem_alloc(u32 size);
 f32 sin_table_lookup(s32);
 f32 cos_table_lookup(s32);
 void compose_motion_node_matrix(void *arg0);
@@ -191,7 +190,7 @@ void TObjEneRe7Berura::load_static_resources() {
     re7_berura_demo_flag = 0;
     TObjEneRe7Berura__demo_target = 0;
     m = r->models[0].model;
-    matrices = (Mtx34 *)mem_alloc(34 * sizeof(Mtx34));
+    matrices = (Mtx34 *)::operator new[](34 * sizeof(Mtx34));
     berura_detached_matrices = matrices;
     TObjEneRe7Berura__detached_part_states[0].matrices = matrices;
     TObjEneRe7Berura__detached_part_states[1].matrices = matrices + 17;
@@ -288,7 +287,7 @@ void TObjEneRe7Berura::destroy_children() {
         belra_uv_animation_buffer = NULL;
     }
     if (berura_detached_matrices != NULL) {
-        mem_free(berura_detached_matrices);
+        ::operator delete[](berura_detached_matrices);
         berura_detached_matrices = NULL;
     }
     if (TObjEneRe7Berura__shared_resource != NULL) {

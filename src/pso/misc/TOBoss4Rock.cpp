@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/npc/TObjNpcAHM01.h"
 #include "pso/misc/TOBoss4Rock.h"
@@ -7,19 +8,17 @@ extern "C" {
 void * TObjNpcAHM01__create(void *arg0);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 void *__nw__7TObjectFUl(int);
-void mem_free(void *p);
-void *mem_alloc(u32 size);
 }
 
 void xfree(void *p);
 void *xmalloc(u32 size);
 
-void mem_free(void *p) {
+void operator delete[](void *p) {
     if (p != NULL) {
         xfree(p);
     }
 }
-void *mem_alloc(u32 size) { return xmalloc(size); }
+void *operator new[](size_t size) { return xmalloc(size); }
 
 extern void *tl_04;
 
