@@ -1,0 +1,26 @@
+MEMORY
+{
+ text : origin = 0x00010000
+}
+SECTIONS
+{
+ GROUP:
+ {
+  .text ALIGN(4):{}
+  .ctors ALIGN(4):{}
+  .dtors ALIGN(4):{}
+  .rodata ALIGN(8):{}
+  .data ALIGN(4):{}
+  .bss ALIGN(4):{}
+  .sdata ALIGN(4):{}
+  .sbss ALIGN(4):{}
+  .sdata2 ALIGN(8):{}
+  .sbss2 ALIGN(8):{}
+ } > text
+ synthetic_pool_export = _f_rodata;
+}
+FORCEACTIVE
+{
+ signed_a
+ read_pool_export
+}
