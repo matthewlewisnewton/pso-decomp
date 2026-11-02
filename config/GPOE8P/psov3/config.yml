@@ -4918,6 +4918,7 @@ force_active:
   - draw_object_tree_recursive__FPv
   - draw_outline_quad__18TWindowEffectLightFl
   - draw_palette_cells__22TWindowSubCustomSelectFi
+  - draw_photon_blast_fan
   - draw_quad__16TAdGuideButtonGCFi
   - draw_queued_models__FUl
   - draw_ray_quads__8TAdRayGCFlPUcPvl
@@ -6124,6 +6125,7 @@ force_active:
   - init_forward__19TItemDisconnectCtrlFv
   - init_fresh_character_slot
   - init_from_table_entry__9TObjGrassFl
+  - init_gauge_entry__20TWindowSubStatusDispFv
   - init_geometry__13TUnk_804B2578Fv
   - init_gx_lighting_defaults__Fv
   - init_hanger__13TUnk_80486924Fv
@@ -14584,6 +14586,7 @@ force_active:
   - start_gba_joyboot__6TLobbyFv
   - start_get_type_async__16TKeyBoardControlFllll
   - start_handle_6x78_entry__FUs
+  - start_hp_text_color_transition__20TWindowSubStatusDispFv
   - start_invincibility__8TItemMagFv
   - start_mag_mines_state__11TBoss6Type2Fv
   - start_match__19TPlayerBattleCtrl4PFv
