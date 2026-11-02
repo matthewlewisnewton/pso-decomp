@@ -1,7 +1,6 @@
 #include "types.h"
 #include "pso/object/TObjButterflyLobby.h"
-
-struct Hit_8007A5D8 { u8 pad[0x40]; };
+#include "pso/map/CsnResult.h"
 
 extern "C" {
 void *mem_alloc(u32 size);
@@ -12,17 +11,15 @@ s32 query_segment_wall_meshes(void *, void *, u32, void *);
 u32 query_collision_segment_groups(void *, void *, u32);
 extern char lbl_804389FC[];
 extern u8 lbl_804FFD40[];
-extern Hit_8007A5D8 lbl_80500140;
-Hit_8007A5D8 *csnVector(void *from, void *to, u32 mask);
 void mem_free(void*);
 
-Hit_8007A5D8 *csnVector(void *from, void *to, u32 mask) {
-    Hit_8007A5D8 *hit;
-    TObjPlayer__sub_8007911C(from, to, mask);
+CsnHit *csnVector(const Vec *from, const Vec *to, u32 mask) {
+    CsnHit *hit;
+    TObjPlayer__sub_8007911C((void *)from, (void *)to, mask);
     hit = &lbl_80500140;
-    if (query_collision_segment_groups(from, to, mask) == 0) {
+    if (query_collision_segment_groups((void *)from, (void *)to, mask) == 0) {
         hit = 0;
-    } else if (query_segment_wall_meshes(from, to, mask, lbl_804FFD40) == 0) {
+    } else if (query_segment_wall_meshes((void *)from, (void *)to, mask, lbl_804FFD40) == 0) {
         hit = 0;
     }
     TObjPlayer__sub_80079118((s32 *)lbl_804389FC);
