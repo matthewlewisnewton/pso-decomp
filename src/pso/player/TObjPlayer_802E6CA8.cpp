@@ -1,3 +1,4 @@
+#include "pso/boss/Boss7ModelResources.h"
 #include "pso/math/MatrixCopy.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/ChunkMaterialState.h"
@@ -89,7 +90,6 @@ void __dl__7TObjectFPv(void *);
 extern s32 __vt__13TUnk_804E3BD8[];
 u8 *__dt__13TUnk_804E3BD8Fv(u8 *arg0, s16 arg1);
 s32 TObjLight__sub_801337F8(s32);
-u8 *queue_boss_effect__10TObjPlayerFPv(s32);
 s32 rotate_matrix_z(int, s32);
 void translate_matrix(u32 arg0, f32 x, f32 y, f32 z);
 s32 rotate_matrix_x(int, s32);
@@ -146,7 +146,7 @@ void TUnk_804E3BA8::render() {
     Node_802E6CB0 *node;
     Part_802E6CB0 *part;
     s32 i;
-    u8 *fx = queue_boss_effect__10TObjPlayerFPv(2);
+    u8 *fx = (u8 *)queue_boss_effect__10TObjPlayerFPv(2);
     Col_802E6CB0 c = lbl_80472C9C;
     node = *(Node_802E6CB0 **)((s8 *)fx + 0x2C);
     part = *(Part_802E6CB0 * *)&this->unk_28;
@@ -245,7 +245,7 @@ void TObjPlayer__sub_802E7088(void) {  }
 void TUnk_804E3BC0::render() {
     Node_802E708C *node;
     Part_802E708C *part;
-    u8 *fx = queue_boss_effect__10TObjPlayerFPv(3);
+    u8 *fx = (u8 *)queue_boss_effect__10TObjPlayerFPv(3);
     Col_802E708C c = lbl_80472C80;
     node = *(Node_802E708C **)((s8 *)fx + 0x2C);
     Vec_802E708C s = lbl_80472C90;

@@ -1,3 +1,7 @@
+#include "pso/system/BmlResource.h"
+#include "pso/boss/Boss7ModelResources.h"
+#include "pso/boss/TBoss1Dragon.h"
+#include "pso/boss/TBoss7TentacleNeedle.h"
 #include "pso/misc/CameraHelpers.h"
 #include "pso/system/MatrixVectorArray.h"
 #include "pso/animation/MotionContext.h"
@@ -554,13 +558,13 @@ struct Fish_802E7B40 { u8 pad[0x6DC]; void* t[4]; };
 struct Fish_802E7B94 { u8 pad[0x6DC]; void* t[4]; };
 
 extern "C" {
-void queue_boss_effect__10TObjPlayerFPv(void* a0);
+
 void TObjPlayer__sub_802E7F30(void *unused, s32 arg1);
 void TBoss7Tentacle__sub_802F0B80(void* p);
 void TObjFish__sub_802E7B40(Fish_802E7B40* o);
 void TBoss7Tentacle__sub_802F0B70(void* p);
 void TObjFish__sub_802E7B94(Fish_802E7B94* o);
-#define queue_boss_effect__10TObjPlayerFPv ((u32 (*)(int))queue_boss_effect__10TObjPlayerFPv)
+
 void TBoss7DeRolLeC::render_shadows() {
     if (*(s32 *)((s8 *)this->bodies + 0x18) & 1) {
         render_shadows__9TObjEnemyFv((u8 *)this);
@@ -627,7 +631,7 @@ struct Saved_802E7EA0 { u8 pad[0x5A8]; s32 a[10]; s32 b[10]; };
 void TObjPlayer__sub_802E7EA0(void *arg0) {
     u32 effect;
     s32 i;
-    effect = queue_boss_effect__10TObjPlayerFPv(0);
+    effect = (u32)queue_boss_effect__10TObjPlayerFPv(0);
     for (i = 0; i != 10; i++) {
         ((Saved_802E7EA0 *)arg0)->a[i] = ((EffectRef_802E7EA0 *)find_model_node(effect, lbl_804739AC[i]))->node->value;
         ((Saved_802E7EA0 *)arg0)->b[i] = ((EffectRef_802E7EA0 *)find_model_node(effect, lbl_804739D4[i]))->node->value;
@@ -650,7 +654,7 @@ void TObjPlayer__sub_802E7F30(void *unused, s32 arg1) {
     {
       var_r4 = (s32 *)lbl_804739AC;
       var_r4 = (s32 *) (*((s32 *) (((s8 *)lbl_804739AC) + var_r31)));
-      temp_r3 = (u8 *) find_model_node(queue_boss_effect__10TObjPlayerFPv(0), (s32) var_r4);
+      temp_r3 = (u8 *) find_model_node((u32)queue_boss_effect__10TObjPlayerFPv(0), (s32) var_r4);
     }
     if (temp_r3 != 0)
     {
@@ -661,7 +665,7 @@ void TObjPlayer__sub_802E7F30(void *unused, s32 arg1) {
     var_r4 = (s32 *)lbl_804739D4;
     var_r4 = (s32 *)lbl_804739D4;
     var_r4 = (s32 *) (*((s32 *) (((s8 *)lbl_804739D4) + var_r31)));
-    temp_r3_2 = (u8 *) find_model_node(queue_boss_effect__10TObjPlayerFPv(0), (s32) var_r4);
+    temp_r3_2 = (u8 *) find_model_node((u32)queue_boss_effect__10TObjPlayerFPv(0), (s32) var_r4);
     if (temp_r3_2 != 0)
     {
       var_r3 = (u8 *) ((RecoveredFields_802E7F30_temp_r3_2 *) temp_r3_2)->field_4;
@@ -674,7 +678,7 @@ void TObjPlayer__sub_802E7FC0(void *arg0) {
     u32 effect;
     s32 i;
     EffectRef_802E7EA0 *ref;
-    effect = queue_boss_effect__10TObjPlayerFPv(0);
+    effect = (u32)queue_boss_effect__10TObjPlayerFPv(0);
     for (i = 0; i != 10; i++) {
         ref = (EffectRef_802E7EA0 *)find_model_node(effect, lbl_804739AC[i]);
         ref->node->value = ((Saved_802E7EA0 *)arg0)->a[i];
@@ -685,7 +689,7 @@ void TObjPlayer__sub_802E7FC0(void *arg0) {
 
 }
 
-#undef queue_boss_effect__10TObjPlayerFPv
+
 
 #include <stddef.h>
 struct Stack_802E8274 {
@@ -756,14 +760,15 @@ extern s32 chunk_polygon_flags_or_mask;
 extern s32 chunk_polygon_flags_and_mask;
 extern s32 model_render_flags;
 void TObjPlayer__sub_802E80A0(void);
-int get_bml_motion(void*, void*);
+struct AnimationMotion;
+AnimationMotion *get_bml_motion(BmlResource *, s32);
 int TObjFish__sub_8001EDB0(void*, void*);
-int get_bml_model(void*, void*);
+
 
     extern int lbl_805D6918;
-void TObjPlayer::notify_fish_obj(void* a0) { get_bml_motion((void*)lbl_805D6918, a0); }
+AnimationMotion *notify_fish_obj__10TObjPlayerFPv(s32 index) { return get_bml_motion((BmlResource *)lbl_805D6918, index); }
 
-void queue_boss_effect__10TObjPlayerFPv(void* a0) { get_bml_model((void*)lbl_805D6918, a0); }
+DragonModelNode *queue_boss_effect__10TObjPlayerFPv(s32 index) { return (DragonModelNode *)get_bml_model((BmlResource *)lbl_805D6918, index); }
 
 void TObjPlayer__sub_802E80A0(void) { TObjFish__sub_8001EDB0((void*)lbl_805D6918, (void*)0); }
 
@@ -1145,8 +1150,6 @@ s32 query_teammate_state__9TObjEneDDFv();
 void TObjFish__sub_802EBBC8(u8 *arg0, u32 arg1);
 f32 random_ratio__9TObjCharaFv(void *);
 
-s32 TBoss7Tentacle__sub_802F0904(s32);
-void TBoss7Tentacle__sub_802F0AF0(s32);
 f32 sin_table_lookup(s32);
 f32 cos_table_lookup(s32);
 extern s32 game_difficulty_selection;
@@ -1459,7 +1462,6 @@ struct Boss_802E83E8 { u8 pad[0x728]; s32 timer; s32 count; u8 pad730[0x7CC - 0x
 
 extern "C" {
 void *get_player_by_client_id(s32 i);
-void *TBoss7TentacleNeedle__ct(void *o, void *boss, void *pos);
 }
 
 void TObjFish__sub_802E83E8(u8 *boss, u32 k) {
@@ -1495,10 +1497,7 @@ void TObjFish__sub_802E83E8(u8 *boss, u32 k) {
                 self->count--;
                 player = (u8 *)get_player_by_client_id(self->targets[self->count & 3]);
                 if (player != NULL) {
-                    o = TObject::operator new(0x7C);
-                    if (o != NULL) {
-                        TBoss7TentacleNeedle__ct(o, boss, player + 0x38);
-                    }
+                    new TBoss7TentacleNeedle((TObject *)boss, &((TObjPlayer *)player)->position);
                 }
             } else {
                 self->timer--;
@@ -1630,7 +1629,7 @@ void TObjFish__sub_802E85E0(u8 *arg0, u32 arg1, s32 arg2) {
             ok = 1;
             self->timer++;
             for (i = 0; i < 4; i++) {
-                if (TBoss7Tentacle__sub_802F0904(self->kids[i]) == 0) {
+                if (TBoss7Tentacle__sub_802F0904((u8 *)self->kids[i]) == 0) {
                     ok = 0;
                     break;
                 }
@@ -1646,7 +1645,7 @@ void TObjFish__sub_802E85E0(u8 *arg0, u32 arg1, s32 arg2) {
         return;
     case 5:
         for (k = 0; k < 4; k++) {
-            TBoss7Tentacle__sub_802F0AF0(self->kids[k]);
+            TBoss7Tentacle__sub_802F0AF0((u8 *)self->kids[k]);
         }
         return;
     case 1:
@@ -2229,7 +2228,7 @@ void TObjFish__sub_802E979C(Fish_802E979C *o, u32 k, s32 dir) {
     switch (k) {
     case 4:
         for (s32 i = 0; i < 4; i++) {
-            TBoss7Tentacle__sub_802F0AF0((s32)o->kids[i]);
+            TBoss7Tentacle__sub_802F0AF0((u8 *)o->kids[i]);
         }
         TObjFish__sub_802ECBDC((Fish_802ECBDC *)o);
         o->flags |= 4;
@@ -2385,7 +2384,7 @@ void handle_tentacle_attack_state__8TObjFishFPvUii(Fish_802E9ADC *o, u32 arg1, s
             ok = 1;
             o->timer++;
             for (i = 0; i < 4; i++) {
-                if (TBoss7Tentacle__sub_802F0904(o->tent[i]) == 0) {
+                if (TBoss7Tentacle__sub_802F0904((u8 *)o->tent[i]) == 0) {
                     ok = 0;
                     break;
                 }
@@ -2401,7 +2400,7 @@ void handle_tentacle_attack_state__8TObjFishFPvUii(Fish_802E9ADC *o, u32 arg1, s
         break;
     case 5:
         for (j = 0; j < 4; j++) {
-            TBoss7Tentacle__sub_802F0AF0(o->tent[j]);
+            TBoss7Tentacle__sub_802F0AF0((u8 *)o->tent[j]);
         }
         break;
     }

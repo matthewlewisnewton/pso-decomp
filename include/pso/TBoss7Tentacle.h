@@ -14,9 +14,6 @@ public:
     virtual void render();
     virtual void run_task();
 public:
-    void restart_particle_effect();
-    s32 advance_anim_time_wrapped(f32 d);
-    s32 advance_toward_limit(f32 farg0);
     void update_extend_amount();
     void switch_state();
     void advance_path_position();
