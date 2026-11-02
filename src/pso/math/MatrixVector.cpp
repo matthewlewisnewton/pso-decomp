@@ -4,8 +4,7 @@
 struct Vec_803D8D1C { f32 x, y, z; };
 
 extern "C" {
-void matrix_identity(void *);
-extern f32 lbl_805D46AC;
+f32 matrix_identity(void *);
 extern u8 *current_matrix;
 void GXGetProjectionv(f32 *p);
 void GXGetViewportv(f32 *vp);
@@ -17,10 +16,6 @@ s32 translate_matrix(f32, f32, f32);
 
 void scale_matrix_vec3(u8 *arg0, u8 *arg1) {
     scale_matrix((f32) (*(f32 *)((s8 *)arg1 + 0)), (f32) (*(f32 *)((s8 *)arg1 + 4)), (f32) (*(f32 *)((s8 *)arg1 + 8)));
-}
-
-asm f32 vector_length(const Vec *v) {
-#include "orig_asm/pso/math/MatrixVector/vector_length.inc"
 }
 
 #pragma push
@@ -42,10 +37,6 @@ void rotate_matrix_about_axis(u8 *arg0, s32 arg1, s32 arg2) {
 
 void translate_matrix_vec3(u8 *arg0, u8 *arg1) {
     translate_matrix((f32) (*(f32 *)((s8 *)arg1 + 0)), (f32) (*(f32 *)((s8 *)arg1 + 4)), (f32) (*(f32 *)((s8 *)arg1 + 8)));
-}
-
-asm void matrix_identity(void *arg0) {
-#include "orig_asm/pso/math/MatrixVector/matrix_identity.inc"
 }
 
 #pragma push
