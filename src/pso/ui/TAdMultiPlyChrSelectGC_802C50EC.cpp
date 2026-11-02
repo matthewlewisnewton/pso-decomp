@@ -421,6 +421,18 @@ void TAdMultiPlyChrSelectGC__sub_802C561C(S_802C50EC *self) {
 
 #pragma push
 #pragma fp_contract on
+/*
+ * Matching note for 0x802C5688/0x802C6660: the original object allocates the UV
+ * constants to f4/f5/f3 (lbl_80471CE0[1], the 2^52+2^31 pool double and
+ * TAdMultiPlyChrSelectGC__data_805DE584), while the natural allocation from this
+ * source is f3/f4/f5. Function/loop-scope f32 temporaries, expression and store
+ * reorderings, explicit pointer locals and the optimizer pragmas (propagation,
+ * lifetimes, common subs, dead assignments, pointer analysis, scheduling,
+ * peephole, level, loop passes, defer_codegen) were tried and either left the
+ * allocation unchanged or traded these rows for other mismatches. The remaining
+ * objdiff rows are FPR numbers; code size and pooled data already match. Do not
+ * fake this with padding or dummy values.
+ */
 void TAdMultiPlyChrSelectGC__sub_802C5688(s32 arg0) {
     S_802C50EC *self = (S_802C50EC *)arg0;
     u32 cell[2];
@@ -807,6 +819,7 @@ void TAdMultiPlyChrSelectGC__sub_802C65C0(s32 arg0) {
 typedef char RecoveredGlobal_802C6848_lbl_804E0B00_size[sizeof(RecoveredGlobal_802C6848_lbl_804E0B00) == 0x10 ? 1 : -1];
 #pragma push
 #pragma fp_contract on
+/* See the matching note above sub_802C5688 for the remaining FPR-allocation rows. */
 void TAdMultiPlyChrSelectGC__sub_802C6660(s32 arg0) {
     s32 col, row;
     u32 cell[2];
