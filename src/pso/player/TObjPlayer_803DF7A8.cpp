@@ -52,6 +52,16 @@ extern "C" {
 s32 GXLoadPosMtxImm(void *, int);
 extern RecoveredGlobal_803E1D1C_lbl_804FC780 gx_pos_mtx_index_table;
 extern s32 current_matrix;
+extern void *sin_cos_table;
+extern const f32 lbl_805D46EC;
+extern const f32 lbl_805D46FC;
+void translate_current_matrix_ps(f32 x, f32 y, f32 z);
+void TObjPlayer__sub_803E1CA4(u16 angle);
+void rotate_current_matrix_x_ps(u16 angle);
+void reorder_current_matrix_ps();
+void push_reordered_matrix_ps();
+void TObjPlayer__sub_803E1F60();
+void push_identity_matrix_ps();
 extern const f32 lbl_805E1038;
 extern const f32 lbl_805E103C;
 extern s32 tex_matrix_id_table[];
@@ -398,6 +408,19 @@ void TObjPlayer::calc_bounds(u8 *arg1, u8 *arg2) {
 extern s8 scene_fog_enable_flag;
 
 
+asm void translate_current_matrix_ps(register f32 x, register f32 y, register f32 z) {
+#include "orig_asm/pso/player/TObjPlayer_803DF7A8/translate_current_matrix_ps.inc"
+}
+
+asm void TObjPlayer__sub_803E1CA4(register u16 angle) {
+#include "orig_asm/pso/player/TObjPlayer_803DF7A8/TObjPlayer__sub_803E1CA4.inc"
+}
+
+asm void rotate_current_matrix_x_ps(register u16 angle) {
+#include "orig_asm/pso/player/TObjPlayer_803DF7A8/rotate_current_matrix_x_ps.inc"
+}
+
+
 #pragma push
 #pragma scheduling off
 typedef char RecoveredGlobal_803E1D1C_lbl_804FC780_size[sizeof(RecoveredGlobal_803E1D1C_lbl_804FC780) == 0x28 ? 1 : -1];
@@ -434,6 +457,15 @@ void load_list_texture(s32 idx, s32 wrapS, s32 wrapT, s32 map) {
 }
 
 
+asm void reorder_current_matrix_ps(void) {
+#include "orig_asm/pso/player/TObjPlayer_803DF7A8/reorder_current_matrix_ps.inc"
+}
+
+asm void push_reordered_matrix_ps(void) {
+#include "orig_asm/pso/player/TObjPlayer_803DF7A8/push_reordered_matrix_ps.inc"
+}
+
+
 void TObjPlayer::reload_texture(s32 arg1, u32 arg2, void *arg3) {
     s32 size;
     if ((arg2 & 0x40000000) != 0) {
@@ -442,6 +474,14 @@ void TObjPlayer::reload_texture(s32 arg1, u32 arg2, void *arg3) {
         OSPanic(lbl_804FC7F8, 0x30, lbl_805D46F0);
     }
     TObjPlayer__sub_803DAE1C((s32)this, size, (u32)arg3);
+}
+
+asm void TObjPlayer__sub_803E1F60(void) {
+#include "orig_asm/pso/player/TObjPlayer_803DF7A8/TObjPlayer__sub_803E1F60.inc"
+}
+
+asm void push_identity_matrix_ps(void) {
+#include "orig_asm/pso/player/TObjPlayer_803DF7A8/push_identity_matrix_ps.inc"
 }
 
 void TObjPlayer::set_effect_active() {
