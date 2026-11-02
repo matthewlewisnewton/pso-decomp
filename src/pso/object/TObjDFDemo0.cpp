@@ -18,6 +18,13 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/object/TObjDFDemo1.h"
 
+// Keep the shared zero export and the surrounding constant-pool layout.
+__declspec(section ".sdata2") extern const f32 lbl_805D8990;
+__declspec(section ".sdata2") extern const f32 lbl_805D8994;
+__declspec(section ".sdata2") extern const f32 lbl_805D8998;
+__declspec(section ".sdata2") extern const f32 lbl_805D899C;
+__declspec(section ".sdata2") extern const f32 lbl_805D89A0;
+
 typedef struct Rec_8004E2C8 {
     s32 a;
     s32 b;
@@ -81,6 +88,8 @@ extern s32 model_render_flags;
 void *TObjDFDemo0__ct(void *, void *);
 void *__nw__7TObjectFUl(int);
 
+} // extern "C"
+
 void *TObjDFDemo0::create(void *arg0) {
     void *o = __nw__7TObjectFUl(0x110);
     if (o != NULL) {
@@ -118,7 +127,7 @@ void TObjDFDemo1::sub_8004E068() {
   }
   col = ((Outer_8004E068 *)find_model_node(self->recs[1].a, 0x6A))->in->col;
   t = self->f110;
-  f = 0.0f;
+  f = lbl_805D8990;
   if (t >= 0xF0)
   {
     f = 1.0f;
@@ -126,11 +135,11 @@ void TObjDFDemo1::sub_8004E068() {
   else
     if (t > 0xE6)
   {
-    f = (t - 0xE6) / 10.0f;
+    f = (t - 0xE6) / lbl_805D8994;
   }
-  col[3] = (col[3] & 0xFF) | ((s32) (255.0f * f) << 8);
+  col[3] = (col[3] & 0xFF) | ((s32) (lbl_805D8998 * f) << 8);
   t = self->f110;
-  f = 0.0f;
+  f = lbl_805D8990;
   if (t >= 0x104)
   {
     f = 1.0f;
@@ -138,9 +147,9 @@ void TObjDFDemo1::sub_8004E068() {
   else
     if (t > 0xF0)
   {
-    f = (t - 0xF0) / 20.0f;
+    f = (t - 0xF0) / lbl_805D899C;
   }
-  hi = ((s32) (255.0f * f)) << 8;
+  hi = ((s32) (lbl_805D8998 * f)) << 8;
   for (i = 0; i < 3; i++)
   {
     e = &lbl_8048561C[i];
@@ -155,7 +164,7 @@ void TObjDFDemo1::sub_8004E068() {
     TObjPlayer__sub_80052390(alpha);
   }
   model_render_flags |= 0x20000;
-  TObjEneRe4Sorcerer__sub_801E3F1C(0.0f, self->f118);
+  TObjEneRe4Sorcerer__sub_801E3F1C(lbl_805D8990, self->f118);
   push_matrix();
   set_motion_packed_rotation();
   post_translate_matrix(self->f100);
@@ -173,6 +182,11 @@ void TObjDFDemo1::sub_8004E068() {
     TObjPlayer::sync_player_globals();
   }
 }
+// Follow the pooled 1.0f and 12.0f entries. The next unit also uses this zero.
+__declspec(section ".sdata2") const f32 lbl_805D8990 = 0.0f;
+__declspec(section ".sdata2") const f32 lbl_805D8994 = 10.0f;
+__declspec(section ".sdata2") const f32 lbl_805D8998 = 255.0f;
+__declspec(section ".sdata2") const f32 lbl_805D899C = 20.0f;
 
 void TObjDFDemo1::draw_fading_model() {
     Obj_8004E2C8 *arg0 = (Obj_8004E2C8 *)this;
@@ -194,7 +208,7 @@ void TObjDFDemo1::draw_fading_model() {
     set_motion_packed_rotation();
     post_translate_matrix(arg0->f100);
     rotate_matrix_y(0, this->m_10c);
-    max = 30.0f;
+    max = lbl_805D89A0;
     for (i = 0; i < 6; i++) {
         set_current_texture_list((GinjaTextureList *)(arg0->recs[i].b));
         f = this->m_114;
@@ -215,9 +229,10 @@ void TObjDFDemo1::draw_fading_model() {
     }
 }
 
-void TObjDFDemo1::render() { draw_fading_model(); sub_8004E068(); }
+// Define after its use above so MWCC does not create a second pooled 30.0f.
+__declspec(section ".sdata2") const f32 lbl_805D89A0 = 30.0f;
 
-}
+void TObjDFDemo1::render() { draw_fading_model(); sub_8004E068(); }
 
 #pragma pop
 
