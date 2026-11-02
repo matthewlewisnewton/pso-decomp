@@ -1,25 +1,28 @@
-# Ancient trap focused repair: one remaining table target
+# Ancient trap update control-flow constraints
 
-This pass starts from preserved PR102 head `987d988e0b09b4224b63532d5a01a3f645e2d46b`. It does not change splits, metrics, report semantics, original inputs, shared player interfaces, or link selection. The full WIP remains incomplete.
+`TOTrapAncient01::vfunc_81` has 540 instruction bytes and a 23-entry area
+dispatch table at `0x804B4A78`. Its no-op area entries target the shared
+epilogue at function offset `0x200`. Redirecting them to an equivalent sound
+handler exit can preserve instructions while changing the table relocations.
+Check instructions and every table target together.
 
-The original 23-entry update table at `0x804B4A78` targets the epilogue at `vfunc_81+0x200` for all no-op areas. At the starting head, cases 0, 1, 2, 11, 12 and 13 instead pointed to the existing final sound handler's exit branch at `+0xDC`. The instructions themselves were exact. Separating cases 1, 2, 11, 12 and 13 into the existing no-op switch-exit group makes those five entries target the original epilogue. Area 0 still shares the final sound handler's return path. This preserves behavior: these cases perform no action after the scale update.
+The initial nonpositive-scale branch jumps to the ordinary `grounded` label
+inside the switch's lexical extent. The four positive-scale sound handlers
+return. The grounded block scopes its automatic initializations, and the
+no-op case labels follow that block at the shared epilogue. The jump crosses
+no automatic initialization. The area expression is evaluated only on the
+positive-scale path; grounded execution does not consult it.
 
-The retained GC/2.6 compile uses the configured `-O4,s -inline off,deferred -sdata2 4`. Direct objdiff with `functionRelocDiffs=data_value` shows all 17 exact functions, including the native destructor and newly recovered update, remain exact; the native vtable is exact. The update remains 540 bytes. A separate ELF32 relocation reader confirms only table index 0 differs: original addend 512, emitted addend 220. The vtable remains 360 bytes at section offset 80. Every relocation in the formerly exact 92-byte `vfunc_82` table remains identical. The containing data symbol improves from 98.18731% to 99.69789%, but the section report stays 63.583817%. The report-delta gate is not repaired or waived. No full build has been rerun for this checkpoint because the known data failure persists.
+This source arrangement preserves the original dense table with GC/2.6 and
+the unit's `-O4,s -inline off,deferred -sdata2 4` configuration. The exact
+GC/2.0 continuation retains the same control-flow requirement. Moving the
+no-op cases to a different exit can change the table or replace it with a
+comparison tree. Deferred generation also affects when compiler controls
+take effect, so a pragma around the function body may not control its final
+emission.
 
-## Distinct hypotheses tested
-
-- All-break control flow combined with disabling dead-code/dead-assignment removal, propagation, common-subexpression elimination, peephole optimization, scheduling, and optimization levels 0 through 3: no original dense-table recovery. Existing exact code was not replaced by any of these variants.
-- The local compiler exposes `switch_tables` and `ppc_opt_bclr_bcctr` controls. `switch_tables off` takes effect at translation-unit scope, while a push/pop around a deferred function does not disable its table. This confirms that the timing of this code-generation control matters. Global on/off and branch-control trials did not repair the targets. Numeric switch-table arguments had no useful effect and were not retained.
-- Signed and unsigned 32-bit switch promotion gives the starting result; narrower promotions add instructions or change selection. No promoted source was retained.
-- Removing redundant return labels systematically reduced wrong entries in proportion to the return group size. A single area-0 return group retains exact code and fixes five entries. Moving the default exit to the final handler collapses the original table into a comparison tree and was rejected.
-- Available GC/2.0, 2.5 and 2.7 compilers retain the area-0 target discrepancy. GC/2.0 changes the debris function score but offers no table solution; no compiler change was retained.
-
-The remaining concrete code-generation gap is a dense switch whose minimum explicit case is 0, with that case directed to the epilogue rather than the preceding sound-handler exit branch. Making every no-op case share the ordinary switch exit causes the compiler to discard the original dense-table form. An acceptable next solution must preserve that table's original range and targets as well as the exact instructions, without synthetic data, post-processing, or metric exclusions.
-
-Local reproducible probes and scalar summaries are under `/tmp/ancient-sol-repair`; retained normalized evidence is `retained-relocations.json`. The prior independent investigation is preserved at `task-8/jump-table-investigation-checkpoint.md`. Original game bytes and compiled binaries are not part of this source checkpoint.
-
-## Resolved CFG arrangement
-
-A subsequent, distinct source arrangement resolves the remaining target without adding code: the initial nonpositive-scale branch jumps to an ordinary `grounded` label inside the switch's lexical extent. The four positive-scale sound handlers return; the grounded block is scoped to keep local initializations inside it. No-op case labels follow that block, directly at the function's shared epilogue. C++ permits the ordinary goto into that scope because it crosses no automatic initialization. This expresses the original CFG: the area expression is evaluated only on the positive-scale path, and grounded execution never consults it.
-
-GC/2.6 with the existing deferred-generation flags emits the original 540-byte update instructions and all 23 original switch-table targets. A separate ELF32 relocation read confirms zero target differences, the unchanged original 92-byte adjacent table, and the original 360-byte vtable at offset 0x50. The complete `.data` section now compares 100%, as do `.rodata`, `.sdata`, and `.sbss`. No table was written by hand, no binary was modified, and no split or metric checker was changed in this repair. The source placement is a compiler-emission constraint, not evidence of the historical spelling. Full exact-head validation is recorded in the PR after the candidate build.
+Changes must preserve the adjacent 92-byte table at `0x804B4A1C`, the native
+360-byte vtable at `.data` offset `0x50`, and the full original data extent
+described in [Ancient trap layout and matching constraints](ancient-trap-recovery-wip.md).
+This arrangement explains the required compiler output; it does not establish
+the spelling used by the original authors.
