@@ -90,7 +90,7 @@ void TObjTombstone__sub_80075DFC(TObjTombstone *self) {
             sum += *++weight;
         }
         if (choice != -1) {
-            s32 angle = self->rotation_y - ((count - 1) * 0x2000) / 2;
+            s32 angle = self->rotation.yaw - ((count - 1) * 0x2000) / 2;
             TItemData item = lbl_8048D278[choice];
             s32 dropped = 0;
             for (s32 offset = 0; offset < 0x10000; offset += 0x2000) {
