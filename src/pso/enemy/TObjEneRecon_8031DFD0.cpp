@@ -382,8 +382,8 @@ void run_task__12TObjEneReconFv(TObjEneRecon *ene_recon) {
                 if (TObjEneDD::check_v2_mode() != 0) {
                     var_f30 *= lbl_805DF400;
                 }
-                temp_f31 = var_f30 * cos_table_lookup(ene_recon->rotation_y);
-                temp_f2 = var_f30 * -sin_table_lookup(ene_recon->rotation_y);
+                temp_f31 = var_f30 * cos_table_lookup(ene_recon->rotation.yaw);
+                temp_f2 = var_f30 * -sin_table_lookup(ene_recon->rotation.yaw);
                 *(f32 *)((s8 *)(*(u8 **)((s8 *)ene_recon + 0x478)) + 0x60) = (f32) (ene_recon->body_center_position.x + temp_f31);
                 *(f32 *)((s8 *)(*(u8 **)((s8 *)ene_recon + 0x478)) + 0x64) = (f32) (lbl_805DF424 + ene_recon->body_center_position.y);
                 *(f32 *)((s8 *)(*(u8 **)((s8 *)ene_recon + 0x478)) + 0x68) = (f32) (ene_recon->body_center_position.z + temp_f2);

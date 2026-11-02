@@ -253,7 +253,7 @@ void TObjLaboMapWarp::render() {
         set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0(TObjLaboMapWarp__resource_bundle, 1)));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         if (is_field88_zero() != 0) {
             get_bml_model(TObjLaboMapWarp__resource_bundle, 1);
             ((s32 (*)(void))draw_ginja_object)();
@@ -375,7 +375,7 @@ void TObjCityMapWarp::render() {
         set_current_texture_list((GinjaTextureList *)(city_common_texture_list));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         if (is_field88_zero() != 0) {
             draw_ginja_object(*(s32 *)((s8 *)(*(void **)((s8 *)city_common_model_archive + 0x42C)) + 0xD8));
             TParticleCtrl::begin_effect_render();
@@ -478,7 +478,7 @@ void TObjCityAreaWarp::do_warp() {
         set_current_texture_list((GinjaTextureList *)(city_common_texture_list));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         TParticleCtrl::begin_effect_render();
         draw_ginja_model_with_motion(*(s32 *)((s8 *)(*(void **)((s8 *)city_common_model_archive + 0x42C)) + 0x18), *(s32 *)((s8 *)(*(void **)((s8 *)city_common_model_archive + 0x430)) + 0x34), this->m_c4);
         TParticleCtrl::end_effect_render();
@@ -561,7 +561,7 @@ void TObjCityMainWarp::render() {
         set_current_texture_list((GinjaTextureList *)(city_common_texture_list));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         draw_ginja_object(*(s32 *)((s8 *)(*(void **)((s8 *)city_common_model_archive + 0x42C)) + 0xC8));
         TParticleCtrl::begin_effect_render();
         draw_ginja_model_with_motion(*(s32 *)((s8 *)(*(void **)((s8 *)city_common_model_archive + 0x42C)) + 8), *(s32 *)((s8 *)(*(void **)((s8 *)city_common_model_archive + 0x430)) + 0x2C), this->m_c4);

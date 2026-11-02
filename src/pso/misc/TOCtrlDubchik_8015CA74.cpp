@@ -341,7 +341,7 @@ void TOCtrlDubchik::render() {
     if ((s32)m_39c == 1) {
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
+        rotate_matrix_y(NULL, this->rotation.yaw);
         set_current_texture_list((GinjaTextureList *)texlist);
         node = (NJS_OBJECT *)model;
         post_translate_matrix(node->pos);
@@ -377,7 +377,7 @@ void TOCtrlDubchik::render() {
     translate_matrix(0, m_390.x, lbl_805DB3C0 + m_390.y, m_390.z);
     rotate_matrix_z(NULL, rot_z);
     rotate_matrix_x(NULL, rot_x);
-    rotate_matrix_y(NULL, rotation_y);
+    rotate_matrix_y(NULL, this->rotation.yaw);
     rotate_matrix_x(NULL, -0x4000);
     Vec shadow_scale;
     shadow_scale.x = shadow_scale.y = (shadow_scale.z = TOCtrlDubchik__data_805DB3AC) -

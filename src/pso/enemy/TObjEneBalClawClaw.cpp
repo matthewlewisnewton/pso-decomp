@@ -329,7 +329,7 @@ extern s32 model_render_flags;
 
 void TObjEneBalClawClaw__sub_80090A10(u8 *ene_bal_claw_claw, u8 *arg1, s32 arg2, s16 arg3) {
     VecCopy((Vec *)(ene_bal_claw_claw + 0x38), (const Vec *)arg1);
-    ((TObjEneBalClawClaw *)ene_bal_claw_claw)->rotation_y = arg2;
+    ((TObjEneBalClawClaw *)ene_bal_claw_claw)->rotation.yaw = arg2;
     ((TObjEneBalClawClaw *)ene_bal_claw_claw)->referenceHp = arg3;
     ((TObjEneBalClawClaw *)ene_bal_claw_claw)->hp = arg3;
     sub_80090798__18TObjEneBalClawClawFv(ene_bal_claw_claw);
@@ -381,13 +381,13 @@ void TObjEneBalClawClaw::render() {
             if (check_demo_mode() == 1) {
                 post_translate_matrix((u8 *)&this->position);
                 rotate_matrix_x(0, *(s32 *)((s8 *)arg0 + 0x5C));
-                rotate_matrix_y(0, this->rotation_y);
+                rotate_matrix_y(0, this->rotation.yaw);
                 draw_chunk_object(*(s32 *)((s8 *)arg0 + 0x34));
             } else {
                 translate_matrix(0, (0.0f), this->m_3b4 + *(f32 *)((s8 *)arg0 + 0x3BC), (0.0f));
                 post_translate_matrix((u8 *)&this->position);
                 rotate_matrix_x(0, *(s32 *)((s8 *)arg0 + 0x5C));
-                rotate_matrix_y(0, this->rotation_y);
+                rotate_matrix_y(0, this->rotation.yaw);
                 if (this->m_388 & 4) {
                     if (((VB_80090950 *)(arg0 + 0x390))->m8() != 0) {
                         ((VB_80090950 *)(arg0 + 0x390))->m6();
@@ -1278,9 +1278,9 @@ u8 *TObjEneBalClawClaw__sub_80091B98(u8 *ene_bal_claw_claw, s32 arg1, u8 *arg2, 
     *(s16 *)((s8 *)ene_bal_claw_claw + 0x2A) = (s16) *(s16 *)((s8 *)arg2 + 0x2A);
     VecCopy((Vec *)(ene_bal_claw_claw + 0x38), (const Vec *)(arg5));
     VecCopy((Vec *)(ene_bal_claw_claw + 0x50), (const Vec *)(arg2 + 0x50));
-    ((TObjEneBalClawClaw *)ene_bal_claw_claw)->rotation_z = 0;
+    ((TObjEneBalClawClaw *)ene_bal_claw_claw)->rotation.roll = 0;
     *(s32 *)((s8 *)ene_bal_claw_claw + 0x5C) = 0;
-    ((TObjEneBalClawClaw *)ene_bal_claw_claw)->rotation_y = arg6;
+    ((TObjEneBalClawClaw *)ene_bal_claw_claw)->rotation.yaw = arg6;
     TObjEneBalClawClaw__ct(ene_bal_claw_claw);
     *(s32 *)((s8 *)ene_bal_claw_claw + 0x80) = 0;
     ((TObjEneBalClawClaw *)ene_bal_claw_claw)->m_3b8 = (s32) *(s32 *)((s8 *)arg2 + 0x3B8);
