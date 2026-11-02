@@ -229,7 +229,7 @@ void TEndingPic::send_obj_position_event(s32 arg1) {
 }
 
 void TEndingPic::set_phase_18() { send_obj_position_event(18); }
-void TEndingPic__sub_803530A0(void* p) { ((TEndingPic *)p)->send_obj_position_event(17); }
+void TEndingPic::sub_803530A0() { send_obj_position_event(17); }
 
 void TEndingPic::update_player_object() {
     void *temp_r3 = *(void **)((s8 *)this + 0xF0);
@@ -239,16 +239,16 @@ void TEndingPic::update_player_object() {
     }
 }
 
-void TEndingPic__sub_80353110(void* p) { ((TEndingPic *)p)->send_obj_position_event(16); }
-void TEndingPic__sub_80353134(void* p) { ((TEndingPic *)p)->send_obj_position_event(15); }
+void TEndingPic::sub_80353110() { send_obj_position_event(16); }
+void TEndingPic::sub_80353134() { send_obj_position_event(15); }
 void TEndingPic::update_shield() {
     add_actor_hp(*(s32 *)((s8 *)this + 0xF0), get_field_2b8__14TItemProShieldFv(*(s32 *)((s8 *)this + 0xF0)));
 }
-void TEndingPic__sub_80353194(void *arg0) {
-    add_actor_tp(*(s32 *)((s8 *)arg0 + 0xF0), obj_getS16_2BA(*(s32 *)((s8 *)arg0 + 0xF0)));
+void TEndingPic::sub_80353194() {
+    add_actor_tp(*(s32 *)((s8 *)this + 0xF0), obj_getS16_2BA(*(s32 *)((s8 *)this + 0xF0)));
 }
 
     extern const f32 lbl_805DFF34;
-void TEndingPic__sub_803531D0(void* a0) { send_nearby_player_ids((void*)(*(int*)((char*)a0 + 0xf0)), lbl_805DFF34); }
+void TEndingPic::sub_803531D0() { send_nearby_player_ids((void*)(*(int*)((char*)this + 0xf0)), lbl_805DFF34); }
 
-void TEndingPic__sub_803531F8(void) {  }
+void TEndingPic::sub_803531F8() {  }
