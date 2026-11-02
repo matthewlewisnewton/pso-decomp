@@ -71,6 +71,8 @@ struct Self_802219A0 {
 #include "pso/ui/TWindowInputNumber.h"
 struct VBase_80221F08 { char pad[0x18]; };
 
+s32 bank_has_free_row(s32);
+
 struct VObj_80221F08 : VBase_80221F08 {
     virtual void m0();
     virtual void m1();
@@ -113,6 +115,11 @@ s32 sub_8022397C__15TShopWindowBaseFv(void *);
 
 s32 get_selected_menu_value(void *);
 s32 select_cursor_entry__22TWindowSubShortCutListFv(s32);
+s32 sub_802239EC__13TShopSequenceFv(void *);
+s32 get_child_field1c__13TShopSequenceFv(void *);
+s32 sub_80223A48__15TShopWindowBaseFv(void *);
+s32 lookup_item_def__9TItemDataFPv(void *);
+s32 get_bank_deposit_capacity_for_item(void *, s32);
 void TWindowHelpItem__set_displayed_item_by_id(u32, s32);
 void calc_list_content_extent(u32);
 u32 create_item_list_window(s32, s32, u16);
@@ -234,6 +241,88 @@ void TShopKeepItemWindow::update_number_input() {
         TWindow__close((u8 *)this->m_38c);
         this->m_38c = 0U;
         set_field_20(3);
+    }
+}
+
+void TShopKeepItemWindow::handle_deposit_list_select() {
+    Self_80221F08 *self = (Self_80221F08 *)this;
+    s32 base;
+    TItemData *item;
+    s32 sel;
+    s32 num;
+    s32 count;
+    f32 temp_f31;
+    void *win;
+
+    base = sub_8022397C__15TShopWindowBaseFv(this);
+    if (this->m_384 != 0U) {
+        sel = select_cursor_entry__22TWindowSubShortCutListFv(this->m_384);
+        if (this->m_390 != 0U && sel != (s32) this->m_37c) {
+            TWindowHelpItem__set_displayed_item_by_id(this->m_390, ((TItem *)self->ents[sel].f0)->get_item_id());
+            this->m_37c = sel;
+        }
+    }
+    if (sub_802239EC__13TShopSequenceFv(this) != 0) {
+        set_field_20(5);
+        play_sound_effect(0x52D01, 0, 0, 0);
+        return;
+    }
+    if (sub_80223A48__15TShopWindowBaseFv(this) == 0) {
+        return;
+    }
+    sel = select_cursor_entry__22TWindowSubShortCutListFv(this->m_384);
+    /* The original dispatch is cmpwi/beq/bge/b with both non-matching branches
+     * on one body, which MWCC only emits for a switch with a second case label
+     * merged into the default body. The extra label's value is not recoverable
+     * from the object; 2 is the adjacent non-stackable item type. */
+    switch (self->ents[sel].item[0]) {
+    case 3:
+        item = (TItemData *)&self->ents[sel].item[0];
+        if (lookup_item_def__9TItemDataFPv(item) != 0) {
+            num = get_bank_deposit_capacity_for_item(item, base);
+            count = item->get_stack_count();
+            if (num < count) {
+                count = num;
+            }
+            num = count;
+        } else {
+            if (bank_has_free_row(base) != 0) {
+                num = 1;
+            } else {
+                num = 0;
+            }
+        }
+        if (num == 0) {
+            ((V_802219A0 *) this)->m4(0x3C, 1);
+            set_field_20(7);
+            return;
+        }
+        break;
+    case 2:
+    default:
+        if (bank_has_free_row(base) == 0) {
+            ((V_802219A0 *) this)->m4(0x3C, 1);
+            set_field_20(7);
+            return;
+        }
+        num = 1;
+        break;
+    }
+    if (num > 1 && this->m_38c == 0U) {
+        win = new TWindowInputNumber((void *)get_window_layout_position(0x2B), 1, num, 1, (s16)get_child_field1c__13TShopSequenceFv(this));
+        this->m_38c = (u32)win;
+        if (this->m_38c != 0U && TLobby::is_camera_ctrl_active() > 2) {
+            ((TCheckRoomSequence *)this->m_38c)->set_position(lbl_805DC710, lbl_805DC710);
+        }
+        set_field_20(4);
+        return;
+    }
+    if (this->m_388 == 0U) {
+        this->m_388 = (u32)create_yes_no_window(get_window_layout_position(0x2B), (u16)get_entity_id(this->m_24), 0, 0);
+        ((TCheckRoomSequence *)this->m_388)->set_ready_flag();
+        temp_f31 = get_scale__15TShopWindowBaseFv(this);
+        ((TUnk_804CDFE8 *)this->m_388)->set_position_xy(get_scale__15TShopWindowBaseFv(this), temp_f31);
+        set_field_20(2);
     }
 }
 
