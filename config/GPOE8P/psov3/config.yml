@@ -5092,6 +5092,7 @@ force_active:
   - drill_launcher_node_callback__FPv
   - drill_launcher_return_timer__FPv
   - drop_item__9TItemDropFiii
+  - drop_item_from_source__6TLobbyFsisiff
   - dspInitCallback
   - dspResumeCallback
   - dt__11TObjNpcMojaFPvs
@@ -5996,6 +5997,7 @@ force_active:
   - handle_6x91_update_state__15TOAttackableColFv
   - handle_appear__17TObjEneBm3FlyNestFl
   - handle_battle_result__6TLobbyFii
+  - handle_box_drop_directive
   - handle_break_state__19TObjEneEpsilonGuardFl
   - handle_breakup_state__16TObjEneMe3StelthFl
   - handle_buy_confirm__20TShopArmorListWindowFv
@@ -12867,6 +12869,7 @@ force_active:
   - prepare_save_data__23TAdSinglePlyChrSelectGCFv
   - present_frame_and_wait_vsync__Fv
   - process_download_entry__12TQuestListVMFv
+  - process_enemy_drop_request__FScsisiff
   - process_key_input__19TWindowKeyBoardHardFUc
   - process_keyboard_input__17TObjItemNameEntryFv
   - process_lobby_action_14__18TObjCityDoor_LobbyFv

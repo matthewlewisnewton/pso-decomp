@@ -7,6 +7,7 @@ limitations before applying its conclusions to current code.
 See the [documentation index](../README.md) for current contributor and operator
 guides.
 
+- [Box-drop directive](box-drop-directive-evidence.md)
 - [Battle parameter tables](battle-parameter-evidence.md)
 - [Actor position layout guards](chara-position-layout-evidence.md)
 - [Character movement vector](chara-velocity-evidence.md)
