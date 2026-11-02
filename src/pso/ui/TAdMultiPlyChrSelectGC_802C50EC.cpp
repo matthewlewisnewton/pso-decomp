@@ -173,7 +173,7 @@ void copy_vec2__28TWindowSubSymbolChatPartsSetFPv(void *);
 s32 get_field_20__22TAdMultiPlyChrSelectGCFv();
 extern s32 lbl_805D67D4;
 extern const f32 lbl_805DE57C;
-extern const f32 lbl_805DE580;
+const f32 lbl_805DE580 = 0.53f;
 s32 TWindowShortListCtrl__check_controller_button(void *, int);
 
 s32 TAdMultiPlyChrSelectGC__sub_802C5F1C(void *, int);
@@ -192,7 +192,6 @@ extern const f32 lbl_805DE568;
 extern const f32 lbl_805DE570;
 extern const f32 lbl_805DE574;
 extern const f32 lbl_805DE578;
-extern const f32 TAdMultiPlyChrSelectGC__data_805DE584;
 extern const f32 lbl_805DE588;
 extern const f32 lbl_805DE58C;
 extern const f32 lbl_805DE590;
@@ -422,22 +421,20 @@ void TAdMultiPlyChrSelectGC__sub_802C561C(S_802C50EC *self) {
 #pragma push
 #pragma fp_contract on
 /*
- * Matching note for 0x802C5688/0x802C6660: the original object allocates the UV
- * constants to f4/f5/f3 (lbl_80471CE0[1], the 2^52+2^31 pool double and
- * TAdMultiPlyChrSelectGC__data_805DE584), while the natural allocation from this
- * source is f3/f4/f5.  The receiver is taken as a typed S_802C50EC * (the
- * parameter register keeps the first f4EC load off the r31 copy), the sel row is
- * addressed directly (self->sel[active][f4EC], as in sub_802C561C) and the scan
- * table cell is read/written in place, which reproduces every GPR row of both
- * functions.  Function/loop-scope f32 temporaries, all 24 UV statement orders
- * with both operand orders, quad/UV interleavings, explicit pointer locals,
- * load-bearing no-op pairs, the full GC/1.3.2-3.0a5 compiler set, the -O4,p,
- * -O4, -O3 and -O2 levels, every -opt sub-flag and the optimizer pragmas
- * (propagation, lifetimes, common subs, dead assignments, pointer analysis,
- * scheduling, peephole, level, loop passes, defer_codegen) were tried and
- * either left the FPR assignment unchanged or traded these rows for other
- * mismatches.  The remaining objdiff rows are FPR numbers; code size and pooled
- * data already match.  Do not fake this with padding or dummy values.
+ * Matching note for 0x802C5F1C/0x802C5688/0x802C6660: the original stores the UV scale as
+ * an explicit division by 256.0f, not as a multiply by
+ * TAdMultiPlyChrSelectGC__data_805DE584.  MWCC folds the division to the same
+ * fmuls but the literal reciprocal takes part in constant numbering, which is
+ * what yields the original f4/f5/f3 allocation (lbl_80471CE0[1], the 2^52+2^31
+ * pool double and the reciprocal) instead of the f3/f4/f5 rotation produced by
+ * an extern multiply.  The unit owns the 8-byte .sdata2 pool at
+ * 0x805DE580-0x805DE588: lbl_805DE580 (0.53f, used by the plate draws) followed
+ * by the 1/256 reciprocal at 0x805DE584.  The receiver is taken as a typed
+ * S_802C50EC * (the parameter register keeps the first f4EC load off the r31
+ * copy), the sel row is addressed directly (self->sel[active][f4EC], as in
+ * sub_802C561C) and the scan table cell is read/written in place, which
+ * reproduces every GPR row of both functions.  Do not fake this with padding or
+ * dummy values.
  */
 void TAdMultiPlyChrSelectGC__sub_802C5688(S_802C50EC *self) {
     u32 cell[2];
@@ -455,9 +452,9 @@ void TAdMultiPlyChrSelectGC__sub_802C5688(S_802C50EC *self) {
     self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].y = self->quad[self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC]][self->f4EC].y;
     self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].w = self->quad[self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC]][self->f4EC].w;
     self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].u0 = TAdMultiPlyChrSelectGC__data_805DE56C;
-    self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].v0 = (f32)TAdMultiPlyChrSelectGC__data_805D67D8 * lbl_80471CE0[1] * TAdMultiPlyChrSelectGC__data_805DE584;
-    self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].u1 = lbl_80471CE0[0] * TAdMultiPlyChrSelectGC__data_805DE584;
-    self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].v1 = ((f32)TAdMultiPlyChrSelectGC__data_805D67D8 * lbl_80471CE0[1] + lbl_80471CE0[1]) * TAdMultiPlyChrSelectGC__data_805DE584;
+    self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].v0 = (f32)TAdMultiPlyChrSelectGC__data_805D67D8 * lbl_80471CE0[1] / 256.0f;
+    self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].u1 = lbl_80471CE0[0] / 256.0f;
+    self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].v1 = ((f32)TAdMultiPlyChrSelectGC__data_805D67D8 * lbl_80471CE0[1] + lbl_80471CE0[1]) / 256.0f;
     self->a[self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC]][self->f4EC] = 0;
     TAdMultiPlyChrSelectGC::add_selected_slot();
     TAdMultiPlyChrSelectGC__data_805D67D8 = find_active_slot__22TAdMultiPlyChrSelectGCFv((TAdMultiPlyChrSelectGC *)self);
@@ -662,11 +659,11 @@ s32 TAdMultiPlyChrSelectGC__sub_802C5F1C(void *arg0, int arg1) {
             ((S_802C50EC *)arg0)->quad[i][j].u0 = uu;
             a = lbl_805DE588 * (f32)idx;
             b = lbl_805DE588 + a;
-            ((S_802C50EC *)arg0)->quad[i][j].v0 = a * TAdMultiPlyChrSelectGC__data_805DE584;
+            ((S_802C50EC *)arg0)->quad[i][j].v0 = a / 256.0f;
             i++;
             i--;
             ((S_802C50EC *)arg0)->quad[i][j].u1 = lbl_805DE58C;
-            ((S_802C50EC *)arg0)->quad[i][j].v1 = b * TAdMultiPlyChrSelectGC__data_805DE584;
+            ((S_802C50EC *)arg0)->quad[i][j].v1 = b / 256.0f;
         }
     }
 
@@ -835,9 +832,9 @@ void TAdMultiPlyChrSelectGC__sub_802C6660(s32 arg0) {
             ((S_802C50EC *)arg0)->quad[i + 4][0].y = ((S_802C50EC *)arg0)->quad[row][col].y;
             ((S_802C50EC *)arg0)->quad[i + 4][0].w = ((S_802C50EC *)arg0)->quad[row][col].w;
             ((S_802C50EC *)arg0)->quad[i + 4][0].u0 = TAdMultiPlyChrSelectGC__data_805DE56C;
-            ((S_802C50EC *)arg0)->quad[i + 4][0].v0 = (f32)(s32)i * lbl_80471CE0[1] * TAdMultiPlyChrSelectGC__data_805DE584;
-            ((S_802C50EC *)arg0)->quad[i + 4][0].u1 = lbl_80471CE0[0] * TAdMultiPlyChrSelectGC__data_805DE584;
-            ((S_802C50EC *)arg0)->quad[i + 4][0].v1 = ((f32)(s32)i * lbl_80471CE0[1] + lbl_80471CE0[1]) * TAdMultiPlyChrSelectGC__data_805DE584;
+            ((S_802C50EC *)arg0)->quad[i + 4][0].v0 = (f32)(s32)i * lbl_80471CE0[1] / 256.0f;
+            ((S_802C50EC *)arg0)->quad[i + 4][0].u1 = lbl_80471CE0[0] / 256.0f;
+            ((S_802C50EC *)arg0)->quad[i + 4][0].v1 = ((f32)(s32)i * lbl_80471CE0[1] + lbl_80471CE0[1]) / 256.0f;
             {
                 s32 y = row + 1;
                 s32 x = col + 1;
