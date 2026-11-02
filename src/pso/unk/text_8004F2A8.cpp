@@ -1,3 +1,4 @@
+#include "pso/misc/CameraHelpers.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
@@ -58,12 +59,14 @@ void push_matrix();
 void post_translate_matrix(void *);
 extern const f32 lbl_805D89F4;
 extern const f32 lbl_805D89F8;
-void set_scripted_camera_pose(void *, void *, void *);
+
 
 void *create_particle_emitter(void *pos, s32 id);
 
 extern Vec_8004F3D4 lbl_804373F4[];
-extern Vec_8004F3D4 boss4_type2_effect_offset_vec[];
+struct CameraAngleMetadata { CameraAngles angles; u32 trailing; };
+typedef char CameraAngleMetadataSize[sizeof(CameraAngleMetadata)==0x10?1:-1];
+extern CameraAngleMetadata boss4_type2_effect_offset_vec;
 extern const f32 lbl_805D89FC;
 extern const f32 lbl_805D8A00;
 void TObjDFDemo4::sub_8004F2A8() {
@@ -160,10 +163,10 @@ void TObjDFDemo4::run_task() {
   if (self->fF8 == 0x72)
   {
     Vec_8004F3D4 a = lbl_804373F4[0];
-    Vec_8004F3D4 b = boss4_type2_effect_offset_vec[0];
+    CameraAngles b = boss4_type2_effect_offset_vec.angles;
     VecCopy((Vec *)&self->pos, (const Vec *)&a);
     self->fF4 = 0;
-    set_scripted_camera_pose(&self->pos, &self->pos, &b);
+    set_scripted_camera_pose(&camera_position, &camera_position, &b);
   }
   f = self->fFC + lbl_805D89FC;
   self->fFC = f;

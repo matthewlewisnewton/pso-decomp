@@ -2,7 +2,9 @@
 #include "pso/misc/TRaderMapCore_801FB2B8.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/misc/TRaderMapCore.h"
+#include "pso/misc/RadarMapData.h"
 #include "pso/object/TObjMotion.h"
+#include "pso/math/AngleLookup.h"
 
 #pragma fp_contract on
 
@@ -10,8 +12,6 @@ struct RecoveredGlobal_801FB430___vt__13TRaderMapCore {
     s32 value;
     u8 remaining[0x30];
 };
-
-struct GRec_801FB490 { u8 pad0[4]; f32 f4; u8 pad8[8]; f32 f10; f32 f14; s32 f18; u8 pad1c[0x28 - 0x1C]; };
 
 struct MRec_801FB490 { f32 v[3]; s32 a0; f32 a4; s16 h[2]; u8 padac[0x28 - 0x18]; };
 
@@ -50,7 +50,6 @@ extern s32 TRaderMapCore__instance;
 s32 __ct__8TObjBaseFP7TObject(void *, void *);
 s32 init_map_ptr__13TRaderMapCoreFv(void *, int);
 s32 fn_803D64F8(void *);
-extern GRec_801FB490 TRaderMapCore__map_view_state[];
 extern f32 lbl_805D35F0;
 extern f32 lbl_805D35FC;
 extern s32 rader_map_core_name_ptr;
@@ -64,11 +63,11 @@ extern const f32 lbl_805DC594;
 extern const f32 lbl_805DC5A4;
 extern const f32 lbl_805DC5A8;
 Core_801FB490 *TRaderMapCore__ct(Core_801FB490 *arg0, void *parent);
-f32 sin_table_lookup(s32);
 
 extern const f32 TRaderMapCore__data_805DC534;
 extern const f32 lbl_805DC59C;
 extern const f32 lbl_805DC5A0;
+}
 
 void TRaderMapCore::advance_scroll() {
     this->m_198 = (this->m_198 + 0x888);
@@ -130,7 +129,7 @@ u8 *__dt__13TRaderMapCoreFv(u8 *arg0, s16 arg1) {
 #pragma push
 #pragma opt_common_subs off
 Core_801FB490 *TRaderMapCore__ct(Core_801FB490 *arg0, void *parent) {
-    GRec_801FB490 *g;
+    RadarMapViewState *g;
     s32 i;
     u32 j;
     s32 off;
@@ -144,10 +143,10 @@ Core_801FB490 *TRaderMapCore__ct(Core_801FB490 *arg0, void *parent) {
     for (i = 0; i < 3; i++) {
         g = &TRaderMapCore__map_view_state[i];
         fn_803D64F8(g);
-        g->f4 = lbl_805D35F0;
-        g->f10 = TRaderMapCore__data_805DC568;
-        g->f14 = TRaderMapCore__data_805DC528;
-        g->f18 = 0x8000;
+        g->position.y = lbl_805D35F0;
+        g->field10 = TRaderMapCore__data_805DC568;
+        g->field14 = TRaderMapCore__data_805DC528;
+        g->field18 = 0x8000;
     }
     arg0->f150 = lbl_805DC594;
     arg0->f160 = radar_screen_width_f32;
@@ -194,5 +193,3 @@ Core_801FB490 *TRaderMapCore__ct(Core_801FB490 *arg0, void *parent) {
     return arg0;
 }
 #pragma pop
-
-}

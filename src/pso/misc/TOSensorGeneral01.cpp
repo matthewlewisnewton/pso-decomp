@@ -26,7 +26,7 @@ BmlResource *sensor_general_shared_bml_archive;
 s32 *TOSensorGeneral01__texture_lists;
 
 void TOSensorGeneral01::update_switch_off() {
-    rotation_y = rotation_y + 0x147;
+    this->rotation.yaw = this->rotation.yaw + 0x147;
     head_angle = head_angle + 0x28F;
 }
 
@@ -36,23 +36,23 @@ void TOSensorGeneral01::update_switch_on() {
     if (lamp_timer < 0) {
         lamp_timer = 0;
         lamps_dark = 0;
-        rotation_y = rotation_y + 0xCCC;
+        this->rotation.yaw = this->rotation.yaw + 0xCCC;
         position.y += 1.0f;
         return;
     }
     if ((f32)lamp_timer < 30.0f) {
         lamps_dark = 1;
-        rotation_y = rotation_y + 0x147;
+        this->rotation.yaw = this->rotation.yaw + 0x147;
         return;
     }
     if ((f32)lamp_timer < 60.0f) {
         lamps_dark = 2;
-        rotation_y = rotation_y + 0x147;
+        this->rotation.yaw = this->rotation.yaw + 0x147;
         return;
     }
     if ((f32)lamp_timer < 90.0f) {
         lamps_dark = 3;
-        rotation_y = rotation_y + 0x147;
+        this->rotation.yaw = this->rotation.yaw + 0x147;
     }
 }
 
@@ -62,7 +62,7 @@ void TOSensorGeneral01::render() {
     if (update_object_view_visibility(view_range, model_radius) != 0) {
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
+        rotate_matrix_y(NULL, this->rotation.yaw);
         object = (NJS_OBJECT *)model;
         translate_matrix(0, object->pos[0], object->pos[1], object->pos[2]);
         set_current_texture_list((GinjaTextureList *)(TOSensorGeneral01__texture_lists[0]));

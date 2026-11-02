@@ -48,9 +48,9 @@ TObjEneDellBiter_Eff_Rush::TObjEneDellBiter_Eff_Rush(
     VecCopy(&displacement, &recipient->position);
     subtract_vector(&displacement, &source->position);
     displacement.y = lbl_805DEFAC;
-    direction.x = sin_table_lookup(source->rotation_y);
+    direction.x = sin_table_lookup(source->rotation.yaw);
     direction.y = lbl_805DEFAC;
-    direction.z = cos_table_lookup(source->rotation_y);
+    direction.z = cos_table_lookup(source->rotation.yaw);
     if (is_vec_xz_cross_negative(&direction, &displacement) != 0) {
         rotate_xz_pair_by_angle(&direction.x, &direction.z, -0x1800);
     } else {

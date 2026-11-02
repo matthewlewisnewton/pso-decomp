@@ -12,15 +12,15 @@ void TOSwitchTimer::sub_801782A0() {
 
     this->m_90 = 0;
     this->m_94 = 0;
-    this->m_98 = (u32)this->rotation_x;
+    this->m_98 = (u32)this->rotation.pitch;
     if (this->m_98 >= 2) {
         this->m_98 = 1;
     }
-    this->m_9c = this->rotation_y;
+    this->m_9c = this->rotation.yaw;
     if ((s32)this->m_9c > 1) {
         this->m_9c = 0;
     }
-    this->m_a0 = this->rotation_z;
+    this->m_a0 = this->rotation.roll;
     if ((s32)this->m_a0 < 0) {
         this->m_a0 = 0;
     }

@@ -48,27 +48,6 @@ void *TCameraCtrl__vt5(void) {
 #pragma push
 #pragma fp_contract on
 struct Vec_8006C28C { f32 x, y, z; };
-struct Motion_8006C28C { u32 data; u32 frames; };
-struct Mode_8006C28C { u32 asset; u32 flags; };
-struct Cam_8006C28C {
-    u8 pad0[0x3C];
-    Vec_8006C28C position;
-    Vec_8006C28C target;
-    s32 projection;
-    u8 pad58[0x6C - 0x58];
-    Vec_8006C28C position_origin;
-    Vec_8006C28C target_origin;
-    s32 pitch;
-    s32 yaw;
-    s32 roll;
-    Motion_8006C28C *motion;
-    Mode_8006C28C *mode;
-    u8 bank;
-    u8 index;
-    u16 flags;
-    f32 frame;
-    f32 step;
-};
 struct Stack_8006C28C {
     void *ptrs[4];
     Vec_8006C28C p;
@@ -90,7 +69,6 @@ s32 pop_matrices(s32 arg0);
 extern u8 identity_matrix[];
 
 void TUnk_80488B68::run_task() {
-    Cam_8006C28C *s = (Cam_8006C28C *)this;
     Stack_8006C28C st;
     Vec_8006C28C tmp;
     Vec_8006C28C p2;
@@ -99,12 +77,12 @@ void TUnk_80488B68::run_task() {
     st.ptrs[1] = &st.v;
     st.ptrs[2] = &st.sp54;
     st.ptrs[3] = &st.sp58;
-    sample_camera_motion((u8 *)st.out, (s32)s->motion, (u8 *)st.ptrs, (f32)((f32)s->frame));
-    s->projection = scripted_camera_projection_angle;
+    sample_camera_motion((u8 *)st.out, (s32)motion_data, (u8 *)st.ptrs, (f32)((f32)playback.frame));
+    projection_angle = scripted_camera_projection_angle;
     set_camera_capture_overlay_alpha(0x8F);
-    if (s->mode->flags & 4) {
-        if (s->mode->flags & 0x80) {
-            s->projection = 0x36C1;
+    if (mode->f4 & 4) {
+        if (mode->f4 & 0x80) {
+            projection_angle = 0x36C1;
             tmp.x = st.v.x;
             tmp.y = 0.0f;
             tmp.z = st.v.z;
@@ -112,19 +90,19 @@ void TUnk_80488B68::run_task() {
             if (m) {
                 normalize_vector(&tmp);
             }
-            s->position.x = -(4e+01f * tmp.x - st.p.x);
-            s->position.y = st.p.y;
-            s->position.z = -(4e+01f * tmp.z - st.p.z);
-            s->target.x = st.v.x + st.p.x;
-            s->target.y = st.v.y + st.p.y;
-            s->target.z = st.v.z + st.p.z;
+            position.x = -(4e+01f * tmp.x - st.p.x);
+            position.y = st.p.y;
+            position.z = -(4e+01f * tmp.z - st.p.z);
+            target.x = st.v.x + st.p.x;
+            target.y = st.v.y + st.p.y;
+            target.z = st.v.z + st.p.z;
         } else {
-            s->position.x = st.p.x;
-            s->position.y = st.p.y;
-            s->position.z = st.p.z;
-            s->target.x = st.v.x + s->position.x;
-            s->target.y = st.v.y + s->position.y;
-            s->target.z = st.v.z + s->position.z;
+            position.x = st.p.x;
+            position.y = st.p.y;
+            position.z = st.p.z;
+            target.x = st.v.x + position.x;
+            target.y = st.v.y + position.y;
+            target.z = st.v.z + position.z;
         }
     } else {
         p2.x = st.p.x;
@@ -137,25 +115,25 @@ void TUnk_80488B68::run_task() {
             normalize_vector(&v2);
         }
         push_matrix_from(identity_matrix);
-        rotate_matrix_y(0, s->yaw);
+        rotate_matrix_y(0, angles.yaw);
         matrix_mult_vec(0, &p2, &p2);
         matrix_mult_vec(0, &v2, &v2);
         pop_matrices(1);
-        s->position.x = p2.x + s->position_origin.x;
-        s->position.y = p2.y + s->position_origin.y;
-        s->position.z = p2.z + s->position_origin.z;
-        s->target.x = v2.x + s->position.x;
-        s->target.y = v2.y + s->position.y;
-        s->target.z = v2.z + s->position.z;
+        position.x = p2.x + position_origin.x;
+        position.y = p2.y + position_origin.y;
+        position.z = p2.z + position_origin.z;
+        target.x = v2.x + position.x;
+        target.y = v2.y + position.y;
+        target.z = v2.z + position.z;
     }
-    s->frame += s->step;
-    if (s->frame > (s->motion->frames - 1) || s->frame >= 5e+03f) {
-        if (s->mode->flags & 0x20) {
-            s->frame = 0.0f;
+    playback.frame += playback.frame_step;
+    if (playback.frame > (motion_data->frames - 1) || playback.frame >= 5e+03f) {
+        if (mode->f4 & 0x20) {
+            playback.frame = 0.0f;
             return;
         }
-        s->frame = (s->motion->frames - 1);
-        s->flags |= 1;
+        playback.frame = (motion_data->frames - 1);
+        playback.flags |= 1;
     }
 }
 }
@@ -183,22 +161,22 @@ TUnk_80488B68::TUnk_80488B68() : TUnk_80488A28() {
     this->m_38 = 0;
     scripted_camera_projection_angle = 0;
     TCameraCtrl__saved_projection_angle = 0;
-    *(unsigned char *)&this->unk_99 = 0;
-    this->m_98 = 0;
-    this->m_9a = 0;
-    *(float*)((char*)this + 0x9c) = 0.0f;
-    this->m_a0 = 0.0f;
-    *(float*)((char*)this + 0x6c) = 0.0f;
-    this->m_70 = 0.0f;
-    *(float*)((char*)this + 0x74) = 0.0f;
-    this->m_78 = 0.0f;
-    *(float*)((char*)this + 0x7c) = 0.0f;
-    this->m_80 = 0.0f;
-    *(int*)((char*)this + 0x84) = 0;
-    this->m_88 = 0;
-    *(int*)((char*)this + 0x8c) = 0;
-    this->m_90 = 0;
-    *(int*)((char*)this + 0x94) = 0;
+    playback.index = 0;
+    playback.bank = 0;
+    playback.flags = 0;
+    playback.frame = 0.0f;
+    playback.frame_step = 0.0f;
+    position_origin.x = 0.0f;
+    position_origin.y = 0.0f;
+    position_origin.z = 0.0f;
+    target_origin.x = 0.0f;
+    target_origin.y = 0.0f;
+    target_origin.z = 0.0f;
+    angles.pitch = 0;
+    angles.yaw = 0;
+    angles.roll = 0;
+    motion_data = NULL;
+    mode = NULL;
 }
 
 void TCameraCtrl::free_entries() {
@@ -237,6 +215,6 @@ void TCameraCtrl::load_camera_banks() {
         TCameraCtrl__camera_banks.e[j].p = xmalloc(sz);
     }
     for (k = 0; k < n; k++) {
-        TCameraCtrl__camera_banks.e[k].a = load_relocatable_file(b->entries[k].id, (s32)TCameraCtrl__camera_banks.e[k].p);
+        TCameraCtrl__camera_banks.e[k].directory = (CameraMotionDirectory *)load_relocatable_file(b->entries[k].id, (s32)TCameraCtrl__camera_banks.e[k].p);
     }
 }

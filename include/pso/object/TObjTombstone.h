@@ -6,15 +6,17 @@
 
 struct TObjTombstone : public TObjCollidable {
     virtual ~TObjTombstone();
-    u8 unk_AC[0x4];
+    s32 unk_AC;  // Client slot recorded by setup.
     f32 m_b0;
-    u8 unk_B4[0x4];
+    f32 unk_B4;  // Distance/rise fade multiplier.
     f32 m_b8;
-    u8 unk_BC[0x6];
+    f32 unk_BC;  // Foreground label fade.
+    u8 unk_C0[0x2];
     u8 m_c2;
     u8 unk_C3[0x1];
     s16 m_c4;
-    u8 unk_C6[0x16A];
+    u8 unk_C6[0x4A];
+    char name_lines[6][0x30];  // Player, label, name, enemy, quote, date.
     u32 m_230;
     u32 m_234;
     virtual void render();
@@ -26,13 +28,12 @@ struct TObjTombstone : public TObjCollidable {
     void format_label();
     void format_player_name();
     void reset_entries_and_format_name();
-    void copy_matrix(void* q);
     static void reset_matrix();
     s32 check_owner();
     s32 is_other_tombstone_closer();
     static s32 project_to_screen(void *arg0, f32 *arg1, void *arg2);
     void update_fade_by_distance();
-    static s32 draw_name_labels(void *arg0_);
+    static void draw_name_labels(void *arg0_);
     void update_render_flags();
     static s32 check_all_players_active();
     s32 check_height_ready();
@@ -48,5 +49,9 @@ struct TObjTombstone : public TObjCollidable {
     static void *create(void *arg0, void *arg1, void *arg2);
 };
 
+typedef char TombstoneOwnerOffset[offsetof(TObjTombstone, unk_AC) == 0xAC ? 1 : -1];
+typedef char TombstoneFadeOffset[offsetof(TObjTombstone, unk_B4) == 0xB4 ? 1 : -1];
+typedef char TombstoneForegroundOffset[offsetof(TObjTombstone, unk_BC) == 0xBC ? 1 : -1];
+typedef char TombstoneNameLinesOffset[offsetof(TObjTombstone, name_lines) == 0x110 ? 1 : -1];
 typedef char TObjTombstone_size[sizeof(TObjTombstone) == 0x238 ? 1 : -1];
 #endif

@@ -36,7 +36,7 @@ void TOCapsuleAncient01::render() {
     if (visible == 1) {
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
+        rotate_matrix_y(NULL, this->rotation.yaw);
         set_current_texture_list((GinjaTextureList *)(texlist));
         body = (NJS_OBJECT *)model;
         translate_matrix(0, body->pos[0], body->pos[1], body->pos[2]);
