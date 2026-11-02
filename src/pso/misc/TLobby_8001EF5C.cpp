@@ -110,7 +110,6 @@ s32 TLobby__sub_8001EDD8(void *, s32);
 s32 create_file_load_entry__6TLobbyFllUllPPv(void *, s32, void *, void *, void *);
 extern s32 lbl_80434C70[];
 extern s32 lbl_80434C98[];
-void TLobby__sub_8001EDF4(u8 *arg0);
 s32 TLobby__sub_800F9FF4(s32);
 void mem_free(void *p);
 s32 release_texture_list(void *);
@@ -278,7 +277,7 @@ s32 TLobby::load_bml_exec(u8 *arg0, u8 *arg1) {
             TLobby::reset_read_state();
             switch ((s8) bml_load_state) {
             case 1: {
-                s32 p = ((TQuestVmDownLoadServer *)(bml_header_record_ptr->rawSize))->alloc();
+                s32 p = (s32)TQuestVmDownLoadServer::alloc(bml_header_record_ptr->rawSize);
                 if (p != 0) {
                     prs_decompress_buffer((s32)lobby_bml_read_buffer, p);
                     bind_bml_model((Lobby_8001FBEC *) self, bml_header_record_ptr->rawSize, self->nmodel++, p);
@@ -330,7 +329,7 @@ s32 TLobby::load_bml_exec(u8 *arg0, u8 *arg1) {
             TLobby::reset_read_state();
             switch ((s8) bml_load_state) {
             case 1: {
-                s32 p = ((TQuestVmDownLoadServer *)(bml_header_record_ptr->rawSize))->alloc();
+                s32 p = (s32)TQuestVmDownLoadServer::alloc(bml_header_record_ptr->rawSize);
                 if (p != 0) {
                     prs_decompress_buffer((s32)lobby_bml_read_buffer, p);
                     bind_bml_motion((Lobby_8001FB6C *) self, self->nmodel++, (void *) p);
@@ -402,11 +401,11 @@ s32 TLobby::load_bml_exec(u8 *arg0, u8 *arg1) {
     case 9:
         self->state = 0xA;
     case 10:
-        ((TLobby *)lbl_80434B44)->tmp_buf_release();
+        TLobby::tmp_buf_release((const char *)lbl_80434B44);
         lbl_805D4AE0 = NULL;
         return 1;
     case 11:
-        ((TLobby *)lbl_80434B44)->tmp_buf_release();
+        TLobby::tmp_buf_release((const char *)lbl_80434B44);
         lbl_805D4AE0 = NULL;
         return -1;
     }
@@ -425,7 +424,7 @@ void TLobby::free_chr_select_data() {
 }
 void TLobby::init_download_buffers() {
     (*(s32 *)&bml_load_buffer) = xmalloc__FUl(0x4000);
-    lobby_download_buffer = ((TQuestVmDownLoadServer *)0x40000)->alloc();
+    lobby_download_buffer = (s32)TQuestVmDownLoadServer::alloc(0x40000);
     reset_gstream_globals();
     tmp_buf_in_use_flag = 1;
     TLobby__tmp_buf_name[0] = 0;
@@ -435,7 +434,7 @@ void check_bin_model_loaded__6TLobbyFPvPv(Obj_8001F8D8 *self, void * _w1) {
     if (self->f434 <= self->f4 && self->f438 <= self->f8 && self->f43c <= self->fc) {
         ((BmlResource *)self)->set_flag_and_notify();
         self->f418 = 0;
-        ((TLobby *)lbl_80434C38)->tmp_buf_release();
+        TLobby::tmp_buf_release((const char *)lbl_80434C38);
     }
 }
 
@@ -599,7 +598,7 @@ BmlResource::~BmlResource() {
             for (i = 0; i < handle_count; i++) {
                 TLobby__sub_800F9FF4(handles[i]);
             }
-            TLobby__sub_8001EDF4((u8 *)lbl_80434C38);
+            TLobby::tmp_buf_release_if_owner((const char *)lbl_80434C38);
         }
     }
     for (i = 0; i < model_count; i++) {
@@ -707,7 +706,7 @@ BmlResource::BmlResource(s32 kind, BmlResourceDescriptor *descriptor, s32 arg3, 
             }
             switch (bml_load_state) {
             case 1:
-                buf = ((TQuestVmDownLoadServer *)(size + 0x800))->alloc();
+                buf = (s32)TQuestVmDownLoadServer::alloc(size + 0x800);
                 if (buf != 0) {
                     disc_read_filename = (s32)descriptor->archive_filename;
                     ((TGStream *)(&st))->read_data((s32)((void *)buf), (s32)size);
@@ -732,7 +731,7 @@ BmlResource::BmlResource(s32 kind, BmlResourceDescriptor *descriptor, s32 arg3, 
                 if ((u32)e->m_c != 0U) {
                     s32 tsize = rec->texSize;
                     if (tsize != 0) {
-                        s32 tbuf = ((TQuestVmDownLoadServer *)(tsize + 0x800))->alloc();
+                        s32 tbuf = (s32)TQuestVmDownLoadServer::alloc(tsize + 0x800);
                         ((TGStream *)(&st))->read_data((s32)((void *)tbuf), (s32)tsize);
                         align_gstream_read_offset(&st, blk);
                         prs_decompress_buffer(tbuf, (s32)resource_decompress_buffer);
@@ -759,7 +758,7 @@ BmlResource::BmlResource(s32 kind, BmlResourceDescriptor *descriptor, s32 arg3, 
             }
             switch (bml_load_state) {
             case 1: {
-                s32 mb = ((TQuestVmDownLoadServer *)(sz + 0x800))->alloc();
+                s32 mb = (s32)TQuestVmDownLoadServer::alloc(sz + 0x800);
                 ((TGStream *)(&st))->read_data((s32)((void *)mb), (s32)sz);
                 align_gstream_read_offset(&st, blk);
                 prs_decompress_buffer(mb, (s32)resource_decompress_buffer);

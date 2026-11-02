@@ -846,7 +846,7 @@ void TScene::load_scene_data(s32 name) {
     temp_r31 = ((TScene *)((s32 *)&sp8))->update_lobby_scene();
     if (get_current_floor_area() == AREA_LOBBY) {
         if ((temp_r31 > 0) && ((u32) temp_r31 <= 0x10000U)) {
-            temp_r3 = ((TQuestVmDownLoadServer *)0x10000)->alloc();
+            temp_r3 = (s32)TQuestVmDownLoadServer::alloc(0x10000);
             TScene__collision_file_buffer = temp_r3;
             if (temp_r3 != 0U) {
                 scene_collision_data = (s32 *)load_relocatable_file((s32)((s32 *)&sp8), temp_r3);
@@ -854,7 +854,7 @@ void TScene::load_scene_data(s32 name) {
             }
         }
     } else if (temp_r31 > 0) {
-        temp_r3_2 = ((TQuestVmDownLoadServer *)temp_r31)->alloc();
+        temp_r3_2 = (s32)TQuestVmDownLoadServer::alloc(temp_r31);
         TScene__collision_file_buffer = temp_r3_2;
         if (temp_r3_2 != 0U) {
             scene_collision_data = (s32 *)load_relocatable_file((s32)((s32 *)&sp8), temp_r3_2);
@@ -889,14 +889,14 @@ void TScene::load_scene_rel_file(s32 arg0) {
     }
     if (area == AREA_LOBBY) {
         if (size > 0 && (u32)size <= 0x80000U) {
-            TScene__map_rel_load_buffer = ((TQuestVmDownLoadServer *)0x80000)->alloc();
+            TScene__map_rel_load_buffer = (s32)TQuestVmDownLoadServer::alloc(0x80000);
             if (TScene__map_rel_load_buffer != 0U) {
                 TScene__data_805D5FCC = (SceneMaterialRoot *)load_relocatable_file((s32)((s32 *)id), TScene__map_rel_load_buffer);
                 TScene__map_rel_load_size_limit = 0x80000;
             }
         }
     } else if (size > 0) {
-        TScene__map_rel_load_buffer = ((TQuestVmDownLoadServer *)size)->alloc();
+        TScene__map_rel_load_buffer = (s32)TQuestVmDownLoadServer::alloc(size);
         if (TScene__map_rel_load_buffer != 0U) {
             TScene__data_805D5FCC = (SceneMaterialRoot *)load_relocatable_file((s32)((s32 *)id), TScene__map_rel_load_buffer);
             TScene__map_rel_load_size_limit = size;
@@ -922,7 +922,7 @@ void TScene::load_supplementary_t_rel(s32 name) {
     replace_file_extension__6TLobbyFPvPvPv((char *)((s32 *)id), (char *)name, (char *)((s32 *)"t.rel"));
     n = ((TScene *)id)->update_lobby_scene();
     if (n > 0) {
-        TScene__supplementary_rel_buffer = ((TQuestVmDownLoadServer *)n)->alloc();
+        TScene__supplementary_rel_buffer = (s32)TQuestVmDownLoadServer::alloc(n);
         if (TScene__supplementary_rel_buffer != 0U) {
             TScene__texture_wave_resource = (u32)load_relocatable_file((s32)((s32 *)id), TScene__supplementary_rel_buffer);
             TScene__loaded_floor_rel_file_index = n;
@@ -951,7 +951,7 @@ void TScene::load_map_texture_archive(s32 name) {
     }
     if (area == AREA_LOBBY) {
         if ((var_r30 > 0) && ((u32) var_r30 <= 0x100U)) {
-            temp_r3 = ((TQuestVmDownLoadServer *)0x100)->alloc();
+            temp_r3 = (s32)TQuestVmDownLoadServer::alloc(0x100);
             TScene__texture_animation_buffer = temp_r3;
             if (temp_r3 != 0U) {
                 read_disc_file((char *)(sp8), temp_r3);
@@ -959,7 +959,7 @@ void TScene::load_map_texture_archive(s32 name) {
             }
         }
     } else if (var_r30 > 0) {
-        temp_r3_2 = ((TQuestVmDownLoadServer *)var_r30)->alloc();
+        temp_r3_2 = (s32)TQuestVmDownLoadServer::alloc(var_r30);
         TScene__texture_animation_buffer = temp_r3_2;
         if (temp_r3_2 != 0U) {
             read_disc_file((char *)(sp8), temp_r3_2);
@@ -981,14 +981,14 @@ void TScene::load_floor_bin_file(s32 name) {
     size = ((TScene *)sp8)->update_lobby_scene();
     if (get_current_floor_area() == AREA_LOBBY) {
         if (size > 0 && (u32)size <= 0x100U) {
-            TScene__data_805D6020 = ((TQuestVmDownLoadServer *)0x100)->alloc();
+            TScene__data_805D6020 = (s32)TQuestVmDownLoadServer::alloc(0x100);
             if (TScene__data_805D6020 != 0U) {
                 read_disc_file((char *)sp8, TScene__data_805D6020);
                 floor_bin_file_size = 0x100;
             }
         }
     } else if (size > 0) {
-        TScene__data_805D6020 = ((TQuestVmDownLoadServer *)size)->alloc();
+        TScene__data_805D6020 = (s32)TQuestVmDownLoadServer::alloc(size);
         if (TScene__data_805D6020 != 0U) {
             read_disc_file((char *)sp8, TScene__data_805D6020);
             floor_bin_file_size = size;
@@ -1008,7 +1008,7 @@ void TScene::load_file_to_buffer(s32 name) {
     temp_r31 = ((TScene *)sp8)->update_lobby_scene();
     if (get_current_floor_area() == AREA_LOBBY) {
         if ((temp_r31 > 0) && ((u32) temp_r31 <= 0x100U)) {
-            temp_r3 = ((TQuestVmDownLoadServer *)0x100)->alloc();
+            temp_r3 = (s32)TQuestVmDownLoadServer::alloc(0x100);
             TScene__material_info_buffer = temp_r3;
             if (temp_r3 != 0U) {
                 read_disc_file((char *)(sp8), temp_r3);
@@ -1016,7 +1016,7 @@ void TScene::load_file_to_buffer(s32 name) {
             }
         }
     } else if (temp_r31 > 0) {
-        temp_r3_2 = ((TQuestVmDownLoadServer *)temp_r31)->alloc();
+        temp_r3_2 = (s32)TQuestVmDownLoadServer::alloc(temp_r31);
         TScene__material_info_buffer = temp_r3_2;
         if (temp_r3_2 != 0U) {
             read_disc_file((char *)(sp8), temp_r3_2);

@@ -1,5 +1,6 @@
 #include "pso/system/SoundEffect.h"
 #include "types.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC_802E0FC8.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/object/TObject_80019A50.h"
@@ -59,7 +60,7 @@ void TAdSinglePlyChrSelectGC::cleanup() {
     set_entry_value__22TAdMultiPlyChrSelectGCFlUl(*(s32 *)((s8 *)this + 0x34), 1, &lbl_805DE784);
     *(s32 *)((s8 *)this + 0x58) = -1;
     if ((u32) *(u32 *)((s8 *)this + 0x38) != 0U) {
-        TWindow__close((u8 *)(*(void **)((s8 *)this + 0x38)));
+        ((TWindowBase *)(*(void **)((s8 *)this + 0x38)))->close();
         *(u32 *)((s8 *)this + 0x38) = 0U;
     }
     if ((u32) *(u32 *)((s8 *)this + 0x44) != 0U) {
@@ -79,11 +80,11 @@ void TAdSinglePlyChrSelectGC::cleanup() {
         *(u32 *)((s8 *)this + 0x50) = 0U;
     }
     if ((u32) *(u32 *)((s8 *)this + 0x3C) != 0U) {
-        TWindow__close((u8 *)(*(void **)((s8 *)this + 0x3C)));
+        ((TWindowBase *)(*(void **)((s8 *)this + 0x3C)))->close();
         *(u32 *)((s8 *)this + 0x3C) = 0U;
     }
     if ((u32) *(u32 *)((s8 *)this + 0x40) != 0U) {
-        TWindow__close((u8 *)(*(void **)((s8 *)this + 0x40)));
+        ((TWindowBase *)(*(void **)((s8 *)this + 0x40)))->close();
         *(u32 *)((s8 *)this + 0x40) = 0U;
     }
     if ((u32) *(u32 *)((s8 *)this + 0x54) != 0U) {
