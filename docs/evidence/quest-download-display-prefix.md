@@ -1,10 +1,12 @@
 # Quest display-prefix prerequisite
 
-This separate inactive checkpoint follows the canonical slot definition at
-`50ad77435cf35a69136678f3c62cd001cc2ee31e`. Neither checkpoint changes PR #238's
-six-object selection. The original upstream import remains in their dependency
-history; this definition uses the original symbol and extent rather than
-introducing a renamed or enlarged object.
+The inactive source checkpoint originated at
+`0677283ae59d077cc40187e11db3ce3aa9207493` and passed independent source review.
+This layout-only continuation carries that unchanged definition on the frozen
+slot follow-up #262 at `26d94367605e45aeb0364e0df6ecc09ff5d34a11`. It preserves
+the existing 29,184-byte cache and 2,240-byte slot selections. The attributed
+upstream import remains in the dependency history; this definition retains the
+original symbol and extent.
 
 `QuestDownloadDisplayPrefix.cpp` defines the actual 12-byte encoded character
 array at `80596258..80596264`. Both existing source consumers declare this symbol
@@ -29,7 +31,7 @@ offset was 10. This is a bound for that prefix reader and the native count-write
 domain, not a proof about arbitrary corruptions or other scratch writers.
 No original string or asset bytes are included in this document or source.
 
-The actual validated #238 linker input selects the frontend source object and
+The validated #238/#262 linker inputs select the frontend source object and
 the original provider object. The frontend's prefix declaration is compatible
 with this definition; its prefix-address relocations and copy call are unchanged.
 The fallback provider retains the original BEFC/C460 `+12` address calculations.
@@ -38,17 +40,19 @@ provider source or recovering all sixteen missing provider functions. Recovering
 those two consumers later still requires proper separate-object scratch access;
 this definition does not bless their provisional source pointer arithmetic.
 
-The definition is absent from the split and linked-unit lists. Original fallback
-still owns all four deferred objects, so the checkpoint claims zero new linked
-bytes. Before selection, independently review this narrow ownership boundary,
-target-compile the new object, and qualify its size, alignment and symbols. The
-proposed source range ends four modulo eight; actual generated scratch fallback
-alignment and consumed linker inputs must preserve `80596264` without added
-padding. Existing selected 12-byte BSS sections show that such extents are
-supported, but do not qualify this new split.
+The candidate names only `80596258..80596264` in the split list. It does not
+add the unit to the linked-unit list: original fallback still supplies the
+prefix, workspace and scratch, so this checkpoint claims zero new linked bytes.
+Source ownership has passed review; exact target size, alignment, symbols and
+generated layout remain unqualified. The range ends four modulo eight, and
+the scratch symbol is already described as four-byte data. Actual generated
+fallback alignment and consumed linker inputs must nevertheless preserve
+`80596264` without added padding. No alignment override or padding object is
+introduced to presume that result.
 
 Only after actual-graph review and development admission should native linkage,
 original-DOL equality and all raw no-loss checks establish a gain. The 2,448-byte
 workspace and 1,028-byte scratch remain held for their own type, producer-bound
 and phase-lifetime work. No shared header, function body, scanner, retention or
-build-selection change is part of this checkpoint.
+source-selection change is part of this layout checkpoint. The separately
+released BEFC/C460 address repairs remain outside this candidate.

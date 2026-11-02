@@ -13890,6 +13890,9 @@ pso/misc/QuestDownloadBuffers.cpp:
 pso/misc/QuestDownloadSlots.cpp:
 	.bss        start:0x80595998 end:0x80596258
 
+pso/misc/QuestDownloadDisplayPrefix.cpp:
+	.bss        start:0x80596258 end:0x80596264
+
 pso/misc/TWindowKeyBoardSoft_803E6610.cpp:
 	.text       start:0x803E6610 end:0x803E6970
 
