@@ -133,3 +133,35 @@ current-main original-DOL equality and strict no-loss acceptance.
 This is not source-qualified or ready to merge. No new exact or linked gain is
 claimed. Existing #226 repairs remain; README, checkers and linked-unit policy
 are unchanged.
+
+
+## Composition with the merged bank owner
+
+The follow-up merges current-main snapshot
+`c0ea25b74ddda7c7b2ac3fd2f7a468977a2b1233` while preserving both attributed
+upstream import commits and the subsequent corrective history. The three banks
+now have their single canonical definition in `Boss7TentacleBanks.cpp`, already
+merged through #254. Needle includes its shared header and relinquishes its
+local definitions and overlapping BSS split. No new bank gain is claimed.
+
+One scheduled GC/2.6 compile of source head
+`bf04b195a11ab62b2aa47304cd3d05c87553c39d` completed successfully. Independent
+review verified all 48 actual dependencies against pinned source. The 24-byte
+rodata and 48-byte vtable data match the extended original, including all eight
+vtable relocations. Of 41 functions, 39 bodies match original bytes; 38 also
+match relocations after resolving genuine external bank references to their
+original addresses. These are fresh measurements of this external-bank object.
+
+External-bank composition increases the builder to 264 bytes (original 244,
+previous same-unit candidate 252). The 416-byte constructor still differs in
+scheduling. The constant pool emits eight of twelve original bytes and one
+Tentacle run_task relocation targets `0x805DEC44` rather than `0x805DEC48`.
+The code object has 266 allocated relocations versus 260 original. These are
+unresolved native differences; this checkpoint does not activate Needle source.
+The shared resource-tail and borrowed-lifetime holds above remain open.
+
+#254's canonical 1,008-byte data contribution is merged and was independently
+native-validated against historical baseline `909d120b21f7e875e71a5c1d0d3a7799a08078e9`.
+#271 separately publishes Quest storage; its frozen head and evidence are
+unaffected. This draft still needs native code matching, source/resource
+qualification and final current-main linkage, original-DOL and no-loss checks.
