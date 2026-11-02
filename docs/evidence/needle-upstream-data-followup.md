@@ -17,7 +17,8 @@ The model getter consistently returns opaque, pointer-fixed resource bytes. It
 does not assert a live source `DragonModelNode`. Traversal reads child/sibling
 address representations into live `u32` locals with `__memcpy`; the destination
 bank contains real `DragonModelNode` objects. This improves the boundary but
-does not prove the shared helper's final float access or the resource graph.
+does not prove the shared helper's final float access or borrowed resource
+lifetimes.
 
 | Bank | Start | Bytes | Elements |
 | --- | --- | --- | --- |
@@ -47,8 +48,12 @@ individual pragmas are preserved. This produces the original emitted order and
 both genuine class vtables; no table is handwritten. Every function has its
 original offset and size except the final builder, which is 252 rather than
 244 bytes. The constructor is back to 416 bytes but still has different load
-scheduling. The bounded comparison reports 39 exact functions; this is not a
-new-gain claim.
+scheduling. The bounded comparison with `functionRelocDiffs=data_value` reports
+39 exact functions; this is not a new-gain claim. A default relocation
+comparison reports 38: one existing SDA reference in Tentacle's `run_task`
+points to equal-valued data at a different `.sdata2` offset. The held constant
+layout still needs repair; equal referenced values do not establish final
+address or link equality.
 
 The two vtables occupy `0x804E4830..0x804E4860`, Needle first and Tentacle second.
 The candidate's 48 bytes and all eight physical relocation positions, types and
@@ -90,9 +95,36 @@ equal offsets do not establish compatible live objects. Only the narrow helper
 and call-boundary hunks were released, so their layout/loader owners must
 coordinate the remaining repair.
 
-The BML graph's extent, terminal child/sibling links and borrowed payload
-lifetime remain unproved. The exact model resource is
-`bm_boss7_de_rol_le_c.bml`; matching the copy helper does not supply this evidence.
+Private inspection of the original `bm_boss7_de_rol_le_c.bml` now establishes
+the specific traversal: model entry 1 has a 5,404-byte NJCM payload; twelve
+child steps and the final sibling select 14 distinct records. Their nonzero
+links are covered by the resource's POF0 relocations. Node 12 has no child;
+node 13 has no model, child or sibling. The destination's model pointers still
+borrow the loaded payload.
+
+This also rules out treating every source as a complete 56-byte node. Two
+adjacent records are 52 bytes apart, and the terminal record ends exactly at
+the payload boundary. The helper's final four-byte read therefore overlaps
+the next record in one case and extends past initialized payload in the last.
+The recovered system allocator rounds this request to at least 5,408 payload
+bytes, so this is not evidence of a physical heap-block overrun. That rounded
+slack is not copied from the resource or established as a live initialized
+float. None of these 14 nodes sets the quaternion flag, but that fact does not
+justify changing the shared helper's native behavior or its other consumers.
+A type rename cannot close this source contract.
+
+The original callback table binds the bank builder to an empty cleanup
+callback. Global exit runs the callback table in reverse before deleting the
+BML resource, whose destructor frees model payloads. Actor quiescence and last
+use before this unload remain unproved. No resource bytes or private extraction
+artifacts are committed.
+
+Three further source-structure probes were rejected: scalar member pointers
+left allocated output unchanged; component representation snapshots grew the
+constructor by 12 bytes; copying links into a live traversal pointer left the
+builder oversized and worsened instruction matching. The frozen production
+object, genuine vtables, fallback ordering and 39-function evidence remain
+unchanged. These are bounded failed experiments, not new gains.
 Constructor scheduling, the builder's byte-safe traversal emission, complete
 affected-consumer qualification, native source inputs and retained fallback
 consumption also remain held. The separate merge owner must still establish
