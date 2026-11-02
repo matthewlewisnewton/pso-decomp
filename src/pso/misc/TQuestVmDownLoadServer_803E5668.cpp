@@ -15,9 +15,7 @@ extern RecoveredGlobal_803E5EFC_lbl_8058DD88 lbl_8058DD88;
 }
 
 
-typedef QuestDownloadSlot Ent_803E5670;
 
-typedef QuestDownloadSlot Ent_803E639C;
 
 struct Req_803E5D20
 {
