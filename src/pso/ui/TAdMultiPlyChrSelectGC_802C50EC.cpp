@@ -425,29 +425,32 @@ void TAdMultiPlyChrSelectGC__sub_802C561C(S_802C50EC *self) {
  * Matching note for 0x802C5688/0x802C6660: the original object allocates the UV
  * constants to f4/f5/f3 (lbl_80471CE0[1], the 2^52+2^31 pool double and
  * TAdMultiPlyChrSelectGC__data_805DE584), while the natural allocation from this
- * source is f3/f4/f5. Function/loop-scope f32 temporaries, expression and store
- * reorderings, explicit pointer locals and the optimizer pragmas (propagation,
- * lifetimes, common subs, dead assignments, pointer analysis, scheduling,
- * peephole, level, loop passes, defer_codegen) were tried and either left the
- * allocation unchanged or traded these rows for other mismatches. The remaining
- * objdiff rows are FPR numbers; code size and pooled data already match. Do not
- * fake this with padding or dummy values.
+ * source is f3/f4/f5.  The receiver is taken as a typed S_802C50EC * (the
+ * parameter register keeps the first f4EC load off the r31 copy), the sel row is
+ * addressed directly (self->sel[active][f4EC], as in sub_802C561C) and the scan
+ * table cell is read/written in place, which reproduces every GPR row of both
+ * functions.  Function/loop-scope f32 temporaries, all 24 UV statement orders
+ * with both operand orders, quad/UV interleavings, explicit pointer locals,
+ * load-bearing no-op pairs, the full GC/1.3.2-3.0a5 compiler set, the -O4,p,
+ * -O4, -O3 and -O2 levels, every -opt sub-flag and the optimizer pragmas
+ * (propagation, lifetimes, common subs, dead assignments, pointer analysis,
+ * scheduling, peephole, level, loop passes, defer_codegen) were tried and
+ * either left the FPR assignment unchanged or traded these rows for other
+ * mismatches.  The remaining objdiff rows are FPR numbers; code size and pooled
+ * data already match.  Do not fake this with padding or dummy values.
  */
-void TAdMultiPlyChrSelectGC__sub_802C5688(s32 arg0) {
-    S_802C50EC *self = (S_802C50EC *)arg0;
+void TAdMultiPlyChrSelectGC__sub_802C5688(S_802C50EC *self) {
     u32 cell[2];
-    s32 *selected = self->sel[TAdMultiPlyChrSelectGC__data_805D67D8];
-    s32 row = selected[self->f4EC] + 1;
+    s32 row = self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC] + 1;
     s32 col = self->f4EC + 1;
-    s32 *entry = &TAdMultiPlyChrSelectGC__data_804E0A68[row][col];
-    if (*entry == -1) {
+    if (TAdMultiPlyChrSelectGC__data_804E0A68[row][col] == -1) {
         play_sound_effect(0x53F06, (const Vec *)NULL, 0, 0);
         return;
     }
     TAdMultiPlyChrSelectGC__data_804E0AE0[TAdMultiPlyChrSelectGC__data_805D67D8] = 1;
-    *entry = -1;
-    TAdMultiPlyChrSelectGC__data_804E0A48.slots[TAdMultiPlyChrSelectGC__data_805D67D8] = selected[self->f4EC] + self->f4EC * 4;
-    self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].x = self->quad[selected[self->f4EC]][self->f4EC].x;
+    TAdMultiPlyChrSelectGC__data_804E0A68[row][col] = -1;
+    TAdMultiPlyChrSelectGC__data_804E0A48.slots[TAdMultiPlyChrSelectGC__data_805D67D8] = self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC] + self->f4EC * 4;
+    self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].x = self->quad[self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC]][self->f4EC].x;
     self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].z = self->quad[self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC]][self->f4EC].z;
     self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].y = self->quad[self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC]][self->f4EC].y;
     self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].w = self->quad[self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC]][self->f4EC].w;
