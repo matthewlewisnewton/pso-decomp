@@ -1,22 +1,22 @@
-# Deferred Quest download storage
+# Quest download slot storage and remaining contracts
 
-This inactive continuation depends on fork PR #238 at
-`41be9450cb01b633ae9abcee6b402f91b1a562de`. It leaves that PR's six-object,
-29,184-byte selection unchanged. The original scoped upstream import and its
-subsequent type repairs remain in the dependency history. No additional source
-linkage or matching gain is claimed here.
+This continuation depends on fork PR #238 at
+`41be9450cb01b633ae9abcee6b402f91b1a562de`. It preserves that PR's six-object,
+29,184-byte selection and adds the canonical 2,240-byte slot array as a separate
+source owner. The original scoped upstream import and subsequent type repairs
+remain in the dependency history. The other 3,488 bytes remain original.
 
-The remaining four symbols occupy 5,728 bytes. Native extents identify the
-boundaries; they do not establish historical C++ types or translation units.
+The four symbols below occupy 5,728 bytes. Native extents identify boundaries;
+they do not by themselves establish historical C++ types or translation units.
 
 | Object | Address range (end exclusive) | Bytes | Next source step |
 | --- | --- | ---: | --- |
 | `lbl_80595008` | `80595008..80595998` | 2,448 | Resolve the first `0x8C0` bytes and the final `0xD0` query workspace's producer contract. |
-| `quest_download_slot_chain_table` | `80595998..80596258` | 2,240 | Qualify the canonical `QuestDownloadSlot[80]` definition as a separate data-only owner. |
+| `quest_download_slot_chain_table` | `80595998..80596258` | 2,240 | Selected canonical `QuestDownloadSlot[80]`; native result described below. |
 | `lbl_80596258` | `80596258..80596264` | 12 | Qualify the display-prefix character storage and its boundary with shared scratch. |
 | `quest_download_text_buffer` | `80596264..80596668` | 1,028 | Reconcile byte records, wide characters and ID views, bounds and phase lifetimes. |
 
-## Slot prerequisite
+## Slot ownership
 
 `QuestDownloadSlots.cpp` supplies one C-linkage definition using the existing
 canonical record header. Its trivial slot objects have static storage duration
@@ -24,23 +24,22 @@ and normal zero initialization. The existing provider `init_entries` initializes
 the 80 slots before normal use. Pointer fields refer to separately owned nodes;
 the slot array neither supplies their storage nor starts their lifetimes.
 
-The definition is deliberately absent from `splits.txt` and `linked_units.txt`.
-The original fallback remains the sole link-selected owner. A future reviewed
-split would select exactly `80595998..80596258`, leaving the 2,448-byte workspace
-and 1,040-byte prefix/scratch remainder original. It must not introduce a second
-selected definition, an alias, extra capacity or a spanning aggregate.
+The split and linked-unit list select exactly `80595998..80596258` from this
+definition, leaving the 2,448-byte workspace and 1,040-byte prefix/scratch
+remainder original. There is one selected slot definition, with no alias, extra
+capacity or aggregate spanning the adjacent objects.
 
 The current frontend already uses the canonical slot declaration. Its bodies,
 the public headers, provider bodies and private pointer/count API work are
 unchanged. The standalone data prerequisite therefore does not require importing
-the private provider/API composition. This narrower dependency assessment still
-requires independent source and actual-graph review.
+the private provider/API composition. Independent source, object, eligibility
+and actual-graph reviews passed for this bounded dependency assessment.
 
 Direct-symbol references are not a complete consumer inventory. Native A428 and
 A9E8 also reach slots from `lbl_80595008 + 0x990 + index * 0x1C`.
-The split must preserve those addresses and actual relocation results, as well
-as all direct slot references. Compiler pooling is not evidence for combining
-the two objects into one C++ aggregate. Existing index-domain obligations remain
+The native validation preserves those addresses and actual relocation results,
+as well as all direct slot references. Compiler pooling is not evidence for
+combining the two objects into one C++ aggregate. Existing index-domain obligations remain
 visible; defining storage alone does not prove every consumer's bounds.
 
 ## Remaining contracts
@@ -76,12 +75,33 @@ qualified independent data owner. Particular missing functions still supply
 necessary semantic evidence: A428/A9E8/F03B4 for workspace and slot boundaries,
 B4D4 for the prefix, and EE580/DF64 for shared scratch use.
 
-## Qualification still required
+## Development validation
 
-The new definition has not been target-compiled or independently reviewed.
-Before selection, qualify its exact extent, alignment, symbols and absence of
-initialized data/relocations; review the actual split graph and every unchanged
-consumer's relocation destinations. Then obtain normal development admission
-for native linkage, original-DOL identity and unfiltered code/data/function/link
-no-loss checks. Preserve the passed #238 inputs and reuse immutable evidence
-where applicable. Latest-main acceptance remains a separate merge-process gate.
+The exact native candidate was `140bc0ace7fcfe2deca0894ea09adb2c306f73e6`,
+compared with the authenticated `6607f3d2c0406f794e3d187fede3c6756ac51f4f`
+baseline underlying #238. The baseline was reused without rebuilding. A normal
+candidate build included one slot compile; its object exactly matches the prior
+independently reviewed standalone diagnostic object.
+
+The genuine report scores all 2,240 slot bytes at 100%, and the unchanged
+`unit_is_exact` score, symbol, section, size, alignment and order checks pass.
+The consumed linker response selects the slot source object once. Its linked
+symbol remains at `0x80595998`, size 2,240, with eight-byte alignment. All
+allocated ELF section addresses and extents remain unchanged, and all 5,013
+unaffected selected objects are identical to the baseline.
+
+The generated DOL is byte-identical to the original, SHA-1
+`0d85744b51d7379efb025a943d0cd5aaae2191a3`. Normal `check_pr.py --no-build`
+checks pass after that native build; all nine unfiltered code/data/function
+coverage, exactness and linkage loss groups are zero. The full report records
++2,240 matched data bytes and +2,240 source-linked data bytes, with no change
+to code or function counts. No one-unit report substitutes for the full report.
+
+Independent final native-output review passed for this exact historical pair,
+including unchanged diagnostics and all final ELF allocated bytes, flags and
+alignment. The immutable review packet has SHA-256
+`ca312cb20c0a8bb4588faa3e9e36b49e063edf6b9077b39c0194f1d62127df72`.
+The publication commit changes only this evidence document from the tested
+candidate. Latest-main acceptance remains a separate merge-process gate.
+Original objects, native binaries, proprietary tools and detailed private
+evidence remain local.
