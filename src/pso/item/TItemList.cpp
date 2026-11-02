@@ -126,9 +126,10 @@ u8 *TItemList__sub_801D5CF8(u8 *arg0) {
 }
 
 extern "C" {
-// The original object has no .data section: its vtable is emitted by the unit
-// that owns the key function. Defining this deleting destructor by its C
-// symbol keeps MWCC from emitting a duplicate local vtable here.
+// This unit's original object has no .data section: __vt__9TItemList lives in
+// the unclaimed original data blob (auto_07_804C43C0_data). Defining the
+// deleting destructor by its C symbol keeps MWCC from emitting a duplicate
+// local vtable here.
 void *__dt__9TItemListFv(void *self, s16 flag) {
     if (self != NULL) {
         *(s32 **)((s8 *)self + 0x18) = __vt__9TItemList;
