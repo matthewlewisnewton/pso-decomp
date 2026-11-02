@@ -35,7 +35,7 @@ access is retained and explicitly unresolved. Ordinary `memcpy` produced a
 180-byte function; using the intrinsic for a temporary float produced 128 bytes.
 Keeping the original float access produces the original 116 bytes. Under the
 unchanged GC/2.6 profile, the owning Dragon object's allocated sections and all
-2,591 physical relocations are identical to its paired baseline, and all
+2,591 relocations into allocated sections are identical to its paired baseline, and all
 reported code/data sections remain exact. This removes integer/byte-block
 prefix overlays; it does not qualify the tail storage or create a new gain.
 The vendor documents the intrinsic as an inline block copy (Metrowerks
