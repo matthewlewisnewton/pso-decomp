@@ -167,7 +167,7 @@ extern const f32 lbl_805DE57C;
 extern const f32 lbl_805DE580;
 s32 TWindowShortListCtrl__check_controller_button(void *, int);
 
-s32 TAdMultiPlyChrSelectGC__sub_802C5F1C(void *, int);
+void TAdMultiPlyChrSelectGC__sub_802C5F1C(void *, int);
 extern u8 controller_physical_port_bank[];
 extern Jump_802C5C84 multi_chr_select_cursor_jump_table[][5];
 extern void *TAdMultiPlyChrSelectGC__data_804E0A48[4];
@@ -530,7 +530,7 @@ void TAdMultiPlyChrSelectGC::move_cursor(s32 x_, s32 y_, s32 dx, s32 dy, s32 dep
     }
 }
 
-s32 TAdMultiPlyChrSelectGC__sub_802C5F1C(void *arg0, int arg1) {
+void TAdMultiPlyChrSelectGC__sub_802C5F1C(void *arg0, int arg1) {
     S_802C50EC *self = (S_802C50EC *)arg0;
     u32 i;
     u32 j;

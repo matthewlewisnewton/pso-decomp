@@ -65,8 +65,8 @@ in assembly: `tools/orig_asm.py` rebuilds their bodies from your disc before any
 
       python tools/progress_map.py build/GPOE8P/report.json -o build/progress
 
-  Then open `build/progress/index.html`, or `build/progress/treemap.html` for the treemap, in a browser. They
-  are the pages the [progress page] and [treemap] links show for `master`.
+  Then open `build/progress/index.html`, or `build/progress/treemap.html` for the treemap, in a browser.
+  Add `--readme README.md` to refresh the table above from the supplied report.
 
 ## Working on it
 

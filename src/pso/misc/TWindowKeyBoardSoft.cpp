@@ -681,8 +681,16 @@ void TWindowKeyBoardSoft__sub_8025DBDC(void *arg0, s32 arg1) {
     lim = cnt;
     n = 0;
     if ((s32)cnt > 4) lim = 4;
-    while (is_alpha_char__20TWindowSubStatusDispFUs(*p) != 0) { lim--; p--; n++; if (lim <= 0) break; }
-    p++; j = 0;
+    while (is_alpha_char__20TWindowSubStatusDispFUs(*p) != 0) {
+        lim--;
+        n++;
+        // A full-prefix match leaves p on the first text element. Forming a
+        // pointer before the allocation, even temporarily, is not valid C++.
+        if (lim <= 0) break;
+        p--;
+    }
+    if (lim > 0) p++;
+    j = 0;
     while (j < n) { out[j] = (u8)*p; j++; p++; }
     out[j] = 0;
     q = out;

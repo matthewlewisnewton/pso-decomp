@@ -1,14 +1,14 @@
-# Publishes master's progress to GitHub Pages: the progress page and treemap
+# Publishes main's progress to GitHub Pages: the progress page and treemap
 # (tools/progress_map.py) and the JSON the README's shields.io badges read. Nothing is
 # committed back to the repository, so the README never goes stale or needs updating.
 #
 # It builds as little as it can, because the self-hosted runner is a contributor's machine:
-#   reuse  ci.yml already built the pull request's merge commit, which is master's tree
-#          whenever the PR merged with master unchanged, and kept that report as the
+#   reuse  ci.yml already built the pull request's merge commit, which is main's tree
+#          whenever the PR merged with main unchanged, and kept that report as the
 #          `report-<tree>` artifact. tools/ci_report.py fetches it on a GitHub-hosted runner.
-#   wait   No report matches (master moved after CI ran, or a direct push): wait on a
+#   wait   No report matches (main moved after CI ran, or a direct push): wait on a
 #          GitHub-hosted runner first, so a batch of merges cancels down to one build.
-#   build  Then build master once on the self-hosted runner from a clean checkout (never a
+#   build  Then build main once on the self-hosted runner from a clean checkout (never a
 #          build/ folder a pull request's code left behind), and keep its report as
 #          `report-<tree>` too, so the next PR's baseline (ci.yml) does not build it again.
 # A manual run skips straight to the build.
@@ -82,7 +82,7 @@ jobs:
   build:
     needs: [reuse, wait]
     if: >-
-      !cancelled() && github.ref == 'refs/heads/master' &&
+      !cancelled() && github.ref == 'refs/heads/main' &&
       (github.event_name == 'workflow_dispatch' || needs.wait.result == 'success')
     runs-on: [self-hosted, pso-lxc]
     timeout-minutes: 120
