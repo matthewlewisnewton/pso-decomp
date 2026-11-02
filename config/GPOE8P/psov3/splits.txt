@@ -476,6 +476,7 @@ pso/boss/TBoss4DarkFalz_8004C93C.cpp:
 	.text       start:0x8004C1AC end:0x8004D9A8
 	.ctors      start:0x80433F34 end:0x80433F38
 	.rodata     start:0x80437290 end:0x80437298
+	.data       start:0x80484F40 end:0x80485448
 	.sdata2     start:0x805D8938 end:0x805D8940
 
 pso/unk/text_8004D9A8.cpp:
@@ -9838,6 +9839,7 @@ pso/unk/text_802A3138.cpp:
 
 pso/misc/TChCrTagPlGraphic.cpp:
 	.text       start:0x802A31F8 end:0x802A35B4
+	.data       start:0x804DCC78 end:0x804DCC98
 
 pso/misc/TWindowSubStatusDisp_802A35B4.cpp:
 	.text       start:0x802A35B4 end:0x802A3608
@@ -10594,6 +10596,9 @@ pso/boss/TBoss7DeRolLeC_802EE4E0.cpp:
 	.text       start:0x802EE4E0 end:0x802EE6E0
 	.bss        start:0x805412C0 end:0x80541528
 
+pso/boss/Boss7TentacleBanks.cpp:
+	.bss        start:0x80541528 end:0x80541918
+
 pso/boss/TBoss7Joint_802EE6E0.cpp:
 	.text       start:0x802EE6E0 end:0x802EE9A4
 
@@ -10619,7 +10624,6 @@ pso/boss/TBoss7TentacleNeedle.cpp:
 	.text       start:0x802EF800 end:0x802F0E24
 	.rodata     start:0x804740C8 end:0x804740E0
 	.data       start:0x804E4830 end:0x804E4860
-	.bss        start:0x80541528 end:0x80541918
 	.sdata2     start:0x805DEC40 end:0x805DEC4C
 
 pso/unk/text_802F0E24.cpp:
@@ -13886,6 +13890,9 @@ pso/misc/TQuestVmDownLoadServer_803E5668.cpp:
 	.text       start:0x803E5668 end:0x803E6610
 	.bss        start:0x8058DC48 end:0x8058DE08
 	.sdata2     start:0x805E10C0 end:0x805E10C8
+
+pso/misc/QuestDownloadBuffers.cpp:
+	.bss        start:0x8058DE08 end:0x80595008
 
 pso/misc/TWindowKeyBoardSoft_803E6610.cpp:
 	.text       start:0x803E6610 end:0x803E6970

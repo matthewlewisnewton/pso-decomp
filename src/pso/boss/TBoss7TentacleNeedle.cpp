@@ -1,3 +1,4 @@
+#include "pso/boss/Boss7TentacleBanks.h"
 #include "pso/boss/TBoss1Dragon.h"
 #include "pso/boss/TBoss8Dragon_80065C90.h"
 #include "pso/boss/Boss7ModelResources.h"
@@ -111,10 +112,7 @@ void rotate_matrix_by_node_angles(void *, int);
 s32 scale_current_matrix(void *);
 void post_translate_matrix(void *);
 
-extern V_802F0A5C TBoss7Tentacle__segment_offsets[];
 extern s32 lbl_80474070[];
-extern Node_802EFF24 lbl_80541528[];
-extern u32 TBoss7Tentacle__needle_offsets[];
 // Only the three observed motion slots are declared. Storage, including the
 // four trailing bytes of the original symbol, remains original fallback.
 extern AnimationMotion *boss7_tentacle_needle_target_state[3];
@@ -731,14 +729,8 @@ void TBoss7TentacleNeedle::advance_needle_timer() {
 extern "C" {
 void copy_model_node(u8 *dst, u8 *src);
 
-// Unit-owned .bss banks (claim 1eadd7fe: pso/boss/TBoss7TentacleNeedle .bss
-// 0x80541528-0x80541918). Definition order == address order: nodes 0x310,
-// segment_offsets +0x310 (0xA8), needle_offsets +0x3B8 (0x38).
-// Upstream used in-unit definitions to allow a shared bank base. This typed
-// follow-up still requires native emission and shared-copy qualification.
-Node_802EFF24 lbl_80541528[14];
-V_802F0A5C TBoss7Tentacle__segment_offsets[14];
-u32 TBoss7Tentacle__needle_offsets[14];
+// The three destination banks have one canonical owner in
+// Boss7TentacleBanks.cpp (merged #254); keep this code contribution declarative.
 
 void TObjPlayer__sub_802F0D30(void) {
     u8 *src;

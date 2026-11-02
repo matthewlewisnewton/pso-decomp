@@ -1035,7 +1035,6 @@ struct TObjPlayer : public TObjChara {
     void*get_pos_ptr();
     void *destroy_technique_effect_resources(s16 arg1);
     static void create_tec_zarua(void *arg0, void *arg1, void *arg2, void *arg3);
-    void add_status_line(u8 arg1, u32 arg2, s32 arg3);
     static void clear_state_if_flag80(s32 arg0);
     static void setup_projection_texture(s32 arg0, s32 arg1, s32 arg2);
     void reset_lobby_subobject();
