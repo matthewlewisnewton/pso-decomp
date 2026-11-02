@@ -1,3 +1,4 @@
+#include "pso/boss/TBoss5GryphonLightningWing.h"
 #include "pso/misc/CameraHelpers.h"
 #include "pso/map/CsnGroundQuery.h"
 #include "pso/player/demo_mode.h"
@@ -252,7 +253,6 @@ void fn_800660B8(u8 *arg0);
 s32 subtractive_rng_seed(void *, s32);
 s32 is_alive__8TObjBaseFv(void *);
 u32 get_player_by_client_id(s32);
-s32 fn_80351DA8(void *, void *, void *, int, int);
 extern const f32 lbl_805D8D7C;
 extern const f32 lbl_805D8D88;
 extern const f32 lbl_805D8DBC;
@@ -638,7 +638,6 @@ s32 render_nodes__7TObjectFv(s32, s32);
 void __dt__7TObjectFv(void *, int);
 void TBoss5GryphonLightningEff__sub_80325064(void *p);
 void * __ct__25TBoss5GryphonLightningEffFv(void *, void *, void *, s32, f32, f32, f32);
-s32 spawn_lightning_wing__12TBoss8DragonFiiiiii(s32 arg0, s32 arg1, s32 mid, s32 arg3, s32 arg4, s32 arg5);
 void __destroy_arr(void *, void *, int, int);
 f32 vec3_dot(void *, void *);
 s32 scale_matrix(int, f32, f32, f32);
@@ -1282,10 +1281,10 @@ s32 get_player_pos_in_arc__13TBoss5GryphonFPviiPvPv(Obj_8005D880 *arg0, s32 arg1
 #pragma push
 #pragma fp_contract on
 void TBoss8Dragon__sub_8005D9BC(u8 *arg0, s32 arg1, s32 arg2) {
-    Vec_8005D9BC pos;
-    Vec_8005D9BC mid;
-    Vec_8005D9BC out;
-    Vec_8005D9BC tmp;
+    Vec pos;
+    Vec mid;
+    Vec out;
+    Vec tmp;
     f32 r;
     s32 ang;
     u8 *p;
@@ -1318,7 +1317,7 @@ void TBoss8Dragon__sub_8005D9BC(u8 *arg0, s32 arg1, s32 arg2) {
     mid.x = lbl_805D8D74 * (pos.x + out.x);
     mid.y = lbl_805D8D78 + pos.y;
     mid.z = lbl_805D8D74 * (pos.z + out.z);
-    spawn_lightning_wing__12TBoss8DragonFiiiiii((s32)arg0, (s32)&pos, (s32)&mid, (s32)&out, 0x14, 0x11);
+    spawn_lightning_wing__12TBoss8DragonFiiiiii((TObject *)arg0, &pos, &mid, &out, 0x14, 0x11);
 }
 #pragma pop
 
@@ -2347,8 +2346,8 @@ extern const f32 lbl_805D8DF0;
 #pragma fp_contract on
 void TBoss5Gryphon::fn_80060020(u32 arg1) {
     Dragon_80060020 *self = (Dragon_80060020 *)this;
-    Vec_80060020 w;
-    Vec_80060020 v;
+    Vec w;
+    Vec v;
     Vec_80060020 p;
     switch (arg1) {
     case ENEMY_STATE_ENTER:
@@ -2425,7 +2424,7 @@ void TBoss5Gryphon::fn_80060020(u32 arg1) {
                 w.z = lbl_805D8DD0 * cos_table_lookup(a2) + self->pos.z;
             }
             if (self->f6E8 % 5 == 0) {
-                fn_80351DA8(self, &w, &v, 0x28, 0x11);
+                fn_80351DA8(this, &w, &v, 0x28, 0x11);
             }
             if (self->f6E8 == 0x14) {
                 PLAY_SE(self, 0x40033C12);
@@ -2593,8 +2592,8 @@ void TBoss5Gryphon::update_ground_lightning_attack(s32 event) {
         matrix_mult_vec(0, lbl_804880AC, &left);
         matrix_mult_vec(0, lbl_804880B8, &right);
         pop_matrix();
-        self->m_6dc = TBoss8Dragon::spawn_ground_lightning((s32)self, (s32)&left, self->rotation.yaw);
-        self->m_6e0 = TBoss8Dragon::spawn_ground_lightning((s32)self, (s32)&right, self->rotation.yaw);
+        self->m_6dc = TBoss8Dragon::spawn_ground_lightning(self, &left, self->rotation.yaw);
+        self->m_6e0 = TBoss8Dragon::spawn_ground_lightning(self, &right, self->rotation.yaw);
         subtractive_rng_seed(self->rng, self->motion->m_4);
         break;
     case ENEMY_STATE_UPDATE:
