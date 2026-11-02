@@ -39,7 +39,7 @@ This proves candidate extraction retention for eight bytes, not final linker
 consumption. The remaining three bytes are present in the original title
 fragment, but the actual candidate compiler's natural fill remains unproved.
 No earlier expanded Quest configuration was found among 64 retained candidate
-configurations; this evidence is new and narrowly bound to the unchanged split
+configurations; this evidence is new and narrowly bound to that recorded snapshot’s split
 and symbol files.
 
 The 11 bytes in the three tails remain a hard final qualification obligation. Original
@@ -47,6 +47,22 @@ zeros are not a waiver. No padding variables, extra unit claims or inferred
 ownership extensions were introduced. The earlier 84 source-linked data bytes
 and 30 functions must survive the fold; the 200-byte report difference alone
 cannot prove this.
+
+## Current-main reconciliation
+
+The branch incorporates fork main `529af8d45ac652a567bd56c4e8da364df070a98e`,
+including the newly linked Shop deposit-list handler and the #179 repairs.
+The single textual conflict was in `TShopKeepItemWindow.cpp` declarations.
+The new handler remains intact with the established cursor and position-helper
+renames at `80266E0C` and `8024422C`; unrelated main changes are preserved.
+
+A paired diagnostic compiled that complete Shop unit using exact current-main
+and merged-candidate source/header snapshots with the unchanged ordinary GC/2.6
+profile. Its allocated sections are byte-identical, and all 131 relocations into allocated
+sections agree after resolving renamed symbols through their original
+addresses. This does not compile the held QuestListVM profile or establish a
+full linked build. The earlier tail extraction remains bound to its recorded
+pre-merge snapshot; final current-head coverage is still required.
 
 ## Remaining source and native gates
 
@@ -63,7 +79,7 @@ candidate compilation; this draft does not broaden an admission checker.
 After source/profile qualification, compare all affected consumers, exact
 function/data address coverage, emitted alignment/relocations and actual native
 source inputs, then perform the merge owner's current-main original-DOL and
-strict no-loss checks. No native compile, new exact gain or ready status is
+strict no-loss checks. No native QuestListVM compile, new exact gain or ready status is
 claimed here.
 
 A host-only syntax comparison checked 359 changed C++ files with exact baseline
