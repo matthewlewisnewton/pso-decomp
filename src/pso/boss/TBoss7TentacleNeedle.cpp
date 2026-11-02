@@ -1,4 +1,5 @@
 #include "pso/boss/TBoss1Dragon.h"
+#include "pso/boss/TBoss8Dragon_80065C90.h"
 #include "pso/boss/Boss7ModelResources.h"
 #include "pso/boss/TBoss4Type2_800874F4.h"
 #include <string.h>
@@ -98,13 +99,11 @@ struct Ten_802F0A5C;
 typedef struct Anim_802F0BE8 { u8 pad0[4]; u32 n; } Anim_802F0BE8;
 
 s32 obj_testFlags30__14TObjCollidableFUl(void *, s32);
-s32 attach_particle_model(int, int, int, int, int, f32);
 
 f32 horizontal_distance_squared(void *, void *);
 void *get_player_by_client_id(s32 i);
 void __dl__7TObjectFPv(void *);
 void __dt__7TObjectFv(void *, int);
-s32 TObjPlayer__sub_802E80A0();
 void draw_effect__10TObjPlayerFv(void *);
 s32 rand(void);
 s32 rotate_matrix_y(int, int);
@@ -141,11 +140,13 @@ void restart_particle_effect__14TBoss7TentacleFv(TBoss7TentacleNeedle *self) {
         queue_destruction__7TObjectFv(self->m_40);
         self->m_40 = NULL;
     }
-    TParticleCtrl *particle = spawn_particle_effect(&self->position, 0x215);
+    // Reuse the baseline's address slot to retain MWCC register allocation.
+    s32 resource_address = (s32)spawn_particle_effect(&self->position, 0x215);
+    TParticleCtrl *particle = (TParticleCtrl *)resource_address;
     if (particle != NULL) {
-        s32 effect = TObjPlayer__sub_802E80A0();
-        attach_particle_model((int)particle, (int)queue_boss_effect__10TObjPlayerFPv(4),
-                              effect, 0, 0, TBoss7Tentacle__data_805DEC00);
+        resource_address = TObjPlayer__sub_802E80A0();
+        attach_particle_model((u8 *)particle, (int)queue_boss_effect__10TObjPlayerFPv(4),
+                              resource_address, 0, 0, TBoss7Tentacle__data_805DEC00);
     }
     play_sound_effect(0x3A809, &self->position, 0, 0);
 }
@@ -603,8 +604,8 @@ void TBoss7Tentacle::advance_path_position() {
     }
 }
 
-u8 TBoss7Tentacle__sub_802F0904(u8 *arg0) {
-    return (u8) (*(s32 *)((s8 *)arg0 + 0x30) == 4);
+s32 TBoss7Tentacle__sub_802F0904(u8 *arg0) {
+    return *(s32 *)((s8 *)arg0 + 0x30) == 4;
 }
 
 void TBoss7Tentacle__sub_802F0918(void* p) { *(s32*)((char*)p + 0x13c) = 0; *(s32*)((char*)p + 0x140) = 16384; }

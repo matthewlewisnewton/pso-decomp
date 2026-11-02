@@ -1,4 +1,5 @@
 #include "pso/system/BmlResource.h"
+#include "pso/object/TObjFish_8001ED90.h"
 #include "pso/boss/Boss7ModelResources.h"
 #include "pso/boss/TBoss1Dragon.h"
 #include "pso/boss/TBoss7TentacleNeedle.h"
@@ -759,10 +760,8 @@ extern s32 *lbl_805D6940;
 extern s32 chunk_polygon_flags_or_mask;
 extern s32 chunk_polygon_flags_and_mask;
 extern s32 model_render_flags;
-void TObjPlayer__sub_802E80A0(void);
 struct AnimationMotion;
 AnimationMotion *get_bml_motion(BmlResource *, s32);
-int TObjFish__sub_8001EDB0(void*, void*);
 
 
     extern int lbl_805D6918;
@@ -770,9 +769,11 @@ AnimationMotion *notify_fish_obj__10TObjPlayerFPv(s32 index) { return get_bml_mo
 
 DragonModelNode *queue_boss_effect__10TObjPlayerFPv(s32 index) { return (DragonModelNode *)get_bml_model((BmlResource *)lbl_805D6918, index); }
 
-void TObjPlayer__sub_802E80A0(void) { TObjFish__sub_8001EDB0((void*)lbl_805D6918, (void*)0); }
+s32 TObjPlayer__sub_802E80A0(void) {
+    return TObjFish__sub_8001EDB0((BmlResource *)lbl_805D6918, 0);
+}
 
-void TObjPlayer::draw_effect() { set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0((void*)lbl_805D6918, (void*)0))); }
+void TObjPlayer::draw_effect() { set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0((BmlResource *)lbl_805D6918, 0))); }
 
 typedef char RecoveredGlobal_802E80F4_lbl_8050BEC0_size[sizeof(RecoveredGlobal_802E80F4_lbl_8050BEC0) == 0x20 ? 1 : -1];
 typedef char RecoveredGlobal_802E80F4_main_task_size[sizeof(RecoveredGlobal_802E80F4_main_task) == 0x34 ? 1 : -1];

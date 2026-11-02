@@ -18,7 +18,7 @@ struct TBoss7TentacleNeedle : public TObject {
     u32 m_30;
     f32 m_34;
     u32 m_38;
-    u32 m_3c;
+    s32 m_3c;
     TParticleCtrl *m_40;
     s32 target_flags[12];
     f32 m_74;
@@ -36,7 +36,7 @@ typedef char NeedleTargetFlagsOffset[offsetof(TBoss7TentacleNeedle, target_flags
 class TBoss7Tentacle;
 extern "C" {
 void TBoss7Tentacle__sub_802EF954(TBoss7TentacleNeedle *p);
-u8 TBoss7Tentacle__sub_802F0904(u8 *arg0);
+s32 TBoss7Tentacle__sub_802F0904(u8 *arg0);
 void TBoss7Tentacle__sub_802F0918(void *p);
 void TBoss7Tentacle__sub_802F09B4(void *p);
 void TBoss7Tentacle__sub_802F09C8(void *a0);

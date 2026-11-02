@@ -34,7 +34,6 @@ void TObjFish__sub_802EC468(s32 arg0, f32 farg0, f32 farg1);
 f32 TObjFish__sub_802ED3E4(u8 *arg0);
 void TObjFish__sub_802ED4AC(u8 *arg0, s32 arg1);
 void TObjPlayer__sub_802E7F30(void *unused, s32 arg1);
-void TObjPlayer__sub_802E80A0(void);
 void render__14TBoss7DeRolLeCFv(u8 *unused);
 void TObjPlayer__sub_802E8274(NJS_OBJECT *);
 void fn_802EC52C(s32 arg0, s32 arg1);

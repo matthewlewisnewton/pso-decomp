@@ -8,5 +8,7 @@ struct AnimationMotion;
 extern "C" {
 DragonModelNode *queue_boss_effect__10TObjPlayerFPv(s32 index);
 AnimationMotion *notify_fish_obj__10TObjPlayerFPv(s32 index);
+// Legacy particle APIs carry the borrowed texture-list address as an integer.
+s32 TObjPlayer__sub_802E80A0(void);
 }
 #endif
