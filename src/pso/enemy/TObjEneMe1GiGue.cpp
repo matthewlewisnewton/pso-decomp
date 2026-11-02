@@ -485,7 +485,7 @@ void TObjEneMe1GiGue::render() {
     ok = 1;
     push_matrix();
     translate_matrix(0, this->position.x, this->flight_height + (this->position.y + this->model_y_offset), this->position.z);
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     model_render_flags &= ~0x400;
     if (check_demo_mode() == 1) {
         draw_chunk_object((void *)this->model);
@@ -610,7 +610,7 @@ void TObjEneMe1GiGue::update_search() {
             Vec d = ((TObjChara *)this->target)->position;
             subtract_vector(&d, &this->position);
             if (d.x * d.x + d.z * d.z <= this->attack_range * this->attack_range &&
-                angle_difference_abs(-(s32)(TObjEneMe1GiGue__data_80472298 * atan2_float(d.z, d.x)) + 0x4000, this->rotation_y) < this->attack_angle / 2) {
+                angle_difference_abs(-(s32)(TObjEneMe1GiGue__data_80472298 * atan2_float(d.z, d.x)) + 0x4000, this->rotation.yaw) < this->attack_angle / 2) {
                 s32 st;
                 this->attack_count++;
                 if (this->attack_count > 2) {
@@ -624,8 +624,8 @@ void TObjEneMe1GiGue::update_search() {
                 break;
             }
         }
-        this->rotation_y += ((GiGueMovementParameters *)movementParameters)->turn_speed / 2;
-        enemy_set_heading_velocity(movement_speed, this, rotation_y);
+        this->rotation.yaw += ((GiGueMovementParameters *)movementParameters)->turn_speed / 2;
+        enemy_set_heading_velocity(movement_speed, this, this->rotation.yaw);
         move_with_wall_slide((u8 *)this);
         this->search_turn += ((GiGueMovementParameters *)movementParameters)->turn_speed / 2;
         if (this->search_turn > 0x10000) {
@@ -1094,7 +1094,7 @@ void TObjEneMe1GiGue::break_apart() {
     Vec breakup_position;
     VecCopy(&breakup_position, &position);
     breakup_position.y += 40.0f + flight_height;
-    TBoss3Volopt::create_breakup_mdl((s32)TObjEneMe1GiGue__barrier_obj, 0, this->texlist, (s32)&breakup_position, this->rotation_y);
+    TBoss3Volopt::create_breakup_mdl((s32)TObjEneMe1GiGue__barrier_obj, 0, this->texlist, (s32)&breakup_position, this->rotation.yaw);
     distribute_experience_and_request_drop();
     this->send_entity_set_flags();
     spawn_particle_effect(&breakup_position, 0x205);
@@ -1112,7 +1112,7 @@ void TObjEneMe1GiGue::move_around_center(Vec *center, f32 radius) {
     }
     VecCopy((Vec *)&this->m_29c, &move_destination);
     enemy_turn_toward_dest(this, ((GiGueMovementParameters *)movementParameters)->turn_speed);
-    enemy_set_heading_velocity(movement_speed, this, rotation_y);
+    enemy_set_heading_velocity(movement_speed, this, this->rotation.yaw);
     move_with_wall_slide((u8 *)this);
 }
 
@@ -1120,7 +1120,7 @@ void TObjEneMe1GiGue::spawn_needle(s32 index) {
     if (find_entity_by_id(target_ids[index]) != 0) {
         GiGueProjectileAngles v;
         v.x = 0;
-        v.y = this->rotation_y + ((index & 1) ? -0x2000 : 0x2000);
+        v.y = this->rotation.yaw + ((index & 1) ? -0x2000 : 0x2000);
         v.z = 0;
         new TUnk_804E14E8(&needle_origin, target_ids[index], &v, index * 3,
                           random_ratio() <= get_float_parameter(5), entity_id);
@@ -1266,7 +1266,7 @@ void TObjEneMe1GiGue::add_target_in_cone(TObjChara *target) {
     if (!(((v.x * v.x) + (v.z * v.z)) > (this->attack_range * this->attack_range)))
     {
       target_angle = (-((s32) (TObjEneMe1GiGue__data_80472298 * atan2_float(v.z, v.x)))) + 0x4000;
-      if (angle_difference_abs(target_angle, this->rotation_y) <= (this->attack_angle / 2))
+      if (angle_difference_abs(target_angle, this->rotation.yaw) <= (this->attack_angle / 2))
       {
         this->target_ids[this->target_count++] = get_entity_id(target);
       }
@@ -1287,7 +1287,7 @@ s32 TObjEneMe1GiGue::collect_targets() {
 void TObjEneMe1GiGue::update_animation_nodes() {
     push_matrix_from(identity_matrix);
     translate_matrix(0, (f32) (this->position.x), (f32) (this->flight_height + (this->position.y + this->model_y_offset)), (f32) (this->position.z));
-    rotate_matrix_y(0, (int) (this->rotation_y));
+    rotate_matrix_y(0, (int) (this->rotation.yaw));
     set_motion_packed_rotation();
     this->calc_joint_matrices(this->frame);
     clear_motion_packed_rotation();
@@ -1400,7 +1400,7 @@ Vec *TObjEneMe1GiGue::update_barrier_origin() {
     return &barrier_origin;
 }
 
-s32 TObjEneMe1GiGue::get_barrier_rotation() { return rotation_y; }
+s32 TObjEneMe1GiGue::get_barrier_rotation() { return this->rotation.yaw; }
 
 s32 TObjEneMe1GiGue::get_barrier_duration() { return barrier_duration; }
 

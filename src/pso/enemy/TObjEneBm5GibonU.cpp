@@ -591,7 +591,7 @@ extern "C" {
 void vfunc_77__9TObjCharaFv();
 }
 extern "C" {
-void vfunc_76__9TObjCharaFv();
+void vfunc_76__9TObjCharaFf();
 }
 extern "C" {
 void vfunc_75__9TObjCharaFf();
@@ -795,7 +795,7 @@ void *lbl_80493F04[107] = {
     (void *)reset_pose__9TObjCharaFv, (void *)get_anim_node_position__9TObjCharaFlP3Vec, (void *)vfunc_66__9TObjCharaFv, (void *)vfunc_67__9TObjCharaFf,
     (void *)get_pos__9TObjCharaFl, (void *)apply_switch_attack__9TObjCharaFv, (void *)enemy_spawn_jellen_effect__9TObjCharaFv, (void *)trigger_switch_attack__9TObjCharaFv,
     (void *)enemy_spawn_zalure_effect__9TObjCharaFv, (void *)recalc_stats__9TObjCharaFv, (void *)vfunc_74__9TObjEnemyFl, (void *)vfunc_75__9TObjCharaFf,
-    (void *)vfunc_76__9TObjCharaFv, (void *)vfunc_77__9TObjCharaFv, (void *)vfunc_78__9TObjCharaFl, (void *)vfunc_79__9TObjEneDDFPl,
+    (void *)vfunc_76__9TObjCharaFf, (void *)vfunc_77__9TObjCharaFv, (void *)vfunc_78__9TObjCharaFl, (void *)vfunc_79__9TObjEneDDFPl,
     (void *)apply_hit_message_flags__9TObjEnemyFPv, (void *)apply_set_data__9TObjEnemyFPv, (void *)clear_lobby_object_state__9TObjEnemyFv, (void *)vfunc_83__12TObjEneDD_STFv,
     (void *)vfunc_84__9TObjEneDDFv, (void *)vfunc_85__9TObjEneDDFv, (void *)vfunc_86__9TObjEneDDFv, (void *)TObjEneBm5GibonU__sub_800D0738,
     (void *)vfunc_88__16TObjEneBm5GibonUFv, (void *)vfunc_89__9TObjEneDDFv, (void *)vfunc_90__9TObjEneDDFv, (void *)vfunc_91__9TObjEneDDFv,
@@ -1923,7 +1923,7 @@ void TObjEneBm5GibonU::render() {
                 translate_matrix(0, 0.0f, TObjEneBm5GibonU__data_805DA194, 0.0f);
                 rotate_matrix_z(0, rot.z);
                 rotate_matrix_x(0, rot.x);
-                rotate_matrix_y(0, this->rotation_y);
+                rotate_matrix_y(0, this->rotation.yaw);
                 translate_matrix(0, 0.0f, 0.0f, lbl_805DA198);
                 scale_matrix(0, TObjEneBm5GibonU__data_805DA188, TObjEneBm5GibonU__data_805DA168, lbl_805DA19C);
                 rotate_matrix_x(0, -0x4000);
@@ -1939,7 +1939,7 @@ void TObjEneBm5GibonU::render() {
                 ((Obj_800CD204 *)((u8 *)this))->fades[cam].set_flags_and_apply_damage_color();
             }
             post_translate_matrix(((u8 *)this) + 0x38);
-            rotate_matrix_y(0, this->rotation_y);
+            rotate_matrix_y(0, this->rotation.yaw);
             translate_matrix(0, 0.0f, 0.0f, TObjEneBm5GibonU__data_805DA18C);
             if (*(s32 *)((s8 *)((u8 *)this) + 0x464) == 1) {
                 scale_matrix(0, TObjEneBm5GibonU__data_805DA16C, TObjEneBm5GibonU__data_805DA16C, TObjEneBm5GibonU__data_805DA16C);
@@ -2409,7 +2409,7 @@ void action__16TObjEneBm5GibonUFPvi(TObjEneBm5GibonU *ene_bm5_gibon_u, s32 arg1)
         return;
     case 0:
         ene_bm5_gibon_u->advance_animation();
-        turn_toward_angle__16TObjEneBm5GibonUFPvi(ene_bm5_gibon_u, ene_bm5_gibon_u->rotation_y);
+        turn_toward_angle__16TObjEneBm5GibonUFPvi(ene_bm5_gibon_u, ene_bm5_gibon_u->rotation.yaw);
         if (((TObjMotion *)ene_bm5_gibon_u)->is_passing_frame(TObjEneBm5GibonU__data_805DA178) != 0) {
             play_sound_effect((s32)((void *)((TObjEnemy *)(ene_bm5_gibon_u))->remap_sound_for_area((s32)(0x3AA22))), (const Vec *)((u8 *)ene_bm5_gibon_u + 0x38), 0, 0);
         }
@@ -3410,7 +3410,7 @@ void TObjEneBm5GibonU__sub_800CFA48(TObjEneBm5GibonU *self, s32 arg1) {
             }
             self->face_target();
         } else {
-            TObjEneBm5GibonU::turn_toward_angle(self, self->rotation_y);
+            TObjEneBm5GibonU::turn_toward_angle(self, self->rotation.yaw);
         }
         switch (self->m_518) {
         case 0:
@@ -3871,14 +3871,14 @@ s32 TObjEneBm5GibonU__sub_800D0968(u8 *arg0, int _w1) {
         ((TObjEneDD *)arg0)->update_velocity();
         return (s32) (TObjEneBm5GibonU__data_8043C0F8 * atan2_float((f64) *(f32 *)((s8 *)arg0 + 0x3A0), (f64) *(f32 *)((s8 *)arg0 + 0x3A8)));
     }
-    *(f32 *)((s8 *)arg0 + 0x3A0) = sin_table_lookup((int) (((TObjEneBm5GibonU *)arg0)->rotation_y));
+    *(f32 *)((s8 *)arg0 + 0x3A0) = sin_table_lookup((int) (((TObjEneBm5GibonU *)arg0)->rotation.yaw));
     *(f32 *)((s8 *)arg0 + 0x3A4) = (f32) 0.0f;
-    *(f32 *)((s8 *)arg0 + 0x3A8) = cos_table_lookup((int) (((TObjEneBm5GibonU *)arg0)->rotation_y));
+    *(f32 *)((s8 *)arg0 + 0x3A8) = cos_table_lookup((int) (((TObjEneBm5GibonU *)arg0)->rotation.yaw));
     VecCopy((Vec *)(arg0 + 0x394), (const Vec *)(arg0 + 0x38));
     *(f32 *)((s8 *)arg0 + 0x394) = (f32) ((lbl_805DA23C * *(f32 *)((s8 *)arg0 + 0x3A0)) + *(f32 *)((s8 *)arg0 + 0x394));
     ((TObjEneBm5GibonU *)arg0)->target_destination.z = (f32) ((lbl_805DA23C * *(f32 *)((s8 *)arg0 + 0x3A8)) + ((TObjEneBm5GibonU *)arg0)->target_destination.z);
     *(f32 *)((s8 *)arg0 + 0x3AC) = (f32) lbl_805DA23C;
-    return ((TObjEneBm5GibonU *)arg0)->rotation_y;
+    return ((TObjEneBm5GibonU *)arg0)->rotation.yaw;
 }
 }
 #pragma pop
@@ -4103,9 +4103,9 @@ s32 TObjEneBm5GibonU::face_target() {
     Obj_800D0F44 *arg0 = (Obj_800D0F44 *)this;
     Vec_800D0F44 off;
     Vec_800D0F44 q;
-    off.x = sin_table_lookup(this->rotation_y) * 0.0f;
+    off.x = sin_table_lookup(this->rotation.yaw) * 0.0f;
     q.x = arg0->pos.x + off.x;
-    off.z = cos_table_lookup(this->rotation_y) * 0.0f;
+    off.z = cos_table_lookup(this->rotation.yaw) * 0.0f;
     q.z = arg0->pos.z + off.z;
     q.x = arg0->target->pos.x - q.x;
     q.z = arg0->target->pos.z - q.z;
