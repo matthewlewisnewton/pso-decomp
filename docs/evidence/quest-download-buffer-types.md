@@ -216,6 +216,26 @@ frontend hunks change.
 
 ## Activation and acceptance
 
+The subsequent six-access repair removes the name-index and cached-byte scalar
+wrappers. The three name readers now index the actual four-byte rows, the index
+DMA receives the actual array, and the two cached-byte helpers use the actual
+8,192-byte buffer. The earlier filename repair and all function signatures are
+preserved. This is a declaration/access repair; existing receiver casts, signed
+offset domains and runtime bounds remain separate obligations.
+
+Two admitted candidate compilations reused their immutable baselines: the
+public `f7975109d537b6592d117fd2d807e326f00bb3b4` continuation and the private
+composition with published #203 at
+`1602f9b5732df211bdf63e6bf907ca8d1c4d8d82` plus the reviewed explicit ID API.
+Both complete provider objects and empty diagnostics are unchanged, including
+every emitted function, allocated data section and symbolic relocation. The
+public object SHA-256 remains
+`da74517bd1d1b40261ceb9a923e11a55f36f5a00a2ecd86da1f2bb75bafff1a6`;
+the private composed object remains
+`a891a64c3d2eaaecd4a5546781956b72cb439f27cb449c2e78afe3f55c20cfa0`.
+This follow-up adopts no buffer fold, slot definition, split or link activation
+and claims no new exact functions or source-linked bytes.
+
 Type and consumer repairs belong in later commits, separately from the upstream
 import. Once their source contracts pass independent review, qualify emitted
 code/data, alignment, symbol bindings and relocations using admitted development
