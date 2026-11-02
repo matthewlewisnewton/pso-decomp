@@ -29,10 +29,18 @@ PR239. Defining the zero-initialized destination bank neither introduces that
 read nor resolves it. Adjacent motion-state storage at `0x80541918..0x80541928`
 remains original fallback.
 
-Native qualification is pending. Required checks are exact BSS size, alignment,
-symbol offsets and unique ownership; unchanged original code and all affected
-consumer relocations; preservation of the adjacent fallback range; actual
-selection of the data object's compiled source; and original-DOL/no-loss checks.
-The normal data-only-unit rules and all ordinary linkage gates remain in force.
-Until those checks pass, this draft claims no new matched or source-linked
-bytes, no exact functions, and no readiness to merge.
+The bounded native diagnostic passes: the bank object contains only 1,008
+BSS bytes, aligned to 8, with exact symbol sizes and offsets and no relocations.
+Needle's declaration-only source change produces a byte-identical native object.
+All 5,012 common extracted original objects remain byte-identical. The former
+1,024-byte fallback container becomes the 1,008-byte bank contribution plus the
+unchanged 16-byte motion-state fallback; no range is discarded as padding.
+
+The unmodified per-unit linkage guards accept the actual one-unit objdiff
+report, including sections, symbols, offsets, alignment and order. All three
+bank symbols are referenced by the original Needle code, so no new retention
+entry is necessary. The candidate linked-unit list now selects only this data
+contribution. Full development validation must still prove the actual ordered
+linker inputs, original DOL and unfiltered no-loss results. The code unit remains
+on its existing fallback; this change claims no recovered functions. Until the
+full checks pass, the draft claims no measured source-linked gain or readiness.
