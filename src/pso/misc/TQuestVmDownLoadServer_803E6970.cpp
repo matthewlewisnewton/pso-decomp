@@ -437,7 +437,6 @@ extern const char ask_header_signature[];
 extern const s16 quest_download_lz_match_index_table[];
 extern Ent_803E9DE0 quest_download_lz_match_entry_table[];
 extern u8 lbl_8047F0F8[];
-extern Tok_803E9FFC lbl_8047F8A8[4];
 Ent_803E9DE0 *find_longest_match_entry__22TQuestVmDownLoadServerFPviPv(u8 *arg0, s32 arg1, s32 *arg2);
 void build_message_packet__22TQuestVmDownLoadServerFPviPvUc(u8 *arg0, s32 arg1, Msg_803E9190 *arg2, u8 arg3);
 s32 lookup_name_entry__22TQuestVmDownLoadServerFPvsPv(char *arg0, s16 arg1, Out_803E8B1C *arg2);
