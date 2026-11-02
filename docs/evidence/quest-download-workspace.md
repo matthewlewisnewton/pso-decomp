@@ -38,3 +38,7 @@ output review are pending. No new matched or source-linked bytes are claimed.
 The 12-byte prefix is a separate continuation; scratch remains original and its
 selected halfword contract is unchanged. Latest-main acceptance remains with
 the separate merge process. Original artifacts and private evidence stay local.
+
+The inactive split names exactly that existing allocation, with no alignment
+override, added padding, symbol edits or linked-unit change. The generated
+original partition and native object still require scheduled qualification.
