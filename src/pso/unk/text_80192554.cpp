@@ -24,7 +24,7 @@ void TObjLazerFenceExtra::draw_lazer_fence_extra_model() {
     set_current_texture_list((GinjaTextureList *)(lazer_fence_norm_texture_list));
     push_matrix();
     post_translate_matrix(arg0->f38);
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     draw_ginja_object((void *)this->m_d8);
     TParticleCtrl::begin_effect_render();
     draw_ginja_model_with_motion(arg0->fC0, this->m_c4, arg0->fB8);

@@ -169,7 +169,7 @@ void TObjHashiBase::render() {
     if (update_object_view_visibility(view_range, model_radius) != 0) {
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
+        rotate_matrix_y(NULL, this->rotation.yaw);
         set_current_texture_list((GinjaTextureList *)(texlist));
         if (motion != NULL) {
             draw_model_motion(model, motion, animation_frame);
@@ -192,7 +192,7 @@ s32 TObjHashiBase::update_object_view_visibility(f32 depth, f32 radius) {
     if (TMainTask::get_render_pass() == 1) {
         return visibility;
     }
-    if (xz_distance_squared((const Vec *)&camera_ctrl_instance->m_178, &position) < (radius * radius)) {
+    if (xz_distance_squared(&camera_ctrl_instance->position, &position) < (radius * radius)) {
         visibility = 1;
         return 1;
     }

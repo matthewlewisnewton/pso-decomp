@@ -1,3 +1,4 @@
+#include "pso/misc/CameraHelpers.h"
 #include "pso/system/ModelNodePositionCapture.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
@@ -42,9 +43,9 @@ const Ent_8033D6DC boss6_type2_appear_particle_schedule[9] = {
     {294, 357, 556, 0},
     {100, 157, 377, -2}
 };
-const u8 lbl_80478058[12] = {0xC6, 0x1C, 0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-const u8 lbl_80478064[12] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-const u8 boss6_type2_appear_camera_script[12] = {0x01, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x33, 0x33, 0x33};
+const Vec lbl_80478058 = {-10000.0f, 0.0f, 0.0f};
+const CameraAngles lbl_80478064 = {0, 0, 0};
+const CameraPlayback boss6_type2_appear_camera_script = {1, 3, 0, 0.0f, 0.7f};
 s32 push_matrix();
 s32 post_translate_matrix(void *);
 extern const f32 lbl_805DFA70;
@@ -305,12 +306,12 @@ extern "C" {
 s32 get_bml_motion(int, int);
 s32 TObjFish__sub_8001EDB0(int, int);
 s32 get_bml_model(int, int);
-void set_scripted_camera_pose(void *, void *, void *);
+
 void __ct__7TObjectFP7TObject(void *);
 extern const u8 boss6_type2_appear_model_node_descriptors[];
-extern const u8 lbl_80478058[];
-extern const u8 lbl_80478064[];
-extern const u8 boss6_type2_appear_camera_script[];
+extern const Vec lbl_80478058;
+extern const CameraAngles lbl_80478064;
+extern const CameraPlayback boss6_type2_appear_camera_script;
 extern s32 lbl_804DF614[];
 __declspec(section ".data") extern s32 boss6_type2_appear_motion_indices[];
 struct AppearanceClassTag { const char *value; u32 padding; };
@@ -362,8 +363,8 @@ u8 *TBoss6Demo20_TYPE2_APPEAR__ct(TBoss6Demo20_TYPE2_APPEAR *boss6_demo20_type2_
         self->arr[i] = 0;
     }
     activate_camera_mode(5);
-    set_scripted_camera_pose((void *)lbl_80478058, (void *)lbl_80478058, (void *)lbl_80478064);
-    ((TCameraCtrl *)boss6_type2_appear_camera_script)->cache_target_and_forward(0x416C);
+    set_scripted_camera_pose(&lbl_80478058, &lbl_80478058, &lbl_80478064);
+    cache_target_and_forward__11TCameraCtrlFl(&boss6_type2_appear_camera_script, 0x416C);
     *(f32 *)((s8 *)boss6_demo20_type2_appear + 0xE0) = lbl_805DFA70;
     boss6_demo20_type2_appear->m_e4 = lbl_805DFA70;
     *(s32 *)((s8 *)boss6_demo20_type2_appear + 0xE8) = 0;
