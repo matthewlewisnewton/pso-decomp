@@ -1,17 +1,14 @@
 #include "pso/THunterGuildWarning.h"
 #include "pso/object/TObject_80019A50.h"
 
-extern s32 THunterGuildWarning__instance;
-
-struct HGW_802119F0 { u8 pad[0x1c]; s32 state; s32 timer; };
+extern THunterGuildWarning *THunterGuildWarning__instance;
 
 void THunterGuildWarning::run_task() {
-    HGW_802119F0 *self = (HGW_802119F0 *)this;
-    switch (self->state) {
+    switch (m_warning_type) {
     case 0:
     case 1:
-        if (--self->timer < 0) {
-            queue_destruction__7TObjectFv(self);
+        if (--m_timer < 0) {
+            queue_destruction__7TObjectFv(this);
         }
         break;
     case 2:
