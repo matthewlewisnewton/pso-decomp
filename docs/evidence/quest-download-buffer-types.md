@@ -63,8 +63,55 @@ and the typed definitions, produced identical allocated data sections: all ten
 symbol offsets/extents/bindings, 34,912 zero BSS bytes, alignment 8, and no
 relocations. All layout assertions passed without diagnostics. These are
 targeted definition-layout checks, not consumer, full-build or source-link proof.
-The two cache definitions now use these types; no shared consumer has been
-edited or declared compatible by this checkpoint.
+The two cache definitions now use these types. At the independently reviewed
+`e2988a01c` checkpoint no shared consumer had been edited; the provider follow-up
+below is a separate step.
+
+## Released provider access repair
+
+The inactive layout scope at `e2988a01c` passed
+[independent review](https://github.com/matthewlewisnewton/pso-decomp/pull/238#issuecomment-6569146152)
+without repairs. The buffer definitions and cache type header remain unchanged
+from that reviewed commit.
+
+After the Quest owner released the precise provider hunks, a separate follow-up
+replaced duplicate cache-entry/page views with the reviewed field types and
+filename accesses with the actual character array. The two cached-name readers
+now use the actual 80 bucket heads and read encoded name bytes at offsets 2/3,
+without treating the name as a one-element array. The exact-match output carries
+a byte pointer. The prefix-match output retains its legacy pointer boundary
+until the separate primary-query reader is repaired; no complete query-interface
+or variable-record-bound qualification is claimed.
+
+A retained-original census covers all static references to the two cache globals
+and 30 identified encoded-record producer/consumer interfaces across 5,067
+original objects. It identifies loaders, insertion/eviction, page modification,
+record-pointer return paths, variant readers and both query aggregators. Mutable
+record validity, callback safety and complete owner provenance remain open.
+
+The final provider object is byte-for-byte identical to the retained baseline
+object, including all 153 emitted function records and allocated data, with no
+diagnostics. The unchanged baseline object retains 149 exact native functions;
+this follow-up adds no exact functions. A private composition with the reviewed
+`3dd6c6ea` explicit ID-pointer/count API is also whole-object identical. The
+public API declaration is left for coordinated adoption of that owner's patch;
+its old member spelling is not declared correct here.
+
+A second private composition applies these released hunks to the exact #203
+candidate `32befa8160d39b4cda09d14149171191102d796b` and composes the same reviewed
+ID API. Its complete provider object is byte-for-byte identical to #203's
+retained object, preserving all four of its recovered functions. Only copied,
+pinned headers and an isolated source snapshot were used; the other worker's
+files were not edited. This is composition evidence for that immutable candidate,
+not adoption of #203 or current-main acceptance.
+
+Two common-base experiments remain failed diagnostics. Directly naming the
+separate cache/header objects loses the existing exact matches for
+`init_page_cache` and `read_ask_header`; defining separate objects in the same
+translation unit also leaves the cache initializer at 540 rather than 536 bytes.
+Those changes are excluded from the published patch. The legacy common-base
+views remain visibly provisional, using the reviewed cache member types where
+possible. No larger storage owner was inferred to recover the matches.
 
 ## Follow-up boundaries
 
@@ -147,7 +194,8 @@ no-loss checks against both the dependency base and current fork main.
 The initial import performed source-provenance, symbol-extent and unchanged-
 build-input checks only. The cache-type commit adds the two targeted compiler layout probes above;
 the filename/index follow-up adds one candidate probe against the retained
-baseline. No checkpoint ran a game link, full build or `check_pr.py`, and none
-claims review-ready status. Keep the PR draft until the complete contracts and
+baseline. The provider follow-up adds the retained-baseline and private composition
+comparisons described above. No checkpoint ran a game link, full build or
+`check_pr.py`, and none claims review-ready status. Keep the PR draft until the complete contracts and
 these validation gates pass. Final current-main acceptance belongs
 to the merge process.
