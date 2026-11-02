@@ -1,5 +1,4 @@
 #include "types.h"
-#include "pso/misc/TWindowMessage.h"
 #include "pso/misc/TLobby_80132ED0.h"
 #include "pso/misc/TWindowSubComCard_80265410.h"
 #include "pso/ui/TAdEnterBaseGC_8032B38C.h"
@@ -75,7 +74,7 @@ void TAdEnterSerialAccessGC::create_default_callback() {
 
 s32 TAdEnterSerialAccessGC::show_message_window(void *arg0, void *arg1) {
     s32 r = update_window_mode_from_progress__6TLobbyFPv(lbl_80477178, lbl_80477180);
-    ((TWindowMessage *)r)->append_line(get_localized_text_entry(0x17, (s32)arg1), 1);
+    ((TLobby *)r)->send_and_handle(get_localized_text_entry(0x17, (s32)arg1), 1);
     return r;
 }
 

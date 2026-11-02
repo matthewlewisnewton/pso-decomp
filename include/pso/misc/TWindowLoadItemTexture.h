@@ -2,9 +2,9 @@
 #define PSO_MISC_TWINDOWLOADITEMTEXTURE_H
 
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TUnk_804CE018.h"
 
-struct TWindowLoadItemTexture : public TWindowBase {
+struct TWindowLoadItemTexture : public TUnk_804CE018 {
     virtual ~TWindowLoadItemTexture();
     virtual void render();
     u8 _pad1C[0x8];

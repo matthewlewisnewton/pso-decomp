@@ -1,5 +1,4 @@
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/ui/Language.h"
 
@@ -360,7 +359,7 @@ void open_numeric_parameter_input__9TWindowDDFPviii(WordSelectWindowState* self,
     }
     self->numberWindow = window;
     if (self->numberWindow) {
-        ((TWindowBase *)(self->numberWindow))->set_depth(lbl_805DFC28);
+        ((TLobby *)(self->numberWindow))->set_field_1c(lbl_805DFC28);
         ((TWindowSubItem *)(self->numberWindow))->set_flag60_bit10();
         TWindowDD__sub_80341AE0((int)self->pages[self->activePage]);
     }

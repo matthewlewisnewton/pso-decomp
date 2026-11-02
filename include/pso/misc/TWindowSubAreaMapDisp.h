@@ -2,9 +2,9 @@
 #define PSO_MISC_TWINDOWSUBAREAMAPDISP_H
 
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TUnk_804CE018.h"
 
-struct TWindowSubAreaMapDisp : public TWindowBase {
+struct TWindowSubAreaMapDisp : public TUnk_804CE018 {
     virtual ~TWindowSubAreaMapDisp();
     u8 _pad1C[0x4];
     s16 m_20;

@@ -1,9 +1,9 @@
 #ifndef PSO_MISC_TUNK_804EFBAC_H
 #define PSO_MISC_TUNK_804EFBAC_H
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TUnk_804CE018.h"
 
-class TUnk_804EFBAC : public TWindowBase {
+class TUnk_804EFBAC : public TUnk_804CE018 {
 public:
     virtual ~TUnk_804EFBAC();
     u8 unk_1C[0x50];

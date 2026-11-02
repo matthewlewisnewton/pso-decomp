@@ -11,9 +11,10 @@ extern "C" {
 void TLobby__sub_8007EB20(s32 arg0, ...);
 s32 xfree__FPv();
 
-u8 *TQuestListVM::get_quest_bin() { return decrypted_quest_buffer; }
+    extern int TQuestListVM__decrypted_quest_buffer;
+int TQuestListVM::get_instance() {  return TQuestListVM__decrypted_quest_buffer; }
 
-void TQuestListVM::reset() { decrypted_quest_buffer = NULL; }
+void TQuestListVM::reset() { TQuestListVM__decrypted_quest_buffer = 0; }
 
 extern s32 TQuestVmDownLoadServer__instance;
 

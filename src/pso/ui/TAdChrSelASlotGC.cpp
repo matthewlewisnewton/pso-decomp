@@ -1,6 +1,5 @@
 #include "pso/system/SoundEffect.h"
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/ui/TAdDrawLineCtrl.h"
 #include "pso/ui/TAdPlayerLoadGC.h"
 #include "pso/misc/TLobby_80132ED0.h"
@@ -394,7 +393,7 @@ void TAdChrSelASlotGC::sub_8030CEEC() {
 void TAdChrSelASlotGC::update_window_78() {
     if (((TAdChrSelASlotGC *)(this->m_30))->get_slot_index() > 0xB) {
         if ((u32) this->m_78 != 0U) {
-            ((TWindowBase *)this->m_78)->close();
+            TWindow__close((u8 *)this->m_78);
             this->m_78 = 0U;
         }
         this->state = 0xC;
@@ -408,7 +407,7 @@ void TAdChrSelASlotGC::update_window_78() {
 void TAdChrSelASlotGC::update_window_7c() {
     if (((TAdChrSelASlotGC *)(*(s32 *)&this->m_30))->get_slot_index() > 0xA) {
         if ((u32) *(u32 *)&this->unk_7C != 0U) {
-            ((TWindowBase *)(*(void * *)&this->unk_7C))->close();
+            TWindow__close((u8 *)(*(void * *)&this->unk_7C));
             *(u32 *)&this->unk_7C = 0U;
         }
         this->state = 0xB;
@@ -422,7 +421,7 @@ void TAdChrSelASlotGC::update_window_7c() {
 void TAdChrSelASlotGC::update_window_74() {
     if (((TAdChrSelASlotGC *)(*(s32 *)&this->m_30))->get_slot_index() > 8) {
         if ((u32) *(u32 *)&this->unk_74 != 0U) {
-            ((TWindowBase *)(*(void * *)&this->unk_74))->close();
+            TWindow__close((u8 *)(*(void * *)&this->unk_74));
             *(u32 *)&this->unk_74 = 0U;
         }
         this->state = 0xA;
@@ -436,7 +435,7 @@ void TAdChrSelASlotGC::update_window_74() {
 void TAdChrSelASlotGC::update_window_70() {
     if (((TAdChrSelASlotGC *)(this->m_30))->get_slot_index() > 7) {
         if ((u32) this->m_70 != 0U) {
-            ((TWindowBase *)this->m_70)->close();
+            TWindow__close((u8 *)this->m_70);
             this->m_70 = 0U;
         }
         this->state = 9;
@@ -450,7 +449,7 @@ void TAdChrSelASlotGC::update_window_70() {
 void TAdChrSelASlotGC::update_window_6c() {
     if (((TAdChrSelASlotGC *)(*(s32 *)&this->m_30))->get_slot_index() > 6) {
         if ((u32) *(u32 *)&this->unk_6C != 0U) {
-            ((TWindowBase *)(*(void * *)&this->unk_6C))->close();
+            TWindow__close((u8 *)(*(void * *)&this->unk_6C));
             *(u32 *)&this->unk_6C = 0U;
         }
         this->state = 8;
@@ -464,7 +463,7 @@ void TAdChrSelASlotGC::update_window_6c() {
 void TAdChrSelASlotGC::update_slot5() {
     if (((TAdChrSelASlotGC *)(this->m_30))->get_slot_index() > 5) {
         if ((u32) this->m_68 != 0U) {
-            ((TWindowBase *)this->m_68)->close();
+            TWindow__close((u8 *)this->m_68);
             this->m_68 = 0U;
         }
         this->state = 7;
@@ -478,7 +477,7 @@ void TAdChrSelASlotGC::update_slot5() {
 void TAdChrSelASlotGC::update_slot4() {
     if (((TAdChrSelASlotGC *)(*(s32 *)&this->m_30))->get_slot_index() > 4) {
         if ((u32) *(u32 *)&this->unk_64 != 0U) {
-            ((TWindowBase *)(*(void * *)&this->unk_64))->close();
+            TWindow__close((u8 *)(*(void * *)&this->unk_64));
             *(u32 *)&this->unk_64 = 0U;
         }
         this->state = 6;
@@ -492,7 +491,7 @@ void TAdChrSelASlotGC::update_slot4() {
 void TAdChrSelASlotGC::update_slot3() {
     if (((TAdChrSelASlotGC *)(this->m_30))->get_slot_index() > 3) {
         if ((u32) this->m_60 != 0U) {
-            ((TWindowBase *)this->m_60)->close();
+            TWindow__close((u8 *)this->m_60);
             this->m_60 = 0U;
         }
         this->state = 5;
@@ -506,7 +505,7 @@ void TAdChrSelASlotGC::update_slot3() {
 void TAdChrSelASlotGC::update_slot2() {
     if (((TAdChrSelASlotGC *)(*(s32 *)&this->m_30))->get_slot_index() > 2) {
         if ((u32) *(u32 *)&this->unk_5C != 0U) {
-            ((TWindowBase *)(*(void * *)&this->unk_5C))->close();
+            TWindow__close((u8 *)(*(void * *)&this->unk_5C));
             *(u32 *)&this->unk_5C = 0U;
         }
         this->state = 4;
@@ -520,7 +519,7 @@ void TAdChrSelASlotGC::update_slot2() {
 void TAdChrSelASlotGC::update_slot1() {
     if (((TAdChrSelASlotGC *)(this->m_30))->get_slot_index() > 1) {
         if ((u32) this->m_58 != 0U) {
-            ((TWindowBase *)this->m_58)->close();
+            TWindow__close((u8 *)this->m_58);
             this->m_58 = 0U;
         }
         this->state = 3;
@@ -534,43 +533,43 @@ void TAdChrSelASlotGC::update_slot1() {
 void TAdChrSelASlotGC::sub_8030D5DC() {
 
     if ((u32) *(u32 *)((s8 *)this + 0x58) != 0U) {
-        ((TWindowBase *)(*(void **)((s8 *)this + 0x58)))->close();
+        TWindow__close((u8 *)(*(void **)((s8 *)this + 0x58)));
         *(u32 *)((s8 *)this + 0x58) = 0U;
     }
     if ((u32) *(u32 *)((s8 *)this + 0x5C) != 0U) {
-        ((TWindowBase *)(*(void **)((s8 *)this + 0x5C)))->close();
+        TWindow__close((u8 *)(*(void **)((s8 *)this + 0x5C)));
         *(u32 *)((s8 *)this + 0x5C) = 0U;
     }
     if ((u32) *(u32 *)((s8 *)this + 0x60) != 0U) {
-        ((TWindowBase *)(*(void **)((s8 *)this + 0x60)))->close();
+        TWindow__close((u8 *)(*(void **)((s8 *)this + 0x60)));
         *(u32 *)((s8 *)this + 0x60) = 0U;
     }
     if ((u32) *(u32 *)((s8 *)this + 0x64) != 0U) {
-        ((TWindowBase *)(*(void **)((s8 *)this + 0x64)))->close();
+        TWindow__close((u8 *)(*(void **)((s8 *)this + 0x64)));
         *(u32 *)((s8 *)this + 0x64) = 0U;
     }
     if ((u32) *(u32 *)((s8 *)this + 0x68) != 0U) {
-        ((TWindowBase *)(*(void **)((s8 *)this + 0x68)))->close();
+        TWindow__close((u8 *)(*(void **)((s8 *)this + 0x68)));
         *(u32 *)((s8 *)this + 0x68) = 0U;
     }
     if ((u32) *(u32 *)((s8 *)this + 0x6C) != 0U) {
-        ((TWindowBase *)(*(void **)((s8 *)this + 0x6C)))->close();
+        TWindow__close((u8 *)(*(void **)((s8 *)this + 0x6C)));
         *(u32 *)((s8 *)this + 0x6C) = 0U;
     }
     if ((u32) *(u32 *)((s8 *)this + 0x70) != 0U) {
-        ((TWindowBase *)(*(void **)((s8 *)this + 0x70)))->close();
+        TWindow__close((u8 *)(*(void **)((s8 *)this + 0x70)));
         *(u32 *)((s8 *)this + 0x70) = 0U;
     }
     if ((u32) *(u32 *)((s8 *)this + 0x74) != 0U) {
-        ((TWindowBase *)(*(void **)((s8 *)this + 0x74)))->close();
+        TWindow__close((u8 *)(*(void **)((s8 *)this + 0x74)));
         *(u32 *)((s8 *)this + 0x74) = 0U;
     }
     if ((u32) *(u32 *)((s8 *)this + 0x78) != 0U) {
-        ((TWindowBase *)(*(void **)((s8 *)this + 0x78)))->close();
+        TWindow__close((u8 *)(*(void **)((s8 *)this + 0x78)));
         *(u32 *)((s8 *)this + 0x78) = 0U;
     }
     if ((u32) *(u32 *)((s8 *)this + 0x7C) != 0U) {
-        ((TWindowBase *)(*(void **)((s8 *)this + 0x7C)))->close();
+        TWindow__close((u8 *)(*(void **)((s8 *)this + 0x7C)));
         *(u32 *)((s8 *)this + 0x7C) = 0U;
     }
     switch (*(s32 *)((s8 *)this + 0x20)) {
@@ -604,7 +603,7 @@ void TAdChrSelASlotGC::sub_8030D5DC() {
     TAdChrSelSlotGC__sub_802C7498(*(s32 *)((s8 *)this + 0x2C), 2);
     if (((TAdChrSelASlotGC *)(*(s32 *)((s8 *)this + 0x30)))->get_slot_index() > 0) {
         if ((u32) *(u32 *)((s8 *)this + 0x54) != 0U) {
-            ((TWindowBase *)(*(void **)((s8 *)this + 0x54)))->close();
+            TWindow__close((u8 *)(*(void **)((s8 *)this + 0x54)));
             *(u32 *)((s8 *)this + 0x54) = 0U;
         }
         this->state = 2;
@@ -634,47 +633,47 @@ void TAdChrSelASlotGC::close_windows() {
         this->m_50 = 0U;
     }
     if ((u32) *(u32 *)&this->unk_54 != 0U) {
-        ((TWindowBase *)(*(void * *)&this->unk_54))->close();
+        TWindow__close((u8 *)(*(void * *)&this->unk_54));
         *(u32 *)&this->unk_54 = 0U;
     }
     if ((u32) this->m_58 != 0U) {
-        ((TWindowBase *)(*(void * *)&this->m_58))->close();
+        TWindow__close((u8 *)(*(void * *)&this->m_58));
         this->m_58 = 0U;
     }
     if ((u32) *(u32 *)&this->unk_5C != 0U) {
-        ((TWindowBase *)(*(void * *)&this->unk_5C))->close();
+        TWindow__close((u8 *)(*(void * *)&this->unk_5C));
         *(u32 *)&this->unk_5C = 0U;
     }
     if ((u32) this->m_60 != 0U) {
-        ((TWindowBase *)(*(void * *)&this->m_60))->close();
+        TWindow__close((u8 *)(*(void * *)&this->m_60));
         this->m_60 = 0U;
     }
     if ((u32) *(u32 *)&this->unk_64 != 0U) {
-        ((TWindowBase *)(*(void * *)&this->unk_64))->close();
+        TWindow__close((u8 *)(*(void * *)&this->unk_64));
         *(u32 *)&this->unk_64 = 0U;
     }
     if ((u32) this->m_68 != 0U) {
-        ((TWindowBase *)(*(void * *)&this->m_68))->close();
+        TWindow__close((u8 *)(*(void * *)&this->m_68));
         this->m_68 = 0U;
     }
     if ((u32) *(u32 *)&this->unk_6C != 0U) {
-        ((TWindowBase *)(*(void * *)&this->unk_6C))->close();
+        TWindow__close((u8 *)(*(void * *)&this->unk_6C));
         *(u32 *)&this->unk_6C = 0U;
     }
     if ((u32) this->m_70 != 0U) {
-        ((TWindowBase *)(*(void * *)&this->m_70))->close();
+        TWindow__close((u8 *)(*(void * *)&this->m_70));
         this->m_70 = 0U;
     }
     if ((u32) *(u32 *)&this->unk_74 != 0U) {
-        ((TWindowBase *)(*(void * *)&this->unk_74))->close();
+        TWindow__close((u8 *)(*(void * *)&this->unk_74));
         *(u32 *)&this->unk_74 = 0U;
     }
     if ((u32) this->m_78 != 0U) {
-        ((TWindowBase *)(*(void * *)&this->m_78))->close();
+        TWindow__close((u8 *)(*(void * *)&this->m_78));
         this->m_78 = 0U;
     }
     if ((u32) *(u32 *)&this->unk_7C != 0U) {
-        ((TWindowBase *)(*(void * *)&this->unk_7C))->close();
+        TWindow__close((u8 *)(*(void * *)&this->unk_7C));
         *(u32 *)&this->unk_7C = 0U;
     }
     switch (*(s32 *)&this->_pad20) {

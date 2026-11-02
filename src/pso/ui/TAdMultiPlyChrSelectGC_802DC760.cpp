@@ -1,6 +1,5 @@
 #include "pso/system/SoundEffect.h"
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC_802DBCC4.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/object/TObject_8001A448.h"
@@ -87,11 +86,11 @@ void TAdMultiPlyChrSelectGC__sub_802DC8A0(void *arg0) {
     u32 i;
     s32 k;
     if (*(u32 *)((s8 *)arg0 + 0x80) != 0U) {
-        ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x80)))->close();
+        TWindow__close((u8 *)(*(void **)((s8 *)arg0 + 0x80)));
         *(u32 *)((s8 *)arg0 + 0x80) = 0U;
     }
     if (*(u32 *)((s8 *)arg0 + 0x84) != 0U) {
-        ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x84)))->close();
+        TWindow__close((u8 *)(*(void **)((s8 *)arg0 + 0x84)));
         *(u32 *)((s8 *)arg0 + 0x84) = 0U;
     }
     if (TWindowShortListCtrl__check_controller_button(((Ent_802DC8A0 *)controller_physical_port_bank)[get_instance__22TAdMultiPlyChrSelectGCFv(*(s32 *)((s8 *)arg0 + 0x5C))].d + 0x20, 2) != 0) {

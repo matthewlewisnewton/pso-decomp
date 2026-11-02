@@ -2,9 +2,9 @@
 #define PSO_MISC_TWINDOWSHORTCUT_H
 
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TUnk_804CE018.h"
 
-struct TWindowShortCut : public TWindowBase {
+struct TWindowShortCut : public TUnk_804CE018 {
     virtual ~TWindowShortCut();
     virtual void render();
     u8 _pad1C[0x4];

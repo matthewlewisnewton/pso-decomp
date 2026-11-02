@@ -2,7 +2,7 @@
 #include "types.h"
 #include "pso/misc/TWindowSubStatusDisp_8024FBA8.h"
 #include "pso/misc/TLobby_80132ED0.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TWindowSnapShot.h"
 #include "pso/misc/TWindowDD.h"
 #include "pso/misc/TWindowDuelResult.h"
@@ -98,7 +98,7 @@ void render__15TWindowSnapShotFv(u8 *arg0) {
     Stack_802A7F00 stack;
     u8 *temp_r3;
     temp_r3 = draw_default_entry__9TWindowDDFl();
-    ((TWindowBase *)arg0)->draw_window_frame(temp_r3);
+    ((TUnk_804CE018 *)arg0)->draw_window_frame(temp_r3);
     draw_visible_window_entries(arg0, arg0 + 0x24, temp_r3);
     if (!(((TWindowSnapShot *)arg0)->m_60 & 2)) {
         if ((s32) *(s32 *)((s8 *)temp_r3 + 0x30) > 0) {
@@ -121,8 +121,8 @@ void TWindowSnapShot::run_task() {
         play_open_sound();
     }
     ((TWindowDD *)arg0)->initialize_subwindow();
-    ((TWindowBase *)arg0)->update_fade();
-    ((TWindowBase *)arg0)->update_window_entry_list((u8 *)&this->m_24);
+    ((TUnk_804CE018 *)arg0)->update_fade();
+    ((TUnk_804CE018 *)arg0)->update_window_entry_list((u8 *)&this->m_24);
 }
 
 void *__dt__15TWindowSnapShotFv(void *arg0, s16 arg1) {
@@ -146,7 +146,7 @@ u8 *TWindowSnapShot__ct(TWindowSnapShot *window_snap_shot, s32 arg1) {
     if (verify_snapshot_checksum__15TObjBoss2TunnelFv() == 0) {
         window_snap_shot->m_60 = (u8) (window_snap_shot->m_60 | 2);
     }
-    temp_r31 = (s32)((TWindowBase *)window_snap_shot)->get_array_entry(1);
+    temp_r31 = (s32)((TUnk_804CE018 *)window_snap_shot)->get_array_entry(1);
     TWindowDuelResult::set_default_status((void *) temp_r31, get_localized_text_entry(0xF, 0x13));
     return (u8 *)window_snap_shot;
 }

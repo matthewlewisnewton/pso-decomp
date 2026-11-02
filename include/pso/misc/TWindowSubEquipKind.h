@@ -2,9 +2,9 @@
 #define PSO_MISC_TWINDOWSUBEQUIPKIND_H
 
 #include "types.h"
-#include "pso/misc/TWindowMenuIconLine.h"
+#include "pso/misc/TUnk_804D0618.h"
 
-struct TWindowSubEquipKind : public TWindowMenuIconLine {
+struct TWindowSubEquipKind : public TUnk_804D0618 {
     virtual ~TWindowSubEquipKind();
     void draw_tab_label(void *);
     virtual void render();

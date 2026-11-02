@@ -1,7 +1,6 @@
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/TObject.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/system/vector.h"
@@ -16,6 +15,7 @@
 
 extern "C" {
 
+void TWindow__close(u8 *arg0);
 void *__nw__7TObjectFUl(int);
 
     extern int player_unique_pair_entry_count;
@@ -174,7 +174,7 @@ int TObjOnlineEnding::get_instance() {  return player_unique_pair_entry_count; }
     extern unsigned char lbl_8050DAD0[];
 void*TObjOnlineEnding::get_attack_entry(int a0) {  return (char*)lbl_8050DAD0 + a0 * 8; }
 
-void TObjOnlineEnding::close_window() { if (*(unsigned int *)&this->m_154 != 0) { ((TWindowBase *)(*(void* *)&this->m_154))->close(); *(int *)&this->m_154 = 0; } }
+void TObjOnlineEnding::close_window() { if (*(unsigned int *)&this->m_154 != 0) { TWindow__close((u8 *)(*(void* *)&this->m_154)); *(int *)&this->m_154 = 0; } }
 
 }
 

@@ -1,6 +1,5 @@
 #include "pso/system/SoundEffect.h"
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC_802D50A0.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC_802E0FC8.h"
 #include "pso/unk/text_802C6DD4.h"
@@ -62,7 +61,7 @@ void update_state_serial__22TAdMultiPlyChrSelectGCFPv(void *arg0) {
         *(u32 *)((s8 *)arg0 + 0x90) = 0U;
     }
     if ((u32) *(u32 *)((s8 *)arg0 + 0x80) != 0U) {
-        ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x80)))->close();
+        TWindow__close((u8 *)(*(void **)((s8 *)arg0 + 0x80)));
         *(u32 *)((s8 *)arg0 + 0x80) = 0U;
     }
     if ((u32) *(u32 *)((s8 *)arg0 + 0x8C) != 0U) {
@@ -74,7 +73,7 @@ void update_state_serial__22TAdMultiPlyChrSelectGCFPv(void *arg0) {
         *(u32 *)((s8 *)arg0 + 0x98) = 0U;
     }
     if ((u32) *(u32 *)((s8 *)arg0 + 0x7C) != 0U) {
-        ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x7C)))->close();
+        TWindow__close((u8 *)(*(void **)((s8 *)arg0 + 0x7C)));
         *(u32 *)((s8 *)arg0 + 0x7C) = 0U;
     }
     if ((u32) *(u32 *)((s8 *)arg0 + 0x74) != 0U) {
