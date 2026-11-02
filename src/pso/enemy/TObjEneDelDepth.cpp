@@ -401,7 +401,7 @@ void TObjEneDelDepth::render() {
     Vec v = o->position;
     v.y += o->drawOffsetY;
     post_translate_matrix(&v);
-    rotate_matrix_y(0, o->rotation_y);
+    rotate_matrix_y(0, o->rotation.yaw);
     scale_matrix_vec3(0, (u8 *)&o->drawScale);
     o->motionController->draw_model_part();
     pop_matrix();
@@ -423,7 +423,7 @@ s32 TObjEneDelDepth::draw_if_visible() {
             Vec v = o->position;
             v.y += o->drawOffsetY;
             post_translate_matrix(&v);
-            rotate_matrix_y(0, o->rotation_y);
+            rotate_matrix_y(0, o->rotation.yaw);
             scale_matrix_vec3(0, (u8 *)&o->drawScale);
             o->motionController->draw_model_part();
             pop_matrix();
@@ -453,9 +453,9 @@ void TObjEneDelDepth::set_depth_offset(s32 minimum, s32 range) {
 s32 TObjEneDelDepth::adjust_height_to_ground() {
     TObjEneDelDepth *arg0 = this;
     Vec v = arg0->position;
-    v.x = TObjEneDelDepth__data_805DF270 * cos_table_lookup(arg0->rotation_y) + v.x;
+    v.x = TObjEneDelDepth__data_805DF270 * cos_table_lookup(arg0->rotation.yaw) + v.x;
     v.y = v.y + TObjEneDelDepth__data_805DF268;
-    v.x = TObjEneDelDepth__data_805DF270 * sin_table_lookup(arg0->rotation_y) + v.x;
+    v.x = TObjEneDelDepth__data_805DF270 * sin_table_lookup(arg0->rotation.yaw) + v.x;
     if (project_actor_to_ground(arg0, &v, NULL) != 0) {
         arg0->position.y += TObjEneDelDepth__data_805DF298 * (v.y - arg0->position.y);
         return 1;
@@ -771,7 +771,7 @@ void TObjEneDelDepth::update_movement() {
         arg0->direction.y = TObjEneDelDepth__data_805DF258;
         arg0->direction.z = s * arg0->direction.x + c * arg0->direction.z;
         normalize_vector(&arg0->direction);
-        this->rotation_y = (s32)(TObjEneDelDepth__data_80475DD0 * atan2_float(arg0->direction.x, arg0->direction.z));
+        this->rotation.yaw = (s32)(TObjEneDelDepth__data_80475DD0 * atan2_float(arg0->direction.x, arg0->direction.z));
         VecCopy((Vec *)&arg0->position, (const Vec *)&arg0->prev_position);
     }
     if (this->m_38c <= TObjEneDelDepth__data_805DF258 && TObjEneDelDepth__data_805DF258 == arg0->movementSpeed) {
@@ -846,10 +846,10 @@ void TObjEneDelDepth::fn_803142DC() {
     if (f < TObjEneDelDepth__data_805DF258) {
         f = TObjEneDelDepth__data_805DF258;
     }
-    this->rotation_y = (s32)(f * (f32)this->m_3bc + (f32)this->rotation_y);
+    this->rotation.yaw = (s32)(f * (f32)this->m_3bc + (f32)this->rotation.yaw);
     if (this->targetPlayer == 0xFFFF) {
         id = find_nearest_visible_player(ene_del_depth, (int)&v, lbl_805DF29C);
-        if (id != 0xFFFF && angle_difference_abs(this->rotation_y, (s32)(TObjEneDelDepth__data_80475DD0 * atan2_float(v.x, v.z))) < 0x1C71) {
+        if (id != 0xFFFF && angle_difference_abs(this->rotation.yaw, (s32)(TObjEneDelDepth__data_80475DD0 * atan2_float(v.x, v.z))) < 0x1C71) {
             this->m_394 = 0;
             this->targetPlayer = id;
         }
@@ -863,7 +863,7 @@ void TObjEneDelDepth::fn_803142DC() {
             w.x = TObjEneDelDepth__data_805DF260;
     w.z = w.y = TObjEneDelDepth__data_805DF258;
             TObjPlayer::calc_distance_to_client((s32)ene_del_depth, (u16)((u16)this->targetPlayer), (u32)&w);
-            this->rotation_y = approach_angle_limited(this->rotation_y, (s32)(TObjEneDelDepth__data_80475DD0 * atan2_float(w.x, w.z)), 0x280);
+            this->rotation.yaw = approach_angle_limited(this->rotation.yaw, (s32)(TObjEneDelDepth__data_80475DD0 * atan2_float(w.x, w.z)), 0x280);
         }
         if (this->timer > lim) {
             this->motionController->set_motion(0);
@@ -894,11 +894,11 @@ void TObjEneDelDepth::fn_803141A8() {
     f32 sp[3];
     s32 r = 0;
     s32 t;
-    arg0->rotation_y = arg0->rotation_y + arg0->m_3bc;
+    arg0->rotation.yaw = arg0->rotation.yaw + arg0->m_3bc;
     if (this->find_nearest_enemy_with_flag((s32)sp, (f32)lbl_805DF294) != 0xFFFF) {
         t = (s32) (((const f64 *)&TObjEneDelDepth__data_80475DD0)[0] * atan2_float(sp[0], sp[2]));
-        if (angle_difference_abs(arg0->rotation_y, t) < 0x444) {
-            arg0->rotation_y = t;
+        if (angle_difference_abs(arg0->rotation.yaw, t) < 0x444) {
+            arg0->rotation.yaw = t;
             r = 1;
         }
     }
@@ -922,8 +922,8 @@ void TObjEneDelDepth::move_toward_target() {
         TObjPlayer::calc_distance_to_client((s32)arg0, (u16)((u16)id), (u32)&v);
     }
     ang = (s32)(TObjEneDelDepth__data_80475DD0 * atan2_float(v.x, v.z));
-    this->rotation_y = approach_angle_limited(this->rotation_y, ang, 0x200);
-    if (angle_difference_abs(this->rotation_y, ang) < 0x200) {
+    this->rotation.yaw = approach_angle_limited(this->rotation.yaw, ang, 0x200);
+    if (angle_difference_abs(this->rotation.yaw, ang) < 0x200) {
         this->timer = 0;
     }
     VecCopy(&this->prev_position, &this->position);
@@ -962,7 +962,7 @@ void TObjEneDelDepth::update_bomb_drop() {
         set_motion_packed_rotation();
         push_matrix_from(identity_matrix);
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         ((TObjEnemy *)arg0)->calc_joint_matrices(lbl_805DF284);
         pop_matrix();
         push_matrix_from(anim_model_matrix_array[23]);
@@ -1002,9 +1002,9 @@ void TObjEneDelDepth::update_attack_cast() {
     temp_r0 = this->attackTimer;
     if ((temp_r0 <= 0) && (temp_r0 == 0)) {
         if ((s32) game_difficulty_selection == 3) {
-            TTecMegid::create_ex((s32)arg0, (s32)((u8 *)&this->position), (s32)((int)this->rotation_y), (s32)((int) (TObjEneDelDepth__tune_params->techniqueLevel)));
+            TTecMegid::create_ex((s32)arg0, (s32)((u8 *)&this->position), (s32)((int)this->rotation.yaw), (s32)((int) (TObjEneDelDepth__tune_params->techniqueLevel)));
         } else {
-            ((TTecBarta *)arg0)->create_ex((u8 *)&this->position, (void *)this->rotation_y, (void *)(TObjEneDelDepth__tune_params->techniqueLevel));
+            ((TTecBarta *)arg0)->create_ex((u8 *)&this->position, (void *)this->rotation.yaw, (void *)(TObjEneDelDepth__tune_params->techniqueLevel));
         }
     }
     temp_r0_2 = this->timer - 1;
@@ -1224,10 +1224,10 @@ void TObjEneDelDepth::update_ground_check() {
 TObjEneDelDepthBomb::TObjEneDelDepthBomb(TObjEneDelDepth *parent, TObjChara *attacker, const Vec *origin, s32 level) : TObjChara(parent) {
     m_name = TObjEneDelDepthBomb__name;
     source = attacker;
-    rotation_y = ((TObjEneDelDepth *)m_up)->rotation_y;
+    this->rotation.yaw = ((TObjEneDelDepth *)m_up)->rotation.yaw;
     VecCopy(&position, origin);
-    f32 sine = sin_table_lookup(rotation_y);
-    f32 cosine = cos_table_lookup(rotation_y);
+    f32 sine = sin_table_lookup(this->rotation.yaw);
+    f32 cosine = cos_table_lookup(this->rotation.yaw);
     speed = ((TObjEneDelDepth *)m_up)->get_bomb_speed();
     velocity.x = speed * sine;
     velocity.y = TObjEneDelDepth__data_805DF258;
@@ -1294,7 +1294,7 @@ void TObjEneDelDepthBomb::render() {
     s32 texture = TObjFish__sub_8001EDB0((u8 *)data, 2);
     push_matrix();
     post_translate_matrix(&position);
-    rotate_matrix_zyx(0, rotation_x, rotation_y, rotation_z);
+    rotate_matrix_zyx(0, this->rotation.pitch, this->rotation.yaw, this->rotation.roll);
     set_current_texture_list((GinjaTextureList *)(texture));
     draw_chunk_object((void *)model);
     pop_matrix();

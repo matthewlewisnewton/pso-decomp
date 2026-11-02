@@ -94,14 +94,14 @@ void TWindowSubStatusDisp::update_entry_visibility() {
     u32 temp_r25;
     u32 temp_r24;
     s32 arg0 = (s32)this;
-    temp_r31 = ((TUnk_804CE018 *)arg0)->get_array_entry(7);
-    temp_r30 = ((TUnk_804CE018 *)arg0)->get_array_entry(6);
-    temp_r29 = ((TUnk_804CE018 *)arg0)->get_array_entry(5);
-    temp_r28 = ((TUnk_804CE018 *)arg0)->get_array_entry(4);
-    temp_r27 = ((TUnk_804CE018 *)arg0)->get_array_entry(3);
-    temp_r26 = ((TUnk_804CE018 *)arg0)->get_array_entry(2);
-    temp_r25 = ((TUnk_804CE018 *)arg0)->get_array_entry(1);
-    temp_r24 = ((TUnk_804CE018 *)arg0)->get_array_entry(0);
+    temp_r31 = (s32)((TUnk_804CE018 *)arg0)->get_array_entry(7);
+    temp_r30 = (s32)((TUnk_804CE018 *)arg0)->get_array_entry(6);
+    temp_r29 = (s32)((TUnk_804CE018 *)arg0)->get_array_entry(5);
+    temp_r28 = (s32)((TUnk_804CE018 *)arg0)->get_array_entry(4);
+    temp_r27 = (s32)((TUnk_804CE018 *)arg0)->get_array_entry(3);
+    temp_r26 = (s32)((TUnk_804CE018 *)arg0)->get_array_entry(2);
+    temp_r25 = (s32)((TUnk_804CE018 *)arg0)->get_array_entry(1);
+    temp_r24 = (s32)((TUnk_804CE018 *)arg0)->get_array_entry(0);
     if (is_guild_card_receive_active() != 0) {
         if (temp_r31 != 0U) {
             ((TWindowSubStatusDisp *)temp_r31)->clear_visible_flag();

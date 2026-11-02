@@ -146,7 +146,7 @@ u8 *TWindowSnapShot__ct(TWindowSnapShot *window_snap_shot, s32 arg1) {
     if (verify_snapshot_checksum__15TObjBoss2TunnelFv() == 0) {
         window_snap_shot->m_60 = (u8) (window_snap_shot->m_60 | 2);
     }
-    temp_r31 = ((TUnk_804CE018 *)window_snap_shot)->get_array_entry(1);
+    temp_r31 = (s32)((TUnk_804CE018 *)window_snap_shot)->get_array_entry(1);
     TWindowDuelResult::set_default_status((void *) temp_r31, get_localized_text_entry(0xF, 0x13));
     return (u8 *)window_snap_shot;
 }

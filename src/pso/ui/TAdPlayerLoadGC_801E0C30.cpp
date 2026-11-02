@@ -97,6 +97,7 @@ s32 CARDGetSectorSize(s32 chan, u32 *size);
 s32 CARDSetStatus(s32 chan, s32 fileNo, CARDStat_801E2048 *stat);
 s32 CARDClose(CARDFileInfo_801E15A4 *fileInfo);
 s32 CARDOpen(s32 chan, const char *fileName, CARDFileInfo_801E15A4 *fileInfo);
+s32 CARDCreate(s32 chan, const char *fileName, u32 size, CARDFileInfo_801E15A4 *fileInfo);
 s32 CARDReadAsync(CARDFileInfo_801E15A4 *fileInfo, void *addr, s32 length, s32 offset, void (*callback)(s32, s32));
 s32 CARDSetAttributes(s32 chan, s32 fileNo, u8 attr);
 s32 CARDWriteAsync(CARDFileInfo_801E15A4 *fileInfo, const void *addr, s32 length, s32 offset, void (*callback)(s32, s32));
@@ -513,6 +514,67 @@ s32 build_save_file_image__15TAdPlayerLoadGCFPvPv(u8 *arg0, Src_801E17F4 *arg1) 
     return size / 8192 + 3;
 }
 
+s32 TAdPlayerLoadGC__sub_801E1944(s32 chan, const char *name, void *buf, u32 blocks) {
+    u32 size;
+    CARDStat_801E2048 st;
+    if (chan >= 2) {
+        return 0;
+    }
+    switch (CARDOpen(chan, name, &TAdPlayerLoadGC__data_80511EE8)) {
+    case -3:
+        TAdPlayerLoadGC__card_result_code = -0xFF;
+        return -0xFF;
+    case -4:
+        TAdPlayerLoadGC__card_result_code = -0xFF;
+        return -0xFB;
+    case -1:
+        TAdPlayerLoadGC__card_result_code = -1;
+        return -1;
+    case -6:
+    case -10:
+    case -128:
+    default:
+        TAdPlayerLoadGC__card_result_code = -0xFD;
+        return -0xFD;
+    case 0:
+        break;
+    }
+    CARDGetSectorSize(chan, &size);
+    if (size != 0x2000) {
+        TAdPlayerLoadGC__card_result_code = -0xFD;
+        return -0xFD;
+    }
+    if (blocks != 0) {
+        size = blocks * size;
+    } else {
+        CARDGetStatus(chan, TAdPlayerLoadGC__data_80511EE8.fileNo, &st);
+        size = st.length;
+    }
+    switch (CARDReadAsync(&TAdPlayerLoadGC__data_80511EE8, buf, (s32)size, 0, NULL)) {
+    case -3:
+        TAdPlayerLoadGC__card_result_code = -0xFF;
+        return -0xFF;
+    case -1:
+        TAdPlayerLoadGC__card_result_code = -1;
+        return -1;
+    case -4:
+        TAdPlayerLoadGC__card_result_code = -0xFF;
+        return -0xFB;
+    case 0:
+        TAdPlayerLoadGC__card_slot_state_flags |= 0x40 << chan;
+        TAdPlayerLoadGC__card_result_code = 0;
+        return 0;
+    case -5:
+    case -11:
+    case -10:
+    case -14:
+    case -128:
+        break;
+    }
+    TAdPlayerLoadGC__card_result_code = -0xF9;
+    return -0xF9;
+}
+
 s32 TAdPlayerLoadGC__sub_801E1B50(s32 chan) {
     s32 result;
     if (chan >= 2) {
@@ -878,6 +940,34 @@ s32 TAdPlayerLoadGC__sub_801E263C(s32 unused, s32 chan, u8 *workArea) {
     }
     TAdPlayerLoadGC__card_result_code = 0;
     return 0;
+}
+
+// The open path uses the caller's name; creation uses the bounded local copy.
+s32 TAdPlayerLoadGC__sub_801E26DC(s32 chan, const char *name, void *buf, u32 size) {
+    char filename[0x20];
+    s32 result;
+    memset(filename, 0, sizeof(filename));
+    strncpy(filename, name, sizeof(filename));
+    lbl_805D5E3C = size;
+    result = CARDOpen(chan, name, &TAdPlayerLoadGC__data_80511EE8);
+    switch (result) {
+    case -3: return -0xFF;
+    case -4: break;
+    case -1: return result;
+    case 0: return result;
+    case -128: case -10: case -6:
+    default: return result;
+    }
+    result = CARDCreate(chan, filename, lbl_805D5E3C, &TAdPlayerLoadGC__data_80511EE8);
+    switch (result) {
+    case -7: return result;
+    case -3: return result;
+    case -1: return result;
+    case 0: return result;
+    case -2: case -4: case -6: case -8: case -9: goto create_error;
+    case -128: case -12:
+    default: create_error: return result;
+    }
 }
 
 }

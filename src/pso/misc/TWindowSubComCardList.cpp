@@ -1,3 +1,4 @@
+#include "pso/misc/TWindowDrawContext.h"
 #include "types.h"
 #include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TWindowHelpItem_80255AB4.h"
@@ -85,7 +86,6 @@ Ev_802758C8 *calc_equip_index__21TWindowSubCustomEquipFv(void *);
 void *__dt__21TWindowSubComCardListFv(void *arg0, s16 arg1);
 void render__21TWindowSubComCardListFv(TWindowSubComCardList *arg0);
 s32 handle_list_page_flip_input(s32);
-s32 get_draw_context__11TWindowBaseFPv();
 s32 draw_visible_window_entries(void *, void *, s32);
 s32 draw_list_page_indicator(s32, s32);
 void __dl__7TObjectFPv(void *);
@@ -96,7 +96,7 @@ s32 run_task__11TWindowMenuFv();
 void render__21TWindowSubComCardListFv(TWindowSubComCardList *arg0) {
     s32 temp_r3;
 
-    temp_r3 = get_draw_context__11TWindowBaseFPv();
+    temp_r3 = (s32)get_draw_context__11TWindowBaseFPv(arg0);
     ((TUnk_804CE018 *)arg0)->draw_window_frame((void *)temp_r3);
     draw_visible_window_entries(arg0, (u8 *)arg0 + 0x24, temp_r3);
     ((TWindowMenu *)arg0)->render_selected_entry(temp_r3);

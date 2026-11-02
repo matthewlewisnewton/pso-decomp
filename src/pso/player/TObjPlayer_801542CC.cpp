@@ -140,7 +140,7 @@ f32 get_collision_body_radius(Obj_801547E0 *self, s32 i);
 f64 atan2_float(f32, f32);
 extern const f64 lbl_804400F0;
 s32 angle_difference_abs(s32, s32);
-void *find_entity_by_id(u16 id);
+TObjCollidable *find_entity_by_id(u16 id);
 extern s32 quest_object_entries;
 void handle_6x0B_update_object_state(G_UpdateObjectState_6x0B *packet);
 }
@@ -425,7 +425,7 @@ u16 register_entity_by_id(void *ov) {
 #undef TBL
 #undef o
 
-void *find_entity_by_id(u16 id) {
+TObjCollidable *find_entity_by_id(u16 id) {
     s32 lo;
     s32 mid;
     s32 hi;
@@ -434,7 +434,7 @@ void *find_entity_by_id(u16 id) {
         return 0;
     }
     if (id < 12) {
-        return get_player_by_client_id(id);
+        return (TObjCollidable *)get_player_by_client_id(id);
     }
     lo = 0;
     hi = lbl_805D5868 - 1;
@@ -448,7 +448,7 @@ void *find_entity_by_id(u16 id) {
     }
     e = ((Ent_80154CB4 **)TObjPlayer__data_8050D460)[lo];
     if (e != 0 && e->id == id) {
-        return e;
+        return (TObjCollidable *)e;
     }
     return 0;
 }
@@ -490,7 +490,7 @@ void TObjCollidable::refresh_collision_body_centers() {
     if (arg0 != NULL && this->bodies != NULL && ((TObject *)arg0)->all_parents_unqueued_for_destruction() != 0) {
         n = arg0->count;
         push_matrix_from(identity_matrix);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         for (i = 0; i < n; i++) {
             VecCopy__FP3VecPC3Vec(&sp8, &arg0->ents[i]);
             rotate_vector_by_current_matrix(&sp8, &sp8);
@@ -986,7 +986,7 @@ u32 TObjCollidable::check_actor_body_contact(void *o_arg, f32 range) {
             a.colliders = this->bodies;
             a.count = self->a8;
             VecCopy__FP3VecPC3Vec(&a.position, &self->pos);
-            a.facing = this->rotation_y;
+            a.facing = this->rotation.yaw;
             b.colliders = o->a4;
             b.count = o->a8;
             VecCopy__FP3VecPC3Vec(&b.position, &o->pos);

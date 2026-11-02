@@ -273,7 +273,7 @@ void TWindowLockOn::refresh_ground_item() {  }
 
 void TWindowLockOn::update_photon_blast_marker() {
     u8 *arg0 = (u8 *)this;
-    update_photon_blast_player_marker(((TUnk_804CE018 *)arg0)->get_array_entry(0), this->m_60);
+    update_photon_blast_player_marker((s32)((TUnk_804CE018 *)arg0)->get_array_entry(0), this->m_60);
 }
 
 struct Obj_80263014;
@@ -329,11 +329,11 @@ void TWindowLockOn__update_for_enemy(s32 a0, s32 a1) {
 
     init_window_layout_entries(arg0->sub, d->m6c, arg0->player);
     arg0->cb = d->cb;
-    e = ((TUnk_804CE018 *)arg0)->get_array_entry(1);
+    e = (s32)((TUnk_804CE018 *)arg0)->get_array_entry(1);
     TWindowDuelResult::set_default_status((void *)e, get_message_10__20TWindowSubStatusDispFl(0xA5));
     ((TWindowHelpItem *)e)->reset_float_field();
     width = calc_text_width(((TWindowSubComCard *)e)->get_field_20());
-    e = ((TUnk_804CE018 *)arg0)->get_array_entry(0);
+    e = (s32)((TUnk_804CE018 *)arg0)->get_array_entry(0);
     TWindowDuelResult::set_default_status((void *)e, enemy_name_for_rt_index(((TWindowLockOn *)obj)->get_target_id()));
     ((TWindowHelpItem *)e)->reset_float_field();
     arg0->w = (f32)calc_text_width(((TWindowSubComCard *)e)->get_field_20());
@@ -354,7 +354,7 @@ void TWindowLockOn__update_for_enemy(s32 a0, s32 a1) {
     } else {
         kind = 4;
     }
-    e = ((TUnk_804CE018 *)arg0)->get_array_entry(2);
+    e = (s32)((TUnk_804CE018 *)arg0)->get_array_entry(2);
     np = d->names;
     TWindowDuelResult::set_default_status((void *)e, np[kind]);
     ((TWindowHelpItem *)e)->reset_float_field();

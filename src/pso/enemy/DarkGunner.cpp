@@ -127,7 +127,7 @@ s32 minimap_render_dot(void *, s32, s32, s32);
 void TObjPlayer__sub_800A16C4(u8 *arg0);
 void queue_destruction__7TObjectFv(void *arg0);
 s32 update_if_active__15TObjEnemyCustomFl(void *, s32);
-s32 TObjPlayer__sub_800A3210(s32 i, s32 _w1, s32 _w2);
+s32 TObjPlayer__sub_800A3210(s32 i);
 u8 *TObjPlayer__sub_800A4204(u8 *arg0, u8 *arg1, s32 arg2, s32 arg3, s32 arg4);
 s32 submit_cursor_candidate(void *, s32);
 
@@ -417,7 +417,7 @@ extern "C" {
 void vfunc_77__9TObjCharaFv();
 }
 extern "C" {
-void vfunc_76__9TObjCharaFv();
+void vfunc_76__9TObjCharaFf();
 }
 extern "C" {
 void vfunc_75__9TObjCharaFf();
@@ -621,7 +621,7 @@ void *__vt__17TObjEneDarkGunner[83] = {
     (void *)&reset_pose__9TObjCharaFv, (void *)&get_anim_node_position__15TObjEnemyCustomFlP3Vec, (void *)&vfunc_66__9TObjCharaFv, (void *)&vfunc_67__9TObjCharaFf,
     (void *)&get_pos__9TObjCharaFl, (void *)&apply_switch_attack__9TObjCharaFv, (void *)&enemy_spawn_jellen_effect__9TObjCharaFv, (void *)&trigger_switch_attack__9TObjCharaFv,
     (void *)&enemy_spawn_zalure_effect__9TObjCharaFv, (void *)&recalc_stats__9TObjCharaFv, (void *)&vfunc_74__9TObjEnemyFl, (void *)&vfunc_75__9TObjCharaFf,
-    (void *)&vfunc_76__9TObjCharaFv, (void *)&vfunc_77__9TObjCharaFv, (void *)&vfunc_78__9TObjCharaFl, (void *)&vfunc_79__15TObjEnemyCustomFPl,
+    (void *)&vfunc_76__9TObjCharaFf, (void *)&vfunc_77__9TObjCharaFv, (void *)&vfunc_78__9TObjCharaFl, (void *)&vfunc_79__15TObjEnemyCustomFPl,
     (void *)&apply_hit_message_flags__9TObjEnemyFPv, (void *)&apply_set_data__9TObjEnemyFPv, (void *)&clear_lobby_object_state__9TObjEnemyFv,
 };
 
@@ -789,7 +789,7 @@ s32 TObjPlayer::update_hide_sequence() {
         temp_r4 = temp_r5 & 0xFFB7FFFF;
         *(s32 *)&this->unk_388 = temp_r4;
         this->requested_action = 8;
-        this->m_39c = TObjPlayer__sub_800A3210(1, temp_r4, temp_r5);
+        this->m_39c = TObjPlayer__sub_800A3210(1);
         this->m_37c = 1;
     case 1:
         ((TObjMotion *)arg0)->advance_animation();
@@ -860,8 +860,8 @@ void TObjEneDarkGunner::sub_800A159C() {
     o->hover_height = (o->hover_height < 0.0f) ? 0.0f : ((o->hover_height < 9.0f) ? o->hover_height : 9.0f);
     push_matrix_from(identity_matrix);
     post_translate_matrix((s32)&o->pos);
-    rotate_matrix_z(0, this->rotation_z);
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_z(0, this->rotation.roll);
+    rotate_matrix_y(0, this->rotation.yaw);
     Vec t = lbl_8043A6A4;
     lo = 5.0f + o->hover_height;
     t.y = lo + this->render_y_offset;
@@ -1242,7 +1242,7 @@ s32 TObjPlayer__sub_800A1FEC(void *arg0) {
         }
         if (self->fB8 != 4) break;
         self->f388 |= 0x200000;
-        self->timer = ((s32 (*)(s32))TObjPlayer__sub_800A3210)(0);
+        self->timer = TObjPlayer__sub_800A3210(0);
         self->state = 2;
         play_sound_effect(0x4003B52A, (const Vec *)(&self->pos), 0, 0);
         {
@@ -1464,7 +1464,7 @@ void TObjPlayer__sub_800A27CC(TObjPlayer *player) {
     case 0:
         if (((TObjEneDarkGunner *)player)->m_388 & 0x10000) {
             player->actorFlags |= 0x04040000;
-            player->rotation_z = 0x8000;
+            player->rotation.roll = 0x8000;
             player->m_37c = 1;
         } else {
             player->requested_action = 0;
@@ -1530,7 +1530,7 @@ void TObjPlayer__sub_800A28A4(VObj_18_800A28A4 *self) {
     if ((self->flags & 0x400000) && ((TObjEnemy *)self)->obj_testFlags30(0x22) == 0) {
         s32 phase = self->material_phase;
         self->material_phase = phase + 0x800;
-        self->motion->blend = ((s32 (*)(s32, s32))TObjPlayer__sub_800A3210)(2, phase);
+        self->motion->blend = TObjPlayer__sub_800A3210(2);
     } else {
         self->motion->blend = 0.0f;
     }
@@ -1736,7 +1736,7 @@ f32 TObjPlayer__sub_800A3200(s32 arg0) {
     return *(f32 *)((s8 *)(lbl_805D5004 + (arg0 * 4)) + 0);
 }
 
-s32 TObjPlayer__sub_800A3210(s32 i, s32 _w1, s32 _w2) {
+s32 TObjPlayer__sub_800A3210(s32 i) {
     return (*(G_800A3210 * *)&lbl_805D5004)->arr[i];
 }
 

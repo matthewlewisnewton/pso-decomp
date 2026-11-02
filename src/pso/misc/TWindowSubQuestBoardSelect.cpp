@@ -315,7 +315,7 @@ u8 *TWindowSubQuestBoardSelect__ct(TWindowSubQuestBoardSelect *window_sub_quest_
     }
     *(s32 *)&window_sub_quest_board_select->m_64 = var_r30;
     *(s8 *)&window_sub_quest_board_select->m_60 = 0;
-    temp_r30 = ((TUnk_804CE018 *)window_sub_quest_board_select)->get_array_entry(0);
+    temp_r30 = (s32)((TUnk_804CE018 *)window_sub_quest_board_select)->get_array_entry(0);
     set_text_entry_string((u8 *)temp_r30, (u32)(TQuestThread::get_quest_name()), 0);
     ((TWindowSubComCard *)temp_r30)->get_field_20();
     temp_f2 = (f32) calc_text_width();

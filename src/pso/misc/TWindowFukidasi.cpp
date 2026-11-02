@@ -1,3 +1,4 @@
+#include "pso/misc/TWindowDrawContext.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
@@ -210,7 +211,6 @@ u32 get_battle_ctrl_flag__10TObjPlayerFUs(u16);
 u32 get_player_by_client_id(u32);
 s32 get_array_entry__13TUnk_804CE018Fi(void *, s32);
 
-View_80252764 * get_draw_context__11TWindowBaseFPv(void *);
 s32 get_field_20__17TWindowSubComCardFv();
 s32 set_field_1c__6TLobbyFf(f32);
 s32 sub_80246948__13TUnk_804CE018Fv(void *);
@@ -1191,7 +1191,7 @@ void TUnk_804CF0B8::render() {
         break;
     }
     ((TUnk_804CF0B8 *)((Fuki_80252764 *)this))->follow_anchor();
-    v = get_draw_context__11TWindowBaseFPv(((Fuki_80252764 *)this));
+    v = (View_80252764 *)get_draw_context__11TWindowBaseFPv(((Fuki_80252764 *)this));
     v->sx /= TCameraCtrl::get_view_scale();
     v->sy /= TCameraCtrl::get_fov();
     off[0] = TWindowFukidasi__data_805DCD28 * ((Fuki_80252764 *)this)->tail;

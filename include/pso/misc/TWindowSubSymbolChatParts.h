@@ -41,6 +41,9 @@ struct TWindowSubSymbolChatParts : public TUnk_804CDFE8 {
 typedef char TWindowSubSymbolChatParts_size[sizeof(TWindowSubSymbolChatParts) == 0x90 ? 1 : -1];
 
 extern "C" {
+void select_index_and_scroll__20TWindowSubSymbolChatFl(TWindowSubSymbolChatParts *, s32);
+void update_height__20TWindowSubSymbolChatFv(TWindowSubSymbolChatParts *);
+void open__20TWindowSubSymbolChatFl(TWindowSubSymbolChatParts *, s32);
 void *__dt__25TWindowSubSymbolChatPartsFv(void *arg0, s16 arg1);
 void fn_80284C04(u8 *arg0);
 void render__25TWindowSubSymbolChatPartsFv(u8 *arg0);

@@ -1,3 +1,4 @@
+#include "pso/misc/TWindowDrawContext.h"
 #include "types.h"
 #include "pso/misc/TWindowSubStatusDisp_80144B14.h"
 #include "pso/misc/TWindowSubStatusDisp_80228F5C.h"
@@ -387,7 +388,6 @@ s32 TLobby__sub_80269DA4(V2_80269DA4 size, void *arg1) {
 }
 
 extern "C" {
-s32 get_draw_context__11TWindowBaseFPv();
 s32 draw_visible_window_entries(void *, void *, int);
 void *mem_alloc(u32 size);
 void *construct_with_parent__13TUnk_804CDFE8FPv(void *, void *, s32, s32);
@@ -402,7 +402,7 @@ void mem_free(void *);
 void TWindowMessage::render() {
     s32 temp_r3;
     s32 arg0 = (s32)this;
-    temp_r3 = get_draw_context__11TWindowBaseFPv();
+    temp_r3 = (s32)get_draw_context__11TWindowBaseFPv(this);
     ((TUnk_804CE018 *)arg0)->draw_window_frame((void *)temp_r3);
     draw_visible_window_entries((void *)arg0, (void *)(arg0 + 0x24), (int)temp_r3);
 }

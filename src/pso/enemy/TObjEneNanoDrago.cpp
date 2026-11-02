@@ -65,7 +65,7 @@ typedef char NanoGrow_growth_count[offsetof(TObjEneNanoDrago, growth_count) == 0
 typedef char NanoGrow_speed[offsetof(TObjEneNanoDrago, speed) == 0x3d8 ? 1 : -1];
 typedef char NanoDrago_flags30_offset[offsetof(TObjEneNanoDrago, actorFlags) == 0x30 ? 1 : -1];
 typedef char NanoDrago_pos_offset[offsetof(TObjEneNanoDrago, position) == 0x38 ? 1 : -1];
-typedef char NanoDrago_angle_offset[offsetof(TObjEneNanoDrago, rotation_y) == 0x60 ? 1 : -1];
+typedef char NanoDrago_angle_offset[offsetof(TObjEneNanoDrago, rotation.yaw) == 0x60 ? 1 : -1];
 typedef char NanoDrago_fb8_offset[offsetof(TObjEneNanoDrago, requested_action) == 0xb8 ? 1 : -1];
 typedef char NanoDrago_home_offset[offsetof(TObjEneNanoDrago, m_29c) == 0x29c ? 1 : -1];
 typedef char NanoDrago_target_offset[offsetof(TObjEneNanoDrago, target) == 0x2a8 ? 1 : -1];
@@ -453,7 +453,7 @@ void TObjEneNanoDrago::render() {
         rendered = 1;
         push_matrix();
         translate_matrix(0, (f32) (position.x), (f32) (flightHeight + (position.y + sinkingOffset)), (f32) (position.z));
-        rotate_matrix_y(0, (int) (rotation_y));
+        rotate_matrix_y(0, (int) (this->rotation.yaw));
         modelScale = scale.x;
         scale_matrix(0, modelScale, modelScale, modelScale);
         model_render_flags &= 0xFFFFFBFF;
@@ -570,7 +570,7 @@ void TObjEneNanoDrago::update_circling_state() {
             Vec d = *(Vec *)(target + 0x38);
             subtract_vector(&d, (Vec *)&position);
             if (xz_length_squared(&d) <= 160000.0f &&
-                angle_difference_abs(-(s32)(lbl_8043C900[0] * atan2_float(d.z, d.x)) + 0x4000, rotation_y) < 0xAAA) {
+                angle_difference_abs(-(s32)(lbl_8043C900[0] * atan2_float(d.z, d.x)) + 0x4000, this->rotation.yaw) < 0xAAA) {
                 s32 next;
                 if (hp <= hpmax / 4) {
                     next = 10;
@@ -586,8 +586,8 @@ void TObjEneNanoDrago::update_circling_state() {
                 break;
             }
         }
-        rotation_y += ((NanoDragoMovementParams *)movementParameters)->turnSpeed / 2;
-        enemy_set_heading_velocity(speed, this, rotation_y);
+        this->rotation.yaw += ((NanoDragoMovementParams *)movementParameters)->turnSpeed / 2;
+        enemy_set_heading_velocity(speed, this, this->rotation.yaw);
         move_with_wall_slide(((u8 *)this));
         circlingAngle += ((NanoDragoMovementParams *)movementParameters)->turnSpeed / 2;
         if (circlingAngle > 0x10000) {
@@ -1050,13 +1050,13 @@ void TObjEneNanoDrago::wander_around(Vec *center, f32 radius) {
     }
     VecCopy((Vec *)&actor->m_29c, (const Vec *)&actor->moveDestination);
     enemy_turn_toward_dest(actor, ((NanoDragoMovementParams *)actor->movementParameters)->turnSpeed);
-    enemy_set_heading_velocity(actor->speed, actor, actor->rotation_y);
+    enemy_set_heading_velocity(actor->speed, actor, actor->rotation.yaw);
     move_with_wall_slide((u8 *)actor);
 }
 #pragma pop
 void TObjEneNanoDrago::spawn_beam_particle(s32 i) {
     BeamRotation v;
-    v.x = rotation_y + 0x4000;
+    v.x = this->rotation.yaw + 0x4000;
     v.y = 0;
     v.z = 0x4000;
     spawn_directional_particle(&beamOrigins[i], &v, 0xfd);
@@ -1073,7 +1073,7 @@ void TObjEneNanoDrago::spawn_targeted_beam(s32 targetIndex) {
         if (originIndex != 0) {
             spreadAngle = -0x2000;
         }
-        rotation.y = rotation_y + spreadAngle;
+        rotation.y = this->rotation.yaw + spreadAngle;
         rotation.z = 0;
         beam = (void *)__nw__7TObjectFUl(0x104);
         if (beam != 0) {
@@ -1119,7 +1119,7 @@ void TObjEneNanoDrago::begin_hidden_flight() {
     v.x = 0.0f;
     v.z = (-150.0f);
     push_matrix_from(&identity_matrix);
-    rotate_matrix_y(0, rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     rotate_vector_by_matrix(0, &v, &v);
     pop_matrix();
     vec3_add_to(&position, &v);
@@ -1174,7 +1174,7 @@ void TObjEneNanoDrago::add_target_in_front_arc(TObjChara *candidate) {
     {
       dx = v.x;
       heading = (-((s32) (lbl_8043C900[0] * atan2_float(v.z, dx)))) + 0x4000;
-      if (angle_difference_abs(heading, rotation_y) <= 0xAAA)
+      if (angle_difference_abs(heading, this->rotation.yaw) <= 0xAAA)
       {
         s16 id = get_entity_id(candidate);
         u16 *ids = beamTargetIds;
@@ -1199,7 +1199,7 @@ void TObjEneNanoDrago::capture_beam_origins() {
     f32 modelScale;
     push_matrix_from(&identity_matrix);
     translate_matrix(0, (f32) (position.x), (f32) (flightHeight + (position.y + sinkingOffset)), position.z);
-    rotate_matrix_y(0, rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     modelScale = scale.x;
     scale_matrix(0, modelScale, modelScale, modelScale);
     calc_joint_matrices(frame);

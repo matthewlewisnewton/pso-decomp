@@ -1,3 +1,4 @@
+#include "pso/misc/TWindowDrawContext.h"
 #include "types.h"
 #include "pso/misc/TWindowMessageQuest.h"
 #include "pso/misc/TLobby_8026B06C.h"
@@ -27,7 +28,6 @@ struct Ctx_8026B148 {
 extern "C" {
 s32 get_window_layout_position(int);
 extern RecoveredGlobal_8026B118_lbl_8044F464 lbl_8044F464;
-Ctx_8026B148 *get_draw_context__11TWindowBaseFPv(void *);
 void draw_visible_window_entries(void *, void *, void *);
 extern const f32 lbl_805DD260;
 typedef char RecoveredGlobal_8026B118_lbl_8044F464_size[sizeof(RecoveredGlobal_8026B118_lbl_8044F464) == 0xC ? 1 : -1];
@@ -36,7 +36,7 @@ void create_quest_message_window(void) {
 }
 void TWindowMessageQuest::render() {
     Ctx_8026B148 *c;
-    c = get_draw_context__11TWindowBaseFPv(this);
+    c = (Ctx_8026B148 *)get_draw_context__11TWindowBaseFPv(this);
     switch (((Win_8026B148 *)this)->mode) {
     case 0:
         if (c->reveal < 0) {

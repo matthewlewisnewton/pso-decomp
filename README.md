@@ -11,14 +11,19 @@ Nothing from the game is included here. You need your own copy of the game to bu
 <!-- progress-table -->
 | | Matched | Linked |
 |:--|--:|--:|
-| Code | 94.21% | 73.43% |
-| Data | 72.45% | 52.27% |
-| Functions | 98.73% (27,223 of 27,572) | |
-| Units | | 69.57% (3,539 of 5,087) |
+| Code | 94.82% (4,127,684 of 4,353,092) | 77.63% (3,379,448 of 4,353,092) |
+| Data | 73.18% (1,289,011 of 1,761,375) | 53.48% (942,063 of 1,761,375) |
+| Functions | 98.92% (27,275 of 27,572) | |
+| Units | | 70.18% (3,552 of 5,061) |
 <!-- /progress-table -->
 
-Measured on `PsoV3.dol`. A function is matched when it compiles to the original's exact bytes. Code, data and
+Measured on `PsoV3.dol` on 2026-11-01 at validated source commit
+[`eef42a53dd`](https://github.com/matthewlewisnewton/pso-decomp/commit/eef42a53ddf0f99aeeddd90c8961c7ae5c4360f0).
+The README-only publication commit records the measurements of its parent source tree.
+A function is matched when it compiles to the original's exact bytes. Code, data and
 units are linked when the build takes them from compiled source instead of the original. Data includes `.bss`.
+The build still uses 1,509 original-object fallback units; matched functions in those units are not counted as
+source-linked coverage. Unit counts can change when translation units are consolidated.
 
 ## Target
 
@@ -70,6 +75,7 @@ in assembly: `tools/orig_asm.py` rebuilds their bodies from your disc before any
 
 [CONTRIBUTING.md](CONTRIBUTING.md) covers what a change can do and the rules for it.
 [docs/architecture.md](docs/architecture.md) describes how the executable and the source tree are laid out.
+The [documentation index](docs/README.md) links to contributor guides and recovery evidence.
 
 ## Credits
 

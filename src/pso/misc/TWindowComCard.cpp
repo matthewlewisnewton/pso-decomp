@@ -264,7 +264,7 @@ void TWindowComCard::set_selected_index(s32 arg1) {
     s32 temp;
     if ((s32) *(s32 *)((s8 *)this + 0x70) != arg1) {
         *(s32 *)((s8 *)this + 0x70) = arg1;
-        temp = this->get_array_entry(0);
+        temp = (s32)this->get_array_entry(0);
         ((TWindowComCard *)temp)->set_help_mode(*(s32 *)((s8 *)this + 0x70));
     }
 }

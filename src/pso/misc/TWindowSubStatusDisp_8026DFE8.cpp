@@ -1,3 +1,4 @@
+#include "pso/misc/TWindowDrawContext.h"
 #include "types.h"
 #include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TWindowSubStatusDisp_802671F0.h"
@@ -16,7 +17,6 @@ struct RecoveredGlobal_8026E168_lbl_804D0948 {
 };
 
 extern "C" {
-s32 get_draw_context__11TWindowBaseFPv();
 s32 draw_visible_window_entries(void *, void *, int);
 s32 draw_item_list_capacity(void *, int, int, int);
 s32 draw_window_scrollbar(void *, int, void *);
@@ -36,7 +36,7 @@ void TUnk_804D0948::render() {
     s32 temp_r3;
     s32 n;
     void *p;
-    temp_r3 = get_draw_context__11TWindowBaseFPv();
+    temp_r3 = (s32)get_draw_context__11TWindowBaseFPv(this);
     ((TUnk_804CE018 *)arg0)->draw_window_frame((void *)temp_r3);
     draw_visible_window_entries(arg0, arg0 + 0x24, temp_r3);
     if (!(this->m_70 & 0x80)) {
