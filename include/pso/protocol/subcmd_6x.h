@@ -751,19 +751,21 @@ struct G_ShrinkPlayer_6x87 {
  f32 size;
 };
 
+// GC handler 8011A868 uses signed loads for entity_index/room and sign-extends
+// effective_area. Preserve these signed types when regenerating the wire records.
 struct G_StandardDropItemRequest_DC_6x60 {
  struct G_UnusedHeader header;
  u8 floor;
  u8 rt_index;
- u16 entity_index;
+ s16 entity_index;
  struct VectorXZF pos;
- u16 room;
+ s16 room;
  u16 ignore_def;
 };
 
 struct G_StandardDropItemRequest_PC_V3_BB_6x60 {
  struct G_StandardDropItemRequest_DC_6x60 __base_G_StandardDropItemRequest_DC_6x60;
- u8 effective_area;
+ s8 effective_area;
  u8 unused[3];
 };
 

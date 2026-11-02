@@ -224,6 +224,7 @@ pso/boss/TBoss3Volopt_800D8ACC.cpp
 pso/boss/TBoss4CheckEmpty.cpp
 pso/boss/TBoss4CheckEmpty_8034A8B0.cpp
 pso/boss/TBoss4CheckEmpty_8034A8FC.cpp
+pso/boss/TBoss4DarkFalz_8004C93C.cpp
 pso/boss/TBoss4Fade.cpp
 pso/boss/TBoss4Thanks.cpp
 pso/boss/TBoss4Thanks_8035C8F0.cpp
@@ -701,6 +702,7 @@ pso/item/TItemEquipVariant_8012F9F0.cpp
 pso/item/TItemEquipVariant_8012FC58.cpp
 pso/item/TItemEquipVariant_80130658.cpp
 pso/item/TItemHeapObject.cpp
+pso/item/TItemList.cpp
 pso/item/TItemList_8010ED0C.cpp
 pso/item/TItemList_801D3780.cpp
 pso/item/TItemList_801D57B0.cpp
@@ -1549,6 +1551,7 @@ pso/misc/TShopGetItemWindow_8021F0A4.cpp
 pso/misc/TShopItemTecSequence.cpp
 pso/misc/TShopJudgmentItemWindow.cpp
 pso/misc/TShopJudgmentItemWindow_8026DF00.cpp
+pso/misc/TShopKeepItemWindow.cpp
 pso/misc/TShopSequence.cpp
 pso/misc/TShopWindowBase.cpp
 pso/misc/TShopWindowBase_80217454.cpp
@@ -2923,6 +2926,7 @@ pso/unk/text_8010EF14.cpp
 pso/unk/text_8010F168.cpp
 pso/unk/text_8010F210.cpp
 pso/unk/text_8011085C.cpp
+pso/unk/text_8011A780.cpp
 pso/unk/text_8011B328.cpp
 pso/unk/text_8011B620.cpp
 pso/unk/text_8011B694.cpp
@@ -3425,6 +3429,7 @@ pso/unk/text_80320358.cpp
 pso/unk/text_80320B38.cpp
 pso/unk/text_80320DE8.cpp
 pso/unk/text_80324E10.cpp
+pso/unk/text_80324F4C.cpp
 pso/unk/text_80325660.cpp
 pso/unk/text_80325F7C.cpp
 pso/unk/text_80327338.cpp
@@ -3490,6 +3495,7 @@ pso/unk/text_8036F764.cpp
 pso/unk/text_80396328.cpp
 pso/unk/text_8039739C.cpp
 pso/unk/text_803C1668.cpp
+pso/unk/text_803C1780.cpp
 pso/unk/text_803CBCA0.cpp
 pso/unk/text_803CBCF8.cpp
 pso/unk/text_803CC070.cpp

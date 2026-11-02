@@ -38,7 +38,7 @@ struct Item_8011AA68 { u8 data[12]; u32 id; u32 meseta; };
 struct Source_8011AA68 { u16 group; u16 claim; };
 
 struct Delivery_8011AA68 {
-    u32 header; u8 client; u8 kind; s16 source; f32 x; f32 z; s16 room; u16 reserved; u8 item[24];
+    u32 header; u8 client; u8 kind; s16 source; f32 x; f32 z; s16 room; u16 reserved; TItemData item; u8 unknown_28[4];
 };
 
 struct Item_8011AB64 { u8 data[12]; u32 id; u32 meseta; };
@@ -68,7 +68,7 @@ extern s32 item_sync_counter_table;
 extern s32 item_id_counter_table;
 extern "C" {
 s32 bswap_6xa2_fields__6TLobbyFv();
-s32 handle_box_drop_directive(void *);
+void handle_box_drop_directive(G_SpecializableItemDropRequest_6xA2 *);
 void set_boss_buf_entry__6TLobbyFii(s32 v, u16 idx);
 void handle_6x5A_pick_up_item_request(Msg_8011A9D8 *msg);
 int is_quest_active(void);
@@ -106,6 +106,83 @@ void observe_item_id(s32 item_id) {
             s32 idx = id >> 21;
             if (((s32 *)item_sync_counter_table)[(u16)idx] <= id) {
                 set_boss_buf_entry__6TLobbyFii(id + 1, idx);
+            }
+        }
+    }
+}
+
+// unpack_from_item reads only +0x30, +0x34 and +0x38 of the set-data
+// record. Its earlier fields remain opaque; param3 controls regeneration.
+struct BoxDropParameters {
+    u8 unknown_00[0x2C];
+    f32 param3;
+    s32 param4;
+    s32 param5;
+    s32 param6;
+};
+
+typedef char BoxDropParameterSize[sizeof(BoxDropParameters) == 0x3C ? 1 : -1];
+typedef char BoxDropParam3Offset[offsetof(BoxDropParameters, param3) == 0x2C ? 1 : -1];
+typedef char BoxDropParam4Offset[offsetof(BoxDropParameters, param4) == 0x30 ? 1 : -1];
+typedef char BoxDropParam5Offset[offsetof(BoxDropParameters, param5) == 0x34 ? 1 : -1];
+typedef char BoxDropParam6Offset[offsetof(BoxDropParameters, param6) == 0x38 ? 1 : -1];
+typedef char BoxDropDeliverySize[sizeof(Delivery_8011AA68) == 0x2C ? 1 : -1];
+typedef char BoxDropDeliveryItemOffset[offsetof(Delivery_8011AA68, item) == 0x14 ? 1 : -1];
+typedef char BoxDropRequestSize[sizeof(G_SpecializableItemDropRequest_6xA2) == 0x28 ? 1 : -1];
+typedef char BoxDropRequestParamsOffset[offsetof(G_SpecializableItemDropRequest_6xA2, param3) == 0x18 ? 1 : -1];
+typedef char BoxDropRequestSourceOffset[offsetof(G_StandardDropItemRequest_DC_6x60, entity_index) == 6 ? 1 : -1];
+typedef char BoxDropRequestRoomOffset[offsetof(G_StandardDropItemRequest_DC_6x60, room) == 0x10 ? 1 : -1];
+typedef char BoxDropRequestAreaOffset[offsetof(G_StandardDropItemRequest_PC_V3_BB_6x60, effective_area) == 0x14 ? 1 : -1];
+
+// Retain legacy names at these bounded packet and item-generation interfaces.
+extern "C" {
+void *init_header_packet__6TLobbyFv(Delivery_8011AA68 *packet);
+void send_item_packet__6TLobbyFv(Delivery_8011AA68 *packet);
+void drop_meseta_from_slot__10TObjPlayerFll(s32 area, TItemData *item);
+extern const f32 lbl_805DAC58;
+}
+
+extern "C" void handle_box_drop_directive(G_SpecializableItemDropRequest_6xA2 *request) {
+    s32 source;
+    const G_StandardDropItemRequest_DC_6x60 &drop =
+        request->__base_G_StandardDropItemRequest_PC_V3_BB_6x60
+            .__base_G_StandardDropItemRequest_DC_6x60;
+    source = drop.entity_index;
+    if (source != -1) {
+        Source_8011AA68 row = quest_object_entries[source];
+        if (row.claim != 0xFFFF) {
+            TItemData item;
+            BoxDropParameters parameters;
+            Delivery_8011AA68 delivery;
+            const u32 id = build_item_id(row.claim);
+            row.claim = 0xFFFF;
+            TLobby::apply_table_entry(source, &row);
+            parameters.param3 = request->param3;
+            parameters.param4 = request->param4;
+            parameters.param5 = request->param5;
+            parameters.param6 = request->param6;
+            item.unpack_from_item(&parameters);
+            if (lbl_805DAC58 == parameters.param3) {
+                const u8 category = item.data1.data_u8[0];
+                const u8 group = item.data1.data_u8[1];
+                item.init();
+                item.data1.data_u8[0] = category;
+                item.data1.data_u8[1] = group;
+                drop_meseta_from_slot__10TObjPlayerFll(
+                    request->__base_G_StandardDropItemRequest_PC_V3_BB_6x60.effective_area, &item);
+            }
+            item.id = id;
+            if (item.isValidGroundDrop()) {
+                item.encode_for_network();
+                init_header_packet__6TLobbyFv(&delivery);
+                delivery.client = drop.floor;
+                delivery.kind = 2;
+                delivery.source = source;
+                delivery.x = drop.pos.x;
+                delivery.z = drop.pos.z;
+                delivery.room = drop.room;
+                delivery.item.copy_from(&item);
+                send_item_packet__6TLobbyFv(&delivery);
             }
         }
     }
@@ -155,7 +232,7 @@ void TLobby::drop_item_from_source(s16 source, int client, s16 room, int slot, f
                 delivery.x = x;
                 delivery.z = z;
                 delivery.room = room;
-                ((TItemData *)(delivery.item))->copy_from((TItemData *)(&item));
+                delivery.item.copy_from((TItemData *)(&item));
                 ((TLobby *)(&delivery))->send_item_packet();
             }
         }
@@ -202,7 +279,7 @@ void handle_6xA2_specializable_item_drop_request(void *arg0) {
             TLobby::drop_item_from_source((s16)(*(s16 *)((s8 *)arg0 + 6)), (int)(*(s8 *)((s8 *)arg0 + 4)), (s16)(*(s16 *)((s8 *)arg0 + 0x10)), (int)(*(s8 *)((s8 *)arg0 + 0x14)), *(f32 *)((s8 *)arg0 + 8), *(f32 *)((s8 *)arg0 + 0xC));
             return;
         }
-        handle_box_drop_directive(arg0);
+        handle_box_drop_directive(static_cast<G_SpecializableItemDropRequest_6xA2 *>(arg0));
         return;
     }
     process_enemy_drop_request(temp_b, (s16)(*(s16 *)((s8 *)arg0 + 6)), (int)(*(s8 *)((s8 *)arg0 + 4)), (s16)(*(s16 *)((s8 *)arg0 + 0x10)), (int)(*(s8 *)((s8 *)arg0 + 0x14)), *(f32 *)((s8 *)arg0 + 8), *(f32 *)((s8 *)arg0 + 0xC));
