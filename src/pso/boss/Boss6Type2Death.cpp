@@ -1,3 +1,4 @@
+#include "pso/boss/TBoss6Zanzo.h"
 #include "pso/misc/CameraHelpers.h"
 #include "pso/system/ModelNodePositionCapture.h"
 #include "pso/system/CurrentTextureList.h"
@@ -37,7 +38,7 @@ struct O_8033E5A8 {
     void *fa0[4];
 };
 
-struct Vec_8033E0F0 { f32 x, y, z; };
+typedef Vec Vec_8033E0F0;
 
 struct Rng_8033E0F0 { s32 start; s32 end; s32 id; };
 
@@ -55,7 +56,7 @@ struct Fish_8033E0F0 {
     Vec_8033E0F0 f90;
     u8 pad9C[0xA0 - 0x9C];
     void *emit[4];
-    void *fb0;
+    u8 padB0[4];
 };
 
 struct Pl_8033E0F0 {
@@ -77,7 +78,6 @@ s32 get_bml_model(void *, int);
 
 void __ct__7TObjectFP7TObject(void *);
 void *get_fish_count__8TObjFishFv(void);
-s32 create_zanzo__11TBoss6Type1FPvPvPv(void *, int, int);
 void vec3_add_to(void *, void *);
 f32 vector_length(void *);
 void subtract_vector(void *, void *);
@@ -109,7 +109,6 @@ extern "C" const char *TBoss6Demo21_TYPE2_DEAD__name = lbl_80478088;
 #define boss6_type2_death_effect_desc_b ((u8 *)boss6_type2_death_effect_desc_b)
 #define boss6_type2_death_effect_desc_c ((u8 *)boss6_type2_death_effect_desc_c)
 #define boss6_type2_death_emitter_ranges ((Rng_8033E0F0 *)boss6_type2_death_emitter_ranges)
-#define lbl_8047817C ((u8 *)lbl_8047817C)
 #pragma pool_data off
 extern "C" {
 void TBoss6Demo21_TYPE2_DEAD::draw_model_13() {
@@ -235,9 +234,7 @@ void render__23TBoss6Demo21_TYPE2_DEADFv(void* p) { ((TBoss6Demo21_TYPE2_DEAD *)
 #pragma push
 #pragma pool_data off
 void run_task__23TBoss6Demo21_TYPE2_DEADFv(Fish_8033E0F0 *arg0) {
-    Vec_8033E0F0 b;
-    Vec_8033E0F0 mid;
-    Vec_8033E0F0 a;
+    Vec points[3];
     if ((arg0->f4c += 0.7f) > 499.0f) {
         arg0->f4c = 499.0f;
     }
@@ -306,18 +303,14 @@ void run_task__23TBoss6Demo21_TYPE2_DEADFv(Fish_8033E0F0 *arg0) {
         }
     }
     if (arg0->timer >= 0x1AE) {
-        s32 pb;
-        s32 pm;
-        VecCopy((Vec *)&a, (const Vec *)&arg0->f84);
-        pb = (s32)&b;
-        VecCopy((Vec *)pb, (const Vec *)&arg0->f90);
-        pm = (s32)&mid;
-        VecCopy((Vec *)pm, (const Vec *)&a);
-        vec3_add_to((void *)pm, (void *)pb);
-        mid.x *= (0.5f);
-        mid.y *= (0.5f);
-        mid.z *= (0.5f);
-        ((TBoss6Type1 *)(arg0->fb0))->set_effect_points((f32 *)&a, (u32 *)lbl_8047817C);
+        VecCopy(&points[0], &arg0->f84);
+        VecCopy(&points[2], &arg0->f90);
+        VecCopy(&points[1], &points[0]);
+        vec3_add_to(&points[1], &points[2]);
+        points[1].x *= (0.5f);
+        points[1].y *= (0.5f);
+        points[1].z *= (0.5f);
+        static_cast<TBoss6Demo21_TYPE2_DEAD *>(static_cast<void *>(arg0))->trail_effect->set_effect_points(points, lbl_8047817C);
     }
     if (arg0->timer == 0x23A) {
         s32 n = TLobby::get_game_mode();
@@ -428,7 +421,7 @@ void *TBoss6Demo21_TYPE2_DEAD__ct(void *arg0p, void *arg1, void *arg2) {
     for (i = 0; i < 4; i++) {
         ((Fish_8033E688 *)arg0)->arr[i] = 0;
     }
-    ((TBoss6Type1 *)arg0)->motion_flags = create_zanzo__11TBoss6Type1FPvPvPv(arg0, 3, 0xF);
+    static_cast<TBoss6Demo21_TYPE2_DEAD *>(static_cast<void *>(arg0))->trail_effect = TBoss6Type1::create_zanzo(static_cast<TBoss6Demo21_TYPE2_DEAD *>(static_cast<void *>(arg0)), 3, 0xF);
     *(f32 *)((s8 *)arg0 + 0x4C) = (0.0f);
     *(s32 *)((s8 *)arg0 + 0x50) = 0;
     return arg0;

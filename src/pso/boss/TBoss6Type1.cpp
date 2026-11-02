@@ -6,6 +6,7 @@
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/misc/TLobby_801E43E4.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/boss/TBoss6Zanzo.h"
 #include "types.h"
 #include "pso/system/vector.h"
 #include "pso/boss/TBoss4Type2.h"
@@ -383,7 +384,7 @@ s32 get_bml_model(s32, s32);
 void draw_model_motion(void *arg0, void *arg1, f32 farg0);
 extern s32 lbl_804DF614[];
 extern const s32 lbl_805DE3C8;
-extern s32 lbl_80470FAC[];
+extern u32 lbl_80470FAC[];
 
 void TBoss6Type1__sub_802B4B04(u8 *arg0);
 extern const f32 lbl_805DE314;
@@ -1147,7 +1148,7 @@ void TBoss6Type1::update_effect_points() {
     VecCopy((Vec *)&points[0], (const Vec *)&effect_points[0]);
     VecCopy((Vec *)&points[1], (const Vec *)&effect_points[1]);
     TBoss6Type1::set_part_default_value((int)this, &points[1]);
-    ((TBoss6Type1 *)effect_point_receiver)->set_effect_points((f32 *)points, (u32 *)lbl_80470FAC);
+    effect_point_receiver->set_effect_points(points, lbl_80470FAC);
 }
 
  extern u32 boss6_type1_trail_point_offsets[];
@@ -1172,7 +1173,7 @@ void TBoss6Type1::update_trail_points() {
     subtract_vector(&points[2],&delta);
     vec3_add_to(&points[4],&delta);
     VecCopy((Vec *)&points[6], (const Vec *)&points[0]);
-    ((TBoss6Type1 *)trail_point_receiver)->set_effect_points((f32 *)points, (u32 *)boss6_type1_trail_point_offsets);
+    trail_point_receiver->set_effect_points(points, boss6_type1_trail_point_offsets);
 }
 
 void TBoss6Type1::init_parts() { TBoss6Type1::set_part_default_value((int)this, (void*)((char*)this + 0x5d8)); TBoss6Type1::set_part_default_value((int)this, (void*)((char*)this + 0x5e4)); TBoss6Type1::set_part_default_value((int)this, (void*)((char*)this + 0x5f0)); this->update_trail_points(); }
@@ -2416,7 +2417,6 @@ struct Tmp_802B93C4 { s32 a; s16 b; s16 c; u8 pad[0x10]; };
 s32 init_collision_body_parts(void *, void *, int);
 void build_tables__14TBoss6PlotFalzFPvPvi(void *, void *, int);
 void TBoss6Type1__sub_802B854C(void *);
-s32 create_zanzo__11TBoss6Type1FPvPvPv(void *, int, int);
 extern u8 lbl_80470D1C[];
 extern u8 boss6_type1_model_node_desc[];
 extern u8 boss6_type1_model_node_desc_b[];
@@ -2468,8 +2468,8 @@ s32 TBoss6Type1__ct(s32 arg0_, s32 parent, s32 arg2_) {
     *(s32 *)((s8 *)arg0 + 0x650) = (s32)ModelNodePositionCapture::create((ModelNodePositionEntry *)(boss6_type1_model_node_desc_b), (Vec *)((arg0 + 0x5FC)));
     build_tables__14TBoss6PlotFalzFPvPvi(arg0 + 0x658, boss6_type1_build_table, 2);
     build_tables__14TBoss6PlotFalzFPvPvi(arg0 + 0x66C, lbl_80470EA0, 1);
-    *(s32 *)((s8 *)arg0 + 0x400) = create_zanzo__11TBoss6Type1FPvPvPv(arg0, 7, 0xF);
-    *(s32 *)((s8 *)arg0 + 0x404) = create_zanzo__11TBoss6Type1FPvPvPv(arg0, 2, 0xF);
+    static_cast<TBoss6Type1 *>(static_cast<void *>(arg0))->trail_point_receiver = TBoss6Type1::create_zanzo(static_cast<TBoss6Type1 *>(static_cast<void *>(arg0)), 7, 0xF);
+    static_cast<TBoss6Type1 *>(static_cast<void *>(arg0))->effect_point_receiver = TBoss6Type1::create_zanzo(static_cast<TBoss6Type1 *>(static_cast<void *>(arg0)), 2, 0xF);
     *(s32 *)((s8 *)arg0 + 0x414) = 0;
     *(s8 *)((s8 *)arg0 + 0x41C) = 0;
     TBoss6Type1__sub_802B96C0((s32)(arg0 + 0x420), (s32)lbl_80470EAC);

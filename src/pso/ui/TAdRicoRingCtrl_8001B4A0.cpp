@@ -1,3 +1,4 @@
+#include "pso/render/TriangleFan3D.h"
 #include "types.h"
 #include "pso/system/FlagWord.h"
 #include "pso/object/TObject_80019A50.h"
@@ -64,7 +65,7 @@ extern s8 lbl_805D4A31;
 extern const f32 lbl_80434828[];
 extern const u32 rico_ring_render_params[];
 extern char lbl_804809E0[];
-extern char lbl_80480A10[];
+extern TriangleFan3D lbl_80480A10;
 extern u32 lbl_804FE138[];
 u32 __cvt_fp2unsigned(f32);
 
@@ -151,7 +152,7 @@ void TAdRicoRingCtrl::render() {
         v[11] = g;
         lbl_805D4A31 = 1;
     }
-    ((TObjPlayer *)lbl_80480A10)->draw_tri_fan_3d(4, 6);
+    draw_tri_fan_3d(&lbl_80480A10, 4, 6);
     t = *(f32 *)&this->unk_24;
     if (t > lbl_805D7E4C) {
         u32 args[4];

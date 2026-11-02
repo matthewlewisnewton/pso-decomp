@@ -1,3 +1,4 @@
+#include "pso/render/TriangleFan3D.h"
 #include "types.h"
 #include "pso/unk/text_80290D1C.h"
 #include "pso/player/TObjPlayer.h"
@@ -28,7 +29,8 @@ s32 __cvt_fp2unsigned(f32);
 }
 extern s32 creation_ruler_line_vertices[96];
 extern u32 creation_ruler_line_colors[4];
-extern s32 lbl_804DA98C[];
+struct CreationRulerFan { TriangleFan3D fan; u32 reserved; };
+extern CreationRulerFan lbl_804DA98C;
 void draw_creation_ruler_lines(f32 farg0) {
     Desc_80290D1C d;
     u32 colors[32];
@@ -45,5 +47,5 @@ void draw_creation_ruler_lines(f32 farg0) {
     draw_line_list(&d, 0x10, 5);
     c = __cvt_fp2unsigned(64.0f * farg0) | 0x40400000 | 0x4000;
     creation_ruler_line_colors[0] = creation_ruler_line_colors[1] = c;
-    ((TObjPlayer *)lbl_804DA98C)->draw_tri_fan_3d(4, 7);
+    draw_tri_fan_3d(&lbl_804DA98C.fan, 4, 7);
 }

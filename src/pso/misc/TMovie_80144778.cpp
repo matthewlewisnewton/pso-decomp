@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/RelModuleBuffer.h"
 #include "pso/system/main_loop.h"
 #include "pso/misc/TMovie.h"
 #include "pso/misc/TKeyBoardControl.h"
@@ -25,7 +26,6 @@ struct VObj_18_a28850 : VBase_18_a28850 {
 struct Vec_80144778 { s32 x, y, z; };
 
 extern "C" {
-u8 *load_rel_module(u8 *arg0, s32 arg1);
 char *strncpy(char *, const char *, u32);
 extern u8 lbl_8043F380[];
 extern s32 TMovie__name;
@@ -99,15 +99,15 @@ TMovie::TMovie(TObject *parent, s8 *name, s32 a3, s32 a4, s32 a5) : TObject(pare
     u8 *p;
     ((TMovie_80144910 *)this)->name = TMovie__name;
     ((TMovie_80144910 *)this)->f44 = a3;
-    ((TMovie_80144910 *)this)->obj1C = 0;
+    m_1c = 0;
     ((TMovie_80144910 *)this)->f48 = a4;
     ((TMovie_80144910 *)this)->obj20 = 0;
     strncpy(((TMovie_80144910 *)this)->path, (const char *)name, 0x20);
-    p = (u8 *)::operator new(8);
-    if (p != 0) {
-        p = load_rel_module(p, (s32)lbl_8043F380);
+    RelModuleBuffer *module = new RelModuleBuffer;
+    if (module != 0) {
+        module = load_rel_module(module, (s32)lbl_8043F380);
     }
-    ((TMovie_80144910 *)this)->obj1C = p;
+    m_1c = module;
     p = (u8 *)::operator new(0xD0);
     if (p != 0) {
         p = initialize_movie_with_soundtrack(p, name, ((TMovie_80144910 *)this)->f48, (u8)!((TMovie_80144910 *)this)->f48, a5);

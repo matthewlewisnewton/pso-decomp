@@ -4,6 +4,8 @@
 #include "types.h"
 #include <stddef.h>
 
+struct TBoss6Zanzo;
+
 struct TBoss6Type2Point { f32 x, y, z; };
 
 struct TBoss6Type2
@@ -85,7 +87,7 @@ struct TBoss6Type2
     u8 unk_440[0x14];
     s16 m_454;
     u8 unk_456[0x2];
-    u32 m_458;
+    TBoss6Zanzo *trail_effect;
     u8 unk_45C[0x4];
     s32 m_460;
     u16 m_464;
