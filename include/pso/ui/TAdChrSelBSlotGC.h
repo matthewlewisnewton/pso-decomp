@@ -4,6 +4,7 @@
 #include "types.h"
 #include "pso/TObject.h"
 
+class TAdPlyChrSelPlateGC;
 class TAdChrSelMovePlateGC;
 
 struct TAdChrSelBSlotGC : public TObject {
@@ -30,7 +31,7 @@ struct TAdChrSelBSlotGC : public TObject {
     static int get_global_state();
     static int get_global_slot_data();
     u8 unk_28[0x4];
-    s32 m_2c;
+    TAdPlyChrSelPlateGC *m_2c;
     u8 unk_30[0x4];
     TAdChrSelMovePlateGC *m_34;
     u8 unk_38[0x4];

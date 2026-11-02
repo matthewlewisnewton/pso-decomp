@@ -39,7 +39,6 @@ extern "C" {
 u32 TAdChrSelASlotGC__sub_8030CB08(TAdChrSelASlotGC *arg0, s32 kind, s32 text);
 s32 TWindowShortListCtrl__check_controller_button(int, int);
 extern RecoveredGlobal_8030EBD0_lbl_8050E3B8 controller_physical_port_bank;
-s32 push_plate_position__19TAdPlyChrSelPlateGCFv(int, void *);
 s32 get_global_state__16TAdChrSelBSlotGCFv(void *);
 extern RecoveredGlobal_8030E6E0_lbl_804758E8 lbl_804758E8;
 extern G_8030E3BC chr_select_b_slot_entry;
@@ -47,7 +46,7 @@ G_8030E3BC *TAdChrSelBSlotGC__sub_8030E3BC(s32 arg0, s32 arg1, s32 arg2, void *a
 extern const CharacterSlotPosition lbl_80475908;
 void set_entry_text__15TAdSubPlyItemGCFPvPv(void *item, G_8030E3BC *entry);
 void TAdChrSelBSlotGC__sub_8030E624(TAdChrSelBSlotGC *self);
-s32 is_slot_value_ready__19TAdPlyChrSelPlateGCFl(s32 plate, s32 i);
+s32 is_slot_value_ready__19TAdPlyChrSelPlateGCFl(TAdPlyChrSelPlateGC *plate, s32 i);
 s32 is_slot_state_one__16TAdChrSelBSlotGCFlUl(s32 arg0, u32 i);
 
 void TAdChrSelBSlotGC::render() {
@@ -138,10 +137,10 @@ typedef char RecoveredGlobal_8030E6E0_lbl_804758E8_size[sizeof(RecoveredGlobal_8
 void TAdChrSelBSlotGC::reset_plate_positions() {
     u8 *arg0 = (u8 *)this;
     if (get_global_state__16TAdChrSelBSlotGCFv(arg0) == 0x19) {
-        push_plate_position__19TAdPlyChrSelPlateGCFv(this->m_2c, &lbl_804758E8.value);
-        push_plate_position__19TAdPlyChrSelPlateGCFv(this->m_2c, (void *) ((u8 *)&lbl_804758E8.value + 8));
-        push_plate_position__19TAdPlyChrSelPlateGCFv(this->m_2c, (void *) ((u8 *)&lbl_804758E8.value + 0x10));
-        push_plate_position__19TAdPlyChrSelPlateGCFv(this->m_2c, (void *) ((u8 *)&lbl_804758E8.value + 0x18));
+        push_plate_position__19TAdPlyChrSelPlateGCFv(this->m_2c, (const f32 *)&lbl_804758E8.value);
+        push_plate_position__19TAdPlyChrSelPlateGCFv(this->m_2c, (const f32 *)((u8 *)&lbl_804758E8.value + 8));
+        push_plate_position__19TAdPlyChrSelPlateGCFv(this->m_2c, (const f32 *)((u8 *)&lbl_804758E8.value + 0x10));
+        push_plate_position__19TAdPlyChrSelPlateGCFv(this->m_2c, (const f32 *)((u8 *)&lbl_804758E8.value + 0x18));
         this->m_1c = 0x13;
     }
 }
