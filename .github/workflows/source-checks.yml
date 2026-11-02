@@ -1,5 +1,5 @@
 # Source-only checks: no original game data or compiler is required.
-# Passing these checks does not establish binary correctness; CI owns that gate.
+# Passing these checks does not establish binary correctness; the local mechanical queue owns that gate.
 name: Source checks
 
 on:
@@ -29,10 +29,18 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
+      - name: Install real Ninja for synthetic preparation tests
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y ninja-build
+          /usr/bin/ninja --version
+
       - name: Python syntax
         run: python3 -m compileall -q configure.py tools
 
       - name: Synthetic tool tests
+        env:
+          PSO_TEST_NINJA: /usr/bin/ninja
         run: python3 -m unittest discover -s tools/tests -p 'test_*.py' -v
 
       - name: Changed-line whitespace

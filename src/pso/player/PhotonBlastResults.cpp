@@ -406,7 +406,7 @@ void step_photon_blast_sequence(PhotonBlastSequence_801A9870 *seq) {
             seq->summon = (TObject *)summon;
             for (j = 0; j < 4; j++) {
                 if (seq->participants[j] < 4) {
-                    ((void (*)(u32, s32, s32))queue_photon_blast_support)(seq->participants[j], 4, 1);
+                    queue_photon_blast_support(seq->participants[j], 4, 1);
                 }
             }
             break;
@@ -432,7 +432,7 @@ void step_photon_blast_sequence(PhotonBlastSequence_801A9870 *seq) {
             seq->summon = (TObject *)summon;
             for (j = 0; j < 4; j++) {
                 if (seq->participants[j] < 4) {
-                    ((void (*)(u32, s32, s32))queue_photon_blast_support)(seq->participants[j], 5, 1);
+                    queue_photon_blast_support(seq->participants[j], 5, 1);
                 }
             }
             break;

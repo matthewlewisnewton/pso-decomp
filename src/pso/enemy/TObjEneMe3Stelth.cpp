@@ -2031,11 +2031,11 @@ void TObjEneMe3Stelth__sub_800F3214(u8 *ene_epsilon, s32 arg1) {
                     ((TObjEneDD *)ene_epsilon)->update_velocity();
                     var_r4 = (s32) (TObjEneMe3Stelth__data_8043D758 * atan2_float((f32) (((TObjEneDD_ST *)ene_epsilon)->target_direction.x), (f32) (*(f32 *)((s8 *)ene_epsilon + 0x3A8))));
                 } else {
-                    var_r4 = ((TObjEneEpsilon *)ene_epsilon)->rotation_y;
+                    var_r4 = ((TObjEneEpsilon *)ene_epsilon)->rotation.yaw;
                 }
-                ((TObjEneEpsilon *)ene_epsilon)->rotation_y = approach_angle_limited((int) (((TObjEneEpsilon *)ene_epsilon)->rotation_y), var_r4, 0x300);
-                ((TObjEneDD_ST *)ene_epsilon)->target_direction.x = sin_table_lookup((int) (((TObjEneEpsilon *)ene_epsilon)->rotation_y));
-                *(f32 *)((s8 *)ene_epsilon + 0x3A8) = cos_table_lookup((int) (((TObjEneEpsilon *)ene_epsilon)->rotation_y));
+                ((TObjEneEpsilon *)ene_epsilon)->rotation.yaw = approach_angle_limited((int) (((TObjEneEpsilon *)ene_epsilon)->rotation.yaw), var_r4, 0x300);
+                ((TObjEneDD_ST *)ene_epsilon)->target_direction.x = sin_table_lookup((int) (((TObjEneEpsilon *)ene_epsilon)->rotation.yaw));
+                *(f32 *)((s8 *)ene_epsilon + 0x3A8) = cos_table_lookup((int) (((TObjEneEpsilon *)ene_epsilon)->rotation.yaw));
             }
             ((VObj_18_4f5f2e *)(ene_epsilon))->m110();
             TObjEneMe3Stelth__sub_800F0C90(ene_epsilon);
@@ -2445,7 +2445,7 @@ void TObjEneMe3Stelth::state_chase(s32 arg1) {
         if (update_linked_position__12TObjEneDD_STFf(this, TObjEneMe3Stelth__data_805DA848) != 0) {
             this->enemy_copy_target_destination();
             this->update_velocity();
-            *(f32 *)((s8 *)((u8 *)this) + 0x434) = (f32) ((this->target_direction.x * sin_table_lookup(this->rotation_y)) + (*(f32 *)((s8 *)((u8 *)this) + 0x3A8) * cos_table_lookup(this->rotation_y)));
+            *(f32 *)((s8 *)((u8 *)this) + 0x434) = (f32) ((this->target_direction.x * sin_table_lookup(this->rotation.yaw)) + (*(f32 *)((s8 *)((u8 *)this) + 0x3A8) * cos_table_lookup(this->rotation.yaw)));
             if (*(f32 *)((s8 *)((u8 *)this) + 0x434) < cos_table_lookup(0x1000)) {
                 ((TObjEneDD *)((u8 *)this))->turn_toward_target_direction(0x500);
                 ((TObjEneDD *)(this))->vfunc_102();
@@ -3103,7 +3103,7 @@ extern "C" void enemy_spawn_jellen_effect__9TObjCharaFv();
 extern "C" void enemy_spawn_zalure_effect__9TObjCharaFv();
 extern "C" void vfunc_78__9TObjCharaFl();
 extern "C" void vfunc_77__9TObjCharaFv();
-extern "C" void vfunc_76__9TObjCharaFv();
+extern "C" void vfunc_76__9TObjCharaFf();
 extern "C" void vfunc_75__9TObjCharaFf();
 extern "C" void clear_lobby_object_state__9TObjEnemyFv();
 extern "C" void get_center__9TObjCharaFv();
@@ -3218,7 +3218,7 @@ void *__vt__20TObjEneMe3StelthReal[116] = {
     (void *)&reset_pose__9TObjCharaFv, (void *)&get_anim_node_position__9TObjCharaFlP3Vec, (void *)&vfunc_66__9TObjCharaFv, (void *)&vfunc_67__9TObjCharaFf,
     (void *)&get_pos__9TObjCharaFl, (void *)&apply_switch_attack__9TObjCharaFv, (void *)&enemy_spawn_jellen_effect__9TObjCharaFv, (void *)&trigger_switch_attack__9TObjCharaFv,
     (void *)&enemy_spawn_zalure_effect__9TObjCharaFv, (void *)&recalc_stats__9TObjCharaFv, (void *)&vfunc_74__9TObjEnemyFl, (void *)&vfunc_75__9TObjCharaFf,
-    (void *)&vfunc_76__9TObjCharaFv, (void *)&vfunc_77__9TObjCharaFv, (void *)&vfunc_78__9TObjCharaFl, (void *)&vfunc_79__9TObjEneDDFPl,
+    (void *)&vfunc_76__9TObjCharaFf, (void *)&vfunc_77__9TObjCharaFv, (void *)&vfunc_78__9TObjCharaFl, (void *)&vfunc_79__9TObjEneDDFPl,
     (void *)&apply_hit_message_flags__9TObjEnemyFPv, (void *)&apply_set_data__9TObjEnemyFPv, (void *)&clear_lobby_object_state__9TObjEnemyFv, (void *)&vfunc_83__12TObjEneDD_STFv,
     (void *)&vfunc_84__9TObjEneDDFv, (void *)&vfunc_85__9TObjEneDDFv, (void *)&vfunc_86__9TObjEneDDFv, (void *)&dispatch_state__16TObjEneMe3StelthFPvii,
     (void *)&vfunc_88__16TObjEneMe3StelthFv, (void *)&vfunc_89__16TObjEneMe3StelthFv, (void *)&vfunc_90__9TObjEneDDFv, (void *)&vfunc_91__9TObjEneDDFv,
@@ -3384,7 +3384,7 @@ u8 TObjEneMe3Stelth::check_target_in_range() {
     var_r31 = 0;
     if (!(*(s32 *)((s8 *)this + 0x3CC) & 0x10000)) {
         temp_f1 = *(f32 *)((s8 *)this + 0x3AC);
-        if ((temp_f1 > lbl_805DA898) && (temp_f1 < lbl_805DA89C) && (((s32 (*)(void *, s32, f32))test_body_collision__16TObjEneMe3StelthFlf)(this, this->rotation_y, temp_f1 - (*(f32 *)&TObjEneMe3Stelth__data_805DA844)) == 0)) {
+        if ((temp_f1 > lbl_805DA898) && (temp_f1 < lbl_805DA89C) && (((s32 (*)(void *, s32, f32))test_body_collision__16TObjEneMe3StelthFlf)(this, this->rotation.yaw, temp_f1 - (*(f32 *)&TObjEneMe3Stelth__data_805DA844)) == 0)) {
             var_r31 = 1;
         }
     }
@@ -3437,7 +3437,7 @@ u8 TObjEneMe3Stelth::test_body_collision(s32 arg1, f32 farg0) {
     f32 f2 = farg0 * lbl_805DA81C;
     Sub_800F4CC8 *s = *(Sub_800F4CC8 * *)&this->bodies;
     u8 res;
-    s32 a = this->rotation_y;
+    s32 a = this->rotation.yaw;
     s32 b = s->f18;
     s->f0 = TObjEneMe3Stelth__data_805DA840;
     s->f8 = f2;
@@ -3445,12 +3445,12 @@ u8 TObjEneMe3Stelth::test_body_collision(s32 arg1, f32 farg0) {
     s->f10 = lbl_805DA8A4;
     s->f14 = 1;
     s->f18 = 0x9D01;
-    this->rotation_y = arg1;
+    this->rotation.yaw = arg1;
     ((void (*)(void *, s32, f32, f32))check_enemy_body_collisions)(arg0, arg1, TObjEneMe3Stelth__data_805DA840, f2);
     res = (s->f18 & 0x380000) != 0;
     copy_collision_body((CollisionBody *)s, (const CollisionBody *)TObjEneMe3Stelth__collision_body_template);
     s->f18 = b;
-    this->rotation_y = a;
+    this->rotation.yaw = a;
     return res;
 }
 

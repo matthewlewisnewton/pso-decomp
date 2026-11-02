@@ -1156,8 +1156,8 @@ void *TCMCharacter__ct(void *motion, void *arg1) {
     *(f32 *)((s8 *)motion + 0x40) = lbl_805DD940;
     *(f32 *)((s8 *)motion + 0x3C) = lbl_805DD940;
     *(f32 *)((s8 *)motion + 0x38) = lbl_805DD940;
-    ((TObjMotion *)motion)->rotation_z = 0;
-    ((TObjMotion *)motion)->rotation_y = 0;
+    ((TObjMotion *)motion)->rotation.roll = 0;
+    ((TObjMotion *)motion)->rotation.yaw = 0;
     *(s32 *)((s8 *)motion + 0x5C) = 0;
     load_creation_shape_rel((W_80290250 *)motion);
     reset_character_creation_figure_rotation();

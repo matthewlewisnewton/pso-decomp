@@ -462,10 +462,6 @@ struct TLobby : public TObject {
     static void*get_record(int a0);
     void queue_destruction_and_cleanup();
     void set_flag_and_clear_download();
-    static void open_keyboard();
-    static void request_change_game_mode();
-    static void enter_game_mode_change();
-    static void enter_chg_game_mode();
     static void destroy_global_object();
     static void set_global_flags(s32 arg0);
     static void handle_flag2_request();
@@ -1110,13 +1106,9 @@ struct TLobby : public TObject {
     static s32 write_zero_padded_block(void *arg0p);
     void set_field_10_and_notify(s32 arg1);
     void set_buffer(void **arg1);
-    s32 get_field_14();
     void update_stream_read();
     void set_scroll_position(s32 arg1);
     void set_coords(s32 arg1, s32 arg2);
-    s32 init_stream_position();
-    s32 get_file_offset_relative();
-    s32 set_scroll_offset(s32 arg1);
     static void si_get_type_async();
     static s32 clear_buffer_a00();
     static void on_set_mode();
