@@ -3888,6 +3888,7 @@ force_active:
   - calc_clamp_offset__11TLoadingCurFlPUcPUc
   - calc_clock_bonus__9TItemDataFPv
   - calc_damage__11TTecRaZondeFv
+  - calc_day_in_cycle__FP9DateStamp
   - calc_death_slide_speed__14TObjEneBm5WolfFPvf
   - calc_default_part_position__14TObjEnePanBARAFv
   - calc_digit_count__18TWindowInputNumberFv
@@ -5445,6 +5446,7 @@ force_active:
   - fn_801DF7F8
   - fn_801E0018
   - fn_801E0C08
+  - fn_801E2AC8
   - fn_801F6520
   - fn_801F9030
   - fn_80214058
@@ -6557,6 +6559,7 @@ force_active:
   - lbl_80446FFC
   - lbl_80447008
   - lbl_80447010
+  - lbl_80449700
   - lbl_8044A800
   - lbl_8044A80C
   - lbl_8044A840

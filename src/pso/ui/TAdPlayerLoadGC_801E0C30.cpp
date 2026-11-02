@@ -52,8 +52,6 @@ struct CARDStat_801E2048 {
 
 struct CARDFileInfo_801E15A4 { s32 chan; s32 fileNo; s32 offset; s32 length; u16 iBlock; u16 pad; };
 
-struct Date_801E21A8 { u16 year; u8 mon; u8 mday; u8 hour; u8 min; u8 sec; u8 pad; u8 pad8[4]; };
-
 struct Info_801E21A8 { u32 length; s16 blocks; u8 f6; u8 f7; s16 f8; u16 year; u8 mon; u8 mday; u8 hour; u8 min; u8 sec; u8 pad; };
 
 extern "C" {
@@ -84,7 +82,6 @@ extern char lbl_805DC414[4];
 s32 build_save_file_image__15TAdPlayerLoadGCFPvPv(u8 *arg0, Src_801E17F4 *arg1);
 s32 CARDGetStatus(s32, s32, CARDStat_801E2048 *);
 int strncmp(const char *, const char *, u32);
-void fn_801E283C(u32, Date_801E21A8 *);
 int strcmp(const char *s1, const char *s2);
 s32 get_card_file_info__15TAdPlayerLoadGCFiPvPv(s32 chan, const char *name, Info_801E21A8 *info);
 s32 CARDGetSerialNo();
@@ -770,7 +767,7 @@ check:
 s32 get_card_file_info__15TAdPlayerLoadGCFiPvPv(s32 chan, const char *name, Info_801E21A8 *info) {
     s32 memSize;
     s32 sectorSize;
-    Date_801E21A8 date;
+    DateStamp date;
     CARDStat_801E2048 st;
     s32 r;
     s32 found;
@@ -840,12 +837,12 @@ check:
             info->f8 = 0;
             fn_801E283C(st.time, &date);
             info->year = date.year;
-            info->mon = date.mon;
-            info->mday = date.mday;
+            info->mon = date.month;
+            info->mday = date.day;
             info->hour = date.hour;
-            info->min = date.min;
-            info->sec = date.sec;
-            info->pad = date.pad;
+            info->min = date.minute;
+            info->sec = date.second;
+            info->pad = date.weekday;
         }
         TAdPlayerLoadGC__card_result_code = 0;
         return 0;

@@ -429,6 +429,8 @@ GAME_COMPILER = "GC/2.6"
 # keeps an object until its source changes) or with other switches. Every
 # entry is here because a function or data section matches only this way.
 GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
+    # Calendar month/day stores retain GC/1.3.2 scheduling; see calendar-conversion-evidence.md.
+    "pso/misc/pso_date.cpp": {"mw_version": "GC/1.3.2"},
     "pso/enemy/TObjEneBalClawBody_80090178.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sdata 4")},
     # Deferred generation preserves the flower vtable before its dispatch table.
     "pso/enemy/TObjEneRe2Flower_800C3E14.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
