@@ -1,5 +1,5 @@
 #include "pso/system/ArrayAllocation.h"
-#include "pso/protocol/protocol_types.h"
+#include "pso/protocol/ItemDropPacket.h"
 #include "types.h"
 #include "pso/misc/TLobby_801E43E4.h"
 #include "pso/system/memory.h"
@@ -7,9 +7,6 @@
 #include "pso/misc/TLobby.h"
 #include "pso/item/TItemIdCounters.h"
 #include "pso/unk/text_8011A780.h"
-
-// FloorItem::FloorItem() on the packet's item record.
-extern "C" void *__ct__9FloorItemFv(void *item);
 
 extern "C" {
 extern s32 item_sync_counter_table;
@@ -30,23 +27,25 @@ TItemIdCounters::TItemIdCounters() {
     lbl_805D54E0 = 0;
     build_item_id_mode = 0;
 }
-void TLobby::send_item_packet() { bswap_item_packet(); send_subcommand((u8 *)this); }
-void TLobby::bswap_item_packet() { ((G_ClientIDHeader *)this)->bswap(); ((TLobby *)((char*)this + 0x4))->bswap_item(); }
-void *TLobby::init_header_packet() {
-    init_header();
-    *(s8 *)&this->m_name = 0x5F;
-    *(s8 *)((s8 *)this + 0x28) = 2;
-    *(s8 *)((s8 *)this + 0x29) = 0;
-    *(s8 *)((s8 *)this + 0x2A) = 0;
-    *(s8 *)((s8 *)this + 0x2B) = 0;
-    *(s8 *)((s8 *)this + 1) = 0xB;
-    return this;
+void G_DropItem_PC_V3_BB_6x5F::send() {
+    bswap_item_packet__6TLobbyFv(this);
+    send_subcommand(reinterpret_cast<u8 *>(this));
 }
-void *TLobby::init_header() {
-    __ct__9FloorItemFv((char *)this + 4);
-    *(u8 *)&this->m_name = 95;
-    *(u8 *)((s8 *)this + 0x1) = 10;
-    return this;
+void bswap_item_packet__6TLobbyFv(void *packet) {
+    static_cast<G_ClientIDHeader *>(packet)->bswap();
+    bswap_item__6TLobbyFv(static_cast<u8 *>(packet) + 4);
+}
+G_DropItem_PC_V3_BB_6x5F::G_DropItem_PC_V3_BB_6x5F() {
+    __base_G_DropItem_DC_6x5F.header.subcommand = 0x5F;
+    unused3[0] = 2;
+    unused3[1] = 0;
+    unused3[2] = 0;
+    unused3[3] = 0;
+    __base_G_DropItem_DC_6x5F.header.size = 0xB;
+}
+G_DropItem_DC_6x5F::G_DropItem_DC_6x5F() {
+    header.subcommand = 0x5F;
+    header.size = 0xA;
 }
 void TLobby::bswap_packet() { ((G_ClientIDHeader *)this)->bswap(); bswap_32((u32 *)((char*)this + 0x8)); bswap_32((u32 *)((char*)this + 0x4)); }
 s32 TLobby::apply_table_entry(s16 arg0, void * _w1) {

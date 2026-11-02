@@ -1,4 +1,5 @@
 #include "pso/system/ArrayAllocation.h"
+#include "pso/protocol/ItemDropPacket.h"
 #include "pso/misc/TLobby_801E43E4.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_80120FC4.h"
@@ -131,7 +132,15 @@ void TLobby__sub_801041BC(void *arg0) {
 void TLobby__sub_801041D8(void) {
     ((FlagWord *)(&lbl_805D5430))->set(1);
 }
-void TLobby::bswap_item() { bswap_16((u16 *)((char*)this + 0x2)); bswap_32((u32 *)((char*)this + 0x4)); bswap_32((u32 *)((char*)this + 0x8)); bswap_16((u16 *)((char*)this + 0xc)); bswap_16((u16 *)((char*)this + 0xe)); bswap__9TItemDataFv((s32)((char*)this + 0x10)); }
+void bswap_item__6TLobbyFv(void *record) {
+    u8 *bytes = static_cast<u8 *>(record);
+    bswap_16(reinterpret_cast<u16 *>(bytes + 2));
+    bswap_32(reinterpret_cast<u32 *>(bytes + 4));
+    bswap_32(reinterpret_cast<u32 *>(bytes + 8));
+    bswap_16(reinterpret_cast<u16 *>(bytes + 0xC));
+    bswap_16(reinterpret_cast<u16 *>(bytes + 0xE));
+    bswap__9TItemDataFv(reinterpret_cast<s32>(bytes + 0x10));
+}
 
 TLobbyFloorItemEntry *TLobby::copy_floor_item_entry(TLobbyFloorItemEntry *dst, TLobbyFloorItemEntry *src) {
     *dst = *src;

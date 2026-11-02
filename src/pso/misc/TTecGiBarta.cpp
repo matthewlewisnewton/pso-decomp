@@ -1,4 +1,5 @@
 #include "pso/system/ArrayAllocation.h"
+#include "pso/system/SoundSlotPitch.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/TParticleCtrl.h"
@@ -161,7 +162,6 @@ void construct_facing_technique__10TObjPlayerFPviPvii();
 
 void *find_entity_by_id(u16 id);
 void *__nw__7TObjectFUl(int);
-s32 update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
 
 void TTecGiBarta::update_technique_by_phase() {
     u8 *arg0 = (u8 *)this;

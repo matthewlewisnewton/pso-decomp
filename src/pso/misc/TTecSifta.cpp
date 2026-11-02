@@ -1,3 +1,4 @@
+#include "pso/system/SoundSlotPitch.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TTecSifta.h"
@@ -76,7 +77,6 @@ int TTecSifta__sub_8023AC88(void* p);
 extern s32 __vt__9TTecSifta[];
 extern const char *lbl_805D3820;
 u8 *TTecSifta__sub_8023B17C(TTecSifta *arg0, s32 arg1, s32 arg2, s32 arg3);
-s32 update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
 
 s32 is_split_screen();
 s32 is_script_controlled__10TObjPlayerFv(void *);

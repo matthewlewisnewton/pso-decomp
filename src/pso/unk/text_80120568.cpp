@@ -1,3 +1,4 @@
+#include "pso/system/SoundSlotPitch.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/item/TItemEquipBase.h"
@@ -175,7 +176,6 @@ extern "C" {
 void clear_technique_boosts__14TItemEquipBaseFv(s32 arg0);
 s32 get_entity_id(s32);
 s32 test_flags_any(void *, s32);
-s32 update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
 
 void set_flag_8_if_check_passes__10TObjPlayerFv();
 extern void *tl_05;

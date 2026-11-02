@@ -1,4 +1,5 @@
 #include "pso/system/ArrayAllocation.h"
+#include "pso/system/SoundSlotPitch.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
@@ -81,7 +82,6 @@ s32 is_technique_ready__8TTecCtrlFv();
 extern RecoveredGlobal_80230D9C_lbl_804CC510 tech_high_level_linear_power_table;
 extern RecoveredGlobal_80230D9C_lbl_804CC55C lbl_804CC55C;
 u16 get_entity_id(void *);
-void update_technique_slot__10TTecRaFoieFl(s32 handle, s32 pitch, s32 c);
 
 void *__nw__7TObjectFUl(int);
 u8 *construct_area_technique_base(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
@@ -190,7 +190,6 @@ struct VObj_18_9c98dd : VBase_18_9c98dd {
 
 extern "C" {
 void *find_entity_by_id(u16 id);
-void update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
 
 void *create_particle_emitter(void *pos, s32 id);
 
