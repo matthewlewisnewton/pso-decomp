@@ -21,29 +21,45 @@ is created; name pointers are static relocations. The compiler also emits the
 existing constructor-list entry at 80433F34. The preceding vtable, following
 vectors, and original name strings retain their ranges and owners.
 
-The complete production object emits a 1516-byte initializer identical to the
+Historical native-object probes emitted a 1516-byte initializer identical to the
 original instructions and 1288 matching data bytes with all 54 data relocations.
-The local constant labels in symbols.txt come from that production compile, not a
+The local constant labels in symbols.txt come from those compiler outputs, not a
 handwritten PMF representation. The three typed dispatchers preserve their
 original instructions and resolved relocation targets. Corrected callback helper
 calls pass the actual receiver explicitly, including the timer predicate and
 8004D990; floating-point operations keep their original order.
 
-The matching source arrangement requires the compiler's supported deferred
-generation and debug source-file sections (`-inline deferred -sym on`), as
-already used by the Panarms recovery. This setting is still a separately
-reviewed admission proposal; configure.py is unchanged. Ordinary definitions are reversed, and the four final
-helpers live in a source-private header. The resulting two `.text` contributions
-concatenate to the original layout: controller methods, native initializer, then
-helpers. Their definitions remain ordinary C++ functions, with their existing
-linkage and floating-point settings; no inline-only export or manual constructor
-registration is introduced. This arrangement is an implementation choice and
-does not establish historical filenames or compiler switches.
+The PR changes `configure.py` by adding exactly this `GAME_EXCEPTIONS` entry:
 
-The independently reviewed pre-adoption private compile reproduces all 56 original function
+```python
+    "pso/boss/TBoss4DarkFalz_8004C93C.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sym on")},
+```
+
+GC/2.6 and the game's `-O4,s` and `-sdata2 4` settings remain inherited. All other
+entries, including main's calendar and player compiler overrides, are preserved.
+PR190 added closed static-checker support for this exact unit/profile; that policy
+support does not establish a current build result or native source linkage.
+
+The matching source arrangement requires supported deferred generation and debug
+source-file sections, as also used by the Panarms recovery. Ordinary definitions
+are reversed, and the four final helpers live in a source-private header. In the
+historical complete-object probe, the combined `-inline deferred -sym on` settings
+emit two `.text` contributions: 5916 bytes for controller methods and the native
+initializer, followed by 224 bytes for helpers. Deferred generation without
+`-sym on`, or `-sym on` without deferred generation, retained a different function
+order in the tested source forms. The combined profile is needed for the exact
+whole-object layout, not merely for an initializer similarity score.
+
+The definitions remain ordinary C++ functions with their existing linkage and
+floating-point settings; no inline-only export or manual constructor registration
+is introduced. This arrangement is an implementation choice and does not establish
+historical filenames or compiler switches.
+
+The independently reviewed private compile at source checkpoint
+`8ce4517f7f0a3d90ddabdcfc3846f9bbea522c3b` reproduced all 56 original function
 positions, sizes and instruction bytes, all 6,140 code bytes, all 1,308 owned data
 bytes across `.ctors`, `.rodata`, `.data` and `.sdata2`, and all 272 resolved
-relocations. The compiler accepts the switches/pragmas without diagnostics. The
+relocations. The compiler accepted the switches/pragmas without diagnostics. The
 three compiler constants are referenced only within this original unit; using
 native literals and their compiler-local metadata removes unnecessary exports
 without changing data addresses, extents or relocation targets.
@@ -55,16 +71,24 @@ This removes the former no-argument/long-return declaration mismatch without
 changing the C symbol, code, or receiver lifetime. The owned constant aliases and
 38 PMF labels have also been prepared within their existing addresses/extents.
 
-After integration with current main, all 44 class/helper-header consumers produce
-byte-identical complete objects before and after this bounded repair under their
-current configured compiler settings. The current PR125 consumer also compiles
-identically without edits to its source. No other worker's source or metadata
-range is modified.
+At adoption checkpoint `729f4c4ce0a286f9e4ba02669771f24b8b9b6e8b`, integrated with
+main `36121c7635cf05d915cdc2f258c879b7a736e2a7`, all 44 class/helper-header
+consumers produced byte-identical complete before/after objects for the bounded
+helper repair under their then-configured flags. A separate check preserved
+PR125's consumer at `2b64aa2015164259870d77ee72b006b63f296598`. Those are historical
+input/output results; subsequent main and header changes are not covered by them.
 
-The deferred/debug compiler profile has not been admitted. Alias names remain
-provisional until refreshed from the final admitted production compile. No
-configure.py or source-selection change is made here. Actual split/report
-regeneration, all-input localization guards, source-link eligibility, scheduled
-full development, original-DOL equality, zero-loss coverage, linker provenance,
-and independent exact-head review remain required before readiness or a native
-source-linkage claim.
+The conflict repair against main `0ea667b2ae02f09c65cd9464314c0d5993618c6c`
+retains the literal Dark Falz profile alongside main's overrides. It also preserves
+main's resource tables, resource-descriptor definitions and vector corrections in
+`TObjDFHorming.cpp`. Static configuration/source/consumer checks establish this
+merge's input preservation, not a fresh compiler-output result. Unchanged
+historical native-object evidence is not rebuilt or relabeled as current proof.
+
+Source selection is unchanged. The actual current production compile must confirm
+compiler-local alias names and the complete code/data/relocation layout. Final
+merge validation still requires fresh split/report inputs, localization and
+generated-retention checks, native source-link eligibility and ordered linker
+provenance, original-DOL equality, and unfiltered code/data/function/link no-loss
+checks. The merge process owns those acceptance gates; this document makes no
+current native source-linkage or full-build claim.
