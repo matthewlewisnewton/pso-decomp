@@ -40,7 +40,7 @@ sizes and alignment:
 - Clean base full build: PASS (104.48 seconds).
 - Final full build, under the shared maintenance and legacy exclusive gates,
   using pinned Ninja with `-j2 -d keeprsp`: PASS (9.45 seconds).
-- `tools/check_pr.py --no-build --baseline /tmp/worker2-dfdemo0-base-report.json`:
+- `tools/check_pr.py --no-build --baseline build/GPOE8P/baseline.json`:
   PASS; no match or linkage regressions, and the generated retention list is current.
 - The address-based comparison against the overall wave baseline also passes.
   Intervening fork changes are not attributed to this unit.
