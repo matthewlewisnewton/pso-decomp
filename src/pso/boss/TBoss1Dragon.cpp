@@ -6229,15 +6229,20 @@ DragonModelNode* TBoss1Dragon::cloneModelHierarchy(DragonModelNode* source, Drag
     return output;
 }
 
-void copy_model_node(u8 *arg0, u8 *arg1) {
-    *(s32 *)((s8 *)arg0 + 0) = (s32) *(s32 *)((s8 *)arg1 + 0);
-    *(s32 *)((s8 *)arg0 + 4) = (s32) *(s32 *)((s8 *)arg1 + 4);
-    *(ByteBlock_C *)((s32) arg0 + 8) = *(const ByteBlock_C *)((s32) arg1 + 8);
-    *(ByteBlock_C *)((s32) arg0 + 0x14) = *(const ByteBlock_C *)((s32) arg1 + 0x14);
-    *(ByteBlock_C *)((s32) arg0 + 0x20) = *(const ByteBlock_C *)((s32) arg1 + 0x20);
-    *(s32 *)((s8 *)arg0 + 0x2C) = (s32) *(s32 *)((s8 *)arg1 + 0x2C);
-    *(s32 *)((s8 *)arg0 + 0x30) = (s32) *(s32 *)((s8 *)arg1 + 0x30);
-    *(f32 *)((s8 *)arg0 + 0x34) = (f32) *(f32 *)((s8 *)arg1 + 0x34);
+// Copy the first 0x34 bytes by representation across the model families.
+// Source and destination do not overlap; pointer values are shallow copies.
+void copy_model_node(u8 *dst, u8 *src) {
+    __memcpy(dst + 0x00, src + 0x00, 4);
+    __memcpy(dst + 0x04, src + 0x04, 4);
+    __memcpy(dst + 0x08, src + 0x08, 12);
+    __memcpy(dst + 0x14, src + 0x14, 12);
+    __memcpy(dst + 0x20, src + 0x20, 12);
+    __memcpy(dst + 0x2C, src + 0x2C, 4);
+    __memcpy(dst + 0x30, src + 0x30, 4);
+    // Existing boundary still requires a live float at 0x34 in both records.
+    // NJS_OBJECT and Dragon8 currently declare byte tails, so shared storage
+    // qualification remains open; the prefix copies do not settle that type.
+    *(f32 *)(dst + 0x34) = *(f32 *)(src + 0x34);
 }
 
 s32 TBoss1Dragon::countModelNodes(DragonModelNode* source) {
