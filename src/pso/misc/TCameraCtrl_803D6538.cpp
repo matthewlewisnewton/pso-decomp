@@ -948,15 +948,22 @@ s32 TObjPlayer__sub_803D7FD8(void) {
 struct FloatColor_803D7FE0 { f32 a, r, g, b; };
 struct ByteColor_803D7FE0 { u8 r, g, b, a; };
 
-// The original bodies quantise float channels through GQR1 and store them with
-// paired-single instructions; MWCC has no paired-single intrinsics, so keep the
-// original assembly via tools/orig_asm.py.
+// Recovered source. The original quantises the float channels through GQR1 and
+// stores them with paired-single instructions. MWCC 2.6's paired-single
+// mnemonics belong to the assembler only and its C front end emits scalar
+// fctiwz conversions, so objdiff reports both functions unmatched.
 extern "C" {
-asm void convert_color_f32_to_u8(const FloatColor_803D7FE0 *src, ByteColor_803D7FE0 *dst) {
-#include "orig_asm/pso/misc/TCameraCtrl_803D6538/convert_color_f32_to_u8.inc"
+void convert_color_f32_to_u8(const FloatColor_803D7FE0 *src, ByteColor_803D7FE0 *dst) {
+    dst->r = (u8) src->r;
+    dst->g = (u8) src->g;
+    dst->b = (u8) src->b;
+    dst->a = (u8) src->a;
 }
 
-asm void convert_color_u8_to_f32(const ByteColor_803D7FE0 *src, FloatColor_803D7FE0 *dst) {
-#include "orig_asm/pso/misc/TCameraCtrl_803D6538/convert_color_u8_to_f32.inc"
+void convert_color_u8_to_f32(const ByteColor_803D7FE0 *src, FloatColor_803D7FE0 *dst) {
+    dst->a = (f32) src->a;
+    dst->r = (f32) src->r;
+    dst->g = (f32) src->g;
+    dst->b = (f32) src->b;
 }
 }

@@ -30,15 +30,16 @@ f32 TWindowSubStatusDisp::round_away_from_zero(f32 farg0) {
 }
 #pragma pop
 
-// The original bodies keep the table pointer and byte offset in r6/r7 and use
-// an add-plus-displacement load that MWCC does not emit from C; generated from
-// the disc by tools/orig_asm.py.
-asm f32 sin_table_lookup(s32 angle) {
-#include "orig_asm/pso/unk/text_803D6438/sin_table_lookup.inc"
+// Recovered source. MWCC 2.6 emits an indexed lfsx for these lookups; the
+// original keeps the table pointer and byte offset in r6/r7 and loads with
+// add-plus-displacement, which the available MWCC builds do not produce from C,
+// so objdiff reports both functions unmatched.
+f32 sin_table_lookup(s32 angle) {
+    return sin_cos_table[(u16) angle].c;
 }
 
-asm f32 cos_table_lookup(s32 angle) {
-#include "orig_asm/pso/unk/text_803D6438/cos_table_lookup.inc"
+f32 cos_table_lookup(s32 angle) {
+    return sin_cos_table[(u16) angle].s;
 }
 
 }
