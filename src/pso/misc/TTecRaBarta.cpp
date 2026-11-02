@@ -1,3 +1,4 @@
+#include "pso/system/SoundSlotPitch.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/TParticleCtrl.h"
@@ -169,7 +170,6 @@ void calc_parameters__11TTecRaBartaFv(RaBarta_802377FC *self);
 
 
 void __dl__7TObjectFPv(void *);
-s32 update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
 
 typedef char RecoveredGlobal_80237194_lbl_8044D8EC_size[sizeof(RecoveredGlobal_80237194_lbl_8044D8EC) == 0xC ? 1 : -1];
 

@@ -1,3 +1,4 @@
+#include "pso/system/SoundSlotPitch.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/system/vector.h"
@@ -25,7 +26,6 @@ extern "C" {
 u16 get_entity_id(void *);
 void *spawn_continuous_particle_effect_with_flags(void *parent, s32 idx, s32 flags);
 void *mem_alloc(u32 size);
-s32 update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
 
 extern Profile_80232EC0 grants_effect_emitter_table[];
 }

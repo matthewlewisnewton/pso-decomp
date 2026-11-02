@@ -1,3 +1,4 @@
+#include "pso/system/SoundSlotPitch.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TTecZarua.h"
@@ -143,7 +144,6 @@ void construct_area_technique_base(void *);
 extern const char *lbl_805D3830;
 extern s32 __vt__9TTecZarua[];
 
-s32 update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
 s32 get_entity_id(void *);
 Zarua_8023C420 *init_instance__9TTecZaruaFPviiii(Zarua_8023C420 *self, s32 _w1, s32 _w2, s32 _w3, s32 _w4);
 void copy_technique_target_list(void *, void *);
