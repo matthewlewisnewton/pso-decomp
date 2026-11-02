@@ -431,6 +431,7 @@ GAME_COMPILER = "GC/2.6"
 GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Calendar month/day stores retain GC/1.3.2 scheduling; see calendar-conversion-evidence.md.
     "pso/misc/pso_date.cpp": {"mw_version": "GC/1.3.2"},
+    "pso/boss/TBoss4DarkFalz_8004C93C.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sym on")},
     # Reverse definitions and deferred generation place the native trap vtable
     # before its switch tables while preserving the original function order.
     # GC/2.0 also reproduces the const debris aggregate's coordinate schedule.
