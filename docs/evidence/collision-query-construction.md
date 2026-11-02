@@ -15,9 +15,11 @@ and the contact constructor keep their instruction bytes and relocation
 positions. Their placeholder symbols are renamed to the compiler-generated
 constructor names; the initializer becomes the local compiler-generated
 `__sinit` symbol. The `.ctors` entry references it, so the former global
-force-active entry is unnecessary. A scan of the pre-change split and compiled
-objects found no other references to these four former names except the
-initializer's references to the three constructors.
+force-active entry is unnecessary. A scan of pre-change split and compiled
+objects found references from the initializer to the three constructors and
+from the query-result constructor to its hit-result base constructor. The
+initializer is also referenced by the `.ctors` entry. No additional external
+references to the former names were found.
 
 Although the 8-byte result resides in `.bss`, its external declaration uses
 CodeWarrior's `.data` section attribute. This preserves the original full
