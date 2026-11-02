@@ -24,11 +24,26 @@ s32 memset(void *, int, int);
 
 u32 RlcDirectoryEntry::get_size() { return read_be32(size_be); }
 u32 RlcDirectoryEntry::get_offset() { return read_be32(offset_be); }
-u32 RlcDirectoryEntry::read_be32(const s8 *bytes) { return 0; }
+u32 RlcDirectoryEntry::read_be32(const s8 *bytes) {
+    // Keep the u64 byte conversions and direct lane masks: GC 2.6 needs
+    // these lifetimes to retain the byte extensions and accumulator copy.
+    s64 result = (u32)bytes[0] << 24;
+    result |= (u32)__rlwinm((u32)(u64)bytes[1], 16, 8, 15);
+    result |= (u32)__rlwinm((u32)(u64)bytes[2], 8, 16, 23);
+    result |= (u32)(u64)bytes[3] & 0xFF;
+    return (u32)result;
+}
 
 u32 RlcHeader::get_directory_offset() { return read_be32(directory_offset_be); }
 u32 RlcHeader::get_chunk_count() { return read_be32(chunk_count_be); }
-u32 RlcHeader::read_be32(const s8 *bytes) { return 0; }
+u32 RlcHeader::read_be32(const s8 *bytes) {
+    // Use the same unsigned byte lanes and widening as the directory reader.
+    s64 result = (u32)bytes[0] << 24;
+    result |= (u32)__rlwinm((u32)(u64)bytes[1], 16, 8, 15);
+    result |= (u32)__rlwinm((u32)(u64)bytes[2], 8, 16, 23);
+    result |= (u32)(u64)bytes[3] & 0xFF;
+    return (u32)result;
+}
 
 s32 fn_802A5C3C(u32 *arg0) {
     u32 temp_r0;

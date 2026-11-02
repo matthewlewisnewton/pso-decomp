@@ -49,7 +49,7 @@ void TObjEneMorfosArm::render() {
     }
     push_matrix();
     post_translate_matrix((u8 *)&this->position);
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     set_current_texture_list((GinjaTextureList *)(this->texlist));
     TObjPlayer::toggle_particle_effect();
     ((TObjMotion *)arg0)->draw();
@@ -67,7 +67,7 @@ void TObjEneMorfosArm::run_task() {
         return;
     }
     VecCopy((Vec *)(arg0 + 0x38), (const Vec *)(((TObjEneMorfos *)temp_r3)->get_arm_position()));
-    this->rotation_y = ((TObjEneMorfos *)this->m_fc)->get_heading();
+    this->rotation.yaw = ((TObjEneMorfos *)this->m_fc)->get_heading();
     if (this->motion_flags & 0x10) {
         queue_destruction__7TObjectFv((arg0));
     }
@@ -86,7 +86,7 @@ u8 *TObjEneMorfosArm__ct(TObjEneMorfosArm *ene_morfos_arm, s32 arg1, u8 *arg2) {
     *(u8 **)((s8 *)ene_morfos_arm + 0xFC) = arg2;
     ene_morfos_arm->m_100 = get_entity_id(*(u8 **)((s8 *)ene_morfos_arm + 0xFC));
     VecCopy((Vec *)((u8 *)ene_morfos_arm + 0x38), (const Vec *)((void *) (((s32)((TObjEneMorfos *)ene_morfos_arm->m_fc)->get_arm_position()))));
-    ene_morfos_arm->rotation_y = ((TObjEneMorfos *)ene_morfos_arm->m_fc)->get_heading();
+    ene_morfos_arm->rotation.yaw = ((TObjEneMorfos *)ene_morfos_arm->m_fc)->get_heading();
     *(s32 *)((s8 *)ene_morfos_arm + 0x34) = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)(*(u8 * *)&TObjEneMorfosArm__parent_morfos_instance) + 0x42C)) + 8);
     temp_r5 = (u8 *)(*(u8 **)((s8 *)(*(u8 * *)&TObjEneMorfosArm__parent_morfos_instance) + 0x42C));
     ene_morfos_arm->texlist = (s32) *(s32 *)((s8 *)temp_r5 + 0xC);

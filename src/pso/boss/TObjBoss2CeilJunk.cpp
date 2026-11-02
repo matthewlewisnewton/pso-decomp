@@ -176,7 +176,7 @@ void TObjBoss2CeilJunk::render() {
   push_matrix();
   set_current_texture_list((GinjaTextureList *)(lbl_805D4BEC));
   post_translate_matrix(self->pos);
-  rotate_matrix_y(0, this->rotation_y);
+  rotate_matrix_y(0, this->rotation.yaw);
   rotate_matrix_x(0, self->f5C);
   draw_ginja_object((void *)(boss2_tunnel_instance->mdls[boss2_ceil_junk_model_index_table[*(s32 *)&this->m_ac]].f8));
   pop_matrix();

@@ -62,7 +62,7 @@ void render__18TObjButterflyLobbyFPv(TObjButterflyLobby *butterfly_lobby) {
 
     push_matrix();
     post_translate_matrix((u8 *)butterfly_lobby + 0x38);
-    rotate_matrix_y(0, butterfly_lobby->rotation_y);
+    rotate_matrix_y(0, butterfly_lobby->rotation.yaw);
     rotate_matrix_x(0, -0x2000);
     if ((s32) butterfly_lobby->m_90 != 3) {
         temp_f1 = *(f32 *)((s8 *)butterfly_lobby + 0x94);

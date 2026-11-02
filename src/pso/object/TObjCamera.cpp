@@ -79,7 +79,7 @@ void TObjCamera::init_sound_events() {
     for (i = 0; i < 8; i++) {
         sound_events[i] = camera_sound_events[i];
         push_matrix_from(identity_matrix);
-        rotate_matrix_y(0, rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         matrix_mult_vec(0, &sound_events[i].position, &sound_events[i].position);
         pop_matrix();
         vec3_add_to(&sound_events[i].position, &position);
@@ -134,7 +134,7 @@ void TObjCamera::render() {
         set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0(model_resource, 0)));
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(0, rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         camera_slot_scan_index = 0;
         set_model_node_callback((s32)TObjCamera::update_camera_slots);
         draw_ginja_model_with_motion((void *)get_bml_model(model_resource, 0),

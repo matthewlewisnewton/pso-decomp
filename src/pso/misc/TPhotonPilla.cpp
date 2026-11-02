@@ -69,7 +69,6 @@ extern Packet_801ADD10 photon_pilla_laser_packet;
 extern void *photon_pilla_laser_offset_table[];
 
 
-s32 spawn_photon_blast_attachment_effects(void *, s32);
 u8 *TPhotonMagicSquare__ct(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
 void *find_entity_by_id(u16 id);
 u32 get_entity_id();
@@ -123,7 +122,7 @@ void TPhotonPilla::render() {
         set_current_texture_list((GinjaTextureList *)(this->texlist));
         push_matrix();
         translate_matrix(0, self->pos.x, self->pos.y, self->pos.z);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         ((TUnk_804C3248 *)self)->set_photon_blast_joint_callback();
         saved_model_render_flags = model_render_flags;
         copy_argb((NJS_ARGB *)&saved_model_draw_color, (NJS_ARGB *)&model_material_color);
@@ -219,7 +218,6 @@ struct Vec_801AE1F8 { f32 x, y, z; };
 extern "C" {
 void *find_entity_by_id(u16 id);
 s32 init_collision_body_parts(void *, void *, int);
-s32 spawn_photon_blast_attachment_effects(void *, s32);
 u8 *TPhotonMagicSquare__ct(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
 void sub_801ADC7C__12TPhotonPillaFv(void *, u8);
 u8 *TPhotonRainbow__ct(void *, void *, void *, s32);
@@ -280,7 +278,7 @@ u8 *TPhotonPilla__ct(u8 *photon_rainbow, u8 *arg1) {
     ((TPhotonPilla *)photon_rainbow)->m_190 = (u8 *)find_entity_by_id(((TPhotonPilla *)photon_rainbow)->m_17c);
     temp_r3 = ((TPhotonPilla *)photon_rainbow)->m_190;
     if (temp_r3 != NULL) {
-        ((TPhotonPilla *)photon_rainbow)->rotation_y = *(s32 *)((s8 *)temp_r3 + 0x60);
+        ((TPhotonPilla *)photon_rainbow)->rotation.yaw = *(s32 *)((s8 *)temp_r3 + 0x60);
     }
     *(s32 *)((s8 *)photon_rainbow + 0x34) = *(s32 *)((s8 *)(*(u8 **)((s8 *)photon_blast_shared_resource + 0x42C)) + 0x38);
     ((TPhotonPilla *)photon_rainbow)->texlist = *(s32 *)((s8 *)(*(u8 **)((s8 *)photon_blast_shared_resource + 0x42C)) + 0x3C);
@@ -334,7 +332,7 @@ u8 *TPhotonPilla__ct(u8 *photon_rainbow, u8 *arg1) {
             TPhotonMagicSquare__ct((u8 *)mem, (s32)photon_rainbow, 3, (s32)&pos, 0xAA, (f32)0.5f);
         }
         }
-        spawn_photon_blast_attachment_effects(photon_rainbow, 3);
+        spawn_photon_blast_attachment_effects((TPhotonPilla *)photon_rainbow, 3);
         play_cue_stream_file((s32)lbl_80446EE0);
     } else {
         spawn_photon_blast_opening_effects(3, ((TPhotonPilla *)photon_rainbow)->m_17c);
