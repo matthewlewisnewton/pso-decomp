@@ -123,6 +123,9 @@ TEF_LensFlare::~TEF_LensFlare() {
 
 #pragma push
 #pragma fp_contract on
+// Retain one cursor across the receiver/descriptor phases. These frontend
+// controls preserve that value and the named float lifetimes; the backend
+// still optimizes the complete function.
 #pragma opt_propagation off
 #pragma opt_lifetimes off
 #pragma opt_common_subs off
@@ -232,6 +235,7 @@ void TEF_LensFlare::render() {
             set_constant_material_color(sprite->color);
             draw_textured_quad_at_depth(quad, 0.5f);
             TWindowSubStatusDisp::get_player();
+            // The original receiver register becomes the descriptor cursor here.
             cursor = static_cast<TEF_LensFlare *>(cursor)->elements;
             inverse_strength = 1.0f - strength;
             s32 i = 0;
