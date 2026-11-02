@@ -3072,6 +3072,7 @@ force_active:
   - add_photon_blast__8MagStatsFUc
   - add_pow__8MagStatsFs
   - add_shield_stat_contribution__9TItemDataFPviiPv
+  - add_status_line__19TWindowSubEquipListFUcP5TIteml
   - add_synchro__8MagStatsFl
   - add_target_in_cone__15TObjEneMe1GiGueFP9TObjChara
   - add_target_in_front_arc__16TObjEneNanoDragoFP9TObjChara
