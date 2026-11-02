@@ -385,13 +385,16 @@ def reserve_receipts(path):
     return paths
 
 
-def check_prepared(repo, prepared, reviewed_sha, current):
+def check_prepared(repo, prepared, reviewed_sha, current, legacy_ninja_identity=None):
     prior = json.loads(prepared.read_text())
     if not prior.get('prepared') or prior.get('returncode') != 0:
         raise RuntimeError('successful exclusive preparation receipt required')
     old = prior['admission']
     for key in ('protocol', 'revision', 'repo', 'ninja_sha256', 'inputs_sha256', 'ninja_tool'):
-        if old.get(key) != current[key]:
+        expected = old.get(key)
+        if key == 'ninja_tool' and key not in old and legacy_ninja_identity is not None:
+            expected = legacy_ninja_identity  # separate verified current identity, never receipt mutation
+        if expected != current[key]:
             raise RuntimeError(f'preparation is stale: {key}')
     if reviewed_sha != current['ninja_sha256']:
         raise RuntimeError('explicitly reviewed graph SHA-256 required')
@@ -442,9 +445,38 @@ def main():
     operation.add_argument('--prepare-only', action='store_true')
     ap.add_argument('--lane', choices=['acceptance', 'development'], default='development')
     ap.add_argument('--prepared-receipt', type=Path)
+    ap.add_argument('--resume-control', type=Path, help='Reviewed one-shot local trial only')
+    ap.add_argument('--resume-invocation-sha256')
     ap.add_argument('--reviewed-graph-sha256')
     args = ap.parse_args()
     repo = args.repo.resolve(strict=True)
+    resume = None
+    resume_started = False
+    resume_invocation = None
+    if args.resume_invocation_sha256 and not args.resume_control:
+        raise RuntimeError('resume control required')
+    if args.resume_control:
+        # Load only this installation's companion module after verifying its
+        # bytes against queue-owned trial control. No plugin/command path input.
+        if args.mode != 'isolated' or args.lane != 'development' or args.audit_only or args.prepare_only:
+            raise RuntimeError('resume supports isolated development builds only')
+        import types
+        adapter = Path(__file__).resolve().parents[1] / 'handoff_resume.py'
+        control = json.loads(args.resume_control.read_bytes())
+        raw = adapter.read_bytes()
+        if hashlib.sha256(raw).hexdigest() != control['adapter_sha256']:
+            raise RuntimeError('resume adapter changed')
+        resume = types.ModuleType('_reviewed_handoff_resume')
+        resume.__file__ = str(adapter)
+        exec(compile(raw, str(adapter), 'exec'), resume.__dict__)
+        resume_invocation = resume.capture(args.resume_control)
+        if resume_invocation.sha256 != args.resume_invocation_sha256:
+            raise RuntimeError('resume invocation identity changed before wrapper entry')
+        config, release = resume_invocation.config, resume_invocation.release
+        if (release['root'] != str(repo) or release['output'] != str(args.receipt)
+                or release['prepared']['path'] != str(args.prepared_receipt)
+                or release['graph_sha256'] != args.reviewed_graph_sha256):
+            raise RuntimeError('resume invocation binding mismatch')
     pin_ninja(repo)
     isolated = args.mode == 'isolated'
     if args.prepare_only and isolated:
@@ -497,11 +529,18 @@ def main():
                     command += ['build.ninja']
                 elif isolated:
                     prior = json.loads(args.prepared_receipt.read_text())
+                    legacy_ninja = None
                     if 'ninja_tool' not in prior.get('admission', {}):
-                        raise RuntimeError('preparation receipt lacks pinned Ninja evidence')
-                    pin_ninja(repo, prior['admission']['ninja_tool'])
+                        if not resume:
+                            raise RuntimeError('preparation receipt lacks pinned Ninja evidence')
+                        # Only the captured reviewed resume contract can supply
+                        # the separate legacy manifest/current-identity binding.
+                        legacy_ninja = resume.preparation_ninja(resume_invocation.release, prior)
+                    expected_ninja = prior['admission'].get('ninja_tool', legacy_ninja)
+                    pin_ninja(repo, expected_ninja)
                     current = audit(repo)
-                    check_prepared(repo, args.prepared_receipt, args.reviewed_graph_sha256, current)
+                    check_prepared(repo, args.prepared_receipt, args.reviewed_graph_sha256,
+                                   current, legacy_ninja_identity=legacy_ninja)
                     record['admission'] = current
                     original = temporary / 'prepared.ninja'
                     original.write_bytes((repo / 'build.ninja').read_bytes())
@@ -512,6 +551,9 @@ def main():
                     # Setup edges are inert existing-file leaves after a clean original preflight.
                     command += ['-f', str(snapshot), 'progress']
                 fmt = '{"wall_seconds":%e,"user_seconds":%U,"sys_seconds":%S,"max_rss_kib":%M,"exit_status":%x}'
+                if resume:
+                    resume.claim(resume_invocation)
+                    resume_started = True
                 record['started_epoch'] = time.time()
                 with log.open('w') as output:
                     child = subprocess.run(['/usr/bin/time', '-f', fmt, '-o', str(timing), *command],
@@ -534,6 +576,11 @@ def main():
     finally:
         record['returncode'] = code
         receipt.write_text(json.dumps(record, indent=2) + '\n')
+        if resume:
+            with receipt.open('rb') as completed:
+                os.fsync(completed.fileno())
+            resume.fsync_dir(receipt.parent)
+            resume.finish(resume_invocation, code, resume_started)
     print(json.dumps(record, indent=2))
     raise SystemExit(code)
 

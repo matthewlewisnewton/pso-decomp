@@ -37,9 +37,9 @@ void TORevlightCave01::render() {
     if (update_object_view_visibility(view_range, model_radius) != 0) {
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_z(NULL, rotation_z);
-        rotate_matrix_x(NULL, rotation_x);
-        rotate_matrix_y(NULL, rotation_y);
+        rotate_matrix_z(NULL, this->rotation.roll);
+        rotate_matrix_x(NULL, this->rotation.pitch);
+        rotate_matrix_y(NULL, this->rotation.yaw);
         set_current_texture_list((GinjaTextureList *)(texlist));
         draw_ginja_model((s32)((NJS_OBJECT *)model)->model);
         rotate_matrix_y(NULL, spin_angle);

@@ -397,7 +397,7 @@ void TObjNpcBase::apply_set_params(s32 arg1, s32 arg2) {
     }
     ((TObjNpcBase *)arg0)->sub_80149360((s32) *(f32 *)((s8 *)arg0 + 0x364));
     ((TObjNpcBase *)arg0)->sub_80149358((s32) *(f32 *)((s8 *)arg0 + 0x360));
-    this->m_384 = (s32) this->rotation_y;
+    this->m_384 = (s32) this->rotation.yaw;
     if ((s32) this->m_3ac > 0) {
         *(f32 *)&this->unk_398 = (f32) lbl_805DB1BC;
         return;
@@ -565,7 +565,7 @@ void TObjNpcBase::update_wandering() {
         u8 *o;
         f32 r;
         enemy_turn_toward_dest(arg0, *(s32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 8));
-        enemy_set_heading_velocity(*(f32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 4), (TObjEnemy *)arg0, this->rotation_y);
+        enemy_set_heading_velocity(*(f32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 4), (TObjEnemy *)arg0, this->rotation.yaw);
         move_with_wall_slide(arg0);
         if (((TObjMotion *)arg0)->is_passing_frame((f32)lbl_805DB1C8) != 0 || ((TObjMotion *)arg0)->is_passing_frame((f32)((f32)lbl_805DB1D8)) != 0) {
             this->play_voice();
@@ -597,7 +597,7 @@ void TObjNpcBase::update_standing() {
     u8 *arg0 = (u8 *)this;
     switch (this->phase) {
     case 0:
-        if (this->rotation_y != this->m_384) {
+        if (this->rotation.yaw != this->m_384) {
             this->phase = 2;
             ((VObj18_801482f8 *) arg0)->vf160(1);
         } else {
@@ -608,8 +608,8 @@ void TObjNpcBase::update_standing() {
     case 1:
         break;
     case 2:
-        if (this->rotation_y != this->m_384) {
-            this->rotation_y = approach_angle_limited(this->rotation_y, this->m_384, *(s32 *)((s8 *)this->movementParameters + 8));
+        if (this->rotation.yaw != this->m_384) {
+            this->rotation.yaw = approach_angle_limited(this->rotation.yaw, this->m_384, *(s32 *)((s8 *)this->movementParameters + 8));
         } else {
             this->phase = 1;
             ((VObj18_801482f8 *) arg0)->vf160(0);

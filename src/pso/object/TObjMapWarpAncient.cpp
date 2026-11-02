@@ -79,7 +79,7 @@ void render__19TObjGoalWarpAncientFv(TObjGoalWarpAncient *goal_warp_ancient) {
     if (((VObj8017CB60_8017CB60_more_8017cca4_0 *) goal_warp_ancient)->m8(4e+02f, 2e+01f) != 0) {
         push_matrix();
         post_translate_matrix((u8 *)goal_warp_ancient + 0x38);
-        rotate_matrix_y(0, goal_warp_ancient->rotation_y);
+        rotate_matrix_y(0, goal_warp_ancient->rotation.yaw);
         TParticleCtrl::begin_effect_render();
         set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)goal_warp_ancient + 0xD8)));
         draw_ginja_model_with_motion(goal_warp_ancient->m_e8, *(s32 *)((s8 *)goal_warp_ancient + 0xE4), *(f32 *)((s8 *)goal_warp_ancient + 0xC4));
@@ -209,7 +209,7 @@ void TObjMapWarpAncient::render() {
     if (((VObj_8017CED8_more_8017cca4_1*)arg0)->m8(4e+02f, 2e+01f) != 0) {
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         TParticleCtrl::begin_effect_render();
         if ((s32) *(s32 *)((s8 *)arg0 + 0x88) >= 0) {
             set_current_texture_list((GinjaTextureList *)(this->m_10c));

@@ -48,6 +48,44 @@ void TBoss7Crawfish::update_attack_state() {
         register_attack_hits();
     }
 }
+s32 TBoss7Crawfish__sub_80308ED8(void *object, void *displacement) {
+    s32 moved;
+    TBoss7Crawfish *o = (TBoss7Crawfish *)object;
+    Vec proposed;
+
+    // Callers borrow either Vec or a separate three-float struct at this ABI.
+    // Address each live f32 member through the borrowed representation, rather
+    // than treating the two complete vector types as interchangeable.
+    f32 component = *(const f32 *)((const u8 *)displacement + 0);
+    f32 dy = *(const f32 *)((const u8 *)displacement + 4);
+
+    // Borrow position.x at its established offset. These scalar stages and
+    // explicit f32 assignments preserve the original three-register lifetimes.
+    f32 x = *(const f32 *)((const u8 *)object + 0x38);
+    x += component;
+    component = *(const f32 *)((const u8 *)displacement + 8);
+    proposed.x = x;
+    f32 y = o->position.y;
+    y = (f32)(y + dy);
+    proposed.y = y;
+    f32 z = o->position.z;
+    z = (f32)(z + component);
+    proposed.z = z;
+    if (o->vfunc_18((u8 *)&proposed) != NULL) {
+        if (o->sub_80308688() != 0) {
+            o->position.x = proposed.x;
+            o->position.z = proposed.z;
+            moved = 1;
+        } else {
+            moved = 0;
+        }
+    } else {
+        moved = 0;
+    }
+    o->update_prev_position();
+    return moved;
+}
+
 void TBoss7Crawfish::change_state(s32 state) {
     Craw_80308F8C *o = (Craw_80308F8C *)this;
     s32 i;
