@@ -10,186 +10,151 @@ struct VObj : VBase { virtual void m0(int); };
 
 #include <stddef.h>
 #include "pso/misc/TWindowSubComCard.h"
-#include "pso/misc/TCheckMemoryCard.h"
+#include "pso/misc/TCheckMemoryCardState.h"
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TQuestVmDownLoadServer.h"
 #include "pso/misc/TWindowOptionCtrl.h"
-struct Stack_8033C024 {
-    s32 sp8;
-    s32 spC;
-    s32 sp10;
-};
-
-union MemberActionStorage_8033C024 { s32 words[3]; void (TWindowSubComCard::*action)(); };
-
-struct RecoveredGlobal_8033C024_lbl_804EF940 {
-    s32 value;
-    u8 remaining[0x5C];
-};
-
-struct O_8033C1CC { u8 pad[0x34]; void *p; u8 pad2[0x44 - 0x38]; s32 f44; };
-
 extern "C" {
-s32 sub_8033BB14__16TCheckMemoryCardFv(void *);
 void TWindow__close(u8 *arg0);
-extern RecoveredGlobal_8033C024_lbl_804EF940 lbl_804EF940;
 u32 get_message_10__20TWindowSubStatusDispFl(s32);
 s32 align_menu_entry_positions(u32);
 int forward_trade_action_default__16TObjCityMainWarpFPviii(void *p, int a1, int a2, int a3);
 s32 create_window_menu(s32 arg0, s32 arg1, s32 arg2);
-u32 check_room_seq_4__16TAdChrSelASlotGCFl(s32 *, s32);
-u32 create_message_window__6TLobbyFllUls(s32 *, s32 *, s32, s32);
-u32 update_window_mode_from_progress__6TLobbyFPv(s32 *, s32 *);
-extern s32 lbl_80477DB4[];
-extern s32 lbl_80477DBC[];
-extern s32 lbl_804EF8D8[];
-extern const f32 lbl_805D6D98;
+u32 check_room_seq_4__16TAdChrSelASlotGCFl(const void *, s32);
+u32 create_message_window__6TLobbyFllUls(const void *, const void *, s32, s32);
+u32 update_window_mode_from_progress__6TLobbyFPv(const void *, const void *);
 s32 get_selected_menu_value(void *);
-int update_card_display__17TWindowSubComCardFPvPvPvPv(void*, int, int, int, int);
 
-void TWindowSubComCard::create_message_and_menu(u32 arg1, s32 sel, u32 arg3, u32 arg4) {
+void TCheckMemoryCard::create_message_and_menu(u32 arg1, s32 sel, u32 arg3, u32 arg4) {
     u32 msg;
-    if (*(u32 *)((s8 *)this + 0x30) != 0U || *(u32 *)((s8 *)this + 0x34) != 0U) {
+    if (m_30 != NULL || m_34 != NULL) {
         return;
     }
-    if (*(s32 *)((s8 *)this + 0x4C) != 0) {
-        *(u32 *)((s8 *)this + 0x30) = create_message_window__6TLobbyFllUls(lbl_80477DB4, lbl_80477DBC, 1, 4);
+    if ((s32)m_4c != 0) {
+        m_30 = (void *)create_message_window__6TLobbyFllUls(&lbl_80477DB4, &lbl_80477DBC, 1, 4);
     } else {
-        *(u32 *)((s8 *)this + 0x30) = update_window_mode_from_progress__6TLobbyFPv(lbl_80477DB4, lbl_80477DBC);
+        m_30 = (void *)update_window_mode_from_progress__6TLobbyFPv(&lbl_80477DB4, &lbl_80477DBC);
     }
-    if (*(u32 *)((s8 *)this + 0x30) == 0U) {
+    if (m_30 == NULL) {
         return;
     }
-    if (*(u32 *)((s8 *)this + 0x30) != 0U && *(s32 *)((s8 *)this + 0x4C) != 0) {
-        ((TWindowSubComCard *)(*(s32 *)((s8 *)this + 0x30)))->reparent_to_main_ctrl();
+    if (m_30 != NULL && (s32)m_4c != 0) {
+        ((TWindowSubComCard *)(m_30))->reparent_to_main_ctrl();
     }
     if (arg1 != 0U) {
-        ((TLobby *)(*(u32 *)((s8 *)this + 0x30)))->send_and_handle(arg1, 3);
+        ((TLobby *)(m_30))->send_and_handle(arg1, 3);
     }
-    ((TWindowMessage *)(*(u32 *)((s8 *)this + 0x30)))->complete_reveal();
+    ((TWindowMessage *)(m_30))->complete_reveal();
     if (sel == -1) {
         return;
     }
-    if (*(s32 *)((s8 *)this + 0x4C) != 0) {
-        *(u32 *)((s8 *)this + 0x34) = create_window_menu((s32)lbl_804EF8D8, 2, 4);
+    if ((s32)m_4c != 0) {
+        m_34 = (void *)create_window_menu((s32)&lbl_804EF8D8, 2, 4);
     } else {
-        *(u32 *)((s8 *)this + 0x34) = check_room_seq_4__16TAdChrSelASlotGCFl(lbl_804EF8D8, 2);
+        m_34 = (void *)check_room_seq_4__16TAdChrSelASlotGCFl(&lbl_804EF8D8, 2);
     }
-    if (*(u32 *)((s8 *)this + 0x30) == 0U) {
+    if (m_30 == NULL) {
         return;
     }
-    if (*(u32 *)((s8 *)this + 0x34) != 0U && *(s32 *)((s8 *)this + 0x4C) != 0) {
-        ((TWindowSubComCard *)(*(s32 *)((s8 *)this + 0x34)))->reparent_to_main_ctrl();
+    if (m_34 != NULL && (s32)m_4c != 0) {
+        ((TWindowSubComCard *)(m_34))->reparent_to_main_ctrl();
     }
     msg = arg3;
     if (arg3 == 0U) {
         msg = get_message_10__20TWindowSubStatusDispFl(0x5B);
     }
-    forward_trade_action_default__16TObjCityMainWarpFPviii((void *)(*(u32 *)((s8 *)this + 0x34)), (int)msg, 5, 0);
+    forward_trade_action_default__16TObjCityMainWarpFPviii((void *)(m_34), (int)msg, 5, 0);
     if (sel != -2) {
         msg = arg4;
         if (arg4 == 0U) {
             msg = get_message_10__20TWindowSubStatusDispFl(0x5C);
         }
-        forward_trade_action_default__16TObjCityMainWarpFPviii((void *)(*(u32 *)((s8 *)this + 0x34)), (int)msg, 5, 1);
+        forward_trade_action_default__16TObjCityMainWarpFPviii((void *)(m_34), (int)msg, 5, 1);
     }
-    ((TWindowSubComCardList *)(*(u32 *)((s8 *)this + 0x34)))->update_layout_height(lbl_805D6D98);
-    align_menu_entry_positions(*(u32 *)((s8 *)this + 0x34));
+    ((TWindowSubComCardList *)(m_34))->update_layout_height(lbl_805D6D98);
+    align_menu_entry_positions((u32)m_34);
     if (sel != -2) {
-        ((TWindowSubComCardList *)(*(u32 *)((s8 *)this + 0x34)))->set_selected_index(sel);
+        ((TWindowSubComCardList *)(m_34))->set_selected_index(sel);
     } else {
-        ((TWindowSubComCardList *)(*(u32 *)((s8 *)this + 0x34)))->set_selected_index(0);
+        ((TWindowSubComCardList *)(m_34))->set_selected_index(0);
     }
-    ((TWindowOptionCtrl *)(*(u32 *)((s8 *)this + 0x34)))->clear_flag70_bit4();
+    ((TWindowOptionCtrl *)(m_34))->clear_flag70_bit4();
 }
 
 #pragma push
 #pragma fp_contract on
-void TWindowSubComCard::close_windows() {
-    u8 *arg0 = (u8 *)this;
+void TCheckMemoryCard::close_windows() {
     u8 *temp_r3;
     u8 *temp_r3_2;
-    temp_r3 = (u8 *)(*(u8 **)((s8 *)arg0 + 0x30));
+    temp_r3 = (u8 *)m_30;
     if (temp_r3 != NULL) {
-        if ((s32) *(s32 *)((s8 *)arg0 + 0x4C) != 0) {
+        if ((s32) m_4c != 0) {
             if (temp_r3 != NULL) {
                 ((VObj *)temp_r3)->m0(1);
             }
         } else {
             TWindow__close(temp_r3);
         }
-        *(u8 **)((s8 *)arg0 + 0x30) = NULL;
-        *(s32 *)((s8 *)arg0 + 0x38) = 7;
+        m_30 = NULL;
+        m_38 = 7;
     }
-    temp_r3_2 = (u8 *)(*(u8 **)((s8 *)arg0 + 0x34));
+    temp_r3_2 = (u8 *)m_34;
     if (temp_r3_2 != NULL) {
         TWindow__close(temp_r3_2);
-        *(u8 **)((s8 *)arg0 + 0x34) = NULL;
-        *(s32 *)((s8 *)arg0 + 0x38) = 7;
+        m_34 = NULL;
+        m_38 = 7;
     }
 }
 #pragma pop
 
-typedef char MemberActionStorage_8033C024_size[sizeof(MemberActionStorage_8033C024) == 12 ? 1 : -1];
-typedef char RecoveredGlobal_8033C024_lbl_804EF940_size[sizeof(RecoveredGlobal_8033C024_lbl_804EF940) == 0x60 ? 1 : -1];
-void TWindowSubComCard::set_state(s32 arg1) {
-    u8 *arg0 = (u8 *)this;
-    MemberActionStorage_8033C024 member_action;
-    typedef char sp8_offset[(offsetof(Stack_8033C024, sp8) == 0x0) ? 1 : -1];
-    typedef char spC_offset[(offsetof(Stack_8033C024, spC) == 0x4) ? 1 : -1];
-    typedef char sp10_offset[(offsetof(Stack_8033C024, sp10) == 0x8) ? 1 : -1];
-    Stack_8033C024 stack;
-    u8 *temp_r6;
-    if ((s32) *(s32 *)((s8 *)arg0 + 0x20) != arg1) {
-        *(s32 *)((s8 *)arg0 + 0x20) = arg1;
-        temp_r6 = (u8 *)&lbl_804EF940.value + (*(s32 *)((s8 *)arg0 + 0x20) * 0x18);
-        member_action.words[0] = *(s32 *)((s8 *)temp_r6 + 0);
-        member_action.words[1] = *(s32 *)((s8 *)temp_r6 + 4);
-        member_action.words[2] = *(s32 *)((s8 *)temp_r6 + 8);
-        if (member_action.action != 0) {
-            (((TWindowSubComCard *)(arg0))->*member_action.action)();
+void TCheckMemoryCard::set_state(s32 next_state) {
+    // Preserve the original conditional transition. The constructor's first
+    // read of m_20 remains an explicit unresolved lifecycle finding.
+    if ((s32)m_20 != next_state) {
+        m_20 = next_state;
+        CheckMemoryCardAction action = lbl_804EF940[m_20].enter;
+        if (action != 0) {
+            (this->*action)();
         }
     }
 }
 
-void TWindowSubComCard::reset() {
-    *(s32 *)((s8 *)this + 0x30) = 0;
-    *(s32 *)((s8 *)this + 0x34) = 0;
-    *(s32 *)((s8 *)this + 0x38) = 0;
-    *(s32 *)((s8 *)this + 0x2C) = 0;
-    *(s32 *)((s8 *)this + 0x24) = 0;
-    *(s32 *)((s8 *)this + 0x28) = sub_8033BB14__16TCheckMemoryCardFv(this);
-    *(s32 *)((s8 *)this + 0x3C) = 0;
-    *(s32 *)((s8 *)this + 0x40) = 0;
-    *(s32 *)((s8 *)this + 0x44) = 0;
+void TCheckMemoryCard::reset() {
+    m_30 = 0;
+    m_34 = 0;
+    m_38 = 0;
+    m_2c = 0;
+    m_24 = 0;
+    m_28 = sub_8033BB14();
+    m_3c = 0;
+    m_40 = 0;
+    m_44 = 0;
     set_state(0);
 }
 
-void TWindowSubComCard::poll_card_status() {
-    u8 *arg0 = (u8 *)this;
-    *(s32 *)((s8 *)arg0 + 0x3C) = 0;
-    if ((s32) *(s32 *)((s8 *)arg0 + 0x38) <= 0) {
-        *(s32 *)((s8 *)arg0 + 0x2C) = 0;
-        *(s32 *)((s8 *)arg0 + 0x28) = sub_8033BB14__16TCheckMemoryCardFv(arg0);
-        if ((s32) *(s32 *)((s8 *)arg0 + 0x28) != 0) {
+void TCheckMemoryCard::poll_card_status() {
+    m_3c = 0;
+    if ((s32) m_38 <= 0) {
+        m_2c = 0;
+        m_28 = sub_8033BB14();
+        if ((s32) m_28 != 0) {
             set_state(1);
             return;
         }
-        *(s32 *)((s8 *)arg0 + 0x3C) = 1;
+        m_3c = 1;
     }
 }
 
-void TWindowSubComCard__sub_8033C178(void* p) { ((TWindowSubComCard *)p)->close_windows(); }
-void TWindowSubComCard__sub_8033C198(void) {  }
-int TWindowSubComCard__sub_8033C19C(void* p) { return update_card_display__17TWindowSubComCardFPvPvPvPv(p, 0, -1, -1, -1); }
-void TWindowSubComCard::handle_menu_selection() {
-    O_8033C1CC *arg0 = (O_8033C1CC *)this;
-    if (arg0->p == 0 || ((TWindowMenu *)(arg0->p))->is_visible() == 0) {
+void TCheckMemoryCard::fn_8033C178() { close_windows(); }
+void TCheckMemoryCard::fn_8033C198() { }
+void TCheckMemoryCard::fn_8033C19C() { update_card_display(0, -1, -1, -1); }
+void TCheckMemoryCard::handle_menu_selection() {
+    if (m_34 == 0 || ((TWindowMenu *)(m_34))->is_visible() == 0) {
         return;
     }
-    switch (get_selected_menu_value(arg0->p)) {
+    switch (get_selected_menu_value(m_34)) {
     case 0:
-        arg0->f44 = 1;
+        m_44 = 1;
         break;
     }
 }

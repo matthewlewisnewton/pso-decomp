@@ -103,7 +103,7 @@ block_4:
         set_current_texture_list((GinjaTextureList *)(city_common_texture_list));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         draw_ginja_object((void *)(*(s32 *)((s8 *)(*(void **)((s8 *)city_common_model_archive + 0x42C)) + 0xC8)));
         TParticleCtrl::begin_effect_render();
         draw_ginja_model_with_motion(*(s32 *)((s8 *)(*(void **)((s8 *)city_common_model_archive + 0x42C)) + 8), *(s32 *)((s8 *)(*(void **)((s8 *)city_common_model_archive + 0x430)) + 0x2C), *(f32 *)((s8 *)arg0 + 0xC4));

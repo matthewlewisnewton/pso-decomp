@@ -3,7 +3,9 @@
 
 #include "types.h"
 
-struct E_8006C668 { s32 a; void *p; };
+struct CameraMotionData;
+struct CameraMotionDirectory { CameraMotionData **entries; };
+struct E_8006C668 { CameraMotionDirectory *directory; void *p; };
 
 struct G_8006C668 { E_8006C668 e[8]; };
 

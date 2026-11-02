@@ -80,8 +80,8 @@ void TUnk_80484AFC::render() {
     set_current_texture_list((GinjaTextureList *)(textures));
     push_matrix();
     post_translate_matrix(&position);
-    rotate_matrix_x(0, rotation_x);
-    rotate_matrix_y(0, rotation_y);
+    rotate_matrix_x(0, this->rotation.pitch);
+    rotate_matrix_y(0, this->rotation.yaw);
     model_render_flags &= ~0x400;
     draw_chunk_object((void *)model);
     pop_matrix();
@@ -98,7 +98,7 @@ void TUnk_80484AFC::run_task() {
     }
     VecCopy(&prev_position, &position);
     vec3_add_to(&position, &velocity);
-    direction_to_rotation_xy((u8 *)&velocity, &rotation_x, &rotation_y);
+    direction_to_rotation_xy((u8 *)&velocity, &this->rotation.pitch, &this->rotation.yaw);
     if (trail != NULL) {
         Vec back = velocity;
         back.x = -back.x;
@@ -147,14 +147,14 @@ TUnk_80484AFC::TUnk_80484AFC(TObject *parent, Vec *pos, s32 angle, s32 target) :
     bodies->radius = 5.0f;
     VecCopy(&position, pos);
     target_id = target;
-    rotation_x = 0;
-    rotation_y = angle;
+    this->rotation.pitch = 0;
+    this->rotation.yaw = angle;
     velocity.x = 0.0f;
     velocity.y = 0.0f;
     velocity.z = TBoss3VoloptP02::get_float_param(0);
     push_matrix_from(identity_matrix);
-    rotate_matrix_y(0, rotation_y);
-    rotate_matrix_x(0, rotation_x);
+    rotate_matrix_y(0, this->rotation.yaw);
+    rotate_matrix_x(0, this->rotation.pitch);
     matrix_mult_vec(0, &velocity, &velocity);
     pop_matrix();
     model = boss3_volopt_resources->models[0x16].model;

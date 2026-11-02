@@ -274,7 +274,7 @@ void TObjDoaEx01::try_open() {
         set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0((void *)TObjDoaEx01__resource_bundle, 0)));
         push_matrix();
         post_translate_matrix(((u8 *)this) + 0x38);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         this->draw_object_tree(bml_model);
         pop_matrix();
     }
@@ -290,7 +290,7 @@ void TObjDoaEx01::draw_model() {
         set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0((void *)(TObjDoaEx01__resource_bundle), 0)));
         push_matrix();
         post_translate_matrix((void *) (((u8 *)this) + 0x38));
-        rotate_matrix_y(0, (this->rotation_y));
+        rotate_matrix_y(0, (this->rotation.yaw));
         temp_f31 = this->animation_frame;
         if (temp_f31 > 0.0f) {
             temp_r31 = get_bml_motion((TObjDoaEx01__resource_bundle), 0);

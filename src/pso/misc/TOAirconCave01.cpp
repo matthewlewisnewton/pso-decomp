@@ -21,10 +21,10 @@ BmlResource *TOAirconCave01__model_archive;
 void TOAirconCave01::render() {
     NJS_OBJECT *object = (NJS_OBJECT *)TOAirconCave01__model_archive->models[0].model;
     if (update_object_view_visibility(view_range, model_radius) != 0) {
-        rotation_x += 0x106;
+        this->rotation.pitch += 0x106;
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
+        rotate_matrix_y(NULL, this->rotation.yaw);
         set_current_texture_list((GinjaTextureList *)(texlist));
         draw_ginja_model((s32)object->model);
         pop_matrix();

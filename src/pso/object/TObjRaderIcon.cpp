@@ -1,5 +1,6 @@
 #include "types.h"
 #include "pso/object/TObjRaderIcon.h"
+#include "pso/misc/RadarMapData.h"
 #include "pso/object/TObject_8001A448.h"
 #include "pso/object/TObjRaderIcon.h"
 
@@ -14,12 +15,12 @@ extern "C" {
 s32 __ct__8TObjBaseFP7TObject(void *);
 extern s32 __vt__13TObjRaderIcon[];
 extern s32 lbl_805D3418;
-void add_radar_scaled_gate(void *, u32, u16, s32, s32, f32);
 u8 is_current_floor_switch_set(u16);
 void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
 
 extern void *tl_05;
+}
 
 void *TObjRaderIcon__create(void *arg0) {
     void *o = __nw__7TObjectFUl(0xA4);
@@ -44,13 +45,13 @@ void TObjRaderIcon::run_task() {
             }
         }
         if (all == 1) {
-            add_radar_scaled_gate(arg0->pos, 0xFF00FF00, arg0->f60, 0, 0, arg0->f9C);
+            add_radar_scaled_gate(&this->position, 0xFF00FF00, arg0->f60, 0, 0, arg0->f9C);
         } else {
-            add_radar_scaled_gate(arg0->pos, 0xFFFF0000, arg0->f60, 0, 0, arg0->f9C);
+            add_radar_scaled_gate(&this->position, 0xFFFF0000, arg0->f60, 0, 0, arg0->f9C);
         }
         break;
     case 1:
-        add_radar_scaled_gate(arg0->pos, arg0->fA0, arg0->f60, 0, 0, arg0->f9C);
+        add_radar_scaled_gate(&this->position, arg0->fA0, arg0->f60, 0, 0, arg0->f9C);
         break;
     }
 }
@@ -90,11 +91,9 @@ void TObjRaderIcon::initialize_from_placement() {
     }
 }
 
-}
 TObjRaderIcon::~TObjRaderIcon() {
 
 }
-extern "C" {
 typedef char RecoveredGlobal_8019733C___vt__13TObjRaderIcon_size[sizeof(RecoveredGlobal_8019733C___vt__13TObjRaderIcon) == 0x34 ? 1 : -1];
 u8 *TObjRaderIcon__ct(u8 *rader_icon, s32 arg1, s32 arg2) {
     __ct__8TObjBaseFP7TObject(rader_icon);
@@ -104,6 +103,4 @@ u8 *TObjRaderIcon__ct(u8 *rader_icon, s32 arg1, s32 arg2) {
     ((TObjRaderIcon *)rader_icon)->initialize_from_placement();
     disallow_rendering__7TObjectFv((TObject *)(rader_icon));
     return rader_icon;
-}
-
 }

@@ -71,7 +71,7 @@ void TObjTank::render() {
         set_current_texture_list((GinjaTextureList *)(p));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         get_bml_model((*(s32 *)&tank_bml_resource), 0);
         draw_ginja_object();
         pop_matrix();
