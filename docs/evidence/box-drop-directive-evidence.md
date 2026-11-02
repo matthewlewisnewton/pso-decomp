@@ -1,5 +1,9 @@
 # Box-drop directive recovery
 
+This is the historical #253 binary-validation checkpoint at
+`a451711eb4f78e90b646ff9f0e2ea9a7189db994`. Its item/packet source contracts
+were subsequently corrected in the [packet-contract follow-up](item-drop-packet-contract.md).
+
 The prerequisite is fork `main` at
 `909d120b21f7e875e71a5c1d0d3a7799a08078e9`. The unit
 `pso/unk/text_8011A780.cpp` owns `.text` `8011A780..8011B010`
@@ -26,9 +30,10 @@ Packet initialization (`8011B130`), sending (`8011B0C8`), and item generation
 Their bodies establish packet/item arguments; they do not establish TLobby or
 TObjPlayer instance ownership. In particular, generation receives area in r3
 and the item pointer in r4. The packet's trailing four bytes remain opaque.
-The wire packet contains FloorItem, whose native constructor would introduce
-an additional call; the local delivery record instead owns a trivial TItemData
-payload and uses the existing explicit packet initializer.
+The #253 local delivery owned a TItemData payload, but did not contain the
+FloorItem constructed by its packet initializer. The retained binary checks
+below did not establish that source lifetime. The follow-up uses genuine native
+packet constructors and scopes each packet at the original initialization point.
 
 Under pinned GC 2.6 settings, the item/parameter/delivery declaration order
 reproduces the original stack layout. Scoped immutable category/group backups

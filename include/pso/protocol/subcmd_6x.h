@@ -261,13 +261,16 @@ struct G_DropItem_6x2A {
 };
 
 struct G_DropItem_DC_6x5F {
- struct G_UnusedHeader header;
- struct FloorItem item;
+ G_ClientIDHeader header;
+ FloorItem item;
+ G_DropItem_DC_6x5F();
 };
 
 struct G_DropItem_PC_V3_BB_6x5F {
- struct G_DropItem_DC_6x5F __base_G_DropItem_DC_6x5F;
- u32 unused3;
+ G_DropItem_DC_6x5F __base_G_DropItem_DC_6x5F;
+ u8 unused3[4];
+ G_DropItem_PC_V3_BB_6x5F();
+ void send();
 };
 
 struct G_DropStackedItem_DC_6x5D {
