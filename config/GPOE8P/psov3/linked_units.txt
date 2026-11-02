@@ -3457,9 +3457,9 @@ pso/unk/text_8034CEDC.cpp
 pso/unk/text_8034D3D0.cpp
 pso/unk/text_8034DAA0.cpp
 pso/unk/text_803516F8.cpp
-pso/unk/text_803531FC.cpp
-pso/unk/text_80353380.cpp
-pso/unk/text_80353414.cpp
+pso/item/TUnk_804F112C_803531FC.cpp
+pso/item/TUnk_804F112C_80353380.cpp
+pso/item/TUnk_804F112C_80353414.cpp
 pso/unk/text_80354BE4.cpp
 pso/unk/text_803554F0.cpp
 pso/unk/text_80355970.cpp
