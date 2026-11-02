@@ -38,7 +38,6 @@ extern u8 lbl_80472530[];
 extern T_802D4F2C single_chr_select_position_table;
 extern s32 __vt__23TAdSinglePlyChrSelectGC[];
 extern s32 lbl_805D3F40;
-u8 *TAdSinglePlyChrSelectGC__ct(u8 *arg0, void *parent);
 void *__dt__23TAdSinglePlyChrSelectGCFv(void *arg0, s16 arg1);
 s32 *get_localized_text_entry(s32, s32);
 
@@ -169,7 +168,7 @@ void *__dt__23TAdSinglePlyChrSelectGCFv(void *arg0, s16 arg1) {
     }
     return arg0;
 }
-u8 *TAdSinglePlyChrSelectGC__ct(u8 *arg0, void *parent) {
+extern "C" void *__ct__23TAdSinglePlyChrSelectGCFP7TObject(u8 *arg0, void *parent) {
     void *p;
     __ct__7TObjectFP7TObject(arg0, parent);
     *(s32 **)((s8 *)arg0 + 0x18) = __vt__23TAdSinglePlyChrSelectGC;
