@@ -187,17 +187,22 @@ struct Win_8021F1A4 {
     Rec_8021F1A4 recs[16];
 };
 
-/* The original loads this->m_34 into r3 for the null test and reuses it for
- * is_confirmed; MWCC 2.6 here loads into r0 and moves to r3. The remaining
- * difference is register allocation only. */
-s32 TShopItemListWindow::handle_amount_confirm() {
+struct WinItems_8021F1A4 {
+    u8 pad0[0x58];
+    TItemData recs[16];
+};
+
+/* The original has a void return, leaving r3 available for the null-tested
+ * window calls. The typed item-array view preserves the scaled-index address
+ * formation; only the entity ID's saved register still differs. */
+void TShopItemListWindow::handle_amount_confirm() {
     s32 i;
     s32 r;
     switch (this->m_4c) {
     case 0:
         if (this->m_34 != 0 && ((TWindowInputNumber *)this->m_34)->is_confirmed() != 0) {
             if (this->m_30 == 0) {
-                u16 id = get_entity_id((void *)this->m_24);
+                u16 id = (u16)get_entity_id((void *)this->m_24);
                 this->m_30 = create_window_menu(get_window_layout_position(0x2B), 2, id);
                 forward_trade_action_default__16TObjCityMainWarpFPviii((void *)this->m_30, get_shop_text(4), 6, 0);
                 forward_trade_action_default__16TObjCityMainWarpFPviii((void *)this->m_30, get_shop_text(5), 6, 1);
@@ -227,18 +232,18 @@ s32 TShopItemListWindow::handle_amount_confirm() {
             if (r == 0) {
                 if (this->m_28 != 0) {
                     i = select_cursor_entry__22TWindowSubShortCutListFv((void *)this->m_28);
-                    TItemData *recs = (TItemData *)((u8 *)this + 0x58);
-                    TItemData it = recs[i];
+                    WinItems_8021F1A4 *W = (WinItems_8021F1A4 *)this;
+                    TItemData it = W->recs[i];
                     it.id = advance_item_id_counter(local_client_id);
                     if (get_item_def__18TCheckRoomSequenceFUl(&it) != 0) {
                         it.set_stack_count((u8)this->m_50);
                     }
                     try_buy_item(this->m_24, &it);
                     if (this->m_3c != 0) {
-                        s32 n = ((TObjPlayer *)(*(s32 *)(this->m_24 + 0xD00)))->count_items_by_id((s32)&recs[i]);
+                        s32 n = ((TObjPlayer *)(*(s32 *)(this->m_24 + 0xD00)))->count_items_by_id((s32)&W->recs[i]);
                         ((TWindowSubStatusDisp *)this->m_3c)->set_entry1_field20(n);
                     }
-                    if (is_single_purchase_shop_item((u8 *)&recs[i]) != 0) {
+                    if (is_single_purchase_shop_item((u8 *)&W->recs[i]) != 0) {
                         mark_shop_tool_sold_out(i, sub_8022397C__15TShopWindowBaseFv(this));
                     }
                     ((TShopArmorListWindow *)this->m_28)->save_cursor_selection();
@@ -269,16 +274,14 @@ s32 TShopItemListWindow::handle_amount_confirm() {
 }
 
 void TShopItemListWindow::prepare_tool_purchase() {
-    s32 off;
-    s32 accept;
     if (this->m_28 == 0) {
         return;
     }
     {
         Win_8021F1A4 *W = (Win_8021F1A4 *)this;
         s32 i = select_cursor_entry__22TWindowSubShortCutListFv((void *)this->m_28);
-        off = i * 0x14;
-        accept = ((TObjPlayer *)this->m_24)->can_inventory_accept_item((u8 *)&W->recs[i]);
+        s32 off = i * 0x14;
+        s32 accept = ((TObjPlayer *)this->m_24)->can_inventory_accept_item((u8 *)&W->recs[i]);
         s32 max = obj_getPtr2B0_20((u8 *)this->m_24) / W->recs[i].price;
         if (max > accept) {
             max = accept;
@@ -295,8 +298,8 @@ void TShopItemListWindow::prepare_tool_purchase() {
             this->m_4c = 0;
             set_field_20(2);
         } else {
-            u16 id = get_entity_id((void *)this->m_24);
-            this->m_30 = create_window_menu(get_window_layout_position(0x2B), 2, id);
+            accept = (u16)get_entity_id((void *)this->m_24);
+            this->m_30 = create_window_menu(get_window_layout_position(0x2B), 2, accept);
             forward_trade_action_default__16TObjCityMainWarpFPviii((void *)this->m_30, get_shop_text(4), 6, 0);
             forward_trade_action_default__16TObjCityMainWarpFPviii((void *)this->m_30, get_shop_text(5), 6, 1);
             ((TWindowSubComCard *)this->m_30)->calc_window_size();
