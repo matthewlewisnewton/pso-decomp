@@ -32,13 +32,26 @@ existing allocation and behavior rather than increasing capacity to conceal it.
 Independent source review passed for the exact byte-storage proposal
 (SHA-256 `298c5b49ecc1bf500066e7a9db1d6f3367db96a2086252b190c3b1f7f9a86665`).
 Review SHA-256: `01864e681b9452be75a6daacc63ae4bb06860332b638bc3678b74e711231f04e`.
-Native layout, full unchanged unit eligibility, explicit source selection, actual
-link-input provenance, original DOL, full report, no-loss checks and independent
-output review are pending. No new matched or source-linked bytes are claimed.
-The 12-byte prefix is a separate continuation; scratch remains original and its
-selected halfword contract is unchanged. Latest-main acceptance remains with
-the separate merge process. Original artifacts and private evidence stay local.
+Native layout, genuine objdiff and the full unchanged unit-eligibility checks
+subsequently passed. The combined prefix/workspace candidate selects this
+2,448-byte owner and the separate 12-byte prefix. It names the exact original
+workspace boundary without an alignment override, added padding, symbol
+edit or consumer change. Scratch remains original and its selected halfword
+contract is unchanged.
 
-The inactive split names exactly that existing allocation, with no alignment
-override, added padding, symbol edits or linked-unit change. The generated
-original partition and native object still require scheduled qualification.
+Native validation compared `08dde1b4dda051844878d755dd0c9dbb13c61b27` with
+retained baseline `140bc0ace7fcfe2deca0894ea09adb2c306f73e6`. It proves
++2,460 matched and source-linked bytes in total, original-DOL equality, actual
+source linker inputs, unchanged final ELF boundaries and all nine raw loss
+classes zero. The final workspace symbol remains at `80595008`, size 2,448;
+the existing slots begin at `80595998`. Both new compiled objects equal the
+independently reviewed diagnostic objects. The baseline was not rebuilt.
+
+See [the combined validation summary](quest-download-display-prefix.md#combined-native-validation)
+for exact metrics, retained consumers, diagnostics and final independent review.
+This source-only publication follow-up changes documentation only after the
+tested candidate. Latest-main acceptance remains with the separate merge
+process. The original-only interpretation and bounded-interface uncertainties
+above remain in force; this result does not recover a historical query type
+or certify original producer bounds. Original artifacts and private evidence
+stay local.
