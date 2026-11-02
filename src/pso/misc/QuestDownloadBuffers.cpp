@@ -6,9 +6,9 @@
 // The other imported definitions retain unresolved types; especially the shared
 // text storage must not be activated as a byte array with incompatible users.
 // See docs/evidence/quest-download-buffer-types.md.
-s32 quest_vm_download_server_file_info[0x11];
+char quest_vm_download_server_file_info[0x44];
 QuestDownloadFileCache quest_download_slot_table;
-u8 quest_name_index_table[0x1000];
+u8 quest_name_index_table[1024][4];
 u8 lbl_80591AC4[0x404];
 u8 lbl_80591EC8[0x2000];
 QuestDownloadCachedNameIndex lbl_80593EC8;

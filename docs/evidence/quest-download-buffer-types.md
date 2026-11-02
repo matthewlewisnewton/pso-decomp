@@ -12,8 +12,9 @@ Fork #226 deliberately deferred these definitions. This checkpoint has **zero
 new matched or source-linked bytes**: the source has no split entry and is not
 in `linked_units.txt`. The existing extraction and linker selection remain
 unchanged. The imported declarations are a starting point, not qualified types.
-A later commit adds two bounded cache layouts; their consumers and complete
-ownership are still pending as described below.
+Later commits add two bounded cache layouts and express the filename and
+name-index extents as character and four-byte-row arrays. Their consumers and
+complete ownership are still pending as described below.
 
 ## Storage census
 
@@ -62,7 +63,7 @@ and the typed definitions, produced identical allocated data sections: all ten
 symbol offsets/extents/bindings, 34,912 zero BSS bytes, alignment 8, and no
 relocations. All layout assertions passed without diagnostics. These are
 targeted definition-layout checks, not consumer, full-build or source-link proof.
-The two imported definitions now use these types; no shared consumer has been
+The two cache definitions now use these types; no shared consumer has been
 edited or declared compatible by this checkpoint.
 
 ## Follow-up boundaries
@@ -85,12 +86,32 @@ header symbol. A separate-object source spelling may therefore alter exact
 instructions/relocations. A complete owner spanning these ranges is a candidate
 for investigation, not a conclusion from the available evidence.
 
-Two producer bounds also remain open. The public filename path copies the
-frontend's 128-byte filename storage into the 68-byte file-info extent using
-`strcpy`, without a visible 67-character check. The name-index reader transfers
-exactly 4,096 bytes, but the search high bound comes from an unchecked 16-bit
-ASK header field. The 1,024 physical four-byte rows alone do not prove that
-every producer supplies an in-range search bound.
+The filename extent is now a 68-character array. The observed native route is
+`803F09A4` -> request 0x20 -> dispatch table entry 31 -> `803E5B94` ->
+`poll_download_status` -> `803F08E4` -> `set_file_info_name`. It copies one
+five-character literal plus its terminator through the 128-byte staging buffer
+into this extent. The retained original relocation census found no other
+static callers or staging writers. This bounds the observed executable route;
+it does not establish a general 67-character check or validate arbitrary
+external callers of the exported dispatcher/setter.
+
+The name-index extent is now 1,024 rows of four bytes. Read-only inspection of
+the shipped ASK dictionary gives a search high bound of 657, sorted data rows,
+a minimum nonempty first key and a zero sentinel at row 657. With the native
+low bound of zero, the binary search reads rows 0..656, and the next-row reader
+reaches at most row 657. An empty key may return -1, but `803F0500` checks the
+next row and returns before using that result in the current-row reader.
+Subsequent key shortening retains a nonempty key. These facts qualify this
+shipped asset and observed route only; replacement dictionaries and opaque
+callers remain outside the proof. The asset and disassembly stay private.
+
+One additional admitted compiler probe checked these two array changes against
+the retained baseline, without rebuilding the baseline. Complete allocated
+data, including every symbol offset, extent, binding, alignment and relocation,
+remains identical to the original automatic BSS object. The comparison receipt
+records an initial tuple-versus-JSON-list representation mismatch and the
+successful canonical comparison of the same objects; no compiler rerun or
+comparison field was omitted.
 
 The 2,448-byte symbol at `80595008` also cannot be qualified by a source-only
 reference search: its missing native consumers `803EA428` and `803EA9E8` use
@@ -124,8 +145,9 @@ check actual native source selection, and run the original-DOL and address-based
 no-loss checks against both the dependency base and current fork main.
 
 The initial import performed source-provenance, symbol-extent and unchanged-
-build-input checks only. The later cache-type commit adds the two targeted
-compiler layout probes above. Neither checkpoint ran a game link, full build
-or `check_pr.py`, and neither claims review-ready status. Keep the PR draft until the complete
-contracts and these validation gates pass. Final current-main acceptance belongs
+build-input checks only. The cache-type commit adds the two targeted compiler layout probes above;
+the filename/index follow-up adds one candidate probe against the retained
+baseline. No checkpoint ran a game link, full build or `check_pr.py`, and none
+claims review-ready status. Keep the PR draft until the complete contracts and
+these validation gates pass. Final current-main acceptance belongs
 to the merge process.
