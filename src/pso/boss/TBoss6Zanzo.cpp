@@ -52,7 +52,7 @@ void TBoss6Type1::set_effect_points(f32 *a, u32 *b) {
     end = p + o->count;
     for (; p < end; p++, a2 += 3, b2++) {
         VecCopy__FP3VecPC3Vec(&p->v, a2);
-        ((TAdChrMoveEffectGC *)p)->copy4(b2);
+        copy4__18TAdChrMoveEffectGCFPv(p, b2);
     }
 }
 
