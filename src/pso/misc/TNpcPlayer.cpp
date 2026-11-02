@@ -161,6 +161,8 @@ struct Owner_80150E44 { u8 pad[0x94]; Obj_80150E44 *obj; };
 
 struct Npc_80150E44 { u8 pad[0x78]; Owner_80150E44 *owner; u8 pad7c[0xAC - 0x7C]; f32 x; f32 y; f32 z; };
 
+// The leader's TObjPlayer window read by deliver_partner_action: the action
+// mask at +0x30 and the world position at +0x38.
 struct Obj_80150EC4 {
     u8 pad[0x30];
     u32 flags;
@@ -170,16 +172,13 @@ struct Obj_80150EC4 {
 
 struct Owner_80150EC4 { u8 pad[0x94]; Obj_80150EC4 *obj; };
 
+// Overlay for the TNpcPlayer fields this unit has not named in the header
+// yet; fields with genuine names (m_24, m_5c, m_78, m_7c, m_80) are used
+// directly through TNpcPlayer and deliberately not duplicated here.
 struct Npc_80150EC4 {
-    u8 pad0[0x24];
-    u32 f24;
-    u8 pad28[0x40 - 0x28];
+    u8 pad0[0x40];
     f32 f40;
-    u8 pad44[0x78 - 0x44];
-    Owner_80150EC4 *f78;
-    u32 f7c;
-    u32 f80;
-    u8 pad84[0x92 - 0x84];
+    u8 pad44[0x92 - 0x44];
     s16 f92;
     u8 pad94[0xAC - 0x94];
     Vec_8014E3B0 pos;
@@ -455,11 +454,11 @@ u8 * __dt__10TNpcPlayerFv(u8 *arg0, s16 arg1);
 Npc_80152168 * TNpcPlayer__ct(Npc_80152168 *self, s32 a, s32 b, s16 kind, s32 arg4, void *parent);
 Npc_80152330 * construct_partner__10TNpcPlayerFPviisPv(Npc_80152330 *self, s32 a, s32 b, s16 kind, void *parent);
 void set_technique_seed_level(Obj_801528A8 *self, s16 i, u8 v);
-void reset_partner_counter(s32 arg0, s32 arg1);
-void increment_partner_counter(s32 arg0, s32 arg1);
+void reset_partner_counter(void *arg0, s32 arg1);
+void increment_partner_counter(void *arg0, s32 arg1);
 s32 TNpcPlayer__sub_801528DC(void* p);
 u16 get_npc_type__10TNpcPlayerFPv(void* p);
-int get_partner_counter(s32 arg0, s32 arg1);
+int get_partner_counter(void *arg0, s32 arg1);
 s32 npc_counter_reset_if_reached(s32 arg0, s32 arg1);
 s32 TNpcPlayer__sub_80152978(void* p);
 void copy_transform_second__10TNpcPlayerFPvPvPv(void* p, void* a1, void* a2);
@@ -1849,7 +1848,7 @@ void TNpcPlayer::request_chatter(u32 arg1) {
   {
     new_var2 = 0x24;
     block_4:
-    reset_partner_counter((s32) (arg0 + 0x5C), 0);
+    reset_partner_counter((void *) (arg0 + 0x5C), 0);
     if (arg1 != ((u32) (*((u32 *) (((s8 *) arg0) + new_var2)))))
     {
       *new_var = arg1;
@@ -2992,71 +2991,78 @@ void TNpcPlayer::deliver_partner_action() {
     Vec_8014E3B0 dir;
     f32 len;
 
-    if (self->f80 & 4) {
+    if (this->m_80 & 4) {
         if ((lbl_805D6EA0 & 2) == 0) {
             deliver_partner_chatter((Npc_8014E250 *)this);
         }
     }
-    if (((TObjPlayer *)(*(s32 *)((s8 *)(*(void **)((s8 *)this + 0x78)) + 0x94)))->test_action_mask(2) == 0) {
+    if (((TObjPlayer *)((Owner_80150EC4 *)this->m_78)->obj)->test_action_mask(2) == 0) {
         return;
     }
-    switch (self->f7c) {
+    switch (this->m_7c) {
     case 0:
-        VecCopy__FP3VecPC3Vec((void *)((u8 *)(arg0) + 0xAC), (int)VecCopy__FP3VecPC3Vec((void *)((u8 *)(arg0) + 0xD0), (int)((void *)((u8 *)(arg0) + 0xDC))));
-        ((void (*)(void *, int))increment_partner_counter)((void *) (arg0 + 0x5C), 4);
-        if (((s16 (*)(void *, int))get_partner_counter)((void *) (arg0 + 0x5C), 4) == 0x1519) {
-            self->f80 &= ~4u;
-            self->f24 = 0x19;
-            ((void (*)(void *, int, int))set_partner_counter)((void *) (arg0 + 0x5C), 4, 0);
+        // The native copy is chained through VecCopy's return value: the
+        // inner call copies fDC into fD0 and returns fD0, which becomes the
+        // source of the outer copy into pos (mr r4, r3 in the original).
+        VecCopy__FP3VecPC3Vec(&self->pos, VecCopy__FP3VecPC3Vec(&self->fD0, (int)&self->fDC));
+        // The partner counter helpers take their slot array as a pointer:
+        // arg0+0x5C is the header's m_5c field. The integer form of the
+        // address would be hoisted into a saved register by MWCC, which
+        // does not match the original's fresh `addi` per call.
+        increment_partner_counter((void *)(arg0 + 0x5C), 4);
+        if ((s16)get_partner_counter((void *)(arg0 + 0x5C), 4) == 0x1519) {
+            this->m_80 &= ~4u;
+            this->m_24 = 0x19;
+            set_partner_counter((s32)(arg0 + 0x5C), 4, (s16)0);
         }
-        if (((s32 (*)(void *, int, int))clamp_partner_counter)((void *) (arg0 + 0x5C), 4, 0x1518) != 0) {
-            ((TNpcPlayer *)arg0)->request_chatter(0xb);
+        if (clamp_partner_counter((s32)(arg0 + 0x5C), 4, (s16)0x1518) != 0) {
+            this->request_chatter(0xb);
         }
         break;
     case 1:
-        dir.x = self->pos.x - self->f78->obj->pos.x;
+        dir.x = self->pos.x - ((Owner_80150EC4 *)this->m_78)->obj->pos.x;
         dir.y = TNpcPlayer__data_805DB1F0;
-        dir.z = self->pos.z - self->f78->obj->pos.z;
-        len = ((f32 (*)(void *))vector_length)(&dir);
+        dir.z = self->pos.z - ((Owner_80150EC4 *)this->m_78)->obj->pos.z;
+        len = vector_length(&dir);
         if (len <= TNpcPlayer__data_805DB23C) {
             return;
         }
-        if (self->f78->obj->flags & 0x100000) {
-            ((TNpcPlayer *)arg0)->send_walk_request();
+        if (((Owner_80150EC4 *)this->m_78)->obj->flags & 0x100000) {
+            this->send_walk_request();
         } else if (len <= self->f40) {
-            if (!(self->f80 & 8)) {
-                ((TNpcPlayer *)arg0)->send_walk_request();
+            if (!(this->m_80 & 8)) {
+                this->send_walk_request();
             } else {
-                ((TNpcPlayer *)arg0)->send_run_request();
+                this->send_run_request();
             }
         } else {
-            self->f80 |= 8u;
-            ((TNpcPlayer *)arg0)->send_run_request();
+            this->m_80 |= 8u;
+            this->send_run_request();
         }
         break;
     case 2:
-        ((TNpcPlayer *)arg0)->update_combat_action();
+        this->update_combat_action();
         break;
     case 3:
         break;
     case 5:
         break;
     case 8:
-        ((TNpcPlayer *)arg0)->dispatch_action(self->f92);
+        this->dispatch_action(self->f92);
         break;
     default:
         break;
     }
-    if (self->f7c != 2) {
-        ((void (*)(void *, int))reset_partner_counter)((void *) (arg0 + 0x5C), 1);
-        ((void (*)(void *, int))reset_partner_counter)((void *) (arg0 + 0x5C), 5);
-        self->f80 &= ~0x8000u;
+    if (this->m_7c != 2) {
+        reset_partner_counter((void *)(arg0 + 0x5C), 1);
+        reset_partner_counter((void *)(arg0 + 0x5C), 5);
+        this->m_80 &= ~0x8000u;
     }
-    if (self->f7c != 1) {
-        self->f80 &= ~8u;
+    if (this->m_7c != 1) {
+        this->m_80 &= ~8u;
     }
-    if (self->f7c != 0) {
-        ((void (*)(void *, int))reset_partner_counter)((void *) (arg0 + 0x5C), 4);
+    if (this->m_7c != 0) {
+        reset_partner_counter((void *)(arg0 + 0x5C), 4);
     }
 }
 
@@ -3483,10 +3489,10 @@ void TNpcPlayer::run_task() {
                     } else if (((s32 (*)(void *, int, int))is_partner_counter_reached)((void *) (arg0 + 0x5C), 3, 0) != 0) {
                         ((TNpcPlayer *)arg0)->request_chatter(4);
                     }
-                    increment_partner_counter((s32) (arg0 + 0x5C), 3);
+                    increment_partner_counter((void *) (arg0 + 0x5C), 3);
                     ((TNpcPlayer *)arg0)->change_ai_state(0);
                 } else {
-                    reset_partner_counter((s32) (arg0 + 0x5C), 3);
+                    reset_partner_counter((void *) (arg0 + 0x5C), 3);
                     ((TNpcPlayer *)arg0)->update_condition_flags();
                     ((s32 (*)(void *))partner_observe_surroundings)((void *) (arg0));
                     ((TNpcPlayer *)arg0)->decide_action();
@@ -3751,14 +3757,14 @@ void set_technique_seed_level(Obj_801528A8 *self, s16 i, u8 v) {
     self->arr[i] = v;
 }
 
-void reset_partner_counter(s32 arg0, s32 arg1) {
-    *(s16 *)((s8 *)(arg0 + (arg1 * 2)) + 0) = 0;
+void reset_partner_counter(void *arg0, s32 arg1) {
+    *(s16 *)((s8 *)arg0 + (arg1 * 2)) = 0;
 }
 
-void increment_partner_counter(s32 arg0, s32 arg1) {
+void increment_partner_counter(void *arg0, s32 arg1) {
     s32 temp_r5;
     temp_r5 = arg1 * 2;
-    *(s16 *)((s8 *)(arg0 + temp_r5) + 0) = *(s16 *)((s8 *)(arg0 + temp_r5) + 0) + 1;
+    *(s16 *)((s8 *)arg0 + temp_r5) = *(s16 *)((s8 *)arg0 + temp_r5) + 1;
 }
 
 s32 TNpcPlayer__sub_801528DC(void* p) { return *(s32*)((char*)p + 0x84); }
@@ -3767,8 +3773,8 @@ s32 TNpcPlayer::get_npc_state() { return *(s32*)((char*)this + 0x7c); }
 
 u16 get_npc_type__10TNpcPlayerFPv(void* p) { return *(u16*)((char*)p + 0x8a); }
 
-int get_partner_counter(s32 arg0, s32 arg1) {
-    return *(s16 *)((s8 *)(arg0 + (arg1 * 2)) + 0);
+int get_partner_counter(void *arg0, s32 arg1) {
+    return *(s16 *)((s8 *)arg0 + (arg1 * 2));
 }
 
 s32 npc_counter_reset_if_reached(s32 arg0, s32 arg1) {
