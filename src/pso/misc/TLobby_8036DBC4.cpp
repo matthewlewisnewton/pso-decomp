@@ -28,7 +28,7 @@ void TBGMulti__ct(void) {
     if (TCameraCtrl::get_camera_id() == 3) {
         sp8[0] = TLobby::tmp_buf_use_req((const char *)lbl_8047AD08);
         TLanguage::draw_string(lbl_8047AD14, sp8, 0x4D);
-        ((TLobby *)lbl_8047AD08)->tmp_buf_release();
+        TLobby::tmp_buf_release((const char *)lbl_8047AD08);
         (*(s32 *)&TBGMulti__textures) = (s32)load_gvm_texture_file((s32)lbl_8047AD20);
         set_current_texture_list((GinjaTextureList *)(TBGMulti__textures));
         TLanguage::set_entry_index(0, 0x4D);
