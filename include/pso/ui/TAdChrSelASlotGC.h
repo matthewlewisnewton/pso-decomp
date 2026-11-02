@@ -4,6 +4,8 @@
 #include "types.h"
 #include "pso/TObject.h"
 
+class TAdChrSelMovePlateGC;
+
 struct TAdChrSelASlotGC : public TObject {
     TAdChrSelASlotGC(TObject *arg1, void *arg2);
     virtual ~TAdChrSelASlotGC();
@@ -52,7 +54,7 @@ struct TAdChrSelASlotGC : public TObject {
     s32 m_38;
     u8 unk_3C[0x4];
     s32 m_40;
-    u8 unk_44[0x4];
+    TAdChrSelMovePlateGC *m_44;
     u32 m_48;
     u8 unk_4C[0x4];
     u32 m_50;
