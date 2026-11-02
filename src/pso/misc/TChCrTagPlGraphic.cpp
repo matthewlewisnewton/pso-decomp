@@ -2,16 +2,22 @@
 
 #include "types.h"
 #include "pso/TChCrCharSelect.h"
-#include "pso/misc/TWindowSubSymbolChatPartsSet.h"
 
-struct TChCrTagPlGraphic__data_804664A4 {
-    s32 value;
-    u8 remaining[0x11C];
+/* One 0x18-byte parameter row per slot in the externally owned
+ * TChCrTagPlGraphic__data_804664A4 rodata. field_04 is the class match value
+ * compared against tag_player_graphic_match_value_table; pair is copied into
+ * the tag at +0x48 by the constructor. */
+struct TChCrTagPlGraphicRow {
+    f32 field_00;
+    f32 field_04;
+    f32 pair[2];
+    f32 field_10;
+    f32 field_14;
 };
 
 extern "C" {
-u8 * __ct__8TChCrTagFP7TObjectPv(void *, s32);
-extern const TChCrTagPlGraphic__data_804664A4 TChCrTagPlGraphic__data_804664A4;
+u8 * __ct__8TChCrTagFP7TObjectPv(void *, s32, s32);
+extern const TChCrTagPlGraphicRow TChCrTagPlGraphic__data_804664A4[12];
 extern void *__vt__17TChCrTagPlGraphic[];
 extern s32 ch_cr_tag_pl_graphic_class_name;
 extern const f32 lbl_805DDF18;
@@ -28,13 +34,12 @@ void TChCrTagPlGraphic__sub_802A3230(u8 *tag);
 void update_fade__8TChCrTagFPv(u8 *arg0);
 void *__nw__7TObjectFUl(int);
 void render_shadows__7TObjectFv();
+void copy_vec2__28TWindowSubSymbolChatPartsSetFPv(f32 *destination, const void *source);
 void restore_saved_depth_alpha_state(void);
 int set_depth_buffer_settings_1__Fv(void*);
 
 void render__17TChCrTagPlGraphicFv(void* p) { set_depth_buffer_settings_1__Fv(p); ((TChCrTagPlGraphic *)p)->draw_class_illustration(); restore_saved_depth_alpha_state(); }
 
-
-struct Ent_802A3230 { f32 v[6]; };
 
 struct VBase_802A3230 { char pad[0x18]; };
 struct VTag_802A3230 : VBase_802A3230 {
@@ -48,23 +53,23 @@ struct VTag_802A3230 : VBase_802A3230 {
 #pragma push
 #pragma fp_contract on
 void TChCrTagPlGraphic__sub_802A3230(u8 *tag) {
-    const Ent_802A3230 *e;
+    const TChCrTagPlGraphicRow *e;
 
-    e = (const Ent_802A3230 *)&TChCrTagPlGraphic__data_804664A4 + *(s32 *)(tag + 0x20);
+    e = &TChCrTagPlGraphic__data_804664A4[*(s32 *)(tag + 0x20)];
     *(f32 *)(tag + 0x3C) = *(f32 *)(tag + 0x24) * *(f32 *)(tag + 0x30);
     switch (TChCrCharSelect::get_selected_index()) {
     case 0:
-        *(f32 *)(tag + 0x40) += lbl_805DDF20 * (e->v[1] - *(f32 *)(tag + 0x40));
-        *(f32 *)(tag + 0x44) += lbl_805DDF20 * (e->v[0] - *(f32 *)(tag + 0x44));
-        *(f32 *)(tag + 0x48) += lbl_805DDF20 * (e->v[2] - *(f32 *)(tag + 0x48));
-        *(f32 *)(tag + 0x4C) += lbl_805DDF20 * (e->v[3] - *(f32 *)(tag + 0x4C));
+        *(f32 *)(tag + 0x40) += lbl_805DDF20 * (e->field_04 - *(f32 *)(tag + 0x40));
+        *(f32 *)(tag + 0x44) += lbl_805DDF20 * (e->field_00 - *(f32 *)(tag + 0x44));
+        *(f32 *)(tag + 0x48) += lbl_805DDF20 * (e->pair[0] - *(f32 *)(tag + 0x48));
+        *(f32 *)(tag + 0x4C) += lbl_805DDF20 * (e->pair[1] - *(f32 *)(tag + 0x4C));
         break;
     default:
         if (((VTag_802A3230 *)tag)->m4() != 0) {
             *(f32 *)(tag + 0x40) += lbl_805DDF20 * (lbl_805DDF24 - *(f32 *)(tag + 0x40));
             *(f32 *)(tag + 0x44) += lbl_805DDF20 * (lbl_805DDF28 - *(f32 *)(tag + 0x44));
-            *(f32 *)(tag + 0x48) += lbl_805DDF20 * (e->v[4] - *(f32 *)(tag + 0x48));
-            *(f32 *)(tag + 0x4C) += lbl_805DDF20 * (e->v[5] - *(f32 *)(tag + 0x4C));
+            *(f32 *)(tag + 0x48) += lbl_805DDF20 * (e->field_10 - *(f32 *)(tag + 0x48));
+            *(f32 *)(tag + 0x4C) += lbl_805DDF20 * (e->field_14 - *(f32 *)(tag + 0x4C));
         }
         break;
     }
@@ -74,6 +79,7 @@ void TChCrTagPlGraphic__sub_802A3230(u8 *tag) {
 void run_task__17TChCrTagPlGraphicFv(void* p) { update_fade__8TChCrTagFPv((u8 *)p); TChCrTagPlGraphic__sub_802A3230((u8 *)p); }
 
 extern void *tl_03;
+extern f32 tag_player_graphic_match_value_table[];
 
 typedef char RecoveredGlobal_802A3454_TChCrTagPlGraphic__data_804664A4_size[sizeof(TChCrTagPlGraphic__data_804664A4) == 0x120 ? 1 : -1];
 
@@ -93,11 +99,23 @@ s32 TChCrTagPlGraphic__vt4(u8 *arg0) {
     return 0;
 }
 
-TChCrTagPlGraphic::~TChCrTagPlGraphic() {}
+void *__dt__8TChCrTagFv(void *, s16);
+void __dl__7TObjectFPv(void *);
+
+void *__dt__17TChCrTagPlGraphicFv(void *self, s16 arg1) {
+    if (self != NULL) {
+        *(void ***)((s8 *)self + 0x18) = __vt__17TChCrTagPlGraphic;
+        __dt__8TChCrTagFv(self, 0);
+        if (arg1 > 0) {
+            __dl__7TObjectFPv(self);
+        }
+    }
+    return self;
+}
 
 u8 *__ct__17TChCrTagPlGraphicFv(u8 *ch_cr_tag, s32 arg1, s32 _w2) {
-    u8 *temp_r5;
-    __ct__8TChCrTagFP7TObjectPv(ch_cr_tag, arg1);
+    const TChCrTagPlGraphicRow *row;
+    __ct__8TChCrTagFP7TObjectPv(ch_cr_tag, arg1, _w2);
     *(s32 **)((s8 *)ch_cr_tag + 0x18) = (s32 *)__vt__17TChCrTagPlGraphic;
     *(s32 *)((s8 *)ch_cr_tag + 0) = (s32) ch_cr_tag_pl_graphic_class_name;
     *(f32 *)((s8 *)ch_cr_tag + 0x28) = (f32) lbl_805DDF2C;
@@ -105,10 +123,10 @@ u8 *__ct__17TChCrTagPlGraphicFv(u8 *ch_cr_tag, s32 arg1, s32 _w2) {
     *(f32 *)((s8 *)ch_cr_tag + 0x34) = (f32) lbl_805DDF2C;
     *(f32 *)((s8 *)ch_cr_tag + 0x38) = (f32) lbl_805DDF30;
     *(f32 *)((s8 *)ch_cr_tag + 0x3C) = (f32) lbl_805DDF18;
-    temp_r5 = (u8 *)&TChCrTagPlGraphic__data_804664A4.value + (*(s32 *)((s8 *)ch_cr_tag + 0x20) * 0x18);
-    *(f32 *)((s8 *)ch_cr_tag + 0x40) = (f32) *(f32 *)((s8 *)temp_r5 + 4);
-    *(f32 *)((s8 *)ch_cr_tag + 0x44) = (f32) *(f32 *)((s8 *)temp_r5 + 0);
-    ((TWindowSubSymbolChatPartsSet *)(ch_cr_tag + 0x48))->copy_vec2(temp_r5 + 8);
+    row = &TChCrTagPlGraphic__data_804664A4[*(s32 *)((s8 *)ch_cr_tag + 0x20)];
+    *(f32 *)((s8 *)ch_cr_tag + 0x40) = (f32) row->field_04;
+    *(f32 *)((s8 *)ch_cr_tag + 0x44) = (f32) row->field_00;
+    copy_vec2__28TWindowSubSymbolChatPartsSetFPv((f32 *)((s8 *)ch_cr_tag + 0x48), row->pair);
     return ch_cr_tag;
 }
 
@@ -120,21 +138,17 @@ void *TChCrTagPlGraphic::create(void *arg0) {
     return o;
 }
 
-struct Ent_802A3534 { f32 a; f32 b; u8 pad[0x10]; };
-extern f32 tag_player_graphic_match_value_table[];
-
 void TChCrTagPlGraphic::create_matching_tags() {
     s32 i, j;
     for (i = 0; i < 4; i++) {
         for (j = 0; j < 12; j++) {
-            if (((Ent_802A3534 *)&TChCrTagPlGraphic__data_804664A4)[j].b == tag_player_graphic_match_value_table[i]) {
+            if (TChCrTagPlGraphic__data_804664A4[j].field_04 == tag_player_graphic_match_value_table[i]) {
                 TChCrTagPlGraphic::create((void *)j);
             }
         }
     }
 }
 
-void __dt__17TChCrTagPlGraphicFv();
 void *__vt__17TChCrTagPlGraphic[8] = {
     0, 0,
     (void *)__dt__17TChCrTagPlGraphicFv,
