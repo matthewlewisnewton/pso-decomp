@@ -1206,7 +1206,7 @@ void render_debug__14TObjEneBm5WolfFPv(u8 *ene_bm5_wolf) {
         set_current_texture_list((GinjaTextureList *)(((TObjEneBm5Wolf *)ene_bm5_wolf)->texlist));
         push_matrix();
         post_translate_matrix(ene_bm5_wolf + 0x38);
-        rotate_matrix_y(0, ((TObjEneBm5Wolf *)ene_bm5_wolf)->rotation_y);
+        rotate_matrix_y(0, ((TObjEneBm5Wolf *)ene_bm5_wolf)->rotation.yaw);
         idx = (s32) *(f32 *)((s8 *)ene_bm5_wolf + 0x360);
         if (idx < 0) {
             idx = 0;
@@ -1287,7 +1287,7 @@ void TObjEneBm5Wolf::render() {
                 translate_matrix(0, TObjEneBm5Wolf__data_805D9D78, TObjEneBm5Wolf__data_805D9D84, TObjEneBm5Wolf__data_805D9D78);
                 rotate_matrix_z(0, rot.z);
                 rotate_matrix_x(0, rot.x);
-                rotate_matrix_y(0, this->rotation_y);
+                rotate_matrix_y(0, this->rotation.yaw);
                 translate_matrix(0, TObjEneBm5Wolf__data_805D9D78, TObjEneBm5Wolf__data_805D9D78, TObjEneBm5Wolf__data_805D9D7C);
                 scale_matrix(0, lbl_805D9D88, TObjEneBm5Wolf__data_805D9D8C, lbl_805D9D90);
                 rotate_matrix_x(0, -0x4000);
@@ -1298,7 +1298,7 @@ void TObjEneBm5Wolf::render() {
             set_current_texture_list((GinjaTextureList *)(this->texlist));
             push_matrix();
             post_translate_matrix(((u8 *)this) + 0x38);
-            rotate_matrix_y(0, this->rotation_y);
+            rotate_matrix_y(0, this->rotation.yaw);
             translate_matrix(0, TObjEneBm5Wolf__data_805D9D78, TObjEneBm5Wolf__data_805D9D78, TObjEneBm5Wolf__data_805D9D7C);
             if (this->m_408 & 4) {
                 translate_matrix(0, TObjEneBm5Wolf__data_805D9D78, *(f32 *)((s8 *)((u8 *)this) + 0x40C), TObjEneBm5Wolf__data_805D9D78);
@@ -1477,8 +1477,8 @@ void TObjEneBm5Wolf::hurt_state(s32 arg1) {
         } else {
             (this->movement_velocity.x) *= TObjEneBm5Wolf__data_805D9DB0;
             this->movement_velocity.z *= TObjEneBm5Wolf__data_805D9DB0;
-            this->rotation_y = approach_angle_limited(this->rotation_y, this->m_42c, 0x300);
-            this->rotation_y = (s16) this->rotation_y;
+            this->rotation.yaw = approach_angle_limited(this->rotation.yaw, this->m_42c, 0x300);
+            this->rotation.yaw = (s16) this->rotation.yaw;
             if (((TObjMotion *)arg0)->is_passing_frame(lbl_805D9DA0) != 0) {
                 spawn_recoil_dust__14TObjEneBm5WolfFiPv(arg0, &v);
             }
@@ -1511,7 +1511,7 @@ void TObjEneBm5Wolf::action(s32 arg1) {
         return;
     case 0:
         ((TObjMotion *)arg0)->advance_animation();
-        advance_pose_turn__14TObjEneBm5WolfFPvi(arg0, this->rotation_y);
+        advance_pose_turn__14TObjEneBm5WolfFPvi(arg0, this->rotation.yaw);
         if (((TObjMotion *)arg0)->is_passing_frame(TObjEneBm5Wolf__data_805D9DB4) != 0) {
             play_sound_effect((s32)((void *)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x3AA1A))), (const Vec *)((u8 *)&this->position), 0, 0);
             play_effect_if_v2__10TObjPlayerFl(-0x100);
@@ -1562,7 +1562,7 @@ void TObjEneBm5Wolf::repositioning_state(s32 arg1) {
             if (get_flag_bit0__14TObjEneBm5WolfFPv(arg0) == 0) {
                 this->m_42c = -this->m_42c;
             }
-            this->m_42c += this->rotation_y;
+            this->m_42c += this->rotation.yaw;
             (this->roamingTimer)++;
             if (this->roamingTimer > 8) {
                 this->roamingSubstate = 2;
@@ -1599,7 +1599,7 @@ void TObjEneBm5Wolf::repositioning_state(s32 arg1) {
             }
             play_proximity_effect();
             ((TObjEneDD *)arg0)->move_with_wall_slide_on_ground(*(f32 *)((s8 *)arg0 + 0x3A0), *(f32 *)((s8 *)arg0 + 0x3A8), lbl_805D9DC0);
-            this->rotation_y = approach_angle_limited(this->rotation_y, this->m_42c, 0xF00);
+            this->rotation.yaw = approach_angle_limited(this->rotation.yaw, this->m_42c, 0xF00);
             advance_pose_turn__14TObjEneBm5WolfFPvi(arg0, this->m_42c);
             this->vfunc_89();
             break;
@@ -1774,9 +1774,9 @@ void TObjEneBm5Wolf::update_lunge(s32 arg1) {
                 }
             }
             approach_target__14TObjEneBm5WolfFPvf(arg0, (f32) ((*(f32 *)&TObjEneBm5Wolf__data_805D9DA8)));
-            this->rotation_y = approach_angle_limited(this->rotation_y, this->m_42c, 0x1000);
-            this->rotation_y = (s32) (s16) this->rotation_y;
-            advance_pose_turn__14TObjEneBm5WolfFPvi(arg0, this->rotation_y);
+            this->rotation.yaw = approach_angle_limited(this->rotation.yaw, this->m_42c, 0x1000);
+            this->rotation.yaw = (s32) (s16) this->rotation.yaw;
+            advance_pose_turn__14TObjEneBm5WolfFPvi(arg0, this->rotation.yaw);
             if (this->frame <= TObjEneBm5Wolf__data_805D9DF0) {
                 ((TObjEneDD *)arg0)->move_with_wall_slide_on_ground((f32) (*(f32 *)((s8 *)arg0 + 0x3A0)), (f32) (*(f32 *)((s8 *)arg0 + 0x3A8)), this->currentSpeed);
                 temp_f2 = this->frame - TObjEneBm5Wolf__data_805D9DF4;
@@ -1795,7 +1795,7 @@ void TObjEneBm5Wolf::update_lunge(s32 arg1) {
             if ((s32) this->roamingTimer >= 0xA) {
                 this->roamingSubstate = 2;
             }
-            advance_pose_turn__14TObjEneBm5WolfFPvi(arg0, this->rotation_y);
+            advance_pose_turn__14TObjEneBm5WolfFPvi(arg0, this->rotation.yaw);
             if ((s32) this->nearTarget == 0) {
                 this->currentSpeed = (f32) (this->currentSpeed * (*(f32 *)&TObjEneBm5Wolf__data_805D9DA4));
                 ((TObjEneDD *)arg0)->move_with_wall_slide_on_ground((f32) (*(f32 *)((s8 *)arg0 + 0x3A0)), (f32) (*(f32 *)((s8 *)arg0 + 0x3A8)), this->currentSpeed);
@@ -2033,8 +2033,8 @@ void TObjEneBm5Wolf::flanking_state(s32 arg1) {
                 VecCopy((Vec *)dst, (const Vec *)src);
                 this->m_430 = *ang;
             }
-            this->rotation_y = approach_angle_limited(this->rotation_y, this->m_430, 0x800);
-            this->rotation_y = (s16)this->rotation_y;
+            this->rotation.yaw = approach_angle_limited(this->rotation.yaw, this->m_430, 0x800);
+            this->rotation.yaw = (s16)this->rotation.yaw;
             if (this->frame >= TObjEneBm5Wolf__data_805D9DF4) {
                 this->currentSpeed *= (*(f32 *)&TObjEneBm5Wolf__data_805D9DB0);
                 this->play_speed = (*(f32 *)&TObjEneBm5Wolf__data_805D9DAC) * this->currentSpeed;
@@ -2156,7 +2156,7 @@ void TObjEneBm5Wolf::roaming_state(int event) {
             }
             turn_pose_to_target();
         } else {
-            advance_pose_turn__14TObjEneBm5WolfFPvi(this, this->rotation_y);
+            advance_pose_turn__14TObjEneBm5WolfFPvi(this, this->rotation.yaw);
         }
         switch (this->roamingSubstate) {
         case 0:
@@ -2845,14 +2845,14 @@ s32 calc_lunge_aim__14TObjEneBm5WolfFPv(u8 *arg0) {
         update_velocity__9TObjEneDDFv(arg0);
         return (s32) ((*(f64 *)&TObjEneBm5Wolf__data_8043B5B0) * atan2_float((f64) *(f32 *)((s8 *)arg0 + 0x3A0), (f64) *(f32 *)((s8 *)arg0 + 0x3A8)));
     }
-    *(f32 *)((s8 *)arg0 + 0x3A0) = sin_table_lookup((int) (((TObjEneBm5Wolf *)arg0)->rotation_y));
+    *(f32 *)((s8 *)arg0 + 0x3A0) = sin_table_lookup((int) (((TObjEneBm5Wolf *)arg0)->rotation.yaw));
     *(f32 *)((s8 *)arg0 + 0x3A4) = (f32) (*(f32 *)&TObjEneBm5Wolf__data_805D9D78);
-    *(f32 *)((s8 *)arg0 + 0x3A8) = cos_table_lookup((int) (((TObjEneBm5Wolf *)arg0)->rotation_y));
+    *(f32 *)((s8 *)arg0 + 0x3A8) = cos_table_lookup((int) (((TObjEneBm5Wolf *)arg0)->rotation.yaw));
     VecCopy((Vec *)(arg0 + 0x394), (const Vec *)(arg0 + 0x38));
     *(f32 *)((s8 *)arg0 + 0x394) = (f32) ((TObjEneBm5Wolf__data_805D9DF0 * *(f32 *)((s8 *)arg0 + 0x3A0)) + *(f32 *)((s8 *)arg0 + 0x394));
     *(f32 *)((s8 *)arg0 + 0x39C) = (f32) ((TObjEneBm5Wolf__data_805D9DF0 * *(f32 *)((s8 *)arg0 + 0x3A8)) + *(f32 *)((s8 *)arg0 + 0x39C));
     ((TObjEneBm5Wolf *)arg0)->target_distance = (f32) TObjEneBm5Wolf__data_805D9DF0;
-    return ((TObjEneBm5Wolf *)arg0)->rotation_y;
+    return ((TObjEneBm5Wolf *)arg0)->rotation.yaw;
 }
 #pragma pop
 
@@ -3128,9 +3128,9 @@ void TObjEneBm5Wolf::choose_roaming_destination() {
 void TObjEneBm5Wolf::turn_pose_to_target() {
     f32 x;
     f32 z;
-    sin_table_lookup(this->rotation_y);
+    sin_table_lookup(this->rotation.yaw);
     x = *(f32 *)((s8 *)this + 0x38) + (*(f32 *)&TObjEneBm5Wolf__data_805D9D78);
-    cos_table_lookup(this->rotation_y);
+    cos_table_lookup(this->rotation.yaw);
     z = *(f32 *)((s8 *)this + 0x40) + (*(f32 *)&TObjEneBm5Wolf__data_805D9D78);
     f32 dx = *(f32 *)((s8 *)this->target + 0x38) - x;
     f32 dz = *(f32 *)((s8 *)this->target + 0x40) - z;

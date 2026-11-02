@@ -514,7 +514,7 @@ void TOMine::follow_target() {
   temp_f2 = *((f32 *) (((s8 *) arg0) + 0x48));
   *((f32 *) (((s8 *) arg0) + 0x3C)) = (f32) ((lbl_805DB884 * ((lbl_805DB888 + (*((f32 *) ((this->target) + 0x3C)))) - temp_f2)) + temp_f2);
   ((TObjChara *)arg0)->calc_attach_pos();
-  this->rotation_y = (s32) (lbl_80442200 * atan2_float((f64) stack.sp8, (f64) stack.sp10));
+  this->rotation.yaw = (s32) (lbl_80442200 * atan2_float((f64) stack.sp8, (f64) stack.sp10));
   ((TObjCollidable *)arg0)->refresh_collision_body_centers();
 }
 
@@ -557,8 +557,8 @@ void TOMine::update_float_height() {
             this->m_340 = (s32) (this->m_340 | 2);
         }
     } else {
-        *(s32 *)&this->rotation_x = (s32) (*(s32 *)&this->rotation_x + 0x800);
-        *(f32 *)((s8 *)arg0 + 0x338) = (f32) (*(f32 *)((s8 *)arg0 + 0x338) + sin_table_lookup(*(s32 *)&this->rotation_x));
+        *(s32 *)&this->rotation.pitch = (s32) (*(s32 *)&this->rotation.pitch + 0x800);
+        *(f32 *)((s8 *)arg0 + 0x338) = (f32) (*(f32 *)((s8 *)arg0 + 0x338) + sin_table_lookup(*(s32 *)&this->rotation.pitch));
     }
 }
 #pragma pop

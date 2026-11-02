@@ -380,7 +380,7 @@ TObjEneMe1Gee::TObjEneMe1Gee(TObject *parent, TObjEneMe1Gee *swarm_leader,
     set_index = child_index;
     random_child_position(leader, &position);
     VecCopy(&position, initial_position);
-    rotation_y = leader->rotation_y;
+    this->rotation.yaw = leader->rotation.yaw;
     gee_flags = 0;
     role = 1;
     init_state();
@@ -639,8 +639,8 @@ void TObjEneMe1Gee::update_from_float_sum() {
 }
 
 void TObjEneMe1Gee::update_angle() {
-    this->rotation_y = approach_angle_limited(this->rotation_y, (s32) (lbl_8043BF28 * atan2_float(this->target_direction.x, this->target_direction.z)), 0x400);
-    this->rotation_y = (s32) (s16) this->rotation_y;
+    this->rotation.yaw = approach_angle_limited(this->rotation.yaw, (s32) (lbl_8043BF28 * atan2_float(this->target_direction.x, this->target_direction.z)), 0x400);
+    this->rotation.yaw = (s32) (s16) this->rotation.yaw;
 }
 
 void TObjEneMe1Gee::update() { if (this->enemy_has_live_target() != 0) { this->enemy_copy_target_destination(); this->update_velocity(); this->update_angle(); } }
@@ -1380,7 +1380,7 @@ void TObjEneMe1Gee::fn_800CA454(s32 reason) {
                 advance_animation();
                 push_matrix_from(identity_matrix);
                 post_translate_matrix(&position);
-                rotate_matrix_y(0, rotation_y);
+                rotate_matrix_y(0, this->rotation.yaw);
                 set_motion_packed_rotation();
                 calc_joint_matrices(state_timer);
                 clear_motion_packed_rotation();
@@ -1677,7 +1677,7 @@ void TObjEneMe1Gee::fn_800C9A94(s32 reason) {
                     c = normalize_vector_xz(&v);
                     move_to_wall_clamped_destination(v.x, v.z, c);
                 }
-                rotation_y = (s32)(lbl_8043BF28 * atan2_float(dir->x, dir->z)) + 0x8000;
+                this->rotation.yaw = (s32)(lbl_8043BF28 * atan2_float(dir->x, dir->z)) + 0x8000;
                 break;
             }
             case 0:
@@ -1889,7 +1889,7 @@ void TObjEneMe1Gee::vfunc_112(s32 arg1) {
             this->leader = (TObjEneMe1Gee *)find_entity_by_id(this->leader_id);
             leader->remove_child(this);
         }
-        create_breakup_mdl__12TBoss3VoloptFlllll((s32)gee_breakup_model, 0, texlist, &body_center_position, rotation_y);
+        create_breakup_mdl__12TBoss3VoloptFlllll((s32)gee_breakup_model, 0, texlist, &body_center_position, this->rotation.yaw);
         play_sound_effect(remap_gee_sound(0x3A843), &position, 0, 0);
         this->gee_flags |= 0x400000;
         this->actorFlags = (s32) (this->actorFlags | 0x01000000);
@@ -1936,7 +1936,7 @@ void TObjEneMe1Gee::state_orbit(s32 arg1) {
         this->requested_action = 0;
         temp_f1 = this->position.y;
         this->world_height = (f32) (temp_f1 + this->hover_height);
-        this->field_448 = sin_table_lookup(rotation_y);
+        this->field_448 = sin_table_lookup(this->rotation.yaw);
         this->field_44C = cos_table_lookup(*(s32 *)((s8 *)this + 0x60));
         return;
     case 0:
@@ -2002,7 +2002,7 @@ void TObjEneMe1Gee::render() {
         push_matrix();
         post_translate_matrix(ene_me1_gee + 0x38);
         translate_matrix(0, TObjEneMe1Gee__data_805DA0B4, (f32) (this->model_height), TObjEneMe1Gee__data_805DA0B4);
-        rotate_matrix_y(0, (int) (this->rotation_y));
+        rotate_matrix_y(0, (int) (this->rotation.yaw));
         temp_r0 = this->mode;
         var_r29 = 1;
         if ((temp_r0 == 1) || (temp_r0 == 0xC)) {
@@ -2027,7 +2027,7 @@ void TObjEneMe1Gee::render() {
                 }
                 set_chunk_model_node_callback(NULL);
             } else {
-                rotate_matrix_z(0, (int) (this->rotation_z));
+                rotate_matrix_z(0, (int) (this->rotation.roll));
                 TObjEneMe1Gee__render_node_index = -1;
                 gee_camera_ctrl_step_ptr = node_positions;
                 set_chunk_model_node_callback(TObjEneMe1Gee::advance_camera_ctrl_step);
@@ -2087,7 +2087,7 @@ void TObjEneMe1Gee::vfunc_115() {
         set_current_texture_list((GinjaTextureList *)texlist);
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         TObjEneDD::clear_global_flag_400();
         draw_chunk_object((void *)(this->model));
         pop_matrix();
@@ -2144,7 +2144,7 @@ void TUnk_8049387C::vfunc_107() {
         n = 1;
     }
     a = entity_id + 1;
-    angle = rotation_y;
+    angle = this->rotation.yaw;
     b = set_index + 1;
     for (i = 0; i < n; i++) {
         v.x = lbl_805DA0B0 * sin_table_lookup(angle);
@@ -2386,7 +2386,7 @@ void TUnk_8049387C::vfunc_111(s32 arg1) {
 void TUnk_8049387C::vfunc_112(s32 arg1) {
     switch (arg1) {
     case 4:
-        create_breakup_mdl__12TBoss3VoloptFlllll((s32)gee_swarm_breakup_model, 0, texlist, &body_center_position, rotation_y);
+        create_breakup_mdl__12TBoss3VoloptFlllll((s32)gee_swarm_breakup_model, 0, texlist, &body_center_position, this->rotation.yaw);
         this->gee_flags |= 0x400000;
         distribute_experience_and_request_drop();
         return;

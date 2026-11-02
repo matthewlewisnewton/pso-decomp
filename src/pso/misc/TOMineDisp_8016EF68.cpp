@@ -82,7 +82,7 @@ void TOMineDisp::render() {
     push_matrix();
     temp_r31 = *(s32 *)&this->m_up;
     post_translate_matrix(((u8 *)this) + 0x38);
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     ((TOMine *)temp_r31)->free_parts();
     TParticleCtrl::begin_effect_render();
     temp_r4 = model_render_flags;

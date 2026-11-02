@@ -513,7 +513,7 @@ void TContainerAncient01::init_positions() {
     *(f32 *)&this->unk_364 = (f32) TContainerAncient01__data_805DBD10[0];
     this->m_368 = (f32) TContainerAncient01__data_805DBD10[0];
     *(f32 *)&this->unk_36C = (f32) TContainerAncient01__data_805DBD10[0];
-    this->hp = (s16) this->rotation_z;
+    this->hp = (s16) this->rotation.roll;
     if ((s16) this->hp < 1) {
         this->hp = 1;
     }
@@ -585,7 +585,7 @@ void TContainerAncient01R::render() {
         set_current_texture_list((GinjaTextureList *)(this->texlist));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         if ((s32) this->m_360 != 0) {
             scale_current_matrix((u8 *)&this->unk_364);
         }
@@ -954,7 +954,7 @@ void TContainerAncient01::render() {
         set_current_texture_list((GinjaTextureList *)(this->texlist));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         if ((s32) this->m_35c != 0) {
             scale_current_matrix((u8 *)&this->m_360);
         }

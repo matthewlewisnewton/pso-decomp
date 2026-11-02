@@ -1,3 +1,4 @@
+#include "pso/misc/CameraHelpers.h"
 #include "pso/system/MatrixVectorArray.h"
 #include "pso/animation/MotionContext.h"
 #include "pso/math/FloatRounding.h"
@@ -426,9 +427,9 @@ void TBoss2DeRolLe::render_body() {
     TObjEneDD::clear_global_flag_400();
     push_matrix();
     post_translate_matrix(self->pos);
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     rotate_matrix_x(0, self->rotX);
-    rotate_matrix_z(0, this->rotation_z);
+    rotate_matrix_z(0, this->rotation.roll);
     Vec_8002EFE8 scale = lbl_804359E4;
     TObjEneDD::check_v2_mode();
     scale_current_matrix(&scale);
@@ -915,7 +916,7 @@ struct VObj_18_8002F7C4 : VBase_18_8002F7C4 {
 
 struct Vec_8002F7C4 { f32 x, y, z; };
 
-struct Cam_8002F7C4 { s8 a; s8 b; s16 c; f32 d; f32 e; };
+
 
 struct Sub_8002F7C4 { u8 pad0[8]; u32 f8; };
 
@@ -957,7 +958,7 @@ struct Rol_8002F7C4 : VObj_18_8002F7C4 {
 
 struct Vec_80032E38 { f32 x, y, z; };
 
-struct Cam_80032E38 { s8 a; s8 b; s16 c; f32 d; f32 e; };
+
 
 struct Play_80032E38 { u16 h0; u16 h2; };
 
@@ -1277,7 +1278,7 @@ void set_position_index__13TBoss2DeRolLeFPvi(void *, s32);
 void TBoss2Tentacle__sub_80039E54(void *a0);
 s32 restore_player_cameras();
 s32 activate_camera_mode(int);
-void set_scripted_camera_pose(void *, void *, void *);
+
 f32 calc_elapsed_scaled__9TObjEneDDFv(void *);
 
 void play_cue_stream_file(s32 name);
@@ -1311,7 +1312,6 @@ f32 calc_elapsed_scaled__9TObjEneDDFv(void *);
 void spawn_ceil_junk__13TBoss2DeRolLeFii(s32 arg1, s32 arg2);
 
 s32 get_flag_b4__9TObjEneDDFv(void *);
-Play_80032E38 *get_scripted_camera_playback(void);
 s32 restore_player_cameras();
 extern const f32 TBoss2DeRolLe__data_805D827C;
 extern const f32 TBoss2DeRolLe__data_805D82A0;
@@ -1662,7 +1662,7 @@ void TBoss2DeRolLe__sub_8002F73C(Obj_8002F73C *self, u32 kind) {
 #pragma opt_common_subs off
 #define o ((Rol_8002F7C4 *)arg0)
 void handle_death_state__13TBoss2DeRolLeFPvPv(void *arg0, void *arg1) {
-    Cam_8002F7C4 cam;
+    CameraPlayback cam;
     Vec_8002F7C4 v;
     Vec_8002F7C4 w;
     Vec_8002F7C4 save;
@@ -1686,14 +1686,14 @@ void handle_death_state__13TBoss2DeRolLeFPvPv(void *arg0, void *arg1) {
             TBoss2Tentacle__sub_80039E54((void *)o->tent[i]);
         }
         TWindowCtrl::init_all_slots();
-        cam.b = 0;
-        cam.a = 2;
-        cam.c = 0;
-        cam.d = TBoss2DeRolLe__data_805D827C;
-        cam.e = lbl_805D828C;
+        cam.index = 0;
+        cam.bank = 2;
+        cam.flags = 0;
+        cam.frame = TBoss2DeRolLe__data_805D827C;
+        cam.frame_step = lbl_805D828C;
         ((s32 (*)(int, f32))activate_camera_mode)(5, TBoss2DeRolLe__data_805D827C);
-        ((TCameraCtrl *)(&cam))->cache_target_and_forward(0x2AAA);
-        set_scripted_camera_pose(&o->pos, &o->pos, &o->f5C);
+        cache_target_and_forward__11TCameraCtrlFl(&cam, 0x2AAA);
+        set_scripted_camera_pose(&static_cast<TBoss2DeRolLe*>(arg0)->position, &static_cast<TBoss2DeRolLe*>(arg0)->position, &static_cast<TBoss2DeRolLe*>(arg0)->rotation);
         break;
     case 2:
         if (o->f3CC->f8 & 0x400) {
@@ -3393,7 +3393,7 @@ void handle_debug_pad_input__13TBoss2DeRolLeFPvPv(void *arg0_, void *arg1_) {
         *(s32 *)((s8 *)arg0 + 0x3C0) &= ~4;
         *(s32 *)((s8 *)arg0 + 0x3C0) |= 0x100;
         *(f32 *)((s8 *)arg0 + 0x6A4) = TBoss2DeRolLe__data_805D827C;
-        ((TBoss2DeRolLe *)arg0)->rotation_z = 0;
+        ((TBoss2DeRolLe *)arg0)->rotation.roll = 0;
         *(s32 *)((s8 *)arg0 + 0x6E4) = 1;
         *(s32 *)((s8 *)arg0 + 0x6E8) = 0;
         *(s32 *)((s8 *)arg0 + 0x6E0) = 0;
@@ -3497,8 +3497,8 @@ void handle_debug_pad_input__13TBoss2DeRolLeFPvPv(void *arg0_, void *arg1_) {
 #define o ((Rol_80032E38 *)arg0)
 void TBoss2DeRolLe__sub_80032E38(void *arg0, void *arg1) {
     Vec_80032E38 *p = &o->f724;
-    Cam_80032E38 cam;
-    Cam_80032E38 cam2;
+    CameraPlayback cam;
+    CameraPlayback cam2;
     Vec_80032E38 v1;
     Vec_80032E38 v2;
     Vec_80032E38 v3;
@@ -3520,21 +3520,21 @@ void TBoss2DeRolLe__sub_80032E38(void *arg0, void *arg1) {
         p->y = TBoss2DeRolLe__data_805D827C;
         p->z = TBoss2DeRolLe__data_805D827C;
         if (TObjEneDD::check_v2_mode() != 0) {
-            cam.b = 1;
-            cam.a = 1;
-            cam.c = 0;
-            cam.d = TBoss2DeRolLe__data_805D827C;
-            cam.e = lbl_805D8408;
+            cam.index = 1;
+            cam.bank = 1;
+            cam.flags = 0;
+            cam.frame = TBoss2DeRolLe__data_805D827C;
+            cam.frame_step = lbl_805D8408;
             ((s32 (*)(int, f32))activate_camera_mode)(5, TBoss2DeRolLe__data_805D827C);
-            ((TCameraCtrl *)(&cam))->cache_target_and_forward(0x1C71);
+            cache_target_and_forward__11TCameraCtrlFl(&cam, 0x1C71);
         } else {
-            cam2.b = 0;
-            cam2.a = 1;
-            cam2.c = 0;
-            cam2.d = TBoss2DeRolLe__data_805D827C;
-            cam2.e = lbl_805D8408;
+            cam2.index = 0;
+            cam2.bank = 1;
+            cam2.flags = 0;
+            cam2.frame = TBoss2DeRolLe__data_805D827C;
+            cam2.frame_step = lbl_805D8408;
             ((s32 (*)(int, f32))activate_camera_mode)(5, TBoss2DeRolLe__data_805D827C);
-            ((TCameraCtrl *)(&cam2))->cache_target_and_forward(0x1C71);
+            cache_target_and_forward__11TCameraCtrlFl(&cam2, 0x1C71);
         }
         TWindowCtrl::init_all_slots();
         ((TObjEneDD *)o)->get_target_state_b();
@@ -3631,7 +3631,7 @@ void TBoss2DeRolLe__sub_80032E38(void *arg0, void *arg1) {
             }
             break;
         case 4:
-            if (get_scripted_camera_playback()->h2 & 1) {
+            if (get_scripted_camera_playback()->flags & 1) {
                 restore_player_cameras();
                 o->f6E0 = 5;
             }

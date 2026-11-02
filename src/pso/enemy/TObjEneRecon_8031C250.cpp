@@ -815,7 +815,7 @@ void TObjEneRecon__sub_8031CCFC(u8 *arg0, s32 arg1) {
         case 0:
             ((TObjEneDD_ST *)arg0)->enemy_copy_target_destination();
             ((TObjEneDD *)arg0)->update_velocity();
-            ((TObjEneEpsilon *)arg0)->rotation_y = approach_angle_limited(((TObjEneEpsilon *)arg0)->rotation_y,
+            ((TObjEneEpsilon *)arg0)->rotation.yaw = approach_angle_limited(((TObjEneEpsilon *)arg0)->rotation.yaw,
                 (s32)(TObjEneRecon__data_80476110 * atan2_float(((TObjEneDD_ST *)arg0)->target_direction.x, *(f32 *)((s8 *)arg0 + 0x3A8))),
                 0x400);
             (*(s32 *)((s8 *)arg0 + 0x3C4))++;

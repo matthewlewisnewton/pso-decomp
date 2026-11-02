@@ -98,6 +98,8 @@ jobs:
           if [ "$GITHUB_EVENT_NAME" != pull_request ]; then
             # Manual run on a branch: no separate base; snapshot its own report so
             # report_delta is vacuous, and still get the DOL-SHA and link checks.
+            python3 configure.py
+            ninja
             ninja baseline
           fi
           python3 tools/check_pr.py --json ci-result/result.json

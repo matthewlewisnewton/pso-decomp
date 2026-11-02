@@ -866,7 +866,7 @@ void *TOTrapAncient02R__ct(TOTrapAncient02R *trap_ancient02_r, void *arg1, void 
     trap_ancient02_r->h348 = lbl_805DBA80;
     trap_ancient02_r->h344 = lbl_805DBA80;
     *(s32 *)&trap_ancient02_r->m_34c = 0;
-    if (trap_ancient02_r->rotation_z > 0) {
+    if (trap_ancient02_r->rotation.roll > 0) {
         *(s32 *)&trap_ancient02_r->m_358 = 1;
     } else {
         *(s32 *)&trap_ancient02_r->m_358 = 0;
@@ -1069,7 +1069,7 @@ void TOTrapAncient02::render_particle_chain() {
 
     push_matrix();
     post_translate_matrix((u8 *)&this->position);
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     temp_r31 = (unsigned char *) (this->model);
     translate_matrix(0, (f32) (*(f32 *)((s8 *)temp_r31 + 8)), (f32) (*(f32 *)((s8 *)temp_r31 + 0xC) + this->h344), (f32) (*(f32 *)((s8 *)temp_r31 + 0x10)));
     setup_particle_tev(0);
@@ -1119,7 +1119,7 @@ void TOTrapAncient02::draw_effect_chain() {
     push_matrix();
     set_current_texture_list((GinjaTextureList *)(this->texlist));
     post_translate_matrix((u8 *)&this->position);
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     temp_r31 = (unsigned char *) (this->model);
     translate_matrix(0, (f32) (*(f32 *)((s8 *)temp_r31 + 8)), (f32) (*(f32 *)((s8 *)temp_r31 + 0xC) + this->h344), (f32) (*(f32 *)((s8 *)temp_r31 + 0x10)));
     draw_ginja_model((*(s32 *)((s8 *)temp_r31 + 4)));
