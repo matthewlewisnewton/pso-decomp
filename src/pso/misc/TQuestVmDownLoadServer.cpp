@@ -9,6 +9,7 @@
 extern "C" void TWindow__close(u8 *arg0);
 
 #include "types.h"
+#include "pso/quest/TQuestListVMData.h"
 
 extern "C" {
 s32 wait_confirm_and_finish__17TMCFormatSequenceFPv();
@@ -159,9 +160,6 @@ extern RecoveredGlobal_801F84AC_lbl_80512BDC quest_download_file_header;
 s32 *get_quest_download_file_header(void);
 extern const char *TQuestVmDownLoadServer__class_name;
 extern char lbl_8044A68C[];
-extern char lbl_8044BEE8[];
-extern const s32 lbl_805DC6B0;
-extern const s32 lbl_805DC6B4;
 extern char TQuestVmDownLoadServer__data_804C8690[];
 extern u8 TQuestVmDownLoadServer__memcard_key[];
 extern char TQuestVmDownLoadServer__data_805DC5B8[];
@@ -204,7 +202,6 @@ s32 draw_window_bg__23TAdSinglePlyChrSelectGCFllll(s32, void *, s32, s32);
 typedef char RecoveredGlobal_801F6C74_lbl_8050E208_size[sizeof(RecoveredGlobal_801F6C74_lbl_8050E208) == 0x1B0 ? 1 : -1];
 }
 extern s32 tl_03;
-extern s32 lbl_8044BEF4[];
 typedef char RecoveredGlobal_801F84AC_lbl_80512BDC_size[sizeof(RecoveredGlobal_801F84AC_lbl_80512BDC) == 0x3C ? 1 : -1];
 typedef char SubtractiveRng_size[sizeof(SubtractiveRng) == 0xE8 ? 1 : -1];
 struct SubtractiveRng;
@@ -1134,7 +1131,7 @@ void TQuestVmDownLoadServer::sub_801F718C() {
 void TQuestVmDownLoadServer::write_quest_data() {
     TAdSinglePlyChrSelectGC::set_quest_download_server(this->m_25c);
     lbl_805D49B4 = 1;
-    if (draw_window_bg__23TAdSinglePlyChrSelectGCFllll(this->m_25c, lbl_8044BEF4, (s32)(*(s32 *)&this->m_260), (s32)(*(s32 *)&this->unk_26C)) == 0) {
+    if (draw_window_bg__23TAdSinglePlyChrSelectGCFllll(this->m_25c, (void *)lbl_8044BEF4, (s32)(*(s32 *)&this->m_260), (s32)(*(s32 *)&this->unk_26C)) == 0) {
         this->state = 0x10;
         show_status_message(TQuestVmDownLoadServer__sub_8006EF6C(0xC), 1);
         return;
