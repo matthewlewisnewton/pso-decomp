@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/misc/TUnk_804CF930.h"
 #include "pso/misc/TWindowSubStatusDisp_80256B94.h"
@@ -91,8 +92,6 @@ typedef char RecoveredGlobal_80257B4C_lbl_804CF948_size[sizeof(RecoveredGlobal_8
 
 typedef void *(*Ctor_80257D44)(void *, void *, s32);
 
-void mem_free(void *);
-void ** mem_alloc(u32);
 #define destroy__13TUnk_804CF930Fs ((s32 (*)(s32, s32 *))destroy__13TUnk_804CF930Fs)
 #define sub_80256BDC__13TUnk_804CF930Fs ((int (*)(void*, int))sub_80256BDC__13TUnk_804CF930Fs)
 #define calc_bar_width__20TWindowSubStatusDispFPv ((s32 (*)())calc_bar_width__20TWindowSubStatusDispFPv)
@@ -154,7 +153,7 @@ void TWindowSubStatusDisp::destroy_all_items() {
             }
             p--;
         }
-        mem_free(arg0->items);
+        ::operator delete[](arg0->items);
         arg0->count = 0;
         arg0->items = 0;
     }
@@ -178,7 +177,7 @@ void init_window_layout_entries(List_80257D44 *self, Desc_80257D44 *desc, s32 ar
         self->items = NULL;
         return;
     }
-    self->items = mem_alloc(self->count * 4);
+    self->items = static_cast<void**>(::operator new[](self->count * 4));
     out = self->items;
     while (rows-- != 0) {
         cols = desc->cols;

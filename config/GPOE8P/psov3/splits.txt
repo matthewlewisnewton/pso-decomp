@@ -4741,7 +4741,7 @@ pso/misc/TNpcPlayer.cpp:
 	.text       start:0x8014DF78 end:0x8015302C
 	.ctors      start:0x80433F84 end:0x80433F88
 	.rodata     start:0x8043FF68 end:0x8043FFE8
-	.data       start:0x804ABC90 end:0x804AF78C
+	.data       start:0x804ABC90 end:0x804AF7B0
 	.bss        start:0x8050CF68 end:0x8050D430
 	.sdata2     start:0x805DB1F0 end:0x805DB208
 
@@ -7615,6 +7615,12 @@ pso/misc/TMedicalCenterSequence.cpp:
 	.bss        start:0x80513E90 end:0x80513EB0
 	.sdata2     start:0x805DC688 end:0x805DC690
 
+pso/quest/TQuestListVMData.cpp:
+	.rodata     start:0x8044BEE8 end:0x8044BF58
+	.sdata      start:0x805D3690 end:0x805D3694
+	.sbss       start:0x805D6200 end:0x805D6214
+	.sdata2     start:0x805DC6B0 end:0x805DC6B8
+
 pso/misc/TWindow.cpp:
 	.text       start:0x80216B44 end:0x802171BC
 
@@ -9842,6 +9848,7 @@ pso/unk/text_802A3138.cpp:
 
 pso/misc/TChCrTagPlGraphic.cpp:
 	.text       start:0x802A31F8 end:0x802A35B4
+	.data       start:0x804DCC78 end:0x804DCC98
 
 pso/misc/TWindowSubStatusDisp_802A35B4.cpp:
 	.text       start:0x802A35B4 end:0x802A3608
@@ -10597,6 +10604,9 @@ pso/unk/text_802EDE90.cpp:
 pso/boss/TBoss7DeRolLeC_802EE4E0.cpp:
 	.text       start:0x802EE4E0 end:0x802EE6E0
 	.bss        start:0x805412C0 end:0x80541528
+
+pso/boss/Boss7TentacleBanks.cpp:
+	.bss        start:0x80541528 end:0x80541918
 
 pso/boss/TBoss7Joint_802EE6E0.cpp:
 	.text       start:0x802EE6E0 end:0x802EE9A4
@@ -13886,6 +13896,9 @@ pso/misc/TQuestVmDownLoadServer_803E5668.cpp:
 	.text       start:0x803E5668 end:0x803E6610
 	.bss        start:0x8058DC48 end:0x8058DE08
 	.sdata2     start:0x805E10C0 end:0x805E10C8
+
+pso/misc/QuestDownloadBuffers.cpp:
+	.bss        start:0x8058DE08 end:0x80595008
 
 pso/misc/TWindowKeyBoardSoft_803E6610.cpp:
 	.text       start:0x803E6610 end:0x803E6970

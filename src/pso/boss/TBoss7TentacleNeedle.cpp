@@ -1,3 +1,4 @@
+#include "pso/boss/Boss7TentacleBanks.h"
 #include "pso/math/MatrixCopy.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/SoundEffect.h"
@@ -98,13 +99,13 @@ struct RecoveredGlobal_802EFEC4_lbl_80541918 {
 
 typedef char RecoveredGlobal_802EFEC4_lbl_80541918_size[sizeof(RecoveredGlobal_802EFEC4_lbl_80541918) == 0x10 ? 1 : -1];
 
-struct V_802F0A5C { f32 x, y, z; };
+typedef Vec V_802F0A5C;
 
 struct Ten_802F0A5C { u8 pad0[0x50]; V_802F0A5C v[14]; u32 w[14]; };
 
 struct V_802EFF24 { f32 x, y, z; };
 
-struct Node_802EFF24 { u8 pad0[8]; V_802EFF24 pos; u8 pad14[8]; s32 ang; u8 pad20[0x18]; };
+typedef DragonModelNode Node_802EFF24;
 
 struct Tent_802EFF24 { u8 pad0[0x50]; V_802EFF24 pos[14]; s32 ang[14]; };
 
@@ -133,11 +134,8 @@ void rotate_matrix_by_node_angles(void *, int);
 s32 scale_current_matrix(void *);
 void post_translate_matrix(void *);
 
-extern V_802F0A5C TBoss7Tentacle__segment_offsets[];
 extern s32 __vt__20TBoss7TentacleNeedle[];
 extern s32 lbl_80474070[];
-extern Node_802EFF24 lbl_80541528[];
-extern u32 TBoss7Tentacle__needle_offsets[];
 extern RecoveredGlobal_802EFB1C_lbl_80541918 boss7_tentacle_needle_target_state;
 extern s32 lbl_805D3FD8;
 extern s32 lbl_805D6948;
@@ -354,10 +352,10 @@ void render__14TBoss7TentacleFv(u8 *arg0) {
         scale_current_matrix((void *) (lbl_80474070));
         rotate_matrix_zyx(0, 0, (*(s32 *)((s8 *)arg0 + 0x13C)), (*(s32 *)((s8 *)arg0 + 0x140)));
         for (var_ctr = 0; var_ctr < 14; var_ctr++) {
-            lbl_80541528[var_ctr].pos.x = ((Tent_802EFF24 *)arg0)->pos[var_ctr].x;
-            lbl_80541528[var_ctr].pos.y = ((Tent_802EFF24 *)arg0)->pos[var_ctr].y;
-            lbl_80541528[var_ctr].pos.z = ((Tent_802EFF24 *)arg0)->pos[var_ctr].z;
-            lbl_80541528[var_ctr].ang = ((Tent_802EFF24 *)arg0)->ang[var_ctr];
+            lbl_80541528[var_ctr].position.x = ((Tent_802EFF24 *)arg0)->pos[var_ctr].x;
+            lbl_80541528[var_ctr].position.y = ((Tent_802EFF24 *)arg0)->pos[var_ctr].y;
+            lbl_80541528[var_ctr].position.z = ((Tent_802EFF24 *)arg0)->pos[var_ctr].z;
+            lbl_80541528[var_ctr].rotation.z = ((Tent_802EFF24 *)arg0)->ang[var_ctr];
         }
         scale_current_matrix((void *) ((u8 *)(arg0) + 0x24));
         draw_chunk_object((lbl_80541528));

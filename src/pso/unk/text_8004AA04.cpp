@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/system/NinjaUtil.h"
 #include "pso/unk/text_800F5BC0.h"
@@ -21,11 +22,9 @@ typedef struct Obj_8004AA80 {
 } Obj_8004AA80;
 
 extern "C" {
-void mem_free(void *p);
 void fn_8004AA04(Obj_8004AA04 *self);
 s32 get_bml_model(s32, s32);
 s32 alloc_tables__6TLobbyFll(s32, s32, s32);
-void *mem_alloc(u32 size);
 void init_model_node_tables(Obj_8004AA80 *arg0, Rec_8004AA80 *arg1, s32 arg2);
 void fn_8004AA04(Obj_8004AA04 *self) {
     s32 i;
@@ -35,7 +34,7 @@ void fn_8004AA04(Obj_8004AA04 *self) {
             self->items[i] = 0;
         }
     }
-    mem_free(self->items);
+    ::operator delete[](self->items);
     self->items = 0;
 }
 void init_model_node_tables(Obj_8004AA80 *arg0, Rec_8004AA80 *arg1, s32 arg2) {
@@ -51,7 +50,7 @@ void init_model_node_tables(Obj_8004AA80 *arg0, Rec_8004AA80 *arg1, s32 arg2) {
     }
     arg0->count = arg2;
     arg0->items = NULL;
-    arg0->items = (s32 *)mem_alloc(arg0->count * 4);
+    arg0->items = (s32 *)::operator new[](arg0->count * 4);
     arg0->f8 = 0;
     arg0->fc = 0;
     for (j = 0; j < arg0->count; j++) {
