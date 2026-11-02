@@ -212,7 +212,7 @@ void TObjLobbyMain::render() {
     if (lobby_texlist != 0 && update_object_view_visibility(view_range, model_radius) != 0) {
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
+        rotate_matrix_y(NULL, this->rotation.yaw);
         if (fade_state != 2) {
             scale_matrix(NULL, fade_scale, 1.0f, fade_scale);
         }
@@ -267,7 +267,7 @@ void TObjLobbyMain::update_emitter_positions() {
             push_matrix();
             set_matrix_identity(NULL);
             post_translate_matrix(&position.x);
-            rotate_matrix_y(NULL, rotation_y);
+            rotate_matrix_y(NULL, this->rotation.yaw);
             matrix_mult_vec(NULL, &pos, &pos);
             emitter0->set_position(&pos);
             pop_matrix();
@@ -278,7 +278,7 @@ void TObjLobbyMain::update_emitter_positions() {
             push_matrix();
             set_matrix_identity(NULL);
             post_translate_matrix(&position.x);
-            rotate_matrix_y(NULL, rotation_y);
+            rotate_matrix_y(NULL, this->rotation.yaw);
             matrix_mult_vec(NULL, &pos, &pos);
             emitter1->set_position(&pos);
             pop_matrix();

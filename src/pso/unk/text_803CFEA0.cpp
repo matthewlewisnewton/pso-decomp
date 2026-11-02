@@ -1,6 +1,9 @@
+#define PSO_SDK_COMPACT_MATH
 #include "types.h"
 #include "pso/misc/TLobby.h"
+#include "pso/misc/TLobby_803CFE68.h"
 #include "pso/system/GcciRequests.h"
+#undef PSO_SDK_COMPACT_MATH
 
 typedef s32 (*RecoveredCallback_4873a87e26d6)(s32, s32 *, s32);
 struct RecoveredGlobal_803CFEA0_lbl_8047DAE4 {
@@ -23,20 +26,12 @@ struct File_803D0654 {
     s32 f24;
 };
 
-struct DVDFileInfo_803D0AE8 {
-    u8 pad[0x34];
-    u32 length;
-    u8 pad38[4];
-};
-
 extern "C" {
 extern RecoveredGlobal_803CFEA0_lbl_8047DAE4 lbl_8047DAE4;
 extern s32 lbl_805D7608;
 extern RecoveredCallback_4873a87e26d6 lbl_805D760C;
 extern RecoveredGlobal_803CFEA0_lbl_8047DAE4 lbl_8047DB30;
 s32 TLobby__sub_803D0654(struct File_803D0654 *arg0, s32 arg1, s32 arg2);
-s32 DVDOpen(const char *, DVDFileInfo_803D0AE8 *);
-s32 DVDClose(DVDFileInfo_803D0AE8 *);
 char *strcat(char *, const char *);
 char *strcpy(char *, const char *);
 u32 strlen(const char *);
@@ -45,9 +40,6 @@ extern char lbl_8047DAFC[];
 extern char lbl_8047DB14[];
 extern char dvd_default_path_buffer[];
 extern GcciStatus dvd_active_request;
-s32 DVDGetCommandBlockStatus(void *);
-s32 DVDGetDriveStatus(void);
-s32 DVDCancel(void *);
 u32 OSGetTick(void);
 void *memset(void *, int, u32);
 extern GcciRequest dvd_request_table[40];
@@ -135,10 +127,10 @@ void TLobby__sub_803D006C(void *arg) {
     if (*(s8 *)&r->state == 1 || *(s8 *)&r->state == 0) {
         return;
     }
-    DVDGetCommandBlockStatus(r->block);
+    DVDGetCommandBlockStatus(&r->block.cb);
     DVDGetDriveStatus();
     dvd_active_request.unknown08 = 1;
-    result = DVDCancel(r->block);
+    result = DVDCancel(&r->block.cb);
     dvd_active_request.unknown08 = 0;
     if (result < 0) {
         if (lbl_805D760C != NULL) {
@@ -148,7 +140,7 @@ void TLobby__sub_803D006C(void *arg) {
     }
     start = OSGetTick() / (*(u32 *)0x800000F8 / 4 / 1000);
     while (!dvd_request_idle(r)) {
-        r->status = DVDGetCommandBlockStatus(r->block);
+        r->status = DVDGetCommandBlockStatus(&r->block.cb);
         dvd_active_request.status = r->status;
         now = OSGetTick() / (*(u32 *)0x800000F8 / 4 / 1000);
         if (now >= start) {
@@ -165,28 +157,15 @@ void TLobby__sub_803D006C(void *arg) {
     }
     r->state = 0;
     dvd_active_request.state = 0;
-    DVDGetCommandBlockStatus(r->block);
+    DVDGetCommandBlockStatus(&r->block.cb);
     DVDGetDriveStatus();
 }
 
 #pragma pop
 
-s32 TLobby::get_handle_field_1c() {
-    u8 *arg0 = (u8 *)this;
-    if (arg0 == NULL) {
-        if (((s32 (*)(s32, s32 *, s32)) lbl_805D760C) != NULL) {
-            lbl_805D760C(lbl_805D7608, &lbl_8047DAE4.value, 0);
-        }
-        return 0;
-    }
-    return *(s32 *)((s8 *)arg0 + 0x1c);
-}
 extern s32 dvd_synchronous_read_enabled;
 void DCInvalidateRange(void *, u32);
-s32 DVDGetTransferredSize(void *);
-s32 DVDReadAsyncPrio(void *, void *, s32, s32, void (*)(void), s32);
-s32 Dolphin_DVDReadPrio(void *, void *, s32, s32, s32);
-void TLobby__sub_803CFE9C(void);
+s32 Dolphin_DVDReadPrio(DVDFileInfo *, void *, s32, s32, s32);
 
 #pragma push
 #pragma dont_inline off
@@ -216,7 +195,7 @@ inline void dvd_poll_requests(void) {
     for (i = 0; i < 40; i++) {
         r = &dvd_request_table[i];
         if ((s32)r->active == 1 && (s32)r->state == 2) {
-            r->status = DVDGetCommandBlockStatus(r->block);
+            r->status = DVDGetCommandBlockStatus(&r->block.cb);
             dvd_active_request.status = r->status;
             switch (r->status) {
             case -1:
@@ -232,7 +211,7 @@ inline void dvd_poll_requests(void) {
                 r->state = dvd_active_request.state = 1;
                 break;
             case 10:
-                n = DVDGetTransferredSize(r->block);
+                n = DVDGetTransferredSize(&r->block);
                 DCInvalidateRange(r->buf, n);
                 r->done = r->unit * (n / r->unit);
                 r->pos += n / r->unit;
@@ -299,9 +278,9 @@ s32 TLobby__sub_803D0214(void *arg, s32 count, void *buf) {
     len = (len + 31) & ~31;
     DCInvalidateRange(buf, len);
     if (dvd_synchronous_read_enabled == 0) {
-        result = DVDReadAsyncPrio(r->block, buf, len, offset, TLobby__sub_803CFE9C, 2);
+        result = DVDReadAsyncPrio(&r->block, buf, len, offset, TLobby__sub_803CFE9C, 2);
     } else {
-        result = Dolphin_DVDReadPrio(r->block, buf, len, offset, 2);
+        result = Dolphin_DVDReadPrio(&r->block, buf, len, offset, 2);
     }
     if (result == 0) {
         return 0;
@@ -311,6 +290,18 @@ s32 TLobby__sub_803D0214(void *arg, s32 count, void *buf) {
     return r->count;
 }
 #pragma pop
+
+// Keep this definition after 803D0214 to preserve the original link order.
+s32 TLobby::get_handle_field_1c() {
+    u8 *arg0 = (u8 *)this;
+    if (arg0 == NULL) {
+        if (((s32 (*)(s32, s32 *, s32)) lbl_805D760C) != NULL) {
+            lbl_805D760C(lbl_805D7608, &lbl_8047DAE4.value, 0);
+        }
+        return 0;
+    }
+    return *(s32 *)((s8 *)arg0 + 0x1c);
+}
 
 s32 TLobby__sub_803D0654(struct File_803D0654 *arg0, s32 arg1, s32 arg2) {
     if (arg0 == NULL) {
@@ -333,6 +324,71 @@ s32 TLobby__sub_803D0654(struct File_803D0654 *arg0, s32 arg1, s32 arg2) {
 #pragma push
 #pragma dont_inline off
 #pragma inline_depth(8)
+void TLobby__sub_803D0714(void *arg) {
+    GcciRequest *rr;
+    GcciRequest *r = (GcciRequest *)arg;
+    char *msg = lbl_8047DAB8;
+    u32 start;
+    s32 neg1;
+    u32 now;
+    u32 elapsed;
+    s32 result;
+
+    // Both null tests reproduce the original's unreachable report block.
+    if (r == NULL) {
+        return;
+    }
+    rr = (GcciRequest *)arg;
+    if (rr == NULL) {
+        if (lbl_805D760C != NULL) {
+            lbl_805D760C(lbl_805D7608, (s32 *)(msg + 0x2C), 0);
+        }
+    } else {
+        if (*(s8 *)&rr->state == 1 || *(s8 *)&rr->state == 0) {
+            goto close_req;
+        }
+        DVDGetCommandBlockStatus(&rr->block.cb);
+        DVDGetDriveStatus();
+        dvd_active_request.unknown08 = 1;
+        result = DVDCancel(&rr->block.cb);
+        dvd_active_request.unknown08 = 0;
+        if (result < 0) {
+            if (lbl_805D760C != NULL) {
+                lbl_805D760C(lbl_805D7608, (s32 *)(msg + 0x90), (s32)rr);
+            }
+            goto close_req;
+        }
+        start = OSGetTick() / (*(u32 *)0x800000F8 / 4 / 1000);
+        neg1 = -1 - start;
+        // This empty subobject-address test preserves MWCC's register allocation.
+        if (&rr->block && &rr->block) { }
+        while (!dvd_request_idle(rr)) {
+            rr->status = DVDGetCommandBlockStatus(&rr->block.cb);
+            dvd_active_request.status = rr->status;
+            now = OSGetTick() / (*(u32 *)0x800000F8 / 4 / 1000);
+            if (now >= start) {
+                elapsed = now - start;
+            } else {
+                elapsed = neg1 + now;
+            }
+            if (elapsed > 2000) {
+                if (lbl_805D760C != NULL) {
+                    lbl_805D760C(lbl_805D7608, (s32 *)(msg + 0xAC), (s32)rr);
+                }
+                break;
+            }
+        }
+        rr->state = 0;
+        dvd_active_request.state = 0;
+        DVDGetCommandBlockStatus(&rr->block.cb);
+        DVDGetDriveStatus();
+    }
+close_req:
+    DVDClose(&r->block);
+    r->active = 0;
+    memset(r, 0, sizeof(GcciRequest));
+}
+
 inline GcciRequest *dvd_find_free_request(void) {
     GcciRequest *found = NULL;
     s32 i;
@@ -381,7 +437,7 @@ GcciRequest *TLobby__sub_803D08E0(const char *name, s32 arg1, s32 mode) {
             path[j] = '/';
         }
     }
-    if (DVDOpen(path, (DVDFileInfo_803D0AE8 *)r->block) == 0) {
+    if (DVDOpen(path, &r->block) == 0) {
         if (lbl_805D760C != NULL) {
             lbl_805D760C(lbl_805D7608, (s32 *)(msg + 0x188), 0);
         }
@@ -389,7 +445,7 @@ GcciRequest *TLobby__sub_803D08E0(const char *name, s32 arg1, s32 mode) {
         return NULL;
     }
     r->unit = 0x800;
-    size = ((DVDFileInfo_803D0AE8 *)r->block)->length;
+    size = r->block.length;
     if (size & 0x80000000) {
         size = 0x7FFFFFFF;
     }
@@ -412,7 +468,7 @@ s32 TLobby::get_dvd_file_size(const char *name) {
     s32 size;
     u32 len;
     u32 i;
-    DVDFileInfo_803D0AE8 info;
+    DVDFileInfo info;
     char path[0x100];
     if (name == NULL) {
         if (lbl_805D760C != NULL) {

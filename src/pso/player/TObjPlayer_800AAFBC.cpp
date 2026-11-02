@@ -309,7 +309,7 @@ void TUnk_80491460::run_task() {
 void *TObjPlayer::dt(s16 arg1) {
     if (this != NULL) {
         *(s32 **)((s8 *)this + 0x18) = __vt__13TUnk_80491460;
-        if ((void *)this->rotation_x != NULL) { queue_destruction__7TObjectFv((void *)this->rotation_x); }
+        if ((void *)this->rotation.pitch != NULL) { queue_destruction__7TObjectFv((void *)this->rotation.pitch); }
         __dt__7TObjectFv(this, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(this);

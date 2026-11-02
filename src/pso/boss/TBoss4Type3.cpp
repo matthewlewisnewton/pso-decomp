@@ -618,7 +618,7 @@ extern "C" {
 void vfunc_77__9TObjCharaFv();
 }
 extern "C" {
-void vfunc_76__9TObjCharaFv();
+void vfunc_76__9TObjCharaFf();
 }
 extern "C" {
 void vfunc_75__9TObjCharaFf();
@@ -756,7 +756,7 @@ void *__vt__11TBoss4Type3[83] = {
     (void *)&reset_pose__9TObjCharaFv, (void *)&get_anim_node_position__9TObjCharaFlP3Vec, (void *)&vfunc_66__9TObjCharaFv, (void *)&vfunc_67__9TObjCharaFf,
     (void *)&get_pos__9TObjCharaFl, (void *)&apply_switch_attack__9TObjCharaFv, (void *)&enemy_spawn_jellen_effect__9TObjCharaFv, (void *)&trigger_switch_attack__9TObjCharaFv,
     (void *)&enemy_spawn_zalure_effect__9TObjCharaFv, (void *)&recalc_stats__9TObjCharaFv, (void *)&vfunc_74__9TObjEnemyFl, (void *)&vfunc_75__9TObjCharaFf,
-    (void *)&vfunc_76__9TObjCharaFv, (void *)&vfunc_77__9TObjCharaFv, (void *)&vfunc_78__9TObjCharaFl, (void *)&vfunc_79__9TObjEnemyFPl,
+    (void *)&vfunc_76__9TObjCharaFf, (void *)&vfunc_77__9TObjCharaFv, (void *)&vfunc_78__9TObjCharaFl, (void *)&vfunc_79__9TObjEnemyFPl,
     (void *)&apply_hit_message_flags__9TObjEnemyFPv, (void *)&apply_set_data__9TObjEnemyFPv, (void *)&clear_lobby_object_state__9TObjEnemyFv,
 };
 #define lbl_80486FB0 ((u8 *)lbl_80486FB0)
@@ -1069,7 +1069,7 @@ void TBoss4Type3::run_task() {
     push_matrix();
     set_matrix_identity(0);
     post_translate_matrix(&this->position.x);
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     matrix_mult_vec(0, e, v[0]);
     matrix_mult_vec(0, e + 0xC, v[1]);
     pop_matrix();
@@ -1101,12 +1101,12 @@ void TBoss4Type3::draw() {
     ((void (*)(void *))toggle_particle_effect__10TObjPlayerFv)(this);
     ((void (*)(void))push_matrix)();
     ((void (*)(void *))post_translate_matrix)((void *)((char *)this + 56));
-    ((void (*)(int, void *))rotate_matrix_y)(0, *(void * *)&this->rotation_y);
+    ((void (*)(int, void *))rotate_matrix_y)(0, *(void * *)&this->rotation.yaw);
     sub_8005A438();
     ((void (*)(void))pop_matrix)();
     ((void (*)(void))push_matrix)();
     ((void (*)(void *))post_translate_matrix)((void *)((char *)this + 1152));
-    ((void (*)(int, void *))rotate_matrix_y)(0, *(void * *)&this->rotation_y);
+    ((void (*)(int, void *))rotate_matrix_y)(0, *(void * *)&this->rotation.yaw);
     TObjPlayer::draw_player_model_by_id(this->m_3ba, this->m_3c8);
     ((void (*)(void))pop_matrix)();
     TParticleCtrl::end_effect_render();
@@ -1417,7 +1417,7 @@ void TBoss4Type3::interp_position_between_nodes() {
     s32 i;
 
     a = this->m_3ac << 12;
-    this->rotation_y = approach_angle_limited(this->rotation_y, -(a + (s32)(this->m_39c * (f32)((s32 (*)(s32, s32))angle_diff_s16)(a, this->m_3a8 << 12))), 0x888);
+    this->rotation.yaw = approach_angle_limited(this->rotation.yaw, -(a + (s32)(this->m_39c * (f32)((s32 (*)(s32, s32))angle_diff_s16)(a, this->m_3a8 << 12))), 0x888);
     ids[0] = this->m_3a4;
     ids[1] = this->m_3a0;
     for (i = 0; i < 2; i++) {
@@ -1479,8 +1479,8 @@ void TBoss4Type3::turn_toward_player(s32 arg1) {
 }
 
 void TBoss4Type3::calc_grid_index() {
-    this->m_3ac = (s32) (((u32) -(this->rotation_y + 0x800) >> 0xCU) & 0xF);
-    this->m_3a8 = (s32) (((u32) -(this->rotation_y + 0x800) >> 0xCU) & 0xF);
+    this->m_3ac = (s32) (((u32) -(this->rotation.yaw + 0x800) >> 0xCU) & 0xF);
+    this->m_3a8 = (s32) (((u32) -(this->rotation.yaw + 0x800) >> 0xCU) & 0xF);
 }
 
 void TBoss4Type3__sub_800599F4(void *p, int lo, int hi) {

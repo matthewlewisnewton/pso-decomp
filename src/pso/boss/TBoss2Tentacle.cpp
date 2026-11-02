@@ -5,8 +5,6 @@
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/TBoss2Tentacle.h"
 
-TBoss2Tentacle::~TBoss2Tentacle() {}
-
 #include "types.h"
 #include "pso/boss/TObjBoss2Tunnel.h"
 #include "pso/object/TObjFish.h"
@@ -87,7 +85,6 @@ void draw_model_motion(void *arg0, void *arg1, f32 farg0);
 extern DragonModelNode tentacle_model_nodes[];
 extern s32 *lbl_805D4BD0;
 extern s32 lbl_805D4BD8;
-extern const f32 lbl_805D8528;
 void render__14TBoss2TentacleFv(u8 *arg0);
 f64 atan2_float(f32, f32);
 s32 emit_effect_and_step__13TBoss2DeRolLeFPvPv(void *, void *);
@@ -106,11 +103,6 @@ s32 set_matrix_identity(int);
 s32 subtract_vector(void *, void *);
 extern int TBoss2Tentacle__rest_angles[];
 extern s32 boss2_tentacle_angle_limit_table[];
-extern const f64 lbl_80435BA8[];
-extern const f32 lbl_805D852C;
-extern const float TBoss2Tentacle__data_805D8530;
-extern const float TBoss2Tentacle__data_805D8534;
-extern const f32 lbl_805D8538;
 void run_task__14TBoss2TentacleFv(u8 *arg0);
 s32 rand();
 extern s32 TBoss2Tentacle__name;
@@ -163,7 +155,7 @@ void render__14TBoss2TentacleFv(u8 *arg0) {
         break;
     case 3:
         post_translate_matrix(arg0 + 0x140);
-        scale_matrix(0, lbl_805D8528, lbl_805D8528, lbl_805D8528);
+        scale_matrix(0, 2.0f, 2.0f, 2.0f);
         rotate_matrix_y(0, (int) (*(s32 *)((s8 *)arg0 + 0x11C)));
         rotate_matrix_z(0, (int) (*(s32 *)((s8 *)arg0 + 0x120)));
         for (i = 0; i < 14; i++) {
@@ -210,7 +202,7 @@ void run_task__14TBoss2TentacleFv(u8 *arg0) {
     case 0:
         ((TBoss2Tentacle *)arg0)->advance_motion_position();
         F(s32, 0x128) += F(s32, 0x124);
-        F(s32, 0x11C) = lbl_805D852C * ((*(const f32 *)&TBoss2Tentacle__data_805D8530) + sin_table_lookup(F(s32, 0x128)));
+        F(s32, 0x11C) = 1365.0f * (1.0f + sin_table_lookup(F(s32, 0x128)));
         if (!(F(s32, 0x2C) & 1)) {
             F(s32, 0x11C) = -F(s32, 0x11C);
         }
@@ -229,7 +221,7 @@ void run_task__14TBoss2TentacleFv(u8 *arg0) {
         V3_800394DC pos;
         V3_800394DC v;
         f32 len;
-        v.z = v.y = v.x = (*(const f32 *)&TBoss2Tentacle__data_805D8534);
+        v.z = v.y = v.x = 0.0f;
         push_matrix();
         set_matrix_identity(0);
         concat_matrix((MtxP)(0), (const f32 (*)[4])(F(s32, 0x110)));
@@ -238,14 +230,14 @@ void run_task__14TBoss2TentacleFv(u8 *arg0) {
         VecCopy((Vec *)&v, (const Vec *)(arg0 + 0x12C));
         subtract_vector(&v, arg0 + 0x140);
         len = normalize_vector_xz((Vec *)(&v));
-        F(s32, 0x11C) = (s32)(lbl_80435BA8[0] * atan2_float(v.x, v.z)) + 0x8000;
+        F(s32, 0x11C) = (s32)(10430.38043493439 * atan2_float(v.x, v.z)) + 0x8000;
         VecCopy((Vec *)&pos, (const Vec *)(arg0 + 0x12C));
         switch (F(s32, 0x24)) {
         case 0: {
             s32 i;
-            F(f32, 0x150) -= lbl_805D8538;
-            if (F(f32, 0x150) <= lbl_805D8538) {
-                F(f32, 0x150) = lbl_805D8538;
+            F(f32, 0x150) -= 0.1f;
+            if (F(f32, 0x150) <= 0.1f) {
+                F(f32, 0x150) = 0.1f;
                 F(s32, 0x14C) = 0;
                 F(s32, 0x24) = 1;
             }
@@ -269,7 +261,7 @@ void run_task__14TBoss2TentacleFv(u8 *arg0) {
                 play_sound_effect(0x4003A507, (const Vec *)(&pos), 0, 0);
             }
             if (F(f32, 0x138) >= 0.4f * len) {
-                F(f32, 0x13C) = (*(const f32 *)&TBoss2Tentacle__data_805D8530);
+                F(f32, 0x13C) = 1.0f;
             } else {
                 F(f32, 0x13C) = F(f32, 0x138) / (0.4f * len);
             }
@@ -280,7 +272,7 @@ void run_task__14TBoss2TentacleFv(u8 *arg0) {
             F(s32, 0x14C)++;
             if (F(s32, 0x14C) > F(s32, 0x154)) {
                 F(s32, 0x14C) = 0;
-                F(f32, 0x150) = (*(const f32 *)&TBoss2Tentacle__data_805D8530);
+                F(f32, 0x150) = 1.0f;
                 F(s32, 0x24) = 3;
             }
             ((void (*)(void *))TBoss2Tentacle__sub_8003998C)(arg0);
@@ -293,7 +285,7 @@ void run_task__14TBoss2TentacleFv(u8 *arg0) {
                 TBoss2Tentacle__sub_80039DBC(arg0);
             }
             if (F(f32, 0x138) >= 0.4f * len) {
-                F(f32, 0x13C) = (*(const f32 *)&TBoss2Tentacle__data_805D8530);
+                F(f32, 0x13C) = 1.0f;
             } else {
                 F(f32, 0x13C) = F(f32, 0x138) / (0.4f * len);
             }
@@ -342,11 +334,11 @@ void TBoss2Tentacle__sub_80039994(Obj_80039994 *o, f32 len) {
         *(f32 *)(q + 0x34) = scale * (d * (a * d) + h);
     }
     ((void (*)(void *))TBoss2Tentacle__sub_80039990)(o);
-    o->pts[2].x = (*(const f32 *)&TBoss2Tentacle__data_805D8534);
-    o->pts[2].y = (*(const f32 *)&TBoss2Tentacle__data_805D8534);
-    o->pts[2].z = (*(const f32 *)&TBoss2Tentacle__data_805D8534);
-    px = (*(const f32 *)&TBoss2Tentacle__data_805D8534);
-    py = (*(const f32 *)&TBoss2Tentacle__data_805D8534);
+    o->pts[2].x = 0.0f;
+    o->pts[2].y = 0.0f;
+    o->pts[2].z = 0.0f;
+    px = 0.0f;
+    py = 0.0f;
     prev = 0;
     for (j = 3; j <= 11; j++) {
         f32 x = o->pts[j].x;
@@ -359,19 +351,19 @@ void TBoss2Tentacle__sub_80039994(Obj_80039994 *o, f32 len) {
         o->vals[j - 1] = ang - prev;
         prev = ang;
         o->pts[j].x = newton_sqrtf(dy * dy + dx * dx);
-        o->pts[j].y = (*(const f32 *)&TBoss2Tentacle__data_805D8534);
-        o->pts[j].z = (*(const f32 *)&TBoss2Tentacle__data_805D8534);
+        o->pts[j].y = 0.0f;
+        o->pts[j].z = 0.0f;
     }
     o->vals[11] = o->vals[10];
     ((void (*)(void *))TBoss2Tentacle__sub_80039990)(o);
     w = o->f13C;
-    if (w < (*(const f32 *)&TBoss2Tentacle__data_805D8530)) {
-        k = (*(const f32 *)&TBoss2Tentacle__data_805D8530) - w;
+    if (w < 1.0f) {
+        k = 1.0f - w;
         k *= o->f150;
         for (i = 2; i < 12; i++) {
             o->pts[i].x = o->pts[i].x * w + k * ((V3_80039994 *)&TBoss2Tentacle__segment_points)[i].x;
         }
-        o->vals[2] = (s32)(lbl_805D8554 * ((*(const f32 *)&TBoss2Tentacle__data_805D8530) - o->f13C) + (f32)o->vals[2] * w);
+        o->vals[2] = (s32)(lbl_805D8554 * (1.0f - o->f13C) + (f32)o->vals[2] * w);
         for (i = 3; i < 12; i++) {
             o->vals[i] = (s32)((f32)o->vals[i] * w);
         }
@@ -394,8 +386,7 @@ u8 TBoss2Tentacle__sub_80039CA0(u8 *arg0) {
 
 void TBoss2Tentacle__sub_80039CB4(void* p) { *(s32*)((char*)p + 0x11c) = 0; *(s32*)((char*)p + 0x120) = 16384; }
 
-    extern const float lbl_805D8544;
-void TBoss2Tentacle::reset() { *(int*)((char*)this + 0x11c) = 0; *(int*)((char*)this + 0x120) = 0; *(int*)((char*)this + 0x24) = 0; reset_segment_points(); *(float*)((char*)this + 0x138) = lbl_805D8544; *(int*)((char*)this + 0x14c) = 0; *(float*)((char*)this + 0x13c) = TBoss2Tentacle__data_805D8534; *(float*)((char*)this + 0x150) = TBoss2Tentacle__data_805D8530; }
+void TBoss2Tentacle::reset() { *(int*)((char*)this + 0x11c) = 0; *(int*)((char*)this + 0x120) = 0; *(int*)((char*)this + 0x24) = 0; reset_segment_points(); *(float*)((char*)this + 0x138) = 20.0f; *(int*)((char*)this + 0x14c) = 0; *(float*)((char*)this + 0x13c) = 0.0f; *(float*)((char*)this + 0x150) = 1.0f; }
 
 void TBoss2Tentacle::init_motion_from_table() { *(int*)((char*)this + 0x11c) = TBoss2Tentacle__rest_angles[*(int*)((char*)this + 0x2c)]; *(int*)((char*)this + 0x120) = 16384; *(int*)((char*)this + 0x24) = 0; }
 
@@ -441,6 +432,10 @@ void TBoss2Tentacle::start_attack_at_target(u8 *arg1, s32 arg2) {
 void TBoss2Tentacle::forward_80039DC8() { TBoss2Tentacle__sub_80039DC8(this); }
 
 }
+
+// This position preserves the native function order and vtable relocation targets.
+TBoss2Tentacle::~TBoss2Tentacle() {}
+
 TBoss2Tentacle::TBoss2Tentacle(TObject *parent, s32 arg2, s32 arg3) : TObject(parent) {
     s32 i;
     ((Obj_80039F50 *)this)->f0 = TBoss2Tentacle__name;
@@ -459,13 +454,13 @@ TBoss2Tentacle::TBoss2Tentacle(TObject *parent, s32 arg2, s32 arg3) : TObject(pa
     ((Obj_80039F50 *)this)->f120 = 0;
     ((Obj_80039F50 *)this)->f124 = 0x5EF;
     ((Obj_80039F50 *)this)->f128 = TObjPlayer::calc_random_scaled();
-    ((Obj_80039F50 *)this)->f138 = TBoss2Tentacle__data_805D8534;
-    ((Obj_80039F50 *)this)->f13C = TBoss2Tentacle__data_805D8534;
+    ((Obj_80039F50 *)this)->f138 = 0.0f;
+    ((Obj_80039F50 *)this)->f13C = 0.0f;
     ((Obj_80039F50 *)this)->f14C = 0;
     ((Obj_80039F50 *)this)->f154 = 0x78;
-    ((Obj_80039F50 *)this)->f12C = TBoss2Tentacle__data_805D8534;
-    ((Obj_80039F50 *)this)->f130 = TBoss2Tentacle__data_805D8534;
-    ((Obj_80039F50 *)this)->f134 = TBoss2Tentacle__data_805D8534;
+    ((Obj_80039F50 *)this)->f12C = 0.0f;
+    ((Obj_80039F50 *)this)->f130 = 0.0f;
+    ((Obj_80039F50 *)this)->f134 = 0.0f;
 }
 
 

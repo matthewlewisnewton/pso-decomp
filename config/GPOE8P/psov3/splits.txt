@@ -284,7 +284,7 @@ pso/boss/TBoss2Tentacle.cpp:
 	.rodata     start:0x80435BA8 end:0x80435BC0
 	.data       start:0x804832B0 end:0x804832C8
 	.bss        start:0x804FE5D8 end:0x804FE9C8
-	.sdata2     start:0x805D853C end:0x805D8548
+	.sdata2     start:0x805D8528 end:0x805D8548
 
 pso/boss/TObjBoss2CeilJunk.cpp:
 	.text       start:0x8003A1B4 end:0x8003A81C
@@ -729,18 +729,12 @@ pso/misc/TCameraCtrl_80067F8C.cpp:
 pso/misc/TCameraCtrl_80067FC0.cpp:
 	.text       start:0x80067FC0 end:0x800687BC
 
-pso/misc/TCameraCtrl_800687BC.cpp:
-	.text       start:0x800687BC end:0x8006A03C
-	.rodata     start:0x804381D0 end:0x804381D8
-	.sdata2     start:0x805D8FA8 end:0x805D8FC8
-
-pso/misc/TCameraCtrl_8006A03C.cpp:
-	.text       start:0x8006A03C end:0x8006A31C
-
 pso/misc/TCameraCtrl.cpp:
-	.text       start:0x8006A31C end:0x8006B3D8
+	.text       start:0x800687BC end:0x8006B3D8
+	.rodata     start:0x804381D0 end:0x804381E0
 	.data       start:0x80488A58 end:0x80488AD8
 	.bss        start:0x804FF5E8 end:0x804FF7C0
+	.sdata2     start:0x805D8FA8 end:0x805D8FC8
 
 pso/misc/TCameraCtrl_8006B3D8.cpp:
 	.text       start:0x8006B3D8 end:0x8006BA68
@@ -1232,6 +1226,7 @@ pso/misc/TDuelEffectNumber.cpp:
 
 pso/misc/TDuelEffectNumber_80080290.cpp:
 	.text       start:0x80080290 end:0x80080460
+	.sdata2     start:0x805D9308 end:0x805D9310
 
 pso/misc/TDuelEffectNumber_80080460.cpp:
 	.text       start:0x80080460 end:0x80080750
@@ -7910,6 +7905,7 @@ pso/misc/TTecGiBarta.cpp:
 pso/misc/TTecGiFoie.cpp:
 	.text       start:0x80230D9C end:0x80231AF0
 	.rodata     start:0x8044D350 end:0x8044D358
+	.data       start:0x804CC800 end:0x804CC818
 
 pso/unk/text_80231AF0.cpp:
 	.text       start:0x80231AF0 end:0x80231BF4
@@ -10955,7 +10951,7 @@ pso/unk/text_8030C340.cpp:
 pso/ui/TAdChrSelASlotGC.cpp:
 	.text       start:0x8030C39C end:0x8030E354
 	.data       start:0x804E7838 end:0x804E7A48
-	.sbss       start:0x805D6A9C end:0x805D6AA0
+	.sbss       start:0x805D6A98 end:0x805D6AA0
 
 pso/ui/TAdChrSelBSlotGC_8030E354.cpp:
 	.text       start:0x8030E354 end:0x8030ED88
@@ -11208,6 +11204,11 @@ pso/boss/TBoss6Kakusan.cpp:
 
 pso/ui/TAdLdQuestPrtGC.cpp:
 	.text       start:0x80322B50 end:0x80323134
+	.rodata     start:0x80476610 end:0x80476648
+	.data       start:0x804ECA28 end:0x804ECA40
+	.sdata      start:0x805D4168 end:0x805D4170
+	.sbss       start:0x805D6C38 end:0x805D6C40
+	.sdata2     start:0x805DF540 end:0x805DF550
 
 pso/boss/TBoss6GravBall_80323134.cpp:
 	.text       start:0x80323134 end:0x80323348
@@ -11538,6 +11539,7 @@ pso/misc/TLobby_803360CC.cpp:
 pso/unk/text_803367F4.cpp:
 	.text       start:0x803367F4 end:0x80336874
 	.ctors      start:0x80433FEC end:0x80433FF0
+	.data       start:0x804EE488 end:0x804EE60C
 
 pso/unk/text_803369C8.cpp:
 	.text       start:0x80336874 end:0x80336E00
@@ -11614,12 +11616,9 @@ pso/misc/TSaveChCr.cpp:
 	.text       start:0x80339E2C end:0x8033A088
 
 pso/misc/TSaveChCr_8033A088.cpp:
-	.text       start:0x8033A088 end:0x8033A41C
-	.data       start:0x804EF6D0 end:0x804EF6E8
-
-pso/unk/text_8033A41C.cpp:
-	.text       start:0x8033A41C end:0x8033A54C
+	.text       start:0x8033A088 end:0x8033A54C
 	.ctors      start:0x80433FF4 end:0x80433FF8
+	.data       start:0x804EF5E0 end:0x804EF6E8
 
 pso/ui/TAdMultiPlayerNoGC.cpp:
 	.text       start:0x8033A54C end:0x8033A810
@@ -11961,11 +11960,8 @@ pso/item/TItemEffPG.cpp:
 	.data       start:0x804F0BF0 end:0x804F0C08
 
 pso/item/TItemEffPG_8034FE28.cpp:
-	.text       start:0x8034FE28 end:0x8034FF4C
-
-pso/item/TItemEffPG_8034FF4C.cpp:
-	.text       start:0x8034FF4C end:0x803501BC
-	.rodata     start:0x80478CB8 end:0x80478CC8
+	.text       start:0x8034FE28 end:0x803501BC
+	.rodata     start:0x80478CB8 end:0x80478CD0
 	.sdata      start:0x805D4350 end:0x805D4358
 
 pso/item/TUnk_804F0C48.cpp:
@@ -13822,7 +13818,7 @@ pso/unk/text_803F1804.cpp:
 
 pso/ui/TAdPlayerLoadGC_803F18B8.cpp:
 	.text       start:0x803F18B8 end:0x803F339C
-	.data       start:0x804FCDAC end:0x804FCE10
+	.data       start:0x804FCD48 end:0x804FCE38
 	.bss        start:0x805A28C0 end:0x805A5F00
 
 pso/ui/TAdPlayerLoadGC_803F339C.cpp:

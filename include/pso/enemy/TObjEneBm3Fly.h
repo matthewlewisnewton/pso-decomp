@@ -86,7 +86,7 @@ void TObjEneBm3Fly__vt85(s32 arg0, u32 arg1, s32 arg2);
 void *__dt__13TObjEneBm3FlyFv(void *arg0, s16 arg1);
 void action__13TObjEneBm3FlyFPvi(u8 *arg0, s32 arg1);
 f32 approach_value__13TObjEneBm3FlyFff(f32 farg0, f32 farg1);
-void update_dd_flag__13TObjEneBm3FlyFPv(void *arg0);
+void update_dd_flag__13TObjEneBm3FlyFPv(void *arg0, f32 dx, f32 dz, f32 distance);
 }
 
 // --- C functions defined in TObjEneBm3Fly.cpp ---
@@ -104,7 +104,7 @@ void TObjEneBm3Fly__vt85(s32 arg0, u32 arg1, s32 msg);
 void *__dt__13TObjEneBm3FlyFv(void *arg0, s16 arg1);
 void action__13TObjEneBm3FlyFPvi(u8 *arg0, s32 arg1);
 f32 approach_value__13TObjEneBm3FlyFff(f32 farg0, f32 farg1);
-void update_dd_flag__13TObjEneBm3FlyFPv(void *arg0);
+void update_dd_flag__13TObjEneBm3FlyFPv(void *arg0, f32 dx, f32 dz, f32 distance);
 }
 // --- end of C functions
 

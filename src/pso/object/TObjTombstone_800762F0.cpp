@@ -54,7 +54,7 @@ void TObjTombstone::setup(s32 arg1, s32 arg2) {
     *(s32 *)&this->unk_AC = arg1;
     TObjTombstone::copy_record(arg0 + 0xC0, arg2);
     VecCopy((Vec *)&this->position, (const Vec *)(arg0 + 0xD0));
-    this->rotation_y = (s32) (*(s32 *)&this->unk_AC << 0xD);
+    this->rotation.yaw = (s32) (*(s32 *)&this->unk_AC << 0xD);
     this->m_b0 = (f32) TObjTombstone__data_805D9174;
     *(f32 *)&this->unk_B4 = (f32) TObjTombstone__data_805D9174;
     this->m_b8 = (f32) TObjTombstone__data_805D9174;
