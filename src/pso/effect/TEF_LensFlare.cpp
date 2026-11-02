@@ -137,9 +137,9 @@ void TEF_LensFlare::render() {
         }
         TParticleCtrl::begin_effect_render();
         Vec direction;
-        direction.x = position.x - camera_ctrl_instance->m_178;
-        direction.y = position.y - camera_ctrl_instance->m_17c;
-        direction.z = position.z - camera_ctrl_instance->m_180;
+        direction.x = position.x - camera_ctrl_instance->position.x;
+        direction.y = position.y - camera_ctrl_instance->position.y;
+        direction.z = position.z - camera_ctrl_instance->position.z;
         if (0.0f != vec_squared_length(&direction)) normalize_vector(&direction);
         push_matrix_from(identity_matrix);
         Vec facing;
