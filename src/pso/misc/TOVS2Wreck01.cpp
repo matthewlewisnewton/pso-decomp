@@ -64,7 +64,7 @@ void TOVS2::render() {
     if ((s32) this->m_cc == 1) {
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         set_current_texture_list((GinjaTextureList *)(this->texlist));
         draw_ginja_object((void *)(*(s32 *)&this->model));
         pop_matrix();

@@ -258,9 +258,9 @@ void TObjEnePanarms::update_spin() {
     s32 temp_r0;
 
     if (this->m_3ec & 2) {
-        this->rotation_y = (this->rotation_y + 0x111);
+        this->rotation.yaw = (this->rotation.yaw + 0x111);
     } else {
-        this->rotation_y = (this->rotation_y - 0x111);
+        this->rotation.yaw = (this->rotation.yaw - 0x111);
     }
     temp_r0 = this->state_timer - 1;
     this->state_timer = temp_r0;
@@ -435,15 +435,15 @@ void TObjEnePanarms::fn_800DD5C8() {
     s32 temp_r6;
     collision_body->flags |= 1;
     this->obj_clearFlags30(0x04040000U);
-    spawn_directional_particle((&draw_positions[4]), (&rotation_x), 0x109);
-    temp_r6 = rotation_y - 0x4000;
+    spawn_directional_particle((&draw_positions[4]), (&this->rotation.pitch), 0x109);
+    temp_r6 = this->rotation.yaw - 0x4000;
     buffer_14[1] = 0;
     buffer_14[0] = temp_r6;
     buffer_14[2] = 0x4000;
     particle_emitters[0] = (void *)spawn_continuous_particle_with_direction(&draw_positions[4], &buffer_14[0], 0x108, temp_r6);
     buffer_8[1] = 0.0f;
-    buffer_8[0] = sin_table_lookup((int) (rotation_y));
-    buffer_8[2] = cos_table_lookup((int) (rotation_y));
+    buffer_8[0] = sin_table_lookup((int) (this->rotation.yaw));
+    buffer_8[2] = cos_table_lookup((int) (this->rotation.yaw));
     ((TObjEnePanarmsAtkColli *)this)->create(&draw_positions[4], &buffer_8[0], (void *)1);
     set_field_b8__10TObjMotionFs(this, 9);
     state_timer = 0x5A;
@@ -493,14 +493,14 @@ void TObjEnePanarms::fn_800DD7F4() {
     s32 temp_r6;
     collision_body->flags |= 1;
     this->obj_clearFlags30(0x04040000U);
-    temp_r6 = rotation_y + 0x4000;
+    temp_r6 = this->rotation.yaw + 0x4000;
     buffer_14[1] = 0;
     buffer_14[0] = temp_r6;
     buffer_14[2] = 0x4000;
     particle_emitters[0] = (void *)spawn_continuous_particle_with_direction(&draw_positions[2], &buffer_14[0], 0x105, temp_r6);
     buffer_8[1] = 0.0f;
-    buffer_8[0] = sin_table_lookup((int) (rotation_y));
-    buffer_8[2] = cos_table_lookup((int) (rotation_y));
+    buffer_8[0] = sin_table_lookup((int) (this->rotation.yaw));
+    buffer_8[2] = cos_table_lookup((int) (this->rotation.yaw));
     ((TObjEnePanarmsAtkColli *)this)->create(&draw_positions[2], &buffer_8[0], NULL);
     set_field_b8__10TObjMotionFs(this, 7);
     state_timer = 0x5A;
@@ -577,7 +577,7 @@ void TObjEnePanarms::fn_800DDAD8() {
     this->send_entity_set_flags();
     st = 5;
     if (find_nearest_visible_player(this, &v.x, 200.0f) != 0xFFFF) {
-        if (v.x * sin_table_lookup(this->rotation_y) + v.z * cos_table_lookup(this->rotation_y) < 0.0f) {
+        if (v.x * sin_table_lookup(this->rotation.yaw) + v.z * cos_table_lookup(this->rotation.yaw) < 0.0f) {
             st = 4;
         }
     }
@@ -628,8 +628,8 @@ void TObjEnePanarms::fn_800DDC30() {
         if (m_38c == 1) {
             r *= lbl_805DA4D0;
         }
-        pos.x += r * cos_table_lookup(rotation_y);
-        pos.z += -r * sin_table_lookup(rotation_y);
+        pos.x += r * cos_table_lookup(this->rotation.yaw);
+        pos.z += -r * sin_table_lookup(this->rotation.yaw);
         try_warp_to_position((Vec *)&pos);
     }
     if (TObjEnePanarms__sub_800DFBC4(this) == 0) {
@@ -723,7 +723,7 @@ void TObjEnePanarms::fn_800DE124() {
     if (--state_timer < 0) {
         r = 1;
     } else if ((t = find_nearest_visible_player(this, sp, (f32) m_474)) != 0xFFFF) {
-        rotation_y = (s32) (TObjEnePanarms__data_8043CD20 * atan2_float(sp[0], sp[2]));
+        this->rotation.yaw = (s32) (TObjEnePanarms__data_8043CD20 * atan2_float(sp[0], sp[2]));
         r = 1;
     }
     if (r != 0) {
@@ -788,7 +788,7 @@ void TObjEnePanarms::fn_800DE430(s32 arg1, s32 arg2) {
     Vec particle;
     VecCopy((Vec *)(&particle), (const Vec *)(&body_center_position.x));
     particle.y += 10.0f;
-    create_particle_controller_with_rotation(&particle, (ParticleAngles *)&rotation_x, 0x106, arg1, arg2);
+    create_particle_controller_with_rotation(&particle, (ParticleAngles *)&this->rotation.pitch, 0x106, arg1, arg2);
 }
 
 #pragma push
@@ -898,7 +898,7 @@ s32 TObjEnePanarms::find_combine_position() {
             VecCopy((Vec *)(&position), (const Vec *)&sp14);
             a = first_half;
             b = second_half;
-            rotation_y = (s32) (TObjEnePanarms__data_8043CD20 * atan2_float(
+            this->rotation.yaw = (s32) (TObjEnePanarms__data_8043CD20 * atan2_float(
                 b->position.x - a->position.x,
                 b->position.z - a->position.z)) + 0x4000;
             return 1;
@@ -916,10 +916,10 @@ void TObjEnePanarms::turn_toward_target(s32 arg1) {
         if (entity_id & 1) {
             arg1 *= -1;
         }
-        rotation_y = rotation_y + arg1;
+        this->rotation.yaw = this->rotation.yaw + arg1;
         return;
     }
-    rotation_y = approach_angle_limited(rotation_y, (s32) (TObjEnePanarms__data_8043CD20 * atan2_float(sp[0], sp[2])), arg1);
+    this->rotation.yaw = approach_angle_limited(this->rotation.yaw, (s32) (TObjEnePanarms__data_8043CD20 * atan2_float(sp[0], sp[2])), arg1);
 }
 
 u16 TObjEnePanarms::turn_to_nearest_player(s32 arg1, s32 arg2) {
@@ -935,7 +935,7 @@ u16 TObjEnePanarms::turn_to_nearest_player(s32 arg1, s32 arg2) {
                 var *= -1;
             }
         }
-        rotation_y = approach_angle_limited(rotation_y, var + (s32) (TObjEnePanarms__data_8043CD20 * atan2_float(sp[0], sp[2])), arg1);
+        this->rotation.yaw = approach_angle_limited(this->rotation.yaw, var + (s32) (TObjEnePanarms__data_8043CD20 * atan2_float(sp[0], sp[2])), arg1);
     }
     return t;
 }
@@ -1024,7 +1024,7 @@ void TObjEnePanarms::draw_shadow() {
         translate_matrix(0, lbl_805DA4FC * position.x + lbl_805DA500 * draw_positions[0].x, lbl_805DA504 + this->ground_height, lbl_805DA4FC * position.z + lbl_805DA500 * this->draw_positions[0].z);
         direction_to_rotation_xz((u8 *)&ground_normal.x, &spC, &sp8);
         rotate_matrix_z(0, sp8);
-        rotate_matrix_y((void *) 0, (void *)rotation_y);
+        rotate_matrix_y((void *) 0, (void *)this->rotation.yaw);
         rotate_matrix_x(0, spC + 0x4000);
         d = position.y - this->ground_height;
         if (d > lbl_805DA508) {
@@ -1047,7 +1047,7 @@ void TObjEnePanarms::draw_shadow() {
 void TObjEnePanarms::draw_model() {
     push_matrix(this);
     post_translate_matrix(&position);
-    rotate_matrix_y(0, (void *)rotation_y);
+    rotate_matrix_y(0, (void *)this->rotation.yaw);
     set_current_texture_list((GinjaTextureList *)(texlist));
     draw_callbacks->install();
     draw();

@@ -150,7 +150,7 @@ void TBoss3VoloptHiraisin::start_attack() {
     s16 max_hp;
     u32 flags;
     TBoss3Volopt::create_breakup_mdl((s32)volopt_hiraisin_breakup_model, (s32)&volopt_hiraisin_breakup_params,
-                                     TObjFish__sub_8001EDB0(volopt_hiraisin_resources, 0x10), (s32)&body_center_position, rotation_y);
+                                     TObjFish__sub_8001EDB0(volopt_hiraisin_resources, 0x10), (s32)&body_center_position, this->rotation.yaw);
     trigger_dell_biter_events__10TObjPlayerFv((Vec *)&body_center_position);
     play_sound_effect(0x4001C112, (const Vec *)(&position), 0, 0);
     m_388 &= ~1;
@@ -248,7 +248,7 @@ void TBoss3VoloptHiraisin::render() {
             translate_matrix(0, 0.0f, 20.0f, 0.0f);
         }
         translate_matrix(0, 0.0f, sin_table_lookup(hover_angle), 0.0f);
-        rotate_matrix_y(NULL, rotation_y);
+        rotate_matrix_y(NULL, this->rotation.yaw);
         if (check_demo_mode() == 1) {
             draw_chunk_object(model);
         } else {

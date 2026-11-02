@@ -5,7 +5,7 @@
 #include "pso/ui/TAdMultiPlyChrSelectGC.h"
 
 // The hand-written constructors below call the base one by its symbol.
-extern "C" u8 *__ct__10TObjMotionFP7TObject(u8 *self);
+extern "C" u8 *__ct__10TObjMotionFP7TObject(u8 *self, TObject *parent);
 
 struct RecoveredGlobal_802E1024_lbl_804E2F68 {
     s32 value;
@@ -18,7 +18,7 @@ extern RecoveredGlobal_802E1024_lbl_804E2F68 multi_chr_select_player_slot_table;
 extern s32 multi_chr_select_player_actor_ops[];
 
 void *TUnk_804E3008::init_player(void *arg1, void *arg2, void *arg3, void *arg4) {
-    __ct__10TObjMotionFP7TObject((u8 *)this);
+    __ct__10TObjMotionFP7TObject((u8 *)this, (TObject *)arg1);
     *(s32 **)((s8 *)this + 0x18) = multi_chr_select_player_actor_ops;
     *(void **)((s8 *)this + 0x10C) = arg4;
     this->m_108 = arg3;
