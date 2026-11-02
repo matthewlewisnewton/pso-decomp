@@ -1,0 +1,61 @@
+# Quest/window upstream follow-up
+
+This draft adapts zeroz's upstream
+`ddca6f412205abd69aaf86d1378f95d23152d6f4` through the scoped integration
+checkpoint `ee0c46d61636f6dc313ebdb512484de3b79beccf` onto fork main
+`0ea667b2ae02f09c65cd9464314c0d5993618c6c`. The author remains attributed in
+the import commit. The import includes the coherent shared window/helper names,
+QuestListVM fold and data definitions. It is broader than the 200-byte data
+report difference because the renamed interfaces have callers across the game.
+
+The fork adaptations retain its memory-card/BML/sound/draw-context contracts,
+newer status-gauge code and landed #226 data. The fourteen retention changes
+are symbol-name substitutions, not global retention normalization. The
+follow-up fixes the remaining `TUnk_804D0618` base declaration to use the
+renamed `TWindowAddition`, keeping the existing layout and virtual declarations.
+
+## Ownership matrix: still unproved for this candidate
+
+| Original extent | Real source object | Expected treatment | Required candidate proof |
+| --- | --- | --- | --- |
+| `805D3690..805D3694` | `TQuestListVM_class_name`, one pointer | Four-byte `.sdata` object | Native symbol size, relocation and input |
+| `805D3694..805D3698` | No additional object established | Retained original fallback | Generated split/config and actual ordered linker input covering all four bytes |
+| `8044BF04..8044BF11` | `download_list_title_jp[13]` | Read-only title including terminator | Native symbol and section placement |
+| `8044BF11..8044BF14` | No additional object | Natural alignment after title | Actual compiler fill and next-object order inside the `.rodata` claim |
+| `805D6210..805D6214` | `quest_list_vm_instance`, one pointer | Four-byte `.sbss` object | Native symbol size and input |
+| `805D6214..805D6218` | No additional object established | Retained original fallback | Generated split/config and actual ordered linker input covering all four bytes |
+
+The 11 bytes in the three tails remain a hard qualification obligation. Original
+zeros are not a waiver. No padding variables, extra unit claims or inferred
+ownership extensions were introduced. The earlier 84 source-linked data bytes
+and 30 functions must survive the fold; the 200-byte report difference alone
+cannot prove this.
+
+## Remaining source and native gates
+
+The genuine `TQuestListVM` construction path still depends on the shared
+`TShopWindowBase` manual constructor thunk. That provider writes beyond its
+declared base size; its real lifetime/layout contract remains unresolved.
+The decrypt helper still passes an integer RNG array through an unrelated
+character-selection class. These are explicit source-contract holds, not
+closed merely by importing the upstream names.
+
+The inherited GC/2.6 profile adds deferred inline emission, pooling off and
+read-only reused strings. It needs reviewed development admission and actual
+candidate compilation; this draft does not broaden an admission checker.
+After source/profile qualification, compare all affected consumers, exact
+function/data address coverage, emitted alignment/relocations and actual native
+source inputs, then perform the merge owner's current-main original-DOL and
+strict no-loss checks. No native compile, new exact gain or ready status is
+claimed here.
+
+A host-only syntax comparison checked 359 changed C++ files with exact baseline
+headers. The only newly observed diagnostic was GCC rejecting the pre-existing
+`void main` declaration reached by the new include graph. Existing compiler
+extensions and source diagnostics prevent treating this as a native compile
+PASS. ABI assertions were omitted only in disposable host-parser snapshots;
+repository assertions remain intact.
+
+The separate QuestDownloadBuffers work is excluded. The Slime four-byte BSS and
+four-byte small-constant alignment gaps are also excluded: they belong to a
+different unit and cannot be attached to this import to increase its data count.
