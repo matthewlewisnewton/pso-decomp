@@ -421,6 +421,7 @@ force_active:
   - TDuelEffectNumber__sub_800802F8
   - TEffGuard__class_name
   - TEffHit__class_name
+  - TEffIndirectCtrl__ct
   - TEffStarLight2D_class_name
   - TEffStarLightChild_class_name
   - TEffect__class_name
@@ -2069,6 +2070,7 @@ force_active:
   - __dt__13TUnk_804CCA90Fv
   - __dt__13TUnk_804CCAA8Fv
   - __dt__13TUnk_804CCD78Fv
+  - __dt__13TUnk_804DDF04Fv
   - __dt__13TUnk_804E14E8Fv
   - __dt__13TUnk_804E3BD8Fv
   - __dt__13TUnk_804E4788Fv
@@ -2195,6 +2197,7 @@ force_active:
   - __dt__16TBoss8DragonDemoFv
   - __dt__16TChCrLoadGmNjReqFv
   - __dt__16TCheckMemoryCardFv
+  - __dt__16TEffIndirectCtrlFv
   - __dt__16TItemReverseTechFv
   - __dt__16TKeyBoardControlFv
   - __dt__16TLobbyEventThemeFv
@@ -2643,6 +2646,7 @@ force_active:
   - __vt__13TUnk_804CC870
   - __vt__13TUnk_804CCAA8
   - __vt__13TUnk_804CCD78
+  - __vt__13TUnk_804DDF04
   - __vt__13TUnk_804E14E8
   - __vt__13TUnk_804E3BD8
   - __vt__13TUnk_804E4788
@@ -2766,6 +2770,7 @@ force_active:
   - __vt__16TBoss8DragonDemo
   - __vt__16TChCrLoadGmNjReq
   - __vt__16TCheckMemoryCard
+  - __vt__16TEffIndirectCtrl
   - __vt__16TItemReverseTech
   - __vt__16TKeyBoardControl
   - __vt__16TLobbyEventTheme
@@ -4532,6 +4537,7 @@ force_active:
   - copy_action_state__12TBoss8DragonFPUc
   - copy_all_data__6TLobbyFii
   - copy_all_entries__6TLobbyFii
+  - copy_and_flush_texture__16TEffIndirectCtrlFl
   - copy_angle_state__12TBoss8DragonFPvPvPv
   - copy_bank_from_card_window__Fl
   - copy_block__11TBoss6Type2FPvPv
@@ -4774,6 +4780,8 @@ force_active:
   - decrypt_network_info_cipher_blocks__FPUlPUclPUc
   - decrypt_network_info_cipher_round__FPUlPUl
   - deduct_cap_excess__14TItemEquipBaseFlPss
+  - deform_indirect_texture_scroll
+  - deform_indirect_texture_wave__FlllllUc
   - deldepth_actions
   - deleting_dtor__18TObjEneBalClawClawFPvs
   - deliver_chain_hits__11TTecGiZondeFv
@@ -5109,6 +5117,7 @@ force_active:
   - duel_number_uv_table
   - duel_result_window_layout_table
   - duel_start_countdown_effect_pos
+  - eff_indirect_update_and_flush__16TEffIndirectCtrlFv
   - emit_deband_support_effect__FPvi
   - emit_grass_footstep_particle__10TObjPlayerFi
   - emit_jellen_support_effect__FPUc
@@ -5322,6 +5331,7 @@ force_active:
   - find_gsl_entry__FPv
   - find_heal_target__13TOHealGeneralFv
   - find_index_in_table__11TBoss6Type2FUl
+  - find_indirect_effect_ctrl
   - find_material_entry_by_id__6TSceneFPvUs
   - find_nearest_enemy__15TObjEnemyCustomFP3Vecf
   - find_nearest_enemy_with_flag_alt_target__14TObjEnePanBARAFP3Vecf
@@ -5840,6 +5850,8 @@ force_active:
   - get_gstream_buffered_bytes__Fv
   - get_handle_6x78_entry__FUs
   - get_hit_count__11TBoss6Type2Fv
+  - get_indirect_source_id__FUc
+  - get_indirect_source_pixels
   - get_input_mode__11TWindowChatFv
   - get_input_mode__16TKeyBoardControlFv
   - get_instance_count__14TBoss4DarkFalzFv
@@ -13262,6 +13274,7 @@ force_active:
   - render__16TBoss7LaserLightFv
   - render__16TBoss8DragonDemoFv
   - render__16TCheckMemoryCardFv
+  - render__16TEffIndirectCtrlFv
   - render__16TKeyBoardControlFv
   - render__16TOCakeshopCave01Fv
   - render__16TODummyKeyCave01Fv
@@ -13864,6 +13877,7 @@ force_active:
   - run_task__16TBoss8DragonDemoFv
   - run_task__16TChCrLoadGmNjReqFv
   - run_task__16TCheckMemoryCardFv
+  - run_task__16TEffIndirectCtrlFv
   - run_task__16TItemReverseTechFv
   - run_task__16TKeyBoardControlFv
   - run_task__16TLobbyEventThemeFv
@@ -15686,6 +15700,7 @@ force_active:
   - update_dying_state__14TObjEneBm5WolfFl
   - update_dying_state__15TObjEnemyCustomFv
   - update_dying_state__16TObjEneNanoDragoFv
+  - update_eff_indirect__16TEffIndirectCtrlFv
   - update_effect__17TObjEneMe3ShinowaFv
   - update_effect__23TObjEneMe3ShinowaMirageFv
   - update_effect_fade_lifetime__15TObjEneSlimeOneFv
@@ -15793,6 +15808,7 @@ force_active:
   - update_if_ready__11TBoss6Type1Fv
   - update_if_ready__17TObjEneMe1CanadinFv
   - update_in_inventory__8TItemMagFv
+  - update_indirect_texture_wave__FlllllUc
   - update_input__18TChallenge4PResultFv
   - update_input__19TWindowKeyBoardSoftFPv
   - update_input_number__18TShopGetItemWindowFv
@@ -15993,6 +16009,7 @@ force_active:
   - update_scale_pulse__15TObjEneDelDepthFv
   - update_scale_sound__11TBoss4Type3Fv
   - update_scroll_close__6TLobbyFv
+  - update_scroll_mode__16TEffIndirectCtrlFv
   - update_scroll_offset__13TUnk_804D0618Fv
   - update_scroll_target_position__21TWindowSubComCardListFv
   - update_scroll_value__11TWindowMenuFv
