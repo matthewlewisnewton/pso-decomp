@@ -833,6 +833,7 @@ pso/misc/KeyboardCharacterMaps.cpp
 pso/misc/MaterialOpacityFade.cpp
 pso/misc/PhotonBlastSummon.cpp
 pso/misc/QuestDownloadBuffers.cpp
+pso/misc/QuestDownloadDisplayPrefix.cpp
 pso/misc/QuestDownloadSlots.cpp
 pso/misc/RenderFadeState.cpp
 pso/misc/ShopToolStock.cpp
