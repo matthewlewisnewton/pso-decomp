@@ -7,15 +7,16 @@ already integrated changes were not replayed. Upstream #167 changes a player
 function and is not a dependency. The subsequent commits recover types and
 consumer accesses separately, preserving the import and attribution in history.
 
-Fork #226 deferred this 34,912-byte range. This draft now defines a narrower
+Fork #226 deferred this 34,912-byte range. This PR defines and selects a narrower
 **six-object, 29,184-byte data-only unit**, from `8058DE08` to `80595008`.
 The remaining 5,728 bytes stay in the original automatic BSS fallback.
 The provider's complete text range and its own BSS remain unchanged. This is a
 provisional recovery boundary at real object boundaries, not a claim about the
-historical translation unit. No new exact functions or source-linked bytes are
-claimed: the new data unit has not been added to `linked_units.txt`.
+historical translation unit. The data unit is selected in `linked_units.txt`.
+The historical native validation below proves 29,184 newly matched and
+source-linked data bytes, with no new exact functions.
 
-Current-main composition includes `e258b1e91233fb9ddcbf72c9c168784a346153ff`,
+The tested composition includes `e258b1e91233fb9ddcbf72c9c168784a346153ff`,
 which contains #203. It preserves #203's canonical records and four recovered
 functions. The public ID API remains main's existing API; the independently
 reviewed explicit ID-pointer/count API is still a private composition input.
@@ -120,12 +121,40 @@ views; a larger array or union alone does not establish their lifetime changes,
 retained values or EE580 bounds. Callback quiescence after DMA timeout also
 remains unproved. These holds prevent claiming the full 34,912-byte scope done.
 
-## Acceptance still required
+## Historical native activation validation
 
-Keep this PR draft. The narrower data boundary and latest source composition
-need independent review. Source selection, fresh current graph/retention,
-actual native link-input provenance, original-DOL equality, `check_pr.py`, and
-address-based code/data/function/link no-loss checks remain required before
-readiness. No game link or full-project acceptance is claimed by the scoped
-checks above. Original artifacts, disassembly and proprietary tools stay local.
-Final current-main acceptance remains part of the separate merge process.
+The normal development builds compared baseline
+`e258b1e91233fb9ddcbf72c9c168784a346153ff` with selected candidate
+`6607f3d2c0406f794e3d187fede3c6756ac51f4f`. Both completed successfully and
+produced genuine complete reports (5,013 and 5,014 units). Both built DOLs are
+byte-identical to their original input, SHA-1
+`0d85744b51d7379efb025a943d0cd5aaae2191a3`.
+
+| Measure | Baseline | Candidate | Change |
+| --- | ---: | ---: | ---: |
+| Matched data bytes | 1,404,127 | 1,433,311 | +29,184 |
+| Source-linked data bytes | 1,009,911 | 1,039,095 | +29,184 |
+| Source-selected units | 3,553 | 3,554 | +1 |
+| Exact functions | 27,288 | 27,288 | 0 |
+
+Live linker response files establish the sole added source selection as
+`QuestDownloadBuffers.o`. Replacing its source input and adjacent 5,728-byte
+original remainder with the former combined original input restores the entire
+baseline input order. All 5,012 other selected objects are byte-identical.
+The compiled data object has SHA-256
+`b72e7f08b622cd4de11effeb137b9deb4c75098b2815e6e6c509a0feb1b3c4e0`;
+all six final ELF symbols retain their original addresses, sizes and bindings.
+
+Both ordinary `check_pr.py --no-build` runs passed against the authentic
+baseline report after the admitted native builds. The unchanged raw loss guard
+reported zero loss in all nine combinations of code/data/function coverage,
+exactness and source linkage, without filtering padding losses. Retention
+remains 16,678 entries with no additions or removals. Scanner preview found no
+further exact units to add and no regressions; no global scanner write was used.
+
+These results are historical development evidence for the exact commits above.
+Later documentation-only updates do not change those tested source/configuration
+bytes. Fresh applicability and final acceptance against the merge queue's
+current `main` remain separate requirements. The original provider and deferred
+5,728 bytes remain excluded from this activation. Original artifacts,
+disassembly, private diagnostics and proprietary tools stay local.
