@@ -533,4 +533,3 @@ u8 *TShopItemListWindow__ct(u8 *shop_item_list_window, s32 arg1, s32 arg2, s32 a
     TLobby::set_6264_and_call_2244B0((int)((void *) (sub_8022397C__15TShopWindowBaseFv(shop_item_list_window))), sp8);
     return shop_item_list_window;
 }
-
