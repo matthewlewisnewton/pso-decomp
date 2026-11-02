@@ -446,7 +446,7 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # GC/2.0: compiler-expanded struct copies take 2.0's registers.
     # The ending item handler table keeps 2.0's store/load scheduling for its
     # zero-initialized local member-function-pointer array.
-    "pso/item/TUnk_804F112C_803531FC.cpp": {
+    "pso/item/TItemSpecialEvent_803531FC.cpp": {
         "mw_version": "GC/2.0",
         # The split names the compiler's anonymous PMF initializer image at
         # 0x804F10C0; the source-built object references its first 12-byte

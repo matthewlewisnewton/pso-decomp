@@ -760,6 +760,9 @@ pso/item/TItemShoot_8011BD88.cpp
 pso/item/TItemShoot_8011BDC8.cpp
 pso/item/TItemShoot_8011BF94.cpp
 pso/item/TItemShoot_8011BFA0.cpp
+pso/item/TItemSpecialEvent_803531FC.cpp
+pso/item/TItemSpecialEvent_80353380.cpp
+pso/item/TItemSpecialEvent_80353414.cpp
 pso/item/TItemTexLoad.cpp
 pso/item/TItemTimer.cpp
 pso/item/TItemTimerEvent.cpp
@@ -806,9 +809,6 @@ pso/item/TUnk_804E6FA8.cpp
 pso/item/TUnk_804F0C48.cpp
 pso/item/TUnk_804F0D34.cpp
 pso/item/TUnk_804F0FF0.cpp
-pso/item/TUnk_804F112C_803531FC.cpp
-pso/item/TUnk_804F112C_80353380.cpp
-pso/item/TUnk_804F112C_80353414.cpp
 pso/item/TUnk_804F28E0.cpp
 pso/item/WeaponAttackActions.cpp
 pso/item/WeaponSpecialSelection.cpp

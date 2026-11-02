@@ -1,5 +1,5 @@
 #include "types.h"
-#include "pso/item/TUnk_804F112C.h"
+#include "pso/item/TItemSpecialEvent.h"
 #include "pso/TEndingPic.h"
 
 typedef void (TEndingPic::*Handler)();
@@ -8,7 +8,7 @@ typedef void (TEndingPic::*Handler)();
 // technique index. The handlers live on TEndingPic; the item shares the object
 // prefix they use (including the +0xF0 owner/player slot), so the original
 // code invokes them on this after reinterpretation.
-void TUnk_804F112C::apply_use_effect() {
+void TItemSpecialEvent::apply_use_effect() {
     Handler handlers[9] = {
         &TEndingPic::sub_803531F8,
         &TEndingPic::sub_803531D0,

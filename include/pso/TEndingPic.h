@@ -17,7 +17,7 @@ public:
     void update_player_object();
     void update_shield();
     // Ending item use-effect steps, dispatched by technique index through a
-    // member-function-pointer table in TUnk_804F112C::apply_use_effect.
+    // member-function-pointer table in TItemSpecialEvent::apply_use_effect.
     void sub_803530A0();
     void sub_80353110();
     void sub_80353134();
