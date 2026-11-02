@@ -11,10 +11,10 @@ Nothing from the game is included here. You need your own copy of the game to bu
 <!-- progress-table -->
 | | Matched | Linked |
 |:--|--:|--:|
-| Code | 94.82% (4,127,684 of 4,353,092) | 77.63% (3,379,448 of 4,353,092) |
-| Data | 73.18% (1,289,011 of 1,761,375) | 53.48% (942,063 of 1,761,375) |
-| Functions | 98.92% (27,275 of 27,572) | |
-| Units | | 70.18% (3,552 of 5,061) |
+| Code | 94.84% | 77.74% |
+| Data | 73.18% | 53.49% |
+| Functions | 98.93% (27,277 of 27,572) | |
+| Units | | 70.25% (3,554 of 5,059) |
 <!-- /progress-table -->
 
 Measured on `PsoV3.dol` on 2026-11-01 at validated source commit

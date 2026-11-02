@@ -5,7 +5,11 @@ This integration imports upstream PRs [#168](https://github.com/zeroz41/pso-deco
 [#167](https://github.com/zeroz41/pso-decomp/pull/167)
 (`137150833b5374a820782c6a3a3f510c11386c86`). The initial fork baseline is
 `02a5ab8e2069f78c806438bcb6d1eb2a003976a1`; the final fork-main prerequisite is
-`9496b2b18974cb8b97cc0e64612574581eff6cd6`.
+`61f58f1e22a7203459abc6e1f19a82a5b9c4089c`.
+The intermediate `9496b2b18974cb8b97cc0e64612574581eff6cd6` baseline also passed.
+During publication, main incorporated the player hit-vector and status-gauge
+recoveries. Their newer typed source and compiler profiles supersede the
+corresponding upstream spellings and are preserved in the final integration.
 
 ## Reconciliation with the fork
 
