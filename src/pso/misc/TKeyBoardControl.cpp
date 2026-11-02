@@ -398,7 +398,7 @@ void TWindowKeyBoardSoft__sub_80260904(void *self, s32 port) {
         return;
     }
     if (((TWindowKeyBoardSoft *)self)->get_flag_bit5() && (code < 'A' || code > 'Z')) return;
-    if (((TWindowKeyBoardSoft *)self)->get_flag_bit6() && ((s32 (*)(u16))is_alnum__19TWindowKeyBoardSoftFUs)(code) == 0) return;
+    if (((TWindowKeyBoardSoft *)self)->get_flag_bit6() && is_alnum__19TWindowKeyBoardSoftFUs(code) == 0) return;
     if (((TWindowKeyBoardSoft *)self)->is_cursor_locked() && (code < '0' || code > '9')) return;
     set_input_mode__20TWindowSubStatusDispFUc((s32)kb->child, 2);
     ((TWindowKeyBoardBase *)kb->child)->insert_character(code);
@@ -682,7 +682,7 @@ s32 TWindowKeyBoardSoft__sub_802616BC(void *self, int context) {
             u16 code = *keys++;
             if (code < 0x20) continue;
             if (kb->get_flag_bit5() && (code < 'A' || code > 'Z')) code = 0x16;
-            if (kb->get_flag_bit6() && ((s32 (*)(u16))is_alnum__19TWindowKeyBoardSoftFUs)(code) == 0) code = 0x16;
+            if (kb->get_flag_bit6() && is_alnum__19TWindowKeyBoardSoftFUs(code) == 0) code = 0x16;
             if (kb->is_cursor_locked() && (code < '0' || code > '9')) code = 0x16;
             if (code == 0x16) continue;
             u16 glyph = map_char_to_font_code(code);
