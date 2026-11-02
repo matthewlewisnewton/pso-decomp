@@ -586,10 +586,10 @@ TObjEneEpsilonBody::TObjEneEpsilonBody(TObject *parent, s32 *set_data): TObjEneE
     for (s32 i = 0; i < 4; ++i) {
         const s32 first_child_id = entity_id + 1;
         const s32 first_child_index = set_index + 1;
-        TObjBase *guard = create_guard((u16)(first_child_id + i), first_child_index + i, &position, rotation_y);
+        TObjBase *guard = create_guard((u16)(first_child_id + i), first_child_index + i, &position, this->rotation.yaw);
         if (guard) guard_ids[i] = get_entity_id(guard);
         VecCopy(&guard_positions[i], &position);
-        guard_angles[i] = rotation_y;
+        guard_angles[i] = this->rotation.yaw;
     }
     mode = 0;
     dispatch_action(mode, 4);
@@ -1332,7 +1332,7 @@ void TObjEneEpsilonBody::action_destroy(s32 arg1) {
             (*(s32 *)((s8 *)arg0 + 0x4E8))++;
             if (*(s32 *)((s8 *)arg0 + 0x4E8) >= 0x14) {
                 ((TObjEneEpsilonBody *)(arg0))->vfunc_95();
-                TBoss3Volopt::create_breakup_mdl((s32)lbl_805D6FA4, (s32)epsilon_guard_destroy_breakup_params, (s32)(this->texlist), (s32)(arg0 + 0x2FC), (s32)(this->rotation_y));
+                TBoss3Volopt::create_breakup_mdl((s32)lbl_805D6FA4, (s32)epsilon_guard_destroy_breakup_params, (s32)(this->texlist), (s32)(arg0 + 0x2FC), (s32)(this->rotation.yaw));
                 play_sound_effect((s32)(0x4003AD4C), (const Vec *)((u8 *)&this->body_center_position), 0, 0);
                 ((TObjPlayer *)(arg0 + 0x2FC))->trigger_dell_biter_events();
                 this->m_438 |= 1;
@@ -1473,7 +1473,7 @@ extern "C" void draw_with_fade__19TObjEneEpsilonGuardFPvi(u8 *arg0, s32 arg1) {
     push_matrix();
     post_translate_matrix(arg0 + 0x38);
     translate_matrix(0, 0.0f, 24.0f, 0.0f);
-    rotate_matrix_y(0, ((TObjEneDD_ST *)arg0)->rotation_y);
+    rotate_matrix_y(0, ((TObjEneDD_ST *)arg0)->rotation.yaw);
     TObjEneDD::clear_global_flag_400();
     if (*(s32 *)((s8 *)arg0 + 0x438) & 2) {
         set_chunk_model_node_callback(TObjEneEpsilonGuard::record_camera_angle_samples);
@@ -1519,7 +1519,7 @@ void TObjEneEpsilonBody::render_body_effect() {
         push_matrix();
         post_translate_matrix((void *) (arg0 + 0x38));
         translate_matrix(0, 0.0f, 24.0f, 0.0f);
-        rotate_matrix_y(0, (int) (this->rotation_y));
+        rotate_matrix_y(0, (int) (this->rotation.yaw));
         temp_f1 = this->m_4f8;
         scale_matrix(0, temp_f1, 1.0f, temp_f1);
         set_current_texture_list((GinjaTextureList *)((int) (this->texlist)));

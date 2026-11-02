@@ -417,7 +417,7 @@ extern "C" {
 void vfunc_77__9TObjCharaFv();
 }
 extern "C" {
-void vfunc_76__9TObjCharaFv();
+void vfunc_76__9TObjCharaFf();
 }
 extern "C" {
 void vfunc_75__9TObjCharaFf();
@@ -621,7 +621,7 @@ void *__vt__17TObjEneDarkGunner[83] = {
     (void *)&reset_pose__9TObjCharaFv, (void *)&get_anim_node_position__15TObjEnemyCustomFlP3Vec, (void *)&vfunc_66__9TObjCharaFv, (void *)&vfunc_67__9TObjCharaFf,
     (void *)&get_pos__9TObjCharaFl, (void *)&apply_switch_attack__9TObjCharaFv, (void *)&enemy_spawn_jellen_effect__9TObjCharaFv, (void *)&trigger_switch_attack__9TObjCharaFv,
     (void *)&enemy_spawn_zalure_effect__9TObjCharaFv, (void *)&recalc_stats__9TObjCharaFv, (void *)&vfunc_74__9TObjEnemyFl, (void *)&vfunc_75__9TObjCharaFf,
-    (void *)&vfunc_76__9TObjCharaFv, (void *)&vfunc_77__9TObjCharaFv, (void *)&vfunc_78__9TObjCharaFl, (void *)&vfunc_79__15TObjEnemyCustomFPl,
+    (void *)&vfunc_76__9TObjCharaFf, (void *)&vfunc_77__9TObjCharaFv, (void *)&vfunc_78__9TObjCharaFl, (void *)&vfunc_79__15TObjEnemyCustomFPl,
     (void *)&apply_hit_message_flags__9TObjEnemyFPv, (void *)&apply_set_data__9TObjEnemyFPv, (void *)&clear_lobby_object_state__9TObjEnemyFv,
 };
 
@@ -860,8 +860,8 @@ void TObjEneDarkGunner::sub_800A159C() {
     o->hover_height = (o->hover_height < 0.0f) ? 0.0f : ((o->hover_height < 9.0f) ? o->hover_height : 9.0f);
     push_matrix_from(identity_matrix);
     post_translate_matrix((s32)&o->pos);
-    rotate_matrix_z(0, this->rotation_z);
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_z(0, this->rotation.roll);
+    rotate_matrix_y(0, this->rotation.yaw);
     Vec t = lbl_8043A6A4;
     lo = 5.0f + o->hover_height;
     t.y = lo + this->render_y_offset;
@@ -1464,7 +1464,7 @@ void TObjPlayer__sub_800A27CC(TObjPlayer *player) {
     case 0:
         if (((TObjEneDarkGunner *)player)->m_388 & 0x10000) {
             player->actorFlags |= 0x04040000;
-            player->rotation_z = 0x8000;
+            player->rotation.roll = 0x8000;
             player->m_37c = 1;
         } else {
             player->requested_action = 0;

@@ -117,10 +117,10 @@ void update_shot__17TObjEneDf2BringerFPv(Bringer_80099F0C *self) {
 void TUnk_8048FE08::sub_8009A11C() { *(s32*)((char*)this + 0xb0) = 0; }
 void TObjEneDf2Bringer::setup_dir_shot(const void *arg1, s32 arg2, f32 farg0) {
     VecCopy((Vec *)(((u8 *)this) + 0x38), (const Vec *)arg1);
-    this->rotation_y = arg2;
-    *(f32 *)&this->requested_action = sin_table_lookup(this->rotation_y);
+    this->rotation.yaw = arg2;
+    *(f32 *)&this->requested_action = sin_table_lookup(this->rotation.yaw);
     *(f32 *)&this->previous_action = (f32) 0.0f;
-    this->frame = cos_table_lookup(this->rotation_y);
+    this->frame = cos_table_lookup(this->rotation.yaw);
     *(s32 *)&this->motion_flags = 1;
     fill_value_array((int) (*(s32 *)&this->frame_count));
     this->play_speed = (f32) 0.0f;

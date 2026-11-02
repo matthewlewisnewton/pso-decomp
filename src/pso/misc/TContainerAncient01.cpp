@@ -299,7 +299,7 @@ extern "C" void enemy_spawn_jellen_effect__9TObjCharaFv();
 extern "C" void enemy_spawn_zalure_effect__9TObjCharaFv();
 extern "C" void vfunc_78__9TObjCharaFl();
 extern "C" void vfunc_77__9TObjCharaFv();
-extern "C" void vfunc_76__9TObjCharaFv();
+extern "C" void vfunc_76__9TObjCharaFf();
 extern "C" void vfunc_75__9TObjCharaFf();
 extern "C" void get_center__9TObjCharaFv();
 extern "C" void get_actor_level_index__9TObjCharaFv();
@@ -381,7 +381,7 @@ void *__vt__20TContainerAncient01R[79] = {
     (void *)&reset_pose__9TObjCharaFv, (void *)&get_anim_node_position__9TObjCharaFlP3Vec, (void *)&vfunc_66__9TObjCharaFv, (void *)&vfunc_67__9TObjCharaFf,
     (void *)&get_pos__9TObjCharaFl, (void *)&apply_switch_attack__9TObjCharaFv, (void *)&enemy_spawn_jellen_effect__9TObjCharaFv, (void *)&trigger_switch_attack__9TObjCharaFv,
     (void *)&enemy_spawn_zalure_effect__9TObjCharaFv, (void *)&recalc_stats__9TObjCharaFv, (void *)&vfunc_74__9TObjCharaFl, (void *)&vfunc_75__9TObjCharaFf,
-    (void *)&vfunc_76__9TObjCharaFv, (void *)&vfunc_77__9TObjCharaFv, (void *)&vfunc_78__9TObjCharaFl,
+    (void *)&vfunc_76__9TObjCharaFf, (void *)&vfunc_77__9TObjCharaFv, (void *)&vfunc_78__9TObjCharaFl,
 };
 #define TContainerAncient01__collision_body_parts (*(RecoveredGlobal_8018A9D8_TContainerAncient01__data_804B6DC0 *)TContainerAncient01__collision_body_parts)
 #define __vt__20TContainerAncient01R ((s32 *)__vt__20TContainerAncient01R)
@@ -513,7 +513,7 @@ void TContainerAncient01::init_positions() {
     *(f32 *)&this->unk_364 = (f32) TContainerAncient01__data_805DBD10[0];
     this->m_368 = (f32) TContainerAncient01__data_805DBD10[0];
     *(f32 *)&this->unk_36C = (f32) TContainerAncient01__data_805DBD10[0];
-    this->hp = (s16) this->rotation_z;
+    this->hp = (s16) this->rotation.roll;
     if ((s16) this->hp < 1) {
         this->hp = 1;
     }
@@ -585,7 +585,7 @@ void TContainerAncient01R::render() {
         set_current_texture_list((GinjaTextureList *)(this->texlist));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         if ((s32) this->m_360 != 0) {
             scale_current_matrix((u8 *)&this->unk_364);
         }
@@ -954,7 +954,7 @@ void TContainerAncient01::render() {
         set_current_texture_list((GinjaTextureList *)(this->texlist));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         if ((s32) this->m_35c != 0) {
             scale_current_matrix((u8 *)&this->m_360);
         }

@@ -40,7 +40,7 @@
 #include "pso/object/TObjFish.h"
 
 typedef char GyaranzoPositionOffset[offsetof(TObjEneGyaranzo, position) == 0x38 ? 1 : -1];
-typedef char GyaranzoYawOffset[offsetof(TObjEneGyaranzo, rotation_y) == 0x60 ? 1 : -1];
+typedef char GyaranzoYawOffset[offsetof(TObjEneGyaranzo, rotation.yaw) == 0x60 ? 1 : -1];
 
 extern "C" {
 
@@ -485,7 +485,7 @@ void TObjEneGyaranzo::render() {
             TObjPlayer::toggle_particle_effect();
             push_matrix();
             post_translate_matrix(&position);
-            rotate_matrix_y(0, this->rotation_y);
+            rotate_matrix_y(0, this->rotation.yaw);
             if (check_demo_mode() == 1) {
                 draw_chunk_object((int) (model));
             } else if (this->m_388 & 4) {
@@ -686,7 +686,7 @@ void TObjEneGyaranzo::update_death_breakup() {
         advance_animation();
         timer--;
         if (timer < 0) {
-            TBoss3Volopt::create_breakup_mdl((s32)gyaranzo_breakup_model_obj, (s32)&gyaranzo_death_breakup_params, (s32)this->texlist, (s32)&body_center_position, (s32)this->rotation_y);
+            TBoss3Volopt::create_breakup_mdl((s32)gyaranzo_breakup_model_obj, (s32)&gyaranzo_death_breakup_params, (s32)this->texlist, (s32)&body_center_position, (s32)this->rotation.yaw);
             ((TObjEnemy *)this)->send_entity_set_flags();
             ((TObjPlayer *)(&body_center_position))->trigger_dell_biter_events();
             play_sound_effect((s32)(((TObjEnemy *)(this))->remap_sound_for_area(0x4003AD10)), (const Vec *)(&position), 0, 0);
@@ -787,7 +787,7 @@ void TObjEneGyaranzo::spawn_missile() {
     temp_r31 = (s32) (lbl_805DA268 * ((lbl_805DA26C * random_ratio()) - lbl_805DA270));
     temp_r3 = (u8 *)(((u8 *)__nw__7TObjectFUl(0xF0)));
     if (temp_r3 != NULL) {
-        TObjGyaranzoMissile__sub_800D4668(temp_r3, this, &launch_position, rotation_y, temp_r31);
+        TObjGyaranzoMissile__sub_800D4668(temp_r3, this, &launch_position, this->rotation.yaw, temp_r31);
     }
     spawn_particle_effect((const Vec *)((void *)((s32) &launch_position)), 0xF3);
     play_sound_effect((s32)((((TObjEnemy *)(this))->remap_sound_for_area(0x4003B20D))), (const Vec *)(&position), 0, 0);
@@ -885,10 +885,10 @@ void TObjEneGyaranzo::spawn_missile_volley() {
     gyaranzo_missile_volley_end_time = get_gyaranzo_missile_int_parameter(1) + 0x96;
     render_anim_model_at_pos();
     {
-        GyaranzoMissileLaunch d1 = { &pos, -0x1000, rotation_y + 0x800, 1024.0f, 3.0f, 0.0f };
-        GyaranzoMissileLaunch d2 = { &pos, -0x2000, rotation_y + 0x800, 2048.0f, 10.0f, 0.4f };
-        GyaranzoMissileLaunch d3 = { &pos, -0x1000, rotation_y - 0x800, 1024.0f, 3.0f, 0.0f };
-        GyaranzoMissileLaunch d4 = { &pos, -0x2000, rotation_y - 0x800, 2048.0f, 10.0f, 0.4f };
+        GyaranzoMissileLaunch d1 = { &pos, -0x1000, this->rotation.yaw + 0x800, 1024.0f, 3.0f, 0.0f };
+        GyaranzoMissileLaunch d2 = { &pos, -0x2000, this->rotation.yaw + 0x800, 2048.0f, 10.0f, 0.4f };
+        GyaranzoMissileLaunch d3 = { &pos, -0x1000, this->rotation.yaw - 0x800, 1024.0f, 3.0f, 0.0f };
+        GyaranzoMissileLaunch d4 = { &pos, -0x2000, this->rotation.yaw - 0x800, 2048.0f, 10.0f, 0.4f };
         u16 ids[4] = { 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF };
         s32 idx[4] = { 0, 3, 1, 2 };
         for (i = 0; i < 4; i++) {

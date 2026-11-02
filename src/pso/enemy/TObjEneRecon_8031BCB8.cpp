@@ -23,7 +23,7 @@ void TObjEneRecon::render_shadows() {
     temp_r30 = TObjFish__sub_8001EDB0(TObjEneRecon__recobox_static_instance, 2);
     push_matrix();
     translate_matrix(0, *((f32 *) (((s8 *) this) + 0x38)), *((f32 *) (((s8 *) this) + 0x3C)), *((f32 *) (((s8 *) this) + 0x40)));
-    rotate_matrix_zyx(0, *((s32 *) (((s8 *) this) + 0x5C)), this->rotation_y, this->rotation_z);
+    rotate_matrix_zyx(0, *((s32 *) (((s8 *) this) + 0x5C)), this->rotation.yaw, this->rotation.roll);
     scale_matrix(0, lbl_805DF3B8, lbl_805DF3B8, lbl_805DF3B8);
     set_current_texture_list((GinjaTextureList *)(temp_r30));
     draw_chunk_object((void *)bml_model);
