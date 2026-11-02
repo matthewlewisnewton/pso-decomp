@@ -402,6 +402,7 @@ pso/effect/TEffClitical.cpp
 pso/effect/TEffGuard.cpp
 pso/effect/TEffHit.cpp
 pso/effect/TEffIndirectCtrl.cpp
+pso/effect/TEffIndirectCtrl_802A88AC.cpp
 pso/effect/TEffIndirectCtrl_802A9284.cpp
 pso/effect/TEffStarLight2D_Base.cpp
 pso/effect/TEffect.cpp
@@ -2511,7 +2512,6 @@ pso/player/TObjPlayer_80278AB4.cpp
 pso/player/TObjPlayer_8029EE64.cpp
 pso/player/TObjPlayer_8029F694.cpp
 pso/player/TObjPlayer_802A1440.cpp
-pso/player/TObjPlayer_802A8368.cpp
 pso/player/TObjPlayer_802C09A8.cpp
 pso/player/TObjPlayer_802C367C.cpp
 pso/player/TObjPlayer_802C3B14.cpp
@@ -3370,7 +3370,6 @@ pso/unk/text_802A1154.cpp
 pso/unk/text_802A1324.cpp
 pso/unk/text_802A3138.cpp
 pso/unk/text_802A4D74.cpp
-pso/unk/text_802A8210.cpp
 pso/unk/text_802A9568.cpp
 pso/unk/text_802A9588.cpp
 pso/unk/text_802AA8FC.cpp
