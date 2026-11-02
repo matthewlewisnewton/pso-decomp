@@ -969,5 +969,9 @@ s32 TAdPlayerLoadGC__sub_801E26DC(s32 chan, const char *name, void *buf, u32 siz
     default: create_error: return result;
     }
 }
+RecoveredGlobal_801E14E8_TAdPlayerLoadGC__data_80511ED0 TAdPlayerLoadGC__banner_buffers;
+CARDFileInfo_801E15A4 TAdPlayerLoadGC__data_80511EE8;
+CARDStat_801E2048 lbl_80511EFC;
+u8 *lbl_80511F68[2];
 
 }
