@@ -1926,6 +1926,7 @@ force_active:
   - __dt__11TOKeyCave01Fv
   - __dt__11TObjControlFv
   - __dt__11TObjDFDemo0Fv
+  - __dt__11TObjDFDemo1Fv
   - __dt__11TObjDFDemo2Fv
   - __dt__11TObjDFDemo3Fv
   - __dt__11TObjDFDemoFFPvs
@@ -2505,6 +2506,7 @@ force_active:
   - __vt__11TOKeyCave01
   - __vt__11TObjControl
   - __vt__11TObjDFDemo0
+  - __vt__11TObjDFDemo1
   - __vt__11TObjDFDemo2
   - __vt__11TObjDFDemo3
   - __vt__11TObjDFDemoF
@@ -4997,6 +4999,7 @@ force_active:
   - draw_fading_model_4__25TBoss6Demo20_TYPE2_APPEARFv
   - draw_fading_model_5__23TBoss6Demo21_TYPE2_DEADFPv
   - draw_fading_model_8__23TBoss6Demo21_TYPE2_DEADFPv
+  - draw_fading_model__11TObjDFDemo1Fv
   - draw_fading_model_pair__25TBoss6Demo20_TYPE2_APPEARFv
   - draw_fading_motion__10TObjPlayerFv
   - draw_filled_rects_2d__FPvPvi
@@ -7456,6 +7459,10 @@ force_active:
   - lbl_805D75F0
   - lbl_805D7D3C
   - lbl_805D85A0
+  - lbl_805D8994
+  - lbl_805D8998
+  - lbl_805D899C
+  - lbl_805D89A0
   - lbl_805D8D70
   - lbl_805D8D74
   - lbl_805D8D78
@@ -13127,6 +13134,7 @@ force_active:
   - render__11TLoadingCurFv
   - render__11TNowLoadingFv
   - render__11TOKeyCave01Fv
+  - render__11TObjDFDemo1Fv
   - render__11TObjDFDemo2Fv
   - render__11TObjDFDemo3Fv
   - render__11TTecRaZondeFv
@@ -13688,6 +13696,7 @@ force_active:
   - run_task__11TNowLoadingFv
   - run_task__11TOKeyCave01Fv
   - run_task__11TObjControlFv
+  - run_task__11TObjDFDemo1Fv
   - run_task__11TObjDFDemo2Fv
   - run_task__11TObjDFDemo3Fv
   - run_task__11TObjDFJisinFv
@@ -15072,6 +15081,7 @@ force_active:
   - sub_8004CFC4__14TBoss4DarkFalzFv
   - sub_8004D098__14TBoss4DarkFalzFv
   - sub_8004D29C__14TBoss4DarkFalzFv
+  - sub_8004E068__11TObjDFDemo1Fv
   - sub_8004F2A8__11TObjDFDemo4Fv
   - sub_80056998__11TBoss4Type2Fv
   - sub_80056F90__11TBoss4Type2Fll
