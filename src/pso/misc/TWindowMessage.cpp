@@ -369,8 +369,8 @@ u8 *TLobby::create_message_window(s32 arg0, s32 arg1, u32 arg2, s16 arg3) {
     return var_r0;
 }
 
-void TLobby::set_window_mode_4(void *arg0, s32 arg1, s32 arg2) {
-    TLobby::create_message_window((s32)arg0, (s32)arg1, (u32)arg2, (s16)(4));
+u8 *TLobby::set_window_mode_4(void *arg0, s32 arg1, s32 arg2) {
+    return TLobby::create_message_window((s32)arg0, (s32)arg1, (u32)arg2, (s16)(4));
 }
 
 void TLobby::update_window_mode_from_progress(void *arg1) {

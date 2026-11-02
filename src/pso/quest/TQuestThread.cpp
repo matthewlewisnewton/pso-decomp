@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/quest/TQuestListVMData.h"
 #include <string.h>
 #include "pso/TMainTask.h"
 #include "pso/TObject.h"
@@ -80,7 +81,6 @@ extern s32 local_client_id;
 extern s32 game_difficulty_selection;
 extern s32 evt2_random_enemies_mode;
 extern u8 controller_input_state[];
-extern int TQuestListVM__decompression_capacity;
 extern int quest_bin_decompressed_size;
 extern int online_quest_bin_data;
 extern char offline_quest_filename_buffer_a[];
@@ -856,7 +856,7 @@ void free_menu_object(void *window) {
 
 void fn_801F6520(void *p) { *(u16 *)((u8 *)p + 0x60) &= 0xfffe; }
 
-int TQuestListVM::get_quest_size() { return TQuestListVM__decompression_capacity; }
+int TQuestListVM::get_quest_size() { return (s32)TQuestListVM__decompression_capacity; }
 
 int TQuestListOnline::get_quest_size() { return quest_bin_decompressed_size; }
 
