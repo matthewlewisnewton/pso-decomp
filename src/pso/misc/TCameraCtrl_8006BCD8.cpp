@@ -70,22 +70,6 @@ extern void *camera_ctrl_instance;
 extern void* camera_controller_registry[];
 void* camera_controller_registry[];
 
-struct CameraMotionData;
-struct CameraPathMode { u32 field_00; u32 flags; };
-struct ScriptedCameraState {
-    u8 object_state[0x6C];
-    Vec position_origin;
-    Vec target_origin;
-    CameraAngles angles;
-    CameraMotionData* motion_data;
-    CameraPathMode* mode;
-    CameraPlayback playback;
-};
-typedef char ScriptedCameraSize[(sizeof(ScriptedCameraState) == 0xA4) ? 1 : -1];
-typedef char ScriptedCameraPositionOffset[(offsetof(ScriptedCameraState, position_origin) == 0x6C) ? 1 : -1];
-typedef char ScriptedCameraTargetOffset[(offsetof(ScriptedCameraState, target_origin) == 0x78) ? 1 : -1];
-typedef char ScriptedCameraYawOffset[(offsetof(ScriptedCameraState, angles) + offsetof(CameraAngles, yaw) == 0x88) ? 1 : -1];
-typedef char ScriptedCameraPlaybackOffset[(offsetof(ScriptedCameraState, playback) == 0x98) ? 1 : -1];
 extern "C" {
 f32 vector_length(const Vec*);
 void approach_vector_fixed_distance(const Vec*, const Vec*, Vec*, f32);
@@ -172,7 +156,7 @@ s32 TCameraCtrl::clamp_distance(s32 arg0, s32 arg1, s32 arg2) {
 }
 
 void set_scripted_camera_pose(const Vec* position, const Vec* target, const CameraAngles* angles) {
-    ScriptedCameraState* camera = (ScriptedCameraState*)camera_controller_registry[5];
+    TUnk_80488B68* camera = (TUnk_80488B68*)camera_controller_registry[5];
     if (camera != NULL) {
         VecCopy(&camera->position_origin, position);
         VecCopy(&camera->target_origin, target);
@@ -228,36 +212,31 @@ void TCameraCtrl::apply_look_at_from_target() {
 }
 #pragma pop
 
-void TCameraCtrl::cache_target_and_forward(s32 unused) {
-    s32 playback_data = (s32)this;
+extern "C" void cache_target_and_forward__11TCameraCtrlFl(const CameraPlayback *playback_data, s32 unused) {
     if ((void *) camera_ctrl_instance != NULL) {
         TCameraCtrl__saved_projection_angle = *(s32 *)((s8 *)camera_ctrl_instance + 0x19C);
         scripted_camera_projection_angle = unused;
     }
-    configure_scripted_camera_playback((u8 *)playback_data, (s32)unused);
+    // The lower helper reads through a const local and never writes its input.
+    configure_scripted_camera_playback(const_cast<CameraPlayback*>(playback_data), unused);
 }
 
-void configure_scripted_camera_playback(u8* playback_data, s32 unused) {
-    struct MotionDirectory { CameraMotionData** entries; };
-    struct MotionBank { MotionDirectory* directory; u32 unknown_04; };
-    struct PathBank { CameraPathMode* modes; u32 unknown_04; };
-    const CameraPlayback* playback = (const CameraPlayback*)playback_data;
-    ScriptedCameraState* camera = (ScriptedCameraState*)camera_controller_registry[5];
+void configure_scripted_camera_playback(CameraPlayback *playback_data, s32 unused) {
+    const CameraPlayback *playback = playback_data;
+    TUnk_80488B68* camera = (TUnk_80488B68*)camera_controller_registry[5];
     if (camera != NULL) {
         camera->playback.index = playback->index;
         camera->playback.bank = playback->bank;
         camera->playback.flags = playback->flags;
         camera->playback.frame = playback->frame;
         camera->playback.frame_step = playback->frame_step;
-        const PathBank* paths = (const PathBank*)camera_path_bank_table;
-        const MotionBank* motions = (const MotionBank*)&TCameraCtrl__camera_banks;
-        camera->mode = &paths[get_current_floor_area()].modes[camera->playback.bank];
-        camera->motion_data = motions[playback->bank].directory->entries[camera->playback.index];
+        camera->mode = &camera_path_bank_table[get_current_floor_area()].entries[camera->playback.bank];
+        camera->motion_data = TCameraCtrl__camera_banks.e[playback->bank].directory->entries[camera->playback.index];
     }
 }
 
 CameraPlayback* get_scripted_camera_playback() {
-    ScriptedCameraState* camera = (ScriptedCameraState*)camera_controller_registry[5];
+    TUnk_80488B68* camera = (TUnk_80488B68*)camera_controller_registry[5];
     if (camera != NULL) {
         CameraPlayback* playback = &camera->playback;
         if (TCameraCtrl__sub_8006A5DC() != 5) {

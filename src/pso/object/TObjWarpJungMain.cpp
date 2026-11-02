@@ -275,7 +275,7 @@ void TObjWarpJung::render() {
         TObjWarpJung::set_global_render_param();
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         TObjWarpJung::render_warp(0);
         TParticleCtrl::begin_effect_render();
         TObjWarpJung::render_warp_effect(1, (s32) this->m_c4);
