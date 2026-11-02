@@ -1,4 +1,5 @@
 #include "pso/boss/TBoss5GryphonLightningWing.h"
+#include "pso/boss/EffectGeometryParameters.h"
 #include "pso/misc/CameraHelpers.h"
 #include "pso/map/CsnGroundQuery.h"
 #include "pso/player/demo_mode.h"
@@ -65,7 +66,7 @@ struct Obj_8006426C {
 
 struct Vec_8006442C { f32 x, y, z; };
 
-struct Fx_8006442C { u8 pad0[8]; f32 scale; u8 padC[8]; };
+typedef EffectGeometryParameters Fx_8006442C;
 
 struct Dragon_8006442C {
     u8 pad0[0x3E4];
@@ -202,10 +203,8 @@ s32 fill_value_array(int);
 s32 reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(void *, int, int, int);
 s32 emit_enemy_effect__9TObjEneDDFllPUcl(void *, int, void *, int);
 void TBoss8Dragon__sub_8006426C(Obj_8006426C *arg0);
-s32 TBoss1Dragon__sub_80027A80(void *, void *);
 s32 TBoss8Dragon__sub_800670E0(int, void *);
 extern f32 gryphon_effect_scale_table[];
-extern u8 gryphon_effect_param_block[];
 void TBoss8Dragon__sub_8006442C(Dragon_8006442C *arg0);
 s32 TBoss8Dragon__sub_8005FAE0(u8 *arg0);
 void set_flag_4e4__12TBoss8DragonFPv(void* p);
@@ -424,12 +423,7 @@ struct Stack_80063F34 {
     f32 spC;
 };
 
-struct Stack_800646F0 {
-    s32 sp8;
-    u8 pad_C[0x4];
-    f32 sp10;
-    u8 trailing_storage[0x8];
-};
+typedef EffectGeometryParameters Stack_800646F0;
 
 struct RecoveredGlobal_800646F0_lbl_80437944 {
     s32 value;
@@ -441,12 +435,7 @@ struct RecoveredGlobal_800646F0_lbl_804FF5B4 {
     u8 remaining[0x8];
 };
 
-struct Stack_8006435C {
-    s32 sp8;
-    u8 pad_C[0x4];
-    f32 sp10;
-    u8 trailing_storage[0x8];
-};
+typedef EffectGeometryParameters Stack_8006435C;
 
 struct RecoveredGlobal_8006435C_lbl_80437D2C {
     s32 value;
@@ -651,14 +640,9 @@ s32 post_translate_matrix(void *);
 void set_material_alpha_compare_reference(s32 reference);
 void set_chunk_material_override_pair(s32 arg0, s32 arg1);
 
-extern RecoveredGlobal_800646F0_lbl_80437944 boss5_gryphon_params_b;
 extern RecoveredGlobal_8005E17C_lbl_8043797C boss5_gryphon_bone_capture_node_indices;
 extern s32 gryphon_part_attack_index_table[];
-extern ByteBlock_14 gryphon_part_attack_params;
-extern RecoveredGlobal_80064694_lbl_80437CF0 gryphon_collider_desc;
-extern RecoveredGlobal_8006435C_lbl_80437D2C boss8_dragon_attack_params;
 extern s32 lbl_80437D54[];
-extern RecoveredGlobal_80064114_lbl_80437D68 lbl_80437D68;
 extern s32 lbl_80437DC4[];
 extern s32 lbl_80437DD0[];
 extern s32 boss5_gryphon_waypoint_vecs[];
@@ -4282,14 +4266,11 @@ void TBoss8Dragon__sub_800640A4(s32 arg0, s32 arg1) {
 }
 
 void TBoss8Dragon__sub_80064114(s32 arg0, s32 arg1) {
-    struct CopyStack_80064114 { u8 bytes[0x14]; };
-    CopyStack_80064114 copy_storage_80064114;
-    u8 *temp_r4;
-    temp_r4 = (u8 *)&lbl_80437D68.value - 4;
-    *(ByteBlock_14 *)(copy_storage_80064114.bytes) = *(const ByteBlock_14 *)((s32) temp_r4 + 4);
-    (*(f32 *)(copy_storage_80064114.bytes + 0x4)) = *(f32 *)((s8 *)(*(u8 **)((s8 *)(&(*(RecoveredGlobal_80064114_lbl_804FF5B4 *)&boss5_gryphon_behavior_params).value) + 8)) + 4);
-    TBoss8Dragon__sub_80067074((arg1), ((s32)copy_storage_80064114.bytes));
-    TObjEneDD::setup_instance(arg0, arg1, (copy_storage_80064114.bytes), 0);
+    EffectGeometryParameters parameters;
+    __memcpy(&parameters, &lbl_80437D68, sizeof(parameters));
+    parameters.field_4 = *(f32 *)((s8 *)(*(u8 **)((s8 *)(&(*(RecoveredGlobal_80064114_lbl_804FF5B4 *)&boss5_gryphon_behavior_params).value) + 8)) + 4);
+    TBoss8Dragon__sub_80067074(arg1, (s32)&parameters);
+    TObjEneDD::setup_instance(arg0, arg1, (u8 *)&parameters, 0);
 }
 #pragma pop
 
@@ -4339,22 +4320,22 @@ void TBoss8Dragon__sub_8006426C(Obj_8006426C *arg0) {
 #pragma pop
 
 void TBoss8Dragon__sub_8006435C(u8 *ene_dd) {
-    typedef char sp8_offset[(offsetof(Stack_8006435C, sp8) == 0x0) ? 1 : -1];
-    typedef char sp10_offset[(offsetof(Stack_8006435C, sp10) == 0x8) ? 1 : -1];
+    typedef char sp8_offset[(offsetof(Stack_8006435C, field_0) == 0x0) ? 1 : -1];
+    typedef char sp10_offset[(offsetof(Stack_8006435C, field_8) == 0x8) ? 1 : -1];
     Stack_8006435C stack;
     u8 *temp_r31;
     u8 *temp_r31_2;
-    TBoss1Dragon__sub_80027A80((void *) (&stack.sp8), (void *) (&boss8_dragon_attack_params.value));
+    TBoss1Dragon__sub_80027A80(&stack, &boss8_dragon_attack_params);
     fill_value_array((int) (*(s32 *)((s8 *)ene_dd + 0x578)));
     reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(ene_dd, 0, (int) (*(s32 *)((s8 *)(&boss5_gryphon_attack_params.value) + 0xC)), 0);
     temp_r31 = (u8 *)(ene_dd + 0x444);
-    stack.sp10 = lbl_805D8EAC;
-    TBoss8Dragon__sub_800670E0((int)temp_r31, (void *) (&stack.sp8));
-    emit_enemy_effect__9TObjEneDDFllPUcl((void *)ene_dd, (int)temp_r31, (void *) (&stack.sp8), (int) (*(s32 *)((s8 *)ene_dd + 0x578)));
+    stack.field_8 = lbl_805D8EAC;
+    TBoss8Dragon__sub_800670E0((int)temp_r31, (void *) (&stack));
+    emit_enemy_effect__9TObjEneDDFllPUcl((void *)ene_dd, (int)temp_r31, (void *) (&stack), (int) (*(s32 *)((s8 *)ene_dd + 0x578)));
     temp_r31_2 = (u8 *)(ene_dd + 0x3C0);
-    stack.sp10 = lbl_805D8DD0;
-    TBoss8Dragon__sub_800670E0((int)temp_r31_2, (void *) (&stack.sp8));
-    emit_enemy_effect__9TObjEneDDFllPUcl((void *)ene_dd, (int)temp_r31_2, (void *) (&stack.sp8), (int) (*(s32 *)((s8 *)ene_dd + 0x578)));
+    stack.field_8 = lbl_805D8DD0;
+    TBoss8Dragon__sub_800670E0((int)temp_r31_2, (void *) (&stack));
+    emit_enemy_effect__9TObjEneDDFllPUcl((void *)ene_dd, (int)temp_r31_2, (void *) (&stack), (int) (*(s32 *)((s8 *)ene_dd + 0x578)));
     reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(ene_dd, 0, (int) (*(s32 *)((s8 *)(&boss5_gryphon_attack_params.value) + 0)), 0);
 }
 #pragma pop
@@ -4369,7 +4350,7 @@ void TBoss8Dragon__sub_8006442C(Dragon_8006442C *arg0) {
     Vec_8006442C pts[10];
     Vec_8006442C *p;
     s32 i;
-    TBoss1Dragon__sub_80027A80(&fx, gryphon_effect_param_block);
+    TBoss1Dragon__sub_80027A80(&fx, &gryphon_effect_param_block);
     fill_value_array(arg0->f578);
     p = pts;
     VecCopy__FP3VecPC3Vec((void*)(p++), (void*)(&arg0->a));
@@ -4398,7 +4379,7 @@ void TBoss8Dragon__sub_8006442C(Dragon_8006442C *arg0) {
     reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(arg0, 0, ((s32 *)&boss5_gryphon_attack_params)[3], 0);
     p = pts;
     for (i = 0; i < 5; i++) {
-        fx.scale = gryphon_effect_scale_table[i];
+        fx.field_8 = gryphon_effect_scale_table[i];
         TBoss8Dragon__sub_800670E0((int)p, &fx);
         emit_enemy_effect__9TObjEneDDFllPUcl(arg0, (int)p++, &fx, arg0->f578);
         TBoss8Dragon__sub_800670E0((int)p, &fx);
@@ -4408,13 +4389,9 @@ void TBoss8Dragon__sub_8006442C(Dragon_8006442C *arg0) {
 }
 
 void TBoss5Gryphon::update_collider_from_table() {
-    s32 arg0 = (s32)this;
-    struct CopyStack_80064694 { u8 bytes[0x14]; };
-    CopyStack_80064694 copy_storage_80064694;
-    u8 *temp_r5;
-    temp_r5 = (u8 *)&gryphon_collider_desc.value - 4;
-    *(ByteBlock_14 *)(copy_storage_80064694.bytes) = *(const ByteBlock_14 *)((s32) temp_r5 + 4);
-    TBoss8Dragon__sub_800670E0((int)((void *) (arg0 + 0x3C0)), (void *)((void *) ((copy_storage_80064694.bytes))));
+    EffectGeometryParameters parameters;
+    __memcpy(&parameters, &gryphon_collider_desc, sizeof(parameters));
+    TBoss8Dragon__sub_800670E0((s32)this + 0x3C0, &parameters);
 }
 #pragma pop
 
@@ -4423,14 +4400,14 @@ void TBoss5Gryphon::update_collider_from_table() {
 #pragma auto_inline off
 #pragma dont_inline off
 void TBoss8Dragon__sub_800646F0(s32 arg0) {
-    typedef char sp8_offset[(offsetof(Stack_800646F0, sp8) == 0x0) ? 1 : -1];
-    typedef char sp10_offset[(offsetof(Stack_800646F0, sp10) == 0x8) ? 1 : -1];
+    typedef char sp8_offset[(offsetof(Stack_800646F0, field_0) == 0x0) ? 1 : -1];
+    typedef char sp10_offset[(offsetof(Stack_800646F0, field_8) == 0x8) ? 1 : -1];
     Stack_800646F0 stack;
-    TBoss1Dragon__sub_80027A80((void *) (&stack.sp8), (void *) (&boss5_gryphon_params_b.value));
-    stack.sp10 = *(f32 *)((s8 *)(*(u8 **)((s8 *)(&boss5_gryphon_behavior_params.value) + 8)) + 0x10);
+    TBoss1Dragon__sub_80027A80(&stack, &boss5_gryphon_params_b);
+    stack.field_8 = *(f32 *)((s8 *)(*(u8 **)((s8 *)(&boss5_gryphon_behavior_params.value) + 8)) + 0x10);
     ((TBoss5Gryphon *)arg0)->reload_stats_for_phase((void *)((void *) (*(u8 **)((s8 *)(&boss5_gryphon_behavior_params.value) + 8))));
-    TBoss8Dragon__sub_80067074((arg0 + 0x38), (s32)(&stack.sp8));
-    ((TObjEneDD *)arg0)->emit_effect_at_position((void *) (&stack.sp8));
+    TBoss8Dragon__sub_80067074((arg0 + 0x38), (s32)(&stack));
+    ((TObjEneDD *)arg0)->emit_effect_at_position((void *) (&stack));
     ((TBoss5Gryphon *)arg0)->reload_stats_for_type();
 }
 #pragma pop
@@ -4521,9 +4498,9 @@ void TBoss8Dragon__sub_800648C8(u8 *arg0) {
 #pragma auto_inline off
 #pragma dont_inline off
 int emit_part_attack_effect__13TBoss5GryphonFPvi(void *ene_dd, int arg1) {
-    ByteBlock_14 prm;
+    EffectGeometryParameters prm;
     Vec_80064968 *p;
-    prm = gryphon_part_attack_params;
+    __memcpy(&prm, &gryphon_part_attack_params, sizeof(prm));
     fill_value_array(((Obj_80064968 *)ene_dd)->f578);
     p = &((Obj_80064968 *)ene_dd)->parts[gryphon_part_attack_index_table[arg1]];
     reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(ene_dd, 0, *(s32 *)((s8 *)(&boss5_gryphon_attack_params.value) + 0), 0);
