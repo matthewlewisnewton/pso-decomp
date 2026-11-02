@@ -444,6 +444,9 @@ force_active:
   - TItemEquipBase__sub_801191D0
   - TItemList__sub_801D39C8
   - TItemList__sub_801D58C8
+  - TItemList__sub_801D5A0C
+  - TItemList__sub_801D5A64
+  - TItemList__sub_801D5CF8
   - TItemLockCountCtrl__sub_80119238
   - TItemLockCountCtrl__sub_8011926C
   - TItemLockCountCtrl__sub_801192A0
@@ -13241,6 +13244,7 @@ force_active:
   - reset_oscillation__11TItemMagSubFll
   - reset_pad_rumble_effects_and_channels__Fs
   - reset_placement_search_ring__13TUnk_804C4498Fv
+  - reset_position__9TItemListFPv
   - reset_quest_list_vm__22THunterGuildSeqOfflineFv
   - reset_random_enemies_mode__19TPlayerBattleCtrl4PFv
   - reset_random_enemies_mode__6TLobbyFv

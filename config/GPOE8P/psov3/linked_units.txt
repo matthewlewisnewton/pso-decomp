@@ -702,6 +702,7 @@ pso/item/TItemEquipVariant_8012F9F0.cpp
 pso/item/TItemEquipVariant_8012FC58.cpp
 pso/item/TItemEquipVariant_80130658.cpp
 pso/item/TItemHeapObject.cpp
+pso/item/TItemList.cpp
 pso/item/TItemList_8010ED0C.cpp
 pso/item/TItemList_801D3780.cpp
 pso/item/TItemList_801D57B0.cpp
