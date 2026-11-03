@@ -6,6 +6,7 @@
 #include "pso/object/TObjTombstone.h"
 #include "pso/system/vector.h"
 #include "pso/system/BmlResourceDescriptor.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/misc/TRaderMapCore.h"
@@ -47,8 +48,6 @@ f32 vec3_dot(const Vec *a, const Vec *b);
 extern s32 TLobby__designated_client_id;
 s32 TObjFish__sub_8001EDB0(s32, s32);
 s32 get_bml_model(s32, s32);
-u8 *__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
-void __dt__11BmlResourceFv(void *, int);
 // TCameraCtrl.h declares these short; the callers here take an int (no extsh).
 s32 get_screen_width__11TCameraCtrlFv();
 s32 get_screen_height__11TCameraCtrlFv();
@@ -110,22 +109,15 @@ void *TLobby::create_tombstone(void *arg0, void *arg1, void *arg2) {
 }
 
 void TObjTombstone::load_resources() {
-    s32 mem;
-    s32 res;
     if (TObjTombstone__shared_resource_object == 0) {
-        mem = (int)::operator new(0x440);
-        res = mem;
-        if (res != 0) {
-            res = (long)__ct__11BmlResourceFlP21BmlResourceDescriptorllPv((void *)mem, 1, &tombstone_resource_descriptor, 0, 0, 0);
-        }
-        TObjTombstone__shared_resource_object = res;
+        TObjTombstone__shared_resource_object = (s32)new BmlResource(1, &tombstone_resource_descriptor, 0, 0, NULL);
         TObjTombstone::reset_matrix();
     }
 }
 
 void TObjTombstone::destroy() {
     if (TObjTombstone__shared_resource_object != 0U) {
-        __dt__11BmlResourceFv((void *)TObjTombstone__shared_resource_object, 1);
+        delete (BmlResource *)TObjTombstone__shared_resource_object;
         TObjTombstone__shared_resource_object = 0U;
         TObjTombstone::reset_matrix();
     }
