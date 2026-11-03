@@ -1,3 +1,4 @@
+#include "pso/system/SoundSlotPitch.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TTecFoie.h"
@@ -5,7 +6,6 @@ struct Tec_8022FB70 { u8 pad[0x20]; f32 pos[3]; u8 pad2c[0xC6 - 0x2C]; s16 band;
 
 extern "C" {
 
-void update_technique_slot__10TTecRaFoieFl(s32 handle, s32 pitch, s32 c);
 void TTecFoie::play_foie_cast_sound() {
     Tec_8022FB70 *self = (Tec_8022FB70 *)this;
     s32 h;

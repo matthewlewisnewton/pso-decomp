@@ -273,7 +273,7 @@ void TWindowLockOn::refresh_ground_item() {  }
 
 void TWindowLockOn::update_photon_blast_marker() {
     u8 *arg0 = (u8 *)this;
-    update_photon_blast_player_marker((s32)((TUnk_804CE018 *)arg0)->get_array_entry(0), this->m_60);
+    update_photon_blast_player_marker(((TUnk_804CE018 *)arg0)->get_array_entry(0), this->m_60);
 }
 
 struct Obj_80263014;

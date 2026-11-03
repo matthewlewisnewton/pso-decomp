@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/math/VectorNormalize.h"
 #include "pso/system/vector.h"
 #include "types.h"
@@ -153,7 +154,6 @@ void push_history_entry__17TObjEneMe1CanadinFPvfPvi(Obj_8009FADC *self, f32 f, c
 extern const f32 canadin_effect_zero;
 extern const f32 canadin_light_width_cutoff;
 s32 fade_alpha_step__17TObjEneMe1CanadinFPvif(Obj_8009FB54 *self, s32 dec, f32 scale);
-void *mem_alloc(u32 size);
 void __ct__7TObjectFP7TObject(void *, void *);
 extern s32 __vt__26TObjEneMe1Canadin_EffLight[];
 extern s32 TObjEneMe1Canadin_EffLight__name;
@@ -161,7 +161,6 @@ extern const f32 canadin_light_width_decay;
 void run_task__26TObjEneMe1Canadin_EffLightFv(Obj_8009FA24 *arg0);
 void __dl__7TObjectFPv(void *);
 void __dt__7TObjectFv(void *, int);
-void mem_free(void *);
 
 struct Obj_8009FB54;
 typedef s32 (*Fn_8009FA24)(Rec_8009FA24 *, f32, s32);
@@ -213,9 +212,9 @@ s32 fade_alpha_step__17TObjEneMe1CanadinFPvif(Obj_8009FB54 *self, s32 dec, f32 s
 void *__dt__26TObjEneMe1Canadin_EffLightFv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__26TObjEneMe1Canadin_EffLight;
-        mem_free(*(void **)((s8 *)arg0 + 0x2C));
+        ::operator delete[](*(void **)((s8 *)arg0 + 0x2C));
         *(s32 *)((s8 *)arg0 + 0x2C) = 0;
-        mem_free(((TObjEneMe1Canadin_EffLight *)arg0)->m_28);
+        ::operator delete[](((TObjEneMe1Canadin_EffLight *)arg0)->m_28);
         *(s32 *)((s8 *)arg0 + 0x28) = 0;
         __dt__7TObjectFv(arg0, 0);
         if (arg1 > 0) {
@@ -231,8 +230,8 @@ TObjEneMe1Canadin_EffLight::TObjEneMe1Canadin_EffLight(TObject *parent, s32 coun
     ((Obj_8009FC44 *)this)->count = count;
     ((Obj_8009FC44 *)this)->field20 = 0;
     ((Obj_8009FC44 *)this)->field24 = 0;
-    ((Obj_8009FC44 *)this)->buf28 = mem_alloc(((Obj_8009FC44 *)this)->count << 5);
-    ((Obj_8009FC44 *)this)->recs = (Rec_8009FC44 *)mem_alloc(((Obj_8009FC44 *)this)->count * 0x14);
+    ((Obj_8009FC44 *)this)->buf28 = ::operator new[](((Obj_8009FC44 *)this)->count << 5);
+    ((Obj_8009FC44 *)this)->recs = (Rec_8009FC44 *)::operator new[](((Obj_8009FC44 *)this)->count * 0x14);
     for (i = 0; i < ((Obj_8009FC44 *)this)->count; i++) {
         ((Obj_8009FC44 *)this)->recs[i].a = canadin_effect_zero;
         ((Obj_8009FC44 *)this)->recs[i].b = 0;

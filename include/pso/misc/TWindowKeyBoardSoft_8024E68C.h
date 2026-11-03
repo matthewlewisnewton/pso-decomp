@@ -15,7 +15,9 @@ void animate_scale__19TWindowKeyBoardSoftFv(TWindowDrawContext *);
 void apply_context_transform_to_rect(TWindowDrawContext *, f32 *quad);
 s32 clip_textured_quad__19TWindowKeyBoardSoftFPvPv(TWindowDrawContext *, f32 *quad);
 s32 is_point_in_bounds__19TWindowKeyBoardSoftFPv(TWindowDrawContext *, f32 *quad);
-TWindowDrawContext *open_singleton__19TWindowKeyBoardSoftFiiii(const f32 *pos, const f32 *size, const f32 *scale, u32 flags, f32 depth);
+// Depth precedes flags. The caller reads the depth first, and a float argument
+// does not consume the general-purpose register used for the flags.
+TWindowDrawContext *open_singleton__19TWindowKeyBoardSoftFiiii(const f32 *pos, const f32 *size, const f32 *scale, f32 depth, u32 flags);
 TWindowDrawContext *get_or_create_instance__19TWindowKeyBoardSoftFv();
 TWindowDrawContext *free_singleton__19TWindowKeyBoardSoftFUls(TWindowDrawContext *, s16);
 TWindowDrawContext *init_layout__19TWindowKeyBoardSoftFv(TWindowDrawContext *);

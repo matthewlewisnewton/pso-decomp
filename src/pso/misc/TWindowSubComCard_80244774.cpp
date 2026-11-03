@@ -150,7 +150,7 @@ Win_80244DFC * find_overlapping_balloon__15TWindowFukidasiFPvPvPvPv(Win_80244DFC
 s32 sub_80246948__13TUnk_804CE018Fv();
 int TWindowFukidasi__sub_8024695C(void *p);
 s32 TWindowCtrlMain__sub_8024CE24();
-TWindowDrawContext *open_singleton__19TWindowKeyBoardSoftFiiii(const f32 *, const f32 *, const f32 *, u32, f32);
+TWindowDrawContext *open_singleton__19TWindowKeyBoardSoftFiiii(const f32 *, const f32 *, const f32 *, f32, u32);
 void apply_window_closing_stretch__FPUci(TWindowDrawContext *, int);
 void animate_scale__19TWindowKeyBoardSoftFv(TWindowDrawContext *);
 void shrink_clip_right__19TWindowKeyBoardSoftFv(TWindowDrawContext *);
@@ -315,7 +315,7 @@ TWindowDrawContext *TUnk_804CE018::setup_window_draw_context(s32 arg1) {
     s32 var_r4;
     f32 depth = *(f32 *)((u8 *)this + 0x54);
     u32 flags = *(u32 *)((u8 *)this + 0x2c);
-    temp_r31 = open_singleton__19TWindowKeyBoardSoftFiiii((f32 *)((u8 *)this + 0x40), (f32 *)((u8 *)this + 0x48), (f32 *)arg1, flags, depth);
+    temp_r31 = open_singleton__19TWindowKeyBoardSoftFiiii((f32 *)((u8 *)this + 0x40), (f32 *)((u8 *)this + 0x48), (f32 *)arg1, depth, flags);
     if (*(s32 *)((s8 *)((u8 *)this) + 0x2C) & 0x40) {
         animate_scale__19TWindowKeyBoardSoftFv(temp_r31);
     }

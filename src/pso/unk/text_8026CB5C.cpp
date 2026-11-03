@@ -1,7 +1,7 @@
 #include "types.h"
 #include "pso/unk/text_8026CB5C.h"
 
-extern "C" const f32 lbl_8044F4D0[2] = { 1.0f, 1.0f };
+extern "C" const f32 lbl_8044F4D0[2];
 extern char lbl_8044F4C8[];
 extern char lbl_8044F4D8[];
 

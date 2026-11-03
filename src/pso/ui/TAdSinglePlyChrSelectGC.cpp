@@ -1,5 +1,6 @@
 #include "pso/system/SoundEffect.h"
 #include "types.h"
+#include "pso/ui/TAdChrSelASlotGC.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC_802E0FC8.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/object/TObject_80019A50.h"
@@ -32,13 +33,11 @@ s32 __ct__10TAdTitleGCFP7TObjectl(void *, void *, int);
 void *__ct__13TAdTitleTexGCFv(void *, void *);
 void *__ct__14TAdSelectCurGCFv(void *, void *, void *, void *);
 void *__ct__13TAdGuideTxtGCFv(void *, void *);
-u8 *get_or_create_slot_window__22TAdMultiPlyChrSelectGCFii(s32 arg0, s32 arg1);
 extern u8 single_chr_select_item_rect_table[];
 extern u8 lbl_80472530[];
 extern T_802D4F2C single_chr_select_position_table;
 extern s32 __vt__23TAdSinglePlyChrSelectGC[];
 extern s32 lbl_805D3F40;
-u8 *TAdSinglePlyChrSelectGC__ct(u8 *arg0, void *parent);
 void *__dt__23TAdSinglePlyChrSelectGCFv(void *arg0, s16 arg1);
 s32 *get_localized_text_entry(s32, s32);
 
@@ -169,7 +168,7 @@ void *__dt__23TAdSinglePlyChrSelectGCFv(void *arg0, s16 arg1) {
     }
     return arg0;
 }
-u8 *TAdSinglePlyChrSelectGC__ct(u8 *arg0, void *parent) {
+extern "C" u8 *TAdSinglePlyChrSelectGC__ct(u8 *arg0, TObject *parent) {
     void *p;
     __ct__7TObjectFP7TObject(arg0, parent);
     *(s32 **)((s8 *)arg0 + 0x18) = __vt__23TAdSinglePlyChrSelectGC;
@@ -187,7 +186,7 @@ u8 *TAdSinglePlyChrSelectGC__ct(u8 *arg0, void *parent) {
     if (p != NULL) {
         __ct__10TAdTitleGCFP7TObjectl(p, arg0, 0);
     }
-    *(s32 *)((s8 *)arg0 + 0x28) = (s32)get_or_create_slot_window__22TAdMultiPlyChrSelectGCFii((s32)arg0, 0);
+    *(s32 *)((s8 *)arg0 + 0x28) = (s32)get_or_create_slot_window__22TAdMultiPlyChrSelectGCFii((TObject *)arg0, 0);
     *(s32 *)((s8 *)arg0 + 0x30) = get_or_create_player__22TAdMultiPlyChrSelectGCFiiii((s32)arg0, 0, -1, 0);
     p = __nw__7TObjectFUl(0x44);
     if (p != NULL) {
