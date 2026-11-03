@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/boss/TBoss6PlotFalzState.h"
 #include "pso/render/render_util.h"
 #include "pso/unk/text_802B0A44.h"
 
@@ -30,15 +31,15 @@ void draw_empty_warp_overlay(void) {
     restore_saved_depth_alpha_state();
 }
 
-// --- fn_802B0A44: boot-seed ctor for the Falz plot demo state table ---
-// File-scope array of 9 script states {name, 4x member-action slots}.
-// The null PMF slots force runtime init: MWCC gathers the 25 constant
-// member pointers into a .data template (lbl_804DE540, 0x12C) and
-// synthesizes __sinit_text_802B0A44_cpp (registered in .ctors at
-// 0x80433FC4) that copies the template over the instance
-// TBoss6PlotFalz__data_804DE66C (0x1D4) and writes __ptmf_null into
-// the empty action slots. Consumer: TBoss6PlotFalz::run_phase_action
-// (stride 0x34, action read at +0x28).
+// --- __sinit_text_802B0A44_cpp: boot-seed ctor for the Falz plot demo state
+// table --- File-scope array of 9 script states {name, 4x member-action
+// slots}, typed by pso/boss/TBoss6PlotFalzState.h and consumed through that
+// shared type by TBoss6PlotFalz::run_phase_action, call_state_action and
+// set_state. The null PMF slots force runtime init: MWCC gathers the 25
+// constant member pointers into a .data template (lbl_804DE540, 0x12C) and
+// synthesizes __sinit_text_802B0A44_cpp (registered in .ctors at 0x80433FC4)
+// that copies the template over the instance TBoss6PlotFalz__data_804DE66C
+// (0x1D4) and writes __ptmf_null into the empty action slots.
 
 extern "C" {
 extern const char lbl_80470920[];  // "FALL_ELEV"
@@ -52,62 +53,49 @@ extern const char lbl_80470978[];  // "DEMO_END"
 extern const char lbl_80470984[];  // "OL_ENDING"
 }
 
-class TBoss6PlotFalz {
+// Ten of the table's twenty-five action slots target free functions: the era
+// symbols (TBoss6PlotFalz__sub_802B0A34, init_proto1_adx__FPv,
+// stop_adx_audio__FPv and their siblings, defined in the TPlayerFootStamp
+// units) fix them as free functions that take the controller as void*. MWCC
+// cannot form a member-pointer constant from a free function, so these slots
+// are declared through this provisional shim, which gives them the same
+// {0, -1, target} member-pointer form as the genuine members. The shim is
+// never instantiated and its members are never defined; it exists only for
+// these ten table entries.
+class FalzPlotActionShim : public TBoss6PlotFalz {
 public:
     void sub_802B0A34();
-    void advance_if_ready();
-    void advance_intro_timer();
     void init_proto1_adx();
     void sub_802B08F0();
-    void tick_timeout();
-    void enter_active_state();
-    void update_phase();
     void sub_802B0808();
-    void reset_and_recreate();
-    void set_state4_if_ready();
     void sub_802B06D0();
     void init_hall_boss_scene();
-    void check_and_advance_state();
-    void update_cutscene_fade();
     void stop_adx_audio();
-    void advance_phase_if_ready();
-    void advance_timer();
     void sub_802B0448();
-    void check_action_7();
     void sub_802B03F4();
-    void finish_and_dispatch_next_phase();
-    void update_plot_timer();
-    void reset_ending_state();
     void sub_802B0228();
 };
+typedef void (FalzPlotActionShim::*FalzPlotActionShimAction)();
 
-typedef void (TBoss6PlotFalz::*TBoss6PlotFalzAction)();
-
-struct TBoss6PlotFalzScriptState {
-    const char* name;
-    TBoss6PlotFalzAction action_enter;
-    TBoss6PlotFalzAction action_idle;
-    TBoss6PlotFalzAction action_update;
-    TBoss6PlotFalzAction action_advance;
-};
-
+extern "C" {
 TBoss6PlotFalzScriptState TBoss6PlotFalz__data_804DE66C[9] = {
-    { lbl_80470920, &TBoss6PlotFalz::sub_802B0A34, 0,
+    { lbl_80470920, (TBoss6PlotFalzAction)(FalzPlotActionShimAction)&FalzPlotActionShim::sub_802B0A34, 0,
       &TBoss6PlotFalz::advance_if_ready, &TBoss6PlotFalz::advance_intro_timer },
-    { lbl_8047092C, &TBoss6PlotFalz::init_proto1_adx, 0,
-      &TBoss6PlotFalz::sub_802B08F0, &TBoss6PlotFalz::tick_timeout },
+    { lbl_8047092C, (TBoss6PlotFalzAction)(FalzPlotActionShimAction)&FalzPlotActionShim::init_proto1_adx, 0,
+      (TBoss6PlotFalzAction)(FalzPlotActionShimAction)&FalzPlotActionShim::sub_802B08F0, &TBoss6PlotFalz::tick_timeout },
     { lbl_80470938, &TBoss6PlotFalz::enter_active_state, 0,
-      &TBoss6PlotFalz::update_phase, &TBoss6PlotFalz::sub_802B0808 },
+      &TBoss6PlotFalz::update_phase, (TBoss6PlotFalzAction)(FalzPlotActionShimAction)&FalzPlotActionShim::sub_802B0808 },
     { lbl_80470944, &TBoss6PlotFalz::reset_and_recreate, 0,
-      &TBoss6PlotFalz::set_state4_if_ready, &TBoss6PlotFalz::sub_802B06D0 },
-    { lbl_80470950, &TBoss6PlotFalz::init_hall_boss_scene, 0,
+      &TBoss6PlotFalz::set_state4_if_ready, (TBoss6PlotFalzAction)(FalzPlotActionShimAction)&FalzPlotActionShim::sub_802B06D0 },
+    { lbl_80470950, (TBoss6PlotFalzAction)(FalzPlotActionShimAction)&FalzPlotActionShim::init_hall_boss_scene, 0,
       &TBoss6PlotFalz::check_and_advance_state, &TBoss6PlotFalz::update_cutscene_fade },
-    { lbl_80470960, &TBoss6PlotFalz::stop_adx_audio, 0,
+    { lbl_80470960, (TBoss6PlotFalzAction)(FalzPlotActionShimAction)&FalzPlotActionShim::stop_adx_audio, 0,
       &TBoss6PlotFalz::advance_phase_if_ready, &TBoss6PlotFalz::advance_timer },
-    { lbl_8047096C, &TBoss6PlotFalz::sub_802B0448, 0,
-      &TBoss6PlotFalz::check_action_7, &TBoss6PlotFalz::sub_802B03F4 },
+    { lbl_8047096C, (TBoss6PlotFalzAction)(FalzPlotActionShimAction)&FalzPlotActionShim::sub_802B0448, 0,
+      &TBoss6PlotFalz::check_action_7, (TBoss6PlotFalzAction)(FalzPlotActionShimAction)&FalzPlotActionShim::sub_802B03F4 },
     { lbl_80470978, &TBoss6PlotFalz::finish_and_dispatch_next_phase, 0, 0,
       &TBoss6PlotFalz::update_plot_timer },
     { lbl_80470984, &TBoss6PlotFalz::reset_ending_state, 0, 0,
-      &TBoss6PlotFalz::sub_802B0228 },
+      (TBoss6PlotFalzAction)(FalzPlotActionShimAction)&FalzPlotActionShim::sub_802B0228 },
 };
+}

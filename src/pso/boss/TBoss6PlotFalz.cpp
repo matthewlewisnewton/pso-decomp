@@ -11,6 +11,7 @@ void set_constant_material(const NJS_ARGB *color);
 #include "pso/system/vector.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/boss/TBoss6PlotFalz.h"
+#include "pso/boss/TBoss6PlotFalzState.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/BmlResourceDescriptor.h"
@@ -365,30 +366,13 @@ struct Stack_802AB1C8 {
     s32 sp10;
 };
 
-union MemberActionStorage_802AB1C8 { s32 words[3]; void (TBoss6PlotFalz::*action)(); };
-
-struct RecoveredGlobal_802AB1C8_TBoss6PlotFalz__data_804DE66C {
-    s32 value;
-    u8 remaining[0x1D0];
-};
-
 struct Stack_802AB14C {
     s32 sp8;
     s32 spC;
     s32 sp10;
 };
 
-union MemberActionStorage_802AB14C { s32 words[3]; void (TBoss6PlotFalz::*action)(); };
-
-struct RecoveredGlobal_802AB14C_TBoss6PlotFalz__data_804DE66C {
-    s32 value;
-    u8 remaining[0x1D0];
-};
-
-union MemberActionStorage_802AB2B8 { s32 words[3]; void (TBoss6PlotFalz::*action)(); };
-
 extern "C" {
-extern RecoveredGlobal_802AB1C8_TBoss6PlotFalz__data_804DE66C TBoss6PlotFalz__data_804DE66C;
 void TBoss6EmptyWarp__sub_802B1004(void *p);
 
 s32 is_state_1f__14TBoss6PlotFalzFUi(u32 arg0) {
@@ -398,42 +382,20 @@ s32 is_state_1f__14TBoss6PlotFalzFUi(u32 arg0) {
     return 1;
 }
 
-typedef char MemberActionStorage_802AB1C8_size[sizeof(MemberActionStorage_802AB1C8) == 12 ? 1 : -1];
-typedef char RecoveredGlobal_802AB1C8_TBoss6PlotFalz__data_804DE66C_size[sizeof(RecoveredGlobal_802AB1C8_TBoss6PlotFalz__data_804DE66C) == 0x1D4 ? 1 : -1];
-
-typedef char MemberActionStorage_802AB14C_size[sizeof(MemberActionStorage_802AB14C) == 12 ? 1 : -1];
-typedef char RecoveredGlobal_802AB14C_TBoss6PlotFalz__data_804DE66C_size[sizeof(RecoveredGlobal_802AB14C_TBoss6PlotFalz__data_804DE66C) == 0x1D4 ? 1 : -1];
 void TBoss6PlotFalz::run_phase_action() {
-  MemberActionStorage_802AB14C member_action;
-  Stack_802AB14C stack;
-  u8 *temp_r6;
-  temp_r6 = (u8 *) (&(*(RecoveredGlobal_802AB14C_TBoss6PlotFalz__data_804DE66C *)&TBoss6PlotFalz__data_804DE66C).value);
-  temp_r6 = temp_r6 + ((this->m_378) * 0x34);
-  member_action.words[0] = *((s32 *) (((s8 *) temp_r6) + 0x28));
-  member_action.words[1] = *((s32 *) (((s8 *) temp_r6) + 0x2C));
-  member_action.words[2] = *((s32 *) (((s8 *) temp_r6) + 0x30));
-  if (member_action.action != 0)
+  TBoss6PlotFalzAction action = TBoss6PlotFalz__data_804DE66C[this->m_378].advance;
+  if (action != 0)
   {
-    (this->*( member_action.action))();
+    (this->*( action))();
   }
   update_random_shake__14TBoss6PlotFalzFPv((void *) this);
 }
 
 void TBoss6PlotFalz::call_state_action() {
-  MemberActionStorage_802AB1C8 member_action;
-  Stack_802AB1C8 stack;
-  u8 *temp_r6;
-  if (1)
+  TBoss6PlotFalzAction action = TBoss6PlotFalz__data_804DE66C[this->m_378].update;
+  if (action != 0)
   {
-    temp_r6 = (u8 *)&TBoss6PlotFalz__data_804DE66C.value;
-    temp_r6 = temp_r6 + ((this->m_378) * 0x34);
-    member_action.words[0] = *((s32 *) (((s8 *) temp_r6) + 0x1C));
-  }
-  member_action.words[1] = *((s32 *) (((s8 *) temp_r6) + 0x20));
-  member_action.words[2] = *((s32 *) (((s8 *) temp_r6) + 0x24));
-  if (member_action.action != 0)
-  {
-    (this->*( member_action.action))();
+    (this->*( action))();
   }
 }
 
@@ -443,31 +405,20 @@ void TBoss6PlotFalz::activate_warp() { void* m = *(void**)((char*)this + 0x384);
 void TBoss6PlotFalz::free_child() { void* m = *(void**)((char*)this + 0x384); if (m) TBoss6EmptyWarp__sub_802B1004(m); }
 void TBoss6PlotFalz::set_state(s32 arg1) {
     u8 *arg0 = (u8 *)this;
-    MemberActionStorage_802AB2B8 leave;
-    MemberActionStorage_802AB2B8 enter;
-    u8 *e;
     if (arg1 < 0 || arg1 >= 9) {
         return;
     }
     {
-        if (*(s32 *)(arg0 + 0x378) != -1) {
-            e = (u8 *)&TBoss6PlotFalz__data_804DE66C.value;
-            e = e + *(s32 *)(arg0 + 0x378) * 0x34;
-            leave.words[0] = *(s32 *)(e + 0x10);
-            leave.words[1] = *(s32 *)(e + 0x14);
-            leave.words[2] = *(s32 *)(e + 0x18);
-            if (leave.action != 0) {
-                (((TBoss6PlotFalz *)arg0)->*(leave.action))();
+        if (this->m_378 != -1) {
+            TBoss6PlotFalzAction action = TBoss6PlotFalz__data_804DE66C[this->m_378].idle;
+            if (action != 0) {
+                (((TBoss6PlotFalz *)arg0)->*( action))();
             }
         }
         *(s32 *)(arg0 + 0x378) = arg1;
-        e = (u8 *)&TBoss6PlotFalz__data_804DE66C.value;
-            e = e + *(s32 *)(arg0 + 0x378) * 0x34;
-        enter.words[0] = *(s32 *)(e + 0x4);
-        enter.words[1] = *(s32 *)(e + 0x8);
-        enter.words[2] = *(s32 *)(e + 0xC);
-        if (enter.action != 0) {
-            (((TBoss6PlotFalz *)arg0)->*(enter.action))();
+        TBoss6PlotFalzAction action = TBoss6PlotFalz__data_804DE66C[this->m_378].enter;
+        if (action != 0) {
+            (((TBoss6PlotFalz *)arg0)->*( action))();
         }
     }
 }
