@@ -504,7 +504,8 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # while render comes first in .text, so the source runs backwards.
     "pso/object/TObjChip.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     # GC/2.0: compiler-expanded struct copies take 2.0's registers.
-    "pso/boss/Boss5GryphonBehavior.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-str reuse,readonly")},
+    # -sdata 4: the 8-byte name list lbl_80487858 sits in .data, not .sdata.
+    "pso/boss/Boss5GryphonBehavior.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-str reuse,readonly", "-sdata 4")},
     "pso/enemy/TObjEneGyaranzo.cpp": {"mw_version": "GC/2.0"},
     "pso/misc/TOExplosiveMachine.cpp": {"mw_version": "GC/2.0"},
     "pso/enemy/TObjEneSlimeTailAttack.cpp": {"mw_version": "GC/2.0"},
