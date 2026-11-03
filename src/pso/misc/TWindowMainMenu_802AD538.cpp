@@ -601,11 +601,13 @@ void draw_frame__19TWindowMenuMainMenuFv(TWindowMenuMainMenu *window, FrameConte
         remaining -= lbl_805DE160;
     }
     remaining -= lbl_805DE164;
-    while (remaining >= lbl_805DE198) {
-        if (remaining < 16.0f) {
+    // The loop test keeps the 4px minimum. A short row reads that constant again.
+    f32 min_strip = lbl_805DE198;
+    while (remaining >= min_strip) {
+        if (remaining < lbl_805DE150) {
             height = lbl_805DE198;
         } else {
-            height = 16.0f;
+            height = lbl_805DE150;
         }
         r.x0 = context->x; r.y0 = context->y + offset;
         r.x1 = r.x0 + context->width; r.y1 = r.y0 + height;
