@@ -273,10 +273,62 @@ void transform_chunk_object_tree(void *arg0, ModelDrawCallback cb) {
 }
 #undef node
 
-extern "C" {
-asm void transform_chunk_vertices_pos_normal(register Hdr_803E34B0 *job, register s32 matrix) {
-#include "orig_asm/pso/unk/text_803E2D70/transform_chunk_vertices_pos_normal.inc"
-}
+// push_reordered_matrix_ps (0x803E1E84) writes the current 3x4 as these pairs.
+// Position uses the translation column; the normal uses only the 3x3.
+struct ReorderedMatrix_803E3390 {
+    f32 m00, m10;
+    f32 m20, m01;
+    f32 m11, m21;
+    f32 m02, m12;
+    f32 m22, m03;
+    f32 m13, m23;
+};
+struct VtxIn_803E3390 {
+    f32 x, y, z;
+    f32 nx, ny, nz;
+};
+struct VtxOut_803E3390 {
+    f32 x, y, z;
+    f32 nx, ny, nz;
+    f32 pad[2];
+};
+typedef char ReorderedMatrix_803E3390_size[sizeof(ReorderedMatrix_803E3390) == 0x30 ? 1 : -1];
+typedef char VtxIn_803E3390_size[sizeof(VtxIn_803E3390) == 0x18 ? 1 : -1];
+typedef char VtxOut_803E3390_size[sizeof(VtxOut_803E3390) == 0x20 ? 1 : -1];
+
+// The original is a software-pipelined paired-single loop (psq_l / ps_madds0/1,
+// peeled first vertex, bdnz). GC/2.6 exposes AltiVec vec_* intrinsics only, not
+// paired-single __PS_* builtins, so this is the scalar transform.
+void transform_chunk_vertices_pos_normal(Hdr_803E34B0 *job, ReorderedMatrix_803E3390 *matrix) {
+    VtxIn_803E3390 *src = (VtxIn_803E3390 *)job->src;
+    VtxOut_803E3390 *dst = (VtxOut_803E3390 *)job->dst;
+    s32 count = job->count;
+    f32 m00 = matrix->m00;
+    f32 m10 = matrix->m10;
+    f32 m20 = matrix->m20;
+    f32 m01 = matrix->m01;
+    f32 m11 = matrix->m11;
+    f32 m21 = matrix->m21;
+    f32 m02 = matrix->m02;
+    f32 m12 = matrix->m12;
+    f32 m22 = matrix->m22;
+    f32 m03 = matrix->m03;
+    f32 m13 = matrix->m13;
+    f32 m23 = matrix->m23;
+    for (s32 i = 0; i < count; i++) {
+        f32 x = src[i].x;
+        f32 y = src[i].y;
+        f32 z = src[i].z;
+        f32 nx = src[i].nx;
+        f32 ny = src[i].ny;
+        f32 nz = src[i].nz;
+        dst[i].x = m00 * x + m01 * y + m02 * z + m03;
+        dst[i].y = m10 * x + m11 * y + m12 * z + m13;
+        dst[i].z = m20 * x + m21 * y + m22 * z + m23;
+        dst[i].nx = m00 * nx + m01 * ny + m02 * nz;
+        dst[i].ny = m10 * nx + m11 * ny + m12 * nz;
+        dst[i].nz = m20 * nx + m21 * ny + m22 * nz;
+    }
 }
 
 void TObjPlayer::transform_vertex_list() {
@@ -630,7 +682,7 @@ void set_chunk_blend_depth_mode(s32 arg0, s32 arg1) {
 
 extern "C" {
 void push_reordered_matrix_ps(void);
-void transform_chunk_vertices_pos_normal(Hdr_803E34B0 *job, s32 matrix);
+void transform_chunk_vertices_pos_normal(Hdr_803E34B0 *job, ReorderedMatrix_803E3390 *matrix);
 void GXSetVtxAttrFmtv(Hdr_803E34B0 *job, s32 matrix, u32 format);
 void cache_chunk_vertex_colors(Hdr_803E34B0 *job, s32 matrix);
 void transform_vertex_list__10TObjPlayerFv(Hdr_803E34B0 *job, s32 matrix);
@@ -654,7 +706,7 @@ s32 dispatch_chunk_vertex_list(u32 *list, s32 buffer) {
         job.dst = (u8 *)(buffer + (info & 0xFFFF) * 32);
         total += job.count;
         if ((type & 0xFF) == 0x29) {
-            transform_chunk_vertices_pos_normal(&job, current_matrix);
+            transform_chunk_vertices_pos_normal(&job, (ReorderedMatrix_803E3390 *)current_matrix);
         } else if ((type & 0xFF) == 0x2C) {
             GXSetVtxAttrFmtv(&job, current_matrix, ((type & ~0x8000) >> 8) & 0xFF);
         } else if ((type & 0xFF) == 0x2A) {
