@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/misc/TWindowFukidasi_80252AE4.h"
 #include "pso/misc/TUnk_804CDFE8.h"
@@ -8,7 +9,6 @@
 
 extern "C" {
 
-void mem_free(void *p);
 s32 __dl__7TObjectFPv(void *);
 
 extern s32 lbl_804CF0B8[];
@@ -21,7 +21,7 @@ u8 *__dt__13TUnk_804CF0B8Fv(u8 *arg0, s16 arg1) {
             TWindowCtrl::release_slot((s8 *)(arg0 + 0x73));
         }
         if (((TUnk_804CF0B8 *)arg0)->name != NULL) {
-            mem_free(((TUnk_804CF0B8 *)arg0)->name);
+            ::operator delete[](((TUnk_804CF0B8 *)arg0)->name);
             ((TUnk_804CF0B8 *)arg0)->name = NULL;
         }
         ((TUnk_804CDFE8 *)arg0)->destroy_window(0);

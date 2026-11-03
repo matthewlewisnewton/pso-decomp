@@ -1,28 +1,25 @@
 #include "types.h"
 #include "pso/item/TItemSpecialEvent.h"
-#include "pso/TEndingPic.h"
 
-typedef void (TEndingPic::*Handler)();
+typedef void (TItemSpecialEvent::*Handler)();
 
-// The ending item's use effect advances the ending sequence one step for each
-// technique index. The handlers live on TEndingPic; the item shares the object
-// prefix they use (including the +0xF0 owner/player slot), so the original
-// code invokes them on this after reinterpretation.
+// Technique index selects one of nine use-effect steps on this item. Each
+// step only reads the owner pointer at +0xF0.
 void TItemSpecialEvent::apply_use_effect() {
     Handler handlers[9] = {
-        &TEndingPic::sub_803531F8,
-        &TEndingPic::sub_803531D0,
-        &TEndingPic::sub_80353194,
-        &TEndingPic::update_shield,
-        &TEndingPic::sub_80353134,
-        &TEndingPic::sub_80353110,
-        &TEndingPic::update_player_object,
-        &TEndingPic::sub_803530A0,
-        &TEndingPic::set_phase_18,
+        &TItemSpecialEvent::sub_803531F8,
+        &TItemSpecialEvent::sub_803531D0,
+        &TItemSpecialEvent::sub_80353194,
+        &TItemSpecialEvent::sub_80353158,
+        &TItemSpecialEvent::sub_80353134,
+        &TItemSpecialEvent::sub_80353110,
+        &TItemSpecialEvent::sub_803530C4,
+        &TItemSpecialEvent::sub_803530A0,
+        &TItemSpecialEvent::sub_8035307C,
     };
     u8 technique = get_technique();
     if (technique < 9) {
         Handler handler = handlers[technique];
-        (reinterpret_cast<TEndingPic *>(this)->*handler)();
+        (this->*handler)();
     }
 }

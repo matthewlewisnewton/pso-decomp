@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/misc/TWindowChoiceSetting.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
@@ -32,7 +33,6 @@ void *get_window_layout_position(s32);
 extern const f32 lbl_805DD144;
 void get_lobby_field_20__15TWindowMakeTeamFv(void *, f32);
 void get_keyboard_field_6c__15TWindowMakeTeamFv(void *, char *);
-void mem_free(void *);
 char *realloc_buffer__17TWindowSubComCardFv(void *);
 char *get_shared_text_buffer(void);
 s32 measure_string_len__20TWindowSubStatusDispFv(char *);
@@ -100,7 +100,7 @@ void TWindowMakeTeam::run_task() {
         }
         if (((TWindowSubComCard *)(self->keyboard))->update_keyboard() != 0) {
             s32 n;
-            mem_free(self->name);
+            ::operator delete[](self->name);
             self->name = realloc_buffer__17TWindowSubComCardFv(self->keyboard);
             TWindowSubComCard::mask_profanity_words(self->name, get_shared_text_buffer());
             n = measure_string_len__20TWindowSubStatusDispFv(self->name);
@@ -128,7 +128,7 @@ void TWindowMakeTeam::run_task() {
         }
         if (((TWindowSubComCard *)(self->keyboard))->update_keyboard() != 0) {
             s32 n;
-            mem_free(self->comment);
+            ::operator delete[](self->comment);
             self->comment = realloc_buffer__17TWindowSubComCardFv(self->keyboard);
             TWindowSubComCard::mask_profanity_words(self->comment, get_shared_text_buffer());
             n = measure_string_len__20TWindowSubStatusDispFv(self->comment);

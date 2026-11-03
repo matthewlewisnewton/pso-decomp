@@ -1,3 +1,4 @@
+#include "pso/system/SoundSlotPitch.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_8011C000.h"
@@ -88,7 +89,6 @@ extern s32 lbl_805D2B10;
 s32 __cvt_fp2unsigned(f32);
 s32 get_item_star_count(s32 id);
 Entry_8011CB18 *get_weapon_range_record(Item_8011CB18 *item, s16 mode);
-void update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
 
 void play_weapon_owner_sounds(Ctx_8011C7C8 *c);
 void play_weapon_hit_sound(Ctx_8011C7C8 *c);

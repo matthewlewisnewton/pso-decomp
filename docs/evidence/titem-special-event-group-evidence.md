@@ -47,3 +47,15 @@ The group therefore identifies the class semantically as the event-item use
 effect. The class name `TItemSpecialEvent` is an inferred name adopted as an
 explicit exception for this unit; the executable does not provide the original
 class-name string, so the name is not recovered evidence.
+
+## Use-effect dispatch
+
+`apply_use_effect` (`0x803531FC`) selects one of nine steps by technique index
+and calls it with `(this->*handler)()`. The steps (`0x8035307C`-`0x803531F8`)
+and `send_obj_position_event` (`0x80353018`) only read `TItem::owner` at
+`+0xF0`, so they are members of this item. They stay in `TEndingPic.cpp`, the
+unit that emitted them.
+
+`send_obj_position_event` keeps the name already assigned to `0x80353018`.
+The other steps stay `sub_<addr>`. `set_phase_18`, `update_player_object`, and
+`update_shield` had no name evidence in the executable.

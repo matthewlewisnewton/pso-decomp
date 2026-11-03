@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "pso/map/CsnGroundQuery.h"
+#include "pso/map/CsnResult.h"
 #include <stddef.h>
 #include <dolphin/mtx.h>
 
@@ -25,24 +26,6 @@ typedef char CsnGroupRadiusOffset[offsetof(CsnGroup, radius) == 0x10 ? 1 : -1];
 typedef char CsnGroupFlagsOffset[offsetof(CsnGroup, flags) == 0x14 ? 1 : -1];
 
 CsnGroup* select_ground_query_groups(CsnVector* origin, u32 mask);
-
-// The polygon a segment query hit: the hit point and the polygon normal.
-struct CsnContact {
-    Vec point;
-    Vec normal;
-    u32 flags;
-};
-
-// The shared query result (one static record, NULL when nothing is hit).
-struct CsnHit {
-    u8 pad_0[0x4];
-    CsnContact *contact;
-    u8 pad_8[0x38];
-};
-
-typedef char CsnContactSize[sizeof(CsnContact) == 0x1C ? 1 : -1];
-typedef char CsnContactNormalOffset[offsetof(CsnContact, normal) == 0xC ? 1 : -1];
-typedef char CsnHitContactOffset[offsetof(CsnHit, contact) == 4 ? 1 : -1];
 
 extern "C" {
 CsnHit *csnVector(const Vec *from, const Vec *to, u32 mask);
