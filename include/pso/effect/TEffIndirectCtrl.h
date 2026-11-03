@@ -26,9 +26,9 @@ struct TEffIndirectCtrl : public TObject {
     void copy_and_flush_texture(s32 arg1);
     static void free_all();
     void update_scroll_mode();
-    u8 unk_48[0x4];
+    f32 m_48;
     f32 m_4c;
-    u8 unk_50[0x4];
+    f32 m_50;
 };
 
 typedef char TEffIndirectCtrl_size[sizeof(TEffIndirectCtrl) == 0x54 ? 1 : -1];
