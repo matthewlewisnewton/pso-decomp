@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/MatrixVectorArray.h"
 #include "pso/misc/SampledMotionPoints.h"
 #include "pso/player/demo_mode.h"
@@ -481,7 +482,6 @@ struct Sub_800A8530 { u8 b[0x1C]; };
 struct Self_800A8530 { u8 pad[0x3CC]; Sub_800A8530 subs[4]; };
 
 extern "C" {
-s32 *mem_alloc(s32);
 extern u8 lbl_8043AAA4[];
 extern s32 dimedian_resource_handles[];
 extern s32 dimedian_last_draw_tick[];
@@ -505,7 +505,6 @@ extern u8 __dt__15RenderFadeStateFv[];
 O_800A846C *TObjPlayer__sub_800A846C(O_800A846C *arg0, s16 arg1);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 void *__nw__7TObjectFUl(int);
-void mem_free(void*);
 
 extern void *tl_04;
 
@@ -704,19 +703,19 @@ extern u32 dimedian_resource_ptr;
 
 void TObjEneDimedian::free_boss_objects() {
     if ((u32) dimedian_boss_object_buf != 0U) {
-        mem_free((void*)dimedian_boss_object_buf);
+        ::operator delete[]((void*)dimedian_boss_object_buf);
         dimedian_boss_object_buf = 0U;
     }
     if ((u32) lbl_805D5074 != 0U) {
-        mem_free((void*)lbl_805D5074);
+        ::operator delete[]((void*)lbl_805D5074);
         lbl_805D5074 = 0U;
     }
     if ((u32) TObjEneDimedian__boss_objects != 0U) {
-        mem_free((void*)TObjEneDimedian__boss_objects);
+        ::operator delete[]((void*)TObjEneDimedian__boss_objects);
         TObjEneDimedian__boss_objects = 0U;
     }
     if ((u32) dimedian_buffer_ptr != 0U) {
-        mem_free((void*)dimedian_buffer_ptr);
+        ::operator delete[]((void*)dimedian_buffer_ptr);
         dimedian_buffer_ptr = 0U;
     }
     if ((u32) lbl_805D5088 != 0U) {
@@ -762,10 +761,10 @@ void TLobby::load_dimedian_resources() {
     (*(void **)&lbl_805D5088) = p;
     ((SampledMotionPoints *)(*(void **)&dimedian_type3_object))->sample_two_nodes((NJS_OBJECT *)RES_800A8118->bodies->model, (NJS_MOTION *)RES_800A8118->motions[dimedian_action_table[3].idx].b, 5, 8);
     ((SampledMotionPoints *)(*(void **)&lbl_805D5088))->sample_two_nodes((NJS_OBJECT *)RES_800A8118->bodies->model, (NJS_MOTION *)RES_800A8118->motions[dimedian_action_table[4].idx].b, 0xA, 0xD);
-    (*(s32 **)&dimedian_boss_object_buf) = mem_alloc(0xC);
-    (*(s32 **)&lbl_805D5074) = mem_alloc(0xC);
-    (*(s32 **)&TObjEneDimedian__boss_objects) = mem_alloc(0xC);
-    (*(s32 **)&dimedian_buffer_ptr) = mem_alloc(0xC);
+    (*(s32 **)&dimedian_boss_object_buf) = static_cast<s32*>(::operator new[](0xC));
+    (*(s32 **)&lbl_805D5074) = static_cast<s32*>(::operator new[](0xC));
+    (*(s32 **)&TObjEneDimedian__boss_objects) = static_cast<s32*>(::operator new[](0xC));
+    (*(s32 **)&dimedian_buffer_ptr) = static_cast<s32*>(::operator new[](0xC));
     (*(s32 **)&dimedian_boss_object_buf)[0] = ((s32)get_battle_base_stats(0x53));
     (*(s32 **)&dimedian_boss_object_buf)[1] = ((s32)get_battle_base_stats(0x54));
     (*(s32 **)&dimedian_boss_object_buf)[2] = ((s32)get_battle_base_stats(0x55));

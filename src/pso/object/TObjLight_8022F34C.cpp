@@ -1,3 +1,4 @@
+#include "pso/system/SoundSlotPitch.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/object/TUnk_804CC74C.h"
@@ -11,7 +12,6 @@
 struct Obj_8022F42C { u8 pad[0xA6]; s16 state; };
 
 extern "C" {
-s32 update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
 
 void __dl__7TObjectFPv(void *);
 void __dt__7TObjectFv(void *, int);
