@@ -1,3 +1,5 @@
+/* signed-int-to-double.cpp defines signed_a and the conversion pool.
+   external-consumer.cpp defines read_pool_export. */
 MEMORY
 {
  text : origin = 0x00010000
