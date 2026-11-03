@@ -226,7 +226,9 @@ Vec2_8024EC34 *get_viewport_offset__19TWindowKeyBoardSoftFi(s32 i) {
     return get_zero_vec2();
 }
 
-extern "C" TWindowDrawContext *open_singleton__19TWindowKeyBoardSoftFiiii(f32 *pos, f32 *size, f32 *scale, u32 flags, f32 depth) {
+// Depth precedes flags. The caller reads the depth first, and a float argument
+// does not consume the general-purpose register used for the flags.
+extern "C" TWindowDrawContext *open_singleton__19TWindowKeyBoardSoftFiiii(f32 *pos, f32 *size, f32 *scale, f32 depth, u32 flags) {
     if (soft_keyboard_instance == NULL) return NULL;
     init_text_window_layout(soft_keyboard_instance, pos, size, scale, flags, depth);
     return soft_keyboard_instance;
