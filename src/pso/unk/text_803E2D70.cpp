@@ -296,38 +296,28 @@ typedef char ReorderedMatrix_803E3390_size[sizeof(ReorderedMatrix_803E3390) == 0
 typedef char VtxIn_803E3390_size[sizeof(VtxIn_803E3390) == 0x18 ? 1 : -1];
 typedef char VtxOut_803E3390_size[sizeof(VtxOut_803E3390) == 0x20 ? 1 : -1];
 
-// The original is a software-pipelined paired-single loop (psq_l / ps_madds0/1,
-// peeled first vertex, bdnz). GC/2.6 exposes AltiVec vec_* intrinsics only, not
-// paired-single __PS_* builtins, so this is the scalar transform.
+// Pointer walk, as in transform_vertex_list. The matrix is the paired layout
+// from push_reordered_matrix_ps, not a row-major Mtx, so this is not
+// PSMTXMultVecArray. GC/2.6 emits scalar arithmetic for the loop.
 void transform_chunk_vertices_pos_normal(Hdr_803E34B0 *job, ReorderedMatrix_803E3390 *matrix) {
-    VtxIn_803E3390 *src = (VtxIn_803E3390 *)job->src;
     VtxOut_803E3390 *dst = (VtxOut_803E3390 *)job->dst;
-    s32 count = job->count;
-    f32 m00 = matrix->m00;
-    f32 m10 = matrix->m10;
-    f32 m20 = matrix->m20;
-    f32 m01 = matrix->m01;
-    f32 m11 = matrix->m11;
-    f32 m21 = matrix->m21;
-    f32 m02 = matrix->m02;
-    f32 m12 = matrix->m12;
-    f32 m22 = matrix->m22;
-    f32 m03 = matrix->m03;
-    f32 m13 = matrix->m13;
-    f32 m23 = matrix->m23;
-    for (s32 i = 0; i < count; i++) {
-        f32 x = src[i].x;
-        f32 y = src[i].y;
-        f32 z = src[i].z;
-        f32 nx = src[i].nx;
-        f32 ny = src[i].ny;
-        f32 nz = src[i].nz;
-        dst[i].x = m00 * x + m01 * y + m02 * z + m03;
-        dst[i].y = m10 * x + m11 * y + m12 * z + m13;
-        dst[i].z = m20 * x + m21 * y + m22 * z + m23;
-        dst[i].nx = m00 * nx + m01 * ny + m02 * nz;
-        dst[i].ny = m10 * nx + m11 * ny + m12 * nz;
-        dst[i].nz = m20 * nx + m21 * ny + m22 * nz;
+    VtxIn_803E3390 *src = (VtxIn_803E3390 *)job->src;
+    s32 n = job->count;
+    while (n-- > 0) {
+        f32 x = src->x;
+        f32 y = src->y;
+        f32 z = src->z;
+        f32 nx = src->nx;
+        f32 ny = src->ny;
+        f32 nz = src->nz;
+        dst->x = matrix->m00 * x + matrix->m01 * y + matrix->m02 * z + matrix->m03;
+        dst->y = matrix->m10 * x + matrix->m11 * y + matrix->m12 * z + matrix->m13;
+        dst->z = matrix->m20 * x + matrix->m21 * y + matrix->m22 * z + matrix->m23;
+        dst->nx = matrix->m00 * nx + matrix->m01 * ny + matrix->m02 * nz;
+        dst->ny = matrix->m10 * nx + matrix->m11 * ny + matrix->m12 * nz;
+        dst->nz = matrix->m20 * nx + matrix->m21 * ny + matrix->m22 * nz;
+        src++;
+        dst++;
     }
 }
 
