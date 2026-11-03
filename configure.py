@@ -444,6 +444,7 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # TObjChip: render's colour template sits after draw_chips' in .rodata
     # while render comes first in .text, so the source runs backwards.
     "pso/object/TObjChip.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
+    "pso/object/TObjTombstone.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on", "-str reuse,readonly")},
     # GC/2.0: compiler-expanded struct copies take 2.0's registers.
     "pso/boss/Boss5GryphonBehavior.cpp": {"mw_version": "GC/2.0"},
     "pso/enemy/TObjEneGyaranzo.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred")},
