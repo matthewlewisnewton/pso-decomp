@@ -146,7 +146,8 @@ void TWindow__close(u8 *arg0);
 void __dl__7TObjectFPv(void *);
 void *__dt__15TShopWindowBaseFv(void *self, s16 m);
 
-s32 create_window_menu(s32, s32, s32);
+// The menu's entity id is the low 16 bits of get_entity_id.
+s32 create_window_menu(s32, s32, u16);
 s32 align_menu_entry_positions(s32);
 int forward_trade_action_default__16TObjCityMainWarpFPviii(void *p, int a1, int a2, int a3);
 s32 get_selected_menu_value(void *);
@@ -180,30 +181,12 @@ void TShopItemListWindow::vfunc_6() {
     }
 }
 
-struct Rec_8021F1A4 { s32 w[4]; s32 price; };
-
-struct Win_8021F1A4 {
-    u8 pad0[0x58];
-    Rec_8021F1A4 recs[16];
-};
-
-struct WinItems_8021F1A4 {
-    u8 pad0[0x58];
-    TItemData recs[16];
-};
-
-/* The original has a void return, leaving r3 available for the null-tested
- * window calls. The typed item-array view preserves the scaled-index address
- * formation; only the entity ID's saved register still differs. */
 void TShopItemListWindow::handle_amount_confirm() {
-    s32 i;
-    s32 r;
     switch (this->m_4c) {
     case 0:
         if (this->m_34 != 0 && ((TWindowInputNumber *)this->m_34)->is_confirmed() != 0) {
             if (this->m_30 == 0) {
-                u16 id = get_entity_id((void *)this->m_24);
-                this->m_30 = create_window_menu(get_window_layout_position(0x2B), 2, id);
+                this->m_30 = create_window_menu(get_window_layout_position(0x2B), 2, get_entity_id((void *)this->m_24));
                 forward_trade_action_default__16TObjCityMainWarpFPviii((void *)this->m_30, get_shop_text(4), 6, 0);
                 forward_trade_action_default__16TObjCityMainWarpFPviii((void *)this->m_30, get_shop_text(5), 6, 1);
                 ((TWindowSubComCard *)this->m_30)->calc_window_size();
@@ -228,22 +211,21 @@ void TShopItemListWindow::handle_amount_confirm() {
         break;
     case 1:
         if (this->m_30 != 0 && ((TWindowMenu *)this->m_30)->is_visible() != 0) {
-            r = get_selected_menu_value((void *)this->m_30);
+            s32 r = get_selected_menu_value((void *)this->m_30);
             if (r == 0) {
                 if (this->m_28 != 0) {
-                    i = select_cursor_entry__22TWindowSubShortCutListFv((void *)this->m_28);
-                    WinItems_8021F1A4 *W = (WinItems_8021F1A4 *)this;
-                    TItemData it = W->recs[i];
+                    s32 i = select_cursor_entry__22TWindowSubShortCutListFv((void *)this->m_28);
+                    TItemData it = this->m_items[i];
                     it.id = advance_item_id_counter(local_client_id);
                     if (get_item_def__18TCheckRoomSequenceFUl(&it) != 0) {
                         it.set_stack_count((u8)this->m_50);
                     }
                     try_buy_item(this->m_24, &it);
                     if (this->m_3c != 0) {
-                        s32 n = ((TObjPlayer *)(*(s32 *)(this->m_24 + 0xD00)))->count_items_by_id((s32)&W->recs[i]);
+                        s32 n = ((TObjPlayer *)(*(s32 *)(this->m_24 + 0xD00)))->count_items_by_id((s32)&this->m_items[i]);
                         ((TWindowSubStatusDisp *)this->m_3c)->set_entry1_field20(n);
                     }
-                    if (is_single_purchase_shop_item((u8 *)&W->recs[i]) != 0) {
+                    if (is_single_purchase_shop_item((u8 *)&this->m_items[i]) != 0) {
                         mark_shop_tool_sold_out(i, sub_8022397C__15TShopWindowBaseFv(this));
                     }
                     ((TShopArmorListWindow *)this->m_28)->save_cursor_selection();
@@ -273,46 +255,42 @@ void TShopItemListWindow::handle_amount_confirm() {
     }
 }
 
+// Saved-register coloring still swaps the scaled index (r29) and the
+// inventory-accept count (r30). The instruction sequence otherwise matches.
 void TShopItemListWindow::prepare_tool_purchase() {
-    s32 off;
-    s32 accept;
     if (this->m_28 == 0) {
         return;
     }
-    {
-        Win_8021F1A4 *W = (Win_8021F1A4 *)this;
-        s32 i = select_cursor_entry__22TWindowSubShortCutListFv((void *)this->m_28);
-        off = i * 0x14;
-        accept = ((TObjPlayer *)this->m_24)->can_inventory_accept_item((u8 *)&W->recs[i]);
-        s32 max = obj_getPtr2B0_20((u8 *)this->m_24) / W->recs[i].price;
-        if (max > accept) {
-            max = accept;
+    s32 i = select_cursor_entry__22TWindowSubShortCutListFv((void *)this->m_28);
+    s32 accept = ((TObjPlayer *)this->m_24)->can_inventory_accept_item((u8 *)&this->m_items[i]);
+    // Shop copies store the meseta price in the item's data2 word.
+    s32 max = obj_getPtr2B0_20((u8 *)this->m_24) / (s32)this->m_items[i].data2.data_u32;
+    if (max > accept) {
+        max = accept;
+    }
+    if (max > 1) {
+        TWindowInputNumber *w = (TWindowInputNumber *)__nw__7TObjectFUl(0x7C);
+        if (w != 0) {
+            w = (TWindowInputNumber *)__ct__18TWindowInputNumberFPvllls(w, get_window_layout_position(0x2B), 1, max, 1, (s16)get_child_field1c__13TShopSequenceFv(this));
         }
-        if (max > 1) {
-            TWindowInputNumber *w = (TWindowInputNumber *)__nw__7TObjectFUl(0x7C);
-            if (w != 0) {
-                w = (TWindowInputNumber *)__ct__18TWindowInputNumberFPvllls(w, get_window_layout_position(0x2B), 1, max, 1, (s16)get_child_field1c__13TShopSequenceFv(this));
-            }
-            this->m_34 = (u32)w;
-            if (this->m_34 != 0 && TLobby::is_camera_ctrl_active() > 2) {
-                ((TCheckRoomSequence *)this->m_34)->set_position(lbl_805DC6F8, lbl_805DC6F8);
-            }
-            this->m_4c = 0;
-            set_field_20(2);
-        } else {
-            u16 id = get_entity_id((void *)this->m_24);
-            this->m_30 = create_window_menu(get_window_layout_position(0x2B), 2, id);
-            forward_trade_action_default__16TObjCityMainWarpFPviii((void *)this->m_30, get_shop_text(4), 6, 0);
-            forward_trade_action_default__16TObjCityMainWarpFPviii((void *)this->m_30, get_shop_text(5), 6, 1);
-            ((TWindowSubComCard *)this->m_30)->calc_window_size();
-            align_menu_entry_positions(this->m_30);
-            ((TCheckRoomSequence *)this->m_30)->set_ready_flag();
-            f32 sc = get_scale__15TShopWindowBaseFv(this);
-            ((TUnk_804CDFE8 *)this->m_30)->set_position_xy(get_scale__15TShopWindowBaseFv(this), sc);
-            this->m_50 = 1;
-            this->m_4c = 1;
-            set_field_20(2);
+        this->m_34 = (u32)w;
+        if (this->m_34 != 0 && TLobby::is_camera_ctrl_active() > 2) {
+            ((TCheckRoomSequence *)this->m_34)->set_position(lbl_805DC6F8, lbl_805DC6F8);
         }
+        this->m_4c = 0;
+        set_field_20(2);
+    } else {
+        this->m_30 = create_window_menu(get_window_layout_position(0x2B), 2, get_entity_id((void *)this->m_24));
+        forward_trade_action_default__16TObjCityMainWarpFPviii((void *)this->m_30, get_shop_text(4), 6, 0);
+        forward_trade_action_default__16TObjCityMainWarpFPviii((void *)this->m_30, get_shop_text(5), 6, 1);
+        ((TWindowSubComCard *)this->m_30)->calc_window_size();
+        align_menu_entry_positions(this->m_30);
+        ((TCheckRoomSequence *)this->m_30)->set_ready_flag();
+        f32 sc = get_scale__15TShopWindowBaseFv(this);
+        ((TUnk_804CDFE8 *)this->m_30)->set_position_xy(get_scale__15TShopWindowBaseFv(this), sc);
+        this->m_50 = 1;
+        this->m_4c = 1;
+        set_field_20(2);
     }
 }
 
