@@ -117,7 +117,9 @@ struct RecoveredGlobal_803FC178_lbl_805C02D0 {
     u8 *p18;
     u8 *p1C;
     char *p20;
-    u8 pad24[0x12];
+    u8 pad24[4];
+    s16 f28;
+    u8 pad2A[0xC];
     u8 f36;
     u8 f37;
     u16 f38;
@@ -1005,6 +1007,40 @@ s16 TLobby__sub_803FC820(Conn_804004DC *c, Hdr_803FC4B4 *hdr, B_803FADA0 *src) {
     reply = TLobby__sub_80401B20(lbl_805C02D0.p20, NetStringLength(lbl_805C02D0.p20));
     TLobby__sub_803FE6CC(c, code, hdr->flag, reply);
     return ret;
+}
+
+B_803FADA0 *TLobby__sub_803FCF44(Self_803FD74C *fsm) {
+    Chap_803FC728 *chap = (Chap_803FC728 *)fsm->f30;
+    s32 tick;
+    char name[] = "avetcp";
+    B_803FADA0 *buf;
+    u8 *p;
+    s16 i;
+    s16 len;
+
+    if (chap->name == NULL || chap->secret == NULL) {
+        return NULL;
+    }
+    buf = init_net_buffer_entry__6TLobbyFUs(0);
+    if (buf == NULL) {
+        return NULL;
+    }
+    p = buf->buf;
+    NetStoreTick(&tick);
+    lbl_805D7A9A = (tick & 0x1F) + 0x10;
+    *p++ = lbl_805D7A9A;
+    NetStoreTick(&tick);
+    for (i = 0; i < lbl_805D7A9A; i++) {
+        *p++ = tick;
+    }
+    NetCopyString((char *)p, name);
+    buf->len += lbl_805D7A9A + (u16)NetStringLength(name) + 1;
+    len = buf->len;
+    if (len > lbl_805C02D0.f28) {
+        len = lbl_805C02D0.f28;
+    }
+    NetMemcpy(lbl_805C02D0.p8, buf->buf, len);
+    return buf;
 }
 #pragma pop
 
@@ -3114,6 +3150,71 @@ s16 TLobby__sub_80402BB4(u8 *arg0, s32 timeout) {
     }
     c->abort = 0;
     return 0;
+}
+
+extern const char lbl_805E1180[4];
+extern "C" void handle_request_timeout__6TLobbyFv(void);
+extern "C" B_803FADA0 *TLobby__sub_80403634(Self_803FD74C *fsm);
+struct Self_80402CE0;
+struct Timer_80402CE0 {
+    u8 pad0[0x10];
+    void (*callback)(void);
+    Self_80402CE0 *arg;
+    u8 pad18[4];
+};
+struct Self_80402CE0 {
+    u8 f0; u8 f1; u8 f2; u8 f3; u8 f4; u8 f5; u8 f6; u8 f7;
+    u8 pad8[4];
+    u8 *sub;
+    Timer_80402CE0 timer;
+    Proto_803FC318 *proto;
+    u8 *opts;
+};
+extern "C" void TLobby__sub_80402CE0(u8 *conn);
+
+void TLobby__sub_80402CE0(u8 *conn) {
+    Names_80403168 *g;
+    Proto_803FC318 *p;
+    Self_80402CE0 *fsm;
+    Timer_80402CE0 *timer;
+
+    g = &lbl_805C04D8;
+    p = (Proto_803FC318 *)g;
+    fsm = (Self_80402CE0 *)(conn + 0x38);
+    if (fsm->opts == NULL) {
+        timer = &fsm->timer;
+        p->name = lbl_805E1180;
+        p->proto = 0xC023;
+        p->h6 = 0xE;
+        p->b8 = 1;
+        p->bB = 0;
+        p->b9 = *(u8 *)((u8 *)g + 0x15A);
+        p->bA = *(u8 *)((u8 *)g + 0x15B);
+        p->timeout = *(u16 *)((u8 *)g + 0x15C) * 1000;
+        p->f10 = TLobby__sub_803FE84C;
+        p->f14 = TLobby__sub_803FE84C;
+        p->f18 = TLobby__sub_803FE84C;
+        p->f1C = TLobby__sub_803FE84C;
+        p->f20 = TLobby__sub_803FE84C;
+        p->f24 = TLobby__sub_803FE84C;
+        p->f28 = TLobby__sub_80403634;
+        p->f2C = TLobby__sub_803FE844;
+        p->f30 = TLobby__sub_803FE844;
+        p->f34 = TLobby__sub_803FE844;
+        p->f38 = TLobby__sub_803FE844;
+        fsm->sub = conn;
+        fsm->proto = p;
+        fsm->opts = (u8 *)g + 0x3C;
+        fsm->f4 = fsm->proto->b9;
+        fsm->f7 = fsm->proto->bA;
+        fsm->f5 = fsm->proto->bB;
+        fsm->f0 = 0;
+        fsm->f3 = fsm->f4;
+        fsm->f6 = fsm->f7;
+        timer->callback = handle_request_timeout__6TLobbyFv;
+        timer->arg = fsm;
+        TLobby__sub_80405298((N_80405298 *)timer, fsm->proto->timeout);
+    }
 }
 
 s32 TLobby::mark_ready() {
