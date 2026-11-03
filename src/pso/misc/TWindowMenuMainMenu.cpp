@@ -8,7 +8,6 @@
 struct W_802AE864 { u8 pad[0x124]; void *a[8]; };
 
 extern "C" {
-s32 draw_frame__19TWindowMenuMainMenuFv(void *, int);
 s32 setup_content_frame__15TWindowMainMenuFPv();
 extern s32 window_menu_main_menu_params[];
 extern s32 __vt__19TWindowMenuMainMenu[];
@@ -18,7 +17,7 @@ void __dl__7TObjectFPv(void *);
 void render__19TWindowMenuMainMenuFv(s32 arg0) {
     s32 temp_r3;
     temp_r3 = setup_content_frame__15TWindowMainMenuFPv();
-    draw_frame__19TWindowMenuMainMenuFv((void *)arg0, (int)temp_r3);
+    ((TWindowMenuMainMenu *)arg0)->draw_frame((FrameContext_802ADF20 *)temp_r3);
     ((TWindowMainMenu *)arg0)->draw_entries_reversed((u8 *)temp_r3);
 }
 

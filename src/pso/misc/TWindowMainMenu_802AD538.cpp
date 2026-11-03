@@ -442,9 +442,12 @@ loop_1:
     goto loop_1;
 }
 
+struct RowPos_802AD538 { f32 y; f32 x; };
+
 void get_row_position__15TWindowMainMenuFiPvi(s32 arg0, void *arg1, s32 arg2) {
-    *(f32 *)((s8 *)arg1 + 0) = (f32) 0.0f;
-    *(f32 *)((s8 *)arg1 + 4) = (f32) (16.0f * (f32) arg2);
+    RowPos_802AD538 *row = (RowPos_802AD538 *)arg1;
+    row->y = 0.0f;
+    row->x = 16.0f * (f32)arg2;
 }
 
 s32 is_not_split_screen__15TWindowMainMenuFv(void *) {
@@ -500,8 +503,7 @@ void TWindowMainMenu::set_target_y(f32 farg0) {
 }
 
 void TWindowMainMenu::update_scaled_position() {
-    s32 arg0 = (s32)this;
-    set_target_y(16.0f * (f32) ((s32 (*)())count_active_items__15TWindowMainMenuFi)());
+    set_target_y(16.0f * (f32)count_active_items__15TWindowMainMenuFi((s32)this));
 }
 
 void TWindowMainMenu::draw_entries_reversed(u8 *arg1) {
@@ -517,37 +519,27 @@ void TWindowMainMenu::draw_entries_reversed(u8 *arg1) {
     } while (var_r31 < 8);
 }
 
-// The caller passes the content-frame context returned by setup_content_frame.
-struct FrameContext_802ADF20 {
-    f32 x, y, width;
-    u8 pad0c[0x10];
-    f32 height;
-    u8 pad20[0x14];
-    u32 color;
-};
-
 extern GinjaTextureList *lbl_805D63F0;
 void apply_context_transform_to_rect(void *, void *);
 
-void draw_frame__19TWindowMenuMainMenuFv(TWindowMenuMainMenu *window, FrameContext_802ADF20 *context) {
+void TWindowMenuMainMenu::draw_frame(FrameContext_802ADF20 *context) {
     Rect_802AD538 r;
-    f32 depth = -1.0f / (0.299f + window->m_54);
+    f32 depth = -1.0f / (0.299f + m_54);
     f32 offset = 0.0f;
     f32 remaining = context->height;
     f32 height;
     begin_screen_draw(1);
     set_current_texture_list(lbl_805D63F0);
     set_draw_texture_and_color(11, context->color);
-    if (is_not_split_screen__15TWindowMainMenuFv(window)) {
+    if (is_not_split_screen__15TWindowMainMenuFv(this)) {
         r.x0 = context->x;
-        f32 zero = 0.0f;
-        r.y0 = context->y + zero;
+        r.y0 = context->y + offset;
         r.x1 = 18.0f + r.x0;
         r.y1 = 28.0f + r.y0;
         r.u0 = 0.8984375f; r.v0 = 0.0f;
         r.u1 = 0.96875f; r.v1 = 0.109375f;
         apply_context_transform_to_rect(context, &r);
-        draw_textured_quad_at_depth((f32 *)&r, depth);
+        draw_textured_quad_at_depth(&r.x0, depth);
         offset += 28.0f;
         remaining -= 28.0f;
         r.x0 = context->x; r.y0 = context->y + offset;
@@ -555,20 +547,18 @@ void draw_frame__19TWindowMenuMainMenuFv(TWindowMenuMainMenu *window, FrameConte
         r.u0 = 0.0f; r.v0 = 0.3125f;
         r.u1 = 0.453125f; r.v1 = 0.40234375f;
         apply_context_transform_to_rect(context, &r);
-        draw_textured_quad_at_depth((f32 *)&r, depth);
+        draw_textured_quad_at_depth(&r.x0, depth);
         offset += 23.0f;
         remaining -= 23.0f;
     } else {
-        f32 x = context->x;
-        r.x0 = x; f32 zero = 0.0f;
-        r.y0 = context->y + zero;
-        r.x1 = x + context->width;
-        f32 edge = 39.0f + r.y0;
-        r.y1 = 3.0f + edge;
+        r.x0 = context->x;
+        r.y0 = context->y + offset;
+        r.x1 = context->x + context->width;
+        r.y1 = 3.0f + (39.0f + r.y0);
         r.u0 = 0.453125f; r.v0 = 0.6796875f;
         r.u1 = 0.0f; r.v1 = 0.515625f;
         apply_context_transform_to_rect(context, &r);
-        draw_textured_quad_at_depth((f32 *)&r, depth);
+        draw_textured_quad_at_depth(&r.x0, depth);
         offset += 42.0f;
         remaining -= 42.0f;
     }
@@ -584,7 +574,7 @@ void draw_frame__19TWindowMenuMainMenuFv(TWindowMenuMainMenu *window, FrameConte
         r.u0 = 0.0f; r.v0 = 0.40234375f;
         r.u1 = 0.453125f; r.v1 = (103.0f + height) / 256.0f;
         apply_context_transform_to_rect(context, &r);
-        draw_textured_quad_at_depth((f32 *)&r, depth);
+        draw_textured_quad_at_depth(&r.x0, depth);
         offset += height;
         remaining -= height;
     }
@@ -593,7 +583,7 @@ void draw_frame__19TWindowMenuMainMenuFv(TWindowMenuMainMenu *window, FrameConte
     r.u0 = 0.0f; r.v0 = 0.52734375f;
     r.u1 = 0.453125f; r.v1 = 0.6796875f;
     apply_context_transform_to_rect(context, &r);
-    draw_textured_quad_at_depth((f32 *)&r, depth);
+    draw_textured_quad_at_depth(&r.x0, depth);
     TWindowSubStatusDisp::get_player();
 }
 

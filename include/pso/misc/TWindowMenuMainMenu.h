@@ -4,11 +4,20 @@
 #include "types.h"
 #include "pso/misc/TUnk_804CE018.h"
 
+struct FrameContext_802ADF20 {
+    f32 x, y, width;
+    u8 pad0c[0x10];
+    f32 height;
+    u8 pad20[0x14];
+    u32 color;
+};
+
 struct TWindowMenuMainMenu : public TUnk_804CE018 {
     virtual ~TWindowMenuMainMenu();
     void handle_navigation_input();
     void handle_confirm();
     void handle_cancel();
+    void draw_frame(FrameContext_802ADF20 *context);
     int get_menu_flag();
     int is_flag_set();
     virtual void render();
