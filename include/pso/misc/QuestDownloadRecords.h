@@ -8,6 +8,15 @@ struct QuestDownloadTextNode;
 struct QuestDownloadEntryNode;
 struct QuestDownloadItemNode;
 
+// Four-byte records stored at the start of a download slot. Separate from
+// the sixteen-byte item objects produced later.
+struct QuestDownloadMatchToken {
+    u8 a;
+    u8 b;
+    u8 off;
+    u8 d;
+};
+
 // Source records are the distinct sixteen-byte item objects produced by CF84.
 // The four-byte slot+0 match tokens are a separate format.
 struct QuestDownloadEntryPrefix {
@@ -72,7 +81,7 @@ struct QuestDownloadQueueNode {
 };
 
 struct QuestDownloadSlot {
-    void *tokens;
+    QuestDownloadMatchToken *tokens;
     QuestDownloadItemNode *items;
     QuestDownloadEntryNode *entryHead;
     QuestDownloadTextNode *textHead;
