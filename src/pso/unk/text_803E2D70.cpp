@@ -288,7 +288,6 @@ void TObjPlayer::transform_vertex_list() {
 }
 
 #pragma push
-#pragma use_lmw_stmw off
 #pragma dont_inline off
 #pragma inline_depth(4)
 static inline void GXPosition3f32_803E36C4(f32 x, f32 y, f32 z) {
@@ -303,7 +302,6 @@ static inline void GXNormal3f32_803E36C4(f32 x, f32 y, f32 z) {
 }
 
 #pragma push
-#pragma use_lmw_stmw off
 #pragma dont_inline off
 #pragma inline_depth(4)
 static inline void GXPosition3f32_803E352C(f32 x, f32 y, f32 z) {
@@ -761,7 +759,6 @@ void draw_chunk_object(void *child) {
 #pragma pop
 
 #pragma push
-#pragma use_lmw_stmw off
 #pragma dont_inline off
 #pragma inline_depth(4)
 static inline void GXPosition3f32_803E46FC(f32 x, f32 y, f32 z) {
@@ -801,7 +798,6 @@ void draw_strip_pos_normal__10TObjPlayerFPvPvUi(s16 *list, Vtx_803E46FC *verts, 
 #pragma pop
 
 #pragma push
-#pragma use_lmw_stmw off
 #pragma dont_inline off
 #pragma inline_depth(4)
 #pragma optimization_level 4
