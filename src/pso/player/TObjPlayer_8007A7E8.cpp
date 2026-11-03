@@ -1,5 +1,15 @@
 #include "types.h"
-#include "pso/player/TObjPlayer.h"
+#include "pso/unk/text_8007A7B8.h"
 
-    extern const float lbl_805D91F0;
-void TObjPlayer::clear_velocity_vectors() { *(float*)((char*)this + 0x8) = lbl_805D91F0; *(float*)((char*)this + 0x4) = lbl_805D91F0; *(float*)((char*)this + 0x0) = lbl_805D91F0; *(float*)((char*)this + 0x14) = lbl_805D91F0; *(float*)((char*)this + 0x10) = lbl_805D91F0; *(float*)((char*)this + 0xc) = lbl_805D91F0; *(int*)((char*)this + 0x18) = 0; }
+extern const float lbl_805D91F0;
+
+// Retain the original export while describing its actual record receiver.
+extern "C" void clear_velocity_vectors__10TObjPlayerFv(Record_8007A7B8 *record) {
+    record->point.z = lbl_805D91F0;
+    record->point.y = lbl_805D91F0;
+    record->point.x = lbl_805D91F0;
+    record->normal.z = lbl_805D91F0;
+    record->normal.y = lbl_805D91F0;
+    record->normal.x = lbl_805D91F0;
+    record->flags = 0;
+}

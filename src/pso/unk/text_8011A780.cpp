@@ -1,3 +1,4 @@
+#include "pso/protocol/ItemDropPacket.h"
 #include "types.h"
 #include "pso/protocol/subcmd_6x.h"
 #include "pso/item/TItem.h"
@@ -33,31 +34,23 @@ struct Msg_8011A9D8 { u8 pad[2]; u16 u2; u32 u4; s16 s8; };
 
 struct Cmd_8011A9D8 { u8 pad[2]; u16 a; u16 b; s16 c; u32 d; };
 
-struct Item_8011AA68 { u8 data[12]; u32 id; u32 meseta; };
-
 struct Source_8011AA68 { u16 group; u16 claim; };
 
-struct Delivery_8011AA68 {
-    u32 header; u8 client; u8 kind; s16 source; f32 x; f32 z; s16 room; u16 reserved; u8 item[24];
-};
-
-struct Item_8011AB64 { u8 data[12]; u32 id; u32 meseta; };
-
 struct Source_8011AB64 { u32 a; u16 claim; u16 b; u32 c; };
-
-struct Delivery_8011AB64 {
-    u32 header; u8 client; u8 kind; s16 source; f32 x; f32 z; s16 room; u16 reserved; u8 item[24];
-};
 
 struct Row12_8011ADF4 { u32 a; u16 claim; u16 b; u32 c; };
 
 struct Row4_8011ADF4 { u16 group; u16 claim; };
 
 struct Pkt_8011ADF4 {
-    u8 cmd; u8 size; u16 flag;
+    G_ClientIDHeader header;
     u8 client; u8 kind; s16 source; f32 x; f32 z; s16 room; u16 reserved;
-    u8 item[20];
+    TItemData item;
 };
+
+typedef char ReceivedItemPacketSize[sizeof(Pkt_8011ADF4) == 0x28 ? 1 : -1];
+typedef char ReceivedItemHeaderOffset[offsetof(Pkt_8011ADF4, header) == 0 ? 1 : -1];
+typedef char ReceivedItemDataOffset[offsetof(Pkt_8011ADF4, item) == 0x14 ? 1 : -1];
 
 struct Req_8011AD1C {
     u8 cmd; u8 size; u16 pad2; s8 client; u8 area; s16 source;
@@ -68,14 +61,12 @@ extern s32 item_sync_counter_table;
 extern s32 item_id_counter_table;
 extern "C" {
 s32 bswap_6xa2_fields__6TLobbyFv();
-s32 handle_box_drop_directive(void *);
+void handle_box_drop_directive(G_SpecializableItemDropRequest_6xA2 *);
 void set_boss_buf_entry__6TLobbyFii(s32 v, u16 idx);
 void handle_6x5A_pick_up_item_request(Msg_8011A9D8 *msg);
 int is_quest_active(void);
-void init__9TItemDataFv(void *);
 extern Source_8011AA68 *quest_object_entries;
 void apply_by_index__9TObjEnemyFs(s16, void *);
-void drop_item_from_slot__10TObjPlayerFlll(s8 arg0, s32 arg1, s32 arg2);
 extern Source_8011AB64 *TLobby__data_805D6144;
 s32 spawn_dropped_item_from_msg(void *, int);
 void handle_6x5F_drop_item(Pkt_8011ADF4 *pkt);
@@ -111,6 +102,79 @@ void observe_item_id(s32 item_id) {
     }
 }
 
+// unpack_from_item reads only +0x30, +0x34 and +0x38 of the set-data
+// record. Its earlier fields remain opaque; param3 controls regeneration.
+struct BoxDropParameters {
+    u8 unknown_00[0x2C];
+    f32 param3;
+    s32 param4;
+    s32 param5;
+    s32 param6;
+};
+
+typedef char BoxDropParameterSize[sizeof(BoxDropParameters) == 0x3C ? 1 : -1];
+typedef char BoxDropParam3Offset[offsetof(BoxDropParameters, param3) == 0x2C ? 1 : -1];
+typedef char BoxDropParam4Offset[offsetof(BoxDropParameters, param4) == 0x30 ? 1 : -1];
+typedef char BoxDropParam5Offset[offsetof(BoxDropParameters, param5) == 0x34 ? 1 : -1];
+typedef char BoxDropParam6Offset[offsetof(BoxDropParameters, param6) == 0x38 ? 1 : -1];
+typedef char BoxDropRequestSize[sizeof(G_SpecializableItemDropRequest_6xA2) == 0x28 ? 1 : -1];
+typedef char BoxDropRequestParamsOffset[offsetof(G_SpecializableItemDropRequest_6xA2, param3) == 0x18 ? 1 : -1];
+typedef char BoxDropRequestSourceOffset[offsetof(G_StandardDropItemRequest_DC_6x60, entity_index) == 6 ? 1 : -1];
+typedef char BoxDropRequestRoomOffset[offsetof(G_StandardDropItemRequest_DC_6x60, room) == 0x10 ? 1 : -1];
+typedef char BoxDropRequestAreaOffset[offsetof(G_StandardDropItemRequest_PC_V3_BB_6x60, effective_area) == 0x14 ? 1 : -1];
+
+// Retain legacy names at these bounded packet and item-generation interfaces.
+extern "C" {
+void drop_meseta_from_slot__10TObjPlayerFll(s32 area, TItemData *item);
+extern const f32 lbl_805DAC58;
+}
+
+extern "C" void handle_box_drop_directive(G_SpecializableItemDropRequest_6xA2 *request) {
+    s32 source;
+    const G_StandardDropItemRequest_DC_6x60 &drop =
+        request->__base_G_StandardDropItemRequest_PC_V3_BB_6x60
+            .__base_G_StandardDropItemRequest_DC_6x60;
+    source = drop.entity_index;
+    if (source != -1) {
+        Source_8011AA68 row = quest_object_entries[source];
+        if (row.claim != 0xFFFF) {
+            TItemData item;
+            BoxDropParameters parameters;
+            const u32 id = build_item_id(row.claim);
+            row.claim = 0xFFFF;
+            TLobby::apply_table_entry(source, &row);
+            parameters.param3 = request->param3;
+            parameters.param4 = request->param4;
+            parameters.param5 = request->param5;
+            parameters.param6 = request->param6;
+            item.unpack_from_item(&parameters);
+            if (lbl_805DAC58 == parameters.param3) {
+                const u8 category = item.data1.data_u8[0];
+                const u8 group = item.data1.data_u8[1];
+                item.init();
+                item.data1.data_u8[0] = category;
+                item.data1.data_u8[1] = group;
+                drop_meseta_from_slot__10TObjPlayerFll(
+                    request->__base_G_StandardDropItemRequest_PC_V3_BB_6x60.effective_area, &item);
+            }
+            item.id = id;
+            if (item.isValidGroundDrop()) {
+                item.encode_for_network();
+                G_DropItem_PC_V3_BB_6x5F delivery;
+                FloorItem &floor_item = delivery.__base_G_DropItem_DC_6x5F.item;
+                floor_item.floor = drop.floor;
+                floor_item.source_type = 2;
+                floor_item.entity_index = source;
+                floor_item.pos.x = drop.pos.x;
+                floor_item.pos.z = drop.pos.z;
+                floor_item.room_id = drop.room;
+                floor_item.item.copy_from(&item);
+                delivery.send();
+            }
+        }
+    }
+}
+
 void handle_6x5C_destroy_floor_item(void *arg0) {
     bswap_packet__6TLobbyFv();
     remove_item_condition(*(s32 *)((s8 *)arg0 + 8), *(s32 *)((s8 *)arg0 + 4));
@@ -134,8 +198,7 @@ void remove_item_condition_at(s16 floor, s32 item_id) {
 }
 
 void TLobby::drop_item_from_source(s16 source, int client, s16 room, int slot, f32 x, f32 z) {
-    Delivery_8011AA68 delivery;
-    Item_8011AA68 item;
+    TItemData item;
     u32 id;
     if (source != -1) {
         Source_8011AA68 row = quest_object_entries[source];
@@ -143,49 +206,50 @@ void TLobby::drop_item_from_source(s16 source, int client, s16 room, int slot, f
             id = build_item_id(row.claim);
             row.claim = 0xFFFF;
             TLobby::apply_table_entry(source, &row);
-            init__9TItemDataFv(&item);
-            TObjPlayer::drop_item(slot, (s32)&item);
+            item.init();
+            TObjPlayer::drop_item(slot, reinterpret_cast<s32>(&item));
             item.id = id;
-            if (((TItemData *)(&item))->isValidGroundDrop() != 0) {
-                ((TItemData *)&item)->encode_for_network();
-                ((TLobby *)(&delivery))->init_header_packet();
-                delivery.client = client;
-                delivery.kind = 2;
-                delivery.source = source;
-                delivery.x = x;
-                delivery.z = z;
-                delivery.room = room;
-                ((TItemData *)(delivery.item))->copy_from((TItemData *)(&item));
-                ((TLobby *)(&delivery))->send_item_packet();
+            if (item.isValidGroundDrop() != 0) {
+                item.encode_for_network();
+                G_DropItem_PC_V3_BB_6x5F delivery;
+                FloorItem &floor_item = delivery.__base_G_DropItem_DC_6x5F.item;
+                floor_item.floor = client;
+                floor_item.source_type = 2;
+                floor_item.entity_index = source;
+                floor_item.pos.x = x;
+                floor_item.pos.z = z;
+                floor_item.room_id = room;
+                floor_item.item.copy_from(&item);
+                delivery.send();
             }
         }
     }
 }
 
-void process_enemy_drop_request(s8 area, s16 source, int client, s16 room, int slot, f32 x, f32 z) {
+void process_enemy_drop_request(s32 area, s16 source, int client, s16 room, int slot, f32 x, f32 z) {
     u32 id;
     if (source != -1) {
-        Delivery_8011AB64 delivery;
-        Item_8011AB64 item;
+        TItemData item;
         Source_8011AB64 row = TLobby__data_805D6144[source];
         if (row.claim != 0xFFFF) {
             id = build_item_id(row.claim);
             row.claim = 0xFFFF;
             apply_by_index__9TObjEnemyFs(source, &row);
-            init__9TItemDataFv(&item);
-            drop_item_from_slot__10TObjPlayerFlll(area, slot, (s32)&item);
+            item.init();
+            TObjPlayer::drop_item_from_slot(area, slot, reinterpret_cast<s32>(&item));
             item.id = id;
-            if (((TItemData *)(&item))->isValidGroundDrop() != 0) {
-                ((TItemData *)&item)->encode_for_network();
-                ((TLobby *)(&delivery))->init_header_packet();
-                delivery.client = client;
-                delivery.kind = 1;
-                delivery.source = source;
-                delivery.x = x;
-                delivery.z = z;
-                ((TItemData *)(delivery.item))->copy_from((TItemData *)(&item));
-                delivery.room = room;
-                ((TLobby *)(&delivery))->send_item_packet();
+            if (item.isValidGroundDrop() != 0) {
+                item.encode_for_network();
+                G_DropItem_PC_V3_BB_6x5F delivery;
+                FloorItem &floor_item = delivery.__base_G_DropItem_DC_6x5F.item;
+                floor_item.floor = client;
+                floor_item.source_type = 1;
+                floor_item.entity_index = source;
+                floor_item.pos.x = x;
+                floor_item.pos.z = z;
+                floor_item.item.copy_from(&item);
+                floor_item.room_id = room;
+                delivery.send();
             }
         }
     }
@@ -202,7 +266,7 @@ void handle_6xA2_specializable_item_drop_request(void *arg0) {
             TLobby::drop_item_from_source((s16)(*(s16 *)((s8 *)arg0 + 6)), (int)(*(s8 *)((s8 *)arg0 + 4)), (s16)(*(s16 *)((s8 *)arg0 + 0x10)), (int)(*(s8 *)((s8 *)arg0 + 0x14)), *(f32 *)((s8 *)arg0 + 8), *(f32 *)((s8 *)arg0 + 0xC));
             return;
         }
-        handle_box_drop_directive(arg0);
+        handle_box_drop_directive(static_cast<G_SpecializableItemDropRequest_6xA2 *>(arg0));
         return;
     }
     process_enemy_drop_request(temp_b, (s16)(*(s16 *)((s8 *)arg0 + 6)), (int)(*(s8 *)((s8 *)arg0 + 4)), (s16)(*(s16 *)((s8 *)arg0 + 0x10)), (int)(*(s8 *)((s8 *)arg0 + 0x14)), *(f32 *)((s8 *)arg0 + 8), *(f32 *)((s8 *)arg0 + 0xC));
@@ -235,13 +299,13 @@ void handle_6x60_standard_drop_item_request(void *arg0) {
 }
 
 void handle_6x5F_drop_item(Pkt_8011ADF4 *pkt) {
-    ((TLobby *)pkt)->bswap_item_packet();
-    if ((u32)pkt->size * 4 == 0x28) {
-        ((TItemData *)pkt->item)->convert_from_version(0);
+    bswap_item_packet__6TLobbyFv(pkt);
+    if ((u32)pkt->header.size * 4 == 0x28) {
+        pkt->item.convert_from_version(0);
     } else {
-        ((TItemData *)pkt->item)->convert_from_version(2);
+        pkt->item.convert_from_version(2);
     }
-    ((TItemData *)pkt->item)->decode_from_network();
+    pkt->item.decode_from_network();
     s32 kind = pkt->kind;
     if (kind == 1) {
         Row12_8011ADF4 row = (*(Row12_8011ADF4 * *)&TLobby__data_805D6144)[pkt->source];
