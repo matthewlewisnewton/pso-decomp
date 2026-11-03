@@ -2346,7 +2346,7 @@ void TBoss6Type2::draw_body_models() {
                 break;
             case 1:
             default:
-                a = *(f32 *)&this->_pad41C;
+                a = this->state_progress;
                 break;
             }
             if (zero != a) {
