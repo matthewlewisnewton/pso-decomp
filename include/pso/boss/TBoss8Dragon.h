@@ -3,7 +3,10 @@ struct NJS_OBJECT;
 #define PSO_BOSS_TBOSS8DRAGON_H
 
 #include "types.h"
+#include <dolphin/mtx/GeoTypes.h>
 #include "pso/misc/RenderFadeState.h"
+
+class TObject;
 
 struct TBoss8Dragon
 {
@@ -205,7 +208,7 @@ struct TBoss8Dragon
     int query_default();
     void copy_spawn_params(void* a1);
     void copy_action_state(u8 *arg1);
-    static s32 spawn_ground_lightning(s32 arg0, s32 arg1, s32 arg2);
+    static s32 spawn_ground_lightning(TObject *parent, const Vec *source, s32 direction);
     void set_default_on_state0();
     static void update_camera_script(NJS_OBJECT *);
     void calc_velocity_from_angle();

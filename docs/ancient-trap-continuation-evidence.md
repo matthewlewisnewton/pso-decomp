@@ -1,9 +1,26 @@
 # Ancient trap continuation
 
-This continuation starts at independently reviewed PR102 head `da271bb8716ce6670f2a8b22344fbd30ea817780`. The reviewed branch is kept frozen; this source remains incomplete.
+This sits on the Ancient base in #221. Ancient01 stays on the original object.
+Nothing here selects the unit for source linkage.
 
-The original debris setup reads each actor coordinate for the parameter record and shares the Y value with its floor field. Keeping explicit X/Z snapshots while expressing both Y uses through `position.y` lets GC/2.6 form the closer common-subexpression lifetime. The emitted record bytes and call order are unchanged. Direct objdiff with the configured deferred-generation flags improves `play_sounds` from 92.706894% to 95.13793%. All seventeen previously exact functions, the native vtable, `.data`, `.rodata`, `.sdata`, and `.sbss` remain 100%; `.sdata2` remains 90.909096%. This is a target-object comparison only, not a full-build or source-link claim.
+`play_sounds` copies each rodata debris template, then stores this actor's
+position. Y is also the floor field. The records are `TObjChipParams`. On
+GC/2.6 with the unit's `-inline off,deferred` profile, `play_sounds` is
+91.086205% of its 696 bytes, not exact. Copying X and Z through locals and
+reading `position.y` for both Y uses scored 95.13793%. Const aggregates under
+GC/2.0 scored 100%, including the constructor, but only with
+`#pragma opt_propagation off` and extra clamp temporaries. GC/2.0 is not the
+unit compiler: the original `.sdata2` flags are 2, and that object emits
+flags 3. Those schedules are not kept. The constructor stays on the GC/2.6
+source that is already exact (612 bytes, 100%).
 
-Independent store-order and declaration/read-order probes did not explain the remaining register schedule. A local-Y-lifetime probe produced the retained improvement. Typed vector assignment with global inline settings either worsened the debris function or regressed existing functions and was rejected. Named scalar defaults folded back to the same pool when const; non-const defaults added instructions and changed the parameter records and were rejected. GC/2.0 variants scored more closely for the incomplete method but did not establish original compiler provenance or repair scalar ordering, so no compiler change is retained.
+The eleven `.sdata2` floats at `0x805DBA48` are defined in address order.
+That section is 44/44 bytes at 100%. The compiled section flags are still 3
+against the original 2, so the bytes are not a link. `.data` 696, `.rodata`
+400, `.sdata` 8, and `.sbss` 8 stay 100%. Seventeen functions are exact,
+including `vfunc_81` (540 bytes).
 
-The remaining original scalar-pool order starts with 1.0, 0.0, 1.25, 15.0; current source emission starts with 1.25, 1.0, 0.0, 15.0. The remaining debris discrepancies are position-register allocation and scheduling of the final parameter-copy word relative to coordinate loads. Further work must preserve the exact generated data and recovered CFG. Any full validation requires fresh R4 preparation/proof and isolated development-lane eligibility; the previous exclusive build method is not authorized for this continuation.
+`#pragma pool_data off` and `#pragma opt_lifetimes off` around `play_sounds`
+come from the parent. Removing them makes the previously exact 92-byte
+`.data` range at `0x804B4A1C` inexact and drops `play_sounds` to 85.52873%.
+They stay so that range does not regress.

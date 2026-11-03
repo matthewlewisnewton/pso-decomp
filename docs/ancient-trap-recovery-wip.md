@@ -20,20 +20,36 @@ its 360 bytes at `.data` offset `0x50`, ahead of the switch tables at
 must remain compatible with `TObjChara`; see
 [Trap inherited virtual slots](trap-inherited-slot-evidence.md).
 
-The original `.data` extent is `0x804B4820..0x804B4AD8`, or 696 bytes. The
-native payload occupies 692 bytes through `0x804B4AD4`. The next real data
-owner, `TOTrapAncient02`, starts at `0x804B4AD8` with alignment eight, producing
-four bytes of natural linker fill. Keep all 696 bytes in original coverage;
-the fill does not represent another C++ object or another table entry.
+The original `.data` extent is `0x804B4820..0x804B4AD8`, 696 bytes. The last
+named object ends at `0x804B4AD4`. The split object records the remaining
+four bytes as a zero gap and has no relocation there. `TOTrapAncient02`'s
+`.data` starts at `0x804B4AD8` with alignment 8. The linked DOL contains
+`00 00 00 00` at `0x804B4AD4` and Ancient02's first word at `0x804B4AD8`.
+The compiler object emits 692 `.data` bytes, identical to that payload, and
+does not contain the gap. This unit stays on the original object, so the DOL
+still includes the gap. Do not add a C++ object for those four bytes.
 
 The override at `0x80179784` returns the floating-point result of the qualified
 `TOTrap::receive_physical_attack` call. The player-lookup boundary uses the
 shared character position at offset `0x2FC`; changes to its receiver contract
 require checking the shared declaration and callers.
 
-The reconstructed original object has `.sdata2` flags 2, while the matching
-GC/2.0 native object has flags 3. Source adoption must preserve the actual
-linked section's bytes, flags, addresses and alignment, both SDA bases, all
-relocation targets and the original DOL. Object similarity alone does not
-establish these link properties. Validation summaries belong to the exact
-commit and target recorded in the pull request.
+The 90.91% `.sdata2` score is the 44-byte contents. The original words are
+`1.0`, `0.0`, `1.25`, `15`, `400`, `20`, `0.1`, `3.0517578125e-05`, `0.05`,
+`30`, `0.5`. Deferred generation compiles `play_sounds` before `vfunc_82`, so
+the literal pool is `1.25`, `1.0`, `0.0`, then that same tail. Naming those
+eleven objects in `.sdata2` and loading them makes the section and its symbols
+match, and it changes `TOTrapAncient01__ct`: the literal
+`fmadds f1, f3, f2, f1` allocation becomes a generic load allocation and the
+function drops from 100% to 99.25%. Literal constants keep the constructor
+exact. The original section flags are 2 (`SHF_ALLOC`); this GC/2.6 object has
+flags 3 (`SHF_ALLOC|SHF_WRITE`). That flag bit is already true of linked
+`TOTrap` and `TOTrapSeabed01`, and it is not the 90.91% score.
+
+`play_sounds` remains 92.71%. The mismatch is the schedule of the three
+position fills against the tail of the `0x4C` copy, not the calls. Writing
+`position.x`, `position.y`, and `position.z` directly scores 91.09%. The
+local copies of those fields score 92.71%. Neither is exact. `#pragma
+pool_data off` around that function keeps the copy prologue close to the
+original; without it the prologue uses `stmw` and the function is farther
+from the original.

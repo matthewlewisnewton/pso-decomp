@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/TMainTask.h"
@@ -163,7 +164,6 @@ extern RecoveredGlobal_80321874_TAdEnterSerialAccessGC__data_804EC9B8 TAdEnterSe
 extern RecoveredGlobal_80321874_lbl_80543090 TAdEnterSerialAccessGC_serial_buffer;
 extern RecoveredGlobal_80322418_lbl_804ED9F8 serial_access_entered_value_table;
 int serial_to_hex_string__22TAdEnterSerialAccessGCFi(void);
-void mem_free(void *p);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 TWindowShortListCtrl__check_controller_button(void *, int);
 
@@ -258,7 +258,7 @@ void TAdEnterSerialAccessGC::draw_serial_chars(s32 arg0) {
         str = ((TWindowSubComCard *)TAdEnterSerialAccessGC__keyboard_control)->realloc_buffer();
         memset(text, 0, 0xFF);
         strncpy((s32) text, str, 0xFF);
-        mem_free((void *)str);
+        ::operator delete[]((void *)str);
         p = text;
         r = TAdEnterSerialAccessGC__input_state == 2 ? 0 : 1;
         row = serial_char_row_x_table[r];
@@ -532,7 +532,7 @@ void TAdEnterSerialAccessGC__sub_80321B28(u8 *ad_enter_serial_access_gc, int arg
         TAdEnterSerialAccessGC__input_state = 5;
         break;
     }
-    mem_free((void *)temp_r30);
+    ::operator delete[]((void *)temp_r30);
     return;
   }
   *(int *)&((TAdEnterSerialAccessGC *)ad_enter_serial_access_gc)->m_64 = (int) (*(int *)&((TAdEnterSerialAccessGC *)ad_enter_serial_access_gc)->m_60);
@@ -631,7 +631,7 @@ void TAdEnterSerialAccessGC__sub_80321B28(u8 *ad_enter_serial_access_gc, int arg
     }
   }
   *(int *)&((TAdEnterSerialAccessGC *)ad_enter_serial_access_gc)->m_4c = strlen((int) temp_r30);
-  mem_free((void *)temp_r30);
+  ::operator delete[]((void *)temp_r30);
 }
 
 void TAdEnterSerialAccessGC__sub_80321F18(void* p) { TAdEnterSerialAccessGC__sub_80321B28((u8 *)p, 1); }

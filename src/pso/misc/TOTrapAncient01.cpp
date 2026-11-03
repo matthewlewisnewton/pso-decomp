@@ -233,10 +233,6 @@ f32 TObjPlayer__sub_8017A1A4(Obj_8017A1A4 *self, s32 i) {
 #pragma push
 #pragma fp_contract on
 #define self ((u8 *)arg0)
-// Keep the radius accumulator and clamp snapshots distinct. With GC/2.0,
-// propagation would otherwise change their original floating-register lifetimes.
-#pragma push
-#pragma opt_propagation off
 void *TOTrapAncient01__ct(void *arg0, void *arg1, void *arg2) {
     s32 i;
     TOTrap__ct(arg0, arg1, arg2);
@@ -249,45 +245,20 @@ void *TOTrapAncient01__ct(void *arg0, void *arg1, void *arg2) {
     *(s32 *)((s8 *)self + 0x34) = get_bml_model((void *)TOTrapAncient01__bml_resource.value, 3);
     *(s32 *)((s8 *)self + 0x24) = TObjFish__sub_8001EDB0((void *)TOTrapAncient01__bml_resource.value, 3);
     *(s16 *)((s8 *)self + 0x326) = 0;
-    {
-        f32 minimum;
-        f32 offset;
-        f32 width;
-        f32 factor;
-        f32 value;
-        factor = lbl_805DBA70;
-        offset = lbl_805DBA6C;
-        width = *(f32 *)((s8 *)self + 0x68);
-        minimum = TOTrapAncient01__data_805DBA4C;
-        offset += factor * width;
-        *(f32 *)((s8 *)self + 0x334) = offset;
-        value = *(f32 *)((s8 *)self + 0x6C);
-        if (value < minimum) {
-            *(f32 *)((s8 *)self + 0x6C) = minimum;
-        }
+    *(f32 *)((s8 *)self + 0x334) = 0.5f * *(f32 *)((s8 *)self + 0x68) + 30.0f;
+    if (*(f32 *)((s8 *)self + 0x6C) < 0.0f) {
+        *(f32 *)((s8 *)self + 0x6C) = 0.0f;
     }
-    {
-        f32 minimum;
-        f32 value;
-        value = *(f32 *)((s8 *)self + 0x70);
-        minimum = lbl_805DBA48;
-        if (value < minimum) {
-            *(f32 *)((s8 *)self + 0x70) = minimum;
-        }
+    if (*(f32 *)((s8 *)self + 0x70) < 1.0f) {
+        *(f32 *)((s8 *)self + 0x70) = 1.0f;
     }
     *(f32 *)((s8 *)self + 0x34C) = -*(f32 *)((s8 *)self + 0x6C) / *(f32 *)((s8 *)self + 0x70);
-    *(f32 *)((s8 *)self + 0x350) = lbl_805DBA6C + (f32)*(s32 *)((s8 *)self + 0x8C);
+    *(f32 *)((s8 *)self + 0x350) = 30.0f + (f32)*(s32 *)((s8 *)self + 0x8C);
     if (get_main_phase() == 0xE) {
         *(f32 *)((s8 *)self + 0x350) *= lbl_805DBA74;
     }
-    {
-        f32 minimum;
-        f32 value;
-        value = *(f32 *)((s8 *)self + 0x350);
-        minimum = TOTrapAncient01__data_805DBA4C;
-        if (value < minimum) {
-            *(f32 *)((s8 *)self + 0x350) = minimum;
-        }
+    if (*(f32 *)((s8 *)self + 0x350) < 0.0f) {
+        *(f32 *)((s8 *)self + 0x350) = 0.0f;
     }
     *(f32 *)((s8 *)self + 0x354) = *(f32 *)((s8 *)self + 0x350);
     if (*(s32 *)((s8 *)self + 0x84) < 0) {
@@ -300,7 +271,7 @@ void *TOTrapAncient01__ct(void *arg0, void *arg1, void *arg2) {
         *(s32 *)((s8 *)self + 0x88) = 5;
     }
     *(s32 *)((s8 *)self + 0x344) = *(s32 *)((s8 *)self + 0x88);
-    *(f32 *)((s8 *)self + 0x338) = lbl_805DBA54;
+    *(f32 *)((s8 *)self + 0x338) = 15.0f;
     *(u16 *)((s8 *)self + 0x33C) = 0xFFFF;
     init_collision_body_parts(arg0, &lbl_804B4844, 1);
     ((TObjCollidable *)arg0)->refresh_collision_body_centers();
@@ -312,7 +283,6 @@ void *TOTrapAncient01__ct(void *arg0, void *arg1, void *arg2) {
     }
     return arg0;
 }
-#pragma pop
 #undef self
 #pragma pop
 
@@ -561,31 +531,43 @@ f32 TOTrapAncient01::receive_physical_attack(void *arg1, f32 farg0) {
 #pragma pool_data off
 #pragma opt_lifetimes off
 void TOTrapAncient01::play_sounds() {
-    // Complete const records preserve the original GC/2.0 coordinate lifetimes.
-    // The chip constructor copies these inputs without modifying them.
-    const TObjChipParams a = {
-        {0.5f, 0.03f, 0.15f}, {position.x, position.y, position.z},
+    // Each record is the rodata template, then this actor's position. Y is
+    // also the floor field. Model and texture ids are filled after that copy.
+    TObjChipParams a = {
+        {0.5f, 0.03f, 0.15f}, {0.0f, 0.0f, 0.0f},
         {3.0f, 5.0f, 3.0f}, {0x800, 0x100, 0x800}, {4, 30},
-        {position.y, 1.0f},
-        get_bml_model((void *)TOTrapAncient01__bml_resource.value, 0),
-        TObjFish__sub_8001EDB0((void *)TOTrapAncient01__bml_resource.value, 0), 22
+        {0.0f, 1.0f}, 0, 0, 22
     };
+    a.pos[0] = position.x;
+    a.pos[1] = position.y;
+    a.pos[2] = position.z;
+    a.pad_38[0] = position.y;
+    a.model = get_bml_model((void *)TOTrapAncient01__bml_resource.value, 0);
+    a.textures = TObjFish__sub_8001EDB0((void *)TOTrapAncient01__bml_resource.value, 0);
 
-    const TObjChipParams b = {
-        {0.5f, 0.03f, 0.15f}, {position.x, position.y, position.z},
+    TObjChipParams b = {
+        {0.5f, 0.03f, 0.15f}, {0.0f, 0.0f, 0.0f},
         {3.0f, 5.0f, 3.0f}, {0x800, 0x100, 0x800}, {4, 30},
-        {position.y, 1.0f},
-        get_bml_model((void *)TOTrapAncient01__bml_resource.value, 1),
-        TObjFish__sub_8001EDB0((void *)TOTrapAncient01__bml_resource.value, 1), 22
+        {0.0f, 1.0f}, 0, 0, 22
     };
+    b.pos[0] = position.x;
+    b.pos[1] = position.y;
+    b.pos[2] = position.z;
+    b.pad_38[0] = position.y;
+    b.model = get_bml_model((void *)TOTrapAncient01__bml_resource.value, 1);
+    b.textures = TObjFish__sub_8001EDB0((void *)TOTrapAncient01__bml_resource.value, 1);
 
-    const TObjChipParams c = {
-        {0.5f, 0.03f, 0.15f}, {position.x, position.y, position.z},
+    TObjChipParams c = {
+        {0.5f, 0.03f, 0.15f}, {0.0f, 0.0f, 0.0f},
         {3.0f, 5.0f, 3.0f}, {0x800, 0x100, 0x800}, {4, 30},
-        {position.y, 1.0f},
-        get_bml_model((void *)TOTrapAncient01__bml_resource.value, 2),
-        TObjFish__sub_8001EDB0((void *)TOTrapAncient01__bml_resource.value, 2), 22
+        {0.0f, 1.0f}, 0, 0, 22
     };
+    c.pos[0] = position.x;
+    c.pos[1] = position.y;
+    c.pos[2] = position.z;
+    c.pad_38[0] = position.y;
+    c.model = get_bml_model((void *)TOTrapAncient01__bml_resource.value, 2);
+    c.textures = TObjFish__sub_8001EDB0((void *)TOTrapAncient01__bml_resource.value, 2);
 
     void *o = __nw__7TObjectFUl(0x234);
     if (o != NULL) __ct__8TObjChipFP7TObjectP14TObjChipParams((u8 *)o, (u8 *)tl_06, (u8 *)&a);
@@ -657,8 +639,7 @@ void TOTrapAncient01::vfunc_86() {  }
 
 void TOTrap::apply_knockback_from_attacker(u8 *, f32) {  }
 
-// Runtime scalar definitions follow the functions so GC/2.0 retains these
-// named loads. Their order preserves this unit's original .sdata2 layout.
+// The unit's .sdata2 floats, in address order from 0x805DBA48.
 extern const f32 lbl_805DBA48 = 1.0f;
 extern const f32 TOTrapAncient01__data_805DBA4C = 0.0f;
 extern const f32 lbl_805DBA50 = 1.25f;

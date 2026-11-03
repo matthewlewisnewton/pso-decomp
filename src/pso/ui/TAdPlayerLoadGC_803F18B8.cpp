@@ -516,8 +516,7 @@ void TRKSuppAccessFile(s32 arg0) {
             TAdPlayerLoadGC__load_request_slots[lbl_805A29B0[arg0].state].f48 = 0x16;
         }
         break;
-    case 9: case 0xA: case 0xB: case 0xC: case 0xD: case 0xE: case 0xF:
-    case 0x10: case 0x11: case 0x12: case 0x14: case 0x15: case 0x16: case 0x17: case 0x18:
+    case 0x14: case 0x15: case 0x16: case 0x17: case 0x18:
         return;
     }
 }
@@ -579,7 +578,6 @@ void TAdPlayerLoadGC__sub_803F2A4C(s32 arg0) {
             TAdPlayerLoadGC__load_request_slots[lbl_805A29B0[arg0].state].f48 = 0x16;
         }
         break;
-    case 0: case 1: case 2: case 3: case 4: case 5:
     case 8: case 9: case 0xA: case 0xB: case 0xC: case 0xD: case 0xE: case 0xF:
     case 0x10: case 0x11: case 0x12: case 0x14: case 0x15: case 0x16: case 0x17: case 0x18:
         return;

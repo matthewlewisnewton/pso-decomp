@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/GinjaTextureInput.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
@@ -26,7 +27,6 @@ typedef struct Glyph_80145804 {
 
 extern "C" {
 s32 set_stream_and_load_file__6TLobbyFi(void *);
-void *mem_alloc(u32);
 void set_texture_name(void *, void *, u32, u32);
 void load_texture_list(void *);
 extern u8 lbl_8043F3D8[];
@@ -69,7 +69,7 @@ void load_menu_font(void) {
         *(menu_font_glyph_pixel_buffers + m) = (u32 *)menu_font_texture_list.entries[m].texture->surface->pixels;
         clear_words_80145804(*(menu_font_glyph_pixel_buffers + m), 0x2000);
     }
-    menu_font_palette = (s16 *)mem_alloc(0x100);
+    menu_font_palette = (s16 *)::operator new[](0x100);
     clear_words_80145804((u32 *)menu_font_palette, 0x40);
     menu_font_palette[0] = 0xFFF;
     menu_font_palette[1] = 0x3FFF;
@@ -79,7 +79,7 @@ void load_menu_font(void) {
     for (i = 0; i < 2; i++) {
         TLanguage::set_entry_index(i, 0);
     }
-    g = (Glyph_80145804 *)mem_alloc(0xB40);
+    g = (Glyph_80145804 *)::operator new[](0xB40);
     menu_font_glyph_table = g;
     for (i = 0; i < 2; i++) {
         v = 0;

@@ -434,8 +434,7 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/boss/TBoss4DarkFalz_8004C93C.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sym on")},
     # Reverse definitions and deferred generation place the native trap vtable
     # before its switch tables while preserving the original function order.
-    # GC/2.0 also reproduces the const debris aggregate's coordinate schedule.
-    "pso/misc/TOTrapAncient01.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred")},
+    "pso/misc/TOTrapAncient01.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     "pso/enemy/TObjEneBalClawBody_80090178.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sdata 4")},
     # Deferred generation preserves the flower vtable before its dispatch table.
     "pso/enemy/TObjEneRe2Flower_800C3E14.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
