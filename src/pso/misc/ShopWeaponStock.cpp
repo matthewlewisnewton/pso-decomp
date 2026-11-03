@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/protocol/protocol_types.h"
 #include "pso/misc/ShopWeaponStock.h"
@@ -101,8 +102,6 @@ extern RecoveredGlobal_8022559C_lbl_80513F50 shop_weapon_stock_generated_flags;
 extern G_80225550 shop_weapon_stock_buffers;
 void get_shop_weapon_stock_item(C14_80225550 *dst, s32 idx, s32 tbl);
 s32 is_split_screen(void);
-s32 mem_alloc(s32);
-void mem_free(void *p);
 extern u32 lobby_weapon_random_tables_ptr;
 s32 memcmp(const void *, const void *, u32);
 extern Cnt_80224B7C shop_weapon_stock_counts[];
@@ -657,7 +656,7 @@ void TLobby::free_lobby_resources() {
     s32 i;
     for (i = 3; i >= 0; i--) {
         if (((u32 *)&shop_weapon_stock_buffers)[i] != 0) {
-            mem_free((void *)(((u32 *)&shop_weapon_stock_buffers)[i]));
+            ::operator delete[]((void *)(((u32 *)&shop_weapon_stock_buffers)[i]));
             ((u32 *)&shop_weapon_stock_buffers)[i] = 0;
         }
     }
@@ -695,10 +694,10 @@ void load_weapon_random_tables(void) {
     }
     if (is_split_screen() == 1) {
         for (i = 0; i < 4; i++) {
-            ((s32 *)&shop_weapon_stock_buffers)[i] = mem_alloc(0x140);
+            ((s32 *)&shop_weapon_stock_buffers)[i] = reinterpret_cast<s32>(::operator new[](0x140));
         }
     } else {
-        ((s32 *)&shop_weapon_stock_buffers)[0] = mem_alloc(0x140);
+        ((s32 *)&shop_weapon_stock_buffers)[0] = reinterpret_cast<s32>(::operator new[](0x140));
     }
     shop_weapon_stock_level = 0;
 }

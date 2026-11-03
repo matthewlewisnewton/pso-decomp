@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/misc/TWindowDrawContext.h"
 #include "types.h"
 #include "pso/misc/TWindowSubStatusDisp_80144B14.h"
@@ -388,7 +389,6 @@ s32 TLobby__sub_80269DA4(V2_80269DA4 size, void *arg1) {
 
 extern "C" {
 s32 draw_visible_window_entries(void *, void *, int);
-void *mem_alloc(u32 size);
 void *construct_with_parent__15TWindowAdditionFPv(void *, void *, s16, s32);
 extern s32 __vt__14TWindowMessage[];
 extern s32 lbl_805D3980;
@@ -396,7 +396,6 @@ extern s32 lbl_805D3980;
 u8 *TWindowMessage__ct(u8 *arg0, s32 arg1, u32 arg2, s32 arg3);
 void *__dt__14TWindowMessageFv(void *arg0, s16 arg1);
 void __dl__7TObjectFPv(void *);
-void mem_free(void *);
 
 void TWindowMessage::render() {
     s32 temp_r3;
@@ -423,7 +422,7 @@ void TWindowMessage::run_task() {
 void *__dt__14TWindowMessageFv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__14TWindowMessage;
-        if (*(void **)((s8 *)arg0 + 0x7C) != NULL) { mem_free(*(void **)((s8 *)arg0 + 0x7C)); }
+        if (*(void **)((s8 *)arg0 + 0x7C) != NULL) { ::operator delete[](*(void **)((s8 *)arg0 + 0x7C)); }
         ((TWindowAddition *)arg0)->destroy_window(0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
@@ -444,7 +443,7 @@ u8 *TWindowMessage__ct(u8 *arg0, s32 arg1, u32 arg2, s32 arg3) {
     *(s32 *)(arg0 + 0x78) = 0xB4;
     *(f32 *)(arg0 + 0x84) = 0.0f;
     *(f32 *)(arg0 + 0x80) = 0.0f;
-    *(u8 **)(arg0 + 0x7C) = (u8 *)mem_alloc(arg2 * 8);
+    *(u8 **)(arg0 + 0x7C) = (u8 *)::operator new[](arg2 * 8);
     p = *(u8 **)(arg0 + 0x7C);
     for (i = 0; i < arg2; i++) {
         *(s32 *)p = 0;

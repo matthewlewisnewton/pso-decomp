@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/system/main_loop.h"
@@ -96,7 +97,7 @@ extern int TQuestListOnline__quest_info_window;
 extern int TQuestListOnline__download_barrier_window;
 extern int quest_download_active;
 extern s32 TQuestListOnline__instance;
-void mem_free(void *p);
+void close__11TWindowBaseFv(u8 *arg0);
 extern RecoveredGlobal_80215ABC_lbl_804CA0B8 section_id_favored_grind_table;
 extern s32 lbl_805D6238;
 extern G_802156E0 *item_appraisal_rules;
@@ -110,7 +111,6 @@ extern s32 item_appraisal_favored_weapon;
 extern s32 item_appraisal_score;
 void adjust_appraisal_special(Obj_8021599C *obj);
 void adjust_appraisal_percentages(Obj_80215720 *arg0);
-void *mem_alloc(u32 size);
 }
 s32 get_guild_text(s32);
 extern "C" {
@@ -184,7 +184,7 @@ void TQuestListOnline::begin_file_download() {
         if (s->buf == NULL) {
             strncpy(s->name, arg0->name, 0x10);
             ((Slot_802150E8 *)TQuestListOnline__dat_download_state)->size = arg0->size;
-            s->buf = mem_alloc(arg0->size);
+            s->buf = ::operator new[](arg0->size);
             memset(s->buf, 0, (void *)arg0->size);
             TQuestListOnline__dat_download_complete = 0;
             quest_download_received_bytes += arg0->size;
@@ -194,7 +194,7 @@ void TQuestListOnline::begin_file_download() {
         if (s->buf == NULL) {
             strncpy(s->name, arg0->name, 0x10);
             ((Slot_802150E8 *)TQuestListOnline__bin_download_state)->size = arg0->size;
-            s->buf = mem_alloc(arg0->size);
+            s->buf = ::operator new[](arg0->size);
             memset(s->buf, 0, (void *)arg0->size);
             TQuestListOnline__bin_download_complete = 0;
             TDLGraph::update_graph(quest_download_graph_current_bytes, quest_download_received_bytes += arg0->size);
@@ -240,11 +240,11 @@ typedef char RecoveredGlobal_80215498_TQuestListOnline__data_80513DE8_size[sizeo
 typedef char RecoveredGlobal_80215498_TQuestListOnline__data_80513E24_size[sizeof(RecoveredGlobal_80215498_TQuestListOnline__data_80513E24) == 0x3C ? 1 : -1];
 void TQuestListOnline::release_resources() {
     if ((u32) *(u32 *)((s8 *)(&(*(RecoveredGlobal_80215498_TQuestListOnline__data_80513E24 *)&TQuestListOnline__bin_download_state).value) + 0x38) != 0U) {
-        mem_free((void *)(*(u32 *)((s8 *)(&(*(RecoveredGlobal_80215498_TQuestListOnline__data_80513E24 *)&TQuestListOnline__bin_download_state).value) + 0x38)));
+        ::operator delete[]((void *)(*(u32 *)((s8 *)(&(*(RecoveredGlobal_80215498_TQuestListOnline__data_80513E24 *)&TQuestListOnline__bin_download_state).value) + 0x38)));
         *(u32 *)((s8 *)(&(*(RecoveredGlobal_80215498_TQuestListOnline__data_80513E24 *)&TQuestListOnline__bin_download_state).value) + 0x38) = 0U;
     }
     if ((u32) *(u32 *)((s8 *)(&(*(RecoveredGlobal_80215498_TQuestListOnline__data_80513DE8 *)&TQuestListOnline__dat_download_state).value) + 0x38) != 0U) {
-        mem_free((void *)(*(u32 *)((s8 *)(&(*(RecoveredGlobal_80215498_TQuestListOnline__data_80513DE8 *)&TQuestListOnline__dat_download_state).value) + 0x38)));
+        ::operator delete[]((void *)(*(u32 *)((s8 *)(&(*(RecoveredGlobal_80215498_TQuestListOnline__data_80513DE8 *)&TQuestListOnline__dat_download_state).value) + 0x38)));
         *(u32 *)((s8 *)(&(*(RecoveredGlobal_80215498_TQuestListOnline__data_80513DE8 *)&TQuestListOnline__dat_download_state).value) + 0x38) = 0U;
     }
     if ((u32) (*(u32 *)&TQuestListOnline__selected_quest_info) != 0U) {

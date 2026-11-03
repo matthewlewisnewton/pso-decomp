@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/animation/MotionContext.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/vector.h"
@@ -122,7 +123,6 @@ extern s32 TBreakUpMdl__vtable[];
 extern RecoveredGlobal_80096F54_lbl_8058D490 identity_matrix;
 u8 *init__11TBreakUpMdlFPviif(u8 *arg0, s32 arg1, s32 arg2, f32 farg0);
 extern const f32 lbl_805D97C8;
-void *mem_alloc(u32 size);
 extern const f32 lbl_805D97CC;
 void alloc_breakup_piece_records(Brk_80096EBC *arg0, void *arg1);
 extern Color_8009680C breakup_default_color;
@@ -139,7 +139,6 @@ extern const f32 lbl_805D97D0;
 extern const f32 lbl_805D97D4;
 u8 *TBreakUpMdl__ct(u8 *arg0, void *arg1, Model_80096AD8 *arg2, void *arg3, s32 arg4, void *arg5, s32 arg6);
 void *__dt_deleting__11TBreakUpMdlFPvs(void *arg0, s16 arg1);
-void mem_free(void *);
 
 void TBreakUpMdl::render() {
     BreakUp_8009680C *self = (BreakUp_8009680C *)this;
@@ -207,7 +206,7 @@ void TBreakUpMdl::init_alpha(s32 arg1, f32 farg0) {
 
 }
 TBreakUpMdl::~TBreakUpMdl() {
-    mem_free((void *)(*(void **)((s8 *)this + 0x34)));
+    ::operator delete[]((void *)(*(void **)((s8 *)this + 0x34)));
     this->m_34 = 0;
 }
 
@@ -233,7 +232,7 @@ u8 *TBreakUpMdl__ct(u8 *break_up_mdl, void *arg1, Model_80096AD8 *arg2, void *ar
     self->count = self->model->count;
     base = self->f4C;
     scale = self->f50;
-    self->parts = (Part_80096AD8 *)mem_alloc(self->count * 0x28);
+    self->parts = (Part_80096AD8 *)::operator new[](self->count * 0x28);
     push_matrix_from(&identity_matrix);
     post_translate_matrix(arg5);
     rotate_matrix_y(0, arg6);
@@ -326,7 +325,7 @@ s32 TBreakUpMdl::build_node_records(u8 *arg1, s32 arg2) {
 void *__dt_deleting__11TBreakUpMdlFPvs(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0xC) = TBreakUpMdl__vtable;
-        mem_free((void *)(*(s32 *)((s8 *)arg0 + 4)));
+        ::operator delete[]((void *)(*(s32 *)((s8 *)arg0 + 4)));
         *(s32 *)((s8 *)arg0 + 4) = 0;
         if (arg1 > 0) {
             ::operator delete(arg0);
@@ -338,7 +337,7 @@ void *__dt_deleting__11TBreakUpMdlFPvs(void *arg0, s16 arg1) {
 void alloc_breakup_piece_records(Brk_80096EBC *arg0, void *boss2_tunnel) {
     s32 i;
     arg0->count = count_active_segments__15TObjBoss2TunnelFPv(boss2_tunnel);
-    arg0->segs = (Seg_80096EBC *)mem_alloc(arg0->count * 0x1C);
+    arg0->segs = (Seg_80096EBC *)::operator new[](arg0->count * 0x1C);
     for (i = 0; i < arg0->count; i++) {
         arg0->segs[i].a = 0;
         arg0->segs[i].x = lbl_805D97CC;

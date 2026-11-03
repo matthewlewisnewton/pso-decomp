@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/quest/TQuestListVMData.h"
 #include "pso/misc/TQuestListOnline.h"
 #include "pso/quest/TQuestListVM.h"
 

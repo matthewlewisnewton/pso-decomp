@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/CharacterAppearanceTables.h"
@@ -65,7 +66,6 @@ extern CreationTextureCacheEntry *char_select_current_entry;
 void TAdSinglePlyChrSelectGC__sub_8028ED54(void);
 void blend_creation_proportion_shapes(void *);
 void *__dt__10TObjMotionFv(void *arg0, s16 arg1);
-void mem_free(void *p);
 s32 __dl__7TObjectFPv(void *);
 void TAdSinglePlyChrSelectGC__sub_8028F084(CreationTextureCacheEntry *entry, TCharaMaking *appearance);
 void TCharaMaking__bind_appearance_texture_lists(s32 *hair, s32 *head, s32 *body, TCharaMaking *appearance);
@@ -290,7 +290,6 @@ struct Sel_802902CC {
 };
 
 s32 __ct__10TObjMotionFP7TObject(void *, void *);
-void *mem_alloc(u32 size);
 }
 extern u32 creation_figure_object;
 void request_creation_motion(s32 arg0);
@@ -397,7 +396,7 @@ void *TCMCharacter__ct(void *motion, void *arg1) {
     ((TObjMotion *)motion)->set_motion_list((BmlMotionEntry *)(*(s32 *)((s8 *)creation_menu_main_obj + 0x430)));
     ((TObjMotion *)motion)->requested_action = creation_motion_group(creation_player_character);
     ((TObjMotion *)motion)->set_animation(((TObjMotion *)motion)->requested_action);
-    *(s32 *)((s8 *)motion + 0xE0) = (s32)mem_alloc(0xC00);
+    *(s32 *)((s8 *)motion + 0xE0) = (s32)::operator new[](0xC00);
     *(f32 *)((s8 *)motion + 0x40) = lbl_805DD940;
     *(f32 *)((s8 *)motion + 0x3C) = lbl_805DD940;
     *(f32 *)((s8 *)motion + 0x38) = lbl_805DD940;
@@ -427,7 +426,7 @@ u8 *TAdSinglePlyChrSelectGC__sub_802908CC(u8 *arg0, s16 arg1) {
         (*(s32 *)&chara_select_hair_node_b) = 0;
         (*(s32 *)&chara_select_hair_node_a) = 0;
         ((TAdSinglePlyChrSelectGC *)arg0)->m_34 = 0;
-        mem_free((void *)(*(s32 *)((s8 *)arg0 + 0xE0)));
+        ::operator delete[]((void *)(*(s32 *)((s8 *)arg0 + 0xE0)));
         creation_resource_ready_state = 0;
         creation_figure_object = 0;
         lbl_805D49B4 = 0;

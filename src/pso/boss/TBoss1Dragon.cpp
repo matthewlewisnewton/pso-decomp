@@ -1,3 +1,4 @@
+#include "pso/boss/EffectGeometryParameters.h"
 #include "pso/misc/CameraHelpers.h"
 #include "pso/system/MatrixVectorArray.h"
 #include "pso/animation/MotionContext.h"
@@ -183,12 +184,7 @@ struct RecoveredGlobal_80027634_TBoss1Dragon__data_804FE17C {
     u8 remaining[0x8];
 };
 
-struct Stack_80027E78 {
-    s32 sp8;
-    u8 pad_C[0x4];
-    f32 sp10;
-    u8 trailing_storage[0x8];
-};
+typedef EffectGeometryParameters Stack_80027E78;
 
 
 struct RecoveredGlobal_80027E78_TBoss1Dragon__data_804FE17C {
@@ -305,7 +301,7 @@ struct Obj_80029C78 {
 
 struct Vec_800278A8 { f32 x, y, z; };
 
-struct Params_800278A8 { s32 a; s32 b; f32 scale; s32 c; s32 d; };
+typedef EffectGeometryParameters Params_800278A8;
 
 struct Vec_80029408 { f32 x, y, z; };
 
@@ -534,7 +530,6 @@ s32 set_frames__15ProtectionTimerFl(void *, s32);
 extern const f32 lbl_805D8090;
 f32 calc_burrow_speed__12TBoss1DragonFPv(void *arg0);
 extern const f32 lbl_805D80B0;
-void TBoss1Dragon__sub_80027A80(u8 *arg0, u8 *arg1);
 s32 enemy_set_target_id(void *, u16);
 u8 *TBoss1Dragon__ct(u8 *, void *, void *);
 extern s32 tl_04;
@@ -717,8 +712,8 @@ void apply_slow_status__12TBoss1DragonFv(void);
 void clear_harmful_statuses__12TBoss1DragonFv(void);
 void vfunc_88__12TBoss1DragonFv(u8 *arg0);
 extern const Vec TBoss1Dragon__data_80434E80 = {0.0f, 0.0f, 0.0f};
-extern const DragonAttackParams boss1_dragon_attack_sphere_params = {0, 0.0f, 30.0f, 7.0f, 1};
-extern const DragonAttackParams TBoss1Dragon__head_fall_effect_params = {0, 0.0f, 35.0f, 50.0f, 1};
+extern const EffectGeometryParameters boss1_dragon_attack_sphere_params = {0, 0.0f, 30.0f, 7.0f, 1};
+extern const EffectGeometryParameters TBoss1Dragon__head_fall_effect_params = {0, 0.0f, 35.0f, 50.0f, 1};
 extern const DragonAttackParams boss1_dragon_ground_impact_params = {0, 10.0f, 25.0f, 7.5f, 1};
 extern const Vec lbl_80434EC8 = {-35.0f, 0.0f, 10.0f};
 extern const Vec lbl_80434ED4 = {-60.0f, 0.0f, -20.0f};
@@ -2254,7 +2249,7 @@ void TBoss1Dragon::update_fade_state(u32 arg1) {
 
 #define F(T, o) (*(T *)(arg0 + (o)))
 #define RES(o) (*(s32 *)((u8 *)&TBoss1Dragon__part_hp_stats + (o)))
-struct Eff_80022EE0 { u32 w[5]; };
+typedef EffectGeometryParameters Eff_80022EE0;
 #pragma push
 #pragma pool_data off
 void update_death_state__12TBoss1DragonFv(u8 *arg0, u32 arg1) {
@@ -2332,8 +2327,8 @@ void update_death_state__12TBoss1DragonFv(u8 *arg0, u32 arg1) {
                 F(u32, 0x8AC) = 0;
             }
             if (((TObjMotion *)arg0)->is_passing_frame((f32)(57.0f)) != 0) {
-                eff1 = *(const Eff_80022EE0 *)&TBoss1Dragon__head_fall_effect_params;
-                *(f32 *)&eff1.w[2] = (12.0f);
+                __memcpy(&eff1, &TBoss1Dragon__head_fall_effect_params, sizeof(eff1));
+                eff1.field_8 = (12.0f);
                 ((void (*)(void *, void *))VecCopy__FP3VecPC3Vec)(&v, (void *)&lbl_80434EC8);
                 rotate_xz_pair_by_angle(&v.x, &v.z, F(s32, 0x60));
                 vec3_add_to(&v, arg0 + 0x38);
@@ -2350,8 +2345,8 @@ void update_death_state__12TBoss1DragonFv(u8 *arg0, u32 arg1) {
                 spawn_particle_effect_with_flags(&v, *(s32 *)((s8 *)(F(u8 *, 0x778)) + 8), 0x40);
             }
             if (((TObjMotion *)arg0)->is_passing_frame((f32)(88.0f)) != 0) {
-                eff2 = *(const Eff_80022EE0 *)&TBoss1Dragon__head_fall_effect_params;
-                *(f32 *)&eff2.w[2] = (25.0f);
+                __memcpy(&eff2, &TBoss1Dragon__head_fall_effect_params, sizeof(eff2));
+                eff2.field_8 = (25.0f);
                 ((void (*)(void *, void *))VecCopy__FP3VecPC3Vec)(&v, (void *)&lbl_80434ED4);
                 rotate_xz_pair_by_angle(&v.x, &v.z, F(s32, 0x60));
                 vec3_add_to(&v, arg0 + 0x38);
@@ -4662,9 +4657,9 @@ void TBoss1Dragon::sweep_death_body_attack() {
     s32 off;
     reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(this, 0, *(s32 *)((s8 *)&TBoss1Dragon__part_hp_stats + 0x10), 0);
     fill_value_array(*(s32 *)((s8 *)((u8 *)this) + 0x688));
-    TBoss1Dragon__sub_80027A80((u8 *)&params, (u8 *)&TBoss1Dragon__head_fall_effect_params);
+    TBoss1Dragon__sub_80027A80(&params, &TBoss1Dragon__head_fall_effect_params);
     VecCopy__FP3VecPC3Vec((s32)&pos, (s32)(((u8 *)this) + 0x4C0));
-    params.scale = (15.0f);
+    params.field_8 = (15.0f);
     switch (isV2Mode__12TBoss1DragonFv()) {
     case 0:
         emit_enemy_effect__9TObjEneDDFllPUcl(this, &pos, &params, *(s32 *)((s8 *)((u8 *)this) + 0x688));
@@ -4673,7 +4668,7 @@ void TBoss1Dragon::sweep_death_body_attack() {
         TBoss1Dragon__sub_800275BC(((u8 *)this), (s32)&pos, (u8 *)&params, *(s32 *)((s8 *)((u8 *)this) + 0x688));
         break;
     }
-    params.scale = (12.0f);
+    params.field_8 = (12.0f);
     pts[0] = ((u8 *)this) + 0x484;
     pts[1] = ((u8 *)this) + 0x49C;
     for (i = 0; i < 2; i++) {
@@ -4686,7 +4681,7 @@ void TBoss1Dragon::sweep_death_body_attack() {
             break;
         }
     }
-    params.scale = lbl_805D8024;
+    params.field_8 = lbl_805D8024;
     pts[0] = ((u8 *)this) + 0x4D8;
     pts[1] = ((u8 *)this) + 0x4E4;
     pts[2] = ((u8 *)this) + 0x4F0;
@@ -4705,11 +4700,18 @@ void TBoss1Dragon::sweep_death_body_attack() {
 }
 #pragma pop
 
-void TBoss1Dragon__sub_80027A80(u8 *arg0, u8 *arg1) {
-    *(ByteBlock_8 *)(arg0) = *(const ByteBlock_8 *)(arg1);
-    *(f32 *)((s8 *)arg0 + 8) = (f32) *(f32 *)((s8 *)arg1 + 8);
-    *(ByteBlock_8 *)((s32) arg0 + 0xC) = *(const ByteBlock_8 *)((s32) arg1 + 0xC);
+// Preserve the native integer-copy / floating-radius / integer-copy order.
+#pragma push
+#pragma scheduling off
+void TBoss1Dragon__sub_80027A80(EffectGeometryParameters *arg0, const EffectGeometryParameters *arg1) {
+    __memcpy(arg0, arg1, 8);
+    arg0->field_8 = arg1->field_8;
+    // Character views start at the complete objects, not a smaller member.
+    __memcpy(reinterpret_cast<u8 *>(arg0) + 12,
+        reinterpret_cast<const u8 *>(arg1) + 12, 8);
 }
+
+#pragma pop
 
 void TBoss1Dragon::apply_ground_impact_attack() {
     s32 arg0 = (s32)this;
@@ -4743,7 +4745,8 @@ void sweep_body_attack_spheres__12TBoss1DragonFv(u8 *arg0, f32 a, f32 b, f32 c) 
     f32 factor;
     Vec_80027B78 pos;
     Vec_80027B78 base;
-    DragonAttackParams fx = TBoss1Dragon__head_fall_effect_params;
+    EffectGeometryParameters fx;
+    __memcpy(&fx, &TBoss1Dragon__head_fall_effect_params, sizeof(fx));
     f32 s0;
     f32 s1;
     f32 d;
@@ -4808,18 +4811,18 @@ void TBoss1Dragon::apply_head_fall_attack() {
 
 typedef char RecoveredGlobal_80027E78_TBoss1Dragon__data_804FE17C_size[sizeof(RecoveredGlobal_80027E78_TBoss1Dragon__data_804FE17C) == 0xC ? 1 : -1];
 void apply_landing_attack__12TBoss1DragonFi(s32 arg0) {
-    typedef char sp8_offset[(offsetof(Stack_80027E78, sp8) == 0x0) ? 1 : -1];
-    typedef char sp10_offset[(offsetof(Stack_80027E78, sp10) == 0x8) ? 1 : -1];
+    typedef char sp8_offset[(offsetof(Stack_80027E78, field_0) == 0x0) ? 1 : -1];
+    typedef char sp10_offset[(offsetof(Stack_80027E78, field_8) == 0x8) ? 1 : -1];
     Stack_80027E78 stack;
-    TBoss1Dragon__sub_80027A80((u8 *)&stack.sp8, (u8 *)&boss1_dragon_attack_sphere_params);
-    stack.sp10 = *(f32 *)((s8 *)((*(RecoveredGlobal_80027E78_TBoss1Dragon__data_804FE17C *)&TBoss1Dragon__data_804FE17C).value) + 0xC);
+    TBoss1Dragon__sub_80027A80(&stack, &boss1_dragon_attack_sphere_params);
+    stack.field_8 = *(f32 *)((s8 *)((*(RecoveredGlobal_80027E78_TBoss1Dragon__data_804FE17C *)&TBoss1Dragon__data_804FE17C).value) + 0xC);
     ((TBoss1Dragon *)arg0)->reload_stats_for_phase((int) ((*(RecoveredGlobal_80027E78_TBoss1Dragon__data_804FE17C *)&TBoss1Dragon__data_804FE17C).value));
     switch (isV2Mode__12TBoss1DragonFv()) {
     case 0:
-        ((TObjEneDD *)arg0)->emit_effect_at_position(&stack.sp8);
+        ((TObjEneDD *)arg0)->emit_effect_at_position(&stack);
         break;
     case 1:
-        TBoss1Dragon__sub_80027590((void*)arg0, (void*)((void *)&stack.sp8));
+        TBoss1Dragon__sub_80027590((void*)arg0, (void*)((void *)&stack));
         break;
     }
     ((TBoss1Dragon *)arg0)->reload_difficulty_stats();

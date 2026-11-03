@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/system/memory.h"
@@ -49,7 +50,6 @@ void TWindowSubStatusDisp::finalize_state() {
 }
 
 void reset__20TWindowSubStatusDispFPv(void *arg0);
-void mem_free(void *p);
 
 void reset__20TWindowSubStatusDispFPv(void *arg0) {
     *(s8 *)((s8 *)arg0 + 0x1C) = 0x33;
@@ -60,11 +60,11 @@ void reset__20TWindowSubStatusDispFPv(void *arg0) {
     *(s32 *)((s8 *)arg0 + 0x34) = -1;
     *(s32 *)((s8 *)arg0 + 0x18) = 0;
     if (((u32) *(u32 *)((s8 *)arg0 + 0x24) != 0U) && (*(u16 *)((s8 *)arg0 + 0) & 0x10)) {
-        mem_free((void *)(*(u32 *)((s8 *)arg0 + 0x24)));
+        ::operator delete[]((void *)(*(u32 *)((s8 *)arg0 + 0x24)));
     }
     *(u32 *)((s8 *)arg0 + 0x24) = 0U;
     if (((u32) *(u32 *)((s8 *)arg0 + 0x20) != 0U) && (*(u16 *)((s8 *)arg0 + 0) & 8)) {
-        mem_free((void *)(*(u32 *)((s8 *)arg0 + 0x20)));
+        ::operator delete[]((void *)(*(u32 *)((s8 *)arg0 + 0x20)));
     }
     *(u32 *)((s8 *)arg0 + 0x20) = 0U;
     *(u16 *)((s8 *)arg0 + 0) = (u16) (*(u16 *)((s8 *)arg0 + 0) & ~0x1BFD);
@@ -615,7 +615,6 @@ extern const f32 lbl_805DCF10;
 extern const f32 lbl_805DCF18;
 extern "C" {
 void calc_row_width__20TWindowSubStatusDispFv(Row_8025930C *arg0);
-s32 mem_alloc(s32);
 s32 measure_string_len__20TWindowSubStatusDispFv(s32);
 char *strncpy(char *, const char *, unsigned long);
 s32 replace_owned_string__20TWindowSubStatusDispFPviiii(void *arg0, s32 src, s32 buf, s32 mask, s32 copy);
@@ -662,11 +661,11 @@ s32 replace_owned_string__20TWindowSubStatusDispFPviiii(void *arg0, s32 src, s32
     s32 n;
     if (buf != 0 && (*flags & mask)) {
         *flags &= ~mask;
-        mem_free((void *)buf);
+        ::operator delete[]((void *)buf);
     }
     if ((u32)src != 0 && copy != 0) {
         n = measure_string_len__20TWindowSubStatusDispFv(src);
-        buf = mem_alloc(n + 1);
+        buf = reinterpret_cast<s32>(::operator new[](static_cast<size_t>(n) + 1));
         strncpy((char *)buf, (const char *)src, n + 1);
         *flags |= mask;
     } else {
@@ -842,14 +841,14 @@ void *TWindowSubStatusDisp::dispose(s16 arg1) {
             temp_r3 = *(u16 *)&this->m_name;
             if (temp_r3 & 0x10) {
                 *(u16 *)&this->m_name = (u16) (temp_r3 & 0xFFFFFFEF);
-                mem_free((void *)(*(u32 *)&this->m_24));
+                ::operator delete[]((void *)(*(u32 *)&this->m_24));
             }
         }
         if ((u32) *(u32 *)&this->m_20 != 0U) {
             temp_r3_2 = *(u16 *)&this->m_name;
             if (temp_r3_2 & 8) {
                 *(u16 *)&this->m_name = (u16) (temp_r3_2 & 0xFFFFFFF7);
-                mem_free((void *)(*(u32 *)&this->m_20));
+                ::operator delete[]((void *)(*(u32 *)&this->m_20));
             }
         }
         deleting_destructor__20TWindowSubStatusDispFs(this, 0);

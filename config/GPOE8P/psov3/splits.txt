@@ -1152,46 +1152,11 @@ pso/item/TItemDrop.cpp:
 pso/misc/TLobby_8007C550.cpp:
 	.text       start:0x8007C550 end:0x8007C5C0
 
-pso/boss/TObjBoss2Tunnel_8007C5C0.cpp:
-	.text       start:0x8007C5C0 end:0x8007CE14
-	.rodata     start:0x80438A88 end:0x80438A98
-
-pso/boss/TObjBoss2Tunnel_8007CE14.cpp:
-	.text       start:0x8007CE14 end:0x8007CF0C
-
-pso/boss/TObjBoss2Tunnel_8007CF0C.cpp:
-	.text       start:0x8007CF0C end:0x8007DD70
-	.sdata2     start:0x805D9234 end:0x805D9270
-
 pso/boss/TObjBoss2Tunnel.cpp:
-	.text       start:0x8007DD70 end:0x8007E0CC
-
-pso/boss/TObjBoss2Tunnel_8007E0CC.cpp:
-	.text       start:0x8007E0CC end:0x8007E100
-
-pso/boss/TObjBoss2Tunnel_8007E100.cpp:
-	.text       start:0x8007E100 end:0x8007E380
-
-pso/boss/TObjBoss2Tunnel_8007E380.cpp:
-	.text       start:0x8007E380 end:0x8007E3AC
-
-pso/boss/TObjBoss2Tunnel_8007E3AC.cpp:
-	.text       start:0x8007E3AC end:0x8007E418
-
-pso/boss/TObjBoss2Tunnel_8007E418.cpp:
-	.text       start:0x8007E418 end:0x8007E8D8
-
-pso/boss/TObjBoss2Tunnel_8007E8D8.cpp:
-	.text       start:0x8007E8D8 end:0x8007E918
-
-pso/boss/TObjBoss2Tunnel_8007E918.cpp:
-	.text       start:0x8007E918 end:0x8007E9EC
-
-pso/boss/TObjBoss2Tunnel_8007E9EC.cpp:
-	.text       start:0x8007E9EC end:0x8007EA74
-
-pso/boss/TObjBoss2Tunnel_8007EA74.cpp:
-	.text       start:0x8007EA74 end:0x8007EAF8
+	.text       start:0x8007C5C0 end:0x8007EAF8
+	.rodata     start:0x80438A68 end:0x80438A98
+	.sbss       start:0x805D4E88 end:0x805D4E98
+	.sdata2     start:0x805D9210 end:0x805D9298
 
 pso/quest/TQuestListVM_8007EAF8.cpp:
 	.text       start:0x8007EAF8 end:0x8007EB94
@@ -4738,7 +4703,7 @@ pso/misc/TNpcPlayer.cpp:
 	.text       start:0x8014DF78 end:0x8015302C
 	.ctors      start:0x80433F84 end:0x80433F88
 	.rodata     start:0x8043FF68 end:0x8043FFE8
-	.data       start:0x804ABC90 end:0x804AF78C
+	.data       start:0x804ABC90 end:0x804AF7B0
 	.bss        start:0x8050CF68 end:0x8050D430
 	.sdata2     start:0x805DB1F0 end:0x805DB208
 
@@ -9833,16 +9798,21 @@ pso/misc/TChCrTagName.cpp:
 pso/unk/text_802A2A00.cpp:
 	.text       start:0x802A2A00 end:0x802A2BD8
 
+pso/misc/TChCrTagOccHeader.cpp:
+	.text       start:0x802A2BD8 end:0x802A2DF4
+	.data       start:0x804DCC38 end:0x804DCC58
+
 pso/misc/TChCrTagOccupation.cpp:
-	.text       start:0x802A2BD8 end:0x802A3138
+	.text       start:0x802A2DF4 end:0x802A3138
 	.rodata     start:0x80466488 end:0x80466490
-	.data       start:0x804DCC38 end:0x804DCC78
+	.data       start:0x804DCC58 end:0x804DCC78
 
 pso/unk/text_802A3138.cpp:
 	.text       start:0x802A3138 end:0x802A31F8
 
 pso/misc/TChCrTagPlGraphic.cpp:
 	.text       start:0x802A31F8 end:0x802A35B4
+	.data       start:0x804DCC78 end:0x804DCC98
 
 pso/misc/TWindowSubStatusDisp_802A35B4.cpp:
 	.text       start:0x802A35B4 end:0x802A3608
@@ -10598,6 +10568,9 @@ pso/unk/text_802EDE90.cpp:
 pso/boss/TBoss7DeRolLeC_802EE4E0.cpp:
 	.text       start:0x802EE4E0 end:0x802EE6E0
 	.bss        start:0x805412C0 end:0x80541528
+
+pso/boss/Boss7TentacleBanks.cpp:
+	.bss        start:0x80541528 end:0x80541918
 
 pso/boss/TBoss7Joint_802EE6E0.cpp:
 	.text       start:0x802EE6E0 end:0x802EE9A4
@@ -13887,6 +13860,9 @@ pso/misc/TQuestVmDownLoadServer_803E5668.cpp:
 	.text       start:0x803E5668 end:0x803E6610
 	.bss        start:0x8058DC48 end:0x8058DE08
 	.sdata2     start:0x805E10C0 end:0x805E10C8
+
+pso/misc/QuestDownloadBuffers.cpp:
+	.bss        start:0x8058DE08 end:0x80595008
 
 pso/misc/TWindowKeyBoardSoft_803E6610.cpp:
 	.text       start:0x803E6610 end:0x803E6970

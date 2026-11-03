@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/system/BmlResourceDescriptor.h"
 #include "types.h"
@@ -111,14 +112,12 @@ s32 create_file_load_entry__6TLobbyFllUllPPv(void *, s32, void *, void *, void *
 extern s32 lbl_80434C70[];
 extern s32 lbl_80434C98[];
 s32 TLobby__sub_800F9FF4(s32);
-void mem_free(void *p);
 s32 release_texture_list(void *);
 void open__8TGStreamFPvPvi(void *, s32, s32);
 s32 get_gstream_file_size(void *);
 void destroy_gstream(void *, s32);
 u32 prs_decompress_buffer(s32 arg0, s32 arg1);
 void debug_printf_nop(void *, ...);
-void *mem_alloc(u32 size);
 char *strncpy(char *dest, const char *src, unsigned long num);
 extern u8 *resource_decompress_buffer;
 extern u8 bml_load_state;
@@ -612,11 +611,11 @@ BmlResource::~BmlResource() {
             free_if_not_in_arena((void *)models[i].m_c);
         }
     }
-    mem_free(models);
+    ::operator delete[](models);
     for (i = 0; i < motion_count; i++) {
         free_if_not_in_arena(motions[i].motion);
     }
-    mem_free(motions);
+    ::operator delete[](motions);
 }
 
 void BmlResource::reset() {
@@ -654,7 +653,7 @@ BmlResource::BmlResource(s32 kind, BmlResourceDescriptor *descriptor, s32 arg3, 
     model_count = descriptor->model_count;
     motion_count = descriptor->motion_count;
     if (model_count > 0) {
-        models = (BmlModelEntry *)mem_alloc(model_count * 16);
+        models = (BmlModelEntry *)::operator new[](model_count * 16);
         for (s32 i = 0; i < model_count; i++) {
             models[i].m_0 = 0;
             models[i].model = 0;
@@ -662,7 +661,7 @@ BmlResource::BmlResource(s32 kind, BmlResourceDescriptor *descriptor, s32 arg3, 
         }
     }
     if (motion_count > 0) {
-        motions = (BmlMotionEntry *)mem_alloc(motion_count * 8);
+        motions = (BmlMotionEntry *)::operator new[](motion_count * 8);
         for (s32 i = 0; i < motion_count; i++) {
             motions[i].motion = NULL;
         }

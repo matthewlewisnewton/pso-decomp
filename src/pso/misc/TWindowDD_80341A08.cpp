@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/misc/TWindowDD_WS_Word.h"
 #include "pso/misc/TWindowDD_803488A8.h"
@@ -133,10 +134,8 @@ extern const f32 TWindowDD__data_805DFB20;
 extern const float TWindowDD__data_805DFCA8;
 s32 init_window_layout_entries(void *, void *, int);
 extern RecoveredGlobal_80341F9C_TWindowDD__data_804EFC50 TWindowDD__data_804EFC50;
-void *mem_alloc(u32 size);
 s32 get_array_entry__11TWindowBaseFi(void * a0, s32 a1);
 Elem_80341FFC *get_element_ptr__9TWindowDDFl(s32);
-void mem_free(void *);
 s32 get_array_entry__11TWindowBaseFi(void * a0 = 0, s32 a1 = 0);
 s32 get_field_20__17TWindowSubComCardFv(void);
 
@@ -240,7 +239,7 @@ void TWindowDD::init_and_mark_field8C() { init_layout_entries(); load_element_li
 
 void TWindowDD::free_child() {
     if (*(void **)((s8 *)this + 0x80) != NULL) {
-        mem_free(*(void **)((s8 *)this + 0x80));
+        ::operator delete[](*(void **)((s8 *)this + 0x80));
         this->m_9c = 0;
     }
     ((TWindowSubStatusDisp *)((char *)this + 36))->destroy_all_items();
@@ -270,7 +269,7 @@ void TWindowDD::load_element_list() {
     e = get_element_ptr__9TWindowDDFl(self->x70);
     if (e != NULL) {
         self->count = e->count;
-        self->buf = (s16 *)mem_alloc(self->count * 2);
+        self->buf = (s16 *)::operator new[](self->count * 2);
         for (i = 0; i < self->count; i++) {
             self->buf[i] = e->data[i];
         }

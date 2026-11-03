@@ -11,6 +11,7 @@
 
 
 #include "types.h"
+#include "pso/quest/TQuestListVMData.h"
 
 extern "C" {
 s32 wait_confirm_and_finish__17TMCFormatSequenceFPv();

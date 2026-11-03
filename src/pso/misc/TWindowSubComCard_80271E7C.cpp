@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/quest/TQuestThread.h"
 #include "pso/misc/TWindowMessage.h"
@@ -42,7 +43,6 @@ struct Ent_80271F04 {
 
 extern "C" {
 u8 *get_shared_text_buffer(void);
-void mem_free(void *p);
 void send_simple_mail__6TLobbyFiPv(s32 arg0, void *arg1);
 }
 s32 *get_selected_guild_card_record(void);
@@ -153,7 +153,7 @@ void TWindowSubComCard::sub_802721D8() {
   new_var = get_shared_text_buffer();
   temp_r31 = (u8 *) new_var;
   send_simple_mail__6TLobbyFiPv(((TLobby *)lobby)->get_id(), temp_r31);
-  mem_free((void *)temp_r30);
+  ::operator delete[]((void *)temp_r30);
 }
 }
 
@@ -1021,7 +1021,7 @@ void run_task__17TWindowSubComCardFv(TWindowSubComCard *window_sub_com_card) {
             TWindowSubComCard::mask_profanity_words((char *)temp_r29, (char *)get_shared_text_buffer());
             keyboard_mode = TWindowSubComCard::get_keyboard_mode();
             ((TWindowSubComCard *)keyboard_mode)->set_text((void *)(((s32 (*)(void))get_shared_text_buffer)()));
-            mem_free((void *)temp_r29);
+            ::operator delete[]((void *)temp_r29);
             window_sub_com_card->m_1c = 1U;
             return;
         }
@@ -1147,7 +1147,7 @@ void run_task__17TWindowSubComCardFv(TWindowSubComCard *window_sub_com_card) {
             temp_r29 = ((TWindowSubComCard *)(window_sub_com_card->m_80))->realloc_buffer();
             TWindowSubComCard::mask_profanity_words((char *)temp_r29, (char *)get_shared_text_buffer());
             ((TWindowSubComCard *)(window_sub_com_card->m_24))->set_card_text((int) (((s32 (*)(void))get_shared_text_buffer)()));
-            mem_free((void *)temp_r29);
+            ::operator delete[]((void *)temp_r29);
             window_sub_com_card->m_1c = 1U;
             return;
         }

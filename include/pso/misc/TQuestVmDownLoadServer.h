@@ -112,18 +112,15 @@ public:
     static void latch_slot_value(s32 arg0);
     static s32 count_leading_entries(s32 i, s32 end);
     static void init_entries();
-    s32 count_chain_nodes();
     static void *build_text_node_chain(void *sp, void *a1, s32 a2, void *hp, void *tp);
     static u16 jis_to_sjis(u16 arg0);
     static s32 is_valid_sjis_code(u16 arg0);
     static s32 is_download_command(u16 arg0, s32 arg1);
     static s32 encode_char_with_attr(u16 *out, u16 ch, s32 attr);
     static s32 is_sjis_lead_byte(u8 arg0);
-    void free_node_list();
     static void push_download_entry(s32 *arg0);
     static void init_block_free_list();
     static s32 calc_item_cost_bonus(u8 kind, u8 v, u8 w, s32 base, s32 add);
-    s32 calc_item_entry_cost(u8 k, u8 v, s32 base);
     static s32 calc_pair_cost_bonus(u8 arg0, u8 arg1, s32 arg2);
     static s32 calc_item_entry_cost_extra(u8 arg0, u8 arg1, u8 arg2, s32 arg3);
     static void reset_slot_chain_timers(s32 arg0);

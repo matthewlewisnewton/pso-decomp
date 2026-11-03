@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/misc/TWindowDrawContext.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
@@ -205,7 +206,6 @@ s32 is_split_screen();
 void queue_destruction__7TObjectFv(void *);
 s32 get_screen_width__11TCameraCtrlFv();
 s32 get_screen_height__11TCameraCtrlFv();
-void *mem_alloc(u32 size);
 Ent_802511E4 * find_entity_by_id(u16);
 u32 get_battle_ctrl_flag__10TObjPlayerFUs(u16);
 u32 get_player_by_client_id(u32);
@@ -1024,7 +1024,7 @@ void TUnk_804CF0B8::sub_80251DF0(s16 arg1, s32 str, s16 arg3, f32 farg0) {
     this->m_20 = arg3;
     if (str != 0) {
         temp_r3 = TWindowKeyBoardSoft::strnlen((s8 *)str, (u32)0x18);
-        this->name = (char *)mem_alloc(temp_r3 + 1);
+        this->name = (char *)::operator new[](temp_r3 + 1);
         strncpy((s32)this->name, str, temp_r3 + 1);
     } else {
         this->name = NULL;

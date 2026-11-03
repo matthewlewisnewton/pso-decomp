@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/quest/TQuestListVMData.h"
 #include "pso/system/debug_print.h"
 #include "pso/quest/TQuestListVM_8007EAF8.h"
 #include "pso/quest/TQuestListVM.h"

@@ -164,7 +164,6 @@ struct TLobby : public TObject {
     static int get_lobby_flag();
     void bswap_player_packet();
     void update_and_send();
-    void bswap_item();
     static TLobbyFloorItemEntry *copy_floor_item_entry(TLobbyFloorItemEntry *dst, TLobbyFloorItemEntry *src);
     static void set_boss_buf_entry(int a0, int a1);
     static int get_sync_counter(int a0);
@@ -179,10 +178,6 @@ struct TLobby : public TObject {
     void process_and_dispatch_packet();
     void bswap_6xa2_fields();
     void *build_6x06_guild_card_packet();
-    void send_item_packet();
-    void bswap_item_packet();
-    void *init_header_packet();
-    void *init_header();
     void bswap_packet();
     static s32 apply_table_entry(s16 arg0, void * _w1);
     void copy_short_fields(void *arg1);
@@ -323,7 +318,7 @@ struct TLobby : public TObject {
     static s32 sum_floor_enemy_counts();
     void bswap_4_words();
     static void init_scene_objects();
-    int sync_game_state();
+    void sync_game_state();
     static s32 spawn_matching_objects(s16 arg0, s16 arg1, s32 arg2);
     static s32 link_matching_objects(s16 arg0, s16 arg1);
     static s32 spawn_objects_at_pos(s16 arg0, s16 arg1);

@@ -308,7 +308,7 @@ void close_windows__16TAdChrSelBSlotGCFPv(void *ad_chr_sel_b_slot_gc) {
     }
     ((TAdPlyChrSelPlateGC *)(((TAdChrSelBSlotGC *)ad_chr_sel_b_slot_gc)->m_2c))->reset_selection_slots();
     TAdSubPlyItemGC__sub_802D6D88(*(s32 *)((s8 *)ad_chr_sel_b_slot_gc + 0x30));
-    ((TAdChrSelMovePlateGC *)(*(s32 *)((s8 *)ad_chr_sel_b_slot_gc + 0x34)))->clear_entries();
+    ((TAdChrSelBSlotGC *)ad_chr_sel_b_slot_gc)->m_34->clear_entries();
     TAdChrSelSlotGC__sub_802C7498(*(s32 *)((s8 *)ad_chr_sel_b_slot_gc + 0x28), 2);
     if (get_global_state__16TAdChrSelBSlotGCFv(ad_chr_sel_b_slot_gc) > 0xD) {
         if ((u32) *(u32 *)((s8 *)ad_chr_sel_b_slot_gc + 0x40) != 0U) {
