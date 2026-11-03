@@ -135,18 +135,6 @@ void set_draw_texture_and_color(s32 idx, s32 arg1);
 
 extern UV_802AD538 main_menu_label_uv_table[];
 extern RecoveredGlobal_802AE59C_lbl_8050E208 controller_input_state;
-extern const f32 lbl_805DE138;
-extern const f32 lbl_805DE13C;
-extern const f32 lbl_805DE140;
-extern const f32 lbl_805DE144;
-extern const f32 lbl_805DE148;
-extern const f32 lbl_805DE150;
-extern const float lbl_805DE158;
-extern f32 lbl_805DE15C;
-extern f32 lbl_805DE160;
-extern f32 lbl_805DE164;
-extern const f32 lbl_805DE1A4;
-extern f32 lbl_805DE1A8;
 
 void draw_item_labels__15TWindowMainMenuFv(Item_802AD538 *p, Win_802AD538 *w) {
     Rect_802AD538 r;
@@ -540,7 +528,6 @@ struct FrameContext_802ADF20 {
 
 extern GinjaTextureList *lbl_805D63F0;
 void apply_context_transform_to_rect(void *, void *);
-extern const f32 lbl_805DE154;
 
 void draw_frame__19TWindowMenuMainMenuFv(TWindowMenuMainMenu *window, FrameContext_802ADF20 *context) {
     Rect_802AD538 r;
