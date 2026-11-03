@@ -50,10 +50,7 @@ struct TWindowMainMenu : public TObject {
     void clear_menu_flags();
     s32 find_free_slot();
     s32 update_if_active(s32 _w1);
-    void set_target_y(f32 farg0);
-    void update_scaled_position();
     void draw_entries_reversed(u8 *arg1);
-    void update_slide_position();
     static void *create_menu(void *arg0, void *arg1);
     void open_menu_with_entry(s16 arg1);
     void try_open_battle_menu(s16 arg1);

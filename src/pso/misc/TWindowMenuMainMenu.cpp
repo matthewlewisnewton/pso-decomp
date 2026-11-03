@@ -8,17 +8,15 @@
 struct W_802AE864 { u8 pad[0x124]; void *a[8]; };
 
 extern "C" {
-s32 setup_content_frame__15TWindowMainMenuFPv();
 extern s32 window_menu_main_menu_params[];
 extern s32 __vt__19TWindowMenuMainMenu[];
 extern s32 lbl_805D3E68;
 void __dl__7TObjectFPv(void *);
 
 void render__19TWindowMenuMainMenuFv(s32 arg0) {
-    s32 temp_r3;
-    temp_r3 = setup_content_frame__15TWindowMainMenuFPv();
-    ((TWindowMenuMainMenu *)arg0)->draw_frame((FrameContext_802ADF20 *)temp_r3);
-    ((TWindowMainMenu *)arg0)->draw_entries_reversed((u8 *)temp_r3);
+    TWindowDrawContext *frame = ((TWindowMenuMainMenu *)arg0)->setup_content_frame();
+    ((TWindowMenuMainMenu *)arg0)->draw_frame(frame);
+    ((TWindowMainMenu *)arg0)->draw_entries_reversed((u8 *)frame);
 }
 
 void run_task__19TWindowMenuMainMenuFv(TWindowMenuMainMenu *window_menu_main_menu) {
@@ -40,7 +38,7 @@ void run_task__19TWindowMenuMainMenuFv(TWindowMenuMainMenu *window_menu_main_men
     } while (var_r31 < 8);
     window_menu_main_menu->handle_navigation_input();
     ((TWindowDD *)window_menu_main_menu)->initialize_subwindow();
-    ((TWindowMainMenu *)window_menu_main_menu)->update_slide_position();
+    window_menu_main_menu->update_slide_position();
     ((TUnk_804CE018 *)window_menu_main_menu)->update_fade();
     temp_r3_2 = window_menu_main_menu->m_60;
     if (temp_r3_2 & 8) {
@@ -78,7 +76,7 @@ u8 *TWindowMenuMainMenu__ct(TWindowMenuMainMenu *window_menu_main_menu, s32 arg1
     for (i = 0; i < 8; i++) {
         ((W_802AE864 *)window_menu_main_menu)->a[i] = 0;
     }
-    ((TWindowMainMenu *)window_menu_main_menu)->update_scaled_position();
+    window_menu_main_menu->update_scaled_position();
     ((TUnk_804CE018 *)window_menu_main_menu)->save_position();
     return (u8 *)window_menu_main_menu;
 }
