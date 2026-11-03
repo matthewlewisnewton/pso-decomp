@@ -139,8 +139,8 @@ s32 TWindowShortListCtrl__check_controller_button(void *, s32);
 extern u32 camera_ctrl_instance;
 s32 verify_snapshot_checksum__15TObjBoss2TunnelFv();
 void set_depth_buffer_settings_1__Fv(void);
-void restore_saved_depth_alpha_state(void);
 void draw_projected_quads__15TObjBoss2TunnelFPvi(Vtx_8007D828 *, s32);
+void restore_saved_depth_alpha_state(void);
 extern s32 lbl_805D63F0;
 s32 TAdPlayerLoadGC__sub_801E0FA4(s32);
 s32 query_memcard_capacity__15TAdPlayerLoadGCFl(s32, s32);
@@ -148,23 +148,6 @@ s32 set_stream_and_load_file__6TLobbyFi(s32);
 s32 is_on_current_screen__11TCameraCtrlFv(void *, s32);
 }
 extern s32 screen_binary_filename;
-// A velocity/position ramp: accelerate from v0 to peak, cruise, brake to rest over dist.
-// init_piecewise_curve fills it, eval_piecewise_curve reads the speed, sample_piecewise_curve the distance.
-struct PiecewiseCurve {
-    f32 accel;
-    f32 decel;
-    f32 v0;
-    f32 peak;
-    f32 accelEnd;
-    f32 decelStart;
-    f32 end;
-    f32 t;
-    f32 accelDist;
-    f32 decelPos;
-    f32 dist;
-};
-extern "C" {
-}
 // The same ramp without a start speed or clock (init_acceleration_curve / sample_acceleration_curve).
 struct AccelerationCurve {
     f32 accel;
@@ -181,9 +164,6 @@ extern "C" {
 f32 sample_acceleration_curve(AccelerationCurve *c, f32 t);
 f32 newton_sqrtf(f32);
 void init_acceleration_curve(AccelerationCurve *c, f32 a, f32 d, f32 length, f32 speed);
-void __dl__FPv(void);
-s32 reset_floats__15TObjBoss2TunnelFv();
-int reset_coords__15TObjBoss2TunnelFv();
 f32 sin_table_lookup(s32);
 f32 cos_table_lookup(s32);
 s32 get_view_matrix__11TCameraCtrlFv();
@@ -225,20 +205,20 @@ extern s8 boss2_tunnel_confirm_loop_flag;
 extern f32 lbl_805D4EA4;
 extern s8 lbl_805D4EA8;
 
-void TObjBoss2Tunnel__sub_8007EAE4(u8 *arg0) {
-    *(u8 *)((s8 *)arg0 + 0) = 0xB2;
-    *(s8 *)((s8 *)arg0 + 1) = 3;
+void TObjBoss2Tunnel__sub_8007EAE4(G_PlaySound_6xB2 *cmd) {
+    cmd->header.subcommand = 0xB2;
+    cmd->header.size = 3;
 }
 
-void bswap_6xB2_play_sound(TObjPlayer *player) {
-    ((G_ClientIDHeader *)player)->bswap();
-    bswap_16((u16 *)((char *)player + 6));
-    bswap_32((u32 *)((char *)player + 8));
+void bswap_6xB2_play_sound(G_PlaySound_6xB2 *cmd) {
+    cmd->header.bswap();
+    bswap_16(&cmd->client_id);
+    bswap_32(&cmd->sound_id);
 }
 
 void TObjBoss2Tunnel::finalize_and_send_60() {
-    bswap_6xB2_play_sound((TObjPlayer *)this);
-    send_subcommand((u8 *)this);
+    bswap_6xB2_play_sound((G_PlaySound_6xB2 *)this);
+    send_subcommand(this);
 }
 
 extern "C" {
@@ -264,8 +244,6 @@ f32 normalize_vector_checked(Vec *vector) {
 }
 
 }
-#pragma push
-#pragma fp_contract on
 f32 normalize_vector_xz(Vec *vector) {
     f32 temp_f31;
     f32 temp_f30;
@@ -291,13 +269,10 @@ f32 normalize_vector_xz(Vec *vector) {
     return 0.0f;
 }
 
-#pragma pop
 extern "C" {
 void TObjBoss2Tunnel::render(void* a1) { push_matrix(); TObjPlayer::invert_matrix_in_place((u32)((void*)0)); get_current_matrix(a1); pop_matrix(); }
 
 }
-#pragma push
-#pragma fp_contract on
 extern "C" {
 void TObjBoss2Tunnel::transform_vec_by_camera(s32 arg0, s32 arg1, s32 arg2) {
     push_matrix();
@@ -307,7 +282,9 @@ void TObjBoss2Tunnel::transform_vec_by_camera(s32 arg0, s32 arg1, s32 arg2) {
 }
 
 bool is_vec_xz_cross_negative(u8 *arg0, u8 *arg1) {
-    return (((*(f32 *)((s8 *)arg0 + 8) * *(f32 *)((s8 *)arg1 + 0)) - (*(f32 *)((s8 *)arg0 + 0) * *(f32 *)((s8 *)arg1 + 8))) >= 0.0f) == 0;
+    Vec *a = (Vec *)arg0;
+    Vec *b = (Vec *)arg1;
+    return (((a->z * b->x) - (a->x * b->z)) >= 0.0f) == 0;
 }
 
 void rotate_xz_pair_by_angle(f32 *arg0, f32 *arg1, s32 arg2) {
@@ -324,20 +301,21 @@ void rotate_xz_pair_by_angle(f32 *arg0, f32 *arg1, s32 arg2) {
 }
 
 void rotate_vec_xz(void *arg0, void *arg1, s32 arg2) {
+    Vec *src = (Vec *)arg0;
+    Vec *dst = (Vec *)arg1;
     f32 temp_f0;
     f32 temp_f1;
     f32 temp_f31;
     f32 temp_f3;
     temp_f31 = cos_table_lookup(arg2);
     temp_f1 = sin_table_lookup(arg2);
-    temp_f0 = *(f32 *)((s8 *)arg0 + 0);
-    temp_f3 = *(f32 *)((s8 *)arg0 + 8);
-    *(f32 *)((s8 *)arg1 + 8) = (f32) ((temp_f31 * temp_f3) - (temp_f1 * temp_f0));
-    *(f32 *)((s8 *)arg1 + 0) = (f32) ((temp_f1 * temp_f3) + (temp_f31 * temp_f0));
+    temp_f0 = src->x;
+    temp_f3 = src->z;
+    dst->z = (f32) ((temp_f31 * temp_f3) - (temp_f1 * temp_f0));
+    dst->x = (f32) ((temp_f1 * temp_f3) + (temp_f31 * temp_f0));
 }
 
 }
-#pragma pop
 extern "C" {
 f32 TObjBoss2Tunnel::calc_scaled_value(s32 arg0, f32 farg0) {
     return (0.5f * farg0) / sin_table_lookup(arg0 / 2);
@@ -359,20 +337,28 @@ s32 TObjBoss2Tunnel::count_tree_nodes() {
     return var_r31;
 }
 
-s32 count_active_segments__15TObjBoss2TunnelFPv(void *arg0) {
+// A linked segment: flags at 0, the child chain at 0x2C, the sibling at 0x30.
+struct SegmentNode {
+    s32 flags;
+    u8 pad[0x28];
+    SegmentNode *child;
+    SegmentNode *next;
+};
+
+s32 TObjBoss2Tunnel::count_active_segments(void *arg0) {
     s32 temp_r3;
     s32 var_r31;
 
     var_r31 = 0;
     do {
-        temp_r3 = *(s32 *)((s8 *)arg0 + 0);
+        temp_r3 = ((SegmentNode *)arg0)->flags;
         if (!(temp_r3 & 8)) {
             var_r31 += 1;
         }
         if (!(temp_r3 & 0x10)) {
-            var_r31 += count_active_segments__15TObjBoss2TunnelFPv((void *)(*(void **)((s8 *)arg0 + 0x2C)));
+            var_r31 += TObjBoss2Tunnel::count_active_segments(((SegmentNode *)arg0)->child);
         }
-        arg0 = *(void **)((s8 *)arg0 + 0x30);
+        arg0 = ((SegmentNode *)arg0)->next;
     } while (arg0 != NULL);
     return var_r31;
 }
@@ -398,7 +384,11 @@ s16 TObjBoss2Tunnel::turn_toward_angle_limited(s32 arg0, s32 cur, s32 target, s3
     return cur;
 }
 
-void TObjBoss2Tunnel::init_zako(void* a1, s32 _w2) { rotate_xz_pair_by_angle((f32 *)this, (f32 *)((char*)this + 0x8), (s32)_w2); vec3_add_to(this, a1); }
+void TObjBoss2Tunnel::init_zako(void* a1, s32 _w2) {
+    Vec *v = (Vec *)this;
+    rotate_xz_pair_by_angle(&v->x, &v->z, _w2);
+    vec3_add_to(this, a1);
+}
 
 s32 adjust_point_to_ground(const Vec *source, Vec *destination) {
     CsnHit *hit;
@@ -442,19 +432,30 @@ s32 TObjBoss2Tunnel::decrement_packed_timer(u32 *arg0, s32 arg1) {
 }
 
 s32 TObjBoss2Tunnel::reset_coords_pass(s32 arg0) {
-    reset_coords__15TObjBoss2TunnelFv();
+    ((TObjBoss2Tunnel *)arg0)->reset_coords();
     return arg0;
 }
 
 s32 TObjBoss2Tunnel::maybe_delete(s32 arg0, s16 arg1) {
     if ((arg0 != 0) && (arg1 > 0)) {
-        __dl__FPv();
+        ::operator delete((void *)arg0);
     }
     return arg0;
 }
 
 }
-void TObjBoss2Tunnel::reset_coords() { *(float *)&this->m_flags = 0.0f; *(float *)&this->m_name = 0.0f; *(float *)&this->m_prev = 0.0f; *(float *)&this->m_down = 0.0f; *(float *)&this->m_up = 0.0f; *(float *)&this->m_next = 0.0f; *(float *)&this->m_20 = 0.0f; *(float *)&this->_pad1C = 0.0f; *(float*)((char*)this + 0x18) = 0.0f; }
+void TObjBoss2Tunnel::reset_coords() {
+    AccelerationCurve *c = (AccelerationCurve *)this;
+    c->decel = 0.0f;
+    c->accel = 0.0f;
+    c->peak = 0.0f;
+    c->end = 0.0f;
+    c->decelStart = 0.0f;
+    c->accelEnd = 0.0f;
+    c->dist = 0.0f;
+    c->decelPos = 0.0f;
+    c->accelDist = 0.0f;
+}
 
 extern "C" {
 void init_acceleration_curve(AccelerationCurve *c, f32 a, f32 d, f32 length, f32 speed) {
@@ -492,12 +493,10 @@ void init_acceleration_curve(AccelerationCurve *c, f32 a, f32 d, f32 length, f32
 }
 
 int TObjBoss2Tunnel::check_param_threshold(f32 arg1) {
-    return arg1 >= *(f32 *)&this->m_down;
+    return arg1 >= ((AccelerationCurve *)this)->end;
 }
 
 }
-#pragma push
-#pragma fp_contract on
 extern "C" {
 f32 sample_acceleration_curve(AccelerationCurve *c, f32 t) {
     if (t < 0.0f) {
@@ -526,22 +525,34 @@ f32 sample_acceleration_curve(AccelerationCurve *c, f32 t) {
 }
 
 }
-#pragma pop
 extern "C" {
 s32 TObjBoss2Tunnel::reset_floats(s32 arg0) {
-    reset_floats__15TObjBoss2TunnelFv();
+    ((TObjBoss2Tunnel *)arg0)->reset_floats();
     return arg0;
 }
 
 s32 TObjBoss2Tunnel::dt(s32 arg0, s16 arg1) {
     if ((arg0 != 0) && (arg1 > 0)) {
-        __dl__FPv();
+        ::operator delete((void *)arg0);
     }
     return arg0;
 }
 
 }
-void TObjBoss2Tunnel::reset_floats() { *(float *)&this->m_flags = 0.0f; *(float *)&this->m_name = 0.0f; *(float *)&this->m_next = 0.0f; *(float *)&this->m_prev = 0.0f; *(float*)((char*)this + 0x18) = 0.0f; *(float *)&this->m_down = 0.0f; *(float *)&this->m_up = 0.0f; *(float *)&this->_pad1C = 0.0f; *(float *)&this->m_28 = 0.0f; *(float *)&this->m_24 = 0.0f; *(float *)&this->m_20 = 0.0f; }
+void TObjBoss2Tunnel::reset_floats() {
+    PiecewiseCurve *c = (PiecewiseCurve *)this;
+    c->decel = 0.0f;
+    c->accel = 0.0f;
+    c->peak = 0.0f;
+    c->v0 = 0.0f;
+    c->end = 0.0f;
+    c->decelStart = 0.0f;
+    c->accelEnd = 0.0f;
+    c->t = 0.0f;
+    c->dist = 0.0f;
+    c->decelPos = 0.0f;
+    c->accelDist = 0.0f;
+}
 
 extern "C" {
 void init_piecewise_curve(PiecewiseCurve *c, f32 accel, f32 decel, f32 dist, f32 v0, f32 peak) {
@@ -588,8 +599,6 @@ void init_piecewise_curve(PiecewiseCurve *c, f32 accel, f32 decel, f32 dist, f32
 }
 
 }
-#pragma push
-#pragma fp_contract on
 extern "C" {
 f32 TObjBoss2Tunnel::eval_piecewise_curve(f32 farg0) {
     PiecewiseCurve *c = (PiecewiseCurve *)this;
@@ -614,15 +623,13 @@ f32 TObjBoss2Tunnel::eval_piecewise_curve(f32 farg0) {
 }
 
 }
-#pragma pop
 extern "C" {
-void TObjBoss2Tunnel::update_position() {
-    eval_piecewise_curve(*(f32 *)&this->_pad1C);
+f32 TObjBoss2Tunnel::update_position() {
+    return eval_piecewise_curve(((PiecewiseCurve *)this)->t);
 }
 
 }
-#pragma push
-#pragma fp_contract on
+
 extern "C" {
 s32 sample_piecewise_curve(PiecewiseCurve *c, f32 *out, f32 t) {
     s32 done = 0;
@@ -644,7 +651,7 @@ s32 sample_piecewise_curve(PiecewiseCurve *c, f32 *out, f32 t) {
 }
 
 }
-#pragma pop
+
 s32 TObjBoss2Tunnel::advance_phase(f32 *out) {
     PiecewiseCurve *c = (PiecewiseCurve *)this;
     s32 done = sample_piecewise_curve(c, out, c->t);
@@ -939,7 +946,7 @@ s32 TObjBoss2Tunnel__sub_8007D1D0(void) {
         *sum = TAdSinglePlyChrSelectGC__sub_80201204((u8 *)snap, sizeof(ScreenSnapshot));
         TAdPlayerLoadGC::build_save_file_image(frame->save_image, &card);
         TAdPlayerLoadGC__sub_801E14E4(&card);
-        TObjBoss2Tunnel__sub_8007EAE4((u8 *)&cmd);
+        TObjBoss2Tunnel__sub_8007EAE4(&cmd);
         cmd.floor = get_current_floor_area();
         cmd.unused = 0;
         cmd.client_id = local_client_id;

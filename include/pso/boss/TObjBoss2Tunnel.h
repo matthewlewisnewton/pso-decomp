@@ -4,6 +4,22 @@
 #include "types.h"
 #include "pso/TObject.h"
 
+// Velocity/position ramp. init_piecewise_curve fills it, eval_piecewise_curve
+// reads the speed, and sample_piecewise_curve reads the distance.
+struct PiecewiseCurve {
+    f32 accel;
+    f32 decel;
+    f32 v0;
+    f32 peak;
+    f32 accelEnd;
+    f32 decelStart;
+    f32 end;
+    f32 t;
+    f32 accelDist;
+    f32 decelPos;
+    f32 dist;
+};
+
 struct TObjBoss2Tunnel : public TObject {
     virtual ~TObjBoss2Tunnel();
     void init_queue_from_start();
@@ -49,7 +65,7 @@ struct TObjBoss2Tunnel : public TObject {
     u8 _padC0[0x18];
     u32 m_d8;
     s32 advance_phase(f32 *out);
-    void update_position();
+    f32 update_position();
     f32 eval_piecewise_curve(f32 farg0);
     static void set_global_flag_200();
     static void clear_global_flag_3000();
@@ -72,6 +88,7 @@ struct TObjBoss2Tunnel : public TObject {
     int check_param_threshold(f32 arg1);
     void reset_coords();
     static s32 maybe_delete(s32 arg0, s16 arg1);
+    static s32 count_active_segments(void *node);
     static s32 reset_coords_pass(s32 arg0);
     static s32 decrement_packed_timer(u32 *arg0, s32 arg1);
     void init_zako(void* a1, s32 _w2);

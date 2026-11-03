@@ -127,7 +127,7 @@ typedef struct Tunnel_8003B6E8 {
     s32 f5c;
     f32 f60;
     s32 f64;
-    u8 f68[0x94 - 0x68];
+    PiecewiseCurve f68;
     f32 f94;
     f32 f98;
     s32 f9c;
@@ -176,7 +176,6 @@ s32 check_flag_or_state__15TObjBoss2TunnelFi(s32 arg0);
 s32 is_flag_set__15TObjBoss2TunnelFv(s32 _w0);
 void init_piecewise_curve(void *, f32, f32, f32, f32, f32);
 f32 fabs_float(f32);
-f32 update_position__15TObjBoss2TunnelFv(void *);
 struct S_8003C2E4;
 void copy_ring_buffer_window__15TObjBoss2TunnelFv(S_8003C2E4 *o);
 struct Obj_8003C374;
@@ -391,7 +390,7 @@ void run_task__15TObjBoss2TunnelFv(Tunnel_8003B6E8 *o) {
                 o->f94 = (1.0f);
             }
             o->f64 = 1;
-            init_piecewise_curve(o->f68, (0.1f), (-0.1f), (1.5e+02f), (5.0f), (2.0f));
+            init_piecewise_curve(&o->f68, (0.1f), (-0.1f), (1.5e+02f), (5.0f), (2.0f));
             o->f98 = (0.0f);
         }
         break;
@@ -399,9 +398,9 @@ void run_task__15TObjBoss2TunnelFv(Tunnel_8003B6E8 *o) {
         if (check_flag_or_state__15TObjBoss2TunnelFi(o) == 0) {
             o->f64 = 3;
             tmp = fabs_float(o->f98);
-            init_piecewise_curve(o->f68, (0.1f), (-0.1f), o->f98, -update_position__15TObjBoss2TunnelFv(o->f68), (2.0f));
+            init_piecewise_curve(&o->f68, (0.1f), (-0.1f), o->f98, -((TObjBoss2Tunnel *)&o->f68)->update_position(), (2.0f));
         } else {
-            if (((TObjBoss2Tunnel *)(o->f68))->advance_phase((f32 *)&tmp) != 0) {
+            if (((TObjBoss2Tunnel *)&o->f68)->advance_phase((f32 *)&tmp) != 0) {
                 o->f64 = 2;
             }
             o->f98 = tmp * o->f94;
@@ -410,11 +409,11 @@ void run_task__15TObjBoss2TunnelFv(Tunnel_8003B6E8 *o) {
     case 2:
         if (check_flag_or_state__15TObjBoss2TunnelFi(o) == 0) {
             o->f64 = 3;
-            init_piecewise_curve(o->f68, (0.1f), (-0.1f), (1.5e+02f), (0.0f), (2.0f));
+            init_piecewise_curve(&o->f68, (0.1f), (-0.1f), (1.5e+02f), (0.0f), (2.0f));
         }
         break;
     case 3:
-        if (((TObjBoss2Tunnel *)(o->f68))->advance_phase((f32 *)&tmp) != 0) {
+        if (((TObjBoss2Tunnel *)&o->f68)->advance_phase((f32 *)&tmp) != 0) {
             o->f98 = (0.0f);
             o->f64 = 0;
         } else {
@@ -766,7 +765,7 @@ struct Tunnel_8003C45C {
     s32 i5C;
     f32 f60;
     s32 i64;
-    u8 sub68[0x94 - 0x68];
+    PiecewiseCurve sub68;
     f32 f94;
     f32 f98;
     s32 i9C;
@@ -790,7 +789,6 @@ extern s32 *lbl_805D4C08;
 void TObjBoss2Tunnel__sub_8003C5F8(void);
 void TObjBoss2Tunnel__sub_8003C610(void);
 u8 *TObjBoss2RaftSplash__ct(u8 *arg0, u8 *arg1, f32 *arg2, u8 *arg3, f32 *arg4);
-void reset_floats__15TObjBoss2TunnelFv(void *a0);
 extern u8 boss2_tunnel_raft_splash_offsets[];
 extern s32 __vt__15TObjBoss2Tunnel[];
 extern s32 lbl_805D2708;
@@ -804,7 +802,7 @@ void __dt__7TObjectFv(void *, int);
 void *__dt__15TObjBoss2TunnelFv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__15TObjBoss2Tunnel;
-        TObjBoss2Tunnel::dt((s32)((s8 *)arg0 + 0x68), (s16)(-1));
+        TObjBoss2Tunnel::dt((s32)&((Tunnel_8003C45C *)arg0)->sub68, (s16)(-1));
         __dt__7TObjectFv(arg0, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
@@ -819,7 +817,7 @@ void *TObjBoss2Tunnel__ct(void *object, void *arg1) {
     s32 j;
     __ct__7TObjectFP7TObject(object);
     self->vt = ((s32 *)&__vt__15TObjBoss2Tunnel);
-    TObjBoss2Tunnel::reset_floats((s32)self->sub68);
+    TObjBoss2Tunnel::reset_floats((s32)&self->sub68);
     self->name = lbl_805D2708;
     self->i24 = 0;
     (*(s32 *)&TObjBoss2Tunnel__global_flags) = 0;
@@ -835,7 +833,7 @@ void *TObjBoss2Tunnel__ct(void *object, void *arg1) {
     self->f54 = (0.0f);
     self->i58 = 0;
     self->i64 = 0;
-    reset_floats__15TObjBoss2TunnelFv(self->sub68);
+    ((TObjBoss2Tunnel *)&self->sub68)->reset_floats();
     self->f94 = (1.0f);
     self->f98 = (0.0f);
     self->iB0 = 0x21;

@@ -55,7 +55,6 @@ extern const f32 lbl_805DECFC;
 void TObjBoss2Tunnel__sub_802F273C(void);
 s32 init_piecewise_curve(void *, f32, f32, f32, f32, f32);
 f32 fabs_float(f32);
-f32 update_position__15TObjBoss2TunnelFv(void *);
 extern const f32 lbl_805DECF8;
 extern const f32 lbl_805DED00;
 extern const f32 lbl_805DED04;
@@ -76,8 +75,6 @@ void fn_802F1DAC(u8 *arg0);
 void fn_802F1E54(u8 *arg0);
 s32 is_split_screen();
 s32 get_current_floor();
-s32 reset_floats__15TObjBoss2TunnelFv(void *);
-s32 reset_floats__15TObjBoss2TunnelFl(void *);
 s32 is_room_enemy_set_cleared(s32, int);
 u32 __ct__7TObjectFP7TObject(void *, void *);
 s32 TObjBoss7RaftSplash__ct(void *, void *, void *, void *, void *);
@@ -303,7 +300,7 @@ void TUnk_804E4B3C::update_phase_motion() {
         if (TObjBoss2Tunnel::check_both((s32)arg0) == 0) {
             *(s32 *)((s8 *)arg0 + 0x4C) = 3;
             sp8 = fabs_float((f32) (*(f32 *)((s8 *)arg0 + 0x54)));
-            init_piecewise_curve(arg0 + 0x20, lbl_805DECC4, lbl_805DED00, (f32) (*(f32 *)((s8 *)arg0 + 0x54)), (f32) (-update_position__15TObjBoss2TunnelFv(arg0 + 0x20)), lbl_805DECF8);
+            init_piecewise_curve(arg0 + 0x20, lbl_805DECC4, lbl_805DED00, (f32) (*(f32 *)((s8 *)arg0 + 0x54)), (f32) (-((TObjBoss2Tunnel *)(arg0 + 0x20))->update_position()), lbl_805DECF8);
             return;
         }
         if (((TObjBoss2Tunnel *)(arg0 + 0x20))->advance_phase((f32 *)&sp8) != 0) {
@@ -332,7 +329,7 @@ void *TUnk_804E4B3C::destroy(s16 arg1) {
     if (this != NULL) {
         *(s32 **)((s8 *)this + 0x18) = lbl_804E4B3C;
         if (*(void **)((s8 *)this + 0x88) != NULL) { queue_destruction__7TObjectFv((*(void **)((s8 *)this + 0x88))); }
-        TObjBoss2Tunnel::dt((s32)((s8 *)this + 0x20), (s16)(-1));
+        TObjBoss2Tunnel::dt((s32)&motion, (s16)(-1));
         __dt__7TObjectFv(this, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(this);
@@ -350,7 +347,7 @@ void *TObjBoss2Tunnel__sub_802F2A2C(void *arg0p, s32 parent) {
     u32 p;
     __ct__7TObjectFP7TObject(arg0, (void *) parent);
     *(s32 **)((s8 *)arg0 + 0x18) = lbl_804E4B3C;
-    reset_floats__15TObjBoss2TunnelFl(arg0 + 0x20);
+    TObjBoss2Tunnel::reset_floats((s32)&((TUnk_804E4B3C *)arg0p)->motion);
     p = __nw__7TObjectFUl(0x1C);
     if (p != 0) {
         p = __ct__7TObjectFP7TObject((void *) p, arg0);
@@ -367,7 +364,7 @@ void *TObjBoss2Tunnel__sub_802F2A2C(void *arg0p, s32 parent) {
     } else {
         *(f32 *)((s8 *)arg0 + 0x84) = lbl_805DED10;
     }
-    reset_floats__15TObjBoss2TunnelFv(arg0 + 0x20);
+    ((TObjBoss2Tunnel *)&((TUnk_804E4B3C *)arg0p)->motion)->reset_floats();
     *(s32 *)((s8 *)arg0 + 0x4C) = 0;
     *(f32 *)((s8 *)arg0 + 0x50) = lbl_805DEC98;
     *(f32 *)((s8 *)arg0 + 0x54) = lbl_805DEC9C;
