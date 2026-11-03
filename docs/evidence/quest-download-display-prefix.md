@@ -1,90 +1,62 @@
 # Quest display-prefix source linkage
 
-The inactive source checkpoint originated at
-`0677283ae59d077cc40187e11db3ce3aa9207493` and passed independent source review.
-This selected continuation carries that unchanged definition on the frozen
-slot follow-up #262 at `26d94367605e45aeb0364e0df6ecc09ff5d34a11`. It preserves
-the existing 29,184-byte cache and 2,240-byte slot selections. The attributed
-upstream import remains in the dependency history; this definition retains the
-original symbol and extent.
+This selects the existing `lbl_80596258` symbol, `u8[12]`, at
+`0x80596258..0x80596264` (12 bytes). It is stacked on #262, which selects
+`quest_download_slot_chain_table` at `0x80595998..0x80596258`. The cache unit
+`QuestDownloadBuffers.cpp` (`0x8058DE08..0x80595008`) is already selected on
+main. Consumer function bodies are unchanged.
 
-`QuestDownloadDisplayPrefix.cpp` defines the actual 12-byte encoded character
-array at `80596258..80596264`. Both existing source consumers declare this symbol
-as `u8[]`; the definition keeps that element type and C linkage. Static zero
-initialization supplies the backing array before the frontend initializes it.
-No structure overlay, union-member transition or node lifetime is needed for
-this character storage. The remaining 1,028-byte scratch object is separate.
+`symbols.txt` already names this object `lbl_80596258`, size `0xC`. That is
+the placeholder stored for the address, not a new English name, so the
+definition keeps it. Existing source declarations use `u8[]`. C linkage
+matches that unmangled name. The compiled unit is one zero-initialized `.bss`
+object: size 12, alignment 8, global symbol `lbl_80596258`. There is no second
+definition and no aggregate that includes the neighbors.
 
-The original-reference census identifies four direct users. Frontend 5B94
-initializes the prefix with `strcpy` from the constant at `8047E68C`. That constant
-terminates at offset 10, so the copy uses 11 bytes within the 12-byte object.
-Native B4D4 writes display-count bytes at offsets 5, 6 and 7, then passes the
-prefix to C95C. BEFC and C460 use its address only as an anchor for the next
-object at `+12`; they do not establish a larger prefix array.
+The next symbol is `quest_download_text_buffer` at `0x80596264`, size `0x404`
+(1,028 bytes). This unit stops at that address. On current main the whole
+`0x80595008..0x80596668` span is one automatic BSS unit. After #262 and this
+change, that scratch object is the leftover automatic unit
+`auto_08_80596264_bss`. It is not matched, not source-linked, and not claimed
+as padding or as a tail of the prefix.
 
-C95C reads encoded characters until NUL, advancing by one or two bytes. Its
-retained compiled body and symbolic relocations equal the original. A finite
-read-only check of the retained prefix, all 256 possibilities for the first
-count byte and the ten decimal possibilities for each remaining count byte
-covered 25,600 cases: termination was at offset 5 or 10 and the maximum read
-offset was 10. This is a bound for that prefix reader and the native count-write
-domain, not a proof about arbitrary corruptions or other scratch writers.
-No original string or asset bytes are included in this document or source.
+Defining the prefix does not recover provider functions. Callers that use the
+prefix address plus 12 stay in the original provider. The 12-byte size is the
+exported object. It is not a proof that every reader stops inside it for
+arbitrary bytes. No original string or asset is copied into the source.
 
-The validated #238/#262 linker inputs select the frontend source object and
-the original provider object. The frontend's prefix declaration is compatible
-with this definition; its prefix-address relocations and copy call are unchanged.
-The fallback provider retains the original BEFC/C460 `+12` address calculations.
-Defining this separate data object therefore does not require changing the
-provider source or recovering all sixteen missing provider functions. Recovering
-those two consumers later still requires proper separate-object scratch access;
-this definition does not bless their provisional source pointer arithmetic.
+## Current-main validation
 
-The combined candidate names exactly `80596258..80596264` and selects this
-12-byte source object together with the independently reviewed 2,448-byte
-workspace. It adds no alignment override, padding object, shared header or
-consumer-body change. The original provider remains selected from fallback;
-the separately released BEFC/C460 address repairs are outside this candidate.
-The 1,028-byte scratch object remains original and unadopted.
+Baseline is current main `b305c93d6315a67533b81580eb8ea019269b31c6`.
+This branch contains that main, #262 at
+`144047665f23d39f4a4f52d7c7522ec6cae11ef9`, and these prefix and workspace
+units. `tools/check_pr.py --no-build` passed after `ninja -j6`. The DOL matches
+SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`.
 
-## Combined native validation
+`tools/report_delta.py` against that baseline, for the combined stack:
 
-The tested candidate is `08dde1b4dda051844878d755dd0c9dbb13c61b27`, compared
-with retained native baseline `140bc0ace7fcfe2deca0894ea09adb2c306f73e6`.
-The dependency #262 at `26d94367605e45aeb0364e0df6ecc09ff5d34a11` differs
-from that baseline only in documentation. The publication follow-up updates
-only these evidence documents after the tested candidate; production blobs
-are unchanged. Neither published prerequisite branch is modified.
+| Measure | Before | After | Change |
+| --- | ---: | ---: | ---: |
+| Matched data bytes | 1,434,531 | 1,439,231 | +4,700 |
+| Source-linked data bytes | 1,040,383 | 1,045,083 | +4,700 |
+| Source-selected units | 3,561 | 3,564 | +3 |
+| Source-bearing units | 3,696 | 3,699 | +3 |
+| Matched functions | 27,294 | 27,294 | 0 |
+| Exact functions gained or lost | 0 | 0 | 0 |
 
-Both individual objects passed source, native-layout, genuine objdiff and full
-unchanged unit-eligibility review. The combined graph then passed independent
-selection, retention and runtime review. One normal candidate build produced
-a genuine 5,017-unit report and selected 3,557 source objects. Its DOL is
-byte-identical to the original (SHA-1
-`0d85744b51d7379efb025a943d0cd5aaae2191a3`). The baseline was not rebuilt.
+The +4,700 bytes are the three BSS objects: #262's slot array (2,240), this
+workspace (2,448) and this prefix (12). Against #262 alone, the increment is
+the workspace and the prefix: **+2,460** matched and source-linked bytes, **+2**
+source-selected units, and **+1** report unit (the 1,040-byte automatic
+remainder splits into this 12-byte object and the 1,028-byte scratch unit).
+Matched code bytes stay 4,137,724.
 
-Matched data increased from 1,435,551 to 1,438,011 bytes; source-linked data
-increased from 1,041,335 to 1,043,795 bytes: **+2,460 bytes** in each measure.
-Exact functions remain 27,288 and code measures are unchanged. The captured
-actual linker response selects both new data objects once. All 5,014 unaffected
-consumed objects remain byte-identical, and both new source objects equal their
-previously reviewed diagnostic objects.
+`QuestDownloadDisplayPrefix` scores 12/12 data bytes at 100%, with no
+functions, and the unit is complete. `link_units.py check` reports 3,564
+linked units, all exact. `link_units.py force-active --check` reports 16,698
+retention entries, with no unreferenced additions and no stale removals.
+Total data bytes stay 1,761,331. The scratch unit remains unmatched.
 
-The final ELF preserves all allocated section payloads, flags, extents and
-alignments, and every defined global/weak symbol's address, size, binding and
-visibility. Prefix `80596258..80596264` and original scratch
-`80596264..80596668` remain contiguous with no added padding. Existing cache
-and slot storage and consumer objects are preserved. All 339 diagnostic blocks
-and 313 warning lines match the baseline.
-
-`check_pr.py --no-build`, all 3,557 linked-unit checks and retention passed;
-retention has 16,678 entries with zero additions/removals. All nine unfiltered
-code/data/function coverage, exactness and linkage loss classes are zero.
-Independent final native review SHA-256:
-`dbb33f3213408fb3c5fc4e1c2267c2e81d1dbcefd12dd4b8301f0179b1c73737`.
-
-This evidence applies to the exact historical candidate and baseline above.
-Latest-main applicability and final merge acceptance remain with the separate
-merge process. Scratch representation, capacity, phase/reentry and tail-byte
-questions are excluded. No original artifacts, private diagnostics or tools
-are published, and no provider-function recovery is claimed.
+See [the workspace note](quest-download-workspace.md) for that object's
+boundary. Scratch representation and provider-function recovery stay out of
+this change.

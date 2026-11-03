@@ -1,8 +1,8 @@
 #include "types.h"
 
-// Encoded display-prefix bytes, initialized by 5B94 and updated by B4D4.
-// The following scratch object is separate storage, not this array's tail.
-// Inactive continuation: see quest-download-display-prefix.md.
+// Encoded display-prefix bytes at 0x80596258. The scratch object that follows
+// is separate storage, not this array's tail. C linkage keeps the existing
+// unmangled symbol. See docs/evidence/quest-download-display-prefix.md.
 extern "C" {
 u8 lbl_80596258[12];
 }
