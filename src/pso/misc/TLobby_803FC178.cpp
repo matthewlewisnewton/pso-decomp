@@ -3153,8 +3153,12 @@ s16 TLobby__sub_80402BB4(u8 *arg0, s32 timeout) {
 }
 
 extern const char lbl_805E1180[4];
-extern "C" void handle_request_timeout__6TLobbyFv(void);
 extern "C" B_803FADA0 *TLobby__sub_80403634(Self_803FD74C *fsm);
+// MWCC 1.2.5n member pointers are 12 bytes and cannot convert to a
+// function pointer. The timer stores the 4-byte address of
+// TLobby::handle_request_timeout.
+extern "C" void handle_request_timeout__6TLobbyFv(void);
+struct Conn_80402CE0;
 struct Self_80402CE0;
 struct Timer_80402CE0 {
     u8 pad0[0x10];
@@ -3165,22 +3169,35 @@ struct Timer_80402CE0 {
 struct Self_80402CE0 {
     u8 f0; u8 f1; u8 f2; u8 f3; u8 f4; u8 f5; u8 f6; u8 f7;
     u8 pad8[4];
-    u8 *sub;
+    Conn_80402CE0 *sub;
     Timer_80402CE0 timer;
     Proto_803FC318 *proto;
     u8 *opts;
 };
-extern "C" void TLobby__sub_80402CE0(u8 *conn);
+struct Conn_80402CE0 {
+    u8 pad0[0x38];
+    Self_80402CE0 fsm;
+};
+// f15A..f15C are the bytes at lbl_805C0620+0x12. The original addresses them
+// from lbl_805C04D8, so they are members of this view rather than that object.
+struct PapBlock_80402CE0 {
+    Proto_803FC318 proto;
+    u8 opts[0xC];
+    u8 pad48[0x15A - 0x48];
+    u8 f15A;
+    u8 f15B;
+    u16 f15C;
+};
 
-void TLobby__sub_80402CE0(u8 *conn) {
-    Names_80403168 *g;
+extern "C" void TLobby__sub_80402CE0(Conn_80402CE0 *conn) {
+    PapBlock_80402CE0 *g;
     Proto_803FC318 *p;
     Self_80402CE0 *fsm;
     Timer_80402CE0 *timer;
 
-    g = &lbl_805C04D8;
-    p = (Proto_803FC318 *)g;
-    fsm = (Self_80402CE0 *)(conn + 0x38);
+    g = (PapBlock_80402CE0 *)&lbl_805C04D8;
+    p = &g->proto;
+    fsm = &conn->fsm;
     if (fsm->opts == NULL) {
         timer = &fsm->timer;
         p->name = lbl_805E1180;
@@ -3188,9 +3205,9 @@ void TLobby__sub_80402CE0(u8 *conn) {
         p->h6 = 0xE;
         p->b8 = 1;
         p->bB = 0;
-        p->b9 = *(u8 *)((u8 *)g + 0x15A);
-        p->bA = *(u8 *)((u8 *)g + 0x15B);
-        p->timeout = *(u16 *)((u8 *)g + 0x15C) * 1000;
+        p->b9 = g->f15A;
+        p->bA = g->f15B;
+        p->timeout = g->f15C * 1000;
         p->f10 = TLobby__sub_803FE84C;
         p->f14 = TLobby__sub_803FE84C;
         p->f18 = TLobby__sub_803FE84C;
@@ -3204,7 +3221,7 @@ void TLobby__sub_80402CE0(u8 *conn) {
         p->f38 = TLobby__sub_803FE844;
         fsm->sub = conn;
         fsm->proto = p;
-        fsm->opts = (u8 *)g + 0x3C;
+        fsm->opts = g->opts;
         fsm->f4 = fsm->proto->b9;
         fsm->f7 = fsm->proto->bA;
         fsm->f5 = fsm->proto->bB;
