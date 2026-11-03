@@ -53,8 +53,7 @@ extern s32 boss2_tunnel_spawn_timer_table[];
 extern const f32 lbl_805DECB4;
 extern const f32 lbl_805DECFC;
 void TObjBoss2Tunnel__sub_802F273C(void);
-s32 TObjBoss2Tunnel__sub_8007DEE4(void *, f32, f32, f32, f32, f32);
-s32 advance_phase__15TObjBoss2TunnelFv(void *, void *);
+s32 init_piecewise_curve(void *, f32, f32, f32, f32, f32);
 f32 fabs_float(f32);
 f32 update_position__15TObjBoss2TunnelFv(void *);
 extern const f32 lbl_805DECF8;
@@ -296,7 +295,7 @@ void TUnk_804E4B3C::update_phase_motion() {
                 *(f32 *)((s8 *)arg0 + 0x50) = (f32) lbl_805DEC98;
             }
             *(s32 *)((s8 *)arg0 + 0x4C) = 1;
-            TObjBoss2Tunnel__sub_8007DEE4(arg0 + 0x20, lbl_805DECC4, lbl_805DED00, lbl_805DED04, lbl_805DED08, lbl_805DECF8);
+            init_piecewise_curve(arg0 + 0x20, lbl_805DECC4, lbl_805DED00, lbl_805DED04, lbl_805DED08, lbl_805DECF8);
             *(f32 *)((s8 *)arg0 + 0x54) = (f32) lbl_805DEC9C;
         }
         break;
@@ -304,10 +303,10 @@ void TUnk_804E4B3C::update_phase_motion() {
         if (TObjBoss2Tunnel::check_both((s32)arg0) == 0) {
             *(s32 *)((s8 *)arg0 + 0x4C) = 3;
             sp8 = fabs_float((f32) (*(f32 *)((s8 *)arg0 + 0x54)));
-            TObjBoss2Tunnel__sub_8007DEE4(arg0 + 0x20, lbl_805DECC4, lbl_805DED00, (f32) (*(f32 *)((s8 *)arg0 + 0x54)), (f32) (-update_position__15TObjBoss2TunnelFv(arg0 + 0x20)), lbl_805DECF8);
+            init_piecewise_curve(arg0 + 0x20, lbl_805DECC4, lbl_805DED00, (f32) (*(f32 *)((s8 *)arg0 + 0x54)), (f32) (-update_position__15TObjBoss2TunnelFv(arg0 + 0x20)), lbl_805DECF8);
             return;
         }
-        if (advance_phase__15TObjBoss2TunnelFv(arg0 + 0x20, &sp8) != 0) {
+        if (((TObjBoss2Tunnel *)(arg0 + 0x20))->advance_phase((f32 *)&sp8) != 0) {
             *(s32 *)((s8 *)arg0 + 0x4C) = 2;
         }
         *(f32 *)((s8 *)arg0 + 0x54) = (f32) (sp8 * *(f32 *)((s8 *)arg0 + 0x50));
@@ -315,12 +314,12 @@ void TUnk_804E4B3C::update_phase_motion() {
     case 2:
         if (TObjBoss2Tunnel::check_both((s32)arg0) == 0) {
             *(s32 *)((s8 *)arg0 + 0x4C) = 3;
-            TObjBoss2Tunnel__sub_8007DEE4(arg0 + 0x20, lbl_805DECC4, lbl_805DED00, lbl_805DED04, lbl_805DEC9C, lbl_805DECF8);
+            init_piecewise_curve(arg0 + 0x20, lbl_805DECC4, lbl_805DED00, lbl_805DED04, lbl_805DEC9C, lbl_805DECF8);
             return;
         }
         break;
     case 3:
-        if (advance_phase__15TObjBoss2TunnelFv(arg0 + 0x20, &sp8) != 0) {
+        if (((TObjBoss2Tunnel *)(arg0 + 0x20))->advance_phase((f32 *)&sp8) != 0) {
             *(f32 *)((s8 *)arg0 + 0x54) = (f32) lbl_805DEC9C;
             *(s32 *)((s8 *)arg0 + 0x4C) = 0;
             return;
