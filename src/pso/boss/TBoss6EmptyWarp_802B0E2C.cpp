@@ -7,32 +7,25 @@
 #include "pso/boss/TBoss6PlotFalz.h"
 #include "pso/boss/TBoss6Thanks.h"
 #include "pso/render/render_util.h"
-#include "pso/misc/TWindowCtrlMain.h"
+#include "pso/misc/TLobby_801E2F94.h"
 
 
 const char *lbl_805D3E90 = "TBoss6EmptyWarp";
 
 // Full-screen quad drawn over the view by TBoss6EmptyWarp::render.
-f32 empty_warp_overlay_vertices[8] = {
-    0.0f, 0.0f, 640.0f, 0.0f, 640.0f, 480.0f, 0.0f, 480.0f,
+ColorLineVertex empty_warp_overlay_vertices[4] = {
+    { 0.0f, 0.0f }, { 640.0f, 0.0f }, { 640.0f, 480.0f }, { 0.0f, 480.0f },
 };
-extern const f32 empty_warp_overlay_zero_vec[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
-
-struct Stack_802B0DCC {
-    f32 * sp8;
-    const f32 * spC;
-    s32 sp10;
-    s32 sp14;
-};
+__declspec(section ".rodata") u32 empty_warp_overlay_zero_vec[4] = { 0, 0, 0, 0 };
 
 void draw_empty_warp_overlay(void) {
-    Stack_802B0DCC stack;
-    stack.spC = empty_warp_overlay_zero_vec;
-    stack.sp10 = 0;
-    stack.sp14 = 4;
-    stack.sp8 = empty_warp_overlay_vertices;
+    ColorLineList stack;
+    stack.colors = empty_warp_overlay_zero_vec;
+    stack.unk_8 = 0;
+    stack.count = 4;
+    stack.verts = empty_warp_overlay_vertices;
     set_depth_buffer_settings_1();
-    ((TWindowCtrlMain *)(&stack.sp8))->draw_strip_swap_color(4, 2, -1.0f);
+    stack.draw_strip_swap_color(4, 2, -1.0f);
     restore_saved_depth_alpha_state();
 }
 
