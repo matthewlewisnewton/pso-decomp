@@ -120,7 +120,7 @@ f32 TWindowSubComCard__sub_80244784(TWindowSubComCard *);
 s32 is_window_reveal_complete__13TUnk_804CE018Fv();
 s32 sub_80246948__13TUnk_804CE018Fv();
 s32 try_open__19TWindowKeyBoardSoftFii(s32 arg0, s32 arg1);
-Rect_802AE2B0 * open_singleton__19TWindowKeyBoardSoftFiiii(void *, void *, s32, f32, s32);
+TWindowKeyBoardSoft *open_singleton__19TWindowKeyBoardSoftFiiii(void *, void *, s32, f32, s32);
 s32 fn_8026CB68();
 void draw_item_labels__15TWindowMainMenuFv(Item_802AD538 *p, Win_802AD538 *w);
 void park_selection__15TWindowMainMenuFPv(Menu_802AD980 *arg0);
@@ -128,7 +128,6 @@ void copy_color_entry__15TWindowMainMenuFPvPv(Col_802ADA48 *arg0, Col_802ADA48 *
 void TWindowMainMenu__sub_802ADADC(Obj_802ADADC *self, s8 i);
 int find_free_item_slot__15TWindowMainMenuFPv(Obj_802ADC04 *self);
 s32 append_child_rows__15TWindowMainMenuFPvi(Menu_802ADD38 *arg0, s32 arg1);
-Rect_802AE2B0 * setup_content_frame__15TWindowMainMenuFPv(u8 *arg0);
 void begin_screen_draw(s32 arg0);
 void draw_textured_quad_at_depth(f32 *q, f32 depth);
 void set_draw_texture_and_color(s32 idx, s32 arg1);
@@ -240,23 +239,18 @@ void TWindowMainMenu::update_item_tween() {
     }
 }
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TWindowMainMenu::init_color() {
-  int new_var;
-  char *new_var2;
-  *((float *) (((char *) this) + 0xc)) = (*((float *) (((char *) this) + 0x8)) = (*((float *) (((char *) this) + 0x4)) = (*((float *) (((char *) this) + 0x0)) = 0.0f)));
-  new_var2 = (char *) this;
-  *((unsigned char *) (new_var2 + 0x10)) = 0;
-  *((unsigned char *) (new_var2 + 0x11)) = -((double) 1);
-  *((unsigned char *) (new_var2 + 0x12)) = 0;
-  new_var = 0x13;
-  *((unsigned char *) (new_var2 + new_var)) = 0;
-  *((unsigned char *) (new_var2 + 0x14)) = 0;
+    Item_802AD538 *item = (Item_802AD538 *)this;
+    item->x0 = 0.0f;
+    item->x4 = 0.0f;
+    item->x8 = 0.0f;
+    item->xc = 0.0f;
+    item->x10 = 0;
+    item->x11 = -1;
+    item->x12 = 0;
+    item->x13 = 0;
+    item->x14 = 0;
 }
-#pragma pop
 
 #pragma push
 #pragma inline_depth(1)
@@ -450,7 +444,7 @@ void get_row_position__15TWindowMainMenuFiPvi(s32 arg0, void *arg1, s32 arg2) {
     row->x = 16.0f * (f32)arg2;
 }
 
-s32 is_not_split_screen__15TWindowMainMenuFv(void *) {
+s32 is_not_split_screen(void *) {
     return (u32)__cntlzw(is_split_screen()) >> 5;
 }
 
@@ -489,20 +483,20 @@ s32 append_child_rows__15TWindowMainMenuFPvi(Menu_802ADD38 *arg0, s32 arg1) {
     return slot;
 }
 
-void TWindowMainMenu::set_target_y(f32 farg0) {
-    if (is_not_split_screen__15TWindowMainMenuFv(this) != 0) {
+void TWindowMenuMainMenu::set_target_y(f32 farg0) {
+    if (is_not_split_screen(this) != 0) {
         farg0 += 51.0f;
     } else {
         farg0 += 42.0f;
     }
     farg0 += 39.0f;
-    if (*(f32 *)&this->_pad58 != farg0) {
-        *(f32 *)&this->_pad58 = farg0;
-        *(s32 *)((s8 *)this + 0x50) = 8;
+    if (unk_3c != farg0) {
+        unk_3c = farg0;
+        unk_50 = 8;
     }
 }
 
-void TWindowMainMenu::update_scaled_position() {
+void TWindowMenuMainMenu::update_scaled_position() {
     set_target_y(16.0f * (f32)count_active_items__15TWindowMainMenuFi((s32)this));
 }
 
@@ -522,16 +516,16 @@ void TWindowMainMenu::draw_entries_reversed(u8 *arg1) {
 extern GinjaTextureList *lbl_805D63F0;
 void apply_context_transform_to_rect(void *, void *);
 
-void TWindowMenuMainMenu::draw_frame(FrameContext_802ADF20 *context) {
+void TWindowMenuMainMenu::draw_frame(TWindowDrawContext *context) {
     Rect_802AD538 r;
     f32 depth = -1.0f / (0.299f + m_54);
     f32 offset = 0.0f;
-    f32 remaining = context->height;
+    f32 remaining = context->inner_h;
     f32 height;
     begin_screen_draw(1);
     set_current_texture_list(lbl_805D63F0);
     set_draw_texture_and_color(11, context->color);
-    if (is_not_split_screen__15TWindowMainMenuFv(this)) {
+    if (is_not_split_screen(this)) {
         r.x0 = context->x;
         r.y0 = context->y + offset;
         r.x1 = 18.0f + r.x0;
@@ -543,7 +537,7 @@ void TWindowMenuMainMenu::draw_frame(FrameContext_802ADF20 *context) {
         offset += 28.0f;
         remaining -= 28.0f;
         r.x0 = context->x; r.y0 = context->y + offset;
-        r.x1 = r.x0 + context->width; r.y1 = 23.0f + r.y0;
+        r.x1 = r.x0 + context->w; r.y1 = 23.0f + r.y0;
         r.u0 = 0.0f; r.v0 = 0.3125f;
         r.u1 = 0.453125f; r.v1 = 0.40234375f;
         apply_context_transform_to_rect(context, &r);
@@ -553,7 +547,7 @@ void TWindowMenuMainMenu::draw_frame(FrameContext_802ADF20 *context) {
     } else {
         r.x0 = context->x;
         r.y0 = context->y + offset;
-        r.x1 = context->x + context->width;
+        r.x1 = context->x + context->w;
         r.y1 = 3.0f + (39.0f + r.y0);
         r.u0 = 0.453125f; r.v0 = 0.6796875f;
         r.u1 = 0.0f; r.v1 = 0.515625f;
@@ -570,7 +564,7 @@ void TWindowMenuMainMenu::draw_frame(FrameContext_802ADF20 *context) {
             height = 16.0f;
         }
         r.x0 = context->x; r.y0 = context->y + offset;
-        r.x1 = r.x0 + context->width; r.y1 = r.y0 + height;
+        r.x1 = r.x0 + context->w; r.y1 = r.y0 + height;
         r.u0 = 0.0f; r.v0 = 0.40234375f;
         r.u1 = 0.453125f; r.v1 = (103.0f + height) / 256.0f;
         apply_context_transform_to_rect(context, &r);
@@ -579,7 +573,7 @@ void TWindowMenuMainMenu::draw_frame(FrameContext_802ADF20 *context) {
         remaining -= height;
     }
     r.x0 = context->x; r.y0 = context->y + offset;
-    r.x1 = r.x0 + context->width; r.y1 = 39.0f + r.y0;
+    r.x1 = r.x0 + context->w; r.y1 = 39.0f + r.y0;
     r.u0 = 0.0f; r.v0 = 0.52734375f;
     r.u1 = 0.453125f; r.v1 = 0.6796875f;
     apply_context_transform_to_rect(context, &r);
@@ -587,25 +581,25 @@ void TWindowMenuMainMenu::draw_frame(FrameContext_802ADF20 *context) {
     TWindowSubStatusDisp::get_player();
 }
 
-Rect_802AE2B0 *setup_content_frame__15TWindowMainMenuFPv(u8 *window_menu_main_menu) {
+TWindowDrawContext *TWindowMenuMainMenu::setup_content_frame() {
     f32 v;
-    Rect_802AE2B0 *r;
-    r = open_singleton__19TWindowKeyBoardSoftFiiii(window_menu_main_menu + 0x40, window_menu_main_menu + 0x48, fn_8026CB68(), ((TWindowMenuMainMenu *)window_menu_main_menu)->m_54, ((TWindowMenuMainMenu *)window_menu_main_menu)->m_2c);
-    if (is_not_split_screen__15TWindowMainMenuFv(window_menu_main_menu) != 0) {
+    TWindowKeyBoardSoft *window;
+    window = open_singleton__19TWindowKeyBoardSoftFiiii(m_40, m_48, fn_8026CB68(), m_54, m_2c);
+    if (is_not_split_screen(this) != 0) {
         v = 51.0f;
     } else {
         v = 39.0f;
     }
-    ((TWindowKeyBoardSoft *)r)->set_bounds(10.0f + r->x, r->y + v, (r->x + r->w) - 10.0f, (r->y + r->h) - 39.0f);
-    r->color = ((s32)(255.0f * TWindowSubComCard__sub_80244784((TWindowSubComCard *)window_menu_main_menu)) << 24) | 0xFF0000 | 0xFFFF;
-    return r;
+    window->set_bounds(10.0f + window->x, window->y + v, (window->x + window->w) - 10.0f, (window->y + window->h) - 39.0f);
+    window->color = ((s32)(255.0f * TWindowSubComCard__sub_80244784((TWindowSubComCard *)this)) << 24) | 0xFF0000 | 0xFFFF;
+    return window;
 }
 
 
-void TWindowMainMenu::update_slide_position() {
+void TWindowMenuMainMenu::update_slide_position() {
     if (sub_80246948__13TUnk_804CE018Fv() != 0) {
         set_target_y(0.0f);
-        *(u32 *)((s8 *)this + 0x50) = (u32) (4.5f - (f32) (*(s16 *)((s8 *)this + 0x22)));
+        unk_50 = (u32)(4.5f - (f32)unk_22);
         return;
     }
     update_scaled_position();
