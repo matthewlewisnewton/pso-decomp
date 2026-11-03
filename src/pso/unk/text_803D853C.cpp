@@ -43,10 +43,6 @@ extern DebugTextRecord *debug_text_record_cursor;
 extern char *lbl_805D76D0; // pool base
 extern DebugTextRecord *lbl_805D76D4; // record base
 
-#pragma push
-#pragma use_lmw_stmw off
-#pragma dont_inline off
-#pragma inline_depth(4)
 static inline void put_debug_text_vertex(s32 x, s32 y, u32 color, s32 s, s32 t) {
     GXPosition3s16(x, y, -1);
     GXColor1u32(color);
@@ -112,7 +108,6 @@ void render_debug_text(u32 enabled) {
     debug_text_record_cursor = lbl_805D76D4;
     debug_text_pool_cursor = lbl_805D76D0;
 }
-#pragma pop
 
 #pragma push
 #pragma scheduling off
