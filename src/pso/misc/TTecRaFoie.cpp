@@ -1,3 +1,4 @@
+#include "pso/system/SoundSlotPitch.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
@@ -8,7 +9,7 @@
 #include "pso/effect/TEffect.h"
 #include "pso/effect/TEffClitical.h"
 #include "pso/unk/text_802A8210.h"
-#include "pso/effect/TUnk_804DDF04.h"
+#include "pso/effect/TEffIndirectCtrl.h"
 
 #include "pso/system/vector.h"
 #include "pso/object/TObjFish.h"
@@ -103,8 +104,6 @@ void __dt__13TUnk_804CC148Fv(void *, int);
 #define __dt__13TUnk_804CC148Fv ((s32 (*)(void *, int))__dt__13TUnk_804CC148Fv)
 
 void *__nw__7TObjectFUl(int);
-void update_technique_slot__10TTecRaFoieFl(s32 handle, s32 pitch, s32 c);
-#define update_technique_slot__10TTecRaFoieFl ((s32 (*)(s32, s32, s32))update_technique_slot__10TTecRaFoieFl)
 
 struct RecoveredGlobal_80238388_lbl_8044DAF0 {
     s32 value;
@@ -223,7 +222,6 @@ void TTecRaFoie::vfunc_8(void *) {
 }
 
 #undef get_bml_model
-#undef update_technique_slot__10TTecRaFoieFl
 #undef construct_area_technique_base
 #undef __dl__7TObjectFPv
 #undef is_valid_and_active__10TObjPlayerFUl
@@ -357,7 +355,7 @@ void TUnk_804CCB28::render() {
     model_render_flags = id | 0x200010;
     ((void (*)(void *, s32))set_constant_material)(o->m48, id);
     if (o->tev != 0) {
-        draw_field_1c__6TSceneFlll((TUnk_804DDF04 *)o->tev, 2, 0, 0);
+        ((TScene *)(o->tev))->draw_field_1c(2, 0, 0);
     }
     lv = o->level;
     x = o->sx;
@@ -552,7 +550,6 @@ struct Sub_80238AE8 { u8 pad[0xA4]; u8 *inner; };
 
 extern "C" {
 void run_task__10TTecRaFoieFv(TTecRaFoie *arg0);
-void update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
 
 extern s32 tl_particle;
 s32 __ct__7TObjectFP7TObject(void *, void *);
@@ -570,7 +567,6 @@ u8 *create_rafoie_explosion(u8 *arg0, s32 *arg1, s16 arg2, s16 arg3, s32 arg4, f
     typedef char sp8_offset[(offsetof(Stack_802384E0, sp8) == 0x0) ? 1 : -1];
     typedef char spC_offset[(offsetof(Stack_802384E0, spC) == 0x4) ? 1 : -1];
     Stack_802384E0 stack;
-    s32 var_r0;
     __ct__7TObjectFP7TObject((void *)arg0, (void *)arg4);
     *(s32 **)((s8 *)arg0 + 0x18) = &lbl_804CCB28.value;
     ((TUnk_804CCB28 *)arg0)->m_20 = arg2;
@@ -591,8 +587,7 @@ u8 *create_rafoie_explosion(u8 *arg0, s32 *arg1, s16 arg2, s16 arg3, s32 arg4, f
     stack.spC += (5.0f);
     VecCopy((Vec *)(arg0 + 0x28), (const Vec *)(&stack.sp8));
     spawn_rafoie_explosion_bursts__13TUnk_804CCB28Fv(arg0);
-    var_r0 = (s32)new TUnk_804DDF04(0x11, (TUnk_804CCB28 *)arg0);
-    ((TUnk_804CCB28 *)arg0)->m_24 = var_r0;
+    ((TUnk_804CCB28 *)arg0)->m_24 = (s32)new TUnk_804DDF04(0x11, (TObject *)arg0);
     ((TUnk_804CCB28 *)arg0)->m_40 = (f32) (1.9f);
     return arg0;
 }
@@ -601,7 +596,6 @@ u8 *create_fire_explosion_effect(u8 *arg0, s32 *arg1, s16 arg2, s32 arg3, f32 fa
     typedef char sp8_offset[(offsetof(Stack_802385EC, sp8) == 0x0) ? 1 : -1];
     typedef char spC_offset[(offsetof(Stack_802385EC, spC) == 0x4) ? 1 : -1];
     Stack_802385EC stack;
-    s32 var_r0;
     __ct__7TObjectFP7TObject((void *)arg0, (void *)arg3);
     *(s32 **)((s8 *)arg0 + 0x18) = &lbl_804CCB28.value;
     ((TUnk_804CCB28 *)arg0)->m_20 = arg2;
@@ -622,8 +616,7 @@ u8 *create_fire_explosion_effect(u8 *arg0, s32 *arg1, s16 arg2, s32 arg3, f32 fa
     stack.spC += (5.0f);
     VecCopy((Vec *)(arg0 + 0x28), (const Vec *)(&stack.sp8));
     spawn_rafoie_explosion_bursts__13TUnk_804CCB28Fv(arg0);
-    var_r0 = (s32)new TUnk_804DDF04(0x11, (TUnk_804CCB28 *)arg0);
-    ((TUnk_804CCB28 *)arg0)->m_24 = var_r0;
+    ((TUnk_804CCB28 *)arg0)->m_24 = (s32)new TUnk_804DDF04(0x11, (TObject *)arg0);
     ((TUnk_804CCB28 *)arg0)->m_40 = (f32) (1.9f);
     return arg0;
 }

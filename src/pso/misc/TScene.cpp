@@ -13,7 +13,7 @@
 #include "pso/object/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/unk/text_802A8210.h"
-#include "pso/effect/TUnk_804DDF04.h"
+#include "pso/effect/TEffIndirectCtrl.h"
 #include "pso/item/TItemDrop_800F93F0.h"
 #include "pso/misc/TLobby_80131794.h"
 #include "pso/misc/TLobby_80207DA8.h"
@@ -209,6 +209,7 @@ struct Lobby_8020533C { Vec_8020533C v; Ang_8020533C a; void *param; Node_802053
 
 void render_projected_shadow_receiver(void *, void *);
 
+void draw_field_1c__6TSceneFlll(void *, s32, s32, s32);
 
 void release_indexed_entry__6TLobbyFl(Lobby_8020533C *);
 
@@ -1426,12 +1427,10 @@ void TScene::init_material_nodes() {
     s32 j;
     Node_80205AEC *node;
     Info_80205AEC *info;
-    void *o;
     SceneMaterialAnimated *an;
     s32 j2;
     Node_80205AEC *node2;
     Info_80205AEC *info2;
-    void *o2;
     if (TScene__data_805D5FCC != NULL) {
         for (i = 0, sec = TScene__data_805D5FCC->sections; i < TScene__data_805D5FCC->count; i++, sec++) {
             for (j = 0, st = sec->objects; j < sec->count; j++, st++) {
@@ -1440,8 +1439,7 @@ void TScene::init_material_nodes() {
                     if (node->obj == NULL) {
                         info = (Info_80205AEC *)find_material_entry_by_id__6TSceneFPvUs(this, node->id);
                         if (info != NULL) {
-                            o = new TUnk_804DDF04(info->c, this);
-                            node->obj = o;
+                            node->obj = new TUnk_804DDF04(info->c, this);
                             node->tex = lbl_8044A800[info->tex];
                             node->b = lbl_8044A80C[info->b];
                             node->c = info->c;
@@ -1460,8 +1458,7 @@ void TScene::init_material_nodes() {
                     if (node2->obj == NULL) {
                         info2 = (Info_80205AEC *)find_material_entry_by_id__6TSceneFPvUs(this, node2->id);
                         if (info2 != NULL) {
-                            o2 = new TUnk_804DDF04(info2->c, this);
-                            node2->obj = o2;
+                            node2->obj = new TUnk_804DDF04(info2->c, this);
                             node2->tex = lbl_8044A800[info2->tex];
                             node2->b = lbl_8044A80C[info2->b];
                             node2->c = info2->c;
@@ -1609,7 +1606,7 @@ void TScene::render_static_map_section(SceneMaterialSection *scene_material_sect
     SceneMaterialStatic *e;
     s32 i;
     Node_8020533C *node;
-    TUnk_804DDF04 *tex;
+    void *tex;
 
     for (i = 0, e = scene_material_section->objects; i < scene_material_section->count; i++, e++) {
         if (arg2 != 0 && !(e->flags & 0x10000)) {
@@ -1691,7 +1688,7 @@ void TScene::render_static_map_section(SceneMaterialSection *scene_material_sect
                 Model_8020533C *m = (Model_8020533C *)e->node;
                 if (m != NULL) {
                     if (m->tex != NULL) {
-                        draw_field_1c__6TSceneFlll(tex = (TUnk_804DDF04 *)m->tex, m->f8, m->fE, 0);
+                        draw_field_1c__6TSceneFlll(tex = m->tex, m->f8, m->fE, 0);
                         set_current_texture_list((GinjaTextureList *)(((void *)*(s32 *)((s8 *)TScene__data_805D5FCC + 0x14))));
                         set_material_alpha_compare_reference(TScene__data_805D5FCC->flags);
                         draw_ginja_object(node);
@@ -1719,7 +1716,7 @@ void TScene::render_static_map_section(SceneMaterialSection *scene_material_sect
 }
 void draw_ginja_model_with_motion(void *, void *, f32);
 void TScene::render_animated_map_section(SceneMaterialSection *scene_material_section, s32 arg2) {
-  TUnk_804DDF04 *texture;
+  void *texture;
   SceneMaterialAnimated *e;
   s32 i;
   Node_8020533C *node;
@@ -1786,7 +1783,7 @@ void TScene::render_animated_map_section(SceneMaterialSection *scene_material_se
       if (m != 0)
       {
 
-        TUnk_804DDF04 *tex = (TUnk_804DDF04 *)m->tex;
+        void *tex = m->tex;
         if (tex != 0)
         {
           draw_field_1c__6TSceneFlll(texture = tex, m->f8, m->fE, 0);

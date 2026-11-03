@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/player/demo_mode.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
@@ -181,8 +182,6 @@ s32 memset(void *, int, int);
 s32 obj_setFlags30(void *, s32);
 s32 get_current_floor();
 void * get_bml_motion(s32, s32);
-void mem_free(void *p);
-void *mem_alloc(u32 size);
 void * __dt__27TOHangceilingCave01KeyQuickFv(void *arg0, s16 arg1);
 u8 * TOHangceilingCave01KeyQuick__ct(u8 *arg0, s32 arg1);
 void * __dt__22TOHangceilingCave01KeyFv(void *arg0, s16 arg1);
@@ -788,7 +787,7 @@ void TOHangceilingCave01::destroy_instance() {
         TObjPlayer::free_if_valid(*(s32 *)((s8 *)turiten_singo_texture_lists + 4));
         TObjPlayer::free_if_valid(*(s32 *)((s8 *)turiten_singo_texture_lists + 0));
         if ((void *) turiten_singo_texture_lists != NULL) {
-            mem_free(turiten_singo_texture_lists);
+            ::operator delete[](turiten_singo_texture_lists);
             turiten_singo_texture_lists = NULL;
         }
     }
@@ -820,7 +819,7 @@ void load_turiten_singo_resources(void) {
     case AREA_VR_TEMPLE_BETA:
         p = new BmlResource(5, (BmlResourceDescriptor *)turiten_singo_resource_descriptor, 0, 0, NULL);
         (*(void **)&TOHangceilingCave01__model_archive) = p;
-        (*(Buf_80168AA8 **)&turiten_singo_texture_lists) = (Buf_80168AA8 *)mem_alloc(0xC);
+        (*(Buf_80168AA8 **)&turiten_singo_texture_lists) = (Buf_80168AA8 *)::operator new[](0xC);
         (*(Buf_80168AA8 **)&turiten_singo_texture_lists)->b = 0;
         (*(Buf_80168AA8 **)&turiten_singo_texture_lists)->a = 0;
         (*(Buf_80168AA8 **)&turiten_singo_texture_lists)->c = TObjFish__sub_8001EDB0((*(void **)&TOHangceilingCave01__model_archive), 0);
@@ -832,7 +831,7 @@ void load_turiten_singo_resources(void) {
     default:
         p = new BmlResource(5, (BmlResourceDescriptor *)fe_obj_turiten_moto_resource_descriptor, 0, 0, NULL);
         (*(void **)&TOHangceilingCave01__model_archive) = p;
-        (*(Buf_80168AA8 **)&turiten_singo_texture_lists) = (Buf_80168AA8 *)mem_alloc(0xC);
+        (*(Buf_80168AA8 **)&turiten_singo_texture_lists) = (Buf_80168AA8 *)::operator new[](0xC);
         (*(Buf_80168AA8 **)&turiten_singo_texture_lists)->a = (s32)load_gvm_texture_file((s32)lbl_80441858);
         (*(Buf_80168AA8 **)&turiten_singo_texture_lists)->b = (s32)load_gvm_texture_file((s32)lbl_80441874);
         (*(Buf_80168AA8 **)&turiten_singo_texture_lists)->c = TObjFish__sub_8001EDB0((*(void **)&TOHangceilingCave01__model_archive), 1);

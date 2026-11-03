@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/object/TObjMotion.h"
+#include "pso/player/TObjPlayer_802D5B78.h"
 
 extern "C" f32 normalize_vector(Vec *);
 
@@ -16,10 +17,9 @@ typedef char VectorSize[sizeof(Vec)==12 ? 1 : -1];
 
 #pragma push
 #pragma fp_contract on
-extern "C" void TObjPlayer__sub_802D5B78(void *arg0, void *arg1, const void *arg2) {
+extern "C" void TObjPlayer__sub_802D5B78(void *arg0, Vec *output, const Vec *arg2) {
     ActorBodyHit *hit = static_cast<ActorBodyHit *>(arg0);
-    Vec *output = static_cast<Vec *>(arg1);
-    Vec normalized = *static_cast<const Vec *>(arg2);
+    Vec normalized = *arg2;
     (void)normalize_vector(&normalized);
     CollisionBody *body = &hit->target->bodies[hit->body];
     f32 radius = body->radius;

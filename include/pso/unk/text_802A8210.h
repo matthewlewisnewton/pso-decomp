@@ -4,7 +4,7 @@
 #include "types.h"
 
 extern "C" {
-s8 find_indirect_effect_ctrl(s32 arg0);
+s8 find_indirect_effect_ctrl(s32 kind);
 void register_indirect_effect_ctrl(s32 kind);
 }
 

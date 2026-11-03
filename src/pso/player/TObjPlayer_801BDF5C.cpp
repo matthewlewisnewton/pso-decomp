@@ -1,10 +1,10 @@
+#include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_801C1FF8.h"
 #include "pso/player/TObjPlayer.h"
 
 extern "C" {
 
-void mem_free(void*);
 
 extern u32 TObjPlayer__shared_photon_blast_state;
 extern u32 TObjPlayer__shared_model_buffer;
@@ -16,11 +16,11 @@ void TObjPlayer::free_shared_data() {
         TObjPlayer__shared_photon_blast_state = 0U;
     }
     if ((u32) player_shared_buffer_base != 0U) {
-        mem_free((void*)player_shared_buffer_base);
+        ::operator delete[]((void*)player_shared_buffer_base);
         player_shared_buffer_base = 0U;
     }
     if ((u32) TObjPlayer__shared_model_buffer != 0U) {
-        mem_free((void*)TObjPlayer__shared_model_buffer);
+        ::operator delete[]((void*)TObjPlayer__shared_model_buffer);
         TObjPlayer__shared_model_buffer = 0U;
     }
 }
