@@ -7,8 +7,8 @@ extern "C" {
 
 s32 TAdMultiPlyChrSelectGC::get_field_20() { return this->m_20; }
 
-    extern int TAdMultiPlyChrSelectGC__instance;
-int TAdMultiPlyChrSelectGC::get_state() {  return TAdMultiPlyChrSelectGC__instance; }
+    extern u8 *TAdMultiPlyChrSelectGC__instance;
+int TAdMultiPlyChrSelectGC::get_state() {  return (int)TAdMultiPlyChrSelectGC__instance; }
 
     extern int plyplt_anim_ctrl_instance;
 int TAdMultiPlyChrSelectGC::get_selected_slot() {  return plyplt_anim_ctrl_instance; }

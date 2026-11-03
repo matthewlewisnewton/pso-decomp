@@ -8,6 +8,7 @@ See the [documentation index](../README.md) for current contributor and operator
 guides.
 
 - [Box-drop directive](box-drop-directive-evidence.md)
+- [Item-drop packet and payload contracts](item-drop-packet-contract.md)
 - [Battle parameter tables](battle-parameter-evidence.md)
 - [Actor position layout guards](chara-position-layout-evidence.md)
 - [Character movement vector](chara-velocity-evidence.md)
@@ -39,6 +40,7 @@ guides.
 - [Shared scratch vector storage](scratch-vector-evidence.md)
 - [Symbol chat parts recovery (WIP)](symbol-chat-parts-recovery-evidence.md)
 - [Symbol chat window receiver boundary](symbol-chat-ui-contract-evidence.md)
+- [TChCrTagPlGraphic vtable emission](tchcrtagplgraphic-vtable-evidence.md)
 - [Texture input and runtime surface](texture-input-evidence.md)
 - [Vector helper contracts](vector-helper-evidence.md)
 - [Window effect light recovery](window-effect-light-recovery-evidence.md)

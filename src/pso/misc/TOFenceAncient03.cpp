@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/misc/TOFenceAncient03.h"
 #include "pso/TMainTask.h"
@@ -60,7 +61,7 @@ void TOFenceAncient03::unload_resources() {
             TObjPlayer::free_if_valid(texlists[i]);
         }
         if (texlists != NULL) {
-            mem_free(texlists);
+            ::operator delete[](texlists);
             texlists = NULL;
         }
     }
@@ -73,7 +74,7 @@ void TOFenceAncient03::unload_resources() {
 void TOFenceAncient03::load_resources() {
     BmlResource *resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&bm_fd_obj_n_saku_4x4_resource_descriptor), 0, 0, (void *)(0));
     model_resource = resource;
-    s32 *lists = (s32 *)mem_alloc(4 * sizeof(s32));
+    s32 *lists = (s32 *)::operator new[](4 * sizeof(s32));
     texlists = lists;
     lists[0] = model_resource->models[0].m_c;
     texlists[1] = (s32)load_gvm_texture_file((s32)texture_file_b);
