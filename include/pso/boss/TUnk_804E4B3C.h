@@ -2,6 +2,7 @@
 #define PSO_BOSS_TUNK_804E4B3C_H
 #include "types.h"
 #include "pso/TObject.h"
+#include <dolphin/mtx/GeoTypes.h>
 
 class TUnk_804E4B3C : public TObject {
 public:
@@ -9,7 +10,10 @@ public:
     virtual void run_task();
     void *destroy(s16);
     void update_phase_motion();
-    void spawn(s32, s32);
+    void spawn(s32 kind, Vec *position);
+    // the constructor builds the starting segment rows with one of these
+    void spawn_segment_row_a();
+    void spawn_segment_row_b();
     virtual void render();
     u8 unk_1C[0x68];
     f32 m_84;
