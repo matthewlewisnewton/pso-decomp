@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/TMainTask.h"
 #include "pso/THunterGuildSeqOnlineTask.h"
 #include "pso/misc/TWindowMessage.h"
@@ -21,7 +22,6 @@ struct Pos_80214F80 { s32 a; s32 b; };
 extern "C" {
 void TKeyBoardControl__sub_8000F95C();
 void TQuestListOnline__sub_8013ACF4(s32);
-void mem_free(void *);
 s32 TWindow__close(int);
 extern unsigned char TQuestListOnline__dat_download_state[];
 extern unsigned char TQuestListOnline__bin_download_state[];
@@ -111,12 +111,12 @@ void TQuestListOnline::close_windows_and_reset() {
         TKeyBoardControl__sub_8000F95C();
         q = TQuestListOnline__bin_download_state;
         if (*(void **)(q + 0x38) != NULL) {
-            mem_free(*(void **)(q + 0x38));
+            ::operator delete[](*(void **)(q + 0x38));
             *(void **)(q + 0x38) = NULL;
         }
         q = TQuestListOnline__dat_download_state;
         if (*(void **)(q + 0x38) != NULL) {
-            mem_free(*(void **)(q + 0x38));
+            ::operator delete[](*(void **)(q + 0x38));
             *(void **)(q + 0x38) = NULL;
         }
         if (TQuestListOnline__download_window != 0) {
@@ -165,12 +165,12 @@ void TQuestListOnline::handle_quest_ready() {
         TKeyBoardControl__sub_8000F95C();
         q = TQuestListOnline__bin_download_state;
         if (*(void **)(q + 0x38) != NULL) {
-            mem_free(*(void **)(q + 0x38));
+            ::operator delete[](*(void **)(q + 0x38));
             *(void **)(q + 0x38) = NULL;
         }
         q = TQuestListOnline__dat_download_state;
         if (*(void **)(q + 0x38) != NULL) {
-            mem_free(*(void **)(q + 0x38));
+            ::operator delete[](*(void **)(q + 0x38));
             *(void **)(q + 0x38) = NULL;
         }
         TQuestListOnline__bin_download_complete = 0;

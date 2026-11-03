@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/boss/TBoss8Dragon_800BC53C.h"
 #include "pso/system/memory.h"
@@ -8,9 +9,7 @@
 
 
 extern "C" {
-void *mem_alloc(u32 size);
 s32 fill_value_array(void *);
-void mem_free(void *p);
 
 s32 attack_target_history_add(s32 object, s32 target) {
     if ((fn_800BC758((u8 *)object) != 0) && (((s32)attack_target_history_contains((void*)((void *)((void *)object)), (void*)((void *)((void *)target)))) == 0)) {
@@ -26,7 +25,7 @@ AreaAttackHistory::AreaAttackHistory(s32 capacity) : PointerBuffer(capacity, NUL
 
 PointerBuffer::PointerBuffer(s32 capacity, void *empty) {
     if (capacity > 0) {
-        entries = (void **)mem_alloc(capacity * sizeof(void *));
+        entries = (void **)::operator new[](capacity * sizeof(void *));
     } else {
         entries = NULL;
     }
@@ -38,7 +37,7 @@ PointerBuffer::PointerBuffer(s32 capacity, void *empty) {
 
 PointerBuffer::~PointerBuffer() {
     if (entries != NULL) {
-        mem_free(entries);
+        ::operator delete[](entries);
         entries = NULL;
     }
 }

@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/MatrixVectorArray.h"
 #include "pso/misc/SampledMotionPoints.h"
 #include "pso/player/demo_mode.h"
@@ -67,7 +68,6 @@ s32 update_movement_status__9TObjCharaFv();
 s32 update_movement_status__12TObjEneSaverFv(u8 *arg0);
 s32 update_action_hold_status__9TObjCharaFv();
 s32 update_action_hold_status__12TObjEneSaverFv(u8 *arg0);
-void *mem_alloc(u32 size);
 extern const Init_800A715C saver_init_binding_desc;
 extern void *bm_ene_df1_saver_model_names[2];
 extern void *bm_ene_df1_saver_motion_names[12];
@@ -1505,7 +1505,6 @@ extern s32 lbl_8043A8B0[];
 extern s32 lbl_8043A8BC[];
 void * create_ene_saver(void *arg0);
 void *__ct__11TObjControlFP7TObject(void *, void *);
-void mem_free(void*);
 s32 lerp_angle_half__Fll(s32, s32);
 s32 obj_setFlags30(void *, int);
 
@@ -2026,7 +2025,7 @@ void * create_ene_saver(void *arg0) {
 
 void TObjPlayer::free_resources() {
     if ((u32) (*(u32 *)&player_object_ptr_array) != 0U) {
-        mem_free((void*)(*(u32 *)&player_object_ptr_array));
+        ::operator delete[]((void*)(*(u32 *)&player_object_ptr_array));
         (*(u32 *)&player_object_ptr_array) = 0U;
     }
     if ((u32) (*(u32 *)&lbl_805D5064) != 0U) {
@@ -2087,7 +2086,7 @@ void initialize_saver_resources(void) {
     dir.x = (-10.0f);
     dir.y = dir.z = 0.0f;
     ((SampledMotionPoints *)lbl_805D506C)->sample_node_offsets((NJS_OBJECT *)RES->sub->f8, (NJS_MOTION *)(RES->ents[saver_action_table[3].motion].b), 0x19, (const Vec *)&pos, (const Vec *)&dir);
-    player_object_ptr_array = (s32 *)mem_alloc(0xC);
+    player_object_ptr_array = (s32 *)::operator new[](0xC);
     saver_boss_stat_handle = ((s32)get_battle_base_stats(0x52));
     player_object_ptr_array[0] = ((s32)get_battle_attack_params(0x57));
     player_object_ptr_array[2] = ((s32)get_battle_attack_params(0x58));

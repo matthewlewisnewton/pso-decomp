@@ -28,17 +28,13 @@ typedef struct SlicerLaunchData_8012D9C8 {
 } SlicerLaunchData_8012D9C8;
 
 extern "C" {
-s32 TBoss5GryphonLightning__ct(f32);
 f32 sin_table_lookup(int);
-f32 cos_table_lookup(int, f32, f32);
-extern s32 __vt__26TBoss5GryphonLightningHorn[];
-extern s32 lbl_805D41A0;
+f32 cos_table_lookup(int);
+extern const char *lbl_805D41A0;
 extern const f32 lbl_805DF630;
 extern const f32 lbl_805DF634;
 extern const f32 lbl_805DF644;
 extern const f32 lbl_805DF650;
-u8 *__ct__26TBoss5GryphonLightningHornFv(u8 *arg0, s32 arg1, s32 arg2, s32 arg3);
-s32 __nw__7TObjectFUl(int);
 extern const f32 lbl_805D8D48;
 extern const f32 lbl_805DF654;
 void init_slicer_launch_state(void *arg0);
@@ -54,28 +50,23 @@ void fn_80325F7C(void *arg0);
 void TBoss5GryphonLightningHorn::render() {  }
 void TBoss5GryphonLightningHorn::run_task() { rebuild_lightning_segments(); fn_80325F7C(this); spawn_gryphon_lightning(); }
 TBoss5GryphonLightningHorn::~TBoss5GryphonLightningHorn() {}
-u8 *__ct__26TBoss5GryphonLightningHornFv(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
-    f32 temp_f1;
-    TBoss5GryphonLightning__ct(lbl_805DF644);
-    *(s32 **)((s8 *)arg0 + 0x18) = __vt__26TBoss5GryphonLightningHorn;
-    *(s32 *)((s8 *)arg0 + 0) = (s32) lbl_805D41A0;
-    *(s32 *)((s8 *)arg0 + 0xA4) = arg3;
-    temp_f1 = lbl_805DF650 * sin_table_lookup((int) (*(s32 *)((s8 *)arg0 + 0xA4)));
-    *(f32 *)((s8 *)arg0 + 0x98) = temp_f1;
-    *(f32 *)((s8 *)arg0 + 0x9C) = (f32) lbl_805DF630;
-    *(f32 *)((s8 *)arg0 + 0xA0) = (f32) (lbl_805DF650 * cos_table_lookup((int) (*(s32 *)((s8 *)arg0 + 0xA4)), temp_f1, lbl_805DF650));
-    *(f32 *)((s8 *)arg0 + 0x8C) = (f32) lbl_805DF634;
-    *(s32 *)((s8 *)arg0 + 0x90) = 4;
-    return arg0;
+TBoss5GryphonLightningHorn::TBoss5GryphonLightningHorn(TObject *parent, const Vec *source, s32 direction)
+    : TBoss5GryphonLightning(parent, lbl_805DF644, source) {
+    m_name = lbl_805D41A0;
+    angle = direction;
+    velocity.x = lbl_805DF650 * sin_table_lookup(angle);
+    velocity.y = lbl_805DF630;
+    velocity.z = lbl_805DF650 * cos_table_lookup(angle);
+    m_8c = lbl_805DF634;
+    m_90 = 4;
 }
-s32 TBoss8Dragon::spawn_ground_lightning(s32 arg0, s32 arg1, s32 arg2) {
+
+s32 TBoss8Dragon::spawn_ground_lightning(TObject *parent, const Vec *source, s32 direction) {
     Vec position;
     f32 ground_height;
-    s32 allocation;
-    s32 effect;
     u8* collision;
-    VecCopy(&position, (const Vec *)arg1);
-    collision = (u8 *)csnVecterUnder((const Vec *)(((s32*)&position)), 0x16EF);
+    VecCopy(&position, source);
+    collision = (u8 *)csnVecterUnder(&position, 0x16EF);
     if (collision == NULL) {
         position.y = lbl_805D8D48;
     } else {
@@ -87,12 +78,7 @@ s32 TBoss8Dragon::spawn_ground_lightning(s32 arg0, s32 arg1, s32 arg2) {
         }
     }
     position.y += lbl_805DF654;
-    allocation = __nw__7TObjectFUl(0xA8);
-    effect = allocation;
-    if (effect != 0) {
-        effect = (s32)__ct__26TBoss5GryphonLightningHornFv((u8*)allocation, arg0, (s32)&position, arg2);
-    }
-    return effect;
+    return (s32)new TBoss5GryphonLightningHorn(parent, &position, direction);
 }
 
 extern s32 lbl_804ECDC0[];

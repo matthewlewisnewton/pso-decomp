@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/network/ModemLaunchContext.h"
 #include "pso/unk/text_8042EE4C.h"
 #include "pso/ui/TAdTrialModemChkGC.h"
 
@@ -6,16 +7,13 @@ extern "C" {
 int sprintf(char *, const char *, ...);
 void *memset(void *, int, u32);
 extern char lbl_80480270[];
-extern s32 lbl_805D7CA8;
-extern u8 *lbl_805D7CC0;
-extern s32 lbl_805D7CC4;
 s32 TAdTrialModemChkGC::init_modem_check_params() {
     if ((s32) lbl_805D7CA8 == 0) {
         return -1;
     }
-    memset(lbl_805D7CC0 + 0x7020, 0, 0x800);
-    *(s32 *)((s8 *)lbl_805D7CC0 + 0x1C) = 0x674;
-    sprintf((char *) (lbl_805D7CC4 + 4), lbl_80480270);
+    memset(&lbl_805D7CC0->options, 0, 0x800);
+    lbl_805D7CC0->options_size = 0x674;
+    sprintf(lbl_805D7CC4->text, lbl_80480270);
     TAdPlayerLoadGC__sub_8042F108(0);
     TAdTrialModemChkGC__sub_8042F0D4(3);
     set_modem_trial_param(1);
@@ -25,7 +23,7 @@ s32 TAdTrialModemChkGC::init_modem_check_params() {
     set_modem_check_char(1);
     set_modem_param(5);
     set_modem_check_param_360(0);
-    *(s32 *)((s8 *)lbl_805D7CC0 + 4) = (s32) (*(s32 *)((s8 *)lbl_805D7CC0 + 4) & 0xFFFFF7FF);
+    lbl_805D7CC0->flags &= ~0x800U;
     return 0;
 }
 

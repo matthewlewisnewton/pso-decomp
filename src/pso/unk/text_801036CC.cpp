@@ -1,3 +1,4 @@
+#include "pso/protocol/ItemDropPacket.h"
 #include "types.h"
 #include "pso/item/TItemData.h"
 #include "pso/protocol/protocol_types.h"
@@ -164,7 +165,7 @@ void TLobby::apply_sync_item_state() {
         p = floor_item_row_table[j];
         for (n = 0; n != count; n++, p++) {
             TLobby::copy_floor_item_entry((TLobbyFloorItemEntry *)p, (TLobbyFloorItemEntry *)&((Save_80103890 *)this)->items[k++]);
-            ((TLobby *)p)->bswap_item();
+            bswap_item__6TLobbyFv(p);
             ((TItemData *)((u8 *)p + 0x10))->decode_from_network();
         }
     }
@@ -203,7 +204,7 @@ s32 TLobby::write_sync_item_state() {
         for (n = 0; n != count; n++, p++, k++) {
             TLobby::copy_floor_item_entry((TLobbyFloorItemEntry *)d, (TLobbyFloorItemEntry *)p);
             ((TItemData *)((u8 *)d + 0x10))->encode_for_network();
-            ((TLobby *)d)->bswap_item();
+            bswap_item__6TLobbyFv(d);
             d++;
         }
     }
