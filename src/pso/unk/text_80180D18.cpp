@@ -1,3 +1,4 @@
+#include "pso/system/SoundSlotPitch.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/misc/PersistentSound.h"
 #include "types.h"
@@ -79,7 +80,6 @@ struct Car_80181074 {
 
 extern "C" {
 void *spawn_continuous_particle_effect_with_flags(void *parent, s32 idx, s32 flags);
-s32 update_technique_slot__10TTecRaFoieFl(s32, int, int);
 f32 sin_table_lookup(s32);
 f32 cos_table_lookup(s32);
 extern u32 city_air_car_model_resource;

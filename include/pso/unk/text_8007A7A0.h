@@ -1,16 +1,10 @@
 #ifndef PSO_UNK_TEXT_8007A7A0_H
 #define PSO_UNK_TEXT_8007A7A0_H
 
-#include "types.h"
+#include "pso/map/CsnResult.h"
 
 extern "C" {
-void fn_8007A7A0(u8 *arg0);
+void fn_8007A7A0(CsnHit *arg0);
 }
-
-// --- C functions defined in text_8007A7A0.cpp ---
-extern "C" {
-void fn_8007A7A0(u8 *arg0);
-}
-// --- end of C functions
 
 #endif
