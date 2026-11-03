@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/misc/TODoorAncient08.h"
 
@@ -78,7 +79,7 @@ TODoorAncient08::~TODoorAncient08() {
 void TODoorAncient08::load_resources() {
     BmlResource *resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&door_ancient08_resource_descriptor), 0, 0, (void *)(0));
     bml_resource = resource;
-    texture_lists = (s32 *)mem_alloc(8);
+    texture_lists = (s32 *)::operator new[](8);
     texture_lists[0] = bml_resource->models[0].m_c;
     texture_lists[1] = (s32)load_gvm_texture_file((s32)"fs_obj_o_door06l_r.gvm");
 }
@@ -87,7 +88,7 @@ void TODoorAncient08::destroy() {
     if (texture_lists != NULL) {
         TObjPlayer::free_if_valid(texture_lists[1]);
         if (texture_lists != NULL) {
-            mem_free(texture_lists);
+            ::operator delete[](texture_lists);
             texture_lists = NULL;
         }
     }

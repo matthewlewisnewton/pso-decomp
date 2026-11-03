@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/object/TObjSeabedSuisoBrakable.h"
 #include "pso/misc/TUnk_804DDBF0.h"
@@ -2661,9 +2662,7 @@ int TLobby__sub_802A7278(void* a0);
 void TLobby__sub_802A7848(void *p, s32 _w1);
 s32 TLobby__sub_802A7868(void *, s32, s32);
 s32 forward_801C210C__10TObjPlayerFv(void *, s32);
-void mem_free(void*);
 void TLobby__sub_802A7640(void);
-void *mem_alloc(u32 size);
 void TLobby__sub_802A769C(void);
 s32 vfunc_3__13TUnk_804DDD28Fs(s32, s32 *);
 void free__10TObjPlayerFPv(void *a0);
@@ -2750,12 +2749,12 @@ int TUnk_804DDBF0::vfunc_5(s32 arg1) {
 
 void TLobby__sub_802A7640(void) {
     if ((u32) (*(u32 *)&player_action_motion_buffer) != 0U) {
-        mem_free((void*)(*(u32 *)&player_action_motion_buffer));
+        ::operator delete[]((void*)(*(u32 *)&player_action_motion_buffer));
         (*(u32 *)&player_action_motion_buffer) = 0U;
     }
 }
 void TLobby::alloc_boss4rock_buffer() {
-    player_action_motion_buffer = (s32)mem_alloc(0x100000);
+    player_action_motion_buffer = (s32)::operator new[](0x100000);
 }
 void TLobby__sub_802A769C(void) { TLobby__sub_802A7640(); TLobby::set_photon_chair_flag(0); }
 void TLobby::enable_and_refresh() { TLobby::set_photon_chair_flag(1); TLobby::alloc_boss4rock_buffer(); }

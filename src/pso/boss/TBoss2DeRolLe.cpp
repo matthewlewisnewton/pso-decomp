@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/misc/CameraHelpers.h"
 #include "pso/system/MatrixVectorArray.h"
 #include "pso/animation/MotionContext.h"
@@ -5146,7 +5147,6 @@ void queue_destruction__7TObjectFv(void *arg0);
 s32 free_if_positive__13TBoss2DeRolLeFis(s32 arg0, s16 arg1);
 void *__dt__12TObjEneDD_STFv(void *arg0, s16 arg1);
 s32 __dt__17AreaAttackHistoryFv(s32 arg0, s16 arg1);
-void mem_free(void *p);
 s32 free_collision_body_parts(void *);
 s32 __dl__7TObjectFPv(void *);
 extern u8 __vt__13TBoss2DeRolLe[];
@@ -5386,7 +5386,7 @@ u8 *__dt__13TBoss2DeRolLeFv(u8 *arg0, s16 arg1) {
                 self->a740[i] = NULL;
             }
         }
-        mem_free((void *)self->x618);
+        ::operator delete[]((void *)self->x618);
         self->x618 = 0;
         if (self->x6CC != NULL) {
             queue_destruction__7TObjectFv(self->x6CC);
@@ -5424,7 +5424,7 @@ u8 *__dt__13TBoss2DeRolLeFv(u8 *arg0, s16 arg1) {
             queue_destruction__7TObjectFv(self->a620[i]);
             self->a620[i] = NULL;
         }
-        mem_free((void *)self->x61C);
+        ::operator delete[]((void *)self->x61C);
         free_collision_body_parts(self);
         if ((u32)TBoss2DeRolLe__instance == (u32)arg0) {
             TBoss2DeRolLe__instance = 0;
@@ -5560,7 +5560,6 @@ s32 initialize_enemy_state__9TObjEneDDFl(void *, int);
 s32 init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, int, void *);
 s32 invoke_initialization_hook__9TObjEneDDFPv(void *, void *);
 u8 *__ct__17AreaAttackHistoryFl(u8 *arg0, s32 arg1);
-Buf_8003563C *mem_alloc(int);
 void *__nw__7TObjectFUl(int);
 s32 __ct__7TObjectFP7TObject(void *, void *);
 s32 set_matrix_identity(void *);
@@ -5841,7 +5840,7 @@ void *TBoss2DeRolLe__ct(void *arg0, void *arg1, void *arg2) {
         self->v4E8[i].y = TBoss2DeRolLe__data_805D827C;
         self->v4E8[i].z = TBoss2DeRolLe__data_805D827C;
     }
-    self->f61C = mem_alloc(0xC0);
+    self->f61C = static_cast<Buf_8003563C *>(::operator new[](0xC0));
     for (i = 0; i < 4; i++) {
         set_matrix_identity(&self->f61C[i]);
         p = __nw__7TObjectFUl(0x158);
@@ -5920,7 +5919,7 @@ void *TBoss2DeRolLe__ct(void *arg0, void *arg1, void *arg2) {
     self->f60C = TBoss2DeRolLe__data_805D82BC;
     self->f610 = TBoss2DeRolLe__data_805D82BC;
     self->f614 = TBoss2DeRolLe__data_805D82BC;
-    self->f618 = mem_alloc(0x240);
+    self->f618 = static_cast<Buf_8003563C *>(::operator new[](0x240));
     for (i = 0; i < 12; i++) {
         set_matrix_identity(&self->f618[i]);
     }

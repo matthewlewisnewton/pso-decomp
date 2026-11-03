@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/TObject.h"
 #include "pso/misc/TWindowDD_80342254.h"
@@ -28,7 +29,6 @@ extern const f32 lbl_805DFB78;
 extern const f32 lbl_805DFC1C;
 void *destroy__17TWindowDD_WS_WordFs(void *arg0, s16 arg1);
 void __dl__7TObjectFPv(void *);
-void mem_free(void *);
 
 extern "C" {
 void render__17TWindowDD_WS_WordFv();
@@ -72,7 +72,7 @@ u8 TWindowDD_WS_Word::sub_80342268() {
 void *TWindowDD_WS_Word::destroy(s16 arg1) {
     if (this != NULL) {
         *(s32 **)((s8 *)this + 0x18) = lbl_804EFC90;
-        if (this->m_80 != NULL) { mem_free(this->m_80); this->m_80 = 0; }
+        if (this->m_80 != NULL) { ::operator delete[](this->m_80); this->m_80 = 0; }
         ((TWindowDD *)this)->destroy_window_base(0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(this);

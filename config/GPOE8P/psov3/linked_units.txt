@@ -198,6 +198,7 @@ pso/boss/Boss5GryphonBehavior.cpp
 pso/boss/Boss6Type1Appearance.cpp
 pso/boss/Boss6Type2Appearance.cpp
 pso/boss/Boss6Type2Death.cpp
+pso/boss/Boss7TentacleBanks.cpp
 pso/boss/TBoss1Dragon.cpp
 pso/boss/TBoss1DragonColli.cpp
 pso/boss/TBoss1DragonDemo.cpp
@@ -224,6 +225,7 @@ pso/boss/TBoss3Volopt_800D8ACC.cpp
 pso/boss/TBoss4CheckEmpty.cpp
 pso/boss/TBoss4CheckEmpty_8034A8B0.cpp
 pso/boss/TBoss4CheckEmpty_8034A8FC.cpp
+pso/boss/TBoss4DarkFalz_8004C93C.cpp
 pso/boss/TBoss4Fade.cpp
 pso/boss/TBoss4Thanks.cpp
 pso/boss/TBoss4Thanks_8035C8F0.cpp
@@ -831,6 +833,7 @@ pso/misc/GbaDownloadRuntime.cpp
 pso/misc/KeyboardCharacterMaps.cpp
 pso/misc/MaterialOpacityFade.cpp
 pso/misc/PhotonBlastSummon.cpp
+pso/misc/QuestDownloadBuffers.cpp
 pso/misc/RenderFadeState.cpp
 pso/misc/ShopToolStock.cpp
 pso/misc/ShopWeaponStock.cpp
@@ -887,8 +890,10 @@ pso/misc/TChCrTagInformation.cpp
 pso/misc/TChCrTagInformation_802A1FAC.cpp
 pso/misc/TChCrTagInformation_802A200C.cpp
 pso/misc/TChCrTagName.cpp
+pso/misc/TChCrTagOccHeader.cpp
 pso/misc/TChCrTagOccupation.cpp
 pso/misc/TChCrTagPlBack.cpp
+pso/misc/TChCrTagPlGraphic.cpp
 pso/misc/TChallenge.cpp
 pso/misc/TCharaMaking.cpp
 pso/misc/TCharaMaking_8028E3F4.cpp
@@ -2072,6 +2077,7 @@ pso/object/TObjCollision.cpp
 pso/object/TObjComputer.cpp
 pso/object/TObjControl.cpp
 pso/object/TObjCurtainLobby.cpp
+pso/object/TObjDFDemo0.cpp
 pso/object/TObjDFDemo2.cpp
 pso/object/TObjDFDemo3.cpp
 pso/object/TObjDFDemo4.cpp
@@ -2229,6 +2235,7 @@ pso/player/TObjPlayer_80083594.cpp
 pso/player/TObjPlayer_80083B38.cpp
 pso/player/TObjPlayer_800847A8.cpp
 pso/player/TObjPlayer_80084B84.cpp
+pso/player/TObjPlayer_8008DCF0.cpp
 pso/player/TObjPlayer_8008DCF0_8008DCF0.cpp
 pso/player/TObjPlayer_80090448.cpp
 pso/player/TObjPlayer_80092A7C.cpp
@@ -2508,6 +2515,7 @@ pso/player/TObjPlayer_8023355C.cpp
 pso/player/TObjPlayer_8023C024.cpp
 pso/player/TObjPlayer_8023E480.cpp
 pso/player/TObjPlayer_80278AB4.cpp
+pso/player/TObjPlayer_802790CC.cpp
 pso/player/TObjPlayer_8029EE64.cpp
 pso/player/TObjPlayer_8029F694.cpp
 pso/player/TObjPlayer_802A1440.cpp
@@ -2561,6 +2569,7 @@ pso/quest/QuestOpcodeHandlers.cpp
 pso/quest/QuestOpcodeTables.cpp
 pso/quest/StoryQuestProgress.cpp
 pso/quest/TQuestListVM.cpp
+pso/quest/TQuestListVMData.cpp
 pso/quest/TQuestListVM_80073DC4.cpp
 pso/quest/TQuestListVM_8007EAF8.cpp
 pso/quest/TQuestListVM_800F95F4.cpp
@@ -2926,6 +2935,7 @@ pso/unk/text_8010EF14.cpp
 pso/unk/text_8010F168.cpp
 pso/unk/text_8010F210.cpp
 pso/unk/text_8011085C.cpp
+pso/unk/text_8011A780.cpp
 pso/unk/text_8011B328.cpp
 pso/unk/text_8011B620.cpp
 pso/unk/text_8011B694.cpp
