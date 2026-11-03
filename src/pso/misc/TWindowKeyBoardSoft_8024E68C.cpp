@@ -26,12 +26,11 @@ extern Vec2_8024EC34 keyboard_soft_viewport_offset_table[];
 extern Vec2_8024EC34 lbl_8044EC80[];
 extern Vec2_8024EC34 lbl_8044EC98[];
 extern const float lbl_805DCC94;
-s32 clip_textured_quad__19TWindowKeyBoardSoftFPvPv(TWindowDrawContext *w, f32 *b);
 extern const f32 lbl_805DCC98;
 extern const f32 lbl_805DCC9C;
 extern const f32 lbl_805DCCA0;
 extern const f32 lbl_805DCCA4;
-TWindowDrawContext *init_text_window_layout(TWindowDrawContext *win, const f32 *pos, const f32 *size, const f32 *scale, u32 flags, f32 depth);
+TWindowDrawContext *init_text_window_layout(TWindowDrawContext *win, f32 *pos, f32 *size, f32 *scale, u32 flags, f32 depth);
 
 #pragma fp_contract on
 
@@ -89,57 +88,57 @@ extern const f32 lbl_805DCC8C;
 extern "C" void shrink_clip_right__19TWindowKeyBoardSoftFv(TWindowDrawContext *c) { c->inner_w -= lbl_805DCC8C; c->clip_right -= lbl_805DCC8C; }
 extern const f32 lbl_805DCC90;
 extern "C" void animate_scale__19TWindowKeyBoardSoftFv(TWindowDrawContext *c) { c->inner_y += lbl_805DCC90; c->inner_h -= lbl_805DCC90; c->clip_top += lbl_805DCC90; }
-extern "C" s32 is_point_in_bounds__19TWindowKeyBoardSoftFPv(TWindowDrawContext *c, f32 *p) {
-    if (p[2] < c->clip_left || p[3] < c->clip_top || p[0] > c->clip_right || p[1] > c->clip_bottom) return 0;
+s32 TWindowDrawContext::is_point_in_bounds(f32 *p) {
+    if (p[2] < clip_left || p[3] < clip_top || p[0] > clip_right || p[1] > clip_bottom) return 0;
     return 1;
 }
 
 #pragma push
 #pragma fp_contract on
-s32 clip_textured_quad__19TWindowKeyBoardSoftFPvPv(TWindowDrawContext *w, f32 *b) {
+s32 TWindowDrawContext::clip_textured_quad(f32 *b) {
     f32 sx;
     f32 sy;
     f32 d;
-    if (is_point_in_bounds__19TWindowKeyBoardSoftFPv(w, b) == 0) {
+    if (is_point_in_bounds(b) == 0) {
         return 0;
     }
     sx = (b[6] - b[4]) / (b[2] - b[0]);
     sy = (b[7] - b[5]) / (b[3] - b[1]);
-    d = w->clip_left - b[0];
+    d = clip_left - b[0];
     if (d > (*(const f32 *)&lbl_805DCC94)) {
-        b[0] = w->clip_left;
+        b[0] = clip_left;
         b[4] = d * sx + b[4];
     }
-    d = w->clip_top - b[1];
+    d = clip_top - b[1];
     if (d > (*(const f32 *)&lbl_805DCC94)) {
-        b[1] = w->clip_top;
+        b[1] = clip_top;
         b[5] = d * sy + b[5];
     }
-    d = b[2] - w->clip_right;
+    d = b[2] - clip_right;
     if (d > (*(const f32 *)&lbl_805DCC94)) {
-        b[2] = w->clip_right;
+        b[2] = clip_right;
         b[6] = -(d * sx - b[6]);
     }
-    d = b[3] - w->clip_bottom;
+    d = b[3] - clip_bottom;
     if (d > (*(const f32 *)&lbl_805DCC94)) {
-        b[3] = w->clip_bottom;
+        b[3] = clip_bottom;
         b[7] = -(d * sy - b[7]);
     }
     return 1;
 }
 #pragma pop
 
-s32 try_open__19TWindowKeyBoardSoftFii(TWindowDrawContext *arg0, f32 *arg1) {
-    if (clip_textured_quad__19TWindowKeyBoardSoftFPvPv(arg0, arg1) == 0) {
+s32 TWindowDrawContext::try_open(f32 *arg1) {
+    if (clip_textured_quad(arg1) == 0) {
         return 0;
     }
-    apply_context_transform_to_rect(arg0, arg1);
+    apply_context_transform_to_rect(this, arg1);
     return 1;
 }
 
 #pragma push
 #pragma fp_contract on
-TWindowDrawContext *init_text_window_layout(TWindowDrawContext *win, const f32 *pos, const f32 *size, const f32 *scale, u32 flags, f32 depth) {
+TWindowDrawContext *init_text_window_layout(TWindowDrawContext *win, f32 *pos, f32 *size, f32 *scale, u32 flags, f32 depth) {
     f32 mx;
     f32 my;
     s32 cam;
@@ -224,9 +223,7 @@ Vec2_8024EC34 *get_viewport_offset__19TWindowKeyBoardSoftFi(s32 i) {
     return get_zero_vec2();
 }
 
-// Depth precedes flags. The caller reads the depth first, and a float argument
-// does not consume the general-purpose register used for the flags.
-extern "C" TWindowDrawContext *open_singleton__19TWindowKeyBoardSoftFiiii(const f32 *pos, const f32 *size, const f32 *scale, f32 depth, u32 flags) {
+TWindowDrawContext *TWindowDrawContext::open_singleton(f32 *pos, f32 *size, f32 *scale, f32 depth, u32 flags) {
     if (soft_keyboard_instance == NULL) return NULL;
     init_text_window_layout(soft_keyboard_instance, pos, size, scale, flags, depth);
     return soft_keyboard_instance;

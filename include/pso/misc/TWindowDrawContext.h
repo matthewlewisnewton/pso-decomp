@@ -14,6 +14,16 @@ struct TWindowDrawContext {
     u32 color;
     f32 depth;
     f32 clip_left, clip_top, clip_right, clip_bottom;
+
+    // Quad storage is eight floats: x0, y0, x1, y1, u0, v0, u1, v1.
+    s32 is_point_in_bounds(f32 *quad);
+    s32 clip_textured_quad(f32 *quad);
+    s32 try_open(f32 *quad);
+    // Depth precedes flags. The caller reads depth first; a float argument
+    // does not consume the general-purpose register used for flags.
+    // pos, size, and scale are read-only. They stay unqualified: const
+    // changes init_text_window_layout's loads and drops that function off exact.
+    static TWindowDrawContext *open_singleton(f32 *pos, f32 *size, f32 *scale, f32 depth, u32 flags);
 };
 typedef char DrawContextSize[sizeof(TWindowDrawContext) == 0x4c ? 1 : -1];
 struct DrawContextAlignmentProbe { char c; TWindowDrawContext d; };

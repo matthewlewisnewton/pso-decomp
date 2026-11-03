@@ -1,3 +1,4 @@
+#include "pso/misc/TWindowDrawContext.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
@@ -699,7 +700,6 @@ extern const f32 lbl_805DCF1C;
 void begin_screen_draw(s32 arg0);
 void set_draw_texture_and_color(s32 idx, s32 arg1);
 
-s32 try_open__19TWindowKeyBoardSoftFii(s32, s32);
 void draw_textured_quad_at_depth(f32 *q, f32 depth);
 
 void draw_item_list_icon(s32 win, u8 *pos, s32 icon, s32 style, f32 depth) {
@@ -728,7 +728,7 @@ void draw_item_list_icon(s32 win, u8 *pos, s32 icon, s32 style, f32 depth) {
         q.v[6] = edge * scale;
         edge = offset + entry[1];
         q.v[7] = edge * scale;
-        if (try_open__19TWindowKeyBoardSoftFii(win, (s32)&q) != 0) {
+        if (((TWindowDrawContext *)win)->try_open((f32 *)&q) != 0) {
             draw_textured_quad_at_depth(q.v, depth);
         }
         TWindowSubStatusDisp::get_player();

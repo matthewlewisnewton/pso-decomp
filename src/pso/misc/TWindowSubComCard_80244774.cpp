@@ -150,7 +150,6 @@ Win_80244DFC * find_overlapping_balloon__15TWindowFukidasiFPvPvPvPv(Win_80244DFC
 s32 sub_80246948__13TUnk_804CE018Fv();
 int TWindowFukidasi__sub_8024695C(void *p);
 s32 TWindowCtrlMain__sub_8024CE24();
-TWindowDrawContext *open_singleton__19TWindowKeyBoardSoftFiiii(const f32 *, const f32 *, const f32 *, f32, u32);
 void apply_window_closing_stretch__FPUci(TWindowDrawContext *, int);
 void animate_scale__19TWindowKeyBoardSoftFv(TWindowDrawContext *);
 void shrink_clip_right__19TWindowKeyBoardSoftFv(TWindowDrawContext *);
@@ -163,10 +162,6 @@ s32 resort_window_order__13TUnk_804CE018Fv(void *);
 
 extern int lbl_805D3614;
 extern s32 lbl_805D3888;
-
-extern "C" {
-s32 try_open__19TWindowKeyBoardSoftFii(void *, Quad_802455CC *);
-}
 
 int TWindowSubComCard__sub_80244774(void) {  return lbl_805D3614; }
 
@@ -315,7 +310,7 @@ TWindowDrawContext *TUnk_804CE018::setup_window_draw_context(s32 arg1) {
     s32 var_r4;
     f32 depth = *(f32 *)((u8 *)this + 0x54);
     u32 flags = *(u32 *)((u8 *)this + 0x2c);
-    temp_r31 = open_singleton__19TWindowKeyBoardSoftFiiii((f32 *)((u8 *)this + 0x40), (f32 *)((u8 *)this + 0x48), (f32 *)arg1, depth, flags);
+    temp_r31 = TWindowDrawContext::open_singleton((f32 *)((u8 *)this + 0x40), (f32 *)((u8 *)this + 0x48), (f32 *)arg1, depth, flags);
     if (*(s32 *)((s8 *)((u8 *)this) + 0x2C) & 0x40) {
         animate_scale__19TWindowKeyBoardSoftFv(temp_r31);
     }
@@ -452,7 +447,7 @@ void draw_selection_bar(u8 *window_key_board_soft, u8 *arg1, s32 arg2) {
     q.v0 = p->v / 256.0f;
     q.u1 = (16.0f + p->u) / 256.0f;
     q.v1 = (18.0f + p->v) / 256.0f;
-    if (try_open__19TWindowKeyBoardSoftFii(window_key_board_soft, &q) != 0) {
+    if (((TWindowDrawContext *)window_key_board_soft)->try_open((f32 *)&q) != 0) {
         draw_textured_quad_at_depth((f32 *)&q, z);
     }
     t = x + *(f32 *)((s8 *)window_key_board_soft + 0x18);
@@ -465,7 +460,7 @@ void draw_selection_bar(u8 *window_key_board_soft, u8 *arg1, s32 arg2) {
     q.v0 = p->v / 256.0f;
     q.u1 = (16.0f + u) / 256.0f;
     q.v1 = (18.0f + p->v) / 256.0f;
-    if (try_open__19TWindowKeyBoardSoftFii(window_key_board_soft, &q) != 0) {
+    if (((TWindowDrawContext *)window_key_board_soft)->try_open((f32 *)&q) != 0) {
         draw_textured_quad_at_depth((f32 *)&q, z);
     }
     q.x0 = x1;
@@ -476,7 +471,7 @@ void draw_selection_bar(u8 *window_key_board_soft, u8 *arg1, s32 arg2) {
     q.v0 = p->v / 256.0f;
     q.u1 = (16.0f + (16.0f + p->u)) / 256.0f;
     q.v1 = (18.0f + p->v) / 256.0f;
-    if (try_open__19TWindowKeyBoardSoftFii(window_key_board_soft, &q) != 0) {
+    if (((TWindowDrawContext *)window_key_board_soft)->try_open((f32 *)&q) != 0) {
         draw_textured_quad_at_depth((f32 *)&q, z);
     }
     TWindowSubStatusDisp::get_player();
