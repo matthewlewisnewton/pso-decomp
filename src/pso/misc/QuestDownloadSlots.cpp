@@ -1,8 +1,9 @@
 #include "pso/misc/QuestDownloadRecords.h"
 
-// Inactive data-only continuation; see quest-download-deferred-storage.md.
-// These are actual static slot objects. Their pointed-to nodes have separate
-// storage and lifetimes; this definition does not supply a node pool.
+// The 80 slot records at 0x80595998. Nodes they point at have separate
+// storage and lifetimes; this array does not supply a node pool.
+// C linkage keeps the existing unmangled symbol. See
+// docs/evidence/quest-download-deferred-storage.md.
 extern "C" {
 QuestDownloadSlot quest_download_slot_chain_table[80];
 }

@@ -106,7 +106,7 @@ QUEST_RECORD_CHECK(QuestSlot_text_offset, offsetof(QuestDownloadSlot, textHead) 
 #undef QUEST_RECORD_CHECK
 
 extern "C" {
-// Backing storage remains provided by the original automatic BSS owner.
+// Defined by QuestDownloadSlots.cpp. The pointed-to nodes are not in this array.
 extern QuestDownloadSlot quest_download_slot_chain_table[80];
 s32 calc_entry_cost__22TQuestVmDownLoadServerFPvPv(QuestDownloadEntryPrefix *, QuestDownloadEntryPrefix *);
 s32 TQuestVmDownLoadServer__sub_803ED84C(QuestDownloadEntryNode *, s32, s32);
