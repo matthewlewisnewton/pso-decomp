@@ -1,3 +1,4 @@
+#include "pso/system/SoundSlotPitch.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/object/TObject_80019A50.h"
@@ -55,7 +56,6 @@ extern "C" {
 void *find_entity_by_id(u16 id);
 s32 is_parents_unqueued__9TTecLukerFUl();
 s16 get_entity_id(void *);
-s32 update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
 
 s32 copy_technique_target_list(void *, void *);
 s32 construct_facing_technique__10TObjPlayerFPviPvii(void *, void *, void *, s32);

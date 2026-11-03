@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/TMainTask.h"
@@ -100,7 +101,7 @@ void TOSensorGeneral01::free_assets() {
     if (TOSensorGeneral01__texture_lists != NULL) {
         TObjPlayer::free_if_valid(TOSensorGeneral01__texture_lists[0]);
         if (TOSensorGeneral01__texture_lists != NULL) {
-            mem_free(TOSensorGeneral01__texture_lists);
+            ::operator delete[](TOSensorGeneral01__texture_lists);
             TOSensorGeneral01__texture_lists = NULL;
         }
     }
@@ -113,7 +114,7 @@ void TOSensorGeneral01::free_assets() {
 void TOSensorGeneral01::load_assets() {
     BmlResource *resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&TOSensorGeneral01__resource_descriptor), 0, 0, (void *)(0));
     sensor_general_shared_bml_archive = resource;
-    TOSensorGeneral01__texture_lists = (s32 *)mem_alloc(8);
+    TOSensorGeneral01__texture_lists = (s32 *)::operator new[](8);
     TOSensorGeneral01__texture_lists[1] = sensor_general_shared_bml_archive->models[0].m_c;
     TOSensorGeneral01__texture_lists[0] = (s32)load_gvm_texture_file((s32) "fs_obj_sensor_r.gvm");
 }

@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/MatrixVectorArray.h"
 #include "pso/misc/SampledMotionPoints.h"
 #include "pso/player/demo_mode.h"
@@ -386,13 +387,11 @@ void __dl__7TObjectFPv(void *);
 void __destroy_arr(void *, void *, int, int);
 extern u8 __dt__15RenderFadeStateFv[];
 O_80092724 *TObjPlayer__sub_80092724(O_80092724 *arg0, s16 arg1);
-void *mem_alloc(u32 size);
 extern Ids_8009241C lbl_80439D68[];
 extern Quad_8009241C lbl_80439D70[];
 extern s32 lbl_80439D80[];
 void *__ct__11TObjControlFP7TObject(void *, void *);
 void *__nw__7TObjectFUl(int);
-void mem_free(void*);
 
 extern void *tl_04;
 
@@ -605,19 +604,19 @@ extern u32 ene_beast_bml_resource;
 
 void free_boss4_rock_pool(void) {
     if ((u32) ene_beast_boss_id_buffer != 0U) {
-        mem_free((void*)ene_beast_boss_id_buffer);
+        ::operator delete[]((void*)ene_beast_boss_id_buffer);
         ene_beast_boss_id_buffer = 0U;
     }
     if ((u32) TObjEneBeast__boss4_rock_handler_ids != 0U) {
-        mem_free((void*)TObjEneBeast__boss4_rock_handler_ids);
+        ::operator delete[]((void*)TObjEneBeast__boss4_rock_handler_ids);
         TObjEneBeast__boss4_rock_handler_ids = 0U;
     }
     if ((u32) boss4_rock_pool != 0U) {
-        mem_free((void*)boss4_rock_pool);
+        ::operator delete[]((void*)boss4_rock_pool);
         boss4_rock_pool = 0U;
     }
     if ((u32) boss4_rock_shared_handler_ids != 0U) {
-        mem_free((void*)boss4_rock_shared_handler_ids);
+        ::operator delete[]((void*)boss4_rock_shared_handler_ids);
         boss4_rock_shared_handler_ids = 0U;
     }
     if ((u32) boss4_type3_instance != 0U) {
@@ -658,10 +657,10 @@ void TObjEneBeast::load_resources() {
     boss4_type3_instance = (void *)p;
     ((SampledMotionPoints *)beast_claw_trail_instance)->sample_two_nodes((NJS_OBJECT *)(((Data_8009241C *)ene_beast_bml_resource)->f42c->f8), (NJS_MOTION *)(((Data_8009241C *)ene_beast_bml_resource)->f430[((s32 *)beast_action_table)[13]].f4), 5, 8);
     ((SampledMotionPoints *)boss4_type3_instance)->sample_two_nodes((NJS_OBJECT *)(((Data_8009241C *)ene_beast_bml_resource)->f42c->f8), (NJS_MOTION *)(((Data_8009241C *)ene_beast_bml_resource)->f430[((s32 *)beast_action_table)[17]].f4), 10, 13);
-    ene_beast_boss_id_buffer = (u32)mem_alloc(0xC);
-    TObjEneBeast__boss4_rock_handler_ids = (u32)mem_alloc(0xC);
-    boss4_rock_pool = (u32)mem_alloc(0xC);
-    boss4_rock_shared_handler_ids = (u32)mem_alloc(0xC);
+    ene_beast_boss_id_buffer = (u32)::operator new[](0xC);
+    TObjEneBeast__boss4_rock_handler_ids = (u32)::operator new[](0xC);
+    boss4_rock_pool = (u32)::operator new[](0xC);
+    boss4_rock_shared_handler_ids = (u32)::operator new[](0xC);
     ((s32 *)ene_beast_boss_id_buffer)[0] = ((s32)get_battle_base_stats(0x4B));
     ((s32 *)ene_beast_boss_id_buffer)[1] = ((s32)get_battle_base_stats(0x4C));
     ((s32 *)ene_beast_boss_id_buffer)[2] = ((s32)get_battle_base_stats(0x4D));

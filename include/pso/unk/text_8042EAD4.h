@@ -4,17 +4,10 @@
 #include "types.h"
 
 extern "C" {
-s32 fn_8042EAD4(u8 *arg0, u32 arg1);
+s32 fn_8042EAD4(u8 *source, u32 size);
 void fn_8042EBA4(s32 arg0, s32 arg1);
-s32 fn_8042ED98(s32 arg0, const char *arg1);
+void TAdTrialModemChkGC__sub_8042EC14(void);
+s32 fn_8042ED98(int index, const char *text);
 }
-
-// --- C functions defined in text_8042EAD4.cpp ---
-extern "C" {
-s32 fn_8042EAD4(u8 *arg0, u32 arg1);
-void fn_8042EBA4(s32 arg0, s32 arg1);
-s32 fn_8042ED98(s32 arg0, const char *arg1);
-}
-// --- end of C functions
 
 #endif

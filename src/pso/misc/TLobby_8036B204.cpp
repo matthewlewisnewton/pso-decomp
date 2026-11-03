@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/misc/TUnk_804F3640.h"
 #include "pso/unk/text_80076E84.h"
@@ -20,11 +21,9 @@ struct Mgr_8036B424 {
 
 extern "C" {
 s32 TLobby__sub_8036B1AC(s32);
-void mem_free(void *p);
 extern s32 __vt__13TUnk_804F3640[];
 extern u32 slot_entity_dispatcher_instance;
 void *__nw__7TObjectFUl(int);
-void *mem_alloc(u32 size);
 void __ct__7TObjectFP7TObject(void *);
 Mgr_8036B424 *TLobby__sub_8036B424(Mgr_8036B424 *arg0, void * _w1);
 
@@ -73,7 +72,7 @@ void TUnk_804F3640::run_task() {
 }
 }
 TUnk_804F3640::~TUnk_804F3640() {
-    mem_free((void *)(*(s32 *)((s8 *)this + 0x1C)));
+    ::operator delete[]((void *)(*(s32 *)((s8 *)this + 0x1C)));
     (*(s32 *)&slot_entity_dispatcher_instance) = 0;
 }
 
@@ -82,7 +81,7 @@ Mgr_8036B424 *TLobby__sub_8036B424(Mgr_8036B424 *arg0, void * _w1) {
     s32 i;
     __ct__7TObjectFP7TObject(arg0);
     arg0->vt = ((s32 *)&__vt__13TUnk_804F3640);
-    arg0->buf = (Ent_8036B424 *)mem_alloc(0xF0);
+    arg0->buf = (Ent_8036B424 *)::operator new[](0xF0);
     if (arg0->buf != 0) {
         for (i = 0; i != 4; i++) {
             TLobby__sub_8036B1AC((s32)&arg0->buf[i]);

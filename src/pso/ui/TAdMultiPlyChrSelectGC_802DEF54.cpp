@@ -1,5 +1,6 @@
 #include "pso/system/SoundEffect.h"
 #include "types.h"
+#include "pso/ui/TAdChrSelASlotGC.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC_802D50A0.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC_802E0FC8.h"
 #include "pso/unk/text_802C6DD4.h"
@@ -38,7 +39,6 @@ u32 __ct__14TAdSelectCurGCFv(void *, void *, void *, void *);
 s32 set_entry_value__22TAdMultiPlyChrSelectGCFlUl(u32, int, void *);
 u32 __ct__13TAdGuideTxtGCFv(void *, void *);
 u32 __ct__14TAdGameStartGCFv(void *, s32);
-u8 *get_or_create_slot_window__22TAdMultiPlyChrSelectGCFii(s32 arg0, s32 arg1);
 s32 create__16TAdChrSelBSlotGCFPv(void *);
 extern V2_802DF9B4 multi_chr_select_widget_layout[];
 extern u8 lbl_80472808[];
@@ -427,7 +427,7 @@ void TAdMultiPlyChrSelectGC::create_widgets() {
         if (p != 0) {
             __ct__10TAdTitleGCFP7TObjectl((void *) p, this, 0);
         }
-        *(s32 *)&this->unk_68 = (s32)get_or_create_slot_window__22TAdMultiPlyChrSelectGCFii((s32)this, 1);
+        *(s32 *)&this->unk_68 = (s32)get_or_create_slot_window__22TAdMultiPlyChrSelectGCFii(this, 1);
         *(s32 *)&this->unk_60 = get_or_create_player__22TAdMultiPlyChrSelectGCFiiii((s32)this, 1, -1, 0);
         break;
     case 1: {
@@ -435,7 +435,7 @@ void TAdMultiPlyChrSelectGC::create_widgets() {
         if (p != 0) {
             __ct__10TAdTitleGCFP7TObjectl((void *) p, this, 8);
         }
-        *(s32 *)&this->unk_68 = (s32)get_or_create_slot_window__22TAdMultiPlyChrSelectGCFii((s32)this, 2);
+        *(s32 *)&this->unk_68 = (s32)get_or_create_slot_window__22TAdMultiPlyChrSelectGCFii(this, 2);
         this->m_6c = create__16TAdChrSelBSlotGCFPv(this);
         I2_802DF9B4 pos = lbl_80472828[0];
         p = __nw__7TObjectFUl(0x708);

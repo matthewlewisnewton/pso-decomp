@@ -14,7 +14,9 @@ without changing a byte of the DOL.
 the link actually uses: the split object (build/GPOE8P/obj) of every unit in
 report.json and the compiled object (build/GPOE8P/src) of every unit, since
 the following scan may link any exact one.
-Stale objects of retired splits in those directories are ignored.
+The current generated split configuration supplies split-only consumers too.
+Missing or malformed consumers reject the whole plan; retired split objects are
+ignored. Rebuild first: these checks do not prove object/source freshness.
 
   localize_split_globals.py [UNIT...]          # plan
   localize_split_globals.py --write [UNIT...]  # edit symbols.txt, then rebuild
@@ -27,8 +29,10 @@ Run `link_units.py scan` first: it writes that file.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
+import struct
 import sys
 from pathlib import Path
 
@@ -42,26 +46,111 @@ BLOCKED = lu.CFG_DIR / "linked_units_blocked.json"
 def elf_symbols(path: Path) -> tuple[set[str], set[str]]:
     """(defined globals, undefined globals) of a big-endian ELF32 object."""
     b = path.read_bytes()
-    if b[:4] != b"\x7fELF":
-        return set(), set()
-    be = lambda o, n=4: int.from_bytes(b[o:o + n], "big")
-    shoff, shentsize, shnum = be(0x20), be(0x2E, 2), be(0x30, 2)
-    hdrs = [(be(shoff + i * shentsize + 4), be(shoff + i * shentsize + 16),
-             be(shoff + i * shentsize + 20), be(shoff + i * shentsize + 24)) for i in range(shnum)]
+    def fail(reason: str):
+        raise ValueError(f"{path}: {reason}")
+    if len(b) < 52 or b[:7] != b"\x7fELF\x01\x02\x01":
+        fail("expected ELF32 big-endian object")
+    kind, machine = struct.unpack_from(">HH", b, 16)
+    if kind != 1 or machine != 20:
+        fail("expected relocatable PowerPC object")
+    shoff = int.from_bytes(b[0x20:0x24], "big")
+    shentsize, shnum = struct.unpack_from(">HH", b, 0x2E)
+    if shentsize != 40 or not shnum or shoff < 52 or shoff + shnum * 40 > len(b):
+        fail("invalid section table")
+    hdrs = [struct.unpack_from(">10I", b, shoff + i * 40) for i in range(shnum)]
     defined, undefined = set(), set()
-    for typ, off, size, link in hdrs:
+    tables = 0
+    for header in hdrs:
+        _, typ, _, _, off, size, link, _, _, entsize = header
         if typ != 2:
             continue
-        _, stroff, strsize, _ = hdrs[link]
+        tables += 1
+        if entsize != 16 or size < 16 or size % 16 or off + size > len(b):
+            fail("invalid symbol table")
+        if link >= shnum or hdrs[link][1] != 3:
+            fail("invalid symbol string-table link")
+        stroff, strsize = hdrs[link][4:6]
+        if not strsize or stroff + strsize > len(b):
+            fail("invalid symbol string table")
         strtab = b[stroff:stroff + strsize]
+        if strtab[0] != 0 or strtab[-1] != 0 or any(b[off:off + 16]):
+            fail("invalid null symbol or string table")
         for o in range(off + 16, off + size, 16):
-            name_off, info, shndx = be(o), b[o + 12], be(o + 14, 2)
+            name_off, _, _, info, _, shndx = struct.unpack_from(">IIIBBH", b, o)
+            if name_off >= strsize or (shndx >= shnum and shndx < 0xFF00) or shndx == 0xFFFF:
+                fail("invalid symbol name or section index")
+            end = strtab.find(b"\0", name_off)
+            if end < 0:
+                fail("unterminated symbol name")
             if info >> 4 not in (1, 2):
                 continue
-            end = strtab.index(b"\0", name_off)
-            name = strtab[name_off:end].decode(errors="replace")
+            try:
+                name = strtab[name_off:end].decode("utf-8")
+            except UnicodeDecodeError:
+                fail("invalid UTF-8 symbol name")
             (undefined if shndx == 0 else defined).add(name)
+    if tables != 1:
+        fail("expected one symbol table")
     return defined, undefined
+
+
+def consumer_objects(report: dict, config: dict) -> list[Path]:
+    """Require the current split census, including extensionless generated units."""
+    split_units = config["units"]
+    report_units = report["units"]
+    if not split_units or not report_units:
+        raise ValueError("empty split configuration or report")
+    if any((u.get("metadata") or {}).get("module_name") not in (None, "psov3")
+           for u in report_units):
+        raise ValueError("unsupported non-psov3 report consumer")
+    def key(name: str) -> str:
+        # objdiff drops source extensions even for units with no compiled source.
+        return str(Path(name).with_suffix("")) if Path(name).suffix in (".cpp", ".cp", ".c", ".s", ".S") else name
+
+    names = [key(u["name"]) for u in split_units]
+    report_names = [key(u["name"].removeprefix(lu.UNIT_PREFIX)) for u in report_units]
+    if len(set(names)) != len(names) or len(set(report_names)) != len(report_names):
+        raise ValueError("duplicate unit in split configuration or report")
+    if set(names) != set(report_names):
+        raise ValueError("split configuration/report unit census differs; rebuild first")
+    objects = []
+    for u in split_units:
+        obj = lu.ROOT / u["object"]
+        expected = lu.SPLIT_OBJ_DIR / (key(u["name"]) + ".o")
+        if obj != expected or not obj.is_relative_to(lu.SPLIT_OBJ_DIR) or ".." in obj.parts:
+            raise ValueError(f"inconsistent split object path: {obj}")
+        objects.append(obj)
+    if len(set(objects)) != len(objects):
+        raise ValueError("duplicate split object")
+    for u in report_units:
+        if (u.get("metadata") or {}).get("source_path"):
+            n = lu.unit_name(u)
+            if not Path(n).suffix or Path(n).is_absolute() or ".." in Path(n).parts:
+                raise ValueError(f"unsupported compiled unit: {n}")
+            objects.append(lu.OBJ_DIR / Path(n).with_suffix(".o"))
+    return objects
+
+
+def validate_candidates(report: dict, want: dict[str, str]) -> None:
+    """A cached missing-only scan must still describe the inspected objects."""
+    by_name = {lu.unit_name(u): u for u in report["units"]}
+    for name in set(want.values()):
+        u = by_name.get(name)
+        if u is None or not (u.get("metadata") or {}).get("source_path"):
+            raise ValueError(f"candidate absent from source report: {name}")
+        if not lu.report_scores_exact(u):
+            raise ValueError(f"candidate report no longer exact: {name}")
+        current = set(lu.missing_compiled_symbols(u))
+        expected = {s for s, owner in want.items() if owner == name}
+        if current != expected:
+            raise ValueError(f"cached missing symbols changed: {name}; rerun link_units.py scan")
+        checks = (lu.extra_compiled_sections, lu.extra_compiled_symbols,
+                  lu.global_data_layout_mismatch, lu.section_size_mismatch,
+                  lu.section_alignment_mismatch, lu.function_order_mismatch)
+        for check in checks:
+            reasons = check(u)
+            if reasons:
+                raise ValueError(f"candidate no longer missing-only: {name}: {check.__name__}: {reasons}")
 
 
 def main() -> int:
@@ -72,7 +161,13 @@ def main() -> int:
 
     if not BLOCKED.exists():
         sys.exit(f"missing {BLOCKED.relative_to(lu.ROOT)}: run tools/link_units.py scan first")
-    blocked = json.loads(BLOCKED.read_text())
+    snapshots: dict[Path, str] = {}
+    def read(path: Path) -> bytes:
+        data = path.read_bytes()
+        snapshots[path] = hashlib.sha256(data).hexdigest()
+        return data
+
+    blocked = json.loads(read(BLOCKED))
     if args.units:
         unknown = [u for u in args.units if u not in blocked]
         if unknown:
@@ -82,28 +177,27 @@ def main() -> int:
     for unit, reasons in blocked.items():
         if reasons and all(r.startswith("missing ") for r in reasons):
             for r in reasons:
-                want[r.split(" ", 1)[1]] = unit
+                symbol = r.split(" ", 1)[1]
+                if symbol in want and want[symbol] != unit:
+                    raise ValueError(f"ambiguous candidate owner: {symbol}")
+                want[symbol] = unit
     if not want:
         print("no missing-only units")
         return 0
 
-    report = json.loads(lu.REPORT.read_text())
-    objs = []
-    for u in report["units"]:
-        n = lu.unit_name(u)
-        stem = n[:-len(Path(n).suffix)] + ".o"
-        objs.append(lu.SPLIT_OBJ_DIR / stem)
-        # Every unit's compiled object, not only linked ones: the scan that
-        # follows can link any exact unit, and its compiled object may name
-        # the global through a different relocation than its split object.
-        objs.append(lu.OBJ_DIR / stem)
+    report = json.loads(read(lu.REPORT))
+    config = json.loads(read(lu.SPLIT_CONFIG))
+    symbol_data = read(SYMBOLS)
+    read(lu.SPLITS)
+    objs = consumer_objects(report, config)
     referenced: dict[str, set[Path]] = {s: set() for s in want}
     for obj in objs:
-        if not obj.exists():
-            continue
+        # Require every current input. Absence is not evidence of no reference.
+        read(obj)
         _, undef = elf_symbols(obj)
         for s in undef & want.keys():
             referenced[s].add(obj)
+    validate_candidates(report, want)
 
     def own(obj: Path, unit: str) -> bool:
         stem = unit.rsplit(".", 1)[0]
@@ -120,27 +214,47 @@ def main() -> int:
         others = [o for o in referenced[s] if not (own(o, unit) and o.is_relative_to(lu.SPLIT_OBJ_DIR))]
         (bad_units if others else ok_units).setdefault(unit, []).append(s)
     ok_units = {u: v for u, v in ok_units.items() if u not in bad_units}
+    syms = {s for v in ok_units.values() for s in v}
+    lines = symbol_data.decode().splitlines(keepends=True)
+    found = set()
+    for i, line in enumerate(lines):
+        m = re.match(r"(\S+) = ", line)
+        if not m or m[1] not in syms:
+            continue
+        symbol = m[1]
+        if symbol in found or ("scope:" in line and "scope:global" not in line):
+            raise ValueError(f"ambiguous or already localized symbol inventory: {symbol}; rebuild first")
+        found.add(symbol)
+        if "scope:global" in line:
+            lines[i] = line.replace("scope:global", "scope:local")
+        else:
+            body, nl = line.rstrip("\n"), "\n" if line.endswith("\n") else ""
+            lines[i] = body + (" scope:local" if "//" in body else " // scope:local") + nl
+    if found != syms:
+        raise ValueError(f"symbols absent from current inventory: {sorted(syms - found)}")
+
+    # Check the same inventory again before reporting a usable plan or writing.
+    # This catches replacement during inspection, not pre-existing stale builds.
+    for path, digest in snapshots.items():
+        if hashlib.sha256(path.read_bytes()).hexdigest() != digest:
+            raise ValueError(f"input changed during localization: {path}; no symbols written")
+
     for u, v in sorted(bad_units.items()):
         print(f"keep  {u}: {', '.join(v)} referenced elsewhere")
-    syms = {s for v in ok_units.values() for s in v}
+        for symbol in sorted(v):
+            for obj in sorted(referenced[symbol]):
+                if not (own(obj, u) and obj.is_relative_to(lu.SPLIT_OBJ_DIR)):
+                    print(f"  {symbol} <- {obj.relative_to(lu.ROOT)}")
     print(f"{len(ok_units)} units / {len(syms)} symbols localizable; {len(bad_units)} units referenced elsewhere")
 
     if args.write and syms:
-        lines = SYMBOLS.read_text().splitlines(keepends=True)
-        n = 0
-        for i, line in enumerate(lines):
-            m = re.match(r"(\S+) = ", line)
-            if m and m[1] in syms and "scope:" not in line:
-                body, nl = line.rstrip("\n"), "\n" if line.endswith("\n") else ""
-                lines[i] = (body + (" scope:local" if "//" in body else " // scope:local")) + nl
-                n += 1
-            elif m and m[1] in syms and "scope:global" in line:
-                lines[i] = line.replace("scope:global", "scope:local")
-                n += 1
         SYMBOLS.write_text("".join(lines))
-        print(f"marked {n} symbols scope:local in {SYMBOLS.relative_to(lu.ROOT)}")
+        print(f"marked {len(syms)} symbols scope:local in {SYMBOLS.relative_to(lu.ROOT)}")
     return 0
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    try:
+        sys.exit(main())
+    except (OSError, ValueError, KeyError, TypeError, struct.error) as exc:
+        sys.exit(f"localization refused: {exc}")
