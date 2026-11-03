@@ -423,7 +423,7 @@ force_active:
   - TDuelEffectNumber__sub_800802F8
   - TEffGuard__class_name
   - TEffHit__class_name
-  - TEffIndirectCtrl__ct
+  - __ct__16TEffIndirectCtrlFlP7TObject
   - TEffIndirectCtrl__name
   - TEffIndirectCtrl__source_buffers
   - TEffIndirectCtrl__sub_802A9548

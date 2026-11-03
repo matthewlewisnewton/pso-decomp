@@ -450,7 +450,12 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/misc/TOExplosiveMachine.cpp": {"mw_version": "GC/2.0"},
     "pso/enemy/TObjEneSlimeTailAttack.cpp": {"mw_version": "GC/2.0"},
     "pso/boss/TBoss8Dragon.cpp": {"mw_version": "GC/2.0"},
-    "pso/effect/TEffIndirectCtrl.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred")},
+    # Deferred generation emits this unit from its last function back, so the
+    # task-pointer table precedes both vtables. -fp_contract on: both texture
+    # waves fuse amplitude*sin+row into fmadds, and the rest of the unit still
+    # matches. -str reuse,readonly: indirect.dat, indinfo.dat and the class
+    # name are referenced from .sdata and stored in .rodata.
+    "pso/effect/TEffIndirectCtrl.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on", "-str reuse,readonly")},
     # GC/1.3.2: the container files 0x8018807C-0x8018D900, the CRC-32 pair
     # (`xoris/xori 0xFFFF`; 2.x always emits `li -1; xor`), and five others.
     # TObjCamera: 1.3.2 copies CameraSoundEvent member by member unscheduled.
