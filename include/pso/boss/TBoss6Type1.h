@@ -61,7 +61,7 @@ struct TBoss6Type1 : public TObjEnemy {
     f32 m_4d8;
     f32 m_4dc;
     s32 m_4e0;
-    u8 unk_4E4[0x4];
+    s32 unk_4e4;
     f32 m_4e8;
     u8 unk_4EC[0x1C];
     s32 m_508;
