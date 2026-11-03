@@ -1009,10 +1009,13 @@ s16 TLobby__sub_803FC820(Conn_804004DC *c, Hdr_803FC4B4 *hdr, B_803FADA0 *src) {
     return ret;
 }
 
+struct ChapName_803FCF44 { char data[7]; };
+const ChapName_803FCF44 lbl_805E1158 = { "avetcp" };
+
 B_803FADA0 *TLobby__sub_803FCF44(Self_803FD74C *fsm) {
     Chap_803FC728 *chap = (Chap_803FC728 *)fsm->f30;
     s32 tick;
-    char name[] = "avetcp";
+    ChapName_803FCF44 name = lbl_805E1158;
     B_803FADA0 *buf;
     u8 *p;
     s16 i;
@@ -1033,8 +1036,8 @@ B_803FADA0 *TLobby__sub_803FCF44(Self_803FD74C *fsm) {
     for (i = 0; i < lbl_805D7A9A; i++) {
         *p++ = tick;
     }
-    NetCopyString((char *)p, name);
-    buf->len += lbl_805D7A9A + (u16)NetStringLength(name) + 1;
+    NetCopyString((char *)p, name.data);
+    buf->len += lbl_805D7A9A + (u16)NetStringLength(name.data) + 1;
     len = buf->len;
     if (len > lbl_805C02D0.f28) {
         len = lbl_805C02D0.f28;
