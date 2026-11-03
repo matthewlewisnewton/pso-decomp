@@ -7,7 +7,6 @@
 struct CreationTextureCacheEntry;
 
 struct TAdSinglePlyChrSelectGC : public TObject {
-    TAdSinglePlyChrSelectGC(TObject *parent);
     virtual ~TAdSinglePlyChrSelectGC();
     void update_state(int);
     void show_confirm_dialog(void *);

@@ -6,6 +6,7 @@
 
 extern "C" {
 void *__nw__7TObjectFUl(u32);
+u8 *TAdSinglePlyChrSelectGC__ct(u8 *arg0, TObject *parent);
 u8 *get_or_create__22TAdMultiPlyChrSelectGCFii(s32 arg0, s32 arg1);
 void *TAdEnterPPPPassGC__ct(void *, s32);
 void *TAdEnterPasswordGC__ct(void *, s32);
@@ -152,7 +153,10 @@ void TAdMultiChgGameModeGC::create_mode_scene() {
         game_mode_scene_instance = (s32)p;
         break;
     case 6:
-        p = new TAdSinglePlyChrSelectGC((TObject *)tl_01);
+        p = __nw__7TObjectFUl(0x60);
+        if (p != NULL) {
+            p = TAdSinglePlyChrSelectGC__ct((u8 *)p, (TObject *)tl_01);
+        }
         game_mode_scene_instance = (s32)p;
         break;
     case 7:
