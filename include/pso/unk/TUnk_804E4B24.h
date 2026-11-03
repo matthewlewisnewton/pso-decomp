@@ -5,6 +5,7 @@
 
 class TUnk_804E4B24 : public TObject {
 public:
+    TUnk_804E4B24(TObject *parent, s32 kind, Vec *pos, f32 half_length);
     virtual ~TUnk_804E4B24();
     void update_collision();
     virtual void run_task();

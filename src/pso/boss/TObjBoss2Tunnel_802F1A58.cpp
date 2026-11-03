@@ -3,8 +3,6 @@
 #include "pso/boss/TUnk_804E4AD4.h"
 #include "pso/boss/TObjBoss2Tunnel.h"
 
-struct RecoveredGlobal_802F1AE0_lbl_804E4AD4 { s32 value; u8 remaining[0x14]; };
-
 extern "C" {
 extern const f32 lbl_805DEC98;
 s32 get_bml_motion(void *, s32);

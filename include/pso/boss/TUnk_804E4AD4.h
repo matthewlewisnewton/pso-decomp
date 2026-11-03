@@ -2,9 +2,11 @@
 #define PSO_BOSS_TUNK_804E4AD4_H
 #include "types.h"
 #include "pso/TObject.h"
+#include "pso/animation/ActorAnimationState.h"
 
 class TUnk_804E4AD4 : public TObject {
 public:
+    TUnk_804E4AD4(TObject *parent, s32 kind);
     virtual ~TUnk_804E4AD4();
     virtual void run_task();
     u8 unk_1C[0x4];
