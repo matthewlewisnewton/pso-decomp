@@ -214,7 +214,11 @@ u8 *__ct__10TEndingPicFv(u8 *ending_pic, u8 *arg1) {
 
 int get_ending_ab_wall_texture_list(void) {  return ending_ab_wall_texture_list; }
 
-void TEndingPic::send_obj_position_event(s32 arg1) {
+// The use-effect members belong to this unit. Include the class after the
+// ending-picture functions so their declarations stay as matched.
+#include "pso/item/TUnk_804F112C.h"
+
+void TUnk_804F112C::send_obj_position_event(s32 arg1) {
     T_80353018 *arg0 = (T_80353018 *)this;
     VObj_18_c82b17 *o = arg0->obj;
     if (o != NULL) {
@@ -228,10 +232,10 @@ void TEndingPic::send_obj_position_event(s32 arg1) {
     }
 }
 
-void TEndingPic::set_phase_18() { send_obj_position_event(18); }
-void TEndingPic::sub_803530A0() { send_obj_position_event(17); }
+void TUnk_804F112C::sub_8035307C() { send_obj_position_event(18); }
+void TUnk_804F112C::sub_803530A0() { send_obj_position_event(17); }
 
-void TEndingPic::update_player_object() {
+void TUnk_804F112C::sub_803530C4() {
     void *temp_r3 = *(void **)((s8 *)this + 0xF0);
     if (is_locally_controlled__10TObjPlayerFPv(temp_r3) != 0) {
         struct VObj_803530C4_80352BB8 *o = (struct VObj_803530C4_80352BB8 *)*(void **)((s8 *)this + 0xF0);
@@ -239,16 +243,16 @@ void TEndingPic::update_player_object() {
     }
 }
 
-void TEndingPic::sub_80353110() { send_obj_position_event(16); }
-void TEndingPic::sub_80353134() { send_obj_position_event(15); }
-void TEndingPic::update_shield() {
+void TUnk_804F112C::sub_80353110() { send_obj_position_event(16); }
+void TUnk_804F112C::sub_80353134() { send_obj_position_event(15); }
+void TUnk_804F112C::sub_80353158() {
     add_actor_hp(*(s32 *)((s8 *)this + 0xF0), get_field_2b8__14TItemProShieldFv(*(s32 *)((s8 *)this + 0xF0)));
 }
-void TEndingPic::sub_80353194() {
+void TUnk_804F112C::sub_80353194() {
     add_actor_tp(*(s32 *)((s8 *)this + 0xF0), obj_getS16_2BA(*(s32 *)((s8 *)this + 0xF0)));
 }
 
     extern const f32 lbl_805DFF34;
-void TEndingPic::sub_803531D0() { send_nearby_player_ids((void*)(*(int*)((char*)this + 0xf0)), lbl_805DFF34); }
+void TUnk_804F112C::sub_803531D0() { send_nearby_player_ids((void*)(*(int*)((char*)this + 0xf0)), lbl_805DFF34); }
 
-void TEndingPic::sub_803531F8() {  }
+void TUnk_804F112C::sub_803531F8() {  }

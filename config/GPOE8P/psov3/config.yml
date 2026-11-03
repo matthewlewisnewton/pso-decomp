@@ -14214,7 +14214,7 @@ force_active:
   - send_guild_card__17TWindowSubComCardFv
   - send_head__10TObjPlayerFv
   - send_login3__9TProtocolFv
-  - send_obj_position_event__10TEndingPicFl
+  - send_obj_position_event__13TUnk_804F112CFl
   - send_packed_action__11TBoss4Type3Flll
   - send_packet_60__6TLobbyFi
   - send_packet__6TLobbyFllll
