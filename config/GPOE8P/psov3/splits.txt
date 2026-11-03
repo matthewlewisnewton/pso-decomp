@@ -9835,10 +9835,14 @@ pso/misc/TChCrTagName.cpp:
 pso/unk/text_802A2A00.cpp:
 	.text       start:0x802A2A00 end:0x802A2BD8
 
+pso/misc/TChCrTagOccHeader.cpp:
+	.text       start:0x802A2BD8 end:0x802A2DF4
+	.data       start:0x804DCC38 end:0x804DCC58
+
 pso/misc/TChCrTagOccupation.cpp:
-	.text       start:0x802A2BD8 end:0x802A3138
+	.text       start:0x802A2DF4 end:0x802A3138
 	.rodata     start:0x80466488 end:0x80466490
-	.data       start:0x804DCC38 end:0x804DCC78
+	.data       start:0x804DCC58 end:0x804DCC78
 
 pso/unk/text_802A3138.cpp:
 	.text       start:0x802A3138 end:0x802A31F8
