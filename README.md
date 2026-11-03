@@ -14,11 +14,11 @@ Nothing from the game is included here. You need your own copy of the game to bu
 | Code | 95.04% | 79.06% |
 | Data | 81.45% | 59.07% |
 | Functions | 98.99% (27,293 of 27,572) | |
-| Units | | 70.96% (3,560 of 5,017) |
+| Units | | 70.96% (3,561 of 5,018) |
 <!-- /progress-table -->
 
 Measured on `PsoV3.dol` on 2026-11-02 at validated source commit
-[`3a621d74f2`](https://github.com/matthewlewisnewton/pso-decomp/commit/3a621d74f2acae28972fe40bf0d6801a3537ddbb).
+[`86d7ed2c46`](https://github.com/matthewlewisnewton/pso-decomp/commit/86d7ed2c46b1f4b8bee3fff01248426f2d32653d).
 The README-only publication commit records the measurements of its parent source tree.
 A function is matched when it compiles to the original's exact bytes. Code, data and
 units are linked when the build takes them from compiled source instead of the original. Data includes `.bss`.

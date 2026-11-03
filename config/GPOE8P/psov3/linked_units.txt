@@ -272,6 +272,7 @@ pso/boss/TBoss6Mag.cpp
 pso/boss/TBoss6MagMine.cpp
 pso/boss/TBoss6Mine.cpp
 pso/boss/TBoss6PlotFalz.cpp
+pso/boss/TBoss6PlotFalz_802B0228.cpp
 pso/boss/TBoss6RockChase.cpp
 pso/boss/TBoss6Rock_8035477C.cpp
 pso/boss/TBoss6Rock_80354A30.cpp
@@ -890,6 +891,7 @@ pso/misc/TChCrTagInformation.cpp
 pso/misc/TChCrTagInformation_802A1FAC.cpp
 pso/misc/TChCrTagInformation_802A200C.cpp
 pso/misc/TChCrTagName.cpp
+pso/misc/TChCrTagOccHeader.cpp
 pso/misc/TChCrTagOccupation.cpp
 pso/misc/TChCrTagPlBack.cpp
 pso/misc/TChCrTagPlGraphic.cpp
@@ -1431,10 +1433,6 @@ pso/misc/TPlayerBattleCtrl4P_80311800.cpp
 pso/misc/TPlayerBattleCtrl4P_803123F4.cpp
 pso/misc/TPlayerBattleCtrl4P_80312BDC.cpp
 pso/misc/TPlayerFootStamp_802B01D8.cpp
-pso/misc/TPlayerFootStamp_802B02B0.cpp
-pso/misc/TPlayerFootStamp_802B03F4.cpp
-pso/misc/TPlayerFootStamp_802B0770.cpp
-pso/misc/TPlayerFootStamp_802B0808.cpp
 pso/misc/TPlyCharData.cpp
 pso/misc/TPlyCharData_8007214C.cpp
 pso/misc/TPlyCharData_801E0A04.cpp
