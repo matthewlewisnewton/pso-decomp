@@ -3,6 +3,7 @@
 #include "pso/misc/TWindowSubCustomEquip.h"
 #include "pso/misc/TWindowSubCustomSelect.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
+#include "pso/misc/TWindowKeyBoardSoft.h"
 #include "pso/object/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/render/render_util.h"
@@ -24,7 +25,6 @@ void draw_action_palette_icon(u8 *, s32, s32);
 extern u8 lbl_8044F738[];
 extern u8 lbl_8044F740[];
 extern const f32 lbl_805DD564;
-s32 try_open__19TWindowKeyBoardSoftFii(s32 arg0, s32 arg1);
 void begin_screen_draw(s32 arg0);
 void draw_textured_quad_at_depth(f32 *q, f32 depth);
 void set_draw_texture_and_color(s32 idx, s32 arg1);
@@ -67,7 +67,7 @@ void draw_cursor_sprite__21TWindowSubCustomEquipFPvPvif(u8 *arg0, Vec2_80275DE8 
     r.v0 = t->y / 256.0f;
     r.u1 = (lbl_805DD560 + t->x) / 256.0f;
     r.v1 = (lbl_805DD560 + t->y) / 256.0f;
-    if (try_open__19TWindowKeyBoardSoftFii((s32)arg0, (s32)&r) != 0) {
+    if (TWindowKeyBoardSoft::try_open(arg0, &r) != 0) {
         draw_textured_quad_at_depth((f32 *)&r, scale);
     }
     TWindowSubStatusDisp::get_player();

@@ -2,13 +2,16 @@
 #define PSO_MISC_TWINDOWMENUMAINMENU_H
 
 #include "types.h"
+#include <stddef.h>
 #include "pso/misc/TUnk_804CE018.h"
+#include "pso/misc/TWindowDrawContext.h"
 
 struct TWindowMenuMainMenu : public TUnk_804CE018 {
     virtual ~TWindowMenuMainMenu();
     void handle_navigation_input();
     void handle_confirm();
     void handle_cancel();
+    void draw_frame(TWindowDrawContext *context);
     int get_menu_flag();
     int is_flag_set();
     virtual void render();
@@ -17,7 +20,10 @@ struct TWindowMenuMainMenu : public TUnk_804CE018 {
     u16 m_20;
     u8 unk_22[0xA];
     s32 m_2c;
-    u8 unk_30[0x24];
+    u8 unk_30[0x10];
+    f32 m_40[2];
+    f32 m_48[2];
+    u8 unk_50[0x4];
     f32 m_54;
     u8 unk_58[0x8];
     u8 m_60;
@@ -28,6 +34,9 @@ struct TWindowMenuMainMenu : public TUnk_804CE018 {
 };
 
 typedef char TWindowMenuMainMenu_size[sizeof(TWindowMenuMainMenu) == 0x144 ? 1 : -1];
+typedef char TWindowMenuMainMenu_m40[offsetof(TWindowMenuMainMenu, m_40) == 0x40 ? 1 : -1];
+typedef char TWindowMenuMainMenu_m48[offsetof(TWindowMenuMainMenu, m_48) == 0x48 ? 1 : -1];
+typedef char TWindowMenuMainMenu_m54[offsetof(TWindowMenuMainMenu, m_54) == 0x54 ? 1 : -1];
 
 extern "C" {
 u8 *TWindowMenuMainMenu__ct(TWindowMenuMainMenu *arg0, s32 arg1, s16 arg2);

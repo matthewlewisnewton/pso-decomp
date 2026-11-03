@@ -1,6 +1,7 @@
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TWindowKeyBoardSoft_8024E68C.h"
+#include "pso/misc/TWindowKeyBoardSoft.h"
 #include "pso/misc/TWindowSubStatusDisp_8025B050.h"
 #include "pso/misc/TWindowSubStatusDisp_803DEE6C.h"
 #include "pso/system/memory.h"
@@ -116,7 +117,7 @@ void draw_window_uv_sprite_part(Win_8025B0D0 *arg0, Ref_8025B0D0 *arg1) {
     if (arg0->flags & 0x10) {
         apply_context_transform_to_rect(arg1, &q);
         draw_textured_quad_at_depth((f32 *)&q, scale);
-    } else if (try_open__19TWindowKeyBoardSoftFii((s32)arg1, (s32)&q) != 0) {
+    } else if (TWindowKeyBoardSoft::try_open(arg1, &q) != 0) {
         draw_textured_quad_at_depth((f32 *)&q, scale);
     }
     TWindowSubStatusDisp::get_player();

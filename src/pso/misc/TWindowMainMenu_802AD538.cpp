@@ -1,5 +1,4 @@
 #include "pso/system/SoundEffect.h"
-#include <stddef.h>
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TWindowCtrl_8024A054.h"
@@ -10,6 +9,7 @@ struct TWindowSubComCard;
 #include "pso/misc/TLanguage.h"
 #include "pso/misc/TWindowKeyBoardSoft.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
+#include "pso/unk/text_8026CB5C.h"
 
 struct Item_802AE4DC { u8 pad[0x12]; u8 sel; };
 
@@ -97,31 +97,6 @@ struct Item_802AD7F0 {
     s8 x14;
 };
 
-// Draw context shared by the content frame and the label quads.
-struct TWindowDrawContext {
-    f32 x;
-    f32 y;
-    f32 w;
-    f32 h;
-    u8 unknown10[0x0C];
-    f32 inner_h;
-    u8 unknown20[0x14];
-    u32 color;
-    f32 depth;
-    f32 clip_left;
-    f32 clip_top;
-};
-
-typedef char TWindowDrawContextSize[sizeof(TWindowDrawContext) == 0x44 ? 1 : -1];
-typedef char TWindowDrawContextInnerHeight[offsetof(TWindowDrawContext, inner_h) == 0x1C ? 1 : -1];
-typedef char TWindowDrawContextColor[offsetof(TWindowDrawContext, color) == 0x34 ? 1 : -1];
-typedef char TWindowDrawContextDepth[offsetof(TWindowDrawContext, depth) == 0x38 ? 1 : -1];
-typedef char TWindowDrawContextClipLeft[offsetof(TWindowDrawContext, clip_left) == 0x3C ? 1 : -1];
-typedef char TWindowDrawContextClipTop[offsetof(TWindowDrawContext, clip_top) == 0x40 ? 1 : -1];
-
-s32 try_open__19TWindowKeyBoardSoftFii(s32 arg0, s32 arg1);
-s32 fn_8026CB68();
-void *open_singleton__19TWindowKeyBoardSoftFiiii(void *, void *, s32, f32, s32);
 s32 is_split_screen();
 int copy_vec2__28TWindowSubSymbolChatPartsSetFPv(void *, void *);
 void begin_render__20TWindowSubStatusDispFl(void);
@@ -189,7 +164,7 @@ void draw_item_labels__15TWindowMainMenuFv(Item_802AD538 *p, TWindowDrawContext 
         quad[5] = uv->v / 256.0f;
         quad[6] = (98.0f + uv->u) / 256.0f;
         quad[7] = (16.0f + uv->v) / 256.0f;
-        if (try_open__19TWindowKeyBoardSoftFii((s32)context, (s32)quad) != 0) {
+        if (TWindowKeyBoardSoft::try_open(context, quad) != 0) {
             draw_textured_quad_at_depth(quad, scale);
         }
         TWindowSubStatusDisp::get_player();
@@ -451,9 +426,12 @@ loop_1:
     goto loop_1;
 }
 
+struct RowPos_802AD538 { f32 y; f32 x; };
+
 void get_row_position__15TWindowMainMenuFiPvi(s32 arg0, void *arg1, s32 arg2) {
-    *(f32 *)((s8 *)arg1 + 0) = (f32) 0.0f;
-    *(f32 *)((s8 *)arg1 + 4) = (f32) (16.0f * (f32) arg2);
+    RowPos_802AD538 *row = (RowPos_802AD538 *)arg1;
+    row->y = 0.0f;
+    row->x = 16.0f * (f32)arg2;
 }
 
 s32 is_not_split_screen__15TWindowMainMenuFv(void *) {
@@ -509,8 +487,7 @@ void TWindowMainMenu::set_target_y(f32 farg0) {
 }
 
 void TWindowMainMenu::update_scaled_position() {
-    s32 arg0 = (s32)this;
-    set_target_y(16.0f * (f32) ((s32 (*)())count_active_items__15TWindowMainMenuFi)());
+    set_target_y(16.0f * (f32)count_active_items__15TWindowMainMenuFi((s32)this));
 }
 
 void TWindowMainMenu::draw_entries_reversed(u8 *arg1) {
@@ -529,20 +506,19 @@ void TWindowMainMenu::draw_entries_reversed(u8 *arg1) {
 extern GinjaTextureList *lbl_805D63F0;
 void apply_context_transform_to_rect(void *, f32 *);
 
-void draw_frame__19TWindowMenuMainMenuFv(TWindowMenuMainMenu *window, TWindowDrawContext *context) {
+void TWindowMenuMainMenu::draw_frame(TWindowDrawContext *context) {
     // Rectangle coordinates followed by texture coordinates.
     f32 quad[8];
-    f32 depth = -1.0f / (0.299f + window->m_54);
+    f32 depth = -1.0f / (0.299f + m_54);
     f32 offset = 0.0f;
     f32 remaining = context->inner_h;
     f32 height;
     begin_screen_draw(1);
     set_current_texture_list(lbl_805D63F0);
     set_draw_texture_and_color(11, context->color);
-    if (is_not_split_screen__15TWindowMainMenuFv(window)) {
+    if (is_not_split_screen__15TWindowMainMenuFv(this)) {
         quad[0] = context->x;
-        f32 zero = 0.0f;
-        quad[1] = context->y + zero;
+        quad[1] = context->y + offset;
         quad[2] = 18.0f + quad[0];
         quad[3] = 28.0f + quad[1];
         quad[4] = 0.8984375f; quad[5] = 0.0f;
@@ -560,12 +536,10 @@ void draw_frame__19TWindowMenuMainMenuFv(TWindowMenuMainMenu *window, TWindowDra
         offset += 23.0f;
         remaining -= 23.0f;
     } else {
-        f32 x = context->x;
-        quad[0] = x; f32 zero = 0.0f;
-        quad[1] = context->y + zero;
-        quad[2] = x + context->w;
-        f32 edge = 39.0f + quad[1];
-        quad[3] = 3.0f + edge;
+        quad[0] = context->x;
+        quad[1] = context->y + offset;
+        quad[2] = context->x + context->w;
+        quad[3] = 3.0f + (39.0f + quad[1]);
         quad[4] = 0.453125f; quad[5] = 0.6796875f;
         quad[6] = 0.0f; quad[7] = 0.515625f;
         apply_context_transform_to_rect(context, quad);
@@ -600,14 +574,14 @@ void draw_frame__19TWindowMenuMainMenuFv(TWindowMenuMainMenu *window, TWindowDra
 
 TWindowDrawContext *setup_content_frame__15TWindowMainMenuFPv(TWindowMenuMainMenu *window_menu_main_menu) {
     f32 v;
-    TWindowDrawContext *r;
-    r = (TWindowDrawContext *)open_singleton__19TWindowKeyBoardSoftFiiii((u8 *)window_menu_main_menu + 0x40, (u8 *)window_menu_main_menu + 0x48, fn_8026CB68(), window_menu_main_menu->m_54, window_menu_main_menu->m_2c);
+    TWindowKeyBoardSoft *r;
+    r = TWindowKeyBoardSoft::open_singleton(window_menu_main_menu->m_40, window_menu_main_menu->m_48, fn_8026CB68(), window_menu_main_menu->m_54, window_menu_main_menu->m_2c);
     if (is_not_split_screen__15TWindowMainMenuFv(window_menu_main_menu) != 0) {
         v = 51.0f;
     } else {
         v = 39.0f;
     }
-    ((TWindowKeyBoardSoft *)r)->set_bounds(10.0f + r->x, r->y + v, (r->x + r->w) - 10.0f, (r->y + r->h) - 39.0f);
+    r->set_bounds(10.0f + r->x, r->y + v, (r->x + r->w) - 10.0f, (r->y + r->h) - 39.0f);
     r->color = ((s32)(255.0f * TWindowSubComCard__sub_80244784((TWindowSubComCard *)window_menu_main_menu)) << 24) | 0xFF0000 | 0xFFFF;
     return r;
 }
