@@ -1,3 +1,4 @@
+#include "pso/system/SoundSlotPitch.h"
 #include "types.h"
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TTecRaFoie.h"
@@ -56,7 +57,6 @@ extern s32 lbl_805D62AC;
 extern const f32 lbl_805DC740;
 int TLobby__sub_80226308(void* p);
 void TTecRaFoie__sub_80226254(void);
-s32 set_sound_slot_pitch();
 
 int TLobby::get_lobby_data() {  return lbl_805D6280; }
 
@@ -87,9 +87,9 @@ void update_music_stream_gain(s32 user) {
 
 void TTecRaFoie__sub_80226254(void) {  }
 
-void TTecRaFoie::update_technique_slot(s32 arg0) {
-    if (((s32) lbl_805D62B0 != 0) && (arg0 >= 0) && (arg0 < 0x28)) {
-        set_sound_slot_pitch();
+void update_technique_slot__10TTecRaFoieFl(s32 slot, s32 pitch, s32 duration) {
+    if (((s32) lbl_805D62B0 != 0) && (slot >= 0) && (slot < 0x28)) {
+        set_sound_slot_pitch(slot, pitch, duration);
     }
 }
 

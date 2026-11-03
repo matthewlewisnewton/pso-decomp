@@ -6,7 +6,7 @@
 
 struct TShopKeepItemWindow : public TShopWindowBase {
     virtual ~TShopKeepItemWindow();
-    s32 handle_deposit_list_select();
+    void handle_deposit_list_select();
     virtual void vfunc_11();
     virtual void vfunc_7();
     virtual void vfunc_6();

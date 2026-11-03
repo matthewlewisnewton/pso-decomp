@@ -85,7 +85,7 @@ struct Rec_803592B8 {
 extern "C" {
 s32 __ct__11TObjControlFP7TObject(int, int);
 s32 __nw__7TObjectFUl(int);
-extern RecoveredGlobal_803591D0_TObjNpcNgcBase__data_805439A8 TObjNpcNgcBase__data_805439A8;
+RecoveredGlobal_803591D0_TObjNpcNgcBase__data_805439A8 TObjNpcNgcBase__data_805439A8;
 extern s32 tl_04;
 extern Rec_803592B8 npc_delta_w_body_model_names[];
 typedef struct RecoveredGlobal_803591D0_TObjNpcNgcBase__data_805439A8 RecoveredGlobal_803591D0_TObjNpcNgcBase__data_805439A8;

@@ -119,7 +119,7 @@ void apply_bonuses(u8 *item, s32 arg1, u8 *a, u8 *b, Stats_8010BA9C *st);
 s32 is_usable__9TItemDataFPv(void *arg0);
 s32 is_custom_name_srank__9TItemDataFPv(u8 *arg0);
 void serialize_mag__9TItemDataFPvPv(Item_8010D510 *item, const Mag_8010D510 *mag);
-void init__9TItemDataFv(TItemData_8010E344 *self);
+void init__9TItemDataFv(void *self);
 s32 memset(s8 *, s32, s32);
 }
 #define get_set_bonus_multiplier__9TItemDataFPvi ((f32 (*)(void *, s32))get_set_bonus_multiplier__9TItemDataFPvi)
@@ -1665,20 +1665,20 @@ s32 TItemData::calc_price() {
 }
 #pragma pop
 
-void init__9TItemDataFv(TItemData_8010E344 *self) {
+void TItemData::init() {
     s32 i;
-    self->data[0] = 0;
-    self->data[1] = 0;
-    self->data[2] = 0;
-    self->data[3] = 0;
-    self->data[4] = 0;
-    self->data[5] = 0;
-    self->data2 = 0;
+    data1.data_u8[0] = 0;
+    data1.data_u8[1] = 0;
+    data1.data_u8[2] = 0;
+    data1.data_u8[3] = 0;
+    data1.data_u8[4] = 0;
+    data1.data_u8[5] = 0;
+    data2.data_u32 = 0;
     for (i = 0; i < 3; i++) {
-        self->stats[i].a = 0;
-        self->stats[i].b = 0;
+        data1.data_u8_pair[i + 3][0] = 0;
+        data1.data_u8_pair[i + 3][1] = 0;
     }
-    self->id = -1;
+    id = 0xFFFFFFFF;
 }
 
 s32 TItemData::calc_buy_price() {
