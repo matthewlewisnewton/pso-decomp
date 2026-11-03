@@ -36,6 +36,7 @@ struct NJS_OBJECT;
 #include "pso/object/TObjFish.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/boss/TBoss7TentacleNeedle.h"
 #include "pso/boss/TBoss7DeRolLeC.h"
 #include "pso/TObject.h"
 #include "pso/system/vector.h"
@@ -1459,13 +1460,11 @@ struct Boss_802E83E8 { u8 pad[0x728]; s32 timer; s32 count; u8 pad730[0x7CC - 0x
 
 extern "C" {
 void *get_player_by_client_id(s32 i);
-void *TBoss7TentacleNeedle__ct(void *o, void *boss, void *pos);
 }
 
 void TObjFish__sub_802E83E8(u8 *boss, u32 k) {
     Boss_802E83E8 *self = (Boss_802E83E8 *)boss;
     u8 *player;
-    void *o;
     u16 id;
     u16 n;
     switch (k) {
@@ -1495,10 +1494,7 @@ void TObjFish__sub_802E83E8(u8 *boss, u32 k) {
                 self->count--;
                 player = (u8 *)get_player_by_client_id(self->targets[self->count & 3]);
                 if (player != NULL) {
-                    o = TObject::operator new(0x7C);
-                    if (o != NULL) {
-                        TBoss7TentacleNeedle__ct(o, boss, player + 0x38);
-                    }
+                    new TBoss7TentacleNeedle((TObject *)boss, &((TObjPlayer *)player)->position);
                 }
             } else {
                 self->timer--;

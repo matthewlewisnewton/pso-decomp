@@ -9,12 +9,37 @@
 #include "pso/TBoss7Tentacle.h"
 #include "pso/boss/TBoss7PhotonBullet.h"
 #include "pso/boss/TBoss7TentacleNeedle.h"
+#include "pso/boss/TBoss4Type2_800874F4.h"
 #include "pso/boss/TBoss7Joint.h"
 #include "pso/boss/TObjBoss2Tunnel.h"
 #include "pso/player/TObjPlayer.h"
 
 struct Ten_802F08A8;
 extern "C" {
+void TBoss7Tentacle__sub_802EF954(void *p);
+u8 TBoss7Tentacle__sub_802F0904(u8 *arg0);
+void TBoss7Tentacle__sub_802F0918(void *p);
+void TBoss7Tentacle__sub_802F09B4(void *p);
+void TBoss7Tentacle__sub_802F09C8(void *a0);
+void sub_802F09EC__14TBoss7TentacleFv(void *p);
+void sub_802F09FC__14TBoss7TentacleFv(u8 *arg0);
+void TBoss7Tentacle__sub_802F0A14(u8 *arg0);
+void TBoss7Tentacle__sub_802F0A2C(u8 *arg0);
+void TBoss7Tentacle__sub_802F0A44(u8 *arg0);
+void TBoss7Tentacle__sub_802F0AD0(void *a0);
+void TBoss7Tentacle__sub_802F0AF0(u8 *arg0);
+void TBoss7Tentacle__sub_802F0B58(u8 *arg0);
+void TBoss7Tentacle__sub_802F0B70(void *p);
+void TBoss7Tentacle__sub_802F0B80(void *p);
+void TObjPlayer__sub_802EFEC4(void);
+void TObjPlayer__sub_802F0D2C(void);
+void *__dt__20TBoss7TentacleNeedleFv(void *arg0, s16 arg1);
+void advance_needle_timer__20TBoss7TentacleNeedleFv(void *arg0);
+void damage_nearby_players__14TBoss7TentacleFPv(u8 *arg0);
+void fn_802EFEA8(void);
+void render__14TBoss7TentacleFv(u8 *arg0);
+void run_task__14TBoss7TentacleFv(u8 *arg0);
+void update_retract_state__14TBoss7TentacleFPv(TBoss7Tentacle *arg0);
 f64 atan2_float(f32, f32);
 s32 approach_angle_limited(s32, s32, s32);
 s32 play_sound_effect(int, void *, int, int);
@@ -282,43 +307,42 @@ void *__dt__20TBoss7TentacleNeedleFv(void *arg0, s16 arg1) {
     return arg0;
 }
 
-void __ct__7TObjectFP7TObject(void *, void *);
-void *create_particle_emitter(void *pos, s32 id);
+}
 
-struct Arr_802EFD08 { u8 pad[0x44]; s32 a[12]; };
-
-#pragma push
-#pragma fp_contract on
-u8 *TBoss7TentacleNeedle__ct(TBoss7TentacleNeedle *self, void *parent, V_802F0A5C *pos) {
-    __ct__7TObjectFP7TObject((void *)self, parent);
-    *(s32 **)((s8 *)self + 0x18) = __vt__20TBoss7TentacleNeedle;
-    self->m_name = boss7_tentacle_needle_name_ptr;
-    *(f32 *)((s8 *)self + 0x34) = 1e-05f;
-    *(s32 *)((s8 *)self + 0x28) = 0;
-    *(s32 *)((s8 *)self + 0x2C) = (s32)(65536.0f * (3.0517578e-05f * (f32)rand()));
-    *(s32 *)((s8 *)self + 0x30) = 0;
-    *(f32 *)((s8 *)self + 0x1C) = 5.0f * (3.0517578e-05f * (f32)rand()) + pos->x - 2.5f;
-    *(f32 *)((s8 *)self + 0x20) = pos->y;
-    *(f32 *)((s8 *)self + 0x24) = 5.0f * (3.0517578e-05f * (f32)rand()) + pos->z - 2.5f;
-    *(s32 *)((s8 *)self + 0x38) = 0;
-    *(s32 *)((s8 *)self + 0x3C) = 0;
-    s32 w0; s32 w1; s32 w2; s32 v[3];
+TBoss7TentacleNeedle::TBoss7TentacleNeedle(TObject *parent, Vec *pos)
+    : TObject(parent) {
+    m_name = boss7_tentacle_needle_name_ptr;
+    m_34 = 1e-05f;
+    m_28 = 0;
+    m_2c = (s32)(65536.0f * (3.0517578e-05f * (f32)rand()));
+    m_30 = 0;
+    position.x = 5.0f * (3.0517578e-05f * (f32)rand()) + pos->x - 2.5f;
+    position.y = pos->y;
+    position.z = 5.0f * (3.0517578e-05f * (f32)rand()) + pos->z - 2.5f;
+    m_38 = 0;
+    m_3c = 0;
+    // The emitter position is passed as a three-word copy. Vec initialization
+    // schedules different registers than the original lwz/stw sequence.
+    s32 w0;
+    s32 w1;
+    s32 w2;
+    s32 emitter_words[3];
     w2 = ((s32 *)pos)[0];
     w0 = w2;
     w1 = ((s32 *)pos)[1];
     w2 = ((s32 *)pos)[2];
-    v[0] = w0;
-    v[1] = w1;
-    v[2] = w2;
-    *(s32 *)((s8 *)self + 0x40) = (s32)create_particle_emitter(v, 0x212);
+    emitter_words[0] = w0;
+    emitter_words[1] = w1;
+    emitter_words[2] = w2;
+    m_40 = create_particle_emitter(emitter_words, 0x212);
     for (s32 i = 0; i < 12; i++) {
-        ((Arr_802EFD08 *)self)->a[i] = 0;
+        target_flags[i] = 0;
     }
-    *(s32 *)((s8 *)self + 0x78) = boss7_tentacle_needle_target_state.value;
-    *(f32 *)((s8 *)self + 0x74) = 0.0f;
-    return (u8 *)self;
+    m_78 = boss7_tentacle_needle_target_state.value;
+    m_74 = 0.0f;
 }
-#pragma pop
+
+extern "C" {
 
 void fn_802EFEA8(void) {
     *(s32 *)((s8 *)(&(*(RecoveredGlobal_802EFEA8_lbl_80541918 *)&boss7_tentacle_needle_target_state).value) + 0) = 0;
@@ -552,8 +576,6 @@ extern "C" {
 f32 newton_sqrtf(f32);
 }
 
-#pragma push
-#pragma fp_contract on
 void TBoss7Tentacle__sub_802F0608(TBoss7Tentacle *tentacle, f32 len) {
     s32 i;
     s32 prev, ang;
@@ -607,7 +629,6 @@ void TBoss7Tentacle__sub_802F0608(TBoss7Tentacle *tentacle, f32 len) {
         }
     }
 }
-#pragma pop
 
 void TBoss7Tentacle::advance_path_position() {
     Ten_802F08A8 *o = (Ten_802F08A8 *)this;
