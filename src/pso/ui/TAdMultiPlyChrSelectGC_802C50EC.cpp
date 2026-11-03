@@ -365,12 +365,18 @@ void TAdMultiPlyChrSelectGC__sub_802C561C(S_802C50EC *self) {
     }
 }
 
-// The selected-cell table has four 12-byte rows; -1 marks an occupied cell.
+// find_active_slot ignores its receiver, but every original call still passes
+// the selection object in r3. This is the call already used by update_selection.
+#define FIND_SLOT(o) ((s32 (*)(void *))find_active_slot__22TAdMultiPlyChrSelectGCFv)(o)
+
+// -1 in the selection table marks an occupied cell. Confirming that cell
+// plays the reject sound and leaves the cursor where it is.
 #pragma push
 #pragma fp_contract on
 void TAdMultiPlyChrSelectGC__sub_802C5688(S_802C50EC *self) {
     u32 cell[2];
-    s32 row = self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC] + 1;
+    s32 *sel_row = self->sel[TAdMultiPlyChrSelectGC__data_805D67D8];
+    s32 row = sel_row[self->f4EC] + 1;
     s32 col = self->f4EC + 1;
     s32 *entry = &TAdMultiPlyChrSelectGC__data_804E0A68[row][col];
     if (*entry == -1) {
@@ -379,18 +385,19 @@ void TAdMultiPlyChrSelectGC__sub_802C5688(S_802C50EC *self) {
     }
     TAdMultiPlyChrSelectGC__data_804E0AE0[TAdMultiPlyChrSelectGC__data_805D67D8] = 1;
     *entry = -1;
-    ((s32 *)&TAdMultiPlyChrSelectGC__data_804E0A48)[TAdMultiPlyChrSelectGC__data_805D67D8] = self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC] + self->f4EC * 4;
+    ((s32 *)&TAdMultiPlyChrSelectGC__data_804E0A48)[TAdMultiPlyChrSelectGC__data_805D67D8] = sel_row[self->f4EC] + self->f4EC * 4;
     self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].x = self->quad[self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC]][self->f4EC].x;
     self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].z = self->quad[self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC]][self->f4EC].z;
     self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].y = self->quad[self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC]][self->f4EC].y;
     self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].w = self->quad[self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC]][self->f4EC].w;
     self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].u0 = TAdMultiPlyChrSelectGC__data_805DE56C;
-    self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].v0 = (f32)TAdMultiPlyChrSelectGC__data_805D67D8 * lbl_80471CE0[1] * TAdMultiPlyChrSelectGC__data_805DE584;
+    self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].v0 = ((f32)TAdMultiPlyChrSelectGC__data_805D67D8 * lbl_80471CE0[1]) * TAdMultiPlyChrSelectGC__data_805DE584;
     self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].u1 = lbl_80471CE0[0] * TAdMultiPlyChrSelectGC__data_805DE584;
     self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].v1 = ((f32)TAdMultiPlyChrSelectGC__data_805D67D8 * lbl_80471CE0[1] + lbl_80471CE0[1]) * TAdMultiPlyChrSelectGC__data_805DE584;
     self->a[self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC]][self->f4EC] = 0;
     TAdMultiPlyChrSelectGC::add_selected_slot();
-    TAdMultiPlyChrSelectGC__data_805D67D8 = find_active_slot__22TAdMultiPlyChrSelectGCFv();
+    TAdMultiPlyChrSelectGC__data_805D67D8 = FIND_SLOT(self);
+    // find_first_open_cell leaves cell unchanged when every scanned entry is taken.
     TAdMultiPlyChrSelectGC::find_first_open_cell((s32)self, cell);
     self->f4EC = cell[1] - 1;
     self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC] = cell[0] - 1;
@@ -453,6 +460,9 @@ void TAdMultiPlyChrSelectGC::split_slot_index(s32 arg0, s32 *arg1, s32 *arg2) {
     *arg2 = var_r3;
 }
 
+// Columns 1..2, rows 1..4. A hit writes arg1[0] = row and arg1[1] = column.
+// If no cell equals 1, both words are left as the caller passed them. There is
+// no sentinel and no free-cell assumption; the callers still read the words.
 void TAdMultiPlyChrSelectGC::find_first_open_cell(s32 arg0, u32 *arg1) {
     u32 p;
     s32 q;
@@ -573,7 +583,8 @@ void TAdMultiPlyChrSelectGC__sub_802C5F1C(void *object, int) {
             f32 v = lbl_805DE588 * (f32)slot;
             self->quad[i][j].v0 = v * TAdMultiPlyChrSelectGC__data_805DE584;
             self->quad[i][j].u1 = lbl_805DE58C;
-            self->quad[i][j].v1 = TAdMultiPlyChrSelectGC__data_805DE584 * (lbl_805DE588 + v);
+            f32 span = lbl_805DE588 + v;
+            self->quad[i][j].v1 = span * TAdMultiPlyChrSelectGC__data_805DE584;
         }
     }
     self->cursor[0][4] = lbl_805DE590;
@@ -731,7 +742,7 @@ void TAdMultiPlyChrSelectGC__sub_802C6660(S_802C50EC *self) {
     s32 col, row;
     u32 cell[2];
     for (u32 i = 0; i < 4; i++) {
-        if (is_multiplayer_character_slot_selected(i)) {
+        if (((s32 (*)(s32))is_multiplayer_character_slot_selected)(i) != 0) {
             TAdMultiPlyChrSelectGC__data_804E0AE0[i] = 1;
             TAdMultiPlyChrSelectGC::split_slot_index(i, &col, &row);
             self->quad[i + 4][0].x = self->quad[row][col].x;
@@ -739,13 +750,16 @@ void TAdMultiPlyChrSelectGC__sub_802C6660(S_802C50EC *self) {
             self->quad[i + 4][0].y = self->quad[row][col].y;
             self->quad[i + 4][0].w = self->quad[row][col].w;
             self->quad[i + 4][0].u0 = TAdMultiPlyChrSelectGC__data_805DE56C;
-            self->quad[i + 4][0].v0 = (f32)(s32)i * lbl_80471CE0[1] * TAdMultiPlyChrSelectGC__data_805DE584;
+            self->quad[i + 4][0].v0 = ((f32)(s32)i * lbl_80471CE0[1]) * TAdMultiPlyChrSelectGC__data_805DE584;
             self->quad[i + 4][0].u1 = lbl_80471CE0[0] * TAdMultiPlyChrSelectGC__data_805DE584;
             self->quad[i + 4][0].v1 = ((f32)(s32)i * lbl_80471CE0[1] + lbl_80471CE0[1]) * TAdMultiPlyChrSelectGC__data_805DE584;
-            TAdMultiPlyChrSelectGC__data_804E0A68[row + 1][col + 1] = -1;
+            s32 row_i = row + 1;
+            s32 col_i = col + 1;
+            s32 *occupied = &TAdMultiPlyChrSelectGC__data_804E0A68[row_i][col_i];
+            *occupied = -1;
         }
     }
-    TAdMultiPlyChrSelectGC__data_805D67D8 = find_active_slot__22TAdMultiPlyChrSelectGCFv();
+    TAdMultiPlyChrSelectGC__data_805D67D8 = FIND_SLOT(self);
     TAdMultiPlyChrSelectGC::find_first_open_cell((s32)self, cell);
     self->f4EC = cell[1] - 1;
     self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC] = cell[0] - 1;
@@ -839,7 +853,6 @@ loop_1:
     }
     goto loop_1;
 }
-#define FIND_SLOT(o) ((s32 (*)(void *))find_active_slot__22TAdMultiPlyChrSelectGCFv)(o)
 void TAdMultiPlyChrSelectGC::update_selection() {
     S_802C6AC8 *o = (S_802C6AC8 *)this;
     u32 i;
