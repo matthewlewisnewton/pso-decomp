@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/TParticleCtrl.h"
@@ -101,7 +102,6 @@ extern RecoveredGlobal_8022FE84_lbl_804CC55C lbl_804CC55C;
 extern "C" {
 
 void queue_destruction__7TObjectFv(void *self);
-void mem_free(void *p);
 void __dl__7TObjectFPv(void *);
 extern TTecFoieData_80230144 TTecFoie__emitter_profile_table[];
 extern void *__vt__8TTecFoie[];
@@ -109,7 +109,6 @@ TTecFoie_80230144 *__dt__8TTecFoieFv(TTecFoie_80230144 *self, s16 deleting);
 s32 attach_particle_model(int, int, int, int, int, f32);
 void *spawn_particle_effect_with_rotation(void *pos, void *dir, s32 id, u16 e);
 void *spawn_continuous_particle_effect_with_flags(void *, s32, u16);
-s32 mem_alloc(s32);
 extern s32 lbl_805D63B0;
 extern const f32 lbl_805DC7F8;
 
@@ -137,7 +136,7 @@ void TTecFoie::create_particle_emitters() {
   fwd.y = 0;
   fwd.z = self->az;
   spawn_directional_particle(self->pos, &fwd, 0x18);
-  self->emitters = (void **) mem_alloc(TTecFoie__emitter_profile_table[self->band].count * 4);
+  self->emitters = (void **) reinterpret_cast<s32>(::operator new[](TTecFoie__emitter_profile_table[self->band].count * 4));
   for (i = 0; i < TTecFoie__emitter_profile_table[self->band].count; i++)
   {
     Binding_8022FC94 *b = &(*((Binding_8022FC94 **) (&TTecFoie__emitter_profile_table[self->band])))[i];
@@ -227,7 +226,7 @@ TTecFoie_80230144 *__dt__8TTecFoieFv(TTecFoie_80230144 *self, s16 deleting) {
         for (u32 i = 0; i < TTecFoie__emitter_profile_table[self->band].count; ++i) {
             queue_destruction__7TObjectFv(self->emitters[i]);
         }
-        mem_free(self->emitters);
+        ::operator delete[](self->emitters);
         ((TObjPlayer *)self)->destroy_technique_effect_resources(0);
         if (deleting > 0) __dl__7TObjectFPv(self);
     }

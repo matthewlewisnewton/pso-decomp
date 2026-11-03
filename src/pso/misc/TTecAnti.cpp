@@ -1,3 +1,4 @@
+#include "pso/system/SoundSlotPitch.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TParticleCtrl_800867E4.h"
@@ -17,7 +18,6 @@ const char *TTecAnti_name_ref = "TTecAnti";
 
 struct Obj_8022ACB4 { u8 pad[0xA6]; s16 state; };
 extern "C" {
-s32 update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
 
 void TTecAnti::play_anti_cast_sound() {
     Obj_8022ACB4 *arg0 = (Obj_8022ACB4 *)this;

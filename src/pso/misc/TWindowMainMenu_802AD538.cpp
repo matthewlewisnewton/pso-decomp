@@ -1,4 +1,5 @@
 #include "pso/system/SoundEffect.h"
+#include <stddef.h>
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TWindowCtrl_8024A054.h"
@@ -8,8 +9,6 @@ struct TWindowSubComCard;
 #include "pso/misc/TWindowMainMenu.h"
 #include "pso/misc/TLanguage.h"
 #include "pso/misc/TWindowKeyBoardSoft.h"
-#include "pso/misc/TWindowKeyBoardSoft_8024E68C.h"
-#include "pso/unk/text_8026CB5C.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 
 struct Item_802AE4DC { u8 pad[0x12]; u8 sel; };
@@ -70,7 +69,6 @@ struct RecoveredGlobal_802AE59C_lbl_8050E208 {
     u8 remaining[0x1AC];
 };
 
-
 typedef char RecoveredGlobal_802AE59C_lbl_8050E208_size[sizeof(RecoveredGlobal_802AE59C_lbl_8050E208) == 0x1B0 ? 1 : -1];
 
 struct Item_802AD538 {
@@ -85,9 +83,7 @@ struct Item_802AD538 {
     s8 x14;
 };
 
-
 struct UV_802AD538 { f32 u, v; };
-
 
 struct Item_802AD7F0 {
     f32 x0;
@@ -101,6 +97,31 @@ struct Item_802AD7F0 {
     s8 x14;
 };
 
+// Draw context shared by the content frame and the label quads.
+struct TWindowDrawContext {
+    f32 x;
+    f32 y;
+    f32 w;
+    f32 h;
+    u8 unknown10[0x0C];
+    f32 inner_h;
+    u8 unknown20[0x14];
+    u32 color;
+    f32 depth;
+    f32 clip_left;
+    f32 clip_top;
+};
+
+typedef char TWindowDrawContextSize[sizeof(TWindowDrawContext) == 0x44 ? 1 : -1];
+typedef char TWindowDrawContextInnerHeight[offsetof(TWindowDrawContext, inner_h) == 0x1C ? 1 : -1];
+typedef char TWindowDrawContextColor[offsetof(TWindowDrawContext, color) == 0x34 ? 1 : -1];
+typedef char TWindowDrawContextDepth[offsetof(TWindowDrawContext, depth) == 0x38 ? 1 : -1];
+typedef char TWindowDrawContextClipLeft[offsetof(TWindowDrawContext, clip_left) == 0x3C ? 1 : -1];
+typedef char TWindowDrawContextClipTop[offsetof(TWindowDrawContext, clip_top) == 0x40 ? 1 : -1];
+
+s32 try_open__19TWindowKeyBoardSoftFii(s32 arg0, s32 arg1);
+s32 fn_8026CB68();
+void *open_singleton__19TWindowKeyBoardSoftFiiii(void *, void *, s32, f32, s32);
 s32 is_split_screen();
 int copy_vec2__28TWindowSubSymbolChatPartsSetFPv(void *, void *);
 void begin_render__20TWindowSubStatusDispFl(void);
@@ -123,18 +144,6 @@ void set_draw_texture_and_color(s32 idx, s32 arg1);
 
 extern UV_802AD538 main_menu_label_uv_table[];
 extern RecoveredGlobal_802AE59C_lbl_8050E208 controller_input_state;
-extern const f32 lbl_805DE138;
-extern const f32 lbl_805DE13C;
-extern const f32 lbl_805DE140;
-extern const f32 lbl_805DE144;
-extern const f32 lbl_805DE148;
-extern const f32 lbl_805DE150;
-extern const float lbl_805DE158;
-extern f32 lbl_805DE15C;
-extern f32 lbl_805DE160;
-extern f32 lbl_805DE164;
-extern const f32 lbl_805DE1A4;
-extern f32 lbl_805DE1A8;
 
 void draw_item_labels__15TWindowMainMenuFv(Item_802AD538 *p, TWindowDrawContext *context) {
     f32 quad[8];
@@ -180,7 +189,7 @@ void draw_item_labels__15TWindowMainMenuFv(Item_802AD538 *p, TWindowDrawContext 
         quad[5] = uv->v / 256.0f;
         quad[6] = (98.0f + uv->u) / 256.0f;
         quad[7] = (16.0f + uv->v) / 256.0f;
-        if (try_open__19TWindowKeyBoardSoftFii(context, quad) != 0) {
+        if (try_open__19TWindowKeyBoardSoftFii((s32)context, (s32)quad) != 0) {
             draw_textured_quad_at_depth(quad, scale);
         }
         TWindowSubStatusDisp::get_player();
@@ -518,7 +527,7 @@ void TWindowMainMenu::draw_entries_reversed(u8 *arg1) {
 }
 
 extern GinjaTextureList *lbl_805D63F0;
-extern const f32 lbl_805DE154;
+void apply_context_transform_to_rect(void *, f32 *);
 
 void draw_frame__19TWindowMenuMainMenuFv(TWindowMenuMainMenu *window, TWindowDrawContext *context) {
     // Rectangle coordinates followed by texture coordinates.
@@ -592,13 +601,13 @@ void draw_frame__19TWindowMenuMainMenuFv(TWindowMenuMainMenu *window, TWindowDra
 TWindowDrawContext *setup_content_frame__15TWindowMainMenuFPv(TWindowMenuMainMenu *window_menu_main_menu) {
     f32 v;
     TWindowDrawContext *r;
-    r = open_singleton__19TWindowKeyBoardSoftFiiii(window_menu_main_menu->position, window_menu_main_menu->size, fn_8026CB68(), window_menu_main_menu->m_2c, window_menu_main_menu->m_54);
+    r = (TWindowDrawContext *)open_singleton__19TWindowKeyBoardSoftFiiii((u8 *)window_menu_main_menu + 0x40, (u8 *)window_menu_main_menu + 0x48, fn_8026CB68(), window_menu_main_menu->m_54, window_menu_main_menu->m_2c);
     if (is_not_split_screen__15TWindowMainMenuFv(window_menu_main_menu) != 0) {
         v = 51.0f;
     } else {
         v = 39.0f;
     }
-    set_bounds__19TWindowKeyBoardSoftFffff(r, 10.0f + r->x, r->y + v, (r->x + r->w) - 10.0f, (r->y + r->h) - 39.0f);
+    ((TWindowKeyBoardSoft *)r)->set_bounds(10.0f + r->x, r->y + v, (r->x + r->w) - 10.0f, (r->y + r->h) - 39.0f);
     r->color = ((s32)(255.0f * TWindowSubComCard__sub_80244784((TWindowSubComCard *)window_menu_main_menu)) << 24) | 0xFF0000 | 0xFFFF;
     return r;
 }

@@ -163,7 +163,7 @@ void move_with_wall_slide(u8 *arg0);
 extern "C" {
 s32 check_path_obstructed(void *, Vec_8008F910 *);
 s32 fn_80090464(void *, int);
-extern const f32 lbl_805D9620;
+__declspec(section ".sdata2") extern const f32 lbl_805D9620[1] = { 0.0f };
 extern const f32 lbl_805D966C;
 void queue_destruction__7TObjectFv(void *arg0);
 s32 TObjPlayer__sub_800A04F0(void *);
@@ -207,7 +207,7 @@ void TObjEneBalClawBody::update_dragon_boss_state() {
         this->state = 1;
     case 1:
         advance_animation();
-        apply_actor_gravity((TObjEnemy *)this, (s32 *)(0), (f32)lbl_805D9620);
+        apply_actor_gravity((TObjEnemy *)this, (s32 *)(0), (f32)lbl_805D9620[0]);
         return;
     case -1:
         this->actorFlags = (s32) (this->actorFlags & 0xFFFBFFFF);
@@ -229,7 +229,7 @@ void TObjEneBalClawBody::fn_8008EC3C() {
         *(s32 *)((s8 *)enemy + 0x37C) = 1;
     case 1:
         ((TObjMotion *)enemy)->advance_animation();
-        apply_actor_gravity((TObjEnemy *)enemy, (s32 *)(0), lbl_805D9620);
+        apply_actor_gravity((TObjEnemy *)enemy, (s32 *)(0), lbl_805D9620[0]);
         if (((En0VObj*)(enemy + 0x390))->m5() == 1) {
             temp_r5 = *(s32 *)((s8 *)enemy + 0x388);
             temp_r4_2 = temp_r5 & ~5;
@@ -286,7 +286,7 @@ void TObjEneBalClawBody::fn_8008EDE8() {
         if (((P_8008EDE8 *)this)->target == NULL) {
             reset_enemy_state__18TObjEneBalClawBodyFv();
         } else {
-            ((P_8008EDE8 *)this)->vel.y = lbl_805D9620;
+            ((P_8008EDE8 *)this)->vel.y = lbl_805D9620[0];
             calc_velocity_toward_destination(((P_8008EDE8 *)this), ((P_8008EDE8 *)this)->pos, ((P_8008EDE8 *)this)->target->pos, lbl_805D9648);
             {
                 Vec_8008F910 n1 = ((P_8008EDE8 *)this)->pos;
@@ -309,7 +309,7 @@ void TObjEneBalClawBody::fn_8008EDE8() {
         if (((P_8008EDE8 *)this)->target == NULL) {
             reset_enemy_state__18TObjEneBalClawBodyFv();
         } else {
-            ((P_8008EDE8 *)this)->vel.y = lbl_805D9620;
+            ((P_8008EDE8 *)this)->vel.y = lbl_805D9620[0];
             calc_velocity_toward_destination(((P_8008EDE8 *)this), ((P_8008EDE8 *)this)->pos, ((P_8008EDE8 *)this)->target->pos, lbl_805D9648);
             move_with_wall_slide((u8 *)((P_8008EDE8 *)this));
             {
@@ -340,7 +340,7 @@ void TObjEneBalClawBody::fn_8008EDE8() {
         break;
     }
     advance_animation();
-    apply_actor_gravity((TObjEnemy *)((u8 *)((P_8008EDE8 *)this)), (s32 *)(0), lbl_805D9620);
+    apply_actor_gravity((TObjEnemy *)((u8 *)((P_8008EDE8 *)this)), (s32 *)(0), lbl_805D9620[0]);
     ((TObjCollidable *)((P_8008EDE8 *)this))->update_collisions();
 }
 #pragma pop
@@ -378,7 +378,7 @@ void TObjEneBalClawBody::fn_8008F1DC() {
         if (FLD(T_8008F1DC *, 0x2A8) == NULL) {
             reset_enemy_state__18TObjEneBalClawBodyFv();
         } else {
-            o->vel.y = lbl_805D9620;
+            o->vel.y = lbl_805D9620[0];
             calc_velocity_toward_destination(o, o->pos, FLD(T_8008F1DC *, 0x2A8)->pos, lbl_805D9648);
             {
                 Vec_8008F910 n1 = o->pos;
@@ -422,7 +422,7 @@ void TObjEneBalClawBody::fn_8008F1DC() {
         } else {
             ((TParticleCtrl *)(o->p3E8))->enable();
         }
-        o->vel.y = lbl_805D9620;
+        o->vel.y = lbl_805D9620[0];
         calc_velocity_toward_destination(o, o->pos, FLD(T_8008F1DC *, 0x2A8)->pos, lbl_805D9648);
         {
             Vec_8008F910 n2 = o->pos;
@@ -460,13 +460,15 @@ void TObjEneBalClawBody::fn_8008F1DC() {
         break;
     }
     ((TObjMotion *)o)->advance_animation();
-    apply_actor_gravity((TObjEnemy *)((u8 *)o), (s32 *)(0), lbl_805D9620);
+    apply_actor_gravity((TObjEnemy *)((u8 *)o), (s32 *)(0), lbl_805D9620[0]);
     ((TObjPlayer *)o)->check_object_collisions();
     check_enemy_body_collisions(o);
 }
 #undef o
 #pragma pop
 
+#pragma push
+#pragma opt_common_subs off
 void TObjEneBalClawBody::run_death_sequence() {
     u8 *arg0 = (u8 *)this;
     s32 i;
@@ -502,8 +504,8 @@ void TObjEneBalClawBody::run_death_sequence() {
         ((TObjMotion *)arg0)->advance_animation();
         if (this->frame >= lbl_805D964C) {
             *(f32 *)((s8 *)arg0 + 0x3B4) -= *(f32 *)((s8 *)arg0 + 0x30C);
-            if (*(f32 *)((s8 *)arg0 + 0x3B4) <= 0.0f) {
-                *(f32 *)((s8 *)arg0 + 0x3B4) = 0.0f;
+            if (*(f32 *)((s8 *)arg0 + 0x3B4) <= lbl_805D9620[0]) {
+                *(f32 *)((s8 *)arg0 + 0x3B4) = lbl_805D9620[0];
                 state = 3;
             }
         }
@@ -524,6 +526,8 @@ void TObjEneBalClawBody::run_death_sequence() {
     }
 }
 
+#pragma pop
+
 void TObjEneBalClawBody::fn_8008F910() {
     u8 *arg0 = (u8 *)this;
     s32 var_r30;
@@ -537,18 +541,18 @@ void TObjEneBalClawBody::fn_8008F910() {
         *(s32 *)((s8 *)arg0 + 0x37C) = 1;
     case 1: {
         ((TObjMotion *)arg0)->advance_animation();
-        *(f32 *)((s8 *)arg0 + 0x30C) = lbl_805D9620;
+        *(f32 *)((s8 *)arg0 + 0x30C) = lbl_805D9620[0];
         Vec_8008F910 v = *(Vec_8008F910 *)((s8 *)arg0 + 0x2FC);
         v.x += *(f32 *)((s8 *)arg0 + 0x308);
         v.z += *(f32 *)((s8 *)arg0 + 0x310);
         if (check_path_obstructed(arg0, &v) == 0) {
             move_with_wall_slide(arg0);
         } else {
-            *(f32 *)((s8 *)arg0 + 0x308) = *(f32 *)((s8 *)arg0 + 0x310) = lbl_805D9620;
+            *(f32 *)((s8 *)arg0 + 0x308) = *(f32 *)((s8 *)arg0 + 0x310) = lbl_805D9620[0];
         }
         *(f32 *)((s8 *)arg0 + 0x308) *= lbl_805D966C;
         *(f32 *)((s8 *)arg0 + 0x310) *= lbl_805D966C;
-        apply_actor_gravity((TObjEnemy *)arg0, (s32 *)(0), lbl_805D9620);
+        apply_actor_gravity((TObjEnemy *)arg0, (s32 *)(0), lbl_805D9620[0]);
         ((TObjCollidable *)arg0)->update_collisions();
         if (*(u32 *)((s8 *)arg0 + 0xB4) != 8U) {
             var_r30 = 0;
@@ -597,14 +601,14 @@ void TObjEneBalClawBody::fn_8008FAD0() {
             break;
         }
         play_persistent_sound(0x4003B235, arg0, (const Vec *)(arg0 + 0x38), 0, 0);
-        *(f32 *)((s8 *)arg0 + 0x30C) = lbl_805D9620;
+        *(f32 *)((s8 *)arg0 + 0x30C) = lbl_805D9620[0];
         {
             Vec_8008FAD0 pos = *(Vec_8008FAD0 *)(*(u8 **)((s8 *)arg0 + 0x2A8) + 0x2FC);
             update_enemy_wander_move(arg0, &pos, 1, *(f32 *)((s8 *)(*(u8 **)((s8 *)arg0 + 0x350)) + 4));
         }
         ((TObjEnemy *)arg0)->turn_toward_direction(*(s32 *)((u8 *)((TObjEnemy *)arg0)->movementParameters + 8), (Vec *)((u8 *)arg0 + 0x308));
         ((TObjMotion *)arg0)->advance_animation();
-        apply_actor_gravity((TObjEnemy *)arg0, (s32 *)(0), lbl_805D9620);
+        apply_actor_gravity((TObjEnemy *)arg0, (s32 *)(0), lbl_805D9620[0]);
         ((TObjCollidable *)arg0)->update_collisions();
         break;
     case -1:

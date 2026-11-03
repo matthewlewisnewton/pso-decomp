@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/misc/TODoorVS2Door01.h"
 
@@ -138,7 +139,7 @@ void TODoorVS2Door01::destroy() {
     if (texture_lists != NULL) {
         TObjPlayer::free_if_valid(texture_lists[0]);
         if (texture_lists != NULL) {
-            mem_free(texture_lists);
+            ::operator delete[](texture_lists);
             texture_lists = NULL;
         }
     }
@@ -151,7 +152,7 @@ void TODoorVS2Door01::destroy() {
 void TODoorVS2Door01::load_resources() {
     BmlResource *resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&door_vs2door01_resource_descriptor), 0, 0, (void *)(0));
     bml_resource = resource;
-    texture_lists = (s32 *)mem_alloc(8);
+    texture_lists = (s32 *)::operator new[](8);
     texture_lists[1] = bml_resource->models[0].m_c;
     texture_lists[0] = (s32)load_gvm_texture_file((s32)"fs_obj_o_vs2door01lr.gvm");
 }

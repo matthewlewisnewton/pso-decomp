@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/boss/TBoss5GryphonColli.h"
 #include "pso/boss/TBoss5GryphonDemo.h"
@@ -105,7 +106,6 @@ struct Obj_800663DC {
 
 extern "C" {
 void queue_destruction__7TObjectFv(void *arg0);
-void *mem_alloc(u32 size);
 u16 register_entity_by_id(void *ov);
 int refresh_collision_body_centers__14TObjCollidableFv(void*);
 extern s32 gryphon_demo_collision_body_desc[];
@@ -168,7 +168,7 @@ TBoss5GryphonColli_C *TBoss5GryphonDemo__sub_800663DC(TBoss5GryphonColli_C *self
     obj->f1c = TLobby::alloc_actor_ids(0);
     VecCopy((Vec *)obj->posbuf, (const Vec *)arg3);
     obj->count = arg2;
-    obj->segs = (Seg_800663DC *)mem_alloc(obj->count * 0x2C);
+    obj->segs = (Seg_800663DC *)::operator new[](obj->count * 0x2C);
     step = 2.0f * len;
     s = obj->segs;
     zero = 0.0f;
