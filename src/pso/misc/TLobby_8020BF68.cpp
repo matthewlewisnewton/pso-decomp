@@ -3,8 +3,8 @@
 
 extern "C" {
 
-int TLobby__sub_8020B47C(void*);
+void TLobby__sub_8020B47C(void*);
 
-int TLobby::sync_game_state() { return TLobby__sub_8020B47C(this); }
+void TLobby::sync_game_state() { TLobby__sub_8020B47C(this); }
 
 }

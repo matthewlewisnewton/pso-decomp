@@ -1,3 +1,4 @@
+#include "pso/system/SoundSlotPitch.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
@@ -102,8 +103,6 @@ void __dt__13TUnk_804CC148Fv(void *, int);
 #define __dt__13TUnk_804CC148Fv ((s32 (*)(void *, int))__dt__13TUnk_804CC148Fv)
 
 void *__nw__7TObjectFUl(int);
-void update_technique_slot__10TTecRaFoieFl(s32 handle, s32 pitch, s32 c);
-#define update_technique_slot__10TTecRaFoieFl ((s32 (*)(s32, s32, s32))update_technique_slot__10TTecRaFoieFl)
 
 struct RecoveredGlobal_80238388_lbl_8044DAF0 {
     s32 value;
@@ -222,7 +221,6 @@ void TTecRaFoie::vfunc_8(void *) {
 }
 
 #undef get_bml_model
-#undef update_technique_slot__10TTecRaFoieFl
 #undef construct_area_technique_base
 #undef __dl__7TObjectFPv
 #undef is_valid_and_active__10TObjPlayerFUl
@@ -551,7 +549,6 @@ struct Sub_80238AE8 { u8 pad[0xA4]; u8 *inner; };
 
 extern "C" {
 void run_task__10TTecRaFoieFv(TTecRaFoie *arg0);
-void update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
 
 extern s32 tl_particle;
 s32 __ct__7TObjectFP7TObject(void *, void *);

@@ -224,3 +224,5 @@ void TBoss4DarkFalz::clear_uro_link_state() {
 }
 
 }
+
+RecoveredGlobal_8030ABF4_lbl_80541E58 boss4_zako_draw_buffers;

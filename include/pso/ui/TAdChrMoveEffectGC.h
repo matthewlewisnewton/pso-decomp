@@ -9,7 +9,6 @@ struct TAdChrMoveEffectGC : public TObject {
     void sub_80348E34();
     u32 m_1c;
     u32 m_20;
-    void copy4(void* q);
     virtual void render();
     void reset_effect_entries();
     void clear_entries();
@@ -19,6 +18,8 @@ struct TAdChrMoveEffectGC : public TObject {
 };
 
 typedef char TAdChrMoveEffectGC_size[sizeof(TAdChrMoveEffectGC) == 0x3A4 ? 1 : -1];
+
+void fn_80257720(void *destination, const void *source);
 
 extern "C" {
 void *TAdChrMoveEffectGC__ct(void *arg0);

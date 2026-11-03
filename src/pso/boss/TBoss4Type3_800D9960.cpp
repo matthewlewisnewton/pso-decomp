@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/animation/MotionContext.h"
 #include "pso/math/FloatRounding.h"
 #include "types.h"
@@ -11,8 +12,9 @@
 #include "pso/player/TObjPlayer.h"
 
 extern "C" {
-extern s32 lbl_80500FA4[3];
-void *mem_alloc(u32 size);
+Vec lbl_80500F80;
+Vec TObjEneMe3ShinowaMirage_motion_trail_points[2];
+s32 lbl_80500FA4[3];
 extern const f32 lbl_805DA3EC;
 extern const f32 lbl_805DA3F0;
 s32 transform_motion_node_points(SampledMotionPoints *, NJS_OBJECT *, s32);
@@ -23,7 +25,6 @@ extern s32 lbl_805D5234;
 extern s32 motion_trail_node_index;
 extern const s32 *lbl_805D523C;
 extern const Vec *TBoss4Type3__motion_trail_points;
-void mem_free(void *p);
 
 void SampledMotionPoints::sample_two_nodes(NJS_OBJECT *model, NJS_MOTION *motion, s32 first_node, s32 second_node) {
     lbl_80500FA4[0] = first_node;
@@ -56,7 +57,7 @@ void SampledMotionPoints::sample(NJS_OBJECT *model, NJS_MOTION *motion, const s3
 }
 
 SampledMotionPoints::~SampledMotionPoints() {
-    mem_free(points);
+    ::operator delete[](points);
     points = NULL;
 }
 
@@ -71,7 +72,7 @@ SampledMotionPoints::SampledMotionPoints(s32 points_per_sample, f32 start, f32 e
     this->start *= this->step;
     this->end *= this->step;
     n = sample_count * this->points_per_sample;
-    points = (Vec *)mem_alloc(n * sizeof(Vec));
+    points = (Vec *)::operator new[](n * sizeof(Vec));
     for (i = 0; i < n; i++) {
         points[i].x = lbl_805DA3EC;
         points[i].y = lbl_805DA3EC;

@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/TShopWindowBase.h"
 struct TShopKeepItemWindow;
@@ -1151,7 +1152,6 @@ void copy_bank_from_card_window(s32 slot) {
 #pragma pop
 extern "C" {
 
-void mem_free(void *p);
 
 #pragma push
 #pragma optimization_level 1
@@ -1162,7 +1162,7 @@ void TCheckRoomSequence__sub_80211284(void) {
         if (bank_item_records_by_slot[i] != NULL) {
             recs = bank_item_records_by_slot[i];
             if (recs != NULL) {
-                mem_free((u8 *)recs - 0x10);
+                ::operator delete[]((u8 *)recs - 0x10);
             }
             bank_item_records_by_slot[i] = NULL;
         }
@@ -1173,7 +1173,6 @@ void TCheckRoomSequence__sub_80211284(void) {
 #pragma pop
 
 s32 is_split_screen();
-void *mem_alloc(int);
 u32 __construct_new_array(void *, void *, void *, int, int);
 void alloc_item_buffers__18TCheckRoomSequenceFv(void) {
     s32 i;
@@ -1186,11 +1185,11 @@ void alloc_item_buffers__18TCheckRoomSequenceFv(void) {
     }
     if (is_split_screen() == 1) {
         for (i = 0; i < 4; i++) {
-            ((u32 *)bank_item_records_by_slot)[i] = __construct_new_array(mem_alloc(0x12D0),
+            ((u32 *)bank_item_records_by_slot)[i] = __construct_new_array(::operator new[](0x12D0),
                 (void *)TAdSinglePlyChrSelectGC__sub_802115C0, NULL, 0x18, 200);
         }
     } else {
-        ((u32 *)bank_item_records_by_slot)[0] = __construct_new_array(mem_alloc(0x12D0),
+        ((u32 *)bank_item_records_by_slot)[0] = __construct_new_array(::operator new[](0x12D0),
             (void *)TAdSinglePlyChrSelectGC__sub_802115C0, NULL, 0x18, 200);
     }
 }
