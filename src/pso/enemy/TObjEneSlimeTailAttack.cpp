@@ -351,7 +351,7 @@ void draw_chunk_object(void *child);
 extern const Vec lbl_8043D230;
 extern const Vec lbl_8043D23C;
 extern DirectAttackPayload lbl_8043D260[];
-extern SlimeTailPose lbl_80501010;
+SlimeTailPose lbl_80501010;
 extern const char *TObjEneSlimeOne_class_name;
 extern const char *lbl_805D2AE0;
 extern int lbl_805D52B4;
@@ -476,7 +476,7 @@ extern "C" {
 extern u8 lbl_8043D210[];
 }
 extern "C" {
-extern u8 lbl_805DA668[];
+extern const char lbl_805DA668[];
 }
 extern "C" {
 s32 submit_cursor_candidate(void *, s32);
@@ -2428,6 +2428,10 @@ void get_slime_tail_pose(SlimeTailPose *dst) {
 #pragma inline_depth(2)
 
 extern "C" {
+__declspec(section ".sdata2") extern const char lbl_805DA668[4] = "RED";
+__declspec(section ".sdata2") extern const f32 lbl_805DA66C = 10.0f;
+__declspec(section ".sdata2") extern const f32 lbl_805DA670 = 0.1f;
+__declspec(section ".sdata2") extern const f32 lbl_805DA674 = 0.75f;
 __declspec(section ".sdata2") extern const f32 lbl_805DA678 = 0.5F;
 __declspec(section ".sdata2") extern const f32 lbl_805DA67C = 1.0F;
 __declspec(section ".sdata2") extern const f32 lbl_805DA680 = -0.5F;
@@ -2476,4 +2480,13 @@ __declspec(section ".sdata2") extern const f32 lbl_805DA728 = 500.0F;
 __declspec(section ".sdata2") extern const f32 lbl_805DA72C = 162.5F;
 __declspec(section ".sdata2") extern const f32 lbl_805DA730 = 4.0F;
 __declspec(section ".sdata2") extern const f32 lbl_805DA734 = 0.25F;
+__declspec(section ".sdata2") extern const f32 lbl_805DA738 = 1048575.0f;
+__declspec(section ".sdata2") extern const f32 lbl_805DA73C = 0.19999999f;
+__declspec(section ".sdata2") extern const f32 lbl_805DA740 = 0.8f;
+__declspec(section ".sdata2") extern const f32 lbl_805DA744 = 0.15f;
+__declspec(section ".sdata2") extern const f32 lbl_805DA748 = 2.0f;
+__declspec(section ".sdata2") extern const f32 lbl_805DA74C = -0.011111111f;
+__declspec(section ".sdata2") extern const f32 lbl_805DA750 = 0.033333335f;
+__declspec(section ".sdata2") extern const f32 lbl_805DA754 = 0.002f;
+__declspec(section ".sdata2") extern const f32 lbl_805DA758 = 65535.0f;
 }

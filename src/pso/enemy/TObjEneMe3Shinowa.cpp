@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
@@ -1699,8 +1700,6 @@ extern "C" {
 void apply_effect_pair__23TObjEneMe3ShinowaMirageFv();
 }
 extern "C" {
-}
-extern "C" {
 void vfunc_62__23TObjEneMe3ShinowaMirageFv();
 }
 extern "C" {
@@ -1753,8 +1752,6 @@ void vfunc_74__9TObjEnemyFl();
 }
 extern "C" {
 void apply_hit_message_flags__9TObjEnemyFPv();
-}
-extern "C" {
 }
 extern "C" {
 void add_actor_exp__9TObjCharaFl();
@@ -2095,8 +2092,6 @@ extern const f32 TObjEneMe3ShinowaMirage__data_805DA5C4;
 extern const f32 lbl_805DA650, lbl_805DA654, lbl_805DA658, lbl_805DA65C, lbl_805DA660, lbl_805DA664;
 BmlResource *load_enemy_bml_resource(void *);
 BmlResource *load_enemy_bml_resource_named(void *, const char *);
-void *mem_alloc(u32);
-void mem_free(void *);
 TUnk_8048FA00 *init__11TBreakUpMdlFPviif(void *, s32, s32, f32);
 
 #pragma push
@@ -2144,7 +2139,7 @@ void TObjEneMe3ShinowaMirage::load_shared_resources() {
     NJS_TEXLIST *textures = (NJS_TEXLIST *)TObjEneMe3ShinowaMirage__data_805D5298->models[0].m_c;
     s32 count = textures->nbTexture;
     lbl_80500FEC.nbTexture = count;
-    lbl_80500FEC.textures = (NJS_TEXNAME *)mem_alloc(count * sizeof(NJS_TEXNAME));
+    lbl_80500FEC.textures = (NJS_TEXNAME *)::operator new[](count * sizeof(NJS_TEXNAME));
     for (i = 0; i < count; ++i) {
         ((TObjPlayer *)&lbl_80500FEC.textures[i])->copy_vec3(&textures->textures[i]);
     }
@@ -2219,7 +2214,7 @@ void TObjEneMe3ShinowaMirage::free_shared_resources() {
         TObjEneMe3ShinowaMirage__data_805D52A0 = 0;
     }
     if (lbl_80500FEC.textures) {
-        mem_free(lbl_80500FEC.textures);
+        ::operator delete[](lbl_80500FEC.textures);
         lbl_80500FEC.textures = NULL;
     }
     if (TObjEneMe3ShinowaMirage__data_805D5298) {

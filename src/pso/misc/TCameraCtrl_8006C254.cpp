@@ -218,3 +218,5 @@ void TCameraCtrl::load_camera_banks() {
         TCameraCtrl__camera_banks.e[k].directory = (CameraMotionDirectory *)load_relocatable_file(b->entries[k].id, (s32)TCameraCtrl__camera_banks.e[k].p);
     }
 }
+
+G_8006C668 TCameraCtrl__camera_banks;

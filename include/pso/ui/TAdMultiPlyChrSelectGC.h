@@ -5,6 +5,7 @@
 #include "pso/TObject.h"
 
 struct TAdMultiPlyChrSelectGC : public TObject {
+    TAdMultiPlyChrSelectGC(TObject *parent, s32 mode);
     virtual ~TAdMultiPlyChrSelectGC();
     void create_widgets();
     void sub_802DC118(s32);

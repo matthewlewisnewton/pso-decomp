@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
@@ -97,7 +98,6 @@ extern const f32 lbl_805DE814;
 extern const f32 lbl_805DE828;
 extern const f32 lbl_805DE82C;
 
-void *mem_alloc(u32 size);
 extern NpcAnimationBinding gibbles_resource_binding_desc;
 extern s32 gibbles_boss_stat_handle;
 extern s32 gibbles_combat_stats_handle;
@@ -118,7 +118,6 @@ s32 test_action_mask__10TObjPlayerFl(void *, int);
 void TObjPlayer__sub_800D93C4(s32 point, s32 delay);
 s32 angle_diff_s16(s32, s32);
 
-void mem_free(void*);
 s32 get_room__8TObjBaseFv(void *);
 s32 vec3_add_to(f32 *, void *);
 s32 matrix_mult_vec(int, void *, void *);
@@ -244,12 +243,6 @@ s32 obj_is_hit_receivable(TObjChara *);
 
 extern s32 actor_frame_tick;
 s32 obj_is_hit_receivable(TObjChara *);
-
-}
-
-extern "C" {
-
-
 
 }
 
@@ -943,7 +936,7 @@ void TObjEneGibbles::load_resources() {
     }
     TObjEneGibbles__render_node_index = 0;
     TObjEneGibbles__render_rotation_x = 0;
-    gibbles_combat_stat_entries = (void **)mem_alloc(3 * sizeof(void *));
+    gibbles_combat_stat_entries = (void **)::operator new[](3 * sizeof(void *));
     gibbles_boss_stat_handle = (s32)get_battle_base_stats(0x3D);
     gibbles_combat_stat_entries[0] = get_battle_attack_params(0x3D);
     gibbles_combat_stat_entries[2] = get_battle_attack_params(0x3E);
@@ -959,7 +952,7 @@ void TObjEneGibbles::load_resources() {
 
 void TObjEneGibbles::free_static() {
     if (gibbles_combat_stat_entries != NULL) {
-        mem_free((void*)gibbles_combat_stat_entries);
+        ::operator delete[]((void*)gibbles_combat_stat_entries);
         gibbles_combat_stat_entries = NULL;
     }
     if ((u32) TObjEneGibbles__resource_bundle != 0U) {

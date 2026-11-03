@@ -52,7 +52,9 @@ extern const f32 lbl_805DA26C;
 extern const f32 lbl_805DA270;
 
 u8 *__ct__8TObjChipFP7TObjectP14TObjChipParams(u8 *arg0, u8 *arg1, u8 *arg2);
-extern NJS_OBJECT *gyaranzo_resource_ptrs[];
+NJS_OBJECT *gyaranzo_model_resources[0x16];
+NJS_OBJECT *gyaranzo_resource_ptrs[13];
+EnemyTargetCandidate TObjGyaranzoMissile_target_slots[4];
 extern BmlResource *gyaranzo_bml_resource;
 extern u8 *tl_05;
 void apply_actor_gravity(void *, int, f32);

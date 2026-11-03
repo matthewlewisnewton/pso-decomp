@@ -11,14 +11,14 @@ Nothing from the game is included here. You need your own copy of the game to bu
 <!-- progress-table -->
 | | Matched | Linked |
 |:--|--:|--:|
-| Code | 94.82% (4,127,684 of 4,353,092) | 77.63% (3,379,448 of 4,353,092) |
-| Data | 73.18% (1,289,011 of 1,761,375) | 53.48% (942,063 of 1,761,375) |
-| Functions | 98.92% (27,275 of 27,572) | |
-| Units | | 70.18% (3,552 of 5,061) |
+| Code | 95.04% | 79.06% |
+| Data | 81.45% | 59.07% |
+| Functions | 98.99% (27,293 of 27,572) | |
+| Units | | 70.96% (3,561 of 5,018) |
 <!-- /progress-table -->
 
-Measured on `PsoV3.dol` on 2026-11-01 at validated source commit
-[`eef42a53dd`](https://github.com/matthewlewisnewton/pso-decomp/commit/eef42a53ddf0f99aeeddd90c8961c7ae5c4360f0).
+Measured on `PsoV3.dol` on 2026-11-02 at validated source commit
+[`86d7ed2c46`](https://github.com/matthewlewisnewton/pso-decomp/commit/86d7ed2c46b1f4b8bee3fff01248426f2d32653d).
 The README-only publication commit records the measurements of its parent source tree.
 A function is matched when it compiles to the original's exact bytes. Code, data and
 units are linked when the build takes them from compiled source instead of the original. Data includes `.bss`.
@@ -65,7 +65,8 @@ in assembly: `tools/orig_asm.py` rebuilds their bodies from your disc before any
 
       python tools/progress_map.py build/GPOE8P/report.json -o build/progress
 
-  Then open `build/progress/index.html` in a browser. Add `--readme README.md` to refresh the table above.
+  Then open `build/progress/index.html`, or `build/progress/treemap.html` for the treemap, in a browser.
+  Add `--readme README.md` to refresh the table above from the supplied report.
 
 ## Working on it
 
