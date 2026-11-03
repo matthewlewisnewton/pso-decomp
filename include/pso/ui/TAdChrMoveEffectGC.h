@@ -19,6 +19,8 @@ struct TAdChrMoveEffectGC : public TObject {
 
 typedef char TAdChrMoveEffectGC_size[sizeof(TAdChrMoveEffectGC) == 0x3A4 ? 1 : -1];
 
+void fn_80257720(void *destination, const void *source);
+
 extern "C" {
 void *TAdChrMoveEffectGC__ct(void *arg0);
 void *__dt__18TAdChrMoveEffectGCFv(void *arg0, s16 arg1);

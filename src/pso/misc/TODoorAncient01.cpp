@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TODoorAncient01.h"
@@ -68,7 +69,7 @@ TODoorAncient01::~TODoorAncient01() {
 void TODoorAncient01::load_resources() {
     BmlResource *archive = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&bm_fe_obj_o_door01l_resource_descriptor), 0, 0, (void *)(0));
     door_ancient01_archive = archive;
-    s32 *texlists = (s32 *)mem_alloc(2 * sizeof(s32));
+    s32 *texlists = (s32 *)::operator new[](2 * sizeof(s32));
     door_ancient01_texlists = texlists;
     texlists[0] = door_ancient01_archive->models[0].m_c;
     door_ancient01_texlists[1] = (s32)load_gvm_texture_file((s32)"fe_obj_o_door01g.gvm");
@@ -78,7 +79,7 @@ void TODoorAncient01::free_resources() {
     if (door_ancient01_texlists != NULL) {
         TObjPlayer::free_if_valid(door_ancient01_texlists[1]);
         if (door_ancient01_texlists != NULL) {
-            mem_free(door_ancient01_texlists);
+            ::operator delete[](door_ancient01_texlists);
             door_ancient01_texlists = NULL;
         }
     }

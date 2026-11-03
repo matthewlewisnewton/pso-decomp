@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/enemy/BattleParameters.h"
 #include "pso/system/CurrentTextureList.h"
@@ -354,7 +355,6 @@ extern "C" {
 extern BmlResource *shark_bml_resource;
 extern s32 game_difficulty_selection;
 
-void *mem_alloc(u32 size);
 extern const char shark_alt_archive_filename[];
 extern BattleBaseStats **shark_combat_stats;
 extern AttackParams **shark_attack_stats;
@@ -363,7 +363,6 @@ extern f32 **shark_movement_parameter_sets;
 extern __declspec(section ".sdata2") const f32 shark_attack_trail_start_frame;
 extern __declspec(section ".sdata2") const f32 shark_npc_collision_radius;
 
-void mem_free(void*);
 
 
 extern "C" __declspec(section ".rodata") const char shark_model_filename_0[] = "bm1f_s_wala_body.nj";
@@ -431,19 +430,19 @@ void *TObjEneShark::create(void *setData) {
 
 void TObjEneShark::free_resources() {
     if (shark_combat_stats != NULL) {
-        mem_free(shark_combat_stats);
+        ::operator delete[](shark_combat_stats);
         shark_combat_stats = NULL;
     }
     if (shark_attack_stats != NULL) {
-        mem_free(shark_attack_stats);
+        ::operator delete[](shark_attack_stats);
         shark_attack_stats = NULL;
     }
     if (shark_resistance_stats != NULL) {
-        mem_free(shark_resistance_stats);
+        ::operator delete[](shark_resistance_stats);
         shark_resistance_stats = NULL;
     }
     if (shark_movement_parameter_sets != NULL) {
-        mem_free(shark_movement_parameter_sets);
+        ::operator delete[](shark_movement_parameter_sets);
         shark_movement_parameter_sets = NULL;
     }
     if (shark_attack4_trail_buffer != NULL) {
@@ -471,10 +470,10 @@ void TObjEneShark::load_resources() {
     shark_attack4_trail_buffer = new SampledMotionPoints(2, shark_attack_trail_start_frame, shark_attack_trail_end_frame, shark_one);
     shark_attack3_trail_buffer->sample_two_nodes((NJS_OBJECT *)shark_bml_resource->models->model, (NJS_MOTION *)shark_bml_resource->motions[shark_actions[3].motion].motion, 5, 8);
     shark_attack4_trail_buffer->sample_two_nodes((NJS_OBJECT *)shark_bml_resource->models->model, (NJS_MOTION *)shark_bml_resource->motions[shark_actions[4].motion].motion, 0xA, 0xD);
-    shark_combat_stats = static_cast<BattleBaseStats **>(mem_alloc(3 * sizeof(*shark_combat_stats)));
-    shark_attack_stats = static_cast<AttackParams **>(mem_alloc(3 * sizeof(*shark_attack_stats)));
-    shark_resistance_stats = static_cast<ActorParamBlock **>(mem_alloc(3 * sizeof(*shark_resistance_stats)));
-    shark_movement_parameter_sets = (f32 **)mem_alloc(0xC);
+    shark_combat_stats = static_cast<BattleBaseStats **>(::operator new[](3 * sizeof(*shark_combat_stats)));
+    shark_attack_stats = static_cast<AttackParams **>(::operator new[](3 * sizeof(*shark_attack_stats)));
+    shark_resistance_stats = static_cast<ActorParamBlock **>(::operator new[](3 * sizeof(*shark_resistance_stats)));
+    shark_movement_parameter_sets = (f32 **)::operator new[](0xC);
     shark_combat_stats[0] = get_battle_base_stats(0x4F);
     shark_combat_stats[1] = get_battle_base_stats(0x50);
     shark_combat_stats[2] = get_battle_base_stats(0x51);

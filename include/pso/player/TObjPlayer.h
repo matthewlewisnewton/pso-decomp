@@ -295,7 +295,6 @@ struct TObjPlayer : public TObjChara {
     static void init_matrix_stack(s32 arg0, s32 arg1);
     void draw_shadow_quad(s32 arg1, s32 flags);
     static void render_tree(void *arg0);
-    void draw_compass_sprite(s32 idx, s32 color, s32 flags, f32 z);
     void init_vec_record();
     s32 get_entrance_id();
     void copy_efb_to_texture();
@@ -390,7 +389,6 @@ struct TObjPlayer : public TObjChara {
     static void sync_player_globals();
     void*get_position_ptr();
     void clear_header_struct();
-    void clear_velocity_vectors();
     static void set_com_card_window(s32 arg0);
     static s32 is_locally_controlled(void *player);
     static TObjPlayer *get_player_data(int index);
@@ -1036,7 +1034,6 @@ struct TObjPlayer : public TObjChara {
     void*get_pos_ptr();
     void *destroy_technique_effect_resources(s16 arg1);
     static void create_tec_zarua(void *arg0, void *arg1, void *arg2, void *arg3);
-    void add_status_line(u8 arg1, u32 arg2, s32 arg3);
     static void clear_state_if_flag80(s32 arg0);
     static void setup_projection_texture(s32 arg0, s32 arg1, s32 arg2);
     void reset_lobby_subobject();
@@ -1526,7 +1523,6 @@ struct TObjPlayer : public TObjChara {
     void build_shop_item_list();
     void reset_action_palette();
     u8 *create_state_513();
-    int do_action_447();
     static void set_radar_marker_pos(int a0, void* a1);
     static void spawn_item_from_arg(s32 arg0, s32 arg1);
     u8 *init_breakup_pieces(void *arg1, s32 arg2);

@@ -2,21 +2,17 @@
 #include "pso/render/ColorCopy.h"
 #include "pso/render/TriangleFan3D.h"
 #include "pso/system/vector.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/player/demo_mode.h"
 #include "types.h"
 #include "pso/render/render_util.h"
 #include "pso/system/memory.h"
 #include "pso/boss/TBoss6Zanzo.h"
 
-inline void *operator new[](size_t, void *p) { return p; }
-
 #pragma inline_depth(1)
 #pragma auto_inline off
 #pragma dont_inline off
 extern "C" {
-void mem_free(void *);
-
-void *mem_alloc(u32 size);
 extern const char *TBoss6Zanzo__name[2];
 extern const f32 lbl_805DF470;
 extern const f32 lbl_805DF474;
@@ -143,10 +139,12 @@ void TBoss6Zanzo::run_task() {
 TBoss6Zanzo::~TBoss6Zanzo() {
     Boss6TrailFrame *p;
     Boss6TrailFrame *end;
-    mem_free(current->points);
+    ::operator delete[](current->points);
     ::operator delete(current);
-    for (p = frames, end = p + frame_count; p < end; p++) mem_free(p->points);
-    mem_free(frames);
+    for (p = frames, end = p + frame_count; p < end; p++) {
+        ::operator delete[](p->points);
+    }
+    ::operator delete[](frames);
 }
 
 TBoss6Zanzo::TBoss6Zanzo(TObject *object, s32 arg2, s32 arg3) : TObject(object) {
@@ -157,12 +155,12 @@ TBoss6Zanzo::TBoss6Zanzo(TObject *object, s32 arg2, s32 arg3) : TObject(object) 
     if (point_count < 2) point_count = 2;
     frame_count = arg3;
     if (frame_count < 2) frame_count = 2;
-    frames = new (mem_alloc(frame_count * sizeof(Boss6TrailFrame))) Boss6TrailFrame[frame_count];
+    frames = (Boss6TrailFrame *)::operator new[](frame_count * sizeof(Boss6TrailFrame));
     for (p = frames, end = p + frame_count; p < end; p++) {
         p->active = 0;
-        p->points = new (mem_alloc(point_count * sizeof(Boss6TrailPoint))) Boss6TrailPoint[point_count];
+        p->points = (Boss6TrailPoint *)::operator new[](point_count * sizeof(Boss6TrailPoint));
     }
-    current = new Boss6TrailFrame;
+    current = (Boss6TrailFrame *)::operator new(sizeof(Boss6TrailFrame));
     current->active = 0;
-    current->points = new (mem_alloc(point_count * sizeof(Boss6TrailPoint))) Boss6TrailPoint[point_count];
+    current->points = (Boss6TrailPoint *)::operator new[](point_count * sizeof(Boss6TrailPoint));
 }

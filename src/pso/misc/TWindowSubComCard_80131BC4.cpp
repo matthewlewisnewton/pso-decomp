@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/misc/TKeyBoardControl.h"
 #include "pso/misc/TWindowSubComCard.h"
@@ -7,13 +8,12 @@
 extern "C" {
 
 s32 export_keyboard_text(s32, s32);
-s32 mem_alloc();
+
 
 s32 TWindowSubComCard::realloc_buffer() {
     s32 out;
 
-    ((TWindowKeyBoardSoft *)(this->m_20))->measure_text_overflow();
-    out = mem_alloc();
+    out = (s32)::operator new[](((TWindowKeyBoardSoft *)(this->m_20))->measure_text_overflow());
     export_keyboard_text(this->m_20, out);
     return out;
 }

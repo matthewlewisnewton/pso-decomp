@@ -1,4 +1,5 @@
 #include "pso/render/ColorCopy.h"
+#include "pso/system/SoundSlotPitch.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
@@ -121,7 +122,6 @@ struct Bar_8025799C {
     s16 timer;
 };
 
-void update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
 
 #define destroy__13TUnk_804CF930Fs ((s32 (*)(s32, s32 *))destroy__13TUnk_804CF930Fs)
 #define sub_80256BDC__13TUnk_804CF930Fs ((int (*)(void*, int))sub_80256BDC__13TUnk_804CF930Fs)
