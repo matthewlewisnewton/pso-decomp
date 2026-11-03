@@ -35,10 +35,11 @@ struct TOMine : public TObjChara {
     u8 _pad338[0x8];
     u32 m_340;
     u32 m_344;
-    u8 unk_348[0x8];
+    s32 m_348;
+    f32 m_34c;
     f32 m_350;
-    u32 m_354;
-    u8 _pad358[0x4];
+    s32 m_354;
+    f32 m_358;
     u16 m_35c;
     u8 _pad35E[0x12];
     u32 m_370;
