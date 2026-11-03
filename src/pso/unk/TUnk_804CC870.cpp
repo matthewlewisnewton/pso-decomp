@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/ChunkMaterialState.h"
@@ -114,7 +115,6 @@ struct Ctl_80232C50 {
 };
 
 extern "C" {
-void mem_free(void *);
 extern Ent_80232E0C grants_effect_emitter_table[];
 void __ct__7TObjectFP7TObject(void *self, void *parent);
 extern u8 __vt__13TUnk_804CC870[];
@@ -147,7 +147,7 @@ TUnk_804CC888::~TUnk_804CC888() {
         }
     }
     stop_sound_request(((Obj_80232E0C *)this)->f20);
-    mem_free(((Obj_80232E0C *)this)->items);
+    ::operator delete[](((Obj_80232E0C *)this)->items);
 }
 
 void TUnk_804CC888::run_task() {

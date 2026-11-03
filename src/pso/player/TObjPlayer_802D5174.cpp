@@ -14,14 +14,14 @@
 #include "pso/unk/TUnk_804E1BB0.h"
 #include "pso/player/TUnk_804E21F8.h"
 #include "pso/item/TItem.h"
+#include "pso/player/TObjPlayer_802D5B78.h"
 
 
 
 extern "C" {
 u8 *__nw__5TItemFUl(s32);
 extern s32 tl_05;
-void TObjPlayer__sub_802D5B78(void *a, void *b, const void *direction);
-void do_action_447_from_packet__10TObjPlayerFPvPv(void *self, void *arg, const void *direction);
+void do_action_447_from_packet__10TObjPlayerFPvPv(void *self, void *arg, const Vec *direction);
 void *__dt__13TUnk_804E1BB0Fv(void *arg0, s16 arg1);
 void *__dt__13TUnk_804E1CA8Fv(void *arg0, s16 arg1);
 
@@ -79,7 +79,7 @@ void *__dt__13TUnk_804E1CA8Fv(void *arg0, s16 arg1) {
 TParticleCtrl *do_action_447__10TObjPlayerFv(const Vec *position) {
     return spawn_particle_effect(position, 447);
 }
-void do_action_447_from_packet__10TObjPlayerFPvPv(void *self, void *arg, const void *direction) {
+void do_action_447_from_packet__10TObjPlayerFPvPv(void *self, void *arg, const Vec *direction) {
     Vec v;
     TObjPlayer__sub_802D5B78(arg, &v, direction);
     do_action_447__10TObjPlayerFv(&v);
@@ -127,7 +127,7 @@ extern "C" {
 s32 VecCopy__FP3VecPC3Vec(void *);
 void spawn_hit_particles_at_vec__10TObjPlayerFiii(s32 arg0, s32 arg1, s32 arg2);
 
-void spawn_hit_particles_at__10TObjPlayerFiii(s32 arg0, s32 arg1, s32 arg2);
+void spawn_hit_particles_at__10TObjPlayerFiii(s32 arg0, void *arg1, const Vec *arg2);
 extern const f64 lbl_804725B8[];
 f32 atan2_float(f32 y, f32 x);
 void *create_timed_particle_emitter(void *owner, s32 id, s32 b, s32 c);
@@ -166,10 +166,10 @@ void spawn_hit_particles_at_vec__10TObjPlayerFiii(s32 arg0, s32 arg1, s32 arg2) 
     VecCopy__FP3VecPC3Vec(&sp8);
     spawn_hit_particles__10TObjPlayerFiPv((s32)&sp8, (const P_802D5478 *)(arg2));
 }
-void spawn_hit_particles_at__10TObjPlayerFiii(s32 arg0, s32 arg1, s32 arg2) {
+void spawn_hit_particles_at__10TObjPlayerFiii(s32 arg0, void *arg1, const Vec *arg2) {
     Vec sp8;
-    TObjPlayer__sub_802D5B78((void *)arg1, &sp8, (const void *)arg2);
-    spawn_hit_particles__10TObjPlayerFiPv((s32)&sp8, (const P_802D5478 *)(arg2));
+    TObjPlayer__sub_802D5B78(arg1, &sp8, arg2);
+    spawn_hit_particles__10TObjPlayerFiPv((s32)&sp8, (const P_802D5478 *)arg2);
 }
 
 }
