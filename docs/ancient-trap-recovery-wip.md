@@ -20,20 +20,22 @@ its 360 bytes at `.data` offset `0x50`, ahead of the switch tables at
 must remain compatible with `TObjChara`; see
 [Trap inherited virtual slots](trap-inherited-slot-evidence.md).
 
-The original `.data` extent is `0x804B4820..0x804B4AD8`, or 696 bytes. The
-native payload occupies 692 bytes through `0x804B4AD4`. The next real data
-owner, `TOTrapAncient02`, starts at `0x804B4AD8` with alignment eight, producing
-four bytes of natural linker fill. Keep all 696 bytes in original coverage;
-the fill does not represent another C++ object or another table entry.
+The original `.data` extent is `0x804B4820..0x804B4AD8`, 696 bytes. The last
+named object ends at `0x804B4AD4`. The split object records the remaining
+four bytes as a zero gap and has no relocation there. `TOTrapAncient02`'s
+`.data` starts at `0x804B4AD8` with alignment 8. The linked DOL contains
+`00 00 00 00` at `0x804B4AD4` and Ancient02's first word at `0x804B4AD8`.
+The compiler object emits 692 `.data` bytes, identical to that payload, and
+does not contain the gap. This unit stays on the original object, so the DOL
+still includes the gap. Do not add a C++ object for those four bytes.
 
 The override at `0x80179784` returns the floating-point result of the qualified
 `TOTrap::receive_physical_attack` call. The player-lookup boundary uses the
 shared character position at offset `0x2FC`; changes to its receiver contract
 require checking the shared declaration and callers.
 
-The reconstructed original object has `.sdata2` flags 2, while the matching
-GC/2.0 native object has flags 3. Source adoption must preserve the actual
-linked section's bytes, flags, addresses and alignment, both SDA bases, all
-relocation targets and the original DOL. Object similarity alone does not
-establish these link properties. Validation summaries belong to the exact
-commit and target recorded in the pull request.
+The original object's `.sdata2` flags are 2 (`SHF_ALLOC`). The GC/2.6 object
+built with this unit's flags has flags 3 (`SHF_ALLOC|SHF_WRITE`). Linking
+the unit has to preserve the original section flags, both SDA bases, the
+relocations and the DOL. A function or data score does not show those
+properties.
