@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/misc/TWindowDrawContext.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
@@ -101,8 +102,6 @@ struct RecoveredGlobal_80266B30_lbl_8050E208 {
 
 typedef char RecoveredGlobal_80266B30_lbl_8050E208_size[sizeof(RecoveredGlobal_80266B30_lbl_8050E208) == 0x1B0 ? 1 : -1];
 
-void mem_free(void *);
-void *mem_alloc(u32 size);
 s32 TWindowShortListCtrl__check_controller_button(int, int);
 Ent_80265C30 * get_array_entry__13TUnk_804CE018Fi(void *w, s32 i);
 
@@ -828,7 +827,7 @@ void *__dt__11TWindowMenuFv(void *arg0, s16 arg1) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__11TWindowMenu;
         TWindowSubStatusDisp::destroy_allocation((s32)(*(void **)((s8 *)arg0 + 0x84)), (s16)1);
         TWindowSubStatusDisp::destroy_status_display((s32)(*(void **)((s8 *)arg0 + 0x88)), (s16)1);
-        mem_free(*(void **)((s8 *)arg0 + 0x80));
+        ::operator delete[](*(void **)((s8 *)arg0 + 0x80));
         ((TUnk_804CDFE8 *)arg0)->destroy_window(0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
@@ -850,7 +849,7 @@ u8 *TWindowMenu__ct(u8 *window_menu, u32 arg1, s32 arg2, s32 arg3) {
     *(s16 *)(window_menu + 0x70) = 0;
     *(s16 *)(window_menu + 0x20) = arg2;
     ((TWindowMenu *)window_menu)->reset_selection();
-    *(u8 **)(window_menu + 0x80) = (u8 *)mem_alloc(arg1 * 8);
+    *(u8 **)(window_menu + 0x80) = (u8 *)::operator new[](arg1 * 8);
     p = *(u8 **)(window_menu + 0x80);
     for (i = 0; i < arg1; i++) {
         *(s32 *)p = 0;
