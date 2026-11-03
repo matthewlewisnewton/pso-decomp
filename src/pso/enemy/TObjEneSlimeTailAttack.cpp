@@ -351,7 +351,7 @@ void draw_chunk_object(void *child);
 extern const Vec lbl_8043D230;
 extern const Vec lbl_8043D23C;
 extern DirectAttackPayload lbl_8043D260[];
-extern SlimeTailPose lbl_80501010;
+SlimeTailPose lbl_80501010;
 extern const char *TObjEneSlimeOne_class_name;
 extern const char *lbl_805D2AE0;
 extern int lbl_805D52B4;
@@ -476,7 +476,7 @@ extern "C" {
 extern u8 lbl_8043D210[];
 }
 extern "C" {
-extern u8 lbl_805DA668[];
+extern const char lbl_805DA668[];
 }
 extern "C" {
 s32 submit_cursor_candidate(void *, s32);
@@ -1085,7 +1085,7 @@ void TObjEneSlimeOne::render() {
             v.y += ene_slime_one->vertical_offset;
             post_translate_matrix(&v);
         }
-        rotate_matrix_y(0, ene_slime_one->rotation_y);
+        rotate_matrix_y(0, ene_slime_one->rotation.yaw);
         scale_matrix_vec3(0, (u8 *)&ene_slime_one->render_scale);
         ((TObjEneSlimeOne *)ene_slime_one)->animation->draw(temp_r31);
         pop_matrix();
@@ -1385,7 +1385,7 @@ void TObjEneSlimeOne::fn_800EA364() {
     f32 d;
     s32 i;
     s32 ang;
-    this->rotation_y += 0x100;
+    this->rotation.yaw += 0x100;
     if (this->m_398 > lbl_805DA6B4) {
         motion_phase += 0xC00;
         d = lbl_805DA734 * (lbl_805DA678 * (lbl_805DA678 + sin_table_lookup(motion_phase)));
@@ -1519,11 +1519,11 @@ void TObjEneSlimeOne::fn_800E9EFC() {
     if (f < lbl_805DA6B4) {
         f = lbl_805DA6B4;
     }
-    ene_slime_one->rotation_y = f * (f32)ene_slime_one->turn_step + (f32)ene_slime_one->rotation_y;
+    ene_slime_one->rotation.yaw = f * (f32)ene_slime_one->turn_step + (f32)ene_slime_one->rotation.yaw;
     if (ene_slime_one->m_3cc == 0xFFFF) {
         r = find_nearest_visible_player(ene_slime_one, &sp14, lbl_805DA72C);
         if (r != 0xFFFF &&
-            angle_difference_abs(ene_slime_one->rotation_y, (s32)(lbl_8043D280[0] * ((f32 (*)(f32, f32))atan2_float)(sp14.x, sp14.z))) < 0x1C71) {
+            angle_difference_abs(ene_slime_one->rotation.yaw, (s32)(lbl_8043D280[0] * ((f32 (*)(f32, f32))atan2_float)(sp14.x, sp14.z))) < 0x1C71) {
             ene_slime_one->motion_phase = 0;
             ene_slime_one->m_3cc = r;
         }
@@ -1536,7 +1536,7 @@ void TObjEneSlimeOne::fn_800E9EFC() {
             sp8.x = lbl_805DA67C;
             sp8.z = sp8.y = lbl_805DA6B4;
             TObjPlayer::calc_distance_to_client((s32)ene_slime_one, (u16)(ene_slime_one->m_3cc), (u32)&sp8);
-            ene_slime_one->rotation_y = approach_angle_limited(ene_slime_one->rotation_y, (s32)(lbl_8043D280[0] * ((f32 (*)(f32, f32))atan2_float)(sp8.x, sp8.z)), 0x280);
+            ene_slime_one->rotation.yaw = approach_angle_limited(ene_slime_one->rotation.yaw, (s32)(lbl_8043D280[0] * ((f32 (*)(f32, f32))atan2_float)(sp8.x, sp8.z)), 0x280);
         }
         if (ene_slime_one->m_390 > n) {
             ene_slime_one->animation->set_state((s32)((void *)0));
@@ -1572,11 +1572,11 @@ void TObjEneSlimeOne::fn_800E9DC8() {
     f32 sp[3];
     s32 r = 0;
     s32 t;
-    rotation_y = rotation_y + turn_step;
+    this->rotation.yaw = this->rotation.yaw + turn_step;
     if (this->find_nearest_enemy_with_flag((s32)sp, (f32)lbl_805DA728) != 0xFFFF) {
         t = (s32) (lbl_8043D280[0] * atan2_float(sp[0], sp[2]));
-        if (angle_difference_abs(rotation_y, t) < 0x444) {
-            rotation_y = t;
+        if (angle_difference_abs(this->rotation.yaw, t) < 0x444) {
+            this->rotation.yaw = t;
             r = 1;
         }
     }
@@ -1607,8 +1607,8 @@ void TObjEneSlimeOne::fn_800E9BCC() {
         TObjPlayer::calc_distance_to_client((s32)this, (u16)m_3cc, (u32)v);
     }
     t = (s32) (lbl_8043D280[0] * atan2_float(v[0], v[2]));
-    rotation_y = approach_angle_limited(rotation_y, t, 0x200);
-    if (angle_difference_abs(rotation_y, t) < 0x200) {
+    this->rotation.yaw = approach_angle_limited(this->rotation.yaw, t, 0x200);
+    if (angle_difference_abs(this->rotation.yaw, t) < 0x200) {
         m_390 = 0;
     }
     VecCopy(&prev_position, &position);
@@ -1722,7 +1722,7 @@ void TObjEneSlimeOne::start_tail_attack() {
     self->m_390 = 0x5A;
     self->animation->set_state((s32)((void*)((void *)0)));
     play_sound_effect(0x4003A318, &self->attack_position, 0, 0);
-    TObjEneSlimeTailAttack::create((s32)self, (const Vec *)&self->attack_position, self->rotation_y, (TObjEneSlimeOne *)self);
+    TObjEneSlimeTailAttack::create((s32)self, (const Vec *)&self->attack_position, self->rotation.yaw, (TObjEneSlimeOne *)self);
     self->set_display_mode(2);
 }
 #pragma pop
@@ -1989,10 +1989,10 @@ TObjEneSlimeWaterBomb::TObjEneSlimeWaterBomb(TObjEneSlimeOne *parent, TObjEneSli
     f32 c;
     m_name = lbl_805D2AE0;
     this->owner = owner;
-    rotation_y = ((TObjEneSlimeOne *)m_up)->rotation_y;
+    this->rotation.yaw = ((TObjEneSlimeOne *)m_up)->rotation.yaw;
     VecCopy(&position, &((TObjEneSlimeOne *)m_up)->position);
-    s = sin_table_lookup(rotation_y);
-    c = cos_table_lookup(rotation_y);
+    s = sin_table_lookup(this->rotation.yaw);
+    c = cos_table_lookup(this->rotation.yaw);
     position.x += lbl_805DA6E0 * s;
     position.y += lbl_805DA6E4;
     position.z += lbl_805DA6E0 * c;
@@ -2150,7 +2150,7 @@ TObjEneSlimeTailAttack::TObjEneSlimeTailAttack(TObject *parent, const Vec *posit
     requested_action = 6;
     set_animation(requested_action);
     set_field_b8(requested_action);
-    rotation_y = angle;
+    this->rotation.yaw = angle;
     VecCopy(&this->position, position);
     active = 1;
     last_hit_player = 0xFFFF;
@@ -2292,7 +2292,7 @@ void TObjEneSlimeTailAttack::sub_800E841C() {
     u8 *arg0 = (u8 *)this;
     push_matrix();
     post_translate_matrix((u8 *)&this->position);
-    rotate_matrix_y(0, (int) (rotation_y));
+    rotate_matrix_y(0, (int) (this->rotation.yaw));
     set_current_texture_list((GinjaTextureList *)((int) (texlist)));
     if (active != 0) {
         reset_slime_tail_node_index();
@@ -2428,6 +2428,10 @@ void get_slime_tail_pose(SlimeTailPose *dst) {
 #pragma inline_depth(2)
 
 extern "C" {
+__declspec(section ".sdata2") extern const char lbl_805DA668[4] = "RED";
+__declspec(section ".sdata2") extern const f32 lbl_805DA66C = 10.0f;
+__declspec(section ".sdata2") extern const f32 lbl_805DA670 = 0.1f;
+__declspec(section ".sdata2") extern const f32 lbl_805DA674 = 0.75f;
 __declspec(section ".sdata2") extern const f32 lbl_805DA678 = 0.5F;
 __declspec(section ".sdata2") extern const f32 lbl_805DA67C = 1.0F;
 __declspec(section ".sdata2") extern const f32 lbl_805DA680 = -0.5F;
@@ -2476,4 +2480,13 @@ __declspec(section ".sdata2") extern const f32 lbl_805DA728 = 500.0F;
 __declspec(section ".sdata2") extern const f32 lbl_805DA72C = 162.5F;
 __declspec(section ".sdata2") extern const f32 lbl_805DA730 = 4.0F;
 __declspec(section ".sdata2") extern const f32 lbl_805DA734 = 0.25F;
+__declspec(section ".sdata2") extern const f32 lbl_805DA738 = 1048575.0f;
+__declspec(section ".sdata2") extern const f32 lbl_805DA73C = 0.19999999f;
+__declspec(section ".sdata2") extern const f32 lbl_805DA740 = 0.8f;
+__declspec(section ".sdata2") extern const f32 lbl_805DA744 = 0.15f;
+__declspec(section ".sdata2") extern const f32 lbl_805DA748 = 2.0f;
+__declspec(section ".sdata2") extern const f32 lbl_805DA74C = -0.011111111f;
+__declspec(section ".sdata2") extern const f32 lbl_805DA750 = 0.033333335f;
+__declspec(section ".sdata2") extern const f32 lbl_805DA754 = 0.002f;
+__declspec(section ".sdata2") extern const f32 lbl_805DA758 = 65535.0f;
 }

@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/protocol/protocol_types.h"
 #include "pso/system/NinjaTypes.h"
@@ -312,7 +313,7 @@ void __sinit_TItem_cpp() {
 
 void init_item_system() {
     item_registry_count = 0;
-    item_registry_sorted_entries = (TItem **)mem_alloc(0x1000);
+    item_registry_sorted_entries = (TItem **)::operator new[](0x1000);
     memset(item_registry_sorted_entries, 0, 0x1000);
     item_id_counters = new TItemIdCounters;
     TObjPlayer::alloc_and_init_object_b4();
@@ -330,7 +331,7 @@ void free_item_system() {
         item_id_counters = NULL;
     }
     if (item_registry_sorted_entries != NULL) {
-        mem_free(item_registry_sorted_entries);
+        ::operator delete[](item_registry_sorted_entries);
         item_registry_sorted_entries = NULL;
     }
     item_registry_count = 0;
@@ -468,9 +469,9 @@ void TItem::place_on_ground(s16 floor, f32 *pos, s32 quiet) {
         destroy();
         return;
     }
-    rotation_x = 0;
-    rotation_z = 0;
-    rotation_y = (s32)(65536.0f * ((1.0f / 32768.0f) * (f32)rand()));
+    this->rotation.pitch = 0;
+    this->rotation.roll = 0;
+    this->rotation.yaw = (s32)(65536.0f * ((1.0f / 32768.0f) * (f32)rand()));
     snap_to_ground();
     refresh_collision_body_centers();
     if (item_ground_placement_enabled != 0) {
@@ -481,7 +482,7 @@ void TItem::place_on_ground(s16 floor, f32 *pos, s32 quiet) {
 void TItem::update_owned() {}
 
 void TItem::update_timer() {
-    rotation_y += 0x200;
+    this->rotation.yaw += 0x200;
     if (has_interactor() != 0) {
         s16 timer = pickup_wait_frames;
         if (timer == 900) {
@@ -1484,7 +1485,7 @@ void TItem::render_model() {
         set_texlist(texture);
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(0, rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         draw_ginja_object(model);
         pop_matrix();
         TParticleCtrl::end_effect_render();
@@ -1510,7 +1511,7 @@ void TItem::render_present_box() {
         set_texlist(texture);
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(0, rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         set_constant_material(&item_box_primary_colors[box_color]);
         draw_ginja_model((s32)box->model);
         set_constant_material(&item_box_secondary_colors[box_color]);

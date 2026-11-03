@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
@@ -168,7 +169,7 @@ void TOKeyMachine01::render() {
         set_current_texture_list((GinjaTextureList *)(TOKeyMachine01__texture_lists[is_on]));
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
+        rotate_matrix_y(NULL, this->rotation.yaw);
         object = (NJS_OBJECT *)model;
         post_translate_matrix(object->pos);
         draw_ginja_model((s32)object->model);
@@ -208,7 +209,7 @@ void TOKeyMachine01::free_statics() {
         TObjPlayer::free_if_valid(TOKeyMachine01__texture_lists[0]);
         TOKeyMachine01__texture_lists[0] = 0;
         if (TOKeyMachine01__texture_lists != NULL) {
-            mem_free(TOKeyMachine01__texture_lists);
+            ::operator delete[](TOKeyMachine01__texture_lists);
             TOKeyMachine01__texture_lists = NULL;
         }
     }
@@ -221,7 +222,7 @@ void TOKeyMachine01::free_statics() {
 void TOKeyMachine01::load_assets() {
     BmlResource *resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&bm_fs_obj_ki_doa_panel_resource_descriptor), 0, 0, (void *)(0));
     TOKeyMachine01__resource_bundle = resource;
-    TOKeyMachine01__texture_lists = (s32 *)mem_alloc(8);
+    TOKeyMachine01__texture_lists = (s32 *)::operator new[](8);
     TOKeyMachine01__texture_lists[0] = (s32)load_gvm_texture_file((s32) "fs_obj_ki_doa_panel_r.gvm");
     TOKeyMachine01__texture_lists[1] = TOKeyMachine01__resource_bundle->models[0].m_c;
 }

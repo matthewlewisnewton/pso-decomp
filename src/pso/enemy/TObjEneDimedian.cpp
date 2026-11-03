@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/MatrixVectorArray.h"
 #include "pso/misc/SampledMotionPoints.h"
 #include "pso/player/demo_mode.h"
@@ -245,7 +246,7 @@ void TObjEneDimedian::vfunc_93() {
     push_matrix();
     set_matrix_identity(0);
     post_translate_matrix(&o->pos);
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     matrix_mult_vec_array((f32 (*)[4])(0), (const Vec *)(e), (Vec *)(&a), 2);
     pop_matrix();
     eff = o->effs[idx];
@@ -481,7 +482,6 @@ struct Sub_800A8530 { u8 b[0x1C]; };
 struct Self_800A8530 { u8 pad[0x3CC]; Sub_800A8530 subs[4]; };
 
 extern "C" {
-s32 *mem_alloc(s32);
 extern u8 lbl_8043AAA4[];
 extern s32 dimedian_resource_handles[];
 extern s32 dimedian_last_draw_tick[];
@@ -505,7 +505,6 @@ extern u8 __dt__15RenderFadeStateFv[];
 O_800A846C *TObjPlayer__sub_800A846C(O_800A846C *arg0, s16 arg1);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 void *__nw__7TObjectFUl(int);
-void mem_free(void*);
 
 extern void *tl_04;
 
@@ -571,7 +570,7 @@ extern "C" void vfunc_62__13TUnk_80493450Fv();
 extern "C" void vfunc_63__13TUnk_80493450Fv();
 extern "C" void vfunc_78__9TObjCharaFl();
 extern "C" void vfunc_77__9TObjCharaFv();
-extern "C" void vfunc_76__9TObjCharaFv();
+extern "C" void vfunc_76__9TObjCharaFf();
 extern "C" void vfunc_75__9TObjCharaFf();
 extern "C" void clear_lobby_object_state__9TObjEnemyFv();
 extern "C" void get_center__9TObjCharaFv();
@@ -672,7 +671,7 @@ void *__vt__15TObjEneDimedian[103] = {
     (void *)&reset_pose__9TObjCharaFv, (void *)&get_anim_node_position__9TObjCharaFlP3Vec, (void *)&vfunc_66__9TObjCharaFv, (void *)&vfunc_67__9TObjCharaFf,
     (void *)&get_pos__9TObjCharaFl, (void *)&apply_switch_attack__9TObjCharaFv, (void *)&enemy_spawn_jellen_effect__9TObjCharaFv, (void *)&trigger_switch_attack__9TObjCharaFv,
     (void *)&enemy_spawn_zalure_effect__9TObjCharaFv, (void *)&recalc_stats__9TObjCharaFv, (void *)&vfunc_74__9TObjEnemyFl, (void *)&vfunc_75__9TObjCharaFf,
-    (void *)&vfunc_76__9TObjCharaFv, (void *)&vfunc_77__9TObjCharaFv, (void *)&vfunc_78__9TObjCharaFl, (void *)&vfunc_79__9TObjEnemyFPl,
+    (void *)&vfunc_76__9TObjCharaFf, (void *)&vfunc_77__9TObjCharaFv, (void *)&vfunc_78__9TObjCharaFl, (void *)&vfunc_79__9TObjEnemyFPl,
     (void *)&apply_hit_message_flags__9TObjEnemyFPv, (void *)&apply_set_data__9TObjEnemyFPv, (void *)&clear_lobby_object_state__9TObjEnemyFv, (void *)&vfunc_83__15TObjEneDimedianFv,
     (void *)&beast_idle_update__13TUnk_80493450Fv, (void *)&update_turn_toward_target__13TUnk_80493450Fv, (void *)&beast_update_approach__13TUnk_80493450Fv, (void *)&beast_update_group_chase__13TUnk_80493450Fv,
     (void *)&beast_update_attack__13TUnk_80493450Fv, (void *)&vfunc_89__13TUnk_80493450Fv, (void *)&beast_update_hurt__13TUnk_80493450Fv, (void *)&beast_update_dead__13TUnk_80493450Fv,
@@ -704,19 +703,19 @@ extern u32 dimedian_resource_ptr;
 
 void TObjEneDimedian::free_boss_objects() {
     if ((u32) dimedian_boss_object_buf != 0U) {
-        mem_free((void*)dimedian_boss_object_buf);
+        ::operator delete[]((void*)dimedian_boss_object_buf);
         dimedian_boss_object_buf = 0U;
     }
     if ((u32) lbl_805D5074 != 0U) {
-        mem_free((void*)lbl_805D5074);
+        ::operator delete[]((void*)lbl_805D5074);
         lbl_805D5074 = 0U;
     }
     if ((u32) TObjEneDimedian__boss_objects != 0U) {
-        mem_free((void*)TObjEneDimedian__boss_objects);
+        ::operator delete[]((void*)TObjEneDimedian__boss_objects);
         TObjEneDimedian__boss_objects = 0U;
     }
     if ((u32) dimedian_buffer_ptr != 0U) {
-        mem_free((void*)dimedian_buffer_ptr);
+        ::operator delete[]((void*)dimedian_buffer_ptr);
         dimedian_buffer_ptr = 0U;
     }
     if ((u32) lbl_805D5088 != 0U) {
@@ -762,10 +761,10 @@ void TLobby::load_dimedian_resources() {
     (*(void **)&lbl_805D5088) = p;
     ((SampledMotionPoints *)(*(void **)&dimedian_type3_object))->sample_two_nodes((NJS_OBJECT *)RES_800A8118->bodies->model, (NJS_MOTION *)RES_800A8118->motions[dimedian_action_table[3].idx].b, 5, 8);
     ((SampledMotionPoints *)(*(void **)&lbl_805D5088))->sample_two_nodes((NJS_OBJECT *)RES_800A8118->bodies->model, (NJS_MOTION *)RES_800A8118->motions[dimedian_action_table[4].idx].b, 0xA, 0xD);
-    (*(s32 **)&dimedian_boss_object_buf) = mem_alloc(0xC);
-    (*(s32 **)&lbl_805D5074) = mem_alloc(0xC);
-    (*(s32 **)&TObjEneDimedian__boss_objects) = mem_alloc(0xC);
-    (*(s32 **)&dimedian_buffer_ptr) = mem_alloc(0xC);
+    (*(s32 **)&dimedian_boss_object_buf) = static_cast<s32*>(::operator new[](0xC));
+    (*(s32 **)&lbl_805D5074) = static_cast<s32*>(::operator new[](0xC));
+    (*(s32 **)&TObjEneDimedian__boss_objects) = static_cast<s32*>(::operator new[](0xC));
+    (*(s32 **)&dimedian_buffer_ptr) = static_cast<s32*>(::operator new[](0xC));
     (*(s32 **)&dimedian_boss_object_buf)[0] = ((s32)get_battle_base_stats(0x53));
     (*(s32 **)&dimedian_boss_object_buf)[1] = ((s32)get_battle_base_stats(0x54));
     (*(s32 **)&dimedian_boss_object_buf)[2] = ((s32)get_battle_base_stats(0x55));

@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/MatrixVectorArray.h"
 #include "pso/misc/SampledMotionPoints.h"
 #include "pso/player/demo_mode.h"
@@ -165,7 +166,7 @@ void TObjEneBeast::vfunc_94() {
     stack.spC = 1e+01f;
     stack.sp10 = 0.5f * *(f32 *)(this->m_2b0 + 0x10);
     push_matrix_from(&identity_matrix.value);
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     rotate_vector_by_matrix(0, &stack.sp8, &stack.sp8);
     pop_matrix();
     vec3_add_to(&stack.sp8, (u8 *)&this->position);
@@ -198,7 +199,7 @@ void TObjEneBeast::vfunc_93() {
             push_matrix();
             set_matrix_identity(0);
             post_translate_matrix(&self->pos);
-            rotate_matrix_y(0, this->rotation_y);
+            rotate_matrix_y(0, this->rotation.yaw);
             matrix_mult_vec_array((f32 (*)[4])(0), (const Vec *)(entry), (Vec *)(&pos), 2);
             pop_matrix();
             eff = self->effects[idx];
@@ -386,13 +387,11 @@ void __dl__7TObjectFPv(void *);
 void __destroy_arr(void *, void *, int, int);
 extern u8 __dt__15RenderFadeStateFv[];
 O_80092724 *TObjPlayer__sub_80092724(O_80092724 *arg0, s16 arg1);
-void *mem_alloc(u32 size);
 extern Ids_8009241C lbl_80439D68[];
 extern Quad_8009241C lbl_80439D70[];
 extern s32 lbl_80439D80[];
 void *__ct__11TObjControlFP7TObject(void *, void *);
 void *__nw__7TObjectFUl(int);
-void mem_free(void*);
 
 extern void *tl_04;
 
@@ -451,7 +450,7 @@ extern "C" void vfunc_62__13TUnk_80493450Fv();
 extern "C" void vfunc_63__13TUnk_80493450Fv();
 extern "C" void vfunc_78__9TObjCharaFl();
 extern "C" void vfunc_77__9TObjCharaFv();
-extern "C" void vfunc_76__9TObjCharaFv();
+extern "C" void vfunc_76__9TObjCharaFf();
 extern "C" void vfunc_75__9TObjCharaFf();
 extern "C" void clear_lobby_object_state__9TObjEnemyFv();
 extern "C" void get_center__9TObjCharaFv();
@@ -573,7 +572,7 @@ void *__vt__12TObjEneBeast[103] = {
     (void *)&reset_pose__9TObjCharaFv, (void *)&get_anim_node_position__9TObjCharaFlP3Vec, (void *)&vfunc_66__9TObjCharaFv, (void *)&vfunc_67__9TObjCharaFf,
     (void *)&get_pos__9TObjCharaFl, (void *)&apply_switch_attack__9TObjCharaFv, (void *)&enemy_spawn_jellen_effect__9TObjCharaFv, (void *)&trigger_switch_attack__9TObjCharaFv,
     (void *)&enemy_spawn_zalure_effect__9TObjCharaFv, (void *)&recalc_stats__9TObjCharaFv, (void *)&vfunc_74__9TObjEnemyFl, (void *)&vfunc_75__9TObjCharaFf,
-    (void *)&vfunc_76__9TObjCharaFv, (void *)&vfunc_77__9TObjCharaFv, (void *)&vfunc_78__9TObjCharaFl, (void *)&vfunc_79__9TObjEnemyFPl,
+    (void *)&vfunc_76__9TObjCharaFf, (void *)&vfunc_77__9TObjCharaFv, (void *)&vfunc_78__9TObjCharaFl, (void *)&vfunc_79__9TObjEnemyFPl,
     (void *)&apply_hit_message_flags__9TObjEnemyFPv, (void *)&apply_set_data__9TObjEnemyFPv, (void *)&clear_lobby_object_state__9TObjEnemyFv, (void *)&vfunc_83__12TObjEneBeastFv,
     (void *)&beast_idle_update__13TUnk_80493450Fv, (void *)&update_turn_toward_target__13TUnk_80493450Fv, (void *)&beast_update_approach__13TUnk_80493450Fv, (void *)&beast_update_group_chase__13TUnk_80493450Fv,
     (void *)&beast_update_attack__13TUnk_80493450Fv, (void *)&vfunc_89__13TUnk_80493450Fv, (void *)&beast_update_hurt__13TUnk_80493450Fv, (void *)&beast_update_dead__13TUnk_80493450Fv,
@@ -605,19 +604,19 @@ extern u32 ene_beast_bml_resource;
 
 void free_boss4_rock_pool(void) {
     if ((u32) ene_beast_boss_id_buffer != 0U) {
-        mem_free((void*)ene_beast_boss_id_buffer);
+        ::operator delete[]((void*)ene_beast_boss_id_buffer);
         ene_beast_boss_id_buffer = 0U;
     }
     if ((u32) TObjEneBeast__boss4_rock_handler_ids != 0U) {
-        mem_free((void*)TObjEneBeast__boss4_rock_handler_ids);
+        ::operator delete[]((void*)TObjEneBeast__boss4_rock_handler_ids);
         TObjEneBeast__boss4_rock_handler_ids = 0U;
     }
     if ((u32) boss4_rock_pool != 0U) {
-        mem_free((void*)boss4_rock_pool);
+        ::operator delete[]((void*)boss4_rock_pool);
         boss4_rock_pool = 0U;
     }
     if ((u32) boss4_rock_shared_handler_ids != 0U) {
-        mem_free((void*)boss4_rock_shared_handler_ids);
+        ::operator delete[]((void*)boss4_rock_shared_handler_ids);
         boss4_rock_shared_handler_ids = 0U;
     }
     if ((u32) boss4_type3_instance != 0U) {
@@ -658,10 +657,10 @@ void TObjEneBeast::load_resources() {
     boss4_type3_instance = (void *)p;
     ((SampledMotionPoints *)beast_claw_trail_instance)->sample_two_nodes((NJS_OBJECT *)(((Data_8009241C *)ene_beast_bml_resource)->f42c->f8), (NJS_MOTION *)(((Data_8009241C *)ene_beast_bml_resource)->f430[((s32 *)beast_action_table)[13]].f4), 5, 8);
     ((SampledMotionPoints *)boss4_type3_instance)->sample_two_nodes((NJS_OBJECT *)(((Data_8009241C *)ene_beast_bml_resource)->f42c->f8), (NJS_MOTION *)(((Data_8009241C *)ene_beast_bml_resource)->f430[((s32 *)beast_action_table)[17]].f4), 10, 13);
-    ene_beast_boss_id_buffer = (u32)mem_alloc(0xC);
-    TObjEneBeast__boss4_rock_handler_ids = (u32)mem_alloc(0xC);
-    boss4_rock_pool = (u32)mem_alloc(0xC);
-    boss4_rock_shared_handler_ids = (u32)mem_alloc(0xC);
+    ene_beast_boss_id_buffer = (u32)::operator new[](0xC);
+    TObjEneBeast__boss4_rock_handler_ids = (u32)::operator new[](0xC);
+    boss4_rock_pool = (u32)::operator new[](0xC);
+    boss4_rock_shared_handler_ids = (u32)::operator new[](0xC);
     ((s32 *)ene_beast_boss_id_buffer)[0] = ((s32)get_battle_base_stats(0x4B));
     ((s32 *)ene_beast_boss_id_buffer)[1] = ((s32)get_battle_base_stats(0x4C));
     ((s32 *)ene_beast_boss_id_buffer)[2] = ((s32)get_battle_base_stats(0x4D));

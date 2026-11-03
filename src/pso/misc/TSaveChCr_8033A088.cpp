@@ -1,24 +1,20 @@
 #include "pso/TSaveChCr.h"
+
+// The compiler emits the member-action template and writable table together.
+// Keep them before the native vtable so both text and data retain their order.
+TSaveChCrStateActions lbl_804EF658[5] = {
+    { &TSaveChCr::fn_80339D78, &TSaveChCr::update_save_state },
+    { &TSaveChCr::save_1, &TSaveChCr::fn_80339CE4 },
+    { &TSaveChCr::close_and_advance_step2, &TSaveChCr::update_save_status },
+    { &TSaveChCr::close_and_advance_to_3, &TSaveChCr::save_if_dirty },
+    { &TSaveChCr::fn_80339B94, &TSaveChCr::destroy_if_keyboard_idle },
+};
+
 #include "pso/misc/TSaveChCr_8033A088.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
 #include "types.h"
 
 #include <stddef.h>
-struct Stack_8033A184 {
-    s32 sp8;
-    s32 spC;
-    s32 sp10;
-};
-
-union MemberActionStorage_8033A184 { s32 words[3]; void (TSaveChCr::*action)(); };
-
-struct RecoveredGlobal_8033A184_lbl_804EF658 {
-    s32 value;
-    u8 remaining[0x74];
-};
-
-extern TSaveChCrStateActions lbl_804EF658[];
-
 #include "pso/TChCrCharSelect.h"
 
 struct RecoveredGlobal_8033A34C___vt__9TSaveChCr {
@@ -64,24 +60,12 @@ void TSaveChCr::save_character() { begin_action_from_char_select__10TObjPlayerFv
 
 extern void *tl_03;
 
-typedef char MemberActionStorage_8033A184_size[sizeof(MemberActionStorage_8033A184) == 12 ? 1 : -1];
-typedef char RecoveredGlobal_8033A184_lbl_804EF658_size[sizeof(RecoveredGlobal_8033A184_lbl_804EF658) == 0x78 ? 1 : -1];
 void TSaveChCr::set_state(s32 arg1) {
-    u8 *arg0 = (u8 *)this;
-    MemberActionStorage_8033A184 member_action;
-    typedef char sp8_offset[(offsetof(Stack_8033A184, sp8) == 0x0) ? 1 : -1];
-    typedef char spC_offset[(offsetof(Stack_8033A184, spC) == 0x4) ? 1 : -1];
-    typedef char sp10_offset[(offsetof(Stack_8033A184, sp10) == 0x8) ? 1 : -1];
-    Stack_8033A184 stack;
-    u8 *temp_r6;
-    if ((s32) *(s32 *)((s8 *)arg0 + 0x1C) != arg1) {
-        *(s32 *)((s8 *)arg0 + 0x1C) = arg1;
-        temp_r6 = (u8 *)&(*(RecoveredGlobal_8033A184_lbl_804EF658 *)&lbl_804EF658).value + (*(s32 *)((s8 *)arg0 + 0x1C) * 0x18);
-        member_action.words[0] = *(s32 *)((s8 *)temp_r6 + 0);
-        member_action.words[1] = *(s32 *)((s8 *)temp_r6 + 4);
-        member_action.words[2] = *(s32 *)((s8 *)temp_r6 + 8);
-        if (member_action.action != 0) {
-            (((TSaveChCr *)(arg0))->*member_action.action)();
+    if (state_index != arg1) {
+        state_index = arg1;
+        TSaveChCrStateAction action = lbl_804EF658[state_index].first;
+        if (action != 0) {
+            (this->*action)();
         }
     }
 }

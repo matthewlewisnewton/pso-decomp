@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
@@ -36,7 +37,7 @@ void TOKeyAncient01::render() {
     if (update_object_view_visibility(view_range, model_radius) != 0) {
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
+        rotate_matrix_y(NULL, this->rotation.yaw);
         set_current_texture_list((GinjaTextureList *)(texlist));
         if (is_on != 1) {
             draw_ginja_model_with_motion(model, motion, animation_frame);
@@ -72,7 +73,7 @@ void TOKeyAncient01::free_shared_resources() {
             TObjPlayer::free_if_valid(TOKeyAncient01__texture_lists[i]);
         }
         if (TOKeyAncient01__texture_lists != NULL) {
-            mem_free(TOKeyAncient01__texture_lists);
+            ::operator delete[](TOKeyAncient01__texture_lists);
             TOKeyAncient01__texture_lists = NULL;
         }
     }
@@ -85,7 +86,7 @@ void TOKeyAncient01::free_shared_resources() {
 void TOKeyAncient01::load_resources() {
     BmlResource *resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&bm_fd_obj_n_switch_resource_descriptor), 0, 0, (void *)(0));
     TOKeyAncient01__shared_resource_object = resource;
-    TOKeyAncient01__texture_lists = (s32 *)mem_alloc(0x10);
+    TOKeyAncient01__texture_lists = (s32 *)::operator new[](0x10);
     TOKeyAncient01__texture_lists[0] = TOKeyAncient01__shared_resource_object->models[0].m_c;
     TOKeyAncient01__texture_lists[1] = (s32)load_gvm_texture_file((s32) "o_key_ancient01b.gvm");
     TOKeyAncient01__texture_lists[2] = (s32)load_gvm_texture_file((s32) "o_key_ancient01g.gvm");

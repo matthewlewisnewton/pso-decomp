@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/misc/PersistentSound.h"
 #include "types.h"
@@ -77,7 +78,7 @@ void TOBarrierEnergy01::load_resources() {
     BmlResource *archive = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&bm_fs_obj_lazerguard_resource_descriptor), 0, 0, (void *)(0));
     barrier_energy_shared_bml_archive = archive;
     barrier_energy_model = (void *)get_bml_model(archive, 0);
-    barrier_energy_texlists = (s32 *)mem_alloc(3 * sizeof(s32));
+    barrier_energy_texlists = (s32 *)::operator new[](3 * sizeof(s32));
     barrier_energy_texlists[0] = (s32)load_gvm_texture_file((s32)"fs_obj_laz_guard_r.gvm");
     barrier_energy_texlists[1] = TObjFish__sub_8001EDB0(barrier_energy_shared_bml_archive, 1);
     barrier_energy_texlists[2] = TObjFish__sub_8001EDB0(barrier_energy_shared_bml_archive, 0);
@@ -87,7 +88,7 @@ void TOBarrierEnergy01::free_resources() {
     if (barrier_energy_texlists != NULL) {
         TObjPlayer::free_if_valid(barrier_energy_texlists[0]);
         if (barrier_energy_texlists != NULL) {
-            mem_free(barrier_energy_texlists);
+            ::operator delete[](barrier_energy_texlists);
             barrier_energy_texlists = NULL;
         }
     }
@@ -105,7 +106,7 @@ void TOBarrierEnergy01::render() {
     if (update_object_view_visibility(view_range, model_radius) != 0) {
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
+        rotate_matrix_y(NULL, this->rotation.yaw);
         set_current_texture_list((GinjaTextureList *)(texlist));
         TParticleCtrl::begin_effect_render();
         draw_ginja_model_with_motion(model, motion, animation_frame);

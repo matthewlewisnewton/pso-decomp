@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
@@ -1405,14 +1406,12 @@ extern void *lbl_805D4120;
 extern "C" {
 
 extern const f32 lbl_805DF38C;
-void mem_free(void *p);
 
 }
 
 extern "C" {
 
 s32 is_split_screen();
-void *mem_alloc(u32);
 void *init__11TBreakUpMdlFPviif(void *, s32, s32, f32);
 extern const s32 lbl_80475E0C[];
 extern const s32 lbl_80475E14[];
@@ -1458,7 +1457,7 @@ void TObjEneMe3SinowZoa::load_resources() {
     source = (NJS_TEXLIST *)TObjEneMe3SinowZoa__data_805D6AD8->models[0].m_c;
     count = source->nbTexture;
     lbl_80542FDC.nbTexture = count;
-    lbl_80542FDC.textures = (NJS_TEXNAME *)mem_alloc(count * sizeof(NJS_TEXNAME));
+    lbl_80542FDC.textures = (NJS_TEXNAME *)::operator new[](count * sizeof(NJS_TEXNAME));
     for (i = 0; i < count; ++i) {
         ((TObjPlayer *)&lbl_80542FDC.textures[i])->copy_vec3(&source->textures[i]);
     }
@@ -1532,7 +1531,7 @@ void TObjEneMe3SinowZoa::free_resources() {
         TObjEneMe3SinowZoa__data_805D6AE0 = 0;
     }
     if (lbl_80542FDC.textures != 0) {
-        mem_free((void *)lbl_80542FDC.textures);
+        ::operator delete[]((void *)lbl_80542FDC.textures);
         lbl_80542FDC.textures = 0;
     }
     if (TObjEneMe3SinowZoa__data_805D6AD8 != 0) {
@@ -3131,7 +3130,7 @@ void TObjEneMe3SinowZoa::vfunc_115() {
         }
         push_matrix();
         post_translate_matrix(&position);
-        rotate_matrix_y(0, rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         scale_matrix(0, TObjEneMe3SinowZoa__data_805DF2F4, TObjEneMe3SinowZoa__data_805DF2F4, TObjEneMe3SinowZoa__data_805DF2F4);
         {
             s32 i;
@@ -3281,7 +3280,7 @@ void TObjEneMe3SinowZoa::fn_80316C3C(s32 arg1) {
                 copy_position_if_valid__10TObjPlayerFii(this, *((Vec *)&body_center_position));
                 body_center_position.y += TObjEneMe3SinowZoa__data_805DF308;
                 angle = enemy_turn_toward_dest(this, ((SinowZoaMoveParameters *)movementParameters)->turn_speed);
-                enemy_set_heading_velocity(((SinowZoaMoveParameters *)movementParameters)->speed, this, rotation_y);
+                enemy_set_heading_velocity(((SinowZoaMoveParameters *)movementParameters)->speed, this, this->rotation.yaw);
                 move_with_wall_slide((u8 *)this);
             } else {
                 VecCopy(&diff, &target_destination);
@@ -3319,7 +3318,7 @@ void TObjEneMe3SinowZoa::fn_80316C3C(s32 arg1) {
                 advance_animation();
                 push_matrix_from(identity_matrix);
                 post_translate_matrix(&position);
-                rotate_matrix_y(0, rotation_y);
+                rotate_matrix_y(0, this->rotation.yaw);
                 set_motion_packed_rotation();
                 calc_joint_matrices(TObjEneMe3SinowZoa__data_805DF314);
                 clear_motion_packed_rotation();
@@ -3340,7 +3339,7 @@ void TObjEneMe3SinowZoa::fn_80316C3C(s32 arg1) {
                         create__11TTecRaBartaFPvPvPvPv(this, &out, &position,
                             TObjEneDD::clamp_frame_index(TObjEneMe3SinowZoa__kind_param_tbls[kind]->barta_level));
                     } else {
-                        ((TTecGiBarta *)this)->create_ex(&out, (void *)rotation_y, (void *)(TObjEneDD::clamp_frame_index(TObjEneMe3SinowZoa__kind_param_tbls[kind]->barta_level)));
+                        ((TTecGiBarta *)this)->create_ex(&out, (void *)this->rotation.yaw, (void *)(TObjEneDD::clamp_frame_index(TObjEneMe3SinowZoa__kind_param_tbls[kind]->barta_level)));
                     }
                 } else if (state_flags & 0x100000) {
                     substate = 4;

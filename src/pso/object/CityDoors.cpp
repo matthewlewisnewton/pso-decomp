@@ -1,3 +1,4 @@
+#include "pso/system/SoundSlotPitch.h"
 #include "pso/system/MatrixVectorArray.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
@@ -201,7 +202,7 @@ void TObjCityDoor_Lobby::process_lobby_action_14() {
         set_current_texture_list((GinjaTextureList *)((*(s32 *)&city_common_texture_list)));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         get_city_common_model(0xE);
         draw_ginja_object();
         pop_matrix();
@@ -493,7 +494,7 @@ void TObjCityDoor_Med::render() {
         set_current_texture_list((GinjaTextureList *)(city_common_texture_list));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         translate_matrix(0, lbl_805DBBE8[0], lbl_805DBBE8[0], lbl_805DBBF4);
         draw_ginja_model_with_motion(get_city_common_model(0x14), get_city_common_motion(0xB), this->m_b4);
         pop_matrix();
@@ -613,7 +614,6 @@ void TObjCityDoor_Warp::run_task() {
 }
 
 void city_door_tick_opening__13TUnk_804B5BA8Fv(void *);
-s32 update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
 
 void city_door_tick_opening__17TObjCityDoor_WarpFv(u8 *arg0);
 extern const f32 lbl_805DBBF8;
@@ -742,7 +742,7 @@ void TObjCityDoor_Guild::render() {
         set_current_texture_list((GinjaTextureList *)(city_common_texture_list));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         draw_ginja_model_with_motion(get_city_common_model(0x15), get_city_common_motion(0xC), this->m_b4);
         pop_matrix();
     }
@@ -831,7 +831,7 @@ void TObjCityDoor_Shop::render() {
         set_current_texture_list((GinjaTextureList *)(city_common_texture_list));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         draw_ginja_model_with_motion(*(s32 *)((s8 *)(*(void **)((s8 *)city_common_model_archive + 0x42C)) + 0xB8), *(s32 *)((s8 *)(*(void **)((s8 *)city_common_model_archive + 0x430)) + 0x54), this->m_b4);
         pop_matrix();
     }

@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/ChunkMaterialState.h"
 #pragma defer_codegen on
@@ -88,7 +89,6 @@ struct RecoveredGlobal_802E0B60_lbl_804E3008 {
 
 extern "C" {
 void *__dt__10TObjMotionFv(void *arg0, s16 arg1);
-void mem_free(void *p);
 s32 __dl__7TObjectFPv(void *);
 extern RecoveredGlobal_802E0B60_lbl_804E2F68 multi_chr_select_player_slot_table;
 extern RecoveredGlobal_802E0B60_lbl_804E3008 multi_chr_select_player_actor_ops;
@@ -237,7 +237,7 @@ u8 *__dt__13TUnk_804E3008Fv(u8 *arg0, s16 arg1) {
         }
         temp_r3 = *(u32 *)((s8 *)arg0 + 0xE0);
         if (temp_r3 != 0U) {
-            mem_free((void *)temp_r3);
+            ::operator delete[]((void *)temp_r3);
             *(u32 *)((s8 *)arg0 + 0xE0) = 0U;
         }
         temp_r3_2 = ((TUnk_804E3008 *)arg0)->m_170;
@@ -401,7 +401,7 @@ void TObjPlayer::update_chara_making() {
     u8 *arg0 = (u8 *)this;
     push_matrix();
     post_translate_matrix((u8 *)&this->position);
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     set_current_texture_list((GinjaTextureList *)(((TAdPlyStatusGC *)(this->m_170))->get_status_sub()));
     draw_model_with_arg((void*)((int) (((TAdPlyStatusGC *)(this->m_170))->get_field_4a4())));
     ((TObjMotion *)arg0)->get_item_ptr(0x3A);

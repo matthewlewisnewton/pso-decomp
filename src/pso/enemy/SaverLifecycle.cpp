@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/MatrixVectorArray.h"
 #include "pso/misc/SampledMotionPoints.h"
 #include "pso/player/demo_mode.h"
@@ -67,7 +68,6 @@ s32 update_movement_status__9TObjCharaFv();
 s32 update_movement_status__12TObjEneSaverFv(u8 *arg0);
 s32 update_action_hold_status__9TObjCharaFv();
 s32 update_action_hold_status__12TObjEneSaverFv(u8 *arg0);
-void *mem_alloc(u32 size);
 extern const Init_800A715C saver_init_binding_desc;
 extern void *bm_ene_df1_saver_model_names[2];
 extern void *bm_ene_df1_saver_motion_names[12];
@@ -209,7 +209,7 @@ s32 test_flag_256__12TObjEneSaverFv(Obj_800A4C4C *self);
 void find_nearest_target__10TObjPlayerFPv(Obj_800A677C *self);
 void vfunc_78__9TObjCharaFl();
 void vfunc_77__9TObjCharaFv();
-void vfunc_76__9TObjCharaFv();
+void vfunc_76__9TObjCharaFf();
 void vfunc_75__9TObjCharaFf();
 void get_actor_level_index__9TObjCharaFv();
 void get_name__9TObjEnemyFv();
@@ -301,7 +301,7 @@ void *TObjEneSaver__vtable[83] = {
     (void *)&reset_pose__9TObjCharaFv, (void *)&get_anim_node_position__9TObjCharaFlP3Vec, (void *)&vfunc_66__9TObjCharaFv, (void *)&vfunc_67__9TObjCharaFf,
     (void *)&get_pos__9TObjCharaFl, (void *)&apply_switch_attack__9TObjCharaFv, (void *)&enemy_spawn_jellen_effect__9TObjCharaFv, (void *)&trigger_switch_attack__9TObjCharaFv,
     (void *)&enemy_spawn_zalure_effect__9TObjCharaFv, (void *)&recalc_stats__9TObjCharaFv, (void *)&vfunc_74__9TObjEnemyFl, (void *)&vfunc_75__9TObjCharaFf,
-    (void *)&vfunc_76__9TObjCharaFv, (void *)&vfunc_77__9TObjCharaFv, (void *)&vfunc_78__9TObjCharaFl, (void *)&vfunc_79__9TObjEnemyFPl,
+    (void *)&vfunc_76__9TObjCharaFf, (void *)&vfunc_77__9TObjCharaFv, (void *)&vfunc_78__9TObjCharaFl, (void *)&vfunc_79__9TObjEnemyFPl,
     (void *)&apply_hit_message_flags__9TObjEnemyFPv, (void *)&apply_set_data__9TObjEnemyFPv, (void *)&clear_lobby_object_state__9TObjEnemyFv,
 };
 }
@@ -326,7 +326,7 @@ void TObjEneSaver::apply_lookup_entry_effect() {
         push_matrix();
         set_matrix_identity(0);
         post_translate_matrix((void *) (((u8 *)this) + 0x38));
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         matrix_mult_vec_array((f32 (*)[4])(0), (const Vec *)(entry), (Vec *)(&sp8), 2);
         pop_matrix();
         temp_r3_2 = (unsigned char *) (*(void **)((s8 *)((u8 *)this) + 0x3C0));
@@ -796,7 +796,7 @@ int TObjEneSaver::test_flag_256() {
             if (!(calc_distance_to_client__10TObjPlayerFlUsUl(self, i, &v) < 900.0f)) {
                 continue;
             }
-            if (angle_difference_abs(this->rotation_y, (s32)(10430.38043493439 * atan2_float(v.x, v.z))) >= 0x2AAA) {
+            if (angle_difference_abs(this->rotation.yaw, (s32)(10430.38043493439 * atan2_float(v.x, v.z))) >= 0x2AAA) {
                 continue;
             }
             if (test_action_mask__10TObjPlayerFl(p, 0xE0) == 0) {
@@ -1253,7 +1253,7 @@ s32 TObjEneSaver::is_target_in_attack_range() {
         tgt = this->target;
         if (tgt != NULL && this->m_318 != 0U && !(*(s32 *)((s8 *)tgt + 0x30) & 0x02000800)) {
             dist = calc_xz_distance_sq(arg0, tgt, &v);
-            ang = angle_difference_abs(this->rotation_y, (s32)(10430.38043493439 * atan2_float(v.x, v.z)));
+            ang = angle_difference_abs(this->rotation.yaw, (s32)(10430.38043493439 * atan2_float(v.x, v.z)));
             p = *(u8 **)(this->target + 0xA4);
             if (p != NULL) {
                 var_f29 = *(f32 *)((s8 *)p + 0xC);
@@ -1505,7 +1505,6 @@ extern s32 lbl_8043A8B0[];
 extern s32 lbl_8043A8BC[];
 void * create_ene_saver(void *arg0);
 void *__ct__11TObjControlFP7TObject(void *, void *);
-void mem_free(void*);
 s32 lerp_angle_half__Fll(s32, s32);
 s32 obj_setFlags30(void *, int);
 
@@ -1877,7 +1876,7 @@ void TObjEneSaver::render() {
         set_current_texture_list((GinjaTextureList *)(((TObjEneSaver *)arg0)->texlist));
         push_matrix_from(NULL);
         translate_matrix_vec3(0, (u8 *)&this->position);
-        rotate_matrix_y(0, ((TObjEneSaver *)arg0)->rotation_y);
+        rotate_matrix_y(0, ((TObjEneSaver *)arg0)->rotation.yaw);
         lbl_805D505C = 0;
         lbl_805D5060 = *(s32 *)((s8 *)arg0 + 0x39C);
         set_chunk_model_node_callback((TObjPlayer::step_cutscene_frame));
@@ -1930,7 +1929,7 @@ void TObjEneSaver::render() {
     } else {
         push_matrix_from(identity_matrix);
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, ((TObjEneSaver *)arg0)->rotation_y);
+        rotate_matrix_y(0, ((TObjEneSaver *)arg0)->rotation.yaw);
         set_motion_packed_rotation();
         ((TObjEnemy *)arg0)->calc_joint_matrices(((TObjEneSaver *)arg0)->frame);
         clear_motion_packed_rotation();
@@ -2026,7 +2025,7 @@ void * create_ene_saver(void *arg0) {
 
 void TObjPlayer::free_resources() {
     if ((u32) (*(u32 *)&player_object_ptr_array) != 0U) {
-        mem_free((void*)(*(u32 *)&player_object_ptr_array));
+        ::operator delete[]((void*)(*(u32 *)&player_object_ptr_array));
         (*(u32 *)&player_object_ptr_array) = 0U;
     }
     if ((u32) (*(u32 *)&lbl_805D5064) != 0U) {
@@ -2087,7 +2086,7 @@ void initialize_saver_resources(void) {
     dir.x = (-10.0f);
     dir.y = dir.z = 0.0f;
     ((SampledMotionPoints *)lbl_805D506C)->sample_node_offsets((NJS_OBJECT *)RES->sub->f8, (NJS_MOTION *)(RES->ents[saver_action_table[3].motion].b), 0x19, (const Vec *)&pos, (const Vec *)&dir);
-    player_object_ptr_array = (s32 *)mem_alloc(0xC);
+    player_object_ptr_array = (s32 *)::operator new[](0xC);
     saver_boss_stat_handle = ((s32)get_battle_base_stats(0x52));
     player_object_ptr_array[0] = ((s32)get_battle_attack_params(0x57));
     player_object_ptr_array[2] = ((s32)get_battle_attack_params(0x58));

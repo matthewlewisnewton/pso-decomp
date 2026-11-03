@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/system/EnemyBmlResource.h"
@@ -84,7 +85,6 @@ extern s32 actor_frame_tick;
 extern const f32 lbl_805D9E60;
 extern const f32 TObjCGrass__data_805D9E64;
 s32 __ct__10TObjMotionFP7TObject(void *, s32);
-void *mem_alloc(u32 size);
 s32 rand(void);
 s32 rotate_vector_by_matrix(int, void *, void *);
 extern s32 cgrass_action_desc[];
@@ -98,7 +98,6 @@ extern const f32 lbl_805D9E70;
 extern const f32 lbl_805D9E74;
 extern const f32 lbl_805D9E78;
 u8 *TObjCGrass__ct(Grass_800B8EFC *self, u8 *arg1, s32 arg2, s32 arg3);
-void mem_free(void *);
 
 struct Stack_800B8DC4 {
     s32 sp8;
@@ -221,7 +220,7 @@ void TObjCGrass::load_resources() {
 
 }
 TObjCGrass::~TObjCGrass() {
-    if (*(void **)((s8 *)this + 0xFC) != NULL) { mem_free(*(void **)((s8 *)this + 0xFC)); }
+    if (*(void **)((s8 *)this + 0xFC) != NULL) { ::operator delete[](*(void **)((s8 *)this + 0xFC)); }
 }
 
 #pragma push
@@ -247,7 +246,7 @@ u8 *TObjCGrass__ct(Grass_800B8EFC *self, u8 *arg1, s32 arg2, s32 arg3) {
     self->f100 = self->fC4 - lbl_805D9E6C;
     self->count = arg2;
     if (arg2 != 0) {
-        self->recs = (Rec_800B8EFC *)mem_alloc(self->count << 5);
+        self->recs = (Rec_800B8EFC *)::operator new[](self->count << 5);
     } else {
         self->recs = NULL;
     }

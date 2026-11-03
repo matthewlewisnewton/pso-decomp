@@ -1,3 +1,4 @@
+#include "pso/system/SoundSlotPitch.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/item/TItem.h"
@@ -67,7 +68,6 @@ struct VObj_18_382324 : VBase_18_382324 {
 
 extern "C" {
 s32 get_current_floor();
-s32 update_technique_slot__10TTecRaFoieFl(int, int, int);
 
 s32 init_shoot_model__13TUnk_804A69C0Fv(int, void *, void *, void *, f32);
 s32 __nw__7TObjectFUl(int);

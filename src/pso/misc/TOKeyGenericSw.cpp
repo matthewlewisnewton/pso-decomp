@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
@@ -57,7 +58,7 @@ void TOKeyGenericSw::render() {
     texlist = TOKeyGenericSw__texture_lists[0];
     model = (void *)TOKeyGenericSw__shared_resource_ptrs[0]->models[0].model;
     post_translate_matrix(&position.x);
-    rotate_matrix_y(NULL, rotation_y);
+    rotate_matrix_y(NULL, this->rotation.yaw);
     set_current_texture_list((GinjaTextureList *)(texlist));
     draw_ginja_object(model);
     pop_matrix();
@@ -73,7 +74,7 @@ void TOKeyGenericSw::render() {
     }
     model = (void *)TOKeyGenericSw__shared_resource_ptrs[1]->models[0].model;
     post_translate_matrix(&position.x);
-    rotate_matrix_y(NULL, rotation_y);
+    rotate_matrix_y(NULL, this->rotation.yaw);
     set_current_texture_list((GinjaTextureList *)(texlist));
     draw_ginja_model_with_motion(model, motion, animation_frame);
     pop_matrix();
@@ -106,7 +107,7 @@ void TOKeyGenericSw::free_shared_resources() {
     if (TOKeyGenericSw__texture_lists != NULL) {
         TObjPlayer::free_if_valid(TOKeyGenericSw__texture_lists[2]);
         if (TOKeyGenericSw__texture_lists != NULL) {
-            mem_free(TOKeyGenericSw__texture_lists);
+            ::operator delete[](TOKeyGenericSw__texture_lists);
             TOKeyGenericSw__texture_lists = NULL;
         }
     }
@@ -129,7 +130,7 @@ void TOKeyGenericSw::load_resources() {
         TOKeyGenericSw__shared_resource_ptrs[0] = resource;
         resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&fs_obj_hanyousu_light_j_resource_descriptor), 0, 0, (void *)(0));
         TOKeyGenericSw__shared_resource_ptrs[1] = resource;
-        TOKeyGenericSw__texture_lists = (s32 *)mem_alloc(0xC);
+        TOKeyGenericSw__texture_lists = (s32 *)::operator new[](0xC);
         TOKeyGenericSw__texture_lists[0] = TOKeyGenericSw__shared_resource_ptrs[0]->models[0].m_c;
         TOKeyGenericSw__texture_lists[1] = TOKeyGenericSw__shared_resource_ptrs[1]->models[0].m_c;
         TOKeyGenericSw__texture_lists[2] = (s32)load_gvm_texture_file((s32) "fs_obj_hanyousu_light_ao_j.GVM");
@@ -138,7 +139,7 @@ void TOKeyGenericSw::load_resources() {
         TOKeyGenericSw__shared_resource_ptrs[0] = resource;
         resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&fs_obj_hanyousu_light_resource_descriptor), 0, 0, (void *)(0));
         TOKeyGenericSw__shared_resource_ptrs[1] = resource;
-        TOKeyGenericSw__texture_lists = (s32 *)mem_alloc(0xC);
+        TOKeyGenericSw__texture_lists = (s32 *)::operator new[](0xC);
         TOKeyGenericSw__texture_lists[0] = TOKeyGenericSw__shared_resource_ptrs[0]->models[0].m_c;
         TOKeyGenericSw__texture_lists[1] = TOKeyGenericSw__shared_resource_ptrs[1]->models[0].m_c;
         TOKeyGenericSw__texture_lists[2] = (s32)load_gvm_texture_file((s32) "fs_obj_hanyousu_light_ao.GVM");

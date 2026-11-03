@@ -625,7 +625,7 @@ void enemy_spawn_jellen_effect__9TObjCharaFv();
 void enemy_spawn_zalure_effect__9TObjCharaFv();
 void vfunc_78__9TObjCharaFl();
 void vfunc_77__9TObjCharaFv();
-void vfunc_76__9TObjCharaFv();
+void vfunc_76__9TObjCharaFf();
 void vfunc_75__9TObjCharaFf();
 void get_center__9TObjCharaFv();
 void get_actor_level_index__9TObjCharaFv();
@@ -732,7 +732,7 @@ void *__vt__13TObjDFHorming[] = {
     (void *)recalc_stats__9TObjCharaFv,
     (void *)vfunc_74__9TObjCharaFl,
     (void *)vfunc_75__9TObjCharaFf,
-    (void *)vfunc_76__9TObjCharaFv,
+    (void *)vfunc_76__9TObjCharaFf,
     (void *)vfunc_77__9TObjCharaFv,
     (void *)vfunc_78__9TObjCharaFl,
 };
@@ -908,8 +908,9 @@ s32 pop_matrix();
 s32 scale_current_matrix(void *);
 f32 post_translate_matrix(void *);
 extern RecoveredGlobal_80051AD0_lbl_804858B4 dark_falz_jisin_zero_vec;
-extern RecoveredGlobal_80051AD0_lbl_804FF228 lbl_804FF228;
-extern RecoveredGlobal_80051AD0_lbl_804FF234 lbl_804FF234;
+RecoveredGlobal_80051AD0_lbl_804FF228 lbl_804FF228;
+RecoveredGlobal_80051AD0_lbl_804FF234 lbl_804FF234;
+RecoveredGlobal_80051A18_lbl_804FF240 df_captured_matrix_pair;
 s32 is_active__14TBoss4DarkFalzFv();
 extern const f32 lbl_805D8AC0;
 void TObjDFTenchuFuru__sub_80051A7C(void);

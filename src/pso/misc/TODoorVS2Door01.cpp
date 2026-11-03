@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/misc/TODoorVS2Door01.h"
 
@@ -76,7 +77,7 @@ void TODoorVS2Door01::render() {
     if (update_object_view_visibility(view_range, model_radius) != 0 && is_in_view_depth(30.0f) != 0) {
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
+        rotate_matrix_y(NULL, this->rotation.yaw);
         set_current_texture_list((GinjaTextureList *)(texture_lists[door_flags & 1]));
         node = (NJS_OBJECT *)model;
         post_translate_matrix(node->pos);
@@ -138,7 +139,7 @@ void TODoorVS2Door01::destroy() {
     if (texture_lists != NULL) {
         TObjPlayer::free_if_valid(texture_lists[0]);
         if (texture_lists != NULL) {
-            mem_free(texture_lists);
+            ::operator delete[](texture_lists);
             texture_lists = NULL;
         }
     }
@@ -151,7 +152,7 @@ void TODoorVS2Door01::destroy() {
 void TODoorVS2Door01::load_resources() {
     BmlResource *resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&door_vs2door01_resource_descriptor), 0, 0, (void *)(0));
     bml_resource = resource;
-    texture_lists = (s32 *)mem_alloc(8);
+    texture_lists = (s32 *)::operator new[](8);
     texture_lists[1] = bml_resource->models[0].m_c;
     texture_lists[0] = (s32)load_gvm_texture_file((s32)"fs_obj_o_vs2door01lr.gvm");
 }

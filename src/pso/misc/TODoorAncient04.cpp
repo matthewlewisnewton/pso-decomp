@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TODoorAncient04.h"
@@ -68,7 +69,7 @@ TODoorAncient04::~TODoorAncient04() {
 void TODoorAncient04::load_resources() {
     BmlResource *archive = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&bm_fe_obj_o_door04l_resource_descriptor), 0, 0, (void *)(0));
     door_ancient04_archive = archive;
-    s32 *texlists = (s32 *)mem_alloc(2 * sizeof(s32));
+    s32 *texlists = (s32 *)::operator new[](2 * sizeof(s32));
     door_ancient04_texlists = texlists;
     texlists[0] = door_ancient04_archive->models[0].m_c;
     door_ancient04_texlists[1] = (s32)load_gvm_texture_file((s32)"fe_obj_o_door04g.gvm");
@@ -78,7 +79,7 @@ void TODoorAncient04::free_resources() {
     if (door_ancient04_texlists != NULL) {
         TObjPlayer::free_if_valid(door_ancient04_texlists[1]);
         if (door_ancient04_texlists != NULL) {
-            mem_free(door_ancient04_texlists);
+            ::operator delete[](door_ancient04_texlists);
             door_ancient04_texlists = NULL;
         }
     }
@@ -96,7 +97,7 @@ void TODoorAncient04::render() {
     if (update_object_view_visibility(view_range, model_radius) != 0 && is_in_view_depth(30.0f) != 0) {
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
+        rotate_matrix_y(NULL, this->rotation.yaw);
         set_current_texture_list((GinjaTextureList *)(door_ancient04_texlists[door_flags & DOOR_FLAG_UNLOCKED]));
         if (object_state == DOOR_CLOSED) {
             NJS_OBJECT *node = (NJS_OBJECT *)model;

@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/TMainTask.h"
@@ -26,7 +27,7 @@ BmlResource *sensor_general_shared_bml_archive;
 s32 *TOSensorGeneral01__texture_lists;
 
 void TOSensorGeneral01::update_switch_off() {
-    rotation_y = rotation_y + 0x147;
+    this->rotation.yaw = this->rotation.yaw + 0x147;
     head_angle = head_angle + 0x28F;
 }
 
@@ -36,23 +37,23 @@ void TOSensorGeneral01::update_switch_on() {
     if (lamp_timer < 0) {
         lamp_timer = 0;
         lamps_dark = 0;
-        rotation_y = rotation_y + 0xCCC;
+        this->rotation.yaw = this->rotation.yaw + 0xCCC;
         position.y += 1.0f;
         return;
     }
     if ((f32)lamp_timer < 30.0f) {
         lamps_dark = 1;
-        rotation_y = rotation_y + 0x147;
+        this->rotation.yaw = this->rotation.yaw + 0x147;
         return;
     }
     if ((f32)lamp_timer < 60.0f) {
         lamps_dark = 2;
-        rotation_y = rotation_y + 0x147;
+        this->rotation.yaw = this->rotation.yaw + 0x147;
         return;
     }
     if ((f32)lamp_timer < 90.0f) {
         lamps_dark = 3;
-        rotation_y = rotation_y + 0x147;
+        this->rotation.yaw = this->rotation.yaw + 0x147;
     }
 }
 
@@ -62,7 +63,7 @@ void TOSensorGeneral01::render() {
     if (update_object_view_visibility(view_range, model_radius) != 0) {
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
+        rotate_matrix_y(NULL, this->rotation.yaw);
         object = (NJS_OBJECT *)model;
         translate_matrix(0, object->pos[0], object->pos[1], object->pos[2]);
         set_current_texture_list((GinjaTextureList *)(TOSensorGeneral01__texture_lists[0]));
@@ -100,7 +101,7 @@ void TOSensorGeneral01::free_assets() {
     if (TOSensorGeneral01__texture_lists != NULL) {
         TObjPlayer::free_if_valid(TOSensorGeneral01__texture_lists[0]);
         if (TOSensorGeneral01__texture_lists != NULL) {
-            mem_free(TOSensorGeneral01__texture_lists);
+            ::operator delete[](TOSensorGeneral01__texture_lists);
             TOSensorGeneral01__texture_lists = NULL;
         }
     }
@@ -113,7 +114,7 @@ void TOSensorGeneral01::free_assets() {
 void TOSensorGeneral01::load_assets() {
     BmlResource *resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&TOSensorGeneral01__resource_descriptor), 0, 0, (void *)(0));
     sensor_general_shared_bml_archive = resource;
-    TOSensorGeneral01__texture_lists = (s32 *)mem_alloc(8);
+    TOSensorGeneral01__texture_lists = (s32 *)::operator new[](8);
     TOSensorGeneral01__texture_lists[1] = sensor_general_shared_bml_archive->models[0].m_c;
     TOSensorGeneral01__texture_lists[0] = (s32)load_gvm_texture_file((s32) "fs_obj_sensor_r.gvm");
 }

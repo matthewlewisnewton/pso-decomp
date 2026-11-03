@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/enemy/BattleParameters.h"
@@ -46,8 +47,6 @@ extern "C" {
 
 u32 csnLookAt(void *, void *);
 s32 enemy_set_target_id(void *, u16);
-void mem_free(void*);
-void *mem_alloc(u32 size);
 f32 sin_table_lookup(s32);
 f32 cos_table_lookup(s32);
 void compose_motion_node_matrix(void *arg0);
@@ -191,7 +190,7 @@ void TObjEneRe7Berura::load_static_resources() {
     re7_berura_demo_flag = 0;
     TObjEneRe7Berura__demo_target = 0;
     m = r->models[0].model;
-    matrices = (Mtx34 *)mem_alloc(34 * sizeof(Mtx34));
+    matrices = (Mtx34 *)::operator new[](34 * sizeof(Mtx34));
     berura_detached_matrices = matrices;
     TObjEneRe7Berura__detached_part_states[0].matrices = matrices;
     TObjEneRe7Berura__detached_part_states[1].matrices = matrices + 17;
@@ -288,7 +287,7 @@ void TObjEneRe7Berura::destroy_children() {
         belra_uv_animation_buffer = NULL;
     }
     if (berura_detached_matrices != NULL) {
-        mem_free(berura_detached_matrices);
+        ::operator delete[](berura_detached_matrices);
         berura_detached_matrices = NULL;
     }
     if (TObjEneRe7Berura__shared_resource != NULL) {
@@ -440,8 +439,8 @@ s32 TObjEneRe7Berura::acquire_target_in_view() {
     best = TObjEneRe7Berura__data_805D972C;
     id = 0xFFFF;
     limit = cos_table_lookup(0xAAA);
-    s = sin_table_lookup(rotation_y);
-    c = cos_table_lookup(rotation_y);
+    s = sin_table_lookup(this->rotation.yaw);
+    c = cos_table_lookup(this->rotation.yaw);
     n = TLobby::get_game_mode();
     for (i = 0; i < n; i++) {
         p = TObjPlayer::get_player_data(i);
@@ -563,9 +562,9 @@ s32 TObjEneRe7Berura::turn_toward_heading(s32 heading, s32 max_step) {
     s32 reached_heading;
 
     reached_heading = 0;
-    difference = angle_diff_s16(this->rotation_y, heading);
+    difference = angle_diff_s16(this->rotation.yaw, heading);
     if (difference > max_step) {
-        this->rotation_y = (s32) (this->rotation_y + max_step);
+        this->rotation.yaw = (s32) (this->rotation.yaw + max_step);
         previous_turn = this->accumulated_turn;
         if (previous_turn < 0) {
             this->accumulated_turn = 0;
@@ -573,7 +572,7 @@ s32 TObjEneRe7Berura::turn_toward_heading(s32 heading, s32 max_step) {
             this->accumulated_turn = (s32) (previous_turn + max_step);
         }
     } else if (difference < (s32) -max_step) {
-        this->rotation_y = (s32) (this->rotation_y - max_step);
+        this->rotation.yaw = (s32) (this->rotation.yaw - max_step);
         previous_negative_turn = this->accumulated_turn;
         if (previous_negative_turn > 0) {
             this->accumulated_turn = 0;
@@ -581,7 +580,7 @@ s32 TObjEneRe7Berura::turn_toward_heading(s32 heading, s32 max_step) {
             this->accumulated_turn = (s32) (previous_negative_turn - max_step);
         }
     } else {
-        this->rotation_y = heading;
+        this->rotation.yaw = heading;
         reached_heading = 1;
     }
     return reached_heading;

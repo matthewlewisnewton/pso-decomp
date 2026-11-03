@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
@@ -1699,8 +1700,6 @@ extern "C" {
 void apply_effect_pair__23TObjEneMe3ShinowaMirageFv();
 }
 extern "C" {
-}
-extern "C" {
 void vfunc_62__23TObjEneMe3ShinowaMirageFv();
 }
 extern "C" {
@@ -1753,8 +1752,6 @@ void vfunc_74__9TObjEnemyFl();
 }
 extern "C" {
 void apply_hit_message_flags__9TObjEnemyFPv();
-}
-extern "C" {
 }
 extern "C" {
 void add_actor_exp__9TObjCharaFl();
@@ -1826,7 +1823,7 @@ extern "C" {
 void vfunc_77__9TObjCharaFv();
 }
 extern "C" {
-void vfunc_76__9TObjCharaFv();
+void vfunc_76__9TObjCharaFf();
 }
 extern "C" {
 void vfunc_75__9TObjCharaFf();
@@ -2095,8 +2092,6 @@ extern const f32 TObjEneMe3ShinowaMirage__data_805DA5C4;
 extern const f32 lbl_805DA650, lbl_805DA654, lbl_805DA658, lbl_805DA65C, lbl_805DA660, lbl_805DA664;
 BmlResource *load_enemy_bml_resource(void *);
 BmlResource *load_enemy_bml_resource_named(void *, const char *);
-void *mem_alloc(u32);
-void mem_free(void *);
 TUnk_8048FA00 *init__11TBreakUpMdlFPviif(void *, s32, s32, f32);
 
 #pragma push
@@ -2144,7 +2139,7 @@ void TObjEneMe3ShinowaMirage::load_shared_resources() {
     NJS_TEXLIST *textures = (NJS_TEXLIST *)TObjEneMe3ShinowaMirage__data_805D5298->models[0].m_c;
     s32 count = textures->nbTexture;
     lbl_80500FEC.nbTexture = count;
-    lbl_80500FEC.textures = (NJS_TEXNAME *)mem_alloc(count * sizeof(NJS_TEXNAME));
+    lbl_80500FEC.textures = (NJS_TEXNAME *)::operator new[](count * sizeof(NJS_TEXNAME));
     for (i = 0; i < count; ++i) {
         ((TObjPlayer *)&lbl_80500FEC.textures[i])->copy_vec3(&textures->textures[i]);
     }
@@ -2219,7 +2214,7 @@ void TObjEneMe3ShinowaMirage::free_shared_resources() {
         TObjEneMe3ShinowaMirage__data_805D52A0 = 0;
     }
     if (lbl_80500FEC.textures) {
-        mem_free(lbl_80500FEC.textures);
+        ::operator delete[](lbl_80500FEC.textures);
         lbl_80500FEC.textures = NULL;
     }
     if (TObjEneMe3ShinowaMirage__data_805D5298) {
@@ -2493,7 +2488,7 @@ u8 TObjEneMe3Shinowa::check_body_collision_at(s32 arg1, f32 farg0) {
     f32 f2 = farg0 * lbl_805DA64C;
     Sub_800E750C *s = *(Sub_800E750C * *)&this->bodies;
     u8 res;
-    s32 a = this->rotation_y;
+    s32 a = this->rotation.yaw;
     s32 b = s->f18;
     s->f0 = TObjEneMe3ShinowaMirage__data_805DA5B8;
     s->f8 = f2;
@@ -2501,12 +2496,12 @@ u8 TObjEneMe3Shinowa::check_body_collision_at(s32 arg1, f32 farg0) {
     s->f10 = lbl_805DA650;
     s->f14 = 1;
     s->f18 = 0x9D01;
-    this->rotation_y = arg1;
+    this->rotation.yaw = arg1;
     ((void (*)(void *, s32, f32, f32))check_enemy_body_collisions)(arg0, arg1, TObjEneMe3ShinowaMirage__data_805DA5B8, f2);
     res = (s->f18 & 0x380000) != 0;
     copy_collision_body((CollisionBody *)s, (const CollisionBody *)shinowa_mirage_model_init_data);
     s->f18 = b;
-    this->rotation_y = a;
+    this->rotation.yaw = a;
     return res;
 }
 
@@ -2718,7 +2713,7 @@ void TObjEneMe3Shinowa::apply_effect_pair() {
     push_matrix();
     set_matrix_identity(0);
     post_translate_matrix((u8 *)&this->position);
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     entry = (s32)((SampledMotionPoints *)((void *)TObjEneMe3ShinowaMirage__data_805D52A4))->lookup(this->frame);
     if (entry != 0U) {
         matrix_mult_vec_array((f32 (*)[4])(0), (const Vec *)(entry), (Vec *)(&sp8), 2);
@@ -3203,7 +3198,7 @@ void TObjEneMe3ShinowaMirage::state_chase_target(s32 arg1) {
         if (((s32 (*)(void *, f32))update_linked_position__12TObjEneDD_STFf)(arg0, TObjEneMe3ShinowaMirage__data_805DA5F4) != 0) {
             ((TObjEneDD_ST *)arg0)->enemy_copy_target_destination();
             ((TObjEneDD *)arg0)->update_velocity();
-            m_414 = (f32) ((*(f32 *)((s8 *)arg0 + 0x3A0) * sin_table_lookup(this->rotation_y)) + (*(f32 *)((s8 *)arg0 + 0x3A8) * cos_table_lookup(this->rotation_y)));
+            m_414 = (f32) ((*(f32 *)((s8 *)arg0 + 0x3A0) * sin_table_lookup(this->rotation.yaw)) + (*(f32 *)((s8 *)arg0 + 0x3A8) * cos_table_lookup(this->rotation.yaw)));
             if (m_414 < cos_table_lookup(0x1000)) {
                 ((TObjEneDD *)arg0)->turn_toward_target_direction(0x500);
                 this->vfunc_102();
@@ -3401,11 +3396,11 @@ void TObjEneMe3ShinowaMirage__sub_800E5CE4(u8 *ene_epsilon, s32 arg1) {
                     ((TObjEneDD *)ene_epsilon)->update_velocity();
                     var_r4 = (s32) (TObjEneMe3ShinowaMirage__data_8043CFE0 * atan2_float(((TObjEneDD_ST *)ene_epsilon)->target_direction.x, *(f32 *)((s8 *)ene_epsilon + 0x3A8)));
                 } else {
-                    var_r4 = ((TObjEneEpsilon *)ene_epsilon)->rotation_y;
+                    var_r4 = ((TObjEneEpsilon *)ene_epsilon)->rotation.yaw;
                 }
-                ((TObjEneEpsilon *)ene_epsilon)->rotation_y = approach_angle_limited(((TObjEneEpsilon *)ene_epsilon)->rotation_y, var_r4, 0x300);
-                ((TObjEneDD_ST *)ene_epsilon)->target_direction.x = sin_table_lookup(((TObjEneEpsilon *)ene_epsilon)->rotation_y);
-                *(f32 *)((s8 *)ene_epsilon + 0x3A8) = cos_table_lookup(((TObjEneEpsilon *)ene_epsilon)->rotation_y);
+                ((TObjEneEpsilon *)ene_epsilon)->rotation.yaw = approach_angle_limited(((TObjEneEpsilon *)ene_epsilon)->rotation.yaw, var_r4, 0x300);
+                ((TObjEneDD_ST *)ene_epsilon)->target_direction.x = sin_table_lookup(((TObjEneEpsilon *)ene_epsilon)->rotation.yaw);
+                *(f32 *)((s8 *)ene_epsilon + 0x3A8) = cos_table_lookup(((TObjEneEpsilon *)ene_epsilon)->rotation.yaw);
             }
             ((VObj_18_4f5f2e *)(ene_epsilon))->m110();
             if (((TObjEneEpsilon *)ene_epsilon)->frame >= TObjEneMe3ShinowaMirage__data_805DA5B8 && ((TObjEneEpsilon *)ene_epsilon)->frame <= lbl_805DA5D4) {
@@ -4026,7 +4021,7 @@ void TObjEneMe3Shinowa::render() {
             push_matrix();
             post_translate_matrix((void *) ((u8 *)this + 0x38));
             translate_matrix(0, TObjEneMe3ShinowaMirage__data_805DA5B8, (f32) (*(f32 *)((s8 *)((u8 *)this) + 0x3CC)), TObjEneMe3ShinowaMirage__data_805DA5B8);
-            rotate_matrix_y(0, this->rotation_y);
+            rotate_matrix_y(0, this->rotation.yaw);
             TObjEneMe3ShinowaMirage__render_node_index = 0;
             set_chunk_model_node_callback(TObjEneMe3ShinowaMirage::advance_camera_ctrl_step);
             if (var_r31 == 1) {
@@ -4098,7 +4093,7 @@ void TObjEneMe3Shinowa::vfunc_118() {
         }
         push_matrix();
         post_translate_matrix(&position);
-        rotate_matrix_y(0, rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         scale_matrix(0, TObjEneMe3ShinowaMirage__data_805DA5DC, TObjEneMe3ShinowaMirage__data_805DA5DC, TObjEneMe3ShinowaMirage__data_805DA5DC);
         for (s32 i = 0; i < 3; i++) if (lbl_80501000[i]) *lbl_80501000[i] = 0xB000FFB0;
         if (mode == 0) {
@@ -4454,9 +4449,9 @@ void TObjEneMe3ShinowaReal::vfunc_116(s32 arg1) {
                     }
                 } else {
                     VecCopy((Vec *)&stack.sp8, (const Vec *)((u8 *)this + 0x38));
-                    stack.sp8 += TObjEneMe3ShinowaReal__data_805DA5CC * sin_table_lookup(this->rotation_y);
+                    stack.sp8 += TObjEneMe3ShinowaReal__data_805DA5CC * sin_table_lookup(this->rotation.yaw);
                     stack.spC += lbl_805DA5D0;
-                    stack.sp10 += TObjEneMe3ShinowaReal__data_805DA5CC * cos_table_lookup(this->rotation_y);
+                    stack.sp10 += TObjEneMe3ShinowaReal__data_805DA5CC * cos_table_lookup(this->rotation.yaw);
                     ((TParticleCtrl *)*(u8 **)((s8 *)((u8 *)this) + 0x424))->set_position(&stack.sp8);
                 }
             }

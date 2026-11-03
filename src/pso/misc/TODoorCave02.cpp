@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/misc/TODoorCave02.h"
 
@@ -113,7 +114,7 @@ void TODoorCave02::render() {
     if (update_object_view_visibility(view_range, model_radius) != 0 && is_in_view_depth(30.0f) != 0) {
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
+        rotate_matrix_y(NULL, this->rotation.yaw);
         if ((s32)object_state == DOOR_CLOSED) {
             set_current_texture_list((GinjaTextureList *)(texture_lists[door_flags & 1]));
             draw_light(((NJS_OBJECT *)model)->child);
@@ -133,7 +134,7 @@ void TODoorCave02::destroy() {
     if (texture_lists != NULL) {
         TObjPlayer::free_if_valid(texture_lists[0]);
         if (texture_lists != NULL) {
-            mem_free(texture_lists);
+            ::operator delete[](texture_lists);
             texture_lists = NULL;
         }
     }
@@ -145,7 +146,7 @@ void TODoorCave02::destroy() {
 
 void TODoorCave02::load_resources() {
     BmlResource *resource;
-    texture_lists = (s32 *)mem_alloc(8);
+    texture_lists = (s32 *)::operator new[](8);
     if (enable_v2_features == 1 && TLobby::is_online_ready() != 0) {
         resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&door_cave02_a_resource_descriptor), 0, 0, (void *)(0));
         bml_resource = resource;

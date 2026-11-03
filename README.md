@@ -11,17 +11,18 @@ Nothing from the game is included here. You need your own copy of the game to bu
 <!-- progress-table -->
 | | Matched | Linked |
 |:--|--:|--:|
-| Code | 94.69% | 76.77% |
-| Data | 73.16% | 53.36% |
-| Functions | 98.87% (27,260 of 27,572) | |
-| Units | | 69.89% (3,540 of 5,065) |
+| Code | 95.04% | 79.06% |
+| Data | 81.45% | 59.07% |
+| Functions | 98.99% (27,293 of 27,572) | |
+| Units | | 70.96% (3,561 of 5,018) |
 <!-- /progress-table -->
 
-Measured on `PsoV3.dol` on 2026-10-31 at commit
-[`85395542f9`](https://github.com/matthewlewisnewton/pso-decomp/commit/85395542f9e6c2e670b9dc2dcaa5a05b8c29f16f).
+Measured on `PsoV3.dol` on 2026-11-02 at validated source commit
+[`86d7ed2c46`](https://github.com/matthewlewisnewton/pso-decomp/commit/86d7ed2c46b1f4b8bee3fff01248426f2d32653d).
+The README-only publication commit records the measurements of its parent source tree.
 A function is matched when it compiles to the original's exact bytes. Code, data and
 units are linked when the build takes them from compiled source instead of the original. Data includes `.bss`.
-The build still uses 1,525 original-object fallback units; matched functions in those units are not counted as
+The build still uses 1,509 original-object fallback units; matched functions in those units are not counted as
 source-linked coverage. Unit counts can change when translation units are consolidated.
 
 ## Target
@@ -64,7 +65,8 @@ in assembly: `tools/orig_asm.py` rebuilds their bodies from your disc before any
 
       python tools/progress_map.py build/GPOE8P/report.json -o build/progress
 
-  Then open `build/progress/index.html` in a browser. Add `--readme README.md` to refresh the table above.
+  Then open `build/progress/index.html`, or `build/progress/treemap.html` for the treemap, in a browser.
+  Add `--readme README.md` to refresh the table above from the supplied report.
 
 ## Working on it
 
