@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/boss/TObjBoss5PillarSmoke.h"
 #include "pso/object/TObject_80019A50.h"
@@ -29,9 +30,7 @@ struct Smoke_8028AF6C {
 };
 
 extern "C" {
-void mem_free(void *);
 extern s32 __vt__20TObjBoss5PillarSmoke[];
-void *mem_alloc(u32 size);
 void __ct__7TObjectFP7TObject(void *, void *);
 extern u8 lbl_80450CD0[];
 extern const char *lbl_805D3B30;
@@ -49,8 +48,8 @@ TObjBoss5PillarSmoke::~TObjBoss5PillarSmoke() {
             ((Smoke_8028AEA4 *)this)->a[i] = NULL;
         }
     }
-    mem_free(((Smoke_8028AEA4 *)this)->b);
-    mem_free(((Smoke_8028AEA4 *)this)->a);
+    ::operator delete[](((Smoke_8028AEA4 *)this)->b);
+    ::operator delete[](((Smoke_8028AEA4 *)this)->a);
 }
 
 Smoke_8028AF6C *TObjBoss5PillarSmoke__ct(Smoke_8028AF6C *arg0, void *arg1, Node_8028AF6C *arg2) {
@@ -72,8 +71,8 @@ Smoke_8028AF6C *TObjBoss5PillarSmoke__ct(Smoke_8028AF6C *arg0, void *arg1, Node_
         queue_destruction__7TObjectFv(arg0);
         return arg0;
     }
-    arg0->a = (void **)mem_alloc(arg0->count * 4);
-    arg0->b = (void **)mem_alloc(arg0->count * 4);
+    arg0->a = (void **)::operator new[](arg0->count * 4);
+    arg0->b = (void **)::operator new[](arg0->count * 4);
     for (i = 0; i < arg0->count; i++) {
         arg0->a[i] = spawn_continuous_particle_effect_with_flags(lbl_80450CD0, 0x213, 0x40);
         arg0->b[i] = spawn_continuous_particle_effect_with_flags(lbl_80450CD0, 0x214, 0x40);

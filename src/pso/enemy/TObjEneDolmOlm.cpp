@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/unk/text_800D8830.h"
 #include "pso/system/MatrixVectorArray.h"
 #include "pso/misc/SampledMotionPoints.h"
@@ -456,7 +457,6 @@ extern const f32 lbl_805DEF74;
 extern const f32 lbl_805DEF78;
 extern const f32 lbl_805DEF7C;
 extern const f32 lbl_805DEF80;
-u8 *mem_alloc(s32);
 extern u32 dolm_olm_combat_stat_id_pair;
 extern u32 TObjEneDolmOlm__shared_handler_ids;
 extern u32 TObjEneDolmOlm__registered_object_ids;
@@ -473,7 +473,6 @@ void vfunc_58__14TObjEneDolmOlmFv(void *arg0);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 u8 *TObjEneDolmOlm__ct(u8 *, s32, s32);
 void *__nw__7TObjectFUl(int);
-void mem_free(void*);
 s32 get_mode__11TCameraCtrlFPv(void *);
 s32 __ct__13TUnk_80493450FP7TObject(void *, s32);
 s32 create__13TUnk_80494968FUlUl(u32, u32);
@@ -995,10 +994,10 @@ void TObjEneDolmOlm::load_shared_resources() {
     ((SampledMotionPoints *)TObjEneDolmOlm__data_805D6A14)->sample_two_nodes((NJS_OBJECT *)((Res_80302784 *)TObjEneDolmOlm__resource_bundle)->x42C->f8, (NJS_MOTION *)((Res_80302784 *)TObjEneDolmOlm__resource_bundle)->x430[((s32 *) TObjEneDolmOlm__param_table)[13]].b, 0x1C, 0x1D);
     ((SampledMotionPoints *)TObjEneDolmOlm__data_805D6A18)->sample_two_nodes((NJS_OBJECT *)((Res_80302784 *)TObjEneDolmOlm__resource_bundle)->x42C->f8, (NJS_MOTION *)((Res_80302784 *)TObjEneDolmOlm__resource_bundle)->x430[((s32 *) TObjEneDolmOlm__param_table)[17]].b, 0x14, 0x15);
     clear_motion_packed_rotation();
-    dolm_olm_combat_stat_id_pair = (u32) mem_alloc(8);
-    TObjEneDolmOlm__shared_handler_ids = (u32) mem_alloc(8);
-    TObjEneDolmOlm__registered_object_ids = (u32) mem_alloc(8);
-    TObjEneDolmOlm__behavior_params_by_variant = (u32) mem_alloc(8);
+    dolm_olm_combat_stat_id_pair = (u32) static_cast<u8*>(::operator new[](8));
+    TObjEneDolmOlm__shared_handler_ids = (u32) static_cast<u8*>(::operator new[](8));
+    TObjEneDolmOlm__registered_object_ids = (u32) static_cast<u8*>(::operator new[](8));
+    TObjEneDolmOlm__behavior_params_by_variant = (u32) static_cast<u8*>(::operator new[](8));
     ((s32 *) dolm_olm_combat_stat_id_pair)[0] = ((s32)get_battle_base_stats(0x4F));
     ((s32 *) dolm_olm_combat_stat_id_pair)[1] = ((s32)get_battle_base_stats(0x50));
     ((s32 *) TObjEneDolmOlm__shared_handler_ids)[0] = ((s32)get_battle_attack_params(0x54));
@@ -1019,19 +1018,19 @@ void TObjEneDolmOlm::load_shared_resources() {
 }
 void TObjEneDolmOlm::free_shared_resources() {
     if ((u32) dolm_olm_combat_stat_id_pair != 0U) {
-        mem_free((void*)dolm_olm_combat_stat_id_pair);
+        ::operator delete[]((void*)dolm_olm_combat_stat_id_pair);
         dolm_olm_combat_stat_id_pair = 0U;
     }
     if ((u32) TObjEneDolmOlm__shared_handler_ids != 0U) {
-        mem_free((void*)TObjEneDolmOlm__shared_handler_ids);
+        ::operator delete[]((void*)TObjEneDolmOlm__shared_handler_ids);
         TObjEneDolmOlm__shared_handler_ids = 0U;
     }
     if ((u32) TObjEneDolmOlm__registered_object_ids != 0U) {
-        mem_free((void*)TObjEneDolmOlm__registered_object_ids);
+        ::operator delete[]((void*)TObjEneDolmOlm__registered_object_ids);
         TObjEneDolmOlm__registered_object_ids = 0U;
     }
     if ((u32) TObjEneDolmOlm__behavior_params_by_variant != 0U) {
-        mem_free((void*)TObjEneDolmOlm__behavior_params_by_variant);
+        ::operator delete[]((void*)TObjEneDolmOlm__behavior_params_by_variant);
         TObjEneDolmOlm__behavior_params_by_variant = 0U;
     }
     if ((u32) TObjEneDolmOlm__data_805D6A18 != 0U) {
