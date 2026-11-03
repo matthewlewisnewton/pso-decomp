@@ -890,6 +890,7 @@ pso/misc/TChCrTagInformation.cpp
 pso/misc/TChCrTagInformation_802A1FAC.cpp
 pso/misc/TChCrTagInformation_802A200C.cpp
 pso/misc/TChCrTagName.cpp
+pso/misc/TChCrTagOccHeader.cpp
 pso/misc/TChCrTagOccupation.cpp
 pso/misc/TChCrTagPlBack.cpp
 pso/misc/TChCrTagPlGraphic.cpp
