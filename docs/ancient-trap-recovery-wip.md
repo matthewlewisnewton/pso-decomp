@@ -34,8 +34,22 @@ The override at `0x80179784` returns the floating-point result of the qualified
 shared character position at offset `0x2FC`; changes to its receiver contract
 require checking the shared declaration and callers.
 
-The original object's `.sdata2` flags are 2 (`SHF_ALLOC`). The GC/2.6 object
-built with this unit's flags has flags 3 (`SHF_ALLOC|SHF_WRITE`). Linking
-the unit has to preserve the original section flags, both SDA bases, the
-relocations and the DOL. A function or data score does not show those
-properties.
+The 90.91% `.sdata2` score is the 44-byte contents. The original words are
+`1.0`, `0.0`, `1.25`, `15`, `400`, `20`, `0.1`, `3.0517578125e-05`, `0.05`,
+`30`, `0.5`. Deferred generation compiles `play_sounds` before `vfunc_82`, so
+the literal pool is `1.25`, `1.0`, `0.0`, then that same tail. Naming those
+eleven objects in `.sdata2` and loading them makes the section and its symbols
+match, and it changes `TOTrapAncient01__ct`: the literal
+`fmadds f1, f3, f2, f1` allocation becomes a generic load allocation and the
+function drops from 100% to 99.25%. Literal constants keep the constructor
+exact. The original section flags are 2 (`SHF_ALLOC`); this GC/2.6 object has
+flags 3 (`SHF_ALLOC|SHF_WRITE`). That flag bit is already true of linked
+`TOTrap` and `TOTrapSeabed01`, and it is not the 90.91% score.
+
+`play_sounds` remains 92.71%. The mismatch is the schedule of the three
+position fills against the tail of the `0x4C` copy, not the calls. Writing
+`position.x`, `position.y`, and `position.z` directly scores 91.09%. The
+local copies of those fields score 92.71%. Neither is exact. `#pragma
+pool_data off` around that function keeps the copy prologue close to the
+original; without it the prologue uses `stmw` and the function is farther
+from the original.
