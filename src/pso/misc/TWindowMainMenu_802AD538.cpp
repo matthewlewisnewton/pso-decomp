@@ -418,7 +418,7 @@ void TWindowMenuMainMenu::draw_frame(TWindowDrawContext *context) {
 TWindowDrawContext *TWindowMenuMainMenu::setup_content_frame() {
     f32 v;
     TWindowKeyBoardSoft *window;
-    window = TWindowKeyBoardSoft::open_singleton(m_40, m_48, fn_8026CB68(), m_54, m_2c);
+    window = TWindowKeyBoardSoft::open_singleton(&m_40, &m_48, fn_8026CB68(), m_54, m_2c);
     if (is_not_split_screen() != 0) {
         v = 51.0f;
     } else {
