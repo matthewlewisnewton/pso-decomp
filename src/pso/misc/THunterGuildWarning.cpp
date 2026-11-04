@@ -10,9 +10,9 @@ extern const char *lbl_805D3648;
 extern THunterGuildWarning *THunterGuildWarning__instance;
 
 }
-THunterGuildWarning::THunterGuildWarning(TObject *object, s32 arg2) : TObject(object) {
+THunterGuildWarning::THunterGuildWarning(TObject *object, void *arg2) : TObject(object) {
     m_name = lbl_805D3648;
-    m_warning_type = arg2;
+    m_warning_type = (s32)arg2;
     m_timer = 90;
     THunterGuildWarning__sub_802119CC(this);
     THunterGuildWarning__sub_80211774(this, m_warning_type);

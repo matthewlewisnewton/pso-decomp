@@ -9,10 +9,9 @@ struct WarningWindowPair {
 };
 
 extern "C" {
-extern const char lbl_8044BC68[] = "THunterGuildWarning";
-extern const WarningWindowPair lbl_8044BC7C = { 322.0f, 120.0f };
+extern const WarningWindowPair lbl_8044BC7C;
 struct WarningPositionData { WarningWindowPair value; u8 padding[4]; };
-extern const WarningPositionData lbl_8044BC84 = { { 1.0f, 1.0f }, { 0, 0, 0, 0 } };
+extern const WarningPositionData lbl_8044BC84;
 extern const f32 lbl_805DC640;
 void *get_player_by_client_id(s32);
 const WarningWindowPair *get_window_layout_position(s32);

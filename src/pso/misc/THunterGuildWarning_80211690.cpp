@@ -10,7 +10,7 @@ extern void *tl_05;
 
 void THunterGuildWarning::create_instance(s32 arg0) {
     if ((TRaderMapCore::is_not_split_screen() == 1) && (THunterGuildWarning__instance == NULL)) {
-        new THunterGuildWarning(static_cast<TObject *>(tl_05), arg0);
+        new THunterGuildWarning(static_cast<TObject *>(tl_05), (void *)arg0);
     }
 }
 
