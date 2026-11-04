@@ -3,18 +3,26 @@
 
 #include "types.h"
 
-struct TWindowFukidasi
-{
-    u8 _pad1C[0x4];
-    u16 m_20;
-    u8 _pad22[0x4E];
-    u8 m_70;
+// Field offsets match the object. This is not a subclass: a derived vtable
+// would add bytes to .data.
+struct TWindowFukidasi {
+    u8 _pad0[0x20];
+    s16 m_20;
+    u8 _pad22[0x48 - 0x22];
+    f32 m_48;
+    f32 m_4C;
+    u8 _pad50[0x58 - 0x50];
+    f32 m_58;
+    u8 _pad5C[0x70 - 0x5C];
+    s8 m_70;
     u8 m_71;
     u8 m_72;
-    u8 m_73;
-    u8 _pad74[0x2];
-    u16 m_76;
-    u32 m_78;
+    s8 m_73;
+    s16 m_74;
+    s16 m_76;
+    char *name;
+    f32 m_7c;
+    f32 m_80;
     static void draw_resolved_window(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
     void hide();
     int get_visible_flag();
