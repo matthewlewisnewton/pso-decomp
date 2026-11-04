@@ -261,6 +261,9 @@ void TBoss6Type2::sub_802BEB78() {
 }
 
 #pragma push
+// Porting exception (approved by Matt 2026-11-04, see docs/porting-exceptions.md):
+// no honest source form reproduces MWCC's 0.0f load placement here without
+// opt_common_subs off. Remove this pragma when porting off MWCC.
 #pragma opt_common_subs off
 void TBoss6Type2::sub_802BEC28() {
     f32 temp_f1;
