@@ -117,9 +117,6 @@ s32 DCFlushRange(int, int);
 s32 TAdPlayerLoadGC__sub_801E1538(void *, void *);
 s32 TAdPlayerLoadGC__sub_801E1B50(int);
 extern s32 lbl_805D49B4;
-// The 0x8007CDBC call site also sets a dead third argument register (r5); only this
-// three-argument prototype reproduces it, so that one call keeps the wide form.
-void build_save_file_image__15TAdPlayerLoadGCFPvPv(void *, void *, void *);
 u32 TAdSinglePlyChrSelectGC__sub_80201204(u8 *arg0, u32 arg1);
 void TAdPlayerLoadGC__sub_801E14E4(void *);
 void TAdPlayerLoadGC__sub_801E14E8(u8 *arg0, s32 arg1);
@@ -1124,9 +1121,9 @@ s32 TObjBoss2Tunnel::save_snapshot_to_card() {
     c.flag = 0;
     *p = 0;
     *p = TAdSinglePlyChrSelectGC__sub_80201204((u8 *)boss2_tunnel_snapshot_buffer, 0x1818C);
-    c.size = 0x1818C;
     c.data = boss2_tunnel_snapshot_buffer;
-    build_save_file_image__15TAdPlayerLoadGCFPvPv(TObjBoss2Tunnel__snapshot_buffer, &c, boss2_tunnel_snapshot_buffer);
+    c.size = 0x1818C;
+    TAdPlayerLoadGC::build_save_file_image(TObjBoss2Tunnel__snapshot_buffer, &c);
     TAdPlayerLoadGC__sub_801E14E4(&c);
     if (TAdSinglePlyChrSelectGC::load_player(1, (s32)TObjBoss2Tunnel__data_80438A08, (s32)TObjBoss2Tunnel__snapshot_buffer, 0xF) != 0) {
         return 0;
