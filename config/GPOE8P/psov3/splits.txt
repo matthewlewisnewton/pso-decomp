@@ -10995,20 +10995,12 @@ pso/misc/TWindowPartyStatus.cpp:
 	.rodata     start:0x804757F0 end:0x80475808
 	.sdata      start:0x805D40F8 end:0x805D4100
 
-pso/ui/TAdChrSelASlotDataA.cpp:
-	.rodata     start:0x80475808 end:0x80475838
-
-pso/ui/TAdChrSelASlotDataB.cpp:
-	.rodata     start:0x80475848 end:0x80475890
-
-pso/ui/TAdChrSelBSlotData.cpp:
-	.rodata     start:0x804758D8 end:0x80475908
-
 pso/unk/text_8030C340.cpp:
 	.text       start:0x8030C340 end:0x8030C39C
 
 pso/ui/TAdChrSelASlotGC.cpp:
 	.text       start:0x8030C39C end:0x8030E354
+	.rodata     start:0x80475808 end:0x804758D8
 	.data       start:0x804E7838 end:0x804E7A48
 	.bss        start:0x80542D60 end:0x80542E74
 	.sbss       start:0x805D6A98 end:0x805D6AA0
@@ -11024,6 +11016,7 @@ pso/ui/TAdChrSelBSlotGC_8030ED88.cpp:
 
 pso/ui/TAdChrSelBSlotGC.cpp:
 	.text       start:0x8030FD54 end:0x8030FE74
+	.rodata     start:0x804758D8 end:0x80475930
 
 pso/ui/TAdChrSelBSlotGC_8030FE74.cpp:
 	.text       start:0x8030FE74 end:0x80310050
