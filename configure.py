@@ -453,14 +453,19 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # half-width nudge and the drop placement fuse multiply-adds.
     # -str reuse,readonly: the literals live in this unit's .rodata.
     "pso/object/TObjTombstone.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on", "-str reuse,readonly")},
-    # TAdMultiPlyChrSelectGC_802C50EC: the original unit contracts all four
-    # multiply-add sites in place (fmadds at 802C5148, 802C5274, 802C58AC and
-    # 802C676C); the whole unit is built with fp_contract on.
-    # The signed int-to-float bias at 0x80471D00 is this unit's only .rodata.
-    # GC/2.6 emits it as a local pool symbol; the split names that object
-    # TAdMultiPlyChrSelectGC__data_80471D00. See docs/evidence/conversion-pool-constants.md.
+    # TAdMultiPlyChrSelectGC_802C50EC: -fp_contract on because the original
+    # contracts all four multiply-adds (fmadds at 802C5148, 802C5274, 802C58AC
+    # and 802C676C). The bias at 0x80471D00 is this unit's only .rodata and is
+    # mapped to the pool symbol @156.
+    # -inline on (not auto) inlines only clamped_slot_802C5F1C. Written in the
+    # caller, sub_802C5F1C swaps r7/r8 in the bdnz loop (row in r7, cell in r8;
+    # original row r8, cell r7). Inlining numbers the clamp locals ahead of the
+    # hoisted row. -inline auto also inlines unmarked functions (update 108 to
+    # 564, update_selection 668 to 2664, sub_802C6660 488 to 580, and three
+    # more). -inline deferred emits the unit backwards. Precedent: Brawl
+    # configure.py -inline on (only functions marked inline).
     "pso/ui/TAdMultiPlyChrSelectGC_802C50EC.cpp": {
-        "cflags": _switch(cflags_pso, "-fp_contract on"),
+        "cflags": _switch(cflags_pso, "-inline on", "-fp_contract on"),
         "symbol_mappings": {"TAdMultiPlyChrSelectGC__data_80471D00": "@156"},
     },
     # GC/2.0: compiler-expanded struct copies take 2.0's registers.

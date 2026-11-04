@@ -568,21 +568,37 @@ void TAdMultiPlyChrSelectGC::move_cursor(s32 x_, s32 y_, s32 dx, s32 dy, s32 dep
     }
 }
 
+/* Inlined clamp. idx is declared before cnt, and the caller reads uu first,
+   so the hoisted row is allocated after the clamp. -inline on inlines this
+   and leaves every other function in the unit out of line. */
+static inline s32 clamped_slot_802C5F1C() {
+    s32 idx = 3;
+    s32 cnt = TAdMultiPlyChrSelectGC__data_805D67D8;
+    if (cnt < 4) {
+        idx = cnt;
+    }
+    return idx;
+}
+
 // Rebuild the texture coordinates for the current player's selection quads.
 void TAdMultiPlyChrSelectGC__sub_802C5F1C(void *object, int) {
     S_802C50EC *self = (S_802C50EC *)object;
     u32 i;
     u32 j;
+    s32 idx;
+    f32 uu;
+    f32 a;
+    f32 b;
     for (i = 0; i < 4; i++) {
         for (j = 0; j < 3; j++) {
-            s32 slot = 3;
-            if (TAdMultiPlyChrSelectGC__data_805D67D8 < 4) slot = TAdMultiPlyChrSelectGC__data_805D67D8;
-            self->quad[i][j].u0 = TAdMultiPlyChrSelectGC__data_805DE56C;
-            f32 v = lbl_805DE588 * (f32)slot;
-            self->quad[i][j].v0 = v * TAdMultiPlyChrSelectGC__data_805DE584;
+            uu = TAdMultiPlyChrSelectGC__data_805DE56C;
+            idx = clamped_slot_802C5F1C();
+            self->quad[i][j].u0 = uu;
+            a = lbl_805DE588 * (f32)idx;
+            b = lbl_805DE588 + a;
+            self->quad[i][j].v0 = a * TAdMultiPlyChrSelectGC__data_805DE584;
             self->quad[i][j].u1 = lbl_805DE58C;
-            f32 span = lbl_805DE588 + v;
-            self->quad[i][j].v1 = span * TAdMultiPlyChrSelectGC__data_805DE584;
+            self->quad[i][j].v1 = b * TAdMultiPlyChrSelectGC__data_805DE584;
         }
     }
     self->cursor[0][4] = lbl_805DE590;

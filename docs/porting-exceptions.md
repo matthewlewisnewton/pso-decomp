@@ -105,6 +105,13 @@ Port should: build everything with one modern compiler. Only `-fp_contract on`
 (float results) and deferred emission order (no semantic effect) need thought;
 nothing else changes behaviour.
 
+### `TAdMultiPlyChrSelectGC_802C50EC.cpp` ([#214](https://github.com/matthewlewisnewton/pso-decomp/pull/214))
+
+| File | Function | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/ui/TAdMultiPlyChrSelectGC_802C50EC.cpp` | `802C5148`, `802C5274`, `802C58AC`, `802C676C` | unit `-fp_contract on` | The original unit has one `fmadds` in each of those four functions, so the whole unit was built with contraction on. The source has no `fp_contract` pragma. | Keep fused multiply-add, or accept small float differences. |
+| `src/pso/ui/TAdMultiPlyChrSelectGC_802C50EC.cpp` | `TAdMultiPlyChrSelectGC__sub_802C5F1C` | unit `-inline on` instead of the game default `-inline off` | The slot clamp is `static inline clamped_slot_802C5F1C()` (`idx` before `cnt`, caller reads `uu` first) and has no symbol of its own. Written in the caller, the `bdnz` loop swaps `r7`/`r8`: the original keeps the hoisted row in `r8` and the cell in `r7`. Inlining numbers the clamp locals ahead of that row. `-inline auto` with no helper leaves this function at 99.15% and grows exact functions (`update` 108→564, `update_selection` 668→2664, `sub_802C6660` 488→580, `find_active_slot` 96→188, `sub_802C65C0` 160→212, `reset_slot_selections` 88→132). `-inline on` with no `inline` function is the same object as `-inline off`. `-inline deferred` emits `update_selection` first. With the helper and `-inline on`, `sub_802C5F1C` is 236/236 and every other function that was exact stays exact (`.text` 7288, `.data` 184/184, `.rodata` 8/8). Precedent: [Brawl `-inline on`](https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264); [`-inline auto` in dtk-template](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203) was tried first and does not keep this unit identical. | Drop the flag. The value is `min(slot, 3)` on each cell's texture row. A port does not need MWCC's inline-local numbering. |
+
 ## 6. Approved regressions
 
 None on main.
@@ -122,7 +129,5 @@ entry when the PR merges.
 | [#250](https://github.com/matthewlewisnewton/pso-decomp/pull/250) | `fp_contract` ×3 | Reason not recorded. |
 | [#303](https://github.com/matthewlewisnewton/pso-decomp/pull/303), [#295](https://github.com/matthewlewisnewton/pso-decomp/pull/295), [#289](https://github.com/matthewlewisnewton/pso-decomp/pull/289), [#272](https://github.com/matthewlewisnewton/pso-decomp/pull/272), [#225](https://github.com/matthewlewisnewton/pso-decomp/pull/225), [#222](https://github.com/matthewlewisnewton/pso-decomp/pull/222), [#215](https://github.com/matthewlewisnewton/pso-decomp/pull/215), [#187](https://github.com/matthewlewisnewton/pso-decomp/pull/187), [#128](https://github.com/matthewlewisnewton/pso-decomp/pull/128) | 1 to 4 inlining/optimization pragmas each | Reason not recorded. Drop in a port. |
 | [#240](https://github.com/matthewlewisnewton/pso-decomp/pull/240) | Not scanned | Diff exceeds GitHub's 300-file limit; scan locally after it merges. |
-| [#214](https://github.com/matthewlewisnewton/pso-decomp/pull/214) | `configure.py`: `-fp_contract on` for `pso/ui/TAdMultiPlyChrSelectGC_802C50EC.cpp` | The original unit contracts all four multiply-adds, one each in `802C5148`, `802C5274`, `802C58AC`, and `802C676C`, so the whole unit is built with contraction on. The source has no `fp_contract` pragma. Port: keep fused multiply-add, or accept small float differences. |
-
 The scan covers source lines only; `configure.py` overrides added by PRs show up
 in the generated table once merged.
