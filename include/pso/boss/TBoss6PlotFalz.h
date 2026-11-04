@@ -5,6 +5,8 @@
 #include <stddef.h>
 #include "pso/enemy/TObjEnemy.h"
 
+struct TBoss6Tube;
+
 extern "C" {
 s32 TBoss6PlotFalz__sub_802ABADC(void);
 }
@@ -21,7 +23,12 @@ struct TBoss6PlotFalz : public TObjEnemy {
     u8 m_37c;
     u8 unk_37D[0x3];
     u8 * m_380;
-    u8 unk_384[0x6];
+    // Tube from ensure_field384 (create__10TBoss6Tube at 0x802ABD6C).
+    // 0x802B0FC8 stores 1 at +0x1C and plays 0x4003351F, the same state-1
+    // step as TBoss6Tube::update_timer. 0x802B1004 stores 0 at +0x20 and 2
+    // at +0x1C; +0x20 is m_20, past TBoss6EmptyWarp's 0x20-byte allocation.
+    TBoss6Tube *m_384;
+    u8 unk_388[2];
     s16 m_38a;
     u8 unk_38C[0x28];
     u8 unk_3B4[0x18];
@@ -114,6 +121,8 @@ extern "C" {
 void TBoss6PlotFalz__sub_802AC008(f32 a, f32 b);
 }
 
+typedef char TBoss6PlotFalz_m_384_offset[(offsetof(TBoss6PlotFalz, m_384) == 0x384) ? 1 : -1];
+typedef char TBoss6PlotFalz_m_38a_offset[(offsetof(TBoss6PlotFalz, m_38a) == 0x38A) ? 1 : -1];
 typedef char TBoss6PlotFalz_m_3cc_offset[(offsetof(TBoss6PlotFalz, m_3cc) == 0x3CC) ? 1 : -1];
 typedef char TBoss6PlotFalz_m_3d0_offset[(offsetof(TBoss6PlotFalz, m_3d0) == 0x3D0) ? 1 : -1];
 typedef char TBoss6PlotFalz_m_3d4_offset[(offsetof(TBoss6PlotFalz, m_3d4) == 0x3D4) ? 1 : -1];

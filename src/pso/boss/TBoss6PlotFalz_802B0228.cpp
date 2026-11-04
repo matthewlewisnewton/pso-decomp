@@ -2,6 +2,7 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/boss/TBoss6PlotFalz.h"
+#include "pso/boss/TBoss6PlotFalzState.h"
 #include "pso/boss/Boss6Type1Appearance.h"
 #include "pso/boss/Boss6Type2Appearance.h"
 #include "pso/boss/Boss6Type2Death.h"
@@ -16,8 +17,9 @@
 #include "pso/misc/TLobby.h"
 #include "pso/system/SoundEffect.h"
 
-// The Falz plot script: one {name, enter, idle, update, advance} entry per
-// plot state, run by TBoss6PlotFalz::run_phase_action. Built with deferred
+// The Falz plot script: one {name, enter, leave, tick, update} entry per
+// plot state. run_task calls tick through call_state_action, then update
+// through run_phase_action. Built with deferred
 // code generation, so the actions below are written in table order and come
 // out in reverse.
 
@@ -249,16 +251,6 @@ void TBoss6PlotFalz::sub_802B0228() {
         award_exp_and_destroy();
     }
 }
-
-typedef void (TBoss6PlotFalz::*TBoss6PlotFalzAction)();
-
-struct TBoss6PlotFalzScriptState {
-    const char* name;
-    TBoss6PlotFalzAction action_enter;
-    TBoss6PlotFalzAction action_idle;
-    TBoss6PlotFalzAction action_update;
-    TBoss6PlotFalzAction action_advance;
-};
 
 TBoss6PlotFalzScriptState TBoss6PlotFalz__data_804DE66C[9] = {
     { "FALL_ELEV", &TBoss6PlotFalz::sub_802B0A34, 0,
