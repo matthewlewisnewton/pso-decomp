@@ -126,6 +126,9 @@ force_active:
   - TAdBackTxtGC__name
   - TAdBackTxtGC_backtext_tex_list
   - TAdChrMoveEffectGC__sub_80349194
+  - TAdChrSelASlotGC__data_804758A8
+  - TAdChrSelASlotGC__data_804758B0
+  - TAdChrSelASlotGC__data_804758B8
   - TAdChrSelASlotGC__sub_8030C45C
   - TAdChrSelBSlotGC__sub_8030E3BC
   - TAdChrSelBSlotGC__sub_8030EF74
@@ -4291,6 +4294,9 @@ force_active:
   - choose_next_camera_shot__12TBoss8DragonFv
   - choose_roaming_destination__14TObjEneBm5WolfFv
   - choose_turn_motion__11TBoss6Type2Fv
+  - chr_sel_a_slot_plate_layout
+  - chr_sel_a_slot_plate_layout_b
+  - chr_sel_b_slot_plate_layout
   - chr_select_a_slot_entry
   - chr_select_b_slot_entry
   - chr_select_buffer_ptr_table
@@ -6912,6 +6918,14 @@ force_active:
   - lbl_8047506C
   - lbl_80475084
   - lbl_804750C8
+  - lbl_80475818
+  - lbl_80475838
+  - lbl_80475840
+  - lbl_80475858
+  - lbl_80475878
+  - lbl_80475890
+  - lbl_80475898
+  - lbl_804758A0
   - lbl_80475D5C
   - lbl_80475DBC
   - lbl_80476610

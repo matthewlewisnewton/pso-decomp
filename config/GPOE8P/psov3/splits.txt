@@ -10162,6 +10162,7 @@ pso/boss/TBoss6Type2_802BF558.cpp:
 pso/unk/text_802BFBF4.cpp:
 	.text       start:0x802BFBF4 end:0x802C095C
 	.ctors      start:0x80433FCC end:0x80433FD0
+	.data       start:0x804DFC50 end:0x804E07A0
 
 pso/unk/text_802C095C.cpp:
 	.text       start:0x802C095C end:0x802C09A8
@@ -11000,6 +11001,7 @@ pso/unk/text_8030C340.cpp:
 
 pso/ui/TAdChrSelASlotGC.cpp:
 	.text       start:0x8030C39C end:0x8030E354
+	.rodata     start:0x80475808 end:0x804758D8
 	.data       start:0x804E7838 end:0x804E7A48
 	.bss        start:0x80542D60 end:0x80542E74
 	.sbss       start:0x805D6A98 end:0x805D6AA0
@@ -11015,6 +11017,7 @@ pso/ui/TAdChrSelBSlotGC_8030ED88.cpp:
 
 pso/ui/TAdChrSelBSlotGC.cpp:
 	.text       start:0x8030FD54 end:0x8030FE74
+	.rodata     start:0x804758D8 end:0x80475930
 
 pso/ui/TAdChrSelBSlotGC_8030FE74.cpp:
 	.text       start:0x8030FE74 end:0x80310050
@@ -13871,7 +13874,7 @@ pso/misc/TQuestVmDownLoadServer_803E5668.cpp:
 	.sdata2     start:0x805E10C0 end:0x805E10C8
 
 pso/misc/QuestDownloadBuffers.cpp:
-	.bss        start:0x8058DE08 end:0x80595008
+	.bss        start:0x8058DE08 end:0x80596668
 
 pso/misc/TWindowKeyBoardSoft_803E6610.cpp:
 	.text       start:0x803E6610 end:0x803E6970
