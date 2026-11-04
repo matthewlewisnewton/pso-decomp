@@ -351,7 +351,7 @@ void TWindowMenuMainMenu::draw_entries_reversed(TWindowDrawContext *context) {
 
 extern "C" {
 extern GinjaTextureList *lbl_805D63F0;
-void apply_context_transform_to_rect(void *, void *);
+void apply_context_transform_to_rect(TWindowDrawContext *context, Rect_802AD538 *rect);
 }
 
 void TWindowMenuMainMenu::draw_frame(TWindowDrawContext *context) {
