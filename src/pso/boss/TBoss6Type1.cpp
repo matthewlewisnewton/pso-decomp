@@ -600,7 +600,7 @@ void TBoss6Type1::randomize_attack(void *self_, void *atk_) {
 void TBoss6Type1::do_attack() {
     s32 sp8;
 
-    if ((s32) this->m_414 == 0) {
+    if (this->m_414 == 0) {
         TBoss6Type1__sub_802B909C(this, (Boss6ActionArgs *)(&sp8));
     } else {
         randomize_attack(this, &sp8);
@@ -967,7 +967,7 @@ void TBoss6Type1::load_params_from_table() {
         this->m_4a4 = TBoss6Type1__param_table.values[10];
     }
     this->m_48c = (s32) params->m_18;
-    if ((s32) this->m_48c <= 0) {
+    if (this->m_48c <= 0) {
         this->m_48c = TBoss6Type1__param_table.values[4];
     }
     this->unk_490 = (s32) params->m_1c;
@@ -975,7 +975,7 @@ void TBoss6Type1::load_params_from_table() {
         this->unk_490 = TBoss6Type1__param_table.values[5];
     }
     this->m_494 = (s32) params->m_20;
-    if ((s32) this->m_494 <= 0) {
+    if (this->m_494 <= 0) {
         this->m_494 = TBoss6Type1__param_table.values[6];
     }
     this->unk_498 = (s32) params->m_24;
@@ -983,7 +983,7 @@ void TBoss6Type1::load_params_from_table() {
         this->unk_498 = TBoss6Type1__param_table.values[7];
     }
     this->m_49c = (s32) params->m_28;
-    if ((s32) this->m_49c <= 0) {
+    if (this->m_49c <= 0) {
         this->m_49c = TBoss6Type1__param_table.values[8];
     }
     this->laser_fire_time = (s32) params->m_2c;
@@ -1090,7 +1090,7 @@ void TBoss6Type1::update_sway() {
 
 void TBoss6Type1::update_position() {
     VecCopy(&this->body_center_position, &this->position);
-    if ((s32) this->m_438 != 0) {
+    if (this->m_438 != 0) {
         this->body_center_position.y = (f32) (this->body_center_position.y - 75.0f);
         return;
     }
@@ -1621,13 +1621,13 @@ s32 TBoss6Type1__sub_802B5FDC(TBoss6Type1 *arg0) {
 }
 
 void TBoss6Type1::set_flag_on_threshold() {
-    if (((s32) this->m_4ac == 0) && (this->m_4d8 < 0.33333334f)) {
+    if ((this->m_4ac == 0) && (this->m_4d8 < 0.33333334f)) {
         this->m_4ac = 1;
     }
 }
 
 int TBoss6Type1::is_time_up() {
-    if ((s32) this->m_414 == 0) {
+    if (this->m_414 == 0) {
         return 0;
     }
     return calc_field4b0_delta() >= this->unk_490 ? 1 : 0;
@@ -1644,7 +1644,7 @@ s32 TBoss6Type1::check_field4b0_threshold() {
 }
 
 s32 TBoss6Type1::is_ready() {
-    if (((s32) this->m_414 == 0) && (calc_field4b0_delta() >= (s32) this->m_48c)) {
+    if ((this->m_414 == 0) && (calc_field4b0_delta() >= this->m_48c)) {
         return 1;
     }
     return 0;
@@ -1882,7 +1882,7 @@ void TBoss6Type1__sub_802B5598(TBoss6Type1 *self, Vec *out) {
     u32 temp_r5;
     u32 var_r5;
     {
-        s32 k = (s32)self->m_374 * 0x12D687;
+        s32 k = self->m_374 * 0x12D687;
         s8 c = self->m_41c;
         temp_r5 = c * k;
     }
