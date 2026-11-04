@@ -3,13 +3,19 @@
 
 #include "types.h"
 
+// Kind 0 stores a pointer to bytes in strbuf. Kind 1 stores a pointer to an s16 in ints.
+union ModemFieldSlot {
+    u8 *text;
+    s16 *number;
+};
+
 struct ModemSessionState {
-    char **subst;
+    const char **subst;
     u8 pad04[4];
-    char *strbuf;
+    u8 *strbuf;
     u8 pad0C[2];
     s16 strstride;
-    u8 **fields;
+    ModemFieldSlot *fields;
     u8 pad14[4];
     s16 *ints;
     u8 pad1C[4];
@@ -74,7 +80,7 @@ s16 TLobby__sub_804283C8(u8 *script, ModemScriptSession *sess);
 s16 TLobby__sub_80428830(ModemRequest *req);
 s16 TLobby__sub_80428A38(void);
 s16 TLobby__sub_80428BB0(ModemRequest *req);
-void TLobby__sub_80428DC8(s16 type, s16 index, char *src, s16 *nstr, s16 *nint);
+void TLobby__sub_80428DC8(s16 type, s16 index, u8 *src, s16 *nstr, s16 *nint);
 s16 TLobby__sub_804290D4(s16 timeout);
 }
 

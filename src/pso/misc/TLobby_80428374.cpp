@@ -104,7 +104,7 @@ s32 TLobby__sub_803F97E8(int);
 extern void *lbl_805C18A0[];
 extern s16 lbl_805D7A86;
 extern s16 lbl_805D7A8A;
-void TLobby__sub_80428DC8(s16 type, s16 index, char *src, s16 *nstr, s16 *nint);
+void TLobby__sub_80428DC8(s16 type, s16 index, u8 *src, s16 *nstr, s16 *nint);
 s16 TLobby__sub_80428EC0(u8 *src, u8 *dst, u8 **next);
 s16 TLobby__sub_804293B0(u8 *buf, s16 len);
 s16 TLobby__sub_804036FC(u16 *avail);
@@ -276,14 +276,14 @@ s16 TLobby__sub_804283C8(u8 *script, ModemScriptSession *sess) {
     lobby_net_session_state.subst[0] = sess->phone_number;
     lobby_net_session_state.subst[1] = sess->user;
     lobby_net_session_state.subst[2] = sess->password;
-    lobby_net_session_state.subst[4] = (char *)lbl_805E11EC;
+    lobby_net_session_state.subst[4] = lbl_805E11EC;
     modem_flush_input();
     p = script;
     for (;;) {
-        lobby_net_session_state.fields[3] = NULL;
-        lobby_net_session_state.fields[2] = NULL;
-        lobby_net_session_state.fields[1] = NULL;
-        lobby_net_session_state.fields[0] = NULL;
+        lobby_net_session_state.fields[3].text = NULL;
+        lobby_net_session_state.fields[2].text = NULL;
+        lobby_net_session_state.fields[1].text = NULL;
+        lobby_net_session_state.fields[0].text = NULL;
         got = modem_read_line(&p, lobby_net_session_state.line);
         if (got == 0) {
             break;
@@ -302,7 +302,7 @@ s16 TLobby__sub_804283C8(u8 *script, ModemScriptSession *sess) {
             if (TLobby__sub_80428EC0(next, lobby_net_session_state.token, &next) == 0) {
                 break;
             }
-            TLobby__sub_80428DC8(cmd, i, (char *)lobby_net_session_state.token, &nstr, &nint);
+            TLobby__sub_80428DC8(cmd, i, lobby_net_session_state.token, &nstr, &nint);
         }
         switch (cmd) {
         case 0:
@@ -341,7 +341,7 @@ s16 wait_timeout_loop(ModemRequest *req) {
     s16 ret;
     ret = 0;
     TLobby::get_time_ms(&start);
-    p = (s16 *)lobby_net_session_state.fields[0];
+    p = lobby_net_session_state.fields[0].number;
     if (p == NULL) {
         limit = req->timeout * 1000;
     } else {
@@ -391,15 +391,15 @@ s16 TLobby__sub_80428830(ModemRequest *req) {
     len = 0;
     pos = 0;
     lobby_net_session_state.expect[0] = 0;
-    while (lobby_net_session_state.fields[0][pos] != 0) {
+    while (lobby_net_session_state.fields[0].text[pos] != 0) {
         for (k = 0; modem_subst_keys[k] != NULL; k++) {
-            if (NetCompareStringsN(modem_subst_keys[k], (const char *)lobby_net_session_state.fields[0] + pos,
+            if (NetCompareStringsN(modem_subst_keys[k], (const char *)lobby_net_session_state.fields[0].text + pos,
                                      NetStringLength(modem_subst_keys[k])) == 0) {
                 break;
             }
         }
         if (modem_subst_keys[k] == NULL) {
-            lobby_net_session_state.expect[len] = lobby_net_session_state.fields[0][pos];
+            lobby_net_session_state.expect[len] = lobby_net_session_state.fields[0].text[pos];
             pos++;
             len++;
         } else {
@@ -409,10 +409,10 @@ s16 TLobby__sub_80428830(ModemRequest *req) {
         }
     }
     lobby_net_session_state.expect[len] = 0;
-    if (lobby_net_session_state.fields[1] == NULL) {
+    if (lobby_net_session_state.fields[1].number == NULL) {
         timeout = req->timeout;
     } else {
-        timeout = *(s16 *)lobby_net_session_state.fields[1];
+        timeout = *lobby_net_session_state.fields[1].number;
     }
     if (modem_wait_for_string(lobby_net_session_state.expect, NetStringLength((char *)lobby_net_session_state.expect), timeout) != 0) {
         return 4;
@@ -430,15 +430,15 @@ s16 TLobby__sub_80428A38(void) {
     out = 0;
     pos = 0;
     lobby_net_session_state.out[0] = 0;
-    while (lobby_net_session_state.fields[0][pos] != 0) {
+    while (lobby_net_session_state.fields[0].text[pos] != 0) {
         for (k = 0; modem_subst_keys[k] != NULL; k++) {
-            if (NetCompareStringsN(modem_subst_keys[k], (const char *)lobby_net_session_state.fields[0] + pos,
+            if (NetCompareStringsN(modem_subst_keys[k], (const char *)lobby_net_session_state.fields[0].text + pos,
                                      NetStringLength(modem_subst_keys[k])) == 0) {
                 break;
             }
         }
         if (modem_subst_keys[k] == NULL) {
-            lobby_net_session_state.out[out] = lobby_net_session_state.fields[0][pos];
+            lobby_net_session_state.out[out] = lobby_net_session_state.fields[0].text[pos];
             pos++;
             out++;
         } else {
@@ -481,15 +481,15 @@ s16 TLobby__sub_80428BB0(ModemRequest *req) {
     }
     len = NetStringLength((char *)lobby_net_session_state.cmd);
     pos = 0;
-    while (lobby_net_session_state.fields[0][pos] != 0) {
+    while (lobby_net_session_state.fields[0].text[pos] != 0) {
         for (k = 0; modem_subst_keys[k] != NULL; k++) {
-            if (NetCompareStringsN(modem_subst_keys[k], (const char *)lobby_net_session_state.fields[0] + pos,
+            if (NetCompareStringsN(modem_subst_keys[k], (const char *)lobby_net_session_state.fields[0].text + pos,
                                      NetStringLength(modem_subst_keys[k])) == 0) {
                 break;
             }
         }
         if (modem_subst_keys[k] == NULL) {
-            lobby_net_session_state.cmd[len] = lobby_net_session_state.fields[0][pos];
+            lobby_net_session_state.cmd[len] = lobby_net_session_state.fields[0].text[pos];
             pos++;
             len++;
         } else {
@@ -510,9 +510,9 @@ s16 TLobby__sub_80428BB0(ModemRequest *req) {
     return TLobby__sub_804290D4(req->timeout);
 }
 
-void TLobby__sub_80428DC8(s16 type, s16 index, char *src, s16 *nstr, s16 *nint) {
+void TLobby__sub_80428DC8(s16 type, s16 index, u8 *src, s16 *nstr, s16 *nint) {
     s32 n;
-    char *dst;
+    u8 *dst;
     s16 i;
     s16 value;
     u8 c;
@@ -520,8 +520,8 @@ void TLobby__sub_80428DC8(s16 type, s16 index, char *src, s16 *nstr, s16 *nint) 
     if (modem_command_layouts[type].kind[index] == 0) {
         n = *nstr;
         dst = lobby_net_session_state.strbuf + n * lobby_net_session_state.strstride;
-        NetCopyString(dst, src);
-        lobby_net_session_state.fields[index] = (u8 *)dst;
+        NetCopyString((char *)dst, (char *)src);
+        lobby_net_session_state.fields[index].text = dst;
         *nstr = n + 1;
     }
     if (modem_command_layouts[type].kind[index] == 1) {
@@ -534,7 +534,7 @@ void TLobby__sub_80428DC8(s16 type, s16 index, char *src, s16 *nstr, s16 *nint) 
             i++;
         }
         lobby_net_session_state.ints[n] = value;
-        lobby_net_session_state.fields[index] = (u8 *)&lobby_net_session_state.ints[n];
+        lobby_net_session_state.fields[index].number = &lobby_net_session_state.ints[n];
         *nint = n + 1;
     }
 }
