@@ -4644,13 +4644,13 @@ void handle_6x47_cast_technique(void *arg) {
     CastPacket_801CD550 pkt;
     u8 *player;
     s32 i;
-    u32 *src;
     u8 effective;
     s8 valid;
     s8 level;
     u32 *dst;
     s16 tech;
     s32 count;
+    u32 *src;
     ((TNpcPlayer *)&pkt)->init_cast_technique_cmd();
     TObjPlayer__sub_801D21CC((u8 *)&pkt, (u8 *)arg);
     ((TNpcPlayer *)&pkt)->byteswap_positions();
