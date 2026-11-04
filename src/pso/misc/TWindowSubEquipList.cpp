@@ -42,7 +42,7 @@ u8 *create_equip_list_window(s32 arg0, s32 arg1, s32 arg2) {
 #pragma fp_contract on
 void TWindowSubEquipList::render() {
     s32 temp_r3;
-    temp_r3 = (s32)get_draw_context__11TWindowBaseFPv(this);
+    temp_r3 = (s32)TWindowBase::get_draw_context(this);
     draw_window_frame((void *)temp_r3);
     draw_visible_window_entries(this, (void *) (((u8 *)this) + 0x24), temp_r3);
     draw_selected_list_entry(temp_r3);

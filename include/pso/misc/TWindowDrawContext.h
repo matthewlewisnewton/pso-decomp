@@ -32,6 +32,8 @@ typedef char TWindowDrawContext_depth[offsetof(TWindowDrawContext, depth) == 0x3
 typedef char TWindowDrawContext_clip_left[offsetof(TWindowDrawContext, clip_left) == 0x3C ? 1 : -1];
 typedef char TWindowDrawContext_clip_top[offsetof(TWindowDrawContext, clip_top) == 0x40 ? 1 : -1];
 
-extern "C" TWindowDrawContext *get_draw_context__11TWindowBaseFPv(void *window);
+struct TWindowBase {
+    static TWindowDrawContext *get_draw_context(void *window);
+};
 
 #endif
