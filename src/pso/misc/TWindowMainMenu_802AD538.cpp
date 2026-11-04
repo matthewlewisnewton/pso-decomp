@@ -367,10 +367,19 @@ void TWindowMenuMainMenu::draw_entries_reversed(TWindowDrawContext *context) {
 }
 
 extern GinjaTextureList *lbl_805D63F0;
-void apply_context_transform_to_rect(void *, f32 *);
+void apply_context_transform_to_rect(TWindowDrawContext *context, f32 *quad);
 
 void TWindowMenuMainMenu::draw_frame(TWindowDrawContext *context) {
-    // Rectangle coordinates followed by texture coordinates.
+    enum {
+        QUAD_X0 = 0,
+        QUAD_Y0 = 1,
+        QUAD_X1 = 2,
+        QUAD_Y1 = 3,
+        QUAD_U0 = 4,
+        QUAD_V0 = 5,
+        QUAD_U1 = 6,
+        QUAD_V1 = 7
+    };
     f32 quad[8];
     f32 depth = -1.0f / (0.299f + m_54);
     f32 offset = 0.0f;
@@ -380,31 +389,31 @@ void TWindowMenuMainMenu::draw_frame(TWindowDrawContext *context) {
     set_current_texture_list(lbl_805D63F0);
     set_draw_texture_and_color(11, context->color);
     if (is_not_split_screen(this)) {
-        quad[0] = context->x;
-        quad[1] = context->y + offset;
-        quad[2] = 18.0f + quad[0];
-        quad[3] = 28.0f + quad[1];
-        quad[4] = 0.8984375f; quad[5] = 0.0f;
-        quad[6] = 0.96875f; quad[7] = 0.109375f;
+        quad[QUAD_X0] = context->x;
+        quad[QUAD_Y0] = context->y + offset;
+        quad[QUAD_X1] = 18.0f + quad[QUAD_X0];
+        quad[QUAD_Y1] = 28.0f + quad[QUAD_Y0];
+        quad[QUAD_U0] = 0.8984375f; quad[QUAD_V0] = 0.0f;
+        quad[QUAD_U1] = 0.96875f; quad[QUAD_V1] = 0.109375f;
         apply_context_transform_to_rect(context, quad);
         draw_textured_quad_at_depth(quad, depth);
         offset += 28.0f;
         remaining -= 28.0f;
-        quad[0] = context->x; quad[1] = context->y + offset;
-        quad[2] = quad[0] + context->w; quad[3] = 23.0f + quad[1];
-        quad[4] = 0.0f; quad[5] = 0.3125f;
-        quad[6] = 0.453125f; quad[7] = 0.40234375f;
+        quad[QUAD_X0] = context->x; quad[QUAD_Y0] = context->y + offset;
+        quad[QUAD_X1] = quad[QUAD_X0] + context->w; quad[QUAD_Y1] = 23.0f + quad[QUAD_Y0];
+        quad[QUAD_U0] = 0.0f; quad[QUAD_V0] = 0.3125f;
+        quad[QUAD_U1] = 0.453125f; quad[QUAD_V1] = 0.40234375f;
         apply_context_transform_to_rect(context, quad);
         draw_textured_quad_at_depth(quad, depth);
         offset += 23.0f;
         remaining -= 23.0f;
     } else {
-        quad[0] = context->x;
-        quad[1] = context->y + offset;
-        quad[2] = context->x + context->w;
-        quad[3] = 3.0f + (39.0f + quad[1]);
-        quad[4] = 0.453125f; quad[5] = 0.6796875f;
-        quad[6] = 0.0f; quad[7] = 0.515625f;
+        quad[QUAD_X0] = context->x;
+        quad[QUAD_Y0] = context->y + offset;
+        quad[QUAD_X1] = context->x + context->w;
+        quad[QUAD_Y1] = 3.0f + (39.0f + quad[QUAD_Y0]);
+        quad[QUAD_U0] = 0.453125f; quad[QUAD_V0] = 0.6796875f;
+        quad[QUAD_U1] = 0.0f; quad[QUAD_V1] = 0.515625f;
         apply_context_transform_to_rect(context, quad);
         draw_textured_quad_at_depth(quad, depth);
         offset += 42.0f;
@@ -417,19 +426,19 @@ void TWindowMenuMainMenu::draw_frame(TWindowDrawContext *context) {
         } else {
             height = 16.0f;
         }
-        quad[0] = context->x; quad[1] = context->y + offset;
-        quad[2] = quad[0] + context->w; quad[3] = quad[1] + height;
-        quad[4] = 0.0f; quad[5] = 0.40234375f;
-        quad[6] = 0.453125f; quad[7] = (103.0f + height) / 256.0f;
+        quad[QUAD_X0] = context->x; quad[QUAD_Y0] = context->y + offset;
+        quad[QUAD_X1] = quad[QUAD_X0] + context->w; quad[QUAD_Y1] = quad[QUAD_Y0] + height;
+        quad[QUAD_U0] = 0.0f; quad[QUAD_V0] = 0.40234375f;
+        quad[QUAD_U1] = 0.453125f; quad[QUAD_V1] = (103.0f + height) / 256.0f;
         apply_context_transform_to_rect(context, quad);
         draw_textured_quad_at_depth(quad, depth);
         offset += height;
         remaining -= height;
     }
-    quad[0] = context->x; quad[1] = context->y + offset;
-    quad[2] = quad[0] + context->w; quad[3] = 39.0f + quad[1];
-    quad[4] = 0.0f; quad[5] = 0.52734375f;
-    quad[6] = 0.453125f; quad[7] = 0.6796875f;
+    quad[QUAD_X0] = context->x; quad[QUAD_Y0] = context->y + offset;
+    quad[QUAD_X1] = quad[QUAD_X0] + context->w; quad[QUAD_Y1] = 39.0f + quad[QUAD_Y0];
+    quad[QUAD_U0] = 0.0f; quad[QUAD_V0] = 0.52734375f;
+    quad[QUAD_U1] = 0.453125f; quad[QUAD_V1] = 0.6796875f;
     apply_context_transform_to_rect(context, quad);
     draw_textured_quad_at_depth(quad, depth);
     TWindowSubStatusDisp::get_player();
