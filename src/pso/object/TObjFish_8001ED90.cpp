@@ -56,8 +56,8 @@ void TLobby__sub_8001EDF4(u8 *arg0) {
     }
 }
 
-s32 TLobby::tmp_buf_release() {
-    s32 arg0 = (s32)this;
+s32 TLobby::tmp_buf_release(const char *name) {
+    s32 arg0 = (s32)name;
     if (arg0 != 0) {
         if (tmp_buf_in_use_flag == 1) {
             TLobby::debug_print((s32)lbl_80434AA0, arg0);

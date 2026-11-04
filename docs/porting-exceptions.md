@@ -22,8 +22,8 @@ entry says *reason not recorded*.
 | Assembly (`asm` + `orig_asm` include) | 4 functions | 2 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 71 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,871 | 886 |
-| Per-unit compiler overrides in `configure.py` | 141 | 141 |
+| CodeWarrior pragmas (excluding push/pop) | 5,865 | 885 |
+| Per-unit compiler overrides in `configure.py` | 145 | 145 |
 | Approved regressions | 0 on main, 1 pending (#291) | |
 
 ## Rule for assembly
@@ -66,10 +66,10 @@ etc. or their port equivalents) instead of the fixed address.
 
 ## 4. CodeWarrior pragmas
 
-5,871 pragmas in 886 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1153, `inline_depth` 1045, `fp_contract` 931, `auto_inline` 844,
-`opt_common_subs` 624, `scheduling` 267, `opt_propagation` 239,
-`readonly_strings` 203, `peephole` 105, `optimization_level` 88, `bool` 56,
+5,865 pragmas in 885 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1153, `inline_depth` 1045, `fp_contract` 932, `auto_inline` 844,
+`opt_common_subs` 624, `scheduling` 262, `opt_propagation` 239,
+`readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56,
 `defer_codegen` 50, `pack` 46. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
 
@@ -81,7 +81,7 @@ small float differences without FMA).
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-141 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+145 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
@@ -89,7 +89,8 @@ small float differences without FMA).
 `pso_date.cpp`: GC/1.3.2 scheduling, see
 [calendar-conversion-evidence.md](evidence/calendar-conversion-evidence.md);
 `TObjTombstone.cpp`: `-fp_contract on` because two calculations fuse
-multiply-adds). The generated table copies each comment; 92 entries have no
+multiply-adds; `TLobby_8001EF5C.cpp`: `-inline on` because
+`TLobby__sub_8002058C` inlines its model and motion list loops). The generated table copies each comment; 92 entries have no
 comment of their own (several share a comment with the entry above). Library
 groups (SDK, runtime, TRK, MusyX, CRI, Ginja, mcFs, ntInf, avetcp, modem, ntUtl)
 use their own compiler versions as recorded there.

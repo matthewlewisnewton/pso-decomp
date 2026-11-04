@@ -402,11 +402,11 @@ s32 TLobby::load_bml_exec(u8 *arg0, u8 *arg1) {
     case 9:
         self->state = 0xA;
     case 10:
-        ((TLobby *)lbl_80434B44)->tmp_buf_release();
+        TLobby::tmp_buf_release(lbl_80434B44);
         lbl_805D4AE0 = NULL;
         return 1;
     case 11:
-        ((TLobby *)lbl_80434B44)->tmp_buf_release();
+        TLobby::tmp_buf_release(lbl_80434B44);
         lbl_805D4AE0 = NULL;
         return -1;
     }
@@ -435,7 +435,7 @@ void check_bin_model_loaded__6TLobbyFPvPv(Obj_8001F8D8 *self, void * _w1) {
     if (self->f434 <= self->f4 && self->f438 <= self->f8 && self->f43c <= self->fc) {
         ((BmlResource *)self)->set_flag_and_notify();
         self->f418 = 0;
-        ((TLobby *)lbl_80434C38)->tmp_buf_release();
+        TLobby::tmp_buf_release(lbl_80434C38);
     }
 }
 
@@ -574,7 +574,7 @@ s32 BmlResource::load_bin_model(s32 arg1, s32 arg2) {
     s32 size;
     ((Lobby_8001FD98 *)this)->entries[arg2].motion = NULL;
     ((Lobby_8001FD98 *)this)->entries[arg2].texture = NULL;
-    size = ((TLobby *)arg1)->get_resource_file_size();
+    size = TLobby::get_resource_file_size((const char *)arg1);
     if (size <= 0) {
         debug_print__6TLobbyFle(lbl_80434D74, arg1);
         return 0;
@@ -864,7 +864,7 @@ extern "C" BmlResource *TLobby__sub_8002058C(BmlResource *self, s32 kind, u32 *m
         TLobby::tmp_buf_use_req(lbl_80434E4C);
         load_model_list(self, models);
         load_motion_list(self, motions);
-        ((TLobby *)lbl_80434E4C)->tmp_buf_release();
+        TLobby::tmp_buf_release(lbl_80434E4C);
         self->set_flag_and_notify();
     } else if (self->flags & 2) {
         TLobby::tmp_buf_use_req(lbl_80434C38);
@@ -880,7 +880,7 @@ extern "C" BmlResource *TLobby__sub_8002058C(BmlResource *self, s32 kind, u32 *m
             req.f8 = &self->models[i].m_c;
             req.fC = (Ctx_8001FA1C *)self;
             req.f10 = (s32)&self->models[i];
-            req.f14 = ((TLobby *)*p)->get_resource_file_size();
+            req.f14 = TLobby::get_resource_file_size((const char *)*p);
             create_named_entry__6TLobbyFiiUiiPv(*p, lobby_download_buffer, (u32)&load_bin_model_callback, &req,
                                                 (void **)&handle);
             TLobby__sub_8001EDD8(self, handle);

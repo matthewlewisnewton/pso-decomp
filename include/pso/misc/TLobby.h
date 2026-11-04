@@ -753,7 +753,7 @@ struct TLobby : public TObject {
     s32 validate_and_store_net_params();
     void init_net_config();
     void send_text_packet_D9(char *str);
-    s32 tmp_buf_release();
+    static s32 tmp_buf_release(const char *name);
     static s32 tmp_buf_use_req(const char *name);
     void handle_quest_download_chunk();
     static u16 alloc_actor_ids(s32 arg);
@@ -790,7 +790,7 @@ struct TLobby : public TObject {
     static void wait_for_lock_release();
     static void adxm_goto_mwidle_border();
     static void dec_ref_and_clear_buffer();
-    s32 get_resource_file_size();
+    static s32 get_resource_file_size(const char *name);
     static void read_data_sync(s32 arg0, s32 arg1, s32 arg2);
     s32 get_battle_ctrl_default();
     static s32 find_free_chat_log_slot();

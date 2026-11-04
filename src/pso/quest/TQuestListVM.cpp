@@ -257,7 +257,7 @@ void TQuestListVM::set_enemy_mode_3() { TLobby::set_enemy_mode_flag(); evt2_rand
 
 void TQuestListVM::load_vm() {
     if (TLobby__sub_8001EEF4() == 0) {
-        ((TLobby *)((s32) &TQuestListVM__data_8044BF20))->tmp_buf_release();
+        TLobby::tmp_buf_release((const char *)((s32)&TQuestListVM__data_8044BF20));
     }
     (*(s32 *)&evt2_random_enemies_mode) = 0;
 }
@@ -288,7 +288,7 @@ s32 TQuestListVM::close_and_destroy() {
         temp_r12();
     }
     if (TLobby__sub_8001EEF4() == 0) {
-        ((TLobby *)TQuestListVM__data_8044BF20)->tmp_buf_release();
+        TLobby::tmp_buf_release((const char *)TQuestListVM__data_8044BF20);
     }
     queue_destruction__7TObjectFv(this);
 }
@@ -301,7 +301,7 @@ s32 TQuestListVM::close() {
         temp_r12();
     }
     if (TLobby__sub_8001EEF4() == 0) {
-        ((TLobby *)TQuestListVM__data_8044BF20)->tmp_buf_release();
+        TLobby::tmp_buf_release((const char *)TQuestListVM__data_8044BF20);
     }
     TQuestListVM::reset();
     queue_destruction__7TObjectFv(this);

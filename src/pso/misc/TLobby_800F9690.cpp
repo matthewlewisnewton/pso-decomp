@@ -79,7 +79,7 @@ s32 load_encrypted_text_archive(char *name, s32 *arg1) {
         buf = (u8 *)TLobby::tmp_buf_use_req((const char *)lbl_80499A40);
         read_disc_file((s32)name, (s32)buf);
         ret = ((TLobby *)buf)->alloc_download_quest(size, &sp8);
-        ((TLobby *)lbl_80499A40)->tmp_buf_release();
+        TLobby::tmp_buf_release((const char *)lbl_80499A40);
     } else {
         open__8TGStreamFPvPvi((s32 *)&st, (s32)name, 1);
         buf = (u8 *)((TQuestVmDownLoadServer *)0x800)->alloc();

@@ -115,12 +115,12 @@ const char *ep2_multi_area_gsl_filename_table[13] = {
     jungle01_multi_gsl_path, jungle02_multi_gsl_path, jungle03_multi_gsl_path, jungle04_multi_gsl_path, jungle05_multi_gsl_path, seabed01_multi_gsl_path, seabed02_multi_gsl_path, empty_gsl_path, empty_gsl_path, empty_gsl_path, empty_gsl_path, jungle06_gsl_path, jungle07_gsl_path
 };
 
-s32 TLobby::get_resource_file_size() {
-    Entry_800FD944 *e = ((Entry_800FD944 * (*)(void *, s32))find_gsl_entry)(this, 0);
+s32 TLobby::get_resource_file_size(const char *name) {
+    Entry_800FD944 *e = ((Entry_800FD944 * (*)(void *, s32))find_gsl_entry)((void *)name, 0);
     if (e != NULL) {
         return e->size;
     }
-    return get_file_size__6TLobbyFv(this);
+    return get_file_size__6TLobbyFv((void *)name);
 }
 
 void load_area_gsl(void) {
@@ -382,7 +382,7 @@ TGStreamPrefix *destroy_gstream(TGStreamPrefix *g_stream_prefix, s16 arg1) {
             ((TLobby *)(g_stream_prefix->adxf_handle))->close_adxf_handle();
         }
         if ((s32) g_stream_prefix->direct_read_mode == 0) {
-            ((TLobby *)TGStream__class_name_string)->tmp_buf_release();
+            TLobby::tmp_buf_release(TGStream__class_name_string);
         }
         if (arg1 > 0) {
             ::operator delete(g_stream_prefix);
