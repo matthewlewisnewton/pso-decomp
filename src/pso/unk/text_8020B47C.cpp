@@ -1,84 +1,41 @@
 #include "types.h"
 #include "pso/system/byteswap.h"
-#include "pso/misc/TLobby.h"
+#include "pso/unk/text_8020E08C.h"
+#include "pso/unk/text_8020B47C.h"
 
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-
-struct EnemyGroupEntry_8020B47C {
-    s32 m_0;
-    s32 m_4;
-    u8 pad_8[8];
-    u8 *m_10;
-    u8 *m_14;
-};
-
-struct EnemyGroupEnt_8020B47C {
-    u8 pad_0[2];
-    s16 m_2;
-    u8 pad_4[4];
-};
-
-extern EnemyGroupEntry_8020B47C TLobby__floor_enemy_group_table[];
-
-extern "C" {
-
-void TLobby__sub_8020B47C(void *arg0) {
-    u8 *self = (u8 *)arg0;
-    ((TLobby *)self)->bswap_4_words();
-    {
-        u8 *table;
-        s32 n;
-        s16 *src;
-        s32 i;
-        EnemyGroupEnt_8020B47C *d;
-        s32 k;
-        s32 j;
-        EnemyGroupEntry_8020B47C *e;
-        table = (u8 *)TLobby__floor_enemy_group_table;
-        src = (s16 *)(self + *(u32 *)(self + 0));
-        for (i = 0; i < 0x12; i++) {
-            e = &((EnemyGroupEntry_8020B47C *)table)[i];
-            if (e->m_0 > 0) {
-                n = e->m_0;
-                d = (EnemyGroupEnt_8020B47C *)e->m_10;
-                for (k = 0; k < n; k++) {
-                    s16 tmp = *src;
-                    bswap_16((u16 *)&tmp);
-                    d->m_2 = tmp;
-                    d = d + 1;
-                    src = src + 1;
-                }
+extern "C" void TLobby__sub_8020B47C(FloorFlagsBuffer *buffer) {
+    const s16 *values2;
+    const s16 *values;
+    s32 i2;
+    fn_8020B588(buffer);
+    values = (const s16 *)((u8 *)buffer + buffer->object_offset);
+    for (s32 floor = 0; floor < 18; ++floor) {
+        if (TLobby__floor_enemy_group_table[floor].objects > 0) {
+            Saved_8020E08C *records = TLobby__floor_enemy_group_table[floor].objectRows;
+            s32 count = TLobby__floor_enemy_group_table[floor].objects;
+            for (s32 i = 0; i < count;) {
+                s16 flags = *values;
+                bswap_16((u16 *)&flags);
+                ++values;
+                ++i;
+                records->flags = flags;
+                ++records;
             }
         }
     }
-    {
-        s32 i;
-        u8 *table;
-        EnemyGroupEnt_8020B47C *d;
-        s32 k;
-        s16 *src;
-        s32 n;
-        s32 j;
-        EnemyGroupEntry_8020B47C *e;
-        table = (u8 *)TLobby__floor_enemy_group_table;
-        src = (s16 *)(self + *(u32 *)(self + 8));
-        for (i = 0; i < 0x12; i++) {
-            e = &((EnemyGroupEntry_8020B47C *)table)[i];
-            if (e->m_4 > 0) {
-                n = e->m_4;
-                d = (EnemyGroupEnt_8020B47C *)e->m_14;
-                for (k = 0; k < n; k++) {
-                    s16 tmp = *src;
-                    bswap_16((u16 *)&tmp);
-                    d->m_2 = tmp;
-                    d = d + 1;
-                    src = src + 1;
-                }
+    values2 = (const s16 *)((u8 *)buffer + buffer->enemy_offset);
+    for (s32 floor2 = 0; floor2 < 18; ++floor2) {
+        if (TLobby__floor_enemy_group_table[floor2].enemies > 0) {
+            Saved_8020E08C *records2 = TLobby__floor_enemy_group_table[floor2].enemyRows;
+            s32 count2 = TLobby__floor_enemy_group_table[floor2].enemies;
+            for (i2 = 0; i2 < count2;) {
+                s16 flags = *values2;
+                bswap_16((u16 *)&flags);
+                ++values2;
+                ++i2;
+                records2->flags = flags;
+                ++records2;
             }
         }
     }
-}
-
 }

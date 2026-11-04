@@ -316,9 +316,7 @@ struct TLobby : public TObject {
     static s32 set_flags_on_matching_entries(s32 arg0, s16 arg1, s16 arg2, s32 arg3);
     static s32 set_room_group_flags(s32 floor, s16 room, s16 group, s32 bits);
     static s32 sum_floor_enemy_counts();
-    void bswap_4_words();
     static void init_scene_objects();
-    void sync_game_state();
     static s32 spawn_matching_objects(s16 arg0, s16 arg1, s32 arg2);
     static s32 link_matching_objects(s16 arg0, s16 arg1);
     static s32 spawn_objects_at_pos(s16 arg0, s16 arg1);
