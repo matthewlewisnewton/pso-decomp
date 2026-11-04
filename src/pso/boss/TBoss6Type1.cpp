@@ -521,9 +521,6 @@ void draw_model_blend_motion(void *arg0, void *arg1, f32 farg0);
 
  extern u32 boss6_type1_trail_point_offsets[];
 
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 struct ByteBlock_C_boss6_1 { u8 bytes[0xc]; };
 
 struct Stack_802B7D74_boss6_1
@@ -770,13 +767,10 @@ s32 TBoss6Type1::create(s32 arg2_) {
 extern "C" {
 
 
-#pragma push
-#pragma opt_propagation off
 u8 * TBoss6Type1__sub_802B96C0(s32 arg0, s32 arg1) {
     *(ByteBlock_C_boss6_1 *)(arg0) = *(const ByteBlock_C_boss6_1 *)(arg1);
     return (u8 *)arg0;
 }
-#pragma pop
 #define arg0 ((u8 *)arg0_)
 #define arg2 ((s32 *)arg2_)
 #pragma push
@@ -925,9 +919,6 @@ void TBoss6Type1__sub_802B909C(Boss_802B8EE0 *self, Atk_802B8EE0 *atk) {
     atk->b1 = kind;
     atk->b2 = 10;
 }
-#pragma push
-#pragma opt_propagation off
-#pragma fp_contract on
 void randomize_attack__11TBoss6Type1FPvPv(Boss_802B8EE0 *self, Atk_802B8EE0 *atk) {
     const s8 *tab;
     s8 base;
@@ -962,7 +953,6 @@ void randomize_attack__11TBoss6Type1FPvPv(Boss_802B8EE0 *self, Atk_802B8EE0 *atk
     }
     atk->b2 = u;
 }
-#pragma pop
 
 void TBoss6Type1::do_attack() {
     s32 sp8;
@@ -1055,7 +1045,6 @@ void TBoss6Type1__sub_802B8BB4(u8 *arg0) {
 }
 #pragma push
 #pragma opt_propagation off
-#pragma fp_contract on
 #pragma opt_common_subs off
 #pragma opt_lifetimes off
 void TBoss6Type1__sub_802B8A70(TBoss6Type1 *self) {
@@ -1188,13 +1177,10 @@ void TBoss6Type1::set_action_state(s32 arg1) {
 extern "C" {
 
 
-#pragma push
-#pragma opt_propagation off
 Blk_802B8624 *copy_block__11TBoss6Type1FPvPv(Blk_802B8624 *d, Blk_802B8624 *s) {
     *d = *s;
     return d;
 }
-#pragma pop
 
 void TBoss6Type1::copy_transform(void* q) { *(u32 *)&this->m_name = *(u32*)((char*)q + 0x0); (*(f32 *)&this->m_flags) = *(f32*)((char*)q + 0x4); *(f32 *)&this->m_prev = *(f32*)((char*)q + 0x8); (*(f32 *)&this->m_next) = *(f32*)((char*)q + 0xc); *(f32 *)&this->m_up = *(f32*)((char*)q + 0x10); (*(u32 *)&this->m_down) = *(u32*)((char*)q + 0x14); *(f32*)((char*)this + 0x18) = *(f32*)((char*)q + 0x18); }
 
@@ -1427,8 +1413,6 @@ void TBoss6Type1__sub_802B7D50(u8 *arg0) {
     *(s32 *)((s8 *)arg0 + 0x4F0) = (s32) lbl_805DE3A8;
     *(s32 *)((s8 *)arg0 + 0x4F4) = (s32) lbl_805DE3B0;
 }
-#pragma push
-#pragma fp_contract on
 void TBoss6Type1::update_sway() {
     Boss_802B7B44 *self = (Boss_802B7B44 *)this;
     f32 d;
@@ -1466,7 +1450,6 @@ void TBoss6Type1::update_sway() {
     }
     self->f4E8 += d;
 }
-#pragma pop
 
 void TBoss6Type1::update_position() {
     VecCopy((Vec *)&this->body_center_position, &this->position);
@@ -1566,11 +1549,6 @@ void TBoss6Type1::enable_parts() {
         *(s32 *)((s8 *)temp_r3 + 0x120) = (s32) (*(s32 *)((s8 *)temp_r3 + 0x120) | 1);
     }
 }
-#pragma push
-#pragma fp_contract on
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TBoss6Type1::update_beam_attack() {
     Boss_802B7530 *self = (Boss_802B7530 *)this;
     Line_802B7530 line;
@@ -1658,9 +1636,6 @@ void TBoss6Type1::update_beam_attack() {
         TBoss6PlotFalz::apply_radial_effect_to_players(&c, 0xC0, 0xF, TBoss6Type1__data_805DE318);
     }
 }
-#pragma pop
-#pragma push
-#pragma fp_contract on
 void TBoss6Type1__sub_802B73AC(Boss_802B73AC *self) {
     Vec_802B73AC *a;
     Vec_802B73AC *b;
@@ -1708,12 +1683,6 @@ void TBoss6Type1__sub_802B73AC(Boss_802B73AC *self) {
         }
     }
 }
-#pragma pop
-#pragma push
-#pragma fp_contract on
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TBoss6Type1__sub_802B6C30(Boss_802B6C30 *self) {
     s32 n;
     Vec_802B6C30 *p4;
@@ -1851,7 +1820,6 @@ void TBoss6Type1__sub_802B6C30(Boss_802B6C30 *self) {
         TBoss6PlotFalz__sub_802AC724(pl, &m);
     }
 }
-#pragma pop
 #undef VLEN
 
 void TBoss6Type1::damage_players_in_range() {
@@ -1876,8 +1844,6 @@ void TBoss6Type1::damage_players_in_range() {
         }
     }
 }
-#pragma push
-#pragma fp_contract on
 void TBoss6Type1::spawn_grav_ball() {
     Vec_802B683C v;
     s32 flag;
@@ -1905,7 +1871,6 @@ void TBoss6Type1::spawn_grav_ball() {
     }
     TBoss6Type1::create_grav_ball(this, &v);
 }
-#pragma pop
 #pragma push
 #pragma opt_common_subs off
 void TBoss6Type1::increase_field_clamped_max() {
@@ -2146,8 +2111,6 @@ void TBoss6Type1::sub_802B5CB4() {
         break;
     }
 }
-#pragma push
-#pragma fp_contract on
 void fire_at_all_players__11TBoss6Type1FPvf(Boss_802B5AD4 *self, f32 dy) {
     V3_802B5AD4 me;
     V3_802B5AD4 pp;
@@ -2205,13 +2168,10 @@ void fire_at_all_players__11TBoss6Type1FPvf(Boss_802B5AD4 *self, f32 dy) {
         TBoss6Type1::request_jittered_camera(self, &ofs, &out, get_entity_id(p));
     }
 }
-#pragma pop
 
 void TBoss6Type1__sub_802B5AB0(void) {
     ((s32 (*)(f32))fire_at_all_players__11TBoss6Type1FPvf)(TBoss6Type1__data_805DE32C);
 }
-#pragma push
-#pragma fp_contract on
 void TBoss6Type1__sub_802B59CC(TBoss6Type1 *self) {
     Vec_802B57D4 eye = TBoss6Type1__data_80470FB4;
     Vec_802B57D4 target = lbl_80470FC0;
@@ -2226,7 +2186,6 @@ void TBoss6Type1__sub_802B59CC(TBoss6Type1 *self) {
     }
     TBoss6Type1::request_jittered_camera(self, &eye, &target, 0xFFFF);
 }
-#pragma pop
 
 void TBoss6Type1__sub_802B59A8(void) {
     ((s32 (*)(f32))fire_at_all_players__11TBoss6Type1FPvf)(TBoss6Type1__data_805DE2D0);
@@ -2239,8 +2198,6 @@ void TBoss6Type1::request_default_jittered_camera() {
     s32 arg0 = (s32)this;
     TBoss6Type1::request_jittered_camera((void *)arg0, (void *)((void *)&lbl_80470FFC.value), (void *)((void *)&lbl_80471008.value), 0xFFFF);
 }
-#pragma push
-#pragma fp_contract on
 s32 TBoss6Type1::request_jittered_camera(void *arg0, void *arg1, void *arg2, int arg3) {
     f32 dist;
     Vec_802B57D4 off;
@@ -2263,7 +2220,6 @@ s32 TBoss6Type1::request_jittered_camera(void *arg0, void *arg1, void *arg2, int
         request_follow_camera_offsets(&p, arg2, arg3);
     }
 }
-#pragma pop
 
 void TBoss6Type1::decode_polar_position(u8 *arg1) {
     u8 *arg0 = (u8 *)this;
@@ -2279,8 +2235,6 @@ void TBoss6Type1::decode_polar_position(u8 *arg1) {
 }
 
 void TBoss6Type1::handle_6xa4_action(u8 * _w1) { ((TBoss6Type1 *)((char*)this + 0x1))->decode_polar_position(_w1); }
-#pragma push
-#pragma fp_contract on
 void calc_grid_cell_position__11TBoss6Type1FPvPv(Boss_802B5648 *o, Vec_802B5648 *out) {
     u32 t = o->f374;
     s8 b = o->f41C;
@@ -2295,7 +2249,6 @@ void calc_grid_cell_position__11TBoss6Type1FPvPv(Boss_802B5648 *o, Vec_802B5648 
     out->y = o->f3C;
     out->z = lbl_805DE320 * (f32)c - lbl_805DE324;
 }
-#pragma pop
 void TBoss6Type1__sub_802B5598(void *arg0, void *arg1) {
     f32 var_f31;
     s32 temp_r31;
@@ -2360,15 +2313,12 @@ s32 TBoss6Type1::pick_remapped_list_value(s32 a, s32 b, s32 n) {
     }
     return b;
 }
-#pragma push
-#pragma fp_contract on
 int TBoss6Type1::rand_range_inclusive(s32 arg0, int arg1, int arg2) {
     if (arg1 >= arg2) {
         return arg1;
     }
     return (int) (((lbl_805DE308 + ((f32) arg2 - (f32) arg1)) * ((*(const f32 *)&TBoss6Type1__data_805DE304) * (f32) rand())) + (f32) arg1);
 }
-#pragma pop
 
 s32 TBoss6Type1::pick_random_entry(s32 arg0, s32 arg1, s32 arg2) {
     s32 var_r0;
@@ -2398,7 +2348,6 @@ s32 TBoss6Type1::count_matches(s32 arg1, s32 arg2) {
 #pragma push
 #pragma opt_common_subs off
 #pragma opt_propagation off
-#pragma fp_contract on
 void TBoss6Type1__sub_802B5140(s32 arg0, s32 arg1, s32 arg2) {
     typedef char sp8_offset[(offsetof(Stack_802B5140, sp8) == 0x0) ? 1 : -1];
     typedef char spC_offset[(offsetof(Stack_802B5140, spC) == 0x4) ? 1 : -1];
@@ -2429,23 +2378,12 @@ void TBoss6Type1__sub_802B5140(s32 arg0, s32 arg1, s32 arg2) {
     VecCopy((Vec *)(arg0 + 0x38), (const Vec *)(&stack.sp8));
 }
 #pragma pop
-#pragma push
-#pragma opt_common_subs off
-#pragma opt_propagation off
-#pragma fp_contract on
-#pragma fp_contract on
 void TBoss6Type1::ease_toward_target(s32 a, s32 b) {
     Obj_802B5100 *self = (Obj_802B5100 *)this;
     s32 h = b / 2;
     if (b <= 0 || a <= h) return;
     self->f3c += lbl_805DE2EC * ((lbl_805DE2F0 + self->f424) - self->f3c);
 }
-#pragma pop
-#pragma push
-#pragma opt_common_subs off
-#pragma opt_propagation off
-#pragma fp_contract on
-#pragma fp_contract on
 void TBoss6Type1::interpolate_pos_to_target(s32 step, s32 total) {
     Boss_802B4EAC *self = (Boss_802B4EAC *)this;
     Vec_802B4EAC v;
@@ -2482,7 +2420,6 @@ void TBoss6Type1::interpolate_pos_to_target(s32 step, s32 total) {
     self->pos.z = r * cos_table_lookup(a);
     self->pos.y += k * (self->target.y - self->pos.y);
 }
-#pragma pop
 
 void TBoss6Type1::rotate_around_center(s32 num, s32 den) {
     u8 *self = (u8 *)this;
