@@ -273,7 +273,9 @@ void transform_chunk_object_tree(void *arg0, ModelDrawCallback cb) {
 }
 #undef node
 
-// push_reordered_matrix_ps (0x803E1E84) writes the current 3x4 as these pairs.
+// The store loop at 0x803E1E84 writes the current 3x4 as these pairs.
+// reorder_current_matrix_ps (0x803E1E74) falls into it; push_reordered_matrix_ps
+// (0x803E1ED0) advances the matrix slot by 0x30 and branches to it.
 // Position uses the translation column; the normal uses only the 3x3.
 struct ReorderedMatrix_803E3390 {
     f32 m00, m10;
