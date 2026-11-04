@@ -136,7 +136,7 @@ void TWindowCtrl::update_short_list_request() {
             } else if (*(void **)((s8 *)this + 0x3C) == NULL && is_enabled() == 0) {
                 if (is_on_current_screen__11TCameraCtrlFv(btn = controller_input_state[idx].btn, fn_8002AE08((void *)(*(s32 *)&this->m_24))) != 0 &&
                     TWindowShortListCtrl__check_controller_button(btn, 0x200) != 0) {
-                    *(void **)((s8 *)this + 0x3C) = new TWindowShortListCtrl(this, *(s32 *)&this->m_24);
+                    *(void **)&this->m_3c = new TWindowShortListCtrl(this, (s32)this->m_24);
                 }
             }
         }
