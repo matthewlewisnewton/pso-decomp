@@ -20,7 +20,11 @@ struct TBoss6Tube : public TObject {
     void update_wobble();
     void spawn_trap();
     void update_timer();
-    static void *create(void *arg0);
+    // Defined in TBoss6EmptyWarp_802B0E2C.cpp: that unit owns 0x802B0FC8 and
+    // 0x802B1004, and both write this object's m_1c / m_20.
+    void activate_warp();
+    void sub_802B1004();
+    static TBoss6Tube *create(void *arg0);
     static void free_resources();
     static void load_resources();
 };
