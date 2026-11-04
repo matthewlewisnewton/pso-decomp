@@ -38,7 +38,7 @@ struct Ctrl_802A8B58 {
     u8 pad4[0x18 - 4];
     void *vt;
     u32 f1c;
-    u8 *f20;
+    TEffIndirectRecipe *f20;
     u8 f24;
     u8 f25;
     u8 pad26[2];
@@ -64,7 +64,7 @@ extern RecoveredGlobal_802A9234_TEffIndirectCtrl__data_80540AF0 TEffIndirectCtrl
 extern "C" {
 f32 sin_table_lookup(s32);
 void __ct__7TObjectFP7TObject(void *, void *);
-u8 *get_indirect_recipe(u8);
+TEffIndirectRecipe *get_indirect_recipe(u8);
 void set_texture_name(void *, void *, void *, s32);
 void load_texture_list(void *);
 extern s32 __vt__16TEffIndirectCtrl[];
@@ -82,22 +82,22 @@ void TEffIndirectCtrl::run_task() {
     if (!check_demo_mode() && m_46 != 0) {
         return;
     }
-    m_3c += ((s8 *)m_20)[4];
-    m_40 += ((s8 *)m_20)[5];
-    m_48 = ((s8 *)m_20)[1];
-    m_4c = ((s8 *)m_20)[2];
+    m_3c += m_20->m_4;
+    m_40 += m_20->m_5;
+    m_48 = m_20->m_1;
+    m_4c = m_20->m_2;
     // The original snapshots the native PMFs on the stack before dispatch.
     IndirectTaskTable tasks = lbl_8046FBE8;
     tasks.entries[0] = table->entries[0];
     tasks.entries[1] = table->entries[1];
     tasks.entries[2] = table->entries[2];
     if ((actor_frame_tick & 31) == 0) {
-        m_50 = ((s8 *)m_20)[3] * (lbl_805DE028 * rand());
+        m_50 = m_20->m_3 * (lbl_805DE028 * rand());
     }
-    if (((u8 *)m_20)[0] < 3) {
-        (this->*tasks.entries[((u8 *)m_20)[0]])();
+    if (m_20->m_0 < 3) {
+        (this->*tasks.entries[m_20->m_0])();
     }
-    m_24 = ((u8 *)m_20)[7];
+    m_24 = m_20->m_7;
     sub_802A955C();
 }
 
@@ -142,7 +142,7 @@ Ctrl_802A8B58 *TEffIndirectCtrl__ct(Ctrl_802A8B58 *self, s32 kind, void *parent)
     if (self->f20 == NULL) {
         return self;
     }
-    self->f24 = self->f20[7];
+    self->f24 = self->f20->m_7;
     tex = (u8 *)get_indirect_source_id(self->f24) + k * 1000;
     self->f2c->a = self->f30;
     self->f2c->b = 1;

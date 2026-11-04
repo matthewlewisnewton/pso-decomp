@@ -4,12 +4,25 @@
 #include "types.h"
 #include "pso/TObject.h"
 
+struct TEffIndirectRecipe {
+    u8 m_0;
+    s8 m_1;
+    s8 m_2;
+    s8 m_3;
+    s8 m_4;
+    s8 m_5;
+    u8 m_6;
+    u8 m_7;
+};
+
+typedef char TEffIndirectRecipe_size[sizeof(TEffIndirectRecipe) == 0x8 ? 1 : -1];
+
 struct TEffIndirectCtrl : public TObject {
     virtual ~TEffIndirectCtrl();
     void sub_802A955C();
     virtual void run_task();
     u32 m_1c;
-    u32 m_20;
+    TEffIndirectRecipe* m_20;
     u8 m_24;
     u8 m_25;
     u8 _pad26[0x2];

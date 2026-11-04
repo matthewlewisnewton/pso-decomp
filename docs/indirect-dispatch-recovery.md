@@ -115,3 +115,20 @@ rule out those specific variants only. One failed alignment-declaration syntax
 produced no object; the repository's supported alignment syntax compiled and
 produced the unchanged best object. No impossibility or assembly-origin claim is
 made. The owner continues with source-form and export/layout closure.
+
+## Review follow-up: typed recipe fields and linkage audit
+
+The controller's 0x20 field is now a pointer to the real eight-byte
+`TEffIndirectRecipe` layout (dispatch mode byte at 0x0, signed recipe bytes at
+0x1-0x5, padding at 0x6, source-id byte at 0x7) instead of an integer indexed
+through `((u8 *)m_20)[n]` casts. The constructor's recipe accesses use the same
+type, and `get_indirect_recipe` is declared with that pointer (identical layout
+and the same unmangled extern "C" symbol as its definition). This removes the
+raw offset casts without changing any instruction: the dispatcher remains at
+95.61% and every other function in the unit and in all five consumer units
+stays exact.
+
+The names in the added extern "C" block were checked against
+`config/GPOE8P/psov3/symbols.txt`: `eff_indirect_task_table`, `lbl_8046FBE8`,
+`actor_frame_tick` and `lbl_805DE028` are plain original symbols, so the block
+does not declare any C++-mangled name with C linkage.
