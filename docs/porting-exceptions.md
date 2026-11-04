@@ -105,10 +105,6 @@ Port should: build everything with one modern compiler. Only `-fp_contract on`
 (float results) and deferred emission order (no semantic effect) need thought;
 nothing else changes behaviour.
 
-| Unit | Flags | Reason | Port should |
-|---|---|---|---|
-| `pso/player/TObjPlayer_801542CC.cpp` | `-fp_contract on` (replaces this TU's `-fp_contract off`) | `TObjPlayer__sub_8015434C` fuses `offset * sin + pos` and `offset * cos + pos` into `fmadds`. The same flag leaves `resolve_actor_sphere_contact`'s `(x * x) + (z * z)` as `fmuls` + `fadds`, which is what the original has. A per-function `fp_contract` pragma also matches and was not added. | Keep fused multiply-add for those two expressions, or accept a small float difference. |
-
 ## 6. Approved regressions
 
 None on main.
