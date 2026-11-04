@@ -67,6 +67,7 @@ struct TRaderMapCore : public TObjBase {
     static s32 reveal_region_by_id(s16 id);
     void draw_player_markers();
     void copy_transform(void* q);
+    void draw_compass(s32 mode);
     void setup_view(s32 arg1);
     void render_region_records(void * _w1);
     virtual void render();
