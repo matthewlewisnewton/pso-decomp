@@ -392,7 +392,6 @@ void create_backgrounds__23TAdSinglePlyChrSelectGCFPv(void *arg0) {
 }
 
 s32 TAdPlayerLoadGC__sub_801E0FA4(s32);
-s32 query_memcard_capacity__15TAdPlayerLoadGCFl(s32, s32);
 s32 count_flags__23TAdSinglePlyChrSelectGCFPv(void *arg0);
 
 s32 TAdSinglePlyChrSelectGC::check_capacity() {
@@ -405,7 +404,7 @@ s32 TAdSinglePlyChrSelectGC::check_capacity() {
     temp_r29 = ((s32 (*)())count_flags__23TAdSinglePlyChrSelectGCFPv)();
     temp_r30 = ((TAdSinglePlyChrSelectGC *)arg0)->count_selected_flags();
     temp_r31 = TAdPlayerLoadGC__sub_801E0FA4(0);
-    temp_r3 = query_memcard_capacity__15TAdPlayerLoadGCFl(0, 0);
+    temp_r3 = TAdPlayerLoadGC::query_memcard_capacity(0, 0);
     if ((temp_r29 > temp_r31) || (temp_r30 > temp_r3)) {
         return 0;
     }

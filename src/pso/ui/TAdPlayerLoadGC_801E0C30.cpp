@@ -851,7 +851,7 @@ check:
     return -0xFB;
 }
 
-s32 TAdPlayerLoadGC::query_memcard_capacity(s32 arg0) {
+s32 TAdPlayerLoadGC::query_memcard_capacity(s32 arg0, s32) {
     s32 spC;
     s32 sp8;
     if (arg0 >= 2) {

@@ -194,7 +194,6 @@ __declspec(section ".data") u32 download_rng_seed_pair[2];
 void disallow_rendering__7TObjectFv(TObject *arg0);
 u32 create__13TAdMcSelectGCFPv(s32);
 s32 TAdPlayerLoadGC__sub_801E0FA4(s32);
-s32 query_memcard_capacity__15TAdPlayerLoadGCFl(s32, int);
 u8 *init_shop_judgment_window(void *p);
 s32 TQuestVmDownLoadServer__sub_801F8538(void *data, s32 size);
 s32 get_selected_menu_value(u32);
@@ -829,7 +828,7 @@ void TQuestVmDownLoadServer::check_memcard_slot() {
         slot = t;
     }
     if (((TAdPlayerLoadGC *)slot)->probe_card_slot() != 0 && ((TAdPlayerLoadGC *)slot)->probe_and_check_card() != 0) {
-        cap = query_memcard_capacity__15TAdPlayerLoadGCFl(slot, 0);
+        cap = TAdPlayerLoadGC::query_memcard_capacity(slot, 0);
         switch (cap) {
         case -0xFD:
             seq = (u8 *)new TMCFormatSequence((TObject *)(void *)arg0, (void *)(void *)((void *)slot));

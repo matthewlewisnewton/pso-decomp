@@ -69,7 +69,6 @@ u32 __nw__7TObjectFUl(int);
 s32 get_selected_menu_value(int);
 
 s32 get_card_file_info__15TAdPlayerLoadGCFiPvPv(int, void *, int);
-s32 query_memcard_capacity__15TAdPlayerLoadGCFl(int, int);
 extern u8 lbl_804C89BC[];
 extern u8 lbl_804C88C0[];
 s32 TAdPlayerLoadGC__sub_801E1944(s32, void *, u32, s32);
@@ -223,7 +222,7 @@ void TAdSinglePlyChrSelectGC::check_memcard_space() {
     case -1:
         break;
     default:
-        if (arg0->f28 <= query_memcard_capacity__15TAdPlayerLoadGCFl(arg0->f24, 0)) {
+        if (arg0->f28 <= TAdPlayerLoadGC::query_memcard_capacity(arg0->f24, 0)) {
             arg0->f2c = 7;
         } else {
             arg0->f2c = 0xA;

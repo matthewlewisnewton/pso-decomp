@@ -22,7 +22,7 @@ public:
     static void build_save_file_image(void *image, void *card);
     static s32 find_card_file(int chan, void *name);
     static s32 check_memcard_status(s32 arg0);
-    static s32 query_memcard_capacity(s32 arg0);
+    static s32 query_memcard_capacity(s32 arg0, s32 arg1);
     static s32 poll_load_status(s32 chan, const char *name);
     void play_load_sound();
     u8 *create_instance();
