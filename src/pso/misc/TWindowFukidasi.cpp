@@ -249,7 +249,7 @@ void rotate_matrix_x(s32, s32);
 s32 push_matrix_from(void *src);
 void push_matrix();
 void pop_matrix();
-void begin_screen_draw(s32 arg0);
+void *begin_screen_draw(s32 arg0);
 void DVDConvertEntrynumToPath(f32 *q);
 void set_draw_texture_and_color(s32 idx, s32 arg1);
 
@@ -1039,7 +1039,6 @@ void TUnk_804CF0B8::sub_80251DF0(s16 arg1, s32 str, s16 arg3, f32 farg0) {
 struct NamePlateQuad { f32 x0, y0, x1, y1, u0, v0, u1, v1; };
 extern "C" {
 int get_name_text_width(void *);
-void render_forward__20TWindowSubStatusDispFPv();
 void apply_context_transform_to_rect(View_80252764 *, NamePlateQuad *);
 void draw_textured_quad_at_depth(f32 *, f32);
 void set_text_draw_params(View_80252764 *, s32, s32, f32, f32);
@@ -1062,8 +1061,8 @@ void TUnk_804CF0B8::draw_name_plate(TWindowDrawContext *ctx, u32 color) {
         pos[0] = ctx->x - lbl_805DCD60;
         pos[1] = ctx->y - TWindowFukidasi__data_805DCD1C;
         depth = TWindowFukidasi__data_805DCD4C / (lbl_805DCD64 + ctx->depth);
-        begin_screen_draw(1);
-        render_forward__20TWindowSubStatusDispFPv();
+        // The call consumes begin_screen_draw's return register. begin_render overwrites it.
+        TWindowSubStatusDisp::render_forward(begin_screen_draw(1));
         set_draw_texture_and_color(0, plateColor);
         q.x0 = pos[0]; q.y0 = pos[1]; q.x1 = lbl_805DCD68 + q.x0; q.y1 = lbl_805DCD10 + q.y0;
         q.u0 = lbl_805DCD6C; q.v0 = lbl_805DCD70; q.u1 = lbl_805DCD74; q.v1 = TWindowFukidasi__data_805DCCE8;
@@ -1085,10 +1084,12 @@ void TUnk_804CF0B8::draw_name_plate(TWindowDrawContext *ctx, u32 color) {
         }
         TWindowSubStatusDisp::get_player();
         f32 textX = pos[0];
-        textX += lbl_805DCD84;
+        // 6 / 20 / 0.5 are lbl_805DCD84, the 20-wide minimum, and TWindowFukidasi__data_805DCD0C.
+        // Naming the minimum here reuses the earlier sdata2 symbol and swaps f0 with f1.
+        textX += 6.0f;
         pos[0] = textX;
-        if (width < TWindowFukidasi__data_805DCCFC)
-            pos[0] = TWindowFukidasi__data_805DCD0C * (TWindowFukidasi__data_805DCCFC - width) + textX;
+        if (width < 20.0f)
+            pos[0] = 0.5f * (20.0f - width) + textX;
         pos[1] += TWindowFukidasi__data_805DCD28;
         set_text_draw_params(ctx, 0, 1, TWindowFukidasi__data_805DCD4C / (lbl_805DCD88 + ctx->depth), lbl_805DCD8C);
         draw_small_font_string_clipped(pos, this->name, textColor, lbl_805DCD54);
