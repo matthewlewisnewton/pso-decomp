@@ -15,14 +15,14 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (working tree, 2026-11-04)
+## Summary (regenerated on this branch after merging main `afa256f23`, 2026-11-04)
 
 | Category | Hits | Files / units |
 |---|---:|---:|
-| Assembly (`asm` + `orig_asm` include) | 9 | 3 |
+| Assembly (`asm` + `orig_asm` include) | 5 functions | 3 |
 | MWCC intrinsics | 85 | 55 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 71 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,865 | 885 |
+| CodeWarrior pragmas (excluding push/pop) | 5,864 | 885 |
 | Per-unit compiler overrides in `configure.py` | 145 | 145 |
 | Approved regressions | 0 on main, 1 pending (#291) | |
 
@@ -46,14 +46,15 @@ The MusyX four predate the scalar-fallback rule and have **no C fallback**. `vec
 ## 2. MWCC intrinsics
 
 `__cntlzw` (55), `__frsqrte` (12), `__fabsf` (6), `__fabs` (4), `__rlwinm` (4),
-`__rlwimi` (2), `__abs` (1), `__fres` (1); full list in the generated file. Reason: they
+`__abs` (1), `__fres` (1), `__builtin_va_info` (1); full list in the generated file. Reason: they
 reproduce single PowerPC instructions the original compiled code used; no
 per-site reason is recorded.
 
 Port should: `__fabsf`/`__fabs` → `fabsf`/`fabs`; `__abs` → `abs`; `__cntlzw` →
 a count-leading-zeros helper (`__builtin_clz` with a zero check, returns 32 for 0);
 `__frsqrte` → `1.0 / sqrt(x)` (the Newton refinement loops around it then become
-redundant but harmless); `__rlwinm` → shift/rotate + mask; `__builtin_va_info` →
+redundant but harmless); `__fres` → `1.0 / x` (the hardware estimate);
+`__rlwinm` → shift/rotate + mask; `__builtin_va_info` →
 standard `va_start`.
 
 ## 3. Direct hardware access
@@ -67,8 +68,8 @@ etc. or their port equivalents) instead of the fixed address.
 
 ## 4. CodeWarrior pragmas
 
-5,865 pragmas in 885 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1153, `inline_depth` 1045, `fp_contract` 932, `auto_inline` 844,
+5,864 pragmas in 885 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1153, `inline_depth` 1045, `fp_contract` 931, `auto_inline` 844,
 `opt_common_subs` 624, `scheduling` 262, `opt_propagation` 239,
 `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56,
 `defer_codegen` 50, `pack` 46. Reason: reproduce the original code generation
@@ -79,6 +80,12 @@ MWCC). **Keep the semantics** of `pack` (use the target's packing attribute and
 check struct layout), `bool`, and `fp_contract` where float results must match
 bit-for-bit (`fp_contract on` means fused multiply-add was used; a port may see
 small float differences without FMA).
+
+### Approved: `TBoss6Type2::sub_802BEC28` ([#312](https://github.com/matthewlewisnewton/pso-decomp/pull/312))
+
+| File | Function | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/boss/TBoss6Type2_802BE588.cpp` | `TBoss6Type2::sub_802BEC28` | one `#pragma opt_common_subs off` | Approved by Matt on 2026-11-04. Without it, common-subexpression elimination hoists the load of `lbl_805DE4E0` (0.0f) from `.text+0x6ec` to `.text+0x6c8` and renumbers the int-to-float temps, so the function is the same length and not the same bytes. Writing the ratio as `1.0f - (float)m_460 / (float)unk_45C` clamped to [0, 1] reproduces the instructions, but MWCC pools those literals as new local `.sdata2` instead of `R_PPC_EMB_SDA21` to `lbl_805DE4E4` / `lbl_805DE4E0` (the unclaimed blob `0x805DE4D8..0x805DE4F8`). `fp_contract on` is not part of this exception: removing it leaves the object identical. | Drop the pragma. The value is that clamped ratio; a port does not need MWCC's load schedule. |
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
@@ -92,7 +99,7 @@ small float differences without FMA).
 `TObjTombstone.cpp`: `-fp_contract on` because two calculations fuse
 multiply-adds; `pso/unk/text_803D8910.cpp`: `-fp_contract on` because
 `vec3_dot` and `vec3_cross` are `fmadds`/`fmsubs`, and the ginja defaults
-leave contraction off). The generated table copies each comment; entries with no
+leave contraction off). The generated table copies each comment; 92 entries have no
 comment of their own (several share a comment with the entry above). Library
 groups (SDK, runtime, TRK, MusyX, CRI, Ginja, mcFs, ntInf, avetcp, modem, ntUtl)
 use their own compiler versions as recorded there.
@@ -115,6 +122,7 @@ entry when the PR merges.
 | [#281](https://github.com/matthewlewisnewton/pso-decomp/pull/281) | `transform_chunk_vertices_pos_normal` (`src/pso/unk/text_803E2D70.cpp`) as `asm void` | One-time asm exception approved by Matt on 2026-11-04: SDK `PSMTXROMultVecArray`-style paired-single code that every other GameCube decomp keeps as asm. Guarded for MWCC with a scalar C++ fallback. Evidence: `docs/evidence/paired-single-sdk-asm.md` on that branch. Port: use the C++ fallback. |
 | [#291](https://github.com/matthewlewisnewton/pso-decomp/pull/291) | Allowed regression: `deform_indirect_texture_scroll` 100% → 99.79% | Approved by Matt on 2026-11-04 so the `off16 = offset` steering (still on main in `TEffIndirectCtrl_802A88AC.cpp`) could be removed. Port: nothing; the PR version is the portable one. |
 | [#285](https://github.com/matthewlewisnewton/pso-decomp/pull/285) | `static asm void pad_03_8042E9FC_text` via `orig_asm` include (`src/pso/unk/text_8042E9FC.cpp`) | PR body: 5-word stranded epilogue; 0/60 C probes across 20 compilers reach it. **No approval recorded and no scalar fallback**; it needs one under the rule above. |
+| [#296](https://github.com/matthewlewisnewton/pso-decomp/pull/296) | `scheduling` ×5, `peephole`, `optimize_for_size` pragmas | Reason not recorded. Drop in a port. |
 | [#250](https://github.com/matthewlewisnewton/pso-decomp/pull/250) | `fp_contract` ×3 | Reason not recorded. |
 | [#303](https://github.com/matthewlewisnewton/pso-decomp/pull/303), [#295](https://github.com/matthewlewisnewton/pso-decomp/pull/295), [#289](https://github.com/matthewlewisnewton/pso-decomp/pull/289), [#272](https://github.com/matthewlewisnewton/pso-decomp/pull/272), [#225](https://github.com/matthewlewisnewton/pso-decomp/pull/225), [#222](https://github.com/matthewlewisnewton/pso-decomp/pull/222), [#215](https://github.com/matthewlewisnewton/pso-decomp/pull/215), [#187](https://github.com/matthewlewisnewton/pso-decomp/pull/187) | 1 to 4 inlining/optimization pragmas each | Reason not recorded. Drop in a port. |
 | [#240](https://github.com/matthewlewisnewton/pso-decomp/pull/240) | Not scanned | Diff exceeds GitHub's 300-file limit; scan locally after it merges. |
