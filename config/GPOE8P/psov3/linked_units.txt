@@ -3220,6 +3220,7 @@ pso/unk/text_8020A768.cpp
 pso/unk/text_8020AB50.cpp
 pso/unk/text_8020AD40.cpp
 pso/unk/text_8020B374.cpp
+pso/unk/text_8020B47C.cpp
 pso/unk/text_8020BC50.cpp
 pso/unk/text_8020BFE4.cpp
 pso/unk/text_8020C354.cpp
