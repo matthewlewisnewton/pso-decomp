@@ -19,17 +19,85 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/enemy/TObjEneMe1Gee.h"
 extern "C" {
-void PSMTXMultVecArray(const f32 (*m)[4], const Vec *src, Vec *dst, u32 count);
-extern s32 current_matrix;
-void PSMTXMultVec(const f32 (*m)[4], const Vec *src, Vec *dst);
-void rotate_matrix_z(void *, s32);
-void rotate_matrix_x(void *, s32);
-void rotate_matrix_y(void *, s32);
 void PSMTXScale(f32 (*m)[4], f32 sx, f32 sy, f32 sz);
-void scale_matrix(f32 (*m)[4], f32 sx, f32 sy, f32 sz);
 int vsprintf(char *s, const char *fmt, va_list ap);
-void debug_printf_at(s32 arg0, const char *fmt, ...);
+}
 
+char *strncpy(char *, const char *, unsigned long);
+unsigned long strlen(const char *);
+extern char *debug_text_pool_cursor;
+extern DebugTextRecord *debug_text_record_cursor;
+extern f32 debug_text_scale;
+extern s32 debug_text_global_count;
+int sprintf(char *, const char *, ...);
+extern char lbl_805D46A0[6];
+
+void TObjEneMe1Gee::queue_debug_text(s32 arg0, char *arg1) {
+    s16 len;
+    s16 x;
+    f32 scale;
+    DebugTextRecord *r;
+    strlen(arg1);
+    x = (s16) ((s16) (arg0 >> 16) * (scale = debug_text_scale));
+    len = strlen(arg1);
+    r = debug_text_record_cursor++;
+    r->x = x;
+    r->y = (s16) ((s16) (arg0 & 0xFFFF) * scale);
+    r->z = (s16) debug_text_scale;
+    r->color = debug_text_global_count;
+    r->text = debug_text_pool_cursor;
+    strncpy(debug_text_pool_cursor, arg1, len);
+    debug_text_pool_cursor[len] = 0;
+    debug_text_pool_cursor += len + 1;
+}
+
+void print_float_padded(s32 arg0, s32 prec, f32 val) {
+    char buf[24];
+    s16 y;
+    f32 scale;
+    DebugTextRecord *r;
+    char *p;
+    s32 n;
+    s32 i;
+    s32 pad;
+    s32 total;
+    s32 j;
+
+    y = (s16) ((s16) (arg0 & 0xFFFF) * (scale = debug_text_scale));
+    r = debug_text_record_cursor++;
+    r->x = (s16) ((s16) (arg0 >> 16) * scale);
+    r->y = y;
+    r->z = (s16) debug_text_scale;
+    r->color = debug_text_global_count;
+    r->text = debug_text_pool_cursor;
+    p = debug_text_pool_cursor;
+    if (val < 0.0f) {
+        *p++ = '-';
+        val *= -1.0f;
+    }
+    sprintf(buf, lbl_805D46A0, 5, val);
+    n = strlen(buf);
+    for (i = 0; i < n; i++) {
+        if (buf[i] == '.') {
+            break;
+        }
+    }
+    pad = prec - i;
+    total = n + pad;
+    for (j = total; j >= pad; j--) {
+        buf[j] = buf[n--];
+    }
+    for (j = 0; j < pad; j++) {
+        buf[j] = '0';
+    }
+    for (j = 0; j < total; j++) {
+        *p++ = buf[j];
+    }
+    debug_text_pool_cursor[total] = 0;
+    debug_text_pool_cursor += total + 1;
+}
+
+extern "C" {
 void debug_printf_at(s32 arg0, const char *fmt, ...) {
     va_list ap;
     char buf[128];
@@ -38,8 +106,6 @@ void debug_printf_at(s32 arg0, const char *fmt, ...) {
     TObjEneMe1Gee::queue_debug_text(arg0, buf);
 }
 
-extern char *debug_text_pool_cursor;
-extern DebugTextRecord *debug_text_record_cursor;
 extern char *lbl_805D76D0; // pool base
 extern DebugTextRecord *lbl_805D76D4; // record base
 
@@ -108,91 +174,9 @@ void render_debug_text(u32 enabled) {
     debug_text_record_cursor = lbl_805D76D4;
     debug_text_pool_cursor = lbl_805D76D0;
 }
-
-#pragma push
-#pragma scheduling off
-void matrix_mult_vec(f32 (*m)[4], const Vec *src, Vec *dst) {
-    if (m == NULL) {
-        m = (f32 (*)[4])current_matrix;
-    }
-    PSMTXMultVec(m, src, dst);
 }
-#pragma pop
 
-#pragma push
-#pragma scheduling off
-void matrix_mult_vec_array(f32 (*m)[4], const Vec *src, Vec *dst, u32 count) {
-    if (m == NULL) {
-        m = (f32 (*)[4])current_matrix;
-    }
-    PSMTXMultVecArray(m, src, dst, count);
-}
-}
-#pragma pop
-
-#pragma push
-#pragma scheduling off
-#pragma peephole off
-void get_current_matrix(void *m) {
-    void *src = (*(void * *)&current_matrix);
-    if (m == 0) {
-        m = src;
-    }
-    PSMTXCopy((MtxP)src, (MtxP)m);
-}
-#pragma pop
-
-#pragma push
-#pragma scheduling off
-
-void TObjPlayer::invert_matrix_in_place(u32 arg0) {
-    u32 var_r3;
-    var_r3 = arg0;
-    if (var_r3 == 0U) {
-        var_r3 = (*(u32 *)&current_matrix);
-    }
-    PSMTXInverse((MtxP)var_r3, (MtxP)var_r3);
-}
-#pragma pop
-
-#pragma push
-#pragma scheduling off
-#pragma optimize_for_size off
-void rotate_matrix_zyx(void *m, s32 x, s32 y, s32 z) {
-    if (z != 0) {
-        rotate_matrix_z(m, z);
-    }
-    if (y != 0) {
-        rotate_matrix_y(m, y);
-    }
-    if (x != 0) {
-        rotate_matrix_x(m, x);
-    }
-}
-#pragma pop
-
-void rotate_matrix_yxz(s32 matrix, s32 arg1, s32 arg2, s32 arg3) {
-    if (arg2 != 0) {
-        rotate_matrix_y((void *)matrix, (s32)arg2);
-    }
-    if (arg1 != 0) {
-        rotate_matrix_x((void *)matrix, (s32)arg1);
-    }
-    if (arg3 != 0) {
-        rotate_matrix_z((void *)matrix, (s32)arg3);
-    }
-}
-typedef f32 Mtx_803D8B5C[3][4];
 extern "C" {
-void scale_matrix(f32 (*m)[4], f32 sx, f32 sy, f32 sz) {
-    Mtx_803D8B5C tmp;
-    f32 (*t)[4];
-    if (m == NULL) t = (f32 (*)[4])current_matrix;
-    else t = m;
-    PSMTXScale(tmp, sx, sy, sz);
-    PSMTXConcat(t, tmp, t);
-}
-
 u8 debug_font_texture_i4[DEBUG_FONT_TEXTURE_BYTES] ATTRIBUTE_ALIGN(32) = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,

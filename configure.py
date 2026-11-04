@@ -677,9 +677,13 @@ MIDDLEWARE: List[Tuple[str, int, str, List[str], Dict[str, Dict[str, Any]]]] = [
     ("ginja", 0x803D6538, "GC/2.6", _switch(cflags_middleware, "-O3,p", "-opt nopeephole"), {
         # render_debug_text (0x803D85D8) saves r25-r31 with bl _savegpr_25 /
         # _restgpr_25, and its glyph quads are the inlined SDK FIFO writers
-        # (sth/stw to 0xCC008000), not calls. Nothing else in the unit uses
-        # stmw/lmw or an inline callee, and those functions stay exact.
-        "pso/unk/text_803D853C.cpp": {
+        # (sth/stw to 0xCC008000), not calls. -inline on inlines only functions
+        # marked inline, so queue_debug_text stays a call from debug_printf_at.
+        # The same flags cover the following matrix helpers, which stay exact.
+        "pso/unk/text_803D8098.cpp": {
+            "cflags": _switch(cflags_middleware, "-O3,p", "-opt nopeephole", "-use_lmw_stmw off", "-inline on"),
+        },
+        "pso/unk/text_803D8910.cpp": {
             "cflags": _switch(cflags_middleware, "-O3,p", "-opt nopeephole", "-use_lmw_stmw off", "-inline on"),
         },
     }),

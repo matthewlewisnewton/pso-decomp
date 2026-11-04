@@ -8,7 +8,11 @@
 struct DebugTextRecord {
     s16 x;
     s16 y;
-    u16 size;
+    // Queued as a signed pixel size; render_debug_text loads it unsigned.
+    union {
+        s16 z;
+        u16 size;
+    };
     s16 pad_6;
     u32 color;
     char *text;
