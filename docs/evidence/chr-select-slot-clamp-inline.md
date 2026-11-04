@@ -1,38 +1,53 @@
 # Character-select slot clamp (`sub_802C5F1C`)
 
-`TAdMultiPlyChrSelectGC__sub_802C5F1C` (`0x802C50EC` unit, 236 bytes) fills a
-4×3 grid of selection quads. Each cell clamps the active player slot
-(`TAdMultiPlyChrSelectGC__data_805D67D8`) to 3. The source reads the slot,
-then the home float, then sets `idx` to 3 and replaces it when the slot is
-below 4. Under the unit's normal flags (`GC/2.6`, `-O4,s`, `-inline off`)
-that compiles to the original instruction stream except for one register
-pair.
+`TAdMultiPlyChrSelectGC__sub_802C5F1C` (`0x802C5F1C`, 236 bytes) fills a 4×3
+grid of selection quads and clamps the active player slot
+(`TAdMultiPlyChrSelectGC__data_805D67D8`) to 3. The original inner loop keeps
+the hoisted row (`self + i*96`) in `r8` and the cell in `r7`:
 
-## The remaining gap
+```
+add   r8, r3, r4
+lwz   r0, TAdMultiPlyChrSelectGC__data_805D67D8
+li    r7, 3
+cmpwi r0, 4
+bge   ...
+mr    r7, r0
+xoris r0, r7, 32768
+add   r7, r8, r5
+```
 
-| Role | Original | This source |
-|---|---|---|
-| hoisted row pointer `self + i*96` | `r8` | `r7` |
-| cell pointer `row + j*32` | `r7` | `r8` |
-| slot load | `r0` | `r8` |
-| clamped slot (`li 3` / `mr`) | `r7` | `r0` |
+A straight loop in the caller is the same 59 instructions with `r7` and `r8`
+swapped (objdiff 99.15254%, nine argument mismatches). MWCC numbers named
+locals below its own temporaries and colours the hoisted row first, so the
+row takes `r7`.
 
-Eleven instruction words differ, all register fields. Float registers, the
-CTR loop, and the cursor epilogue match. Objdiff scores the function
-99.15254%. The unit's other compiled functions are unchanged.
+## Flag that matches
 
-MWCC's frontend hoists `self + i*96` before it colours the clamp values.
-Named locals are numbered below compiler temporaries, so the row temporary
-is coloured first and takes `r7`. A `static inline` helper does put the row
-in `r8` and the cell in `r7`, but only when the unit is built with
-`-inline on`: that flag is what actually inlines the helper, turning its
-locals into temporaries created before the hoist. `-inline off` (this
-project's game-code default, and the compiler's `dontinline`) leaves the
-helper as a call and the function grows to 332 bytes. Matt rejected a
-unit `-inline on` override for this PR on 2026-11-04, so the helper is not
-in the source.
+The clamp is `static inline clamped_slot_802C5F1C` (placeholder; it has no
+symbol). `idx` is declared before `cnt`, and the caller reads the home float
+before the call. Under `-inline on` those locals are temporaries created
+before the hoist, so the row lands in `r8`. The helper is not emitted
+out of line. `.text` stays 6100 bytes of compiled code against the original
+7288 (the two unmatched slot routines are still not in this TU).
 
-Comma expressions and a ternary written before the stores lower to the same
-11-word swap. A `&&` form does move the row to `r8`, and it also emits the
-boolean's extra `li` / `clrlwi.` / `beq` (252 bytes). No flag-free spelling
-closes the pair without a different instruction stream.
+The unit's `configure.py` entry replaces `-inline off` with `-inline on`.
+Checked against the original object, instruction by instruction, and against
+the data sections:
+
+| Flag | `sub_802C5F1C` | Other functions that were already exact | Kept |
+|---|---|---|---|
+| `-inline off` | real call, 332 bytes | unchanged | no |
+| `-inline auto` | exact | seven grow (`update` 108→572, `update_option_cursor` 476→700, `handle_dpad_input` 564→788, `sub_802C65C0` 160→212, `reset_slot_selections` 88→132, `find_active_slot` 96→148, `update_selection` 668→1300) | no |
+| `-inline auto,deferred` | exact | thirteen change, including the seven above | no |
+| `-inline all` (`on` + `auto`) | exact | same seven as `auto` | no |
+| `-inline deferred` | each body exact | function order reversed (`update_selection` emitted first) | no |
+| `-inline noauto` | exact | unchanged; object identical to `-inline on` | same result as `on` |
+| `-inline on` | exact | all 32 unchanged; `.data` / `.rodata` / `.sdata2` unchanged | yes |
+
+`-inline auto` is the smaller request in other projects, and it does make
+this function exact, but it does not leave the rest of the unit identical.
+`-inline on` inlines only functions marked `inline`. Nothing else in this
+file is marked `inline`. Precedent for that switch:
+<https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264>.
+The `auto` spelling that was tried first:
+<https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203>.
