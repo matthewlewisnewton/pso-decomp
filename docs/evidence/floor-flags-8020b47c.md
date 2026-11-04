@@ -46,22 +46,21 @@ Fork main acquired a separate exact implementation during this recovery, but
 still linked the original object. This change preserves that match with shared
 types and a simpler implementation, then selects the unit for source linkage.
 
-Baseline: fork main `7dc29c361014d08d901c826c28e85d73d613ee61`.
+Baseline: fork main `d952dc80e8614b6763f02cbe7b03f8c3a2014546`.
 The stock-compiler object scores 100% for the complete 268-byte text section,
 and the strict unit scan accepts its section layout, alignment and symbols.
 
-A fresh build of the baseline passes the original DOL hash and retention
-checks. Against its `ninja baseline` report, the final
-`tools/check_pr.py --no-build` passes with no function, code or data
-regressions. Linked units increase from 3,553 to 3,554 and linked code
-increases by 268 bytes; two functions are renamed to address placeholders.
-Matched function/code/data counts stay unchanged because the rebased main
-already contains the exact routine.
+A fresh build of that baseline passes the original DOL hash and retention
+checks. Against its `ninja baseline` report, `ninja -j8 && python3
+tools/check_pr.py --no-build` passes with no function, code or data
+regressions. Linked units increase from 3,554 to 3,555 and complete code
+increases from 3,445,516 to 3,445,784 bytes (+268). Two functions are renamed
+to address placeholders. Matched functions, code and data stay at 27,297 /
+4,142,212 / 1,441,403 because current main already contains the exact routine.
+`link_units.py check` reports all 3,555 linked units exact, so the linked
+input for this unit is `src/pso/unk/text_8020B47C.cpp`.
 
-The packet caller, wrapper, four-word swap helper and table-owner objects are
-byte-identical to the baseline. A final `ninja -d keeprsp` relink retains
-`build/GPOE8P/psov3.elf.rsp`, which names
-`build/GPOE8P/src/pso/unk/text_8020B47C.o` rather than its original split object.
-The complete 5,233,088-byte DOL compares byte-for-byte with
+The packet caller, wrapper, four-word swap helper and table-owner objects stay
+100%. The complete 5,233,088-byte DOL compares byte-for-byte with
 `orig/GPOE8P/files/PsoV3.dol`; SHA-1 is
 `0d85744b51d7379efb025a943d0cd5aaae2191a3`.
