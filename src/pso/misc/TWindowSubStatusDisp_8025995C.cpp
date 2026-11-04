@@ -60,10 +60,10 @@ void draw_right_aligned_number(void *arg0) {
 }
 }
 
-void render_numeric_digit_entries(u8 *arg0, u8 *arg1);
+void render_numeric_digit_entries(u8 *arg0, TWindowDrawContext *arg1);
 typedef struct Pos_80259A84 Pos_80259A84;
 #pragma fp_contract on
-void render_numeric_digit_entries(u8 *arg0, u8 *window_key_board_soft) {
+void render_numeric_digit_entries(u8 *arg0, TWindowDrawContext *window_key_board_soft) {
   f32 t;
   Pos_80259A84 pos;
   f32 x;
@@ -129,7 +129,7 @@ void render_numeric_digit_entries(u8 *arg0, u8 *window_key_board_soft) {
         build_small_font_glyph_quad(g, &pos);
         break;
     }
-    if (TWindowKeyBoardSoft::try_open(window_key_board_soft, &pos) != 0)
+    if (TWindowKeyBoardSoft::try_open(window_key_board_soft, &pos.x) != 0)
     {
       draw_textured_quad_at_depth(&pos, scale);
     }

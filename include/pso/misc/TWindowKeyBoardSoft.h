@@ -16,7 +16,7 @@ struct TWindowKeyBoardSoft : public TWindowDrawContext
     int get_flag_bit6();
     int is_cursor_locked();
     void render();
-    static s32 try_open(void *context, void *quad);
+    static s32 try_open(TWindowDrawContext *context, f32 *quad);
     u16 m_60;
     u16 m_62;
     u8 m_64;

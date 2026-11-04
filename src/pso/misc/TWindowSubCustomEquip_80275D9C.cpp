@@ -33,7 +33,7 @@ extern s32 lbl_805D63F0;
 extern const f32 lbl_805DD550;
 extern const f32 lbl_805DD554;
 extern const f32 lbl_805DD560;
-void draw_cursor_sprite__21TWindowSubCustomEquipFPvPvif(u8 *arg0, Vec2_80275DE8 *arg1, s32 arg2, f32 farg0);
+void draw_cursor_sprite__21TWindowSubCustomEquipFPvPvif(TWindowDrawContext *arg0, Vec2_80275DE8 *arg1, s32 arg2, f32 farg0);
 int TWindowSubCustomEquip__sub_80275DA8(void* p);
 
 int TWindowSubCustomEquip::is_selected() { return this->m_60 & 0x1; }
@@ -46,29 +46,29 @@ void TWindowSubCustomEquip::clear_flag_and_set_entry_state() {
 
 #pragma push
 #pragma fp_contract on
-void draw_cursor_sprite__21TWindowSubCustomEquipFPvPvif(u8 *arg0, Vec2_80275DE8 *arg1, s32 arg2, f32 farg0) {
+void draw_cursor_sprite__21TWindowSubCustomEquipFPvPvif(TWindowDrawContext *arg0, Vec2_80275DE8 *arg1, s32 arg2, f32 farg0) {
     Rect_80275DE8 r;
     Vec2_80275DE8 *t;
     f32 scale;
-    if (*(s32 *)((s8 *)arg0 + 0x30) < 0) {
+    if (arg0->open_tick < 0) {
         return;
     }
     t = &custom_equip_cursor_frame_uv_table[arg2 & 0xF];
-    scale = lbl_805DD550 / (lbl_805DD554 * farg0 + *(f32 *)((s8 *)arg0 + 0x38));
+    scale = lbl_805DD550 / (lbl_805DD554 * farg0 + arg0->depth);
     set_additive_blend();
     begin_screen_draw(1);
     set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
     set_draw_texture_and_color(0xC, -1);
-    r.x0 = arg1->x + *(f32 *)((s8 *)arg0 + 0x10);
-    r.y0 = arg1->y + *(f32 *)((s8 *)arg0 + 0x14);
+    r.x0 = arg1->x + arg0->inner_x;
+    r.y0 = arg1->y + arg0->inner_y;
     r.x1 = 72.32f + r.x0;
     r.y1 = 72.32f + r.y0;
     r.u0 = t->x / 256.0f;
     r.v0 = t->y / 256.0f;
     r.u1 = (lbl_805DD560 + t->x) / 256.0f;
     r.v1 = (lbl_805DD560 + t->y) / 256.0f;
-    if (TWindowKeyBoardSoft::try_open(arg0, &r) != 0) {
-        draw_textured_quad_at_depth((f32 *)&r, scale);
+    if (TWindowKeyBoardSoft::try_open(arg0, &r.x0) != 0) {
+        draw_textured_quad_at_depth(&r.x0, scale);
     }
     TWindowSubStatusDisp::get_player();
     set_default_alpha_blend();

@@ -117,7 +117,7 @@ void draw_window_uv_sprite_part(Win_8025B0D0 *arg0, Ref_8025B0D0 *arg1) {
     if (arg0->flags & 0x10) {
         apply_context_transform_to_rect(arg1, &q);
         draw_textured_quad_at_depth((f32 *)&q, scale);
-    } else if (TWindowKeyBoardSoft::try_open(arg1, &q) != 0) {
+    } else if (TWindowKeyBoardSoft::try_open((TWindowDrawContext *)arg1, q.v) != 0) {
         draw_textured_quad_at_depth((f32 *)&q, scale);
     }
     TWindowSubStatusDisp::get_player();

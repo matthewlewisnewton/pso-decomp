@@ -8,6 +8,7 @@
 #include "pso/misc/TWindowCtrl.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 #include "pso/misc/TWindowKeyBoardSoft.h"
+#include "pso/ui/ItemListRow.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/item/TItem.h"
 #include "pso/map/FloorArea.h"
@@ -603,7 +604,7 @@ struct Quad_8025941C { f32 v[8]; };
 extern "C" {
 u32 calc_text_width(char *s);
 void set_text_draw_params(s32 arg0, s32 arg1, s32 arg2, f32 farg0, f32 farg1);
-void draw_item_list_icon(s32, u8 *, s32, s32, f32);
+void draw_item_list_icon(ItemListWindowView *, ItemListPosition *, s32, s32, f32);
 }
 s32 draw_window_text(f32 *pos, const char *s, s32 color, s32 mode, f32 width);
 extern const f32 lbl_805DCF14;
@@ -702,33 +703,31 @@ void set_draw_texture_and_color(s32 idx, s32 arg1);
 
 void draw_textured_quad_at_depth(f32 *q, f32 depth);
 
-void draw_item_list_icon(s32 win, u8 *pos, s32 icon, s32 style, f32 depth) {
+void draw_item_list_icon(ItemListWindowView *win, ItemListPosition *pos, s32 icon, s32 style, f32 depth) {
     Quad_8025941C q;
-    ItemListPosition *p;
     f32 *entry;
     f32 scale;
     f32 offset;
     f32 edge;
 
     if ((u8)icon != 0x33) {
-        p = (ItemListPosition *)pos;
         begin_screen_draw(1);
         set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
         set_draw_texture_and_color(1, style);
         entry = (f32 *)TWindowSubStatusDisp::get_entry_ptr(icon);
         offset = lbl_805DCF14;
         scale = lbl_805DCF1C;
-        q.v[0] = p->x;
-        q.v[1] = p->y;
-        q.v[2] = offset + p->x;
-        q.v[3] = offset + p->y;
+        q.v[0] = pos->x;
+        q.v[1] = pos->y;
+        q.v[2] = offset + pos->x;
+        q.v[3] = offset + pos->y;
         q.v[4] = entry[0] * scale;
         q.v[5] = entry[1] * scale;
         edge = offset + entry[0];
         q.v[6] = edge * scale;
         edge = offset + entry[1];
         q.v[7] = edge * scale;
-        if (TWindowKeyBoardSoft::try_open((void *)win, &q) != 0) {
+        if (TWindowKeyBoardSoft::try_open((TWindowDrawContext *)win, q.v) != 0) {
             draw_textured_quad_at_depth(q.v, depth);
         }
         TWindowSubStatusDisp::get_player();
@@ -756,11 +755,11 @@ void draw_item_list_row(ItemListRow *row, ItemListWindowView *win) {
       depth = lbl_805DCF20 / (lbl_805DCF24 + win->depth);
       if (row->flags & 0x200)
       {
-        draw_item_list_icon((s32) win, (u8 *)&pos, row->status_icon, -1, depth);
+        draw_item_list_icon(win, &pos, row->status_icon, -1, depth);
         pos.x += lbl_805DCF14;
-        draw_item_list_icon((s32) win, (u8 *)&pos, row->category_icon, -1, depth);
+        draw_item_list_icon(win, &pos, row->category_icon, -1, depth);
         pos.x += lbl_805DCF14;
-        draw_item_list_icon((s32) win, (u8 *)&pos, (u8) row->status_style, -1, depth);
+        draw_item_list_icon(win, &pos, (u8) row->status_style, -1, depth);
         pos.x += lbl_805DCF14;
       }
       else
@@ -769,15 +768,15 @@ void draw_item_list_row(ItemListRow *row, ItemListWindowView *win) {
         if (row->flags & 0x100)
         {
           pos.x += lbl_805DCF14;
-          draw_item_list_icon((s32) win, (u8 *)&pos, row->status_icon, row->status_style, depth);
+          draw_item_list_icon(win, &pos, row->status_icon, row->status_style, depth);
         }
         else
         {
-          draw_item_list_icon((s32) win, (u8 *)&pos, row->status_icon, row->status_style, depth);
+          draw_item_list_icon(win, &pos, row->status_icon, row->status_style, depth);
           pos.x += lbl_805DCF14;
         }
         set_default_alpha_blend();
-        draw_item_list_icon((s32) win, (u8 *)&pos, row->category_icon, row->category_style, depth);
+        draw_item_list_icon(win, &pos, row->category_icon, row->category_style, depth);
         pos.x += lbl_805DCF14;
       }
       new_var = row;

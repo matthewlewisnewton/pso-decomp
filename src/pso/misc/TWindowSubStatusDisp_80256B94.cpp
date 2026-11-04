@@ -98,8 +98,8 @@ void TWindowSubStatusDisp__sub_80256C40(Gauge_80256E0C *self, TWindowKeyBoardSof
     q.v0 = 0.93359375f;
     q.u1 = 0.2265625f;
     q.v1 = 0.96875f;
-    if (TWindowKeyBoardSoft::try_open(ctx, &q) != 0) {
-        draw_textured_quad_at_depth((f32 *)&q, depth);
+    if (TWindowKeyBoardSoft::try_open(ctx, &q.x0) != 0) {
+        draw_textured_quad_at_depth(&q.x0, depth);
     }
     q.x0 = 20.0f + (-1.0f + pos->x);
     q.y0 = -1.0f + pos->y;
@@ -109,8 +109,8 @@ void TWindowSubStatusDisp__sub_80256C40(Gauge_80256E0C *self, TWindowKeyBoardSof
     q.v0 = 0.93359375f;
     q.u1 = 0.30859375f;
     q.v1 = 0.96875f;
-    if (TWindowKeyBoardSoft::try_open(ctx, &q) != 0) {
-        draw_textured_quad_at_depth((f32 *)&q, depth);
+    if (TWindowKeyBoardSoft::try_open(ctx, &q.x0) != 0) {
+        draw_textured_quad_at_depth(&q.x0, depth);
     }
     q.x0 = ((-1.0f + pos->x) + w) - 20.0f;
     q.y0 = -1.0f + pos->y;
@@ -120,8 +120,8 @@ void TWindowSubStatusDisp__sub_80256C40(Gauge_80256E0C *self, TWindowKeyBoardSof
     q.v0 = 0.93359375f;
     q.u1 = 0.48828125f;
     q.v1 = 0.96875f;
-    if (TWindowKeyBoardSoft::try_open(ctx, &q) != 0) {
-        draw_textured_quad_at_depth((f32 *)&q, depth);
+    if (TWindowKeyBoardSoft::try_open(ctx, &q.x0) != 0) {
+        draw_textured_quad_at_depth(&q.x0, depth);
     }
 }
 
@@ -147,8 +147,8 @@ void TUnk_804CF930::draw_status_gauge_bar(void *ctx, void *pos_arg, f32 depth, f
     q.v0 = 0.1171875f;
     q.u1 = (230.0f + w) / 256.0f;
     q.v1 = 0.14453125f;
-    if (TWindowKeyBoardSoft::try_open(ctx, &q) != 0) {
-        draw_textured_quad_at_depth((f32 *)&q, depth);
+    if (TWindowKeyBoardSoft::try_open((TWindowDrawContext *)ctx, &q.x0) != 0) {
+        draw_textured_quad_at_depth(&q.x0, depth);
     }
     if (len <= 4.0f) {
         return;
@@ -162,8 +162,8 @@ void TUnk_804CF930::draw_status_gauge_bar(void *ctx, void *pos_arg, f32 depth, f
     q.v0 = 0.1171875f;
     q.u1 = 0.97265625f;
     q.v1 = 0.14453125f;
-    if (TWindowKeyBoardSoft::try_open(ctx, &q) != 0) {
-        draw_textured_quad_at_depth((f32 *)&q, depth);
+    if (TWindowKeyBoardSoft::try_open((TWindowDrawContext *)ctx, &q.x0) != 0) {
+        draw_textured_quad_at_depth(&q.x0, depth);
     }
     end = self->max - 4.0f;
     if (len <= end) {
@@ -178,8 +178,8 @@ void TUnk_804CF930::draw_status_gauge_bar(void *ctx, void *pos_arg, f32 depth, f
     q.v0 = 0.1171875f;
     q.u1 = (252.0f + w) / 256.0f;
     q.v1 = 0.14453125f;
-    if (TWindowKeyBoardSoft::try_open(ctx, &q) != 0) {
-        draw_textured_quad_at_depth((f32 *)&q, depth);
+    if (TWindowKeyBoardSoft::try_open((TWindowDrawContext *)ctx, &q.x0) != 0) {
+        draw_textured_quad_at_depth(&q.x0, depth);
     }
 }
 
