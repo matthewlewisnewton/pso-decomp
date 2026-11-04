@@ -104,6 +104,7 @@ s32 TLobby__sub_803F97E8(int);
 extern void *lbl_805C18A0[];
 extern s16 lbl_805D7A86;
 extern s16 lbl_805D7A8A;
+void TLobby__sub_80428DC8(s16 type, s16 index, char *src, s16 *nstr, s16 *nint);
 s16 TLobby__sub_80428EC0(u8 *src, u8 *dst, u8 **next);
 s16 TLobby__sub_804293B0(u8 *buf, s16 len);
 s16 TLobby__sub_804036FC(u16 *avail);
@@ -334,6 +335,38 @@ s16 TLobby__sub_804283C8(u8 *script, ModemScriptSession *sess) {
     return 0;
 }
 
+s16 TLobby::wait_timeout_loop() {
+    u8 *arg0 = (u8 *)this;
+    s32 start;
+    s32 now;
+    s16 *p;
+    u32 limit;
+    s16 ret;
+    ret = 0;
+    TLobby::get_time_ms(&start);
+    p = (s16 *)lobby_net_session_state.fields[0];
+    if (p == NULL) {
+        limit = *(s16 *)(arg0 + 4) * 1000;
+    } else {
+        limit = *p * 1000;
+    }
+    for (;;) {
+        if (lbl_805D7A86 != 0) {
+            ret = 4;
+            break;
+        }
+        TLobby::get_time_ms(&now);
+        if ((u32)(now - start) > limit) {
+            break;
+        }
+        TUdpSocket::unlock_mutex((int)lbl_805C18A0[0]);
+        TLobby__sub_803F97E8(100);
+        TLobby::lock_mutex((int)lbl_805C18A0[0]);
+    }
+    return ret;
+}
+
+
 static inline s16 modem_wait_for_string(u8 *s, s16 n, s16 timeout) {
     TLobby::get_time_ms((s32 *)&lbl_805D7BD0);
     lbl_805D7BD4 = timeout * 1000;
@@ -388,66 +421,6 @@ s16 TLobby__sub_80428830(ModemRequest *req) {
         return 4;
     }
     return 0;
-}
-
-void TLobby__sub_80428DC8(s16 type, s16 index, char *src, s16 *nstr, s16 *nint) {
-    s32 n;
-    char *dst;
-    s16 i;
-    s16 value;
-    u8 c;
-
-    if (modem_command_layouts[type].kind[index] == 0) {
-        n = *nstr;
-        dst = lobby_net_session_state.strbuf + n * lobby_net_session_state.strstride;
-        NetCopyString(dst, src);
-        lobby_net_session_state.fields[index] = (u8 *)dst;
-        *nstr = n + 1;
-    }
-    if (modem_command_layouts[type].kind[index] == 1) {
-        n = *nint;
-        i = 0;
-        value = 0;
-        while ((c = src[i]) != 0) {
-            value *= 10;
-            value += c - '0';
-            i++;
-        }
-        lobby_net_session_state.ints[n] = value;
-        lobby_net_session_state.fields[index] = (u8 *)&lobby_net_session_state.ints[n];
-        *nint = n + 1;
-    }
-}
-
-s16 TLobby::wait_timeout_loop() {
-    u8 *arg0 = (u8 *)this;
-    s32 start;
-    s32 now;
-    s16 *p;
-    u32 limit;
-    s16 ret;
-    ret = 0;
-    TLobby::get_time_ms(&start);
-    p = (s16 *)lobby_net_session_state.fields[0];
-    if (p == NULL) {
-        limit = *(s16 *)(arg0 + 4) * 1000;
-    } else {
-        limit = *p * 1000;
-    }
-    for (;;) {
-        if (lbl_805D7A86 != 0) {
-            ret = 4;
-            break;
-        }
-        TLobby::get_time_ms(&now);
-        if ((u32)(now - start) > limit) {
-            break;
-        }
-        TUdpSocket::unlock_mutex((int)lbl_805C18A0[0]);
-        TLobby__sub_803F97E8(100);
-        TLobby::lock_mutex((int)lbl_805C18A0[0]);
-    }
-    return ret;
 }
 
 s16 TLobby__sub_80428A38(void) {
@@ -538,6 +511,35 @@ s16 TLobby__sub_80428BB0(ModemRequest *req) {
         return 4;
     }
     return TLobby__sub_804290D4(req->timeout);
+}
+
+void TLobby__sub_80428DC8(s16 type, s16 index, char *src, s16 *nstr, s16 *nint) {
+    s32 n;
+    char *dst;
+    s16 i;
+    s16 value;
+    u8 c;
+
+    if (modem_command_layouts[type].kind[index] == 0) {
+        n = *nstr;
+        dst = lobby_net_session_state.strbuf + n * lobby_net_session_state.strstride;
+        NetCopyString(dst, src);
+        lobby_net_session_state.fields[index] = (u8 *)dst;
+        *nstr = n + 1;
+    }
+    if (modem_command_layouts[type].kind[index] == 1) {
+        n = *nint;
+        i = 0;
+        value = 0;
+        while ((c = src[i]) != 0) {
+            value *= 10;
+            value += c - '0';
+            i++;
+        }
+        lobby_net_session_state.ints[n] = value;
+        lobby_net_session_state.fields[index] = (u8 *)&lobby_net_session_state.ints[n];
+        *nint = n + 1;
+    }
 }
 
 s16 TLobby__sub_80428EC0(u8 *src, u8 *dst, u8 **next) {
