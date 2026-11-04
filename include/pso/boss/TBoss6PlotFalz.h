@@ -5,6 +5,8 @@
 #include <stddef.h>
 #include "pso/enemy/TObjEnemy.h"
 
+struct TBoss6Tube;
+
 extern "C" {
 s32 TBoss6PlotFalz__sub_802ABADC(void);
 }
@@ -21,9 +23,11 @@ struct TBoss6PlotFalz : public TObjEnemy {
     u8 m_37c;
     u8 unk_37D[0x3];
     u8 * m_380;
-    // Child created by ensure_field384 (TBoss6Tube) and used by activate_warp
-    // and free_child as TBoss6EmptyWarp. Not one static type.
-    void *m_384;
+    // Tube from ensure_field384 (create__10TBoss6Tube at 0x802ABD6C).
+    // 0x802B0FC8 stores 1 at +0x1C and plays 0x4003351F, the same state-1
+    // step as TBoss6Tube::update_timer. 0x802B1004 stores 0 at +0x20 and 2
+    // at +0x1C; +0x20 is m_20, past TBoss6EmptyWarp's 0x20-byte allocation.
+    TBoss6Tube *m_384;
     u8 unk_388[2];
     s16 m_38a;
     u8 unk_38C[0x28];

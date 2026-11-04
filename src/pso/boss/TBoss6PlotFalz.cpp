@@ -371,8 +371,6 @@ struct Stack_802AB14C {
 };
 
 extern "C" {
-void TBoss6EmptyWarp__sub_802B1004(void *p);
-
 s32 is_state_1f__14TBoss6PlotFalzFUi(u32 arg0) {
     if ((arg0 == 0U) || (get_field_3e0__12TBoss3VoloptFv() != 0x1F)) {
         return 0;
@@ -399,8 +397,8 @@ void TBoss6PlotFalz::call_state_action() {
 
 void TBoss6PlotFalz::set_state_2() { this->m_3d4 = 0; this->m_3d8 = 2; }
 void TBoss6PlotFalz::reset_state() { this->m_3d4 = 0; this->m_3d8 = 0; }
-void TBoss6PlotFalz::activate_warp() { if (this->m_384) ((TBoss6EmptyWarp *)this->m_384)->activate_warp(); }
-void TBoss6PlotFalz::free_child() { if (this->m_384) TBoss6EmptyWarp__sub_802B1004(this->m_384); }
+void TBoss6PlotFalz::activate_warp() { if (this->m_384) this->m_384->activate_warp(); }
+void TBoss6PlotFalz::free_child() { if (this->m_384) this->m_384->sub_802B1004(); }
 void TBoss6PlotFalz::set_state(s32 arg1) {
     if (arg1 < 0 || arg1 >= 9) {
         return;
@@ -795,8 +793,6 @@ u32 create__11TBoss6Type2Fl(void *, int);
 s32 TBoss6Type1__sub_802ABDEC(s32 seed);
 s32 is_locally_controlled__10TObjPlayerFPv(s32);
 f32 xyz_distance(const void *, const void *);
-u32 create__10TBoss6TubeFPv();
-
 void TBoss6PlotFalz::release_object() { if (this->m_384 != 0) { queue_destruction__7TObjectFv(this->m_384); this->m_384 = 0; } }
 
 s32 TBoss6PlotFalz::get_target_pos_a(s32 arg0, s32 arg1) {
@@ -852,7 +848,7 @@ void TBoss6PlotFalz::spawn_type1() {
 
 void TBoss6PlotFalz::ensure_field384() {
     if (this->m_384 == 0) {
-        this->m_384 = (void *)create__10TBoss6TubeFPv();
+        this->m_384 = TBoss6Tube::create(this);
     }
 }
 
