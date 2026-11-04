@@ -8,23 +8,12 @@ int sprintf(char *, const char *, ...);
 void *memset(void *, int, u32);
 extern char lbl_80480270[];
 
-// pad_03_8042E9FC_text: the frame-restore epilogue of the reset relocator
-// LaunchDol (0x8042E8C4) (previous unit).  That function leaves through an epilogue-free
-// computed jump (lwz r0,0xE0(r26); isync; mtlr r0; blr), but the compiler
-// still emitted the lmw/mtlr/addi/blr restore after it; the split boundary at
-// 0x8042E9FC drops those 5 words into this unit as an unclaimed code gap.  No
-// C construct can produce an epilogue with no prologue: probed every installed
-// MWCC in build/compilers/GC/ (20 versions, unit profile -O4,p -inline off
-// -use_lmw_stmw on -lang=c++): an empty function gives `blr` (0x4), a
-// callee-register-hungry function gives prologue+stmw+epilogue (0x50), and
-// statement-level asm is wrapped in its own frame (0x28..0x30).  0/20 emit the
-// 20 bytes; the function-level asm body (generated from the original
-// disassembly by tools/orig_asm.py) is byte-exact on 20/20.  `static` so the
-// symbol stays local, as the original object declares it.
-static asm void pad_03_8042E9FC_text(void) {
-#include "orig_asm/pso/unk/text_8042E9FC/pad_03_8042E9FC_text.inc"
-}
-
+// 0x8042E9FC..0x8042EA10 is LaunchDol's dead frame restore
+// (lmw r26, 8(r1); lwz r0, 0x24(r1); mtlr r0; addi r1, r1, 0x20; blr).
+// LaunchDol returns at 0x8042E9EC; symbols.txt ends that function there
+// (size 0x138). init_modem_check_params starts at 0x8042EA10, and
+// skip_cfa_ranges covers the gap. A C function needs a prologue to emit
+// this restore, so the bytes stay unmatched.
 s32 TAdTrialModemChkGC::init_modem_check_params() {
     if ((s32) lbl_805D7CA8 == 0) {
         return -1;
