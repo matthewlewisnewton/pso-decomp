@@ -709,9 +709,9 @@ force_active:
   - TOKurage__bml_resource
   - TOKurage__class_name
   - TOLightMachine01__ct
-  - TOMineIcon01__ct
-  - TOMineIcon02__ct
-  - TOMineIcon04__ct
+  - __ct__12TOMineIcon01FP7TObjectPv
+  - __ct__12TOMineIcon02FP7TObjectPv
+  - __ct__12TOMineIcon04FP7TObjectPv
   - TOMineTrapDisp__name
   - TOMonitorMachine01__bml_resource
   - TOMonitorMachine01__class_name
@@ -1993,6 +1993,7 @@ force_active:
   - __dt__12TObjEneSharkFv
   - __dt__12TObjMistCtrlFv
   - __dt__12TObjParticleFv
+  - __dt__12TObjQuestColFv
   - __dt__12TObjRaderColFv
   - __dt__12TObjRainCtrlFv
   - __dt__12TQuestThreadFv
@@ -2288,6 +2289,7 @@ force_active:
   - __dt__17TObjEneMe3ShinowaFv
   - __dt__17TObjItemNameEntryFv
   - __dt__17TObjParticleLobbyFv
+  - __dt__17TObjQuestColApcINFv
   - __dt__17TObjVoloptShutterFv
   - __dt__17TObjWarpBossMultiFv
   - __dt__17TPlayerBattleCtrlFv
@@ -3312,7 +3314,7 @@ force_active:
   - apply_use_effect__13TUnk_804F0C48Fv
   - apply_use_effect__13TUnk_804F0D34Fv
   - apply_use_effect__13TUnk_804F0FF0Fv
-  - apply_use_effect__13TUnk_804F112CFv
+  - apply_use_effect__17TItemSpecialEventFv
   - apply_uv_offset__6TSceneFss
   - apply_variant_speeds__12TObjEneLappyFv
   - apply_velocity__13TBoss5GryphonFv
@@ -4803,6 +4805,8 @@ force_active:
   - dead_update__11TBoss4Type2Fv
   - deallocate_from_fixed_pools
   - debug_draw_key_id__12TOSwitchItemFv
+  - debug_font_texture_i4
+  - debug_font_texture_object
   - debug_print_area_num__17TObjWarpBossMultiFv
   - debug_print_item_box_info__21TObjContainerAbeEnemyFv
   - debug_print_ranges__8TOKurageFv
@@ -14292,7 +14296,7 @@ force_active:
   - send_guild_card__17TWindowSubComCardFv
   - send_head__10TObjPlayerFv
   - send_login3__9TProtocolFv
-  - send_obj_position_event__13TUnk_804F112CFl
+  - send_obj_position_event__17TItemSpecialEventFl
   - send_packed_action__11TBoss4Type3Flll
   - send_packet_60__6TLobbyFi
   - send_packet__6TLobbyFllll
