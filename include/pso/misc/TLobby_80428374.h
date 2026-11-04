@@ -12,7 +12,9 @@ struct ModemSessionState {
     u8 **fields;
     u8 pad14[4];
     s16 *ints;
-    u8 pad1C[0xC];
+    u8 pad1C[4];
+    u8 *line;
+    u8 *token;
     u8 *cmd;
     u8 *out;
     u8 *expect;
@@ -30,6 +32,17 @@ struct ModemRequest {
     s16 timeout;
     u8 pad06[6];
     char *arg;
+};
+
+// Script session passed to the dial runner. Offsets are from the runner:
+// user at 0x0C, password at 0x10, phone number at 0x14, request at 0x88.
+struct ModemScriptSession {
+    u8 pad00[0xC];
+    char *user;
+    char *password;
+    char *phone_number;
+    u8 pad18[0x70];
+    ModemRequest req;
 };
 
 struct ModemConfig {
@@ -51,9 +64,12 @@ struct ModemConfig {
 
 extern "C" {
 extern ModemSessionState lobby_net_session_state;
-s32 TLobby__sub_80428A38(void);
-s32 TLobby__sub_80428BB0(ModemRequest *req);
-s32 TLobby__sub_804290D4(s16 timeout);
+s16 TLobby__sub_804283C8(u8 *script, ModemScriptSession *sess);
+s16 TLobby__sub_80428830(ModemRequest *req);
+s16 TLobby__sub_80428A38(void);
+s16 TLobby__sub_80428BB0(ModemRequest *req);
+void TLobby__sub_80428DC8(s16 type, s16 index, char *src, s16 *nstr, s16 *nint);
+s16 TLobby__sub_804290D4(s16 timeout);
 }
 
 s32 init_modem_session_config(void);
