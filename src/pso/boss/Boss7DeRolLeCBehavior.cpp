@@ -762,7 +762,7 @@ int TObjFish__sub_8001EDB0(void*, void*);
 int get_bml_model(void*, void*);
 
     extern int lbl_805D6918;
-void TObjPlayer::notify_fish_obj(void* a0) { get_bml_motion((void*)lbl_805D6918, a0); }
+void *TObjPlayer::notify_fish_obj(void* a0) { return (void *)get_bml_motion((void*)lbl_805D6918, a0); }
 
 void queue_boss_effect__10TObjPlayerFPv(void* a0) { get_bml_model((void*)lbl_805D6918, a0); }
 
