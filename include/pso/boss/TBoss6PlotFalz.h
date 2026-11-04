@@ -2,6 +2,7 @@
 #define PSO_BOSS_TBOSS6PLOTFALZ_H
 
 #include "types.h"
+#include <stddef.h>
 #include "pso/enemy/TObjEnemy.h"
 
 extern "C" {
@@ -23,11 +24,16 @@ struct TBoss6PlotFalz : public TObjEnemy {
     u8 unk_384[0x6];
     s16 m_38a;
     u8 unk_38C[0x28];
-    u32 m_3cc;
-    u32 m_3d0;
-    u32 m_3d4;
-    u32 m_3d8;
-    u32 m_3dc;
+    u8 unk_3B4[0x18];
+    // Plot-script frame counter and phase flag. Signed: the actions compare
+    // them with cmpwi.
+    s32 m_3cc;
+    s32 m_3d0;
+    s32 m_3d4;
+    s32 m_3d8;
+    // Object created for DEMO_WAIT_T2 (TObjFish::alloc) and later read back
+    // as the player whose plot state advances the script.
+    void *m_3dc;
     static s32 get_hp();
     static s32 damage_player_hp(s32 arg0, u32 arg1);
     static s32 sort_active_players();
@@ -76,8 +82,13 @@ struct TBoss6PlotFalz : public TObjEnemy {
     void advance_intro_timer();
     void advance_if_ready();
     static void *create(void *arg0, void *arg1);
-    static u8 is_ending_or_split_screen();
-    static int is_ready();
+    int is_ending_or_split_screen();
+    int is_ready();
+    // Neither reads its receiver. Callers leave r3 alone, so they are static.
+    static void end_cutscene_camera();
+    static void refresh_players_equipment();
+    void destroy_static_instance();
+    void queue_instance_destruction();
     void finish_and_dispatch_next_phase();
     void check_action_7();
     void advance_timer();
@@ -103,5 +114,12 @@ struct TBoss6PlotFalz : public TObjEnemy {
 extern "C" {
 void TBoss6PlotFalz__sub_802AC008(f32 a, f32 b);
 }
+
+typedef char TBoss6PlotFalz_m_3cc_offset[(offsetof(TBoss6PlotFalz, m_3cc) == 0x3CC) ? 1 : -1];
+typedef char TBoss6PlotFalz_m_3d0_offset[(offsetof(TBoss6PlotFalz, m_3d0) == 0x3D0) ? 1 : -1];
+typedef char TBoss6PlotFalz_m_3d4_offset[(offsetof(TBoss6PlotFalz, m_3d4) == 0x3D4) ? 1 : -1];
+typedef char TBoss6PlotFalz_m_3d8_offset[(offsetof(TBoss6PlotFalz, m_3d8) == 0x3D8) ? 1 : -1];
+typedef char TBoss6PlotFalz_m_3dc_offset[(offsetof(TBoss6PlotFalz, m_3dc) == 0x3DC) ? 1 : -1];
+typedef char TBoss6PlotFalz_size[(sizeof(TBoss6PlotFalz) == 0x3E0) ? 1 : -1];
 
 #endif

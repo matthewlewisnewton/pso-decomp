@@ -1042,7 +1042,6 @@ struct Obj_802AC3E8 { u8 pad[0x38]; Vec_802AC3E8 pos; u8 pad2[0xA4 - 0x44]; Sub_
 
 void *destroy_buffer_pair(void *arg0, s16 arg1);
 extern "C" {
-void refresh_players_equipment__14TBoss6PlotFalzFPv(void *self);
 void scroll_strip_uvs(u32, s16, s16);
 s32 get_bml_model(s32, s32);
 s32 alloc_tables__6TLobbyFll(s32, s32, s32);
@@ -1141,7 +1140,7 @@ void TBoss6PlotFalz::warp_nearby_players() {
     }
 }
 
-void refresh_players_equipment__14TBoss6PlotFalzFPv(void *self) {
+void TBoss6PlotFalz::refresh_players_equipment() {
     s32 i;
     void *p;
     for (i = 0; i < registered_player_count; i++) {
@@ -1197,10 +1196,9 @@ extern "C" {
 void TBoss6EmptyWarp::init_warp() { place_players_in_warp_circle(); TBoss6PlotFalz::warp_nearby_players(); }
 
 void release_all_players_control_lock(void);
-void end_cutscene_camera__14TBoss6PlotFalzFPv(void *self);
 void start_freeze__10TObjPlayerFv();
 void TBoss6PlotFalz__sub_802AC724(u8 *arg0, u32 arg1);
-void end_cutscene_camera__14TBoss6PlotFalzFPv(void *self) {
+void TBoss6PlotFalz::end_cutscene_camera() {
     s32 i;
     void *p;
     TWindowCtrl::init_all_slots2();
@@ -1237,8 +1235,6 @@ void TBoss6PlotFalz__sub_802AC724(u8 *boss4_dark_falz, u32 arg1) {
 #define queue_destruction__7TObjectFv ((s32 (*)(int))queue_destruction__7TObjectFv)
 #define destroy_static_instance__14TBoss6PlotFalzFv ((s32 (*)(void *))destroy_static_instance__14TBoss6PlotFalzFv)
 #define queue_instance_destruction__14TBoss6PlotFalzFv ((s32 (*)(void *))queue_instance_destruction__14TBoss6PlotFalzFv)
-#define refresh_players_equipment__14TBoss6PlotFalzFPv ((s32 (*)())refresh_players_equipment__14TBoss6PlotFalzFPv)
-#define end_cutscene_camera__14TBoss6PlotFalzFPv ((s32 (*)())end_cutscene_camera__14TBoss6PlotFalzFPv)
 #define update_active_flag__14TBoss6PlotFalzFv ((s32 (*)())update_active_flag__14TBoss6PlotFalzFv)
 
 typedef struct Loc_802AC9EC {
@@ -1402,8 +1398,8 @@ u8 *__dt__14TBoss6PlotFalzFv(u8 *arg0, s16 arg1) {
       queue_destruction__7TObjectFv((int) temp_r3);
       ((RecoveredFields_802AC904_arg0 *) arg0)->field_380 = 0U;
     }
-    end_cutscene_camera__14TBoss6PlotFalzFPv();
-    refresh_players_equipment__14TBoss6PlotFalzFPv();
+    TBoss6PlotFalz::end_cutscene_camera();
+    TBoss6PlotFalz::refresh_players_equipment();
     restore_player_cameras();
     queue_instance_destruction__14TBoss6PlotFalzFv((void *) arg0);
     destroy_static_instance__14TBoss6PlotFalzFv((void *) arg0);
