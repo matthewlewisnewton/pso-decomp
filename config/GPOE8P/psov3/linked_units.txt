@@ -763,6 +763,9 @@ pso/item/TItemShoot_8011BD88.cpp
 pso/item/TItemShoot_8011BDC8.cpp
 pso/item/TItemShoot_8011BF94.cpp
 pso/item/TItemShoot_8011BFA0.cpp
+pso/item/TItemSpecialEvent_803531FC.cpp
+pso/item/TItemSpecialEvent_80353380.cpp
+pso/item/TItemSpecialEvent_80353414.cpp
 pso/item/TItemTexLoad.cpp
 pso/item/TItemTimer.cpp
 pso/item/TItemTimerEvent.cpp
@@ -818,7 +821,6 @@ pso/menu/TAdMultiOkGC.cpp
 pso/menu/TAdPlyChrSelPlateGC.cpp
 pso/menu/TAdPlyChrSelPlateGC_802C4CA0.cpp
 pso/menu/TAdRicoRing.cpp
-pso/menu/TAdRicoRing_8001BEE8.cpp
 pso/menu/TAdTimeSetGC.cpp
 pso/menu/TChCrCharSelect.cpp
 pso/menu/TChCrEffWall.cpp
@@ -2153,12 +2155,10 @@ pso/object/TObjQuestColApc.cpp
 pso/object/TObjQuestColApcIN.cpp
 pso/object/TObjQuestColApcINW.cpp
 pso/object/TObjQuestColApcINW_80196EDC.cpp
-pso/object/TObjQuestColApcIN_80196F34.cpp
 pso/object/TObjQuestColApc_80196F8C.cpp
 pso/object/TObjQuestColBase.cpp
 pso/object/TObjQuestColBase_80196BFC.cpp
 pso/object/TObjQuestCol_80196B3C.cpp
-pso/object/TObjQuestCol_8019703C.cpp
 pso/object/TObjRaderCol.cpp
 pso/object/TObjRaderHideCol.cpp
 pso/object/TObjRaderIcon.cpp
@@ -2206,8 +2206,6 @@ pso/player/TItemWeaponFist.cpp
 pso/player/TObjPlayer.cpp
 pso/player/TObjPlayerSet.cpp
 pso/player/TObjPlayer_80011014.cpp
-pso/player/TObjPlayer_8001BED8.cpp
-pso/player/TObjPlayer_8001BF10.cpp
 pso/player/TObjPlayer_80020898.cpp
 pso/player/TObjPlayer_8002E784.cpp
 pso/player/TObjPlayer_80036824.cpp
@@ -2574,6 +2572,7 @@ pso/slices/pso_carve_8020bf88.cpp
 pso/system/ChunkMaterialState.cpp
 pso/system/ChunkTextureStripCollector.cpp
 pso/system/CityTraffic.cpp
+pso/system/FlagWord.cpp
 pso/system/GinjaModelQueue.cpp
 pso/system/ItemEffects.cpp
 pso/system/LscServer.cpp
@@ -3456,9 +3455,6 @@ pso/unk/text_8034CEDC.cpp
 pso/unk/text_8034D3D0.cpp
 pso/unk/text_8034DAA0.cpp
 pso/unk/text_803516F8.cpp
-pso/unk/text_803531FC.cpp
-pso/unk/text_80353380.cpp
-pso/unk/text_80353414.cpp
 pso/unk/text_80354BE4.cpp
 pso/unk/text_803554F0.cpp
 pso/unk/text_80355970.cpp
@@ -3516,6 +3512,7 @@ pso/unk/text_803D4714.cpp
 pso/unk/text_803D619C.cpp
 pso/unk/text_803D64F8.cpp
 pso/unk/text_803D8030.cpp
+pso/unk/text_803D8098.cpp
 pso/unk/text_803D8DE0.cpp
 pso/unk/text_803D8F74.cpp
 pso/unk/text_803D9FF0.cpp
