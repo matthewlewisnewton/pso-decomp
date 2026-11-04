@@ -25,6 +25,8 @@ struct BmlResource {
     void reset();
     void load_texture_sub(void *filename, s32 index);
     void set_flag_and_notify();
+    s32 load_bin_motion(s32 name, s32 index);
+    s32 load_bin_model(s32 name, s32 index);
 
     u32 flags;
     s32 loaded_models;
