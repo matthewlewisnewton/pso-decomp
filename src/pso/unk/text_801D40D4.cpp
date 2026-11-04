@@ -28,7 +28,7 @@ typedef struct Ent_801D41B4 {
 
 typedef struct Ent_801D4744 {
     u32 key;
-    u32 val;
+    TItem *val;
 } Ent_801D4744;
 
 typedef struct List_801D4744 {
@@ -56,7 +56,6 @@ typedef char PlyItem_801D4368_list[(offsetof(PlyItem_801D4368, item_list) == 0x1
 extern "C" {
 u8 get_item_type__5TItemFv(void *, int);
 s32 is_item_equipped(void *, int);
-s32 start_inventory_update__10TObjPlayerFi(void *, void *);
 u8 *get_ptr_4__10TObjPlayerFv();
 s32 __construct_new_array(void *, void *, int, int, int);
 void fn_801C1BA8(void *, void *);
@@ -135,10 +134,11 @@ s32 fn_801D4270(s32 arg0) {
 
 int reset(void* p) { return memset(p, 0, 28); }
 
-s32 export_inventory_entry__10TObjPlayerFiPv(s32 arg0, u8 *arg1) {
-    if (((TItem *)arg0)->copy_to_item_data((TItemData *)(arg1 + 8)) != 0) {
-        *(s8 *)((s8 *)arg1 + 0) = ((TItem *)arg0)->get_mode();
-        *(s32 *)((s8 *)arg1 + 4) = ((TItem *)arg0)->get_item_flags();
+s32 TItem::export_inventory_entry(void *dest) {
+    u8 *arg1 = (u8 *)dest;
+    if (copy_to_item_data((TItemData *)(arg1 + 8)) != 0) {
+        *(s8 *)((s8 *)arg1 + 0) = get_mode();
+        *(s32 *)((s8 *)arg1 + 4) = get_item_flags();
         return 1;
     }
     return 0;
@@ -153,7 +153,7 @@ s32 TObjPlayer__sub_801D4368(PlyItem_801D4368 *ply) {
     Ent_801D4744 *rec;
     s32 counted;
     TItemList *node_assigned;
-    s32 owner;
+    TItem *owner;
     Ent_801D4744 *rec_checked;
     Ent_801D4744 *rec_assigned;
     TItemList *node_checked;
@@ -182,12 +182,12 @@ s32 TObjPlayer__sub_801D4368(PlyItem_801D4368 *ply) {
         return 0;
     }
     counted = 0;
-    node = (TItemList *)ply->item_list->m_down;
+    node = ply->item_list->m_down;
     while (node != NULL) {
-        if (TItemList::is_item_valid((s32)node) != 0 && node->get_owner_if_alive() != 0U) {
+        if (TItemList::is_item_valid((s32)node) != 0 && node->get_owner_if_alive() != NULL) {
             counted++;
         }
-        node = (TItemList *)node->m_next;
+        node = node->m_next;
     }
     if (counted != ply->item_count) {
         recs->sub_801D4678(1);
@@ -195,60 +195,60 @@ s32 TObjPlayer__sub_801D4368(PlyItem_801D4368 *ply) {
     }
     filled = 0;
     rec = recs->items;
-    node_filled = (TItemList *)ply->item_list->m_down;
+    node_filled = ply->item_list->m_down;
     while (node_filled != NULL) {
-        if (TItemList::is_item_valid((s32)node_filled) != 0 && (owner = node_filled->get_owner_if_alive()) != 0U) {
+        if (TItemList::is_item_valid((s32)node_filled) != 0 && (owner = node_filled->get_owner_if_alive()) != NULL) {
             rec->val = owner;
             TObjPlayer__sub_801D45B0((s32 *)rec, owner);
             rec++;
             filled++;
         }
-        node_filled = (TItemList *)node_filled->m_next;
+        node_filled = node_filled->m_next;
     }
     recs->sort_by_key();
     checked = 0;
     rec_checked = recs->items;
-    node_checked = (TItemList *)ply->item_list->m_down;
+    node_checked = ply->item_list->m_down;
     while (node_checked != NULL) {
-        if (TItemList::is_item_valid((s32)node_checked) != 0 && node_checked->get_owner_if_alive() != 0U && rec_checked->val != 0) {
+        if (TItemList::is_item_valid((s32)node_checked) != 0 && node_checked->get_owner_if_alive() != NULL && rec_checked->val != NULL) {
             rec_checked++;
             checked++;
         }
-        node_checked = (TItemList *)node_checked->m_next;
+        node_checked = node_checked->m_next;
     }
     if (filled != checked) {
         recs->sub_801D4678(1);
         return 0;
     }
     rec_assigned = recs->items;
-    node_assigned = (TItemList *)ply->item_list->m_down;
+    node_assigned = ply->item_list->m_down;
     while (node_assigned != NULL) {
-        if (TItemList::is_item_valid((s32)node_assigned) != 0 && node_assigned->get_owner_if_alive() != 0U) {
-            if (rec_assigned->val != 0) {
-                node_assigned->set_field_1c((s32)rec_assigned->val);
+        if (TItemList::is_item_valid((s32)node_assigned) != 0 && node_assigned->get_owner_if_alive() != NULL) {
+            if (rec_assigned->val != NULL) {
+                node_assigned->set_field_1c(rec_assigned->val);
                 rec_assigned++;
             }
         }
-        node_assigned = (TItemList *)node_assigned->m_next;
+        node_assigned = node_assigned->m_next;
     }
     recs->sub_801D4678(1);
     return 1;
 }
 
-void TObjPlayer__sub_801D45B0(s32 *arg0, s32 arg1) {
+void TObjPlayer__sub_801D45B0(s32 *arg0, TItem *arg1) {
     s32 temp_r4;
     u8 player;
     *arg0 = 0;
-    temp_r4 = get_item_type__5TItemFv((void *)arg1, (int)arg1) << 0x19;
+    temp_r4 = get_item_type__5TItemFv(arg1, (int)arg1) << 0x19;
     *arg0 |= temp_r4;
-    if (get_item_type__5TItemFv((void *)arg1, (int)temp_r4) == 1) {
-        *arg0 |= (((TItem *)arg1)->get_item_group() << 0x11) & 0x01FE0000;
+    if (get_item_type__5TItemFv(arg1, (int)temp_r4) == 1) {
+        *arg0 |= (arg1->get_item_group() << 0x11) & 0x01FE0000;
     } else {
-        *arg0 |= (((TItem *)arg1)->get_item_group() << 8) & 0xFF00;
+        *arg0 |= (arg1->get_item_group() << 8) & 0xFF00;
     }
-    player = ((TItem *)arg1)->get_item_index();
+    player = arg1->get_item_index();
     *arg0 |= player;
-    if (is_item_equipped((void *)arg1, (int)player) == 0) {
+    if (is_item_equipped(arg1, (int)player) == 0) {
         *arg0 |= 0x10000;
     }
 }
@@ -259,7 +259,12 @@ List_801D4744 *List_801D4744::sub_801D4678(s16 arg1) {
         q = items;
         if (q != NULL) {
             if (q != NULL) {
-                ::operator delete[](((u8 *)q - 0x10));
+                // sub_801D46D4 allocates n * 8 + 0x10. __construct_new_array
+                // returns the element pointer, and __dla__FPv does not subtract
+                // the 0x10-byte MWCC array cookie in front of it. delete[] of
+                // Ent_801D4744 does not match: the record has no destructor, so
+                // MWCC frees the element pointer.
+                ::operator delete[]((u8 *)q - 0x10);
             }
         }
         if (arg1 > 0) {
@@ -301,29 +306,29 @@ void List_801D4744::sort_by_key() {
 }
 
 void TObjPlayer__sub_801D47D8(void* p, void* q) { *(u32*)((char*)p + 0x0) = *(u32*)((char*)q + 0x0); *(u32*)((char*)p + 0x4) = *(u32*)((char*)q + 0x4); }
-s32 TObjPlayer__sub_801D47EC(s32 arg0, s32 arg1, s32 arg2) {
-    s32 temp_r3;
-    s32 temp_r3_2;
-    s32 temp_r3_3;
-    s32 temp_r3_4;
-    temp_r3 = start_inventory_update__10TObjPlayerFi((void *)arg0, (void *)arg1);
-    if (temp_r3 == 0) {
+s32 TObjPlayer__sub_801D47EC(TObjPlayer *arg0, s32 arg1, s32 arg2) {
+    TItemList *temp_r3;
+    TItemList *temp_r3_2;
+    TItem *temp_r3_3;
+    TItem *temp_r3_4;
+    temp_r3 = arg0->start_inventory_update(arg1);
+    if (temp_r3 == NULL) {
         return 0;
     }
-    temp_r3_2 = start_inventory_update__10TObjPlayerFi((void *)arg0, (void *)arg2);
-    if (temp_r3_2 == 0) {
+    temp_r3_2 = arg0->start_inventory_update(arg2);
+    if (temp_r3_2 == NULL) {
         return 0;
     }
-    temp_r3_3 = ((TItemList *)temp_r3)->get_owner_if_alive();
-    if (temp_r3_3 == 0) {
+    temp_r3_3 = temp_r3->get_owner_if_alive();
+    if (temp_r3_3 == NULL) {
         return 0;
     }
-    temp_r3_4 = ((TItemList *)temp_r3_2)->get_owner_if_alive();
-    if (temp_r3_4 == 0) {
+    temp_r3_4 = temp_r3_2->get_owner_if_alive();
+    if (temp_r3_4 == NULL) {
         return 0;
     }
-    ((TItemList *)temp_r3)->set_field_1c(temp_r3_4);
-    ((TItemList *)temp_r3_2)->set_field_1c(temp_r3_3);
+    temp_r3->set_field_1c(temp_r3_4);
+    temp_r3_2->set_field_1c(temp_r3_3);
     return 1;
 }
 

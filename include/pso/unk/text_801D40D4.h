@@ -3,13 +3,15 @@
 
 #include "types.h"
 
+struct TObjPlayer;
+struct TItem;
+
 extern "C" {
-void TObjPlayer__sub_801D45B0(s32 *arg0, s32 arg1);
+void TObjPlayer__sub_801D45B0(s32 *arg0, TItem *arg1);
 void TObjPlayer__sub_801D4730(void *p);
 void TObjPlayer__sub_801D47D8(void *p, void *q);
-s32 TObjPlayer__sub_801D47EC(s32 arg0, s32 arg1, s32 arg2);
+s32 TObjPlayer__sub_801D47EC(TObjPlayer *arg0, s32 arg1, s32 arg2);
 s32 check_player_action_allowed(void);
-s32 export_inventory_entry__10TObjPlayerFiPv(s32 arg0, u8 *arg1);
 s32 fn_801D4270(s32 arg0);
 void remove_list_entry_by_id(s32 arg0);
 int reset(void *p);
@@ -17,12 +19,11 @@ int reset(void *p);
 
 // --- C functions defined in text_801D40D4.cpp ---
 extern "C" {
-void TObjPlayer__sub_801D45B0(s32 *arg0, s32 arg1);
+void TObjPlayer__sub_801D45B0(s32 *arg0, TItem *arg1);
 void TObjPlayer__sub_801D4730(void *p);
 void TObjPlayer__sub_801D47D8(void *p, void *q);
-s32 TObjPlayer__sub_801D47EC(s32 arg0, s32 arg1, s32 arg2);
+s32 TObjPlayer__sub_801D47EC(TObjPlayer *arg0, s32 arg1, s32 arg2);
 s32 check_player_action_allowed(void);
-s32 export_inventory_entry__10TObjPlayerFiPv(s32 arg0, u8 *arg1);
 s32 fn_801D4270(s32 arg0);
 void remove_list_entry_by_id(s32 arg0);
 int reset(void *p);

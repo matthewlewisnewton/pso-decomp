@@ -2,15 +2,16 @@
 #include "pso/object/TObject_80019A50.h"
 #include "pso/player/TObjPlayer_801D4CB8.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/TItemList.h"
 
     extern s32 inventory_walk_visit_count;
     extern s32 player_owner_collect_cursor;
-int TObjPlayer::count_matching_items(int a1) { player_owner_collect_cursor = a1; inventory_walk_visit_count = 0; ((TObjPlayer *)(*(int *)&this->unk_1C4))->collect_item_owners_recursive(); return inventory_walk_visit_count; }
+int TObjPlayer::count_matching_items(int a1) { player_owner_collect_cursor = a1; inventory_walk_visit_count = 0; ((TItemList *)(*(int *)&this->unk_1C4))->collect_item_owners_recursive(); return inventory_walk_visit_count; }
 
-int TObjPlayer::apply_shop_judgment(int a1) { player_owner_collect_cursor = a1; inventory_walk_visit_count = 0; ((TObjPlayer *)(*(int *)&this->unk_1C4))->collect_alive_owners(); return inventory_walk_visit_count; }
+int TObjPlayer::apply_shop_judgment(int a1) { player_owner_collect_cursor = a1; inventory_walk_visit_count = 0; ((TItemList *)(*(int *)&this->unk_1C4))->collect_alive_owners(); return inventory_walk_visit_count; }
 
     extern s32 item_reduce_target_player;
-void TObjPlayer::set_flag_and_update(int a1) { item_reduce_target_player = a1; ((TObjPlayer *)(*(int *)&this->unk_1C4))->unequip_invalid_items_recursive(); }
+void TObjPlayer::set_flag_and_update(int a1) { item_reduce_target_player = a1; ((TItemList *)(*(int *)&this->unk_1C4))->unequip_invalid_items_recursive(); }
 
 struct Base_801D4D48 { char pad[0x18]; };
 struct VObj_801D4D48 : Base_801D4D48 {
@@ -42,7 +43,7 @@ s32 TObjPlayer::count_items_by_id(s32 arg1) {
     }
     inventory_search_item_data = arg1;
     inventory_walk_visit_count = 0;
-    ((TObjPlayer *)(*(s32 *)&this->unk_1C4))->count_items_recursive();
+    ((TItemList *)(*(s32 *)&this->unk_1C4))->count_items_recursive();
     return inventory_walk_visit_count;
 }
 
@@ -66,7 +67,7 @@ extern "C" {
 s32 is_item_valid__9TItemListFl(void *);
 int find_matching_inventory_item_node(void*);
 
-void TObjPlayer::find_first_inventory_entry(int a1) { inventory_search_item_data = a1; ((TObjPlayer *)(*(int *)&this->unk_1C4))->find_inventory_item_matching_data(); }
+void TObjPlayer::find_first_inventory_entry(int a1) { inventory_search_item_data = a1; ((TItemList *)(*(int *)&this->unk_1C4))->find_inventory_item_matching_data(); }
 
 void set_mode_and_refresh_object__10TObjPlayerFPvi(void* a0, int a1) { inventory_search_item_data = a1; find_matching_inventory_item_node((void*)(*(int*)((char*)a0 + 0x1c4))); }
 
@@ -91,6 +92,10 @@ void TObjPlayer::destroy_subobjects_recursive() {
     }
 }
 
-void TObjPlayer::start_inventory_update(int a1) { inventory_update_field_d8_key = a1; inventory_walk_progress_count = 0; ((TObjPlayer *)(*(int *)&this->unk_1C4))->find_inventory_item_by_field_d8(); }
+TItemList *TObjPlayer::start_inventory_update(int a1) {
+    inventory_update_field_d8_key = a1;
+    inventory_walk_progress_count = 0;
+    return ((TItemList *)(*(int *)&this->unk_1C4))->find_inventory_item_by_field_d8();
+}
 
 }

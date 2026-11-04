@@ -2399,7 +2399,7 @@ void TLobby__sub_801D4C28(s32, Pl_801B0B88 *, s32, s32);
 u32 find_first_inventory_entry__10TObjPlayerFi(int, void *);
 u32 set_mode_and_refresh_object__10TObjPlayerFPvi(s32, s8 *);
 u8 * TPlyItem__ct(void *, void *);
-s32 set_field_1c__9TItemListFl(void *, void *);
+s32 set_field_1c__9TItemListFP5TItem(void *, void *);
 u8 * __ct__9TItemListFv(void *, void *);
 s32 draw_party_label__15TFontSmallLobbyFiUis(s32, s32, s32);
 s32 accumulate_damage_stats(s32, s32, s32);
@@ -6666,7 +6666,7 @@ void *pickup_item__10TObjPlayerFP5TItem(u8 *player, u8 *arg1) {
         break;
     }
     if (list != NULL) {
-        set_field_1c__9TItemListFl(list, arg1);
+        set_field_1c__9TItemListFP5TItem(list, arg1);
         inv = *(u8 * *)&((TObjPlayer *)player)->inventory_objects;
         TObjPlayer__sub_801C1B0C(arg1, (*(s16 *)((s8 *)inv + 0x1C))++);
         ((TItem *)arg1)->set_mode(1);

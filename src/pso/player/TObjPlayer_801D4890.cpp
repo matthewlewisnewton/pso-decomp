@@ -1,6 +1,7 @@
 #include "types.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/TItemList.h"
 
 #define CAT2(a,b) a##b
 #define CAT(a,b) CAT2(a,b)
@@ -59,7 +60,7 @@ s32 queue_destruction__7TObjectFv(s32, s16);
 int TObjPlayer::run_and_get_result(int a1) { TObjPlayer__owner_field_write_cursor = a1; inventory_walk_visit_count = 0; ((TObjPlayer *)(*(int *)&this->unk_1C4))->collect_owner_fields_recursive(); return inventory_walk_visit_count; }
 
     extern int owned_item_export_cursor;
-int TObjPlayer::run_state_query(int a1) { owned_item_export_cursor = a1; inventory_walk_visit_count = 0; ((TObjPlayer *)(*(int *)&this->unk_1C4))->count_owned_items(); return inventory_walk_visit_count; }
+int TObjPlayer::run_state_query(int a1) { owned_item_export_cursor = a1; inventory_walk_visit_count = 0; ((TItemList *)(*(int *)&this->unk_1C4))->count_owned_items(); return inventory_walk_visit_count; }
 
 s32 TObjPlayer::update_inventory_item(s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 client) {
     s16 temp_r4;

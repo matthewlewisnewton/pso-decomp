@@ -14,6 +14,7 @@ struct TItemData;
 struct player_stats;
 
 struct TItem;
+struct TItemList;
 struct TechniqueContactList;
 
 // The frames a player stays protected from hits (after getting up, being
@@ -968,14 +969,7 @@ struct TObjPlayer : public TObjChara {
     void find_first_inventory_entry(int a1);
     void destroy_subobjects(int a1);
     void destroy_subobjects_recursive();
-    void start_inventory_update(int a1);
-    void count_owned_items();
-    void collect_item_owners_recursive();
-    void collect_alive_owners();
-    void unequip_invalid_items_recursive();
-    void count_items_recursive();
-    void *find_inventory_item_matching_data();
-    void *find_inventory_item_by_field_d8();
+    TItemList *start_inventory_update(int a1);
     static s32 decrement_timer(s32 *arg0);
     static void reset_particle_ctrl(s32 *arg0);
     void*init_sub_objects();

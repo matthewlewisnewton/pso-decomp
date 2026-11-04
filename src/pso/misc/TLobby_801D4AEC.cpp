@@ -2,49 +2,7 @@
 #include "pso/misc/TLobby.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/TItemList.h"
-
-struct Base_801D4AEC { char pad[0x18]; };
-#define CAT2(a,b) a##b
-#define CAT(a,b) CAT2(a,b)
-#define VA virtual void CAT(f,__LINE__)();
-struct VObj_801D4AEC : Base_801D4AEC {
-VA
-VA
-VA
-VA
-VA
-VA
-VA
-VA
-VA
-VA
-VA
-VA
-VA
-VA
-VA
-VA
-VA
-VA
-VA
-VA
-VA
-VA
-VA
-VA
-VA
-VA
-VA
-    virtual void m27(s16);
-VA
-VA
-VA
-VA
-VA
-VA
-    virtual s32 m34();
-    virtual void m35(s32);
-};
+#include "pso/item/TItem.h"
 
 extern "C" {
 
@@ -52,40 +10,40 @@ void TLobby__sub_801D4C28(void* a0, int a1, int a2, int a3);
 s32 try_spend_actor_meseta(u8 *arg0, s32 arg1);
 s32 is_item_equipped(void *);
 int TObjPlayer__sub_801D52A8(void*);
-s32 queue_destruction__7TObjectFv(s32);
-s32 start_inventory_update__10TObjPlayerFi(s32, s32);
+s32 queue_destruction__7TObjectFv(void *);
+TItemList *start_inventory_update__10TObjPlayerFi(s32, s32);
 s32 unequip_item__10TObjPlayerFiPv(s32, void *);
 
-void TLobby::reduce_item_amount(s32 arg1, s32 arg2, s32 arg3) {
+void TLobby::reduce_item_amount(s32 arg1, TItemList *slot, s32 arg3) {
     s16 temp_r4;
-    VObj_801D4AEC *player;
+    TItem *item;
 
-    player = (VObj_801D4AEC *)((TItemList *)arg2)->get_owner_if_alive();
-    if ((player != NULL) && (arg3 >= 0)) {
-        if ((player->m34() - arg3) > 0) {
-            player->m35(arg3);
+    item = slot->get_owner_if_alive();
+    if ((item != NULL) && (arg3 >= 0)) {
+        if ((item->get_amount() - arg3) > 0) {
+            item->remove_amount(arg3);
             return;
         }
-        if (is_item_equipped(player) != 0) {
-            unequip_item__10TObjPlayerFiPv(arg1, player);
+        if (is_item_equipped(item) != 0) {
+            unequip_item__10TObjPlayerFiPv(arg1, item);
         }
         temp_r4 = *(s16 *)((s8 *)this + 0x1C);
         *(s16 *)((s8 *)this + 0x1C) = (temp_r4 - 1);
-        player->m27(temp_r4);
-        queue_destruction__7TObjectFv(arg2);
+        item->destroy();
+        queue_destruction__7TObjectFv(slot);
     }
 }
 
 s32 TLobby::use_item(s32 arg1, s32 arg2, s32 arg3) {
     s32 arg0 = (s32)this;
-    s32 temp_r3;
+    TItemList *temp_r3;
 
     if (arg2 == -1) {
         try_spend_actor_meseta((u8 *)arg1, arg3);
         return 1;
     }
     temp_r3 = start_inventory_update__10TObjPlayerFi(arg0, arg2);
-    if (temp_r3 == 0) {
+    if (temp_r3 == NULL) {
         return 0;
     }
     reduce_item_amount(arg1, temp_r3, arg3);

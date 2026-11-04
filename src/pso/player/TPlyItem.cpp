@@ -153,9 +153,9 @@ void TLobby::reduce_owner_matched_items() {
                 reduce_owner_match_id == ((TItem *)owner)->get_item_group()) {
                 if (item_reduce_owner_match_field_ec == 3) {
                     lobby = item_reduce_target_player;
-                    ((TLobby *)(*(s32 *)(lobby + 0xD00)))->reduce_item_amount((s32)lobby, (s32)it, (s32)(owner->v34()));
+                    ((TLobby *)(*(s32 *)(lobby + 0xD00)))->reduce_item_amount((s32)lobby, (TItemList *)it, (s32)(owner->v34()));
                 } else {
-                    ((TLobby *)(*(s32 *)(item_reduce_target_player + 0xD00)))->reduce_item_amount((s32)item_reduce_target_player, (s32)it, 1);
+                    ((TLobby *)(*(s32 *)(item_reduce_target_player + 0xD00)))->reduce_item_amount((s32)item_reduce_target_player, (TItemList *)it, 1);
                 }
             }
         }
@@ -173,9 +173,9 @@ void TLobby::reduce_child_item_amounts() {
             if (owner != NULL && item_reduce_owner_match_field_ec == ((TItem *)owner)->get_item_type()) {
                 if (item_reduce_owner_match_field_ec == 3) {
                     lobby = item_reduce_target_player;
-                    ((TLobby *)(*(s32 *)(lobby + 0xD00)))->reduce_item_amount((s32)lobby, (s32)it, (s32)(owner->v34()));
+                    ((TLobby *)(*(s32 *)(lobby + 0xD00)))->reduce_item_amount((s32)lobby, (TItemList *)it, (s32)(owner->v34()));
                 } else {
-                    ((TLobby *)(*(s32 *)(item_reduce_target_player + 0xD00)))->reduce_item_amount((s32)item_reduce_target_player, (s32)it, 1);
+                    ((TLobby *)(*(s32 *)(item_reduce_target_player + 0xD00)))->reduce_item_amount((s32)item_reduce_target_player, (TItemList *)it, 1);
                 }
             }
         }

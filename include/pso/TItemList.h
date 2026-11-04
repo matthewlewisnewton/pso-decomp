@@ -5,14 +5,31 @@
 
 struct TItem;
 
-class TItemList : public TObject {
+// Same 0x20-byte TObject prefix as an inventory slot (__ct__9TItemListFv), but
+// the sibling and child links are TItemList so a walk does not downcast.
+// The vptr stays at 0x18, where that constructor writes __vt__9TItemList.
+class TItemList {
 public:
+    const char *m_name;
+    u16 m_flags;
+    u16 m_id;
+    TItemList *m_prev;
+    TItemList *m_next;
+    TItemList *m_up;
+    TItemList *m_down;
     virtual ~TItemList();
-    // Inventory entries are 0x20-byte TItemList nodes. pickup_item stores the
-    // TItem here; get_owner_if_alive returns it while that item is still live.
+    // pickup_item stores the TItem here. get_owner_if_alive returns it while
+    // that item is still live.
     TItem *item;
-    s32 get_owner_if_alive();
-    void set_field_1c(s32 v);
+    TItem *get_owner_if_alive();
+    void set_field_1c(TItem *v);
+    void count_owned_items();
+    void collect_item_owners_recursive();
+    void collect_alive_owners();
+    void unequip_invalid_items_recursive();
+    void count_items_recursive();
+    TItemList *find_inventory_item_matching_data();
+    TItemList *find_inventory_item_by_field_d8();
 public:
     static s32 is_item_valid(s32 arg0);
     void *dt(s16 arg1);

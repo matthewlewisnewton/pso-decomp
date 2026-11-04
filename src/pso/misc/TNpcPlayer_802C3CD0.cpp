@@ -62,7 +62,6 @@ void split_capped_value__10TObjPlayerFUcPUcPSc(s32, u8 *, E_802C4698 *);
 u8 *TObjPlayer__sub_802C4688(O_802C4688 *self, s32 i);
 E_802C4698 *TObjPlayer__sub_802C4698(O_802C4698 *self, s32 i);
 s32 reset(s32);
-s32 export_inventory_entry__10TObjPlayerFiPv(Item_802C3F74 *, s32);
 s32 TObjPlayer__sub_802A1018();
 int init_character_stats_for_level(s32, s8 *, s32);
 int copy_item_entry_array(s8, s32, s32);
@@ -159,7 +158,7 @@ void export_state_to_record__10TObjPlayerFPvPv(u8 *arg0, s8 *arg1) {
     p = items;
     for (i = 0; i < 30; i++) {
         if (*p != NULL) {
-            export_inventory_entry__10TObjPlayerFiPv(*p, rec);
+            ((TItem *)*p)->export_inventory_entry((void *)rec);
             p++;
         } else {
             reset(rec);
