@@ -150,8 +150,8 @@ extern s32 lbl_805D7B0C;
 extern s32 dhcp_reply_received;
 extern u8 lbl_805D7B1C[6];
 extern u32 lbl_805D7B28;
-extern u8 lbl_805D7B4C[4];
-extern u8 lbl_805D7B50[4];
+extern u32 lbl_805D7B4C;
+extern u32 lbl_805D7B50;
 s16 TLobby__sub_803F96AC(u32*);
 struct DhcpOption_804FD948 {
     s16 id;
@@ -308,13 +308,13 @@ s32 dhcp_handle_reply__6TLobbyFsPv(s16 arg0, Arg_804249F0 *arg1) {
     if (pk->f0 != 2 || pk->f1 != 1 || pk->f2 != 6) {
         return 0;
     }
-    if (NetMemcmp(pk->f4, lbl_805D7B50, 4) != 0) {
+    if (NetMemcmp(pk->f4, &lbl_805D7B50, 4) != 0) {
         return 0;
     }
     if (NetMemcmp(pk->f1C, lbl_805D7B1C, 6) != 0) {
         return 0;
     }
-    if (NetMemcmp(q, lbl_805D7B4C, 4) != 0) {
+    if (NetMemcmp(q, &lbl_805D7B4C, 4) != 0) {
         return 0;
     }
     if (lbl_805D7B0C != 2) {
@@ -417,6 +417,77 @@ s32 TLobby__sub_80424DCC(s16, s32 a1, s32 a2, void *, void *a4, void *a5, void *
     lbl_805D7B74 = a7;
     dhcp_state = 1;
     *(volatile s32 *)&lbl_805D7B0C = 0;
+    return 0;
+}
+
+extern u8 dhcp_hostname[];
+extern u32 dhcp_elapsed_ms;
+extern u32 dhcp_last_tick_ms;
+extern u32 dhcp_lease_elapsed;
+s32 NetRegisterTimer(s32 period, s16 locked, void *fn);
+
+// DHCP client reset. The 28-byte stack block is the mode-4 interface request
+// and then the info buffer passed to TLobby__sub_80422F70. lbl_805D7B4C is the
+// RFC 2132 magic cookie (99, 130, 83, 99).
+s32 TLobby__sub_80424E44(s16 iface) {
+    DhcpOption_804FD948 *opt;
+    struct {
+        s32 type;
+        s32 a;
+        s32 b;
+        s32 c;
+        u8 rest[12];
+    } info;
+    u32 i;
+    s32 status;
+
+    dhcp_state = 0;
+    lbl_805D7B0C = 0;
+    dhcp_reply_received = 0;
+    lbl_805D7B14 = TLobby__sub_804250A8(0);
+    dhcp_socket = -1;
+    opt = lbl_804FD948;
+    for (i = 0; i < 12; i++, opt++) {
+        opt->present = 0;
+        NetMemset(opt->data, 0, opt->size);
+    }
+    lbl_805D7B40 = NULL;
+    lbl_805D7B44 = NULL;
+    lbl_805D7B48 = NULL;
+    lbl_805D7B4C = 0x63825363;
+    lbl_805D7B50 = 0;
+    lbl_805D7B54 = 0;
+    lbl_805D7B58 = 0;
+    NetMemset(dhcp_hostname, 0, 32);
+    dhcp_elapsed_ms = 0;
+    info.type = 4;
+    info.a = 0;
+    info.b = 0;
+    dhcp_last_tick_ms = 0;
+    dhcp_lease_time = 0;
+    dhcp_renewal_time = 0;
+    dhcp_rebinding_time = 0;
+    dhcp_lease_elapsed = 0;
+    lbl_805D7B74 = 0;
+    dhcp_lease_start = 0;
+    dhcp_lease_expiry = 0;
+    lbl_805D7BA0 = 0;
+    lbl_805D7B08 = iface;
+    info.c = 0;
+    status = 0;
+    if (TLobby__sub_8042315C(iface, &info) < 0) {
+        status = -1;
+    } else if (TLobby__sub_80422F70(iface, &info, 0x1C, lbl_805D7B1C) < 0) {
+        TLobby__sub_80423064(iface, 4);
+        status = -1;
+    } else {
+        TLobby__sub_80423064(iface, 4);
+    }
+    if (status != 0) {
+        lbl_805D7BA0 = 3;
+        return -1;
+    }
+    NetRegisterTimer(50, 0, TLobby__sub_80423298);
     return 0;
 }
 

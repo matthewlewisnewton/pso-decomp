@@ -17,10 +17,14 @@
 void set_constant_material(const NJS_ARGB *color);
 void draw_chunk_model(void *arg0);
 
+struct Flt3 { f32 x, y, z; };
+struct Word3 { u32 x, y, z; };
+
 struct Boss4ZakoEntry {
-    f32 x;
-    f32 y;
-    f32 z;
+    union {
+        Flt3 f;
+        Word3 w;
+    };
     s32 f0c;
     s32 f10;
 };
@@ -106,7 +110,12 @@ TBoss4ZakoDraw::TBoss4ZakoDraw(TObject *parent) : TObject(parent) {
 
 extern "C" {
 
-struct ShadowVec { f32 x, y, z; };
+struct ShadowVec {
+    union {
+        Flt3 f;
+        Word3 w;
+    };
+};
 struct Col_8030A9B0 { f32 r, g, b, a; };
 
 void TObjPlayer__sub_8030A9B0() {
@@ -134,9 +143,9 @@ void TObjPlayer__sub_8030A9B0() {
     rot = (TBoss4ZakoDraw__rotation_phase << 16) / 16;
     VecCopy((Vec *)&pos, &camera_ctrl_instance->position);
     i = 0;
-    pos.y = lbl_805DF13C;
+    pos.f.y = lbl_805DF13C;
     for (; i < tbl->count; i++, e++) {
-        if (e->f0c != 0 || e->y < lbl_805DF140) {
+        if (e->f0c != 0 || e->f.y < lbl_805DF140) {
             continue;
         }
         d = xyz_distance(e, &pos);
@@ -146,10 +155,10 @@ void TObjPlayer__sub_8030A9B0() {
         t = d / lbl_805DF144;
         k = lbl_805DF148 - t * (t * t);
         push_matrix();
-        ((u32 *)&v)[0] = ((u32 *)e)[0];
-        ((u32 *)&v)[1] = ((u32 *)e)[1];
-        ((u32 *)&v)[2] = ((u32 *)e)[2];
-        v.y = lbl_805DF13C;
+        v.w.x = e->w.x;
+        v.w.y = e->w.y;
+        v.w.z = e->w.z;
+        v.f.y = lbl_805DF13C;
         post_translate_matrix(&v);
         rotate_matrix_y(0, e->f10 + rot);
         col.a = lbl_805DF14C;
