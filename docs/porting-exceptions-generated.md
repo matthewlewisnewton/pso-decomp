@@ -7,7 +7,7 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 
 | Category | Hits | Files |
 |---|---:|---:|
-| asm | 8 | 2 |
+| asm | 9 | 3 |
 | intrinsic | 83 | 54 |
 | hardware | 71 | 13 |
 | pragma | 5864 | 885 |
@@ -27,6 +27,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `src/musyx/runtime/StdReverb/reverb.c:90` | `#include "orig_asm/musyx/runtime/StdReverb/reverb/DoCrossTalk.inc"` |
 | `src/musyx/runtime/StdReverb/reverb.c:93` | `asm void HandleReverb(void *sptr, void *rv, int k) {` |
 | `src/musyx/runtime/StdReverb/reverb.c:94` | `#include "orig_asm/musyx/runtime/StdReverb/reverb/HandleReverb.inc"` |
+| `src/pso/unk/text_803E2D70.cpp:314` | `asm void transform_chunk_vertices_pos_normal(register Hdr_803E34B0 *job, register ReorderedMatrix_803E3390 *matrix) {` |
 
 ## MWCC intrinsics
 
@@ -164,32 +165,32 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `src/pso/unk/text_803E2D70.cpp:178` | `(*(volatile WGPipe_803E2D70 *)0xCC008000).u32 = c;` |
 | `src/pso/unk/text_803E2D70.cpp:181` | `(*(volatile WGPipe_803E2D70 *)0xCC008000).f32 = s;` |
 | `src/pso/unk/text_803E2D70.cpp:182` | `(*(volatile WGPipe_803E2D70 *)0xCC008000).f32 = t;` |
-| `src/pso/unk/text_803E2D70.cpp:296` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = x;` |
-| `src/pso/unk/text_803E2D70.cpp:297` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = y;` |
-| `src/pso/unk/text_803E2D70.cpp:298` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = z;` |
-| `src/pso/unk/text_803E2D70.cpp:301` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = x;` |
-| `src/pso/unk/text_803E2D70.cpp:302` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = y;` |
-| `src/pso/unk/text_803E2D70.cpp:303` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = z;` |
-| `src/pso/unk/text_803E2D70.cpp:311` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = x;` |
-| `src/pso/unk/text_803E2D70.cpp:312` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = y;` |
-| `src/pso/unk/text_803E2D70.cpp:313` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = z;` |
-| `src/pso/unk/text_803E2D70.cpp:316` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = x;` |
-| `src/pso/unk/text_803E2D70.cpp:317` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = y;` |
-| `src/pso/unk/text_803E2D70.cpp:318` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = z;` |
-| `src/pso/unk/text_803E2D70.cpp:321` | `(*(volatile WGPipe_803E352C *)0xCC008000).s16 = s;` |
-| `src/pso/unk/text_803E2D70.cpp:322` | `(*(volatile WGPipe_803E352C *)0xCC008000).s16 = t;` |
-| `src/pso/unk/text_803E2D70.cpp:769` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = x;` |
-| `src/pso/unk/text_803E2D70.cpp:770` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = y;` |
-| `src/pso/unk/text_803E2D70.cpp:771` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = z;` |
-| `src/pso/unk/text_803E2D70.cpp:774` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = x;` |
-| `src/pso/unk/text_803E2D70.cpp:775` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = y;` |
-| `src/pso/unk/text_803E2D70.cpp:776` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = z;` |
-| `src/pso/unk/text_803E2D70.cpp:810` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = x;` |
-| `src/pso/unk/text_803E2D70.cpp:811` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = y;` |
-| `src/pso/unk/text_803E2D70.cpp:812` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = z;` |
-| `src/pso/unk/text_803E2D70.cpp:815` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = x;` |
-| `src/pso/unk/text_803E2D70.cpp:816` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = y;` |
-| `src/pso/unk/text_803E2D70.cpp:817` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = z;` |
+| `src/pso/unk/text_803E2D70.cpp:435` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = x;` |
+| `src/pso/unk/text_803E2D70.cpp:436` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = y;` |
+| `src/pso/unk/text_803E2D70.cpp:437` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = z;` |
+| `src/pso/unk/text_803E2D70.cpp:440` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = x;` |
+| `src/pso/unk/text_803E2D70.cpp:441` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = y;` |
+| `src/pso/unk/text_803E2D70.cpp:442` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = z;` |
+| `src/pso/unk/text_803E2D70.cpp:450` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = x;` |
+| `src/pso/unk/text_803E2D70.cpp:451` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = y;` |
+| `src/pso/unk/text_803E2D70.cpp:452` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = z;` |
+| `src/pso/unk/text_803E2D70.cpp:455` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = x;` |
+| `src/pso/unk/text_803E2D70.cpp:456` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = y;` |
+| `src/pso/unk/text_803E2D70.cpp:457` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = z;` |
+| `src/pso/unk/text_803E2D70.cpp:460` | `(*(volatile WGPipe_803E352C *)0xCC008000).s16 = s;` |
+| `src/pso/unk/text_803E2D70.cpp:461` | `(*(volatile WGPipe_803E352C *)0xCC008000).s16 = t;` |
+| `src/pso/unk/text_803E2D70.cpp:908` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = x;` |
+| `src/pso/unk/text_803E2D70.cpp:909` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = y;` |
+| `src/pso/unk/text_803E2D70.cpp:910` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = z;` |
+| `src/pso/unk/text_803E2D70.cpp:913` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = x;` |
+| `src/pso/unk/text_803E2D70.cpp:914` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = y;` |
+| `src/pso/unk/text_803E2D70.cpp:915` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = z;` |
+| `src/pso/unk/text_803E2D70.cpp:949` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = x;` |
+| `src/pso/unk/text_803E2D70.cpp:950` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = y;` |
+| `src/pso/unk/text_803E2D70.cpp:951` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = z;` |
+| `src/pso/unk/text_803E2D70.cpp:954` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = x;` |
+| `src/pso/unk/text_803E2D70.cpp:955` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = y;` |
+| `src/pso/unk/text_803E2D70.cpp:956` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = z;` |
 | `src/pso/unk/text_80421620.cpp:1196` | `} else if ((lbl_805D7B28 & 0xE0000000) == 0xC0000000) {` |
 
 ## configure.py per-unit compiler overrides
