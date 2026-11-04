@@ -5,14 +5,15 @@ unit is built with GC/2.0 (see `configure.py`). That compiler's block-copy
 scheduler interleaves the 36-byte PMF snapshot tail with `actor_frame_tick`;
 GC/2.6 packs the tail and leaves the tick relocation four bytes later. On
 GC/2.0 every function in the unit is byte-exact, including `run_task`
-(484 bytes), and `.rodata` (16 bytes) and `.sdata2` (4 bytes) match.
-`ninja -j8 && python3 tools/check_pr.py --no-build` against current `origin/main`
-PASSes with 0 regressions and one new exact function
-(`run_task__16TEffIndirectCtrlFv`, +484 code bytes). The unit is not linked. The object emits a 0x18-byte `.data` vtable (the
-split owns no `.data`; `__vt__16TEffIndirectCtrl` is 0x1C and ends in a null),
-and the matched pool bytes are still the compiler's anonymous labels rather
-than `TEffIndirectCtrl__data_8046FC48`, `TEffIndirectCtrl__data_8046FC50`, and
-`TEffIndirectCtrl__data_805DE02C`.
+(484 bytes), `.rodata` (16 bytes), and `.sdata2` (8 bytes at 0x805DE028) match.
+The rand scale `lbl_805DE028` is the 4-byte object ahead of the angle literal,
+which is the only reference to it, so the section starts on an 8-byte boundary.
+The two conversion biases and the angle literal are `scope:local`: nothing
+outside this unit loads those split names, and the compiler emits them as
+anonymous pool entries. The unit is still not linked. Defining the virtuals
+emits a 0x18-byte `.data` vtable aligned to 8, while `__vt__16TEffIndirectCtrl`
+sits at 0x804DDF1C (only 4-byte aligned) after another class's vtable, so this
+unit cannot own that range as its own `.data` section.
 
 The notes below record the GC/2.6 candidate (95.61%, tail packed). They are
 the search that ruled out source reorderings; they are not the current object.
