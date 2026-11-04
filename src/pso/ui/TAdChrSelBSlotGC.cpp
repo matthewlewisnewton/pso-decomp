@@ -1,6 +1,7 @@
 #include "types.h"
 #include "pso/ui/TAdChrSelSlotGC.h"
 #include "pso/ui/TAdChrSelBSlotGC.h"
+#include "pso/ui/ChrSelPlateLayout.h"
 #include "pso/TAdChrSelMovePlateGC.h"
 
 extern "C" {
@@ -8,8 +9,6 @@ extern "C" {
 void *__ct__15TAdSubPlyItemGCFv(void *, void *);
 void *__ct__19TAdPlyChrSelPlateGCFv(void *, void *, void *);
 void *__nw__7TObjectFUl(int);
-
-extern s32 chr_sel_b_slot_plate_layout[];
 
 void TAdChrSelBSlotGC::create_children() {
     void *o;
@@ -19,7 +18,7 @@ void TAdChrSelBSlotGC::create_children() {
     *(void * *)&this->unk_28 = o;
     o2 = __nw__7TObjectFUl(0x3B4);
     if (o2 != NULL) {
-        o2 = __ct__19TAdPlyChrSelPlateGCFv(o2, this, chr_sel_b_slot_plate_layout);
+        o2 = __ct__19TAdPlyChrSelPlateGCFv(o2, this, (void *)&chr_sel_b_slot_plate_layout);
     }
     this->m_2c = (TAdPlyChrSelPlateGC *)o2;
     o3 = __nw__7TObjectFUl(0x48C);
@@ -57,5 +56,17 @@ void TAdChrSelBSlotGC::sub_8030FE04() {
     *(s32 *)&this->unk_78 = 0;
     this->m_7c = 0;
 }
+
+// This unit's contiguous .rodata, 0x804758D8..0x80475930. lbl_80475918 is the
+// string TAdChrSelBSlotGC__name (.sdata 0x805D4108) points at.
+__declspec(section ".rodata") extern const PlateLayout chr_sel_b_slot_plate_layout = {
+    {180.0f, 38.0f}, {0xBC, 0x98, 0x36, 0x00}, 0
+};
+__declspec(section ".rodata") extern const f32 lbl_804758E8[4][2] = {
+    {434.0f, 182.0f}, {434.0f, 225.0f}, {434.0f, 268.0f}, {434.0f, 311.0f}
+};
+__declspec(section ".rodata") extern const CharacterSlotPosition lbl_80475908 = {429.0f, 156.0f};
+__declspec(section ".rodata") extern const f32 lbl_80475910[2] = {441.0f, 117.0f};
+__declspec(section ".rodata") extern const char lbl_80475918[] = "TAdChrSelBSlotGC";
 
 }
