@@ -687,7 +687,16 @@ MIDDLEWARE: List[Tuple[str, int, str, List[str], Dict[str, Dict[str, Any]]]] = [
     # CRI ADX, LSC, SJ, MFCI and GCRNA ("Build:Jun 13 2002").
     ("cri", 0x803BFE50, "GC/2.6", cflags_middleware, {}),
     # Sega's Ginja model library.
-    ("ginja", 0x803D6538, "GC/2.6", _switch(cflags_middleware, "-O3,p", "-opt nopeephole"), {}),
+    ("ginja", 0x803D6538, "GC/2.6", _switch(cflags_middleware, "-O3,p", "-opt nopeephole"), {
+        # render_debug_text (0x803D85D8) saves r25-r31 with bl _savegpr_25 /
+        # _restgpr_25, and its glyph quads are the inlined SDK FIFO writers
+        # (sth/stw to 0xCC008000), not calls. -inline on inlines only functions
+        # marked inline, so queue_debug_text stays a call from debug_printf_at.
+        # The matrix helpers in text_803D8910.cpp match under the ginja defaults.
+        "pso/unk/text_803D8098.cpp": {
+            "cflags": _switch(cflags_middleware, "-O3,p", "-opt nopeephole", "-use_lmw_stmw off", "-inline on"),
+        },
+    }),
     # mcFsGc ("Ver 1.10.00 Build:Sep 17 2002") with ACCESS's file transfer.
     ("mcfs", 0x803E5668, "GC/1.2.5", cflags_middleware, {
         # Epilogue order (mtlr before the restores) only 1.2.5n produces.

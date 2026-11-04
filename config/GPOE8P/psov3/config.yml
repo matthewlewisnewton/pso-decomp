@@ -707,9 +707,9 @@ force_active:
   - TOKurage__bml_resource
   - TOKurage__class_name
   - TOLightMachine01__ct
-  - TOMineIcon01__ct
-  - TOMineIcon02__ct
-  - TOMineIcon04__ct
+  - __ct__12TOMineIcon01FP7TObjectPv
+  - __ct__12TOMineIcon02FP7TObjectPv
+  - __ct__12TOMineIcon04FP7TObjectPv
   - TOMineTrapDisp__name
   - TOMonitorMachine01__bml_resource
   - TOMonitorMachine01__class_name
@@ -4800,6 +4800,8 @@ force_active:
   - dead_update__11TBoss4Type2Fv
   - deallocate_from_fixed_pools
   - debug_draw_key_id__12TOSwitchItemFv
+  - debug_font_texture_i4
+  - debug_font_texture_object
   - debug_print_area_num__17TObjWarpBossMultiFv
   - debug_print_item_box_info__21TObjContainerAbeEnemyFv
   - debug_print_ranges__8TOKurageFv
