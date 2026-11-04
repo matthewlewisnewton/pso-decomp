@@ -88,7 +88,7 @@ small float differences without FMA).
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-144 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+145 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
@@ -104,6 +104,33 @@ use their own compiler versions as recorded there.
 Port should: build everything with one modern compiler. Only `-fp_contract on`
 (float results) and deferred emission order (no semantic effect) need thought;
 nothing else changes behaviour.
+
+### `pso/misc/TOMineTrap_8016F6F8.cpp` ([#321](https://github.com/matthewlewisnewton/pso-decomp/pull/321))
+
+Allowed by Matt on 2026-11-04: one unit-wide `-fp_contract on` in
+`configure.py`. No function pragma. The original text has three `fmadds` and
+no `fmsubs`.
+
+| Function | Instruction | Address | Expression |
+|---|---|---|---|
+| `TOMineTrap::TOMineTrap` | `fmadds f2,f3,f4,f2` | `0x80170058` | damage product `lbl_805DB878 * (float)level + lbl_805DB874`, then two `fmuls` |
+| `TOMine::follow_target` | `fmadds f0,f1,f0,f2` | `0x80170B9C` | `lbl_805DB884 * ((lbl_805DB888 + target_y) - held_y) + held_y` |
+| `TOMine::update_float_height` | `fmadds f0,f3,f1,f0` | `0x80170D30` | `lbl_805DB884 * ((lbl_805DB888 + home_y) - height) + constant`, then `fadds` the old height |
+
+Objdiff of the whole unit (`GC/2.6`, `-O4,s -inline off -sdata2 4`), flag on
+versus flag omitted: `run_task` is byte-identical (99.58% either way, the
+remaining difference is a callee-saved rename). Every other function that is
+exact without the flag stays exact with it. `.rodata` (`lbl_804421F8`, 8
+bytes) is exact either way. Only the three functions above change, from
+98.82% / 97.81% / 95.60% without the flag to 100% with it. Those same
+expressions compiled as a separate probe emit `fmuls`+`fadds` when
+`-fp_contract` is omitted and `fmadds` when it is on.
+
+`follow_target` and `update_float_height` are exact on main through
+function-local `fp_contract` pragmas. This PR removes those pragmas; the unit
+flag is what keeps their `fmadds`.
+
+Port should: fuse those three multiply-adds, or accept the float difference.
 
 ## 6. Approved regressions
 
@@ -122,7 +149,6 @@ entry when the PR merges.
 | [#250](https://github.com/matthewlewisnewton/pso-decomp/pull/250) | `fp_contract` ×3 | Reason not recorded. |
 | [#303](https://github.com/matthewlewisnewton/pso-decomp/pull/303), [#295](https://github.com/matthewlewisnewton/pso-decomp/pull/295), [#289](https://github.com/matthewlewisnewton/pso-decomp/pull/289), [#272](https://github.com/matthewlewisnewton/pso-decomp/pull/272), [#225](https://github.com/matthewlewisnewton/pso-decomp/pull/225), [#222](https://github.com/matthewlewisnewton/pso-decomp/pull/222), [#215](https://github.com/matthewlewisnewton/pso-decomp/pull/215), [#187](https://github.com/matthewlewisnewton/pso-decomp/pull/187), [#128](https://github.com/matthewlewisnewton/pso-decomp/pull/128) | 1 to 4 inlining/optimization pragmas each | Reason not recorded. Drop in a port. |
 | [#240](https://github.com/matthewlewisnewton/pso-decomp/pull/240) | Not scanned | Diff exceeds GitHub's 300-file limit; scan locally after it merges. |
-| [#287](https://github.com/matthewlewisnewton/pso-decomp/pull/287) follow-up | `pso/misc/TOMineTrap_8016F6F8.cpp` built `-fp_contract on`; three function-local `fp_contract` pragmas removed | The constructor's damage product and `follow_target` / `update_float_height` are `fmadds` in the original object. Unit-wide contraction matches those and the other 34 functions. `run_task` stays a callee-saved register permutation with the flag on or off. Port: fuse those multiply-adds, or accept a float difference. |
 
 The scan covers source lines only; `configure.py` overrides added by PRs show up
 in the generated table once merged.
