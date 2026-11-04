@@ -56,14 +56,18 @@ class LocalizationTests(unittest.TestCase):
         self.report.write_text(json.dumps({'units': self.units}))
         self.config.write_text(json.dumps({'units': self.config_units}))
 
-    def make(self, path, defines=False, references=False):
-        # Deliberately arbitrary data: no magic-value whitelist can grant safety.
-        return elf(path, [('.rodata', b'constant', 8, 1)],
-                   [('bias', 1 if defines else 0, 0, 8, 1)] if defines or references else [])
+    def make(self, path, defines=False, references=False, payload=b'constant'):
+        # Default payload is arbitrary. The conversion-pool tests pass the two
+        # MWCC biases explicitly; those bytes alone are not enough without the
+        # 8-byte object and inventory checks.
+        return elf(path, [('.rodata', payload, 8, 1)],
+                   [('bias', 1 if defines else 0, 0, len(payload) if defines else 0, 1)]
+                   if defines or references else [])
 
-    def run_plan(self, write=True):
+    def run_plan(self, write=True, extra=()):
         output = io.StringIO()
-        with patch.object(sys, 'argv', ['localize'] + (['--write'] if write else [])), contextlib.redirect_stdout(output):
+        argv = ['localize', *extra] + (['--write'] if write else [])
+        with patch.object(sys, 'argv', argv), contextlib.redirect_stdout(output):
             self.assertEqual(local.main(), 0)
         return output.getvalue()
 
@@ -192,6 +196,87 @@ class LocalizationTests(unittest.TestCase):
         path.write_bytes(b)
         self.assertIn('bias <- build/obj/auto_data.o', self.run_plan())
         self.unchanged()
+
+    def test_both_biases_are_recognized_and_other_bytes_are_not(self):
+        path = self.split / 'kind.o'
+        for payload, kind in ((bytes.fromhex('4330000000000000'), 'unsigned'),
+                              (bytes.fromhex('4330000080000000'), 'signed')):
+            self.make(path, defines=True, payload=payload)
+            self.assertEqual(local.lu.conversion_pool_kind(path, 'bias'), kind)
+        self.make(path, defines=True, payload=b'constant')
+        self.assertIsNone(local.lu.conversion_pool_kind(path, 'bias'))
+        self.assertIsNone(local.lu.conversion_pool_kind(path, 'missing'))
+
+    def test_unreferenced_bias_is_labeled_and_localized(self):
+        signed = bytes.fromhex('4330000080000000')
+        self.original_symbols = 'bias = .rodata:0x1000; // type:object size:0x8 align:8 data:double\n'
+        self.symbols.write_text(self.original_symbols)
+        self.make(self.split / 'owner.o', defines=True, payload=signed)
+        self.make(self.compiled / 'owner.o', payload=signed)
+        out = self.run_plan(extra=['--pools-only'])
+        self.assertIn('compiler-generated conversion pool: signed', out)
+        self.assertIn('1 units / 1 conversion-pool constants localizable', out)
+        self.assertIn('scope:local', self.symbols.read_text())
+
+    def test_referenced_bias_is_recognized_and_not_localized(self):
+        unsigned = bytes.fromhex('4330000000000000')
+        self.original_symbols = 'bias = .rodata:0x1000; // type:object size:0x8 align:8 data:double\n'
+        self.symbols.write_text(self.original_symbols)
+        self.make(self.split / 'owner.o', defines=True, payload=unsigned)
+        self.make(self.compiled / 'owner.o', payload=unsigned)
+        self.make(self.split / 'auto_data.o', references=True, payload=unsigned)
+        out = self.run_plan(extra=['--pools-only'])
+        self.assertIn('compiler-generated conversion pool: unsigned', out)
+        self.assertIn('bias [compiler-generated conversion pool: unsigned] <- build/obj/auto_data.o', out)
+        self.assertIn('0 units / 0 conversion-pool constants localizable', out)
+        self.unchanged()
+
+    def test_unreferenced_bias_is_localized_when_a_sibling_symbol_is_referenced(self):
+        signed = bytes.fromhex('4330000080000000')
+        payload = signed + b'xxxx'
+        self.units[0]['sections'][0]['size'] = 12
+        self.write_census()
+        self.original_symbols = (
+            'bias = .rodata:0x1000; // type:object size:0x8 align:8 data:double\n'
+            'other = .rodata:0x1008; // type:object size:0x4\n')
+        self.symbols.write_text(self.original_symbols)
+        self.blocked.write_text(json.dumps({'owner.cpp': ['missing bias', 'missing other']}))
+        elf(self.split / 'owner.o', [('.rodata', payload, 8, 1)],
+            [('bias', 1, 0, 8, 1), ('other', 1, 8, 4, 1)])
+        elf(self.compiled / 'owner.o', [('.rodata', payload, 8, 1)],
+            [('other', 0, 0, 0, 1)])
+        out = self.run_plan()
+        self.assertIn('compiler-generated conversion pool: signed', out)
+        self.assertIn('other <- build/src/owner.o', out)
+        text = self.symbols.read_text()
+        self.assertIn('bias = .rodata:0x1000; // type:object size:0x8 align:8 data:double scope:local\n', text)
+        self.assertEqual(text.splitlines()[1], 'other = .rodata:0x1008; // type:object size:0x4')
+
+    def test_pools_only_leaves_an_ordinary_unreferenced_symbol(self):
+        out = self.run_plan(extra=['--pools-only'])
+        self.assertIn('0 units / 0 conversion-pool constants localizable', out)
+        self.unchanged()
+
+    def test_inventory_size_must_agree_before_a_bias_is_labeled(self):
+        signed = bytes.fromhex('4330000080000000')
+        self.original_symbols = 'bias = .rodata:0x1000; // type:object size:0x10\n'
+        self.symbols.write_text(self.original_symbols)
+        self.make(self.split / 'owner.o', defines=True, payload=signed)
+        self.make(self.compiled / 'owner.o', payload=signed)
+        out = self.run_plan(extra=['--pools-only'])
+        self.assertNotIn('compiler-generated conversion pool', out)
+        self.assertIn('0 units / 0 conversion-pool constants localizable', out)
+        self.unchanged()
+
+    def test_sixteen_byte_object_is_not_a_conversion_pool_constant(self):
+        payload = bytes.fromhex('4330000080000000') * 2
+        self.units[0]['sections'][0]['size'] = 16
+        self.write_census()
+        self.make(self.split / 'owner.o', defines=True, payload=payload)
+        self.make(self.compiled / 'owner.o', payload=payload)
+        out = self.run_plan()
+        self.assertNotIn('compiler-generated conversion pool', out)
+        self.assertIn('scope:local', self.symbols.read_text())
 
 
 class StrictElfTests(unittest.TestCase):
