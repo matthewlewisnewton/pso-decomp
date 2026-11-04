@@ -138,16 +138,16 @@ s16 TLobby__sub_80423064(s16 iface, s32 mode);
 extern s16 lbl_805D7B08;
 extern u8 TLobby__sub_80423298[];
 extern s32 lbl_805D7B14;
-extern s16 lbl_805D7B18;
+extern s16 dhcp_socket;
 void TLobby__sub_80424CA8(void);
 extern u8 lbl_805CF240[];
 s32 TLobby__sub_804251C0(s16, void *);
-extern s32 lbl_805D4820;
+extern s32 dhcp_state;
 extern volatile s32 lbl_805D7BA0;
 
 extern G_804249F0 lbl_805C1E00;
 extern s32 lbl_805D7B0C;
-extern s32 lbl_805D7B10;
+extern s32 dhcp_reply_received;
 extern u8 lbl_805D7B1C[6];
 extern u32 lbl_805D7B28;
 extern u8 lbl_805D7B4C[4];
@@ -173,15 +173,15 @@ extern s32 lbl_805D7B58;
 extern s32 lbl_805D7B74;
 
 s32 TLobby::get_task_count() {
-    return lbl_805D4820;
+    return dhcp_state;
 }
 
 s32 TLobby__sub_80425288(s16, s16, void *);
-extern u32 lbl_805D7B64;
-extern u32 lbl_805D7B68;
-extern u32 lbl_805D7B6C;
-extern u32 lbl_805D7B78;
-extern u32 lbl_805D7B7C;
+extern u32 dhcp_lease_time;
+extern u32 dhcp_renewal_time;
+extern u32 dhcp_rebinding_time;
+extern u32 dhcp_lease_start;
+extern u32 dhcp_lease_expiry;
 
 void TLobby::parse_dhcp_lease_times() {
     u8 *arg0 = (u8 *)this;
@@ -194,15 +194,15 @@ void TLobby::parse_dhcp_lease_times() {
         NetMemcpy(&v, p, 4);
         w = v;
         TLobby__sub_80425288(7, 4, &w);
-        TLobby::get_time_seconds((s32 *)&lbl_805D7B78);
-        lbl_805D7B7C = lbl_805D7B78 + lbl_805D7B64;
+        TLobby::get_time_seconds((s32 *)&dhcp_lease_start);
+        dhcp_lease_expiry = dhcp_lease_start + dhcp_lease_time;
         if (find_dhcp_option__6TLobbyFPvUcPv(arg0, 0x3A, &p) == 4) {
             NetMemcpy(&v, p, 4);
             w = v;
             TLobby__sub_80425288(8, 4, &w);
         } else {
             TLobby__sub_80425288(8, 0, NULL);
-            lbl_805D7B68 = lbl_805D7B64 >> 1;
+            dhcp_renewal_time = dhcp_lease_time >> 1;
         }
         if (find_dhcp_option__6TLobbyFPvUcPv(arg0, 0x3B, &p) == 4) {
             NetMemcpy(&v, p, 4);
@@ -210,17 +210,17 @@ void TLobby::parse_dhcp_lease_times() {
             TLobby__sub_80425288(9, 4, &w);
         } else {
             TLobby__sub_80425288(9, 0, NULL);
-            lbl_805D7B6C = (lbl_805D7B64 >> 1) + (lbl_805D7B64 >> 2) + (lbl_805D7B64 >> 3);
+            dhcp_rebinding_time = (dhcp_lease_time >> 1) + (dhcp_lease_time >> 2) + (dhcp_lease_time >> 3);
         }
     } else {
         TLobby__sub_80425288(7, 0, NULL);
-        lbl_805D7B64 = -1;
+        dhcp_lease_time = -1;
     }
 }
 
 s32 TLobby__sub_8042474C(void *lease, void *renew, void *rebind) {
     lbl_805D7BA0 = 0;
-    if ((*(volatile s32 *)&lbl_805D4820) == 3 || (*(volatile s32 *)&lbl_805D4820) == 4 || (*(volatile s32 *)&lbl_805D4820) == 5) {
+    if ((*(volatile s32 *)&dhcp_state) == 3 || (*(volatile s32 *)&dhcp_state) == 4 || (*(volatile s32 *)&dhcp_state) == 5) {
         if (TLobby__sub_804251C0(7, lease) != 0) {
             lbl_805D7BA0 = 0x11;
         }
@@ -262,7 +262,7 @@ u8 find_dhcp_option__6TLobbyFPvUcPv(u8 *p, u8 tag, u8 **out) {
 
 s32 TLobby__sub_8042489C(void *, void *out) {
     lbl_805D7BA0 = 0;
-    if ((*(volatile s32 *)&lbl_805D4820) != 3 && (*(volatile s32 *)&lbl_805D4820) != 4 && (*(volatile s32 *)&lbl_805D4820) != 5) {
+    if ((*(volatile s32 *)&dhcp_state) != 3 && (*(volatile s32 *)&dhcp_state) != 4 && (*(volatile s32 *)&dhcp_state) != 5) {
         lbl_805D7BA0 = 2;
         return -1;
     }
@@ -274,7 +274,7 @@ s32 TLobby__sub_8042489C(void *, void *out) {
 
 s32 TLobby::validate_slot_buffers(s32 arg0, void *arg1, void *arg2, void *arg3) {
     lbl_805D7BA0 = 0;
-    if ((*(volatile s32 *)&lbl_805D4820) != 3 && (*(volatile s32 *)&lbl_805D4820) != 4 && (*(volatile s32 *)&lbl_805D4820) != 5) {
+    if ((*(volatile s32 *)&dhcp_state) != 3 && (*(volatile s32 *)&dhcp_state) != 4 && (*(volatile s32 *)&dhcp_state) != 5) {
         lbl_805D7BA0 = 2;
         return -1;
     }
@@ -320,35 +320,35 @@ s32 dhcp_handle_reply__6TLobbyFsPv(s16 arg0, Arg_804249F0 *arg1) {
     if (lbl_805D7B0C != 2) {
         return 0;
     }
-    switch (lbl_805D4820) {
+    switch (dhcp_state) {
     case 3:
         break;
     case 1:
-        if (lbl_805D7B10 == 0 && find_dhcp_option__6TLobbyFPvUcPv(q, 0x35, &p) == 1 && *p == 2 &&
+        if (dhcp_reply_received == 0 && find_dhcp_option__6TLobbyFPvUcPv(q, 0x35, &p) == 1 && *p == 2 &&
             find_dhcp_option__6TLobbyFPvUcPv(q, 0x36, &p) == 4) {
             TLobby__sub_80425288(0xE, 4, p);
             lbl_805D7B28 = pk->f10;
-            lbl_805D7B10 = 1;
+            dhcp_reply_received = 1;
         }
         break;
     case 2:
-        if (lbl_805D7B10 == 0 && find_dhcp_option__6TLobbyFPvUcPv(q, 0x35, &p) == 1 && *p == 5) {
+        if (dhcp_reply_received == 0 && find_dhcp_option__6TLobbyFPvUcPv(q, 0x35, &p) == 1 && *p == 5) {
             NetMemcpy(g->buf, pk, arg1->len);
-            lbl_805D7B10 = 1;
+            dhcp_reply_received = 1;
         }
         break;
     case 4:
-        if (lbl_805D7B10 == 0 && find_dhcp_option__6TLobbyFPvUcPv(q, 0x35, &p) == 1 && *p == 5 &&
+        if (dhcp_reply_received == 0 && find_dhcp_option__6TLobbyFPvUcPv(q, 0x35, &p) == 1 && *p == 5 &&
             lbl_805D7B28 == pk->f10) {
             NetMemcpy(g->buf, pk, arg1->len);
-            lbl_805D7B10 = 1;
+            dhcp_reply_received = 1;
         }
         break;
     case 5:
-        if (lbl_805D7B10 == 0 && find_dhcp_option__6TLobbyFPvUcPv(q, 0x35, &p) == 1 && *p == 5 &&
+        if (dhcp_reply_received == 0 && find_dhcp_option__6TLobbyFPvUcPv(q, 0x35, &p) == 1 && *p == 5 &&
             lbl_805D7B28 == pk->f10) {
             NetMemcpy(g->buf, pk, arg1->len);
-            lbl_805D7B10 = 1;
+            dhcp_reply_received = 1;
         }
         break;
     }
@@ -358,21 +358,21 @@ s32 dhcp_handle_reply__6TLobbyFsPv(s16 arg0, Arg_804249F0 *arg1) {
 
 void TLobby__sub_80424CA8(void) {
     NetUnregisterTimer(TLobby__sub_80423298);
-    if (lbl_805D7B18 != -1) {
-        TLobby__sub_80421B3C(lbl_805D7B18);
-        lbl_805D7B18 = -1;
+    if (dhcp_socket != -1) {
+        TLobby__sub_80421B3C(dhcp_socket);
+        dhcp_socket = -1;
     }
     lbl_805D7B14 = TLobby__sub_804250A8(0);
 }
 
 s32 TLobby__sub_80424CF4(void *, void *, s32 timeout) {
     s32 state;
-    *(volatile s32 *)&lbl_805D4820 = 6;
+    *(volatile s32 *)&dhcp_state = 6;
     *(volatile s32 *)&lbl_805D7B0C = 0;
     lbl_805D7B74 = timeout;
     lbl_805D7BA0 = 0;
     do {
-        state = *(volatile s32 *)&lbl_805D4820;
+        state = *(volatile s32 *)&dhcp_state;
         TLobby__sub_803F97E8(0x10);
     } while (state == 6);
     if (state != 0) {
@@ -387,7 +387,7 @@ s32 TLobby__sub_80424D58(s16 a0, s32 a1, s32 a2, void *a3, void *a4, void *a5, v
         return -1;
     }
     do {
-        state = lbl_805D4820;
+        state = dhcp_state;
         TLobby__sub_803F97E8(0x10);
     } while (state == 1 || state == 2);
     if (state == -1) {
@@ -401,7 +401,7 @@ s32 TLobby__sub_80424D58(s16 a0, s32 a1, s32 a2, void *a3, void *a4, void *a5, v
 
 s32 TLobby__sub_80424DCC(s16, s32 a1, s32 a2, void *, void *a4, void *a5, void *a6, s32 a7) {
     lbl_805D7BA0 = 0;
-    if (*(volatile s32 *)&lbl_805D4820 != 0) {
+    if (*(volatile s32 *)&dhcp_state != 0) {
         lbl_805D7BA0 = 2;
         return -1;
     }
@@ -415,7 +415,7 @@ s32 TLobby__sub_80424DCC(s16, s32 a1, s32 a2, void *, void *a4, void *a5, void *
     lbl_805D7B54 = a1;
     lbl_805D7B58 = a2;
     lbl_805D7B74 = a7;
-    *(volatile s32 *)&lbl_805D4820 = 1;
+    *(volatile s32 *)&dhcp_state = 1;
     *(volatile s32 *)&lbl_805D7B0C = 0;
     return 0;
 }
@@ -423,19 +423,19 @@ s32 TLobby__sub_80424DCC(s16, s32 a1, s32 a2, void *, void *a4, void *a5, void *
 s32 TLobby__sub_80424FE0(void) {
     s32 addr[7];
     u8 unused[4];
-    if ((*(volatile s32 *)&lbl_805D4820) == 4 || (*(volatile s32 *)&lbl_805D4820) == 5 || (*(volatile s32 *)&lbl_805D4820) == 6) {
-        if (lbl_805D7B18 > -1) {
-            TLobby__sub_80421B3C(lbl_805D7B18);
+    if ((*(volatile s32 *)&dhcp_state) == 4 || (*(volatile s32 *)&dhcp_state) == 5 || (*(volatile s32 *)&dhcp_state) == 6) {
+        if (dhcp_socket > -1) {
+            TLobby__sub_80421B3C(dhcp_socket);
         }
         addr[0] = 4;
         addr[1] = 0;
-        if ((lbl_805D7B18 = TUdpSocket__sub_80421DEC(0, 0x44, addr, 0x43, 0, dhcp_handle_reply__6TLobbyFsPv)) < 0) {
-            if (*(volatile s32 *)&lbl_805D4820 == 6) {
+        if ((dhcp_socket = TUdpSocket__sub_80421DEC(0, 0x44, addr, 0x43, 0, dhcp_handle_reply__6TLobbyFsPv)) < 0) {
+            if (*(volatile s32 *)&dhcp_state == 6) {
                 lbl_805D7B14 = TLobby__sub_804250A8(0);
             }
             lbl_805D7BA0 = 4;
             *(volatile s32 *)&lbl_805D7B0C = -1;
-            *(volatile s32 *)&lbl_805D4820 = -2;
+            *(volatile s32 *)&dhcp_state = -2;
             return -1;
         }
     }
@@ -481,7 +481,7 @@ s32 TLobby__sub_804250A8(s32 mode) {
                 if (request_iface_mode4(lbl_805D7B08) != 0) {
                     lbl_805D7BA0 = 3;
                     *(volatile s32 *)&lbl_805D7B0C = -1;
-                    *(volatile s32 *)&lbl_805D4820 = -2;
+                    *(volatile s32 *)&dhcp_state = -2;
                     return 0;
                 }
             }
