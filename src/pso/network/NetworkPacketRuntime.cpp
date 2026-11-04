@@ -1,4 +1,5 @@
 #include "pso/protocol/NetworkRuntime.h"
+#include "pso/network/NetworkDispatch.h"
 #include "pso/network/NetworkPacketPool.h"
 #include <stddef.h>
 #include "pso/network/NetworkTransport.h"
@@ -129,7 +130,6 @@ typedef struct Tbl_804267F0 {
 
 s16 TLobby__sub_804262CC(void *);
 u8 find_dhcp_option__6TLobbyFPvUcPv(u8 *p, u8 tag, u8 **out);
-void NetUnregisterTimer(void *);
 s32 TLobby__sub_80421B3C(s32);
 s32 TLobby__sub_804250A8(s32);
 s16 TLobby__sub_80422F70(s16 iface, void *buf, s32 len, void *out);
@@ -361,7 +361,7 @@ s32 dhcp_handle_reply__6TLobbyFsPv(s16 arg0, Arg_804249F0 *arg1) {
 #pragma pop
 
 void TLobby__sub_80424CA8(void) {
-    NetUnregisterTimer((void *)TLobby__sub_80423298);
+    NetUnregisterTimer(TLobby__sub_80423298);
     if (lbl_805D7B18 != -1) {
         TLobby__sub_80421B3C(lbl_805D7B18);
         lbl_805D7B18 = -1;
@@ -423,8 +423,6 @@ s32 TLobby__sub_80424DCC(s16, s32 a1, s32 a2, void *, void *a4, void *a5, void *
     *(volatile s32 *)&lbl_805D7B0C = 0;
     return 0;
 }
-
-extern "C" s32 NetRegisterTimer(s32 period, s16 locked, void (*fn)(void));
 
 static inline void dhcp_reset_state(s16 iface) {
     u32 i;

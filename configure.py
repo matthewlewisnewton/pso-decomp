@@ -434,6 +434,8 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # other function in this unit unchanged, including resolve_actor_sphere_contact's
     # (x*x)+(z*z) as fmuls+fadds. resolve_player_box_contact's fmadds at
     # 0x8015532C and 0x8015533C already come from that function's pragma.
+    # Precedent: dtk-template's GC/Wii base flags use -fp_contract on
+    # (https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209).
     "pso/player/TObjPlayer_801542CC.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
     # Upstream #183: the Falz plot table TU is built with deferred inlining
     # (its state actions come out in reverse table order).

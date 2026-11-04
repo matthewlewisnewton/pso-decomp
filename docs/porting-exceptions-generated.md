@@ -197,7 +197,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 
 | Unit | Override | Recorded reason (configure.py comment) |
 |---|---|---|
-| `pso/player/TObjPlayer_801542CC.cpp` | `-fp_contract on` | TObjPlayer__sub_8015434C fuses offset*sin+pos (fmadds at 0x80154408) and offset*cos+pos (fmadds at 0x8015442C). The same flag leaves every other function in this unit unchanged, including resolve_actor_sphere_contact's (x*x)+(z*z) as fmuls+fadds. resolve_player_box_contact's fmadds at 0x8015532C and 0x8015533C already come from that function's pragma. |
+| `pso/player/TObjPlayer_801542CC.cpp` | `-fp_contract on` | TObjPlayer__sub_8015434C fuses offset*sin+pos (fmadds at 0x80154408) and offset*cos+pos (fmadds at 0x8015442C). The same flag leaves every other function in this unit unchanged, including resolve_actor_sphere_contact's (x*x)+(z*z) as fmuls+fadds. resolve_player_box_contact's fmadds at 0x8015532C and 0x8015533C already come from that function's pragma. Precedent: dtk-template's GC/Wii base flags use -fp_contract on (https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209). |
 | `pso/boss/TBoss6PlotFalz_802B0228.cpp` | `-inline off,deferred, -str reuse,readonly` | Upstream #183: the Falz plot table TU is built with deferred inlining (its state actions come out in reverse table order). |
 | `pso/boss/TBoss6EmptyWarp_802B0E2C.cpp` | `-str reuse,readonly` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/pso_date.cpp` | `GC/1.3.2` | Calendar month/day stores retain GC/1.3.2 scheduling; see calendar-conversion-evidence.md. |
