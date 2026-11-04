@@ -16,9 +16,11 @@ struct TOTrapAncient01 : public TOTrap {
     virtual void vfunc_6(s16 *, s32);
     virtual f32 receive_physical_attack(void *, f32);
     virtual void render();
-    u32 m_344;
-    u32 m_348;
-    u8 _pad34C[0xC];
+    s32 m_344;
+    f32 m_348;
+    f32 m_34C;
+    f32 m_350;
+    f32 m_354;
     RenderFadeState fades[4];
     void release_trapped_player();
     void *create();
@@ -30,7 +32,7 @@ struct TOTrapAncient01 : public TOTrap {
 typedef char TOTrapAncient01_size[sizeof(TOTrapAncient01) == 0x3C8 ? 1 : -1];
 
 extern "C" {
-void *TOTrapAncient01__ct(void *arg0, void *arg1, void *arg2);
+TOTrapAncient01 *TOTrapAncient01__ct(TOTrapAncient01 *self, void *parent, void *creator);
 }
 
 #endif

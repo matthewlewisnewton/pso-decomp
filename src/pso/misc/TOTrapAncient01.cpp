@@ -33,8 +33,6 @@ struct Obj_8017A1A4 { u8 pad[0xa4]; E_8017A1A4 *arr; };
 
 struct Self_80179EC0 { u8 pad[0x18]; s32 *vt; u8 pad1c[0x358 - 0x1C]; u8 arr[4][0x1C]; };
 
-struct Self_80179F40 { u8 pad[0x358]; u8 arr[4][0x1C]; };
-
 struct VBase_801797D4 { char pad[0x18]; };
 
 struct VObj_801797D4 : VBase_801797D4 {
@@ -152,7 +150,6 @@ s32 check_player_flag1__6TLobbyFv();
 extern s32 local_client_id;
 s32 TObjFish__sub_8001EDB0(void *, s32);
 s32 get_bml_model(void *, s32);
-#pragma readonly_strings on
 const char *bm_o_trap_ancient01_model_names[] = {
     "fe_obj_o_turigane_hahen01.gj", "fe_obj_o_turigane_hahen02.gj",
     "fe_obj_o_turigane_hahen03.gj", "fs_obj_o_turigane.gj", NULL
@@ -167,7 +164,6 @@ CollisionBody lbl_804B4844 = {
     {0.0f, 0.0f, 0.0f}, 0.0f
 };
 const char *TOTrapAncient01__class_name = "TOTrapAncient01";
-#pragma readonly_strings reset
 // The original symbol reserves eight bytes; only the first word is accessed here.
 struct AncientTrapResourceSlot { u32 value; u8 reserved[4]; };
 AncientTrapResourceSlot TOTrapAncient01__bml_resource;
@@ -215,7 +211,7 @@ extern const f32 lbl_805DBA60;
 extern const f32 lbl_805DBA64;
 extern const f32 lbl_805DBA68;
 void render__15TOTrapAncient01Fv(Trap_80179B8C *self);
-void fn_80141CF0(void *, void *, void *);
+void fn_80141CF0(const Vec *pos, Vec *scale, void *color);
 void TOTrapAncient02R__sub_80154D78(void *);
 void *__nw__7TObjectFUl(int);
 s32 is_current_room(void *);
@@ -231,7 +227,7 @@ void TOTrapAncient02R::vfunc_86() {
     s32 x;
     x = is_current_room(this);
     if (x == 1) {
-        fn_80141CF0((void *)((char *)this + 80), (&scratch_vec.vector), trap_ancient_light_color);
+        fn_80141CF0(&this->home_position, &scratch_vec.vector, trap_ancient_light_color);
         TOTrapAncient02R__sub_80154D78(this);
     }
 }
@@ -240,61 +236,58 @@ f32 TObjPlayer__sub_8017A1A4(Obj_8017A1A4 *self, s32 i) {
     return self->arr[i].f;
 }
 
-#pragma push
-#pragma fp_contract on
-#define self ((u8 *)arg0)
-void *TOTrapAncient01__ct(void *arg0, void *arg1, void *arg2) {
+// The original exports this constructor under the C name TOTrapAncient01__ct,
+// so it is not a C++ ctor the compiler can set the vtable pointer for.
+TOTrapAncient01 *TOTrapAncient01__ct(TOTrapAncient01 *self, void *parent, void *creator) {
     s32 i;
-    TOTrap__ct(arg0, arg1, arg2);
+    TOTrap__ct(self, parent, creator);
     *(s32 **)((s8 *)self + 0x18) = __vt__15TOTrapAncient01;
-    __construct_array(self + 0x358, (void *)__ct__15RenderFadeStateFv, (void *)__dt__15RenderFadeStateFv, 0x1C, 4);
-    *(const char **)((s8 *)self + 0) = TOTrapAncient01__class_name;
-    ((TOTrapAncient01 *)arg0)->apply_object_set_data((void *)((s32)arg2));
-    ((TObjChara *)arg0)->initialize_position_copies();
-    ((TObjChara *)arg0)->calc_attach_pos();
-    *(s32 *)((s8 *)self + 0x34) = get_bml_model((void *)TOTrapAncient01__bml_resource.value, 3);
-    *(s32 *)((s8 *)self + 0x24) = TObjFish__sub_8001EDB0((void *)TOTrapAncient01__bml_resource.value, 3);
-    *(s16 *)((s8 *)self + 0x326) = 0;
-    *(f32 *)((s8 *)self + 0x334) = 0.5f * *(f32 *)((s8 *)self + 0x68) + 30.0f;
-    if (*(f32 *)((s8 *)self + 0x6C) < 0.0f) {
-        *(f32 *)((s8 *)self + 0x6C) = 0.0f;
+    __construct_array(self->fades, (void *)__ct__15RenderFadeStateFv, (void *)__dt__15RenderFadeStateFv, sizeof(RenderFadeState), 4);
+    self->m_name = TOTrapAncient01__class_name;
+    self->apply_object_set_data((void *)((s32)creator));
+    self->initialize_position_copies();
+    self->calc_attach_pos();
+    self->model = (void *)get_bml_model((void *)TOTrapAncient01__bml_resource.value, 3);
+    self->texlist = TObjFish__sub_8001EDB0((void *)TOTrapAncient01__bml_resource.value, 3);
+    self->mode = 0;
+    self->range = 0.5f * self->scale.x + 30.0f;
+    if (self->scale.y < 0.0f) {
+        self->scale.y = 0.0f;
     }
-    if (*(f32 *)((s8 *)self + 0x70) < 1.0f) {
-        *(f32 *)((s8 *)self + 0x70) = 1.0f;
+    if (self->scale.z < 1.0f) {
+        self->scale.z = 1.0f;
     }
-    *(f32 *)((s8 *)self + 0x34C) = -*(f32 *)((s8 *)self + 0x6C) / *(f32 *)((s8 *)self + 0x70);
-    *(f32 *)((s8 *)self + 0x350) = 30.0f + (f32)*(s32 *)((s8 *)self + 0x8C);
+    self->m_34C = -self->scale.y / self->scale.z;
+    self->m_350 = 30.0f + (f32)self->set_params[2];
     if (get_main_phase() == 0xE) {
-        *(f32 *)((s8 *)self + 0x350) *= lbl_805DBA74;
+        self->m_350 *= lbl_805DBA74;
     }
-    if (*(f32 *)((s8 *)self + 0x350) < 0.0f) {
-        *(f32 *)((s8 *)self + 0x350) = 0.0f;
+    if (self->m_350 < 0.0f) {
+        self->m_350 = 0.0f;
     }
-    *(f32 *)((s8 *)self + 0x354) = *(f32 *)((s8 *)self + 0x350);
-    if (*(s32 *)((s8 *)self + 0x84) < 0) {
-        *(s32 *)((s8 *)self + 0x84) = 0;
+    self->m_354 = self->m_350;
+    if (self->set_params[0] < 0) {
+        self->set_params[0] = 0;
     }
-    *(f32 *)((s8 *)self + 0x348) = ((TOTrapAncient01 *)arg0)->vfunc_87((f32)*(s32 *)((s8 *)self + 0x84));
-    if (*(s32 *)((s8 *)self + 0x88) < 0) {
-        *(s32 *)((s8 *)self + 0x88) = 0;
-    } else if (*(s32 *)((s8 *)self + 0x88) > 5) {
-        *(s32 *)((s8 *)self + 0x88) = 5;
+    self->m_348 = self->vfunc_87((f32)self->set_params[0]);
+    if (self->set_params[1] < 0) {
+        self->set_params[1] = 0;
+    } else if (self->set_params[1] > 5) {
+        self->set_params[1] = 5;
     }
-    *(s32 *)((s8 *)self + 0x344) = *(s32 *)((s8 *)self + 0x88);
-    *(f32 *)((s8 *)self + 0x338) = 15.0f;
-    *(u16 *)((s8 *)self + 0x33C) = 0xFFFF;
-    init_collision_body_parts(arg0, &lbl_804B4844, 1);
-    ((TObjCollidable *)arg0)->refresh_collision_body_centers();
-    *(u32 *)((s8 *)self + 0x30) |= 0x60040000;
-    ((TObjChara *)arg0)->get_or_assign_entity_id(0);
-    ((TObjPlayer *)arg0)->register_object_by_id();
+    self->m_344 = self->set_params[1];
+    self->dist = 15.0f;
+    self->player = 0xFFFF;
+    init_collision_body_parts(self, &lbl_804B4844, 1);
+    self->refresh_collision_body_centers();
+    self->actorFlags |= 0x60040000;
+    self->get_or_assign_entity_id(0);
+    self->register_object_by_id();
     for (i = 0; i < 4; i++) {
-        ((RenderFadeState *)(((Self_80179F40 *)arg0)->arr[i]))->activate_and_dispatch();
+        self->fades[i].activate_and_dispatch();
     }
-    return arg0;
+    return self;
 }
-#undef self
-#pragma pop
 
 TOTrapAncient01::~TOTrapAncient01() {
     unregister_object_by_id();
@@ -314,16 +307,13 @@ void TOTrapAncient01::release_static_resource() {
 }
 
 void *TOTrapAncient01::create() {
-    void *o = __nw__7TObjectFUl(0x3C8);
+    TOTrapAncient01 *o = (TOTrapAncient01 *)__nw__7TObjectFUl(0x3C8);
     if (o != NULL) {
         o = TOTrapAncient01__ct(o, tl_05, this);
     }
     return o;
 }
 
-#pragma push
-#pragma opt_lifetimes off
-#pragma fp_contract on
 void render__15TOTrapAncient01Fv(Trap_80179B8C *self) {
     Fade_80179B8C *fade;
     Node_80179B8C *n;
@@ -375,11 +365,9 @@ void render__15TOTrapAncient01Fv(Trap_80179B8C *self) {
         }
     }
 }
-#pragma pop
 
-// The offsets 0x326 and 0x34c remain provisional.
 void TOTrapAncient01::vfunc_81() {
-    f32 &step = *(f32 *)((u8 *)this + 0x34c);
+    f32 &step = this->m_34C;
     scale.y += step;
     if (!(0.0f < scale.y)) {
         goto grounded;
@@ -402,7 +390,7 @@ void TOTrapAncient01::vfunc_81() {
 // a branch thunk and changes the compiler-generated jump-table relocations.
 grounded:
     {
-        *(s16 *)((u8 *)this + 0x326) = 3;
+        this->mode = 3;
         scale.y = 0.0f;
         calc_attach_pos();
         clear_player_status_flag(0, 0x08001f04);
@@ -485,11 +473,11 @@ void TOTrapAncient01::vfunc_82() {
     case AREA_RUINS1:
     case AREA_RUINS2:
     case AREA_RUINS3:
-        play_persistent_sound((s32)(0x4004C618), (const void *)(((Trap_801797D4 *)this)), (const Vec *)((u8 *)((Trap_801797D4 *)this) + 0x38), 0, 0);
+        play_persistent_sound((s32)(0x4004C618), (const void *)(((Trap_801797D4 *)this)), &this->position, 0, 0);
         break;
     case AREA_VR_SPACESHIP_ALPHA:
     case AREA_VR_SPACESHIP_BETA:
-        play_persistent_sound((s32)(0x4004C610), (const void *)(((Trap_801797D4 *)this)), (const Vec *)((u8 *)((Trap_801797D4 *)this) + 0x38), 0, 0);
+        play_persistent_sound((s32)(0x4004C610), (const void *)(((Trap_801797D4 *)this)), &this->position, 0, 0);
         break;
     case AREA_PIONEER2_EP1:
         return;
@@ -537,9 +525,6 @@ f32 TOTrapAncient01::receive_physical_attack(void *arg1, f32 farg0) {
     return TOTrap::receive_physical_attack(arg1, farg0);
 }
 
-#pragma push
-#pragma pool_data off
-#pragma opt_lifetimes off
 void TOTrapAncient01::play_sounds() {
     TrapChipParams a = {
         {0.5f, 0.03f, 0.15f}, {0.0f, 0.0f, 0.0f},
@@ -610,7 +595,6 @@ void TOTrapAncient01::play_sounds() {
     }
     play_sound_effect(0x4004bc12, &position, 0, 0);
 }
-#pragma pop
 
 void TOTrapAncient01::release_trapped_player() {
     s32 temp_r3;
