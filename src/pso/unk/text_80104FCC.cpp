@@ -6,6 +6,9 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/map/FloorArea.h"
 #include "pso/unk/text_8011A780.h"
+#include "pso/misc/TWindowSubStatusDisp.h"
+#include "pso/player/PlayerRequirementStats.h"
+#include "pso/TItemMenuCtrl.h"
 
 struct Blk_8010542C { u32 w[4]; };
 struct Item_8010542C { u32 a; Blk_8010542C b; };
@@ -75,6 +78,9 @@ struct Obj_80105538 {
 };
 
 extern "C" {
+int is_quest_active(void);
+u8 get_technique_learn_limit(s8, u8);
+extern u32 jumptable_8049EEFC[];
 typedef s32 (*Fn_8010542C)(void *);
 extern Fn_8010542C item_create_fn_table[];
 struct In_801054E0 { u8 pad0; u8 idx; };
@@ -98,6 +104,146 @@ extern "C" {
 void send_6x60_standard_drop_item_request(Obj_80105538 *self);
 int roll_weapon_special_channel15(void* p);
 int roll_weapon_special_for_stars(void*);
+
+s32 check_equip_requirements(void *player, void *item, s32 *requirement) {
+    TObjPlayer *pl;
+    u8 *it;
+    u8 *rec;
+    s32 flags;
+    u8 type;
+    PlayerRequirementStats stats;
+    s32 level;
+    u8 learn_limit;
+    s16 disk_perm;
+
+    pl = (TObjPlayer *)player;
+    it = (u8 *)item;
+    if (pl == NULL || it == NULL) {
+        if (requirement != NULL) {
+            *requirement |= 0x20;
+        }
+        return 0;
+    }
+    if (((TObjChara *)pl)->obj_isState3_324() != 0 || pl->is_script_controlled() != 0) {
+        if (requirement != NULL) {
+            *requirement = 0;
+        }
+        return 1;
+    }
+    if (is_quest_active() != 0) {
+        s32 qflag;
+        u8 subtype;
+
+        qflag = 0;
+        type = it[0];
+        if (type == 1) {
+            subtype = it[1];
+            if (subtype == 2) {
+                qflag = 3;
+            } else if (subtype >= 2) {
+                if (subtype < 4) {
+                    qflag = 4;
+                }
+            } else if (subtype >= 1) {
+                qflag = 2;
+            }
+        } else if (type < 1) {
+            if (type >= 0) {
+                qflag = 1;
+            }
+        } else if (type < 3) {
+            qflag = 5;
+        }
+        if (qflag != 0 && TItemMenuCtrl::query_flag(qflag) == 1) {
+            return 0;
+        }
+    }
+    flags = 0;
+    type = it[0];
+    if (type == 2) {
+        rec = (u8 *)lookup_item_pmt_record(it);
+        if (rec == NULL) {
+            flags |= 0x20;
+        } else if (check_class_equip_permission(pl, *(s16 *)(rec + 0x14)) == 0) {
+            flags |= 1;
+        }
+    } else if (type > 2) {
+        if (type == 4) {
+            if (*(s32 *)(it + 0x10) > 0xF0423F) {
+                flags |= 0x20;
+            }
+        }
+    } else if (type == 0) {
+        rec = (u8 *)lookup_item_pmt_record(it);
+        if (rec == NULL) {
+            flags |= 0x20;
+        } else {
+            if (check_class_equip_permission(pl, *(s16 *)(rec + 0x8)) == 0) {
+                flags |= 1;
+            }
+            ((TWindowSubStatusDisp *)&stats)->clear_fields();
+            build_player_equipment_requirement_stats(pl, &stats);
+            if (stats.values[4] < (s16) * (u16 *)(rec + 0xE)) {
+                flags |= 2;
+            }
+            if (stats.values[7] < (s16) * (u16 *)(rec + 0x12)) {
+                flags |= 4;
+            }
+            if (stats.values[6] < (s16) * (u16 *)(rec + 0x10)) {
+                flags |= 8;
+            }
+        }
+    } else if (type >= 1) {
+        if (type == 1) {
+            if (it[1] == 3) {
+                if (check_class_equip_permission(pl, 0xD7) != 0) {
+                    rec = (u8 *)lookup_item_pmt_record(it);
+                    if (rec == NULL) {
+                        flags |= 0x20;
+                    } else {
+                        disk_perm = *(s16 *)(rec + 0x8);
+                        if (disk_perm <= 0x15) {
+                            if (jumptable_8049EEFC[disk_perm] == 0x80105250U) {
+                                flags |= 1;
+                            }
+                        }
+                    }
+                }
+            } else {
+                rec = (u8 *)lookup_item_pmt_record(it);
+                if (rec == NULL) {
+                    flags |= 0x20;
+                } else {
+                    if (check_class_equip_permission(pl, *(s16 *)(rec + 0xE)) == 0) {
+                        flags |= 1;
+                    }
+                    level = pl->get_actor_level_index();
+                    if (level < rec[0x10]) {
+                        flags |= 0x10;
+                    }
+                }
+            }
+        } else if (type == 3) {
+            if (it[1] == 8) {
+                if (check_class_equip_permission(pl, 0xD7) != 0) {
+                    flags |= 1;
+                }
+            } else if (it[1] == 2) {
+                learn_limit = get_technique_learn_limit((s8)pl->m_88d, it[4]);
+                if (learn_limit == 0xFF || learn_limit < it[2]) {
+                    flags |= 1;
+                }
+            }
+        }
+    }
+    if (requirement != NULL) {
+        *requirement = flags;
+    }
+    if (flags != 0) {
+        return 0;
+    }
+    return 1;
+}
 
 int check_class_equip_permission(TObjPlayer *player, s32 perm) {
     s32 t = player->class_flags;
