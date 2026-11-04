@@ -32,12 +32,6 @@ struct RecoveredGlobal_802B7E88_lbl_80470CEC {
 };
 
 #include <stddef.h>
-struct Stack_802B5140 {
-    f32 sp8;
-    f32 spC;
-    f32 sp10;
-};
-
 struct Boss6AnimBlock { s32 a; s32 b; s32 rest[14]; };
 
 
@@ -213,13 +207,6 @@ void draw_model_blend_motion(void *arg0, void *arg1, f32 farg0);
 
 struct ByteBlock_C_boss6_1 { u8 bytes[0xc]; };
 
-struct Stack_802B7D74_boss6_1
-{
-  f32 sp8;
-  f32 spC;
-  f32 sp10;
-};
-
 #include <stddef.h>
 #include "pso/boss/TBoss3Volopt.h"
 #include "pso/enemy/TObjEneLappy.h"
@@ -251,7 +238,6 @@ f32 vec3_dot(void *, void *);
 void *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags);
 
 
-typedef struct Stack_802B7D74_boss6_1 Stack_802B7D74_boss6_1;
 
 typedef char RecoveredGlobal_802B7E88_lbl_80470CEC_size[sizeof(RecoveredGlobal_802B7E88_lbl_80470CEC) == 0x30 ? 1 : -1];
 
@@ -753,7 +739,7 @@ void TBoss6Type1::vfunc_62() {
     play_sound_effect(0x39E01, &this->node_positions_578[1], 0, 1);
 }
 
-void TBoss6Type1::vfunc_63() { if (*(int *)&this->m_374 != 40) { set_action_state((s32)((void*)40)); } }
+void TBoss6Type1::vfunc_63() { if (this->m_374 != 40) { set_action_state(40); } }
 
 void TBoss6Type1::render_shadows() {
     if (this->position.y >= lbl_805DE3D0) {
@@ -1019,7 +1005,7 @@ s32 TBoss6Type1::calc_field4b0_delta() {
 }
 
 void TBoss6Type1::update_turn_to_center() {
-  Stack_802B7D74_boss6_1 stack;
+  Vec stack;
   s32 var_r5;
   int new_var;
   f32 temp_f1;
@@ -1038,13 +1024,13 @@ void TBoss6Type1::update_turn_to_center() {
   {
     this->rotation.pitch = this->rotation.pitch + 0x666;
   }
-  stack.sp8 = -this->position.x;
+  stack.x = -this->position.x;
   temp_f1 = -this->position.z;
-  stack.spC = 0.0f;
-  stack.sp10 = temp_f1;
-  if (!(vector_length(&stack.sp8) <= 1e-05f))
+  stack.y = 0.0f;
+  stack.z = temp_f1;
+  if (!(vector_length(&stack) <= 1e-05f))
   {
-    var_r4 = (s32) (TBoss6Type1__data_80471038 * atan2_float((f64) stack.sp8, (f64) stack.sp10));
+    var_r4 = (s32) (TBoss6Type1__data_80471038 * atan2_float((f64) stack.x, (f64) stack.z));
     if ((this->m_438) != 0)
     {
       var_r4 += 0x8000;
@@ -1987,10 +1973,7 @@ s32 TBoss6Type1::count_matches(s32 arg1, s32 arg2) {
 }
 
 void TBoss6Type1__sub_802B5140(TBoss6Type1 *arg0, s32 arg1, s32 arg2) {
-    typedef char sp8_offset[(offsetof(Stack_802B5140, sp8) == 0x0) ? 1 : -1];
-    typedef char spC_offset[(offsetof(Stack_802B5140, spC) == 0x4) ? 1 : -1];
-    typedef char sp10_offset[(offsetof(Stack_802B5140, sp10) == 0x8) ? 1 : -1];
-    Stack_802B5140 stack;
+    Vec stack;
     f32 temp_f31;
     f32 var_f30;
     f32 var_f31;
@@ -2007,13 +1990,13 @@ void TBoss6Type1__sub_802B5140(TBoss6Type1 *arg0, s32 arg1, s32 arg2) {
     if (temp_r31 > 0x4000) {
         var_f31 += (1.0f - var_f31) * TBoss6PlotFalz::cosine_ease((var_f30 - 0.6666667f) / 0.3333333f);
     }
-    VecCopy((Vec *)(&stack.sp8), &lbl_80470CE0);
-    subtract_vector(&stack.sp8, &lbl_80470CD4);
-    stack.sp8 *= var_f31;
-    stack.spC *= var_f31;
-    stack.sp10 *= var_f31;
-    vec3_add_to(&stack.sp8, &lbl_80470CD4);
-    VecCopy(&arg0->position, (const Vec *)(&stack.sp8));
+    VecCopy(&stack, &lbl_80470CE0);
+    subtract_vector(&stack, &lbl_80470CD4);
+    stack.x *= var_f31;
+    stack.y *= var_f31;
+    stack.z *= var_f31;
+    vec3_add_to(&stack, &lbl_80470CD4);
+    VecCopy(&arg0->position, &stack);
 }
 void TBoss6Type1::ease_toward_target(s32 a, s32 b) {
     s32 h = b / 2;
@@ -2038,11 +2021,11 @@ void TBoss6Type1::interpolate_pos_to_target(s32 step, s32 total) {
     VecCopy(&v, &this->position);
     v.y = 0.0f;
     r0 = vector_length(&v);
-    a0 = ((const f64 *)&TBoss6Type1__data_80471038)[0] * atan2_float(v.x, v.z);
+    a0 = TBoss6Type1__data_80471038 * atan2_float(v.x, v.z);
     VecCopy(&v, &this->m_420);
     v.y = 0.0f;
     r1 = vector_length(&v);
-    a1 = ((const f64 *)&TBoss6Type1__data_80471038)[0] * atan2_float(v.x, v.z);
+    a1 = TBoss6Type1__data_80471038 * atan2_float(v.x, v.z);
     t = (f32)step / (f32)total;
     if (total <= 10 || t <= 0.1f) {
         k = 1.0f / (f32)step;
