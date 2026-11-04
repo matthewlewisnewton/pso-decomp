@@ -116,6 +116,7 @@ entry when the PR merges.
 | [#250](https://github.com/matthewlewisnewton/pso-decomp/pull/250) | `fp_contract` ×3 | Reason not recorded. |
 | [#303](https://github.com/matthewlewisnewton/pso-decomp/pull/303), [#295](https://github.com/matthewlewisnewton/pso-decomp/pull/295), [#289](https://github.com/matthewlewisnewton/pso-decomp/pull/289), [#272](https://github.com/matthewlewisnewton/pso-decomp/pull/272), [#225](https://github.com/matthewlewisnewton/pso-decomp/pull/225), [#222](https://github.com/matthewlewisnewton/pso-decomp/pull/222), [#215](https://github.com/matthewlewisnewton/pso-decomp/pull/215), [#187](https://github.com/matthewlewisnewton/pso-decomp/pull/187), [#128](https://github.com/matthewlewisnewton/pso-decomp/pull/128) | 1 to 4 inlining/optimization pragmas each | Reason not recorded. Drop in a port. |
 | [#240](https://github.com/matthewlewisnewton/pso-decomp/pull/240) | Not scanned | Diff exceeds GitHub's 300-file limit; scan locally after it merges. |
+| [#299](https://github.com/matthewlewisnewton/pso-decomp/pull/299) | `TBoss7TentacleNeedle.cpp`: `-inline off,deferred`, `-fp_contract on` | Deferred emission orders `__vt__20TBoss7TentacleNeedle` before `__vt__14TBoss7Tentacle` while `.text` stays in address order. `-fp_contract on` because the position jitter and the tentacle curve fuse to `fmadds`. Port: drop both flags; the C++ is the behavior. |
 
 The scan covers source lines only; `configure.py` overrides added by PRs show up
 in the generated table once merged.

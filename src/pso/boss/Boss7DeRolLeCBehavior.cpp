@@ -4103,7 +4103,7 @@ f32 TBoss7PhotonBullet::get_target_pos_y() {
 }
 
 
-void TBoss7PhotonBullet::emit_hit_effect(void *arg1) {
+void TBoss7DeRolLeC::emit_hit_effect(void *arg1) {
     TBoss7PhotonBullet__sub_802ED5A0(this, 2);
     TObjEneDD::emit_effect((void*)this, (int)arg1, (int)&lbl_80472D7C);
     ((void (*)(void *, void *))TBoss7PhotonBullet__sub_802ED5A0)(this, *(void **)((s8 *)this + 0x62C));

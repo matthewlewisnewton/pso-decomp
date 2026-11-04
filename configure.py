@@ -499,9 +499,10 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # noauto,level=1 inlines that helper only. The rest of the unit stays out of line.
     "pso/misc/TWindowMainMenu_802AD538.cpp": {"cflags": _switch(cflags_pso, "-inline noauto,level=1")},
     "pso/boss/TBoss7LaserLight.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
-    # Position jitter and the tentacle curve contract mul-add to fmadds. The
-    # whole unit stays byte-exact with -fp_contract on, so that is this
-    # translation unit's setting.
+    # Position jitter and the tentacle curve contract mul-add to fmadds, so
+    # this unit is built with -fp_contract on. -inline off,deferred emits
+    # functions and vtables in reverse source order: the Needle vtable then
+    # the Tentacle vtable, with .text still in address order.
     "pso/boss/TBoss7TentacleNeedle.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on")},
     "pso/enemy/TObjEnemyCustom.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-pool off", "-str reuse,readonly")},
     "pso/boss/TBoss3VoloptCore.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},

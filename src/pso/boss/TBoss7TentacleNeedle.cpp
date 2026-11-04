@@ -7,7 +7,7 @@
 #include "pso/unk/text_803D853C.h"
 #include "pso/unk/text_803E2D70.h"
 #include "pso/TBoss7Tentacle.h"
-#include "pso/boss/TBoss7PhotonBullet.h"
+#include "pso/boss/TBoss7DeRolLeC.h"
 #include "pso/boss/TBoss7TentacleNeedle.h"
 #include "pso/boss/TBoss7Joint.h"
 #include "pso/boss/TObjBoss2Tunnel.h"
@@ -350,9 +350,9 @@ void TBoss7Tentacle::run_task() {
                 m_164 = 0;
                 m_38 = 2;
                 {
-                    u32 st = TBoss7Joint::get_state();
-                    if (st != 0U) {
-                        ((TBoss7PhotonBullet *)st)->emit_hit_effect(&p);
+                    TBoss7DeRolLeC *st = TBoss7Joint::get_state();
+                    if (st != NULL) {
+                        st->emit_hit_effect(&p);
                     }
                 }
                 play_sound_effect(0x3A809, &p, 0, 0);
