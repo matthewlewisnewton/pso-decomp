@@ -56,9 +56,9 @@ void get_current_matrix(void *m) {
     PSMTXCopy((MtxP)src, (MtxP)m);
 }
 
-// 0x803D89C0. b->x * a->x, then y and z, contracted by the unit's -fp_contract on.
+// 0x803D89C0. a->x * b->x, then y and z, contracted by the unit's -fp_contract on.
 extern "C" f32 vec3_dot(const Vec *a, const Vec *b) {
-    f32 dot = b->x * a->x;
+    f32 dot = a->x * b->x;
     dot = a->y * b->y + dot;
     return a->z * b->z + dot;
 }
@@ -70,16 +70,17 @@ void TObjPlayer::invert_matrix_in_place(u32 arg0) {
     PSMTXInverse((MtxP)arg0, (MtxP)arg0);
 }
 
-// 0x803D8A18. a × b into out. The return is a rough magnitude,
+// 0x803D8A18. a × b into out, written so each fmsubs multiplies b then a.
+// The length square starts before out->z is stored. The return is
 // fres(frsqrte(len^2)); the y/z squares are double fmadds.
 extern "C" f32 vec3_cross(const Vec *a, const Vec *b, Vec *out) {
-    f32 cx = a->y * b->z - a->z * b->y;
+    f32 cx = b->z * a->y - b->y * a->z;
     out->x = cx;
-    f32 cy = a->z * b->x - a->x * b->z;
+    f32 cy = b->x * a->z - b->z * a->x;
     out->y = cy;
-    f32 cz = a->x * b->y - a->y * b->x;
+    f32 cz = b->y * a->x - b->x * a->y;
+    f64 mag = cx * cx;
     out->z = cz;
-    f64 mag = (f64)(cx * cx);
     mag += (f64)cy * cy;
     mag += (f64)cz * cz;
     return __fres(__frsqrte(mag));
