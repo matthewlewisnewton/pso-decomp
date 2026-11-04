@@ -17,12 +17,6 @@ struct TWindowKeyBoardSoft : public TWindowDrawContext
     int is_cursor_locked();
     void render();
     static s32 try_open(TWindowDrawContext *context, f32 *quad);
-    u16 m_60;
-    u16 m_62;
-    u8 m_64;
-    u8 m_65;
-    u8 m_66;
-    u8 _pad67[0x1];
     u32 m_68;
     u32 m_6c;
     u8 _pad70[0xC];
@@ -63,7 +57,6 @@ struct TWindowKeyBoardSoft : public TWindowDrawContext
     void set_bounds(f32 a, f32 b, f32 c, f32 d);
     void shrink_clip_right();
     void animate_scale();
-    s32 is_point_in_bounds(void *arg1);
     void adjust_pos_for_split_screen(s32 arg1);
     static TWindowKeyBoardSoft *open_singleton(f32 *pos, f32 *size, f32 *scale, f32 depth, int flags);
     static u32 get_or_create_instance();
@@ -121,9 +114,9 @@ struct TWindowKeyBoardSoft : public TWindowDrawContext
     static void dispatch_request_0f(s32 a, s32 b);
 };
 
-typedef char TWindowKeyBoardSoft_m60[offsetof(TWindowKeyBoardSoft, m_60) == 0x44 ? 1 : -1];
+typedef char TWindowKeyBoardSoft_m60[offsetof(TWindowKeyBoardSoft, flags) == 0x44 ? 1 : -1];
 
 typedef char TWindowKeyBoardSoft_depth_offset[offsetof(TWindowKeyBoardSoft, depth) == 0x38 ? 1 : -1];
-typedef char TWindowKeyBoardSoft_m_60_offset[offsetof(TWindowKeyBoardSoft, m_60) == 0x44 ? 1 : -1];
+typedef char TWindowKeyBoardSoft_m_60_offset[offsetof(TWindowKeyBoardSoft, flags) == 0x44 ? 1 : -1];
 
 #endif

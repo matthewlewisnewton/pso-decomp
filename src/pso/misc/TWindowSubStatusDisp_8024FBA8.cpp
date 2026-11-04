@@ -185,7 +185,7 @@ s32 draw_window_text(f32 *pos, const char *s, s32 color, s32 mode, f32 width) {
             ok = 0;
             q.x2 = q.x + width;
         }
-        if (text_clip_enabled_flag == 0 || ((TWindowKeyBoardSoft *)text_draw_clip_context)->is_point_in_bounds(&q) != 0) {
+        if (text_clip_enabled_flag == 0 || ((TWindowDrawContext *)text_draw_clip_context)->is_point_in_bounds(&q) != 0) {
             calc_gauge_scale__20TWindowSubStatusDispFPvPvi(glyph, &q, col);
             set_glyph_quad_extents(adv, &q);
             if ((f32)(u8)adv > width) {

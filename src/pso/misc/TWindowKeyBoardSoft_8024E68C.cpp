@@ -43,7 +43,7 @@ extern Vec2_8024EC34 keyboard_soft_viewport_offset_table[];
 extern Vec2_8024EC34 lbl_8044EC80[];
 extern Vec2_8024EC34 lbl_8044EC98[];
 extern const float lbl_805DCC94;
-s32 clip_textured_quad__19TWindowKeyBoardSoftFPvPv(TWindowKeyBoardSoft *w, f32 *b);
+s32 clip_textured_quad__19TWindowKeyBoardSoftFPvPv(TWindowDrawContext *w, f32 *b);
 extern const f32 lbl_805DCC98;
 extern const f32 lbl_805DCC9C;
 extern const f32 lbl_805DCCA0;
@@ -107,25 +107,31 @@ void TWindowKeyBoardSoft::set_open_tick(s32 arg1) {
 }
 #pragma pop
 
-void TWindowKeyBoardSoft::set_bounds(f32 a, f32 b, f32 c, f32 d) { *(f32*)((char*)this + 0x3c) = a; *(f32*)((char*)this + 0x40) = b; *(f32*)((char*)this + 0x44) = c; *(f32*)((char*)this + 0x48) = d; }
+void TWindowKeyBoardSoft::set_bounds(f32 a, f32 b, f32 c, f32 d) {
+    clip_left = a;
+    clip_top = b;
+    clip_edge[0] = c;
+    clip_edge[1] = d;
+}
 
 extern const f32 lbl_805DCC8C;
 
 void TWindowKeyBoardSoft::shrink_clip_right() {
-    *(f32 *)((s8 *)this + 0x18) = (f32) (*(f32 *)((s8 *)this + 0x18) - lbl_805DCC8C);
-    *(f32 *)((s8 *)this + 0x44) = (f32) (*(f32 *)((s8 *)this + 0x44) - lbl_805DCC8C);
+    inner_w = inner_w - lbl_805DCC8C;
+    clip_edge[0] = clip_edge[0] - lbl_805DCC8C;
 }
 
 extern const f32 lbl_805DCC90;
 
 void TWindowKeyBoardSoft::animate_scale() {
-    *(f32 *)((s8 *)this + 0x14) = (f32) (*(f32 *)((s8 *)this + 0x14) + lbl_805DCC90);
-    *(f32 *)((s8 *)this + 0x1C) = (f32) (*(f32 *)((s8 *)this + 0x1C) - lbl_805DCC90);
-    *(f32 *)((s8 *)this + 0x40) = (f32) (*(f32 *)((s8 *)this + 0x40) + lbl_805DCC90);
+    inner_y = inner_y + lbl_805DCC90;
+    inner_h = inner_h - lbl_805DCC90;
+    clip_top = clip_top + lbl_805DCC90;
 }
 
-s32 TWindowKeyBoardSoft::is_point_in_bounds(void *arg1) {
-    if ((*(f32 *)((s8 *)arg1 + 8) < *(f32 *)((s8 *)this + 0x3C)) || (*(f32 *)((s8 *)arg1 + 0xC) < *(f32 *)((s8 *)this + 0x40)) || (*(f32 *)((s8 *)arg1 + 0) > *(f32 *)((s8 *)this + 0x44)) || (*(f32 *)((s8 *)arg1 + 4) > *(f32 *)((s8 *)this + 0x48))) {
+s32 TWindowDrawContext::is_point_in_bounds(void *arg1) {
+    f32 *quad = (f32 *)arg1;
+    if ((quad[2] < clip_left) || (quad[3] < clip_top) || (quad[0] > clip_edge[0]) || (quad[1] > clip_edge[1])) {
         return 0;
     }
     return 1;
@@ -133,7 +139,7 @@ s32 TWindowKeyBoardSoft::is_point_in_bounds(void *arg1) {
 
 #pragma push
 #pragma fp_contract on
-s32 clip_textured_quad__19TWindowKeyBoardSoftFPvPv(TWindowKeyBoardSoft *w, f32 *b) {
+s32 clip_textured_quad__19TWindowKeyBoardSoftFPvPv(TWindowDrawContext *w, f32 *b) {
     f32 sx;
     f32 sy;
     f32 d;
@@ -152,14 +158,14 @@ s32 clip_textured_quad__19TWindowKeyBoardSoftFPvPv(TWindowKeyBoardSoft *w, f32 *
         b[1] = w->clip_top;
         b[5] = d * sy + b[5];
     }
-    d = b[2] - *(f32 *)&w->m_60;
+    d = b[2] - w->clip_edge[0];
     if (d > (*(const f32 *)&lbl_805DCC94)) {
-        b[2] = *(f32 *)&w->m_60;
+        b[2] = w->clip_edge[0];
         b[6] = -(d * sx - b[6]);
     }
-    d = b[3] - *(f32 *)&w->m_64;
+    d = b[3] - w->clip_edge[1];
     if (d > (*(const f32 *)&lbl_805DCC94)) {
-        b[3] = *(f32 *)&w->m_64;
+        b[3] = w->clip_edge[1];
         b[7] = -(d * sy - b[7]);
     }
     return 1;
@@ -167,7 +173,7 @@ s32 clip_textured_quad__19TWindowKeyBoardSoftFPvPv(TWindowKeyBoardSoft *w, f32 *
 #pragma pop
 
 s32 TWindowKeyBoardSoft::try_open(TWindowDrawContext *context, f32 *quad) {
-    if (clip_textured_quad__19TWindowKeyBoardSoftFPvPv((TWindowKeyBoardSoft *)context, quad) == 0) {
+    if (clip_textured_quad__19TWindowKeyBoardSoftFPvPv(context, quad) == 0) {
         return 0;
     }
     apply_context_transform_to_rect(context, quad);
