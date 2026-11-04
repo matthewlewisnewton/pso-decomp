@@ -126,7 +126,7 @@ struct Trap_80179B8C : VObj_80179B8C {
 
 struct TrapChipParams {
     f32 params[3];
-    f32 pos[3];
+    Vec pos;
     f32 velocity[3];
     s32 rotation[3];
     s32 count_and_lifetime[2];
@@ -532,10 +532,15 @@ void TOTrapAncient01::play_sounds() {
         {0.0f, 1.0f}, 0, 0, 22
     };
     {
-        f32 x = position.x, y = position.y, z = position.z;
-        a.pos[0] = x;
-        a.pos[1] = y;
-        a.pos[2] = z;
+        f32 z;
+        f32 y;
+        f32 x;
+        x = position.x;
+        y = position.y;
+        z = position.z;
+        a.pos.x = x;
+        a.pos.y = y;
+        a.pos.z = z;
         a.floor_and_scale[0] = y;
     }
     a.model = get_bml_model((void *)TOTrapAncient01__bml_resource.value, 0);
@@ -546,10 +551,15 @@ void TOTrapAncient01::play_sounds() {
         {0.0f, 1.0f}, 0, 0, 22
     };
     {
-        f32 x = position.x, y = position.y, z = position.z;
-        b.pos[0] = x;
-        b.pos[1] = y;
-        b.pos[2] = z;
+        f32 z;
+        f32 y;
+        f32 x;
+        x = position.x;
+        y = position.y;
+        z = position.z;
+        b.pos.x = x;
+        b.pos.y = y;
+        b.pos.z = z;
         b.floor_and_scale[0] = y;
     }
     b.model = get_bml_model((void *)TOTrapAncient01__bml_resource.value, 1);
@@ -560,10 +570,15 @@ void TOTrapAncient01::play_sounds() {
         {0.0f, 1.0f}, 0, 0, 22
     };
     {
-        f32 x = position.x, y = position.y, z = position.z;
-        c.pos[0] = x;
-        c.pos[1] = y;
-        c.pos[2] = z;
+        f32 z;
+        f32 y;
+        f32 x;
+        x = position.x;
+        y = position.y;
+        z = position.z;
+        c.pos.x = x;
+        c.pos.y = y;
+        c.pos.z = z;
         c.floor_and_scale[0] = y;
     }
     c.model = get_bml_model((void *)TOTrapAncient01__bml_resource.value, 2);

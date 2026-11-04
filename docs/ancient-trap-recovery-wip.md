@@ -46,10 +46,14 @@ exact. The original section flags are 2 (`SHF_ALLOC`); this GC/2.6 object has
 flags 3 (`SHF_ALLOC|SHF_WRITE`). That flag bit is already true of linked
 `TOTrap` and `TOTrapSeabed01`, and it is not the 90.91% score.
 
-`play_sounds` remains 92.71%. The mismatch is the schedule of the three
-position fills against the tail of the `0x4C` copy, not the calls. Writing
-`position.x`, `position.y`, and `position.z` directly scores 91.09%. The
-local copies of those fields score 92.71%. Neither is exact. `#pragma
-pool_data off` around that function keeps the copy prologue close to the
-original; without it the prologue uses `stmw` and the function is farther
-from the original.
+`play_sounds` is 92.93%. The mismatch is the schedule of the three position
+fills against the tail of the `0x4C` copy, not the calls. The kept source
+stores the position through a `Vec` using locals declared `z`, then `y`,
+then `x`, and the unit is compiled with `-opt nolifetimes,nopropagation`.
+That assigns `f2`/`f1`/`f0` to x/y/z and stores them in that order. The
+original also loads x between `li` and the copy's tail `stw`, and loads the
+resource between the x store and the y store. This compiler emits the three
+loads after the tail store and the resource load before any of the stores.
+Direct `position.x`/`y`/`z` stores score 91.09%. The older comma-local form,
+without `nopropagation`, scores 92.71%. The unit `-pooldata=off` flag keeps
+the copy prologue; without it the prologue uses `stmw`.
