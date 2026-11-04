@@ -4,12 +4,18 @@ struct NJS_OBJECT;
 
 #include "types.h"
 #include <dolphin/mtx/GeoTypes.h>
+#include "pso/enemy/TObjEneDD_ST.h"
 #include "pso/misc/RenderFadeState.h"
 
-class TObject;
-
-struct TBoss8Dragon
+// The 0x3C0 prefix is TObjEneDD_ST (vptr at 0x18, vfunc_104 at slot 104).
+// vfunc_105 and draw_motion_model are the next two slots, so draw_motion_model
+// is slot 106. ~TBoss8Dragon is declared and defined as the existing
+// __dt__12TBoss8DragonFv, which keeps MWCC from emitting a second vtable.
+struct TBoss8Dragon : public TObjEneDD_ST
 {
+    virtual ~TBoss8Dragon();
+    virtual s32 vfunc_105();
+    virtual void draw_motion_model();
     void sub_802F4098(u8 *);
     void vfunc_63();
     void vfunc_62();
@@ -26,69 +32,6 @@ struct TBoss8Dragon
     void run_task();
     s32 hasActiveRenderFade();
 
-    s32 m_0;
-    u8 unk_4[0x4];
-    f32 m_8;
-    u8 unk_C[0x4];
-    f32 m_10;
-    u8 unk_14[0x4];
-    s32 * m_18;
-    u8 unk_1C[0x2];
-    s16 m_1e;
-    u8 unk_20[0x2];
-    u16 m_22;
-    u32 m_24;
-    u8 unk_28[0x4];
-    s32 m_2c;
-    u8 unk_30[0x4];
-    u32 m_34;
-    void* m_38;
-    u8 unk_3C[0x4];
-    f32 m_40;
-    u8 unk_44[0x4];
-    f32 m_48;
-    u8 unk_4C[0x4];
-    u32 m_50;
-    u8 unk_54[0x8];
-    s32 m_5c;
-    s32 m_60;
-    u8 unk_64[0x4];
-    f32 m_68;
-    u8 unk_6C[0x4];
-    f32 m_70;
-    u8 unk_74[0x30];
-    void * m_a4;
-    u8 unk_A8[0x8];
-    u32 m_b0;
-    u8 _padB4[0x4];
-    s16 m_b8;
-    u8 unk_BA[0x6];
-    f32 m_c0;
-    u8 unk_C4[0x1EC];
-    u32 m_2b0;
-    u8 _pad2B4[0x4];
-    s16 m_2b8;
-    u8 _pad2BA[0x6C];
-    s16 m_326;
-    u8 unk_328[0x4];
-    s16 m_32c;
-    u8 unk_32E[0x22];
-    u32 m_350;
-    u8 unk_354[0x28];
-    f32 m_37c;
-    u8 unk_380[0xC];
-    u16 m_38c;
-    u8 unk_38E[0x2];
-    u32 m_390;
-    f32 m_394;
-    u8 unk_398[0x4];
-    f32 m_39c;
-    u8 unk_3A0[0x4];
-    f32 m_3a4;
-    f32 m_3a8;
-    u8 unk_3AC[0x4];
-    s32 m_3b0;
-    u8 unk_3B4[0xC];
     u32 m_3c0;
     void* m_3c4;
     u8 _pad3C8[0x18];
@@ -278,7 +221,6 @@ struct TBoss8Dragon
     s32 spawn_attack_object(s32 arg1, s32 arg2, s32 arg3, s32 arg4);
     u16 get_part_count_plus(s32 arg1);
     void set_mode_params(s8 arg1);
-    void draw_motion_model();
     void render_nodes_flagged();
     void copy_vectors();
     void send_swapped_packet();
@@ -307,6 +249,13 @@ struct TBoss8Dragon
 #include <stddef.h>
 typedef char TBoss8DragonFadeStride[(sizeof(RenderFadeState) == 0x1C) ? 1 : -1];
 typedef char TBoss8DragonFadeOffset[(offsetof(TBoss8Dragon, renderFadeStates) == 0x6DC) ? 1 : -1];
+typedef char TBoss8DragonBase[(sizeof(TObjEneDD_ST) == 0x3C0) ? 1 : -1];
+typedef char TBoss8DragonMode[(offsetof(TBoss8Dragon, mode) == 0x326) ? 1 : -1];
+typedef char TBoss8DragonHp[(offsetof(TBoss8Dragon, hp) == 0x32C) ? 1 : -1];
+typedef char TBoss8DragonYaw[(offsetof(TBoss8Dragon, rotation) == 0x5C) ? 1 : -1];
+typedef char TBoss8DragonAction[(offsetof(TBoss8Dragon, requested_action) == 0xB8) ? 1 : -1];
+typedef char TBoss8DragonBodies[(offsetof(TBoss8Dragon, bodies) == 0xA4) ? 1 : -1];
+typedef char TBoss8DragonPos[(offsetof(TBoss8Dragon, position) == 0x38) ? 1 : -1];
 typedef char TBoss8DragonAfterFadeOffset[(offsetof(TBoss8Dragon, m_74c) == 0x74C) ? 1 : -1];
 
 #endif

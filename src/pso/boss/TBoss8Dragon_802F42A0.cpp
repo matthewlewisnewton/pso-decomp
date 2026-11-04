@@ -19,16 +19,16 @@ void TBoss8Dragon::draw() {
     u8 *temp_r4;
 
     push_matrix();
-    post_translate_matrix((void *) (((u8 *)this) + 0x38));
-    rotate_matrix_y(0, this->m_60);
-    rotate_matrix_x(0, this->m_5c);
-    rotate_matrix_z(0, (int) (*(s32 *)((s8 *)((u8 *)this) + 0x64)));
-    scale_current_matrix((void *) (((u8 *)this) + 0x68));
-    temp_r31 = this->m_34;
+    post_translate_matrix((void *)&this->position);
+    rotate_matrix_y(0, this->rotation.yaw);
+    rotate_matrix_x(0, this->rotation.pitch);
+    rotate_matrix_z(0, this->rotation.roll);
+    scale_current_matrix((void *)&this->scale);
+    temp_r31 = (s32)this->model;
     temp_r4 = (unsigned char *) (*(void **)((s8 *)TBoss8Dragon__data_805D6988 + 0x42C));
-    this->m_34 = (s32) *(s32 *)((s8 *)temp_r4 + 0x28);
+    this->model = *(void **)((s8 *)temp_r4 + 0x28);
     draw__10TObjMotionFv(this, (int)temp_r4);
-    this->m_34 = temp_r31;
+    this->model = (void *)temp_r31;
     pop_matrix();
 }
 

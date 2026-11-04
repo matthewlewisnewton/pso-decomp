@@ -395,19 +395,19 @@ s32 is_dragon_trail_damaging(u8 *arg0) {
     return *(f32 *)((s8 *)arg0 + 0x34) >= lbl_805D81D0;
 }
 
-void TBoss8Dragon::set_field_3c() { set_field_1c(); *(int *)&this->unk_3C = 1; }
-void TBoss8Dragon::set_field_1c() { *(s32 *)&this->unk_1C = 1; }
+void TBoss8Dragon::set_field_3c() { set_field_1c(); *(int *)&this->position.y = 1; }
+void TBoss8Dragon::set_field_1c() { *(s32 *)&this->entity_id = 1; }
 
 void TBoss8Dragon::spawn_child_object() {
     void *o;
-    *(u32 *)&this->unk_1C = 0;
-    *(f32 *)&this->m_34 = lbl_805D81A0;
-    *(f32 *)&this->unk_30 = lbl_805D81A0;
+    *(u32 *)&this->entity_id = 0;
+    *(f32 *)&this->model = lbl_805D81A0;
+    *(f32 *)&this->actorFlags = lbl_805D81A0;
     o = __nw__7TObjectFUl(0x50);
     if (o != NULL) {
-        TObjBoss1MokoHill_Solo__ct(o, (void *)(*(void * *)&this->m_10), 30);
+        TObjBoss1MokoHill_Solo__ct(o, (void *)this->m_up, 30);
     }
-    *(u32 *)&this->unk_3C = 0;
+    *(u32 *)&this->position.y = 0;
 }
 TObjBoss1MokoHill_SoloM::~TObjBoss1MokoHill_SoloM() {
 
@@ -574,17 +574,17 @@ f32 TBoss8Dragon::apply_velocity_scale(f32 farg0, f32 farg1) {
     temp_f1 = normalize_vector_xz((Vec *)this);
     if (temp_f1 > farg0) {
         var_f31 = lbl_805D8198;
-        *(f32 *)((s8 *)this + 0) = var_f31;
-        *(f32 *)&this->unk_4 = (f32) lbl_805D81F4;
-        this->m_8 = var_f31;
+        *(f32 *)&this->m_name = var_f31;
+        *(f32 *)&this->m_flags = (f32) lbl_805D81F4;
+        *(f32 *)&this->m_prev = var_f31;
     } else {
         temp_r31 = (s32) (lbl_805D81F8 * (temp_f1 / farg0));
         var_f31 = farg1 * (lbl_805D81F4 + cos_table_lookup(temp_r31, lbl_805D81F8));
         temp_f1_2 = sin_table_lookup(temp_r31);
-        temp_f2 = *(f32 *)((s8 *)this + 0) * temp_f1_2;
-        *(f32 *)((s8 *)this + 0) = temp_f2;
-        *(f32 *)&this->unk_4 = (f32) lbl_805D81F4;
-        this->m_8 = (f32) (this->m_8 * temp_f1_2);
+        temp_f2 = *(f32 *)&this->m_name * temp_f1_2;
+        *(f32 *)&this->m_name = temp_f2;
+        *(f32 *)&this->m_flags = (f32) lbl_805D81F4;
+        *(f32 *)&this->m_prev = (f32) (*(f32 *)&this->m_prev * temp_f1_2);
         normalize_vector_checked(this, temp_f1_2);
     }
     return var_f31;

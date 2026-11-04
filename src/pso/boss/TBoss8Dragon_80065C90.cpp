@@ -90,7 +90,7 @@ void TBoss5Gryphon::apply_confusion_status() {  }
 void TBoss5Gryphon::apply_movement_ailment(s32) {  }
 void TBoss5Gryphon::apply_shock_status() {  }
 void TBoss5Gryphon::clear_harmful_statuses() {  }
-void TBoss8Dragon::init_color() { *(u8 *)&this->m_0 = 160; *(u8*)((char*)this + 0x1) = 10; }
+void TBoss8Dragon::init_color() { *(u8 *)&this->m_name = 160; *(u8 *)((char *)&this->m_name + 1) = 10; }
 
 void TBoss8Dragon::send_spawn_params_packet() { byteswap_action_packet(); send_subcommand((u8 *)this); }
 
