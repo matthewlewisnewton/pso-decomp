@@ -202,7 +202,7 @@ void start_text_color_transition(Fade_802575C0 *arg0, u32 rgb, f32 time) {
         arg0->tr = c.r;
         arg0->tg = c.g;
         arg0->tb = c.b;
-        ((TAdChrMoveEffectGC *)(&c))->copy4(&arg0->col);
+        fn_80257720(&c, &arg0->col);
         time = 1.0f / time;
         arg0->cr = c.r;
         arg0->cg = c.g;
@@ -214,7 +214,19 @@ void start_text_color_transition(Fade_802575C0 *arg0, u32 rgb, f32 time) {
     }
 }
 
-void TAdChrMoveEffectGC::copy4(void* q) { *(u8 *)&this->m_name = *(u8*)((char*)q + 0x0); *(u8*)((char*)this + 0x1) = *(u8*)((char*)q + 0x1); *(u8*)((char*)this + 0x2) = *(u8*)((char*)q + 0x2); *(u8*)((char*)this + 0x3) = *(u8*)((char*)q + 0x3); }
+}
+
+#pragma push
+#pragma scheduling off // preserves the native load/store order
+void fn_80257720(void *destination, const void *source) {
+    *(u8 *)destination = *(const u8 *)((const char *)source + 0);
+    *(u8 *)((char *)destination + 1) = *(const u8 *)((const char *)source + 1);
+    *(u8 *)((char *)destination + 2) = *(const u8 *)((const char *)source + 2);
+    *(u8 *)((char *)destination + 3) = *(const u8 *)((const char *)source + 3);
+}
+#pragma pop
+
+extern "C" {
 
 void TWindowSubStatusDisp::update_disp_value() {
     calc_bar_width__20TWindowSubStatusDispFPv();
