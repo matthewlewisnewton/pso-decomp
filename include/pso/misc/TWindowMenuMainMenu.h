@@ -15,6 +15,7 @@ struct TWindowMenuMainMenu : public TUnk_804CE018 {
     void set_target_y(f32 target);
     void update_scaled_position();
     void update_slide_position();
+    void draw_entries_reversed(u8 *arg1);
     int get_menu_flag();
     int is_flag_set();
     virtual void render();
@@ -49,7 +50,6 @@ typedef char TWindowMenuMainMenu_unk50[offsetof(TWindowMenuMainMenu, unk_50) == 
 extern "C" {
 u8 *TWindowMenuMainMenu__ct(TWindowMenuMainMenu *arg0, s32 arg1, s16 arg2);
 void *__dt__19TWindowMenuMainMenuFv(void *arg0, s16 arg1);
-void render__19TWindowMenuMainMenuFv(s32 arg0);
 void run_task__19TWindowMenuMainMenuFv(TWindowMenuMainMenu *arg0);
 }
 
@@ -57,7 +57,6 @@ void run_task__19TWindowMenuMainMenuFv(TWindowMenuMainMenu *arg0);
 extern "C" {
 u8 *TWindowMenuMainMenu__ct(TWindowMenuMainMenu *window_menu_main_menu, s32 arg1, s16 arg2);
 void *__dt__19TWindowMenuMainMenuFv(void *arg0, s16 arg1);
-void render__19TWindowMenuMainMenuFv(s32 arg0);
 void run_task__19TWindowMenuMainMenuFv(TWindowMenuMainMenu *window_menu_main_menu);
 }
 // --- end of C functions

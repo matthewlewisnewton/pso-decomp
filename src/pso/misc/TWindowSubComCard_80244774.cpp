@@ -138,7 +138,6 @@ void disallow_rendering__7TObjectFv(TObject *);
 int copy_vec2__28TWindowSubSymbolChatPartsSetFPv(void*);
 
 int TWindowSubComCard__sub_80244774(void);
-f32 TWindowSubComCard__sub_80244784(TWindowSubComCard *arg0);
 void save_position__13TUnk_804CE018Fv(void* p);
 void TWindowSubTradeMain__sub_802448E4(void *arg0);
 void fn_8024491C(void *arg0);
@@ -164,12 +163,13 @@ int TWindowSubComCard__sub_80244774(void) {  return lbl_805D3614; }
 
 s32 TWindowSubComCard::get_field_20() { return this->m_20; }
 
-f32 TWindowSubComCard__sub_80244784(TWindowSubComCard *window_sub_com_card) {
-    f32 v = window_sub_com_card->calc_offset();
+f32 TWindowSubComCard__sub_80244784(void *window) {
+    TWindowSubComCard *self = (TWindowSubComCard *)window;
+    f32 v = self->calc_offset();
     if (v < 1.0f) {
         return v;
     }
-    return window_sub_com_card->get_normalized_progress();
+    return self->get_normalized_progress();
 }
 
 f32 TWindowSubComCard::calc_offset() {

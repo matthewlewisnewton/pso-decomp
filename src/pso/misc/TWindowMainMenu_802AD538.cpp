@@ -103,7 +103,7 @@ void begin_render__20TWindowSubStatusDispFl(void);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 TWindowShortListCtrl__check_controller_button(int, int);
 s32 apply_choice__20TWindowChoiceSettingFllll(void *, int, int, int);
-f32 TWindowSubComCard__sub_80244784(TWindowSubComCard *);
+f32 TWindowSubComCard__sub_80244784(void *);
 s32 is_window_reveal_complete__13TUnk_804CE018Fv();
 s32 sub_80246948__13TUnk_804CE018Fv();
 void draw_item_labels__15TWindowMainMenuFv(Item_802AD538 *p, TWindowDrawContext *context);
@@ -403,7 +403,7 @@ int find_free_item_slot__15TWindowMainMenuFPv(Obj_802ADC04 *self) {
     return 8;
 }
 
-s32 count_active_items__15TWindowMainMenuFi(s32 arg0) {
+s32 TWindowMainMenu::count_active_items(int arg0) {
     s32 counter;
     s32 ptr;
 
@@ -482,10 +482,10 @@ void TWindowMenuMainMenu::set_target_y(f32 farg0) {
 }
 
 void TWindowMenuMainMenu::update_scaled_position() {
-    set_target_y(16.0f * (f32)count_active_items__15TWindowMainMenuFi((s32)this));
+    set_target_y(16.0f * (f32)TWindowMainMenu::count_active_items((s32)this));
 }
 
-void TWindowMainMenu::draw_entries_reversed(u8 *arg1) {
+void TWindowMenuMainMenu::draw_entries_reversed(u8 *arg1) {
     s32 arg0 = (s32)this;
     s32 var_r31;
     u8 *var_r30;
@@ -597,26 +597,16 @@ void TWindowMenuMainMenu::handle_cancel() {
 }
 
 void TWindowMenuMainMenu::handle_confirm() {
-    u8 *arg0 = (u8 *)this;
-  char new_var;
-  u8 *new_var2;
-  int new_var3;
-  u8 *temp_r3;
-  new_var2 = arg0;
-  new_var2 = new_var2 + (((s8)this->m_61) * 4);
-  temp_r3 = (unsigned char *) (*((void **) (((s8 *) new_var2) + 0x124)));
-  if (temp_r3 != 0)
-  {
-    new_var = 0;
-    if ((*((u8 *) (((s8 *) temp_r3) + 0x13))) & 2)
-    {
-      play_sound_effect(0x53F06, 0, 0, 0);
-      return;
+    Menu_802AD980 *menu = (Menu_802AD980 *)this;
+    Col_802ADA48 *item = menu->slots[(s8)m_61];
+    if (item != NULL) {
+        if (item->b3 & 2) {
+            play_sound_effect(0x53F06, 0, 0, 0);
+            return;
+        }
+        play_sound_effect(0x52D01, 0, 0, 0);
+        m_60 |= 1;
     }
-    new_var3 = 0x52D01;
-    play_sound_effect((s32)new_var3, 0, 0, (s32)new_var);
-    this->m_60 = (u8) ((this->m_60) | 1);
-  }
 }
 
 struct Obj_802ADC04;
