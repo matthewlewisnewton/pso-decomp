@@ -24,14 +24,6 @@ typedef struct S_802C59EC {
 
 typedef struct G_802C6A10 { s32 value; u8 remaining[0xC]; } G_802C6A10;
 
-struct S_802C5594 {
-    u8 pad0[0x4DC];
-    s32 x[3];
-    u8 pad4E8[0x500 - 0x4E8];
-    s32 y[4][3];
-    s32 f530;
-};
-
 struct E_802C5944 { f32 x; f32 y; u8 pad[0x18]; };
 
 struct V_802C5944 { f32 x; f32 y; };
@@ -96,24 +88,6 @@ typedef struct Self_802C5C84 {
     s32 f4EC;
 } Self_802C5C84;
 
-struct S_802C6AC8 {
-    u8 pad0[0x20];
-    s32 f20;
-    u8 pad24[0x444 - 0x24];
-    s32 alpha[4][3];
-    s32 col[4][3];
-    u8 pad4a4[8];
-    s32 sel[4][3];
-    s32 f4DC[4];
-    s32 f4EC;
-    u8 pad4f0[0x8];
-    s32 f4F8;
-    s32 f4FC;
-    u8 pad500[0x530 - 0x500];
-    s32 f530;
-    s32 f534;
-};
-
 struct Pad_802C6AC8 { u8 pad[0x20]; u8 ctl[0x30]; };
 
 /* Selection-screen view: per player row/column quads (x0,y0,x1,y1,u0,v0,u1,v1), the three
@@ -161,15 +135,15 @@ extern const f32 lbl_805DE57C;
 const f32 lbl_805DE580 = 0.53f;
 s32 TWindowShortListCtrl__check_controller_button(void *, int);
 
-s32 TAdMultiPlyChrSelectGC__sub_802C5F1C(void *, int);
+void TAdMultiPlyChrSelectGC__sub_802C5F1C(void *, int);
 extern u8 controller_physical_port_bank[];
 extern const Jump_802C5C84 multi_chr_select_cursor_jump_table[][5];
 extern s32 TAdMultiPlyChrSelectGC__data_804E0A48[4];
 extern s32 TAdMultiPlyChrSelectGC__selected_slot_order[4];
 extern s32 TAdMultiPlyChrSelectGC__data_804E0AE0[4];
 extern f32 TAdMultiPlyChrSelectGC__data_804E0AF0[4];
-void TAdMultiPlyChrSelectGC__sub_802C50EC(s32);
-void TAdMultiPlyChrSelectGC__sub_802C522C(s32);
+void TAdMultiPlyChrSelectGC__sub_802C50EC(TAdChrSelPlyPlateGC *);
+void TAdMultiPlyChrSelectGC__sub_802C522C(TAdChrSelPlyPlateGC *);
 extern s32 lbl_805D67D0;
 extern const f32 lbl_805DE560;
 extern const f32 lbl_805DE564;
@@ -249,10 +223,7 @@ static int count_open_selection_cells(void) {
 }
 #endif
 
-#pragma push
-#pragma fp_contract on
-void TAdMultiPlyChrSelectGC__sub_802C50EC(s32 arg0) {
-    S_802C50EC *self = (S_802C50EC *)arg0;
+void TAdMultiPlyChrSelectGC__sub_802C50EC(TAdChrSelPlyPlateGC *self) {
     u32 i;
     Quad_802C50EC q;
     for (i = 0; i < 4; i++) {
@@ -278,8 +249,7 @@ void TAdMultiPlyChrSelectGC__sub_802C50EC(s32 arg0) {
     }
 }
 
-void TAdMultiPlyChrSelectGC__sub_802C522C(s32 arg0) {
-    S_802C50EC *self = (S_802C50EC *)arg0;
+void TAdMultiPlyChrSelectGC__sub_802C522C(TAdChrSelPlyPlateGC *self) {
     u32 i;
     for (i = 0; i < 4; i++) {
         if (TAdMultiPlyChrSelectGC__data_804E0AE0[i] == 1) {
@@ -294,7 +264,6 @@ void TAdMultiPlyChrSelectGC__sub_802C522C(s32 arg0) {
         }
     }
 }
-#pragma pop
 
 void TAdMultiPlyChrSelectGC::draw_selection_cursors() {
     S_802C5314 *self = (S_802C5314 *)this;
@@ -348,15 +317,14 @@ void TAdMultiPlyChrSelectGC::draw_selection_cursors() {
 }
 
 void TAdMultiPlyChrSelectGC::update() {
-    s32 arg0 = (s32)this;
     if (TMainTask::get_render_pass() != 1) {
         draw_selection_cursors();
         switch ((s32) TAdMultiPlyChrSelectGC__select_mode) {
         case 0:
-            TAdMultiPlyChrSelectGC__sub_802C522C(arg0);
+            TAdMultiPlyChrSelectGC__sub_802C522C((TAdChrSelPlyPlateGC *)this);
             return;
         case 1:
-            TAdMultiPlyChrSelectGC__sub_802C50EC(arg0);
+            TAdMultiPlyChrSelectGC__sub_802C50EC((TAdChrSelPlyPlateGC *)this);
             break;
         }
     }
@@ -377,19 +345,19 @@ u32 get_multiplayer_controller_active_index(int param_1) {
 }
 
 void TAdMultiPlyChrSelectGC::reset_cursor_state() {
-    S_802C5594 *arg0 = (S_802C5594 *)this;
+    TAdChrSelPlyPlateGC *plate = (TAdChrSelPlyPlateGC *)this;
     u32 i;
     s32 j;
     for (i = 0; i < 4; i++) {
         TAdMultiPlyChrSelectGC__data_804E0AE0[i] = 0;
         TAdMultiPlyChrSelectGC__data_804E0AF0[i] = TAdMultiPlyChrSelectGC__data_805DE56C;
         for (j = 0; j < 3; j++) {
-            arg0->y[i][j] = 0;
-            arg0->x[j] = 0;
+            plate->b[i][j] = 0;
+            plate->f4DC[j] = 0;
         }
     }
     (*(s32 *)&TAdMultiPlyChrSelectGC__data_805D67D8) = 0;
-    arg0->f530 = 0;
+    plate->f530 = 0;
 }
 
 void TAdMultiPlyChrSelectGC__sub_802C561C(S_802C50EC *self) {
@@ -403,8 +371,6 @@ void TAdMultiPlyChrSelectGC__sub_802C561C(S_802C50EC *self) {
     }
 }
 
-#pragma push
-#pragma fp_contract on
 /*
  * Matching note for 0x802C5F1C/0x802C5688/0x802C6660: the original stores the UV scale as
  * an explicit division by 256.0f, not as a multiply by
@@ -412,7 +378,10 @@ void TAdMultiPlyChrSelectGC__sub_802C561C(S_802C50EC *self) {
  * fmuls but the literal reciprocal takes part in constant numbering, which is
  * what yields the original f4/f5/f3 allocation (lbl_80471CE0[1], the 2^52+2^31
  * pool double and the reciprocal) instead of the f3/f4/f5 rotation produced by
- * an extern multiply.  The unit owns the 8-byte .sdata2 pool at
+ * an extern multiply.  The translation unit is compiled with -fp_contract on
+ * (see configure.py); every function in the unit matches that way, so the
+ * contraction is a unit flag rather than a per-function pragma.  The unit owns
+ * the 8-byte .sdata2 pool at
  * 0x805DE580-0x805DE588: lbl_805DE580 (0.53f, used by the plate draws) followed
  * by the 1/256 reciprocal at 0x805DE584.  The receiver is the plate
  * (the parameter register keeps the first f4EC load off the r31
@@ -454,7 +423,6 @@ void TAdMultiPlyChrSelectGC__sub_802C5688(TAdChrSelPlyPlateGC *self) {
     self->f4EC = cell[1] - 1;
     self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC] = cell[0] - 1;
 }
-#pragma pop
 
 void TAdMultiPlyChrSelectGC::init_slot_position(s32 arg1, s32 arg2, s32 arg3) {
     S_802C5944 *arg0 = (S_802C5944 *)this;
@@ -620,7 +588,7 @@ void TAdChrSelPlyPlateGC::move_cursor(s32 x_, s32 y_, s32 dx, s32 dy, s32 depth)
     }
 }
 
-s32 TAdMultiPlyChrSelectGC__sub_802C5F1C(void *arg0, int arg1) {
+void TAdMultiPlyChrSelectGC__sub_802C5F1C(void *arg0, int arg1) {
     S_802C50EC *self = (S_802C50EC *)arg0;
     u32 i;
     u32 j;
@@ -631,7 +599,8 @@ s32 TAdMultiPlyChrSelectGC__sub_802C5F1C(void *arg0, int arg1) {
     f32 b;
 
     /* Per-player 4x3 grid of selection quads: cell texture coords scale the shared
-       (u,v) page, with the active-slot column clamped to 3. */
+       (u,v) page, with the active-slot column clamped to 3. arg1 is the caller's
+       post-incremented cursor generation and is not read here. */
     for (i = 0; i < 4; i++) {
         for (j = 0; j < 3; j++) {
             cnt = TAdMultiPlyChrSelectGC__data_805D67D8;
@@ -640,35 +609,33 @@ s32 TAdMultiPlyChrSelectGC__sub_802C5F1C(void *arg0, int arg1) {
             if (cnt < 4) {
                 idx = cnt;
             }
-            /* All quad stores route through the re-cast arg0, and the identity
-               i++/i-- pair between the v0 and u1 stores is load-bearing: it
-               re-ties the allocator onto orig's row-pointer/clamp numbering.
-               #294 removes this and the function falls to 99.15%; this linked
-               unit keeps the matched body. */
-            ((S_802C50EC *)arg0)->quad[i][j].u0 = uu;
+            self->quad[i][j].u0 = uu;
             a = lbl_805DE588 * (f32)idx;
             b = lbl_805DE588 + a;
-            ((S_802C50EC *)arg0)->quad[i][j].v0 = a / 256.0f;
+            self->quad[i][j].v0 = a / 256.0f;
+            /* Net-zero update of the row index. Removing it keeps every
+               instruction but swaps r7 and r8, so the linked function misses.
+               Recorded under "Porting exceptions (to land with #315)". */
             i++;
             i--;
-            ((S_802C50EC *)arg0)->quad[i][j].u1 = lbl_805DE58C;
-            ((S_802C50EC *)arg0)->quad[i][j].v1 = b / 256.0f;
+            self->quad[i][j].u1 = lbl_805DE58C;
+            self->quad[i][j].v1 = b / 256.0f;
         }
     }
 
     /* Fixed home slots for the trailing (unpaired) columns. */
     self->cursor[0][4] = lbl_805DE590;
     self->cursor[0][5] = lbl_805DE594;
-    ((S_802C50EC *)arg0)->cursor[0][6] = lbl_805DE598;
-    ((S_802C50EC *)arg0)->cursor[0][7] = lbl_805DE59C;
-    ((S_802C50EC *)arg0)->cursor[1][4] = TAdMultiPlyChrSelectGC__data_805DE56C;
-    ((S_802C50EC *)arg0)->cursor[1][5] = lbl_805DE594;
-    ((S_802C50EC *)arg0)->cursor[1][6] = lbl_805DE590;
-    ((S_802C50EC *)arg0)->cursor[1][7] = lbl_805DE59C;
-    ((S_802C50EC *)arg0)->cursor[2][4] = lbl_805DE598;
-    ((S_802C50EC *)arg0)->cursor[2][5] = lbl_805DE594;
-    ((S_802C50EC *)arg0)->cursor[2][6] = lbl_805DE5A0;
-    ((S_802C50EC *)arg0)->cursor[2][7] = lbl_805DE59C;
+    self->cursor[0][6] = lbl_805DE598;
+    self->cursor[0][7] = lbl_805DE59C;
+    self->cursor[1][4] = TAdMultiPlyChrSelectGC__data_805DE56C;
+    self->cursor[1][5] = lbl_805DE594;
+    self->cursor[1][6] = lbl_805DE590;
+    self->cursor[1][7] = lbl_805DE59C;
+    self->cursor[2][4] = lbl_805DE598;
+    self->cursor[2][5] = lbl_805DE594;
+    self->cursor[2][6] = lbl_805DE5A0;
+    self->cursor[2][7] = lbl_805DE59C;
 }
 
 void TAdChrSelPlyPlateGC::update_option_cursor() {
@@ -805,8 +772,6 @@ void TAdMultiPlyChrSelectGC__sub_802C65C0(s32 arg0) {
     TAdMultiPlyChrSelectGC::remove_selected_slot(arg0);
 }
 
-#pragma push
-#pragma fp_contract on
 /* See the matching note above sub_802C5688 for the remaining FPR-allocation rows. */
 void TAdMultiPlyChrSelectGC__sub_802C6660(TAdChrSelPlyPlateGC *self) {
     s32 col, row;
@@ -842,7 +807,6 @@ void TAdMultiPlyChrSelectGC__sub_802C6660(TAdChrSelPlyPlateGC *self) {
     self->f4EC = cell[1] - 1;
     self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC] = cell[0] - 1;
 }
-#pragma pop
 
 s32 TAdMultiPlyChrSelectGC__sub_802C6848(s32 arg0) {
     if ((arg0 < 0) || (arg0 > 3)) {
@@ -933,7 +897,6 @@ loop_1:
     goto loop_1;
 }
 void TAdChrSelPlyPlateGC::update_selection() {
-    S_802C6AC8 *o = (S_802C6AC8 *)this;
     u32 i;
     u32 j;
     u32 k;
@@ -952,18 +915,18 @@ void TAdChrSelPlyPlateGC::update_selection() {
             }
 #endif
             this->find_first_open_cell(buf);
-            o->f4EC = buf[1] - 1;
-            o->sel[TAdMultiPlyChrSelectGC__data_805D67D8][o->f4EC] = buf[0] - 1;
+            this->f4EC = buf[1] - 1;
+            this->sel[TAdMultiPlyChrSelectGC__data_805D67D8][this->f4EC] = buf[0] - 1;
             break;
         }
         }
     }
     if (TAdMultiPlyChrSelectGC__sub_802C6848(0) == 0 || TAdMultiPlyChrSelectGC::count_ready() < 2) {
-        o->f534 = 0;
+        this->f534 = 0;
     } else {
-        o->f534 = 1;
+        this->f534 = 1;
     }
-    if (o->f534 != 0) {
+    if (this->f534 != 0) {
         switch (TAdMultiPlyChrSelectGC__select_mode) {
         case 0:
             this->handle_dpad_input();
@@ -979,31 +942,31 @@ void TAdChrSelPlyPlateGC::update_selection() {
             break;
         }
     }
-    o->f530 = 0;
-    if (o->f534 != 0) {
+    this->f530 = 0;
+    if (this->f534 != 0) {
         for (i = 0; i < 4; i++) {
             if (TWindowShortListCtrl__check_controller_button(((Pad_802C6AC8 *)controller_physical_port_bank)[i].ctl, 8) != 0 && TAdMultiPlyChrSelectGC__sub_802C6558() > 0) {
-                o->f530 = 1;
+                this->f530 = 1;
             }
         }
     }
     for (k = 0; k < 4; k++) {
         for (j = 0; j < 3; j++) {
-            o->alpha[k][j] -= 0x16;
-            if (o->alpha[k][j] < 0) {
-                o->alpha[k][j] = 0;
+            this->a[k][j] -= 0x16;
+            if (this->a[k][j] < 0) {
+                this->a[k][j] = 0;
             }
         }
     }
-    o->alpha[o->sel[TAdMultiPlyChrSelectGC__data_805D67D8][o->f4EC]][o->f4EC] = 0xFF;
+    this->a[this->sel[TAdMultiPlyChrSelectGC__data_805D67D8][this->f4EC]][this->f4EC] = 0xFF;
     for (i = 0; i < 4; i++) {
         for (j = 0; j < 3; j++) {
-            o->col[i][j] = (o->alpha[i][j] << 24) | 0xFFFFFF;
+            this->col[i][j] = (this->a[i][j] << 24) | 0xFFFFFF;
         }
     }
-    if (o->f4FC != 0) {
-        o->f4F8 = 0;
-        o->f4FC = 0;
+    if (this->f4FC != 0) {
+        this->f4F8 = 0;
+        this->f4FC = 0;
     }
     this->unk_20 = TAdMultiPlyChrSelectGC::count_ready();
 }

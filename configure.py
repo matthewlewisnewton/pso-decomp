@@ -479,6 +479,10 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/item/TObjContainerItem.cpp": {"mw_version": "GC/1.3.2"},
     "pso/misc/TContainerAncient01.cpp": {"mw_version": "GC/1.3.2"},
     "pso/ui/TAdSinglePlyChrSelectGC_801FBF54.cpp": {"mw_version": "GC/1.3.2"},
+    # The plate TU's UV divisions contract (fmadd) across the whole unit.
+    # Per-function fp_contract pragmas matched the same bytes; the unit flag
+    # keeps every function in the TU exact, so the pragmas are not needed.
+    "pso/ui/TAdChrSelPlyPlateGC.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
     "pso/misc/TQuestVmDownLoadServer.cpp": {"mw_version": "GC/1.3.2", "cflags": _switch(cflags_pso, "-inline deferred")},
     "pso/misc/TCameraCtrl.cpp": {"mw_version": "GC/1.3.2"},
     "pso/misc/TKeyBoardControl_8025EC04.cpp": {"mw_version": "GC/1.3.2"},
