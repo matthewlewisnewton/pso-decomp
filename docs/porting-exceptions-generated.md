@@ -7,13 +7,13 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 
 | Category | Hits | Files |
 |---|---:|---:|
-| asm | 8 | 2 |
+| asm | 9 | 3 |
 | intrinsic | 83 | 54 |
 | hardware | 71 | 13 |
-| pragma | 5871 | 886 |
-| configure.py per-unit override | 141 | 141 |
+| pragma | 5864 | 885 |
+| configure.py per-unit override | 144 | 144 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045, `fp_contract` 931, `auto_inline` 844, `opt_common_subs` 624, `scheduling` 267, `opt_propagation` 239, `readonly_strings` 203, `peephole` 105, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 43, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 28, `use_lmw_stmw` 25, `opt_lifetimes` 22, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045, `fp_contract` 931, `auto_inline` 844, `opt_common_subs` 624, `scheduling` 262, `opt_propagation` 239, `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 43, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 22, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -27,6 +27,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `src/musyx/runtime/StdReverb/reverb.c:90` | `#include "orig_asm/musyx/runtime/StdReverb/reverb/DoCrossTalk.inc"` |
 | `src/musyx/runtime/StdReverb/reverb.c:93` | `asm void HandleReverb(void *sptr, void *rv, int k) {` |
 | `src/musyx/runtime/StdReverb/reverb.c:94` | `#include "orig_asm/musyx/runtime/StdReverb/reverb/HandleReverb.inc"` |
+| `src/pso/unk/text_803E2D70.cpp:314` | `asm void transform_chunk_vertices_pos_normal(register Hdr_803E34B0 *job, register ReorderedMatrix_803E3390 *matrix) {` |
 
 ## MWCC intrinsics
 
@@ -67,7 +68,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `src/pso/misc/TWindowFukidasi.cpp:515` | `__cntlzw` |
 | `src/pso/misc/TWindowFukidasi.cpp:591` | `__cntlzw` |
 | `src/pso/misc/TWindowKeyBoardBase_8008102C.cpp:73` | `__cntlzw` |
-| `src/pso/misc/TWindowMainMenu_802AD538.cpp:303` | `__cntlzw` |
+| `src/pso/misc/TWindowMainMenu_802AD538.cpp:286` | `__cntlzw` |
 | `src/pso/misc/TWindowSnapShot_802A5B2C.cpp:32` | `__rlwinm` |
 | `src/pso/misc/TWindowSnapShot_802A5B2C.cpp:33` | `__rlwinm` |
 | `src/pso/misc/TWindowSnapShot_802A5B2C.cpp:43` | `__rlwinm` |
@@ -164,32 +165,32 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `src/pso/unk/text_803E2D70.cpp:178` | `(*(volatile WGPipe_803E2D70 *)0xCC008000).u32 = c;` |
 | `src/pso/unk/text_803E2D70.cpp:181` | `(*(volatile WGPipe_803E2D70 *)0xCC008000).f32 = s;` |
 | `src/pso/unk/text_803E2D70.cpp:182` | `(*(volatile WGPipe_803E2D70 *)0xCC008000).f32 = t;` |
-| `src/pso/unk/text_803E2D70.cpp:296` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = x;` |
-| `src/pso/unk/text_803E2D70.cpp:297` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = y;` |
-| `src/pso/unk/text_803E2D70.cpp:298` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = z;` |
-| `src/pso/unk/text_803E2D70.cpp:301` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = x;` |
-| `src/pso/unk/text_803E2D70.cpp:302` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = y;` |
-| `src/pso/unk/text_803E2D70.cpp:303` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = z;` |
-| `src/pso/unk/text_803E2D70.cpp:311` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = x;` |
-| `src/pso/unk/text_803E2D70.cpp:312` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = y;` |
-| `src/pso/unk/text_803E2D70.cpp:313` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = z;` |
-| `src/pso/unk/text_803E2D70.cpp:316` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = x;` |
-| `src/pso/unk/text_803E2D70.cpp:317` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = y;` |
-| `src/pso/unk/text_803E2D70.cpp:318` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = z;` |
-| `src/pso/unk/text_803E2D70.cpp:321` | `(*(volatile WGPipe_803E352C *)0xCC008000).s16 = s;` |
-| `src/pso/unk/text_803E2D70.cpp:322` | `(*(volatile WGPipe_803E352C *)0xCC008000).s16 = t;` |
-| `src/pso/unk/text_803E2D70.cpp:769` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = x;` |
-| `src/pso/unk/text_803E2D70.cpp:770` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = y;` |
-| `src/pso/unk/text_803E2D70.cpp:771` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = z;` |
-| `src/pso/unk/text_803E2D70.cpp:774` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = x;` |
-| `src/pso/unk/text_803E2D70.cpp:775` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = y;` |
-| `src/pso/unk/text_803E2D70.cpp:776` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = z;` |
-| `src/pso/unk/text_803E2D70.cpp:810` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = x;` |
-| `src/pso/unk/text_803E2D70.cpp:811` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = y;` |
-| `src/pso/unk/text_803E2D70.cpp:812` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = z;` |
-| `src/pso/unk/text_803E2D70.cpp:815` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = x;` |
-| `src/pso/unk/text_803E2D70.cpp:816` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = y;` |
-| `src/pso/unk/text_803E2D70.cpp:817` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = z;` |
+| `src/pso/unk/text_803E2D70.cpp:435` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = x;` |
+| `src/pso/unk/text_803E2D70.cpp:436` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = y;` |
+| `src/pso/unk/text_803E2D70.cpp:437` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = z;` |
+| `src/pso/unk/text_803E2D70.cpp:440` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = x;` |
+| `src/pso/unk/text_803E2D70.cpp:441` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = y;` |
+| `src/pso/unk/text_803E2D70.cpp:442` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = z;` |
+| `src/pso/unk/text_803E2D70.cpp:450` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = x;` |
+| `src/pso/unk/text_803E2D70.cpp:451` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = y;` |
+| `src/pso/unk/text_803E2D70.cpp:452` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = z;` |
+| `src/pso/unk/text_803E2D70.cpp:455` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = x;` |
+| `src/pso/unk/text_803E2D70.cpp:456` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = y;` |
+| `src/pso/unk/text_803E2D70.cpp:457` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = z;` |
+| `src/pso/unk/text_803E2D70.cpp:460` | `(*(volatile WGPipe_803E352C *)0xCC008000).s16 = s;` |
+| `src/pso/unk/text_803E2D70.cpp:461` | `(*(volatile WGPipe_803E352C *)0xCC008000).s16 = t;` |
+| `src/pso/unk/text_803E2D70.cpp:908` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = x;` |
+| `src/pso/unk/text_803E2D70.cpp:909` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = y;` |
+| `src/pso/unk/text_803E2D70.cpp:910` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = z;` |
+| `src/pso/unk/text_803E2D70.cpp:913` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = x;` |
+| `src/pso/unk/text_803E2D70.cpp:914` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = y;` |
+| `src/pso/unk/text_803E2D70.cpp:915` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = z;` |
+| `src/pso/unk/text_803E2D70.cpp:949` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = x;` |
+| `src/pso/unk/text_803E2D70.cpp:950` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = y;` |
+| `src/pso/unk/text_803E2D70.cpp:951` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = z;` |
+| `src/pso/unk/text_803E2D70.cpp:954` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = x;` |
+| `src/pso/unk/text_803E2D70.cpp:955` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = y;` |
+| `src/pso/unk/text_803E2D70.cpp:956` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = z;` |
 | `src/pso/unk/text_80421620.cpp:1196` | `} else if ((lbl_805D7B28 & 0xE0000000) == 0xC0000000) {` |
 
 ## configure.py per-unit compiler overrides
@@ -208,7 +209,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `pso/enemy/TObjEneDelDepth.cpp` | `-inline off,deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/object/TObjChip.cpp` | `-inline off,deferred` | TObjChip: render's colour template sits after draw_chips' in .rodata while render comes first in .text, so the source runs backwards. |
 | `pso/object/TObjTombstone.cpp` | `-inline off,deferred, -fp_contract on, -str reuse,readonly` | One unit, written last-defined first: the vtable and the late helpers precede the early ones in .text. -fp_contract on: draw_name_labels' half-width nudge and the drop placement fuse multiply-adds. -str reuse,readonly: the literals live in this unit's .rodata. |
-| `pso/unk/text_803531FC.cpp` | `(multi-line entry; see configure.py)` | GC/2.0: compiler-expanded struct copies take 2.0's registers. The ending item handler table keeps 2.0's store/load scheduling for its zero-initialized local member-function-pointer array. |
+| `pso/item/TItemSpecialEvent_803531FC.cpp` | `(multi-line entry; see configure.py)` | GC/2.0: compiler-expanded struct copies take 2.0's registers. The ending item handler table keeps 2.0's store/load scheduling for its zero-initialized local member-function-pointer array. |
 | `pso/boss/Boss5GryphonBehavior.cpp` | `GC/2.0` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/enemy/TObjEneGyaranzo.cpp` | `GC/2.0, -inline off,deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/TOExplosiveMachine.cpp` | `GC/2.0` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
@@ -320,6 +321,8 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `pso/misc/TOSensorAncient01.cpp` | `-sdata 4, -str reuse,readonly, -pool off` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/TOSensorGeneral01.cpp` | `-sdata 4, -str reuse,readonly, -pool off` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/TOKeyGenericSw.cpp` | `-sdata 4, -str reuse,readonly` | Unlike the other keys it addresses its descriptors off one .data base. |
+| `pso/object/TObjQuestColA_80196FE4.cpp` | `-inline off,deferred` | Quest-collision deleting destructors share a TU. Deferred generation emits the last definition first, which is the only order that puts each vtable before the next class's (TObjQuestColA then TObjQuestCol; TObjQuestColApcINW then TObjQuestColApcIN). |
+| `pso/object/TObjQuestColApcINW_80196EDC.cpp` | `-inline off,deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/camera/CreationCamera.cpp` | `-inline off,deferred, -fp_contract on` | The character creation camera: deferred with nothing inlined, and its multiply-adds contracted into fmadds. |
 | `pso/system/PadRumble.cpp` | `-fp_contract on` | The pad rumble and Ninja helper code contract multiply-adds into fmadds/fnmsubs. |
 | `pso/system/NinjaUtil.cpp` | `-fp_contract on` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
@@ -329,6 +332,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `pso/unk/text_8039739C.cpp` | `-O4,p` | Metrowerks' GCN_Mem_Alloc.c (runtime library code at -O4,p); belongs in the runtime lib under its own name. |
 | `pso/quest/QuestOpcodeHandlers.cpp` | `-inline on` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/quest/TQuestThread.cpp` | `-inline on` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
+| `pso/unk/text_803D8098.cpp` | `(multi-line entry; see configure.py)` | render_debug_text (0x803D85D8) saves r25-r31 with bl _savegpr_25 / _restgpr_25, and its glyph quads are the inlined SDK FIFO writers (sth/stw to 0xCC008000), not calls. -inline on inlines only functions marked inline, so queue_debug_text stays a call from debug_printf_at. The matrix helpers in text_803D8910.cpp match under the ginja defaults. |
 | `pso/misc/TKeyBoardControl_803F0C50.cpp` | `GC/1.2.5n` | Epilogue order (mtlr before the restores) only 1.2.5n produces. |
 | `pso/unk/text_803F1804.cpp` | `GC/1.2.5n` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/unk/text_803F4D84.cpp` | `-O2, -use_lmw_stmw off` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
@@ -421,7 +425,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `src/pso/boss/TBoss6Type1.cpp` | fp_contract×16, opt_common_subs×7, inline_depth×4, auto_inline×4, dont_inline×4, opt_propagation×4, opt_lifetimes×1 |
 | `src/pso/boss/TBoss6Type1_802B20C0.cpp` | readonly_strings×1 |
 | `src/pso/boss/TBoss6Type2.cpp` | inline_depth×74, auto_inline×74, dont_inline×74, opt_common_subs×20, opt_propagation×15, opt_dead_assignments×14, fp_contract×5, optimization_level×1 |
-| `src/pso/boss/TBoss6Type2_802BE588.cpp` | opt_common_subs×2, fp_contract×1 |
+| `src/pso/boss/TBoss6Type2_802BE588.cpp` | opt_common_subs×2 |
 | `src/pso/boss/TBoss6Type2_8032E708.cpp` | fp_contract×4, opt_common_subs×3, inline_depth×1, auto_inline×1, dont_inline×1, readonly_strings×1 |
 | `src/pso/boss/TBoss6Type2_80336E6C.cpp` | opt_common_subs×2, readonly_strings×1, opt_propagation×1 |
 | `src/pso/boss/TBoss6Zanzo.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
@@ -697,7 +701,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `src/pso/misc/TOMineIcon01.cpp` | fp_contract×1 |
 | `src/pso/misc/TOMineIcon02.cpp` | fp_contract×1 |
 | `src/pso/misc/TOMineIcon04.cpp` | fp_contract×1 |
-| `src/pso/misc/TOMineTrap_8016F6F8.cpp` | fp_contract×2 |
+| `src/pso/misc/TOMineTrap_8016F6F8.cpp` | fp_contract×3 |
 | `src/pso/misc/TOQuestTalkBase.cpp` | fp_contract×1 |
 | `src/pso/misc/TORockCave.cpp` | readonly_strings×1 |
 | `src/pso/misc/TORockCaveBrakable.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
@@ -1201,7 +1205,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `src/pso/unk/text_803D6438.cpp` | scheduling×2 |
 | `src/pso/unk/text_803D64F8.cpp` | scheduling×1 |
 | `src/pso/unk/text_803D8030.cpp` | scheduling×1 |
-| `src/pso/unk/text_803D853C.cpp` | scheduling×5, peephole×1, optimize_for_size×1 |
 | `src/pso/unk/text_803D8DE0.cpp` | scheduling×3, dont_inline×1, inline_depth×1 |
 | `src/pso/unk/text_803D8F74.cpp` | dont_inline×1, inline_depth×1 |
 | `src/pso/unk/text_803D96A8.cpp` | scheduling×5, peephole×3, fp_contract×1 |
