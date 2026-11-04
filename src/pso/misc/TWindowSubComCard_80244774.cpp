@@ -303,25 +303,25 @@ void window_request_show(void *object) {
 }
 
 s32 TUnk_804CE018::setup_window_draw_context(s32 arg1) {
-    s32 temp_r31;
+    TWindowKeyBoardSoft *window;
     s32 var_r4;
-    temp_r31 = (s32)TWindowKeyBoardSoft::open_singleton((f32 *)((u8 *)this + 0x40), (f32 *)((u8 *)this + 0x48), (f32 *)arg1, *(f32 *)((s8 *)this + 0x54), *(s32 *)((s8 *)this + 0x2C));
+    window = TWindowKeyBoardSoft::open_singleton((f32 *)((u8 *)this + 0x40), (f32 *)((u8 *)this + 0x48), (f32 *)arg1, *(f32 *)((s8 *)this + 0x54), *(s32 *)((s8 *)this + 0x2C));
     if (*(s32 *)((s8 *)((u8 *)this) + 0x2C) & 0x40) {
         animate_scale__19TWindowKeyBoardSoftFv();
     }
     if (*(s32 *)((s8 *)((u8 *)this) + 0x2C) & 0x80) {
-        ((TWindowKeyBoardSoft *)temp_r31)->shrink_clip_right();
+        window->shrink_clip_right();
     }
     if (*(s32 *)((s8 *)((u8 *)this) + 0x2C) & 8) {
-        ((TWindowKeyBoardSoft *)temp_r31)->set_bounds(0.0f, 0.0f, 640.0f, 480.0f);
+        window->set_bounds(0.0f, 0.0f, 640.0f, 480.0f);
     }
     var_r4 = *(s32 *)((s8 *)((u8 *)this) + 0x5C);
     if (!(*(s32 *)((s8 *)((u8 *)this) + 0x2C) & 0x2000)) {
         var_r4 = (s32) ((f32) var_r4 - 7.5f);
     }
-    ((TWindowKeyBoardSoft *)temp_r31)->set_open_tick(var_r4);
-    apply_window_closing_stretch((u8 *)temp_r31, (*(s16 *)((s8 *)((u8 *)this) + 0x22)));
-    return temp_r31;
+    window->set_open_tick(var_r4);
+    apply_window_closing_stretch((u8 *)window, (*(s16 *)((s8 *)((u8 *)this) + 0x22)));
+    return (s32)window;
 }
 
 s32 TWindowDD::draw_default_entry(s32 arg0) {

@@ -11,6 +11,7 @@ void set_constant_material(const NJS_ARGB *color);
 #include "pso/system/vector.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/boss/TBoss6PlotFalz.h"
+#include "pso/boss/TBoss6PlotFalzState.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/BmlResourceDescriptor.h"
@@ -242,17 +243,16 @@ s32 obj_isState2_324__9TObjCharaFv(void *);
 s16 get_actor_hp(void *);
 s32 send_6x2F_change_player_hp(int, s32, s16);
 
-struct TBoss6PlotFalz_802AACF4 { u8 pad[0x3D0]; s32 f3D0; s32 f3D4; s32 f3D8; };
 #pragma push
 #pragma fp_contract on
 #pragma opt_common_subs off
-void update_random_shake__14TBoss6PlotFalzFPv(TBoss6PlotFalz_802AACF4 *o) {
-    if (o->f3D0 != 0) {
-        s32 n = o->f3D4 - 1;
-        o->f3D4 = n;
+void update_random_shake__14TBoss6PlotFalzFPv(TBoss6PlotFalz *o) {
+    if (o->m_3d0 != 0) {
+        s32 n = o->m_3d4 - 1;
+        o->m_3d4 = n;
         if (n < 0) {
-            TCameraCtrl::set_shake_preset(o->f3D8);
-            o->f3D4 = (s32)(60.0f * (3.0517578125e-05f * (f32)rand()) + 60.0f);
+            TCameraCtrl::set_shake_preset(o->m_3d8);
+            o->m_3d4 = (s32)(60.0f * (3.0517578125e-05f * (f32)rand()) + 60.0f);
         }
     }
 }
@@ -356,7 +356,6 @@ s32 TBoss6PlotFalz::is_active() {
 #undef get_player_data__10TObjPlayerFi
 #undef is_state_1f__14TBoss6PlotFalzFUi
 
-#define update_random_shake__14TBoss6PlotFalzFPv ((s32 (*)(void *))update_random_shake__14TBoss6PlotFalzFPv)
 #define get_field_3e0__12TBoss3VoloptFv ((s32 (*)())get_field_3e0__12TBoss3VoloptFv)
 
 struct Stack_802AB1C8 {
@@ -365,32 +364,13 @@ struct Stack_802AB1C8 {
     s32 sp10;
 };
 
-union MemberActionStorage_802AB1C8 { s32 words[3]; void (TBoss6PlotFalz::*action)(); };
-
-struct RecoveredGlobal_802AB1C8_TBoss6PlotFalz__data_804DE66C {
-    s32 value;
-    u8 remaining[0x1D0];
-};
-
 struct Stack_802AB14C {
     s32 sp8;
     s32 spC;
     s32 sp10;
 };
 
-union MemberActionStorage_802AB14C { s32 words[3]; void (TBoss6PlotFalz::*action)(); };
-
-struct RecoveredGlobal_802AB14C_TBoss6PlotFalz__data_804DE66C {
-    s32 value;
-    u8 remaining[0x1D0];
-};
-
-union MemberActionStorage_802AB2B8 { s32 words[3]; void (TBoss6PlotFalz::*action)(); };
-
 extern "C" {
-extern RecoveredGlobal_802AB1C8_TBoss6PlotFalz__data_804DE66C TBoss6PlotFalz__data_804DE66C;
-void TBoss6EmptyWarp__sub_802B1004(void *p);
-
 s32 is_state_1f__14TBoss6PlotFalzFUi(u32 arg0) {
     if ((arg0 == 0U) || (get_field_3e0__12TBoss3VoloptFv() != 0x1F)) {
         return 0;
@@ -398,82 +378,45 @@ s32 is_state_1f__14TBoss6PlotFalzFUi(u32 arg0) {
     return 1;
 }
 
-typedef char MemberActionStorage_802AB1C8_size[sizeof(MemberActionStorage_802AB1C8) == 12 ? 1 : -1];
-typedef char RecoveredGlobal_802AB1C8_TBoss6PlotFalz__data_804DE66C_size[sizeof(RecoveredGlobal_802AB1C8_TBoss6PlotFalz__data_804DE66C) == 0x1D4 ? 1 : -1];
-
-typedef char MemberActionStorage_802AB14C_size[sizeof(MemberActionStorage_802AB14C) == 12 ? 1 : -1];
-typedef char RecoveredGlobal_802AB14C_TBoss6PlotFalz__data_804DE66C_size[sizeof(RecoveredGlobal_802AB14C_TBoss6PlotFalz__data_804DE66C) == 0x1D4 ? 1 : -1];
 void TBoss6PlotFalz::run_phase_action() {
-  MemberActionStorage_802AB14C member_action;
-  Stack_802AB14C stack;
-  u8 *temp_r6;
-  temp_r6 = (u8 *) (&(*(RecoveredGlobal_802AB14C_TBoss6PlotFalz__data_804DE66C *)&TBoss6PlotFalz__data_804DE66C).value);
-  temp_r6 = temp_r6 + ((this->m_378) * 0x34);
-  member_action.words[0] = *((s32 *) (((s8 *) temp_r6) + 0x28));
-  member_action.words[1] = *((s32 *) (((s8 *) temp_r6) + 0x2C));
-  member_action.words[2] = *((s32 *) (((s8 *) temp_r6) + 0x30));
-  if (member_action.action != 0)
+  TBoss6PlotFalzAction action = TBoss6PlotFalz__data_804DE66C[this->m_378].update;
+  if (action != 0)
   {
-    (this->*( member_action.action))();
+    (this->*( action))();
   }
-  update_random_shake__14TBoss6PlotFalzFPv((void *) this);
+  update_random_shake__14TBoss6PlotFalzFPv(this);
 }
 
 void TBoss6PlotFalz::call_state_action() {
-  MemberActionStorage_802AB1C8 member_action;
-  Stack_802AB1C8 stack;
-  u8 *temp_r6;
-  if (1)
+  TBoss6PlotFalzAction action = TBoss6PlotFalz__data_804DE66C[this->m_378].tick;
+  if (action != 0)
   {
-    temp_r6 = (u8 *)&TBoss6PlotFalz__data_804DE66C.value;
-    temp_r6 = temp_r6 + ((this->m_378) * 0x34);
-    member_action.words[0] = *((s32 *) (((s8 *) temp_r6) + 0x1C));
-  }
-  member_action.words[1] = *((s32 *) (((s8 *) temp_r6) + 0x20));
-  member_action.words[2] = *((s32 *) (((s8 *) temp_r6) + 0x24));
-  if (member_action.action != 0)
-  {
-    (this->*( member_action.action))();
+    (this->*( action))();
   }
 }
 
-void TBoss6PlotFalz::set_state_2() { *(s32*)((char*)this + 0x3d4) = 0; *(s32*)((char*)this + 0x3d8) = 2; }
-void TBoss6PlotFalz::reset_state() { *(s32*)((char*)this + 0x3d4) = 0; *(s32*)((char*)this + 0x3d8) = 0; }
-void TBoss6PlotFalz::activate_warp() { void* m = *(void**)((char*)this + 0x384); if (m) ((TBoss6EmptyWarp *)m)->activate_warp(); }
-void TBoss6PlotFalz::free_child() { void* m = *(void**)((char*)this + 0x384); if (m) TBoss6EmptyWarp__sub_802B1004(m); }
+void TBoss6PlotFalz::set_state_2() { this->m_3d4 = 0; this->m_3d8 = 2; }
+void TBoss6PlotFalz::reset_state() { this->m_3d4 = 0; this->m_3d8 = 0; }
+void TBoss6PlotFalz::activate_warp() { if (this->m_384) this->m_384->activate_warp(); }
+void TBoss6PlotFalz::free_child() { if (this->m_384) this->m_384->sub_802B1004(); }
 void TBoss6PlotFalz::set_state(s32 arg1) {
-    u8 *arg0 = (u8 *)this;
-    MemberActionStorage_802AB2B8 leave;
-    MemberActionStorage_802AB2B8 enter;
-    u8 *e;
     if (arg1 < 0 || arg1 >= 9) {
         return;
     }
-    {
-        if (*(s32 *)(arg0 + 0x378) != -1) {
-            e = (u8 *)&TBoss6PlotFalz__data_804DE66C.value;
-            e = e + *(s32 *)(arg0 + 0x378) * 0x34;
-            leave.words[0] = *(s32 *)(e + 0x10);
-            leave.words[1] = *(s32 *)(e + 0x14);
-            leave.words[2] = *(s32 *)(e + 0x18);
-            if (leave.action != 0) {
-                (((TBoss6PlotFalz *)arg0)->*(leave.action))();
-            }
+    if (this->m_378 != -1) {
+        TBoss6PlotFalzAction action = TBoss6PlotFalz__data_804DE66C[this->m_378].leave;
+        if (action != 0) {
+            (this->*action)();
         }
-        *(s32 *)(arg0 + 0x378) = arg1;
-        e = (u8 *)&TBoss6PlotFalz__data_804DE66C.value;
-            e = e + *(s32 *)(arg0 + 0x378) * 0x34;
-        enter.words[0] = *(s32 *)(e + 0x4);
-        enter.words[1] = *(s32 *)(e + 0x8);
-        enter.words[2] = *(s32 *)(e + 0xC);
-        if (enter.action != 0) {
-            (((TBoss6PlotFalz *)arg0)->*(enter.action))();
-        }
+    }
+    this->m_378 = arg1;
+    TBoss6PlotFalzAction action = TBoss6PlotFalz__data_804DE66C[this->m_378].enter;
+    if (action != 0) {
+        (this->*action)();
     }
 }
 
 }
-#undef update_random_shake__14TBoss6PlotFalzFPv
 #undef get_field_3e0__12TBoss3VoloptFv
 
 #define get_player_data__10TObjPlayerFi ((Player_802AB3E0 *(*)(int))get_player_data__10TObjPlayerFi)
@@ -850,9 +793,7 @@ u32 create__11TBoss6Type2Fl(void *, int);
 s32 TBoss6Type1__sub_802ABDEC(s32 seed);
 s32 is_locally_controlled__10TObjPlayerFPv(s32);
 f32 xyz_distance(const void *, const void *);
-u32 create__10TBoss6TubeFPv();
-
-void TBoss6PlotFalz::release_object() { if (*(unsigned int*)((char*)this + 0x384) != 0) { queue_destruction__7TObjectFv(*(void**)((char*)this + 0x384)); *(int*)((char*)this + 0x384) = 0; } }
+void TBoss6PlotFalz::release_object() { if (this->m_384 != 0) { queue_destruction__7TObjectFv(this->m_384); this->m_384 = 0; } }
 
 s32 TBoss6PlotFalz::get_target_pos_a(s32 arg0, s32 arg1) {
     if ((u32) TBoss6PlotFalz__type2_instance == 0U) {
@@ -906,8 +847,8 @@ void TBoss6PlotFalz::spawn_type1() {
 }
 
 void TBoss6PlotFalz::ensure_field384() {
-    if ((u32) *(u32 *)((s8 *)this + 0x384) == 0U) {
-        *(u32 *)((s8 *)this + 0x384) = create__10TBoss6TubeFPv();
+    if (this->m_384 == 0) {
+        this->m_384 = TBoss6Tube::create(this);
     }
 }
 
@@ -1499,16 +1440,16 @@ s32 TBoss6PlotFalz__ct(s32 self, s32 arg1, s32 arg2) {
     ((TBoss6PlotFalz *)arg0)->actorFlags = (s32) (((TBoss6PlotFalz *)arg0)->actorFlags | 0x02000000);
     set_visible_flag__14TBoss6PlotFalzFv(arg0);
     update_active_flag__14TBoss6PlotFalzFv();
-    *(s32 *)((s8 *)arg0 + 0x3CC) = 0;
-    *(s32 *)((s8 *)arg0 + 0x3D0) = 0;
-    *(s32 *)((s8 *)arg0 + 0x3D4) = 0;
-    *(s32 *)((s8 *)arg0 + 0x3D8) = 0;
-    *(s32 *)((s8 *)arg0 + 0x380) = create_boss4_fade();
-    *(s32 *)((s8 *)arg0 + 0x384) = 0;
+    ((TBoss6PlotFalz *)arg0)->m_3cc = 0;
+    ((TBoss6PlotFalz *)arg0)->m_3d0 = 0;
+    ((TBoss6PlotFalz *)arg0)->m_3d4 = 0;
+    ((TBoss6PlotFalz *)arg0)->m_3d8 = 0;
+    ((TBoss6PlotFalz *)arg0)->m_380 = (u8 *)create_boss4_fade();
+    ((TBoss6PlotFalz *)arg0)->m_384 = 0;
     ((TBoss6PlotFalz *)arg0)->ensure_field384();
     (*(s32 *)&TBoss6PlotFalz__type1_instance) = 0;
     (*(s32 *)&TBoss6PlotFalz__type2_instance) = 0;
-    *(s32 *)((s8 *)arg0 + 0x3DC) = 0;
+    ((TBoss6PlotFalz *)arg0)->m_3dc = 0;
     TBoss6PlotFalz__fade_amount = (-1.0f);
     ((TBoss6PlotFalz *)arg0)->m_37c = 0;
     ((TBoss6PlotFalz *)arg0)->m_378 = -1;
