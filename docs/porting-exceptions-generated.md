@@ -63,10 +63,10 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `src/pso/misc/TQuestVmDownLoadServer.cpp:544` | `__cntlzw` |
 | `src/pso/misc/TRaderMapCore_8030A808.cpp:9` | `__cntlzw` |
 | `src/pso/misc/TWindowDD_8034725C.cpp:337` | `__cntlzw` |
-| `src/pso/misc/TWindowFukidasi.cpp:338` | `__cntlzw` |
-| `src/pso/misc/TWindowFukidasi.cpp:435` | `__cntlzw` |
-| `src/pso/misc/TWindowFukidasi.cpp:492` | `__cntlzw` |
-| `src/pso/misc/TWindowFukidasi.cpp:568` | `__cntlzw` |
+| `src/pso/misc/TWindowFukidasi.cpp:361` | `__cntlzw` |
+| `src/pso/misc/TWindowFukidasi.cpp:458` | `__cntlzw` |
+| `src/pso/misc/TWindowFukidasi.cpp:515` | `__cntlzw` |
+| `src/pso/misc/TWindowFukidasi.cpp:591` | `__cntlzw` |
 | `src/pso/misc/TWindowKeyBoardBase_8008102C.cpp:73` | `__cntlzw` |
 | `src/pso/misc/TWindowMainMenu_802AD538.cpp:286` | `__cntlzw` |
 | `src/pso/misc/TWindowSnapShot_802A5B2C.cpp:32` | `__rlwinm` |

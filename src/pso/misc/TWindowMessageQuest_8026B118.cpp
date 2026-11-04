@@ -36,7 +36,7 @@ void create_quest_message_window(void) {
 }
 void TWindowMessageQuest::render() {
     Ctx_8026B148 *c;
-    c = (Ctx_8026B148 *)TWindowBase::get_draw_context(this);
+    c = (Ctx_8026B148 *)get_draw_context__11TWindowBaseFPv(this);
     switch (((Win_8026B148 *)this)->mode) {
     case 0:
         if (c->reveal < 0) {

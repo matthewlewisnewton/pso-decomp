@@ -50,6 +50,7 @@ extern Vec2_8024EC34 keyboard_soft_viewport_offset_table[];
 extern Vec2_8024EC34 lbl_8044EC80[];
 extern Vec2_8024EC34 lbl_8044EC98[];
 extern const float lbl_805DCC94;
+s32 clip_textured_quad__19TWindowKeyBoardSoftFPvPv(Win_8024E8E8 *w, Box_8024E8E8 *b);
 extern const f32 lbl_805DCC98;
 extern const f32 lbl_805DCC9C;
 extern const f32 lbl_805DCCA0;
@@ -62,10 +63,10 @@ typedef struct RecoveredFields_8024E754_arg0 RecoveredFields_8024E754_arg0;
 #pragma push
 #pragma fp_contract on
 void TWindowKeyBoardSoft::scale_point_about_pivot(f32 *q) {
-    if ((*(const f32 *)&lbl_805DCC78) != scale[0]) {
+    if (lbl_805DCC78 != scale[0]) {
         q[0] = scale[0] * (q[0] - pivot[0]) + pivot[0];
     }
-    if ((*(const f32 *)&lbl_805DCC78) != scale[1]) {
+    if (lbl_805DCC78 != scale[1]) {
         q[1] = scale[1] * (q[1] - pivot[1]) + pivot[1];
     }
 }
@@ -135,8 +136,7 @@ void TWindowKeyBoardSoft::animate_scale() {
 }
 
 s32 TWindowKeyBoardSoft::is_point_in_bounds(void *arg1) {
-    Box_8024E8E8 *box = (Box_8024E8E8 *)arg1;
-    if ((box->x1 < clip_left) || (box->y1 < clip_top) || (box->x0 > clip_right) || (box->y0 > clip_bottom)) {
+    if ((*(f32 *)((s8 *)arg1 + 8) < *(f32 *)((s8 *)this + 0x3C)) || (*(f32 *)((s8 *)arg1 + 0xC) < *(f32 *)((s8 *)this + 0x40)) || (*(f32 *)((s8 *)arg1 + 0) > *(f32 *)((s8 *)this + 0x44)) || (*(f32 *)((s8 *)arg1 + 4) > *(f32 *)((s8 *)this + 0x48))) {
         return 0;
     }
     return 1;
@@ -144,9 +144,7 @@ s32 TWindowKeyBoardSoft::is_point_in_bounds(void *arg1) {
 
 #pragma push
 #pragma fp_contract on
-s32 TWindowKeyBoardSoft::clip_textured_quad(void *w_arg, void *b_arg) {
-    Win_8024E8E8 *w = (Win_8024E8E8 *)w_arg;
-    Box_8024E8E8 *b = (Box_8024E8E8 *)b_arg;
+s32 clip_textured_quad__19TWindowKeyBoardSoftFPvPv(Win_8024E8E8 *w, Box_8024E8E8 *b) {
     f32 sx;
     f32 sy;
     f32 d;
@@ -179,11 +177,11 @@ s32 TWindowKeyBoardSoft::clip_textured_quad(void *w_arg, void *b_arg) {
 }
 #pragma pop
 
-s32 TWindowKeyBoardSoft::try_open(int arg0, int arg1) {
-    if (clip_textured_quad((void *)arg0, (void *)arg1) == 0) {
+s32 try_open__19TWindowKeyBoardSoftFii(s32 arg0, s32 arg1) {
+    if (clip_textured_quad__19TWindowKeyBoardSoftFPvPv((Win_8024E8E8 *)(arg0), (Box_8024E8E8 *)(arg1)) == 0) {
         return 0;
     }
-    apply_context_transform_to_rect((Ctx_8024E6D8 *)arg0, (f32 *)arg1);
+    apply_context_transform_to_rect((Ctx_8024E6D8 *)(arg0), (f32 *)arg1);
     return 1;
 }
 

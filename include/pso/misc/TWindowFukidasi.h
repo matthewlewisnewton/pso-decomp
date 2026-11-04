@@ -26,7 +26,6 @@ struct TWindowFukidasi
     void run_task();
     void find_balloon_overlap_for(s32 arg1);
     void rearm_balloon(s32 arg1);
-    static void refresh_rect_placement(void *balloon);
 };
 
 extern "C" {

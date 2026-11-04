@@ -112,6 +112,7 @@ extern const f32 lbl_805DCA94;
 extern const f32 lbl_805DCA98;
 extern const f32 lbl_805DCA9C;
 s32 TObjPlayer__sub_80354C7C(s32);
+s32 setup_window_draw_context__13TUnk_804CE018Fl(void *, void *);
 void draw_visible_window_entries(void *, void *, int);
 void __dl__7TObjectFPv(void *);
 void __destroy_arr(void *, void *, int, int);
@@ -234,7 +235,7 @@ void TWindowActionPalette::draw_frame(int arg1) {
 #pragma pop
 
 void TWindowActionPalette::render() {
-    s32 context = ((TUnk_804CE018 *)this)->setup_window_draw_context(&scale.x);
+    s32 context = setup_window_draw_context__13TUnk_804CE018Fl(this, &scale);
     draw_visible_window_entries(this, &children, context);
     draw_frame(context);
 }

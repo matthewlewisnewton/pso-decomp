@@ -15,7 +15,8 @@ struct TWindowLoadItemTexture : public TUnk_804CE018 {
     u8 m_60;
     u8 m_61;
     u8 _pad62[0x2];
-    f32 scale[2];
+    void* m_64;
+    u8 _pad68[0x4];
     u32 m_6c;
     u32 m_70;
     void *create(void *arg1);

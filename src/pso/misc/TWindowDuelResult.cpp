@@ -36,8 +36,6 @@ typedef struct Win_8024F094 {
 } Win_8024F094;
 
 struct TWindowDuelResult {
-    u8 pad[0x60];
-    f32 scale[2];
     void sub_8024F094();
     void sub_8024EF40();
     void sub_8024F090();
@@ -276,7 +274,7 @@ s32 TWindowDuelResult__sub_8024F330(void *arg0_) {
 
 void draw_window__17TWindowDuelResultFPv(u8 *arg0) {
     s32 temp_r3;
-    temp_r3 = ((TUnk_804CE018 *)arg0)->setup_window_draw_context(((TWindowDuelResult *)arg0)->scale);
+    temp_r3 = ((TUnk_804CE018 *)arg0)->setup_window_draw_context((s32)(arg0 + 0x60));
     ((TUnk_804CE018 *)arg0)->draw_window_frame((void *)temp_r3);
     draw_visible_window_entries(arg0, arg0 + 0x24, temp_r3);
     draw_list_page_indicator((int) (*(s32 *)((s8 *)arg0 + 0x68)), temp_r3);
