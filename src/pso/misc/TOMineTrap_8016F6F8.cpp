@@ -98,8 +98,6 @@ struct VObj_18_1da615 : VBase_18_1da615 {
     virtual s32 m23(void *, f32);
 };
 
-struct Pair_80170DD8 { s32 a; s32 b; };
-
 extern "C" {
 s32 is_locally_controlled__10TObjPlayerFPv(u32 a0);
 s32 get_localized_text_entry(s32 arg0, s32 arg1);
@@ -685,7 +683,7 @@ void TOMine::detonate() {
     for (i = 0; i < 0x10; i++) {
         obj = get_battle_param__10TObjPlayerFi(i);
         if (TObjPlayer::is_valid_and_active((u32)obj) != 0) {
-            Pair_80170DD8 pair = *(Pair_80170DD8 *)(((u8 *)this) + 0x354);
+            DirectAttackPayload pair = this->attack;
             f32 r = ((VObj_18_1da615 *)obj)->m21(this, &pair, 0, -1, -1);
             if (this->attack.kind < 5) {
                 ((VObj_18_1da615 *)obj)->m23(this, lbl_805DB874 * r);
