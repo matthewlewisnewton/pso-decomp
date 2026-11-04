@@ -55,7 +55,7 @@ s32 subtract_vector(void *, void *);
 s32 transform_point_by_current_matrix(void *, void *);
 void push_matrix(void);
 f32 newton_sqrtf(f32);
-void copy_model_node(u8 *dst, u8 *src);
+void copy_model_node(Node_802EFF24 *dst, Node_802EFF24 *src);
 void pop_matrix(void);
 struct Cnt_802EF898 { u8 pad[4]; u32 n; };
 
@@ -107,14 +107,14 @@ void TObjPlayer__sub_802F0D30(void) {
     TObjPlayer::notify_fish_obj((void *)0x11);
     dst = lbl_80541528;
     for (i = 0; i < 12; i++) {
-        copy_model_node((u8 *)dst, (u8 *)src);
+        copy_model_node(dst, src);
         dst->next = dst + 1;
         dst++;
         src = src->next;
     }
-    copy_model_node((u8 *)dst, (u8 *)src);
+    copy_model_node(dst, src);
     dst->child = dst + 1;
-    copy_model_node((u8 *)&dst[1], (u8 *)src->child);
+    copy_model_node(&dst[1], src->child);
     for (i = 0; i < 14; i++) {
         lbl_80541528[i].flags &= ~3;
         TBoss7Tentacle__segment_offsets[i].x = (f64)lbl_80541528[i].pos.x;
@@ -433,8 +433,6 @@ void TBoss7Tentacle::switch_state() {
     }
 }
 
-#pragma push
-#pragma opt_common_subs off
 void TBoss7Tentacle::update_extend_amount() {
     if (m_3c & 2) {
         m_2c = (f32)(m_2c - 0.1f);
@@ -448,7 +446,6 @@ void TBoss7Tentacle::update_extend_amount() {
         }
     }
 }
-#pragma pop
 
 void TBoss7Tentacle::render() {
     s32 var_ctr;
