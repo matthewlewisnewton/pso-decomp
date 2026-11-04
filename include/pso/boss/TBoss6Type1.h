@@ -84,7 +84,9 @@ struct TBoss6Type1 : public TObjEnemy {
     s32 unk_4bc;
     s32 unk_4c0;
     s32 unk_4c4;
-    u8 unk_4c8[0xC];
+    // Previous sword sample. sub_802B715C closes the triangle
+    // position → m_4c8 → effect_points[1] and then stores effect_points[1] here.
+    Vec m_4c8;
     f32 m_4d4;
     f32 m_4d8;
     f32 m_4dc;
@@ -256,4 +258,5 @@ typedef char TBoss6Type1_trail_receiver_offset[(offsetof(TBoss6Type1,trail_point
 typedef char TBoss6Type1_map_csn_offset[(offsetof(TBoss6Type1,map_csn)==0x680)?1:-1];
 typedef char Boss6NodePos_size[(sizeof(Boss6NodePos)==0xC)?1:-1];
 typedef char TBoss6Type1_node_positions_offset[(offsetof(TBoss6Type1,node_positions_578)==0x578)?1:-1];
+typedef char TBoss6Type1_m_4c8_offset[(offsetof(TBoss6Type1, m_4c8)==0x4C8)?1:-1];
 #endif
