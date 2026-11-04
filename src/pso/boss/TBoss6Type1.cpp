@@ -70,44 +70,19 @@ struct RecoveredGlobal_802B5140_lbl_80470CE0 {
 
 struct Blk_802B8624 { s32 a; s32 b; s32 rest[14]; };
 
-struct V3_802B4BA8 { s32 x, y, z; };
 
-struct T1_802B4BA8 {
-    u8 pad0[0x38];
-    V3_802B4BA8 pos;
-};
 
 struct Tbl_802B4BA8 { s32 a; s32 b; };
 
-struct V3_802B600C { s32 x; f32 y; s32 z; };
 
-struct T1_802B600C { u8 pad0[0x38]; V3_802B600C pos; };
 
-struct Ent_802B7944 { u8 pad0[0x18]; u32 f; u8 pad1c[0x10]; };
 
-struct T1_802B7944 { u8 pad0[0xA4]; Ent_802B7944 *p; };
 
-struct Vec_802B4C28 { s32 x, y, z; };
-struct Obj_802B4C28 {
-    u8 pad0[0x38];
-    Vec_802B4C28 pos;
-    u8 pad44[0x4F8 - 0x44];
-    u32 parts[4];
-    u8 pad508[0x578 - 0x508];
-    Vec_802B4C28 pts[1];
-};
 struct Tbl_802B82B8 { s32 mode; s32 next; s32 ids[2]; };
 struct Msg_802B9178 { u8 b[0x10]; };
 struct S_802B8E1C { u8 a; s8 b; };
 
-typedef Vec Vec_802B683C;
 
-struct Boss_802B683C {
-    u8 pad0[0x38];
-    Vec_802B683C pos;
-    u8 pad44[0x41C - 0x44];
-    s8 f41C;
-};
 
 struct Tbl_802B79DC { s32 kind; s32 idx; };
 
@@ -135,17 +110,8 @@ struct Player_802B6B34 : Base_802B6B34 {
     V3_802B6B34 pos;
 };
 
-struct Boss_802B6B34 { u8 pad[0x488]; s32 f488; };
 
-typedef Vec Vec_802B73AC;
 
-struct Boss_802B73AC {
-    u8 pad0[0x408];
-    s32 f408;
-    u8 pad40c[0x5D8 - 0x40C];
-    Vec_802B73AC a;
-    Vec_802B73AC b;
-};
 
 typedef Vec Vec_802B4D5C;
 
@@ -159,52 +125,16 @@ struct Atk_802B8EE0 {
 
 struct Player_802B6B34;
 
-struct V3_802B6C30 { s32 x; f32 y; s32 z; };
 
-union Val_802B6C30 { f32 f; s32 i; };
 
-struct Arg_802B6C30 { s32 kind; Val_802B6C30 v; };
 
-struct Base_802B6C30 { u8 pad[0x18]; };
 
-struct Player_802B6C30 : Base_802B6C30 {
-    virtual void m0(); virtual void m1(); virtual void m2(); virtual void m3();
-    virtual void m4(); virtual void m5(); virtual void m6(); virtual void m7();
-    virtual void m8(); virtual void m9(); virtual void m10(); virtual void m11();
-    virtual void m12(); virtual void m13(); virtual void m14(); virtual void m15();
-    virtual void m16(); virtual void m17(); virtual void m18(); virtual void m19();
-    virtual void m20();
-    virtual void m21(void *, Arg_802B6C30 *, s32, s32, s32);
-    u8 pad1c[0x38 - 0x1C];
-    V3_802B6C30 pos;
-};
 
-struct ArgPair_802B6C30 {
-    Arg_802B6C30 a[2];
-    inline ArgPair_802B6C30(s32 r) {
-        a[0].kind = 0;
-        a[1].kind = 0;
-        a[1].v.f = (f32)r;
-        a[0].v.i = a[1].v.i;
-    }
-};
 
 typedef Vec Vec_802B6C30;
 
 struct Line_802B6C30 { Vec_802B6C30 p; Vec_802B6C30 d; };
 
-struct Boss_802B6C30 {
-    u8 pad0[0x60];
-    s32 angle;
-    u8 pad64[0x484 - 0x64];
-    s32 f484;
-    u8 pad488[0x4DC - 0x488];
-    f32 f4DC;
-    u8 pad4E0[0x5A8 - 0x4E0];
-    Vec_802B6C30 a;
-    u8 pad5B4[0x5C0 - 0x5B4];
-    Vec_802B6C30 b;
-};
 
 
 
@@ -385,35 +315,9 @@ s32 __ct__11TObjControlFP7TObject(s32, s32);
 s32 __nw__7TObjectFUl(s32);
 #define VLEN(p) vector_length(p)
 
-struct ArgPair_802B7530 {
-    Arg_802B6B34 a[2];
-    inline ArgPair_802B7530(s32 r) {
-        a[0].kind = 0;
-        a[1].kind = 0;
-        a[1].v.f = (f32)r;
-        a[0].v.i = a[1].v.i;
-    }
-};
 typedef Vec Vec_802B7530;
 struct W3_802B7530 { s32 x, y, z; };
 struct Line_802B7530 { Vec_802B7530 p; Vec_802B7530 d; };
-struct Boss_802B7530 {
-    u8 pad0[0x3FC];
-    s32 f3FC;
-    u8 pad400[0x408 - 0x400];
-    u32 f408;
-    u8 pad40C[0x460 - 0x40C];
-    u32 f460;
-    f32 f464;
-    f32 f468;
-    u8 pad46C[0x47C - 0x46C];
-    s32 f47C;
-    u8 pad480[0x56C - 0x480];
-    Vec_802B7530 f56C;
-    u8 pad578[0x5D8 - 0x578];
-    Vec_802B7530 a;
-    Vec_802B7530 b;
-};
 
 f32 vec3_dot(void *, void *);
 void *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags);
@@ -448,7 +352,6 @@ struct OlgaFlowActionMsg {
     u8 sync_params[3];
 };
 
-struct Boss_802B8EE0;
 extern "C" {
 
 
