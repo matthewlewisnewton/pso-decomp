@@ -32,6 +32,7 @@ guides.
 - [Negative fade phase](negative-fade-phase-evidence.md)
 - [Native Nest continuation](nest-native-recovery-evidence.md)
 - [One-shot positional sound](one-shot-sound-evidence.md)
+- [Paired-single SDK assembly and MWCC](paired-single-sdk-asm.md)
 - [Panarms native emission evidence](panarms-native-emission-evidence.md)
 - [Particle factory position](particle-factory-position-evidence.md)
 - [Persistent positional sound](persistent-sound-evidence.md)
