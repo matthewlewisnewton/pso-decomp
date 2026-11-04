@@ -3,6 +3,8 @@
 #include "pso/object/TObjMotion.h"
 #include "pso/unk/text_8014B8A4.h"
 #include "pso/npc/TObjNpcKenkyuW.h"
+#include "pso/misc/TNeedleShoot.h"
+#include "pso/object/TObject_80019A50.h"
 #include "pso/system/vector.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/npc/TUnk_804A9F50.h"
@@ -290,6 +292,30 @@ TechniqueContactList *TObjPlayer::collect_technique_contacts(void *src) {
         }
     }
     return &L_802A41CC;
+}
+
+s32 TObjPlayer__sub_802A445C(TNeedleShoot *self) {
+    TechniqueContactList *list;
+    if (self->m_68 == 0U) {
+        queue_destruction__7TObjectFv(self);
+    } else {
+        if (self->m_b0 == 1U) {
+            list = ((TObjPlayer *)self)->collect_technique_contacts((void *)self->m_1c);
+        } else if (self->m_b0 == 2U) {
+            list = TObjPlayer__sub_802A3FDC((Obj_802A3FDC *)self, (void *)self->m_1c);
+        } else {
+            list = TObjPlayer__sub_802A3DE8((Obj_802A3DE8 *)self, (void *)self->m_1c);
+        }
+        if (list == 0) {
+            self->vfunc_6();
+        } else if (((TObjPlayer *)self)->is_hit_receivable_target((s32)list->actors[0], (u32)list->actors[0]) != 0) {
+            if (list->actors[0] != 0) {
+                self->m_38 = (u32)list->bodies[0];
+                self->vfunc_9(list->actors[0]);
+            }
+        }
+    }
+    return 0;
 }
 
 }
