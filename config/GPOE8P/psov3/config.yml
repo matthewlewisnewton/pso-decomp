@@ -623,6 +623,12 @@ force_active:
   - TLobby__sub_80426190
   - TLobby__sub_804262CC
   - TLobby__sub_80426AAC
+  - TLobby__sub_80428830
+  - TLobby__sub_80428A38
+  - TLobby__sub_80428BB0
+  - TLobby__sub_80428DC8
+  - TLobby__sub_80428EC0
+  - TLobby__sub_804293B0
   - TLobby_warp_menu_window
   - TLockOnCursor__sub_8013EBBC
   - TLockOnCursor__sub_8013EBE8
@@ -13647,6 +13653,7 @@ force_active:
   - reset_all_tech_slots__10TObjPlayerFv
   - reset_and_invoke__6TLobbyFv
   - reset_and_recreate__14TBoss6PlotFalzFv
+  - reset_buffer_pool__6TLobbyFv
   - reset_by_door__18TObjLazerFenceNormFv
   - reset_by_door__19TObjLazerFenceExtraFPv
   - reset_camera_if_fullscreen__6TLobbyFPv
@@ -16810,6 +16817,7 @@ force_active:
   - wait_for_quest__10TChallengeFv
   - wait_for_vi_retrace__Fv
   - wait_next_idle__11TBoss4Type2Fv
+  - wait_timeout_loop__FP12ModemRequest
   - wander_around__16TObjEneNanoDragoFP3Vecf
   - warp_boss_handle_window__12TObjWarpBossFv
   - warp_nearby_players__14TBoss6PlotFalzFv
