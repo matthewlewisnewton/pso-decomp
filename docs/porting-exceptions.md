@@ -116,6 +116,7 @@ entry when the PR merges.
 | [#250](https://github.com/matthewlewisnewton/pso-decomp/pull/250) | `fp_contract` ×3 | Reason not recorded. |
 | [#303](https://github.com/matthewlewisnewton/pso-decomp/pull/303), [#295](https://github.com/matthewlewisnewton/pso-decomp/pull/295), [#289](https://github.com/matthewlewisnewton/pso-decomp/pull/289), [#272](https://github.com/matthewlewisnewton/pso-decomp/pull/272), [#225](https://github.com/matthewlewisnewton/pso-decomp/pull/225), [#222](https://github.com/matthewlewisnewton/pso-decomp/pull/222), [#215](https://github.com/matthewlewisnewton/pso-decomp/pull/215), [#187](https://github.com/matthewlewisnewton/pso-decomp/pull/187), [#128](https://github.com/matthewlewisnewton/pso-decomp/pull/128) | 1 to 4 inlining/optimization pragmas each | Reason not recorded. Drop in a port. |
 | [#240](https://github.com/matthewlewisnewton/pso-decomp/pull/240) | Not scanned | Diff exceeds GitHub's 300-file limit; scan locally after it merges. |
+| [#214](https://github.com/matthewlewisnewton/pso-decomp/pull/214) | `configure.py`: `-fp_contract on` for `pso/ui/TAdMultiPlyChrSelectGC_802C50EC.cpp` | The original unit contracts all four multiply-adds, one each in `802C5148`, `802C5274`, `802C58AC`, and `802C676C`, so the whole unit is built with contraction on. The source has no `fp_contract` pragma. Port: keep fused multiply-add, or accept small float differences. |
 
 The scan covers source lines only; `configure.py` overrides added by PRs show up
 in the generated table once merged.

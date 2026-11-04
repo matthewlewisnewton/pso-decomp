@@ -746,9 +746,19 @@ void TAdMultiPlyChrSelectGC__sub_802C6660(S_802C50EC *self) {
             self->quad[i + 4][0].y = self->quad[row][col].y;
             self->quad[i + 4][0].w = self->quad[row][col].w;
             self->quad[i + 4][0].u0 = TAdMultiPlyChrSelectGC__data_805DE56C;
-            self->quad[i + 4][0].v0 = TAdMultiPlyChrSelectGC__data_805DE584 * ((f32)(s32)i * lbl_80471CE0[1]);
-            self->quad[i + 4][0].u1 = lbl_80471CE0[0] * TAdMultiPlyChrSelectGC__data_805DE584;
-            self->quad[i + 4][0].v1 = TAdMultiPlyChrSelectGC__data_805DE584 * ((f32)(s32)i * lbl_80471CE0[1] + lbl_80471CE0[1]);
+            {
+                // Each product is its own statement so the texture row, the bias, and
+                // the scale land in f4/f5/f3. One expression rotates those three.
+                // The two casts stay separate; sharing the factors deletes the
+                // second int-to-float.
+                f32 slot0 = (f32)(s32)i;
+                f32 v0 = slot0 * lbl_80471CE0[1];
+                self->quad[i + 4][0].v0 = v0 * TAdMultiPlyChrSelectGC__data_805DE584;
+                self->quad[i + 4][0].u1 = lbl_80471CE0[0] * TAdMultiPlyChrSelectGC__data_805DE584;
+                f32 slot1 = (f32)(s32)i;
+                f32 v1 = slot1 * lbl_80471CE0[1] + lbl_80471CE0[1];
+                self->quad[i + 4][0].v1 = v1 * TAdMultiPlyChrSelectGC__data_805DE584;
+            }
             s32 row_i = row + 1;
             s32 col_i = col + 1;
             s32 *occupied = &TAdMultiPlyChrSelectGC__data_804E0A68[row_i][col_i];
