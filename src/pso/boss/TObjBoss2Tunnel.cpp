@@ -143,8 +143,11 @@ void set_depth_buffer_settings_1__Fv(void);
 void restore_saved_depth_alpha_state(void);
 extern s32 lbl_805D63F0;
 s32 TAdPlayerLoadGC__sub_801E0FA4(s32);
-void poll_load_status__15TAdPlayerLoadGCFl(s32 a, void *b);
+// 0x8007D184 sets a dead r4 (the callee overwrites it for CARDFreeBlocks).
+// The real 1-arg call drops that li and falls below 100%.
 s32 query_memcard_capacity__15TAdPlayerLoadGCFl(s32, s32);
+// The mask in r4 is pack_flags' second argument, and declaring it matches the
+// callee bytes, but the real method call regresses the callers. Wide Fv stays.
 s32 is_on_current_screen__11TCameraCtrlFv(void *, s32);
 }
 extern s32 screen_binary_filename;
@@ -1289,7 +1292,7 @@ void TObjBoss2Tunnel::show_message_and_wait(s32 arg0) {
 }
 
 void TObjBoss2Tunnel::poll_pso_screen_load() {
-    poll_load_status__15TAdPlayerLoadGCFl(1, ((u8 *)&TObjBoss2Tunnel__data_80438A08));
+    TAdPlayerLoadGC::poll_load_status(1, TObjBoss2Tunnel__data_80438A08);
 }
 
 s32 TObjBoss2Tunnel::run_confirm_message_loop() {

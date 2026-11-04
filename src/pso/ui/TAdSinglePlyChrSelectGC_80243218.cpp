@@ -15,11 +15,9 @@ void TAdSinglePlyChrSelectGC::draw_window_bg(s32 arg0, s32 arg1, s32 arg2, s32 a
 }
 s32 TAdSinglePlyChrSelectGC::load_player(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 sp8;
-    s32 r;
 
     get_current_date_stamp((DateStamp *)(&sp8));
-    r = TAdPlayerLoadGC__sub_801E15A4(arg0, arg1, arg2, arg3, &sp8, 0x80000000);
-    return r;
+    return TAdPlayerLoadGC__sub_801E15A4(arg0, arg1, arg2, arg3, &sp8, 0x80000000);
 }
 int TAdSinglePlyChrSelectGC::load_player_slot(int a1, int a2) { return TAdPlayerLoadGC__sub_801E1944(this, a1, a2, 0); }
 

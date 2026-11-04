@@ -62,7 +62,7 @@ extern u32 TAdPlayerLoadGC__card_slot_state_flags;
 s32 TAdPlayerLoadGC__sub_801E1B50(s32);
 s32 CARDCheck(s32);
 s32 CARDFreeBlocks(s32, s32 *, s32 *);
-s32 CARDDelete();
+s32 CARDDelete(s32 chan, const char *fileName);
 s32 CARDCheckAsync(void *, int);
 extern RecoveredGlobal_801E14E8_TAdPlayerLoadGC__data_80511ED0 TAdPlayerLoadGC__banner_buffers;
 extern s32 TAdPlayerLoadGC__banner_file_buf;
@@ -900,12 +900,12 @@ s32 TAdPlayerLoadGC__sub_801E24F8(s32 chan) {
     return -1;
 }
 
-s32 TAdPlayerLoadGC::poll_load_status(s32 arg0) {
+s32 TAdPlayerLoadGC::poll_load_status(s32 arg0, const char *name) {
     if (arg0 >= 2) {
         TAdPlayerLoadGC__card_result_code = -1;
         return -1;
     }
-    switch (CARDDelete()) {
+    switch (CARDDelete(arg0, name)) {
     case -1:
         TAdPlayerLoadGC__card_result_code = -1;
         return -1;
