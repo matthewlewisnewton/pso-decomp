@@ -141,22 +141,22 @@ void TBoss6Type2::init_attack_params() {
     }
 }
 
-void TBoss6Type2__sub_802BF834(u8 *boss6_type2) {
+void TBoss6Type2::sub_802BF834() {
     s32 temp_r0;
-    if (((s32) ((TBoss6Type2 *)boss6_type2)->m_460 == (s32) (*(s32 *)((s8 *)boss6_type2 + 0x45C) - 0x1E)) && ((u16) ((TBoss6Type2 *)boss6_type2)->m_466 != 0xFFFF)) {
-        play_sound_effect(0x4006A10A, (const Vec *)(boss6_type2 + 0x38), 0, 1);
-        play_sound_effect(0x69E27, (const Vec *)(boss6_type2 + 0x38), 0, 1);
-        spawn_particle_effect_with_flags((boss6_type2 + 0x62C), 0x223, 0x40);
+    if (((s32) this->m_460 == (s32) (*(s32 *)((s8 *)this + 0x45C) - 0x1E)) && ((u16) this->m_466 != 0xFFFF)) {
+        play_sound_effect(0x4006A10A, (const Vec *)&position, 0, 1);
+        play_sound_effect(0x69E27, (const Vec *)&position, 0, 1);
+        spawn_particle_effect_with_flags(((u8 *)this + 0x62C), 0x223, 0x40);
     }
-    temp_r0 = ((TBoss6Type2 *)boss6_type2)->m_460 - 1;
-    ((TBoss6Type2 *)boss6_type2)->m_460 = temp_r0;
+    temp_r0 = this->m_460 - 1;
+    this->m_460 = temp_r0;
     if (temp_r0 < 0) {
-        ((TBoss6Type2 *)boss6_type2)->set_action_state((void *)0x22);
+        this->set_action_state((void *)0x22);
     }
 }
 
 void TBoss6Type2::check_state_0x460_eq0() { if (this->m_460 == 0) { send_state_action_packet(); } }
-void TBoss6Type2__sub_802BF904(void* p) { *(s32*)((char*)p + 0x45c) = 45; *(s32*)((char*)p + 0x460) = 45; }
+void TBoss6Type2::sub_802BF904() { *(s32*)((char*)this + 0x45c) = 45; *(s32*)((char*)this + 0x460) = 45; }
 void TBoss6Type2::tick_action_timer() {
     s32 temp_r0;
 
@@ -190,15 +190,15 @@ void TBoss6Type2::init_timer_and_play_sound() {
   play_sound_effect(0x69126, (const Vec *)(arg0 + 0x38), 0, 1);
 }
 
-void TBoss6Type2__sub_802BFA1C(u8 *arg0) {
+void TBoss6Type2::sub_802BFA1C() {
     s32 temp_r0;
 
-    play_persistent_sound((s32)(0x4006A612), (const void *)((s32)arg0), (const Vec *)((u32)(arg0 + 0x38)), 0, 1);
-    temp_r0 = ((TBoss6Type2 *)arg0)->m_460 - 1;
-    ((TBoss6Type2 *)arg0)->m_460 = temp_r0;
+    play_persistent_sound(0x4006A612, (const void *)this, (const Vec *)&position, 0, 1);
+    temp_r0 = m_460 - 1;
+    m_460 = temp_r0;
     if (temp_r0 < 0) {
-        play_sound_effect(0x40069E13, (const Vec *)(arg0 + 0x38), 0, 1);
-        ((TBoss6Type2 *)arg0)->set_action_state((void *)2);
+        play_sound_effect(0x40069E13, (const Vec *)&position, 0, 1);
+        set_action_state((void *)2);
     }
 }
 
@@ -246,6 +246,6 @@ void TBoss6Type2::select_attack_state() {
     }
 }
 
-void TBoss6Type2__sub_802BFBE4(void* p) { *(s32*)((char*)p + 0x45c) = 90; *(s32*)((char*)p + 0x460) = 90; }
+void TBoss6Type2::sub_802BFBE4() { *(s32*)((char*)this + 0x45c) = 90; *(s32*)((char*)this + 0x460) = 90; }
 
 }
