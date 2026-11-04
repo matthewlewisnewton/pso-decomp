@@ -262,7 +262,6 @@ void TBoss6Type2::sub_802BEB78() {
 
 #pragma push
 #pragma opt_common_subs off
-#pragma fp_contract on
 void TBoss6Type2::sub_802BEC28() {
     f32 temp_f1;
     s32 temp_r0;
