@@ -656,6 +656,12 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/misc/TOSensorGeneral01.cpp": {"cflags": _switch(cflags_pso, "-sdata 4", "-str reuse,readonly", "-pool off")},
     # Unlike the other keys it addresses its descriptors off one .data base.
     "pso/misc/TOKeyGenericSw.cpp": {"cflags": _switch(cflags_pso, "-sdata 4", "-str reuse,readonly")},
+    # Quest-collision deleting destructors share a TU. Deferred generation
+    # emits the last definition first, which is the only order that puts each
+    # vtable before the next class's (TObjQuestColA then TObjQuestCol;
+    # TObjQuestColApcINW then TObjQuestColApcIN).
+    "pso/object/TObjQuestColA_80196FE4.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
+    "pso/object/TObjQuestColApcINW_80196EDC.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     # The character creation camera: deferred with nothing inlined, and its
     # multiply-adds contracted into fmadds.
     "pso/camera/CreationCamera.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on")},
