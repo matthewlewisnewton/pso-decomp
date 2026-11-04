@@ -429,6 +429,10 @@ GAME_COMPILER = "GC/2.6"
 # keeps an object until its source changes) or with other switches. Every
 # entry is here because a function or data section matches only this way.
 GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
+    # TObjPlayer__sub_8015434C fuses offset*sin+pos and offset*cos+pos into
+    # fmadds. The same flag leaves resolve_actor_sphere_contact's (x*x)+(z*z)
+    # as fmuls+fadds, which is what the original has. Whole unit stays exact.
+    "pso/player/TObjPlayer_801542CC.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
     # Upstream #183: the Falz plot table TU is built with deferred inlining
     # (its state actions come out in reverse table order).
     "pso/boss/TBoss6PlotFalz_802B0228.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-str reuse,readonly")},
