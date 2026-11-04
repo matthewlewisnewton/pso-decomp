@@ -20,6 +20,8 @@ A row is a fork translation unit that upstream removed. It maps to the upstream 
 | `TObjQuestColApcINW_80196EDC`, `TObjQuestColApcIN_80196F34` | `pso/object/TObjQuestColApcINW_80196EDC.cpp` |
 | `TObjQuestColA_80196FE4`, `TObjQuestCol_8019703C` | `pso/object/TObjQuestColA_80196FE4.cpp` |
 
+FlagWord (`0x8001BED8`–`0x8001BF4C`) is folded on #310, not on this branch.
+
 ## Why the rest is deferred
 
 - Units touched by an open fork PR stay out. Those PRs adopt the upstream boundary themselves.
@@ -388,9 +390,9 @@ Mapping rows: 372. Folded here: 4. Deferred because an open PR touches the unit:
 | 189 | `pso/player/TObjPlayer_80083594.cpp (survivor, kept)` | `pso/player/TObjPlayer_80083594.cpp` | upstream-has-extra | deferred |
 | 189 | `pso/unk/text_801258A0.cpp` | `pso/player/TObjPlayer_80125780.cpp` | upstream-has-extra | deferred |
 | 189 | `pso/player/TObjPlayer_80125780.cpp (survivor, kept)` | `pso/player/TObjPlayer_80125780.cpp` | upstream-has-extra | deferred |
-| 189 | `pso/menu/TAdRicoRing_8001BEE8.cpp` | `pso/system/FlagWord.cpp` | exact | deferred |
-| 189 | `pso/player/TObjPlayer_8001BED8.cpp` | `pso/system/FlagWord.cpp` | exact | deferred |
-| 189 | `pso/player/TObjPlayer_8001BF10.cpp` | `pso/system/FlagWord.cpp` | exact | deferred |
+| 189 | `pso/menu/TAdRicoRing_8001BEE8.cpp` | `pso/system/FlagWord.cpp` | exact | folded on #310 (`upstream-split-realign-189`) |
+| 189 | `pso/player/TObjPlayer_8001BED8.cpp` | `pso/system/FlagWord.cpp` | exact | folded on #310 (`upstream-split-realign-189`) |
+| 189 | `pso/player/TObjPlayer_8001BF10.cpp` | `pso/system/FlagWord.cpp` | exact | folded on #310 (`upstream-split-realign-189`) |
 | 189 | `pso/menu/TAdRicoRing.cpp` | `pso/ui/TAdRicoRingCtrl.cpp` | exact | deferred: open PR #225 |
 | 189 | `pso/ui/TAdRicoRingCtrl_8001B4A0.cpp` | `pso/ui/TAdRicoRingCtrl.cpp` | exact | deferred: open PR #225 |
 | 189 | `pso/unk/text_8001B424.cpp` | `pso/ui/TAdRicoRingCtrl.cpp` | exact | deferred: open PR #225 |
