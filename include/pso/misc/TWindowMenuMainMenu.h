@@ -50,6 +50,9 @@ struct TWindowMenuMainMenu : public TUnk_804CE018 {
     void draw_entries_reversed(TWindowDrawContext *context);
     void pop_level();
     s32 update_if_active(s32 id);
+    TMainMenuEntry *find_active_item_by_id(int id);
+    TMainMenuEntry *find_free_slot();
+    s32 count_active_items();
     int get_menu_flag();
     int is_flag_set();
     virtual void render();

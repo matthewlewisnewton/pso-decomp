@@ -22,10 +22,6 @@ struct Item_802ADAAC { u8 pad[0x11]; s8 f11; };
 
 struct Obj_802ADAAC { u8 pad[0x61]; s8 idx; u8 pad2[0x124 - 0x62]; Item_802ADAAC *items[8]; };
 
-struct Hd_802ADA48 { u32 w[4]; };
-
-struct Col_802ADA48 { Hd_802ADA48 h; u8 b0, b1, b2, b3, b4, b5, b6, b7; };
-
 struct Obj_802ADC04 { u8 pad[0x124]; void *items[8]; };
 
 struct RecoveredGlobal_802AE59C_lbl_8050E208 {
@@ -56,7 +52,7 @@ s32 sub_80246948__13TUnk_804CE018Fv();
 s32 try_open__19TWindowKeyBoardSoftFii(s32 arg0, s32 arg1);
 void draw_item_labels__15TWindowMainMenuFv(TMainMenuEntry *p, TWindowDrawContext *w);
 void park_selection__15TWindowMainMenuFPv(TWindowMenuMainMenu *arg0);
-void copy_color_entry__15TWindowMainMenuFPvPv(Col_802ADA48 *arg0, Col_802ADA48 *arg1);
+void copy_color_entry__15TWindowMainMenuFPvPv(TMainMenuEntry *dst, TMainMenuEntry *src);
 void TWindowMainMenu__sub_802ADADC(Obj_802ADADC *self, s8 i);
 int find_free_item_slot__15TWindowMainMenuFPv(Obj_802ADC04 *self);
 s32 append_child_rows__15TWindowMainMenuFPvi(TWindowMenuMainMenu *arg0, s32 arg1);
@@ -119,31 +115,12 @@ void draw_item_labels__15TWindowMainMenuFv(TMainMenuEntry *p, TWindowDrawContext
     }
 }
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 int TMainMenuEntry::is_item_active() { return flags & 1; }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TWindowMainMenu__sub_802AD74C(void* p) { *(u8*)((char*)p + 0x13) |= 0x2; }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TWindowMainMenu::set_symbol_chat_parts(void * _w1) { copy_vec2__28TWindowSubSymbolChatPartsSetFPv(this, _w1); *(unsigned char *)&this->m_down = 8; }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void init_row_entry__15TWindowMainMenuFPvicc(u8 *window_sub_symbol_chat_parts_set, s32 arg1, s8 arg2, s8 arg3) {
     copy_vec2__28TWindowSubSymbolChatPartsSetFPv((void *)window_sub_symbol_chat_parts_set, (void *)arg1);
     copy_vec2__28TWindowSubSymbolChatPartsSetFPv(window_sub_symbol_chat_parts_set + 8, (void *)arg1);
@@ -152,7 +129,6 @@ void init_row_entry__15TWindowMainMenuFPvicc(u8 *window_sub_symbol_chat_parts_se
     *(s8 *)((s8 *)window_sub_symbol_chat_parts_set + 0x12) = 0;
     *(u8 *)((s8 *)window_sub_symbol_chat_parts_set + 0x13) = (u8) (*(u8 *)((s8 *)window_sub_symbol_chat_parts_set + 0x13) | 1);
 }
-#pragma pop
 
 void TMainMenuEntry::update_item_tween() {
     if (is_item_active() != 0) {
@@ -182,10 +158,6 @@ void TMainMenuEntry::init_color() {
     tween = 0;
 }
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TWindowMenuMainMenu::pop_level() {
     s32 i;
     m_62--;
@@ -197,18 +169,13 @@ void TWindowMenuMainMenu::pop_level() {
         }
     }
 }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void park_selection__15TWindowMainMenuFPv(TWindowMenuMainMenu *menu) {
-    Col_802ADA48 buf;
+    TMainMenuEntry buf;
     TMainMenuRow row;
     s32 i;
     TMainMenuEntry *slot;
-    copy_color_entry__15TWindowMainMenuFPvPv(&buf, (Col_802ADA48 *)menu->slots[(s8)menu->m_61]);
+    copy_color_entry__15TWindowMainMenuFPvPv(&buf, menu->slots[(s8)menu->m_61]);
     for (i = 0; i < 8; i++) {
         if (menu->slots[i] != NULL) {
             menu->slots[i]->init_color();
@@ -216,123 +183,85 @@ void park_selection__15TWindowMainMenuFPv(TWindowMenuMainMenu *menu) {
         }
     }
     get_row_position__15TWindowMainMenuFiPvi((s32)menu, &row, menu->m_62);
-    slot = (TMainMenuEntry *)((TWindowMainMenu *)menu)->find_free_slot();
-    copy_color_entry__15TWindowMainMenuFPvPv((Col_802ADA48 *)slot, &buf);
+    slot = menu->find_free_slot();
+    copy_color_entry__15TWindowMainMenuFPvPv(slot, &buf);
     ((TWindowMainMenu *)slot)->set_symbol_chat_parts(&row);
     slot->kind = 2;
     menu->m_60 |= 4;
     menu->m_62++;
 }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-void copy_color_entry__15TWindowMainMenuFPvPv(Col_802ADA48 *arg0, Col_802ADA48 *arg1) {
-    arg0->h = arg1->h;
-    arg0->b0 = arg1->b0;
-    arg0->b1 = arg1->b1;
-    arg0->b2 = arg1->b2;
-    arg0->b3 = arg1->b3;
-    arg0->b4 = arg1->b4;
-    arg0->b5 = arg1->b5;
-    arg0->b6 = arg1->b6;
-    arg0->b7 = arg1->b7;
+void copy_color_entry__15TWindowMainMenuFPvPv(TMainMenuEntry *dst, TMainMenuEntry *src) {
+    struct Hd { u32 w[4]; };
+    struct Col { Hd h; };
+    ((Col *)dst)->h = ((Col *)src)->h;
+    dst->fade = src->fade;
+    dst->icon = src->icon;
+    dst->kind = src->kind;
+    dst->flags = src->flags;
+    dst->tween = src->tween;
+    dst->b5 = src->b5;
+    dst->b6 = src->b6;
+    dst->b7 = src->b7;
 }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 int TWindowMainMenu::get_selected_item_type() {
     Obj_802ADAAC *self = (Obj_802ADAAC *)this;
     Item_802ADAAC *p = self->items[self->idx];
     if (p == 0) return 0x1f;
     return p->f11;
 }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TWindowMainMenu__sub_802ADADC(Obj_802ADADC *self, s8 i) {
     self->idx = i;
     self->items[self->idx]->f12 = 1;
 }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 int TWindowMainMenu__sub_802ADB00(u8 *arg0) {
   long long new_var;
   return new_var = (s8) ((*((u8 *) (((s8 *) arg0) + 0x61))) & 0xFFFFFFFFFFFFFFFFu);
 }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TWindowMainMenu::clear_menu_flags() { *(u8*)((char*)this + 0x60) &= 0xfc; }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 int TWindowMenuMainMenu::is_flag_set() { return (this->m_60 >> 1) & 0x1; }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 int TWindowMenuMainMenu::get_menu_flag() { return this->m_60 & 0x1; }
-#pragma pop
 
-#pragma push
-#pragma fp_contract on
-u8 *find_active_item_by_id__15TWindowMainMenuFii(s32 arg0, s32 arg1) {
+TMainMenuEntry *TWindowMenuMainMenu::find_active_item_by_id(int arg1) {
     s32 var_r31;
-    u8 *var_r30;
+    TMainMenuEntry *entry;
     s32 var_r29;
     var_r29 = arg1;
     if (var_r29 == 0x1B) {
         var_r29 = 0x1A;
     }
-    var_r30 = (u8 *)(arg0 + 0x64);
+    entry = entries;
     var_r31 = 0;
 loop_3:
-    if ((((TMainMenuEntry *)var_r30)->is_item_active() != 0) && ((s8) *(u8 *)((s8 *)var_r30 + 0x11) == var_r29)) {
-        return var_r30;
+    if ((entry->is_item_active() != 0) && ((s8)entry->icon == var_r29)) {
+        return entry;
     }
     var_r31 += 1;
-    var_r30 += 0x18;
+    entry += 1;
     if (var_r31 >= 8) {
         return NULL;
     }
     goto loop_3;
 }
-#pragma pop
 
-s32 TWindowMainMenu::find_free_slot() {
-    s32 arg0 = (s32)this;
+TMainMenuEntry *TWindowMenuMainMenu::find_free_slot() {
     s32 counter;
-    s32 ptr;
+    TMainMenuEntry *entry;
 
-    ptr = arg0 + 0x64;
+    entry = entries;
     counter = 0;
 loop_1:
-    if (((TMainMenuEntry *)ptr)->is_item_active() == 0) {
-        return ptr;
+    if (entry->is_item_active() == 0) {
+        return entry;
     }
     counter += 1;
-    ptr += 0x18;
+    entry += 1;
     if (counter >= 8) {
         return 0;
     }
@@ -347,18 +276,18 @@ int find_free_item_slot__15TWindowMainMenuFPv(Obj_802ADC04 *self) {
     return 8;
 }
 
-s32 TWindowMainMenu::count_active_items(int arg0) {
+s32 TWindowMenuMainMenu::count_active_items() {
     s32 counter;
-    s32 ptr;
+    TMainMenuEntry *entry;
 
-    ptr = arg0 + 0x64;
+    entry = entries;
     counter = 0;
 loop_1:
-    if (((TMainMenuEntry *)ptr)->is_item_active() == 0) {
+    if (entry->is_item_active() == 0) {
         return counter;
     }
     counter += 1;
-    ptr += 0x18;
+    entry += 1;
     if (counter >= 8) {
         return 8;
     }
@@ -393,9 +322,9 @@ s32 append_child_rows__15TWindowMainMenuFPvi(TWindowMenuMainMenu *arg0, s32 arg1
         return 0;
     }
     ((s32 (*)(void *, void *, s32))get_row_position__15TWindowMainMenuFiPvi)(arg0, sp8, n + arg0->m_62);
-    slot = ((s32 (*)(void *, s32))find_active_item_by_id__15TWindowMainMenuFii)(arg0, arg1);
+    slot = (s32)arg0->find_active_item_by_id(arg1);
     if (slot == 0) {
-        slot = ((TWindowMainMenu *)arg0)->find_free_slot();
+        slot = (s32)arg0->find_free_slot();
         if (slot == 0) {
             return 0;
         }
@@ -422,7 +351,7 @@ void TWindowMenuMainMenu::set_target_y(f32 farg0) {
 }
 
 void TWindowMenuMainMenu::update_scaled_position() {
-    set_target_y(16.0f * (f32)TWindowMainMenu::count_active_items((s32)this));
+    set_target_y(16.0f * (f32)count_active_items());
 }
 
 void TWindowMenuMainMenu::draw_entries_reversed(TWindowDrawContext *context) {

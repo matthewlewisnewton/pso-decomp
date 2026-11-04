@@ -46,8 +46,6 @@ struct TWindowMainMenu : public TObject {
     void set_symbol_chat_parts(void * _w1);
     int get_selected_item_type();
     void clear_menu_flags();
-    s32 find_free_slot();
-    static s32 count_active_items(int arg0);
     static void *create_menu(void *arg0, void *arg1);
     void open_menu_with_entry(s16 arg1);
     void try_open_battle_menu(s16 arg1);
