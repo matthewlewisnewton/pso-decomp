@@ -511,6 +511,11 @@ void fn_802EFEA8(void) {
 }
 }
 
+// Propagation off for this constructor only: three distinct word temps match
+// the original lwz r6/r5/r0 emitter copy. Same pragma as
+// TObjPlayer::spawn_hit_particle_trio. Awaiting Matt; not an approved exception.
+#pragma push
+#pragma opt_propagation off
 TBoss7TentacleNeedle::TBoss7TentacleNeedle(TObject *parent, Vec *pos)
     : TObject(parent) {
     m_name = boss7_tentacle_needle_name_ptr;
@@ -523,17 +528,16 @@ TBoss7TentacleNeedle::TBoss7TentacleNeedle(TObject *parent, Vec *pos)
     position.z = 5.0f * (3.0517578e-05f * (f32)rand()) + pos->z - 2.5f;
     m_38 = 0;
     m_3c = 0;
-    s32 w0;
-    s32 w1;
-    s32 w2;
+    s32 z;
+    s32 y;
+    s32 x;
     s32 emitter_words[3];
-    w2 = ((s32 *)pos)[0];
-    w0 = w2;
-    w1 = ((s32 *)pos)[1];
-    w2 = ((s32 *)pos)[2];
-    emitter_words[0] = w0;
-    emitter_words[1] = w1;
-    emitter_words[2] = w2;
+    x = ((s32 *)pos)[0];
+    y = ((s32 *)pos)[1];
+    z = ((s32 *)pos)[2];
+    emitter_words[0] = x;
+    emitter_words[1] = y;
+    emitter_words[2] = z;
     m_40 = create_particle_emitter(emitter_words, 0x212);
     for (s32 i = 0; i < 12; i++) {
         target_flags[i] = 0;
@@ -541,6 +545,7 @@ TBoss7TentacleNeedle::TBoss7TentacleNeedle(TObject *parent, Vec *pos)
     m_78 = (u32)boss7_tentacle_needle_target_state.f0;
     m_74 = 0.0f;
 }
+#pragma pop
 
 TBoss7TentacleNeedle::~TBoss7TentacleNeedle() {
     if (m_40 != NULL) {

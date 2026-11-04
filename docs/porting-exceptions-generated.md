@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 9 | 3 |
 | intrinsic | 83 | 54 |
 | hardware | 71 | 13 |
-| pragma | 5862 | 884 |
+| pragma | 5863 | 885 |
 | configure.py per-unit override | 145 | 145 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045, `fp_contract` 930, `auto_inline` 844, `opt_common_subs` 623, `scheduling` 262, `opt_propagation` 239, `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 43, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 22, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045, `fp_contract` 930, `auto_inline` 844, `opt_common_subs` 623, `scheduling` 262, `opt_propagation` 240, `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 43, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 22, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -434,6 +434,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `src/pso/boss/TBoss7LaserLight.cpp` | readonly_strings×1 |
 | `src/pso/boss/TBoss7LaserPtcl.cpp` | fp_contract×2, dont_inline×1, inline_depth×1 |
 | `src/pso/boss/TBoss7PhotonBullet_802EF26C.cpp` | fp_contract×1, opt_loop_invariants×1 |
+| `src/pso/boss/TBoss7TentacleNeedle.cpp` | opt_propagation×1 |
 | `src/pso/boss/TBoss8Dragon.cpp` | fp_contract×20, opt_common_subs×3 |
 | `src/pso/boss/TBoss8DragonDemo.cpp` | readonly_strings×1 |
 | `src/pso/boss/TBoss8DragonEffBullet.cpp` | fp_contract×1 |
