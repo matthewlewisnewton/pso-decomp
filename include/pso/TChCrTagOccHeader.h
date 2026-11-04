@@ -10,10 +10,6 @@ public:
     virtual void render();
 };
 
-extern "C" {
-void *__ct__17TChCrTagOccHeaderFv(void *arg0);
-void *__dt__17TChCrTagOccHeaderFv(void *self, s16 m);
-}
 void create_all_ch_cr_tag_headers(void);
 void *create_ch_cr_tag_occ_header(void *arg0);
 
