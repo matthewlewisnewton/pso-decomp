@@ -19,30 +19,30 @@ void TWindowMenuMainMenu::render() {
     draw_entries_reversed(frame);
 }
 
-void run_task__19TWindowMenuMainMenuFv(TWindowMenuMainMenu *window_menu_main_menu) {
+void TWindowMenuMainMenu::run_task() {
     s32 var_r31;
     u8 temp_r3;
     u8 temp_r3_2;
 
     TMainMenuEntry *entry;
-    temp_r3 = window_menu_main_menu->m_60;
+    temp_r3 = m_60;
     if (temp_r3 & 8) {
-        window_menu_main_menu->m_60 = (u8) (temp_r3 | 4);
+        m_60 = (u8) (temp_r3 | 4);
     }
-    entry = window_menu_main_menu->entries;
+    entry = entries;
     var_r31 = 0;
     do {
         entry->update_item_tween();
         var_r31 += 1;
         entry += 1;
     } while (var_r31 < 8);
-    window_menu_main_menu->handle_navigation_input();
-    ((TWindowDD *)window_menu_main_menu)->initialize_subwindow();
-    window_menu_main_menu->update_slide_position();
-    ((TUnk_804CE018 *)window_menu_main_menu)->update_fade();
-    temp_r3_2 = window_menu_main_menu->m_60;
+    handle_navigation_input();
+    ((TWindowDD *)this)->initialize_subwindow();
+    update_slide_position();
+    update_fade();
+    temp_r3_2 = m_60;
     if (temp_r3_2 & 8) {
-        window_menu_main_menu->m_60 = (u8) (temp_r3_2 & 0xFFFFFFF3);
+        m_60 = (u8) (temp_r3_2 & 0xFFFFFFF3);
     }
 }
 
@@ -77,7 +77,7 @@ u8 *TWindowMenuMainMenu__ct(TWindowMenuMainMenu *window_menu_main_menu, s32 arg1
         window_menu_main_menu->slots[i] = 0;
     }
     window_menu_main_menu->update_scaled_position();
-    ((TUnk_804CE018 *)window_menu_main_menu)->save_position();
+    window_menu_main_menu->save_position();
     return (u8 *)window_menu_main_menu;
 }
 
