@@ -888,6 +888,7 @@ pso/misc/TChCrLoadAfsTextureReq.cpp
 pso/misc/TChCrLoadReq.cpp
 pso/misc/TChCrTag.cpp
 pso/misc/TChCrTagInformation.cpp
+pso/misc/TChCrTagInformationStr.cpp
 pso/misc/TChCrTagInformation_802A1FAC.cpp
 pso/misc/TChCrTagInformation_802A200C.cpp
 pso/misc/TChCrTagName.cpp
