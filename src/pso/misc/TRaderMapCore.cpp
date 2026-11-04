@@ -308,7 +308,6 @@ struct RadarVec2_801FA880 { f32 x, y; };
 extern "C" {
 s32 TCameraCtrl__sub_80068EF0();
 extern const f32 lbl_805DC588;
-extern const f64 lbl_8044A7A8;
 extern RadarSpriteFrame_801FA6CC lbl_804C87E4[];
 extern f32 lbl_804C87B4[][4];
 extern const f32 lbl_805DC574;
@@ -1060,51 +1059,41 @@ void TRaderMapCore::update_follow_projection(s32 mode) {
 void TRaderMapCore::copy_transform(void* q) { *(f32 *)&this->m_name = *(f32*)((char*)q + 0x0); *(f32 *)&this->m_flags = *(f32*)((char*)q + 0x4); *(f32 *)&this->m_prev = *(f32*)((char*)q + 0x8); *(f32 *)&this->m_next = *(f32*)((char*)q + 0xc); *(f32 *)&this->m_up = *(f32*)((char*)q + 0x10); *(f32 *)&this->m_down = *(f32*)((char*)q + 0x14); *(u32*)((char*)this + 0x18) = *(u32*)((char*)q + 0x18); *(u32 *)&this->entity_id = *(u32*)((char*)q + 0x1c); *(f32 *)&this->m_20 = *(f32*)((char*)q + 0x20); *(f32 *)&this->texlist = *(f32*)((char*)q + 0x24); }
 
 void TRaderMapCore::draw_compass(s32 mode) {
-    f32 *mode_offsets;
     SpriteDescriptor sprite;
     u32 color_word;
     u32 color_arg;
-    s32 quantize;
-    f32 temp_f0;
-    union {
-        f64 d;
-        u32 w[2];
-    } halfword_bits;
+    f32 scale;
+    f32 pos;
+    f32 *compass_xy;
+    f32 *marker_xy;
 
     if (apply_compass_param__13TRaderMapCoreFv(&this->m_90) == 0) {
         return;
     }
-    sprite.x = TRaderMapCore__data_805DC528;
-    sprite.y = TRaderMapCore__data_805DC528;
-    sprite.unknown08 = TRaderMapCore__data_805DC528;
-    sprite.scale_x = TRaderMapCore__data_805DC534;
-    sprite.scale_y = TRaderMapCore__data_805DC534;
+    scale = TRaderMapCore__data_805DC534;
+    pos = TRaderMapCore__data_805DC528;
+    sprite.x = pos;
+    sprite.y = pos;
+    sprite.unknown08 = pos;
+    sprite.scale_x = scale;
+    sprite.scale_y = scale;
     sprite.rotation = 0;
     sprite.unknown18 = TRaderMapCore__data_805D5F4C;
     sprite.frames = (SpriteFrame *)&lbl_804C87E4[0];
     color_word = 0xFFFFFFFF;
     TParticleCtrl::begin_effect_render();
-    mode_offsets = &lbl_804C87B4[mode][0];
-    halfword_bits.w[0] = 0x43300000;
-    halfword_bits.w[1] = (u32)(u16)lbl_804C87E4[1].x ^ 0x80000000u;
-    sprite.x = mode_offsets[2] + (f32)(halfword_bits.d - lbl_8044A7A8);
-    halfword_bits.w[0] = 0x43300000;
-    halfword_bits.w[1] = (u32)(u16)lbl_804C87E4[1].y ^ 0x80000000u;
-    sprite.y = mode_offsets[3] + (f32)(halfword_bits.d - lbl_8044A7A8);
+    compass_xy = &lbl_804C87B4[mode][0];
+    marker_xy = &lbl_804C87B4[mode][2];
+    sprite.x = marker_xy[0] + (f32)lbl_804C87E4[1].x;
+    sprite.y = marker_xy[1] + (f32)lbl_804C87E4[1].y;
     set_default_alpha_blend();
-    temp_f0 = this->m_19c;
-    quantize = (s32)temp_f0;
-    ((u8 *)&color_word)[3] = (u8)quantize;
+    ((u8 *)&color_word)[3] = (u8)(s32)this->m_19c;
     color_arg = color_word >> 16;
     color_arg = __rlwimi(color_arg, color_word, 16, 0, 7);
     color_arg = __rlwimi(color_arg, color_word, 16, 8, 15);
     draw_compass_sprite__10TObjPlayerFlllf(&sprite, 1, (s32)color_arg, 0x21, TRaderMapCore__data_805DC58C);
-    halfword_bits.w[0] = 0x43300000;
-    halfword_bits.w[1] = (u32)(u16)lbl_804C87E4[0].x ^ 0x80000000u;
-    sprite.x = mode_offsets[0] + (f32)(halfword_bits.d - lbl_8044A7A8);
-    halfword_bits.w[0] = 0x43300000;
-    halfword_bits.w[1] = (u32)(u16)lbl_804C87E4[0].y ^ 0x80000000u;
-    sprite.y = mode_offsets[1] + (f32)(halfword_bits.d - lbl_8044A7A8);
+    sprite.x = compass_xy[0] + (f32)lbl_804C87E4[0].x;
+    sprite.y = compass_xy[1] + (f32)lbl_804C87E4[0].y;
     sprite.rotation = this->m_174;
     set_additive_blend();
     draw_compass_sprite__10TObjPlayerFlllf(&sprite, 0, -1, 0x21, TRaderMapCore__data_805DC58C);

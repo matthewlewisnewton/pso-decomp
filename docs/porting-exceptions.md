@@ -15,15 +15,15 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (main at 7ccb07696, 2026-11-04)
+## Summary (regenerated 2026-11-04; includes main after 7ccb07696)
 
 | Category | Hits | Files / units |
 |---|---:|---:|
 | Assembly (`asm` + `orig_asm` include) | 4 functions | 2 |
-| MWCC intrinsics | 83 | 54 |
+| MWCC intrinsics | 85 | 55 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 71 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,871 | 886 |
-| Per-unit compiler overrides in `configure.py` | 141 | 141 |
+| CodeWarrior pragmas (excluding push/pop) | 5,865 | 885 |
+| Per-unit compiler overrides in `configure.py` | 144 | 144 |
 | Approved regressions | 0 on main, 1 pending (#291) | |
 
 ## Rule for assembly
@@ -45,15 +45,18 @@ These four predate the scalar-fallback rule and have **no C fallback**.
 ## 2. MWCC intrinsics
 
 `__cntlzw` (55), `__frsqrte` (11), `__fabsf` (6), `__fabs` (4), `__rlwinm` (4),
-`__abs` (1), `__builtin_va_info` (1); full list in the generated file. Reason: they
-reproduce single PowerPC instructions the original compiled code used; no
-per-site reason is recorded.
+`__rlwimi` (4), `__abs` (1), `__builtin_va_info` (1); full list in the generated
+file. Reason: they reproduce single PowerPC instructions the original compiled
+code used; no per-site reason is recorded, except the two `__rlwimi` in
+`TRaderMapCore::draw_compass` (#320): they insert the alpha byte of `m_19c`
+into the sprite color word, matching the original `rlwimi` pair. Port that
+pair as `0xFF00FFFF | ((u32)alpha << 16)`.
 
 Port should: `__fabsf`/`__fabs` → `fabsf`/`fabs`; `__abs` → `abs`; `__cntlzw` →
 a count-leading-zeros helper (`__builtin_clz` with a zero check, returns 32 for 0);
 `__frsqrte` → `1.0 / sqrt(x)` (the Newton refinement loops around it then become
-redundant but harmless); `__rlwinm` → shift/rotate + mask; `__builtin_va_info` →
-standard `va_start`.
+redundant but harmless); `__rlwinm` and `__rlwimi` → shift/rotate + mask;
+`__builtin_va_info` → standard `va_start`.
 
 ## 3. Direct hardware access
 
@@ -66,10 +69,10 @@ etc. or their port equivalents) instead of the fixed address.
 
 ## 4. CodeWarrior pragmas
 
-5,871 pragmas in 886 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1153, `inline_depth` 1045, `fp_contract` 931, `auto_inline` 844,
-`opt_common_subs` 624, `scheduling` 267, `opt_propagation` 239,
-`readonly_strings` 203, `peephole` 105, `optimization_level` 88, `bool` 56,
+5,865 pragmas in 885 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1153, `inline_depth` 1045, `fp_contract` 932, `auto_inline` 844,
+`opt_common_subs` 624, `scheduling` 262, `opt_propagation` 239,
+`readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56,
 `defer_codegen` 50, `pack` 46. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
 
@@ -81,7 +84,7 @@ small float differences without FMA).
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-141 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+144 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
