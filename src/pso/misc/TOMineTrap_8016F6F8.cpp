@@ -206,9 +206,11 @@ void TOMineTrap::vfunc_86() {
  * destruction. */
 void TOMineTrap::run_task() {
     TObjPlayer *owner;
-    TObjChara *actor;
     s32 i;
+    // show_owner_message takes the trap as a 32-bit integer.
+    s32 trap_arg;
     u16 id;
+    TObjChara *actor;
 
     this->update_float_height();
     switch (this->mode) {
@@ -232,6 +234,7 @@ void TOMineTrap::run_task() {
         return;
     }
     case 4:
+        trap_arg = (s32)this;
         owner = (TObjPlayer *)get_player_by_client_id(this->get_trap_type());
         if (owner == 0) {
             owner = (TObjPlayer *)this;
@@ -276,7 +279,7 @@ void TOMineTrap::run_task() {
                         record_attack_source(this->target, this->get_trap_type());
                     }
                     if (this->m_380 != 1) {
-                        this->m_380 = TOMineTrap::show_owner_message((s32)this, (u32)actor);
+                        this->m_380 = TOMineTrap::show_owner_message(trap_arg, (u32)actor);
                     }
                 }
             } else if (id < 0x4000) {
@@ -397,8 +400,6 @@ TOMineTrap::TOMineTrap(TObjPlayer *owner, s16 trap_index, s16 trap_id) : TOMine(
                 attack.power = lbl_805DB86C * area_scale *
                                (lbl_805DB870 * (lbl_805DB878 * owner_player->get_actor_level_index() + lbl_805DB874));
             }
-            // Store the clamped local. Writing the constant straight into the
-            // field swaps the compare's float registers.
             // Store the clamped local. Writing the constant straight into the
             // field swaps the compare's float registers.
             f32 power = attack.power;
