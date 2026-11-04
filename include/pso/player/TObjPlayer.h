@@ -1230,7 +1230,6 @@ struct TObjPlayer : public TObjChara {
     static void alloc_shared_buffers();
     static void destroy_char_data_array();
     static s8 get_rule_field_0();
-    void sort_by_key();
     static void set_slot_type_state(s32 arg0, s32 arg1, s16 arg2, s16 arg3);
     void set_all_technique_levels(void *arg1);
     void copy_all_technique_entries(void *arg1);

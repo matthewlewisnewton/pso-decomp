@@ -34,6 +34,8 @@ typedef struct Ent_801D4744 {
 typedef struct List_801D4744 {
     s32 count;
     Ent_801D4744 *items;
+    // Bubble-sorts records by key. `this` is the 8-byte list, not a TObjPlayer.
+    void sort_by_key();
 } List_801D4744;
 
 // TPlyItem from TObjPlayer::create_inventory (0x1CC bytes). TPlyItem__ct
@@ -141,8 +143,8 @@ s32 export_inventory_entry__10TObjPlayerFiPv(s32 arg0, u8 *arg1) {
 }
 
 // Reassigns each owned item's owner id from a key-sorted copy of the list.
-// sort_by_key__10TObjPlayerFv sorts this 8-byte record list. Each loop keeps
-// its own cursor: CodeWarrior assigns those registers from this declaration order.
+// Each loop keeps its own cursor: CodeWarrior assigns those registers from
+// this declaration order.
 s32 TObjPlayer__sub_801D4368(PlyItem_801D4368 *ply) {
     List_801D4744 *recs;
     s32 filled;
@@ -201,7 +203,7 @@ s32 TObjPlayer__sub_801D4368(PlyItem_801D4368 *ply) {
         }
         node_filled = (TObjPlayer *)node_filled->m_next;
     }
-    ((TObjPlayer *)recs)->sort_by_key();
+    recs->sort_by_key();
     checked = 0;
     rec_checked = recs->items;
     node_checked = (TObjPlayer *)ply->item_list->m_down;
@@ -275,17 +277,16 @@ u8 *TObjPlayer__sub_801D46D4(u8 *arg0, s32 arg1) {
 
 void TObjPlayer__sub_801D4730(void* p) { *(s32*)((char*)p + 0x0) = -1; *(s32*)((char*)p + 0x4) = 0; }
 
-void TObjPlayer::sort_by_key() {
-    List_801D4744 *arg0 = (List_801D4744 *)this;
+void List_801D4744::sort_by_key() {
     Ent_801D4744 t;
     s32 n;
     s32 j;
     Ent_801D4744 *p;
     Ent_801D4744 *q;
     TObjPlayer__sub_801D4730(&t);
-    n = arg0->count;
+    n = count;
     while (--n > 0) {
-        p = arg0->items;
+        p = items;
         for (j = 0; j < n; p++, j++) {
             q = p + 1;
             if (p->key > q->key) {
