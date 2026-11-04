@@ -12085,6 +12085,8 @@ pso/misc/TEndingPic.cpp:
 
 pso/unk/text_803531FC.cpp:
 	.text       start:0x803531FC end:0x80353380
+	.rodata     start:0x80479100 end:0x8047916C
+	.data       start:0x804F10C0 end:0x804F11E0
 
 pso/unk/text_80353380.cpp:
 	.text       start:0x80353380 end:0x80353414
@@ -13871,7 +13873,7 @@ pso/misc/TQuestVmDownLoadServer_803E5668.cpp:
 	.sdata2     start:0x805E10C0 end:0x805E10C8
 
 pso/misc/QuestDownloadBuffers.cpp:
-	.bss        start:0x8058DE08 end:0x80595008
+	.bss        start:0x8058DE08 end:0x80596668
 
 pso/misc/TWindowKeyBoardSoft_803E6610.cpp:
 	.text       start:0x803E6610 end:0x803E6970
