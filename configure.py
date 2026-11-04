@@ -449,6 +449,12 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # half-width nudge and the drop placement fuse multiply-adds.
     # -str reuse,readonly: the literals live in this unit's .rodata.
     "pso/object/TObjTombstone.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on", "-str reuse,readonly")},
+    # Vol Opt scenery is one TU. Deferred emission puts TOBoss4Rock::run_task
+    # first; -sdata 4 keeps the 8-byte motion-name array in .data.
+    "pso/misc/TOBoss4.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on", "-str reuse,readonly", "-sdata 4", "-inline deferred")},
+    # Dark Falz rocks are one TU, written last-defined first. -fp_contract on
+    # fuses the fall and spin multiply-adds.
+    "pso/boss/TBoss6Rock.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on", "-str reuse,readonly", "-inline off,deferred")},
     # GC/2.0: compiler-expanded struct copies take 2.0's registers.
     # The ending item handler table keeps 2.0's store/load scheduling for its
     # zero-initialized local member-function-pointer array.
