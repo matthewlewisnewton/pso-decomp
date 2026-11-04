@@ -16,7 +16,7 @@ struct Quad_802710C4 { f32 x0, y0, x1, y1, u0, v0, u1, v1; };
 extern "C" {
 
 u8 *get_array_entry__13TUnk_804CE018Fi(void *, s32);
-f32 TWindowSubComCard__sub_80244784(TWindowSubComCard *);
+f32 TWindowSubComCard__sub_80244784(void *);
 s32 TWindowSubComCard__sub_802452DC(int);
 s32 TWindowSubComCard__sub_80245320(void *, void *);
 s32 TWindowSubComCard__sub_802454E4(int);
@@ -115,7 +115,7 @@ void TWindowStatus::draw_background(u8 *arg1) {
     begin_screen_draw(1);
     set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
     set_draw_texture_and_color(0xB, *(s32 *)((s8 *)arg1 + 0x34));
-    { f32 r = TWindowSubComCard__sub_80244784((TWindowSubComCard *)this);
+    { f32 r = TWindowSubComCard__sub_80244784(this);
     s = -1.0f / (0.0598f + this->m_54);
     q.x0 = -(69.0f * (w = 1.0f - r)); }
     q.y0 = -(80.0f * w);

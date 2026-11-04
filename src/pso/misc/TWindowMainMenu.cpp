@@ -81,12 +81,12 @@ Win_802649C0 *TWindowMainMenu__ct(Win_802649C0 *arg0, void *arg1, s32 arg2);
 int park_selection__15TWindowMainMenuFPv(void*);
 s32 is_split_screen();
 
-void TWindowMainMenu4P::show_child_window() { if (*(unsigned int*)((char*)this + 0x1c) != 0) { window_request_show(*(void**)((char*)this + 0x1c)); ((TWindowMenuMainMenu *)(*(void**)((char*)this + 0x1c)))->update_scaled_position(); } }
+void TWindowMainMenu4P::show_child_window() { if (m_1c != NULL) { window_request_show(m_1c); m_1c->update_scaled_position(); } }
 void TWindowMainMenu::update_trade_submenu() { void* m = *(void**)((char*)this + 0x1c); if (m) ((TWindowLockOn *)m)->request_close(); }
 void TWindowMainMenu::update_submenu() {
-    if ((u32) *(u32 *)((s8 *)this + 0x1C) != 0U) {
-        park_selection__15TWindowMainMenuFPv((void*)(*(void **)((s8 *)this + 0x1C)));
-        ((TWindowMenuMainMenu *)(*(u32 *)((s8 *)this + 0x1C)))->update_scaled_position();
+    if (m_1c != NULL) {
+        park_selection__15TWindowMainMenuFPv(m_1c);
+        m_1c->update_scaled_position();
     }
     if (is_split_screen() != 0) {
         update_trade_submenu();
