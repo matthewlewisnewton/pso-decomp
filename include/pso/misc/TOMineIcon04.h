@@ -5,6 +5,7 @@
 #include "pso/misc/TOMine.h"
 
 struct TOMineIcon04 : public TOMine {
+    TOMineIcon04(TObject *parent, void *set);
     virtual ~TOMineIcon04();
     virtual void vfunc_84();
     virtual void vfunc_82();

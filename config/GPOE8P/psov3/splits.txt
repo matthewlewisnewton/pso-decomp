@@ -12065,15 +12065,15 @@ pso/misc/TEndingPic.cpp:
 	.text       start:0x80352BB8 end:0x803531FC
 	.data       start:0x804F10A8 end:0x804F10C0
 
-pso/unk/text_803531FC.cpp:
+pso/item/TItemSpecialEvent_803531FC.cpp:
 	.text       start:0x803531FC end:0x80353380
 	.rodata     start:0x80479100 end:0x8047916C
 	.data       start:0x804F10C0 end:0x804F11E0
 
-pso/unk/text_80353380.cpp:
+pso/item/TItemSpecialEvent_80353380.cpp:
 	.text       start:0x80353380 end:0x80353414
 
-pso/unk/text_80353414.cpp:
+pso/item/TItemSpecialEvent_80353414.cpp:
 	.text       start:0x80353414 end:0x8035346C
 
 pso/object/TObjKabochaLobby.cpp:
@@ -13653,13 +13653,16 @@ pso/unk/text_803D8030.cpp:
 	.sdata2     start:0x805E0EA8 end:0x805E0EB0
 
 pso/npc/TObjNpcEnemy_803D8090.cpp:
-	.text       start:0x803D8090 end:0x803D853C
-	.sdata2     start:0x805E0EB0 end:0x805E0EB8
+	.text       start:0x803D8090 end:0x803D8098
 
-pso/unk/text_803D853C.cpp:
-	.text       start:0x803D853C end:0x803D8BAC
+pso/unk/text_803D8098.cpp:
+	.text       start:0x803D8098 end:0x803D8910
 	.data       start:0x804FA540 end:0x804FC540
 	.bss        start:0x8058CB48 end:0x8058CB68
+	.sdata2     start:0x805E0EB0 end:0x805E0ED4
+
+pso/unk/text_803D8910.cpp:
+	.text       start:0x803D8910 end:0x803D8BAC
 
 pso/math/MatrixVector.cpp:
 	.text       start:0x803D8BAC end:0x803D8DE0
