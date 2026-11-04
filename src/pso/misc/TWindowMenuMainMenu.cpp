@@ -8,14 +8,13 @@
 struct W_802AE864 { u8 pad[0x124]; void *a[8]; };
 
 extern "C" {
-TWindowDrawContext *setup_content_frame__15TWindowMainMenuFPv(TWindowMenuMainMenu *window);
 extern s32 window_menu_main_menu_params[];
 extern s32 __vt__19TWindowMenuMainMenu[];
 extern s32 lbl_805D3E68;
 void __dl__7TObjectFPv(void *);
 
 void TWindowMenuMainMenu::render() {
-    TWindowDrawContext *frame = setup_content_frame__15TWindowMainMenuFPv(this);
+    TWindowDrawContext *frame = setup_content_frame();
     draw_frame(frame);
     draw_entries_reversed((u8 *)frame);
 }

@@ -3,7 +3,6 @@
 #include "types.h"
 #include "pso/misc/TWindowCtrl_8024A054.h"
 #include "pso/misc/TWindowMainMenu_802AD538.h"
-struct TWindowSubComCard;
 #include "pso/misc/TWindowMenuMainMenu.h"
 #include "pso/misc/TWindowMainMenu.h"
 #include "pso/misc/TLanguage.h"
@@ -112,7 +111,6 @@ void copy_color_entry__15TWindowMainMenuFPvPv(Col_802ADA48 *arg0, Col_802ADA48 *
 void TWindowMainMenu__sub_802ADADC(Obj_802ADADC *self, s8 i);
 int find_free_item_slot__15TWindowMainMenuFPv(Obj_802ADC04 *self);
 s32 append_child_rows__15TWindowMainMenuFPvi(Menu_802ADD38 *arg0, s32 arg1);
-TWindowDrawContext *setup_content_frame__15TWindowMainMenuFPv(TWindowMenuMainMenu *menu);
 void begin_screen_draw(s32 arg0);
 void draw_textured_quad_at_depth(f32 *q, f32 depth);
 void set_draw_texture_and_color(s32 idx, s32 arg1);
@@ -567,17 +565,17 @@ void TWindowMenuMainMenu::draw_frame(TWindowDrawContext *context) {
     TWindowSubStatusDisp::get_player();
 }
 
-TWindowDrawContext *setup_content_frame__15TWindowMainMenuFPv(TWindowMenuMainMenu *window_menu_main_menu) {
+TWindowDrawContext *TWindowMenuMainMenu::setup_content_frame() {
     f32 v;
     TWindowKeyBoardSoft *r;
-    r = TWindowKeyBoardSoft::open_singleton(window_menu_main_menu->m_40, window_menu_main_menu->m_48, fn_8026CB68(), window_menu_main_menu->m_54, window_menu_main_menu->m_2c);
-    if (is_not_split_screen(window_menu_main_menu) != 0) {
+    r = TWindowKeyBoardSoft::open_singleton(m_40, m_48, fn_8026CB68(), m_54, m_2c);
+    if (is_not_split_screen(this) != 0) {
         v = 51.0f;
     } else {
         v = 39.0f;
     }
     r->set_bounds(10.0f + r->x, r->y + v, (r->x + r->w) - 10.0f, (r->y + r->h) - 39.0f);
-    r->color = ((s32)(255.0f * TWindowSubComCard__sub_80244784((TWindowSubComCard *)window_menu_main_menu)) << 24) | 0xFF0000 | 0xFFFF;
+    r->color = ((s32)(255.0f * TWindowSubComCard__sub_80244784(this)) << 24) | 0xFF0000 | 0xFFFF;
     return r;
 }
 

@@ -12,6 +12,7 @@ struct TWindowMenuMainMenu : public TUnk_804CE018 {
     void handle_confirm();
     void handle_cancel();
     void draw_frame(TWindowDrawContext *context);
+    TWindowDrawContext *setup_content_frame();
     void set_target_y(f32 target);
     void update_scaled_position();
     void update_slide_position();
