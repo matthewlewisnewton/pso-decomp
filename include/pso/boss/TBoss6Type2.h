@@ -213,7 +213,9 @@ struct TBoss6Type2
     void init_timers_and_copy_pos();
     void update_timer();
     void update_when_timer_zero();
-    static void start_death_sequence(u8 *arg0);
+    void start_death_sequence(u8 *arg0);
+    void update_death_sequence(void *arg0);
+    void update_attack_timer(void *arg0);
     void update_zako_spawn_timer();
     void reset_timers_and_spawn_particle();
     void update_zako_phase();
@@ -275,6 +277,17 @@ struct TBoss6Type2
     void send_state_action();
     void turn_toward_target();
     void apply_pending_effect();
+    void sub_802BE648();
+    void sub_802BE6A0();
+    void sub_802BE738();
+    void sub_802BEB78();
+    void sub_802BEC28();
+    void sub_802BEE38();
+    void sub_802BF3F4();
+    void sub_802BF834();
+    void sub_802BF904();
+    void sub_802BFA1C();
+    void sub_802BFBE4();
 };
 
 typedef char TBoss6Type2_offset_position[(offsetof(TBoss6Type2, position) == 0x38) ? 1 : -1];
