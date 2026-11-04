@@ -121,6 +121,8 @@ struct TWindowKeyBoardSoft : public TWindowDrawContext
     static void dispatch_request_0f(s32 a, s32 b);
 };
 
+typedef char TWindowKeyBoardSoft_m60[offsetof(TWindowKeyBoardSoft, m_60) == 0x44 ? 1 : -1];
+
 typedef char TWindowKeyBoardSoft_depth_offset[offsetof(TWindowKeyBoardSoft, depth) == 0x38 ? 1 : -1];
 typedef char TWindowKeyBoardSoft_m_60_offset[offsetof(TWindowKeyBoardSoft, m_60) == 0x44 ? 1 : -1];
 

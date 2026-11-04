@@ -224,23 +224,18 @@ void TWindowMainMenu::update_item_tween() {
     }
 }
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TWindowMainMenu::init_color() {
-  int new_var;
-  char *new_var2;
-  *((float *) (((char *) this) + 0xc)) = (*((float *) (((char *) this) + 0x8)) = (*((float *) (((char *) this) + 0x4)) = (*((float *) (((char *) this) + 0x0)) = 0.0f)));
-  new_var2 = (char *) this;
-  *((unsigned char *) (new_var2 + 0x10)) = 0;
-  *((unsigned char *) (new_var2 + 0x11)) = -((double) 1);
-  *((unsigned char *) (new_var2 + 0x12)) = 0;
-  new_var = 0x13;
-  *((unsigned char *) (new_var2 + new_var)) = 0;
-  *((unsigned char *) (new_var2 + 0x14)) = 0;
+    Item_802AD538 *item = (Item_802AD538 *)this;
+    item->x0 = 0.0f;
+    item->x4 = 0.0f;
+    item->x8 = 0.0f;
+    item->xc = 0.0f;
+    item->x10 = 0;
+    item->x11 = -1;
+    item->x12 = 0;
+    item->x13 = 0;
+    item->x14 = 0;
 }
-#pragma pop
 
 #pragma push
 #pragma inline_depth(1)
@@ -434,7 +429,7 @@ void get_row_position__15TWindowMainMenuFiPvi(s32 arg0, void *arg1, s32 arg2) {
     row->x = 16.0f * (f32)arg2;
 }
 
-s32 is_not_split_screen__15TWindowMainMenuFv(void *) {
+s32 is_not_split_screen(void *) {
     return (u32)__cntlzw(is_split_screen()) >> 5;
 }
 
@@ -473,20 +468,20 @@ s32 append_child_rows__15TWindowMainMenuFPvi(Menu_802ADD38 *arg0, s32 arg1) {
     return slot;
 }
 
-void TWindowMainMenu::set_target_y(f32 farg0) {
-    if (is_not_split_screen__15TWindowMainMenuFv(this) != 0) {
+void TWindowMenuMainMenu::set_target_y(f32 farg0) {
+    if (is_not_split_screen(this) != 0) {
         farg0 += 51.0f;
     } else {
         farg0 += 42.0f;
     }
     farg0 += 39.0f;
-    if (*(f32 *)&this->_pad58 != farg0) {
-        *(f32 *)&this->_pad58 = farg0;
-        *(s32 *)((s8 *)this + 0x50) = 8;
+    if (unk_3c != farg0) {
+        unk_3c = farg0;
+        unk_50 = 8;
     }
 }
 
-void TWindowMainMenu::update_scaled_position() {
+void TWindowMenuMainMenu::update_scaled_position() {
     set_target_y(16.0f * (f32)count_active_items__15TWindowMainMenuFi((s32)this));
 }
 
@@ -516,7 +511,7 @@ void TWindowMenuMainMenu::draw_frame(TWindowDrawContext *context) {
     begin_screen_draw(1);
     set_current_texture_list(lbl_805D63F0);
     set_draw_texture_and_color(11, context->color);
-    if (is_not_split_screen__15TWindowMainMenuFv(this)) {
+    if (is_not_split_screen(this)) {
         quad[0] = context->x;
         quad[1] = context->y + offset;
         quad[2] = 18.0f + quad[0];
@@ -576,7 +571,7 @@ TWindowDrawContext *setup_content_frame__15TWindowMainMenuFPv(TWindowMenuMainMen
     f32 v;
     TWindowKeyBoardSoft *r;
     r = TWindowKeyBoardSoft::open_singleton(window_menu_main_menu->m_40, window_menu_main_menu->m_48, fn_8026CB68(), window_menu_main_menu->m_54, window_menu_main_menu->m_2c);
-    if (is_not_split_screen__15TWindowMainMenuFv(window_menu_main_menu) != 0) {
+    if (is_not_split_screen(window_menu_main_menu) != 0) {
         v = 51.0f;
     } else {
         v = 39.0f;
@@ -587,10 +582,10 @@ TWindowDrawContext *setup_content_frame__15TWindowMainMenuFPv(TWindowMenuMainMen
 }
 
 
-void TWindowMainMenu::update_slide_position() {
+void TWindowMenuMainMenu::update_slide_position() {
     if (sub_80246948__13TUnk_804CE018Fv() != 0) {
         set_target_y(0.0f);
-        *(u32 *)((s8 *)this + 0x50) = (u32) (4.5f - (f32) (*(s16 *)((s8 *)this + 0x22)));
+        unk_50 = (u32)(4.5f - (f32)unk_22);
         return;
     }
     update_scaled_position();

@@ -40,7 +40,7 @@ void run_task__19TWindowMenuMainMenuFv(TWindowMenuMainMenu *window_menu_main_men
     } while (var_r31 < 8);
     window_menu_main_menu->handle_navigation_input();
     ((TWindowDD *)window_menu_main_menu)->initialize_subwindow();
-    ((TWindowMainMenu *)window_menu_main_menu)->update_slide_position();
+    window_menu_main_menu->update_slide_position();
     ((TUnk_804CE018 *)window_menu_main_menu)->update_fade();
     temp_r3_2 = window_menu_main_menu->m_60;
     if (temp_r3_2 & 8) {
@@ -78,7 +78,7 @@ u8 *TWindowMenuMainMenu__ct(TWindowMenuMainMenu *window_menu_main_menu, s32 arg1
     for (i = 0; i < 8; i++) {
         ((W_802AE864 *)window_menu_main_menu)->a[i] = 0;
     }
-    ((TWindowMainMenu *)window_menu_main_menu)->update_scaled_position();
+    window_menu_main_menu->update_scaled_position();
     ((TUnk_804CE018 *)window_menu_main_menu)->save_position();
     return (u8 *)window_menu_main_menu;
 }
