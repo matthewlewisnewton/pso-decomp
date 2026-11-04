@@ -172,7 +172,12 @@ static f32 predelay_sample(SoundReverb *rv, s32 channel, f32 sample) {
     if (ptr == line + (rv->preDelayFrames - 1)) {
         ptr = line;
     }
-    memcpy((u8 *)line + 0x1B8, &ptr, sizeof(ptr));
+    /* stw r29, 0x1B8(r30) writes 4 bytes at float index 110 of the delay line.
+       preDelayCurrent is reloaded every sample and is not this destination. */
+    {
+        u32 stored = (u32)(unsigned long)ptr;
+        memcpy(&line[0x1B8 / (s32)sizeof(f32)], &stored, sizeof(stored));
+    }
     return delayed;
 }
 

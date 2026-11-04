@@ -7,9 +7,8 @@ __MWERKS__`). Each one now has a scalar C implementation in the `#else`
 branch for other compilers. Matt approved that split on 2026-11-04: assembly
 stays only when a scalar C/C++ equivalent is compiled beside it.
 
-`docs/porting-exceptions.md` from PR #315 is not on `main`. When that register
-lands, these four functions belong in it. This note is the evidence the
-register should pick up.
+The register entry is section 1 of `docs/porting-exceptions.md` (landed with
+PR #315). This note is the evidence cited there. The scalar fallback is PR #316.
 
 ## Why the assembly stays
 
@@ -69,9 +68,16 @@ truncation toward zero (`(s32)` of an in-range float). `DoCrossTalk`'s
   code bytes, `reverb` 3168/3168). The `__MWERKS__` branch is the previous
   assembly, so those scores stay 100% and `tools/check_pr.py` must report no
   regressions.
-- Host: `g++ -m32 -std=c++98 -fsyntax-only` on
-  `src/musyx/runtime/Chorus/chorus_fx.c` and
-  `src/musyx/runtime/StdReverb/reverb.c`, with `__MWERKS__` undefined, exited
-  0. `-m32` is required because `s32` is `signed long` and the layout asserts
-  in the headers assume a 32-bit `long`. This machine has no 32-bit libc, so
-  the fallback was typechecked and not linked or executed.
+- Host typecheck: `g++ -m32 -std=c++98 -fsyntax-only` on both translation
+  units, `__MWERKS__` undefined, exit 0. `-m32` is required because `s32` is
+  `signed long` and the header layout asserts assume a 32-bit `long`.
+- Host execution: this machine has `libc.so.6` for i386 but no 32-bit crt, so
+  the in-tree objects were not linked. The `#else` bodies were compiled as
+  ordinary 64-bit C++ with `s32` as `int` and the structs those functions
+  actually touch, then run. Results: `do_src1` of a constant 1000 truncates
+  to 97 (`1000 * rsmpTab12khz[0]`); `posLo 0x12345678` uses float index 256,
+  not AxioDL's 172; `DoCrossTalk(1000, 0, 0.5, 0.5)` stores 500 and 300
+  (`0.6 * 500`), and `fctiw` maps 0.5, 1.5, and -1.5 to 0, 2, and -2;
+  `HandleReverb` with `mix == 0` stores `(s32)(0.6 * sample)`, leaves
+  `preDelayCurrent` on the line base, writes the last sample to `line[0]`,
+  and writes the 4-byte pointer bits at float index 110.

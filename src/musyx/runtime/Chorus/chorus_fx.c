@@ -136,8 +136,9 @@ asm void do_src2(register void *src) {
  * Src_803BF884 is only the prefix the callback names.
  */
 static const f32 *chorus_rsmp_coef(u32 pos_lo) {
-    u32 byte_off = ((pos_lo << 7) | (pos_lo >> 25)) & 0x7F0u;
-    return (const f32 *)((const u8 *)rsmpTab12khz + byte_off);
+    /* rlwinm pos_lo, 7, 21, 27 is a 16-byte-aligned offset; the float index is that divided by 4. */
+    u32 index = (((pos_lo << 7) | (pos_lo >> 25)) & 0x7F0u) >> 2;
+    return &rsmpTab12khz[index];
 }
 
 static s32 chorus_dot4(f32 s0, f32 s1, f32 s2, f32 s3, const f32 *coef) {
