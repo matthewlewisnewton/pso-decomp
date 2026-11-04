@@ -281,7 +281,6 @@ extern "C" {
 
 
 u8 * TBoss6Type1__sub_802B96C0(s32 arg0, s32 arg1);
-s32 render_shadows__9TObjEnemyFv();
 extern const f32 lbl_805DE3D0;
 s32 angle_difference_abs(int, int);
 s32 approach_angle_limited(int, int, int);
@@ -422,7 +421,6 @@ struct VObj_18_f05d67 : VBase_18_f05d67 {
 struct Tmp_802B93C4 { s32 a; s16 b; s16 c; u8 pad[0x10]; };
 
 
-void build_tables__14TBoss6PlotFalzFPvPvi(void *, void *, int);
 void TBoss6Type1__sub_802B854C(TBoss6Type1 *);
 extern u8 lbl_80470D1C[];
 extern u8 boss6_type1_model_node_desc[];
@@ -514,8 +512,8 @@ s32 TBoss6Type1__ct(s32 arg0_, s32 parent, s32 arg2_) {
     TBoss6Type1__sub_802B854C(self);
     self->draw_callback_lists[1] = (ModelNodePositionCapture *)ModelNodePositionCapture::create((ModelNodePositionEntry *)(boss6_type1_model_node_desc), &self->node_positions_578[0]);
     self->draw_callback_lists[0] = (ModelNodePositionCapture *)ModelNodePositionCapture::create((ModelNodePositionEntry *)(boss6_type1_model_node_desc_b), &self->node_positions_5FC[0]);
-    build_tables__14TBoss6PlotFalzFPvPvi(self->scroll_strips_u, boss6_type1_build_table, 2);
-    build_tables__14TBoss6PlotFalzFPvPvi(self->scroll_strips_v, lbl_80470EA0, 1);
+    TBoss6PlotFalz::build_tables(self->scroll_strips_u, boss6_type1_build_table, 2);
+    TBoss6PlotFalz::build_tables(self->scroll_strips_v, lbl_80470EA0, 1);
     self->trail_point_receiver = TBoss6Type1::create_zanzo(self, (void *)7, (void *)0xF);
     self->effect_point_receiver = TBoss6Type1::create_zanzo(self, (void *)2, (void *)0xF);
     self->m_414 = 0;
@@ -806,7 +804,7 @@ void TBoss6Type1::vfunc_63() { if (*(int *)&this->m_374 != 40) { set_action_stat
 
 void TBoss6Type1::render_shadows() {
     if (this->position.y >= lbl_805DE3D0) {
-        render_shadows__9TObjEnemyFv();
+        TObjEnemy::render_shadows();
     }
 }
 
