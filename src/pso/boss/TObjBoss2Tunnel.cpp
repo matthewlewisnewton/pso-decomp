@@ -128,9 +128,10 @@ void set_depth_buffer_settings_1__Fv(void);
 void restore_saved_depth_alpha_state(void);
 extern s32 lbl_805D63F0;
 s32 TAdPlayerLoadGC__sub_801E0FA4(s32);
-// The mask in r4 is pack_flags' second argument, and declaring it matches the
-// callee bytes, but the real method call regresses the callers. Wide Fv stays.
-s32 is_on_current_screen__11TCameraCtrlFv(void *, s32);
+// Tests ControllerInputContext::previous_buttons (+0x48) against a button mask, like
+// is_flag_set__11TLoadingCurFv. Its callers stay on this symbol: a method call
+// through a TCameraCtrl receiver regresses the other callers.
+s32 is_on_current_screen__11TCameraCtrlFv(ControllerInputContext *, s32);
 }
 extern s32 screen_binary_filename;
 extern "C" {
