@@ -113,6 +113,8 @@ struct QFrameCtx_80245808
   f32 scaleY;
 };
 
+void apply_window_closing_stretch(u8 *, int);
+
 extern "C" {
 void reset_line_width(void);
 void set_line_width(int a0);
@@ -151,7 +153,6 @@ s32 sub_80246948__13TUnk_804CE018Fv();
 int TWindowFukidasi__sub_8024695C(void *p);
 s32 TWindowCtrlMain__sub_8024CE24();
 TWindowDrawContext *open_singleton__19TWindowKeyBoardSoftFiiii(f32 *, f32 *, f32 *, f32, u32);
-void apply_window_closing_stretch__FPUci(TWindowDrawContext *, int);
 void animate_scale__19TWindowKeyBoardSoftFv(TWindowDrawContext *);
 void shrink_clip_right__19TWindowKeyBoardSoftFv(TWindowDrawContext *);
 void set_bounds__19TWindowKeyBoardSoftFffff(TWindowDrawContext *, f32, f32, f32, f32);
@@ -330,7 +331,7 @@ TWindowDrawContext *TUnk_804CE018::setup_window_draw_context(s32 arg1) {
         var_r4 = (s32) ((f32) var_r4 - 7.5f);
     }
     set_open_tick__19TWindowKeyBoardSoftFl(temp_r31, var_r4);
-    apply_window_closing_stretch__FPUci(temp_r31, (*(s16 *)((s8 *)((u8 *)this) + 0x22)));
+    apply_window_closing_stretch((u8 *)temp_r31, (*(s16 *)((s8 *)((u8 *)this) + 0x22)));
     return temp_r31;
 }
 

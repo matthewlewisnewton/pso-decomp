@@ -46,7 +46,7 @@ u8 *create_sub_item_list_window(s32 arg0, s32 arg1, s16 arg2) {
 void TWindowSubItemList::render() {
     u8 *arg0 = (u8 *)this;
     s32 window_key_board_soft;
-    window_key_board_soft = (s32)get_draw_context__11TWindowBaseFPv(this);
+    window_key_board_soft = (s32)TWindowBase::get_draw_context(this);
     ((TUnk_804CE018 *)arg0)->draw_window_frame((void *)window_key_board_soft);
     draw_visible_window_entries(arg0, arg0 + 0x24, window_key_board_soft);
     ((TUnk_804D0618 *)arg0)->draw_selected_list_entry(window_key_board_soft);

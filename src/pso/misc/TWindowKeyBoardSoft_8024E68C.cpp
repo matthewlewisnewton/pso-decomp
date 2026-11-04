@@ -63,7 +63,8 @@ void apply_context_transform_to_rect(TWindowDrawContext *c, f32 *q) {
 }
 #pragma pop
 
-extern "C" void apply_window_closing_stretch__FPUci(TWindowDrawContext *context, int tick) {
+void apply_window_closing_stretch(u8 *context_arg, int tick) {
+    TWindowDrawContext *context = (TWindowDrawContext *)context_arg;
     f32 temp_f2;
     if (tick != 0) {
         temp_f2 = lbl_805DCC80;
@@ -234,13 +235,13 @@ extern "C" TWindowDrawContext *open_singleton__19TWindowKeyBoardSoftFiiii(f32 *p
     return soft_keyboard_instance;
 }
 
-extern "C" TWindowDrawContext *get_or_create_instance__19TWindowKeyBoardSoftFv() {
+u32 TWindowKeyBoardSoft::get_or_create_instance() {
     TWindowDrawContext *context;
-    if (soft_keyboard_instance != NULL) return soft_keyboard_instance;
+    if (soft_keyboard_instance != NULL) return (u32)soft_keyboard_instance;
     context = new TWindowDrawContext;
     if (context != NULL) context = init_layout__19TWindowKeyBoardSoftFv(context);
     soft_keyboard_instance = context;
-    return context;
+    return (u32)context;
 }
 
 extern "C" TWindowDrawContext *free_singleton__19TWindowKeyBoardSoftFUls(TWindowDrawContext *context, s16 flag) {
