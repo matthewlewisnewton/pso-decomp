@@ -2,6 +2,7 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/boss/TBoss6PlotFalz.h"
+#include "pso/boss/TBoss6PlotFalzState.h"
 #include "pso/boss/Boss6Type1Appearance.h"
 #include "pso/boss/Boss6Type2Appearance.h"
 #include "pso/boss/Boss6Type2Death.h"
@@ -250,16 +251,6 @@ void TBoss6PlotFalz::sub_802B0228() {
         award_exp_and_destroy();
     }
 }
-
-typedef void (TBoss6PlotFalz::*TBoss6PlotFalzAction)();
-
-struct TBoss6PlotFalzScriptState {
-    const char* name;
-    TBoss6PlotFalzAction enter;
-    TBoss6PlotFalzAction leave;
-    TBoss6PlotFalzAction tick;
-    TBoss6PlotFalzAction update;
-};
 
 TBoss6PlotFalzScriptState TBoss6PlotFalz__data_804DE66C[9] = {
     { "FALL_ELEV", &TBoss6PlotFalz::sub_802B0A34, 0,
