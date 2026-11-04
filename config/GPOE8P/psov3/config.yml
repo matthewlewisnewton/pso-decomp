@@ -591,6 +591,7 @@ force_active:
   - TLobby__sub_80225A08
   - TLobby__sub_80225C8C
   - TLobby__sub_80225CB8
+  - TLobby__sub_8028D7D0
   - TLobby__sub_80292AB4
   - TLobby__sub_80292BB8
   - TLobby__sub_80292DA0
@@ -4303,6 +4304,7 @@ force_active:
   - chr_select_a_slot_entry
   - chr_select_b_slot_entry
   - chr_select_buffer_ptr_table
+  - chr_select_load_buffer_table
   - circle_arena__13TBoss5GryphonFl
   - circle_destination__13TObjEneBm3FlyFl
   - circling_state__14TObjEneBm5WolfFl
@@ -7284,6 +7286,7 @@ force_active:
   - lbl_80513918
   - lbl_80513F70
   - lbl_8051607C
+  - lbl_80518850
   - lbl_80540B64
   - lbl_80540B70
   - lbl_80540B88
