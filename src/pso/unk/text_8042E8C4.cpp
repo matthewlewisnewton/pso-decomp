@@ -6,8 +6,6 @@
 // Reserved launch record. fn_8042E8B8 returns this address.
 extern u8 launch_record[] AT_ADDRESS(0x80003100);
 
-extern "C" void __isync(void);
-
 // Copies the launch context onto launch_record, shuts the OS down
 // (OS_RESET_SHUTDOWN returns), and loads the DOL image at field_104.
 // A zero file offset ends that section list. Text is stored and
@@ -15,12 +13,12 @@ extern "C" void __isync(void);
 //
 // Not exact on the ntutl profile (GC/2.6 -O4,p -inline off -use_lmw_stmw on).
 // The original tail is lwz/isync/mtlr/blr with the link bit clear, so the
-// frame restore at 0x8042E9FC never runs. __isync() emits the isync. The
-// indirect call is mtctr/bctrl plus a live epilogue. Dolphin SDK flags
-// without -use_lmw_stmw call the GPR save helper instead of stmw, which this
-// prologue does not do. GC/1.2.5's indirect call is mtlr/blrl (link bit set)
-// and its prologue is the older unscheduled form. __attribute__((noreturn))
-// is rejected and there is no mtlr intrinsic.
+// frame restore at 0x8042E9FC never runs. __isync (a compiler intrinsic) emits
+// the isync. The indirect call is mtctr/bctrl plus a live epilogue, and the
+// loop arrays fold to a pointer induction variable instead of the original
+// byte-offset form. -O4,s, GC/1.2.5 and GC/3.0a are worse fits; the prologue
+// is the scheduled ntutl form (stmw r26,8(r1)). __attribute__((noreturn)) is
+// rejected and there is no mtlr intrinsic.
 extern "C" void LaunchDol(ModemLaunchContext *ctx) {
     u32 size = (ctx->payload_size + 0x132) & ~0x1Fu;
     DolImageHeader *image = ctx->field_104;
