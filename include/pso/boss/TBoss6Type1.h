@@ -4,7 +4,7 @@
 #include <stddef.h>
 #include "pso/enemy/TObjEnemy.h"
 
-struct Boss6EffectPoint { f32 x, y, z; };
+typedef Vec Boss6EffectPoint;
 struct ModelNodePositionCapture;
 struct Boss6Motion { s32 f0; u32 frames; };
 struct Boss6Anim {
@@ -88,15 +88,13 @@ struct TBoss6Type1 : public TObjEnemy {
     // Particle emitters release_effect_slot / spawn_effect_slot index.
     u32 effect_slots[4];
     s32 m_508;
-    u8 unk_50C[0x60];
+    u32 unk_50C[24];
     Vec m_56C;
-    Vec m_578;
-    Vec m_584;
-    u8 unk_590[0x3C];
-    Vec sound_pos;
-    Boss6EffectPoint trail_points[3];
-    Vec m_5FC;
-    u8 unk_608[0x30];
+    // Node positions ModelNodePositionCapture writes for draw_callback_lists[1].
+    // [1] is the sound position, [7] the beam, [8..10] the trail points.
+    Vec node_positions_578[11];
+    // Node positions for draw_callback_lists[0].
+    Vec node_positions_5FC[5];
     Boss6EffectPoint effect_points[2];
     // One node-position capture per model; render installs each before it
     // draws that model (upstream: TObjFish__sub_800E3124 lists).
@@ -106,6 +104,9 @@ struct TBoss6Type1 : public TObjEnemy {
     TObject *map_csn;
     static u8 *create_kakusan(s32 arg0, u8 *arg1, u8 *arg2, s16 arg3, f32 farg0);
     static void *copy_block(void *d, void *s);
+    static void fire_at_all_players(void *self, f32 dy);
+    static void calc_grid_cell_position(void *o, void *out);
+    static void clamp_to_arena_radius(void *o, void *out, f32 w);
     static void randomize_attack(void *self, void *atk);
     void clear_slot_array();
     void release_effect_slot(s32 arg1);
@@ -240,5 +241,5 @@ typedef char TBoss6Type1_receiver_offset[(offsetof(TBoss6Type1,effect_point_rece
 typedef char TBoss6Type1_points_offset[(offsetof(TBoss6Type1,effect_points)==0x638)?1:-1];
 typedef char TBoss6Type1_trail_receiver_offset[(offsetof(TBoss6Type1,trail_point_receiver)==0x400)?1:-1];
 typedef char TBoss6Type1_map_csn_offset[(offsetof(TBoss6Type1,map_csn)==0x680)?1:-1];
-typedef char TBoss6Type1_trail_points_offset[(offsetof(TBoss6Type1,trail_points)==0x5D8)?1:-1];
+typedef char TBoss6Type1_node_positions_offset[(offsetof(TBoss6Type1,node_positions_578)==0x578)?1:-1];
 #endif

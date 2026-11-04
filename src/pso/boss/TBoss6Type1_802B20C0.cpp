@@ -606,7 +606,7 @@ void TBoss6Type1::sub_802B31E4() {
         if (*(f32 *)((s8 *)arg0 + 0x4DC) > 0.0f) {
             var_r3 = 0x4003AD0D;
         }
-        play_persistent_sound((s32)var_r3, (const void *)((s32)arg0), (const Vec *)((u32)&arg0->sound_pos), 0, 1);
+        play_persistent_sound((s32)var_r3, (const void *)((s32)arg0), (const Vec *)((u32)&arg0->node_positions_578[7]), 0, 1);
     }
     if (*(f32 *)((s8 *)arg0 + 0x4DC) > 0.0f) {
         TBoss6Type1__sub_802B4B04(((u8 *)arg0));
@@ -623,7 +623,7 @@ void TBoss6Type1::sub_802B31E4() {
 
 void TBoss6Type1::sub_802B3320() {
     action_timer = m_40c = m_49c + laser_fire_time + 30;
-    play_sound_effect(0x4003A608, (const Vec *)(&sound_pos), 0, 0);
+    play_sound_effect(0x4003A608, (const Vec *)(&node_positions_578[7]), 0, 0);
     release_effect_slot(0);
     spawn_effect_slot(1);
     spawn_effect_slot(2);
