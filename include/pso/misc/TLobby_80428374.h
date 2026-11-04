@@ -2,7 +2,6 @@
 #define PSO_MISC_TLOBBY_80428374_H
 
 #include "types.h"
-#include "pso/misc/TLobby.h"
 
 struct ModemSessionState {
     char **subst;
@@ -43,12 +42,9 @@ struct ModemScriptSession {
     char *password;
     char *phone_number;
     u8 pad18[0x70];
-    // The dial helpers read this as a ModemRequest. Case DELAY calls
-    // TLobby::wait_timeout_loop with this same address (session+0x88).
-    union {
-        ModemRequest req;
-        TLobby lobby;
-    };
+    // DIAL, WAIT, and DELAY all pass this address (session+0x88).
+    // DELAY reads the s16 at +4, ModemRequest::timeout.
+    ModemRequest req;
 };
 
 struct ModemConfig {
@@ -67,6 +63,10 @@ struct ModemConfig {
     u8 pad34[4];
     u8 terminator;
 };
+
+// DELAY passes the modem request and reads its timeout, same as the other
+// script commands that take ModemRequest*.
+s16 wait_timeout_loop(ModemRequest *req);
 
 extern "C" {
 extern ModemSessionState lobby_net_session_state;

@@ -315,7 +315,7 @@ s16 TLobby__sub_804283C8(u8 *script, ModemScriptSession *sess) {
             ret = TLobby__sub_80428830(&sess->req);
             break;
         case 3:
-            ret = sess->lobby.wait_timeout_loop();
+            ret = wait_timeout_loop(&sess->req);
             break;
         case 4:
             ret = modem_wait_connect();
@@ -333,8 +333,7 @@ s16 TLobby__sub_804283C8(u8 *script, ModemScriptSession *sess) {
     return 0;
 }
 
-s16 TLobby::wait_timeout_loop() {
-    u8 *arg0 = (u8 *)this;
+s16 wait_timeout_loop(ModemRequest *req) {
     s32 start;
     s32 now;
     s16 *p;
@@ -344,7 +343,7 @@ s16 TLobby::wait_timeout_loop() {
     TLobby::get_time_ms(&start);
     p = (s16 *)lobby_net_session_state.fields[0];
     if (p == NULL) {
-        limit = *(s16 *)(arg0 + 4) * 1000;
+        limit = req->timeout * 1000;
     } else {
         limit = *p * 1000;
     }
