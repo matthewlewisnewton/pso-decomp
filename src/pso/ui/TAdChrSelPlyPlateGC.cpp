@@ -968,7 +968,7 @@ void TAdMultiPlyChrSelectGC::update_selection() {
     if (o->f534 != 0) {
         switch (TAdMultiPlyChrSelectGC__select_mode) {
         case 0:
-            ((TAdMultiPlyChrSelectGC *)o)->handle_dpad_input();
+            this->handle_dpad_input();
             if (TAdMultiPlyChrSelectGC::get_clamped_cursor() == 3 && is_multiplayer_character_slot_selected(3) != 0) {
                 s32 n = TAdMultiPlyChrSelectGC::count_ready();
                 if (TAdMultiPlyChrSelectGC__sub_802C6558() < n) {
@@ -977,7 +977,7 @@ void TAdMultiPlyChrSelectGC::update_selection() {
             }
             break;
         case 1:
-            ((TAdMultiPlyChrSelectGC *)o)->update_option_cursor();
+            this->update_option_cursor();
             break;
         }
     }
