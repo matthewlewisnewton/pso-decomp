@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/misc/TLobby.h"
 #include "pso/quest/TQuestListVMData.h"
 #include "pso/misc/TKeyBoardControl_8000F764.h"
 #include "pso/misc/TShopWindowBase.h"
@@ -188,17 +189,16 @@ s32 strcmp(const char *, const char *);
 s32 is_downloadable_new_entry__12TQuestListVMFPvPv(QL_802193F0 *q, Ent_802193F0 *e);
 int get_entity_id(int);
 f32 get_scale__15TShopWindowBaseFv(void *);
-u8 *create_yes_no_window(s32 arg0, s32 arg1, u32 arg2, u32 arg3);
+u8 *create_yes_no_window(const void *arg0, s32 arg1, u32 arg2, u32 arg3);
 void send_and_handle__6TLobbyFii(u32, void *, int);
-u32 create_message_window__6TLobbyFPCvPCvUll(int, void *, int, u16);
-int get_window_layout_position(int);
+const void *get_window_layout_position(int);
 extern const f32 lbl_805DC6B8;
 extern const f32 lbl_805DC6BC;
 s32 TAdPlayerLoadGC__sub_801E1538(Dl_80218E94 *, s32);
 s32 poll_download__12TQuestListVMFv(void *);
 s32 get_selected_menu_value(void *);
 s32 calc_list_content_extent(void *);
-u32 set_window_mode_4__6TLobbyFPvll(int, void *, int);
+u32 set_window_mode_4__6TLobbyFPvll(const void *, void *, int);
 u32 create_item_list_window(void *, int, u16);
 char *strcpy(char *, const char *);
 void *memcpy(void *, const void *, unsigned long);
@@ -448,8 +448,8 @@ void TQuestListVM::open_confirm_window() {
     if (this->m_2380 == 0U) {
         QuestListWindowSize sp8 = lbl_8044BF48;
         u16 id = get_entity_id(*(s32 *)&this->m_24);
-        this->m_2380 = create_message_window__6TLobbyFPCvPCvUll(get_window_layout_position(0x2E), &sp8, 1, id);
-        send_and_handle__6TLobbyFii(this->m_2380, (void *)(TQuestListVM__decrypted_quest_buffer + 0xB4), 1);
+        this->m_2380 = TLobby::create_message_window(get_window_layout_position(0x2E), &sp8, 1, id);
+        send_and_handle__6TLobbyFii((u32)this->m_2380, (void *)(TQuestListVM__decrypted_quest_buffer + 0xB4), 1);
         ((TLobby *)(this->m_2380))->set_field_1c(lbl_805DC6B8);
         if (TCameraCtrl::get_camera_id() >= 2) {
             ((TUnk_804CDFE8 *)(this->m_2380))->set_position_xy(lbl_805DC6BC, lbl_805DC6BC);

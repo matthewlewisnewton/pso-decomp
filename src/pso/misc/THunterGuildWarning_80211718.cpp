@@ -33,35 +33,35 @@ void THunterGuildWarning::close_windows() {
     } while (i < 4);
 }
 
-extern "C" void THunterGuildWarning__sub_80211774(THunterGuildWarning *self, s32) {
+void THunterGuildWarning::sub_80211774(s32) {
     Pair_8044BC7C size = lbl_8044BC7C;
     Pair_8044BC7C position = lbl_8044BC84.value;
     if (TCameraCtrl::get_instance() > 2) {
         position.x = lbl_805DC640;
         position.y = lbl_805DC640;
     }
-    switch (self->m_warning_type) {
+    switch (m_warning_type) {
     case 0: {
         u16 id = TCameraCtrl::get_nth_view_player_id(0);
         if (get_player_by_client_id(id)) {
-            self->m_windows[id] = (TWindowMessage *)TLobby::create_message_window(get_window_layout_position(0x31), &size, 1, id);
+            m_windows[id] = TLobby::create_message_window(get_window_layout_position(0x31), &size, 1, id);
         }
-        if (self->m_windows[id]) {
+        if (m_windows[id]) {
             s32 text = 0x63;
-            self->m_windows[id]->send_and_handle(TQuestVmDownLoadServer__sub_8006EF6C(text), 0x81);
-            self->m_windows[id]->set_position_xy(position.x, position.y);
+            m_windows[id]->send_and_handle(TQuestVmDownLoadServer__sub_8006EF6C(text), 0x81);
+            m_windows[id]->set_position_xy(position.x, position.y);
         }
         break;
     }
     case 1: {
         u16 id = TCameraCtrl::get_nth_view_player_id(0);
         if (get_player_by_client_id(id)) {
-            self->m_windows[id] = (TWindowMessage *)TLobby::create_message_window(get_window_layout_position(0x31), &size, 1, id);
+            m_windows[id] = TLobby::create_message_window(get_window_layout_position(0x31), &size, 1, id);
         }
-        if (self->m_windows[id]) {
+        if (m_windows[id]) {
             s32 text = 0x68;
-            self->m_windows[id]->send_and_handle(TQuestVmDownLoadServer__sub_8006EF6C(text), 0x81);
-            self->m_windows[id]->set_position_xy(position.x, position.y);
+            m_windows[id]->send_and_handle(TQuestVmDownLoadServer__sub_8006EF6C(text), 0x81);
+            m_windows[id]->set_position_xy(position.x, position.y);
         }
         break;
     }
@@ -73,11 +73,11 @@ extern "C" void THunterGuildWarning__sub_80211774(THunterGuildWarning *self, s32
         for (s32 i = 0; i < 4; i++) {
             if (local != i) {
                 if (get_player_by_client_id(i)) {
-                    self->m_windows[i] = (TWindowMessage *)TLobby::create_message_window(get_window_layout_position(0x31), &size, 1, i);
+                    m_windows[i] = TLobby::create_message_window(get_window_layout_position(0x31), &size, 1, i);
                 }
-                if (self->m_windows[i]) {
-                    self->m_windows[i]->send_and_handle(TQuestVmDownLoadServer__sub_8006EF6C(message), 0x81);
-                    self->m_windows[i]->set_position_xy(position.x, position.y);
+                if (m_windows[i]) {
+                    m_windows[i]->send_and_handle(TQuestVmDownLoadServer__sub_8006EF6C(message), 0x81);
+                    m_windows[i]->set_position_xy(position.x, position.y);
                 }
             }
         }
@@ -86,6 +86,6 @@ extern "C" void THunterGuildWarning__sub_80211774(THunterGuildWarning *self, s32
     }
 }
 
-extern "C" void THunterGuildWarning__sub_802119CC(THunterGuildWarning *self) {
-    for (s32 i = 0; i < 4; i++) self->m_windows[i] = NULL;
+void THunterGuildWarning::sub_802119CC() {
+    for (s32 i = 0; i < 4; i++) m_windows[i] = NULL;
 }

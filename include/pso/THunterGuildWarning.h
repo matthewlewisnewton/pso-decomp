@@ -17,6 +17,8 @@ public:
     static void create_instance(s32 arg0);
     static u8 is_active();
     void close_windows();
+    void sub_80211774(s32 mode);
+    void sub_802119CC();
 
     s32 m_warning_type;
     s32 m_timer;

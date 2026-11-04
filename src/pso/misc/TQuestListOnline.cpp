@@ -77,11 +77,10 @@ struct T_80217B30 { u8 pad[0x38]; s32 f38; };
 extern "C" {
 s32 get_entity_id(int);
 int set_field_20__15TShopWindowBaseFl(void*, int);
-s32 send_and_handle__6TLobbyFii(int, void *, int);
-u32 create_message_window__6TLobbyFPCvPCvUll(int, void *, int, int);
-s32 get_window_layout_position(int);
+s32 send_and_handle__6TLobbyFii(void *, void *, int);
+const void *get_window_layout_position(s32);
 s32 calc_list_content_extent(u32);
-u32 set_window_mode_4__6TLobbyFPvll(s32, void *, int);
+void *set_window_mode_4__6TLobbyFPvll(const void *, void *, int);
 extern Stack_80217EC4 lbl_8044BED4[];
 extern u8 *TQuestListOnline__quest_list_buffer;
 
@@ -93,7 +92,7 @@ extern u8 lbl_805DC6A0;
 
 s32 get_unlocked_tier__16TQuestListOnlineFv(void *);
 f32 get_scale__15TShopWindowBaseFv(void *);
-u8 *create_yes_no_window(s32 arg0, s32 arg1, u32 arg2, u32 arg3);
+u8 *create_yes_no_window(const void *arg0, s32 arg1, u32 arg2, u32 arg3);
 s32 select_cursor_entry__22TWindowSubShortCutListFv(u32);
 }
 extern RecoveredGlobal_80217EC4_lbl_8044BEDC lbl_8044BEDC;
@@ -140,7 +139,7 @@ void TQuestListOnline::handle_quest_confirm() {
                     this->info_window = NULL;
                 }
                 if (this->description_window != NULL) {
-                    queue_destruction__7TObjectFv(*(void * *)&this->description_window);
+                    queue_destruction__7TObjectFv(this->description_window);
                     this->description_window = NULL;
                 }
                 if (this->list_window != NULL) {
@@ -290,7 +289,7 @@ void TQuestListOnline::show_info_window() {
         stack.sp8 = *(s32 *)((s8 *)&lbl_8044BEDC.value + 0);
         stack.spC = *(s32 *)((s8 *)&lbl_8044BEDC.value + 4);
         temp_r31 = get_entity_id(window_owner);
-        info_window = create_message_window__6TLobbyFPCvPCvUll((int) (get_window_layout_position(0x2E)), (void *)&stack.sp8, 1, (int) ((s32) temp_r31));
+        info_window = TLobby::create_message_window(get_window_layout_position(0x2E), &stack.sp8, 1, temp_r31);
         ((TLobby *)info_window)->set_field_1c(lbl_805DC6A4);
         if (TCameraCtrl::get_camera_id() >= 2) {
             ((TUnk_804CDFE8 *)info_window)->set_position_xy(lbl_805DC6A8, lbl_805DC6A8);

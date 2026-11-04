@@ -88,7 +88,6 @@ s32 text_builder_append();
 s32 set_field_1c__6TLobbyFf(void *);
 s32 TWindowSubEquip__sub_80263AF8(s32, s32);
 s32 send_and_handle__6TLobbyFii(s32, s32 *, s32);
-void *create_message_window__6TLobbyFPCvPCvUll(s32, s32 *, s32, s32);
 s32 get_window_layout_position(s32);
 void *get_player_by_client_id(s32);
 s32 is_player_input_active(s32);
@@ -220,7 +219,7 @@ void *TWindowSubMag::create_learned_blast_toast() {
     pos.x -= (0.5f * n + 4.0f) * scale;
     size.x = 8.0f + n;
     size.y = 40.0f;
-    win = create_message_window__6TLobbyFPCvPCvUll((s32)&pos, (s32 *)&size, 1, *(s32 *)&this->m_28);
+    win = TLobby::create_message_window(&pos, &size, 1, this->m_28);
     TWindowSubEquip__sub_80263AF8(*(s32 *)&this->m_30, 6);
     set_field_1c__6TLobbyFf(win);
     send_and_handle__6TLobbyFii((s32)win, (s32 *)get_shared_text_buffer(), 2);
@@ -234,7 +233,7 @@ void *TWindowSubMag::create() {
     s32 window_layout_position;
 
     window_layout_position = get_window_layout_position(0xB);
-    temp_r31 = create_message_window__6TLobbyFPCvPCvUll(window_layout_position, lbl_8044FA00, 1, this->m_28);
+    temp_r31 = TLobby::create_message_window((const void *)window_layout_position, lbl_8044FA00, 1, this->m_28);
     TWindowSubEquip__sub_80263AF8(this->m_30, 4);
     set_field_1c__6TLobbyFf(temp_r31);
     *(s32 *)((s8 *)temp_r31 + 0x5C) = 0x186A0;

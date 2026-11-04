@@ -21,7 +21,7 @@ s32 close_and_clear_flags__15TWindowMainMenuFv();
 void TWindowMainMenu4P::vfunc_9() { if (close_active_submenu() != 0) { this->show_child_window(); } }
 
 void TWindowMainMenu4P::vfunc_8() {
-    if (this->m_4c & 1) {
+    if (this->m_menu_flags & 1) {
         close_and_clear_flags__15TWindowMainMenuFv();
     }
 }
@@ -29,8 +29,8 @@ void TWindowMainMenu4P::vfunc_8() {
 void TWindowMainMenu4P::vfunc_6() {
     u8 *arg0 = (u8 *)this;
     u8 *player;
-    if (!(this->m_4c & 1)) {
-        player = (u8 *)(get_player_by_client_id(this->m_54));
+    if (!(this->m_menu_flags & 1)) {
+        player = (u8 *)(get_player_by_client_id(this->m_client_id));
         if (player != NULL) {
             if (((TObjPlayer *)player)->is_android() != 0) {
                 ((TWindowMainMenu *)arg0)->open((s32) &lbl_804D0530.value);

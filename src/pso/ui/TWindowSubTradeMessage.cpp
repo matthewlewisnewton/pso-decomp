@@ -1,4 +1,5 @@
 #include "pso/system/SoundEffect.h"
+#include "pso/misc/TLobby.h"
 #include "pso/ui/TWindowSubTradeMessage.h"
 #include "pso/unk/text_802D298C.h"
 #include "pso/misc/TWindowCtrl_8024A054.h"
@@ -14,7 +15,6 @@ s32 TWindowShortListCtrl__check_controller_button(void*,s32);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void*,s32);
 
 u8* get_window_layout_position(s32);
-TWindowMessage* create_message_window__6TLobbyFPCvPCvUll(void*,const f32*,s32,s32);
 int send_and_handle__6TLobbyFii(void*,const char*,s32);
 extern TradeMessageInput controller_input_state[];
 __declspec(section ".rodata") extern const char trade_message_class_name[23] = "TWindowSubTradeMessage";
@@ -34,7 +34,7 @@ void TWindowSubTradeMessage::show_message(const char* text) {
 
 TWindowMessage* TWindowSubTradeMessage::create_message_window(const char* text) {
     TWindowMessage* window;
-    window=create_message_window__6TLobbyFPCvPCvUll(get_window_layout_position(0x5B),trade_message_window_dimensions,1,playerIndex);
+    window=TLobby::create_message_window(get_window_layout_position(0x5B),trade_message_window_dimensions,1,playerIndex);
     send_and_handle__6TLobbyFii(window,text,0x82);
     return window;
 }

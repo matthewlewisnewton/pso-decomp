@@ -2117,7 +2117,6 @@ void run_save_load_sequence__23TAdSinglePlyChrSelectGCFv(void);
 s32 get_field_118__22TAdEnterSerialAccessGCFv();
 void TLobby__sub_80269C90(void);
 void TLobby__sub_80269CA4(s32);
-Win_801FEE14 *create_message_window__6TLobbyFPCvPCvUll(V2_801FEE14 *, V2_801FEE14 *, s32, s32);
 void TAdSinglePlyChrSelectGC__sub_8033B9EC(void);
 s32 TAdSinglePlyChrSelectGC__sub_8033B9F8(Win_801FEE14 *);
 Win_801FEE14 *create_check_memory_card__23TAdSinglePlyChrSelectGCFPvPvPv(void *, s32, s32);
@@ -2260,7 +2259,7 @@ s32 save_character_to_card__23TAdSinglePlyChrSelectGCFv(void) {
         lbl_805D5FB8 = lbl_8044A7D8[0].x - lbl_805DC5C8;
     }
     if (TAdSinglePlyChrSelectGC::load_save_from_card() == 0) {
-        w = create_message_window__6TLobbyFPCvPCvUll(lbl_8044A7D0, lbl_8044A7D8, 1, 4);
+        w = (Win_801FEE14 *)TLobby::create_message_window(lbl_8044A7D0, lbl_8044A7D8, 1, 4);
         if (w != NULL) {
             ((TLobby *)w)->send_and_handle(get_localized_text_entry(0x20, 4), 3);
             ((TWindowSubComCard *)w)->reparent_to_main_ctrl();
@@ -2308,7 +2307,7 @@ s32 save_character_to_card__23TAdSinglePlyChrSelectGCFv(void) {
         render_tick();
     }
     TLobby__sub_80269CA4(0x23);
-    w = create_message_window__6TLobbyFPCvPCvUll(lbl_8044A7D0, lbl_8044A7D8, 1, 4);
+    w = (Win_801FEE14 *)TLobby::create_message_window(lbl_8044A7D0, lbl_8044A7D8, 1, 4);
     TLobby__sub_80269C90();
     if (w != NULL) {
         if (TAdPlayerLoadGC::get_load_result(0) == 0xFFFFFF81 || TAdPlayerLoadGC::get_load_result(0) == 0xFFFFFF83) {

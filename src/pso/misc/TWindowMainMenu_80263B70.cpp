@@ -127,9 +127,7 @@ s32 is_quest_active();
 s32 get_short_mail_ctrl__6TLobbyFv();
 s32 is_trade_range_bit_set(s32);
 extern s32 local_client_id;
-u32 create_message_window__6TLobbyFPCvPCvUll(u32, s32 *, s32, s32);
-
-u32 get_window_layout_position(s32);
+const void *get_window_layout_position(s32);
 s32 call_if_split_screen(u32, s32);
 s32 select_main_menu_item_10(s32);
 
@@ -218,9 +216,8 @@ extern const f32 lbl_805DD13C;
 void TWindowMainMenu::update_description_text(s32 arg1) {
     if ((s32) *(s32 *)((s8 *)this + 0x48) != arg1) {
         *(s32 *)((s8 *)this + 0x48) = arg1;
-        if ((u32) *(u32 *)((s8 *)this + 0x24) == 0U) {
-            u32 tmp = get_window_layout_position(0x1B);
-            *(u32 *)((s8 *)this + 0x24) = create_message_window__6TLobbyFPCvPCvUll(tmp, lbl_8044F2E0, 1, *(s32 *)((s8 *)this + 0x54));
+        if (m_message_window == NULL) {
+            m_message_window = TLobby::create_message_window(get_window_layout_position(0x1B), lbl_8044F2E0, 1, m_client_id);
             ((TLobby *)(*(u32 *)((s8 *)this + 0x24)))->set_field_1c(lbl_805DD13C);
             call_if_split_screen(*(u32 *)((s8 *)this + 0x24), *(s32 *)((s8 *)this + 0x54));
         }
@@ -249,7 +246,7 @@ s32 __ct__15TWindowSubTradeFP7TObjectPv(int, void *, int);
 s32 __ct__19TWindowSubTradeMainFP7TObjectPv(int, void *, int);
 s32 __ct__22TWindowSubTradeMessageFP7TObjectl(int, void *, int);
 s32 __ct__26TWindowSubInformationBoardFP7TObjectPv(int, void *, int);
-void *__ct__13TUnk_804E0B28FP7TObjectl(void *, void *, void *);
+void *__ct__13TUnk_804E0B28FP7TObjectl(void *, void *, s32);
 
 void TWindowMainMenu1P::create_char_select_slot() {
     void *o;
@@ -257,7 +254,7 @@ void TWindowMainMenu1P::create_char_select_slot() {
     set_scale_f();
     o = __nw__7TObjectFUl(0x50);
     if (o != NULL) {
-        o = __ct__13TUnk_804E0B28FP7TObjectl(o, this, this->m_54);
+        o = __ct__13TUnk_804E0B28FP7TObjectl(o, this, this->m_client_id);
     }
     *(void * *)&this->m_20 = o;
 }

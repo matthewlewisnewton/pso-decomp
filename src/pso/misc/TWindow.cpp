@@ -116,7 +116,6 @@ f32 get_scale__15TShopWindowBaseFv(void *);
 void TWindow__close(u8 *arg0);
 u8 *create_yes_no_window(s32 arg0, s32 arg1, u32 arg2, u32 arg3);
 s32 select_cursor_entry__22TWindowSubShortCutListFv(s32);
-void *create_message_window__6TLobbyFPCvPCvUll(void *, void *, s32, s32);
 void *get_window_layout_position(s32);
 s32 calc_list_content_extent(void *);
 void *set_window_mode_4__6TLobbyFPvll(void *, void *, s32);
@@ -221,7 +220,7 @@ void TQuestListOffline::update_list_navigation() {
         if (((Win_80216CF8 *)this)->f44 == NULL) {
             pos.a = lbl_8044BEA4[0].a;
             pos.b = lbl_8044BEA4[0].b;
-            ((Win_80216CF8 *)this)->f44 = create_message_window__6TLobbyFPCvPCvUll(get_window_layout_position(0x2E), &pos, 1, get_entity_id(((Win_80216CF8 *)this)->f24));
+            m_message = TLobby::create_message_window(get_window_layout_position(0x2E), &pos, 1, get_entity_id(m_entity));
             msg2 = get_quest_list_text(0xE, ((Win_80216CF8 *)this)->f54[sel].fC);
             ((TLobby *)(((Win_80216CF8 *)this)->f44))->send_and_handle(msg2, 0x80);
             ((TLobby *)(((Win_80216CF8 *)this)->f44))->set_field_1c(lbl_805DC694);

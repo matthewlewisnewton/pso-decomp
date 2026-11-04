@@ -92,7 +92,7 @@ extern s32 TQuestListOnline__selected_quest_info;
 extern int TQuestListOnline__bin_download_complete;
 extern int TQuestListOnline__dat_download_complete;
 extern int TQuestListOnline__download_window;
-extern int TQuestListOnline__quest_info_window;
+extern TWindowMessage *TQuestListOnline__quest_info_window;
 extern int TQuestListOnline__download_barrier_window;
 extern int quest_download_active;
 extern s32 TQuestListOnline__instance;
@@ -113,8 +113,7 @@ void adjust_appraisal_percentages(Obj_80215720 *arg0);
 }
 s32 get_guild_text(s32);
 extern "C" {
-int update_window_mode_from_progress__6TLobbyFPv(s32, Pair_802150E8 *);
-s32 get_window_layout_position(s32);
+int update_window_mode_from_progress__6TLobbyFPv(const void *, Pair_802150E8 *);
 char *strtok(char *, const char *);
 s32 strncmp(const char *, const char *, u32);
 char *strncpy(char *, const char *, u32);
@@ -128,7 +127,7 @@ extern char lbl_805DC66C[4];
 extern char lbl_805DC670[4];
 extern char lbl_805DC674[4];
 s32 THunterGuildSeqOffline__sub_80212074();
-int create_message_window__6TLobbyFPCvPCvUll(s32, Pair_80215380 *, s32, s32);
+const void *get_window_layout_position(s32);
 extern Pair_80215380 lbl_8044BCB8[];
 extern const f32 lbl_805DC678;
 
@@ -214,7 +213,7 @@ void TQuestListOnline::receive_quest_info(void *arg0) {
             }
             p.a = lbl_8044BCB8[0].a;
             p.b = lbl_8044BCB8[0].b;
-            TQuestListOnline__quest_info_window = create_message_window__6TLobbyFPCvPCvUll(get_window_layout_position(0x2E), &p, 1, local_client_id);
+            TQuestListOnline__quest_info_window = TLobby::create_message_window(get_window_layout_position(0x2E), &p, 1, local_client_id);
             ((TLobby *)TQuestListOnline__quest_info_window)->set_field_1c(lbl_805DC664);
             ((TLobby *)TQuestListOnline__quest_info_window)->send_and_handle(TQuestListOnline__selected_quest_info + 4, 0x80);
             if (TCameraCtrl::get_camera_id() >= 2) {

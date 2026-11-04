@@ -2,6 +2,8 @@
 #define PSO_QUEST_TQUESTLISTVM_H
 
 #include "types.h"
+
+class TWindowMessage;
 #include "pso/TShopWindowBase.h"
 
 struct TQuestListVM : public TShopWindowBase {
@@ -32,7 +34,7 @@ struct TQuestListVM : public TShopWindowBase {
     u32 m_2374;
     u32 m_2378;
     u32 m_237c;
-    u32 m_2380;
+    TWindowMessage *m_2380;
     u32 m_2384;
     u32 m_2388;
     u8 _pad238C[0x4];

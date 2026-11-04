@@ -114,7 +114,7 @@ extern const f32 lbl_805D9220;
 s32 TObjBoss2Tunnel::run_confirm_message_loop() {
     s32 result;
     u8 *pad;
-    VObj_8007C5C0 *win;
+    TWindowMessage *win;
     VObj_8007C5C0 *graph;
     s32 frames;
     result = 0;
@@ -127,12 +127,12 @@ s32 TObjBoss2Tunnel::run_confirm_message_loop() {
         lbl_805D4EA4 = lbl_80438A80[0] - lbl_805D9218;
         lbl_805D4EA8 = 1;
     }
-    win = (VObj_8007C5C0 *)TLobby::create_message_window(lbl_80438A78, lbl_80438A80, 1, 4);
+    win = TLobby::create_message_window(lbl_80438A78, lbl_80438A80, 1, 4);
     if (win != NULL) {
-        ((TLobby *)win)->send_and_handle(get_localized_text_entry(0x24, 0xB), 3);
-        ((TLobby *)win)->set_field_1c(lbl_805D921C);
+        win->send_and_handle(get_localized_text_entry(0x24, 0xB), 3);
+        win->set_field_1c(lbl_805D921C);
     }
-    ((TWindowMessage *)win)->complete_reveal();
+    win->complete_reveal();
     graph = create__8TDLGraphFv();
     if (graph != NULL) {
         ((TDLGraph *)graph)->set_graph_param(2);
@@ -161,7 +161,7 @@ s32 TObjBoss2Tunnel::run_confirm_message_loop() {
             graph->m1();
             graph->m2();
         }
-        win->m2();
+        win->render();
         TParticleCtrl::end_effect_render();
         if (frames >= 6.0) {
             if (TWindowShortListCtrl__check_controller_button(pad, 2) != 0 || frames >= 0x78) {
@@ -192,7 +192,7 @@ void TObjBoss2Tunnel::poll_pso_screen_load() {
 }
 
 void TObjBoss2Tunnel::show_message_and_wait(s32 arg0) {
-    VObj_8007C8AC *win;
+    TWindowMessage *win;
     s32 frames;
     if (lbl_805D4E98 == 0) {
         lbl_8048DF44[0] = TObjBoss2Tunnel__data_805D9210 + lbl_80438A68[0];
@@ -203,22 +203,22 @@ void TObjBoss2Tunnel::show_message_and_wait(s32 arg0) {
         lbl_805D4E9C = lbl_80438A70[0] - lbl_805D9218;
         boss2_tunnel_message_shown_flag = 1;
     }
-    win = (VObj_8007C8AC *)TLobby::create_message_window(lbl_80438A68, lbl_80438A70, 1, 4);
+    win = TLobby::create_message_window(lbl_80438A68, lbl_80438A70, 1, 4);
     if (win != NULL) {
         switch (arg0) {
         case -2:
         case -9:
-            ((TLobby *)win)->send_and_handle(get_localized_text_entry(0x24, 3), 3);
+            win->send_and_handle(get_localized_text_entry(0x24, 3), 3);
             break;
         case -4:
-            ((TLobby *)win)->send_and_handle(get_localized_text_entry(0x24, 0xD), 3);
+            win->send_and_handle(get_localized_text_entry(0x24, 0xD), 3);
             break;
         default:
-            ((TLobby *)win)->send_and_handle(get_localized_text_entry(0x24, 0xC), 3);
+            win->send_and_handle(get_localized_text_entry(0x24, 0xC), 3);
             break;
         }
-        ((TLobby *)win)->set_field_1c(lbl_805D921C);
-        ((TWindowMessage *)win)->complete_reveal();
+        win->set_field_1c(lbl_805D921C);
+        win->complete_reveal();
     }
     if (get_main_phase() == 0xF) {
         reset_state_flags__6TLobbyFv();

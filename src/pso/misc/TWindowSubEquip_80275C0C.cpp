@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/misc/TLobby.h"
 #include "pso/misc/TUnk_804D1160.h"
 #include "pso/misc/TWindowSubEquip.h"
 
@@ -22,7 +23,6 @@ void __ct__7TObjectFP7TObject(void *, void *);
 void set_field_1c__6TLobbyFf(void *);
 void call_if_split_screen(void *, s32);
 f32 TWindowSubEquip__sub_80263AF8(u8 *arg0, u32 arg1);
-void *create_message_window__6TLobbyFPCvPCvUll(void *, void *, s32, s32);
 void *get_window_layout_position(s32);
 void *TWindowSubCustomEquip__ct(void *, s32);
 extern u8 lbl_8044F718[];
@@ -59,7 +59,7 @@ void *TWindowSubEquip__sub_80275CB0(void *arg0, void *arg1, s32 arg2) {
     self->custom = p;
     TWindowSubEquip__sub_80263AF8((u8 *)self->parent, 0);
     set_field_1c__6TLobbyFf(self->custom);
-    self->list = create_message_window__6TLobbyFPCvPCvUll(get_window_layout_position(0x11), lbl_8044F718, 1, self->x20);
+    self->list = TLobby::create_message_window(get_window_layout_position(0x11), lbl_8044F718, 1, self->x20);
     TWindowSubEquip__sub_80263AF8((u8 *)self->parent, 2);
     set_field_1c__6TLobbyFf(self->list);
     call_if_split_screen(self->list, self->x20);
