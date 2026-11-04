@@ -18,6 +18,12 @@ including historical checkpoints and work in progress. They record the scope and
 validation at the time of each investigation; they are not a current status report.
 Consult the source and current checks before relying on an old result.
 
+## Porting exceptions
+
+The [porting exceptions register](porting-exceptions.md) lists every asm body,
+compiler-specific construct, per-unit compiler override and approved regression
+that a port to another platform must rewrite.
+
 ## LLM context
 
 [LLM context](llm/README.md) is a compact entry point for assistants working in
