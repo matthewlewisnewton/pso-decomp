@@ -2,6 +2,7 @@
 #include "pso/misc/TWindowMenu.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/misc/TLanguage.h"
+#include "pso/misc/TLobby.h"
 #include "pso/misc/TWindowMessage.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/TAdMultiChgGameModeGC.h"
@@ -24,7 +25,6 @@ void close_and_next__23TAdSinglePlyChrSelectGCFPvPvPvPvPv(void* p, void* a1, voi
 void close_windows__23TAdSinglePlyChrSelectGCFPv(void *arg0);
 void create_backgrounds__23TAdSinglePlyChrSelectGCFPv(void *arg0);
 s32 get_localized_text_entry(s32, s32);
-s32 is_decided__11TWindowMenuFv();
 extern u8 lbl_804C88C0[];
 extern u8 lbl_804C89BC[];
 }
@@ -96,7 +96,6 @@ s32 load_player_and_wait__23TAdSinglePlyChrSelectGCFv();
 int TKeyBoardControl__sub_8000F9CC(void*);
 void TLobby__sub_8022614C(s32 arg0);
 void update_music_stream_gain(s32 user);
-s32 init_sound_mode__6TLobbyFPv(void);
 void *__ct__12TAdBackTxtGCFv(void *, void *);
 void __ct__7TObjectFP7TObject(void *);
 void *__ct__9TAdBackGCFv(void *, void *);
@@ -289,7 +288,7 @@ void apply_settings__23TAdSinglePlyChrSelectGCFi(s32 arg0) {
     TLanguage::set_language(*(s8 *)((s8 *)temp_r3 + 7));
     update_music_stream_gain(*(s16 *)((s8 *)temp_r3 + 4));
     TLobby__sub_8022614C(*(s8 *)((s8 *)temp_r3 + 6));
-    init_sound_mode__6TLobbyFPv();
+    TLobby::init_sound_mode();
     fn_8023F160();
     fn_8023F18C();
     TAdMultiChgGameModeGC::init_change_mode();
@@ -545,7 +544,7 @@ void update_state__23TAdSinglePlyChrSelectGCFPv(void *arg0) {
 int TAdSinglePlyChrSelectGC__sub_802E1F8C(void* p) { return close_windows__23TAdSinglePlyChrSelectGCFPv(p); }
 void TAdSinglePlyChrSelectGC__sub_802E1FAC(u8 *ad_time_set_gc) {
     s32 temp_r3;
-    if (*(u32 *)((s8 *)ad_time_set_gc + 0x54) == 0U || ((s32 (*)(u32))is_decided__11TWindowMenuFv)(*(u32 *)((s8 *)ad_time_set_gc + 0x54)) == 0) {
+    if (*(u32 *)((s8 *)ad_time_set_gc + 0x54) == 0U || ((TWindowMenu *)(*(u32 *)((s8 *)ad_time_set_gc + 0x54)))->is_decided() == 0) {
         return;
     }
     switch (((TWindowMenu *)(*(u32 *)((s8 *)ad_time_set_gc + 0x54)))->get_selected_value()) {
@@ -599,7 +598,6 @@ void show_confirm_dialog__23TAdSinglePlyChrSelectGCFPv(u8 *arg0) {
 #define close_and_next__23TAdSinglePlyChrSelectGCFPvPvPvPvPv ((int (*)(void*, void*, void*, void*, void*))close_and_next__23TAdSinglePlyChrSelectGCFPvPvPvPvPv)
 #define close_windows__23TAdSinglePlyChrSelectGCFPv ((s32 (*)(void *))close_windows__23TAdSinglePlyChrSelectGCFPv)
 #define create_backgrounds__23TAdSinglePlyChrSelectGCFPv ((s32 (*)())create_backgrounds__23TAdSinglePlyChrSelectGCFPv)
-#define is_decided__11TWindowMenuFv ((s32 (*)(u32))is_decided__11TWindowMenuFv)
 void TAdSinglePlyChrSelectGC__sub_802E2158(void);
 
 void TAdSinglePlyChrSelectGC__sub_802E2158(void) {  }
@@ -637,7 +635,7 @@ void TAdSinglePlyChrSelectGC__sub_802E22A4(u8 *ad_time_set_gc) {
     s32 selected_menu_value;
     u32 temp_r3_2;
     temp_r3_2 = *(u32 *)((s8 *)ad_time_set_gc + 0x54);
-    if (temp_r3_2 == 0U || is_decided__11TWindowMenuFv(temp_r3_2) == 0) {
+    if (temp_r3_2 == 0U || ((TWindowMenu *)temp_r3_2)->is_decided() == 0) {
         return;
     }
     selected_menu_value = ((TWindowMenu *)(*(u32 *)((s8 *)ad_time_set_gc + 0x54)))->get_selected_value();
@@ -727,7 +725,7 @@ void TAdSinglePlyChrSelectGC__sub_802E2450(u8 *arg0) {
 }
 
 void TAdSinglePlyChrSelectGC__sub_802E24B8(S_802E24B8 *arg0) {
-    if (arg0->f54 == 0 || ((s32 (*)(void *))is_decided__11TWindowMenuFv)(arg0->f54) == 0) {
+    if (arg0->f54 == 0 || ((TWindowMenu *)arg0->f54)->is_decided() == 0) {
         return;
     }
     ((TWindowMenu *)arg0->f54)->get_selected_value();
@@ -743,7 +741,7 @@ void TAdSinglePlyChrSelectGC__sub_802E2520(u8 *arg0) {
 }
 
 void TAdSinglePlyChrSelectGC__sub_802E2588(S_802E2588 *arg0) {
-    if (arg0->f54 == 0 || ((s32 (*)(void *))is_decided__11TWindowMenuFv)(arg0->f54) == 0) {
+    if (arg0->f54 == 0 || ((TWindowMenu *)arg0->f54)->is_decided() == 0) {
         return;
     }
     switch (((TWindowMenu *)arg0->f54)->get_selected_value()) {
@@ -962,7 +960,7 @@ void TAdSinglePlyChrSelectGC::update_load_state() {
 int TAdSinglePlyChrSelectGC::close_and_next_cancel() { return ((int (*)(void *, int, int, int, int))close_and_next__23TAdSinglePlyChrSelectGCFPvPvPvPvPv)(this, 2, -1, -1, -1); }
 
 void TAdSinglePlyChrSelectGC::handle_confirm_menu() {
-    if (*(void * *)&this->m_54 == 0 || ((s32 (*)(void *))is_decided__11TWindowMenuFv)(*(void * *)&this->m_54) == 0) {
+    if (*(void * *)&this->m_54 == 0 || ((TWindowMenu *)(*(void * *)&this->m_54))->is_decided() == 0) {
         return;
     }
     switch (((TWindowMenu *)(*(void * *)&this->m_54))->get_selected_value()) {
@@ -1123,4 +1121,3 @@ void TAdSinglePlyChrSelectGC::rebuild_and_maybe_close() {
 #undef close_and_next__23TAdSinglePlyChrSelectGCFPvPvPvPvPv
 #undef close_windows__23TAdSinglePlyChrSelectGCFPv
 #undef create_backgrounds__23TAdSinglePlyChrSelectGCFPv
-#undef is_decided__11TWindowMenuFv
