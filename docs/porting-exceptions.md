@@ -105,6 +105,17 @@ Port should: build everything with one modern compiler. Only `-fp_contract on`
 (float results) and deferred emission order (no semantic effect) need thought;
 nothing else changes behaviour.
 
+### `TBoss6Type1.cpp` ([#289](https://github.com/matthewlewisnewton/pso-decomp/pull/289))
+
+| Flag | Why | Evidence |
+|---|---|---|
+| `-inline deferred` | Least inline mode that keeps this unit's object identical. | Against `-inline noauto,deferred,level=1` (the previous profile): `.text`, `.data`, `.rodata`, `.sdata2` and relocations are byte-identical, so `noauto` and `level=1` do nothing here. `-inline off,deferred` changes 21 functions, including `copy_transform` and `TBoss6Type1__sub_802B96C0`. `-inline noauto` changes 86, including `draw_model` and `render`. `-inline auto`, `on`, and `all` inline callers and change the same set. |
+| `-fp_contract on` | The unit's multiply-adds are `fmadds`. | `-fp_contract off` changes 71 functions, including `draw_part_motions`, `run_task`, `render_shadows`, and `TBoss6Type1__sub_802B626C`. |
+
+Precedent: [dtk-template](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203) (`-inline auto`) and [#L209](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209) (`-fp_contract on`); Melee, TP, TWW and Pikmin 2 contract globally; [Brawl](https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264) uses `-inline on`.
+
+Neither flag replaces the two per-function pragmas. With those pragmas deleted, every allowed inline mode left `TBoss6Type1__ct` and `TBoss6Type1__sub_802B8A70` off (the modes that preserved the other functions leave them at the same 98.5% / 97.8% as deleting the pragmas under the old profile). Those pragmas stay pending; they are not approved.
+
 ## 6. Approved regressions
 
 None on main.
@@ -120,7 +131,7 @@ entry when the PR merges.
 | [#285](https://github.com/matthewlewisnewton/pso-decomp/pull/285) | `static asm void pad_03_8042E9FC_text` via `orig_asm` include (`src/pso/unk/text_8042E9FC.cpp`) | PR body: 5-word stranded epilogue; 0/60 C probes across 20 compilers reach it. **No approval recorded and no scalar fallback**; it needs one under the rule above. |
 | [#296](https://github.com/matthewlewisnewton/pso-decomp/pull/296) | `scheduling` ×5, `peephole`, `optimize_for_size` pragmas | Reason not recorded. Drop in a port. |
 | [#250](https://github.com/matthewlewisnewton/pso-decomp/pull/250) | `fp_contract` ×3 | Reason not recorded. |
-| [#289](https://github.com/matthewlewisnewton/pso-decomp/pull/289) | `TBoss6Type1__ct`: `#pragma opt_common_subs off`. `TBoss6Type1__sub_802B8A70`: `#pragma opt_lifetimes off`. Unit profile `-inline noauto,deferred,level=1` and `-fp_contract on`. | Not approved. `opt_common_subs off` keeps `lbl_80470EAC` from being CSE'd (98.5% without it; the real `TObjEnemy` constructor is 96.4%). `opt_lifetimes off` keeps the `fctiwz` reload in r30 (97.8% without it). The inline level replaces the old file-level inline pragmas; `-fp_contract on` is the unit's fused-multiply profile. Drop the pragmas in a port. |
+| [#289](https://github.com/matthewlewisnewton/pso-decomp/pull/289) | `TBoss6Type1__ct`: `#pragma opt_common_subs off`. `TBoss6Type1__sub_802B8A70`: `#pragma opt_lifetimes off`. | Not approved. No allowed unit inline or `fp_contract` flag reproduces them (section 5). `opt_common_subs off` keeps `lbl_80470EAC` from being CSE'd (98.5% without it). `opt_lifetimes off` keeps the `fctiwz` reload in r30 (97.8% without it). Drop both in a port. |
 | [#303](https://github.com/matthewlewisnewton/pso-decomp/pull/303), [#295](https://github.com/matthewlewisnewton/pso-decomp/pull/295), [#272](https://github.com/matthewlewisnewton/pso-decomp/pull/272), [#225](https://github.com/matthewlewisnewton/pso-decomp/pull/225), [#222](https://github.com/matthewlewisnewton/pso-decomp/pull/222), [#215](https://github.com/matthewlewisnewton/pso-decomp/pull/215), [#187](https://github.com/matthewlewisnewton/pso-decomp/pull/187), [#128](https://github.com/matthewlewisnewton/pso-decomp/pull/128) | 1 to 4 inlining/optimization pragmas each | Reason not recorded. Drop in a port. |
 | [#240](https://github.com/matthewlewisnewton/pso-decomp/pull/240) | Not scanned | Diff exceeds GitHub's 300-file limit; scan locally after it merges. |
 
