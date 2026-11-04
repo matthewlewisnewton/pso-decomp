@@ -52,8 +52,16 @@ addresses above and makes the section `0x8860` bytes, 8-aligned, with no
 padding. The provider's text is unchanged because those symbols stay extern
 there.
 
-The workspace, prefix, and text buffer are the existing byte extents. This
-does not assign them a query struct. The slot array is the canonical
+`lbl_80595008` is one `QuestDownloadWorkspace`. `803EA428` and `803EA9E8` are
+its only relocations. Both add `0x8C0` before a load or store of the query
+result, or add `0x990` before a load or store of the slot array. The query
+result is the `Out_803F0268` layout with 32 entries: `803F03B4` strides 6
+bytes and stops at index 32, which fills `0xD0` bytes including tail padding.
+The leading `0x8C0` bytes are not given a slot type. `lbl_80596258` is twelve
+encoded characters. `803E5B94` copies `lbl_8047E68C` into it, `803EB4D4` writes
+ASCII digits at offsets 5, 6 and 7, and `803EC95C` reads until NUL. The symbol
+names stay the `symbols.txt` placeholders. `quest_download_text_buffer` stays
+`u8[0x404]`. The slot array is the canonical
 `QuestDownloadSlot[80]` already required by `init_entries` (`sizeof` `0x1C`,
 eighty records, `0x8C0` bytes). C linkage keeps `quest_download_slot_chain_table`
 unmangled, matching the declaration the callers already use. The name is the
