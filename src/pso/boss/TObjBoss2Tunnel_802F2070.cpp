@@ -1,6 +1,6 @@
 #include "types.h"
 #include "pso/boss/TUnk_804E4B3C.h"
-#include "pso/boss/TunnelSceneController.h"
+#include <dolphin/mtx/GeoTypes.h>
 
 #include <stddef.h>
 #include "pso/boss/TObjBoss2Tunnel.h"
@@ -8,12 +8,6 @@
 struct RecoveredGlobal_802F2400_lbl_804E4A1C {
     s32 value;
     u8 remaining[0x24];
-};
-
-struct Stack_802F2664 {
-    f32 sp8;
-    f32 spC;
-    f32 sp10;
 };
 
 struct Nd_802F2348 { u8 pad[0xC]; Nd_802F2348 *next; };
@@ -24,8 +18,7 @@ struct Vec_802F25AC { f32 x, y, z; };
 
 extern "C" {
 u32 __nw__7TObjectFUl(s32);
-s32 fn_802F1FB0(void *, s32, s32, f32, s32);
-void spawn__13TUnk_804E4B3CFll(void *arg0, s32 arg1, s32 arg2);
+s32 fn_802F1FB0(void *, s32, s32, f32, Vec *);
 extern u32 boss2_tunnel_state_flags;
 void TObjBoss2Tunnel__sub_802F2278(void);
 s32 TObjBoss2Tunnel__sub_802F22F4(void);
@@ -94,37 +87,38 @@ s32 TObjBoss2Tunnel__sub_802F2070(void) {
     return ((u32) boss2_tunnel_state_flags >> 0xFU) & 1;
 }
 }
-struct TunnelVector3 { f32 x,y,z; };
- extern const f32 lbl_805DEC9C,lbl_805DECAC,lbl_805DECB0,lbl_805DECB4; void TunnelSceneController::spawn_segment_row_a() {
-    TunnelVector3 position;
-    position.x=segment_x;
-    position.y=lbl_805DEC9C;
-    for (position.z=half_length;position.z > -half_length;position.z-=lbl_805DECB4) {
+extern const f32 lbl_805DECAC, lbl_805DECB0;
+
+void TUnk_804E4B3C::spawn_segment_row_a() {
+    Vec position;
+    position.x = value;
+    position.y = lbl_805DEC9C;
+    for (position.z = m_84; position.z > -m_84; position.z -= lbl_805DECB4) {
         if (lbl_805DECAC > position.z && position.z > lbl_805DECB0) {
-            ((void (*)(void*,s32,TunnelVector3*))spawn__13TUnk_804E4B3CFll)(this,4,&position);
+            spawn(4, &position);
         } else {
-            ((void (*)(void*,s32,TunnelVector3*))spawn__13TUnk_804E4B3CFll)(this,3,&position);
+            spawn(3, &position);
         }
     }
 }
 
-void TunnelSceneController::spawn_segment_row_b() {
-    TunnelVector3 position;
-    position.x=segment_x;
-    position.y=lbl_805DEC9C;
-    for (position.z=half_length;position.z > -half_length;position.z-=lbl_805DECB4) {
+void TUnk_804E4B3C::spawn_segment_row_b() {
+    Vec position;
+    position.x = value;
+    position.y = lbl_805DEC9C;
+    for (position.z = m_84; position.z > -m_84; position.z -= lbl_805DECB4) {
         if (lbl_805DECAC > position.z && position.z > lbl_805DECB0) {
-            ((void (*)(void*,s32,TunnelVector3*))spawn__13TUnk_804E4B3CFll)(this,0,&position);
+            spawn(0, &position);
         } else {
-            ((void (*)(void*,s32,TunnelVector3*))spawn__13TUnk_804E4B3CFll)(this,2,&position);
+            spawn(2, &position);
         }
     }
 }
 
-void TUnk_804E4B3C::spawn(s32 arg1, s32 arg2) {
+void TUnk_804E4B3C::spawn(s32 kind, Vec *position) {
     void *new_obj = (void *) __nw__7TObjectFUl(0x78);
     if ((u32) new_obj != 0U) {
-        fn_802F1FB0(new_obj, (s32)this->m_8c, arg1, this->m_84, arg2);
+        fn_802F1FB0(new_obj, (s32)this->m_8c, kind, this->m_84, position);
     }
 }
 void TObjBoss2Tunnel__sub_802F2278(void) { (*(int *)&boss2_tunnel_state_flags) = ((*(int *)&boss2_tunnel_state_flags) | 0x8); }
@@ -238,10 +232,7 @@ void TUnk_804E4B3C::update_dust_spawn() {
 #pragma push
 #pragma opt_common_subs off
 void TUnk_804E4B3C::update_spawn_timer(s32 arg1, s32 arg2, s32 arg3) {
-    typedef char sp8_offset[(offsetof(Stack_802F2664, sp8) == 0x0) ? 1 : -1];
-    typedef char spC_offset[(offsetof(Stack_802F2664, spC) == 0x4) ? 1 : -1];
-    typedef char sp10_offset[(offsetof(Stack_802F2664, sp10) == 0x8) ? 1 : -1];
-    Stack_802F2664 stack;
+    Vec stack;
     f32 temp_f1;
     m_58 = m_58 + m_5c;
     temp_f1 = m_58;
@@ -255,10 +246,10 @@ void TUnk_804E4B3C::update_spawn_timer(s32 arg1, s32 arg2, s32 arg3) {
                 m_70 = 0;
             }
         }
-        stack.sp8 = value;
-        stack.spC = lbl_805DEC9C;
-        stack.sp10 = m_84 - m_58;
-        spawn(((s32 *)arg1)[m_70], (s32)&stack.sp8);
+        stack.x = value;
+        stack.y = lbl_805DEC9C;
+        stack.z = m_84 - m_58;
+        spawn(((s32 *)arg1)[m_70], &stack);
     }
 }
 #pragma pop
@@ -444,7 +435,7 @@ void *TObjBoss2Tunnel__sub_802F2A2C(void *arg0p, s32 parent) {
         lbl_805D6970 = 1;
     }
     if (is_room_enemy_set_cleared(get_current_floor(), 1) == 0) {
-        ((TunnelSceneController*)arg0)->spawn_segment_row_b();
+        ((TUnk_804E4B3C *)arg0)->spawn_segment_row_b();
         p = __nw__7TObjectFUl(0xD8);
         if (p != 0) {
             p = TObjBoss7TunnelCol__ct((void *) p, arg0);
@@ -452,7 +443,7 @@ void *TObjBoss2Tunnel__sub_802F2A2C(void *arg0p, s32 parent) {
         ((TUnk_804E4B3C *)arg0p)->m_88 = (void *)p;
     } else {
         ((TUnk_804E4B3C *)arg0p)->m_84 = lbl_805DED0C;
-        ((TunnelSceneController*)arg0)->spawn_segment_row_a();
+        ((TUnk_804E4B3C *)arg0)->spawn_segment_row_a();
         ((TUnk_804E4B3C *)arg0p)->m_1c = 2;
         ((TUnk_804E4B3C *)arg0p)->m_5c = lbl_805DEC9C;
         ((TUnk_804E4B3C *)arg0p)->value = lbl_805DECB8;
