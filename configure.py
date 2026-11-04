@@ -670,6 +670,12 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/unk/text_8039739C.cpp": {"cflags": _switch(cflags_pso, "-O4,p")},
     "pso/quest/QuestOpcodeHandlers.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
     "pso/quest/TQuestThread.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
+    # TAdMultiPlyChrSelectGC__sub_802C5F1C clamps the player slot in an inline
+    # helper: only inlined locals are numbered ahead of the hoisted row pointer
+    # (slot r0/r7, row r8); see docs/evidence/chr-select-slot-clamp-inline.md.
+    # -inline on inlines only functions marked inline; the unit's other 33
+    # functions compile identically with -inline off.
+    "pso/ui/TAdMultiPlyChrSelectGC_802C50EC.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
 }
 
 # MusyX (Factor 5). Its objects carry extab/extabindex for every non-leaf
