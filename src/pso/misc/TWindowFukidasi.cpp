@@ -135,15 +135,6 @@ struct Fuki_80252764 {
     f32 head[2];
 };
 
-struct TWindowDrawContext {
-    f32 x, y;
-    u8 pad8[0x20];
-    f32 sx;
-    f32 sy;
-    s32 age;
-    u8 pad34[4];
-    f32 depth;
-};
 typedef TWindowDrawContext View_80252764;
 
 struct Fuki_802521E8 {
@@ -1062,9 +1053,9 @@ void TUnk_804CF0B8::draw_name_plate(TWindowDrawContext *ctx, u32 color) {
     NamePlateQuad q;
     f32 depth, width;
     u32 textColor, plateColor;
-    if (this->name && ctx->age >= 0) {
+    if (this->name && ctx->open_tick >= 0) {
         width = (f32)(u32)get_name_text_width(this->name);
-        s32 alpha = ctx->age < 6 ? (s32)(lbl_805DCD5C * (f32)(ctx->age * 255)) : 255;
+        s32 alpha = ctx->open_tick < 6 ? (s32)(lbl_805DCD5C * (f32)(ctx->open_tick * 255)) : 255;
         textColor = (u32)alpha << 24;
         plateColor = color & 0x00ffffff;
         plateColor |= textColor;
@@ -1258,8 +1249,8 @@ void TUnk_804CF0B8::render() {
     }
     ((TUnk_804CF0B8 *)((Fuki_80252764 *)this))->follow_anchor();
     v = (View_80252764 *)get_draw_context__11TWindowBaseFPv(((Fuki_80252764 *)this));
-    v->sx /= TCameraCtrl::get_view_scale();
-    v->sy /= TCameraCtrl::get_fov();
+    v->scale[0] /= TCameraCtrl::get_view_scale();
+    v->scale[1] /= TCameraCtrl::get_fov();
     off[0] = TWindowFukidasi__data_805DCD28 * ((Fuki_80252764 *)this)->tail;
     off[1] = lbl_805DCDB8 * ((Fuki_80252764 *)this)->tail;
     draw_body((struct DrawCtx_80252558 *)(v), (u32)(0xFF000000), off, lbl_805DCDBC + ((Fuki_80252764 *)this)->f54);
