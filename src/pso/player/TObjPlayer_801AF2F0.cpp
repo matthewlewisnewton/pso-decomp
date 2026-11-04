@@ -36,6 +36,8 @@
 #include "pso/object/TObjMotion.h"
 #include "pso/boss/TBoss7Crawfish.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/TPlyItem.h"
+#include "pso/TItemList.h"
 #include <stddef.h>
 #include "pso/player/PlayerRequirementStats.h"
 #include "pso/item/TItemData.h"
@@ -2394,7 +2396,7 @@ s32 TObjPlayer__sub_801D4368(void * a0 = 0);
 void TObjPlayer__sub_801D47EC(void *, s32, s32);
 s32 run_state_query__10TObjPlayerFi(s32, void *);
 s32 TObjPlayer__sub_801D49F4(s32, void *, s32, s32, void *);
-s32 use_item__6TLobbyFlll(s32, void *, s32, s32, void *);
+s32 use_item__8TPlyItemFP10TObjPlayerll(TPlyItem *, TObjPlayer *, s32, s32, TObjPlayer *);
 void TLobby__sub_801D4C28(s32, Pl_801B0B88 *, s32, s32);
 u32 find_first_inventory_entry__10TObjPlayerFi(int, void *);
 u32 set_mode_and_refresh_object__10TObjPlayerFPvi(s32, s8 *);
@@ -3334,13 +3336,13 @@ void TLobby::apply_battle_rules_to_players() {
         case 1:
         case 2:
         case 3:
-            ((TLobby *)(p->fD00))->set_globals_and_update((int)p, 0);
-            ((TLobby *)(p->fD00))->set_globals_and_update((int)p, 1);
+            ((TPlyItem *)(p->fD00))->set_globals_and_update((int)p, 0);
+            ((TPlyItem *)(p->fD00))->set_globals_and_update((int)p, 1);
             break;
         }
         switch (fn_801D719C(q)) {
         case 1:
-            ((TLobby *)(p->fD00))->set_globals_and_update((int)p, 2);
+            ((TPlyItem *)(p->fD00))->set_globals_and_update((int)p, 2);
             break;
         }
         if ((j = get_item_field_6__10TObjPlayerFPv(p)) != 0 && check_equip_requirements__5TItemFP10TObjPlayerPs(j, p, 0) == 0) {
@@ -3349,7 +3351,7 @@ void TLobby::apply_battle_rules_to_players() {
         switch (fn_801D7168(q)) {
         case 1:
         case 2:
-            ((TLobby *)(p->fD00))->set_globals_and_update((int)p, 3);
+            ((TPlyItem *)(p->fD00))->set_globals_and_update((int)p, 3);
             break;
         }
         if (fn_801D7134(q) == 1) {
@@ -6280,20 +6282,20 @@ void TObjPlayer::create_inventory() {
         if (var_r0 != NULL) {
             var_r0 = (u8 *)(TPlyItem__ct(temp_r3, this));
         }
-        this->inventory_objects = var_r0;
+        this->inventory_objects = (TPlyItem *)var_r0;
     }
     item_list = (u8 *)(((u8 * (*)(s32))__nw__7TObjectFUl)(0x20));
     var_r0_2 = item_list;
     if (var_r0_2 != NULL) {
         var_r0_2 = (u8 *)(__ct__9TItemListFv(item_list, this->inventory_objects));
     }
-    *(void **)((s8 *)this->inventory_objects + 0x1C4) = var_r0_2;
+    this->inventory_objects->item_list = (TItemList *)var_r0_2;
     object = (u8 *)(((u8 * (*)(s32))__nw__7TObjectFUl)(0x1C));
     var_r0_3 = object;
     if (var_r0_3 != NULL) {
         var_r0_3 = (u8 *)(__ct__7TObjectFP7TObject(object, this));
     }
-    *(void **)((s8 *)this->inventory_objects + 0x1C8) = var_r0_3;
+    this->inventory_objects->unk_1C8 = (TObject *)var_r0_3;
     TObjPlayer__sub_801BF8F8((s32 *)(((u8 *)this) + 0xD04));
 }
 
@@ -6569,7 +6571,7 @@ void handle_6xAC(void *arg0) {
 }
 
 void TObjPlayer::dispatch_action(s32 arg1, s32 arg2) {
-    use_item__6TLobbyFlll(*(s32 *)((s8 *)this + 0xD00), this, arg1, arg2, this);
+    use_item__8TPlyItemFP10TObjPlayerll(this->inventory_objects, this, arg1, arg2, this);
 }
 
 void handle_6x29_delete_inventory_item(void *arg0) {
@@ -6603,12 +6605,12 @@ void send_6x29_delete_item__10TObjPlayerFPvii(void *obj, s32 a, s32 b) {
 
 void *pickup_item__10TObjPlayerFP5TItem(u8 *player, u8 *arg1) {
     u32 sp8[5];
-    s32 id;
+    TItemList *id;
     void *o;
     void *list;
     s32 n;
-    VObj_18_p72 *owner;
-    u8 *inv;
+    TItem *owner;
+    TPlyItem *inv;
     s16 idx;
     if (arg1 == NULL) {
         return 0;
@@ -6631,18 +6633,18 @@ void *pickup_item__10TObjPlayerFP5TItem(u8 *player, u8 *arg1) {
     case 2:
         o = ((void * (*)(u32))__nw__7TObjectFUl)(0x20);
         if (o != NULL) {
-            o = ((void * (*)(void *, s32))__ct__9TItemListFv)(o, *(s32 *)((s8 *)(((TObjPlayer *)player)->inventory_objects) + 0x1C4));
+            o = ((void * (*)(void *, void *))__ct__9TItemListFv)(o, ((TObjPlayer *)player)->inventory_objects->item_list);
         }
         list = o;
         break;
     case 3:
         if (TObjPlayer__sub_801C1AC8(arg1) != 0) {
             ((TItem *)arg1)->copy_to_item_data((TItemData *)&sp8);
-            id = ((s32 (*)(void *, void *))set_mode_and_refresh_object__10TObjPlayerFPvi)(((TObjPlayer *)player)->inventory_objects, &sp8);
-            if (id == 0) {
+            id = ((TItemList *(*)(void *, void *))set_mode_and_refresh_object__10TObjPlayerFPvi)(((TObjPlayer *)player)->inventory_objects, &sp8);
+            if (id == NULL) {
                 o = ((void * (*)(u32))__nw__7TObjectFUl)(0x20);
                 if (o != NULL) {
-                    o = ((void * (*)(void *, s32))__ct__9TItemListFv)(o, *(s32 *)((s8 *)(((TObjPlayer *)player)->inventory_objects) + 0x1C4));
+                    o = ((void * (*)(void *, void *))__ct__9TItemListFv)(o, ((TObjPlayer *)player)->inventory_objects->item_list);
                 }
                 list = o;
                 break;
@@ -6651,26 +6653,26 @@ void *pickup_item__10TObjPlayerFP5TItem(u8 *player, u8 *arg1) {
             if (n == 0) {
                 n = 1;
             }
-            owner = ((VObj_18_p72 * (*)(s32))get_owner_if_alive__9TItemListFv)(id);
+            owner = id->get_owner_if_alive();
             if (owner != NULL) {
-                owner->m36(n);
+                owner->add_amount(n);
             }
             ((TItem *)arg1)->destroy();
             return 0;
         }
         o = ((void * (*)(u32))__nw__7TObjectFUl)(0x20);
         if (o != NULL) {
-            o = ((void * (*)(void *, s32))__ct__9TItemListFv)(o, *(s32 *)((s8 *)(((TObjPlayer *)player)->inventory_objects) + 0x1C4));
+            o = ((void * (*)(void *, void *))__ct__9TItemListFv)(o, ((TObjPlayer *)player)->inventory_objects->item_list);
         }
         list = o;
         break;
     }
     if (list != NULL) {
         set_field_1c__9TItemListFP5TItem(list, arg1);
-        inv = *(u8 * *)&((TObjPlayer *)player)->inventory_objects;
-        TObjPlayer__sub_801C1B0C(arg1, (*(s16 *)((s8 *)inv + 0x1C))++);
+        inv = ((TObjPlayer *)player)->inventory_objects;
+        TObjPlayer__sub_801C1B0C(arg1, inv->item_count++);
         ((TItem *)arg1)->set_mode(1);
-        ((TObject *)arg1)->set_parent((TObject *)(*(void **)((s8 *)(((TObjPlayer *)player)->inventory_objects) + 0x1C8)));
+        ((TObject *)arg1)->set_parent(((TObjPlayer *)player)->inventory_objects->unk_1C8);
         set_owner_client__5TItemFUs(arg1, ((s16 (*)(void *))get_entity_id)(player));
         return list;
     }

@@ -15,6 +15,7 @@ struct player_stats;
 
 struct TItem;
 struct TItemList;
+class TPlyItem;
 struct TechniqueContactList;
 
 // The frames a player stays protected from hits (after getting up, being
@@ -240,7 +241,7 @@ struct TObjPlayer : public TObjChara {
     u32 m_8b4;
     u8 unk_8B8[0x444];
     s32 m_cfc;
-    void* inventory_objects;
+    TPlyItem *inventory_objects;
     void *equipped_items[13];  // by equip slot; read through get_equipped_item
     u8 unk_D38[0x10];
     f32 m_d48;
@@ -1157,7 +1158,6 @@ struct TObjPlayer : public TObjChara {
     static void set_global_state(s32 arg0);
     static void set_global_7778(s32 arg0);
     static void update_render_state();
-    void collect_owner_fields_recursive();
     static void set_global_color_rgba(u32 v);
     static void set_global_color_rgba_alt_b(u32 v);
     void cast_gifoie();

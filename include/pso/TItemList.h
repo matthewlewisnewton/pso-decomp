@@ -31,7 +31,10 @@ public:
     TItemList *find_inventory_item_matching_data();
     TItemList *find_inventory_item_by_field_d8();
 public:
-    static s32 is_item_valid(s32 arg0);
+    static s32 is_item_valid(TItemList *node);
+    void reduce_owner_matched_items();
+    void reduce_child_item_amounts();
+    void collect_owner_fields_recursive();
     void *dt(s16 arg1);
     void *init_items();
     void *init_array();

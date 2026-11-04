@@ -64,7 +64,6 @@ struct V_801D4E94 : VB_801D4E94 {
 };
 
 extern "C" {
-s32 is_item_valid__9TItemListFl(void *);
 int find_matching_inventory_item_node(void*);
 
 void TObjPlayer::find_first_inventory_entry(int a1) { inventory_search_item_data = a1; ((TItemList *)(*(int *)&this->unk_1C4))->find_inventory_item_matching_data(); }
@@ -77,18 +76,18 @@ void TObjPlayer::destroy_subobjects(int a1) { item_reduce_target_player = a1; in
     extern s32 inventory_update_field_d8_key;
 
 void TObjPlayer::destroy_subobjects_recursive() {
-    u8 *p;
+    TItemList *p;
     V_801D4E94 *o;
-    p = *(u8 * *)&this->m_down;
+    p = *(TItemList **)&this->m_down;
     while (p != NULL) {
-        if (is_item_valid__9TItemListFl(p) != 0) {
-            o = (V_801D4E94 *)get_owner_if_alive__9TItemListFv(p);
+        if (TItemList::is_item_valid(p) != 0) {
+            o = (V_801D4E94 *)p->get_owner_if_alive();
             if (o != NULL && all_parents_unqueued_for_destruction__7TObjectFv() != 0) {
                 o->m27();
             }
         }
         ((TObjPlayer *)p)->destroy_subobjects_recursive();
-        p = *(u8 **)(p + 0xC);
+        p = p->m_next;
     }
 }
 

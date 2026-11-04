@@ -7,9 +7,8 @@
 #include "pso/misc/TOSwitchItem.h"
 
 extern "C" {
-s32 item_identity_matches(u8 *arg0, u8 *arg1);
-s32 is_item_valid__9TItemListFl(void *);
-extern s32 inventory_search_item_data;
+s32 item_identity_matches(void *arg0, void *arg1);
+extern u8 *inventory_search_item_data;
 TItemList *find_matching_inventory_item_node(TItemList *root);
 s32 is_at_tekker__5TItemFv();
 extern s32 inventory_walk_visit_count;
@@ -34,7 +33,7 @@ void TItemList::count_owned_items() {
 
     down = m_down;
     while (down != NULL) {
-        if ((is_item_valid__9TItemListFl(down) != 0) && ((temp = down->get_owner_if_alive()) != NULL) && (temp->export_inventory_entry(owned_item_export_cursor) != 0)) {
+        if ((TItemList::is_item_valid(down) != 0) && ((temp = down->get_owner_if_alive()) != NULL) && (temp->export_inventory_entry(owned_item_export_cursor) != 0)) {
             owned_item_export_cursor += 0x1C;
             inventory_walk_visit_count += 1;
         }
@@ -47,7 +46,7 @@ void TObjPlayer__sub_801D52A8(TItemList *arg0) {
     TItemList *n;
     TItem *o;
     for (n = arg0->m_down; n != NULL; n = n->m_next) {
-        if (is_item_valid__9TItemListFl(n) != 0) {
+        if (TItemList::is_item_valid(n) != 0) {
             o = n->get_owner_if_alive();
             if ((o != NULL) && (is_item_equipped() != 0) && (o->get_item_type() == 0)) {
                 o->copy_to_item_data((TItemData *)(player_item_collect_cursor + 8));
@@ -64,7 +63,7 @@ void TItemList::collect_item_owners_recursive() {
     TItemList *n;
     TItem *o;
     for (n = m_down; n != NULL; n = n->m_next) {
-        if (is_item_valid__9TItemListFl(n) != 0) {
+        if (TItemList::is_item_valid(n) != 0) {
             o = n->get_owner_if_alive();
             if ((o != NULL) && (is_at_tekker__5TItemFv() == 0)) {
                 *player_owner_collect_cursor = o;
@@ -82,7 +81,7 @@ void TItemList::collect_alive_owners() {
 
     down = m_down;
     while (down != NULL) {
-        if (is_item_valid__9TItemListFl(down) != 0) {
+        if (TItemList::is_item_valid(down) != 0) {
             temp_r3 = down->get_owner_if_alive();
             if (temp_r3 != NULL) {
                 *player_owner_collect_cursor = temp_r3;
@@ -99,7 +98,7 @@ void TItemList::unequip_invalid_items_recursive() {
     TItemList *n;
     TItem *o;
     for (n = m_down; n != NULL; n = n->m_next) {
-        if (is_item_valid__9TItemListFl(n) != 0) {
+        if (TItemList::is_item_valid(n) != 0) {
             o = n->get_owner_if_alive();
             if ((o != NULL) && (is_item_equipped() != 0) && (o->is_unit() == 0) &&
                 (get_slot_value__10TObjPlayerFPvi((s32 *)(item_reduce_target_player + 0xD04), o->get_attach_slot()) != 0U)) {
@@ -117,9 +116,9 @@ void TItemList::count_items_recursive() {
 
     down = m_down;
     while (down != NULL) {
-        if ((is_item_valid__9TItemListFl(down) != 0) && ((temp = down->get_owner_if_alive()) != NULL)) {
+        if ((TItemList::is_item_valid(down) != 0) && ((temp = down->get_owner_if_alive()) != NULL)) {
             temp->copy_to_item_data((TItemData *)&sp8[0]);
-            if (item_identity_matches((u8 *)&sp8[0], (u8 *)inventory_search_item_data) != 0) {
+            if (item_identity_matches(&sp8[0], inventory_search_item_data) != 0) {
                 inventory_walk_visit_count += 1;
             }
         }
@@ -134,11 +133,11 @@ TItemList *TItemList::find_inventory_item_matching_data() {
     TItemList *found;
     TItem *owner;
     for (node = m_down; node != NULL; node = node->m_next) {
-        if (is_item_valid__9TItemListFl(node) != 0) {
+        if (TItemList::is_item_valid(node) != 0) {
             owner = node->get_owner_if_alive();
             if (owner != NULL) {
                 owner->copy_to_item_data((TItemData *)data);
-                if (compare_item_data_masked(data, (void *)inventory_search_item_data, 0) != 0) {
+                if (compare_item_data_masked(data, inventory_search_item_data, 0) != 0) {
                     return node;
                 }
             }
@@ -157,11 +156,11 @@ TItemList *find_matching_inventory_item_node(TItemList *root) {
     TItemList *found;
     TItem *owner;
     for (node = root->m_down; node != NULL; node = node->m_next) {
-        if (is_item_valid__9TItemListFl(node) != 0) {
+        if (TItemList::is_item_valid(node) != 0) {
             owner = node->get_owner_if_alive();
             if (owner != NULL) {
                 owner->copy_to_item_data((TItemData *)data);
-                if (item_identity_matches((u8 *)data, (u8 *)inventory_search_item_data) != 0) {
+                if (item_identity_matches(data, inventory_search_item_data) != 0) {
                     return node;
                 }
             }
@@ -179,7 +178,7 @@ TItemList *TItemList::find_inventory_item_by_field_d8() {
     TItemList *found;
     TItem *owner;
     for (node = m_down; node != NULL; node = node->m_next) {
-        if (is_item_valid__9TItemListFl(node) != 0) {
+        if (TItemList::is_item_valid(node) != 0) {
             owner = node->get_owner_if_alive();
             if (owner != NULL) {
                 if (inventory_update_field_d8_key == owner->get_item_id()) {

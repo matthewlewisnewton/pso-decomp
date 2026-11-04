@@ -2,6 +2,7 @@
 #include "types.h"
 #include "pso/TItemList.h"
 #include "pso/item/TItem.h"
+#include "pso/item/TItemData.h"
 #include <stddef.h>
 #include "pso/misc/TKeyBoardControl_8000F764.h"
 #include "pso/misc/TLobby_8030A6A8.h"
@@ -12,12 +13,20 @@
 #include "pso/item/TItemProShield.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 
-typedef struct Rec_801D40D4 {
-    u8 pad0[4];
+// 0x1C inventory record: mode, flags, then the item data. Byte 0 of the
+// item data is the type fn_801D40D4 tests.
+struct Rec_801D40D4 {
+    s8 mode;
+    u8 pad1[3];
     s32 flags;
-    u8 type;
-    u8 pad9[0x1C - 9];
-} Rec_801D40D4;
+    union {
+        u8 type;
+        TItemData data;
+    } item;
+};
+typedef char Rec_801D40D4_size[(sizeof(Rec_801D40D4) == 0x1C) ? 1 : -1];
+typedef char Rec_801D40D4_flags[(offsetof(Rec_801D40D4, flags) == 4) ? 1 : -1];
+typedef char Rec_801D40D4_item[(offsetof(Rec_801D40D4, item) == 8) ? 1 : -1];
 
 typedef struct Ent_801D41B4 {
     u8 pad0[8];
@@ -70,10 +79,10 @@ s32 fn_801D40D4(s32 arg0, Rec_801D40D4 *arg1, u8 *arg2) {
     s32 i;
     for (i = 0; i < arg0; i++) {
         if (arg1->flags & 8) {
-            if (arg1->type == 0) {
+            if (arg1->item.type == 0) {
                 fn_801C1BA8(arg2, arg1);
             }
-            if (arg1->type == 2) {
+            if (arg1->item.type == 2) {
                 fn_801C1BA8(arg2 + 0x1C, arg1);
             }
         }
@@ -135,10 +144,10 @@ s32 fn_801D4270(s32 arg0) {
 int reset(void* p) { return memset(p, 0, 28); }
 
 s32 TItem::export_inventory_entry(void *dest) {
-    u8 *arg1 = (u8 *)dest;
-    if (copy_to_item_data((TItemData *)(arg1 + 8)) != 0) {
-        *(s8 *)((s8 *)arg1 + 0) = get_mode();
-        *(s32 *)((s8 *)arg1 + 4) = get_item_flags();
+    Rec_801D40D4 *rec = (Rec_801D40D4 *)dest;
+    if (copy_to_item_data(&rec->item.data) != 0) {
+        rec->mode = get_mode();
+        rec->flags = get_item_flags();
         return 1;
     }
     return 0;
@@ -164,7 +173,7 @@ s32 TObjPlayer__sub_801D4368(PlyItem_801D4368 *ply) {
     if (ply->item_list == NULL) {
         return 0;
     }
-    if (TItemList::is_item_valid((s32)ply->item_list) == 0) {
+    if (TItemList::is_item_valid(ply->item_list) == 0) {
         return 0;
     }
     if (ply->item_count > 30 || ply->item_count < 1) {
@@ -184,7 +193,7 @@ s32 TObjPlayer__sub_801D4368(PlyItem_801D4368 *ply) {
     counted = 0;
     node = ply->item_list->m_down;
     while (node != NULL) {
-        if (TItemList::is_item_valid((s32)node) != 0 && node->get_owner_if_alive() != NULL) {
+        if (TItemList::is_item_valid(node) != 0 && node->get_owner_if_alive() != NULL) {
             counted++;
         }
         node = node->m_next;
@@ -197,7 +206,7 @@ s32 TObjPlayer__sub_801D4368(PlyItem_801D4368 *ply) {
     rec = recs->items;
     node_filled = ply->item_list->m_down;
     while (node_filled != NULL) {
-        if (TItemList::is_item_valid((s32)node_filled) != 0 && (owner = node_filled->get_owner_if_alive()) != NULL) {
+        if (TItemList::is_item_valid(node_filled) != 0 && (owner = node_filled->get_owner_if_alive()) != NULL) {
             rec->val = owner;
             TObjPlayer__sub_801D45B0((s32 *)rec, owner);
             rec++;
@@ -210,7 +219,7 @@ s32 TObjPlayer__sub_801D4368(PlyItem_801D4368 *ply) {
     rec_checked = recs->items;
     node_checked = ply->item_list->m_down;
     while (node_checked != NULL) {
-        if (TItemList::is_item_valid((s32)node_checked) != 0 && node_checked->get_owner_if_alive() != NULL && rec_checked->val != NULL) {
+        if (TItemList::is_item_valid(node_checked) != 0 && node_checked->get_owner_if_alive() != NULL && rec_checked->val != NULL) {
             rec_checked++;
             checked++;
         }
@@ -223,7 +232,7 @@ s32 TObjPlayer__sub_801D4368(PlyItem_801D4368 *ply) {
     rec_assigned = recs->items;
     node_assigned = ply->item_list->m_down;
     while (node_assigned != NULL) {
-        if (TItemList::is_item_valid((s32)node_assigned) != 0 && node_assigned->get_owner_if_alive() != NULL) {
+        if (TItemList::is_item_valid(node_assigned) != 0 && node_assigned->get_owner_if_alive() != NULL) {
             if (rec_assigned->val != NULL) {
                 node_assigned->set_field_1c(rec_assigned->val);
                 rec_assigned++;

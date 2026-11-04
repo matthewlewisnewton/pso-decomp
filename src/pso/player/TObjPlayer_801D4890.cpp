@@ -1,7 +1,10 @@
+#define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/TItemList.h"
+#include "pso/TPlyItem.h"
+#include "pso/item/TItem.h"
 
 #define CAT2(a,b) a##b
 #define CAT(a,b) CAT2(a,b)
@@ -46,7 +49,7 @@ struct V_A_801d48f8 : Base_A_801d48f8 {
 };
 
 extern "C" {
-void remove_equipped_item__10TObjPlayerFPvii(void *, s32, s32);
+void remove_equipped_item__10TObjPlayerFPvii(TPlyItem *, s32, TItemList *);
 s32 start_inventory_update__10TObjPlayerFi(void *, s32);
 s32 TObjPlayer__sub_801D49F4(void *arg0, void *arg1, s32 *arg2, s32 arg3);
 s32 place_on_ground__5TItemFsPfl(void *, s16, s32, s32);
@@ -57,7 +60,7 @@ s32 queue_destruction__7TObjectFv(s32, s16);
 
     extern int TObjPlayer__owner_field_write_cursor;
     extern int inventory_walk_visit_count;
-int TObjPlayer::run_and_get_result(int a1) { TObjPlayer__owner_field_write_cursor = a1; inventory_walk_visit_count = 0; ((TObjPlayer *)(*(int *)&this->unk_1C4))->collect_owner_fields_recursive(); return inventory_walk_visit_count; }
+int TObjPlayer::run_and_get_result(int a1) { TObjPlayer__owner_field_write_cursor = a1; inventory_walk_visit_count = 0; ((TItemList *)(*(int *)&this->unk_1C4))->collect_owner_fields_recursive(); return inventory_walk_visit_count; }
 
     extern int owned_item_export_cursor;
 int TObjPlayer::run_state_query(int a1) { owned_item_export_cursor = a1; inventory_walk_visit_count = 0; ((TItemList *)(*(int *)&this->unk_1C4))->count_owned_items(); return inventory_walk_visit_count; }
@@ -139,18 +142,18 @@ struct VObj_801D4A6C : Base_801D4A6C {
     virtual void m27(s16);
 };
 
-void remove_equipped_item__10TObjPlayerFPvii(void *arg0, s32 arg1, s32 arg2) {
+extern "C" void remove_equipped_item__10TObjPlayerFPvii(TPlyItem *arg0, s32 arg1, TItemList *arg2) {
     s16 temp_r4;
-    void *temp_r3;
+    TItem *temp_r3;
 
-    temp_r3 = ((void *(*)(s32)) get_owner_if_alive__9TItemListFv)(arg2);
+    temp_r3 = arg2->get_owner_if_alive();
     if (temp_r3 != NULL) {
         if (((s32 (*)()) is_item_equipped)() != 0) {
             unequip_item__10TObjPlayerFiPv(arg1, temp_r3);
         }
-        temp_r4 = *(s16 *)((s8 *)arg0 + 0x1C);
-        *(s16 *)((s8 *)arg0 + 0x1C) = (temp_r4 - 1);
+        temp_r4 = arg0->item_count;
+        arg0->item_count = temp_r4 - 1;
         ((VObj_801D4A6C *)temp_r3)->m27(temp_r4);
-        ((s32 (*)(s32)) queue_destruction__7TObjectFv)(arg2);
+        reinterpret_cast<TObject *>(arg2)->queue_destruction();
     }
 }
