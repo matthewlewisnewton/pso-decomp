@@ -156,7 +156,6 @@ s32 TObjBoss2Tunnel::check_both(s32 arg0) {
 }
 
 void TUnk_804E4B3C::render() {
-    u8 *arg0 = (u8 *)this;
     Nd_802F2348 *n;
     if (query_teammate_state__9TObjEneDDFv() == 0) {
         for (n = (*(Li_802F2348 **)&this->m_90)->head; n != 0; n = n->next) {
@@ -221,11 +220,10 @@ void TUnk_804E4B3C::init_effect() {
 }
 
 void TUnk_804E4B3C::update_dust_spawn() {
-    u8 *arg0 = (u8 *)this;
     Vec_802F25AC v;
     u32 p;
-    *(s32 *)((s8 *)arg0 + 0x74) = *(s32 *)((s8 *)arg0 + 0x74) - 1;
-    if (*(s32 *)((s8 *)arg0 + 0x74) <= 0) {
+    m_74 = m_74 - 1;
+    if (m_74 <= 0) {
         v.x = 200.0f * rand_signed_unit();
         v.y = 90.0f * (3.0517578125e-05f * (f32)rand()) + 10.0f;
         v.z = 600.0f;
@@ -233,43 +231,42 @@ void TUnk_804E4B3C::update_dust_spawn() {
         if (p != 0U) {
             __ct__13TObjBoss7DustFv((u8 *)p, (s32)tl_05, (s32)&v);
         }
-        *(s32 *)((s8 *)arg0 + 0x74) = 0x1E;
+        m_74 = 0x1E;
     }
 }
 
 #pragma push
 #pragma opt_common_subs off
 void TUnk_804E4B3C::update_spawn_timer(s32 arg1, s32 arg2, s32 arg3) {
-    u8 *arg0 = (u8 *)this;
     typedef char sp8_offset[(offsetof(Stack_802F2664, sp8) == 0x0) ? 1 : -1];
     typedef char spC_offset[(offsetof(Stack_802F2664, spC) == 0x4) ? 1 : -1];
     typedef char sp10_offset[(offsetof(Stack_802F2664, sp10) == 0x8) ? 1 : -1];
     Stack_802F2664 stack;
     f32 temp_f1;
-    *(f32 *)((s8 *)arg0 + 0x58) = (f32) (*(f32 *)((s8 *)arg0 + 0x58) + *(f32 *)((s8 *)arg0 + 0x5C));
-    temp_f1 = *(f32 *)((s8 *)arg0 + 0x58);
+    m_58 = m_58 + m_5c;
+    temp_f1 = m_58;
     if (temp_f1 >= lbl_805DECB4) {
-        *(f32 *)((s8 *)arg0 + 0x58) = (f32) (temp_f1 - lbl_805DECB4);
-        *(s32 *)((s8 *)arg0 + 0x70) = (s32) (*(s32 *)((s8 *)arg0 + 0x70) + 1);
-        if ((s32) *(s32 *)((s8 *)arg0 + 0x70) == arg2) {
+        m_58 = temp_f1 - lbl_805DECB4;
+        m_70 = m_70 + 1;
+        if (m_70 == arg2) {
             if (arg3 != 0) {
-                *(s32 *)((s8 *)arg0 + 0x70) = (arg2 - 1);
+                m_70 = arg2 - 1;
             } else {
-                *(s32 *)((s8 *)arg0 + 0x70) = 0;
+                m_70 = 0;
             }
         }
-        stack.sp8 = *(f32 *)((s8 *)arg0 + 0x54);
+        stack.sp8 = value;
         stack.spC = lbl_805DEC9C;
-        stack.sp10 = *(f32 *)((s8 *)arg0 + 0x84) - *(f32 *)((s8 *)arg0 + 0x58);
-        spawn__13TUnk_804E4B3CFll(arg0, *(s32 *)((s8 *)(arg1 + (*(s32 *)((s8 *)arg0 + 0x70) * 4)) + 0), (s32) &stack.sp8);
+        stack.sp10 = m_84 - m_58;
+        spawn(((s32 *)arg1)[m_70], (s32)&stack.sp8);
     }
 }
 #pragma pop
 
 void TUnk_804E4B3C::advance_effect_timer() {
-    *(f32 *)((s8 *)this + 0x5C) = (f32) (*(f32 *)((s8 *)this + 0x5C) + lbl_805DECFC);
-    if (*(f32 *)((s8 *)this + 0x5C) > lbl_805DEC68) {
-        *(f32 *)((s8 *)this + 0x5C) = (f32) lbl_805DEC68;
+    m_5c = m_5c + lbl_805DECFC;
+    if (m_5c > lbl_805DEC68) {
+        m_5c = lbl_805DEC68;
     }
 }
 void TUnk_804E4B3C::sub_802F273C() {}
@@ -416,18 +413,18 @@ void *TObjBoss2Tunnel__sub_802F2A2C(void *arg0p, s32 parent) {
     ((TUnk_804E4B3C *)arg0p)->phase = 0;
     ((TUnk_804E4B3C *)arg0p)->rate = lbl_805DEC98;
     ((TUnk_804E4B3C *)arg0p)->value = lbl_805DEC9C;
-    *(f32 *)((s8 *)arg0 + 0x5C) = lbl_805DEC9C;
+    ((TUnk_804E4B3C *)arg0p)->m_5c = lbl_805DEC9C;
     boss2_tunnel_state_flags = 0;
-    *(f32 *)((s8 *)arg0 + 0x58) = lbl_805DEC9C;
-    *(s32 *)((s8 *)arg0 + 0x70) = 0;
-    *(f32 *)((s8 *)arg0 + 0x78) = lbl_805DEC9C;
-    *(f32 *)((s8 *)arg0 + 0x7C) = lbl_805DEC9C;
-    *(f32 *)((s8 *)arg0 + 0x80) = lbl_805DEC9C;
-    *(s32 *)((s8 *)arg0 + 0x74) = 0x1E;
+    ((TUnk_804E4B3C *)arg0p)->m_58 = lbl_805DEC9C;
+    ((TUnk_804E4B3C *)arg0p)->m_70 = 0;
+    ((TUnk_804E4B3C *)arg0p)->m_78 = lbl_805DEC9C;
+    ((TUnk_804E4B3C *)arg0p)->m_7c = lbl_805DEC9C;
+    ((TUnk_804E4B3C *)arg0p)->m_80 = lbl_805DEC9C;
+    ((TUnk_804E4B3C *)arg0p)->m_74 = 0x1E;
     for (i = 0; i < 2; i++) {
         p = __nw__7TObjectFUl(0x40);
         if (p != 0) {
-            TObjBoss7RaftSplash__ct((void *) p, arg0, lbl_804E4A44 + i * 0xC, TObjBoss2Tunnel__raft_splash_offset_table + i * 0xC, arg0 + 0x5C);
+            TObjBoss7RaftSplash__ct((void *) p, arg0, lbl_804E4A44 + i * 0xC, TObjBoss2Tunnel__raft_splash_offset_table + i * 0xC, &((TUnk_804E4B3C *)arg0p)->m_5c);
         }
     }
     p = __nw__7TObjectFUl(0x2C);
@@ -457,7 +454,7 @@ void *TObjBoss2Tunnel__sub_802F2A2C(void *arg0p, s32 parent) {
         ((TUnk_804E4B3C *)arg0p)->m_84 = lbl_805DED0C;
         ((TunnelSceneController*)arg0)->spawn_segment_row_a();
         ((TUnk_804E4B3C *)arg0p)->m_1c = 2;
-        *(f32 *)((s8 *)arg0 + 0x5C) = lbl_805DEC9C;
+        ((TUnk_804E4B3C *)arg0p)->m_5c = lbl_805DEC9C;
         ((TUnk_804E4B3C *)arg0p)->value = lbl_805DECB8;
         ((TUnk_804E4B3C *)arg0p)->m_88 = 0;
         boss2_tunnel_state_flags |= 0x8000;
