@@ -5,6 +5,8 @@
 #include "pso/TObject.h"
 #include "pso/boss/TObjBoss2Tunnel.h"
 
+struct Vec;
+
 class TUnk_804E4B3C : public TObject {
 public:
     virtual ~TUnk_804E4B3C();
@@ -18,7 +20,9 @@ public:
     void update_dust_spawn();
     void update_spawn_timer(s32 arg1, s32 arg2, s32 arg3);
     void advance_effect_timer();
-    void spawn(s32, s32);
+    void spawn_segment_row_a();
+    void spawn_segment_row_b();
+    void spawn(s32 kind, Vec *position);
     virtual void render();
     s32 m_1c;
     PiecewiseCurve motion;
