@@ -345,7 +345,7 @@ u16 TBoss6PlotFalz::pick_random_active_player() {
     return ids[(s32)(((f32)n - 0.1f) * (3.0517578125e-05f * (f32)rand()))];
 }
 
-s32 TBoss6PlotFalz::is_active() {
+s32 TObjChara::is_active() {
     if ((is_state_1f__14TBoss6PlotFalzFUi() != 0) && !(this->actorFlags & 0x02000800)) {
         return 1;
     }

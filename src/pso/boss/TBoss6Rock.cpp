@@ -293,7 +293,7 @@ void TBoss6Rock__sub_803542E8(TBoss6Rock *rock, s32 landed) {
     }
     for (i = 0; i < count; i++) {
         player = TObjPlayer::get_player_data(i);
-        if (((TBoss6PlotFalz *)player)->is_active() == 0) {
+        if (player->is_active() == 0) {
             continue;
         }
         VecCopy(&d, &player->position);
@@ -368,13 +368,12 @@ void TBoss6Rock::randomize_motion() {
 void TBoss6Rock::sub_80353F5C() {
     MapCsnSetData set;
     const RockKindParams *kind;
-    u8 *entry;
     if (m_b0 == NULL) {
         VecCopy(&set.position, &m_d4);
         copy_xyz(&set.rotation_x, (void *)lbl_80479280);
-        entry = (u8 *)&TBoss6Rock__data_80479258;
-        entry += m_b4 * 0x14;
-        kind = (const RockKindParams *)entry;
+        // A cursor, not a subscript: the scale stays in r4 and the table in r5.
+        kind = TBoss6Rock__data_80479258;
+        kind += m_b4;
         set.params[0] = 2;
         set.params[1] = 0;
         set.scale.z = kind->width;

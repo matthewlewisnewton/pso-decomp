@@ -3,13 +3,13 @@
 #include "pso/boss/TBoss4Type2_800874F4.h"
 #include "pso/boss/TBoss6EffHyoui.h"
 #include "pso/object/TObject_80019A50.h"
+#include "pso/player/TObjChara.h"
 
 #include "types.h"
 
 extern "C" {
 void *get_player_by_client_id(s32 i);
 void __ct__7TObjectFP7TObject(void *, void *);
-s32 is_active__14TBoss6PlotFalzFv();
 extern s32 lbl_8047AC70[];
 extern s32 __vt__14TBoss6EffHyoui[];
 extern s32 lbl_805D44D8;
@@ -32,7 +32,7 @@ void TBoss6EffHyoui::run_task() {
     s32 player;
     if ((u32) this->m_1c != 0U) {
         player = (s32)get_player_by_client_id((*(u16 *)((s8 *)arg0 + 0x20)));
-        if ((player != 0) && (is_active__14TBoss6PlotFalzFv() != 0)) {
+        if ((player != 0) && (((TObjChara *)player)->is_active() != 0)) {
             ((TParticleCtrl *)this->m_1c)->set_position((void *)(player + 0x38));
         }
     }
@@ -55,7 +55,7 @@ void *TBoss6EffHyoui__ct(void *object, void *arg1, void *arg2, void *arg3, void 
     *(void **)((s8 *)self + 0x24) = arg4;
     *(void **)((s8 *)self + 0x1C) = NULL;
     p = (u8 *)get_player_by_client_id(*(u16 *)((s8 *)self + 0x20));
-    if (p != NULL && is_active__14TBoss6PlotFalzFv() != 0) {
+    if (p != NULL && ((TObjChara *)p)->is_active() != 0) {
         if (lbl_805D6FFC == 0) {
             lbl_805D6FFC = 1;
             lbl_805D6FF8 = lbl_805E0380;

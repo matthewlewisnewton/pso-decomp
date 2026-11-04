@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 8 | 2 |
 | intrinsic | 83 | 54 |
 | hardware | 71 | 13 |
-| pragma | 5871 | 886 |
-| configure.py per-unit override | 141 | 141 |
+| pragma | 5853 | 883 |
+| configure.py per-unit override | 146 | 146 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045, `fp_contract` 931, `auto_inline` 844, `opt_common_subs` 624, `scheduling` 267, `opt_propagation` 239, `readonly_strings` 203, `peephole` 105, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 43, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 28, `use_lmw_stmw` 25, `opt_lifetimes` 22, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1152, `inline_depth` 1044, `fp_contract` 926, `auto_inline` 843, `opt_common_subs` 623, `scheduling` 262, `opt_propagation` 238, `readonly_strings` 203, `peephole` 103, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 43, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 22, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -208,7 +208,9 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `pso/enemy/TObjEneDelDepth.cpp` | `-inline off,deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/object/TObjChip.cpp` | `-inline off,deferred` | TObjChip: render's colour template sits after draw_chips' in .rodata while render comes first in .text, so the source runs backwards. |
 | `pso/object/TObjTombstone.cpp` | `-inline off,deferred, -fp_contract on, -str reuse,readonly` | One unit, written last-defined first: the vtable and the late helpers precede the early ones in .text. -fp_contract on: draw_name_labels' half-width nudge and the drop placement fuse multiply-adds. -str reuse,readonly: the literals live in this unit's .rodata. |
-| `pso/unk/text_803531FC.cpp` | `(multi-line entry; see configure.py)` | GC/2.0: compiler-expanded struct copies take 2.0's registers. The ending item handler table keeps 2.0's store/load scheduling for its zero-initialized local member-function-pointer array. |
+| `pso/misc/TOBoss4.cpp` | `-fp_contract on, -str reuse,readonly, -sdata 4, -inline deferred` | Vol Opt scenery is one TU. Deferred emission puts TOBoss4Rock::run_task first; -sdata 4 keeps the 8-byte motion-name array in .data. |
+| `pso/boss/TBoss6Rock.cpp` | `-fp_contract on, -str reuse,readonly, -inline off,deferred` | Dark Falz rocks are one TU, written last-defined first. -fp_contract on fuses the fall and spin multiply-adds. |
+| `pso/item/TItemSpecialEvent_803531FC.cpp` | `(multi-line entry; see configure.py)` | GC/2.0: compiler-expanded struct copies take 2.0's registers. The ending item handler table keeps 2.0's store/load scheduling for its zero-initialized local member-function-pointer array. |
 | `pso/boss/Boss5GryphonBehavior.cpp` | `GC/2.0` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/enemy/TObjEneGyaranzo.cpp` | `GC/2.0, -inline off,deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/TOExplosiveMachine.cpp` | `GC/2.0` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
@@ -320,6 +322,8 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `pso/misc/TOSensorAncient01.cpp` | `-sdata 4, -str reuse,readonly, -pool off` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/TOSensorGeneral01.cpp` | `-sdata 4, -str reuse,readonly, -pool off` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/TOKeyGenericSw.cpp` | `-sdata 4, -str reuse,readonly` | Unlike the other keys it addresses its descriptors off one .data base. |
+| `pso/object/TObjQuestColA_80196FE4.cpp` | `-inline off,deferred` | Quest-collision deleting destructors share a TU. Deferred generation emits the last definition first, which is the only order that puts each vtable before the next class's (TObjQuestColA then TObjQuestCol; TObjQuestColApcINW then TObjQuestColApcIN). |
+| `pso/object/TObjQuestColApcINW_80196EDC.cpp` | `-inline off,deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/camera/CreationCamera.cpp` | `-inline off,deferred, -fp_contract on` | The character creation camera: deferred with nothing inlined, and its multiply-adds contracted into fmadds. |
 | `pso/system/PadRumble.cpp` | `-fp_contract on` | The pad rumble and Ninja helper code contract multiply-adds into fmadds/fnmsubs. |
 | `pso/system/NinjaUtil.cpp` | `-fp_contract on` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
@@ -329,6 +333,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `pso/unk/text_8039739C.cpp` | `-O4,p` | Metrowerks' GCN_Mem_Alloc.c (runtime library code at -O4,p); belongs in the runtime lib under its own name. |
 | `pso/quest/QuestOpcodeHandlers.cpp` | `-inline on` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/quest/TQuestThread.cpp` | `-inline on` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
+| `pso/unk/text_803D8098.cpp` | `(multi-line entry; see configure.py)` | render_debug_text (0x803D85D8) saves r25-r31 with bl _savegpr_25 / _restgpr_25, and its glyph quads are the inlined SDK FIFO writers (sth/stw to 0xCC008000), not calls. -inline on inlines only functions marked inline, so queue_debug_text stays a call from debug_printf_at. The matrix helpers in text_803D8910.cpp match under the ginja defaults. |
 | `pso/misc/TKeyBoardControl_803F0C50.cpp` | `GC/1.2.5n` | Epilogue order (mtlr before the restores) only 1.2.5n produces. |
 | `pso/unk/text_803F1804.cpp` | `GC/1.2.5n` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/unk/text_803F4D84.cpp` | `-O2, -use_lmw_stmw off` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
@@ -414,7 +419,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `src/pso/boss/TBoss6MagMine.cpp` | opt_common_subs×3, opt_propagation×1 |
 | `src/pso/boss/TBoss6Mine.cpp` | fp_contract×2, inline_depth×1, auto_inline×1, dont_inline×1, opt_common_subs×1 |
 | `src/pso/boss/TBoss6PlotFalz.cpp` | fp_contract×5, opt_common_subs×3, readonly_strings×1, opt_dead_assignments×1 |
-| `src/pso/boss/TBoss6Rock.cpp` | fp_contract×3, peephole×1, opt_common_subs×1, opt_propagation×1 |
 | `src/pso/boss/TBoss6RockChase.cpp` | opt_propagation×1, opt_common_subs×1, fp_contract×1 |
 | `src/pso/boss/TBoss6SwordShot.cpp` | fp_contract×3, opt_common_subs×2 |
 | `src/pso/boss/TBoss6Tube_802B1020.cpp` | fp_contract×2 |
@@ -682,7 +686,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `src/pso/misc/TNpcPlayer.cpp` | fp_contract×9, opt_common_subs×2, opt_propagation×1 |
 | `src/pso/misc/TNpcPlayer_8014DADC.cpp` | scheduling×1 |
 | `src/pso/misc/TNpcPlayer_8034DC20.cpp` | opt_pointer_analysis×1 |
-| `src/pso/misc/TOBoss4Rock_801589E8.cpp` | fp_contract×3, inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/misc/TOComputerMachine01_8023DD0C.cpp` | fp_contract×1 |
 | `src/pso/misc/TOCtrlDubchik_8015CA74.cpp` | opt_common_subs×3, opt_propagation×1, fp_contract×1 |
 | `src/pso/misc/TODoorFourLightSpace.cpp` | inline_depth×2, auto_inline×2, dont_inline×2 |
@@ -697,7 +700,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `src/pso/misc/TOMineIcon01.cpp` | fp_contract×1 |
 | `src/pso/misc/TOMineIcon02.cpp` | fp_contract×1 |
 | `src/pso/misc/TOMineIcon04.cpp` | fp_contract×1 |
-| `src/pso/misc/TOMineTrap_8016F6F8.cpp` | fp_contract×2 |
+| `src/pso/misc/TOMineTrap_8016F6F8.cpp` | fp_contract×3 |
 | `src/pso/misc/TOQuestTalkBase.cpp` | fp_contract×1 |
 | `src/pso/misc/TORockCave.cpp` | readonly_strings×1 |
 | `src/pso/misc/TORockCaveBrakable.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
@@ -1201,7 +1204,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `src/pso/unk/text_803D6438.cpp` | scheduling×2 |
 | `src/pso/unk/text_803D64F8.cpp` | scheduling×1 |
 | `src/pso/unk/text_803D8030.cpp` | scheduling×1 |
-| `src/pso/unk/text_803D853C.cpp` | scheduling×5, peephole×1, optimize_for_size×1 |
 | `src/pso/unk/text_803D8DE0.cpp` | scheduling×3, dont_inline×1, inline_depth×1 |
 | `src/pso/unk/text_803D8F74.cpp` | dont_inline×1, inline_depth×1 |
 | `src/pso/unk/text_803D96A8.cpp` | scheduling×5, peephole×3, fp_contract×1 |

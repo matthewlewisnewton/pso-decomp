@@ -207,7 +207,6 @@ extern u8 boss6_type2_motion_entry_transform[];
 extern s32 TBoss6Type2__motion_table[];
 extern const s32 TBoss6Type2__data_805DE4B8;
 u8 * get_player_by_client_id(u32);
-s32 is_active__14TBoss6PlotFalzFv();
 f32 xyz_distance(void *, void *);
 extern s32 TBoss6Type2__player_hit_rock_indices[];
 void TBoss6Type2__sub_802BA598(TBoss6Type2 *self, s32 elapsed, s32 duration);
@@ -994,7 +993,7 @@ void TBoss6Type2::sub_802BA078() {
     Player_802BA078 *p;
     if (((Boss_802BA078 *)this)->f55C != 0xFFFF) {
         p = (Player_802BA078 *)get_player_by_client_id(((Boss_802BA078 *)this)->f55C);
-        if (is_active__14TBoss6PlotFalzFv() != 0) {
+        if (((TObjChara *)p)->is_active() != 0) {
             s32 r = TBoss6PlotFalz::rand_vary_count(((Boss_802BA078 *)this)->f4B8, 0.1f);
             TBoss6PlotFalz::damage_player_hp(((Boss_802BA078 *)this)->f55C, r);
             p->f30 |= 0x200;
@@ -1109,7 +1108,7 @@ void TBoss6Type2::update_possess_target() {
         pl = ((u8 * (*)(u16))get_player_by_client_id)(id);
         if (pl == NULL) {
             done = 1;
-        } else if (is_active__14TBoss6PlotFalzFv() == 0) {
+        } else if (((TObjChara *)pl)->is_active() == 0) {
             VecCopy((Vec *)&v, (const Vec *)(pl + 0x38));
             v.y += 10.0f;
             spawn_flow_soul__11TBoss6Type2Fiii((s32)this, (s32)&v, 0x1E);
@@ -1369,7 +1368,7 @@ void TBoss6Type2::spawn_rocks_around_players() {
     cnt = TLobby::get_game_mode();
     for (i = 0; i < cnt; i++) {
         pl = get_player_data__10TObjPlayerFi(i);
-        if (is_active__14TBoss6PlotFalzFv() != 0) {
+        if (((TObjChara *)pl)->is_active() != 0) {
             f32 r = 40.0f * (3.0517578e-05f * (f32)rand()) + 10.0f;
             s32 ang = (s32)(65535.0f * (3.0517578e-05f * (f32)rand()));
             VecCopy((Vec *)&p, (const Vec *)(pl + 0x38));
@@ -1780,7 +1779,7 @@ void TBoss6Type2::apply_rock_hits_to_players() {
                 for (mask = 1, j = 0; j < 4; j++, mask <<= 1) {
                     if (mask & r) {
                         p = (VObj_18_b27ba1 *)((s32 (*)(s32))get_player_by_client_id)(j);
-                        if (((s32 (*)(void *))is_active__14TBoss6PlotFalzFv)(p) != 0) {
+                        if (((TObjChara *)p)->is_active() != 0) {
                             v = ((Obj_802BBAB0 *)this)->f4B4;
                             if (((Obj_802BBAB0 *)this)->f418 != 0) {
                                 v = (s32)((f32)v * ((Obj_802BBAB0 *)this)->f4E8);
@@ -2131,7 +2130,7 @@ void TBoss6Type2::update_countdown() {
         }
         if (((s32) this->m_418 != 0) && ((s32) *(s32 *)((s8 *)this + 0x518) == -0x12C)) {
             temp_r31 = ((void * (*)(u16))get_player_by_client_id)(*(u16 *)((s8 *)this + 0x55C));
-            if ((is_active__14TBoss6PlotFalzFv() != 0) && ((s16) *(s16 *)((s8 *)temp_r31 + 0x326) == 1)) {
+            if ((((TObjChara *)temp_r31)->is_active() != 0) && ((s16) *(s16 *)((s8 *)temp_r31 + 0x326) == 1)) {
                 start_countdown_sound_state();
             }
         }
@@ -2997,8 +2996,7 @@ void TBoss6Type2::update_attack_target() {
         temp_r3 = ((u16 (*)(void *))TBoss6Type2__sub_802BB694)(this);
         var_r30 = temp_r3;
         if ((u16) temp_r3 == 0xFFFF) {
-            ((s32 (*)(int))get_player_by_client_id)(temp_r31);
-            if (is_active__14TBoss6PlotFalzFv() != 0) {
+            if (((TObjChara *)((s32 (*)(int))get_player_by_client_id)(temp_r31))->is_active() != 0) {
                 var_r30 = temp_r31;
             }
         }

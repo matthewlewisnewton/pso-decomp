@@ -366,7 +366,6 @@ extern const f32 lbl_805DE3D8;
 extern const f32 lbl_805DE3D4;
 void TBoss6Type1__sub_802B8BB4(u8 *arg0);
 s32 project_actor_to_ground(void *, void *, s32);
-s32 is_active__14TBoss6PlotFalzFv();
 void TBoss6PlotFalz__sub_802AC724(void *, void *);
 f32 vec3_add_to(void *, void *);
 void vec3_cross(void *, void *, void *);
@@ -1247,7 +1246,7 @@ void TBoss6Type1::spawn_grav_ball() {
     f32 r;
     flag = 1;
     pl = (u8 *)get_player_by_client_id(((Boss_802B683C *)this)->f41C & 3);
-    if (is_active__14TBoss6PlotFalzFv() != 0) {
+    if (((TObjChara *)pl)->is_active() != 0) {
         VecCopy((Vec *)&v, (const Vec *)(pl + 0x38));
         flag = 0;
         v.y = ((Boss_802B683C *)this)->pos.y;
@@ -1274,7 +1273,7 @@ void TBoss6Type1::damage_players_in_range() {
     n = TLobby::get_game_mode();
     for (i = 0; i < n; i++) {
         p = get_player_data__10TObjPlayerFi(i);
-        if (is_active__14TBoss6PlotFalzFv() != 0) {
+        if (((TObjChara *)p)->is_active() != 0) {
             V3_802B6B34 v = p->pos;
             v.y = TBoss6Type1__data_805DE2D0;
             if (!(((f32 (*)(void *))vector_length)(&v) > (*(const f32 *)&TBoss6Type1__data_805DE344))) {
@@ -1354,7 +1353,7 @@ void TBoss6Type1__sub_802B6C30(Boss_802B6C30 *self) {
     B.z = self->f4DC * (b->z - mid.z) + mid.z;
     for (i = 0; i < n; i++) {
         pl = ((Player_802B6C30 *)get_player_data__10TObjPlayerFi(i));
-        if (is_active__14TBoss6PlotFalzFv() == 0) {
+        if (((TObjChara *)pl)->is_active() == 0) {
             continue;
         }
         inside = 1;
@@ -1551,7 +1550,7 @@ void TBoss6Type1::update_beam_attack() {
     n = TLobby::get_game_mode();
     for (i = 0; i < n; i++) {
         Player_802B6B34 *p = get_player_data__10TObjPlayerFi(i);
-        if (is_active__14TBoss6PlotFalzFv() != 0) {
+        if (((TObjChara *)p)->is_active() != 0) {
             Vec_802B7530 *a = &self->a;
             VecCopy((Vec *)&v, (const Vec *)&p->pos);
             v.y = TBoss6Type1__data_805DE2D0;

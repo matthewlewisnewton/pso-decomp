@@ -86,7 +86,6 @@ s32 query_teammate_state__9TObjEneDDFv();
 void direction_to_rotation_xz(u8 *arg0, s32 *arg1, s32 *arg2);
 extern "C" {
 void *get_player_by_client_id(s32 i);
-s32 is_active__14TBoss6PlotFalzFv();
 int TBoss6Kakusan__sub_8032263C(void);
 void vec3_add_to(void *, void *);
 void subtract_vector(void *, void *);
@@ -214,7 +213,7 @@ void TBoss6Kakusan::run_task() {
         speed = vector_length((u8 *)&this->m_3c);
         if (!(speed <= TBoss6Kakusan__data_805DF51C)) {
             pl = (u8 *)get_player_by_client_id(this->m_20);
-            if (is_active__14TBoss6PlotFalzFv() != 0) {
+            if (((TObjChara *)pl)->is_active() != 0) {
                 VecCopy((Vec *)&v, (const Vec *)(pl + 0x38));
                 v.y += lbl_805DF538;
                 subtract_vector(&v, (u8 *)&this->m_30);
