@@ -271,12 +271,12 @@ Vec2_8024EC34 *get_viewport_offset__19TWindowKeyBoardSoftFi(s32 i) {
     return get_zero_vec2();
 }
 
-u32 open_singleton__19TWindowKeyBoardSoftFiiii(s32 pos, s32 size, s32 scale, s32 flags, u32 _w4, f32 depth) {
+TWindowKeyBoardSoft *TWindowKeyBoardSoft::open_singleton(f32 *pos, f32 *size, f32 *scale, f32 depth, int flags) {
     if ((u32) soft_keyboard_instance == 0U) {
-        return 0U;
+        return NULL;
     }
-    init_text_window_layout((Win_8024EA50 *)(soft_keyboard_instance), (f32 *)pos, (f32 *)size, (f32 *)scale, (u32)flags, depth);
-    return soft_keyboard_instance;
+    init_text_window_layout((Win_8024EA50 *)(soft_keyboard_instance), pos, size, scale, (u32)flags, depth);
+    return (TWindowKeyBoardSoft *)soft_keyboard_instance;
 }
 
 u32 TWindowKeyBoardSoft::get_or_create_instance() {

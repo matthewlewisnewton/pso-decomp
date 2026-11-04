@@ -138,7 +138,6 @@ void disallow_rendering__7TObjectFv(TObject *);
 int copy_vec2__28TWindowSubSymbolChatPartsSetFPv(void*);
 
 int TWindowSubComCard__sub_80244774(void);
-f32 TWindowSubComCard__sub_80244784(TWindowSubComCard *arg0);
 void save_position__13TUnk_804CE018Fv(void* p);
 void TWindowSubTradeMain__sub_802448E4(void *arg0);
 void fn_8024491C(void *arg0);
@@ -150,7 +149,6 @@ s32 sub_80246948__13TUnk_804CE018Fv();
 int TWindowFukidasi__sub_8024695C(void *p);
 s32 TWindowCtrlMain__sub_8024CE24();
 s32 animate_scale__19TWindowKeyBoardSoftFv();
-s32 open_singleton__19TWindowKeyBoardSoftFiiii(void *, void *, void *, int, f32);
 s32 init_window_layout_entries(void *, int, int);
 s32 sub_8026CC28__13TUnk_804CE018Fv();
 s32 resort_window_order__13TUnk_804CE018Fv(void *);
@@ -166,12 +164,12 @@ int TWindowSubComCard__sub_80244774(void) {  return lbl_805D3614; }
 
 s32 TWindowSubComCard::get_field_20() { return this->m_20; }
 
-f32 TWindowSubComCard__sub_80244784(TWindowSubComCard *window_sub_com_card) {
-    f32 v = window_sub_com_card->calc_offset();
+f32 TWindowSubComCard__sub_80244784(TWindowSubComCard *self) {
+    f32 v = self->calc_offset();
     if (v < 1.0f) {
         return v;
     }
-    return window_sub_com_card->get_normalized_progress();
+    return self->get_normalized_progress();
 }
 
 f32 TWindowSubComCard::calc_offset() {
@@ -307,7 +305,7 @@ void window_request_show(void *object) {
 s32 TUnk_804CE018::setup_window_draw_context(s32 arg1) {
     s32 temp_r31;
     s32 var_r4;
-    temp_r31 = ((s32 (*)(void *, void *, void *, f32, int))open_singleton__19TWindowKeyBoardSoftFiiii)((void *) (((u8 *)this) + 0x40), (void *) (((u8 *)this) + 0x48), (void *)arg1, (f32) (*(f32 *)((s8 *)((u8 *)this) + 0x54)), (int) (*(s32 *)((s8 *)((u8 *)this) + 0x2C)));
+    temp_r31 = (s32)TWindowKeyBoardSoft::open_singleton((f32 *)((u8 *)this + 0x40), (f32 *)((u8 *)this + 0x48), (f32 *)arg1, *(f32 *)((s8 *)this + 0x54), *(s32 *)((s8 *)this + 0x2C));
     if (*(s32 *)((s8 *)((u8 *)this) + 0x2C) & 0x40) {
         animate_scale__19TWindowKeyBoardSoftFv();
     }
