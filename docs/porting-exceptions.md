@@ -15,7 +15,7 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (regenerated on this branch after merging main `afa256f23`, 2026-11-04)
+## Summary (regenerated on this branch after merging main `39136ddd5`, 2026-11-04)
 
 | Category | Hits | Files / units |
 |---|---:|---:|
@@ -23,7 +23,7 @@ entry says *reason not recorded*.
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 71 | 13 |
 | CodeWarrior pragmas (excluding push/pop) | 5,864 | 885 |
-| Per-unit compiler overrides in `configure.py` | 145 | 145 |
+| Per-unit compiler overrides in `configure.py` | 144 | 144 |
 | Approved regressions | 0 on main, 1 pending (#291) | |
 
 ## Rule for assembly
@@ -88,7 +88,7 @@ small float differences without FMA).
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-145 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+144 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
@@ -121,7 +121,6 @@ entry when the PR merges.
 | [#296](https://github.com/matthewlewisnewton/pso-decomp/pull/296) | `scheduling` ×5, `peephole`, `optimize_for_size` pragmas | Reason not recorded. Drop in a port. |
 | [#250](https://github.com/matthewlewisnewton/pso-decomp/pull/250) | `fp_contract` ×3 | Reason not recorded. |
 | [#303](https://github.com/matthewlewisnewton/pso-decomp/pull/303), [#295](https://github.com/matthewlewisnewton/pso-decomp/pull/295), [#289](https://github.com/matthewlewisnewton/pso-decomp/pull/289), [#272](https://github.com/matthewlewisnewton/pso-decomp/pull/272), [#225](https://github.com/matthewlewisnewton/pso-decomp/pull/225), [#222](https://github.com/matthewlewisnewton/pso-decomp/pull/222), [#215](https://github.com/matthewlewisnewton/pso-decomp/pull/215), [#187](https://github.com/matthewlewisnewton/pso-decomp/pull/187), [#128](https://github.com/matthewlewisnewton/pso-decomp/pull/128) | 1 to 4 inlining/optimization pragmas each | Reason not recorded. Drop in a port. |
-| [#294](https://github.com/matthewlewisnewton/pso-decomp/pull/294) | `-inline on` for `pso/ui/TAdMultiPlyChrSelectGC_802C50EC.cpp` (per-unit compiler override) | `TAdMultiPlyChrSelectGC__sub_802C5F1C` matches only with its slot clamp in an inline helper; the unit's other functions compile identically with `-inline off`. Evidence: `docs/evidence/chr-select-slot-clamp-inline.md` on that branch. Port: nothing; `inline` has no semantic effect. |
 | [#240](https://github.com/matthewlewisnewton/pso-decomp/pull/240) | Not scanned | Diff exceeds GitHub's 300-file limit; scan locally after it merges. |
 
 The scan covers source lines only; `configure.py` overrides added by PRs show up

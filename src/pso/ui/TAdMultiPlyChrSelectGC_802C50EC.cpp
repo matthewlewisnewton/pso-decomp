@@ -547,20 +547,10 @@ void TAdMultiPlyChrSelectGC::move_cursor(s32 x_, s32 y_, s32 dx, s32 dy, s32 dep
     }
 }
 
-static inline s32 clamped_slot_802C5F1C() {
-    s32 idx = 3;
-    s32 cnt = TAdMultiPlyChrSelectGC__data_805D67D8;
-    if (cnt < 4) {
-        idx = cnt;
-    }
-    return idx;
-}
-
 s32 TAdMultiPlyChrSelectGC__sub_802C5F1C(void *arg0, int arg1) {
     S_802C50EC *self = (S_802C50EC *)arg0;
     u32 i;
     u32 j;
-    s32 idx;
     f32 uu;
     f32 a;
     f32 b;
@@ -569,8 +559,12 @@ s32 TAdMultiPlyChrSelectGC__sub_802C5F1C(void *arg0, int arg1) {
        (u,v) page, with the active-slot column clamped to 3. */
     for (i = 0; i < 4; i++) {
         for (j = 0; j < 3; j++) {
+            s32 idx = 3;
+            s32 cnt = TAdMultiPlyChrSelectGC__data_805D67D8;
             uu = TAdMultiPlyChrSelectGC__data_805DE56C;
-            idx = clamped_slot_802C5F1C();
+            if (cnt < 4) {
+                idx = cnt;
+            }
             self->quad[i][j].u0 = uu;
             a = lbl_805DE588 * (f32)idx;
             b = lbl_805DE588 + a;
