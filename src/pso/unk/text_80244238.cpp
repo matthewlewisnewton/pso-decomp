@@ -50,7 +50,7 @@ void TUnk_804CDFE8::step_window_tween() {
 
 TWindowDrawContext *TWindowBase::get_draw_context(void *window) {
     Obj_80244364 *self = (Obj_80244364 *)window;
-    TWindowDrawContext *c = (TWindowDrawContext *)((TUnk_804CE018 *)self)->setup_window_draw_context((s32)self->a);
+    TWindowDrawContext *c = (TWindowDrawContext *)((TUnk_804CE018 *)self)->setup_window_draw_context(self->a);
     c->inner_x -= self->x;
     c->inner_y -= self->y;
     return c;

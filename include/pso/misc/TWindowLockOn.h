@@ -28,8 +28,7 @@ struct TWindowLockOn : public TUnk_804CE018 {
     u16 m_60;
     u8 _pad62[0x2];
     u32 m_64;
-    void* m_68;
-    u8 _pad6C[0x4];
+    f32 scale[2];
     u32 m_70;
     u32 m_74;
     u32 m_78;

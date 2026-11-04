@@ -302,10 +302,10 @@ void window_request_show(void *object) {
     allow_rendering__7TObjectFv((TObject *)object);
 }
 
-s32 TUnk_804CE018::setup_window_draw_context(s32 arg1) {
+s32 TUnk_804CE018::setup_window_draw_context(f32 *scale) {
     TWindowKeyBoardSoft *window;
     s32 var_r4;
-    window = TWindowKeyBoardSoft::open_singleton((f32 *)((u8 *)this + 0x40), (f32 *)((u8 *)this + 0x48), (f32 *)arg1, *(f32 *)((s8 *)this + 0x54), *(s32 *)((s8 *)this + 0x2C));
+    window = TWindowKeyBoardSoft::open_singleton((f32 *)((u8 *)this + 0x40), (f32 *)((u8 *)this + 0x48), scale, *(f32 *)((s8 *)this + 0x54), *(s32 *)((s8 *)this + 0x2C));
     if (*(s32 *)((s8 *)((u8 *)this) + 0x2C) & 0x40) {
         animate_scale__19TWindowKeyBoardSoftFv();
     }
@@ -325,7 +325,7 @@ s32 TUnk_804CE018::setup_window_draw_context(s32 arg1) {
 }
 
 s32 TWindowDD::draw_default_entry(s32 arg0) {
-    return ((TUnk_804CE018 *)arg0)->setup_window_draw_context((s32)fn_8026CB68());
+    return ((TUnk_804CE018 *)arg0)->setup_window_draw_context(fn_8026CB68());
 }
 
 void TLobby::set_field_1c(f32 farg0) {

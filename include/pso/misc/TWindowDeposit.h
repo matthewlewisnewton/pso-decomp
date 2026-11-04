@@ -13,10 +13,9 @@ struct TWindowDeposit : public TUnk_804CE018 {
     f32 m_38;
     u8 unk_3C[0x24];
     f32 m_60;
-    void* m_64;
+    f32 scale[2];
     void render_status(s32 arg1);
     virtual void run_task();
-    u8 unk_68[0x4];
 };
 
 typedef char TWindowDeposit_size[sizeof(TWindowDeposit) == 0x6C ? 1 : -1];
