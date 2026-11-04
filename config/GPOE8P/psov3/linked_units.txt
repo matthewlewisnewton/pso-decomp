@@ -1786,6 +1786,7 @@ pso/misc/TWindowShortCut.cpp
 pso/misc/TWindowShortListCtrl.cpp
 pso/misc/TWindowShortListCtrl_801A4FC0.cpp
 pso/misc/TWindowShortListCtrl_80221828.cpp
+pso/misc/TWindowShortListCtrl_8026E7DC.cpp
 pso/misc/TWindowShortListCtrl_80277D3C.cpp
 pso/misc/TWindowSimpleStatus.cpp
 pso/misc/TWindowSnapShot.cpp
@@ -3383,6 +3384,7 @@ pso/unk/text_802AEBA8.cpp
 pso/unk/text_802AF64C.cpp
 pso/unk/text_802B1AB4.cpp
 pso/unk/text_802B1C1C.cpp
+pso/unk/text_802BFBF4.cpp
 pso/unk/text_802C095C.cpp
 pso/unk/text_802C09E0.cpp
 pso/unk/text_802C39F8.cpp
