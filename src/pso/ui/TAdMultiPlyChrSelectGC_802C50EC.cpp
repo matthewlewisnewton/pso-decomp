@@ -158,7 +158,6 @@ extern s32 TAdMultiPlyChrSelectGC__select_mode;
 extern s32 TAdMultiPlyChrSelectGC__selected_slot;
 extern RecoveredGlobal_802C6848_lbl_804E0B00 multiplayer_controller_device_codes;
 extern const f32 TAdMultiPlyChrSelectGC__data_805DE56C;
-extern s32 multi_ply_chr_select_default_slot_table[][5];
 extern s32 TAdMultiPlyChrSelectGC__data_804E0A68[][5];
 void copy_vec2__28TWindowSubSymbolChatPartsSetFPv(void *);
 s32 get_field_20__22TAdMultiPlyChrSelectGCFv();
@@ -169,7 +168,6 @@ s32 TWindowShortListCtrl__check_controller_button(void *, int);
 
 s32 TAdMultiPlyChrSelectGC__sub_802C5F1C(void *, int);
 extern u8 controller_physical_port_bank[];
-extern Jump_802C5C84 multi_chr_select_cursor_jump_table[][5];
 extern void *TAdMultiPlyChrSelectGC__data_804E0A48[4];
 void TAdMultiPlyChrSelectGC__sub_802C50EC(s32);
 void TAdMultiPlyChrSelectGC__sub_802C522C(s32);
@@ -185,6 +183,28 @@ extern const f32 lbl_805DE594;
 extern const f32 lbl_805DE598;
 extern const f32 lbl_805DE59C;
 extern const f32 lbl_805DE5A0;
+
+/* This unit's .rodata: the open/occupied grid, the cursor-jump vectors, the two
+   home-position floats, and the plate class name. The compiler's int-to-float
+   pool double follows them. Values are the original table bytes. */
+extern const s32 multi_ply_chr_select_default_slot_table[6][5] = {
+    0, 0, 0, 0, 0,
+    0, 1, 1, 0, 0,
+    0, 1, 1, 0, 0,
+    0, 1, 1, 0, 0,
+    0, 1, -1, 0, 0,
+    0, 0, 0, 0, 0,
+};
+extern const Jump_802C5C84 multi_chr_select_cursor_jump_table[6][5] = {
+    { { { 0, 0, 0, 0 } }, { { 4, 0, 0, 0 } }, { { 3, 0, 0, 0 } }, { { 0, 0, 0, 0 } }, { { 0, 0, 0, 0 } } },
+    { { { 0, 0, 2, 0 } }, { { 0, 0, 0, 0 } }, { { 0, 0, 0, 0 } }, { { 0, 0, 0, -2 } }, { { 0, 0, 0, 0 } } },
+    { { { 0, 0, 2, 0 } }, { { 0, 0, 0, 0 } }, { { 0, 0, 0, 0 } }, { { 0, 0, 0, -2 } }, { { 0, 0, 0, 0 } } },
+    { { { 0, 0, 2, 0 } }, { { 0, 0, 0, 0 } }, { { 0, 0, 0, 0 } }, { { 0, 0, 0, -2 } }, { { 0, 0, 0, 0 } } },
+    { { { 0, 0, 2, 0 } }, { { 0, 0, 0, 0 } }, { { 0, -3, 0, -1 } }, { { 0, 0, 0, 0 } }, { { 0, 0, 0, 0 } } },
+    { { { 0, 0, 0, 0 } }, { { 0, -4, 0, 0 } }, { { 0, -4, 0, 0 } }, { { 0, 0, 0, 0 } }, { { 0, 0, 0, 0 } } },
+};
+extern const f32 lbl_80471CE0[2] = { 180.0f, 38.0f };
+extern const char lbl_80471CE8[20] = "TAdChrSelPlyPlateGC";
 
 void *TAdMultiPlyChrSelectGC__data_804E0A48[4] = {
     (void *)0x0, (void *)0x0, (void *)0x0, (void *)0x0,
