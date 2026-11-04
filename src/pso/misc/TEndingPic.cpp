@@ -23,7 +23,6 @@ extern const f32 lbl_805DFF30;
 int send_nearby_player_ids(TObjPlayer *, f32);
 s32 add_actor_hp(TObjPlayer *, s32);
 s32 add_actor_tp(TObjPlayer *, s32);
-s32 is_locally_controlled__10TObjPlayerFPv(TObjPlayer *);
 s32 get_field_2b8__14TItemProShieldFv(TObjPlayer *);
 s32 obj_getS16_2BA(TObjPlayer *);
 
@@ -167,9 +166,9 @@ int get_ending_ab_wall_texture_list(void) {  return ending_ab_wall_texture_list;
 
 // The use-effect members belong to this unit. Include the class after the
 // ending-picture functions so their declarations stay as matched.
-#include "pso/item/TUnk_804F112C.h"
+#include "pso/item/TItemSpecialEvent.h"
 
-void TUnk_804F112C::send_obj_position_event(s32 arg1) {
+void TItemSpecialEvent::send_obj_position_event(s32 arg1) {
     TObjPlayer *owner = this->owner;
     if (owner != NULL) {
         DirectAttackPayload attack;
@@ -179,25 +178,25 @@ void TUnk_804F112C::send_obj_position_event(s32 arg1) {
     }
 }
 
-void TUnk_804F112C::sub_8035307C() { send_obj_position_event(18); }
-void TUnk_804F112C::sub_803530A0() { send_obj_position_event(17); }
+void TItemSpecialEvent::sub_8035307C() { send_obj_position_event(18); }
+void TItemSpecialEvent::sub_803530A0() { send_obj_position_event(17); }
 
-void TUnk_804F112C::sub_803530C4() {
-    if (is_locally_controlled__10TObjPlayerFPv(this->owner) != 0) {
+void TItemSpecialEvent::sub_803530C4() {
+    if (TObjPlayer::is_locally_controlled(this->owner) != 0) {
         this->owner->apply_shock_status();
     }
 }
 
-void TUnk_804F112C::sub_80353110() { send_obj_position_event(16); }
-void TUnk_804F112C::sub_80353134() { send_obj_position_event(15); }
-void TUnk_804F112C::sub_80353158() {
+void TItemSpecialEvent::sub_80353110() { send_obj_position_event(16); }
+void TItemSpecialEvent::sub_80353134() { send_obj_position_event(15); }
+void TItemSpecialEvent::sub_80353158() {
     add_actor_hp(this->owner, get_field_2b8__14TItemProShieldFv(this->owner));
 }
-void TUnk_804F112C::sub_80353194() {
+void TItemSpecialEvent::sub_80353194() {
     add_actor_tp(this->owner, obj_getS16_2BA(this->owner));
 }
 
     extern const f32 lbl_805DFF34;
-void TUnk_804F112C::sub_803531D0() { send_nearby_player_ids(this->owner, lbl_805DFF34); }
+void TItemSpecialEvent::sub_803531D0() { send_nearby_player_ids(this->owner, lbl_805DFF34); }
 
-void TUnk_804F112C::sub_803531F8() {  }
+void TItemSpecialEvent::sub_803531F8() {  }
