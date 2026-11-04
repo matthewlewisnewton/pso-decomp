@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/TSetEvtDestroy.h"
 #include "pso/item/TItem.h"
 #include "pso/TObject.h"
@@ -773,7 +774,6 @@ extern void *lobby_char_slot_array;
 void __destroy_new_array(void *, void *);
 void TLobby__sub_801C3A40(void);
 int TKeyBoardControl__sub_8000F828(void);
-void *mem_alloc(u32 size);
 void clear_battle_player_ready_flags(void);
 void TAdSinglePlyChrSelectGC__sub_801C5120(void);
 void TAdSinglePlyChrSelectGC__sub_801C5158(void);
@@ -1253,7 +1253,7 @@ void TLobby__sub_801C3A40(void) {
 void init_char_slots__6TLobbyFv(void) {
     TLobby__battle_mode_data_ptr = 0;
     lbl_805D5D9C = TKeyBoardControl__sub_8000F828() == 1 ? 0x19 : 0x1E;
-    lobby_char_slot_array = __construct_new_array(mem_alloc(0x3220), (void *)init_char_data__10TObjPlayerFv, (void *)destroy_char_data__10TObjPlayerFis, 0x42C, 0xC);
+    lobby_char_slot_array = __construct_new_array(::operator new[](0x3220), (void *)init_char_data__10TObjPlayerFv, (void *)destroy_char_data__10TObjPlayerFis, 0x42C, 0xC);
     TAdSinglePlyChrSelectGC__sub_801C5158();
     clear_battle_player_ready_flags();
     TLobby__battle_ctrl_default_value = 1;
@@ -1894,3 +1894,10 @@ void *TPlayerBattleCtrl__ct(void *player_battle_ctrl, s32 _w1) {
     *(s32 *)((s8 *)player_battle_ctrl + 0x64) = 0;
     return player_battle_ctrl;
 }
+
+Ent_801C26A8 TLobby__duel_result_table[4];
+s32 TLobby__battle_team_table[4];
+s16 battle_event_second_table[8];
+u16 battle_mode_data_table[4];
+s32 battle_intro_value_table[4];
+char battle_intro_message_buffer[0x100];

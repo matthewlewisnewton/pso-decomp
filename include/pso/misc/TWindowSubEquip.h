@@ -7,7 +7,6 @@
 struct TWindowSubEquip : public TObject {
     TWindowSubEquip(s32 arg1, s32 arg2);
     virtual ~TWindowSubEquip();
-    int build_equipment_list();
     u8 m_1c;
     u8 _pad1D[0x3];
     u32 m_20;
@@ -23,7 +22,6 @@ struct TWindowSubEquip : public TObject {
     s32 open_equip_kind_list(u32 arg1);
     virtual void render();
     virtual void run_task();
-    void update_window();
     void apply_slot_selection();
 };
 
