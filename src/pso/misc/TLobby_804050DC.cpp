@@ -1270,6 +1270,37 @@ s32 TLobby__sub_804060B8(u8 *data, s32 len, int type) {
 }
 #pragma pop
 
+void TLobby__sub_8040059C(u8 *arg0);
+void TLobby__sub_80402CE0(u8 *arg0);
+void TLobby__sub_803FC318(u8 *arg0);
+void TLobby__sub_803FEF4C(u8 *arg0);
+void TLobby__sub_803F9FAC(u8 *arg0);
+extern s32 lbl_805D7ADC;
+
+// The connection block is passed as bytes to the five protocol registrars and
+// also read through Lobby_804062A0. lbl_805D7ADC is cleared before those
+// addresses are taken.
+s32 TLobby__sub_804061FC(s32 arg0) {
+    Lobby_804062A0 *l;
+    u8 *p;
+
+    lbl_805D7ADC = 0;
+    l = (Lobby_804062A0 *)lbl_805C0038;
+    p = lbl_805C0038;
+    NetMemset(lbl_805C0038, 0, sizeof(Lobby_804062A0));
+    l->state = 0;
+    TLobby__sub_8040059C(p);
+    TLobby__sub_80402CE0(p);
+    TLobby__sub_803FC318(p);
+    TLobby__sub_803FEF4C(p);
+    TLobby__sub_803F9FAC(p);
+    if (l->state == 0) {
+        l->state = 1;
+    }
+    TLobby__sub_803FD958(l->sub);
+    return 0;
+}
+
 s32 TLobby__sub_804062A0(s16 arg0) {
     Lobby_804062A0 *l = (Lobby_804062A0 *)lbl_805C0038;
 
