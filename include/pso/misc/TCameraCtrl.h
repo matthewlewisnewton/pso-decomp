@@ -123,8 +123,10 @@ struct TCameraCtrl : public TObject {
     void *deleting_dtor(s16 arg1);
     static void *construct_view_controller(void *arg0);
     s32 set_field_100(s32 v);
-    static short get_screen_width();
-    static short get_screen_height();
+    // The viewport edges, returned as the full register the callers convert
+    // to float (the bodies are lha/blr, and no caller sign-extends again).
+    static s32 get_screen_width();
+    static s32 get_screen_height();
     static s32 should_update();
     void copy_position_vectors(void *arg1, void *arg2);
     static void update_single_screen();
