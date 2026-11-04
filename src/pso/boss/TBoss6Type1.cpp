@@ -239,7 +239,7 @@ void vec3_cross(void *, void *, void *);
 void normalize_vector(void *);
 f32 project_point_onto_line(void *, void *, void *);
 f32 xyz_distance(void *, void *);
-void TBoss6Type1__sub_802B6C30(Boss_802B6C30 *self);
+void TBoss6Type1__sub_802B6C30(TBoss6Type1 *self);
 s32 TObjFish__sub_8001EDB0(s32, s32);
 s32 get_bml_model(s32, s32);
 
@@ -312,7 +312,7 @@ extern ActionEntry boss6_type1_action_table[];
 u8 *fn_8035648C(s32 arg0, s32 arg1, s32 arg2, f32 farg0);
 extern f32 TBoss6Type1__sword_shot_hit_radii[];
 extern s32 game_difficulty_selection;
-void TBoss6Type1__sub_802B73AC(Boss_802B73AC *self);
+void TBoss6Type1__sub_802B73AC(TBoss6Type1 *self);
 f32 atan2_float(f64, f64);
 extern const f64 TBoss6Type1__data_80471038;
 void request_follow_camera_offsets(void *, void *, int);
@@ -1446,19 +1446,19 @@ void TBoss6Type1::update_beam_attack() {
         TBoss6PlotFalz::apply_radial_effect_to_players(&c, 0xC0, 0xF, 100.0f);
     }
 }
-void TBoss6Type1__sub_802B73AC(Boss_802B73AC *self) {
-    Vec_802B73AC *a;
-    Vec_802B73AC *b;
+void TBoss6Type1__sub_802B73AC(TBoss6Type1 *self) {
+    Vec *a;
+    Vec *b;
     s32 ok;
     s32 flag;
-    Vec_802B73AC p;
-    Vec_802B73AC d;
+    Vec p;
+    Vec d;
     f32 sc;
     f32 t;
     s32 idx;
-    ((TBoss6Type1*)self)->update_trail_points();
-    a = &self->a;
-    b = &self->b;
+    self->update_trail_points();
+    a = &self->node_positions_578[8];
+    b = &self->node_positions_578[9];
     ok = 0;
     if ((b->y < a->y && b->y < 0.0f) || (b->y > a->y && b->y > 0.0f)) {
         ok = 1;
@@ -1483,7 +1483,7 @@ void TBoss6Type1__sub_802B73AC(Boss_802B73AC *self) {
         }
         sc = TBoss6Type1__sword_shot_hit_radii[idx];
         flag = 0;
-        if ((self->f408 & 3) == 0) {
+        if ((self->unk_408 & 3) == 0) {
             flag = 1;
         }
         fn_8035648C((s32)self, (s32)&p, flag, sc);
@@ -1493,42 +1493,42 @@ void TBoss6Type1__sub_802B73AC(Boss_802B73AC *self) {
         }
     }
 }
-void TBoss6Type1__sub_802B6C30(Boss_802B6C30 *self) {
+void TBoss6Type1__sub_802B6C30(TBoss6Type1 *self) {
     s32 n;
-    Vec_802B6C30 *p4;
-    Vec_802B6C30 *p3;
-    Vec_802B6C30 *p2;
-    Vec_802B6C30 *p1;
-    Vec_802B6C30 *pA;
-    Vec_802B6C30 *pB;
+    Vec *p4;
+    Vec *p3;
+    Vec *p2;
+    Vec *p1;
+    Vec *pA;
+    Vec *pB;
     s32 i;
-    Player_802B6C30 *pl;
+    TObjPlayer *pl;
     s32 inside;
-    Vec_802B6C30 *a;
-    Vec_802B6C30 *b;
+    Vec *a;
+    Vec *b;
     s32 j;
     f32 prev;
     f32 t;
-    Vec_802B6C30 pts[5];
+    Vec pts[5];
     Line_802B6C30 line;
-    Vec_802B6C30 A;
-    Vec_802B6C30 B;
-    Vec_802B6C30 mid;
-    Vec_802B6C30 off;
-    Vec_802B6C30 e;
-    Vec_802B6C30 f;
-    Vec_802B6C30 c;
-    Vec_802B6C30 m;
-    Vec_802B6C30 d3;
-    Vec_802B6C30 d0;
-    Vec_802B6C30 q2;
-    Vec_802B6C30 q1;
-    if (0.0f == self->f4DC) {
+    Vec A;
+    Vec B;
+    Vec mid;
+    Vec off;
+    Vec e;
+    Vec f;
+    Vec c;
+    Vec m;
+    Vec d3;
+    Vec d0;
+    Vec q2;
+    Vec q1;
+    if (0.0f == self->m_4dc) {
         return;
     }
     n = TLobby::get_game_mode();
-    b = &self->b;
-    a = &self->a;
+    b = &self->node_positions_578[6];
+    a = &self->node_positions_578[4];
     if (xyz_distance(a, b) < 10.0f) {
         return;
     }
@@ -1543,30 +1543,30 @@ void TBoss6Type1__sub_802B6C30(Boss_802B6C30 *self) {
     p3 = &pts[3];
     p2 = &pts[2];
     p1 = &pts[1];
-    A.x = self->f4DC * (a->x - mid.x) + mid.x;
-    A.y = self->f4DC * (a->y - mid.y) + mid.y;
-    A.z = self->f4DC * (a->z - mid.z) + mid.z;
-    B.x = self->f4DC * (b->x - mid.x) + mid.x;
-    B.y = self->f4DC * (b->y - mid.y) + mid.y;
-    B.z = self->f4DC * (b->z - mid.z) + mid.z;
+    A.x = self->m_4dc * (a->x - mid.x) + mid.x;
+    A.y = self->m_4dc * (a->y - mid.y) + mid.y;
+    A.z = self->m_4dc * (a->z - mid.z) + mid.z;
+    B.x = self->m_4dc * (b->x - mid.x) + mid.x;
+    B.y = self->m_4dc * (b->y - mid.y) + mid.y;
+    B.z = self->m_4dc * (b->z - mid.z) + mid.z;
     for (i = 0; i < n; i++) {
-        pl = ((Player_802B6C30 *)get_player_data__10TObjPlayerFi(i));
+        pl = TObjPlayer::get_player_data(i);
         if (is_active__14TBoss6PlotFalzFv() == 0) {
             continue;
         }
         inside = 1;
         VecCopy(&pts[0], (const Vec *)((void *)VecCopy((p3), (const Vec *)((void *)VecCopy((p4), (pA))))));
         VecCopy(p1, (const Vec *)((void *)VecCopy((p2), (pB))));
-        off.x = (-500.0f) * sin_table_lookup(self->angle);
+        off.x = (-500.0f) * sin_table_lookup(self->rotation.yaw);
         off.y = 0.0f;
-        off.z = (-500.0f) * cos_table_lookup(self->angle);
+        off.z = (-500.0f) * cos_table_lookup(self->rotation.yaw);
         vec3_add_to(p2, &off);
         vec3_add_to(p3, &off);
         for (j = 0; j < 4; j++) {
             VecCopy(&e, &pts[j + 1]);
             subtract_vector(&e, &pts[j]);
             e.y = 0.0f;
-            VecCopy(&f, (const Vec *)&pl->pos);
+            VecCopy(&f, &pl->position);
             subtract_vector(&f, &pts[j]);
             e.y = 0.0f;
             vec3_cross(&e, &f, &c);
@@ -1580,18 +1580,24 @@ void TBoss6Type1__sub_802B6C30(Boss_802B6C30 *self) {
         if (inside == 0) {
             continue;
         }
-        pl->m21(self, ArgPair_802B6C30(TBoss6PlotFalz::rand_vary_count(self->f484, 0.1f)).a, 0, -1, -1);
+        {
+            s32 r = TBoss6PlotFalz::rand_vary_count(self->m_484, 0.1f);
+            DirectAttackPayload payload;
+            payload.kind = 0;
+            payload.power = (f32)r;
+            pl->receive_direct_attack(self, payload, 0, -1, -1);
+        }
         VecCopy(&d0, pA);
         subtract_vector(&d0, pB);
         d0.y = 0.0f;
-        VecCopy(&d3, (const Vec *)&pl->pos);
+        VecCopy(&d3, &pl->position);
         d3.y = 0.0f;
         line.p.x = 0.5f * (A.x + B.x);
         line.p.y = 0.0f;
         line.p.z = 0.5f * (A.z + B.z);
-        line.d.x = -sin_table_lookup(self->angle);
+        line.d.x = -sin_table_lookup(self->rotation.yaw);
         line.d.y = 0.0f;
-        line.d.z = -cos_table_lookup(self->angle);
+        line.d.z = -cos_table_lookup(self->rotation.yaw);
         t = project_point_onto_line(&d3, &line, NULL);
         t = 0.5f * VLEN(&d0) - t;
         if (t <= 0.0f) {
@@ -1607,18 +1613,18 @@ void TBoss6Type1__sub_802B6C30(Boss_802B6C30 *self) {
         m.x *= t;
         m.z *= t;
         VecCopy(&q2, pA);
-        subtract_vector(&q2, &pl->pos);
+        subtract_vector(&q2, &pl->position);
         q2.y = 0.0f;
         VecCopy(&q1, pB);
-        subtract_vector(&q1, &pl->pos);
+        subtract_vector(&q1, &pl->position);
         q1.y = 0.0f;
         t = VLEN(&q1);
         if (VLEN(&q2) > t) {
             m.x *= (-1.0f);
             m.z *= (-1.0f);
         }
-        vec3_add_to(&m, &pl->pos);
-        if (project_actor_to_ground((TObjChara *)self, &m, 0) == 0) {
+        vec3_add_to(&m, &pl->position);
+        if (project_actor_to_ground(self, &m, 0) == 0) {
             m.y = 0.0f;
             if (VLEN(&m) <= 1e-05f) {
                 continue;
