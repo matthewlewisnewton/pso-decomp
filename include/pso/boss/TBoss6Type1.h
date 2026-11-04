@@ -81,7 +81,8 @@ struct TBoss6Type1 : public TObjEnemy {
     u8 unk_50C[0x60];
     Vec m_56C;
     Vec m_578;
-    u8 unk_584[0x48];
+    Vec m_584;
+    u8 unk_590[0x3C];
     Vec sound_pos;
     Boss6EffectPoint trail_points[3];
     Vec m_5FC;
