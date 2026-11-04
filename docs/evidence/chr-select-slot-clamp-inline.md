@@ -2,9 +2,9 @@
 
 `TAdMultiPlyChrSelectGC__sub_802C5F1C` (`0x802C50EC` unit, 236 bytes) fills a
 4×3 grid of selection quads. Each cell clamps the active player slot
-(`TAdMultiPlyChrSelectGC__data_805D67D8`) to 3. The source clamp is the
-straightforward `idx = 3; cnt = slot; if (cnt < 4) idx = cnt;` inside the
-inner loop. Under the unit's normal flags (`GC/2.6`, `-O4,s`, `-inline off`)
+(`TAdMultiPlyChrSelectGC__data_805D67D8`) to 3. The source reads the slot,
+then the home float, then sets `idx` to 3 and replaces it when the slot is
+below 4. Under the unit's normal flags (`GC/2.6`, `-O4,s`, `-inline off`)
 that compiles to the original instruction stream except for one register
 pair.
 

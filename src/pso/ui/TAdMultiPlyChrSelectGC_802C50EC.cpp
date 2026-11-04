@@ -551,6 +551,8 @@ s32 TAdMultiPlyChrSelectGC__sub_802C5F1C(void *arg0, int arg1) {
     S_802C50EC *self = (S_802C50EC *)arg0;
     u32 i;
     u32 j;
+    s32 cnt;
+    s32 idx;
     f32 uu;
     f32 a;
     f32 b;
@@ -559,9 +561,9 @@ s32 TAdMultiPlyChrSelectGC__sub_802C5F1C(void *arg0, int arg1) {
        (u,v) page, with the active-slot column clamped to 3. */
     for (i = 0; i < 4; i++) {
         for (j = 0; j < 3; j++) {
-            s32 idx = 3;
-            s32 cnt = TAdMultiPlyChrSelectGC__data_805D67D8;
+            cnt = TAdMultiPlyChrSelectGC__data_805D67D8;
             uu = TAdMultiPlyChrSelectGC__data_805DE56C;
+            idx = 3;
             if (cnt < 4) {
                 idx = cnt;
             }
