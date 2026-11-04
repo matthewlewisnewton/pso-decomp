@@ -1991,6 +1991,7 @@ force_active:
   - __dt__12TObjEneSharkFv
   - __dt__12TObjMistCtrlFv
   - __dt__12TObjParticleFv
+  - __dt__12TObjQuestColFv
   - __dt__12TObjRaderColFv
   - __dt__12TObjRainCtrlFv
   - __dt__12TQuestThreadFv
@@ -2286,6 +2287,7 @@ force_active:
   - __dt__17TObjEneMe3ShinowaFv
   - __dt__17TObjItemNameEntryFv
   - __dt__17TObjParticleLobbyFv
+  - __dt__17TObjQuestColApcINFv
   - __dt__17TObjVoloptShutterFv
   - __dt__17TObjWarpBossMultiFv
   - __dt__17TPlayerBattleCtrlFv
@@ -4800,6 +4802,8 @@ force_active:
   - dead_update__11TBoss4Type2Fv
   - deallocate_from_fixed_pools
   - debug_draw_key_id__12TOSwitchItemFv
+  - debug_font_texture_i4
+  - debug_font_texture_object
   - debug_print_area_num__17TObjWarpBossMultiFv
   - debug_print_item_box_info__21TObjContainerAbeEnemyFv
   - debug_print_ranges__8TOKurageFv
