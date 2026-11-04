@@ -30,12 +30,12 @@ s32 TBoss6Type2__sub_802BB768();
 
 extern "C" {
 
-void TBoss6Type2::start_death_sequence(u8 *arg0) {
+void TBoss6Type2::start_death_sequence(u8 *) {
     s32 temp_r0;
     u8 *boss6_type2;
     u8 *var_r3;
 
-    var_r3 = arg0;
+    var_r3 = (u8 *)this;
     boss6_type2 = var_r3;
     temp_r0 = *(s32 *)((s8 *)var_r3 + 0x4C8);
     *(s32 *)((s8 *)var_r3 + 0x45C) = temp_r0;
