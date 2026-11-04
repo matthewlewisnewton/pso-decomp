@@ -159,3 +159,8 @@ biases, so a sweep does not also localize unrelated missing symbols.
 The label is not a size waiver and not a reason to link a unit. After a
 write, rebuild and check the original bytes, the section size, the
 relocations, and the DOL hash.
+
+`TBoss6Demo11_TYPE1_DEAD_progress_limit` (0x805DFA68, formerly `lbl_805DFA68`)
+is the original 8-byte `.sdata2` object `{ 179.0f, 0.0f }`. `run_task` reads
+`[0]` as its clamp limit instead of a `179.0f` literal, because a literal would
+emit a second copy; `0.7f` stays a literal. Approved by Matt on 2026-11-04.

@@ -34,7 +34,7 @@ f32 post_translate_matrix(void);
 extern const f32 lbl_805DFA58;
 extern const f32 lbl_805DFA5C;
 extern const f32 lbl_805DFA60;
-__declspec(section ".sdata2") extern const f32 lbl_805DFA68[2];
+__declspec(section ".sdata2") extern const f32 TBoss6Demo11_TYPE1_DEAD_progress_limit[2];
 void *TObjFish__sub_8033D1AC(void *, void *, void *);
 void __dl__7TObjectFPv(void *);
 void __dt__7TObjectFv(void *, int);
@@ -85,8 +85,8 @@ void TBoss6Demo11_TYPE1_DEAD::run_task() {
     Vec_8033CDF8 *p;
     u8 *q;
     Range_8033CDF8 *t;
-    if ((F(f32, 0x40) += 0.7f) > lbl_805DFA68[0]) {
-        F(f32, 0x40) = lbl_805DFA68[0];
+    if ((F(f32, 0x40) += 0.7f) > TBoss6Demo11_TYPE1_DEAD_progress_limit[0]) {
+        F(f32, 0x40) = TBoss6Demo11_TYPE1_DEAD_progress_limit[0];
     }
     switch (F(s32, 0x44)) {
     case 0x98:
@@ -190,8 +190,11 @@ void *TBoss6PlotFalz::create(void *arg0, void *arg1) {
 // lbl_80477F08 is the compiler pool for the signed cast in render_fade_model.
 // Defining it by name emitted a second copy (16-byte .rodata against 8).
 // 0.7f is the same kind of pool for lbl_805DFA64: naming that float changes
-// the registers in run_task. 179.0f and the trailing 0.0f are lbl_805DFA68.
+// the registers in run_task. 179.0f and the trailing 0.0f are TBoss6Demo11_TYPE1_DEAD_progress_limit.
 // Both pool symbols are scope:local; nothing else loads them.
-__declspec(section ".sdata2") extern const f32 lbl_805DFA68[2] = { 179.0f, 0.0f };
+// Original 8-byte .sdata2 pool object at 0x805DFA68 (was lbl_805DFA68):
+// [0] = 179.0f, the clamp limit run_task applies to the +0.7f progress at
+// 0x40; [1] = 0.0f. Read by element so the real symbol, not a literal, is used.
+__declspec(section ".sdata2") extern const f32 TBoss6Demo11_TYPE1_DEAD_progress_limit[2] = { 179.0f, 0.0f };
 
 }
