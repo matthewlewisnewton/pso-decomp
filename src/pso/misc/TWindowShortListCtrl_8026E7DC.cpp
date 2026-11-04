@@ -1,5 +1,12 @@
+// queue_destruction is inline in TObject.h. This unit calls the out-of-line
+// copy that lives with TAdADXlogo, the same call the original constructor makes.
+#define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/SoundEffect.h"
 #include "types.h"
+#include "pso/misc/CharacterAppearance.h"
+#include "pso/player/TObjPlayer.h"
+#include "pso/player/TObjPlayer_801AF2F0.h"
+#include "pso/unk/text_8024ACEC.h"
 #include "pso/misc/TWindowSubItem.h"
 #include "pso/misc/TWindowSubTechnique.h"
 #include "pso/misc/TWindowMenu.h"
@@ -63,8 +70,10 @@ struct Ctrl_8026ECBC {
 struct Buf_8026E884 { s16 h[19]; };
 
 extern "C" {
+// Pointer at 0x805D39E0 to the class-name string at 0x8044F588.
+extern const char *TWindowShortListCtrl__name;
+
 s32 canSetMenuCursorAction(s32, s32, u8, u8);
-s32 get_player_by_client_id(s32);
 void TMainCursor__sub_8013DFC4(u8 *arg0);
 extern s32 lbl_805DD380;
 s32 fn_8002AE08(int);
@@ -115,7 +124,7 @@ s32 TWindowShortListCtrl::is_technique_usable() {
     u32 player;
     u8 *temp_r31;
 
-    player = get_player_by_client_id((s32)((int) (this->m_24)));
+    player = (u32) get_player_by_client_id((s32)((int) (this->m_24)));
     if (player == 0U) {
         return 0;
     }
@@ -156,7 +165,7 @@ void TWindowShortListCtrl::assign_item_to_palette(u32 arg0, u32 arg1) {
     u8 parameter;
     var_r31 = arg0;
     var_r3 = arg1;
-    player = get_player_by_client_id(var_r3);
+    player = (s32) get_player_by_client_id(var_r3);
     if (player != 0) {
         var_r29 = *(u32 *)((s8 *)player + 0x424);
         if (var_r29 != 0U) {
@@ -490,7 +499,7 @@ void *__dt__20TWindowShortListCtrlFv(TWindowShortListCtrl *arg0, s16 arg1) {
 
     if (arg0 != NULL) {
         *(void **)((s8 *)arg0 + 0x18) = __vt__20TWindowShortListCtrl;
-        player = get_player_by_client_id((s32)(arg0->m_24));
+        player = (s32) get_player_by_client_id((s32)(arg0->m_24));
         if ((player != 0) && (has_player_active_menu__11TWindowCtrlFv(arg0->m_24) == 0) && (TWindowCtrl__sub_8024A1A8() == 0)) {
             ((TObjPlayer *)player)->init_parts();
         }
@@ -514,6 +523,43 @@ void *__dt__20TWindowShortListCtrlFv(TWindowShortListCtrl *arg0, s16 arg1) {
         }
     }
     return arg0;
+}
+
+TWindowShortListCtrl::TWindowShortListCtrl(TObject *parent, s32 client_id) : TObject(parent) {
+    m_name = TWindowShortListCtrl__name;
+    this->m_24 = client_id;
+    TObjPlayer *player = (TObjPlayer *)get_player_by_client_id(this->m_24);
+    if (player == NULL) {
+        queue_destruction();
+        return;
+    }
+    CharacterAppearanceFields *appearance = (CharacterAppearanceFields *)player->name;
+    if (appearance == NULL) {
+        queue_destruction();
+        return;
+    }
+    this->m_1c = get_card_window_flags(this->m_24);
+    if (this->m_1c == 2 && is_technique_usable() == 0) {
+        this->m_1c++;
+        if (this->m_1c >= 4) {
+            this->m_1c -= 4;
+        }
+    }
+    if ((appearance->classFlags & 0x10) && this->m_1c == 3) {
+        this->m_1c++;
+        if (this->m_1c >= 4) {
+            this->m_1c -= 4;
+        }
+    }
+    sub_8026EA48();
+    this->m_1e = 0;
+    this->m_2c = 0;
+    this->m_30 = 0;
+    this->m_34 = 0;
+    this->m_38 = (u32)-1;
+    begin_player_keyboard_hold(this->m_24);
+    TWindowCtrl::set_flag_active();
+    player->reset_equip_slots();
 }
 
 void TWindowShortListCtrl::set_card_window_flags(s32 arg0, s32 arg1) {

@@ -3,6 +3,7 @@
 #include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TWindowLockOn.h"
 #include "pso/misc/TWindowCtrl.h"
+#include "pso/misc/TWindowShortListCtrl.h"
 #include "pso/TObject.h"
 #include "pso/misc/TKeyBoardControl.h"
 #include "pso/misc/TLobby.h"
@@ -49,10 +50,8 @@ s32 fn_8002AE08(void *p);
 s32 TWindowShortListCtrl__check_controller_button(void *, int);
 s32 is_on_current_screen__11TCameraCtrlFv(void *, int);
 u16 get_current_target_id__10TObjPlayerFv();
-void *__nw__7TObjectFUl(int);
 s32 is_player_input_active(s32);
 int TWindowCtrl__sub_8024C7D4(void *p);
-void *TWindowShortListCtrl__ct(void *, void *, int);
 extern Pad_8024DCE8 controller_input_state[];
 u32 is_action_active__10TObjPlayerFv(void *);
 int TWindowMainMenu__sub_8024E3F4(void *p);
@@ -115,7 +114,6 @@ void TWindowCtrl::update_short_list_request() {
     s32 idx;
     u16 id;
     u8 *btn;
-    void *o;
     if (*(void **)((s8 *)this + 0x3C) != NULL && ((TObject *)(*(void **)((s8 *)this + 0x3C)))->all_parents_unqueued_for_destruction() == 0) {
         *(void **)((s8 *)this + 0x3C) = NULL;
     }
@@ -138,11 +136,7 @@ void TWindowCtrl::update_short_list_request() {
             } else if (*(void **)((s8 *)this + 0x3C) == NULL && is_enabled() == 0) {
                 if (is_on_current_screen__11TCameraCtrlFv(btn = controller_input_state[idx].btn, fn_8002AE08((void *)(*(s32 *)&this->m_24))) != 0 &&
                     TWindowShortListCtrl__check_controller_button(btn, 0x200) != 0) {
-                    o = __nw__7TObjectFUl(0x3C);
-                    if (o != NULL) {
-                        o = TWindowShortListCtrl__ct(o, this, *(s32 *)&this->m_24);
-                    }
-                    *(void **)((s8 *)this + 0x3C) = o;
+                    *(void **)&this->m_3c = new TWindowShortListCtrl(this, (s32)this->m_24);
                 }
             }
         }
