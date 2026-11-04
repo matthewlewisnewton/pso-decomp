@@ -116,6 +116,7 @@ static float rsmpTab12khz[512] = {
 
 static const double i2fMagic = 4.503601774854144E15;
 
+#ifdef __MWERKS__
 asm void do_src1(void *src) {
 #include "orig_asm/musyx/runtime/Chorus/chorus_fx/do_src1.inc"
 }
@@ -123,6 +124,100 @@ asm void do_src1(void *src) {
 asm void do_src2(register void *src) {
 #include "orig_asm/musyx/runtime/Chorus/chorus_fx/do_src2.inc"
 }
+#else
+/* Scalar fallback for the MusyX chorus resamplers. The GameCube bodies stay
+ * the vendor assembly under __MWERKS__. Cross-checked with
+ * https://github.com/AxioDL/musyx/blob/717404d77c17a95dd101bbe737d0f9549ab600e6/src/musyx/runtime/Chorus/chorus_fx.c
+ * and https://github.com/doldecomp/dolsdk2001/blob/main/src/axfx/chorus.c
+ * (AXFXChorus do_src1/do_src2). Those C fallbacks index rsmpTab12khz with
+ * (posLo >> 9); this binary uses `rlwinm rT, posLo, 7, 21, 27`, a byte
+ * offset into the coefficient table. fctiwz truncates toward zero.
+ * The object passed here is ChorusSrcInfo (trigger at +0x1C, target at +0x20);
+ * Src_803BF884 is only the prefix the callback names.
+ */
+static const f32 *chorus_rsmp_coef(u32 pos_lo) {
+    u32 byte_off = ((pos_lo << 7) | (pos_lo >> 25)) & 0x7F0u;
+    return (const f32 *)((const u8 *)rsmpTab12khz + byte_off);
+}
+
+static s32 chorus_dot4(f32 s0, f32 s1, f32 s2, f32 s3, const f32 *coef) {
+    f32 acc = s0 * coef[0];
+    acc = s1 * coef[1] + acc;
+    acc = s2 * coef[2] + acc;
+    acc = s3 * coef[3] + acc;
+    return (s32)acc;
+}
+
+void do_src1(void *src_in) {
+    ChorusSrcInfo_803BFBF0 *src = (ChorusSrcInfo_803BFBF0 *)src_in;
+    f32 s0 = (f32)src->old[0];
+    f32 s1 = (f32)src->old[1];
+    f32 s2 = (f32)src->old[2];
+    f32 s3 = (f32)src->smpBase[src->posHi];
+    u32 i;
+
+    for (i = 0; i < 160; i++) {
+        u32 old_pos = src->posLo;
+        src->dest[i] = chorus_dot4(s0, s1, s2, s3, chorus_rsmp_coef(src->posLo));
+        src->posLo += src->pitchLo;
+        if (src->posLo < old_pos) {
+            src->posHi += 1;
+            if (src->posHi == src->trigger) {
+                src->posHi = src->target;
+            }
+            s0 = s1;
+            s1 = s2;
+            s2 = s3;
+            s3 = (f32)src->smpBase[src->posHi];
+        }
+    }
+    src->old[0] = (s32)s0;
+    src->old[1] = (s32)s1;
+    src->old[2] = (s32)s2;
+}
+
+void do_src2(void *src_in) {
+    ChorusSrcInfo_803BFBF0 *src = (ChorusSrcInfo_803BFBF0 *)src_in;
+    f32 s0 = (f32)src->old[0];
+    f32 s1 = (f32)src->old[1];
+    f32 s2 = (f32)src->old[2];
+    f32 s3 = (f32)src->smpBase[src->posHi];
+    u32 i;
+
+    for (i = 0; i < 160; i++) {
+        u32 old_pos = src->posLo;
+        f32 next;
+        src->dest[i] = chorus_dot4(s0, s1, s2, s3, chorus_rsmp_coef(src->posLo));
+        src->posLo += src->pitchLo;
+        src->posHi += 1;
+        if (src->posLo < old_pos) {
+            if (src->posHi == src->trigger) {
+                src->posHi = src->target;
+            }
+            next = (f32)src->smpBase[src->posHi];
+            src->posHi += 1;
+            if (src->posHi == src->trigger) {
+                src->posHi = src->target;
+            }
+            s0 = s2;
+            s1 = s3;
+            s2 = next;
+            s3 = (f32)src->smpBase[src->posHi];
+        } else {
+            if (src->posHi == src->trigger) {
+                src->posHi = src->target;
+            }
+            s0 = s1;
+            s1 = s2;
+            s2 = s3;
+            s3 = (f32)src->smpBase[src->posHi];
+        }
+    }
+    src->old[0] = (s32)s0;
+    src->old[1] = (s32)s1;
+    src->old[2] = (s32)s2;
+}
+#endif
 
 #pragma push
 #pragma peephole off
