@@ -95,7 +95,6 @@ struct TLobby : public TObject {
     static s32 load_bml_exec(u8 *arg0, u8 *arg1);
     static void free_chr_select_data();
     static void init_download_buffers();
-    void load_bin_model_callback();
     s32 load_bin_motion(s32 arg1, s32 arg2);
     static s32 get_game_mode();
     void copy_header(void *arg1);

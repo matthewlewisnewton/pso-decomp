@@ -3,6 +3,7 @@
 #include "pso/system/BmlResourceDescriptor.h"
 #include "types.h"
 #include "pso/misc/TLobby_8001EF5C.h"
+#include "pso/misc/TLobby_800FA2A0.h"
 #include "pso/system/memory.h"
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TGStream.h"
@@ -466,8 +467,8 @@ void load_bin_motion_callback(void *arg0) {
 
 struct Obj_8001F8D8;
 
-void TLobby::load_bin_model_callback() {
-    Lobby_8001FA1C *self = (Lobby_8001FA1C *)this;
+void load_bin_model_callback(void *request) {
+    Lobby_8001FA1C *self = (Lobby_8001FA1C *)request;
     char name[0x20];
     Params_8001FA1C params;
     u32 i;
@@ -793,4 +794,126 @@ BmlResource::BmlResource(s32 kind, BmlResourceDescriptor *descriptor, s32 arg3, 
         TLobby::add_named_entry((s32)this, (s32)descriptor->archive_filename);
     }
     return;
+}
+
+// Second initializer for the BmlResource object (0x8002058C). Strings at the
+// calls are "TBinModel_NORMAL", "TBinModel_REQ", and "TBinModel:Too Many Files."
+// Linked callers use the placeholder name TLobby__sub_8002058C.
+extern char lbl_80434E4C[];
+extern char lbl_80434E60[];
+
+struct BinModelSlot {
+    s32 flags;
+    s32 pad4;
+    s32 model;
+    s32 texture;
+};
+struct BinMotionSlot {
+    s32 unused;
+    s32 data;
+};
+
+struct TBinModel {
+    u32 flags;
+    s32 f4;
+    s32 f8;
+    s32 fC;
+    s32 f10;
+    s32 f14;
+    s32 handles[0x100];
+    s32 nHandles;
+    s32 on_loaded;
+    s32 on_loaded_arg;
+    s32 load_buffer;
+    u8 pad428[4];
+    BinModelSlot *ents16;
+    BinMotionSlot *ents8;
+    s32 nEnts16;
+    s32 nEnts8;
+
+    void load_models(u32 *list) {
+        s32 i;
+        for (i = 0; *list != 0; list++, i++) {
+            ((TLobby *)this)->load_bin_model(*list, i);
+        }
+    }
+    void load_motions(u32 *list) {
+        s32 i;
+        for (i = 0; *list != 0; list++, i++) {
+            ((TLobby *)this)->load_bin_motion(*list, i);
+        }
+    }
+    void request_motions(u32 *list) {
+        Params_8001FA1C req;
+        s32 handle;
+        s32 i;
+        for (i = 0; *list != 0; list++, i++) {
+            req.a = (Ctx_8001FA1C *)&ents8[i].data;
+            req.b = (s32)this;
+            create_named_entry__6TLobbyFiiUiiPv(*list, lobby_download_buffer, (u32)&load_bin_motion_callback, (s32)&req,
+                                                (void **)&handle);
+            TLobby__sub_8001EDD8(this, handle);
+        }
+    }
+};
+
+extern "C" TBinModel *TLobby__sub_8002058C(TBinModel *self, s32 kind, u32 *models, u32 *motions, s32 on_loaded,
+                                          s32 on_loaded_arg, s32 load_buffer) {
+    Lobby_8001FA1C req;
+    s32 handle;
+    u32 *p;
+    s32 i;
+    ((BmlResource *)self)->reset();
+    self->flags = kind;
+    for (i = 0; i < 0x100; i++) {
+        self->handles[i] = 0;
+    }
+    self->on_loaded = on_loaded;
+    self->on_loaded_arg = on_loaded_arg;
+    self->load_buffer = load_buffer;
+    for (p = models; *p != 0; p++) {
+        self->nEnts16++;
+    }
+    if (self->nEnts16 > 0) {
+        self->ents16 = (BinModelSlot *)::operator new[](self->nEnts16 * 16);
+        for (i = 0; i < self->nEnts16; i++) {
+            self->ents16[i].flags = 0;
+            self->ents16[i].model = 0;
+            self->ents16[i].texture = 0;
+        }
+    }
+    for (p = motions; *p != 0; p++) {
+        self->nEnts8++;
+    }
+    if (self->nEnts8 > 0) {
+        self->ents8 = (BinMotionSlot *)::operator new[](self->nEnts8 * 8);
+        for (i = 0; i < self->nEnts8; i++) {
+            self->ents8[i].data = 0;
+        }
+    }
+    if (self->flags & 1) {
+        TLobby::tmp_buf_use_req(lbl_80434E4C);
+        self->load_models(models);
+        self->load_motions(motions);
+        ((TLobby *)lbl_80434E4C)->tmp_buf_release();
+        ((BmlResource *)self)->set_flag_and_notify();
+    } else if (self->flags & 2) {
+        TLobby::tmp_buf_use_req(lbl_80434C38);
+        if (self->nEnts16 * 2 + self->nEnts8 >= 0x100) {
+            TLobby::debug_print((s32)lbl_80434E60);
+        }
+        for (p = models, i = 0; *p != 0; p++, i++) {
+            req.f0 = *p;
+            req.f4 = (s32 *)&self->ents16[i].model;
+            req.f8 = (s32 *)&self->ents16[i].texture;
+            req.fC = (Ctx_8001FA1C *)self;
+            req.f10 = (s32)&self->ents16[i];
+            req.f14 = ((TLobby *)*p)->get_resource_file_size();
+            create_named_entry__6TLobbyFiiUiiPv(*p, lobby_download_buffer, (u32)&load_bin_model_callback, (s32)&req,
+                                                (void **)&handle);
+            TLobby__sub_8001EDD8(self, handle);
+        }
+        self->request_motions(motions);
+    }
+    return self;
 }
