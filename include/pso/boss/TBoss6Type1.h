@@ -16,6 +16,15 @@ struct Boss6Anim {
     Boss6Motion *prev_motion;
     f32 prev_t;
 };
+struct Boss6NodeWords {
+    s32 x;
+    s32 y;
+    s32 z;
+};
+union Boss6NodePos {
+    Vec v;
+    Boss6NodeWords w;
+};
 
 struct TBoss6Type1 : public TObjEnemy {
     virtual ~TBoss6Type1();
@@ -93,7 +102,8 @@ struct TBoss6Type1 : public TObjEnemy {
     // Node positions ModelNodePositionCapture writes for draw_callback_lists[1].
     // [1] anchors the roar sound and radar marker, [7] is where the flash model
     // is drawn, [8..10] are the trail points (the beam runs from [8] to [9]).
-    Vec node_positions_578[11];
+    // The beam trail copies node [9] with integer loads, then stores 0 into y.
+    Boss6NodePos node_positions_578[11];
     // Node positions for draw_callback_lists[0].
     Vec node_positions_5FC[5];
     Boss6EffectPoint effect_points[2];
@@ -244,5 +254,6 @@ typedef char TBoss6Type1_receiver_offset[(offsetof(TBoss6Type1,effect_point_rece
 typedef char TBoss6Type1_points_offset[(offsetof(TBoss6Type1,effect_points)==0x638)?1:-1];
 typedef char TBoss6Type1_trail_receiver_offset[(offsetof(TBoss6Type1,trail_point_receiver)==0x400)?1:-1];
 typedef char TBoss6Type1_map_csn_offset[(offsetof(TBoss6Type1,map_csn)==0x680)?1:-1];
+typedef char Boss6NodePos_size[(sizeof(Boss6NodePos)==0xC)?1:-1];
 typedef char TBoss6Type1_node_positions_offset[(offsetof(TBoss6Type1,node_positions_578)==0x578)?1:-1];
 #endif
