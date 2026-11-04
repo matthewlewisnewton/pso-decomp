@@ -75,7 +75,6 @@ void *__vt__17TChCrTagOccHeader[] = {
 #define get_selected_char__15TChCrCharSelectFv (*(s32 (*)(void *))&get_selected_char__15TChCrCharSelectFv)
 
 u8 * __ct__8TChCrTagFP7TObjectPv(void *, s32);
-void *__ct__17TChCrTagOccHeaderFv(void *arg0);
 
 extern const f32 lbl_805DDECC;
 extern const f32 lbl_805DDED0;
@@ -103,7 +102,5 @@ void *create_ch_cr_tag_occ_header(void *arg0) {
     }
     return o;
 }
-
-void create_all_ch_cr_tag_headers(void);
 
 void create_all_ch_cr_tag_headers(void) { { int i; for (i = 0; i < 15; i++) { ((int (*)(void *))create_ch_cr_tag_occ_header)((void*)i); } } }
