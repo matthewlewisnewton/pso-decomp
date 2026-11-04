@@ -130,10 +130,10 @@ extern s32 lbl_80470FAC[];
 void TBoss6Type1__sub_802B4B04(TBoss6Type1 *arg0);
 void TBoss6Type1__sub_802B5598(TBoss6Type1 *self, Vec *out);
 s32 TBoss6Type1__sub_802B6060(TBoss6Type1 *arg0);
-extern const Vec lbl_80470FFC;
-extern const Vec lbl_80471008;
-extern const Vec lbl_80470FE4;
-extern const Vec lbl_80470FF0;
+extern Vec lbl_80470FFC;
+extern Vec lbl_80471008;
+extern Vec lbl_80470FE4;
+extern Vec lbl_80470FF0;
 void TBoss6Type1__sub_802B5970(TBoss6Type1 *arg0);
 extern RecoveredGlobal_802B7E88_lbl_80470CEC TBoss6Type1__param_table;
 extern const s32 lbl_805DE3A8;
@@ -1726,7 +1726,7 @@ void TBoss6Type1::sub_802B5CB4() {
         }
         break;
     default:
-        TBoss6Type1::request_jittered_camera((void *)((void *)((s32) this)), NULL, NULL, 0xFFFF);
+        TBoss6Type1::request_jittered_camera(this, NULL, NULL, 0xFFFF);
         break;
     }
 }
@@ -1810,12 +1810,11 @@ void TBoss6Type1__sub_802B59A8(TBoss6Type1 *self) {
     TBoss6Type1::fire_at_all_players(self, 0.0f);
 }
 void TBoss6Type1__sub_802B5970(TBoss6Type1 *arg0) {
-    TBoss6Type1::request_jittered_camera(arg0, (void *)((void *)&lbl_80470FE4), (void *)((void *)&lbl_80470FF0), 0xFFFF);
+    TBoss6Type1::request_jittered_camera(arg0, &lbl_80470FE4, &lbl_80470FF0, 0xFFFF);
 }
 
 void TBoss6Type1::request_default_jittered_camera() {
-    s32 arg0 = (s32)this;
-    TBoss6Type1::request_jittered_camera((void *)arg0, (void *)((void *)&lbl_80470FFC), (void *)((void *)&lbl_80471008), 0xFFFF);
+    TBoss6Type1::request_jittered_camera(this, &lbl_80470FFC, &lbl_80471008, 0xFFFF);
 }
 s32 TBoss6Type1::request_jittered_camera(void *arg0, void *arg1, void *arg2, int arg3) {
     f32 dist;
