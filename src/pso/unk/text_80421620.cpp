@@ -194,7 +194,16 @@ s16 TLobby__sub_80423064(s16 arg0, s32 arg1);
 s16 TLobby__sub_8040F454(s32, s32, s32, s16);
 s16 TLobby__sub_80412CA4(void *, s16, s16, s16, s32);
 s16 TLobby__sub_8042315C(s16 arg0, P_8042315C *p);
-u8 lbl_805C1E00[0x1194];
+// BOOTP header is 236 (0xEC) bytes; the reply packet sits at 0x5DC and its options at 0x6C8.
+struct DhcpClientBuffers {
+    u8 outgoing[0x5DC];
+    struct {
+        u8 bootp[0xEC];
+        u8 options[0x1194 - 0x6C8];
+    } reply;
+};
+typedef char DhcpClientBuffers_size[sizeof(DhcpClientBuffers) == 0x1194 ? 1 : -1];
+DhcpClientBuffers lbl_805C1E00;
 u8 lbl_805C2F94[0x100];
 u8 dhcp_hostname[0x2C];
 extern u8 lbl_805D7B1C[6];
@@ -203,7 +212,7 @@ extern u32 lbl_805D7B50;
 extern u32 lbl_805D7B58;
 extern u32 dhcp_last_tick_ms;
 extern volatile s32 dhcp_state;
-extern u8 dhcp_server_id[4];
+extern s32 dhcp_server_id;
 extern s32 lbl_805D7B28;
 s32 set_slot_state_and_resume__6TLobbyFv(s32 idx, void (*cb)(s16, s16), s16 arg2);
 s32 set_thread_state_and_resume__6TLobbyFv(s32 idx, void (*cb)(s16, s16), s16 arg2);
@@ -1333,7 +1342,7 @@ s32 TLobby::build_dhcp_release() {
     p += 6;
     *p++ = 0x36;
     *p++ = 4;
-    NetMemcpy(p, dhcp_server_id, 4);
+    NetMemcpy(p, &dhcp_server_id, 4);
     p += 4;
     len = NetStringLength((const char*)dhcp_hostname);
     if (len != 0) {
@@ -1384,7 +1393,7 @@ s32 TLobby::dhcp_build_packet() {
     if (dhcp_state != 4 && dhcp_state != 5) {
         *p++ = 0x36;
         *p++ = 4;
-        NetMemcpy(p, dhcp_server_id, 4);
+        NetMemcpy(p, &dhcp_server_id, 4);
         p += 4;
     }
     if (lbl_805D7B58 != 0) {
@@ -1475,7 +1484,6 @@ extern s32 lbl_805D7B90;
 extern u32 lbl_805D7B94;
 extern u32 lbl_805D7B98;
 extern s32 lbl_805D7B9C;
-extern u8 lbl_805C1E00[];
 s32 TLobby__sub_804250A8(s32);
 s32 TLobby__sub_80424FE0(void);
 s32 dhcp_handle_reply__6TLobbyFsPv(s16, void *);
@@ -1518,7 +1526,7 @@ s32 TLobby__sub_80423C04(void) {
         } else if (now - lbl_805D7B98 < 300) {
             break;
         }
-        len = ((TLobby *)lbl_805C1E00)->build_dhcp_release();
+        len = ((TLobby *)&lbl_805C1E00)->build_dhcp_release();
         src[0] = 4;
         dst[0] = 4;
         src[1] = 0;
@@ -1526,7 +1534,7 @@ s32 TLobby__sub_80423C04(void) {
         sock = dhcp_socket;
         len = len > 300 ? len : 300;
         buf.len = len;
-        buf.data = (s32)lbl_805C1E00;
+        buf.data = (s32)&lbl_805C1E00;
         if (TUdpSocket__sub_80421BAC(sock, src, dst, 0x43, NULL, 1, &buf) < 0) {
             TLobby__sub_80421B3C(dhcp_socket);
             dhcp_socket = -1;
@@ -1558,15 +1566,10 @@ s32 TLobby__sub_80423C04(void) {
 
 s32 TLobby__sub_80423E80(void) {
     s32 now;
-    // Uninitialized. MWCC only builds the original -0x58 frame with this slot
-    // between `now` and the UDP buffer, plus the same 12-byte tail the release
-    // step already reserves under `src`.
-    u32 slot[1];
     UdpBuf_80421BAC buf;
     u32 dst[5];
     u32 src[5];
     s32 len;
-    u32 pad[3];
     s16 sock;
     s32 server;
     TLobby::get_time_ms(&now);
@@ -1581,10 +1584,10 @@ s32 TLobby__sub_80423E80(void) {
         }
         lbl_805D7B0C = 1;
     case 1:
-        len = ((TLobby *)lbl_805C1E00)->dhcp_build_packet();
+        len = ((TLobby *)&lbl_805C1E00)->dhcp_build_packet();
         dhcp_reply_received = 0;
         if (dhcp_state == 4) {
-            server = *(s32 *)dhcp_server_id;
+            server = dhcp_server_id;
         } else {
             server = -1;
         }
@@ -1595,7 +1598,7 @@ s32 TLobby__sub_80423E80(void) {
         sock = dhcp_socket;
         len = len > 300 ? len : 300;
         buf.len = (s16)len;
-        buf.data = (s32)lbl_805C1E00;
+        buf.data = (s32)&lbl_805C1E00;
         if (TUdpSocket__sub_80421BAC(sock, src, dst, 0x43, NULL, 1, &buf) < 0) {
             TLobby__sub_80421B3C(dhcp_socket);
             dhcp_socket = -1;
@@ -1628,7 +1631,7 @@ s32 TLobby__sub_80423E80(void) {
     case 2:
         if (dhcp_reply_received != 0) {
             if (dhcp_state == 4 || dhcp_state == 5) {
-                ((TLobby *)(lbl_805C1E00 + 0x6C8))->parse_dhcp_lease_times();
+                ((TLobby *)&lbl_805C1E00.reply.options)->parse_dhcp_lease_times();
                 dhcp_lease_elapsed = 0;
             }
             TLobby__sub_80421B3C(dhcp_socket);
@@ -1636,7 +1639,7 @@ s32 TLobby__sub_80423E80(void) {
             if (dhcp_state == 1 || dhcp_state == 2 || dhcp_state == 6) {
                 lbl_805D7B14 = TLobby__sub_804250A8(0);
             }
-            TLobby__sub_80423440(lbl_805C1E00 + 0x5DC);
+            TLobby__sub_80423440((u8 *)&lbl_805C1E00.reply);
             lbl_805D7B0C = 0;
             dhcp_state = 3;
         } else if (dhcp_state == 2) {
@@ -1678,14 +1681,10 @@ s32 TLobby__sub_8042422C(void) {
     P_8042315C opt;
     P_8042315C opt_retry;
     u32 bind_addr[5];
-    // Uninitialized. The 4-byte slot keeps the UDP buffer 8-aligned under
-    // bind_addr, and the 16-byte tail is the original gap below `src`.
-    u32 slot[1];
     UdpBuf_80421BAC buf;
     u32 dst[5];
     u32 src[5];
     s32 len;
-    u32 pad[4];
     s16 sock;
     TLobby::get_time_ms(&now);
     switch (lbl_805D7B0C) {
@@ -1728,7 +1727,7 @@ s32 TLobby__sub_8042422C(void) {
         lbl_805D7B0C = 1;
         lbl_805D7B88 = lbl_805D7B74;
     case 1:
-        len = ((TLobby *)lbl_805C1E00)->build_dhcp_discover_packet();
+        len = ((TLobby *)&lbl_805C1E00)->build_dhcp_discover_packet();
         src[0] = 4;
         dst[0] = 4;
         dhcp_reply_received = 0;
@@ -1737,7 +1736,7 @@ s32 TLobby__sub_8042422C(void) {
         sock = dhcp_socket;
         len = len > 300 ? len : 300;
         buf.len = (s16)len;
-        buf.data = (s32)lbl_805C1E00;
+        buf.data = (s32)&lbl_805C1E00;
         if (TUdpSocket__sub_80421BAC(sock, src, dst, 0x43, NULL, 1, &buf) < 0) {
             TLobby__sub_80421B3C(dhcp_socket);
             dhcp_socket = -1;
