@@ -38,7 +38,7 @@ struct TBoss6Type1 : public TObjEnemy {
     s32 action_timer;
     s32 m_414;
     s32 unk_418;
-    u8 m_41c;
+    s8 m_41c;
     u8 unk_41D[0x3];
     Vec m_420;
     Vec m_42C;

@@ -75,9 +75,6 @@ struct Obj_802B4D38 { u8 pad[0x4f8]; s32 arr[4]; };
 
 struct Obj_802B5100 { u8 pad[0x3c]; f32 f3c; u8 pad2[0x424 - 0x40]; f32 f424; };
 
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 struct Blk_802B8624 { s32 a; s32 b; s32 rest[14]; };
 
 struct Obj_802B5DD4 { u8 pad[0x4e0]; s32 f4e0; s32 f4e4; };
@@ -1187,7 +1184,20 @@ Blk_802B8624 *copy_block__11TBoss6Type1FPvPv(Blk_802B8624 *d, Blk_802B8624 *s) {
     return d;
 }
 
-void TBoss6Type1::copy_transform(void* q) { *(u32 *)&this->m_name = *(u32*)((char*)q + 0x0); (*(f32 *)&this->m_flags) = *(f32*)((char*)q + 0x4); *(f32 *)&this->m_prev = *(f32*)((char*)q + 0x8); (*(f32 *)&this->m_next) = *(f32*)((char*)q + 0xc); *(f32 *)&this->m_up = *(f32*)((char*)q + 0x10); (*(u32 *)&this->m_down) = *(u32*)((char*)q + 0x14); *(f32*)((char*)this + 0x18) = *(f32*)((char*)q + 0x18); }
+struct Boss6TransformWords {
+    u32 word0;
+    f32 word4;
+    f32 word8;
+    f32 wordC;
+    f32 word10;
+    u32 word14;
+    f32 word18;
+};
+
+void TBoss6Type1::copy_transform(void* q) {
+    Boss6TransformWords* dst = (Boss6TransformWords*)this;
+    *dst = *(Boss6TransformWords*)q;
+}
 
 void TBoss6Type1__sub_802B854C(void *p) {
     Boss_802B82B8 *self = (Boss_802B82B8 *)p;
@@ -2224,7 +2234,12 @@ void TBoss6Type1::decode_polar_position(u8 *arg1) {
   out->y = temp_f30;
 }
 
-void TBoss6Type1::handle_6xa4_action(u8 * _w1) { ((TBoss6Type1 *)((char*)this + 0x1))->decode_polar_position(_w1); }
+void TBoss6Type1::handle_6xa4_action(u8 * _w1) {
+    // this points at OlgaFlowActionMsg::action; the polar bytes are the next three.
+    struct ActionBytes { s8 action; s8 args[3]; };
+    ActionBytes *bytes = (ActionBytes *)this;
+    ((TBoss6Type1 *)bytes->args)->decode_polar_position(_w1);
+}
 void calc_grid_cell_position__11TBoss6Type1FPvPv(Boss_802B5648 *o, Vec_802B5648 *out) {
     u32 t = o->f374;
     s8 b = o->f41C;
@@ -2249,7 +2264,7 @@ void TBoss6Type1__sub_802B5598(void *arg0, void *arg1) {
     u32 var_r5;
     {
         s32 k = (s32)self->m_374 * 0x12D687;
-        s8 c = *(s8 *)&self->m_41c;
+        s8 c = self->m_41c;
         temp_r5 = c * k;
     }
     var_r4 = ((temp_r5 & 3) * 0x1800) + 0x2000;
