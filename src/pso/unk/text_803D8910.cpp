@@ -70,6 +70,21 @@ void TObjPlayer::invert_matrix_in_place(u32 arg0) {
     PSMTXInverse((MtxP)arg0, (MtxP)arg0);
 }
 
+// 0x803D8A18. a × b into out. The return is a rough magnitude,
+// fres(frsqrte(len^2)); the y/z squares are double fmadds.
+extern "C" f32 vec3_cross(const Vec *a, const Vec *b, Vec *out) {
+    f32 cx = a->y * b->z - a->z * b->y;
+    out->x = cx;
+    f32 cy = a->z * b->x - a->x * b->z;
+    out->y = cy;
+    f32 cz = a->x * b->y - a->y * b->x;
+    out->z = cz;
+    f64 mag = (f64)(cx * cx);
+    mag += (f64)cy * cy;
+    mag += (f64)cz * cz;
+    return __fres(__frsqrte(mag));
+}
+
 void rotate_matrix_zyx(void *m, s32 x, s32 y, s32 z) {
     if (z != 0) {
         rotate_matrix_z((MtxP)m, z);

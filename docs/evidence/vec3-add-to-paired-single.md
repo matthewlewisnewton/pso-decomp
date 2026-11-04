@@ -36,16 +36,10 @@ The definition is an MWCC `asm void` with `nofralloc`, guarded by
 asm and matches all 36 bytes. A port compiles the scalar branch.
 
 `vec3_dot` (`0x803D89C0`) and `vec3_cross` (`0x803D8A18`) are not part of this
-exception. They are scalar `lfs` / `fmadds` / `fmsubs` / `frsqrte` / `fres`
-and stay unmatched: GC/2.6's register allocator does not keep the original
-registers, and `__fres(__frsqrte(...))` inserts an `frsp` the original does
-not have. No scheduling pragma and no asm was added for them.
+exception. They are scalar `lfs` / `fmadds` / `fmsubs` / `frsqrte` / `fres`,
+written as plain C in the same file. That C is not byte-exact: GC/2.6's
+register allocator does not keep the original registers, and
+`__fres(__frsqrte(...))` inserts an `frsp` the original does not have. No
+scheduling pragma and no asm was added for them.
 
-## Entry for `docs/porting-exceptions.md` (lands with #315)
-
-That register is not on this branch. Do not copy it here. When #315's
-register is updated, add:
-
-| File | Function | What | Why | Port should |
-|---|---|---|---|---|
-| `src/pso/unk/text_803D8910.cpp` | `vec3_add_to` | `asm void` under `#ifdef __MWERKS__`, scalar `dst += src` in the `#else` | Approved by Matt on 2026-11-04 (11:14 AM PT), same one-time paired-single exception as #281. In-place `PSVECAdd`-style D-form `psq_l`/`psq_st` that GC/2.6 cannot emit from C. Evidence: `docs/evidence/vec3-add-to-paired-single.md`. | Compile the scalar fallback. |
+The register entry for `vec3_add_to` is in `docs/porting-exceptions.md`.

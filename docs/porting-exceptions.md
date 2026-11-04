@@ -15,15 +15,15 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (main at 7ccb07696, 2026-11-04)
+## Summary (working tree, 2026-11-04)
 
 | Category | Hits | Files / units |
 |---|---:|---:|
-| Assembly (`asm` + `orig_asm` include) | 4 functions | 2 |
-| MWCC intrinsics | 83 | 54 |
+| Assembly (`asm` + `orig_asm` include) | 9 | 3 |
+| MWCC intrinsics | 85 | 55 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 71 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,871 | 886 |
-| Per-unit compiler overrides in `configure.py` | 141 | 141 |
+| CodeWarrior pragmas (excluding push/pop) | 5,865 | 885 |
+| Per-unit compiler overrides in `configure.py` | 145 | 145 |
 | Approved regressions | 0 on main, 1 pending (#291) | |
 
 ## Rule for assembly
@@ -39,13 +39,14 @@ asm always has an entry in this register.
 |---|---|---|---|---|
 | `src/musyx/runtime/Chorus/chorus_fx.c` | `do_src1`, `do_src2` | `asm` body from `orig_asm` include | Library code shipped as assembly; covered by the CONTRIBUTING `orig_asm` rule for vendor assembly. No specific evidence doc. | Write scalar C fallback (none exists yet); MusyX upstream C sources are a reference. |
 | `src/musyx/runtime/StdReverb/reverb.c` | `DoCrossTalk`, `HandleReverb` | `asm` body from `orig_asm` include | Same as above. | Same: scalar C fallback needed (none exists yet). |
+| `src/pso/unk/text_803D8910.cpp` | `vec3_add_to` | `asm void` under `#ifdef __MWERKS__`, scalar `dst += src` in the `#else` | Approved by Matt on 2026-11-04 (11:14 AM PT), same one-time paired-single exception as #281. In-place D-form `psq_l`/`psq_st` that GC/2.6 cannot emit from C. Evidence: [vec3-add-to-paired-single.md](evidence/vec3-add-to-paired-single.md). | Compile the scalar fallback. |
 
-These four predate the scalar-fallback rule and have **no C fallback**.
+The MusyX four predate the scalar-fallback rule and have **no C fallback**. `vec3_add_to` ships with the scalar fallback.
 
 ## 2. MWCC intrinsics
 
-`__cntlzw` (55), `__frsqrte` (11), `__fabsf` (6), `__fabs` (4), `__rlwinm` (4),
-`__abs` (1), `__builtin_va_info` (1); full list in the generated file. Reason: they
+`__cntlzw` (55), `__frsqrte` (12), `__fabsf` (6), `__fabs` (4), `__rlwinm` (4),
+`__rlwimi` (2), `__abs` (1), `__fres` (1); full list in the generated file. Reason: they
 reproduce single PowerPC instructions the original compiled code used; no
 per-site reason is recorded.
 
@@ -66,10 +67,10 @@ etc. or their port equivalents) instead of the fixed address.
 
 ## 4. CodeWarrior pragmas
 
-5,871 pragmas in 886 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1153, `inline_depth` 1045, `fp_contract` 931, `auto_inline` 844,
-`opt_common_subs` 624, `scheduling` 267, `opt_propagation` 239,
-`readonly_strings` 203, `peephole` 105, `optimization_level` 88, `bool` 56,
+5,865 pragmas in 885 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1153, `inline_depth` 1045, `fp_contract` 932, `auto_inline` 844,
+`opt_common_subs` 624, `scheduling` 262, `opt_propagation` 239,
+`readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56,
 `defer_codegen` 50, `pack` 46. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
 
@@ -81,7 +82,7 @@ small float differences without FMA).
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-141 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+145 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
@@ -89,7 +90,9 @@ small float differences without FMA).
 `pso_date.cpp`: GC/1.3.2 scheduling, see
 [calendar-conversion-evidence.md](evidence/calendar-conversion-evidence.md);
 `TObjTombstone.cpp`: `-fp_contract on` because two calculations fuse
-multiply-adds). The generated table copies each comment; 92 entries have no
+multiply-adds; `pso/unk/text_803D8910.cpp`: `-fp_contract on` because
+`vec3_dot` and `vec3_cross` are `fmadds`/`fmsubs`, and the ginja defaults
+leave contraction off). The generated table copies each comment; entries with no
 comment of their own (several share a comment with the entry above). Library
 groups (SDK, runtime, TRK, MusyX, CRI, Ginja, mcFs, ntInf, avetcp, modem, ntUtl)
 use their own compiler versions as recorded there.
@@ -112,9 +115,8 @@ entry when the PR merges.
 | [#281](https://github.com/matthewlewisnewton/pso-decomp/pull/281) | `transform_chunk_vertices_pos_normal` (`src/pso/unk/text_803E2D70.cpp`) as `asm void` | One-time asm exception approved by Matt on 2026-11-04: SDK `PSMTXROMultVecArray`-style paired-single code that every other GameCube decomp keeps as asm. Guarded for MWCC with a scalar C++ fallback. Evidence: `docs/evidence/paired-single-sdk-asm.md` on that branch. Port: use the C++ fallback. |
 | [#291](https://github.com/matthewlewisnewton/pso-decomp/pull/291) | Allowed regression: `deform_indirect_texture_scroll` 100% → 99.79% | Approved by Matt on 2026-11-04 so the `off16 = offset` steering (still on main in `TEffIndirectCtrl_802A88AC.cpp`) could be removed. Port: nothing; the PR version is the portable one. |
 | [#285](https://github.com/matthewlewisnewton/pso-decomp/pull/285) | `static asm void pad_03_8042E9FC_text` via `orig_asm` include (`src/pso/unk/text_8042E9FC.cpp`) | PR body: 5-word stranded epilogue; 0/60 C probes across 20 compilers reach it. **No approval recorded and no scalar fallback**; it needs one under the rule above. |
-| [#296](https://github.com/matthewlewisnewton/pso-decomp/pull/296) | `scheduling` ×5, `peephole`, `optimize_for_size` pragmas | Reason not recorded. Drop in a port. |
 | [#250](https://github.com/matthewlewisnewton/pso-decomp/pull/250) | `fp_contract` ×3 | Reason not recorded. |
-| [#303](https://github.com/matthewlewisnewton/pso-decomp/pull/303), [#295](https://github.com/matthewlewisnewton/pso-decomp/pull/295), [#289](https://github.com/matthewlewisnewton/pso-decomp/pull/289), [#272](https://github.com/matthewlewisnewton/pso-decomp/pull/272), [#225](https://github.com/matthewlewisnewton/pso-decomp/pull/225), [#222](https://github.com/matthewlewisnewton/pso-decomp/pull/222), [#215](https://github.com/matthewlewisnewton/pso-decomp/pull/215), [#187](https://github.com/matthewlewisnewton/pso-decomp/pull/187), [#128](https://github.com/matthewlewisnewton/pso-decomp/pull/128) | 1 to 4 inlining/optimization pragmas each | Reason not recorded. Drop in a port. |
+| [#303](https://github.com/matthewlewisnewton/pso-decomp/pull/303), [#295](https://github.com/matthewlewisnewton/pso-decomp/pull/295), [#289](https://github.com/matthewlewisnewton/pso-decomp/pull/289), [#272](https://github.com/matthewlewisnewton/pso-decomp/pull/272), [#225](https://github.com/matthewlewisnewton/pso-decomp/pull/225), [#222](https://github.com/matthewlewisnewton/pso-decomp/pull/222), [#215](https://github.com/matthewlewisnewton/pso-decomp/pull/215), [#187](https://github.com/matthewlewisnewton/pso-decomp/pull/187) | 1 to 4 inlining/optimization pragmas each | Reason not recorded. Drop in a port. |
 | [#240](https://github.com/matthewlewisnewton/pso-decomp/pull/240) | Not scanned | Diff exceeds GitHub's 300-file limit; scan locally after it merges. |
 
 The scan covers source lines only; `configure.py` overrides added by PRs show up
