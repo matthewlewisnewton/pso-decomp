@@ -19,10 +19,10 @@ struct Data_8044BC84 { Pair_8044BC7C value; u8 padding[4]; };
 extern const Data_8044BC84 lbl_8044BC84;
 extern const f32 lbl_805DC640;
 const Pair_8044BC7C *get_window_layout_position(s32);
-// The definition takes s16, but this call site passes a full register.
-// Seeing that prototype makes MWCC emit extsh and miss the original object.
-TWindowMessage *create_message_window__6TLobbyFllUls(const Pair_8044BC7C *, const Pair_8044BC7C *, u32, s32);
 void TWindow__close(TWindowMessage *window);
+// The definition takes s16. Calling that member sign-extends the slot
+// (extsh) and misses the original mr of the full register.
+TWindowMessage *create_message_window__6TLobbyFllUls(const Pair_8044BC7C *, const Pair_8044BC7C *, u32, s32);
 }
 
 void THunterGuildWarning::close_windows() {
@@ -51,7 +51,7 @@ extern "C" void THunterGuildWarning__sub_80211774(THunterGuildWarning *self, s32
         }
         if (self->m_windows[id]) {
             s32 text = 0x63;
-            ((TLobby *)self->m_windows[id])->send_and_handle(TQuestVmDownLoadServer__sub_8006EF6C(text), 0x81);
+            self->m_windows[id]->send_and_handle(TQuestVmDownLoadServer__sub_8006EF6C(text), 0x81);
             self->m_windows[id]->set_position_xy(position.x, position.y);
         }
         break;
@@ -63,7 +63,7 @@ extern "C" void THunterGuildWarning__sub_80211774(THunterGuildWarning *self, s32
         }
         if (self->m_windows[id]) {
             s32 text = 0x68;
-            ((TLobby *)self->m_windows[id])->send_and_handle(TQuestVmDownLoadServer__sub_8006EF6C(text), 0x81);
+            self->m_windows[id]->send_and_handle(TQuestVmDownLoadServer__sub_8006EF6C(text), 0x81);
             self->m_windows[id]->set_position_xy(position.x, position.y);
         }
         break;
@@ -79,7 +79,7 @@ extern "C" void THunterGuildWarning__sub_80211774(THunterGuildWarning *self, s32
                     self->m_windows[i] = create_message_window__6TLobbyFllUls(get_window_layout_position(0x31), &size, 1, i);
                 }
                 if (self->m_windows[i]) {
-                    ((TLobby *)self->m_windows[i])->send_and_handle(TQuestVmDownLoadServer__sub_8006EF6C(message), 0x81);
+                    self->m_windows[i]->send_and_handle(TQuestVmDownLoadServer__sub_8006EF6C(message), 0x81);
                     self->m_windows[i]->set_position_xy(position.x, position.y);
                 }
             }

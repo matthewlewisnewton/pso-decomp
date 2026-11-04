@@ -1,9 +1,12 @@
 #ifndef PSO_MISC_TUNK_804CE018_H
 #define PSO_MISC_TUNK_804CE018_H
 #include "types.h"
-#include "pso/TObject.h"
+#include "pso/misc/TLobby.h"
 
-class TUnk_804CE018 : public TObject {
+// sizeof(TLobby) is 0x1C, the same as TObject, and TLobby adds no fields.
+// Guild-warning windows pass that pointer to both TLobby::send_and_handle
+// and TUnk_804CDFE8::set_position_xy, so this chain derives from TLobby.
+class TUnk_804CE018 : public TLobby {
 public:
     virtual ~TUnk_804CE018();
     void draw_window_frame(void *);
