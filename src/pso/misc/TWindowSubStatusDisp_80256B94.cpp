@@ -10,6 +10,8 @@
 #include "pso/ui/TAdChrMoveEffectGC.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 
+void set_constant_material_color(u32 color);
+
 struct RecoveredGlobal_80256BDC_lbl_804CF918 {
     s32 value;
     u8 remaining[0x14];
@@ -38,6 +40,28 @@ struct Gauge_80256E0C { u8 p0[0x14]; f32 max; };
 
 struct Pos_80256E0C { f32 x; f32 y; };
 
+struct Gauge_80257024 {
+    u16 flags;
+    u8 pad2[6];
+    f32 span;
+    f32 offset_y;
+    f32 offset_x;
+    u8 pad14[4];
+    u32 color;
+    f32 value;
+};
+
+struct Ctx_80257024 {
+    u8 pad0[0x10];
+    f32 x;
+    f32 y;
+    f32 divisor;
+    u8 pad1c[0x14];
+    s32 count;
+    u8 pad34[4];
+    f32 depth_base;
+};
+
 struct Quad_80256E0C { f32 x0, y0, x1, y1, u0, v0, u1, v1; };
 
 extern "C" {
@@ -54,6 +78,10 @@ void draw_status_gauge_bar__13TUnk_804CF930FPvPvff(Gauge_80256E0C *self, void *c
 void TWindowSubStatusDisp__sub_80256BF8(void);
 void TWindowSubStatusDisp__sub_80256BFC(void);
 void *destroy__13TUnk_804CF930Fs(void *arg0, s16 arg1);
+void begin_screen_draw(s32 mode);
+void set_current_texture_list(void *list);
+void set_draw_texture_and_color(s32 index, s32 color);
+extern void *lbl_805D63F0;
 
 void *TUnk_804CF930::destroy(s16 arg1) {
     if (this != NULL) {
@@ -182,6 +210,42 @@ void TUnk_804CF930::draw_status_gauge_bar(void *ctx, void *pos_arg, f32 depth, f
     if (try_open__19TWindowKeyBoardSoftFii(ctx, &q) != 0) {
         draw_textured_quad_at_depth((f32 *)&q, depth);
     }
+}
+
+void TWindowSubStatusDisp__sub_80257024(Gauge_80257024 *self, Ctx_80257024 *ctx) {
+    f32 span;
+    f32 bar;
+    f32 len;
+    Pos_80256E0C pos;
+    f32 depth;
+
+    span = self->offset_x / 21.0f + self->offset_y / ctx->divisor;
+    bar = 17.0f * ((f32)ctx->count - span * 7.5f);
+    if (bar <= 0.0f) {
+        return;
+    }
+    if (self->value <= 0.0f && (self->flags & 8) == 0) {
+        return;
+    }
+    if (self->value > bar) {
+        len = bar;
+    } else {
+        len = self->value;
+    }
+    pos.x = ctx->x + self->offset_y;
+    pos.y = ctx->y + self->offset_x;
+    depth = -1.0f / __fmadds(0.299f, self->span, ctx->depth_base);
+    begin_screen_draw(1);
+    set_current_texture_list(lbl_805D63F0);
+    set_draw_texture_and_color(0xB, -1);
+    if ((self->flags & 8) != 0) {
+        TWindowSubStatusDisp__sub_80256C40((Gauge_80256E0C *)self, (TWindowKeyBoardSoft *)ctx, &pos, depth);
+    }
+    if (bar > 0.0f) {
+        set_constant_material_color(self->color);
+        ((TUnk_804CF930 *)self)->draw_status_gauge_bar(ctx, &pos, depth, len);
+    }
+    TWindowSubStatusDisp::get_player();
 }
 
 void step_gauge_bar_width(Gauge_802571B4 *g) {
