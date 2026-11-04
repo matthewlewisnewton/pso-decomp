@@ -18,7 +18,7 @@ entry says *reason not recorded*.
 ## Summary
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `9759a32c1` (2026-11-04). Assembly is counted as functions;
+after merging main `915508a9d` (2026-11-04). Assembly is counted as functions;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -27,8 +27,8 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 71 | 13 |
 | CodeWarrior pragmas (excluding push/pop) | 5,865 | 886 |
-| Per-unit compiler overrides in `configure.py` | 145 | 145 |
-| Approved regressions | 0 on main, 1 pending (#291) | |
+| Per-unit compiler overrides in `configure.py` | 146 | 146 |
+| Approved regressions | 0 | 0 |
 
 ## Rule for assembly
 
@@ -98,7 +98,7 @@ small float differences without FMA).
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-145 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+146 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
@@ -122,11 +122,15 @@ into `fnmsubs`/`fmadds`. The same unit places `lbl_80438E40` with
 in `.rodata`. Port: keep FMA or accept small float differences; a normal
 `const` is enough for the vector.
 
+### `-opt noprop`: `TEffIndirectCtrl_802A88AC.cpp` ([#291](https://github.com/matthewlewisnewton/pso-decomp/pull/291))
+
+| Unit | Function | What | Why | Port should |
+|---|---|---|---|---|
+| `pso/effect/TEffIndirectCtrl_802A88AC.cpp` | `deform_indirect_texture_scroll` (`0x802A8FD8`) | unit switch `-opt noprop`, the unit-wide form of `opt_propagation off` (approved for `TEF_LensFlare::render`, #272) | The original keeps the scroll offset as a named `s16` local: `clrlwi r30,r21,26; clrlwi r29,r20,26; extsh r28,r4` at `0x802A90E4`, then `add r5,r5,r28` at `0x802A9158`. With propagation, the frontend replaces the single `off16 = offset` with a hoisted temp, which is coloured before the masks: `clrlwi r29; clrlwi r28; extsh r30`, six operands, 99.79%. Main matched only with a cancelling `off16++; off16--;`, removed here. No `-inline` or `-fp_contract` setting moves it. With the switch, the object is identical to main's in every section, relocation, and symbol. Every other function in the unit is unchanged. Precedent: per-object switches in [brawl](https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264) (`-opt peephole -opt schedule` on `nt_etc_so.cpp`, L723), and this repo's `-opt nocse` / `-opt nopeephole` units. Evidence: [indirect-scroll-offset-propagation.md](evidence/indirect-scroll-offset-propagation.md). | Drop the switch. The source is plain C++. |
+
 ## 6. Approved regressions
 
-| Function | Match | Why | Port should |
-|---|---|---|---|
-| `deform_indirect_texture_scroll` in `src/pso/effect/TEffIndirectCtrl_802A88AC.cpp` ([#291](https://github.com/matthewlewisnewton/pso-decomp/pull/291)) | 99.78723% of 564 bytes (100% on main) | Approved by Matt on 2026-11-04. Main is exact only because of a cancelling `off16++; off16--;` in the line loop. One `off16 = offset` before the axis loop is copy-propagated into a temporary allocated in r30 (`extsh r30,r4`) instead of the named short in r28. Constructors, a base-class `s16`, and same-TU helpers scalar-replace to that same temporary. A second store is what keeps r28, and that store is steering, so it stays removed. The function is still 141 instructions; six register operands differ. | Nothing to rewrite. This source is the portable one. The mismatch is register allocation only. |
+None on main.
 
 ## Pending in open PRs
 
