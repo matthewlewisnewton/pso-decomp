@@ -20,7 +20,8 @@ struct Ctx_8024E68C { u8 pad[0x20]; f32 pivot[2]; f32 scale[2]; };
 
 struct Box_8024E8E8 { f32 x0, y0, x1, y1; f32 u0, v0, u1, v1; };
 
-struct Win_8024E8E8 { u8 pad[0x3C]; f32 x0, y0, x1, y1; };
+// clip_right and clip_bottom sit at 0x44 and 0x48. Those bytes are also
+// TWindowKeyBoardSoft::m_60/m_62 and m_64, so they are not members here.
 
 struct Win_8024EA50 {
     f32 x, y;
@@ -99,6 +100,7 @@ void apply_window_closing_stretch(u8 *arg0, int arg1) {
   }
 }
 
+
 #pragma push
 #pragma opt_common_subs off
 
@@ -112,12 +114,17 @@ void TWindowKeyBoardSoft::set_open_tick(s32 arg1) {
 }
 #pragma pop
 
-void TWindowKeyBoardSoft::set_bounds(f32 a, f32 b, f32 c, f32 d) { *(f32*)((char*)this + 0x3c) = a; *(f32*)((char*)this + 0x40) = b; *(f32*)((char*)this + 0x44) = c; *(f32*)((char*)this + 0x48) = d; }
+void TWindowKeyBoardSoft::set_bounds(f32 a, f32 b, f32 c, f32 d) {
+    clip_left = a;
+    clip_top = b;
+    *(f32 *)((char *)this + 0x44) = c;
+    *(f32 *)((char *)this + 0x48) = d;
+}
 
 extern const f32 lbl_805DCC8C;
 
 void TWindowKeyBoardSoft::shrink_clip_right() {
-    *(f32 *)((s8 *)this + 0x18) = (f32) (*(f32 *)((s8 *)this + 0x18) - lbl_805DCC8C);
+    inner_w = (f32) (inner_w - lbl_805DCC8C);
     *(f32 *)((s8 *)this + 0x44) = (f32) (*(f32 *)((s8 *)this + 0x44) - lbl_805DCC8C);
 }
 
@@ -130,7 +137,8 @@ void TWindowKeyBoardSoft::animate_scale() {
 }
 
 s32 TWindowKeyBoardSoft::is_point_in_bounds(void *arg1) {
-    if ((*(f32 *)((s8 *)arg1 + 8) < *(f32 *)((s8 *)this + 0x3C)) || (*(f32 *)((s8 *)arg1 + 0xC) < *(f32 *)((s8 *)this + 0x40)) || (*(f32 *)((s8 *)arg1 + 0) > *(f32 *)((s8 *)this + 0x44)) || (*(f32 *)((s8 *)arg1 + 4) > *(f32 *)((s8 *)this + 0x48))) {
+    Box_8024E8E8 *quad = (Box_8024E8E8 *)arg1;
+    if ((quad->x1 < clip_left) || (quad->y1 < clip_top) || (quad->x0 > *(f32 *)((s8 *)this + 0x44)) || (quad->y0 > *(f32 *)((s8 *)this + 0x48))) {
         return 0;
     }
     return 1;
@@ -139,34 +147,34 @@ s32 TWindowKeyBoardSoft::is_point_in_bounds(void *arg1) {
 #pragma push
 #pragma fp_contract on
 s32 TWindowKeyBoardSoft::clip_textured_quad(void *w_arg, void *b_arg) {
-    Win_8024E8E8 *w = (Win_8024E8E8 *)w_arg;
+    TWindowKeyBoardSoft *w = (TWindowKeyBoardSoft *)w_arg;
     Box_8024E8E8 *b = (Box_8024E8E8 *)b_arg;
     f32 sx;
     f32 sy;
     f32 d;
-    if (((TWindowKeyBoardSoft *)w)->is_point_in_bounds(b) == 0) {
+    if (w->is_point_in_bounds(b) == 0) {
         return 0;
     }
     sx = (b->u1 - b->u0) / (b->x1 - b->x0);
     sy = (b->v1 - b->v0) / (b->y1 - b->y0);
-    d = w->x0 - b->x0;
+    d = w->clip_left - b->x0;
     if (d > (*(const f32 *)&lbl_805DCC94)) {
-        b->x0 = w->x0;
+        b->x0 = w->clip_left;
         b->u0 = d * sx + b->u0;
     }
-    d = w->y0 - b->y0;
+    d = w->clip_top - b->y0;
     if (d > (*(const f32 *)&lbl_805DCC94)) {
-        b->y0 = w->y0;
+        b->y0 = w->clip_top;
         b->v0 = d * sy + b->v0;
     }
-    d = b->x1 - w->x1;
+    d = b->x1 - *(f32 *)((char *)w + 0x44);
     if (d > (*(const f32 *)&lbl_805DCC94)) {
-        b->x1 = w->x1;
+        b->x1 = *(f32 *)((char *)w + 0x44);
         b->u1 = -(d * sx - b->u1);
     }
-    d = b->y1 - w->y1;
+    d = b->y1 - *(f32 *)((char *)w + 0x48);
     if (d > (*(const f32 *)&lbl_805DCC94)) {
-        b->y1 = w->y1;
+        b->y1 = *(f32 *)((char *)w + 0x48);
         b->v1 = -(d * sy - b->v1);
     }
     return 1;
@@ -304,4 +312,25 @@ u32 TWindowKeyBoardSoft::free_singleton(u32 arg0, s16 arg1) {
     return arg0;
 }
 
-u32 TWindowKeyBoardSoft::init_layout() { *(float*)((char*)this + 0x0) = lbl_805DCC94; *(float*)((char*)this + 0x4) = lbl_805DCC94; *(float*)((char*)this + 0x8) = lbl_805DCC94; *(float*)((char*)this + 0xc) = lbl_805DCC94; *(float*)((char*)this + 0x10) = lbl_805DCC94; *(float*)((char*)this + 0x14) = lbl_805DCC94; *(float*)((char*)this + 0x18) = lbl_805DCC94; *(float*)((char*)this + 0x1c) = lbl_805DCC94; *(float*)((char*)this + 0x3c) = lbl_805DCC94; *(float*)((char*)this + 0x40) = lbl_805DCC94; *(float*)((char*)this + 0x44) = lbl_805DCC94; *(float*)((char*)this + 0x48) = lbl_805DCC94; *(float*)((char*)this + 0x20) = lbl_805DCC94; *(float*)((char*)this + 0x24) = lbl_805DCC94; *(float*)((char*)this + 0x28) = lbl_805DCC78; *(float*)((char*)this + 0x2c) = lbl_805DCC78; *(int*)((char*)this + 0x30) = 0; *(int*)((char*)this + 0x34) = -1; *(float*)((char*)this + 0x38) = lbl_805DCC94; }
+u32 TWindowKeyBoardSoft::init_layout() {
+    f32 z = lbl_805DCC94;
+    x = z;
+    y = z;
+    w = z;
+    h = z;
+    inner_x = z;
+    inner_y = z;
+    inner_w = z;
+    inner_h = z;
+    clip_left = z;
+    clip_top = z;
+    *(f32 *)((char *)this + 0x44) = z;
+    *(f32 *)((char *)this + 0x48) = z;
+    pivot[0] = z;
+    pivot[1] = z;
+    scale[0] = lbl_805DCC78;
+    scale[1] = lbl_805DCC78;
+    open_tick = 0;
+    color = (u32)-1;
+    depth = z;
+}
