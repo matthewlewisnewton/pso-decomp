@@ -116,11 +116,10 @@ void begin_render__20TWindowSubStatusDispFl(void);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 TWindowShortListCtrl__check_controller_button(int, int);
 s32 apply_choice__20TWindowChoiceSettingFllll(void *, int, int, int);
-f32 TWindowSubComCard__sub_80244784(TWindowSubComCard *);
+f32 TWindowSubComCard__sub_80244784(void *);
 s32 is_window_reveal_complete__13TUnk_804CE018Fv();
 s32 sub_80246948__13TUnk_804CE018Fv();
 s32 try_open__19TWindowKeyBoardSoftFii(s32 arg0, s32 arg1);
-TWindowKeyBoardSoft *open_singleton__19TWindowKeyBoardSoftFiiii(void *, void *, s32, f32, s32);
 s32 fn_8026CB68();
 void draw_item_labels__15TWindowMainMenuFv(Item_802AD538 *p, Win_802AD538 *w);
 void park_selection__15TWindowMainMenuFPv(Menu_802AD980 *arg0);
@@ -418,7 +417,7 @@ int find_free_item_slot__15TWindowMainMenuFPv(Obj_802ADC04 *self) {
     return 8;
 }
 
-s32 count_active_items__15TWindowMainMenuFi(s32 arg0) {
+s32 TWindowMainMenu::count_active_items(int arg0) {
     s32 counter;
     s32 ptr;
 
@@ -497,10 +496,10 @@ void TWindowMenuMainMenu::set_target_y(f32 farg0) {
 }
 
 void TWindowMenuMainMenu::update_scaled_position() {
-    set_target_y(16.0f * (f32)count_active_items__15TWindowMainMenuFi((s32)this));
+    set_target_y(16.0f * (f32)TWindowMainMenu::count_active_items((s32)this));
 }
 
-void TWindowMainMenu::draw_entries_reversed(u8 *arg1) {
+void TWindowMenuMainMenu::draw_entries_reversed(u8 *arg1) {
     s32 arg0 = (s32)this;
     s32 var_r31;
     u8 *var_r30;
@@ -585,14 +584,14 @@ void TWindowMenuMainMenu::draw_frame(TWindowDrawContext *context) {
 TWindowDrawContext *TWindowMenuMainMenu::setup_content_frame() {
     f32 v;
     TWindowKeyBoardSoft *window;
-    window = open_singleton__19TWindowKeyBoardSoftFiiii(m_40, m_48, fn_8026CB68(), m_54, m_2c);
+    window = TWindowKeyBoardSoft::open_singleton((int)m_40, (int)m_48, fn_8026CB68(), m_54, m_2c);
     if (is_not_split_screen(this) != 0) {
         v = 51.0f;
     } else {
         v = 39.0f;
     }
     window->set_bounds(10.0f + window->x, window->y + v, (window->x + window->w) - 10.0f, (window->y + window->h) - 39.0f);
-    window->color = ((s32)(255.0f * TWindowSubComCard__sub_80244784((TWindowSubComCard *)this)) << 24) | 0xFF0000 | 0xFFFF;
+    window->color = ((s32)(255.0f * TWindowSubComCard__sub_80244784(this)) << 24) | 0xFF0000 | 0xFFFF;
     return window;
 }
 
@@ -612,26 +611,16 @@ void TWindowMenuMainMenu::handle_cancel() {
 }
 
 void TWindowMenuMainMenu::handle_confirm() {
-    u8 *arg0 = (u8 *)this;
-  char new_var;
-  u8 *new_var2;
-  int new_var3;
-  u8 *temp_r3;
-  new_var2 = arg0;
-  new_var2 = new_var2 + (((s8)this->m_61) * 4);
-  temp_r3 = (unsigned char *) (*((void **) (((s8 *) new_var2) + 0x124)));
-  if (temp_r3 != 0)
-  {
-    new_var = 0;
-    if ((*((u8 *) (((s8 *) temp_r3) + 0x13))) & 2)
-    {
-      play_sound_effect(0x53F06, 0, 0, 0);
-      return;
+    Menu_802AD980 *menu = (Menu_802AD980 *)this;
+    Col_802ADA48 *item = menu->slots[(s8)m_61];
+    if (item != NULL) {
+        if (item->b3 & 2) {
+            play_sound_effect(0x53F06, 0, 0, 0);
+            return;
+        }
+        play_sound_effect(0x52D01, 0, 0, 0);
+        m_60 |= 1;
     }
-    new_var3 = 0x52D01;
-    play_sound_effect((s32)new_var3, 0, 0, (s32)new_var);
-    this->m_60 = (u8) ((this->m_60) | 1);
-  }
 }
 
 struct Obj_802ADC04;

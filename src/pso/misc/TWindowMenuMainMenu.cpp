@@ -13,10 +13,10 @@ extern s32 __vt__19TWindowMenuMainMenu[];
 extern s32 lbl_805D3E68;
 void __dl__7TObjectFPv(void *);
 
-void render__19TWindowMenuMainMenuFv(s32 arg0) {
-    TWindowDrawContext *frame = ((TWindowMenuMainMenu *)arg0)->setup_content_frame();
-    ((TWindowMenuMainMenu *)arg0)->draw_frame(frame);
-    ((TWindowMainMenu *)arg0)->draw_entries_reversed((u8 *)frame);
+void TWindowMenuMainMenu::render() {
+    TWindowDrawContext *frame = setup_content_frame();
+    draw_frame(frame);
+    draw_entries_reversed((u8 *)frame);
 }
 
 void run_task__19TWindowMenuMainMenuFv(TWindowMenuMainMenu *window_menu_main_menu) {
