@@ -4,8 +4,6 @@
 #include "pso/boss/TObjBoss2Tunnel.h"
 #include "pso/player/TObjPlayer.h"
 
-#pragma scheduling off
-
 struct Vtx_803E2BCC {
     f32 x, y, z;
     u32 color;
@@ -19,8 +17,6 @@ void TObjBoss2Tunnel::reset_player_state() {
     TObjPlayer__sub_803E2248();
 }
 
-#pragma push
-#pragma scheduling off
 typedef union {
     u8 u8;
     u16 u16;
@@ -51,7 +47,6 @@ void TObjBoss2Tunnel::draw_projected_quads(void *vertices, int n) {
         vertices = (Vtx_803E2BCC *)vertices + 1;
     }
 }
-#pragma pop
 
 void TObjBoss2Tunnel__sub_803E2D10(s32 arg0) {
     TObjPlayer::load_screen_space_matrix();

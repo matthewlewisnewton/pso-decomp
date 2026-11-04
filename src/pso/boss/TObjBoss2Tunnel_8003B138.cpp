@@ -307,8 +307,6 @@ void render__15TObjBoss2TunnelFv(u8 *arg0) {
     }
 }
 
-#pragma push
-#pragma fp_contract on
 struct S_8003C108;
 s32 boss2_tunnel_model_index_table[6] = {
     0x14, 0xe, 0xf, 0x10,
@@ -614,7 +612,6 @@ void run_task__15TObjBoss2TunnelFv(Tunnel_8003B6E8 *o) {
         TObjBoss2Tunnel__sub_801339EC(boss2_tunnel_color->r, boss2_tunnel_color->g, boss2_tunnel_color->b);
     }
 }
-#pragma pop
 
 void TObjBoss2Tunnel::update_particles() {
     f32 t;
@@ -918,8 +915,6 @@ void TObjBoss2Tunnel::clear_target_flags() {
 
 extern s32 lbl_804835D8[];
 
-#pragma push
-#pragma opt_common_subs off
 void TUnk_804835D8::run_task() {
     u8 *arg0 = (u8 *)this;
     f32 temp_f1;
@@ -936,7 +931,6 @@ void TUnk_804835D8::run_task() {
         *(f32 *)((s8 *)(*(u8 * *)&lbl_805D4C08) + 8) = (f32) this->m_20;
     }
 }
-#pragma pop
 
 void *__dt__13TUnk_804835D8Fv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
