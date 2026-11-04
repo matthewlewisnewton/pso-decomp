@@ -51,10 +51,6 @@ extern const f32 lbl_805DCCA4;
 u32 init_text_window_layout(Win_8024EA50 *win, f32 *pos, f32 *size, f32 *scale, u32 flags, f32 depth);
 
 typedef struct RecoveredFields_8024E754_arg0 RecoveredFields_8024E754_arg0;
-#pragma fp_contract on
-
-#pragma push
-#pragma fp_contract on
 void TWindowKeyBoardSoft::scale_point_about_pivot(f32 *q) {
     if ((*(const f32 *)&lbl_805DCC78) != scale[0]) {
         q[0] = scale[0] * (q[0] - pivot[0]) + pivot[0];
@@ -63,10 +59,7 @@ void TWindowKeyBoardSoft::scale_point_about_pivot(f32 *q) {
         q[1] = scale[1] * (q[1] - pivot[1]) + pivot[1];
     }
 }
-#pragma pop
 
-#pragma push
-#pragma fp_contract on
 void apply_context_transform_to_rect(TWindowDrawContext *c, f32 *q) {
     if ((*(const f32 *)&lbl_805DCC78) != c->scale[0]) {
         q[0] = c->scale[0] * (q[0] - c->pivot[0]) + c->pivot[0];
@@ -77,7 +70,6 @@ void apply_context_transform_to_rect(TWindowDrawContext *c, f32 *q) {
         q[3] = c->scale[1] * (q[3] - c->pivot[1]) + c->pivot[1];
     }
 }
-#pragma pop
 }
 
 void apply_window_closing_stretch(u8 *arg0, int arg1) {
@@ -136,8 +128,6 @@ s32 TWindowDrawContext::is_point_in_bounds(f32 *quad) {
     return 1;
 }
 
-#pragma push
-#pragma fp_contract on
 s32 clip_textured_quad__19TWindowKeyBoardSoftFPvPv(TWindowDrawContext *w, f32 *b) {
     f32 sx;
     f32 sy;
@@ -169,7 +159,6 @@ s32 clip_textured_quad__19TWindowKeyBoardSoftFPvPv(TWindowDrawContext *w, f32 *b
     }
     return 1;
 }
-#pragma pop
 
 s32 TWindowKeyBoardSoft::try_open(TWindowDrawContext *context, f32 *quad) {
     if (clip_textured_quad__19TWindowKeyBoardSoftFPvPv(context, quad) == 0) {
@@ -179,8 +168,6 @@ s32 TWindowKeyBoardSoft::try_open(TWindowDrawContext *context, f32 *quad) {
     return 1;
 }
 
-#pragma push
-#pragma fp_contract on
 u32 init_text_window_layout(Win_8024EA50 *win, f32 *pos, f32 *size, f32 *scale, u32 flags, f32 depth) {
     f32 mx;
     f32 my;
@@ -229,7 +216,6 @@ u32 init_text_window_layout(Win_8024EA50 *win, f32 *pos, f32 *size, f32 *scale, 
     win->y48 = (win->y + win->h) - my;
     return soft_keyboard_instance;
 }
-#pragma pop
 
 void TWindowKeyBoardSoft::adjust_pos_for_split_screen(s32 i) {
     Vec2_8024EC34 *arg0 = (Vec2_8024EC34 *)this;
