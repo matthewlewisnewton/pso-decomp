@@ -9,57 +9,8 @@
 #include "pso/object/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
 
-struct Base_803530C4_80352BB8 { char pad[0x18]; };
-struct VObj_803530C4_80352BB8 : Base_803530C4_80352BB8 {
-    virtual void m0();  virtual void m1();  virtual void m2();  virtual void m3();
-    virtual void m4();  virtual void m5();  virtual void m6();  virtual void m7();
-    virtual void m8();  virtual void m9();  virtual void m10(); virtual void m11();
-    virtual void m12(); virtual void m13(); virtual void m14(); virtual void m15();
-    virtual void m16(); virtual void m17(); virtual void m18(); virtual void m19();
-    virtual void m20(); virtual void m21(); virtual void m22(); virtual void m23();
-    virtual void m24(); virtual void m25(); virtual void m26(); virtual void m27();
-    virtual void m28(); virtual void m29(); virtual void m30(); virtual void m31();
-    virtual void m32(); virtual void m33(); virtual void m34(); virtual void m35();
-    virtual void m36(); virtual void m37(); virtual void m38(); virtual void m39();
-    virtual void m40(); virtual void m41(); virtual void m42(); virtual void m43();
-    virtual void m44(); virtual void m45(); virtual void m46(); virtual void m47();
-};
-
 struct RecoveredGlobal_80352F6C___vt__10TEndingPic { s32 value; u8 remaining[0x14]; };
 typedef char RecoveredGlobal_80352F6C___vt__10TEndingPic_size[sizeof(RecoveredGlobal_80352F6C___vt__10TEndingPic) == 0x18 ? 1 : -1];
-
-struct VBase_18_c82b17 { char pad[0x18]; };
-
-struct VObj_18_c82b17 : VBase_18_c82b17 {
-    virtual void m0();
-    virtual void m1();
-    virtual void m2();
-    virtual void m3();
-    virtual void m4();
-    virtual void m5();
-    virtual void m6();
-    virtual void m7();
-    virtual void m8();
-    virtual void m9();
-    virtual void m10();
-    virtual void m11();
-    virtual void m12();
-    virtual void m13();
-    virtual void m14();
-    virtual void m15();
-    virtual void m16();
-    virtual void m17();
-    virtual void m18();
-    virtual void m19();
-    virtual void m20();
-    virtual s32 m21(void *, void *, s32, s32, s32);
-};
-
-struct Q_80353018 { s32 x; f32 y; };
-
-struct P_80353018 { s32 x; s32 y; };
-
-struct T_80353018 { u8 pad0[0xF0]; VObj_18_c82b17 *obj; };
 
 extern "C" {
 int TKeyBoardControl__sub_8000F828(void);
@@ -69,12 +20,12 @@ extern s32 lbl_805D4378;
 extern s32 TEndingPic__animation_state;
 extern s32 ending_pic_wall_texture_list;
 extern const f32 lbl_805DFF30;
-int send_nearby_player_ids(void*, f32);
-s32 add_actor_hp(s32, s32);
-s32 add_actor_tp(s32, s32);
-s32 is_locally_controlled__10TObjPlayerFPv(void *);
-s32 get_field_2b8__14TItemProShieldFv(s32);
-s32 obj_getS16_2BA(s32);
+int send_nearby_player_ids(TObjPlayer *, f32);
+s32 add_actor_hp(TObjPlayer *, s32);
+s32 add_actor_tp(TObjPlayer *, s32);
+s32 is_locally_controlled__10TObjPlayerFPv(TObjPlayer *);
+s32 get_field_2b8__14TItemProShieldFv(TObjPlayer *);
+s32 obj_getS16_2BA(TObjPlayer *);
 
 void TEndingPic::advance_animation_state() {
     s32 temp_r0;
@@ -219,16 +170,12 @@ int get_ending_ab_wall_texture_list(void) {  return ending_ab_wall_texture_list;
 #include "pso/item/TUnk_804F112C.h"
 
 void TUnk_804F112C::send_obj_position_event(s32 arg1) {
-    T_80353018 *arg0 = (T_80353018 *)this;
-    VObj_18_c82b17 *o = arg0->obj;
-    if (o != NULL) {
-        Q_80353018 q;
-        P_80353018 p;
-        p.x = arg1;
-        q.y = lbl_805DFF30;
-        q.x = arg1;
-        p.y = *(s32 *)&q.y;
-        o->m21(o, &p, 0, -1, -1);
+    TObjPlayer *owner = this->owner;
+    if (owner != NULL) {
+        DirectAttackPayload attack;
+        attack.kind = arg1;
+        attack.power = lbl_805DFF30;
+        owner->receive_direct_attack(owner, attack, NULL, -1, -1);
     }
 }
 
@@ -236,23 +183,21 @@ void TUnk_804F112C::sub_8035307C() { send_obj_position_event(18); }
 void TUnk_804F112C::sub_803530A0() { send_obj_position_event(17); }
 
 void TUnk_804F112C::sub_803530C4() {
-    void *temp_r3 = *(void **)((s8 *)this + 0xF0);
-    if (is_locally_controlled__10TObjPlayerFPv(temp_r3) != 0) {
-        struct VObj_803530C4_80352BB8 *o = (struct VObj_803530C4_80352BB8 *)*(void **)((s8 *)this + 0xF0);
-        o->m47();
+    if (is_locally_controlled__10TObjPlayerFPv(this->owner) != 0) {
+        this->owner->apply_shock_status();
     }
 }
 
 void TUnk_804F112C::sub_80353110() { send_obj_position_event(16); }
 void TUnk_804F112C::sub_80353134() { send_obj_position_event(15); }
 void TUnk_804F112C::sub_80353158() {
-    add_actor_hp(*(s32 *)((s8 *)this + 0xF0), get_field_2b8__14TItemProShieldFv(*(s32 *)((s8 *)this + 0xF0)));
+    add_actor_hp(this->owner, get_field_2b8__14TItemProShieldFv(this->owner));
 }
 void TUnk_804F112C::sub_80353194() {
-    add_actor_tp(*(s32 *)((s8 *)this + 0xF0), obj_getS16_2BA(*(s32 *)((s8 *)this + 0xF0)));
+    add_actor_tp(this->owner, obj_getS16_2BA(this->owner));
 }
 
     extern const f32 lbl_805DFF34;
-void TUnk_804F112C::sub_803531D0() { send_nearby_player_ids((void*)(*(int*)((char*)this + 0xf0)), lbl_805DFF34); }
+void TUnk_804F112C::sub_803531D0() { send_nearby_player_ids(this->owner, lbl_805DFF34); }
 
 void TUnk_804F112C::sub_803531F8() {  }

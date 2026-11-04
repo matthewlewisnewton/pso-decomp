@@ -13,8 +13,8 @@ public:
     virtual ~TUnk_804F112C();
     static TUnk_804F112C *create(u8 *item);
 
-    // Use-effect steps selected by technique index. Each one only reads the
-    // owner pointer at +0xF0. The original object emitted them in the
+    // Use-effect steps selected by technique index. Each one only uses
+    // TObjPlayer *owner. The original object emitted them in the
     // ending-picture unit, so the definitions stay in TEndingPic.cpp.
     void send_obj_position_event(s32 arg1);
     void sub_8035307C();
