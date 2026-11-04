@@ -7,6 +7,7 @@
 #include "pso/ui/TAdMultiPlyChrSelectGC_802C50EC.h"
 #include "pso/unk/text_80299420.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC.h"
+#include "pso/ui/TAdChrSelPlyPlateGC.h"
 #include "pso/TMainTask.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 #include "pso/object/TObjFish.h"
@@ -413,14 +414,14 @@ void TAdMultiPlyChrSelectGC__sub_802C561C(S_802C50EC *self) {
  * pool double and the reciprocal) instead of the f3/f4/f5 rotation produced by
  * an extern multiply.  The unit owns the 8-byte .sdata2 pool at
  * 0x805DE580-0x805DE588: lbl_805DE580 (0.53f, used by the plate draws) followed
- * by the 1/256 reciprocal at 0x805DE584.  The receiver is taken as a typed
- * S_802C50EC * (the parameter register keeps the first f4EC load off the r31
+ * by the 1/256 reciprocal at 0x805DE584.  The receiver is the plate
+ * (the parameter register keeps the first f4EC load off the r31
  * copy), the sel row is addressed directly (self->sel[active][f4EC], as in
  * sub_802C561C) and the scan table cell is read/written in place, which
  * reproduces every GPR row of both functions.  Do not fake this with padding or
  * dummy values.
  */
-void TAdMultiPlyChrSelectGC__sub_802C5688(S_802C50EC *self) {
+void TAdMultiPlyChrSelectGC__sub_802C5688(TAdChrSelPlyPlateGC *self) {
     u32 cell[2];
     s32 row = self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC] + 1;
     s32 col = self->f4EC + 1;
@@ -441,7 +442,7 @@ void TAdMultiPlyChrSelectGC__sub_802C5688(S_802C50EC *self) {
     self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].v1 = ((f32)TAdMultiPlyChrSelectGC__data_805D67D8 * lbl_80471CE0[1] + lbl_80471CE0[1]) / 256.0f;
     self->a[self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC]][self->f4EC] = 0;
     TAdMultiPlyChrSelectGC::add_selected_slot();
-    TAdMultiPlyChrSelectGC__data_805D67D8 = ((TAdMultiPlyChrSelectGC *)self)->find_active_slot();
+    TAdMultiPlyChrSelectGC__data_805D67D8 = self->find_active_slot();
     /* Seven of the 2x4 scan cells start open and at most four players can occupy
        cells there, so the scan always writes both outputs. */
 #if defined(PSO_DEBUG)
@@ -449,7 +450,7 @@ void TAdMultiPlyChrSelectGC__sub_802C5688(S_802C50EC *self) {
         debug_print("sub_802C5688: find_first_open_cell found no open cell");
     }
 #endif
-    TAdMultiPlyChrSelectGC::find_first_open_cell((s32)self, cell);
+    self->find_first_open_cell(cell);
     self->f4EC = cell[1] - 1;
     self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC] = cell[0] - 1;
 }
@@ -510,11 +511,9 @@ void TAdMultiPlyChrSelectGC::split_slot_index(s32 arg0, s32 *arg1, s32 *arg2) {
     *arg2 = var_r3;
 }
 
-/* Symbol find_first_open_cell__22TAdMultiPlyChrSelectGCFlPUl: the first parameter
-   is a long. The callee overwrites r3 on entry and never reads it; callers still
-   pass the object pointer in that slot (0x802C58F4, 0x802C67F8, 0x802C6B24).
-   A pointer parameter renames the symbol, so the calls convert the pointer to s32. */
-void TAdMultiPlyChrSelectGC::find_first_open_cell(s32 arg0, u32 *arg1) {
+/* Callers set r3 to the plate and r4 to the out pointer. The first instruction
+   overwrites r3, so the explicit parameter is only the out pointer. */
+void TAdChrSelPlyPlateGC::find_first_open_cell(u32 *arg1) {
     u32 p;
     s32 q;
     for (p = 1; p < 3; p++) {
@@ -530,7 +529,7 @@ void TAdMultiPlyChrSelectGC::find_first_open_cell(s32 arg0, u32 *arg1) {
 
 #define WIN_802C6008 ((void *)(controller_physical_port_bank + TAdMultiPlyChrSelectGC__selected_slot * 0x50 + 0x20))
 
-void TAdMultiPlyChrSelectGC::move_cursor(s32 x_, s32 y_, s32 dx, s32 dy, s32 depth) {
+void TAdChrSelPlyPlateGC::move_cursor(s32 x_, s32 y_, s32 dx, s32 dy, s32 depth) {
     Self_802C5C84 *self = (Self_802C5C84 *)this;
     s32 x = x_;
     s32 y = y_;
@@ -672,7 +671,7 @@ s32 TAdMultiPlyChrSelectGC__sub_802C5F1C(void *arg0, int arg1) {
     ((S_802C50EC *)arg0)->cursor[2][7] = lbl_805DE59C;
 }
 
-void TAdMultiPlyChrSelectGC::update_option_cursor() {
+void TAdChrSelPlyPlateGC::update_option_cursor() {
     S_802C6008 *self = (S_802C6008 *)this;
     TAdMultiPlyChrSelectGC__sub_802C5F1C(self, self->f1C++);
     if (self->f4DC[self->f4EC] != 0 && self->f4F8 == 0) {
@@ -697,7 +696,7 @@ void TAdMultiPlyChrSelectGC::update_option_cursor() {
 }
 
 #define WIN_802C61E4 ((void *)(controller_physical_port_bank + TAdMultiPlyChrSelectGC__data_805D67D8 * 0x50 + 0x20))
-void TAdMultiPlyChrSelectGC::handle_dpad_input() {
+void TAdChrSelPlyPlateGC::handle_dpad_input() {
     S_802C61E4 *self = (S_802C61E4 *)this;
     s32 n;
     s32 m;
@@ -809,7 +808,7 @@ void TAdMultiPlyChrSelectGC__sub_802C65C0(s32 arg0) {
 #pragma push
 #pragma fp_contract on
 /* See the matching note above sub_802C5688 for the remaining FPR-allocation rows. */
-void TAdMultiPlyChrSelectGC__sub_802C6660(S_802C50EC *self) {
+void TAdMultiPlyChrSelectGC__sub_802C6660(TAdChrSelPlyPlateGC *self) {
     s32 col, row;
     u32 cell[2];
     for (u32 i = 0; i < 4; i++) {
@@ -831,7 +830,7 @@ void TAdMultiPlyChrSelectGC__sub_802C6660(S_802C50EC *self) {
             }
         }
     }
-    TAdMultiPlyChrSelectGC__data_805D67D8 = ((TAdMultiPlyChrSelectGC *)self)->find_active_slot();
+    TAdMultiPlyChrSelectGC__data_805D67D8 = self->find_active_slot();
     /* Only the at most four selected players' cells are marked occupied, so at
        least three of the seven initially open scan cells remain open. */
 #if defined(PSO_DEBUG)
@@ -839,7 +838,7 @@ void TAdMultiPlyChrSelectGC__sub_802C6660(S_802C50EC *self) {
         debug_print("sub_802C6660: find_first_open_cell found no open cell");
     }
 #endif
-    TAdMultiPlyChrSelectGC::find_first_open_cell((s32)self, cell);
+    self->find_first_open_cell(cell);
     self->f4EC = cell[1] - 1;
     self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC] = cell[0] - 1;
 }
@@ -918,10 +917,9 @@ void TAdMultiPlyChrSelectGC::reset_slot_selections() {
     (*(s32 *)&TAdMultiPlyChrSelectGC__data_805D67D8) = 0;
 }
 
-/* Symbol find_active_slot__22TAdMultiPlyChrSelectGCFv: a real member with no
-   parameters. The body never reads this; callers still pass the object in r3
+/* No parameters. The body never reads this; callers still pass the plate in r3
    because that is how a member call is made. */
-s32 TAdMultiPlyChrSelectGC::find_active_slot() {
+s32 TAdChrSelPlyPlateGC::find_active_slot() {
     s32 var_r31;
     var_r31 = 0;
 loop_1:
@@ -934,12 +932,12 @@ loop_1:
     }
     goto loop_1;
 }
-void TAdMultiPlyChrSelectGC::update_selection() {
+void TAdChrSelPlyPlateGC::update_selection() {
     S_802C6AC8 *o = (S_802C6AC8 *)this;
     u32 i;
     u32 j;
     u32 k;
-    if (TAdMultiPlyChrSelectGC__sub_802C6848(TAdMultiPlyChrSelectGC::get_clamped_cursor()) == 0 && *(s32 *)&this->m_20 < TAdMultiPlyChrSelectGC::count_ready()) {
+    if (TAdMultiPlyChrSelectGC__sub_802C6848(TAdMultiPlyChrSelectGC::get_clamped_cursor()) == 0 && this->unk_20 < TAdMultiPlyChrSelectGC::count_ready()) {
         TAdMultiPlyChrSelectGC__data_805D67D8 = this->find_active_slot();
         switch (TAdMultiPlyChrSelectGC__select_mode) {
         case 1:
@@ -953,7 +951,7 @@ void TAdMultiPlyChrSelectGC::update_selection() {
                 debug_print("update_selection: find_first_open_cell found no open cell");
             }
 #endif
-            TAdMultiPlyChrSelectGC::find_first_open_cell((s32)o, buf);
+            this->find_first_open_cell(buf);
             o->f4EC = buf[1] - 1;
             o->sel[TAdMultiPlyChrSelectGC__data_805D67D8][o->f4EC] = buf[0] - 1;
             break;
@@ -1007,7 +1005,7 @@ void TAdMultiPlyChrSelectGC::update_selection() {
         o->f4F8 = 0;
         o->f4FC = 0;
     }
-    *(s32 *)&this->m_20 = TAdMultiPlyChrSelectGC::count_ready();
+    this->unk_20 = TAdMultiPlyChrSelectGC::count_ready();
 }
 
 }

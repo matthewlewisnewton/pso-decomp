@@ -49,10 +49,6 @@ struct TAdMultiPlyChrSelectGC : public TObject {
     void clear_slot_entries(s32 arg1);
     static void reset_slot_selection_table();
     static void split_slot_index(s32 arg0, s32 *arg1, s32 *arg2);
-    static void find_first_open_cell(s32 arg0, u32 *arg1);
-    void move_cursor(s32 x_, s32 y_, s32 dx, s32 dy, s32 depth);
-    void update_option_cursor();
-    void handle_dpad_input();
     static void init();
     static s32 get_status();
     static s32 is_selection_confirmed();
@@ -120,8 +116,6 @@ struct TAdMultiPlyChrSelectGC : public TObject {
     u8 unk_98[0x4];
     s32 m_9c;
     static s32 dispatch_draw_command(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
-    s32 find_active_slot();
-    void update_selection();
     void open_windows();
     void init_windows();
     void open_char_select();
