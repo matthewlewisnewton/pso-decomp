@@ -1058,10 +1058,20 @@ void TRaderMapCore::update_follow_projection(s32 mode) {
 
 void TRaderMapCore::copy_transform(void* q) { *(f32 *)&this->m_name = *(f32*)((char*)q + 0x0); *(f32 *)&this->m_flags = *(f32*)((char*)q + 0x4); *(f32 *)&this->m_prev = *(f32*)((char*)q + 0x8); *(f32 *)&this->m_next = *(f32*)((char*)q + 0xc); *(f32 *)&this->m_up = *(f32*)((char*)q + 0x10); *(f32 *)&this->m_down = *(f32*)((char*)q + 0x14); *(u32*)((char*)this + 0x18) = *(u32*)((char*)q + 0x18); *(u32 *)&this->entity_id = *(u32*)((char*)q + 0x1c); *(f32 *)&this->m_20 = *(f32*)((char*)q + 0x20); *(f32 *)&this->texlist = *(f32*)((char*)q + 0x24); }
 
+union CompassSpriteColor {
+    u32 word;
+    struct {
+        u8 c0;
+        u8 c1;
+        u8 c2;
+        u8 alpha;
+    } ch;
+};
+
 void TRaderMapCore::draw_compass(s32 mode) {
     SpriteDescriptor sprite;
-    u32 color_word;
-    u32 color_arg;
+    CompassSpriteColor color;
+    s32 color_arg;
     f32 scale;
     f32 pos;
     f32 *compass_xy;
@@ -1080,23 +1090,23 @@ void TRaderMapCore::draw_compass(s32 mode) {
     sprite.rotation = 0;
     sprite.unknown18 = TRaderMapCore__data_805D5F4C;
     sprite.frames = (SpriteFrame *)&lbl_804C87E4[0];
-    color_word = 0xFFFFFFFF;
+    color.word = 0xFFFFFFFF;
     TParticleCtrl::begin_effect_render();
     compass_xy = &lbl_804C87B4[mode][0];
     marker_xy = &lbl_804C87B4[mode][2];
     sprite.x = marker_xy[0] + (f32)lbl_804C87E4[1].x;
     sprite.y = marker_xy[1] + (f32)lbl_804C87E4[1].y;
     set_default_alpha_blend();
-    ((u8 *)&color_word)[3] = (u8)(s32)this->m_19c;
-    color_arg = color_word >> 16;
-    color_arg = __rlwimi(color_arg, color_word, 16, 0, 7);
-    color_arg = __rlwimi(color_arg, color_word, 16, 8, 15);
-    draw_compass_sprite__10TObjPlayerFlllf(&sprite, 1, (s32)color_arg, 0x21, TRaderMapCore__data_805DC58C);
+    color.ch.alpha = (u8)(s32)this->m_19c;
+    color_arg = color.word >> 16;
+    color_arg = __rlwimi(color_arg, color.word, 16, 0, 7);
+    color_arg = __rlwimi(color_arg, color.word, 16, 8, 15);
+    ((TObjPlayer *)&sprite)->draw_compass_sprite(1, color_arg, 0x21, TRaderMapCore__data_805DC58C);
     sprite.x = compass_xy[0] + (f32)lbl_804C87E4[0].x;
     sprite.y = compass_xy[1] + (f32)lbl_804C87E4[0].y;
     sprite.rotation = this->m_174;
     set_additive_blend();
-    draw_compass_sprite__10TObjPlayerFlllf(&sprite, 0, -1, 0x21, TRaderMapCore__data_805DC58C);
+    ((TObjPlayer *)&sprite)->draw_compass_sprite(0, -1, 0x21, TRaderMapCore__data_805DC58C);
     TParticleCtrl::end_effect_render();
 }
 
