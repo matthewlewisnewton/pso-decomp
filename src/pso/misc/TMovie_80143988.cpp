@@ -23,7 +23,7 @@ void pack_movie_frame(MoviePlanes_80143988 *frame) {
     u8 *dst = static_cast<u8 *>(movie_current_frame_buffer) + (((640 - width) & ~3))
         + ((((480 - height) * 640)) & ~3);
     u8 *end = dst + height * 1280;
-    u8 *low = dst + 1276;
+    u8 *low = dst + 1280;
     u8 *y = frame->luma;
     u8 *y2 = y + (luma_stride & ~3U);
     u8 *u = frame->chroma0;
@@ -32,60 +32,49 @@ void pack_movie_frame(MoviePlanes_80143988 *frame) {
     while (end > dst) {
         u8 *row_end = dst + row_bytes;
         while (row_end > dst) {
-            __dcbt(y, 0x20);
-            __dcbt(y2, 0x20);
             u32 yw;
             u32 lw;
             u32 uw;
             u32 vw;
-            yw = *reinterpret_cast<const u32 *>(y + 0);
-            lw = *reinterpret_cast<const u32 *>(y2 + 0);
-            uw = *reinterpret_cast<const u32 *>(u + 0);
-            vw = *reinterpret_cast<const u32 *>(v + 0);
-            reinterpret_cast<u32 *>(dst)[0] = (yw & 0xFF000000U) | ((uw >> 8) & 0x00FF0000U)
-                | ((yw >> 8) & 0x0000FF00U) | ((vw >> 24) & 0xFFU);
-            reinterpret_cast<u32 *>(low)[0] = (lw & 0xFF000000U) | ((uw >> 8) & 0x00FF0000U)
-                | ((lw >> 8) & 0x0000FF00U) | ((vw >> 24) & 0xFFU);
-            reinterpret_cast<u32 *>(dst)[1] = ((yw << 16) & 0xFF000000U) | (uw & 0x00FF0000U)
-                | ((yw << 8) & 0x0000FF00U) | ((vw >> 16) & 0xFFU);
-            reinterpret_cast<u32 *>(low)[1] = ((lw << 16) & 0xFF000000U) | (uw & 0x00FF0000U)
-                | ((lw << 8) & 0x0000FF00U) | ((vw >> 16) & 0xFFU);
+            u32 c;
+            __dcbt(y, 0x20);
+            yw = *reinterpret_cast<const u32 *>(y);
+            lw = *reinterpret_cast<const u32 *>(y2);
+            uw = *reinterpret_cast<const u32 *>(u);
+            vw = *reinterpret_cast<const u32 *>(v);
+            c = ((uw >> 8) & 0x00FF0000U) | (vw >> 24);
+            reinterpret_cast<u32 *>(dst)[0] = c | (yw & 0xFF000000U) | ((yw >> 8) & 0x0000FF00U);
+            reinterpret_cast<u32 *>(low)[0] = c | (lw & 0xFF000000U) | ((lw >> 8) & 0x0000FF00U);
+            c = (uw & 0x00FF0000U) | ((vw >> 16) & 0xFFU);
+            reinterpret_cast<u32 *>(dst)[1] = c | ((yw << 16) & 0xFF000000U) | ((yw << 8) & 0x0000FF00U);
+            reinterpret_cast<u32 *>(low)[1] = c | ((lw << 16) & 0xFF000000U) | ((lw << 8) & 0x0000FF00U);
             yw = *reinterpret_cast<const u32 *>(y + 4);
             lw = *reinterpret_cast<const u32 *>(y2 + 4);
-            uw = *reinterpret_cast<const u32 *>(u + 0);
-            vw = *reinterpret_cast<const u32 *>(v + 0);
-            reinterpret_cast<u32 *>(dst)[2] = (yw & 0xFF000000U) | ((uw << 8) & 0x00FF0000U)
-                | ((yw >> 8) & 0x0000FF00U) | ((vw >> 8) & 0xFFU);
-            reinterpret_cast<u32 *>(low)[2] = (lw & 0xFF000000U) | ((uw << 8) & 0x00FF0000U)
-                | ((lw >> 8) & 0x0000FF00U) | ((vw >> 8) & 0xFFU);
-            reinterpret_cast<u32 *>(dst)[3] = ((yw << 16) & 0xFF000000U) | (uw & 0x00FF0000U)
-                | ((yw << 8) & 0x0000FF00U) | (vw & 0xFFU);
-            reinterpret_cast<u32 *>(low)[3] = ((lw << 16) & 0xFF000000U) | (uw & 0x00FF0000U)
-                | ((lw << 8) & 0x0000FF00U) | (vw & 0xFFU);
+            c = ((uw << 8) & 0x00FF0000U) | ((vw >> 8) & 0xFFU);
+            reinterpret_cast<u32 *>(dst)[2] = c | (yw & 0xFF000000U) | ((yw >> 8) & 0x0000FF00U);
+            reinterpret_cast<u32 *>(low)[2] = c | (lw & 0xFF000000U) | ((lw >> 8) & 0x0000FF00U);
+            c = ((uw << 16) & 0x00FF0000U) | (vw & 0xFFU);
+            reinterpret_cast<u32 *>(dst)[3] = c | ((yw << 16) & 0xFF000000U) | ((yw << 8) & 0x0000FF00U);
+            reinterpret_cast<u32 *>(low)[3] = c | ((lw << 16) & 0xFF000000U) | ((lw << 8) & 0x0000FF00U);
+            __dcbt(y2, 0x20);
             yw = *reinterpret_cast<const u32 *>(y + 8);
             lw = *reinterpret_cast<const u32 *>(y2 + 8);
             uw = *reinterpret_cast<const u32 *>(u + 4);
             vw = *reinterpret_cast<const u32 *>(v + 4);
-            reinterpret_cast<u32 *>(dst)[4] = (yw & 0xFF000000U) | ((uw >> 8) & 0x00FF0000U)
-                | ((yw >> 8) & 0x0000FF00U) | ((vw >> 24) & 0xFFU);
-            reinterpret_cast<u32 *>(low)[4] = (lw & 0xFF000000U) | ((uw >> 8) & 0x00FF0000U)
-                | ((lw >> 8) & 0x0000FF00U) | ((vw >> 24) & 0xFFU);
-            reinterpret_cast<u32 *>(dst)[5] = ((yw << 16) & 0xFF000000U) | (uw & 0x00FF0000U)
-                | ((yw << 8) & 0x0000FF00U) | ((vw >> 16) & 0xFFU);
-            reinterpret_cast<u32 *>(low)[5] = ((lw << 16) & 0xFF000000U) | (uw & 0x00FF0000U)
-                | ((lw << 8) & 0x0000FF00U) | ((vw >> 16) & 0xFFU);
+            c = ((uw >> 8) & 0x00FF0000U) | (vw >> 24);
+            reinterpret_cast<u32 *>(dst)[4] = c | (yw & 0xFF000000U) | ((yw >> 8) & 0x0000FF00U);
+            reinterpret_cast<u32 *>(low)[4] = c | (lw & 0xFF000000U) | ((lw >> 8) & 0x0000FF00U);
+            c = (uw & 0x00FF0000U) | ((vw >> 16) & 0xFFU);
+            reinterpret_cast<u32 *>(dst)[5] = c | ((yw << 16) & 0xFF000000U) | ((yw << 8) & 0x0000FF00U);
+            reinterpret_cast<u32 *>(low)[5] = c | ((lw << 16) & 0xFF000000U) | ((lw << 8) & 0x0000FF00U);
             yw = *reinterpret_cast<const u32 *>(y + 12);
             lw = *reinterpret_cast<const u32 *>(y2 + 12);
-            uw = *reinterpret_cast<const u32 *>(u + 4);
-            vw = *reinterpret_cast<const u32 *>(v + 4);
-            reinterpret_cast<u32 *>(dst)[6] = (yw & 0xFF000000U) | ((uw << 8) & 0x00FF0000U)
-                | ((yw >> 8) & 0x0000FF00U) | ((vw >> 8) & 0xFFU);
-            reinterpret_cast<u32 *>(low)[6] = (lw & 0xFF000000U) | ((uw << 8) & 0x00FF0000U)
-                | ((lw >> 8) & 0x0000FF00U) | ((vw >> 8) & 0xFFU);
-            reinterpret_cast<u32 *>(dst)[7] = ((yw << 16) & 0xFF000000U) | (uw & 0x00FF0000U)
-                | ((yw << 8) & 0x0000FF00U) | (vw & 0xFFU);
-            reinterpret_cast<u32 *>(low)[7] = ((lw << 16) & 0xFF000000U) | (uw & 0x00FF0000U)
-                | ((lw << 8) & 0x0000FF00U) | (vw & 0xFFU);
+            c = ((uw << 8) & 0x00FF0000U) | ((vw >> 8) & 0xFFU);
+            reinterpret_cast<u32 *>(dst)[6] = c | (yw & 0xFF000000U) | ((yw >> 8) & 0x0000FF00U);
+            reinterpret_cast<u32 *>(low)[6] = c | (lw & 0xFF000000U) | ((lw >> 8) & 0x0000FF00U);
+            c = ((uw << 16) & 0x00FF0000U) | (vw & 0xFFU);
+            reinterpret_cast<u32 *>(dst)[7] = c | ((yw << 16) & 0xFF000000U) | ((yw << 8) & 0x0000FF00U);
+            reinterpret_cast<u32 *>(low)[7] = c | ((lw << 16) & 0xFF000000U) | ((lw << 8) & 0x0000FF00U);
             dst += 32;
             low += 32;
             y += 16;
