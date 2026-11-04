@@ -456,7 +456,13 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # TAdMultiPlyChrSelectGC_802C50EC: the original unit contracts all four
     # multiply-add sites in place (fmadds at 802C5148, 802C5274, 802C58AC and
     # 802C676C); the whole unit is built with fp_contract on.
-    "pso/ui/TAdMultiPlyChrSelectGC_802C50EC.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
+    # The signed int-to-float bias at 0x80471D00 is this unit's only .rodata.
+    # GC/2.6 emits it as a local pool symbol; the split names that object
+    # TAdMultiPlyChrSelectGC__data_80471D00. See docs/evidence/conversion-pool-constants.md.
+    "pso/ui/TAdMultiPlyChrSelectGC_802C50EC.cpp": {
+        "cflags": _switch(cflags_pso, "-fp_contract on"),
+        "symbol_mappings": {"TAdMultiPlyChrSelectGC__data_80471D00": "@156"},
+    },
     # GC/2.0: compiler-expanded struct copies take 2.0's registers.
     # The ending item handler table keeps 2.0's store/load scheduling for its
     # zero-initialized local member-function-pointer array.
