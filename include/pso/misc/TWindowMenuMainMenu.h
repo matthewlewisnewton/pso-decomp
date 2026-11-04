@@ -104,14 +104,12 @@ typedef char TWindowMenuMainMenu_slots[offsetof(TWindowMenuMainMenu, slots) == 0
 extern "C" {
 u8 *TWindowMenuMainMenu__ct(TWindowMenuMainMenu *arg0, s32 arg1, s16 arg2);
 void *__dt__19TWindowMenuMainMenuFv(void *arg0, s16 arg1);
-void run_task__19TWindowMenuMainMenuFv(TWindowMenuMainMenu *arg0);
 }
 
 // --- C functions defined in TWindowMenuMainMenu.cpp ---
 extern "C" {
 u8 *TWindowMenuMainMenu__ct(TWindowMenuMainMenu *window_menu_main_menu, s32 arg1, s16 arg2);
 void *__dt__19TWindowMenuMainMenuFv(void *arg0, s16 arg1);
-void run_task__19TWindowMenuMainMenuFv(TWindowMenuMainMenu *window_menu_main_menu);
 }
 // --- end of C functions
 

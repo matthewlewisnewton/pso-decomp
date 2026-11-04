@@ -136,13 +136,13 @@ void populate_menu__15TWindowMainMenuFPvPv(u8 *window_main_menu, Ent_802646E4 *a
 
 void TWindowMainMenu::handle_menu_selection() {
     s32 id;
-    u32 node;
+    TWindowMenuMainMenu *node;
     void *e;
-    if ((((Menu_802647CC *)this)->flags & 1) && !(((Menu_802647CC *)this)->flags & 4) && (node = ((Menu_802647CC *)this)->node) != 0) {
-        ((Menu_802647CC *)this)->sel = ((TWindowMenuMainMenu *)node)->sub_802ADB00();
-        id = ((TWindowMenuMainMenu *)node)->get_selected_item_type();
+    if ((((Menu_802647CC *)this)->flags & 1) && !(((Menu_802647CC *)this)->flags & 4) && (node = m_1c) != 0) {
+        ((Menu_802647CC *)this)->sel = node->sub_802ADB00();
+        id = node->get_selected_item_type();
         update_description_text(id);
-        if (((TWindowMenuMainMenu *)node)->get_menu_flag() != 0) {
+        if (node->get_menu_flag() != 0) {
             add_menu_entry(id);
             e = ((Menu_802647CC *)this)->ents[((Menu_802647CC *)this)->sel].next;
             if (e != 0) {
@@ -156,7 +156,7 @@ void TWindowMainMenu::handle_menu_selection() {
             create_submenu(id);
             return;
         }
-        if (((TWindowMenuMainMenu *)node)->is_flag_set() != 0) {
+        if (node->is_flag_set() != 0) {
             if (((Menu_802647CC *)this)->depth <= 0) {
                 ((VObj_802647CC *)((Menu_802647CC *)this))->m6();
                 return;
