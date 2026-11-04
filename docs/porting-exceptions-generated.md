@@ -11,7 +11,7 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | intrinsic | 83 | 54 |
 | hardware | 71 | 13 |
 | pragma | 5864 | 885 |
-| configure.py per-unit override | 145 | 145 |
+| configure.py per-unit override | 144 | 144 |
 
 Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045, `fp_contract` 931, `auto_inline` 844, `opt_common_subs` 624, `scheduling` 262, `opt_propagation` 239, `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 43, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 22, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
@@ -339,7 +339,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `pso/protocol/NetworkRuntime.cpp` | `-opt nocse` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/TLobby_803FAEA0.cpp` | `-opt nocse` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/TLobby_803FC178.cpp` | `-opt nocse` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
-| `pso/misc/TLobby_803FD08C.cpp` | `-opt nocse` | Remainder of the same PPP object after TLobby_803FCF44.cpp. The CHAP challenge builder is not part of the nocse PPP compile: its two lbl_805C02D0 references are direct ha/lo pairs, which this compiler emits from the avetcp default (-O4,p) when the object is defined in another TU. Splitting it out leaves this tail on the PPP profile. |
 | `pso/misc/TLobby_804048E8.cpp` | `-opt nocse` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/TLobby_804050DC.cpp` | `-opt nocse` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 
