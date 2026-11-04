@@ -258,9 +258,7 @@ void TObjBoss2Tunnel::transform_vec_by_camera(s32 arg0, s32 arg1, s32 arg2) {
     pop_matrix();
 }
 
-bool is_vec_xz_cross_negative(u8 *arg0, u8 *arg1) {
-    Vec *a = (Vec *)arg0;
-    Vec *b = (Vec *)arg1;
+bool is_vec_xz_cross_negative(const Vec *a, const Vec *b) {
     return (((a->z * b->x) - (a->x * b->z)) >= 0.0f) == 0;
 }
 
