@@ -129,15 +129,13 @@ s32 DCFlushRange(int, int);
 s32 TAdPlayerLoadGC__sub_801E1538(void *, void *);
 s32 TAdPlayerLoadGC__sub_801E1B50(int);
 extern s32 lbl_805D49B4;
-s32 draw_textured_screen_quad__10TObjPlayerFUlPfPfl(int, void *, void *, int, f32);
-void poll_load_status__15TAdPlayerLoadGCFl(s32 a, void *b);
+// The 0x8007CDBC call site also sets a dead third argument register (r5); only this
+// three-argument prototype reproduces it, so that one call keeps the wide form.
+void build_save_file_image__15TAdPlayerLoadGCFPvPv(void *, void *, void *);
 u32 TAdSinglePlyChrSelectGC__sub_80201204(u8 *arg0, u32 arg1);
 void TAdPlayerLoadGC__sub_801E14E4(void *);
 void TAdPlayerLoadGC__sub_801E14E8(u8 *arg0, s32 arg1);
-void build_save_file_image__15TAdPlayerLoadGCFPvPv(void *, void *, void *);
-s32 load_player__23TAdSinglePlyChrSelectGCFllll(s32, const char *, void *, s32);
 extern char lbl_804C8974[];
-VObj_8007C5C0 *create__8TDLGraphFv(void);
 s8 func_801A5E54__Fv(void);
 s32 TWindowShortListCtrl__check_controller_button(void *, s32);
 extern u32 camera_ctrl_instance;
@@ -145,8 +143,8 @@ void set_depth_buffer_settings_1__Fv(void);
 void restore_saved_depth_alpha_state(void);
 extern s32 lbl_805D63F0;
 s32 TAdPlayerLoadGC__sub_801E0FA4(s32);
+void poll_load_status__15TAdPlayerLoadGCFl(s32 a, void *b);
 s32 query_memcard_capacity__15TAdPlayerLoadGCFl(s32, s32);
-s32 set_stream_and_load_file__6TLobbyFi(s32);
 s32 is_on_current_screen__11TCameraCtrlFv(void *, s32);
 }
 extern s32 screen_binary_filename;
@@ -168,14 +166,12 @@ f32 newton_sqrtf(f32);
 void init_acceleration_curve(AccelerationCurve *c, f32 a, f32 d, f32 length, f32 speed);
 f32 sin_table_lookup(s32);
 f32 cos_table_lookup(s32);
-s32 get_view_matrix__11TCameraCtrlFv();
 s32 angle_diff_s16(s32, s32);
 s32 approach_angle_limited(s32, s32, s32);
 int vec3_add_to(void*, void*);
 int TCameraCtrl__sub_8006B370(f32 farg0);
 f32 vec_squared_length(const Vec *);
 s32 TLobby__sub_8001EEF4(void);
-s32 find_card_file__15TAdPlayerLoadGCFiPv(s32 chan, const char *name);
 f32 normalize_vector(void *);
 }
 
@@ -278,7 +274,7 @@ void TObjBoss2Tunnel::render(void* a1) { push_matrix(); TObjPlayer::invert_matri
 extern "C" {
 void TObjBoss2Tunnel::transform_vec_by_camera(s32 arg0, s32 arg1, s32 arg2) {
     push_matrix();
-    TCameraCtrl::concat_matrix(0, get_view_matrix__11TCameraCtrlFv());
+    TCameraCtrl::concat_matrix(0, (u32)TCameraCtrl::get_view_matrix());
     matrix_mult_vec(NULL, (const Vec *)arg1, (Vec *)arg2);
     pop_matrix();
 }
@@ -325,16 +321,12 @@ f32 TObjBoss2Tunnel::calc_scaled_value(s32 arg0, f32 farg0) {
 
 s32 TObjBoss2Tunnel::count_tree_nodes() {
     s32 var_r31;
-    u8 *temp_r3;
-    u8 *temp_r3_2;
     var_r31 = 1;
-    temp_r3 = (u8 *)this->m_2c;
-    if (temp_r3 != NULL) {
-        var_r31 = ((TObjBoss2Tunnel *)temp_r3)->count_tree_nodes() + 1;
+    if (m_2c != NULL) {
+        var_r31 = m_2c->count_tree_nodes() + 1;
     }
-    temp_r3_2 = (u8 *)this->m_30;
-    if (temp_r3_2 != NULL) {
-        var_r31 += ((TObjBoss2Tunnel *)temp_r3_2)->count_tree_nodes();
+    if (m_30 != NULL) {
+        var_r31 += m_30->count_tree_nodes();
     }
     return var_r31;
 }
@@ -763,7 +755,7 @@ void draw_snapshot_capture_overlay(void) {
     q.v0 = 0.494117647f;
     q.u1 = 0.423529416f;
     q.v1 = 0.600000024f;
-    draw_textured_quad_at_depth((f32 *)&q, 0.5f);
+    draw_textured_quad_at_depth(&q, 0.5f);
     q.x0 = TObjBoss2Tunnel__data_8048DF2C.x;
     q.y0 = TObjBoss2Tunnel__data_8048DF2C.y - 27.0f;
     q.x1 = 27.0f + TObjBoss2Tunnel__data_8048DF2C.x;
@@ -774,7 +766,7 @@ void draw_snapshot_capture_overlay(void) {
     q.v1 = 0.600000024f;
     q.u0 = 0.423529416f;
     q.u1 = 0.31764707f;
-    draw_textured_quad_at_depth((f32 *)&q, 0.5f);
+    draw_textured_quad_at_depth(&q, 0.5f);
     q.x0 = TObjBoss2Tunnel__data_8048DF2C.x - 27.0f;
     q.y0 = TObjBoss2Tunnel__data_8048DF2C.y;
     q.x1 = TObjBoss2Tunnel__data_8048DF2C.x;
@@ -785,7 +777,7 @@ void draw_snapshot_capture_overlay(void) {
     q.v1 = 0.600000024f;
     q.v0 = 0.600000024f;
     q.v1 = 0.494117647f;
-    draw_textured_quad_at_depth((f32 *)&q, 0.5f);
+    draw_textured_quad_at_depth(&q, 0.5f);
     q.x0 = TObjBoss2Tunnel__data_8048DF2C.x;
     q.y0 = TObjBoss2Tunnel__data_8048DF2C.y;
     q.x1 = 27.0f + TObjBoss2Tunnel__data_8048DF2C.x;
@@ -798,7 +790,7 @@ void draw_snapshot_capture_overlay(void) {
     q.v1 = 0.494117647f;
     q.u0 = 0.423529416f;
     q.u1 = 0.31764707f;
-    draw_textured_quad_at_depth((f32 *)&q, 0.5f);
+    draw_textured_quad_at_depth(&q, 0.5f);
     TWindowSubStatusDisp::get_player();
     restore_saved_depth_alpha_state();
 }
@@ -952,11 +944,11 @@ s32 TObjBoss2Tunnel__sub_8007D1D0(void) {
         cmd.sound_id = 0x52B20;
         ((TObjBoss2Tunnel *)&cmd)->finalize_and_send_60();
         if (memcard_check_snapshot(0, NULL) != 0) {
-            if (load_player__23TAdSinglePlyChrSelectGCFllll(1, TObjBoss2Tunnel__data_80438A08, frame->save_image, 0xF) == 0) {
+            if (TAdSinglePlyChrSelectGC::load_player(1, (s32)TObjBoss2Tunnel__data_80438A08, (s32)frame->save_image, 0xF) == 0) {
                 t = 0.0f;
                 graph = (TDLGraph *)TDLGraph::create();
                 if (get_main_phase() == 0xF) {
-                    reset_state_flags__6TLobbyFv();
+                    TLobby::reset_state_flags();
                 }
                 limit = 60.0f;
                 do {
@@ -990,7 +982,7 @@ s32 TObjBoss2Tunnel__sub_8007D1D0(void) {
                     delete graph;
                 }
                 if (get_main_phase() == 0xF) {
-                    process_deferred_player_setup__6TLobbyFv();
+                    TLobby::process_deferred_player_setup();
                 }
                 TParticleCtrl::end_effect_render();
             } else {
@@ -1043,7 +1035,7 @@ s32 memcard_check_snapshot(s32 arg0, s32 *arg1) {
         }
         return 0;
     }
-    temp_r3 = find_card_file__15TAdPlayerLoadGCFiPv(1, (const char *)TObjBoss2Tunnel__data_80438A08);
+    temp_r3 = TAdPlayerLoadGC::find_card_file(1, (void *)TObjBoss2Tunnel__data_80438A08);
     if (temp_r3 == 0) {
         if (arg1 != NULL) {
             *arg1 = 1;
@@ -1093,7 +1085,7 @@ void load_data_buffers(void) {
     }
     temp_r31 = ((TScene *)screen_binary_filename)->update_lobby_scene();
     if (temp_r31 <= 0x1818C) {
-        temp_r30 = set_stream_and_load_file__6TLobbyFi(screen_binary_filename);
+        temp_r30 = TLobby::set_stream_and_load_file(screen_binary_filename);
         if (temp_r30 != 0) {
             if (boss2_tunnel_snapshot_buffer != NULL) {
                 memmove(boss2_tunnel_snapshot_buffer, (void *)temp_r30, temp_r31);
@@ -1170,7 +1162,7 @@ s32 TObjBoss2Tunnel::save_snapshot_to_card() {
     c.data = boss2_tunnel_snapshot_buffer;
     build_save_file_image__15TAdPlayerLoadGCFPvPv(TObjBoss2Tunnel__snapshot_buffer, &c, boss2_tunnel_snapshot_buffer);
     TAdPlayerLoadGC__sub_801E14E4(&c);
-    if (load_player__23TAdSinglePlyChrSelectGCFllll(1, TObjBoss2Tunnel__data_80438A08, TObjBoss2Tunnel__snapshot_buffer, 0xF) != 0) {
+    if (TAdSinglePlyChrSelectGC::load_player(1, (s32)TObjBoss2Tunnel__data_80438A08, (s32)TObjBoss2Tunnel__snapshot_buffer, 0xF) != 0) {
         return 0;
     }
     lbl_805D49B4 = 1;
@@ -1233,7 +1225,7 @@ void TObjBoss2Tunnel__sub_8007CAE8(u32 arg0) {
     }
     stack.sp8 = 345.6f;
     stack.spC = 259.2f;
-    draw_textured_screen_quad__10TObjPlayerFUlPfPfl(-1, &stack.sp10, &stack.sp8, 1, 345.6f);
+    TObjPlayer::draw_textured_screen_quad((u32)-1, &stack.sp10, &stack.sp8, 1);
 }
 
 void TObjBoss2Tunnel::show_message_and_wait(s32 arg0) {
@@ -1268,7 +1260,7 @@ void TObjBoss2Tunnel::show_message_and_wait(s32 arg0) {
         ((TWindowMessage *)win)->complete_reveal();
     }
     if (get_main_phase() == 0xF) {
-        reset_state_flags__6TLobbyFv();
+        TLobby::reset_state_flags();
     }
     frames = 0;
     for (;;) {
@@ -1289,7 +1281,7 @@ void TObjBoss2Tunnel::show_message_and_wait(s32 arg0) {
         render_tick();
     }
     if (get_main_phase() == 0xF) {
-        process_deferred_player_setup__6TLobbyFv();
+        TLobby::process_deferred_player_setup();
     }
     if (win != NULL) {
         delete win;
@@ -1323,13 +1315,13 @@ s32 TObjBoss2Tunnel::run_confirm_message_loop() {
         ((TLobby *)win)->set_field_1c(36900.0f);
     }
     ((TWindowMessage *)win)->complete_reveal();
-    graph = create__8TDLGraphFv();
+    graph = (VObj_8007C5C0 *)TDLGraph::create();
     if (graph != NULL) {
         ((TDLGraph *)graph)->set_graph_param(2);
     }
     frames = 0;
     if (get_main_phase() == 0xF) {
-        reset_state_flags__6TLobbyFv();
+        TLobby::reset_state_flags();
     }
     pad = &controller_physical_port_bank.controllers[3];
     for (;;) {
@@ -1369,7 +1361,7 @@ s32 TObjBoss2Tunnel::run_confirm_message_loop() {
         delete graph;
     }
     if (get_main_phase() == 0xF) {
-        process_deferred_player_setup__6TLobbyFv();
+        TLobby::process_deferred_player_setup();
     }
     if (win != NULL) {
         delete win;
