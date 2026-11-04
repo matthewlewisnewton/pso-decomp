@@ -43,6 +43,7 @@ import argparse
 import functools
 import hashlib
 import json
+import struct
 import subprocess
 import sys
 from pathlib import Path
@@ -187,6 +188,92 @@ def elf_symbol_bindings(path: Path) -> dict[str, tuple[int, int]]:
 def elf_defined_globals(path: Path) -> dict[str, int]:
     """{name: st_type} of every defined GLOBAL/WEAK symbol in a BE ELF32 .o."""
     return {name: typ for name, (_, typ) in elf_symbol_bindings(path).items()}
+
+
+# MWCC's int-to-double biases. Unsigned is 2**52. Signed is 2**52 + 2**31.
+_UNSIGNED_BIAS = bytes.fromhex("4330000000000000")
+_SIGNED_BIAS = bytes.fromhex("4330000080000000")
+
+
+def conversion_pool_kind(path: Path, name: str) -> str | None:
+    """'unsigned' or 'signed' when `name` is exactly one MWCC int-to-double bias.
+
+    The symbol must be a defined global or weak object, 8 bytes, 8-byte aligned,
+    in .rodata or .sdata2, and those 8 bytes must be the whole object. A larger
+    object that happens to contain the pattern is not a conversion-pool constant.
+    Unreadable or unexpected objects return None rather than a guess.
+    """
+    try:
+        image = _elf_named_object(path, name)
+    except (OSError, ValueError, IndexError, UnicodeError, struct.error):
+        return None
+    if image is None:
+        return None
+    section, value, data = image
+    if section not in (".rodata", ".sdata2") or value % 8 or data == b"":
+        return None
+    if data == _UNSIGNED_BIAS:
+        return "unsigned"
+    if data == _SIGNED_BIAS:
+        return "signed"
+    return None
+
+
+def _elf_named_object(path: Path, name: str) -> tuple[str, int, bytes] | None:
+    """(section, value, bytes) of one defined global/weak STT_OBJECT, or None."""
+    b = path.read_bytes()
+    if len(b) < 52 or b[:7] != b"\x7fELF\x01\x02\x01":
+        raise ValueError(f"{path}: expected ELF32 big-endian object")
+    be = lambda o, n=4: int.from_bytes(b[o:o + n], "big")
+    kind, machine = be(16, 2), be(18, 2)
+    if kind != 1 or machine != 20:
+        raise ValueError(f"{path}: expected relocatable PowerPC object")
+    shoff, shentsize, shnum, shstrndx = be(0x20), be(0x2E, 2), be(0x30, 2), be(0x32, 2)
+    if shentsize != 40 or not shnum or shoff < 52 or shoff + shnum * 40 > len(b):
+        raise ValueError(f"{path}: invalid section table")
+    if shstrndx >= shnum:
+        raise ValueError(f"{path}: invalid section-name index")
+    hdrs = [struct.unpack_from(">10I", b, shoff + i * 40) for i in range(shnum)]
+    shstr_off, shstr_size = hdrs[shstrndx][4], hdrs[shstrndx][5]
+    if shstr_off + shstr_size > len(b):
+        raise ValueError(f"{path}: invalid section-name table")
+    shstr = b[shstr_off:shstr_off + shstr_size]
+    found = None
+    for header in hdrs:
+        _, typ, _, _, off, size, link, _, _, _ = header
+        if typ != 2:
+            continue
+        if link >= shnum or hdrs[link][1] != 3:
+            raise ValueError(f"{path}: invalid symbol string table")
+        stroff, strsize = hdrs[link][4], hdrs[link][5]
+        if stroff + strsize > len(b):
+            raise ValueError(f"{path}: invalid symbol string table")
+        strtab = b[stroff:stroff + strsize]
+        if size % 16 or off + size > len(b):
+            raise ValueError(f"{path}: invalid symbol table")
+        for o in range(off + 16, off + size, 16):
+            name_off, value, sym_size, info, _, shndx = struct.unpack_from(">IIIBBH", b, o)
+            if (info >> 4) not in (1, 2) or (info & 0xF) != 1 or shndx == 0 or shndx >= shnum:
+                continue
+            if name_off >= len(strtab):
+                raise ValueError(f"{path}: invalid symbol name")
+            end = strtab.find(b"\0", name_off)
+            if end < 0:
+                raise ValueError(f"{path}: unterminated symbol name")
+            if strtab[name_off:end].decode("utf-8") != name:
+                continue
+            if found is not None:
+                raise ValueError(f"{path}: duplicate object symbol {name}")
+            sec_name_off = hdrs[shndx][0]
+            if sec_name_off >= len(shstr):
+                raise ValueError(f"{path}: invalid section name")
+            sec_end = shstr.find(b"\0", sec_name_off)
+            section = shstr[sec_name_off:sec_end].decode("utf-8")
+            sec_off, sec_size = hdrs[shndx][4], hdrs[shndx][5]
+            if sym_size != 8 or value + sym_size > sec_size or sec_off + value + sym_size > len(b):
+                return None
+            found = (section, value, b[sec_off + value:sec_off + value + sym_size])
+    return found
 
 
 def _obj_path(u: dict) -> Path:
@@ -784,6 +871,23 @@ def scan(write: bool) -> int:
                                 for s in u.get("sections") or []
                                 if int(s.get("size", 0) or 0) and s.get("fuzzy_match_percent", 0) != 100]
                     blocked[n] = reasons
+    pool_notes = []
+    for n, reasons in sorted(blocked.items()):
+        split = SPLIT_OBJ_DIR / (n[:-len(Path(n).suffix)] + ".o")
+        if not split.exists():
+            continue
+        for reason in reasons:
+            if not reason.startswith("missing "):
+                continue
+            symbol = reason.split(" ", 1)[1]
+            kind = conversion_pool_kind(split, symbol)
+            if kind:
+                pool_notes.append(
+                    f"  compiler-generated conversion pool ({kind}): {symbol} in {n}")
+    if pool_notes:
+        print("conversion-pool constants among missing symbols "
+              "(unreferenced ones can be localized; a reference from another split keeps the export):")
+        print("\n".join(pool_notes))
     regress = sorted(n for n in linked if not exact.get(n, False))
     keep = sorted(n for n in linked if exact.get(n, False))
     want_active = _force_active_names(set(keep + add), symbols) if write else []
