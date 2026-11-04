@@ -223,8 +223,6 @@ void TObjBoss2Tunnel::init_effect() {
     update_dust_spawn();
 }
 
-#pragma push
-#pragma fp_contract on
 void TObjBoss2Tunnel::update_dust_spawn() {
     u8 *arg0 = (u8 *)this;
     Vec_802F25AC v;
@@ -241,7 +239,6 @@ void TObjBoss2Tunnel::update_dust_spawn() {
         *(s32 *)((s8 *)arg0 + 0x74) = 0x1E;
     }
 }
-#pragma pop
 
 #pragma push
 #pragma opt_common_subs off
@@ -426,19 +423,4 @@ void TObjBoss2Tunnel__sub_802F2C50(void) {
 }
 void TObjBoss2Tunnel__sub_802F2C84(void) { (*(int *)&boss2_tunnel_state_flags) = 0; }
 
-#pragma push
-#pragma opt_common_subs off
-#pragma pop
-
-#pragma push
-#pragma opt_common_subs off
-#pragma pop
-
-#pragma push
-#pragma opt_common_subs off
-#pragma pop
-
 typedef char RecoveredGlobal_802F2400_lbl_804E4A1C_size[sizeof(RecoveredGlobal_802F2400_lbl_804E4A1C) == 0x28 ? 1 : -1];
-#pragma push
-#pragma opt_common_subs off
-#pragma pop

@@ -434,6 +434,7 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Curve and xz helpers fuse multiply-adds. The whole TU stays byte-exact
     # with -fp_contract on, so the flag belongs on the unit rather than as
     # per-function pragmas left over from the split units.
+    "pso/boss/TObjBoss2Tunnel_802F2070.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
     "pso/boss/TObjBoss2Tunnel.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-opt nopropagation", "-pool off", "-sdata 4", "-fp_contract on")},
     "pso/boss/TBoss4DarkFalz_8004C93C.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sym on")},
     "pso/enemy/TObjEneBalClawBody_80090178.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sdata 4")},

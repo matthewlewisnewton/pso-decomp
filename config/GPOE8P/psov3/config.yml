@@ -5354,7 +5354,7 @@ force_active:
   - fill_list_entry__6TLobbyFPvPv
   - fill_range__15TBoss6SwordWaveFPvPv
   - filter_input_flags__12TBoss1DragonFiii
-  - finalize_and_send_60__15TObjBoss2TunnelFv
+  - finalize_and_send_60__15TObjBoss2TunnelFP16G_PlaySound_6xB2
   - find_active_pad_rumble_effect_by_id__FUl
   - find_archive_entry__6TLobbyFPvPvPvPv
   - find_area_technique_contact__FPviPvPv
