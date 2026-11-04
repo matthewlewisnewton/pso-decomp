@@ -91,7 +91,8 @@ struct TBoss6Type1 : public TObjEnemy {
     u32 unk_50C[24];
     Vec m_56C;
     // Node positions ModelNodePositionCapture writes for draw_callback_lists[1].
-    // [1] is the sound position, [7] the beam, [8..10] the trail points.
+    // [1] anchors the roar sound and radar marker, [7] is where the flash model
+    // is drawn, [8..10] are the trail points (the beam runs from [8] to [9]).
     Vec node_positions_578[11];
     // Node positions for draw_callback_lists[0].
     Vec node_positions_5FC[5];
