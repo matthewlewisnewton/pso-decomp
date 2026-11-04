@@ -18,7 +18,11 @@ extern "C" {
 extern IndirectTaskTable eff_indirect_task_table;
 extern const IndirectTaskTable lbl_8046FBE8;
 extern s32 actor_frame_tick;
-extern const f32 lbl_805DE028;
+// A scalar const is copied into the float pool as well as emitted, so this
+// slot would appear twice. The one-element array is the single 4-byte object
+// at 0x805DE028 (1/32768, the rand scale). With the angle literal after it,
+// .sdata2 starts on the 8-byte boundary MWCC requires.
+extern const f32 lbl_805DE028[1] = { 1.0f / 32768.0f };
 }
 
 struct RecoveredGlobal_802A9234_TEffIndirectCtrl__data_80540AF0 {
@@ -92,7 +96,7 @@ void TEffIndirectCtrl::run_task() {
     tasks.entries[1] = table->entries[1];
     tasks.entries[2] = table->entries[2];
     if ((actor_frame_tick & 31) == 0) {
-        m_50 = m_20->m_3 * (lbl_805DE028 * rand());
+        m_50 = m_20->m_3 * (lbl_805DE028[0] * rand());
     }
     if (m_20->m_0 < 3) {
         (this->*tasks.entries[m_20->m_0])();
