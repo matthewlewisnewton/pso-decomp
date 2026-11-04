@@ -36,7 +36,9 @@ struct TBoss6Type1 : public TObjEnemy {
     s32 m_414;
     u8 unk_418[0x4];
     u8 m_41c;
-    u8 unk_41D[0x1B];
+    u8 unk_41D[0x3];
+    Vec m_420;
+    Vec m_42C;
     s32 m_438;
     u8 unk_43C[0x4];
     s32 m_440;
@@ -63,12 +65,19 @@ struct TBoss6Type1 : public TObjEnemy {
     s32 m_4e0;
     s32 unk_4e4;
     f32 m_4e8;
-    u8 unk_4EC[0x1C];
+    s32 m_4ec;
+    s32 m_4f0;
+    s32 m_4f4;
+    u8 unk_4F8[0x10];
     s32 m_508;
-    u8 unk_50C[0xC0];
+    u8 unk_50C[0x60];
+    Vec m_56C;
+    Vec m_578;
+    u8 unk_584[0x48];
     Vec sound_pos;
     Boss6EffectPoint trail_points[3];
-    u8 unknown_5FC[0x3C];
+    Vec m_5FC;
+    u8 unk_608[0x30];
     Boss6EffectPoint effect_points[2];
     // One node-position capture per model; render installs each before it
     // draws that model (upstream: TObjFish__sub_800E3124 lists).
