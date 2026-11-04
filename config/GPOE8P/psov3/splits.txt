@@ -5233,8 +5233,6 @@ pso/unk/text_8016F1C0.cpp:
 
 pso/misc/TOMineTrap_8016F6F8.cpp:
 	.text       start:0x8016F6F8 end:0x80170EEC
-	.rodata     start:0x804421F8 end:0x80442200
-	.sdata2     start:0x805DB858 end:0x805DB860
 
 pso/misc/TOMine.cpp:
 	.text       start:0x80170EEC end:0x80171314

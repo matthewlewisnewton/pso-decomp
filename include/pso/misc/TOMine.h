@@ -31,15 +31,14 @@ struct TOMine : public TObjChara {
     virtual void apply_knockback_from_attacker(u8 *, f32);
     virtual s32 try_start_action(s32, s32);
     virtual s32 roll_physical_accuracy(void *, s32, f32);
-    void* m_334;
-    u8 _pad338[0x8];
+    Vec m_334;
     u32 m_340;
     u32 m_344;
     s32 m_348;
     f32 m_34c;
     f32 m_350;
-    s32 m_354;
-    f32 m_358;
+    // 0x354: kind, 0x358: power. Passed whole to receive_direct_attack.
+    DirectAttackPayload attack;
     u16 m_35c;
     u8 _pad35E[0x12];
     u32 m_370;
@@ -54,4 +53,6 @@ struct TOMine : public TObjChara {
 };
 
 typedef char TOMine_size[sizeof(TOMine) == 0x374 ? 1 : -1];
+typedef char TOMine_m_334_offset[(offsetof(TOMine, m_334) == 0x334) ? 1 : -1];
+typedef char TOMine_attack_offset[(offsetof(TOMine, attack) == 0x354) ? 1 : -1];
 #endif
