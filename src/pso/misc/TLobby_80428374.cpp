@@ -315,9 +315,7 @@ s16 TLobby__sub_804283C8(u8 *script, ModemScriptSession *sess) {
             ret = TLobby__sub_80428830(&sess->req);
             break;
         case 3:
-            // Original passes the script request (session+0x88) as this. The timeout
-            // fallback is the s16 at offset 4, which is ModemRequest::timeout.
-            ret = static_cast<TLobby *>(static_cast<void *>(&sess->req))->wait_timeout_loop();
+            ret = sess->lobby.wait_timeout_loop();
             break;
         case 4:
             ret = modem_wait_connect();

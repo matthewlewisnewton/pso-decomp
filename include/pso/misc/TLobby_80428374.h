@@ -2,6 +2,7 @@
 #define PSO_MISC_TLOBBY_80428374_H
 
 #include "types.h"
+#include "pso/misc/TLobby.h"
 
 struct ModemSessionState {
     char **subst;
@@ -42,7 +43,12 @@ struct ModemScriptSession {
     char *password;
     char *phone_number;
     u8 pad18[0x70];
-    ModemRequest req;
+    // The dial helpers read this as a ModemRequest. Case DELAY calls
+    // TLobby::wait_timeout_loop with this same address (session+0x88).
+    union {
+        ModemRequest req;
+        TLobby lobby;
+    };
 };
 
 struct ModemConfig {
