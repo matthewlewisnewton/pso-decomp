@@ -17,6 +17,9 @@ extern s32 lbl_805D56A8;
 // Each plane cursor is kept one word behind the bytes it reads or writes.
 // The last access of a group is then `*(p += n)`, which MWCC emits as
 // lwzu/stwu with the original `addi reg, reg, -4` prologue bias.
+// Chroma and luma are inserted with __rlwinm/__rlwimi. The equivalent `|`
+// masks compile to `or` for the second consumer of each chroma word; the
+// rotate-insert form keeps both scanlines on `rlwimi`.
 void pack_movie_frame(MoviePlanes_80143988 *frame) {
     const s32 width = lbl_805D56A4;
     const s32 height = lbl_805D56A8;
@@ -49,26 +52,26 @@ void pack_movie_frame(MoviePlanes_80143988 *frame) {
             u32 yw = y[1];
             u32 lw = y2[1];
             __dcbt(y, 32);
-            u32 c = ((uw >> 8) & 0x00FF0000U) | (vw >> 24);
-            u32 hi = c | (yw & 0xFF000000U) | ((yw >> 8) & 0x0000FF00U);
-            u32 lo = c | (lw & 0xFF000000U) | ((lw >> 8) & 0x0000FF00U);
+            u32 c = __rlwimi(__rlwinm(uw, 24, 8, 15), vw, 8, 24, 31);
+            u32 hi = __rlwimi(__rlwimi(c, yw, 0, 0, 7), yw, 24, 16, 23);
+            u32 lo = __rlwimi(__rlwimi(c, lw, 0, 0, 7), lw, 24, 16, 23);
             dp[1] = hi;
             lp[1] = lo;
-            c = (uw & 0x00FF0000U) | ((vw >> 16) & 0xFFU);
+            c = __rlwimi(__rlwinm(uw, 0, 8, 15), vw, 16, 24, 31);
             yw = y[2];
             lw = *(y2 += 2);
-            hi = c | ((yw << 16) & 0xFF000000U) | ((yw << 8) & 0x0000FF00U);
-            lo = c | ((lw << 16) & 0xFF000000U) | ((lw << 8) & 0x0000FF00U);
+            hi = __rlwimi(__rlwimi(c, yw, 16, 0, 7), yw, 8, 16, 23);
+            lo = __rlwimi(__rlwimi(c, lw, 16, 0, 7), lw, 8, 16, 23);
             dp[2] = hi;
             lp[2] = lo;
-            c = ((uw << 8) & 0x00FF0000U) | ((vw >> 8) & 0xFFU);
-            hi = c | (yw & 0xFF000000U) | ((yw >> 8) & 0x0000FF00U);
-            lo = c | (lw & 0xFF000000U) | ((lw >> 8) & 0x0000FF00U);
+            c = __rlwimi(__rlwinm(uw, 8, 8, 15), vw, 24, 24, 31);
+            hi = __rlwimi(__rlwimi(c, yw, 0, 0, 7), yw, 24, 16, 23);
+            lo = __rlwimi(__rlwimi(c, lw, 0, 0, 7), lw, 24, 16, 23);
             dp[3] = hi;
             lp[3] = lo;
-            c = ((uw << 16) & 0x00FF0000U) | (vw & 0xFFU);
-            hi = c | ((yw << 16) & 0xFF000000U) | ((yw << 8) & 0x0000FF00U);
-            lo = c | ((lw << 16) & 0xFF000000U) | ((lw << 8) & 0x0000FF00U);
+            c = __rlwimi(__rlwinm(uw, 16, 8, 15), vw, 0, 24, 31);
+            hi = __rlwimi(__rlwimi(c, yw, 16, 0, 7), yw, 8, 16, 23);
+            lo = __rlwimi(__rlwimi(c, lw, 16, 0, 7), lw, 8, 16, 23);
             dp[4] = hi;
             lp[4] = lo;
             __dcbt(y2, 32);
@@ -76,24 +79,24 @@ void pack_movie_frame(MoviePlanes_80143988 *frame) {
             vw = *(v += 2);
             yw = y[3];
             lw = y2[1];
-            c = ((uw >> 8) & 0x00FF0000U) | (vw >> 24);
-            hi = c | (yw & 0xFF000000U) | ((yw >> 8) & 0x0000FF00U);
-            lo = c | (lw & 0xFF000000U) | ((lw >> 8) & 0x0000FF00U);
+            c = __rlwimi(__rlwinm(uw, 24, 8, 15), vw, 8, 24, 31);
+            hi = __rlwimi(__rlwimi(c, yw, 0, 0, 7), yw, 24, 16, 23);
+            lo = __rlwimi(__rlwimi(c, lw, 0, 0, 7), lw, 24, 16, 23);
             dp[5] = hi;
             lp[5] = lo;
-            c = (uw & 0x00FF0000U) | ((vw >> 16) & 0xFFU);
-            hi = c | ((yw << 16) & 0xFF000000U) | ((yw << 8) & 0x0000FF00U);
-            lo = c | ((lw << 16) & 0xFF000000U) | ((lw << 8) & 0x0000FF00U);
+            c = __rlwimi(__rlwinm(uw, 0, 8, 15), vw, 16, 24, 31);
+            hi = __rlwimi(__rlwimi(c, yw, 16, 0, 7), yw, 8, 16, 23);
+            lo = __rlwimi(__rlwimi(c, lw, 16, 0, 7), lw, 8, 16, 23);
             dp[6] = hi;
             lp[6] = lo;
             yw = *(y += 4);
             lw = *(y2 += 2);
-            c = ((vw >> 8) & 0xFFU) | ((uw << 8) & 0x00FF0000U);
-            lp[7] = c | (lw & 0xFF000000U) | ((lw >> 8) & 0x0000FF00U);
-            dp[7] = c | (yw & 0xFF000000U) | ((yw >> 8) & 0x0000FF00U);
-            c = (vw & 0xFFU) | ((uw << 16) & 0x00FF0000U);
-            *(dp += 8) = c | ((yw << 16) & 0xFF000000U) | ((yw << 8) & 0x0000FF00U);
-            *(lp += 8) = c | ((lw << 16) & 0xFF000000U) | ((lw << 8) & 0x0000FF00U);
+            c = __rlwimi(__rlwinm(uw, 8, 8, 15), vw, 24, 24, 31);
+            lp[7] = __rlwimi(__rlwimi(c, lw, 0, 0, 7), lw, 24, 16, 23);
+            dp[7] = __rlwimi(__rlwimi(c, yw, 0, 0, 7), yw, 24, 16, 23);
+            c = __rlwimi(__rlwinm(uw, 16, 8, 15), vw, 0, 24, 31);
+            *(dp += 8) = __rlwimi(__rlwimi(c, yw, 16, 0, 7), yw, 8, 16, 23);
+            *(lp += 8) = __rlwimi(__rlwimi(c, lw, 16, 0, 7), lw, 8, 16, 23);
         }
         dp += dst_pad;
         lp += dst_pad;
