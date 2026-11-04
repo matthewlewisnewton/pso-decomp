@@ -46,16 +46,30 @@ public:
     s32 m_3c;
     // 0x40 is the particle effect handle in restart_particle_effect and the
     // attack origin Vec in run_task/render; the Vec overlaps m_44/unk_48/m_4c.
+    // One overlay from 0x40: the Vec/segment view, the effect fields, the
+    // needle hit flags at 0x44, and the anim cursor at 0x74.
     union {
-        Vec m_40;
+        struct {
+            Vec m_40;
+            u8 gap_4c[4];
+            Vec m_50[14];
+        } geo;
         struct {
             TObject *m_40_effect;
             f32 m_44;
             u8 unk_48[0x4];
             s32 m_4c;
         } fld;
+        struct {
+            u8 gap_40[4];
+            s32 target_flags[12];
+        } hit;
+        struct {
+            u8 gap_to_74[0x34];
+            f32 anim_t;
+            void *anim_c;
+        } anim;
     };
-    Vec m_50[14];
     s32 m_f8[14];
     s32 m_130;
     f32 m_134;
