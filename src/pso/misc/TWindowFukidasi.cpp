@@ -1086,15 +1086,18 @@ void TUnk_804CF0B8::draw_name_plate(TWindowDrawContext *ctx, u32 color) {
         q.u0 = lbl_805DCD7C; q.v0 = lbl_805DCD70; q.u1 = lbl_805DCD80; q.v1 = TWindowFukidasi__data_805DCCE8;
         apply_context_transform_to_rect(ctx, &q); draw_textured_quad_at_depth(&q.x0, depth);
         if (width > TWindowFukidasi__data_805DCCFC) {
-            q.x0 = pos[0] + lbl_805DCD68; q.y0 = pos[1];
-            q.x1 = ((pos[0] + width) - lbl_805DCD68) + lbl_805DCD78; q.y1 = lbl_805DCD10 + q.y0;
+            f32 reach = pos[0] + width;
+            q.x0 = lbl_805DCD68 + pos[0]; q.y0 = pos[1];
+            q.x1 = (reach - lbl_805DCD68) + lbl_805DCD78; q.y1 = lbl_805DCD10 + q.y0;
             q.u0 = lbl_805DCD74; q.v0 = lbl_805DCD70; q.u1 = lbl_805DCD7C; q.v1 = TWindowFukidasi__data_805DCCE8;
             apply_context_transform_to_rect(ctx, &q); draw_textured_quad_at_depth(&q.x0, depth);
         }
         TWindowSubStatusDisp::get_player();
-        pos[0] += lbl_805DCD84;
+        f32 textX = pos[0];
+        textX += lbl_805DCD84;
+        pos[0] = textX;
         if (width < TWindowFukidasi__data_805DCCFC)
-            pos[0] += TWindowFukidasi__data_805DCD0C * (TWindowFukidasi__data_805DCCFC - width);
+            pos[0] = TWindowFukidasi__data_805DCD0C * (TWindowFukidasi__data_805DCCFC - width) + textX;
         pos[1] += TWindowFukidasi__data_805DCD28;
         set_text_draw_params(ctx, 0, 1, TWindowFukidasi__data_805DCD4C / (lbl_805DCD88 + ctx->depth), lbl_805DCD8C);
         draw_small_font_string_clipped(pos, this->name, textColor, lbl_805DCD54);
