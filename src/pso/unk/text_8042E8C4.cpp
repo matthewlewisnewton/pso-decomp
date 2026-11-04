@@ -12,10 +12,10 @@ extern u8 launch_record[] AT_ADDRESS(0x80003100);
 // instruction-invalidated; data is stored; BSS is cleared.
 //
 // Not exact. Built on the ntutl profile (GC/2.6 -O4,p -inline off
-// -use_lmw_stmw on) with -opt nocse,nostrength for this unit: the original
-// loops index with lwzx off a byte induction variable and recompute
-// base+index per load, which is what those two optimizations would have
-// folded. With that the loop bodies are the original instruction sequence.
+// -use_lmw_stmw on) with -opt nocse,nostrength,noprop for this unit: the
+// original loops index with lwzx off a byte induction variable, recompute
+// base+index per load, and evaluate the section source address before moving
+// the destination and length into r3/r5.
 // Left: the original holds the zero it compares each offset against in a
 // register (cmplw) copied from the counter before each loop, which no
 // spelling of the compare produces; and the tail is lwz/isync/mtlr/blr with
@@ -42,7 +42,8 @@ extern "C" void LaunchDol(ModemLaunchContext *ctx) {
         if (offset == 0) {
             break;
         }
-        memmove(dest, file + offset, length);
+        u8 *src = file + offset;
+        memmove(dest, src, length);
         DCStoreRange(dest, length);
         ICInvalidateRange(dest, length);
     }
@@ -53,7 +54,8 @@ extern "C" void LaunchDol(ModemLaunchContext *ctx) {
         if (offset == 0) {
             break;
         }
-        memmove(dest, file + offset, length);
+        u8 *src = file + offset;
+        memmove(dest, src, length);
         DCStoreRange(dest, length);
     }
 

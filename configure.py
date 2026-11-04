@@ -706,9 +706,10 @@ MIDDLEWARE: List[Tuple[str, int, str, List[str], Dict[str, Dict[str, Any]]]] = [
     # ntUtl ("Ver 1.16.00 Build:Jul 8 2002"); the SDK's EXI library follows.
     ("ntutl", 0x8042E8C4, "GC/2.6", cflags_middleware, {
         # LaunchDol's section loops index with lwzx off a separate byte
-        # induction variable and recompute base+index per load, i.e. no
-        # strength reduction of the base and no common subexpressions.
-        "pso/unk/text_8042E8C4.cpp": {"cflags": _switch(cflags_middleware, "-opt nocse,nostrength")},
+        # induction variable and recompute base+index per load, and the
+        # source address is computed before loading the destination/length
+        # argument registers (no CSE, strength reduction, or propagation).
+        "pso/unk/text_8042E8C4.cpp": {"cflags": _switch(cflags_middleware, "-opt nocse,nostrength,noprop")},
     }),
 ]
 MIDDLEWARE_END = 0x8042F13C
