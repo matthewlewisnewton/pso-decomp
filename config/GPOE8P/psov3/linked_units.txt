@@ -834,9 +834,6 @@ pso/misc/KeyboardCharacterMaps.cpp
 pso/misc/MaterialOpacityFade.cpp
 pso/misc/PhotonBlastSummon.cpp
 pso/misc/QuestDownloadBuffers.cpp
-pso/misc/QuestDownloadDisplayPrefix.cpp
-pso/misc/QuestDownloadSlots.cpp
-pso/misc/QuestDownloadWorkspace.cpp
 pso/misc/RenderFadeState.cpp
 pso/misc/ShopToolStock.cpp
 pso/misc/ShopWeaponStock.cpp
@@ -991,7 +988,6 @@ pso/misc/TLobby_80072048.cpp
 pso/misc/TLobby_800726F0.cpp
 pso/misc/TLobby_8007340C.cpp
 pso/misc/TLobby_80073DAC.cpp
-pso/misc/TLobby_80076614.cpp
 pso/misc/TLobby_80077B60.cpp
 pso/misc/TLobby_8007B858.cpp
 pso/misc/TLobby_8007C550.cpp
@@ -2184,11 +2180,6 @@ pso/object/TObjSuisouLobby.cpp
 pso/object/TObjTailsTailsMove.cpp
 pso/object/TObjTank.cpp
 pso/object/TObjTombstone.cpp
-pso/object/TObjTombstone_80075764.cpp
-pso/object/TObjTombstone_80075854.cpp
-pso/object/TObjTombstone_800762F0.cpp
-pso/object/TObjTombstone_800764E0.cpp
-pso/object/TObjTombstone_8007666C.cpp
 pso/object/TObjTradeCollision.cpp
 pso/object/TObjTreeLobby.cpp
 pso/object/TObjVoloptCage.cpp
@@ -2842,8 +2833,6 @@ pso/unk/text_80072230.cpp
 pso/unk/text_80074BD0.cpp
 pso/unk/text_80074C20.cpp
 pso/unk/text_80074C70.cpp
-pso/unk/text_80074E04.cpp
-pso/unk/text_80074E48.cpp
 pso/unk/text_80076BC4.cpp
 pso/unk/text_80076E84.cpp
 pso/unk/text_800779A0.cpp
@@ -3468,6 +3457,7 @@ pso/unk/text_8034CEDC.cpp
 pso/unk/text_8034D3D0.cpp
 pso/unk/text_8034DAA0.cpp
 pso/unk/text_803516F8.cpp
+pso/unk/text_803531FC.cpp
 pso/unk/text_80353380.cpp
 pso/unk/text_80353414.cpp
 pso/unk/text_80354BE4.cpp

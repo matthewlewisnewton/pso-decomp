@@ -1,37 +1,26 @@
-# Quest download workspace byte storage
+# Quest download workspace
 
-This selects the existing `lbl_80595008` symbol, `u8[0x990]`, at
-`0x80595008..0x80595998` (2,448 bytes). The slot array selected by #262 begins
-at the next address. The cache unit that ends at `0x80595008` is already
-selected on main. Consumer function bodies are unchanged.
+`lbl_80595008` is defined in `QuestDownloadBuffers.cpp`, not in its own unit.
+The four objects from `0x80595008` through `0x80596668` are packed against
+each other and against the cache BSS that ends at `0x80595008`. Nothing in
+the addresses is a file boundary. The provider BSS starts at
+`quest_download_block_pool` (`0x80596668`), which `init_block_free_list`
+addresses as `...bss.0`. See
+[quest-download-deferred-storage.md](quest-download-deferred-storage.md).
 
-`symbols.txt` already names this object `lbl_80595008`, size `0x990`. That is
-the placeholder stored for the address, so the definition keeps it. C linkage
-matches that unmangled name. The compiled unit is one zero-initialized `.bss`
-object: size 2,448, alignment 8, global symbol `lbl_80595008`. There is no
-second definition and no aggregate that includes the slot array or the cache.
+The object is `QuestDownloadWorkspace` (2,448 bytes). Its only relocations
+are in `TQuestVmDownLoadServer__sub_803EA428` and `__sub_803EA9E8`.
 
-The first 2,240 bytes (`0x8C0`) stay uninterpreted. They are not padding, and
-they are not the slot records: those are the separate object
-`quest_download_slot_chain_table` at `0x80595998`. The last 208 bytes are
-still interpreted only by original provider code. This definition does not
-recover a query struct, a typed subobject lifetime, or a proof of the original
-producer's bounds. A path in that original code can write past the final
-208-byte region; reachability stays unproved. The symbol inventory does not
-rule out computed aliases.
+- `803EA428` adds `0x8C0` and reads a halfword at +0, a word at +4 and a
+  halfword at +8. It passes that address to `build_item_list`,
+  `803F06B8` and `803F0268`.
+- `803F03B4` writes 6-byte entries and stops when the index reaches 32
+  (`cmpwi r5, 0x20`). Thirty-two entries plus the 14-byte header are 206
+  bytes; the `u32` member rounds the object to `0xD0`.
+- Both functions also add `0x990`, which is `quest_download_slot_chain_table`,
+  the next symbol. `803EA9E8` uses that form for `x15` (`+0x9A5`) and the
+  slot words. It does not read the workspace bytes.
 
-## Current-main validation
-
-The same build as [the prefix note](quest-download-display-prefix.md#current-main-validation)
-covers this unit. Baseline is current main
-`b305c93d6315a67533b81580eb8ea019269b31c6`.
-
-`QuestDownloadWorkspace` scores 2,448/2,448 data bytes at 100%, with no
-functions, and the unit is complete. Together with the 12-byte prefix, this
-change adds **2,460** matched and source-linked bytes on top of #262. The
-combined stack against current main adds 4,700 data bytes and three
-source-selected units (slots, workspace, prefix). Exact functions are
-unchanged. The 1,028-byte scratch object at `0x80596264` stays original.
-
-No original artifacts are copied into the source. Provider functions stay
-unmatched.
+No instruction loads or stores `0x80595008..0x805958C7` through this symbol.
+Those `0x8C0` bytes stay a leading array. They are not declared as a second
+`QuestDownloadSlot[80]`. The linker name stays `lbl_80595008`.
