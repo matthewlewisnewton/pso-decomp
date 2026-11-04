@@ -61,13 +61,11 @@ void vfunc_80__12TOMineIcon04Fv(s32 arg0);
 s32 TObjFish__sub_8001EDB0(void *, s32);
 s32 get_bml_model(void *, s32);
 void init_collision_body_parts(void *, void *, s32);
-void TOMine__ct(void *, void *, void *);
 extern u8 mine_collision_body_parts[];
 extern void *__vt__12TOMineIcon04[];
 extern s32 TOMineIcon04__name;
 extern s32 game_difficulty_selection;
 extern void *lbl_805D5A50;
-void *TOMineIcon04__ct(void *arg0, void *arg1, void *arg2);
 int vfunc_82__12TOMineIcon04Fv(void* p);
 void vfunc_84__12TOMineIcon04Fv(void);
 void *__dt__12TOMineIcon04Fv(void *arg0, s16 arg1);
@@ -294,13 +292,7 @@ void TOMineIcon04::vfunc_80() {
     }
 }
 
-void *TOMineIcon04::create() {
-    void *o = __nw__7TObjectFUl(0x37C);
-    if (o != NULL) {
-        o = TOMineIcon04__ct(o, tl_05, this);
-    }
-    return o;
-}
+void *TOMineIcon04::create() { return new TOMineIcon04((TObject *)tl_05, this); }
 
 void *__dt__12TOMineIcon04Fv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
@@ -316,12 +308,10 @@ void *__dt__12TOMineIcon04Fv(void *arg0, s16 arg1) {
 }
 #pragma push
 #pragma fp_contract on
-void *TOMineIcon04__ct(void *arg0, void *arg1, void *arg2) {
-    TOMine__ct(arg0, arg1, arg2);
-#define self ((Icon_80171E7C *)arg0)
-    self->vt = ((void * *)&__vt__12TOMineIcon04);
+TOMineIcon04::TOMineIcon04(TObject *parent, void *set) : TOMine(parent) {
+#define self ((Icon_80171E7C *)this)
     self->f0 = TOMineIcon04__name;
-    ((VIcon_80171E7C *)self)->m5(arg2);
+    ((VIcon_80171E7C *)self)->m5(set);
     ((TObjChara *)self)->initialize_position_copies();
     ((TObjChara *)self)->calc_attach_pos();
     self->f34 = get_bml_model(lbl_805D5A50, 7);
@@ -353,7 +343,6 @@ void *TOMineIcon04__ct(void *arg0, void *arg1, void *arg2) {
     init_collision_body_parts(self, mine_collision_body_parts, 1);
     ((TObjCollidable *)self)->refresh_collision_body_centers();
     ((TObjPlayer *)self)->register_object_by_id();
-    return self;
 #undef self
 }
 #pragma pop
