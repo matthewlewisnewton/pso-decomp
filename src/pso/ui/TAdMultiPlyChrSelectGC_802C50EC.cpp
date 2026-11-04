@@ -653,33 +653,28 @@ s32 TAdMultiPlyChrSelectGC__sub_802C5F1C(void *arg0, int arg1) {
             if (cnt < 4) {
                 idx = cnt;
             }
-            /* All quad stores route through the re-cast arg0, and the identity
-               i++/i-- pair between the v0 and u1 stores is load-bearing: it
-               re-ties the allocator onto orig's row-pointer/clamp numbering. */
-            ((S_802C50EC *)arg0)->quad[i][j].u0 = uu;
+            self->quad[i][j].u0 = uu;
             a = lbl_805DE588 * (f32)idx;
             b = lbl_805DE588 + a;
-            ((S_802C50EC *)arg0)->quad[i][j].v0 = a / 256.0f;
-            i++;
-            i--;
-            ((S_802C50EC *)arg0)->quad[i][j].u1 = lbl_805DE58C;
-            ((S_802C50EC *)arg0)->quad[i][j].v1 = b / 256.0f;
+            self->quad[i][j].v0 = a / 256.0f;
+            self->quad[i][j].u1 = lbl_805DE58C;
+            self->quad[i][j].v1 = b / 256.0f;
         }
     }
 
     /* Fixed home slots for the trailing (unpaired) columns. */
     self->cursor[0][4] = lbl_805DE590;
     self->cursor[0][5] = lbl_805DE594;
-    ((S_802C50EC *)arg0)->cursor[0][6] = lbl_805DE598;
-    ((S_802C50EC *)arg0)->cursor[0][7] = lbl_805DE59C;
-    ((S_802C50EC *)arg0)->cursor[1][4] = TAdMultiPlyChrSelectGC__data_805DE56C;
-    ((S_802C50EC *)arg0)->cursor[1][5] = lbl_805DE594;
-    ((S_802C50EC *)arg0)->cursor[1][6] = lbl_805DE590;
-    ((S_802C50EC *)arg0)->cursor[1][7] = lbl_805DE59C;
-    ((S_802C50EC *)arg0)->cursor[2][4] = lbl_805DE598;
-    ((S_802C50EC *)arg0)->cursor[2][5] = lbl_805DE594;
-    ((S_802C50EC *)arg0)->cursor[2][6] = lbl_805DE5A0;
-    ((S_802C50EC *)arg0)->cursor[2][7] = lbl_805DE59C;
+    self->cursor[0][6] = lbl_805DE598;
+    self->cursor[0][7] = lbl_805DE59C;
+    self->cursor[1][4] = TAdMultiPlyChrSelectGC__data_805DE56C;
+    self->cursor[1][5] = lbl_805DE594;
+    self->cursor[1][6] = lbl_805DE590;
+    self->cursor[1][7] = lbl_805DE59C;
+    self->cursor[2][4] = lbl_805DE598;
+    self->cursor[2][5] = lbl_805DE594;
+    self->cursor[2][6] = lbl_805DE5A0;
+    self->cursor[2][7] = lbl_805DE59C;
 }
 
 void TAdMultiPlyChrSelectGC::update_option_cursor() {
