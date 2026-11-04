@@ -1653,27 +1653,27 @@ void TBoss6Type1::damage_players_in_range() {
     }
 }
 void TBoss6Type1::spawn_grav_ball() {
-    Vec_802B683C v;
+    Vec v;
     s32 flag;
-    u8 *pl;
+    TObjPlayer *pl;
     s8 b;
     s32 ang;
     f32 r;
     flag = 1;
-    pl = (u8 *)get_player_by_client_id(((Boss_802B683C *)this)->f41C & 3);
+    pl = get_player_by_client_id(this->m_41c & 3);
     if (is_active__14TBoss6PlotFalzFv() != 0) {
-        VecCopy(&v, &((TObjBase *)pl)->position);
+        VecCopy(&v, &pl->position);
         flag = 0;
-        v.y = ((Boss_802B683C *)this)->pos.y;
+        v.y = this->position.y;
     }
-    b = ((Boss_802B683C *)this)->f41C;
+    b = this->m_41c;
     if (b & 0x40) {
         flag = 1;
     }
     if (flag != 0) {
         ang = (b & 0xF) << 12;
         r = 80.0f * ((f32)((b >> 3) & 0xF) / 15.0f) + 10.0f;
-        VecCopy(&v, (&((Boss_802B683C *)this)->pos));
+        VecCopy(&v, (&this->position));
         v.x += r * sin_table_lookup(ang);
         v.z += r * cos_table_lookup(ang);
     }
