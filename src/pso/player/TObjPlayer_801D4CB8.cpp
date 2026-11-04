@@ -23,7 +23,7 @@ struct VObj_801D4D48 : Base_801D4D48 {
 extern "C" {
 
 s32 lookup_item_def__9TItemDataFPv(s32);
-void *get_owner_if_alive__10TObjPlayerFv(void *);
+void *get_owner_if_alive__9TItemListFv(void *);
 s32 all_parents_unqueued_for_destruction__7TObjectFv();
 
 extern s32 inventory_search_item_data;
@@ -33,7 +33,7 @@ s32 TObjPlayer::count_items_by_id(s32 arg1) {
 
     if (lookup_item_def__9TItemDataFPv(arg1) != 0) {
         if (((u32 (*)(void *, s32))set_mode_and_refresh_object__10TObjPlayerFPvi)(this, arg1) != 0U) {
-            temp_r3 = ((void *(*)())get_owner_if_alive__10TObjPlayerFv)();
+            temp_r3 = ((void *(*)())get_owner_if_alive__9TItemListFv)();
             if ((temp_r3 != NULL) && (all_parents_unqueued_for_destruction__7TObjectFv() != 0)) {
                 return ((VObj_801D4D48 *)temp_r3)->m34();
             }
@@ -81,7 +81,7 @@ void TObjPlayer::destroy_subobjects_recursive() {
     p = *(u8 * *)&this->m_down;
     while (p != NULL) {
         if (is_item_valid__9TItemListFl(p) != 0) {
-            o = (V_801D4E94 *)get_owner_if_alive__10TObjPlayerFv(p);
+            o = (V_801D4E94 *)get_owner_if_alive__9TItemListFv(p);
             if (o != NULL && all_parents_unqueued_for_destruction__7TObjectFv() != 0) {
                 o->m27();
             }

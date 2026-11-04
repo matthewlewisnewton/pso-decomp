@@ -1338,8 +1338,6 @@ force_active:
   - TObjPlayer__sub_801C6FE0
   - TObjPlayer__sub_801C7098
   - TObjPlayer__sub_801D45B0
-  - TObjPlayer__sub_801D4678
-  - TObjPlayer__sub_801D46D4
   - TObjPlayer__sub_801D4730
   - TObjPlayer__sub_801D47D8
   - TObjPlayer__sub_801D8A38
@@ -15257,6 +15255,8 @@ force_active:
   - sub_801AC444__13TPhotonLeillaFv
   - sub_801AD4A8__12TPhotonMyllaFv
   - sub_801ADC7C__12TPhotonPillaFv
+  - sub_801D4678__13List_801D4744Fs
+  - sub_801D46D4__13List_801D4744Fl
   - sub_801F6B00__22TQuestVmDownLoadServerFv
   - sub_801F6C74__22TQuestVmDownLoadServerFv
   - sub_801F6D24__22TQuestVmDownLoadServerFv

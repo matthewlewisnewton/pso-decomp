@@ -36,11 +36,13 @@ typedef struct List_801D4744 {
     Ent_801D4744 *items;
     // Bubble-sorts records by key. `this` is the 8-byte list, not a TObjPlayer.
     void sort_by_key();
+    List_801D4744 *sub_801D46D4(s32 arg1);
+    List_801D4744 *sub_801D4678(s16 arg1);
 } List_801D4744;
 
 // TPlyItem from TObjPlayer::create_inventory (0x1CC bytes). TPlyItem__ct
 // stores the owner count at +0x1C; create_inventory stores the item list at
-// +0x1C4. The list's children are the nodes get_owner_if_alive walks.
+// +0x1C4. pickup_item parents a 0x20 TItemList (the item slot) under that list.
 struct PlyItem_801D4368 {
     u8 pad0[0x1C];
     s16 item_count;
@@ -150,13 +152,13 @@ s32 TObjPlayer__sub_801D4368(PlyItem_801D4368 *ply) {
     s32 filled;
     Ent_801D4744 *rec;
     s32 counted;
-    TObjPlayer *node_assigned;
+    TItemList *node_assigned;
     s32 owner;
     Ent_801D4744 *rec_checked;
     Ent_801D4744 *rec_assigned;
-    TObjPlayer *node_checked;
-    TObjPlayer *node_filled;
-    TObjPlayer *node;
+    TItemList *node_checked;
+    TItemList *node_filled;
+    TItemList *node;
     s32 checked;
 
     if (ply->item_list == NULL) {
@@ -170,30 +172,30 @@ s32 TObjPlayer__sub_801D4368(PlyItem_801D4368 *ply) {
     }
     recs = (List_801D4744 *)::operator new(8);
     if (recs != NULL) {
-        recs = (List_801D4744 *)TObjPlayer__sub_801D46D4((u8 *)recs, ply->item_count);
+        recs = recs->sub_801D46D4(ply->item_count);
     }
     if (recs == NULL) {
         return 0;
     }
     if (recs->items == NULL) {
-        TObjPlayer__sub_801D4678((u8 *)recs, 1);
+        recs->sub_801D4678(1);
         return 0;
     }
     counted = 0;
-    node = (TObjPlayer *)ply->item_list->m_down;
+    node = (TItemList *)ply->item_list->m_down;
     while (node != NULL) {
         if (TItemList::is_item_valid((s32)node) != 0 && node->get_owner_if_alive() != 0U) {
             counted++;
         }
-        node = (TObjPlayer *)node->m_next;
+        node = (TItemList *)node->m_next;
     }
     if (counted != ply->item_count) {
-        TObjPlayer__sub_801D4678((u8 *)recs, 1);
+        recs->sub_801D4678(1);
         return 0;
     }
     filled = 0;
     rec = recs->items;
-    node_filled = (TObjPlayer *)ply->item_list->m_down;
+    node_filled = (TItemList *)ply->item_list->m_down;
     while (node_filled != NULL) {
         if (TItemList::is_item_valid((s32)node_filled) != 0 && (owner = node_filled->get_owner_if_alive()) != 0U) {
             rec->val = owner;
@@ -201,25 +203,25 @@ s32 TObjPlayer__sub_801D4368(PlyItem_801D4368 *ply) {
             rec++;
             filled++;
         }
-        node_filled = (TObjPlayer *)node_filled->m_next;
+        node_filled = (TItemList *)node_filled->m_next;
     }
     recs->sort_by_key();
     checked = 0;
     rec_checked = recs->items;
-    node_checked = (TObjPlayer *)ply->item_list->m_down;
+    node_checked = (TItemList *)ply->item_list->m_down;
     while (node_checked != NULL) {
         if (TItemList::is_item_valid((s32)node_checked) != 0 && node_checked->get_owner_if_alive() != 0U && rec_checked->val != 0) {
             rec_checked++;
             checked++;
         }
-        node_checked = (TObjPlayer *)node_checked->m_next;
+        node_checked = (TItemList *)node_checked->m_next;
     }
     if (filled != checked) {
-        TObjPlayer__sub_801D4678((u8 *)recs, 1);
+        recs->sub_801D4678(1);
         return 0;
     }
     rec_assigned = recs->items;
-    node_assigned = (TObjPlayer *)ply->item_list->m_down;
+    node_assigned = (TItemList *)ply->item_list->m_down;
     while (node_assigned != NULL) {
         if (TItemList::is_item_valid((s32)node_assigned) != 0 && node_assigned->get_owner_if_alive() != 0U) {
             if (rec_assigned->val != 0) {
@@ -227,9 +229,9 @@ s32 TObjPlayer__sub_801D4368(PlyItem_801D4368 *ply) {
                 rec_assigned++;
             }
         }
-        node_assigned = (TObjPlayer *)node_assigned->m_next;
+        node_assigned = (TItemList *)node_assigned->m_next;
     }
-    TObjPlayer__sub_801D4678((u8 *)recs, 1);
+    recs->sub_801D4678(1);
     return 1;
 }
 
@@ -251,28 +253,28 @@ void TObjPlayer__sub_801D45B0(s32 *arg0, s32 arg1) {
     }
 }
 
-u8 *TObjPlayer__sub_801D4678(u8 *arg0, s16 arg1) {
-    u8 *q;
-    if (arg0 != NULL) {
-        q = *(u8 **)(arg0 + 4);
+List_801D4744 *List_801D4744::sub_801D4678(s16 arg1) {
+    Ent_801D4744 *q;
+    if (this != NULL) {
+        q = items;
         if (q != NULL) {
             if (q != NULL) {
-                ::operator delete[]((q - 0x10));
+                ::operator delete[](((u8 *)q - 0x10));
             }
         }
         if (arg1 > 0) {
-            ::operator delete(arg0);
+            ::operator delete(this);
         }
     }
-    return arg0;
+    return this;
 }
 
-u8 *TObjPlayer__sub_801D46D4(u8 *arg0, s32 arg1) {
+List_801D4744 *List_801D4744::sub_801D46D4(s32 arg1) {
     s32 n;
-    *(s32 *)arg0 = arg1;
-    n = *(s32 *)arg0;
-    *(s32 *)(arg0 + 4) = __construct_new_array(::operator new[]((n * 8 + 0x10)), TObjPlayer__sub_801D4730, 0, 8, n);
-    return arg0;
+    count = arg1;
+    n = count;
+    items = (Ent_801D4744 *)__construct_new_array(::operator new[]((n * 8 + 0x10)), TObjPlayer__sub_801D4730, 0, 8, n);
+    return this;
 }
 
 void TObjPlayer__sub_801D4730(void* p) { *(s32*)((char*)p + 0x0) = -1; *(s32*)((char*)p + 0x4) = 0; }
@@ -312,16 +314,16 @@ s32 TObjPlayer__sub_801D47EC(s32 arg0, s32 arg1, s32 arg2) {
     if (temp_r3_2 == 0) {
         return 0;
     }
-    temp_r3_3 = ((TObjPlayer *)temp_r3)->get_owner_if_alive();
+    temp_r3_3 = ((TItemList *)temp_r3)->get_owner_if_alive();
     if (temp_r3_3 == 0) {
         return 0;
     }
-    temp_r3_4 = ((TObjPlayer *)temp_r3_2)->get_owner_if_alive();
+    temp_r3_4 = ((TItemList *)temp_r3_2)->get_owner_if_alive();
     if (temp_r3_4 == 0) {
         return 0;
     }
-    ((TObjPlayer *)temp_r3)->set_field_1c(temp_r3_4);
-    ((TObjPlayer *)temp_r3_2)->set_field_1c(temp_r3_3);
+    ((TItemList *)temp_r3)->set_field_1c(temp_r3_4);
+    ((TItemList *)temp_r3_2)->set_field_1c(temp_r3_3);
     return 1;
 }
 

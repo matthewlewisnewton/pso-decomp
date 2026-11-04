@@ -976,8 +976,6 @@ struct TObjPlayer : public TObjChara {
     void count_items_recursive();
     void *find_inventory_item_matching_data();
     void *find_inventory_item_by_field_d8();
-    s32 get_owner_if_alive();
-    void set_field_1c(s32 v);
     static s32 decrement_timer(s32 *arg0);
     static void reset_particle_ctrl(s32 *arg0);
     void*init_sub_objects();

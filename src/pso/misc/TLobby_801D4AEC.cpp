@@ -1,6 +1,7 @@
 #include "types.h"
 #include "pso/misc/TLobby.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/TItemList.h"
 
 struct Base_801D4AEC { char pad[0x18]; };
 #define CAT2(a,b) a##b
@@ -59,7 +60,7 @@ void TLobby::reduce_item_amount(s32 arg1, s32 arg2, s32 arg3) {
     s16 temp_r4;
     VObj_801D4AEC *player;
 
-    player = (VObj_801D4AEC *)((TObjPlayer *)arg2)->get_owner_if_alive();
+    player = (VObj_801D4AEC *)((TItemList *)arg2)->get_owner_if_alive();
     if ((player != NULL) && (arg3 >= 0)) {
         if ((player->m34() - arg3) > 0) {
             player->m35(arg3);

@@ -51,7 +51,7 @@ s32 TObjPlayer__sub_801D49F4(void *arg0, void *arg1, s32 *arg2, s32 arg3);
 s32 place_on_ground__5TItemFsPfl(void *, s16, s32, s32);
 void unequip_item__10TObjPlayerFiPv(s32 arg0, void *arg1);
 s32 is_item_equipped(void *);
-void *get_owner_if_alive__10TObjPlayerFv();
+void *get_owner_if_alive__9TItemListFv();
 s32 queue_destruction__7TObjectFv(s32, s16);
 
     extern int TObjPlayer__owner_field_write_cursor;
@@ -73,7 +73,7 @@ s32 TObjPlayer::update_inventory_item(s32 arg1, s32 arg2, s32 arg3, s32 arg4, s3
     if (temp_r3 == 0) {
         return 0;
     }
-    temp_r3_2 = get_owner_if_alive__10TObjPlayerFv();
+    temp_r3_2 = get_owner_if_alive__9TItemListFv();
     if (temp_r3_2 == NULL) {
         return 0;
     }
@@ -142,7 +142,7 @@ void remove_equipped_item__10TObjPlayerFPvii(void *arg0, s32 arg1, s32 arg2) {
     s16 temp_r4;
     void *temp_r3;
 
-    temp_r3 = ((void *(*)(s32)) get_owner_if_alive__10TObjPlayerFv)(arg2);
+    temp_r3 = ((void *(*)(s32)) get_owner_if_alive__9TItemListFv)(arg2);
     if (temp_r3 != NULL) {
         if (((s32 (*)()) is_item_equipped)() != 0) {
             unequip_item__10TObjPlayerFiPv(arg1, temp_r3);

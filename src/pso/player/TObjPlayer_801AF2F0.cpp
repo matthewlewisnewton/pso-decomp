@@ -204,7 +204,7 @@ s16 get_attack_params_atp_min(void *);
 s16 get_attack_params_atp_max(void *);
 s32 is_item_equipped(int);
 u32 start_inventory_update__10TObjPlayerFi(s32, s32);
-u32 get_owner_if_alive__10TObjPlayerFv();
+u32 get_owner_if_alive__9TItemListFv();
 s32 preview_unequip_stats__10TObjPlayerFv(Self_801B96BC *self, Out_801B96BC *out, s32 arg2);
 struct Base_801AF3C4 { char pad[0x8]; };
 
@@ -2399,7 +2399,7 @@ void TLobby__sub_801D4C28(s32, Pl_801B0B88 *, s32, s32);
 u32 find_first_inventory_entry__10TObjPlayerFi(int, void *);
 u32 set_mode_and_refresh_object__10TObjPlayerFPvi(s32, s8 *);
 u8 * TPlyItem__ct(void *, void *);
-s32 set_field_1c__10TObjPlayerFl(void *, void *);
+s32 set_field_1c__9TItemListFl(void *, void *);
 u8 * __ct__9TItemListFv(void *, void *);
 s32 draw_party_label__15TFontSmallLobbyFiUis(s32, s32, s32);
 s32 accumulate_damage_stats(s32, s32, s32);
@@ -3282,7 +3282,7 @@ s32 check_switch_available__6TLobbyFPvi(void *arg0, s32 arg1) {
             if (start_inventory_update__10TObjPlayerFi(*(s32 *)((s8 *)arg0 + 0xD00), arg1) == 0U) {
                 return 0;
             }
-            if (get_owner_if_alive__10TObjPlayerFv() == 0U) {
+            if (get_owner_if_alive__9TItemListFv() == 0U) {
                 return 0;
             }
             if (((u8 (*)(void))get_item_type__5TItemFv)() == 0) {
@@ -3295,7 +3295,7 @@ block_8:
             if (start_inventory_update__10TObjPlayerFi(*(s32 *)((s8 *)arg0 + 0xD00), arg1) == 0U) {
                 return 0;
             }
-            if (get_owner_if_alive__10TObjPlayerFv() == 0U) {
+            if (get_owner_if_alive__9TItemListFv() == 0U) {
                 return 0;
             }
             if (((u8 (*)(void))get_item_type__5TItemFv)() == 2) {
@@ -3579,7 +3579,7 @@ s32 TObjPlayer::try_pickup_item() {
         return 0;
     }
     if (((TObjPlayer*)arg0)->find_revival_item() != 0U) {
-        temp_r3 = ((s32 (*)(void))get_owner_if_alive__10TObjPlayerFv)();
+        temp_r3 = ((s32 (*)(void))get_owner_if_alive__9TItemListFv)();
         if (temp_r3 == 0) {
             return 0;
         }
@@ -4494,7 +4494,7 @@ int TObjPlayer::try_use_item_by_type(int arg1, int arg2, int arg3) {
     if (set_mode_and_refresh_object__10TObjPlayerFPvi(*(s32 *)((s8 *)this + 0xD00), sp8) == 0U) {
         return 0;
     }
-    if (get_owner_if_alive__10TObjPlayerFv() == 0U) {
+    if (get_owner_if_alive__9TItemListFv() == 0U) {
         return 0;
     }
     if (try_send_6x27_use_item(this, get_item_id__5TItemFv()) == 0) {
@@ -4503,7 +4503,7 @@ int TObjPlayer::try_use_item_by_type(int arg1, int arg2, int arg3) {
     if (set_mode_and_refresh_object__10TObjPlayerFPvi(*(s32 *)((s8 *)this + 0xD00), sp8) == 0U) {
         return 0;
     }
-    if (get_owner_if_alive__10TObjPlayerFv() == 0U) {
+    if (get_owner_if_alive__9TItemListFv() == 0U) {
         return 0;
     }
     return all_parents_unqueued_for_destruction__7TObjectFv() != 0 ? 1 : 0;
@@ -4518,7 +4518,7 @@ s32 TObjPlayer::check_can_add_item(s8 arg1, s8 arg2) {
     if (set_mode_and_refresh_object__10TObjPlayerFPvi(*(s32 *)((s8 *)this + 0xD00), sp8) == 0U) {
         return 0;
     }
-    if (get_owner_if_alive__10TObjPlayerFv() == 0U) {
+    if (get_owner_if_alive__9TItemListFv() == 0U) {
         return 0;
     }
     if (try_send_6x27_use_item(this, get_item_id__5TItemFv()) == 0) {
@@ -4527,7 +4527,7 @@ s32 TObjPlayer::check_can_add_item(s8 arg1, s8 arg2) {
     if (set_mode_and_refresh_object__10TObjPlayerFPvi(*(s32 *)((s8 *)this + 0xD00), sp8) == 0U) {
         return 0;
     }
-    if (get_owner_if_alive__10TObjPlayerFv() == 0U) {
+    if (get_owner_if_alive__9TItemListFv() == 0U) {
         return 0;
     }
     return all_parents_unqueued_for_destruction__7TObjectFv() != 0 ? 1 : 0;
@@ -6115,7 +6115,7 @@ s32 TObjPlayer::find_inventory_item_id(s8 arg1, s8 arg2) {
     if (find_first_inventory_entry__10TObjPlayerFi(*(s32 *)((s8 *)((u8 *)this) + 0xD00), &item) == 0U) {
         return -1;
     }
-    if (get_owner_if_alive__10TObjPlayerFv() == 0U) {
+    if (get_owner_if_alive__9TItemListFv() == 0U) {
         return -1;
     }
     return get_item_id__5TItemFv();
@@ -6130,7 +6130,7 @@ s32 fn_801B7CEC(u8 *arg0, s8 arg1, s8 arg2, s8 arg3) {
     if (((u32 (*)(int, void *))set_mode_and_refresh_object__10TObjPlayerFPvi)(*(s32 *)((s8 *)arg0 + 0xD00), &item) == 0U) {
         return -1;
     }
-    if (get_owner_if_alive__10TObjPlayerFv() == 0U) {
+    if (get_owner_if_alive__9TItemListFv() == 0U) {
         return -1;
     }
     return get_item_id__5TItemFv();
@@ -6147,9 +6147,9 @@ void handle_6x28_feed_mag(s32 arg0) {
     if (validate_6x28_feed_mag((G_ClientIDHeader *)&cmd) != 0) {
         p = ((u8 * (*)(u16))get_player_by_client_id)(cmd.client);
         if (p != NULL && ((u32 (*)(s32, u32))start_inventory_update__10TObjPlayerFi)(*(s32 *)((s8 *)p + 0xD00), cmd.item_a) != 0U) {
-            a = ((s32 (*)(void))get_owner_if_alive__10TObjPlayerFv)();
+            a = ((s32 (*)(void))get_owner_if_alive__9TItemListFv)();
             if (a != 0 && ((u32 (*)(s32, u32))start_inventory_update__10TObjPlayerFi)(*(s32 *)((s8 *)p + 0xD00), cmd.item_b) != 0U) {
-                b = ((s32 (*)(void))get_owner_if_alive__10TObjPlayerFv)();
+                b = ((s32 (*)(void))get_owner_if_alive__9TItemListFv)();
                 if (b != 0) {
                     feed_item_to_mag((TItem *)a, (TItem *)b);
                 }
@@ -6181,7 +6181,7 @@ void handle_6x27_use_item(s32 arg0) {
     if (validate_6x27_use_item((G_ClientIDHeader *)(&pkt)) != 0) {
         temp_r3 = ((u8 * (*)(u16))get_player_by_client_id)(pkt.client);
         if ((temp_r3 != NULL) && (((u32 (*)(int, int))start_inventory_update__10TObjPlayerFi)((int) (*(s32 *)((s8 *)temp_r3 + 0xD00)), pkt.item) != 0U)) {
-            temp_r3_2 = ((u8 * (*)(void))get_owner_if_alive__10TObjPlayerFv)();
+            temp_r3_2 = ((u8 * (*)(void))get_owner_if_alive__9TItemListFv)();
             if (temp_r3_2 != NULL) {
                 ((VObj_801B7EB8 *)temp_r3_2)->m29();
             }
@@ -6198,7 +6198,7 @@ s32 try_send_6x27_use_item(void *player, s32 arg1) {
     if (start_inventory_update__10TObjPlayerFi(*(s32 *)((s8 *)player + 0xD00), arg1) == 0U) {
         return 0;
     }
-    temp = ((void * (*)(void))get_owner_if_alive__10TObjPlayerFv)();
+    temp = ((void * (*)(void))get_owner_if_alive__9TItemListFv)();
     if (temp == NULL) {
         return 0;
     }
@@ -6524,7 +6524,7 @@ void TObjPlayer::request_item_drop(s32 arg1, s32 arg2) {
     if (start_inventory_update__10TObjPlayerFi(*(s32 *)(((u8 *)this) + 0xD00), arg1) == 0) {
         return;
     }
-    owner = ((VObj_801B8AF8 * (*)(void))get_owner_if_alive__10TObjPlayerFv)();
+    owner = ((VObj_801B8AF8 * (*)(void))get_owner_if_alive__9TItemListFv)();
     if (owner == NULL) {
         return;
     }
@@ -6651,7 +6651,7 @@ void *pickup_item__10TObjPlayerFP5TItem(u8 *player, u8 *arg1) {
             if (n == 0) {
                 n = 1;
             }
-            owner = ((VObj_18_p72 * (*)(s32))get_owner_if_alive__10TObjPlayerFv)(id);
+            owner = ((VObj_18_p72 * (*)(s32))get_owner_if_alive__9TItemListFv)(id);
             if (owner != NULL) {
                 owner->m36(n);
             }
@@ -6666,7 +6666,7 @@ void *pickup_item__10TObjPlayerFP5TItem(u8 *player, u8 *arg1) {
         break;
     }
     if (list != NULL) {
-        set_field_1c__10TObjPlayerFl(list, arg1);
+        set_field_1c__9TItemListFl(list, arg1);
         inv = *(u8 * *)&((TObjPlayer *)player)->inventory_objects;
         TObjPlayer__sub_801C1B0C(arg1, (*(s16 *)((s8 *)inv + 0x1C))++);
         ((TItem *)arg1)->set_mode(1);
@@ -6687,7 +6687,7 @@ s32 can_pickup_item__10TObjPlayerFP9TItemData(void *arg0, u8 *item_data) {
             return obj_getPtr2B0_20((u8 *)arg0) < 0xF423F;
         }
         if (((u32 (*)(void *, u8 *))set_mode_and_refresh_object__10TObjPlayerFPvi)(*(void **)((s8 *)arg0 + 0xD00), item_data) != 0U) {
-            held = ((void * (*)(void))get_owner_if_alive__10TObjPlayerFv)();
+            held = ((void * (*)(void))get_owner_if_alive__9TItemListFv)();
             if (held == NULL) {
                 return 0;
             }
@@ -6725,7 +6725,7 @@ s32 TObjPlayer::can_inventory_accept_item(u8 *item) {
             }
             return ((TItemData *)item)->get_max_stack_size();
         }
-        owner = ((VObj_801B91F0 * (*)(void))get_owner_if_alive__10TObjPlayerFv)();
+        owner = ((VObj_801B91F0 * (*)(void))get_owner_if_alive__9TItemListFv)();
         if (owner == NULL) {
             return 0;
         }
@@ -6861,7 +6861,7 @@ s32 preview_unequip_stats__10TObjPlayerFv(Self_801B96BC *self, Out_801B96BC *out
     if (start_inventory_update__10TObjPlayerFi(self->fD00, arg2) == 0U) {
         return 0;
     }
-    owner = ((VObj_801B96BC *)get_owner_if_alive__10TObjPlayerFv());
+    owner = ((VObj_801B96BC *)get_owner_if_alive__9TItemListFv());
     if (owner == NULL) {
         return 0;
     }
@@ -7003,7 +7003,7 @@ void handle_6x26_unequip_item(void *arg0) {
     ((TObjPlayer *)(&m))->bswap_body_dwords4();
     if (validate_6x26_unequip_item((G_ClientIDHeader *)&m) != 0) {
         p = ((Player_801B9E0C * (*)(u16))get_player_by_client_id)(m.slot);
-        if ((p != NULL) && (((u32 (*)(void *, s32))start_inventory_update__10TObjPlayerFi)(p->inv, m.c) != 0U) && ((o = ((void * (*)(void))get_owner_if_alive__10TObjPlayerFv)()) != NULL)) {
+        if ((p != NULL) && (((u32 (*)(void *, s32))start_inventory_update__10TObjPlayerFi)(p->inv, m.c) != 0U) && ((o = ((void * (*)(void))get_owner_if_alive__9TItemListFv)()) != NULL)) {
             ((void (*)(void *, void *))unequip_item__10TObjPlayerFiPv)(p, o);
         }
     }
@@ -7061,7 +7061,7 @@ void handle_6x25_equip_item(void *arg0) {
     ((TObjPlayer *)(&m))->bswap_body_dwords5();
     if (validate_6x25_equip_item((G_ClientIDHeader *)&m) != 0) {
         p = ((Player_801BA060 * (*)(u16))get_player_by_client_id)(m.slot);
-        if ((p != NULL) && (((u32 (*)(void *, s32))start_inventory_update__10TObjPlayerFi)(p->inv, m.c) != 0U) && ((o = ((void * (*)(void))get_owner_if_alive__10TObjPlayerFv)()) != NULL)) {
+        if ((p != NULL) && (((u32 (*)(void *, s32))start_inventory_update__10TObjPlayerFi)(p->inv, m.c) != 0U) && ((o = ((void * (*)(void))get_owner_if_alive__9TItemListFv)()) != NULL)) {
             ((TObjPlayer *)p)->equip_item_to_slot(o, m.d);
         }
     }

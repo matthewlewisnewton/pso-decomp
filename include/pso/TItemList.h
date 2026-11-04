@@ -3,9 +3,16 @@
 #include "pso/TObject.h"
 #include "types.h"
 
+struct TItem;
+
 class TItemList : public TObject {
 public:
     virtual ~TItemList();
+    // Inventory entries are 0x20-byte TItemList nodes. pickup_item stores the
+    // TItem here; get_owner_if_alive returns it while that item is still live.
+    TItem *item;
+    s32 get_owner_if_alive();
+    void set_field_1c(s32 v);
 public:
     static s32 is_item_valid(s32 arg0);
     void *dt(s16 arg1);
