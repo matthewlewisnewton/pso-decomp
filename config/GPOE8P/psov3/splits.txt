@@ -13927,10 +13927,17 @@ pso/misc/TLobby_803FAEA0.cpp:
 	.bss        start:0x805BFF68 end:0x805C0180
 
 pso/misc/TLobby_803FC178.cpp:
-	.text       start:0x803FC178 end:0x804048E8
-	.data       start:0x804FD628 end:0x804FD650
-	.bss        start:0x805C0180 end:0x805C06D8
+	.text       start:0x803FC178 end:0x803FCF44
+	.bss        start:0x805C0180 end:0x805C0310
+
+pso/misc/TLobby_803FCF44.cpp:
+	.text       start:0x803FCF44 end:0x803FD08C
 	.sdata2     start:0x805E1158 end:0x805E1160
+
+pso/misc/TLobby_803FD08C.cpp:
+	.text       start:0x803FD08C end:0x804048E8
+	.data       start:0x804FD628 end:0x804FD650
+	.bss        start:0x805C0310 end:0x805C06D8
 
 pso/misc/TLobby_804048E8.cpp:
 	.text       start:0x804048E8 end:0x804050DC

@@ -713,6 +713,12 @@ MIDDLEWARE: List[Tuple[str, int, str, List[str], Dict[str, Dict[str, Any]]]] = [
         "pso/protocol/NetworkRuntime.cpp": {"cflags": _switch(cflags_middleware, "-opt nocse")},
         "pso/misc/TLobby_803FAEA0.cpp": {"cflags": _switch(cflags_middleware, "-opt nocse")},
         "pso/misc/TLobby_803FC178.cpp": {"cflags": _switch(cflags_middleware, "-opt nocse")},
+        # Remainder of the same PPP object after TLobby_803FCF44.cpp. The CHAP
+        # challenge builder is not part of the nocse PPP compile: its two
+        # lbl_805C02D0 references are direct ha/lo pairs, which this compiler
+        # emits from the avetcp default (-O4,p) when the object is defined in
+        # another TU. Splitting it out leaves this tail on the PPP profile.
+        "pso/misc/TLobby_803FD08C.cpp": {"cflags": _switch(cflags_middleware, "-opt nocse")},
         "pso/misc/TLobby_804048E8.cpp": {"cflags": _switch(cflags_middleware, "-opt nocse")},
         "pso/misc/TLobby_804050DC.cpp": {"cflags": _switch(cflags_middleware, "-opt nocse")},
     }),

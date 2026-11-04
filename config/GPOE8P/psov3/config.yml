@@ -707,9 +707,6 @@ force_active:
   - TOKurage__bml_resource
   - TOKurage__class_name
   - TOLightMachine01__ct
-  - __ct__12TOMineIcon01FP7TObjectPv
-  - __ct__12TOMineIcon02FP7TObjectPv
-  - __ct__12TOMineIcon04FP7TObjectPv
   - TOMineTrapDisp__name
   - TOMonitorMachine01__bml_resource
   - TOMonitorMachine01__class_name
@@ -1696,6 +1693,9 @@ force_active:
   - __ct__12TODoorVoShipFP7TObjectPv
   - __ct__12TOMekaFish00FPv
   - __ct__12TOMekaFish01FPv
+  - __ct__12TOMineIcon01FP7TObjectPv
+  - __ct__12TOMineIcon02FP7TObjectPv
+  - __ct__12TOMineIcon04FP7TObjectPv
   - __ct__12TOSignCave01FP7TObjectPv
   - __ct__12TOSignCave02FP7TObjectPv
   - __ct__12TOSignCave03FP7TObjectPv
@@ -7963,6 +7963,7 @@ force_active:
   - lbl_805E03DC
   - lbl_805E03E0
   - lbl_805E03E4
+  - lbl_805E1158
   - lerp_follow_anchor__FP3VecP3VecPf
   - level_text_buffer
   - level_to_reward__6TLobbyFl
