@@ -1831,30 +1831,6 @@ s32 TQuestVmDownLoadServer::is_download_cmd_allowed(u8 arg0) {
     }
 }
 
-#pragma push
-#pragma dont_inline off
-#pragma inline_depth(4)
-inline s32 IsPunctuation_803E9A74(u8 c) {
-    if (c >= 0xA0) return 0;
-    switch (c) {
-    case 0x20: case 0x21: case 0x2C: case 0x2E:
-    case 0x3A: case 0x3B: case 0x3F: case 0x98: case 0x9B: case 0x9C:
-        return 1;
-    default:
-        return 0;
-    }
-}
-inline s32 IsBoundary_803E9A74(u8 c) {
-    if ((lbl_805D7888 - 1) <= 1U) return 0;
-    switch (c) {
-    case 0x9D: case 0xA1: case 0xA3: case 0xA5: case 0xA7:
-    case 0xA9: case 0xC3: case 0xE3: case 0xE5: case 0xE7:
-    case 0xEE: case 0xF2: case 0xF3:
-        return 1;
-    default:
-        return 0;
-    }
-}
 QuestDownloadSegment *TQuestVmDownLoadServer__sub_803E9A74(s32 index, s32 end, u8 a, u8 b) {
     s32 length;
     QuestDownloadMatchToken *recursiveToken;
@@ -1863,6 +1839,7 @@ QuestDownloadSegment *TQuestVmDownLoadServer__sub_803E9A74(s32 index, s32 end, u
     QuestDownloadSegment *tail;
     QuestDownloadSegment *head = NULL;
     u8 ch;
+    s32 mark;
     if (index >= end) {
         if (lbl_805D7888 < 3) return NULL;
         return reinterpret_cast<QuestDownloadSegment *>(-1);
@@ -1870,8 +1847,22 @@ QuestDownloadSegment *TQuestVmDownLoadServer__sub_803E9A74(s32 index, s32 end, u
     if ((token = quest_download_slot_chain_table[index].tokens) == reinterpret_cast<QuestDownloadMatchToken *>(-1)) {
         return reinterpret_cast<QuestDownloadSegment *>(-1);
     }
-    if (token == NULL && IsPunctuation_803E9A74(lbl_805A0470.bytes[index])) {
-        if (a == 0 || TQuestVmDownLoadServer::is_valid_item_for_slot(a, b)) {
+    if (token == NULL) {
+        ch = lbl_805A0470.bytes[index];
+        if (ch >= 0xA0) {
+            mark = 0;
+        } else {
+            switch (ch) {
+            case 0x20: case 0x21: case 0x2C: case 0x2E:
+            case 0x3A: case 0x3B: case 0x3F: case 0x98: case 0x9B: case 0x9C:
+                mark = 1;
+                break;
+            default:
+                mark = 0;
+                break;
+            }
+        }
+        if (mark != 0 && (a == 0 || TQuestVmDownLoadServer::is_valid_item_for_slot(a, b))) {
             segment = static_cast<QuestDownloadSegment *>(TQuestVmDownLoadServer__sub_803ECF0C());
             if (segment != NULL) {
                 segment->off = 1;
@@ -1890,7 +1881,21 @@ QuestDownloadSegment *TQuestVmDownLoadServer__sub_803E9A74(s32 index, s32 end, u
             length = lbl_8047F0F8[token->off];
             if (index + length < end) {
                 ch = lbl_805A0470.bytes[index + length];
-                if (IsBoundary_803E9A74(ch)) {
+                if ((lbl_805D7888 - 1) <= 1U) {
+                    mark = 0;
+                } else {
+                    switch (ch) {
+                    case 0x9D: case 0xA1: case 0xA3: case 0xA5: case 0xA7:
+                    case 0xA9: case 0xC3: case 0xE3: case 0xE5: case 0xE7:
+                    case 0xEE: case 0xF2: case 0xF3:
+                        mark = 1;
+                        break;
+                    default:
+                        mark = 0;
+                        break;
+                    }
+                }
+                if (mark != 0) {
                     goto next_token;
                 }
             }
@@ -1934,7 +1939,6 @@ QuestDownloadSegment *TQuestVmDownLoadServer__sub_803E9A74(s32 index, s32 end, u
     }
     return head;
 }
-#pragma pop
 
 Ent_803E9DE0 *find_longest_match_entry__22TQuestVmDownLoadServerFPviPv(u8 *arg0, s32 arg1, s32 *arg2) {
     u8 *s;
