@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 struct NJS_OBJECT;
 #include "types.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
@@ -265,7 +266,6 @@ struct PhotonAngles { s32 x, y, z; };
 
 extern Vec_801A7428 lbl_80446A38;
 extern "C" {
-void *mem_alloc(u32);
 void rotate_matrix_x(s32, s32);
 void rotate_matrix_z(s32, s32);
 }
@@ -274,7 +274,6 @@ void *create_timed_particle_emitter_with_angles(void *, void *, s32, s32, s32, s
 
 extern "C" {
 
-void mem_free(void *p);
 
 void TObjPlayer::clear_render_context() { set_chunk_model_node_callback(0); }
 
@@ -303,7 +302,7 @@ void TUnk_804C3248::update_photon_blast_attachments() {
     }
 }
 
-void TUnk_804C3248::free_photon() { if (m_148) mem_free(m_148); }
+void TUnk_804C3248::free_photon() { if (m_148) ::operator delete[](m_148); }
 
 #pragma push
 #pragma inline_depth(1)
@@ -318,7 +317,7 @@ void spawn_photon_blast_attachment_effects(TUnk_804C3248 *self, s32 kind) {
         PhotonAttachmentSpec *spec;
         PhotonAttachmentSpec *specs;
         u32 i;
-        self->m_148 = new (mem_alloc(self->m_100 * sizeof(PhotonAttachment))) PhotonAttachment[self->m_100];
+        self->m_148 = new (::operator new[](self->m_100 * sizeof(PhotonAttachment))) PhotonAttachment[self->m_100];
         specs = group->attachments;
         for (i = 0; i < self->m_100; i++) {
             spec = &specs[i];

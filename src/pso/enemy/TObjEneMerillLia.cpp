@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
@@ -394,10 +395,10 @@ void TObjEneMerillLia__sub_800D6D64(void) {
     lbl_804946A4[0].radius = lbl_805DA2F8;
     lbl_804946A4[1].radius = lbl_805DA2F8;
     lbl_804946A4[2].radius = lbl_805DA33C;
-    TObjEneMerillLia__rock_stats_table = (u8 **)mem_alloc(8);
-    merill_lia_rock_buffer = (u8 **)mem_alloc(8);
-    merill_lia_rock_aux_buffer = (u8 **)mem_alloc(8);
-    TObjEneMerillLia__rock_param_table = (MerillLiaCombatParameters **)mem_alloc(8);
+    TObjEneMerillLia__rock_stats_table = (u8 **)::operator new[](8);
+    merill_lia_rock_buffer = (u8 **)::operator new[](8);
+    merill_lia_rock_aux_buffer = (u8 **)::operator new[](8);
+    TObjEneMerillLia__rock_param_table = (MerillLiaCombatParameters **)::operator new[](8);
     TObjEneMerillLia__rock_stats_table[0] = (u8 *)get_battle_base_stats(75);
     TObjEneMerillLia__rock_stats_table[1] = (u8 *)get_battle_base_stats(76);
     merill_lia_rock_buffer[0] = (u8 *)get_battle_attack_params(78);
@@ -421,19 +422,19 @@ void TObjEneMerillLia__sub_800D6D64(void) {
 
 void TObjEneMerillLia::destroy_rocks() {
     if (TObjEneMerillLia__rock_stats_table != NULL) {
-        mem_free(TObjEneMerillLia__rock_stats_table);
+        ::operator delete[](TObjEneMerillLia__rock_stats_table);
         TObjEneMerillLia__rock_stats_table = NULL;
     }
     if (merill_lia_rock_buffer != NULL) {
-        mem_free(merill_lia_rock_buffer);
+        ::operator delete[](merill_lia_rock_buffer);
         merill_lia_rock_buffer = NULL;
     }
     if (merill_lia_rock_aux_buffer != NULL) {
-        mem_free(merill_lia_rock_aux_buffer);
+        ::operator delete[](merill_lia_rock_aux_buffer);
         merill_lia_rock_aux_buffer = NULL;
     }
     if (TObjEneMerillLia__rock_param_table != NULL) {
-        mem_free(TObjEneMerillLia__rock_param_table);
+        ::operator delete[](TObjEneMerillLia__rock_param_table);
         TObjEneMerillLia__rock_param_table = NULL;
     }
     if (TObjEneMerillLia__entry_params_resource != NULL) {

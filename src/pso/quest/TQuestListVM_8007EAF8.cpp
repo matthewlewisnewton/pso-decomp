@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/quest/TQuestListVMData.h"
 #include "pso/system/debug_print.h"
 #include "pso/quest/TQuestListVM_8007EAF8.h"
 #include "pso/quest/TQuestListVM.h"
@@ -10,9 +11,7 @@ extern "C" {
 
 void TLobby__sub_8007EB20(s32 arg0, ...);
 s32 xfree__FPv();
-
-    extern int TQuestListVM__decrypted_quest_buffer;
-int TQuestListVM::get_instance() {  return TQuestListVM__decrypted_quest_buffer; }
+int TQuestListVM::get_instance() {  return (s32)TQuestListVM__decrypted_quest_buffer; }
 
 void TQuestListVM::reset() { TQuestListVM__decrypted_quest_buffer = 0; }
 

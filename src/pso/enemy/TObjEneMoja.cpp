@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/misc/SampledMotionPoints.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
@@ -8,7 +9,6 @@ extern "C" {
 void *__ct__11TObjControlFP7TObject(void *, void *);
 void *TObjEneMoja__ct(void *, void *, void *);
 void *__nw__7TObjectFUl(int);
-void mem_free(void*);
 
 extern void *tl_04;
 
@@ -35,19 +35,19 @@ extern u32 lbl_805D50DC;
 
 void TObjEneMoja::free_resources() {
     if ((u32) lbl_805D50C8 != 0U) {
-        mem_free((void*)lbl_805D50C8);
+        ::operator delete[]((void*)lbl_805D50C8);
         lbl_805D50C8 = 0U;
     }
     if ((u32) lbl_805D50CC != 0U) {
-        mem_free((void*)lbl_805D50CC);
+        ::operator delete[]((void*)lbl_805D50CC);
         lbl_805D50CC = 0U;
     }
     if ((u32) lbl_805D50D0 != 0U) {
-        mem_free((void*)lbl_805D50D0);
+        ::operator delete[]((void*)lbl_805D50D0);
         lbl_805D50D0 = 0U;
     }
     if ((u32) lbl_805D50D4 != 0U) {
-        mem_free((void*)lbl_805D50D4);
+        ::operator delete[]((void*)lbl_805D50D4);
         lbl_805D50D4 = 0U;
     }
     if ((u32) lbl_805D50DC != 0U) {

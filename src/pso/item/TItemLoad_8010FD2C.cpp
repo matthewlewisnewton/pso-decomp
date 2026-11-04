@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/system/FlagWord.h"
 #include "pso/unk/text_800F7DAC.h"
@@ -10,7 +11,6 @@ extern int item_load_compressed_work_buffer;
 struct VOff_8010FD2C_arg0_8010fd2c { char pad_0[0x1C]; char f_1C[1]; };
 
 void init_buffer__9TItemLoadFPviii(void *);
-void mem_free(void *p);
 
 extern s32 lbl_8049F42C[];
 
@@ -31,6 +31,6 @@ s32 TItemLoad::decompress_buffer(u32 arg0) {
     return 0;
 }
 
-void TItemLoad::free_boss4_rock() { mem_free((void *)item_load_compressed_work_buffer); item_load_compressed_work_buffer = 0; }
+void TItemLoad::free_boss4_rock() { ::operator delete[]((void *)item_load_compressed_work_buffer); item_load_compressed_work_buffer = 0; }
 
 }
