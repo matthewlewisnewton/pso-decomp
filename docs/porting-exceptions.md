@@ -23,7 +23,7 @@ entry says *reason not recorded*.
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 71 | 13 |
 | CodeWarrior pragmas (excluding push/pop) | 5,864 | 885 |
-| Per-unit compiler overrides in `configure.py` | 144 | 144 |
+| Per-unit compiler overrides in `configure.py` | 145 | 145 |
 | Approved regressions | 0 on main, 1 pending (#291) | |
 
 ## Rule for assembly
@@ -88,7 +88,7 @@ small float differences without FMA).
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-144 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+145 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
@@ -104,6 +104,10 @@ use their own compiler versions as recorded there.
 Port should: build everything with one modern compiler. Only `-fp_contract on`
 (float results) and deferred emission order (no semantic effect) need thought;
 nothing else changes behaviour.
+
+| Unit | Flags | What needs the fused multiply-adds | Original asm | Rest of the unit |
+|---|---|---|---|---|
+| `pso/player/TObjPlayer_801542CC.cpp` | `-fp_contract on` | `TObjPlayer__sub_8015434C` only. `body->center.x = body->offset.x * sine + pos.x` and `body->center.z = body->offset.z * cosine + pos.z`. | `fmadds f0, f1, f30, f0` at `0x80154408` (offset.x * sin + pos.x); `fadds f0, f1, f0` at `0x8015441C` (pos.y + offset.y, not fused); `fmadds f0, f1, f31, f0` at `0x8015442C` (offset.z * cos + pos.z). No `fmsubs` in this function. | Objdiff of the whole unit with the flag versus without it: the other 55 functions stay at the score they had without the flag (all exact), and `.bss`, `.data`, and `.sdata2` stay 100%. `resolve_actor_sphere_contact`'s `(x * x) + (z * z)` stays `fmuls` + `fadds`. The `fmadds` at `0x8015532C` and `0x8015533C` are in `resolve_player_box_contact`, from that function's existing `#pragma fp_contract on` (already on main), not from this override. |
 
 ## 6. Approved regressions
 
