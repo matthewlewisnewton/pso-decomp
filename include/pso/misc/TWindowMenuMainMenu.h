@@ -6,6 +6,37 @@
 #include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TWindowDrawContext.h"
 
+// One row of the main menu. Eight of these are embedded at 0x64, stride 0x18.
+// init_color writes the four floats and the five bytes that follow; the
+// constructor walks that array, not the menu object itself.
+struct TMainMenuEntry {
+    f32 x;
+    f32 y;
+    f32 cur_x;
+    f32 cur_y;
+    s8 fade;
+    s8 icon;
+    s8 kind;
+    u8 flags;
+    s8 tween;
+    u8 b5;
+    u8 b6;
+    u8 b7;
+    void init_color();
+    void update_item_tween();
+    int is_item_active();
+};
+
+typedef char TMainMenuEntry_size[sizeof(TMainMenuEntry) == 0x18 ? 1 : -1];
+typedef char TMainMenuEntry_flags[offsetof(TMainMenuEntry, flags) == 0x13 ? 1 : -1];
+typedef char TMainMenuEntry_kind[offsetof(TMainMenuEntry, kind) == 0x12 ? 1 : -1];
+
+// get_row_position writes this pair: y then x.
+struct TMainMenuRow {
+    f32 y;
+    f32 x;
+};
+
 struct TWindowMenuMainMenu : public TUnk_804CE018 {
     virtual ~TWindowMenuMainMenu();
     void handle_navigation_input();
@@ -16,7 +47,9 @@ struct TWindowMenuMainMenu : public TUnk_804CE018 {
     void set_target_y(f32 target);
     void update_scaled_position();
     void update_slide_position();
-    void draw_entries_reversed(u8 *arg1);
+    void draw_entries_reversed(TWindowDrawContext *context);
+    void pop_level();
+    s32 update_if_active(s32 id);
     int get_menu_flag();
     int is_flag_set();
     virtual void render();
@@ -34,10 +67,10 @@ struct TWindowMenuMainMenu : public TUnk_804CE018 {
     f32 m_54;
     u8 unk_58[0x8];
     u8 m_60;
-    u8 m_61;
-    u16 m_62;
-    void* m_64;
-    u8 unk_68[0xDC];
+    s8 m_61;
+    s16 m_62;
+    TMainMenuEntry entries[8];
+    TMainMenuEntry *slots[8];
 };
 
 typedef char TWindowMenuMainMenu_size[sizeof(TWindowMenuMainMenu) == 0x144 ? 1 : -1];
@@ -47,6 +80,8 @@ typedef char TWindowMenuMainMenu_m54[offsetof(TWindowMenuMainMenu, m_54) == 0x54
 typedef char TWindowMenuMainMenu_unk22[offsetof(TWindowMenuMainMenu, unk_22) == 0x22 ? 1 : -1];
 typedef char TWindowMenuMainMenu_unk3c[offsetof(TWindowMenuMainMenu, unk_3c) == 0x3C ? 1 : -1];
 typedef char TWindowMenuMainMenu_unk50[offsetof(TWindowMenuMainMenu, unk_50) == 0x50 ? 1 : -1];
+typedef char TWindowMenuMainMenu_entries[offsetof(TWindowMenuMainMenu, entries) == 0x64 ? 1 : -1];
+typedef char TWindowMenuMainMenu_slots[offsetof(TWindowMenuMainMenu, slots) == 0x124 ? 1 : -1];
 
 extern "C" {
 u8 *TWindowMenuMainMenu__ct(TWindowMenuMainMenu *arg0, s32 arg1, s16 arg2);

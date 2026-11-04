@@ -164,8 +164,7 @@ int TWindowSubComCard__sub_80244774(void) {  return lbl_805D3614; }
 
 s32 TWindowSubComCard::get_field_20() { return this->m_20; }
 
-f32 TWindowSubComCard__sub_80244784(void *window) {
-    TWindowSubComCard *self = (TWindowSubComCard *)window;
+f32 TWindowSubComCard__sub_80244784(TWindowSubComCard *self) {
     f32 v = self->calc_offset();
     if (v < 1.0f) {
         return v;
@@ -306,7 +305,7 @@ void window_request_show(void *object) {
 s32 TUnk_804CE018::setup_window_draw_context(s32 arg1) {
     s32 temp_r31;
     s32 var_r4;
-    temp_r31 = (s32)TWindowKeyBoardSoft::open_singleton((int)((u8 *)this + 0x40), (int)((u8 *)this + 0x48), arg1, *(f32 *)((s8 *)this + 0x54), *(s32 *)((s8 *)this + 0x2C));
+    temp_r31 = (s32)TWindowKeyBoardSoft::open_singleton((f32 *)((u8 *)this + 0x40), (f32 *)((u8 *)this + 0x48), (f32 *)arg1, *(f32 *)((s8 *)this + 0x54), *(s32 *)((s8 *)this + 0x2C));
     if (*(s32 *)((s8 *)((u8 *)this) + 0x2C) & 0x40) {
         animate_scale__19TWindowKeyBoardSoftFv();
     }

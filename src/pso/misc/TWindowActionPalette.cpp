@@ -78,7 +78,7 @@ extern const f32 lbl_805DCA48;
 extern const f32 lbl_805DCAA0;
 extern const f32 lbl_805DCAA4;
 Pal_80244108 *TWindowActionPalette__ct(Pal_80244108 *self, s16 slot);
-f32 TWindowSubComCard__sub_80244784(void *);
+f32 TWindowSubComCard__sub_80244784(TWindowSubComCard *);
 s32 TWindowSubComCard__sub_802452DC(int);
 s32 TWindowSubComCard__sub_80245320(void *, void *);
 s32 TWindowSubComCard__sub_802454E4(int);
@@ -180,7 +180,7 @@ void TWindowActionPalette::draw_frame(int arg1) {
     Ctx_80243B6C *ctx = (Ctx_80243B6C *)arg1;
     f32 scale;
     f32 depth;
-    scale = TWindowSubComCard__sub_80244784(this);
+    scale = TWindowSubComCard__sub_80244784((TWindowSubComCard *)this);
     depth = lbl_805DCA48 / this->m_54;
     begin_screen_draw(1);
     set_current_texture_list((GinjaTextureList *)(((void *)lbl_805D63F0)));
