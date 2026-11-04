@@ -10,6 +10,7 @@
 #include "pso/misc/TQuestVmDownLoadServer.h"
 #include "pso/misc/PhotonBlastSummon.h"
 #include "pso/system/vector.h"
+#include "pso/unk/TUnk_804C349C.h"
 #include "pso/unk/text_801AAB74.h"
 #include "pso/unk/text_801AB370.h"
 #include "pso/unk/text_801ABE14.h"
@@ -21,25 +22,8 @@ struct Rec_801A8868 { u8 pad[0x20]; s32 f20; };
 
 struct Hit_801A86E0 { s32 kind; f32 value; };
 
-struct PhotonBlastSequence_801A9870 : public TObject {
-    TObject *summon;
-    s32 summon_index;
-    s32 state;
-    s32 summon_count;
-    Vec position;
-    TObjPlayer *owner;
-    u16 owner_client_id;
-    s32 power_level;
-    s32 elapsed;
-    s32 delay;
-    s32 animated;
-    s32 kinds[4];
-    u32 participants[4];
-    s32 levels[4];
-    u32 recipients[4];
-    u16 holds[4];
-};
-typedef char PhotonBlastSequence_801A9870_size[sizeof(PhotonBlastSequence_801A9870) == 0x98 ? 1 : -1];
+// Same object TUnk_804C349C::run_task updates and then hands to these functions.
+typedef TUnk_804C349C PhotonBlastSequence_801A9870;
 
 struct PhotonSummonParams_801A9870 {
     Vec position;
@@ -138,7 +122,7 @@ void apply_photon_blast_action_hold(s32 arg0, s32 arg1, s32 arg2);
 #pragma push
 #pragma fp_contract on
 
-f32 TObjPlayer::calc_photon_blast_power(s32 arg1, f32 farg0) {
+f32 TUnk_804C349C::calc_photon_blast_power(s32 arg1, f32 farg0) {
     u8 *arg0 = (u8 *)this;
     f32 var_f30;
     void *mag;
@@ -360,9 +344,7 @@ void admit_photon_blast_sequence(u8 *players, void *self) {
 #undef SET_TYPE
 
 
-// Applies one queued blast. calc_photon_blast_power is a TObjPlayer method that
-// reads the TObjPlayer* at +0x38; on this sequence that word is owner, so the
-// call passes the sequence as the receiver.
+// Applies one queued blast. calc_photon_blast_power is a method of this sequence.
 void deliver_photon_blast_results_animated(PhotonBlastSequence_801A9870 *seq) {
     s32 i;
     for (i = 0; i < photon_blast_hit_count; i++) {
@@ -373,9 +355,7 @@ void deliver_photon_blast_results_animated(PhotonBlastSequence_801A9870 *seq) {
         }
         s32 *kind = &hit->kind;
         DirectAttackPayload payload;
-        // calc_photon_blast_power reads the TObjPlayer* at +0x38. On this
-        // sequence that word is owner, so the sequence is the receiver.
-        f32 power = ((TObjPlayer *)seq)->calc_photon_blast_power(*kind, hit->value);
+        f32 power = seq->calc_photon_blast_power(*kind, hit->value);
         payload.power = (f32)(0.01 * (f64)(seq->power_level * seq->summon_count) * (f64)power);
         if (*kind == 4) {
             payload.kind = 6;
@@ -476,9 +456,7 @@ void deliver_photon_blast_results_delayed(PhotonBlastSequence_801A9870 *seq) {
         }
         s32 *kind = &hit->kind;
         DirectAttackPayload payload;
-        // calc_photon_blast_power reads the TObjPlayer* at +0x38. On this
-        // sequence that word is owner, so the sequence is the receiver.
-        f32 power = ((TObjPlayer *)seq)->calc_photon_blast_power(*kind, hit->value);
+        f32 power = seq->calc_photon_blast_power(*kind, hit->value);
         payload.power = (f32)(0.01 * (f64)(seq->power_level * seq->summon_count) * (f64)power);
         if (*kind == 4) {
             payload.kind = 6;
