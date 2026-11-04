@@ -14,6 +14,7 @@ guides.
 - [Character movement vector](chara-velocity-evidence.md)
 - [Chunk model node callbacks](chunk-node-callback-evidence.md)
 - [CodeWarrior source order and emitted layout](compiler-emission-evidence.md)
+- [Conversion-pool constants](conversion-pool-constants.md)
 - [Current texture list](current-texture-list-evidence.md)
 - [DD descendant virtual slot](dd-descendant-slot-evidence.md)
 - [DD scaled random receiver](dd-scaled-random-evidence.md)
