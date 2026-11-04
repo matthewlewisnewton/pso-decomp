@@ -4,7 +4,7 @@
 Construction, destruction, task dispatch and the renderer at 0x80211718–0x802119F0
 are byte-exact. This is not a claim that every callee's type is the original one.
 
-Base: main `d952dc80e8614b6763f02cbe7b03f8c3a2014546`, merged normally.
+Base: main `6238fdf1ca8ed743483794185fe5b5af2257c930`, merged normally.
 
 ## Measured state
 
@@ -27,8 +27,12 @@ the names in the original symbol table, so they stay `extern "C"`.
 ## Still open
 
 `create_message_window__6TLobbyFllUls` is still named directly. The real
-`TLobby::create_message_window` takes `s16` for the slot, and this compiler
-then emits `extsh`. The original call site copies the full register (`mr`), so
-the real prototype misses. `WarningWindowPair` is only the 8-byte layout of
-`lbl_8044BC7C`; that name is not in the executable. Message, CDF and base
-construction contracts are not settled by the match.
+`TLobby::create_message_window` takes `s16` for the slot, and GC/2.6 then
+emits `extsh`. The original call site copies the register with `mr` (case 0/1
+from the `clrlwi` of `get_nth_view_player_id`, case 2 from the `s32` loop
+index). No `s`-mangled parameter type reproduces both. `send_and_handle` is
+reached with a `TLobby *` cast of the `TWindowMessage *`: `TLobby` is a
+non-empty `TObject`, so it cannot share offset 0 with `TUnk_804CDFE8`.
+`lbl_8044BC7C` is copied as two floats (`Pair_8044BC7C`); that name is only
+the symbol address. Message, CDF and base construction contracts are not
+settled by the match. These two call-site gaps are porting exceptions for #315.

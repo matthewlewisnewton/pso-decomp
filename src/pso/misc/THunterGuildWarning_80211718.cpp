@@ -6,20 +6,22 @@
 #include "pso/player/TObjPlayer_801AF2F0.h"
 #include "pso/ui/TObjBagWarnWin_8006EF24.h"
 
-struct WarningWindowPair {
+// lbl_8044BC7C is two floats. lbl_8044BC84 is that pair plus 4 unused bytes.
+// Neither symbol names this type.
+struct Pair_8044BC7C {
     f32 x;
     f32 y;
 };
 
 extern "C" {
-extern const WarningWindowPair lbl_8044BC7C;
-struct WarningPositionData { WarningWindowPair value; u8 padding[4]; };
-extern const WarningPositionData lbl_8044BC84;
+extern const Pair_8044BC7C lbl_8044BC7C;
+struct Data_8044BC84 { Pair_8044BC7C value; u8 padding[4]; };
+extern const Data_8044BC84 lbl_8044BC84;
 extern const f32 lbl_805DC640;
-const WarningWindowPair *get_window_layout_position(s32);
+const Pair_8044BC7C *get_window_layout_position(s32);
 // The definition takes s16, but this call site passes a full register.
 // Seeing that prototype makes MWCC emit extsh and miss the original object.
-TWindowMessage *create_message_window__6TLobbyFllUls(const WarningWindowPair *, const WarningWindowPair *, u32, s32);
+TWindowMessage *create_message_window__6TLobbyFllUls(const Pair_8044BC7C *, const Pair_8044BC7C *, u32, s32);
 void TWindow__close(TWindowMessage *window);
 }
 
@@ -35,8 +37,8 @@ void THunterGuildWarning::close_windows() {
 }
 
 extern "C" void THunterGuildWarning__sub_80211774(THunterGuildWarning *self, s32) {
-    WarningWindowPair size = lbl_8044BC7C;
-    WarningWindowPair position = lbl_8044BC84.value;
+    Pair_8044BC7C size = lbl_8044BC7C;
+    Pair_8044BC7C position = lbl_8044BC84.value;
     if (TCameraCtrl::get_instance() > 2) {
         position.x = lbl_805DC640;
         position.y = lbl_805DC640;
