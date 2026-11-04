@@ -8,6 +8,8 @@ Batches are the consolidations introduced by:
 - **189** — Matchpass lane8, `f4200fcb0`
 - **190** — Matchpass lane9, `5695627bd` (TAdMultiPlyChrSelectGC_802C50EC folded into TAdChrSelPlyPlateGC, plus the other lane9 removals)
 
+Which fork PR carries each upstream PR's original commits is tracked in [upstream-provenance.md](upstream-provenance.md).
+
 A row is a fork translation unit that upstream removed. It maps to the upstream unit that now owns its anchor address (first `.text` byte, otherwise the first section).
 `upstream-has-extra` means upstream's unit also owns bytes no fork member currently claims (usually a vtable or literal pool in a gap). `fork-overhang` means a fork member also owns bytes outside that upstream unit.
 
