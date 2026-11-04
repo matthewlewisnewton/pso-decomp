@@ -450,7 +450,7 @@ TWindowDrawContext *TWindowMenuMainMenu::setup_content_frame() {
 
 
 void TWindowMenuMainMenu::update_slide_position() {
-    if (this->sub_80246948() != 0) {
+    if (sub_80246948__11TWindowBaseFv() != 0) {
         set_target_y(0.0f);
         unk_50 = (u32)(4.5f - (f32)unk_22);
         return;
