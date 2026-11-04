@@ -216,7 +216,7 @@ struct TBoss6Type1 : public TObjEnemy {
     void sub_802B3B94();
     void draw_model();
     void render();
-    void release_object(void *);
+    static void release_object(void *);
     void spawn_map_csn();
     static void *create_zanzo(void *arg0, void *arg1, void *arg2);
     static void *create_grav_ball(void *arg0, void *arg1);

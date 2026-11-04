@@ -230,12 +230,11 @@ extern const f32 lbl_805DE3E8;
 extern const f32 lbl_805DE3E4;
 extern const s32 lbl_805DE3AC;
 extern const s32 lbl_805DE3B4;
-int TBoss6Type1__sub_802B4A70(void* p);
+void TBoss6Type1__sub_802B4A70(void* p);
 void TBoss6Type1__sub_802B4A90(void *p);
 void TBoss6Type1__sub_802B4B14(void* p);
 void TBoss6Type1__sub_802B4A9C(void*);
 
-int release_object__11TBoss6Type1FPv(void*);
 typedef char RecoveredGlobal_802B5140_lbl_80470CD4_size[sizeof(RecoveredGlobal_802B5140_lbl_80470CD4) == 0xC ? 1 : -1];
 typedef char RecoveredGlobal_802B5140_lbl_80470CE0_size[sizeof(RecoveredGlobal_802B5140_lbl_80470CE0) == 0xC ? 1 : -1];
 
@@ -2209,7 +2208,7 @@ void TBoss6Type1__sub_802B4A9C(void *p) {
 }
 void TBoss6Type1__sub_802B4A90(void *p) { ((TBoss6Type1 *)p)->map_csn = 0; }
 
-int TBoss6Type1__sub_802B4A70(void* p) { return release_object__11TBoss6Type1FPv(p); }
+void TBoss6Type1__sub_802B4A70(void* p) { TBoss6Type1::release_object(p); }
 
 void TBoss6Type1::spawn_map_csn() {
     MapCsnSetData data;
@@ -2232,10 +2231,11 @@ void TBoss6Type1::spawn_map_csn() {
     map_csn = (TObject *)TObjMapCsn::create((s32)&data);
 }
 
-void TBoss6Type1::release_object(void *) {
-    if (map_csn != 0) {
-        map_csn->queue_destruction();
-        map_csn = 0;
+void TBoss6Type1::release_object(void *p) {
+    TBoss6Type1 *self = (TBoss6Type1 *)p;
+    if (self->map_csn != 0) {
+        self->map_csn->queue_destruction();
+        self->map_csn = 0;
     }
 }
 
