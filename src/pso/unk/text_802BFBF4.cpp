@@ -16,15 +16,13 @@
 // Those rows use that member-pointer type directly, so the initializer does
 // not cast one member-pointer type to another.
 //
-// Eleven handlers are still stored under placeholder names
-// TBoss6Type2__sub_<address> in symbols.txt. The table entries are ordinary
-// non-virtual member pointers, the same shape as the named members. Those
-// placeholder symbols are not the member-mangled names, so this unit is left
-// unlinked.
+// The eleven former TBoss6Type2__sub_<address> placeholders are real
+// TBoss6Type2 members, so these rows relocate to the member-mangled names.
 //
-// The owned data is 0x804DFC50-0x804E07A0: a 0x48C-byte template, then
-// lbl_804E00DC. symbols.txt sizes that object at 0x6C4. The 36 rows fill the
-// first 0x6C0 bytes; the last 4 bytes of the symbol are zero.
+// The owned data is 0x804DFC50-0x804E07A0. MWCC emits the initializer template
+// under its own local name, so lbl_804DFC50 stays a local 0x48C-byte object.
+// lbl_804E00DC is the global table: 36 rows fill 0x6C0 bytes and the symbol's
+// last 4 bytes are zero.
 #include "pso/boss/TBoss6Type2.h"
 
 extern "C" {
@@ -137,7 +135,7 @@ struct TBoss6Type2ActionTable {
     TBoss6Type2Action r35;
     u32 tail;
 };
-static TBoss6Type2ActionTable lbl_804E00DC = {
+TBoss6Type2ActionTable lbl_804E00DC = {
     { lbl_804713D0, 0, 1, &TBoss6Type2::sub_802BFBE4, &TBoss6Type2::select_attack_state, &TBoss6Type2::tick_timer_460 },
     { lbl_804713D8, 4, 1, &TBoss6Type2::reset_state_timers, 0, &TBoss6Type2::sub_802BFA1C },
     { lbl_804713E4, 1, 1, &TBoss6Type2::init_timer_and_play_sound, &TBoss6Type2::pick_next_zako, &TBoss6Type2::tick_action_timer },
