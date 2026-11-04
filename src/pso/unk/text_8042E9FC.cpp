@@ -7,6 +7,13 @@ extern "C" {
 int sprintf(char *, const char *, ...);
 void *memset(void *, int, u32);
 extern char lbl_80480270[];
+
+// 0x8042E9FC..0x8042EA10 is LaunchDol's dead frame restore
+// (lmw r26, 8(r1); lwz r0, 0x24(r1); mtlr r0; addi r1, r1, 0x20; blr).
+// LaunchDol returns at 0x8042E9EC; symbols.txt ends that function there
+// (size 0x138). init_modem_check_params starts at 0x8042EA10, and
+// skip_cfa_ranges covers the gap. A C function needs a prologue to emit
+// this restore, so the bytes stay unmatched.
 s32 TAdTrialModemChkGC::init_modem_check_params() {
     if ((s32) lbl_805D7CA8 == 0) {
         return -1;
