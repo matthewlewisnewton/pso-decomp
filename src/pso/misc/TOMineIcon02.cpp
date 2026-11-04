@@ -51,7 +51,6 @@ extern "C" {
 s32 TObjFish__sub_8001EDB0(void *, s32);
 s32 get_bml_model(void *, s32);
 void init_collision_body_parts(void *, void *, s32);
-void TOMine__ct(void *, void *, void *);
 extern u8 mine_collision_body_parts[];
 extern s32 __vt__12TOMineIcon02[];
 extern s32 TOMineIcon02__name;
@@ -64,13 +63,7 @@ void *__nw__7TObjectFUl(int);
 
 extern void *tl_05;
 
-void *TOMineIcon02::create() {
-    void *o = __nw__7TObjectFUl(0x37C);
-    if (o != NULL) {
-        o = TOMineIcon02__ct(o, tl_05, this);
-    }
-    return o;
-}
+void *TOMineIcon02::create() { return new TOMineIcon02((TObject *)tl_05, this); }
 
 void *__dt__12TOMineIcon02Fv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
@@ -87,12 +80,10 @@ void *__dt__12TOMineIcon02Fv(void *arg0, s16 arg1) {
 
 #pragma push
 #pragma fp_contract on
-void *TOMineIcon02__ct(void *arg0, void *arg1, void *arg2) {
-    TOMine__ct(arg0, arg1, arg2);
-#define self ((Icon_801717C0 *)arg0)
-    self->vt = ((void * *)&__vt__12TOMineIcon02);
+TOMineIcon02::TOMineIcon02(TObject *parent, void *set) : TOMine(parent) {
+#define self ((Icon_801717C0 *)this)
     self->f0 = TOMineIcon02__name;
-    ((VIcon_801717C0 *)self)->m5(arg2);
+    ((VIcon_801717C0 *)self)->m5(set);
     ((TObjChara *)self)->initialize_position_copies();
     ((TObjChara *)self)->calc_attach_pos();
     self->f34 = get_bml_model(lbl_805D5A50, 5);
@@ -124,7 +115,6 @@ void *TOMineIcon02__ct(void *arg0, void *arg1, void *arg2) {
     init_collision_body_parts(self, mine_collision_body_parts, 1);
     ((TObjCollidable *)self)->refresh_collision_body_centers();
     ((TObjPlayer *)self)->register_object_by_id();
-    return self;
 #undef self
 }
 #pragma pop
