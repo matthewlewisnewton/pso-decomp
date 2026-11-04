@@ -345,7 +345,7 @@ extern "C" {
 
 
 u8 *get_enemy_entity(u16 arg0);
-f32 vector_length(void *, f32);
+f32 vector_length(void *);
 f32 subtract_vector(void *, void *);
 Player_802B6B34 *get_player_data__10TObjPlayerFi(s32);
 f32 fabs_float(f32);
@@ -554,7 +554,7 @@ s32 approach_angle_limited(int, int, int);
 s32 TBoss6Type1__ct(s32, s32, s32);
 s32 __ct__11TObjControlFP7TObject(s32, s32);
 s32 __nw__7TObjectFUl(s32);
-#define VLEN(p) ((f32 (*)(void *))vector_length)(p)
+#define VLEN(p) vector_length(p)
 
 struct ArgPair_802B7530 {
     Arg_802B6B34 a[2];
@@ -1390,7 +1390,7 @@ void TBoss6Type1::update_turn_to_center() {
   temp_f1 = -(*((f32 *) (((s8 *) arg0) + 0x40)));
   stack.spC = (*(const f32 *)&TBoss6Type1__data_805DE2D0);
   stack.sp10 = temp_f1;
-  if (!(vector_length(&stack.sp8, (f32) temp_f1) <= TBoss6Type1__data_805DE310))
+  if (!(vector_length(&stack.sp8) <= TBoss6Type1__data_805DE310))
   {
     var_r4 = (s32) (TBoss6Type1__data_80471038 * atan2_float((f64) stack.sp8, (f64) stack.sp10));
     if ((this->m_438) != 0)
@@ -1833,7 +1833,7 @@ void TBoss6Type1::damage_players_in_range() {
         if (is_active__14TBoss6PlotFalzFv() != 0) {
             V3_802B6B34 v = p->pos;
             v.y = TBoss6Type1__data_805DE2D0;
-            if (!(((f32 (*)(void *))vector_length)(&v) > (*(const f32 *)&TBoss6Type1__data_805DE344))) {
+            if (!(vector_length(&v) > (*(const f32 *)&TBoss6Type1__data_805DE344))) {
                 Arg_802B6B34 a[2];
                 s32 r = TBoss6PlotFalz::rand_vary_count(((Boss_802B6B34 *)this)->f488, TBoss6Type1__data_805DE2E0);
                 a[0].kind = 1;
@@ -1925,7 +1925,7 @@ void TBoss6Type1__sub_802B626C(TBoss6Type1 *boss) {
             subtract_vector(&to, &from);
             Vec flat = to;
             flat.y = 0.0f;
-            pitch = (s32)(TBoss6Type1__data_80471038 * atan2_float(-to.y, ((f32 (*)(void *))vector_length)(&flat)));
+            pitch = (s32)(TBoss6Type1__data_80471038 * atan2_float(-to.y, vector_length(&flat)));
             if (pitch > 0x1000) {
                 pitch = 0x1000;
             }
@@ -1953,7 +1953,7 @@ void TBoss6Type1::update_trail_points() {
     VecCopy((Vec *)&points[3], (const Vec *)&trail_points[1]);
     VecCopy((Vec *)&delta, (const Vec *)&trail_points[2]);
     subtract_vector(&delta,&points[3]);
-    f32 length=((f32 (*)(const Boss6EffectPoint*))vector_length)(&delta);
+    f32 length=vector_length(&delta);
     if(length <= TBoss6Type1__data_805DE310) length=TBoss6Type1__data_805DE2E4;
     f32 scale=TBoss6Type1__data_805DE360/length;
     delta.x*=scale;delta.y*=scale;delta.z*=scale;
@@ -1990,7 +1990,7 @@ s32 TBoss6Type1__sub_802B6060(u8 *arg0) {
 s32 TBoss6Type1__sub_802B600C(T1_802B600C *arg0, f32 _w1) {
     V3_802B600C v = arg0->pos;
     v.y = TBoss6Type1__data_805DE2D0;
-    return vector_length(&v, _w1) < lbl_805DE35C;
+    return vector_length(&v) < lbl_805DE35C;
 }
 
 s32 TBoss6Type1__sub_802B5FF4(u8 *arg0) {
@@ -2144,7 +2144,7 @@ void fire_at_all_players__11TBoss6Type1FPvf(Boss_802B5AD4 *self, f32 dy) {
         subtract_vector(&d, &pp);
         h = d.y;
         d.y = 0.0f;
-        dist = ofs.z + ((f32 (*)(void *))vector_length)(&d);
+        dist = ofs.z + vector_length(&d);
         if (dist <= 1.0f) dist = 1.0f;
         out.x = 0.0f;
         out.z = lbl_805DE330;
@@ -2281,7 +2281,7 @@ void clamp_to_arena_radius__11TBoss6Type1FPvPvf(Boss_802B54F0 *o, Vec_802B54F0 *
     f32 len;
     f32 s;
     v.y = TBoss6Type1__data_805DE2D0;
-    len = vector_length(&v, _w2);
+    len = vector_length(&v);
     if (len <= TBoss6Type1__data_805DE310) {
         VecCopy((Vec *)(out), (const Vec *)(&o->pos));
         return;
@@ -2403,11 +2403,11 @@ void TBoss6Type1::interpolate_pos_to_target(s32 step, s32 total) {
     }
     VecCopy((Vec *)&v, (const Vec *)&self->pos);
     v.y = TBoss6Type1__data_805DE2D0;
-    r0 = ((f32 (*)(void *))vector_length)(&v);
+    r0 = vector_length(&v);
     a0 = ((const f64 *)&TBoss6Type1__data_80471038)[0] * atan2_float(v.x, v.z);
     VecCopy((Vec *)&v, (const Vec *)&self->target);
     v.y = TBoss6Type1__data_805DE2D0;
-    r1 = ((f32 (*)(void *))vector_length)(&v);
+    r1 = vector_length(&v);
     a1 = ((const f64 *)&TBoss6Type1__data_80471038)[0] * atan2_float(v.x, v.z);
     t = (f32)step / (f32)total;
     if (total <= 10 || t <= TBoss6Type1__data_805DE2E0) {
@@ -2435,7 +2435,7 @@ void TBoss6Type1::rotate_around_center(s32 num, s32 den) {
     {
         VecCopy((Vec *)&v, &this->position);
         v.y = TBoss6Type1__data_805DE2D0;
-        dist = ((f32 (*)(void *))vector_length)(&v);
+        dist = vector_length(&v);
         angle = (s32)(TBoss6Type1__data_80471038 * atan2_float(v.x, v.z));
         off = (s32)(40960.0f * sin_table_lookup((s32)(32768.0f * ((f32)num / (f32)den))) / (f32)num);
         if (self[0x41C] & 1) {
