@@ -173,7 +173,7 @@ unsigned long strlen(const char *);
 int memcmp(const void *, const void *, unsigned long);
 extern char lbl_805D4914[4];
 extern char *modem_exi_ptr_table[22];
-s32 TAdSinglePlyChrSelectGC__sub_8042CD64(void);
+s32 modem_wait_ok_or_error(void);
 void TAdSinglePlyChrSelectGC__sub_8042D604(void);
 void TAdSinglePlyChrSelectGC__sub_8042E488(u8 value);
 
@@ -208,6 +208,233 @@ void TAdSinglePlyChrSelectGC::wake_load_thread() {
 static OSResetFunctionInfo modem_reset_function_info = {
     (OSResetFunction)TAdSinglePlyChrSelectGC::send_modem_hangup, 127
 };
+
+void TAdSinglePlyChrSelectGC__sub_8042BF6C(s32 length);
+void TAdSinglePlyChrSelectGC__sub_8042C124(s32 chan, OSContext *context);
+void TAdSinglePlyChrSelectGC__sub_8042C8D8(void);
+void TAdSinglePlyChrSelectGC__sub_8042DF4C(s32 chan, OSContext *context);
+
+// Modem register access over EXI channel 0, device 2: a read sends the register number in the
+// high byte of a 16-bit command and reads one byte back; a write sets bit 0x40 of the register
+// number and sends the value.
+static inline s32 ModemMin(s32 a, s32 b) {
+    if (a < b) {
+        return a;
+    }
+    return b;
+}
+
+static inline u8 ModemReadRegister(u8 reg) {
+    BOOL selected;
+    u16 cmd = reg << 8;
+    u8 value;
+
+    selected = EXISelect(0, 2, 4);
+    EXIImm(0, &cmd, 2, EXI_WRITE, NULL);
+    EXISync(0);
+    EXIImm(0, &value, 1, EXI_READ, NULL);
+    EXISync(0);
+    EXIDeselect(0);
+    return value;
+}
+
+// Command 0x23 reads modem FIFO data; the byte after the opcode is the byte count.
+static inline u8 ModemReadFifoByte(void) {
+    u32 cmd = 0x23000100;
+    u8 value;
+
+    EXISelect(0, 2, 4);
+    EXIImm(0, &cmd, 4, EXI_WRITE, NULL);
+    EXISync(0);
+    EXIImm(0, &value, 1, EXI_READ, NULL);
+    EXISync(0);
+    EXIDeselect(0);
+    return value;
+}
+
+static inline void ModemWriteRegister(u8 reg, u8 value) {
+    BOOL selected;
+    u16 cmd = (reg | 0x40) << 8;
+
+    selected = EXISelect(0, 2, 4);
+    EXIImm(0, &cmd, 2, EXI_WRITE, NULL);
+    EXISync(0);
+    EXIImm(0, &value, 1, EXI_WRITE, NULL);
+    EXISync(0);
+    EXIDeselect(0);
+}
+
+// Takes the EXI channel 0 lock for the modem, sleeping until wake_load_thread wakes the queue.
+static inline void ModemLockExi(void) {
+    BOOL enabled = OSDisableInterrupts();
+
+    for (;;) {
+        if (EXILock(0, 2, (EXICallback)TAdSinglePlyChrSelectGC::wake_load_thread) == 1) {
+            OSRestoreInterrupts(enabled);
+            break;
+        }
+        OSSleepThread(&lbl_805D7CA0);
+        OSRestoreInterrupts(enabled);
+    }
+}
+
+void TAdSinglePlyChrSelectGC__sub_8042BF6C(s32 length) {
+    BOOL selected;
+    u32 cmd;
+    u8 *body;
+    u8 *tail;
+    s32 offset;
+    s32 count;
+
+    modem_recv_state.length = length;
+    modem_recv_state.tail = NULL;
+    modem_recv_state.body = NULL;
+    modem_recv_state.head = NULL;
+    modem_recv_state.tail_length = 0;
+    modem_recv_state.body_length = 0;
+    modem_recv_state.head_length = 0;
+    body = (u8 *)OSRoundUp32B(modem_recv_state.buffer);
+    tail = (u8 *)OSRoundDown32B(modem_recv_state.buffer + modem_recv_state.length);
+    if (body >= tail) {
+        modem_recv_state.head = modem_recv_state.buffer;
+        modem_recv_state.head_length = modem_recv_state.length;
+    } else {
+        if (modem_recv_state.buffer != body) {
+            modem_recv_state.head = modem_recv_state.buffer;
+            modem_recv_state.head_length = body - modem_recv_state.buffer;
+        }
+        modem_recv_state.body = body;
+        modem_recv_state.body_length = tail - body;
+        if (tail < modem_recv_state.buffer + modem_recv_state.length) {
+            modem_recv_state.tail = tail;
+            modem_recv_state.tail_length = modem_recv_state.buffer + modem_recv_state.length - tail;
+        }
+    }
+    cmd = 0x28000000 | ((u16)modem_recv_state.length << 8);
+    selected = EXISelect(0, 2, 4);
+    EXIImm(0, &cmd, 4, EXI_WRITE, NULL);
+    EXISync(0);
+    for (offset = 0; modem_recv_state.head_length > 0; modem_recv_state.head_length -= 4) {
+        count = ModemMin(modem_recv_state.head_length, 4);
+        EXIImm(0, modem_recv_state.head + offset, count, EXI_READ, NULL);
+        EXISync(0);
+        offset += 4;
+    }
+    if (modem_recv_state.body_length > 0) {
+        EXIDma(0, modem_recv_state.body, modem_recv_state.body_length, EXI_READ,
+               TAdSinglePlyChrSelectGC__sub_8042C124);
+    } else {
+        TAdSinglePlyChrSelectGC__sub_8042C124(0, NULL);
+    }
+}
+
+void TAdSinglePlyChrSelectGC__sub_8042C124(s32 chan, OSContext *context) {
+    s32 offset;
+    s32 count;
+    void (*callback)(s32);
+
+    for (offset = 0; modem_recv_state.tail_length > 0; modem_recv_state.tail_length -= 4) {
+        count = ModemMin(modem_recv_state.tail_length, 4);
+        EXIImm(0, modem_recv_state.tail + offset, count, EXI_READ, NULL);
+        EXISync(0);
+        offset += 4;
+    }
+    if (modem_recv_state.body_length > 0) {
+        DCInvalidateRange(modem_recv_state.body, modem_recv_state.body_length);
+        modem_recv_state.body_length = 0;
+    }
+    modem_recv_state.received += modem_recv_state.length;
+    modem_recv_state.buffer += modem_recv_state.length;
+    EXIDeselect(0);
+    ModemWriteRegister(1, lbl_805D7C90.f4);
+    EXIUnlock(0);
+    if (modem_recv_state.capacity - modem_recv_state.received < lbl_805D7C90.f0 || modem_recv_state.f10 == 1) {
+        modem_recv_state.f10 = 0;
+        modem_recv_state.f14 = 0;
+        if (modem_recv_state.callback != NULL) {
+            callback = modem_recv_state.callback;
+            modem_recv_state.callback = NULL;
+            lbl_805D7C9C = 1;
+            callback(modem_recv_state.received);
+            lbl_805D7C9C = 0;
+        }
+        modem_recv_state.received = 0;
+    }
+}
+
+void TAdSinglePlyChrSelectGC__sub_8042C2E4(s32 chan, OSContext *context) {
+    u8 status;
+    u32 cmd;
+    s32 count;
+
+    if (EXILock(0, 2, TAdSinglePlyChrSelectGC__sub_8042C2E4) != 0) {
+        status = ModemReadRegister(2);
+        status &= lbl_805D7C90.f4;
+        if (status == 0) {
+            EXIUnlock(0);
+        } else {
+            ModemWriteRegister(1, 0);
+            switch (__cntlzw(status)) {
+            case 27:
+                TAdSinglePlyChrSelectGC__sub_8042DE20();
+                break;
+            case 26:
+                if (modem_recv_state.f34 == 0) {
+                    modem_recv_state.f38 = 1;
+                    lbl_805D7C90.f4 &= ~0x20;
+                    ModemWriteRegister(1, lbl_805D7C90.f4);
+                    EXIUnlock(0);
+                } else if (modem_recv_state.f14 != 0) {
+                    TAdSinglePlyChrSelectGC__sub_8042BF6C(lbl_805D7C90.f0);
+                } else {
+                    lbl_805D7C90.f4 &= ~0x20;
+                    ModemWriteRegister(1, lbl_805D7C90.f4);
+                    EXIUnlock(0);
+                }
+                break;
+            case 25:
+                modem_recv_state.available = ModemReadRegister(0xB) << 8;
+                modem_recv_state.available += ModemReadRegister(0xC);
+                if (modem_recv_state.available == 0 || modem_recv_state.f14 == 0) {
+                    ModemWriteRegister(1, lbl_805D7C90.f4);
+                    EXIUnlock(0);
+                } else {
+                    if (modem_recv_state.capacity - modem_recv_state.received < modem_recv_state.available) {
+                        modem_recv_state.available = modem_recv_state.capacity - modem_recv_state.received;
+                    }
+                    modem_recv_state.f10 = 1;
+                    TAdSinglePlyChrSelectGC__sub_8042BF6C(modem_recv_state.available);
+                }
+                break;
+            case 30:
+                modem_command_response_state.fifo_count = ModemReadRegister(5);
+                cmd = 0x23000000 | ((u8)modem_command_response_state.fifo_count << 8);
+                EXISelect(0, 2, 4);
+                EXIImm(0, &cmd, 4, EXI_WRITE, NULL);
+                EXISync(0);
+                while (modem_command_response_state.fifo_count > 0) {
+                    count = ModemMin(modem_command_response_state.fifo_count, 4);
+                    EXIImm(0, modem_command_response_state.buf + modem_command_response_state.length, count,
+                           EXI_READ, NULL);
+                    EXISync(0);
+                    modem_command_response_state.fifo_count -= count;
+                    modem_command_response_state.length += count;
+                }
+                EXIDeselect(0);
+                TAdSinglePlyChrSelectGC__sub_8042C8D8();
+                ModemWriteRegister(1, lbl_805D7C90.f4);
+                EXIUnlock(0);
+                if (modem_command_response_state.done == 1 && modem_command_response_state.callback != NULL) {
+                    modem_command_response_state.done = 0;
+                    lbl_805D7C9C = 1;
+                    modem_command_response_state.callback(modem_command_response_state.result);
+                    lbl_805D7C9C = 0;
+                }
+                break;
+            }
+        }
+    }
+}
 
 void TAdSinglePlyChrSelectGC__sub_8042C8D8(void) {
     u8 *p;
@@ -300,6 +527,78 @@ void TAdSinglePlyChrSelectGC__sub_8042C8D8(void) {
     } else {
         modem_command_response_state.length = 0;
     }
+}
+
+// Polls the modem FIFO (register 5 holds the byte count, command 0x23 reads one byte) and
+// appends each byte to the response buffer until it sees "OK" (returns 1) or "ERROR" (returns -6).
+s32 modem_wait_ok_or_error(void) {
+    u8 count;
+    s32 i;
+    s32 saw_o;
+    s32 error_index;
+    const char *error;
+
+    saw_o = 0;
+    error_index = 0;
+    error = "ERROR";
+    for (;;) {
+        count = ModemReadRegister(5);
+        if (count == 0) {
+            OSYieldThread();
+            continue;
+        }
+        for (i = 0; i < count; i++) {
+            u8 c = ModemReadFifoByte();
+
+            modem_command_response_state.buf[modem_command_response_state.length++] = c;
+            if (c == error[error_index]) {
+                if (++error_index == 5) {
+                    return -6;
+                }
+            } else {
+                error_index = 0;
+            }
+            if (c == 0x4F) { // 'O'
+                saw_o = 1;
+            } else if (saw_o == 1 && c == 0x4B) { // 'K'
+                return 1;
+            } else {
+                saw_o = 0;
+            }
+        }
+    }
+}
+
+s32 TAdSinglePlyChrSelectGC__sub_8042D49C(char *cmd) {
+    u32 length;
+    u32 i;
+    char c;
+    s32 result;
+
+    length = strlen(cmd);
+    if (length <= 1 || cmd[length - 1] != '\r') {
+        return -8;
+    }
+    for (i = 0; i < length; i++) {
+        c = cmd[i];
+        if (c >= 'a' && c <= 'z') {
+            c -= 'a' - 'A';
+        }
+        cmd[i] = c;
+    }
+    if (memcmp(cmd, lbl_805D4914, 2) != 0) {
+        return -8;
+    }
+    for (i = 0; i < 22; i++) {
+        if (memcmp(cmd + 2, modem_exi_ptr_table[i], strlen(modem_exi_ptr_table[i])) == 0) {
+            return -8;
+        }
+    }
+    ModemLockExi();
+    TAdSinglePlyChrSelectGC__sub_8042D6A4(cmd);
+    result = modem_wait_ok_or_error();
+    EXIUnlock(0);
+    return result;
 }
 
 void TAdSinglePlyChrSelectGC__sub_8042D604(void) {
