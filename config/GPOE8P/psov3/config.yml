@@ -1569,6 +1569,7 @@ force_active:
   - TWindowLockOn__update_for_enemy
   - TWindowLockOn__update_for_item
   - TWindowLockOn__update_for_other_player
+  - TWindowMainMenu__sub_802AD74C
   - TWindowMeseta__class_name
   - TWindowMessagePage__ct
   - TWindowMessageYesNo__name
@@ -4593,6 +4594,7 @@ force_active:
   - copy_character_data__23TAdSinglePlyChrSelectGCFPUc
   - copy_character_to_slot__23TAdSinglePlyChrSelectGCFUiiUii
   - copy_chat_entry__20TWindowSubSymbolChatFPl
+  - copy_color_entry__15TWindowMainMenuFPvPv
   - copy_data__18TCheckRoomSequenceFPvPv
   - copy_debris_params__8TObjChipFPvPv
   - copy_drop_node__FPUcPUc
@@ -4652,6 +4654,7 @@ force_active:
   - copy_view_state__11TCameraCtrlFl
   - copy_with_guild_card_tag__13TPlyRecvLoginFPl
   - countModelNodes__12TBoss1DragonFP15DragonModelNode
+  - count_active_items__19TWindowMenuMainMenuFv
   - count_active_players__14TBoss4DarkFalzFv
   - count_balloon_slots__11TWindowCtrlFv
   - count_card_layout_entries__6TLobbyFv
@@ -5062,6 +5065,7 @@ force_active:
   - draw_hp_label__FPvUlls
   - draw_if_visible__15TObjEneDelDepthFv
   - draw_inactive_badge__11TObjDoorKeyFv
+  - draw_item_labels__15TWindowMainMenuFv
   - draw_label__16TAdGuideButtonGCFiPCc
   - draw_label_value__20TWindowSubStatusDispFPvPv
   - draw_laser_beam__13TLazerFenceSwFv
@@ -5372,6 +5376,7 @@ force_active:
   - fill_range__15TBoss6SwordWaveFPvPv
   - filter_input_flags__12TBoss1DragonFiii
   - finalize_and_send_60__15TObjBoss2TunnelFP16G_PlaySound_6xB2
+  - find_active_item_by_id__19TWindowMenuMainMenuFi
   - find_active_pad_rumble_effect_by_id__FUl
   - find_archive_entry__6TLobbyFPvPvPvPv
   - find_area_technique_contact__FPviPvPv
@@ -5384,8 +5389,10 @@ force_active:
   - find_farthest_balloon_slot__11TWindowCtrlFPvUs
   - find_free_chat_log_slot__6TLobbyFv
   - find_free_file_names__22TQuestVmDownLoadServerFv
+  - find_free_item_slot__15TWindowMainMenuFPv
   - find_free_pad_rumble_effect_slot__Fv
   - find_free_pool_entry__6TLobbyFPv
+  - find_free_slot__19TWindowMenuMainMenuFv
   - find_free_slot__6TLobbyFv
   - find_gsl_entry__FPv
   - find_heal_target__13TOHealGeneralFv
@@ -5980,6 +5987,7 @@ force_active:
   - get_render_mode_for_tv_format
   - get_result__16TObjItemOKWindowFv
   - get_result__18TObjItemNameSelectFv
+  - get_row_position__15TWindowMainMenuFiPvi
   - get_selected_blast__13TWindowSubMagFv
   - get_selected_entry__14TWindowSubItemFv
   - get_selected_guild_card_record__Fv
@@ -6079,6 +6087,7 @@ force_active:
   - handle_breakup_state__16TObjEneMe3StelthFl
   - handle_buy_confirm__20TShopArmorListWindowFv
   - handle_buy_confirm__24TShopEquipmentListWindowFv
+  - handle_cancel__19TWindowMenuMainMenuFv
   - handle_cancel__19TWindowSoundBalanceFv
   - handle_cancel__19TWindowSubMagPhotonFv
   - handle_cancel__21TWindowSubCustomEquipFv
@@ -6094,6 +6103,7 @@ force_active:
   - handle_com_card__6TLobbyFv
   - handle_comcard_window__6TLobbyFv
   - handle_confirm__17TJudgmentSequenceFv
+  - handle_confirm__19TWindowMenuMainMenuFv
   - handle_confirm__22TMedicalCenterSequenceFv
   - handle_confirm__22TShopEquipmentSequenceFv
   - handle_confirm__24TShopEquipmentListWindowFv
@@ -6443,6 +6453,7 @@ force_active:
   - init_render_globals__10TObjPlayerFv
   - init_reset_fields__15TFontSmallLobbyFv
   - init_result_state__18TChallenge4PResultFv
+  - init_row_entry__15TWindowMainMenuFPvicc
   - init_s_rank_knuckle__FPvlPv
   - init_scale_global__10TObjPlayerFv
   - init_segment_angle_range__11TBoss6Type2Fv
@@ -6583,6 +6594,7 @@ force_active:
   - is_in_view_depth__15TODoorVS2Door01Ff
   - is_in_view_depth__6TSceneFf
   - is_inactive__8TItemMagFv
+  - is_item_active__14TMainMenuEntryFv
   - is_level_in_table__24TObjWaitEntryHairMoveSimFPv
   - is_load_complete__23TAdSinglePlyChrSelectGCFv
   - is_lobby_active__17TObjWarpBossMultiFv
@@ -6602,6 +6614,7 @@ force_active:
   - is_name_too_long__6TLobbyFPv
   - is_no_service_active__14TShopGeneratorFPvl
   - is_not_special__9TItemDropFv
+  - is_not_split_screen
   - is_open__11TWindowChatFv
   - is_other_tombstone_closer__13TObjTombstoneFv
   - is_out_of_range__13TBoss6KakusanFv
@@ -8512,6 +8525,7 @@ force_active:
   - play_ambient_loop_sound__17TOBarrierEnergy01Fv
   - play_animation_index__12TBoss8DragonFl
   - play_anti_cast_sound__8TTecAntiFv
+  - play_cursor_sound__15TWindowMainMenuFv
   - play_default_effect__6TLobbyFPv
   - play_distance_sound__14TObjEneGibblesFv
   - play_effect_all_players__6TLobbyFPv
@@ -14539,6 +14553,7 @@ force_active:
   - set_state_ready__15TPlyPhotonChairFv
   - set_subs_visible__8TItemMagFl
   - set_symbol_chat_face_sprite__FPvUc
+  - set_symbol_chat_parts__15TWindowMainMenuFPv
   - set_talk__12CursorActionFv
   - set_target__11TCameraCtrlFii
   - set_target_coords__11TCameraCtrlFii
@@ -14546,6 +14561,7 @@ force_active:
   - set_target_from_action__13TBoss5GryphonFPv
   - set_target_speed_z__17TObjEneMe1CanadinFv
   - set_target_state__11TBoss6Type2Fll
+  - set_target_y__19TWindowMenuMainMenuFf
   - set_telepipe__12CursorActionFv
   - set_tev_passclr__10TObjPlayerFv
   - set_tev_stage_mode__Fl
