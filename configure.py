@@ -502,7 +502,7 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Position jitter and the tentacle curve contract mul-add to fmadds. The
     # whole unit stays byte-exact with -fp_contract on, so that is this
     # translation unit's setting.
-    "pso/boss/TBoss7TentacleNeedle.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
+    "pso/boss/TBoss7TentacleNeedle.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on")},
     "pso/enemy/TObjEnemyCustom.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-pool off", "-str reuse,readonly")},
     "pso/boss/TBoss3VoloptCore.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
     "pso/boss/TBoss3VoloptP01.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
