@@ -453,6 +453,15 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # that contract (fmadds in the target) for the whole file.
     "pso/misc/TWindowFukidasi.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
     # GC/2.0: compiler-expanded struct copies take 2.0's registers.
+    # The ending item handler table keeps 2.0's store/load scheduling for its
+    # zero-initialized local member-function-pointer array.
+    "pso/unk/text_803531FC.cpp": {
+        "mw_version": "GC/2.0",
+        # The split names the compiler's anonymous PMF initializer image at
+        # 0x804F10C0; the source-built object references its first 12-byte
+        # entry label. Map the target entry name to the object's image label.
+        "symbol_mappings": {"@12": "...data.0"},
+    },
     "pso/boss/Boss5GryphonBehavior.cpp": {"mw_version": "GC/2.0"},
     "pso/enemy/TObjEneGyaranzo.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred")},
     "pso/misc/TOExplosiveMachine.cpp": {"mw_version": "GC/2.0"},
