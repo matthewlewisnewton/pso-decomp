@@ -16,8 +16,9 @@
 #include "pso/misc/TLobby.h"
 #include "pso/system/SoundEffect.h"
 
-// The Falz plot script: one {name, enter, idle, update, advance} entry per
-// plot state, run by TBoss6PlotFalz::run_phase_action. Built with deferred
+// The Falz plot script: one {name, enter, leave, tick, update} entry per
+// plot state. run_task calls tick through call_state_action, then update
+// through run_phase_action. Built with deferred
 // code generation, so the actions below are written in table order and come
 // out in reverse.
 
@@ -254,10 +255,10 @@ typedef void (TBoss6PlotFalz::*TBoss6PlotFalzAction)();
 
 struct TBoss6PlotFalzScriptState {
     const char* name;
-    TBoss6PlotFalzAction action_enter;
-    TBoss6PlotFalzAction action_idle;
-    TBoss6PlotFalzAction action_update;
-    TBoss6PlotFalzAction action_advance;
+    TBoss6PlotFalzAction enter;
+    TBoss6PlotFalzAction leave;
+    TBoss6PlotFalzAction tick;
+    TBoss6PlotFalzAction update;
 };
 
 TBoss6PlotFalzScriptState TBoss6PlotFalz__data_804DE66C[9] = {

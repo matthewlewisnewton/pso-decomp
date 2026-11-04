@@ -21,7 +21,10 @@ struct TBoss6PlotFalz : public TObjEnemy {
     u8 m_37c;
     u8 unk_37D[0x3];
     u8 * m_380;
-    u8 unk_384[0x6];
+    // Child created by ensure_field384 (TBoss6Tube) and used by activate_warp
+    // and free_child as TBoss6EmptyWarp. Not one static type.
+    void *m_384;
+    u8 unk_388[2];
     s16 m_38a;
     u8 unk_38C[0x28];
     u8 unk_3B4[0x18];
@@ -115,6 +118,8 @@ extern "C" {
 void TBoss6PlotFalz__sub_802AC008(f32 a, f32 b);
 }
 
+typedef char TBoss6PlotFalz_m_384_offset[(offsetof(TBoss6PlotFalz, m_384) == 0x384) ? 1 : -1];
+typedef char TBoss6PlotFalz_m_38a_offset[(offsetof(TBoss6PlotFalz, m_38a) == 0x38A) ? 1 : -1];
 typedef char TBoss6PlotFalz_m_3cc_offset[(offsetof(TBoss6PlotFalz, m_3cc) == 0x3CC) ? 1 : -1];
 typedef char TBoss6PlotFalz_m_3d0_offset[(offsetof(TBoss6PlotFalz, m_3d0) == 0x3D0) ? 1 : -1];
 typedef char TBoss6PlotFalz_m_3d4_offset[(offsetof(TBoss6PlotFalz, m_3d4) == 0x3D4) ? 1 : -1];

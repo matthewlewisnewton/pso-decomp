@@ -383,7 +383,7 @@ s32 is_state_1f__14TBoss6PlotFalzFUi(u32 arg0) {
 }
 
 void TBoss6PlotFalz::run_phase_action() {
-  TBoss6PlotFalzAction action = TBoss6PlotFalz__data_804DE66C[this->m_378].advance;
+  TBoss6PlotFalzAction action = TBoss6PlotFalz__data_804DE66C[this->m_378].update;
   if (action != 0)
   {
     (this->*( action))();
@@ -392,7 +392,7 @@ void TBoss6PlotFalz::run_phase_action() {
 }
 
 void TBoss6PlotFalz::call_state_action() {
-  TBoss6PlotFalzAction action = TBoss6PlotFalz__data_804DE66C[this->m_378].update;
+  TBoss6PlotFalzAction action = TBoss6PlotFalz__data_804DE66C[this->m_378].tick;
   if (action != 0)
   {
     (this->*( action))();
@@ -401,25 +401,22 @@ void TBoss6PlotFalz::call_state_action() {
 
 void TBoss6PlotFalz::set_state_2() { *(s32*)((char*)this + 0x3d4) = 0; *(s32*)((char*)this + 0x3d8) = 2; }
 void TBoss6PlotFalz::reset_state() { *(s32*)((char*)this + 0x3d4) = 0; *(s32*)((char*)this + 0x3d8) = 0; }
-void TBoss6PlotFalz::activate_warp() { void* m = *(void**)((char*)this + 0x384); if (m) ((TBoss6EmptyWarp *)m)->activate_warp(); }
-void TBoss6PlotFalz::free_child() { void* m = *(void**)((char*)this + 0x384); if (m) TBoss6EmptyWarp__sub_802B1004(m); }
+void TBoss6PlotFalz::activate_warp() { if (this->m_384) ((TBoss6EmptyWarp *)this->m_384)->activate_warp(); }
+void TBoss6PlotFalz::free_child() { if (this->m_384) TBoss6EmptyWarp__sub_802B1004(this->m_384); }
 void TBoss6PlotFalz::set_state(s32 arg1) {
-    u8 *arg0 = (u8 *)this;
     if (arg1 < 0 || arg1 >= 9) {
         return;
     }
-    {
-        if (this->m_378 != -1) {
-            TBoss6PlotFalzAction action = TBoss6PlotFalz__data_804DE66C[this->m_378].idle;
-            if (action != 0) {
-                (((TBoss6PlotFalz *)arg0)->*( action))();
-            }
-        }
-        *(s32 *)(arg0 + 0x378) = arg1;
-        TBoss6PlotFalzAction action = TBoss6PlotFalz__data_804DE66C[this->m_378].enter;
+    if (this->m_378 != -1) {
+        TBoss6PlotFalzAction action = TBoss6PlotFalz__data_804DE66C[this->m_378].leave;
         if (action != 0) {
-            (((TBoss6PlotFalz *)arg0)->*( action))();
+            (this->*action)();
         }
+    }
+    this->m_378 = arg1;
+    TBoss6PlotFalzAction action = TBoss6PlotFalz__data_804DE66C[this->m_378].enter;
+    if (action != 0) {
+        (this->*action)();
     }
 }
 
