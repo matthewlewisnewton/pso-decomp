@@ -15,6 +15,8 @@
 #include "pso/misc/TWindowSubSymbolChat.h"
 #include "pso/object/TObjFish.h"
 
+s32 draw_small_font_string_clipped(f32 *, const char *, u32, f32);
+
 struct Pt_80250A24 { f32 x, y; };
 
 struct Fuki_80250A24 {
@@ -234,7 +236,7 @@ void set_color__13TUnk_804CF0B8FUs(void *arg0, u16 arg1);
 void open__15TWindowFukidasiFPvPvi(u8 *arg0, u32 *arg1, s32 arg2);
 void set_text__15TWindowFukidasiFPvii(u8 *arg0, s32 arg1, s32 arg2);
 void init_flags__15TWindowFukidasiFPvi(void *arg0, s32 arg1);
-void draw_name_plate__15TWindowFukidasiFv(void *, View_80252764 *, u32);
+void draw_name_plate__15TWindowFukidasiFv(TUnk_804CF0B8 *, View_80252764 *, u32);
 void TWindowFukidasi__sub_80252C38(void *p);
 void clear_flag_20__13TUnk_804CF0B8Fv();
 s32 fn_80252CBC(void);
@@ -1042,8 +1044,7 @@ void TUnk_804CF0B8::sub_80251DF0(s16 arg1, s32 str, s16 arg3, f32 farg0) {
     this->clear_flag2c_bit100();
 }
 
-// The original Fv-named entry receives the window, draw context and color.
-struct NamePlateWindow { u8 pad[0x78]; const char *name; };
+// The original entry receives the window, draw context and color.
 struct NamePlateQuad { f32 x0, y0, x1, y1, u0, v0, u1, v1; };
 extern "C" {
 int get_name_text_width(void *);
@@ -1056,28 +1057,24 @@ extern const f32 lbl_805DCD6C, lbl_805DCD70, lbl_805DCD74, lbl_805DCD7C;
 extern const f32 lbl_805DCD80, lbl_805DCD84, lbl_805DCD88, lbl_805DCD8C;
 extern const f32 lbl_805DCD54, lbl_805DCD10;
 }
-s32 draw_small_font_string_clipped(f32 *, const char *, u32, f32);
-#pragma push
-#pragma fp_contract on
-extern "C" void draw_name_plate__15TWindowFukidasiFv(void *window, View_80252764 *ctx, u32 color) {
-    NamePlateWindow *self = (NamePlateWindow *)window;
+extern "C" void draw_name_plate__15TWindowFukidasiFv(TUnk_804CF0B8 *self, View_80252764 *ctx, u32 color) {
     f32 pos[2];
     NamePlateQuad q;
     f32 depth, width;
     u32 textColor, plateColor;
     if (self->name && ctx->age >= 0) {
-        width = (f32)(u32)get_name_text_width((void *)self->name);
+        width = (f32)(u32)get_name_text_width(self->name);
         s32 alpha = ctx->age < 6 ? (s32)(lbl_805DCD5C * (f32)(ctx->age * 255)) : 255;
         textColor = (u32)alpha << 24;
-        plateColor = textColor;
-        plateColor |= color & 0x00ffffff;
+        plateColor = color & 0x00ffffff;
+        plateColor |= textColor;
         pos[0] = ctx->x - lbl_805DCD60;
         pos[1] = ctx->y - TWindowFukidasi__data_805DCD1C;
         depth = TWindowFukidasi__data_805DCD4C / (lbl_805DCD64 + ctx->depth);
         begin_screen_draw(1);
         render_forward__20TWindowSubStatusDispFPv();
         set_draw_texture_and_color(0, plateColor);
-        q.x0 = pos[0]; q.y0 = pos[1]; q.x1 = lbl_805DCD68 + pos[0]; q.y1 = lbl_805DCD10 + pos[1];
+        q.x0 = pos[0]; q.y0 = pos[1]; q.x1 = lbl_805DCD68 + q.x0; q.y1 = lbl_805DCD10 + q.y0;
         q.u0 = lbl_805DCD6C; q.v0 = lbl_805DCD70; q.u1 = lbl_805DCD74; q.v1 = TWindowFukidasi__data_805DCCE8;
         apply_context_transform_to_rect(ctx, &q); draw_textured_quad_at_depth(&q.x0, depth);
         f64 right;
@@ -1103,7 +1100,6 @@ extern "C" void draw_name_plate__15TWindowFukidasiFv(void *window, View_80252764
         draw_small_font_string_clipped(pos, self->name, textColor, lbl_805DCD54);
     }
 }
-#pragma pop
 
 #pragma push
 #pragma fp_contract on
@@ -1271,7 +1267,7 @@ void TUnk_804CF0B8::render() {
     ((TUnk_804CF0B8 *)((Fuki_80252764 *)this))->draw_tail(v, ((Fuki_80252764 *)this)->color, off, lbl_805DCD90 + ((Fuki_80252764 *)this)->f54);
     if (((TUnk_804CF0B8 *)((Fuki_80252764 *)this))->is_active() != 0) {
         draw_visible_window_entries(((Fuki_80252764 *)this), ((Fuki_80252764 *)this)->f24, v);
-        draw_name_plate__15TWindowFukidasiFv(((Fuki_80252764 *)this), v, ((Fuki_80252764 *)this)->color);
+        draw_name_plate__15TWindowFukidasiFv(this, v, ((Fuki_80252764 *)this)->color);
     }
 }
 #pragma pop
