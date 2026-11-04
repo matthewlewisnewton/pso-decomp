@@ -1,98 +1,161 @@
-# Conversion-pool constants and split exports
+# Conversion-pool constants
 
 Follow-up to [issue #233](https://github.com/matthewlewisnewton/pso-decomp/issues/233).
-This change strengthens localization diagnostics. It does not recover original
-pool ownership, change symbols or relocations, or promote a linked unit.
+This records how the original executable shares the two integer-to-double
+biases, what this compiler can and cannot reproduce, and how the link tools
+treat the symbols decomp-toolkit exports for them.
 
-## What a value does and does not establish
+## The two values
 
-The double bit patterns `0x4330000000000000` and `0x4330000080000000`
-are used in unsigned and signed integer conversion sequences. Finding those
-bytes alone does not establish compiler-generated provenance: a named ordinary
-object can contain the same value. Inspect the original and compiled section,
-alignment, symbol binding/type/offset and the relocation consumers. Distinguish
-an MWCC local `@...` pool object used by a conversion sequence from an exported
-source definition, and retain uncertainty about the original source arrangement.
+PowerPC has no integer-to-double instruction. GC/2.6 builds a double whose
+high word is `0x43300000` and whose low word is the integer with its top bit
+flipped, then subtracts a bias. The unsigned bias is `2^52`
+(`0x4330000000000000`). The signed bias is `2^52 + 2^31`
+(`0x4330000080000000`). A cast in C is enough to emit that sequence. The load
+of the bias is a pair of `lis`/`lfd` relocations, or an `lfd` against a local
+`@N` pool symbol.
 
-The issue's scratch experiments describe particular compiler/source combinations.
-They do not prove that every supported source/compiler arrangement is impossible,
-or that the original used IPA, interfile pooling or linker constant folding.
-Those remain hypotheses pending a reproducible positive result or toolchain
-provenance. In particular, matching unrelocated bytes cannot establish a correct
-relocation target or retained exported definition.
+Those bytes are not, by themselves, proof that a symbol is compiler-generated.
+A named object can hold the same value. The tools treat a symbol as a
+conversion-pool constant only when the original split object and `symbols.txt`
+both say it is an 8-byte object in `.rodata` or `.sdata2` and those eight
+bytes are exactly one of the two biases. A larger object that merely contains
+the pattern is left alone.
 
-## Retained-object inventory
+## What GC/2.6 does with them
 
-The initial read-only inventory used reference checkout commit
-`7db2c3273` and patch base `909d120b21f7e875e71a5c1d0d3a7799a08078e9`.
-The five source files below were byte-identical between those checkouts.
-The reference graph selected GC/2.6 `mwcceppc.exe`, Wibo, `-O4,s`,
-`-inline off`, and `-sdata2 4` for the examples. The local inventory records
-the complete per-unit command, compiler/wrapper hashes, source/object hashes,
-section/symbol/relocation listings and report/configuration hashes. These are
-**retained objects**, not a fresh compile of the patch base. Their configured
-compiler profile does not establish which compiler invocation produced them.
-Raw evidence and proprietary inputs remain local.
+The compiler used here is Metrowerks Embedded PowerPC 2.4.7 build 107, the
+repo's GC/2.6, run through the same wibo wrapper as
+[the conversion-pool probe](../../tools/probes/conversion_pool/README.md).
+Game code is compiled one translation unit at a time with `-O4,s`,
+`-inline off`, and `-sdata2 4`. An 8-byte pool entry then lands in `.rodata`
+as a local `@N` object. It is not a global, and it is not shared with another
+file.
 
-| Unit | Observed shape | Constraint |
+Checked on 2026-11-04, with the compiler and linker hashes recorded in the
+probe README:
+
+- `#pragma merge_float_consts on` is an illegal pragma. The 2015 Freescale
+  Power Architecture manual describes that pragma as putting each floating-point
+  constant in its own variable so the linker can merge equal values, and says
+  the default is off. This GameCube compiler does not implement it.
+- `-ipa` is an unknown option. There is no program-wide IPA mode to turn on.
+- `-pool off` still emits the signed bias as a local `.rodata` object. That
+  switch does not stop conversion pools.
+- Linking two translation units, each converting an `int` to `double`, and
+  keeping both functions with `FORCEACTIVE`, produced a `.rodata` of 24 bytes:
+  the first unit's bias, that unit's `6.0`, and the second unit's own copy of
+  the same bias. The linker did not collapse the two biases into one.
+
+A named `const double` in the same translation unit is not merged into the
+pool either. Used by value, the compiler copies it into the pool and also
+emits the global. Used only through a pointer, it emits the global and not a
+pool entry. That is a separate object, not a renamed pool slot. Defining the
+bias by hand therefore cannot recreate a single 8-byte pool, and it cannot
+make a later translation unit's conversion relocate to this one.
+
+The probe's linker-script alias (`synthetic_pool_export = _f_rodata`) lands
+on the pool only when that pool is the first and only thing in `.rodata`.
+The alias is an absolute symbol of size 0, not an 8-byte `.rodata` object.
+Putting another double ahead of the pool moves the alias onto the wrong
+bytes. `TObjBoss2Tunnel_8007C5C0` is that shape: 8 bytes of `6.0`, then the
+signed bias. An alias of the section start would name `6.0`.
+
+## What the DOL shows
+
+decomp-toolkit splits the linked executable back into objects and gives a
+global name to each relocation target. A load in one split whose address falls
+in another split becomes an undefined reference to that name. That is a fact
+about the finished DOL, not a fact about the `.o` files the compiler wrote.
+
+Several of these 8-byte biases are loaded from a different split than the one
+that contains the bytes. `TObjBoss2Tunnel_8007CF0C` loads
+`TObjBoss2Tunnel__data_80438A90`. `TTecCtrl` loads `lbl_8044D078`. The bytes
+are the signed and unsigned biases. Per-file GC/2.6 does not emit that
+cross-file relocation for a cast: each file gets its own local pool. The
+original program did end up with one shared address. This compiler, with the
+flags it actually accepts, will not do that again. No source arrangement tried
+here produces a global pool entry of the original size and a second file
+whose cast relocates to it.
+
+`scope:local` is the end state for a bias that nothing else loads. It tells
+decomp-toolkit to stop exporting the split's copy, which is what the compiler
+emits on its own. A bias that another split loads has to stay a real exported
+definition. Localizing it would make that split's link fail, and a synthetic
+absolute alias would not be the original object.
+
+## Duplicate copies that hide a size mismatch
+
+`src/pso/object/TObjFish_8033CCC8.cpp` defined the signed bias as
+`lbl_80477F08`. The cast in `render_fade_model` already emits that bias as a
+local pool entry, so the compiled `.rodata` was 16 bytes of the same pattern
+twice. The original section is 8 bytes. objdiff scored the section 100%
+because the first 8 bytes match. The same file defined `lbl_805DFA64` (`0.7f`)
+and `lbl_805DFA68` (`179.0f`, `0.0f`) and also wrote those values as literals,
+so `.sdata2` grew a second copy ahead of the named symbols (20 bytes against
+the original 12).
+
+The named double is gone. The cast supplies the only `.rodata` entry, 8
+bytes, and `render_fade_model` still matches. `lbl_80477F08` is
+`scope:local`: no other split object names it.
+
+`run_task` adds `0.7f` and clamps at `179.0f`. Writing those as the named
+floats `lbl_805DFA64` and `lbl_805DFA68` puts the right 12 bytes in `.sdata2`
+but changes seven register fields at the start of `run_task`. Keeping `0.7f`
+as a literal and `179.0f` as `lbl_805DFA68[0]` matches those instructions and
+the bytes `0.7f`, `179.0f`, `0.0f`. The literal occupies the original
+`lbl_805DFA64` slot, so that symbol is `scope:local` too. Nothing else loads
+it. The unit still does not link. `TObjFish__sub_8033D1AC` is part of the
+original object and is only declared in this file. The compiled `.sdata2`
+section is aligned to 8 bytes and the original section is aligned to 4; the
+12 data bytes match, and this unit is not linked.
+
+A scan of compiled objects against their original splits, looking for a
+`.rodata` or `.sdata2` that was longer than the original and held more
+aligned copies of either bias, found this Fish unit and no other. After the
+fix, the same scan finds none. It only sees objects that were actually built.
+The size check in `link_units.py` remains the gate.
+
+`lbl_805D9620` in `TObjPlayer_8008DCF0` is a 4-byte `.sdata2` float, not one
+of these biases. A missing symbol with a similar name is not a conversion
+constant unless the bytes say so. `TObjPlayer_8008DCF0` is already matched;
+its float is a real named zero, not a pool entry to localize.
+
+## Referenced biases that stay exported
+
+These units match, and the original split exports a bias that another split
+loads. Their compiled objects emit a local `@N` instead, so `link_units.py`
+reports the global missing. Localizing it is refused because the other split
+needs a definition.
+
+| Unit | Symbol | Who loads it |
 | --- | --- | --- |
-| `TObjBoss2Tunnel_8007C5C0` | Both objects have 16-byte `.rodata`, alignment 8; signed bias at offset 8. The compiled copy is local `@51`. | Original export `TObjBoss2Tunnel__data_80438A90` is undefined in the `TObjBoss2Tunnel_8007CF0C` split. Retain a real provider. |
-| `TTecCtrl_8022C444` | Both objects have 8-byte `.rodata`, alignment 8, containing the unsigned bias. | Original export `lbl_8044D078` is undefined in the `TTecCtrl` split. Retain a real provider. |
-| `TWindowSubSymbolChatParts` | Both have 8-byte `.rodata` and 72-byte `.sdata2`; 19 original globals are absent from the compiled object. | Its own compiled object still has undefined `lbl_805DD7F8`. The unit cannot be localized as a group until that reference is resolved. |
-| `TObjPlayer_8008DCF0` | `lbl_805D9620` is a **4-byte `.sdata2` float**, not an 8-byte conversion bias. | Original and compiled consumers reference it, including the owner. Do not classify all missing data as conversion constants. |
-| `TObjFish_8033CCC8` | Original `.rodata` is 8 bytes, alignment 8; compiled `.rodata` is 16 bytes, alignment 8. Compiled local `@26` at offset 0 and global `lbl_80477F08` at offset 8 contain the signed bias. | Data scores 100%, but size differs. Text and `.sdata2` also differ. The named definition is not a valid duplicate-pool recipe. |
+| `TObjBoss2Tunnel_8007C5C0` | `TObjBoss2Tunnel__data_80438A90` (signed, at offset 8 after `6.0`) | `TObjBoss2Tunnel_8007CF0C` |
+| `TTecCtrl_8022C444` | `lbl_8044D078` (unsigned, the whole 8-byte `.rodata`) | `TTecCtrl` |
 
-A read-only audit of reference report sections scored 100% found Fish as the
-only oversized `.rodata`/`.sdata2` section with more aligned copies of one of
-the two biases than its original. That census is bounded to this retained
-report and these two patterns; it is not a claim that all duplicate data has
-been found. Size, alignment and final native-link checks remain required.
+`TWindowSubSymbolChatParts` matches and its `.rodata` is the signed bias
+`lbl_8044FC08`. Nothing else loads that symbol, so it is now `scope:local`.
+The unit still does not link: its compiled object references `lbl_805DD7F8`,
+and the other missing symbols stay exported until each one has a definition.
 
-## Fail-closed localization
+`link_units.py scan` also recognizes biases inside units that fail for other
+reasons: `lbl_8043FFE0` in `TNpcPlayer`, and `lbl_80440390` / `lbl_804403A0`
+in `TOBoss4Rock_801589E8`. Those units are not missing-only, so
+`localize_split_globals.py` does not rewrite them. Marking the bias local
+would not make the unit link.
 
-`tools/localize_split_globals.py` now reads every split object from the current
-DTK `build/GPOE8P/config.json`, including generated and split-only units. It
-also reads every compiled object identified by the report's source metadata,
-since a later scan can promote such a unit. The report and split census must
-agree. Retired files in the build directories are excluded.
+`TObjPlayer_8008DCF0` is not in this set. Its missing-looking float is the
+4-byte zero above.
 
-Previously, a missing consumer file was silently skipped. Generated units with
-no extension also produced the wrong path (`.o`), which was then skipped.
-Either omission could hide a reference. A missing, malformed, unsupported or
-inconsistent current object now rejects the whole plan before any symbol write.
-GLOBAL and WEAK undefined symbols both count, including the owner's compiled
-object; the owner's original split is excluded because it is replaced when linked.
-Refused units print the actual consumer paths.
+## What the tools do
 
-The tool rechecks each cached missing-only candidate against the report and
-current link/layout guards. It fingerprints inspected report, split configuration,
-symbol/split inventories and objects, then rejects detected changes during the
-scan. This detects replacement during inspection; it does **not** prove that a
-previously built object matches the current source, flags, headers or compiler.
-Do not edit inputs concurrently with a scan. Rebuild from the intended revision
-before running it. A successful plan alone does not authorize re-homing a symbol
-or editing another object's relocation.
+`link_units.py scan` prints every missing symbol whose original object is one
+of these two biases. `localize_split_globals.py` labels the same symbols.
+An unreferenced bias is marked `scope:local` even when another missing symbol
+in that unit is referenced elsewhere. A referenced bias is not marked, and
+the plan names the object that loads it. `--pools-only` limits a run to the
+biases, so a sweep does not also localize unrelated missing symbols.
 
-For an isolated checkout with a fresh complete build:
-
-```sh
-python tools/link_units.py scan
-python tools/localize_split_globals.py <unit>
-# Inspect the plan and the complete consumer inventory before --write.
-python tools/localize_split_globals.py --write <unit>
-# Rebuild; check original bytes, size, alignment, relocations and native link.
-python tools/check_pr.py
-```
-
-`#232`'s existing localization needs no reimplementation. A referenced-elsewhere
-case must keep its exported provider until a separate repair proves every
-affected consumer and the final native link. A duplicate named constant must
-not be accepted by weakening section-size or relocation checks. Any eventual
-source repair needs fresh exact compiler/flags evidence, incremental and overall
-no-loss checks, link-input provenance and the original DOL hash.
-
-Portable regression tests require neither game data nor MWCC:
-
-```sh
-PYTHONDONTWRITEBYTECODE=1 python3 -m unittest tools.tests.test_localize_split_globals
-```
+The label is not a size waiver and not a reason to link a unit. After a
+write, rebuild and check the original bytes, the section size, the
+relocations, and the DOL hash.
