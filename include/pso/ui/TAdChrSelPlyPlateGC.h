@@ -26,7 +26,8 @@ struct TAdChrSelPlyPlateGC : public TObject {
     s32 unk_1c;
     s32 unk_20;
     TAdChrSelPlyPlateQuad quad[8][3];
-    u8 pad_324[0x444 - 0x324];
+    TAdChrSelPlyPlateQuad cursor[3];
+    u8 pad_384[0x444 - 0x384];
     s32 a[4][3];
     s32 col[4][3];
     u8 pad_4a4[8];
@@ -53,6 +54,7 @@ struct TAdChrSelPlyPlateGC : public TObject {
 typedef char TAdChrSelPlyPlateGC_size[sizeof(TAdChrSelPlyPlateGC) == 0x538 ? 1 : -1];
 typedef char TAdChrSelPlyPlateGC_off_unk_20[(offsetof(TAdChrSelPlyPlateGC, unk_20) == 0x20) ? 1 : -1];
 typedef char TAdChrSelPlyPlateGC_off_quad[(offsetof(TAdChrSelPlyPlateGC, quad) == 0x24) ? 1 : -1];
+typedef char TAdChrSelPlyPlateGC_off_cursor[(offsetof(TAdChrSelPlyPlateGC, cursor) == 0x324) ? 1 : -1];
 typedef char TAdChrSelPlyPlateGC_off_a[(offsetof(TAdChrSelPlyPlateGC, a) == 0x444) ? 1 : -1];
 typedef char TAdChrSelPlyPlateGC_off_col[(offsetof(TAdChrSelPlyPlateGC, col) == 0x474) ? 1 : -1];
 typedef char TAdChrSelPlyPlateGC_off_sel[(offsetof(TAdChrSelPlyPlateGC, sel) == 0x4AC) ? 1 : -1];

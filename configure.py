@@ -482,7 +482,10 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # The plate TU's UV divisions contract (fmadd) across the whole unit.
     # Per-function fp_contract pragmas matched the same bytes; the unit flag
     # keeps every function in the TU exact, so the pragmas are not needed.
-    "pso/ui/TAdChrSelPlyPlateGC.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
+    # sub_802C5F1C's active-slot clamp is an inline helper; -inline off
+    # outlines it, noauto,level=1 inlines that helper only. Every other
+    # function in the unit is unchanged under either setting.
+    "pso/ui/TAdChrSelPlyPlateGC.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on", "-inline noauto,level=1")},
     "pso/misc/TQuestVmDownLoadServer.cpp": {"mw_version": "GC/1.3.2", "cflags": _switch(cflags_pso, "-inline deferred")},
     "pso/misc/TCameraCtrl.cpp": {"mw_version": "GC/1.3.2"},
     "pso/misc/TKeyBoardControl_8025EC04.cpp": {"mw_version": "GC/1.3.2"},

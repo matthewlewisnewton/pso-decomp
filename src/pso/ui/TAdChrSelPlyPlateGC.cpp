@@ -135,7 +135,7 @@ extern const f32 lbl_805DE57C;
 const f32 lbl_805DE580 = 0.53f;
 s32 TWindowShortListCtrl__check_controller_button(void *, int);
 
-void TAdMultiPlyChrSelectGC__sub_802C5F1C(void *, int);
+void TAdMultiPlyChrSelectGC__sub_802C5F1C(TAdChrSelPlyPlateGC *, int);
 extern u8 controller_physical_port_bank[];
 extern const Jump_802C5C84 multi_chr_select_cursor_jump_table[][5];
 extern s32 TAdMultiPlyChrSelectGC__data_804E0A48[4];
@@ -588,59 +588,60 @@ void TAdChrSelPlyPlateGC::move_cursor(s32 x_, s32 y_, s32 dx, s32 dy, s32 depth)
     }
 }
 
-void TAdMultiPlyChrSelectGC__sub_802C5F1C(void *arg0, int arg1) {
-    S_802C50EC *self = (S_802C50EC *)arg0;
+/* Keep this an inline helper (the unit builds with -inline noauto,level=1) with
+   slot declared before cur: open-coding the clamp in sub_802C5F1C, or declaring
+   cur first, changes which of the slot and the row pointer gets r7. */
+static inline s32 clamped_active_slot() {
+    s32 slot = 3;
+    s32 cur = TAdMultiPlyChrSelectGC__data_805D67D8;
+    if (cur < 4) {
+        slot = cur;
+    }
+    return slot;
+}
+
+void TAdMultiPlyChrSelectGC__sub_802C5F1C(TAdChrSelPlyPlateGC *self, int arg1) {
     u32 i;
     u32 j;
-    s32 cnt;
-    s32 idx;
-    f32 uu;
-    f32 a;
-    f32 b;
+    s32 slot;
+    f32 u0;
+    f32 top;
+    f32 bottom;
 
     /* Per-player 4x3 grid of selection quads: cell texture coords scale the shared
        (u,v) page, with the active-slot column clamped to 3. arg1 is the caller's
        post-incremented cursor generation and is not read here. */
     for (i = 0; i < 4; i++) {
         for (j = 0; j < 3; j++) {
-            cnt = TAdMultiPlyChrSelectGC__data_805D67D8;
-            uu = TAdMultiPlyChrSelectGC__data_805DE56C;
-            idx = 3;
-            if (cnt < 4) {
-                idx = cnt;
-            }
-            self->quad[i][j].u0 = uu;
-            a = lbl_805DE588 * (f32)idx;
-            b = lbl_805DE588 + a;
-            self->quad[i][j].v0 = a / 256.0f;
-            /* Net-zero update of the row index. Removing it keeps every
-               instruction but swaps r7 and r8, so the linked function misses.
-               Recorded under "Porting exceptions (to land with #315)". */
-            i++;
-            i--;
+            u0 = TAdMultiPlyChrSelectGC__data_805DE56C;
+            slot = clamped_active_slot();
+            self->quad[i][j].u0 = u0;
+            top = lbl_805DE588 * (f32)slot;
+            bottom = lbl_805DE588 + top;
+            self->quad[i][j].v0 = top / 256.0f;
             self->quad[i][j].u1 = lbl_805DE58C;
-            self->quad[i][j].v1 = b / 256.0f;
+            self->quad[i][j].v1 = bottom / 256.0f;
         }
     }
 
     /* Fixed home slots for the trailing (unpaired) columns. */
-    self->cursor[0][4] = lbl_805DE590;
-    self->cursor[0][5] = lbl_805DE594;
-    self->cursor[0][6] = lbl_805DE598;
-    self->cursor[0][7] = lbl_805DE59C;
-    self->cursor[1][4] = TAdMultiPlyChrSelectGC__data_805DE56C;
-    self->cursor[1][5] = lbl_805DE594;
-    self->cursor[1][6] = lbl_805DE590;
-    self->cursor[1][7] = lbl_805DE59C;
-    self->cursor[2][4] = lbl_805DE598;
-    self->cursor[2][5] = lbl_805DE594;
-    self->cursor[2][6] = lbl_805DE5A0;
-    self->cursor[2][7] = lbl_805DE59C;
+    self->cursor[0].u0 = lbl_805DE590;
+    self->cursor[0].v0 = lbl_805DE594;
+    self->cursor[0].u1 = lbl_805DE598;
+    self->cursor[0].v1 = lbl_805DE59C;
+    self->cursor[1].u0 = TAdMultiPlyChrSelectGC__data_805DE56C;
+    self->cursor[1].v0 = lbl_805DE594;
+    self->cursor[1].u1 = lbl_805DE590;
+    self->cursor[1].v1 = lbl_805DE59C;
+    self->cursor[2].u0 = lbl_805DE598;
+    self->cursor[2].v0 = lbl_805DE594;
+    self->cursor[2].u1 = lbl_805DE5A0;
+    self->cursor[2].v1 = lbl_805DE59C;
 }
 
 void TAdChrSelPlyPlateGC::update_option_cursor() {
     S_802C6008 *self = (S_802C6008 *)this;
-    TAdMultiPlyChrSelectGC__sub_802C5F1C(self, self->f1C++);
+    TAdMultiPlyChrSelectGC__sub_802C5F1C(this, self->f1C++);
     if (self->f4DC[self->f4EC] != 0 && self->f4F8 == 0) {
         if (TAdMultiPlyChrSelectGC::dispatch_draw_command((s32)WIN_802C6008, 0x10, 6, 1) != 0) {
             play_sound_effect(0x54100, 0, 0, 0);
@@ -667,7 +668,7 @@ void TAdChrSelPlyPlateGC::handle_dpad_input() {
     S_802C61E4 *self = (S_802C61E4 *)this;
     s32 n;
     s32 m;
-    TAdMultiPlyChrSelectGC__sub_802C5F1C(self, self->f1C++);
+    TAdMultiPlyChrSelectGC__sub_802C5F1C(this, self->f1C++);
     n = TAdMultiPlyChrSelectGC::count_ready();
     m = TAdMultiPlyChrSelectGC__sub_802C6558();
     if (m != n && self->f4DC[self->f4EC] != 0 && self->f4F8 == 0) {
