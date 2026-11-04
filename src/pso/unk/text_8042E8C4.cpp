@@ -11,14 +11,17 @@ extern u8 launch_record[] AT_ADDRESS(0x80003100);
 // A zero file offset ends that section list. Text is stored and
 // instruction-invalidated; data is stored; BSS is cleared.
 //
-// Not exact on the ntutl profile (GC/2.6 -O4,p -inline off -use_lmw_stmw on).
-// The original tail is lwz/isync/mtlr/blr with the link bit clear, so the
-// frame restore at 0x8042E9FC never runs. __isync (a compiler intrinsic) emits
-// the isync. The indirect call is mtctr/bctrl plus a live epilogue, and the
-// loop arrays fold to a pointer induction variable instead of the original
-// byte-offset form. -O4,s, GC/1.2.5 and GC/3.0a are worse fits; the prologue
-// is the scheduled ntutl form (stmw r26,8(r1)). __attribute__((noreturn)) is
-// rejected and there is no mtlr intrinsic.
+// Not exact. Built on the ntutl profile (GC/2.6 -O4,p -inline off
+// -use_lmw_stmw on) with -opt nocse,nostrength for this unit: the original
+// loops index with lwzx off a byte induction variable and recompute
+// base+index per load, which is what those two optimizations would have
+// folded. With that the loop bodies are the original instruction sequence.
+// Left: the original holds the zero it compares each offset against in a
+// register (cmplw) copied from the counter before each loop, which no
+// spelling of the compare produces; and the tail is lwz/isync/mtlr/blr with
+// the link bit clear (the frame restore at 0x8042E9FC never runs), while
+// __isync() followed by image->entry() is isync/mtctr/bctrl plus a live
+// epilogue. GC/2.6 has no mtlr intrinsic and no noreturn.
 extern "C" void LaunchDol(ModemLaunchContext *ctx) {
     u32 size = (ctx->payload_size + 0x132) & ~0x1Fu;
     DolImageHeader *image = ctx->field_104;

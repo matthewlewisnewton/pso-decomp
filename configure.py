@@ -704,7 +704,12 @@ MIDDLEWARE: List[Tuple[str, int, str, List[str], Dict[str, Dict[str, Any]]]] = [
     # The modem driver (AT command strings).
     ("modem", 0x8042BF48, "GC/1.2.5", cflags_middleware, {}),
     # ntUtl ("Ver 1.16.00 Build:Jul 8 2002"); the SDK's EXI library follows.
-    ("ntutl", 0x8042E8C4, "GC/2.6", cflags_middleware, {}),
+    ("ntutl", 0x8042E8C4, "GC/2.6", cflags_middleware, {
+        # LaunchDol's section loops index with lwzx off a separate byte
+        # induction variable and recompute base+index per load, i.e. no
+        # strength reduction of the base and no common subexpressions.
+        "pso/unk/text_8042E8C4.cpp": {"cflags": _switch(cflags_middleware, "-opt nocse,nostrength")},
+    }),
 ]
 MIDDLEWARE_END = 0x8042F13C
 
