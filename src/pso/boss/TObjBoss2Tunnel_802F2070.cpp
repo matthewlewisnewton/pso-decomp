@@ -127,7 +127,7 @@ void TunnelSceneController::spawn_segment_row_b() {
 void TUnk_804E4B3C::spawn(s32 arg1, s32 arg2) {
     void *new_obj = (void *) __nw__7TObjectFUl(0x78);
     if ((u32) new_obj != 0U) {
-        fn_802F1FB0(new_obj, *(s32 *)((s8 *)this + 0x8C), arg1, this->m_84, arg2);
+        fn_802F1FB0(new_obj, (s32)this->m_8c, arg1, this->m_84, arg2);
     }
 }
 void TObjBoss2Tunnel__sub_802F2278(void) { (*(int *)&boss2_tunnel_state_flags) = ((*(int *)&boss2_tunnel_state_flags) | 0x8); }
@@ -162,7 +162,7 @@ void TUnk_804E4B3C::render() {
     u8 *arg0 = (u8 *)this;
     Nd_802F2348 *n;
     if (query_teammate_state__9TObjEneDDFv() == 0) {
-        for (n = (*(Li_802F2348 **)((s8 *)arg0 + 0x90))->head; n != 0; n = n->next) {
+        for (n = (*(Li_802F2348 **)&this->m_90)->head; n != 0; n = n->next) {
             draw_particle_effect(n);
         }
         for (n = (*(Li_802F2348 * *)&this->m_8c)->head; n != 0; n = n->next) {
@@ -326,7 +326,7 @@ void TUnk_804E4B3C::update_phase_motion() {
 void *TUnk_804E4B3C::destroy(s16 arg1) {
     if (this != NULL) {
         *(s32 **)((s8 *)this + 0x18) = lbl_804E4B3C;
-        if (*(void **)((s8 *)this + 0x88) != NULL) { queue_destruction__7TObjectFv((*(void **)((s8 *)this + 0x88))); }
+        if (this->m_88 != NULL) { queue_destruction__7TObjectFv(this->m_88); }
         TObjBoss2Tunnel::dt((s32)&motion, (s16)(-1));
         __dt__7TObjectFv(this, 0);
         if (arg1 > 0) {
@@ -350,22 +350,22 @@ void *TObjBoss2Tunnel__sub_802F2A2C(void *arg0p, s32 parent) {
     if (p != 0) {
         p = __ct__7TObjectFP7TObject((void *) p, arg0);
     }
-    *(u32 *)((s8 *)arg0 + 0x90) = p;
+    ((TUnk_804E4B3C *)arg0p)->m_90 = (void *)p;
     p = __nw__7TObjectFUl(0x1C);
     if (p != 0) {
         p = __ct__7TObjectFP7TObject((void *) p, arg0);
     }
-    *(u32 *)((s8 *)arg0 + 0x8C) = p;
-    *(s32 *)((s8 *)arg0 + 0x1C) = 0;
+    ((TUnk_804E4B3C *)arg0p)->m_8c = (void *)p;
+    ((TUnk_804E4B3C *)arg0p)->m_1c = 0;
     if (is_split_screen() == 0) {
-        *(f32 *)((s8 *)arg0 + 0x84) = lbl_805DED0C;
+        ((TUnk_804E4B3C *)arg0p)->m_84 = lbl_805DED0C;
     } else {
-        *(f32 *)((s8 *)arg0 + 0x84) = lbl_805DED10;
+        ((TUnk_804E4B3C *)arg0p)->m_84 = lbl_805DED10;
     }
     TObjBoss2Tunnel::reset_floats(&((TUnk_804E4B3C *)arg0p)->motion);
-    *(s32 *)((s8 *)arg0 + 0x4C) = 0;
-    *(f32 *)((s8 *)arg0 + 0x50) = lbl_805DEC98;
-    *(f32 *)((s8 *)arg0 + 0x54) = lbl_805DEC9C;
+    ((TUnk_804E4B3C *)arg0p)->phase = 0;
+    ((TUnk_804E4B3C *)arg0p)->rate = lbl_805DEC98;
+    ((TUnk_804E4B3C *)arg0p)->value = lbl_805DEC9C;
     *(f32 *)((s8 *)arg0 + 0x5C) = lbl_805DEC9C;
     boss2_tunnel_state_flags = 0;
     *(f32 *)((s8 *)arg0 + 0x58) = lbl_805DEC9C;
@@ -382,15 +382,15 @@ void *TObjBoss2Tunnel__sub_802F2A2C(void *arg0p, s32 parent) {
     }
     p = __nw__7TObjectFUl(0x2C);
     if (p != 0) {
-        TObjBoss2Tunnel__sub_802F1AE0((void *) p, *(u32 *)((s8 *)arg0 + 0x90), 0);
+        TObjBoss2Tunnel__sub_802F1AE0((void *) p, (u32)((TUnk_804E4B3C *)arg0p)->m_90, 0);
     }
     p = __nw__7TObjectFUl(0x2C);
     if (p != 0) {
-        TObjBoss2Tunnel__sub_802F1AE0((void *) p, *(u32 *)((s8 *)arg0 + 0x90), 1);
+        TObjBoss2Tunnel__sub_802F1AE0((void *) p, (u32)((TUnk_804E4B3C *)arg0p)->m_90, 1);
     }
     p = __nw__7TObjectFUl(0x2C);
     if (p != 0) {
-        TObjBoss2Tunnel__sub_802F1AE0((void *) p, *(u32 *)((s8 *)arg0 + 0x90), 2);
+        TObjBoss2Tunnel__sub_802F1AE0((void *) p, (u32)((TUnk_804E4B3C *)arg0p)->m_90, 2);
     }
     if (lbl_805D6970 == 0) {
         lbl_805D696C = 1;
@@ -402,14 +402,14 @@ void *TObjBoss2Tunnel__sub_802F2A2C(void *arg0p, s32 parent) {
         if (p != 0) {
             p = TObjBoss7TunnelCol__ct((void *) p, arg0);
         }
-        *(u32 *)((s8 *)arg0 + 0x88) = p;
+        ((TUnk_804E4B3C *)arg0p)->m_88 = (void *)p;
     } else {
-        *(f32 *)((s8 *)arg0 + 0x84) = lbl_805DED0C;
+        ((TUnk_804E4B3C *)arg0p)->m_84 = lbl_805DED0C;
         ((TunnelSceneController*)arg0)->spawn_segment_row_a();
-        *(s32 *)((s8 *)arg0 + 0x1C) = 2;
+        ((TUnk_804E4B3C *)arg0p)->m_1c = 2;
         *(f32 *)((s8 *)arg0 + 0x5C) = lbl_805DEC9C;
-        *(f32 *)((s8 *)arg0 + 0x54) = lbl_805DECB8;
-        *(u32 *)((s8 *)arg0 + 0x88) = 0;
+        ((TUnk_804E4B3C *)arg0p)->value = lbl_805DECB8;
+        ((TUnk_804E4B3C *)arg0p)->m_88 = 0;
         boss2_tunnel_state_flags |= 0x8000;
     }
     return arg0;
