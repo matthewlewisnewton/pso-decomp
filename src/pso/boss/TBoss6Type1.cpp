@@ -154,7 +154,6 @@ extern EffectSlotEntry TBoss6Type1__effect_slot_table[];
 extern u8 lbl_80471014[];
 Boss6Motion *get_bml_motion(s32, s32);
 extern const s32 TBoss6Type1__data_805DE3C4;
-void send_flow_action_if_idle__11TBoss6Type1FPvc(TBoss6Type1 *arg0, s8 arg1);
 void TBoss6Type1__sub_802B909C(TBoss6Type1 *self, Boss6ActionArgs *atk);
 extern const f32 lbl_805DE3DC;
 void TBoss6Type1__sub_802B8E1C(TBoss6Type1 *arg0);
@@ -521,14 +520,14 @@ void TBoss6Type1::load_params(void *arg1) {
     this->m_41c = msg->sync_params[2];
 }
 
-void send_flow_action_if_idle__11TBoss6Type1FPvc(TBoss6Type1 *boss6_type1, s8 arg1) {
+void TBoss6Type1::send_flow_action_if_idle(TBoss6Type1 *boss6_type1, int action) {
     typedef char sp8_offset[(offsetof(Stack_802B9204_boss6_1, sp8) == 0x0) ? 1 : -1];
     typedef char spC_offset[(offsetof(Stack_802B9204_boss6_1, spC) == 0x4) ? 1 : -1];
     Stack_802B9204_boss6_1 stack;
     if (((s32)((TBoss6Type1 *)(boss6_type1->m_3f8))->is_idle()) != 0) {
         build_6xA4_olga_flow_boss_actions(&stack.sp8);
         boss6_type1->set_sync_data(&stack.sp8);
-        stack.spC = arg1;
+        stack.spC = action;
         ((TBoss6Type1 *)(&stack.sp8))->step_and_send_60();
     }
 }
@@ -630,15 +629,15 @@ void TBoss6Type1__sub_802B8BB4(TBoss6Type1 *arg0) {
     switch (arg0->m_414) {
     case 0:
         if (TBoss6Type1__sub_802B600C(arg0) != 0) {
-            ((void (*)(u8 *, s32))send_flow_action_if_idle__11TBoss6Type1FPvc)((u8 *)arg0, TBoss6Type1::rand_range_inclusive((s32)arg0, 5, 6));
+            TBoss6Type1::send_flow_action_if_idle(arg0, TBoss6Type1::rand_range_inclusive((s32)arg0, 5, 6));
             break;
         }
         switch (arg0->pick_remapped_list_value(3, 5, 0x20)) {
         case 3:
-            send_flow_action_if_idle__11TBoss6Type1FPvc(arg0, (s8)(3));
+            TBoss6Type1::send_flow_action_if_idle(arg0, 3);
             return;
         case 5:
-            ((void (*)(u8 *, s32))send_flow_action_if_idle__11TBoss6Type1FPvc)((u8 *)arg0, TBoss6Type1::rand_range_inclusive((s32)arg0, 5, 6));
+            TBoss6Type1::send_flow_action_if_idle(arg0, TBoss6Type1::rand_range_inclusive((s32)arg0, 5, 6));
             return;
         case 4:
             return;

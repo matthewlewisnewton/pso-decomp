@@ -154,6 +154,8 @@ struct TBoss6Type1 : public TObjEnemy {
     void render_shadows();
     void do_attack();
     s32 send_6xA4_action(s32 t, s32 *src);
+    // Callers pass the action in r4 with mr/li and never extsb; the body stbs it.
+    static void send_flow_action_if_idle(TBoss6Type1 *boss, int action);
     void load_params(void *arg1);
     void set_sync_data(void *arg1);
     static s32 create(s32 arg0);
