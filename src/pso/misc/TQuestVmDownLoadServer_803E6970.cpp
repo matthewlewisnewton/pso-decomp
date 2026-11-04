@@ -2970,9 +2970,10 @@ QuestDownloadTextNode *get_next_node__22TQuestVmDownLoadServerFPv(QuestDownloadQ
 }
 #pragma pop
 
+
 #pragma push
 #pragma dont_inline off
-#pragma inline_depth(2)
+#pragma inline_depth(1)
 struct PaginationFitCursor {
     QuestDownloadTextNode *node;
 };
@@ -3002,15 +3003,13 @@ inline s32 pagination_fit_cursor(PaginationFitCursor &cursor, QuestDownloadTextN
     }
     return n;
 }
-inline QuestDownloadTextNode *pagination_next_group(QuestDownloadTextNode *node) {
-    while (node->flags & 1) {
-        node = node->next;
-    }
-    return node->next;
-}
 inline void pagination_advance_groups(QuestDownloadTextNode *&head, s32 count) {
     for (s32 i = 0; i != count; i++) {
-        head = pagination_next_group(head);
+        QuestDownloadTextNode *node = head;
+        while (node->flags & 1) {
+            node = node->next;
+        }
+        head = node->next;
     }
 }
 void TQuestVmDownLoadServer__sub_803EC284(s32 index, s32 count) {
@@ -3044,11 +3043,7 @@ finish:
         TQuestVmDownLoadServer__sub_803EB4D4();
     }
 }
-#pragma pop
 
-#pragma push
-#pragma dont_inline off
-#pragma inline_depth(1)
 inline QuestDownloadTextNode *Default_803EC460(s32 x) {
     QuestDownloadTextNode *n = (QuestDownloadTextNode *)TQuestVmDownLoadServer__sub_803ECED0();
     if (n != NULL) {
