@@ -8,6 +8,32 @@
 // mtx.h defines MTXMultVecArray as this symbol but does not prototype it.
 extern "C" void PSMTXMultVecArray(const GC_Mtx m, const Vec *src, Vec *dst, u32 count);
 
+// One-time no-asm exception approved by Matt on 2026-11-04 (11:14 AM PT), the
+// same kind as #281. vec3_add_to (0x803D8910) is an in-place paired-single add
+// (dst += src): D-form psq_l/psq_st with W=1 on z, which GC/2.6 does not emit
+// from C or from __vec2x32float__. See docs/evidence/vec3-add-to-paired-single.md.
+// The asm builds only under Metrowerks; other compilers get the scalar adds.
+#ifdef __MWERKS__
+asm void vec3_add_to(register Vec *dst, register const Vec *src) {
+    nofralloc
+    psq_l f0, 0(dst), 0, 0
+    psq_l f2, 0(src), 0, 0
+    psq_l f1, 8(dst), 1, 0
+    ps_add f0, f2, f0
+    psq_l f3, 8(src), 1, 0
+    ps_add f1, f3, f1
+    psq_st f0, 0(dst), 0, 0
+    psq_st f1, 8(dst), 1, 0
+    blr
+}
+#else
+void vec3_add_to(Vec *dst, const Vec *src) {
+    dst->x += src->x;
+    dst->y += src->y;
+    dst->z += src->z;
+}
+#endif
+
 void matrix_mult_vec(f32 (*m)[4], const Vec *src, Vec *dst) {
     if (m == NULL) {
         m = (f32 (*)[4])current_matrix;

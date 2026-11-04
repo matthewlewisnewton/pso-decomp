@@ -42,5 +42,6 @@ guides.
 - [Symbol chat window receiver boundary](symbol-chat-ui-contract-evidence.md)
 - [TChCrTagPlGraphic vtable emission](tchcrtagplgraphic-vtable-evidence.md)
 - [Texture input and runtime surface](texture-input-evidence.md)
+- [`vec3_add_to` paired-single exception](vec3-add-to-paired-single.md)
 - [Vector helper contracts](vector-helper-evidence.md)
 - [Window effect light recovery](window-effect-light-recovery-evidence.md)
