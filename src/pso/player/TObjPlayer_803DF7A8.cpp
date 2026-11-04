@@ -291,15 +291,15 @@ __declspec(section ".sdata2") extern const f64 lbl_805E1040;
 __declspec(section ".sdata2") extern const f64 lbl_805E1048;
 }
 
-s32 spheres_overlap(u8 *arg0, u8 *arg1) {
+s32 spheres_overlap(CollisionSphere_80155C54 *arg0, CollisionSphere_80155C54 *arg1) {
     f32 temp_f2;
     f32 temp_f3;
     f32 temp_f4;
     f32 temp_f5;
-    temp_f3 = *(f32 *)((s8 *)arg1 + 0) - *(f32 *)((s8 *)arg0 + 0);
-    temp_f4 = *(f32 *)((s8 *)arg1 + 4) - *(f32 *)((s8 *)arg0 + 4);
-    temp_f2 = *(f32 *)((s8 *)arg1 + 8) - *(f32 *)((s8 *)arg0 + 8);
-    temp_f5 = *(f32 *)((s8 *)arg0 + 0xC) + *(f32 *)((s8 *)arg1 + 0xC);
+    temp_f3 = arg1->center.x - arg0->center.x;
+    temp_f4 = arg1->center.y - arg0->center.y;
+    temp_f2 = arg1->center.z - arg0->center.z;
+    temp_f5 = arg0->radius + arg1->radius;
     return ((temp_f2 * temp_f2) + ((temp_f3 * temp_f3) + (temp_f4 * temp_f4))) <= (temp_f5 * temp_f5);
 }
 

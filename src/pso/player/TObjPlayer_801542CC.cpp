@@ -10,6 +10,10 @@
 #include "pso/object/TObjMotion.h"
 #include "pso/collision/ActorBodyContact.h"
 #include "pso/math/AngleLookup.h"
+#include "pso/player/TObjPlayer_803DF7A8.h"
+
+// This unit's .sdata2 (0x805DB270, 12 bytes) is the pool 0.0f, 40000.0f, 50.0f.
+// No other object references those three floats, so symbols.txt marks them scope:local.
 
 struct Elt_801542CC { char pad[0x18]; s32 f18; char pad2[0x2C - 0x1C]; };
 
@@ -36,10 +40,8 @@ struct Vec_801550DC { f32 x, y, z; };
 struct CollisionVector_80155FBC { f32 x,y,z; };
 
 struct CollisionBody_80155FBC { void* colliders; s32 count; Vec position; s32 facing; };
-struct CollisionVector_80155C54 { f32 x,y,z; };
 struct Collider_80155C54 { CollisionVector_80155C54 offset; f32 radius; u32 unknown10; s32 shape; s32 flags; CollisionVector_80155C54 world; u32 unknown28; };
 struct CollisionBox_80155C54 { f32 data[24]; };
-struct CollisionSphere_80155C54 { CollisionVector_80155C54 center; f32 radius; };
 
 struct E_801547E0 { u8 pad[0xc]; f32 f; u8 pad2[0x2c - 0x10]; };
 
@@ -146,7 +148,6 @@ TObjCollidable *find_entity_by_id(u16 id);
 extern s32 quest_object_entries;
 void handle_6x0B_update_object_state(G_UpdateObjectState_6x0B *packet);
 }
-extern const f32 TObjPlayer__data_805DB270;
 extern const f32 lbl_805DB284;
 extern const f32 lbl_805DB288;
 extern const f32 lbl_805DB28C;
@@ -196,7 +197,6 @@ extern const f32 lbl_805DB27C;
 extern const f32 lbl_805DB280;
 s32 resolve_actor_sphere_contact(u8 *arg0, s32 arg1, s32 arg2);
 s32 respond_to_body_contact(u8 *arg0, u32 arg1, u8 *arg2);
-s32 spheres_overlap(u8 *arg0, u8 *arg1);
 extern "C" {
 void TOTrapAncient02R__sub_80154D78(void);
 void TObjPlayer__sub_801542F4(s32 a);
@@ -306,7 +306,7 @@ void TObjPlayer__sub_8015434C(CollisionBody_80155FBC *set, s32 start, s32 count)
                                 if (test_box_sphere_contact(&box, &other_sphere)) {
                                     hit = other_body;
                                 }
-                            } else if (spheres_overlap((u8 *)&sphere, (u8 *)&other_sphere)) {
+                            } else if (spheres_overlap(&sphere, &other_sphere)) {
                                 hit = other_body;
                             }
                         }
@@ -374,7 +374,7 @@ f32 get_collision_body_radius(Obj_801547E0 *self, s32 i) {
     if (self->arr != 0) {
         return self->arr[i].f;
     }
-    return TObjPlayer__data_805DB270;
+    return 0.0f;
 }
 
 void *resolve_hittable_target(u16 actorId, s16 collider) {
@@ -665,7 +665,7 @@ s32 test_collider_sphere_overlap_xz(s32 arg0, u8 *arg1, u32 arg2) {
     typedef char sp14_offset[(offsetof(Stack_80155050, sp14) == 0xC) ? 1 : -1];
     Stack_80155050 stack;
     VecCopy__FP3VecPC3Vec(&stack.sp8, arg1 + 0x1C);
-    stack.spC = TObjPlayer__data_805DB270;
+    stack.spC = 0.0f;
     stack.sp14 = *(f32 *)((s8 *)arg1 + 0xC);
     if (arg2 != 0U) {
         TObjPlayer__sub_801550B8((u8 *)arg2, (u8 *)((void *)&stack.sp8));
@@ -707,7 +707,7 @@ block_7:
         rotate_vector_by_current_matrix(&displacement, &displacement);
         pop_matrix();
         if (lbl_805DB284 < ((displacement.x * displacement.x) + (displacement.z * displacement.z))) {
-            displacement.y = TObjPlayer__data_805DB270;
+            displacement.y = 0.0f;
             normalize_vector(&displacement);
             displacement.x = (displacement.x * tangentScale);
             displacement.z *= tangentScale;
@@ -761,20 +761,20 @@ s32 resolve_player_box_contact(u8 *arg0, u8 *arg1, u8 *arg2) {
         dx = xl - xx;
         dz = zl - zz;
         if (xx + zz < lbl_805DB284) {
-            v.x = TObjPlayer__data_805DB270;
-            v.y = TObjPlayer__data_805DB270;
+            v.x = 0.0f;
+            v.y = 0.0f;
             v.z = lbl_805DB288;
             SHIFT_80155294(*(s32 *)(arg0 + 0x60));
         } else if (*(u32 *)(arg2 + 0x18) & 0x20000000) {
-            v.x = v.y = v.z = TObjPlayer__data_805DB270;
+            v.x = v.y = v.z = 0.0f;
             if (hd < hw) {
-                if (TObjPlayer__data_805DB270 < scratch_vec.vector.z) {
+                if (0.0f < scratch_vec.vector.z) {
                     v.z = lbl_805DB288;
                 } else {
                     v.z = lbl_805DB28C;
                 }
             } else {
-                if (TObjPlayer__data_805DB270 < scratch_vec.vector.x) {
+                if (0.0f < scratch_vec.vector.x) {
                     v.x = lbl_805DB288;
                 } else {
                     v.x = lbl_805DB28C;
@@ -783,27 +783,27 @@ s32 resolve_player_box_contact(u8 *arg0, u8 *arg1, u8 *arg2) {
             SHIFT_80155294(*(s32 *)(arg1 + 0x60));
         } else if (dx < dz) {
             v.x = scratch_vec.vector.x < 0.0f ? lbl_805DB28C : lbl_805DB288;
-            v.z = v.y = TObjPlayer__data_805DB270;
+            v.z = v.y = 0.0f;
             SHIFT_80155294(*(s32 *)(arg1 + 0x60));
-            v.x = TObjPlayer__data_805DB270;
-            v.y = TObjPlayer__data_805DB270;
-            if (scratch_vec.vector.z < TObjPlayer__data_805DB270) {
+            v.x = 0.0f;
+            v.y = 0.0f;
+            if (scratch_vec.vector.z < 0.0f) {
                 v.z = lbl_805DB290;
             } else {
                 v.z = lbl_805DB294;
             }
             SHIFT_80155294(*(s32 *)(arg1 + 0x60));
         } else {
-            v.x = TObjPlayer__data_805DB270;
-            v.y = TObjPlayer__data_805DB270;
-            if (scratch_vec.vector.z < TObjPlayer__data_805DB270) {
+            v.x = 0.0f;
+            v.y = 0.0f;
+            if (scratch_vec.vector.z < 0.0f) {
                 v.z = lbl_805DB28C;
             } else {
                 v.z = lbl_805DB288;
             }
             SHIFT_80155294(*(s32 *)(arg1 + 0x60));
             v.x = scratch_vec.vector.x < 0.0f ? lbl_805DB290 : lbl_805DB294;
-            v.z = v.y = TObjPlayer__data_805DB270;
+            v.z = v.y = 0.0f;
             SHIFT_80155294(*(s32 *)(arg1 + 0x60));
         }
         if (moved != 0) {
@@ -1003,7 +1003,7 @@ void* refresh_actor_body_spheres(CollisionBody_80155FBC a,CollisionBody_80155FBC
                     case 0: default:
                         test_collider_sphere_overlap_xz(worldA,source,&sphereAA);
                         test_collider_sphere_overlap_xz(worldB,destination,&sphereBB);
-                        if (spheres_overlap((u8 *)&sphereAA, (u8 *)&sphereBB)) return destination;
+                        if (spheres_overlap(&sphereAA, &sphereBB)) return destination;
                         break;
                     }
                     break;
