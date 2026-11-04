@@ -859,13 +859,10 @@ struct TBinModel {
 
 extern "C" TBinModel *TLobby__sub_8002058C(TBinModel *self, s32 kind, u32 *models, u32 *motions, s32 on_loaded,
                                           s32 on_loaded_arg, s32 load_buffer) {
-    Lobby_8001FA1C req;
-    s32 handle;
     u32 *p;
-    s32 i;
     ((BmlResource *)self)->reset();
     self->flags = kind;
-    for (i = 0; i < 0x100; i++) {
+    for (s32 i = 0; i < 0x100; i++) {
         self->handles[i] = 0;
     }
     self->on_loaded = on_loaded;
@@ -876,7 +873,7 @@ extern "C" TBinModel *TLobby__sub_8002058C(TBinModel *self, s32 kind, u32 *model
     }
     if (self->nEnts16 > 0) {
         self->ents16 = (BinModelSlot *)::operator new[](self->nEnts16 * 16);
-        for (i = 0; i < self->nEnts16; i++) {
+        for (s32 i = 0; i < self->nEnts16; i++) {
             self->ents16[i].flags = 0;
             self->ents16[i].model = 0;
             self->ents16[i].texture = 0;
@@ -887,7 +884,7 @@ extern "C" TBinModel *TLobby__sub_8002058C(TBinModel *self, s32 kind, u32 *model
     }
     if (self->nEnts8 > 0) {
         self->ents8 = (BinMotionSlot *)::operator new[](self->nEnts8 * 8);
-        for (i = 0; i < self->nEnts8; i++) {
+        for (s32 i = 0; i < self->nEnts8; i++) {
             self->ents8[i].data = 0;
         }
     }
@@ -902,7 +899,10 @@ extern "C" TBinModel *TLobby__sub_8002058C(TBinModel *self, s32 kind, u32 *model
         if (self->nEnts16 * 2 + self->nEnts8 >= 0x100) {
             TLobby::debug_print((s32)lbl_80434E60);
         }
-        for (p = models, i = 0; *p != 0; p++, i++) {
+        p = models;
+        for (s32 i = 0; *p != 0; p++, i++) {
+            Lobby_8001FA1C req;
+            s32 handle;
             req.f0 = *p;
             req.f4 = (s32 *)&self->ents16[i].model;
             req.f8 = (s32 *)&self->ents16[i].texture;
