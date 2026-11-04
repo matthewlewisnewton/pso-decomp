@@ -1199,8 +1199,6 @@ s32 check_value_equals__13TUnk_804B6C24Fl(int, void *);
 s32 check_flag__10TObjPlayerFl(int, int);
 s32 fn_800660B8(void *);
 s32 test_action_mask__10TObjPlayerFl(void *, s32);
-// The original callee returns a full-register 0 or 1; callers test r3 directly.
-s32 is_valid_technique_slot__10TObjPlayerFUc(u8);
 s32 TObjPlayer__sub_80082300(void *);
 s32 is_inactive__10TObjPlayerFv();
 s32 init_entry_fields__6TLobbyFiii(int, int, void *, void *);
@@ -4640,9 +4638,14 @@ struct CastPacket_801CD550 {
     u32 targets[10];
 };
 
+struct Player_801CD550 {
+    u8 pad[0x428];
+    u8 techs[4];
+};
+
 void handle_6x47_cast_technique(void *arg) {
     CastPacket_801CD550 pkt;
-    u8 *player;
+    Player_801CD550 *player;
     s32 i;
     u8 effective;
     s8 valid;
@@ -4655,23 +4658,23 @@ void handle_6x47_cast_technique(void *arg) {
     TObjPlayer__sub_801D21CC((u8 *)&pkt, (u8 *)arg);
     ((TNpcPlayer *)&pkt)->byteswap_positions();
     if (!validate_6x47_cast_technique((u8 *)&pkt)) return;
-    player = get_player_by_client_id(pkt.id);
+    player = (Player_801CD550 *)get_player_by_client_id(pkt.id);
     if (player == NULL) return;
     if (reset_volopt_state__10TObjPlayerFv(player) == 0) return;
     if (test_action_mask__10TObjPlayerFl(player, 0x8200) != 0) return;
     tech = pkt.tech;
-    ((TObjPlayer *)(player + 0x428))->set_technique_id(tech);
+    ((TObjPlayer *)player->techs)->set_technique_id(tech);
     level = (s8)pkt.level;
-    valid = ((TObjPlayer *)(player + 0x428))->get_valid_technique();
-    if (is_valid_technique_slot__10TObjPlayerFUc((u8)valid) == 0) valid = 0;
+    valid = ((TObjPlayer *)player->techs)->get_valid_technique();
+    if (TObjPlayer::is_valid_technique_slot((u8)valid) == 0) valid = 0;
     if ((s32)level == 14) level += valid;
-    if (!check_technique_level__10TObjPlayerFllUc(player + 0x428, tech, (u8)level)) level = 0;
+    if (!check_technique_level__10TObjPlayerFllUc(player->techs, tech, (u8)level)) level = 0;
     effective = level;
-    ((TObjPlayer *)(player + 0x428))->set_technique_id(effective);
+    ((TObjPlayer *)player->techs)->set_technique_id(effective);
     clamp_and_set_unit_value__10TObjPlayerFiUci((s32)player, effective, tech);
     count = pkt.count;
-    ((TObjPlayer *)(player + 0x428))->set_tech_level(count);
-    dst = (u32 *)get_technique_data__10TObjPlayerFPv(player + 0x428);
+    ((TObjPlayer *)player->techs)->set_tech_level(count);
+    dst = (u32 *)get_technique_data__10TObjPlayerFPv(player->techs);
     src = pkt.targets;
     for (i = 0; i < count; i++) copy_tech_params__10TObjPlayerFPvPv(dst++, src++);
     run_action_state_phase__10TObjPlayerFisi((s32)player, 8, 0);
