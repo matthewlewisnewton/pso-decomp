@@ -10,6 +10,15 @@ it: another unit might reference it. When no other object does, the global is
 an artifact of the split, and marking it `scope:local` removes the refusal
 without changing a byte of the DOL.
 
+Two of those anonymous objects are MWCC's int-to-double biases
+(0x4330000000000000 and 0x4330000080000000). When the original split's symbol
+is exactly that 8-byte object, the plan labels it as a compiler-generated
+conversion-pool constant. An unreferenced one is localized even if another
+missing symbol in the same unit is referenced elsewhere. A referenced one is
+not. `--pools-only` limits the plan and the write to those constants. Bytes
+that merely contain the pattern, or a symbols.txt entry that is not an 8-byte
+.rodata/.sdata2 object, are not labeled and do not get that exception.
+
 "No other object" is checked against the undefined symbols of the objects
 the link actually uses: the split object (build/GPOE8P/obj) of every unit in
 report.json and the compiled object (build/GPOE8P/src) of every unit, since
@@ -21,6 +30,7 @@ ignored. Rebuild first: these checks do not prove object/source freshness.
   localize_split_globals.py [UNIT...]          # plan
   localize_split_globals.py --write [UNIT...]  # edit symbols.txt, then rebuild
                                                # and run link_units.py check
+  localize_split_globals.py --pools-only       # only the two MWCC biases
 
 UNIT is a unit name as link_units.py prints it (pso/effect/TEffHit.cpp).
 Without one, every missing-only unit in linked_units_blocked.json is planned.
@@ -153,9 +163,29 @@ def validate_candidates(report: dict, want: dict[str, str]) -> None:
                 raise ValueError(f"candidate no longer missing-only: {name}: {check.__name__}: {reasons}")
 
 
+def _pool_inventory_ok(text: str, name: str) -> bool:
+    """symbols.txt agrees this name is an 8-byte object in a constant section."""
+    prefix = name + " = "
+    for line in text.splitlines():
+        if not line.startswith(prefix):
+            continue
+        return (re.search(r"= \.(?:rodata|sdata2):", line) is not None
+                and "type:object" in line and re.search(r"\bsize:0x8\b", line) is not None)
+    return False
+
+
+def _pool_label(kinds: dict[str, str], symbol: str) -> str:
+    kind = kinds.get(symbol)
+    if not kind:
+        return symbol
+    return f"{symbol} [compiler-generated conversion pool: {kind}]"
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--write", action="store_true")
+    ap.add_argument("--pools-only", action="store_true",
+                    help="localize only unreferenced MWCC int-to-double biases")
     ap.add_argument("units", nargs="*", help="limit to these units")
     args = ap.parse_args()
 
@@ -203,6 +233,17 @@ def main() -> int:
         stem = unit.rsplit(".", 1)[0]
         return obj.as_posix().endswith("/" + stem + ".o")
 
+    inventory = symbol_data.decode()
+    kinds: dict[str, str] = {}
+    for symbol, unit in want.items():
+        split = lu.SPLIT_OBJ_DIR / Path(unit).with_suffix(".o")
+        kind = lu.conversion_pool_kind(split, symbol) if split.is_file() else None
+        # The object bytes and the checked-in inventory both have to describe
+        # an 8-byte constant. Either one being a larger or different object
+        # means this is not a compiler pool entry we are willing to reclassify.
+        if kind and _pool_inventory_ok(inventory, symbol):
+            kinds[symbol] = kind
+
     ok_units: dict[str, list[str]] = {}
     bad_units: dict[str, list[str]] = {}
     for s, unit in want.items():
@@ -213,8 +254,29 @@ def main() -> int:
         # to define the literal instead.
         others = [o for o in referenced[s] if not (own(o, unit) and o.is_relative_to(lu.SPLIT_OBJ_DIR))]
         (bad_units if others else ok_units).setdefault(unit, []).append(s)
-    ok_units = {u: v for u, v in ok_units.items() if u not in bad_units}
+    # A referenced symbol blocks the unit's other missing symbols. An
+    # unreferenced conversion-pool constant stays localizable on its own:
+    # its bytes are the compiler bias, and no split actually uses the export.
+    for unit, symbols in list(ok_units.items()):
+        if unit not in bad_units:
+            continue
+        pools = [s for s in symbols if s in kinds]
+        if pools:
+            ok_units[unit] = pools
+        else:
+            del ok_units[unit]
+    if args.pools_only:
+        for unit, symbols in list(ok_units.items()):
+            pools = [s for s in symbols if s in kinds]
+            if pools:
+                ok_units[unit] = pools
+            else:
+                del ok_units[unit]
     syms = {s for v in ok_units.values() for s in v}
+    for symbol in syms:
+        unit = want[symbol]
+        if [o for o in referenced[symbol] if not (own(o, unit) and o.is_relative_to(lu.SPLIT_OBJ_DIR))]:
+            raise ValueError(f"refusing to localize referenced symbol: {symbol}")
     lines = symbol_data.decode().splitlines(keepends=True)
     found = set()
     for i, line in enumerate(lines):
@@ -239,13 +301,17 @@ def main() -> int:
         if hashlib.sha256(path.read_bytes()).hexdigest() != digest:
             raise ValueError(f"input changed during localization: {path}; no symbols written")
 
+    for u, v in sorted(ok_units.items()):
+        print(f"local {u}: {', '.join(_pool_label(kinds, s) for s in v)}")
     for u, v in sorted(bad_units.items()):
-        print(f"keep  {u}: {', '.join(v)} referenced elsewhere")
+        print(f"keep  {u}: {', '.join(_pool_label(kinds, s) for s in v)} referenced elsewhere")
         for symbol in sorted(v):
             for obj in sorted(referenced[symbol]):
                 if not (own(obj, u) and obj.is_relative_to(lu.SPLIT_OBJ_DIR)):
-                    print(f"  {symbol} <- {obj.relative_to(lu.ROOT)}")
-    print(f"{len(ok_units)} units / {len(syms)} symbols localizable; {len(bad_units)} units referenced elsewhere")
+                    print(f"  {_pool_label(kinds, symbol)} <- {obj.relative_to(lu.ROOT)}")
+    scope = "conversion-pool constants" if args.pools_only else "symbols"
+    print(f"{len(ok_units)} units / {len(syms)} {scope} localizable; "
+          f"{len(bad_units)} units referenced elsewhere")
 
     if args.write and syms:
         SYMBOLS.write_text("".join(lines))
