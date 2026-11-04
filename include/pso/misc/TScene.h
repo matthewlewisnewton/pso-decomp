@@ -8,11 +8,7 @@ struct SceneMaterialSection;
 class TScene : public TObject
 {
 public:
-    // Visible-section count. draw_field_1c loads the first byte of the word.
-    union {
-        u32 m_1c;
-        u8 m_1c_byte;
-    };
+    u32 m_1c;
     u8 _pad20[0x10];
     u32 m_30;
     u32 m_34;

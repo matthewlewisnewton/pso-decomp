@@ -13,7 +13,6 @@
 #include "pso/object/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/unk/text_802A8210.h"
-#include "pso/effect/TEffIndirectCtrl.h"
 #include "pso/item/TItemDrop_800F93F0.h"
 #include "pso/misc/TLobby_80131794.h"
 #include "pso/misc/TLobby_80207DA8.h"
@@ -1427,10 +1426,12 @@ void TScene::init_material_nodes() {
     s32 j;
     Node_80205AEC *node;
     Info_80205AEC *info;
+    void *o;
     SceneMaterialAnimated *an;
     s32 j2;
     Node_80205AEC *node2;
     Info_80205AEC *info2;
+    void *o2;
     if (TScene__data_805D5FCC != NULL) {
         for (i = 0, sec = TScene__data_805D5FCC->sections; i < TScene__data_805D5FCC->count; i++, sec++) {
             for (j = 0, st = sec->objects; j < sec->count; j++, st++) {
@@ -1439,7 +1440,11 @@ void TScene::init_material_nodes() {
                     if (node->obj == NULL) {
                         info = (Info_80205AEC *)find_material_entry_by_id__6TSceneFPvUs(this, node->id);
                         if (info != NULL) {
-                            node->obj = new TUnk_804DDF04(info->c, this);
+                            o = __nw__7TObjectFUl(0x20);
+                            if (o != NULL) {
+                                o = fn_802A8210((u8 *)o, info->c, (u8 *)this);
+                            }
+                            node->obj = o;
                             node->tex = lbl_8044A800[info->tex];
                             node->b = lbl_8044A80C[info->b];
                             node->c = info->c;
@@ -1458,7 +1463,11 @@ void TScene::init_material_nodes() {
                     if (node2->obj == NULL) {
                         info2 = (Info_80205AEC *)find_material_entry_by_id__6TSceneFPvUs(this, node2->id);
                         if (info2 != NULL) {
-                            node2->obj = new TUnk_804DDF04(info2->c, this);
+                            o2 = __nw__7TObjectFUl(0x20);
+                            if (o2 != NULL) {
+                                o2 = fn_802A8210((u8 *)o2, info2->c, (u8 *)this);
+                            }
+                            node2->obj = o2;
                             node2->tex = lbl_8044A800[info2->tex];
                             node2->b = lbl_8044A80C[info2->b];
                             node2->c = info2->c;
