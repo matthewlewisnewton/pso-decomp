@@ -25,16 +25,19 @@ struct TBoss6Type1 : public TObjEnemy {
     void update_effect_points();
     void update_trail_points();
     u32 m_374;
-    u8 unk_378[0x80];
+    u8 unk_378[0x10];
+    // get_mag_mine_ptr returns this address (0x388). The bytes are the block
+    // TBoss4DarkFalz__sub_8004B4F0 copies; their field layout is still open.
+    u8 mag_mine[0x70];
     s32 m_3f8;
     s32 m_3fc;
     void* trail_point_receiver;
     void* effect_point_receiver;
-    u8 unk_408[0x4];
+    s32 unk_408;
     s32 m_40c;
     s32 action_timer;
     s32 m_414;
-    u8 unk_418[0x4];
+    s32 unk_418;
     u8 m_41c;
     u8 unk_41D[0x3];
     Vec m_420;
@@ -44,21 +47,25 @@ struct TBoss6Type1 : public TObjEnemy {
     s32 m_440;
     u8 unk_444[0x38];
     s32 m_47c;
-    u8 unk_480[0x4];
+    s32 unk_480;
     s32 m_484;
-    u8 unk_488[0x4];
+    s32 unk_488;
     s32 m_48c;
-    u8 unk_490[0x4];
+    s32 unk_490;
     s32 m_494;
-    u8 unk_498[0x4];
+    s32 unk_498;
     s32 m_49c;
     s32 laser_fire_time;
     s32 m_4a4;
-    u8 unk_4A8[0x4];
+    s32 unk_4A8;
     s32 m_4ac;
-    u8 unk_4B0[0x4];
+    s32 unk_4B0;
     f32 m_4b4;
-    u8 unk_4B8[0x1C];
+    s32 unk_4b8;
+    s32 unk_4bc;
+    s32 unk_4c0;
+    s32 unk_4c4;
+    u8 unk_4c8[0xC];
     f32 m_4d4;
     f32 m_4d8;
     f32 m_4dc;
@@ -68,7 +75,8 @@ struct TBoss6Type1 : public TObjEnemy {
     s32 m_4ec;
     s32 m_4f0;
     s32 m_4f4;
-    u8 unk_4F8[0x10];
+    // Particle emitters release_effect_slot / spawn_effect_slot index.
+    u32 effect_slots[4];
     s32 m_508;
     u8 unk_50C[0x60];
     Vec m_56C;
