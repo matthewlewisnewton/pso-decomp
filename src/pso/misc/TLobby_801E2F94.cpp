@@ -245,7 +245,7 @@ void draw_line_list(Lines_801E341C *l, s32 n, u32 flags) {
 void reset_line_width(void) { current_line_width = 12; }
 
 void set_line_width(int a0) { current_line_width = a0; }
-void TWindowCtrlMain::draw_strip_swap_color(s32 n, s32 flags, f32 scale) {
+void ColorLineList::draw_strip_swap_color(s32 n, s32 flags, f32 scale) {
     s32 i;
     u32 x;
     u32 *p;
@@ -253,7 +253,7 @@ void TWindowCtrlMain::draw_strip_swap_color(s32 n, s32 flags, f32 scale) {
         ((TObjCMHairMenu *)this)->draw_tri_fan_2d(n, flags, scale);
         return;
     }
-    p = ((Ctrl_801E352C *)this)->data;
+    p = colors;
     for (i = 0; i < n; i++) {
         x = *p;
         *p = (x << 8) | (x >> 24);
@@ -261,7 +261,7 @@ void TWindowCtrlMain::draw_strip_swap_color(s32 n, s32 flags, f32 scale) {
     }
     ((TObjCMHairMenu *)this)->draw_tri_fan_2d(n, flags, scale);
     {
-    u32 *q = ((Ctrl_801E352C *)this)->data;
+    u32 *q = colors;
     u32 y;
     for (i = 0; i < n; i++) {
         y = *q;
