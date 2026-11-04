@@ -90,29 +90,6 @@ typedef void (TBoss6Type1::*ActionFn)();
 
 struct ActionEntry { s32 f0; s32 anim; s32 f8; ActionFn act; ActionFn idle; ActionFn update; };
 
-struct V3_802B6B34 { s32 x; f32 y; s32 z; };
-
-union Val_802B6B34 { f32 f; s32 i; };
-
-struct Arg_802B6B34 { s32 kind; Val_802B6B34 v; };
-
-struct Base_802B6B34 { u8 pad[0x18]; };
-
-struct Player_802B6B34 : Base_802B6B34 {
-    virtual void m0(); virtual void m1(); virtual void m2(); virtual void m3();
-    virtual void m4(); virtual void m5(); virtual void m6(); virtual void m7();
-    virtual void m8(); virtual void m9(); virtual void m10(); virtual void m11();
-    virtual void m12(); virtual void m13(); virtual void m14(); virtual void m15();
-    virtual void m16(); virtual void m17(); virtual void m18(); virtual void m19();
-    virtual void m20();
-    virtual void m21(void *, Arg_802B6B34 *, s32, s32, s32);
-    u8 pad1c[0x38 - 0x1C];
-    V3_802B6B34 pos;
-};
-
-
-
-
 typedef Vec Vec_802B4D5C;
 
 typedef Vec Vec_802B57D4;
@@ -123,7 +100,6 @@ struct Atk_802B8EE0 {
     s8 b2;
 };
 
-struct Player_802B6B34;
 
 
 
@@ -149,7 +125,6 @@ extern "C" {
 u8 *get_enemy_entity(u16 arg0);
 f32 vector_length(void *);
 f32 subtract_vector(void *, void *);
-Player_802B6B34 *get_player_data__10TObjPlayerFi(s32);
 f32 fabs_float(f32);
 s32 get_entity_id(void *);
 extern const Vec_802B57D4 TBoss6Type1__data_80470FB4;
@@ -449,7 +424,6 @@ struct Tmp_802B93C4 { s32 a; s16 b; s16 c; u8 pad[0x10]; };
 
 void build_tables__14TBoss6PlotFalzFPvPvi(void *, void *, int);
 void TBoss6Type1__sub_802B854C(TBoss6Type1 *);
-s32 create_zanzo__11TBoss6Type1FPvPvPv(void *, int, int);
 extern u8 lbl_80470D1C[];
 extern u8 boss6_type1_model_node_desc[];
 extern u8 boss6_type1_model_node_desc_b[];
@@ -542,8 +516,8 @@ s32 TBoss6Type1__ct(s32 arg0_, s32 parent, s32 arg2_) {
     self->draw_callback_lists[0] = (ModelNodePositionCapture *)ModelNodePositionCapture::create((ModelNodePositionEntry *)(boss6_type1_model_node_desc_b), &self->node_positions_5FC[0]);
     build_tables__14TBoss6PlotFalzFPvPvi(self->scroll_strips_u, boss6_type1_build_table, 2);
     build_tables__14TBoss6PlotFalzFPvPvi(self->scroll_strips_v, lbl_80470EA0, 1);
-    *(s32 *)&self->trail_point_receiver = create_zanzo__11TBoss6Type1FPvPvPv(self, 7, 0xF);
-    *(s32 *)&self->effect_point_receiver = create_zanzo__11TBoss6Type1FPvPvPv(self, 2, 0xF);
+    self->trail_point_receiver = TBoss6Type1::create_zanzo(self, (void *)7, (void *)0xF);
+    self->effect_point_receiver = TBoss6Type1::create_zanzo(self, (void *)2, (void *)0xF);
     self->m_414 = 0;
     self->m_41c = 0;
     TBoss6Type1__sub_802B96C0((s32)&self->m_420, (s32)lbl_80470EAC);
