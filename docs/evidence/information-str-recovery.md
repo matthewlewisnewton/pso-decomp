@@ -10,7 +10,12 @@ relocation positions and types agree, with the factory/constructor signatures
 and two compiler-local literal targets mapped to their original addresses.
 The literal range belongs to this unit: the original split-object reference
 census finds its references only in this unit and its former data definition.
-Regenerated split, native link inputs, full DOL and no-loss checks remain gates.
+The 315/280 position pair is one 8-byte aggregate literal at 0x804755F0; the
+render copy reads it as a single 8-byte block, so the former 4-byte split at
+0x804755F4 had no separate object behind it. A full configured build produces
+the original DOL SHA-1, and `tools/check_pr.py` reports the recovered function
+and literal range with no regressions. Regenerated native link inputs remain a
+gate.
 
 The angle increment computes `0x10000 / (ring * 4)` at its sole use. CodeWarrior
 hoists this invariant and reproduces the original register allocation. Moving
