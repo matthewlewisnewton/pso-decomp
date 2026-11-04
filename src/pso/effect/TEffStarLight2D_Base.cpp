@@ -4,7 +4,7 @@
 #include "pso/effect/TEffStarLight2D_Base.h"
 #include "pso/effect/TEffStarLight2D.h"
 #include "pso/effect/TEffStarLightChild.h"
-#include "pso/misc/TWindowCtrlMain.h"
+#include "pso/misc/TLobby_801E2F94.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/system/vector.h"
 
@@ -122,7 +122,7 @@ void TEffStarLight2D::draw_segment(ColorLineVertex *a, ColorLineVertex *b,
     polygon.verts[3].x = d->x;
     polygon.verts[3].y = d->y;
     polygon.colors[3] = end_color.packed;
-    ((TWindowCtrlMain *)&polygon)->draw_strip_swap_color(4, 7, lbl_805D945C);
+    polygon.draw_strip_swap_color(4, 7, lbl_805D945C);
 }
 #pragma pop
 

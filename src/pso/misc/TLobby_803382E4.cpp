@@ -36,7 +36,6 @@ s32 load_gvm_texture_archive(int, void *);
 extern s32 lbl_80477BC4[];
 extern s32 lobby_request_flags;
 void TCameraCtrl__sub_80068EF0(void);
-void draw_projected_quads__15TObjBoss2TunnelFPvi(void *, s32);
 void draw_projected_textured_strip(void *, s32);
 extern s32 lbl_805D63F0;
 extern int info_icon_texture;
@@ -205,7 +204,7 @@ void TLobby__sub_80338534(void) {
     set_default_alpha_blend();
     TParticleCtrl::begin_effect_render();
     TObjBoss2Tunnel__sub_803E2D10(1);
-    draw_projected_quads__15TObjBoss2TunnelFPvi(t->a, 4);
+    TObjBoss2Tunnel::draw_projected_quads(t->a, 4);
     TObjBoss2Tunnel::reset_player_state();
     if ((u32)info_icon_texture != 0) {
         set_current_texture_list((GinjaTextureList *)(info_icon_texture));

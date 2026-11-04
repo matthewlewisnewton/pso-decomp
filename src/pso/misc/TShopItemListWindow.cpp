@@ -1,4 +1,8 @@
 #include "pso/system/SoundEffect.h"
+#pragma inline_depth(1)
+#pragma auto_inline off
+#pragma dont_inline off
+
 #include "types.h"
 #include "pso/misc/TWindowMenuIconLine.h"
 #include "pso/misc/TWindowBase.h"
@@ -158,7 +162,6 @@ s32 try_buy_item(int, void *);
 s32 lookup_item_def__9TItemDataFPv(void *);
 f32 get_scale__15TShopWindowBaseFv(void *);
 s16 get_child_field1c__13TShopSequenceFv(void *);
-void *__ct__18TWindowInputNumberFPvllls(void *, s32, s32, s32, s32, s16);
 extern const s32 local_client_id;
 }
 s32 is_single_purchase_shop_item(u8 *p);
@@ -256,8 +259,6 @@ void TShopItemListWindow::handle_amount_confirm() {
     }
 }
 
-// Saved-register coloring still swaps the scaled index (r29) and the
-// inventory-accept count (r30). The instruction sequence otherwise matches.
 void TShopItemListWindow::prepare_tool_purchase() {
     if (this->m_28 == 0) {
         return;
@@ -270,11 +271,7 @@ void TShopItemListWindow::prepare_tool_purchase() {
         max = accept;
     }
     if (max > 1) {
-        TWindowInputNumber *w = (TWindowInputNumber *)__nw__7TObjectFUl(0x7C);
-        if (w != 0) {
-            w = (TWindowInputNumber *)__ct__18TWindowInputNumberFPvllls(w, get_window_layout_position(0x2B), 1, max, 1, (s16)get_child_field1c__13TShopSequenceFv(this));
-        }
-        this->m_34 = (u32)w;
+        this->m_34 = (u32)new TWindowInputNumber((void *)get_window_layout_position(0x2B), 1, max, 1, (s16)get_child_field1c__13TShopSequenceFv(this));
         if (this->m_34 != 0 && TLobby::is_camera_ctrl_active() > 2) {
             ((TCheckRoomSequence *)this->m_34)->set_position(lbl_805DC6F8, lbl_805DC6F8);
         }
