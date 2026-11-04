@@ -365,8 +365,6 @@ s32 get_bml_model(void *, s32);
 s32 TObjFish__sub_8001EDB0(void *, s32);
 void init_collision_body_parts(void *, void *, s32);
 
-#pragma push
-#pragma fp_contract on
 TOMineTrap::TOMineTrap(TObjPlayer *owner, s16 trap_index, s16 trap_id) : TOMine((TObject *)tl_05) {
     TObjPlayer *owner_player;
     s32 floor;
@@ -399,8 +397,14 @@ TOMineTrap::TOMineTrap(TObjPlayer *owner, s16 trap_index, s16 trap_id) : TOMine(
                 attack.power = lbl_805DB86C * area_scale *
                                (lbl_805DB870 * (lbl_805DB878 * owner_player->get_actor_level_index() + lbl_805DB874));
             }
-            if (attack.power < lbl_805DB85C) {
-                attack.power = lbl_805DB85C;
+            // Store the clamped local. Writing the constant straight into the
+            // field swaps the compare's float registers.
+            // Store the clamped local. Writing the constant straight into the
+            // field swaps the compare's float registers.
+            f32 power = attack.power;
+            if (power < lbl_805DB85C) {
+                power = lbl_805DB85C;
+                attack.power = power;
             }
             break;
         case 1:
@@ -472,7 +476,6 @@ TOMineTrap::TOMineTrap(TObjPlayer *owner, s16 trap_index, s16 trap_id) : TOMine(
         queue_destruction();
     }
 }
-#pragma pop
 
 s32 TOMine::is_target_in_list(void *obj) {
     TOMine *self = this;
@@ -712,7 +715,6 @@ void TOMine::vfunc_86() {
 }
 
 typedef struct Stack_80170AC8 Stack_80170AC8;
-#pragma fp_contract on
 void TOMine::follow_target() {
     u8 *arg0 = (u8 *)this;
   unsigned short new_var;
@@ -767,8 +769,6 @@ void TOMine::sub_80170BEC() {
 
 void TOMineTrap__sub_80170CD4(void* p) { ((TOMineTrap *)p)->sync_position(); }
 
-#pragma push
-#pragma fp_contract on
 void TOMine::update_float_height() {
     u8 *arg0 = (u8 *)this;
     f32 temp_f1;
@@ -786,7 +786,6 @@ void TOMine::update_float_height() {
         *(f32 *)((s8 *)arg0 + 0x338) = (f32) (*(f32 *)((s8 *)arg0 + 0x338) + sin_table_lookup(*(s32 *)&this->rotation.pitch));
     }
 }
-#pragma pop
 
 void TOMineTrap::sync_position() { VecCopy((Vec *)((char*)this + 0x38), (const Vec *)((char*)this + 0x334)); refresh_collision_body_centers(); }
 void TOMine::detonate() {
