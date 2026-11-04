@@ -1,29 +1,62 @@
-#include "types.h"
+#include "pso/network/ModemLaunchContext.h"
+#include "dolphin/os/OSCache.h"
+#include "dolphin/os/OSReset.h"
+#include "string.h"
 
-// Reset-payload relocator: copies the header+image at `arg` to 0x80003100,
-// stores it, OSResetSystem(2,0,0), clears the [0xd8] region, replays the
-// 7-entry (delta,dst,len) move/store/invalidate table at base+0x00/+0x48/
-// +0x90 and the 11-entry move/store table at +0x1c/+0x64/+0xac (base =
-// arg->0x104), then tail-jumps into the reloaded image at base+0xE0.
+// Reserved launch record. fn_8042E8B8 returns this address.
+extern u8 launch_record[] AT_ADDRESS(0x80003100);
+
+// Copies the launch context onto launch_record, shuts the OS down
+// (OS_RESET_SHUTDOWN returns), and loads the DOL image at field_104.
+// A zero file offset ends that section list. Text is stored and
+// instruction-invalidated; data is stored; BSS is cleared.
 //
-// The tail is an epilogue-free computed jump (lwz r0,0xE0(r26); isync;
-// mtlr r0; blr).  No installed MWCC (probed GC/1.2.5, 2.0p1, 2.5, 2.6,
-// 2.7, 3.0a5.2) can emit that from C: every inline-asm `blr` variant
-// still appends the lmw/mtlr/addi/blr epilogue, and the only
-// epilogue-dropping terminator (for(;;)) emits a `b .` word the object
-// does not contain.  Body is therefore kept as function-level asm
-// (nofralloc) per the TRK_MINNOW/musyx orig_asm precedent, byte-exact.
+// Not exact. Built on the ntutl profile (GC/2.6 -O4,p -inline off
+// -use_lmw_stmw on) with -opt nocse,nostrength for this unit: the original
+// loops index with lwzx off a byte induction variable and recompute
+// base+index per load, which is what those two optimizations would have
+// folded. With that the loop bodies are the original instruction sequence.
+// Left: the original holds the zero it compares each offset against in a
+// register (cmplw) copied from the counter before each loop, which no
+// spelling of the compare produces; and the tail is lwz/isync/mtlr/blr with
+// the link bit clear (the frame restore at 0x8042E9FC never runs), while
+// __isync() followed by image->entry() is isync/mtctr/bctrl plus a live
+// epilogue. GC/2.6 has no mtlr intrinsic and no noreturn.
+extern "C" void LaunchDol(ModemLaunchContext *ctx) {
+    u32 size = (ctx->payload_size + 0x132) & ~0x1Fu;
+    DolImageHeader *image = ctx->field_104;
+    // Section sources are file offsets from the header, which is the image base.
+    u8 *file = static_cast<u8 *>(static_cast<void *>(image));
 
-extern "C" {
+    memmove(launch_record, ctx, size);
+    DCStoreRange(launch_record, size);
+    OSResetSystem(OS_RESET_SHUTDOWN, 0, FALSE);
 
-void* memmove(void*, const void*, u32);
-void* memset(void*, s32, u32);
-void DCStoreRange(void*, u32);
-void ICInvalidateRange(void*, u32);
-int OSResetSystem(int, int, int);
+    memset(image->bss_address, 0, image->bss_size);
+    DCStoreRange(image->bss_address, image->bss_size);
 
-asm void LaunchDol(register void* dol) {
-#include "orig_asm/pso/unk/text_8042E8C4/LaunchDol.inc"
-}
+    for (u32 i = 0; i < 7; i++) {
+        u32 offset = image->text_offset[i];
+        void *dest = image->text_address[i];
+        u32 length = image->text_size[i];
+        if (offset == 0) {
+            break;
+        }
+        memmove(dest, file + offset, length);
+        DCStoreRange(dest, length);
+        ICInvalidateRange(dest, length);
+    }
+    for (u32 i = 0; i < 11; i++) {
+        u32 offset = image->data_offset[i];
+        void *dest = image->data_address[i];
+        u32 length = image->data_size[i];
+        if (offset == 0) {
+            break;
+        }
+        memmove(dest, file + offset, length);
+        DCStoreRange(dest, length);
+    }
 
+    __isync();
+    image->entry();
 }
