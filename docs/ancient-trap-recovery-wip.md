@@ -46,14 +46,17 @@ exact. The original section flags are 2 (`SHF_ALLOC`); this GC/2.6 object has
 flags 3 (`SHF_ALLOC|SHF_WRITE`). That flag bit is already true of linked
 `TOTrap` and `TOTrapSeabed01`, and it is not the 90.91% score.
 
-`play_sounds` is 92.93%. The mismatch is the schedule of the three position
-fills against the tail of the `0x4C` copy, not the calls. The kept source
-stores the position through a `Vec` using locals declared `z`, then `y`,
-then `x`, and the unit is compiled with `-opt nolifetimes,nopropagation`.
-That assigns `f2`/`f1`/`f0` to x/y/z and stores them in that order. The
-original also loads x between `li` and the copy's tail `stw`, and loads the
-resource between the x store and the y store. This compiler emits the three
-loads after the tail store and the resource load before any of the stores.
-Direct `position.x`/`y`/`z` stores score 91.09%. The older comma-local form,
-without `nopropagation`, scores 92.71%. The unit `-pooldata=off` flag keeps
-the copy prologue; without it the prologue uses `stmw`.
+`play_sounds` is 92.71%. The mismatch is the schedule of the three position
+fills against the tail of the `0x4C` copy, not the calls. The position is a
+`Vec`. Locals are `x`, `y`, `z`. The unit is compiled with `-opt nolifetimes`
+and not `-opt nopropagation`. `nopropagation` is steering: it only changes
+this function's registers (`f2`/`f1`/`f0` become x/y/z, 92.93%) and it is not
+a Matt-approved exception. Without it the compiler assigns `f2` to y, `f1` to
+z and `f0` to x, and it still stores the tail word before any `lfs`. The
+original loads x between `li` and that `stw`, and loads the resource between
+the x store and the y store. A `Vec` member copy (`a.pos = position`) is an
+outlined `Vec::operator=` under `-inline off`; inlining it (`-inline auto`)
+turns the fill into load/store pairs and still leaves the `lfs` after the
+tail `stw`. Direct `position.x`/`y`/`z` stores score 91.09%. The unit
+`-pooldata=off` flag keeps the copy prologue; without it the prologue uses
+`stmw`.

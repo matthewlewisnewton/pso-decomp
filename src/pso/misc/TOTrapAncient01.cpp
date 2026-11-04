@@ -532,12 +532,7 @@ void TOTrapAncient01::play_sounds() {
         {0.0f, 1.0f}, 0, 0, 22
     };
     {
-        f32 z;
-        f32 y;
-        f32 x;
-        x = position.x;
-        y = position.y;
-        z = position.z;
+        f32 x = position.x, y = position.y, z = position.z;
         a.pos.x = x;
         a.pos.y = y;
         a.pos.z = z;
@@ -551,12 +546,7 @@ void TOTrapAncient01::play_sounds() {
         {0.0f, 1.0f}, 0, 0, 22
     };
     {
-        f32 z;
-        f32 y;
-        f32 x;
-        x = position.x;
-        y = position.y;
-        z = position.z;
+        f32 x = position.x, y = position.y, z = position.z;
         b.pos.x = x;
         b.pos.y = y;
         b.pos.z = z;
@@ -570,12 +560,7 @@ void TOTrapAncient01::play_sounds() {
         {0.0f, 1.0f}, 0, 0, 22
     };
     {
-        f32 z;
-        f32 y;
-        f32 x;
-        x = position.x;
-        y = position.y;
-        z = position.z;
+        f32 x = position.x, y = position.y, z = position.z;
         c.pos.x = x;
         c.pos.y = y;
         c.pos.z = z;
