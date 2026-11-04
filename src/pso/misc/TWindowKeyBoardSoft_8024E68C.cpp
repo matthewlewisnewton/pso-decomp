@@ -77,8 +77,8 @@ void apply_context_transform_to_rect(TWindowDrawContext *c, f32 *q) {
         q[3] = c->scale[1] * (q[3] - c->pivot[1]) + c->pivot[1];
     }
 }
-}
 #pragma pop
+}
 
 void apply_window_closing_stretch(u8 *arg0, int arg1) {
   f32 temp_f2;
@@ -129,8 +129,7 @@ void TWindowKeyBoardSoft::animate_scale() {
     clip_top = clip_top + lbl_805DCC90;
 }
 
-s32 TWindowDrawContext::is_point_in_bounds(void *arg1) {
-    f32 *quad = (f32 *)arg1;
+s32 TWindowDrawContext::is_point_in_bounds(f32 *quad) {
     if ((quad[2] < clip_left) || (quad[3] < clip_top) || (quad[0] > clip_edge[0]) || (quad[1] > clip_edge[1])) {
         return 0;
     }

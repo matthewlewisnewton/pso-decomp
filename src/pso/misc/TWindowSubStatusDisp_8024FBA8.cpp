@@ -4,7 +4,7 @@
 #include "pso/ui/Language.h"
 
 extern "C" {
-s32 text_draw_clip_context;
+TWindowDrawContext *text_draw_clip_context;
 f32 text_draw_depth;
 f32 text_draw_right_limit_x;
 s32 text_clip_enabled_flag;
@@ -28,20 +28,20 @@ struct Quad_8024FD8C {
     f32 u[4];
 };
 
-extern s32 text_draw_clip_context;
+extern TWindowDrawContext *text_draw_clip_context;
 extern f32 text_draw_depth;
 extern f32 text_draw_right_limit_x;
 extern s32 text_clip_enabled_flag;
 extern s32 lbl_805D6440;
 extern "C" {
-void set_text_draw_params(s32 arg0, s32 arg1, s32 arg2, f32 farg0, f32 farg1);
+void set_text_draw_params(TWindowDrawContext *arg0, s32 arg1, s32 arg2, f32 farg0, f32 farg1);
 u8 get_small_font_glyph_width(s32);
 s32 TWindowSubStatusDisp__sub_800FC248(s32);
 void calc_plain_glyph_quad(s32, void *);
 void build_small_font_glyph_quad(s32, void *);
 void render_forward__20TWindowSubStatusDispFPv();
-void apply_context_transform_to_rect(s32, void *);
-s32 clip_textured_quad__19TWindowKeyBoardSoftFPvPv(s32, void *);
+void apply_context_transform_to_rect(TWindowDrawContext *, f32 *);
+s32 clip_textured_quad__19TWindowKeyBoardSoftFPvPv(TWindowDrawContext *, f32 *);
 void begin_screen_draw(s32);
 void draw_textured_quad_at_depth(void *, f32);
 void set_draw_texture_and_color(s32, u32);
@@ -98,8 +98,8 @@ s32 draw_small_font_string_clipped(f32 *pos, const char *s, u32 color, f32 width
             }
             x += (f32)adv;
             width -= (f32)adv;
-            if (text_clip_enabled_flag == 0 || clip_textured_quad__19TWindowKeyBoardSoftFPvPv(text_draw_clip_context, &q) != 0) {
-                apply_context_transform_to_rect(text_draw_clip_context, &q);
+            if (text_clip_enabled_flag == 0 || clip_textured_quad__19TWindowKeyBoardSoftFPvPv(text_draw_clip_context, &q.x) != 0) {
+                apply_context_transform_to_rect(text_draw_clip_context, &q.x);
                 draw_textured_quad_at_depth(&q, text_draw_depth);
             }
         }
@@ -185,16 +185,16 @@ s32 draw_window_text(f32 *pos, const char *s, s32 color, s32 mode, f32 width) {
             ok = 0;
             q.x2 = q.x + width;
         }
-        if (text_clip_enabled_flag == 0 || ((TWindowDrawContext *)text_draw_clip_context)->is_point_in_bounds(&q) != 0) {
+        if (text_clip_enabled_flag == 0 || text_draw_clip_context->is_point_in_bounds(&q.x) != 0) {
             calc_gauge_scale__20TWindowSubStatusDispFPvPvi(glyph, &q, col);
             set_glyph_quad_extents(adv, &q);
             if ((f32)(u8)adv > width) {
                 q.x2 = q.x + width;
             }
             if (text_clip_enabled_flag != 0) {
-                clip_textured_quad__19TWindowKeyBoardSoftFPvPv(text_draw_clip_context, &q);
+                clip_textured_quad__19TWindowKeyBoardSoftFPvPv(text_draw_clip_context, &q.x);
             }
-            apply_context_transform_to_rect(text_draw_clip_context, &q);
+            apply_context_transform_to_rect(text_draw_clip_context, &q.x);
             draw_textured_quad_at_depth(&q, text_draw_depth);
         }
         x += (f32)(u8)adv;
@@ -204,7 +204,7 @@ s32 draw_window_text(f32 *pos, const char *s, s32 color, s32 mode, f32 width) {
     return ok;
 }
 
-void set_text_draw_params(s32 arg0, s32 arg1, s32 arg2, f32 farg0, f32 farg1) {
+void set_text_draw_params(TWindowDrawContext *arg0, s32 arg1, s32 arg2, f32 farg0, f32 farg1) {
     text_draw_clip_context = arg0;
     text_draw_depth = farg0;
     text_draw_right_limit_x = farg1;

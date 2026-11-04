@@ -603,7 +603,7 @@ struct Quad_8025941C { f32 v[8]; };
 
 extern "C" {
 u32 calc_text_width(char *s);
-void set_text_draw_params(s32 arg0, s32 arg1, s32 arg2, f32 farg0, f32 farg1);
+void set_text_draw_params(TWindowDrawContext *arg0, s32 arg1, s32 arg2, f32 farg0, f32 farg1);
 void draw_item_list_icon(ItemListWindowView *, ItemListPosition *, s32, s32, f32);
 }
 s32 draw_window_text(f32 *pos, const char *s, s32 color, s32 mode, f32 width);
@@ -727,7 +727,7 @@ void draw_item_list_icon(ItemListWindowView *win, ItemListPosition *pos, s32 ico
         q.v[6] = edge * scale;
         edge = offset + entry[1];
         q.v[7] = edge * scale;
-        if (TWindowKeyBoardSoft::try_open((TWindowDrawContext *)win, q.v) != 0) {
+        if (TWindowKeyBoardSoft::try_open(win, q.v) != 0) {
             draw_textured_quad_at_depth(q.v, depth);
         }
         TWindowSubStatusDisp::get_player();
@@ -747,11 +747,11 @@ void draw_item_list_row(ItemListRow *row, ItemListWindowView *win) {
   s32 style;
   if (((TWindowSubStatusDisp *)row)->is_flag_4_set() != 0)
   {
-    y = win->y + row->y;
-    if (((!((row->height + y) < win->clip_top)) && (!((win->y + row->y) > win->clip_bottom))) && (win->visible >= 0))
+    y = win->inner_y + row->y;
+    if (((!((row->height + y) < win->clip_top)) && (!((win->inner_y + row->y) > win->clip_edge[1]))) && (win->open_tick >= 0))
     {
-      pos.x = win->x + row->x;
-      pos.y = win->y + row->y;
+      pos.x = win->inner_x + row->x;
+      pos.y = win->inner_y + row->y;
       depth = lbl_805DCF20 / (lbl_805DCF24 + win->depth);
       if (row->flags & 0x200)
       {
@@ -782,15 +782,15 @@ void draw_item_list_row(ItemListRow *row, ItemListWindowView *win) {
       new_var = row;
       if (new_var->flags & 0x1000)
       {
-        set_text_draw_params((s32)win, 1, 0, (f32)depth, (f32)win->text_clip);
+        set_text_draw_params(win, 1, 0, (f32)depth, (f32)win->clip_edge[0]);
       }
       else
       {
-        set_text_draw_params((s32)win, 1, 1, (f32)depth, (f32)lbl_805DCF28);
+        set_text_draw_params(win, 1, 1, (f32)depth, (f32)lbl_805DCF28);
       }
       if (new_var->flags & 0x400)
       {
-        pos.x = (lbl_805DCF2C * win->width) + win->x;
+        pos.x = (lbl_805DCF2C * win->inner_w) + win->inner_x;
         pos.x = -((lbl_805DCF2C * ((f32) calc_text_width((char *)new_var->label))) - pos.x);
       }
       if (row->flags & 0x800)
@@ -810,7 +810,7 @@ void draw_item_list_row(ItemListRow *row, ItemListWindowView *win) {
         draw_window_text((f32 *)&pos, (const char *)new_var->label, style, 1, (f32)lbl_805DCF28);
       }
       f32 width = (f32) calc_text_width((char *)new_var->suffix);
-      pos.x = (win->x + win->width) - width;
+      pos.x = (win->inner_x + win->inner_w) - width;
       draw_window_text((f32 *)&pos, (const char *)row->suffix, new_var->suffix_style, 1, (f32)lbl_805DCF28);
     }
   }

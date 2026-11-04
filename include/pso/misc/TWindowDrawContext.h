@@ -39,7 +39,7 @@ struct TWindowDrawContext {
         TWindowClipFlags flags;
     };
 
-    s32 is_point_in_bounds(void *quad);
+    s32 is_point_in_bounds(f32 *quad);
 };
 
 typedef char TWindowDrawContext_size[sizeof(TWindowDrawContext) == 0x4C ? 1 : -1];
