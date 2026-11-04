@@ -1,7 +1,10 @@
 #include "pso/THunterGuildWarning.h"
 #include "pso/misc/TCameraCtrl.h"
+#include "pso/misc/TLobby.h"
+#include "pso/misc/TLobby_8030A6A8.h"
 #include "pso/misc/TWindowMessage.h"
-#include "pso/misc/TWindowSubComCard_80244774.h"
+#include "pso/player/TObjPlayer_801AF2F0.h"
+#include "pso/ui/TObjBagWarnWin_8006EF24.h"
 
 struct WarningWindowPair {
     f32 x;
@@ -13,19 +16,18 @@ extern const WarningWindowPair lbl_8044BC7C;
 struct WarningPositionData { WarningWindowPair value; u8 padding[4]; };
 extern const WarningPositionData lbl_8044BC84;
 extern const f32 lbl_805DC640;
-void *get_player_by_client_id(s32);
 const WarningWindowPair *get_window_layout_position(s32);
+// The definition takes s16, but this call site passes a full register.
+// Seeing that prototype makes MWCC emit extsh and miss the original object.
 TWindowMessage *create_message_window__6TLobbyFllUls(const WarningWindowPair *, const WarningWindowPair *, u32, s32);
-s32 TQuestVmDownLoadServer__sub_8006EF6C(s32);
-s32 send_and_handle__6TLobbyFii(TWindowMessage *, s32, s32);
-s32 get_game_play_mode();
+void TWindow__close(TWindowMessage *window);
 }
 
 void THunterGuildWarning::close_windows() {
     s32 i = 0;
     do {
         if (m_windows[i] != NULL) {
-            TWindow__close((u8 *)m_windows[i]);
+            TWindow__close(m_windows[i]);
             m_windows[i] = NULL;
         }
         i++;
@@ -47,7 +49,7 @@ extern "C" void THunterGuildWarning__sub_80211774(THunterGuildWarning *self, s32
         }
         if (self->m_windows[id]) {
             s32 text = 0x63;
-            send_and_handle__6TLobbyFii(self->m_windows[id], TQuestVmDownLoadServer__sub_8006EF6C(text), 0x81);
+            ((TLobby *)self->m_windows[id])->send_and_handle(TQuestVmDownLoadServer__sub_8006EF6C(text), 0x81);
             self->m_windows[id]->set_position_xy(position.x, position.y);
         }
         break;
@@ -59,7 +61,7 @@ extern "C" void THunterGuildWarning__sub_80211774(THunterGuildWarning *self, s32
         }
         if (self->m_windows[id]) {
             s32 text = 0x68;
-            send_and_handle__6TLobbyFii(self->m_windows[id], TQuestVmDownLoadServer__sub_8006EF6C(text), 0x81);
+            ((TLobby *)self->m_windows[id])->send_and_handle(TQuestVmDownLoadServer__sub_8006EF6C(text), 0x81);
             self->m_windows[id]->set_position_xy(position.x, position.y);
         }
         break;
@@ -75,7 +77,7 @@ extern "C" void THunterGuildWarning__sub_80211774(THunterGuildWarning *self, s32
                     self->m_windows[i] = create_message_window__6TLobbyFllUls(get_window_layout_position(0x31), &size, 1, i);
                 }
                 if (self->m_windows[i]) {
-                    send_and_handle__6TLobbyFii(self->m_windows[i], TQuestVmDownLoadServer__sub_8006EF6C(message), 0x81);
+                    ((TLobby *)self->m_windows[i])->send_and_handle(TQuestVmDownLoadServer__sub_8006EF6C(message), 0x81);
                     self->m_windows[i]->set_position_xy(position.x, position.y);
                 }
             }

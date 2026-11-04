@@ -1,5 +1,5 @@
+#define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/THunterGuildWarning.h"
-#include "pso/object/TObject_80019A50.h"
 
 extern THunterGuildWarning *THunterGuildWarning__instance;
 
@@ -8,7 +8,7 @@ void THunterGuildWarning::run_task() {
     case 0:
     case 1:
         if (--m_timer < 0) {
-            queue_destruction__7TObjectFv(this);
+            this->TObject::queue_destruction();
         }
         break;
     case 2:
