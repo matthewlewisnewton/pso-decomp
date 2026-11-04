@@ -31,8 +31,10 @@ struct RecoveredGlobal_803EE2E4_lbl_8058DC98 {
     u8 remaining[0x4F];
 };
 
-union RecoveredGlobal_803E6ACC_lbl_805A0470 {
-    s32 value;
+// 0x28-byte buffer. sub_803E9A74 loads one byte at this address plus the
+// index (lbz). The s32* cursors in sub_803E6ACC store the same address and
+// do not read a word.
+struct RecoveredGlobal_803E6ACC_lbl_805A0470 {
     u8 bytes[0x28];
 };
 
@@ -414,8 +416,8 @@ void TQuestVmDownLoadServer__sub_803E6ACC(s32 arg0) {
     quest_vm_download_buffer_end = &lbl_805A05D0.value;
     lbl_805D78C4 = &quest_download_entry_table.value;
     lbl_805D78C8 = &quest_download_entry_table.value;
-    lbl_805D78B8 = &lbl_805A0470.value;
-    lbl_805D78BC = &lbl_805A0470.value;
+    lbl_805D78B8 = reinterpret_cast<s32 *>(lbl_805A0470.bytes);
+    lbl_805D78BC = reinterpret_cast<s32 *>(lbl_805A0470.bytes);
     lbl_805D78C0 = 0;
     TQuestVmDownLoadServer__sub_803EAE84(0, 0x50, (void *)(0));
     TQuestVmDownLoadServer__sub_803EE2E4();
