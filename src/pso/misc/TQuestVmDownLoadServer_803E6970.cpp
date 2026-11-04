@@ -32,8 +32,8 @@ struct RecoveredGlobal_803EE2E4_lbl_8058DC98 {
 };
 
 // 0x28-byte buffer. sub_803E9A74 loads one byte at this address plus the
-// index (lbz). The s32* cursors in sub_803E6ACC store the same address and
-// do not read a word.
+// index (lbz). sub_803EDC20 writes the same bytes through lbl_805D78B8 /
+// lbl_805D78BC (stb, then addi by 1) after those cursors are planted here.
 struct RecoveredGlobal_803E6ACC_lbl_805A0470 {
     u8 bytes[0x28];
 };
@@ -52,11 +52,6 @@ struct RecoveredGlobal_803E6ACC_lbl_805A05D0 {
 struct RecoveredGlobal_803E9F20_lbl_80595998 {
     s32 value;
     u8 remaining[0x8BC];
-};
-
-struct RecoveredGlobal_803E6ED0_lbl_805A0470 {
-    s32 value;
-    u8 remaining[0x24];
 };
 
 struct RecoveredGlobal_803E6ED0_lbl_805A0498 {
@@ -223,8 +218,8 @@ extern RecoveredGlobal_803E6ACC_lbl_805A0470 lbl_805A0470;
 extern RecoveredGlobal_803E6ACC_lbl_805A0498 quest_download_entry_table;
 extern RecoveredGlobal_803E6ACC_lbl_805A05D0 lbl_805A05D0;
 extern s32 lbl_805D7848;
-extern s32 *lbl_805D78B8;
-extern s32 *lbl_805D78BC;
+extern u8 *lbl_805D78B8;
+extern u8 *lbl_805D78BC;
 extern s32 lbl_805D78C0;
 extern s32 *lbl_805D78C4;
 extern s32 *lbl_805D78C8;
@@ -416,8 +411,8 @@ void TQuestVmDownLoadServer__sub_803E6ACC(s32 arg0) {
     quest_vm_download_buffer_end = &lbl_805A05D0.value;
     lbl_805D78C4 = &quest_download_entry_table.value;
     lbl_805D78C8 = &quest_download_entry_table.value;
-    lbl_805D78B8 = reinterpret_cast<s32 *>(lbl_805A0470.bytes);
-    lbl_805D78BC = reinterpret_cast<s32 *>(lbl_805A0470.bytes);
+    lbl_805D78B8 = lbl_805A0470.bytes;
+    lbl_805D78BC = lbl_805A0470.bytes;
     lbl_805D78C0 = 0;
     TQuestVmDownLoadServer__sub_803EAE84(0, 0x50, (void *)(0));
     TQuestVmDownLoadServer__sub_803EE2E4();
@@ -534,7 +529,6 @@ void TQuestVmDownLoadServer__sub_803E6B70(u8 *dst, s32 start, s32 count, s32 mod
 
 #pragma push
 #pragma opt_common_subs off
-typedef char RecoveredGlobal_803E6ED0_lbl_805A0470_size[sizeof(RecoveredGlobal_803E6ED0_lbl_805A0470) == 0x28 ? 1 : -1];
 typedef char RecoveredGlobal_803E6ED0_lbl_805A0498_size[sizeof(RecoveredGlobal_803E6ED0_lbl_805A0498) == 0x138 ? 1 : -1];
 typedef char RecoveredGlobal_803E6ED0_lbl_805A05D0_size[sizeof(RecoveredGlobal_803E6ED0_lbl_805A05D0) == 0xC8 ? 1 : -1];
 void TQuestVmDownLoadServer::init_buffer_pointers() {
@@ -544,8 +538,8 @@ void TQuestVmDownLoadServer::init_buffer_pointers() {
     quest_vm_download_buffer_end = &(*(RecoveredGlobal_803E6ED0_lbl_805A05D0 *)&lbl_805A05D0).value;
     lbl_805D78C4 = &(*(RecoveredGlobal_803E6ED0_lbl_805A0498 *)&quest_download_entry_table).value;
     lbl_805D78C8 = &(*(RecoveredGlobal_803E6ED0_lbl_805A0498 *)&quest_download_entry_table).value;
-    lbl_805D78B8 = &(*(RecoveredGlobal_803E6ED0_lbl_805A0470 *)&lbl_805A0470).value;
-    lbl_805D78BC = &(*(RecoveredGlobal_803E6ED0_lbl_805A0470 *)&lbl_805A0470).value;
+    lbl_805D78B8 = lbl_805A0470.bytes;
+    lbl_805D78BC = lbl_805A0470.bytes;
     lbl_805D78C0 = 0;
     TQuestVmDownLoadServer__sub_803EAE84(0, 0x50, (void *)(0));
     TQuestVmDownLoadServer__sub_803EE2E4();
@@ -1844,10 +1838,10 @@ QuestDownloadSegment *TQuestVmDownLoadServer__sub_803E9A74(s32 index, s32 end, u
     s32 mark;
     if (index >= end) {
         if (lbl_805D7888 < 3) return NULL;
-        return reinterpret_cast<QuestDownloadSegment *>(-1);
+        return (QuestDownloadSegment *)-1;
     }
-    if ((token = quest_download_slot_chain_table[index].tokens) == reinterpret_cast<QuestDownloadMatchToken *>(-1)) {
-        return reinterpret_cast<QuestDownloadSegment *>(-1);
+    if ((token = quest_download_slot_chain_table[index].tokens) == (QuestDownloadMatchToken *)-1) {
+        return (QuestDownloadSegment *)-1;
     }
     if (token == NULL) {
         ch = lbl_805A0470.bytes[index];
@@ -1919,9 +1913,9 @@ QuestDownloadSegment *TQuestVmDownLoadServer__sub_803E9A74(s32 index, s32 end, u
         if (a == 0 || TQuestVmDownLoadServer__sub_803E7390(a, b, recursiveToken->a)) {
             length = lbl_8047F0F8[recursiveToken->off];
             segment = TQuestVmDownLoadServer__sub_803E9A74(index + length, end, recursiveToken->a, recursiveToken->b);
-            if (reinterpret_cast<u32>(segment) == 0xFFFFFFFFU) {
+            if (segment == (QuestDownloadSegment *)-1) {
                 TQuestVmDownLoadServer__sub_803ECE5C(head);
-                return reinterpret_cast<QuestDownloadSegment *>(-1);
+                return (QuestDownloadSegment *)-1;
             }
             if (segment != NULL) {
                 tail = segment;
