@@ -5257,7 +5257,7 @@ force_active:
   - epsilon_guard_camera_ctrl_ptr
   - epsilon_guard_camera_step
   - epsilon_guard_params
-  - eval_piecewise_curve__15TObjBoss2TunnelFf
+  - eval_piecewise_curve__15TObjBoss2TunnelFP14PiecewiseCurvef
   - evict_lowest_key_floor_item__Fl
   - evolve_by_level__8TItemMagFv
   - evolve_first_form__8TItemMagFv

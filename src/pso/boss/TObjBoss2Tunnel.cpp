@@ -141,9 +141,7 @@ VObj_8007C5C0 *create__8TDLGraphFv(void);
 s8 func_801A5E54__Fv(void);
 s32 TWindowShortListCtrl__check_controller_button(void *, s32);
 extern u32 camera_ctrl_instance;
-s32 verify_snapshot_checksum__15TObjBoss2TunnelFv();
 void set_depth_buffer_settings_1__Fv(void);
-void draw_projected_quads__15TObjBoss2TunnelFPvi(Vtx_8007D828 *, s32);
 void restore_saved_depth_alpha_state(void);
 extern s32 lbl_805D63F0;
 s32 TAdPlayerLoadGC__sub_801E0FA4(s32);
@@ -531,7 +529,7 @@ f32 sample_acceleration_curve(AccelerationCurve *c, f32 t) {
 }
 extern "C" {
 s32 TObjBoss2Tunnel::reset_floats(s32 arg0) {
-    ((TObjBoss2Tunnel *)arg0)->reset_floats();
+    reset_floats((PiecewiseCurve *)arg0);
     return arg0;
 }
 
@@ -543,8 +541,7 @@ s32 TObjBoss2Tunnel::dt(s32 arg0, s16 arg1) {
 }
 
 }
-void TObjBoss2Tunnel::reset_floats() {
-    PiecewiseCurve *c = (PiecewiseCurve *)this;
+void TObjBoss2Tunnel::reset_floats(PiecewiseCurve *c) {
     c->decel = 0.0f;
     c->accel = 0.0f;
     c->peak = 0.0f;
@@ -604,8 +601,7 @@ void init_piecewise_curve(PiecewiseCurve *c, f32 accel, f32 decel, f32 dist, f32
 
 }
 extern "C" {
-f32 TObjBoss2Tunnel::eval_piecewise_curve(f32 farg0) {
-    PiecewiseCurve *c = (PiecewiseCurve *)this;
+f32 TObjBoss2Tunnel::eval_piecewise_curve(PiecewiseCurve *c, f32 farg0) {
     f32 t;
     f32 r = 0.0f;
     if (farg0 < r) {
@@ -628,8 +624,8 @@ f32 TObjBoss2Tunnel::eval_piecewise_curve(f32 farg0) {
 
 }
 extern "C" {
-f32 TObjBoss2Tunnel::update_position() {
-    return eval_piecewise_curve(((PiecewiseCurve *)this)->t);
+f32 TObjBoss2Tunnel::update_position(PiecewiseCurve *c) {
+    return eval_piecewise_curve(c, c->t);
 }
 
 }
@@ -656,8 +652,7 @@ s32 sample_piecewise_curve(PiecewiseCurve *c, f32 *out, f32 t) {
 
 }
 
-s32 TObjBoss2Tunnel::advance_phase(f32 *out) {
-    PiecewiseCurve *c = (PiecewiseCurve *)this;
+s32 TObjBoss2Tunnel::advance_phase(PiecewiseCurve *c, f32 *out) {
     s32 done = sample_piecewise_curve(c, out, c->t);
     c->t += 1.0f;
     return done;
@@ -722,7 +717,7 @@ void draw_snapshot_capture_overlay(void) {
     v[3].x = 640.0f;
     v[3].y = TObjBoss2Tunnel__data_8048DF2C.y - 96.0f;
     TObjBoss2Tunnel__sub_803E2D10(1);
-    draw_projected_quads__15TObjBoss2TunnelFPvi(v, 4);
+    TObjBoss2Tunnel::draw_projected_quads(v, 4);
     TObjBoss2Tunnel::reset_player_state();
     v[0].x = 0.0f;
     v[0].y = TObjBoss2Tunnel__data_8048DF2C.y - 96.0f;
@@ -733,7 +728,7 @@ void draw_snapshot_capture_overlay(void) {
     v[3].x = TObjBoss2Tunnel__data_8048DF2C.x - 128.0f;
     v[3].y = 480.0f;
     TObjBoss2Tunnel__sub_803E2D10(1);
-    draw_projected_quads__15TObjBoss2TunnelFPvi(v, 4);
+    TObjBoss2Tunnel::draw_projected_quads(v, 4);
     TObjBoss2Tunnel::reset_player_state();
     v[0].x = 128.0f + TObjBoss2Tunnel__data_8048DF2C.x;
     v[0].y = TObjBoss2Tunnel__data_8048DF2C.y - 96.0f;
@@ -744,7 +739,7 @@ void draw_snapshot_capture_overlay(void) {
     v[3].x = 640.0f;
     v[3].y = 96.0f + TObjBoss2Tunnel__data_8048DF2C.y;
     TObjBoss2Tunnel__sub_803E2D10(1);
-    draw_projected_quads__15TObjBoss2TunnelFPvi(v, 4);
+    TObjBoss2Tunnel::draw_projected_quads(v, 4);
     TObjBoss2Tunnel::reset_player_state();
     v[0].x = TObjBoss2Tunnel__data_8048DF2C.x - 128.0f;
     v[0].y = 96.0f + TObjBoss2Tunnel__data_8048DF2C.y;
@@ -755,7 +750,7 @@ void draw_snapshot_capture_overlay(void) {
     v[3].x = 640.0f;
     v[3].y = 480.0f;
     TObjBoss2Tunnel__sub_803E2D10(1);
-    draw_projected_quads__15TObjBoss2TunnelFPvi(v, 4);
+    TObjBoss2Tunnel::draw_projected_quads(v, 4);
     TObjBoss2Tunnel::reset_player_state();
     set_current_texture_list((GinjaTextureList *)lbl_805D63F0);
     set_draw_texture_and_color(1, -1);
@@ -1136,7 +1131,7 @@ loop_4:
             return -5;
         }
         if (TObjBoss2Tunnel::load_snapshot() != 0) {
-            if (verify_snapshot_checksum__15TObjBoss2TunnelFv() == 0) {
+            if (TObjBoss2Tunnel::verify_snapshot_checksum() == 0) {
                 TObjBoss2Tunnel__snapshot_saved_flag = 1;
                 return -9;
             }
@@ -1211,20 +1206,21 @@ s32 TObjBoss2Tunnel::load_snapshot() {
     return 0;
 }
 
-bool TObjBoss2Tunnel::verify_snapshot_checksum() {
+s32 TObjBoss2Tunnel::verify_snapshot_checksum() {
     Load_8007CB50 ld;
     s32 *p;
     s32 saved;
     s32 sum;
     if ((u32)TAdPlayerLoadGC__sub_801E1538(&ld, TObjBoss2Tunnel__snapshot_buffer) == 0xFFFFFF20) {
-        return false;
+        return 0;
     }
     p = ld.data;
     saved = *p;
     *p = 0;
     sum = TAdSinglePlyChrSelectGC__sub_80201204((u8 *)ld.data, 0x1818C);
     *p = saved;
-    return sum == saved;
+    // save_snapshot (8007CE14) tests the full 32-bit result.
+    return sum == saved ? 1 : 0;
 }
 
 void TObjBoss2Tunnel__sub_8007CAE8(u32 arg0) {
@@ -1380,4 +1376,3 @@ s32 TObjBoss2Tunnel::run_confirm_message_loop() {
     }
     return result;
 }
-

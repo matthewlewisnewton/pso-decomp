@@ -20,6 +20,9 @@ struct PiecewiseCurve {
     f32 dist;
 };
 
+extern "C" void init_piecewise_curve(PiecewiseCurve *curve, f32 accel, f32 decel,
+                                     f32 dist, f32 v0, f32 peak);
+
 struct TObjBoss2Tunnel : public TObject {
     virtual ~TObjBoss2Tunnel();
     void init_queue_from_start();
@@ -64,9 +67,11 @@ struct TObjBoss2Tunnel : public TObject {
     u32 m_bc;
     u8 _padC0[0x18];
     u32 m_d8;
-    s32 advance_phase(f32 *out);
-    f32 update_position();
-    f32 eval_piecewise_curve(f32 farg0);
+    // The callers pass ramps embedded at +0x68 (8003B6E8) and +0x20 (802F2740).
+    // Keep the existing helper names, with the curve base explicit rather than a TObject receiver.
+    static s32 advance_phase(PiecewiseCurve *curve, f32 *out);
+    static f32 update_position(PiecewiseCurve *curve);
+    static f32 eval_piecewise_curve(PiecewiseCurve *curve, f32 time);
     static void set_global_flag_200();
     static void clear_global_flag_3000();
     static void set_global_flag_800();
@@ -76,13 +81,14 @@ struct TObjBoss2Tunnel : public TObject {
     static s32 run_confirm_message_loop();
     static void poll_pso_screen_load();
     static void show_message_and_wait(s32 arg0);
-    static bool verify_snapshot_checksum();
+    static s32 verify_snapshot_checksum();
+    static void draw_projected_quads(void *vertices, int count);
     static s32 load_snapshot();
     static s32 save_snapshot_to_card();
     static s32 save_snapshot();
     static void free_buffers();
     static void reset_state();
-    void reset_floats();
+    static void reset_floats(PiecewiseCurve *curve);
     static s32 dt(s32 arg0, s16 arg1);
     static s32 reset_floats(s32 arg0);
     int check_param_threshold(f32 arg1);

@@ -53,7 +53,6 @@ extern s32 boss2_tunnel_spawn_timer_table[];
 extern const f32 lbl_805DECB4;
 extern const f32 lbl_805DECFC;
 void TObjBoss2Tunnel__sub_802F273C(void);
-s32 init_piecewise_curve(void *, f32, f32, f32, f32, f32);
 f32 fabs_float(f32);
 extern const f32 lbl_805DECF8;
 extern const f32 lbl_805DED00;
@@ -281,47 +280,46 @@ void TObjBoss2Tunnel::advance_effect_timer() {
 }
 void TObjBoss2Tunnel__sub_802F273C(void) {  }
 void TUnk_804E4B3C::update_phase_motion() {
-    TUnk_804E4B3C *arg0 = this;
     f32 sp8;
-    switch (*(s32 *)((s8 *)arg0 + 0x4C)) {
+    switch (phase) {
     case 0:
-        if (TObjBoss2Tunnel::check_both((s32)arg0) != 0) {
-            if (TObjBoss2Tunnel::is_phase_active((s32)arg0) != 0) {
-                *(f32 *)((s8 *)arg0 + 0x50) = (f32) lbl_805DECC8;
+        if (TObjBoss2Tunnel::check_both((s32)this) != 0) {
+            if (TObjBoss2Tunnel::is_phase_active((s32)this) != 0) {
+                rate = lbl_805DECC8;
             } else {
-                *(f32 *)((s8 *)arg0 + 0x50) = (f32) lbl_805DEC98;
+                rate = lbl_805DEC98;
             }
-            *(s32 *)((s8 *)arg0 + 0x4C) = 1;
-            init_piecewise_curve(&arg0->motion, lbl_805DECC4, lbl_805DED00, lbl_805DED04, lbl_805DED08, lbl_805DECF8);
-            *(f32 *)((s8 *)arg0 + 0x54) = (f32) lbl_805DEC9C;
+            phase = 1;
+            init_piecewise_curve(&motion, lbl_805DECC4, lbl_805DED00, lbl_805DED04, lbl_805DED08, lbl_805DECF8);
+            value = lbl_805DEC9C;
         }
         break;
     case 1:
-        if (TObjBoss2Tunnel::check_both((s32)arg0) == 0) {
-            *(s32 *)((s8 *)arg0 + 0x4C) = 3;
-            sp8 = fabs_float((f32) (*(f32 *)((s8 *)arg0 + 0x54)));
-            init_piecewise_curve(&arg0->motion, lbl_805DECC4, lbl_805DED00, (f32) (*(f32 *)((s8 *)arg0 + 0x54)), (f32) (-((TObjBoss2Tunnel *)&arg0->motion)->update_position()), lbl_805DECF8);
+        if (TObjBoss2Tunnel::check_both((s32)this) == 0) {
+            phase = 3;
+            sp8 = fabs_float(value);
+            init_piecewise_curve(&motion, lbl_805DECC4, lbl_805DED00, value, -TObjBoss2Tunnel::update_position(&motion), lbl_805DECF8);
             return;
         }
-        if (((TObjBoss2Tunnel *)&arg0->motion)->advance_phase((f32 *)&sp8) != 0) {
-            *(s32 *)((s8 *)arg0 + 0x4C) = 2;
+        if (TObjBoss2Tunnel::advance_phase(&motion, &sp8) != 0) {
+            phase = 2;
         }
-        *(f32 *)((s8 *)arg0 + 0x54) = (f32) (sp8 * *(f32 *)((s8 *)arg0 + 0x50));
+        value = sp8 * rate;
         return;
     case 2:
-        if (TObjBoss2Tunnel::check_both((s32)arg0) == 0) {
-            *(s32 *)((s8 *)arg0 + 0x4C) = 3;
-            init_piecewise_curve(&arg0->motion, lbl_805DECC4, lbl_805DED00, lbl_805DED04, lbl_805DEC9C, lbl_805DECF8);
+        if (TObjBoss2Tunnel::check_both((s32)this) == 0) {
+            phase = 3;
+            init_piecewise_curve(&motion, lbl_805DECC4, lbl_805DED00, lbl_805DED04, lbl_805DEC9C, lbl_805DECF8);
             return;
         }
         break;
     case 3:
-        if (((TObjBoss2Tunnel *)&arg0->motion)->advance_phase((f32 *)&sp8) != 0) {
-            *(f32 *)((s8 *)arg0 + 0x54) = (f32) lbl_805DEC9C;
-            *(s32 *)((s8 *)arg0 + 0x4C) = 0;
+        if (TObjBoss2Tunnel::advance_phase(&motion, &sp8) != 0) {
+            value = lbl_805DEC9C;
+            phase = 0;
             return;
         }
-        *(f32 *)((s8 *)arg0 + 0x54) = (f32) (*(f32 *)((s8 *)arg0 + 0x50) * (lbl_805DED04 - sp8));
+        value = rate * (lbl_805DED04 - sp8);
         break;
     }
 }
@@ -364,7 +362,7 @@ void *TObjBoss2Tunnel__sub_802F2A2C(void *arg0p, s32 parent) {
     } else {
         *(f32 *)((s8 *)arg0 + 0x84) = lbl_805DED10;
     }
-    ((TObjBoss2Tunnel *)&((TUnk_804E4B3C *)arg0p)->motion)->reset_floats();
+    TObjBoss2Tunnel::reset_floats(&((TUnk_804E4B3C *)arg0p)->motion);
     *(s32 *)((s8 *)arg0 + 0x4C) = 0;
     *(f32 *)((s8 *)arg0 + 0x50) = lbl_805DEC98;
     *(f32 *)((s8 *)arg0 + 0x54) = lbl_805DEC9C;

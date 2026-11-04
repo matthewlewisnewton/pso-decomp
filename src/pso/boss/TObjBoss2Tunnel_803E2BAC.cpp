@@ -14,7 +14,6 @@ struct Vtx_803E2BCC {
 extern "C" {
 s32 GXBegin(int, int, u16);
 extern const f32 lbl_805E1080;
-void draw_projected_quads__15TObjBoss2TunnelFPvi(Vtx_803E2BCC *p, s32 n);
 
 void TObjBoss2Tunnel::reset_player_state() {
     TObjPlayer__sub_803E2248();
@@ -30,7 +29,8 @@ typedef union {
     f32 f32;
 } WGPipe_803E2BCC;
 #define GXWGFifo_803E2BCC (*(volatile WGPipe_803E2BCC *)0xCC008000)
-void draw_projected_quads__15TObjBoss2TunnelFPvi(Vtx_803E2BCC *p, s32 n) {
+// FPvi is the existing void-buffer/int-count interface; the buffer contains xyz/color records.
+void TObjBoss2Tunnel::draw_projected_quads(void *vertices, int n) {
     s32 i;
     f32 one;
     GXBegin(0x98, 4, n);
@@ -40,15 +40,15 @@ void draw_projected_quads__15TObjBoss2TunnelFPvi(Vtx_803E2BCC *p, s32 n) {
         f32 y;
         f32 w;
         u32 c;
-        w = one / p->z;
-        y = p->y * w;
-        x = p->x * w;
+        w = one / ((Vtx_803E2BCC *)vertices)->z;
+        y = ((Vtx_803E2BCC *)vertices)->y * w;
+        x = ((Vtx_803E2BCC *)vertices)->x * w;
         GXWGFifo_803E2BCC.f32 = x;
         GXWGFifo_803E2BCC.f32 = y;
         GXWGFifo_803E2BCC.f32 = w;
-        c = p->color;
+        c = ((Vtx_803E2BCC *)vertices)->color;
         GXWGFifo_803E2BCC.u32 = ((c & 0xFFFFFF) << 8) | ((c & 0xFF000000) >> 24);
-        p++;
+        vertices = (Vtx_803E2BCC *)vertices + 1;
     }
 }
 #pragma pop
