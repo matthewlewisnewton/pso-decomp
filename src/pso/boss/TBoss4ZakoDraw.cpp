@@ -106,12 +106,12 @@ TBoss4ZakoDraw::TBoss4ZakoDraw(TObject *parent) : TObject(parent) {
 
 extern "C" {
 
-struct Raw_8030A9B0 { u8 b[12]; };
+struct ShadowVec { f32 x, y, z; };
 struct Col_8030A9B0 { f32 r, g, b, a; };
 
 void TObjPlayer__sub_8030A9B0() {
-    Raw_8030A9B0 pos;
-    Raw_8030A9B0 v;
+    ShadowVec pos;
+    ShadowVec v;
     Col_8030A9B0 col;
     Boss4ZakoBuffer *tbl;
     Boss4ZakoEntry *e;
@@ -134,7 +134,7 @@ void TObjPlayer__sub_8030A9B0() {
     rot = (TBoss4ZakoDraw__rotation_phase << 16) / 16;
     VecCopy((Vec *)&pos, &camera_ctrl_instance->position);
     i = 0;
-    *(f32 *)((s8 *)&pos + 4) = lbl_805DF13C;
+    pos.y = lbl_805DF13C;
     for (; i < tbl->count; i++, e++) {
         if (e->f0c != 0 || e->y < lbl_805DF140) {
             continue;
@@ -149,7 +149,7 @@ void TObjPlayer__sub_8030A9B0() {
         ((u32 *)&v)[0] = ((u32 *)e)[0];
         ((u32 *)&v)[1] = ((u32 *)e)[1];
         ((u32 *)&v)[2] = ((u32 *)e)[2];
-        *(f32 *)((s8 *)&v + 4) = lbl_805DF13C;
+        v.y = lbl_805DF13C;
         post_translate_matrix(&v);
         rotate_matrix_y(0, e->f10 + rot);
         col.a = lbl_805DF14C;

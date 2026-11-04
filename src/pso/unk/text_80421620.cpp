@@ -1242,14 +1242,38 @@ extern s32 *lbl_805D7B48;
 extern s32 lbl_805D7B80;
 s32 find_dhcp_option__6TLobbyFPvUcPv(u8 *p, u8 tag, u8 **out);
 
+// RFC 951 BOOTP header. The DHCP magic cookie is the u32 at 0xEC; options follow it.
+struct BootpPacket {
+    u8 op;
+    u8 htype;
+    u8 hlen;
+    u8 hops;
+    u32 xid;
+    u16 secs;
+    u16 flags;
+    s32 ciaddr;
+    u32 yiaddr;
+    u32 siaddr;
+    u32 giaddr;
+    u8 chaddr[16];
+    u8 sname[64];
+    u8 file[128];
+    u32 cookie;
+};
+typedef char BootpPacket_flags[offsetof(BootpPacket, flags) == 0xA ? 1 : -1];
+typedef char BootpPacket_ciaddr[offsetof(BootpPacket, ciaddr) == 0xC ? 1 : -1];
+typedef char BootpPacket_chaddr[offsetof(BootpPacket, chaddr) == 0x1C ? 1 : -1];
+typedef char BootpPacket_cookie[offsetof(BootpPacket, cookie) == 0xEC ? 1 : -1];
+
 s32 TLobby__sub_80423440(u8 *pkt) {
-    u8 *opts = pkt + 0xEC;
+    BootpPacket *hdr = (BootpPacket *)pkt;
+    u8 *opts = (u8 *)&hdr->cookie;
     u8 *p;
     s32 net;
     s32 w;
     u32 mask;
     u32 n;
-    TLobby__sub_80425288(0xF, 4, pkt + 0x10);
+    TLobby__sub_80425288(0xF, 4, &hdr->yiaddr);
     lbl_805D7B80 = 0;
     if (find_dhcp_option__6TLobbyFPvUcPv(opts, 1, &p) == 4) {
         lbl_805D7B80++;
@@ -1319,18 +1343,19 @@ s32 TLobby::build_dhcp_release() {
     s32 m;
     u8 *p;
     u16 len;
-    NetMemset(this, 0, 0x5DC);
-    ((u8 *)this)[0] = 1;
-    ((u8 *)this)[1] = 1;
-    ((u8 *)this)[2] = 6;
-    ((u8 *)this)[3] = 0;
+    BootpPacket *pkt = (BootpPacket *)this;
+    NetMemset(pkt, 0, 0x5DC);
+    pkt->op = 1;
+    pkt->htype = 1;
+    pkt->hlen = 6;
+    pkt->hops = 0;
     TLobby::get_time_ms((s32 *)&dhcp_last_tick_ms);
     lbl_805D7B50 = dhcp_last_tick_ms;
-    NetMemcpy(((u8 *)this) + 4, &lbl_805D7B50, 4);
-    *(s32 *)(((u8 *)this) + 0xC) = lbl_805D7B28;
-    NetMemcpy(((u8 *)this) + 0x1C, lbl_805D7B1C, 6);
-    p = ((u8 *)this) + 0xEC;
-    *(s32 *)p = lbl_805D7B4C;
+    NetMemcpy(&pkt->xid, &lbl_805D7B50, 4);
+    pkt->ciaddr = lbl_805D7B28;
+    NetMemcpy(pkt->chaddr, lbl_805D7B1C, 6);
+    p = (u8 *)&pkt->cookie;
+    *(u32 *)p = lbl_805D7B4C;
     p += 4;
     *p++ = 0x35;
     *p++ = 1;
@@ -1353,7 +1378,7 @@ s32 TLobby::build_dhcp_release() {
         p += m;
     }
     *p++ = 0xFF;
-    return p - ((u8 *)this);
+    return p - (u8 *)pkt;
 }
 
 s32 TLobby::dhcp_build_packet() {
@@ -1361,19 +1386,20 @@ s32 TLobby::dhcp_build_packet() {
     u8 *p;
     u16 len;
     u32 tmp;
-    NetMemset(this, 0, 0x5DC);
-    ((u8 *)this)[0] = 1;
-    ((u8 *)this)[1] = 1;
-    ((u8 *)this)[2] = 6;
-    ((u8 *)this)[3] = 0;
-    NetMemcpy(((u8 *)this) + 4, &lbl_805D7B50, 4);
-    *(u16 *)(((u8 *)this) + 0xA) = 0;
+    BootpPacket *pkt = (BootpPacket *)this;
+    NetMemset(pkt, 0, 0x5DC);
+    pkt->op = 1;
+    pkt->htype = 1;
+    pkt->hlen = 6;
+    pkt->hops = 0;
+    NetMemcpy(&pkt->xid, &lbl_805D7B50, 4);
+    pkt->flags = 0;
     if (dhcp_state == 4 || dhcp_state == 5) {
-        *(s32 *)(((u8 *)this) + 0xC) = lbl_805D7B28;
+        pkt->ciaddr = lbl_805D7B28;
     }
-    NetMemcpy(((u8 *)this) + 0x1C, lbl_805D7B1C, 6);
-    p = ((u8 *)this) + 0xEC;
-    *(s32 *)p = (*(s32 *)&lbl_805D7B4C);
+    NetMemcpy(pkt->chaddr, lbl_805D7B1C, 6);
+    p = (u8 *)&pkt->cookie;
+    *(u32 *)p = lbl_805D7B4C;
     p += 4;
     *p++ = 0x35;
     *p++ = 1;
@@ -1409,16 +1435,16 @@ s32 TLobby::dhcp_build_packet() {
         NetMemcpy(p, &lbl_805D7B28, 4);
         p += 4;
     }
-    len = NetStringLength((const char*)&dhcp_hostname);
+    len = NetStringLength((const char *)dhcp_hostname);
     if (len != 0) {
         *p++ = 0xC;
         m = len + 1;
         *p++ = m;
-        NetMemcpy(p, ((char *)&dhcp_hostname), m);
+        NetMemcpy(p, dhcp_hostname, m);
         p += m;
     }
     *p++ = 0xFF;
-    return p - ((u8 *)this);
+    return p - (u8 *)pkt;
 }
 
 s32 TLobby::build_dhcp_discover_packet() {
@@ -1426,17 +1452,18 @@ s32 TLobby::build_dhcp_discover_packet() {
     u8 *p;
     u16 len;
     s32 n;
-    NetMemset(this, 0, 0x5DC);
-    ((u8 *)this)[0] = 1;
-    ((u8 *)this)[1] = 1;
-    ((u8 *)this)[2] = 6;
-    ((u8 *)this)[3] = 0;
+    BootpPacket *pkt = (BootpPacket *)this;
+    NetMemset(pkt, 0, 0x5DC);
+    pkt->op = 1;
+    pkt->htype = 1;
+    pkt->hlen = 6;
+    pkt->hops = 0;
     TLobby::get_time_ms((s32 *)&dhcp_last_tick_ms);
     lbl_805D7B50 = dhcp_last_tick_ms;
-    NetMemcpy(((u8 *)this) + 4, &lbl_805D7B50, 4);
-    *(s16 *)(((u8 *)this) + 0xA) = 0;
-    NetMemcpy(((u8 *)this) + 0x1C, lbl_805D7B1C, 6);
-    p = ((u8 *)this) + 0xEC;
+    NetMemcpy(&pkt->xid, &lbl_805D7B50, 4);
+    pkt->flags = 0;
+    NetMemcpy(pkt->chaddr, lbl_805D7B1C, 6);
+    p = (u8 *)&pkt->cookie;
     *(u32 *)p = lbl_805D7B4C;
     p += 4;
     *p++ = 0x35;
@@ -1470,7 +1497,7 @@ s32 TLobby::build_dhcp_discover_packet() {
         p += n;
     }
     *p++ = 0xFF;
-    return p - ((u8 *)this);
+    return p - (u8 *)pkt;
 }
 
 extern s16 lbl_805D7B08;
