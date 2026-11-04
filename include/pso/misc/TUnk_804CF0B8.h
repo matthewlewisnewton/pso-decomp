@@ -4,6 +4,13 @@
 #include <stddef.h>
 #include "pso/misc/TUnk_804CDFE8.h"
 
+// Prefix of the speech-balloon entry list. draw_visible_window_entries reads
+// count, then the item pointer, from the address passed as the list.
+struct TWindowEntryList {
+    u32 count;
+    void **items;
+};
+
 class TUnk_804CF0B8 : public TUnk_804CDFE8 {
 public:
     virtual ~TUnk_804CF0B8();
@@ -37,11 +44,16 @@ public:
     void set_flag2c_bit100();
     u8 unk_1C[0x4];
     u16 m_20;
-    u8 unk_22[0xA];
+    u8 unk_22[0x2];
+    TWindowEntryList entries;
     u32 m_2c;
-    u8 unk_30[0x18];
+    f32 rect[2];
+    f32 anchor[2];
+    u8 unk_40[0x8];
     f32 m_48;
-    u8 unk_4C[0xC];
+    f32 unk_4C;
+    u8 unk_50[0x4];
+    f32 m_54;
     f32 m_58;
     u8 unk_5C[0x14];
     s8 m_70;
@@ -52,12 +64,20 @@ public:
     s16 m_76;
     char *name;
     f32 m_7c;
-    u8 unk_80[0x4];
+    f32 tail;
     s32 m_84;
-    u8 unk_88[0x10];
+    f32 center[2];
+    f32 head[2];
 };
+typedef char TUnk_804CF0B8_entries_offset[offsetof(TUnk_804CF0B8, entries) == 0x24 ? 1 : -1];
+typedef char TUnk_804CF0B8_rect_offset[offsetof(TUnk_804CF0B8, rect) == 0x30 ? 1 : -1];
+typedef char TUnk_804CF0B8_anchor_offset[offsetof(TUnk_804CF0B8, anchor) == 0x38 ? 1 : -1];
+typedef char TUnk_804CF0B8_m_54_offset[offsetof(TUnk_804CF0B8, m_54) == 0x54 ? 1 : -1];
 typedef char TUnk_804CF0B8_name_offset[offsetof(TUnk_804CF0B8, name) == 0x78 ? 1 : -1];
 typedef char TUnk_804CF0B8_next_offset[offsetof(TUnk_804CF0B8, m_7c) == 0x7c ? 1 : -1];
+typedef char TUnk_804CF0B8_tail_offset[offsetof(TUnk_804CF0B8, tail) == 0x80 ? 1 : -1];
+typedef char TUnk_804CF0B8_center_offset[offsetof(TUnk_804CF0B8, center) == 0x88 ? 1 : -1];
+typedef char TUnk_804CF0B8_head_offset[offsetof(TUnk_804CF0B8, head) == 0x90 ? 1 : -1];
 typedef char TUnk_804CF0B8_pointer_size[sizeof(char *) == 4 ? 1 : -1];
 typedef char TUnk_804CF0B8_size[sizeof(TUnk_804CF0B8) == 0x98 ? 1 : -1];
 
