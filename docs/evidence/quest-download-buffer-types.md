@@ -55,9 +55,13 @@ The four objects that follow the six cache buffers are `lbl_80595008` (2,448
 bytes), `quest_download_slot_chain_table` (2,240 bytes), `lbl_80596258` (12
 bytes), and `quest_download_text_buffer` (1,028 bytes). They are defined in this
 unit as the existing symbol extents. The slot array uses the canonical
-`QuestDownloadSlot[80]`. The workspace, prefix, and text buffer stay opaque
-byte arrays; their internal types are not settled by that definition. The
-native 40,000-byte allocator pool begins at `80596668` and belongs to
+`QuestDownloadSlot[80]`. `lbl_80595008` is `QuestDownloadWorkspace`: the last
+`0xD0` bytes are the 32-entry query result read by `803EA428`, and the leading
+`0x8C0` bytes have no load or store through this symbol. `lbl_80596258` is the
+12-character display prefix copied from `lbl_8047E68C` and overwritten at
+offsets 5..7 by `803EB4D4`. `quest_download_text_buffer` stays an opaque
+`u8[0x404]`; its readers disagree on the element type. The native 40,000-byte
+allocator pool begins at `80596668` and belongs to
 `TQuestVmDownLoadServer_803E6970`, not to this data unit.
 
 ## Validation and review boundaries
@@ -122,8 +126,9 @@ shipped-asset findings, not arbitrary-caller guarantees. They do not prove a
 reachable original overflow or establish that either 1,028-byte buffer's final
 four bytes are unused padding.
 
-The workspace's final 0xD0 bytes serve query results, but the first 0x8C0
-bytes' complete type remains unresolved. The slot array uses #203's canonical
+The workspace's final 0xD0 bytes are the 32-entry query result. The first
+0x8C0 bytes still have no direct reference, so they stay an untyped leading
+array inside that one object. The slot array uses #203's canonical
 80-record definition. Shared text has byte, halfword and ID views; a larger
 array or union alone does not establish their lifetime changes, retained
 values or EE580 bounds. Callback quiescence after DMA timeout also remains
