@@ -121,10 +121,6 @@ void *__ct__14TBoss4ZakoDrawFv(void *object) {
 typedef char RecoveredGlobal_8030ABF4_TCameraCtrl__data_804FF634_size[sizeof(RecoveredGlobal_8030ABF4_TCameraCtrl__data_804FF634) == 0x48 ? 1 : -1];
 typedef char RecoveredGlobal_8030ABF4_lbl_80541E58_size[sizeof(RecoveredGlobal_8030ABF4_lbl_80541E58) == 0xF08 ? 1 : -1];
 
-#pragma push
-#pragma fp_contract on
-#pragma inline_depth(1)
-#pragma dont_inline off
 void TObjPlayer__sub_8030A9B0() {
     Raw_8030A9B0 pos;
     Raw_8030A9B0 v;
@@ -162,7 +158,9 @@ void TObjPlayer__sub_8030A9B0() {
         t = d / lbl_805DF144;
         k = lbl_805DF148 - t * (t * t);
         push_matrix();
-        v = *(Raw_8030A9B0 *)e;
+        ((u32 *)&v)[0] = ((u32 *)e)[0];
+        ((u32 *)&v)[1] = ((u32 *)e)[1];
+        ((u32 *)&v)[2] = ((u32 *)e)[2];
         *(f32 *)((s8 *)&v + 4) = lbl_805DF13C;
         post_translate_matrix(&v);
         rotate_matrix_y(0, e->f10 + rot);
@@ -178,8 +176,6 @@ void TObjPlayer__sub_8030A9B0() {
     chunk_polygon_flags_or_mask = saved_chunk_polygon_flags_or_mask;
     model_render_flags = saved_model_render_flags;
 }
-void TObjPlayer__sub_8030A9B0();
-#pragma pop
 
 void TObjPlayer::draw_area_chunk_objects() {
     Tbl_8030AB48 *t = &((Tbl_8030AB48 *)&boss4_zako_draw_buffers)[TBoss4ZakoDraw__draw_buffer_index];
