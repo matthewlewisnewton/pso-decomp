@@ -59,8 +59,6 @@ struct Q_80353018 { s32 x; f32 y; };
 
 struct P_80353018 { s32 x; s32 y; };
 
-struct T_80353018 { u8 pad0[0xF0]; VObj_18_c82b17 *obj; };
-
 extern "C" {
 int TKeyBoardControl__sub_8000F828(void);
 void __ct__7TObjectFP7TObject(void *, void *);
@@ -219,8 +217,7 @@ int get_ending_ab_wall_texture_list(void) {  return ending_ab_wall_texture_list;
 #include "pso/item/TItemSpecialEvent.h"
 
 void TItemSpecialEvent::send_obj_position_event(s32 arg1) {
-    T_80353018 *arg0 = (T_80353018 *)this;
-    VObj_18_c82b17 *o = arg0->obj;
+    VObj_18_c82b17 *o = (VObj_18_c82b17 *)this->owner;
     if (o != NULL) {
         Q_80353018 q;
         P_80353018 p;
@@ -236,9 +233,9 @@ void TItemSpecialEvent::sub_8035307C() { send_obj_position_event(18); }
 void TItemSpecialEvent::sub_803530A0() { send_obj_position_event(17); }
 
 void TItemSpecialEvent::sub_803530C4() {
-    void *temp_r3 = *(void **)((s8 *)this + 0xF0);
+    void *temp_r3 = this->owner;
     if (is_locally_controlled__10TObjPlayerFPv(temp_r3) != 0) {
-        struct VObj_803530C4_80352BB8 *o = (struct VObj_803530C4_80352BB8 *)*(void **)((s8 *)this + 0xF0);
+        struct VObj_803530C4_80352BB8 *o = (struct VObj_803530C4_80352BB8 *)this->owner;
         o->m47();
     }
 }
@@ -246,13 +243,13 @@ void TItemSpecialEvent::sub_803530C4() {
 void TItemSpecialEvent::sub_80353110() { send_obj_position_event(16); }
 void TItemSpecialEvent::sub_80353134() { send_obj_position_event(15); }
 void TItemSpecialEvent::sub_80353158() {
-    add_actor_hp(*(s32 *)((s8 *)this + 0xF0), get_field_2b8__14TItemProShieldFv(*(s32 *)((s8 *)this + 0xF0)));
+    add_actor_hp((s32)this->owner, get_field_2b8__14TItemProShieldFv((s32)this->owner));
 }
 void TItemSpecialEvent::sub_80353194() {
-    add_actor_tp(*(s32 *)((s8 *)this + 0xF0), obj_getS16_2BA(*(s32 *)((s8 *)this + 0xF0)));
+    add_actor_tp((s32)this->owner, obj_getS16_2BA((s32)this->owner));
 }
 
     extern const f32 lbl_805DFF34;
-void TItemSpecialEvent::sub_803531D0() { send_nearby_player_ids((void*)(*(int*)((char*)this + 0xf0)), lbl_805DFF34); }
+void TItemSpecialEvent::sub_803531D0() { send_nearby_player_ids(this->owner, lbl_805DFF34); }
 
 void TItemSpecialEvent::sub_803531F8() {  }

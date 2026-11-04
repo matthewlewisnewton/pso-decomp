@@ -19,9 +19,10 @@ public:
     virtual ~TItemSpecialEvent();
     static TItemSpecialEvent *create(u8 *item);
 
-    // Use-effect steps selected by technique index. Each one only reads the
-    // owner pointer at +0xF0. The original object emitted them in the
-    // ending-picture unit, so the definitions stay in TEndingPic.cpp.
+    // Use-effect steps selected by technique index. Each one reads TItem's
+    // typed owner pointer (TItem::owner at +0xF0, asserted below), never a
+    // raw offset. The original object emitted them in the ending-picture
+    // unit, so the definitions stay in TEndingPic.cpp.
     // send_obj_position_event keeps the name already used for 0x80353018.
     // The other steps stay sub_<addr>: set_phase_18, update_player_object,
     // and update_shield had no executable name evidence.
