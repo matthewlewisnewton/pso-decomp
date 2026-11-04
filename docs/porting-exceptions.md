@@ -81,15 +81,19 @@ small float differences without FMA).
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-141 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+141 units (at `7ccb07696`; 145 including subsequent merges and [#284](https://github.com/matthewlewisnewton/pso-decomp/pull/284)) override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
-`-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
-`configure.py` comment above each entry is its recorded reason (e.g.
-`pso_date.cpp`: GC/1.3.2 scheduling, see
+`-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-opt nocse,nostrength,noprop`,
+`-use_lmw_stmw off`, ...). The `configure.py` comment above each entry is its
+recorded reason (e.g. `pso_date.cpp`: GC/1.3.2 scheduling, see
 [calendar-conversion-evidence.md](evidence/calendar-conversion-evidence.md);
 `TObjTombstone.cpp`: `-fp_contract on` because two calculations fuse
-multiply-adds). The generated table copies each comment; 92 entries have no
+multiply-adds; `pso/unk/text_8042E8C4.cpp` in [#284](https://github.com/matthewlewisnewton/pso-decomp/pull/284):
+`-opt nocse,nostrength,noprop` on `ntutl` because `LaunchDol`'s section loops
+index with `lwzx` off a separate byte induction variable, recompute `base+index`
+per load, and evaluate `src = file + offset` before moving `dest`/`length` into
+argument registers). The generated table copies each comment; 92 entries have no
 comment of their own (several share a comment with the entry above). Library
 groups (SDK, runtime, TRK, MusyX, CRI, Ginja, mcFs, ntInf, avetcp, modem, ntUtl)
 use their own compiler versions as recorded there.
