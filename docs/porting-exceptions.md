@@ -15,11 +15,11 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (regenerated on this branch after merging main `afa256f23`, 2026-11-04)
+## Summary (regenerated on this branch after merging main `9759a32c1`, 2026-11-04)
 
 | Category | Hits | Files / units |
 |---|---:|---:|
-| Assembly (`asm` + `orig_asm` include) | 5 functions | 3 |
+| Assembly (`asm` + `orig_asm` include) | 6 functions | 4 |
 | MWCC intrinsics | 85 | 55 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 71 | 13 |
 | CodeWarrior pragmas (excluding push/pop) | 5,864 | 885 |
@@ -40,8 +40,9 @@ asm always has an entry in this register.
 | `src/musyx/runtime/Chorus/chorus_fx.c` | `do_src1`, `do_src2` | `asm` body from `orig_asm` include | Library code shipped as assembly; covered by the CONTRIBUTING `orig_asm` rule for vendor assembly. No specific evidence doc. | Write scalar C fallback (none exists yet); MusyX upstream C sources are a reference. |
 | `src/musyx/runtime/StdReverb/reverb.c` | `DoCrossTalk`, `HandleReverb` | `asm` body from `orig_asm` include | Same as above. | Same: scalar C fallback needed (none exists yet). |
 | `src/pso/unk/text_803D8910.cpp` | `vec3_add_to` | `asm void` under `#ifdef __MWERKS__`, scalar `dst += src` in the `#else` | Approved by Matt on 2026-11-04 (11:14 AM PT), same one-time paired-single exception as #281. In-place D-form `psq_l`/`psq_st` that GC/2.6 cannot emit from C. Evidence: [vec3-add-to-paired-single.md](evidence/vec3-add-to-paired-single.md). | Compile the scalar fallback. |
+| `src/pso/unk/text_803E2D70.cpp` | `transform_chunk_vertices_pos_normal` | hand-written `asm void` under `#ifdef __MWERKS__` | One-time asm exception approved by Matt on 2026-11-04 ([#281](https://github.com/matthewlewisnewton/pso-decomp/pull/281)): SDK `PSMTXROMultVecArray`-style paired-single code (`psq_l`/`ps_madds*`/`psq_stu`) that MWCC cannot emit from C; other GameCube decomps keep it as asm. Evidence: [docs/evidence/paired-single-sdk-asm.md](evidence/paired-single-sdk-asm.md). | Use the scalar C++ `#else` fallback that ships with it. |
 
-The MusyX four predate the scalar-fallback rule and have **no C fallback**. `vec3_add_to` ships with the scalar fallback.
+The four MusyX entries predate the scalar-fallback rule and have **no C fallback**. `vec3_add_to` and `transform_chunk_vertices_pos_normal` ship with the scalar fallback.
 
 ## 2. MWCC intrinsics
 
@@ -119,7 +120,6 @@ entry when the PR merges.
 
 | PR | Exception | Status / reason |
 |---|---|---|
-| [#281](https://github.com/matthewlewisnewton/pso-decomp/pull/281) | `transform_chunk_vertices_pos_normal` (`src/pso/unk/text_803E2D70.cpp`) as `asm void` | One-time asm exception approved by Matt on 2026-11-04: SDK `PSMTXROMultVecArray`-style paired-single code that every other GameCube decomp keeps as asm. Guarded for MWCC with a scalar C++ fallback. Evidence: `docs/evidence/paired-single-sdk-asm.md` on that branch. Port: use the C++ fallback. |
 | [#291](https://github.com/matthewlewisnewton/pso-decomp/pull/291) | Allowed regression: `deform_indirect_texture_scroll` 100% → 99.79% | Approved by Matt on 2026-11-04 so the `off16 = offset` steering (still on main in `TEffIndirectCtrl_802A88AC.cpp`) could be removed. Port: nothing; the PR version is the portable one. |
 | [#285](https://github.com/matthewlewisnewton/pso-decomp/pull/285) | `static asm void pad_03_8042E9FC_text` via `orig_asm` include (`src/pso/unk/text_8042E9FC.cpp`) | PR body: 5-word stranded epilogue; 0/60 C probes across 20 compilers reach it. **No approval recorded and no scalar fallback**; it needs one under the rule above. |
 | [#296](https://github.com/matthewlewisnewton/pso-decomp/pull/296) | `scheduling` ×5, `peephole`, `optimize_for_size` pragmas | Reason not recorded. Drop in a port. |
