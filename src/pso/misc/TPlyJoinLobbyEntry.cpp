@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/misc/TLobby_801E43E4.h"
 #include "types.h"
 #include "pso/TObject.h"
@@ -356,8 +357,6 @@ s32 bswap_and_send_extended_subcommand(int, void *);
 s32 bswap_and_handle_packet__6TLobbyFii(void *, void *);
 s32 TLobby__sub_8013A578(void *);
 void fn_8013ACE4(s32);
-s32 mem_free(int);
-u8 * mem_alloc(s32);
 void clear_enabled_main_warps();
 s32 TLobby__sub_801A3E8C();
 s32 get_table_entry_by_index__6TLobbyFv(void *);
@@ -710,7 +709,7 @@ void send_6x70_player_data__6TLobbyFi(s32 arg0) {
     Stack_80135598 stack;
     u8 *temp_r3;
     init_player_join_record(&stack.sp8);
-    temp_r3 = (u8 *)(mem_alloc(0x494));
+    temp_r3 = (u8 *)(static_cast<u8*>(::operator new[](0x494)));
     if (temp_r3 != NULL) {
         fill_player_record__10TObjPlayerFPvPv((void *) (get_player_by_client_id((void *)local_client_id)), temp_r3 + 8);
         *(s8 *)((s8 *)temp_r3 + 0) = 0x70;
@@ -718,7 +717,7 @@ void send_6x70_player_data__6TLobbyFi(s32 arg0) {
         *(s16 *)((s8 *)temp_r3 + 2) = (s16) local_client_id;
         *(s32 *)((s8 *)temp_r3 + 4) = 0x494;
         bswap_and_send_extended_subcommand((int)temp_r3, (void *)arg0);
-        mem_free((int)temp_r3);
+        ::operator delete[](reinterpret_cast<void *>((int)temp_r3));
     }
 }
 
@@ -776,7 +775,7 @@ void handle_6x6D_sync_game_state(Pkt_8013574C *arg0) {
     if (TLobby__data_805D5CE8 == 0 && (TLobby__data_805D5594 == 0xE || TLobby__data_805D5594 == 0xF)) {
         len = arg0->len - 8;
         lobby_debug_printf_stub(lbl_8043EEA4, arg0->len);
-        buf = mem_alloc(0x8000);
+        buf = static_cast<u8*>(::operator new[](0x8000));
         if (buf != NULL) {
             tmp = ::operator new(0x7230);
             if (tmp != NULL) {
@@ -784,7 +783,7 @@ void handle_6x6D_sync_game_state(Pkt_8013574C *arg0) {
                 ::operator delete(tmp);
             }
             ((TLobby *)buf)->apply_sync_item_state();
-            mem_free((int)buf);
+            ::operator delete[](reinterpret_cast<void *>((int)buf));
         }
     }
 }
@@ -849,7 +848,7 @@ void send_6x6E_sync_game_state__6TLobbyFi(s32 arg0) {
     Pkt_801359C4 *buf;
     Hdr_801359C4 *hdr;
     void *tmp;
-    buf = (Pkt_801359C4 *)mem_alloc(0x4000);
+    buf = (Pkt_801359C4 *)static_cast<u8*>(::operator new[](0x4000));
     if (buf != NULL) {
         memset(buf, 0, 0x4000);
         hdr = (Hdr_801359C4 *)::operator new(0x4008);
@@ -875,7 +874,7 @@ void send_6x6E_sync_game_state__6TLobbyFi(s32 arg0) {
         buf->f2 = 0;
         buf->len = ((len + 3) & ~3) + 8;
         bswap_and_send_extended_subcommand((int)buf, (void *)arg0);
-        mem_free((int)buf);
+        ::operator delete[](reinterpret_cast<void *>((int)buf));
     }
 }
 
@@ -886,10 +885,10 @@ void TLobby::send_6x6D_item_state() {
     Pkt_80135AE0 *buf;
     u8 *src;
     void *tmp;
-    buf = (Pkt_80135AE0 *)mem_alloc(0x8000);
+    buf = (Pkt_80135AE0 *)static_cast<u8*>(::operator new[](0x8000));
     if (buf != NULL) {
         memset(buf, 0, 0x8000);
-        src = mem_alloc(0x8000);
+        src = static_cast<u8*>(::operator new[](0x8000));
         if (src != NULL) {
             memset(src, 0, 0x8000);
             n = ((TLobby *)src)->write_sync_item_state();
@@ -898,14 +897,14 @@ void TLobby::send_6x6D_item_state() {
                 len = ((TLobby *)tmp)->lz_compress_packet((void *)src, (s32)n, (s32 *)buf->data);
                 ::operator delete(tmp);
             }
-            mem_free((int)src);
+            ::operator delete[](reinterpret_cast<void *>((int)src));
         }
         buf->cmd = 0x6D;
         buf->flag = 0;
         buf->f2 = 0;
         buf->len = ((len + 3) & ~3) + 8;
         bswap_and_send_extended_subcommand((int)buf, (void *)arg0);
-        mem_free((int)buf);
+        ::operator delete[](reinterpret_cast<void *>((int)buf));
     }
 }
 
@@ -919,7 +918,7 @@ void TLobby::send_compressed_packet_6c() {
     u32 *p;
     u32 i;
     s32 arg0 = (s32)this;
-    buf = (Pkt_80135BD0 *)mem_alloc(0x8000);
+    buf = (Pkt_80135BD0 *)static_cast<u8*>(::operator new[](0x8000));
     if (buf != NULL) {
         memset(buf, 0, 0x8000);
         tmp = ::operator new(0x7230);
@@ -927,13 +926,13 @@ void TLobby::send_compressed_packet_6c() {
             src = quest_object_entries;
             size = TLobby__data_805D6148 * 4;
             n = size / 4;
-            p = (u32 *)mem_alloc(size);
+            p = (u32 *)static_cast<u8*>(::operator new[](size));
             memcpy(p, src, size);
             for (i = 0; i < n; i++) {
                 bswap_object_source_record(&p[i]);
             }
             len = ((TLobby *)tmp)->lz_compress_packet((void *)p, (s32)size, (s32 *)buf->data);
-            mem_free((int)p);
+            ::operator delete[](reinterpret_cast<void *>((int)p));
             ::operator delete(tmp);
             buf->cmd = 0x6C;
             buf->flag = 0;
@@ -941,7 +940,7 @@ void TLobby::send_compressed_packet_6c() {
             buf->len = ((len + 3) & ~3) + 8;
             bswap_and_send_extended_subcommand((int)buf, (void *)arg0);
         }
-        mem_free((int)buf);
+        ::operator delete[](reinterpret_cast<void *>((int)buf));
     }
 }
 
@@ -955,7 +954,7 @@ void TLobby::send_cmd_6B() {
     S12_801358B4 *p;
     u32 i;
     s32 arg0 = (s32)this;
-    buf = (Pkt_80135CD8 *)mem_alloc(0x8000);
+    buf = (Pkt_80135CD8 *)static_cast<u8*>(::operator new[](0x8000));
     if (buf != NULL) {
         memset(buf, 0, 0x8000);
         tmp = ::operator new(0x7230);
@@ -963,13 +962,13 @@ void TLobby::send_cmd_6B() {
             src = TLobby__data_805D6144;
             size = TLobby__data_805D614C * sizeof(S12_801358B4);
             n = size / sizeof(S12_801358B4);
-            p = (S12_801358B4 *)mem_alloc((s32)(n * sizeof(S12_801358B4)));
+            p = (S12_801358B4 *)static_cast<u8*>(::operator new[]((s32)(n * sizeof(S12_801358B4))));
             memcpy(p, src, size);
             for (i = 0; i < n; i++) {
                 ((TLobby *)(&p[i]))->bswap_6x6B();
             }
             len = ((TLobby *)tmp)->lz_compress_packet((void *)p, (s32)size, (s32 *)buf->data);
-            mem_free((int)p);
+            ::operator delete[](reinterpret_cast<void *>((int)p));
             ::operator delete(tmp);
             buf->cmd = 0x6B;
             buf->flag = 0;
@@ -977,7 +976,7 @@ void TLobby::send_cmd_6B() {
             buf->len = ((len + 3) & ~3) + 8;
             bswap_and_send_extended_subcommand((int)buf, (void *)arg0);
         }
-        mem_free((int)buf);
+        ::operator delete[](reinterpret_cast<void *>((int)buf));
     }
 }
 
@@ -1468,7 +1467,6 @@ void update_make_team_menu__6TLobbyFv(void);
 void handle_comcard_window__6TLobbyFv(void);
 s32 __ct__16TPlyGuildCardTagFv();
 void close_all_windows__6TLobbyFv(void);
-s32 mem_free(s32);
 
 extern u32 lobby_keyboard_controller;
 extern s32 lobby_selected_game_list_index;
@@ -2054,7 +2052,7 @@ void handle_comcard_window__6TLobbyFv(void) {
         if (((TWindowSubComCard *)lobby_keyboard_controller)->update_keyboard() != 0) {
             temp_r3 = ((TWindowSubComCard *)lobby_keyboard_controller)->realloc_buffer();
             ((s32 (*)(GBig_80138D3C_80137188 *, GLE_80138D3C_80137188 *, s32 *, s32, GBig_80138D3C_80137188 *))send_action__9TProtocolFR13GameListEntryPcPc)((*(GBig_80138D3C_80137188 * *)&TLobby__protocol_instance), &(*(GBig_80138D3C_80137188 * *)&TLobby__protocol_instance)->arr[lobby_selected_game_list_index], &(*(s32 *)&TLobby__data_805DB0B0), temp_r3, (*(GBig_80138D3C_80137188 * *)&TLobby__protocol_instance));
-            mem_free(temp_r3);
+            ::operator delete[](reinterpret_cast<void *>(temp_r3));
             ((s32 (*)(u32))queue_destruction__7TObjectFv)(lobby_keyboard_controller);
             lobby_keyboard_controller = 0U;
             ((s32 (*)(s32))TWindow__close)((*(s32 *)&lobby_keyboard_prompt_window));

@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/unk/text_8015C534.h"
@@ -17,7 +18,6 @@ struct RecoveredGlobal_8015C534_lbl_804B08BC {
 };
 
 extern "C" {
-void mem_free(void *p);
 extern u32 ancient_container_resource_bundle;
 extern u32 ancient_container_fragment_texture_lists;
 s32 TObjFish__sub_8001EDB0(void *, int);
@@ -62,7 +62,7 @@ void fn_8015C5F8(void) {
         } while (var_r30 < 3);
         p = ancient_container_fragment_texture_lists;
         if (p != 0U) {
-            mem_free((void *)p);
+            ::operator delete[]((void *)p);
             ancient_container_fragment_texture_lists = 0U;
         }
     }

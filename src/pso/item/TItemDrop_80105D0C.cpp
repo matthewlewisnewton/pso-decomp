@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/item/MagStats.h"
 #include "types.h"
 #include "pso/system/memory.h"
@@ -392,7 +393,6 @@ s32 calc_random_ratio__10TObjPlayerFv(void *);
 void roll_table_ratio__9TItemDropFPvUi(u8 *arg0, u32 arg1);
 s32 __dt__7TObjectFv(void *, int);
 void *TItemDrop__sub_8010F168(void *arg0, s16 arg1);
-void mem_free(void *p);
 s32 __dl__7TObjectFPv(void *);
 extern RecoveredGlobal_80107840_lbl_8049EF88 lbl_8049EF88;
 extern s32 TItemDrop__relocatable_load_buffer;
@@ -420,7 +420,6 @@ extern const f32 lbl_805DAADC;
 void generate_drop_item__9TItemDropFPviPv(u8 *self, s32 idx, u8 *item);
 s32 run_step__9TItemDropFl(s32, u32);
 s32 fn_8010F210(void *);
-void *mem_alloc(u32 size);
 void __ct__7TObjectFP7TObject(void *, void *);
 s32 __cvt_fp2unsigned(f32);
 s32 rand();
@@ -493,18 +492,16 @@ s32 serialize_mag__9TItemDataFPvPv(void *, s32 *);
 s32 is_rare_item__9TItemDataFPv(u8 *item);
 void roll_armor_bonuses__9TItemDropFv(s32, void *);
 u8 TLobby__sub_801D6DDC(void *arg0);
-void *mem_alloc(u32 size);
 s32 can_drop__9TItemDropFv();
-void mem_free(void *p);
 s32 is_enabled__9TItemDropFv();
 
 extern s32 TItemDrop__unit_star_classes;
 extern s32 TItemDrop__unit_star_bucket_counts;
 
 void run_task__9TItemDropFv(void) {
-    mem_free((void *)TItemDrop__unit_star_bucket_counts);
+    ::operator delete[]((void *)TItemDrop__unit_star_bucket_counts);
     TItemDrop__unit_star_bucket_counts = 0;
-    mem_free((void *)TItemDrop__unit_star_classes);
+    ::operator delete[]((void *)TItemDrop__unit_star_classes);
     TItemDrop__unit_star_classes = 0;
 }
 
@@ -512,8 +509,8 @@ extern s32 TItemDrop__unit_star_classes;
 extern s32 TItemDrop__unit_star_bucket_counts;
 
 void __dt__9TItemDropFv(void) {
-    TItemDrop__unit_star_classes = (s32)mem_alloc(0x88);
-    TItemDrop__unit_star_bucket_counts = (s32)mem_alloc(0xD);
+    TItemDrop__unit_star_classes = (s32)::operator new[](0x88);
+    TItemDrop__unit_star_bucket_counts = (s32)::operator new[](0xD);
     TItemDrop::count_unit_star_buckets();
 }
 
@@ -1100,7 +1097,7 @@ u8 *TItemDrop__sub_80107840(u8 *arg0, s16 arg1) {
       var_r31 += 4;
     }
     while (var_r30 != 0x11);
-    mem_free((void *)((int) (((TItemDrop *)arg0)->m_20)));
+    ::operator delete[]((void *)((int) (((TItemDrop *)arg0)->m_20)));
     ((TItemDrop *)arg0)->m_20 = 0;
     __dt__7TObjectFv((void *) arg0, 0);
     if (arg1 > 0)
@@ -1120,7 +1117,7 @@ TItemDrop_80107900 *TItemDrop__ct(TItemDrop_80107900 *self, void *parent, s8 arg
     self->vt = &lbl_8049EF88.value;
     self->name = item_drop_class_name;
     TItemDrop__section_id = arg2;
-    self->list = (s32 *)mem_alloc(0x44);
+    self->list = (s32 *)::operator new[](0x44);
     for (i = 0; i != 0x11; i++) {
         a = __cvt_fp2unsigned(lbl_805DAAD8 * (lbl_805DAAE4 * (f32)rand()));
         b = __cvt_fp2unsigned(lbl_805DAAD4 * (lbl_805DAAE4 * (f32)rand()));

@@ -198,6 +198,7 @@ pso/boss/Boss5GryphonBehavior.cpp
 pso/boss/Boss6Type1Appearance.cpp
 pso/boss/Boss6Type2Appearance.cpp
 pso/boss/Boss6Type2Death.cpp
+pso/boss/Boss7TentacleBanks.cpp
 pso/boss/TBoss1Dragon.cpp
 pso/boss/TBoss1DragonColli.cpp
 pso/boss/TBoss1DragonDemo.cpp
@@ -832,6 +833,7 @@ pso/misc/GbaDownloadRuntime.cpp
 pso/misc/KeyboardCharacterMaps.cpp
 pso/misc/MaterialOpacityFade.cpp
 pso/misc/PhotonBlastSummon.cpp
+pso/misc/QuestDownloadBuffers.cpp
 pso/misc/RenderFadeState.cpp
 pso/misc/ShopToolStock.cpp
 pso/misc/ShopWeaponStock.cpp
@@ -888,8 +890,10 @@ pso/misc/TChCrTagInformation.cpp
 pso/misc/TChCrTagInformation_802A1FAC.cpp
 pso/misc/TChCrTagInformation_802A200C.cpp
 pso/misc/TChCrTagName.cpp
+pso/misc/TChCrTagOccHeader.cpp
 pso/misc/TChCrTagOccupation.cpp
 pso/misc/TChCrTagPlBack.cpp
+pso/misc/TChCrTagPlGraphic.cpp
 pso/misc/TChallenge.cpp
 pso/misc/TCharaMaking.cpp
 pso/misc/TCharaMaking_8028E3F4.cpp
@@ -984,7 +988,6 @@ pso/misc/TLobby_80072048.cpp
 pso/misc/TLobby_800726F0.cpp
 pso/misc/TLobby_8007340C.cpp
 pso/misc/TLobby_80073DAC.cpp
-pso/misc/TLobby_80076614.cpp
 pso/misc/TLobby_80077B60.cpp
 pso/misc/TLobby_8007B858.cpp
 pso/misc/TLobby_8007C550.cpp
@@ -2177,11 +2180,6 @@ pso/object/TObjSuisouLobby.cpp
 pso/object/TObjTailsTailsMove.cpp
 pso/object/TObjTank.cpp
 pso/object/TObjTombstone.cpp
-pso/object/TObjTombstone_80075764.cpp
-pso/object/TObjTombstone_80075854.cpp
-pso/object/TObjTombstone_800762F0.cpp
-pso/object/TObjTombstone_800764E0.cpp
-pso/object/TObjTombstone_8007666C.cpp
 pso/object/TObjTradeCollision.cpp
 pso/object/TObjTreeLobby.cpp
 pso/object/TObjVoloptCage.cpp
@@ -2231,6 +2229,7 @@ pso/player/TObjPlayer_80083594.cpp
 pso/player/TObjPlayer_80083B38.cpp
 pso/player/TObjPlayer_800847A8.cpp
 pso/player/TObjPlayer_80084B84.cpp
+pso/player/TObjPlayer_8008DCF0.cpp
 pso/player/TObjPlayer_8008DCF0_8008DCF0.cpp
 pso/player/TObjPlayer_80090448.cpp
 pso/player/TObjPlayer_80092A7C.cpp
@@ -2564,6 +2563,7 @@ pso/quest/QuestOpcodeHandlers.cpp
 pso/quest/QuestOpcodeTables.cpp
 pso/quest/StoryQuestProgress.cpp
 pso/quest/TQuestListVM.cpp
+pso/quest/TQuestListVMData.cpp
 pso/quest/TQuestListVM_80073DC4.cpp
 pso/quest/TQuestListVM_8007EAF8.cpp
 pso/quest/TQuestListVM_800F95F4.cpp
@@ -2833,8 +2833,6 @@ pso/unk/text_80072230.cpp
 pso/unk/text_80074BD0.cpp
 pso/unk/text_80074C20.cpp
 pso/unk/text_80074C70.cpp
-pso/unk/text_80074E04.cpp
-pso/unk/text_80074E48.cpp
 pso/unk/text_80076BC4.cpp
 pso/unk/text_80076E84.cpp
 pso/unk/text_800779A0.cpp
