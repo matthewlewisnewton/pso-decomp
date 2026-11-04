@@ -20,7 +20,7 @@ TChCrTagInformationStr *TChCrTagInformationStr::create(TObject *parent, s32 inde
 }
 
 void TChCrTagInformationStr::render() {
-    f32 x, y, radius, value, intensity, square;
+    f32 radius, value, intensity, square;
     if (TChCrTagInformationStr__data_805DF108 != opacity) {
         TCameraCtrl::restore_full_screen_view();
         set_depth_buffer_settings_1();
@@ -36,14 +36,12 @@ void TChCrTagInformationStr::render() {
             const char *text = reinterpret_cast<const char *>(get_localized_text_entry(text_group, first_line + line));
             draw_menu_text(position.x, position.y, text, color);
             if (intensity > TChCrTagInformationStr__data_805DF108) {
-                y = position.y;
-                x = position.x;
                 for (s32 ring = 1; ring < 5; ++ring) {
                     f32 distance = (f32)ring * radius;
                     for (s32 angle = 0; angle < 0x10000; angle += 0x10000 / (ring * 4)) {
                         f32 dx = distance * sin_table_lookup(angle);
                         f32 dy = distance * cos_table_lookup(angle);
-                        draw_menu_text(x + dx, y + dy, text, glow);
+                        draw_menu_text(position.x + dx, position.y + dy, text, glow);
                     }
                 }
             }
