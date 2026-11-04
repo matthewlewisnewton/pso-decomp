@@ -5,6 +5,7 @@
 #include "pso/player/TObjChara.h"
 
 struct TOMine : public TObjChara {
+    TOMine(TObject *parent);
     virtual ~TOMine();
     virtual f32 receive_weapon_special_attack(void *, void *);
     void detonate();
@@ -40,7 +41,9 @@ struct TOMine : public TObjChara {
     // 0x354: kind, 0x358: power. Passed whole to receive_direct_attack.
     DirectAttackPayload attack;
     u16 m_35c;
-    u8 _pad35E[0x12];
+    u8 _pad35E[2];
+    // Zeroed by the constructor and passed to set_constant_material from render.
+    NJS_ARGB m_360;
     u32 m_370;
     int get_player_state();
     int find_target_player();

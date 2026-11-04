@@ -4,12 +4,15 @@
 #include "types.h"
 #include "pso/misc/TOMine.h"
 
+struct TObjPlayer;
+
 struct TOMineTrap : public TOMine {
+    TOMineTrap(TObjPlayer *owner, s16 trap_index, s16 trap_id);
     virtual ~TOMineTrap();
     virtual void spawn_disp_objects();
     virtual void vfunc_86();
     virtual void vfunc_82();
-    void sub_80171348(s16);
+    void sub_80171348(u16);
     virtual const char *get_name();
     virtual void run_task();
     u32 m_374;

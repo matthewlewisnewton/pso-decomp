@@ -21,7 +21,6 @@ s32 get_current_floor(void);
 f32 horizontal_distance_squared(void *, void *);
 extern u8 lobby_rule_settings[];
 u16 get_entity_id(void *);
-TOMineTrap *TOMineTrap__ct(TOMineTrap *self, TObjPlayer *owner, s16 trap_index, s16 trap_id);
 void *get_player_by_client_id(s32 i);
 void *__nw__7TObjectFUl(u32);
 extern s32 enable_v2_features;
@@ -324,7 +323,6 @@ void TOMineTrap::destroy_matching_traps() {
 s32 create_placed_trap__10TOMineTrapFUiss(u32 arg0, s16 arg1, s16 arg2) {
     u16 id;
     void *player;
-    void *obj;
     if (enable_v2_features != 1 || arg0 == 0 || (id = get_entity_id((void *)arg0)) == 0xFFFF || id >= 0x1000 ||
         (player = (void *)get_player_by_client_id(id)) == 0 || ((TObjPlayer *)player)->get_floor() != get_current_floor() ||
         arg1 < 0 || arg1 >= 4 || arg2 < 0 || arg2 > 0x14) {
@@ -333,11 +331,7 @@ s32 create_placed_trap__10TOMineTrapFUiss(u32 arg0, s16 arg1, s16 arg2) {
     if (is_boss_area() == 1 || is_current_area_item_enabled() == 0) {
         return 0;
     }
-    obj = __nw__7TObjectFUl(0x384);
-    if (obj != 0) {
-        obj = (u8 *)TOMineTrap__ct((TOMineTrap *)obj, (TObjPlayer *)arg0, arg1, arg2);
-    }
-    return (s32)obj;
+    return (s32)new TOMineTrap((TObjPlayer *)arg0, arg1, arg2);
 }
 
 void*TOMineTrap::get_mine_data_ptr() { return (char*)this + 0x334; }
@@ -356,6 +350,129 @@ void *__dt__10TOMineTrapFv(void *arg0, s16 arg1) {
     }
     return arg0;
 }
+
+extern void *tl_05;
+extern s32 game_difficulty_selection;
+extern void *lbl_805D5A50;
+extern const f32 lbl_80442138[];
+extern const f32 lbl_805D307C;
+extern const f32 lbl_805DB86C;
+extern const f32 lbl_805DB878;
+extern const f32 lbl_805DB87C;
+extern const f32 lbl_805DB880;
+extern void *mine_collision_body_parts[];
+s32 get_bml_model(void *, s32);
+s32 TObjFish__sub_8001EDB0(void *, s32);
+void init_collision_body_parts(void *, void *, s32);
+
+#pragma push
+#pragma fp_contract on
+TOMineTrap::TOMineTrap(TObjPlayer *owner, s16 trap_index, s16 trap_id) : TOMine((TObject *)tl_05) {
+    TObjPlayer *owner_player;
+    s32 floor;
+
+    m_name = (const char *)TOMineTrap__data_805D3080;
+    m_380 = 0;
+    if (owner != 0) {
+        sub_80171348(get_entity_id(owner));
+    } else {
+        m_2d8 = 0xFFFF;
+    }
+    owner_player = 0;
+    if (get_trap_type() != 0xFFFF && get_trap_type() < 0x1000) {
+        owner_player = (TObjPlayer *)get_player_by_client_id(get_trap_type());
+    }
+    // Refreshes the cached floor area before the placement checks read it.
+    get_current_floor_area();
+    floor = get_current_floor();
+    if (enable_v2_features == 1 && owner != 0 && owner_player != 0 && owner_player->get_floor() == floor &&
+        is_current_area_item_enabled() == 1 && is_boss_area() == 0) {
+        switch (trap_index) {
+        default:
+            trap_index = 0;
+        case 0:
+            attack.kind = 1;
+            if (((TLobby *)lobby_rule_settings)->get_rule_field_0() == 1) {
+                attack.power = lbl_805D307C;
+            } else {
+                f32 area_scale = lbl_80442138[get_current_floor_area()];
+                attack.power = lbl_805DB86C * area_scale *
+                               (lbl_805DB870 * (lbl_805DB878 * owner_player->get_actor_level_index() + lbl_805DB874));
+            }
+            if (attack.power < lbl_805DB85C) {
+                attack.power = lbl_805DB85C;
+            }
+            break;
+        case 1:
+            attack.kind = 2;
+            attack.power = lbl_805DB85C;
+            break;
+        case 2:
+            attack.kind = 0x11;
+            attack.power = lbl_805DB85C;
+            break;
+        case 3:
+            attack.kind = 0x12;
+            attack.power = lbl_805DB85C;
+            break;
+        }
+        s32 type = (u16)get_trap_type();
+        s32 idx = (s16)trap_index;
+        s32 id = (s16)trap_id;
+        m_37e = type * 0x50 + (idx * 0x14 + id);
+        VecCopy(&m_334, VecCopy(&home_position, VecCopy(&position, &owner->position)));
+        initialize_position_copies();
+        calc_attach_pos();
+        spawn_disp_objects();
+        m_370 = owner->rotation.yaw;
+        alt_room = owner->alt_room;
+        room = owner->room;
+        switch (attack.kind) {
+        default:
+            attack.kind = 1;
+        case 0:
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+        case 19:
+            model = (void *)get_bml_model(lbl_805D5A50, 4);
+            texlist = TObjFish__sub_8001EDB0(lbl_805D5A50, 4);
+            m_374 = (u32)get_bml_model(lbl_805D5A50, 1);
+            m_378 = (u32)TObjFish__sub_8001EDB0(lbl_805D5A50, 1);
+            break;
+        case 15:
+        case 16:
+        case 17:
+        case 18:
+            model = (void *)get_bml_model(lbl_805D5A50, 5);
+            texlist = TObjFish__sub_8001EDB0(lbl_805D5A50, 5);
+            m_374 = (u32)get_bml_model(lbl_805D5A50, 0);
+            m_378 = (u32)TObjFish__sub_8001EDB0(lbl_805D5A50, 0);
+            break;
+        }
+        mode = 0;
+        m_34c = lbl_805DB87C;
+        m_350 = lbl_805DB87C;
+        set_params[0] = 0x96;
+        set_params[1] = 0x1E;
+        if (game_difficulty_selection == 3 && ((TLobby *)lobby_rule_settings)->get_rule_field_0() == 0) {
+            set_params[0] = 0x3C;
+            m_350 = lbl_805DB880;
+            TOMineTrap::set_trap_count(0);
+            TOMineTrap::set_instance(1);
+        }
+        m_344 = 0;
+        m_35c = 0xFFFF;
+        actorFlags |= 0x60000000;
+        init_collision_body_parts(this, mine_collision_body_parts, 1);
+        register_object_by_id();
+    } else {
+        queue_destruction();
+    }
+}
+#pragma pop
 
 s32 TOMine::is_target_in_list(void *obj) {
     TOMine *self = this;
