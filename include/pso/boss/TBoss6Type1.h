@@ -6,6 +6,16 @@
 
 struct Boss6EffectPoint { f32 x, y, z; };
 struct ModelNodePositionCapture;
+struct Boss6Motion { s32 f0; u32 frames; };
+struct Boss6Anim {
+    Boss6Motion *motion;
+    f32 t;
+    f32 speed;
+    f32 blend;
+    f32 rate;
+    Boss6Motion *prev_motion;
+    f32 prev_t;
+};
 
 struct TBoss6Type1 : public TObjEnemy {
     virtual ~TBoss6Type1();
@@ -43,9 +53,9 @@ struct TBoss6Type1 : public TObjEnemy {
     Vec m_420;
     Vec m_42C;
     s32 m_438;
-    u8 unk_43C[0x4];
-    s32 m_440;
-    u8 unk_444[0x38];
+    s32 motion_set;
+    s32 motion_mode;
+    Boss6Anim anims[2];
     s32 m_47c;
     s32 unk_480;
     s32 m_484;
@@ -95,6 +105,8 @@ struct TBoss6Type1 : public TObjEnemy {
     u8 scroll_strips_v[0x14]; // scroll_strips_uv(0, 0x22) every frame
     TObject *map_csn;
     static u8 *create_kakusan(s32 arg0, u8 *arg1, u8 *arg2, s16 arg3, f32 farg0);
+    static void *copy_block(void *d, void *s);
+    static void randomize_attack(void *self, void *atk);
     void clear_slot_array();
     void release_effect_slot(s32 arg1);
     void spawn_effect_slot(s32 arg1);
