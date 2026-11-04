@@ -51,7 +51,7 @@ void *TWindowSubStatusDisp::refresh_with_default_list(s32 a, s32 b) {
 void TWindowSubStatusDisp::render_status_and_children() {
     s32 temp_r3;
 
-    temp_r3 = (s32)TWindowBase::get_draw_context(this);
+    temp_r3 = (s32)get_draw_context__11TWindowBaseFPv(this);
     draw_window_frame((void *)temp_r3);
     draw_visible_window_entries(this, ((u8 *)this) + 0x24, temp_r3);
     ((TUnk_804D0618 *)((u8 *)this))->draw_selected_list_entry(temp_r3);

@@ -1881,6 +1881,7 @@ force_active:
   - __ct__21TObjEneMe3ShinowaRealFP7TObjectPv
   - __ct__21TObjEneSlimeWaterBombFP15TObjEneSlimeOneP15TObjEneSlimeOne
   - __ct__22TAdMultiPlyChrSelectGCFP7TObjectl
+  - __ct__22TChCrTagInformationStrFP7TObjectl
   - __ct__22TChallenge4PItemSelectFP7TObjectP18TChallenge4PResult
   - __ct__22TObjEneMe3SinowZoaRealFP7TObjectPv
   - __ct__22TObjEneSlimeTailAttackFP7TObjectPC3VeclP15TObjEneSlimeOne
@@ -2398,6 +2399,7 @@ force_active:
   - __dt__21TeneFakeTecThunderEffFv
   - __dt__22TAdEnterSerialAccessGCFv
   - __dt__22TBoss5GryphonShockWaveFv
+  - __dt__22TChCrTagInformationStrFv
   - __dt__22TChallenge4PItemSelectFv
   - __dt__22TObjEneMe1GiGueBarrierFv
   - __dt__22TObjEneMe1GiGueMissileFv
@@ -2971,6 +2973,7 @@ force_active:
   - __vt__21TeneFakeTecThunderEff
   - __vt__22TAdEnterSerialAccessGC
   - __vt__22TBoss5GryphonShockWave
+  - __vt__22TChCrTagInformationStr
   - __vt__22TChallenge4PItemSelect
   - __vt__22TObjEneMe1GiGueBarrier
   - __vt__22TObjEneMe1GiGueMissile
@@ -13469,6 +13472,7 @@ force_active:
   - render__21TeneFakeTecThunderEffFv
   - render__22TAdEnterSerialAccessGCFPv
   - render__22TBoss5GryphonShockWaveFv
+  - render__22TChCrTagInformationStrFv
   - render__22TObjEneMe1GiGueBarrierFv
   - render__22TObjEneMe1GiGueMissileFv
   - render__22TObjEneSlimeTailAttackFv
@@ -14105,6 +14109,7 @@ force_active:
   - run_task__21TeneFakeTecThunderEffFv
   - run_task__22TAdEnterSerialAccessGCFv
   - run_task__22TBoss5GryphonShockWaveFv
+  - run_task__22TChCrTagInformationStrFv
   - run_task__22TChallenge4PItemSelectFv
   - run_task__22TObjEneMe1GiGueBarrierFv
   - run_task__22TObjEneMe1GiGueMissileFv

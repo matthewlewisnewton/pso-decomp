@@ -3,8 +3,6 @@
 #include "types.h"
 #include "pso/TObject.h"
 
-struct TWindowDrawContext;
-
 class TUnk_804CE018 : public TObject {
 public:
     virtual ~TUnk_804CE018();
@@ -18,7 +16,7 @@ public:
     void update_fade();
     void draw_quest_message_frame(void *);
     void sub_80244F2C(u8 *, u8 *, s16);
-    TWindowDrawContext *setup_window_draw_context(s32);
+    s32 setup_window_draw_context(s32);
     s32 is_window_reveal_complete();
     s32 sub_80244994();
     void save_position();
