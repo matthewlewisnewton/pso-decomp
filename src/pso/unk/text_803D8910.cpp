@@ -61,6 +61,13 @@ void get_current_matrix(void *m) {
 }
 #pragma pop
 
+// 0x803D89C0. b->x * a->x, then y and z, contracted by the unit's -fp_contract on.
+extern "C" f32 vec3_dot(const Vec *a, const Vec *b) {
+    f32 dot = b->x * a->x;
+    dot = a->y * b->y + dot;
+    return a->z * b->z + dot;
+}
+
 #pragma push
 #pragma scheduling off
 
