@@ -1568,30 +1568,30 @@ void TBoss6Type1::init_parts() { TBoss6Type1::set_part_default_value((int)this, 
 void TBoss6Type1::update_trail_points() {
     Boss6EffectPoint points[7];
     Boss6EffectPoint delta;
-    VecCopy((Vec *)&points[0], (const Vec *)&node_positions_578[8]);
-    VecCopy((Vec *)&points[3], (const Vec *)&node_positions_578[9]);
-    VecCopy((Vec *)&delta, (const Vec *)&node_positions_578[10]);
+    VecCopy(&points[0], &node_positions_578[8]);
+    VecCopy(&points[3], &node_positions_578[9]);
+    VecCopy(&delta, &node_positions_578[10]);
     subtract_vector(&delta,&points[3]);
     f32 length=vector_length(&delta);
     if(length <= 1e-05f) length=1.0f;
     f32 scale=15.0f/length;
     delta.x*=scale;delta.y*=scale;delta.z*=scale;
-    VecCopy((Vec *)&points[1], (const Vec *)&points[0]);
-    VecCopy((Vec *)&points[5], (const Vec *)&points[0]);
+    VecCopy(&points[1], &points[0]);
+    VecCopy(&points[5], &points[0]);
     subtract_vector(&points[1],&delta);
     vec3_add_to(&points[5],&delta);
-    VecCopy((Vec *)&points[2], (const Vec *)&points[1]);
-    VecCopy((Vec *)&points[4], (const Vec *)&points[1]);
+    VecCopy(&points[2], &points[1]);
+    VecCopy(&points[4], &points[1]);
     subtract_vector(&points[2],&delta);
     vec3_add_to(&points[4],&delta);
-    VecCopy((Vec *)&points[6], (const Vec *)&points[0]);
+    VecCopy(&points[6], &points[0]);
     ((TBoss6Type1 *)trail_point_receiver)->set_effect_points((f32 *)points, (u32 *)boss6_type1_trail_point_offsets);
 }
 
 void TBoss6Type1::update_effect_points() {
     Boss6EffectPoint points[2];
-    VecCopy((Vec *)&points[0], (const Vec *)&effect_points[0]);
-    VecCopy((Vec *)&points[1], (const Vec *)&effect_points[1]);
+    VecCopy(&points[0], &effect_points[0]);
+    VecCopy(&points[1], &effect_points[1]);
     TBoss6Type1::set_part_default_value((int)this, &points[1]);
     ((TBoss6Type1 *)effect_point_receiver)->set_effect_points((f32 *)points, (u32 *)lbl_80470FAC);
 }
