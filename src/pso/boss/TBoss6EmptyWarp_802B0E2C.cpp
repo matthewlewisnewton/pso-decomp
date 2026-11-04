@@ -5,6 +5,7 @@
 #include "pso/object/TObject_80019A50.h"
 
 #include "pso/boss/TBoss6PlotFalz.h"
+#include "pso/boss/TBoss6Tube.h"
 #include "pso/boss/TBoss6Thanks.h"
 #include "pso/render/render_util.h"
 #include "pso/misc/TLobby_801E2F94.h"
@@ -87,11 +88,17 @@ void *TBoss6EmptyWarp::create() {
     return o;
 }
 
-void TBoss6EmptyWarp::activate_warp() {
-    *(s32 *)&this->unk_1C = 1;
+// 0x802B0FC8 and 0x802B1004 are in this unit (text ends at Tube::render,
+// 0x802B1020). They write TBoss6Tube::m_1c / m_20. +0x20 is past
+// TBoss6EmptyWarp, whose constructor allocates 0x20 bytes.
+void TBoss6Tube::activate_warp() {
+    this->m_1c = 1;
     play_sound_effect(0x4003351F, 0, 0, 0);
 }
-void TBoss6EmptyWarp__sub_802B1004(void* p) { *(s32*)((char*)p + 0x20) = 0; *(s32*)((char*)p + 0x1c) = 2; }
+void TBoss6Tube::sub_802B1004() {
+    this->m_20 = 0;
+    this->m_1c = 2;
+}
 int TBoss6EmptyWarp__sub_802B1018(void) { return 0; }
 
 }

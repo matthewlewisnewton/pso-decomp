@@ -15,15 +15,15 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (main at 7ccb07696, 2026-11-04)
+## Summary (regenerated on this branch after merging main `39136ddd5`, 2026-11-04)
 
 | Category | Hits | Files / units |
 |---|---:|---:|
 | Assembly (`asm` + `orig_asm` include) | 5 functions | 3 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 71 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,871 | 886 |
-| Per-unit compiler overrides in `configure.py` | 141 | 141 |
+| CodeWarrior pragmas (excluding push/pop) | 5,864 | 885 |
+| Per-unit compiler overrides in `configure.py` | 144 | 144 |
 | Approved regressions | 0 on main, 1 pending (#291) | |
 
 ## Rule for assembly
@@ -67,10 +67,10 @@ etc. or their port equivalents) instead of the fixed address.
 
 ## 4. CodeWarrior pragmas
 
-5,871 pragmas in 886 files; per-file table in the generated file. Main kinds:
+5,864 pragmas in 885 files; per-file table in the generated file. Main kinds:
 `dont_inline` 1153, `inline_depth` 1045, `fp_contract` 931, `auto_inline` 844,
-`opt_common_subs` 624, `scheduling` 267, `opt_propagation` 239,
-`readonly_strings` 203, `peephole` 105, `optimization_level` 88, `bool` 56,
+`opt_common_subs` 624, `scheduling` 262, `opt_propagation` 239,
+`readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56,
 `defer_codegen` 50, `pack` 46. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
 
@@ -80,9 +80,15 @@ check struct layout), `bool`, and `fp_contract` where float results must match
 bit-for-bit (`fp_contract on` means fused multiply-add was used; a port may see
 small float differences without FMA).
 
+### Approved: `TBoss6Type2::sub_802BEC28` ([#312](https://github.com/matthewlewisnewton/pso-decomp/pull/312))
+
+| File | Function | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/boss/TBoss6Type2_802BE588.cpp` | `TBoss6Type2::sub_802BEC28` | one `#pragma opt_common_subs off` | Approved by Matt on 2026-11-04. Without it, common-subexpression elimination hoists the load of `lbl_805DE4E0` (0.0f) from `.text+0x6ec` to `.text+0x6c8` and renumbers the int-to-float temps, so the function is the same length and not the same bytes. Writing the ratio as `1.0f - (float)m_460 / (float)unk_45C` clamped to [0, 1] reproduces the instructions, but MWCC pools those literals as new local `.sdata2` instead of `R_PPC_EMB_SDA21` to `lbl_805DE4E4` / `lbl_805DE4E0` (the unclaimed blob `0x805DE4D8..0x805DE4F8`). `fp_contract on` is not part of this exception: removing it leaves the object identical. | Drop the pragma. The value is that clamped ratio; a port does not need MWCC's load schedule. |
+
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-141 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+144 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
