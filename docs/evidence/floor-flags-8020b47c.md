@@ -10,9 +10,12 @@ rows for 18 floors.
 
 The receiver is a buffer, not a `TLobby` object. The packet caller passes its
 payload in r3 and a 16-bit length in r4; the wrapper does not use the length
-or produce a consumed return value. The helper and wrapper retain their
-existing linker names through C-linkage free functions. Removing their
-incorrect `TLobby` member declarations does not change their machine code.
+or produce a consumed return value. The helper and wrapper are ordinary C++
+free functions under address placeholders (`fn_8020B588` and `fn_8020BF68`);
+their former `TLobby` member manglings are gone from source, the shared header
+and `symbols.txt`. Only the symbol names changed: both functions keep their
+exact machine code (0x44 and 0x20 bytes). The entry point remains the
+unmangled `TLobby__sub_8020B47C` address placeholder it has on main.
 
 `FloorFlagsBuffer` describes the four header words without inventing meanings
 for the unused words at offsets 4 and 12. The enclosing buffer's ownership and
@@ -43,16 +46,17 @@ Fork main acquired a separate exact implementation during this recovery, but
 still linked the original object. This change preserves that match with shared
 types and a simpler implementation, then selects the unit for source linkage.
 
-Baseline: fork main `f3441bb8ac8ded6b73c02bd13622105638abacfe`.
+Baseline: fork main `7dc29c361014d08d901c826c28e85d73d613ee61`.
 The stock-compiler object scores 100% for the complete 268-byte text section,
 and the strict unit scan accepts its section layout, alignment and symbols.
 
 A fresh build of the baseline passes the original DOL hash and retention
 checks. Against its `ninja baseline` report, the final
-`tools/check_pr.py --no-build --baseline /tmp/pso-floor-baseline-current/build/GPOE8P/baseline.json`
-passes with no function, code or data regressions. Linked units increase from
-3,555 to 3,556 and linked code increases by 268 bytes. Matched function/code/data
-counts stay unchanged because the rebased main already contains the exact routine.
+`tools/check_pr.py --no-build` passes with no function, code or data
+regressions. Linked units increase from 3,553 to 3,554 and linked code
+increases by 268 bytes; two functions are renamed to address placeholders.
+Matched function/code/data counts stay unchanged because the rebased main
+already contains the exact routine.
 
 The packet caller, wrapper, four-word swap helper and table-owner objects are
 byte-identical to the baseline. A final `ninja -d keeprsp` relink retains

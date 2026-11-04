@@ -11,9 +11,9 @@ struct FloorFlagsBuffer {
     u32 word_0c;
 };
 
-extern "C" void bswap_4_words__6TLobbyFv(FloorFlagsBuffer *buffer);
+void fn_8020B588(FloorFlagsBuffer *buffer);
 extern "C" void TLobby__sub_8020B47C(FloorFlagsBuffer *buffer);
 // The caller supplies the packet length in r4; the wrapper does not use it.
-extern "C" void sync_game_state__6TLobbyFv(FloorFlagsBuffer *buffer, u16 length);
+void fn_8020BF68(FloorFlagsBuffer *buffer, u16 length);
 
 #endif

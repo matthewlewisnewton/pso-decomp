@@ -753,7 +753,7 @@ void handle_6x6E_sync_game_state(Pkt_8013566C *arg0) {
         TLobby__sub_8013F810(tmp, arg0->data, arg0->len, buf);
         ::operator delete(tmp);
         bswap_6x6E_sync_game_state__6TLobbyFPv(buf);
-        sync_game_state__6TLobbyFv((FloorFlagsBuffer *)new_var, buf->f2);
+        fn_8020BF68((FloorFlagsBuffer *)new_var, buf->f2);
         n = buf->f2;
         import_sync_records__6TLobbyFPs(&buf->data[n], buf->f4);
         if ((buf->f4 && buf->f4) && buf->f4)

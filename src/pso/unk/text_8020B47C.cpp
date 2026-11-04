@@ -7,7 +7,7 @@ extern "C" void TLobby__sub_8020B47C(FloorFlagsBuffer *buffer) {
     const s16 *values2;
     const s16 *values;
     s32 i2;
-    bswap_4_words__6TLobbyFv(buffer);
+    fn_8020B588(buffer);
     values = (const s16 *)((u8 *)buffer + buffer->object_offset);
     for (s32 floor = 0; floor < 18; ++floor) {
         if (TLobby__floor_enemy_group_table[floor].objects > 0) {
