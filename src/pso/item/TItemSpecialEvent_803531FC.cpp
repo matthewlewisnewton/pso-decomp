@@ -4,7 +4,7 @@
 typedef void (TItemSpecialEvent::*Handler)();
 
 // Technique index selects one of nine use-effect steps on this item. Each
-// step only reads the owner pointer at +0xF0.
+// step only uses TObjPlayer *owner.
 void TItemSpecialEvent::apply_use_effect() {
     Handler handlers[9] = {
         &TItemSpecialEvent::sub_803531F8,
