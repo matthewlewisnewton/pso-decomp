@@ -16818,6 +16818,35 @@ force_active:
   - yasminkov_2000h_ct__FPvll
   - yasminkov_7000v_ct__FPvlPv
   - yasminkov_9000m_eject_casing__13TUnk_804A6AD8Fll
+  - TWindowFukidasi__data_8044ED70
+  - TWindowFukidasi__data_805DCD08
+  - TWindowFukidasi__data_805DCD30
+  - TWindowFukidasi__sub_802505C0
+  - TWindowFukidasi__sub_80251790
+  - approach__15TWindowFukidasiFf
+  - calc_text_size__13TUnk_804CF0B8FPf
+  - clamp_position__13TUnk_804CF0B8FPvf
+  - clamp_text_size__15TWindowFukidasiFPvPv
+  - draw_body__13TUnk_804CF0B8FPvUlPff
+  - draw_body_row__13TUnk_804CF0B8FPvPvffff
+  - draw_name_plate__13TUnk_804CF0B8FP18TWindowDrawContextUl
+  - draw_tail__13TUnk_804CF0B8FPvUlPff
+  - follow_anchor__13TUnk_804CF0B8Fv
+  - get_boundary_offset__15TWindowFukidasiFlPf
+  - init_flags__15TWindowFukidasiFPvi
+  - is_speaker_far_or_offscreen__13TUnk_804CF0B8Fv
+  - lbl_805DCD10
+  - lbl_805DCD54
+  - lbl_805DCDC0
+  - place_rect_at_head_or_slot__13TUnk_804CF0B8Fv
+  - project_anchor__13TUnk_804CF0B8FPfPf
+  - refresh_rect_placement__15TWindowFukidasiFPv
+  - rest_balloon__15TWindowFukidasiFv
+  - set_color__13TUnk_804CF0B8FUs
+  - shift_rect_with_head__15TWindowFukidasiFPvPvPv
+  - sub_802504A8__13TUnk_804CF0B8Fv
+  - sync_display_pos__15TWindowFukidasiFv
+  - try_place_bubble__15TWindowFukidasiFPvPvPv
 # --- force_active (END) ---
 # False pointers: packed data words whose values happen to land on code/data
 # addresses. dtk would emit a relocation and export the target symbol.
