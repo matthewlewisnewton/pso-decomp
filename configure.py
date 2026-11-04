@@ -686,15 +686,14 @@ MIDDLEWARE: List[Tuple[str, int, str, List[str], Dict[str, Dict[str, Any]]]] = [
         # _restgpr_25, and its glyph quads are the inlined SDK FIFO writers
         # (sth/stw to 0xCC008000), not calls. -inline on inlines only functions
         # marked inline, so queue_debug_text stays a call from debug_printf_at.
-        # The same flags cover the following matrix helpers, which stay exact.
+        # The matrix helpers in text_803D8910.cpp match under the ginja defaults.
         "pso/unk/text_803D8098.cpp": {
             "cflags": _switch(cflags_middleware, "-O3,p", "-opt nopeephole", "-use_lmw_stmw off", "-inline on"),
         },
-        # vec3_dot (0x803D89C0) and vec3_cross (0x803D8A18) contract each
-        # product into fmadds/fmsubs. The matrix helpers in this object do not
-        # use scalar float arithmetic, so contraction is the unit setting.
+        # vec3_dot (0x803D89C0) and vec3_cross (0x803D8A18) are fmadds/fmsubs.
+        # Ginja defaults otherwise; contraction is the only extra switch.
         "pso/unk/text_803D8910.cpp": {
-            "cflags": _switch(cflags_middleware, "-O3,p", "-opt nopeephole", "-use_lmw_stmw off", "-inline on", "-fp_contract on"),
+            "cflags": _switch(cflags_middleware, "-O3,p", "-opt nopeephole", "-fp_contract on"),
         },
     }),
     # mcFsGc ("Ver 1.10.00 Build:Sep 17 2002") with ACCESS's file transfer.
