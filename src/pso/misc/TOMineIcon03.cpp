@@ -12,13 +12,7 @@ s32 free_collision_body_parts(void *);
 
 extern void *tl_05;
 
-void *TOMineIcon03::create(void *arg0) {
-    void *o = __nw__7TObjectFUl(0x37C);
-    if (o != NULL) {
-        o = TOMineIcon03__ct(o, tl_05, arg0);
-    }
-    return o;
-}
+void *TOMineIcon03::create(void *arg0) { return new TOMineIcon03((TObject *)tl_05, arg0); }
 
 extern s32 __vt__12TOMineIcon03[];
 
