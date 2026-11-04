@@ -1,4 +1,9 @@
-# Paired-single SDK assembly and MWCC
+# Paired-single SDK assembly and MWCC (no-asm exception record)
+
+> **Exception record.** `transform_chunk_vertices_pos_normal` (0x803E3390,
+> `src/pso/unk/text_803E2D70.cpp`) is the single exception to the
+> CONTRIBUTING.md no-assembly rule, approved by Matt on 2026-11-04. It covers
+> only this function. The no-asm rule otherwise stands.
 
 Some GameCube functions in this binary are hand-scheduled Gekko paired-single
 assembly copied from (or modelled on) the Dolphin SDK, not CodeWarrior output.
@@ -34,8 +39,9 @@ custom variant:
 - `count - 1` iterations with a peeled first vertex, versus `count / 2`;
 - a 3x3 normal transform using `ps_muls1` (no translation).
 
-So it cannot be replaced by a call to `PSMTXROMultVecArray`. The source keeps
-the scalar `C_MTX*`-style equivalent; it compiles to 304 B and scores 0%.
+So it cannot be replaced by a call to `PSMTXROMultVecArray`. Before the
+exception the source used the scalar `C_MTX*`-style equivalent, which compiles
+to 304 B and scores 0%.
 `GXSetVtxAttrFmtv` in the same unit is the same kind of code.
 
 ## The Dolphin SDK ships these as `asm void`
@@ -83,10 +89,25 @@ Instruction reference: https://www.wiibrew.org/wiki/Paired_single.
   lane-selecting paired-single ops and scored 0%. No flag produces pre-`stwu`
   loads or an f14-up `stfd`-only save.
 
-## Repository policy
+## Repository policy and the one exception
 
 CONTRIBUTING.md forbids assembly anywhere (including `asm void`, `asm {}`,
-and `orig_asm` includes). Functions of this kind therefore stay as the honest
+and `orig_asm` includes). Functions of this kind normally stay as the honest
 scalar C equivalent, in the style of the SDK's `C_MTX*` functions, and remain
 unmatched. Do not chase them with steering pragmas, `__vec2x32float__`
 rewrites, or compiler swaps.
+
+**Exception (approved by Matt, 2026-11-04):** `transform_chunk_vertices_pos_normal`
+only. It is SDK-style hand-written paired-single code that MWCC cannot emit,
+and every matching project above keeps such routines as `asm void`. It is
+written the same way, as an MWCC `asm void` with `nofralloc`, the
+instructions written out with labels and comments. It does not use an
+`orig_asm` include or `.incbin`. The function now matches 100% (288 B).
+
+The asm is guarded by `#ifdef __MWERKS__`. The `#else` branch keeps the scalar
+C++ implementation as real compiled code for other compilers or future ports,
+mirroring the SDK's `PSMTX*` (asm) / `C_MTX*` (C) split. The GameCube build
+always uses the asm.
+
+No other function is covered. Any further exception needs Matt's explicit
+approval and its own entry here.

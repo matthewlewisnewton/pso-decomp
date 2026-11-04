@@ -298,9 +298,97 @@ typedef char ReorderedMatrix_803E3390_size[sizeof(ReorderedMatrix_803E3390) == 0
 typedef char VtxIn_803E3390_size[sizeof(VtxIn_803E3390) == 0x18 ? 1 : -1];
 typedef char VtxOut_803E3390_size[sizeof(VtxOut_803E3390) == 0x20 ? 1 : -1];
 
-// Pointer walk, as in transform_vertex_list. The matrix is the paired layout
-// from push_reordered_matrix_ps, not a row-major Mtx, so this is not
-// PSMTXMultVecArray. GC/2.6 emits scalar arithmetic for the loop.
+// One-time no-asm exception approved by Matt on 2026-11-04; see
+// docs/evidence/paired-single-sdk-asm.md. This is hand-scheduled Gekko
+// paired-single code in the shape of the Dolphin SDK's asm void
+// PSMTXROMultVecArray (24-byte pos+normal input, 32-byte output, 3x3 normal),
+// which MWCC cannot emit from C. Every matching GameCube decomp keeps such SDK
+// routines as asm void. As in the SDK's PSMTX*/C_MTX* split, the asm builds
+// only under Metrowerks (__MWERKS__); other compilers get the scalar C++ below.
+//
+// Matrix pairs: (m00,m10)(m20,m01)(m11,m21)(m02,m12)(m22,m03)(m13,m23).
+// Loads with W=1 force ps1 = 1.0; ps_madds0/1 accumulate position columns,
+// ps_muls1 starts the normal. The first vertex is peeled; stores use psq_stu
+// (+12, +8 W=1, +4, +8 W=1) leaving dst->pad untouched.
+#ifdef __MWERKS__
+asm void transform_chunk_vertices_pos_normal(register Hdr_803E34B0 *job, register ReorderedMatrix_803E3390 *matrix) {
+    nofralloc
+    lwz r5, 0x0(r3)
+    lwz r6, 0x4(r3)
+    lwz r7, 0x8(r3)
+    stwu r1, -0x40(r1)
+    stfd f14, 0x8(r1)
+    stfd f15, 0x10(r1)
+    addi r7, r7, -0x1
+    stfd f16, 0x18(r1)
+    stfd f17, 0x20(r1)
+    stfd f18, 0x28(r1)
+    mtctr r7
+    psq_l f0, 0x0(r4), 0, 0
+    addi r6, r6, -0x8
+    psq_l f1, 0x8(r4), 1, 0
+    addi r5, r5, -0xc
+    psq_l f6, 0x24(r4), 0, 0
+    psq_lu f8, 0x8(r6), 0, 0
+    psq_l f7, 0x2c(r4), 1, 0
+    psq_lu f9, 0x8(r6), 0, 0
+    ps_madds0 f11, f0, f8, f6
+    psq_l f2, 0xc(r4), 0, 0
+    ps_madds0 f12, f1, f8, f7
+    psq_l f3, 0x14(r4), 1, 0
+    ps_muls1 f13, f0, f9
+    psq_lu f10, 0x8(r6), 0, 0
+    ps_muls1 f14, f1, f9
+    psq_l f5, 0x20(r4), 1, 0
+    ps_madds1 f11, f2, f8, f11
+    ps_madds1 f12, f3, f8, f12
+    psq_l f4, 0x18(r4), 0, 0
+    ps_madds0 f13, f2, f10, f13
+    psq_lu f8, 0x8(r6), 0, 0
+    ps_madds0 f14, f3, f10, f14
+    ps_madds0 f15, f4, f9, f11
+    ps_madds0 f16, f5, f9, f12
+    psq_lu f9, 0x8(r6), 0, 0
+    ps_madds1 f17, f4, f10, f13
+    ps_madds1 f18, f5, f10, f14
+    psq_lu f10, 0x8(r6), 0, 0
+    cmpwi r7, 0x0
+    beq tail
+loop:
+    ps_madds0 f11, f0, f8, f6
+    psq_stu f15, 0xc(r5), 0, 0
+    ps_madds0 f12, f1, f8, f7
+    psq_stu f16, 0x8(r5), 1, 0
+    ps_muls1 f13, f0, f9
+    psq_stu f17, 0x4(r5), 0, 0
+    ps_muls1 f14, f1, f9
+    psq_stu f18, 0x8(r5), 1, 0
+    ps_madds1 f11, f2, f8, f11
+    ps_madds1 f12, f3, f8, f12
+    psq_lu f8, 0x8(r6), 0, 0
+    ps_madds0 f13, f2, f10, f13
+    ps_madds0 f14, f3, f10, f14
+    ps_madds0 f15, f4, f9, f11
+    ps_madds0 f16, f5, f9, f12
+    psq_lu f9, 0x8(r6), 0, 0
+    ps_madds1 f17, f4, f10, f13
+    ps_madds1 f18, f5, f10, f14
+    psq_lu f10, 0x8(r6), 0, 0
+    bdnz loop
+tail:
+    psq_stu f15, 0xc(r5), 0, 0
+    psq_stu f16, 0x8(r5), 1, 0
+    psq_stu f17, 0x4(r5), 0, 0
+    psq_stu f18, 0x8(r5), 1, 0
+    lfd f14, 0x8(r1)
+    lfd f15, 0x10(r1)
+    lfd f16, 0x18(r1)
+    lfd f17, 0x20(r1)
+    lfd f18, 0x28(r1)
+    addi r1, r1, 0x40
+    blr
+}
+#else
 void transform_chunk_vertices_pos_normal(Hdr_803E34B0 *job, ReorderedMatrix_803E3390 *matrix) {
     VtxOut_803E3390 *dst = (VtxOut_803E3390 *)job->dst;
     VtxIn_803E3390 *src = (VtxIn_803E3390 *)job->src;
@@ -322,6 +410,7 @@ void transform_chunk_vertices_pos_normal(Hdr_803E34B0 *job, ReorderedMatrix_803E
         dst++;
     }
 }
+#endif
 
 void TObjPlayer::transform_vertex_list() {
     Hdr_803E34B0 *arg0 = (Hdr_803E34B0 *)this;

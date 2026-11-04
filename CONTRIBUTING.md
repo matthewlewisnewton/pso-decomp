@@ -104,6 +104,8 @@ stale entries to make a diff smaller or include unrelated normalization without 
 - No assembly, anywhere. A function Nintendo or Metrowerks wrote in assembly keeps its C signature with the body
   `#include "orig_asm/<unit>/<function>.inc"`, and `tools/orig_asm.py` generates that body from the disc during the
   build. Never write assembly by hand; a function that can only be matched that way stays unmatched.
+  Single listed exception: `transform_chunk_vertices_pos_normal`, approved by Matt on 2026-11-04; see
+  [docs/evidence/paired-single-sdk-asm.md](docs/evidence/paired-single-sdk-asm.md).
 - No data copied out of the game: no byte dumps of textures, models, sounds or other assets.
 - Write readable source and prefer evidence-backed members and real types. Unresolved offsets, opaque pointers and
   legacy declarations may remain at a bounded interface when the evidence is incomplete; document their uncertainty
