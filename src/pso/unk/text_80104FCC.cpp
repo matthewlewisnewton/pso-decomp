@@ -79,8 +79,7 @@ struct Obj_80105538 {
 
 extern "C" {
 int is_quest_active(void);
-u8 get_technique_learn_limit(s8, u8);
-extern u32 jumptable_8049EEFC[];
+u8 get_technique_learn_limit(u8, u8);
 typedef s32 (*Fn_8010542C)(void *);
 extern Fn_8010542C item_create_fn_table[];
 struct In_801054E0 { u8 pad0; u8 idx; };
@@ -105,144 +104,205 @@ void send_6x60_standard_drop_item_request(Obj_80105538 *self);
 int roll_weapon_special_channel15(void* p);
 int roll_weapon_special_for_stars(void*);
 
-s32 check_equip_requirements(void *player, void *item, s32 *requirement) {
-    TObjPlayer *pl;
-    u8 *it;
-    u8 *rec;
-    s32 flags;
-    u8 type;
-    PlayerRequirementStats stats;
-    s32 level;
-    u8 learn_limit;
-    s16 disk_perm;
+// Slices of the ItemPMT record (lookup_item_pmt_record) this check loads.
+// Weapon: class at +8, ATP/MST/ATA minimums at +0xE/+0x10/+0x12.
+struct WeaponReqPmt {
+    u8 pad0[8];
+    u16 class_equip;
+    u8 padA[4];
+    u16 req_atp;
+    u16 req_mst;
+    u16 req_ata;
+};
+// Armor and barrier (type 1, subtype other than a unit): class at +0xE, level at +0x10.
+struct ArmorReqPmt {
+    u8 pad0[0xE];
+    u16 class_equip;
+    u8 level_req;
+};
+// Unit (type 1, subtype 3). restrict_index selects an android allow/deny case.
+struct UnitReqPmt {
+    u8 pad0[8];
+    s16 restrict_index;
+};
+// Mag: class word at +0x14.
+struct MagReqPmt {
+    u8 pad0[0x14];
+    u16 class_equip;
+};
 
-    pl = (TObjPlayer *)player;
-    it = (u8 *)item;
-    if (pl == NULL || it == NULL) {
+// Permission word whose human and newman bits are clear, so only an android passes.
+#define ANDROID_EQUIP_PERM 0xD7
+// Meseta above this (999999) is rejected.
+#define MESETA_EQUIP_CAP 0xF423F
+
+s32 check_equip_requirements(TObjPlayer *player, u8 *item, s32 *requirement) {
+    s32 flags;
+    PlayerRequirementStats stats;
+
+    if (player == NULL || item == NULL) {
         if (requirement != NULL) {
             *requirement |= 0x20;
         }
         return 0;
     }
-    if (((TObjChara *)pl)->obj_isState3_324() != 0 || pl->is_script_controlled() != 0) {
+    if (player->obj_isState3_324() != 0 || player->is_script_controlled() != 0) {
         if (requirement != NULL) {
             *requirement = 0;
         }
         return 1;
     }
     if (is_quest_active() != 0) {
-        s32 qflag;
-        u8 subtype;
+        u32 qflag;
 
         qflag = 0;
-        type = it[0];
-        if (type == 1) {
-            subtype = it[1];
-            if (subtype == 2) {
-                qflag = 3;
-            } else if (subtype >= 2) {
-                if (subtype < 4) {
-                    qflag = 4;
-                }
-            } else if (subtype >= 1) {
+        switch (item[0]) {
+        case 0:
+            qflag = 1;
+            break;
+        case 1:
+            switch (item[1]) {
+            case 1:
                 qflag = 2;
+                break;
+            case 2:
+                qflag = 3;
+                break;
+            case 3:
+                qflag = 4;
+                break;
             }
-        } else if (type < 1) {
-            if (type >= 0) {
-                qflag = 1;
-            }
-        } else if (type < 3) {
+            break;
+        case 2:
             qflag = 5;
+            break;
         }
         if (qflag != 0 && TItemMenuCtrl::query_flag(qflag) == 1) {
             return 0;
         }
     }
     flags = 0;
-    type = it[0];
-    if (type == 2) {
-        rec = (u8 *)lookup_item_pmt_record(it);
-        if (rec == NULL) {
-            flags |= 0x20;
-        } else if (check_class_equip_permission(pl, *(s16 *)(rec + 0x14)) == 0) {
-            flags |= 1;
-        }
-    } else if (type > 2) {
-        if (type == 4) {
-            if (*(s32 *)(it + 0x10) > 0xF0423F) {
-                flags |= 0x20;
-            }
-        }
-    } else if (type == 0) {
-        rec = (u8 *)lookup_item_pmt_record(it);
-        if (rec == NULL) {
-            flags |= 0x20;
-        } else {
-            if (check_class_equip_permission(pl, *(s16 *)(rec + 0x8)) == 0) {
+    switch (item[0]) {
+    case 0: {
+        WeaponReqPmt *rec;
+
+        rec = (WeaponReqPmt *)lookup_item_pmt_record(item);
+        if (rec != NULL) {
+            if (check_class_equip_permission(player, (s16)rec->class_equip) == 0) {
                 flags |= 1;
             }
             ((TWindowSubStatusDisp *)&stats)->clear_fields();
-            build_player_equipment_requirement_stats(pl, &stats);
-            if (stats.values[4] < (s16) * (u16 *)(rec + 0xE)) {
+            build_player_equipment_requirement_stats(player, &stats);
+            if (stats.values[0] < rec->req_atp) {
                 flags |= 2;
             }
-            if (stats.values[7] < (s16) * (u16 *)(rec + 0x12)) {
+            if (stats.values[3] < rec->req_ata) {
                 flags |= 4;
             }
-            if (stats.values[6] < (s16) * (u16 *)(rec + 0x10)) {
+            if (stats.values[2] < rec->req_mst) {
                 flags |= 8;
             }
+        } else {
+            flags |= 0x20;
         }
-    } else if (type >= 1) {
-        if (type == 1) {
-            if (it[1] == 3) {
-                if (check_class_equip_permission(pl, 0xD7) != 0) {
-                    rec = (u8 *)lookup_item_pmt_record(it);
-                    if (rec == NULL) {
-                        flags |= 0x20;
-                    } else {
-                        disk_perm = *(s16 *)(rec + 0x8);
-                        if (disk_perm <= 0x15) {
-                            if (jumptable_8049EEFC[disk_perm] == 0x80105250U) {
-                                flags |= 1;
-                            }
-                        }
-                    }
+        break;
+    }
+    case 1:
+        if (item[1] != 3) {
+            ArmorReqPmt *rec;
+
+            rec = (ArmorReqPmt *)lookup_item_pmt_record(item);
+            if (rec != NULL) {
+                if (check_class_equip_permission(player, (s16)rec->class_equip) == 0) {
+                    flags |= 1;
+                }
+                if (player->get_actor_level_index() < rec->level_req) {
+                    flags |= 0x10;
                 }
             } else {
-                rec = (u8 *)lookup_item_pmt_record(it);
-                if (rec == NULL) {
-                    flags |= 0x20;
-                } else {
-                    if (check_class_equip_permission(pl, *(s16 *)(rec + 0xE)) == 0) {
-                        flags |= 1;
-                    }
-                    level = pl->get_actor_level_index();
-                    if (level < rec[0x10]) {
-                        flags |= 0x10;
-                    }
-                }
+                flags |= 0x20;
             }
-        } else if (type == 3) {
-            if (it[1] == 8) {
-                if (check_class_equip_permission(pl, 0xD7) != 0) {
+        } else if (check_class_equip_permission(player, ANDROID_EQUIP_PERM) != 0) {
+            UnitReqPmt *rec;
+
+            rec = (UnitReqPmt *)lookup_item_pmt_record(item);
+            if (rec != NULL) {
+                switch (rec->restrict_index) {
+                case 0:
+                case 2:
+                case 3:
+                case 4:
+                case 6:
+                case 7:
+                case 8:
+                case 9:
+                case 10:
+                case 11:
+                case 12:
+                case 13:
+                case 14:
+                case 15:
+                case 17:
+                case 19:
+                case 20:
+                    break;
+                case 1:
+                case 5:
+                case 16:
+                case 18:
+                case 21:
                     flags |= 1;
+                    break;
                 }
-            } else if (it[1] == 2) {
-                learn_limit = get_technique_learn_limit((s8)pl->m_88d, it[4]);
-                if (learn_limit == 0xFF || learn_limit < it[2]) {
-                    flags |= 1;
-                }
+            } else {
+                flags |= 0x20;
             }
         }
+        break;
+    case 2: {
+        MagReqPmt *rec;
+
+        rec = (MagReqPmt *)lookup_item_pmt_record(item);
+        if (rec != NULL) {
+            if (check_class_equip_permission(player, (s16)rec->class_equip) == 0) {
+                flags |= 1;
+            }
+        } else {
+            flags |= 0x20;
+        }
+        break;
+    }
+    case 3:
+        switch (item[1]) {
+        case 2: {
+            u8 learn_limit;
+
+            learn_limit = get_technique_learn_limit(player->m_88d, item[4]);
+            if (learn_limit == 0xFF || learn_limit < item[2]) {
+                flags |= 1;
+            }
+            break;
+        }
+        case 8:
+            if (check_class_equip_permission(player, ANDROID_EQUIP_PERM) != 0) {
+                flags |= 1;
+            }
+            break;
+        }
+        break;
+    case 4:
+        if (MESETA_EQUIP_CAP < (s32)((TItemData *)item)->data2.data_u32) {
+            flags |= 0x20;
+        }
+        break;
     }
     if (requirement != NULL) {
         *requirement = flags;
     }
-    if (flags != 0) {
-        return 0;
+    if (flags == 0) {
+        return 1;
     }
-    return 1;
+    return 0;
 }
 
 int check_class_equip_permission(TObjPlayer *player, s32 perm) {
