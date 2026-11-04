@@ -52,9 +52,17 @@ per-site reason is recorded.
 
 `__fmadds` in `TWindowSubStatusDisp__sub_80257024`
 (`src/pso/misc/TWindowSubStatusDisp_80256B94.cpp`, added by #240): the fused
-multiply-add at `0x80257118` (`0.299f * span + depth_base`). This unit stays on
-the default `-fp_contract off`; turning contraction on for the whole file would
-rewrite the other exact functions. Port: write `0.299f * span + depth_base`.
+multiply-add at `0x80257118` (`0.299f * self->depth + ctx->depth`). The bar
+value is `((f32)open_tick - (y / 21 + x / inner_w) * 7.5) * 17`, and the
+original emits that as `fmuls`, `fsubs`, `fmuls`. Putting the tick on the
+right (`-((y / 21 + x / inner_w) * 7.5 - (f32)open_tick) * 17`) is what makes
+MWCC interleave the conversion with the divisions (97.8%); it also leaves an
+extra `fneg`. A unit `-fp_contract on` (dtk-template `configure.py` line for
+`-fp_contract on`, same as in-tree `PadRumble.cpp`) does fuse the depth add,
+and the other ten functions in the unit stay exact, but it rewrites the bar
+as `fnmsubs` and the function falls to 96.3%. The intrinsic stays so the
+depth `fmadds` is the one at `0x80257118` and the bar is left uncontracted.
+Port: write `0.299f * self->depth + ctx->depth`.
 
 Port should: `__fabsf`/`__fabs` → `fabsf`/`fabs`; `__abs` → `abs`; `__cntlzw` →
 a count-leading-zeros helper (`__builtin_clz` with a zero check, returns 32 for 0);

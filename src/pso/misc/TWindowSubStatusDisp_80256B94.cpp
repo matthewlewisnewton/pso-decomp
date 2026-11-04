@@ -191,7 +191,7 @@ void TWindowSubStatusDisp__sub_80257024(TUnk_804CF930 *self, TWindowDrawContext 
     Pos_80256E0C pos;
     f32 depth;
 
-    bar = 17.0f * ((f32)ctx->open_tick - (self->y / 21.0f + self->x / ctx->inner_w) * 7.5f);
+    bar = -((self->y / 21.0f + self->x / ctx->inner_w) * 7.5f - (f32)ctx->open_tick) * 17.0f;
     if (bar <= 0.0f) {
         return;
     }
