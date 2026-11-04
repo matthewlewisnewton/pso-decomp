@@ -170,22 +170,22 @@ Tbl_802B82B8 TBoss6Type1__motion_set_table[21] = {
 extern const s32 lbl_805DE3C8;
 extern s32 lbl_80470FAC[];
 
-void TBoss6Type1__sub_802B4B04(u8 *arg0);
-void TBoss6Type1__sub_802B5598(void *arg0, void *arg1);
-s32 TBoss6Type1__sub_802B6060(u8 *arg0);
+void TBoss6Type1__sub_802B4B04(TBoss6Type1 *arg0);
+void TBoss6Type1__sub_802B5598(TBoss6Type1 *self, Vec *out);
+s32 TBoss6Type1__sub_802B6060(TBoss6Type1 *arg0);
 extern RecoveredGlobal_802B5938_lbl_80470FFC lbl_80470FFC;
 extern RecoveredGlobal_802B5938_lbl_80471008 lbl_80471008;
 extern RecoveredGlobal_802B5970_lbl_80470FE4 lbl_80470FE4;
 extern RecoveredGlobal_802B5970_lbl_80470FF0 lbl_80470FF0;
-void TBoss6Type1__sub_802B5970(s32 arg0);
+void TBoss6Type1__sub_802B5970(TBoss6Type1 *arg0);
 extern RecoveredGlobal_802B7E88_lbl_80470CEC TBoss6Type1__param_table;
 extern const s32 lbl_805DE3A8;
 extern const s32 lbl_805DE3B0;
-void TBoss6Type1__sub_802B7D50(u8 *arg0);
+void TBoss6Type1__sub_802B7D50(TBoss6Type1 *arg0);
 extern RecoveredGlobal_802B5140_lbl_80470CD4 lbl_80470CD4;
 extern RecoveredGlobal_802B5140_lbl_80470CE0 lbl_80470CE0;
-void TBoss6Type1__sub_802B5140(s32 arg0, s32 arg1, s32 arg2);
-void TBoss6Type1__sub_802B4CF4(s32 arg0);
+void TBoss6Type1__sub_802B5140(TBoss6Type1 *arg0, s32 arg1, s32 arg2);
+void TBoss6Type1__sub_802B4CF4(TBoss6Type1 *arg0);
 void TBoss6Type1__sub_802B59A8(TBoss6Type1 *self);
 void TBoss6Type1__sub_802B59CC(TBoss6Type1 *self);
 void TBoss6Type1__sub_802B5AB0(TBoss6Type1 *self);
@@ -231,9 +231,9 @@ extern const f32 lbl_805DE3E4;
 extern const s32 lbl_805DE3AC;
 extern const s32 lbl_805DE3B4;
 void TBoss6Type1__sub_802B4A70(void* p);
-void TBoss6Type1__sub_802B4A90(void *p);
-void TBoss6Type1__sub_802B4B14(void* p);
-void TBoss6Type1__sub_802B4A9C(void*);
+void TBoss6Type1__sub_802B4A90(TBoss6Type1 *p);
+void TBoss6Type1__sub_802B4B14(TBoss6Type1 *p);
+void TBoss6Type1__sub_802B4A9C(TBoss6Type1 *);
 
 typedef char RecoveredGlobal_802B5140_lbl_80470CD4_size[sizeof(RecoveredGlobal_802B5140_lbl_80470CD4) == 0xC ? 1 : -1];
 typedef char RecoveredGlobal_802B5140_lbl_80470CE0_size[sizeof(RecoveredGlobal_802B5140_lbl_80470CE0) == 0xC ? 1 : -1];
@@ -537,7 +537,7 @@ s32 TBoss6Type1__ct(s32 arg0_, s32 parent, s32 arg2_) {
     self->m_4d8 = 1.0f;
     self->reset_fields_4e0();
     self->reset_param();
-    TBoss6Type1__sub_802B7D50(arg0);
+    TBoss6Type1__sub_802B7D50(self);
     self->unk_408 = 0;
     TBoss6Type1__sub_802B4D38(self);
     self->clear_slot_array();
@@ -554,7 +554,7 @@ TBoss6Type1::~TBoss6Type1() {
     s32 i;
     TBoss6Type1__sub_802B4A70(this);
     TBoss6Type1__sub_802B4B14(this);
-    TBoss6Type1__sub_802B4CF4((s32)this);
+    TBoss6Type1__sub_802B4CF4(this);
     ((TBoss6PlotFalz *)scroll_strips_v)->free_buffer_pairs();
     ((TBoss6PlotFalz *)scroll_strips_u)->free_buffer_pairs();
     for (i = 0; i < 2; i++) {
@@ -1105,8 +1105,7 @@ void TBoss6Type1::update_turn_to_center() {
   }
 }
 
-void TBoss6Type1__sub_802B7D50(u8 *arg0) {
-    TBoss6Type1 *self = (TBoss6Type1 *)arg0;
+void TBoss6Type1__sub_802B7D50(TBoss6Type1 *self) {
     self->m_4e8 = 0.0f;
     self->m_4ec = 0;
     self->m_4f0 = (s32) lbl_805DE3A8;
@@ -1663,8 +1662,8 @@ void TBoss6Type1::set_part_default_value(int a0, void* a1) {
 extern "C" {
 
 
-s32 TBoss6Type1__sub_802B6060(u8 *arg0) {
-    return ((TObjBase *)arg0)->position.y > 100.0f;
+s32 TBoss6Type1__sub_802B6060(TBoss6Type1 *arg0) {
+    return arg0->position.y > 100.0f;
 }
 
 s32 TBoss6Type1__sub_802B600C(TBoss6Type1 *arg0) {
@@ -1749,7 +1748,7 @@ void TBoss6Type1::sub_802B5CB4() {
     case 13:
     case 14:
     case 15:
-        TBoss6Type1__sub_802B5970((s32) this);
+        TBoss6Type1__sub_802B5970(this);
         break;
     case 22:
         TBoss6Type1__sub_802B59CC(this);
@@ -1762,13 +1761,13 @@ void TBoss6Type1::sub_802B5CB4() {
         break;
     case 30:
     case 31:
-        TBoss6Type1__sub_802B5970((s32) this);
+        TBoss6Type1__sub_802B5970(this);
         break;
     case 27:
-        TBoss6Type1__sub_802B5970((s32) this);
+        TBoss6Type1__sub_802B5970(this);
         break;
     case 32:
-        TBoss6Type1__sub_802B5970((s32) this);
+        TBoss6Type1__sub_802B5970(this);
         break;
     case 16:
     case 17:
@@ -1870,8 +1869,8 @@ void TBoss6Type1__sub_802B59CC(TBoss6Type1 *self) {
 void TBoss6Type1__sub_802B59A8(TBoss6Type1 *self) {
     TBoss6Type1::fire_at_all_players(self, 0.0f);
 }
-void TBoss6Type1__sub_802B5970(s32 arg0) {
-    TBoss6Type1::request_jittered_camera((void *)arg0, (void *)((void *)&lbl_80470FE4.value), (void *)((void *)&lbl_80470FF0.value), 0xFFFF);
+void TBoss6Type1__sub_802B5970(TBoss6Type1 *arg0) {
+    TBoss6Type1::request_jittered_camera(arg0, (void *)((void *)&lbl_80470FE4.value), (void *)((void *)&lbl_80470FF0.value), 0xFFFF);
 }
 
 void TBoss6Type1::request_default_jittered_camera() {
@@ -1937,9 +1936,7 @@ void TBoss6Type1::calc_grid_cell_position(void *o_, void *out_) {
     out->y = o->position.y;
     out->z = 7.9787235f * (f32)c - 63.82979f;
 }
-void TBoss6Type1__sub_802B5598(void *arg0, void *arg1) {
-    TBoss6Type1 *self = (TBoss6Type1 *)arg0;
-    Vec *out = (Vec *)arg1;
+void TBoss6Type1__sub_802B5598(TBoss6Type1 *self, Vec *out) {
     f32 var_f31;
     s32 temp_r31;
     s32 var_r4;
@@ -2035,7 +2032,7 @@ s32 TBoss6Type1::count_matches(s32 arg1, s32 arg2) {
     return cnt;
 }
 
-void TBoss6Type1__sub_802B5140(s32 arg0, s32 arg1, s32 arg2) {
+void TBoss6Type1__sub_802B5140(TBoss6Type1 *arg0, s32 arg1, s32 arg2) {
     typedef char sp8_offset[(offsetof(Stack_802B5140, sp8) == 0x0) ? 1 : -1];
     typedef char spC_offset[(offsetof(Stack_802B5140, spC) == 0x4) ? 1 : -1];
     typedef char sp10_offset[(offsetof(Stack_802B5140, sp10) == 0x8) ? 1 : -1];
@@ -2062,7 +2059,7 @@ void TBoss6Type1__sub_802B5140(s32 arg0, s32 arg1, s32 arg2) {
     stack.spC *= var_f31;
     stack.sp10 *= var_f31;
     vec3_add_to(&stack.sp8, &lbl_80470CD4.value);
-    VecCopy(&((TBoss6Type1 *)arg0)->position, (const Vec *)(&stack.sp8));
+    VecCopy(&arg0->position, (const Vec *)(&stack.sp8));
 }
 void TBoss6Type1::ease_toward_target(s32 a, s32 b) {
     s32 h = b / 2;
@@ -2135,11 +2132,11 @@ void TBoss6Type1__sub_802B4D38(TBoss6Type1 *self) {
     for (i = 0; i < 4; i++) self->effect_slots[i] = 0;
 }
 
-void TBoss6Type1__sub_802B4CF4(s32 arg0) {
+void TBoss6Type1__sub_802B4CF4(TBoss6Type1 *arg0) {
     s32 var_r31;
     var_r31 = 0;
     do {
-        ((TBoss6Type1 *)arg0)->release_effect_slot(var_r31);
+        arg0->release_effect_slot(var_r31);
         var_r31 += 1;
     } while (var_r31 < 4);
 }
@@ -2187,15 +2184,13 @@ void TBoss6Type1::clear_slot_array() {
     for (i = 0; i < lbl_805DE2D4; i++) this->unk_50C[i] = 0;
 }
 
-void TBoss6Type1__sub_802B4B14(void* p) { TBoss6Type1__sub_802B4A9C(p); }
+void TBoss6Type1__sub_802B4B14(TBoss6Type1 *p) { TBoss6Type1__sub_802B4A9C(p); }
 
-void TBoss6Type1__sub_802B4B04(u8 *arg0) {
-    TBoss6Type1 *self = (TBoss6Type1 *)arg0;
+void TBoss6Type1__sub_802B4B04(TBoss6Type1 *self) {
     self->m_508 = self->m_508 + 1;
 }
 
-void TBoss6Type1__sub_802B4A9C(void *p) {
-    TBoss6Type1 *boss = (TBoss6Type1 *)p;
+void TBoss6Type1__sub_802B4A9C(TBoss6Type1 *boss) {
     s32 i;
     boss->m_508 = 0;
     for (i = 0; i < lbl_805DE2D4; i++) {
@@ -2206,7 +2201,7 @@ void TBoss6Type1__sub_802B4A9C(void *p) {
         }
     }
 }
-void TBoss6Type1__sub_802B4A90(void *p) { ((TBoss6Type1 *)p)->map_csn = 0; }
+void TBoss6Type1__sub_802B4A90(TBoss6Type1 *p) { p->map_csn = 0; }
 
 void TBoss6Type1__sub_802B4A70(void* p) { TBoss6Type1::release_object(p); }
 
