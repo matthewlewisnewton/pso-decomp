@@ -6,28 +6,28 @@
 
 extern "C" s32 is_split_screen();
 
-extern "C" void TBoss8Dragon__sub_802F4380(TBoss8Dragon *self) {
+void TBoss8Dragon::render() {
     s32 view = 0;
     u8 pos[0xC];
 
     if (check_demo_mode() != 0) {
-        self->draw_motion_model();
+        draw_motion_model();
         return;
     }
     if (is_split_screen() != 0) {
         view = TCameraCtrl::get_camera_mode();
     }
-    self->sub_802F4098(pos);
-    if (self->defer_render() != 0) {
+    sub_802F4098(pos);
+    if (defer_render() != 0) {
         if ((TCameraCtrl::get_mode(&main_task) & MAIN_TASK_SCENE_PASSES) == 0) {
-            self->render_body_model();
-            self->copy_vectors();
+            render_body_model();
+            copy_vectors();
         }
-        if (self->renderFadeStates[view].isFading() == 0) {
-            self->draw_with_fade((s32)pos, view);
+        if (renderFadeStates[view].isFading() == 0) {
+            draw_with_fade((s32)pos, view);
         }
-        self->render_nodes_flagged();
-    } else if (self->renderFadeStates[view].isFading() != 0) {
-        self->draw_with_fade((s32)pos, view);
+        render_nodes_flagged();
+    } else if (renderFadeStates[view].isFading() != 0) {
+        draw_with_fade((s32)pos, view);
     }
 }

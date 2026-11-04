@@ -6,30 +6,36 @@ struct NJS_OBJECT;
 #include <dolphin/mtx/GeoTypes.h>
 #include "pso/enemy/TObjEneDD_ST.h"
 #include "pso/misc/RenderFadeState.h"
+#include "pso/player/TObjChara.h"
 
-// The 0x3C0 prefix is TObjEneDD_ST (vptr at 0x18, vfunc_104 at slot 104).
-// vfunc_105 and draw_motion_model are the next two slots, so draw_motion_model
-// is slot 106. ~TBoss8Dragon is declared and defined as the existing
-// __dt__12TBoss8DragonFv, which keeps MWCC from emitting a second vtable.
+// The 0x3C0 prefix is TObjEneDD_ST. These overrides are the slots whose
+// addresses differ from __vt__12TObjEneDD_ST. ~TBoss8Dragon is declared and
+// defined as the existing __dt__12TBoss8DragonFv, so this class does not emit
+// a second table: a C++ destructor would destroy the fade slots after the
+// embedded TObject, and the original tears the fade slots down first.
 struct TBoss8Dragon : public TObjEneDD_ST
 {
     virtual ~TBoss8Dragon();
+    virtual void run_task();
+    virtual void render();
+    virtual void render_shadows();
+    virtual f32 receive_direct_attack(void *, DirectAttackPayload, void *, s32, s32);
+    virtual void vfunc_28();
+    virtual void apply_poison_status();
+    virtual void apply_paralysis();
+    virtual void apply_slow_status();
+    virtual void apply_confusion_status();
+    virtual void apply_movement_ailment(s32);
+    virtual void apply_shock_status();
+    virtual void clear_harmful_statuses();
+    virtual void vfunc_61();
+    virtual void vfunc_62();
+    virtual void vfunc_63();
+    virtual void dispatch_action(u32 state, s32 reason);
+    virtual void vfunc_88();
     virtual s32 vfunc_105();
     virtual void draw_motion_model();
     void sub_802F4098(u8 *);
-    void vfunc_63();
-    void vfunc_62();
-    void vfunc_61();
-    void vfunc_50();
-    void vfunc_49();
-    void vfunc_48(s32);
-    void vfunc_47();
-    void vfunc_46();
-    void vfunc_45();
-    void vfunc_44();
-    void vfunc_28();
-    void render_shadows();
-    void run_task();
     s32 hasActiveRenderFade();
 
     u32 m_3c0;
