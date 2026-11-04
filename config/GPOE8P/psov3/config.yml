@@ -4645,7 +4645,7 @@ force_active:
   - copy_view_state__11TCameraCtrlFl
   - copy_with_guild_card_tag__13TPlyRecvLoginFPl
   - countModelNodes__12TBoss1DragonFP15DragonModelNode
-  - count_active_items__15TWindowMainMenuFi
+  - count_active_items__19TWindowMenuMainMenuFv
   - count_active_players__14TBoss4DarkFalzFv
   - count_balloon_slots__11TWindowCtrlFv
   - count_card_layout_entries__6TLobbyFv
@@ -5362,7 +5362,7 @@ force_active:
   - fill_list_entry__6TLobbyFPvPv
   - fill_range__15TBoss6SwordWaveFPvPv
   - filter_input_flags__12TBoss1DragonFiii
-  - find_active_item_by_id__15TWindowMainMenuFii
+  - find_active_item_by_id__19TWindowMenuMainMenuFi
   - find_active_pad_rumble_effect_by_id__FUl
   - find_archive_entry__6TLobbyFPvPvPvPv
   - find_area_technique_contact__FPviPvPv
@@ -5378,7 +5378,7 @@ force_active:
   - find_free_item_slot__15TWindowMainMenuFPv
   - find_free_pad_rumble_effect_slot__Fv
   - find_free_pool_entry__6TLobbyFPv
-  - find_free_slot__15TWindowMainMenuFv
+  - find_free_slot__19TWindowMenuMainMenuFv
   - find_free_slot__6TLobbyFv
   - find_gsl_entry__FPv
   - find_heal_target__13TOHealGeneralFv
@@ -6580,7 +6580,7 @@ force_active:
   - is_in_view_depth__15TODoorVS2Door01Ff
   - is_in_view_depth__6TSceneFf
   - is_inactive__8TItemMagFv
-  - is_item_active__15TWindowMainMenuFv
+  - is_item_active__14TMainMenuEntryFv
   - is_level_in_table__24TObjWaitEntryHairMoveSimFPv
   - is_load_complete__23TAdSinglePlyChrSelectGCFv
   - is_lobby_active__17TObjWarpBossMultiFv
