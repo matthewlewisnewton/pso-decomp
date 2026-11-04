@@ -1,4 +1,3 @@
-#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/boss/TBoss6EmptyWarp.h"
 #include "pso/boss/TBoss6EmptyWarp_802B0E2C.h"
@@ -7,16 +6,34 @@
 
 #include "pso/boss/TBoss6PlotFalz.h"
 #include "pso/boss/TBoss6Thanks.h"
+#include "pso/render/render_util.h"
+#include "pso/misc/TLobby_801E2F94.h"
+
+
+const char *lbl_805D3E90 = "TBoss6EmptyWarp";
+
+// Full-screen quad drawn over the view by TBoss6EmptyWarp::render.
+ColorLineVertex empty_warp_overlay_vertices[4] = {
+    { 0.0f, 0.0f }, { 640.0f, 0.0f }, { 640.0f, 480.0f }, { 0.0f, 480.0f },
+};
+__declspec(section ".rodata") u32 empty_warp_overlay_zero_vec[4] = { 0, 0, 0, 0 };
+
+void draw_empty_warp_overlay(void) {
+    ColorLineList stack;
+    stack.colors = empty_warp_overlay_zero_vec;
+    stack.unk_8 = 0;
+    stack.count = 4;
+    stack.verts = empty_warp_overlay_vertices;
+    set_depth_buffer_settings_1();
+    stack.draw_strip_swap_color(4, 2, -1.0f);
+    restore_saved_depth_alpha_state();
+}
 
 extern "C" {
 s32 is_flag_set__14TBoss6PlotFalzFv();
 s32 is_ship_door_ready__12TBoss6ThanksFv();
-extern s32 lbl_804709E0[];
-extern s32 lbl_804709E8[];
-void end_cutscene_camera__14TBoss6PlotFalzFPv(void);
-int draw_empty_warp_overlay(void*);
 
-void TBoss6EmptyWarp::render() { { (void)(draw_empty_warp_overlay(this)); return; } }
+void TBoss6EmptyWarp::render() { draw_empty_warp_overlay(); }
 
 extern s32 __vt__15TBoss6EmptyWarp[];
 
@@ -31,9 +48,9 @@ void TBoss6EmptyWarp::run_task() {
         TBoss6EmptyWarp::init_warp();
         if (is_ship_door_ready__12TBoss6ThanksFv() != 0) {
             TBoss6Thanks::create();
-            play_area_music((char *)(lbl_804709E0));
+            play_area_music((char *)("T2.adx"));
         } else {
-            play_area_music((char *)(lbl_804709E8));
+            play_area_music((char *)("HALL.adx"));
         }
         queue_destruction__7TObjectFv((arg0));
     }
@@ -41,24 +58,23 @@ void TBoss6EmptyWarp::run_task() {
 
 }
 TBoss6EmptyWarp::~TBoss6EmptyWarp() {
-    end_cutscene_camera__14TBoss6PlotFalzFPv();
+    TBoss6PlotFalz::end_cutscene_camera();
 }
 extern "C" {
 
 void __ct__7TObjectFP7TObject(void *);
 
-extern void *lbl_805D3E90;
 
 void *TBoss6EmptyWarp__ct(void *boss6_empty_warp) {
     __ct__7TObjectFP7TObject(boss6_empty_warp);
     *(s32 **)((s8 *)boss6_empty_warp + 0x18) = __vt__15TBoss6EmptyWarp;
-    *(void * *)&((TBoss6EmptyWarp *)boss6_empty_warp)->m_name = lbl_805D3E90;
+    ((TBoss6EmptyWarp *)boss6_empty_warp)->m_name = lbl_805D3E90;
     TBoss6PlotFalz::freeze_all_players();
     *(u32 *)((s8 *)boss6_empty_warp + 0x1C) = 0;
     return boss6_empty_warp;
 }
 
-
+s32 play_sound_effect(s32, s32, s32, s32);
 void *__nw__7TObjectFUl(int);
 
 extern void *tl_02;
