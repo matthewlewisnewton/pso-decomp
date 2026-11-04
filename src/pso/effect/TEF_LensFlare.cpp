@@ -87,14 +87,8 @@ struct VObj_8008194C_80081278 : Base_8008194C_80081278 {
 };
 
 extern "C" {
-s32 __ct__8TObjBaseFP7TObject(void *, void *);
 extern LensFlareElement lens_flare_reflected_element_descriptors[10];
-extern s32 __vt__13TEF_LensFlare[];
 extern const char *TEF_LensFlare__class_name;
-u8 *TEF_LensFlare__ct(u8 *arg0, s32 arg1, s32 arg2);
-void *__dt__13TEF_LensFlareFv(void *arg0, s16 arg1);
-void __dl__7TObjectFPv(void *);
-
 }
 extern "C" {
 extern const char TEF_LensFlare__class_name_string[] = "TEF_LensFlare";
@@ -122,12 +116,10 @@ TEF_LensFlare::~TEF_LensFlare() {
 
 
 #pragma push
-#pragma fp_contract on
-// Scoped frontend controls preserve the named floating-point lifetimes;
-// the backend still optimizes the complete function.
+// The descriptor loop keeps its induction pointer separate from the hoisted
+// definition-table base; default propagation swaps those two callee-saved
+// registers. This is the only frontend control the object still needs.
 #pragma opt_propagation off
-#pragma opt_lifetimes off
-#pragma opt_common_subs off
 void TEF_LensFlare::render() {
     Vec *sprite_position;
     if (TMainTask::get_render_pass() != 0 && camera_ctrl_instance != NULL) {
@@ -285,15 +277,10 @@ void TEF_LensFlare::render() {
 }
 #pragma pop
 
-extern "C" {
-
-u8 *TEF_LensFlare__ct(u8 *ef_lens_flare, s32 parent, s32 arg2) {
-    __ct__8TObjBaseFP7TObject((void *)ef_lens_flare, (void *)parent);
-    *(s32 **)((s8 *)ef_lens_flare + 0x18) = __vt__13TEF_LensFlare;
-    ((TEF_LensFlare *)ef_lens_flare)->m_name = TEF_LensFlare__class_name;
-    ((TEF_LensFlare *)(ef_lens_flare))->apply_object_set_data((void *)arg2);
-    ((TEF_LensFlare *)ef_lens_flare)->elements = lens_flare_reflected_element_descriptors;
-    return ef_lens_flare;
+TEF_LensFlare::TEF_LensFlare(TObject *parent, void *set_data) : TObjBase(parent) {
+    m_name = TEF_LensFlare__class_name;
+    apply_object_set_data(set_data);
+    elements = lens_flare_reflected_element_descriptors;
 }
 
 void TEF_LensFlare::run_task() {  }
@@ -302,8 +289,6 @@ void TEF_PvrWave::render() {  }
 void TEF_PvrWave::run_task() {
     struct VObj_8008194C_80081278 *o = (struct VObj_8008194C_80081278 *)*(void **)((s8 *)this + 0x1C);
     o->m1();
-}
-
 }
 
 extern "C" __declspec(section ".rodata") const Vec lbl_80438E40 = {0.0f, 0.0f, -1.0f};

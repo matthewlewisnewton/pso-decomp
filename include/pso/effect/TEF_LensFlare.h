@@ -7,6 +7,7 @@
 struct LensFlareElement;
 
 struct TEF_LensFlare : public TObjBase {
+    TEF_LensFlare(TObject *parent, void *set_data);
     virtual ~TEF_LensFlare();
     virtual void render();
     virtual void run_task();
