@@ -19,6 +19,8 @@ struct TLobbyFloorItemEntry {
 typedef char TLobbyFloorItemEntrySize[(sizeof(TLobbyFloorItemEntry) == 0x24) ? 1 : -1];
 typedef char TLobbyFloorItemEntryDataOffset[(offsetof(TLobbyFloorItemEntry, item_data) == 0x10) ? 1 : -1];
 
+struct Lobby_8001FA1C;
+
 struct TLobby : public TObject {
     // Whether a challenge-mode task is running.
     static s32 is_flag_set();
@@ -141,12 +143,13 @@ struct TLobby : public TObject {
     s32 alloc_download_quest(s32 arg1, s32 *arg2);
     static void set_stream_and_load_file(int a0);
     static void set_stream_state(int a0);
-    static s32 get_file_size();
+    static s32 get_file_size(const char *name);
     static void run_frame();
     static void free_static_buffer(void* a0);
     static void alloc_from_heap(void* a0);
     static void pump_frames();
     static void add_named_entry(s32 arg0, s32 arg1);
+    static s32 create_named_entry(s32 name, s32 buffer, u32 callback, void *src, void **out);
     static void notify_and_close();
     static void destroy_instance();
     static void pop_and_close();

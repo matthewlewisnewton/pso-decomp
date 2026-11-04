@@ -28,18 +28,16 @@ typedef struct Lobby_8001FD98 {
     Ent_8001FD98 *entries;
 } Lobby_8001FD98;
 
-struct Ctx_8001FA1C { s32 f0; s32 f4; u8 pad8[0x43C - 8]; s32 f43C; };
-
 struct Lobby_8001FA1C {
     s32 f0;
     s32 *f4;
     s32 *f8;
-    Ctx_8001FA1C *fC;
+    BmlResource *fC;
     s32 f10;
     u32 f14;
 };
 
-struct Params_8001FA1C { Ctx_8001FA1C *a; s32 b; };
+struct Params_8001FA1C { void *a; s32 b; };
 
 struct Lobby_8001FB6C;
 struct Rec_80020004 { char name[0x20]; s32 size; u8 pad24[8]; s32 texSize; u8 pad30[0x10]; };
@@ -467,8 +465,7 @@ void load_bin_motion_callback(void *arg0) {
 
 struct Obj_8001F8D8;
 
-void load_bin_model_callback(void *request) {
-    Lobby_8001FA1C *self = (Lobby_8001FA1C *)request;
+void load_bin_model_callback(Lobby_8001FA1C *self) {
     char name[0x20];
     Params_8001FA1C params;
     u32 i;
@@ -490,14 +487,14 @@ void load_bin_model_callback(void *request) {
             r = create_file_load_entry__6TLobbyFllUllPPv(name, *slot, (void *)increment_ref_and_set_flag__6TLobbyFPv, &params, &handle);
             if (r >= 0) {
                 TLobby__sub_8001EDD8(self->fC, handle);
-                self->fC->f43C++;
-            } else if (!(self->fC->f0 & 4)) {
+                self->fC->expected_textures++;
+            } else if (!(self->fC->flags & 4)) {
                 debug_print__6TLobbyFle(lbl_80434C70, name, r);
             }
             break;
         case 0x4E4A434D:
             *self->f4 = data;
-            self->fC->f4++;
+            self->fC->loaded_models++;
             break;
         default:
             debug_print__6TLobbyFle(lbl_80434C98);
@@ -796,9 +793,8 @@ BmlResource::BmlResource(s32 kind, BmlResourceDescriptor *descriptor, s32 arg3, 
     return;
 }
 
-// Second initializer for the BmlResource object (0x8002058C). Strings at the
-// calls are "TBinModel_NORMAL", "TBinModel_REQ", and "TBinModel:Too Many Files."
-// Linked callers use the placeholder name TLobby__sub_8002058C.
+// init_from_id_lists (0x8002058C). Strings at the calls are
+// "TBinModel_NORMAL", "TBinModel_REQ", and "TBinModel:Too Many Files."
 extern char lbl_80434E4C[];
 extern char lbl_80434E60[];
 
@@ -818,18 +814,16 @@ static inline void request_motion_list(BmlResource *self, u32 *list) {
     s32 handle;
     s32 i;
     for (i = 0; *list != 0; list++, i++) {
-        req.a = (Ctx_8001FA1C *)&self->motions[i].motion;
+        req.a = &self->motions[i].motion;
         req.b = (s32)self;
-        create_named_entry__6TLobbyFiiUiiPv(*list, lobby_download_buffer, (u32)&load_bin_motion_callback, &req,
+        TLobby::create_named_entry(*list, lobby_download_buffer, (u32)&load_bin_motion_callback, &req,
                                             (void **)&handle);
         TLobby__sub_8001EDD8(self, handle);
     }
 }
 
-// Second initializer. Callers keep the placeholder name TLobby__sub_8002058C;
-// a second BmlResource constructor mangling would disagree with those linked calls.
-extern "C" BmlResource *TLobby__sub_8002058C(BmlResource *self, s32 kind, u32 *models, u32 *motions, s32 on_loaded,
-                                            s32 on_loaded_arg, void *load_buffer) {
+// Callers allocate the 0x440 bytes. A constructor's implicit this swaps the motion-walk registers.
+BmlResource *init_from_id_lists(BmlResource *self, s32 kind, u32 *models, u32 *motions, s32 on_loaded, s32 on_loaded_arg, void *load_buffer) {
     self->reset();
     self->flags = kind;
     for (s32 i = 0; i < 0x100; i++) {
@@ -879,10 +873,10 @@ extern "C" BmlResource *TLobby__sub_8002058C(BmlResource *self, s32 kind, u32 *m
             req.f0 = *p;
             req.f4 = &self->models[i].model;
             req.f8 = &self->models[i].m_c;
-            req.fC = (Ctx_8001FA1C *)self;
+            req.fC = self;
             req.f10 = (s32)&self->models[i];
             req.f14 = TLobby::get_resource_file_size((const char *)*p);
-            create_named_entry__6TLobbyFiiUiiPv(*p, lobby_download_buffer, (u32)&load_bin_model_callback, &req,
+            TLobby::create_named_entry(*p, lobby_download_buffer, (u32)&load_bin_model_callback, &req,
                                                 (void **)&handle);
             TLobby__sub_8001EDD8(self, handle);
         }

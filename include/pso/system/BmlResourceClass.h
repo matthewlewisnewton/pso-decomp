@@ -55,4 +55,9 @@ typedef char BmlResource_models_offset[offsetof(BmlResource, models) == 0x42C ? 
 typedef char BmlResource_motions_offset[offsetof(BmlResource, motions) == 0x430 ? 1 : -1];
 typedef char BmlResource_model_count_offset[offsetof(BmlResource, model_count) == 0x434 ? 1 : -1];
 
+// Callers allocate the storage. A constructor's implicit this, and a static
+// member's emission order, both miss the original .text layout.
+BmlResource *init_from_id_lists(BmlResource *self, s32 kind, u32 *models, u32 *motions, s32 on_loaded,
+                                s32 on_loaded_arg, void *load_buffer);
+
 #endif
