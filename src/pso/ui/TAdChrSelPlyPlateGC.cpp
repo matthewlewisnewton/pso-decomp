@@ -588,9 +588,10 @@ void TAdChrSelPlyPlateGC::move_cursor(s32 x_, s32 y_, s32 dx, s32 dy, s32 depth)
     }
 }
 
-/* Keep this an inline helper (the unit builds with -inline noauto,level=1) with
-   slot declared before cur: open-coding the clamp in sub_802C5F1C, or declaring
-   cur first, changes which of the slot and the row pointer gets r7. */
+/* Keep this an inline helper (the unit builds with -inline on) with slot
+   declared before cur: open-coding the clamp in sub_802C5F1C, or declaring cur
+   first, changes which of the slot and the row pointer gets r7. See
+   docs/evidence/chr-select-slot-clamp-inline.md. */
 static inline s32 clamped_active_slot() {
     s32 slot = 3;
     s32 cur = TAdMultiPlyChrSelectGC__data_805D67D8;
