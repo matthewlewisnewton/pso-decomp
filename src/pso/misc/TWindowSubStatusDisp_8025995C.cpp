@@ -1,6 +1,5 @@
 #include "types.h"
 #include "pso/misc/TWindowSubStatusDisp_802598E4.h"
-#include "pso/misc/TWindowDrawContext.h"
 #include "pso/misc/TWindowKeyBoardSoft.h"
 #include "pso/system/memory.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
@@ -28,6 +27,7 @@ s32 render_forward__20TWindowSubStatusDispFPv();
 s32 set_glyph_quad_extents(s32, Pos_80259A84 *);
 s32 calc_gauge_scale__20TWindowSubStatusDispFPvPvi(s32, Pos_80259A84 *, s32);
 s32 end_render_forward__20TWindowSubStatusDispFPv();
+s32 try_open__19TWindowKeyBoardSoftFii(void *, Pos_80259A84 *);
 void begin_screen_draw(s32 arg0);
 s32 draw_textured_quad_at_depth(Pos_80259A84 *, f32);
 void set_draw_texture_and_color(s32 idx, s32 arg1);
@@ -130,7 +130,7 @@ void render_numeric_digit_entries(u8 *arg0, u8 *window_key_board_soft) {
         build_small_font_glyph_quad(g, &pos);
         break;
     }
-    if (((TWindowDrawContext *)window_key_board_soft)->try_open((f32 *)&pos) != 0)
+    if (try_open__19TWindowKeyBoardSoftFii(window_key_board_soft, &pos) != 0)
     {
       draw_textured_quad_at_depth(&pos, scale);
     }

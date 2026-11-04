@@ -3,8 +3,11 @@
 
 #include "types.h"
 #include <stddef.h>
+#include "pso/misc/TWindowDrawContext.h"
 
-struct TWindowKeyBoardSoft
+struct Vec2_8024EC34;
+
+struct TWindowKeyBoardSoft : public TWindowDrawContext
 {
     void spawn_key_effect(s32, s32);
     void handle_page_cycle_input(s32);
@@ -15,20 +18,6 @@ struct TWindowKeyBoardSoft
     int get_flag_bit6();
     int is_cursor_locked();
     void render();
-    f32 x;
-    f32 y;
-    f32 w;
-    f32 h;
-    f32 inner_x;
-    f32 inner_y;
-    f32 inner_w;
-    f32 inner_h;
-    f32 pivot[2];
-    f32 scale[2];
-    s32 open_tick;
-    u32 color;
-    f32 depth;
-    u8 _pad3C[0x8];
     u16 m_60;
     u16 m_62;
     u8 m_64;
@@ -77,8 +66,12 @@ struct TWindowKeyBoardSoft
     void animate_scale();
     s32 is_point_in_bounds(void *arg1);
     void adjust_pos_for_split_screen(s32 arg1);
+    static TWindowKeyBoardSoft *open_singleton(f32 *pos, f32 *size, f32 *scale, f32 depth, int flags);
     static u32 get_or_create_instance();
     static u32 free_singleton(u32 arg0, s16 arg1);
+    static Vec2_8024EC34 *get_viewport_offset(int view);
+    static s32 try_open(int context, int quad);
+    static s32 clip_textured_quad(void *context, void *quad);
     u32 init_layout();
     s32 get_state();
     void update_input_state();
@@ -131,6 +124,8 @@ struct TWindowKeyBoardSoft
     static void dispatch_request_0x10(s32 a, s32 b);
     static void dispatch_request_0f(s32 a, s32 b);
 };
+
+typedef char TWindowKeyBoardSoft_m60[offsetof(TWindowKeyBoardSoft, m_60) == 0x44 ? 1 : -1];
 
 typedef char TWindowKeyBoardSoft_depth_offset[offsetof(TWindowKeyBoardSoft, depth) == 0x38 ? 1 : -1];
 typedef char TWindowKeyBoardSoft_m_60_offset[offsetof(TWindowKeyBoardSoft, m_60) == 0x44 ? 1 : -1];

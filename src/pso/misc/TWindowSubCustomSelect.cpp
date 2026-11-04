@@ -223,7 +223,7 @@ void TWindowSubCustomSelect::draw_palette_cells(int ctx) {
 
 void render__22TWindowSubCustomSelectFv(TWindowSubCustomSelect *window_sub_custom_select) {
     s32 temp_r3;
-    temp_r3 = (s32)get_draw_context__11TWindowBaseFPv(window_sub_custom_select);
+    temp_r3 = (s32)TWindowBase::get_draw_context(window_sub_custom_select);
     ((TUnk_804CE018 *)window_sub_custom_select)->draw_window_frame((void *)temp_r3);
     window_sub_custom_select->draw_palette_cells(temp_r3);
     window_sub_custom_select->draw_cursor((u8 *)temp_r3);

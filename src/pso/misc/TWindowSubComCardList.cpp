@@ -96,7 +96,7 @@ s32 run_task__11TWindowMenuFv();
 void render__21TWindowSubComCardListFv(TWindowSubComCardList *arg0) {
     s32 temp_r3;
 
-    temp_r3 = (s32)get_draw_context__11TWindowBaseFPv(arg0);
+    temp_r3 = (s32)TWindowBase::get_draw_context(arg0);
     ((TUnk_804CE018 *)arg0)->draw_window_frame((void *)temp_r3);
     draw_visible_window_entries(arg0, (u8 *)arg0 + 0x24, temp_r3);
     ((TWindowMenu *)arg0)->render_selected_entry(temp_r3);
