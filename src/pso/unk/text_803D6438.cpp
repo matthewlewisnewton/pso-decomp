@@ -27,4 +27,19 @@ f32 TWindowSubStatusDisp::round_away_from_zero(f32 farg0) {
 }
 #pragma pop
 
+// sin_cos_table[angle & 0xFFFF] is the {sin, cos} pair init_sin_cos_table writes.
+struct SinCosPair {
+    f32 sine;
+    f32 cosine;
+};
+extern SinCosPair *sin_cos_table;
+
+f32 sin_table_lookup(s32 angle) {
+    return sin_cos_table[(u16)angle].sine;
+}
+
+f32 cos_table_lookup(s32 angle) {
+    return sin_cos_table[(u16)angle].cosine;
+}
+
 }

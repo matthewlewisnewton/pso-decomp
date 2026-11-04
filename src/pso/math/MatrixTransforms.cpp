@@ -50,6 +50,14 @@ extern "C" void copy_matrix(MtxP dest, const f32 (*source)[4]) {
 
 #pragma pop
 
+// Paired-single in the original (psq_l / ps_sub / psq_st). Scalar C++ is the
+// same operation; GC/2.6 does not emit that D-form from this source.
+extern "C" void subtract_vector(Vec *v, const Vec *sub) {
+    v->x -= sub->x;
+    v->y -= sub->y;
+    v->z -= sub->z;
+}
+
 void euler_zyx_to_quaternion(u8 *arg0, u8 *arg1) {
     f32 temp_f1;
     f32 temp_f27;
