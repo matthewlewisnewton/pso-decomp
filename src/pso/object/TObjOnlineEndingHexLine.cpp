@@ -2,7 +2,7 @@
 #include "pso/TObject.h"
 #include "pso/TObjOnlineEndingHexMove.h"
 #include "types.h"
-#include "pso/PairCopy.h"
+#include "pso/misc/TWindowSubSymbolChatPartsSet.h"
 
 struct Param_802E5CB0 { f32 a; f32 b; s32 c; f32 d; };
 typedef char Param_802E5CB0_size[sizeof(Param_802E5CB0) == 0x10 ? 1 : -1];
@@ -361,7 +361,7 @@ s32 calc_rotated_hex_point__23TObjOnlineEndingHexLineFPvPv(V2_802E55B8 *arg0, P2
     p.values[1] = p.values[1] * sc;
     p.values[0] = p.values[0] + ctr.x;
     p.values[1] = p.values[1] + ctr.y;
-    copy_vec2__28TWindowSubSymbolChatPartsSetFPv(arg0->values, p.values);
+    ((TWindowSubSymbolChatPartsSet *)arg0)->copy_vec2(&p);
     return 1;
 }
 #pragma pop
