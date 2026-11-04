@@ -4,9 +4,12 @@
 #include <stddef.h>
 #include "pso/misc/TUnk_804CDFE8.h"
 
+struct TWindowDrawContext;
+
 class TUnk_804CF0B8 : public TUnk_804CDFE8 {
 public:
     virtual ~TUnk_804CF0B8();
+    void draw_name_plate(TWindowDrawContext *ctx, u32 color);
     void draw_body(void *, u32, f32 *, f32);
     void draw_body_row(void *, void *, f32, f32, f32, f32);
     void draw_tail(void *, u32, f32 *, f32);

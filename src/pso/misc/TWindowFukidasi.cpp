@@ -135,7 +135,7 @@ struct Fuki_80252764 {
     f32 head[2];
 };
 
-struct View_80252764 {
+struct TWindowDrawContext {
     f32 x, y;
     u8 pad8[0x20];
     f32 sx;
@@ -144,6 +144,7 @@ struct View_80252764 {
     u8 pad34[4];
     f32 depth;
 };
+typedef TWindowDrawContext View_80252764;
 
 struct Fuki_802521E8 {
     u8 pad0[0x54];
@@ -236,7 +237,6 @@ void set_color__13TUnk_804CF0B8FUs(void *arg0, u16 arg1);
 void open__15TWindowFukidasiFPvPvi(u8 *arg0, u32 *arg1, s32 arg2);
 void set_text__15TWindowFukidasiFPvii(u8 *arg0, s32 arg1, s32 arg2);
 void init_flags__15TWindowFukidasiFPvi(void *arg0, s32 arg1);
-void draw_name_plate__15TWindowFukidasiFv(TUnk_804CF0B8 *, View_80252764 *, u32);
 void TWindowFukidasi__sub_80252C38(void *p);
 void clear_flag_20__13TUnk_804CF0B8Fv();
 s32 fn_80252CBC(void);
@@ -1057,13 +1057,13 @@ extern const f32 lbl_805DCD6C, lbl_805DCD70, lbl_805DCD74, lbl_805DCD7C;
 extern const f32 lbl_805DCD80, lbl_805DCD84, lbl_805DCD88, lbl_805DCD8C;
 extern const f32 lbl_805DCD54, lbl_805DCD10;
 }
-extern "C" void draw_name_plate__15TWindowFukidasiFv(TUnk_804CF0B8 *self, View_80252764 *ctx, u32 color) {
+void TUnk_804CF0B8::draw_name_plate(TWindowDrawContext *ctx, u32 color) {
     f32 pos[2];
     NamePlateQuad q;
     f32 depth, width;
     u32 textColor, plateColor;
-    if (self->name && ctx->age >= 0) {
-        width = (f32)(u32)get_name_text_width(self->name);
+    if (this->name && ctx->age >= 0) {
+        width = (f32)(u32)get_name_text_width(this->name);
         s32 alpha = ctx->age < 6 ? (s32)(lbl_805DCD5C * (f32)(ctx->age * 255)) : 255;
         textColor = (u32)alpha << 24;
         plateColor = color & 0x00ffffff;
@@ -1077,17 +1077,17 @@ extern "C" void draw_name_plate__15TWindowFukidasiFv(TUnk_804CF0B8 *self, View_8
         q.x0 = pos[0]; q.y0 = pos[1]; q.x1 = lbl_805DCD68 + q.x0; q.y1 = lbl_805DCD10 + q.y0;
         q.u0 = lbl_805DCD6C; q.v0 = lbl_805DCD70; q.u1 = lbl_805DCD74; q.v1 = TWindowFukidasi__data_805DCCE8;
         apply_context_transform_to_rect(ctx, &q); draw_textured_quad_at_depth(&q.x0, depth);
-        f64 right;
+        f32 right;
         if (width < TWindowFukidasi__data_805DCCFC)
             right = lbl_805DCD78 + ((TWindowFukidasi__data_805DCCFC + pos[0]) - lbl_805DCD68);
         else
             right = lbl_805DCD78 + ((pos[0] + width) - lbl_805DCD68);
-        q.x0 = right; q.y0 = pos[1]; q.x1 = lbl_805DCD68 + (f32)right; q.y1 = lbl_805DCD10 + pos[1];
+        q.x0 = right; q.y0 = pos[1]; q.x1 = lbl_805DCD68 + q.x0; q.y1 = lbl_805DCD10 + q.y0;
         q.u0 = lbl_805DCD7C; q.v0 = lbl_805DCD70; q.u1 = lbl_805DCD80; q.v1 = TWindowFukidasi__data_805DCCE8;
         apply_context_transform_to_rect(ctx, &q); draw_textured_quad_at_depth(&q.x0, depth);
         if (width > TWindowFukidasi__data_805DCCFC) {
-            q.x0 = lbl_805DCD68 + pos[0]; q.y0 = pos[1];
-            q.x1 = lbl_805DCD78 + ((pos[0] + width) - lbl_805DCD68); q.y1 = lbl_805DCD10 + pos[1];
+            q.x0 = pos[0] + lbl_805DCD68; q.y0 = pos[1];
+            q.x1 = ((pos[0] + width) - lbl_805DCD68) + lbl_805DCD78; q.y1 = lbl_805DCD10 + q.y0;
             q.u0 = lbl_805DCD74; q.v0 = lbl_805DCD70; q.u1 = lbl_805DCD7C; q.v1 = TWindowFukidasi__data_805DCCE8;
             apply_context_transform_to_rect(ctx, &q); draw_textured_quad_at_depth(&q.x0, depth);
         }
@@ -1097,7 +1097,7 @@ extern "C" void draw_name_plate__15TWindowFukidasiFv(TUnk_804CF0B8 *self, View_8
             pos[0] += TWindowFukidasi__data_805DCD0C * (TWindowFukidasi__data_805DCCFC - width);
         pos[1] += TWindowFukidasi__data_805DCD28;
         set_text_draw_params(ctx, 0, 1, TWindowFukidasi__data_805DCD4C / (lbl_805DCD88 + ctx->depth), lbl_805DCD8C);
-        draw_small_font_string_clipped(pos, self->name, textColor, lbl_805DCD54);
+        draw_small_font_string_clipped(pos, this->name, textColor, lbl_805DCD54);
     }
 }
 
@@ -1267,7 +1267,7 @@ void TUnk_804CF0B8::render() {
     ((TUnk_804CF0B8 *)((Fuki_80252764 *)this))->draw_tail(v, ((Fuki_80252764 *)this)->color, off, lbl_805DCD90 + ((Fuki_80252764 *)this)->f54);
     if (((TUnk_804CF0B8 *)((Fuki_80252764 *)this))->is_active() != 0) {
         draw_visible_window_entries(((Fuki_80252764 *)this), ((Fuki_80252764 *)this)->f24, v);
-        draw_name_plate__15TWindowFukidasiFv(this, v, ((Fuki_80252764 *)this)->color);
+        this->draw_name_plate(v, ((Fuki_80252764 *)this)->color);
     }
 }
 #pragma pop
