@@ -4,6 +4,8 @@
 #include "types.h"
 #include <stddef.h>
 
+struct Vec2_8024EC34;
+
 struct TWindowKeyBoardSoft
 {
     void spawn_key_effect(s32, s32);
@@ -79,6 +81,9 @@ struct TWindowKeyBoardSoft
     void adjust_pos_for_split_screen(s32 arg1);
     static u32 get_or_create_instance();
     static u32 free_singleton(u32 arg0, s16 arg1);
+    static Vec2_8024EC34 *get_viewport_offset(int view);
+    static s32 try_open(int context, int quad);
+    static s32 clip_textured_quad(void *context, void *quad);
     u32 init_layout();
     s32 get_state();
     void update_input_state();

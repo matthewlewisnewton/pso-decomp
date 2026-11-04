@@ -21,33 +21,33 @@ extern const f32 lbl_805DCC80;
 void apply_context_transform_to_rect(TWindowDrawContext *c, f32 *q);
 s32 is_split_screen();
 f32 TCameraCtrl__sub_80068A04(s32);
-Vec2_8024EC34 *get_viewport_offset__19TWindowKeyBoardSoftFi(s32);
 Vec2_8024EC34 *get_zero_vec2();
 extern Vec2_8024EC34 keyboard_soft_viewport_offset_table[];
 extern Vec2_8024EC34 lbl_8044EC80[];
 extern Vec2_8024EC34 lbl_8044EC98[];
 extern const float lbl_805DCC94;
-s32 clip_textured_quad__19TWindowKeyBoardSoftFPvPv(TWindowDrawContext *w, Box_8024E8E8 *b);
 extern const f32 lbl_805DCC98;
 extern const f32 lbl_805DCC9C;
 extern const f32 lbl_805DCCA0;
 extern const f32 lbl_805DCCA4;
 TWindowDrawContext *init_text_window_layout(TWindowDrawContext *win, f32 *pos, f32 *size, f32 *scale, u32 flags, f32 depth);
+}
 
 #pragma fp_contract on
 
 #pragma push
 #pragma fp_contract on
-void scale_point_about_pivot__19TWindowKeyBoardSoftFPf(TWindowDrawContext *c, f32 *q) {
-    if ((*(const f32 *)&lbl_805DCC78) != c->scale[0]) {
-        q[0] = c->scale[0] * (q[0] - c->pivot[0]) + c->pivot[0];
+void TWindowKeyBoardSoft::scale_point_about_pivot(f32 *q) {
+    if ((*(const f32 *)&lbl_805DCC78) != scale[0]) {
+        q[0] = scale[0] * (q[0] - pivot[0]) + pivot[0];
     }
-    if ((*(const f32 *)&lbl_805DCC78) != c->scale[1]) {
-        q[1] = c->scale[1] * (q[1] - c->pivot[1]) + c->pivot[1];
+    if ((*(const f32 *)&lbl_805DCC78) != scale[1]) {
+        q[1] = scale[1] * (q[1] - pivot[1]) + pivot[1];
     }
 }
 #pragma pop
 
+extern "C" {
 #pragma push
 #pragma fp_contract on
 void apply_context_transform_to_rect(TWindowDrawContext *c, f32 *q) {
@@ -99,7 +99,9 @@ extern "C" s32 is_point_in_bounds__19TWindowKeyBoardSoftFPv(TWindowDrawContext *
 
 #pragma push
 #pragma fp_contract on
-s32 clip_textured_quad__19TWindowKeyBoardSoftFPvPv(TWindowDrawContext *w, Box_8024E8E8 *b) {
+s32 TWindowKeyBoardSoft::clip_textured_quad(void *w_arg, void *b_arg) {
+    TWindowDrawContext *w = (TWindowDrawContext *)w_arg;
+    Box_8024E8E8 *b = (Box_8024E8E8 *)b_arg;
     f32 sx;
     f32 sy;
     f32 d;
@@ -132,8 +134,8 @@ s32 clip_textured_quad__19TWindowKeyBoardSoftFPvPv(TWindowDrawContext *w, Box_80
 }
 #pragma pop
 
-s32 try_open__19TWindowKeyBoardSoftFii(s32 arg0, s32 arg1) {
-    if (clip_textured_quad__19TWindowKeyBoardSoftFPvPv((TWindowDrawContext *)(arg0), (Box_8024E8E8 *)(arg1)) == 0) {
+s32 TWindowKeyBoardSoft::try_open(int arg0, int arg1) {
+    if (clip_textured_quad((void *)arg0, (void *)arg1) == 0) {
         return 0;
     }
     apply_context_transform_to_rect((TWindowDrawContext *)(arg0), (f32 *)arg1);
@@ -197,14 +199,14 @@ extern "C" void adjust_pos_for_split_screen__19TWindowKeyBoardSoftFl(f32 *arg0, 
     if (is_split_screen() == 0 || i == 0x64) {
         return;
     }
-    p = get_viewport_offset__19TWindowKeyBoardSoftFi(i);
+    p = TWindowKeyBoardSoft::get_viewport_offset(i);
     arg0[0] = arg0[0] + (p->x + TCameraCtrl__sub_80068A04(i));
     arg0[1] = arg0[1] + (p->y + TCameraCtrl::get_split_offset(i));
     arg0[0] = arg0[0] / TCameraCtrl::get_view_scale();
     arg0[1] = arg0[1] / TCameraCtrl::get_fov();
 }
 
-Vec2_8024EC34 *get_viewport_offset__19TWindowKeyBoardSoftFi(s32 i) {
+Vec2_8024EC34 *TWindowKeyBoardSoft::get_viewport_offset(int i) {
     switch (TCameraCtrl::get_camera_id()) {
     case 1:
         break;

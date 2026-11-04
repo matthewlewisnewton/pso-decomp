@@ -16,7 +16,6 @@ TWindowDrawContext *open_singleton__19TWindowKeyBoardSoftFiiii(f32 *pos, f32 *si
 TWindowDrawContext *free_singleton__19TWindowKeyBoardSoftFUls(TWindowDrawContext *, s16);
 TWindowDrawContext *init_layout__19TWindowKeyBoardSoftFv(TWindowDrawContext *);
 void adjust_pos_for_split_screen__19TWindowKeyBoardSoftFl(f32 *point, s32 view);
-s32 try_open__19TWindowKeyBoardSoftFii(s32 arg0, s32 arg1);
 }
 
 #endif
