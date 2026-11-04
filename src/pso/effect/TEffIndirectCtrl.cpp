@@ -250,12 +250,10 @@ void deform_indirect_texture_scroll(u8 *p, u32 px, u32 py, s32 amp, u32 phase) {
     start = (u32) ((first) ? (pxm) : (pym));
     for (line = 0; line < 64; line++)
     {
-      // Cancels out. Dropping the pair moves off16 out of r28 and the scroll loop stops matching.
-      off16++;
-      off16--;
       at = start;
       for (k = 0; k < 64; k++)
       {
+        off16 = offset;
         if (first)
         {
           idx = get_indirect_tile_coord(at, line, 64);
