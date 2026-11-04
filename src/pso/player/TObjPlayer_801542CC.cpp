@@ -225,16 +225,18 @@ void TObjPlayer__sub_8015431C(u8 *arg0) {
 void TObjPlayer__sub_8015434C(CollisionBody_80155FBC *set, s32 start, s32 count) {
     CollisionBody *body;
     s32 n;
-    s32 facing;
+    int facing;
     f32 sine;
     f32 cosine;
-    s32 flags;
+    int flags;
     s32 shape;
     s32 *entry;
     s32 i;
+    // Pair entries store this table word (add_unique_pair_entry__10TObjPlayerFUll).
+    u32 actor_id;
     TObjCollidable *actor;
     CollisionBody *other_body;
-    s32 other_facing;
+    int other_facing;
     s32 other_count;
     s32 j;
     CollisionBody *hit;
@@ -266,8 +268,9 @@ void TObjPlayer__sub_8015434C(CollisionBody_80155FBC *set, s32 start, s32 count)
         }
         entry = &TObjPlayer__data_8050D460[start];
         for (i = count; i != 0; i--) {
-            actor = (TObjCollidable *)*entry++;
-            if (actor != NULL && !(actor->actorFlags & 0x80000800) && actor->bodies != NULL &&
+            actor_id = (u32)*entry++;
+            actor = (TObjCollidable *)actor_id;
+            if (actor_id != 0 && !(actor->actorFlags & 0x80000800) && actor->bodies != NULL &&
                 horizontal_distance_squared(&pos, &actor->position) < 40000.0f) {
                 Vec other_pos = actor->position;
                 other_body = actor->bodies;
@@ -309,7 +312,7 @@ void TObjPlayer__sub_8015434C(CollisionBody_80155FBC *set, s32 start, s32 count)
                         }
                     }
                     if (hit != NULL) {
-                        TObjPlayer::add_unique_pair_entry((u32)actor, j);
+                        TObjPlayer::add_unique_pair_entry(actor_id, j);
                     }
                 }
                 pop_matrix();
