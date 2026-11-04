@@ -8,6 +8,7 @@
 #include "pso/ui/UISprite.h"
 #include "pso/render/render_util.h"
 #include "pso/misc/TWindowCtrlMain.h"
+#include "pso/misc/TLobby_801E2F94.h"
 #include "pso/TObjCMName.h"
 #include "pso/TObjCMHairMenu.h"
 #include "pso/TObjCMAssignMenu.h"
@@ -268,19 +269,14 @@ struct RecoveredGlobal_8029756C_TObjCMMainMenu__data_804DB9C8 {
 
 
 struct Quad_80297DB8 {
-    vec2f p[4];
+    ColorLineVertex p[4];
 };
 
 struct Cols_80297DB8 {
     u32 c[4];
 };
 
-struct Prim_80297DB8 {
-    vec2f *pts;
-    u32 *colors;
-    s32 start;
-    s32 count;
-};
+typedef ColorLineList Prim_80297DB8;
 
 struct Menu_80297DB8 {
     u8 pad[0x38];
@@ -659,8 +655,8 @@ void *__ct__10TObjCMNameFv(void *obj_cm_name) {
 
 struct Vec2_80294D6C { f32 x, y; };
 
-extern u8 lbl_804DBD08[];
-extern u8 lbl_804DBD18[];
+extern ColorLineList lbl_804DBD08;
+extern ColorLineList lbl_804DBD18;
 u32 lbl_80540988[4];
 Vec2_80294D6C lbl_80540998[4];
 u32 lbl_805409B8[4];
@@ -679,7 +675,7 @@ void TObjCMProportion::render() {
     lbl_80540988[2] = color;
     lbl_80540988[1] = color;
     lbl_80540988[0] = color;
-    ((TWindowCtrlMain *)lbl_804DBD08)->draw_strip_swap_color(4, 5, -2.0f);
+    lbl_804DBD08.draw_strip_swap_color(4, 5, -2.0f);
     color = ((s32)(64.0f * alpha) << 24) | 0xFF0000 | 0xFFFF;
     lbl_805409B8[3] = color;
     lbl_805409B8[2] = color;
@@ -695,7 +691,7 @@ void TObjCMProportion::render() {
     lbl_80540998[1].x = 2.0f + x;
     lbl_80540998[2].x = 2.0f + x;
     lbl_80540998[3].x = x - 2.0f;
-    ((TWindowCtrlMain *)lbl_804DBD18)->draw_strip_swap_color(4, 6, -2.0f);
+    lbl_804DBD18.draw_strip_swap_color(4, 6, -2.0f);
     lbl_80540998[0].y = y - 2.0f;
     lbl_80540998[1].x = 230.0f;
     lbl_80540998[1].y = 2.0f + y;
@@ -704,7 +700,7 @@ void TObjCMProportion::render() {
     lbl_80540998[3].y = y - 2.0f;
     lbl_80540998[3].x = 410.0f;
     lbl_80540998[2].x = 410.0f;
-    ((TWindowCtrlMain *)lbl_804DBD18)->draw_strip_swap_color(4, 6, -2.0f);
+    lbl_804DBD18.draw_strip_swap_color(4, 6, -2.0f);
     draw_creation_ruler_lines(fade);
 }
 #pragma pop
@@ -1835,7 +1831,7 @@ void TObjCMMainMenu::draw_footer_divider() {
     Quad_80297DB8 *q;
     s32 i;
     s32 j;
-    prim.start = 0;
+    prim.unk_8 = 0;
     prim.count = 4;
     for (i = 0; i < 2; i++) {
         q = &footer_divider_vertices[i];
@@ -1849,8 +1845,8 @@ void TObjCMMainMenu::draw_footer_divider() {
             cols[j] = (c & 0x00FFFFFF) | (__cvt_fp2unsigned((f32)(c >> 24) * self->alpha) << 24);
         }
         prim.colors = cols;
-        prim.pts = q->p;
-        ((TWindowCtrlMain *)(&prim))->draw_strip_swap_color(4, 6, lbl_805DDB90);
+        prim.verts = q->p;
+        prim.draw_strip_swap_color(4, 6, lbl_805DDB90);
     }
 }
 
