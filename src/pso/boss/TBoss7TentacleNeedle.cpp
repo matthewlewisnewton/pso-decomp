@@ -257,22 +257,22 @@ void update_retract_state__14TBoss7TentacleFPv(TBoss7Tentacle *boss7_tentacle) {
 void TBoss7TentacleNeedle::advance_needle_timer() {
     s32 temp_r4;
 
-    temp_r4 = *(s32 *)((s8 *)this + 0x3C);
+    temp_r4 = this->m_3c;
     if (temp_r4 == 0x1E) {
-        *(s32 *)((s8 *)this + 0x38) = 1;
-        *(f32 *)((s8 *)this + 0x74) = 14.0f;
+        this->m_38 = 1;
+        this->m_74 = 14.0f;
         return;
     }
-    *(s32 *)((s8 *)this + 0x3C) = (s32) (temp_r4 + 1);
+    this->m_3c = (s32) (temp_r4 + 1);
 }
 
 void TBoss7TentacleNeedle::render() {
     draw_effect__10TObjPlayerFv(this);
     set_motion_packed_rotation();
     push_matrix();
-    post_translate_matrix((void *)((char *)this + 28));
-    rotate_matrix_by_node_angles((void *)((char *)this + 40), 1);
-    draw_model_motion((*(void * *)&lbl_805D6948), *(void * *)&this->m_78, this->m_74);
+    post_translate_matrix(&this->position);
+    rotate_matrix_by_node_angles(&this->m_28, 1);
+    draw_model_motion((void *)lbl_805D6948, (void *)this->m_78, this->m_74);
     pop_matrix();
     clear_motion_packed_rotation();
 }
@@ -281,7 +281,7 @@ void TBoss7TentacleNeedle::run_task() {
 
     switch (this->m_38) {
     case 0:
-        ((s32 (*)(void))advance_needle_timer__20TBoss7TentacleNeedleFv)();
+        this->advance_needle_timer();
         return;
     case 1:
         ((s32 (*)(void))update_retract_state__14TBoss7TentacleFPv)();
@@ -290,7 +290,7 @@ void TBoss7TentacleNeedle::run_task() {
         ((s32 (*)(void))damage_nearby_players__14TBoss7TentacleFPv)();
         return;
     case 3:
-        ((s32 (*)(void))TBoss7Tentacle__sub_802EF954)();
+        TBoss7Tentacle__sub_802EF954(this);
         return;
     }
 }
@@ -368,15 +368,15 @@ void render__14TBoss7TentacleFv(u8 *arg0) {
     s32 var_r5;
     u8 *temp_r7;
     u8 *temp_r8;
-    ((s32 (*)(void))draw_effect__10TObjPlayerFv)();
-    ((s32 (*)(void))push_matrix)();
+    draw_effect__10TObjPlayerFv(arg0);
+    push_matrix();
     switch (*(s32 *)((s8 *)arg0 + 0x30)) {
     case 0:
         set_motion_packed_rotation();
         concat_matrix((MtxP)(0), (const f32 (*)[4])(*(s32 *)((s8 *)arg0 + 0x130)));
         rotate_matrix_y(0, (int) (*(s32 *)((s8 *)arg0 + 0x13C)));
         scale_current_matrix((void *) ((u8 *)(arg0) + 0x24));
-        ((s32 (*)(void *, int, f32))draw_model_motion)((void *) (*(s32 **)((s8 *)arg0 + 0x1C)), (int) (*(s32 *)((s8 *)arg0 + 0x20)), (f32) (*(f32 *)((s8 *)arg0 + 0x134)));
+        draw_model_motion((void *) (*(s32 **)((s8 *)arg0 + 0x1C)), (void *) (*(s32 *)((s8 *)arg0 + 0x20)), (f32) (*(f32 *)((s8 *)arg0 + 0x134)));
         clear_motion_packed_rotation();
         break;
     case 1:
@@ -386,7 +386,7 @@ void render__14TBoss7TentacleFv(u8 *arg0) {
         concat_matrix((MtxP)(0), (const f32 (*)[4])(*(s32 *)((s8 *)arg0 + 0x130)));
         rotate_matrix_zyx(0, (*(s32 *)((s8 *)arg0 + 0x140)), (*(s32 *)((s8 *)arg0 + 0x13C)), 0);
         scale_current_matrix((void *) ((u8 *)(arg0) + 0x24));
-        ((s32 (*)(void *, int, f32))draw_model_motion)((void *) (*(s32 **)((s8 *)arg0 + 0x1C)), (int) (*(s32 *)((s8 *)arg0 + 0x20)), (f32) (*(f32 *)((s8 *)arg0 + 0x134)));
+        draw_model_motion((void *) (*(s32 **)((s8 *)arg0 + 0x1C)), (void *) (*(s32 *)((s8 *)arg0 + 0x20)), (f32) (*(f32 *)((s8 *)arg0 + 0x134)));
         clear_motion_packed_rotation();
         break;
     case 2:
@@ -396,7 +396,7 @@ void render__14TBoss7TentacleFv(u8 *arg0) {
         draw_chunk_object((*(s32 **)((s8 *)arg0 + 0x1C)));
         break;
     case 3:
-        ((s32 (*)(void *))post_translate_matrix)((void *) ((u8 *)(arg0) + 0x40));
+        post_translate_matrix((void *) ((u8 *)(arg0) + 0x40));
         scale_current_matrix((void *) (lbl_80474070));
         rotate_matrix_zyx(0, 0, (*(s32 *)((s8 *)arg0 + 0x13C)), (*(s32 *)((s8 *)arg0 + 0x140)));
         for (var_ctr = 0; var_ctr < 14; var_ctr++) {
@@ -409,7 +409,7 @@ void render__14TBoss7TentacleFv(u8 *arg0) {
         draw_chunk_object((lbl_80541528));
         break;
     }
-    ((s32 (*)(void))pop_matrix)();
+    pop_matrix();
 }
 
 #pragma push
