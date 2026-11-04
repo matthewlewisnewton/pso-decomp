@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/quest/TQuestThread.h"
 class TChCrTagPlBack;
@@ -41,7 +42,6 @@ s32 open_menu__19TWindowSubShortMailFv();
 void *find_short_mail_by_id__6TLobbyFUi(u32 id);
 int get_card_entry__17TWindowSubComCardFi();
 void TWindowSubShortMail__sub_8027FAD0(u8 *);
-void mem_free(void *p);
 s32 get_card_window_area__6TLobbyFv();
 void * get_mail_ptr__19TWindowSubShortMailFPv(void *);
 s32 realloc_buffer__17TWindowSubComCardFv(s32);
@@ -83,7 +83,7 @@ void TWindowSubShortMail::close() {
     temp_r31 = realloc_buffer__17TWindowSubComCardFv(this->m_5c);
     TWindowSubComCard::mask_profanity_words((char *)temp_r31, (char *)get_shared_text_buffer());
     send_simple_mail__6TLobbyFiPv(this->m_2c, (void *)(get_shared_text_buffer()));
-    mem_free((void *)temp_r31);
+    ::operator delete[]((void *)temp_r31);
     temp_r31_2 = get_short_mail_ctrl__6TLobbyFv();
     for (var_r29 = 0; var_r29 < temp_r31_2; var_r29 += 1) {
         temp_r30 = (s32)TLobby__sub_8022598C(var_r29);
@@ -605,7 +605,7 @@ void TWindowSubShortMail::run_task() {
             if (((TWindowSubComCard *)(o->w50))->get_slot_or_neg1() == 0) {
                 void *b = ((void * (*)(void *)) realloc_buffer__17TWindowSubComCardFv)(o->w5c);
                 ((TLobby *)b)->set_short_mail_text();
-                mem_free(b);
+                ::operator delete[](b);
                 o->state = 1;
             } else {
                 o->state = 0x18;

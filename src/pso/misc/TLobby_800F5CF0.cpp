@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/enemy/TObjEnemy.h"
 
@@ -13,7 +14,6 @@ struct Stack_800F5D80 {
 };
 
 extern "C" {
-void *mem_alloc(u32 size);
 s32 collect_model_strips_by_texture(void *, s32, s32, s32);
 s32 count_model_strips_by_texture();
 
@@ -28,8 +28,8 @@ void *TLobby::alloc_tables(s32 arg1, s32 arg2) {
     *(s32 *)&this->m_name = 0;
     plist_texture_matches_filter = 0;
     count_model_strips_by_texture();
-    *(s32 *)&this->m_prev = (s32)mem_alloc(*(s32 *)&this->m_flags * 8);
-    *(s32 *)&this->m_next = (s32)mem_alloc(*(s32 *)&this->m_name * 4);
+    *(s32 *)&this->m_prev = (s32)::operator new[](*(s32 *)&this->m_flags * 8);
+    *(s32 *)&this->m_next = (s32)::operator new[](*(s32 *)&this->m_name * 4);
     plist_strip_write_ptr = *(s32 *)&this->m_prev;
     temp_r6 = *(s32 *)&this->m_next;
     plist_strip_uv_write_ptr = temp_r6;

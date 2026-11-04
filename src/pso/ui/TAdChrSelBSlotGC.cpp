@@ -1,12 +1,12 @@
 #include "types.h"
 #include "pso/ui/TAdChrSelSlotGC.h"
 #include "pso/ui/TAdChrSelBSlotGC.h"
+#include "pso/TAdChrSelMovePlateGC.h"
 
 extern "C" {
 
 void *__ct__15TAdSubPlyItemGCFv(void *, void *);
 void *__ct__19TAdPlyChrSelPlateGCFv(void *, void *, void *);
-void *__ct__20TAdChrSelMovePlateGCFv(void *, void *);
 void *__nw__7TObjectFUl(int);
 
 extern s32 chr_sel_b_slot_plate_layout[];
@@ -15,24 +15,19 @@ void TAdChrSelBSlotGC::create_children() {
     void *o;
     void *o2;
     void *o3;
-    void *o4;
     o = new TAdChrSelSlotGC(this);
     *(void * *)&this->unk_28 = o;
     o2 = __nw__7TObjectFUl(0x3B4);
     if (o2 != NULL) {
         o2 = __ct__19TAdPlyChrSelPlateGCFv(o2, this, chr_sel_b_slot_plate_layout);
     }
-    *(void * *)&this->m_2c = o2;
+    this->m_2c = (TAdPlyChrSelPlateGC *)o2;
     o3 = __nw__7TObjectFUl(0x48C);
     if (o3 != NULL) {
         o3 = __ct__15TAdSubPlyItemGCFv(o3, this);
     }
     *(void * *)&this->unk_30 = o3;
-    o4 = __nw__7TObjectFUl(0x208);
-    if (o4 != NULL) {
-        o4 = __ct__20TAdChrSelMovePlateGCFv(o4, this);
-    }
-    this->m_34 = o4;
+    this->m_34 = new TAdChrSelMovePlateGC(this);
 }
 
 void TAdChrSelBSlotGC::sub_8030FE04() {

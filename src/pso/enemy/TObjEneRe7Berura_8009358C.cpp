@@ -1,3 +1,4 @@
+#include "pso/system/SoundSlotPitch.h"
 #include "pso/system/MatrixVectorArray.h"
 #include "pso/misc/SampledMotionPoints.h"
 #include "pso/math/FloatRounding.h"
@@ -201,7 +202,6 @@ s32 launch__21TObjEneRe7BeruraPunchFll(s32, s32, void *, void *);
 s32 vec3_add_to(void *, void *);
 extern const f32 TObjEneRe7Berura__data_805D9738;
 extern const f32 lbl_805D975C;
-void update_technique_slot__10TTecRaFoieFl(s32);
 extern const f32 lbl_805D973C;
 }
 
@@ -395,7 +395,7 @@ void TObjEneRe7Berura::run_flash_warning_state(s32 arg1) {
         }
         this->vfunc_102();
         this->vfunc_89();
-        ((void (*)(s32, s32, s32))update_technique_slot__10TTecRaFoieFl)(
+        update_technique_slot__10TTecRaFoieFl(
             play_persistent_sound((s32)((s32)(((TObjEnemy *)(arg0))->remap_sound_for_area(0x4003C61E))), (const void *)((s32)arg0), (const Vec *)((u32)&this->position), 0, 0),
             0x400, 0);
         break;

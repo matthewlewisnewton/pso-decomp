@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/MatrixVectorArray.h"
 #include "pso/animation/MotionContext.h"
 #include "pso/misc/SampledMotionPoints.h"
@@ -3644,7 +3645,6 @@ struct VB_800F5324 { u8 pad[0xC]; };
 struct VO_800F5324 : VB_800F5324 { virtual ~VO_800F5324(); };
 
 extern "C" {
-void mem_free(void *p);
 #define TObjEneMe3Stelth__alternate_texture_list ((void * *)&TObjEneMe3Stelth__alternate_texture_list)
 typedef struct RecoveredGlobal_8031B170_lbl_804E8880 RecoveredGlobal_8031B170_lbl_804E8880;
 typedef char RecoveredGlobal_8031B170_lbl_804E8880_size[((sizeof(RecoveredGlobal_8031B170_lbl_804E8880)) == 0xD0) ? (1) : (-1)];
@@ -3670,7 +3670,7 @@ void TObjEneMe3Stelth::free_shared_resources() {
         (*(VO_800F5324 **)&TObjEneMe3Stelth__breakup_model) = 0;
     }
     if (TObjEneMe3Stelth__alternate_texture_list[0] != 0) {
-        mem_free(TObjEneMe3Stelth__alternate_texture_list[0]);
+        ::operator delete[](TObjEneMe3Stelth__alternate_texture_list[0]);
         TObjEneMe3Stelth__alternate_texture_list[0] = 0;
     }
     if ((*(void **)&TObjEneMe3Stelth__bml_resource) != 0) {
@@ -3696,7 +3696,6 @@ struct V3_800F53E8 { f32 x, y, z; };
 
 
 void *init__11TBreakUpMdlFPviif(void *, s32, s32, f32);
-void *mem_alloc(u32 size);
 extern s32 lbl_8043D47C[];
 extern s32 lbl_8043D484[];
 extern s32 lbl_8043D48C[];
@@ -3743,7 +3742,7 @@ void TObjEneMe3Stelth::load_shared_resources() {
     src = *(Arr_800F53E8 **)(((Res_800F53E8 *)TObjEneMe3Stelth__bml_resource)->f42C + 0xC);
     n = src->n;
     TObjEneMe3Stelth__alternate_texture_list[1] = n;
-    TObjEneMe3Stelth__alternate_texture_list[0] = (s32)mem_alloc(n * 0xC);
+    TObjEneMe3Stelth__alternate_texture_list[0] = (s32)::operator new[](n * 0xC);
     for (i = 0; i < n; i++) {
         ((TObjPlayer *)(&((IV_800F53E8 *)TObjEneMe3Stelth__alternate_texture_list[0])[i]))->copy_vec3(&src->p[i]);
     }
