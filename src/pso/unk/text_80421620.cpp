@@ -691,37 +691,6 @@ s32 set_slot_state_and_resume__6TLobbyFv(s32 idx, void (*cb)(s16, s16), s16 arg2
   return 0;
 }
 
-typedef struct T_8042276C T_8042276C;
-s32 set_thread_state_and_resume__6TLobbyFv(s32 idx, void (*cb)(s16, s16), s16 arg2) {
-  T_8042276C *s = (T_8042276C *) tcp_protocol_state[0];
-  s16 new_var;
-  s += (s16) idx;
-  if ((cb != 0) && (!(s->fl & 8)))
-  {
-    new_var = (s16) idx;
-    cb(arg2, new_var);
-    s->st = arg2;
-    s->fl &= ~1;
-    s->fl |= 4;
-    s->z = 0;
-  }
-  else
-    if ((s->fl & 1) && (!(s->fl & 4)))
-  {
-    if (s->fl & 2)
-    {
-      TLobby::resume_thread(s->th);
-    }
-    s->st = arg2;
-    s->fl &= ~1;
-    s->fl |= 4;
-    s->z = 0;
-  }
-  return 0;
-}
-
-}
-
 struct send_buffs {
     s16 len;
     u8 *buff;
@@ -828,6 +797,38 @@ s16 tcp_send__FsPFss_vcP10send_buffs(s32 nh, void (*notify)(s16, s16), char bufn
     s->f2B4 &= ~1;
     TUdpSocket::unlock_mutex(network_dispatch_state.value);
     return r;
+}
+
+
+typedef struct T_8042276C T_8042276C;
+s32 set_thread_state_and_resume__6TLobbyFv(s32 idx, void (*cb)(s16, s16), s16 arg2) {
+  T_8042276C *s = (T_8042276C *) tcp_protocol_state[0];
+  s16 new_var;
+  s += (s16) idx;
+  if ((cb != 0) && (!(s->fl & 8)))
+  {
+    new_var = (s16) idx;
+    cb(arg2, new_var);
+    s->st = arg2;
+    s->fl &= ~1;
+    s->fl |= 4;
+    s->z = 0;
+  }
+  else
+    if ((s->fl & 1) && (!(s->fl & 4)))
+  {
+    if (s->fl & 2)
+    {
+      TLobby::resume_thread(s->th);
+    }
+    s->st = arg2;
+    s->fl &= ~1;
+    s->fl |= 4;
+    s->z = 0;
+  }
+  return 0;
+}
+
 }
 
 s16 tcp_get_opt(s16 nh, s16 type, u32 *opt) {
@@ -1465,7 +1466,7 @@ s32 TLobby::build_dhcp_discover_packet() {
 
 extern s16 lbl_805D7B08;
 extern s32 lbl_805D7B14;
-extern s32 dhcp_reply_received;
+extern volatile s32 dhcp_reply_received;
 extern s32 lbl_805D7B74;
 extern s32 lbl_805D7B84;
 extern s32 lbl_805D7B88;
@@ -1557,10 +1558,15 @@ s32 TLobby__sub_80423C04(void) {
 
 s32 TLobby__sub_80423E80(void) {
     s32 now;
+    // Uninitialized. MWCC only builds the original -0x58 frame with this slot
+    // between `now` and the UDP buffer, plus the same 12-byte tail the release
+    // step already reserves under `src`.
+    u32 slot[1];
     UdpBuf_80421BAC buf;
     u32 dst[5];
     u32 src[5];
     s32 len;
+    u32 pad[3];
     s16 sock;
     s32 server;
     TLobby::get_time_ms(&now);
@@ -1672,10 +1678,14 @@ s32 TLobby__sub_8042422C(void) {
     P_8042315C opt;
     P_8042315C opt_retry;
     u32 bind_addr[5];
+    // Uninitialized. The 4-byte slot keeps the UDP buffer 8-aligned under
+    // bind_addr, and the 16-byte tail is the original gap below `src`.
+    u32 slot[1];
     UdpBuf_80421BAC buf;
     u32 dst[5];
     u32 src[5];
     s32 len;
+    u32 pad[4];
     s16 sock;
     TLobby::get_time_ms(&now);
     switch (lbl_805D7B0C) {
@@ -1702,8 +1712,8 @@ s32 TLobby__sub_8042422C(void) {
                 break;
             }
         }
-        bind_addr[0] = 4;
         lbl_805D7B14 = 1;
+        bind_addr[0] = 4;
         bind_addr[1] = 0;
         sock = TUdpSocket__sub_80421DEC(0, 0x44, bind_addr, 0x43, 0, (void *)dhcp_handle_reply__6TLobbyFsPv);
         dhcp_socket = sock;
@@ -1738,8 +1748,8 @@ s32 TLobby__sub_8042422C(void) {
             lbl_805D7B0C = -1;
             dhcp_state = -2;
         } else {
-            lbl_805D7B0C = 2;
             lbl_805D7B84 = now;
+            lbl_805D7B0C = 2;
         }
         break;
     case 2:
