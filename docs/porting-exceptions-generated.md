@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 8 | 2 |
 | intrinsic | 83 | 54 |
 | hardware | 71 | 13 |
-| pragma | 5865 | 885 |
+| pragma | 5864 | 885 |
 | configure.py per-unit override | 144 | 144 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045, `fp_contract` 932, `auto_inline` 844, `opt_common_subs` 624, `scheduling` 262, `opt_propagation` 239, `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 43, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 22, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045, `fp_contract` 931, `auto_inline` 844, `opt_common_subs` 624, `scheduling` 262, `opt_propagation` 239, `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 43, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 22, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -67,7 +67,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `src/pso/misc/TWindowFukidasi.cpp:515` | `__cntlzw` |
 | `src/pso/misc/TWindowFukidasi.cpp:591` | `__cntlzw` |
 | `src/pso/misc/TWindowKeyBoardBase_8008102C.cpp:73` | `__cntlzw` |
-| `src/pso/misc/TWindowMainMenu_802AD538.cpp:303` | `__cntlzw` |
+| `src/pso/misc/TWindowMainMenu_802AD538.cpp:286` | `__cntlzw` |
 | `src/pso/misc/TWindowSnapShot_802A5B2C.cpp:32` | `__rlwinm` |
 | `src/pso/misc/TWindowSnapShot_802A5B2C.cpp:33` | `__rlwinm` |
 | `src/pso/misc/TWindowSnapShot_802A5B2C.cpp:43` | `__rlwinm` |
@@ -424,7 +424,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `src/pso/boss/TBoss6Type1.cpp` | fp_contract×16, opt_common_subs×7, inline_depth×4, auto_inline×4, dont_inline×4, opt_propagation×4, opt_lifetimes×1 |
 | `src/pso/boss/TBoss6Type1_802B20C0.cpp` | readonly_strings×1 |
 | `src/pso/boss/TBoss6Type2.cpp` | inline_depth×74, auto_inline×74, dont_inline×74, opt_common_subs×20, opt_propagation×15, opt_dead_assignments×14, fp_contract×5, optimization_level×1 |
-| `src/pso/boss/TBoss6Type2_802BE588.cpp` | opt_common_subs×2, fp_contract×1 |
+| `src/pso/boss/TBoss6Type2_802BE588.cpp` | opt_common_subs×2 |
 | `src/pso/boss/TBoss6Type2_8032E708.cpp` | fp_contract×4, opt_common_subs×3, inline_depth×1, auto_inline×1, dont_inline×1, readonly_strings×1 |
 | `src/pso/boss/TBoss6Type2_80336E6C.cpp` | opt_common_subs×2, readonly_strings×1, opt_propagation×1 |
 | `src/pso/boss/TBoss6Zanzo.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
