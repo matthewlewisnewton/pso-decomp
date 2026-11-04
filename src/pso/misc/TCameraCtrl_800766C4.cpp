@@ -9,10 +9,10 @@ s32 check_player_state_flag_2__6TLobbyFv();
 s32 is_split_screen();
 
     extern short TCameraCtrl__viewport_y;
-short TCameraCtrl::get_screen_width() {  return TCameraCtrl__viewport_y; }
+s32 TCameraCtrl::get_screen_width() {  return TCameraCtrl__viewport_y; }
 
     extern short TCameraCtrl__viewport_x;
-short TCameraCtrl::get_screen_height() {  return TCameraCtrl__viewport_x; }
+s32 TCameraCtrl::get_screen_height() {  return TCameraCtrl__viewport_x; }
 
 extern s32 local_client_id;
 
