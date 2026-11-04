@@ -24,11 +24,11 @@ struct TBoss6Type1 : public TObjEnemy {
     void run_task();
     void update_effect_points();
     void update_trail_points();
-    u32 m_374;
-    u8 unk_378[0x10];
-    // get_mag_mine_ptr returns this address (0x388). The bytes are the block
-    // TBoss4DarkFalz__sub_8004B4F0 copies; their field layout is still open.
-    u8 mag_mine[0x70];
+    s32 m_374;
+    // set_action_state shifts the previous action states through this ring.
+    // get_mag_mine_ptr returns this + 0x10 (the block
+    // TBoss4DarkFalz__sub_8004B4F0 copies); its field layout is still open.
+    s32 hist[32];
     s32 m_3f8;
     s32 m_3fc;
     void* trail_point_receiver;

@@ -163,10 +163,9 @@ struct Boss_802B79DC {
     Vec_802B79DC a5FC[1];
 };
 
-class Boss_802B865C;
-union Action_802B865C { s32 words[3]; void (Boss_802B865C::*action)(); };
+typedef void (TBoss6Type1::*Action_802B865C)();
 
-struct Entry_802B865C { s32 f0; s32 anim; s32 f8; s32 act[3]; s32 idle[3]; s32 update[3]; };
+struct Entry_802B865C { s32 f0; s32 anim; s32 f8; Action_802B865C act; Action_802B865C idle; Action_802B865C update; };
 
 class Boss_802B865C {
 public:
@@ -699,7 +698,7 @@ void build_6xA4_olga_flow_boss_actions(void* p) {
 void TBoss6Type1::step_and_send_60() { read_be16_field2(); send_subcommand((u8 *)this); }
 void TBoss6Type1::read_be16_field2() { ((G_ClientIDHeader *)this)->bswap(); }
 int TBoss6Type1::is_idle() { return this->m_374 == 0; }
-void*TBoss6Type1::get_mag_mine_ptr() { return this->mag_mine; }
+void*TBoss6Type1::get_mag_mine_ptr() { return &this->hist[4]; }
 void TBoss6Type1::clear_harmful_statuses() {  }
 void TBoss6Type1::apply_shock_status() {  }
 void TBoss6Type1::apply_movement_ailment(s32) {  }
@@ -1016,9 +1015,9 @@ void TBoss6Type1__sub_802B8A70(TBoss6Type1 *self) {
     ratio = 0.5f;
     atk.b1 = 0x1C;
     atk.b0 = v;
-    total = ((Boss_802B865C *)self)->f4C0 + ((Boss_802B865C *)self)->f4C4;
+    total = self->unk_4c0 + self->unk_4c4;
     if (total > 0) {
-        ratio = (f32)((Boss_802B865C *)self)->f4C0 / (f32)total;
+        ratio = (f32)self->unk_4c0 / (f32)total;
     }
     v = 20;
     if ((1.0f / 32768.0f) * (f32)rand() < ratio) {
@@ -1067,18 +1066,14 @@ void TBoss6Type1::render_shadows() {
 
 void TBoss6Type1::run_task() {
     Action_802B865C a;
-    a.words[0] = boss6_type1_action_table[this->m_374].update[0];
-    a.words[1] = boss6_type1_action_table[this->m_374].update[1];
-    a.words[2] = boss6_type1_action_table[this->m_374].update[2];
-    if (a.action != 0) {
-        (((Boss_802B865C *)this)->*a.action)();
+    a = boss6_type1_action_table[this->m_374].update;
+    if (a != 0) {
+        (this->*a)();
     }
     if (((TBoss6Type1 *)this->m_3f8)->is_idle() != 0) {
-        a.words[0] = boss6_type1_action_table[this->m_374].idle[0];
-        a.words[1] = boss6_type1_action_table[this->m_374].idle[1];
-        a.words[2] = boss6_type1_action_table[this->m_374].idle[2];
-        if (a.action != 0) {
-            (((Boss_802B865C *)this)->*a.action)();
+        a = boss6_type1_action_table[this->m_374].idle;
+        if (a != 0) {
+            (this->*a)();
         }
     }
     advance_animations();
@@ -1105,34 +1100,33 @@ void TBoss6Type1::set_action_state(s32 arg1) {
     Action_802B865C a;
     Entry_802B865C *e;
     s32 i;
-    ((Boss_802B865C *)this)->state = arg1;
+    this->m_374 = arg1;
     for (i = 31; i > 0; i--) {
-        ((Boss_802B865C *)this)->hist[i] = ((Boss_802B865C *)this)->hist[i - 1];
+        this->hist[i] = this->hist[i - 1];
     }
-    ((Boss_802B865C *)this)->hist[0] = ((Boss_802B865C *)this)->state;
-    switch (((Boss_802B865C *)this)->state) {
+    this->hist[0] = this->m_374;
+    switch (this->m_374) {
     case 24:
-        ((Boss_802B865C *)this)->f4B8++;
+        this->unk_4b8++;
         break;
     case 26:
-        ((Boss_802B865C *)this)->f4BC++;
-        ((Boss_802B865C *)this)->f4C0++;
+        this->unk_4bc++;
+        this->unk_4c0++;
         break;
     case 34:
-        ((Boss_802B865C *)this)->f4BC++;
-        ((Boss_802B865C *)this)->f4C4++;
+        this->unk_4bc++;
+        this->unk_4c4++;
         break;
     }
-    e = &boss6_type1_action_table[((Boss_802B865C *)this)->state];
-    ((TBoss6Type1 *)((Boss_802B865C *)this))->set_motion_set(e->anim);
-    ((Boss_802B865C *)this)->f418 = e->f8;
-    a.words[0] = e->act[0];
-    a.words[1] = e->act[1];
-    a.words[2] = e->act[2];
-    if (a.action != 0) {
-        (((Boss_802B865C *)this)->*a.action)();
+    e = &boss6_type1_action_table[this->m_374];
+    this->set_motion_set(e->anim);
+    this->unk_418 = e->f8;
+    a = e->act;
+    if (a != 0) {
+        (this->*a)();
     }
 }
+
 extern "C" {
 
 
