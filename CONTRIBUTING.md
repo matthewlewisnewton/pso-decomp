@@ -104,6 +104,8 @@ stale entries to make a diff smaller or include unrelated normalization without 
 - No assembly, anywhere. A function Nintendo or Metrowerks wrote in assembly keeps its C signature with the body
   `#include "orig_asm/<unit>/<function>.inc"`, and `tools/orig_asm.py` generates that body from the disc during the
   build. Never write assembly by hand; a function that can only be matched that way stays unmatched.
+  Single listed exception: `transform_chunk_vertices_pos_normal`, approved by Matt on 2026-11-04; see
+  [docs/evidence/paired-single-sdk-asm.md](docs/evidence/paired-single-sdk-asm.md).
 - If assembly is approved as an exception, a scalar C/C++ equivalent ships next to it: the asm is guarded for the
   GameCube/MWCC build and the scalar version is the compiled fallback, so ports can use it.
 - Any new exception (asm, a steering pragma, an MWCC-only intrinsic or other compiler-specific construct, direct
