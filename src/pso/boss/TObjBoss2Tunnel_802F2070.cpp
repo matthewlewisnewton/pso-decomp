@@ -374,86 +374,81 @@ void *TUnk_804E4B3C::destroy(s16 arg1) {
     return this;
 }
 
-#pragma push
-#pragma opt_common_subs off
-#pragma opt_loop_invariants off
-#define arg0 ((u8 *)arg0p)
 void *TObjBoss2Tunnel__sub_802F2A2C(void *arg0p, s32 parent) {
+    TUnk_804E4B3C *self = (TUnk_804E4B3C *)arg0p;
     s32 i;
     u32 p;
-    __ct__7TObjectFP7TObject(arg0, (void *) parent);
-    *(s32 **)((s8 *)arg0 + 0x18) = lbl_804E4B3C;
-    TObjBoss2Tunnel::reset_floats((s32)&((TUnk_804E4B3C *)arg0p)->motion);
+    __ct__7TObjectFP7TObject(self, (void *)parent);
+    *(s32 **)((s8 *)self + 0x18) = lbl_804E4B3C;
+    TObjBoss2Tunnel::reset_floats((s32)&self->motion);
     p = __nw__7TObjectFUl(0x1C);
     if (p != 0) {
-        p = __ct__7TObjectFP7TObject((void *) p, arg0);
+        p = __ct__7TObjectFP7TObject((void *)p, self);
     }
-    ((TUnk_804E4B3C *)arg0p)->m_90 = (void *)p;
+    self->m_90 = (void *)p;
     p = __nw__7TObjectFUl(0x1C);
     if (p != 0) {
-        p = __ct__7TObjectFP7TObject((void *) p, arg0);
+        p = __ct__7TObjectFP7TObject((void *)p, self);
     }
-    ((TUnk_804E4B3C *)arg0p)->m_8c = (void *)p;
-    ((TUnk_804E4B3C *)arg0p)->m_1c = 0;
+    self->m_8c = (void *)p;
+    self->m_1c = 0;
     if (is_split_screen() == 0) {
-        ((TUnk_804E4B3C *)arg0p)->m_84 = lbl_805DED0C;
+        self->m_84 = lbl_805DED0C;
     } else {
-        ((TUnk_804E4B3C *)arg0p)->m_84 = lbl_805DED10;
+        self->m_84 = lbl_805DED10;
     }
-    TObjBoss2Tunnel::reset_floats(&((TUnk_804E4B3C *)arg0p)->motion);
-    ((TUnk_804E4B3C *)arg0p)->phase = 0;
-    ((TUnk_804E4B3C *)arg0p)->rate = lbl_805DEC98;
-    ((TUnk_804E4B3C *)arg0p)->value = lbl_805DEC9C;
-    ((TUnk_804E4B3C *)arg0p)->m_5c = lbl_805DEC9C;
+    TObjBoss2Tunnel::reset_floats(&self->motion);
+    self->phase = 0;
+    self->rate = lbl_805DEC98;
+    self->value = lbl_805DEC9C;
+    self->m_5c = lbl_805DEC9C;
     boss2_tunnel_state_flags = 0;
-    ((TUnk_804E4B3C *)arg0p)->m_58 = lbl_805DEC9C;
-    ((TUnk_804E4B3C *)arg0p)->m_70 = 0;
-    ((TUnk_804E4B3C *)arg0p)->m_78 = lbl_805DEC9C;
-    ((TUnk_804E4B3C *)arg0p)->m_7c = lbl_805DEC9C;
-    ((TUnk_804E4B3C *)arg0p)->m_80 = lbl_805DEC9C;
-    ((TUnk_804E4B3C *)arg0p)->m_74 = 0x1E;
+    self->m_58 = lbl_805DEC9C;
+    self->m_70 = 0;
+    self->m_78 = lbl_805DEC9C;
+    self->m_7c = lbl_805DEC9C;
+    self->m_80 = lbl_805DEC9C;
+    self->m_74 = 0x1E;
     for (i = 0; i < 2; i++) {
         p = __nw__7TObjectFUl(0x40);
         if (p != 0) {
-            TObjBoss7RaftSplash__ct((void *) p, arg0, lbl_804E4A44 + i * 0xC, TObjBoss2Tunnel__raft_splash_offset_table + i * 0xC, &((TUnk_804E4B3C *)arg0p)->m_5c);
+            TObjBoss7RaftSplash__ct((void *)p, self, lbl_804E4A44 + i * 0xC, TObjBoss2Tunnel__raft_splash_offset_table + i * 0xC, &self->m_5c);
         }
     }
     p = __nw__7TObjectFUl(0x2C);
     if (p != 0) {
-        TObjBoss2Tunnel__sub_802F1AE0((void *) p, (u32)((TUnk_804E4B3C *)arg0p)->m_90, 0);
+        TObjBoss2Tunnel__sub_802F1AE0((void *)p, (u32)self->m_90, 0);
     }
     p = __nw__7TObjectFUl(0x2C);
     if (p != 0) {
-        TObjBoss2Tunnel__sub_802F1AE0((void *) p, (u32)((TUnk_804E4B3C *)arg0p)->m_90, 1);
+        TObjBoss2Tunnel__sub_802F1AE0((void *)p, (u32)self->m_90, 1);
     }
     p = __nw__7TObjectFUl(0x2C);
     if (p != 0) {
-        TObjBoss2Tunnel__sub_802F1AE0((void *) p, (u32)((TUnk_804E4B3C *)arg0p)->m_90, 2);
+        TObjBoss2Tunnel__sub_802F1AE0((void *)p, (u32)self->m_90, 2);
     }
     if (lbl_805D6970 == 0) {
         lbl_805D696C = 1;
         lbl_805D6970 = 1;
     }
     if (is_room_enemy_set_cleared(get_current_floor(), 1) == 0) {
-        ((TUnk_804E4B3C *)arg0)->spawn_segment_row_b();
+        self->spawn_segment_row_b();
         p = __nw__7TObjectFUl(0xD8);
         if (p != 0) {
-            p = TObjBoss7TunnelCol__ct((void *) p, arg0);
+            p = TObjBoss7TunnelCol__ct((void *)p, self);
         }
-        ((TUnk_804E4B3C *)arg0p)->m_88 = (void *)p;
+        self->m_88 = (void *)p;
     } else {
-        ((TUnk_804E4B3C *)arg0p)->m_84 = lbl_805DED0C;
-        ((TUnk_804E4B3C *)arg0)->spawn_segment_row_a();
-        ((TUnk_804E4B3C *)arg0p)->m_1c = 2;
-        ((TUnk_804E4B3C *)arg0p)->m_5c = lbl_805DEC9C;
-        ((TUnk_804E4B3C *)arg0p)->value = lbl_805DECB8;
-        ((TUnk_804E4B3C *)arg0p)->m_88 = 0;
+        self->m_84 = lbl_805DED0C;
+        self->spawn_segment_row_a();
+        self->m_1c = 2;
+        self->m_5c = lbl_805DEC9C;
+        self->value = lbl_805DECB8;
+        self->m_88 = 0;
         boss2_tunnel_state_flags |= 0x8000;
     }
-    return arg0;
+    return self;
 }
-#undef arg0
-#pragma pop
 
 void TObjBoss2Tunnel__sub_802F2C4C(void) {  }
 void TObjBoss2Tunnel__sub_802F2C50(void) {
