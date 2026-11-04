@@ -697,7 +697,13 @@ MIDDLEWARE: List[Tuple[str, int, str, List[str], Dict[str, Dict[str, Any]]]] = [
             "cflags": _switch(cflags_middleware, "-O3,p", "-opt nopeephole", "-use_lmw_stmw off", "-inline on"),
         },
         # vec3_dot (0x803D89C0) and vec3_cross (0x803D8A18) are fmadds/fmsubs.
-        # Ginja defaults otherwise; contraction is the only extra switch.
+        # Ginja defaults leave contraction off. With -fp_contract off those two
+        # score 64.5% and 34.38%; with -fp_contract on, 93.5% and 57.48%.
+        # vec3_add_to and the seven matrix helpers stay 100% either way.
+        # -inline off/on/auto/noauto/all/deferred/auto,deferred does not change
+        # a byte of this unit. Precedent: dtk-template -fp_contract on
+        # (https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209)
+        # and Melee, TP, TWW, and Pikmin 2, which contract globally.
         "pso/unk/text_803D8910.cpp": {
             "cflags": _switch(cflags_middleware, "-O3,p", "-opt nopeephole", "-fp_contract on"),
         },

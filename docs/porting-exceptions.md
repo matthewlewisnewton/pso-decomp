@@ -98,12 +98,16 @@ small float differences without FMA).
 `pso_date.cpp`: GC/1.3.2 scheduling, see
 [calendar-conversion-evidence.md](evidence/calendar-conversion-evidence.md);
 `TObjTombstone.cpp`: `-fp_contract on` because two calculations fuse
-multiply-adds; `pso/unk/text_803D8910.cpp`: `-fp_contract on` because
-`vec3_dot` and `vec3_cross` are `fmadds`/`fmsubs`, and the ginja defaults
-leave contraction off). The generated table copies each comment; 92 entries have no
+multiply-adds; `pso/unk/text_803D8910.cpp`: see the row below). The generated table copies each comment; 92 entries have no
 comment of their own (several share a comment with the entry above). Library
 groups (SDK, runtime, TRK, MusyX, CRI, Ginja, mcFs, ntInf, avetcp, modem, ntUtl)
 use their own compiler versions as recorded there.
+
+### `text_803D8910.cpp`: `-fp_contract on`
+
+| File | Functions | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/unk/text_803D8910.cpp` | `vec3_dot`, `vec3_cross` | unit cflag `-fp_contract on` (ginja defaults otherwise, including `-inline off`) | The original is `fmadds` (`vec3_dot`, `0x803D89C0`) and `fmsubs` (`vec3_cross`, `0x803D8A18`). Same source with `-fp_contract off` scores 64.5% and 34.38%; with the flag, 93.5% and 57.48%. `vec3_add_to` and the seven matrix helpers stay 100% either way. `-inline on`, `auto`, `noauto`, `all`, `deferred`, and `auto,deferred` do not change a byte, so the ginja `-inline off` stays. Precedent: [dtk-template `-fp_contract on`](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209); Melee, TP, TWW, and Pikmin 2 contract globally. | Keep fused multiply-adds. The flag does not make either function byte-exact. |
 
 Port should: build everything with one modern compiler. Only `-fp_contract on`
 (float results) and deferred emission order (no semantic effect) need thought;
