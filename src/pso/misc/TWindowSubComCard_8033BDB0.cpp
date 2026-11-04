@@ -21,7 +21,7 @@ s32 align_menu_entry_positions(u32);
 int forward_trade_action_default__16TObjCityMainWarpFPviii(void *p, int a1, int a2, int a3);
 s32 create_window_menu(s32 arg0, s32 arg1, s32 arg2);
 u32 check_room_seq_4__16TAdChrSelASlotGCFl(const void *, s32);
-u32 create_message_window__6TLobbyFllUls(const void *, const void *, s32, s32);
+u32 create_message_window__6TLobbyFPCvPCvUll(const void *, const void *, s32, s32);
 u32 update_window_mode_from_progress__6TLobbyFPv(const void *, const void *);
 s32 get_selected_menu_value(void *);
 
@@ -31,7 +31,7 @@ void TCheckMemoryCard::create_message_and_menu(u32 arg1, s32 sel, u32 arg3, u32 
         return;
     }
     if ((s32)m_4c != 0) {
-        m_30 = (void *)create_message_window__6TLobbyFllUls(&lbl_80477DB4, &lbl_80477DBC, 1, 4);
+        m_30 = (void *)create_message_window__6TLobbyFPCvPCvUll(&lbl_80477DB4, &lbl_80477DBC, 1, 4);
     } else {
         m_30 = (void *)update_window_mode_from_progress__6TLobbyFPv(&lbl_80477DB4, &lbl_80477DBC);
     }

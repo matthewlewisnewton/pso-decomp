@@ -20,9 +20,6 @@ extern const Data_8044BC84 lbl_8044BC84;
 extern const f32 lbl_805DC640;
 const Pair_8044BC7C *get_window_layout_position(s32);
 void TWindow__close(TWindowMessage *window);
-// The definition takes s16. Calling that member sign-extends the slot
-// (extsh) and misses the original mr of the full register.
-TWindowMessage *create_message_window__6TLobbyFllUls(const Pair_8044BC7C *, const Pair_8044BC7C *, u32, s32);
 }
 
 void THunterGuildWarning::close_windows() {
@@ -47,7 +44,7 @@ extern "C" void THunterGuildWarning__sub_80211774(THunterGuildWarning *self, s32
     case 0: {
         u16 id = TCameraCtrl::get_nth_view_player_id(0);
         if (get_player_by_client_id(id)) {
-            self->m_windows[id] = create_message_window__6TLobbyFllUls(get_window_layout_position(0x31), &size, 1, id);
+            self->m_windows[id] = (TWindowMessage *)TLobby::create_message_window(get_window_layout_position(0x31), &size, 1, id);
         }
         if (self->m_windows[id]) {
             s32 text = 0x63;
@@ -59,7 +56,7 @@ extern "C" void THunterGuildWarning__sub_80211774(THunterGuildWarning *self, s32
     case 1: {
         u16 id = TCameraCtrl::get_nth_view_player_id(0);
         if (get_player_by_client_id(id)) {
-            self->m_windows[id] = create_message_window__6TLobbyFllUls(get_window_layout_position(0x31), &size, 1, id);
+            self->m_windows[id] = (TWindowMessage *)TLobby::create_message_window(get_window_layout_position(0x31), &size, 1, id);
         }
         if (self->m_windows[id]) {
             s32 text = 0x68;
@@ -76,7 +73,7 @@ extern "C" void THunterGuildWarning__sub_80211774(THunterGuildWarning *self, s32
         for (s32 i = 0; i < 4; i++) {
             if (local != i) {
                 if (get_player_by_client_id(i)) {
-                    self->m_windows[i] = create_message_window__6TLobbyFllUls(get_window_layout_position(0x31), &size, 1, i);
+                    self->m_windows[i] = (TWindowMessage *)TLobby::create_message_window(get_window_layout_position(0x31), &size, 1, i);
                 }
                 if (self->m_windows[i]) {
                     self->m_windows[i]->send_and_handle(TQuestVmDownLoadServer__sub_8006EF6C(message), 0x81);

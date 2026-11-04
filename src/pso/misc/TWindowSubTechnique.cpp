@@ -149,7 +149,7 @@ s32 is_player_input_active(s32);
 void call_if_split_screen(void *, s32);
 f32 TWindowSubEquip__sub_80263AF8(u8 *arg0, u32 arg1);
 s16 get_selected_menu_value(void *);
-void *create_message_window__6TLobbyFllUls(s32, void *, s32, s32);
+void *create_message_window__6TLobbyFPCvPCvUll(s32, void *, s32, s32);
 s32 update_selection__19TWindowSubTechniqueFPsPl(void *, void *, s32);
 void get_current_selection__19TWindowSubTechniqueFPv(void *, void *, s32);
 void rebuildTechniqueList__19TWindowSubTechniqueFll(void *, void *, s16);
@@ -266,7 +266,7 @@ void TWindowSubTechnique::run_task() {
         break;
     }
     case 3:
-        self->help = create_message_window__6TLobbyFllUls(get_window_layout_position(0x14), lbl_8044FC54, 1, self->player);
+        self->help = create_message_window__6TLobbyFPCvPCvUll(get_window_layout_position(0x14), lbl_8044FC54, 1, self->player);
         TWindowSubEquip__sub_80263AF8((u8 *)self->f30, 2);
         set_field_1c__6TLobbyFf((s32)self->help);
         call_if_split_screen(self->help, self->player);

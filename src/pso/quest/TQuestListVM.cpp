@@ -190,7 +190,7 @@ int get_entity_id(int);
 f32 get_scale__15TShopWindowBaseFv(void *);
 u8 *create_yes_no_window(s32 arg0, s32 arg1, u32 arg2, u32 arg3);
 void send_and_handle__6TLobbyFii(u32, void *, int);
-u32 create_message_window__6TLobbyFllUls(int, void *, int, u16);
+u32 create_message_window__6TLobbyFPCvPCvUll(int, void *, int, u16);
 int get_window_layout_position(int);
 extern const f32 lbl_805DC6B8;
 extern const f32 lbl_805DC6BC;
@@ -448,7 +448,7 @@ void TQuestListVM::open_confirm_window() {
     if (this->m_2380 == 0U) {
         QuestListWindowSize sp8 = lbl_8044BF48;
         u16 id = get_entity_id(*(s32 *)&this->m_24);
-        this->m_2380 = create_message_window__6TLobbyFllUls(get_window_layout_position(0x2E), &sp8, 1, id);
+        this->m_2380 = create_message_window__6TLobbyFPCvPCvUll(get_window_layout_position(0x2E), &sp8, 1, id);
         send_and_handle__6TLobbyFii(this->m_2380, (void *)(TQuestListVM__decrypted_quest_buffer + 0xB4), 1);
         ((TLobby *)(this->m_2380))->set_field_1c(lbl_805DC6B8);
         if (TCameraCtrl::get_camera_id() >= 2) {

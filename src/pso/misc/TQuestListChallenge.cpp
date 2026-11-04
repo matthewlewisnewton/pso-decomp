@@ -111,7 +111,7 @@ f32 get_scale__15TShopWindowBaseFv(void *);
 s32 TWindow__close(void *);
 void *create_yes_no_window(s32, u16, s32, s32);
 s32 select_cursor_entry__22TWindowSubShortCutListFv(s32);
-void *create_message_window__6TLobbyFllUls(s32, Pair_80288DA4 *, s32, u16);
+void *create_message_window__6TLobbyFPCvPCvUll(s32, Pair_80288DA4 *, s32, u16);
 s32 get_window_layout_position(s32);
 void update_selection__19TQuestListChallengeFv(QLC_80288DA4 *self);
 s32 lbl_805D64A8;
@@ -301,7 +301,7 @@ void update_selection__19TQuestListChallengeFv(QLC_80288DA4 *self) {
         p.a = lbl_80450AB4[0].a;
         p.b = lbl_80450AB4[0].b;
         id = (u16)get_entity_id(self->f24);
-        self->f40 = create_message_window__6TLobbyFllUls(get_window_layout_position(0x2E), &p, 1, id);
+        self->f40 = create_message_window__6TLobbyFPCvPCvUll(get_window_layout_position(0x2E), &p, 1, id);
         text2 = SUB_80222C28(self->f50, self->entries[sel].f8);
         ((TLobby *)(self->f40))->send_and_handle(text2, 0x80);
         ((TLobby *)(self->f40))->set_field_1c(37000.0f);
