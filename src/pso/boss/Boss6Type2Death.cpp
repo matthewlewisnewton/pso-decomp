@@ -67,7 +67,6 @@ struct Pl_8033E0F0 {
 
 extern "C" {
 void *__nw__7TObjectFUl(int);
-s32 refresh_players_equipment__14TBoss6PlotFalzFPv();
 extern void *__vt__23TBoss6Demo21_TYPE2_DEAD[];
 void push_matrix();
 void post_translate_matrix(void *);
@@ -366,7 +365,7 @@ TBoss6Demo21_TYPE2_DEAD::~TBoss6Demo21_TYPE2_DEAD() {
         }
     }
     restore_player_cameras();
-    refresh_players_equipment__14TBoss6PlotFalzFPv();
+    TBoss6PlotFalz::refresh_players_equipment();
     if (((O_8033E5A8 *)this)->f70 != NULL) {
         ModelNodePositionCapture::destroy((ModelNodePositionCapture *)(((O_8033E5A8 *)this)->f70));
         ((O_8033E5A8 *)this)->f70 = NULL;
