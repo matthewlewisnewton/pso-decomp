@@ -448,8 +448,7 @@ void init_acceleration_curve(AccelerationCurve *c, f32 a, f32 d, f32 length, f32
     up = (0.5f * sq) / c->accel;
     down = (0.5f * -sq) / c->decel;
     if (up + down >= c->dist) {
-        f32 k2 = 2.0f * c->accel;
-        c->peak = newton_sqrtf((c->dist * (k2 *= c->decel)) / (c->decel - c->accel));
+        c->peak = newton_sqrtf((c->dist * (2.0f * c->accel * c->decel)) / (c->decel - c->accel));
         sq = c->peak * c->peak;
         c->accelEnd = c->decelStart = c->peak / c->accel;
         c->accelDist = c->decelPos = (0.5f * sq) / c->accel;
@@ -474,11 +473,7 @@ f32 sample_acceleration_curve(AccelerationCurve *c, f32 t) {
         return 0.0f;
     }
     if (t < c->accelEnd) {
-        {
-        f32 k = 0.5f * c->accel;
-        k *= t;
-        return t * k;
-        }
+        return 0.5f * c->accel * t * t;
     }
     if (t < c->decelStart) {
         t -= c->accelEnd;
@@ -486,11 +481,7 @@ f32 sample_acceleration_curve(AccelerationCurve *c, f32 t) {
     }
     if (t < c->end) {
         t = c->end - t;
-        {
-        f32 k = 0.5f * c->decel;
-        k *= t;
-        return t * k + c->dist;
-        }
+        return 0.5f * c->decel * t * t + c->dist;
     }
     return c->dist;
 }
@@ -573,8 +564,8 @@ extern "C" {
 f32 TObjBoss2Tunnel::eval_piecewise_curve(PiecewiseCurve *c, f32 farg0) {
     f32 t;
     f32 r = 0.0f;
-    if (farg0 < r) {
-        r = r;
+    if (farg0 < 0.0f) {
+        r = 0.0f;
     } else {
         if (farg0 < c->accelEnd) {
             r = c->accel * farg0 + c->v0;
