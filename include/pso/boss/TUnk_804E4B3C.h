@@ -11,6 +11,13 @@ public:
     virtual void run_task();
     void *destroy(s16);
     void update_phase_motion();
+    void sub_802F23FC();
+    void sub_802F2400();
+    void sub_802F273C();
+    void init_effect();
+    void update_dust_spawn();
+    void update_spawn_timer(s32 arg1, s32 arg2, s32 arg3);
+    void advance_effect_timer();
     void spawn(s32, s32);
     virtual void render();
     s32 m_1c;
@@ -18,7 +25,14 @@ public:
     s32 phase;
     f32 rate;
     f32 value;
-    u8 unk_58[0x2C];
+    f32 m_58;
+    f32 m_5c;
+    u8 unk_60[0x10];
+    s32 m_70;
+    s32 m_74;
+    f32 m_78;
+    f32 m_7c;
+    f32 m_80;
     f32 m_84;
     void *m_88;
     void *m_8c;
@@ -28,5 +42,11 @@ typedef char TUnk_804E4B3C_size[sizeof(TUnk_804E4B3C) == 0x94 ? 1 : -1];
 typedef char TUnk_804E4B3C_motion[(offsetof(TUnk_804E4B3C, motion) == 0x20) ? 1 : -1];
 typedef char TUnk_804E4B3C_phase[(offsetof(TUnk_804E4B3C, phase) == 0x4C) ? 1 : -1];
 typedef char TUnk_804E4B3C_value[(offsetof(TUnk_804E4B3C, value) == 0x54) ? 1 : -1];
+typedef char TUnk_804E4B3C_m58[(offsetof(TUnk_804E4B3C, m_58) == 0x58) ? 1 : -1];
+typedef char TUnk_804E4B3C_m5c[(offsetof(TUnk_804E4B3C, m_5c) == 0x5C) ? 1 : -1];
+typedef char TUnk_804E4B3C_m74[(offsetof(TUnk_804E4B3C, m_74) == 0x74) ? 1 : -1];
+typedef char TUnk_804E4B3C_m70[(offsetof(TUnk_804E4B3C, m_70) == 0x70) ? 1 : -1];
+typedef char TUnk_804E4B3C_m84[(offsetof(TUnk_804E4B3C, m_84) == 0x84) ? 1 : -1];
+typedef char TUnk_804E4B3C_m88[(offsetof(TUnk_804E4B3C, m_88) == 0x88) ? 1 : -1];
 
 #endif
