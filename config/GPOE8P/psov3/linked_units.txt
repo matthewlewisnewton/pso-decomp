@@ -401,6 +401,7 @@ pso/boss/TUnk_80484A94.cpp
 pso/boss/TUnk_80484AFC.cpp
 pso/camera/CreationCamera.cpp
 pso/effect/TDPBShower.cpp
+pso/effect/TEF_LensFlare.cpp
 pso/effect/TEffClitical.cpp
 pso/effect/TEffGuard.cpp
 pso/effect/TEffHit.cpp
@@ -1181,6 +1182,7 @@ pso/misc/TLobby_803DF1FC.cpp
 pso/misc/TLobby_803E2D50.cpp
 pso/misc/TLobby_803F8794.cpp
 pso/misc/TLobby_804048E8.cpp
+pso/misc/TLobby_80428374.cpp
 pso/misc/TLockOnCursor.cpp
 pso/misc/TLockOnCursor_8013D91C.cpp
 pso/misc/TLockOnCursor_8013E0D0.cpp
@@ -1736,6 +1738,7 @@ pso/misc/TWindowMainMenu1P.cpp
 pso/misc/TWindowMainMenu4P.cpp
 pso/misc/TWindowMainMenu_8024E3CC.cpp
 pso/misc/TWindowMainMenu_80263B70.cpp
+pso/misc/TWindowMainMenu_802AD538.cpp
 pso/misc/TWindowMainMenu_802AE928.cpp
 pso/misc/TWindowMakeTeam.cpp
 pso/misc/TWindowMakeTeam_80131A5C.cpp
@@ -1786,6 +1789,7 @@ pso/misc/TWindowShortCut.cpp
 pso/misc/TWindowShortListCtrl.cpp
 pso/misc/TWindowShortListCtrl_801A4FC0.cpp
 pso/misc/TWindowShortListCtrl_80221828.cpp
+pso/misc/TWindowShortListCtrl_8026E7DC.cpp
 pso/misc/TWindowShortListCtrl_80277D3C.cpp
 pso/misc/TWindowSimpleStatus.cpp
 pso/misc/TWindowSnapShot.cpp
@@ -2254,6 +2258,7 @@ pso/player/TObjPlayer_80109344.cpp
 pso/player/TObjPlayer_8010A050.cpp
 pso/player/TObjPlayer_8010ECD0.cpp
 pso/player/TObjPlayer_80116578.cpp
+pso/player/TObjPlayer_80117DD8.cpp
 pso/player/TObjPlayer_8011B86C.cpp
 pso/player/TObjPlayer_8011BADC.cpp
 pso/player/TObjPlayer_8011C000.cpp
@@ -3381,6 +3386,7 @@ pso/unk/text_802AEBA8.cpp
 pso/unk/text_802AF64C.cpp
 pso/unk/text_802B1AB4.cpp
 pso/unk/text_802B1C1C.cpp
+pso/unk/text_802BFBF4.cpp
 pso/unk/text_802C095C.cpp
 pso/unk/text_802C09E0.cpp
 pso/unk/text_802C39F8.cpp
