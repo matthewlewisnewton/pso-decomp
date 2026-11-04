@@ -15,7 +15,7 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (main at 39136ddd5, 2026-11-04)
+## Summary (main at c2347076e, 2026-11-04)
 
 | Category | Hits | Files / units |
 |---|---:|---:|
