@@ -3302,6 +3302,7 @@ force_active:
   - apply_use_effect__13TUnk_804F0C48Fv
   - apply_use_effect__13TUnk_804F0D34Fv
   - apply_use_effect__13TUnk_804F0FF0Fv
+  - apply_use_effect__13TUnk_804F112CFv
   - apply_uv_offset__6TSceneFss
   - apply_variant_speeds__12TObjEneLappyFv
   - apply_velocity__13TBoss5GryphonFv
@@ -14257,7 +14258,7 @@ force_active:
   - send_guild_card__17TWindowSubComCardFv
   - send_head__10TObjPlayerFv
   - send_login3__9TProtocolFv
-  - send_obj_position_event__10TEndingPicFl
+  - send_obj_position_event__13TUnk_804F112CFl
   - send_packed_action__11TBoss4Type3Flll
   - send_packet_60__6TLobbyFi
   - send_packet__6TLobbyFllll
