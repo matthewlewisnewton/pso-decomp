@@ -97,14 +97,8 @@ pso/menu/TAdRicoRing.cpp:
 pso/ui/TAdRicoRingCtrl.cpp:
 	.text       start:0x8001BE00 end:0x8001BED8
 
-pso/player/TObjPlayer_8001BED8.cpp:
-	.text       start:0x8001BED8 end:0x8001BEE8
-
-pso/menu/TAdRicoRing_8001BEE8.cpp:
-	.text       start:0x8001BEE8 end:0x8001BF10
-
-pso/player/TObjPlayer_8001BF10.cpp:
-	.text       start:0x8001BF10 end:0x8001BF4C
+pso/system/FlagWord.cpp:
+	.text       start:0x8001BED8 end:0x8001BF4C
 
 pso/ui/TAdSEGAlogo_8001BF4C.cpp:
 	.text       start:0x8001BF4C end:0x8001C060
@@ -10956,11 +10950,8 @@ pso/misc/TLobby_8030A834.cpp:
 	.text       start:0x8030A834 end:0x8030A884
 
 pso/boss/TBoss4ZakoDraw.cpp:
-	.text       start:0x8030A884 end:0x8030A96C
+	.text       start:0x8030A884 end:0x8030AD38
 	.data       start:0x804E7650 end:0x804E7668
-
-pso/boss/TBoss4ZakoDraw_8030A96C.cpp:
-	.text       start:0x8030A96C end:0x8030AD38
 	.bss        start:0x80541E58 end:0x80542D60
 
 pso/boss/TBoss4ZakoDraw_8030AD38.cpp:

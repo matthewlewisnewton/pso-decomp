@@ -243,7 +243,6 @@ pso/boss/TBoss4Type3_800D9960.cpp
 pso/boss/TBoss4Uro.cpp
 pso/boss/TBoss4Zako.cpp
 pso/boss/TBoss4ZakoDraw.cpp
-pso/boss/TBoss4ZakoDraw_8030A96C.cpp
 pso/boss/TBoss4ZakoDraw_8030AD38.cpp
 pso/boss/TBoss4ZakoDraw_8030AD58.cpp
 pso/boss/TBoss4Zanzo.cpp
@@ -818,7 +817,6 @@ pso/menu/TAdMultiOkGC.cpp
 pso/menu/TAdPlyChrSelPlateGC.cpp
 pso/menu/TAdPlyChrSelPlateGC_802C4CA0.cpp
 pso/menu/TAdRicoRing.cpp
-pso/menu/TAdRicoRing_8001BEE8.cpp
 pso/menu/TAdTimeSetGC.cpp
 pso/menu/TChCrCharSelect.cpp
 pso/menu/TChCrEffWall.cpp
@@ -2209,8 +2207,6 @@ pso/player/TItemWeaponFist.cpp
 pso/player/TObjPlayer.cpp
 pso/player/TObjPlayerSet.cpp
 pso/player/TObjPlayer_80011014.cpp
-pso/player/TObjPlayer_8001BED8.cpp
-pso/player/TObjPlayer_8001BF10.cpp
 pso/player/TObjPlayer_80020898.cpp
 pso/player/TObjPlayer_8002E784.cpp
 pso/player/TObjPlayer_80036824.cpp
@@ -2577,6 +2573,7 @@ pso/slices/pso_carve_8020bf88.cpp
 pso/system/ChunkMaterialState.cpp
 pso/system/ChunkTextureStripCollector.cpp
 pso/system/CityTraffic.cpp
+pso/system/FlagWord.cpp
 pso/system/GinjaModelQueue.cpp
 pso/system/ItemEffects.cpp
 pso/system/LscServer.cpp
