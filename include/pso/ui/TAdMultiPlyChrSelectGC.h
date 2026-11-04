@@ -120,6 +120,7 @@ struct TAdMultiPlyChrSelectGC : public TObject {
     u8 unk_98[0x4];
     s32 m_9c;
     static s32 dispatch_draw_command(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
+    s32 find_active_slot();
     void update_selection();
     void open_windows();
     void init_windows();
