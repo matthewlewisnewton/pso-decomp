@@ -92,6 +92,12 @@ struct VObj_8007C8AC : VBase_8007C8AC {
 struct Vec2_8007DD28 { f32 x; f32 y; };
 struct Vtx_8007D828 { f32 x; f32 y; f32 z; u32 color; };
 struct Quad_8007D828 { f32 x0; f32 y0; f32 x1; f32 y1; f32 u0; f32 v0; f32 u1; f32 v1; };
+// The per-player block at the end of the card file: class flags, levels, then names.
+struct SnapshotPlayerBlock {
+    u32 class_flags[12];
+    u32 levels[12];
+    char names[12][0x18];
+};
 // screen.bin / the PSO_SCREEN card file: a 256x192 capture and who was in the room.
 struct ScreenSnapshot {
     u32 checksum;
@@ -101,9 +107,7 @@ struct ScreenSnapshot {
     u8 bits_per_pixel;
     u8 format;
     u16 player_count;
-    u32 class_flags[12];
-    u32 levels[12];
-    char names[12][0x18];
+    SnapshotPlayerBlock players;
 };
 typedef char ScreenSnapshot_size[sizeof(ScreenSnapshot) == 0x1818C ? 1 : -1];
 // The "GetFrameBuffer" temp buffer: the snapshot, then its card file image at the next 32-byte boundary.
@@ -904,9 +908,9 @@ s32 TObjBoss2Tunnel__sub_8007D1D0(void) {
         *p++ = 2;
         countp = (u16 *)p;
         p += 2;
-        flags = (u32 *)p;
-        levels = (u32 *)(p + 0x30);
-        name = (char *)(p + 0x60);
+        flags = ((SnapshotPlayerBlock *)p)->class_flags;
+        levels = ((SnapshotPlayerBlock *)p)->levels;
+        name = ((SnapshotPlayerBlock *)p)->names[0];
         memset(name, 0, 0x120);
         count = TLobby::get_game_mode();
         me = (TObjPlayer *)find_entity_by_id(local_client_id);

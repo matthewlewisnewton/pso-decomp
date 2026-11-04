@@ -281,7 +281,7 @@ void TObjBoss2Tunnel::advance_effect_timer() {
 }
 void TObjBoss2Tunnel__sub_802F273C(void) {  }
 void TUnk_804E4B3C::update_phase_motion() {
-    u8 *arg0 = (u8 *)this;
+    TUnk_804E4B3C *arg0 = this;
     f32 sp8;
     switch (*(s32 *)((s8 *)arg0 + 0x4C)) {
     case 0:
@@ -292,7 +292,7 @@ void TUnk_804E4B3C::update_phase_motion() {
                 *(f32 *)((s8 *)arg0 + 0x50) = (f32) lbl_805DEC98;
             }
             *(s32 *)((s8 *)arg0 + 0x4C) = 1;
-            init_piecewise_curve(arg0 + 0x20, lbl_805DECC4, lbl_805DED00, lbl_805DED04, lbl_805DED08, lbl_805DECF8);
+            init_piecewise_curve(&arg0->motion, lbl_805DECC4, lbl_805DED00, lbl_805DED04, lbl_805DED08, lbl_805DECF8);
             *(f32 *)((s8 *)arg0 + 0x54) = (f32) lbl_805DEC9C;
         }
         break;
@@ -300,10 +300,10 @@ void TUnk_804E4B3C::update_phase_motion() {
         if (TObjBoss2Tunnel::check_both((s32)arg0) == 0) {
             *(s32 *)((s8 *)arg0 + 0x4C) = 3;
             sp8 = fabs_float((f32) (*(f32 *)((s8 *)arg0 + 0x54)));
-            init_piecewise_curve(arg0 + 0x20, lbl_805DECC4, lbl_805DED00, (f32) (*(f32 *)((s8 *)arg0 + 0x54)), (f32) (-((TObjBoss2Tunnel *)(arg0 + 0x20))->update_position()), lbl_805DECF8);
+            init_piecewise_curve(&arg0->motion, lbl_805DECC4, lbl_805DED00, (f32) (*(f32 *)((s8 *)arg0 + 0x54)), (f32) (-((TObjBoss2Tunnel *)&arg0->motion)->update_position()), lbl_805DECF8);
             return;
         }
-        if (((TObjBoss2Tunnel *)(arg0 + 0x20))->advance_phase((f32 *)&sp8) != 0) {
+        if (((TObjBoss2Tunnel *)&arg0->motion)->advance_phase((f32 *)&sp8) != 0) {
             *(s32 *)((s8 *)arg0 + 0x4C) = 2;
         }
         *(f32 *)((s8 *)arg0 + 0x54) = (f32) (sp8 * *(f32 *)((s8 *)arg0 + 0x50));
@@ -311,12 +311,12 @@ void TUnk_804E4B3C::update_phase_motion() {
     case 2:
         if (TObjBoss2Tunnel::check_both((s32)arg0) == 0) {
             *(s32 *)((s8 *)arg0 + 0x4C) = 3;
-            init_piecewise_curve(arg0 + 0x20, lbl_805DECC4, lbl_805DED00, lbl_805DED04, lbl_805DEC9C, lbl_805DECF8);
+            init_piecewise_curve(&arg0->motion, lbl_805DECC4, lbl_805DED00, lbl_805DED04, lbl_805DEC9C, lbl_805DECF8);
             return;
         }
         break;
     case 3:
-        if (((TObjBoss2Tunnel *)(arg0 + 0x20))->advance_phase((f32 *)&sp8) != 0) {
+        if (((TObjBoss2Tunnel *)&arg0->motion)->advance_phase((f32 *)&sp8) != 0) {
             *(f32 *)((s8 *)arg0 + 0x54) = (f32) lbl_805DEC9C;
             *(s32 *)((s8 *)arg0 + 0x4C) = 0;
             return;
