@@ -16,25 +16,25 @@ void __dl__7TObjectFPv(void *);
 void TWindowMenuMainMenu::render() {
     TWindowDrawContext *frame = setup_content_frame();
     draw_frame(frame);
-    draw_entries_reversed((u8 *)frame);
+    draw_entries_reversed(frame);
 }
 
 void run_task__19TWindowMenuMainMenuFv(TWindowMenuMainMenu *window_menu_main_menu) {
     s32 var_r31;
     u8 temp_r3;
     u8 temp_r3_2;
-    u8 *var_r30;
 
+    TMainMenuEntry *entry;
     temp_r3 = window_menu_main_menu->m_60;
     if (temp_r3 & 8) {
         window_menu_main_menu->m_60 = (u8) (temp_r3 | 4);
     }
-    var_r30 = (u8 *)window_menu_main_menu + 0x64;
+    entry = window_menu_main_menu->entries;
     var_r31 = 0;
     do {
-        ((TWindowMainMenu *)var_r30)->update_item_tween();
+        entry->update_item_tween();
         var_r31 += 1;
-        var_r30 += 0x18;
+        entry += 1;
     } while (var_r31 < 8);
     window_menu_main_menu->handle_navigation_input();
     ((TWindowDD *)window_menu_main_menu)->initialize_subwindow();
@@ -58,10 +58,10 @@ void *__dt__19TWindowMenuMainMenuFv(void *arg0, s16 arg1) {
 }
 u8 *TWindowMenuMainMenu__ct(TWindowMenuMainMenu *window_menu_main_menu, s32 arg1, s16 arg2) {
     s32 i;
-    u8 *p;
+    TMainMenuEntry *entry;
     ((TWindowDD *)window_menu_main_menu)->construct_base((u8 *)window_menu_main_menu_params, (s16)arg2, (u8 *)arg1);
     *(s32 **)((s8 *)window_menu_main_menu + 0x18) = __vt__19TWindowMenuMainMenu;
-    p = (u8 *)window_menu_main_menu + 0x64;
+    entry = window_menu_main_menu->entries;
     i = 0;
     *(s32 *)((s8 *)window_menu_main_menu + 0) = lbl_805D3E68;
     window_menu_main_menu->m_60 = 4;
@@ -69,12 +69,12 @@ u8 *TWindowMenuMainMenu__ct(TWindowMenuMainMenu *window_menu_main_menu, s32 arg1
     window_menu_main_menu->m_62 = 0;
     window_menu_main_menu->m_20 = arg2;
     do {
-        ((TWindowMainMenu *)p)->init_color();
+        entry->init_color();
         i++;
-        p += 0x18;
+        entry++;
     } while (i < 8);
     for (i = 0; i < 8; i++) {
-        ((W_802AE864 *)window_menu_main_menu)->a[i] = 0;
+        window_menu_main_menu->slots[i] = 0;
     }
     window_menu_main_menu->update_scaled_position();
     ((TUnk_804CE018 *)window_menu_main_menu)->save_position();

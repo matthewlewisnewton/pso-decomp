@@ -43,16 +43,9 @@ struct TWindowMainMenu : public TObject {
     void render();
     void run_task();
     static void set_entry_field_20(s32 arg0, s32 arg1);
-    int is_item_active();
     void set_symbol_chat_parts(void * _w1);
-    void update_item_tween();
-    void init_color();
-    void pop_level();
     int get_selected_item_type();
     void clear_menu_flags();
-    s32 find_free_slot();
-    s32 update_if_active(s32 _w1);
-    static s32 count_active_items(int arg0);
     static void *create_menu(void *arg0, void *arg1);
     void open_menu_with_entry(s16 arg1);
     void try_open_battle_menu(s16 arg1);

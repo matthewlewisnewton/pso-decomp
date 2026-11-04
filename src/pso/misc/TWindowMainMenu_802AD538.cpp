@@ -10,18 +10,9 @@
 #include "pso/misc/TWindowSubStatusDisp.h"
 #include "pso/unk/text_8026CB5C.h"
 
-struct Item_802AE4DC { u8 pad[0x12]; u8 sel; };
-
-struct Menu_802AE4DC {
-    u8 pad[0x61];
-    s8 cur;
-    u8 pad2[0x124 - 0x62];
-    Item_802AE4DC *items[8];
-};
-
 extern "C" {
 
-void play_cursor_sound__15TWindowMainMenuFv(Menu_802AE4DC *m, int d);
+void play_cursor_sound__15TWindowMainMenuFv(TWindowMenuMainMenu *m, int d);
 struct Item_802ADADC { u8 pad[0x12]; u8 f12; };
 
 struct Obj_802ADADC { u8 pad[0x61]; s8 idx; u8 pad2[0x124 - 0x62]; Item_802ADADC *items[8]; };
@@ -30,38 +21,7 @@ struct Item_802ADAAC { u8 pad[0x11]; s8 f11; };
 
 struct Obj_802ADAAC { u8 pad[0x61]; s8 idx; u8 pad2[0x124 - 0x62]; Item_802ADAAC *items[8]; };
 
-struct MM_802AD90C {
-    u8 pad0[0x60];
-    u8 flags;
-    u8 pad61;
-    s16 cnt;
-    u8 pad64[0x124 - 0x64];
-    void *slots[8];
-};
-
-struct Hd_802ADA48 { u32 w[4]; };
-
-struct Col_802ADA48 { Hd_802ADA48 h; u8 b0, b1, b2, b3, b4, b5, b6, b7; };
-
-struct Menu_802AD980 {
-    u8 pad[0x60];
-    u8 flags;
-    s8 cur;
-    s16 count;
-    u8 pad2[0x124 - 0x64];
-    Col_802ADA48 *slots[8];
-};
-
 struct Obj_802ADC04 { u8 pad[0x124]; void *items[8]; };
-
-struct Menu_802ADD38 {
-    u8 pad[0x60];
-    u8 flags;
-    s8 cur;
-    s16 count;
-    u8 pad2[0x124 - 0x64];
-    s32 slots[8];
-};
 
 struct RecoveredGlobal_802AE59C_lbl_8050E208 {
     s32 value;
@@ -70,30 +30,11 @@ struct RecoveredGlobal_802AE59C_lbl_8050E208 {
 
 typedef char RecoveredGlobal_802AE59C_lbl_8050E208_size[sizeof(RecoveredGlobal_802AE59C_lbl_8050E208) == 0x1B0 ? 1 : -1];
 
-struct Item_802AD538 {
-    f32 x0;
-    f32 x4;
-    f32 x8;
-    f32 xc;
-    s8 x10;
-    s8 x11;
-    s8 x12;
-    u8 x13;
-    s8 x14;
-};
-
 struct UV_802AD538 { f32 u, v; };
 
-struct Item_802AD7F0 {
-    f32 x0;
-    f32 x4;
-    f32 x8;
-    f32 xc;
-    s8 x10;
-    s8 x11;
-    s8 x12;
-    u8 x13;
-    s8 x14;
+struct Rect_802AD538 {
+    f32 x0, y0, x1, y1;
+    f32 u0, v0, u1, v1;
 };
 
 s32 is_split_screen();
@@ -105,12 +46,12 @@ s32 apply_choice__20TWindowChoiceSettingFllll(void *, int, int, int);
 f32 TWindowSubComCard__sub_80244784(void *);
 s32 is_window_reveal_complete__13TUnk_804CE018Fv();
 s32 sub_80246948__13TUnk_804CE018Fv();
-void draw_item_labels__15TWindowMainMenuFv(Item_802AD538 *p, TWindowDrawContext *context);
-void park_selection__15TWindowMainMenuFPv(Menu_802AD980 *arg0);
-void copy_color_entry__15TWindowMainMenuFPvPv(Col_802ADA48 *arg0, Col_802ADA48 *arg1);
+void draw_item_labels__15TWindowMainMenuFv(TMainMenuEntry *p, TWindowDrawContext *w);
+void park_selection__15TWindowMainMenuFPv(TWindowMenuMainMenu *arg0);
+void copy_color_entry__15TWindowMainMenuFPvPv(TMainMenuEntry *dst, TMainMenuEntry *src);
 void TWindowMainMenu__sub_802ADADC(Obj_802ADADC *self, s8 i);
 int find_free_item_slot__15TWindowMainMenuFPv(Obj_802ADC04 *self);
-s32 append_child_rows__15TWindowMainMenuFPvi(Menu_802ADD38 *arg0, s32 arg1);
+s32 append_child_rows__15TWindowMainMenuFPvi(TWindowMenuMainMenu *arg0, s32 arg1);
 void begin_screen_draw(s32 arg0);
 void draw_textured_quad_at_depth(f32 *q, f32 depth);
 void set_draw_texture_and_color(s32 idx, s32 arg1);
@@ -118,28 +59,28 @@ void set_draw_texture_and_color(s32 idx, s32 arg1);
 extern UV_802AD538 main_menu_label_uv_table[];
 extern RecoveredGlobal_802AE59C_lbl_8050E208 controller_input_state;
 
-void draw_item_labels__15TWindowMainMenuFv(Item_802AD538 *p, TWindowDrawContext *context) {
-    f32 quad[8];
+void draw_item_labels__15TWindowMainMenuFv(TMainMenuEntry *p, TWindowDrawContext *w) {
+    Rect_802AD538 r;
     f32 scale;
     UV_802AD538 *uv;
     u32 color;
     u32 rgb;
     f32 a;
 
-    if (((TWindowMainMenu *)p)->is_item_active() != 0 && p->x10 > 0) {
-        scale = -1.0f / (0.299f + context->depth);
-        uv = &main_menu_label_uv_table[p->x11];
+    if (p->is_item_active() != 0 && p->fade > 0) {
+        scale = -1.0f / (0.299f + w->depth);
+        uv = &main_menu_label_uv_table[p->icon];
         begin_render__20TWindowSubStatusDispFl();
-        switch (p->x12) {
+        switch (p->kind) {
         case 0:
             rgb = 0xFFFFFF;
-            if (p->x13 & 2) {
+            if (p->flags & 2) {
                 rgb = 0x686868;
             }
-            if (p->x10 >= 4) {
+            if (p->fade >= 4) {
                 a = 1.0f;
             } else {
-                a = (f32)p->x10 / 4.0f;
+                a = (f32)p->fade / 4.0f;
             }
             color = rgb | ((s32)(255.0f * a) << 24);
             break;
@@ -154,47 +95,28 @@ void draw_item_labels__15TWindowMainMenuFv(Item_802AD538 *p, TWindowDrawContext 
         }
         begin_screen_draw(1);
         set_draw_texture_and_color(2, color);
-        quad[0] = context->clip_left + p->x8;
-        quad[1] = context->clip_top + p->xc;
-        quad[2] = 98.0f + quad[0];
-        quad[3] = 16.0f + quad[1];
-        quad[4] = uv->u / 256.0f;
-        quad[5] = uv->v / 256.0f;
-        quad[6] = (98.0f + uv->u) / 256.0f;
-        quad[7] = (16.0f + uv->v) / 256.0f;
-        if (TWindowKeyBoardSoft::try_open(context, quad) != 0) {
-            draw_textured_quad_at_depth(quad, scale);
+        r.x0 = w->clip_left + p->cur_x;
+        r.y0 = w->clip_top + p->cur_y;
+        r.x1 = 98.0f + r.x0;
+        r.y1 = 16.0f + r.y0;
+        r.u0 = uv->u / 256.0f;
+        r.v0 = uv->v / 256.0f;
+        r.u1 = (98.0f + uv->u) / 256.0f;
+        r.v1 = (16.0f + uv->v) / 256.0f;
+        if (TWindowKeyBoardSoft::try_open(w, &r.x0) != 0) {
+            draw_textured_quad_at_depth(&r.x0, scale);
         }
         TWindowSubStatusDisp::get_player();
         TLanguage::set_entry_index(2, 0x4B);
     }
 }
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-int TWindowMainMenu::is_item_active() { return *(u8*)((char*)this + 0x13) & 0x1; }
-#pragma pop
+int TMainMenuEntry::is_item_active() { return flags & 1; }
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TWindowMainMenu__sub_802AD74C(void* p) { *(u8*)((char*)p + 0x13) |= 0x2; }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TWindowMainMenu::set_symbol_chat_parts(void * _w1) { copy_vec2__28TWindowSubSymbolChatPartsSetFPv(this, _w1); *(unsigned char *)&this->m_down = 8; }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void init_row_entry__15TWindowMainMenuFPvicc(u8 *window_sub_symbol_chat_parts_set, s32 arg1, s8 arg2, s8 arg3) {
     copy_vec2__28TWindowSubSymbolChatPartsSetFPv((void *)window_sub_symbol_chat_parts_set, (void *)arg1);
     copy_vec2__28TWindowSubSymbolChatPartsSetFPv(window_sub_symbol_chat_parts_set + 8, (void *)arg1);
@@ -203,190 +125,139 @@ void init_row_entry__15TWindowMainMenuFPvicc(u8 *window_sub_symbol_chat_parts_se
     *(s8 *)((s8 *)window_sub_symbol_chat_parts_set + 0x12) = 0;
     *(u8 *)((s8 *)window_sub_symbol_chat_parts_set + 0x13) = (u8) (*(u8 *)((s8 *)window_sub_symbol_chat_parts_set + 0x13) | 1);
 }
-#pragma pop
 
-void TWindowMainMenu::update_item_tween() {
-    Item_802AD7F0 *p = (Item_802AD7F0 *)this;
+void TMainMenuEntry::update_item_tween() {
     if (is_item_active() != 0) {
-        if (p->x14 <= 0) {
-            p->x8 = p->x0;
-            p->xc = p->x4;
+        if (tween <= 0) {
+            cur_x = x;
+            cur_y = y;
         } else {
-            p->x8 += (p->x0 - p->x8) / p->x14;
-            p->xc += (p->x4 - p->xc) / p->x14;
-            p->x14--;
+            cur_x += (x - cur_x) / tween;
+            cur_y += (y - cur_y) / tween;
+            tween--;
         }
-        if (p->x10 < 4) {
-            p->x10++;
+        if (fade < 4) {
+            fade++;
         }
     }
 }
 
-void TWindowMainMenu::init_color() {
-    Item_802AD538 *item = (Item_802AD538 *)this;
-    item->x0 = 0.0f;
-    item->x4 = 0.0f;
-    item->x8 = 0.0f;
-    item->xc = 0.0f;
-    item->x10 = 0;
-    item->x11 = -1;
-    item->x12 = 0;
-    item->x13 = 0;
-    item->x14 = 0;
+void TMainMenuEntry::init_color() {
+    x = 0.0f;
+    y = 0.0f;
+    cur_x = 0.0f;
+    cur_y = 0.0f;
+    fade = 0;
+    icon = -1;
+    kind = 0;
+    flags = 0;
+    tween = 0;
 }
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-void TWindowMainMenu::pop_level() {
-    MM_802AD90C *arg0 = (MM_802AD90C *)this;
+void TWindowMenuMainMenu::pop_level() {
     s32 i;
-    arg0->cnt--;
-    arg0->flags |= 8;
+    m_62--;
+    m_60 |= 8;
     for (i = 0; i < 8; i++) {
-        if (arg0->slots[i] != 0) {
-            ((TWindowMainMenu *)(arg0->slots[i]))->init_color();
-            arg0->slots[i] = 0;
+        if (slots[i] != 0) {
+            slots[i]->init_color();
+            slots[i] = 0;
         }
     }
 }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-void park_selection__15TWindowMainMenuFPv(Menu_802AD980 *arg0) {
-    Col_802ADA48 buf;
-    u8 sp8[8];
+void park_selection__15TWindowMainMenuFPv(TWindowMenuMainMenu *menu) {
+    TMainMenuEntry buf;
+    TMainMenuRow row;
     s32 i;
-    Col_802ADA48 *slot;
-    copy_color_entry__15TWindowMainMenuFPvPv(&buf, arg0->slots[arg0->cur]);
+    TMainMenuEntry *slot;
+    copy_color_entry__15TWindowMainMenuFPvPv(&buf, menu->slots[(s8)menu->m_61]);
     for (i = 0; i < 8; i++) {
-        if (arg0->slots[i] != NULL) {
-            ((TWindowMainMenu *)(arg0->slots[i]))->init_color();
-            arg0->slots[i] = NULL;
+        if (menu->slots[i] != NULL) {
+            menu->slots[i]->init_color();
+            menu->slots[i] = NULL;
         }
     }
-    ((s32 (*)(void *, void *, s32))get_row_position__15TWindowMainMenuFiPvi)(arg0, sp8, arg0->count);
-    slot = (Col_802ADA48 *)((TWindowMainMenu *)arg0)->find_free_slot();
+    get_row_position__15TWindowMainMenuFiPvi((s32)menu, &row, menu->m_62);
+    slot = menu->find_free_slot();
     copy_color_entry__15TWindowMainMenuFPvPv(slot, &buf);
-    ((TWindowMainMenu *)slot)->set_symbol_chat_parts(sp8);
-    ((u8 *)slot)[0x12] = 2;
-    arg0->flags |= 4;
-    arg0->count++;
+    ((TWindowMainMenu *)slot)->set_symbol_chat_parts(&row);
+    slot->kind = 2;
+    menu->m_60 |= 4;
+    menu->m_62++;
 }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-void copy_color_entry__15TWindowMainMenuFPvPv(Col_802ADA48 *arg0, Col_802ADA48 *arg1) {
-    arg0->h = arg1->h;
-    arg0->b0 = arg1->b0;
-    arg0->b1 = arg1->b1;
-    arg0->b2 = arg1->b2;
-    arg0->b3 = arg1->b3;
-    arg0->b4 = arg1->b4;
-    arg0->b5 = arg1->b5;
-    arg0->b6 = arg1->b6;
-    arg0->b7 = arg1->b7;
+void copy_color_entry__15TWindowMainMenuFPvPv(TMainMenuEntry *dst, TMainMenuEntry *src) {
+    struct Hd { u32 w[4]; };
+    struct Col { Hd h; };
+    ((Col *)dst)->h = ((Col *)src)->h;
+    dst->fade = src->fade;
+    dst->icon = src->icon;
+    dst->kind = src->kind;
+    dst->flags = src->flags;
+    dst->tween = src->tween;
+    dst->b5 = src->b5;
+    dst->b6 = src->b6;
+    dst->b7 = src->b7;
 }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 int TWindowMainMenu::get_selected_item_type() {
     Obj_802ADAAC *self = (Obj_802ADAAC *)this;
     Item_802ADAAC *p = self->items[self->idx];
     if (p == 0) return 0x1f;
     return p->f11;
 }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TWindowMainMenu__sub_802ADADC(Obj_802ADADC *self, s8 i) {
     self->idx = i;
     self->items[self->idx]->f12 = 1;
 }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 int TWindowMainMenu__sub_802ADB00(u8 *arg0) {
   long long new_var;
   return new_var = (s8) ((*((u8 *) (((s8 *) arg0) + 0x61))) & 0xFFFFFFFFFFFFFFFFu);
 }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TWindowMainMenu::clear_menu_flags() { *(u8*)((char*)this + 0x60) &= 0xfc; }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 int TWindowMenuMainMenu::is_flag_set() { return (this->m_60 >> 1) & 0x1; }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 int TWindowMenuMainMenu::get_menu_flag() { return this->m_60 & 0x1; }
-#pragma pop
 
-#pragma push
-#pragma fp_contract on
-u8 *find_active_item_by_id__15TWindowMainMenuFii(s32 arg0, s32 arg1) {
+TMainMenuEntry *TWindowMenuMainMenu::find_active_item_by_id(int arg1) {
     s32 var_r31;
-    u8 *var_r30;
+    TMainMenuEntry *entry;
     s32 var_r29;
     var_r29 = arg1;
     if (var_r29 == 0x1B) {
         var_r29 = 0x1A;
     }
-    var_r30 = (u8 *)(arg0 + 0x64);
+    entry = entries;
     var_r31 = 0;
 loop_3:
-    if ((((TWindowMainMenu *)var_r30)->is_item_active() != 0) && ((s8) *(u8 *)((s8 *)var_r30 + 0x11) == var_r29)) {
-        return var_r30;
+    if ((entry->is_item_active() != 0) && ((s8)entry->icon == var_r29)) {
+        return entry;
     }
     var_r31 += 1;
-    var_r30 += 0x18;
+    entry += 1;
     if (var_r31 >= 8) {
         return NULL;
     }
     goto loop_3;
 }
-#pragma pop
 
-s32 TWindowMainMenu::find_free_slot() {
-    s32 arg0 = (s32)this;
+TMainMenuEntry *TWindowMenuMainMenu::find_free_slot() {
     s32 counter;
-    s32 ptr;
+    TMainMenuEntry *entry;
 
-    ptr = arg0 + 0x64;
+    entry = entries;
     counter = 0;
 loop_1:
-    if (((TWindowMainMenu *)ptr)->is_item_active() == 0) {
-        return ptr;
+    if (entry->is_item_active() == 0) {
+        return entry;
     }
     counter += 1;
-    ptr += 0x18;
+    entry += 1;
     if (counter >= 8) {
         return 0;
     }
@@ -401,28 +272,25 @@ int find_free_item_slot__15TWindowMainMenuFPv(Obj_802ADC04 *self) {
     return 8;
 }
 
-s32 TWindowMainMenu::count_active_items(int arg0) {
+s32 TWindowMenuMainMenu::count_active_items() {
     s32 counter;
-    s32 ptr;
+    TMainMenuEntry *entry;
 
-    ptr = arg0 + 0x64;
+    entry = entries;
     counter = 0;
 loop_1:
-    if (((TWindowMainMenu *)ptr)->is_item_active() == 0) {
+    if (entry->is_item_active() == 0) {
         return counter;
     }
     counter += 1;
-    ptr += 0x18;
+    entry += 1;
     if (counter >= 8) {
         return 8;
     }
     goto loop_1;
 }
 
-struct RowPos_802AD538 { f32 y; f32 x; };
-
-void get_row_position__15TWindowMainMenuFiPvi(s32 arg0, void *arg1, s32 arg2) {
-    RowPos_802AD538 *row = (RowPos_802AD538 *)arg1;
+void get_row_position__15TWindowMainMenuFiPvi(s32 arg0, TMainMenuRow *row, s32 arg2) {
     row->y = 0.0f;
     row->x = 16.0f * (f32)arg2;
 }
@@ -431,18 +299,17 @@ s32 is_not_split_screen(void *) {
     return (u32)__cntlzw(is_split_screen()) >> 5;
 }
 
-s32 TWindowMainMenu::update_if_active(s32 _w1) {
-    Menu_802ADD38 *_w0 = (Menu_802ADD38 *)this;
+s32 TWindowMenuMainMenu::update_if_active(s32 _w1) {
     s32 temp_r3;
 
-    temp_r3 = append_child_rows__15TWindowMainMenuFPvi((Menu_802ADD38 *)(_w0), _w1);
+    temp_r3 = append_child_rows__15TWindowMainMenuFPvi(this, _w1);
     if (temp_r3 != 0) {
         ((s32 (*)(void))TWindowMainMenu__sub_802AD74C)();
     }
     return temp_r3;
 }
 
-s32 append_child_rows__15TWindowMainMenuFPvi(Menu_802ADD38 *arg0, s32 arg1) {
+s32 append_child_rows__15TWindowMainMenuFPvi(TWindowMenuMainMenu *arg0, s32 arg1) {
     u8 sp8[8];
     s32 n;
     s32 slot;
@@ -450,10 +317,10 @@ s32 append_child_rows__15TWindowMainMenuFPvi(Menu_802ADD38 *arg0, s32 arg1) {
     if (n >= 8) {
         return 0;
     }
-    ((s32 (*)(void *, void *, s32))get_row_position__15TWindowMainMenuFiPvi)(arg0, sp8, n + arg0->count);
-    slot = ((s32 (*)(void *, s32))find_active_item_by_id__15TWindowMainMenuFii)(arg0, arg1);
+    ((s32 (*)(void *, void *, s32))get_row_position__15TWindowMainMenuFiPvi)(arg0, sp8, n + arg0->m_62);
+    slot = (s32)arg0->find_active_item_by_id(arg1);
     if (slot == 0) {
-        slot = ((TWindowMainMenu *)arg0)->find_free_slot();
+        slot = (s32)arg0->find_free_slot();
         if (slot == 0) {
             return 0;
         }
@@ -461,8 +328,8 @@ s32 append_child_rows__15TWindowMainMenuFPvi(Menu_802ADD38 *arg0, s32 arg1) {
     } else {
         ((TWindowMainMenu *)slot)->set_symbol_chat_parts(sp8);
     }
-    arg0->slots[n] = slot;
-    arg0->flags &= ~4;
+    arg0->slots[n] = (TMainMenuEntry *)slot;
+    arg0->m_60 &= ~4;
     return slot;
 }
 
@@ -480,27 +347,35 @@ void TWindowMenuMainMenu::set_target_y(f32 farg0) {
 }
 
 void TWindowMenuMainMenu::update_scaled_position() {
-    set_target_y(16.0f * (f32)TWindowMainMenu::count_active_items((s32)this));
+    set_target_y(16.0f * (f32)count_active_items());
 }
 
-void TWindowMenuMainMenu::draw_entries_reversed(u8 *arg1) {
-    s32 arg0 = (s32)this;
+void TWindowMenuMainMenu::draw_entries_reversed(TWindowDrawContext *context) {
     s32 var_r31;
-    u8 *var_r30;
-    var_r30 = (u8 *)(arg0 + 0x10C);
+    TMainMenuEntry *entry;
+    entry = &entries[7];
     var_r31 = 0;
     do {
-        ((void (*)(void *, void *))draw_item_labels__15TWindowMainMenuFv)(var_r30, arg1);
+        draw_item_labels__15TWindowMainMenuFv(entry, context);
         var_r31 += 1;
-        var_r30 -= 0x18;
+        entry -= 1;
     } while (var_r31 < 8);
 }
 
 extern GinjaTextureList *lbl_805D63F0;
-void apply_context_transform_to_rect(void *, f32 *);
+void apply_context_transform_to_rect(TWindowDrawContext *context, f32 *quad);
 
 void TWindowMenuMainMenu::draw_frame(TWindowDrawContext *context) {
-    // Rectangle coordinates followed by texture coordinates.
+    enum {
+        QUAD_X0 = 0,
+        QUAD_Y0 = 1,
+        QUAD_X1 = 2,
+        QUAD_Y1 = 3,
+        QUAD_U0 = 4,
+        QUAD_V0 = 5,
+        QUAD_U1 = 6,
+        QUAD_V1 = 7
+    };
     f32 quad[8];
     f32 depth = -1.0f / (0.299f + m_54);
     f32 offset = 0.0f;
@@ -510,31 +385,31 @@ void TWindowMenuMainMenu::draw_frame(TWindowDrawContext *context) {
     set_current_texture_list(lbl_805D63F0);
     set_draw_texture_and_color(11, context->color);
     if (is_not_split_screen(this)) {
-        quad[0] = context->x;
-        quad[1] = context->y + offset;
-        quad[2] = 18.0f + quad[0];
-        quad[3] = 28.0f + quad[1];
-        quad[4] = 0.8984375f; quad[5] = 0.0f;
-        quad[6] = 0.96875f; quad[7] = 0.109375f;
+        quad[QUAD_X0] = context->x;
+        quad[QUAD_Y0] = context->y + offset;
+        quad[QUAD_X1] = 18.0f + quad[QUAD_X0];
+        quad[QUAD_Y1] = 28.0f + quad[QUAD_Y0];
+        quad[QUAD_U0] = 0.8984375f; quad[QUAD_V0] = 0.0f;
+        quad[QUAD_U1] = 0.96875f; quad[QUAD_V1] = 0.109375f;
         apply_context_transform_to_rect(context, quad);
         draw_textured_quad_at_depth(quad, depth);
         offset += 28.0f;
         remaining -= 28.0f;
-        quad[0] = context->x; quad[1] = context->y + offset;
-        quad[2] = quad[0] + context->w; quad[3] = 23.0f + quad[1];
-        quad[4] = 0.0f; quad[5] = 0.3125f;
-        quad[6] = 0.453125f; quad[7] = 0.40234375f;
+        quad[QUAD_X0] = context->x; quad[QUAD_Y0] = context->y + offset;
+        quad[QUAD_X1] = quad[QUAD_X0] + context->w; quad[QUAD_Y1] = 23.0f + quad[QUAD_Y0];
+        quad[QUAD_U0] = 0.0f; quad[QUAD_V0] = 0.3125f;
+        quad[QUAD_U1] = 0.453125f; quad[QUAD_V1] = 0.40234375f;
         apply_context_transform_to_rect(context, quad);
         draw_textured_quad_at_depth(quad, depth);
         offset += 23.0f;
         remaining -= 23.0f;
     } else {
-        quad[0] = context->x;
-        quad[1] = context->y + offset;
-        quad[2] = context->x + context->w;
-        quad[3] = 3.0f + (39.0f + quad[1]);
-        quad[4] = 0.453125f; quad[5] = 0.6796875f;
-        quad[6] = 0.0f; quad[7] = 0.515625f;
+        quad[QUAD_X0] = context->x;
+        quad[QUAD_Y0] = context->y + offset;
+        quad[QUAD_X1] = context->x + context->w;
+        quad[QUAD_Y1] = 3.0f + (39.0f + quad[QUAD_Y0]);
+        quad[QUAD_U0] = 0.453125f; quad[QUAD_V0] = 0.6796875f;
+        quad[QUAD_U1] = 0.0f; quad[QUAD_V1] = 0.515625f;
         apply_context_transform_to_rect(context, quad);
         draw_textured_quad_at_depth(quad, depth);
         offset += 42.0f;
@@ -547,19 +422,19 @@ void TWindowMenuMainMenu::draw_frame(TWindowDrawContext *context) {
         } else {
             height = 16.0f;
         }
-        quad[0] = context->x; quad[1] = context->y + offset;
-        quad[2] = quad[0] + context->w; quad[3] = quad[1] + height;
-        quad[4] = 0.0f; quad[5] = 0.40234375f;
-        quad[6] = 0.453125f; quad[7] = (103.0f + height) / 256.0f;
+        quad[QUAD_X0] = context->x; quad[QUAD_Y0] = context->y + offset;
+        quad[QUAD_X1] = quad[QUAD_X0] + context->w; quad[QUAD_Y1] = quad[QUAD_Y0] + height;
+        quad[QUAD_U0] = 0.0f; quad[QUAD_V0] = 0.40234375f;
+        quad[QUAD_U1] = 0.453125f; quad[QUAD_V1] = (103.0f + height) / 256.0f;
         apply_context_transform_to_rect(context, quad);
         draw_textured_quad_at_depth(quad, depth);
         offset += height;
         remaining -= height;
     }
-    quad[0] = context->x; quad[1] = context->y + offset;
-    quad[2] = quad[0] + context->w; quad[3] = 39.0f + quad[1];
-    quad[4] = 0.0f; quad[5] = 0.52734375f;
-    quad[6] = 0.453125f; quad[7] = 0.6796875f;
+    quad[QUAD_X0] = context->x; quad[QUAD_Y0] = context->y + offset;
+    quad[QUAD_X1] = quad[QUAD_X0] + context->w; quad[QUAD_Y1] = 39.0f + quad[QUAD_Y0];
+    quad[QUAD_U0] = 0.0f; quad[QUAD_V0] = 0.52734375f;
+    quad[QUAD_U1] = 0.453125f; quad[QUAD_V1] = 0.6796875f;
     apply_context_transform_to_rect(context, quad);
     draw_textured_quad_at_depth(quad, depth);
     TWindowSubStatusDisp::get_player();
@@ -567,16 +442,16 @@ void TWindowMenuMainMenu::draw_frame(TWindowDrawContext *context) {
 
 TWindowDrawContext *TWindowMenuMainMenu::setup_content_frame() {
     f32 v;
-    TWindowKeyBoardSoft *r;
-    r = TWindowKeyBoardSoft::open_singleton(m_40, m_48, fn_8026CB68(), m_54, m_2c);
+    TWindowKeyBoardSoft *window;
+    window = TWindowKeyBoardSoft::open_singleton(m_40, m_48, (f32 *)fn_8026CB68(), m_54, m_2c);
     if (is_not_split_screen(this) != 0) {
         v = 51.0f;
     } else {
         v = 39.0f;
     }
-    r->set_bounds(10.0f + r->x, r->y + v, (r->x + r->w) - 10.0f, (r->y + r->h) - 39.0f);
-    r->color = ((s32)(255.0f * TWindowSubComCard__sub_80244784(this)) << 24) | 0xFF0000 | 0xFFFF;
-    return r;
+    window->set_bounds(10.0f + window->x, window->y + v, (window->x + window->w) - 10.0f, (window->y + window->h) - 39.0f);
+    window->color = ((s32)(255.0f * TWindowSubComCard__sub_80244784(this)) << 24) | 0xFF0000 | 0xFFFF;
+    return window;
 }
 
 
@@ -595,10 +470,9 @@ void TWindowMenuMainMenu::handle_cancel() {
 }
 
 void TWindowMenuMainMenu::handle_confirm() {
-    Menu_802AD980 *menu = (Menu_802AD980 *)this;
-    Col_802ADA48 *item = menu->slots[(s8)m_61];
+    TMainMenuEntry *item = slots[(s8)m_61];
     if (item != NULL) {
-        if (item->b3 & 2) {
+        if (item->flags & 2) {
             play_sound_effect(0x53F06, 0, 0, 0);
             return;
         }
@@ -608,19 +482,19 @@ void TWindowMenuMainMenu::handle_confirm() {
 }
 
 struct Obj_802ADC04;
-void play_cursor_sound__15TWindowMainMenuFv(Menu_802AE4DC *m, int d) {
+void play_cursor_sound__15TWindowMainMenuFv(TWindowMenuMainMenu *m, int d) {
     int n;
     play_sound_effect(0x54100, 0, 0, 0);
-    m->items[m->cur]->sel = 0;
+    m->slots[m->m_61]->kind = 0;
     n = find_free_item_slot__15TWindowMainMenuFPv((Obj_802ADC04 *)m);
-    m->cur += d;
-    if (m->cur < 0) {
-        m->cur = n - 1;
+    m->m_61 += d;
+    if (m->m_61 < 0) {
+        m->m_61 = n - 1;
     }
-    if (m->cur > n - 1) {
-        m->cur = 0;
+    if (m->m_61 > n - 1) {
+        m->m_61 = 0;
     }
-    m->items[m->cur]->sel = 1;
+    m->slots[m->m_61]->kind = 1;
 }
 
 void TWindowMenuMainMenu::handle_navigation_input() {
@@ -628,10 +502,10 @@ void TWindowMenuMainMenu::handle_navigation_input() {
     if ((is_window_reveal_complete__13TUnk_804CE018Fv() != 0) && (this->get_menu_flag() == 0) && (this->is_flag_set() == 0) && !(this->m_60 & 4)) {
         window_choice_setting = (u8 *)&controller_input_state.value + (is_player_input_active((*(s16 *)&this->m_20)) * 0x50) + 0x20;
         if ((apply_choice__20TWindowChoiceSettingFllll(window_choice_setting, 0x10, 6, 1) != 0) || (apply_choice__20TWindowChoiceSettingFllll((void *) ((u8 *)&controller_input_state.value + 0x160), 0x10, 6, 1) != 0)) {
-            play_cursor_sound__15TWindowMainMenuFv((Menu_802AE4DC *)(this), -1);
+            play_cursor_sound__15TWindowMainMenuFv(this, -1);
         }
         if ((apply_choice__20TWindowChoiceSettingFllll(window_choice_setting, 0x20, 6, 1) != 0) || (apply_choice__20TWindowChoiceSettingFllll((void *) ((u8 *)&controller_input_state.value + 0x160), 0x20, 6, 1) != 0)) {
-            play_cursor_sound__15TWindowMainMenuFv((Menu_802AE4DC *)(this), 1);
+            play_cursor_sound__15TWindowMainMenuFv(this, 1);
         }
         if ((TWindowShortListCtrl__check_controller_button((int)window_choice_setting, 4) != 0) || (test_flag_4c__23TAdSinglePlyChrSelectGCFv((void *) ((u8 *)&controller_input_state.value + 0x160), 4) != 0)) {
             this->handle_confirm();

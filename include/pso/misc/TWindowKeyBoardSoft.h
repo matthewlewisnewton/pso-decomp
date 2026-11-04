@@ -16,7 +16,6 @@ struct TWindowKeyBoardSoft : public TWindowDrawContext
     int get_flag_bit6();
     int is_cursor_locked();
     void render();
-    static TWindowKeyBoardSoft *open_singleton(void *pos, void *size, void *scale, f32 depth, s32 flags);
     static s32 try_open(void *context, void *quad);
     u16 m_60;
     u16 m_62;
@@ -66,6 +65,7 @@ struct TWindowKeyBoardSoft : public TWindowDrawContext
     void animate_scale();
     s32 is_point_in_bounds(void *arg1);
     void adjust_pos_for_split_screen(s32 arg1);
+    static TWindowKeyBoardSoft *open_singleton(f32 *pos, f32 *size, f32 *scale, f32 depth, int flags);
     static u32 get_or_create_instance();
     static u32 free_singleton(u32 arg0, s16 arg1);
     u32 init_layout();
