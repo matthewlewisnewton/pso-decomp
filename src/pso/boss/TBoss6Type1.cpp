@@ -208,7 +208,7 @@ struct Boss_802B6C30 {
 
 
 
-struct Blend_802B81A4 { s32 ids[2]; f32 ts[2]; };
+struct Blend_802B81A4 { Boss6Motion *motions[2]; f32 ts[2]; };
 
 
 
@@ -290,7 +290,7 @@ void TBoss6Type1__sub_802B5DD4(TBoss6Type1 *self);
 void *create_particle_emitter(void *pos, s32 id);
 extern Tbl_802B4BA8 TBoss6Type1__effect_slot_table[];
 extern u8 lbl_80471014[];
-s32 get_bml_motion(s32, s32);
+Boss6Motion *get_bml_motion(s32, s32);
 extern const s32 TBoss6Type1__data_805DE3C4;
 void send_flow_action_if_idle__11TBoss6Type1FPvc(TBoss6Type1 *arg0, s8 arg1);
 void TBoss6Type1__sub_802B909C(TBoss6Type1 *self, Atk_802B8EE0 *atk);
@@ -1027,7 +1027,7 @@ void TBoss6Type1__sub_802B854C(TBoss6Type1 *self) {
     for (i = 0; i < TBoss6Type1__data_805DE3C4; i++) {
         a = &self->anims[i];
         ((TBoss6Type1 *)a)->copy_transform(lbl_80470F0C);
-        a->motion = a->prev_motion = (Boss6Motion *)get_bml_motion(self->m_3fc, TBoss6Type1__motion_set_table[2].ids[i]);
+        a->motion = a->prev_motion = get_bml_motion(self->m_3fc, TBoss6Type1__motion_set_table[2].ids[i]);
     }
 }
 
@@ -1087,7 +1087,7 @@ void TBoss6Type1::set_motion_set(s32 arg1) {
     this->motion_mode = t->mode;
     for (i = 0; i < n; i++) {
         a = &this->anims[i];
-        Boss6Motion *motion = (Boss6Motion *)get_bml_motion(this->m_3fc, t->ids[i]);
+        Boss6Motion *motion = get_bml_motion(this->m_3fc, t->ids[i]);
         a->blend = a->rate;
         a->prev_motion = a->motion;
         a->prev_t = a->t;
@@ -1117,9 +1117,9 @@ void TBoss6Type1::draw_part_motions() {
                 draw_model_motion((void *)id, a->motion, a->t);
                 cb->clear();
             } else {
-                b.ids[0] = (s32)a->prev_motion;
+                b.motions[0] = a->prev_motion;
                 b.ts[0] = a->prev_t;
-                b.ids[1] = (s32)a->motion;
+                b.motions[1] = a->motion;
                 b.ts[1] = a->t;
                 cb->install();
                 draw_model_blend_motion((void *)id, &b, a->blend);
@@ -1357,35 +1357,34 @@ void TBoss6Type1::enable_parts() {
     }
 }
 void TBoss6Type1::update_beam_attack() {
-    Boss_802B7530 *self = (Boss_802B7530 *)this;
     Line_802B7530 line;
-    Vec_802B7530 v;
-    Vec_802B7530 w;
-    Vec_802B7530 out;
-    Vec_802B7530 A;
-    Vec_802B7530 B;
-    f32 t = self->f464;
-    u32 motion = self->f460;
+    Vec v;
+    Vec w;
+    Vec out;
+    Vec A;
+    Vec B;
+    f32 t = this->anims[1].t;
+    Boss6Motion *motion = this->anims[1].motion;
     s32 n;
     s32 i;
 
-    if (motion != get_bml_motion(self->f3FC, TBoss6Type1__motion_set_table[13].ids[1])) return;
+    if (motion != get_bml_motion(this->m_3fc, TBoss6Type1__motion_set_table[13].ids[1])) return;
     if (t < 12.5f || t > 22.0f) return;
     {
-    f32 end = 12.5f + self->f468;
+    f32 end = 12.5f + this->anims[1].speed;
     if (t >= 12.5f && t < end) {
-        play_sound_effect(0x40039209, &self->b, 0, 0);
+        play_sound_effect(0x40039209, &this->node_positions_578[9], 0, 0);
     }
     }
-    ((TBoss6Type1 *)self)->init_parts();
+    init_parts();
     n = TLobby::get_game_mode();
     for (i = 0; i < n; i++) {
-        Player_802B6B34 *p = get_player_data__10TObjPlayerFi(i);
+        TObjPlayer *p = TObjPlayer::get_player_data(i);
         if (is_active__14TBoss6PlotFalzFv() != 0) {
-            Vec_802B7530 *a = &self->a;
-            VecCopy(&v, (const Vec *)&p->pos);
+            Vec *a = &this->node_positions_578[8];
+            VecCopy(&v, &p->position);
             v.y = 0.0f;
-            VecCopy(&w, &self->b);
+            VecCopy(&w, &this->node_positions_578[9]);
             subtract_vector(&w, a);
             line.p.x = a->x;
             line.p.y = 0.0f;
@@ -1403,18 +1402,22 @@ void TBoss6Type1::update_beam_attack() {
                 A.y = 0.0f;
                 B.y = 0.0f;
                 if (!(vec3_dot(&A, &B) > 0.0f)) {
-                    p->m21(self, ArgPair_802B7530(TBoss6PlotFalz::rand_vary_count(self->f47C, 0.1f)).a, 0, -1, -1);
+                    s32 r = TBoss6PlotFalz::rand_vary_count(this->m_47c, 0.1f);
+                    DirectAttackPayload payload;
+                    payload.kind = 0;
+                    payload.power = (f32)r;
+                    p->receive_direct_attack(this, payload, 0, -1, -1);
                 }
             }
         }
     }
-    if (self->f408 & 1) return;
-    W3_802B7530 c = *(W3_802B7530 *)&self->b;
+    if (this->unk_408 & 1) return;
+    W3_802B7530 c = *(W3_802B7530 *)&this->node_positions_578[9];
     W3_802B7530 e;
-    Vec_802B7530 dlt;
+    Vec dlt;
     f32 dist;
     *(f32 *)&c.y = 0.0f;
-    dist = xyz_distance(&c, &self->f56C);
+    dist = xyz_distance(&c, &this->m_56C);
     if (!(dist < 50.0f)) {
         f32 r = dist / 50.0f;
         s32 cnt;
@@ -1426,7 +1429,7 @@ void TBoss6Type1::update_beam_attack() {
         cnt = (s32)(1.0f + r);
         if (cnt > 4) cnt = 4;
         s = 1.0f / (f32)cnt;
-        VecCopy(&dlt, &self->f56C);
+        VecCopy(&dlt, &this->m_56C);
         subtract_vector(&dlt, &c);
         dlt.x *= s;
         dlt.y *= s;
@@ -1436,7 +1439,7 @@ void TBoss6Type1::update_beam_attack() {
             spawn_particle_effect_with_flags(&e, 0x213, 0x40);
             vec3_add_to(&e, &dlt);
         }
-        VecCopy(&self->f56C, (const Vec *)&c);
+        VecCopy(&this->m_56C, (const Vec *)&c);
     }
     {
         play_sound_effect(0x4003B00A, (const Vec *)&c, 0, 0);
