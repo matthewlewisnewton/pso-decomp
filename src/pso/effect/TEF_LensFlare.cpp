@@ -119,6 +119,9 @@ TEF_LensFlare::~TEF_LensFlare() {
 // The descriptor loop keeps its induction pointer separate from the hoisted
 // definition-table base; default propagation swaps those two callee-saved
 // registers. This is the only frontend control the object still needs.
+// Porting exception (approved by Matt 2026-11-04, see docs/porting-exceptions.md):
+// no honest source form reproduces MWCC's output without it. Remove when
+// porting off MWCC.
 #pragma opt_propagation off
 void TEF_LensFlare::render() {
     Vec *sprite_position;
