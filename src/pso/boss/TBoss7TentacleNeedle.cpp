@@ -46,8 +46,6 @@ void TObjPlayer__sub_802F0D2C(void);
 s32 TObjPlayer__sub_802E80A0(void);
 void fn_802EFEA8(void);
 void *__dt__20TBoss7TentacleNeedleFv(TBoss7TentacleNeedle *arg0, s16 arg1);
-void render__14TBoss7TentacleFv(TBoss7Tentacle *self);
-void run_task__14TBoss7TentacleFv(TBoss7Tentacle *self);
 f64 atan2_float(f32, f32);
 s32 approach_angle_limited(s32, s32, s32);
 s32 play_sound_effect(int, void *, int, int);
@@ -96,10 +94,6 @@ struct VObj_18_9935f6 : VBase_18_9935f6 {
 typedef struct Hit_802EF99C { s32 a; f32 f; } Hit_802EF99C;
 
 typedef struct Obj_802EF99C { u8 pad0[0x44]; s32 flags[12]; } Obj_802EF99C;
-
-struct Cnt_802F08A8 { u8 pad[4]; u32 n; };
-
-struct Ten_802F08A8 { u8 pad0[0x20]; Cnt_802F08A8 *c; u8 pad1[0x134 - 0x24]; f32 t; f32 d; };
 
 typedef struct Anim_802F0BE8 { u8 pad0[4]; u32 n; } Anim_802F0BE8;
 
@@ -339,46 +333,46 @@ void TObjPlayer__sub_802EFEC4(void) {
 
 }
 
-void render__14TBoss7TentacleFv(TBoss7Tentacle *self) {
+void TBoss7Tentacle::render() {
     s32 var_ctr;
     TObjPlayer::draw_effect();
     push_matrix();
-    switch (self->m_30) {
+    switch (m_30) {
     case 0:
         set_motion_packed_rotation();
-        concat_matrix((MtxP)(0), (const f32 (*)[4])self->m_130);
-        rotate_matrix_y(0, self->m_13c);
-        scale_current_matrix(&self->ent.m_24);
-        draw_model_motion(self->ent.m_1c, self->ent.m_20, self->m_134);
+        concat_matrix((MtxP)(0), (const f32 (*)[4])m_130);
+        rotate_matrix_y(0, m_13c);
+        scale_current_matrix(&ent.m_24);
+        draw_model_motion(ent.m_1c, ent.m_20, m_134);
         clear_motion_packed_rotation();
         break;
     case 1:
     case 4:
     case 5:
         set_motion_packed_rotation();
-        concat_matrix((MtxP)(0), (const f32 (*)[4])self->m_130);
-        rotate_matrix_zyx(0, self->m_140, self->m_13c, 0);
-        scale_current_matrix(&self->ent.m_24);
-        draw_model_motion(self->ent.m_1c, self->ent.m_20, self->m_134);
+        concat_matrix((MtxP)(0), (const f32 (*)[4])m_130);
+        rotate_matrix_zyx(0, m_140, m_13c, 0);
+        scale_current_matrix(&ent.m_24);
+        draw_model_motion(ent.m_1c, ent.m_20, m_134);
         clear_motion_packed_rotation();
         break;
     case 2:
-        concat_matrix((MtxP)(0), (const f32 (*)[4])self->m_130);
-        rotate_matrix_zyx(0, self->m_140, self->m_13c, 0);
-        scale_current_matrix(&self->ent.m_24);
-        draw_chunk_object(self->ent.m_1c);
+        concat_matrix((MtxP)(0), (const f32 (*)[4])m_130);
+        rotate_matrix_zyx(0, m_140, m_13c, 0);
+        scale_current_matrix(&ent.m_24);
+        draw_chunk_object(ent.m_1c);
         break;
     case 3:
-        post_translate_matrix(&self->m_40);
+        post_translate_matrix(&m_40);
         scale_current_matrix((void *)(lbl_80474070));
-        rotate_matrix_zyx(0, 0, self->m_13c, self->m_140);
+        rotate_matrix_zyx(0, 0, m_13c, m_140);
         for (var_ctr = 0; var_ctr < 14; var_ctr++) {
-            lbl_80541528[var_ctr].pos.x = self->m_50[var_ctr].x;
-            lbl_80541528[var_ctr].pos.y = self->m_50[var_ctr].y;
-            lbl_80541528[var_ctr].pos.z = self->m_50[var_ctr].z;
-            lbl_80541528[var_ctr].ang = self->m_f8[var_ctr];
+            lbl_80541528[var_ctr].pos.x = m_50[var_ctr].x;
+            lbl_80541528[var_ctr].pos.y = m_50[var_ctr].y;
+            lbl_80541528[var_ctr].pos.z = m_50[var_ctr].z;
+            lbl_80541528[var_ctr].ang = m_f8[var_ctr];
         }
-        scale_current_matrix(&self->ent.m_24);
+        scale_current_matrix(&ent.m_24);
         draw_chunk_object((lbl_80541528));
         break;
     }
@@ -429,25 +423,25 @@ void TBoss7Tentacle::switch_state() {
     }
 }
 
-void run_task__14TBoss7TentacleFv(TBoss7Tentacle *self) {
-    self->switch_state();
-    switch (self->m_30) {
+void TBoss7Tentacle::run_task() {
+    switch_state();
+    switch (m_30) {
     case 0:
-        self->advance_path_position();
-        self->m_148 = self->m_148 + self->m_144;
-        self->m_13c = (s32)(1365.0f * (1.0f + sin_table_lookup(self->m_148)));
-        if (!(self->fld.m_4c & 1)) {
-            self->m_13c = -self->m_13c;
+        advance_path_position();
+        m_148 = m_148 + m_144;
+        m_13c = (s32)(1365.0f * (1.0f + sin_table_lookup(m_148)));
+        if (!(fld.m_4c & 1)) {
+            m_13c = -m_13c;
         }
         break;
     case 1:
-        self->advance_path_position();
-        self->m_140 = approach_angle_limited(self->m_140, 0x4000, 0x280);
+        advance_path_position();
+        m_140 = approach_angle_limited(m_140, 0x4000, 0x280);
         break;
     case 2:
-        self->m_13c = approach_angle_limited(self->m_13c, 0, 0x80);
-        if (self->m_13c == 0) {
-            self->sub_802F09FC();
+        m_13c = approach_angle_limited(m_13c, 0, 0x80);
+        if (m_13c == 0) {
+            sub_802F09FC();
         }
         break;
     case 3: {
@@ -460,33 +454,33 @@ void run_task__14TBoss7TentacleFv(TBoss7Tentacle *self) {
         v.z = 0.0f;
         push_matrix();
         set_matrix_identity(0);
-        concat_matrix((MtxP)(0), (const f32 (*)[4])self->m_130);
-        transform_point_by_current_matrix(&v, &self->m_40);
+        concat_matrix((MtxP)(0), (const f32 (*)[4])m_130);
+        transform_point_by_current_matrix(&v, &m_40);
         pop_matrix();
-        VecCopy(&v, &self->m_14c);
-        subtract_vector(&v, &self->m_40);
+        VecCopy(&v, &m_14c);
+        subtract_vector(&v, &m_40);
         len = normalize_vector_xz(&v);
-        self->m_13c = (s32)(10430.38043493439 * atan2_float(v.x, v.z)) + 0x8000;
-        VecCopy(&p, &self->m_14c);
-        switch (self->m_38) {
+        m_13c = (s32)(10430.38043493439 * atan2_float(v.x, v.z)) + 0x8000;
+        VecCopy(&p, &m_14c);
+        switch (m_38) {
         case 0:
-            self->m_160 -= 0.1f;
-            if (self->m_160 <= 0.1f) {
-                self->m_160 = 0.1f;
-                self->m_164 = 0;
-                self->m_38 = 1;
+            m_160 -= 0.1f;
+            if (m_160 <= 0.1f) {
+                m_160 = 0.1f;
+                m_164 = 0;
+                m_38 = 1;
             }
             for (i = 2; i < 12; i++) {
-                self->m_50[i].x = self->m_160 * TBoss7Tentacle__segment_offsets[i].x;
+                m_50[i].x = m_160 * TBoss7Tentacle__segment_offsets[i].x;
             }
-            self->m_f8[2] = 0x4000;
+            m_f8[2] = 0x4000;
             break;
         case 1:
-            self->m_158 += 8.0f;
-            if (self->m_158 > len) {
-                self->m_158 = len;
-                self->m_164 = 0;
-                self->m_38 = 2;
+            m_158 += 8.0f;
+            if (m_158 > len) {
+                m_158 = len;
+                m_164 = 0;
+                m_38 = 2;
                 {
                     u32 st = TBoss7Joint::get_state();
                     if (st != 0U) {
@@ -495,53 +489,53 @@ void run_task__14TBoss7TentacleFv(TBoss7Tentacle *self) {
                 }
                 play_sound_effect(0x3A809, &p, 0, 0);
             }
-            if (self->m_158 >= 0.4f * len) {
-                self->m_15c = 1.0f;
+            if (m_158 >= 0.4f * len) {
+                m_15c = 1.0f;
             } else {
-                self->m_15c = self->m_158 / (0.4f * len);
+                m_15c = m_158 / (0.4f * len);
             }
-            self->m_140 = approach_angle_limited(self->m_140, boss7_tentacle_angle_table[self->fld.m_4c], 0x100);
-            TBoss7Tentacle__sub_802F0608(self, len);
+            m_140 = approach_angle_limited(m_140, boss7_tentacle_angle_table[fld.m_4c], 0x100);
+            TBoss7Tentacle__sub_802F0608(this, len);
             break;
         case 2:
-            self->m_164 = self->m_164 + 1;
-            if (self->m_164 > self->m_168) {
-                self->m_164 = 0;
-                self->m_160 = 1.0f;
-                self->m_38 = 3;
+            m_164 = m_164 + 1;
+            if (m_164 > m_168) {
+                m_164 = 0;
+                m_160 = 1.0f;
+                m_38 = 3;
             }
             break;
         case 3:
-            self->m_158 -= 8.0f;
-            if (self->m_158 < 20.0f) {
-                self->m_158 = 20.0f;
-                self->m_38 = 2;
-                TBoss7Tentacle__sub_802F0A2C(self);
+            m_158 -= 8.0f;
+            if (m_158 < 20.0f) {
+                m_158 = 20.0f;
+                m_38 = 2;
+                TBoss7Tentacle__sub_802F0A2C(this);
             }
-            if (self->m_158 >= 0.4f * len) {
-                self->m_15c = 1.0f;
+            if (m_158 >= 0.4f * len) {
+                m_15c = 1.0f;
             } else {
-                self->m_15c = self->m_158 / (0.4f * len);
+                m_15c = m_158 / (0.4f * len);
             }
-            self->m_140 = approach_angle_limited(self->m_140, 0, 0x100);
-            TBoss7Tentacle__sub_802F0608(self, len);
+            m_140 = approach_angle_limited(m_140, 0, 0x100);
+            TBoss7Tentacle__sub_802F0608(this, len);
             break;
         }
         break;
     }
     case 4:
-        self->advance_path_position();
-        self->m_13c = approach_angle_limited(self->m_13c, TBoss7Tentacle__target_angle_table[self->fld.m_4c], 0x80);
+        advance_path_position();
+        m_13c = approach_angle_limited(m_13c, TBoss7Tentacle__target_angle_table[fld.m_4c], 0x80);
         break;
     case 5:
-        self->advance_path_position();
-        self->m_140 = approach_angle_limited(self->m_140, 0, 0x280);
-        if (self->m_140 == 0) {
-            TBoss7Tentacle__sub_802F0A44(self);
+        advance_path_position();
+        m_140 = approach_angle_limited(m_140, 0, 0x280);
+        if (m_140 == 0) {
+            TBoss7Tentacle__sub_802F0A44(this);
         }
         break;
     }
-    self->update_extend_amount();
+    update_extend_amount();
 }
 
 extern "C" {
@@ -603,11 +597,10 @@ void TBoss7Tentacle__sub_802F0608(TBoss7Tentacle *tentacle, f32 len) {
 }
 
 void TBoss7Tentacle::advance_path_position() {
-    Ten_802F08A8 *o = (Ten_802F08A8 *)this;
-    f32 lim = (f32)(o->c->n - 1);
-    o->t = o->t + o->d;
-    if (o->t >= lim) {
-        o->t = o->t - lim;
+    f32 lim = (f32)(((Anim_802F0BE8 *)ent.m_20)->n - 1);
+    m_134 = m_134 + m_138;
+    if (m_134 >= lim) {
+        m_134 = m_134 - lim;
     }
 }
 
