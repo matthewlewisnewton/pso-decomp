@@ -429,6 +429,10 @@ GAME_COMPILER = "GC/2.6"
 # keeps an object until its source changes) or with other switches. Every
 # entry is here because a function or data section matches only this way.
 GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
+    # Upstream #183: the Falz plot table TU is built with deferred inlining
+    # (its state actions come out in reverse table order).
+    "pso/boss/TBoss6PlotFalz_802B0228.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-str reuse,readonly")},
+    "pso/boss/TBoss6EmptyWarp_802B0E2C.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
     # Calendar month/day stores retain GC/1.3.2 scheduling; see calendar-conversion-evidence.md.
     "pso/misc/pso_date.cpp": {"mw_version": "GC/1.3.2"},
     "pso/boss/TBoss4DarkFalz_8004C93C.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sym on")},
@@ -444,7 +448,21 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # TObjChip: render's colour template sits after draw_chips' in .rodata
     # while render comes first in .text, so the source runs backwards.
     "pso/object/TObjChip.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
+    # One unit, written last-defined first: the vtable and the late helpers
+    # precede the early ones in .text. -fp_contract on: draw_name_labels'
+    # half-width nudge and the drop placement fuse multiply-adds.
+    # -str reuse,readonly: the literals live in this unit's .rodata.
+    "pso/object/TObjTombstone.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on", "-str reuse,readonly")},
     # GC/2.0: compiler-expanded struct copies take 2.0's registers.
+    # The ending item handler table keeps 2.0's store/load scheduling for its
+    # zero-initialized local member-function-pointer array.
+    "pso/unk/text_803531FC.cpp": {
+        "mw_version": "GC/2.0",
+        # The split names the compiler's anonymous PMF initializer image at
+        # 0x804F10C0; the source-built object references its first 12-byte
+        # entry label. Map the target entry name to the object's image label.
+        "symbol_mappings": {"@12": "...data.0"},
+    },
     "pso/boss/Boss5GryphonBehavior.cpp": {"mw_version": "GC/2.0"},
     "pso/enemy/TObjEneGyaranzo.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred")},
     "pso/misc/TOExplosiveMachine.cpp": {"mw_version": "GC/2.0"},
@@ -477,6 +495,9 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Deferred inlining: functions come out in reverse source order and the
     # vtables before the switch tables in .data.
     "pso/misc/TMedicalCenterSequence.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
+    # Row-header copy is a 16-byte struct assignment. -inline off outlines it;
+    # noauto,level=1 inlines that helper only. The rest of the unit stays out of line.
+    "pso/misc/TWindowMainMenu_802AD538.cpp": {"cflags": _switch(cflags_pso, "-inline noauto,level=1")},
     "pso/boss/TBoss7LaserLight.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
     "pso/enemy/TObjEnemyCustom.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-pool off", "-str reuse,readonly")},
     "pso/boss/TBoss3VoloptCore.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
@@ -660,7 +681,19 @@ MIDDLEWARE: List[Tuple[str, int, str, List[str], Dict[str, Dict[str, Any]]]] = [
     # CRI ADX, LSC, SJ, MFCI and GCRNA ("Build:Jun 13 2002").
     ("cri", 0x803BFE50, "GC/2.6", cflags_middleware, {}),
     # Sega's Ginja model library.
-    ("ginja", 0x803D6538, "GC/2.6", _switch(cflags_middleware, "-O3,p", "-opt nopeephole"), {}),
+    ("ginja", 0x803D6538, "GC/2.6", _switch(cflags_middleware, "-O3,p", "-opt nopeephole"), {
+        # render_debug_text (0x803D85D8) saves r25-r31 with bl _savegpr_25 /
+        # _restgpr_25, and its glyph quads are the inlined SDK FIFO writers
+        # (sth/stw to 0xCC008000), not calls. -inline on inlines only functions
+        # marked inline, so queue_debug_text stays a call from debug_printf_at.
+        # The same flags cover the following matrix helpers, which stay exact.
+        "pso/unk/text_803D8098.cpp": {
+            "cflags": _switch(cflags_middleware, "-O3,p", "-opt nopeephole", "-use_lmw_stmw off", "-inline on"),
+        },
+        "pso/unk/text_803D8910.cpp": {
+            "cflags": _switch(cflags_middleware, "-O3,p", "-opt nopeephole", "-use_lmw_stmw off", "-inline on"),
+        },
+    }),
     # mcFsGc ("Ver 1.10.00 Build:Sep 17 2002") with ACCESS's file transfer.
     ("mcfs", 0x803E5668, "GC/1.2.5", cflags_middleware, {
         # Epilogue order (mtlr before the restores) only 1.2.5n produces.

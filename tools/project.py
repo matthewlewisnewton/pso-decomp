@@ -70,6 +70,7 @@ class Object:
             "source": name,
             "src_dir": None,
             "strip_prefix": None,
+            "symbol_mappings": None,
         }
         self.options.update(options)
 
@@ -1696,12 +1697,17 @@ def generate_objdiff_config(
             "symbol_mappings": None,
         }
 
-        # Preserve existing symbol mappings
+        obj = objects.get(obj_name)
+
+        # Use an explicit per-unit mapping when the split names compiler-generated
+        # local data differently from the source-built object. Otherwise preserve
+        # any mapping already present in objdiff.json.
+        if obj is not None:
+            unit_config["symbol_mappings"] = obj.options.get("symbol_mappings")
         existing_unit = existing_units.get(name)
-        if existing_unit is not None:
+        if unit_config["symbol_mappings"] is None and existing_unit is not None:
             unit_config["symbol_mappings"] = existing_unit.get("symbol_mappings")
 
-        obj = objects.get(obj_name)
         if obj is None:
             objdiff_config["units"].append(unit_config)
             return
