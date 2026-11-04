@@ -7,7 +7,7 @@ class TItemList : public TObject {
 public:
     virtual ~TItemList();
 public:
-    static u8 is_item_valid(s32 arg0);
+    static s32 is_item_valid(s32 arg0);
     void *dt(s16 arg1);
     void *init_items();
     void *init_array();

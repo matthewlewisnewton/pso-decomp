@@ -1,6 +1,8 @@
 #include "pso/system/ArrayAllocation.h"
 #include "types.h"
+#include "pso/TItemList.h"
 #include "pso/item/TItem.h"
+#include <stddef.h>
 #include "pso/misc/TKeyBoardControl_8000F764.h"
 #include "pso/misc/TLobby_8030A6A8.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC_801FBF54.h"
@@ -33,6 +35,19 @@ typedef struct List_801D4744 {
     s32 count;
     Ent_801D4744 *items;
 } List_801D4744;
+
+// TPlyItem from TObjPlayer::create_inventory (0x1CC bytes). TPlyItem__ct
+// stores the owner count at +0x1C; create_inventory stores the item list at
+// +0x1C4. The list's children are the nodes get_owner_if_alive walks.
+struct PlyItem_801D4368 {
+    u8 pad0[0x1C];
+    s16 item_count;
+    u8 pad_1E[0x1C4 - 0x1E];
+    TItemList *item_list;
+};
+
+typedef char PlyItem_801D4368_count[(offsetof(PlyItem_801D4368, item_count) == 0x1C) ? 1 : -1];
+typedef char PlyItem_801D4368_list[(offsetof(PlyItem_801D4368, item_list) == 0x1C4) ? 1 : -1];
 
 extern "C" {
 u8 get_item_type__5TItemFv(void *, int);
@@ -123,6 +138,97 @@ s32 export_inventory_entry__10TObjPlayerFiPv(s32 arg0, u8 *arg1) {
         return 1;
     }
     return 0;
+}
+
+// Reassigns each owned item's owner id from a key-sorted copy of the list.
+// sort_by_key__10TObjPlayerFv sorts this 8-byte record list. Each loop keeps
+// its own cursor: CodeWarrior assigns those registers from this declaration order.
+s32 TObjPlayer__sub_801D4368(PlyItem_801D4368 *ply) {
+    List_801D4744 *recs;
+    s32 filled;
+    Ent_801D4744 *rec;
+    s32 counted;
+    TObjPlayer *node_assigned;
+    s32 owner;
+    Ent_801D4744 *rec_checked;
+    Ent_801D4744 *rec_assigned;
+    TObjPlayer *node_checked;
+    TObjPlayer *node_filled;
+    TObjPlayer *node;
+    s32 checked;
+
+    if (ply->item_list == NULL) {
+        return 0;
+    }
+    if (TItemList::is_item_valid((s32)ply->item_list) == 0) {
+        return 0;
+    }
+    if (ply->item_count > 30 || ply->item_count < 1) {
+        return 0;
+    }
+    recs = (List_801D4744 *)::operator new(8);
+    if (recs != NULL) {
+        recs = (List_801D4744 *)TObjPlayer__sub_801D46D4((u8 *)recs, ply->item_count);
+    }
+    if (recs == NULL) {
+        return 0;
+    }
+    if (recs->items == NULL) {
+        TObjPlayer__sub_801D4678((u8 *)recs, 1);
+        return 0;
+    }
+    counted = 0;
+    node = (TObjPlayer *)ply->item_list->m_down;
+    while (node != NULL) {
+        if (TItemList::is_item_valid((s32)node) != 0 && node->get_owner_if_alive() != 0U) {
+            counted++;
+        }
+        node = (TObjPlayer *)node->m_next;
+    }
+    if (counted != ply->item_count) {
+        TObjPlayer__sub_801D4678((u8 *)recs, 1);
+        return 0;
+    }
+    filled = 0;
+    rec = recs->items;
+    node_filled = (TObjPlayer *)ply->item_list->m_down;
+    while (node_filled != NULL) {
+        if (TItemList::is_item_valid((s32)node_filled) != 0 && (owner = node_filled->get_owner_if_alive()) != 0U) {
+            rec->val = owner;
+            TObjPlayer__sub_801D45B0((s32 *)rec, owner);
+            rec++;
+            filled++;
+        }
+        node_filled = (TObjPlayer *)node_filled->m_next;
+    }
+    ((TObjPlayer *)recs)->sort_by_key();
+    checked = 0;
+    rec_checked = recs->items;
+    node_checked = (TObjPlayer *)ply->item_list->m_down;
+    while (node_checked != NULL) {
+        if (TItemList::is_item_valid((s32)node_checked) != 0 && node_checked->get_owner_if_alive() != 0U && rec_checked->val != 0) {
+            rec_checked++;
+            checked++;
+        }
+        node_checked = (TObjPlayer *)node_checked->m_next;
+    }
+    if (filled != checked) {
+        TObjPlayer__sub_801D4678((u8 *)recs, 1);
+        return 0;
+    }
+    rec_assigned = recs->items;
+    node_assigned = (TObjPlayer *)ply->item_list->m_down;
+    while (node_assigned != NULL) {
+        if (TItemList::is_item_valid((s32)node_assigned) != 0 && node_assigned->get_owner_if_alive() != 0U) {
+            if (rec_assigned->val != 0) {
+                node_assigned->set_field_1c((s32)rec_assigned->val);
+                rec_assigned++;
+            }
+        }
+        node_assigned = (TObjPlayer *)node_assigned->m_next;
+    }
+    TObjPlayer__sub_801D4678((u8 *)recs, 1);
+    return 1;
 }
 
 void TObjPlayer__sub_801D45B0(s32 *arg0, s32 arg1) {
