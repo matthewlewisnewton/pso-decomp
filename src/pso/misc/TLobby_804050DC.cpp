@@ -1270,9 +1270,10 @@ s32 TLobby__sub_804060B8(u8 *data, s32 len, int type) {
 }
 #pragma pop
 
-// lbl_805C0038 begins with the connection block the five registrars take.
-// This unit is compiled -opt nocse. `&block->session` is copy-propagated
-// into `block`; taking the member from the global keeps base+0.
+// The five registrars take the connection block, the first member of the
+// object at lbl_805C0038. This unit is compiled -opt nocse, and
+// `&block->session` is copy-propagated into `block` (frame 0x18, no r29).
+// Naming the member and applying it is the base+0 address they receive.
 struct Block_804061FC {
     Lobby_804062A0 session;
 };
@@ -1286,11 +1287,13 @@ extern s32 lbl_805D7ADC;
 
 s32 TLobby__sub_804061FC(s32 arg0) {
     Block_804061FC *block;
+    Lobby_804062A0 Block_804061FC::*session_member;
     Lobby_804062A0 *session;
 
     lbl_805D7ADC = 0;
     block = (Block_804061FC *)lbl_805C0038;
-    session = &((Block_804061FC *)lbl_805C0038)->session;
+    session_member = &Block_804061FC::session;
+    session = &(block->*session_member);
     NetMemset(lbl_805C0038, 0, sizeof(Block_804061FC));
     block->session.state = 0;
     TLobby__sub_8040059C(session);
