@@ -381,10 +381,19 @@ void TAdMultiPlyChrSelectGC__sub_802C5688(S_802C50EC *self) {
     self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].z = self->quad[self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC]][self->f4EC].z;
     self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].y = self->quad[self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC]][self->f4EC].y;
     self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].w = self->quad[self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC]][self->f4EC].w;
+    // Each product is its own statement so the bias, the texture row, and the
+    // scale are allocated in that order. The two casts stay separate so both
+    // int-to-float sequences are emitted.
     self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].u0 = TAdMultiPlyChrSelectGC__data_805DE56C;
-    self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].v0 = ((f32)TAdMultiPlyChrSelectGC__data_805D67D8 * lbl_80471CE0[1]) * TAdMultiPlyChrSelectGC__data_805DE584;
-    self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].u1 = lbl_80471CE0[0] * TAdMultiPlyChrSelectGC__data_805DE584;
-    self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].v1 = ((f32)TAdMultiPlyChrSelectGC__data_805D67D8 * lbl_80471CE0[1] + lbl_80471CE0[1]) * TAdMultiPlyChrSelectGC__data_805DE584;
+    {
+        f32 player0 = (f32)TAdMultiPlyChrSelectGC__data_805D67D8;
+        f32 v0 = player0 * lbl_80471CE0[1];
+        self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].v0 = v0 * TAdMultiPlyChrSelectGC__data_805DE584;
+        self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].u1 = lbl_80471CE0[0] * TAdMultiPlyChrSelectGC__data_805DE584;
+        f32 player1 = (f32)TAdMultiPlyChrSelectGC__data_805D67D8;
+        f32 v1 = player1 * lbl_80471CE0[1] + lbl_80471CE0[1];
+        self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].v1 = v1 * TAdMultiPlyChrSelectGC__data_805DE584;
+    }
     self->a[self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC]][self->f4EC] = 0;
     TAdMultiPlyChrSelectGC::add_selected_slot();
     TAdMultiPlyChrSelectGC__data_805D67D8 = ((TAdMultiPlyChrSelectGC *)self)->find_active_slot();
