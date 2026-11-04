@@ -15,16 +15,16 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (main at 7ccb07696, 2026-11-04)
+## Summary (main at 39136ddd5, 2026-11-04)
 
 | Category | Hits | Files / units |
 |---|---:|---:|
 | Assembly (`asm` + `orig_asm` include) | 4 functions | 2 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 71 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,871 | 886 |
-| Per-unit compiler overrides in `configure.py` | 141 | 141 |
-| Approved regressions | 0 on main, 1 pending (#291) | |
+| CodeWarrior pragmas (excluding push/pop) | 5,865 | 885 |
+| Per-unit compiler overrides in `configure.py` | 144 | 144 |
+| Approved regressions | 1 (this PR, #291) | 1 |
 
 ## Rule for assembly
 
@@ -66,10 +66,10 @@ etc. or their port equivalents) instead of the fixed address.
 
 ## 4. CodeWarrior pragmas
 
-5,871 pragmas in 886 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1153, `inline_depth` 1045, `fp_contract` 931, `auto_inline` 844,
-`opt_common_subs` 624, `scheduling` 267, `opt_propagation` 239,
-`readonly_strings` 203, `peephole` 105, `optimization_level` 88, `bool` 56,
+5,865 pragmas in 885 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1153, `inline_depth` 1045, `fp_contract` 932, `auto_inline` 844,
+`opt_common_subs` 624, `scheduling` 262, `opt_propagation` 239,
+`readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56,
 `defer_codegen` 50, `pack` 46. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
 
@@ -81,7 +81,7 @@ small float differences without FMA).
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-141 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+144 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
@@ -89,7 +89,7 @@ small float differences without FMA).
 `pso_date.cpp`: GC/1.3.2 scheduling, see
 [calendar-conversion-evidence.md](evidence/calendar-conversion-evidence.md);
 `TObjTombstone.cpp`: `-fp_contract on` because two calculations fuse
-multiply-adds). The generated table copies each comment; 92 entries have no
+multiply-adds). The generated table copies each comment; 93 entries have no
 comment of their own (several share a comment with the entry above). Library
 groups (SDK, runtime, TRK, MusyX, CRI, Ginja, mcFs, ntInf, avetcp, modem, ntUtl)
 use their own compiler versions as recorded there.
@@ -100,7 +100,9 @@ nothing else changes behaviour.
 
 ## 6. Approved regressions
 
-None on main.
+| Function | Match | Why | Port should |
+|---|---|---|---|
+| `deform_indirect_texture_scroll` in `src/pso/effect/TEffIndirectCtrl_802A88AC.cpp` ([#291](https://github.com/matthewlewisnewton/pso-decomp/pull/291)) | 99.78723% of 564 bytes (100% on main) | Approved by Matt on 2026-11-04. Main is exact only because of a cancelling `off16++; off16--;` in the line loop. One `off16 = offset` before the axis loop is copy-propagated into a temporary allocated in r30 (`extsh r30,r4`) instead of the named short in r28. Constructors, a base-class `s16`, and same-TU helpers scalar-replace to that same temporary. A second store is what keeps r28, and that store is steering, so it stays removed. The function is still 141 instructions; six register operands differ. | Nothing to rewrite. This source is the portable one. The mismatch is register allocation only. |
 
 ## Pending in open PRs
 
@@ -110,7 +112,6 @@ entry when the PR merges.
 | PR | Exception | Status / reason |
 |---|---|---|
 | [#281](https://github.com/matthewlewisnewton/pso-decomp/pull/281) | `transform_chunk_vertices_pos_normal` (`src/pso/unk/text_803E2D70.cpp`) as `asm void` | One-time asm exception approved by Matt on 2026-11-04: SDK `PSMTXROMultVecArray`-style paired-single code that every other GameCube decomp keeps as asm. Guarded for MWCC with a scalar C++ fallback. Evidence: `docs/evidence/paired-single-sdk-asm.md` on that branch. Port: use the C++ fallback. |
-| [#291](https://github.com/matthewlewisnewton/pso-decomp/pull/291) | Allowed regression: `deform_indirect_texture_scroll` 100% → 99.79% | Approved by Matt on 2026-11-04 so the `off16 = offset` steering (still on main in `TEffIndirectCtrl_802A88AC.cpp`) could be removed. Port: nothing; the PR version is the portable one. |
 | [#285](https://github.com/matthewlewisnewton/pso-decomp/pull/285) | `static asm void pad_03_8042E9FC_text` via `orig_asm` include (`src/pso/unk/text_8042E9FC.cpp`) | PR body: 5-word stranded epilogue; 0/60 C probes across 20 compilers reach it. **No approval recorded and no scalar fallback**; it needs one under the rule above. |
 | [#296](https://github.com/matthewlewisnewton/pso-decomp/pull/296) | `scheduling` ×5, `peephole`, `optimize_for_size` pragmas | Reason not recorded. Drop in a port. |
 | [#250](https://github.com/matthewlewisnewton/pso-decomp/pull/250) | `fp_contract` ×3 | Reason not recorded. |
