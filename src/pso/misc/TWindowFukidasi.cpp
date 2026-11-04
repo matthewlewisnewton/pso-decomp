@@ -256,17 +256,18 @@ extern void *lbl_805D63F0;
 
 void complete_speech_balloon(u8 *arg0) {
     s32 t;
-    *(s8 *)(arg0 + 0x70) = 4;
-    *(u8 *)(arg0 + 0x71) |= 0x40;
-    ((TUnk_804CF0B8 *)arg0)->calc_text_size((f32 *)(arg0 + 0x38));
+    TUnk_804CF0B8 *self = (TUnk_804CF0B8 *)arg0;
+    self->m_70 = 4;
+    self->m_71 |= 0x40;
+    self->calc_text_size(self->m_38);
     ((s32 (*)(void *))refresh_rect_placement__15TWindowFukidasiFPv)(arg0);
     TWindowFukidasi__sub_80252C38(arg0);
     ((TUnk_804CF0B8 *)arg0)->set_flag2c_bit100();
     ((TUnk_804CE018 *)arg0)->save_position();
-    ((TUnk_804CF0B8 *)arg0)->m_80 = 1.0f;
+    self->m_80 = 1.0f;
     ((TWindowFukidasi *)arg0)->sync_display_pos();
-    *(s32 *)(arg0 + 0x5C) = 0x186A0;
-    t = *(u8 *)(arg0 + 0x72);
+    self->m_5C = 0x186A0;
+    t = self->m_72;
     switch (t) {
     case 0:
         get_array_entry__13TUnk_804CE018Fi(arg0, 0);
@@ -279,7 +280,7 @@ void complete_speech_balloon(u8 *arg0) {
 }
 
 s32 is_speech_balloon_ready(u8 *arg0) {
-    s32 t = *(arg0 + 0x72);
+    s32 t = ((TUnk_804CF0B8 *)arg0)->m_72;
     switch (t) {
     case 0:
         get_array_entry__13TUnk_804CE018Fi(arg0, 0);
@@ -295,10 +296,10 @@ void TWindowFukidasi::rearm_balloon(s32 arg1) {
     u32 n;
 
     if (((s32 (*)(void))sub_80246948__13TUnk_804CE018Fv)() != 0) {
-        *(s8 *)((s8 *)((u8 *)this) + 0x70) = 5;
+        this->m_70 = 5;
     }
     ((s32 (*)(void *, void *))init_flags__15TWindowFukidasiFPvi)(this, (void *)arg1);
-    switch ((s32) (*(u8 *)((s8 *)((u8 *)this) + 0x72))) {
+    switch ((s32) this->m_72) {
     case 0:
         n = TWindowKeyBoardSoft::strnlen((s8 *)(((void * (*)(void *))get_field_20__17TWindowSubComCardFv)(((void * (*)(void *, int))get_array_entry__13TUnk_804CE018Fi)(this, 0))), (u32)0x100);
         this->m_74 = (s16) ((3.3f * (f32) n) + 55.5f);
@@ -314,7 +315,7 @@ void TWindowFukidasi::rearm_balloon(s32 arg1) {
 __declspec(section ".rodata") extern const f64 TWindowFukidasi__data_8044ED70[1] = {10430.38043493439};
 
 s32 TWindowFukidasi::check_card_match_enabled(s32 arg1) {
-    if ((u8) *(u8 *)((s8 *)this + 0x72) != 0) {
+    if (this->m_72 != 0) {
         return 0;
     }
     get_array_entry__13TUnk_804CE018Fi(this, 0);
@@ -352,7 +353,7 @@ void TUnk_804CF0B8::calc_text_size(f32 *out) {
     }
 }
 
-void TWindowFukidasi::sync_display_pos() { *(f32*)((char*)this + 0x60) = *(f32*)((char*)this + 0x80); *(f32*)((char*)this + 0x64) = *(f32*)((char*)this + 0x80); }
+void TWindowFukidasi::sync_display_pos() { this->m_60 = this->m_80; this->m_64 = this->m_80; }
 
 s32 TWindowFukidasi::approach(f32 farg0) {
     f32 temp_f31;
@@ -817,6 +818,7 @@ void TUnk_804CF0B8::set_color(u16 arg1) {
 }
 
 s32 TUnk_804CF0B8::clamp_position(void *arg1, f32 farg0) {
+    f32 *point = (f32 *)arg1;
     f32 temp_f1;
     f32 temp_f1_2;
     f32 temp_f1_3;
@@ -825,23 +827,23 @@ s32 TUnk_804CF0B8::clamp_position(void *arg1, f32 farg0) {
 
     var_r31 = 0;
     temp_f1 = 20.0f + ((TWindowCtrlMain *)(s32)this->m_20)->get_position_z();
-    if (*(f32 *)((s8 *)arg1 + 0) < temp_f1) {
-        *(f32 *)((s8 *)arg1 + 0) = temp_f1;
+    if (point[0] < temp_f1) {
+        point[0] = temp_f1;
         var_r31 = 1;
     }
     temp_f1_2 = (((TWindowCtrlMain *)(s32)this->m_20)->get_ctrl_field14() - 20.0f) - (this->m_48 * farg0);
-    if (*(f32 *)((s8 *)arg1 + 0) > temp_f1_2) {
-        *(f32 *)((s8 *)arg1 + 0) = temp_f1_2;
+    if (point[0] > temp_f1_2) {
+        point[0] = temp_f1_2;
         var_r31 = 1;
     }
     temp_f1_3 = 40.0f + ((TWindowCtrlMain *)(s32)this->m_20)->get_field10();
-    if (*(f32 *)((s8 *)arg1 + 4) < temp_f1_3) {
-        *(f32 *)((s8 *)arg1 + 4) = temp_f1_3;
+    if (point[1] < temp_f1_3) {
+        point[1] = temp_f1_3;
         var_r31 = 1;
     }
     temp_f1_4 = (((TWindowCtrlMain *)(s32)this->m_20)->get_field_18() - 40.0f) - (this->m_4C * farg0);
-    if (*(f32 *)((s8 *)arg1 + 4) > temp_f1_4) {
-        *(f32 *)((s8 *)arg1 + 4) = temp_f1_4;
+    if (point[1] > temp_f1_4) {
+        point[1] = temp_f1_4;
         var_r31 = 1;
     }
     return var_r31;

@@ -6,14 +6,23 @@
 // Field offsets match the object. This is not a subclass: a derived vtable
 // would add bytes to .data.
 struct TWindowFukidasi {
-    u8 _pad0[0x20];
+    u8 _pad0[0x1C];
+    f32 m_1c;
     s16 m_20;
-    u8 _pad22[0x48 - 0x22];
+    u8 _pad22[0x2C - 0x22];
+    u32 m_2c;
+    u8 _pad30[0x38 - 0x30];
+    f32 m_38[2];
+    u8 _pad40[0x48 - 0x40];
     f32 m_48;
     f32 m_4C;
-    u8 _pad50[0x58 - 0x50];
+    s32 m_50;
+    u8 _pad54[0x58 - 0x54];
     f32 m_58;
-    u8 _pad5C[0x70 - 0x5C];
+    s32 m_5C;
+    f32 m_60;
+    f32 m_64;
+    u8 _pad68[0x70 - 0x68];
     s8 m_70;
     u8 m_71;
     u8 m_72;
