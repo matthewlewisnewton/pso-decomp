@@ -2152,12 +2152,10 @@ pso/object/TObjQuestColApc.cpp
 pso/object/TObjQuestColApcIN.cpp
 pso/object/TObjQuestColApcINW.cpp
 pso/object/TObjQuestColApcINW_80196EDC.cpp
-pso/object/TObjQuestColApcIN_80196F34.cpp
 pso/object/TObjQuestColApc_80196F8C.cpp
 pso/object/TObjQuestColBase.cpp
 pso/object/TObjQuestColBase_80196BFC.cpp
 pso/object/TObjQuestCol_80196B3C.cpp
-pso/object/TObjQuestCol_8019703C.cpp
 pso/object/TObjRaderCol.cpp
 pso/object/TObjRaderHideCol.cpp
 pso/object/TObjRaderIcon.cpp
