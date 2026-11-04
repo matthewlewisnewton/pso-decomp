@@ -463,6 +463,14 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
         # entry label. Map the target entry name to the object's image label.
         "symbol_mappings": {"@12": "...data.0"},
     },
+    # run_task's 36-byte PMF snapshot interleaves the copy tail with
+    # actor_frame_tick (load, tail load, clrlwi., table load, tail store).
+    # That schedule is GC/2.0's; GC/2.6 packs the tail pair and shifts the
+    # tick relocation from +0xE4 to +0xEC. GC/2.5 and GC/2.7 match 2.6.
+    # GC/2.0p1 and GC/1.3.2 either miss the tail or drop the wave helpers.
+    # On GC/2.0 every function in this unit, plus .rodata and .sdata2, is
+    # byte-exact, so the whole translation unit was built with 2.0.
+    "pso/effect/TEffIndirectCtrl_802A88AC.cpp": {"mw_version": "GC/2.0"},
     "pso/boss/Boss5GryphonBehavior.cpp": {"mw_version": "GC/2.0"},
     "pso/enemy/TObjEneGyaranzo.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred")},
     "pso/misc/TOExplosiveMachine.cpp": {"mw_version": "GC/2.0"},

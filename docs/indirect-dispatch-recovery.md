@@ -1,10 +1,21 @@
 # Indirect controller dispatcher recovery (partial)
 
-`TEffIndirectCtrl::run_task` at 0x802A88B0 is reconstructed as native C++.
-The current 484-byte candidate is **not exact**: targeted objdiff similarity is
-95.61%. No new exact-function or source-linkage gain is claimed. All ten existing
-functions in its unit remain exact in the targeted object comparison. Full
-baseline/candidate builds and check_pr have not been run for this partial candidate.
+`TEffIndirectCtrl::run_task` at 0x802A88B0 is native C++. This translation
+unit is built with GC/2.0 (see `configure.py`). That compiler's block-copy
+scheduler interleaves the 36-byte PMF snapshot tail with `actor_frame_tick`;
+GC/2.6 packs the tail and leaves the tick relocation four bytes later. On
+GC/2.0 every function in the unit is byte-exact, including `run_task`
+(484 bytes), and `.rodata` (16 bytes) and `.sdata2` (4 bytes) match.
+`ninja -j8 && python3 tools/check_pr.py --no-build` against current `origin/main`
+PASSes with 0 regressions and one new exact function
+(`run_task__16TEffIndirectCtrlFv`, +484 code bytes). The unit is not linked. The object emits a 0x18-byte `.data` vtable (the
+split owns no `.data`; `__vt__16TEffIndirectCtrl` is 0x1C and ends in a null),
+and the matched pool bytes are still the compiler's anonymous labels rather
+than `TEffIndirectCtrl__data_8046FC48`, `TEffIndirectCtrl__data_8046FC50`, and
+`TEffIndirectCtrl__data_805DE02C`.
+
+The notes below record the GC/2.6 candidate (95.61%, tail packed). They are
+the search that ruled out source reorderings; they are not the current object.
 
 ## Receiver, state and lifetime evidence
 
@@ -124,9 +135,11 @@ The controller's 0x20 field is now a pointer to the real eight-byte
 through `((u8 *)m_20)[n]` casts. The constructor's recipe accesses use the same
 type, and `get_indirect_recipe` is declared with that pointer (identical layout
 and the same unmangled extern "C" symbol as its definition). This removes the
-raw offset casts without changing any instruction: the dispatcher remains at
-95.61% and every other function in the unit and in all five consumer units
-stays exact.
+raw offset casts without changing any instruction under GC/2.6: the dispatcher
+stayed at 95.61% and every other function in the unit and in all five consumer
+units stayed exact. Building the same source with GC/2.0, which is what matches
+the copy tail, makes `run_task` exact as well. The extern "C" audit below is
+unchanged.
 
 The names in the added extern "C" block were checked against
 `config/GPOE8P/psov3/symbols.txt`: `eff_indirect_task_table`, `lbl_8046FBE8`,
