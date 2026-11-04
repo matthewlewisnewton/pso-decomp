@@ -474,7 +474,6 @@ u8 * TBoss6Type1__sub_802B96C0(s32 arg0, s32 arg1) {
 #define arg0 ((u8 *)arg0_)
 #define arg2 ((s32 *)arg2_)
 #pragma push
-#pragma opt_propagation off
 #pragma opt_common_subs off
 s32 TBoss6Type1__ct(s32 arg0_, s32 parent, s32 arg2_) {
     TBoss6Type1 *self = (TBoss6Type1 *)arg0_;
