@@ -88,7 +88,7 @@ small float differences without FMA).
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-144 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+145 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
@@ -100,6 +100,15 @@ multiply-adds). The generated table copies each comment; 92 entries have no
 comment of their own (several share a comment with the entry above). Library
 groups (SDK, runtime, TRK, MusyX, CRI, Ginja, mcFs, ntInf, avetcp, modem, ntUtl)
 use their own compiler versions as recorded there.
+
+`pso/effect/TEffIndirectCtrl_802A88AC.cpp` (#161) is `mw_version` GC/2.0.
+`run_task`'s 36-byte PMF snapshot interleaves its copy tail with
+`actor_frame_tick` on that compiler; GC/2.6 packs the tail and moves the tick
+relocation from +0xE4 to +0xEC, and the other installed compilers that keep
+the tail drop the wave helpers. Every function in the unit, plus `.rodata`
+and `.sdata2`, is byte-exact on GC/2.0. The override is the compiler version
+only. The unit stays unlinked: the compiler's 0x18 vtable is an 8-aligned
+`.data` section and `__vt__16TEffIndirectCtrl` is at 0x804DDF1C.
 
 Port should: build everything with one modern compiler. Only `-fp_contract on`
 (float results) and deferred emission order (no semantic effect) need thought;
