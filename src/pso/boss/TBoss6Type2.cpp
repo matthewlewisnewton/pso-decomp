@@ -1769,7 +1769,7 @@ void TBoss6Type2::apply_rock_hits_to_players() {
     range = 10.0f;
     for (i = 0; i < 6; i++) {
         rock = &((Obj_802BBAB0 *)this)->rock[TBoss6Type2__player_hit_rock_indices[i]];
-        ((TBoss6Rock *)rock)->break_rocks_in_radius(10.0f);
+        TBoss6Rock::break_rocks_in_radius((Vec *)rock, 10.0f);
         if (!(rock->y - ((Obj_802BBAB0 *)this)->f3C > range)) {
             hit = 0;
             if (xyz_distance(rock, &((Obj_802BBAB0 *)this)->v680[TBoss6Type2__player_hit_rock_indices[i]]) >= 1.0f) {

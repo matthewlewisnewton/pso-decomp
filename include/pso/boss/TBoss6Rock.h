@@ -56,11 +56,9 @@ struct TBoss6Rock : public TObjCollidable {
     static void create_rock_pool(s32 arg0);
     static void free_data();
     static void load_resources();
-    // `point` is the rock's landing point. The original passes it as the
-    // receiver; callers in other units still use that shape.
-    void spawn_crush_rocks(s32 kind);
-    void break_rocks_in_radius(f32 r);
-    s32 push_out_of_rocks(f32 r);
+    static void spawn_crush_rocks(Vec *point, s32 kind);
+    static void break_rocks_in_radius(Vec *point, f32 r);
+    static s32 push_out_of_rocks(Vec *point, f32 r);
     static s32 get_point(s32 arg0, s32 arg1, f32 *arg2);
 };
 

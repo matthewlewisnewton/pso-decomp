@@ -769,7 +769,7 @@ void TBoss6Mag::spawn_falling_rocks() {
         p->x = r * ((f32 (*)(s32))sin_table_lookup)(ang) + p->x;
         p->y = (0.0f);
         p->z = r * ((f32 (*)(s32))cos_table_lookup)(ang) + p->z;
-        ((TBoss6Rock *)p)->push_out_of_rocks((1e+01f));
+        TBoss6Rock::push_out_of_rocks((Vec *)p, 1e+01f);
     }
     send_6xAD_grid_positions__11TBoss6Type2FUcll(*(s32 *)((s8 *)arg0 + 0x384), pts, 3);
 }
@@ -1277,7 +1277,7 @@ void TBoss6Mag::run_task() {
             ((TObjCollidable *)arg0)->update_collisions();
             submit_cursor_candidate(arg0, -1);
         }
-        ((TBoss6Rock *)(arg0 + 0x38))->break_rocks_in_radius((f32) (1e+01f));
+        TBoss6Rock::break_rocks_in_radius((Vec *)(arg0 + 0x38), (f32)(1e+01f));
         var_r4 = 0xFF7F5126;
         if ((s32) *(s32 *)((s8 *)arg0 + 0x388) != 0) {
             var_r4 = -0x5DB4;

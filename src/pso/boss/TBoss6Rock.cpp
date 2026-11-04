@@ -44,7 +44,6 @@ void TBoss6PlotFalz__sub_802AC724(void *player, void *pos);
 // TBoss6Type2.cpp: the arena radius and centre.
 extern const f32 lbl_805DE3F0;
 extern const Vec TBoss6Type2__data_8047105C;
-int query_teammate_state__9TObjEneDDFv();
 int TBoss6Rock__sub_80353A04(void);
 int TBoss6Rock__sub_80353A0C(void);
 s32 TBoss6Rock__sub_80353A14(s32 i, Vec *out, f32 *radius);
@@ -165,7 +164,7 @@ TBoss6Rock::TBoss6Rock(TObject *parent, s32 index) : TObjCollidable(parent) {
 
 TBoss6Rock::~TBoss6Rock() {
     if (m_c4 != 0) {
-        ((TBoss6Rock *)&m_d4)->spawn_crush_rocks(m_b4);
+        TBoss6Rock::spawn_crush_rocks(&m_d4, m_b4);
     }
     release_object();
     TBoss6Rock__instance_table[m_ac] = NULL;
@@ -176,7 +175,7 @@ void TBoss6Rock::run_task() {
         queue_destruction();
         return;
     }
-    if (query_teammate_state__9TObjEneDDFv() != 0) {
+    if (TObjEneDD::query_teammate_state() != 0) {
         return;
     }
     switch (m_c4) {
@@ -265,7 +264,7 @@ void TBoss6Rock::break_and_release() {
         m_c8 = 0;
     }
     if (m_c8 != 2) {
-        ((TBoss6Rock *)&m_d4)->spawn_crush_rocks(m_b4);
+        TBoss6Rock::spawn_crush_rocks(&m_d4, m_b4);
         play_sound_effect(0x4006AB1F, &position, 0, 0);
         release_object();
         randomize_motion();
@@ -461,7 +460,7 @@ s32 TBoss6Rock::get_point(s32 i, s32 out, f32 *radius) {
     return 1;
 }
 
-s32 TBoss6Rock::push_out_of_rocks(f32 r) {
+s32 TBoss6Rock::push_out_of_rocks(Vec *point, f32 r) {
     Vec v;
     s32 hit;
     s32 i;
@@ -470,7 +469,7 @@ s32 TBoss6Rock::push_out_of_rocks(f32 r) {
     hit = 0;
     for (i = 0; i < 32; i++) {
         f32 d;
-        VecCopy(&v, (Vec *)this);
+        VecCopy(&v, point);
         subtract_vector(&v, &TBoss6Rock__rock_point_table[i]);
         v.y = y;
         d = vector_length(&v);
@@ -481,23 +480,23 @@ s32 TBoss6Rock::push_out_of_rocks(f32 r) {
             normalize_vector(&v);
             v.x *= lim;
             v.z *= lim;
-            vec3_add_to((Vec *)this, &v);
+            vec3_add_to(point, &v);
             hit = 1;
         }
     }
     return hit;
 }
 
-void TBoss6Rock::break_rocks_in_radius(f32 r) {
+void TBoss6Rock::break_rocks_in_radius(Vec *point, f32 r) {
     Vec v;
     s32 i;
     const RockKindParams *kind;
     for (i = 0; i < 32; i++) {
         kind = get_rock_entry(i);
-        if (kind != NULL && is_rock_state_2(i) != 0 && !(((Vec *)this)->y > r + kind->height)) {
+        if (kind != NULL && is_rock_state_2(i) != 0 && !(point->y > r + kind->height)) {
             f32 lim = r + kind->radius;
             VecCopy(&v, &TBoss6Rock__rock_point_table[i]);
-            subtract_vector(&v, (Vec *)this);
+            subtract_vector(&v, point);
             v.y = 0.0f;
             if (vector_length(&v) <= lim) {
                 clear_rock_state(i);
