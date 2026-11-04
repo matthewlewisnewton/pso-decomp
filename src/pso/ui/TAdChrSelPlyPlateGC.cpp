@@ -12,16 +12,6 @@
 #include "pso/object/TObjFish.h"
 #include "pso/ui/TAdPlyPltAnimCtrlGC.h"
 
-struct RecoveredGlobal_802C658C_TAdMultiPlyChrSelectGC__data_804E0A48 {
-    s32 value;
-    u8 remaining[0xC];
-};
-
-struct RecoveredGlobal_802C6848_lbl_804E0B00 {
-    s32 value;
-    u8 remaining[0xC];
-};
-
 typedef struct S_802C59EC {
     u8 pad0[0x444];
     s32 a[4][3];
@@ -159,7 +149,7 @@ int TAdMultiPlyChrSelectGC__sub_802C6920(void);
     extern int TAdMultiPlyChrSelectGC__data_805D67D8;
 extern s32 TAdMultiPlyChrSelectGC__select_mode;
 extern s32 TAdMultiPlyChrSelectGC__selected_slot;
-extern RecoveredGlobal_802C6848_lbl_804E0B00 multiplayer_controller_device_codes;
+extern s32 multiplayer_controller_device_codes[4];
 extern const f32 TAdMultiPlyChrSelectGC__data_805DE56C;
 extern const s32 multi_ply_chr_select_default_slot_table[][5];
 extern s32 TAdMultiPlyChrSelectGC__data_804E0A68[][5];
@@ -208,6 +198,8 @@ s32 TAdMultiPlyChrSelectGC__data_804E0A68[6][5] = {
 };
 s32 TAdMultiPlyChrSelectGC__data_804E0AE0[4] = { 0, 0, 0, 0 };
 f32 TAdMultiPlyChrSelectGC__data_804E0AF0[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
+/* Original words at 0x804E0B00: controller indices 0, 6, 12, 18. */
+s32 multiplayer_controller_device_codes[4] = { 0, 6, 12, 18 };
 
 /* The unit's pooled .rodata, recovered from the original object:
    multi_ply_chr_select_default_slot_table (6x5 s32, the open/occupied grid),
@@ -814,7 +806,6 @@ void TAdMultiPlyChrSelectGC__sub_802C65C0(s32 arg0) {
     TAdMultiPlyChrSelectGC::remove_selected_slot(arg0);
 }
 
-typedef char RecoveredGlobal_802C6848_lbl_804E0B00_size[sizeof(RecoveredGlobal_802C6848_lbl_804E0B00) == 0x10 ? 1 : -1];
 #pragma push
 #pragma fp_contract on
 /* See the matching note above sub_802C5688 for the remaining FPR-allocation rows. */
@@ -858,7 +849,7 @@ s32 TAdMultiPlyChrSelectGC__sub_802C6848(s32 arg0) {
     if ((arg0 < 0) || (arg0 > 3)) {
         return 0;
     }
-    return *(s32 *)((s8 *)(*(s32 **)((s8 *)(TKeyBoardControl__sub_803DEB74(*(u32 *)((s8 *)((u8 *)&multiplayer_controller_device_codes.value + (arg0 * 4)) + 0))) + 0x30)) + 0) & 1;
+    return *(s32 *)((s8 *)(*(s32 **)((s8 *)(TKeyBoardControl__sub_803DEB74(multiplayer_controller_device_codes[arg0])) + 0x30)) + 0) & 1;
 }
 
 void TAdMultiPlyChrSelectGC::remove_selected_slot(s32 arg0) {
@@ -1018,8 +1009,6 @@ void TAdMultiPlyChrSelectGC::update_selection() {
     }
     *(s32 *)&this->m_20 = TAdMultiPlyChrSelectGC::count_ready();
 }
-
-typedef char RecoveredGlobal_802C658C_TAdMultiPlyChrSelectGC__data_804E0A48_size[sizeof(RecoveredGlobal_802C658C_TAdMultiPlyChrSelectGC__data_804E0A48) == 0x10 ? 1 : -1];
 
 }
 #include "types.h"

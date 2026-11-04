@@ -8210,6 +8210,7 @@ force_active:
   - multi_confirm_texture_descriptor
   - multi_confirm_texture_entries
   - multi_ply_chr_select_default_slot_table
+  - multiplayer_controller_device_codes
   - nano_drago_bodies
   - nano_drago_movement
   - nest_class_string
