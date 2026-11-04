@@ -14,7 +14,7 @@ struct ModelNodePositionCaptureState {
 };
 
 extern "C" {
-extern ModelNodePositionCaptureState model_node_position_capture_state;
+ModelNodePositionCaptureState model_node_position_capture_state;
 void transform_to_view__11TCameraCtrlFii(s32, s32);
 }
 
