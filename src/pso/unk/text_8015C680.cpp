@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/player/TUnk_804B6C24.h"
@@ -48,7 +49,6 @@ struct Obj_8015C88C {
 extern "C" {
 extern const f32 lbl_805DB398;
 extern const f32 lbl_805DB39C;
-void *mem_alloc(u32 size);
 u8 *load_gvm_texture_file(s32 arg0);
 extern char lbl_8044083C[];
 extern char lbl_80440850[];
@@ -70,7 +70,7 @@ void TLanguage::load_container_fragment_textures() {
         (area == AREA_BATTLE1 || area == AREA_VR_SPACESHIP_ALPHA || area == AREA_VR_SPACESHIP_BETA || area == AREA_GOL_DRAGON)) {
         p = new BmlResource(1, (BmlResourceDescriptor *)(tbl + 0x50), 0, 0, (void *)(0));
         ancient_container_resource_bundle = p;
-        ancient_container_fragment_texture_lists = (u32 *)mem_alloc(0xC);
+        ancient_container_fragment_texture_lists = (u32 *)::operator new[](0xC);
         ancient_container_fragment_texture_lists[0] = (u32)load_gvm_texture_file((s32)lbl_8044083C);
         ancient_container_fragment_texture_lists[1] = (u32)load_gvm_texture_file((s32)lbl_80440850);
         ancient_container_fragment_texture_lists[2] = (u32)load_gvm_texture_file((s32)lbl_8044086C);
@@ -78,14 +78,14 @@ void TLanguage::load_container_fragment_textures() {
                (area == AREA_BATTLE2 || area == AREA_VR_TEMPLE_ALPHA || area == AREA_VR_TEMPLE_BETA || area == AREA_BARBA_RAY)) {
         p = new BmlResource(1, (BmlResourceDescriptor *)(tbl + 0x30), 0, 0, (void *)(0));
         ancient_container_resource_bundle = p;
-        ancient_container_fragment_texture_lists = (u32 *)mem_alloc(0xC);
+        ancient_container_fragment_texture_lists = (u32 *)::operator new[](0xC);
         ancient_container_fragment_texture_lists[0] = (u32)load_gvm_texture_file((s32)lbl_80440888);
         ancient_container_fragment_texture_lists[1] = (u32)load_gvm_texture_file((s32)lbl_804408A4);
         ancient_container_fragment_texture_lists[2] = (u32)load_gvm_texture_file((s32)lbl_804408C4);
     } else {
         p = new BmlResource(1, (BmlResourceDescriptor *)(tbl + 0x10), 0, 0, (void *)(0));
         ancient_container_resource_bundle = p;
-        ancient_container_fragment_texture_lists = (u32 *)mem_alloc(0xC);
+        ancient_container_fragment_texture_lists = (u32 *)::operator new[](0xC);
         ancient_container_fragment_texture_lists[0] = (u32)load_gvm_texture_file((s32)lbl_804408E4);
         ancient_container_fragment_texture_lists[1] = (u32)load_gvm_texture_file((s32)lbl_80440900);
         ancient_container_fragment_texture_lists[2] = (u32)load_gvm_texture_file((s32)lbl_80440920);

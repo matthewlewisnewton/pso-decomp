@@ -2,6 +2,7 @@
 #define PSO_MISC_TOBOSS4ROCK_H
 
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/misc/TOBoss4.h"
 
 struct TOBoss4Rock : public TOBoss4 {
@@ -18,11 +19,6 @@ struct TOBoss4Rock : public TOBoss4 {
     virtual void render();
     static void *create(void *arg0);
 };
-
-extern "C" {
-void mem_free(void *p);
-void *mem_alloc(u32 size);
-}
 
 typedef char TOBoss4Rock_size[sizeof(TOBoss4Rock) == 0xB8 ? 1 : -1];
 #endif

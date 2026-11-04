@@ -380,7 +380,7 @@ struct TLobby : public TObject {
     static void send_card_window_state();
     int send_and_handle(int a1, int a2);
     static u8 *create_message_window(s32 arg0, s32 arg1, u32 arg2, s16 arg3);
-    static void set_window_mode_4(void *arg0, s32 arg1, s32 arg2);
+    static u8 *set_window_mode_4(void *arg0, s32 arg1, s32 arg2);
     void update_window_mode_from_progress(void *arg1);
     void set_field_90(s32 v);
     void add_list_entry(s32 arg1, s32 arg2, s32 arg3);

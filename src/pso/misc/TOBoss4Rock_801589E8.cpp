@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/math/ScratchVectorStorage.h"
 #include "types.h"
@@ -13,7 +14,6 @@ s32 get_bml_model(s32,s32);
 s32 rotate_matrix_y(int,int);
 
 void draw_ginja_object(void *child);
-void *mem_alloc(u32 size);
 void TOBoss4__ct(void*,void*);
 u8* TOBoss4Bird__ct(u8*,s32);
 extern s32 __vt__11TOBoss4Bird[];
@@ -120,7 +120,6 @@ s32 push_matrix();
 s32 pop_matrix();
 s32 post_translate_matrix(void *);
 void *TOBoss4Rock__ct(void *, void *);
-void mem_free(void *);
 void *__nw__7TObjectFUl(int);
 
 void TOBoss4Rock::render() {
@@ -155,12 +154,12 @@ extern s32 __vt__11TOBoss4Rock[];
 
 }
 TOBoss4Rock::~TOBoss4Rock() {
-    if (*(void **)((s8 *)this + 0xA0) != NULL) { mem_free(*(void **)((s8 *)this + 0xA0)); }
-    if (*(void **)((s8 *)this + 0xA4) != NULL) { mem_free(*(void **)((s8 *)this + 0xA4)); }
-    if (*(void **)((s8 *)this + 0xA8) != NULL) { mem_free(*(void **)((s8 *)this + 0xA8)); }
-    if (*(void **)((s8 *)this + 0xAC) != NULL) { mem_free(*(void **)((s8 *)this + 0xAC)); }
-    if (*(void **)((s8 *)this + 0xB0) != NULL) { mem_free(*(void **)((s8 *)this + 0xB0)); }
-    if (*(void **)((s8 *)this + 0xB4) != NULL) { mem_free(*(void **)((s8 *)this + 0xB4)); }
+    if (*(void **)((s8 *)this + 0xA0) != NULL) { ::operator delete[](*(void **)((s8 *)this + 0xA0)); }
+    if (*(void **)((s8 *)this + 0xA4) != NULL) { ::operator delete[](*(void **)((s8 *)this + 0xA4)); }
+    if (*(void **)((s8 *)this + 0xA8) != NULL) { ::operator delete[](*(void **)((s8 *)this + 0xA8)); }
+    if (*(void **)((s8 *)this + 0xAC) != NULL) { ::operator delete[](*(void **)((s8 *)this + 0xAC)); }
+    if (*(void **)((s8 *)this + 0xB0) != NULL) { ::operator delete[](*(void **)((s8 *)this + 0xB0)); }
+    if (*(void **)((s8 *)this + 0xB4) != NULL) { ::operator delete[](*(void **)((s8 *)this + 0xB4)); }
 }
 
 #pragma fp_contract on
@@ -218,12 +217,12 @@ void *TOBoss4Rock__ct(void *arg0_, void *arg1) {
     } else if (self->count > 8) {
         self->count = 8;
     }
-    self->models = (s32 *)mem_alloc(self->count * 4);
-    self->params = (s32 *)mem_alloc(self->count * 4);
-    self->positions = (Vec_80158FB4 *)mem_alloc(self->count * 0xC);
-    self->speeds = (f32 *)mem_alloc(self->count * 4);
-    self->rots = (Rot_80158FB4 *)mem_alloc(self->count * 0xC);
-    self->rotspd = (Rot_80158FB4 *)mem_alloc(self->count * 0xC);
+    self->models = (s32 *)::operator new[](self->count * 4);
+    self->params = (s32 *)::operator new[](self->count * 4);
+    self->positions = (Vec_80158FB4 *)::operator new[](self->count * 0xC);
+    self->speeds = (f32 *)::operator new[](self->count * 4);
+    self->rots = (Rot_80158FB4 *)::operator new[](self->count * 0xC);
+    self->rotspd = (Rot_80158FB4 *)::operator new[](self->count * 0xC);
     // As in run_task, the local integer index preserves the native call sequence.
     for (i = 0; i < self->count; i++) {
         s32 model_index = (s32)((4.0f) * ((3.0517578e-05f) * (f32)rand()));
@@ -472,8 +471,8 @@ void *TOBoss4Bird::create(void *arg0) {
 
 }
 TOBoss4Bird::~TOBoss4Bird() {
-    if (*(void **)((s8 *)this + 0xBC) != NULL) { mem_free(*(void **)((s8 *)this + 0xBC)); }
-    if (*(void **)((s8 *)this + 0xC0) != NULL) { mem_free(*(void **)((s8 *)this + 0xC0)); }
+    if (*(void **)((s8 *)this + 0xBC) != NULL) { ::operator delete[](*(void **)((s8 *)this + 0xBC)); }
+    if (*(void **)((s8 *)this + 0xC0) != NULL) { ::operator delete[](*(void **)((s8 *)this + 0xC0)); }
 }
 #define get_bml_model ((u8* (*)(s32,s32))get_bml_model)
 #define TOBoss4__ct ((void (*)(void*))TOBoss4__ct)
@@ -548,8 +547,8 @@ u8 *TOBoss4Bird__ct(u8 *boss4_bird, s32 arg1) {
     } else if (o->count > 6) {
         o->count = 6;
     }
-    o->vecs = (Vec_80159A10 *)mem_alloc(o->count * 0xC);
-    o->angs = (s32 *)mem_alloc(o->count * 4);
+    o->vecs = (Vec_80159A10 *)::operator new[](o->count * 0xC);
+    o->angs = (s32 *)::operator new[](o->count * 4);
     {
         VecTbl_80159A10 tbl = boss4_bird_vec_table[0];
         for (i = 0; i < o->count; i++) {
