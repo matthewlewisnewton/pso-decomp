@@ -1635,21 +1635,19 @@ void TBoss6Type1__sub_802B6C30(Boss_802B6C30 *self) {
 void TBoss6Type1::damage_players_in_range() {
     s32 n;
     s32 i;
-    Player_802B6B34 *p;
+    TObjPlayer *p;
     n = TLobby::get_game_mode();
     for (i = 0; i < n; i++) {
-        p = get_player_data__10TObjPlayerFi(i);
+        p = TObjPlayer::get_player_data(i);
         if (is_active__14TBoss6PlotFalzFv() != 0) {
-            V3_802B6B34 v = p->pos;
+            Vec v = p->position;
             v.y = 0.0f;
             if (!(vector_length(&v) > 10.0f)) {
-                Arg_802B6B34 a[2];
-                s32 r = TBoss6PlotFalz::rand_vary_count(((Boss_802B6B34 *)this)->f488, 0.1f);
-                a[0].kind = 1;
-                a[1].kind = 1;
-                a[1].v.f = (f32)r;
-                a[0].v.i = a[1].v.i;
-                p->m21(this, a, 0, -1, -1);
+                s32 r = TBoss6PlotFalz::rand_vary_count(this->unk_488, 0.1f);
+                DirectAttackPayload payload;
+                payload.kind = 1;
+                payload.power = (f32)r;
+                p->receive_direct_attack(this, payload, 0, -1, -1);
             }
         }
     }
