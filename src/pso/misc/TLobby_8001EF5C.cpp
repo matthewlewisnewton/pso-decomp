@@ -808,10 +808,9 @@ static inline void load_model_list(BmlResource *self, u32 *list) {
         self->load_bin_model(*list, i);
     }
 }
-static inline void load_motion_list(BmlResource *self, u32 *list) {
-    s32 i;
-    for (i = 0; *list != 0; list++, i++) {
-        self->load_bin_motion(*list, i);
+static inline void load_motion_list(BmlResource *self, u32 *list, s32 &slot) {
+    for (slot = 0; *list != 0; list++, slot++) {
+        self->load_bin_motion(*list, slot);
     }
 }
 static inline void request_motion_list(BmlResource *self, u32 *list) {
@@ -831,7 +830,6 @@ static inline void request_motion_list(BmlResource *self, u32 *list) {
 // a second BmlResource constructor mangling would disagree with those linked calls.
 extern "C" BmlResource *TLobby__sub_8002058C(BmlResource *self, s32 kind, u32 *models, u32 *motions, s32 on_loaded,
                                             s32 on_loaded_arg, void *load_buffer) {
-    u32 *p;
     self->reset();
     self->flags = kind;
     for (s32 i = 0; i < 0x100; i++) {
@@ -840,7 +838,7 @@ extern "C" BmlResource *TLobby__sub_8002058C(BmlResource *self, s32 kind, u32 *m
     self->callback = on_loaded;
     self->callback_context = on_loaded_arg;
     self->arena = load_buffer;
-    for (p = models; *p != 0; p++) {
+    for (u32 *p = models; *p != 0; p++) {
         self->model_count++;
     }
     if (self->model_count > 0) {
@@ -851,7 +849,7 @@ extern "C" BmlResource *TLobby__sub_8002058C(BmlResource *self, s32 kind, u32 *m
             self->models[i].m_c = 0;
         }
     }
-    for (p = motions; *p != 0; p++) {
+    for (u32 *p = motions; *p != 0; p++) {
         self->motion_count++;
     }
     if (self->motion_count > 0) {
@@ -863,7 +861,10 @@ extern "C" BmlResource *TLobby__sub_8002058C(BmlResource *self, s32 kind, u32 *m
     if (self->flags & 1) {
         TLobby::tmp_buf_use_req(lbl_80434E4C);
         load_model_list(self, models);
-        load_motion_list(self, motions);
+        // Slot counter belongs to the caller: the id list is passed by value so
+        // `motions` is still intact on the download path.
+        s32 slot;
+        load_motion_list(self, motions, slot);
         TLobby::tmp_buf_release(lbl_80434E4C);
         self->set_flag_and_notify();
     } else if (self->flags & 2) {
@@ -871,7 +872,7 @@ extern "C" BmlResource *TLobby__sub_8002058C(BmlResource *self, s32 kind, u32 *m
         if (self->model_count * 2 + self->motion_count >= 0x100) {
             TLobby::debug_print((s32)lbl_80434E60);
         }
-        p = models;
+        u32 *p = models;
         for (s32 i = 0; *p != 0; p++, i++) {
             Lobby_8001FA1C req;
             s32 handle;

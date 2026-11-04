@@ -981,6 +981,7 @@ pso/misc/TLobby.cpp
 pso/misc/TLobbyEventTheme.cpp
 pso/misc/TLobby_80019E24.cpp
 pso/misc/TLobby_8001D6A0.cpp
+pso/misc/TLobby_8001EF5C.cpp
 pso/misc/TLobby_8002C140.cpp
 pso/misc/TLobby_8002C838.cpp
 pso/misc/TLobby_8003A95C.cpp
