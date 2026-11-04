@@ -454,6 +454,15 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # -str reuse,readonly: the literals live in this unit's .rodata.
     "pso/object/TObjTombstone.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on", "-str reuse,readonly")},
     # GC/2.0: compiler-expanded struct copies take 2.0's registers.
+    # The ending item handler table keeps 2.0's store/load scheduling for its
+    # zero-initialized local member-function-pointer array.
+    "pso/unk/text_803531FC.cpp": {
+        "mw_version": "GC/2.0",
+        # The split names the compiler's anonymous PMF initializer image at
+        # 0x804F10C0; the source-built object references its first 12-byte
+        # entry label. Map the target entry name to the object's image label.
+        "symbol_mappings": {"@12": "...data.0"},
+    },
     "pso/boss/Boss5GryphonBehavior.cpp": {"mw_version": "GC/2.0"},
     "pso/enemy/TObjEneGyaranzo.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred")},
     "pso/misc/TOExplosiveMachine.cpp": {"mw_version": "GC/2.0"},
@@ -486,6 +495,9 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Deferred inlining: functions come out in reverse source order and the
     # vtables before the switch tables in .data.
     "pso/misc/TMedicalCenterSequence.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
+    # Row-header copy is a 16-byte struct assignment. -inline off outlines it;
+    # noauto,level=1 inlines that helper only. The rest of the unit stays out of line.
+    "pso/misc/TWindowMainMenu_802AD538.cpp": {"cflags": _switch(cflags_pso, "-inline noauto,level=1")},
     "pso/boss/TBoss7LaserLight.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
     "pso/enemy/TObjEnemyCustom.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-pool off", "-str reuse,readonly")},
     "pso/boss/TBoss3VoloptCore.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},

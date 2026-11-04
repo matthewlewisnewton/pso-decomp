@@ -1,90 +1,91 @@
+#define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/TChCrTagInformationStr.h"
-#include "pso/misc/TChCrTagInformationStr.h"
-
-TChCrTagInformationStr::~TChCrTagInformationStr() {}
-
-#include "types.h"
+#include "pso/misc/TCameraCtrl.h"
+#include "pso/render/render_util.h"
+#include "pso/ui/MenuText.h"
+#include "pso/math/AngleLookup.h"
+#include "pso/misc/TLobby_80132ED0.h"
 
 extern "C" {
-s32 queue_destruction__7TObjectFv();
 extern s32 char_creation_tag_info_selected_index;
+void TCameraCtrl__sub_80068EF0();
+}
+extern const char *TChCrTagInformationStr__class_name;
 extern const f32 TChCrTagInformationStr__data_805DF108;
-extern const f32 lbl_805DF110;
-extern const f32 lbl_805DF124;
-extern const f32 lbl_805DF128;
-extern const f32 lbl_805DF12C;
-s32 __ct__7TObjectFP7TObject();
-void *__nw__7TObjectFUl(int);
+extern const f32 lbl_805DF10C, lbl_805DF110, lbl_805DF114, lbl_805DF118;
+extern const f32 lbl_805DF11C, lbl_805DF120, lbl_805DF124, lbl_805DF128, lbl_805DF12C;
 
-void *TChCrTagInformationStr::create(void *arg0, void *arg1) {
-    void *o;
-    o = __nw__7TObjectFUl(0x38);
-    if (o != NULL) {
-        o = __ct__22TChCrTagInformationStrFv((void *)o, (s32)arg0, (s32)arg1);
-    }
-    return o;
+TChCrTagInformationStr *TChCrTagInformationStr::create(TObject *parent, s32 index) {
+    return new TChCrTagInformationStr(parent, index);
 }
 
-extern s32 __vt__22TChCrTagInformationStr[];
-extern s32 TChCrTagInformationStr__class_name;
+void TChCrTagInformationStr::render() {
+    f32 radius, value, intensity, square;
+    if (TChCrTagInformationStr__data_805DF108 != opacity) {
+        TCameraCtrl::restore_full_screen_view();
+        set_depth_buffer_settings_1();
+        value = opacity;
+        square = value * value;
+        struct Position { f32 x, y; };
+        Position position = { 315.0f, 280.0f };
+        u32 color = ((u32)(lbl_805DF10C * square) << 24) | 0xFFFFFF;
+        intensity = lbl_805DF110 - square;
+        u32 glow = ((u32)(lbl_805DF114 * opacity * sin_table_lookup((s32)(lbl_805DF118 * value))) << 24) | 0xFFFFFF;
+        radius = lbl_805DF11C * intensity;
+        for (s32 line = 0; line < 7; ++line) {
+            const char *text = reinterpret_cast<const char *>(get_localized_text_entry(text_group, first_line + line));
+            draw_menu_text(position.x, position.y, text, color);
+            if (intensity > TChCrTagInformationStr__data_805DF108) {
+                for (s32 ring = 1; ring < 5; ++ring) {
+                    f32 distance = (f32)ring * radius;
+                    for (s32 angle = 0; angle < 0x10000; angle += 0x10000 / (ring * 4)) {
+                        f32 dx = distance * sin_table_lookup(angle);
+                        f32 dy = distance * cos_table_lookup(angle);
+                        draw_menu_text(position.x + dx, position.y + dy, text, glow);
+                    }
+                }
+            }
+            position.y += lbl_805DF120;
+        }
+        restore_saved_depth_alpha_state();
+        TCameraCtrl__sub_80068EF0();
+    }
+}
 
 #pragma push
 #pragma opt_common_subs off
-void run_task__22TChCrTagInformationStrFv(u8 *arg0) {
-    s32 temp_r0_2;
-    *(s32 *)((s8 *)arg0 + 0x34) = (s32) (*(s32 *)((s8 *)arg0 + 0x34) + 1);
-    if (((s32) *(s32 *)((s8 *)arg0 + 0x1C) != 2) && ((s32) *(s32 *)((s8 *)arg0 + 0x20) != (s32) char_creation_tag_info_selected_index)) {
-        *(s32 *)((s8 *)arg0 + 0x1C) = 2;
-    }
-    switch (*(s32 *)((s8 *)arg0 + 0x1C)) {
+void TChCrTagInformationStr::run_task() {
+    ++frame;
+    if (state != 2 && index != char_creation_tag_info_selected_index) state = 2;
+    switch (state) {
     case 0:
-        temp_r0_2 = *(s32 *)((s8 *)arg0 + 0x2C) - 1;
-        *(s32 *)((s8 *)arg0 + 0x2C) = temp_r0_2;
-        if (temp_r0_2 <= 0) {
-            *(s32 *)((s8 *)arg0 + 0x2C) = 0;
-            *(s32 *)((s8 *)arg0 + 0x1C) = 1;
-            break;
-        }
+        if (--delay <= 0) { delay = 0; state = 1; }
         break;
     case 1:
-        *(f32 *)((s8 *)arg0 + 0x30) = (f32) (*(f32 *)((s8 *)arg0 + 0x30) + lbl_805DF124);
-        if (*(f32 *)((s8 *)arg0 + 0x30) > lbl_805DF110) {
-            *(f32 *)((s8 *)arg0 + 0x30) = (f32) lbl_805DF110;
-            break;
-        }
+        opacity += lbl_805DF124;
+        if (opacity > lbl_805DF110) opacity = lbl_805DF110;
         break;
     case 2:
-        if ((s32) char_creation_tag_info_selected_index == -1) {
-            *(f32 *)((s8 *)arg0 + 0x30) = (f32) (*(f32 *)((s8 *)arg0 + 0x30) + lbl_805DF128);
-        } else {
-            *(f32 *)((s8 *)arg0 + 0x30) = (f32) (*(f32 *)((s8 *)arg0 + 0x30) + lbl_805DF12C);
-        }
-        if (*(f32 *)((s8 *)arg0 + 0x30) <= (*(f32 *)&TChCrTagInformationStr__data_805DF108)) {
-            *(f32 *)((s8 *)arg0 + 0x30) = (f32) (*(f32 *)&TChCrTagInformationStr__data_805DF108);
-            queue_destruction__7TObjectFv();
+        if (char_creation_tag_info_selected_index == -1) opacity += lbl_805DF128;
+        else opacity += lbl_805DF12C;
+        if (opacity <= TChCrTagInformationStr__data_805DF108) {
+            opacity = TChCrTagInformationStr__data_805DF108;
+            queue_destruction();
         }
         break;
     }
 }
 #pragma pop
 
-void *__ct__22TChCrTagInformationStrFv(void *arg0, s32 arg1, s32 arg2) {
-    __ct__7TObjectFP7TObject();
-    *(s32 **)((s8 *)arg0 + 0x18) = __vt__22TChCrTagInformationStr;
-    *(s32 *)((s8 *)arg0 + 0) = (s32) TChCrTagInformationStr__class_name;
-    *(s32 *)((s8 *)arg0 + 0x20) = arg2;
-    if ((s32) *(s32 *)((s8 *)arg0 + 0x20) <= 2) {
-        *(s32 *)((s8 *)arg0 + 0x24) = 0x11;
-        *(s32 *)((s8 *)arg0 + 0x28) = (s32) (*(s32 *)((s8 *)arg0 + 0x20) * 7);
-    } else {
-        *(s32 *)((s8 *)arg0 + 0x24) = 0x12;
-        *(s32 *)((s8 *)arg0 + 0x28) = (s32) ((*(s32 *)((s8 *)arg0 + 0x20) - 3) * 7);
-    }
-    *(s32 *)((s8 *)arg0 + 0x34) = 0;
-    *(s32 *)((s8 *)arg0 + 0x2C) = 5;
-    *(f32 *)((s8 *)arg0 + 0x30) = (f32) TChCrTagInformationStr__data_805DF108;
-    *(s32 *)((s8 *)arg0 + 0x1C) = 0;
-    return arg0;
-}
+TChCrTagInformationStr::~TChCrTagInformationStr() {}
 
+TChCrTagInformationStr::TChCrTagInformationStr(TObject *parent, s32 selected) : TObject(parent) {
+    m_name = TChCrTagInformationStr__class_name;
+    index = selected;
+    if (index <= 2) { text_group = 0x11; first_line = index * 7; }
+    else { text_group = 0x12; first_line = (index - 3) * 7; }
+    frame = 0;
+    delay = 5;
+    opacity = TChCrTagInformationStr__data_805DF108;
+    state = 0;
 }

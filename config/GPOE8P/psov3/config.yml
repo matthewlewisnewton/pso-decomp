@@ -126,6 +126,9 @@ force_active:
   - TAdBackTxtGC__name
   - TAdBackTxtGC_backtext_tex_list
   - TAdChrMoveEffectGC__sub_80349194
+  - TAdChrSelASlotGC__data_804758A8
+  - TAdChrSelASlotGC__data_804758B0
+  - TAdChrSelASlotGC__data_804758B8
   - TAdChrSelASlotGC__sub_8030C45C
   - TAdChrSelBSlotGC__sub_8030E3BC
   - TAdChrSelBSlotGC__sub_8030EF74
@@ -1878,6 +1881,7 @@ force_active:
   - __ct__21TObjEneMe3ShinowaRealFP7TObjectPv
   - __ct__21TObjEneSlimeWaterBombFP15TObjEneSlimeOneP15TObjEneSlimeOne
   - __ct__22TAdMultiPlyChrSelectGCFP7TObjectl
+  - __ct__22TChCrTagInformationStrFP7TObjectl
   - __ct__22TChallenge4PItemSelectFP7TObjectP18TChallenge4PResult
   - __ct__22TObjEneMe3SinowZoaRealFP7TObjectPv
   - __ct__22TObjEneSlimeTailAttackFP7TObjectPC3VeclP15TObjEneSlimeOne
@@ -2395,6 +2399,7 @@ force_active:
   - __dt__21TeneFakeTecThunderEffFv
   - __dt__22TAdEnterSerialAccessGCFv
   - __dt__22TBoss5GryphonShockWaveFv
+  - __dt__22TChCrTagInformationStrFv
   - __dt__22TChallenge4PItemSelectFv
   - __dt__22TObjEneMe1GiGueBarrierFv
   - __dt__22TObjEneMe1GiGueMissileFv
@@ -2968,6 +2973,7 @@ force_active:
   - __vt__21TeneFakeTecThunderEff
   - __vt__22TAdEnterSerialAccessGC
   - __vt__22TBoss5GryphonShockWave
+  - __vt__22TChCrTagInformationStr
   - __vt__22TChallenge4PItemSelect
   - __vt__22TObjEneMe1GiGueBarrier
   - __vt__22TObjEneMe1GiGueMissile
@@ -3303,6 +3309,7 @@ force_active:
   - apply_use_effect__13TUnk_804F0C48Fv
   - apply_use_effect__13TUnk_804F0D34Fv
   - apply_use_effect__13TUnk_804F0FF0Fv
+  - apply_use_effect__13TUnk_804F112CFv
   - apply_uv_offset__6TSceneFss
   - apply_variant_speeds__12TObjEneLappyFv
   - apply_velocity__13TBoss5GryphonFv
@@ -4296,6 +4303,9 @@ force_active:
   - choose_next_camera_shot__12TBoss8DragonFv
   - choose_roaming_destination__14TObjEneBm5WolfFv
   - choose_turn_motion__11TBoss6Type2Fv
+  - chr_sel_a_slot_plate_layout
+  - chr_sel_a_slot_plate_layout_b
+  - chr_sel_b_slot_plate_layout
   - chr_select_a_slot_entry
   - chr_select_b_slot_entry
   - chr_select_buffer_ptr_table
@@ -6924,6 +6934,14 @@ force_active:
   - lbl_8047506C
   - lbl_80475084
   - lbl_804750C8
+  - lbl_80475818
+  - lbl_80475838
+  - lbl_80475840
+  - lbl_80475858
+  - lbl_80475878
+  - lbl_80475890
+  - lbl_80475898
+  - lbl_804758A0
   - lbl_80475D5C
   - lbl_80475DBC
   - lbl_80476610
@@ -13454,6 +13472,7 @@ force_active:
   - render__21TeneFakeTecThunderEffFv
   - render__22TAdEnterSerialAccessGCFPv
   - render__22TBoss5GryphonShockWaveFv
+  - render__22TChCrTagInformationStrFv
   - render__22TObjEneMe1GiGueBarrierFv
   - render__22TObjEneMe1GiGueMissileFv
   - render__22TObjEneSlimeTailAttackFv
@@ -14090,6 +14109,7 @@ force_active:
   - run_task__21TeneFakeTecThunderEffFv
   - run_task__22TAdEnterSerialAccessGCFv
   - run_task__22TBoss5GryphonShockWaveFv
+  - run_task__22TChCrTagInformationStrFv
   - run_task__22TChallenge4PItemSelectFv
   - run_task__22TObjEneMe1GiGueBarrierFv
   - run_task__22TObjEneMe1GiGueMissileFv
@@ -14259,7 +14279,7 @@ force_active:
   - send_guild_card__17TWindowSubComCardFv
   - send_head__10TObjPlayerFv
   - send_login3__9TProtocolFv
-  - send_obj_position_event__10TEndingPicFl
+  - send_obj_position_event__13TUnk_804F112CFl
   - send_packed_action__11TBoss4Type3Flll
   - send_packet_60__6TLobbyFi
   - send_packet__6TLobbyFllll

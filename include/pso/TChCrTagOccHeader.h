@@ -10,4 +10,7 @@ public:
     virtual void render();
 };
 
+void create_all_ch_cr_tag_headers(void);
+void *create_ch_cr_tag_occ_header(void *arg0);
+
 #endif
