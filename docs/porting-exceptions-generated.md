@@ -89,8 +89,8 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1043,
 | `src/pso/player/TObjPlayer_80011014.cpp:4906` | `__frsqrte` |
 | `src/pso/player/TObjPlayer_800AAFBC.cpp:350` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_8012AF98.cpp:12` | `__cntlzw` |
-| `src/pso/player/TObjPlayer_801AF2F0.cpp:2554` | `__cntlzw` |
-| `src/pso/player/TObjPlayer_801AF2F0.cpp:5094` | `__cntlzw` |
+| `src/pso/player/TObjPlayer_801AF2F0.cpp:2527` | `__cntlzw` |
+| `src/pso/player/TObjPlayer_801AF2F0.cpp:5067` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_803DF7A8.cpp:95` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_803DF7A8.cpp:116` | `__frsqrte` |
 | `src/pso/player/TObjPlayer_803DF7A8.cpp:131` | `__fabs` |
