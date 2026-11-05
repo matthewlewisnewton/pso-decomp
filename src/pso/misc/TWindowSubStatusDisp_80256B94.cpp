@@ -1,8 +1,10 @@
 #include "types.h"
 #include "pso/system/memory.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/misc/TUnk_804CF930.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
+#include "pso/misc/TWindowSubStatusDisp_803DEE6C.h"
 #include "pso/misc/TTecRaFoie.h"
 #include "pso/misc/TWindowSubComCard.h"
 #include "pso/misc/TWindowKeyBoardSoft.h"
@@ -10,12 +12,7 @@
 #include "pso/ui/TAdChrMoveEffectGC.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 
-void set_constant_material_color(u32 color);
-
-struct RecoveredGlobal_80256BDC_lbl_804CF918 {
-    s32 value;
-    u8 remaining[0x14];
-};
+extern GinjaTextureList *lbl_805D63F0;
 
 struct Bar_80256C00 {
     u8 pad0[0x14];
@@ -41,25 +38,22 @@ struct Pos_80256E0C { f32 x; f32 y; };
 struct Quad_80256E0C { f32 x0, y0, x1, y1, u0, v0, u1, v1; };
 
 extern "C" {
-extern s32 lbl_804CF918[];
-void sub_80256BDC__13TUnk_804CF930Fs(u8 *arg0, s16 arg1);
 void calc_bar_width__20TWindowSubStatusDispFPv(struct Bar_80256C00 *bar);
 f32 fabs_float(f32);
 const f32 lbl_805DCECC = 2.0f;
 void step_gauge_bar_width(Gauge_802571B4 *g);
 s32 try_open__19TWindowKeyBoardSoftFii(void *, void *);
-void draw_textured_quad_at_depth(f32 *q, f32 depth);
 void TWindowSubStatusDisp__sub_80256BF8(void);
 void TWindowSubStatusDisp__sub_80256BFC(void);
-void *destroy__13TUnk_804CF930Fs(void *arg0, s16 arg1);
-void begin_screen_draw(s32 mode);
-void set_current_texture_list(void *list);
-void set_draw_texture_and_color(s32 index, s32 color);
-extern void *lbl_805D63F0;
+// Same symbol as the s16 member below. init_from's argument is the int
+// parameter and the original call is `mr r4, r5`. Calling the short member
+// from that int emits `extsh` and drops the function. Short callers pass a
+// short and do not extend, so the definition stays s16.
+void sub_80256BDC__13TUnk_804CF930Fs(TUnk_804CF930 *self, int arg);
 
 void *TUnk_804CF930::destroy(s16 arg1) {
     if (this != NULL) {
-        *(s32 **)((s8 *)this + 4) = lbl_804CF918;
+        *(TUnk_804CF918_table **)((u8 *)this + 4) = &lbl_804CF918;
         if (arg1 > 0) {
             ::operator delete(this);
         }
@@ -67,9 +61,8 @@ void *TUnk_804CF930::destroy(s16 arg1) {
     return this;
 }
 
-typedef char RecoveredGlobal_80256BDC_lbl_804CF918_size[sizeof(RecoveredGlobal_80256BDC_lbl_804CF918) == 0x18 ? 1 : -1];
 void TUnk_804CF930::sub_80256BDC(s16 arg1) {
-    *(s32 **)((s8 *)this + 4) = &(*(RecoveredGlobal_80256BDC_lbl_804CF918 *)&lbl_804CF918).value;
+    *(TUnk_804CF918_table **)((u8 *)this + 4) = &lbl_804CF918;
     this->flags = 0;
     this->m_2 = arg1;
 }
@@ -246,15 +239,10 @@ void step_gauge_bar_width(Gauge_802571B4 *g) {
     }
 }
 
-void *TWindowSubStatusDisp__sub_80257298(void *arg0, s16 arg1);
-#define destroy__13TUnk_804CF930Fs ((s32 (*)(void *, s16))destroy__13TUnk_804CF930Fs)
-
-extern s32 lbl_804CF930[];
-
-void *TWindowSubStatusDisp__sub_80257298(void *arg0, s16 arg1) {
+void *TWindowSubStatusDisp__sub_80257298(TUnk_804CF930 *arg0, s16 arg1) {
     if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 4) = lbl_804CF930;
-        destroy__13TUnk_804CF930Fs(arg0, 0);
+        *(TUnk_804CF918_table **)((u8 *)arg0 + 4) = &lbl_804CF930;
+        arg0->destroy(0);
         if (arg1 > 0) {
             ::operator delete(arg0);
         }
@@ -262,29 +250,20 @@ void *TWindowSubStatusDisp__sub_80257298(void *arg0, s16 arg1) {
     return arg0;
 }
 
-#undef destroy__13TUnk_804CF930Fs
-
-struct RecoveredGlobal_80257B4C_lbl_804CF948 {
-    s32 value;
-    u8 remaining[0x14];
-};
-
-typedef char RecoveredGlobal_80257B4C_lbl_804CF948_size[sizeof(RecoveredGlobal_80257B4C_lbl_804CF948) == 0x18 ? 1 : -1];
-
-typedef void *(*Ctor_80257D44)(void *, void *, s32);
-
-#define destroy__13TUnk_804CF930Fs ((s32 (*)(s32, s32 *))destroy__13TUnk_804CF930Fs)
-#define sub_80256BDC__13TUnk_804CF930Fs ((int (*)(void*, int))sub_80256BDC__13TUnk_804CF930Fs)
-#define calc_bar_width__20TWindowSubStatusDispFPv ((s32 (*)())calc_bar_width__20TWindowSubStatusDispFPv)
-#define step_gauge_bar_width ((void (*)(void *))step_gauge_bar_width)
-
-#define lbl_804CF930 (*(unsigned char (*)[1])&lbl_804CF930)
-void*TUnk_804CF930::init_from(void*a1, int a2) { sub_80256BDC__13TUnk_804CF930Fs(this, a2); *(int*)((char*)this + 0x4) = (int)lbl_804CF930; *(float*)((char*)this + 0x1c) = 0.0f; *(float*)((char*)this + 0xc) = *(float*)((char*)a1 + 0x4); *(float*)((char*)this + 0x10) = *(float*)((char*)a1 + 0x8); *(float*)((char*)this + 0x8) = *(float*)((char*)a1 + 0xc); *(float*)((char*)this + 0x14) = *(float*)((char*)a1 + 0x18); *(int*)((char*)this + 0x18) = *(int*)((char*)a1 + 0x10); *(short*)((char*)this + 0x0) = *(int*)((char*)a1 + 0x14); *(float*)((char*)this + 0x20) = *(float*)((char*)a1 + 0x1c); *(float*)((char*)this + 0x24) = *(float*)((char*)a1 + 0x20); return this; }
-
+void *TUnk_804CF930::init_from(void *src_raw, int arg2) {
+    TUnk_804CF930_init *src = static_cast<TUnk_804CF930_init *>(src_raw);
+    sub_80256BDC__13TUnk_804CF930Fs(this, arg2);
+    *(TUnk_804CF918_table **)((u8 *)this + 4) = &lbl_804CF930;
+    width = 0.0f;
+    x = src->x;
+    y = src->y;
+    depth = src->depth;
+    scale = src->scale;
+    color = src->color;
+    flags = (u16)src->flags;
+    maximum = src->maximum;
+    target = src->target;
+    return this;
 }
 
-#undef destroy__13TUnk_804CF930Fs
-#undef sub_80256BDC__13TUnk_804CF930Fs
-#undef calc_bar_width__20TWindowSubStatusDispFPv
-#undef step_gauge_bar_width
-#undef lbl_804CF930
+}
