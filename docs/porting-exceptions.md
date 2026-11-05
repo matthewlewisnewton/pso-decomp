@@ -164,6 +164,7 @@ or `other: <what>`); the fork PR that brought it in; and the tag
 
 | Function/symbol | Unit | File | Upstream PR | Cheat type | Fork PR | Tag |
 |---|---|---|---|---|---|---|
+| `TObjPlayer::apply_status_effect` | `TObjPlayer_801542CC` | `src/pso/player/TObjPlayer_801542CC.cpp` | [#171](https://github.com/zeroz41/pso-decomp/pull/171) | other: s32-to-pointer cast | #305 | upstream catch-up, rewrite later |
 
 ## Pending in open PRs
 
