@@ -35,7 +35,7 @@ struct TBoss8Dragon : public TObjEneDD_ST
     virtual void vfunc_88();
     virtual s32 vfunc_105();
     virtual void draw_motion_model();
-    void sub_802F4098(u8 *);
+    void sub_802F4098(Vec *pos);
     s32 hasActiveRenderFade();
 
     u32 m_3c0;
@@ -200,11 +200,7 @@ struct TBoss8Dragon : public TObjEneDD_ST
     static void *create(void *arg0);
     void update_colli_parts();
     int test_card_flag_2();
-    void set_field_3c();
-    void set_field_1c();
-    void spawn_child_object();
     static void free_resources();
-    f32 apply_default_velocity_scale();
     int get_flag_bit6();
     void fill_follow_camera_params(u8 *arg1, u8 *arg2);
     static int get_instance_count();
@@ -222,7 +218,6 @@ struct TBoss8Dragon : public TObjEneDD_ST
     static void update_all_parts();
     static bool has_enough_enemies();
     s32 spawn_attack_object(s32 arg1, s32 arg2, s32 arg3, s32 arg4);
-    u16 get_part_count_plus(s32 arg1);
     void set_mode_params(s8 arg1);
     void render_nodes_flagged();
     void copy_vectors();
@@ -231,20 +226,16 @@ struct TBoss8Dragon : public TObjEneDD_ST
     void copy_position(s32 arg1);
     int queue_destruction();
     static void trigger_switches_in_range(void *arg0, void *arg1, void *arg2);
-    void choose_next_camera_shot();
-    void update_live_camera();
-    void update_toggle_state();
     static s32 calc_binomial_coefficient(s32 n, s32 k);
     void play_animation_index(s32 arg1);
     void render_body_model();
     void select_freeze_target();
     void emit_body_effects();
-    f32 apply_velocity_scale(f32 farg0, f32 farg1);
     void get_follow_camera_offsets(u8 *arg1);
     s32 is_closest_part();
     s32 push_apart_from_parts();
     s32 is_near_other_part();
-    void draw_with_fade(s32 arg1, s32 arg2);
+    void draw_with_fade(Vec *pos, s32 arg2);
     void draw();
     u8 *ct_attack_object(s32 arg1, s32 arg2, s32 arg3);
 };

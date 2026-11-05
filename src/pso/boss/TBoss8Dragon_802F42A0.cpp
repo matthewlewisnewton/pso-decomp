@@ -15,7 +15,7 @@ s32 draw__10TObjMotionFv(void *, int);
 extern u8 *TBoss8Dragon__data_805D6988;
 
 void TBoss8Dragon::draw() {
-    s32 temp_r31;
+    void *saved_model;
     u8 *temp_r4;
 
     push_matrix();
@@ -24,11 +24,11 @@ void TBoss8Dragon::draw() {
     rotate_matrix_x(0, this->rotation.pitch);
     rotate_matrix_z(0, this->rotation.roll);
     scale_current_matrix((void *)&this->scale);
-    temp_r31 = (s32)this->model;
+    saved_model = this->model;
     temp_r4 = (unsigned char *) (*(void **)((s8 *)TBoss8Dragon__data_805D6988 + 0x42C));
     this->model = *(void **)((s8 *)temp_r4 + 0x28);
     draw__10TObjMotionFv(this, (int)temp_r4);
-    this->model = (void *)temp_r31;
+    this->model = saved_model;
     pop_matrix();
 }
 

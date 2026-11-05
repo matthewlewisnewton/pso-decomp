@@ -10,6 +10,8 @@ void set_constant_material(const NJS_ARGB *color);
 #include "pso/boss/TObjBoss1MokoHill_SoloM.h"
 #include <stddef.h>
 #include "pso/boss/TBoss8Dragon.h"
+#include "pso/boss/TBoss8Dragon_8002CC48.h"
+#include "pso/math/VectorNormalize.h"
 #include "pso/boss/TObjBoss1Rock.h"
 #include "pso/boss/TObjBoss2Tunnel.h"
 #include "pso/enemy/TObjEneDD.h"
@@ -190,7 +192,6 @@ f32 calc_nearest_crater_distance(void *);
 f32 horizontal_distance_squared(void *, void *);
 f32 sin_table_lookup(s32);
 f32 cos_table_lookup(s32, f32);
-s32 normalize_vector_checked(void *, f32);
 void rotate_matrix_y(int, int);
 void rotate_matrix_x(int, int);
 u8 *TObjBoss1MokoHill_SoloM__ct(u8 *arg0, u8 *arg1, u8 *arg2, s32 arg3);
@@ -395,19 +396,19 @@ s32 is_dragon_trail_damaging(u8 *arg0) {
     return *(f32 *)((s8 *)arg0 + 0x34) >= lbl_805D81D0;
 }
 
-void TBoss8Dragon::set_field_3c() { set_field_1c(); *(int *)&this->position.y = 1; }
-void TBoss8Dragon::set_field_1c() { *(s32 *)&this->entity_id = 1; }
+void TObjBoss1MokoHill_SoloM::set_field_3c() { set_field_1c(); this->m_3c = 1; }
+void TObjBoss1MokoHill_SoloM::set_field_1c() { this->m_1c = 1; }
 
-void TBoss8Dragon::spawn_child_object() {
+void TObjBoss1MokoHill_SoloM::spawn_child_object() {
     void *o;
-    *(u32 *)&this->entity_id = 0;
-    *(f32 *)&this->model = lbl_805D81A0;
-    *(f32 *)&this->actorFlags = lbl_805D81A0;
+    this->m_1c = 0;
+    this->m_34 = lbl_805D81A0;
+    this->m_30 = lbl_805D81A0;
     o = __nw__7TObjectFUl(0x50);
     if (o != NULL) {
-        TObjBoss1MokoHill_Solo__ct(o, (void *)this->m_up, 30);
+        TObjBoss1MokoHill_Solo__ct(o, this->m_up, 30);
     }
-    *(u32 *)&this->position.y = 0;
+    this->m_3c = 0;
 }
 TObjBoss1MokoHill_SoloM::~TObjBoss1MokoHill_SoloM() {
 
@@ -559,33 +560,32 @@ Grid_8002DB7C *init_grid_mesh__12TBoss8DragonFPviiiPv(Grid_8002DB7C *g, s32 widt
     return g;
 }
 
-f32 TBoss8Dragon::apply_default_velocity_scale() {
-    f32 *vector = (f32 *)this;
-    return ((TBoss8Dragon *)vector)->apply_velocity_scale(lbl_805D81E4, lbl_805D81D4);
+f32 apply_default_velocity_scale(Vec *v) {
+    return apply_velocity_scale(v, lbl_805D81E4, lbl_805D81D4);
 }
 
-f32 TBoss8Dragon::apply_velocity_scale(f32 farg0, f32 farg1) {
+f32 apply_velocity_scale(Vec *v, f32 farg0, f32 farg1) {
     f32 temp_f1;
     f32 temp_f1_2;
     f32 temp_f2;
     f32 var_f31;
     s32 temp_r31;
 
-    temp_f1 = normalize_vector_xz((Vec *)this);
+    temp_f1 = normalize_vector_xz(v);
     if (temp_f1 > farg0) {
         var_f31 = lbl_805D8198;
-        *(f32 *)&this->m_name = var_f31;
-        *(f32 *)&this->m_flags = (f32) lbl_805D81F4;
-        *(f32 *)&this->m_prev = var_f31;
+        v->x = var_f31;
+        v->y = lbl_805D81F4;
+        v->z = var_f31;
     } else {
         temp_r31 = (s32) (lbl_805D81F8 * (temp_f1 / farg0));
         var_f31 = farg1 * (lbl_805D81F4 + cos_table_lookup(temp_r31, lbl_805D81F8));
         temp_f1_2 = sin_table_lookup(temp_r31);
-        temp_f2 = *(f32 *)&this->m_name * temp_f1_2;
-        *(f32 *)&this->m_name = temp_f2;
-        *(f32 *)&this->m_flags = (f32) lbl_805D81F4;
-        *(f32 *)&this->m_prev = (f32) (*(f32 *)&this->m_prev * temp_f1_2);
-        normalize_vector_checked(this, temp_f1_2);
+        temp_f2 = v->x * temp_f1_2;
+        v->x = temp_f2;
+        v->y = lbl_805D81F4;
+        v->z = v->z * temp_f1_2;
+        normalize_vector_checked(v);
     }
     return var_f31;
 }

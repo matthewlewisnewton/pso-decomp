@@ -22,6 +22,7 @@ struct NJS_OBJECT;
 #include "pso/misc/TLobby_801E43E4.h"
 #include "pso/system/byteswap.h"
 #include "pso/boss/TBoss1Dragon.h"
+#include "pso/boss/TObjBoss1MokoHill_SoloM.h"
 #include "pso/system/BmlResourceDescriptor.h"
 #include "pso/boss/TObjBoss1Rock.h"
 #include "pso/system/vector.h"
@@ -1626,7 +1627,7 @@ void TBoss1Dragon::handle_fall_state(u32 arg1) {
         ext->dir.z = -self->position.z;
         ((void (*)(void *))normalize_vector_xz__FP3Vec)(arg0 + 0x3A0);
         this->rotation.yaw = (s32) (boss1_dragon_angle_units_per_radian * atan2_float(ext->dir.x, ext->dir.z));
-        ((TBoss8Dragon *)(*(s32 *)((s8 *)arg0 + 0x6D8)))->set_field_3c();
+        this->trail->set_field_3c();
         return;
     case 2:
     case 11:
@@ -1651,7 +1652,7 @@ void TBoss1Dragon::handle_fall_state(u32 arg1) {
         TBoss1Dragon__sub_800277D8(arg0);
         return;
     case ENEMY_STATE_LEAVE:
-        ((TBoss8Dragon *)(*(s32 *)((s8 *)arg0 + 0x6D8)))->spawn_child_object();
+        this->trail->spawn_child_object();
         break;
     default:
         return;
@@ -1676,7 +1677,7 @@ void TBoss1Dragon::state_circle_flight(u32 arg1) {
         this->vfunc_91();
         this->vfunc_94();
         ((TBoss1Dragon *)arg0)->updateFacingPosition();
-        ((TBoss8Dragon *)(*(s32 *)((s8 *)arg0 + 0x6D8)))->set_field_3c();
+        this->trail->set_field_3c();
         return;
     case 2:
     case 11:
@@ -1709,7 +1710,7 @@ void TBoss1Dragon::state_circle_flight(u32 arg1) {
         ((void (*)(u8 *, s32))TBoss1Dragon__sub_800277D8)(arg0, temp_r4);
         return;
     case ENEMY_STATE_LEAVE:
-        ((TBoss8Dragon *)(*(s32 *)((s8 *)arg0 + 0x6D8)))->spawn_child_object();
+        this->trail->spawn_child_object();
         break;
     default:
         break;
@@ -1749,7 +1750,7 @@ void TBoss1Dragon__sub_80022158(TBoss1Dragon *arg0, u32 arg1) {
         home->y = TBoss1Dragon__data_80434E80.y;
         self->fallVelocity = (0.0f);
         self->rootHeight = (0.0f);
-        ((TBoss8Dragon *)(*(s32 *)((s8 *)arg0 + 0x6D8)))->set_field_1c();
+        arg0->trail->set_field_1c();
         return;
     case 2:
     case 11:
@@ -1794,7 +1795,7 @@ void TBoss1Dragon__sub_80022158(TBoss1Dragon *arg0, u32 arg1) {
         self->fallVelocity = self->fallVelocity + dx;
         return;
     case 5:
-        ((TBoss8Dragon *)(*(s32 *)((s8 *)arg0 + 0x6D8)))->spawn_child_object();
+        arg0->trail->spawn_child_object();
         break;
     default:
         return;
@@ -2612,7 +2613,7 @@ void TBoss1Dragon__sub_80023A2C(TBoss1Dragon *arg0, u32 arg1) {
             if ((f32) arg0->impactAge >= (60.0f)) {
                 arg0->impactAge = 0;
                 arg0->stateStep = 1;
-                ((TBoss8Dragon *)(*(s32 *)((s8 *)arg0 + 0x6D8)))->set_field_3c();
+                arg0->trail->set_field_3c();
                 restorePosition__12TBoss1DragonFv(arg0);
                 *(s32 *)((s8 *)arg0 + 0x874) = (s32) (boss1_dragon_angle_units_per_radian * atan2_float((f32) (*(f32 *)((s8 *)arg0 + 0x38)), (f32) (*(f32 *)((s8 *)arg0 + 0x40))));
                 return;
@@ -2640,7 +2641,7 @@ void TBoss1Dragon__sub_80023A2C(TBoss1Dragon *arg0, u32 arg1) {
     case 5:
         ((TBoss1Dragon *)(arg0))->vfunc_92();
         ((TBoss1Dragon *)(arg0))->vfunc_93();
-        ((TBoss8Dragon *)(*(s32 *)((s8 *)arg0 + 0x6D8)))->spawn_child_object();
+        arg0->trail->spawn_child_object();
         break;
     default:
         return;
@@ -2677,7 +2678,7 @@ void TBoss1Dragon::update_burrow_outward_run(u32 arg1) {
         this->stateStep = 0;
         this->impactAge = 0;
         this->rootHeight = calc_burrow_speed__12TBoss1DragonFPv(arg0);
-        ((TBoss8Dragon *)(*(s32 *)((s8 *)arg0 + 0x6D8)))->set_field_1c();
+        this->trail->set_field_1c();
         if (isV2Mode__12TBoss1DragonFv() == 1 && *(s32 *)((s8 *)arg0 + 0x6DC) == 2) {
             *(s32 *)((s8 *)arg0 + 0x6DC) += 1;
             this->rootHeight = calc_burrow_speed__12TBoss1DragonFPv(arg0);
@@ -2726,7 +2727,7 @@ void TBoss1Dragon::update_burrow_outward_run(u32 arg1) {
     case ENEMY_STATE_LEAVE:
         this->vfunc_92();
         this->vfunc_93();
-        ((TBoss8Dragon *)(*(s32 *)((s8 *)arg0 + 0x6D8)))->spawn_child_object();
+        this->trail->spawn_child_object();
         break;
     }
 }
@@ -2792,7 +2793,7 @@ void TBoss1Dragon::update_burrow_inward_run(u32 arg1, s32 arg2) {
             if ((f32) this->impactAge >= (60.0f)) {
                 this->impactAge = 0;
                 this->stateStep = 1;
-                ((TBoss8Dragon *)(*(s32 *)((s8 *)((u8 *)this) + 0x6D8)))->set_field_1c();
+                this->trail->set_field_1c();
                 restorePosition__12TBoss1DragonFv((void *)this);
                 this->rotation.yaw = (s32) ((s32) (boss1_dragon_angle_units_per_radian * atan2_float((f32) (*(f32 *)((s8 *)((u8 *)this) + 0x38)), (f32) (*(f32 *)((s8 *)((u8 *)this) + 0x40)))) + 0x8000);
                 *(f32 *)((s8 *)((u8 *)this) + 0x3A0) = sin_table_lookup(this->rotation.yaw);

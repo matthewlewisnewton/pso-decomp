@@ -2,6 +2,7 @@
 #include "types.h"
 #include "pso/boss/TBoss8Dragon_802F3AB4.h"
 #include "pso/boss/TBoss8Dragon.h"
+#include "pso/boss/TUnk_804E4BF0.h"
 #include "pso/boss/TObjBoss2Tunnel.h"
 
 struct Stack_802F3A48 {
@@ -27,7 +28,6 @@ s32 ct_attack_object__12TBoss8DragonFlll(int, int, void *, void *);
 extern s32 tl_04;
 u16 get_entity_id(void *);
 u8 *get_enemy_entity(u16 arg0);
-extern u32 boss8_dragon_leader_part;
 extern const f32 lbl_805DED48;
 extern const f32 lbl_805DED4C;
 
@@ -35,7 +35,7 @@ s32 TBoss8Dragon::is_closest_part() {
     Vec_802F376C v;
     f32 len;
     s32 i;
-    if (boss8_dragon_leader_part == 0) {
+    if (boss8_dragon_leader_part == NULL) {
         return 1;
     }
     v.x = ((Ent_802F376C *)this)->x - ((Ent_802F376C *)this)->x;
@@ -43,7 +43,7 @@ s32 TBoss8Dragon::is_closest_part() {
     v.z = ((Ent_802F376C *)this)->z - ((Ent_802F376C *)this)->z;
     len = normalize_vector_xz((Vec *)(&v));
     for (i = 1; i < 6; i++) {
-        u16 id = ((TBoss8Dragon *)boss8_dragon_leader_part)->get_part_count_plus(i);
+        u16 id = boss8_dragon_leader_part->get_part_entity_id(i);
         if (id != get_entity_id(this)) {
             Ent_802F376C *e = (Ent_802F376C *)get_enemy_entity(id);
             if (e != NULL) {
@@ -65,11 +65,11 @@ s32 TBoss8Dragon::push_apart_from_parts() {
     Vec_802F3878 v;
     f32 d;
     s32 i;
-    if (boss8_dragon_leader_part == 0) {
+    if (boss8_dragon_leader_part == NULL) {
         return 0;
     }
     for (i = 0; i < 6; i++) {
-        u16 id = ((TBoss8Dragon *)boss8_dragon_leader_part)->get_part_count_plus(i);
+        u16 id = boss8_dragon_leader_part->get_part_entity_id(i);
         if (id != get_entity_id(this)) {
             Ent_802F3878 *e = ((Ent_802F3878 *)get_enemy_entity(id));
             if (e != NULL) {
@@ -92,11 +92,11 @@ s32 TBoss8Dragon::push_apart_from_parts() {
 s32 TBoss8Dragon::is_near_other_part() {
     Vec_802F3974 v;
     s32 i;
-    if (boss8_dragon_leader_part == 0) {
+    if (boss8_dragon_leader_part == NULL) {
         return 0;
     }
     for (i = 0; i < 6; i++) {
-        u16 id = ((TBoss8Dragon *)boss8_dragon_leader_part)->get_part_count_plus(i);
+        u16 id = boss8_dragon_leader_part->get_part_entity_id(i);
         if (id != get_entity_id(this)) {
             Ent_802F3974 *e = ((Ent_802F3974 *)get_enemy_entity(id));
             if (e != NULL) {

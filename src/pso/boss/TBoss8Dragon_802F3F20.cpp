@@ -121,13 +121,13 @@ s32 TBoss8Dragon__sub_802F3F20(u8 *arg0) {
     return 0;
 }
 
-void TBoss8Dragon::sub_802F4098(u8 *arg1) {
-    VecCopy((Vec *)arg1, &this->position);
+void TBoss8Dragon::sub_802F4098(Vec *pos) {
+    VecCopy(pos, &this->position);
     if ((get_mode__11TCameraCtrlFPv(&(*(RecoveredGlobal_802F4098_main_task *)&main_task).value) & 0x10) && (TBoss8Dragon__sub_802FCCBC(this) == 0) && !(this->frame > lbl_805DED68)) {
-        *(f32 *)((s8 *)arg1 + 8) = (f32) (*(f32 *)((s8 *)arg1 + 8) + lbl_805DED6C);
+        pos->z = pos->z + lbl_805DED6C;
     }
 }
-void TBoss8Dragon::draw_with_fade(s32 arg1, s32 arg2) {
+void TBoss8Dragon::draw_with_fade(Vec *pos, s32 arg2) {
     u8 *temp_r31;
     if (!(this->position.y <= lbl_805DED70)) {
         set_current_texture_list((GinjaTextureList *)(this->texlist));
@@ -144,7 +144,7 @@ void TBoss8Dragon::draw_with_fade(s32 arg1, s32 arg2) {
             ((VObj_14_681f8e *)(temp_r31))->m6();
         }
         push_matrix();
-        post_translate_matrix((void *)arg1);
+        post_translate_matrix(pos);
         rotate_matrix_y(0, this->rotation.yaw);
         rotate_matrix_x(0, this->rotation.pitch);
         rotate_matrix_z(0, this->rotation.roll);
