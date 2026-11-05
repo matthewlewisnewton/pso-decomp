@@ -3,6 +3,7 @@
 #include "types.h"
 #include <stddef.h>
 #include "pso/misc/TUnk_804CF918.h"
+#include "pso/misc/TWindowDrawContext.h"
 
 struct TWindowDrawContext;
 

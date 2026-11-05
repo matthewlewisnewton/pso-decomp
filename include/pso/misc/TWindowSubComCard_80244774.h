@@ -2,6 +2,7 @@
 #define PSO_MISC_TWINDOWSUBCOMCARD_80244774_H
 
 #include "types.h"
+#include "pso/misc/TWindowDrawContext.h"
 
 struct TWindowSubComCard;
 struct TWindowDrawContext;

@@ -25,16 +25,6 @@ public:
     void set_flag4();
     int get_flag();
     int get_status_flag();
-    u8 unk_1C[0x4];
-    s16 m_20;
-    u8 unk_22[0xA];
-    s32 m_2c;
-    u8 unk_30[0x8];
-    f32 m_38;
-    u8 unk_3C[0x10];
-    void* m_4c;
-    u8 unk_50[0xC];
-    s32 m_5c;
     u8 unk_60[0x4];
     u32 m_64;
     u32 m_68;

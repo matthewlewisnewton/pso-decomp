@@ -4,6 +4,7 @@
 #include "pso/misc/TWindowSubCustomEquip.h"
 #include "pso/misc/TWindowSubCustomSelect.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
+#include "pso/misc/TWindowKeyBoardSoft.h"
 #include "pso/object/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/render/render_util.h"

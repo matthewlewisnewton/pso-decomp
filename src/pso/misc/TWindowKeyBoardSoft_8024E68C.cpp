@@ -14,8 +14,6 @@ struct RecoveredFields_8024E754_arg0
 
 struct Vec2_8024EC34 { f32 x; f32 y; };
 
-struct Ctx_8024E68C { u8 pad[0x20]; f32 pivot[2]; f32 scale[2]; };
-
 struct Win_8024EA50 {
     f32 x, y;
     f32 w, h;
@@ -109,16 +107,16 @@ void TWindowKeyBoardSoft::set_bounds(f32 a, f32 b, f32 c, f32 d) {
 extern const f32 lbl_805DCC8C;
 
 void TWindowKeyBoardSoft::shrink_clip_right() {
-    inner_w = (f32) (inner_w - lbl_805DCC8C);
-    clip_right = (f32) (clip_right - lbl_805DCC8C);
+    inner_w = inner_w - lbl_805DCC8C;
+    clip_right = clip_right - lbl_805DCC8C;
 }
 
 extern const f32 lbl_805DCC90;
 
 void TWindowKeyBoardSoft::animate_scale() {
-    inner_y = (f32) (inner_y + lbl_805DCC90);
-    inner_h = (f32) (inner_h - lbl_805DCC90);
-    clip_top = (f32) (clip_top + lbl_805DCC90);
+    inner_y = inner_y + lbl_805DCC90;
+    inner_h = inner_h - lbl_805DCC90;
+    clip_top = clip_top + lbl_805DCC90;
 }
 
 s32 TWindowDrawContext::is_point_in_bounds(Box_8024E8E8 *quad) {
@@ -255,7 +253,7 @@ Vec2_8024EC34 *TWindowKeyBoardSoft::get_viewport_offset(int i) {
 
 TWindowKeyBoardSoft *TWindowKeyBoardSoft::open_singleton(f32 *pos, f32 *size, f32 *scale, f32 depth, int flags) {
     if ((u32) soft_keyboard_instance == 0U) {
-        return NULL;
+        return 0;
     }
     init_text_window_layout((Win_8024EA50 *)(soft_keyboard_instance), pos, size, scale, (u32)flags, depth);
     return (TWindowKeyBoardSoft *)soft_keyboard_instance;

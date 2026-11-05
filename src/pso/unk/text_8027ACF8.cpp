@@ -15,7 +15,7 @@ void TWindowSubItemList::sub_8027ACF8(TWindowDrawContext *window_key_board_soft)
     if ((temp_r5 >= 0) && !(actor_frame_tick & 0x10)) {
         temp_r3 = (u16 *)(((TUnk_804CE018 *)arg0)->get_array_entry((s32) temp_r5));
         if (*temp_r3 & 1) {
-            draw_selection_bar(window_key_board_soft, (u8 *)temp_r3, 1);
+            draw_selection_bar((TWindowDrawContext *)window_key_board_soft, (u8 *)temp_r3, 1);
         }
     }
 }

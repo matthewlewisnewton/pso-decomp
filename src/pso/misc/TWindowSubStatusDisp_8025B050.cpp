@@ -2,6 +2,7 @@
 #include "types.h"
 #include "pso/misc/TWindowKeyBoardSoft.h"
 #include "pso/misc/TWindowKeyBoardSoft_8024E68C.h"
+#include "pso/misc/TWindowKeyBoardSoft.h"
 #include "pso/misc/TWindowSubStatusDisp_8025B050.h"
 #include "pso/misc/TWindowSubStatusDisp_803DEE6C.h"
 #include "pso/system/memory.h"
@@ -18,8 +19,6 @@ struct Win_8025B0D0 {
     f32 f1C; f32 f20; f32 f24; f32 f28;
     s32 i2C; s32 *p30; s32 i34;
 };
-
-struct Ref_8025B0D0 { u8 pad0[0x10]; f32 f10; f32 f14; f32 f18; u8 pad1c[0x30 - 0x1C]; s32 i30; u8 pad34[4]; f32 f38; };
 
 extern "C" {
 void apply_context_transform_to_rect(TWindowDrawContext *, f32 *);

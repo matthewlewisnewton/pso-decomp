@@ -19,7 +19,7 @@ void TWindowSubComCardList::draw_card_list_selection(TWindowDrawContext *window_
       array_entry = (u16 *) this->get_array_entry((s32) temp_r0);
       if ((*array_entry) & 1)
       {
-        draw_selection_bar(window_key_board_soft, (u8 *)array_entry, 1);
+        draw_selection_bar((TWindowDrawContext *)window_key_board_soft, (u8 *)array_entry, 1);
       }
     }
   }
