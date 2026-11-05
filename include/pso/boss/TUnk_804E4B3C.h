@@ -18,11 +18,13 @@ public:
     void sub_802F273C();
     void init_effect();
     void update_dust_spawn();
-    void update_spawn_timer(s32 arg1, s32 arg2, s32 arg3);
+    void update_spawn_timer(const s32 *table, s32 arg2, s32 arg3);
     void advance_effect_timer();
     void spawn_segment_row_a();
     void spawn_segment_row_b();
     void spawn(s32 kind, Vec *position);
+    s32 check_both();
+    s32 is_phase_active();
     virtual void render();
     s32 m_1c;
     PiecewiseCurve motion;
@@ -38,9 +40,9 @@ public:
     f32 m_7c;
     f32 m_80;
     f32 m_84;
-    void *m_88;
-    void *m_8c;
-    void *m_90;
+    TObject *m_88;
+    TObject *m_8c;
+    TObject *m_90;
 };
 typedef char TUnk_804E4B3C_size[sizeof(TUnk_804E4B3C) == 0x94 ? 1 : -1];
 typedef char TUnk_804E4B3C_motion[(offsetof(TUnk_804E4B3C, motion) == 0x20) ? 1 : -1];

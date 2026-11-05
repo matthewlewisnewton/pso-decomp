@@ -122,8 +122,6 @@ struct TObjBoss2Tunnel : public TObject {
     static void finalize_and_send_60(G_PlaySound_6xB2 *cmd);
     static void set_flag_0x200();
     static void clear_flags_0x3000();
-    static s32 is_phase_active(s32 _w0);
-    static s32 check_both(s32 arg0);
     static void enable_and_trigger();
     static void reset_player_state();
     static void create_particle_effect(s32 arg0, s32 arg1, f32 farg0);
