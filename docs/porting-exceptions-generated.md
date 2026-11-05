@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 13 | 4 |
 | intrinsic | 83 | 54 |
 | hardware | 69 | 13 |
-| pragma | 5779 | 876 |
+| pragma | 5788 | 877 |
 | configure.py per-unit override | 168 | 168 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1148, `inline_depth` 1040, `fp_contract` 889, `auto_inline` 839, `opt_common_subs` 610, `scheduling` 255, `opt_propagation` 237, `readonly_strings` 204, `peephole` 100, `optimization_level` 88, `bool` 56, `defer_codegen` 51, `pack` 46, `opt_loop_invariants` 41, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 21, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1148, `inline_depth` 1040, `fp_contract` 890, `auto_inline` 839, `opt_common_subs` 610, `scheduling` 260, `opt_propagation` 237, `readonly_strings` 204, `peephole` 103, `optimization_level` 88, `bool` 56, `defer_codegen` 51, `pack` 46, `opt_loop_invariants` 41, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 21, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -1225,6 +1225,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1148, `inline_depth` 1040,
 | `src/pso/unk/text_803D8030.cpp` | scheduling×1 |
 | `src/pso/unk/text_803D8DE0.cpp` | scheduling×3, dont_inline×1, inline_depth×1 |
 | `src/pso/unk/text_803D8F74.cpp` | dont_inline×1, inline_depth×1 |
+| `src/pso/unk/text_803D96A8.cpp` | scheduling×5, peephole×3, fp_contract×1 |
 | `src/pso/unk/text_803DA12C.cpp` | scheduling×1, peephole×1 |
 | `src/pso/unk/text_803DA16C.cpp` | use_lmw_stmw×1 |
 | `src/pso/unk/text_803DA798.cpp` | scheduling×8, peephole×6, opt_common_subs×2, optimize_for_size×2, use_lmw_stmw×2 |
