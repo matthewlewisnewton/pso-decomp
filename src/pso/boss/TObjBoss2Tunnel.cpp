@@ -48,6 +48,7 @@
 #include "pso/misc/TLobby_801E43E4.h"
 #include "pso/system/byteswap.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/player/TObjPlayer_801A5AEC.h"
 
 extern "C" ControllerInputState controller_physical_port_bank;
 void set_display_copy_filter(int);
@@ -120,7 +121,6 @@ u32 TAdSinglePlyChrSelectGC__sub_80201204(u8 *arg0, u32 arg1);
 void TAdPlayerLoadGC__sub_801E14E4(void *);
 void TAdPlayerLoadGC__sub_801E14E8(u8 *arg0, s32 arg1);
 extern char lbl_804C8974[];
-s8 func_801A5E54__Fv(void);
 s32 TWindowShortListCtrl__check_controller_button(void *, s32);
 extern TCameraCtrl *camera_ctrl_instance;
 void restore_saved_depth_alpha_state(void);
@@ -1239,7 +1239,7 @@ void TObjBoss2Tunnel::show_message_and_wait(s32 arg0) {
             break;
         }
         TLobby::wait_ready_loop();
-        if (func_801A5E54__Fv() != 0) {
+        if ((s8)func_801A5E54() != 0) {
             break;
         }
         render_tick();
@@ -1298,7 +1298,7 @@ s32 TObjBoss2Tunnel::run_confirm_message_loop() {
         main_task.render();
         draw_snapshot_capture_overlay();
         TLobby::wait_ready_loop();
-        if (func_801A5E54__Fv() != 0) {
+        if ((s8)func_801A5E54() != 0) {
             break;
         }
         TParticleCtrl::begin_effect_render();

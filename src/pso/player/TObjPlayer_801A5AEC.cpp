@@ -2,6 +2,7 @@
 #include "pso/system/main_loop.h"
 #include "pso/misc/TKeyBoardControl.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/player/TObjPlayer_801A5AEC.h"
 
 struct RecoveredGlobal_801A5EC4_TKeyBoardControl__data_80506270 {
     s32 value;
@@ -72,7 +73,6 @@ u8 TKeyBoardControl__sub_8013239C(void *, int);
 s32 DVDCheckDisk();
 extern s32 lbl_805D49B4;
 extern u8 lbl_805D5D09;
-s32 func_801A5E54__Fv(void);
 s32 PADRecalibrate(u32);
 extern u32 pad_recalibration_counters[];
 extern s8 pad_recalibration_hold_frames[4];
@@ -235,7 +235,7 @@ void update_pad_recalibration(void) {
     }
 }
 
-s32 func_801A5E54__Fv(void) {
+s32 func_801A5E54(void) {
     if ((DVDCheckDisk() == 0) && (TKeyBoardControl::check_reset_button() != 0)) {
         reset_system();
     }
