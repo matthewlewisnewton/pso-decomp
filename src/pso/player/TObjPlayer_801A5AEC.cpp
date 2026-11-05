@@ -2,6 +2,7 @@
 #include "pso/system/main_loop.h"
 #include "pso/misc/TKeyBoardControl.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/player/TObjPlayer_801A5AEC.h"
 
 struct RecoveredGlobal_801A5EC4_TKeyBoardControl__data_80506270 {
     s32 value;
@@ -71,8 +72,7 @@ s32 TKeyBoardControl__sub_80132310(s32);
 u8 TKeyBoardControl__sub_8013239C(void *, int);
 s32 DVDCheckDisk();
 extern s32 lbl_805D49B4;
-extern u8 lbl_805D5D09;
-s32 func_801A5E54__Fv(void);
+extern s8 lbl_805D5D09;
 s32 PADRecalibrate(u32);
 extern u32 pad_recalibration_counters[];
 extern s8 pad_recalibration_hold_frames[4];
@@ -235,11 +235,14 @@ void update_pad_recalibration(void) {
     }
 }
 
-s32 func_801A5E54__Fv(void) {
+s8 func_801A5E54(void) {
     if ((DVDCheckDisk() == 0) && (TKeyBoardControl::check_reset_button() != 0)) {
         reset_system();
     }
-    return (lbl_805D49B4 != 0) ? 0 : lbl_805D5D09;
+    if (lbl_805D49B4 != 0) {
+        return 0;
+    }
+    return lbl_805D5D09;
 }
 
 s32 TKeyBoardControl::read_key_checked(u8 arg0) {
@@ -614,7 +617,7 @@ void TKeyBoardControl::init_pad_state() {
     controller_input_state[2] = TKeyBoardControl__sub_803DEB74(0xC);
     controller_input_state[3] = TKeyBoardControl__sub_803DEB74(0x12);
     lbl_805D5D08 = 0;
-    (*(s8 *)&lbl_805D5D09) = 0;
+    lbl_805D5D09 = 0;
     keyboard_reset_button_pressed = 0;
     for (i = 0; i < 4; i++) {
         pad_recalibration_hold_frames[i] = 0;

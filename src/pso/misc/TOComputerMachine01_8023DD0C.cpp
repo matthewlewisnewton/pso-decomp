@@ -169,7 +169,7 @@ void TObjPlayer__sub_8023E034(void **arg0) {
 }
 #pragma push
 #pragma fp_contract on
-void draw_compass_sprite__10TObjPlayerFlllf(SpriteDescriptor *self, s32 idx, s32 color, s32 flags, f32 z) {
+void SpriteDescriptor::draw_compass_sprite(s32 idx, s32 color, s32 flags, f32 z) {
     Vtx_8023E0FC v[4];
     Info_8023E0FC info;
     s32 i;
@@ -188,18 +188,18 @@ void draw_compass_sprite__10TObjPlayerFlllf(SpriteDescriptor *self, s32 idx, s32
         v[i].z = 1.0f / -z;
         v[i].color = color;
     }
-    s = &self->frames[idx];
+    s = &this->frames[idx];
     cx = s->center_x;
     cy = s->center_y;
-    l = -cx * self->scale_x;
-    t = -cy * self->scale_y;
-    r = self->scale_x * (s->width - cx);
-    b = self->scale_y * (s->height - cy);
-    x = self->x;
-    y = self->y;
+    l = -cx * this->scale_x;
+    t = -cy * this->scale_y;
+    r = this->scale_x * (s->width - cx);
+    b = this->scale_y * (s->height - cy);
+    x = this->x;
+    y = this->y;
     if (flags & 1) {
-        sn = sin_table_lookup(self->rotation);
-        cs = cos_table_lookup(self->rotation);
+        sn = sin_table_lookup(this->rotation);
+        cs = cos_table_lookup(this->rotation);
         v[0].x = (cs * l + x) + sn * t;
         v[1].x = (cs * l + x) + sn * b;
         v[2].x = (cs * r + x) + sn * t;

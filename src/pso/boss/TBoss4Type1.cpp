@@ -1377,7 +1377,7 @@ void TBoss4Type1::push_players_out_of_colliders() {
     pop_matrix();
     for (p = 0; p < registered_player_count; p++) {
         pl = (u8 *)get_player_data__10TObjPlayerFi(p);
-        if (pl != NULL && ((TBoss3Volopt *)pl)->get_field_3e0() == 0xE) {
+        if (pl != NULL && ((TObjPlayer *)pl)->get_current_area() == 0xE) {
             Vec_80053E40 pos = *get_position_ptr__10TObjPlayerFv(pl);
             Vec_80053E40 d;
             Vec_80053E40 q;
@@ -1758,7 +1758,7 @@ Self_80054A1C *TBoss4Type1__ct(Self_80054A1C *self, s32 parent, s32 *arg2) {
     self->f2A8 = 0;
     ((TObjEnemy *)self)->bind_enemy_combat_stats((u8 *)(get_battle_base_stats(0x36)), (u8 *)(get_battle_attack_params(0x36)), (u8 *)(get_battle_resistance_params(0x36)));
     self->f33E = self->f32C;
-    ((TBoss3Volopt *)self)->reset_photon_effect();
+    ((TObjEnemy *)self)->register_by_id();
     ((TObjEnemy *)self)->set_param(0x2F);
     self->f3EC = lbl_805D8B84;
     for (i = 0; i < 3; i++) {

@@ -5,6 +5,7 @@
 #include "pso/system/vector.h"
 #include "pso/enemy/TObjEneDD.h"
 #include "pso/boss/TObjBoss2Tunnel.h"
+#include "pso/player/TObjPlayer.h"
 
 extern "C" {
 s32 vec3_add_to(void *, void *, f32);
@@ -13,7 +14,6 @@ extern s32 camera_ctrl_instance;
 int is_local_client_floor_leader(void*);
 int TObjPlayer__sub_801BA42C(void*);
 int freeze_all_players__10TObjPlayerFv(void*);
-int is_any_teammate_in_state__10TObjPlayerFv(void*);
 
 extern s32 enable_v2_features;
 extern s32 game_difficulty_selection;
@@ -39,7 +39,7 @@ void project_sound_origin_from_camera(s32 arg0, u8 *arg1, f32 farg0) {
     vec3_add_to(arg1, (void *)(camera_ctrl_instance + 0x178), temp_f1);
 }
 
-int TObjEneDD::query_teammate_state() { return is_any_teammate_in_state__10TObjPlayerFv(this); }
+int TObjEneDD::query_teammate_state() { return TObjPlayer::is_any_teammate_in_state(); }
 int TObjEneDD::update_lobby_state() { return is_local_client_floor_leader(this); }
 u8 TObjEneDD::is_phase_e() {
     return (u8) (get_main_phase() == 0xE);

@@ -26,12 +26,13 @@ struct Rect_802AD538 {
 extern "C" {
 s32 is_split_screen();
 int copy_vec2__28TWindowSubSymbolChatPartsSetFPv(void *, void *);
+void begin_render__20TWindowSubStatusDispFl(void);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 TWindowShortListCtrl__check_controller_button(int, int);
 s32 apply_choice__20TWindowChoiceSettingFllll(void *, int, int, int);
 f32 TWindowSubComCard__sub_80244784(void *);
-s32 is_window_reveal_complete__13TUnk_804CE018Fv();
-s32 sub_80246948__13TUnk_804CE018Fv();
+s32 is_window_reveal_complete__11TWindowBaseFv();
+s32 sub_80246948__11TWindowBaseFv();
 void begin_screen_draw(s32 arg0);
 void draw_textured_quad_at_depth(f32 *q, f32 depth);
 void set_draw_texture_and_color(s32 idx, s32 arg1);
@@ -41,7 +42,7 @@ extern RecoveredGlobal_802AE59C_lbl_8050E208 controller_input_state;
 }
 
 void TMainMenuEntry::draw_item_labels(TWindowDrawContext *w) {
-    Box_8024E8E8 r;
+    Rect_802AD538 r;
     f32 scale;
     UV_802AD538 *uv;
     u32 color;
@@ -51,7 +52,7 @@ void TMainMenuEntry::draw_item_labels(TWindowDrawContext *w) {
     if (is_item_active() != 0 && fade > 0) {
         scale = -1.0f / (0.299f + w->depth);
         uv = &main_menu_label_uv_table[icon];
-        TWindowSubStatusDisp::begin_render();
+        begin_render__20TWindowSubStatusDispFl();
         switch (kind) {
         case 0:
             rgb = 0xFFFFFF;
@@ -84,7 +85,7 @@ void TMainMenuEntry::draw_item_labels(TWindowDrawContext *w) {
         r.v0 = uv->v / 256.0f;
         r.u1 = (98.0f + uv->u) / 256.0f;
         r.v1 = (16.0f + uv->v) / 256.0f;
-        if (TWindowKeyBoardSoft::try_open(w, &r) != 0) {
+        if (TWindowKeyBoardSoft::try_open(w, &r.x0) != 0) {
             draw_textured_quad_at_depth(&r.x0, scale);
         }
         TWindowSubStatusDisp::get_player();
@@ -430,7 +431,7 @@ TWindowDrawContext *TWindowMenuMainMenu::setup_content_frame() {
 
 
 void TWindowMenuMainMenu::update_slide_position() {
-    if (sub_80246948__13TUnk_804CE018Fv() != 0) {
+    if (sub_80246948__11TWindowBaseFv() != 0) {
         set_target_y(0.0f);
         unk_50 = (u32)(4.5f - (f32)unk_22);
         return;
@@ -472,7 +473,7 @@ void TWindowMenuMainMenu::play_cursor_sound(int delta) {
 
 void TWindowMenuMainMenu::handle_navigation_input() {
     u8 *window_choice_setting;
-    if ((is_window_reveal_complete__13TUnk_804CE018Fv() != 0) && (this->get_menu_flag() == 0) && (this->is_flag_set() == 0) && !(this->m_60 & 4)) {
+    if ((is_window_reveal_complete__11TWindowBaseFv() != 0) && (this->get_menu_flag() == 0) && (this->is_flag_set() == 0) && !(this->m_60 & 4)) {
         window_choice_setting = (u8 *)&controller_input_state.value + (is_player_input_active((*(s16 *)&this->m_20)) * 0x50) + 0x20;
         if ((apply_choice__20TWindowChoiceSettingFllll(window_choice_setting, 0x10, 6, 1) != 0) || (apply_choice__20TWindowChoiceSettingFllll((void *) ((u8 *)&controller_input_state.value + 0x160), 0x10, 6, 1) != 0)) {
             play_cursor_sound(-1);
