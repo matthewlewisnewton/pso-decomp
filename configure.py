@@ -435,6 +435,17 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/boss/TBoss6EmptyWarp_802B0E2C.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
     # Calendar month/day stores retain GC/1.3.2 scheduling; see calendar-conversion-evidence.md.
     "pso/misc/pso_date.cpp": {"mw_version": "GC/1.3.2"},
+    # Curve and xz helpers fuse multiply-adds. The whole TU stays byte-exact
+    # with -fp_contract on (all three tunnel units), so the flag belongs on the
+    # unit rather than as per-function pragmas left over from the split units.
+    "pso/boss/TObjBoss2Tunnel_8003B138.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
+    # Deferred, with definitions in reverse address order: the ctor's
+    # function-local static and guard precede run_task's table guard in .sbss,
+    # as in the original (docs/porting-exceptions.md section 5).
+    "pso/boss/TObjBoss2Tunnel_802F2070.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on")},
+    # Upstream #185's -inline off,deferred, -pool off and -sdata 4; each is
+    # needed (docs/porting-exceptions.md section 5).
+    "pso/boss/TObjBoss2Tunnel.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-pool off", "-sdata 4", "-fp_contract on")},
     "pso/boss/TBoss4DarkFalz_8004C93C.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sym on")},
     "pso/enemy/TObjEneBalClawBody_80090178.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sdata 4")},
     # Deferred generation preserves the flower vtable before its dispatch table.
@@ -713,6 +724,12 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/unk/text_8039739C.cpp": {"cflags": _switch(cflags_pso, "-O4,p")},
     "pso/quest/QuestOpcodeHandlers.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
     "pso/quest/TQuestThread.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
+    # sub_802C5F1C clamps the player slot in a static inline helper. -inline auto
+    # also inlines other small functions and breaks seven exact ones; -inline
+    # deferred emits the unit in reverse order. -inline on inlines only that
+    # helper (same object as -inline noauto here). Evidence:
+    # docs/evidence/chr-select-slot-clamp-inline.md.
+    "pso/ui/TAdMultiPlyChrSelectGC_802C50EC.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
 }
 
 # MusyX (Factor 5). Its objects carry extab/extabindex for every non-leaf
