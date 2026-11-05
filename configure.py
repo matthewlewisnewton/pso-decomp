@@ -662,6 +662,10 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # The character creation camera: deferred with nothing inlined, and its
     # multiply-adds contracted into fmadds.
     "pso/camera/CreationCamera.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on")},
+    # The lens-flare renderer contracts its attenuation and displacement
+    # multiply-adds into fnmsubs/fmadds; the whole unit stays byte-exact with
+    # -fp_contract on, so that is this translation unit's setting.
+    "pso/effect/TEF_LensFlare.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
     # The pad rumble and Ninja helper code contract multiply-adds into fmadds/fnmsubs.
     "pso/system/PadRumble.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
     "pso/system/NinjaUtil.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
