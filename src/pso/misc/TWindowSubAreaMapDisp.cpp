@@ -8,6 +8,7 @@
 #include "pso/misc/TLobby_8001D6A0.h"
 #include "pso/misc/TWindowCtrl_80271DFC.h"
 #include "pso/misc/TWindowSubStatusDisp_80228CC0.h"
+#include "pso/misc/TWindowDrawContext.h"
 #include "pso/misc/TWindowSubStatusDisp_8024FBA8.h"
 #include "pso/misc/TWindowSubStatusDisp_803DEE6C.h"
 #include "pso/misc/TWindowDD.h"
@@ -139,22 +140,22 @@ void fn_80271848(s32 arg0, u8 *arg1) {
     TWindowSubStatusDisp::get_player();
 }
 
-void TWindowSubStatusDisp__sub_80271A6C(s32 arg0, u8 *arg1) {
+void TWindowSubStatusDisp__sub_80271A6C(s32 arg0, TWindowDrawContext *arg1) {
     Vec2_80271A6C pos;
     s32 color;
     f32 scale;
 
-    scale = (-1.0f) / (0.1794f + *(f32 *)(arg1 + 0x38));
-    if (*(s32 *)(arg1 + 0x30) < 6) {
-        color = ((s32)(0.16666667f * (f32)(*(s32 *)(arg1 + 0x30) * 0xFF)) << 24) | 0xFFFFFF;
+    scale = (-1.0f) / (0.1794f + arg1->depth);
+    if (arg1->open_tick < 6) {
+        color = ((s32)(0.16666667f * (f32)(arg1->open_tick * 0xFF)) << 24) | 0xFFFFFF;
     } else {
         color = -1;
     }
-    set_text_draw_params((s32)arg1, 0, 0, (f32)scale, (f32)1e+05f);
-    pos.x = 487.0f + *(f32 *)(arg1 + 0x3C);
-    pos.y = 41.0f + *(f32 *)(arg1 + 0x40);
+    set_text_draw_params(arg1, 0, 0, (f32)scale, (f32)1e+05f);
+    pos.x = 487.0f + arg1->clip_left;
+    pos.y = 41.0f + arg1->clip_top;
     draw_window_text((f32 *)&pos, (const char *)(TWindowSubStatusDisp::get_message_10(0x11B)), color, 0, (f32)1e+06f);
-    pos.y = 97.0f + *(f32 *)(arg1 + 0x40);
+    pos.y = 97.0f + arg1->clip_top;
     draw_window_text((f32 *)&pos, (const char *)(TWindowSubStatusDisp::get_message_10(0x11C)), color, 0, (f32)1e+06f);
 }
 
