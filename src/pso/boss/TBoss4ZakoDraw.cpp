@@ -17,14 +17,8 @@
 void set_constant_material(const NJS_ARGB *color);
 void draw_chunk_model(void *arg0);
 
-struct Flt3 { f32 x, y, z; };
-struct Word3 { u32 x, y, z; };
-
 struct Boss4ZakoEntry {
-    union {
-        Flt3 f;
-        Word3 w;
-    };
+    Vec pos;
     s32 f0c;
     s32 f10;
 };
@@ -110,18 +104,8 @@ TBoss4ZakoDraw::TBoss4ZakoDraw(TObject *parent) : TObject(parent) {
 
 extern "C" {
 
-struct ShadowVec {
-    union {
-        Flt3 f;
-        Word3 w;
-    };
-};
-struct Col_8030A9B0 { f32 r, g, b, a; };
-
 void TObjPlayer__sub_8030A9B0() {
-    ShadowVec pos;
-    ShadowVec v;
-    Col_8030A9B0 col;
+    Vec pos;
     Boss4ZakoBuffer *tbl;
     Boss4ZakoEntry *e;
     s32 rot;
@@ -141,31 +125,30 @@ void TObjPlayer__sub_8030A9B0() {
     tbl = &boss4_zako_draw_buffers[TBoss4ZakoDraw__draw_buffer_index];
     e = tbl->ents;
     rot = (TBoss4ZakoDraw__rotation_phase << 16) / 16;
-    VecCopy((Vec *)&pos, &camera_ctrl_instance->position);
+    VecCopy(&pos, &camera_ctrl_instance->position);
     i = 0;
-    pos.f.y = lbl_805DF13C;
+    pos.y = lbl_805DF13C;
     for (; i < tbl->count; i++, e++) {
-        if (e->f0c != 0 || e->f.y < lbl_805DF140) {
+        if (e->f0c != 0 || e->pos.y < lbl_805DF140) {
             continue;
         }
-        d = xyz_distance(e, &pos);
+        d = xyz_distance(&e->pos, &pos);
         if (d >= lbl_805DF144) {
             continue;
         }
         t = d / lbl_805DF144;
         k = lbl_805DF148 - t * (t * t);
         push_matrix();
-        v.w.x = e->w.x;
-        v.w.y = e->w.y;
-        v.w.z = e->w.z;
-        v.f.y = lbl_805DF13C;
+        Vec v = e->pos;
+        v.y = lbl_805DF13C;
         post_translate_matrix(&v);
         rotate_matrix_y(0, e->f10 + rot);
-        col.a = lbl_805DF14C;
+        NJS_ARGB col;
         col.b = lbl_805DF14C;
-        col.r = lbl_805DF13C * k + lbl_805DF14C;
         col.g = lbl_805DF14C;
-        set_constant_material((const NJS_ARGB *)(((f32 *)&col)));
+        col.a = lbl_805DF13C * k + lbl_805DF14C;
+        col.r = lbl_805DF14C;
+        set_constant_material(&col);
         draw_chunk_model((void *)falz_zako_chunk_model);
         pop_matrix();
     }
@@ -184,7 +167,7 @@ void TObjPlayer::draw_area_chunk_objects() {
     set_current_texture_list((GinjaTextureList *)(falz_zako_texture_list));
     for (i = 0; i < t->count; i++, p++) {
         push_matrix();
-        post_translate_matrix(p);
+        post_translate_matrix(&p->pos);
         rotate_matrix_y(0, p->f10);
         rotate_matrix_x(0, p->f0c);
         draw_chunk_object(r31);
@@ -215,7 +198,7 @@ s32 TBoss4Zako::queue_entry(void *v, s32 a, s32 b) {
     if (n >= 0x60) {
         return 0;
     }
-    VecCopy((Vec *)e, (const Vec *)v);
+    VecCopy(&e->pos, (const Vec *)v);
     e->f0c = a;
     e->f10 = b;
     t->count += 1;
