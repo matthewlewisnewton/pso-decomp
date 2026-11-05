@@ -16,6 +16,7 @@ public:
     // that item is still live. Declared before the override so MWCC does not
     // insert another vptr ahead of it; the vptr stays TObject's at 0x18.
     TItem *item;
+    TItemList(TObject *parent);
     virtual ~TItemList();
     // Inherited m_down / m_next are TObject *. Inventory children are
     // TItemList slots. Class-body inline: -inline noauto folds each call

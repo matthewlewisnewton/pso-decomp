@@ -455,7 +455,7 @@ struct TObjPlayer : public TObjChara {
     s32 is_body_collision_inactive();
     static int get_slot_value(void *slots, int slot);
     void play_sound_if_on_floor(s32 sound_id);
-    u32 pickup_item(TItem *item);
+    TItemList *pickup_item(TItem *item);
     s32 can_pickup_item_by_id(TItem *item);
     s32 can_pickup_item(TItemData *data);
     static u8 find_adjacent_matching_slot(u8 arg0);
@@ -965,6 +965,8 @@ struct TObjPlayer : public TObjChara {
     int get_field_340(int _w1);
     static int check_status_flag_128(void* p);
     void unequip_item(TItem *item);
+    // Fills out with the inventory export records; 0 without an inventory.
+    s32 query_state_if_present(void *out);
     static s32 decrement_timer(s32 *arg0);
     static void reset_particle_ctrl(s32 *arg0);
     void*init_sub_objects();
