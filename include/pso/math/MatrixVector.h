@@ -5,6 +5,7 @@
 #include <dolphin/mtx.h>
 
 extern "C" {
+void matrix_identity(u8 *arg0);
 void rotate_matrix_about_axis(u8 *arg0, s32 arg1, s32 arg2);
 void rotate_vector_by_matrix(u32 arg0, const Vec *src, Vec *dst);
 void scale_matrix_vec3(u8 *arg0, u8 *arg1);
