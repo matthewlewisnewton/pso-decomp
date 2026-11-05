@@ -17,7 +17,7 @@ public:
     virtual void run_task();
     u16 get_part_entity_id(s32 part);
     s32 setup_attack_slot(Vec *pos, s32 angle, s32 part, u8 *slot);
-    s32 spawn_attack_object(Vec *pos, s32 angle, s32 hp, s32 part);
+    void *spawn_attack_object(Vec *pos, s32 angle, s32 hp, s32 part);
     s16 part_type;
     u8 unk_1E[0x4];
     u16 first_part_id;

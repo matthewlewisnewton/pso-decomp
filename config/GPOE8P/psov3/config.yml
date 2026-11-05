@@ -1408,7 +1408,6 @@ force_active:
   - TObjPlayer__sub_80354EEC
   - TObjPlayer__sub_80355098
   - TObjPlayer__sub_80363C5C
-  - copy_and_flush__FPvlPv
   - TObjPlayer__sub_803DA84C
   - TObjPlayer__sub_803DA8B4
   - TObjPlayer__sub_803DAA70
@@ -2166,6 +2165,7 @@ force_active:
   - __dt__13TUnk_804F0D1CFv
   - __dt__13TUnk_804F0D34Fv
   - __dt__13TUnk_804F0FF0Fv
+  - __dt__13TUnk_804F1A78Fv
   - __dt__13TUnk_804F3428Fv
   - __dt__13TUnk_804F3640Fv
   - __dt__13TUnk_804F3A20Fv
@@ -2752,6 +2752,7 @@ force_active:
   - __vt__13TUnk_804F0D1C
   - __vt__13TUnk_804F0D34
   - __vt__13TUnk_804F0FF0
+  - __vt__13TUnk_804F1A78
   - __vt__13TUnk_804F3428
   - __vt__13TUnk_804F3640
   - __vt__13TUnk_804F3A20
@@ -4679,6 +4680,7 @@ force_active:
   - copy_action_state__22G_GalGryphonBossActionFP22G_GalGryphonBossAction
   - copy_all_data__6TLobbyFii
   - copy_all_entries__6TLobbyFii
+  - copy_and_flush__FPvlPv
   - copy_and_flush_texture__16TEffIndirectCtrlFPUc
   - copy_angle_state__12TBoss8DragonFPvPvPv
   - copy_bank_from_card_window__Fl
@@ -14113,6 +14115,7 @@ force_active:
   - run_task__13TUnk_804EF130Fv
   - run_task__13TUnk_804F0BF0Fv
   - run_task__13TUnk_804F0D1CFv
+  - run_task__13TUnk_804F1A78Fv
   - run_task__13TUnk_804F3428Fv
   - run_task__13TUnk_804F3640Fv
   - run_task__13TUnk_804F3A20Fv

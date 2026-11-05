@@ -23,8 +23,6 @@ struct Vec_802F3974 { f32 x, y, z; };
 struct Ent_802F3974 { u8 pad[0x38]; f32 x; f32 y; f32 z; };
 
 extern "C" {
-s32 __nw__7TObjectFUl(int);
-s32 ct_attack_object__12TBoss8DragonFlll(int, int, void *, void *);
 extern s32 tl_04;
 u16 get_entity_id(void *);
 u8 *get_enemy_entity(u16 arg0);
@@ -112,19 +110,12 @@ s32 TBoss8Dragon::is_near_other_part() {
     return 0;
 }
 
-s32 TUnk_804E4BF0::spawn_attack_object(Vec *pos, s32 angle, s32 hp, s32 part) {
+void *TUnk_804E4BF0::spawn_attack_object(Vec *pos, s32 angle, s32 hp, s32 part) {
     Stack_802F3A48 stack;
-    s32 temp_r3;
-    s32 var_r0;
     if (this->setup_attack_slot(pos, angle, part, (u8 *)&stack.sp8) != 0) {
-        temp_r3 = __nw__7TObjectFUl(0x8A4);
-        var_r0 = temp_r3;
-        if (var_r0 != 0) {
-            var_r0 = ct_attack_object__12TBoss8DragonFlll((int)temp_r3, (int)tl_04, &stack.sp8, (void *)hp);
-        }
-        return var_r0;
+        return new TUnk_804F1A78((TObject *)tl_04, &stack.sp8, hp);
     }
-    return 0;
+    return NULL;
 }
 
 }

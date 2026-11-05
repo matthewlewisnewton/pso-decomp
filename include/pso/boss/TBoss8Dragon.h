@@ -230,7 +230,14 @@ struct TBoss8Dragon : public TObjEneDD_ST
     s32 is_near_other_part();
     void draw_with_fade(Vec *pos, s32 arg2);
     void draw();
-    u8 *ct_attack_object(s32 arg1, s32 arg2, s32 arg3);
+};
+
+// Attack object spawned for one part. Same layout as TBoss8Dragon; its vtable
+// replaces the destructor and run_task.
+struct TUnk_804F1A78 : TBoss8Dragon {
+    TUnk_804F1A78(TObject *parent, void *param, s32 hp);
+    virtual ~TUnk_804F1A78();
+    virtual void run_task();
 };
 
 #include <stddef.h>
