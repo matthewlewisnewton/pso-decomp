@@ -25,14 +25,15 @@ public:
     s32 sub_80244994();
     void save_position();
     f32 get_scale();
-    s32 sub_80246948();
+    u8 sub_80246948();
     void *get_array_entry(int);
     virtual void render();
     virtual void run_task();
 
-    // get_scale and resort_window_order read 0x1C as the window's depth;
-    // TWindowSubStatusDisp keeps byte state in the same word.
-    union { f32 m_depth; s8 frame_pad_1c[4]; };
+    u8 frame_pad_1c;
+    s8 m_1d;
+    u8 frame_pad_1e;
+    s8 m_1f;
     union { s16 m_20; u16 m_20u; };
     s16 unk_22;
     void *m_24;

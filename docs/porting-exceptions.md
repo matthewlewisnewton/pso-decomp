@@ -110,10 +110,8 @@ small float differences without FMA).
 `pso_date.cpp`: GC/1.3.2 scheduling, see
 [calendar-conversion-evidence.md](evidence/calendar-conversion-evidence.md);
 `TObjTombstone.cpp`: `-fp_contract on` because two calculations fuse
-multiply-adds; `TWindowFukidasi.cpp`: `-fp_contract on` because the balloon
-name plate fuses its offset multiply-adds). The generated table copies each
-comment; 93 entries have no comment of their own (several share a comment with
-the entry above). Library
+multiply-adds). The generated table copies each comment; 93 entries have no
+comment of their own (several share a comment with the entry above). Library
 groups (SDK, runtime, TRK, MusyX, CRI, Ginja, mcFs, ntInf, avetcp, modem, ntUtl)
 use their own compiler versions as recorded there.
 

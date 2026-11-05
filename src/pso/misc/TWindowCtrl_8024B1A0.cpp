@@ -140,7 +140,7 @@ s32 TWindowCtrl::open_balloon(u16 arg0, u8 *arg1, s32 arg2, s32 arg3) {
     if (temp_r3 == 0) {
         return 0;
     }
-    ((TWindowFukidasi *)temp_r3)->open((u32 *)arg1, arg2);
+    open__15TWindowFukidasiFPvPvi((u8 *)temp_r3, (u32 *)arg1, arg2);
     return temp_r3;
 }
 

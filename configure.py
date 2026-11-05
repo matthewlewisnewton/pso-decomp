@@ -453,9 +453,6 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # half-width nudge and the drop placement fuse multiply-adds.
     # -str reuse,readonly: the literals live in this unit's .rodata.
     "pso/object/TObjTombstone.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on", "-str reuse,readonly")},
-    # The balloon name plate fuses its offset multiply-adds; the unit keeps
-    # that contract (fmadds in the target) for the whole file.
-    "pso/misc/TWindowFukidasi.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
     # GC/2.0: compiler-expanded struct copies take 2.0's registers.
     # The ending item handler table keeps 2.0's store/load scheduling for its
     # zero-initialized local member-function-pointer array.

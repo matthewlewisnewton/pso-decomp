@@ -4,17 +4,13 @@
 #include <stddef.h>
 #include "pso/misc/TUnk_804CDFE8.h"
 
-struct TWindowDrawContext;
-struct BalloonSlice;
-
 class TUnk_804CF0B8 : public TUnk_804CDFE8 {
 public:
     virtual ~TUnk_804CF0B8();
-    void draw_name_plate(TWindowDrawContext *ctx, u32 color);
-    void draw_body(TWindowDrawContext *ctx, u32 argb, f32 *offset, f32 depth);
-    void draw_body_row(BalloonSlice *s, TWindowDrawContext *ctx, f32 offsetX, f32 rowTop, f32 fullWidth, f32 rowHeight);
-    void draw_tail(TWindowDrawContext *ctx, u32 color, f32 *offset, f32 depth);
-    void sub_80251DF0(u16, s32, s16, f32);
+    void draw_body(void *, u32, f32 *, f32);
+    void draw_body_row(void *, void *, f32, f32, f32, f32);
+    void draw_tail(void *, u32, f32 *, f32);
+    void sub_80251DF0(s16, s32, s16, f32);
     s32 clamp_position(void *, f32);
     void set_color(u16);
     void follow_anchor();
@@ -23,11 +19,7 @@ public:
     void place_rect_at_head_or_slot();
     void sub_802504A8();
     void calc_text_size(f32 *);
-    void clamp_text_size(f32 *out);
-    void sync_display_pos();
-    s32 approach(f32 target);
     virtual void render();
-    virtual void run_task();
     void clear_flag();
     s16 get_field_20();
     int get_flag_bit1();
@@ -43,21 +35,18 @@ public:
     void set_flag2c_bit200();
     void clear_flag2c_bit200();
     void set_flag2c_bit100();
-    f32 m_60;
-    f32 m_64;
-    u8 unk_68[0x8];
-    u8 m_70;
+    u8 unk_5C[0x10];
+    s8 m_70;
     u8 m_71;
-    u8 m_72;
+    u8 unk_72[0x1];
     s8 m_73;
-    s16 m_74;
-    u16 speaker_id;
+    u8 unk_74[0x2];
+    s16 m_76;
     char *name;
     f32 m_7c;
-    f32 m_80;
-    u32 color;
-    f32 center[2];
-    f32 head[2];
+    u8 unk_80[0x4];
+    s32 m_84;
+    u8 unk_88[0x10];
 };
 typedef char TUnk_804CF0B8_name_offset[offsetof(TUnk_804CF0B8, name) == 0x78 ? 1 : -1];
 typedef char TUnk_804CF0B8_next_offset[offsetof(TUnk_804CF0B8, m_7c) == 0x7c ? 1 : -1];
