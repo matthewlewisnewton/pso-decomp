@@ -57,6 +57,8 @@ void get_current_matrix(void *m) {
 }
 
 // 0x803D89C0. a->x * b->x, then y and z, contracted by the unit's -fp_contract on.
+// Not byte-exact: MWCC cannot emit the original's register assignment. See
+// docs/evidence/vec3-add-to-paired-single.md.
 extern "C" f32 vec3_dot(const Vec *a, const Vec *b) {
     f32 dot = a->x * b->x;
     dot = a->y * b->y + dot;
@@ -72,7 +74,8 @@ void TObjPlayer::invert_matrix_in_place(u32 arg0) {
 
 // 0x803D8A18. a × b into out, written so each fmsubs multiplies b then a.
 // The length square starts before out->z is stored. The return is
-// fres(frsqrte(len^2)); the y/z squares are double fmadds.
+// fres(frsqrte(len^2)); the y/z squares are double fmadds. Not byte-exact for
+// the same reason as vec3_dot, plus the frsp that __fres(float) requires.
 extern "C" f32 vec3_cross(const Vec *a, const Vec *b, Vec *out) {
     f32 cx = b->z * a->y - b->y * a->z;
     out->x = cx;
