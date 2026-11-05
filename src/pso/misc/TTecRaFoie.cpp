@@ -401,7 +401,7 @@ void TUnk_804CCB28::run_task() {
     f32 temp_f1;
     this->m_58 = (this->m_58 + 1);
     this->m_5c = (this->m_5c + 1);
-    if ((s32) this->m_5c >= 0x10) {
+    if (this->m_5c >= 0x10) {
         this->m_5c = 0;
     }
     if ((s32) this->m_58 > 0x6E) {
