@@ -154,12 +154,12 @@ void TObjBoss2CeilJunk::render() {
   float new_var;
   if (*(s32 *)&this->m_a8 == 2)
   {
-    Vec_8003A1B4 s;
+    Vec s;
     f32 t = TObjBoss2CeilJunk__radius_table[*(s32 *)&this->m_ac];
     new_var = (0.2f) * t;
     s.y = (1.0f);
     s.x = (s.z = new_var);
-    ((TObjEneDD *)(self->f44))->draw_oriented_shadow((s32)self->f9C, 0, (u32)&s);
+    TObjEneDD::draw_oriented_shadow((const Vec *)self->f44, (const Vec *)self->f9C, 0, &s);
   }
   saved_model_render_flags = model_render_flags;
   if (self->fB4 < (1.0f))

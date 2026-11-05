@@ -198,7 +198,6 @@ pso/boss/Boss5GryphonBehavior.cpp
 pso/boss/Boss6Type1Appearance.cpp
 pso/boss/Boss6Type2Appearance.cpp
 pso/boss/Boss6Type2Death.cpp
-pso/boss/Boss7TentacleBanks.cpp
 pso/boss/TBoss1Dragon.cpp
 pso/boss/TBoss1DragonColli.cpp
 pso/boss/TBoss1DragonDemo.cpp
@@ -309,6 +308,7 @@ pso/boss/TBoss7LaserLight.cpp
 pso/boss/TBoss7LaserPtcl.cpp
 pso/boss/TBoss7LaserPtcl_8035AE54.cpp
 pso/boss/TBoss7PhotonBullet_802EF26C.cpp
+pso/boss/TBoss7TentacleNeedle.cpp
 pso/boss/TBoss8DragonColli.cpp
 pso/boss/TBoss8DragonDemo.cpp
 pso/boss/TBoss8DragonEffBreath.cpp
@@ -349,17 +349,8 @@ pso/boss/TObjBoss2Dust.cpp
 pso/boss/TObjBoss2DustCtrl.cpp
 pso/boss/TObjBoss2RaftSplash.cpp
 pso/boss/TObjBoss2RaftSplash_8003B0A0.cpp
+pso/boss/TObjBoss2Tunnel.cpp
 pso/boss/TObjBoss2Tunnel_8003B138.cpp
-pso/boss/TObjBoss2Tunnel_8007CE14.cpp
-pso/boss/TObjBoss2Tunnel_8007E0CC.cpp
-pso/boss/TObjBoss2Tunnel_8007E100.cpp
-pso/boss/TObjBoss2Tunnel_8007E380.cpp
-pso/boss/TObjBoss2Tunnel_8007E3AC.cpp
-pso/boss/TObjBoss2Tunnel_8007E418.cpp
-pso/boss/TObjBoss2Tunnel_8007E8D8.cpp
-pso/boss/TObjBoss2Tunnel_8007E918.cpp
-pso/boss/TObjBoss2Tunnel_8007E9EC.cpp
-pso/boss/TObjBoss2Tunnel_8007EA74.cpp
 pso/boss/TObjBoss2Tunnel_802F1A58.cpp
 pso/boss/TObjBoss2Tunnel_8036EF0C.cpp
 pso/boss/TObjBoss2Tunnel_803E2BAC.cpp
@@ -406,7 +397,6 @@ pso/effect/TEffClitical.cpp
 pso/effect/TEffGuard.cpp
 pso/effect/TEffHit.cpp
 pso/effect/TEffIndirectCtrl.cpp
-pso/effect/TEffIndirectCtrl_802A9284.cpp
 pso/effect/TEffStarLight2D_Base.cpp
 pso/effect/TEffect.cpp
 pso/effect/TUnk_804CCC68.cpp
@@ -1229,6 +1219,7 @@ pso/misc/TMessageBox.cpp
 pso/misc/TMotorcycle.cpp
 pso/misc/TMotorcycle_802D712C.cpp
 pso/misc/TMovie.cpp
+pso/misc/TMovie_80143988.cpp
 pso/misc/TMovie_80143BBC.cpp
 pso/misc/TMovie_80143C00.cpp
 pso/misc/TMovie_80143C94.cpp
@@ -1527,7 +1518,6 @@ pso/misc/TScene_800F9D80.cpp
 pso/misc/TScene_801A7E40.cpp
 pso/misc/TScene_801FBA20.cpp
 pso/misc/TScene_8029F5B0.cpp
-pso/misc/TScene_802A8140.cpp
 pso/misc/TScene_80327B00.cpp
 pso/misc/TSendDownloadHead.cpp
 pso/misc/TSetManager.cpp
@@ -2516,7 +2506,6 @@ pso/player/TObjPlayer_802790CC.cpp
 pso/player/TObjPlayer_8029EE64.cpp
 pso/player/TObjPlayer_8029F694.cpp
 pso/player/TObjPlayer_802A1440.cpp
-pso/player/TObjPlayer_802A8368.cpp
 pso/player/TObjPlayer_802C09A8.cpp
 pso/player/TObjPlayer_802C367C.cpp
 pso/player/TObjPlayer_802C3B14.cpp
@@ -3377,8 +3366,6 @@ pso/unk/text_802A1154.cpp
 pso/unk/text_802A1324.cpp
 pso/unk/text_802A3138.cpp
 pso/unk/text_802A4D74.cpp
-pso/unk/text_802A8210.cpp
-pso/unk/text_802A9568.cpp
 pso/unk/text_802A9588.cpp
 pso/unk/text_802AA8FC.cpp
 pso/unk/text_802AE978.cpp
