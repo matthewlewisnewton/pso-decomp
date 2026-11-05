@@ -1,5 +1,4 @@
 #include "pso/system/CurrentTextureList.h"
-#include "pso/misc/TWindowKeyBoardSoft.h"
 #include "types.h"
 #include "pso/misc/TWindowSubCustomEquip.h"
 #include "pso/misc/TWindowSubCustomSelect.h"
@@ -15,10 +14,12 @@ struct Vec2_80275DE8 { f32 x, y; };
 
 struct Win_80275F90 { u8 pad[0x66]; s16 f66; };
 
+struct Rect_80275DE8 { f32 x0, y0, x1, y1, u0, v0, u1, v1; };
+
 extern "C" {
 void *get_player_by_client_id(s32);
 s32 can_use_palette_action__10TObjPlayerFPvUcUc(void *, u8, u8);
-u8 *get_array_entry__13TUnk_804CE018Fi(void *, s32);
+u8 *get_array_entry__11TWindowBaseFi(void *, s32);
 void update_palette_item_count_label(u8 *, u8 *, s32, s32, s32);
 void draw_action_palette_icon(u8 *, s32, s32);
 extern u8 lbl_8044F738[];
@@ -46,7 +47,7 @@ void TWindowSubCustomEquip::clear_flag_and_set_entry_state() {
 #pragma push
 #pragma fp_contract on
 void draw_cursor_sprite__21TWindowSubCustomEquipFPvPvif(TWindowDrawContext *arg0, Vec2_80275DE8 *arg1, s32 arg2, f32 farg0) {
-    Box_8024E8E8 r;
+    Rect_80275DE8 r;
     Vec2_80275DE8 *t;
     f32 scale;
     if (arg0->open_tick < 0) {
@@ -66,7 +67,7 @@ void draw_cursor_sprite__21TWindowSubCustomEquipFPvPvif(TWindowDrawContext *arg0
     r.v0 = t->y / 256.0f;
     r.u1 = (lbl_805DD560 + t->x) / 256.0f;
     r.v1 = (lbl_805DD560 + t->y) / 256.0f;
-    if (TWindowKeyBoardSoft::try_open(arg0, &r) != 0) {
+    if (TWindowKeyBoardSoft::try_open(arg0, &r.x0) != 0) {
         draw_textured_quad_at_depth(&r.x0, scale);
     }
     TWindowSubStatusDisp::get_player();
@@ -81,7 +82,7 @@ void TWindowSubCustomEquip::sub_80275F08(void *window_sub_custom_equip) {
     } else {
         idx = ((u8 *)this)[0x61] + (1 - ((u8 *)this)[0x62]) * 3;
     }
-    u8 *e = get_array_entry__13TUnk_804CE018Fi(this, lbl_8044F738[idx]);
+    u8 *e = get_array_entry__11TWindowBaseFi(this, lbl_8044F738[idx]);
     ((TWindowSubCustomEquip *)window_sub_custom_equip)->set_relative_pos(e);
 }
 
@@ -98,8 +99,8 @@ void TWindowSubCustomEquip::update_palette_slot(s32 arg1, s32 kind, s32 arg3) {
     u8 *b;
     pl = get_player_by_client_id(this->m_20);
     if (pl != NULL) {
-        a = get_array_entry__13TUnk_804CE018Fi(this, lbl_8044F738[arg1]);
-        b = get_array_entry__13TUnk_804CE018Fi(this, lbl_8044F740[arg1]);
+        a = get_array_entry__11TWindowBaseFi(this, lbl_8044F738[arg1]);
+        b = get_array_entry__11TWindowBaseFi(this, lbl_8044F740[arg1]);
         if (can_use_palette_action__10TObjPlayerFPvUcUc(pl, kind, arg3) != 0) {
             *(s32 *)(a + 0x2C) = -1;
         } else {

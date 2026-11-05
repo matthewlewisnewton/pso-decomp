@@ -171,7 +171,7 @@ s32 TObjPlayer::get_level_tier(s32 arg0) {
         set_slot_type_state__10TObjPlayerFllss(slots, 0,                                                \
             ((TObjPlayer *)(TObjPlayer__sub_80116620(c->list, 0)))->get_type_id(),           \
             get_obj_id__10TObjPlayerFv(TObjPlayer__sub_80116620(c->list, 0)));           \
-        ((TObjPlayer *)slots)->set_tech_level(1);                                      \
+        ((TechniqueCastState *)slots)->set_target_count(1);                                      \
     }
 
 #pragma push
@@ -283,7 +283,7 @@ void capture_technique_targets__10TObjPlayerFv(int kind, Owner_8022CDE8 *owner) 
                 n++;
             }
         }
-        ((TObjPlayer *)slots)->set_tech_level(n);
+        ((TechniqueCastState *)slots)->set_target_count(n);
         break;
     }
     case 9:
@@ -303,7 +303,7 @@ void capture_technique_targets__10TObjPlayerFv(int kind, Owner_8022CDE8 *owner) 
                 get_obj_id__10TObjPlayerFv(TObjPlayer__sub_80116620(c->list, n)));
             n++;
         }
-        ((TObjPlayer *)slots)->set_tech_level(n);
+        ((TechniqueCastState *)slots)->set_target_count(n);
         break;
     }
     case 17:
