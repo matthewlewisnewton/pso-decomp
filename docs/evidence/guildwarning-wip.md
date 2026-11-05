@@ -44,6 +44,14 @@ functions locally. So do `TWindow`, `TShopDeleteItemWindow` and
 57 files used to declare it locally (`u8 *`, `void *` or `TWin_8020F070 *`);
 53 now include the header.
 
+The character-select save's memory-card window is a `TCheckMemoryCard *`.
+Its ctor stores the three trailing arguments as integers, so it takes
+`(TObject *, u32, u32, u32)`. `TAdSinglePlyChrSelectGC::create_check_memory_card`
+and `fn_8033C5E4` return `TCheckMemoryCard *`, and both callers use the
+static member instead of a mangled prototype.
+`TAdSinglePlyChrSelectGC__sub_8033B9F8` returns `s32`: the original caller
+tests it with `cmpwi r3, 0`.
+
 ## Register notes
 
 `TLobby::create_message_window` takes the slot as `s32`. The factory `mr`s it
@@ -64,20 +72,28 @@ parameter inside the loop. MWCC hoists that conversion as the original's
 
 These need cross-file retypes beyond this branch:
 
-- **The `s32` layout convention.** 75 files declare
-  `get_window_layout_position` as returning `s32`/`int`, and 101 declare it
-  locally. Window helpers that take that integer also need retyping:
+- **The `s32` layout convention.** 98 files declare
+  `get_window_layout_position` locally, mostly as returning `s32`/`int`.
+  They have 386 lookup calls; 96 are wrapped in integer or pointer casts
+  and 18 go through function-pointer casts. Window helpers that take that
+  integer also need retyping. Following "this file's lookup becomes a
+  pointer, so every other consumer of it must take one" from
   `set_window_mode_4__6TLobbyFPvll` (18 caller files),
-  `update_window_mode_from_progress__6TLobbyFPv` (16),
-  `create_titled_window_menu__Fllll` (8), `check_room_seq_4`, and
-  `draw_card_icon`. Until then, `TWindowSubMag`, `TWindowSubTechnique`,
-  `set_window_mode_4` and the quest-list callers keep an integer-to-pointer
-  cast or a local mangled prototype.
+  `update_window_mode_from_progress__6TLobbyFPv` (16) or
+  `create_titled_window_menu__Fllll` (8) reaches the same group of about 76
+  files. It runs through `check_room_seq_4__16TAdChrSelASlotGCFl` (30 files),
+  `draw_card_icon__17TWindowSubComCardFll` (8), and the mangled
+  `TWindowHelpItem` / `TWindowInputNumber` ctors. Until then,
+  `TWindowSubMag`, `TWindowSubTechnique`, `set_window_mode_4` and the
+  quest-list callers keep an integer-to-pointer cast or a local mangled
+  prototype.
 - **The window constructor chain.** A cast-free factory is
-  `return new TWindowMessage(...)`. That needs real ctors for
-  `TWindowMessage`, `TUnk_804CDFE8` (`construct_with_parent`) and
-  `TWindowDD::construct_base`. About 18 window ctors in other files call
-  those bases as C-named functions today.
+  `return new TWindowMessage(...)`. Retyping `TWindowMessage__ct` alone only
+  moves the cast, because the `__nw` result and the ctor result share one
+  variable. A real ctor needs real ctors on every base (`TUnk_804CDFE8`'s
+  `construct_with_parent`, then `TWindowDD::construct_base`), and each class
+  must declare virtuals matching its DOL vtable. About 18 window ctors in
+  other files call those bases as C-named functions today.
 - **`TLobby::send_and_handle(int, int)`.** It has 127 call sites, so a text
   pointer is still passed as an integer.
 - **Eight local `create_yes_no_window(s32, ...)` prototypes.** In
@@ -94,6 +110,11 @@ These need cross-file retypes beyond this branch:
 - **Four local `TWindow__close` prototypes.** `TWindowChatSymbol_802486A8`,
   `TWindowSubComCard_80271E7C`, `TWindowSubStatusDisp_8026F6DC` and
   `TWindowSubTradeMain_80330A84` declare other functions from
-  `TWindowSubComCard_80244774.h` with different signatures
-  (`fn_8024491C`, `fn_80244958`, `TWindowSubComCard__sub_80245558`,
-  `TWindowSubTradeMain__sub_802448E4`).
+  `TWindowSubComCard_80244774.h` with different signatures:
+  - `fn_8024491C`, `fn_80244958` and `TWindowSubTradeMain__sub_802448E4`
+    take `(window, pos)`, but their definitions forward `pos` to a mangled
+    `copy_vec2` call by r4 pass-through.
+  - `TWindowSubComCard__sub_80245558` returns a byte in its definition
+    (`extrwi r3, r0, 8, 19`), while its four callers test a word
+    (`cmpwi r3, 0`). With `bool` the callers gain a `clrlwi`, and with `s32`
+    the definition drops to 97.93%, so one declaration can't be exact.
