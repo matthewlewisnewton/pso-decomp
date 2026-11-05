@@ -205,11 +205,6 @@ void TOMineTrap::vfunc_86() {
  * mode 4 detonates against every actor in range once, then queues its own
  * destruction. */
 void TOMineTrap::run_task() {
-    TObjPlayer *owner;
-    TObjChara *actor;
-    s32 i;
-    u16 id;
-
     this->update_float_height();
     switch (this->mode) {
     case 0:
@@ -231,13 +226,13 @@ void TOMineTrap::run_task() {
         submit_cursor_candidate(this, -1);
         return;
     }
-    case 4:
-        owner = (TObjPlayer *)get_player_by_client_id(this->get_trap_type());
+    case 4: {
+        TObjPlayer *owner = (TObjPlayer *)get_player_by_client_id(this->get_trap_type());
         if (owner == 0) {
             owner = (TObjPlayer *)this;
         }
-        for (i = 0; i < lbl_805D5868; i++) {
-            actor = (TObjChara *)TObjPlayer::get_player_data(i);
+        for (s32 i = 0; i < lbl_805D5868; i++) {
+            TObjChara *actor = (TObjChara *)TObjPlayer::get_player_data(i);
             if (actor == 0 || actor == (TObjChara *)this) {
                 continue;
             }
@@ -248,7 +243,7 @@ void TOMineTrap::run_task() {
                 actor->room != this->alt_room) {
                 continue;
             }
-            id = get_entity_id(actor);
+            u16 id = get_entity_id(actor);
             if (id == 0xFFFF) {
                 continue;
             }
@@ -276,7 +271,7 @@ void TOMineTrap::run_task() {
                         record_attack_source(this->target, this->get_trap_type());
                     }
                     if (this->m_380 != 1) {
-                        this->m_380 = TOMineTrap::show_owner_message((s32)this, (u32)actor);
+                        this->m_380 = TOMineTrap::show_owner_message(this, actor);
                     }
                 }
             } else if (id < 0x4000) {
@@ -304,6 +299,7 @@ void TOMineTrap::run_task() {
         this->sub_8017070C();
         this->queue_destruction();
         return;
+    }
     default:
         return;
     }

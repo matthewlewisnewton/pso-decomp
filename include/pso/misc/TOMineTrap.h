@@ -5,6 +5,7 @@
 #include "pso/misc/TOMine.h"
 
 struct TObjPlayer;
+class TObjChara;
 
 struct TOMineTrap : public TOMine {
     TOMineTrap(TObjPlayer *owner, s16 trap_index, s16 trap_id);
@@ -40,7 +41,7 @@ struct TOMineTrap : public TOMine {
     void sync_position();
     void send_state_packet(u16 idx);
     int update_trap_sub();
-    static s32 show_owner_message(s32 arg0, u32 arg1);
+    static s32 show_owner_message(TOMineTrap *trap, TObjChara *actor);
 };
 
 typedef char TOMineTrap_size[sizeof(TOMineTrap) == 0x384 ? 1 : -1];

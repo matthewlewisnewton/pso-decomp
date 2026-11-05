@@ -140,8 +140,10 @@ no `fmsubs`.
 | `TOMine::update_float_height` | `fmadds f0,f3,f1,f0` | `0x80170D30` | `lbl_805DB884 * ((lbl_805DB888 + home_y) - height) + constant`, then `fadds` the old height |
 
 Objdiff of the whole unit (`GC/2.6`, `-O4,s -inline off -sdata2 4`), flag on
-versus flag omitted: `run_task` is byte-identical either way (98.32%, 952
-bytes, a callee-saved permutation; the same score as main). Every other
+versus flag omitted: `run_task` is byte-identical either way (98.49%, 952
+bytes). Owner is r31 and `i` is r30, as in the original; `this` is r28
+(original r29), the actor is r29 (original r27), and the id is r27 (original
+r28). Every other
 function that is exact without the flag stays exact with it. `.rodata`
 (`lbl_804421F8`, 8 bytes) is exact either way. The three functions above
 change, from 99.31% (1076 bytes) / 97.84% / 95.70% without the flag to 99.91%
