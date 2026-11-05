@@ -479,6 +479,11 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # propagation the frontend replaces it with a hoisted temporary that the
     # allocator colours first (r30). See docs/porting-exceptions.md section 5.
     "pso/effect/TEffIndirectCtrl_802A88AC.cpp": {"cflags": _switch(cflags_pso, "-opt noprop")},
+    # pack_movie_frame: the original keeps every named local in one register
+    # (no lifetime splitting), recomputes its pad and stride shifts instead of
+    # sharing them, and leaves invariant hoisting to the backend. See
+    # docs/porting-exceptions.md section 5.
+    "pso/misc/TMovie_80143988.cpp": {"cflags": _switch(cflags_pso, "-opt nolifetimes,nocse,noprop,noloop")},
     "pso/boss/Boss5GryphonBehavior.cpp": {"mw_version": "GC/2.0"},
     "pso/enemy/TObjEneGyaranzo.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred")},
     "pso/misc/TOExplosiveMachine.cpp": {"mw_version": "GC/2.0"},

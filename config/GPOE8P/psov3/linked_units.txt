@@ -805,6 +805,7 @@ pso/item/WeaponAttackActions.cpp
 pso/item/WeaponSpecialSelection.cpp
 pso/map/FloorArea_8029E764.cpp
 pso/map/FloorLifecycleTables.cpp
+pso/math/MatrixVector.cpp
 pso/menu/TAdEndText_80307A34.cpp
 pso/menu/TAdEndText_80399904.cpp
 pso/menu/TAdGuideTxtGC.cpp
@@ -1219,6 +1220,7 @@ pso/misc/TMessageBox.cpp
 pso/misc/TMotorcycle.cpp
 pso/misc/TMotorcycle_802D712C.cpp
 pso/misc/TMovie.cpp
+pso/misc/TMovie_80143988.cpp
 pso/misc/TMovie_80143BBC.cpp
 pso/misc/TMovie_80143C00.cpp
 pso/misc/TMovie_80143C94.cpp
