@@ -54,7 +54,6 @@ extern SeabedTrapFragmentSpawn seabed_trap_fragment_spawns[];
 extern BmlResource *TOTrapSeabed01__bml_resource;
 extern u8 *TOTrapSeabed01__texture_file;
 s32 check_value_equals__13TUnk_804B6C24Fl(void *, s32);
-s32 is_valid_and_active__10TObjPlayerFUl();
 extern s32 lbl_805D3530;
 
 
@@ -458,7 +457,7 @@ int TOTrapSeabed01::vfunc_67(f32) {
     TObjChara *p;
     for (i = 0; i < 0x10; i++) {
         p = (TObjChara *)TObjPlayer::get_battle_param(i);
-        if (is_valid_and_active__10TObjPlayerFUl() != 0 && check_value_equals__13TUnk_804B6C24Fl(p, lbl_805D3530) != 0) {
+        if (TObjPlayer::is_valid_and_active((u32)p) != 0 && check_value_equals__13TUnk_804B6C24Fl(p, lbl_805D3530) != 0) {
             p->receive_direct_attack(this, attack, NULL, -1, -1);
             if (attack.kind < 5) {
                 p->apply_knockback_from_attacker((u8 *)this, 0.0f);
