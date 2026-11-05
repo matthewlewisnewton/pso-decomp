@@ -282,8 +282,6 @@ void deform_indirect_texture_scroll(u8 *p, u32 px, u32 py, u8 amp, u32 phase) {
     start = (u32) ((first) ? (pxm) : (pym));
     for (line = 0; line < 64; line++)
     {
-      off16++;
-      off16--;
       at = start;
       for (k = 0; k < 64; k++)
       {
