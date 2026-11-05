@@ -18,8 +18,6 @@
 #include "pso/unk/text_801A9CB8.h"
 #include "pso/unk/text_80087278.h"
 #include "pso/misc/TParticleCtrl_800867E4.h"
-#include "pso/misc/TPhotonLeilla.h"
-#include "pso/misc/TPhotonMylla.h"
 #include "pso/player/TObjPlayer_801AF2F0.h"
 #include "pso/player/TObjPlayer_801AA508.h"
 #include "pso/player/TObjPlayer_801AA664.h"
@@ -97,6 +95,9 @@ extern PhotonBlastHit photon_blast_hit_queue[32];
 extern s32 photon_blast_hit_count;
 extern PhotonBlastHit deferred_photon_blast_hit_queue[32];
 extern s32 deferred_photon_blast_hit_count;
+
+u8 *TPhotonLeilla__ct(u8 *self, u8 *params);
+u8 *TPhotonMylla__ct(u8 *self, u8 *params);
 }
 extern s32 photon_blast_donation_flags[];
 void clear_photon_blast_donations(void);
@@ -587,7 +588,7 @@ void step_photon_blast_sequence(PhotonBlastSequence_801A9870 *seq) {
         case 4:
             summon = (u8 *)TObject::operator new(0x1B0);
             if (summon != NULL) {
-                summon = (u8 *)TPhotonLeilla__ct((Leilla_801AC808 *)summon, (Pkt_801AC808 *)&params);
+                summon = TPhotonLeilla__ct(summon, (u8 *)&params);
             }
             seq->summon = (TObject *)summon;
             for (j = 0; j < 4; j++) {
@@ -613,7 +614,7 @@ void step_photon_blast_sequence(PhotonBlastSequence_801A9870 *seq) {
         case 5:
             summon = (u8 *)TObject::operator new(0x1A8);
             if (summon != NULL) {
-                summon = (u8 *)TPhotonMylla__ct((Mylla_801AD970 *)summon, (Pkt_801AD970 *)&params);
+                summon = TPhotonMylla__ct(summon, (u8 *)&params);
             }
             seq->summon = (TObject *)summon;
             for (j = 0; j < 4; j++) {
