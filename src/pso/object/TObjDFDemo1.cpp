@@ -121,13 +121,13 @@ extern s32 lbl_80485EB0[];
 extern s32 boss4_zanzo_bml_index_table[];
 }
 
-const f32 lbl_805D8988 = 1.0f;
-const f32 lbl_805D898C = 12.0f;
-const f32 lbl_805D8990 = 0.0f;
-const f32 lbl_805D8994 = 10.0f;
-const f32 lbl_805D8998 = 255.0f;
-const f32 lbl_805D899C = 20.0f;
-const f32 lbl_805D89A0 = 30.0f;
+__declspec(section ".sdata2") const f32 lbl_805D8988 = 1.0f;
+__declspec(section ".sdata2") const f32 lbl_805D898C = 12.0f;
+__declspec(section ".sdata2") const f32 lbl_805D8990 = 0.0f;
+__declspec(section ".sdata2") const f32 lbl_805D8994 = 10.0f;
+__declspec(section ".sdata2") const f32 lbl_805D8998 = 255.0f;
+__declspec(section ".sdata2") const f32 lbl_805D899C = 20.0f;
+__declspec(section ".sdata2") const f32 lbl_805D89A0 = 30.0f;
 
 extern const char lbl_80437310[] = "TObjDFDemo1";
 extern const char *lbl_805D2780 = lbl_80437310;
