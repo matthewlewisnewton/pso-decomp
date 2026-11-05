@@ -1748,14 +1748,14 @@ void TBoss6Type1__sub_802B5DD4(TBoss6Type1 *self) {
     self->unk_4e4++;
 }
 
-u8 TBoss6Type1::is_timer_expired() {
+s32 TBoss6Type1::is_timer_expired() {
     s32 temp_r0;
     s32 temp_r5;
     temp_r5 = this->m_4e0;
     if ((temp_r5 <= 0) || (temp_r0 = this->unk_4e4, ((temp_r0 < 0) != 0))) {
-        return 1U;
+        return 1;
     }
-    return (u8) (temp_r5 <= temp_r0);
+    return temp_r5 <= temp_r0;
 }
 
 void TBoss6Type1::sub_802B5CB4() {

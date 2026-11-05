@@ -164,7 +164,7 @@ struct TBoss6Type1 : public TObjEnemy {
     s32 pick_remapped_list_value(s32 a, s32 b, s32 n);
     void request_jittered_camera(const Vec *eye, const Vec *target, int id);
     void request_default_jittered_camera();
-    u8 is_timer_expired();
+    s32 is_timer_expired();
     void reset_fields_4e0();
     s32 is_field3F8_over_0x20();
     int is_field4b0_delta_reached();
