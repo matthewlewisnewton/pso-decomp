@@ -6385,7 +6385,7 @@ void TObjPlayer::drop_items_on_death() {
     count=0;
     if (((s32 (*)(void))is_technique_ready__8TTecCtrlFv)()!=0) {
         if (((s32 (*)(TObjPlayer*))check_flag_01000000__10TObjPlayerFPv)(this)==0) {
-            count=((TLobby *)(fields->inventory_owner))->set_globals_and_notify((int)this, (int)records);
+            count=inventory_objects->set_globals_and_notify(this, records);
         }
         if (obj_getPtr2B0_20((u8 *)this)!=0) {
             record=&records[count];
@@ -6396,7 +6396,7 @@ void TObjPlayer::drop_items_on_death() {
             item->id=-1;
         }
     } else if (((s32 (*)(TObjPlayer*))check_flag_01000000__10TObjPlayerFPv)(this)==0) {
-        count=((TLobby *)(fields->inventory_owner))->set_globals_and_notify((int)this, (int)records);
+        count=inventory_objects->set_globals_and_notify(this, records);
     } else {
         equipped=((void* (*)(TObjPlayer*))get_item_field_6__10TObjPlayerFPv)(this);
         if (equipped!=NULL) {

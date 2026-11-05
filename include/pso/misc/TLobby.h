@@ -268,7 +268,6 @@ struct TLobby : public TObject {
     void bswap_set_battle_mode_data();
     void send_6x7D_set_battle_mode_data();
     static s32 free_if_positive(s32 arg0, s16 arg1);
-    int set_globals_and_notify(int a1, int a2);
     void update_all_children();
     void set_volume(u8 arg1);
     void set_validated_field_0x11(u8 arg1);

@@ -11,7 +11,7 @@ extern "C" {
 void TLobby__sub_801D4C28(TPlyItem *a0, void *a1, int a2, int a3);
 s32 try_spend_actor_meseta(TObjPlayer *player, s32 amount);
 s32 is_item_equipped(void *);
-int TObjPlayer__sub_801D52A8(void*);
+void TObjPlayer__sub_801D52A8(TItemList *arg0);
 
 void TPlyItem::reduce_item_amount(TObjPlayer *arg1, TItemList *slot, s32 arg3) {
     s16 temp_r4;
@@ -55,8 +55,8 @@ void TLobby__sub_801D4C28(TPlyItem *a0, void *a1, int a2, int a3) { item_reduce_
 
 void TPlyItem::set_globals_and_update(void *a1, int a2) { item_reduce_target_player = a1; item_reduce_owner_match_field_ec = a2; item_list->reduce_child_item_amounts(); }
 
-    extern int player_item_collect_cursor;
+    extern void *player_item_collect_cursor;
     extern int inventory_walk_visit_count;
-int TLobby::set_globals_and_notify(int a1, int a2) { player_item_collect_cursor = a2; inventory_walk_visit_count = 0; TObjPlayer__sub_801D52A8((void*)(*(int*)((char*)this + 0x1c4))); return inventory_walk_visit_count; }
+int TPlyItem::set_globals_and_notify(TObjPlayer *player, void *out) { player_item_collect_cursor = out; inventory_walk_visit_count = 0; TObjPlayer__sub_801D52A8(item_list); return inventory_walk_visit_count; }
 
 }
