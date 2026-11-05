@@ -26,8 +26,8 @@ void TObjPlayer::reset_state() {
     *(f32 *)((s8 *)arg0 + 0x400) = (f32) TObjPlayer__data_805DC278;
     this->m_3fc = (f32) TObjPlayer__data_805DC278;
     *(f32 *)&this->unk_3F8 = (f32) TObjPlayer__data_805DC278;
-    *(f32 *)&this->m_310 = (f32) TObjPlayer__data_805DC278;
-    this->y_speed = (f32) TObjPlayer__data_805DC278;
-    *(f32 *)&this->unk_308 = (f32) TObjPlayer__data_805DC278;
+    this->movement_velocity.z = (f32) TObjPlayer__data_805DC278;
+    this->movement_velocity.y = (f32) TObjPlayer__data_805DC278;
+    this->movement_velocity.x = (f32) TObjPlayer__data_805DC278;
     zero_vec3(&this->m_5fc);
 }

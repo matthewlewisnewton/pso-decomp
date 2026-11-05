@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/TObjBoss5Ctrl.h"
 #include "pso/boss/TObjBoss5Ctrl.h"
 #include "pso/object/TObject_80019A50.h"
@@ -7,7 +8,7 @@
 extern s32 boss5_ctrl_instance;
 
 extern "C" {
-s32 play_sound_effect(int, int, int, int);
+
 s32 rand();
 s32 __ct__7TObjectFP7TObject(void *);
 s32 get_current_floor(f32, f32, f32);

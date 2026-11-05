@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/misc/TOFenceAncient04.h"
 #include "pso/TMainTask.h"
@@ -59,23 +60,20 @@ void TOFenceAncient04::unload_resources() {
         TObjPlayer::free_if_valid(texlists[2]);
         TObjPlayer::free_if_valid(texlists[3]);
         if (texlists != NULL) {
-            mem_free(texlists);
+            ::operator delete[](texlists);
             texlists = NULL;
         }
     }
     if (model_resource != NULL) {
-        TLobby__sub_8001FE7C(model_resource, 1);
+        delete (BmlResource *)(model_resource);
         model_resource = NULL;
     }
 }
 
 void TOFenceAncient04::load_resources() {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_fd_obj_n_saku_6x4_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&bm_fd_obj_n_saku_6x4_resource_descriptor), 0, 0, (void *)(0));
     model_resource = resource;
-    s32 *lists = (s32 *)mem_alloc(4 * sizeof(s32));
+    s32 *lists = (s32 *)::operator new[](4 * sizeof(s32));
     texlists = lists;
     lists[0] = model_resource->models[0].m_c;
     texlists[1] = (s32)load_gvm_texture_file((s32)texture_file_b);

@@ -1,4 +1,6 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/render/render_util.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/player/TObjPlayer_800D7BFC.h"
@@ -57,7 +59,7 @@ s32 matrix_mult_vec(int, void *, void *);
 void rotate_matrix_y(int, int);
 void push_matrix(void);
 void post_translate_matrix(void *);
-void set_global_param__8TObjFishFl(void);
+
 void draw_ginja_object(void);
 extern u32 TObjBigTuitate__bml_resource;
 
@@ -67,7 +69,6 @@ extern s32 big_tuitate_collision_body[];
 extern s32 __vt__14TObjBigTuitate[];
 extern s32 lbl_805D3454;
 
-void TLobby__sub_8001FE7C(void*, int);
 void free_collision_body_parts(void *);
 int update__15RenderFadeStateFv(void*);
 void __dl__7TObjectFPv(void *);
@@ -96,8 +97,7 @@ void TObjBigTuitate::render() {
     if (fading != 0) {
         ((Fade_8019AA18 *)(arg0 + 0xAC))->begin();
     }
-    TObjFish__sub_8001EDB0((*(s32 *)&TObjBigTuitate__bml_resource), 0);
-    set_global_param__8TObjFishFl();
+    set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0((*(s32 *)&TObjBigTuitate__bml_resource), 0)));
     push_matrix();
     post_translate_matrix(arg0 + 0x38);
     rotate_matrix_y(0, *(s32 *)(arg0 + 0x60));
@@ -162,7 +162,7 @@ void *TObjBigTuitate__create(void *arg0) {
 
 void TObjBigTuitate::free_instance() {
     if ((u32) TObjBigTuitate__bml_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)TObjBigTuitate__bml_resource, 1);
+        delete (BmlResource *)((void*)TObjBigTuitate__bml_resource);
         TObjBigTuitate__bml_resource = 0U;
     }
 }
@@ -173,17 +173,13 @@ struct RecoveredGlobal_8019AD50_lbl_804B8FF8 { s32 value; u8 remaining[0xC]; };
 typedef char RecoveredGlobal_8019AD50_lbl_804B8FF8_size[sizeof(RecoveredGlobal_8019AD50_lbl_804B8FF8) == 0x10 ? 1 : -1];
 
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern RecoveredGlobal_8019AD50_lbl_804B8FF8 fe_obj_bigtutate_resource_descriptor;
 
 void fn_8019AD50(void) {
     s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
+    temp_r3 = (int)new BmlResource(1, (BmlResourceDescriptor *)(&fe_obj_bigtutate_resource_descriptor.value), 0, 0, (void *)(0));
     var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &fe_obj_bigtutate_resource_descriptor.value, 0, 0, 0));
-    }
     TObjBigTuitate__bml_resource = var_r0;
 }
 
@@ -230,7 +226,7 @@ s32 matrix_mult_vec(int, void *, void *);
 void rotate_matrix_y(int, int);
 void push_matrix(void);
 void post_translate_matrix(void *);
-void set_global_param__8TObjFishFl(void);
+
 void draw_ginja_object(void);
 extern u32 TObjTuitate__bml_resource;
 
@@ -240,7 +236,6 @@ extern s32 TObjTuitate__collision_parts[];
 extern s32 __vt__11TObjTuitate[];
 extern s32 TObjTuitate__class_name;
 
-void TLobby__sub_8001FE7C(void*, int);
 void free_collision_body_parts(void *);
 int update__15RenderFadeStateFv(void*);
 void __dl__7TObjectFPv(void *);
@@ -269,8 +264,7 @@ void TObjTuitate::render() {
     if (fading != 0) {
         ((Fade_8019ADA0 *)(arg0 + 0xAC))->begin();
     }
-    TObjFish__sub_8001EDB0((*(s32 *)&TObjTuitate__bml_resource), 0);
-    set_global_param__8TObjFishFl();
+    set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0((*(s32 *)&TObjTuitate__bml_resource), 0)));
     push_matrix();
     post_translate_matrix(arg0 + 0x38);
     rotate_matrix_y(0, *(s32 *)(arg0 + 0x60));
@@ -335,7 +329,7 @@ void *TObjTuitate__create(void *arg0) {
 
 void fn_8019B09C(void) {
     if ((u32) TObjTuitate__bml_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)TObjTuitate__bml_resource, 1);
+        delete (BmlResource *)((void*)TObjTuitate__bml_resource);
         TObjTuitate__bml_resource = 0U;
     }
 }

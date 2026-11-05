@@ -1,3 +1,5 @@
+#include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "types.h"
@@ -66,8 +68,7 @@ void vec3_add_to(void *, void *);
 extern Packet_801ADD10 photon_pilla_laser_packet;
 extern void *photon_pilla_laser_offset_table[];
 
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
-s32 spawn_photon_blast_attachment_effects(void *, s32);
+
 u8 *TPhotonMagicSquare__ct(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
 void *find_entity_by_id(u16 id);
 u32 get_entity_id();
@@ -118,10 +119,10 @@ void TPhotonPilla::render() {
     if (this->m_1a4 != 0) {
         scroll_strip_uvs(pilla_photon_buffer_pair, self->f14C, 0);
         TParticleCtrl::begin_effect_render();
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)(this->texlist));
         push_matrix();
         translate_matrix(0, self->pos.x, self->pos.y, self->pos.z);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         ((TUnk_804C3248 *)self)->set_photon_blast_joint_callback();
         saved_model_render_flags = model_render_flags;
         copy_argb((NJS_ARGB *)&saved_model_draw_color, (NJS_ARGB *)&model_material_color);
@@ -182,7 +183,7 @@ void TPhotonPilla::run_task() {
         this->apply_photon_blast_effects();
     }
     if ((s32) this->m_1a4 != 0) {
-        play_persistent_sound(0x4002462F, (s32)this, 0, 0, 0);
+        play_persistent_sound((s32)(0x4002462F), (const void *)(this), (const Vec *)(0), 0, 0);
     }
 }
 
@@ -217,7 +218,6 @@ struct Vec_801AE1F8 { f32 x, y, z; };
 extern "C" {
 void *find_entity_by_id(u16 id);
 s32 init_collision_body_parts(void *, void *, int);
-s32 spawn_photon_blast_attachment_effects(void *, s32);
 u8 *TPhotonMagicSquare__ct(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
 void sub_801ADC7C__12TPhotonPillaFv(void *, u8);
 u8 *TPhotonRainbow__ct(void *, void *, void *, s32);
@@ -278,12 +278,12 @@ u8 *TPhotonPilla__ct(u8 *photon_rainbow, u8 *arg1) {
     ((TPhotonPilla *)photon_rainbow)->m_190 = (u8 *)find_entity_by_id(((TPhotonPilla *)photon_rainbow)->m_17c);
     temp_r3 = ((TPhotonPilla *)photon_rainbow)->m_190;
     if (temp_r3 != NULL) {
-        ((TPhotonPilla *)photon_rainbow)->rotation_y = *(s32 *)((s8 *)temp_r3 + 0x60);
+        ((TPhotonPilla *)photon_rainbow)->rotation.yaw = *(s32 *)((s8 *)temp_r3 + 0x60);
     }
     *(s32 *)((s8 *)photon_rainbow + 0x34) = *(s32 *)((s8 *)(*(u8 **)((s8 *)photon_blast_shared_resource + 0x42C)) + 0x38);
     ((TPhotonPilla *)photon_rainbow)->texlist = *(s32 *)((s8 *)(*(u8 **)((s8 *)photon_blast_shared_resource + 0x42C)) + 0x3C);
-    ((TObjMotion *)photon_rainbow)->set_field_d8((s32)photon_pilla_action_table);
-    ((TObjMotion *)photon_rainbow)->set_field_dc(*(s32 *)((s8 *)photon_blast_shared_resource + 0x430));
+    ((TObjMotion *)photon_rainbow)->set_action_table((TObjMotionAction *)((s32)photon_pilla_action_table));
+    ((TObjMotion *)photon_rainbow)->set_motion_list((BmlMotionEntry *)(*(s32 *)((s8 *)photon_blast_shared_resource + 0x430)));
     ((TPhotonPilla *)photon_rainbow)->requested_action = 1;
     ((TObjMotion *)photon_rainbow)->set_animation(((TPhotonPilla *)photon_rainbow)->requested_action);
     ((TObjMotion *)photon_rainbow)->set_field_b8(((TPhotonPilla *)photon_rainbow)->requested_action);
@@ -332,7 +332,7 @@ u8 *TPhotonPilla__ct(u8 *photon_rainbow, u8 *arg1) {
             TPhotonMagicSquare__ct((u8 *)mem, (s32)photon_rainbow, 3, (s32)&pos, 0xAA, (f32)0.5f);
         }
         }
-        spawn_photon_blast_attachment_effects(photon_rainbow, 3);
+        spawn_photon_blast_attachment_effects((TPhotonPilla *)photon_rainbow, 3);
         play_cue_stream_file((s32)lbl_80446EE0);
     } else {
         spawn_photon_blast_opening_effects(3, ((TPhotonPilla *)photon_rainbow)->m_17c);

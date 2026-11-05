@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/items/TItemWeapon.h"
 #include "pso/item/TItemEffOrgaFlowShot.h"
@@ -430,7 +431,6 @@ void *__dt__13TUnk_804ED390Fv(void *arg0, s16 arg1) {
 #undef lbl_804ED298
 void config_dark_flow_attack_collider(int a0, void* a1);
 extern "C" {
-s32 play_sound_effect(s32, s32, s32, s32);
 
 s16 get_actor_hp(u8 *p);
 s32 update_active_game_effect__10TObjPlayerFv(void *);
@@ -467,7 +467,7 @@ void TUnk_804ED488::emit_marker_effects() {
             fire_shot_at_target((void *)(*(s32 *)&this->owner + 0x38), (void *)0, 0);
             fire_shot_at_target((void *)(*(s32 *)&this->owner + 0x38), (void *)0, 0x11C7);
             fire_shot_at_target((void *)(*(s32 *)&this->owner + 0x38), (void *)0, 0x238E);
-            play_sound_effect(0x4001A642, *(s32 *)&this->owner + 0x38, 0, 0);
+            play_sound_effect(0x4001A642, (const Vec *)(*(s32 *)&this->owner + 0x38), 0, 0);
             return;
         }
         update_active_game_effect__10TObjPlayerFv(this);

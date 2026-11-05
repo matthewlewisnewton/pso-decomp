@@ -1,4 +1,6 @@
+#include "pso/system/CurrentTextureList.h"
 #include "pso/misc/RenderFadeState.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/system/vector.h"
 #include "pso/misc/TRaderMapCore.h"
 #include "pso/object/TObjFish.h"
@@ -57,7 +59,6 @@ struct Pkt_8018CB44 { u16 a; u16 b; s32 c; s32 d; s32 e; };
 
 extern "C" {
 void queue_destruction__7TObjectFv(void *arg0);
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 void debug_printf_at(s32 id, const char *fmt, ...);
 extern char lbl_80445430[];
 extern char lbl_8044543C[];
@@ -191,10 +192,10 @@ void TObjContainerJungEnemy::vfunc_81() {
 
     switch (this->mode) {
     case 0:
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)(this->texlist));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         scale_matrix(0, 0.85f, 0.85f, 0.85f);
         draw_ginja_object(*(void * *)&this->m_368);
         TParticleCtrl::begin_effect_render();
@@ -363,7 +364,6 @@ s32 submit_cursor_candidate(void *, s32);
 s32 rotate_matrix_y(s32, s32);
 s32 push_matrix();
 s32 __dl__7TObjectFPv(void *);
-s32 set_global_param__8TObjFishFl();
 
 void *TObjContainerJungEx::create(void *arg0) {
     void *o = __nw__7TObjectFUl(0x368);
@@ -437,11 +437,10 @@ void TObjContainerJungEx::vfunc_81() {
 
     switch (this->mode) {
     case 0:
-        TObjContainerJungEx__sub_8018D900(0);
-        set_global_param__8TObjFishFl();
+        set_current_texture_list((GinjaTextureList *)(TObjContainerJungEx__sub_8018D900(0)));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         scale_matrix(0, 0.85f, 0.85f, 0.85f);
         draw_ginja_object((void *)get_model__19TObjContainerJungExFl(0));
         TParticleCtrl::begin_effect_render();
@@ -531,7 +530,6 @@ extern "C" {
 u8 * get_bml_model(void *, int);
 extern s32 TObjContainerJung__bml_model_resource;
 s32 TObjFish__sub_8001EDB0(void *, s32);
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern RecoveredGlobal_8018D47C_lbl_804B7134 TObjContainerJung__resource_descriptor;
 extern s32 TObjContainerJung__bml_aux_handle;
 u32 init_collision_body_parts(void *, s32, s32);
@@ -553,7 +551,6 @@ extern Spawn_8018D4DC container_jung_debris_desc;
 extern Spawn_8018D4DC container_jung_spawn_params;
 extern void *tl_05;
 void TObjContainerJung__vt77(const Obj_8018D4DC *self);
-s32 TLobby__sub_8001FE7C(s32, s32);
 s32 free_collision_body_parts(void *);
 s32 submit_cursor_candidate(void *, s32);
 s32 __dl__7TObjectFPv(void *);
@@ -578,7 +575,7 @@ void *TObjContainerJung::create(void *arg0) {
 }
 
 void TObjContainerJung::release() {
-    TLobby__sub_8001FE7C(TObjContainerJung__bml_model_resource, 1);
+    delete (BmlResource *)(TObjContainerJung__bml_model_resource);
     TObjContainerJung__bml_model_resource = 0;
     TObjContainerJung__bml_aux_handle = 0;
 }
@@ -586,11 +583,8 @@ void TObjContainerJung::release() {
 void TObjContainerJung::load_resources() {
     s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
+    temp_r3 = (int)new BmlResource(5, (BmlResourceDescriptor *)(&TObjContainerJung__resource_descriptor.value), 0, 0, (void *)(0));
     var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 5, &TObjContainerJung__resource_descriptor.value, 0, 0, 0));
-    }
     (*(u8 * *)&TObjContainerJung__bml_model_resource) = (unsigned char *) ((void *) var_r0);
     TObjContainerJung__bml_aux_handle = TObjFish__sub_8001EDB0((void *) var_r0, 0);
 }
@@ -664,10 +658,10 @@ void TObjContainerJung::vfunc_81() {
     if ((void *)(*(u8 **)&TObjContainerJung__bml_model_resource) != NULL) {
         switch (this->mode) {
         case 0:
-            TObjFish::set_global_param(TObjContainerJung__bml_aux_handle);
+            set_current_texture_list((GinjaTextureList *)(TObjContainerJung__bml_aux_handle));
             push_matrix();
             post_translate_matrix((u8 *)&this->position);
-            rotate_matrix_y(0, this->rotation_y);
+            rotate_matrix_y(0, this->rotation.yaw);
             scale_matrix(0, 0.85f, 0.85f, 0.85f);
             draw_ginja_object((void *)get_bml_model(*(u8 **)&TObjContainerJung__bml_model_resource, 0));
             TParticleCtrl::begin_effect_render();

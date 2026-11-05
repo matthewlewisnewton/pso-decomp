@@ -72,16 +72,13 @@ TOMekaFish00::TOMekaFish00(void *set_data) {
 TOMekaFish00::~TOMekaFish00() {}
 
 void TOMekaFish00::load_shared_resource() {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_obj_meka_fish_0_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&bm_obj_meka_fish_0_resource_descriptor), 0, 0, (void *)(0));
     model_resource = resource;
 }
 
 void TOMekaFish00::release_static_instance() {
     if (model_resource != NULL) {
-        TLobby__sub_8001FE7C(model_resource, 1);
+        delete (BmlResource *)(model_resource);
         model_resource = NULL;
     }
 }
@@ -111,16 +108,13 @@ TOMekaFish01::TOMekaFish01(void *set_data) {
 TOMekaFish01::~TOMekaFish01() {}
 
 void TOMekaFish01::load_shared_resource() {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_obj_meka_fish_1_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&bm_obj_meka_fish_1_resource_descriptor), 0, 0, (void *)(0));
     model_resource = resource;
 }
 
 void TOMekaFish01::free_static_data() {
     if (model_resource != NULL) {
-        TLobby__sub_8001FE7C(model_resource, 1);
+        delete (BmlResource *)(model_resource);
         model_resource = NULL;
     }
 }
@@ -150,16 +144,13 @@ TOBiwaMushi::TOBiwaMushi(void *set_data) {
 TOBiwaMushi::~TOBiwaMushi() {}
 
 void TOBiwaMushi::load_resource_instance() {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_obj_jungle_biwamushi_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&bm_obj_jungle_biwamushi_resource_descriptor), 0, 0, (void *)(0));
     model_resource = resource;
 }
 
 void TOBiwaMushi::free_shared_data() {
     if (model_resource != NULL) {
-        TLobby__sub_8001FE7C(model_resource, 1);
+        delete (BmlResource *)(model_resource);
         model_resource = NULL;
     }
 }

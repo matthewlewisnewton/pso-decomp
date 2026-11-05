@@ -1,4 +1,6 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/misc/TOCapsuleLabo.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/TProtocol.h"
@@ -32,17 +34,14 @@ void *TOCapsuleLabo::create(void *set_data) {
 
 void TOCapsuleLabo::unload_resources() {
     if (model_resource != NULL) {
-        TLobby__sub_8001FE7C(model_resource, 1);
+        delete (BmlResource *)(model_resource);
         model_resource = NULL;
     }
 }
 
 void TOCapsuleLabo::load_resources() {
     NJS_OBJECT *root;
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_obj_labo_infocapsule_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&bm_obj_labo_infocapsule_resource_descriptor), 0, 0, (void *)(0));
     model_resource = resource;
     root = (NJS_OBJECT *)get_bml_model(resource, 0);
     if (root != NULL) {
@@ -58,7 +57,7 @@ void TOCapsuleLabo::render() {
     NJS_OBJECT *light;
     visible = update_object_view_visibility(view_range, model_radius);
     if (visible == 1) {
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         if (active == 1) {
             if (light_node != NULL) {
                 light_node->evalflags &= ~NJD_EVAL_HIDE;
@@ -69,7 +68,7 @@ void TOCapsuleLabo::render() {
         body = (NJS_OBJECT *)model;
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
+        rotate_matrix_y(NULL, this->rotation.yaw);
         post_translate_matrix(body->pos);
         draw_ginja_model((s32)body->model);
         lid = body->child;

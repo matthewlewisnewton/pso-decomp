@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/system/vector.h"
 #include "pso/object/TObjMotion.h"
@@ -66,7 +67,7 @@ s32 check_path_obstructed(void *, Vec_801ACD14 *);
 u16 get_entity_id(void *);
 void queue_destruction__7TObjectFv(void *);
 u8 *get_battle_param__10TObjPlayerFi(s32);
-void *spawn_particle_effect(void *pos, s32 id);
+
 void queue_photon_blast_hit(s32, s32, s32, f32);
 void vec3_add_to(Vec_801ACD14 *, Vec_801ACD14 *);
 extern const f32 lbl_805DC1D8;
@@ -109,8 +110,8 @@ void run_task__11TPhotonLineFv(Line_801ACB14 *self) {
                     break;
                 }
                 queue_photon_blast_hit(get_entity_id(p), 1, 0, self->f344);
-                spawn_particle_effect(p + 0x38, 0x162);
-                spawn_particle_effect(p + 0x38, 0x163);
+                spawn_particle_effect((const Vec *)(p + 0x38), 0x162);
+                spawn_particle_effect((const Vec *)(p + 0x38), 0x163);
             }
         }
     }

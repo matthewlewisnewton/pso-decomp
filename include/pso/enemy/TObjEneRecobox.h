@@ -2,6 +2,7 @@
 #define PSO_ENEMY_TOBJENERECOBOX_H
 
 #include "types.h"
+#include "pso/misc/MaterialOpacityFade.h"
 #include "pso/enemy/TObjEneDD_ST.h"
 
 struct TObjEneRecobox : public TObjEneDD_ST {
@@ -18,15 +19,8 @@ struct TObjEneRecobox : public TObjEneDD_ST {
     void vfunc_62();
     void vfunc_61();
     void vfunc_28();
-    u8 unk_374[0x8];
-    f32 m_37c;
-    u8 unk_380[0x24];
-    void* m_3c0;
-    u8 _pad3C4[0x1C];
-    u32 m_3e0;
-    void* m_3e4;
-    u8 _pad3E8[0xC];
-    u32 m_3f4;
+    MaterialOpacityFade fade;
+
     u32 m_3f8;
     u8 _pad3FC[0x10];
     u32 m_40c;
@@ -47,6 +41,8 @@ struct TObjEneRecobox : public TObjEneDD_ST {
     u8 unk_4D4[0x1C];
     f32 m_4f0;
 };
+
+typedef char TObjEneRecoboxFadeOffset[offsetof(TObjEneRecobox, fade) == 0x3C0 ? 1 : -1];
 
 typedef char TObjEneRecobox_size[sizeof(TObjEneRecobox) == 0x4F4 ? 1 : -1];
 #endif

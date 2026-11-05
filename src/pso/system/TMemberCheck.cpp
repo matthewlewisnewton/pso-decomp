@@ -1,5 +1,4 @@
 #include "pso/TMemberCheck.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/misc/TLobby.h"
 
@@ -28,7 +27,7 @@ void TMemberCheck::run_task() {
 
 TMemberCheck::~TMemberCheck() {
     if (m_1C != 0) {
-        ((TWindowBase *)m_1C)->close();
+        TWindow__close((u8 *)m_1C);
         m_1C = 0;
     }
 }
