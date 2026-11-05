@@ -406,6 +406,16 @@ struct TObjPlayer : public TObjChara {
     void clear_header_struct();
     static void set_com_card_window(s32 arg0);
     static s32 is_locally_controlled(void *player);
+    // Tells the server one inventory item went away. Defined in
+    // TObjPlayer_801AF2F0.cpp; the int widths are what the symbol encodes.
+    static void send_6x29_delete_item(void *player, int item_id, int count);
+    // Re-equips the items a saved character was wearing. Defined in
+    // TObjPlayer_801AF2F0.cpp; TObjPlayer_801BCF04.cpp used to declare the
+    // count u8 and the records an s32.
+    static void bind_saved_inventory_equipment(void *player, void *records, int count);
+    // Clears an inventory list in place and hands it back. Defined in
+    // TObjPlayer_801BE778.cpp.
+    static void *init_inventory_list(void *list);
     static TObjPlayer *get_player_data(int index);
     int queue_destruction();
     s32 test_action_mask(s32 arg1);

@@ -1519,7 +1519,6 @@ s32 TObjPlayer__sub_801B4044();
 void send_code50_packet__10TObjPlayerFi(s32 arg0);
 s32 send_code_49_1__10TObjPlayerFi();
 void get_item_record__23TShopJudgmentItemWindowFPv(void *, s32, s32);
-void send_6x29_delete_item__10TObjPlayerFPvii(void *obj, s32 a, s32 b);
 void send_6x21_inter_level_warp(void *obj, s32 value);
 u32 TObjPlayer__sub_801BFFA0(void *);
 int TFontSmallLobby__sub_801C013C(void *p);
@@ -2398,7 +2397,7 @@ void qst_op_wrap_item_with_color() {
     }
     player = get_player_by_client_id(local_client_id);
     if (player != 0) {
-        send_6x29_delete_item__10TObjPlayerFPvii((void *)player, (s32)id, 1);
+        TObjPlayer::send_6x29_delete_item((void *)player, (s32)id, 1);
         ((TItemData *)(&item))->set_wrapped();
         ((TItemData *)(&item))->set_present_color(n);
         if (((TObjPlayer *)player)->can_inventory_accept_item((u8 *)((Item_801EEE68 *)&item)) > 0) {
@@ -2421,7 +2420,7 @@ void qst_op_wrap_item() {
     }
     player = get_player_by_client_id(local_client_id);
     if (player != 0) {
-        send_6x29_delete_item__10TObjPlayerFPvii((void *)player, (s32)id, 1);
+        TObjPlayer::send_6x29_delete_item((void *)player, (s32)id, 1);
         ((TItemData *)(&item))->set_wrapped();
         if (((TObjPlayer *)player)->can_inventory_accept_item((u8 *)((Item_801EEE68 *)&item)) > 0) {
             ((TObjPlayer *)player)->request_inventory_item((TItemData*)((Item_801EEE68 *)&item));
@@ -2461,7 +2460,7 @@ void qst_op_item_delete_noreturn() {
     temp_r31 = qst_args[0];
     ret = get_player_by_client_id(local_client_id);
     if (ret != 0U) {
-        send_6x29_delete_item__10TObjPlayerFPvii((void *)ret, (s32)temp_r31, 1);
+        TObjPlayer::send_6x29_delete_item((void *)ret, (s32)temp_r31, 1);
     }
 }
 

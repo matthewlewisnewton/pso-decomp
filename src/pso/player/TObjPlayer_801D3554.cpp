@@ -19,6 +19,11 @@ extern "C" {
 int TItemList__sub_801D5868(void*, void*);
 void create_drop_nodes__9TItemListFPvPvPvPvi(void *arg0, void *arg1, void *arg2, Rec_801D35FC *arg3, s32 arg4);
 s32 TItemList__sub_801D5854(s32, s32);
+// TItemList::copy_item_data takes no argument: it adds 8 to its own this and
+// tail-calls TItemData::copy_from, whose second parameter arrives in the
+// caller's hands. The original's caller supplies it, so the only declaration
+// that reproduces both the symbol and the extra argument is this one; a real
+// member call cannot set that register. See TItemList_801D57B0.cpp.
 s32 copy_item_data__9TItemListFv(s32, s32);
 }
 

@@ -2029,12 +2029,10 @@ s32 try_send_6x27_use_item(TObjPlayer *player, s32 arg1);
 void rebuild_player_inventory(TObjPlayer *player);
 void assign_inventory_item_ids(void *arg0, TPlyInventoryItem *arg1, s32 arg2);
 void equip_saved_item_if_slot_empty__10TObjPlayerFPvPv(u8 *arg0, u8 *arg1);
-void bind_saved_inventory_equipment__10TObjPlayerFPvPvi(u8 *p, u8 *records, s32 count);
 void handle_6x2B_create_inventory_item(s32 arg0);
 void handle_6x2A_drop_item(void *arg0);
 void handle_6xAC(void *arg0);
 void handle_6x29_delete_inventory_item(void *arg0);
-void send_6x29_delete_item__10TObjPlayerFPvii(void *obj, s32 a, s32 b);
 void * pickup_item__10TObjPlayerFP5TItem(u8 *arg0, u8 *arg1);
 bool is_target_in_facing_cone__10TObjPlayerFPv(Obj_801B92EC *self, Vec_801B92EC *target);
 void handle_6x26_unequip_item(void *arg0);
@@ -2084,7 +2082,6 @@ void TObjPlayer__sub_801BE7E0(void *, s32);
 void TObjPlayer__sub_801BE80C(void *, s32);
 void TObjPlayer__sub_801BE838(void *, s32);
 void TObjPlayer__sub_801BE864(void *, s32);
-void init_inventory_list__10TObjPlayerFPv(void *);
 s32 TObjPlayer__sub_801BE8F4(void *, s32, s32);
 void *TObjPlayer__sub_801BE918(void *a0, int a1, void *a2, void *a3);
 s16 clamp_nested_index__10TObjPlayerFv(void *, int);
@@ -3424,7 +3421,7 @@ s32 TObjPlayer::try_pickup_item() {
         }
         ((s32 (*)(s32))recover_full__10TObjPlayerFPv)(arg0);
         ((FlagWord *)(arg0 + 0x858))->set(4);
-        send_6x29_delete_item__10TObjPlayerFPvii((void *)arg0, owner->get_item_id(), 1);
+        TObjPlayer::send_6x29_delete_item((void *)arg0, owner->get_item_id(), 1);
         return 1;
     }
     return 0;
@@ -5013,7 +5010,7 @@ Obj_801B4FD8 *init_player_join_record(Obj_801B4FD8 *self) {
     init_player_telepipe_record(self->f78);
     __ct__8FlagWordFv((self->f94));
     TObjPlayer__sub_801BF660(self->f98);
-    init_inventory_list__10TObjPlayerFPv(self->f13C);
+    TObjPlayer::init_inventory_list(self->f13C);
     self->f0 = 0xFFFF;
     self->f2 = 0;
     self->f4 = 0;
@@ -6016,7 +6013,7 @@ void send_6x28_feed_mag(void *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-void TWindowSubMag::feed_mag(void* p, void* a1, void* a2) { ((int (*)(void*))send_6x28_feed_mag)(p); ((int (*)(void*, void*, void*))send_6x29_delete_item__10TObjPlayerFPvii)(p, a2, (void*)1); }
+void TWindowSubMag::feed_mag(void* p, void* a1, void* a2) { ((int (*)(void*))send_6x28_feed_mag)(p); ((int (*)(void*, void*, void*))&TObjPlayer::send_6x29_delete_item)(p, a2, (void*)1); }
 
 void handle_6x27_use_item(s32 arg0) {
     Pkt_801B7EB8 pkt;
@@ -6068,14 +6065,14 @@ s32 try_send_6x27_use_item(TObjPlayer *player, s32 arg1) {
 void rebuild_player_inventory(TObjPlayer *player) {
     Buf_801B802C b;
     if (player->inventory_objects != NULL) {
-        init_inventory_list__10TObjPlayerFPv(&b);
+        TObjPlayer::init_inventory_list(&b);
         b.n = player->query_state_if_present(b.ents);
         player->inventory_objects->destroy_subobjects(player);
         player->inventory_objects->queue_destruction();
         player->inventory_objects = NULL;
         player->create_inventory();
         assign_inventory_item_ids(player, b.ents, b.n);
-        bind_saved_inventory_equipment__10TObjPlayerFPvPvi((u8 *)player, (u8 *)b.ents, b.n);
+        TObjPlayer::bind_saved_inventory_equipment(player, b.ents, b.n);
     }
 }
 
@@ -6106,13 +6103,13 @@ void equip_saved_item_if_slot_empty__10TObjPlayerFPvPv(u8 *arg0, u8 *arg1) {
     }
 }
 
-void bind_saved_inventory_equipment__10TObjPlayerFPvPvi(u8 *p, u8 *records, s32 count) {
+void TObjPlayer::bind_saved_inventory_equipment(void *p, void *records, int count) {
     s32 i;
     if (records != NULL) {
         ((TObjPlayer *)p)->set_action_provider_variant((s16)(TObjPlayer__sub_801C2114()));
         for (i = 0; i < count; i++) {
-            equip_saved_item_if_slot_empty__10TObjPlayerFPvPv(p, records);
-            records += 0x1C;
+            equip_saved_item_if_slot_empty__10TObjPlayerFPvPv((u8 *)p, (u8 *)records);
+            records = (u8 *)records + 0x1C;
         }
         if (is_current_area_item_enabled() == 0) {
             ((TObjPlayer *)p)->set_action_provider_variant((s16)(TObjPlayer__sub_801C2114()));
@@ -6185,7 +6182,7 @@ void TObjPlayer::request_inventory_item(TItemData* item) {
 }
 
 extern "C" {
-int TShopJudgmentItemWindow::get_item_record(void* p) { return ((int (*)(void*))send_6x29_delete_item__10TObjPlayerFPvii)(p); }
+int TShopJudgmentItemWindow::get_item_record(void* p) { return ((int (*)(void*))&TObjPlayer::send_6x29_delete_item)(p); }
 
 #pragma push
 #pragma opt_propagation off
@@ -6195,7 +6192,7 @@ s32 TObjPlayer::try_add_sale_meseta(s32 arg1, s32 arg2, s32 arg3) {
         return 0;
     }
     ((TObjPlayer *)((Player_801B855C *)this))->add_meseta((s32)arg2);
-    ((void (*)(void *, s32, s32))send_6x29_delete_item__10TObjPlayerFPvii)(((Player_801B855C *)this), arg1, arg3);
+    ((void (*)(void *, s32, s32))&TObjPlayer::send_6x29_delete_item)(((Player_801B855C *)this), arg1, arg3);
     return 1;
 }
 #pragma pop
@@ -6422,7 +6419,7 @@ void handle_6x29_delete_inventory_item(void *arg0) {
     }
 }
 
-void send_6x29_delete_item__10TObjPlayerFPvii(void *obj, s32 a, s32 b) {
+void TObjPlayer::send_6x29_delete_item(void *obj, int a, int b) {
     Cmd_801B8DE8 cmd;
     if (((TObjPlayer *)obj)->is_volopt_phase_final() != 0) {
         return;

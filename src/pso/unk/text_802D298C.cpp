@@ -25,7 +25,6 @@ RecoveredGlobal_802D298C_TLobby__data_80540BD0 TLobby__trade_window_state;
 u8 *TLobby__sub_802D298C(void);
 u8 *TLobby__sub_802D299C(void);
 s32 *get_trade_window_state(void);
-void send_6x29_delete_item__10TObjPlayerFPvii(void *obj, s32 a, s32 b);
 void *get_player_by_client_id(s32 i);
 s32 check_player_action_allowed();
 void remove_list_entry_by_id(s32 arg0);
@@ -124,7 +123,7 @@ void TLobby::apply_trade_items() {
                                 remove_list_entry_by_id(id);
                                 flag = 1;
                             }
-                            send_6x29_delete_item__10TObjPlayerFPvii((void *)player, (s32)id, (s32)count);
+                            TObjPlayer::send_6x29_delete_item((void *)player, (s32)id, (s32)count);
                         }
                     }
                 }
