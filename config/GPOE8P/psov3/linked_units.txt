@@ -392,6 +392,7 @@ pso/boss/TUnk_80484A94.cpp
 pso/boss/TUnk_80484AFC.cpp
 pso/camera/CreationCamera.cpp
 pso/effect/TDPBShower.cpp
+pso/effect/TEF_LensFlare.cpp
 pso/effect/TEffClitical.cpp
 pso/effect/TEffGuard.cpp
 pso/effect/TEffHit.cpp
@@ -1171,6 +1172,8 @@ pso/misc/TLobby_803DE778.cpp
 pso/misc/TLobby_803DF1FC.cpp
 pso/misc/TLobby_803E2D50.cpp
 pso/misc/TLobby_803F8794.cpp
+pso/misc/TLobby_804048E8.cpp
+pso/misc/TLobby_80428374.cpp
 pso/misc/TLockOnCursor.cpp
 pso/misc/TLockOnCursor_8013D91C.cpp
 pso/misc/TLockOnCursor_8013E0D0.cpp
@@ -2246,6 +2249,7 @@ pso/player/TObjPlayer_80109344.cpp
 pso/player/TObjPlayer_8010A050.cpp
 pso/player/TObjPlayer_8010ECD0.cpp
 pso/player/TObjPlayer_80116578.cpp
+pso/player/TObjPlayer_80117DD8.cpp
 pso/player/TObjPlayer_8011B86C.cpp
 pso/player/TObjPlayer_8011BADC.cpp
 pso/player/TObjPlayer_8011C000.cpp

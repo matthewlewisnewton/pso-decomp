@@ -15,15 +15,19 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (regenerated on this branch after merging main `39136ddd5`, 2026-11-04)
+## Summary
+
+Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
+after merging main `915508a9d` (2026-11-04). Assembly is counted as functions;
+the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
 |---|---:|---:|
-| Assembly (`asm` + `orig_asm` include) | 5 functions | 3 |
+| Assembly (`asm` + `orig_asm` include) | 5 functions (9 source lines) | 3 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 71 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,864 | 885 |
-| Per-unit compiler overrides in `configure.py` | 144 | 144 |
+| CodeWarrior pragmas (excluding push/pop) | 5,865 | 886 |
+| Per-unit compiler overrides in `configure.py` | 145 | 145 |
 | Approved regressions | 0 on main, 1 pending (#291) | |
 
 ## Rule for assembly
@@ -37,11 +41,9 @@ asm always has an entry in this register.
 
 | File | Function | What | Why | Port should |
 |---|---|---|---|---|
-| `src/musyx/runtime/Chorus/chorus_fx.c` | `do_src1`, `do_src2` | `asm` body from `orig_asm` include | Library code shipped as assembly; covered by the CONTRIBUTING `orig_asm` rule for vendor assembly. No specific evidence doc. | Write scalar C fallback (none exists yet); MusyX upstream C sources are a reference. |
-| `src/musyx/runtime/StdReverb/reverb.c` | `DoCrossTalk`, `HandleReverb` | `asm` body from `orig_asm` include | Same as above. | Same: scalar C fallback needed (none exists yet). |
+| `src/musyx/runtime/Chorus/chorus_fx.c` | `do_src1`, `do_src2` | `asm` body from `orig_asm` include under `#ifdef __MWERKS__`; scalar C in the `#else` | Vendor MusyX hand-written assembly. Matt approved keeping it on 2026-11-04 with a scalar fallback ([#316](https://github.com/matthewlewisnewton/pso-decomp/pull/316)). Evidence: [musyx-asm-fallbacks.md](evidence/musyx-asm-fallbacks.md). | Compile the scalar C fallback. |
+| `src/musyx/runtime/StdReverb/reverb.c` | `DoCrossTalk`, `HandleReverb` | Same: MWCC assembly, scalar C fallback | Same approval and evidence as the chorus pair ([#316](https://github.com/matthewlewisnewton/pso-decomp/pull/316)). | Compile the scalar C fallback. |
 | `src/pso/unk/text_803E2D70.cpp` | `transform_chunk_vertices_pos_normal` | hand-written `asm void` under `#ifdef __MWERKS__` | One-time asm exception approved by Matt on 2026-11-04 ([#281](https://github.com/matthewlewisnewton/pso-decomp/pull/281)): SDK `PSMTXROMultVecArray`-style paired-single code (`psq_l`/`ps_madds*`/`psq_stu`) that MWCC cannot emit from C; other GameCube decomps keep it as asm. Evidence: [docs/evidence/paired-single-sdk-asm.md](evidence/paired-single-sdk-asm.md). | Use the scalar C++ `#else` fallback that ships with it. |
-
-The four MusyX entries predate the scalar-fallback rule and have **no C fallback**; `transform_chunk_vertices_pos_normal` has one.
 
 ## 2. MWCC intrinsics
 
@@ -67,9 +69,9 @@ etc. or their port equivalents) instead of the fixed address.
 
 ## 4. CodeWarrior pragmas
 
-5,864 pragmas in 885 files; per-file table in the generated file. Main kinds:
+5,865 pragmas in 886 files; per-file table in the generated file. Main kinds:
 `dont_inline` 1153, `inline_depth` 1045, `fp_contract` 931, `auto_inline` 844,
-`opt_common_subs` 624, `scheduling` 262, `opt_propagation` 239,
+`opt_common_subs` 624, `scheduling` 262, `opt_propagation` 240,
 `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56,
 `defer_codegen` 50, `pack` 46. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
@@ -86,9 +88,15 @@ small float differences without FMA).
 |---|---|---|---|---|
 | `src/pso/boss/TBoss6Type2_802BE588.cpp` | `TBoss6Type2::sub_802BEC28` | one `#pragma opt_common_subs off` | Approved by Matt on 2026-11-04. Without it, common-subexpression elimination hoists the load of `lbl_805DE4E0` (0.0f) from `.text+0x6ec` to `.text+0x6c8` and renumbers the int-to-float temps, so the function is the same length and not the same bytes. Writing the ratio as `1.0f - (float)m_460 / (float)unk_45C` clamped to [0, 1] reproduces the instructions, but MWCC pools those literals as new local `.sdata2` instead of `R_PPC_EMB_SDA21` to `lbl_805DE4E4` / `lbl_805DE4E0` (the unclaimed blob `0x805DE4D8..0x805DE4F8`). `fp_contract on` is not part of this exception: removing it leaves the object identical. | Drop the pragma. The value is that clamped ratio; a port does not need MWCC's load schedule. |
 
+### Approved: `TEF_LensFlare::render` ([#272](https://github.com/matthewlewisnewton/pso-decomp/pull/272))
+
+| File | Function | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/effect/TEF_LensFlare.cpp` | `TEF_LensFlare::render` | one scoped `#pragma opt_propagation off` | MWCC propagation needed for the exact receiver/descriptor cursor codegen. Approved by Matt 2026-11-04. | Drop it. |
+
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-144 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+145 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
@@ -105,6 +113,13 @@ Port should: build everything with one modern compiler. Only `-fp_contract on`
 (float results) and deferred emission order (no semantic effect) need thought;
 nothing else changes behaviour.
 
+`pso/effect/TEF_LensFlare.cpp` (this change) sets `-fp_contract on` because the
+recovered renderer contracts its attenuation and displacement multiply-adds
+into `fnmsubs`/`fmadds`. The same unit places `lbl_80438E40` with
+`__declspec(section ".rodata")` so the original `{0,0,-1}` vector symbol stays
+in `.rodata`. Port: keep FMA or accept small float differences; a normal
+`const` is enough for the vector.
+
 ## 6. Approved regressions
 
 None on main.
@@ -120,7 +135,7 @@ entry when the PR merges.
 | [#285](https://github.com/matthewlewisnewton/pso-decomp/pull/285) | `static asm void pad_03_8042E9FC_text` via `orig_asm` include (`src/pso/unk/text_8042E9FC.cpp`) | PR body: 5-word stranded epilogue; 0/60 C probes across 20 compilers reach it. **No approval recorded and no scalar fallback**; it needs one under the rule above. |
 | [#296](https://github.com/matthewlewisnewton/pso-decomp/pull/296) | `scheduling` ×5, `peephole`, `optimize_for_size` pragmas | Reason not recorded. Drop in a port. |
 | [#250](https://github.com/matthewlewisnewton/pso-decomp/pull/250) | `fp_contract` ×3 | Reason not recorded. |
-| [#303](https://github.com/matthewlewisnewton/pso-decomp/pull/303), [#295](https://github.com/matthewlewisnewton/pso-decomp/pull/295), [#289](https://github.com/matthewlewisnewton/pso-decomp/pull/289), [#272](https://github.com/matthewlewisnewton/pso-decomp/pull/272), [#225](https://github.com/matthewlewisnewton/pso-decomp/pull/225), [#222](https://github.com/matthewlewisnewton/pso-decomp/pull/222), [#215](https://github.com/matthewlewisnewton/pso-decomp/pull/215), [#187](https://github.com/matthewlewisnewton/pso-decomp/pull/187), [#128](https://github.com/matthewlewisnewton/pso-decomp/pull/128) | 1 to 4 inlining/optimization pragmas each | Reason not recorded. Drop in a port. |
+| [#303](https://github.com/matthewlewisnewton/pso-decomp/pull/303), [#295](https://github.com/matthewlewisnewton/pso-decomp/pull/295), [#289](https://github.com/matthewlewisnewton/pso-decomp/pull/289), [#225](https://github.com/matthewlewisnewton/pso-decomp/pull/225), [#222](https://github.com/matthewlewisnewton/pso-decomp/pull/222), [#215](https://github.com/matthewlewisnewton/pso-decomp/pull/215), [#187](https://github.com/matthewlewisnewton/pso-decomp/pull/187), [#128](https://github.com/matthewlewisnewton/pso-decomp/pull/128) | 1 to 4 inlining/optimization pragmas each | Reason not recorded. Drop in a port. |
 | [#240](https://github.com/matthewlewisnewton/pso-decomp/pull/240) | Not scanned | Diff exceeds GitHub's 300-file limit; scan locally after it merges. |
 | [#290](https://github.com/matthewlewisnewton/pso-decomp/pull/290) | `opt_common_subs off` on `update_spawn_timer` in `TObjBoss2Tunnel_802F2070.cpp`. Unit `-fp_contract on` for `TObjBoss2Tunnel.cpp`, `_8003B138`, and `_802F2070`. | Not approved. The timer loads `lbl_805DECB4` into f0 before `m_58`/`m_5c`. Without the pragma those loads are f2/f1/f0 (8 instruction diffs) whether the threshold is a local, a compound assignment, or a direct compare. The ctor's `opt_common_subs` and `opt_loop_invariants` groups are gone: writing the body through one `TUnk_804E4B3C *` matches without them. Unit-wide `-opt nocse` drops `spawn_segment_row_a/b` and `advance_effect_timer` to 78%. `-fp_contract on` replaces the per-function contraction pragmas and keeps those units byte-exact. |
 
