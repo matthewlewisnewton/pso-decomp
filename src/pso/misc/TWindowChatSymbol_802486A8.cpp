@@ -58,8 +58,8 @@ extern s32 lbl_804CE7D0[];
 void *TWindowChatSymbol::destroy(s16 arg1) {
     if (this != NULL) {
         *(s32 **)((s8 *)this + 0x18) = lbl_804CE7D0;
-        if (this->m_20 != NULL) { TWindow__close((u8 *)this->m_20); this->m_20 = 0; }
-        if (*(void * *)&this->unk_1C != NULL) { TWindow__close((u8 *)(*(void * *)&this->unk_1C)); *(s32 *)&this->unk_1C = 0; }
+        if (*(void **)&this->m_20 != NULL) { TWindow__close(*(u8 **)&this->m_20); *(void **)&this->m_20 = 0; }
+        if (*(void * *)&this->frame_pad_1c != NULL) { TWindow__close((u8 *)(*(void * *)&this->frame_pad_1c)); *(s32 *)&this->frame_pad_1c = 0; }
         __dt__7TObjectFv(this, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(this);
