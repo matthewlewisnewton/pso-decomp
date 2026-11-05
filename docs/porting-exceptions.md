@@ -160,6 +160,7 @@ or `other: <what>`); the fork PR that brought it in; and the tag
 
 | Function/symbol | Unit | File | Upstream PR | Cheat type | Fork PR | Tag |
 |---|---|---|---|---|---|---|
+| `LaunchDol` | `pso/unk/text_8042E8C4.cpp` | `src/pso/unk/text_8042E8C4.cpp` | [#172](https://github.com/zeroz41/pso-decomp/pull/172) | asm | [#350](https://github.com/matthewlewisnewton/pso-decomp/pull/350) | upstream catch-up, rewrite later |
 
 ## Pending in open PRs
 
