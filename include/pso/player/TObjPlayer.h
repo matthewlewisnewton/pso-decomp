@@ -197,7 +197,8 @@ struct TObjPlayer : public TObjChara {
     void* m_64c;
     u8 _pad650[0x8];
     void* m_658;
-    u8 _pad65C[0x10];
+    s32 intra_map_area;
+    Vec intra_map_pos;
     void* m_66c;
     u8 _pad670[0x8];
     void* m_678;
@@ -1619,6 +1620,8 @@ struct TObjPlayer : public TObjChara {
 typedef char PlayerActionPaletteSize[(sizeof(TObjPlayer::ActionPalette) == 0x24) ? 1 : -1];
 typedef char PlayerActionPaletteBanks[(offsetof(TObjPlayer::ActionPalette, bindings) == 4) ? 1 : -1];
 typedef char PlayerPaletteModifierOffset[(offsetof(TObjPlayer, photon_blast_gauge) == 0x4AC) ? 1 : -1];
+typedef char PlayerIntraMapAreaOffset[(offsetof(TObjPlayer, intra_map_area) == 0x65C) ? 1 : -1];
+typedef char PlayerIntraMapPosOffset[(offsetof(TObjPlayer, intra_map_pos) == 0x660) ? 1 : -1];
 typedef char PlayerActionPalettesOffset[(offsetof(TObjPlayer, action_palettes) == 0x500) ? 1 : -1];
 typedef char PlayerStateAfterPalettes[(offsetof(TObjPlayer, m_550) == 0x550) ? 1 : -1];
 typedef char PlayerHairSelectorOffset[(offsetof(TObjPlayer, m_878) == 0x878) ? 1 : -1];

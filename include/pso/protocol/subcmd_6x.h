@@ -150,6 +150,12 @@ struct G_CastTechnique_6x47 {
  void send();
 };
 
+// Copies an incoming 6x47 buffer into a local packet: the client header,
+// the technique word at +4, and the ten targets. dst is the typed packet;
+// src is the untyped buffer the dispatcher hands the handler. extern "C"
+// keeps the unmangled DOL symbol.
+extern "C" G_CastTechnique_6x47 *TObjPlayer__sub_801D21CC(G_CastTechnique_6x47 *dst, void *src);
+
 struct G_ChangePlayerHP_6x2F {
  struct G_ClientIDHeader header;
  u32 type;
