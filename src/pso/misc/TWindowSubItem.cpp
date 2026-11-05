@@ -142,7 +142,6 @@ void populate_sub_item_list(Win_8027ABFC *arg0);
 u32 get_slot_value__10TObjPlayerFPvi(s32, s8);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, s32);
 s32 TWindowShortListCtrl__check_controller_button(void *, s32);
-u32 is_action_active__10TObjPlayerFv(s32);
 void decrement_clamped(void *, s32);
 
 s32 __nw__7TObjectFUl(s32);
@@ -682,7 +681,7 @@ void TWindowSubItem::run_task() {
             }
             break;
         case 22:
-            if (is_action_active__10TObjPlayerFv(p) == 0) {
+            if ((u32)((TObjPlayer *)p)->is_action_active() == 0U) {
                 F(u8, 0x1C) = 1;
             }
             break;

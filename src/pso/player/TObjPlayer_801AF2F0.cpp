@@ -2072,7 +2072,6 @@ void * update_battle_controller__10TObjPlayerFv();
 s32 check_flag_4__10TObjPlayerFv(void *);
 void clear_flag_4000_callback__10TObjPlayerFv(void);
 int set_battle_flag__10TObjPlayerFl(void*, int);
-u32 is_action_active__10TObjPlayerFv();
 void TObjPlayer__sub_801BE784(void *, s32);
 s32 get_battle_mode__10TObjPlayerFv(void *);
 void TObjPlayer__sub_801BE794(void *, s32);
@@ -5943,7 +5942,7 @@ s32 can_destroy_with_parents__10TObjPlayerFUi(u32 arg0) {
 }
 
 s32 TWindowSubItem::is_usable(s32 arg0) {
-    if ((is_action_active__10TObjPlayerFv() != 0U) || (((TObjPlayer *)arg0)->test_action_mask(0x43001E) == 0) || (obj_testFlags30__14TObjCollidableFUl(arg0, 0x20) != 0) || (check_player_flag1__6TLobbyFv(arg0) != 0)) {
+    if (((u32)((TObjPlayer *)arg0)->is_action_active() != 0U) || (((TObjPlayer *)arg0)->test_action_mask(0x43001E) == 0) || (obj_testFlags30__14TObjCollidableFUl(arg0, 0x20) != 0) || (check_player_flag1__6TLobbyFv(arg0) != 0)) {
         return 0;
     }
     return 1;
