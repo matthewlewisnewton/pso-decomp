@@ -444,7 +444,7 @@ s32 TBoss6Mine__ct(s32 arg0, s32 parent, Boss6MineSpawn *arg2) {
     *(s32 *)((s8 *)THIS + 0x2A8) = 0;
     ((TObjEnemy *)THIS)->bind_enemy_combat_stats((u8 *)(get_battle_base_stats(0x2D)), (u8 *)(get_battle_attack_params(0x2D)), (u8 *)(get_battle_resistance_params(0x2D)));
     ((TBoss3Volopt *)THIS)->referenceHp = ((TBoss3Volopt *)THIS)->hp;
-    ((TBoss3Volopt *)THIS)->reset_photon_effect();
+    ((TObjEnemy *)THIS)->register_by_id();
     ((TObjEnemy *)THIS)->set_param(0);
     ((TBoss6Mine *)THIS)->rise_delay = (s32)(136.0f * TBoss6Mine::next_random_float((s32 *)(THIS + 0x388)) + 7.0f);
     *(s32 *)((s8 *)THIS + 0x3A4) = 0x96 - ((TBoss6Mine *)THIS)->rise_delay;

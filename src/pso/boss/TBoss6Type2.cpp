@@ -3235,7 +3235,7 @@ s32 TBoss6Type2__ct(s32 arg0_, s32 parent, s32 arg2_) {
     *(s32 *)((s8 *)arg0 + 0x2A8) = 0;
     ((TObjEnemy *)arg0)->bind_enemy_combat_stats((u8 *)(get_battle_base_stats(0x2C)), (u8 *)(get_battle_attack_params(0x2C)), (u8 *)(get_battle_resistance_params(0x2C)));
     *(s16 *)((s8 *)arg0 + 0x33E) = *(s32 *)((s8 *)arg0 + 0x4F8) = *(s16 *)((s8 *)arg0 + 0x32C);
-    ((TBoss3Volopt *)arg0)->reset_photon_effect();
+    ((TObjEnemy *)arg0)->register_by_id();
     ((TObjEnemy *)arg0)->set_param(0x4E);
     id = (s8)((u8 *)arg2)[0x44] % 4;
     ((TObjChara *)arg0)->add_flags_2e4(TBoss6Type2__initial_actor_flag_masks[id]);

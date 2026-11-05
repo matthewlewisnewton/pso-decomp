@@ -331,7 +331,7 @@ TBoss6Type1::TBoss6Type1(TObject *parent, Boss6Type1Spawn *spawn) : TObjEnemy(pa
     target = 0;
     bind_enemy_combat_stats((u8 *)(get_battle_base_stats(0x2B)), (u8 *)(get_battle_attack_params(0x2B)), (u8 *)(get_battle_resistance_params(0x2B)));
     referenceHp = hp;
-    ((TBoss3Volopt *)this)->reset_photon_effect();
+    register_by_id();
     set_param(0x4E);
     TBoss6Type1__sub_802B854C(this);
     draw_callback_lists[1] = (ModelNodePositionCapture *)ModelNodePositionCapture::create((ModelNodePositionEntry *)(boss6_type1_model_node_desc), &node_positions_578[0].v);

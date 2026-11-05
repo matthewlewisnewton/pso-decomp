@@ -379,14 +379,14 @@ s32 TBoss3Volopt::get_field_3e0() {
     return m_3e0;
 }
 
-void TBoss3Volopt::reset_photon_effect() {
-    ((TObjPlayer *)this)->register_object_by_id();
+void TObjEnemy::register_by_id() {
+    register_object_by_id();
 }
 
 TBoss3Volopt::TBoss3Volopt(void *set_data) : TObjEnemyCustom(tl_04) {
     m_name = TBoss3Volopt_name;
     apply_set_data(set_data);
-    reset_photon_effect();
+    register_by_id();
     move_to_arena(0);
     VecCopy(&position, VecCopy((Vec *)&body_center_position, &boss3_volopt_spawn_pos));
     actorFlags |= 0x06040000;
