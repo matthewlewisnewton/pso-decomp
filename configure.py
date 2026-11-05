@@ -468,6 +468,11 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/enemy/TObjEneEpsilonGuard_8035F5C8.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     # Gee native tables require deferred generation and reverse definitions.
     "pso/enemy/TObjEneMe1Gee.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
+    # Upstream #190 commit 9c4e9ea1d: TObjEneDubchik is written from its last
+    # function back. -inline off,deferred emits that order (the vtable lands
+    # before the switch tables). -str reuse,readonly keeps the motion-name
+    # pool in .rodata. These are upstream's own flags for this unit.
+    "pso/enemy/TObjEneDubchik.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-str reuse,readonly")},
     # Native private header sections preserve initializer and helper emission order.
     "pso/enemy/TObjEnePanarms.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sdata 4", "-sym on")},
     "pso/enemy/TObjEneDelDepth.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
@@ -579,6 +584,9 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Unit -fp_contract on replaces the per-function pragmas. Precedent:
     # https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209
     "pso/misc/TWindowKeyBoardSoft_8024E68C.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
+    # Upstream #190: this file is written in reverse so deferred codegen emits
+    # address order, and the readonly string pool places the constants.
+    "pso/misc/TNpcPlayer.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-str reuse,readonly")},
     "pso/boss/TBoss7LaserLight.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
     # Position jitter and the tentacle curve contract mul-add to fmadds, so
     # this unit is built with -fp_contract on. -inline off,deferred emits
