@@ -155,7 +155,6 @@ entry when the PR merges.
 | [#250](https://github.com/matthewlewisnewton/pso-decomp/pull/250) | `fp_contract` ×3 | Reason not recorded. |
 | [#303](https://github.com/matthewlewisnewton/pso-decomp/pull/303), [#289](https://github.com/matthewlewisnewton/pso-decomp/pull/289), [#225](https://github.com/matthewlewisnewton/pso-decomp/pull/225), [#222](https://github.com/matthewlewisnewton/pso-decomp/pull/222), [#215](https://github.com/matthewlewisnewton/pso-decomp/pull/215), [#187](https://github.com/matthewlewisnewton/pso-decomp/pull/187), [#128](https://github.com/matthewlewisnewton/pso-decomp/pull/128) | 1 to 4 inlining/optimization pragmas each | Reason not recorded. Drop in a port. |
 | [#240](https://github.com/matthewlewisnewton/pso-decomp/pull/240) | Not scanned | Diff exceeds GitHub's 300-file limit; scan locally after it merges. |
-| [#295](https://github.com/matthewlewisnewton/pso-decomp/pull/295) | **Proposed, not approved.** One pointer sentinel: `quest_download_no_segment` / `quest_download_no_token`, each `(T *)-1`, in `TQuestVmDownLoadServer_803E6970.cpp` | The search failure is the all-bits-one pointer: `addis r0,rN,1` / `cmplwi r0,0xffff` and `li r3,-1` at `sub_803E9A74`. An `s32 == -1` test emits `cmpwi` instead, so the word is not an integer field. There is no object at that address. Null-pointer arithmetic and an empty base were rejected. Matt to decide; this row does not approve the cast. |
 
 The scan covers source lines only; `configure.py` overrides added by PRs show up
 in the generated table once merged.
