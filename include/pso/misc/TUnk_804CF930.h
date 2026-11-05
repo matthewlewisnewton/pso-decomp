@@ -3,6 +3,7 @@
 #include "types.h"
 #include <stddef.h>
 #include "pso/misc/TUnk_804CF918.h"
+#include "pso/misc/TWindowDrawContext.h"
 
 // Init record passed to init_from. The layout walker advances 0x24 bytes
 // per gauge entry (kind, then the fields copied below).
@@ -36,7 +37,8 @@ public:
 
     // void* keeps the mangled name init_from__13TUnk_804CF930FPvi.
     void *init_from(void *src, int arg2);
-    void draw_status_gauge_bar(void *, void *, f32, f32);
+    // TWindowDrawContext* is the name draw_status_gauge_bar__13TUnk_804CF930FP18TWindowDrawContextPvff.
+    void draw_status_gauge_bar(TWindowDrawContext *, void *, f32, f32);
     void sub_80256BDC(s16);
     void *destroy(s16);
 };
