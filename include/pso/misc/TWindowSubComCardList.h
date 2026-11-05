@@ -6,7 +6,7 @@
 
 struct TWindowSubComCardList : public TWindowMenu {
     virtual ~TWindowSubComCardList();
-    void draw_card_list_selection(u8 *);
+    void draw_card_list_selection(TWindowDrawContext *);
     s16 get_field_72();
     s16 get_selected_index();
     void update_layout_height(f32);
