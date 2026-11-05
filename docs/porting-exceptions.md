@@ -26,7 +26,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 7 functions (13 source lines) | 4 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 71 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,852 | 884 |
+| CodeWarrior pragmas (excluding push/pop) | 5,853 | 884 |
 | Per-unit compiler overrides in `configure.py` | 149 | 149 |
 | Approved regressions | 0 | 0 |
 
@@ -70,9 +70,9 @@ etc. or their port equivalents) instead of the fixed address.
 
 ## 4. CodeWarrior pragmas
 
-5,852 pragmas in 884 files; per-file table in the generated file. Main kinds:
+5,853 pragmas in 884 files; per-file table in the generated file. Main kinds:
 `dont_inline` 1151, `inline_depth` 1043, `fp_contract` 924, `auto_inline` 842,
-`opt_common_subs` 624, `scheduling` 262, `opt_propagation` 240,
+`opt_common_subs` 625, `scheduling` 262, `opt_propagation` 240,
 `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56,
 `defer_codegen` 50, `pack` 46. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
@@ -100,6 +100,12 @@ small float differences without FMA).
 | File | Function | What | Why | Port should |
 |---|---|---|---|---|
 | `src/pso/misc/TWindowKeyBoardSoft_8024E68C.cpp` | `TWindowKeyBoardSoft::set_open_tick` @ `0x8024E7B8` (size `0x80`) | one `#pragma opt_common_subs off` | Approved by Matt on 2026-11-04 4:38 PM PT. Without it, common-subexpression elimination swaps the two SDA21 constant loads at `set_open_tick+0x3c` / `+0x44`: matched order is `lfs f2, lbl_805DCC88@sda21` then `lfs f3, lbl_805DCC84@sda21` (`0x8024E7F4` / `0x8024E7FC`); with CSE on those loads swap (`f2`/`f3` renumbered) so the function is the same length and not the same bytes. The float math (`(lbl_805DCC88 + (f32)tick) / lbl_805DCC88` then `* lbl_805DCC84`) is otherwise identical. Unit `-fp_contract on` is separate (section 5) and does not fix this load order. | Drop the pragma. A port does not need MWCC's CSE schedule for these two loads. |
+
+### Approved: `TLobby__sub_803FCF44` ([#298](https://github.com/matthewlewisnewton/pso-decomp/pull/298))
+
+| File | Function | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/misc/TLobby_803FC178.cpp` | `TLobby__sub_803FCF44` @ `0x803FCF44` (size `0x148`) | one scoped `#pragma opt_common_subs on` | Approved by Matt 2026-11-04 6:14 PM PT. This avetcp unit is compiled `-opt nocse`, so common-subexpression elimination is off for the file. The original reuses common subexpressions in this one function: two direct `lis`/`addi` of `lbl_805C02D0` (`0x803FD034` and `0x803FD058`) and a length clamp of `lhz` / `extsh` / `addi r0,r4,0` (`0x803FD03C`–`0x803FD04C`), frame 32. Without the pragma those reads become one hoisted `...bss.0` base (frame 32→40, saves r29) and the clamp folds to `lha`. The function is then 83.24% (objdiff instruction match 82.65%). `#pragma opt_propagation off` does not change that. `-inline` (`auto`, `deferred`, `auto,deferred`, `noauto`, `on`, `off`, `all`) and `-fp_contract on`/`off` leave the builder at 82.65%, and the auto modes regress other exact functions. Unit-wide `-opt commonsubs` drops other functions in the file. | Drop the pragma. The value is the clamped copy into the challenge buffer; a port does not need MWCC's addressing. |
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
@@ -176,6 +182,36 @@ plain source: `free_all` (no copied loop-counter alias) and
 ## 6. Approved regressions
 
 None on main.
+
+## 7. Upstream catch-up (rewrite later)
+
+Matt, 2026-11-04 6:55 PM PT: "Yes, allow the one-time upstream asm exception with
+those guardrails." Code taken unchanged from upstream zeroz41/pso-decomp #167-#191
+may keep upstream's asm and other patterns the fork otherwise bans, so the fork can
+catch up quickly. Each instance gets one row here; the C++ rewrite comes later.
+Guardrails: the code is upstream's own (cite the upstream PR), check_pr passes with
+0 matched/linked regressions, and new fork code still follows the full rules.
+
+Matt, 2026-11-04 ~8:17 PM PT, on this PR: "Allow #298's as upstream catch-up with
+register rows." The rows below are the instances kept under that decision.
+
+Columns (all required; `tools/list_port_exceptions.py --check` validates them):
+function/symbol; unit; file (repo path); upstream PR (#167-#191); cheat type (`asm`,
+`raw offset cast`, `extern "C" mangled name`, `steering pragma`, `shadow struct`,
+or `other: <what>`); the fork PR that brought it in; and the tag
+`upstream catch-up, rewrite later`. List and count them with
+`python3 tools/list_port_exceptions.py --upstream-catchup`; check_pr prints the count.
+
+| Function/symbol | Unit | File | Upstream PR | Cheat type | Fork PR | Tag |
+|---|---|---|---|---|---|---|
+| `update_connection_state__6TLobbyFP13Self_803FD74C` (extern "C" declaration) | `pso/misc/TLobby_803FAEA0.cpp` | `src/pso/misc/TLobby_803FAEA0.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | extern "C" mangled name | [#298](https://github.com/matthewlewisnewton/pso-decomp/pull/298) | upstream catch-up, rewrite later |
+| `TLobby__sub_803FB6A0`: call `update_connection_state__6TLobbyFP13Self_803FD74C(state, &lbl_805BFF68)` | `pso/misc/TLobby_803FAEA0.cpp` | `src/pso/misc/TLobby_803FAEA0.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | extern "C" mangled name | [#298](https://github.com/matthewlewisnewton/pso-decomp/pull/298) | upstream catch-up, rewrite later |
+| `TLobby::dispatch_received_packet`: `(Self_803FD74C *)((u8 *)temp_r30_4 + 0xA0)` | `pso/misc/TLobby_803FC178.cpp` | `src/pso/misc/TLobby_803FC178.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | raw offset cast | [#298](https://github.com/matthewlewisnewton/pso-decomp/pull/298) | upstream catch-up, rewrite later |
+| `TLobby__sub_803FC728`: `(Self_803FD74C *)(sub + 0xA0)` (first call) | `pso/misc/TLobby_803FC178.cpp` | `src/pso/misc/TLobby_803FC178.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | raw offset cast | [#298](https://github.com/matthewlewisnewton/pso-decomp/pull/298) | upstream catch-up, rewrite later |
+| `TLobby__sub_803FC728`: `(Self_803FD74C *)(sub + 0xA0)` (second call) | `pso/misc/TLobby_803FC178.cpp` | `src/pso/misc/TLobby_803FC178.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | raw offset cast | [#298](https://github.com/matthewlewisnewton/pso-decomp/pull/298) | upstream catch-up, rewrite later |
+| `TLobby__sub_80402CE0`: `*(u8 *)((u8 *)g + 0x15A)` | `pso/misc/TLobby_803FC178.cpp` | `src/pso/misc/TLobby_803FC178.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | raw offset cast | [#298](https://github.com/matthewlewisnewton/pso-decomp/pull/298) | upstream catch-up, rewrite later |
+| `TLobby__sub_80402CE0`: `*(u8 *)((u8 *)g + 0x15B)` | `pso/misc/TLobby_803FC178.cpp` | `src/pso/misc/TLobby_803FC178.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | raw offset cast | [#298](https://github.com/matthewlewisnewton/pso-decomp/pull/298) | upstream catch-up, rewrite later |
+| `TLobby__sub_80402CE0`: `*(u16 *)((u8 *)g + 0x15C)` | `pso/misc/TLobby_803FC178.cpp` | `src/pso/misc/TLobby_803FC178.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | raw offset cast | [#298](https://github.com/matthewlewisnewton/pso-decomp/pull/298) | upstream catch-up, rewrite later |
 
 ## Pending in open PRs
 
