@@ -86,3 +86,8 @@ PR [#161](https://github.com/matthewlewisnewton/pso-decomp/pull/161) builds
 this unit with GC/2.0 for `run_task`. Its source with the cancelling pair
 removed and `-opt noprop` added compiles to the same `.text` (including
 `run_task`), `.rodata`, `.sdata2`, and `.data` as its current object.
+
+#161 then merged this file and the six split files around it into
+`pso/effect/TEffIndirectCtrl.cpp` (GC/2.0, `-inline off,deferred`,
+`-opt noprop`, `-str reuse,readonly`). `deform_indirect_texture_scroll` stays
+exact there with the same single `off16` assignment.

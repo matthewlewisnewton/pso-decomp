@@ -48,6 +48,13 @@ struct TEffIndirectCtrl : public TObject {
 
 typedef char TEffIndirectCtrl_size[sizeof(TEffIndirectCtrl) == 0x54 ? 1 : -1];
 
+// Scene object that registers the indirect controller for its kind
+// (constructed by fn_802A8210). Only the destructor is its own virtual.
+struct TUnk_804DDF04 : public TObject {
+    s8 m_kind;
+    virtual ~TUnk_804DDF04();
+};
+
 extern "C" {
 void TEffIndirectCtrl__sub_802A9548(void *p);
 u8 TEffIndirectCtrl__sub_802A9554(void *p);

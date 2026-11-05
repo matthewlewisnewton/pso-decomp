@@ -1,22 +1,38 @@
-# Indirect controller dispatcher recovery (partial)
+# Indirect controller dispatcher recovery
 
-`TEffIndirectCtrl::run_task` at 0x802A88B0 is native C++. This translation
-unit is built with GC/2.0 (see `configure.py`). That compiler's block-copy
-scheduler interleaves the 36-byte PMF snapshot tail with `actor_frame_tick`;
-GC/2.6 packs the tail and leaves the tick relocation four bytes later. On
-GC/2.0 every function in the unit is byte-exact, including `run_task`
-(484 bytes), `.rodata` (16 bytes), and `.sdata2` (8 bytes at 0x805DE028) match.
-The rand scale `lbl_805DE028` is the 4-byte object ahead of the angle literal,
-which is the only reference to it, so the section starts on an 8-byte boundary.
-The two conversion biases and the angle literal are `scope:local`: nothing
-outside this unit loads those split names, and the compiler emits them as
-anonymous pool entries. The unit is still not linked. Defining the virtuals
-emits a 0x18-byte `.data` vtable aligned to 8, while `__vt__16TEffIndirectCtrl`
-sits at 0x804DDF1C (only 4-byte aligned) after another class's vtable, so this
-unit cannot own that range as its own `.data` section.
+`TEffIndirectCtrl::run_task` at 0x802A88B0 is native C++, and the translation
+unit around it is linked. `pso/effect/TEffIndirectCtrl.cpp` is the original
+unit for `.text` 0x802A8140-0x802A9588: the seven earlier split files
+(`TScene_802A8140`, `text_802A8210`, `TObjPlayer_802A8368`,
+`TEffIndirectCtrl_802A88AC`, `TEffIndirectCtrl_802A9284`, `TEffIndirectCtrl`,
+`text_802A9568`) are one file again. It also owns this range's `.rodata`, `.data`,
+`.bss`, `.sdata`, `.sbss` and `.sdata2`. All 34 functions and every section are
+byte-exact.
 
-The notes below record the GC/2.6 candidate (95.61%, tail packed). They are
-the search that ruled out source reorderings; they are not the current object.
+- **Compiler.** GC/2.0. Its block-copy scheduler interleaves the 36-byte
+  snapshot tail with `actor_frame_tick`. GC/2.6 packs the tail and leaves the
+  tick relocation four bytes later.
+- **Snapshot.** `run_task` initializes a local
+  `void (TEffIndirectCtrl::*)()` array with the three handlers. The compiler
+  emits the 0x24 zero template in `.rodata` (`lbl_8046FBE8`) and the 3×12-byte
+  pool in `.data` (`eff_indirect_task_table`), both `scope:local`, the same
+  way as `TItemSpecialEvent_803531FC.cpp`.
+- **Vtables.** The other vtable in front of `__vt__16TEffIndirectCtrl` is
+  `__vt__13TUnk_804DDF04`. It belongs to the scene object that
+  `fn_802A8210` constructs. It is in the same unit, which is why the
+  standalone controller file could not own its `.data`.
+- **Emission order.** MWCC emits vtables in reverse order of their key
+  functions, and the `TUnk_804DDF04` vtable comes first although its
+  destructor is earlier in `.text`. The unit is built with
+  `-inline off,deferred`, and the source is written last-defined first.
+- **Strings.** `-str reuse,readonly` keeps the two file names and the class
+  name in `.rodata`.
+
+The reasons and evidence for each switch are in
+[porting-exceptions.md](porting-exceptions.md) section 5.
+
+The sections below are the history of the search before the files were merged.
+They describe earlier objects, not the current one.
 
 ## Receiver, state and lifetime evidence
 
@@ -30,9 +46,10 @@ original bodies consistently access the same controller layout. The two currentl
 free-function declarations take precisely that controller pointer; this patch does
 not rename or redefine those handlers or the registration storage.
 
-The stack snapshot uses native `void (TEffIndirectCtrl::*)()` values. The existing
-36-byte zero template at `lbl_8046FBE8` initializes the snapshot, which is then
-populated from the original registration table. No PMF words are encoded in source.
+The stack snapshot uses native `void (TEffIndirectCtrl::*)()` values, written as
+an array initializer. The compiler copies the zero template at `lbl_8046FBE8`
+and then the registrations from `eff_indirect_task_table`. No PMF words are
+encoded in source.
 The recipe's unsigned mode byte admits indices 0 through 2; other values skip the
 callback. The post-callback recipe reload and source-id byte store are retained,
 followed by the original `sub_802A955C` call. There is no allocation, destruction or

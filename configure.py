@@ -463,18 +463,21 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
         # entry label. Map the target entry name to the object's image label.
         "symbol_mappings": {"@12": "...data.0"},
     },
-    # run_task's 36-byte PMF snapshot interleaves the copy tail with
-    # actor_frame_tick (load, tail load, clrlwi., table load, tail store).
-    # That schedule is GC/2.0's; GC/2.6 packs the tail pair and shifts the
-    # tick relocation from +0xE4 to +0xEC. GC/2.5 and GC/2.7 match 2.6.
-    # GC/2.0p1 and GC/1.3.2 either miss the tail or drop the wave helpers.
-    # On GC/2.0 every function in this unit, plus .rodata and .sdata2, is
-    # byte-exact, so the whole translation unit was built with 2.0.
-    # deform_indirect_texture_scroll keeps its s16 scroll offset as a named
-    # local (extsh r28, after the coordinate masks in r30/r29). With copy
-    # propagation the frontend replaces it with a hoisted temporary that the
-    # allocator colours first (r30). See docs/porting-exceptions.md section 5.
-    "pso/effect/TEffIndirectCtrl_802A88AC.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-opt noprop")},
+    # GC/2.0: run_task's 36-byte PMF array initializer interleaves its copy
+    # tail with actor_frame_tick (load, tail load, clrlwi., table load, tail
+    # store). GC/2.5, 2.6 and 2.7 pack the tail pair and move the tick
+    # relocation from +0xE4 to +0xEC; GC/2.0p1 and GC/1.3.2 drop the wave
+    # helpers.
+    # -inline off,deferred: the vtables come out in reverse order of their
+    # key functions, and .data has TUnk_804DDF04's vtable before this
+    # class's while TUnk_804DDF04's destructor comes first in .text.
+    # -opt noprop: deform_indirect_texture_scroll keeps its s16 scroll offset
+    # as a named local (extsh r28, after the coordinate masks in r30/r29).
+    # With copy propagation the frontend replaces it with a hoisted temporary
+    # that the allocator colours first (r30).
+    # -str reuse,readonly: the two file names and the class name are in this
+    # unit's .rodata. See docs/porting-exceptions.md section 5.
+    "pso/effect/TEffIndirectCtrl.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred", "-opt noprop", "-str reuse,readonly")},
     "pso/boss/Boss5GryphonBehavior.cpp": {"mw_version": "GC/2.0"},
     "pso/enemy/TObjEneGyaranzo.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred")},
     "pso/misc/TOExplosiveMachine.cpp": {"mw_version": "GC/2.0"},
