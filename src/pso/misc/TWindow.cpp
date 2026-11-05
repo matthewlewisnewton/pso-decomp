@@ -12,6 +12,8 @@
 #include "pso/misc/TLobby.h"
 #include "pso/quest/TQuestListVM.h"
 #include "pso/misc/TWindowSubComCard.h"
+#include "pso/misc/TWindowOptionCtrl_8026CBA4.h"
+#include "pso/misc/TWindowSubComCard_80265410.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
 
 struct Base_80216BCC_80216B44 { char pad[0x18]; };
@@ -114,9 +116,7 @@ extern "C" {
 u16 get_entity_id(void *);
 s32 get_quest_list_text(s32, s32);
 f32 get_scale__15TShopWindowBaseFv(void *);
-u8 *create_yes_no_window(s32 arg0, s32 arg1, u32 arg2, u32 arg3);
 s32 select_cursor_entry__22TWindowSubShortCutListFv(s32);
-void *get_window_layout_position(s32);
 s32 calc_list_content_extent(void *);
 void *set_window_mode_4__6TLobbyFPvll(void *, void *, s32);
 extern Pos_80216F50 lbl_8044BE9C[];
@@ -229,7 +229,7 @@ void TQuestListOffline::update_list_navigation() {
             }
         }
         if (((Win_80216CF8 *)this)->f38 == NULL) {
-            ((Win_80216CF8 *)this)->f38 = create_yes_no_window((s32)(get_window_layout_position(0x2B)), get_entity_id(((Win_80216CF8 *)this)->f24), 0, 0);
+            ((Win_80216CF8 *)this)->f38 = create_yes_no_window(get_window_layout_position(0x2B), get_entity_id(((Win_80216CF8 *)this)->f24), 0, 0);
             ((TUnk_804CDFE8 *)(((Win_80216CF8 *)this)->f38))->set_position_xy(get_scale__15TShopWindowBaseFv(((Win_80216CF8 *)this)), get_scale__15TShopWindowBaseFv(((Win_80216CF8 *)this)));
             if (((Win_80216CF8 *)this)->f34 != NULL) {
                 ((Win_80216CF8 *)this)->f34->m7(5, 1);

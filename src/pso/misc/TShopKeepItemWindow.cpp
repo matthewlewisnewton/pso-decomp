@@ -6,6 +6,8 @@
 #include "types.h"
 #include "pso/misc/TShopWindowBase.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
+#include "pso/misc/TWindowOptionCtrl_8026CBA4.h"
+#include "pso/misc/TWindowSubComCard_80265410.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/unk/text_80222C28.h"
 #include "pso/item/TItem.h"
@@ -105,8 +107,6 @@ struct Self_80221F08 {
 extern "C" {
 u32 get_entity_id(s32);
 f32 get_scale__15TShopWindowBaseFv(void *);
-u8 *create_yes_no_window(s32 arg0, s32 arg1, u32 arg2, u32 arg3);
-s32 get_window_layout_position(s32);
 void memset(void *, int, int);
 s32 get_item_record__23TShopJudgmentItemWindowFPv(s32, s32, s32);
 s32 store_item_in_bank(u8 *item, s32 arg1, s32 slot);
@@ -309,7 +309,7 @@ void TShopKeepItemWindow::handle_deposit_list_select() {
         break;
     }
     if (num > 1 && this->m_38c == 0U) {
-        win = new TWindowInputNumber((void *)get_window_layout_position(0x2B), 1, num, 1, (s16)get_child_field1c__13TShopSequenceFv(this));
+        win = new TWindowInputNumber(get_window_layout_position(0x2B), 1, num, 1, (s16)get_child_field1c__13TShopSequenceFv(this));
         this->m_38c = (u32)win;
         if (this->m_38c != 0U && TLobby::is_camera_ctrl_active() > 2) {
             ((TCheckRoomSequence *)this->m_38c)->set_position(lbl_805DC710, lbl_805DC710);
@@ -368,7 +368,7 @@ s32 TShopKeepItemWindow::rebuild_item_list() {
         cur = ((TShopGetItemWindow *)(self->f384))->get_cursor_index();
     }
     if (self->f390 == 0U) {
-        self->f390 = (u32)new TWindowHelpItem((void *)get_window_layout_position(0x27), get_entity_id((s32)self->f24));
+        self->f390 = (u32)new TWindowHelpItem(get_window_layout_position(0x27), get_entity_id((s32)self->f24));
         if (self->f390 != 0U && TLobby::is_camera_ctrl_active() > 2) {
             ((TLobby *)(self->f390))->set_position(lbl_805DC710, lbl_805DC710);
         }
