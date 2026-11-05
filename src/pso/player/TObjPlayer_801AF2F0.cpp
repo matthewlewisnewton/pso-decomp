@@ -1352,13 +1352,9 @@ typedef struct Msg_801B87E4 {
     s16 a;
     s16 b;
     s32 c;
-    u8 d[16];
+    f32 pos[3];
+    u8 pad_18[4];
 } Msg_801B87E4;
-
-typedef struct Player_801B87E4 {
-    u8 pad0[0xD00];
-    TPlyItem *inv;
-} Player_801B87E4;
 
 struct VBase_801B8AF8 { char pad[0x18]; };
 
@@ -6414,14 +6410,14 @@ void TObjPlayer::drop_items_on_death() {
 
 void handle_6x2A_drop_item(void *arg0) {
     Msg_801B87E4 m;
-    Player_801B87E4 *p;
+    TObjPlayer *p;
     ((TObjPlayer *)(&m))->init_6x2A();
     TObjPlayer__sub_801C106C(&m, arg0);
     bswap_fields__10TObjPlayerFi(&m);
     if (validate_6x2A_drop_item((G_ClientIDHeader *)&m) != 0) {
-        p = ((Player_801B87E4 * (*)(u16))get_player_by_client_id)(m.slot);
+        p = (TObjPlayer *)get_player_by_client_id(m.slot);
         if ((p != NULL) && (((s32 (*)(void))is_volopt_phase_final__10TObjPlayerFv)() == 0)) {
-            p->inv->update_inventory_item((TObjPlayer *)p, (s32)m.c, (s32)m.d, (s32)m.a, (s32)m.b);
+            p->inventory_objects->update_inventory_item(p, m.c, m.pos, m.a, m.b);
         }
     }
 }

@@ -5,53 +5,10 @@
 #include "pso/TItemList.h"
 #include "pso/TPlyItem.h"
 #include "pso/item/TItem.h"
-
-#define CAT2(a,b) a##b
-#define CAT(a,b) CAT2(a,b)
-struct Base_A_801d48f8 { char pad[0x18]; };
-struct V_A_801d48f8 : Base_A_801d48f8 {
-    virtual void CAT(f,__LINE__)();
-    virtual void CAT(f,__LINE__)();
-    virtual void CAT(f,__LINE__)();
-    virtual void CAT(f,__LINE__)();
-    virtual void CAT(f,__LINE__)();
-    virtual void CAT(f,__LINE__)();
-    virtual void CAT(f,__LINE__)();
-    virtual void CAT(f,__LINE__)();
-    virtual void CAT(f,__LINE__)();
-    virtual void CAT(f,__LINE__)();
-    virtual void CAT(f,__LINE__)();
-    virtual void CAT(f,__LINE__)();
-    virtual void CAT(f,__LINE__)();
-    virtual void CAT(f,__LINE__)();
-    virtual void CAT(f,__LINE__)();
-    virtual void CAT(f,__LINE__)();
-    virtual void CAT(f,__LINE__)();
-    virtual void CAT(f,__LINE__)();
-    virtual void CAT(f,__LINE__)();
-    virtual void CAT(f,__LINE__)();
-    virtual void CAT(f,__LINE__)();
-    virtual void CAT(f,__LINE__)();
-    virtual void CAT(f,__LINE__)();
-    virtual void CAT(f,__LINE__)();
-    virtual void CAT(f,__LINE__)();
-    virtual void CAT(f,__LINE__)();
-    virtual void CAT(f,__LINE__)();
-    virtual void CAT(f,__LINE__)();
-    virtual void CAT(f,__LINE__)();
-    virtual void CAT(f,__LINE__)();
-    virtual void CAT(f,__LINE__)();
-    virtual void CAT(f,__LINE__)();
-    virtual void CAT(f,__LINE__)();
-    virtual void CAT(f,__LINE__)();
-    virtual s32 m34();
-    virtual void m35(s32);
-};
+#include "pso/misc/TWindowActionPalette_801C1890.h"
 
 extern "C" {
 s32 TObjPlayer__sub_801D49F4(TPlyItem *player, TObjPlayer *arg1, s32 *arg2, s32 arg3);
-s32 place_on_ground__5TItemFsPfl(void *, s16, s32, s32);
-s32 is_item_equipped(void *);
 
     extern void *TObjPlayer__owner_field_write_cursor;
     extern int inventory_walk_visit_count;
@@ -60,15 +17,15 @@ int TPlyItem::run_and_get_result(void *a1) { TObjPlayer__owner_field_write_curso
     extern void *owned_item_export_cursor;
 int TPlyItem::run_state_query(void *a1) { owned_item_export_cursor = a1; inventory_walk_visit_count = 0; item_list->count_owned_items(); return inventory_walk_visit_count; }
 
-s32 TPlyItem::update_inventory_item(TObjPlayer *player, s32 arg2, s32 arg3, s32 arg4, s32 client) {
+s32 TPlyItem::update_inventory_item(TObjPlayer *player, s32 item_id, f32 *pos, s32 amount, s32 floor) {
     s16 temp_r4;
     TItem *temp_r3_2;
     TItemList *temp_r3;
 
-    if (arg4 < 0) {
+    if (amount < 0) {
         return 0;
     }
-    temp_r3 = start_inventory_update(arg2);
+    temp_r3 = start_inventory_update(item_id);
     if (temp_r3 == NULL) {
         return 0;
     }
@@ -76,15 +33,15 @@ s32 TPlyItem::update_inventory_item(TObjPlayer *player, s32 arg2, s32 arg3, s32 
     if (temp_r3_2 == NULL) {
         return 0;
     }
-    if ((((V_A_801d48f8 *) temp_r3_2)->m34() - arg4) > 0) {
-        ((V_A_801d48f8 *) temp_r3_2)->m35(arg4);
+    if ((temp_r3_2->get_amount() - amount) > 0) {
+        temp_r3_2->remove_amount(amount);
         return 1;
     }
     if (is_item_equipped(temp_r3_2) != 0) {
         player->unequip_item(temp_r3_2);
     }
-    *(s16 *)((s8 *)temp_r3_2 + 0x28) = player->get_room();
-    place_on_ground__5TItemFsPfl(temp_r3_2, client, arg3, 0);
+    temp_r3_2->room = player->get_room();
+    temp_r3_2->place_on_ground(floor, pos, 0);
     temp_r4 = item_count;
     item_count = temp_r4 - 1;
     temp_r3->queue_destruction();

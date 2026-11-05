@@ -38,7 +38,8 @@ public:
     TItemList *start_inventory_update(int a1);
     int run_and_get_result(void *a1);
     int run_state_query(void *a1);
-    s32 update_inventory_item(TObjPlayer *player, s32 arg2, s32 arg3, s32 arg4, s32 client);
+    // Drops amount of the item with item_id at pos on floor.
+    s32 update_inventory_item(TObjPlayer *player, s32 item_id, f32 *pos, s32 amount, s32 floor);
 };
 
 typedef char TPlyItemCountAt1C[(offsetof(TPlyItem, item_count) == 0x1C) ? 1 : -1];
