@@ -15,25 +15,19 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (regenerated on this branch after merging main `614e77618`, 2026-11-05)
+## Summary (regenerated on this branch after merging main `3d8eb7eda`, 2026-11-05)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `614e77618` (2026-11-05). Assembly is counted as functions;
-## Summary (regenerated on this branch after merging main `1b02ab095`, 2026-11-05)
-
-Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `1b02ab095` (2026-11-05). Assembly is counted as functions;
+after merging main `3d8eb7eda` (2026-11-05). Assembly is counted as functions;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
 |---|---:|---:|
-| Assembly (`asm` + `orig_asm` include) | 7 functions (13 source lines) | 4 |
+| Assembly (`asm` + `orig_asm` include) | 8 functions (15 source lines) | 5 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,779 | 873 |
+| CodeWarrior pragmas (excluding push/pop) | 5,780 | 875 |
 | Per-unit compiler overrides in `configure.py` | 169 | 169 |
-| CodeWarrior pragmas (excluding push/pop) | 5,787 | 877 |
-| Per-unit compiler overrides in `configure.py` | 167 | 167 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -76,7 +70,7 @@ etc. or their port equivalents) instead of the fixed address.
 
 ## 4. CodeWarrior pragmas
 
-5,779 pragmas in 873 files; per-file table in the generated file. Main kinds:
+5,780 pragmas in 875 files; per-file table in the generated file. Main kinds:
 `dont_inline` 1146, `inline_depth` 1038, `fp_contract` 887, `auto_inline` 837,
 `opt_common_subs` 611, `scheduling` 260, `opt_propagation` 237,
 `readonly_strings` 204, `peephole` 103, `optimization_level` 88, `bool` 56,
@@ -827,6 +821,7 @@ or `other: <what>`); the fork PR that brought it in; and the tag
 | `TBoss1Dragon__ct` (`0x80029DE4`): `extern "C" void __ct__17AccelerationCurveFv` and the two calls `(AccelerationCurve *)(arg0 + 0x5F4)` and `(arg0 + 0x618)`. Matt, 2026-11-05 10:17 AM PT: do not replace these with a real constructor. It matches only under `-inline off,deferred`, which reverses this linked unit. The calls are this PR's rename of `reset_coords_pass` | `pso/boss/TBoss1Dragon.cpp` | `src/pso/boss/TBoss1Dragon.cpp` | [#191](https://github.com/zeroz41/pso-decomp/pull/191) | extern "C" mangled name | [#302](https://github.com/matthewlewisnewton/pso-decomp/pull/302) | upstream catch-up, rewrite later |
 | `lbl_80481280` (`.data` `0x80481280`, 107 pointers) and its stores in `TBoss1Dragon__ct` (`+0x18`) and `destroy__12TBoss1DragonFPvs`. Matt, 2026-11-05 10:17 AM PT: a compiler vtable and real destructor do not match the DOL r31/r30 homes. Only this table | `pso/boss/TBoss1Dragon.cpp` | `src/pso/boss/TBoss1Dragon.cpp` | [#191](https://github.com/zeroz41/pso-decomp/pull/191) | other: hand-written vtable | [#302](https://github.com/matthewlewisnewton/pso-decomp/pull/302) | upstream catch-up, rewrite later |
 | `TBoss6Rock::run_task` | `pso/boss/TBoss6Rock.cpp` | `src/pso/boss/TBoss6Rock.cpp` | [#181](https://github.com/zeroz41/pso-decomp/pull/181) | `other: u64 pointer widen` | [#313](https://github.com/matthewlewisnewton/pso-decomp/pull/313) | upstream catch-up, rewrite later |
+| `LaunchDol` | `pso/unk/text_8042E8C4.cpp` | `src/pso/unk/text_8042E8C4.cpp` | [#172](https://github.com/zeroz41/pso-decomp/pull/172) | asm | [#350](https://github.com/matthewlewisnewton/pso-decomp/pull/350) | upstream catch-up, rewrite later |
 
 
 ## Pending in open PRs
