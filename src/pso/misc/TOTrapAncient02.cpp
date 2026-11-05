@@ -11,6 +11,7 @@
 #include "pso/render/render_util.h"
 #include "pso/TObject.h"
 #include "pso/misc/TOTrap.h"
+#include "pso/misc/TOTrap_801791EC.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/player/TObjChara.h"
 #include "pso/object/TObjMotion.h"
@@ -63,10 +64,8 @@ f32 TObjPlayer__sub_8017A1A4(void *, s32);
 void send_6x2C_impose_hold(void *, void *, s32, s32, f32);
 extern s32 local_client_id;
 s32 check_player_flag1__6TLobbyFv();
-void *__dt__6TOTrapFv(void *arg0, s16 arg1);
-void * __dt__15TOTrapAncient02Fv(void *arg0, s16 arg1);
+void *__dt__15TOTrapAncient02Fv(TOTrapAncient02 *trap, s16 arg1);
 
-void __dl__7TObjectFPv(void *);
 s32 dispatch_input_to_instance__18TAdEnterPasswordGCFi(void *);
 
 extern BmlResource *TOTrapAncient02__shared_resource;
@@ -175,14 +174,14 @@ TOTrapAncient02::TOTrapAncient02(TObject *parent, void *creator) : TOTrap(parent
 }
 #pragma pop
 
-void *__dt__15TOTrapAncient02Fv(void *trap, s16 arg1) {
+void *__dt__15TOTrapAncient02Fv(TOTrapAncient02 *trap, s16 arg1) {
     if (trap != NULL) {
         *(s32 **)((s8 *)trap + 0x18) = __vt__15TOTrapAncient02;
-        ((TObjCollidable *)trap)->unregister_object_by_id();
-        free_collision_body_parts((TObjCollidable *)trap);
+        trap->unregister_object_by_id();
+        free_collision_body_parts(trap);
         __dt__6TOTrapFv(trap, 0);
         if (arg1 > 0) {
-            ((s32 (*)(void *))__dl__7TObjectFPv)(trap);
+            TObject::operator delete(trap);
         }
     }
     return trap;
