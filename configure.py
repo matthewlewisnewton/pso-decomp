@@ -453,14 +453,6 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # half-width nudge and the drop placement fuse multiply-adds.
     # -str reuse,readonly: the literals live in this unit's .rodata.
     "pso/object/TObjTombstone.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on", "-str reuse,readonly")},
-    # -fp_contract on: scale_point_about_pivot, apply_context_transform_to_rect,
-    # apply_window_closing_stretch, clip_textured_quad and init_text_window_layout
-    # fuse multiply-adds. Without the flag the unit is 93.57% (2240 bytes).
-    # -inline auto was tested and not kept: it inlines the clip into try_open
-    # and .text falls to 79.87% (2552 bytes). Precedent: dtk-template
-    # configure.py -fp_contract on (https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209);
-    # Melee, TP, TWW and Pikmin 2 enable it globally.
-    "pso/misc/TWindowKeyBoardSoft_8024E68C.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
     # GC/2.0: compiler-expanded struct copies take 2.0's registers.
     # The ending item handler table keeps 2.0's store/load scheduling for its
     # zero-initialized local member-function-pointer array.
