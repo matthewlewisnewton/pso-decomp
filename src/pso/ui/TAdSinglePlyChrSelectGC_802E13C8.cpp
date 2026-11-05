@@ -185,7 +185,7 @@ s32 TAdTimeSetGC::poll_load_status() {
         return 2;
     }
     *(s32 *)&this->unk_40 = 0;
-    if (((TAdPlayerLoadGC *)0)->probe_card_slot() == 0) {
+    if (TAdPlayerLoadGC::probe_card_slot(0) == 0) {
         sub_802E1F14__12TAdTimeSetGCFv(this);
         return 1;
     }

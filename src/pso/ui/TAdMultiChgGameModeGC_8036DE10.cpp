@@ -427,7 +427,7 @@ void TAdMultiChgGameModeGC::set_state(s32 arg1) {
 }
 
 s32 check_system_file_status__23TAdSinglePlyChrSelectGCFv(void) {
-    if (((TAdPlayerLoadGC *)0)->probe_card_slot() == 0) {
+    if (TAdPlayerLoadGC::probe_card_slot(0) == 0) {
         return 1;
     }
     if (TAdPlayerLoadGC__sub_801E1B50(0) != 0) {

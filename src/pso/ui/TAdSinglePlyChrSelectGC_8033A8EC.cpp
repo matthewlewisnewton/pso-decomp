@@ -172,7 +172,7 @@ void TAdSinglePlyChrSelectGC::sub_8033AA64() {
 void TAdSinglePlyChrSelectGC::handle_player_load() {
     O_8033AB04 *arg0 = (O_8033AB04 *)this;
     u32 p;
-    if (((TAdPlayerLoadGC *)(arg0->f24))->probe_card_slot() == 0) {
+    if (TAdPlayerLoadGC::probe_card_slot((arg0->f24)) == 0) {
         arg0->f2C = 0;
         ((s32 (*)(void *))TAdSinglePlyChrSelectGC__sub_8033B5F0)(arg0);
         return;
@@ -237,7 +237,7 @@ void TAdSinglePlyChrSelectGC::check_memcard_space() {
 
 void TAdSinglePlyChrSelectGC::sub_8033ACF4() {
     O_8033ACF4 *arg0 = (O_8033ACF4 *)this;
-    if (((TAdPlayerLoadGC *)(arg0->f24))->probe_card_slot() == 0) {
+    if (TAdPlayerLoadGC::probe_card_slot((arg0->f24)) == 0) {
         arg0->f2C = 0;
         ((s32 (*)(void *))TAdSinglePlyChrSelectGC__sub_8033B5F0)(arg0);
         return;

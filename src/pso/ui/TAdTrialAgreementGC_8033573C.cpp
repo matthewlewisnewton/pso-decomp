@@ -59,7 +59,7 @@ extern s32 pso_system_card_filename[];
 s32 TAdTrialAgreementGC::check_card_file(s32 arg0) {
     s32 temp_r3;
 
-    if (((TAdPlayerLoadGC *)0)->probe_card_slot() == 0) {
+    if (TAdPlayerLoadGC::probe_card_slot(0) == 0) {
         return 0;
     }
     if (((TAdPlayerLoadGC *)0)->probe_and_check_card() == 0) {

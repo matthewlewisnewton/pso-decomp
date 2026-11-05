@@ -163,7 +163,7 @@ u8 TAdSinglePlyChrSelectGC::load_and_verify_character_save(char *desc) {
 
 s32 TAdSinglePlyChrSelectGC::wait_for_card_load(s32 arg0) {
     while (TAdPlayerLoadGC__sub_801E1B50(arg0) != 0) {
-        if (((TAdPlayerLoadGC *)arg0)->probe_card_slot() != 1) {
+        if (TAdPlayerLoadGC::probe_card_slot(arg0) != 1) {
             return 0;
         }
         render_frame__23TAdSinglePlyChrSelectGCFv();

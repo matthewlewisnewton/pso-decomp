@@ -455,13 +455,13 @@ s32 TAdSinglePlyChrSelectGC::load_save_from_card() {
     }
     memset(buf, 0, size);
     while (TAdPlayerLoadGC__sub_801E1944(character_save_card_slot, lbl_804C88C0.filename, buf, character_save_file_block_count) != 0) {
-        if (((TAdPlayerLoadGC *)character_save_card_slot)->probe_card_slot() != 1) {
+        if (TAdPlayerLoadGC::probe_card_slot(character_save_card_slot) != 1) {
             xfree(buf);
             return 0;
         }
     }
     while (TAdPlayerLoadGC__sub_801E1B50((void *)character_save_card_slot) != 0) {
-        if (((TAdPlayerLoadGC *)character_save_card_slot)->probe_card_slot() != 1) {
+        if (TAdPlayerLoadGC::probe_card_slot(character_save_card_slot) != 1) {
             TAdSinglePlyChrSelectGC::safe_free((u32)buf);
             return 0;
         }
@@ -909,12 +909,12 @@ s32 TAdSinglePlyChrSelectGC__sub_801FCE6C(void) {
     ret = 0xFFFF0000;
     if (selected_character_data != NULL && active_character_save_record != 0 && card_character_save_buffer != NULL) {
         character_save_card_slot = (s8)get_chr_select_state__23TAdSinglePlyChrSelectGCFv();
-        if (((TAdPlayerLoadGC *)character_save_card_slot)->probe_card_slot() != 1) {
+        if (TAdPlayerLoadGC::probe_card_slot(character_save_card_slot) != 1) {
             TLobby::disconnect_protocol();
             return 0xFFFF0000;
         }
         while (TAdPlayerLoadGC__sub_801E1B50(character_save_card_slot) != 0) {
-            if (((TAdPlayerLoadGC *)character_save_card_slot)->probe_card_slot() != 1) {
+            if (TAdPlayerLoadGC::probe_card_slot(character_save_card_slot) != 1) {
                 TLobby::disconnect_protocol();
                 return 0xFFFF0000;
             }
@@ -929,7 +929,7 @@ s32 TAdSinglePlyChrSelectGC__sub_801FCE6C(void) {
         buf = alloc__22TQuestVmDownLoadServerFv(obj);
         memset(buf, 0, obj);
         while (TAdPlayerLoadGC__sub_801E1944(character_save_card_slot, &lbl_804C88C0, buf, character_save_file_block_count) != 0) {
-            if (((TAdPlayerLoadGC *)character_save_card_slot)->probe_card_slot() != 1) {
+            if (TAdPlayerLoadGC::probe_card_slot(character_save_card_slot) != 1) {
                 if (buf != 0) {
                     TAdSinglePlyChrSelectGC::safe_free((u32)buf);
                 }
@@ -940,7 +940,7 @@ s32 TAdSinglePlyChrSelectGC__sub_801FCE6C(void) {
             render_tick();
         }
         while (TAdPlayerLoadGC__sub_801E1B50(character_save_card_slot) != 0) {
-            if (((TAdPlayerLoadGC *)character_save_card_slot)->probe_card_slot() != 1) {
+            if (TAdPlayerLoadGC::probe_card_slot(character_save_card_slot) != 1) {
                 if (buf != 0) {
                     TAdSinglePlyChrSelectGC::safe_free((u32)buf);
                 }
@@ -990,7 +990,7 @@ s32 TAdSinglePlyChrSelectGC__sub_801FCE6C(void) {
             save_character_file__23TAdSinglePlyChrSelectGCFi(1);
             while (TAdSinglePlyChrSelectGC__sub_801FDA4C() != 0) {
                 run_save_load_sequence__23TAdSinglePlyChrSelectGCFv();
-                if (((TAdPlayerLoadGC *)character_save_card_slot)->probe_card_slot() != 1) {
+                if (TAdPlayerLoadGC::probe_card_slot(character_save_card_slot) != 1) {
                     TLobby::disconnect_protocol();
                     return 0xFFFF0000;
                 }
@@ -1000,7 +1000,7 @@ s32 TAdSinglePlyChrSelectGC__sub_801FCE6C(void) {
             card_load_sequence_state = 6;
             while (TAdPlayerLoadGC::get_instance() != 0) {
                 run_save_load_sequence__23TAdSinglePlyChrSelectGCFv();
-                if (((TAdPlayerLoadGC *)character_save_card_slot)->probe_card_slot() != 1) {
+                if (TAdPlayerLoadGC::probe_card_slot(character_save_card_slot) != 1) {
                     TLobby::disconnect_protocol();
                     return 0xFFFF0000;
                 }
@@ -1026,14 +1026,14 @@ s32 load_character_from_card__23TAdSinglePlyChrSelectGCFv(void) {
     ret = 0xFFFF0000;
     if (selected_character_data != NULL && active_character_save_record != 0 && card_character_save_buffer != NULL) {
         character_save_card_slot = (s8)get_chr_select_state__23TAdSinglePlyChrSelectGCFv();
-        if (((TAdPlayerLoadGC *)character_save_card_slot)->probe_card_slot() != 1) {
+        if (TAdPlayerLoadGC::probe_card_slot(character_save_card_slot) != 1) {
             if (TAdSinglePlyChrSelectGC::get_game_mode() == 1) {
                 TLobby::disconnect_protocol();
             }
             return 0xFFFF0000;
         }
         while (TAdPlayerLoadGC__sub_801E1B50(character_save_card_slot) != 0) {
-            if (((TAdPlayerLoadGC *)character_save_card_slot)->probe_card_slot() != 1) {
+            if (TAdPlayerLoadGC::probe_card_slot(character_save_card_slot) != 1) {
                 if (TAdSinglePlyChrSelectGC::get_game_mode() == 1) {
                     TLobby::disconnect_protocol();
                 }
@@ -1052,7 +1052,7 @@ s32 load_character_from_card__23TAdSinglePlyChrSelectGCFv(void) {
         buf = alloc__22TQuestVmDownLoadServerFv(obj);
         memset(buf, 0, obj);
         while (TAdPlayerLoadGC__sub_801E1944(character_save_card_slot, &lbl_804C88C0, buf, character_save_file_block_count) != 0) {
-            if (((TAdPlayerLoadGC *)character_save_card_slot)->probe_card_slot() != 1) {
+            if (TAdPlayerLoadGC::probe_card_slot(character_save_card_slot) != 1) {
                 if (buf != 0) {
                     TAdSinglePlyChrSelectGC::safe_free((u32)buf);
                 }
@@ -1065,7 +1065,7 @@ s32 load_character_from_card__23TAdSinglePlyChrSelectGCFv(void) {
             render_tick();
         }
         while (TAdPlayerLoadGC__sub_801E1B50(character_save_card_slot) != 0) {
-            if (((TAdPlayerLoadGC *)character_save_card_slot)->probe_card_slot() != 1) {
+            if (TAdPlayerLoadGC::probe_card_slot(character_save_card_slot) != 1) {
                 if (buf != 0) {
                     TAdSinglePlyChrSelectGC::safe_free((u32)buf);
                 }
@@ -1136,7 +1136,7 @@ s32 load_character_from_card__23TAdSinglePlyChrSelectGCFv(void) {
             }
             for (;;) {
                 run_save_load_sequence__23TAdSinglePlyChrSelectGCFv();
-                if (((TAdPlayerLoadGC *)character_save_card_slot)->probe_card_slot() != 1) {
+                if (TAdPlayerLoadGC::probe_card_slot(character_save_card_slot) != 1) {
                     if (TAdSinglePlyChrSelectGC::get_game_mode() == 1) {
                         TLobby::disconnect_protocol();
                     }
@@ -2294,7 +2294,7 @@ s32 save_character_to_card__23TAdSinglePlyChrSelectGCFv(void) {
         controller_stuff();
         run_save_load_sequence__23TAdSinglePlyChrSelectGCFv();
         render_frame__23TAdSinglePlyChrSelectGCFv();
-        if (((TAdPlayerLoadGC *)character_save_card_slot)->probe_card_slot() != 1) {
+        if (TAdPlayerLoadGC::probe_card_slot(character_save_card_slot) != 1) {
             result = 0;
             break;
         }
@@ -2616,14 +2616,14 @@ s32 load_character_from_card__23TAdSinglePlyChrSelectGCFi(s32 arg0) {
     ret = 0xFFFF0000;
     if (selected_character_data != 0 && active_character_save_record != 0 && card_character_save_buffer != 0) {
         character_save_card_slot = get_chr_select_state__23TAdSinglePlyChrSelectGCFv();
-        if (((TAdPlayerLoadGC *)character_save_card_slot)->probe_card_slot() != 1) {
+        if (TAdPlayerLoadGC::probe_card_slot(character_save_card_slot) != 1) {
             if (TAdSinglePlyChrSelectGC::get_game_mode() == 1) {
                 TLobby::disconnect_protocol();
             }
             return 0xFFFF0000;
         }
         while (TAdPlayerLoadGC__sub_801E1B50(character_save_card_slot) != 0) {
-            if (((TAdPlayerLoadGC *)character_save_card_slot)->probe_card_slot() != 1) {
+            if (TAdPlayerLoadGC::probe_card_slot(character_save_card_slot) != 1) {
                 if (TAdSinglePlyChrSelectGC::get_game_mode() == 1) {
                     TLobby::disconnect_protocol();
                 }
@@ -2644,7 +2644,7 @@ s32 load_character_from_card__23TAdSinglePlyChrSelectGCFi(s32 arg0) {
             buf = alloc__22TQuestVmDownLoadServerFv(size);
             memset((void *)buf, 0, size);
             while (TAdPlayerLoadGC__sub_801E1944(character_save_card_slot, lbl_804C88C0, buf, character_save_file_block_count) != 0) {
-                if (((TAdPlayerLoadGC *)character_save_card_slot)->probe_card_slot() != 1) {
+                if (TAdPlayerLoadGC::probe_card_slot(character_save_card_slot) != 1) {
                     if (buf != 0) {
                         TAdSinglePlyChrSelectGC::safe_free((u32)buf);
                     }
@@ -2657,7 +2657,7 @@ s32 load_character_from_card__23TAdSinglePlyChrSelectGCFi(s32 arg0) {
                 render_tick();
             }
             while (TAdPlayerLoadGC__sub_801E1B50(character_save_card_slot) != 0) {
-                if (((TAdPlayerLoadGC *)character_save_card_slot)->probe_card_slot() != 1) {
+                if (TAdPlayerLoadGC::probe_card_slot(character_save_card_slot) != 1) {
                     if (buf != 0) {
                         TAdSinglePlyChrSelectGC::safe_free((u32)buf);
                     }
@@ -2747,7 +2747,7 @@ s32 load_character_from_card__23TAdSinglePlyChrSelectGCFi(s32 arg0) {
             save_character_file__23TAdSinglePlyChrSelectGCFi(1);
             while (TAdSinglePlyChrSelectGC__sub_801FDA4C() != 0) {
                 run_save_load_sequence__23TAdSinglePlyChrSelectGCFv();
-                if (((TAdPlayerLoadGC *)character_save_card_slot)->probe_card_slot() != 1) {
+                if (TAdPlayerLoadGC::probe_card_slot(character_save_card_slot) != 1) {
                     if (TAdSinglePlyChrSelectGC::get_game_mode() == 1) {
                         TLobby::disconnect_protocol();
                     }
@@ -2759,7 +2759,7 @@ s32 load_character_from_card__23TAdSinglePlyChrSelectGCFi(s32 arg0) {
             card_load_sequence_state = 6;
             while (TAdPlayerLoadGC::get_instance() != 0) {
                 run_save_load_sequence__23TAdSinglePlyChrSelectGCFv();
-                if (((TAdPlayerLoadGC *)character_save_card_slot)->probe_card_slot() != 1) {
+                if (TAdPlayerLoadGC::probe_card_slot(character_save_card_slot) != 1) {
                     if (TAdSinglePlyChrSelectGC::get_game_mode() == 1) {
                         TLobby::disconnect_protocol();
                     }
@@ -3504,14 +3504,14 @@ s32 save_online_character__23TAdSinglePlyChrSelectGCFv(void) {
     if (selected_character_data != NULL && active_character_save_record != NULL && (u32)card_character_save_buffer != 0) {
         stop_pad_rumble();
         character_save_card_slot = (s8)get_chr_select_state__23TAdSinglePlyChrSelectGCFv();
-        if (((TAdPlayerLoadGC *)character_save_card_slot)->probe_card_slot() != 1) {
+        if (TAdPlayerLoadGC::probe_card_slot(character_save_card_slot) != 1) {
             if (TAdSinglePlyChrSelectGC::get_game_mode() == 1) {
                 TLobby::disconnect_protocol();
             }
             return 0;
         }
         while (TAdPlayerLoadGC__sub_801E1B50(character_save_card_slot) != 0) {
-            if (((TAdPlayerLoadGC *)character_save_card_slot)->probe_card_slot() != 1) {
+            if (TAdPlayerLoadGC::probe_card_slot(character_save_card_slot) != 1) {
                 if (TAdSinglePlyChrSelectGC::get_game_mode() == 1) {
                     TLobby::disconnect_protocol();
                 }
@@ -3530,7 +3530,7 @@ s32 save_online_character__23TAdSinglePlyChrSelectGCFv(void) {
         buf = alloc__22TQuestVmDownLoadServerFv(obj);
         memset((void *)buf, 0, obj);
         while (TAdPlayerLoadGC__sub_801E1944(character_save_card_slot, lbl_804C88C0, buf, character_save_file_block_count) != 0) {
-            if (((TAdPlayerLoadGC *)character_save_card_slot)->probe_card_slot() != 1) {
+            if (TAdPlayerLoadGC::probe_card_slot(character_save_card_slot) != 1) {
                 if (TAdSinglePlyChrSelectGC::get_game_mode() == 1) {
                     TLobby::disconnect_protocol();
                 }
@@ -3543,7 +3543,7 @@ s32 save_online_character__23TAdSinglePlyChrSelectGCFv(void) {
             render_tick();
         }
         while (TAdPlayerLoadGC__sub_801E1B50(character_save_card_slot) != 0) {
-            if (((TAdPlayerLoadGC *)character_save_card_slot)->probe_card_slot() != 1) {
+            if (TAdPlayerLoadGC::probe_card_slot(character_save_card_slot) != 1) {
                 if (TAdSinglePlyChrSelectGC::get_game_mode() == 1) {
                     TLobby::disconnect_protocol();
                 }

@@ -29,7 +29,7 @@ s32 poll_memcard_status__23TAdSinglePlyChrSelectGCFv();
 s32 TSaveChCr::poll_memcard_status() {
     s32 var_r31;
 
-    if (((TAdPlayerLoadGC *)0)->probe_card_slot() == 0) {
+    if (TAdPlayerLoadGC::probe_card_slot(0) == 0) {
         this->m_28 = 0;
         return 1;
     }
