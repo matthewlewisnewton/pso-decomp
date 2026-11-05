@@ -8,7 +8,6 @@
 #include "pso/item/TItemData.h"
 #include "pso/player/TObjPlayer_801D5220.h"
 
-    extern s32 inventory_walk_visit_count;
     extern void *player_owner_collect_cursor;
 int TPlyItem::count_matching_items(void *out) { player_owner_collect_cursor = out; inventory_walk_visit_count = 0; item_list->collect_item_owners_recursive(); return inventory_walk_visit_count; }
 
@@ -49,10 +48,8 @@ TItemList *TPlyItem::find_first_inventory_entry(void *a1) { inventory_search_ite
 
 TItemList *TPlyItem::set_mode_and_refresh_object(void *a1) { inventory_search_item_data = a1; return find_matching_inventory_item_node(item_list); }
 
-    extern s32 inventory_walk_progress_count;
 void TPlyItem::destroy_subobjects(void *a1) { item_reduce_target_player = a1; inventory_walk_progress_count = 0; item_list->destroy_subobjects_recursive(); item_list->queue_destruction(); unk_1C8->run_tasks(); unk_1C8->run_tasks(); unk_1C8->queue_destruction(); }
 
-    extern s32 inventory_update_field_d8_key;
 
 void TItemList::destroy_subobjects_recursive() {
     TItemList *p;

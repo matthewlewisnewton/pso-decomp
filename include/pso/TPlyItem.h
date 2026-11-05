@@ -46,4 +46,11 @@ typedef char TPlyItemCountAt1C[(offsetof(TPlyItem, item_count) == 0x1C) ? 1 : -1
 typedef char TPlyItemListAt1C4[(offsetof(TPlyItem, item_list) == 0x1C4) ? 1 : -1];
 typedef char TPlyItemChildAt1C8[(offsetof(TPlyItem, unk_1C8) == 0x1C8) ? 1 : -1];
 
+// State the TPlyItem entry points set up for the TItemList walks.
+extern s32 inventory_walk_visit_count;
+extern s32 inventory_walk_progress_count;
+extern s32 inventory_update_field_d8_key;
+extern u8 item_reduce_owner_match_field_ec;
+extern u8 reduce_owner_match_id;
+
 #endif

@@ -49,14 +49,11 @@ s32 TPlyItem::use_item(TObjPlayer *player, s32 arg2, s32 arg3) {
 }
 
     extern void *item_reduce_target_player;
-    extern unsigned char item_reduce_owner_match_field_ec;
-    extern unsigned char reduce_owner_match_id;
 void TLobby__sub_801D4C28(TPlyItem *a0, void *a1, int a2, int a3) { item_reduce_target_player = a1; item_reduce_owner_match_field_ec = a2; reduce_owner_match_id = a3; a0->item_list->reduce_owner_matched_items(); }
 
 void TPlyItem::set_globals_and_update(void *a1, int a2) { item_reduce_target_player = a1; item_reduce_owner_match_field_ec = a2; item_list->reduce_child_item_amounts(); }
 
     extern void *player_item_collect_cursor;
-    extern int inventory_walk_visit_count;
 int TPlyItem::set_globals_and_notify(TObjPlayer *player, void *out) { player_item_collect_cursor = out; inventory_walk_visit_count = 0; TObjPlayer__sub_801D52A8(item_list); return inventory_walk_visit_count; }
 
 }

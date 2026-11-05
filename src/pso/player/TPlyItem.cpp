@@ -9,10 +9,7 @@
 
 extern "C" {
 extern TObjPlayer *item_reduce_target_player;
-extern u8 item_reduce_owner_match_field_ec;
-extern u8 reduce_owner_match_id;
 extern s32 *TObjPlayer__owner_field_write_cursor;
-extern s32 inventory_walk_visit_count;
 }
 
 TPlyItem::~TPlyItem() {

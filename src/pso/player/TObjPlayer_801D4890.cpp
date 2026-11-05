@@ -11,7 +11,6 @@
 extern "C" {
 
     extern void *TObjPlayer__owner_field_write_cursor;
-    extern int inventory_walk_visit_count;
 int TPlyItem::run_and_get_result(void *a1) { TObjPlayer__owner_field_write_cursor = a1; inventory_walk_visit_count = 0; item_list->collect_owner_fields_recursive(); return inventory_walk_visit_count; }
 
     extern void *owned_item_export_cursor;

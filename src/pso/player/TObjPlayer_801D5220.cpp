@@ -5,6 +5,7 @@
 #include <stddef.h>
 #include "pso/item/TItem.h"
 #include "pso/TPlyInventory.h"
+#include "pso/TPlyItem.h"
 #include "pso/misc/TOSwitchItem.h"
 #include "pso/misc/TWindowActionPalette_801C1890.h"
 #include "pso/player/TObjPlayer_801D5220.h"
@@ -12,7 +13,6 @@
 extern "C" {
 s32 item_identity_matches(void *arg0, void *arg1);
 extern u8 *inventory_search_item_data;
-extern s32 inventory_walk_visit_count;
 extern TItem **player_owner_collect_cursor;
 }
 extern TObjPlayer *item_reduce_target_player;
@@ -25,8 +25,6 @@ struct Collected_801D52A8 {
 };
 extern Collected_801D52A8 *player_item_collect_cursor;
 s32 compare_item_data_masked(void *arg0, void *arg1, s32 arg2);
-extern s32 inventory_update_field_d8_key;
-extern s32 inventory_walk_progress_count;
 extern "C" {
 
 extern TPlyInventoryItem *owned_item_export_cursor;
