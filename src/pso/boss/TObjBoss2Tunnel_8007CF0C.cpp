@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/boss/TObjBoss2Tunnel_8007CF0C.h"
 #include "pso/boss/TObjBoss2Tunnel_803E2BAC.h"
@@ -13,7 +14,6 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/render/render_util.h"
-#include "pso/system/ControllerInputState.h"
 
 struct Vec2_8007DD28 { f32 x; f32 y; f32 z; };
 
@@ -79,13 +79,13 @@ s32 memcard_check_snapshot(s32 arg0, s32 *arg1) {
     if (TAdPlayerLoadGC::get_instance() != 0) {
         return 0;
     }
-    if (TAdPlayerLoadGC::probe_card_slot(1) == 0) {
+    if (((TAdPlayerLoadGC *)1)->probe_card_slot() == 0) {
         if (arg1 != NULL) {
             *arg1 = -4;
         }
         return 0;
     }
-    if (TAdPlayerLoadGC::probe_and_check_card(1) == 0) {
+    if (((TAdPlayerLoadGC *)1)->probe_and_check_card() == 0) {
         if (arg1 != NULL) {
             if ((u32)(TAdPlayerLoadGC::get_load_result((void *)1) + 0x10000) == 0xff83U) {
                 if (arg1 != NULL) {
@@ -113,7 +113,7 @@ s32 memcard_check_snapshot(s32 arg0, s32 *arg1) {
         }
         return 0;
     }
-    temp_r3 = TAdPlayerLoadGC::find_card_file(1, (const char *)TObjBoss2Tunnel__data_80438A08);
+    temp_r3 = find_card_file__15TAdPlayerLoadGCFiPv(1, (const char *)TObjBoss2Tunnel__data_80438A08);
     if (temp_r3 == 0) {
         if (arg1 != NULL) {
             *arg1 = 1;
@@ -201,7 +201,7 @@ void draw_snapshot_capture_overlay(void) {
     TObjBoss2Tunnel__sub_803E2D10(1);
     draw_projected_quads__15TObjBoss2TunnelFPvi(v, 4);
     TObjBoss2Tunnel::reset_player_state();
-    TObjFish::set_global_param(lbl_805D63F0);
+    set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
     set_draw_texture_and_color(1, -1);
     begin_screen_draw(1);
     q.x0 = TObjBoss2Tunnel__data_8048DF2C.x - 27.0f;
@@ -250,34 +250,6 @@ void draw_snapshot_capture_overlay(void) {
     draw_textured_quad_at_depth((f32 *)&q, 0.5f);
     TWindowSubStatusDisp::get_player();
     restore_saved_depth_alpha_state();
-}
-
-/* Moves the capture frame with the C stick and keeps it on screen. */
-void TObjBoss2Tunnel__sub_8007DB80(void) {
-    s16 stick_x = controller_physical_port_bank.controllers[3].cstick_x;
-    s16 stick_y = controller_physical_port_bank.controllers[3].cstick_y;
-    f32 magnitude = controller_physical_port_bank.controllers[3].cstick_magnitude;
-    if (magnitude > 0.2f) {
-        f32 speed = 0.3f * magnitude;
-        s16 dx = stick_x * speed;
-        s16 dy = stick_y * speed;
-        dx = dx + dx % 4;
-        dy = dy + dy % 4;
-        TObjBoss2Tunnel__data_8048DF2C.x += dx;
-        TObjBoss2Tunnel__data_8048DF2C.y += dy;
-    }
-    if (TObjBoss2Tunnel__data_8048DF2C.x - 128.0f <= 0.0f) {
-        TObjBoss2Tunnel__data_8048DF2C.x = 128.0f;
-    }
-    if (128.0f + TObjBoss2Tunnel__data_8048DF2C.x >= 640.0f) {
-        TObjBoss2Tunnel__data_8048DF2C.x = 512.0f;
-    }
-    if (TObjBoss2Tunnel__data_8048DF2C.y - 96.0f <= 0.0f) {
-        TObjBoss2Tunnel__data_8048DF2C.y = 96.0f;
-    }
-    if (96.0f + TObjBoss2Tunnel__data_8048DF2C.y >= 480.0f) {
-        TObjBoss2Tunnel__data_8048DF2C.y = 384.0f;
-    }
 }
 
 void TObjBoss2Tunnel__sub_8007DD24(void) {  }

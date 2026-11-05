@@ -31,6 +31,9 @@ void *get_player_by_client_id(s32 i);
 s32 is_state_1f__14TBoss6PlotFalzFUi(u32 arg0);
 void subtract_vector(Vec_8036A6B0 *, Vec_8036A6B0 *);
 void vec3_add_to(Vec_8036A6B0 *, Vec_8036A6B0 *);
+extern const f32 lbl_805E0370;
+extern const f32 lbl_805E0374;
+extern const f32 lbl_805E0378;
 
 void TBoss6EffFlowSoul::run_task() {
     Soul_8036A6B0 *self = (Soul_8036A6B0 *)this;
@@ -49,19 +52,19 @@ void TBoss6EffFlowSoul::run_task() {
         p = (u8 *)get_player_by_client_id(self->player);
         if (p != NULL && is_state_1f__14TBoss6PlotFalzFUi((u32)p) != 0) {
             VecCopy((Vec *)&target, (const Vec *)((Vec_8036A6B0 *)(p + 0x38)));
-            target.y += 10.0f;
+            target.y += lbl_805E0370;
         } else {
             queue_destruction__7TObjectFv(self);
             return;
         }
     }
     remain = (f32)(self->duration - self->age);
-    if (remain <= 1e-05f) {
+    if (remain <= lbl_805E0374) {
         VecCopy((Vec *)&self->pos, (const Vec *)&target);
     } else {
         VecCopy((Vec *)&d, (const Vec *)&target);
         subtract_vector(&d, &self->pos);
-        k = 1.0f / remain;
+        k = lbl_805E0378 / remain;
         d.x *= k;
         d.y *= k;
         d.z *= k;

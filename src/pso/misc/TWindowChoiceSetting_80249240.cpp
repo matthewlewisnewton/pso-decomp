@@ -1,8 +1,9 @@
+#include "pso/misc/TWindowDrawContext.h"
 #include "types.h"
 #include "pso/misc/TWindowChoiceSetting_80249240.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC.h"
-#include "pso/misc/TWindowAddition.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TUnk_804CDFE8.h"
+#include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TUnk_804D0658.h"
 #include "pso/misc/TWindowChoiceSetting.h"
 #include "pso/misc/TWindowDD.h"
@@ -15,13 +16,13 @@ struct RecoveredGlobal_802492C8_lbl_8050E208 {
 };
 
 extern "C" {
-s32 get_draw_context__11TWindowBaseFPv();
 s32 draw_visible_window_entries(void *, void *, s32);
 s32 draw_window_scrollbar(s32, s32, void *);
 s32 forward_render__20TWindowSubStatusDispFv(s32, s32);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 TWindowShortListCtrl__check_controller_button(int, int);
 extern RecoveredGlobal_802492C8_lbl_8050E208 controller_input_state;
+extern const f32 lbl_805DCBC0;
 void __dl__7TObjectFPv(void *);
 void fn_80269004(void *);
 
@@ -29,8 +30,8 @@ extern s32 __vt__20TWindowChoiceSetting[];
 
 void render__20TWindowChoiceSettingFv(u8 *arg0) {
     s32 temp_r3;
-    temp_r3 = get_draw_context__11TWindowBaseFPv();
-    ((TWindowBase *)arg0)->draw_window_frame((void *)temp_r3);
+    temp_r3 = (s32)get_draw_context__11TWindowBaseFPv(arg0);
+    ((TUnk_804CE018 *)arg0)->draw_window_frame((void *)temp_r3);
     draw_visible_window_entries(arg0, arg0 + 0x24, temp_r3);
     ((TUnk_804D0658 *)arg0)->draw_setting(temp_r3);
     if ((u32) ((TWindowChoiceSetting *)arg0)->m_78 != 0U) {
@@ -75,7 +76,7 @@ void TWindowChoiceSetting::run_task() {
             ((TUnk_804D0658 *)arg0)->request_close();
         }
     }
-    if ((f32) this->m_5c >= 7.5f) {
+    if ((f32) this->m_5c >= lbl_805DCBC0) {
         temp_r3 = this->m_78;
         if (temp_r3 != 0U) {
             ((TWindowSubStatusDisp *)temp_r3)->update_subwindow();
@@ -87,10 +88,10 @@ void TWindowChoiceSetting::run_task() {
     }
     ((TWindowDD *)arg0)->initialize_subwindow();
     ((TWindowChoiceSetting *)arg0)->sub_80249078();
-    ((TWindowAddition *)arg0)->step_window_tween();
+    ((TUnk_804CDFE8 *)arg0)->step_window_tween();
     ((TUnk_804D0658 *)arg0)->update_scroll_offset();
     ((TUnk_804D0658 *)arg0)->clamp_scroll();
-    ((TWindowBase *)arg0)->update_window_entry_list(arg0 + 0x24);
+    ((TUnk_804CE018 *)arg0)->update_window_entry_list(arg0 + 0x24);
 }
 
 void *__dt__20TWindowChoiceSettingFv(void *arg0, s16 arg1) {

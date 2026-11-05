@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/enemy/TObjEneMe1Gee_802A4BB8.h"
 #include "pso/misc/TNeedleShoot_802A4668.h"
@@ -29,14 +30,13 @@ u16 get_entity_id(void *);
 u8 * TNeedleShoot__ct(void *, s32, void *, void *);
 extern RecoveredGlobal_802A4CC4_lbl_804DCFF8 __vt__20TObjEneMe1Gee_NEEDLE;
 extern const char *TObjEneMe1Gee_NEEDLE__name;
-int TObjEneMe1Gee__sub_800CC2BC(void);
 extern u32 me1gee_cached_model_handle;
 s32 post_translate_matrix(void *);
 s32 draw_ginja_object();
 s32 rotate_matrix_x(int, int);
 s32 TObjFish__sub_8001EDB0(void *, int);
 s32 get_bml_model(void *, int);
-s32 set_global_param__8TObjFishFl();
+
 s32 rotate_matrix_y(int, int);
 s32 push_matrix();
 
@@ -51,8 +51,7 @@ void TObjEneMe1Gee_NEEDLE::render() {
     post_translate_matrix((u8 *)&this->m_6c);
     rotate_matrix_y(0, this->m_a4);
     rotate_matrix_x(0, this->m_a0);
-    TObjFish__sub_8001EDB0((void *)me1gee_cached_model_handle, 1);
-    set_global_param__8TObjFishFl();
+    set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0((void *)me1gee_cached_model_handle, 1)));
     get_bml_model((void *)me1gee_cached_model_handle, 1);
     draw_ginja_object();
     TParticleCtrl::end_effect_render();
@@ -88,7 +87,7 @@ u8 *TObjEneMe1Gee_NEEDLE__ct(TObjEneMe1Gee_NEEDLE *arg0, s32 arg1, u8 *from, u8 
     return (u8 *)arg0;
 }
 void TObjEneMe1Gee__sub_802A4D4C(void) {  }
-void TObjEneMe1Gee::cache_result_805D6660() { (*(int *)&me1gee_cached_model_handle) = TObjEneMe1Gee__sub_800CC2BC(); }
+void TObjEneMe1Gee::cache_result_805D6660() { me1gee_cached_model_handle = (u32)TObjEneMe1Gee::get_resources(); }
 
 typedef char RecoveredGlobal_802A4CC4_lbl_804DCFF8_size[sizeof(RecoveredGlobal_802A4CC4_lbl_804DCFF8) == 0x28 ? 1 : -1];
 

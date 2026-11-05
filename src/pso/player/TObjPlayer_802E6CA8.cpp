@@ -1,3 +1,6 @@
+#include "pso/system/ArrayAllocation.h"
+#include "pso/math/MatrixCopy.h"
+#include "pso/misc/ParticleFactory.h"
 #include "pso/system/ChunkMaterialState.h"
 #include "types.h"
 #include "pso/system/NinjaUtil.h"
@@ -79,8 +82,9 @@ extern const float lbl_805DE9F0;
 extern const f32 lbl_805DE9FC;
 extern const f32 lbl_805DEA00;
 extern const f32 lbl_805DEA04;
+extern const f32 lbl_805DEA08;
+extern const f32 lbl_805DEA0C;
 s32 TObjPlayer__sub_802E76C8(u8 *arg0);
-void mem_free(void *p);
 void __dl__7TObjectFPv(void *);
 extern s32 __vt__13TUnk_804E3BD8[];
 u8 *__dt__13TUnk_804E3BD8Fv(u8 *arg0, s16 arg1);
@@ -133,7 +137,6 @@ void TObjPlayer__sub_802E75B8(void *, s32 *);
 s32 scale_matrix(int, f32, f32, f32);
 extern const f32 lbl_805DE9E4;
 void __ct__7TObjectFP7TObject(void *);
-void *mem_alloc(u32 size);
 
     extern int multiplay_texture_f512_handle;
 int TObjPlayer::get_instance() {  return multiplay_texture_f512_handle; }
@@ -154,7 +157,7 @@ void TUnk_804E3BA8::render() {
         rotate_matrix_z(0, part->f20);
         rotate_matrix_x(0, part->f18);
         translate_matrix(0, -this->m_30, -*(f32 *)&this->unk_34, -this->m_38);
-        TObjPlayer::concat_matrix(0, *(s32 *)&this->unk_2C);
+        concat_matrix((MtxP)(0), (const f32 (*)[4])(*(s32 *)&this->unk_2C));
         switch (part->type) {
         case 0:
         case 1:
@@ -190,7 +193,7 @@ void TUnk_804E3BA8::run_task() {
     }
     for (i = 0, off = 0; i < m_24; i++, off += 0x2C) {
         if (TObjPlayer__sub_802E76C8(*(u8 **)unk_28 + off) != 0 && i % 2 == 0) {
-            spawn_particle_effect(*(u8 **)unk_28 + off, 0x200);
+            spawn_particle_effect((const Vec *)(*(u8 **)unk_28 + off), 0x200);
         }
     }
 }
@@ -216,7 +219,7 @@ u8 *TObjPlayer::init_breakup_pieces(void *arg1, s32 arg2) {
     part = *(Part_802E6F10 * *)&this->room;
     push_matrix();
     set_matrix_identity(0);
-    TObjPlayer::concat_matrix(0, *(s32 *)((s8 *)((u8 *)this) + 0x2C));
+    concat_matrix((MtxP)(0), (const f32 (*)[4])(*(s32 *)((s8 *)((u8 *)this) + 0x2C)));
     (*(Vec_802E6F10 *)((s8 *)((u8 *)this) + 0x30)).z = (*(Vec_802E6F10 *)((s8 *)((u8 *)this) + 0x30)).y = (*(Vec_802E6F10 *)((s8 *)((u8 *)this) + 0x30)).x = lbl_805DE9CC;
     matrix_mult_vec(0, ((u8 *)this) + 0x30, ((u8 *)this) + 0x30);
     for (i = 0; i < this->texlist; i++) {
@@ -286,7 +289,7 @@ void TUnk_804E3BC0::run_task() {
     }
     for (i = 0, off = 0; i < m_24; i++, off += 0x2C) {
         if (TObjPlayer__sub_802E76C8(*(u8 **)unk_28 + off) != 0 && i % 2 == 0) {
-            spawn_particle_effect(*(u8 **)unk_28 + off, 0x200);
+            spawn_particle_effect((const Vec *)(*(u8 **)unk_28 + off), 0x200);
         }
     }
 }
@@ -351,13 +354,13 @@ void TUnk_804E3BD8::alloc_breakup_model(s32 arg1) {
     temp_r4 = *(s32 **)((s8 *)this + 0x1C);
     this->m_24 = (s32) *temp_r4;
     TObjPlayer__sub_802E75B8(this, temp_r4);
-    *(s32 *)&(this->unk_28) = (s32)mem_alloc(this->m_24 * 0x2C);
+    *(s32 *)&(this->unk_28) = (s32)::operator new[](this->m_24 * 0x2C);
 }
 }
 
 TUnk_804E3BD8::~TUnk_804E3BD8() {
     VObj_802E74E4 *temp_r3;
-    mem_free((void *)(*(s32 *)((s8 *)this + 0x28)));
+    ::operator delete[]((void *)(*(s32 *)((s8 *)this + 0x28)));
     temp_r3 = *(VObj_802E74E4 **)((s8 *)this + 0x1C);
     if (temp_r3 != NULL) {
         temp_r3->m0(1);
@@ -423,7 +426,7 @@ s32 TObjPlayer__sub_802E76C8(u8 *arg0) {
             if (temp_f2 < lbl_805DE9FC) {
                 temp_f3 = *(f32 *)((s8 *)arg0 + 0);
                 temp_f4 = *(f32 *)((s8 *)arg0 + 8);
-                if ((temp_f3 <= lbl_805DEA00) && (temp_f3 >= lbl_805DEA04) && (temp_f4 <= 76.0f) && (temp_f4 >= (-75.0f))) {
+                if ((temp_f3 <= lbl_805DEA00) && (temp_f3 >= lbl_805DEA04) && (temp_f4 <= lbl_805DEA08) && (temp_f4 >= lbl_805DEA0C)) {
                     *(f32 *)((s8 *)arg0 + 0x10) = (f32) (temp_f1 * lbl_805DE9D0);
                     *(s32 *)((s8 *)arg0 + 0x28) = 2;
                 } else if (temp_f2 < (*(const f32 *)&lbl_805DE9F0)) {

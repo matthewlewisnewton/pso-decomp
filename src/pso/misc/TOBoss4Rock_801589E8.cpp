@@ -1,3 +1,6 @@
+#include "pso/system/ArrayAllocation.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/math/ScratchVectorStorage.h"
 #include "types.h"
 #include "pso/misc/TOBoss4Bird.h"
 #include "pso/misc/TOBoss4Rock.h"
@@ -9,9 +12,8 @@ extern "C" {
 s32 TObjFish__sub_8001EDB0(s32,s32);
 s32 get_bml_model(s32,s32);
 s32 rotate_matrix_y(int,int);
-s32 set_global_param__8TObjFishFl(int);
+
 void draw_ginja_object(void *child);
-void *mem_alloc(u32 size);
 void TOBoss4__ct(void*,void*);
 u8* TOBoss4Bird__ct(u8*,s32);
 extern s32 __vt__11TOBoss4Bird[];
@@ -42,21 +44,23 @@ s32 get_bml_model(s32, s32);
 s32 rand();
 extern s32 lbl_805D58A8;
 
+#pragma push
 void TOBoss4Rock::run_task() {
     Rock_801589E8 *self = (Rock_801589E8 *)this;
     s32 i;
-    int model;
-    f32 base;
 
+    // Keep the integer index local and the explicit call-site casts: CodeWarrior
+    // otherwise reverses the argument/save register copies at 0x80158AD8.
     for (i = 0; i < self->count; i++) {
         self->rots[i].x += self->rotspd[i].x;
         self->rots[i].y += self->rotspd[i].y;
         self->rots[i].z += self->rotspd[i].z;
         self->positions[i].y += self->speeds[i];
         if (*(const f32 *)&lbl_805DB310 < self->positions[i].y) {
-            model = (4.0f) * ((3.0517578e-05f) * (f32)rand());
-            self->models[i] = get_bml_model(lbl_805D58A8, model);
-            self->params[i] = TObjFish__sub_8001EDB0(lbl_805D58A8, model);
+            s32 model_index = (s32)((4.0f) * ((3.0517578e-05f) * (f32)rand()));
+            f32 base;
+            self->models[i] = get_bml_model(lbl_805D58A8, (s32)model_index);
+            self->params[i] = TObjFish__sub_8001EDB0(lbl_805D58A8, (s32)model_index);
             self->positions[i].x = self->spread * ((3.0517578e-05f) * (f32)rand());
             self->positions[i].y = (0.0f);
             self->positions[i].z = self->spread * ((3.0517578e-05f) * (f32)rand());
@@ -71,6 +75,7 @@ void TOBoss4Rock::run_task() {
         }
     }
 }
+#pragma pop
 
 }
 
@@ -115,7 +120,6 @@ s32 push_matrix();
 s32 pop_matrix();
 s32 post_translate_matrix(void *);
 void *TOBoss4Rock__ct(void *, void *);
-void mem_free(void *);
 void *__nw__7TObjectFUl(int);
 
 void TOBoss4Rock::render() {
@@ -125,7 +129,7 @@ void TOBoss4Rock::render() {
         push_matrix();
         post_translate_matrix(&self->pos);
         for (i = 0; i < self->count; i++) {
-            set_global_param__8TObjFishFl(self->params[i]);
+            set_current_texture_list((GinjaTextureList *)(self->params[i]));
             push_matrix();
             post_translate_matrix(&self->positions[i]);
             rotate_matrix_z(0, self->rots[i].z);
@@ -150,12 +154,12 @@ extern s32 __vt__11TOBoss4Rock[];
 
 }
 TOBoss4Rock::~TOBoss4Rock() {
-    if (*(void **)((s8 *)this + 0xA0) != NULL) { mem_free(*(void **)((s8 *)this + 0xA0)); }
-    if (*(void **)((s8 *)this + 0xA4) != NULL) { mem_free(*(void **)((s8 *)this + 0xA4)); }
-    if (*(void **)((s8 *)this + 0xA8) != NULL) { mem_free(*(void **)((s8 *)this + 0xA8)); }
-    if (*(void **)((s8 *)this + 0xAC) != NULL) { mem_free(*(void **)((s8 *)this + 0xAC)); }
-    if (*(void **)((s8 *)this + 0xB0) != NULL) { mem_free(*(void **)((s8 *)this + 0xB0)); }
-    if (*(void **)((s8 *)this + 0xB4) != NULL) { mem_free(*(void **)((s8 *)this + 0xB4)); }
+    if (*(void **)((s8 *)this + 0xA0) != NULL) { ::operator delete[](*(void **)((s8 *)this + 0xA0)); }
+    if (*(void **)((s8 *)this + 0xA4) != NULL) { ::operator delete[](*(void **)((s8 *)this + 0xA4)); }
+    if (*(void **)((s8 *)this + 0xA8) != NULL) { ::operator delete[](*(void **)((s8 *)this + 0xA8)); }
+    if (*(void **)((s8 *)this + 0xAC) != NULL) { ::operator delete[](*(void **)((s8 *)this + 0xAC)); }
+    if (*(void **)((s8 *)this + 0xB0) != NULL) { ::operator delete[](*(void **)((s8 *)this + 0xB0)); }
+    if (*(void **)((s8 *)this + 0xB4) != NULL) { ::operator delete[](*(void **)((s8 *)this + 0xB4)); }
 }
 
 #pragma fp_contract on
@@ -190,12 +194,11 @@ extern "C" {
 void TOBoss4__ct(void *, void *);
 extern s32 lbl_805D2EBC;
 
+#pragma push
 #define arg0 ((u8 *)arg0_)
 #define self ((Rock_80158FB4 *)arg0_)
 void *TOBoss4Rock__ct(void *arg0_, void *arg1) {
     s32 i;
-    int model;
-    f32 base;
 
     TOBoss4__ct(arg0, arg1);
     *(s32 **)((s8 *)arg0 + 0x18) = __vt__11TOBoss4Rock;
@@ -214,16 +217,18 @@ void *TOBoss4Rock__ct(void *arg0_, void *arg1) {
     } else if (self->count > 8) {
         self->count = 8;
     }
-    self->models = (s32 *)mem_alloc(self->count * 4);
-    self->params = (s32 *)mem_alloc(self->count * 4);
-    self->positions = (Vec_80158FB4 *)mem_alloc(self->count * 0xC);
-    self->speeds = (f32 *)mem_alloc(self->count * 4);
-    self->rots = (Rot_80158FB4 *)mem_alloc(self->count * 0xC);
-    self->rotspd = (Rot_80158FB4 *)mem_alloc(self->count * 0xC);
+    self->models = (s32 *)::operator new[](self->count * 4);
+    self->params = (s32 *)::operator new[](self->count * 4);
+    self->positions = (Vec_80158FB4 *)::operator new[](self->count * 0xC);
+    self->speeds = (f32 *)::operator new[](self->count * 4);
+    self->rots = (Rot_80158FB4 *)::operator new[](self->count * 0xC);
+    self->rotspd = (Rot_80158FB4 *)::operator new[](self->count * 0xC);
+    // As in run_task, the local integer index preserves the native call sequence.
     for (i = 0; i < self->count; i++) {
-        model = (4.0f) * ((3.0517578e-05f) * (f32)rand());
-        self->models[i] = get_bml_model(lbl_805D58A8, model);
-        self->params[i] = TObjFish__sub_8001EDB0(lbl_805D58A8, model);
+        s32 model_index = (s32)((4.0f) * ((3.0517578e-05f) * (f32)rand()));
+        f32 base;
+        self->models[i] = get_bml_model(lbl_805D58A8, (s32)model_index);
+        self->params[i] = TObjFish__sub_8001EDB0(lbl_805D58A8, (s32)model_index);
         self->positions[i].x = self->spread * ((3.0517578e-05f) * (f32)rand());
         self->positions[i].y = (0.0f);
         self->positions[i].z = self->spread * ((3.0517578e-05f) * (f32)rand());
@@ -240,13 +245,13 @@ void *TOBoss4Rock__ct(void *arg0_, void *arg1) {
 }
 #undef arg0
 #undef self
+#pragma pop
 
 }
 
 #define TObjFish__sub_8001EDB0 ((s32 (*)(void*,int))TObjFish__sub_8001EDB0)
 #define get_bml_model ((s32 (*)(void*,int))get_bml_model)
 #define rotate_matrix_y ((s32 (*)(s32,s32))rotate_matrix_y)
-#define set_global_param__8TObjFishFl ((s32 (*)(s32))set_global_param__8TObjFishFl)
 #define TOBoss4__ct ((s32 (*)(void))TOBoss4__ct)
 
 struct RecoveredGlobal_80159514___vt__12TOBoss4Tower {
@@ -286,8 +291,8 @@ void TOBoss4Tower::render() {
     if (((VObj_80159400 *)arg0)->m8(*(f32 *)&this->unk_90, this->m_94) != 0) {
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
-        set_global_param__8TObjFishFl(this->texlist);
+        rotate_matrix_y(0, this->rotation.yaw);
+        set_current_texture_list((GinjaTextureList *)(this->texlist));
         draw_ginja_object(this->model);
         pop_matrix();
     }
@@ -313,7 +318,6 @@ u8 *TOBoss4Tower__ct(u8 *boss4_tower, s32 arg1) {
 #undef TObjFish__sub_8001EDB0
 #undef get_bml_model
 #undef rotate_matrix_y
-#undef set_global_param__8TObjFishFl
 #undef TOBoss4__ct
 struct Vec_8015959C { f32 x, y, z; };
 
@@ -347,13 +351,11 @@ f32 horizontal_distance_squared(Vec_8015959C *, Vec_8015959C *);
 s32 approach_angle_limited(s32, s32, s32);
 s32 rand(void);
 f32 sin_table_lookup(s32);
-void vec3_add_to(Vec_8015959C *, Vec_8015959C *);
-void rotate_vector_by_matrix(s32, Vec_8015959C *, Vec_8015959C *);
-void subtract_vector(Vec_8015959C *, Vec_8015959C *);
+void vec3_add_to(Vec_8015959C *, Vec *);
+void rotate_vector_by_matrix(s32, Vec *, Vec *);
+void subtract_vector(Vec *, Vec_8015959C *);
 void push_matrix_from(void *);
 void pop_matrices(s32);
-extern Vec_8015959C scratch_vec;
-extern Vec_8015959C lbl_8050BF00;
 extern u8 identity_matrix[];
 
 void TOBoss4Bird::run_task() {
@@ -367,27 +369,27 @@ void TOBoss4Bird::run_task() {
     switch (self->state) {
     case 0:
         self->state = 1;
-        scratch_vec.x = (0.0f);
-        scratch_vec.y = self->fac * ((3.0517578e-05f) * (f32)rand());
-        scratch_vec.z = self->fb0 * ((3.0517578e-05f) * (f32)rand());
+        scratch_vec.vector.x = (0.0f);
+        scratch_vec.vector.y = self->fac * ((3.0517578e-05f) * (f32)rand());
+        scratch_vec.vector.z = self->fb0 * ((3.0517578e-05f) * (f32)rand());
         push_matrix_from(identity_matrix);
         rotate_matrix_y(0, (s32)((182.04445f) * ((3.6e+02f) * ((3.0517578e-05f) * (f32)rand()))));
-        rotate_vector_by_matrix(0, &scratch_vec, &scratch_vec);
+        rotate_vector_by_matrix(0, &scratch_vec.vector, &scratch_vec.vector);
         pop_matrices(1);
         VecCopy((Vec *)&self->fc4, (const Vec *)&self->f50);
-        vec3_add_to(&self->fc4, &scratch_vec);
+        vec3_add_to(&self->fc4, &scratch_vec.vector);
         break;
     case 1:
-        VecCopy((Vec *)&scratch_vec, (const Vec *)&self->fc4);
-        subtract_vector(&scratch_vec, &self->f38);
-        self->f60 = approach_angle_limited(self->f60, (s32)((10430.38043493439) * atan2_float(scratch_vec.x, scratch_vec.z)), 0x100);
-        lbl_8050BF00.x = lbl_8050BF00.y = (0.0f);
-        lbl_8050BF00.z = self->fa8;
+        VecCopy((Vec *)&scratch_vec.vector, (const Vec *)&self->fc4);
+        subtract_vector(&scratch_vec.vector, &self->f38);
+        self->f60 = approach_angle_limited(self->f60, (s32)((10430.38043493439) * atan2_float(scratch_vec.vector.x, scratch_vec.vector.z)), 0x100);
+        lbl_8050BF00.vector.x = lbl_8050BF00.vector.y = (0.0f);
+        lbl_8050BF00.vector.z = self->fa8;
         push_matrix_from(identity_matrix);
         rotate_matrix_y(0, self->f60);
-        rotate_vector_by_matrix(0, &lbl_8050BF00, &lbl_8050BF00);
+        rotate_vector_by_matrix(0, &lbl_8050BF00.vector, &lbl_8050BF00.vector);
         pop_matrices(1);
-        vec3_add_to(&self->f38, &lbl_8050BF00);
+        vec3_add_to(&self->f38, &lbl_8050BF00.vector);
         if (horizontal_distance_squared(&self->fc4, &self->f38) < self->fb0 || (1.5e+02f) < (f32)self->fe4++) {
             self->state = 0;
             self->fe4 = 0;
@@ -445,7 +447,7 @@ void TOBoss4Bird::render() {
     if (self->m8(self->f90, self->f94) != 0) {
         push_matrix();
         post_translate_matrix(&self->pos);
-        set_global_param__8TObjFishFl(self->param);
+        set_current_texture_list((GinjaTextureList *)(self->param));
         for (i = 0; i < self->count; i++) {
             push_matrix();
             translate_matrix(0, (0.0f), self->fD4, (0.0f));
@@ -469,8 +471,8 @@ void *TOBoss4Bird::create(void *arg0) {
 
 }
 TOBoss4Bird::~TOBoss4Bird() {
-    if (*(void **)((s8 *)this + 0xBC) != NULL) { mem_free(*(void **)((s8 *)this + 0xBC)); }
-    if (*(void **)((s8 *)this + 0xC0) != NULL) { mem_free(*(void **)((s8 *)this + 0xC0)); }
+    if (*(void **)((s8 *)this + 0xBC) != NULL) { ::operator delete[](*(void **)((s8 *)this + 0xBC)); }
+    if (*(void **)((s8 *)this + 0xC0) != NULL) { ::operator delete[](*(void **)((s8 *)this + 0xC0)); }
 }
 #define get_bml_model ((u8* (*)(s32,s32))get_bml_model)
 #define TOBoss4__ct ((void (*)(void*))TOBoss4__ct)
@@ -545,8 +547,8 @@ u8 *TOBoss4Bird__ct(u8 *boss4_bird, s32 arg1) {
     } else if (o->count > 6) {
         o->count = 6;
     }
-    o->vecs = (Vec_80159A10 *)mem_alloc(o->count * 0xC);
-    o->angs = (s32 *)mem_alloc(o->count * 4);
+    o->vecs = (Vec_80159A10 *)::operator new[](o->count * 0xC);
+    o->angs = (s32 *)::operator new[](o->count * 4);
     {
         VecTbl_80159A10 tbl = boss4_bird_vec_table[0];
         for (i = 0; i < o->count; i++) {

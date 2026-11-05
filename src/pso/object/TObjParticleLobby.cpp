@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "types.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/object/TObjParticleLobby.h"
@@ -135,7 +136,7 @@ void TObjParticleLobby::setup_emitter() {
 }
 
 void TObjParticleLobby::run_task() {
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         demo_step();
         return;
     }
