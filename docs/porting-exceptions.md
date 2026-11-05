@@ -143,8 +143,8 @@ in `.rodata`. Port: keep FMA or accept small float differences; a normal
 
 | Flag | Why | Evidence |
 |---|---|---|
-| `-inline deferred` | Least inline mode that keeps this unit's object identical. | Against `-inline noauto,deferred,level=1` (the previous profile): `.text`, `.data`, `.rodata`, `.sdata2` and relocations are byte-identical, so `noauto` and `level=1` do nothing here. `-inline off,deferred` changes 21 functions, including `copy_transform` and `TBoss6Type1__sub_802B96C0`. `-inline noauto` changes 86, including `draw_model` and `render`. `-inline auto`, `on`, and `all` inline callers and change the same set. |
-| `-fp_contract on` | The unit's multiply-adds are `fmadds`. | `-fp_contract off` changes 71 functions, including `draw_part_motions`, `run_task`, `render_shadows`, and `TBoss6Type1__sub_802B626C`. |
+| `-inline deferred` | Least inline mode that keeps this unit's object identical. | Against `-inline noauto,deferred,level=1` (the previous profile): every section and relocation is byte-identical, so `noauto` and `level=1` do nothing here. `-inline off,deferred` changes 3 functions (`Boss6Anim::copy_transform`, `copy_block` and `TBoss6Type1__sub_802B96C0`). `-inline noauto` changes 2 (`load_params_from_table` and `TBoss6Type1__sub_802B6C30`). `-inline auto` changes 20, including `draw_model`, `run_task` and the constructor. Measured on the source with every function exact. |
+| `-fp_contract on` | The unit's multiply-adds are `fmadds`. | `-fp_contract off` changes 16 functions, including `fire_at_all_players`, `spawn_grav_ball`, `update_sway` and `TBoss6Type1__sub_802B626C`. |
 
 Precedent: [dtk-template](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203) (`-inline auto`) and [#L209](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209) (`-fp_contract on`); Melee, TP, TWW and Pikmin 2 contract globally; [Brawl](https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264) uses `-inline on`.
 
