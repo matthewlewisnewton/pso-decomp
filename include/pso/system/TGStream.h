@@ -19,7 +19,7 @@ extern "C" {
 TGStreamPrefix *open__8TGStreamFPvPvi(TGStreamPrefix *stream, void *name, s32 direct_read_mode);
 TGStreamPrefix *destroy_gstream(TGStreamPrefix *stream, s16 delete_storage);
 void read_sectors_sync__8TGStreamFll(TGStreamPrefix *stream, s32 sector_count, s32 destination);
-s32 read_data__8TGStreamFll(TGStreamPrefix *stream, s32 destination, s32 byte_count);
+s32 read_data__8TGStreamFPUcl(TGStreamPrefix *stream, u8 *destination, s32 byte_count);
 void reset__8TGStreamFv(void);
 void reset_gstream_buffer(void);
 }
@@ -40,7 +40,7 @@ extern "C" {
 void close_gsl_archive(void);
 TGStreamPrefix *destroy_gstream(TGStreamPrefix *arg0, s16 arg1);
 }
-GslArchiveEntry *find_gsl_entry(void *name);
+GslArchiveEntry *find_gsl_entry(const void *name, s32 mode);
 s32 get_gstream_buffered_bytes(void);
 extern "C" {
 int get_gstream_file_size(void);

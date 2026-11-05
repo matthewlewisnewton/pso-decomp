@@ -647,7 +647,7 @@ void TBoss3Volopt::select_phase1_attack() {
                 attack.id = entity_id;
                 attack.count = max_targets < count ? max_targets : count;
                 attack.tech = 3.0f * random_ratio__9TObjCharaFv(this);
-                ((TLobby *)attack.order)->move_data(volopt_p01_order, 6);
+                move_data(attack.order, volopt_p01_order, 6);
                 attack.send();
                 if (max_targets < 5) {
                     max_targets++;
@@ -710,7 +710,7 @@ void TBoss3Volopt::select_phase1_attack() {
                 targets.init();
                 targets.id = entity_id;
                 targets.count = max_targets < count_v1 ? max_targets : count_v1;
-                ((TLobby *)targets.order)->move_data(volopt_p01_order, 6);
+                move_data(targets.order, volopt_p01_order, 6);
                 targets.send();
                 if (max_targets < 5) {
                     max_targets++;
@@ -1422,7 +1422,7 @@ void handle_6x15_vol_opt_boss_actions(TBoss3VoloptActionPacket *packet) {
 
 void handle_6x16_vol_opt_boss_actions(TBoss3VoloptTargetsPacket *packet) {
     packet->swap();
-    ((TLobby *)volopt_p01_order)->move_data(packet->order, 6);
+    move_data(volopt_p01_order, packet->order, 6);
     TBoss3Volopt::set_primary_p01s(packet->count);
     volopt_p01_tech = -1;
 }
@@ -1487,7 +1487,7 @@ void TBoss3Volopt::update_phase() {
 
 void handle_6x84_vol_opt_boss_actions(TBoss3VoloptAttackPacket *packet) {
     packet->swap();
-    ((TLobby *)volopt_p01_order)->move_data(packet->order, 6);
+    move_data(volopt_p01_order, packet->order, 6);
     volopt_p01_tech = packet->tech;
     TBoss3Volopt::set_primary_p01s(packet->count);
 }

@@ -9,7 +9,6 @@ struct THunterGuildSeqOffline : public TShopSequence {
     virtual void close_window();
     virtual void restore_player_state();
     void vfunc_11();
-    u32 m_38;
     void handle_select();
     void open_judgment_window();
     void resolve_active_quest_result();
@@ -37,9 +36,6 @@ struct THunterGuildSeqOffline : public TShopSequence {
     void open_quest_list();
     void handle_window_input();
     void *init(void *arg1, void *arg2);
-    u8 unk_20[0x4];
-    s32 m_24;
-    u8 unk_28[0x4];
     u8 * m_2c;
     u8 unk_30[0x4];
     s32 m_34;

@@ -19,8 +19,8 @@ public:
     static void load_banner_files();
     static s32 get_load_result(s32 channel);
     static s32 probe_card_slot(s32 channel);
+    static s32 find_card_file(s32 chan, const char *name);
     static void build_save_file_image(void *image, void *card);
-    static s32 find_card_file(int chan, void *name);
     static s32 check_memcard_status(s32 arg0);
     static s32 query_memcard_capacity(s32 arg0, s32 arg1);
     static s32 poll_load_status(s32 chan, const char *name);
