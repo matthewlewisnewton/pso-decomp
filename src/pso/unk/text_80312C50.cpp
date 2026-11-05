@@ -13,7 +13,7 @@ extern "C" {
 void *get_element__10TObjPlayerFPvi(void *a0, int a1);
 int TObjPlayer__sub_80313218(void* p);
 u8 *TObjPlayer__sub_80312FB0(TObjPlayer *arg0);
-void append_photon_blast_request(s32 arg0, s16 arg1, s16 arg2);
+void append_photon_blast_request(s32 arg0, u16 arg1, s16 arg2);
 void *get_player_by_client_id(s32);
 int TObjPlayer__sub_803131AC(void* a0);
 void TObjPlayer__sub_80312E98(void *o, u16 id);
@@ -106,7 +106,7 @@ void TObjPlayer__sub_80312E98(void *o, u16 id) {
 
 void TObjPlayer::process_all_elements() { { int n = TObjPlayer__sub_803131AC(this); int i; for (i = 0; i < n; i++) { process_indexed_element((s32)((void*)i)); } } }
 
-void append_photon_blast_request(s32 arg0, s16 arg1, s16 arg2) {
+void append_photon_blast_request(s32 arg0, u16 arg1, s16 arg2) {
     s32 temp_r3;
     temp_r3 = ((s32)TObjPlayer__sub_80312FB0((TObjPlayer *)((u8 *)arg0)));
     if (temp_r3 != 0) {
