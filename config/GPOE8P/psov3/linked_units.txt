@@ -3560,3 +3560,4 @@ pso/unk/text_8042EE4C.cpp
 si/SIBios.c
 si/SISamplingRate.c
 vi/vi.c
+pso/boss/TBoss8Dragon_802F4380.cpp

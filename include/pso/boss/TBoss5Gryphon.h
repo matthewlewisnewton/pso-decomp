@@ -4,18 +4,12 @@
 #include "types.h"
 #include "pso/enemy/TObjEneDD_ST.h"
 #include "pso/misc/RenderFadeState.h"
+#include "pso/protocol/subcmd_6x.h"
 #include <stddef.h>
 
 class TBoss5GryphonDemo;
 
-struct Boss5GryphonMotionEntry {
-    s16 state;
-    s16 timer;
-    s32 m_4;
-    f32 m_8;
-    f32 m_c;
-    f32 m_10;
-};
+typedef G_GalGryphonBossAction Boss5GryphonMotionEntry;
 
 struct TBoss5Gryphon : public TObjEneDD_ST {
     virtual ~TBoss5Gryphon();
@@ -77,10 +71,9 @@ struct TBoss5Gryphon : public TObjEneDD_ST {
     virtual void apply_poison_status();
     u8 unk_3C0[0xC0];
     s32 m_480;
-    u8 _pad484[0xC];
+    Vec m_484;
     s32 targetRefreshCounter;
-    void* m_494;
-    u8 _pad498[0x24];
+    Boss5GryphonMotionEntry actions[2];
     Boss5GryphonMotionEntry *motion;
     u32 m_4c0;
     void* m_4c4;
@@ -130,6 +123,7 @@ struct TBoss5Gryphon : public TObjEneDD_ST {
     void spawn_ground_splash();
     void update_collider_from_table();
     void set_target_from_action(void *arg1);
+    void apply_remote_action(G_GalGryphonBossActions_6xA0 *cmd);
     s32 reload_stats_for_phase(void *);
     void reload_stats_for_type();
     void set_flight_height();
