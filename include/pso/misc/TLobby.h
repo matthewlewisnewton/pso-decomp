@@ -149,7 +149,7 @@ struct TLobby : public TObject {
     static void alloc_from_heap(void* a0);
     static void pump_frames();
     static void add_named_entry(s32 arg0, s32 arg1);
-    static s32 create_named_entry(s32 name, s32 buffer, u32 callback, void *src, void **out);
+    static s32 create_named_entry(s32 name, s32 buffer, void (*callback)(Lobby_8001FA1C *), void *src, void **out);
     static void notify_and_close();
     static void destroy_instance();
     static void pop_and_close();

@@ -12,7 +12,7 @@ s32 strncpy(void *, void *, int);
 
 }
 
-s32 TLobby::create_named_entry(s32 name, s32 arg1, u32 callback, void *src, void **arg4) {
+s32 TLobby::create_named_entry(s32 name, s32 arg1, void (*callback)(Lobby_8001FA1C *), void *src, void **arg4) {
     u8 *var_r31;
     s32 temp_r3;
 
@@ -34,8 +34,8 @@ s32 TLobby::create_named_entry(s32 name, s32 arg1, u32 callback, void *src, void
     *(s32 *)((s8 *)var_r31 + 0x30) = TLobby__sub_803CC53C((u8 *)temp_r3);
     ((TLobby *)temp_r3)->close_adxf_handle();
     *(s32 *)((s8 *)var_r31 + 0x34) = 0;
-    *(u32 *)((s8 *)var_r31 + 0x40) = callback;
-    if (callback != 0U) {
+    *(void (**)(Lobby_8001FA1C *))((s8 *)var_r31 + 0x40) = callback;
+    if (callback != NULL) {
         ((TLobby *)(var_r31 + 0x44))->move_words((u32 *)src, 8);
     }
     if (arg4 != NULL) {

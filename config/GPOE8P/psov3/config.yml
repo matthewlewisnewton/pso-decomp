@@ -7998,7 +7998,7 @@ force_active:
   - load_bin_model__11BmlResourceFll
   - load_bin_model_callback__FP14Lobby_8001FA1C
   - load_bin_motion__11BmlResourceFll
-  - load_bin_motion_callback__FPv
+  - load_bin_motion_callback__FP14Lobby_8001FA1C
   - load_chr_select_slot__23TAdSinglePlyChrSelectGCFv
   - load_downloaded_quest__12TQuestListVMFv
   - load_enemy_set_file__Fll

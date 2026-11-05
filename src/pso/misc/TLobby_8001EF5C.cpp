@@ -446,7 +446,9 @@ void increment_ref_and_set_flag__6TLobbyFPv(void *arg0) {
 }
 }
 void align_gstream_read_offset(void *, s32);
-void load_bin_motion_callback(void *arg0) {
+// Stored in the same create_named_entry slot as load_bin_model_callback, so it
+// has that function type. The caller passes the 8-byte Params_8001FA1C block.
+void load_bin_motion_callback(Lobby_8001FA1C *arg0) {
     s32 spC;
     s32 sp8;
     s32 temp_r3;
@@ -798,10 +800,9 @@ BmlResource::BmlResource(s32 kind, BmlResourceDescriptor *descriptor, s32 arg3, 
 extern char lbl_80434E4C[];
 extern char lbl_80434E60[];
 
-static inline void load_model_list(BmlResource *self, u32 *list) {
-    s32 i;
-    for (i = 0; *list != 0; list++, i++) {
-        self->load_bin_model(*list, i);
+static inline void load_model_list(BmlResource *self, u32 *list, s32 &slot) {
+    for (slot = 0; *list != 0; list++, slot++) {
+        self->load_bin_model(*list, slot);
     }
 }
 static inline void load_motion_list(BmlResource *self, u32 *list, s32 &slot) {
@@ -816,8 +817,7 @@ static inline void request_motion_list(BmlResource *self, u32 *list) {
     for (i = 0; *list != 0; list++, i++) {
         req.a = &self->motions[i].motion;
         req.b = (s32)self;
-        TLobby::create_named_entry(*list, lobby_download_buffer, (u32)&load_bin_motion_callback, &req,
-                                            (void **)&handle);
+        TLobby::create_named_entry(*list, lobby_download_buffer, load_bin_motion_callback, &req, (void **)&handle);
         TLobby__sub_8001EDD8(self, handle);
     }
 }
@@ -854,7 +854,8 @@ BmlResource *init_from_id_lists(BmlResource *self, s32 kind, u32 *models, u32 *m
     }
     if (self->flags & 1) {
         TLobby::tmp_buf_use_req(lbl_80434E4C);
-        load_model_list(self, models);
+        s32 model_slot;
+        load_model_list(self, models, model_slot);
         // Slot counter belongs to the caller: the id list is passed by value so
         // `motions` is still intact on the download path.
         s32 slot;
@@ -876,8 +877,7 @@ BmlResource *init_from_id_lists(BmlResource *self, s32 kind, u32 *models, u32 *m
             req.fC = self;
             req.f10 = (s32)&self->models[i];
             req.f14 = TLobby::get_resource_file_size((const char *)*p);
-            TLobby::create_named_entry(*p, lobby_download_buffer, (u32)&load_bin_model_callback, &req,
-                                                (void **)&handle);
+            TLobby::create_named_entry(*p, lobby_download_buffer, load_bin_model_callback, &req, (void **)&handle);
             TLobby__sub_8001EDD8(self, handle);
         }
         request_motion_list(self, motions);
