@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 13 | 4 |
 | intrinsic | 83 | 54 |
 | hardware | 69 | 13 |
-| pragma | 5788 | 877 |
-| configure.py per-unit override | 168 | 168 |
+| pragma | 5781 | 875 |
+| configure.py per-unit override | 170 | 170 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1148, `inline_depth` 1040, `fp_contract` 890, `auto_inline` 839, `opt_common_subs` 610, `scheduling` 260, `opt_propagation` 237, `readonly_strings` 204, `peephole` 103, `optimization_level` 88, `bool` 56, `defer_codegen` 51, `pack` 46, `opt_loop_invariants` 41, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 21, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1146, `inline_depth` 1038, `fp_contract` 888, `auto_inline` 837, `opt_common_subs` 611, `scheduling` 260, `opt_propagation` 237, `readonly_strings` 204, `peephole` 103, `optimization_level` 88, `bool` 56, `defer_codegen` 51, `pack` 46, `opt_loop_invariants` 41, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 21, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -61,7 +61,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1148, `inline_depth` 1040,
 | `src/pso/misc/TLobby_80145E40.cpp:28` | `__cntlzw` |
 | `src/pso/misc/TLobby_803C4698.cpp:234` | `__frsqrte` |
 | `src/pso/misc/TMainCursor.cpp:844` | `__cntlzw` |
-| `src/pso/misc/TNpcPlayer.cpp:2383` | `__cntlzw` |
+| `src/pso/misc/TNpcPlayer.cpp:3269` | `__cntlzw` |
 | `src/pso/misc/TOHealGeneral.cpp:64` | `__cntlzw` |
 | `src/pso/misc/TOSymbolchatColli.cpp:93` | `__cntlzw` |
 | `src/pso/misc/TQuestVmDownLoadServer.cpp:542` | `__cntlzw` |
@@ -87,7 +87,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1148, `inline_depth` 1040,
 | `src/pso/object/TObjTombstone.cpp:427` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_80011014.cpp:4890` | `__fabs` |
 | `src/pso/player/TObjPlayer_80011014.cpp:4898` | `__frsqrte` |
-| `src/pso/player/TObjPlayer_800AAFBC.cpp:350` | `__cntlzw` |
+| `src/pso/player/TObjPlayer_800AAFBC.cpp:303` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_8012AF98.cpp:12` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_801AF2F0.cpp:2510` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_801AF2F0.cpp:5049` | `__cntlzw` |
@@ -212,6 +212,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1148, `inline_depth` 1040,
 | `pso/enemy/TObjEneRe2Flower_800C3E14.cpp` | `-inline off,deferred` | Deferred generation preserves the flower vtable before its dispatch table. |
 | `pso/enemy/TObjEneEpsilonGuard_8035F5C8.cpp` | `-inline off,deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/enemy/TObjEneMe1Gee.cpp` | `-inline off,deferred` | Gee native tables require deferred generation and reverse definitions. |
+| `pso/enemy/TObjEneDubchik.cpp` | `-inline off,deferred, -str reuse,readonly` | Upstream #190 commit 9c4e9ea1d: TObjEneDubchik is written from its last function back. -inline off,deferred emits that order (the vtable lands before the switch tables). -str reuse,readonly keeps the motion-name pool in .rodata. These are upstream's own flags for this unit. |
 | `pso/enemy/TObjEnePanarms.cpp` | `-inline deferred, -sdata 4, -sym on` | Native private header sections preserve initializer and helper emission order. |
 | `pso/enemy/TObjEneDelDepth.cpp` | `-inline off,deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/object/TObjChip.cpp` | `-inline off,deferred` | TObjChip: render's colour template sits after draw_chips' in .rodata while render comes first in .text, so the source runs backwards. |
@@ -247,6 +248,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1148, `inline_depth` 1040,
 | `pso/misc/TMedicalCenterSequence.cpp` | `-inline deferred` | Deferred inlining: functions come out in reverse source order and the vtables before the switch tables in .data. |
 | `pso/misc/TWindowMainMenu_802AD538.cpp` | `-inline noauto,level=1` | Row-header copy is a 16-byte struct assignment. -inline off outlines it; noauto,level=1 inlines that helper only. The rest of the unit stays out of line. |
 | `pso/misc/TWindowKeyBoardSoft_8024E68C.cpp` | `-fp_contract on` | Soft-keyboard clip, scale, and layout fuse multiply-adds into fmadds/fnmsubs (scale_point_about_pivot, apply_context_transform_to_rect, apply_window_closing_stretch, clip_textured_quad, init_text_window_layout). Unit -fp_contract on replaces the per-function pragmas. Precedent: https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209 |
+| `pso/misc/TNpcPlayer.cpp` | `-inline off,deferred, -str reuse,readonly` | Upstream #190: this file is written in reverse so deferred codegen emits address order, and the readonly string pool places the constants. |
 | `pso/boss/TBoss7LaserLight.cpp` | `-inline deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/boss/TBoss7TentacleNeedle.cpp` | `GC/2.0, -inline off,deferred, -fp_contract on` | Position jitter and the tentacle curve contract mul-add to fmadds, so this unit is built with -fp_contract on. -inline off,deferred emits functions and vtables in reverse source order: the Needle vtable then the Tentacle vtable, with .text still in address order. GC/2.0: the Needle constructor's const emitter copy. Before 2.5 a const local whose address escapes stays out of the worst-case alias set, so the three word loads of pos batch ahead of the stores; 2.6 interleaves. |
 | `pso/boss/TBoss7PhotonBullet_802EF26C.cpp` | `-inline off,deferred, -fp_contract on` | Photon bullet run_task contracts a mul-add. Deferred emission puts the compiler vtables in address order while the definitions stay bottom-to-top. |
@@ -482,7 +484,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1148, `inline_depth` 1040,
 | `src/pso/effect/TEffClitical.cpp` | opt_common_subs×1, opt_propagation×1 |
 | `src/pso/effect/TEffGuard.cpp` | readonly_strings×1 |
 | `src/pso/effect/TEffHit.cpp` | readonly_strings×1 |
-| `src/pso/effect/TEffIndirectCtrl_802A88AC.cpp` | fp_contract×2 |
 | `src/pso/effect/TEffStarLight2D.cpp` | opt_common_subs×1, fp_contract×1 |
 | `src/pso/effect/TEffStarLight2D_Base.cpp` | fp_contract×1, opt_common_subs×1, opt_propagation×1 |
 | `src/pso/effect/TEffect.cpp` | readonly_strings×1 |
@@ -512,6 +513,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1148, `inline_depth` 1040,
 | `src/pso/enemy/TObjEneDellBiterEffects.cpp` | fp_contract×1 |
 | `src/pso/enemy/TObjEneDf2Bringer_800972B0.cpp` | fp_contract×3, opt_loop_invariants×1 |
 | `src/pso/enemy/TObjEneDolmOlm.cpp` | opt_common_subs×2, defer_codegen×1, fp_contract×1 |
+| `src/pso/enemy/TObjEneDubchik.cpp` | opt_common_subs×2, inline_depth×1, auto_inline×1, dont_inline×1, opt_propagation×1 |
 | `src/pso/enemy/TObjEneEpsilonGuard_8035DD68.cpp` | opt_common_subs×3, fp_contract×2 |
 | `src/pso/enemy/TObjEneEpsilonGuard_8035F5C8.cpp` | opt_common_subs×3, fp_contract×3, defer_codegen×1, opt_propagation×1 |
 | `src/pso/enemy/TObjEneGibbles.cpp` | opt_loop_invariants×6, dont_inline×1, inline_depth×1, fp_contract×1, defer_codegen×1, opt_common_subs×1 |
@@ -704,7 +706,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1148, `inline_depth` 1040,
 | `src/pso/misc/TNeedleShoot_802A4540.cpp` | opt_common_subs×1 |
 | `src/pso/misc/TNeedleShoot_802A4668.cpp` | fp_contract×1 |
 | `src/pso/misc/TNowLoading.cpp` | fp_contract×2 |
-| `src/pso/misc/TNpcPlayer.cpp` | fp_contract×9, opt_common_subs×2, opt_propagation×1 |
+| `src/pso/misc/TNpcPlayer.cpp` | fp_contract×9, opt_common_subs×3, opt_propagation×1 |
 | `src/pso/misc/TNpcPlayer_8014DADC.cpp` | scheduling×1 |
 | `src/pso/misc/TNpcPlayer_8034DC20.cpp` | opt_pointer_analysis×1 |
 | `src/pso/misc/TOComputerMachine01_8023DD0C.cpp` | fp_contract×1 |
@@ -1014,7 +1016,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1148, `inline_depth` 1040,
 | `src/pso/player/TObjPlayer_80083B38.cpp` | fp_contract×2 |
 | `src/pso/player/TObjPlayer_8008DCF0.cpp` | opt_common_subs×3 |
 | `src/pso/player/TObjPlayer_8008DCF0_8008DCF0.cpp` | opt_common_subs×1, opt_propagation×1 |
-| `src/pso/player/TObjPlayer_800A894C.cpp` | opt_common_subs×2, inline_depth×1, auto_inline×1, dont_inline×1, opt_propagation×1 |
 | `src/pso/player/TObjPlayer_800AAFBC.cpp` | fp_contract×1 |
 | `src/pso/player/TObjPlayer_800ACA60.cpp` | dont_inline×2, inline_depth×2, fp_contract×1, opt_common_subs×1 |
 | `src/pso/player/TObjPlayer_800BBE90.cpp` | fp_contract×2 |
@@ -1033,7 +1034,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1148, `inline_depth` 1040,
 | `src/pso/player/TObjPlayer_801D84CC.cpp` | inline_depth×1, auto_inline×1, dont_inline×1, scheduling×1 |
 | `src/pso/player/TObjPlayer_8022C6C4.cpp` | opt_propagation×1 |
 | `src/pso/player/TObjPlayer_8023E480.cpp` | readonly_strings×1 |
-| `src/pso/player/TObjPlayer_802A8368.cpp` | inline_depth×2, auto_inline×2, dont_inline×2 |
 | `src/pso/player/TObjPlayer_802D5B78.cpp` | fp_contract×1 |
 | `src/pso/player/TObjPlayer_802E6CA8.cpp` | opt_common_subs×1, opt_propagation×1, fp_contract×1 |
 | `src/pso/player/TObjPlayer_8033E910.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
