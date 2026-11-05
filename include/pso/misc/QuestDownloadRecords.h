@@ -8,15 +8,9 @@ struct QuestDownloadTextNode;
 struct QuestDownloadEntryNode;
 struct QuestDownloadItemNode;
 
-// Empty base. Its size is 1, so one step before a null pointer is the
-// all-bits-one address the download search returns on failure. MWCC's
-// empty-base optimization leaves the derived record layouts unchanged
-// (sizes checked below).
-struct QuestDownloadByteAddress {};
-
 // Four-byte records stored at the start of a download slot. Separate from
 // the sixteen-byte item objects produced later.
-struct QuestDownloadMatchToken : QuestDownloadByteAddress {
+struct QuestDownloadMatchToken {
     u8 a;
     u8 b;
     u8 off;
@@ -61,7 +55,7 @@ struct QuestDownloadTextNode {
     QuestDownloadTextNode *next;
 };
 
-struct QuestDownloadSegment : QuestDownloadByteAddress {
+struct QuestDownloadSegment {
     s16 off;
     u8 reserved_2[2];
     u8 a;
@@ -112,7 +106,6 @@ QUEST_RECORD_CHECK(QuestText_extent, sizeof(QuestDownloadTextNode) == 0x14);
 QUEST_RECORD_CHECK(QuestText_payload_offset, offsetof(QuestDownloadTextNode, payload) == 1);
 QUEST_RECORD_CHECK(QuestText_next_offset, offsetof(QuestDownloadTextNode, next) == 0x10);
 QUEST_RECORD_CHECK(QuestText_source_offset, offsetof(QuestDownloadTextNode, payload.head.source) == 8);
-QUEST_RECORD_CHECK(QuestByteAddress_step, sizeof(QuestDownloadByteAddress) == 1);
 QUEST_RECORD_CHECK(QuestToken_extent, sizeof(QuestDownloadMatchToken) == 4);
 QUEST_RECORD_CHECK(QuestSegment_extent, sizeof(QuestDownloadSegment) == 0xC);
 QUEST_RECORD_CHECK(QuestItem_extent, sizeof(QuestDownloadItemNode) == 0x10);

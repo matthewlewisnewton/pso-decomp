@@ -1827,8 +1827,11 @@ s32 TQuestVmDownLoadServer::is_download_cmd_allowed(u8 arg0) {
     }
 }
 
-// Null of the size-1 base. Subtracting one is the failure address.
-static QuestDownloadByteAddress *const quest_download_null_address = 0;
+// All-bits-one pointer. The search compares it with addis/cmplwi and returns
+// it with li r3,-1. There is no record at that address. Proposed for Matt;
+// not an approved exception.
+static QuestDownloadSegment *const quest_download_no_segment = (QuestDownloadSegment *)-1;
+static QuestDownloadMatchToken *const quest_download_no_token = (QuestDownloadMatchToken *)-1;
 
 QuestDownloadSegment *TQuestVmDownLoadServer__sub_803E9A74(s32 index, s32 end, u8 a, u8 b) {
     s32 length;
@@ -1841,10 +1844,10 @@ QuestDownloadSegment *TQuestVmDownLoadServer__sub_803E9A74(s32 index, s32 end, u
     s32 mark;
     if (index >= end) {
         if (lbl_805D7888 < 3) return NULL;
-        return static_cast<QuestDownloadSegment *>(quest_download_null_address - 1);
+        return quest_download_no_segment;
     }
-    if ((token = quest_download_slot_chain_table[index].tokens) == quest_download_null_address - 1) {
-        return static_cast<QuestDownloadSegment *>(quest_download_null_address - 1);
+    if ((token = quest_download_slot_chain_table[index].tokens) == quest_download_no_token) {
+        return quest_download_no_segment;
     }
     if (token == NULL) {
         ch = lbl_805A0470.bytes[index];
@@ -1916,9 +1919,9 @@ QuestDownloadSegment *TQuestVmDownLoadServer__sub_803E9A74(s32 index, s32 end, u
         if (a == 0 || TQuestVmDownLoadServer__sub_803E7390(a, b, recursiveToken->a)) {
             length = lbl_8047F0F8[recursiveToken->off];
             segment = TQuestVmDownLoadServer__sub_803E9A74(index + length, end, recursiveToken->a, recursiveToken->b);
-            if (segment == quest_download_null_address - 1) {
+            if (segment == quest_download_no_segment) {
                 TQuestVmDownLoadServer__sub_803ECE5C(head);
-                return static_cast<QuestDownloadSegment *>(quest_download_null_address - 1);
+                return quest_download_no_segment;
             }
             if (segment != NULL) {
                 tail = segment;
@@ -2266,7 +2269,7 @@ s32 TQuestVmDownLoadServer::count_leading_entries(s32 i, s32 end) {
 
 void TQuestVmDownLoadServer__sub_803EADD4(QuestDownloadSlot *arg0, s32 arg1) {
     if (arg1 == 0) {
-        arg0->tokens = static_cast<QuestDownloadMatchToken *>(quest_download_null_address - 1);
+        arg0->tokens = quest_download_no_token;
         arg0->x18 = -1;
         if ((u32)arg0->items != 0xFFFFFFFF) {
             release_node_chain__22TQuestVmDownLoadServerFPv((QuestDownloadItemNode *)(arg0->items));
@@ -2326,7 +2329,7 @@ void TQuestVmDownLoadServer::init_entries() {
     QuestDownloadSlot *p;
 
     for (p = (QuestDownloadSlot *)quest_download_slot_chain_table; p < (QuestDownloadSlot *)quest_download_slot_chain_table + 80; p++) {
-        p->tokens = static_cast<QuestDownloadMatchToken *>(quest_download_null_address - 1);
+        p->tokens = quest_download_no_token;
         p->items = 0;
         p->entryHead = 0;
         p->textHead = 0;
@@ -2973,36 +2976,34 @@ QuestDownloadTextNode *get_next_node__22TQuestVmDownLoadServerFPv(QuestDownloadQ
 #pragma push
 #pragma dont_inline off
 #pragma inline_depth(1)
-struct PaginationFitCursor {
+inline s32 count_text_groups_that_fit(QuestDownloadTextNode *head) {
     QuestDownloadTextNode *node;
-};
-inline s32 pagination_fit_cursor(PaginationFitCursor &cursor, QuestDownloadTextNode *head) {
     s32 n;
     s32 total;
     s32 limit;
     if (head == NULL) {
         return 0;
     }
-    cursor.node = head;
+    node = head;
     n = total = 0;
     limit = lbl_805D78A4 - 9;
-    while (n < 9 && cursor.node != NULL) {
-        total += TQuestVmDownLoadServer__sub_803EB7C0(cursor.node) + 3;
+    while (n < 9 && node != NULL) {
+        total += TQuestVmDownLoadServer__sub_803EB7C0(node) + 3;
         if (total > limit) {
             break;
         }
         n++;
-        while (cursor.node->flags & 1) {
-            cursor.node = cursor.node->next;
+        while (node->flags & 1) {
+            node = node->next;
         }
-        cursor.node = cursor.node->next;
+        node = node->next;
     }
     if (n == 0) {
         return 1;
     }
     return n;
 }
-inline void pagination_advance_groups(QuestDownloadTextNode *&head, s32 count) {
+inline void advance_text_groups(QuestDownloadTextNode *&head, s32 count) {
     for (s32 i = 0; i != count; i++) {
         QuestDownloadTextNode *node = head;
         while (node->flags & 1) {
@@ -3011,10 +3012,9 @@ inline void pagination_advance_groups(QuestDownloadTextNode *&head, s32 count) {
         head = node->next;
     }
 }
-void TQuestVmDownLoadServer__sub_803EC284(s32 index, s32 count) {
+void TQuestVmDownLoadServer__sub_803EC284(s32 index, s32 mode) {
     QuestDownloadTextNode *head;
-    PaginationFitCursor cursor;
-    s32 mode = count;
+    s32 count;
     if (mode == 1) {
         TQuestVmDownLoadServer__sub_803EC09C();
     }
@@ -3024,11 +3024,11 @@ void TQuestVmDownLoadServer__sub_803EC284(s32 index, s32 count) {
     } else {
         lbl_805D78A4 = TQuestVmDownLoadServer::get_buffer_size();
     }
-    count = pagination_fit_cursor(cursor, head);
+    count = count_text_groups_that_fit(head);
     while (index >= count) {
         index -= count;
-        pagination_advance_groups(head, count);
-        count = pagination_fit_cursor(cursor, head);
+        advance_text_groups(head, count);
+        count = count_text_groups_that_fit(head);
         if (count == 0) {
             TQuestVmDownLoadServer__sub_803EC284(0, 0);
             goto finish;
