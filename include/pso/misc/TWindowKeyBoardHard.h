@@ -4,9 +4,11 @@
 #include "types.h"
 #include "pso/misc/TUnk_804CE018.h"
 
+struct TWindowDrawContext;
+
 struct TWindowKeyBoardHard : public TUnk_804CE018 {
     virtual ~TWindowKeyBoardHard();
-    void draw_status_text(void *);
+    void draw_status_text(TWindowDrawContext *);
     void update_modifier_flags();
     void process_all_key_states();
     void process_key_input(u8);
