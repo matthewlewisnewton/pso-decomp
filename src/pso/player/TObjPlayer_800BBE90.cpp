@@ -8,7 +8,7 @@
 
 struct VBase { char pad[0x18]; };
 
-struct VObj : VBase { virtual void m0(); virtual void m1(); virtual void m2(); virtual void m3(); virtual void m4(); virtual void m5(); virtual void m6(); virtual void m7(); virtual void m8(); virtual void m9(); virtual void m10(); virtual void m11(); virtual void m12(); virtual void m13(f32); virtual void m14(); virtual void m15(); virtual void m16(f32); };
+struct VObj : VBase { virtual void m0(); virtual void m1(); virtual void m2(); virtual void m3(); virtual void m4(); virtual void m5(); virtual void m6(); virtual void m7(); virtual void m8(); virtual void m9(); virtual void m10(); virtual void m11(); virtual void m12(); virtual s32 m13(f32); virtual void m14(); virtual void m15(); virtual void m16(f32); };
 
 struct Vec_800BBFD0 { f32 x, y, z; };
 
@@ -231,8 +231,8 @@ void TUnk_804928CC::call_vt16_with_default(void *, void *) {
 }
 #pragma pop
 
-void TUnk_804928CC::vfunc_16(void *arg1, void *arg2) {
-    this->call_vt13_with_default(arg1, arg2, 0);
+s32 TUnk_804928CC::vfunc_16(void *arg1, void *arg2) {
+    return this->call_vt13_with_default(arg1, arg2, 0);
 }
 
 s32 TUnk_804928CC::area_attack_deliver_direct(void *recoil, s32 arg2, void *object, f32 range) {
@@ -274,9 +274,9 @@ s32 TUnk_804928CC::area_attack_deliver_direct(void *recoil, s32 arg2, void *obje
     return hit;
 }
 
-void TUnk_804928CC::call_vt13_with_default(void*, void*, s32) {
+s32 TUnk_804928CC::call_vt13_with_default(void*, void*, s32) {
     u8 *arg0 = (u8 *)this;
-    ((VObj *)arg0)->m13(lbl_805D9EB4);
+    return ((VObj *)arg0)->m13(lbl_805D9EB4);
 }
 
 }

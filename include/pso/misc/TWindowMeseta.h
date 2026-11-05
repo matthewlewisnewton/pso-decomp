@@ -2,9 +2,9 @@
 #define PSO_MISC_TWINDOWMESETA_H
 
 #include "types.h"
-#include "pso/misc/TUnk_804CE018.h"
+#include "pso/misc/TWindowBase.h"
 
-struct TWindowMeseta : public TUnk_804CE018 {
+struct TWindowMeseta : public TWindowBase {
     virtual ~TWindowMeseta();
     virtual void render();
     f32 m_60;
@@ -13,7 +13,7 @@ struct TWindowMeseta : public TUnk_804CE018 {
     void* m_6c;
     void run_task();
     s32 get_meseta_value();
-    void draw_value(TWindowKeyBoardSoft *arg1);
+    void draw_value(s32 arg1);
     u8 unk_70[0x4];
 };
 

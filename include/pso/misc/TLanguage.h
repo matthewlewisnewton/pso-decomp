@@ -13,7 +13,7 @@ struct TLanguage
     static s8 get_default_language();
     static void draw_string(void *arg0, void *arg1, s32 arg2);
     static void decode_font_data(void *arg0, void *arg1, s32 arg2, s32 arg3);
-    static void read_into_buffer(s32 arg0, s32 arg1);
+    static void read_into_buffer(u8 *dst, s32 n);
     static s32 read_u32_le();
     static s32 read_u16_le();
     void set_index(s32 arg1);

@@ -1,7 +1,6 @@
 #include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/misc/TLobby_8001D6A0.h"
-#include "pso/misc/TWindowDrawContext.h"
 #include "pso/misc/TWindowSubStatusDisp_8024FBA8.h"
 #include "pso/misc/TWindowHelpItem_8025A12C.h"
 #include "pso/misc/TWindowSubStatusDisp_80144B14.h"
@@ -42,9 +41,10 @@ typedef struct Win_8025A354 {
 typedef struct Vec2_8025A354 { f32 x, y; } Vec2_8025A354;
 
 extern "C" {
-s32 sub_80256BDC__13TUnk_804CF930Fs(void *, void *);
+s32 __ct__13TUnk_804CF918Fs(void *, void *);
+void __dt__13TUnk_804CF918Fv(void *, s16);
 s32 strncpy(s32, u32, s32);
-void render_summary_row__15TWindowHelpItemFv(Item_8025A354 *self, TWindowDrawContext *w);
+void render_summary_row__15TWindowHelpItemFv(Item_8025A354 *self, Win_8025A354 *w);
 s32 measure_string_len__20TWindowSubStatusDispFv(u32);
 
 void *lbl_804CF9F8[6] = {
@@ -131,18 +131,18 @@ void TWindowHelpItem::set_help_text(u32 arg1) {
     }
 }
 
-void render_summary_row__15TWindowHelpItemFv(Item_8025A354 *self, TWindowDrawContext *w) {
+void render_summary_row__15TWindowHelpItemFv(Item_8025A354 *self, Win_8025A354 *w) {
     Vec2_8025A354 pos;
     s32 color;
-    if (w->open_tick < 0) {
+    if (w->f30 < 0) {
         return;
     }
     if (!(self->flags & 4) && !(self->flags & 8)) {
         return;
     }
-    pos.x = w->inner_x + self->x;
-    pos.y = w->inner_y + self->y;
-    set_text_draw_params(w, 1, 0, (f32)(-1.0f / (0.0897f + w->depth)), (f32)(100000.0f));
+    pos.x = w->x + self->x;
+    pos.y = w->y + self->y;
+    set_text_draw_params((s32)w, 1, 0, (f32)(-1.0f / (0.0897f + w->f38)), (f32)(100000.0f));
     draw_window_text((f32 *)&pos, self->label, -1, 1, 100000.0f);
     pos.x += 86.0f;
     draw_window_text((f32 *)&pos, (const char *)((void *)":"), -1, 0, 100000.0f);
@@ -182,7 +182,7 @@ void *destroy__15TWindowHelpItemFPvs(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(void ***)((s8 *)arg0 + 4) = lbl_804CF9F8;
         ::operator delete[]((void *)(*(s32 *)((s8 *)arg0 + 0x18)));
-        ((TUnk_804CF930 *)arg0)->destroy((s16)(0));
+        __dt__13TUnk_804CF918Fv(arg0, (s16)0);
         if (arg1 > 0) {
             ::operator delete(arg0);
         }
@@ -192,7 +192,7 @@ void *destroy__15TWindowHelpItemFPvs(void *arg0, s16 arg1) {
 
 typedef char RecoveredGlobal_8025A594_lbl_804CF9F8_size[sizeof(RecoveredGlobal_8025A594_lbl_804CF9F8) == 0x18 ? 1 : -1];
 u8 *TWindowHelpItem__sub_8025A594(u8 *arg0, s32 arg1, s32 arg2) {
-    sub_80256BDC__13TUnk_804CF930Fs((void *)arg0, (void *)arg2);
+    __ct__13TUnk_804CF918Fs((void *)arg0, (void *)arg2);
     *(s32 **)((s8 *)arg0 + 4) = &(*(RecoveredGlobal_8025A594_lbl_804CF9F8 *)&lbl_804CF9F8).value;
     ((TWindowSubSymbolChatPartsSet *)(arg0 + 8))->copy_vec2((void *)(arg1 + 4));
     *(s32 *)((s8 *)arg0 + 0x10) = -1;

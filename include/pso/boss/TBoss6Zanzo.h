@@ -3,14 +3,29 @@
 
 #include "types.h"
 #include "pso/TObject.h"
+#include "pso/system/vector.h"
+
+// One afterimage point: the word fn_80257720 fills from the offset table, then
+// the position.
+struct Boss6ZanzoPoint {
+    u8 unk_00[0x4];
+    Vec pos;
+};
+
+struct Boss6ZanzoPoints {
+    s32 dirty;
+    Boss6ZanzoPoint *points;
+};
 
 struct TBoss6Zanzo : public TObject {
     TBoss6Zanzo(TObject *arg1, s32 arg2, s32 arg3);
     virtual ~TBoss6Zanzo();
+    static TBoss6Zanzo *create(TObject *parent, s32 arg2, s32 arg3);
     void copy_trail_buffer(void *, void *);
+    void set_effect_points(Vec *points, u32 *offsets);
     virtual void run_task();
     u32 m_1c;
-    u32 m_20;
+    Boss6ZanzoPoints *m_20;
     u32 m_24;
     u32 m_28;
     virtual void render();
