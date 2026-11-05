@@ -2202,6 +2202,7 @@ pso/object/TObject_800F794C.cpp
 pso/object/TUnk_804A6DC0.cpp
 pso/player/PlayerClassStats.cpp
 pso/player/PlayerTaskEffects.cpp
+pso/player/PhotonBlastResults.cpp
 pso/player/THunterGuildSeqOnlineTask.cpp
 pso/player/THunterGuildWarning.cpp
 pso/player/TItemWeaponFist.cpp

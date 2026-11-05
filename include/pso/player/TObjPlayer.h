@@ -331,7 +331,6 @@ struct TObjPlayer : public TObjChara {
     static bool is_hit_receivable_target(s32 arg0, u32 arg1);
     static s32 is_player_in_range(s32 arg0, s32 arg1, f32 farg0);
     void draw_trail_strip(void *arg1, s32 arg2);
-    f32 calc_photon_blast_power(s32 arg1, f32 farg0);
     static s32 is_any_teammate_in_state();
     static void set_shared_flag(int a0);
     static void set_shared_count(int a0);
@@ -612,7 +611,7 @@ struct TObjPlayer : public TObjChara {
     s16 get_hp();
     u16 get_section_id();
     void set_field_2(s16 v);
-    void set_type(s16 v);
+    void set_type(u16 v);
     u16 get_entity_type();
     static void destroy_global_buffer();
     static void destroy_buffers();
