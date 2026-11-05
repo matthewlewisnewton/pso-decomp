@@ -1,3 +1,4 @@
+#define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include <stdlib.h>
 #include "pso/TMainTask.h"
@@ -26,51 +27,10 @@
 
 typedef void (TEffIndirectCtrl::*IndirectTask)();
 
-struct P2C_802A8B58 { void *a; s32 b; };
-
-struct Ctrl_802A8B58 {
-    const char *f0;
-    u8 pad4[0x18 - 4];
-    void *vt;
-    u32 f1c;
-    TEffIndirectRecipe *f20;
-    u8 f24;
-    u8 f25;
-    u8 pad26[2];
-    void *f28;
-    P2C_802A8B58 *f2c;
-    u8 f30[0xC];
-    s32 f3c;
-    s32 f40;
-    s16 f44;
-    s16 f46;
-    f32 f48;
-    f32 f4c;
-    f32 f50;
-};
-
 struct Cell_802A8FD8
 {
   u16 idx;
   u16 val;
-};
-
-struct Ctrl_802A8728 {
-    u8 pad0[0x1C];
-    u8 *buf;
-    u8 *recipe;
-    u8 index;
-    u8 pad25[0x3C - 0x25];
-    s32 amp;
-    s32 period;
-    u16 phase;
-    u8 pad46[2];
-    f32 rate;
-};
-
-struct Owner_802A8448 {
-    u8 pad[0x2C];
-    s32 list;
 };
 
 extern "C" {
@@ -80,18 +40,14 @@ void GXSetIndTexMtx(s32, f32 (*)[3], s32);
 void Dolphin_GXSetIndTexCoordScale(s32, s32, s32);
 void Dolphin_GXSetIndTexOrder(s32, s32, s32);
 void GXSetTevIndWarp(s32, s32, s32, s32, s32);
-s32 DCFlushRange(s32, s32);
+void DCFlushRange(void *, u32);
 void *memcpy(void *, const void *, u32);
 void *memset(void *, s32, u32);
 s32 read_disc_file(const char *, void *);
-void __ct__7TObjectFP7TObject(void *, void *);
 TEffIndirectRecipe *get_indirect_recipe(s32 i);
-void set_texture_name(void *, void *, void *, s32);
-void load_texture_list(void *);
-void release_texture_list(void *);
-extern s32 __vt__16TEffIndirectCtrl[];
-extern s32 __vt__13TUnk_804DDF04[];
-Ctrl_802A8B58 *TEffIndirectCtrl__ct(Ctrl_802A8B58 *self, s32 kind, void *parent);
+void set_texture_name(GinjaTextureEntry *entry, GinjaTextureInput *input, s32 texture_id, s32 attr);
+void load_texture_list(GinjaTextureList *list);
+s32 release_texture_list(GinjaTextureList *list);
 }
 void load_list_texture(s32, s32, s32, s32);
 
@@ -103,8 +59,8 @@ extern "C" {
 TEffIndirectRecipe *indirect_recipe_buffer;
 u8 indirect_effect_ctrl_count;
 }
-u32 indirect_effect_tile_buffer;
-s32 TEffIndirectCtrl__source_buffers[8];
+u16 *indirect_effect_tile_buffer;
+TEffIndirectSource *TEffIndirectCtrl__source_buffers[8];
 TEffIndirectCtrl *indirect_effect_ctrl_table[6];
 
 extern "C" {
@@ -115,21 +71,21 @@ TEffIndirectRecipe *get_indirect_recipe(s32 i) {
 }
 
 void TEffIndirectCtrl::sub_802A955C() { this->m_46 = 1; }
-u8 TEffIndirectCtrl__sub_802A9554(void* p) { return *(u8*)((char*)p + 0x25); }
-void TEffIndirectCtrl__sub_802A9548(void* p) { *(s16*)((char*)p + 0x46) = 0; }
+u8 TEffIndirectCtrl__sub_802A9554(TEffIndirectCtrl *ctrl) { return ctrl->m_25; }
+void TEffIndirectCtrl__sub_802A9548(TEffIndirectCtrl *ctrl) { ctrl->m_46 = 0; }
 
 void load_indirect_info(void) {
     s32 i;
     s32 j;
     indirect_recipe_buffer = (TEffIndirectRecipe *)xmalloc(0x200);
     memset(indirect_recipe_buffer, 0, 0x200);
-    indirect_effect_tile_buffer = (u32)xmalloc(0x2000);
-    if (indirect_effect_tile_buffer != 0) {
+    indirect_effect_tile_buffer = (u16 *)xmalloc(0x2000);
+    if (indirect_effect_tile_buffer != NULL) {
         i = 0;
         do {
             j = 0;
             do {
-                ((s16 *)indirect_effect_tile_buffer)[i * 0x40 + j] = calc_i8_tiled_texel_offset(j, i, 0x40);
+                indirect_effect_tile_buffer[i * 0x40 + j] = calc_i8_tiled_texel_offset(j, i, 0x40);
                 j++;
             } while (j < 0x40);
             i++;
@@ -139,11 +95,11 @@ void load_indirect_info(void) {
 }
 
 extern "C" {
-u16 get_indirect_tile_coord(u8 arg0, s32 arg1) {
-    if ((u32) indirect_effect_tile_buffer != 0U) {
-        return *(u16 *)((s8 *)(indirect_effect_tile_buffer + ((arg0 + ((arg1 << 6) & 0x3FC0)) * 2)) + 0);
+u32 get_indirect_tile_coord(u8 x, u8 y, s32 width) {
+    if (indirect_effect_tile_buffer != NULL) {
+        return indirect_effect_tile_buffer[x + (y << 6)];
     }
-    return 0U;
+    return 0;
 }
 }
 
@@ -152,9 +108,9 @@ void TEffIndirectCtrl::free_buffers() {
         xfree(indirect_recipe_buffer);
         indirect_recipe_buffer = NULL;
     }
-    if ((u32) indirect_effect_tile_buffer != 0U) {
-        xfree((void *)indirect_effect_tile_buffer);
-        indirect_effect_tile_buffer = 0U;
+    if (indirect_effect_tile_buffer != NULL) {
+        xfree(indirect_effect_tile_buffer);
+        indirect_effect_tile_buffer = NULL;
     }
 }
 
@@ -167,19 +123,19 @@ void load_indirect_dat(void) {
     s32 k;
     fail = 0;
     for (i = 0; i < 8; i++) {
-        TEffIndirectCtrl__source_buffers[i] = 0;
+        TEffIndirectCtrl__source_buffers[i] = NULL;
     }
     for (i = 0; i < 8; i++) {
-        TEffIndirectCtrl__source_buffers[i] = (s32)xmalloc(0x1020);
-        if ((u32)TEffIndirectCtrl__source_buffers[i] == 0) {
+        TEffIndirectCtrl__source_buffers[i] = (TEffIndirectSource *)xmalloc(sizeof(TEffIndirectSource));
+        if (TEffIndirectCtrl__source_buffers[i] == NULL) {
             fail = 1;
         }
     }
     if (fail != 0) {
         for (j = 0; j < 8; j++) {
-            if ((u32)TEffIndirectCtrl__source_buffers[j] != 0) {
-                xfree((void *)TEffIndirectCtrl__source_buffers[j]);
-                TEffIndirectCtrl__source_buffers[j] = 0;
+            if (TEffIndirectCtrl__source_buffers[j] != NULL) {
+                xfree(TEffIndirectCtrl__source_buffers[j]);
+                TEffIndirectCtrl__source_buffers[j] = NULL;
             }
         }
     }
@@ -188,8 +144,8 @@ void load_indirect_dat(void) {
         buf = p;
         if (read_disc_file(indirect_dat_filename, p) == 0x8100) {
             for (k = 0; k < 8; k++) {
-                memcpy((void *)TEffIndirectCtrl__source_buffers[k], p, 0x1020);
-                p += 0x1020;
+                memcpy(TEffIndirectCtrl__source_buffers[k], p, sizeof(TEffIndirectSource));
+                p += sizeof(TEffIndirectSource);
             }
             if (buf != NULL) {
                 xfree(buf);
@@ -205,31 +161,27 @@ void TEffIndirectCtrl::free_all() {
     TObjPlayer__sub_802A83F4();
     free_buffers();
     for (i = 0; i < 8; i++) {
-        void *buffer = (void *)TEffIndirectCtrl__source_buffers[i];
+        TEffIndirectSource *buffer = TEffIndirectCtrl__source_buffers[i];
         if (buffer != NULL) {
             xfree(buffer);
-            TEffIndirectCtrl__source_buffers[i] = 0;
+            TEffIndirectCtrl__source_buffers[i] = NULL;
         }
     }
 }
 
-s32 get_indirect_source_id(u8 arg0) {
-    u8 var_r3;
-    var_r3 = arg0;
-    if (var_r3 >= 8U) {
-        var_r3 = 0;
+s32 get_indirect_source_id(u8 id) {
+    if (id >= 8) {
+        id = 0;
     }
-    return *(s32 *)((s8 *)(*(s32 *)((s8 *)TEffIndirectCtrl__source_buffers + ((var_r3 * 4) & 0x3FC))) + 8);
+    return TEffIndirectCtrl__source_buffers[id]->texture_id;
 }
 
 extern "C" {
-s32 get_indirect_source_pixels(u8 arg0) {
-    u8 var_r3;
-    var_r3 = arg0;
-    if (var_r3 >= 8U) {
-        var_r3 = 0;
+u8 *get_indirect_source_pixels(u8 id) {
+    if (id >= 8) {
+        id = 0;
     }
-    return *(s32 *)((s8 *)TEffIndirectCtrl__source_buffers + ((var_r3 * 4) & 0x3FC)) + 0x20;
+    return TEffIndirectCtrl__source_buffers[id]->pixels;
 }
 
 u32 calc_i8_tiled_texel_offset(u8 x, u8 y, u32 w) {
@@ -309,11 +261,11 @@ void deform_indirect_texture_scroll(u8 *p, u32 px, u32 py, u32 amp, u32 phase) {
       {
         if (first)
         {
-          idx = ((u32 (*)(u8, u8, s32)) get_indirect_tile_coord)(at, line, 64);
+          idx = get_indirect_tile_coord(at, line, 64);
         }
         else
         {
-          idx = ((u32 (*)(u8, u8, s32)) get_indirect_tile_coord)(line, at, 64);
+          idx = get_indirect_tile_coord(line, at, 64);
         }
         w = p[idx];
         if (w != 0xFF)
@@ -355,7 +307,7 @@ void deform_indirect_texture_scroll(u8 *p, u32 px, u32 py, u32 amp, u32 phase) {
 
 #pragma push
 #pragma fp_contract on
-s32 update_indirect_texture_wave(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, u8 arg5) {
+s32 update_indirect_texture_wave(u8 *buf, s32 arg1, s32 arg2, s32 arg3, s32 arg4, u8 arg5) {
     s32 off;
     s32 x;
     s32 i;
@@ -366,8 +318,8 @@ s32 update_indirect_texture_wave(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg
         row = (s32)((f32)(u8)arg2 * sin_table_lookup((s32)(182.04445f * (f32)(u32)(arg4 + y * arg5))));
         for (x = 0; x < 64; x++) {
             off = (s32)((f32)(u8)arg1 * sin_table_lookup((s32)(182.04445f * (f32)(u32)(arg3 + x * arg5))) + (f32)row);
-            i = ((s32 (*)(u8, u8, s32))get_indirect_tile_coord)(x, y, 0x40);
-            v = ((u8 *)arg0)[i];
+            i = get_indirect_tile_coord(x, y, 0x40);
+            v = buf[i];
             v += off;
             if ((s16)v >= 0xFF) {
                 v = 0xFE;
@@ -375,7 +327,7 @@ s32 update_indirect_texture_wave(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg
             if ((s16)v <= 0) {
                 v = 0;
             }
-            ((u8 *)arg0)[i] = v;
+            buf[i] = v;
         }
     }
 }
@@ -383,7 +335,7 @@ s32 update_indirect_texture_wave(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg
 
 #pragma push
 #pragma fp_contract on
-void deform_indirect_texture_wave(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, u8 arg5) {
+void deform_indirect_texture_wave(u8 *buf, s32 arg1, s32 arg2, s32 arg3, s32 arg4, u8 arg5) {
     s32 v;
     s32 off;
     s32 y;
@@ -393,7 +345,7 @@ void deform_indirect_texture_wave(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 ar
         row = (s32)((f32)(u8)arg2 * sin_table_lookup((s32)(182.04445f * (f32)(u32)(arg4 + y * arg5))));
         for (x = 0; x < 64; x++) {
             off = (s32)((f32)(u8)arg1 * sin_table_lookup((s32)(182.04445f * (f32)(u32)(arg3 + x * arg5))) + (f32)row);
-            v = *(u8 *)arg0;
+            v = *buf;
             if ((s16)v != 0xFF) {
                 v = v + off;
                 if ((s16)v >= 0xFF) {
@@ -403,63 +355,61 @@ void deform_indirect_texture_wave(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 ar
                     v = 0;
                 }
             }
-            *(u8 *)arg0 = v;
-            arg0++;
+            *buf = v;
+            buf++;
         }
     }
 }
 #pragma pop
 
-extern "C" {
-Ctrl_802A8B58 *TEffIndirectCtrl__ct(Ctrl_802A8B58 *self, s32 kind, void *parent) {
-    u8 *tex;
+TEffIndirectCtrl::TEffIndirectCtrl(s32 kind, TObject *parent) : TObject(parent) {
+    s32 texture_id;
     u8 k;
-    __ct__7TObjectFP7TObject(self, parent);
-    self->vt = ((s32 *)&__vt__16TEffIndirectCtrl);
-    self->f0 = TEffIndirectCtrl__name;
-    self->f28 = ::operator new(0x24);
-    self->f2c = (P2C_802A8B58 *)::operator new(8);
-    {
-    void *obj = self;
-    if (self->f2c == NULL || self->f28 == NULL) {
-        queue_destruction__7TObjectFv(obj);
-        return self;
+    m_name = TEffIndirectCtrl__name;
+    m_28 = new GinjaTextureInput;
+    m_2c = new GinjaTextureList;
+    if (m_2c == NULL || m_28 == NULL) {
+        queue_destruction();
+        return;
     }
-    }
-    self->f46 = 0;
-    self->f48 = 0.0f;
-    self->f4c = 0.0f;
-    self->f3c = 0;
-    self->f40 = 0;
-    self->f44 = 0;
-    self->f50 = 0.0f;
+    m_46 = 0;
+    m_48 = 0.0f;
+    m_4c = 0.0f;
+    m_3c = 0;
+    m_40 = 0;
+    m_44 = 0;
+    m_50 = 0.0f;
     k = kind;
-    self->f25 = kind;
-    self->f20 = get_indirect_recipe(k);
-    if (self->f20 == NULL) {
-        return self;
+    m_25 = kind;
+    m_20 = get_indirect_recipe(k);
+    if (m_20 == NULL) {
+        return;
     }
-    self->f24 = self->f20->m_7;
-    tex = (u8 *)get_indirect_source_id(self->f24) + k * 1000;
-    self->f2c->a = self->f30;
-    self->f2c->b = 1;
-    ((GinjaTextureInput *)(self->f28))->configure(0, 1, 0x40, 0x40);
-    set_texture_name(self->f30, self->f28, tex, 0x8800000);
-    load_texture_list(self->f2c);
-    self->f1c = *(u32 *)(*(u8 **)(*(u8 **)((u8 *)self->f2c->a + 8) + 0xC) + 0x20);
-    ((TEffIndirectCtrl *)self)->copy_and_flush_texture(get_indirect_source_pixels(self->f24));
-    return self;
-}
+    m_24 = m_20->m_7;
+    texture_id = get_indirect_source_id(m_24);
+    texture_id += k * 1000;
+    m_2c->entries = &m_30;
+    m_2c->count = 1;
+    m_28->configure(0, 1, 0x40, 0x40);
+    set_texture_name(&m_30, m_28, texture_id, 0x8800000);
+    load_texture_list(m_2c);
+    m_1c = (u8 *)m_2c->entries->texture->surface->pixels;
+    copy_and_flush_texture(get_indirect_source_pixels(m_24));
 }
 
 TEffIndirectCtrl::~TEffIndirectCtrl() {
-    if (*(void **)((s8 *)this + 0x2C) != NULL) { release_texture_list(*(void **)((s8 *)this + 0x2C)); ::operator delete(*(void **)((s8 *)this + 0x2C)); }
-    if (*(void **)((s8 *)this + 0x28) != NULL) { ::operator delete(*(void **)((s8 *)this + 0x28)); }
+    if (m_2c != NULL) {
+        release_texture_list(m_2c);
+        delete m_2c;
+    }
+    if (m_28 != NULL) {
+        delete m_28;
+    }
 }
 
-void TEffIndirectCtrl::copy_and_flush_texture(s32 arg1) {
-    memcpy((void *)this->m_1c, (void *)arg1, 0x1000);
-    DCFlushRange(this->m_1c, 0x1000);
+void TEffIndirectCtrl::copy_and_flush_texture(u8 *src) {
+    memcpy(m_1c, src, 0x1000);
+    DCFlushRange(m_1c, 0x1000);
 }
 
 void TEffIndirectCtrl::run_task() {
@@ -488,30 +438,27 @@ void TEffIndirectCtrl::run_task() {
 void TEffIndirectCtrl::render() {  }
 
 void TEffIndirectCtrl::eff_indirect_update_and_flush() {
-    TEffIndirectCtrl *eff_indirect_ctrl = this;
-    eff_indirect_ctrl->copy_and_flush_texture(get_indirect_source_pixels(eff_indirect_ctrl->m_24));
-    update_indirect_texture_wave(eff_indirect_ctrl->m_1c, (s32) *(f32 *)((s8 *)eff_indirect_ctrl + 0x48), eff_indirect_ctrl->m_4c, eff_indirect_ctrl->m_3c, eff_indirect_ctrl->m_40, *(u8 *)((s8 *)(*(void **)((s8 *)eff_indirect_ctrl + 0x20)) + 6));
-    DCFlushRange(eff_indirect_ctrl->m_1c, 0x1000);
+    copy_and_flush_texture(get_indirect_source_pixels(m_24));
+    update_indirect_texture_wave(m_1c, (s32)m_48, (s32)m_4c, m_3c, m_40, m_20->m_6);
+    DCFlushRange(m_1c, 0x1000);
 }
 
 void TEffIndirectCtrl::update_eff_indirect() {
-    TEffIndirectCtrl *eff_indirect_ctrl = this;
-    eff_indirect_ctrl->copy_and_flush_texture(get_indirect_source_pixels(eff_indirect_ctrl->m_24));
-    deform_indirect_texture_wave(eff_indirect_ctrl->m_1c, (s32) *(f32 *)((s8 *)eff_indirect_ctrl + 0x48), eff_indirect_ctrl->m_4c, eff_indirect_ctrl->m_3c, eff_indirect_ctrl->m_40, *(u8 *)((s8 *)(*(void **)((s8 *)eff_indirect_ctrl + 0x20)) + 6));
-    DCFlushRange(eff_indirect_ctrl->m_1c, 0x1000);
+    copy_and_flush_texture(get_indirect_source_pixels(m_24));
+    deform_indirect_texture_wave(m_1c, (s32)m_48, (s32)m_4c, m_3c, m_40, m_20->m_6);
+    DCFlushRange(m_1c, 0x1000);
 }
 
 void TEffIndirectCtrl::update_scroll_mode() {
-    Ctrl_802A8728 *self = (Ctrl_802A8728 *)this;
     s32 rate;
-    ((TEffIndirectCtrl *)self)->copy_and_flush_texture(get_indirect_source_pixels(self->index));
-    rate = (s32) self->rate;
-    self->phase = self->phase + (s8) self->recipe[3];
-    deform_indirect_texture_scroll(self->buf, self->amp, self->period, rate, self->phase);
-    DCFlushRange((s32)self->buf, 0x1000);
+    copy_and_flush_texture(get_indirect_source_pixels(m_24));
+    rate = (s32)m_48;
+    m_44 = m_44 + m_20->m_3;
+    deform_indirect_texture_scroll(m_1c, m_3c, m_40, rate, m_44);
+    DCFlushRange(m_1c, 0x1000);
 }
 
-s32 setup_indirect_tev_alternate(s32 arg0, s32 unused, s32 sampler, s32 arg3) {
+s32 setup_indirect_tev_alternate(TEffIndirectCtrl *ctrl, s32 unused, s32 sampler, s32 arg3) {
     if ((u8)arg3 < 5) {
         s32 coords[5] = { 0, 1, 2, 3, 4 };
         s32 scales[5] = { 0, 1, 2, 3, 4 };
@@ -527,12 +474,12 @@ s32 setup_indirect_tev_alternate(s32 arg0, s32 unused, s32 sampler, s32 arg3) {
         mtx[1][1] = 0.5f;
         mtx[1][2] = 0.0f;
         GXSetIndTexMtx(1, mtx, 1);
-        set_current_texture_list((GinjaTextureList *)(((Owner_802A8448 *)arg0)->list));
+        set_current_texture_list(ctrl->m_2c);
         load_list_texture(0, sampler, sampler, 5);
     }
 }
 
-s32 setup_indirect_tev_ordinary(s32 arg0, s32 sampler, s32 scale, s32 second) {
+s32 setup_indirect_tev_ordinary(TEffIndirectCtrl *ctrl, s32 sampler, s32 scale, s32 second) {
     s32 scales[5] = { 0, 1, 2, 3, 4 };
     f32 m0[2][3];
     f32 m1[2][3];
@@ -561,7 +508,7 @@ s32 setup_indirect_tev_ordinary(s32 arg0, s32 sampler, s32 scale, s32 second) {
         m1[1][2] = 0.0f;
         GXSetIndTexMtx(1, m1, 1);
     }
-    set_current_texture_list((GinjaTextureList *)(((Owner_802A8448 *)arg0)->list));
+    set_current_texture_list(ctrl->m_2c);
     load_list_texture(0, sampler, sampler, 5);
 }
 
@@ -578,15 +525,15 @@ void TObjPlayer__sub_802A83F4(void) {
 }
 
 void TObjPlayer::play_particle_at_active_slot(s32 arg0, s32 sampler, s32 arg2, s32 arg3, s32 unused, s32 second) {
-    s32 indirect_effect_ctrl;
+    s32 slot;
 
-    indirect_effect_ctrl = (s32)(s8) find_indirect_effect_ctrl(arg0);
-    if ((indirect_effect_ctrl != -1) && (indirect_effect_ctrl_table[indirect_effect_ctrl] != NULL)) {
+    slot = find_indirect_effect_ctrl(arg0);
+    if ((slot != -1) && (indirect_effect_ctrl_table[slot] != NULL)) {
         if (arg3 != 0) {
-            setup_indirect_tev_alternate((s32)indirect_effect_ctrl_table[indirect_effect_ctrl], unused, sampler, arg2);
+            setup_indirect_tev_alternate(indirect_effect_ctrl_table[slot], unused, sampler, arg2);
             return;
         }
-        setup_indirect_tev_ordinary((s32)indirect_effect_ctrl_table[indirect_effect_ctrl], sampler, arg2, second);
+        setup_indirect_tev_ordinary(indirect_effect_ctrl_table[slot], sampler, arg2, second);
     }
 }
 
@@ -607,24 +554,16 @@ s8 find_indirect_effect_ctrl(s32 kind) {
 }
 
 void register_indirect_effect_ctrl(s32 kind) {
-    u8 *p;
     if (find_indirect_effect_ctrl(kind) < 0 && indirect_effect_ctrl_count < 6) {
-        p = (u8 *)TObject::operator new(0x54);
-        if (p != NULL) {
-            p = (u8 *)TEffIndirectCtrl__ct((Ctrl_802A8B58 *)p, kind, tl_01);
-        }
-        indirect_effect_ctrl_table[indirect_effect_ctrl_count] = (TEffIndirectCtrl *)p;
+        indirect_effect_ctrl_table[indirect_effect_ctrl_count] = new TEffIndirectCtrl(kind, tl_01);
         indirect_effect_ctrl_count++;
     }
 }
-
-u8 *fn_802A8210(u8 *object, s32 kind, u8 *arg2) {
-    __ct__7TObjectFP7TObject(object, arg2);
-    *(s32 **)((s8 *)object + 0x18) = __vt__13TUnk_804DDF04;
-    *(s8 *)((s8 *)object + 0x1C) = kind;
-    register_indirect_effect_ctrl((s32)((s32) kind));
-    return object;
 }
+
+TUnk_804DDF04::TUnk_804DDF04(s32 kind, TObject *parent) : TObject(parent) {
+    m_kind = kind;
+    register_indirect_effect_ctrl(kind);
 }
 
 TUnk_804DDF04::~TUnk_804DDF04() {}
