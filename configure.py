@@ -509,10 +509,9 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Unit -fp_contract on replaces the per-function pragmas. Precedent:
     # https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209
     "pso/misc/TWindowKeyBoardSoft_8024E68C.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
-    # init_follow_target's 18.0 vector matches only as a literal pool, which
-    # MWCC will not place on top of lbl_8043FFAC. The script merges them.
-    # The .discard helper that orders .sdata2 is dropped from the link there too.
-    "pso/misc/TNpcPlayer.cpp": {"post_object": "tools/fix_tnpcplayer_obj.py"},
+    # Upstream #190: this file is written in reverse so deferred codegen emits
+    # address order, and the readonly string pool places the constants.
+    "pso/misc/TNpcPlayer.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-str reuse,readonly")},
     "pso/boss/TBoss7LaserLight.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
     "pso/enemy/TObjEnemyCustom.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-pool off", "-str reuse,readonly")},
     "pso/boss/TBoss3VoloptCore.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},

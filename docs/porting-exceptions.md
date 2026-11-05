@@ -26,8 +26,8 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 7 functions (13 source lines) | 4 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 71 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,860 | 886 |
-| Per-unit compiler overrides in `configure.py` | 147 | 147 |
+| CodeWarrior pragmas (excluding push/pop) | 5,861 | 886 |
+| Per-unit compiler overrides in `configure.py` | 148 | 148 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -70,9 +70,9 @@ etc. or their port equivalents) instead of the fixed address.
 
 ## 4. CodeWarrior pragmas
 
-5,860 pragmas in 886 files; per-file table in the generated file. Main kinds:
+5,861 pragmas in 886 files; per-file table in the generated file. Main kinds:
 `dont_inline` 1153, `inline_depth` 1045, `fp_contract` 926, `auto_inline` 844,
-`opt_common_subs` 624, `scheduling` 262, `opt_propagation` 240,
+`opt_common_subs` 625, `scheduling` 262, `opt_propagation` 240,
 `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56,
 `defer_codegen` 50, `pack` 46. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
@@ -160,8 +160,9 @@ or `other: <what>`); the fork PR that brought it in; and the tag
 `python3 tools/list_port_exceptions.py --upstream-catchup`; check_pr prints the count.
 
 | Function/symbol | Unit | File | Upstream PR | Cheat type | Fork PR | Tag |
-| `init_follow_target` | `pso/misc/TNpcPlayer.cpp` | `src/pso/misc/TNpcPlayer.cpp` | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | `other: literal pool merged onto lbl_8043FFAC` | #0 | `upstream catch-up, rewrite later` |
-| `npc_player_is_small_obstacle` | `pso/misc/TNpcPlayer.cpp` | `src/pso/misc/TNpcPlayer.cpp` | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | `steering pragma` | #0 | `upstream catch-up, rewrite later` |
+| `TNpcPlayer.cpp` | `pso/misc/TNpcPlayer.cpp` | `configure.py` | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | `other: per-unit cflags override` | #0 | `upstream catch-up, rewrite later` |
+| `is_small_obstacle` | `pso/misc/TNpcPlayer.cpp` | `src/pso/misc/TNpcPlayer.cpp` | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | `other: dead function for sdata2 pool order` | #0 | `upstream catch-up, rewrite later` |
+| `is_hp_low` | `pso/misc/TNpcPlayer.cpp` | `src/pso/misc/TNpcPlayer.cpp` | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | `other: dead function for sdata2 pool order` | #0 | `upstream catch-up, rewrite later` |
 
 ## Pending in open PRs
 

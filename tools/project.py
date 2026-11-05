@@ -694,9 +694,6 @@ def generate_build_ninja(
     mwcc_sjis_extab_cmd = f'{CHAIN}{mwcc_sjis_cmd} && {dtk} extab clean --padding "$extab_padding" $out $out'
     mwcc_sjis_extab_implicit: List[Optional[Path]] = [*mwcc_sjis_implicit, dtk]
 
-    # MWCC plus a unit script that rewrites the object (see post_object).
-    mwcc_post_cmd = f'{CHAIN}{mwcc_cmd} && $python $post_object $out'
-
     # MWLD
     mwld = compiler_path / "mwldeppc.exe"
     mwld_cmd = f"{wrapper_cmd}{mwld} $ldflags -o $out @$out.rsp"
@@ -720,7 +717,6 @@ def generate_build_ninja(
         mwcc_pch_sjis_cmd += f" && $python {transform_dep} $basefile.d $basefile.d"
         mwcc_extab_cmd += f" && $python {transform_dep} $basefile.d $basefile.d"
         mwcc_sjis_extab_cmd += f" && $python {transform_dep} $basefile.d $basefile.d"
-        mwcc_post_cmd += f" && $python {transform_dep} $basefile.d $basefile.d"
         mwcc_implicit.append(transform_dep)
         mwcc_sjis_implicit.append(transform_dep)
         mwcc_pch_implicit.append(transform_dep)
@@ -760,16 +756,6 @@ def generate_build_ninja(
     n.rule(
         name="mwcc_sjis",
         command=mwcc_sjis_cmd,
-        description="MWCC $out",
-        depfile="$basefile.d",
-        deps="gcc",
-    )
-    n.newline()
-
-    n.comment("MWCC build (with an object post-process)")
-    n.rule(
-        name="mwcc_post",
-        command=mwcc_post_cmd,
         description="MWCC $out",
         depfile="$basefile.d",
         deps="gcc",
@@ -1067,10 +1053,6 @@ def generate_build_ninja(
                 variables["extab_padding"] = "".join(
                     f"{i:02x}" for i in obj.options["extab_padding"]
                 )
-            elif obj.options.get("post_object"):
-                build_rule = "mwcc_post"
-                build_implcit = [*mwcc_implicit, Path(obj.options["post_object"])]
-                variables["post_object"] = obj.options["post_object"]
             n.comment(f"{obj.name}: {lib_name} (linked {obj.completed})")
             n.build(
                 outputs=obj.src_obj_path,
