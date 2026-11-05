@@ -2,7 +2,8 @@
 
 Every place where the source is not plain portable C/C++ because matching the
 GameCube binary needs it: assembly, CodeWarrior-only intrinsics and pragmas,
-direct hardware access, per-unit compiler overrides, and approved regressions.
+direct hardware access, per-unit compiler overrides, approved regressions, and
+approved type puns.
 A port to another platform must rewrite or neutralize every entry here.
 
 The mechanical inventory (each line and file) is generated into
@@ -170,6 +171,17 @@ plain source: `free_all` (no copied loop-counter alias) and
 ## 6. Approved regressions
 
 None on main.
+
+## 7. Approved type puns
+
+Matt approved one `u32`/`GXColor` word pun on 2026-11-04 ~10:20 PM PT
+([#320](https://github.com/matthewlewisnewton/pso-decomp/pull/320)). A plain
+`u32` or a `GXColor` kept in a register does not emit this function's color
+sequence.
+
+| File | Function | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/misc/TRaderMapCore.cpp` | `TRaderMapCore::draw_compass` (`draw_compass__13TRaderMapCoreFl`, `0x801FA6CC`, 436 bytes) | `*(u32 *)&color.r = 0xFFFFFFFF`, then `color.a = (u8)m_19c`, then reload `*(u32 *)&color.r` for the halfword swap | The original stores `li r0, -1` / `stw r0, 0x8(r1)` with the sprite setup, `stb` of the alpha at `0xb(r1)`, then `lwz r0, 0x8(r1)`; `srwi r5, r0, 16`; `rlwimi r5, r0, 16, 0, 7`; `rlwimi r5, r0, 16, 8, 15`. MWCC only reloads that stack word when the color is a memory word written as an integer and read back after the byte store. A struct or bitfield kept by value stays in a register (`li r7, -256`) or pools `0xFFFFFFFF` in `.sdata2`. Precedent: [Twilight Princess `JUtility::TColor::set(u32)` / `toUInt32()`](https://github.com/zeldaret/tp/blob/c8fa8c9e2aab72cf4e5db0e5d1c84a9ea6ee6eb0/libs/JSystem/include/JSystem/JUtility/TColor.h) (`*(u32 *)&r`), [Pikmin 2 `Color4(u32)`](https://github.com/projectPiki/pikmin2/blob/999140f3521e22619547d5d61862a6577ea73882/include/Color4.h) (`*(u32 *)this = col`), and [Graffito `JUTColor.hpp`](https://github.com/ryanbevins/Graffito-Decomp/blob/b6a5454b/include/JSystem/JUtility/JUTColor.hpp). | Keep a 4-byte RGBA color and pass the halfword-swapped word. The pun exists so MWCC emits the store, the byte write, and the reload. |
 
 ## Pending in open PRs
 

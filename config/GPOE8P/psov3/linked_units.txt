@@ -1501,6 +1501,7 @@ pso/misc/TQuestVmDownLoadServer_801F9010.cpp
 pso/misc/TQuestVmDownLoadServer_8033BC88.cpp
 pso/misc/TQuestVmDownLoadServer_8033C22C.cpp
 pso/misc/TQuestVmDownLoadServer_803E5668.cpp
+pso/misc/TRaderMapCore.cpp
 pso/misc/TRaderMapCore_801A6CEC.cpp
 pso/misc/TRaderMapCore_801F3710.cpp
 pso/misc/TRaderMapCore_801FB2B8.cpp

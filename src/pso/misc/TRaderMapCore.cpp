@@ -1040,9 +1040,20 @@ void TRaderMapCore::update_follow_projection(s32 mode) {
 
 void TRaderMapCore::copy_transform(void* q) { *(f32 *)&this->m_name = *(f32*)((char*)q + 0x0); *(f32 *)&this->m_flags = *(f32*)((char*)q + 0x4); *(f32 *)&this->m_prev = *(f32*)((char*)q + 0x8); *(f32 *)&this->m_next = *(f32*)((char*)q + 0xc); *(f32 *)&this->m_up = *(f32*)((char*)q + 0x10); *(f32 *)&this->m_down = *(f32*)((char*)q + 0x14); *(u32*)((char*)this + 0x18) = *(u32*)((char*)q + 0x18); *(u32 *)&this->entity_id = *(u32*)((char*)q + 0x1c); *(f32 *)&this->m_20 = *(f32*)((char*)q + 0x20); *(f32 *)&this->texlist = *(f32*)((char*)q + 0x24); }
 
+// Word store/reload of a GXColor. Approved for this function only: see
+// docs/porting-exceptions.md. Same spelling as JUtility::TColor::set(u32) /
+// toUInt32() (`*(u32 *)&r`).
+struct CompassColor {
+    u8 r;
+    u8 g;
+    u8 b;
+    u8 a;
+};
+
 void TRaderMapCore::draw_compass(s32 mode) {
     SpriteDescriptor sprite;
-    u32 color;
+    CompassColor color;
+    s32 color_arg;
     f32 scale;
     f32 pos;
     f32 *compass_xy;
@@ -1061,14 +1072,21 @@ void TRaderMapCore::draw_compass(s32 mode) {
     sprite.rotation = 0;
     sprite.unknown18 = TRaderMapCore__data_805D5F4C;
     sprite.frames = lbl_804C87E4;
+    *(u32 *)&color.r = 0xFFFFFFFFu;
     TParticleCtrl::begin_effect_render();
     compass_xy = &lbl_804C87B4[mode][0];
     marker_xy = &lbl_804C87B4[mode][2];
     sprite.x = marker_xy[0] + (f32)lbl_804C87E4[1].center_x;
     sprite.y = marker_xy[1] + (f32)lbl_804C87E4[1].center_y;
     set_default_alpha_blend();
-    color = 0xFFFFFF00u | (u8)this->m_19c;
-    sprite.draw_compass_sprite(1, (color << 16) | (color >> 16), 0x21, TRaderMapCore__data_805DC58C);
+    color.a = (u8)this->m_19c;
+    // Right-nested so the low half is the rlwinm base: srwi, then rlwimi 0,7, then rlwimi 8,15.
+    {
+        u32 word = *(u32 *)&color.r;
+        color_arg = (s32)(((word << 16) & 0x00FF0000u) |
+                          (((word << 16) & 0xFF000000u) | (word >> 16)));
+    }
+    sprite.draw_compass_sprite(1, color_arg, 0x21, TRaderMapCore__data_805DC58C);
     sprite.x = compass_xy[0] + (f32)lbl_804C87E4[0].center_x;
     sprite.y = compass_xy[1] + (f32)lbl_804C87E4[0].center_y;
     sprite.rotation = this->m_174;
