@@ -51,13 +51,13 @@ s32 load_floor_enemy_group_entries__6TLobbyFiPvUi(s32 idx, Src_8020B970 *src, u3
 s32 init_quest_floor_enemies(s32 idx, Src_8020B7C4 *src, u32 size);
 
 s32 TLobby__sub_8020B5CC(Buf_8020B5CC *buf) {
-    // Object rows are written through the packet. total2 is created before the
-    // FloorFlagsBuffer view so the enemy total is colored ahead of that view.
+    // The floor index is born first. Enemy rows bind the row pointer before
+    // the count snapshot, the same order as the 0x8020B47C importer.
+    s32 i = 0;
     s32 total1 = 0;
     s16 *out = buf->values;
     buf->object_offset = 0x10;
     Tbl_8020B970 *t = TLobby__floor_enemy_group_table;
-    s32 i = 0;
     for (; i < 18; i++) {
         s32 count = t[i].count;
         if (count > 0) {
@@ -87,7 +87,6 @@ s32 TLobby__sub_8020B5CC(Buf_8020B5CC *buf) {
             }
         }
     }
-    // Born before hdr/out2, so this total takes r31 and the new floor index takes r28.
     s32 total2 = 0;
     FloorFlagsBuffer *hdr = buf;
     hdr->word_04 = total1;
@@ -95,9 +94,9 @@ s32 TLobby__sub_8020B5CC(Buf_8020B5CC *buf) {
     s16 *out2 = out;
     s32 i2 = 0;
     for (; i2 < 18; i2++) {
-        s32 count2 = TLobby__floor_enemy_group_table[i2].count2;
-        if (count2 > 0) {
+        if (TLobby__floor_enemy_group_table[i2].count2 > 0) {
             Dst_8020B970 *l2 = TLobby__floor_enemy_group_table[i2].list2;
+            s32 count2 = TLobby__floor_enemy_group_table[i2].count2;
             if (get_current_floor() == i2) {
                 Src_8020B7C4 *raw2 = TLobby__data_805D6114;
                 if (raw2 != NULL) {
