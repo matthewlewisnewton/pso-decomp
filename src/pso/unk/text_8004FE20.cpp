@@ -67,6 +67,7 @@ void *TObjDFDemo5__ct(void *mem, void *parent, void *pos, void *angle) {
     s32 k;
     s32 cnt;
     s32 i;
+    s32 slot;
     // Keep the anchor in one register. A plain symbol copy is folded back to
     // lbl_80485798 and reloaded after each call.
     u8 *tables = (u8 *)(unsigned)lbl_80485798;
@@ -83,21 +84,26 @@ void *TObjDFDemo5__ct(void *mem, void *parent, void *pos, void *angle) {
         s32 t = lbl_80486FB0[i];
         k = t;
         s32 m = get_bml_model(cnt, t);
+        // The last assignment of one offset local is folded into a
+        // displacement store. An earlier value kept in slot stays indexed.
         s32 off = i * 12 + 0xA4;
-        *(s32 *)((u8 *)self + off) = m;
+        slot = off;
+        *(s32 *)((u8 *)self + slot) = m;
         m = TObjFish__sub_8001EDB0(cnt, k);
         off = i * 12 + 0xA8;
-        *(s32 *)((u8 *)self + off) = m;
+        slot = off;
+        *(s32 *)((u8 *)self + slot) = m;
         m = get_bml_motion(cnt, motab[i]);
         off = i * 12 + 0xAC;
-        *(s32 *)((u8 *)self + off) = m;
+        slot = off;
+        *(s32 *)((u8 *)self + slot) = m;
     }
     self->parts[3].model = get_bml_model(cnt, 1);
     self->parts[3].texlist = TObjFish__sub_8001EDB0(cnt, 1);
     self->parts[3].motion = get_bml_motion(cnt, 0x23);
     self->frame = lbl_805D8A1C;
-    for (i = 0; i < 5; i++) {
-        self->emitters[i] = 0;
+    for (slot = 0; slot < 5; slot++) {
+        self->emitters[slot] = 0;
     }
     activate_camera_mode(5);
     {
