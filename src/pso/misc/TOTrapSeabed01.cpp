@@ -20,6 +20,7 @@
 #include "pso/misc/TOTrapAncient02.h"
 #include "pso/misc/TRaderMapCore.h"
 #include "pso/object/TObjFish.h"
+#include "pso/player/TObjPlayer_801AF2F0.h"
 
 
 
@@ -81,13 +82,9 @@ struct Trap_802C9F70 {
 };
 
 extern "C" {
-s32 submit_cursor_candidate(void *, int);
 u16 find_nearest_visible_player(void *, int, f32);
-f32 TObjPlayer__sub_8017A1A4(int, int);
-s32 send_6x2C_impose_hold(int, void *, int, int, f32);
-void *get_player_by_client_id(s32 i);
+f32 TObjPlayer__sub_8017A1A4(TObjCollidable *, s32);
 extern s32 local_client_id;
-void check_hold_player__14TOTrapSeabed01FPv(u8 *arg0);
 s32 get_bml_model(int, int);
 
 u8 *copy_transform__8TObjChipFPvPv(u8 *arg0, u8 *arg1);
@@ -459,18 +456,17 @@ void TOTrapSeabed01::trigger_by_id(u32 arg0) {
 }
 
 void TOTrapSeabed01::vfunc_81() {
-    u8 *arg0 = (u8 *)this;
     u32 temp_r0;
-    *(f32 *)((s8 *)arg0 + 0xC0) = (f32) (*(f32 *)((s8 *)arg0 + 0xC0) + *(f32 *)((s8 *)arg0 + 0xC8));
-    temp_r0 = *(s32 *)((s8 *)(*(u8 **)((s8 *)arg0 + 0xF8)) + 4) - 1;
-    if (*(f32 *)((s8 *)arg0 + 0xC0) > (f32) temp_r0) {
-        *(f32 *)((s8 *)arg0 + 0xC0) = (f32) temp_r0;
-        *(s16 *)((s8 *)arg0 + 0x326) = 3;
-        ((TObjChara *)arg0)->calc_attach_pos();
-        ((TObjCollidable *)arg0)->clear_player_status_flag(0, 0x08001F04U);
-        ((TObjCollidable *)arg0)->set_indexed_flags(0, 0x8003);
-        ((TObjBase *)arg0)->obj_clearFlags30(0x40000U);
-        check_hold_player__14TOTrapSeabed01FPv(arg0);
+    frame = frame + play_speed;
+    temp_r0 = current_motion->nbFrame - 1;
+    if (frame > (f32) temp_r0) {
+        frame = (f32) temp_r0;
+        mode = 3;
+        calc_attach_pos();
+        clear_player_status_flag(0, 0x08001F04U);
+        set_indexed_flags(0, 0x8003);
+        obj_clearFlags30(0x40000U);
+        check_hold_player();
     }
 }
 
@@ -489,30 +485,29 @@ void TOTrapSeabed01::vfunc_82() {
     submit_cursor_candidate(this, -1);
 }
 
-void check_hold_player__14TOTrapSeabed01FPv(u8 *trap_seabed01) {
+void TOTrapSeabed01::check_hold_player() {
     f32 temp_f0;
     f32 temp_f31;
-    u32 temp_r3;
-    u32 temp_r3_2;
+    TObjPlayer *p;
     u32 id;
-    *(u32 *)((s8 *)trap_seabed01 + 0x2A8) = 0U;
-    ((TOTrapSeabed01 *)trap_seabed01)->player = find_nearest_visible_player(trap_seabed01, 0, (f32) (((TOTrapSeabed01 *)trap_seabed01)->range));
-    id = ((TOTrapSeabed01 *)trap_seabed01)->player;
-    if ((id != 0xFFFF) && (temp_r3 = (u32)get_player_by_client_id(id), *(u32 *)((s8 *)trap_seabed01 + 0x2A8) = temp_r3, temp_r3_2 = *(u32 *)((s8 *)trap_seabed01 + 0x2A8), ((temp_r3_2 == 0U) == 0))) {
-        temp_f31 = horizontal_distance_squared((const Vec *)((void *)(temp_r3_2 + 0x38)), (const Vec *)((void *)(trap_seabed01 + 0x38)));
-        ((TOTrapSeabed01 *)trap_seabed01)->dist = (f32) (((TOTrapSeabed01 *)trap_seabed01)->dist - TObjPlayer__sub_8017A1A4(temp_r3, 0));
-        temp_f0 = ((TOTrapSeabed01 *)trap_seabed01)->dist;
+    target = NULL;
+    player = find_nearest_visible_player(this, 0, range);
+    id = player;
+    if ((id != 0xFFFF) && (p = get_player_by_client_id(id), target = (u8 *)p, target != NULL)) {
+        temp_f31 = horizontal_distance_squared(&((TObjChara *)target)->position, &position);
+        dist = dist - TObjPlayer__sub_8017A1A4(p, 0);
+        temp_f0 = dist;
         if (temp_f31 < (temp_f0 * temp_f0)) {
             if (TRaderMapCore::is_not_split_screen() == 1) {
-                send_6x2C_impose_hold(temp_r3, trap_seabed01 + 0x38, -1, 0, (f32) (((TOTrapSeabed01 *)trap_seabed01)->dist));
-            } else if ((s32) ((TOTrapSeabed01 *)trap_seabed01)->player == (s32) local_client_id) {
-                send_6x2C_impose_hold(temp_r3, trap_seabed01 + 0x38, -1, 0, (f32) (((TOTrapSeabed01 *)trap_seabed01)->dist));
+                send_6x2C_impose_hold(p, &position, -1, 0, dist);
+            } else if (player == local_client_id) {
+                send_6x2C_impose_hold(p, &position, -1, 0, dist);
             }
-            ((TOTrapSeabed01 *)trap_seabed01)->sub_802C9C18(0);
+            sub_802C9C18(0);
             return;
         }
-        ((TOTrapSeabed01 *)trap_seabed01)->player = 0xFFFFU;
-        *(u32 *)((s8 *)trap_seabed01 + 0x2A8) = 0U;
+        player = 0xFFFF;
+        target = NULL;
     }
 }
 

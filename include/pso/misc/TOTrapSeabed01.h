@@ -13,6 +13,7 @@ struct TOTrapSeabed01 : public TOTrap {
     virtual void vfunc_81();
     virtual void vfunc_82();
     void sub_802C9D38();
+    void check_hold_player();
     void sub_802C9C18(s32);
     virtual void vfunc_6(s16 *, s32);
     virtual void render();

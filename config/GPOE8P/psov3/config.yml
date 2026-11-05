@@ -4277,7 +4277,7 @@ force_active:
   - check_hit_sphere__16TObjEneBm5GibonUFPvif
   - check_hits__21TObjEneSlimeWaterBombFv
   - check_hits__22TObjEneSlimeTailAttackFv
-  - check_hold_player__14TOTrapSeabed01FPv
+  - check_hold_player__14TOTrapSeabed01Fv
   - check_in_range__23TObjEneMe3ShinowaMirageFPv
   - check_load_state__16TAdChrSelASlotGCFv
   - check_local_player_in_range__12TObjRaderColFPv
