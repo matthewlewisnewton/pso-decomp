@@ -1949,7 +1949,6 @@ void handle_6x1C_disable_pk_mode_for_player(void *arg0);
 void handle_6x1B_enable_pk_mode_for_player(void *arg0);
 void* draw_font__10TObjPlayerFPv(void* p);
 s16 TObjPlayer__sub_801B18C0(s32 arg0, u32 arg1);
-s16 unequip_by_field326__10TObjPlayerFPv(void *arg0);
 void reset_volopt_state__10TObjPlayerFv(void);
 void foreach_player__10TObjPlayerFv(s32 (*arg0)(u32));
 void for_each_player_slot__10TObjPlayerFv(void (*arg0)(void *));
@@ -3565,7 +3564,7 @@ s16 TObjPlayer__sub_801B18C0(s32 arg0, u32 arg1) {
     }
 }
 
-s16 unequip_by_field326__10TObjPlayerFPv(void *arg0) {
+s16 TObjPlayer::unequip_by_field326(void *arg0) {
     return TObjPlayer__sub_801B18C0((s32)arg0, (u32)(*(s16 *)((s8 *)arg0 + 0x326)));
 }
 
@@ -6808,7 +6807,7 @@ void TObjPlayer::unequip_item(TItem *arg1) {
         unequip_all_units();
     }
     if (test_action_mask(2) != 0) {
-        ((TObjMotion *)this)->set_animation(unequip_by_field326__10TObjPlayerFPv(this));
+        ((TObjMotion *)this)->set_animation(TObjPlayer::unequip_by_field326(this));
     }
 }
 
@@ -6867,7 +6866,7 @@ void TObjPlayer::equip_item_to_slot(void *item, s32 slot) {
         ((VObj_801B9F40 *)item)->m18();
     }
     if (((s32 (*)(void *, int))test_action_mask__10TObjPlayerFl)(this, 2) != 0) {
-        ((TObjMotion *)this)->set_animation(unequip_by_field326__10TObjPlayerFPv(this));
+        ((TObjMotion *)this)->set_animation(TObjPlayer::unequip_by_field326(this));
     }
 }
 

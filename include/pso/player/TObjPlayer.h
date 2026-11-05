@@ -703,6 +703,9 @@ struct TObjPlayer : public TObjChara {
     static int get_hold_effect_count();
     static int get_item_count_max();
     void *init();
+    // The animation the player returns to after unequipping, from its
+    // current action at +0x326.
+    static s16 unequip_by_field326(void *player);
     // Drops one item: the item pool inside the owner's TPlyItem, the floor
     // record, the owner, the TItemData to copy and the item id. The original
     // declared all five as int, so the callers hand it casts.
