@@ -6,6 +6,7 @@
 
 struct TObjNpcMaleBase : public TUnk_804A9F50 {
     virtual ~TObjNpcMaleBase();
+    void request_action(s32 arg1);
     static void free_static_data();
     static void load_shared_resource();
 };

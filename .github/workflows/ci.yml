@@ -1,4 +1,9 @@
-# CI: build every PR and run the repo's own zero-regression gate
+# Personal fork: binary CI is manual-only while no matching runner is available.
+# The local mechanical queue remains authoritative for full binary, code/data
+# regression, and link validation; hosted Source checks still run on every PR.
+# Retain this inherited workflow for deliberate future runner-backed validation.
+#
+# Binary gate
 # (tools/check_pr.py: ninja + DOL SHA-1 + report_delta --check vs the base commit's
 # baseline + link_units check).
 #
@@ -15,16 +20,12 @@
 # Recommended alongside it: Settings → Actions → General → "Fork pull request workflows
 # in public repositories: Require approval for all outside collaborators".
 # The job itself needs no secrets and its token is read-only. It uploads the gate's
-# results as the `ci-result` artifact; ci-comment.yml (which runs from master, never
+# results as the `ci-result` artifact; ci-comment.yml (which runs from main, never
 # PR code) turns that into the pull request comment.
 
 name: CI
 
 on:
-  pull_request:
-    branches: [master]
-    types: [opened, synchronize, reopened]
-    paths-ignore: ['**.md']
   workflow_dispatch:
 
 permissions:
@@ -105,6 +106,8 @@ jobs:
           if [ "$GITHUB_EVENT_NAME" != pull_request ]; then
             # Manual run on a branch: no separate base; snapshot its own report so
             # report_delta is vacuous, and still get the DOL-SHA and link checks.
+            python3 configure.py
+            ninja
             ninja baseline
           fi
           python3 tools/check_pr.py --json ci-result/result.json

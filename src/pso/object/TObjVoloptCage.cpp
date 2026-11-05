@@ -1,3 +1,9 @@
+#include "pso/enemy/BattleParameters.h"
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
+#include "pso/player/TObjChara.h"
+#include "pso/player/demo_mode.h"
 #pragma readonly_strings on
 #pragma fp_contract on
 
@@ -32,7 +38,7 @@ s32 push_matrix(void);
 void post_translate_matrix(const Vec *v);
 void rotate_matrix_y(s32 matrix, s32 angle);
 s32 rand(void);
-void play_sound_effect(s32 id, const Vec *pos, s32 a2, s32 a3);
+
 TObjPlayer *get_player_by_client_id(s32 id);
 s32 obj_setFlags30(TObjBase *actor, s32 flags);
 void send_6x2C_impose_hold(TObjPlayer *player, const Vec *pos, s32 a2, s32 a3, f32 time);
@@ -84,12 +90,12 @@ void TObjVoloptCage::update_breakup() {
     case -1:
         break;
     case 0:
-        play_sound_effect(0x4001C112, &position, 0, 0);
+        play_sound_effect(0x4001C112, (const Vec *)(&position), 0, 0);
         create_breakup_mdl__12TBoss3VoloptFlllll(volopt_cage_breakup_model, &volopt_cage_breakup_params,
-                                                 volopt_cage_textures, (Vec *)&m_2fc, rotation_y);
+                                                 volopt_cage_textures, (Vec *)&body_center_position, this->rotation.yaw);
         create_breakup_mdl__12TBoss3VoloptFlllll(volopt_cage_breakup_model, &volopt_cage_breakup_params,
-                                                 volopt_cage_textures, (Vec *)&m_2fc, rotation_y);
-        ((TObjPlayer *)&m_2fc)->trigger_dell_biter_events();
+                                                 volopt_cage_textures, (Vec *)&body_center_position, this->rotation.yaw);
+        ((TObjPlayer *)&body_center_position)->trigger_dell_biter_events();
         timer = 12;
         disallow_rendering();
         state = 1;
@@ -97,10 +103,10 @@ void TObjVoloptCage::update_breakup() {
     case 1:
         if (timer & 1) {
             angle = (s32)(182.04445f * (360.0f * (3.0517578e-05f * (f32)rand())));
-            pos.x = 20.0f * cos_table_lookup(angle) + m_2fc;
-            pos.y = 20.0f * (3.0517578e-05f * (f32)rand()) + m_300;
-            pos.z = 20.0f * sin_table_lookup(angle) + m_304;
-            spawn_particle_effect(&pos, 0xFB);
+            pos.x = 20.0f * cos_table_lookup(angle) + body_center_position.x;
+            pos.y = 20.0f * (3.0517578e-05f * (f32)rand()) + body_center_position.y;
+            pos.z = 20.0f * sin_table_lookup(angle) + body_center_position.z;
+            spawn_particle_effect((const Vec *)(&pos), 0xFB);
         }
         if ((timer -= 1) <= 0) {
             queue_destruction();
@@ -163,7 +169,7 @@ void TObjVoloptCage::sub_80049000() {
     case 0:
         actorFlags |= 0x40000;
         state = 1;
-        play_sound_effect(0x4003A80A, &position, 10, 0);
+        play_sound_effect(0x4003A80A, (const Vec *)(&position), 10, 0);
         break;
     case 1:
         position.y += 5.0f;
@@ -193,17 +199,17 @@ void TObjVoloptCage::init_break_model() {
         model = (TBreakUpMdl *)model->init_from_model(volopt_cage_model);
     }
     volopt_cage_breakup_model = (TBreakUpMdlPieces *)model;
-    volopt_cage_combat_stats = TLobby::register_boss(0x26);
-    volopt_cage_params = (VoloptCageParams *)TLobby::dispatch_shared_handler_a(0x26);
+    volopt_cage_combat_stats = get_battle_base_stats(0x26);
+    volopt_cage_params = (VoloptCageParams *)get_battle_movement_params(0x26);
 }
 
 void TObjVoloptCage::render() {
     if (update_object_view_visibility(400.0f, 40.0f) != 0) {
-        TObjFish::set_global_param(volopt_cage_textures);
+        set_current_texture_list((GinjaTextureList *)(volopt_cage_textures));
         push_matrix();
         model_render_flags &= ~0x400;
         post_translate_matrix(&position);
-        rotate_matrix_y(0, rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         draw_chunk_object((void *)volopt_cage_model);
         pop_matrix();
     }
@@ -227,7 +233,7 @@ void TObjVoloptCage::update_state() {
 }
 
 void TObjVoloptCage::run_task() {
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         run_demo_task();
         return;
     }
@@ -248,7 +254,7 @@ void TObjVoloptCage::run_task() {
     }
     update_state();
     update_prev_position();
-    ((TBoss3VoloptHiraisin *)this)->copy_position();
+    ((TObjChara *)this)->copy_body_to_center();
     submit_cursor_candidate(this, -1);
 }
 

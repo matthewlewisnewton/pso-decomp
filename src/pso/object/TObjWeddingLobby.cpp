@@ -1,3 +1,5 @@
+#include "pso/player/demo_mode.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/object/TObjWeddingLobby.h"
 #include "pso/TMainTask.h"
@@ -16,8 +18,6 @@
 #pragma readonly_strings on
 
 extern "C" {
-void TLobby__sub_8001FE7C(BmlResource *resource, s32 del);
-BmlResource *load_resource_from_descriptor(void *resource, s32 kind, BmlResourceDescriptor *descriptor, s32, s32, s32);
 AnimationMotion *get_bml_motion(BmlResource *resource, s32 index);
 void draw_ginja_model_with_motion(s32 model, AnimationMotion *motion, f32 frame);
 }
@@ -34,10 +34,10 @@ void TObjWeddingLobby::demo_step() {}
 void TObjWeddingLobby::render() {
     if (fade_state != 0 && lobby_texlist != 0) {
         TParticleCtrl::begin_effect_render();
-        TObjFish::set_global_param(lobby_texlist);
+        set_current_texture_list((GinjaTextureList *)(lobby_texlist));
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
+        rotate_matrix_y(NULL, this->rotation.yaw);
         if (fade_state != 3) {
             scale_matrix(NULL, fade_scale, 1.0f, fade_scale);
         }
@@ -50,7 +50,7 @@ void TObjWeddingLobby::render() {
 
 void TObjWeddingLobby::run_task() {
     f32 last;
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         demo_step();
     }
     switch (fade_state) {
@@ -93,16 +93,13 @@ void *TObjWeddingLobby::create(void *set_data) {
 
 void TObjWeddingLobby::free_resources() {
     if (resource_bundle != NULL) {
-        TLobby__sub_8001FE7C(resource_bundle, 1);
+        delete (BmlResource *)(resource_bundle);
         resource_bundle = NULL;
     }
 }
 
 void TObjWeddingLobby::load_resources() {
-    void *resource = ::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 5, &bm_obj_lobby_bell_resource_descriptor, 0, 0, 0);
-    }
+    void *resource = new BmlResource(5, (BmlResourceDescriptor *)(&bm_obj_lobby_bell_resource_descriptor), 0, 0, (void *)(0));
     resource_bundle = (BmlResource *)resource;
     lobby_texlist = TLobby::get_lobby_texlist();
 }

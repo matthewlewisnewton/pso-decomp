@@ -31,6 +31,23 @@ typedef struct Pad_803DEA18
   u8 pad;
 } Pad_803DEA18;
 
+typedef struct Out_803DEA18
+{
+  s32 f0;
+  s32 f4;
+  s32 held;
+  s32 notHeld;
+  s32 pressed;
+  s32 released;
+  s16 trigR;
+  s16 trigL;
+  s16 stickX;
+  s16 stickY;
+  s16 substickX;
+  s16 substickY;
+  u8 unk24[0xC];
+  s32 *conn;
+} Out_803DEA18;
 
 extern "C" {
 extern RecoveredGlobal_803DEB74_lbl_8058D8E0 keyboard_control_pad_slots;
@@ -68,6 +85,7 @@ void TKeyBoardControl::init_pad_slots_and_read() {
     Dolphin_PADRead(keyboard_pad_status_buffer, TKeyBoardControl__pad_status_buffer);
 }
 
+typedef struct Out_803DEA18 Out_803DEA18;
 typedef struct Pad_803DEA18 Pad_803DEA18;
 typedef struct RecoveredGlobal_803DEB74_lbl_8058D8E0 RecoveredGlobal_803DEB74_lbl_8058D8E0;
 #pragma push
@@ -77,7 +95,7 @@ void TKeyBoardControl::read_pads() {
   unsigned short new_var;
   Pad_803DEA18 *pad;
   Pad_803DEA18 *old;
-  PadSlot *out;
+  Out_803DEA18 *out;
   int i;
   u16 cur;
   u16 released;
@@ -88,7 +106,7 @@ void TKeyBoardControl::read_pads() {
   {
     pad = &((Pad_803DEA18 *) keyboard_pad_status_buffer)[i];
     old = &TKeyBoardControl_prev_pad_state[i];
-    out = &((PadSlot *) (&keyboard_control_pad_slots))[i];
+    out = &((Out_803DEA18 *) (&keyboard_control_pad_slots))[i];
     if (pad->err == 0)
     {
       ((TKeyBoardControl *)pad)->clamp_axes();
@@ -250,9 +268,3 @@ s32 keyboard_pad_status_buffer[12];
 Pad_803DEA18 TKeyBoardControl_prev_pad_state[4];
 RecoveredGlobal_803DEB74_lbl_8058D8E0 keyboard_control_pad_slots;
 s32 TKeyBoardControl__pad_status_buffer[0x78];
-
-Ent_803DEBC8 pad_button_map_table[12] = {
-    {0x1, 0x40},     {0x2, 0x80},      {0x4, 0x20},   {0x8, 0x10},
-    {0x40, 0x20000}, {0x20, 0x10000},  {0x10, 0x100}, {0x100, 0x4},
-    {0x200, 0x2},    {0x400, 0x400},   {0x800, 0x200}, {0x1000, 0x8},
-};

@@ -1,3 +1,4 @@
+#include "pso/math/VectorNormalize.h"
 #include "types.h"
 #include "pso/system/PadRumble.h"
 #include "dolphin/pad.h"
@@ -24,7 +25,7 @@ void PadRumbleLevel::accumulate(s32 client_id, s32 channel) {
                     offset.x = effect->pos.x - player->position.x;
                     offset.y = effect->pos.y - player->position.y;
                     offset.z = effect->pos.z - player->position.z;
-                    s16 felt = effect->strength - 0.1f * ((TObjBoss2Tunnel *)&offset)->update_scale();
+                    s16 felt = effect->strength - 0.1f * normalize_vector_checked((Vec *)&offset);
                     if (felt < 10) {
                         felt = 10;
                     }

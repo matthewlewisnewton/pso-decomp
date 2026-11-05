@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/vector.h"
 #include "types.h"
 #include "pso/object/TObjMotion.h"
@@ -129,7 +130,7 @@ void TBoss8Dragon::sub_802F4098(u8 *arg1) {
 void TBoss8Dragon::draw_with_fade(s32 arg1, s32 arg2) {
     u8 *temp_r31;
     if (!(*(f32 *)&this->unk_3C <= lbl_805DED70)) {
-        TObjFish::set_global_param(this->m_24);
+        set_current_texture_list((GinjaTextureList *)(this->m_24));
         TObjEneDD::clear_global_flag_400();
         saved_model_render_flags = model_render_flags;
         set_material_alpha_compare_reference(0);

@@ -1,3 +1,5 @@
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/boss/TBoss4Type2_800874F4.h"
 #include "pso/object/TObject_80019A50.h"
@@ -75,7 +77,7 @@ int get_player_data__10TObjPlayerFi(int a0);
 f32 xyz_distance(void *, void *);
 extern const f32 lbl_805E0198;
 u8 fn_8035CAE0(void);
-s32 play_sound_effect(s32, s32, s32, s32);
+
 int dispatch_by_main_phase__14TBoss4DarkFalzFUs(void*);
 
 u8 fn_8035CAE0(void) {
@@ -158,13 +160,13 @@ void TBoss6Thanks::render() {
     set_motion_packed_rotation();
     push_matrix();
     post_translate_matrix(TBoss6Thanks__data_80479BA8);
-    TObjFish::set_global_param(o->texture0);
+    set_current_texture_list((GinjaTextureList *)(o->texture0));
     scale_matrix(0, lbl_805E01A0, lbl_805E01A0, lbl_805E01A0);
     draw_model_motion(o->model0, o->motions[o->current_motion], o->frame0);
     pop_matrix();
     push_matrix();
     post_translate_matrix(TBoss6Thanks__data_80479BA8);
-    TObjFish::set_global_param(o->texture1);
+    set_current_texture_list((GinjaTextureList *)(o->texture1));
     scale_matrix(0, lbl_805E01A0, lbl_805E01A0, lbl_805E01A0);
     draw_model_motion(o->model1, o->motion1, o->frame1);
     pop_matrix();

@@ -1,9 +1,9 @@
 #include "types.h"
-#include "pso/npc/TObjNpcHRM01.h"
 #include "pso/misc/TLanguage_801E4874.h"
 #include "pso/unk/text_800F9B84.h"
 #include "pso/unk/text_8014B8A4.h"
 #include "pso/npc/TUnk_804A9F50.h"
+#include "pso/npc/TObjNpcHRM01.h"
 #include "pso/misc/TLobby.h"
 #include "pso/npc/TObjNpcBase.h"
 #include "pso/npc/TObjNpcLappy.h"
@@ -48,9 +48,16 @@ void TObjNpcHRM01::load_resources() {
     TObjNpcHRM01__body_texture_gvm_handle = (u32)load_gvm_texture_file((s32)"n_d01_e_body.gvm");
 }
 
+void *__dt__12TObjNpcHRM01Fv(void *arg0, s16 arg1) {
+    if (arg0 != NULL) {
+        *(s32 **)((s8 *)arg0 + 0x18) = __vt__12TObjNpcHRM01;
+        ((TUnk_804A9F50 *)arg0)->destroy_npc_lappy_base(0);
+        if (arg1 > 0) {
+            __dl__7TObjectFPv(arg0);
+        }
+    }
+    return arg0;
 }
-TObjNpcHRM01::~TObjNpcHRM01() {}
-extern "C" {
 
 typedef char RecoveredGlobal_8014B59C___vt__12TObjNpcHRM01_size[sizeof(RecoveredGlobal_8014B59C___vt__12TObjNpcHRM01) == 0x178 ? 1 : -1];
 u8 *TObjNpcHRM01__ct(u8 *player, s32 arg1, s32 arg2) {
@@ -58,14 +65,14 @@ u8 *TObjNpcHRM01__ct(u8 *player, s32 arg1, s32 arg2) {
     *(s32 **)((s8 *)player + 0x18) = &(*(RecoveredGlobal_8014B59C___vt__12TObjNpcHRM01 *)&__vt__12TObjNpcHRM01).value;
     *(s32 *)((s8 *)player + 0) = (s32) TObjNpcHRM01__name;
     ((TObjNpcHRM01 *)(player))->apply_set_data((void *)arg2);
-    ((TObjPlayer *)player)->init_position_vectors();
+    ((TObjChara *)player)->initialize_position_copies();
     *(s32 *)((s8 *)player + 0x34) = (s32) *(*(s32 * *)&TObjNpcHRM01__shared_object_resource);
     ((TObjNpcHRM01 *)player)->texlist = (s32) (*(s32 *)&TObjNpcHRM01__body_texture_gvm_handle);
     ((TObjNpcBase *)player)->setup_common();
     return player;
 }
 
-void TObjNpcLappy::request_action(s32) {
+void TObjNpcLappy::vfunc_88() {
     if ((s16) this->mode != 2) {
         this->requested_action = 0;
         return;

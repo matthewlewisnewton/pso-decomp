@@ -1,3 +1,5 @@
+#include "pso/system/ArrayAllocation.h"
+#include "pso/math/VectorNormalize.h"
 #include "pso/system/vector.h"
 #include "types.h"
 #include "pso/enemy/TObjEneMe1Canadin_EffLight.h"
@@ -152,7 +154,6 @@ void push_history_entry__17TObjEneMe1CanadinFPvfPvi(Obj_8009FADC *self, f32 f, c
 extern const f32 canadin_effect_zero;
 extern const f32 canadin_light_width_cutoff;
 s32 fade_alpha_step__17TObjEneMe1CanadinFPvif(Obj_8009FB54 *self, s32 dec, f32 scale);
-void *mem_alloc(u32 size);
 void __ct__7TObjectFP7TObject(void *, void *);
 extern s32 __vt__26TObjEneMe1Canadin_EffLight[];
 extern s32 TObjEneMe1Canadin_EffLight__name;
@@ -160,7 +161,6 @@ extern const f32 canadin_light_width_decay;
 void run_task__26TObjEneMe1Canadin_EffLightFv(Obj_8009FA24 *arg0);
 void __dl__7TObjectFPv(void *);
 void __dt__7TObjectFv(void *, int);
-void mem_free(void *);
 
 struct Obj_8009FB54;
 typedef s32 (*Fn_8009FA24)(Rec_8009FA24 *, f32, s32);
@@ -212,9 +212,9 @@ s32 fade_alpha_step__17TObjEneMe1CanadinFPvif(Obj_8009FB54 *self, s32 dec, f32 s
 void *__dt__26TObjEneMe1Canadin_EffLightFv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__26TObjEneMe1Canadin_EffLight;
-        mem_free(*(void **)((s8 *)arg0 + 0x2C));
+        ::operator delete[](*(void **)((s8 *)arg0 + 0x2C));
         *(s32 *)((s8 *)arg0 + 0x2C) = 0;
-        mem_free(((TObjEneMe1Canadin_EffLight *)arg0)->m_28);
+        ::operator delete[](((TObjEneMe1Canadin_EffLight *)arg0)->m_28);
         *(s32 *)((s8 *)arg0 + 0x28) = 0;
         __dt__7TObjectFv(arg0, 0);
         if (arg1 > 0) {
@@ -230,8 +230,8 @@ TObjEneMe1Canadin_EffLight::TObjEneMe1Canadin_EffLight(TObject *parent, s32 coun
     ((Obj_8009FC44 *)this)->count = count;
     ((Obj_8009FC44 *)this)->field20 = 0;
     ((Obj_8009FC44 *)this)->field24 = 0;
-    ((Obj_8009FC44 *)this)->buf28 = mem_alloc(((Obj_8009FC44 *)this)->count << 5);
-    ((Obj_8009FC44 *)this)->recs = (Rec_8009FC44 *)mem_alloc(((Obj_8009FC44 *)this)->count * 0x14);
+    ((Obj_8009FC44 *)this)->buf28 = ::operator new[](((Obj_8009FC44 *)this)->count << 5);
+    ((Obj_8009FC44 *)this)->recs = (Rec_8009FC44 *)::operator new[](((Obj_8009FC44 *)this)->count * 0x14);
     for (i = 0; i < ((Obj_8009FC44 *)this)->count; i++) {
         ((Obj_8009FC44 *)this)->recs[i].a = canadin_effect_zero;
         ((Obj_8009FC44 *)this)->recs[i].b = 0;
@@ -280,14 +280,14 @@ void run_task__30TObjEneMe1Canadin_EffDischargeFv(u8 *ene_me1_canadin_eff_discha
     }
     VC_B(&sp8, ene_me1_canadin_eff_discharge + 0x50);
     subtract_vector(&sp8, ene_me1_canadin_eff_discharge + 0x38);
-    temp_f31 = ((TObjBoss2Tunnel *)(&sp8))->update_scale();
+    temp_f31 = normalize_vector_checked((Vec *)(&sp8));
     s32 nw_ret = __nw__7TObjectFUl(0x260);
     if (nw_ret != 0U) {
         ((TTecZondeEff *)nw_ret)->construct((u8 *)tl_05, ene_me1_canadin_eff_discharge + 0x38, (u8 *)&sp8, (f32)temp_f31);
     }
     VC_B(ene_me1_canadin_eff_discharge + 0x38, ene_me1_canadin_eff_discharge + 0x50);
     if (var_r31 != 0) {
-        fn_8009E1D4((u8 *)(*(s32 *)((s8 *)ene_me1_canadin_eff_discharge + 0x1C)), (s32)(ene_me1_canadin_eff_discharge + 0x44));
+        ((TObjEneMe1Canadin *)(*(s32 *)((s8 *)ene_me1_canadin_eff_discharge + 0x1C)))->fn_8009E1D4((Vec *)(ene_me1_canadin_eff_discharge + 0x44));
         queue_destruction__7TObjectFv(ene_me1_canadin_eff_discharge);
     }
 }

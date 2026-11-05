@@ -42,7 +42,7 @@ public:
     static void free_buffers();
     void begin_file_download();
     void receive_file_chunk();
-    static s32 verify_checksum(const void *data, s32 size);
+    static s32 verify_checksum(s32 arg0, s32 arg1);
     void close_window();
     void update_mc_select();
     void open();
@@ -66,16 +66,14 @@ public:
     static s32 get_field230();
     static void clear_field2A0();
     static void split_time_hms(s32 arg0, s32 *arg1, s32 *arg2, s32 *arg3);
-    static void *alloc(u32 size);
+    int alloc();
     static void register_global_instance_dtor();
     void clear_flag4_bit4();
     static s32 is_ready();
-    static s32 get_serial_access();
-    static s32 poll_serial_access();
+    int get_serial_access();
+    int poll_serial_access();
     static void destroy_instance();
     static void reset_download();
-    void init(void* a1, void* a2, void* a3, void* a4);
-    void init_from_keyboard_state();
     static s32 reset_download_buffers();
     static s32 poll_download_status();
     s32 handle_list_scroll();
@@ -114,18 +112,15 @@ public:
     static void latch_slot_value(s32 arg0);
     static s32 count_leading_entries(s32 i, s32 end);
     static void init_entries();
-    s32 count_chain_nodes();
     static void *build_text_node_chain(void *sp, void *a1, s32 a2, void *hp, void *tp);
     static u16 jis_to_sjis(u16 arg0);
     static s32 is_valid_sjis_code(u16 arg0);
     static s32 is_download_command(u16 arg0, s32 arg1);
     static s32 encode_char_with_attr(u16 *out, u16 ch, s32 attr);
     static s32 is_sjis_lead_byte(u8 arg0);
-    void free_node_list();
     static void push_download_entry(s32 *arg0);
     static void init_block_free_list();
     static s32 calc_item_cost_bonus(u8 kind, u8 v, u8 w, s32 base, s32 add);
-    s32 calc_item_entry_cost(u8 k, u8 v, s32 base);
     static s32 calc_pair_cost_bonus(u8 arg0, u8 arg1, s32 arg2);
     static s32 calc_item_entry_cost_extra(u8 arg0, u8 arg1, u8 arg2, s32 arg3);
     static void reset_slot_chain_timers(s32 arg0);
@@ -138,15 +133,9 @@ public:
     static u32 aram_dma_read(void *h, void *dst, int size);
 public:
     void encrypt_download_data(s32 size);
-    static void unshuffle_and_decrypt(void *data, s32 size);
+    void unshuffle_and_decrypt(s32 size);
     s32 find_name_index();
 };
 typedef char TQuestVmDownLoadServer_size_check[sizeof(TQuestVmDownLoadServer) == 0x2A4 ? 1 : -1];
-
-// The two seeds of the download cipher; a quest saved to a memory card is
-// encrypted with the console's serial number in both.
-extern __declspec(section ".data") u32 download_rng_seed_pair[2];
-
-void seed_download_rng(s32 seed);
 
 #endif

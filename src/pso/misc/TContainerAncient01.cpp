@@ -1,4 +1,9 @@
+#include "pso/player/demo_mode.h"
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/map/FloorArea.h"
 static const f32 TContainerAncient01__data_805DBD10[1] = {1.0f};
 static const f32 TContainerAncient01__data_805DBD14[1] = {0.0f};
@@ -205,7 +210,7 @@ s32 run_task__7TObjectFv(void *);
 extern s32 TContainerAncient01R__bml_resource;
 
 void run_task__20TContainerAncient01RFv(u8 *arg0);
-f32 xyz_distance_squared(void *, void *);
+f32 xyz_distance_squared(void *, void *, void *);
 
 s32 is_within_range__19TContainerAncient01Fii(s32 arg0, s32 arg1);
 unsigned int __cvt_fp2unsigned(f32);
@@ -220,13 +225,12 @@ f32 horizontal_distance_squared(void *, void *);
 void TContainerAncient01__sub_8018A584(Obj_8018A584 *self, f32 range);
 
 void *get_player_by_client_id(s32 i);
-s32 play_sound_effect(int, void *, int, int);
 
 extern s32 registered_player_count;
 
 s32 TContainerAncient01__sub_8018BE90(void);
 
-void *spawn_particle_effect(void *pos, s32 id);
+
 extern s32 TContainerAncient01__effect_id_table[];
 void TContainerAncient01__sub_8018B180(Obj_8018B180 *self, f32 range);
 
@@ -295,7 +299,7 @@ extern "C" void enemy_spawn_jellen_effect__9TObjCharaFv();
 extern "C" void enemy_spawn_zalure_effect__9TObjCharaFv();
 extern "C" void vfunc_78__9TObjCharaFl();
 extern "C" void vfunc_77__9TObjCharaFv();
-extern "C" void vfunc_76__9TObjCharaFv();
+extern "C" void vfunc_76__9TObjCharaFf();
 extern "C" void vfunc_75__9TObjCharaFf();
 extern "C" void get_center__9TObjCharaFv();
 extern "C" void get_actor_level_index__9TObjCharaFv();
@@ -377,7 +381,7 @@ void *__vt__20TContainerAncient01R[79] = {
     (void *)&reset_pose__9TObjCharaFv, (void *)&get_anim_node_position__9TObjCharaFlP3Vec, (void *)&vfunc_66__9TObjCharaFv, (void *)&vfunc_67__9TObjCharaFf,
     (void *)&get_pos__9TObjCharaFl, (void *)&apply_switch_attack__9TObjCharaFv, (void *)&enemy_spawn_jellen_effect__9TObjCharaFv, (void *)&trigger_switch_attack__9TObjCharaFv,
     (void *)&enemy_spawn_zalure_effect__9TObjCharaFv, (void *)&recalc_stats__9TObjCharaFv, (void *)&vfunc_74__9TObjCharaFl, (void *)&vfunc_75__9TObjCharaFf,
-    (void *)&vfunc_76__9TObjCharaFv, (void *)&vfunc_77__9TObjCharaFv, (void *)&vfunc_78__9TObjCharaFl,
+    (void *)&vfunc_76__9TObjCharaFf, (void *)&vfunc_77__9TObjCharaFv, (void *)&vfunc_78__9TObjCharaFl,
 };
 #define TContainerAncient01__collision_body_parts (*(RecoveredGlobal_8018A9D8_TContainerAncient01__data_804B6DC0 *)TContainerAncient01__collision_body_parts)
 #define __vt__20TContainerAncient01R ((s32 *)__vt__20TContainerAncient01R)
@@ -417,16 +421,16 @@ s32 TContainerAncient01R::sub_8018A688() {
         case AREA_JUNGLE_EAST:
         case AREA_MOUNTAIN:
         case AREA_SEASIDE:
-            play_sound_effect(0x4BC1C, (u8 *)self + 0x38, 0, 0);
+            play_sound_effect(0x4BC1C, (const Vec *)((u8 *)self + 0x38), 0, 0);
             break;
         case AREA_SEASIDE_NIGHT:
-            play_sound_effect(0x4004BC1C, (u8 *)self + 0x38, 0, 0);
+            play_sound_effect(0x4004BC1C, (const Vec *)((u8 *)self + 0x38), 0, 0);
             break;
         case AREA_TOWER:
-            play_sound_effect(0x4004BC1C, (u8 *)self + 0x38, 0, 0);
+            play_sound_effect(0x4004BC1C, (const Vec *)((u8 *)self + 0x38), 0, 0);
             break;
         default:
-            play_sound_effect(0x4004BC16, (u8 *)self + 0x38, 0, 0);
+            play_sound_effect(0x4004BC16, (const Vec *)((u8 *)self + 0x38), 0, 0);
             break;
         }
     }
@@ -509,7 +513,7 @@ void TContainerAncient01::init_positions() {
     *(f32 *)&this->unk_364 = (f32) TContainerAncient01__data_805DBD10[0];
     this->m_368 = (f32) TContainerAncient01__data_805DBD10[0];
     *(f32 *)&this->unk_36C = (f32) TContainerAncient01__data_805DBD10[0];
-    this->hp = (s16) this->rotation_z;
+    this->hp = (s16) this->rotation.roll;
     if ((s16) this->hp < 1) {
         this->hp = 1;
     }
@@ -572,20 +576,20 @@ f32 TContainerAncient01R::receive_direct_attack(void *arg1, DirectAttackPayload 
 int TContainerAncient01R::calc_distance_accuracy_penalty(void *, void *, void *, float) { return 1; }
 
 s32 is_within_range__19TContainerAncient01Fii(s32 arg0, s32 arg1) {
-    return xyz_distance_squared((void *)(arg1 + 0x38), (void *)(arg0 + 0x38)) < 4e+02f;
+    return xyz_distance_squared((void *)(arg1 + 0x38), (void *)(arg0 + 0x38), (void *)arg0) < 4e+02f;
 }
 
 void TContainerAncient01R::render() {
     u8 *arg0 = (u8 *)this;
     if (((VObj8018AD04_8018A584 *) arg0)->m8(3e+02f, 2e+01f) != 0) {
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)(this->texlist));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         if ((s32) this->m_360 != 0) {
             scale_current_matrix((u8 *)&this->unk_364);
         }
-        if (TObjPlayer::check_demo_mode() == 1) {
+        if (check_demo_mode() == 1) {
             draw_ginja_object(this->model);
         } else {
             draw_ginja_model_with_motion(*(s32 *)&this->model, *(s32 *)&this->current_motion, this->frame);
@@ -597,7 +601,7 @@ void TContainerAncient01R::run_task() {
     u8 *arg0 = (u8 *)this;
     f32 temp_f1;
     f32 temp_f1_2;
-    if (TObjPlayer::check_demo_mode() == 0) {
+    if (check_demo_mode() == 0) {
         if ((s32) this->m_360 == 0) {
             switch (this->mode) {
             case 0:
@@ -683,7 +687,7 @@ void *TContainerAncient01R__ct(Obj_8018B030 *self, void *arg1, void *parent) {
     self->x34 = get_bml_model(TContainerAncient01R__bml_resource, 0);
     self->x24 = TObjFish__sub_8001EDB0(TContainerAncient01R__bml_resource, 0);
     self->animTbl = (void *)TContainerAncient01__anim_table;
-    ((TObjMotion *)self)->set_field_d8((s32)self->animTbl);
+    ((TObjMotion *)self)->set_action_table((TObjMotionAction *)((s32)self->animTbl));
     self->xdc = ((Res_8018B030 *)TContainerAncient01R__bml_resource)->x430;
     self->anim = 0;
     ((TObjMotion *)self)->set_animation(self->anim);
@@ -701,7 +705,7 @@ void *TContainerAncient01R__ct(Obj_8018B030 *self, void *arg1, void *parent) {
 }
 #pragma pop
 
-void TContainerAncient01::spawn_effect(void* p, void* a1, void* a2) { spawn_particle_effect(a1, (s32)a2); }
+void TContainerAncient01::spawn_effect(void* p, void* a1, void* a2) { spawn_particle_effect((const Vec *)(a1), (s32)a2); }
 
 void TContainerAncient01__sub_8018B180(Obj_8018B180 *self, f32 range) {
     u16 i;
@@ -737,16 +741,16 @@ void TContainerAncient01::sub_8018B284() {
         case AREA_JUNGLE_EAST:
         case AREA_MOUNTAIN:
         case AREA_SEASIDE:
-            play_sound_effect(0x4BC1C, self->pos, 0, 0);
+            play_sound_effect(0x4BC1C, (const Vec *)(self->pos), 0, 0);
             break;
         case AREA_SEASIDE_NIGHT:
-            play_sound_effect(0x4004BC1C, self->pos, 0, 0);
+            play_sound_effect(0x4004BC1C, (const Vec *)(self->pos), 0, 0);
             break;
         case AREA_TOWER:
-            play_sound_effect(0x4004BC1C, self->pos, 0, 0);
+            play_sound_effect(0x4004BC1C, (const Vec *)(self->pos), 0, 0);
             break;
         default:
-            play_sound_effect(0x4004BC16, self->pos, 0, 0);
+            play_sound_effect(0x4004BC16, (const Vec *)(self->pos), 0, 0);
             break;
         }
     }
@@ -857,6 +861,7 @@ void TContainerAncient01::sub_8018B700() {
 
 }
 #include "types.h"
+#include "pso/misc/TContainerAncient01_8018B79C.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/system/GinjaMaterial.h"
 #include "pso/unk/text_803D96A8.h"
@@ -903,6 +908,7 @@ s32 submit_cursor_candidate(void *, int, f32);
 s32 run_task__7TObjectFv(void *);
 extern s32 TContainerAncient01__bml_resource;
 
+f32 xyz_distance_squared(void *, void *, void *);
 
 s32 scale_current_matrix(void *);
 s32 post_translate_matrix(void *);
@@ -938,21 +944,21 @@ f32 TContainerAncient01::receive_direct_attack(void *arg1, DirectAttackPayload p
 
 int TContainerAncient01::calc_distance_accuracy_penalty(void *, void *, void *, float) { return 1; }
 
-s32 TContainerAncient01::select_melee_contact_body(void *target, f32) {
-    return xyz_distance_squared((u8 *)target + 0x38, &this->position) < 4e+02f;
+s32 TContainerAncient01__vt18(s32 arg0, s32 arg1) {
+    return xyz_distance_squared((void *)(arg1 + 0x38), (void *)(arg0 + 0x38), (void *)arg0) < 4e+02f;
 }
 
 void TContainerAncient01::render() {
     u8 *arg0 = (u8 *)this;
     if (((VObj8018B8BC_8018B79C *) arg0)->m8(3e+02f, 2e+01f) != 0) {
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)(this->texlist));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         if ((s32) this->m_35c != 0) {
             scale_current_matrix((u8 *)&this->m_360);
         }
-        if (TObjPlayer::check_demo_mode() == 1) {
+        if (check_demo_mode() == 1) {
             draw_ginja_object(this->model);
         } else {
             draw_ginja_model_with_motion(*(s32 *)&this->model, *(s32 *)&this->current_motion, this->frame);
@@ -964,7 +970,7 @@ void TContainerAncient01::run_task() {
     u8 *arg0 = (u8 *)this;
     f32 temp_f1;
     f32 temp_f1_2;
-    if (TObjPlayer::check_demo_mode() == 0) {
+    if (check_demo_mode() == 0) {
         if ((s32) this->m_35c == 0) {
             switch (this->mode) {
             case 0:
@@ -1018,13 +1024,11 @@ struct Res_8018BB64 { u8 pad[0x430]; s32 x430; };
 
 extern "C" {
 
-void *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern Param_8018BB64 container_ancient_anim_binding[];
 
 extern s32 TContainerAncient01__effect_id_table[];
 
 u8 *TContainerAncient01__ct(u8 *arg0, s32 arg1, s32 arg2);
-void TLobby__sub_8001FE7C(void*, int);
 void *__nw__7TObjectFUl(int);
 
 extern void *tl_05;
@@ -1039,7 +1043,7 @@ void *TContainerAncient01::create(void *arg0) {
 
 void TContainerAncient01::release_static_resource() {
     if ((u32) TContainerAncient01__bml_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)TContainerAncient01__bml_resource, 1);
+        delete (BmlResource *)((void*)TContainerAncient01__bml_resource);
         TContainerAncient01__bml_resource = 0U;
     }
 }
@@ -1047,18 +1051,12 @@ void TContainerAncient01::load_resources() {
     void *p;
     TContainerAncient01__bml_resource = 0;
     if (TContainerAncient01::is_global_state_in_table() != 0) {
-        p = ::operator new(0x440);
-        if (p != NULL) {
-            p = load_resource_from_descriptor(p, 5, TContainerAncient01__resource_descriptor_2, 0, 0, 0);
-        }
+        p = new BmlResource(5, (BmlResourceDescriptor *)(TContainerAncient01__resource_descriptor_2), 0, 0, (void *)(0));
         TContainerAncient01__effect_id_table[0] = 0x230;
         TContainerAncient01__bml_resource = (u32)p;
         TContainerAncient01__effect_id_table[1] = 0x231;
     } else {
-        p = ::operator new(0x440);
-        if (p != NULL) {
-            p = load_resource_from_descriptor(p, 5, TContainerAncient01__resource_descriptor, 0, 0, 0);
-        }
+        p = new BmlResource(5, (BmlResourceDescriptor *)(TContainerAncient01__resource_descriptor), 0, 0, (void *)(0));
         TContainerAncient01__effect_id_table[0] = 0x45;
         TContainerAncient01__bml_resource = (u32)p;
         TContainerAncient01__effect_id_table[1] = 0x46;
@@ -1137,14 +1135,18 @@ void *__dt__19TContainerAncient01Fv(void *arg0, s16 arg1);
 s32 free_collision_body_parts(void *);
 s32 __dl__7TObjectFPv(void *);
 
+void *__dt__19TContainerAncient01Fv(void *arg0, s16 arg1) {
+    if (arg0 != NULL) {
+        *(s32 **)((s8 *)arg0 + 0x18) = __vt__19TContainerAncient01;
+        ((TObjCollidable *)arg0)->unregister_object_by_id();
+        free_collision_body_parts(arg0);
+        __dt__9TObjCharaFv(arg0, 0);
+        if (arg1 > 0) {
+            __dl__7TObjectFPv(arg0);
+        }
+    }
+    return arg0;
 }
-
-TContainerAncient01::~TContainerAncient01() {
-    unregister_object_by_id();
-    free_collision_body_parts(this);
-}
-
-extern "C" {
 
 #pragma push
 #pragma fp_contract on
@@ -1159,7 +1161,7 @@ u8 *TContainerAncient01__ct(u8 *arg0, s32 arg1, s32 arg2) {
     *(s32 *)((s8 *)arg0 + 0x34) = get_bml_model((int) ((*(u8 * *)&TContainerAncient01__bml_resource)), 0);
     ((TContainerAncient01 *)arg0)->texlist = TObjFish__sub_8001EDB0((int) ((*(u8 * *)&TContainerAncient01__bml_resource)), 0);
     ((TContainerAncient01 *)arg0)->action_table = TContainerAncient01__anim_table;
-    ((TObjMotion *)arg0)->set_field_d8((s32)((void *) (((TContainerAncient01 *)arg0)->action_table)));
+    ((TObjMotion *)arg0)->set_action_table((TObjMotionAction *)((s32)((void *) (((TContainerAncient01 *)arg0)->action_table))));
     *(s32 *)((s8 *)arg0 + 0xDC) = (s32) *(s32 *)((s8 *)(*(u8 * *)&TContainerAncient01__bml_resource) + 0x430);
     ((TContainerAncient01 *)arg0)->requested_action = 0;
     ((TObjMotion *)arg0)->set_animation((((TContainerAncient01 *)arg0)->requested_action));

@@ -1,3 +1,5 @@
+#include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/system/ChunkMaterialState.h"
@@ -56,9 +58,9 @@ void *find_entity_by_id(u16 id);
 }
 u8 *construct_photon_magic_square_normal(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 extern "C" {
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
-s32 spawn_photon_blast_attachment_effects(void *, int);
+
 u8 *__nw__7TObjectFUl(s32, f32);
+extern const f64 lbl_80446DE8;
 
 s32 scroll_strip_uvs(void *, s16, int);
 s32 clear_render_context__10TObjPlayerFv(void *);
@@ -82,10 +84,10 @@ void TPhotonLeilla::render() {
     if (*(s32 *)&this->m_19c != 0) {
         scroll_strip_uvs(leilla_photon_buffer_pair, self->f14C, 0);
         TParticleCtrl::begin_effect_render();
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)(this->texlist));
         push_matrix();
         translate_matrix(0, self->pos.x, self->pos.y, self->pos.z);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         saved_model_render_flags = model_render_flags;
         copy_argb((NJS_ARGB *)&saved_model_draw_color, (NJS_ARGB *)&model_material_color);
         saved_chunk_polygon_flags_and_mask = chunk_polygon_flags_and_mask;
@@ -136,7 +138,7 @@ void TPhotonLeilla::run_task() {
         ((TUnk_804C3248 *)arg0)->begin_photon_summon_camera(2);
         *(s32 *)&this->m_1ac = 0;
         ((TObjMotion *)arg0)->set_field_b8(0);
-        spawn_photon_blast_attachment_effects(arg0, 4);
+        spawn_photon_blast_attachment_effects(this, 4);
     }
     *(s16 *)&this->m_190 = (s16) this->requested_action;
     ((TUnk_804C3248 *)arg0)->update_state();
@@ -153,11 +155,11 @@ void TPhotonLeilla::run_task() {
     if ((f32) *(s32 *)&this->m_1ac > 109.0f) {
         temp_f1_2 = *(f32 *)&this->m_180;
         if (temp_f1_2 > (-1.0f)) {
-            *(f32 *)&this->m_180 = (f32) ((f64) temp_f1_2 - 0.15);
+            *(f32 *)&this->m_180 = (f32) ((f64) temp_f1_2 - lbl_80446DE8);
         }
     }
     if ((s32) *(s32 *)&this->m_19c != 0) {
-        play_persistent_sound(0x4002462F, (s32)arg0, (u32)(0U), 0, 0);
+        play_persistent_sound((s32)(0x4002462F), (const void *)((s32)arg0), (const Vec *)((u32)(0U)), 0, 0);
     }
 }
 }
@@ -218,13 +220,14 @@ struct Game_801AC808 { u8 pad[0x42C]; Res_801AC808 *res; s32 f430; };
 
 extern "C" {
 void *find_entity_by_id(u16 id);
-s32 spawn_photon_blast_attachment_effects(void *, int);
 void sub_801AC444__13TPhotonLeillaFv(void *, u8);
 }
 u8 *construct_photon_magic_square_normal(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 extern "C" {
 void TPhotonRainbow__ct(void *, void *, void *, s32);
 u8 *__nw__7TObjectFUl(s32, f32);
+extern u8 lbl_80446DF8[];
+extern u8 lbl_80446E04[];
 extern u8 photon_blast_leilla_params[];
 extern s32 __vt__13TPhotonLeilla[];
 extern s32 lbl_805D34F8;
@@ -234,7 +237,7 @@ void *TPhotonLeilla__ct(Leilla_801AC808 *self, Pkt_801AC808 *pkt) {
     Vec_801AC808 v;
     u8 *o;
     u8 *owner;
-    __ct__13TUnk_804C3248Fv(self);
+    photon_base_ct(self);
     *(void **)((u8 *)self + 0x18) = __vt__13TPhotonLeilla;
     F_801AC808(self, s32, 0) = lbl_805D34F8;
     F_801AC808(self, s32, 0x138) = 4;
@@ -246,8 +249,8 @@ void *TPhotonLeilla__ct(Leilla_801AC808 *self, Pkt_801AC808 *pkt) {
     }
     F_801AC808(self, s32, 0x34) = photon_blast_shared_resource->res->f18;
     F_801AC808(self, s32, 0x24) = photon_blast_shared_resource->res->f1C;
-    ((TObjMotion *)self)->set_field_d8((s32)photon_blast_leilla_params);
-    ((TObjMotion *)self)->set_field_dc(photon_blast_shared_resource->f430);
+    ((TObjMotion *)self)->set_action_table((TObjMotionAction *)((s32)photon_blast_leilla_params));
+    ((TObjMotion *)self)->set_motion_list((BmlMotionEntry *)(photon_blast_shared_resource->f430));
     F_801AC808(self, s16, 0xB8) = 1;
     ((TObjMotion *)self)->set_animation(F_801AC808(self, s16, 0xB8));
     ((TObjMotion *)self)->set_field_b8(F_801AC808(self, s16, 0xB8));
@@ -295,11 +298,11 @@ void *TPhotonLeilla__ct(Leilla_801AC808 *self, Pkt_801AC808 *pkt) {
         if (o != NULL) {
             construct_photon_magic_square_normal((u8 *)o, (s32)self, 4, (s32)&v, 0x78);
         }
-        spawn_photon_blast_attachment_effects(self, 4);
-        play_cue_stream_file((s32)"reila2.adx");
+        spawn_photon_blast_attachment_effects((TPhotonLeilla *)self, 4);
+        play_cue_stream_file((s32)lbl_80446DF8);
     } else {
         spawn_photon_blast_opening_effects(4, F_801AC808(self, u16, 0x17C));
-        play_cue_stream_file((s32)"reila.adx");
+        play_cue_stream_file((s32)lbl_80446E04);
     }
     return self;
 }
