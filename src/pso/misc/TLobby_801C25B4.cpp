@@ -1553,7 +1553,7 @@ void update_duel_result__6TLobbyFPv(u8 *arg0) {
                     forward_trade_action_default__16TObjCityMainWarpFPviii(*(void **)((s8 *)arg0 + 0x50), *(s32 *)((s8 *)(*(s32 **)((s8 *)arg0 + 0x40)) + 4), 6, 1);
                     forward_trade_action_default__16TObjCityMainWarpFPviii(*(void **)((s8 *)arg0 + 0x50), *(s32 *)((s8 *)(*(s32 **)((s8 *)arg0 + 0x40)) + 8), 6, 2);
                     forward_trade_action_default__16TObjCityMainWarpFPviii(*(void **)((s8 *)arg0 + 0x50), *(s32 *)((s8 *)(*(s32 **)((s8 *)arg0 + 0x40)) + 0xC), 6, 3);
-                    ((TWindowSubComCard *)(*(void **)((s8 *)arg0 + 0x50)))->calc_window_size();
+                    ((TWindowMenu *)(*(void **)((s8 *)arg0 + 0x50)))->calc_window_size();
                     align_menu_entry_positions(*(void **)((s8 *)arg0 + 0x50));
                     ((TCheckRoomSequence *)(*(void **)((s8 *)arg0 + 0x50)))->set_ready_flag();
                 }

@@ -757,7 +757,7 @@ void TObjMapWarp::open_player_warp_window(s32 arg1) {
     if ((u32) *(u32 *)((s8 *)temp_r31 + 0xEC) == 0U) {
         *(u32 *)((s8 *)temp_r31 + 0xEC) = ((s32 (*)(s32, s32, s32))create_window_menu)(get_window_layout_position(0x33), 1, arg1);
         ((TWindowSubTradeMain *)(*(u32 *)((s8 *)temp_r31 + 0xEC)))->add_text_entry(get_localized_text_entry(9, 0x25), 2, 0, -1);
-        ((TWindowSubComCard *)(*(u32 *)((s8 *)temp_r31 + 0xEC)))->calc_window_size();
+        ((TWindowMenu *)(*(u32 *)((s8 *)temp_r31 + 0xEC)))->calc_window_size();
         align_menu_entry_positions((int) (*(u32 *)((s8 *)temp_r31 + 0xEC)));
         ((TWindowSubComCardList *)(*(u32 *)((s8 *)temp_r31 + 0xEC)))->set_flag70_bit10();
         ((TAdChrSelASlotGC *)(*(u32 *)((s8 *)temp_r31 + 0xEC)))->set_flag_40();
@@ -960,7 +960,7 @@ void TObjAreaWarp::open_confirm_window(u16 arg1) {
             get_floor_area(*(s32 *)((s8 *)this + 0xBC));
             ((TWindowSubTradeMain *)(*(u32 *)((s8 *)this + 0xB0)))->add_text_entry(get_floor_destination_name(), 2, 0, -1);
         }
-        ((TWindowSubComCard *)(*(u32 *)((s8 *)this + 0xB0)))->calc_window_size();
+        ((TWindowMenu *)(*(u32 *)((s8 *)this + 0xB0)))->calc_window_size();
         align_menu_entry_positions(*(u32 *)((s8 *)this + 0xB0));
         ((TWindowSubComCardList *)(*(u32 *)((s8 *)this + 0xB0)))->set_flag70_bit10();
         ((TAdChrSelASlotGC *)(*(u32 *)((s8 *)this + 0xB0)))->set_flag_40();
@@ -1452,7 +1452,7 @@ void TObjAreaWarpEnding::open_confirm_window(s16 arg1) {
         } else {
             ((TWindowSubTradeMain *)(this->m_cc))->add_text_entry(get_localized_text_entry(9, 0x23), 2, 0, -1);
         }
-        ((TWindowSubComCard *)(this->m_cc))->calc_window_size();
+        ((TWindowMenu *)(this->m_cc))->calc_window_size();
         align_menu_entry_positions(this->m_cc);
         ((TWindowSubComCardList *)(this->m_cc))->set_flag70_bit10();
         ((TAdChrSelASlotGC *)(this->m_cc))->set_flag_40();

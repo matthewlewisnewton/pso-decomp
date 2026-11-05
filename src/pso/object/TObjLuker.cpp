@@ -159,7 +159,7 @@ void TObjLuker::update_floor_name_windows() {
                 *(s32 *)&this->m_a0 = target;
             }
             ((TWindowSubTradeMain *)(self->wins[i]))->add_text_entry(get_floor_destination_name(get_floor_area(target)), 2, 0, -1);
-            ((TWindowSubComCard *)(self->wins[i]))->calc_window_size();
+            ((TWindowMenu *)(self->wins[i]))->calc_window_size();
             align_menu_entry_positions(self->wins[i]);
         }
     }
@@ -193,7 +193,7 @@ void TObjLuker::open_destination_windows() {
                 this->m_a0 = target;
                 ((TWindowSubTradeMain *)(self->wins[i]))->add_text_entry(get_floor_destination_name(get_floor_area(target)), 2, 0, -1);
                 ((TAdChrSelASlotGC *)(self->wins[i]))->set_flag_40();
-                ((TWindowSubComCard *)(self->wins[i]))->calc_window_size();
+                ((TWindowMenu *)(self->wins[i]))->calc_window_size();
                 align_menu_entry_positions(self->wins[i]);
                 ((TObject *)(self->wins[i]))->suspend_update();
                 disallow_rendering__7TObjectFv((TObject *)self->wins[i]);

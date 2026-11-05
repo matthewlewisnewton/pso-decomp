@@ -198,7 +198,7 @@ void TPlayerBattleCtrl4P::update_rematch_menu() {
             ((O_80311C2C *)this)->w1 = check_room_seq_4__16TAdChrSelASlotGCFl(get_window_layout_position(0x54), 2);
             forward_trade_action_default__16TObjCityMainWarpFPviii(((O_80311C2C *)this)->w1, ((O_80311C2C *)this)->ids->b, 6, 1);
             forward_trade_action_default__16TObjCityMainWarpFPviii(((O_80311C2C *)this)->w1, ((O_80311C2C *)this)->ids->d, 6, 3);
-            ((TWindowSubComCard *)(((O_80311C2C *)this)->w1))->calc_window_size();
+            ((TWindowMenu *)(((O_80311C2C *)this)->w1))->calc_window_size();
             align_menu_entry_positions(((O_80311C2C *)this)->w1);
             ((TCheckRoomSequence *)(((O_80311C2C *)this)->w1))->set_ready_flag();
         }

@@ -34,7 +34,7 @@ extern s32 item_load_model_buffer;
 void init__13TUnk_8049F42CFv(void *, void *, int, int);
 extern s32 lbl_8049F40C[];
 s32 decompress_buffer__9TItemLoadFUl();
-void *TLobby__sub_801E38A0(s32, u32 *, s32 *, s32, s32 *);
+void *TLobby__sub_801E38A0(u8 *, u32 *, s32 *, s32, s32 *);
 extern u8 lbl_80506208[];
 extern s32 item_load_tmp_buffer;
 struct Base_8010F52C { char pad[0x14]; };
@@ -42,7 +42,7 @@ struct VObj_8010F52C : Base_8010F52C {
     virtual void m0(int);
 };
 
-s32 load_gvm_texture_archive(s32, s32);
+s32 load_gvm_texture_archive(u8 *, s32);
 
 void TItemLoad::free_all_models() {
     ::operator delete[]((void *)item_load_model_buffer);
@@ -94,14 +94,14 @@ void TUnk_8049F40C::vfunc_3() {
     u32 pos;
     s32 tag;
     s32 size;
-    s32 h;
+    u8 *h;
     s32 off;
     u32 total;
     s32 n;
     void *p;
     u32 i;
     if (TLobby::tmp_buf_is_free() == 1) {
-        h = (s32)TLobby::tmp_buf_use_req((const char *)item_load_tmp_buffer);
+        h = TLobby::tmp_buf_use_req((const char *)item_load_tmp_buffer);
         off = ((Load_8010F68C *)this)->id;
         total = decompress_buffer__9TItemLoadFUl();
         pos = 0;
@@ -168,10 +168,10 @@ void TItemLoad::begin_load_if_pending(s32 arg1, s32 arg2) {
 }
 
 void TItemLoad::reload_item() {
-    s32 temp_r31;
+    u8 *temp_r31;
 
     if (TLobby::tmp_buf_is_free() == 1) {
-        temp_r31 = (s32)TLobby::tmp_buf_use_req((const char *)item_load_tmp_buffer);
+        temp_r31 = TLobby::tmp_buf_use_req((const char *)item_load_tmp_buffer);
         decompress_buffer__9TItemLoadFUl();
         load_gvm_texture_archive(temp_r31, *(s32 *)((s8 *)this + 0x24));
         TLobby::tmp_buf_release((const char *)item_load_tmp_buffer);

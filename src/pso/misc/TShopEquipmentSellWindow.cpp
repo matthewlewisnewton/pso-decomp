@@ -241,7 +241,7 @@ void TShopEquipmentSellWindow::handle_input_window_result() {
             this->m_390 = create_window_menu(get_window_layout_position(0x2B), 2, (u16) get_entity_id(this->m_24));
             forward_trade_action_default__16TObjCityMainWarpFPviii(this->m_390, get_shop_text(6), 6, 0);
             forward_trade_action_default__16TObjCityMainWarpFPviii(this->m_390, get_shop_text(7), 6, 1);
-            ((TWindowSubComCard *)(this->m_390))->calc_window_size();
+            ((TWindowMenu *)(this->m_390))->calc_window_size();
             align_menu_entry_positions(this->m_390);
             ((TCheckRoomSequence *)(this->m_390))->set_ready_flag();
             ((TWindowAddition *)(this->m_390))->set_position_xy(get_scale__15TShopWindowBaseFv(this), get_scale__15TShopWindowBaseFv(this));
@@ -317,7 +317,7 @@ void TShopEquipmentSellWindow::handle_selection() {
             w->menu_win = create_window_menu(get_window_layout_position(0x2B), 2, get_entity_id((s32)w->owner));
             forward_trade_action_default__16TObjCityMainWarpFPviii(w->menu_win, get_shop_text(6), 6, 0);
             forward_trade_action_default__16TObjCityMainWarpFPviii(w->menu_win, get_shop_text(7), 6, 1);
-            ((TWindowSubComCard *)(w->menu_win))->calc_window_size();
+            ((TWindowMenu *)(w->menu_win))->calc_window_size();
             align_menu_entry_positions(w->menu_win);
             ((TCheckRoomSequence *)(w->menu_win))->set_ready_flag();
             ((TWindowAddition *)(w->menu_win))->set_position_xy(get_scale__15TShopWindowBaseFv(w), get_scale__15TShopWindowBaseFv(w));

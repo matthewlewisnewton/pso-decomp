@@ -15,10 +15,10 @@ extern "C" {
 s32 get_cursor_value__19TWindowMenuIconLineFv(void *);
 extern u32 TQuestListOnline__quest_list_buffer;
 extern void *TQuestListOnline__instance;
-extern s32 TQuestListOnline__decompression_cursor;
-extern u32 online_quest_dat_buffer;
+extern u8 *TQuestListOnline__decompression_cursor;
+extern u8 *online_quest_dat_buffer;
 extern s32 online_quest_list_decompressed_size;
-extern u32 online_quest_bin_data;
+extern u8 *online_quest_bin_data;
 extern s32 quest_bin_decompressed_size;
 extern s32 lbl_8044BEB0[];
 
@@ -119,26 +119,26 @@ void TQuestListOnline::close_windows() {
 }
 
 void TQuestListOnline__sub_802176DC(s32 arg0) {
-    if ((u32) (*(u32 *)&TQuestListOnline__decompression_cursor) != 0U) {
-        online_quest_list_decompressed_size = prs_decompress_buffer(arg0, (*(u32 *)&TQuestListOnline__decompression_cursor));
-        online_quest_dat_buffer = (*(u32 *)&TQuestListOnline__decompression_cursor);
+    if (TQuestListOnline__decompression_cursor != NULL) {
+        online_quest_list_decompressed_size = prs_decompress_buffer(arg0, (s32)TQuestListOnline__decompression_cursor);
+        online_quest_dat_buffer = TQuestListOnline__decompression_cursor;
     }
 }
 
 void TQuestListOnline::decompress_quest_buffer(s32 arg0) {
     s32 temp_r3;
-    if ((u32) (*(u32 *)&TQuestListOnline__decompression_cursor) != 0U) {
-        temp_r3 = prs_decompress_buffer(arg0, (*(u32 *)&TQuestListOnline__decompression_cursor));
+    if (TQuestListOnline__decompression_cursor != NULL) {
+        temp_r3 = prs_decompress_buffer(arg0, (s32)TQuestListOnline__decompression_cursor);
         quest_bin_decompressed_size = temp_r3;
-        online_quest_bin_data = (*(u32 *)&TQuestListOnline__decompression_cursor);
-        (*(u32 *)&TQuestListOnline__decompression_cursor) += temp_r3;
+        online_quest_bin_data = TQuestListOnline__decompression_cursor;
+        TQuestListOnline__decompression_cursor += temp_r3;
     }
 }
 
 s32 TQuestListOnline::init() {
     TQuestListOnline__decompression_cursor = 0;
     if (TLobby::tmp_buf_is_free() != 0) {
-        TQuestListOnline__decompression_cursor = (s32)TLobby::tmp_buf_use_req((const char *)lbl_8044BEB0);
+        TQuestListOnline__decompression_cursor = TLobby::tmp_buf_use_req((const char *)lbl_8044BEB0);
         return 1;
     }
     return 0;

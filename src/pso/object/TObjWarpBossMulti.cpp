@@ -4,6 +4,7 @@
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/misc/TWindowBase.h"
+#include "pso/misc/TWindowMenu.h"
 #include "pso/object/TObjWarpBase.h"
 #include "pso/misc/THunterGuildSeqOffline.h"
 #include "pso/misc/TLobby.h"
@@ -819,7 +820,7 @@ void TObjWarpBoss::warp_boss_handle_window() {
                 if ((u32) *(u32 *)((s8 *)this + 0xB0) != 0U) {
                     ((TWindowSubTradeMain *)(*(u32 *)((s8 *)this + 0xB0)))->add_text_entry(get_message_10__20TWindowSubStatusDispFl(0x40), 0, 0, -1);
                     ((TAdChrSelASlotGC *)(*(u32 *)((s8 *)this + 0xB0)))->set_flag_40();
-                    ((TWindowSubComCard *)(*(u32 *)((s8 *)this + 0xB0)))->calc_window_size();
+                    ((TWindowMenu *)(*(u32 *)((s8 *)this + 0xB0)))->calc_window_size();
                     align_menu_entry_positions(*(u32 *)((s8 *)this + 0xB0));
                 }
                 begin_player_keyboard_hold(local_client_id);

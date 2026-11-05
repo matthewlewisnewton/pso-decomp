@@ -2,6 +2,7 @@
 #include "pso/protocol/protocol_types.h"
 #include "pso/misc/TWindowMessage.h"
 #include "pso/misc/TWindowBase.h"
+#include "pso/misc/TWindowMenu.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/item/TItemMag.h"
 #include "pso/TMainTask.h"
@@ -6115,7 +6116,7 @@ void qst_op_list(void) {
     for (i = 0; i < list->count; i++) {
         forward_trade_action_default__16TObjCityMainWarpFPviii(qst_list_window, (int)list->names[i], 7, (int)i);
     }
-    ((TWindowSubComCard *)qst_list_window)->calc_window_size();
+    ((TWindowMenu *)qst_list_window)->calc_window_size();
     align_menu_entry_positions((s32)qst_list_window);
     ((TCheckRoomSequence *)qst_list_window)->set_ready_flag();
     ((TWindowBase *)qst_list_window)->set_depth(lbl_805DC4D8);

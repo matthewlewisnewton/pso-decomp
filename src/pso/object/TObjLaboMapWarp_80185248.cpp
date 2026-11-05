@@ -305,7 +305,7 @@ void TObjLaboMapWarp__vt13(TObjLaboMapWarp *labo_map_warp, s32 arg1) {
         ((TWindowSubTradeMain *)(*(u32 *)((s8 *)temp_r31 + 0xEC)))->add_text_entry(get_localized_text_entry(9, *(s32 *)((s8 *)&lbl_80444878.value + (labo_map_warp->set_params[2] * 4))), 0xA, 0, -1);
         ((TWindowSubComCardList *)(*(u32 *)((s8 *)temp_r31 + 0xEC)))->set_flag70_bit10();
         ((TAdChrSelASlotGC *)(*(u32 *)((s8 *)temp_r31 + 0xEC)))->set_flag_40();
-        ((TWindowSubComCard *)(*(u32 *)((s8 *)temp_r31 + 0xEC)))->calc_window_size();
+        ((TWindowMenu *)(*(u32 *)((s8 *)temp_r31 + 0xEC)))->calc_window_size();
         align_menu_entry_positions((int) (*(u32 *)((s8 *)temp_r31 + 0xEC)));
     }
 }
@@ -427,7 +427,7 @@ void TObjCityMapWarp__vt13(TObjCityMapWarp *city_map_warp, s32 arg1) {
         ((TWindowSubTradeMain *)(*(u32 *)((s8 *)temp_r31 + 0xEC)))->add_text_entry(get_localized_text_entry(9, *(s32 *)((s8 *)&lbl_80444878.value + (city_map_warp->set_params[2] * 4))), 0xA, 0, -1);
         ((TWindowSubComCardList *)(*(u32 *)((s8 *)temp_r31 + 0xEC)))->set_flag70_bit10();
         ((TAdChrSelASlotGC *)(*(u32 *)((s8 *)temp_r31 + 0xEC)))->set_flag_40();
-        ((TWindowSubComCard *)(*(u32 *)((s8 *)temp_r31 + 0xEC)))->calc_window_size();
+        ((TWindowMenu *)(*(u32 *)((s8 *)temp_r31 + 0xEC)))->calc_window_size();
         align_menu_entry_positions((int) (*(u32 *)((s8 *)temp_r31 + 0xEC)));
     }
 }
@@ -504,7 +504,7 @@ void TObjCityAreaWarp__vt13(TObjCityAreaWarp *city_area_warp, s16 arg1) {
         ((TWindowSubTradeMain *)(city_area_warp->m_b0))->add_text_entry(get_localized_text_entry(9, 0x24), 0xA, 0, -1);
         ((TWindowSubComCardList *)(city_area_warp->m_b0))->set_flag70_bit10();
         ((TAdChrSelASlotGC *)(city_area_warp->m_b0))->set_flag_40();
-        ((TWindowSubComCard *)(city_area_warp->m_b0))->calc_window_size();
+        ((TWindowMenu *)(city_area_warp->m_b0))->calc_window_size();
         ((s32 (*)(u32))align_menu_entry_positions)(city_area_warp->m_b0);
         city_area_warp->m_b8 = arg1;
     }

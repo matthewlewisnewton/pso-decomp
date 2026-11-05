@@ -233,7 +233,7 @@ void TObjChallenge4PRetry::open_giveup_window() {
     if (this->menu != NULL) {
         forward_trade_action_default__16TObjCityMainWarpFPviii(this->menu, (int)(TQuestVmDownLoadServer__sub_8006EF6C(0x5B)), 5, 0);
         forward_trade_action_default__16TObjCityMainWarpFPviii(this->menu, (int)(TQuestVmDownLoadServer__sub_8006EF6C(0x5C)), 5, 1);
-        ((TWindowSubComCard *)this->menu)->calc_window_size();
+        ((TWindowMenu *)this->menu)->calc_window_size();
         this->menu->set_loss_flag();
         this->menu->set_selected_index(0);
     }

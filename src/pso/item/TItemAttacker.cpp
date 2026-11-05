@@ -23,7 +23,7 @@ struct M_80103368 { u8 pad[0xA4]; Rec_80103368 *recs; };
 
 extern "C" {
 extern s32 item_buffer_temp_mode;
-extern s32 item_buff_buffer;
+extern u8 *item_buff_buffer;
 void TItemBuff__ct(void);
 void *find_entity_by_id(u16 id);
 extern const char *TItemAttacker__name;
@@ -195,17 +195,17 @@ void TItemAttacker::run_task() { if (*(int*)((char*)this + 0x34) != 0) { queue_d
 int get_item_chunk_buffer(int a0) {  return item_nj_chunk_buffer_table[a0]; }
 
 void TItemBuff__ct(void) {
-    if ((u32) (*(u32 *)&item_buff_buffer) != 0) {
+    if (item_buff_buffer != NULL) {
         if ((s32) item_buffer_temp_mode != 0) {
-            TLobby::tmp_buf_release((const char *)(s32) &(*(RecoveredGlobal_8010355C_lbl_8043E038 *)(s32 *)"TItemBuff").value);
+            TLobby::tmp_buf_release("TItemBuff");
         } else {
-            ::operator delete[]((void *)(*(u32 *)&item_buff_buffer));
+            ::operator delete[](item_buff_buffer);
         }
-        (*(u32 *)&item_buff_buffer) = 0;
+        item_buff_buffer = NULL;
     }
 }
-s32 create_item_buff(s32 arg0);
-s32 create_item_buff(s32 arg0) {
+u8 *create_item_buff(s32 arg0);
+u8 *create_item_buff(s32 arg0) {
     s32 temp_r3;
 
     if (arg0 != 0) {
@@ -213,9 +213,9 @@ s32 create_item_buff(s32 arg0) {
         temp_r3 = TLobby::tmp_buf_is_free();
         item_buffer_temp_mode = temp_r3;
         if ((temp_r3 != 0) && (arg0 < 0x40000)) {
-            item_buff_buffer = (s32)TLobby::tmp_buf_use_req((const char *)(s32 *)"TItemBuff");
+            item_buff_buffer = TLobby::tmp_buf_use_req("TItemBuff");
         } else {
-            item_buff_buffer = (s32)::operator new[](arg0);
+            item_buff_buffer = new u8[arg0];
         }
     }
     return item_buff_buffer;

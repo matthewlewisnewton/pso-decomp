@@ -523,7 +523,7 @@ void TWindowSubComCardList::update_layout_height(f32 x) {
     save_position();
 }
 
-void TWindowSubComCard::calc_window_size() {
+void TWindowMenu::calc_window_size() {
     f32 width = 0.0f;
     f32 sum = width;
     u32 i;
@@ -675,7 +675,7 @@ u8 *create_yes_no_window(s32 arg0, s32 arg1, u32 arg2, u32 arg3) {
   {
     ((s32 (*)(int, void *, int, int))forward_trade_action_default__16TObjCityMainWarpFPviii)((int) ((u8 *) window_menu), (void *) arg3, 6, 1);
   }
-  ((TWindowSubComCard *)window_menu)->calc_window_size();
+  ((TWindowMenu *)window_menu)->calc_window_size();
   if ((*((f32 *) (((s8 *) ((u8 *) window_menu)) + 0x48))) < lbl_805DD170)
   {
     ((TWindowSubComCardList *)window_menu)->update_layout_height((f32) lbl_805DD170);

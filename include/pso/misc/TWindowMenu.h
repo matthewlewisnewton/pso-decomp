@@ -15,6 +15,7 @@ struct TWindowMenu : public TUnk_804CE018 {
     void render_selected_entry(TWindowDrawContext *);
     void draw_selected_bar(TWindowDrawContext *);
     void layout_entries();
+    void calc_window_size();
     void update_scroll_value();
     void advance_past_disabled_menu_rows();
     void clamp_menu_choice_scroll();

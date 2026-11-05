@@ -92,7 +92,7 @@ s32 TAdSinglePlyChrSelectGC::create_chr_warp(s32 arg0, s32 arg1) {
         forward_trade_action_default__16TObjCityMainWarpFPviii((void *)var_r31, (int)(get_localized_text_entry(0x1E, 3)), 6, 2);
         forward_trade_action_default__16TObjCityMainWarpFPviii((void *)var_r31, (int)(get_localized_text_entry(0x1E, 4)), 6, 3);
     }
-    ((TWindowSubComCard *)var_r31)->calc_window_size();
+    ((TWindowMenu *)var_r31)->calc_window_size();
     align_menu_entry_positions(var_r31);
     return var_r31;
 }
