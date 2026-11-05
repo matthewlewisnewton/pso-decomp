@@ -1,3 +1,4 @@
+#include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/system/vector.h"
 #include "pso/player/TObjPlayer.h"
@@ -9,7 +10,7 @@ struct RecoveredGlobal_803655F8___vt__15TObjIllGillKage { s32 value; u8 remainin
 typedef char RecoveredGlobal_803655F8___vt__15TObjIllGillKage_size[sizeof(RecoveredGlobal_803655F8___vt__15TObjIllGillKage) == 0x34 ? 1 : -1];
 
 extern "C" {
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 u16 get_entity_id(void *);
 int queue_destruction__7TObjectFv(void*);
 s32 __ct__8TObjBaseFP7TObject(void *);
@@ -26,7 +27,7 @@ int TObjIllGillKage::queue_destruction() { return queue_destruction__7TObjectFv(
 
 void TObjIllGillKage::tick_persistent_sound() {
     s32 temp_r3;
-    play_persistent_sound(0x4003A357, (s32)this, (u32)(((u8 *)this) + 0x38), 0, 0);
+    play_persistent_sound((s32)(0x4003A357), (const void *)(this), (const Vec *)((u32)(((u8 *)this) + 0x38)), 0, 0);
     temp_r3 = this->m_94;
     this->m_94 = (temp_r3 - 1);
     if (temp_r3 < 0) {

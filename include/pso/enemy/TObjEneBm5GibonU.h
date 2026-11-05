@@ -1,7 +1,9 @@
+struct NJS_OBJECT;
 #ifndef PSO_ENEMY_TOBJENEBM5GIBONU_H
 #define PSO_ENEMY_TOBJENEBM5GIBONU_H
 
 #include "types.h"
+#include "pso/misc/MaterialOpacityFade.h"
 #include "pso/enemy/TObjEneDD_ST.h"
 #include "dolphin/mtx.h"
 
@@ -20,22 +22,13 @@ struct TObjEneBm5GibonU : public TObjEneDD_ST {
     void vfunc_62();
     void vfunc_61();
     void vfunc_28();
-    u8 unk_374[0x14];
-    s32 m_388;
-    u8 unk_38C[0x4];
-    TObjPlayer *m_390;
-    f32 m_394;
-    u8 unk_398[0x4];
-    f32 m_39c;
-    u8 unk_3A0[0xC];
-    f32 m_3ac;
-    u8 unk_3B0[0x10];
     void* m_3c0;
     u8 _pad3C4[0x8];
     void* m_3cc;
     u8 _pad3D0[0x8];
-    void* m_3d8;
-    u8 _pad3DC[0x18];
+
+    MaterialOpacityFade fade;
+
     void* m_3f4;
     u8 _pad3F8[0x6C];
     u32 m_464;
@@ -79,12 +72,9 @@ struct TObjEneBm5GibonU : public TObjEneDD_ST {
     void unlink_list_node(void ***arg1, void **arg2);
     static s32 destroy(s32 arg0, s16 arg1);
     static void register_global_objects();
-    void clear_flag_and_update();
-    s32 check_and_update();
-    s32 try_activate();
     s32 get_clamped_level();
     int get_attack_state(void * _w1);
-    static void advance_anim_frame();
+    static void advance_anim_frame(NJS_OBJECT *);
     void handle_message(s32 msg);
     void state_cast_technique(s32 arg1);
     void run_idle_state(s32 arg1);
@@ -102,6 +92,8 @@ struct TObjEneBm5GibonU : public TObjEneDD_ST {
     void forward_hit_to_enemy_list();
     void init_child_from_list();
 };
+
+typedef char TObjEneBm5GibonUFadeOffset[offsetof(TObjEneBm5GibonU, fade) == 0x3D8 ? 1 : -1];
 
 typedef char TObjEneBm5GibonU_size[sizeof(TObjEneBm5GibonU) == 0x568 ? 1 : -1];
 typedef char TObjEneBm5GibonU_m_3c0[offsetof(TObjEneBm5GibonU, m_3c0) == 0x3C0 ? 1 : -1];

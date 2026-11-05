@@ -1,3 +1,7 @@
+#include "pso/enemy/BattleParameters.h"
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/boss/TBoss6RockChase.h"
 #include "pso/object/TObject_80019A50.h"
@@ -102,12 +106,12 @@ extern const f32 lbl_805E03D4;
 extern const f32 lbl_805E03DC;
 extern const f32 lbl_805E03E0;
 s32 query_teammate_state__9TObjEneDDFv(void);
-s32 play_sound_effect(int, void *, int, int);
+
 extern const f32 lbl_805E03C0;
 extern const f32 lbl_805E03C4;
 extern const f32 lbl_805E03C8;
 int get_player_data__10TObjPlayerFi(int a0);
-Param_8036D1B4 *dispatch_shared_handler_a__6TLobbyFl(s32);
+
 f32 vector_length(void *);
 int subtract_vector(void *, void *);
 extern RecoveredGlobal_8036D4E0_lbl_8047ACE8 boss6_rock_chase_model_radius_table;
@@ -134,7 +138,7 @@ s32 TBoss6RockChase::damage_players_in_range() {
         Ent_8036D1B4 *tbl = (Ent_8036D1B4 *)&boss6_rock_chase_model_radius_table;
         range = tbl[self->xB0].range;
     }
-    dmg = dispatch_shared_handler_a__6TLobbyFl(0x2C)->v;
+    dmg = ((Param_8036D1B4 *)get_battle_movement_params(0x2C))->v;
     if (dmg < 1) {
         dmg = 20;
     }
@@ -158,7 +162,7 @@ s32 TBoss6RockChase::damage_players_in_range() {
 }
 #pragma pop
 
-void TBoss6RockChase::render() { push_matrix(this); post_translate_matrix((char*)this + 0x38); rotate_matrix_y((void*)0, *(void* *)&this->rotation_y); rotate_matrix_x((void*)0, *(void* *)&this->rotation_x); rotate_matrix_z((void*)0, *(void* *)&this->rotation_z); TObjFish::set_global_param((s32)(*(void* *)&this->m_c4)); draw_ginja_object(*(void* *)&this->m_c0); pop_matrix(); }
+void TBoss6RockChase::render() { push_matrix(this); post_translate_matrix((char*)this + 0x38); rotate_matrix_y((void*)0, *(void* *)&this->rotation.yaw); rotate_matrix_x((void*)0, *(void* *)&this->rotation.pitch); rotate_matrix_z((void*)0, *(void* *)&this->rotation.roll); set_current_texture_list((GinjaTextureList *)((*(void* *)&this->m_c4))); draw_ginja_object(*(void* *)&this->m_c0); pop_matrix(); }
 
 #pragma push
 #pragma opt_common_subs off
@@ -171,7 +175,7 @@ void TBoss6RockChase::run_task() {
             this->m_b4 = (temp_r3 - 1);
             return;
         }
-        this->rotation_y = (s32) (this->rotation_y + this->m_bc);
+        this->rotation.yaw = (s32) (this->rotation.yaw + this->m_bc);
         *(f32 *)&this->_padB8 = (f32) (*(f32 *)&this->_padB8 + lbl_805E03C0);
         if (*(f32 *)&this->_padB8 < lbl_805E03C4) {
             *(f32 *)&this->_padB8 = (f32) lbl_805E03C4;
@@ -181,12 +185,12 @@ void TBoss6RockChase::run_task() {
             *(f32 *)((s8 *)arg0 + 0x3C) = (f32) TBoss6RockChase__data_805E03B8;
             *(f32 *)&this->_padB8 = (f32) TBoss6RockChase__data_805E03B8;
             damage_players_in_range();
-            play_sound_effect(0x4006B51E, (u8 *)&this->position, 0, 0);
-            spawn_particle_effect(((u8 *)&this->position), 0x220);
-            spawn_particle_effect(((u8 *)&this->position), 0x222);
+            play_sound_effect(0x4006B51E, (const Vec *)((u8 *)&this->position), 0, 0);
+            spawn_particle_effect((const Vec *)(((u8 *)&this->position)), 0x220);
+            spawn_particle_effect((const Vec *)(((u8 *)&this->position)), 0x222);
             TBoss6PlotFalz::apply_radial_effect_to_players((u8 *)&this->position, 0xC0, 0xF, lbl_805E03C8);
             ((TBoss6Rock *)(arg0 + 0x38))->spawn_crush_rocks(this->m_b0);
-            play_sound_effect(0x4006AB1F, (u8 *)&this->position, 0, 0);
+            play_sound_effect(0x4006AB1F, (const Vec *)((u8 *)&this->position), 0, 0);
             queue_destruction__7TObjectFv(arg0);
         }
     }
@@ -211,8 +215,8 @@ u8 *TBoss6RockChase__ct(TBoss6RockChase *boss6_rock_chase, s32 arg1, s32 arg2, s
     boss6_rock_chase->m_b0 = arg3;
     boss6_rock_chase->m_b4 = (s32) (lbl_805E03CC * (lbl_805E03D0 * (f32) rand()));
     *(s32 *)((s8 *)boss6_rock_chase + 0x5C) = (s32) (lbl_805E03D4 * ((lbl_805E03D0 * (f32) rand()) - lbl_805E03D8));
-    boss6_rock_chase->rotation_y = (s32) (lbl_805E03DC * (lbl_805E03D0 * (f32) rand()));
-    boss6_rock_chase->rotation_z = (s32) (lbl_805E03D4 * ((lbl_805E03D0 * (f32) rand()) - lbl_805E03D8));
+    boss6_rock_chase->rotation.yaw = (s32) (lbl_805E03DC * (lbl_805E03D0 * (f32) rand()));
+    boss6_rock_chase->rotation.roll = (s32) (lbl_805E03D4 * ((lbl_805E03D0 * (f32) rand()) - lbl_805E03D8));
     boss6_rock_chase->m_bc = (s32) (lbl_805E03E0 * ((lbl_805E03D0 * (f32) rand()) - lbl_805E03D8));
     *(f32 *)((s8 *)boss6_rock_chase + 0xB8) = (f32) TBoss6RockChase__data_805E03B8;
     VecCopy((Vec *)((u8 *)boss6_rock_chase + 0x38), (const Vec *)(arg2));

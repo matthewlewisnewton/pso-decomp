@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/unk/text_80087278.h"
 #include "pso/unk/text_80130EF8.h"
@@ -81,7 +82,7 @@ void TUnk_804A6CC8::emit_marker_effects() {
     u8 buf[0x18];
     self->state = 2;
     ((TItemWeapon *)self)->get_gun_point(buf);
-    spawn_particle_effect(buf, 9);
+    spawn_particle_effect((const Vec *)(buf), 9);
 }
 
 }

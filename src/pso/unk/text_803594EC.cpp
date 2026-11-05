@@ -1,7 +1,7 @@
 #include "types.h"
 #include "pso/render/render_util.h"
 
-#include "pso/misc/TWindowCtrlMain.h"
+#include "pso/misc/TLobby_801E2F94.h"
 #include "pso/TBoss4Fade.h"
 struct E_8035959C { s32 a; s32 b; f32 c; };
 
@@ -21,22 +21,16 @@ typedef struct Fade_803594EC
   Ent_803594EC ent[2];
 } Fade_803594EC;
 
-typedef struct Quad_803594EC
-{
-  void *tex;
-  u32 *colors;
-  s32 a;
-  s32 b;
+struct Quad_803594EC : ColorLineList {
   u32 col[4];
-} Quad_803594EC;
+};
 
-extern u8 TBoss4Fade__fullscreen_vertices[];
+extern ColorLineVertex TBoss4Fade__fullscreen_vertices[];
 extern const f32 lbl_805E0098;
 extern const f32 lbl_805E009C;
 
 typedef struct Ent_803594EC Ent_803594EC;
 typedef struct Fade_803594EC Fade_803594EC;
-typedef struct Quad_803594EC Quad_803594EC;
 void TBoss4Fade::render() {
     Fade_803594EC *self = (Fade_803594EC *)this;
   u32 c;
@@ -52,11 +46,11 @@ void TBoss4Fade::render() {
     new_var = 0;
     q.col[1] = c;
     q.col[new_var] = c;
-    q.a = new_var;
-    q.b = 4;
-    q.tex = TBoss4Fade__fullscreen_vertices;
+    q.unk_8 = new_var;
+    q.count = 4;
+    q.verts = TBoss4Fade__fullscreen_vertices;
     set_depth_buffer_settings_1();
-    ((TWindowCtrlMain *)(&q))->draw_strip_swap_color(4, 6, lbl_805E009C);
+    q.draw_strip_swap_color(4, 6, lbl_805E009C);
     restore_saved_depth_alpha_state();
   }
 }

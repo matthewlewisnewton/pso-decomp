@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/npc/TObjNpcBase.h"
 #include "pso/player/TObjPlayer.h"
@@ -42,7 +43,7 @@ extern const f32 lbl_805DB1BC;
 extern const f32 lbl_805DB1E0;
 void *TObjNpcBase__ct(void *arg0, void *arg1, void *arg2);
 void *__dt__11TObjNpcBaseFv(void *arg0, s16 arg1);
-s32 play_sound_effect(s32, s32, s32, s32);
+
 void free_collision_body_parts(void *);
 void __dl__7TObjectFPv(void *);
 void *__dt__9TObjEnemyFv(TObjEnemy *arg0, s16 arg1);
@@ -103,7 +104,7 @@ void *TObjNpcBase__ct(void *arg0, void *arg1, void *arg2) {
 void TObjNpcBase::vfunc_88() {  }
 void TObjNpcBase::play_voice() {
     s32 arg0 = (s32)this;
-    play_sound_effect(0x40003804, arg0 + 0x38, 0, 0);
+    play_sound_effect(0x40003804, (const Vec *)(arg0 + 0x38), 0, 0);
 }
 void TObjNpcBase::sub_80149358(s32 v) { this->m_3ac = v; }
 void TObjNpcBase::sub_80149360(s32 v) { this->m_3a8 = v; }

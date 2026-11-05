@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_80109344.h"
 #include "pso/unk/text_80087278.h"
@@ -25,10 +26,10 @@ void TObjPlayer::spawn_hit_particle_trio() {
     v.w.a = a;
     v.w.b = b;
     v.w.c = c;
-    spawn_particle_effect(&v, 0x1D0);
-    spawn_particle_effect(&v, 0x1D1);
+    spawn_particle_effect((const Vec *)(&v), 0x1D0);
+    spawn_particle_effect((const Vec *)(&v), 0x1D1);
     v.f.y = v.f.y - lbl_805DAB38;
-    spawn_particle_effect(&v, 0x1D2);
+    spawn_particle_effect((const Vec *)(&v), 0x1D2);
 }
 #pragma pop
 

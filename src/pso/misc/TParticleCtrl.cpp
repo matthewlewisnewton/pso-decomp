@@ -1,3 +1,5 @@
+#include "pso/player/demo_mode.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/render/render_util.h"
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
@@ -234,7 +236,7 @@ extern s32 local_client_id;
 
 void TUnk_8048E6A8::render() {
     Obj_80085798 *self = (Obj_80085798 *)this;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         NJS_ARGB color = demo_mode_particle_color;
         debug_draw_sphere((const Vec *)self->target, &color, 40.0f);
     }
@@ -343,7 +345,7 @@ void TUnk_8048E6DC::render() {
     }
     set_additive_blend();
     begin_screen_draw(1);
-    TObjFish::set_global_param(lbl_804C5820[31].param);
+    set_current_texture_list((GinjaTextureList *)(lbl_804C5820[31].param));
     set_draw_texture_and_color(lbl_804C5820[31].tex, -1);
     if (self->f94 < 0.0f) {
         color.a = 0;

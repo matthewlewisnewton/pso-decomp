@@ -1,3 +1,6 @@
+#include "pso/map/CsnGroundQuery.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/system/vector.h"
 #include "types.h"
 #include "pso/boss/TObjBoss2CeilJunk.h"
@@ -111,7 +114,6 @@ struct Junk_8003A314 {
 };
 
 extern "C" {
-s32 spawn_effect__15TObjBoss2TunnelFlPvPv(void *, void *, void *, f32, f32);
 s32 __ct__8TObjBaseFP7TObject();
 s32 rand();
 extern RecoveredGlobal_8003A6F4_lbl_80435BD8 TObjBoss2CeilJunk__height_offset_table;
@@ -133,7 +135,7 @@ int get_player_data__10TObjPlayerFi(int a0);
 void forward_switch_phase_stats__13TBoss2DeRolLeFi(s32 arg0);
 s32 create_particle__17TObjBoss2CeilJunkFv(void *, int);
 s32 is_valid_target__9TObjEneDDFv(void *);
-s32 play_sound_effect(int, void *, int, int);
+
 f32 sin_table_lookup(int);
 f32 cos_table_lookup(int);
 s32 vec3_add_to(void *, void *);
@@ -172,9 +174,9 @@ void TObjBoss2CeilJunk::render() {
     set_chunk_blend(0x2500);
   }
   push_matrix();
-  TObjFish::set_global_param(lbl_805D4BEC);
+  set_current_texture_list((GinjaTextureList *)(lbl_805D4BEC));
   post_translate_matrix(self->pos);
-  rotate_matrix_y(0, this->rotation_y);
+  rotate_matrix_y(0, this->rotation.yaw);
   rotate_matrix_x(0, self->f5C);
   draw_ginja_object((void *)(boss2_tunnel_instance->mdls[boss2_ceil_junk_model_index_table[*(s32 *)&this->m_ac]].f8));
   pop_matrix();
@@ -262,7 +264,7 @@ void run_task__17TObjBoss2CeilJunkFv(Junk_8003A314 *o) {
                 o->vel.x = (2.0f) * sin_table_lookup(o->f60);
                 o->vel.z = (2.0f) * cos_table_lookup(o->f60);
                 o->fA8 = 3;
-                play_sound_effect(0x4003A801, &o->pos, 0, 0);
+                play_sound_effect(0x4003A801, (const Vec *)(&o->pos), 0, 0);
                 TCameraCtrl::set_shake_preset(0);
             }
         }
@@ -306,7 +308,7 @@ u8 *TObjBoss2CeilJunk__ct(struct RecoveredFields_8003A6F4_arg0 *arg0, s32 arg1, 
     temp_f2 = (f32) rand();
     temp_f1 = (3.0517578e-05f) * temp_f2;
     arg0->field_AC = (s32) (*(const volatile f32 *)&lbl_805D85A0 * temp_f1);
-    if (spawn_effect__15TObjBoss2TunnelFlPvPv(&arg0->unknown_1C[0x1C], &arg0->unknown_1C[0x28], arg0->unknown_9C, temp_f1, temp_f2) == 0) {
+    if (adjust_point_to_ground_with_normal((const Vec *)&arg0->unknown_1C[0x1C], (Vec *)&arg0->unknown_1C[0x28], (Vec *)arg0->unknown_9C) == 0) {
         arg0->field_A8 = 0;
     } else {
         arg0->field_A8 = 2;

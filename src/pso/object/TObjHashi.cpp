@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 // The bridges: TObjHashiBase and its three set objects TObjHashi,
 // TObjHashiVersus1 and TObjHashiVersus2, and the packet 6x78 slot timers.
 //
@@ -26,8 +27,6 @@
 extern "C" {
 // The BML resource loader and its deleting destructor (TLobby_8001EF5C) and
 // a model's texture list (TObjFish_8001ED90), still named after their units.
-BmlResource *load_resource_from_descriptor(void *self, s32 kind, const BmlResourceDescriptor *desc, s32, s32, s32);
-void TLobby__sub_8001FE7C(BmlResource *self, s16 del);
 s32 TObjFish__sub_8001EDB0(BmlResource *resource, s32 index);
 extern TCameraCtrl *camera_ctrl_instance;
 }
@@ -170,8 +169,8 @@ void TObjHashiBase::render() {
     if (update_object_view_visibility(view_range, model_radius) != 0) {
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
-        TObjFish::set_global_param(texlist);
+        rotate_matrix_y(NULL, this->rotation.yaw);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         if (motion != NULL) {
             draw_model_motion(model, motion, animation_frame);
         } else {
@@ -193,7 +192,7 @@ s32 TObjHashiBase::update_object_view_visibility(f32 depth, f32 radius) {
     if (TMainTask::get_render_pass() == 1) {
         return visibility;
     }
-    if (xz_distance_squared((const Vec *)&camera_ctrl_instance->m_178, &position) < (radius * radius)) {
+    if (xz_distance_squared(&camera_ctrl_instance->position, &position) < (radius * radius)) {
         visibility = 1;
         return 1;
     }
@@ -245,17 +244,13 @@ TObjHashi::~TObjHashi() {
 }
 
 void TObjHashi::load_shared_resource() {
-    void *p = ::operator new(0x440);
-    BmlResource *resource = (BmlResource *)p;
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(p, 1, &fe_obj_hashi_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = new BmlResource(1, (BmlResourceDescriptor *)&fe_obj_hashi_resource_descriptor, 0, 0, NULL);
     bml_resource = resource;
 }
 
 void TObjHashi::unload_static_data() {
     if (bml_resource != NULL) {
-        TLobby__sub_8001FE7C(bml_resource, 1);
+        delete (BmlResource *)(bml_resource);
         bml_resource = NULL;
     }
 }
@@ -283,17 +278,13 @@ TObjHashiVersus1::~TObjHashiVersus1() {
 }
 
 void TObjHashiVersus1::load_shared_resource() {
-    void *p = ::operator new(0x440);
-    BmlResource *resource = (BmlResource *)p;
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(p, 1, &fe_obj306_hashi_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = new BmlResource(1, (BmlResourceDescriptor *)&fe_obj306_hashi_resource_descriptor, 0, 0, NULL);
     bml_resource = resource;
 }
 
 void TObjHashiVersus1::unload_static_data() {
     if (bml_resource != NULL) {
-        TLobby__sub_8001FE7C(bml_resource, 1);
+        delete (BmlResource *)(bml_resource);
         bml_resource = NULL;
     }
 }
@@ -322,17 +313,13 @@ TObjHashiVersus2::~TObjHashiVersus2() {
 }
 
 void TObjHashiVersus2::load_shared_resource() {
-    void *p = ::operator new(0x440);
-    BmlResource *resource = (BmlResource *)p;
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(p, 1, &fe_obj321_hashi_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = new BmlResource(1, (BmlResourceDescriptor *)&fe_obj321_hashi_resource_descriptor, 0, 0, NULL);
     bml_resource = resource;
 }
 
 void TObjHashiVersus2::unload_static_data() {
     if (bml_resource != NULL) {
-        TLobby__sub_8001FE7C(bml_resource, 1);
+        delete (BmlResource *)(bml_resource);
         bml_resource = NULL;
     }
 }

@@ -1,4 +1,6 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/misc/TOBind_801586B8.h"
 #include "pso/system/GinjaMaterial.h"
 #include "pso/unk/text_803D96A8.h"
@@ -23,7 +25,6 @@ struct RecoveredGlobal_80158890___vt__6TOBind {
 };
 
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern RecoveredGlobal_801587D8_lbl_804AFC44 bm_o_bind_resource_descriptor;
 extern u32 TOBind__static_model_resource;
 u8 *get_bml_motion(s32, s32);
@@ -52,7 +53,6 @@ struct BindObj_801586B8 : BindBase_801586B8 {
     virtual s32 m8(f32, f32);
 };
 
-void TLobby__sub_8001FE7C(void*, int);
 s32 post_translate_matrix(void *);
 s32 draw_ginja_model_with_motion(s32, s32, f32);
 s32 free_collision_body_parts(void *);
@@ -66,11 +66,11 @@ void TOBind::render() {
     if (((BindObj_801586B8*)arg0)->m8(*(f32 *)&this->unk_D0, this->m_d4) != 0) {
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
-        TObjFish::set_global_param(this->texlist);
+        rotate_matrix_y(0, this->rotation.yaw);
+        set_current_texture_list((GinjaTextureList *)(this->texlist));
         draw_ginja_object(this->model);
         if ((s32) this->m_b0 != 1) {
-            TObjFish::set_global_param(this->m_c8);
+            set_current_texture_list((GinjaTextureList *)(this->m_c8));
             TParticleCtrl::begin_effect_render();
             draw_ginja_model_with_motion(this->m_c4, this->m_cc, *(f32 *)((s8 *)arg0 + 0xB8));
             TParticleCtrl::end_effect_render();
@@ -89,7 +89,7 @@ void *TOBind::create(void *arg0) {
 
 void TOBind::free_static_model() {
     if ((u32) TOBind__static_model_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)TOBind__static_model_resource, 1);
+        delete (BmlResource *)((void*)TOBind__static_model_resource);
         TOBind__static_model_resource = 0U;
     }
 }
@@ -97,11 +97,8 @@ void TOBind::free_static_model() {
 void TOBind::load_static_resource() {
     s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
+    temp_r3 = (int)new BmlResource(1, (BmlResourceDescriptor *)(&bm_o_bind_resource_descriptor.value), 0, 0, (void *)(0));
     var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &bm_o_bind_resource_descriptor.value, 0, 0, 0));
-    }
     (*(s32 *)&TOBind__static_model_resource) = var_r0;
 }
 

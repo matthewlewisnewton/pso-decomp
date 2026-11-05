@@ -1,4 +1,6 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/misc/TORockCave.h"
 #include "pso/system/GinjaMaterial.h"
 #include "pso/unk/text_803D96A8.h"
@@ -66,11 +68,9 @@ extern "C" {
 s32 rotate_matrix_y(int, int);
 s32 push_matrix();
 s32 post_translate_matrix(void *);
-u32 load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern u32 cave_rock_resource_bundle;
 extern u32 rock_cave_model_resource;
 void *__dt__10TORockCaveFv(void *arg0, s16 arg1);
-void TLobby__sub_8001FE7C(void*, int);
 void __ct__14TObjCollidableFP7TObject(void *, void *);
 void __dl__7TObjectFPv(void *);
 
@@ -80,8 +80,8 @@ void TORockCave::draw_model() {
         this->vfunc_14();
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
-        TObjFish::set_global_param(this->texlist);
+        rotate_matrix_y(0, this->rotation.yaw);
+        set_current_texture_list((GinjaTextureList *)(this->texlist));
         draw_ginja_object(this->model);
         pop_matrix();
         this->vfunc_15();
@@ -90,11 +90,11 @@ void TORockCave::draw_model() {
 
 void TORockCave::free_instances() {
     if ((u32) rock_cave_model_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)rock_cave_model_resource, 1);
+        delete (BmlResource *)((void*)rock_cave_model_resource);
         rock_cave_model_resource = 0U;
     }
     if ((u32) cave_rock_resource_bundle != 0U) {
-        TLobby__sub_8001FE7C((void*)cave_rock_resource_bundle, 1);
+        delete (BmlResource *)((void*)cave_rock_resource_bundle);
         cave_rock_resource_bundle = 0U;
     }
 }
@@ -103,11 +103,7 @@ extern s32 __vt__10TORockCave[];
 
 #define MK_80175224(dst, off)                                                   \
     {                                                                           \
-        void *p = ::operator new(0x440);                   \
-        u32 r = (u32)p;                                                         \
-        if (p != 0) {                                                           \
-            r = load_resource_from_descriptor(p, 1, tbl + (off), 0, 0, 0);               \
-        }                                                                       \
+        u32 r = (u32)new BmlResource(1, (BmlResourceDescriptor *)(tbl + (off)), 0, 0, NULL); \
         dst = r;                                                                \
     }
 void TORockCave::load_resources() {

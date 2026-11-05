@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/items/TItemWeapon.h"
 #include "pso/unk/text_80087278.h"
@@ -27,7 +28,7 @@ void TObjPlayer::spawn_particle_at_icon() {
     Vec_8012327C v;
     ((TItemWeapon *)this)->get_joint_position(2, &v);
     v.y -= lbl_805DAD08;
-    spawn_particle_effect(&v, 0x1d2);
+    spawn_particle_effect((const Vec *)(&v), 0x1d2);
 }
 
 }

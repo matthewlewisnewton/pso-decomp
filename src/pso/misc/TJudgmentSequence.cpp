@@ -1,5 +1,4 @@
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TJudgmentSequence.h"
 struct TShopJudgmentItemWindow;
 #include "pso/misc/TWindowSubComCard_80244774.h"
@@ -170,7 +169,7 @@ u8 *__dt__17TJudgmentSequenceFv(u8 *arg0, s16 arg1) {
         }
         ((TShopSequence *)arg0)->close_message_window();
         if ((u32) ((TJudgmentSequence *)arg0)->m_2c != 0U) {
-            ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x2C)))->close();
+            TWindow__close((u8 *)(*(void **)((s8 *)arg0 + 0x2C)));
             ((TJudgmentSequence *)arg0)->m_2c = 0U;
         }
         judgment_sequence_instance = 0;
