@@ -13,6 +13,8 @@ struct ColorLineList {
     u32 *colors;
     s32 unk_8;
     s32 count;
+
+    void draw_strip_swap_color(s32 n, s32 flags, f32 scale);
 };
 
 extern "C" {

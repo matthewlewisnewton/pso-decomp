@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/system/GinjaMaterial.h"
 #include "pso/unk/text_803D96A8.h"
@@ -20,10 +21,10 @@ void TObjLazerFenceExtra::draw_lazer_fence_extra_model() {
     for (i = 0; i < 4; i++) {
         ((TObjDoorJung *)(arg0->fC8[i]))->free_children((void *)lbl_80445B7C[arg0->fAC]);
     }
-    TObjFish::set_global_param(lazer_fence_norm_texture_list);
+    set_current_texture_list((GinjaTextureList *)(lazer_fence_norm_texture_list));
     push_matrix();
     post_translate_matrix(arg0->f38);
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     draw_ginja_object((void *)this->m_d8);
     TParticleCtrl::begin_effect_render();
     draw_ginja_model_with_motion(arg0->fC0, this->m_c4, arg0->fB8);

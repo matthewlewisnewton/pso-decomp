@@ -2,6 +2,7 @@
 #define PSO_UI_ITEMLISTROW_H
 
 #include "types.h"
+#include "pso/misc/TWindowDrawContext.h"
 
 struct ItemListRow
 {
@@ -23,20 +24,10 @@ struct ItemListRow
   s32 suffix_style;
 };
 
-struct ItemListWindowView
+// The item-list window is the draw context. Its x/y/width sit on inner_x/inner_y/inner_w,
+// visible is open_tick, and text_clip/clip_bottom are the two clip edges.
+struct ItemListWindowView : TWindowDrawContext
 {
-  u8 pad0[0x10];
-  f32 x;
-  f32 y;
-  f32 width;
-  u8 pad1c[0x14];
-  s32 visible;
-  u8 pad34[4];
-  f32 depth;
-  u8 pad3c[4];
-  f32 clip_top;
-  f32 text_clip;
-  f32 clip_bottom;
 };
 
 struct ItemListPosition

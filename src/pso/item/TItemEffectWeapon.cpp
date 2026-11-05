@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/item/TItemEffectWeapon.h"
 #include "pso/item/TItemEquipVariant_8012A82C.h"
 #include "pso/render/render_util.h"
@@ -15,7 +16,6 @@ s32 get_mode__11TCameraCtrlFPv(void *p);
 void restore_saved_depth_alpha_state();
 void TObjPlayer__sub_803DF768(s32);
 void set_render_deferred__7TObjectFv(void*);
-void *mem_alloc(u32 size);
 extern u32 saved_model_render_flags;
 extern u32 model_render_flags;
 
@@ -24,7 +24,6 @@ void TItemEffectWeapon__sub_8036340C(void);
 void TItemEffectWeapon__sub_80363410(void);
 
 void decrement_timer__17TItemEffectWeaponFv(void *, s32);
-void mem_free(void *p);
 void* memcpy(void* destination, const void* source, size_t size);
 f32 xyz_distance(const f32 *a, const f32 *b);
 f32 normalize_vector(f32 *v);
@@ -195,15 +194,15 @@ TItemEffectWeapon::TrailVertex* TItemEffectWeapon::allocate_trail_buffer() {
 }
 
 void TItemEffectWeapon::free_static_effects() {
-    mem_free(weapon_trail_slot_bitmap);
-    mem_free(item_weapon_trail_vertex_buffer);
+    ::operator delete[](weapon_trail_slot_bitmap);
+    ::operator delete[](item_weapon_trail_vertex_buffer);
     weapon_trail_slot_bitmap = NULL;
     item_weapon_trail_vertex_buffer = NULL;
 }
 
 void TItemEffectWeapon::initialize_static_effects() {
-    item_weapon_trail_vertex_buffer = (TrailVertex*)mem_alloc(16 * 32 * sizeof(TrailVertex));
-    weapon_trail_slot_bitmap = (s32*)mem_alloc(16 * sizeof(s32));
+    item_weapon_trail_vertex_buffer = (TrailVertex*)::operator new[](16 * 32 * sizeof(TrailVertex));
+    weapon_trail_slot_bitmap = (s32*)::operator new[](16 * sizeof(s32));
     for (s32 i = 0; i < 16; i++) {
         weapon_trail_slot_bitmap[i] = 0;
     }

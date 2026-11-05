@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "pso/system/NinjaTypes.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/item/TItemMag.h"
@@ -523,7 +524,7 @@ void TItemMag::on_equip() {
         state |= MAG_INACTIVE;
     }
     if (is_hidden() == 0 && owner->is_in_fixed_pose() == 0) {
-        play_sound_effect(0x4000B20A, &owner->position, 0, 0);
+        play_sound_effect(0x4000B20A, (const Vec *)(&owner->position), 0, 0);
     }
 }
 
@@ -919,10 +920,10 @@ s32 TItemMag::feed(TItemData *food) {
     if (is_hidden() == 0) {
         for (i = 0; i != 2; i++) {
             if (children[i] != NULL && children[i]->get_world_position(&pos) != 0) {
-                spawn_particle_effect(&pos, 0x9B);
+                spawn_particle_effect((const Vec *)(&pos), 0x9B);
             }
         }
-        play_sound_effect(0x5B211, &owner->position, 0, 0);
+        play_sound_effect(0x5B211, (const Vec *)(&owner->position), 0, 0);
     }
     return apply_feed(&change);
 }
@@ -1080,7 +1081,7 @@ void TItemMag::on_form_changed() {
         register_photon_blasts();
     }
     if (is_hidden() == 0) {
-        play_sound_effect(0x4000B20A, &owner->position, 0, 0);
+        play_sound_effect(0x4000B20A, (const Vec *)(&owner->position), 0, 0);
     }
     load_param_record();
 }

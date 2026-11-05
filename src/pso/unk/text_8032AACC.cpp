@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/misc/TWindowSubStatusDisp_80144B14.h"
 #include "pso/unk/text_8032AACC.h"
@@ -20,7 +21,6 @@ struct Arg_8032AC24 { f32 x, y; u8 pad[8]; };
 
 extern "C" {
 char *realloc_buffer__17TWindowSubComCardFv(void *);
-void mem_free(void *p);
 void fn_8025DE10(void *arg0, void *arg1);
 void TAdEnterSerialAccessGC__sub_802C4B64(void *, void *, void *, int);
 void __dt__19TAdPlyChrSelPlateGCFv(void *, int);
@@ -54,7 +54,7 @@ void draw_masked_password_field(s32 arg0) {
         TAdEnterSerialAccessGC__sub_802C4B64(&plate, lbl_80477210, &w, 0);
         str = realloc_buffer__17TWindowSubComCardFv(password_entry_keyboard_control);
         len = strlen(str);
-        mem_free(str);
+        ::operator delete[](str);
         memset(buf, 0, 0x80);
         q = buf;
         for (i = 0; i < len; i++) {

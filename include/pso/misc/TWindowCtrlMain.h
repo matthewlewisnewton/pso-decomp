@@ -31,7 +31,6 @@ struct TWindowCtrlMain : public TObject {
     static void update_fade_alphas();
     static void set_value(s32 arg0, s32 arg1);
     static void free_keyboard_soft();
-    void draw_strip_swap_color(s32 n, s32 flags, f32 _w3);
 };
 
 typedef char TWindowCtrlMain_size[sizeof(TWindowCtrlMain) == 0x1C ? 1 : -1];

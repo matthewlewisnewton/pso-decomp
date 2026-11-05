@@ -1,9 +1,13 @@
+#include "pso/misc/CameraHelpers.h"
+#include "pso/system/ModelNodePositionCapture.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
+#include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/system/PadRumble.h"
 #include "pso/TObject.h"
 #include "pso/misc/TOTrapAncient01_80226534.h"
-#include "pso/object/TObjFish_800E2FFC.h"
 #include "pso/boss/Boss6Type2Appearance.h"
 #include "pso/boss/TBoss4Type2_800874F4.h"
 #include "pso/misc/TCameraCtrl_800687BC.h"
@@ -39,9 +43,9 @@ const Ent_8033D6DC boss6_type2_appear_particle_schedule[9] = {
     {294, 357, 556, 0},
     {100, 157, 377, -2}
 };
-const u8 lbl_80478058[12] = {0xC6, 0x1C, 0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-const u8 lbl_80478064[12] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-const u8 boss6_type2_appear_camera_script[12] = {0x01, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x33, 0x33, 0x33};
+const Vec lbl_80478058 = {-10000.0f, 0.0f, 0.0f};
+const CameraAngles lbl_80478064 = {0, 0, 0};
+const CameraPlayback boss6_type2_appear_camera_script = {1, 3, 0, 0.0f, 0.7f};
 s32 push_matrix();
 s32 post_translate_matrix(void *);
 extern const f32 lbl_805DFA70;
@@ -49,13 +53,12 @@ extern const f32 lbl_805DFA74;
 extern const f32 lbl_805DFA78;
 
 extern const f32 lbl_805DFA7C;
-s32 clear_render_callback__8TObjFishFv(s32);
 
 void TBoss6Demo20_TYPE2_APPEAR::draw_model_12() {
     push_matrix();
     set_motion_packed_rotation();
     post_translate_matrix((void *)&boss6_type2_appear_origin);
-    TObjFish::set_global_param(*(s32 *)((s8 *)this + 0xD8));
+    set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)this + 0xD8)));
     draw_model_motion((void *)this->m_d4, (void *)this->m_dc, *(f32 *)((s8 *)this + 0xE0));
     clear_motion_packed_rotation();
     pop_matrix();
@@ -77,7 +80,7 @@ void TBoss6Demo20_TYPE2_APPEAR::draw_fading_model_1_pair() {
         if (var_f31 < lbl_805DFA74) {
             TBoss6PlotFalz::set_fade_material_color(var_f31);
         }
-        TObjFish::set_global_param(this->m_cc);
+        set_current_texture_list((GinjaTextureList *)(this->m_cc));
         set_motion_packed_rotation();
         push_matrix();
         post_translate_matrix((s32 *)((u8 *)this + 0x4C));
@@ -114,10 +117,10 @@ void TBoss6Demo20_TYPE2_APPEAR::draw_fading_model_4() {
         push_matrix();
         set_motion_packed_rotation();
         post_translate_matrix((void *)&boss6_type2_appear_origin);
-        TObjFish::set_global_param(*(s32 *)((s8 *)this + 0xC0));
-        ((TObjFish *)(this->m_7c))->set_draw_callback_list();
+        set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)this + 0xC0)));
+        ((ModelNodePositionCapture *)(this->m_7c))->install();
         draw_model_motion((void *)this->m_bc, (void *)this->m_c4, *(f32 *)((s8 *)this + 0xE0));
-        clear_render_callback__8TObjFishFv(this->m_7c);
+        ((ModelNodePositionCapture *)(this->m_7c))->clear();
         clear_motion_packed_rotation();
         pop_matrix();
         if (var_f31 < lbl_805DFA74) {
@@ -151,7 +154,7 @@ void TBoss6Demo20_TYPE2_APPEAR::draw_fading_model_pair() {
         var_r31 = 0;
         do {
             temp_r30 = (u8 *)this + var_r31;
-            TObjFish::set_global_param(*(s32 *)((s8 *)temp_r30 + 0xA8));
+            set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)temp_r30 + 0xA8)));
             draw_model_motion((void *)(*(s32 *)((s8 *)temp_r30 + 0xA4)), (void *)(*(s32 *)((s8 *)temp_r30 + 0xAC)), *(f32 *)((s8 *)this + 0xE0));
             var_r29 += 1;
             var_r31 += 0xC;
@@ -188,11 +191,9 @@ typedef struct O_8033D6DC {
 extern "C" {
 s32 __dt__7TObjectFv(void *, int);
 s32 __dl__7TObjectFPv(void *);
-s32 refresh_players_equipment__14TBoss6PlotFalzFPv();
 extern s32 __vt__25TBoss6Demo20_TYPE2_APPEAR[];
 O_8033D9E4 *__dt__25TBoss6Demo20_TYPE2_APPEARFv(O_8033D9E4 *arg0, s16 arg1);
 void *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags);
-void play_sound_effect(int, void *, int, int);
 
 extern const Ent_8033D6DC boss6_type2_appear_particle_schedule[];
 
@@ -221,7 +222,7 @@ void run_task__25TBoss6Demo20_TYPE2_APPEARFv(O_8033D6DC *self) {
         play_sound_effect(0x40031C2B, 0, 0, 0);
         break;
     }
-    play_persistent_sound(0x4003C627, (s32)self, 0, 0, 0);
+    play_persistent_sound((s32)(0x4003C627), (const void *)(self), (const Vec *)(0), 0, 0);
     switch (self->frame) {
     case 0xB9:
         spawn_particle_effect_with_flags(self->obj40, 0x220, 0x40);
@@ -282,9 +283,9 @@ O_8033D9E4 *__dt__25TBoss6Demo20_TYPE2_APPEARFv(O_8033D9E4 *arg0, s16 arg1) {
             }
         }
         restore_player_cameras();
-        refresh_players_equipment__14TBoss6PlotFalzFPv();
+        TBoss6PlotFalz::refresh_players_equipment();
         if (arg0->f7c != 0) {
-            TObjFish::init_state_1(arg0->f7c);
+            ModelNodePositionCapture::destroy((ModelNodePositionCapture *)(arg0->f7c));
             arg0->f7c = 0;
         }
         __dt__7TObjectFv(arg0, 0);
@@ -304,12 +305,12 @@ extern "C" {
 s32 get_bml_motion(int, int);
 s32 TObjFish__sub_8001EDB0(int, int);
 s32 get_bml_model(int, int);
-void set_scripted_camera_pose(void *, void *, void *);
+
 void __ct__7TObjectFP7TObject(void *);
 extern const u8 boss6_type2_appear_model_node_descriptors[];
-extern const u8 lbl_80478058[];
-extern const u8 lbl_80478064[];
-extern const u8 boss6_type2_appear_camera_script[];
+extern const Vec lbl_80478058;
+extern const CameraAngles lbl_80478064;
+extern const CameraPlayback boss6_type2_appear_camera_script;
 extern s32 lbl_804DF614[];
 __declspec(section ".data") extern s32 boss6_type2_appear_motion_indices[];
 struct AppearanceClassTag { const char *value; u32 padding; };
@@ -356,13 +357,13 @@ u8 *TBoss6Demo20_TYPE2_APPEAR__ct(TBoss6Demo20_TYPE2_APPEAR *boss6_demo20_type2_
     boss6_demo20_type2_appear->m_d4 = get_bml_model(count, 0xC);
     *(s32 *)((s8 *)boss6_demo20_type2_appear + 0xD8) = TObjFish__sub_8001EDB0(count, 0xC);
     boss6_demo20_type2_appear->m_dc = get_bml_motion(count, 0x22);
-    boss6_demo20_type2_appear->m_7c = TObjFish__sub_800E3124((u8 *)boss6_type2_appear_model_node_descriptors, (s32)((u8 *)boss6_demo20_type2_appear + 0x1C));
+    boss6_demo20_type2_appear->m_7c = (s32)ModelNodePositionCapture::create((ModelNodePositionEntry *)(boss6_type2_appear_model_node_descriptors), (Vec *)(((u8 *)boss6_demo20_type2_appear + 0x1C)));
     for (i = 0; i < 9; i++) {
         self->arr[i] = 0;
     }
     activate_camera_mode(5);
-    set_scripted_camera_pose((void *)lbl_80478058, (void *)lbl_80478058, (void *)lbl_80478064);
-    ((TCameraCtrl *)boss6_type2_appear_camera_script)->cache_target_and_forward(0x416C);
+    set_scripted_camera_pose(&lbl_80478058, &lbl_80478058, &lbl_80478064);
+    cache_target_and_forward__11TCameraCtrlFl(&boss6_type2_appear_camera_script, 0x416C);
     *(f32 *)((s8 *)boss6_demo20_type2_appear + 0xE0) = lbl_805DFA70;
     boss6_demo20_type2_appear->m_e4 = lbl_805DFA70;
     *(s32 *)((s8 *)boss6_demo20_type2_appear + 0xE8) = 0;

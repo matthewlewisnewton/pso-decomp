@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/TObject.h"
 #include "pso/object/TObjMotion.h"
@@ -77,7 +78,7 @@ void TUnk_804B5C08::render() {
       ((RecoveredFields_80182E90_arg0 *) arg0)->field_9C = ((RecoveredFields_80182E90_arg0 *) arg0)->field_9C;
       return;
     }
-    TObjFish::set_global_param((s32)((void *) city_common_texture_list));
+    set_current_texture_list((GinjaTextureList *)(((void *) city_common_texture_list)));
     push_matrix();
     post_translate_matrix((u8 *)&this->position);
     translate_matrix(0, (f32) lbl_805DBC00, (f32) ((RecoveredFields_80182E90_arg0 *) arg0)->field_9C, (f32) lbl_805DBC00);

@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/unk/text_80087278.h"
 #include "pso/player/TObjChara.h"
@@ -5,6 +6,7 @@
 #include "pso/misc/TOMine.h"
 #include "pso/misc/TOMineIcon02.h"
 #include "pso/misc/TOMineIcon01.h"
+
 #include "pso/misc/TOMineTrap.h"
 #include "pso/player/TObjPlayer.h"
 
@@ -50,7 +52,6 @@ extern "C" {
 s32 TObjFish__sub_8001EDB0(void *, s32);
 s32 get_bml_model(void *, s32);
 void init_collision_body_parts(void *, void *, s32);
-void TOMine__ct(void *, void *, void *);
 extern u8 mine_collision_body_parts[];
 extern s32 __vt__12TOMineIcon01[];
 extern s32 TOMineIcon01__name;
@@ -63,13 +64,7 @@ void *__nw__7TObjectFUl(int);
 
 extern void *tl_05;
 
-void *TOMineIcon01::create() {
-    void *o = __nw__7TObjectFUl(0x37C);
-    if (o != NULL) {
-        o = TOMineIcon01__ct(o, tl_05, this);
-    }
-    return o;
-}
+void *TOMineIcon01::create() { return new TOMineIcon01((TObject *)tl_05, this); }
 
 void *__dt__12TOMineIcon01Fv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
@@ -86,13 +81,11 @@ void *__dt__12TOMineIcon01Fv(void *arg0, s16 arg1) {
 
 #pragma push
 #pragma fp_contract on
-void *TOMineIcon01__ct(void *arg0, void *arg1, void *arg2) {
-    TOMine__ct(arg0, arg1, arg2);
-#define self ((Icon_801714E8 *)arg0)
-    self->vt = ((void * *)&__vt__12TOMineIcon01);
+TOMineIcon01::TOMineIcon01(TObject *parent, void *set) : TOMine(parent) {
+#define self ((Icon_801714E8 *)this)
     self->f0 = TOMineIcon01__name;
-    ((VIcon_801714E8 *)self)->m5(arg2);
-    ((TObjPlayer *)self)->init_position_vectors();
+    ((VIcon_801714E8 *)self)->m5(set);
+    ((TObjChara *)self)->initialize_position_copies();
     ((TObjChara *)self)->calc_attach_pos();
     self->f34 = get_bml_model(lbl_805D5A50, 4);
     self->f24 = TObjFish__sub_8001EDB0(lbl_805D5A50, 4);
@@ -123,7 +116,6 @@ void *TOMineIcon01__ct(void *arg0, void *arg1, void *arg2) {
     init_collision_body_parts(self, mine_collision_body_parts, 1);
     ((TObjCollidable *)self)->refresh_collision_body_centers();
     ((TObjPlayer *)self)->register_object_by_id();
-    return self;
 #undef self
 }
 #pragma pop
@@ -132,8 +124,8 @@ void TOMineIcon02::vfunc_84() {  }
 
 void TOMineIcon02::vfunc_82() {
     s32 arg0 = (s32)this;
-    spawn_particle_effect((void *)(arg0 + 0x2FC), 0x8E);
-    spawn_particle_effect((void *)(arg0 + 0x2FC), 0x8E);
+    spawn_particle_effect((const Vec *)((arg0 + 0x2FC)), 0x8E);
+    spawn_particle_effect((const Vec *)((arg0 + 0x2FC)), 0x8E);
 }
 
 }

@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/TAdBackTxtGC.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
@@ -16,7 +17,7 @@ void TAdBackTxtGC::draw_character_background_frame(s32 arg1, s32 arg2) {
     u8 *arg0 = (u8 *)this;
   f32 buffer_8[8];
   begin_screen_draw(1);
-  TObjFish::set_global_param((s32)((void *) TAdBackTxtGC__backtext_texture_list));
+  set_current_texture_list((GinjaTextureList *)(((void *) TAdBackTxtGC__backtext_texture_list)));
   set_draw_texture_and_color(arg1, arg2);
   buffer_8[0] = lbl_805DDCF8;
   buffer_8[1] = lbl_805DDCF8;

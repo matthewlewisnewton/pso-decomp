@@ -1,7 +1,18 @@
 #include "pso/misc/SampledMotionPoints.h"
+#include "pso/player/demo_mode.h"
+#include "pso/misc/MaterialOpacityFade.h"
+#include "pso/enemy/BattleParameters.h"
+#include "pso/misc/PersistentSound.h"
 #include "pso/enemy/TObjEnemy.h"
+#include "pso/system/EnemyBmlResource.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/misc/RenderFadeState.h"
+#include "pso/enemy/BattleParameters.h"
+#include "pso/enemy/TObjEnemy.h"
+#include "pso/system/EnemyBmlResource.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/player/TObjPlayer_803E4954.h"
 #include "types.h"
 #include "pso/enemy/TObjEneDD.h"
 #include "pso/enemy/TObjEneDD_ST.h"
@@ -17,7 +28,6 @@ extern "C" void test_flag_256__9TObjCharaFv();
 
 #include "pso/player/TUnk_804928CC.h"
 
-#include "pso/enemy/TUnk_80494938.h"
 #include "pso/enemy/TObjEneBm9Mericarol_Bomb.h"
 #include "pso/boss/TBoss8Dragon.h"
 
@@ -26,10 +36,7 @@ extern "C" void test_flag_256__9TObjCharaFv();
 #include "pso/misc/TLobby.h"
 #include "pso/enemy/TObjEneDD_800BB804.h"
 #include "pso/unk/text_802D1C84.h"
-
-struct SubBase { char pad[0x14]; };
-
-struct VSub : SubBase { virtual void m0(); virtual void m1(); virtual void m2(); };
+#include "pso/npc/NpcModelRegistry.h"
 
 struct VBase_802D0C14 { char pad[0x18]; };
 
@@ -39,14 +46,6 @@ struct VObj_802D0C14 : VBase_802D0C14 {
 
 struct S_802D0C14 { u8 pad[0x3C0]; void *arr[2]; };
 
-
-struct VBase14_802D0D3C { char pad[0x14]; };
-struct VObj14_802D0D3C : VBase14_802D0D3C {
-    virtual void m0();
-    virtual void m1();
-    virtual void m2();
-    virtual void m3();
-};
 struct VBase18_802D0D3C { char pad[0x18]; };
 struct VObj18_802D0D3C : VBase18_802D0D3C {
     virtual void m0();
@@ -141,7 +140,7 @@ struct VObj18_802D0D3C : VBase18_802D0D3C {
 extern "C" {
 extern const f32 lbl_805DE704;
 void run_task__19TObjEneBm9MericarolFv(u8 *arg0);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 void TObjEneBm9Mericarol__sub_802D073C(s32 arg0);
 f32 random_ratio__9TObjCharaFv(s32);
 extern const f32 lbl_805DE6F4;
@@ -166,7 +165,6 @@ extern const f32 lbl_805DE74C;
 void queue_destruction__7TObjectFv(void *arg0);
 void *__dt__12TObjEneDD_STFv(void *arg0, s16 arg1);
 s32 __dt__17AreaAttackHistoryFv(s32 arg0, s16 arg1);
-void *__dt__13TUnk_80494938Fv(void *arg0, s16 arg1);
 s32 free_collision_body_parts(void *);
 s32 __dl__7TObjectFPv(void *);
 s32 __destroy_arr(void *, void *, u32, u32);
@@ -180,7 +178,6 @@ void vfunc_63__19TObjEneBm9MericarolFv(void *arg0);
 void vfunc_62__19TObjEneBm9MericarolFv(void *arg0);
 void vfunc_88__19TObjEneBm9MericarolFv(void *arg0);
 s32 clear_attack_receipts__9TObjEneDDFv(void);
-void TLobby__sub_8001FE7C(void*, int);
 struct Obj_802D0D3C;
 Obj_802D0D3C *TObjEneBm9Mericarol__ct(Obj_802D0D3C *, void *, s32);
 void *__nw__7TObjectFUl(int);
@@ -250,7 +247,7 @@ extern "C" void enemy_spawn_jellen_effect__9TObjCharaFv();
 extern "C" void enemy_spawn_zalure_effect__9TObjCharaFv();
 extern "C" void vfunc_78__9TObjCharaFl();
 extern "C" void vfunc_77__9TObjCharaFv();
-extern "C" void vfunc_76__9TObjCharaFv();
+extern "C" void vfunc_76__9TObjCharaFf();
 extern "C" void vfunc_75__9TObjCharaFf();
 extern "C" void clear_lobby_object_state__9TObjEnemyFv();
 extern "C" void get_center__9TObjCharaFv();
@@ -351,7 +348,7 @@ void __ct__12TObjEneDD_STFP7TObject(void *, void *);
 void __construct_array(void *, void *, void *, u32, u32);
 void invoke_initialization_hook__9TObjEneDDFPv(void *, s32);
 void init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, s32);
-void reset_hp__9TObjEneDDFPUcPUcPUc(void *, s32, s32, s32);
+void reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(void *, s32, s32, s32);
 s32 create__13TUnk_80494968FUlUl(s32, s32);
 void initialize_enemy_state__9TObjEneDDFl(void *, s32);
 void *__ct__14TObjCollidableFP7TObject(void *, s32);
@@ -429,7 +426,7 @@ void *TObjEneBm9Mericarol__vtable[107] = {
     (void *)&reset_pose__9TObjCharaFv, (void *)&get_anim_node_position__9TObjCharaFlP3Vec, (void *)&vfunc_66__9TObjCharaFv, (void *)&vfunc_67__9TObjCharaFf,
     (void *)&get_pos__9TObjCharaFl, (void *)&apply_switch_attack__9TObjCharaFv, (void *)&enemy_spawn_jellen_effect__9TObjCharaFv, (void *)&trigger_switch_attack__9TObjCharaFv,
     (void *)&enemy_spawn_zalure_effect__9TObjCharaFv, (void *)&recalc_stats__9TObjCharaFv, (void *)&vfunc_74__9TObjEnemyFl, (void *)&vfunc_75__9TObjCharaFf,
-    (void *)&vfunc_76__9TObjCharaFv, (void *)&vfunc_77__9TObjCharaFv, (void *)&vfunc_78__9TObjCharaFl, (void *)&vfunc_79__9TObjEneDDFPl,
+    (void *)&vfunc_76__9TObjCharaFf, (void *)&vfunc_77__9TObjCharaFv, (void *)&vfunc_78__9TObjCharaFl, (void *)&vfunc_79__9TObjEneDDFPl,
     (void *)&apply_hit_message_flags__9TObjEnemyFPv, (void *)&apply_set_data__9TObjEnemyFPv, (void *)&clear_lobby_object_state__9TObjEnemyFv, (void *)&vfunc_83__12TObjEneDD_STFv,
     (void *)&vfunc_84__9TObjEneDDFv, (void *)&vfunc_85__9TObjEneDDFv, (void *)&vfunc_86__9TObjEneDDFv, (void *)&dispatch_state_handler__19TObjEneBm9MericarolFiUii,
     (void *)&vfunc_88__19TObjEneBm9MericarolFv, (void *)&vfunc_89__9TObjEneDDFv, (void *)&vfunc_90__9TObjEneDDFv, (void *)&vfunc_91__9TObjEneDDFv,
@@ -446,7 +443,7 @@ u32 mericarol_phase_param_table[3];
 u32 lbl_80540B88[4];
 
 void TObjEneBm9Mericarol__sub_802D073C(s32 arg0) {
-    play_persistent_sound((((TObjEnemy *)((void *)arg0))->remap_sound_for_area((s32)(0x3A810))), (arg0), (arg0 + 0x38), 0, 0);
+    play_persistent_sound((s32)((((TObjEnemy *)((void *)arg0))->remap_sound_for_area(0x3A810))), (const void *)((arg0)), (const Vec *)((arg0 + 0x38)), 0, 0);
 }
 
 s32 TObjEneBm9Mericarol::get_phase() { return *(s32*)((char*)this + 0x45c); }
@@ -507,13 +504,13 @@ s32 TObjEneBm9Mericarol::try_set_mode8_if_flag2() {
 void TObjEneBm9Mericarol__sub_802D093C(void) {  }
 void TObjEneBm9Mericarol__sub_802D0940(void) {  }
 void TObjEneBm9Mericarol::vfunc_88() {
-    *(f32 *)((s8 *)this->bodies + 4) = (f32) (this->m_300 - *(f32 *)((s8 *)this + 0x3C));
+    *(f32 *)((s8 *)this->bodies + 4) = (f32) (this->body_center_position.y - *(f32 *)((s8 *)this + 0x3C));
 }
 
 void TObjEneBm9Mericarol::sync_center_position() {
     u8 *arg0 = (u8 *)this;
     VecCopy((Vec *)(arg0 + 0x2FC), (const Vec *)(arg0 + 0x38));
-    this->m_300 = (f32) (this->m_300 + lbl_805DE704);
+    this->body_center_position.y = (f32) (this->body_center_position.y + lbl_805DE704);
     VecCopy((Vec *)(arg0 + 0x74), (const Vec *)(arg0 + 0x2FC));
 }
 
@@ -591,16 +588,16 @@ void dispatch_state_handler__19TObjEneBm9MericarolFiUii(s32 actor, u32 arg1, s32
 void TObjEneBm9Mericarol::run_task() {
     s16 temp_r3_2;
     s32 temp_r3;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->vfunc_105();
         return;
     }
     temp_r3 = this->m_454;
     if (temp_r3 & 0x10) {
-        if ((u32) this->m_390 == 0U) {
+        if ((u32) this->target == 0U) {
             this->m_454 = (s32) (temp_r3 & 0xFFFFFFEF);
         }
-    } else if ((u32) this->m_390 != 0U) {
+    } else if ((u32) this->target != 0U) {
         this->m_454 = (s32) (temp_r3 | 0x10);
     }
     if (this->vfunc_83() != 4) {
@@ -608,7 +605,7 @@ void TObjEneBm9Mericarol::run_task() {
     } else {
         temp_r3_2 = this->mode;
         if ((temp_r3_2 == 0) || (temp_r3_2 == 1)) {
-            ((VSub *)(((u8 *)this) + 0x46C))->m2();
+            ((TObjEneBm9Mericarol *)this)->fade.reset_color();
             transition_enemy_state(2);
         }
     }
@@ -644,7 +641,7 @@ u8 *__dt__19TObjEneBm9MericarolFPvs(u8 *arg0, s16 arg1) {
             *(void **)((s8 *)arg0 + 0x4AC) = NULL;
         }
         free_collision_body_parts(arg0);
-        __dt__13TUnk_80494938Fv(arg0 + 0x46C, -1);
+        ((TObjEneBm9Mericarol *)arg0)->fade.MaterialOpacityFade::~MaterialOpacityFade();
         __destroy_arr(arg0 + 0x3C8, (void *) __dt__15RenderFadeStateFv, 0x1C, 4);
         __dt__12TObjEneDD_STFv(arg0, 0);
         if (arg1 > 0) {
@@ -662,7 +659,7 @@ Obj_802D0D3C *TObjEneBm9Mericarol__ct(Obj_802D0D3C *self, void *parent, s32 arg2
     __ct__12TObjEneDD_STFP7TObject(self, parent);
     self->vt18 = TObjEneBm9Mericarol__vtable;
     __construct_array(self->a3C8, (void *)__ct__15RenderFadeStateFv, (void *)__dt__15RenderFadeStateFv, 0x1C, 4);
-    __ct__13TUnk_80494938Fv((self->o46C));
+    __ct__19MaterialOpacityFadeFv((self->o46C));
     self->f0 = lbl_805D3F28;
     invoke_initialization_hook__9TObjEneDDFPv(self, arg2);
     ((TObjEneBm9Mericarol *)self)->init_size_tier_and_offsets();
@@ -674,13 +671,13 @@ Obj_802D0D3C *TObjEneBm9Mericarol__ct(Obj_802D0D3C *self, void *parent, s32 arg2
     self->f34 = ((Res_802D0D3C *)lbl_805D6868)->f42C[2];
     self->f24 = ((Res_802D0D3C *)lbl_805D6868)->f42C[3];
     init_model__9TObjEneDDFP13CollisionBodyl(self, lbl_804E1564, 1);
-    ((TObjMotion *)self)->set_field_d8((s32)lbl_804E1634);
-    ((TObjMotion *)self)->set_field_dc(((Res_802D0D3C *)lbl_805D6868)->f430);
+    ((TObjMotion *)self)->set_action_table((TObjMotionAction *)((s32)lbl_804E1634));
+    ((TObjMotion *)self)->set_motion_list((BmlMotionEntry *)(((Res_802D0D3C *)lbl_805D6868)->f430));
     self->fB8 = 2;
     ((TObjMotion *)self)->set_animation(self->fB8);
     ((TObjMotion *)self)->set_field_b8(self->fB8);
     ph = ((TObjEneBm9Mericarol *)self)->get_phase();
-    reset_hp__9TObjEneDDFPUcPUcPUc(self, bm9_mericarol_phase_hp_table[ph], lbl_80540B64[ph], lbl_80540B70[ph]);
+    reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(self, bm9_mericarol_phase_hp_table[ph], lbl_80540B64[ph], lbl_80540B70[ph]);
     self->f3C0 = create__13TUnk_80494968FUlUl(0xA0303030, lbl_80472318[ph]);
     self->f3C4 = create__13TUnk_80494968FUlUl(0xA0303030, lbl_80472318[ph]);
     ((TObjChara *)self)->add_flags_2e4(0x12);
@@ -704,7 +701,7 @@ Obj_802D0D3C *TObjEneBm9Mericarol__ct(Obj_802D0D3C *self, void *parent, s32 arg2
     self->f450 = 0;
     self->f454 = 0;
     self->f458 = 0;
-    ((VObj14_802D0D3C *)self->o46C)->m3();
+    ((TObjEneBm9Mericarol *)self)->fade.reset_obstruction_fade();
     p = __nw__7TObjectFUl(0xAC);
     if (p != NULL) {
         p = __ct__14TObjCollidableFP7TObject(p, 0);
@@ -746,7 +743,7 @@ void TObjEneBm9Mericarol::free_shared_instances() {
     }
     fn_802D1C84();
     if ((u32) lbl_805D6868 != 0U) {
-        TLobby__sub_8001FE7C((void*)lbl_805D6868, 1);
+        delete (BmlResource *)((void*)lbl_805D6868);
         lbl_805D6868 = 0U;
     }
 }
@@ -783,9 +780,9 @@ void TBoss4Type3__sub_802D1130(void) {
     MotionPair_802D1130 *pair;
 
     if (is_split_screen() != 0) {
-        lbl_805D6868 = load_enemy_bml_resource((u8 *)lbl_804E1624);
+        lbl_805D6868 = (s32)load_enemy_bml_resource((BmlResourceDescriptor *)((u8 *)lbl_804E1624));
     } else {
-        lbl_805D6868 = load_enemy_bml_resource((u8 *)lbl_804E15E8);
+        lbl_805D6868 = (s32)load_enemy_bml_resource((BmlResourceDescriptor *)((u8 *)lbl_804E15E8));
     }
     lbl_805D686C = 0;
     lbl_805D6870 = 0;
@@ -797,10 +794,10 @@ void TBoss4Type3__sub_802D1130(void) {
     fn_802D1CC8();
     TObjPlayer__sub_800F0928();
     for (i = 0; i < 3; i++) {
-        bm9_mericarol_phase_hp_table[i] = (u32)TLobby::register_boss(lbl_804722E8[i]);
-        lbl_80540B64[i] = (u32)TLobby::dispatch_shared_handler_b(lbl_804722F4[i]);
-        lbl_80540B70[i] = (u32)TLobby::register_object(lbl_80472300[i]);
-        mericarol_phase_param_table[i] = (u32)TLobby::dispatch_shared_handler_a(lbl_8047230C[i]);
+        bm9_mericarol_phase_hp_table[i] = (u32)get_battle_base_stats(lbl_804722E8[i]);
+        lbl_80540B64[i] = (u32)get_battle_attack_params(lbl_804722F4[i]);
+        lbl_80540B70[i] = (u32)get_battle_resistance_params(lbl_80472300[i]);
+        mericarol_phase_param_table[i] = (u32)get_battle_movement_params(lbl_8047230C[i]);
     }
     p = new SampledMotionPoints(2, lbl_805DE70C, lbl_805DE704, lbl_805DE754);
     TBoss4Type3_shared_instance = (u32)p;
@@ -816,10 +813,8 @@ void TBoss4Type3__sub_802D1130(void) {
         SpawnPos_802D1130 pos = lbl_80472480;
         pair = (MotionPair_802D1130 *)((Res_802D0D3C *)lbl_805D6868)->f430;
         pos.motions = pair;
-        TLobby::spawn_npc_enemy(0x42, ((Res_802D0D3C *)lbl_805D6868)->f42C[2], ((Res_802D0D3C *)lbl_805D6868)->f42C[3], (s32)&pos,
-            *(f32 *)&lbl_804E1564[3], lbl_805DE70C);
+        NpcModelRegistry::register_animated_chunk(0x42, (void *)(((Res_802D0D3C *)lbl_805D6868)->f42C[2]), (void *)(((Res_802D0D3C *)lbl_805D6868)->f42C[3]), (const NpcAnimationBinding *)((s32)&pos), *(f32 *)&lbl_804E1564[3], lbl_805DE70C);
     }
 }
-
 
 }

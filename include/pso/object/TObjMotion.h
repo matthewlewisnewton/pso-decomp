@@ -1,6 +1,8 @@
+struct NJS_OBJECT;
 #ifndef PSO_OBJECT_TOBJMOTION_H
 #define PSO_OBJECT_TOBJMOTION_H
 #include "pso/TObject.h"
+#include "pso/system/AngleTypes.h"
 #include "pso/object/CursorAction.h"
 #include "pso/system/FlagWord.h"
 #include <stddef.h>
@@ -45,9 +47,7 @@ public:
     Vec position;
     Vec prev_position;  // where it stood before this frame's move
     Vec home_position;  // the set position it returns to
-    s32 rotation_x;
-    s32 rotation_y;
-    s32 rotation_z;
+    CameraAngles rotation;
     Vec scale;        // the set entry's params 1-3, a scale for most objects
     Vec center;         // the point the virtual center getter returns
     void *set_entry;    // its row of the floor's object or enemy set
@@ -100,6 +100,7 @@ public:
     void mark_enemy_body_contacts();
     void update_enemy_collision_flags();
     void check_object_collisions();
+    void update_collisions();
     void refresh_collision_body_centers();
     // Gives it an entity id if it has none and enters it in the id-sorted
     // entity table (unregister_object_by_id takes it out).
@@ -181,8 +182,8 @@ public:
     void draw();
     virtual void reset_motion_fields();
     void set_animation(s16 action);
-    void set_field_d8(s32);
-    void set_field_dc(s32);
+    void set_action_table(TObjMotionAction *);
+    void set_motion_list(BmlMotionEntry *);
     void set_field_b8(s16);
     TObjMotionAction *get_anim_entry(int action);
     int test_motion_flags(s32 flags);
@@ -268,7 +269,7 @@ void write_node_flags(NJS_OBJECT *object);
 void make_node_flag_table(NJS_OBJECT *object, NodeFlagEntry *table);
 // The model node callback that stores each node's matrix at
 // player_joint_matrix_write_ptr and steps it on.
-void save_joint_matrix_callback();
+void save_joint_matrix_callback(NJS_OBJECT *);
 
 extern NodeFlagEntry *node_flag_cursor;
 // The joint matrices calc_joint_matrices(f32) stores (110 of them).
@@ -289,4 +290,7 @@ typedef char WorldActorModelOffset[offsetof(TObjBase,model)==0x34?1:-1];
 typedef char MotionActionsOffset[offsetof(TObjMotion,action_table)==0xD8?1:-1];
 typedef char MotionListOffset[offsetof(TObjMotion,motion_list)==0xDC?1:-1];
 typedef char JointMatricesOffset[offsetof(TObjMotion,joint_matrices)==0xE0?1:-1];
+typedef char ActorAnglesOffset[offsetof(TObjBase, rotation)==0x5C?1:-1];
+typedef char ActorAnglesSize[sizeof(CameraAngles)==12?1:-1];
+typedef char ActorScaleOffset[offsetof(TObjBase, scale)==0x68?1:-1];
 #endif
