@@ -11,7 +11,7 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | intrinsic | 83 | 54 |
 | hardware | 71 | 13 |
 | pragma | 5862 | 885 |
-| configure.py per-unit override | 146 | 146 |
+| configure.py per-unit override | 147 | 147 |
 
 Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045, `fp_contract` 928, `auto_inline` 844, `opt_common_subs` 624, `scheduling` 262, `opt_propagation` 240, `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 43, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 22, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
@@ -19,14 +19,14 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 
 | File:line | Source |
 |---|---|
-| `src/musyx/runtime/Chorus/chorus_fx.c:119` | `asm void do_src1(void *src) {` |
-| `src/musyx/runtime/Chorus/chorus_fx.c:120` | `#include "orig_asm/musyx/runtime/Chorus/chorus_fx/do_src1.inc"` |
-| `src/musyx/runtime/Chorus/chorus_fx.c:123` | `asm void do_src2(register void *src) {` |
-| `src/musyx/runtime/Chorus/chorus_fx.c:124` | `#include "orig_asm/musyx/runtime/Chorus/chorus_fx/do_src2.inc"` |
-| `src/musyx/runtime/StdReverb/reverb.c:89` | `asm void DoCrossTalk(void *a, void *b, f32 start, f32 end) {` |
-| `src/musyx/runtime/StdReverb/reverb.c:90` | `#include "orig_asm/musyx/runtime/StdReverb/reverb/DoCrossTalk.inc"` |
-| `src/musyx/runtime/StdReverb/reverb.c:93` | `asm void HandleReverb(void *sptr, void *rv, int k) {` |
-| `src/musyx/runtime/StdReverb/reverb.c:94` | `#include "orig_asm/musyx/runtime/StdReverb/reverb/HandleReverb.inc"` |
+| `src/musyx/runtime/Chorus/chorus_fx.c:120` | `asm void do_src1(void *src) {` |
+| `src/musyx/runtime/Chorus/chorus_fx.c:121` | `#include "orig_asm/musyx/runtime/Chorus/chorus_fx/do_src1.inc"` |
+| `src/musyx/runtime/Chorus/chorus_fx.c:124` | `asm void do_src2(register void *src) {` |
+| `src/musyx/runtime/Chorus/chorus_fx.c:125` | `#include "orig_asm/musyx/runtime/Chorus/chorus_fx/do_src2.inc"` |
+| `src/musyx/runtime/StdReverb/reverb.c:90` | `asm void DoCrossTalk(void *a, void *b, f32 start, f32 end) {` |
+| `src/musyx/runtime/StdReverb/reverb.c:91` | `#include "orig_asm/musyx/runtime/StdReverb/reverb/DoCrossTalk.inc"` |
+| `src/musyx/runtime/StdReverb/reverb.c:94` | `asm void HandleReverb(void *sptr, void *rv, int k) {` |
+| `src/musyx/runtime/StdReverb/reverb.c:95` | `#include "orig_asm/musyx/runtime/StdReverb/reverb/HandleReverb.inc"` |
 | `src/pso/unk/text_803E2D70.cpp:314` | `asm void transform_chunk_vertices_pos_normal(register Hdr_803E34B0 *job, register ReorderedMatrix_803E3390 *matrix) {` |
 
 ## MWCC intrinsics
@@ -210,6 +210,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `pso/object/TObjChip.cpp` | `-inline off,deferred` | TObjChip: render's colour template sits after draw_chips' in .rodata while render comes first in .text, so the source runs backwards. |
 | `pso/object/TObjTombstone.cpp` | `-inline off,deferred, -fp_contract on, -str reuse,readonly` | One unit, written last-defined first: the vtable and the late helpers precede the early ones in .text. -fp_contract on: draw_name_labels' half-width nudge and the drop placement fuse multiply-adds. -str reuse,readonly: the literals live in this unit's .rodata. |
 | `pso/item/TItemSpecialEvent_803531FC.cpp` | `(multi-line entry; see configure.py)` | GC/2.0: compiler-expanded struct copies take 2.0's registers. The ending item handler table keeps 2.0's store/load scheduling for its zero-initialized local member-function-pointer array. |
+| `pso/effect/TEffIndirectCtrl_802A88AC.cpp` | `-opt noprop` | deform_indirect_texture_scroll keeps its s16 scroll offset as a named local (extsh r28, after the coordinate masks in r30/r29). With copy propagation the frontend replaces it with a hoisted temporary that the allocator colours first (r30). See docs/porting-exceptions.md section 5. |
 | `pso/boss/Boss5GryphonBehavior.cpp` | `GC/2.0` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/enemy/TObjEneGyaranzo.cpp` | `GC/2.0, -inline off,deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/TOExplosiveMachine.cpp` | `GC/2.0` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
