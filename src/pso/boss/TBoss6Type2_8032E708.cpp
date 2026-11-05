@@ -1354,7 +1354,7 @@ u8 *TBoss6Mag__ct(u8 *arg0, s32 arg1, u8 *arg2) {
     ((TObjEnemy *)arg0)->bind_enemy_combat_stats((u8 *)(get_battle_base_stats(0x2E)), (u8 *)(get_battle_attack_params(0x2E)), (u8 *)(get_battle_resistance_params(0x2E)));
     *(s16 *)((s8 *)arg0 + 0x33E) = *(s16 *)((s8 *)arg0 + 0x32C);
     *(s32 *)((s8 *)arg0 + 0x38C) = *(s16 *)((s8 *)arg0 + 0x32C);
-    ((TBoss3Volopt *)arg0)->reset_photon_effect();
+    ((TObjEnemy *)arg0)->register_by_id();
     enemy = (TObjEnemy *)arg0;
     prm = 0x55;
     if (*(s32 *)((s8 *)arg0 + 0x384) == 1) {

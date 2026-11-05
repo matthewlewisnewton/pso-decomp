@@ -899,7 +899,7 @@ Self_8005AE60 *TBoss4Type3__ct(Self_8005AE60 *self, s32 parent, s32 *arg2) {
     self->f2A8 = 0;
     ((TObjEnemy *)self)->bind_enemy_combat_stats((u8 *)((int)((s16 *)get_battle_base_stats(0x38))), (u8 *)(get_battle_attack_params(0x38)), (u8 *)(get_battle_resistance_params(0x38)));
     self->f33E = self->f3E4 = self->f32C;
-    ((TBoss3Volopt *)self)->reset_photon_effect();
+    ((TObjEnemy *)self)->register_by_id();
     ((TObjEnemy *)self)->set_param(0x2F);
     self->f3F0 = 0;
     self->f3FC = 0;

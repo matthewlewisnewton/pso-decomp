@@ -3,9 +3,9 @@
 
 extern "C" {
 
-u8 TObjPlayer__sub_801C010C(TechniqueCastState *, s32);
+u8 TObjPlayer__sub_801C010C(s32, s32);
 s32 is_invalid_slot__10TObjPlayerFUc(u8);
-u8 get_effective_technique_level__10TObjPlayerFPvs(TechniqueCastState *, s32);
+u8 get_effective_technique_level__10TObjPlayerFPvs(s32, s32);
 
 u8 TObjPlayer::is_valid_technique_id(s16 arg0) {
     s32 var_r4;
@@ -25,10 +25,10 @@ s32 TechniqueCastState::check_technique_level(s32 technique, u8 level) {
     if (is_invalid_slot__10TObjPlayerFUc(level) != 0) {
         return 1;
     }
-    if (level > TObjPlayer__sub_801C010C(this, technique)) {
+    if (level > TObjPlayer__sub_801C010C((s32)this, technique)) {
         return 0;
     }
-    return level <= get_effective_technique_level__10TObjPlayerFPvs(this, technique) ? 1 : 0;
+    return level <= get_effective_technique_level__10TObjPlayerFPvs((s32)this, technique) ? 1 : 0;
 }
 
 }

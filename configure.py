@@ -435,6 +435,17 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/boss/TBoss6EmptyWarp_802B0E2C.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
     # Calendar month/day stores retain GC/1.3.2 scheduling; see calendar-conversion-evidence.md.
     "pso/misc/pso_date.cpp": {"mw_version": "GC/1.3.2"},
+    # Curve and xz helpers fuse multiply-adds. The whole TU stays byte-exact
+    # with -fp_contract on (all three tunnel units), so the flag belongs on the
+    # unit rather than as per-function pragmas left over from the split units.
+    "pso/boss/TObjBoss2Tunnel_8003B138.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
+    # Deferred, with definitions in reverse address order: the ctor's
+    # function-local static and guard precede run_task's table guard in .sbss,
+    # as in the original (docs/porting-exceptions.md section 5).
+    "pso/boss/TObjBoss2Tunnel_802F2070.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on")},
+    # Upstream #185's -inline off,deferred, -pool off and -sdata 4; each is
+    # needed (docs/porting-exceptions.md section 5).
+    "pso/boss/TObjBoss2Tunnel.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-pool off", "-sdata 4", "-fp_contract on")},
     "pso/boss/TBoss4DarkFalz_8004C93C.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sym on")},
     # Upstream #180: the 8-byte zanzo motion list stays in .data (-sdata 4).
     "pso/object/TObjDFDemo1.cpp": {"cflags": _switch(cflags_pso, "-sdata 4")},
@@ -503,6 +514,21 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/item/TObjContainerItem.cpp": {"mw_version": "GC/1.3.2"},
     "pso/misc/TContainerAncient01.cpp": {"mw_version": "GC/1.3.2"},
     "pso/ui/TAdSinglePlyChrSelectGC_801FBF54.cpp": {"mw_version": "GC/1.3.2"},
+    # Four depth/UV multiply-adds contract, so -fp_contract on replaces the old
+    # per-function pragmas. -inline on inlines only clamped_active_slot
+    # and mark_grid_cell_occupied; -inline auto also inlines eight unmarked
+    # calls and those functions stop matching. See
+    # docs/evidence/chr-select-slot-clamp-inline.md.
+    # The eight compiler-pool globals before this unit's owned 0.53 / 1/256
+    # literals are defined by TAdMultiPlyChrSelectGC_literals.s, including the
+    # 16.0 conversion constant shared with the separately split ctor.
+    "pso/ui/TAdChrSelPlyPlateGC.cpp": {
+        "cflags": _switch(cflags_pso, "-fp_contract on", "-inline on"),
+        "symbol_mappings": {
+            "@102": "lbl_805DE580",
+            "@175": "TAdMultiPlyChrSelectGC__data_805DE584",
+        },
+    },
     "pso/misc/TQuestVmDownLoadServer.cpp": {"mw_version": "GC/1.3.2", "cflags": _switch(cflags_pso, "-inline deferred")},
     "pso/misc/TCameraCtrl.cpp": {"mw_version": "GC/1.3.2"},
     "pso/misc/TKeyBoardControl_8025EC04.cpp": {"mw_version": "GC/1.3.2"},
@@ -534,8 +560,26 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209
     "pso/unk/text_8034A090.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
     "pso/boss/TBoss7LaserLight.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
+    # Position jitter and the tentacle curve contract mul-add to fmadds, so
+    # this unit is built with -fp_contract on. -inline off,deferred emits
+    # functions and vtables in reverse source order: the Needle vtable then
+    # the Tentacle vtable, with .text still in address order.
+    # GC/2.0: the Needle constructor's const emitter copy. Before 2.5 a const
+    # local whose address escapes stays out of the worst-case alias set, so
+    # the three word loads of pos batch ahead of the stores; 2.6 interleaves.
+    "pso/boss/TBoss7TentacleNeedle.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on")},
+    # Photon bullet run_task contracts a mul-add. Deferred emission puts the
+    # compiler vtables in address order while the definitions stay bottom-to-top.
+    "pso/boss/TBoss7PhotonBullet_802EF26C.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on")},
     "pso/enemy/TObjEnemyCustom.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-pool off", "-str reuse,readonly")},
     "pso/boss/TBoss3VoloptCore.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
+    # -inline deferred is byte-identical to noauto,deferred,level=1 here
+    # (.text/.data/.rodata/.sdata2 and relocs). off,deferred changes 21
+    # functions (copy_transform, sub_802B96C0); noauto alone changes 86;
+    # -fp_contract off changes 71 (draw_part_motions, sub_802B626C). The
+    # multiply-adds are fmadds. dtk-template uses -inline auto and
+    # -fp_contract on; Melee, TP, TWW and Pikmin 2 contract globally.
+    "pso/boss/TBoss6Type1.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-fp_contract on")},
     "pso/boss/TBoss3VoloptP01.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
     # Delbiter uses deferred code generation: reverse source definitions put
     # native vtables before the switch tables and functions in address order.
@@ -555,6 +599,16 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/misc/TOBiwaMushi.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on", "-str reuse,readonly", "-sdata 4")},
     "pso/misc/TODragonflyCave01.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on", "-str reuse,readonly", "-sdata 4")},
     "pso/misc/TODragonflyMachine01.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on", "-str reuse,readonly", "-sdata 4")},
+    # Three fmadds in the original text, and nowhere else in the unit:
+    # __ct__10TOMineTrap at 0x80170058 (fmadds f2,f3,f4,f2), follow_target at
+    # 0x80170B9C (fmadds f0,f1,f0,f2), update_float_height at 0x80170D30
+    # (fmadds f0,f3,f1,f0). No fmsubs. The same expressions are fmuls+fadds
+    # when the flag is omitted. Every other function, including run_task, is
+    # byte-identical with the flag off, and .rodata stays exact.
+    # -inline on expands run_task's mode-4 strike helpers (strike_actor,
+    # strike_player, strike_enemy); no other function in the unit changes.
+    # See docs/porting-exceptions.md.
+    "pso/misc/TOMineTrap_8016F6F8.cpp": {"cflags": _switch(cflags_pso, "-inline on", "-fp_contract on")},
     "pso/item/TItem.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred")},
     # TItemProArmor.cpp, TItemProShield.cpp and TItemProUnit.cpp are written
     # from their last function back (deferred code generation, which also puts
@@ -709,6 +763,48 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/unk/text_8039739C.cpp": {"cflags": _switch(cflags_pso, "-O4,p")},
     "pso/quest/QuestOpcodeHandlers.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
     "pso/quest/TQuestThread.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
+    # init_from_id_lists (0x8002058C, size 0x30C) inlines its model and motion
+    # walks. Default -inline off outlines them. auto leaves .text at 62.53% and
+    # .data at 0%; auto,deferred leaves .text at 52.51% and .data at 0%. deferred
+    # matched the previous extern "C" body, but on this C++ function it emits the
+    # function at .text+0 instead of .text+0x1630, so the linked DOL does not
+    # match. -inline on keeps the bytes and that order. Precedent: dtk-template
+    # -inline auto https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203
+    # and Brawl -inline on https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264
+    "pso/misc/TLobby_8001EF5C.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
+    # TQuestListVM: deferred emission puts __vt__12TQuestListVM ahead of the
+    # run_task switch table (written from the last function back). -pool off
+    # keeps each title and window size its own reloc, and -str reuse,readonly
+    # matches the read-only string objects. The whole unit stays byte-exact.
+    # Precedent: dtk-template configure.py unit cflags, and this tree's
+    # TObjBoss2Tunnel / TBoss6EmptyWarp unit flags.
+    "pso/quest/TQuestListVM.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-pool off", "-str reuse,readonly")},
+    # Status gauge: contracting the unit makes `0.299f * depth + ctx->depth`
+    # the fmadds at 0x80257118. The bar multiply stays a separate fmuls
+    # because the 7.5 scale is applied to the sum before the tick subtract.
+    "pso/misc/TWindowSubStatusDisp_80256B94.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on")},
+    # Inventory walks read TItemList children through the class-body accessors
+    # TItemList::link_down / link_next (typed_down in TObjPlayer_801D4CB8, whose
+    # receiver is TObjPlayer). -inline noauto folds each call to the lwz of
+    # m_down (+0x14) or m_next (+0xC). -inline off leaves a bl and grows the
+    # walks (TObjPlayer__sub_801D4368 0x248 -> 0x278, and the TItemList walks
+    # by the same 8-byte call). -inline auto also inlines the unmarked
+    # TObjPlayer__sub_801D4730 into sort_by_key, so it is not this unit's flag.
+    # With noauto the whole object matches -inline off on the old cast spelling,
+    # including every function that does not call the accessor. Precedent:
+    # https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203
+    # (-inline auto) and TWindowMainMenu_802AD538.cpp (-inline noauto,level=1).
+    "pso/unk/text_801D40D4.cpp": {"cflags": _switch(cflags_pso, "-inline noauto")},
+    # Same -inline noauto as text_801D40D4.cpp. count_owned_items and the other
+    # TItemList walks stay the lwz of m_down / m_next; -inline off grows each.
+    "pso/player/TObjPlayer_801D5220.cpp": {"cflags": _switch(cflags_pso, "-inline noauto")},
+    # Same -inline noauto as text_801D40D4.cpp. The three TPlyItem walks
+    # (reduce_owner_matched_items, reduce_child_item_amounts,
+    # collect_owner_fields_recursive) stay byte-identical to the cast spelling.
+    "pso/player/TPlyItem.cpp": {"cflags": _switch(cflags_pso, "-inline noauto")},
+    # Same -inline noauto as text_801D40D4.cpp. destroy_subobjects_recursive's
+    # child load stays lwz r31,20(r3) and the sibling step stays lwz r31,12(r31).
+    "pso/player/TObjPlayer_801D4CB8.cpp": {"cflags": _switch(cflags_pso, "-inline noauto")},
 }
 
 # MusyX (Factor 5). Its objects carry extab/extabindex for every non-leaf

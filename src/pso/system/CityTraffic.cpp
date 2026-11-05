@@ -3,6 +3,7 @@
 #pragma push
 
 #include "types.h"
+#include "pso/system/StripBufferPair.h"
 #include "pso/misc/TCameraCtrl_803D6538.h"
 #include "pso/system/CityTraffic.h"
 #include "pso/unk/text_80184C2C.h"
@@ -68,7 +69,6 @@ extern const f32 lbl_805DBBC8;
 Obj_801815F8 *construct_traffic_manager(Obj_801815F8 *arg0);
 extern s32 city_traffic_path_motion_index_table[];
 extern s32 city_aircar_model_indices[];
-s32 alloc_tables__6TLobbyFll(s32, s32, s32, Ent_801817AC *);
 void subtract_vector(Vec_801817AC *, Vec_801817AC *);
 extern s32 city_traffic_car_chunk_index_table[];
 extern Lob_801817AC *city_air_car_model_resource;
@@ -163,8 +163,6 @@ void measure_traffic_path_lengths(void) {
   Motion_801817AC *m;
   s32 i;
   s32 j;
-  s32 *new_var;
-  s32 p;
   for (i = 0; i < 5; i++)
   {
     m = (Motion_801817AC *) get_city_common_motion(city_traffic_path_motion_index_table[i]);
@@ -197,13 +195,7 @@ void measure_traffic_path_lengths(void) {
     city_air_car_model_handle = TLobby__sub_80184C2C(2);
     for (j = 0; j < 5; j++)
     {
-      p = (int)::operator new(0x14);
-      new_var = city_traffic_car_chunk_index_table;
-      if (p != 0)
-      {
-        p = alloc_tables__6TLobbyFll(p, city_air_car_model_resource->entries[new_var[j]].f8, 1, city_air_car_model_resource->entries);
-      }
-      air_car_buffer_pair_table[j] = (void *)p;
+      air_car_buffer_pair_table[j] = new StripBufferPair(city_air_car_model_resource->entries[city_traffic_car_chunk_index_table[j]].f8, 1);
     }
   }
 }
