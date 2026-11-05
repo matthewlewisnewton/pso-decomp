@@ -2,53 +2,98 @@
 
 `THunterGuildWarning` has a warning mode, a timer and four message-window pointers.
 Construction, destruction, task dispatch and the renderer at 0x80211718–0x802119F0
-are byte-exact. Callee types here are the ones that match this translation unit.
+are byte-exact.
 
-Base: main `9759a32c140b66adea51215cab1d43c5482d3057`, merged normally.
+Base: main `e4877e8f1`, merged normally.
 
 ## Measured state
 
-Every touched function that this branch changes stays 100% under objdiff, except the challenge caller left unchanged (see below). `THunterGuildWarning_80211718`
+Every function this branch touches is 100% under objdiff. `THunterGuildWarning_80211718`
 (`close_windows`, `sub_80211774__19THunterGuildWarningFl` at 600 bytes, and
 `sub_802119CC__19THunterGuildWarningFv`) is linked. On main, `sub_80211774` was
 unmatched and the unit was 17.58%.
 
 `ninja -j8 && python3 tools/check_pr.py --no-build` reports one new exact
-function, zero regressions, and linked units 3553 → 3554, with complete code
-+728 and matched code +600. The same address `0x80269CC0` is renamed from
+function, zero regressions, and linked units 3554 → 3555, with complete code
++728. Address `0x80269CC0` is renamed from
 `create_message_window__6TLobbyFllUls` to
 `create_message_window__6TLobbyFPCvPCvUll` and stays 100% (100 bytes). The
 renderer references the split-owned `lbl_8044BC7C` / `lbl_8044BC84` symbols.
 `force_active` is unchanged.
 
-`queue_destruction` calls `TObject::queue_destruction`. `send_and_handle` calls
-`TLobby::send_and_handle` on the `TWindowMessage *`. `TUnk_804CE018` derives
-from `TLobby`, which adds no fields past `TObject` (`sizeof` 0x1C), so both
-`send_and_handle` and `set_position_xy` are offset 0 on that pointer. `TWindow__close` is the unmangled symbol at `0x80244A14`,
-called with the `TWindowMessage *` member.
+`TUnk_804CE018` derives from `TLobby`, which adds no fields past `TObject`
+(`sizeof` 0x1C), so `send_and_handle` and `set_position_xy` are called on a
+`TWindowMessage *` with no receiver cast. `TWindow__close` is the unmangled
+symbol at `0x80244A14`. It closes any window, so its one header declaration
+takes `void *`.
 
-`sub_80211774` and `sub_802119CC` are ordinary non-static members. `symbols.txt`
-names them `sub_80211774__19THunterGuildWarningFl` and
-`sub_802119CC__19THunterGuildWarningFv`. Implicit `this` stays in r3, and both
-functions stay 100% (600 and 36 bytes).
+`sub_80211774` and `sub_802119CC` are ordinary non-static members. Their
+symbol names are project-assigned (the DOL holds only class-name strings).
+The constructor's second parameter is the mode integer (`s32`,
+`__ct__19THunterGuildWarningFP7TObjectl`).
 
-The constructor's second parameter is the mode integer (`s32`). Its project-assigned
-symbol is `__ct__19THunterGuildWarningFP7TObjectl`, so `create_instance` passes
-that integer through with no pointer cast.
+`get_window_layout_position` returns `WindowLayoutPosition *` in
+`TWindowOptionCtrl_8026CBA4.h`. `create_yes_no_window`,
+`init_shop_judgment_window` and `create_window_menu` take that type in
+`TWindowSubComCard_80265410.h`. The guild-warning, quest-list, quest-thread
+and main-menu callers include those headers instead of declaring the
+functions locally. So do `TWindow`, `TShopDeleteItemWindow` and
+`TShopKeepItemWindow`, which no longer cast the layout.
 
-`THunterGuildWarning::sub_80211774` calls
-`TLobby::create_message_window(const void *, const void *, u32, s32)`.
-The original copies the slot with `mr` (case 0/1 from the `clrlwi` of
-`get_nth_view_player_id`, case 2 from the `s32` loop index). The factory
-`mr`s that register into `TWindowMessage__ct`. The ctor's `extsh` is the
-narrowing into `construct_with_parent`, whose third parameter in this
-translation unit is `s16`. Callers in other units call that same member.
-`update_selection__19TQuestListChallengeFv` still declares the old local
-prototype with a `u16` slot: calling the real `s32` parameter keeps the
-`clrlwi` but swaps the callee-saved registers of `sel` and the slot
-(r29/r30, 99.72%, 568 bytes). That caller is left on the local prototype.
+`TWindow__close` is declared once, in `TWindowSubComCard_80244774.h`.
+57 files used to declare it locally (`u8 *`, `void *` or `TWin_8020F070 *`);
+53 now include the header.
+
+## Register notes
+
+`TLobby::create_message_window` takes the slot as `s32`. The factory `mr`s it
+into `TWindowMessage__ct`, and the ctor's `extsh` is the narrowing into
+`construct_with_parent`, whose third parameter is `s16`.
+
+`update_selection__19TQuestListChallengeFv` passes `get_entity_id(...)`
+inline as the factory's last argument, as `TQuestListOffline` does. MWCC
+evaluates arguments right to left, so the call still comes first, and `sel`
+and the slot get r29/r30 as in the original. A named `id` local shared with
+the yes/no call is what swapped them (99.72%).
+
+In `sub_80211774` case 2 the selected text is an `int` passed to a `long`
+parameter inside the loop. MWCC hoists that conversion as the original's
+`mr r28, r27`. An `s32` variable or a literal at each call does not.
 
 ## Still open
 
-Message, CDF and base construction contracts are open. `lbl_8044BC7C` is
-copied as two floats (`Pair_8044BC7C`); that name is only the symbol address.
+These need cross-file retypes beyond this branch:
+
+- **The `s32` layout convention.** 75 files declare
+  `get_window_layout_position` as returning `s32`/`int`, and 101 declare it
+  locally. Window helpers that take that integer also need retyping:
+  `set_window_mode_4__6TLobbyFPvll` (18 caller files),
+  `update_window_mode_from_progress__6TLobbyFPv` (16),
+  `create_titled_window_menu__Fllll` (8), `check_room_seq_4`, and
+  `draw_card_icon`. Until then, `TWindowSubMag`, `TWindowSubTechnique`,
+  `set_window_mode_4` and the quest-list callers keep an integer-to-pointer
+  cast or a local mangled prototype.
+- **The window constructor chain.** A cast-free factory is
+  `return new TWindowMessage(...)`. That needs real ctors for
+  `TWindowMessage`, `TUnk_804CDFE8` (`construct_with_parent`) and
+  `TWindowDD::construct_base`. About 18 window ctors in other files call
+  those bases as C-named functions today.
+- **`TLobby::send_and_handle(int, int)`.** It has 127 call sites, so a text
+  pointer is still passed as an integer.
+- **Eight local `create_yes_no_window(s32, ...)` prototypes.** In
+  `THunterGuildSeqOffline`, `THunterGuildSeqOffline_80213788` and
+  `TMedicalCenterSequence` the same integer layout also goes to
+  `TShopSequence::create_message_window(s32, s32)` (8 caller files), some
+  through a two-argument lookup. `TShopGetItemWindow`,
+  `TShopJudgmentItemWindow`, `TShopArmorListWindow` and
+  `TShopEquipmentListWindow` pass it to local mangled `TWindowHelpItem` /
+  `TWindowInputNumber` ctor prototypes. A `new` expression there calls
+  `__nw__15TWindowHelpItemFUl` / `__nw__18TWindowInputNumberFUl`, while these
+  originals call `__nw__7TObjectFUl`. `TWindowSubComCard_802A5748` passes a
+  `s32` local filled by `get_position_offset`.
+- **Four local `TWindow__close` prototypes.** `TWindowChatSymbol_802486A8`,
+  `TWindowSubComCard_80271E7C`, `TWindowSubStatusDisp_8026F6DC` and
+  `TWindowSubTradeMain_80330A84` declare other functions from
+  `TWindowSubComCard_80244774.h` with different signatures
+  (`fn_8024491C`, `fn_80244958`, `TWindowSubComCard__sub_80245558`,
+  `TWindowSubTradeMain__sub_802448E4`).
