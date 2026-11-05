@@ -79,7 +79,7 @@ void render__14TObjBoss1FloorFv(void) {
         set_current_texture_list((GinjaTextureList *)(dragon_common_texture_list));
         temp_r31 = (unsigned char *) (*(void **)((s8 *)(*(void **)((s8 *)lbl_805D4B50 + 0x42C)) + 0x58));
         render_projected_shadow_receiver((u8 *)(temp_r31 + 8), (s32)(temp_r31 + 0x14));
-        draw_ginja_model((*(s32 *)((s8 *)temp_r31 + 4)));
+        draw_ginja_model((*(void **)((s8 *)temp_r31 + 4)));
         TScene::apply_single_screen_state();
         restore_draw_list_mask();
         pop_matrix();

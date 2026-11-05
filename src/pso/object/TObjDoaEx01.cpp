@@ -176,7 +176,7 @@ void TObjDoaEx01::update_closed() {
 
 struct NjObj_8018DD0C {
     u32 evalflags;
-    u32 model;
+    void *model;
     f32 pos[3];
     s32 ang[3];
     f32 scl[3];

@@ -162,7 +162,7 @@ struct Cam_801F9314 { Vec3_801F9314 dir; Vec3_801F9314 pos; s32 rot; };
 
 struct Color_801FAAEC { f32 r, g, b, a; };
 
-struct Model_801FAAEC { u8 pad[4]; s32 obj; };
+struct Model_801FAAEC { u8 pad[4]; void *obj; };
 
 struct Rec_801FAAEC {
     s16 id; s16 flags;
@@ -362,7 +362,7 @@ void setup_overhead_projection__13TRaderMapCoreFv(s32 arg0, Cam_801F9314 *arg1);
 void rotate_matrix_zyx(void *m, s32 x, s32 y, s32 z);
 void translate_matrix(u32 arg0, f32 x, f32 y, f32 z);
 void push_matrix(void);
-void draw_ginja_model(s32);
+void draw_ginja_model(void *);
 void set_chunk_material_override_pair(s32, s32);
 extern Color_801FAAEC radar_map_backdrop_color;
 extern u8 saved_model_draw_color[];

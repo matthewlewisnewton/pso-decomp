@@ -310,10 +310,10 @@ void TOTrapSeabed01::draw_object_tree(NJS_OBJECT *object) {
                 setup_particle_tev(0);
                 set_current_texture_list(TOTrapSeabed01__texture_file);
                 load_projection_tex_matrix(0x38E);
-                draw_ginja_model((s32)object->model);
+                draw_ginja_model(object->model);
                 reset_particle_tev();
             } else {
-                draw_ginja_model((s32)object->model);
+                draw_ginja_model(object->model);
             }
         }
         if (!(flags & 0x10)) {
