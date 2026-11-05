@@ -60,7 +60,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1147, `inline_depth` 1039,
 | `src/pso/misc/TLoadingCur.cpp:174` | `__cntlzw` |
 | `src/pso/misc/TLobby_80145E40.cpp:28` | `__cntlzw` |
 | `src/pso/misc/TLobby_803C4698.cpp:234` | `__frsqrte` |
-| `src/pso/misc/TMainCursor.cpp:845` | `__cntlzw` |
+| `src/pso/misc/TMainCursor.cpp:844` | `__cntlzw` |
 | `src/pso/misc/TNpcPlayer.cpp:2371` | `__cntlzw` |
 | `src/pso/misc/TOHealGeneral.cpp:64` | `__cntlzw` |
 | `src/pso/misc/TOSymbolchatColli.cpp:93` | `__cntlzw` |
@@ -78,7 +78,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1147, `inline_depth` 1039,
 | `src/pso/misc/TWindowSnapShot_802A5B2C.cpp:43` | `__rlwinm` |
 | `src/pso/misc/TWindowSnapShot_802A5B2C.cpp:44` | `__rlwinm` |
 | `src/pso/misc/TWindowSubComCard_80244774.cpp:229` | `__cntlzw` |
-| `src/pso/misc/TWindowSubItem.cpp:362` | `__cntlzw` |
+| `src/pso/misc/TWindowSubItem.cpp:361` | `__cntlzw` |
 | `src/pso/misc/TWindowSubStatusDisp_8025A9B4.cpp:96` | `__cntlzw` |
 | `src/pso/misc/TWindowSubStatusDisp_80287570.cpp:209` | `__cntlzw` |
 | `src/pso/object/TObjCMMainMenu_8028D9A8.cpp:108` | `__cntlzw` |
@@ -89,8 +89,8 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1147, `inline_depth` 1039,
 | `src/pso/player/TObjPlayer_80011014.cpp:4898` | `__frsqrte` |
 | `src/pso/player/TObjPlayer_800AAFBC.cpp:350` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_8012AF98.cpp:12` | `__cntlzw` |
-| `src/pso/player/TObjPlayer_801AF2F0.cpp:2509` | `__cntlzw` |
-| `src/pso/player/TObjPlayer_801AF2F0.cpp:5048` | `__cntlzw` |
+| `src/pso/player/TObjPlayer_801AF2F0.cpp:2511` | `__cntlzw` |
+| `src/pso/player/TObjPlayer_801AF2F0.cpp:5050` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_803DF7A8.cpp:95` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_803DF7A8.cpp:116` | `__frsqrte` |
 | `src/pso/player/TObjPlayer_803DF7A8.cpp:131` | `__fabs` |
@@ -126,8 +126,8 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1147, `inline_depth` 1039,
 | File:line | Source |
 |---|---|
 | `src/pso/boss/TObjBoss2Tunnel_803E2BAC.cpp:22` | `#define GXWGFifo_803E2BCC (*(volatile WGPipe_803E2BCC *)0xCC008000)` |
-| `src/pso/misc/TMainCursor.cpp:896` | `((TMainCursor *)arg2)->set_flags(0xE0000800);` |
-| `src/pso/misc/TMainCursor.cpp:912` | `((TMainCursor *)arg2)->set_flags(0xE0000000);` |
+| `src/pso/misc/TMainCursor.cpp:895` | `((TMainCursor *)arg2)->set_flags(0xE0000800);` |
+| `src/pso/misc/TMainCursor.cpp:911` | `((TMainCursor *)arg2)->set_flags(0xE0000000);` |
 | `src/pso/misc/TParticleCtrl_803E29FC.cpp:32` | `#define GXWGFifo_803E2A1C (*(volatile WGPipe_803E2A1C *)0xCC008000)` |
 | `src/pso/misc/TWindowSubStatusDisp_803DEE6C.cpp:12` | `#define FIFO_803DF00C (*(volatile Pipe_803DF00C *)0xCC008000)` |
 | `src/pso/misc/TWindowSubStatusDisp_803DEE6C.cpp:34` | `#define FIFO_803DEECC (*(volatile Pipe_803DEECC *)0xCC008000)` |
