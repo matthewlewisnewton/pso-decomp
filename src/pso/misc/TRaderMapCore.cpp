@@ -1085,9 +1085,9 @@ void TRaderMapCore::draw_compass(s32 mode) {
     sprite.y = marker_xy[1] + (f32)lbl_804C87E4[1].center_y;
     set_default_alpha_blend();
     color.ch.alpha = (u8)(s32)this->m_19c;
-    color_arg = color.word >> 16;
-    color_arg = __rlwimi(color_arg, color.word, 16, 0, 7);
-    color_arg = __rlwimi(color_arg, color.word, 16, 8, 15);
+    // Right-nested so the low half is the rlwinm base: srwi, then rlwimi 0,7, then rlwimi 8,15.
+    color_arg = (s32)(((color.word << 16) & 0x00FF0000u) |
+                      (((color.word << 16) & 0xFF000000u) | (color.word >> 16)));
     sprite.draw_compass_sprite(1, color_arg, 0x21, TRaderMapCore__data_805DC58C);
     sprite.x = compass_xy[0] + (f32)lbl_804C87E4[0].center_x;
     sprite.y = compass_xy[1] + (f32)lbl_804C87E4[0].center_y;
