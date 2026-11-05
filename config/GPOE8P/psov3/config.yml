@@ -826,6 +826,8 @@ force_active:
   - TObjBoss2Tunnel__sub_8003C1C8
   - TObjBoss2Tunnel__sub_8007DB80
   - TObjBoss2Tunnel__sub_8007EAE4
+  - TObjBoss2Tunnel__sub_802F22F4
+  - TObjBoss2Tunnel__sub_802F2A2C
   - TObjBoss5PillarCtrl__ct
   - TObjBoss5PillarDemo__ct
   - TObjBoss5PillarDemo__sub_8028ACE8
@@ -2501,6 +2503,7 @@ force_active:
   - __dt__25TBoss6Demo10_TYPE1_APPEARFv
   - __dt__25TBoss6Demo20_TYPE2_APPEARFv
   - __dt__25THunterGuildSeqOnlineTaskFv
+  - __dt__25TObjCityMainWarpChallengeFv
   - __dt__25TObjEneDellBiter_Eff_RushFv
   - __dt__25TObjEneMe1Canadin_EffLineFv
   - __dt__26TBoss5GryphonLightningHornFv
@@ -3085,6 +3088,7 @@ force_active:
   - __vt__25TBoss6Demo10_TYPE1_APPEAR
   - __vt__25TBoss6Demo20_TYPE2_APPEAR
   - __vt__25THunterGuildSeqOnlineTask
+  - __vt__25TObjCityMainWarpChallenge
   - __vt__25TObjEneDellBiter_Eff_Rush
   - __vt__25TObjEneMe1Canadin_EffLine
   - __vt__26TBoss5GryphonLightningHorn
@@ -3210,6 +3214,7 @@ force_active:
   - advance_cut__11TBoss4Type3Fv
   - advance_dark_magic__11TBoss4Type3Fv
   - advance_dead__11TBoss4Type3Fv
+  - advance_effect_timer__13TUnk_804E4B3CFv
   - advance_flee_step__12TObjEneLappyFv
   - advance_go_down__11TBoss4Type3Fv
   - advance_go_up__11TBoss4Type3Fv
@@ -3961,6 +3966,8 @@ force_active:
   - boss2_tunnel_model_index_table
   - boss2_tunnel_model_order_table
   - boss2_tunnel_snapshot_buffer
+  - boss2_tunnel_spawn_timer_table
+  - boss2_tunnel_spawn_timer_table_b
   - boss2_tunnel_state_flag
   - boss4_type2_attack_pattern_table
   - boss4_type2_class_name
@@ -4337,6 +4344,7 @@ force_active:
   - check_bin_model_loaded__6TLobbyFPvPv
   - check_body_collision_at__17TObjEneMe3ShinowaFlf
   - check_body_collision_at__18TObjEneMe3SinowZoaFlf
+  - check_both__13TUnk_804E4B3CFv
   - check_can_attack__12TBoss1DragonFv
   - check_can_attack__13TObjEneMe1GeeFv
   - check_can_attack__14TObjEnePanBARAFv
@@ -4778,6 +4786,7 @@ force_active:
   - count_flags__23TAdSinglePlyChrSelectGCFPv
   - count_if_within_range__13TUnk_804CC148Fv
   - count_matching_values__11TBoss6Type2Fll
+  - count_players_in_warp_radius__25TObjCityMainWarpChallengeFv
   - count_plist_strips_by_texture__FPvPvPv
   - count_selected_flags__23TAdSinglePlyChrSelectGCFv
   - count_slots__13TWindowSubMagFv
@@ -4932,6 +4941,7 @@ force_active:
   - debug_font_texture_i4
   - debug_font_texture_object
   - debug_print_area_num__17TObjWarpBossMultiFv
+  - debug_print_area_num__25TObjCityMainWarpChallengeFv
   - debug_print_item_box_info__21TObjContainerAbeEnemyFv
   - debug_print_ranges__8TOKurageFv
   - debug_render_overlay__9TMainTaskFv
@@ -6504,6 +6514,7 @@ force_active:
   - init_draw_state__15TObjEneDelDepthFv
   - init_drop_table__9TItemDropFv
   - init_effect__11TBoss4Type3FPv
+  - init_effect__13TUnk_804E4B3CFv
   - init_effect_object__13TUnk_804EDD20Fv
   - init_effect_slot_1__11TBoss6Type1Fv
   - init_enemy__16TObjEneRe7BeruraFv
@@ -6781,6 +6792,7 @@ force_active:
   - is_outside_visible_range__18TObjEneMe3SinowZoaFv
   - is_p02_idle__12TBoss3VoloptFv
   - is_phase_12__14TObjEnePanBARAFv
+  - is_phase_active__13TUnk_804E4B3CFv
   - is_phase_e__9TObjEneDDFPv
   - is_photon_blast_presentation_admitted__FUlPv
   - is_player_in_range__10TObjPlayerFllf
@@ -7487,6 +7499,10 @@ force_active:
   - lbl_805137C8
   - lbl_80513918
   - lbl_80513F70
+  - lbl_80514CE0
+  - lbl_80514CE8
+  - lbl_80514CF0
+  - lbl_80514D40
   - lbl_8051607C
   - lbl_80540B64
   - lbl_80540B70
@@ -13727,6 +13743,7 @@ force_active:
   - render__25TBoss5GryphonLightningEffFv
   - render__25TBoss6Demo10_TYPE1_APPEARFv
   - render__25TBoss6Demo20_TYPE2_APPEARFv
+  - render__25TObjCityMainWarpChallengeFv
   - render__25TObjEneDellBiter_Eff_RushFv
   - render__25TObjEneMe1Canadin_EffLineFv
   - render__26TBoss5GryphonLightningHornFv
@@ -14389,6 +14406,7 @@ force_active:
   - run_task__25TBoss6Demo10_TYPE1_APPEARFv
   - run_task__25TBoss6Demo20_TYPE2_APPEARFv
   - run_task__25THunterGuildSeqOnlineTaskFv
+  - run_task__25TObjCityMainWarpChallengeFv
   - run_task__25TObjEneDellBiter_Eff_RushFv
   - run_task__25TObjEneMe1Canadin_EffLineFv
   - run_task__26TBoss5GryphonLightningHornFv
@@ -15203,6 +15221,7 @@ force_active:
   - sound_effect_range_w_enemy
   - sound_effect_range_w_env
   - sound_effect_range_weapon
+  - spawn__13TUnk_804E4B3CFlP3Vec
   - spawn_afterimages__11TBoss4Type2Fv
   - spawn_ambient_particles__15TBoss3VoloptP02Fv
   - spawn_ancient_trap__12TBoss8DragonFii
@@ -15269,6 +15288,8 @@ force_active:
   - spawn_recoil_dust__14TObjEneBm5WolfFiPv
   - spawn_recovery_effect__10TObjPlayerFv
   - spawn_scattered_lightning_strikes__FPUcl
+  - spawn_segment_row_a__13TUnk_804E4B3CFv
+  - spawn_segment_row_b__13TUnk_804E4B3CFv
   - spawn_slime_in_slot
   - spawn_slow_effect__10TObjPlayerFii
   - spawn_sub_objects__15TBoss3VoloptP02Fv
@@ -15614,6 +15635,9 @@ force_active:
   - sub_802E1F14__12TAdTimeSetGCFv
   - sub_802F09EC__14TBoss7TentacleFv
   - sub_802F09FC__14TBoss7TentacleFv
+  - sub_802F23FC__13TUnk_804E4B3CFv
+  - sub_802F2400__13TUnk_804E4B3CFv
+  - sub_802F273C__13TUnk_804E4B3CFv
   - sub_803003A4__21TAdMultiSelGameModeGCFv
   - sub_80300648__21TAdMultiSelGameModeGCFv
   - sub_80300764__21TAdMultiSelGameModeGCFv
@@ -15997,6 +16021,7 @@ force_active:
   - update_chair__11TMainCursorFv
   - update_challenge_4p_retry__20TObjChallenge4PRetryFv
   - update_challenge_retry__18TObjChallengeRetryFv
+  - update_challenge_state__25TObjCityMainWarpChallengeFv
   - update_chara_making__10TObjPlayerFv
   - update_charge__11TBoss6Type1Fv
   - update_charge_attack__14TObjEneIllGillFv
@@ -16113,6 +16138,7 @@ force_active:
   - update_duel_end_effect
   - update_duel_result__6TLobbyFPv
   - update_duel_start_countdown__15TDuelEffectCtrlFv
+  - update_dust_spawn__13TUnk_804E4B3CFv
   - update_dying__9TObjGrassFPv
   - update_dying_state__14TObjEneBm5WolfFl
   - update_dying_state__15TObjEnemyCustomFv
@@ -16376,6 +16402,7 @@ force_active:
   - update_phase2_intro__12TBoss3VoloptFv
   - update_phase__11TBoss6Type1Fv
   - update_phase__14TBoss6PlotFalzFv
+  - update_phase_motion__13TUnk_804E4B3CFv
   - update_phase_timer__11TBoss4Type2Fv
   - update_phase_timer__11TBoss4Type3Fv
   - update_photon_blast_camera_pose
@@ -16489,6 +16516,7 @@ force_active:
   - update_spark_toggle__16TOSparkMachine01Fl
   - update_spawn__15TObjEneMe1GiGueFv
   - update_spawn_state__14TObjEneGibblesFv
+  - update_spawn_timer__13TUnk_804E4B3CFPClll
   - update_spawn_type2_countdown__14TBoss4DarkFalzFv
   - update_spawning__20TContainerAncient01RFv
   - update_special_pose__11TItemMagSubFv

@@ -353,6 +353,7 @@ pso/boss/TObjBoss2RaftSplash_8003B0A0.cpp
 pso/boss/TObjBoss2Tunnel.cpp
 pso/boss/TObjBoss2Tunnel_8003B138.cpp
 pso/boss/TObjBoss2Tunnel_802F1A58.cpp
+pso/boss/TObjBoss2Tunnel_802F2070.cpp
 pso/boss/TObjBoss2Tunnel_8036EF0C.cpp
 pso/boss/TObjBoss2Tunnel_803E2BAC.cpp
 pso/boss/TObjBoss5Ctrl.cpp
@@ -1096,6 +1097,7 @@ pso/misc/TLobby_80221820.cpp
 pso/misc/TLobby_80222D24.cpp
 pso/misc/TLobby_802230F8.cpp
 pso/misc/TLobby_80226070.cpp
+pso/misc/TLobby_802268F4.cpp
 pso/misc/TLobby_80228C84.cpp
 pso/misc/TLobby_80242910.cpp
 pso/misc/TLobby_80243370.cpp
@@ -2074,6 +2076,7 @@ pso/object/TObjCityMainWarpChallenge.cpp
 pso/object/TObjCityMainWarp_801867F4.cpp
 pso/object/TObjCityMainWarp_80186C44.cpp
 pso/object/TObjCityMainWarp_80186E24.cpp
+pso/object/TObjCityMainWarp_80186F84.cpp
 pso/object/TObjCollision.cpp
 pso/object/TObjComputer.cpp
 pso/object/TObjControl.cpp

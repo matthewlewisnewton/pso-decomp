@@ -450,7 +450,14 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Deferred, with definitions in reverse address order: the ctor's
     # function-local static and guard precede run_task's table guard in .sbss,
     # as in the original (docs/porting-exceptions.md section 5).
-    "pso/boss/TObjBoss2Tunnel_802F2070.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on")},
+    # .sbss starts at 0x805D696C and .sdata2 at 0x805DECCC, both only 4-aligned.
+    # mwld takes alignment from the CodeWarrior comment record, which GC/2.6
+    # writes as 8, so the pool and every later sda21 offset shift by 4.
+    # cw_align rewrites that record after compile. -sdata 4 does not.
+    "pso/boss/TObjBoss2Tunnel_802F2070.cpp": {
+        "cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on"),
+        "cw_align": ".sbss=4 .sdata2=4",
+    },
     # Upstream #185's -inline off,deferred, -pool off and -sdata 4; each is
     # needed (docs/porting-exceptions.md section 5).
     "pso/boss/TObjBoss2Tunnel.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-pool off", "-sdata 4", "-fp_contract on")},
@@ -738,6 +745,10 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/misc/TOSensorGeneral01.cpp": {"cflags": _switch(cflags_pso, "-sdata 4", "-str reuse,readonly", "-pool off")},
     # Unlike the other keys it addresses its descriptors off one .data base.
     "pso/misc/TOKeyGenericSw.cpp": {"cflags": _switch(cflags_pso, "-sdata 4", "-str reuse,readonly")},
+    # __vt__25TObjCityMainWarpChallenge at 0x804B6188 precedes
+    # jumptable_804B61DC. Whole unit matches with nothing inlined.
+    # See docs/evidence/city-main-warp-challenge-vtable.md.
+    "pso/object/TObjCityMainWarpChallenge.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     # Quest-collision deleting destructors share a TU. Deferred generation
     # emits the last definition first, which is the only order that puts each
     # vtable before the next class's (TObjQuestColA then TObjQuestCol;
