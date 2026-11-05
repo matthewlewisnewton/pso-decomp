@@ -50,7 +50,7 @@ void TODummyKeyCave01::sub_80165940() {
     case AREA_CAVE1:
     case AREA_CAVE2:
     case AREA_CAVE3:
-        self->f34 = (void *)get_bml_model(TOKeyCave01__resource_bundle, 0);
+        self->f34 = get_bml_model(TOKeyCave01__resource_bundle, 0);
         self->f90 = TOKeyCave01__texture_lists[0];
         self->f94 = TOKeyCave01__texture_lists[1];
         break;
@@ -58,14 +58,14 @@ void TODummyKeyCave01::sub_80165940() {
     case AREA_FOREST2:
     case AREA_MINE1:
     case AREA_MINE2:
-        self->f34 = (void *)get_bml_model(TOKeyMachine01__resource_bundle, 0);
+        self->f34 = get_bml_model(TOKeyMachine01__resource_bundle, 0);
         self->f90 = TOKeyMachine01__texture_lists[0];
         self->f94 = TOKeyMachine01__texture_lists[1];
         break;
     case AREA_RUINS1:
     case AREA_RUINS2:
     case AREA_RUINS3:
-        self->f34 = (void *)get_bml_model(TOKeyAncient03__model_archive, 0);
+        self->f34 = get_bml_model(TOKeyAncient03__model_archive, 0);
         self->f90 = TOKeyAncient03__texture_variants[0];
         self->f94 = TOKeyAncient03__texture_variants[1];
         break;
@@ -76,11 +76,11 @@ void TODummyKeyCave01::sub_80165940() {
     case AREA_VR_SPACESHIP_ALPHA:
     case AREA_VR_SPACESHIP_BETA:
         if (self->fBC == 0) {
-            self->f34 = (void *)get_bml_model(TOKeyCave01__resource_bundle, 0);
+            self->f34 = get_bml_model(TOKeyCave01__resource_bundle, 0);
             self->f90 = TOKeyCave01__texture_lists[0];
             self->f94 = TOKeyCave01__texture_lists[1];
         } else {
-            self->f34 = (void *)get_bml_model(TOKeyMachine01__resource_bundle, 0);
+            self->f34 = get_bml_model(TOKeyMachine01__resource_bundle, 0);
             self->f90 = TOKeyMachine01__texture_lists[0];
             self->f94 = TOKeyMachine01__texture_lists[1];
         }
@@ -94,7 +94,7 @@ void TODummyKeyCave01::sub_80165940() {
     case AREA_SEABED_LOWER:
     case AREA_SEASIDE_NIGHT:
     case AREA_TOWER:
-        self->f34 = (void *)get_bml_model(TOKeyCave01__resource_bundle, 0);
+        self->f34 = get_bml_model(TOKeyCave01__resource_bundle, 0);
         self->f90 = TOKeyCave01__texture_lists[0];
         self->f94 = TOKeyCave01__texture_lists[1];
         self->fD0 = 1;

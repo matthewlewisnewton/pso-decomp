@@ -120,9 +120,9 @@ void TObjLobbyMain::load_resources() {
     void *resource = new BmlResource(5, (BmlResourceDescriptor *)(&bm_obj_lobby_main_resource_descriptor), 0, 0, (void *)(0));
     model_resource = (BmlResource *)resource;
     lobby_texlist = TLobby::get_lobby_texlist();
-    computer_screen_model = (NJS_CNK_MODEL *)((NJS_OBJECT *)get_bml_model(model_resource, 6))
+    computer_screen_model = (NJS_CNK_MODEL *)(get_bml_model(model_resource, 6))
         ->child->sibling->sibling->sibling->sibling->sibling->sibling->model;
-    computer_screen_model_b = (NJS_CNK_MODEL *)((NJS_OBJECT *)get_bml_model(model_resource, 2))
+    computer_screen_model_b = (NJS_CNK_MODEL *)(get_bml_model(model_resource, 2))
         ->child->sibling->sibling->sibling->model;
     computer_last_frame_tick = 0;
 }
@@ -222,7 +222,7 @@ void TObjLobbyMain::render() {
         if (motion != 5) {
             draw_ginja_model_with_motion(get_bml_model(model_resource, model_index), get_bml_motion(model_resource, motion), animation_frame);
         } else {
-            draw_ginja_object((void *)get_bml_model(model_resource, index));
+            draw_ginja_object(get_bml_model(model_resource, index));
         }
         pop_matrix();
     }

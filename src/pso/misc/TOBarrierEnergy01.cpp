@@ -56,7 +56,7 @@ static void *barrier_energy_model;
 TOBarrierEnergy01::TOBarrierEnergy01(TObject *parent, void *set_data) : TODoorBase(parent) {
     m_name = TOBarrierEnergy01_name;
     apply_object_set_data(set_data);
-    model = (void *)get_bml_model(barrier_energy_shared_bml_archive, 1);
+    model = get_bml_model(barrier_energy_shared_bml_archive, 1);
     texlist = barrier_energy_texlists[0];
     motion = get_bml_motion(barrier_energy_shared_bml_archive, 0);
     animation_end_frame = (f32)motion->frameCount - 1.0f;
@@ -77,7 +77,7 @@ TOBarrierEnergy01::~TOBarrierEnergy01() {
 void TOBarrierEnergy01::load_resources() {
     BmlResource *archive = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&bm_fs_obj_lazerguard_resource_descriptor), 0, 0, (void *)(0));
     barrier_energy_shared_bml_archive = archive;
-    barrier_energy_model = (void *)get_bml_model(archive, 0);
+    barrier_energy_model = get_bml_model(archive, 0);
     barrier_energy_texlists = (s32 *)::operator new[](3 * sizeof(s32));
     barrier_energy_texlists[0] = (s32)load_gvm_texture_file((s32)"fs_obj_laz_guard_r.gvm");
     barrier_energy_texlists[1] = TObjFish__sub_8001EDB0(barrier_energy_shared_bml_archive, 1);

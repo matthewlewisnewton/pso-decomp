@@ -1595,7 +1595,7 @@ void load_forest_box_resources(void) {
         lbl_805D5B7C = (s32)load_gvm_texture_file((s32)lbl_80444F58);
         lbl_805D5B80 = &forest_box_break_params[2];
         lbl_805D5B84 = &forest_box_break_params[3];
-        node = (u32 *)find_object_node((NJS_OBJECT *)(get_bml_model(lbl_805D5B78, 1)), 2);
+        node = (u32 *)find_object_node((get_bml_model(lbl_805D5B78, 1)), 2);
         if (node != NULL) {
             *node |= 0x100000;
         }
