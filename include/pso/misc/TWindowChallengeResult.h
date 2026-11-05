@@ -8,7 +8,7 @@ struct TWindowChallengeResult : public TUnk_804CE018 {
     virtual ~TWindowChallengeResult();
     virtual void render();
 
-    u8 unk_1C[0x4C];
+    u8 unk_1C[8];
 };
 
 typedef char TWindowChallengeResult_size[sizeof(TWindowChallengeResult) == 0x68 ? 1 : -1];
