@@ -3,6 +3,7 @@
 #include "pso/item/TUnk_804A0688.h"
 #include "pso/item/TItemTimerEvent.h"
 #include "pso/boss/TBoss3Volopt.h"
+#include "pso/player/TObjPlayer.h"
 
 struct Base_8011E140_8011DA9C { char pad[0x18]; };
 struct VObj_8011E140_8011DA9C : Base_8011E140_8011DA9C {
@@ -53,7 +54,7 @@ void TUnk_804A0668::vfunc_7() {
 }
 
 void TUnk_804A0688::vfunc_6() {
-    ((TBoss3Volopt *)(this->m_28))->get_field_3e0();
+    ((TObjPlayer *)this->m_28)->get_current_area();
     if ((is_item_area_enabled() == 1) && (obj_isState3_324__9TObjCharaFv(this->m_28) == 0) && (obj_testFlags30__14TObjCollidableFUl(this->m_28, 0x800) == 0)) {
         TObjectV8047c128_subtract_hp((u8 *)this->m_28, 1);
     }
