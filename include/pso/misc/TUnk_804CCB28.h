@@ -2,6 +2,7 @@
 #define PSO_MISC_TUNK_804CCB28_H
 #include "types.h"
 #include "pso/TObject.h"
+#include "pso/system/vector.h"
 
 struct TUnk_804DDF04;
 
@@ -13,20 +14,20 @@ public:
     virtual void run_task();
     u8 unk_1C[0x4];
     s16 m_20;
-    u8 unk_22[0x2];
+    s16 m_22;
     TUnk_804DDF04 *m_24;
-    u8 unk_28[0xC];
+    Vec m_28;
     f32 m_34;
-    u8 unk_38[0x4];
+    f32 m_38;
     f32 m_3c;
     f32 m_40;
-    u8 unk_44[0x4];
+    f32 m_44;
     f32 m_48;
-    u8 unk_4C[0x4];
+    f32 m_4c;
     f32 m_50;
-    u8 unk_54[0x4];
+    f32 m_54;
     s32 m_58;
-    u8 unk_5C[0x4];
+    s32 m_5c;
     s32 m_60;
 };
 typedef char TUnk_804CCB28_size[sizeof(TUnk_804CCB28) == 0x64 ? 1 : -1];

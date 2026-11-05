@@ -17,6 +17,7 @@
 #include "pso/effect/TEffIndirectCtrl_802A88AC.h"
 #include "pso/effect/TEffIndirectCtrl_802A9284.h"
 #include "pso/math/AngleLookup.h"
+#include "pso/misc/TLobby_800F9DA0.h"
 #include "pso/misc/TScene.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/player/TObjPlayer.h"
@@ -30,6 +31,7 @@
 #include "pso/system/GinjaTextureInput.h"
 #include "pso/system/memory.h"
 #include "pso/unk/text_802A8210.h"
+#include "pso/unk/text_803DD5E0.h"
 
 // Built with deferred code generation, which emits functions last-defined
 // first: the definitions below run from the end of the unit
@@ -44,12 +46,6 @@ struct Cell_802A8FD8
   u16 idx;
   u16 val;
 };
-
-extern "C" {
-s32 read_disc_file(const char *, void *);
-void set_texture_name(GinjaTextureEntry *entry, GinjaTextureInput *input, s32 texture_id, s32 attr);
-void load_texture_list(GinjaTextureList *list);
-}
 
 const char *indirect_dat_filename = "indirect.dat";
 const char *indinfo_dat_filename = "indinfo.dat";

@@ -400,9 +400,9 @@ void TUnk_804CCB28::run_task() {
     Stack_80238388 stack;
     f32 temp_f1;
     this->m_58 = (this->m_58 + 1);
-    *(s32 *)&this->unk_5C = (s32) (*(s32 *)&this->unk_5C + 1);
-    if ((s32) *(s32 *)&this->unk_5C >= 0x10) {
-        *(s32 *)&this->unk_5C = 0;
+    this->m_5c = (this->m_5c + 1);
+    if ((s32) this->m_5c >= 0x10) {
+        this->m_5c = 0;
     }
     if ((s32) this->m_58 > 0x6E) {
         queue_destruction__7TObjectFv((arg0));
@@ -552,7 +552,7 @@ void run_task__10TTecRaFoieFv(TTecRaFoie *arg0);
 
 extern s32 tl_particle;
 s32 __ct__7TObjectFP7TObject(void *, void *);
-u8 *create_fire_explosion_effect(u8 *arg0, s32 *arg1, s16 arg2, s32 arg3, f32 farg0);
+TUnk_804CCB28 *create_fire_explosion_effect(TUnk_804CCB28 *self, s32 *arg1, s16 arg2, s32 arg3, f32 farg0);
 void copy_technique_target_list(void *, void *);
 extern s32 __vt__10TTecRaFoie[];
 u8 *construct_targeted__10TTecRaFoieFPvPvPvPvi(u8 *self, void *source, void *origin, void *targets, int level);
@@ -561,63 +561,63 @@ Obj_80238AE8 *TTecRaFoie__ct(Obj_80238AE8 *arg0, void * _w1, void * _w2, void * 
 void *__dt__10TTecRaFoieFv(void *arg0, s16 arg1);
 }
 
-u8 *create_rafoie_explosion(u8 *arg0, s32 *arg1, s16 arg2, s16 arg3, s32 arg4, f32 farg0);
-u8 *create_rafoie_explosion(u8 *arg0, s32 *arg1, s16 arg2, s16 arg3, s32 arg4, f32 farg0) {
+TUnk_804CCB28 *create_rafoie_explosion(TUnk_804CCB28 *self, s32 *arg1, s16 arg2, s16 arg3, s32 arg4, f32 farg0);
+TUnk_804CCB28 *create_rafoie_explosion(TUnk_804CCB28 *self, s32 *arg1, s16 arg2, s16 arg3, s32 arg4, f32 farg0) {
     typedef char sp8_offset[(offsetof(Stack_802384E0, sp8) == 0x0) ? 1 : -1];
     typedef char spC_offset[(offsetof(Stack_802384E0, spC) == 0x4) ? 1 : -1];
     Stack_802384E0 stack;
-    __ct__7TObjectFP7TObject((void *)arg0, (void *)arg4);
-    *(s32 **)((s8 *)arg0 + 0x18) = &lbl_804CCB28.value;
-    ((TUnk_804CCB28 *)arg0)->m_20 = arg2;
-    *(s16 *)((s8 *)arg0 + 0x22) = arg3;
-    ((TUnk_804CCB28 *)arg0)->m_60 = 1;
-    VecCopy((Vec *)(arg0 + 0x28), (const Vec *)(arg1));
-    *(f32 *)((s8 *)arg0 + 0x44) = farg0;
-    ((TUnk_804CCB28 *)arg0)->m_58 = 0;
-    *(s32 *)((s8 *)arg0 + 0x5C) = 0;
-    ((TUnk_804CCB28 *)arg0)->m_34 = (f32) (1.2f);
-    *(f32 *)((s8 *)arg0 + 0x38) = (f32) (1.2f);
-    ((TUnk_804CCB28 *)arg0)->m_3c = (f32) (1.2f);
-    ((TUnk_804CCB28 *)arg0)->m_48 = (f32) (1.0f);
-    *(f32 *)((s8 *)arg0 + 0x4C) = (f32) (1.0f);
-    ((TUnk_804CCB28 *)arg0)->m_50 = (f32) (1.0f);
-    *(f32 *)((s8 *)arg0 + 0x54) = (f32) (1.0f);
-    VecCopy((Vec *)(&stack.sp8), (const Vec *)(arg0 + 0x28));
+    __ct__7TObjectFP7TObject((void *)self, (void *)arg4);
+    *(s32 **)((s8 *)self + 0x18) = &lbl_804CCB28.value;
+    self->m_20 = arg2;
+    self->m_22 = arg3;
+    self->m_60 = 1;
+    VecCopy(&self->m_28, (const Vec *)(arg1));
+    self->m_44 = farg0;
+    self->m_58 = 0;
+    self->m_5c = 0;
+    self->m_34 = (f32) (1.2f);
+    self->m_38 = (f32) (1.2f);
+    self->m_3c = (f32) (1.2f);
+    self->m_48 = (f32) (1.0f);
+    self->m_4c = (f32) (1.0f);
+    self->m_50 = (f32) (1.0f);
+    self->m_54 = (f32) (1.0f);
+    VecCopy((Vec *)(&stack.sp8), &self->m_28);
     stack.spC += (5.0f);
-    VecCopy((Vec *)(arg0 + 0x28), (const Vec *)(&stack.sp8));
-    spawn_rafoie_explosion_bursts__13TUnk_804CCB28Fv(arg0);
-    ((TUnk_804CCB28 *)arg0)->m_24 = new TUnk_804DDF04(0x11, (TObject *)arg0);
-    ((TUnk_804CCB28 *)arg0)->m_40 = (f32) (1.9f);
-    return arg0;
+    VecCopy(&self->m_28, (const Vec *)(&stack.sp8));
+    spawn_rafoie_explosion_bursts__13TUnk_804CCB28Fv(self);
+    self->m_24 = new TUnk_804DDF04(0x11, self);
+    self->m_40 = (f32) (1.9f);
+    return self;
 }
 
-u8 *create_fire_explosion_effect(u8 *arg0, s32 *arg1, s16 arg2, s32 arg3, f32 farg0) {
+TUnk_804CCB28 *create_fire_explosion_effect(TUnk_804CCB28 *self, s32 *arg1, s16 arg2, s32 arg3, f32 farg0) {
     typedef char sp8_offset[(offsetof(Stack_802385EC, sp8) == 0x0) ? 1 : -1];
     typedef char spC_offset[(offsetof(Stack_802385EC, spC) == 0x4) ? 1 : -1];
     Stack_802385EC stack;
-    __ct__7TObjectFP7TObject((void *)arg0, (void *)arg3);
-    *(s32 **)((s8 *)arg0 + 0x18) = &lbl_804CCB28.value;
-    ((TUnk_804CCB28 *)arg0)->m_20 = arg2;
-    *(s16 *)((s8 *)arg0 + 0x22) = 0;
-    ((TUnk_804CCB28 *)arg0)->m_60 = 1;
-    VecCopy((Vec *)(arg0 + 0x28), (const Vec *)(arg1));
-    *(f32 *)((s8 *)arg0 + 0x44) = farg0;
-    ((TUnk_804CCB28 *)arg0)->m_58 = 0;
-    *(s32 *)((s8 *)arg0 + 0x5C) = 0;
-    ((TUnk_804CCB28 *)arg0)->m_34 = (f32) (1.2f);
-    *(f32 *)((s8 *)arg0 + 0x38) = (f32) (1.2f);
-    ((TUnk_804CCB28 *)arg0)->m_3c = (f32) (1.2f);
-    ((TUnk_804CCB28 *)arg0)->m_48 = (f32) (1.0f);
-    *(f32 *)((s8 *)arg0 + 0x4C) = (f32) (1.0f);
-    ((TUnk_804CCB28 *)arg0)->m_50 = (f32) (1.0f);
-    *(f32 *)((s8 *)arg0 + 0x54) = (f32) (1.0f);
-    VecCopy((Vec *)(&stack.sp8), (const Vec *)(arg0 + 0x28));
+    __ct__7TObjectFP7TObject((void *)self, (void *)arg3);
+    *(s32 **)((s8 *)self + 0x18) = &lbl_804CCB28.value;
+    self->m_20 = arg2;
+    self->m_22 = 0;
+    self->m_60 = 1;
+    VecCopy(&self->m_28, (const Vec *)(arg1));
+    self->m_44 = farg0;
+    self->m_58 = 0;
+    self->m_5c = 0;
+    self->m_34 = (f32) (1.2f);
+    self->m_38 = (f32) (1.2f);
+    self->m_3c = (f32) (1.2f);
+    self->m_48 = (f32) (1.0f);
+    self->m_4c = (f32) (1.0f);
+    self->m_50 = (f32) (1.0f);
+    self->m_54 = (f32) (1.0f);
+    VecCopy((Vec *)(&stack.sp8), &self->m_28);
     stack.spC += (5.0f);
-    VecCopy((Vec *)(arg0 + 0x28), (const Vec *)(&stack.sp8));
-    spawn_rafoie_explosion_bursts__13TUnk_804CCB28Fv(arg0);
-    ((TUnk_804CCB28 *)arg0)->m_24 = new TUnk_804DDF04(0x11, (TObject *)arg0);
-    ((TUnk_804CCB28 *)arg0)->m_40 = (f32) (1.9f);
-    return arg0;
+    VecCopy(&self->m_28, (const Vec *)(&stack.sp8));
+    spawn_rafoie_explosion_bursts__13TUnk_804CCB28Fv(self);
+    self->m_24 = new TUnk_804DDF04(0x11, self);
+    self->m_40 = (f32) (1.9f);
+    return self;
 }
 
 void TTecRaFoie::vfunc_6(void *target_arg) {
@@ -668,7 +668,7 @@ void TTecRaFoie::update_detonation(void *arg1) {
     }
     p = __nw__7TObjectFUl(0x64);
     if (p != NULL) {
-        create_rafoie_explosion((u8 *)p, (s32 *)self->target, self->band, 10, tl_particle, (f32)self->level);
+        create_rafoie_explosion((TUnk_804CCB28 *)p, (s32 *)self->target, self->band, 10, tl_particle, (f32)self->level);
     }
     switch (self->band) {
     case 0:

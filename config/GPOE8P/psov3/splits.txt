@@ -9934,9 +9934,9 @@ pso/misc/TWindowSnapShot.cpp:
 pso/effect/TEffIndirectCtrl.cpp:
 	.text       start:0x802A8140 end:0x802A9588
 	.rodata     start:0x8046FBB8 end:0x8046FC58
-	.data       start:0x804DDEE0 end:0x804DDF38
+	.data       start:0x804DDEE0 end:0x804DDF34
 	.bss        start:0x80540AF0 end:0x80540B28
-	.sdata      start:0x805D3E20 end:0x805D3E30
+	.sdata      start:0x805D3E20 end:0x805D3E2C
 	.sbss       start:0x805D66A8 end:0x805D66D0
 	.sdata2     start:0x805DE020 end:0x805DE030
 

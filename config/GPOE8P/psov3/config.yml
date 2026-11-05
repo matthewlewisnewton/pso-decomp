@@ -4768,7 +4768,7 @@ force_active:
   - create_player_select_window__17TWindowSubComCardFv
   - create_quest_bgm_object__FP7TObjectUl
   - create_quest_list_window__19TQuestListChallengeFv
-  - create_rafoie_explosion__FPUcPlsslf
+  - create_rafoie_explosion__FP13TUnk_804CCB28Plsslf
   - create_resta_effect__16TObjEneMe3StelthFPv
   - create_result_window__16TObjOnlineEndingFv
   - create_result_windows__23TShopJudgmentItemWindowFv
