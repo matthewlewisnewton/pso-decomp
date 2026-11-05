@@ -27,6 +27,12 @@ union Boss6NodePos {
 };
 
 struct TBoss6PlotFalz;
+// The three action bytes send_6xA4_action copies into the 6xA4 packet.
+struct Boss6ActionArgs {
+    s8 b0;
+    u8 b1;
+    s8 b2;
+};
 // TBoss6Type1__sub_802B96C0 copies these as one lwz/stw block. MWCC splits a
 // bare Vec copy into lfs/stfs, so the position sits inside a struct.
 struct Boss6Point {
@@ -138,10 +144,10 @@ struct TBoss6Type1 : public TObjEnemy {
     TObject *map_csn;
     static u8 *create_kakusan(TObject *parent, Vec *pos, Vec *dir, u16 target_client, f32 speed);
     static void *copy_block(void *d, void *s);
-    static void fire_at_all_players(void *self, f32 dy);
-    static void calc_grid_cell_position(void *o, void *out);
-    static void clamp_to_arena_radius(void *o, void *out, f32 w);
-    static void randomize_attack(void *self, void *atk);
+    void fire_at_all_players(f32 dy);
+    void calc_grid_cell_position(Vec *out);
+    void clamp_to_arena_radius(Vec *out);
+    void randomize_attack(Boss6ActionArgs *atk);
     void clear_slot_array();
     void release_effect_slot(s32 arg1);
     void spawn_effect_slot(s32 arg1);
@@ -149,12 +155,12 @@ struct TBoss6Type1 : public TObjEnemy {
     void interpolate_pos_to_target(s32 step, s32 total);
     void ease_toward_target(s32 a, s32 b);
     s32 count_matches(s32 arg1, s32 arg2);
-    static s32 pick_random_entry(s32 arg0, s32 arg1, s32 arg2);
-    static int rand_range_inclusive(s32 arg0, int arg1, int arg2);
+    s32 pick_random_entry(s32 *table, s32 n);
+    int rand_range_inclusive(int lo, int hi);
     s32 pick_remapped_list_value(s32 a, s32 b, s32 n);
     void handle_6xa4_action(u8 * _w1);
     void decode_polar_position(u8 *arg1);
-    static s32 request_jittered_camera(void *arg0, void *arg1, void *arg2, int arg3);
+    void request_jittered_camera(const Vec *eye, const Vec *target, int id);
     void request_default_jittered_camera();
     u8 is_timer_expired();
     void reset_fields_4e0();
@@ -186,7 +192,7 @@ struct TBoss6Type1 : public TObjEnemy {
     void copy_transform(void* q);
     void render_shadows();
     void do_attack();
-    s32 send_6xA4_action(s32 t, s32 *src);
+    void send_6xA4_action(s32 t, void *args);
     // Callers pass the action in r4 with mr/li and never extsb; the body stbs it.
     static void send_flow_action_if_idle(TBoss6Type1 *boss, int action);
     void load_params(void *arg1);

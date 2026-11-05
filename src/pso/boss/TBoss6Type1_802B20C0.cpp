@@ -102,9 +102,7 @@ s32 is_normal_difficulty();
 s32 TBoss6Type1__sub_802B4A9C(void *);
 void TBoss6Type1__sub_802B4B04(u8 *arg0);
 void TBoss6Type1__sub_802B5140(s32 arg0, s32 arg1, s32 arg2);
-int clamp_to_arena_radius__11TBoss6Type1FPvPvf(void*, void*);
 void TBoss6Type1__sub_802B5598(void *arg0, void *arg1);
-s32 calc_grid_cell_position__11TBoss6Type1FPvPv(void *, void *);
 s32 is_timer_expired__11TBoss6Type1Fv();
 s32 is_field4b0_delta_reached__11TBoss6Type1Fv();
 s32 TBoss6Type1__sub_802B6060(u8 *arg0);
@@ -568,7 +566,13 @@ void TBoss6Type1::update_timer() {
 }
 
 void TBoss6Type1::sub_802B3178() {
-    void*p = (void*)this; ((TBoss6Type1 *)p)->m_40c = 123; ((TBoss6Type1 *)p)->action_timer = 123; clamp_to_arena_radius__11TBoss6Type1FPvPvf(p, (char*)p + 0x420); play_sound_effect((s32)((void*)((void*)231170)), (const Vec *)(((void*)0)), (s32)((void*)((void*)0)), (s32)((void*)((void*)0))); ((TBoss6Type1 *)p)->spawn_effect_slot((s32)((void*)((void*)0))); ((TBoss6Type1 *)p)->release_effect_slot((s32)((void*)((void*)1))); }
+    m_40c = 123;
+    action_timer = 123;
+    clamp_to_arena_radius(&m_420.v);
+    play_sound_effect(231170, NULL, 0, 0);
+    spawn_effect_slot(0);
+    release_effect_slot(1);
+}
 
 void TBoss6Type1::sub_802B31E4() {
     TBoss6Type1 *arg0 = this;
@@ -668,19 +672,18 @@ void TBoss6Type1::sub_802B343C() {
 }
 
 void TBoss6Type1::init_action_timer() {
-    u8 *arg0 = (u8 *)this;
-    s32 temp_r0;
+    s32 state;
 
-    *(s32 *)((s8 *)arg0 + 0x40C) = 0x3E;
-    temp_r0 = *(s32 *)((s8 *)arg0 + 0x374);
-    if ((temp_r0 == 0xB) || (temp_r0 == 0x10)) {
-        *(s32 *)((s8 *)arg0 + 0x40C) = (s32) (*(s32 *)((s8 *)arg0 + 0x40C) + 0x1E);
+    m_40c = 0x3E;
+    state = m_374;
+    if ((state == 0xB) || (state == 0x10)) {
+        m_40c += 0x1E;
     }
-    ((TBoss6Type1 *)arg0)->action_timer = (s32) *(s32 *)((s8 *)arg0 + 0x40C);
-    calc_grid_cell_position__11TBoss6Type1FPvPv(arg0, arg0 + 0x420);
-    play_sound_effect((s32)((void*)(0x40039C21)), (const Vec *)(arg0 + 0x5E4), (s32)((void*)(0)), (s32)((void*)(0)));
-    ((TBoss6Type1 *)arg0)->release_effect_slot((s32)((void*)(0)));
-    ((TBoss6Type1 *)arg0)->release_effect_slot((s32)((void*)(1)));
+    action_timer = m_40c;
+    calc_grid_cell_position(&m_420.v);
+    play_sound_effect(0x40039C21, &node_positions_578[9].v, 0, 0);
+    release_effect_slot(0);
+    release_effect_slot(1);
 }
 
 void TBoss6Type1::sub_802B3564() {

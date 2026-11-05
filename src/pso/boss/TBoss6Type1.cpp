@@ -55,11 +55,6 @@ typedef void (TBoss6Type1::*ActionFn)();
 
 struct ActionEntry { s32 f0; s32 anim; s32 f8; ActionFn act; ActionFn idle; ActionFn update; };
 
-struct Boss6ActionArgs {
-    s8 b0;
-    u8 b1;
-    s8 b2;
-};
 
 
 
@@ -92,7 +87,7 @@ s32 TBoss6Type1__sub_802B5FDC(TBoss6Type1 *arg0);
 s32 TBoss6Type1__sub_802B5FF4(TBoss6Type1 *arg0);
 s32 TBoss6Type1__sub_802B600C(TBoss6Type1 *arg0);
 s32 rand();
-extern u8 boss6_type1_random_action_table[];
+extern s32 boss6_type1_random_action_table[];
 extern const f32 lbl_805DE3D8;
 extern const f32 lbl_805DE3D4;
 void TBoss6Type1__sub_802B8BB4(TBoss6Type1 *arg0);
@@ -101,7 +96,7 @@ void TBoss6PlotFalz__sub_802AC724(void *, void *);
 void vec3_cross(void *, void *, void *);
 void normalize_vector(void *);
 f32 project_point_onto_line(void *, void *, void *);
-f32 xyz_distance(void *, void *);
+f32 xyz_distance(const void *, const void *);
 f32 vec3_add_to(void *, const void *);
 void TBoss6Type1__sub_802B6C30(TBoss6Type1 *self);
 s32 TObjFish__sub_8001EDB0(s32, s32);
@@ -178,7 +173,7 @@ extern s32 game_difficulty_selection;
 void TBoss6Type1__sub_802B73AC(TBoss6Type1 *self);
 f32 atan2_float(f64, f64);
 extern const f64 TBoss6Type1__data_80471038;
-void request_follow_camera_offsets(void *, void *, int);
+void request_follow_camera_offsets(void *, const void *, int);
 extern const Vec lbl_80470FC0;
 s32 angle_diff_s16(s32, s32);
 extern const s8 lbl_805DE2C8[2];
@@ -422,7 +417,7 @@ void TBoss6Type1::send_flow_action_if_idle(TBoss6Type1 *boss6_type1, int action)
     }
 }
 
-s32 TBoss6Type1::send_6xA4_action(s32 t, s32 *src) {
+void TBoss6Type1::send_6xA4_action(s32 t, void *args) {
     Boss6ActionPacket m;
     u8 *s;
     s32 i;
@@ -430,7 +425,7 @@ s32 TBoss6Type1::send_6xA4_action(s32 t, s32 *src) {
         build_6xA4_olga_flow_boss_actions(&m);
         set_sync_data(&m);
         m.b[4] = t;
-        s = (u8 *)src;
+        s = (u8 *)args;
         for (i = 1; i < 4; i++) {
             m.b[i + 4] = *s++;
         }
@@ -450,24 +445,23 @@ void TBoss6Type1__sub_802B909C(TBoss6Type1 *self, Boss6ActionArgs *atk) {
     atk->b1 = kind;
     atk->b2 = 10;
 }
-void TBoss6Type1::randomize_attack(void *self_, void *atk_) {
-    Boss6ActionArgs *atk = (Boss6ActionArgs *)atk_;
+void TBoss6Type1::randomize_attack(Boss6ActionArgs *atk) {
     const s8 *tab;
     s8 base;
     s8 v;
     f32 r;
     s8 w;
     s8 u;
-    TBoss6Type1__sub_802B909C(((TBoss6Type1 *)self_), atk);
-    base = (u8)((u32)((TBoss6Type1 *)self_)->rotation.yaw >> 8);
+    TBoss6Type1__sub_802B909C(this, atk);
+    base = (u8)((u32)this->rotation.yaw >> 8);
     v = 80.0f * ((1.0f / 32768.0f) * (f32)rand()) + lbl_805DE3E0;
     if ((1.0f / 32768.0f) * (f32)rand() < 0.5f) {
         v = -v;
     }
     atk->b0 = base + v;
-    if ((s32)atk->b1 == 0x12 && TBoss6Type1__sub_802B600C(((TBoss6Type1 *)self_)) == 0) return;
+    if ((s32)atk->b1 == 0x12 && TBoss6Type1__sub_802B600C(this) == 0) return;
     atk->b1 = 0x1C;
-    if (TBoss6Type1__sub_802B5FF4(((TBoss6Type1 *)self_)) != 0) {
+    if (TBoss6Type1__sub_802B5FF4(this) != 0) {
         r = (1.0f / 32768.0f) * (f32)rand();
         w = 0x12;
         if (r < 0.1f) {
@@ -478,7 +472,7 @@ void TBoss6Type1::randomize_attack(void *self_, void *atk_) {
         atk->b2 = w;
         return;
     }
-    tab = TBoss6Type1__sub_802B5FDC(((TBoss6Type1 *)self_)) != 0 ? lbl_805DE2C8 : lbl_805DE2CC;
+    tab = TBoss6Type1__sub_802B5FDC(this) != 0 ? lbl_805DE2C8 : lbl_805DE2CC;
     u = tab[0];
     if ((1.0f / 32768.0f) * (f32)rand() < 0.5f) {
         u = tab[1];
@@ -487,28 +481,28 @@ void TBoss6Type1::randomize_attack(void *self_, void *atk_) {
 }
 
 void TBoss6Type1::do_attack() {
-    s32 sp8;
+    Boss6ActionArgs atk;
 
     if (this->m_414 == 0) {
-        TBoss6Type1__sub_802B909C(this, (Boss6ActionArgs *)(&sp8));
+        TBoss6Type1__sub_802B909C(this, &atk);
     } else {
-        randomize_attack(this, &sp8);
+        randomize_attack(&atk);
     }
     this->m_438 = 1;
-    send_6xA4_action(2, &sp8);
+    send_6xA4_action(2, &atk);
 }
 
 void TBoss6Type1__sub_802B8E1C(TBoss6Type1 *arg0) {
     Boss6ActionArgs s;
     s32 r4;
-    TBoss6Type1__sub_802B909C(arg0, (Boss6ActionArgs *)(&s));
+    TBoss6Type1__sub_802B909C(arg0, &s);
     s.b1 = 0x1C;
     r4 = 0x21;
     arg0->m_438 = 1;
     if (arg0->position.y < lbl_805DE3DC) {
         r4 = 0x26;
     }
-    arg0->send_6xA4_action(r4, (s32 *)((s32 *)&s));
+    arg0->send_6xA4_action(r4, &s);
 }
 
 void TBoss6Type1__sub_802B8BB4(TBoss6Type1 *arg0) {
@@ -519,7 +513,7 @@ void TBoss6Type1__sub_802B8BB4(TBoss6Type1 *arg0) {
     switch (arg0->m_414) {
     case 0:
         if (TBoss6Type1__sub_802B600C(arg0) != 0) {
-            TBoss6Type1::send_flow_action_if_idle(arg0, TBoss6Type1::rand_range_inclusive((s32)arg0, 5, 6));
+            TBoss6Type1::send_flow_action_if_idle(arg0, arg0->rand_range_inclusive(5, 6));
             break;
         }
         switch (arg0->pick_remapped_list_value(3, 5, 0x20)) {
@@ -527,14 +521,14 @@ void TBoss6Type1__sub_802B8BB4(TBoss6Type1 *arg0) {
             TBoss6Type1::send_flow_action_if_idle(arg0, 3);
             return;
         case 5:
-            TBoss6Type1::send_flow_action_if_idle(arg0, TBoss6Type1::rand_range_inclusive((s32)arg0, 5, 6));
+            TBoss6Type1::send_flow_action_if_idle(arg0, arg0->rand_range_inclusive(5, 6));
             return;
         case 4:
             return;
         }
         break;
     case 1:
-        TBoss6Type1::randomize_attack(arg0, &s);
+        arg0->randomize_attack(&s);
         if (TBoss6Type1__sub_802B5FDC(arg0) != 0) {
             id = 0x15;
             n = arg0->count_matches(0x15, 8);
@@ -543,14 +537,14 @@ void TBoss6Type1__sub_802B8BB4(TBoss6Type1 *arg0) {
             } else {
                 id = 2;
             }
-            arg0->send_6xA4_action(id, (s32 *)&s);
+            arg0->send_6xA4_action(id, &s);
             break;
         }
         if (TBoss6Type1__sub_802B5FF4(arg0) != 0) {
-            arg0->send_6xA4_action(4, (s32 *)&s);
+            arg0->send_6xA4_action(4, &s);
             break;
         }
-        r4 = TBoss6Type1::pick_random_entry((s32)arg0, (s32)boss6_type1_random_action_table, 5);
+        r4 = arg0->pick_random_entry(boss6_type1_random_action_table, 5);
         switch (r4) {
         case 4:
             if (s.b2 == -2) {
@@ -564,14 +558,14 @@ void TBoss6Type1__sub_802B8BB4(TBoss6Type1 *arg0) {
             break;
         case 5:
             s.b2 = 10;
-            r4 = TBoss6Type1::rand_range_inclusive((s32)arg0, 6, 7);
+            r4 = arg0->rand_range_inclusive(6, 7);
             break;
         case 8:
             s.b2 = 10;
-            r4 = TBoss6Type1::rand_range_inclusive((s32)arg0, 8, 10);
+            r4 = arg0->rand_range_inclusive(8, 10);
             break;
         }
-        arg0->send_6xA4_action(r4, (s32 *)&s);
+        arg0->send_6xA4_action(r4, &s);
         break;
     }
 }
@@ -596,7 +590,7 @@ void TBoss6Type1__sub_802B8A70(TBoss6Type1 *self) {
     }
     atk.b2 = pitch;
     self->m_438 = 1;
-    self->send_6xA4_action(0x18, (s32 *)&atk);
+    self->send_6xA4_action(0x18, &atk);
 }
 }
 
@@ -1838,11 +1832,11 @@ void TBoss6Type1::sub_802B5CB4() {
         }
         break;
     default:
-        TBoss6Type1::request_jittered_camera(this, NULL, NULL, 0xFFFF);
+        request_jittered_camera(NULL, NULL, 0xFFFF);
         break;
     }
 }
-void TBoss6Type1::fire_at_all_players(void *self, f32 dy) {
+void TBoss6Type1::fire_at_all_players(f32 dy) {
     Vec me;
     Vec pp;
     Vec ofs;
@@ -1858,8 +1852,8 @@ void TBoss6Type1::fire_at_all_players(void *self, f32 dy) {
     f32 c;
 
     n = TLobby::get_game_mode();
-    VecCopy(&me, &((TBoss6Type1 *)self)->position);
-    if (((TBoss6Type1 *)self)->m_438 != 0) {
+    VecCopy(&me, &this->position);
+    if (this->m_438 != 0) {
         me.y -= dy;
     } else {
         me.y += dy;
@@ -1896,12 +1890,12 @@ void TBoss6Type1::fire_at_all_players(void *self, f32 dy) {
                 }
             }
         }
-        TBoss6Type1::request_jittered_camera(self, &ofs, &out, get_entity_id(p));
+        request_jittered_camera(&ofs, &out, get_entity_id(p));
     }
 }
 
 void TBoss6Type1__sub_802B5AB0(TBoss6Type1 *self) {
-    TBoss6Type1::fire_at_all_players(self, 80.0f);
+    self->fire_at_all_players(80.0f);
 }
 void TBoss6Type1__sub_802B59CC(TBoss6Type1 *self) {
     Vec eye = TBoss6Type1__data_80470FB4;
@@ -1915,27 +1909,27 @@ void TBoss6Type1__sub_802B59CC(TBoss6Type1 *self) {
         target.y += t * lbl_80470FD8.y;
         target.z += t * lbl_80470FD8.z;
     }
-    TBoss6Type1::request_jittered_camera(self, &eye, &target, 0xFFFF);
+    self->request_jittered_camera(&eye, &target, 0xFFFF);
 }
 
 void TBoss6Type1__sub_802B59A8(TBoss6Type1 *self) {
-    TBoss6Type1::fire_at_all_players(self, 0.0f);
+    self->fire_at_all_players(0.0f);
 }
 void TBoss6Type1__sub_802B5970(TBoss6Type1 *arg0) {
-    TBoss6Type1::request_jittered_camera(arg0, &lbl_80470FE4, &lbl_80470FF0, 0xFFFF);
+    arg0->request_jittered_camera(&lbl_80470FE4, &lbl_80470FF0, 0xFFFF);
 }
 
 void TBoss6Type1::request_default_jittered_camera() {
-    TBoss6Type1::request_jittered_camera(this, &lbl_80470FFC, &lbl_80471008, 0xFFFF);
+    request_jittered_camera(&lbl_80470FFC, &lbl_80471008, 0xFFFF);
 }
-s32 TBoss6Type1::request_jittered_camera(void *arg0, void *arg1, void *arg2, int arg3) {
+void TBoss6Type1::request_jittered_camera(const Vec *arg1, const Vec *arg2, int arg3) {
     f32 dist;
     Vec off;
     if (arg1 == NULL) {
-        arg1 = (void *)&TBoss6Type1__data_80470FB4;
+        arg1 = &TBoss6Type1__data_80470FB4;
     }
     if (arg2 == NULL) {
-        arg2 = (void *)&lbl_80470FC0;
+        arg2 = &lbl_80470FC0;
     }
     dist = 0.1f * xyz_distance(arg1, arg2);
     if (dist < 4.0f) {
@@ -1945,7 +1939,7 @@ s32 TBoss6Type1::request_jittered_camera(void *arg0, void *arg1, void *arg2, int
     off.y = dist * ((1.0f / 32768.0f) * (f32)rand() - 0.5f);
     off.z = dist * ((1.0f / 32768.0f) * (f32)rand() - 0.5f);
     {
-        Vec p = *(Vec *)arg1;
+        Vec p = *arg1;
         vec3_add_to(&p, &off);
         request_follow_camera_offsets(&p, arg2, arg3);
     }
@@ -1971,11 +1965,9 @@ void TBoss6Type1::handle_6xa4_action(u8 * _w1) {
     ActionBytes *bytes = (ActionBytes *)this;
     ((TBoss6Type1 *)bytes->args)->decode_polar_position(_w1);
 }
-void TBoss6Type1::calc_grid_cell_position(void *o_, void *out_) {
-    TBoss6Type1 *o = (TBoss6Type1 *)o_;
-    Vec *out = (Vec *)out_;
-    u32 t = o->m_374;
-    s8 b = o->m_41c;
+void TBoss6Type1::calc_grid_cell_position(Vec *out) {
+    u32 t = this->m_374;
+    s8 b = this->m_41c;
     s32 sh = (t >> 1) & 3;
     s32 a = (b >> sh) & 0xF;
     s32 c = (b >> ((sh + 2) & 3)) & 0xF;
@@ -1984,7 +1976,7 @@ void TBoss6Type1::calc_grid_cell_position(void *o_, void *out_) {
         c = ~c & 0xF;
     }
     out->x = 7.9787235f * (f32)a - 63.82979f;
-    out->y = o->position.y;
+    out->y = this->position.y;
     out->z = 7.9787235f * (f32)c - 63.82979f;
 }
 void TBoss6Type1__sub_802B5598(TBoss6Type1 *self, Vec *out) {
@@ -2013,16 +2005,14 @@ void TBoss6Type1__sub_802B5598(TBoss6Type1 *self, Vec *out) {
     out->z = (f32) (var_f31 * cos_table_lookup(temp_r31));
 }
 
-void TBoss6Type1::clamp_to_arena_radius(void *o_, void *out_, f32 _w2) {
-    TBoss6Type1 *o = (TBoss6Type1 *)o_;
-    Vec *out = (Vec *)out_;
-    Vec v = o->position;
+void TBoss6Type1::clamp_to_arena_radius(Vec *out) {
+    Vec v = this->position;
     f32 len;
     f32 s;
     v.y = 0.0f;
     len = vector_length(&v);
     if (len <= 1e-05f) {
-        VecCopy((out), (&o->position));
+        VecCopy((out), (&this->position));
         return;
     }
     s = 180.0f / len;
@@ -2052,20 +2042,20 @@ s32 TBoss6Type1::pick_remapped_list_value(s32 a, s32 b, s32 n) {
     }
     return b;
 }
-int TBoss6Type1::rand_range_inclusive(s32 arg0, int arg1, int arg2) {
+int TBoss6Type1::rand_range_inclusive(int arg1, int arg2) {
     if (arg1 >= arg2) {
         return arg1;
     }
     return (int) (((0.99f + ((f32) arg2 - (f32) arg1)) * ((1.0f / 32768.0f) * (f32) rand())) + (f32) arg1);
 }
 
-s32 TBoss6Type1::pick_random_entry(s32 arg0, s32 arg1, s32 arg2) {
+s32 TBoss6Type1::pick_random_entry(s32 *arg1, s32 arg2) {
     s32 var_r0;
     var_r0 = (s32) (((f32) arg2 - 0.01f) * ((1.0f / 32768.0f) * (f32) rand()));
     if (var_r0 >= arg2) {
         var_r0 = 0;
     }
-    return ((s32 *)arg1)[var_r0];
+    return arg1[var_r0];
 }
 
 s32 TBoss6Type1::count_matches(s32 arg1, s32 arg2) {
