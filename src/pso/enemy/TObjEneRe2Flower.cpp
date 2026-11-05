@@ -1,3 +1,4 @@
+#include "pso/enemy/EnemyUnknownHooks.h"
 #include "types.h"
 #include "pso/enemy/TObjEneDD.h"
 #include "pso/system/vector.h"
@@ -6,9 +7,8 @@
 extern "C" {
 extern const f32 lbl_805D9FF8;
 s32 get_flag_11__16TObjEneRe2FlowerFv();
-int TBoss8Dragon__sub_800BB7D4(void*, void*);
 
-void TObjEneRe2Flower::begin_state_242() { if (*(int*)((char*)this + 0x3d4) == 0) { TBoss8Dragon__sub_800BB7D4(this, (void*)242); *(int*)((char*)this + 0x3d4) = 20; } }
+void TObjEneRe2Flower::begin_state_242() { if (*(int*)((char*)this + 0x3d4) == 0) { fn_800BB7D4(this, 242); *(int*)((char*)this + 0x3d4) = 20; } }
 
 s32 TObjEneRe2Flower::check_hit_flag() {
     if (*(s32 *)((s8 *)this + 0x3C4) & 2) {
@@ -46,14 +46,14 @@ void TObjEneRe2Flower::set_child_flags() {
 
 void TObjEneRe2Flower::vfunc_88() {
     u8 *arg0 = (u8 *)this;
-    *(f32 *)((s8 *)this->bodies + 0x30) = (f32) (this->m_300 - *(f32 *)((s8 *)arg0 + 0x3C));
-    ((TObjEneDD *)arg0)->set_part_local_pos((u8 *)&this->_pad3F8, 0);
+    *(f32 *)((s8 *)this->bodies + 0x30) = (f32) (this->body_center_position.y - *(f32 *)((s8 *)arg0 + 0x3C));
+    ((TObjEneDD *)arg0)->set_part_local_pos(&this->renderAnchors[0], 0);
 }
 
 void TObjEneRe2Flower::sub_800C3DC4() {
-    VecCopy((Vec *)&this->m_2fc, (const Vec *)&this->position);
-    this->m_300 = (f32) (this->m_300 + lbl_805D9FF8);
-    VecCopy(&this->center, (const Vec *)&this->m_2fc);
+    VecCopy((Vec *)&this->body_center_position, (const Vec *)&this->position);
+    this->body_center_position.y = (f32) (this->body_center_position.y + lbl_805D9FF8);
+    VecCopy(&this->center, (const Vec *)&this->body_center_position);
 }
 
 }

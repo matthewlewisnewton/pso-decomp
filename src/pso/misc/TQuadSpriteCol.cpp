@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TQuadSpriteCol.h"
 #include "pso/system/vector.h"
@@ -57,6 +58,8 @@ void set_draw_texture_and_color(s32 idx, s32 arg1);
 void set_inverse_color_blend(void);
 void set_constant_material_color(u32 x);
 extern Cam_801E4FF0 lbl_8058D4F8;
+extern const f32 lbl_805DC450;
+extern const f32 lbl_805DC454;
 extern "C" {
 void *TQuadSpriteCol__ct(void *arg0);
 void quad_sprite_base_ct(void *);
@@ -97,12 +100,12 @@ void TQuadSpriteCol::render() {
     sw = lbl_8058D4F8.sw;
     cx = lbl_8058D4F8.cx;
     cy = lbl_8058D4F8.cy;
-    sh = sw * (480.0f / (480.0f * lbl_8058D4F8.aspect));
+    sh = sw * (lbl_805DC450 / (lbl_805DC450 * lbl_8058D4F8.aspect));
     TParticleCtrl::begin_effect_render();
     begin_screen_draw(1);
-    TObjFish::set_global_param((s32)((void *)self->desc->param4));
+    set_current_texture_list((GinjaTextureList *)(((void *)self->desc->param4)));
     set_draw_texture_and_color(self->desc->param8, self->desc->param1C);
-    one = 1.0f;
+    one = lbl_805DC454;
     for (i = 0, ci = 0, li = 0; i < self->desc->count; i++, ci += 0x10, li += 0x2C) {
         Col_801E4FF0 *c = (Col_801E4FF0 *)((u8 *)self->desc->cols + ci);
         n = *(Node_801E4FF0 **)((u8 *)self->lists + li);
@@ -124,7 +127,7 @@ void TQuadSpriteCol::render() {
             if (out.z >= one || (s32)n->type == 1) {
                 set_constant_material_color(n->tex);
                 if ((s32)n->type != 1) {
-                    d = 1.0f / -out.z;
+                    d = lbl_805DC454 / -out.z;
                     sx = sh * d;
                     sy = sw * d;
                     x = out.x * sx + cx;
@@ -132,7 +135,7 @@ void TQuadSpriteCol::render() {
                     w = sx;
                     h = sy;
                 } else {
-                    h = w = 1.0f;
+                    h = w = lbl_805DC454;
                     d = out.z;
                     x = out.x;
                     y = out.y;

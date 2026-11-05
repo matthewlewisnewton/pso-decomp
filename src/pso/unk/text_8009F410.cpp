@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/unk/text_8009F410.h"
 
 #include <stddef.h>
@@ -111,7 +112,6 @@ extern "C" {
 extern u8 *lbl_805D4FD0;
 extern u8 *lbl_805D4FE0;
 extern u8 *lbl_805D4FDC;
-void TLobby__sub_8001FE7C(void *, int);
 typedef char RecoveredGlobal_803626A8_lbl_80479FBC_size[sizeof(RecoveredGlobal_803626A8_lbl_80479FBC) == 0xC ? 1 : -1];
 typedef char RecoveredGlobal_803626A8_lbl_8058D490_size[sizeof(RecoveredGlobal_803626A8_lbl_8058D490) == 0x30 ? 1 : -1];
 typedef char RecoveredGlobal_80362B48___vt__14TObjEneEpsilon_size[sizeof(RecoveredGlobal_80362B48___vt__14TObjEneEpsilon) == 0x1A4 ? 1 : -1];
@@ -125,7 +125,7 @@ void fn_8009F410(void) {
         (*(V_8036274C * *)&lbl_805D4FDC) = NULL;
     }
     if ((*(u32 *)&lbl_805D4FD0) != 0) {
-        TLobby__sub_8001FE7C((void *)(*(u32 *)&lbl_805D4FD0), 1);
+        delete (BmlResource *)((void *)(*(u32 *)&lbl_805D4FD0));
         (*(u32 *)&lbl_805D4FD0) = 0;
     }
 }

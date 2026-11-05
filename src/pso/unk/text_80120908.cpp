@@ -44,6 +44,8 @@ extern s16 TObjPlayer__weapon_node_ids[];
 extern s16 weapon_node_material_index;
 extern u8 *weapon_render_callback_object;
 extern s32 model_render_flags;
+extern const f32 lbl_805DACA8;
+extern const f32 lbl_805DACAC;
 
 s32 TItemWeapon::draw_weapon_model() {
     s32 var_r30;
@@ -56,7 +58,7 @@ s32 TItemWeapon::draw_weapon_model() {
         if (((TItem *)this)->has_no_defer_render() != 0) {
             var_r30 = 1;
         } else {
-            var_r30 = ((VObj_18_26a62c *)(this))->m8(400.0f, 20.0f);
+            var_r30 = ((VObj_18_26a62c *)(this))->m8(lbl_805DACA8, lbl_805DACAC);
         }
         set_texlist((int) (*(s32 *)((s8 *)this + 0x24)));
         ((TObjMotion *)(this->owner))->get_item_ptr((s32)((void *) ((s8)get_attach_joint__14TItemEquipBaseFv(this))));
@@ -71,7 +73,7 @@ s32 TItemWeapon::draw_weapon_model() {
             if ((u32) *(u32 *)((s8 *)this + 0x17C) == 0U) {
                 this->sub_80121208((s32)apply_weapon_node_material);
             } else {
-                set_chunk_model_node_callback((s32)apply_weapon_node_material);
+                set_chunk_model_node_callback(apply_weapon_node_material);
             }
             TObjPlayer__sub_80364198();
             model_render_flags &= 0xFFFFFFEF;

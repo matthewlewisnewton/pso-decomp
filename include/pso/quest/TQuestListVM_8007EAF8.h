@@ -3,11 +3,9 @@
 
 #include "types.h"
 
-struct TQuestVmDownLoadServer;
-
 extern "C" {
 void TLobby__sub_8007EB70(void);
-TQuestVmDownLoadServer *TQuestVmDownLoadServer__sub_8007EB14(void);
+s32 TQuestVmDownLoadServer__sub_8007EB14(void);
 void __dl__FPv(void);
 }
 

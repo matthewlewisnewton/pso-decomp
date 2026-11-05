@@ -1,6 +1,6 @@
 #include "types.h"
-#include "pso/npc/TObjNpcNFW01.h"
 #include "pso/npc/TObjNpcNHW00.h"
+#include "pso/npc/TObjNpcNFW01.h"
 #include "pso/npc/TUnk_804A8640.h"
 #include "pso/npc/TObjNpcBase.h"
 #include "pso/npc/TObjNpcFemaleBase.h"
@@ -25,9 +25,16 @@ void *__ct__11TObjControlFP7TObject(void *, void *);
 void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
 
+void *__dt__12TObjNpcNFW01Fv(void *arg0, s16 arg1) {
+    if (arg0 != NULL) {
+        *(s32 **)((s8 *)arg0 + 0x18) = __vt__12TObjNpcNFW01;
+        ((TUnk_804A8640 *)arg0)->destroy_npc_female_base(0);
+        if (arg1 > 0) {
+            __dl__7TObjectFPv(arg0);
+        }
+    }
+    return arg0;
 }
-TObjNpcNFW01::~TObjNpcNFW01() {}
-extern "C" {
 
 extern void *tl_04;
 
@@ -37,7 +44,7 @@ u8 *TObjNpcNFW01__ct(u8 *arg0, s32 arg1, s32 arg2) {
     *(s32 **)((s8 *)arg0 + 0x18) = &(*(RecoveredGlobal_8014CF50___vt__12TObjNpcNFW01 *)&__vt__12TObjNpcNFW01).value;
     *(s32 *)((s8 *)arg0 + 0) = (s32) TObjNpcNFW01__name;
     ((TObjNpcNFW01 *)(arg0))->apply_set_data((void *)arg2);
-    ((TObjPlayer *)arg0)->init_position_vectors();
+    ((TObjChara *)arg0)->initialize_position_copies();
     *(s32 *)((s8 *)arg0 + 0x34) = (s32) *TObjNpcNFW01__shared_object_resource;
     ((TObjNpcNFW01 *)arg0)->texlist = (s32) TObjNpcNFW01__texture_gvm;
     ((TObjNpcBase *)arg0)->setup_common();

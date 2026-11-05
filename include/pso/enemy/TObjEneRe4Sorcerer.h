@@ -1,3 +1,4 @@
+struct NJS_OBJECT;
 #ifndef PSO_ENEMY_TOBJENERE4SORCERER_H
 #define PSO_ENEMY_TOBJENERE4SORCERER_H
 
@@ -17,12 +18,7 @@ struct TObjEneRe4Sorcerer : public TObjEneDD_ST {
     void vfunc_28();
     void render();
     void run_task();
-    u8 unk_374[0x30];
-    s16 m_3c0;
-    u8 _pad3C2[0x6];
-    u32 m_3c8;
-    void* m_3cc;
-    u8 _pad3D0[0x2C];
+    u8 unk_3C0[0x20];
     void* m_3fc;
     u8 _pad400[0x10];
     u32 m_410;
@@ -30,7 +26,7 @@ struct TObjEneRe4Sorcerer : public TObjEneDD_ST {
     void* m_418;
     u8 _pad41C[0x58];
     void* m_474;
-    static void step_effect_sequence();
+    static void step_effect_sequence(NJS_OBJECT *);
     void handle_death_state(s32 arg1);
     void update_state_machine(void *arg1p);
     void state_wait(s32 arg1);

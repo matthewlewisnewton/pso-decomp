@@ -35,6 +35,9 @@ extern "C" {
 s32 is_in_shadow_range(f32, const Vec *);
 s32 project_world_to_screen(int, const Vec *, f32 *);
 f32 transform_point_by_current_matrix(const Vec *, Vec *);
+extern const f32 lbl_805DC098;
+extern const f32 lbl_805DC09C;
+extern const f32 lbl_805DC0A0;
 }
 
 extern u16 lbl_805D5CD0;
@@ -79,7 +82,7 @@ void TObjBase::apply_object_set_data(void *data) {
     s32 i;
     entity_id = src->entity_id;
     VecCopy(&home_position, VecCopy(&position, &src->position));
-    copy_xyz(&rotation_x, src->rotation);
+    copy_xyz(&this->rotation.pitch, src->rotation);
     VecCopy(&scale, &src->scale);
     room = src->room;
     for (i = 0; i < 3; i++) {
@@ -160,7 +163,7 @@ s32 TObjBase::classify_actor_view_detail(f32 near_depth, f32 far_depth, f32 radi
     }
     transform_point_by_current_matrix(&position, &probe.point);
     z = probe.point.z;
-    if (z > 0.0f) {
+    if (z > lbl_805DC098) {
         visibility = 0;
         return 0;
     }
@@ -168,12 +171,12 @@ s32 TObjBase::classify_actor_view_detail(f32 near_depth, f32 far_depth, f32 radi
         visibility = 0;
         return 0;
     }
-    if (probe.point.x < 0.0f) {
+    if (probe.point.x < lbl_805DC098) {
         probe.point.x = (camera_right[0] * radius) + position.x;
         probe.point.y = (camera_right[1] * radius) + position.y;
         probe.point.z = (camera_right[2] * radius) + position.z;
         project_world_to_screen(0, &probe.point, probe.screen);
-        if (probe.screen[0] < 0.0f) {
+        if (probe.screen[0] < lbl_805DC098) {
             visibility = 0;
             return 0;
         }
@@ -182,7 +185,7 @@ s32 TObjBase::classify_actor_view_detail(f32 near_depth, f32 far_depth, f32 radi
         probe.point.y = -((camera_right[1] * radius) - position.y);
         probe.point.z = -((camera_right[2] * radius) - position.z);
         project_world_to_screen(0, &probe.point, probe.screen);
-        if (probe.screen[0] > 640.0f) {
+        if (probe.screen[0] > lbl_805DC09C) {
             visibility = 0;
             return 0;
         }
@@ -215,7 +218,7 @@ s32 TObjBase::update_object_view_visibility(f32 far_depth, f32 radius) {
         return visibility;
     }
     transform_point_by_current_matrix(&position, &probe.point);
-    if (probe.point.z > 0.0f) {
+    if (probe.point.z > lbl_805DC098) {
         visibility = 0;
         return 0;
     }
@@ -223,12 +226,12 @@ s32 TObjBase::update_object_view_visibility(f32 far_depth, f32 radius) {
         visibility = 0;
         return 0;
     }
-    if (probe.point.x < 0.0f) {
+    if (probe.point.x < lbl_805DC098) {
         probe.point.x = (camera_right[0] * radius) + position.x;
         probe.point.y = (camera_right[1] * radius) + position.y;
         probe.point.z = (camera_right[2] * radius) + position.z;
         project_world_to_screen(0, &probe.point, probe.screen);
-        if (probe.screen[0] < 0.0f) {
+        if (probe.screen[0] < lbl_805DC098) {
             visibility = 0;
             return 0;
         }
@@ -237,7 +240,7 @@ s32 TObjBase::update_object_view_visibility(f32 far_depth, f32 radius) {
         probe.point.y = -((camera_right[1] * radius) - position.y);
         probe.point.z = -((camera_right[2] * radius) - position.z);
         project_world_to_screen(0, &probe.point, probe.screen);
-        if (probe.screen[0] > 640.0f) {
+        if (probe.screen[0] > lbl_805DC09C) {
             visibility = 0;
             return 0;
         }
@@ -277,18 +280,18 @@ void TLobby__sub_801A2554(void) {
 
 void TObjBase::reset_motion_fields() {
     m_20 = 0;
-    prev_position.z = 0.0f;
-    prev_position.y = 0.0f;
-    prev_position.x = 0.0f;
-    home_position.z = 0.0f;
-    home_position.y = 0.0f;
-    home_position.x = 0.0f;
-    rotation_z = 0;
-    rotation_y = 0;
-    rotation_x = 0;
-    center.z = 0.0f;
-    center.y = 0.0f;
-    center.x = 0.0f;
+    prev_position.z = lbl_805DC098;
+    prev_position.y = lbl_805DC098;
+    prev_position.x = lbl_805DC098;
+    home_position.z = lbl_805DC098;
+    home_position.y = lbl_805DC098;
+    home_position.x = lbl_805DC098;
+    this->rotation.roll = 0;
+    this->rotation.yaw = 0;
+    this->rotation.pitch = 0;
+    center.z = lbl_805DC098;
+    center.y = lbl_805DC098;
+    center.x = lbl_805DC098;
     set_entry = NULL;
 }
 
@@ -312,19 +315,19 @@ TObjBase::TObjBase(TObject *parent) : TObject(parent) {
     texlist = 0;
     model = NULL;
     set_entry = NULL;
-    position.x = 0.0f;
-    position.y = 0.0f;
-    position.z = 0.0f;
+    position.x = lbl_805DC098;
+    position.y = lbl_805DC098;
+    position.z = lbl_805DC098;
     VecCopy(&prev_position, &position);
     VecCopy(&home_position, &position);
-    rotation_x = 0;
-    rotation_y = 0;
-    rotation_z = 0;
-    scale.x = 1.0f;
-    scale.y = 1.0f;
-    scale.z = 1.0f;
-    center.x = 0.0f;
-    center.y = 0.0f;
-    center.z = 0.0f;
+    this->rotation.pitch = 0;
+    this->rotation.yaw = 0;
+    this->rotation.roll = 0;
+    scale.x = lbl_805DC0A0;
+    scale.y = lbl_805DC0A0;
+    scale.z = lbl_805DC0A0;
+    center.x = lbl_805DC098;
+    center.y = lbl_805DC098;
+    center.z = lbl_805DC098;
     visibility = 0;
 }

@@ -1,3 +1,5 @@
+#include "pso/system/GinjaTextureInput.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_80083B38.h"
 #include "pso/system/main_loop.h"
@@ -19,9 +21,9 @@ struct A_800845F8 { u8 pad[0x8]; B_800845F8 *b; };
 
 struct G_800845F8 { A_800845F8 *a; u8 pad[0x1c]; };
 
-struct Rect_80083F38 { u8 data[0x20]; };
+typedef GinjaTextureInput Rect_80083F38;
 
-struct Rect_800846C8 { u8 data[0x20]; };
+typedef GinjaTextureInput Rect_800846C8;
 
 struct G_800846C8 { void *a; u8 pad[0x1c]; };
 
@@ -49,7 +51,7 @@ struct A_800842A4 { u8 pad[0x8]; B_800842A4 *b; };
 
 struct G_800842A4 { A_800842A4 *a; u8 pad[0x1c]; };
 
-int lbl_805D4EE0;
+extern int lbl_805D4EE0;
 extern "C" {
 void TObjPlayer__sub_80083FB0(void);
 int TObjPlayer__sub_80083F9C(void);
@@ -79,7 +81,7 @@ void TObjPlayer__sub_80083F38(void);
 void **TObjPlayer__sub_80084694(void);
 s32 is_split_screen();
 s32 TCameraCtrl__sub_80068EF0();
-u8 get_display_copy_filter();
+u8 TObjBoss2Tunnel__sub_8036EF44();
 s32 GXPixModeSync();
 s32 GXSetTexCopySrc(int, int, int, int);
 s32 GXSetTexCopyDst(int, int, int, int);
@@ -142,7 +144,7 @@ extern const f32 lbl_805D9444;
 
 void TObjPlayer::draw_if_all_ready() {
     if ((is_split_screen() == 0) && (TObjPlayer::check_all_players_ready() != 0)) {
-        TObjFish::set_global_param((s32)lbl_8048E5C8);
+        set_current_texture_list((GinjaTextureList *)(lbl_8048E5C8));
         load_list_texture(0, 0, 0, 1);
     }
 }
@@ -165,7 +167,7 @@ void end_shadow_map_pass() {
         GXCopyTex((void *) (*(s32 *)((s8 *)(*(void **)((s8 *)(*(u8 **)((s8 *)(((u8 **)lbl_8048E5C8)[0]) + 8)) + 0xC)) + 0x20)), 1);
         GXPixModeSync();
         temp_r31 = active_gx_render_mode;
-        Dolphin_GXSetCopyFilter((int) (*(u8 *)((s8 *)temp_r31 + 0x19)), temp_r31 + 0x1A, (int) (get_display_copy_filter()), temp_r31 + 0x32);
+        Dolphin_GXSetCopyFilter((int) (*(u8 *)((s8 *)temp_r31 + 0x19)), temp_r31 + 0x1A, (int) (TObjBoss2Tunnel__sub_8036EF44()), temp_r31 + 0x32);
         GXSetViewport(lbl_805D93D0, lbl_805D93D0, lbl_805D9404, lbl_805D9408, lbl_805D93D0, lbl_805D93D8);
         GXSetScissor(0, 0, 0x280, 0x1E0);
         GXSetProjection(scene_projection_state, 0);
@@ -252,7 +254,7 @@ void **TObjPlayer__sub_80083F04(void) {
 
 void TObjPlayer__sub_80083F38(void) {
     Rect_80083F38 r;
-    ((TObjPlayer *)(&r))->set_render_rect(0, 2, 0x100, 0x100);
+    r.configure(0, 2, 0x100, 0x100);
     set_texture_name((void *)((s32 *)&lbl_8048E5C8)[0], &r, 0x2EE1, 0x08800000);
     load_texture_list(((s32 *)&lbl_8048E5C8));
     lbl_805D4EE0 = 0;
@@ -290,7 +292,7 @@ void TObjPlayer::draw_screen_quad(u32 arg0, s32 arg1, f32 farg0) {
     u32 temp_r31;
     void *temp_r4;
     void *temp_r4_2;
-    TObjFish::set_global_param((s32)((s32 *)&shared_capture_texture_list));
+    set_current_texture_list((GinjaTextureList *)(((s32 *)&shared_capture_texture_list)));
     if (arg1 != 0) {
         temp_r4 = shared_capture_texture_list.a->b->c;
         *(s32 *)((s8 *)temp_r4 + 0x10) = 0x100;
@@ -344,7 +346,7 @@ void TObjPlayer::draw_textured_screen_quad(u32 arg0, f32 *arg1, f32 *arg2, s32 a
     u32 temp_r31;
     void *temp_r4;
     void *temp_r4_2;
-    TObjFish::set_global_param((s32)((s32 *)&shared_capture_texture_list));
+    set_current_texture_list((GinjaTextureList *)(((s32 *)&shared_capture_texture_list)));
     if (arg3 != 0) {
         temp_r4 = (*(G_800842A4 *)&shared_capture_texture_list).a->b->c;
         *(s32 *)((s8 *)temp_r4 + 0x10) = 0x100;
@@ -390,7 +392,7 @@ void TObjPlayer::draw_textured_screen_quad(u32 arg0, f32 *arg1, f32 *arg2, s32 a
 }
 
 void TObjPlayer__sub_80084500(void) {
-    TObjFish::set_global_param((s32)((s32 *)(((u8 *)&shared_capture_texture_list))));
+    set_current_texture_list((GinjaTextureList *)(((s32 *)(((u8 *)&shared_capture_texture_list)))));
     load_list_texture(0, 0, 0, 0);
 }
 
@@ -440,7 +442,7 @@ void init_capture_texture(s32 wide) {
         w = 640;
         h = 480;
     }
-    ((TObjPlayer *)(&r))->set_render_rect(0, mode, w, h);
+    r.configure(0, mode, w, h);
     set_texture_name((*(G_800846C8 *)&shared_capture_texture_list).a, &r, 0x2EE0, 0x08800000);
     load_texture_list(&shared_capture_texture_list);
 }

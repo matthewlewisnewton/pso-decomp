@@ -1,5 +1,4 @@
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/misc/TWindowSubStatusDisp_80144B14.h"
 #include "pso/ui/TAdPlyStatusGC_802E1128.h"
@@ -51,7 +50,7 @@ extern s32 TAdPlyStatusGC__window_offset_index;
 void TAdPlyStatusGC::close_window(s32 arg1) {
     TAdPlyStatusGC__window_offset_index = arg1;
     if ((u32) this->m_6c != 0U) {
-        ((TWindowBase *)this->m_6c)->close();
+        TWindow__close((u8 *)this->m_6c);
         this->m_6c = 0U;
     }
 }

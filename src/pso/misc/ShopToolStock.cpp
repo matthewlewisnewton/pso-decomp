@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/misc/ShopToolStock.h"
 #include "pso/unk/text_80223B98.h"
@@ -52,11 +53,10 @@ typedef struct Hdr_8022525C
 
 extern "C" {
 s32 is_split_screen(void);
-s32 mem_alloc(s32);
+extern u8 lbl_8044C478[];
 extern s32 shop_tool_stock_buffers[];
 extern u32 lobby_tool_random_rel;
 extern int shop_tool_stock_level;
-void mem_free(void *p);
 void sort_shop_items(s32, s32, s32);
 u32 lobby_tool_random_rel;
 int shop_tool_stock_level;
@@ -89,7 +89,7 @@ void TLobby::free_all_rocks() {
     do {
         u32 v = (u32)var_r29[var_r31];
         if (v != 0U) {
-            mem_free((void *)v);
+            ::operator delete[]((void *)v);
             var_r29[var_r31] = (s32)var_r30;
         }
         var_r28 -= 1;
@@ -104,16 +104,16 @@ void TLobby::free_all_rocks() {
 s32 create_named_object(s32 arg0);
 void load_tool_random_rel(void) {
     s32 i;
-    (*(s32 *)&lobby_tool_random_rel) = create_named_object((s32)"ToolRandom.rel");
+    (*(s32 *)&lobby_tool_random_rel) = create_named_object((s32)lbl_8044C478);
     for (i = 0; i < 4; i++) {
         ((s32 *)&shop_tool_stock_buffers)[i] = 0;
     }
     if (is_split_screen() == 1) {
         for (i = 0; i < 4; i++) {
-            ((s32 *)&shop_tool_stock_buffers)[i] = mem_alloc(0x168);
+            ((s32 *)&shop_tool_stock_buffers)[i] = reinterpret_cast<s32>(::operator new[](0x168));
         }
     } else {
-        ((s32 *)&shop_tool_stock_buffers)[0] = mem_alloc(0x168);
+        ((s32 *)&shop_tool_stock_buffers)[0] = reinterpret_cast<s32>(::operator new[](0x168));
     }
     (*(s32 *)&shop_tool_stock_level) = 0;
 }

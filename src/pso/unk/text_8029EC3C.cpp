@@ -1,3 +1,4 @@
+#include "pso/map/CsnGroundQuery.h"
 #include "types.h"
 #include "pso/system/vector.h"
 #include "pso/object/TObjMotion.h"
@@ -19,12 +20,13 @@ extern "C" {
 void *get_player_by_client_id(s32);
 f32 vec_squared_length(u8 *arg0);
 void reflect_matrix_in_plane(s32, void *);
-s32 *csnVecterUnder(s32 origin, s32 mask);
 Hit_8029EC3C *csnVector(void *, void *, s32);
 extern s32 local_client_id;
 extern Vec_8029EC3C sora_reflection_ray_direction;
 extern const f32 lbl_805DDD88;
 extern const f32 lbl_805DDD8C;
+extern const f32 lbl_805DDD98;
+extern const f32 lbl_805DDD9C;
 s32 fn_8029EC3C(Vec_8029EC3C *pos, s32 arg1);
 #pragma push
 #pragma fp_contract on
@@ -39,12 +41,12 @@ s32 fn_8029EC3C(Vec_8029EC3C *pos, s32 arg1) {
     f32 scale;
     p = get_player_by_client_id(local_client_id);
     if (p == 0) return 0;
-    scale = 80.0f;
+    scale = lbl_805DDD98;
     if (get_current_floor_area() == AREA_SEABED_UPPER) {
         if ((s16)((TObjBase *)p)->get_room() == 0x5A) {
-            scale = 300.0f;
+            scale = lbl_805DDD9C;
         } else {
-            scale = 80.0f;
+            scale = lbl_805DDD98;
         }
     }
     VecCopy((Vec *)&a, (const Vec *)pos);
@@ -65,7 +67,7 @@ s32 fn_8029EC3C(Vec_8029EC3C *pos, s32 arg1) {
         return 1;
     }
     if (lbl_805DDD8C == sora_reflection_ray_direction.x && lbl_805DDD8C == sora_reflection_ray_direction.z) {
-        r = (Hit_8029EC3C *)csnVecterUnder((s32)&a, arg1);
+        r = (Hit_8029EC3C *)csnVecterUnder((const Vec *)&a, arg1);
     } else {
         r = csnVector(&a, &b, arg1);
     }

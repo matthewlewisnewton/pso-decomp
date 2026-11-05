@@ -1,8 +1,12 @@
+struct NJS_OBJECT;
 #ifndef PSO_BOSS_TBOSS8DRAGON_H
 #define PSO_BOSS_TBOSS8DRAGON_H
 
 #include "types.h"
+#include <dolphin/mtx/GeoTypes.h>
 #include "pso/misc/RenderFadeState.h"
+
+class TObject;
 
 struct TBoss8Dragon
 {
@@ -204,9 +208,9 @@ struct TBoss8Dragon
     int query_default();
     void copy_spawn_params(void* a1);
     void copy_action_state(u8 *arg1);
-    static s32 spawn_ground_lightning(s32 arg0, s32 arg1, s32 arg2);
+    static s32 spawn_ground_lightning(TObject *parent, const Vec *source, s32 direction);
     void set_default_on_state0();
-    static void update_camera_script();
+    static void update_camera_script(NJS_OBJECT *);
     void calc_velocity_from_angle();
     f32 clamp_step_in_radius(f32 a, f32 b, f32 s);
     void freeze_player_at_self();
@@ -244,7 +248,6 @@ struct TBoss8Dragon
     void check_death();
     void select_next_action();
     static void free_static();
-    static void *clone_node_tree(void *src, void *dst, int state);
     static void *create(void *arg0);
     void update_colli_parts();
     int test_card_flag_2();
@@ -265,7 +268,6 @@ struct TBoss8Dragon
     void bswap_boss_actions();
     s32 is_within_xz_distance(u8 *arg1, f32 farg0);
     f32 calc_sq_offset(f32 farg0);
-    static void noop();
     static int get_instance();
     static u16 get_global_part_count(s32 arg0);
     void place_parts_in_ring(s32 arg1, s32 arg2);

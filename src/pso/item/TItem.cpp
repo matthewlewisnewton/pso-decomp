@@ -1,3 +1,5 @@
+#include "pso/system/ArrayAllocation.h"
+#include "pso/misc/ParticleFactory.h"
 #include "pso/protocol/protocol_types.h"
 #include "pso/system/NinjaTypes.h"
 // TItem, the base of every item object, with the item registry, the item
@@ -311,7 +313,7 @@ void __sinit_TItem_cpp() {
 
 void init_item_system() {
     item_registry_count = 0;
-    item_registry_sorted_entries = (TItem **)mem_alloc(0x1000);
+    item_registry_sorted_entries = (TItem **)::operator new[](0x1000);
     memset(item_registry_sorted_entries, 0, 0x1000);
     item_id_counters = new TItemIdCounters;
     TObjPlayer::alloc_and_init_object_b4();
@@ -329,7 +331,7 @@ void free_item_system() {
         item_id_counters = NULL;
     }
     if (item_registry_sorted_entries != NULL) {
-        mem_free(item_registry_sorted_entries);
+        ::operator delete[](item_registry_sorted_entries);
         item_registry_sorted_entries = NULL;
     }
     item_registry_count = 0;
@@ -467,20 +469,20 @@ void TItem::place_on_ground(s16 floor, f32 *pos, s32 quiet) {
         destroy();
         return;
     }
-    rotation_x = 0;
-    rotation_z = 0;
-    rotation_y = (s32)(65536.0f * ((1.0f / 32768.0f) * (f32)rand()));
+    this->rotation.pitch = 0;
+    this->rotation.roll = 0;
+    this->rotation.yaw = (s32)(65536.0f * ((1.0f / 32768.0f) * (f32)rand()));
     snap_to_ground();
     refresh_collision_body_centers();
     if (item_ground_placement_enabled != 0) {
-        spawn_particle_effect(&position, 0x9B);
+        spawn_particle_effect((const Vec *)(&position), 0x9B);
     }
 }
 
 void TItem::update_owned() {}
 
 void TItem::update_timer() {
-    rotation_y += 0x200;
+    this->rotation.yaw += 0x200;
     if (has_interactor() != 0) {
         s16 timer = pickup_wait_frames;
         if (timer == 900) {
@@ -557,7 +559,7 @@ void TItem::handle_pickup(s16 floor, TObjPlayer *player) {
 
 void TItem::send_field_state(s16 floor, TObjPlayer *player) {
     if (floor == get_current_floor()) {
-        spawn_particle_effect(&position, 0x9B);
+        spawn_particle_effect((const Vec *)(&position), 0x9B);
         player->play_sound_if_on_floor(0x52802);
     }
 }
@@ -636,7 +638,7 @@ void TItem::snap_to_ground() {
     probe[0] = position.x;
     probe[1] = 300.0f + position.y;
     probe[2] = position.z;
-    CsnHit *hit = (CsnHit *)csnVecterUnder((s32)probe, 0x41);
+    CsnHit *hit = (CsnHit *)csnVecterUnder((const Vec *)probe, 0x41);
     if (hit != NULL) {
         position.y = 6.0f + hit->contact->point.y;
     }
@@ -1206,17 +1208,17 @@ void TItem::set_owner_technique_level(s16 technique, s16 level) {
 }
 
 s32 TItem::update_object_view_visibility(f32 depth, f32 radius) {
-    return is_point_on_screen(&position.x, depth, radius);
+    return is_point_on_screen(&position, depth, radius);
 }
 
 // Whether a sphere of `radius` around `pos` is in front of the camera,
 // within `range` and inside the 640-pixel-wide screen.
 #pragma push
 #pragma fp_contract on
-s32 is_point_on_screen(const f32 *pos, f32 range, f32 radius) {
+s32 is_point_on_screen(const Vec *pos, f32 range, f32 radius) {
     Vec view;
     f32 screen[2];
-    transform_point_by_current_matrix(pos, &view);
+    transform_point_by_current_matrix(&pos->x, &view);
     if (view.z > 0.0f) {
         return 0;
     }
@@ -1224,17 +1226,17 @@ s32 is_point_on_screen(const f32 *pos, f32 range, f32 radius) {
         return 0;
     }
     if (view.x < 0.0f) {
-        view.x = camera_right[0] * radius + pos[0];
-        view.y = camera_right[1] * radius + pos[1];
-        view.z = camera_right[2] * radius + pos[2];
+        view.x = camera_right[0] * radius + pos->x;
+        view.y = camera_right[1] * radius + pos->y;
+        view.z = camera_right[2] * radius + pos->z;
         project_world_to_screen(0, &view, screen);
         if (screen[0] < 0.0f) {
             return 0;
         }
     } else {
-        view.x = pos[0] - camera_right[0] * radius;
-        view.y = pos[1] - camera_right[1] * radius;
-        view.z = pos[2] - camera_right[2] * radius;
+        view.x = pos->x - camera_right[0] * radius;
+        view.y = pos->y - camera_right[1] * radius;
+        view.z = pos->z - camera_right[2] * radius;
         project_world_to_screen(0, &view, screen);
         if (screen[0] > 640.0f) {
             return 0;
@@ -1400,7 +1402,7 @@ void TItem::snap_to_owner() {}
 
 void TItem::apply_switch_attack(s32 effect) {
     if (owner != NULL && owner->is_body_collision_inactive() == 0) {
-        TParticleCtrl *particle = (TParticleCtrl *)spawn_particle_effect_with_flags(&owner->m_2fc, effect, 0x10);
+        TParticleCtrl *particle = (TParticleCtrl *)spawn_particle_effect_with_flags(&owner->body_center_position, effect, 0x10);
         if (particle != NULL) {
             particle->set_owner_id(get_owner_client());
         }
@@ -1409,7 +1411,7 @@ void TItem::apply_switch_attack(s32 effect) {
 
 void TItem::notify_owner(s32 sound) {
     if (owner != NULL && owner->is_body_collision_inactive() == 0) {
-        play_sound_effect(sound, &owner->position, 0, 0);
+        play_sound_effect((s32)(sound), (const Vec *)(&owner->position), 0, 0);
     }
 }
 
@@ -1483,7 +1485,7 @@ void TItem::render_model() {
         set_texlist(texture);
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(0, rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         draw_ginja_object(model);
         pop_matrix();
         TParticleCtrl::end_effect_render();
@@ -1509,7 +1511,7 @@ void TItem::render_present_box() {
         set_texlist(texture);
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(0, rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         set_constant_material(&item_box_primary_colors[box_color]);
         draw_ginja_model((s32)box->model);
         set_constant_material(&item_box_secondary_colors[box_color]);

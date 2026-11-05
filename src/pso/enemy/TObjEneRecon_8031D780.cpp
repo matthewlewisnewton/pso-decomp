@@ -1,3 +1,4 @@
+#include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/enemy/TObjEneRecon_8031D780.h"
 #include "pso/misc/TOTrapAncient01_80226534.h"
@@ -39,22 +40,22 @@ extern "C" {
 
 s32 select_nearest_target__12TObjEneDD_STFf(void *, f32);
 
-s32 TObjEneRecon::vfunc_104(f32 farg0) {
-    if (((VObj_8031D780 *)this)->m97() != 0) {
-        ((TObjEneDD_ST *)this)->select_and_apply_target(farg0);
+void TObjEneRecon__vt102(void *ene_epsilon, f32 farg0) {
+    if (((VObj_8031D780 *)ene_epsilon)->m97() != 0) {
+        ((TObjEneDD_ST *)ene_epsilon)->select_and_apply_target(farg0);
         return;
     }
-    select_nearest_target__12TObjEneDD_STFf(this, farg0);
+    select_nearest_target__12TObjEneDD_STFf(ene_epsilon, farg0);
 }
 
 void TObjEneRecon::spawn_trap_a() {
     s32 arg0 = (s32)this;
-    play_persistent_sound((TObjEneRecobox::remap_area_sound_id(0x4003AD07)), (arg0), (arg0 + 0x38), 0, 0);
+    play_persistent_sound((s32)((TObjEneRecobox::remap_area_sound_id(0x4003AD07))), (const void *)((arg0)), (const Vec *)((arg0 + 0x38)), 0, 0);
 }
 
 void TObjEneRecon::spawn_trap_b() {
     s32 arg0 = (s32)this;
-    play_persistent_sound((TObjEneRecobox::remap_area_sound_id(0x4003B206)), (arg0), (arg0 + 0x38), 0, 0);
+    play_persistent_sound((s32)((TObjEneRecobox::remap_area_sound_id(0x4003B206))), (const void *)((arg0)), (const Vec *)((arg0 + 0x38)), 0, 0);
 }
 
 u16 TObjEneRecon__sub_8031D878(void *arg0) {

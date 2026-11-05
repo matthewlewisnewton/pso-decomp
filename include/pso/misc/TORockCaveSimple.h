@@ -5,7 +5,6 @@
 #include "pso/misc/TORockCave.h"
 
 struct TORockCaveSimple : public TORockCave {
-    TORockCaveSimple();
     virtual ~TORockCaveSimple();
     virtual void render();
 };

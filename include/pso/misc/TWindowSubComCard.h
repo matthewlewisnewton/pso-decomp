@@ -49,6 +49,7 @@ struct TWindowSubComCard : public TObject {
     u32 m_84;
     static s32 get_card_slot(s32 arg0);
     void clear_flag_and_release();
+    int get_status_flag();
     s32 find_value_by_key(u16 key);
     static s32 get_com_count();
     static void release();
@@ -96,15 +97,6 @@ struct TWindowSubComCard : public TObject {
     void free_member();
     s32 get_slot_or_neg1();
     s32 get_card_data();
-    void update_card_display(void* a1, void* a2, void* a3, void* a4);
-    void create_message_and_menu(u32 arg1, s32 arg2, u32 arg3, u32 arg4);
-    void close_windows();
-    void set_state(s32 arg1);
-    void reset();
-    void poll_card_status();
-    void handle_menu_selection();
-    void update_display_state();
-    void close_and_update_display();
     void*init_fields(int a1, int a2);
     int is_flag_4_set();
     static f32 trunc_float(f32 farg0);

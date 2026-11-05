@@ -5,13 +5,9 @@
 #include "pso/misc/TPlyFollowParticleCtrl.h"
 
 struct TPlyPtclObjectLeftHand : public TPlyFollowParticleCtrl {
-    TPlyPtclObjectLeftHand(TObjBase *owner);
     virtual ~TPlyPtclObjectLeftHand();
-    // vtable slot 9 (TObjBase::get_center)
-    virtual void *get_center();
+    static s32 update_attachment(s32 arg0);
 };
-
-extern const char *TPlyPtclObjectLeftHand__class_name;
 
 typedef char TPlyPtclObjectLeftHand_size[sizeof(TPlyPtclObjectLeftHand) == 0xB0 ? 1 : -1];
 #endif

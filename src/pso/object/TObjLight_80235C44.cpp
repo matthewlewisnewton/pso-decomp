@@ -127,9 +127,9 @@ u8 *TObjLight::construct_actor_light(s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32
     *(s32 *)&this->home_position.y = arg4;
     *(s32 *)((s8 *)((u8 *)this) + 0x20) = 1;
     this->home_position.z = farg1;
-    *(f32 *)&this->rotation_x = farg2;
-    *(u16 *)&this->rotation_y = get_entity_id((void *)(int) (*(s32 *)&this->home_position.y));
-    TObjLight::find_light_params((f32 *)(((u8 *)this) + 0x40), (f32 *)&stack.sp8, (u32)((int) ((s32) *(u16 *)&this->rotation_y)));
+    *(f32 *)&this->rotation.pitch = farg2;
+    *(u16 *)&this->rotation.yaw = get_entity_id((void *)(int) (*(s32 *)&this->home_position.y));
+    TObjLight::find_light_params((f32 *)(((u8 *)this) + 0x40), (f32 *)&stack.sp8, (u32)((int) ((s32) *(u16 *)&this->rotation.yaw)));
     return ((u8 *)this);
 }
 typedef char RecoveredGlobal_80235F60_lbl_804CCAA8_size[sizeof(RecoveredGlobal_80235F60_lbl_804CCAA8) == 0x18 ? 1 : -1];
