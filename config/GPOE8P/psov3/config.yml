@@ -570,6 +570,19 @@ force_active:
   - TLobby__sub_8013A2DC
   - TLobby__sub_8013A578
   - TLobby__sub_8013FF64
+  - TLobby__sub_80146314
+  - TLobby__sub_80146588
+  - TLobby__sub_801465C0
+  - TLobby__sub_801466F4
+  - TLobby__sub_80146724
+  - TLobby__sub_8014677C
+  - TLobby__sub_801469B8
+  - TLobby__sub_80146CA0
+  - TLobby__sub_8014715C
+  - TLobby__sub_80147284
+  - TLobby__sub_801472F8
+  - TLobby__sub_8014734C
+  - TLobby__sub_801478C4
   - TLobby__sub_80182E60
   - TLobby__sub_801A20C8
   - TLobby__sub_801A3CF8
@@ -5522,6 +5535,8 @@ force_active:
   - flower_tower_collision_parts
   - flush_pending__6TLobbyFv
   - flush_pending_effect__12TBoss8DragonFv
+  - flush_pending_flag2__6TLobbyFv
+  - flush_pending_flags__6TLobbyFv
   - fly_attack_motion_filename
   - fly_bml_filename
   - fly_body_model_filename
@@ -5657,6 +5672,8 @@ force_active:
   - fn_8010EF14
   - fn_8010EFE8
   - fn_80119204
+  - fn_80147A60
+  - fn_80147A68
   - fn_80157CA8
   - fn_801908F8
   - fn_8019B480
@@ -5958,6 +5975,7 @@ force_active:
   - get_labo_design_object__Fi
   - get_level_bracket__6TLobbyFl
   - get_level_tier__6TLobbyFl
+  - get_link_status_value__6TLobbyFv
   - get_list_item8__24TShopEquipmentListWindowFv
   - get_lobby_theme_clamped__16TObjCurtainLobbyFv
   - get_mag_state__13TWindowSubMagFv
@@ -6002,6 +6020,7 @@ force_active:
   - get_player_load_state__Fv
   - get_player_pos_in_arc__13TBoss5GryphonFPviiPvPv
   - get_pos_ptr__10TObjPlayerFv
+  - get_ppp_password_buffer__Fv
   - get_quest_data__16TQuestListOnlineFv
   - get_quest_size__12TQuestListVMFv
   - get_quest_size__16TQuestListOnlineFv
@@ -7354,6 +7373,14 @@ force_active:
   - lbl_80509D3C
   - lbl_8050AAD4
   - lbl_8050BED0
+  - lbl_8050C0A8
+  - lbl_8050C0C4
+  - lbl_8050C684
+  - lbl_8050CCE8
+  - lbl_8050CE0C
+  - lbl_8050CE14
+  - lbl_8050CE34
+  - lbl_8050CE54
   - lbl_8050EA64
   - lbl_80511DD8
   - lbl_80511EFC
@@ -8045,6 +8072,7 @@ force_active:
   - load_map_texture_archive__6TSceneFl
   - load_model__15TBoss3VoloptP01Fl
   - load_models__22TObjContainerJungEnemyFv
+  - load_network_configs__6TLobbyFv
   - load_object_set_file__Fll
   - load_param_record__8TItemMagFv
   - load_params__15TObjEneMe1GiGueFv
@@ -8073,6 +8101,7 @@ force_active:
   - load_texture__12TItemTexLoadFl
   - load_texture_archive__12TItemTexLoadFv
   - load_texture_sequence_frame
+  - lobby_account_entries
   - lobby_buffer_refcount
   - lobby_checked_read_ptr_table
   - lobby_class_name
@@ -13018,6 +13047,7 @@ force_active:
   - ply_status_window_points_second
   - pm_mdl_model_names
   - pm_mdl_motion_names
+  - poll_connect__6TLobbyFv
   - poll_input__19TWindowKeyBoardHardFv
   - poll_key_state__16TKeyBoardControlFv
   - poll_load__12TChCrLoadAfsFv
@@ -13812,6 +13842,7 @@ force_active:
   - rotate_title_background_quad__FlPUcPUclf
   - run_active_state__18TObjEneBalClawClawFv
   - run_and_return_arg__10TObjPlayerFl
+  - run_connect_sequence__6TLobbyFv
   - run_default_state__12TBoss8DragonFv
   - run_demo_task__16TObjEneNanoDragoFv
   - run_floor_cleanup_callbacks__6TLobbyFi
@@ -14423,6 +14454,7 @@ force_active:
   - set_attack_pattern_by_index__11TBoss4Type2Fl
   - set_bank_panel_art__20TWindowActionPaletteFUs
   - set_battle_ctrl_flag30__18TItemLockCountCtrlFi
+  - set_battle_flag__6TLobbyFl
   - set_bit__15TBoss6SwordWaveFiUc
   - set_blast_level__16PhotonBlastGaugeFsSc
   - set_boss4_state__12TObjEneLappyFv
@@ -14453,6 +14485,7 @@ force_active:
   - set_displayed_item__19TWindowSubTradeMainFl
   - set_displayed_item__20TWindowShortListCtrlFl
   - set_displayed_item_data__15TWindowHelpItemFPvPv
+  - set_dns_servers__6TLobbyFv
   - set_draw_mode__15TObjEneDelDepthFl
   - set_effect_pos_above_self__16TObjEneDellBiterFv
   - set_effect_pos_above_self__17TObjEneDf2BringerFv
@@ -15524,6 +15557,7 @@ force_active:
   - target_in_xz_cone
   - tcp_socket_table
   - team_matchup_message_buffer
+  - teardown_boss2__6TLobbyFv
   - tec_deband_class_name_ptr
   - tec_jelin_class_name_ptr
   - tec_kafun_class_name_ptr
