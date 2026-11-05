@@ -12,10 +12,10 @@ u8 TObjSinBoard__texture_name[0xC];
 __declspec(section ".data") void *signboard_texture_list[2];
 GinjaTextureInput TObjSinBoard__texture_surface;
 void fn_80197FD0(void *arg0, void *quest_vm_down_load_server) {
-    u32 t = ((TQuestVmDownLoadServer *)quest_vm_down_load_server)->alloc();
+    u32 t = (u32)TQuestVmDownLoadServer::alloc((u32)quest_vm_down_load_server);
     TObjSinBoard__texture_buffer = t;
     if (t != 0) {
-        ((TLobby *)t)->move_data((const void *)arg0, (u32)quest_vm_down_load_server);
+        move_data((void *)t, (const void *)arg0, (u32)quest_vm_down_load_server);
         signboard_texture_list[0] = TObjSinBoard__texture_name;
         signboard_texture_list[1] = (void *)1;
         TObjSinBoard__texture_surface.configure((void *)TObjSinBoard__texture_buffer, 0, 0, 0);

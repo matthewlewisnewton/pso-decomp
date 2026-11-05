@@ -87,7 +87,7 @@ void process_async_file_reads(void) {
                 ((TLobby *)dst)->copy_u16_array((u16 *)async_file_read_sector_buffer, (s32)(n / 2));
                 break;
             default:
-                ((TLobby *)dst)->move_data((const void *)async_file_read_sector_buffer, (u32)n);
+                move_data(dst, (const void *)async_file_read_sector_buffer, (u32)n);
                 break;
             }
             TLobby::destroy_instance();
@@ -101,7 +101,7 @@ void process_async_file_reads(void) {
             async_file_read_state = 0;
         } else if (TLobby__sub_803CC4C0(lobby_download_state_ptr) == 3) {
             load_gvm_texture_archive(async_file_read_texture_buffer, async_file_read_current_request->tex);
-            ((TLobby *)fsrv_read_pvm_buffer_tag)->tmp_buf_release();
+            TLobby::tmp_buf_release((const char *)fsrv_read_pvm_buffer_tag);
             TLobby::notify_and_close();
         }
         break;

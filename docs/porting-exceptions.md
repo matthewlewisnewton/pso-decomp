@@ -18,7 +18,6 @@ entry says *reason not recorded*.
 ## Summary (regenerated on this branch after merging main `28e77474d`, 2026-11-05)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `f6dedd375` (2026-11-04). Assembly is counted as functions;
 after merging main `28e77474d` (2026-11-05). Assembly is counted as functions;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
@@ -26,9 +25,6 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 |---|---:|---:|
 | Assembly (`asm` + `orig_asm` include) | 7 functions (13 source lines) | 4 |
 | MWCC intrinsics | 83 | 54 |
-| Direct hardware access (GX FIFO `0xCC008000` etc.) | 71 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,851 | 884 |
-| Per-unit compiler overrides in `configure.py` | 148 | 148 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
 | CodeWarrior pragmas (excluding push/pop) | 5,796 | 876 |
 | Per-unit compiler overrides in `configure.py` | 163 | 163 |
@@ -74,9 +70,6 @@ etc. or their port equivalents) instead of the fixed address.
 
 ## 4. CodeWarrior pragmas
 
-5,851 pragmas in 884 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1151, `inline_depth` 1043, `fp_contract` 923, `auto_inline` 842,
-`opt_common_subs` 623, `scheduling` 262, `opt_propagation` 241,
 5,836 pragmas in 877 files; per-file table in the generated file. Main kinds:
 `dont_inline` 1153, `inline_depth` 1045, `fp_contract` 911, `auto_inline` 844,
 `opt_common_subs` 618, `scheduling` 260, `opt_propagation` 241,
@@ -102,13 +95,6 @@ small float differences without FMA).
 |---|---|---|---|---|
 | `src/pso/effect/TEF_LensFlare.cpp` | `TEF_LensFlare::render` | one scoped `#pragma opt_propagation off` | MWCC propagation needed for the exact receiver/descriptor cursor codegen. Approved by Matt 2026-11-04. | Drop it. |
 
-### Approved: `TWindowKeyBoardSoft::set_open_tick` ([#219](https://github.com/matthewlewisnewton/pso-decomp/pull/219))
-
-| File | Function | What | Why | Port should |
-|---|---|---|---|---|
-| `src/pso/misc/TWindowKeyBoardSoft_8024E68C.cpp` | `TWindowKeyBoardSoft::set_open_tick` @ `0x8024E7B8` (size `0x80`) | one `#pragma opt_common_subs off` | Approved by Matt on 2026-11-04 4:38 PM PT. Without it, common-subexpression elimination swaps the two SDA21 constant loads at `set_open_tick+0x3c` / `+0x44`: matched order is `lfs f2, lbl_805DCC88@sda21` then `lfs f3, lbl_805DCC84@sda21` (`0x8024E7F4` / `0x8024E7FC`); with CSE on those loads swap (`f2`/`f3` renumbered) so the function is the same length and not the same bytes. The float math (`(lbl_805DCC88 + (f32)tick) / lbl_805DCC88` then `* lbl_805DCC84`) is otherwise identical. Unit `-fp_contract on` is separate (section 5) and does not fix this load order. | Drop the pragma. A port does not need MWCC's CSE schedule for these two loads. |
-
-### Approved: `TBoss7TentacleNeedle::TBoss7TentacleNeedle` ([#299](https://github.com/matthewlewisnewton/pso-decomp/pull/299))
 ### Approved: `TObjBoss2Tunnel__sub_8007D1D0` ([#290](https://github.com/matthewlewisnewton/pso-decomp/pull/290))
 
 | File | Function | What | Why | Port should |
@@ -127,7 +113,6 @@ small float differences without FMA).
 |---|---|---|---|---|
 | `src/pso/boss/TObjBoss2Tunnel_802F2070.cpp` | `TUnk_804E4B3C::update_spawn_timer` (`0x802F2664`) | one `#pragma opt_common_subs off` | Approved by Matt 2026-11-04 4:38 PM PT. The original prologue is `lfs f0, lbl_805DECB4` then `lfs f2, 0x58(r3)` / `lfs f1, 0x5c(r3)` / `fadds f1, f2, f1` (threshold in f0, then `m_58` and `m_5c`). Without the pragma, common-subexpression elimination sinks that load: the same 44 instructions come out with the threshold in f2 and the add in f1/f0 (8 words differ) whether the threshold is a local, a compound assignment, or the direct compare. A unit `-opt nocse` keeps the timer and breaks `spawn_segment_row_a`, `spawn_segment_row_b`, and `advance_effect_timer`. The constructor `TObjBoss2Tunnel__sub_802F2A2C` does not use this pragma. | Drop the pragma. The value is `m_58 += m_5c`, then subtract `lbl_805DECB4` on wrap; a port does not need MWCC's load schedule. |
 
-149 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 ### Approved: `TWindowKeyBoardSoft::set_open_tick` ([#219](https://github.com/matthewlewisnewton/pso-decomp/pull/219))
 
 | File | Function | What | Why | Port should |
@@ -325,17 +310,14 @@ plain source: `free_all` (no copied loop-counter alias) and
 | `pso/boss/TObjBoss2Tunnel_802F2070.cpp` | all 27 functions (`0x802F2070`-`0x802F2C84`), written in reverse address order | unit switch `-inline off,deferred` | Data order. The original `.sbss` holds the ctor's function-local static `constructed$35` (+0) and its guard `init$36` (+4) before `run_task`'s handler-table guard `init$59` (+5), although `run_task` (`0x802F28E0`) comes before the ctor `TObjBoss2Tunnel__sub_802F2A2C` in `.text`. Target asm: `lbz r0,init$59` at `0x802F2900` and `stb r0,init$59` at `0x802F295C`; `lbz r0,init$36` at `0x802F2BA0`, then `li r0,1; stw r0,constructed$35; stb r0,init$36` at `0x802F2BAC`-`0x802F2BB4`. MWCC creates function-local statics in parse order and, with `deferred`, emits code in reverse definition order ([compiler-emission-evidence.md](evidence/compiler-emission-evidence.md)); only that combination gives both orders. Without the switch the guard was emulated with two hand-written globals set in the ctor. With it the ctor has a real `static s32 constructed = 1;`, `.sbss` goes from 66.67% to 100%, `.data` gets real symbol sizes (`@56`-`@58`, `handlers$55`, `boss2_tunnel_effect_tail`), and `.text`, `.rodata` and `.sdata2` stay identical (27/27 functions 100%). check_pr: 0 regressions. The sibling `TObjBoss2Tunnel.cpp` and `TBoss6PlotFalz_802B0228.cpp` (upstream #183) use the same switch, as do `TObjEneRe2Flower_800C3E14.cpp` and `TObjEneEpsilonGuard_8035F5C8.cpp`. Precedent: per-object `-inline` settings in [dtk-template `configure.py`](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203) and [brawl](https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264). | Drop the switch; definition order does not matter to a port. |
 | `pso/boss/TObjBoss2Tunnel.cpp` | the unit (all functions; upstream [#185](https://github.com/zeroz41/pso-decomp/pull/185)'s `configure.py` entry) | unit switches `-inline off,deferred -pool off -sdata 4` | Copied from upstream zeroz41 [#185](https://github.com/zeroz41/pso-decomp/pull/185) with the code. Upstream's fourth switch, `-opt nopropagation`, is replaced by the approved per-function `opt_propagation off` on `TObjBoss2Tunnel__sub_8007D1D0` (section 4). Measured by dropping one switch at a time: without `-pool off`, `run_confirm_message_loop` is 90.25%; without `-sdata 4`, `draw_snapshot_capture_overlay` 78.35%, `TObjBoss2Tunnel__sub_8007DB80` 85.33%, `reset_state` 93.33%, `show_message_and_wait` 96.50%, `run_confirm_message_loop` 97.15%, `TObjBoss2Tunnel__sub_8007D1D0` 99.61%; without `deferred`, the function order flips and most functions drop to 99.2-99.9%. With all three and the pragma, every section of the unit is 100%. `-pool off` and `-sdata 4` are already used by `TOKurage.cpp`, the `TOKey*`/`TOSensor*` units and `TObjEnemyCustom.cpp`. | Drop the switches. |
 
+Linking `TObjBoss2Tunnel_802F2070.cpp` also needs `cw_align` (`.sbss=4 .sdata2=4` in `configure.py`, applied by `tools/cw_comment_align.py`). mwld places small data using the alignment stored in the CodeWarrior `.comment` record. GC/2.6 writes 8 there, and `-sdata 4` does not change it, so `.sbss` (original start `0x805D696C`) and `.sdata2` (original start `0x805DECCC`) were each inserted 4 bytes late. That one pad shifted the rest of `.sdata2` and every `sda21` offset that follows. The script rewrites the comment record and `sh_addralign` after compile; the section bytes are unchanged. Objdiff stays at 100% either way, because it matches relocations symbolically.
+
 ### `-opt nolifetimes,nocse,noprop,noloop`: `TMovie_80143988.cpp` ([#167](https://github.com/matthewlewisnewton/pso-decomp/pull/167))
 
 | Unit | Function | What | Why | Port should |
 |---|---|---|---|---|
 | `pso/misc/TMovie_80143988.cpp` | `pack_movie_frame` (`0x80143988`, 564 bytes; the only function in the unit) | unit switch `-opt nolifetimes,nocse,noprop,noloop` | The original keeps each named local in one register for the whole function: the packed word is built in place in `r25`, and `mr r24, r25` copies it for the second scanline before every luma insert (`0x80143A4C`, `0x80143A70`, ... eight times). The cache-touch offset is the single `li r0, 0x20` hoisted to the entry (`0x8014398C`) and reused by both `dcbt r31, r0` / `dcbt r9, r0` (`0x80143A30`, `0x80143ADC`). The pad scales are recomputed late in the entry (`slwi r5, r25, 2` ... `slwi r3, r24, 2`, `0x80143A18`–`0x80143A20`). Without `nolifetimes` the unit is 53.40% (568 bytes, `stmw r21`). Without `noprop`, `touch` is propagated as a constant: 70.50%, 596 bytes. Without `nocse` or `noloop` the shared stride and pad shifts become frontend temps coloured in the wrong order: 93.06%, 564 bytes. With the switch, `.text` (564 bytes), relocations and symbols match the target object. The source is plain C++ (no `__rlwinm`/`__rlwimi`); only `__dcbt` (section 2) remains. Precedent: Petari uses these keywords per object: [`-opt nolifetimes,nocse,noprop`](https://github.com/SMGCommunity/Petari/blob/50c1eae28478c8b1b1c8708ab8ce9a3b845ee6c6/configure.py#L3735), [`-opt nolifetimes,noloop`](https://github.com/SMGCommunity/Petari/blob/50c1eae28478c8b1b1c8708ab8ce9a3b845ee6c6/configure.py#L2974), [`-opt noloop`](https://github.com/SMGCommunity/Petari/blob/50c1eae28478c8b1b1c8708ab8ce9a3b845ee6c6/configure.py#L1532). SFA uses [`-opt nolifetimes`](https://github.com/zcanann/SFA-Decomp/blob/f561e933ecc7356259bccdd6a7ce9a4462a950a0/configure.py#L1586). This repo already has `-opt noprop` and `-opt nocse` units. Evidence: [pack-movie-frame-unit-flags.md](evidence/pack-movie-frame-unit-flags.md). | Drop the switch. The source is plain C++; drop the cache touch too. |
 
-### `TObjCityMainWarpChallenge.cpp`: `-inline off,deferred`
-
-| Unit | What | Why | Port should |
-|---|---|---|---|
-| `pso/object/TObjCityMainWarpChallenge.cpp` | unit switch `-inline off,deferred` | The file is written last function first. Deferred emission puts that last definition first, so `.text` stays in address order (`0x801871D0`–`0x80187C98`) and the hand-written vtable at `0x804B6188` precedes `jumptable_804B61DC`. Nothing is inlined. Evidence: [city-main-warp-challenge-vtable.md](evidence/city-main-warp-challenge-vtable.md). | One translation unit in address order. A compiler that emits data with the function that uses it does not need the reversed source. |
 ### `TAdChrSelPlyPlateGC.cpp`: `-fp_contract on` ([#214](https://github.com/matthewlewisnewton/pso-decomp/pull/214), folded by [#250](https://github.com/matthewlewisnewton/pso-decomp/pull/250))
 
 | File | Function | What | Why | Port should |
@@ -393,7 +375,6 @@ or `other: <what>`); the fork PR that brought it in; and the tag
 | `clear_sound_listener_position` | `pso/misc/TLobby_802268F4.cpp` | `src/pso/misc/TLobby_802268F4.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | other: dead-stripped function | [#352](https://github.com/matthewlewisnewton/pso-decomp/pull/352) | upstream catch-up, rewrite later |
 | `__vt__25TObjCityMainWarpChallenge` | `pso/object/TObjCityMainWarpChallenge.cpp` | `src/pso/object/TObjCityMainWarpChallenge.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | other: hand-written vtable | [#352](https://github.com/matthewlewisnewton/pso-decomp/pull/352) | upstream catch-up, rewrite later |
 | `TObjCityMainWarpChallenge.cpp` | `pso/object/TObjCityMainWarpChallenge.cpp` | `configure.py` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | other: per-unit cflags override | [#352](https://github.com/matthewlewisnewton/pso-decomp/pull/352) | upstream catch-up, rewrite later |
-| TBoss7TentacleNeedle.cpp:518 opt_propagation (`__ct__20TBoss7TentacleNeedleFP7TObjectP3Vec`) | pso/boss/TBoss7TentacleNeedle.cpp | src/pso/boss/TBoss7TentacleNeedle.cpp | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | steering pragma | [#352](https://github.com/matthewlewisnewton/pso-decomp/pull/352) | upstream catch-up, rewrite later |
 | `TObjBoss2Tunnel__sub_8007D1D0` (`0x8007D1D0`): snapshot cursor `flags = (u32 *)p`, `levels = (u32 *)(p + 0x30)`, `name = (char *)(p + 0x60)` | `pso/boss/TObjBoss2Tunnel.cpp` | `src/pso/boss/TObjBoss2Tunnel.cpp` | [#185](https://github.com/zeroz41/pso-decomp/pull/185) | raw offset cast | [#290](https://github.com/matthewlewisnewton/pso-decomp/pull/290) | upstream catch-up, rewrite later |
 | `TObjBoss2Tunnel__sub_8007D1D0`: `((TLobby *)p)->move_data(...)` on the snapshot buffer | `pso/boss/TObjBoss2Tunnel.cpp` | `src/pso/boss/TObjBoss2Tunnel.cpp` | [#185](https://github.com/zeroz41/pso-decomp/pull/185) | other: receiver cast | [#290](https://github.com/matthewlewisnewton/pso-decomp/pull/290) | upstream catch-up, rewrite later |
 | `is_on_current_screen__11TCameraCtrlFv` (declared `extern "C"` with a wide `(ControllerInputContext *, s32)` signature; called by `TObjBoss2Tunnel__sub_8007D1D0`) | `pso/boss/TObjBoss2Tunnel.cpp` | `src/pso/boss/TObjBoss2Tunnel.cpp` | [#185](https://github.com/zeroz41/pso-decomp/pull/185) | extern "C" mangled name | [#290](https://github.com/matthewlewisnewton/pso-decomp/pull/290) | upstream catch-up, rewrite later |
@@ -424,8 +405,6 @@ entry when the PR merges.
 | [#250](https://github.com/matthewlewisnewton/pso-decomp/pull/250) | `fp_contract` ×3 | Reason not recorded. |
 | [#303](https://github.com/matthewlewisnewton/pso-decomp/pull/303), [#295](https://github.com/matthewlewisnewton/pso-decomp/pull/295), [#289](https://github.com/matthewlewisnewton/pso-decomp/pull/289), [#225](https://github.com/matthewlewisnewton/pso-decomp/pull/225), [#222](https://github.com/matthewlewisnewton/pso-decomp/pull/222), [#215](https://github.com/matthewlewisnewton/pso-decomp/pull/215), [#128](https://github.com/matthewlewisnewton/pso-decomp/pull/128) | 1 to 4 inlining/optimization pragmas each | Reason not recorded. Drop in a port. |
 | [#240](https://github.com/matthewlewisnewton/pso-decomp/pull/240) | Not scanned | Diff exceeds GitHub's 300-file limit; scan locally after it merges. |
-| [#299](https://github.com/matthewlewisnewton/pso-decomp/pull/299) | `TBoss7TentacleNeedle.cpp`: `-inline off,deferred`, `-fp_contract on` | Deferred emission orders `__vt__20TBoss7TentacleNeedle` before `__vt__14TBoss7Tentacle` while `.text` stays in address order. `-fp_contract on` because the position jitter and the tentacle curve fuse to `fmadds`. Port: drop both flags; the C++ is the behavior. |
-| [#299](https://github.com/matthewlewisnewton/pso-decomp/pull/299) | `#pragma opt_propagation off` around `TBoss7TentacleNeedle::TBoss7TentacleNeedle` only | Approved by Matt 2026-11-04 4:38 PM PT. Register entry is in section 4. |
 | [#167](https://github.com/matthewlewisnewton/pso-decomp/pull/167) | Unit switch `-opt nolifetimes,nocse,noprop,noloop` on `TMovie_80143988.cpp` (section 5); the pre-existing `__dcbt` in `pack_movie_frame` | `pack_movie_frame` matches 100% in plain C++. The earlier `__rlwinm` / `__rlwimi` calls are gone. `__dcbt` is the original data-cache touch (`dcbt r31, r0` / `dcbt r9, r0`). Port: drop the switch and the cache touch. |
 
 The scan covers source lines only; `configure.py` overrides added by PRs show up

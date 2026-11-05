@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "pso/TObject.h"
+#include "pso/system/NinjaTypes.h"
 #include <dolphin/mtx/GeoTypes.h>
 #include <stddef.h>
 
@@ -12,17 +13,21 @@ struct TBoss7TentacleNeedle : public TObject {
     TBoss7TentacleNeedle(TObject *parent, Vec *position);
     virtual ~TBoss7TentacleNeedle();
     void advance_needle_timer();
+    void update_retract_state();
+    void damage_nearby_players();
+    void finish_retract();
+    s32 advance_toward_limit(f32 step);
+    void advance_anim_time_wrapped(f32 step);
+    void restart_particle_effect();
     Vec position;
-    u32 m_28;
-    u32 m_2c;
-    u32 m_30;
+    s32 angle[3];
     f32 m_34;
     u32 m_38;
     s32 m_3c;
     TParticleCtrl *m_40;
     s32 target_flags[12];
     f32 m_74;
-    u32 m_78;
+    NJS_MOTION *m_78;
     virtual void render();
     virtual void run_task();
 };

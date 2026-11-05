@@ -121,7 +121,6 @@ Obj_801A0224 * TObjWarpJung__ct(Obj_801A0224 *self);
 s32 TObjWarpJung__sub_801A0404(s32);
 void __dl__7TObjectFPv(void *);
 void * __nw__7TObjectFUl(int);
-s32 get_selected_menu_value(void *);
 void * init__13TAdVIConfigGCFf(void *, void *, f32);
 s32 get_game_play_mode(void);
 
@@ -178,8 +177,8 @@ void TObjWarpJungMain::render() {
 s32 TObjWarpJungMain__vt16(TObjWarpJungMain *warp_jung_main) {
     u8 *window_menu;
     window_menu = (u8 *)(*(u8 **)((s8 *)warp_jung_main + 0xB0));
-    if ((window_menu != NULL) && (((TWindowMenu *)window_menu)->is_visible() != 0)) {
-        warp_jung_main->m_bc = (s32) *(s32 *)((s8 *)&jungle_warp_destination_ids.value + (get_selected_menu_value(*(u8 **)((s8 *)warp_jung_main + 0xB0)) * 4));
+    if ((window_menu != NULL) && (((TWindowMenu *)window_menu)->is_decided() != 0)) {
+        warp_jung_main->m_bc = (s32) *(s32 *)((s8 *)&jungle_warp_destination_ids.value + (((TWindowMenu *)(*(u8 **)((s8 *)warp_jung_main + 0xB0)))->get_selected_value() * 4));
         return 1;
     }
     return 0;
@@ -199,7 +198,7 @@ void TObjWarpJungMain__vt13(TObjWarpJungMain *warp_jung_main, s16 arg1) {
         ((TWindowSubComCard *)(warp_jung_main->m_b0))->calc_window_size();
         align_menu_entry_positions(warp_jung_main->m_b0);
         ((TWindowSubComCardList *)(warp_jung_main->m_b0))->set_flag70_bit10();
-        ((TLobby *)(warp_jung_main->m_b0))->set_loss_flag();
+        ((TWindowMenu *)(warp_jung_main->m_b0))->set_loss_flag();
         request_active_window_close();
         warp_jung_main->m_b8 = arg1;
     }

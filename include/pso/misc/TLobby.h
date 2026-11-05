@@ -556,8 +556,6 @@ struct TLobby : public TObject {
     void release_handle();
     u32 get_packet_size();
     u32 get_available_size();
-    void move_data(const void *src, u32 n);
-    void *alloc_tables(s32 arg1, s32 arg2);
     void copy_u16_array(u16 *src, s32 n);
     void move_words(u32 *src, s32 n);
     static s32 calc_delta(s32 arg0, s32 arg1);
@@ -754,7 +752,6 @@ struct TLobby : public TObject {
     void init_net_config();
     void send_text_packet_D9(char *str);
     static void tmp_buf_release_if_owner(const char *name);
-    s32 tmp_buf_release();
     static s32 tmp_buf_release(const char *name);
     static s32 tmp_buf_is_free();
     static u8 *tmp_buf_use_req(const char *name);

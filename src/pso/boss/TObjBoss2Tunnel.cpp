@@ -713,7 +713,7 @@ void draw_snapshot_capture_overlay(void) {
     q.v0 = 0.494117647f;
     q.u1 = 0.423529416f;
     q.v1 = 0.600000024f;
-    draw_textured_quad_at_depth((f32 *)&q, 0.5f);
+    draw_textured_quad_at_depth(&q, 0.5f);
     q.x0 = TObjBoss2Tunnel__data_8048DF2C.x;
     q.y0 = TObjBoss2Tunnel__data_8048DF2C.y - 27.0f;
     q.x1 = 27.0f + TObjBoss2Tunnel__data_8048DF2C.x;
@@ -724,7 +724,7 @@ void draw_snapshot_capture_overlay(void) {
     q.v1 = 0.600000024f;
     q.u0 = 0.423529416f;
     q.u1 = 0.31764707f;
-    draw_textured_quad_at_depth((f32 *)&q, 0.5f);
+    draw_textured_quad_at_depth(&q, 0.5f);
     q.x0 = TObjBoss2Tunnel__data_8048DF2C.x - 27.0f;
     q.y0 = TObjBoss2Tunnel__data_8048DF2C.y;
     q.x1 = TObjBoss2Tunnel__data_8048DF2C.x;
@@ -735,7 +735,7 @@ void draw_snapshot_capture_overlay(void) {
     q.v1 = 0.600000024f;
     q.v0 = 0.600000024f;
     q.v1 = 0.494117647f;
-    draw_textured_quad_at_depth((f32 *)&q, 0.5f);
+    draw_textured_quad_at_depth(&q, 0.5f);
     q.x0 = TObjBoss2Tunnel__data_8048DF2C.x;
     q.y0 = TObjBoss2Tunnel__data_8048DF2C.y;
     q.x1 = 27.0f + TObjBoss2Tunnel__data_8048DF2C.x;
@@ -748,7 +748,7 @@ void draw_snapshot_capture_overlay(void) {
     q.v1 = 0.494117647f;
     q.u0 = 0.423529416f;
     q.u1 = 0.31764707f;
-    draw_textured_quad_at_depth((f32 *)&q, 0.5f);
+    draw_textured_quad_at_depth(&q, 0.5f);
     TWindowSubStatusDisp::get_player();
     restore_saved_depth_alpha_state();
 }
@@ -762,7 +762,7 @@ s32 TObjBoss2Tunnel__sub_8007D1D0(void) {
     SnapshotFrameBuffer *frame;
     ScreenSnapshot *snap;
     u32 *sum;
-    ControllerInputContext *pad;
+    PadSlot *pad;
     s32 filter;
     u8 *p;
     s32 mode;
@@ -800,7 +800,7 @@ s32 TObjBoss2Tunnel__sub_8007D1D0(void) {
     if (TAdPlayerLoadGC::get_instance() != 0) {
         return 0;
     }
-    pad = (ControllerInputContext *)TKeyBoardControl__sub_803DEB74(0x12);
+    pad = (PadSlot *)TKeyBoardControl__sub_803DEB74(0x12);
     if (is_on_current_screen__11TCameraCtrlFv(&controller_physical_port_bank.controllers[3], 0x20000) != 0) {
         if (boss2_tunnel_state_flag == 0) {
             TObjBoss2Tunnel__sub_8007DB80();
@@ -810,7 +810,7 @@ s32 TObjBoss2Tunnel__sub_8007D1D0(void) {
         return 0;
     }
     if (boss2_tunnel_state_flag == 0) {
-        if (pad->buttons & 4) {
+        if (pad->held & 4) {
             if (memcard_check_snapshot(0, &err) == 0) {
                 TObjBoss2Tunnel::show_message_and_wait(err);
                 return 0;
@@ -820,7 +820,7 @@ s32 TObjBoss2Tunnel__sub_8007D1D0(void) {
             } else {
                 boss2_tunnel_state_flag = 0;
             }
-        } else if (pad->buttons & 0x400) {
+        } else if (pad->held & 0x400) {
             if (memcard_check_snapshot(0, &err2) == 0) {
                 TObjBoss2Tunnel::show_message_and_wait(err2);
                 return 0;
@@ -851,7 +851,7 @@ s32 TObjBoss2Tunnel__sub_8007D1D0(void) {
         frame->snapshot.width = 0x100;
         frame->snapshot.height = 0xC0;
         p += 8;
-        ((TLobby *)p)->move_data((const void *)TObjPlayer__sub_800845F8(), 0x18000);
+        move_data(p, (void *)TObjPlayer__sub_800845F8(), 0x18000);
         p += 0x18000;
         *p++ = 0x18;
         *p++ = 2;
@@ -1238,7 +1238,7 @@ void TObjBoss2Tunnel::show_message_and_wait(s32 arg0) {
             break;
         }
         TLobby::wait_ready_loop();
-        if (func_801A5E54__Fv() != 0) {
+        if (func_801A5E54() != 0) {
             break;
         }
         render_tick();
@@ -1297,7 +1297,7 @@ s32 TObjBoss2Tunnel::run_confirm_message_loop() {
         main_task.render();
         draw_snapshot_capture_overlay();
         TLobby::wait_ready_loop();
-        if (func_801A5E54__Fv() != 0) {
+        if (func_801A5E54() != 0) {
             break;
         }
         TParticleCtrl::begin_effect_render();

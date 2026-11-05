@@ -4,7 +4,7 @@
 #include "types.h"
 
 // One controller's state in keyboard_control_pad_slots (0x34 bytes, four of them),
-// filled by TKeyBoardControl::read_pads and returned by TKeyBoardControl__sub_803DEB74.
+// returned by TKeyBoardControl__sub_803DEB74.
 struct PadSlot {
     s32 f0;
     s32 f4;

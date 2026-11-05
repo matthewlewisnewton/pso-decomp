@@ -668,7 +668,7 @@ u8 *TObjEneSlime__ct(TObjEneSlime *ene_slime, s32 arg1, u8 *arg2) {
     *(s32 *)((s8 *)ene_slime + 0) = (s32) lbl_805D2AD8;
     ((TObjEneSlime *)(ene_slime))->apply_set_data(arg2);
     ((TObjEneSlime *)(ene_slime))->clear_lobby_object_state();
-    ((TBoss3Volopt *)ene_slime)->reset_photon_effect();
+    ene_slime->register_by_id();
     TBoss4DarkFalz__sub_8004B4F0(((u8 *)ene_slime + 0x374), (arg2));
     ene_slime->m_3b4 = (s32) *(s16 *)((s8 *)arg2 + 2);
     temp_r0 = ene_slime->m_3b4;
@@ -1006,7 +1006,7 @@ void TObjEneSlimeOne::initialize_slime_instance_state() {
     actor->bind_enemy_combat_stats((u8 *)(get_battle_base_stats(0x34)), (u8 *)(get_battle_attack_params(0x34)), (u8 *)(get_battle_resistance_params(0x34)));
   }
   actor->referenceHp = actor->hp;
-  ((TBoss3Volopt *)actor)->reset_photon_effect();
+  actor->register_by_id();
   actor->movementParameters = 0;
   if ((*new_var2) == 0)
   {
