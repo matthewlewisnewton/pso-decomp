@@ -798,7 +798,7 @@ void __dt__7TObjectFv(void *, int);
 void *__dt__15TObjBoss2TunnelFv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__15TObjBoss2Tunnel;
-        TObjBoss2Tunnel::dt((s32)&((Tunnel_8003C45C *)arg0)->sub68, (s16)(-1));
+        TObjBoss2Tunnel::dt(&((Tunnel_8003C45C *)arg0)->sub68, (s16)(-1));
         __dt__7TObjectFv(arg0, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
@@ -813,7 +813,7 @@ void *TObjBoss2Tunnel__ct(void *object, void *arg1) {
     s32 j;
     __ct__7TObjectFP7TObject(object);
     self->vt = ((s32 *)&__vt__15TObjBoss2Tunnel);
-    TObjBoss2Tunnel::reset_floats((s32)&self->sub68);
+    TObjBoss2Tunnel::reset_floats_pass(&self->sub68);
     self->name = lbl_805D2708;
     self->i24 = 0;
     (*(s32 *)&TObjBoss2Tunnel__global_flags) = 0;
