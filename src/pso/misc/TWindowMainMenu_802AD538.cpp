@@ -26,7 +26,6 @@ struct Rect_802AD538 {
 extern "C" {
 s32 is_split_screen();
 int copy_vec2__28TWindowSubSymbolChatPartsSetFPv(void *, void *);
-void begin_render__20TWindowSubStatusDispFl(void);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 TWindowShortListCtrl__check_controller_button(int, int);
 s32 apply_choice__20TWindowChoiceSettingFllll(void *, int, int, int);
@@ -42,7 +41,7 @@ extern RecoveredGlobal_802AE59C_lbl_8050E208 controller_input_state;
 }
 
 void TMainMenuEntry::draw_item_labels(TWindowDrawContext *w) {
-    Rect_802AD538 r;
+    Box_8024E8E8 r;
     f32 scale;
     UV_802AD538 *uv;
     u32 color;
@@ -52,7 +51,7 @@ void TMainMenuEntry::draw_item_labels(TWindowDrawContext *w) {
     if (is_item_active() != 0 && fade > 0) {
         scale = -1.0f / (0.299f + w->depth);
         uv = &main_menu_label_uv_table[icon];
-        begin_render__20TWindowSubStatusDispFl();
+        TWindowSubStatusDisp::begin_render();
         switch (kind) {
         case 0:
             rgb = 0xFFFFFF;
@@ -85,7 +84,7 @@ void TMainMenuEntry::draw_item_labels(TWindowDrawContext *w) {
         r.v0 = uv->v / 256.0f;
         r.u1 = (98.0f + uv->u) / 256.0f;
         r.v1 = (16.0f + uv->v) / 256.0f;
-        if (TWindowKeyBoardSoft::try_open(w, &r.x0) != 0) {
+        if (TWindowKeyBoardSoft::try_open(w, &r) != 0) {
             draw_textured_quad_at_depth(&r.x0, scale);
         }
         TWindowSubStatusDisp::get_player();
