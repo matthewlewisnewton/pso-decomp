@@ -18,12 +18,6 @@ struct TWindowKeyBoardSoft : public TWindowDrawContext
     int get_flag_bit6();
     int is_cursor_locked();
     void render();
-    u16 m_60;
-    u16 m_62;
-    u8 m_64;
-    u8 m_65;
-    u8 m_66;
-    u8 _pad67[0x1];
     u32 m_68;
     u32 m_6c;
     u8 _pad70[0xC];
@@ -125,9 +119,7 @@ struct TWindowKeyBoardSoft : public TWindowDrawContext
     static void dispatch_request_0f(s32 a, s32 b);
 };
 
-typedef char TWindowKeyBoardSoft_m60[offsetof(TWindowKeyBoardSoft, m_60) == 0x44 ? 1 : -1];
-
 typedef char TWindowKeyBoardSoft_depth_offset[offsetof(TWindowKeyBoardSoft, depth) == 0x38 ? 1 : -1];
-typedef char TWindowKeyBoardSoft_m_60_offset[offsetof(TWindowKeyBoardSoft, m_60) == 0x44 ? 1 : -1];
+typedef char TWindowKeyBoardSoft_m68[offsetof(TWindowKeyBoardSoft, m_68) == 0x4C ? 1 : -1];
 
 #endif

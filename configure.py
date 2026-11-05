@@ -453,6 +453,10 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # half-width nudge and the drop placement fuse multiply-adds.
     # -str reuse,readonly: the literals live in this unit's .rodata.
     "pso/object/TObjTombstone.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on", "-str reuse,readonly")},
+    # Soft-keyboard window layout fuses multiply-adds (scale about pivot,
+    # textured-quad clip, init_text_window_layout). Same -fp_contract on
+    # precedent as TObjTombstone and dtk-template/Melee/TP/TWW/Pikmin 2.
+    "pso/misc/TWindowKeyBoardSoft_8024E68C.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
     # GC/2.0: compiler-expanded struct copies take 2.0's registers.
     # The ending item handler table keeps 2.0's store/load scheduling for its
     # zero-initialized local member-function-pointer array.

@@ -51,7 +51,7 @@ void TUnk_804CDFE8::step_window_tween() {
 }
 #pragma pop
 
-TWindowDrawContext *TWindowBase::get_draw_context(void *window) {
+TWindowDrawContext *get_draw_context__11TWindowBaseFPv(void *window) {
     Obj_80244364 *self = (Obj_80244364 *)window;
     Ctx_80244364 *c = setup_window_draw_context__13TUnk_804CE018Fl(self, self->a);
     c->x -= self->x;

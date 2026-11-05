@@ -487,7 +487,7 @@ extern "C" void fn_80285A28(Win_80285A28 *self, s32 *help) {
 void render__25TWindowSubSymbolChatPartsFv(u8 *window_sub_symbol_chat_parts) {
     TWindowDrawContext *temp_r3;
 
-    temp_r3 = TWindowBase::get_draw_context(window_sub_symbol_chat_parts);
+    temp_r3 = get_draw_context__11TWindowBaseFPv(window_sub_symbol_chat_parts);
     ((TUnk_804CE018 *)window_sub_symbol_chat_parts)->draw_window_frame((void *)temp_r3);
     switch ((s8) (((TWindowSubSymbolChatParts *)window_sub_symbol_chat_parts)->m_71)) {
     case 0:

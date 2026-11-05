@@ -43,7 +43,7 @@ extern const f32 lbl_805DD240;
 extern const f32 lbl_805DD258;
 void TWindowMessageLog::render() {
     s32 temp_r3;
-    temp_r3 = (s32)TWindowBase::get_draw_context(this);
+    temp_r3 = (s32)get_draw_context__11TWindowBaseFPv(this);
     draw_window_frame((void *)temp_r3);
     draw_visible_window_entries(this, (void *) (((u8 *)this) + 0x24), temp_r3);
     draw_window_scrollbar((int) (*(s32 *)((s8 *)((u8 *)this) + 0x90)), temp_r3, (void *) (((u8 *)this) + 0x68));

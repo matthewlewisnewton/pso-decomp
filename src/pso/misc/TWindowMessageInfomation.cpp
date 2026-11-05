@@ -24,7 +24,7 @@ s32 draw_visible_window_entries(s32, s32, s32);
 
 void TWindowMessageInfomation::render() {
     s32 arg0 = (s32)this;
-    s8 *tmp = (s8 *)TWindowBase::get_draw_context(this);
+    s8 *tmp = (s8 *)get_draw_context__11TWindowBaseFPv(this);
     draw_visible_window_entries(arg0, arg0 + 0x24, (s32)tmp);
 }
 
