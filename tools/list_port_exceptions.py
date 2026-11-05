@@ -8,6 +8,12 @@ compiler overrides in configure.py with their recorded comments.
     python3 tools/list_port_exceptions.py            # regenerate the doc
     python3 tools/list_port_exceptions.py --check    # fail if it is stale
     python3 tools/list_port_exceptions.py --pr 281   # scan an open PR's added lines
+    python3 tools/list_port_exceptions.py --upstream-catchup  # list upstream catch-up cheats
+
+--check also validates the "Upstream catch-up (rewrite later)" table in
+docs/porting-exceptions.md: every row needs a function/symbol, unit, file
+that exists, upstream PR (#167-#191), a known cheat type, the fork PR and
+the tag "upstream catch-up, rewrite later".
 """
 import argparse, collections, re, subprocess, sys
 from pathlib import Path
@@ -62,6 +68,76 @@ def configure_overrides():
             comment = [] if not s.startswith(('"mw_version"', '"cflags"', '"symbol')) else comment
     return out
 
+REGISTER = ROOT / "docs" / "porting-exceptions.md"
+CATCHUP_HEADING = "## 7. Upstream catch-up"
+CATCHUP_TAG = "upstream catch-up, rewrite later"
+CATCHUP_TYPES = ("asm", "raw offset cast", 'extern "C" mangled name', "steering pragma", "shadow struct")
+CATCHUP_UPSTREAM = range(167, 192)
+CATCHUP_COLS = ("symbol", "unit", "file", "upstream", "type", "fork_pr", "tag")
+
+def _cell(s):
+    return s.strip().strip("`").strip()
+
+def _pr_number(s):
+    m = re.search(r"/pull/(\d+)", s) or re.fullmatch(r"\[?#(\d+)\]?(?:\(.*\))?", s.strip())
+    return int(m.group(1)) if m else None
+
+def catchup_entries():
+    """(rows, errors) for the upstream catch-up table of the register."""
+    lines = REGISTER.read_text().splitlines()
+    try:
+        start = next(i for i, l in enumerate(lines) if l.startswith(CATCHUP_HEADING))
+    except StopIteration:
+        return [], [f"{REGISTER.relative_to(ROOT)}: missing section '{CATCHUP_HEADING} ...'"]
+    rows, errors, seen_header = [], [], False
+    for n, line in enumerate(lines[start + 1:], start + 2):
+        if line.startswith("## "):
+            break
+        if not line.startswith("|"):
+            continue
+        cells = [c.strip() for c in re.split(r"(?<!\\)\|", line.strip())[1:-1]]
+        if not seen_header:
+            seen_header = True; continue
+        if all(set(c) <= set("-: ") for c in cells):
+            continue
+        where = f"{REGISTER.relative_to(ROOT)}:{n}"
+        if len(cells) != len(CATCHUP_COLS):
+            errors.append(f"{where}: expected {len(CATCHUP_COLS)} columns, got {len(cells)}"); continue
+        row = dict(zip(CATCHUP_COLS, cells))
+        for k in CATCHUP_COLS:
+            if not _cell(row[k]):
+                errors.append(f"{where}: empty {k}")
+        up = _pr_number(row["upstream"])
+        if up not in CATCHUP_UPSTREAM:
+            errors.append(f"{where}: upstream PR must be one of zeroz41 #167-#191, got {row['upstream']!r}")
+        typ = _cell(row["type"])
+        if typ not in CATCHUP_TYPES and not re.match(r"other:\s*\S", typ):
+            errors.append(f"{where}: cheat type must be one of {', '.join(CATCHUP_TYPES)} or 'other: <what>', got {typ!r}")
+        if _pr_number(row["fork_pr"]) is None:
+            errors.append(f"{where}: fork PR must be a PR number (#N or a link), got {row['fork_pr']!r}")
+        if _cell(row["tag"]) != CATCHUP_TAG:
+            errors.append(f"{where}: tag must be exactly '{CATCHUP_TAG}'")
+        f = _cell(row["file"])
+        if f and not (ROOT / f).exists():
+            errors.append(f"{where}: file {f} does not exist")
+        row["upstream_n"], row["type_name"] = up, typ.split(":")[0] if typ.startswith("other") else typ
+        rows.append(row)
+    return rows, errors
+
+def print_catchup(rows, errors):
+    print(f"upstream catch-up exceptions: {len(rows)}  (register: {REGISTER.relative_to(ROOT)}, section '{CATCHUP_HEADING} (rewrite later)')")
+    by_type = collections.Counter(r["type_name"] for r in rows)
+    by_up = collections.Counter(r["upstream_n"] for r in rows)
+    if rows:
+        print("by cheat type: " + ", ".join(f"{k} {v}" for k, v in by_type.most_common()))
+        print("by upstream PR: " + ", ".join(f"#{k} {v}" for k, v in sorted(by_up.items(), key=lambda kv: (kv[0] is None, kv[0] or 0))))
+        for t in sorted(by_type):
+            print(f"\n[{t}]")
+            for r in sorted((r for r in rows if r["type_name"] == t), key=lambda r: (r["upstream_n"] or 0, r["file"])):
+                print(f"  upstream #{r['upstream_n']}  {_cell(r['symbol'])}  ({_cell(r['unit'])}, {_cell(r['file'])})  fork {_cell(r['fork_pr'])}")
+    for e in errors:
+        print(f"ERROR: {e}")
+
 def esc(s):
     return s.replace("|", "\\|")
 
@@ -94,8 +170,17 @@ def render(hits, overrides):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true")
+    ap.add_argument("--upstream-catchup", action="store_true", help="list and count the upstream catch-up register entries")
+    ap.add_argument("--count", action="store_true", help="with --upstream-catchup: print only the count line")
     ap.add_argument("--pr", type=int, help="print exceptions on added lines of this PR (needs gh)")
     a = ap.parse_args()
+    if a.upstream_catchup:
+        rows, errors = catchup_entries()
+        if a.count:
+            print(f"{len(rows)}" + (f" ({len(errors)} errors)" if errors else ""))
+        else:
+            print_catchup(rows, errors)
+        return 1 if errors else 0
     hits = collections.defaultdict(list)
     if a.pr:
         diff = subprocess.run(["gh", "pr", "diff", str(a.pr)], cwd=ROOT, capture_output=True, text=True, check=True).stdout
@@ -112,9 +197,13 @@ def main():
         scan_lines(str(p.relative_to(ROOT)), p.read_text(errors="replace").splitlines(), hits)
     text = render(hits, configure_overrides())
     if a.check:
+        rc = 0
         if not OUT.exists() or OUT.read_text() != text:
-            print(f"{OUT.relative_to(ROOT)} is stale; rerun tools/list_port_exceptions.py"); return 1
-        return 0
+            print(f"{OUT.relative_to(ROOT)} is stale; rerun tools/list_port_exceptions.py"); rc = 1
+        _, errors = catchup_entries()
+        for e in errors:
+            print(f"upstream catch-up register: {e}"); rc = 1
+        return rc
     OUT.write_text(text); print(f"wrote {OUT.relative_to(ROOT)}")
     return 0
 

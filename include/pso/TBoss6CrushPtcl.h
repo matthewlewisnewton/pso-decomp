@@ -2,6 +2,7 @@
 #define PSO_TBOSS6CRUSHPTCL_H
 
 #include "pso/TObject.h"
+#include "pso/system/vector.h"
 #include "types.h"
 
 class TBoss6CrushPtcl : public TObject {
@@ -13,7 +14,7 @@ public:
     u32 m_20;
     u32 m_24;
 public:
-    void *create();
+    static void *create(Vec *point);
 };
 
 #endif
