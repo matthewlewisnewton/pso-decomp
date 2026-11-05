@@ -32,13 +32,20 @@ extern const f32 lbl_805DECBC;
 extern const f32 lbl_805DECC0;
 extern const f32 lbl_805DECC4;
 extern const f32 lbl_805DECC8;
-extern const f32 lbl_805DECCC;
-extern const f32 lbl_805DECD0;
-extern const f32 lbl_805DECD4;
-extern const f32 lbl_805DECD8;
-extern const f32 lbl_805DECDC;
-extern const f32 lbl_805DECE0;
-extern const f32 lbl_805DECE4;
+// This unit's .sdata2 (0x805DECCC..0x805DECF8), in address order. Non-const so
+// MWCC loads these objects instead of pooling a second copy of the initializer.
+// __declspec keeps them in .sdata2 (a plain non-const lands in .sdata).
+__declspec(section ".sdata2") f32 lbl_805DECCC = 200.0f;
+__declspec(section ".sdata2") f32 lbl_805DECD0 = 0.04f;
+__declspec(section ".sdata2") f32 lbl_805DECD4 = 0.2f;
+__declspec(section ".sdata2") f32 lbl_805DECD8 = -30.000002f;
+__declspec(section ".sdata2") f32 lbl_805DECDC = 0.06f;
+__declspec(section ".sdata2") f32 lbl_805DECE0 = 0.3f;
+__declspec(section ".sdata2") f32 lbl_805DECE4 = -15.000001f;
+__declspec(section ".sdata2") f32 lbl_805DECE8 = 10.0f;
+__declspec(section ".sdata2") f32 lbl_805DECEC = 90.0f;
+__declspec(section ".sdata2") f32 lbl_805DECF0 = 3.0517578125e-05f;
+__declspec(section ".sdata2") f32 lbl_805DECF4 = 600.0f;
 extern RecoveredGlobal_802F2400_lbl_804E4A1C boss2_tunnel_spawn_timer_table_b;
 extern s32 boss2_tunnel_spawn_timer_table[];
 extern u8 lbl_804E4A44[];
@@ -218,9 +225,9 @@ void TUnk_804E4B3C::update_dust_spawn() {
     u32 p;
     m_74 = m_74 - 1;
     if (m_74 <= 0) {
-        v.x = 200.0f * rand_signed_unit();
-        v.y = 90.0f * (3.0517578125e-05f * (f32)rand()) + 10.0f;
-        v.z = 600.0f;
+        v.x = lbl_805DECCC * rand_signed_unit();
+        v.y = lbl_805DECEC * (lbl_805DECF0 * (f32)rand()) + lbl_805DECE8;
+        v.z = lbl_805DECF4;
         p = __nw__7TObjectFUl(0x30);
         if (p != 0U) {
             __ct__13TObjBoss7DustFv((u8 *)p, (s32)tl_05, (s32)&v);
@@ -230,6 +237,8 @@ void TUnk_804E4B3C::update_dust_spawn() {
 }
 
 #pragma push
+// Porting exception (approved by Matt 2026-11-04 4:38 PM PT, see docs/porting-exceptions.md):
+// the threshold has to land in f0 before m_58/m_5c. Remove this pragma when porting off MWCC.
 #pragma opt_common_subs off
 void TUnk_804E4B3C::update_spawn_timer(s32 arg1, s32 arg2, s32 arg3) {
     Vec stack;

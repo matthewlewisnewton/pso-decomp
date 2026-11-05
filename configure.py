@@ -665,6 +665,10 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # The character creation camera: deferred with nothing inlined, and its
     # multiply-adds contracted into fmadds.
     "pso/camera/CreationCamera.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on")},
+    # The lens-flare renderer contracts its attenuation and displacement
+    # multiply-adds into fnmsubs/fmadds; the whole unit stays byte-exact with
+    # -fp_contract on, so that is this translation unit's setting.
+    "pso/effect/TEF_LensFlare.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
     # The pad rumble and Ninja helper code contract multiply-adds into fmadds/fnmsubs.
     "pso/system/PadRumble.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
     "pso/system/NinjaUtil.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
@@ -678,9 +682,12 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/unk/text_8039739C.cpp": {"cflags": _switch(cflags_pso, "-O4,p")},
     "pso/quest/QuestOpcodeHandlers.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
     "pso/quest/TQuestThread.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
-    # The quest-list vtable precedes its switch table: deferred, written from
-    # its last function back. Its titles and window sizes are addressed one
-    # by one (no shared .rodata base), and its strings are read-only.
+    # TQuestListVM: deferred emission puts __vt__12TQuestListVM ahead of the
+    # run_task switch table (written from the last function back). -pool off
+    # keeps each title and window size its own reloc, and -str reuse,readonly
+    # matches the read-only string objects. The whole unit stays byte-exact.
+    # Precedent: dtk-template configure.py unit cflags, and this tree's
+    # TObjBoss2Tunnel / TBoss6EmptyWarp unit flags.
     "pso/quest/TQuestListVM.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-pool off", "-str reuse,readonly")},
     # Status gauge: contracting the unit makes `0.299f * depth + ctx->depth`
     # the fmadds at 0x80257118. The bar multiply stays a separate fmuls

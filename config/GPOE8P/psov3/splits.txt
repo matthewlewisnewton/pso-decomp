@@ -1193,7 +1193,10 @@ pso/misc/TWindowKeyBoardBase_8008102C.cpp:
 
 pso/effect/TEF_LensFlare.cpp:
 	.text       start:0x80081278 end:0x8008197C
-	.data       start:0x8048E130 end:0x8048E164
+	.rodata     start:0x80438E30 end:0x80438E4C
+	.data       start:0x8048E040 end:0x8048E164
+	.sdata      start:0x805D28F0 end:0x805D28F4
+	.sdata2     start:0x805D9338 end:0x805D9374
 
 pso/unk/text_8008197C.cpp:
 	.text       start:0x8008197C end:0x80081A30
@@ -13929,7 +13932,9 @@ pso/misc/TLobby_80426CAC.cpp:
 
 pso/misc/TLobby_80428374.cpp:
 	.text       start:0x80428374 end:0x80429598
+	.rodata     start:0x80480138 end:0x804801F8
 	.bss        start:0x805D0A40 end:0x805D0AA0
+	.sdata2     start:0x805E1198 end:0x805E11F0
 
 pso/misc/TLobby_80429598.cpp:
 	.text       start:0x80429598 end:0x8042BF48

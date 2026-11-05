@@ -123,7 +123,6 @@ struct TLobby : public TObject {
     static s32 count_set_bits(u32 x);
     static s32 get_party_min_tier(s32 arg0);
     void copy_header_struct(void* q);
-    void set_loss_flag();
     static void set_enemy_mode_flag();
     static void *create_tombstone(void *arg0, void *arg1, void *arg2);
     static void free_static_windows();
@@ -194,7 +193,6 @@ struct TLobby : public TObject {
     void bswap_fields();
     void bswap_header_3words();
     void bswap_6x6B();
-    u8 get_mode();
     static void init_serial_access();
     static void heap_alloc(void* a0);
     void set_range(int a1, int a2, int a3);
@@ -557,7 +555,6 @@ struct TLobby : public TObject {
     void release_handle();
     u32 get_packet_size();
     u32 get_available_size();
-    void move_data(const void * _w1, u32 _w2);
     void copy_u16_array(u16 *src, s32 n);
     void move_words(u32 *src, s32 n);
     static s32 calc_delta(s32 arg0, s32 arg1);
@@ -680,7 +677,6 @@ struct TLobby : public TObject {
     static s32 parse_tlv_records(s32 arg0, u8 *arg1, u16 arg2);
     static s16 get_slot_id(s16 arg0);
     static void reset_boot_state();
-    s32 wait_timeout_loop();
     static void cancel_alarm_b();
     static s32 init_buffer_pool();
     static void reset_buffer_pool();
@@ -1153,6 +1149,8 @@ struct TLobby : public TObject {
 };
 
 typedef char TLobby_size[sizeof(TLobby) == 0x1C ? 1 : -1];
+
+void move_data(void *dst, const void *src, u32 n);
 // The object set entry new ground items take their placement from, and
 // whether placing one shows the drop effect.
 extern void *item_object_set_data;

@@ -693,7 +693,7 @@ void TObjCityMainWarp__vt13(Warp_8018615C *w, s16 arg1) {
                 }
             }
             ((TWindowSubComCardList *)(w->win))->set_flag70_bit10();
-            ((TLobby *)(w->win))->set_loss_flag();
+            ((TWindowMenu *)(w->win))->set_loss_flag();
             ((TWindowSubComCardList *)(w->win))->update_layout_height(lbl_805DBC9C);
             if (w->win->f3C > lbl_805DBCA0) {
                 ((TWindowSubComCardList *)(w->win))->set_scroll_target(lbl_805DBC9C, lbl_805DBCA0);

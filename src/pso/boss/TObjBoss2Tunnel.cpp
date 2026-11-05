@@ -849,7 +849,7 @@ s32 TObjBoss2Tunnel__sub_8007D1D0(void) {
         frame->snapshot.width = 0x100;
         frame->snapshot.height = 0xC0;
         p += 8;
-        ((TLobby *)p)->move_data((void *)TObjPlayer__sub_800845F8(), 0x18000);
+        move_data(p, (void *)TObjPlayer__sub_800845F8(), 0x18000);
         p += 0x18000;
         *p++ = 0x18;
         *p++ = 2;

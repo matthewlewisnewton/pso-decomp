@@ -198,7 +198,7 @@ void TObjWarpJungMain__vt13(TObjWarpJungMain *warp_jung_main, s16 arg1) {
         ((TWindowSubComCard *)(warp_jung_main->m_b0))->calc_window_size();
         align_menu_entry_positions(warp_jung_main->m_b0);
         ((TWindowSubComCardList *)(warp_jung_main->m_b0))->set_flag70_bit10();
-        ((TLobby *)(warp_jung_main->m_b0))->set_loss_flag();
+        ((TWindowMenu *)(warp_jung_main->m_b0))->set_loss_flag();
         request_active_window_close();
         warp_jung_main->m_b8 = arg1;
     }

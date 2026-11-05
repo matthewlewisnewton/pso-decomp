@@ -243,7 +243,7 @@ void TShopArmorListWindow::display_message(const char *text, s32 flags) {
     }
 }
 
-void TShopArmorListWindow::vfunc_6() {
+void TShopArmorListWindow::vfunc_6(s32, s32) {
     struct VObj_8021A3CC_8021A394 *o = (struct VObj_8021A3CC_8021A394 *)*(void **)((s8 *)this + 0x28);
     if (o != NULL) {
         o->m4();

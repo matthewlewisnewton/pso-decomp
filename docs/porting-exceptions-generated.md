@@ -10,23 +10,23 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 9 | 3 |
 | intrinsic | 83 | 54 |
 | hardware | 71 | 13 |
-| pragma | 5846 | 879 |
-| configure.py per-unit override | 149 | 149 |
+| pragma | 5847 | 880 |
+| configure.py per-unit override | 150 | 150 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045, `fp_contract` 922, `auto_inline` 844, `opt_common_subs` 618, `scheduling` 260, `opt_propagation` 239, `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 42, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 22, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045, `fp_contract` 922, `auto_inline` 844, `opt_common_subs` 618, `scheduling` 260, `opt_propagation` 240, `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 42, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 22, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
 | File:line | Source |
 |---|---|
-| `src/musyx/runtime/Chorus/chorus_fx.c:119` | `asm void do_src1(void *src) {` |
-| `src/musyx/runtime/Chorus/chorus_fx.c:120` | `#include "orig_asm/musyx/runtime/Chorus/chorus_fx/do_src1.inc"` |
-| `src/musyx/runtime/Chorus/chorus_fx.c:123` | `asm void do_src2(register void *src) {` |
-| `src/musyx/runtime/Chorus/chorus_fx.c:124` | `#include "orig_asm/musyx/runtime/Chorus/chorus_fx/do_src2.inc"` |
-| `src/musyx/runtime/StdReverb/reverb.c:89` | `asm void DoCrossTalk(void *a, void *b, f32 start, f32 end) {` |
-| `src/musyx/runtime/StdReverb/reverb.c:90` | `#include "orig_asm/musyx/runtime/StdReverb/reverb/DoCrossTalk.inc"` |
-| `src/musyx/runtime/StdReverb/reverb.c:93` | `asm void HandleReverb(void *sptr, void *rv, int k) {` |
-| `src/musyx/runtime/StdReverb/reverb.c:94` | `#include "orig_asm/musyx/runtime/StdReverb/reverb/HandleReverb.inc"` |
+| `src/musyx/runtime/Chorus/chorus_fx.c:120` | `asm void do_src1(void *src) {` |
+| `src/musyx/runtime/Chorus/chorus_fx.c:121` | `#include "orig_asm/musyx/runtime/Chorus/chorus_fx/do_src1.inc"` |
+| `src/musyx/runtime/Chorus/chorus_fx.c:124` | `asm void do_src2(register void *src) {` |
+| `src/musyx/runtime/Chorus/chorus_fx.c:125` | `#include "orig_asm/musyx/runtime/Chorus/chorus_fx/do_src2.inc"` |
+| `src/musyx/runtime/StdReverb/reverb.c:90` | `asm void DoCrossTalk(void *a, void *b, f32 start, f32 end) {` |
+| `src/musyx/runtime/StdReverb/reverb.c:91` | `#include "orig_asm/musyx/runtime/StdReverb/reverb/DoCrossTalk.inc"` |
+| `src/musyx/runtime/StdReverb/reverb.c:94` | `asm void HandleReverb(void *sptr, void *rv, int k) {` |
+| `src/musyx/runtime/StdReverb/reverb.c:95` | `#include "orig_asm/musyx/runtime/StdReverb/reverb/HandleReverb.inc"` |
 | `src/pso/unk/text_803E2D70.cpp:314` | `asm void transform_chunk_vertices_pos_normal(register Hdr_803E34B0 *job, register ReorderedMatrix_803E3390 *matrix) {` |
 
 ## MWCC intrinsics
@@ -67,7 +67,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `src/pso/misc/TWindowFukidasi.cpp:458` | `__cntlzw` |
 | `src/pso/misc/TWindowFukidasi.cpp:515` | `__cntlzw` |
 | `src/pso/misc/TWindowFukidasi.cpp:591` | `__cntlzw` |
-| `src/pso/misc/TWindowKeyBoardBase_8008102C.cpp:73` | `__cntlzw` |
+| `src/pso/misc/TWindowKeyBoardBase_8008102C.cpp:71` | `__cntlzw` |
 | `src/pso/misc/TWindowMainMenu_802AD538.cpp:286` | `__cntlzw` |
 | `src/pso/misc/TWindowSnapShot_802A5B2C.cpp:32` | `__rlwinm` |
 | `src/pso/misc/TWindowSnapShot_802A5B2C.cpp:33` | `__rlwinm` |
@@ -327,6 +327,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `pso/object/TObjQuestColA_80196FE4.cpp` | `-inline off,deferred` | Quest-collision deleting destructors share a TU. Deferred generation emits the last definition first, which is the only order that puts each vtable before the next class's (TObjQuestColA then TObjQuestCol; TObjQuestColApcINW then TObjQuestColApcIN). |
 | `pso/object/TObjQuestColApcINW_80196EDC.cpp` | `-inline off,deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/camera/CreationCamera.cpp` | `-inline off,deferred, -fp_contract on` | The character creation camera: deferred with nothing inlined, and its multiply-adds contracted into fmadds. |
+| `pso/effect/TEF_LensFlare.cpp` | `-fp_contract on` | The lens-flare renderer contracts its attenuation and displacement multiply-adds into fnmsubs/fmadds; the whole unit stays byte-exact with -fp_contract on, so that is this translation unit's setting. |
 | `pso/system/PadRumble.cpp` | `-fp_contract on` | The pad rumble and Ninja helper code contract multiply-adds into fmadds/fnmsubs. |
 | `pso/system/NinjaUtil.cpp` | `-fp_contract on` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/render/render_util.cpp` | `GC/1.3.2, -fp_contract on, -DPSO_SDK_COMPACT_MATH` | The render helpers (0x801412D0-0x80142770): GC/1.3.2, one .sdata2 pool. Only 1.3.2 keeps approach_vector_fixed_distance's early-out copy unscheduled. |
@@ -335,7 +336,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `pso/unk/text_8039739C.cpp` | `-O4,p` | Metrowerks' GCN_Mem_Alloc.c (runtime library code at -O4,p); belongs in the runtime lib under its own name. |
 | `pso/quest/QuestOpcodeHandlers.cpp` | `-inline on` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/quest/TQuestThread.cpp` | `-inline on` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
-| `pso/quest/TQuestListVM.cpp` | `-inline off,deferred, -pool off, -str reuse,readonly` | The quest-list vtable precedes its switch table: deferred, written from its last function back. Its titles and window sizes are addressed one by one (no shared .rodata base), and its strings are read-only. |
+| `pso/quest/TQuestListVM.cpp` | `-inline off,deferred, -pool off, -str reuse,readonly` | TQuestListVM: deferred emission puts __vt__12TQuestListVM ahead of the run_task switch table (written from the last function back). -pool off keeps each title and window size its own reloc, and -str reuse,readonly matches the read-only string objects. The whole unit stays byte-exact. Precedent: dtk-template configure.py unit cflags, and this tree's TObjBoss2Tunnel / TBoss6EmptyWarp unit flags. |
 | `pso/misc/TWindowSubStatusDisp_80256B94.cpp` | `-fp_contract on` | Status gauge: contracting the unit makes `0.299f * depth + ctx->depth` the fmadds at 0x80257118. The bar multiply stays a separate fmuls because the 7.5 scale is applied to the sum before the tick subtract. |
 | `pso/unk/text_803D8098.cpp` | `(multi-line entry; see configure.py)` | render_debug_text (0x803D85D8) saves r25-r31 with bl _savegpr_25 / _restgpr_25, and its glyph quads are the inlined SDK FIFO writers (sth/stw to 0xCC008000), not calls. -inline on inlines only functions marked inline, so queue_debug_text stays a call from debug_printf_at. The matrix helpers in text_803D8910.cpp match under the ginja defaults. |
 | `pso/misc/TKeyBoardControl_803F0C50.cpp` | `GC/1.2.5n` | Epilogue order (mtlr before the restores) only 1.2.5n produces. |
@@ -459,6 +460,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `src/pso/boss/TUnk_80484840.cpp` | fp_contract×1 |
 | `src/pso/boss/TUnk_80484888.cpp` | fp_contract×1 |
 | `src/pso/boss/TUnk_80484AFC.cpp` | fp_contract×1 |
+| `src/pso/effect/TEF_LensFlare.cpp` | opt_propagation×1 |
 | `src/pso/effect/TEffClitical.cpp` | opt_common_subs×1, opt_propagation×1 |
 | `src/pso/effect/TEffGuard.cpp` | readonly_strings×1 |
 | `src/pso/effect/TEffHit.cpp` | readonly_strings×1 |
