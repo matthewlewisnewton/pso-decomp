@@ -1399,7 +1399,7 @@ typedef char DeathDropItemOffset[(offsetof(DeathDropRecord,item)==8)?1:-1];
 
 typedef char DeathPlayerInventoryOffset[(offsetof(PlayerDeathItemFields,inventory_owner)==0xD00)?1:-1];
 
-struct L_801B8CB0 { u16 f0; u16 f2; s32 f4; u8 f8[0x78]; };
+struct L_801B8CB0 { u16 f0; u16 f2; s32 f4; s32 f8[30]; };
 
 struct Cmd_801B8DE8 { u8 hdr[2]; s16 id; s32 a; s32 b; };
 
@@ -2179,7 +2179,6 @@ void equip_saved_item_if_slot_empty__10TObjPlayerFPvPv(u8 *arg0, u8 *arg1);
 void bind_saved_inventory_equipment__10TObjPlayerFPvPvi(u8 *p, u8 *records, s32 count);
 void handle_6x2B_create_inventory_item(s32 arg0);
 void handle_6x2A_drop_item(void *arg0);
-void dispatch_input__10TObjPlayerFPvii(void *arg0, s32 arg1, s32 arg2);
 void handle_6xAC(void *arg0);
 void handle_6x29_delete_inventory_item(void *arg0);
 void send_6x29_delete_item__10TObjPlayerFPvii(void *obj, s32 a, s32 b);
@@ -2387,7 +2386,7 @@ void create_drop_nodes__9TItemListFPvPvPvPvi(u8*,DeathItemPosition*,TObjPlayer*,
 s32 check_player_action_allowed();
 s32 TObjPlayer__sub_801D4368(void * a0 = 0);
 void TObjPlayer__sub_801D47EC(void *, s32, s32);
-s32 TObjPlayer__sub_801D49F4(void *, void *, s32, s32, void *);
+s32 TObjPlayer__sub_801D49F4(TPlyItem *inv, TObjPlayer *player, s32 *item_ids, s32 count);
 void TLobby__sub_801D4C28(TPlyItem *, void *, s32, s32);
 u8 * TPlyItem__ct(void *, void *);
 s32 draw_party_label__15TFontSmallLobbyFiUis(s32, s32, s32);
@@ -6540,8 +6539,8 @@ s32 TObjPlayer::count_items_of_type(s8 arg1, s8 arg2, s8 arg3) {
     return this->inventory_objects->count_items_by_id(&item_data);
 }
 
-void dispatch_input__10TObjPlayerFPvii(void *player, s32 arg1, s32 arg2) {
-    TObjPlayer__sub_801D49F4(((TObjPlayer *)player)->inventory_objects, player, arg1, arg2, player);
+void TObjPlayer::dispatch_input(s32 *item_ids, s32 count) {
+    TObjPlayer__sub_801D49F4(inventory_objects, this, item_ids, count);
 }
 
 void handle_6xAC(void *arg0) {
@@ -6550,9 +6549,9 @@ void handle_6xAC(void *arg0) {
     TObjPlayer__sub_801C1268(&sp8, arg0);
     ((TObjPlayer *)(&sp8))->byteswap_data();
     if (validate_6xAC((G_ClientIDHeader *)&sp8) != 0) {
-        s32 p = ((s32 (*)(s32))get_player_by_client_id)(sp8.f2);
-        if (p != 0 && ((s32 (*)(void))is_lobby_floor_15__15TFontSmallLobbyFv)() == 0) {
-            ((void (*)(void *, void *, s32))dispatch_input__10TObjPlayerFPvii)((void *)p, sp8.f8, sp8.f4);
+        TObjPlayer *p = (TObjPlayer *)get_player_by_client_id(sp8.f2);
+        if (p != NULL && ((s32 (*)(void))is_lobby_floor_15__15TFontSmallLobbyFv)() == 0) {
+            p->dispatch_input(sp8.f8, sp8.f4);
         }
     }
 }

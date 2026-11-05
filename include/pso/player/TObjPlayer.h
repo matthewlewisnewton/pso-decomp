@@ -1401,6 +1401,7 @@ struct TObjPlayer : public TObjChara {
     void request_item_drop(s32 arg1, s32 arg2);
     s32 count_items_of_type(s8 arg1, s8 arg2, s8 arg3);
     void dispatch_action(s32 arg1, s32 arg2);
+    void dispatch_input(s32 *item_ids, s32 count);
     s32 can_inventory_accept_item(u8 *item);
     s32 update_target_lock();
     void use_current_item();
