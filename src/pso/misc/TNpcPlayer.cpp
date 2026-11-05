@@ -25,9 +25,12 @@ void rotate_matrix_y(s32, s32);
 s32 push_matrix_from(void *src);
 s32 pop_matrices(s32 arg0);
 extern u8 identity_matrix[];
-extern const f32 TNpcPlayer__data_805DB1F0;
-extern const f32 lbl_805DB1FC;
-extern const f32 TNpcPlayer__data_805DB204;
+static const f32 TNpcPlayer__data_805DB1F0 = 0.0f;
+static const f32 TNpcPlayer__data_805DB1F4 = 10.0f;
+static const f32 lbl_805DB1F8 = 0.5f;
+static const f32 lbl_805DB1FC = 12.0f;
+static const f32 lbl_805DB200 = 7.0f;
+static const f32 TNpcPlayer__data_805DB204 = 20.0f;
 struct Stack_8014F728 {
     s32 sp8;
     f32 spC;
@@ -271,7 +274,7 @@ struct Npc_801510F8 {
 struct Own_80152168 { u8 pad[0x94]; u8 *obj; };
 
 struct Npc_80152168 {
-    s32 f0;
+    const char *f0;
     u8 pad4[0x14];
     s32 *vt;
     s32 f1C;
@@ -311,7 +314,7 @@ struct Npc_80152168 {
 struct Own_80152330 { u8 pad[0x94]; u8 *obj; };
 
 struct Npc_80152330 {
-    s32 f0;
+    const char *f0;
     u8 pad4[0x14];
     s32 *vt;
     s32 f1C;
@@ -523,19 +526,14 @@ void normalize_vector(Vec_8014E3B0 *);
 void project_point_onto_line(void *, Line_8014EE98 *, Vec_8014E3B0 *);
 f32 xyz_distance(Vec_8014E3B0 *, Vec_8014E3B0 *);
 
-extern const f32 TNpcPlayer__data_805DB1F4;
 extern const f32 TNpcPlayer__data_805DB20C;
 extern f32 TNpcPlayer__data_805DB218;
 extern const f32 TNpcPlayer__data_805DB22C;
 extern const f32 TNpcPlayer__data_805DB23C;
 extern u32 lbl_805D6EA0;
 extern int registered_entity_count;
-extern V3_80150050 lbl_8043FFAC;
-extern const f64 lbl_8043FFD8;
 extern Text_8014E250 npc_partner_dialogue_state[];
-extern s32 lbl_805D2E74;
 extern u32 lbl_805D5860;
-extern const f32 lbl_805DB1F8;
 extern const f32 lbl_805DB208;
 extern const f32 lbl_805DB210;
 extern const f32 lbl_805DB214;
@@ -556,6 +554,22 @@ void copy_player_visual_record(void *, void *);
 void bswap__15disp_data_part2Fv(s32 arg0);
 extern s32 game_difficulty_selection;
 extern s32 TNpcPlayer__data_805D5864;
+
+// Original .rodata 0x8043FF68 and the two .sdata pointers that address the
+// filename strings. Floats below are the unit's .sdata2 (0x805DB1F0).
+extern const s32 npc_player_combat_action_table[3][2] = {{0, 1}, {3, 4}, {6, 8}};
+extern const char lbl_8043FF80[20] = "npcplayerchar.dat";
+extern const char lbl_8043FF94[12] = "TNpcPlayer";
+extern const Vec_801501A0 lbl_8043FFA0 = {0.0f, 0.0f, 0.0f};
+extern const V3_80150050 lbl_8043FFAC = {0.0f, 0.0f, 18.0f};
+extern const Vec_8014E3B0 lbl_8043FFB8 = {1.0f, 0.0f, 0.0f};
+extern const Vec_8014E3B0 lbl_8043FFC4 = {0.0f, 0.0f, 1.0f};
+// Integer-to-double biases. The casts below reuse these objects instead of a
+// second pool when the bits are already present. Signed bias is the local
+// slot at 0x8043FFD0; lbl_8043FFE0 is the unsigned bias.
+static const f64 lbl_8043FFD8 = 10430.38043493439;
+extern const char *lbl_805D2E70 = lbl_8043FF80;
+extern const char *lbl_805D2E74 = lbl_8043FF94;
 
 u32 lbl_8050CF68[20];
 u32 npc_player_ply_char_data_global[3];
@@ -1696,8 +1710,6 @@ struct Self_8014E7A0 {
 
 extern "C" {
 void calc_box_escape_axis__10TNpcPlayerFv(void *, Vec_8014E3B0 *, Vec_8014E3B0 *, Vec_8014E3B0 *, Vec_8014E3B0 *, Vec_8014E3B0 *, Vec_8014E3B0 *, f32 *);
-extern Vec_8014E3B0 lbl_8043FFB8;
-extern Vec_8014E3B0 lbl_8043FFC4;
 s32 route_around_object__10TNpcPlayerFv(Self_8014E7A0 *self, Vec_8014E3B0 *out);
 }
 
@@ -1881,6 +1893,15 @@ s32 partner_clip_path_point(void *self, f32 *from, f32 *to, f32 *out) {
 }
 #pragma pop
 extern "C" {
+
+// Dead-stripped: its 12.0f is pooled before calc_box_escape_axis's 7.0f, which
+// is the original .sdata2 order. The body is not in the DOL.
+// upstream catch-up, rewrite later (upstream #190, 1e84ca74d).
+#pragma section code_type ".discard"
+static bool npc_player_is_small_obstacle(f32 size) {
+    return 0.5f * size <= 12.0f;
+}
+#pragma section code_type ".text"
 
 void calc_box_escape_axis__10TNpcPlayerFv(void *self, Vec_8014E3B0 *a, Vec_8014E3B0 *b, Vec_8014E3B0 *c,
                                           Vec_8014E3B0 *d, Vec_8014E3B0 *pos, Vec_8014E3B0 *axis, f32 *reach) {
@@ -2603,7 +2624,9 @@ void TNpcPlayer::render() {  }
 void TNpcPlayer::init_follow_target() {
     Npc_80150050 *arg0 = (Npc_80150050 *)this;
     Tgt_80150050 *t = arg0->mid->tgt;
-    V3_80150050 off = lbl_8043FFAC;
+    // Literal, not a copy of lbl_8043FFAC: MWCC only schedules this load order
+    // for a pool. tools/fix_tnpcplayer_obj.py retargets the pool at that symbol.
+    V3_80150050 off = {0.0f, 0.0f, 18.0f};
     if (t != NULL) {
         arg0->dst.x = arg0->mid->tgt->pos.x + off.x;
         arg0->dst.y = arg0->mid->tgt->pos.y + off.y;
@@ -2657,12 +2680,13 @@ void select_path_waypoint__10TNpcPlayerFv(Self_801501A0 *self) {
         ((s32 (*)(void *))normalize_vector)(&dir);
     }
     actor = self->view->actor;
-    half = len * lbl_805DB1F8;
+    f32 scale = lbl_805DB1F8;
+    half = len * scale;
     midpoint.x = half * dir.x + actor->anchor.x;
     midpoint.y = half * dir.y + actor->anchor.y;
     midpoint.z = half * dir.z + actor->anchor.z;
     if (((s32 (*)(void *, Vec_801501A0 *, Vec_801501A0 *, Vec_801501A0 *, Vec_801501A0 *))partner_find_wall_segment)(self, &actor->anchor, &self->dest, &hit, &normal) != 0) {
-        Vec_801501A0 shortcut = {0.0f, 0.0f, 0.0f};
+        Vec_801501A0 shortcut = lbl_8043FFA0;
         clear = ((s32 (*)(void *, Vec_801501A0 *, Vec_801501A0 *, Vec_801501A0 *, Vec_801501A0 *, Vec_801501A0 *))partner_route_around_wall)(self, &self->view->actor->anchor, &hit, &normal, &route, &shortcut);
         if (!(self->flags & 1)) {
             if (clear != 0) {
@@ -2903,7 +2927,6 @@ void request_technique_cast__10TNpcPlayerFPvi(Npc_80150A34 *self, s32 kind) {
 }
 
 void TNpcPlayer::update_combat_action() {
-    static const s32 tbl_80150B90[3][2] = {{0, 1}, {3, 4}, {6, 8}};
     s32 tier;
     s32 alt;
     s32 id;
@@ -2941,7 +2964,7 @@ void TNpcPlayer::update_combat_action() {
                 return;
             }
         }
-        id = tbl_80150B90[tier][alt];
+        id = npc_player_combat_action_table[tier][alt];
         tec = calc_technique_parameters(id, ((Npc_80150B90 *)this)->f50, 0xFFFF);
         diff = (f32)(get_actor_tp((u8 *)(((Npc_80150B90 *)this)->f78->obj)) - tec->f10);
         mx = (f32)obj_getS16_2BA((u8 *)(((Npc_80150B90 *)this)->f78->obj));
@@ -3634,8 +3657,7 @@ Npc_80152330 *construct_partner__10TNpcPlayerFPviisPv(Npc_80152330 *self, s32 a,
 }
 
 extern "C" {
-extern void *lbl_805D2E70;
-void read_disc_file(void *name, void *buf);
+void read_disc_file(const char *name, void *buf);
 
 u8 *load_npc_player_template(s32 index) {
     s32 mode;
@@ -3748,6 +3770,12 @@ void TNpcPlayer::ensure_rock_singleton() {
         lbl_805D5860 = (u32)::operator new[](0x1400);
     }
 }
+
+// The original .ctors slot points at this function. MWCC will not emit that
+// pointer for a hand-written static member, so the slot is named explicitly.
+// upstream catch-up, rewrite later (upstream #190, 1e84ca74d).
+__declspec(section ".ctors") static void (*const npc_player_global_initializer)() =
+    TNpcPlayer::register_ply_char_data_global;
 
 void TNpcPlayer::register_ply_char_data_global() {
     __register_global_object(__ct__12TPlyCharDataFv(lbl_8050CFC4), (void *)__dt__12TPlyCharDataFv, npc_player_ply_char_data_global);

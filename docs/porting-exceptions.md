@@ -159,7 +159,8 @@ or `other: <what>`); the fork PR that brought it in; and the tag
 `python3 tools/list_port_exceptions.py --upstream-catchup`; check_pr prints the count.
 
 | Function/symbol | Unit | File | Upstream PR | Cheat type | Fork PR | Tag |
-|---|---|---|---|---|---|---|
+| `init_follow_target` | `pso/misc/TNpcPlayer.cpp` | `src/pso/misc/TNpcPlayer.cpp` | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | `other: literal pool merged onto lbl_8043FFAC` | #0 | `upstream catch-up, rewrite later` |
+| `npc_player_is_small_obstacle` | `pso/misc/TNpcPlayer.cpp` | `src/pso/misc/TNpcPlayer.cpp` | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | `steering pragma` | #0 | `upstream catch-up, rewrite later` |
 
 ## Pending in open PRs
 

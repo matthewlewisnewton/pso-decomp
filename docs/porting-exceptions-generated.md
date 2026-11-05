@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 9 | 3 |
 | intrinsic | 83 | 54 |
 | hardware | 71 | 13 |
-| pragma | 5860 | 886 |
-| configure.py per-unit override | 147 | 147 |
+| pragma | 5862 | 886 |
+| configure.py per-unit override | 148 | 148 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045, `fp_contract` 926, `auto_inline` 844, `opt_common_subs` 624, `scheduling` 262, `opt_propagation` 240, `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 43, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 22, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045, `fp_contract` 926, `auto_inline` 844, `opt_common_subs` 624, `scheduling` 262, `opt_propagation` 240, `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 43, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 22, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `section` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -57,7 +57,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `src/pso/misc/TLobby_80145E40.cpp:28` | `__cntlzw` |
 | `src/pso/misc/TLobby_803C4698.cpp:234` | `__frsqrte` |
 | `src/pso/misc/TMainCursor.cpp:845` | `__cntlzw` |
-| `src/pso/misc/TNpcPlayer.cpp:2382` | `__cntlzw` |
+| `src/pso/misc/TNpcPlayer.cpp:2403` | `__cntlzw` |
 | `src/pso/misc/TOHealGeneral.cpp:64` | `__cntlzw` |
 | `src/pso/misc/TOSymbolchatColli.cpp:93` | `__cntlzw` |
 | `src/pso/misc/TQuestVmDownLoadServer.cpp:544` | `__cntlzw` |
@@ -236,6 +236,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `pso/misc/TMedicalCenterSequence.cpp` | `-inline deferred` | Deferred inlining: functions come out in reverse source order and the vtables before the switch tables in .data. |
 | `pso/misc/TWindowMainMenu_802AD538.cpp` | `-inline noauto,level=1` | Row-header copy is a 16-byte struct assignment. -inline off outlines it; noauto,level=1 inlines that helper only. The rest of the unit stays out of line. |
 | `pso/misc/TWindowKeyBoardSoft_8024E68C.cpp` | `-fp_contract on` | Soft-keyboard clip, scale, and layout fuse multiply-adds into fmadds/fnmsubs (scale_point_about_pivot, apply_context_transform_to_rect, apply_window_closing_stretch, clip_textured_quad, init_text_window_layout). Unit -fp_contract on replaces the per-function pragmas. Precedent: https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209 |
+| `pso/misc/TNpcPlayer.cpp` | `(multi-line entry; see configure.py)` | init_follow_target's 18.0 vector matches only as a literal pool, which MWCC will not place on top of lbl_8043FFAC. The script merges them. The .discard helper that orders .sdata2 is dropped from the link there too. |
 | `pso/boss/TBoss7LaserLight.cpp` | `-inline deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/enemy/TObjEnemyCustom.cpp` | `-inline deferred, -pool off, -str reuse,readonly` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/boss/TBoss3VoloptCore.cpp` | `-inline deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
@@ -687,7 +688,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `src/pso/misc/TNeedleShoot_802A4540.cpp` | opt_common_subs×1 |
 | `src/pso/misc/TNeedleShoot_802A4668.cpp` | fp_contract×1 |
 | `src/pso/misc/TNowLoading.cpp` | fp_contract×2 |
-| `src/pso/misc/TNpcPlayer.cpp` | fp_contract×9, opt_common_subs×2, opt_propagation×1 |
+| `src/pso/misc/TNpcPlayer.cpp` | fp_contract×9, section×2, opt_common_subs×2, opt_propagation×1 |
 | `src/pso/misc/TNpcPlayer_8014DADC.cpp` | scheduling×1 |
 | `src/pso/misc/TNpcPlayer_8034DC20.cpp` | opt_pointer_analysis×1 |
 | `src/pso/misc/TOBoss4Rock_801589E8.cpp` | fp_contract×3, inline_depth×1, auto_inline×1, dont_inline×1 |
