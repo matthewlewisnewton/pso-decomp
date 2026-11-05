@@ -27,7 +27,7 @@ void TWindowDD_WS_Word::render() {
     s32 idx;
     s32 i;
     s32 j;
-    entry = (TWindowKeyBoardSoft *)TWindowDD::draw_default_entry((s32)self);
+    entry = TWindowDD::draw_default_entry((s32)self);
     self->calc_inner_rect((u8 *)entry);
     TWindowDD__sub_80341674(self, (u8 *)entry);
     if (self->m_8c != 0) {

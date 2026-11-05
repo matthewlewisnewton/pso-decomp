@@ -36,7 +36,6 @@ s32 apply_choice__20TWindowChoiceSettingFllll(void *, int, int, int);
 f32 TWindowSubComCard__sub_80244784(TWindowSubComCard *);
 s32 is_window_reveal_complete__13TUnk_804CE018Fv();
 s32 sub_80246948__13TUnk_804CE018Fv();
-s32 try_open__19TWindowKeyBoardSoftFii(s32 arg0, s32 arg1);
 void begin_screen_draw(s32 arg0);
 void draw_textured_quad_at_depth(f32 *q, f32 depth);
 void set_draw_texture_and_color(s32 idx, s32 arg1);
@@ -46,7 +45,7 @@ extern RecoveredGlobal_802AE59C_lbl_8050E208 controller_input_state;
 }
 
 void TMainMenuEntry::draw_item_labels(TWindowDrawContext *w) {
-    Rect_802AD538 r;
+    Box_8024E8E8 r;
     f32 scale;
     UV_802AD538 *uv;
     u32 color;
@@ -89,8 +88,8 @@ void TMainMenuEntry::draw_item_labels(TWindowDrawContext *w) {
         r.v0 = uv->v / 256.0f;
         r.u1 = (98.0f + uv->u) / 256.0f;
         r.v1 = (16.0f + uv->v) / 256.0f;
-        if (try_open__19TWindowKeyBoardSoftFii((s32)w, (s32)&r) != 0) {
-            draw_textured_quad_at_depth((f32 *)&r, scale);
+        if (TWindowKeyBoardSoft::try_open(w, &r) != 0) {
+            draw_textured_quad_at_depth(&r.x0, scale);
         }
         TWindowSubStatusDisp::get_player();
         TLanguage::set_entry_index(2, 0x4B);

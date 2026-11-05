@@ -58,14 +58,12 @@ struct TWindowKeyBoardSoft : public TWindowDrawContext
     void set_bounds(f32 a, f32 b, f32 c, f32 d);
     void shrink_clip_right();
     void animate_scale();
-    s32 is_point_in_bounds(void *arg1);
     void adjust_pos_for_split_screen(s32 arg1);
     static TWindowKeyBoardSoft *open_singleton(f32 *pos, f32 *size, f32 *scale, f32 depth, int flags);
     static u32 get_or_create_instance();
     static u32 free_singleton(u32 arg0, s16 arg1);
     static Vec2_8024EC34 *get_viewport_offset(int view);
-    static s32 try_open(int context, int quad);
-    static s32 clip_textured_quad(void *context, void *quad);
+    static s32 try_open(TWindowDrawContext *context, Box_8024E8E8 *quad);
     u32 init_layout();
     s32 get_state();
     void update_input_state();

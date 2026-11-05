@@ -53,11 +53,11 @@ void TWindowSoundBalance::set_music_gain(s16 gain) {
     }
 }
 
-void TWindowSoundBalance::apply_balance(void *window_key_board_soft) {
+void TWindowSoundBalance::apply_balance(TWindowDrawContext *window_key_board_soft) {
     s32 temp;
 
     temp = (s32)get_array_entry((s32)selection);
-    draw_selection_bar((u8 *)window_key_board_soft, (u8 *)temp, is_active());
+    draw_selection_bar(window_key_board_soft, (u8 *)temp, is_active());
 }
 
 void TWindowSoundBalance::handle_cancel() {
@@ -135,7 +135,7 @@ void TWindowSoundBalance::handle_lr_input() {
 #pragma opt_common_subs off
 void TWindowSoundBalance::render() {
     TWindowSoundBalance *self = this;
-    TWindowKeyBoardSoft *entry = (TWindowKeyBoardSoft *)TWindowDD::draw_default_entry((s32)self);
+    TWindowKeyBoardSoft *entry = TWindowDD::draw_default_entry((s32)self);
     self->draw_window_frame(entry);
     draw_visible_window_entries((s32)self, (s32)&self->m_24, entry);
     entry->inner_x += lbl_805DD40C;

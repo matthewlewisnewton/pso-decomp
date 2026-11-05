@@ -9,12 +9,6 @@ struct RecoveredGlobal_80259D3C_lbl_804CF9C8 {
     u8 remaining[0x14];
 };
 
-struct Pos_80259A84
-{
-  f32 x;
-  f32 y;
-  u8 pad[0x18];
-};
 
 extern "C" {
 void reset_entry__20TWindowSubStatusDispFPv(void*, int);
@@ -22,14 +16,13 @@ u8 get_font_char_advance();
 s32 map_char_to_font_code(s32);
 u8 get_small_font_glyph_width();
 s32 TWindowSubStatusDisp__sub_800FC248(s32);
-s32 build_small_font_glyph_quad(s32, Pos_80259A84 *);
+s32 build_small_font_glyph_quad(s32, Box_8024E8E8 *);
 s32 render_forward__20TWindowSubStatusDispFPv();
-s32 set_glyph_quad_extents(s32, Pos_80259A84 *);
-s32 calc_gauge_scale__20TWindowSubStatusDispFPvPvi(s32, Pos_80259A84 *, s32);
+s32 set_glyph_quad_extents(s32, Box_8024E8E8 *);
+s32 calc_gauge_scale__20TWindowSubStatusDispFPvPvi(s32, Box_8024E8E8 *, s32);
 s32 end_render_forward__20TWindowSubStatusDispFPv();
-s32 try_open__19TWindowKeyBoardSoftFii(void *, Pos_80259A84 *);
 void begin_screen_draw(s32 arg0);
-s32 draw_textured_quad_at_depth(Pos_80259A84 *, f32);
+s32 draw_textured_quad_at_depth(f32 *, f32);
 void set_draw_texture_and_color(s32 idx, s32 arg1);
 extern s32 lbl_804CF9C8[];
 
@@ -61,12 +54,11 @@ void draw_right_aligned_number(void *arg0) {
 }
 }
 
-void render_numeric_digit_entries(u8 *arg0, u8 *arg1);
-typedef struct Pos_80259A84 Pos_80259A84;
+void render_numeric_digit_entries(u8 *arg0, TWindowDrawContext *arg1);
 #pragma fp_contract on
-void render_numeric_digit_entries(u8 *arg0, u8 *window_key_board_soft) {
+void render_numeric_digit_entries(u8 *arg0, TWindowDrawContext *window_key_board_soft) {
   f32 t;
-  Pos_80259A84 pos;
+  Box_8024E8E8 pos;
   f32 x;
   f32 y;
   f32 scale;
@@ -79,18 +71,18 @@ void render_numeric_digit_entries(u8 *arg0, u8 *window_key_board_soft) {
   f32 h;
   h = *((f32 *) (((s8 *) arg0) + 0xC));
   w = *((f32 *) (((s8 *) arg0) + 8));
-  t = (h / 21.0f) + (w / (*((f32 *) (((s8 *) window_key_board_soft) + 0x18))));
+  t = (h / 21.0f) + (w / window_key_board_soft->inner_w);
   t *= 7.5f;
-  t = 17.0f * (((f32) (*((s32 *) (((s8 *) window_key_board_soft) + 0x30)))) - t);
+  t = 17.0f * (((f32) window_key_board_soft->open_tick) - t);
   if (t <= 0.0f)
   {
     return;
   }
   mode = ((*((u16 *) (((s8 *) arg0) + 0))) >> 2) & 1;
   n = *((s32 *) (((s8 *) arg0) + 0x20));
-  x = (*((f32 *) (((s8 *) window_key_board_soft) + 0x10))) + w;
-  y = (*((f32 *) (((s8 *) window_key_board_soft) + 0x14))) + h;
-  scale = (-1.0f) / ((0.299f * (*((f32 *) (((s8 *) arg0) + 0x18)))) + (*((f32 *) (((s8 *) window_key_board_soft) + 0x38))));
+  x = window_key_board_soft->inner_x + w;
+  y = window_key_board_soft->inner_y + h;
+  scale = (-1.0f) / ((0.299f * (*((f32 *) (((s8 *) arg0) + 0x18)))) + window_key_board_soft->depth);
   switch (mode)
   {
     case 0:
@@ -116,23 +108,23 @@ void render_numeric_digit_entries(u8 *arg0, u8 *window_key_board_soft) {
       {
         case 0:
           r = calc_gauge_scale__20TWindowSubStatusDispFPvPvi(((u8 (*)(u16)) map_char_to_font_code)(d + 0x30), &pos, *((s32 *) (((s8 *) arg0) + 0x1C)));
-          pos.y = y;
+          pos.y0 = y;
           x -= (u8) r;
-          pos.x = x;
+          pos.x0 = x;
           set_glyph_quad_extents(r, &pos);
           break;
       }
       case 1:
         g = TWindowSubStatusDisp__sub_800FC248(d + 0x30);
         x -= get_small_font_glyph_width();
-        pos.y = y;
-        pos.x = x;
+        pos.y0 = y;
+        pos.x0 = x;
         build_small_font_glyph_quad(g, &pos);
         break;
     }
-    if (try_open__19TWindowKeyBoardSoftFii(window_key_board_soft, &pos) != 0)
+    if (TWindowKeyBoardSoft::try_open(window_key_board_soft, &pos) != 0)
     {
-      draw_textured_quad_at_depth(&pos, scale);
+      draw_textured_quad_at_depth(&pos.x0, scale);
     }
   }
   while ((n /= 10) > 0);

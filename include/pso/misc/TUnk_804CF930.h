@@ -4,6 +4,8 @@
 #include <stddef.h>
 #include "pso/misc/TUnk_804CF918.h"
 
+struct TWindowDrawContext;
+
 class TUnk_804CF930 : public TUnk_804CF918 {
 public:
     virtual ~TUnk_804CF930();
@@ -21,7 +23,7 @@ public:
     f32 target;
 
     void*init_from(void*, int);
-    void draw_status_gauge_bar(void *, void *, f32, f32);
+    void draw_status_gauge_bar(TWindowDrawContext *, void *, f32, f32);
     void sub_80256BDC(s16);
     void *destroy(s16);
 };

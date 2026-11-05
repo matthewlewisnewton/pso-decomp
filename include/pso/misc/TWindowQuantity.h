@@ -12,7 +12,7 @@ struct TWindowQuantity : public TUnk_804CE018 {
     u8 unk_28[0x38];
     f32 m_60;
     void* m_64;
-    void set_position(s32 arg1);
+    void set_position(TWindowKeyBoardSoft *arg1);
     virtual void run_task();
     u8 unk_68[0x4];
 };

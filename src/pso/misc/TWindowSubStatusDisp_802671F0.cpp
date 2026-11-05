@@ -74,7 +74,7 @@ u8 get_font_char_advance();
 u16 map_char_to_font_code(u16 c);
 void TWindowSubStatusDisp__sub_80228F5C(s32);
 void text_builder_append(u8 *str);
-void set_text_draw_params(s32 arg0, s32 arg1, s32 arg2, f32 farg0, f32 farg1);
+void set_text_draw_params(TWindowDrawContext *arg0, s32 arg1, s32 arg2, f32 farg0, f32 farg1);
 void draw_window_tab(void *, void *, s32, f32);
 extern const f32 lbl_805DD180;
 extern const f32 lbl_805DD19C;
@@ -87,7 +87,7 @@ extern const f32 lbl_805DD1B4;
 extern const f32 lbl_805DD1B8;
 extern const f32 lbl_805DD1BC;
 extern char lbl_805DD1C0[2];
-void draw_item_list_capacity(void *arg0, Win_80267714 *arg1, s32 arg2, s32 arg3);
+void draw_item_list_capacity(void *arg0, TWindowDrawContext *arg1, s32 arg2, s32 arg3);
 s32 get_array_entry__13TUnk_804CE018Fi(void *, s16);
 extern const f32 lbl_805DD184;
 extern const f32 lbl_805DD188;
@@ -123,18 +123,18 @@ s32 is_flag_4_set__20TWindowSubStatusDispFv();
 }
 void text_builder_reset();
 s32 draw_window_text(f32 *pos, const char *s, s32 color, s32 mode, f32 width);
-void draw_selection_bar(u8 *arg0, u8 *arg1, s32 arg2);
+void draw_selection_bar(TWindowDrawContext *arg0, u8 *arg1, s32 arg2);
 extern "C" {
 u8 *fn_802683F4(void *, s32, s32, s16);
 u8 *__nw__7TObjectFUl(s32);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 TWindowShortListCtrl__check_controller_button(int, int);
 s32 is_player_input_active(s32 param_1);
-s32 draw_visible_window_entries(void *, void *, s32);
-s32 draw_window_scrollbar(s32, s32, void *);
+s32 draw_visible_window_entries(void *, void *, TWindowDrawContext *);
+s32 draw_window_scrollbar(s32, TWindowDrawContext *, void *);
 void __dl__7TObjectFPv(void *);
 void destroy_window__13TUnk_804CDFE8Fs(void *, int);
-s32 forward_render__20TWindowSubStatusDispFv(s32, s32);
+s32 forward_render__20TWindowSubStatusDispFv(s32, TWindowDrawContext *);
 
 void calc_list_content_extent(struct List_80266E34 *s);
 void TShopJudgmentItemWindow__sub_80267F9C(V_80267F9C v, s32 x);
@@ -408,17 +408,17 @@ void TAdVIConfigGC__sub_80267704(s32 arg0) {
 typedef struct Pt_80267714 Pt_80267714;
 typedef struct Win_80267714 Win_80267714;
 #pragma fp_contract on
-void draw_item_list_capacity(void *arg0, Win_80267714 *arg1, s32 arg2, s32 arg3) {
+void draw_item_list_capacity(void *arg0, TWindowDrawContext *arg1, s32 arg2, s32 arg3) {
   u8 new_var;
   Pt_80267714 pt;
-  if (arg1->i30 >= 0)
+  if (arg1->open_tick >= 0)
   {
     pt.x = ((*(const f32 *)&lbl_805DD19C) + arg1->x) - lbl_805DD180;
     pt.y = arg1->y - (*(const f32 *)&lbl_805DD1A0);
     draw_window_tab(arg1, &pt, 0, (*(const f32 *)&lbl_805DD1A4));
     pt.x += (*(const f32 *)&lbl_805DD1A8);
     pt.y += (*(const f32 *)&lbl_805DD1AC);
-    set_text_draw_params((s32)arg1, 0, 0, (f32)((*(const f32 *)&lbl_805DD1B0) / ((*(const f32 *)&lbl_805DD1B4) + arg1->f38)), (f32)(*(const f32 *)&lbl_805DD1B8));
+    set_text_draw_params(arg1, 0, 0, (f32)((*(const f32 *)&lbl_805DD1B0) / ((*(const f32 *)&lbl_805DD1B4) + arg1->depth)), (f32)(*(const f32 *)&lbl_805DD1B8));
     text_builder_reset();
     TWindowSubStatusDisp__sub_80228F5C(arg2);
     get_shared_text_buffer();
@@ -634,13 +634,13 @@ void TUnk_804D0618::update_scroll_offset() {
   }
 }
 
-void TUnk_804D0618::draw_selected_list_entry(s32 window_key_board_soft) {
+void TUnk_804D0618::draw_selected_list_entry(TWindowDrawContext *window_key_board_soft) {
     u16 *temp_r3;
 
     if (!(this->m_70 & 0x80)) {
         temp_r3 = ((u16 *(*)(void *, s16))get_array_entry__13TUnk_804CE018Fi)(this, (s16)(*(s16 *)&this->unk_74));
         if (*temp_r3 & 1) {
-            draw_selection_bar((u8 *)window_key_board_soft, (u8 *)temp_r3, get_status_flag__13TUnk_804D0618Fv(this));
+            draw_selection_bar(window_key_board_soft, (u8 *)temp_r3, get_status_flag__13TUnk_804D0618Fv(this));
         }
     }
 }
@@ -683,10 +683,10 @@ void TShopJudgmentItemWindow__sub_80267F9C(V_80267F9C v, s32 x) {
 }
 
 void TUnk_804D0618::render() {
-    s32 temp_r3;
+    TWindowDrawContext *temp_r3;
 
-    temp_r3 = (s32)get_draw_context__11TWindowBaseFPv(this);
-    draw_window_frame((void *)temp_r3);
+    temp_r3 = get_draw_context__11TWindowBaseFPv(this);
+    draw_window_frame(temp_r3);
     draw_visible_window_entries(this, ((u8 *)this) + 0x24, temp_r3);
     this->draw_selected_list_entry(temp_r3);
     if ((u32) *(u32 *)((s8 *)((u8 *)this) + 0x80) != 0U) {

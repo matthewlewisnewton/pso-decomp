@@ -94,6 +94,12 @@ small float differences without FMA).
 |---|---|---|---|---|
 | `src/pso/effect/TEF_LensFlare.cpp` | `TEF_LensFlare::render` | one scoped `#pragma opt_propagation off` | MWCC propagation needed for the exact receiver/descriptor cursor codegen. Approved by Matt 2026-11-04. | Drop it. |
 
+### Approved: `TWindowKeyBoardSoft::set_open_tick` ([#219](https://github.com/matthewlewisnewton/pso-decomp/pull/219), kept on [#187](https://github.com/matthewlewisnewton/pso-decomp/pull/187))
+
+| File | Function | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/misc/TWindowKeyBoardSoft_8024E68C.cpp` | `TWindowKeyBoardSoft::set_open_tick` (`set_open_tick__19TWindowKeyBoardSoftFl`, `.text:0x8024E7B8`, 0x80) | one `#pragma opt_common_subs off` | Approved by Matt on 2026-11-04 4:38 PM PT as #219's `set_open_tick`. The body is `255.f * ((7.5f + tick) / 7.5f)` (`lbl_805DCC84` is 255, `lbl_805DCC88` is 7.5). With common-subexpression elimination the two `.sdata2` loads swap: `lfs f2, lbl_805DCC88` / `lfs f3, lbl_805DCC84` become `lfs f3` / `lfs f2`, and `fadds`/`fdivs`/`fmuls` follow the swapped registers. The function stays 128 bytes and scores 99.22%. Named locals, a const reference, a non-const extern, and `-inline auto` do not restore the original colouring. `-inline auto` also inlines `clip_textured_quad` into `try_open` (`.text` 79.87%, 2552 bytes). A `*(const f32 *)&lbl_805DCC88` re-read matches and was rejected as a hiding cast. | Drop the pragma. The value is `255 * (7.5 + tick) / 7.5`. |
+
 ## 5. Per-unit compiler overrides (`configure.py`)
 
 146 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
@@ -138,11 +144,10 @@ the functions are already in original order.
 
 Precedent: [dtk-template](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209)
 (`-fp_contract on`); Melee, Twilight Princess, The Wind Waker, and Pikmin 2
-enable it globally. The per-function `#pragma fp_contract on` and
-`#pragma opt_common_subs off` that were on this file are gone.
-`set_open_tick` reads the 7.5 span once as a value and once through
-`*(const f32 *)&`, which is the load the original keeps in `f2`. A plain
-second use is commoned into `f3` and the function misses by one byte.
+enable it globally. The per-function `#pragma fp_contract on` that was on
+this file is gone. `set_open_tick` is matched with the approved
+`#pragma opt_common_subs off` recorded in section 4, not with a second load
+of the 7.5 span.
 
 ### `-opt noprop`: `TEffIndirectCtrl_802A88AC.cpp` ([#291](https://github.com/matthewlewisnewton/pso-decomp/pull/291))
 

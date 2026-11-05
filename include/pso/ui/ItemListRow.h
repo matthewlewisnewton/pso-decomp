@@ -3,6 +3,8 @@
 
 #include "types.h"
 
+struct TWindowDrawContext;
+
 struct ItemListRow
 {
   u16 flags;
@@ -51,6 +53,6 @@ typedef char ItemListRow_icons_offset[offsetof(ItemListRow, status_icon) == 0x1C
 typedef char ItemListRow_label_offset[offsetof(ItemListRow, label) == 0x20 ? 1 : -1];
 typedef char ItemListWindow_clip_offset[offsetof(ItemListWindowView, clip_top) == 0x40 ? 1 : -1];
 
-void draw_item_list_row(ItemListRow* row, ItemListWindowView* window);
+void draw_item_list_row(ItemListRow* row, TWindowDrawContext* window);
 
 #endif

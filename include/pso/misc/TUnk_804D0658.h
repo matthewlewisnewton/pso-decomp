@@ -3,11 +3,13 @@
 #include "types.h"
 #include "pso/misc/TUnk_804CDFE8.h"
 
+struct TWindowDrawContext;
+
 class TUnk_804D0658 : public TUnk_804CDFE8 {
 public:
     virtual ~TUnk_804D0658();
     void draw();
-    void draw_setting(s32);
+    void draw_setting(TWindowDrawContext *);
     void clamp_scroll();
     void update_scroll_offset();
     void move_cursor_prev();

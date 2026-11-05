@@ -12,13 +12,9 @@ struct RecoveredFields_8024E754_arg0
   f32 field_2C;
 };
 
-struct Ctx_8024E6D8 { u8 pad[0x20]; f32 pivot[2]; f32 scale[2]; };
-
 struct Vec2_8024EC34 { f32 x; f32 y; };
 
 struct Ctx_8024E68C { u8 pad[0x20]; f32 pivot[2]; f32 scale[2]; };
-
-struct Box_8024E8E8 { f32 x0, y0, x1, y1; f32 u0, v0, u1, v1; };
 
 struct Win_8024EA50 {
     f32 x, y;
@@ -40,7 +36,7 @@ extern const f32 lbl_805DCC88;
 extern const float lbl_805DCC78;
 extern const f32 lbl_805DCC7C;
 extern const f32 lbl_805DCC80;
-void apply_context_transform_to_rect(Ctx_8024E6D8 *c, f32 *q);
+void apply_context_transform_to_rect(TWindowDrawContext *c, f32 *q);
 s32 is_split_screen();
 f32 TCameraCtrl__sub_80068A04(s32);
 Vec2_8024EC34 *get_zero_vec2();
@@ -65,7 +61,7 @@ void TWindowKeyBoardSoft::scale_point_about_pivot(f32 *q) {
     }
 }
 
-void apply_context_transform_to_rect(Ctx_8024E6D8 *c, f32 *q) {
+void apply_context_transform_to_rect(TWindowDrawContext *c, f32 *q) {
     if ((*(const f32 *)&lbl_805DCC78) != c->scale[0]) {
         q[0] = c->scale[0] * (q[0] - c->pivot[0]) + c->pivot[0];
         q[2] = c->scale[0] * (q[2] - c->pivot[0]) + c->pivot[0];
@@ -91,17 +87,17 @@ void apply_window_closing_stretch(u8 *arg0, int arg1) {
 }
 
 
+#pragma push
+#pragma opt_common_subs off
 void TWindowKeyBoardSoft::set_open_tick(s32 arg1) {
     s32 temp_r0;
     open_tick = arg1;
     temp_r0 = open_tick;
     if (temp_r0 < 0) {
-        // 255 * (7.5 + tick) / 7.5. The second read of the span goes through a
-        // pointer so it is not the same CSE temp as the addend; a plain second
-        // use of lbl_805DCC88 is allocated to f3 and the function misses by one byte.
-        color = (u32) ((__cvt_fp2unsigned(lbl_805DCC84 * ((lbl_805DCC88 + (f32) temp_r0) / *(const f32 *)&lbl_805DCC88)) << 0x18) | 0xFF0000 | 0xFFFF);
+        color = (u32) ((__cvt_fp2unsigned(lbl_805DCC84 * ((lbl_805DCC88 + (f32) temp_r0) / lbl_805DCC88)) << 0x18) | 0xFF0000 | 0xFFFF);
     }
 }
+#pragma pop
 
 void TWindowKeyBoardSoft::set_bounds(f32 a, f32 b, f32 c, f32 d) {
     clip_left = a;
@@ -125,53 +121,50 @@ void TWindowKeyBoardSoft::animate_scale() {
     clip_top = (f32) (clip_top + lbl_805DCC90);
 }
 
-s32 TWindowKeyBoardSoft::is_point_in_bounds(void *arg1) {
-    Box_8024E8E8 *quad = (Box_8024E8E8 *)arg1;
+s32 TWindowDrawContext::is_point_in_bounds(Box_8024E8E8 *quad) {
     if ((quad->x1 < clip_left) || (quad->y1 < clip_top) || (quad->x0 > clip_right) || (quad->y0 > clip_bottom)) {
         return 0;
     }
     return 1;
 }
 
-s32 TWindowKeyBoardSoft::clip_textured_quad(void *w_arg, void *b_arg) {
-    TWindowKeyBoardSoft *w = (TWindowKeyBoardSoft *)w_arg;
-    Box_8024E8E8 *b = (Box_8024E8E8 *)b_arg;
+s32 TWindowDrawContext::clip_textured_quad(Box_8024E8E8 *b) {
     f32 sx;
     f32 sy;
     f32 d;
-    if (w->is_point_in_bounds(b) == 0) {
+    if (is_point_in_bounds(b) == 0) {
         return 0;
     }
     sx = (b->u1 - b->u0) / (b->x1 - b->x0);
     sy = (b->v1 - b->v0) / (b->y1 - b->y0);
-    d = w->clip_left - b->x0;
+    d = clip_left - b->x0;
     if (d > (*(const f32 *)&lbl_805DCC94)) {
-        b->x0 = w->clip_left;
+        b->x0 = clip_left;
         b->u0 = d * sx + b->u0;
     }
-    d = w->clip_top - b->y0;
+    d = clip_top - b->y0;
     if (d > (*(const f32 *)&lbl_805DCC94)) {
-        b->y0 = w->clip_top;
+        b->y0 = clip_top;
         b->v0 = d * sy + b->v0;
     }
-    d = b->x1 - w->clip_right;
+    d = b->x1 - clip_right;
     if (d > (*(const f32 *)&lbl_805DCC94)) {
-        b->x1 = w->clip_right;
+        b->x1 = clip_right;
         b->u1 = -(d * sx - b->u1);
     }
-    d = b->y1 - w->clip_bottom;
+    d = b->y1 - clip_bottom;
     if (d > (*(const f32 *)&lbl_805DCC94)) {
-        b->y1 = w->clip_bottom;
+        b->y1 = clip_bottom;
         b->v1 = -(d * sy - b->v1);
     }
     return 1;
 }
 
-s32 TWindowKeyBoardSoft::try_open(int arg0, int arg1) {
-    if (clip_textured_quad((void *)arg0, (void *)arg1) == 0) {
+s32 TWindowKeyBoardSoft::try_open(TWindowDrawContext *context, Box_8024E8E8 *quad) {
+    if (context->clip_textured_quad(quad) == 0) {
         return 0;
     }
-    apply_context_transform_to_rect((Ctx_8024E6D8 *)arg0, (f32 *)arg1);
+    apply_context_transform_to_rect(context, &quad->x0);
     return 1;
 }
 
