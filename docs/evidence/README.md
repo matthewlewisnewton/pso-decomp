@@ -39,6 +39,7 @@ guides.
 - [Native Nest continuation](nest-native-recovery-evidence.md)
 - [One-shot positional sound](one-shot-sound-evidence.md)
 - [Paired-single SDK assembly and MWCC (single no-asm exception)](paired-single-sdk-asm.md)
+- [`pack_movie_frame` unit `-opt` switches](pack-movie-frame-unit-flags.md)
 - [Panarms native emission evidence](panarms-native-emission-evidence.md)
 - [Particle factory position](particle-factory-position-evidence.md)
 - [Persistent positional sound](persistent-sound-evidence.md)
