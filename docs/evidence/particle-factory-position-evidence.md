@@ -1,0 +1,9 @@
+# Particle factory position
+
+The factory at `0x80087350` takes a position and signed entry ID, allocates 0x78 bytes, and returns the initialized `TParticleCtrl *` or null on allocation failure or upper-range rejection. It passes the selected 0x98-byte entry address and the position to `TParticleCtrl::initialize` at `0x800883DC`. The initializer copies three floats from the input into the controller at +0x60 and returns the controller; it does not retain or mutate the input position. It retains the separate entry address at +0x28.
+
+There is no position-null check before successful initialization, and the original factory does not reject negative IDs. Its signed comparisons, area index subtraction of `0x200`, allocation and resource selection are retained. The `const Vec *` parameter expresses the observed point read; it does not establish the original source spelling or prove the lifetime of existing caller overlays. The public controller declaration still describes only a prefix, so this change does not replace the original allocation with C++ `new` or claim the entire object layout.
+
+The original inventory contains 369 factory calls in 149 units, including 16 units still built from original fallback objects. Four existing source calls supplied extra values that the factory does not consume. Two callers still expose the pointer result through pre-existing integer-return boundaries; those conversions are explicit here rather than a claim that those interfaces have been recovered.
+
+The initializer still uses the existing `ParticleCtrlData` overlay, manual construction, and hand-declared vector-copy boundary. Its retained entry-address parameter remains named `particle_index` in source; that name does not mean the value is an integer index. These boundaries and the entry's required lifetime are not recovered by the position signature.

@@ -1,10 +1,12 @@
 #include "types.h"
+#include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/misc/TWindowShortListCtrl_801A4FC0.h"
 #include "pso/ui/TAdSelectGameModeGC_802C4748.h"
 #include "pso/TAdMultiChgGameModeGC.h"
 
 extern "C" {
 void *__nw__7TObjectFUl(u32);
+u8 *TAdSinglePlyChrSelectGC__ct(u8 *arg0, TObject *parent);
 u8 *get_or_create__22TAdMultiPlyChrSelectGCFii(s32 arg0, s32 arg1);
 void *TAdEnterPPPPassGC__ct(void *, s32);
 void *TAdEnterPasswordGC__ct(void *, s32);
@@ -16,7 +18,6 @@ void *__ct__13TUnk_804F3A20FP7TObject(void *, s32);
 void *__ct__17TAdMultiConfirmGCFP7TObject(void *, s32);
 void *TAdMultiSaveGC__ct(void *, s32);
 void *TAdPsoPassSaveGC__ct(void *, s32);
-u8 *TAdSinglePlyChrSelectGC__ct(u8 *arg0, void *parent);
 void *TAdSnAkPassConfirmGC__ct(void *, s32);
 void *TAdTimeSetGC__ct(void *, s32);
 void *TAdTrialAgreementGC__ct(void *, s32);
@@ -154,7 +155,7 @@ void TAdMultiChgGameModeGC::create_mode_scene() {
     case 6:
         p = __nw__7TObjectFUl(0x60);
         if (p != NULL) {
-            p = TAdSinglePlyChrSelectGC__ct((u8 *)p, (void *)tl_01);
+            p = TAdSinglePlyChrSelectGC__ct((u8 *)p, (TObject *)tl_01);
         }
         game_mode_scene_instance = (s32)p;
         break;

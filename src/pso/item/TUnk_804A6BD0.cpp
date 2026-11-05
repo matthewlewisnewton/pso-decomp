@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 // ---- pso/unk/text_80130C2C
 #include "types.h"
 #include "pso/item/TItem.h"
@@ -43,7 +44,7 @@ void TUnk_804A6BD0::emit_marker_effects() {
     ang.z = 0;
     TObjPlayer::launch_weapon_casing((s32)tl_05, (u32)this, 3, (u32)&pos, (u32)&ang);
     get_joint_position(2, &sp8);
-    spawn_particle_effect(&sp8, 9);
+    spawn_particle_effect((const Vec *)(&sp8), 9);
 }
 
 void TUnk_804A6BD0::update_weapon() {

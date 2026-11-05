@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/math/MatrixTransforms.h"
 #include "pso/player/TObjPlayer.h"
@@ -113,7 +114,7 @@ void TUnk_804A5C18::emit_marker_effects() {
         ((TItemWeapon *)(((u8 *)this)))->get_joint_position(((struct Self_8012DE24 *)((u8 *)this))->icons[i], sp8);
         ((VObj_8012DE24 *)((u8 *)this))->m49(sp8, i, basic_shot_angle_table[i], 1);
         if (i == 0) {
-            spawn_particle_effect(sp8, 9);
+            spawn_particle_effect((const Vec *)(sp8), 9);
         }
     }
 }

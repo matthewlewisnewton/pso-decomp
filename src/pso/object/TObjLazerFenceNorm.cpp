@@ -1,4 +1,6 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/object/TObjDoorJung.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/object/TObjFish.h"
@@ -43,10 +45,10 @@ extern void *lazer_fence_norm_texture_list;
 static const f32 lbl_805DBE58[1] = {0.0f};
 
 void TObjLazerFenceExtra::render_lazer_fence_model() {
-    TObjFish::set_global_param((s32)lazer_fence_norm_texture_list);
+    set_current_texture_list((GinjaTextureList *)(lazer_fence_norm_texture_list));
     push_matrix();
     post_translate_matrix((void *)((char *)this + 56));
-    rotate_matrix_y(0, *(void * *)&this->rotation_y);
+    rotate_matrix_y(0, *(void * *)&this->rotation.yaw);
     draw_ginja_object(*(void * *)&this->m_d8);
     pop_matrix();
 }
@@ -229,7 +231,7 @@ void TObjLazerFenceNorm::draw_animated_beam() {
     for (i = 0; i < 4; i++) {
         ((TObjDoorJung *)(((Obj_80192B5C *)this)->fC8[i]))->free_children((void *)(lbl_80445B7C[((Obj_80192B5C *)this)->fAC]));
     }
-    TObjFish::set_global_param((s32)lazer_fence_norm_texture_list);
+    set_current_texture_list((GinjaTextureList *)(lazer_fence_norm_texture_list));
     push_matrix();
     post_translate_matrix(((Obj_80192B5C *)this)->f38);
     rotate_matrix_y(0, (void *)((Obj_80192B5C *)this)->f60);
@@ -262,10 +264,10 @@ struct TObjLazerFenceNorm_80192CCC {
 };
 
 void TObjLazerFenceNorm::draw_model() {
-    TObjFish::set_global_param((s32)lazer_fence_norm_texture_list);
+    set_current_texture_list((GinjaTextureList *)(lazer_fence_norm_texture_list));
     push_matrix();
     post_translate_matrix((void *)((char *)this + 56));
-    rotate_matrix_y(0, *(void * *)&this->rotation_y);
+    rotate_matrix_y(0, *(void * *)&this->rotation.yaw);
     draw_ginja_object(this->m_bc);
     pop_matrix();
 }
@@ -317,7 +319,6 @@ extern "C" {
 extern s32 __vt__18TObjLazerFenceNorm[];
 extern s32 obj_lazer_fence_norm_class_name;
 
-void TLobby__sub_8001FE7C(void*, int);
 s32 release_texture_list(void*);
 s32 free_collision_body_parts(void *);
 s32 update_closed__18TObjLazerFenceNormFv();
@@ -391,7 +392,7 @@ void *TObjLazerFenceNorm__create(void *arg0) {
 
 void TObjLazerFenceNorm::free_resources() {
     if ((u32) lazer_fence_norm_bml_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)lazer_fence_norm_bml_resource, 1);
+        delete (BmlResource *)((void*)lazer_fence_norm_bml_resource);
         lazer_fence_norm_bml_resource = 0U;
     }
     if ((u32) lazer_fence_norm_texture_list != 0U) {

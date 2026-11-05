@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "types.h"
 #include "pso/enemy/TObjEneDarkGunCenter.h"
 #include "pso/enemy/TObjEnemy.h"
@@ -121,7 +122,7 @@ void enemy_spawn_jellen_effect__9TObjCharaFv();
 void enemy_spawn_zalure_effect__9TObjCharaFv();
 void vfunc_78__9TObjCharaFl();
 void vfunc_77__9TObjCharaFv();
-void vfunc_76__9TObjCharaFv();
+void vfunc_76__9TObjCharaFf();
 void vfunc_75__9TObjCharaFf();
 void clear_lobby_object_state__9TObjEnemyFv();
 void get_center__9TObjCharaFv();
@@ -228,7 +229,7 @@ void *__vt__20TObjEneDarkGunCenter[83] = {
     (void *)recalc_stats__9TObjCharaFv,
     (void *)vfunc_74__9TObjEnemyFl,
     (void *)vfunc_75__9TObjCharaFf,
-    (void *)vfunc_76__9TObjCharaFv,
+    (void *)vfunc_76__9TObjCharaFf,
     (void *)vfunc_77__9TObjCharaFv,
     (void *)vfunc_78__9TObjCharaFl,
     (void *)vfunc_79__9TObjEnemyFPl,
@@ -245,7 +246,7 @@ void TObjEneDarkGunCenter::run_task() {
     s32 t;
     s32 id;
     u8 *e;
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         ((void (*)(void *))TObjEneDarkGunCenter__sub_800A0B18)(self);
         return;
     }

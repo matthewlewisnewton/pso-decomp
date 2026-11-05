@@ -1,5 +1,4 @@
 #include "types.h"
-#include "pso/misc/TWindowMessage.h"
 #include "pso/misc/TWindowSubComCard_8034CD98.h"
 #include "pso/misc/TWindowSubComCardList.h"
 #include "pso/misc/TWindowSubInformationBoard.h"
@@ -24,7 +23,7 @@ extern s32 lbl_80478C2C[];
 void TWindowSubInformationBoard::open_card_info_window() {
     s32 window_layout_position;
     window_layout_position = get_window_layout_position(0xA5);
-    TWindowMessage::create((void *)window_layout_position, (s32)lbl_80478C2C, 1);
+    TLobby::set_window_mode_4((void *)window_layout_position, (s32)lbl_80478C2C, 1);
     this->m_24 = -1;
 }
 void *TWindowSubComCard__sub_8034CDE0(void) {

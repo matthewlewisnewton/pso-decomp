@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "pso/misc/TODoorVoShip.h"
 
 #include "pso/TMainTask.h"
@@ -70,10 +71,10 @@ void TODoorVoShip::render() {
     if (update_object_view_visibility(view_range, model_radius) != 0 && (light_flags & SEAL_LIGHTS)) {
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
-        TObjFish::set_global_param(texlist);
+        rotate_matrix_y(NULL, this->rotation.yaw);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         draw_chunk_model_with_shape_motion(model, motion, shape_motion, animation_frame);
-        TObjFish::set_global_param(light_texlist);
+        set_current_texture_list((GinjaTextureList *)(light_texlist));
         u32 flags = model_render_flags;
         saved_model_render_flags = flags;
         model_render_flags = flags | 0x20;
@@ -117,16 +118,13 @@ void *TODoorVoShip::create(void *set_data) {
 
 void TODoorVoShip::free_static_data() {
     if (bml_resource != NULL) {
-        TLobby__sub_8001FE7C(bml_resource, 1);
+        delete (BmlResource *)(bml_resource);
         bml_resource = NULL;
     }
 }
 
 void TODoorVoShip::load_shared_resource() {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &door_vo_ship_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&door_vo_ship_resource_descriptor), 0, 0, (void *)(0));
     bml_resource = resource;
 }
 
