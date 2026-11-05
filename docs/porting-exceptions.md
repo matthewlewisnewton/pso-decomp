@@ -161,6 +161,15 @@ or `other: <what>`); the fork PR that brought it in; and the tag
 | Function/symbol | Unit | File | Upstream PR | Cheat type | Fork PR | Tag |
 |---|---|---|---|---|---|---|
 
+| sin_table_lookup | `pso/unk/text_803D647C.cpp` | `src/pso/unk/text_803D647C.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | #0 | upstream catch-up, rewrite later |
+| cos_table_lookup | `pso/unk/text_803D647C.cpp` | `src/pso/unk/text_803D647C.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | #0 | upstream catch-up, rewrite later |
+| convert_color_f32_to_u8 | `pso/misc/TCameraCtrl_803D749C.cpp` | `src/pso/misc/TCameraCtrl_803D749C.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | #0 | upstream catch-up, rewrite later |
+| convert_color_u8_to_f32 | `pso/misc/TCameraCtrl_803D749C.cpp` | `src/pso/misc/TCameraCtrl_803D749C.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | #0 | upstream catch-up, rewrite later |
+| vec3_add_to | `pso/unk/text_803D8910.cpp` | `src/pso/unk/text_803D8910.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | #0 | upstream catch-up, rewrite later |
+| vec3_dot | `pso/unk/text_803D8910.cpp` | `src/pso/unk/text_803D8910.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | #0 | upstream catch-up, rewrite later |
+| vec3_cross | `pso/unk/text_803D8910.cpp` | `src/pso/unk/text_803D8910.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | #0 | upstream catch-up, rewrite later |
+| vector_length | `pso/math/MatrixVector.cpp` | `src/pso/math/MatrixVector.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | #0 | upstream catch-up, rewrite later |
+| matrix_identity | `pso/math/MatrixVector.cpp` | `src/pso/math/MatrixVector.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | #0 | upstream catch-up, rewrite later |
 ## Pending in open PRs
 
 Found by `tools/list_port_exceptions.py --pr N` on 2026-11-04. Add or remove the
