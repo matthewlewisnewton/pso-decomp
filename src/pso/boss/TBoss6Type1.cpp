@@ -365,7 +365,7 @@ extern const f32 TBoss6Type1__data_805DE304;
 extern const f32 lbl_805DE3D8;
 extern const f32 lbl_805DE3D4;
 void TBoss6Type1__sub_802B8BB4(u8 *arg0);
-s32 project_actor_to_ground(void *, void *, s32);
+s32 project_actor_to_ground(TObjCollidable *actor, Vec *pos, Vec *normal);
 void TBoss6PlotFalz__sub_802AC724(void *, void *);
 f32 vec3_add_to(void *, void *);
 void vec3_cross(void *, void *, void *);
@@ -499,10 +499,11 @@ void TBoss6Type1::render() {
     TBoss6Type1__sub_802B626C(this);
 }
 
-void TBoss6Type1::release_object(void *) {
-    if (map_csn != 0) {
-        map_csn->queue_destruction();
-        map_csn = 0;
+void TBoss6Type1::release_object(void *p) {
+    TBoss6Type1 *self = (TBoss6Type1 *)p;
+    if (self->map_csn != 0) {
+        self->map_csn->queue_destruction();
+        self->map_csn = 0;
     }
 }
 
@@ -524,7 +525,7 @@ void TBoss6Type1::spawn_map_csn() {
     VecCopy(&data.scale, &boss6_map_csn_scale);
     data.params[0] = 2;
     data.params[1] = 0;
-    map_csn = (TObject *)TObjMapCsn::create((s32)&data);
+    map_csn = (TObject *)(u32)TObjMapCsn::create((void *)&data);
 }
 
 int TBoss6Type1__sub_802B4A70(void* p) { return release_object__11TBoss6Type1FPv(p); }
@@ -1079,7 +1080,7 @@ void TBoss6Type1__sub_802B5DD4(Obj_802B5DD4 *self) {
 
 void TBoss6Type1::reset_fields_4e0() { this->m_4e0 = 0; *(s32*)((char*)this + 0x4e4) = 0; }
 s32 TBoss6Type1::is_field3F8_over_0x20() {
-    return TBoss6PlotFalz__sub_802AAC74((u8 *)this->m_3f8) > 0x20;
+    return TBoss6PlotFalz__sub_802AAC74((TBoss6PlotFalz *)this->m_3f8) > 0x20;
 }
 
 int TBoss6Type1::is_field4b0_delta_reached() {
@@ -1420,7 +1421,7 @@ void TBoss6Type1__sub_802B6C30(Boss_802B6C30 *self) {
             m.z *= lbl_805DE38C;
         }
         vec3_add_to(&m, &pl->pos);
-        if (project_actor_to_ground(self, &m, 0) == 0) {
+        if (project_actor_to_ground((TObjCollidable *)self, (Vec *)&m, (Vec *)0) == 0) {
             m.y = 0.0f;
             if (VLEN(&m) <= TBoss6Type1__data_805DE310) {
                 continue;

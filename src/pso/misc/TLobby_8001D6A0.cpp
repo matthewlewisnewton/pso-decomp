@@ -18,7 +18,6 @@
 #include "pso/misc/TLobby_801E2F94.h"
 #include "pso/misc/TPlyJoinLobbyEntry.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
-#include "pso/misc/TLobby_800F9DA0.h"
 
 #pragma readonly_strings on
 
@@ -305,6 +304,7 @@ struct File_8001DC30
   Pair_8001DC30 pairs[4][0x60];
 };
 s32 is_main_phase_15__9TObjEneDDFv(void);
+void read_disc_file(const char *, void *);
 }
 extern const char lbl_80434A20[];
 extern const char lbl_80434A38[];
@@ -347,7 +347,7 @@ void load_battle_param_entry(void) {
     read_disc_file(name, file);
     idx = battle_parameter_difficulty;
     new_var = (dst = TLobby__battle_parameter_buffer);
-    ((TLobby *)(dst->stats))->move_data(file->stats[idx], sizeof(dst->stats));
+    ((TLobby *)dst->stats)->move_data(file->stats[idx], sizeof(dst->stats));
     {
       Stats_8001DC30 *p = ((0, dst))->stats;
       s32 i;
@@ -358,7 +358,7 @@ void load_battle_param_entry(void) {
       }
 
     }
-    ((TLobby *)(new_var->pkts))->move_data((void *) ((((s32) file) + 0x3600) + (idx * 0x1200)), sizeof(dst->pkts));
+    ((TLobby *)(new_var->pkts))->move_data( (void *) ((((s32) file) + 0x3600) + (idx * 0x1200)), sizeof(dst->pkts));
     {
       Pkt_8001DC30 *p = new_var->pkts;
       s32 i;
@@ -369,7 +369,7 @@ void load_battle_param_entry(void) {
       }
 
     }
-    ((TLobby *)(new_var->sw))->move_data((void *) ((((s32) file) + 0x7E00) + (idx * 0xC00)), sizeof(dst->sw));
+    ((TLobby *)(new_var->sw))->move_data( (void *) ((((s32) file) + 0x7E00) + (idx * 0xC00)), sizeof(dst->sw));
     {
       s32 i;
       Sw_8001DC30 *p = new_var->sw;
@@ -380,7 +380,7 @@ void load_battle_param_entry(void) {
       }
 
     }
-    ((TLobby *)(new_var->pairs))->move_data((void *) ((((s32) file) + 0xAE00) + (1152 * (4 * idx))), sizeof(dst->pairs));
+    ((TLobby *)(new_var->pairs))->move_data( (void *) ((((s32) file) + 0xAE00) + (1152 * (4 * idx))), sizeof(dst->pairs));
     {
       s32 i;
       Pair_8001DC30 *p = new_var->pairs;

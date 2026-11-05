@@ -14,9 +14,14 @@ struct TWindowMessage : public TUnk_804CDFE8 {
     virtual void run_task();
     virtual void render();
     void update_scroll();
+    void close();
+    void set_depth(f32);
     void retire_scrolled_lines();
     void advance_reveal_cursor();
     void scroll_up_line(u8 *);
+    int append_line(int text, int mode);
+    static u8 *create(s32 arg0, s32 arg1, u32 arg2, s32 arg3);
+    static u8 *create(void *arg0, s32 arg1, s32 arg2);
     u8 unk_60[0xC];
     f32 m_6c;
     u32 m_70;

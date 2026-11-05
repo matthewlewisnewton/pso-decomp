@@ -1,13 +1,14 @@
 #include "types.h"
 #include "pso/unk/text_803DE7E0.h"
 #include "pso/unk/text_803DE8BC.h"
+#include "pso/misc/TLobby.h"
 
 extern void *sys_heap_handle;
 extern "C" {
 void OSFreeToHeap(void *heap, void *ptr);
 void *OSAllocFromHeap(void *heap, u32 size);
-void move_data__6TLobbyFPCvUl(void *, void *, void *);
 }
+void move_data(const void *, u32);
 
 #pragma push
 #pragma scheduling off
@@ -29,9 +30,9 @@ void *sys_calloc(s32 arg0, s32 arg1) {
     return p;
 }
 
-void *fn_803DE960(void *arg0, void *size) {
-    void *p = OSAllocFromHeap(sys_heap_handle, (u32)size);
-    move_data__6TLobbyFPCvUl(p, arg0, size);
+void *fn_803DE960(void *arg0, u32 size) {
+    void *p = OSAllocFromHeap(sys_heap_handle, size);
+    ((TLobby *)p)->move_data( arg0, size);
     OSFreeToHeap(sys_heap_handle, arg0);
     return p;
 }

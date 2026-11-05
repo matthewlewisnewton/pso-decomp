@@ -4,11 +4,14 @@
 #include "pso/boss/TBoss6EffHyoui.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/player/TObjChara.h"
+#include "pso/player/TObjPlayer.h"
 
 #include "types.h"
 
+class TObjPlayer;
+
 extern "C" {
-void *get_player_by_client_id(s32 i);
+TObjPlayer *get_player_by_client_id(u32 id);
 void __ct__7TObjectFP7TObject(void *, void *);
 extern s32 lbl_8047AC70[];
 extern s32 __vt__14TBoss6EffHyoui[];
@@ -29,11 +32,11 @@ extern void *tl_02;
 
 void TBoss6EffHyoui::run_task() {
     u8 *arg0 = (u8 *)this;
-    s32 player;
+    TObjPlayer *player;
     if ((u32) this->m_1c != 0U) {
-        player = (s32)get_player_by_client_id((*(u16 *)((s8 *)arg0 + 0x20)));
-        if ((player != 0) && (((TObjChara *)player)->is_active() != 0)) {
-            ((TParticleCtrl *)this->m_1c)->set_position((void *)(player + 0x38));
+        player = get_player_by_client_id((*(u16 *)((s8 *)arg0 + 0x20)));
+        if ((player != NULL) && (player->is_active() != 0)) {
+            ((TParticleCtrl *)this->m_1c)->set_position(&player->position);
         }
     }
     *(s32 *)((s8 *)arg0 + 0x28) = (s32) (*(s32 *)((s8 *)arg0 + 0x28) + 1);

@@ -578,7 +578,7 @@ void *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags);
 void *create_particle_emitter(void *pos, s32 id);
 s32 __ct__11TObjControlFP7TObject(s32, s32);
 s32 angle_diff_s16(s32, s32);
-s32 project_actor_to_ground(void *, void *, int);
+s32 project_actor_to_ground(TObjCollidable *actor, Vec *pos, Vec *normal);
 s32 __nw__7TObjectFUl(s32);
 int pick_random_active_player__14TBoss6PlotFalzFv(void*);
 s32 is_state_1f__14TBoss6PlotFalzFUi(void *);
@@ -1314,7 +1314,7 @@ s32 snap_to_ground__11TBoss6Type2FPv(Obj_802BAB80 *self) {
     f32 t;
     VecCopy((Vec *)&p, (const Vec *)&self->pos);
     p.y += 10.0f;
-    if (project_actor_to_ground(self, &p, 0) != 0) {
+    if (project_actor_to_ground((TObjCollidable *)self, (Vec *)&p, (Vec *)0) != 0) {
         VecCopy((Vec *)&self->pos, (const Vec *)&p);
         self->pos.y = 0.0f;
         return 0;
@@ -1330,7 +1330,7 @@ s32 snap_to_ground__11TBoss6Type2FPv(Obj_802BAB80 *self) {
             p.x = t * d.x + -10000.0f;
             p.y = 10.0f + self->pos.y;
             p.z = t * d.z;
-            if (project_actor_to_ground(self, &p, 0) != 0) {
+            if (project_actor_to_ground((TObjCollidable *)self, (Vec *)&p, (Vec *)0) != 0) {
                 break;
             }
         }
@@ -1744,7 +1744,7 @@ s32 TBoss6Type2::push_players_away(void *target, f32 range) {
             off.z = dir.z * t;
             VecCopy((Vec *)&pos, (const Vec *)target);
             vec3_add_to(&pos, &off);
-            if (project_actor_to_ground(this, &pos, 0) != 0) {
+            if (project_actor_to_ground((TObjCollidable *)this, (Vec *)&pos, (Vec *)0) != 0) {
                 TBoss6PlotFalz__sub_802AC724(pl, &pos);
                 break;
             }

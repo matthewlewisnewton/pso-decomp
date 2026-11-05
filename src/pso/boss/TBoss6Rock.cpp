@@ -379,7 +379,7 @@ void TBoss6Rock::sub_80353F5C() {
         set.scale.z = kind->width;
         set.scale.x = kind->width;
         set.scale.y = kind->height;
-        m_b0 = (TObject *)TObjMapCsn::create((s32)&set);
+        m_b0 = (TObject *)TObjMapCsn::create(&set);
     }
 }
 

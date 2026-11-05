@@ -49,7 +49,7 @@ void TWindowSubSymbolChat::load_symbol_chat_data() {
     struct Ent_80077544 *e;
     e = w->e;
     data = set_stream_and_load_file__6TLobbyFi(symbol_chat_default_data_filename);
-    ((TLobby *)e)->move_data((const void *)data, (u32)0x420);
+    ((TLobby *)e)->move_data( (const void *)data, (u32)0x420);
     TAdSinglePlyChrSelectGC::safe_free(data);
     for (i = 0; i < 6; i++) {
         ((TWindowSubSymbolChat *)(&e[i]))->bswap_entry();
