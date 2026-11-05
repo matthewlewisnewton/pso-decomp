@@ -127,11 +127,18 @@ into `fnmsubs`/`fmadds`. The same unit places `lbl_80438E40` with
 in `.rodata`. Port: keep FMA or accept small float differences; a normal
 `const` is enough for the vector.
 
-### `pso/misc/TOMineTrap_8016F6F8.cpp` ([#321](https://github.com/matthewlewisnewton/pso-decomp/pull/321))
+### `pso/misc/TOMineTrap_8016F6F8.cpp`: `-inline on`, `-fp_contract on` ([#321](https://github.com/matthewlewisnewton/pso-decomp/pull/321))
 
-Allowed by Matt on 2026-11-04: one unit-wide `-fp_contract on` in
-`configure.py`. No function pragma. The original text has three `fmadds` and
-no `fmsubs`.
+Allowed by Matt on 2026-11-04: unit-wide switches in `configure.py`. No
+function pragma.
+
+| Unit | Functions | What | Why | Port should |
+|---|---|---|---|---|
+| `pso/misc/TOMineTrap_8016F6F8.cpp` | `TOMineTrap::run_task` (`0x8016F90C`, 952 bytes); no other function changes | unit switch `-inline on`, which expands the inline members `strike_actor(TObjChara *, TObjPlayer *)`, `strike_player(TObjChara *)` and `strike_enemy(TObjChara *, TObjPlayer *)` into mode 4's loop | The original keeps `this` in r29, the owner in r31, `i` in r30, the entity id in r28 and the actor in r27 (`mr r29, r3` at `0x8016F91C`, `mr. r27, r3` at `0x8016F9F4`, `mr r28, r3` at `0x8016FA48`). With the actor as a named local in `run_task` it is virtual r34, degree 30, and every temp it could lose a neighbour to is numbered above it. MWCC's simplify pass only pushes a node whose degree is already below 29 when the ascending sweep reaches it, so the actor is coloured before the id and gets r29 (`this` r28, id r27; 98.49%). Copy propagation cannot remove the named copy because the actor is passed to calls (`mr r3, actor`). When `get_player_data(i)` is the argument of an inline call, the actor is the inline's argument temp: it is numbered above the two room loads that the frontend CSE pass shares, so the sweep sees degree 28 and gives it the last callee-saved register. The player and enemy branches are their own inlines: nested inlines are expanded one pass later in statement order. That keeps the two `DirectAttackPayload` argument copies in the original stack slots (`0x10(r1)` for the player hit at `0x8016FB10`, `0x8(r1)` for the enemy hit at `0x8016FBE4`). With one inline for the whole body the slots swap (99.97%). With the switch, `run_task` is 100% and every other function, `.rodata` and the symbol table are byte-identical to the object built without it from the previous source (`-inline off` and `-inline on` give identical objects for that source). Without the switch, the new source keeps the three helpers out of line as weak functions and `run_task` is 33.82%. Other keywords tested: `noauto` gives the same object as `on`. `deferred` matches `run_task` but writes the functions in reverse order. `auto`, `auto,deferred` and `all` also auto-inline small members: `run_task` falls to 95.95% (76.70% with `auto,deferred`), and six other functions drop, for example `check_trigger`/`can_trigger` to 39.48% and `receive_direct_attack` to 60.34%. Precedent: [brawl `configure.py`](https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264) (`-inline on`), [dtk-template](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203) per-group `-inline`, and this repo's `-inline on` units `QuestOpcodeHandlers.cpp` and `TQuestThread.cpp`. | Drop the switch. The helpers are plain inline members. |
+
+#### `-fp_contract on`
+
+The original text has three `fmadds` and no `fmsubs`.
 
 | Function | Instruction | Address | Expression |
 |---|---|---|---|
@@ -139,19 +146,26 @@ no `fmsubs`.
 | `TOMine::follow_target` | `fmadds f0,f1,f0,f2` | `0x80170B9C` | `lbl_805DB884 * ((lbl_805DB888 + target_y) - held_y) + held_y` |
 | `TOMine::update_float_height` | `fmadds f0,f3,f1,f0` | `0x80170D30` | `lbl_805DB884 * ((lbl_805DB888 + home_y) - height) + constant`, then `fadds` the old height |
 
-Objdiff of the whole unit (`GC/2.6`, `-O4,s -inline off -sdata2 4`), flag on
-versus flag omitted: `run_task` is byte-identical either way (98.49%, 952
-bytes). Owner is r31 and `i` is r30, as in the original; `this` is r28
-(original r29), the actor is r29 (original r27), and the id is r27 (original
-r28). Every other
-function that is exact without the flag stays exact with it. `.rodata`
-(`lbl_804421F8`, 8 bytes) is exact either way. The three functions above
-change, from 99.31% (1076 bytes) / 97.84% / 95.70% without the flag to 99.91%
-(1072 bytes) / 100% / 100% with it. The constructor's remaining gap is the
-direct field clamp at `0x80170068`: the original is `lfs f1, 0x358(r28); lfs
-f0, lbl_805DB85C; fcmpo f1, f0` then `stfs f0`, and the field write swaps
-`f0`/`f1`. Those multiply-adds compile as `fmuls`+`fadds` when
-`-fp_contract` is omitted and `fmadds` when it is on.
+Objdiff of the whole unit (`GC/2.6`, `-O4,s -inline on -sdata2 4`), flag on
+versus flag omitted: `run_task` is byte-identical either way (100%, 952
+bytes). Every other function that is exact without the flag stays exact with
+it. `.rodata` (`lbl_804421F8`, 8 bytes) is exact either way. The three
+functions above change, from 98.73% (1076 bytes) / 97.81% (296) / 95.60%
+(172) without the flag to 99.91% (1072 bytes) / 100% / 100% with it. Those
+multiply-adds compile as `fmuls`+`fadds` when `-fp_contract` is omitted and
+`fmadds` when it is on.
+
+The constructor's remaining gap is the clamp at `0x80170068`: the original is
+`lfs f1, 0x358(r28); lfs f0, lbl_805DB85C; fcmpo f1, f0` then `stfs f0`, and
+this source swaps `f0`/`f1`. `lbl_805DB85C` is `0.0f` in the shared `.sdata2`
+pool (`0x805DB840`-`0x805DB890`), which `text_8016F1C0.cpp`, this unit and
+`TOMine.cpp` all read. As an `extern const` global, its load is shared by the
+frontend CSE pass, and that temp is numbered below the reload of the field, so
+the reload gets `f0`. Written as the literal `0.0f`, the clamp compiles to the
+original registers. The only difference left is that the relocation then
+points at a pool entry of this unit's own (`.sdata2`) instead of
+`lbl_805DB85C`. Matching it honestly needs that pool to belong to one unit
+spanning those splits; this PR leaves the unit boundaries alone.
 
 `follow_target` and `update_float_height` are exact on main through
 function-local `fp_contract` pragmas. This PR removes those pragmas; the unit
