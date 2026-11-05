@@ -14,7 +14,7 @@ public:
     void draw_body(TWindowDrawContext *ctx, u32 argb, f32 *offset, f32 depth);
     void draw_body_row(BalloonSlice *s, TWindowDrawContext *ctx, f32 offsetX, f32 rowTop, f32 fullWidth, f32 rowHeight);
     void draw_tail(TWindowDrawContext *ctx, u32 color, f32 *offset, f32 depth);
-    void sub_80251DF0(s16, s32, s16, f32);
+    void sub_80251DF0(u16, s32, s16, f32);
     s32 clamp_position(void *, f32);
     void set_color(u16);
     void follow_anchor();
@@ -51,7 +51,7 @@ public:
     u8 m_72;
     s8 m_73;
     s16 m_74;
-    s16 m_76;
+    u16 speaker_id;
     char *name;
     f32 m_7c;
     f32 m_80;

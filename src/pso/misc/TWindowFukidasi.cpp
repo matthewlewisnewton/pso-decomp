@@ -64,8 +64,6 @@ struct Entry_80250380 {
     u32 color;
 };
 
-struct Fuki_80250380 { u8 pad[0x24]; u8 entries[0x4C]; u8 phase; u8 options; u8 kind; };
-
 struct Fuki_80250F70 {
     u8 pad0[0x38]; f32 anchor[2];
     u8 pad40[0x50];
@@ -78,8 +76,6 @@ struct Fuki_802504C0 {
     u8 pad40[0x30];
     u8 phase; u8 options; u8 kind; u8 slot;
 };
-
-struct Fuki_8025181C { u8 pad0[0x38]; f32 w; f32 h; };
 
 struct Fuki_80250F70;
 
@@ -128,13 +124,6 @@ struct Prim_802521E8 {
 // One skewed row of the balloon body, handed to DVDConvertEntrynumToPath.
 struct BalloonSlice { f32 x, y, z, width, f10, lean, rowHeight, f1c, u, v, uw, f2c, f30, vh, pad[4]; };
 
-struct Fuki_802511E4 {
-    u8 pad0[0x76];
-    u16 id;
-    u8 pad78[4];
-    f32 height;
-};
-
 struct Ent_802511E4 {
     u8 pad0[0x38];
     f32 pos[3];
@@ -180,7 +169,7 @@ f32 * get_message_by_type__11TWindowCtrlFScl(u8, int);
 s32 TWindowFukidasi__sub_802505C0(Fuki_80251028 *b, f32 *rect, f32 *out);
 s32 shift_rect_with_head__15TWindowFukidasiFPvPvPv(Fuki_80250F70 *b, f32 *rect, f32 *out);
 void refresh_rect_placement__15TWindowFukidasiFPv(Fuki_80251028 *b);
-void TWindowFukidasi__sub_80251790(void *);
+void TWindowFukidasi__sub_80251790(TUnk_804CF0B8 *b);
 void TWindowFukidasi__sub_80252C38(void *p);
 void clear_flag_20__13TUnk_804CF0B8Fv();
 s32 fn_80252CBC(void);
@@ -296,14 +285,14 @@ void TUnk_804CF0B8::clamp_text_size(f32 *out) {
 
 void TUnk_804CF0B8::calc_text_size(f32 *out) {
     Entry_80250380 *e;
-    switch (((Fuki_80250380 *)this)->kind) {
+    switch (this->m_72) {
     case 0:
-        e = ((Entry_80250380 * (*)(void *, int))get_array_entry__13TUnk_804CE018Fi)(this, 0);
+        e = (Entry_80250380 *)this->get_array_entry(0);
         out[0] = 0.1f + (8.0f + e->w);
         out[1] = 0.1f + (20.0f + e->h);
         break;
     case 1:
-        TWindowSubSymbolChat__sub_802483F0((int)((Fuki_80250380 *)this)->entries, (void *)out);
+        TWindowSubSymbolChat__sub_802483F0((int)&this->m_24, out);
         break;
     case 2:
         break;
@@ -377,7 +366,6 @@ s32 TWindowFukidasi__sub_802505C0(Fuki_80251028 *b, f32 *rect, f32 *out) {
     return (u32) __cntlzw((u32) draw_resolved_window__15TWindowFukidasiFllll((Fuki_80250F70 *)b, out, b->anchor, 4)) >> 5;
 }
 
-struct Fuki_8025181C;
 #define F70_80250A24 ((Fuki_80250F70 *)b)
 #define CLAMP_80250A24 ((s32 (*)(Fuki_80250F70 *, f32 *, f32))clamp_position__13TUnk_804CF0B8FPvf)
 #define DRAW_80250A24 ((void *(*)(Fuki_80250F70 *, f32 *, f32 *, s32))draw_resolved_window__15TWindowFukidasiFllll)
@@ -574,26 +562,24 @@ void refresh_rect_placement__15TWindowFukidasiFPv(Fuki_80251028 *b) {
 __declspec(section ".sdata2") extern const f32 TWindowFukidasi__data_805DCD30[1] = {0.0f};
 
 s32 TUnk_804CF0B8::project_anchor(f32 *pos, f32 *out) {
-    Fuki_80250F70 *arg0 = (Fuki_80250F70 *)this;
-    Fuki_802511E4 *b = (Fuki_802511E4 *)arg0;
     Ent_802511E4 *e;
     f32 tmp[3];
 
-    if (b->id == 0xFFFF) {
+    if (this->speaker_id == 0xFFFF) {
         return 0;
     }
-    e = find_entity_by_id(b->id);
+    e = find_entity_by_id(this->speaker_id);
     if (e == NULL) {
         return 0;
     }
-    if (((u32 (*)(u16))get_player_by_client_id)(b->id) != 0 && get_battle_ctrl_flag__10TObjPlayerFUs(b->id) == 0) {
+    if (((u32 (*)(u16))get_player_by_client_id)(this->speaker_id) != 0 && get_battle_ctrl_flag__10TObjPlayerFUs(this->speaker_id) == 0) {
         return 0;
     }
     if (pos == NULL) {
         pos = tmp;
     }
     pos[0] = e->pos[0];
-    pos[1] = e->pos[1] + b->height;
+    pos[1] = e->pos[1] + this->m_7c;
     pos[2] = e->pos[2];
     if (out == NULL) {
         return 1;
@@ -707,38 +693,27 @@ void TUnk_804CF0B8::follow_anchor() {
     project_anchor(NULL, b->head);
 }
 
-struct Fuki_80251790 {
-    u8 pad0[0x20];
-    s16 card_slot;
-    u8 pad22[0x2C - 0x22];
-    u32 flags;
-    u8 pad30[0x5C - 0x30];
-    s32 frame;
-};
-
-void TWindowFukidasi__sub_80251790(void *arg0) {
-    Fuki_80251790 *b = (Fuki_80251790 *)arg0;
+void TWindowFukidasi__sub_80251790(TUnk_804CF0B8 *b) {
     u32 flags;
 
-    if (((TUnk_804CF0B8 *)b)->is_active() != 0 && b->frame < 0x1000000) {
-        b->frame += TWindowSubStatusDisp::get_card_window_flags(b->card_slot) + 1;
+    if (b->is_active() != 0 && b->m_5c < 0x1000000) {
+        b->m_5c += TWindowSubStatusDisp::get_card_window_flags(b->m_20) + 1;
     }
-    flags = b->flags;
+    flags = b->m_2cu;
     if ((flags & 2) && (!(flags & 1) || (flags & 4))) {
-        b->flags &= ~4;
-        ((TUnk_804CF0B8 *)b)->sub_802504A8();
+        b->m_2cu &= ~4;
+        b->sub_802504A8();
     }
 }
 
 void TWindowFukidasi::get_boundary_offset(s32 angle, f32 *out) {
-    Fuki_8025181C *b = (Fuki_8025181C *)this;
     f32 ax;
     f32 ay;
     f32 kx;
     f32 ky;
     s32 neg;
-    ax = 0.5f * (0.5f * b->w + 14.0f);
-    ay = 0.5f * (0.5f * b->h + 10.0f);
+    ax = 0.5f * (0.5f * this->m_38 + 14.0f);
+    ay = 0.5f * (0.5f * this->m_3c + 10.0f);
     out[0] = ax * cos_table_lookup(angle);
     out[1] = ay * sin_table_lookup(angle);
     if ((angle + 0x2000) & 0x4000) {
@@ -901,7 +876,7 @@ void TWindowFukidasi::init_flags(s32 flags) {
     this->m_71 = (u8) (this->m_71 & 0xFFFFFFFD);
 }
 
-void TUnk_804CF0B8::sub_80251DF0(s16 arg1, s32 str, s16 arg3, f32 farg0) {
+void TUnk_804CF0B8::sub_80251DF0(u16 arg1, s32 str, s16 arg3, f32 farg0) {
     s32 temp_r3;
 
     this->m_name = window_fukidasi_class_name;
@@ -909,7 +884,7 @@ void TUnk_804CF0B8::sub_80251DF0(s16 arg1, s32 str, s16 arg3, f32 farg0) {
     this->m_71 = 0;
     this->m_72 = 2;
     this->m_73 = -1;
-    this->m_76 = arg1;
+    this->speaker_id = arg1;
     this->m_20 = arg3;
     if (str != 0) {
         temp_r3 = TWindowKeyBoardSoft::strnlen((s8 *)str, (u32)0x18);
@@ -918,7 +893,7 @@ void TUnk_804CF0B8::sub_80251DF0(s16 arg1, s32 str, s16 arg3, f32 farg0) {
     } else {
         this->name = NULL;
     }
-    ((s32 (*)(void *, s16))set_color__13TUnk_804CF0B8FUs)(this, arg1);
+    this->set_color(arg1);
     this->m_80 = (f32) (TWindowFukidasi__data_805DCD30[0]);
     this->m_7c = farg0;
     this->m_48 = (f32) (TWindowFukidasi__data_805DCD30[0]);
