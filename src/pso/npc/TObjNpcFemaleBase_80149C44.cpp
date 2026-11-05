@@ -2,8 +2,8 @@
 #include "pso/npc/TObjNpcFemaleBase_80149C44.h"
 #include "pso/npc/TObjNpcFemaleBase.h"
 
-void TUnk_804A8640::request_action(s32 action) {
-    if (action != 1) {
+void TObjNpcFemaleBase::request_action(s32 arg1) {
+    if (arg1 != 1) {
         this->requested_action = 0;
         return;
     }

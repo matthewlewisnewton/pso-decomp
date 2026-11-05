@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/boss/TBoss8Dragon_802F3638.h"
 #include "pso/object/TObjControl.h"
 #include "pso/ui/TObjLiveMonitor.h"
@@ -12,9 +13,6 @@
 #include "pso/object/TObjMotion.h"
 
 struct O_8030B370 { u8 pad[0x24]; u32 a; s32 t; };
-
-/* TObjLiveCameraCtrl: model ids passed to fn_800832EC, indexed by its f4c */
-const s32 lbl_804757E0[2] = { 0xF44E8, 0xF44E9 };
 
 extern "C" {
 
@@ -108,24 +106,19 @@ struct RecoveredGlobal_8030B708___vt__14TObjLiveCamera {
 };
 
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern RecoveredGlobal_8030B658_lbl_804E76C0 bm_obj_boss8_monitor_resource_descriptor;
 s32 __ct__8TObjBaseFP7TObject(void *, void *);
 extern s32 __vt__14TObjLiveCamera[];
 extern s32 TObjLiveCamera__class_name;
-int TLobby__sub_8001FE7C(void*, void*);
 void __dl__7TObjectFPv(void *);
 
-void TObjLiveCamera__sub_8030B630(void) { TLobby__sub_8001FE7C((void*)live_monitor_shared_resource, (void*)1); }
+void TObjLiveCamera__sub_8030B630(void) { delete (BmlResource *)((void*)live_monitor_shared_resource); }
 
 void TObjLiveCamera::load_static_resource() {
     s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
+    temp_r3 = (int)new BmlResource(5, (BmlResourceDescriptor *)(&bm_obj_boss8_monitor_resource_descriptor.value), 0, 0, (void *)(0));
     var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 5, &bm_obj_boss8_monitor_resource_descriptor.value, 0, 0, 0));
-    }
     (*(s32 *)&live_monitor_shared_resource) = var_r0;
 }
 
@@ -376,6 +369,7 @@ s32 __ct__14SubtractiveRngFv(void *);
 u8 *fn_800832EC(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
 s32 is_room_enemy_set_cleared(s32 floor, s16 room);
 
+extern s32 lbl_804757E0[];
 extern s32 __vt__18TObjLiveCameraCtrl[];
 extern s32 TObjLiveCameraCtrl__class_name;
 extern s32 tl_particlemodel;

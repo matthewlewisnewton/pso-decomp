@@ -48,11 +48,11 @@ struct TObjTombstone : public TObjCollidable {
     virtual ~TObjTombstone();
     s32 client_id;  // the player it stands for (get_player_by_client_id)
     f32 m_b0;
-    f32 m_b4;
+    f32 m_b4;  // rise amount, also the label fade
     f32 m_b8;
-    f32 m_bc;
+    f32 m_bc;  // foreground label fade
     TObjTombstoneRecord record;
-    char labels[6][0x30];  // the lines draw_name_labels draws
+    char name_lines[6][0x30];  // player, label, name, enemy, quote, date
     u32 m_230;
     s32 m_234;
     virtual void render();
@@ -64,7 +64,6 @@ struct TObjTombstone : public TObjCollidable {
     void format_label();
     void format_player_name();
     void reset_entries_and_format_name();
-    void copy_matrix(void* q);
     static void reset_matrix();
     s32 check_owner();
     s32 is_other_tombstone_closer();

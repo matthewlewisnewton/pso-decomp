@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "types.h"
@@ -58,7 +59,6 @@ extern s32 chunk_polygon_flags_and_mask;
 extern s32 model_render_flags;
 void *find_entity_by_id(u16 id);
 void sub_801AE72C__13TPhotonYoullaFv(void *, u8);
-s32 spawn_photon_blast_attachment_effects(void *, s32);
 extern u8 photon_blast_youlla_params[];
 extern s32 __vt__13TPhotonYoulla[];
 extern const char *lbl_805D3528;
@@ -75,10 +75,10 @@ void TPhotonYoulla::render() {
     Self_801AE744 *self = (Self_801AE744 *)this;
     if (*(s32 *)&this->m_1a0 != 0) {
         TParticleCtrl::begin_effect_render();
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)(this->texlist));
         push_matrix();
         post_translate_matrix(&self->pos);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         saved_model_render_flags = model_render_flags;
         copy_argb((NJS_ARGB *)&saved_model_draw_color, (NJS_ARGB *)&model_material_color);
         saved_chunk_polygon_flags_and_mask = chunk_polygon_flags_and_mask;
@@ -155,12 +155,12 @@ u8 *TPhotonYoulla__ct(TPhotonYoulla *photon_youlla, u8 *arg1) {
     *(u8 **)((s8 *)photon_youlla + 0x180) = (u8 *)find_entity_by_id(photon_youlla->m_17c);
     temp_r3 = (u8 *)(*(u8 **)((s8 *)photon_youlla + 0x180));
     if (temp_r3 != NULL) {
-        photon_youlla->rotation_y = (s32) *(s32 *)((s8 *)temp_r3 + 0x60);
+        photon_youlla->rotation.yaw = (s32) *(s32 *)((s8 *)temp_r3 + 0x60);
     }
     *(s32 *)((s8 *)photon_youlla + 0x34) = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)photon_blast_shared_resource + 0x42C)) + 0xB8);
     photon_youlla->texlist = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)photon_blast_shared_resource + 0x42C)) + 0xBC);
-    ((TObjMotion *)photon_youlla)->set_field_d8((s32) photon_blast_youlla_params);
-    ((TObjMotion *)photon_youlla)->set_field_dc(*(s32 *)((s8 *)photon_blast_shared_resource + 0x430));
+    ((TObjMotion *)photon_youlla)->set_action_table((TObjMotionAction *)((s32) photon_blast_youlla_params));
+    ((TObjMotion *)photon_youlla)->set_motion_list((BmlMotionEntry *)(*(s32 *)((s8 *)photon_blast_shared_resource + 0x430)));
     photon_youlla->requested_action = 1;
     ((TObjMotion *)photon_youlla)->set_animation(photon_youlla->requested_action);
     ((TObjMotion *)photon_youlla)->set_field_b8(photon_youlla->requested_action);

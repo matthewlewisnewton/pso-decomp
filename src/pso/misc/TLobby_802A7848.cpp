@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/RlcArchive.h"
 #include "types.h"
 #include "pso/misc/TUnk_804DDD28.h"
@@ -48,8 +49,6 @@ struct VObj_802A7994 : VBase_802A7994 {
 struct Pair_802A7994 { s32 a; s32 b; };
 
 extern "C" {
-void *mem_alloc(u32 size);
-void mem_free(void *p);
 int TLobby__sub_802A7B8C(void);
 void TLobby__sub_802A7BC8(void* p);
 extern u32 snapshot_image_buffer;
@@ -95,14 +94,14 @@ s32 TLobby::send_packet(s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     s32 temp_r3;
     s32 temp_r0;
     temp_r31_2 = (arg3 + 0x1F) & 0xFFFFFFE0;
-    temp_r3 = (s32)mem_alloc(temp_r31_2);
+    temp_r3 = (s32)::operator new[](temp_r31_2);
     if (temp_r3 == 0) {
         return 0;
     }
     TLobby::send_type2_event(arg4, temp_r3, temp_r31_2);
     temp_r0 = ((_VObj802A78E4_802a78e4_802A7848*)this)->m0(arg1, arg2);
     temp_r31 = ((TLobby *)temp_r3)->write_packet_header(arg3, temp_r0, 0x4000);
-    mem_free((void *)temp_r3);
+    ::operator delete[]((void *)temp_r3);
     return temp_r31;
 }
 
@@ -168,7 +167,7 @@ s32 TLobby::get_field_04() { return *(s32 *)&this->m_flags; }
 void TLobby__sub_802A7BC8(void* p) { *(s32*)((char*)p + 0x0) = 0; *(s32*)((char*)p + 0x4) = 0; }
 void TLobby__sub_802A7BD8(void) {
     if ((u32) snapshot_image_buffer != 0U) {
-        mem_free(((void*)snapshot_image_buffer));
+        ::operator delete[](((void*)snapshot_image_buffer));
         snapshot_image_buffer = 0U;
     }
 }
@@ -196,7 +195,7 @@ void TLobby::alloc_snapshot_buffer() {
     max_players = max_players * temp_r31;
     temp_r31 = TWindowSnapShot::get_width();
     temp_r31_3 = (u8 *) (temp_r31 + max_players);
-    temp_r3 = ((int)mem_alloc((u32)temp_r31_3));
+    temp_r3 = ((int)::operator new[]((u32)temp_r31_3));
     snapshot_image_buffer = temp_r3;
     if (temp_r3 != 0U)
     {

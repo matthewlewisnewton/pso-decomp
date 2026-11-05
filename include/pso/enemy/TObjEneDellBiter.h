@@ -1,3 +1,4 @@
+struct NJS_OBJECT;
 #ifndef PSO_ENEMY_TOBJENEDELLBITER_H
 #define PSO_ENEMY_TOBJENEDELLBITER_H
 
@@ -63,15 +64,6 @@ struct TObjEneDellBiter : public TObjEneDD_ST {
     void vfunc_28();
     void render();
     void run_task();
-    s32 previous_mode;
-    s32 next_mode;
-    f32 field_37c;
-    u8 unknown_380[0x10];
-    TObjChara *current_target;
-    u8 unknown_394[0xC];
-    Vec target_direction;
-    f32 target_distance;
-    u8 unknown_3b0[0x10];
     u32 flags;
     u32 flags_3c4;
     Vec reflection_position;
@@ -122,7 +114,7 @@ struct TObjEneDellBiter : public TObjEneDD_ST {
     void fn_8030591C();
     void fn_80305684();
     void fn_80305688();
-    static void step_demo_script();
+    static void step_demo_script(NJS_OBJECT *);
     void update_state(s32 arg1);
     s32 check_low_hp_transition();
     s32 fn_803059BC(const Vec *origin);

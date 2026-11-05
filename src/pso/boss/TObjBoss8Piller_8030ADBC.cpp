@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/unk/text_803D96A8.h"
@@ -13,7 +14,7 @@ extern const f32 lbl_805DF150;
 extern const f32 lbl_805DF154;
 s32 post_translate_matrix(void *);
 s32 scale_matrix(int, f32, f32, f32);
-s32 draw_model_motion(int, int, f32);
+void draw_model_motion(void *, void *, f32);
 s32 push_matrix();
 s32 is_split_screen();
 
@@ -29,11 +30,11 @@ void TObjBoss8Piller::render() {
         } else {
             var_r31 = *(s32 *)((s8 *)(*(void **)((s8 *)TObjBoss8Piller__shared_resource + 0x42C)) + 8);
         }
-        TObjFish::set_global_param((s32)((void *) (*(s32 *)((s8 *)(*(void **)((s8 *)TObjBoss8Piller__shared_resource + 0x42C)) + 0xC))));
+        set_current_texture_list((GinjaTextureList *)(((void *) (*(s32 *)((s8 *)(*(void **)((s8 *)TObjBoss8Piller__shared_resource + 0x42C)) + 0xC)))));
         push_matrix();
         post_translate_matrix(arg0 + 0x1C);
         scale_matrix(0, lbl_805DF150, lbl_805DF150, lbl_805DF150);
-        draw_model_motion(var_r31, (int) (*(s32 *)((s8 *)arg0 + 0x2C)), (f32) (*(f32 *)((s8 *)arg0 + 0x28)));
+        draw_model_motion((void *)var_r31, (void *) (*(s32 *)((s8 *)arg0 + 0x2C)), (f32) (*(f32 *)((s8 *)arg0 + 0x28)));
         pop_matrix();
         set_default_alpha_blend();
     }

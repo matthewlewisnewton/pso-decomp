@@ -275,7 +275,7 @@ s32 lsc_enqueue_file(LscStream *lsc_stream, const char *filename) {
         TLobby::log_printf("E0004: Can not open '%s'", filename);
         return -1;
     }
-    sectors = (((TLobby *)file)->get_field_14() + 0x7FF) / 0x800;
+    sectors = (get_field_14__6TLobbyFv(file) + 0x7FF) / 0x800;
     TLobby__sub_803C8B38((u8 *)file);
     return lsc_enqueue_range(lsc_stream, filename, 0, 0, sectors);
 }

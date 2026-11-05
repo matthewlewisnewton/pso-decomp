@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TLanguage_801E4874.h"
 #include "pso/system/byteswap.h"
@@ -20,10 +21,10 @@ struct Ent_801E4874 {
     u8 pad[8];
 };
 
-s32 TLanguage__read_cursor;
+extern s32 TLanguage__read_cursor;
 extern "C" {
 u8 *TQuestVmDownLoadServer__sub_8007EBDC(s32, s32);
-u32 alloc__22TQuestVmDownLoadServerFUl();
+u32 alloc__22TQuestVmDownLoadServerFv();
 void debug_print__6TLobbyFle(void *, ...);
 void load_gvm_texture_archive(u32, u8 *);
 extern u8 texture_file_load_error_format[];
@@ -54,7 +55,7 @@ u8 *load_gvm_texture_file(s32 arg0) {
         return NULL;
     }
     if (((size + 0x7FF) / 2048) * 2048 > 0x40000) {
-        big = alloc__22TQuestVmDownLoadServerFUl();
+        big = alloc__22TQuestVmDownLoadServerFv();
         buf = big;
     } else {
         buf = TLobby::tmp_buf_use_req((const char *)lbl_8044983C);
@@ -65,7 +66,7 @@ u8 *load_gvm_texture_file(s32 arg0) {
         if (big != 0) {
             TAdSinglePlyChrSelectGC::safe_free(big);
         } else {
-            TLobby::tmp_buf_release((const char *)lbl_8044983C);
+            ((TLobby *)lbl_8044983C)->tmp_buf_release();
         }
         return NULL;
     }
@@ -96,7 +97,7 @@ u8 *load_gvm_texture_file(s32 arg0) {
     if (big != 0) {
         TAdSinglePlyChrSelectGC::safe_free(big);
     } else {
-        TLobby::tmp_buf_release((const char *)lbl_8044983C);
+        ((TLobby *)lbl_8044983C)->tmp_buf_release();
     }
     return res;
 }
@@ -135,7 +136,7 @@ s32 TLanguage::read_u16_le() {
 
 void update_texture_wave_image(void *wave) {
     if ((is_split_screen() == 0) || (TCameraCtrl::get_camera_no() == 0)) {
-        TObjFish::set_global_param(*(s32 *)((s8 *)wave + 0x3C));
+        set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)wave + 0x3C)));
         ((VObj_801E4B68_801E4874 *)wave)->m0();
         distort_texture_wave_image(wave);
     }

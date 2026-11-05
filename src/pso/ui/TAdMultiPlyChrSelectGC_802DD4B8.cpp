@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/misc/TWindowMessageYesNo.h"
@@ -10,7 +11,6 @@ s32 clear_entries__18TAdChrMoveEffectGCFv();
 s32 TAdMultiPlyChrSelectGC__sub_802C6848();
 s32 TAdMultiPlyChrSelectGC__sub_802DFFE8(s32);
 s32 clear_slot_entry__23TAdSinglePlyChrSelectGCFi();
-s32 play_sound_effect(s32, s32, s32, s32);
 
 void TAdMultiPlyChrSelectGC::update_state() {
     if ((u32) *(u32 *)&this->unk_88 != 0U) {

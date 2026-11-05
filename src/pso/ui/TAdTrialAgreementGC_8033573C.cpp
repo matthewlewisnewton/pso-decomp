@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
 #include "pso/ui/TAdTrialAgreementGC.h"
@@ -58,10 +59,10 @@ extern s32 pso_system_card_filename[];
 s32 TAdTrialAgreementGC::check_card_file(s32 arg0) {
     s32 temp_r3;
 
-    if (TAdPlayerLoadGC::probe_card_slot(0) == 0) {
+    if (((TAdPlayerLoadGC *)0)->probe_card_slot() == 0) {
         return 0;
     }
-    if (TAdPlayerLoadGC::probe_and_check_card(0) == 0) {
+    if (((TAdPlayerLoadGC *)0)->probe_and_check_card() == 0) {
         return 0;
     }
     wait_for_load__19TAdTrialAgreementGCFv(arg0);
@@ -69,7 +70,7 @@ s32 TAdTrialAgreementGC::check_card_file(s32 arg0) {
         return 0;
     }
     wait_for_load__19TAdTrialAgreementGCFv(arg0);
-    temp_r3 = TAdPlayerLoadGC::find_card_file(0, (const char *)pso_system_card_filename);
+    temp_r3 = find_card_file__15TAdPlayerLoadGCFiPv(0, (const char *)pso_system_card_filename);
     if ((temp_r3 == 0) || ((temp_r3 + 0x10000) == 0xFF41U)) {
         return 1;
     }
@@ -150,7 +151,7 @@ extern s32 model_render_flags;
 
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 TWindowShortListCtrl__check_controller_button(int, int);
-s32 play_sound_effect(int, int, int, int);
+
 extern RecoveredGlobal_80335A58_lbl_8050E208 controller_input_state;
 extern RecoveredGlobal_80335A58_lbl_8050E3B8 controller_physical_port_bank;
 

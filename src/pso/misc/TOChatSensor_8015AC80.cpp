@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/render/render_util.h"
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
@@ -20,6 +21,8 @@ struct Packet_8015AD54 {
 extern "C" {
 u8 is_current_floor_switch_set(int);
 f32 newton_sqrtf(f32);
+extern const f32 lbl_805DB388;
+extern const f32 lbl_805DB38C;
 void *strncpy(void *, void *, s32);
 s32 get_current_floor(void);
 s32 find_chat_keyword(void *, void *, s32);
@@ -99,11 +102,11 @@ void TOChatSensor::init_params() {
     f32 temp_f0;
     s32 temp_r5;
 
-    this->m_90 = (u32) *(u32 *)&this->rotation_x;
+    this->m_90 = (u32) *(u32 *)&this->rotation.pitch;
     if ((u32) this->m_90 >= 2U) {
         this->m_90 = 0U;
     }
-    this->m_98 = (u32) *(u32 *)&this->rotation_y;
+    this->m_98 = (u32) *(u32 *)&this->rotation.yaw;
     if ((u32) this->m_98 >= 2U) {
         this->m_90 = 0U;
     }
@@ -127,11 +130,11 @@ void TOChatSensor::init_params() {
 
 void TOChatSensor::render() {
     u8 *arg0 = (u8 *)this;
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         NJS_ARGB color;
-        color.a = 0.3f;
-        color.r = 0.3f;
-        color.b = color.g = 0.8f;
+        color.a = lbl_805DB388;
+        color.r = lbl_805DB388;
+        color.b = color.g = lbl_805DB38C;
         debug_draw_sphere(&position, &color, newton_sqrtf(*(f32 *)(arg0 + 0x9C)));
     }
 }

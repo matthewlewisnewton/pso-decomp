@@ -1,5 +1,4 @@
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/misc/THunterGuildSeqOffline_80211FEC.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/misc/TLobby.h"
@@ -140,7 +139,7 @@ void TMemberCheck::open_member_name_window() {
     Seq_80212304 *self = (Seq_80212304 *)this;
     s32 i;
     if (self->win != 0) {
-        ((TWindowBase *)self->win)->close();
+        TWindow__close((u8 *)self->win);
         self->win = 0;
     }
     self->win = refresh_with_default_list__20TWindowSubStatusDispFll(get_window_layout_position(0xBD), member_name_window_pos);

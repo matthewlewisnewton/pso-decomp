@@ -1,3 +1,5 @@
+#include "pso/system/ArrayAllocation.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TODoorAncient01.h"
 #include "pso/TMainTask.h"
@@ -65,12 +67,9 @@ TODoorAncient01::~TODoorAncient01() {
 }
 
 void TODoorAncient01::load_resources() {
-    BmlResource *archive = (BmlResource *)::operator new(0x440);
-    if (archive != NULL) {
-        archive = load_resource_from_descriptor(archive, 1, &bm_fe_obj_o_door01l_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *archive = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&bm_fe_obj_o_door01l_resource_descriptor), 0, 0, (void *)(0));
     door_ancient01_archive = archive;
-    s32 *texlists = (s32 *)mem_alloc(2 * sizeof(s32));
+    s32 *texlists = (s32 *)::operator new[](2 * sizeof(s32));
     door_ancient01_texlists = texlists;
     texlists[0] = door_ancient01_archive->models[0].m_c;
     door_ancient01_texlists[1] = (s32)load_gvm_texture_file((s32)"fe_obj_o_door01g.gvm");
@@ -80,12 +79,12 @@ void TODoorAncient01::free_resources() {
     if (door_ancient01_texlists != NULL) {
         TObjPlayer::free_if_valid(door_ancient01_texlists[1]);
         if (door_ancient01_texlists != NULL) {
-            mem_free(door_ancient01_texlists);
+            ::operator delete[](door_ancient01_texlists);
             door_ancient01_texlists = NULL;
         }
     }
     if (door_ancient01_archive != NULL) {
-        TLobby__sub_8001FE7C(door_ancient01_archive, 1);
+        delete (BmlResource *)(door_ancient01_archive);
         door_ancient01_archive = NULL;
     }
 }
@@ -98,8 +97,8 @@ void TODoorAncient01::render() {
     if (update_object_view_visibility(view_range, model_radius) != 0 && is_in_view_depth(30.0f) != 0) {
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
-        TObjFish::set_global_param(door_ancient01_texlists[door_flags & DOOR_FLAG_UNLOCKED]);
+        rotate_matrix_y(NULL, this->rotation.yaw);
+        set_current_texture_list((GinjaTextureList *)(door_ancient01_texlists[door_flags & DOOR_FLAG_UNLOCKED]));
         if (object_state == DOOR_CLOSED) {
             NJS_OBJECT *node = (NJS_OBJECT *)model;
             post_translate_matrix(node->pos);
@@ -132,7 +131,7 @@ void TODoorAncient01::update_closed() {
     if ((door_flags & DOOR_FLAG_UNLOCKED) && is_any_player_within_radius_xz(4900.0f) != 0) {
         object_state = DOOR_OPENING;
         set_indexed_flags(0, 8);
-        play_sound_effect(0x4004B708, &position, 0, 0);
+        play_sound_effect(0x4004B708, (const Vec *)(&position), 0, 0);
     }
 }
 
@@ -140,7 +139,7 @@ void TODoorAncient01::update_open() {
     if (!(door_flags & DOOR_FLAG_UNLOCKED) || is_any_player_within_radius_xz(10000.0f) == 0) {
         object_state = DOOR_CLOSING;
         clear_player_status_flag(0, 8);
-        play_sound_effect(0x4004B708, &position, 0, 0);
+        play_sound_effect(0x4004B708, (const Vec *)(&position), 0, 0);
     }
 }
 
