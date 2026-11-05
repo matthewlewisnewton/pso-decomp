@@ -524,4 +524,3 @@ void TLobby::trim_whitespace() {
 }
 
 }
-
