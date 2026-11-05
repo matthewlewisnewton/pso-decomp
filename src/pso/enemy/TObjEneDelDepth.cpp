@@ -326,7 +326,7 @@ void TObjEneDelDepth::init() {
     this->target = 0;
     ((TObjEnemy *)arg0)->bind_enemy_combat_stats((u8 *)(get_battle_base_stats(0x30)), (u8 *)(get_battle_attack_params(0x30)), (u8 *)(get_battle_resistance_params(0x30)));
     this->referenceHp = (s16) this->hp;
-    ((TBoss3Volopt *)arg0)->reset_photon_effect();
+    register_by_id();
     this->movementParameters = 0;
     ((TObjEnemy *)arg0)->set_param(0x47);
     var_r0 = new DelDepthMotion(this);

@@ -5,8 +5,11 @@
 #include "pso/TObject.h"
 
 struct CreationTextureCacheEntry;
+class TPlyCharData;
 
 struct TAdSinglePlyChrSelectGC : public TObject {
+    // Character record for a slot; 0xFFFF asks for the selected one.
+    static TPlyCharData *get_char_index(unsigned int slot);
     virtual ~TAdSinglePlyChrSelectGC();
     void update_state(int);
     void show_confirm_dialog(void *);
@@ -52,7 +55,7 @@ struct TAdSinglePlyChrSelectGC : public TObject {
     static void destroy();
     static s32 create_if_key_pressed();
     static int get_game_mode();
-    u8 is_both_confirmed();
+    s32 is_both_confirmed();
     void advance_wrapped_cursor();
     void *destroy_and_free(s16 arg1);
     void init_image_buffer(u8 *arg1, s32 arg2);
@@ -96,7 +99,7 @@ struct TAdSinglePlyChrSelectGC : public TObject {
     void clear_inventory_slot();
     static void draw_window_bg(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
     static s32 load_player(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
-    int load_player_slot(int a1, int a2);
+    static s32 load_player_slot(s32 chan, const char *file_name, void *buffer);
     s32 try_acquire_slot();
     s32 are_all_selections_done();
     s32 load_preview_models();
@@ -136,7 +139,7 @@ struct TAdSinglePlyChrSelectGC : public TObject {
     static int get_data();
     s32 start_offline_seq();
     void *destroy(s16 arg1);
-    s32 has_no_save_files();
+    static s32 has_no_save_files(s32 chan);
     static void *create_check_memory_card(void *arg0, void *arg1, void *arg2);
     static void permute_save_blocks(void* stream, const u8* source, u8* destination, u32 size);
     u8 unk_38[0x4];

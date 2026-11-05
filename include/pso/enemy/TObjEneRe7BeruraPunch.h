@@ -23,8 +23,7 @@ struct TObjEneRe7BeruraPunch : public TUnk_804928CC {
     void* m_dc;
     u8 unk_E0[0x4];
     f32 m_e4;
-    void* m_e8;
-    u8 unk_EC[0x8];
+    Vec ground_normal;
     f32 m_f4;
     void* m_f8;
     u8 _padFC[0x10];
@@ -43,4 +42,5 @@ struct TObjEneRe7BeruraPunch : public TUnk_804928CC {
 };
 
 typedef char TObjEneRe7BeruraPunch_size[sizeof(TObjEneRe7BeruraPunch) == 0x11C ? 1 : -1];
+typedef char TObjEneRe7BeruraPunchGroundNormalOffset[offsetof(TObjEneRe7BeruraPunch, ground_normal) == 0xE8 ? 1 : -1];
 #endif
