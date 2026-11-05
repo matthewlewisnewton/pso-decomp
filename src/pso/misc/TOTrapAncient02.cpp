@@ -670,7 +670,7 @@ void TOTrapAncient02R::vfunc_81() {
                         TTecFoie::create_ex(this, &scratch_vec.vector, &target->body_center_position, (void *)m_360);
                         break;
                     case 2:
-                        ((TTecGiBarta *)this)->create_ex((void *)(&scratch_vec.vector), (void *)ang, (void *)m_360);
+                        TTecGiBarta::create_ex(this, &scratch_vec.vector, ang, m_360);
                         break;
                     case 3:
                         TTecMegid::create((s32)this, (s32)(&scratch_vec.vector), (s32)&target->body_center_position, m_360);

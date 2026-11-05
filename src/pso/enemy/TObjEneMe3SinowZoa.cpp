@@ -3339,7 +3339,7 @@ void TObjEneMe3SinowZoa::fn_80316C3C(s32 arg1) {
                         create__11TTecRaBartaFPvPvPvPv(this, &out, &position,
                             TObjEneDD::clamp_frame_index(TObjEneMe3SinowZoa__kind_param_tbls[kind]->barta_level));
                     } else {
-                        ((TTecGiBarta *)this)->create_ex(&out, (void *)this->rotation.yaw, (void *)(TObjEneDD::clamp_frame_index(TObjEneMe3SinowZoa__kind_param_tbls[kind]->barta_level)));
+                        TTecGiBarta::create_ex(this, &out, this->rotation.yaw, TObjEneDD::clamp_frame_index(TObjEneMe3SinowZoa__kind_param_tbls[kind]->barta_level));
                     }
                 } else if (state_flags & 0x100000) {
                     substate = 4;

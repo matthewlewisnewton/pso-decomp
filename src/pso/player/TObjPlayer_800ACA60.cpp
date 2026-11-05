@@ -744,7 +744,7 @@ void update_attack_jump__11TObjEneMojaFv(Obj_800ACFE8 *arg0) {
 #define self ((Moja_800AD3D8 *)self_800AD3D8)
 s32 TObjEneMoja::update_technique_state(void *self_800AD3D8) {
     Vec_800AE18C dir;
-    Vec_800AE18C pos;
+    Vec pos;
     Ang_800AD3D8 ang;
     s32 ang2;
     void *obj;
@@ -858,7 +858,7 @@ s32 TObjEneMoja::update_technique_state(void *self_800AD3D8) {
             } else {
                 switch (self->kind) {
                 case 1:
-                    ((TTecGiBarta *)self)->create_ex(&pos, (void *)self->rot_y, (void *)(((TObjEneMoja *)self)->calc_technique_level()));
+                    TTecGiBarta::create_ex(self, &pos, self->rot_y, ((TObjEneMoja *)self)->calc_technique_level());
                     break;
                 default:
                     if (ang2 < ((AttackParams *)(self->f318))->get_attack_angle() / 2 && self->target != NULL) {

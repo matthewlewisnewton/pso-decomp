@@ -2002,7 +2002,7 @@ struct Obj_800CCB24;
 void TObjEneBm5GibonU::state_cast_technique(s32 arg1) {
     u8 *arg0 = (u8 *)this;
     Vec_800CD5F4 v;
-    Vec_800CD5F4 p;
+    Vec p;
     s32 ang[3];
     s32 r;
     switch (arg1) {
@@ -2102,7 +2102,7 @@ void TObjEneBm5GibonU::state_cast_technique(s32 arg1) {
                 } else {
                     switch (F(s32, 0x468)) {
                     case 1:
-                        ((TTecGiBarta *)arg0)->create_ex(&p, (void *)(F(s32, 0x60)), (void *)(CB24(arg0)));
+                        TTecGiBarta::create_ex(arg0, &p, F(s32, 0x60), CB24(arg0));
                         break;
                     default:
                         if (r < ((AttackParams *)(F(s32, 0x318)))->get_attack_angle() / 2 && F(u32, 0x390) != 0) {
