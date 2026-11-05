@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 13 | 4 |
 | intrinsic | 83 | 54 |
 | hardware | 71 | 13 |
-| pragma | 5832 | 877 |
-| configure.py per-unit override | 158 | 158 |
+| pragma | 5829 | 876 |
+| configure.py per-unit override | 159 | 159 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1043, `fp_contract` 913, `auto_inline` 842, `opt_common_subs` 618, `scheduling` 260, `opt_propagation` 241, `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 41, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 22, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1043, `fp_contract` 910, `auto_inline` 842, `opt_common_subs` 618, `scheduling` 260, `opt_propagation` 241, `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 41, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 22, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -259,6 +259,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1043,
 | `pso/misc/TOBiwaMushi.cpp` | `-inline off,deferred, -fp_contract on, -str reuse,readonly, -sdata 4` | TItem.cpp is written from its last function back (deferred code generation; the data keeps source order) and built with GC/2.0, like the struct-copy units above. The dragonfly base and its cave subclass: vtables come out subclass first. |
 | `pso/misc/TODragonflyCave01.cpp` | `-inline off,deferred, -fp_contract on, -str reuse,readonly, -sdata 4` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/TODragonflyMachine01.cpp` | `-fp_contract on, -str reuse,readonly, -sdata 4` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
+| `pso/misc/TOMineTrap_8016F6F8.cpp` | `-inline on, -fp_contract on` | Three fmadds in the original text, and nowhere else in the unit: __ct__10TOMineTrap at 0x80170058 (fmadds f2,f3,f4,f2), follow_target at 0x80170B9C (fmadds f0,f1,f0,f2), update_float_height at 0x80170D30 (fmadds f0,f3,f1,f0). No fmsubs. The same expressions are fmuls+fadds when the flag is omitted. Every other function, including run_task, is byte-identical with the flag off, and .rodata stays exact. -inline on expands run_task's mode-4 strike helpers (strike_actor, strike_player, strike_enemy); no other function in the unit changes. See docs/porting-exceptions.md. |
 | `pso/item/TItem.cpp` | `GC/2.0, -inline off,deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/item/TItemProArmor.cpp` | `-inline off,deferred` | TItemProArmor.cpp, TItemProShield.cpp and TItemProUnit.cpp are written from their last function back (deferred code generation, which also puts each vtable before the switch tables). |
 | `pso/misc/TODoorBase.cpp` | `-inline off,deferred` | TODoorBase's vtable precedes its switch tables: deferred, written from its last function back. |
@@ -712,7 +713,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1043,
 | `src/pso/misc/TOMineIcon01.cpp` | fp_contract×1 |
 | `src/pso/misc/TOMineIcon02.cpp` | fp_contract×1 |
 | `src/pso/misc/TOMineIcon04.cpp` | fp_contract×1 |
-| `src/pso/misc/TOMineTrap_8016F6F8.cpp` | fp_contract×3 |
 | `src/pso/misc/TOQuestTalkBase.cpp` | fp_contract×1 |
 | `src/pso/misc/TORockCave.cpp` | readonly_strings×1 |
 | `src/pso/misc/TORockCaveBrakable.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
