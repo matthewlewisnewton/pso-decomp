@@ -140,3 +140,20 @@ not gains from this round.
 The sentinel-free exact slot/search recovery remains stuck. This round's
 publishable progress is removal of pagination steering at a lower honest
 fuzzy score with no exact-function loss. PR #295 stays draft.
+
+### Final main catch-up
+
+The pre-push fetch found main at `7026cbad6` after #322. It was merged with
+`--no-ff` as `010d1f9d3`, after the cleanup commit `4b8d5de23`. Both required
+commands above passed again on that merged tree; the DOL SHA-1, linked-unit
+and force-active checks passed. The exception inventory was regenerated
+before the catch-up without a content change and its final `--check` passed.
+
+Final project totals are **4,164,972** exact code bytes, **27,339** exact
+functions, **1,454,863** matched data bytes, and **3,550** linked units.
+Compared with the starting-head snapshot, main integration adds 1,180 code
+bytes, two functions, 232 data bytes and one linked unit, with **zero
+regressions**. The four-byte total-data reduction is reported as padding at
+`0x804C9D4C`, not lost matched data. The quest-download unit still changes only
+pagination's function body/report and keeps the section reports described
+above. These main gains are not attributed to the pagination cleanup.
