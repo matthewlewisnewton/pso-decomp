@@ -117,6 +117,8 @@ struct TObjBoss2Tunnel : public TObject {
     static PiecewiseCurve *reset_floats_pass(PiecewiseCurve *curve);
     static int check_param_threshold(AccelerationCurve *c, f32 arg1);
     static void reset_coords(AccelerationCurve *c);
+    static AccelerationCurve *maybe_delete(AccelerationCurve *c, s16 arg1);
+    static AccelerationCurve *reset_coords_pass(AccelerationCurve *c);
     static s32 count_active_segments(void *node);
     static s32 decrement_packed_timer(u32 *arg0, s32 arg1);
     static void init_zako(Vec *v, void* a1, s32 _w2);

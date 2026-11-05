@@ -2099,7 +2099,6 @@ void TBoss8Dragon::scale_size(f32 farg0, f32 farg1, f32 farg2) {
 
 void TBoss8Dragon::fire_at_angle(s32 arg1) {
     turn_toward_angle_limited__13TBoss5GryphonFPvii(this, arg1, (s32) (lbl_80437EB0 * atan2_float(-this->position.x, -this->position.z)));
-    turn_toward_angle_limited__13TBoss5GryphonFPvii(this, arg1, (s32) (lbl_80437EB0 * atan2_float(-*(f32 *)&this->m_38, -this->m_40)));
 }
 
 void TBoss5Gryphon::update_heading(s32 arg1) {
@@ -2120,7 +2119,6 @@ void turn_toward_angle_limited__13TBoss5GryphonFPvii(void *selfv, s32 arg1, s32 
 void TBoss8Dragon::update_facing(f32 farg0) {
     update_velocity__9TObjEneDDFv();
     ((s32 (*)(void *, s32, f32))move_along_angle__13TBoss5GryphonFPvif)(this, (s32) (lbl_80437EB0 * atan2_float(this->target_direction.x, this->target_direction.z)), farg0);
-    ((s32 (*)(void *, s32, f32))move_along_angle__13TBoss5GryphonFPvif)(this, (s32) (lbl_80437EB0 * atan2_float(*(f32 *)((s8 *)this + 0x3A0), this->m_3a8)), farg0);
 }
 
 #pragma push
@@ -3255,9 +3253,6 @@ void TBoss5Gryphon::fn_80061D34(s32 event) {
         speed = this->motion->params.f.m_8;
         a = (s32)(lbl_80437EB0 * atan2_float(this->position.x, this->position.z));
         if (this->motion->params.f.m_4 > 0) {
-        speed = this->motion->m_8;
-        a = (s32)(lbl_80437EB0 * atan2_float(this->position.x, this->position.z));
-        if (this->motion->m_4 > 0) {
             a += ofs;
             d = angle_diff_s16(this->rotation.yaw, a);
             if (d > 0) {
