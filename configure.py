@@ -754,6 +754,8 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Metrowerks' GCN_Mem_Alloc.c (runtime library code at -O4,p); belongs
     # in the runtime lib under its own name.
     "pso/unk/text_8039739C.cpp": {"cflags": _switch(cflags_pso, "-O4,p")},
+    "pso/quest/QuestOpcodeHandlers.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
+    "pso/quest/TQuestThread.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
     # init_from_id_lists (0x8002058C, size 0x30C) inlines its model and motion
     # walks. Default -inline off outlines them. auto leaves .text at 62.53% and
     # .data at 0%; auto,deferred leaves .text at 52.51% and .data at 0%. deferred
@@ -763,8 +765,17 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # -inline auto https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203
     # and Brawl -inline on https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264
     "pso/misc/TLobby_8001EF5C.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
-    "pso/quest/QuestOpcodeHandlers.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
-    "pso/quest/TQuestThread.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
+    # TQuestListVM: deferred emission puts __vt__12TQuestListVM ahead of the
+    # run_task switch table (written from the last function back). -pool off
+    # keeps each title and window size its own reloc, and -str reuse,readonly
+    # matches the read-only string objects. The whole unit stays byte-exact.
+    # Precedent: dtk-template configure.py unit cflags, and this tree's
+    # TObjBoss2Tunnel / TBoss6EmptyWarp unit flags.
+    "pso/quest/TQuestListVM.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-pool off", "-str reuse,readonly")},
+    # Status gauge: contracting the unit makes `0.299f * depth + ctx->depth`
+    # the fmadds at 0x80257118. The bar multiply stays a separate fmuls
+    # because the 7.5 scale is applied to the sum before the tick subtract.
+    "pso/misc/TWindowSubStatusDisp_80256B94.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on")},
     # Inventory walks read TItemList children through the class-body accessors
     # TItemList::link_down / link_next (typed_down in TObjPlayer_801D4CB8, whose
     # receiver is TObjPlayer). -inline noauto folds each call to the lwz of

@@ -126,7 +126,7 @@ void TChCrLoadAfs::start_download() {
             return;
         }
         count = ADXF_GetFsizeSct(load_handle);
-        temp_r3_3 = ((TQuestVmDownLoadServer *)(count << 0xB))->alloc();
+        temp_r3_3 = (u32)TQuestVmDownLoadServer::alloc(count << 0xB);
         buffer_address = temp_r3_3;
         if (temp_r3_3 == 0U) {
             load_state = 3;
@@ -304,7 +304,7 @@ void TChCrLoadAfsTextureReq::start_read(void *) {
         arg0->f20 = 0;
         arg0->f24 = 0;
         n = ADXF_GetFsizeSct(arg0->f60);
-        buf = ((void *)((TQuestVmDownLoadServer *)(n << 11))->alloc());
+        buf = TQuestVmDownLoadServer::alloc(n << 11);
         arg0->bufs[arg0->f5c] = buf;
         if (buf != NULL) {
             TLobby::read_checked_align(arg0->f60, n, (s32)arg0->bufs[arg0->f5c]);

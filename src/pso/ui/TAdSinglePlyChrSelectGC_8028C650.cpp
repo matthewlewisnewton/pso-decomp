@@ -9,7 +9,7 @@ extern "C" {
 void TAdSinglePlyChrSelectGC::start_character_load_task() {
     BmlResource *loaded;
 
-    if ((TLobby__sub_8001EEF4() != 0) && (this->try_acquire_slot() != 0)) {
+    if ((TLobby::tmp_buf_is_free() != 0) && (this->try_acquire_slot() != 0)) {
         loaded = (BmlResource *)::operator new(0x440);
         if (loaded != NULL) {
             loaded = init_from_id_lists(loaded, 6, &this->model_ids, &this->motion_ids, 0, 0,

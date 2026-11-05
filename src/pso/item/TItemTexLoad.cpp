@@ -21,11 +21,11 @@ char* item_texture_filename_buffer;
 
 void TItemTexLoad::load_texture_archive() {
     char t[12] = "ItemTexLoad";
-    s32 r = TLobby::tmp_buf_use_req((const char *)(&t));
+    s32 r = (s32)TLobby::tmp_buf_use_req((const char *)(&t));
     if (r != 0) {
         prs_decompress_alloc(m_archive_buffer, r, 0x40000);
         load_gvm_texture_archive(r, &m_texture_list);
-        TLobby::tmp_buf_release((const char *)(&t));
+        TLobby::tmp_buf_release((const char *)&t);
         m_state = 2;
     } else {
         unload_texture();
@@ -95,7 +95,7 @@ void TItemTexLoad::run_task() {
         switch (ADXF_GetStat(m_archive_handle)) {
         case 3:
             ADXF_Close(m_archive_handle);
-            if (TLobby__sub_8001EEF4() != 0) load_texture_archive();
+            if (TLobby::tmp_buf_is_free() != 0) load_texture_archive();
             else m_state = 3;
             break;
         case 1:
@@ -107,7 +107,7 @@ void TItemTexLoad::run_task() {
         }
         }
     } else if (m_state == 3) {
-        if (TLobby__sub_8001EEF4() != 0) load_texture_archive();
+        if (TLobby::tmp_buf_is_free() != 0) load_texture_archive();
     }
 }
 

@@ -1885,6 +1885,7 @@ pso/misc/TWindowSubStatusDisp_80249060.cpp
 pso/misc/TWindowSubStatusDisp_8024F688.cpp
 pso/misc/TWindowSubStatusDisp_8024FBA8.cpp
 pso/misc/TWindowSubStatusDisp_80255DF4.cpp
+pso/misc/TWindowSubStatusDisp_80256B94.cpp
 pso/misc/TWindowSubStatusDisp_8025737C.cpp
 pso/misc/TWindowSubStatusDisp_80257784.cpp
 pso/misc/TWindowSubStatusDisp_80257BC0.cpp
@@ -2557,7 +2558,6 @@ pso/quest/QuestOpcodeHandlers.cpp
 pso/quest/QuestOpcodeTables.cpp
 pso/quest/StoryQuestProgress.cpp
 pso/quest/TQuestListVM.cpp
-pso/quest/TQuestListVMData.cpp
 pso/quest/TQuestListVM_80073DC4.cpp
 pso/quest/TQuestListVM_8007EAF8.cpp
 pso/quest/TQuestListVM_800F95F4.cpp

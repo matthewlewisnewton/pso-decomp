@@ -100,8 +100,8 @@ void TUnk_8049F40C::vfunc_3() {
     s32 n;
     void *p;
     u32 i;
-    if (TLobby__sub_8001EEF4() == 1) {
-        h = TLobby::tmp_buf_use_req(item_load_tmp_buffer);
+    if (TLobby::tmp_buf_is_free() == 1) {
+        h = (s32)TLobby::tmp_buf_use_req(item_load_tmp_buffer);
         off = ((Load_8010F68C *)this)->id;
         total = decompress_buffer__9TItemLoadFUl();
         pos = 0;
@@ -170,8 +170,8 @@ void TUnk_8049F42C::begin_load_if_pending(s32 arg1, s32 arg2) {
 void TUnk_8049F42C::reload_item() {
     s32 temp_r31;
 
-    if (TLobby__sub_8001EEF4() == 1) {
-        temp_r31 = TLobby::tmp_buf_use_req(item_load_tmp_buffer);
+    if (TLobby::tmp_buf_is_free() == 1) {
+        temp_r31 = (s32)TLobby::tmp_buf_use_req(item_load_tmp_buffer);
         decompress_buffer__9TItemLoadFUl();
         load_gvm_texture_archive(temp_r31, *(s32 *)((s8 *)this + 0x24));
         TLobby::tmp_buf_release(item_load_tmp_buffer);

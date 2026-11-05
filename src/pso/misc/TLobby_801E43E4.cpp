@@ -15,8 +15,8 @@ extern "C" {
 s32 TProtocol__send_60(int, int, int);
 s32 dispatch_6x_subcommand(void *);
 extern u32 TLobby__protocol_instance;
-void *tmp_buf_use_req__6TLobbyFPCc(char *);
-void *alloc__22TQuestVmDownLoadServerFv(void);
+u8 *tmp_buf_use_req__6TLobbyFPCc(char *);
+u8 *alloc__22TQuestVmDownLoadServerFUl(void);
 void TLobby::debug_print(const char *, ...);
 char *strncpy(char *, const char *, u32);
 s32 load_gvm_texture_archive(void *, s32);
@@ -134,7 +134,7 @@ void TLobby::update_players() {
 void TLobby::bswap_switch_activate_token() { ((G_ClientIDHeader *)this)->bswap(); bswap_16((u16 *)((char*)this + 0x4)); bswap_16((u16 *)((char*)this + 0x6)); }
 s32 TLobby::load_texture_pvm_file(const char *name, s32 arg1) {
     char path[0x40];
-    void *buf;
+    u8 *buf;
     s32 allocated;
     s32 size;
     s32 ret;
@@ -150,7 +150,7 @@ s32 TLobby::load_texture_pvm_file(const char *name, s32 arg1) {
     }
     allocated = 0;
     if (((size + 0x7FF) / 2048) * 2048 > 0x40000) {
-        buf = alloc__22TQuestVmDownLoadServerFv();
+        buf = alloc__22TQuestVmDownLoadServerFUl();
         if (buf == NULL) {
             return -1;
         }
@@ -158,7 +158,7 @@ s32 TLobby::load_texture_pvm_file(const char *name, s32 arg1) {
     } else {
         buf = tmp_buf_use_req__6TLobbyFPCc(lbl_804497C4);
     }
-    TGStream::load_sct_file((s32)path, (s32)buf);
+    TGStream::load_sct_file((s32)path, buf);
     ret = load_gvm_texture_archive(buf, arg1);
     if (allocated != 0) {
         TAdSinglePlyChrSelectGC::safe_free((u32)buf);

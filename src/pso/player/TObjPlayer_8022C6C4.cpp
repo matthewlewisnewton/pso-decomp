@@ -75,7 +75,7 @@ u16 get_entity_id(void *);
 s32 is_split_screen();
 Ent_8022D27C *find_entity_by_id(u16);
 void get_hand_joint_position__10TObjPlayerFl(void *, void *);
-Target_8022D27C *get_targets__18TechniqueCastStateFv(void *);
+Target_8022D27C *get_technique_data__10TObjPlayerFPv(void *);
 u8 get_cast_technique_level(void *, int);
 void create__10TTecDebandFllll(void *, void *, void *, int);
 void create__9TTecRestaFPvPvPvPv(void *, void *, void *, int);
@@ -372,7 +372,7 @@ void launch_technique__10TObjPlayerFv(s32 tech, s32 unused, Player_8022D27C *pl)
         }
     }
     td = pl->tech;
-    targets = get_targets__18TechniqueCastStateFv(td);
+    targets = get_technique_data__10TObjPlayerFPv(td);
     if (targets == NULL) {
         return;
     }

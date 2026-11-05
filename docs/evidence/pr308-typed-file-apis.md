@@ -78,3 +78,18 @@ The DOL SHA-1 check passes. Both targets and the GBA runtime remain linked.
 
 The existing `init_from_id_lists` plain-index fallback remains a lower honest
 match; the earlier reference-counter matching shape is not part of this work.
+
+## Final main refresh
+
+Main advanced during the session when #322 landed. A second non-fast-forward
+merge integrates `7026cbad6`, preserving its recovered quest-list implementation
+and typed temporary-buffer APIs alongside the opaque ADXF handles and filename
+variants. The combined synchronous stream reader accepts `AdxfHandle *` and a
+byte-buffer destination. Regenerated force-active metadata removed one stale
+entry; the exception inventory was regenerated again.
+
+Final required checks pass: `ninja -j8`, `check_pr.py --no-build` (zero
+regressions, all 3,549 linked units exact, force-active current), and
+`list_port_exceptions.py --check`. The refreshed main brings the total to
+4,164,192 exact code bytes and 1,454,863 exact data bytes. The original baseline
+and DOL SHA-1 are preserved.

@@ -1,6 +1,4 @@
 #include "types.h"
-#include "pso/misc/TWindowKeyBoardSoft.h"
-#include "pso/misc/TWindowDrawContext.h"
 #include "pso/misc/TWindowSubStatusDisp_8024FBA8.h"
 #include "pso/misc/TKeyBoardControl_8025CB70.h"
 #include "pso/misc/TWindowKeyBoardHard.h"
@@ -32,14 +30,14 @@ s32 is_key_active__19TWindowKeyBoardHardFv();
 
 void TWindowKeyBoardHard::release_keyboard() { void* m = *(void* *)&this->m_70; if (m) TWindowKeyBoardHard__sub_8025CC48(m); }
 
-void TWindowKeyBoardHard::draw_status_text(TWindowDrawContext *ctx) {
+void TWindowKeyBoardHard::draw_status_text(void *ctx) {
     s32 flags;
     if (((Win_80260020 *)this)->state != NULL && current_language == LANGUAGE_JAPANESE) {
-        f32 inv = lbl_805DD068 / ctx->depth;
+        f32 inv = lbl_805DD068 / ((Ctx_80260020 *)ctx)->scale;
         Pt_80260020 pt;
-        pt.x = ctx->inner_x;
-        pt.y = ctx->inner_y;
-        set_text_draw_params(ctx, 0, 0, (f32)inv, (f32)lbl_805DD06C);
+        pt.x = ((Ctx_80260020 *)ctx)->pos.x;
+        pt.y = ((Ctx_80260020 *)ctx)->pos.y;
+        set_text_draw_params((s32)((Ctx_80260020 *)ctx), 0, 0, (f32)inv, (f32)lbl_805DD06C);
         flags = ((Win_80260020 *)this)->state->flags;
         if (!(flags & 1)) {
             draw_window_text((f32 *)&pt, (const char *)lbl_8044F0CC, -1, 0, (f32)lbl_805DD070);
@@ -60,10 +58,10 @@ void TWindowKeyBoardHard::draw_status_text(TWindowDrawContext *ctx) {
 }
 
 void TWindowKeyBoardHard::render() {
-    TWindowKeyBoardSoft *entry;
+    s32 temp;
     if (((s32) this->m_68 > 0) && (is_key_active__19TWindowKeyBoardHardFv() == 0)) {
-        entry = TWindowDD::draw_default_entry((s32)this);
-        draw_status_text(entry);
+        temp = TWindowDD::draw_default_entry((s32)this);
+        draw_status_text((Ctx_80260020 *)(temp));
     }
 }
 

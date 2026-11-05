@@ -25,7 +25,7 @@ extern s32 tmp_buf_in_use_flag;
 void TLobby__sub_8001EDD8(BmlResource *self, void *item);
 char *strncpy(char *d, const char *s, u32 n);
 extern char lbl_80434AE8[];
-extern s32 lobby_download_buffer;
+extern u8 *lobby_download_buffer;
 extern char lbl_80434AA0[];
 extern char lbl_80434AC0[];
 
@@ -49,8 +49,8 @@ void TLobby__sub_8001EDD8(BmlResource *self, void *item) {
     self->handles[self->handle_count++] = item;
 }
 
-void TLobby__sub_8001EDF4(const void *arg0) {
-    if (((s32) tmp_buf_in_use_flag == 0) && (strcmp(&TLobby__tmp_buf_name.value, arg0) == 0)) {
+void TLobby::tmp_buf_release_if_owner(const char *name) {
+    if (((s32) tmp_buf_in_use_flag == 0) && (strcmp(&TLobby__tmp_buf_name.value, name) == 0)) {
         tmp_buf_in_use_flag = 1;
         TLobby__tmp_buf_name.value = 0;
     }
@@ -72,10 +72,10 @@ s32 TLobby::tmp_buf_release(const char *name) {
     return 1;
 }
 
-s32 TLobby__sub_8001EEF4(void) {
+s32 TLobby::tmp_buf_is_free() {
     return tmp_buf_in_use_flag;
 }
-s32 TLobby::tmp_buf_use_req(const char *name) {
+u8 *TLobby::tmp_buf_use_req(const char *name) {
     if (tmp_buf_in_use_flag != 0) {
         tmp_buf_in_use_flag = 0;
         strncpy(((char *)&TLobby__tmp_buf_name), name, 0x20);

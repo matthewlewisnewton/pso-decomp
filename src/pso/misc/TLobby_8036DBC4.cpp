@@ -22,7 +22,7 @@ void TLobby::free_singleton_805D7018() {
     }
 }
 void TBGMulti__ct(void) {
-    s32 sp8[4];
+    u8 *sp8[4];
     if (TCameraCtrl::get_camera_id() == 3) {
         sp8[0] = TLobby::tmp_buf_use_req("TBGMulti");
         TLanguage::draw_string((void *)"f128_gr.gvp", sp8, 0x4D);
