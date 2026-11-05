@@ -3497,7 +3497,7 @@ force_active:
   - begin_appear__15TObjEneSlimeOneFv
   - begin_defeat_sequence__14TBoss4DarkFalzFv
   - begin_hidden_flight__16TObjEneNanoDragoFv
-  - begin_map_view__13TRaderMapCoreFii
+  - begin_map_view__13TRaderMapCoreFi
   - begin_meseta_deposit__18TCheckRoomSequenceFPv
   - begin_meseta_withdrawal__18TCheckRoomSequenceFPv
   - begin_parse__24TMessageWindowControllerFPCcPc
@@ -13615,7 +13615,7 @@ force_active:
   - render_particle_effects__9TMainTaskFv
   - render_present_box__5TItemFv
   - render_reflection__13TObjEneMorfosFv
-  - render_region_records__13TRaderMapCoreFPv
+  - render_region_records__13TRaderMapCoreFl
   - render_shadow__10TObjPlayerFv
   - render_shadow_flags
   - render_shadows__11TItemMagSubFv
@@ -14622,7 +14622,7 @@ force_active:
   - setup_list__13TWindowSubMagFv
   - setup_mode_menu__21TAdMultiChgGameModeGCFPvl
   - setup_move_bounds__18TObjEneMe3SinowZoaFv
-  - setup_overhead_projection__13TRaderMapCoreFv
+  - setup_overhead_projection__13TRaderMapCoreFP12Cam_801F9314
   - setup_photon_blast_camera__13TUnk_804C3248Fv
   - setup_projection_tex_matrix__10TObjPlayerFv
   - setup_projection_texture__10TObjPlayerFlll

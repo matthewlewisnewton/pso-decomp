@@ -317,7 +317,6 @@ extern RecoveredGlobal_801FA9D8_lbl_8044A770 lbl_8044A770;
 extern RecoveredGlobal_801FA9D8_lbl_8044A77C lbl_8044A77C;
 extern RadarViewRect_801FA9D8 radar_map_view_rect_table[3];
 extern const f32 TRaderMapCore__data_805DC534;
-void begin_map_view__13TRaderMapCoreFii(s32 arg0, s32 arg1);
 extern s16 *TRaderMapCore__floor_discovery_table[];
 extern int TRaderMapCore__map_heap;
 s32 init_radar_floor_flags(s32 floor, RadarInitMap_801F9474 *map);
@@ -346,7 +345,6 @@ extern Vec3_801F9314 lbl_8044A794;
 extern u8 identity_matrix[];
 extern f32 lbl_805D3608;
 extern f32 radar_overhead_projection_scale;
-void setup_overhead_projection__13TRaderMapCoreFv(s32 arg0, Cam_801F9314 *arg1);
 void rotate_matrix_zyx(void *m, s32 x, s32 y, s32 z);
 void translate_matrix(u32 arg0, f32 x, f32 y, f32 z);
 void push_matrix(void);
@@ -465,7 +463,7 @@ s32 TRaderMapCore::set_view_scissor(void *self, int mode, void *arg2) {
 }
 #pragma fp_contract reset
 
-void setup_overhead_projection__13TRaderMapCoreFv(s32 arg0, Cam_801F9314 *arg1) {
+void TRaderMapCore::setup_overhead_projection(Cam_801F9314 *arg1) {
     Vec3_801F9314 up = lbl_8044A794;
     Vec3_801F9314 eye;
     Vec3_801F9314 at;
@@ -1084,10 +1082,10 @@ void TRaderMapCore::draw_compass(s32 mode) {
     sprite.x = marker_xy[0] + (f32)lbl_804C87E4[1].center_x;
     sprite.y = marker_xy[1] + (f32)lbl_804C87E4[1].center_y;
     set_default_alpha_blend();
-    color.ch.alpha = (u8)(s32)this->m_19c;
+    color.ch.alpha = (u8)this->m_19c;
     // Right-nested so the low half is the rlwinm base: srwi, then rlwimi 0,7, then rlwimi 8,15.
-    color_arg = (s32)(((color.word << 16) & 0x00FF0000u) |
-                      (((color.word << 16) & 0xFF000000u) | (color.word >> 16)));
+    color_arg = ((color.word << 16) & 0x00FF0000u) |
+                (((color.word << 16) & 0xFF000000u) | (color.word >> 16));
     sprite.draw_compass_sprite(1, color_arg, 0x21, TRaderMapCore__data_805DC58C);
     sprite.x = compass_xy[0] + (f32)lbl_804C87E4[0].center_x;
     sprite.y = compass_xy[1] + (f32)lbl_804C87E4[0].center_y;
@@ -1174,7 +1172,7 @@ typedef char RecoveredGlobal_801FA9D8_lbl_8044A77C_size[sizeof(RecoveredGlobal_8
 typedef char RecoveredGlobal_801FA9D8_lbl_804C8748_size[sizeof(RecoveredGlobal_801FA9D8_lbl_804C8748) == 0x3C ? 1 : -1];
 typedef char RecoveredGlobal_801FA9D8_lbl_804C8784_size[sizeof(RecoveredGlobal_801FA9D8_lbl_804C8784) == 0x30 ? 1 : -1];
 typedef char RecoveredGlobal_801FA9D8_TRaderMapCore__data_80513708_size[sizeof(RecoveredGlobal_801FA9D8_TRaderMapCore__data_80513708) == 0x78 ? 1 : -1];
-void begin_map_view__13TRaderMapCoreFii(s32 arg0, s32 arg1) {
+void TRaderMapCore::begin_map_view(int mode) {
     typedef char sp8_offset[(offsetof(Stack_801FA9D8, sp8) == 0x0) ? 1 : -1];
     typedef char spC_offset[(offsetof(Stack_801FA9D8, spC) == 0x4) ? 1 : -1];
     typedef char sp10_offset[(offsetof(Stack_801FA9D8, sp10) == 0x8) ? 1 : -1];
@@ -1187,15 +1185,15 @@ void begin_map_view__13TRaderMapCoreFii(s32 arg0, s32 arg1) {
     u8 *temp_r5;
     TCameraCtrl::restore_full_screen_view();
     memset((void *)&stack.viewport, 0, 0x30);
-    temp_r5 = (u8 *)&radar_map_view_rect_table + (arg1 * 0x14);
+    temp_r5 = (u8 *)&radar_map_view_rect_table + (mode * 0x14);
     stack.viewport.center_x = *(f32 *)((s8 *)temp_r5 + 0);
     stack.viewport.center_y = *(f32 *)((s8 *)temp_r5 + 4);
     stack.viewport.screen_width = *(f32 *)((s8 *)temp_r5 + 8);
     stack.viewport.screen_height = *(f32 *)((s8 *)temp_r5 + 0xC);
     stack.viewport.value18 = *(f32 *)((s8 *)temp_r5 + 0x10);
-    ((TRaderMapCore*)arg0)->configure_viewport(&stack.viewport);
-    TRaderMapCore::set_view_scissor((void *)arg0, 2, (void *)((void *) ((u8 *)&(*(RecoveredGlobal_801FA9D8_lbl_804C8784 *)&radar_map_view_scissor_table).value + (arg1 * 0x10))));
-    setup_overhead_projection__13TRaderMapCoreFv((s32)arg0, (Cam_801F9314 *)((void *) ((u8 *)&(*(RecoveredGlobal_801FA9D8_TRaderMapCore__data_80513708 *)&TRaderMapCore__map_view_state).value + (arg1 * 0x28))));
+    configure_viewport(&stack.viewport);
+    set_view_scissor(this, 2, (void *)((void *) ((u8 *)&(*(RecoveredGlobal_801FA9D8_lbl_804C8784 *)&radar_map_view_scissor_table).value + (mode * 0x10))));
+    setup_overhead_projection((Cam_801F9314 *)((void *) ((u8 *)&(*(RecoveredGlobal_801FA9D8_TRaderMapCore__data_80513708 *)&TRaderMapCore__map_view_state).value + (mode * 0x28))));
     stack.sp18 = *(s32 *)((s8 *)&lbl_8044A770.value + 0);
     stack.sp1C = *(s32 *)((s8 *)&lbl_8044A770.value + 4);
     stack.sp20 = *(s32 *)((s8 *)&lbl_8044A770.value + 8);
@@ -1209,7 +1207,7 @@ void begin_map_view__13TRaderMapCoreFii(s32 arg0, s32 arg1) {
 #pragma pop
 
 #define MAP_801FAAEC ((Map_801FAAEC *)TRaderMapCore__floor_map_resource)
-void TRaderMapCore::render_region_records(void * _w1) {
+void TRaderMapCore::render_region_records(s32 mode) {
     TRaderMapCore *arg0 = this;
     Rec_801FAAEC *r;
     s32 i;
@@ -1259,8 +1257,8 @@ void TRaderMapCore::render() {
         switch ((s32) TRaderMapCore__view_mode) {
         case 0:
             TRaderMapCore::draw_backdrop(this, TRaderMapCore__view_mode);
-            begin_map_view__13TRaderMapCoreFii((s32)this, (s32)TRaderMapCore__view_mode);
-            render_region_records((void *)TRaderMapCore__view_mode);
+            begin_map_view(TRaderMapCore__view_mode);
+            render_region_records(TRaderMapCore__view_mode);
             draw_enemy_gate_markers();
             draw_player_markers();
             setup_view(TRaderMapCore__view_mode);
@@ -1270,8 +1268,8 @@ void TRaderMapCore::render() {
             TCameraCtrl::restore_full_screen_view();
             TRaderMapCore::draw_backdrop(this, TRaderMapCore__view_mode);
             TCameraCtrl__sub_80068EF0();
-            begin_map_view__13TRaderMapCoreFii((s32)this, (s32)TRaderMapCore__view_mode);
-            render_region_records((void *)TRaderMapCore__view_mode);
+            begin_map_view(TRaderMapCore__view_mode);
+            render_region_records(TRaderMapCore__view_mode);
             draw_enemy_gate_markers();
             draw_player_markers();
             setup_view(TRaderMapCore__view_mode);
@@ -1282,8 +1280,8 @@ void TRaderMapCore::render() {
             break;
         case 2:
             TRaderMapCore::draw_backdrop(this, TRaderMapCore__view_mode);
-            begin_map_view__13TRaderMapCoreFii((s32)this, (s32)TRaderMapCore__view_mode);
-            render_region_records((void *)TRaderMapCore__view_mode);
+            begin_map_view(TRaderMapCore__view_mode);
+            render_region_records(TRaderMapCore__view_mode);
             draw_enemy_gate_markers();
             draw_player_markers();
             setup_view(TRaderMapCore__view_mode);

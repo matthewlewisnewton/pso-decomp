@@ -5,6 +5,8 @@
 #include <stddef.h>
 #include "pso/object/TObjMotion.h"
 
+struct Cam_801F9314;
+
 struct RadarViewportParameters
 {
     u8 unknown00[0x8];
@@ -71,8 +73,14 @@ struct TRaderMapCore : public TObjBase {
     // delay); the body does not read that pointer.
     static s32 apply_compass_param(const s32 *delay);
     void draw_compass(s32 mode);
+    // r3 is this and r4 is the view mode. A second int would be passed in r5,
+    // which this call never sets.
+    void begin_map_view(int mode);
+    // r3 is this (unread) and r4 is the overhead camera.
+    void setup_overhead_projection(Cam_801F9314 *view);
     void setup_view(s32 arg1);
-    void render_region_records(void * _w1);
+    // The caller passes the view mode. This body does not read it.
+    void render_region_records(s32 mode);
     virtual void render();
     s32 is_render_admitted(void *arg1);
     void update_pan_zoom_input();
