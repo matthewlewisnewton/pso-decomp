@@ -277,7 +277,9 @@ s32 check_equip_requirements(TObjPlayer *player, u8 *item, s32 *requirement) {
         case 2: {
             u8 learn_limit;
 
-            learn_limit = get_technique_learn_limit(player->m_88d, item[4]);
+            // Widened the same way as TItemData::calc_action_flags: the u8
+            // parameter narrows it, and that argument is evaluated first.
+            learn_limit = get_technique_learn_limit(player->m_88d, (s16)item[4]);
             if (learn_limit == 0xFF || learn_limit < item[2]) {
                 flags |= 1;
             }
