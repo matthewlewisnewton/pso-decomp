@@ -79,11 +79,9 @@ asm void matrix_identity(u8 *arg0) {
 #else
 // Scalar fallback: writes the 3x4 row-major identity matrix.
 void matrix_identity(u8 *arg0) {
-    Mtx &m = *(Mtx *)arg0;
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 4; j++) {
-            m[i][j] = (i == j) ? 1.0f : 0.0f;
-        }
+    f32 *m = (f32 *)arg0;
+    for (int i = 0; i < 12; i++) {
+        m[i] = (i % 5 == 0) ? 1.0f : 0.0f;
     }
 }
 #endif
