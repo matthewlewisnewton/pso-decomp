@@ -10519,17 +10519,18 @@ void NetRunProtocolDispatchLoop(void) {
     s16 i;
 
     for (;;) {
-        NetReceiveMessage(network_dispatch_state.queue_handle, &msg, sizeof(msg));
-        TLobby::lock_mutex(network_dispatch_state.lock_handle);
+        NetworkDispatchState *g = &network_dispatch_state;
+        NetReceiveMessage(g->queue_handle, &msg, sizeof(msg));
+        TLobby::lock_mutex(g->lock_handle);
         for (i = 0; i < 3; i++) {
-            if (network_dispatch_state.handlers[i].used != 0 && network_dispatch_state.handlers[i].type == msg.protocol) {
-                if (network_dispatch_state.handlers[i].fn != NULL) {
-                    network_dispatch_state.handlers[i].fn(msg.payload, msg.detail, msg.first, msg.second);
+            if (g->handlers[i].used != 0 && g->handlers[i].type == msg.protocol) {
+                if (g->handlers[i].fn != NULL) {
+                    g->handlers[i].fn(msg.payload, msg.detail, msg.first, msg.second);
                 }
                 break;
             }
         }
-        TUdpSocket::unlock_mutex(network_dispatch_state.lock_handle);
+        TUdpSocket::unlock_mutex(g->lock_handle);
         TLobby::dispatch_handler_by_id(msg.first, msg.second, msg.payload);
         NetYieldThread();
     }
