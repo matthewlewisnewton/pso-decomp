@@ -416,6 +416,15 @@ struct TObjPlayer : public TObjChara {
     // Clears an inventory list in place and hands it back. Defined in
     // TObjPlayer_801BE778.cpp.
     static void *init_inventory_list(void *list);
+    // True on either Pioneer 2 floor. Defined in TObjPlayer_801AF2F0.cpp,
+    // which returned u8; every other unit declares it s32.
+    static s32 is_key_machine_ready();
+    // Reads the player's 0x800000 action flag. Defined in
+    // TObjPlayer_801AF2F0.cpp, which dropped the result on the floor.
+    static s32 check_flag_800000(void *player);
+    // Re-creates one saved item and equips it if its slot is free.
+    // Defined in TObjPlayer_801AF2F0.cpp.
+    static void equip_saved_item_if_slot_empty(void *player, void *record);
     static TObjPlayer *get_player_data(int index);
     int queue_destruction();
     s32 test_action_mask(s32 arg1);
