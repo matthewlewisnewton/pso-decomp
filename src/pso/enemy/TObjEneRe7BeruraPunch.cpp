@@ -110,7 +110,7 @@ void TObjEneRe7BeruraPunch::render() {
                 return;
             }
         }
-        TObjEneDD::draw_oriented_shadow(&position, (const Vec *)(arg0 + 0xE8), 0, NULL);
+        TObjEneDD::draw_oriented_shadow(&position, &ground_normal, 0, NULL);
         TObjPlayer::toggle_particle_effect();
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
@@ -308,7 +308,7 @@ void TObjEneRe7BeruraPunch::snap_to_ground() {
   if (temp_r3 != 0)
   {
     VecCopy((Vec *)(arg0 + 0x38), (const Vec *)(*((s32 *) (((s8 *) temp_r3) + 4))));
-    VecCopy((Vec *)(arg0 + 0xE8), (const Vec *)((*((s32 *) (((s8 *) temp_r3) + 4))) + 0xC));
+    VecCopy(&ground_normal, (const Vec *)((*((s32 *) (((s8 *) temp_r3) + 4))) + 0xC));
   }
   else
   {

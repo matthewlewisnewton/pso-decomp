@@ -188,9 +188,8 @@ void *lbl_804933D8[24] = {
 #define lbl_8043BC10 ((const Vec_800C4A5C *)lbl_8043BC10)
 #define lbl_804933D8 ((s32 *)lbl_804933D8)
 void TObjEneRe2Flower_Bomb::render() {
-    u8 *arg0 = (u8 *)this;
     if ((s32) this->m_100 != 0) {
-        TObjEneDD::draw_oriented_shadow(&position, (const Vec *)(arg0 + 0xD8), 0, NULL);
+        TObjEneDD::draw_oriented_shadow(&position, &ground_normal, 0, NULL);
     }
 }
 void TObjEneRe2Flower_Bomb::run_task() {
