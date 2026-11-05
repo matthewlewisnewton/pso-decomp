@@ -29,6 +29,7 @@
 #include "pso/system/BmlResourceDescriptor.h"
 #include "pso/misc/TOTrapAncient01.h"
 #include "pso/player/TUnk_804B6C24.h"
+#include "pso/ui/TAdEnterPasswordGC.h"
 #include "pso/player/TObjPlayer_80011014.h"
 #include "pso/player/TObjPlayer_801542CC.h"
 #include "pso/system/GinjaMaterial.h"
@@ -55,7 +56,7 @@ struct SeabedTrapFragmentSpawn {
 extern "C" {
 extern s32 local_client_id;
 
-extern u8 TOTrapSeabed01__transform_params[];
+extern TObjChipParams TOTrapSeabed01__transform_params;
 extern SeabedTrapFragmentSpawn seabed_trap_fragment_spawns[];
 extern BmlResource *TOTrapSeabed01__bml_resource;
 extern u8 *TOTrapSeabed01__texture_file;
@@ -75,7 +76,6 @@ extern NJS_OBJECT *TOTrapSeabed01__ginja_model;
 
 
 extern "C" {
-s32 dispatch_input_to_instance__18TAdEnterPasswordGCFi(void *);
 
 
 extern s32 actor_frame_tick;
@@ -259,7 +259,7 @@ void TOTrapSeabed01::clamp_params_and_init() {
 void TOTrapSeabed01::vfunc_84() {  }
 
 void TOTrapSeabed01::render() {
-    if (TMainTask::get_render_pass() != 1 && (m_34c == 0 || is_split_screen() != 0 || dispatch_input_to_instance__18TAdEnterPasswordGCFi(this) == 0) && m_340 == 1) {
+    if (TMainTask::get_render_pass() != 1 && (m_34c == 0 || is_split_screen() != 0 || TAdEnterPasswordGC::dispatch_input_to_instance(this) == 0) && m_340 == 1) {
         switch (mode) {
         case 0:
         case 1:
@@ -441,7 +441,7 @@ void TOTrapSeabed01::play_sounds() {
     SeabedTrapFragmentSpawn *e;
     s32 i;
     f32 y;
-    copy_transform__8TObjChipFPvPv((u8 *)&p, (u8 *)TOTrapSeabed01__transform_params);
+    TObjChip::copy_transform(&p, &TOTrapSeabed01__transform_params);
     y = 0.0f;
     p.textures = (s32)TOTrapSeabed01__texture_file;
     for (i = 0; i < 6; i++) {

@@ -45,6 +45,7 @@
 #include "pso/system/BmlResource.h"
 #include "pso/misc/TSwitch.h"
 #include "pso/misc/TLobby.h"
+#include "pso/ui/TAdEnterPasswordGC.h"
 #include "pso/misc/TOTrapAncient01.h"
 #include "pso/player/TObjPlayer_801AF2F0.h"
 #include "pso/system/GinjaUvScroll.h"
@@ -55,7 +56,6 @@ extern "C" {
 
 extern s32 local_client_id;
 
-s32 dispatch_input_to_instance__18TAdEnterPasswordGCFi(void *);
 
 extern BmlResource *TOTrapAncient02__shared_resource;
 extern const char *lbl_805D31B4;
@@ -246,7 +246,7 @@ void *TOTrapAncient02::create(void *arg0) {
 void TOTrapAncient02::render() {
     if (TMainTask::get_render_pass() != 1) {
         this->m_340 = update_object_view_visibility(400.0f, 20.0f);
-        if (((s32) this->m_340 == 1) && (((s32) this->m_358 == 0) || (is_split_screen() != 0) || (dispatch_input_to_instance__18TAdEnterPasswordGCFi(this) == 0))) {
+        if (((s32) this->m_340 == 1) && (((s32) this->m_358 == 0) || (is_split_screen() != 0) || (TAdEnterPasswordGC::dispatch_input_to_instance(this) == 0))) {
             set_draw_list_mask(3);
             if ((s32) this->m_358 != 0) {
                 this->render_particle_chain();
