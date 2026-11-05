@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 9 | 3 |
 | intrinsic | 83 | 54 |
 | hardware | 71 | 13 |
-| pragma | 5860 | 886 |
+| pragma | 5861 | 887 |
 | configure.py per-unit override | 147 | 147 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045, `fp_contract` 926, `auto_inline` 844, `opt_common_subs` 624, `scheduling` 262, `opt_propagation` 240, `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 43, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 22, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045, `fp_contract` 926, `auto_inline` 844, `opt_common_subs` 624, `scheduling` 262, `opt_propagation` 240, `readonly_strings` 204, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 43, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 22, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -661,7 +661,8 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `src/pso/misc/TLobby_80207DA8.cpp` | fp_contract×1 |
 | `src/pso/misc/TLobby_80222D24.cpp` | fp_contract×2, scheduling×2, readonly_strings×1 |
 | `src/pso/misc/TLobby_80227A2C.cpp` | fp_contract×1, opt_propagation×1 |
-| `src/pso/misc/TLobby_8023F734.cpp` | opt_common_subs×3, opt_propagation×3, opt_dead_assignments×3, fp_contract×2, inline_depth×1, auto_inline×1, dont_inline×1 |
+| `src/pso/misc/TLobby_8023F734.cpp` | opt_common_subs×3, opt_propagation×3, opt_dead_assignments×3, readonly_strings×1, fp_contract×1 |
+| `src/pso/misc/TLobby_802409AC.cpp` | fp_contract×1, inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/misc/TLobby_80291D94.cpp` | inline_depth×3, auto_inline×3, dont_inline×3, fp_contract×1 |
 | `src/pso/misc/TLobby_802A0F3C.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/misc/TLobby_802A5120.cpp` | readonly_strings×1 |
