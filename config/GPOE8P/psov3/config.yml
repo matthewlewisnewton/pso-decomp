@@ -1695,6 +1695,7 @@ force_active:
   - __ct__11TMessageBoxFRC11TMessageBox
   - __ct__11TOBiwaMushiFPv
   - __ct__11TOKeyCave01FP7TObjectPv
+  - __ct__11TObjDFDemo1FP7TObjectPC3Vecl
   - __ct__11TPlayerSoulFP7TObjectUs
   - __ct__12TBGLightningFv
   - __ct__12TBoss3VoloptFPv
@@ -6787,6 +6788,9 @@ force_active:
   - lbl_80434EC8
   - lbl_80434ED4
   - lbl_804371BC
+  - lbl_80437310
+  - lbl_8043731C
+  - lbl_80437328
   - lbl_80437384
   - lbl_804373A4
   - lbl_80438528
@@ -7052,6 +7056,8 @@ force_active:
   - lbl_80481280
   - lbl_80483480
   - lbl_80485550
+  - lbl_80485590
+  - lbl_8048561C
   - lbl_804856C0
   - lbl_80486868
   - lbl_80487090
@@ -7427,6 +7433,7 @@ force_active:
   - lbl_805C1890
   - lbl_805CF240
   - lbl_805CF380
+  - lbl_805D2780
   - lbl_805D27E8
   - lbl_805D27EC
   - lbl_805D27F0
@@ -7605,10 +7612,6 @@ force_active:
   - lbl_805D75F0
   - lbl_805D7D3C
   - lbl_805D85A0
-  - lbl_805D8994
-  - lbl_805D8998
-  - lbl_805D899C
-  - lbl_805D89A0
   - lbl_805D8D70
   - lbl_805D8D74
   - lbl_805D8D78

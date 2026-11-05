@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 40 | 10 |
 | intrinsic | 83 | 54 |
 | hardware | 71 | 13 |
-| pragma | 5854 | 889 |
-| configure.py per-unit override | 149 | 149 |
+| pragma | 5855 | 889 |
+| configure.py per-unit override | 150 | 150 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1043, `fp_contract` 924, `auto_inline` 842, `opt_common_subs` 624, `scheduling` 262, `opt_propagation` 240, `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 43, `opt_dead_assignments` 40, `pool_data` 34, `use_lmw_stmw` 27, `optimize_for_size` 27, `opt_lifetimes` 22, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1043, `fp_contract` 924, `auto_inline` 842, `opt_common_subs` 624, `scheduling` 262, `opt_propagation` 240, `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 51, `pack` 46, `opt_loop_invariants` 43, `opt_dead_assignments` 40, `pool_data` 34, `use_lmw_stmw` 27, `optimize_for_size` 27, `opt_lifetimes` 22, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -232,6 +232,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1043,
 | `pso/boss/TBoss6EmptyWarp_802B0E2C.cpp` | `-str reuse,readonly` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/pso_date.cpp` | `GC/1.3.2` | Calendar month/day stores retain GC/1.3.2 scheduling; see calendar-conversion-evidence.md. |
 | `pso/boss/TBoss4DarkFalz_8004C93C.cpp` | `-inline deferred, -sym on` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
+| `pso/object/TObjDFDemo1.cpp` | `-sdata 4` | Upstream #180: the 8-byte zanzo motion list stays in .data (-sdata 4). |
 | `pso/enemy/TObjEneBalClawBody_80090178.cpp` | `-inline deferred, -sdata 4` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/enemy/TObjEneRe2Flower_800C3E14.cpp` | `-inline off,deferred` | Deferred generation preserves the flower vtable before its dispatch table. |
 | `pso/enemy/TObjEneEpsilonGuard_8035F5C8.cpp` | `-inline off,deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
@@ -980,7 +981,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1043,
 | `src/pso/object/TObjCityMainWarp_801867F4.cpp` | fp_contract×1 |
 | `src/pso/object/TObjControl.cpp` | fp_contract×1 |
 | `src/pso/object/TObjCurtainLobby.cpp` | readonly_strings×1 |
-| `src/pso/object/TObjDFDemo0.cpp` | fp_contract×1 |
+| `src/pso/object/TObjDFDemo1.cpp` | defer_codegen×1, fp_contract×1 |
 | `src/pso/object/TObjDFDemo2.cpp` | readonly_strings×1, opt_common_subs×1, opt_propagation×1 |
 | `src/pso/object/TObjDFDemo3.cpp` | readonly_strings×1, opt_common_subs×1 |
 | `src/pso/object/TObjDFHorming.cpp` | fp_contract×6, auto_inline×3, dont_inline×3, inline_depth×2, readonly_strings×1, cplusplus×1, opt_common_subs×1 |
