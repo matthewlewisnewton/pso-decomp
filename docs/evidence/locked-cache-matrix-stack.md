@@ -41,6 +41,11 @@ null path.
 | a second absolute object at the same address for the null path | 85.8% | MWCC still reuses `r3`: absolute addresses are numbered by value |
 | integer stores, absolute object only on the null path and the `move_data` argument | 83.4% | null path reuses the store's `lis r3`; `move_data` gets `lis r3` instead of `lwz` |
 | `extern u8 matrix_stack_hw[] : 0xE0000000` (earlier pass on this PR) | not exact | `add` plus `mr`/`b`, as above |
+| scalar `extern u8 locked_cache : 0xE0000000`, identity in a local first, `if (id == 0) id = &locked_cache` | not exact | address in `r5` (`lis r5`), limit is `add`, null path `mr r3, r5` |
+| `extern const u8 locked_cache : 0xE0000000` (scalar), limit is pointer add | not exact | `const` does not fold the address; same `lis r3` / `add` / `mr` as the array |
+| scalar `&locked_cache` for the stores only, limit is the integer `(arg1 - 1) * 0x30 + 0xE0000000` | not exact | `addis` matches; stores stay `lis r3`; null path is `b` / `mr r3, r0`; `mulli` writes `r4` |
+
+`init_matrix_stack` is static (`init_matrix_stack__10TObjPlayerFll`): r3 is the unused first argument, so it is the first free GPR. MWCC colors the address of an absolute object into that GPR and keeps it live across `addi r0, r4, -1`. The original `lis r0` is instruction selection of an integer immediate, not a colored pointer. `const` on the scalar does not change that. r0 is available for the immediate only, and writing that immediate as a pointer is the `(u8 *)0xE0000000` cast.
 
 MWCC treats the address of an absolute object as a value that it keeps in a
 register and reuses on the null path. An integer constant is not kept that way.
