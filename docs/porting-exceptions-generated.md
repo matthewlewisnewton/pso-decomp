@@ -61,7 +61,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1043,
 | `src/pso/misc/TLobby_80145E40.cpp:28` | `__cntlzw` |
 | `src/pso/misc/TLobby_803C4698.cpp:234` | `__frsqrte` |
 | `src/pso/misc/TMainCursor.cpp:845` | `__cntlzw` |
-| `src/pso/misc/TNpcPlayer.cpp:2382` | `__cntlzw` |
+| `src/pso/misc/TNpcPlayer.cpp:2371` | `__cntlzw` |
 | `src/pso/misc/TOHealGeneral.cpp:64` | `__cntlzw` |
 | `src/pso/misc/TOSymbolchatColli.cpp:93` | `__cntlzw` |
 | `src/pso/misc/TQuestVmDownLoadServer.cpp:544` | `__cntlzw` |
