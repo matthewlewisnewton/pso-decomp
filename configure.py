@@ -471,6 +471,11 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
         # entry label. Map the target entry name to the object's image label.
         "symbol_mappings": {"@12": "...data.0"},
     },
+    # deform_indirect_texture_scroll keeps its s16 scroll offset as a named
+    # local (extsh r28, after the coordinate masks in r30/r29). With copy
+    # propagation the frontend replaces it with a hoisted temporary that the
+    # allocator colours first (r30). See docs/porting-exceptions.md section 5.
+    "pso/effect/TEffIndirectCtrl_802A88AC.cpp": {"cflags": _switch(cflags_pso, "-opt noprop")},
     "pso/boss/Boss5GryphonBehavior.cpp": {"mw_version": "GC/2.0"},
     "pso/enemy/TObjEneGyaranzo.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred")},
     "pso/misc/TOExplosiveMachine.cpp": {"mw_version": "GC/2.0"},
@@ -506,6 +511,12 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Row-header copy is a 16-byte struct assignment. -inline off outlines it;
     # noauto,level=1 inlines that helper only. The rest of the unit stays out of line.
     "pso/misc/TWindowMainMenu_802AD538.cpp": {"cflags": _switch(cflags_pso, "-inline noauto,level=1")},
+    # Soft-keyboard clip, scale, and layout fuse multiply-adds into fmadds/fnmsubs
+    # (scale_point_about_pivot, apply_context_transform_to_rect,
+    # apply_window_closing_stretch, clip_textured_quad, init_text_window_layout).
+    # Unit -fp_contract on replaces the per-function pragmas. Precedent:
+    # https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209
+    "pso/misc/TWindowKeyBoardSoft_8024E68C.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
     "pso/boss/TBoss7LaserLight.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
     "pso/enemy/TObjEnemyCustom.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-pool off", "-str reuse,readonly")},
     "pso/boss/TBoss3VoloptCore.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
@@ -665,6 +676,10 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # The character creation camera: deferred with nothing inlined, and its
     # multiply-adds contracted into fmadds.
     "pso/camera/CreationCamera.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on")},
+    # The lens-flare renderer contracts its attenuation and displacement
+    # multiply-adds into fnmsubs/fmadds; the whole unit stays byte-exact with
+    # -fp_contract on, so that is this translation unit's setting.
+    "pso/effect/TEF_LensFlare.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
     # The pad rumble and Ninja helper code contract multiply-adds into fmadds/fnmsubs.
     "pso/system/PadRumble.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
     "pso/system/NinjaUtil.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
