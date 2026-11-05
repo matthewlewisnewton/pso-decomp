@@ -19,14 +19,14 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 
 | File:line | Source |
 |---|---|
-| `src/musyx/runtime/Chorus/chorus_fx.c:119` | `asm void do_src1(void *src) {` |
-| `src/musyx/runtime/Chorus/chorus_fx.c:120` | `#include "orig_asm/musyx/runtime/Chorus/chorus_fx/do_src1.inc"` |
-| `src/musyx/runtime/Chorus/chorus_fx.c:123` | `asm void do_src2(register void *src) {` |
-| `src/musyx/runtime/Chorus/chorus_fx.c:124` | `#include "orig_asm/musyx/runtime/Chorus/chorus_fx/do_src2.inc"` |
-| `src/musyx/runtime/StdReverb/reverb.c:89` | `asm void DoCrossTalk(void *a, void *b, f32 start, f32 end) {` |
-| `src/musyx/runtime/StdReverb/reverb.c:90` | `#include "orig_asm/musyx/runtime/StdReverb/reverb/DoCrossTalk.inc"` |
-| `src/musyx/runtime/StdReverb/reverb.c:93` | `asm void HandleReverb(void *sptr, void *rv, int k) {` |
-| `src/musyx/runtime/StdReverb/reverb.c:94` | `#include "orig_asm/musyx/runtime/StdReverb/reverb/HandleReverb.inc"` |
+| `src/musyx/runtime/Chorus/chorus_fx.c:120` | `asm void do_src1(void *src) {` |
+| `src/musyx/runtime/Chorus/chorus_fx.c:121` | `#include "orig_asm/musyx/runtime/Chorus/chorus_fx/do_src1.inc"` |
+| `src/musyx/runtime/Chorus/chorus_fx.c:124` | `asm void do_src2(register void *src) {` |
+| `src/musyx/runtime/Chorus/chorus_fx.c:125` | `#include "orig_asm/musyx/runtime/Chorus/chorus_fx/do_src2.inc"` |
+| `src/musyx/runtime/StdReverb/reverb.c:90` | `asm void DoCrossTalk(void *a, void *b, f32 start, f32 end) {` |
+| `src/musyx/runtime/StdReverb/reverb.c:91` | `#include "orig_asm/musyx/runtime/StdReverb/reverb/DoCrossTalk.inc"` |
+| `src/musyx/runtime/StdReverb/reverb.c:94` | `asm void HandleReverb(void *sptr, void *rv, int k) {` |
+| `src/musyx/runtime/StdReverb/reverb.c:95` | `#include "orig_asm/musyx/runtime/StdReverb/reverb/HandleReverb.inc"` |
 | `src/pso/unk/text_803E2D70.cpp:314` | `asm void transform_chunk_vertices_pos_normal(register Hdr_803E34B0 *job, register ReorderedMatrix_803E3390 *matrix) {` |
 
 ## MWCC intrinsics
