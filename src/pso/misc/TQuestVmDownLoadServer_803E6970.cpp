@@ -2863,7 +2863,6 @@ void TQuestVmDownLoadServer__sub_803EC284(s32 index, s32 mode) {
         TQuestVmDownLoadServer__sub_803EC09C();
     }
     QuestDownloadTextNode *head = quest_download_slot_chain_table[lbl_805D78F0].textHead;
-    s32 count;
     if (lbl_805D7834 > 0) {
         lbl_805D78A4 = 80;
     } else {
@@ -2871,8 +2870,39 @@ void TQuestVmDownLoadServer__sub_803EC284(s32 index, s32 mode) {
     }
     // Measure whole text groups, reserving nine bytes and accepting at least
     // one group on a nonempty page, even if that group exceeds the budget.
-    {
-        s32 fitting;
+    s32 fitting;
+    if (head == NULL) {
+        fitting = 0;
+    } else {
+        QuestDownloadTextNode *node = head;
+        s32 total = 0;
+        const s32 limit = lbl_805D78A4 - 9;
+        fitting = 0;
+        while (fitting < 9 && node != NULL) {
+            total += TQuestVmDownLoadServer__sub_803EB7C0(node) + 3;
+            if (total > limit) {
+                break;
+            }
+            fitting++;
+            while (node->flags & 1) {
+                node = node->next;
+            }
+            node = node->next;
+        }
+        if (fitting == 0) {
+            fitting = 1;
+        }
+    }
+    s32 count = fitting;
+    while (index >= count) {
+        index -= count;
+        for (s32 i = 0; i != count; i++) {
+            QuestDownloadTextNode *node = head;
+            while (node->flags & 1) {
+                node = node->next;
+            }
+            head = node->next;
+        }
         if (head == NULL) {
             fitting = 0;
         } else {
@@ -2896,42 +2926,6 @@ void TQuestVmDownLoadServer__sub_803EC284(s32 index, s32 mode) {
             }
         }
         count = fitting;
-    }
-    while (index >= count) {
-        index -= count;
-        for (s32 i = 0; i != count; i++) {
-            QuestDownloadTextNode *node = head;
-            while (node->flags & 1) {
-                node = node->next;
-            }
-            head = node->next;
-        }
-        {
-            s32 fitting;
-            if (head == NULL) {
-                fitting = 0;
-            } else {
-                QuestDownloadTextNode *node = head;
-                s32 total = 0;
-                const s32 limit = lbl_805D78A4 - 9;
-                fitting = 0;
-                while (fitting < 9 && node != NULL) {
-                    total += TQuestVmDownLoadServer__sub_803EB7C0(node) + 3;
-                    if (total > limit) {
-                        break;
-                    }
-                    fitting++;
-                    while (node->flags & 1) {
-                        node = node->next;
-                    }
-                    node = node->next;
-                }
-                if (fitting == 0) {
-                    fitting = 1;
-                }
-            }
-            count = fitting;
-        }
         if (count == 0) {
             TQuestVmDownLoadServer__sub_803EC284(0, 0);
             goto finish;
