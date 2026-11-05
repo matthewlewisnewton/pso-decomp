@@ -1,4 +1,5 @@
 #include "pso/protocol/protocol_types.h"
+#include "pso/protocol/subcmd_6x.h"
 #include "types.h"
 #include "pso/boss/TBoss8Dragon_80065C90.h"
 #include "pso/misc/TLobby_801E43E4.h"
@@ -25,7 +26,6 @@ struct RecoveredGlobal_80065F08_lbl_80437938_80065C90 {
     u8 remaining[0x8];
 };
 
-struct O_80065FD4 { u16 a; u16 b; u32 c[4]; };
 
 extern "C" {
 
@@ -90,26 +90,25 @@ void TBoss5Gryphon::apply_confusion_status() {  }
 void TBoss5Gryphon::apply_movement_ailment(s32) {  }
 void TBoss5Gryphon::apply_shock_status() {  }
 void TBoss5Gryphon::clear_harmful_statuses() {  }
-void TBoss8Dragon::init_color() { *(u8 *)&this->m_name = 160; *(u8 *)((char *)&this->m_name + 1) = 10; }
+G_GalGryphonBossActions_6xA0::G_GalGryphonBossActions_6xA0() { header.subcommand = 0xA0; header.size = 10; }
 
-void TBoss8Dragon::send_spawn_params_packet() { byteswap_action_packet(); send_subcommand((u8 *)this); }
+void G_GalGryphonBossActions_6xA0::send() { bswap(); send_subcommand(this); }
 
-void TBoss8Dragon::byteswap_action_packet() {
-    ((G_ClientIDHeader *)this)->bswap();
-    ((TBoss8Dragon *)((char *)this + 20))->byteswap_record();
-    bswap_32((u32 *)((void *)((char *)this + 4)));
-    bswap_32((u32 *)((void *)((char *)this + 8)));
-    bswap_32((u32 *)((void *)((char *)this + 12)));
-    bswap_32((u32 *)((void *)((char *)this + 16)));
+void G_GalGryphonBossActions_6xA0::bswap() {
+    header.bswap();
+    action.bswap();
+    bswap_32((u32 *)&pos.x);
+    bswap_32((u32 *)&pos.y);
+    bswap_32((u32 *)&pos.z);
+    bswap_32(&angle_y);
 }
 
-void TBoss8Dragon::byteswap_record() {
-    O_80065FD4 *p = (O_80065FD4 *)this;
+void G_GalGryphonBossAction::bswap() {
     s32 i;
-    bswap_16(&p->a);
-    bswap_16(&p->b);
+    bswap_16((u16 *)&state);
+    bswap_16((u16 *)&timer);
     for (i = 0; i < 4; i++) {
-        bswap_32(&p->c[i]);
+        bswap_32(&params.words[i]);
     }
 }
 

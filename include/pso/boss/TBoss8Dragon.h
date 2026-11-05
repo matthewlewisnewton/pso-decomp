@@ -1,4 +1,5 @@
 struct NJS_OBJECT;
+struct G_GalGryphonBossActions_6xA0;
 #ifndef PSO_BOSS_TBOSS8DRAGON_H
 #define PSO_BOSS_TBOSS8DRAGON_H
 
@@ -155,8 +156,7 @@ struct TBoss8Dragon : public TObjEneDD_ST
     int set_state_2();
     int attack_default();
     int query_default();
-    void copy_spawn_params(void* a1);
-    void copy_action_state(u8 *arg1);
+    void copy_spawn_params(G_GalGryphonBossActions_6xA0 *cmd);
     static s32 spawn_ground_lightning(TObject *parent, const Vec *source, s32 direction);
     void set_default_on_state0();
     static void update_camera_script(NJS_OBJECT *);
@@ -204,10 +204,6 @@ struct TBoss8Dragon : public TObjEneDD_ST
     int get_flag_bit6();
     void fill_follow_camera_params(u8 *arg1, u8 *arg2);
     static int get_instance_count();
-    void init_color();
-    void send_spawn_params_packet();
-    void byteswap_action_packet();
-    void byteswap_record();
     void send_boss_actions();
     void bswap_boss_actions();
     static int get_instance();
