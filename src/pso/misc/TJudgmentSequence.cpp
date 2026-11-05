@@ -1,5 +1,4 @@
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TJudgmentSequence.h"
 struct TShopJudgmentItemWindow;
 #include "pso/misc/TWindowSubComCard_80244774.h"
@@ -57,12 +56,14 @@ struct Seq_80215CB8 { u8 pad[0x24]; s32 f24; };
 extern "C" {
 s32 set_service_counter_camera(void *, int);
 s32 get_window_layout_position(int, f32);
+extern const f32 lbl_805DC680;
+extern const f32 lbl_805DC684;
 void *__dt__13TShopSequenceFv(void *arg0, s16 arg1);
 s32 sub_8022397C__15TShopWindowBaseFv(void *);
 s32 __dl__7TObjectFPv(void *);
 extern RecoveredGlobal_80215EF8___vt__17TJudgmentSequence __vt__17TJudgmentSequence;
 RecoveredGlobal_80215EF8_TJudgmentSequence__data_80513E80 TJudgmentSequence__slot_flags;
-s32 judgment_sequence_instance;
+extern s32 judgment_sequence_instance;
 void *__nw__7TObjectFUl(u32);
 void *TShopJudgmentItemWindow__ct(TShopJudgmentItemWindow *arg0, void *arg1, void *arg2, void *arg3);
 extern void *tl_05;
@@ -122,9 +123,9 @@ void TJudgmentSequence::setup_counter_camera() {
     u8 *arg0 = (u8 *)this;
   Stack_80215DA0 stack;
   f32 new_var;
-  stack.sp8 = 332.0f;
-  stack.spC = 80.0f;
-  new_var = 332.0f;
+  stack.sp8 = lbl_805DC680;
+  stack.spC = lbl_805DC684;
+  new_var = (f32) lbl_805DC680;
   ((TShopSequence *)arg0)->create_message_window(get_window_layout_position(0x2C, new_var), (s32)&stack.sp8);
   (((VObj_18_4a2792 *)(arg0))->m6(1, 1));
   this->m_2c = create_meseta_window(((s32) ((TShopSequence *)arg0)->get_child_field1c()) & 0xFFFF);
@@ -168,7 +169,7 @@ u8 *__dt__17TJudgmentSequenceFv(u8 *arg0, s16 arg1) {
         }
         ((TShopSequence *)arg0)->close_message_window();
         if ((u32) ((TJudgmentSequence *)arg0)->m_2c != 0U) {
-            ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x2C)))->close();
+            TWindow__close((u8 *)(*(void **)((s8 *)arg0 + 0x2C)));
             ((TJudgmentSequence *)arg0)->m_2c = 0U;
         }
         judgment_sequence_instance = 0;

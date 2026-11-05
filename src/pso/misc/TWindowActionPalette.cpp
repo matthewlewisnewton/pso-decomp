@@ -1,10 +1,11 @@
+#include "pso/system/CurrentTextureList.h"
 #include "pso/misc/TWindowActionPalette.h"
 #include "pso/TPlyDispData.h"
 #include "pso/misc/TWindowHelpItem.h"
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/misc/TWindowDD.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TUnk_804CE018.h"
 #include <stddef.h>
 
 typedef char palette_children_offset[offsetof(TWindowActionPalette, children) == 0x24 ? 1 : -1];
@@ -47,7 +48,7 @@ struct Obj_80243968 { u8 pad[0x20]; s16 id; u8 pad22[0x3e]; u32 cur[3]; };
 struct Ent_80243968 { u8 pad[0x2c]; s32 color; };
 
 extern "C" {
-void* get_array_entry__11TWindowBaseFi(TWindowActionPalette*,int);
+void* get_array_entry__13TUnk_804CE018Fi(TWindowActionPalette*,int);
 s32 is_split_screen();
 s32 fn_8002AE08(s32);
 s32 is_on_current_screen__11TCameraCtrlFv(void *, s32);
@@ -73,6 +74,9 @@ extern u8 twindow_action_palette_layout[];
 extern u32 __vt__20TWindowActionPalette[6];
 extern s32 lbl_805D3870;
 extern const f32 lbl_805DCA2C;
+extern const f32 lbl_805DCA48;
+extern const f32 lbl_805DCAA0;
+extern const f32 lbl_805DCAA4;
 Pal_80244108 *TWindowActionPalette__ct(Pal_80244108 *self, s16 slot);
 f32 TWindowSubComCard__sub_80244784(TWindowSubComCard *);
 s32 TWindowSubComCard__sub_802452DC(int);
@@ -86,8 +90,29 @@ s32 set_draw_texture_and_color(int, int);
 extern s32 lbl_805D63F0;
 extern const f32 lbl_805DCA24;
 extern const f32 lbl_805DCA34;
+extern const f32 lbl_805DCA4C;
+extern const f32 lbl_805DCA50;
+extern const f32 lbl_805DCA54;
+extern const f32 lbl_805DCA58;
+extern const f32 lbl_805DCA5C;
+extern const f32 lbl_805DCA60;
+extern const f32 lbl_805DCA64;
+extern const f32 lbl_805DCA68;
+extern const f32 lbl_805DCA6C;
+extern const f32 lbl_805DCA70;
+extern const f32 lbl_805DCA74;
+extern const f32 lbl_805DCA78;
+extern const f32 lbl_805DCA7C;
+extern const f32 lbl_805DCA80;
+extern const f32 lbl_805DCA84;
+extern const f32 lbl_805DCA88;
+extern const f32 lbl_805DCA8C;
+extern const f32 lbl_805DCA90;
+extern const f32 lbl_805DCA94;
+extern const f32 lbl_805DCA98;
+extern const f32 lbl_805DCA9C;
 s32 TObjPlayer__sub_80354C7C(s32);
-s32 setup_window_draw_context__11TWindowBaseFl(void *, void *);
+s32 setup_window_draw_context__13TUnk_804CE018Fl(void *, void *);
 void draw_visible_window_entries(void *, void *, int);
 void __dl__7TObjectFPv(void *);
 void __destroy_arr(void *, void *, int, int);
@@ -96,20 +121,20 @@ void set_sprite_uv_from_pixels(u8 *arg0, f32 farg0, f32 farg1);
 extern float TWindowActionPalette__bank_panel_uv_origins[][2];
 
 void TWindowActionPalette::set_bank_panel_art(unsigned short state) {
-    void* sprite=get_array_entry__11TWindowBaseFi(this,1);
+    void* sprite=get_array_entry__13TUnk_804CE018Fi(this,1);
     set_sprite_uv_from_pixels((u8 *)sprite, TWindowActionPalette__bank_panel_uv_origins[state][0], TWindowActionPalette__bank_panel_uv_origins[state][1]);
 }
 
 #define self ((Obj_80243968 *)arg0)
 void TWindowActionPalette::update_slot_icon(void *arg0, int idx, int mode, int slot) {
     if (((u32 (*)(int))get_player_by_client_id)(self->id) != 0) {
-        Ent_80243968 *ent = (Ent_80243968 *)((void *)get_array_entry__11TWindowBaseFi((TWindowActionPalette*)(self), 4));
+        Ent_80243968 *ent = (Ent_80243968 *)((void *)get_array_entry__13TUnk_804CE018Fi((TWindowActionPalette*)(self), 4));
         if (TObjPlayer__sub_80354C7C((u16)self->id) != 0) {
             ent->color = -1;
         } else {
             ent->color = 0xFF404040;
         }
-        ((TWindowHelpItem *)((void *)get_array_entry__11TWindowBaseFi((TWindowActionPalette*)(self), 5)))->set_flag0_bit2();
+        ((TWindowHelpItem *)((void *)get_array_entry__13TUnk_804CE018Fi((TWindowActionPalette*)(self), 5)))->set_flag0_bit2();
         void *cur = &self->cur[idx];
         if ((u16)mode != ((TMainCursor *)cur)->get_type() || ((TMainCursor *)cur)->get_enabled() != (u16)slot) {
             ((TWindowActionPalette *)cur)->set_mode(mode);
@@ -127,13 +152,13 @@ void TWindowActionPalette::update_slot_sprites(int idx, int mode, u16 slot) {
 
     player = get_player_by_client_id(this->m_20);
     if (player != 0) {
-        help = (u8 *)get_array_entry__11TWindowBaseFi((TWindowActionPalette *)this, lbl_805DCA10[idx]);
+        help = (u8 *)get_array_entry__13TUnk_804CE018Fi((TWindowActionPalette *)this, lbl_805DCA10[idx]);
         if (is_action_channel_available__10TObjPlayerFii(player, lbl_805DCA14[idx]) != 0) {
             *(s32 *)(help + 0x2C) = -1;
         } else {
             *(s32 *)(help + 0x2C) = 0xFF404040;
         }
-        update_palette_item_count_label(get_array_entry__11TWindowBaseFi((TWindowActionPalette *)this, lbl_805DCA18[idx]), help, mode, slot, this->m_20);
+        update_palette_item_count_label(get_array_entry__13TUnk_804CE018Fi((TWindowActionPalette *)this, lbl_805DCA18[idx]), help, mode, slot, this->m_20);
         cursor = (u8 *)this + 0x60 + idx * 4;
         if ((u16)mode != ((TMainCursor *)cursor)->get_type() || ((TMainCursor *)cursor)->get_enabled() != slot) {
             ((TWindowActionPalette *)cursor)->set_mode(mode);
@@ -156,48 +181,48 @@ void TWindowActionPalette::draw_frame(int arg1) {
     f32 scale;
     f32 depth;
     scale = TWindowSubComCard__sub_80244784((TWindowSubComCard *)this);
-    depth = (-1.0f) / this->m_54;
+    depth = lbl_805DCA48 / this->m_54;
     begin_screen_draw(1);
-    TObjFish::set_global_param((s32)((void *)lbl_805D63F0));
+    set_current_texture_list((GinjaTextureList *)(((void *)lbl_805D63F0)));
     set_draw_texture_and_color(2, ctx->tex);
     if (is_split_screen() == 0) {
-        r1.x0 = 640.0f - 71.0f * scale;
-        r1.y0 = 480.0f - 76.0f * scale;
-        r1.x1 = 71.0f + r1.x0;
-        r1.y1 = 83.0f + r1.y0;
+        r1.x0 = lbl_805DCA4C - lbl_805DCA50 * scale;
+        r1.y0 = lbl_805DCA54 - lbl_805DCA58 * scale;
+        r1.x1 = lbl_805DCA50 + r1.x0;
+        r1.y1 = lbl_805DCA5C + r1.y0;
         r1.u0 = lbl_805DCA24;
-        r1.v0 = 0.63671875f;
-        r1.u1 = 0.27734375f;
-        r1.v1 = 0.9609375f;
+        r1.v0 = lbl_805DCA60;
+        r1.u1 = lbl_805DCA64;
+        r1.v1 = lbl_805DCA68;
         draw_textured_quad_at_depth(&r1, depth);
     }
-    r2.x0 = 13.0f + ctx->x;
+    r2.x0 = lbl_805DCA6C + ctx->x;
     r2.y0 = ctx->y;
-    r2.x1 = 91.0f + r2.x0;
-    r2.y1 = 54.0f + r2.y0;
+    r2.x1 = lbl_805DCA70 + r2.x0;
+    r2.y1 = lbl_805DCA74 + r2.y0;
     r2.u0 = lbl_805DCA24;
-    r2.v0 = 0.421875f;
-    r2.u1 = 0.35546875f;
-    r2.v1 = 0.6328125f;
+    r2.v0 = lbl_805DCA78;
+    r2.u1 = lbl_805DCA7C;
+    r2.v1 = lbl_805DCA80;
     apply_context_transform_to_rect(ctx, &r2);
     draw_textured_quad_at_depth(&r2, depth);
-    r3.x0 = 45.0f + ctx->x;
-    r3.y0 = 53.0f + ctx->y;
-    r3.x1 = 91.0f + r3.x0;
-    r3.y1 = 54.0f + r3.y0;
-    r3.u0 = 0.36328125f;
-    r3.v0 = 0.421875f;
-    r3.u1 = 0.71875f;
-    r3.v1 = 0.6328125f;
+    r3.x0 = lbl_805DCA84 + ctx->x;
+    r3.y0 = lbl_805DCA88 + ctx->y;
+    r3.x1 = lbl_805DCA70 + r3.x0;
+    r3.y1 = lbl_805DCA74 + r3.y0;
+    r3.u0 = lbl_805DCA8C;
+    r3.v0 = lbl_805DCA78;
+    r3.u1 = lbl_805DCA90;
+    r3.v1 = lbl_805DCA80;
     apply_context_transform_to_rect(ctx, &r3);
     draw_textured_quad_at_depth(&r3, depth);
     r4.x0 = ctx->x;
     r4.y0 = ctx->y;
     r4.x1 = lbl_805DCA34 + r4.x0;
-    r4.y1 = 107.0f + r4.y0;
+    r4.y1 = lbl_805DCA94 + r4.y0;
     r4.v0 = r4.u0 = lbl_805DCA24;
-    r4.u1 = 0.5859375f;
-    r4.v1 = 0.41796875f;
+    r4.u1 = lbl_805DCA98;
+    r4.v1 = lbl_805DCA9C;
     apply_context_transform_to_rect(ctx, &r4);
     draw_textured_quad_at_depth(&r4, depth);
     TWindowSubStatusDisp::get_player();
@@ -210,7 +235,7 @@ void TWindowActionPalette::draw_frame(int arg1) {
 #pragma pop
 
 void TWindowActionPalette::render() {
-    s32 context = setup_window_draw_context__11TWindowBaseFl(this, &scale);
+    s32 context = setup_window_draw_context__13TUnk_804CE018Fl(this, &scale);
     draw_visible_window_entries(this, &children, context);
     draw_frame(context);
 }
@@ -234,7 +259,7 @@ void run_task__20TWindowActionPaletteFv(u8 *arg0) {
     if (is_on_current_screen__11TCameraCtrlFv(controller_input_state + slot * 0x50 + 0x20, fn_8002AE08(((TWindowActionPalette *)arg0)->m_20)) != 0) {
         ((TWindowActionPalette *)arg0)->state = 3;
     }
-    help = (u8 *)get_array_entry__11TWindowBaseFi(SELF, 0);
+    help = (u8 *)get_array_entry__13TUnk_804CE018Fi(SELF, 0);
     set_help_text__15TWindowHelpItemFll(help, ((TWindowActionPalette *)arg0)->m_20);
     cnt = ((TWindowActionPalette *)arg0)->state;
     if ((s8)cnt > 0) {
@@ -273,8 +298,8 @@ void run_task__20TWindowActionPaletteFv(u8 *arg0) {
         ((TWindowActionPalette *)SELF)->set_bank_panel_art(2);
     }
     ((TWindowDD *)arg0)->initialize_subwindow();
-    ((TWindowBase *)arg0)->update_fade();
-    ((TWindowBase *)arg0)->update_window_entry_list(arg0 + 0x24);
+    ((TUnk_804CE018 *)arg0)->update_fade();
+    ((TUnk_804CE018 *)arg0)->update_window_entry_list(arg0 + 0x24);
 }
 
 extern "C" u8 *__dt__20TWindowActionPaletteFv(u8 *self, s16 delete_flag) {
@@ -299,13 +324,13 @@ Pal_80244108 *TWindowActionPalette__ct(Pal_80244108 *self, s16 slot) {
         self->f70 = lbl_805DCA2C;
         self->f74 = lbl_805DCA2C;
     } else if (TCameraCtrl::get_camera_id() == 2) {
-        self->f70 = 0.7f;
-        self->f74 = 0.7f;
+        self->f70 = lbl_805DCAA0;
+        self->f74 = lbl_805DCAA0;
     } else {
-        self->f70 = 1.0f;
-        self->f74 = 1.0f;
+        self->f70 = lbl_805DCAA4;
+        self->f74 = lbl_805DCAA4;
     }
-    self->f58 = (-1.0f);
+    self->f58 = lbl_805DCA48;
     self->f6c = 0;
     self->slot = slot;
     for (i = 0; i < 3; i++) {

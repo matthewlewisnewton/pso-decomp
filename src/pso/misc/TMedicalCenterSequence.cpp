@@ -1,8 +1,8 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/misc/TMedicalCenterMes.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TRaderMapCore.h"
 #include "pso/TShopWindowBase.h"
-#include "pso/misc/TWindowAddition.h"
+#include "pso/misc/TUnk_804CDFE8.h"
 #include "pso/misc/TShopSequence.h"
 #include "pso/misc/TMedicalCenterSequence.h"
 #include "pso/misc/TWindowMenu.h"
@@ -140,6 +140,7 @@ s32 set_service_counter_camera(void *, int);
 void *__dt__13TShopSequenceFv(void *arg0, s16 arg1);
 s32 sub_8022397C__15TShopWindowBaseFv(void *);
 s32 __dl__7TObjectFPv(void *);
+void TWindow__close(u8 *arg0);
 extern RecoveredGlobal_802169A8___vt__22TMedicalCenterSequence __vt__22TMedicalCenterSequence;
 extern RecoveredGlobal_802169A8_TMedicalCenterSequence__data_80513E90 TMedicalCenterSequence__data_80513E90;
 u8 *__dt__22TMedicalCenterSequenceFv(TMedicalCenterSequence *arg0, s16 arg1);
@@ -148,10 +149,11 @@ extern s32 TMedicalCenterSequence__class_name;
 u8 *TMedicalCenterSequence__ct(u8 *arg0, s32 arg1, s32 arg2);
 f32 get_scale__15TShopWindowBaseFv(void *);
 u8 *create_yes_no_window(s32 arg0, s32 arg1, u32 arg2, u32 arg3);
-s32 play_sound_effect(s32, s32, s32, s32);
+
 s32 try_spend_actor_meseta(u8 *arg0, s32 arg1);
 int sub_802239EC__13TShopSequenceFv(void *);
 int sub_80223A48__15TShopWindowBaseFv(void *);
+s32 get_selected_menu_value(u32);
 s32 close_window__13TShopSequenceFv(void *);
 int obj_getPtr2B0_20(u8 *p);
 int restore_player_state__13TShopSequenceFv(void*);
@@ -196,11 +198,11 @@ u8 *__dt__22TMedicalCenterSequenceFv(TMedicalCenterSequence *arg0, s16 arg1) {
         }
         ((TShopSequence *)arg0)->close_message_window();
         if ((u32) arg0->m_2c != 0U) {
-            ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x2C)))->close();
+            TWindow__close((u8 *)(*(void **)((s8 *)arg0 + 0x2C)));
             arg0->m_2c = 0U;
         }
         if ((u32) arg0->m_30 != 0U) {
-            ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x30)))->close();
+            TWindow__close((u8 *)(*(void **)((s8 *)arg0 + 0x30)));
             arg0->m_30 = 0U;
         }
         *(s32 *)((s8 *)&TMedicalCenterSequence__data_80513E90.value + (sub_8022397C__15TShopWindowBaseFv(arg0) * 4)) = 0;
@@ -283,16 +285,16 @@ void TMedicalCenterSequence::handle_confirm() {
 void TMedicalCenterSequence::handle_window_result() {
     s32 selected_menu_value;
 
-    if (((u32) this->m_30 != 0U) && (((TWindowMenu *)((u32) this->m_30))->is_decided() != 0)) {
-        selected_menu_value = ((TWindowMenu *)this->m_30)->get_selected_value();
+    if (((u32) this->m_30 != 0U) && (((TWindowMenu *)((u32) this->m_30))->is_visible() != 0)) {
+        selected_menu_value = get_selected_menu_value(this->m_30);
         if (selected_menu_value == 0) {
-            ((TWindowBase *)this->m_30)->close();
+            TWindow__close((u8 *)this->m_30);
             this->m_30 = 0U;
             set_field_20((s32)((void*)(4)));
             return;
         }
         if (selected_menu_value == 1) {
-            ((TWindowBase *)this->m_30)->close();
+            TWindow__close((u8 *)this->m_30);
             this->m_30 = 0U;
             set_field_20((s32)((void*)(5)));
             return;
@@ -300,8 +302,8 @@ void TMedicalCenterSequence::handle_window_result() {
         goto block_6;
     }
 block_6:
-    if (((u32) this->m_30 != 0U) && (((TWindowMenu *)((u32) this->m_30))->is_cancelled() != 0)) {
-        ((TWindowBase *)this->m_30)->close();
+    if (((u32) this->m_30 != 0U) && (((TWindowSubComCard *)((u32) this->m_30))->get_status_flag() != 0)) {
+        TWindow__close((u8 *)this->m_30);
         this->m_30 = 0U;
         set_field_20((s32)((void*)(5)));
     }
@@ -342,7 +344,7 @@ void TMedicalCenterSequence::show_fee_prompt() {
     ((VObj_802164A4 *)this)->m4(0x20, 1);
     v = get_entity_id(((VObj_802164A4 *)this)->f24);
     ((VObj_802164A4 *)this)->f30 = (s32)create_yes_no_window(((s32 (*)(int))get_window_layout_position)(0x2B), v, 0, 0);
-    ((TWindowAddition *)(((VObj_802164A4 *)this)->f30))->set_position_xy(get_scale__15TShopWindowBaseFv(((VObj_802164A4 *)this)), get_scale__15TShopWindowBaseFv(((VObj_802164A4 *)this)));
+    ((TUnk_804CDFE8 *)(((VObj_802164A4 *)this)->f30))->set_position_xy(get_scale__15TShopWindowBaseFv(((VObj_802164A4 *)this)), get_scale__15TShopWindowBaseFv(((VObj_802164A4 *)this)));
     this->set_field_20((s32)((void *)3));
 }
 

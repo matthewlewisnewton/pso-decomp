@@ -1,5 +1,12 @@
+// queue_destruction is inline in TObject.h. This unit calls the out-of-line
+// copy that lives with TAdADXlogo, the same call the original constructor makes.
+#define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/SoundEffect.h"
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/misc/CharacterAppearance.h"
+#include "pso/player/TObjPlayer.h"
+#include "pso/player/TObjPlayer_801AF2F0.h"
+#include "pso/unk/text_8024ACEC.h"
 #include "pso/misc/TWindowSubItem.h"
 #include "pso/misc/TWindowSubTechnique.h"
 #include "pso/misc/TWindowMenu.h"
@@ -7,7 +14,7 @@
 #include "pso/item/TItem.h"
 #include "pso/item/TItemObject.h"
 #include "pso/misc/TWindowSubShortCutList.h"
-#include "pso/misc/TWindowMenuIconLine.h"
+#include "pso/misc/TUnk_804D0618.h"
 #include "pso/misc/TWindowShortListCtrl.h"
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TOSwitchItem.h"
@@ -63,8 +70,10 @@ struct Ctrl_8026ECBC {
 struct Buf_8026E884 { s16 h[19]; };
 
 extern "C" {
+// Pointer at 0x805D39E0 to the class-name string at 0x8044F588.
+extern const char *TWindowShortListCtrl__name;
+
 s32 canSetMenuCursorAction(s32, s32, u8, u8);
-s32 get_player_by_client_id(s32);
 void TMainCursor__sub_8013DFC4(u8 *arg0);
 extern s32 lbl_805DD380;
 s32 fn_8002AE08(int);
@@ -73,16 +82,18 @@ s32 is_player_input_active(s32 param_1);
 extern RecoveredGlobal_8026EA60_lbl_8050E208 controller_input_state;
 s32 get_character_save_record(u32 arg0);
 void align_menu_entry_positions(void *);
+s32 TWindow__close(void *);
 void queue_destruction__7TObjectFv(void *arg0);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 try_send_6x27_use_item(void *arg0, s32 arg1);
 s32 decrement_clamped(s32 *arg0, s32 arg1);
 s32 try_equip_item__10TObjPlayerFii(u8 *, s32);
-void play_sound_effect(int, int, int, int);
+
 void *__nw__7TObjectFUl(u32);
 s32 TWindowCtrl__sub_8024A228(s32);
 void *__ct__15TWindowHelpItemFPvUs(void *, s32, s32);
-s32 get_cursor_value__19TWindowMenuIconLineFv(void *);
+s16 get_selected_menu_value(void *);
+s32 select_cursor_entry__22TWindowSubShortCutListFv(void *);
 s32 get_window_layout_position(int);
 void *create_equip_kind_window(s32, u8 *, s32);
 s32 update_selection__19TWindowSubTechniqueFPsPl(void *, void *, s32);
@@ -113,7 +124,7 @@ s32 TWindowShortListCtrl::is_technique_usable() {
     u32 player;
     u8 *temp_r31;
 
-    player = get_player_by_client_id((s32)((int) (this->m_24)));
+    player = (u32) get_player_by_client_id((s32)((int) (this->m_24)));
     if (player == 0U) {
         return 0;
     }
@@ -154,7 +165,7 @@ void TWindowShortListCtrl::assign_item_to_palette(u32 arg0, u32 arg1) {
     u8 parameter;
     var_r31 = arg0;
     var_r3 = arg1;
-    player = get_player_by_client_id(var_r3);
+    player = (s32) get_player_by_client_id(var_r3);
     if (player != 0) {
         var_r29 = *(u32 *)((s8 *)player + 0x424);
         if (var_r29 != 0U) {
@@ -327,17 +338,17 @@ void run_task__20TWindowShortListCtrlFv(TWindowShortListCtrl *window_short_list_
                 self->help_item = -1;
                 TWindowCtrl::clear_flag_8();
             } else {
-                ((TWindowBase *)self->help_win)->close();
+                TWindow__close(self->help_win);
                 self->help_win = NULL;
                 TWindowCtrl::set_flag_active();
             }
         }
-        ((TWindowShortListCtrl *)self)->set_displayed_item(get_cursor_value__19TWindowMenuIconLineFv(self->list_win));
-        if (((TWindowMenuIconLine *)(self->list_win))->is_cancelled() != 0) {
+        ((TWindowShortListCtrl *)self)->set_displayed_item(select_cursor_entry__22TWindowSubShortCutListFv(self->list_win));
+        if (((TLobby *)(self->list_win))->get_flag_bit2() != 0) {
             queue_destruction__7TObjectFv(self);
             return;
         }
-        if (((TWindowMenuIconLine *)(self->list_win))->is_decided() != 0) {
+        if (((TUnk_804D0618 *)(self->list_win))->get_status_flag() != 0) {
             self->state = 2;
         }
         break;
@@ -350,7 +361,7 @@ void run_task__20TWindowShortListCtrlFv(TWindowShortListCtrl *window_short_list_
         if (TWindowSubItem::is_usable((s32)player) == 0) {
             break;
         }
-        TWindowShortListCtrl::assign_shortcut(6, get_cursor_value__19TWindowMenuIconLineFv(self->list_win), self->player_id);
+        TWindowShortListCtrl::assign_shortcut(6, select_cursor_entry__22TWindowSubShortCutListFv(self->list_win), self->player_id);
         queue_destruction__7TObjectFv(self);
         return;
     case 3:
@@ -362,17 +373,17 @@ void run_task__20TWindowShortListCtrlFv(TWindowShortListCtrl *window_short_list_
         }
         self->state = 4;
     case 4:
-        TWindowShortListCtrl::assign_item_to_palette(get_cursor_value__19TWindowMenuIconLineFv(self->list_win), self->player_id);
-        if (((TWindowMenuIconLine *)(self->list_win))->is_cancelled() != 0) {
+        TWindowShortListCtrl::assign_item_to_palette(select_cursor_entry__22TWindowSubShortCutListFv(self->list_win), self->player_id);
+        if (((TLobby *)(self->list_win))->get_flag_bit2() != 0) {
             queue_destruction__7TObjectFv(self);
             return;
         }
-        if (((TWindowMenuIconLine *)(self->list_win))->is_decided() != 0) {
+        if (((TUnk_804D0618 *)(self->list_win))->get_status_flag() != 0) {
             self->state = 5;
         }
         break;
     case 5:
-        TWindowShortListCtrl::assign_item_to_palette(get_cursor_value__19TWindowMenuIconLineFv(self->list_win), self->player_id);
+        TWindowShortListCtrl::assign_item_to_palette(select_cursor_entry__22TWindowSubShortCutListFv(self->list_win), self->player_id);
         if (BACK_PRESSED(idx)) {
             play_sound_effect(0x52F16, 0, 0, 0);
             queue_destruction__7TObjectFv(self);
@@ -381,7 +392,7 @@ void run_task__20TWindowShortListCtrlFv(TWindowShortListCtrl *window_short_list_
         if (TWindowSubItem::is_usable((s32)player) == 0) {
             break;
         }
-        sel = get_cursor_value__19TWindowMenuIconLineFv(self->list_win);
+        sel = select_cursor_entry__22TWindowSubShortCutListFv(self->list_win);
         if (find_item_by_id(sel) == NULL) {
             return;
         }
@@ -397,12 +408,12 @@ void run_task__20TWindowShortListCtrlFv(TWindowShortListCtrl *window_short_list_
         }
         self->state = 7;
     case 7:
-        TWindowShortListCtrl::assign_item_to_palette(get_cursor_value__19TWindowMenuIconLineFv(self->list_win), self->player_id);
-        if (((TWindowMenuIconLine *)(self->list_win))->is_cancelled() != 0) {
+        TWindowShortListCtrl::assign_item_to_palette(select_cursor_entry__22TWindowSubShortCutListFv(self->list_win), self->player_id);
+        if (((TLobby *)(self->list_win))->get_flag_bit2() != 0) {
             queue_destruction__7TObjectFv(self);
             return;
         }
-        if (((TWindowMenuIconLine *)(self->list_win))->is_decided() != 0) {
+        if (((TUnk_804D0618 *)(self->list_win))->get_status_flag() != 0) {
             self->state = 8;
         }
         break;
@@ -415,7 +426,7 @@ void run_task__20TWindowShortListCtrlFv(TWindowShortListCtrl *window_short_list_
         if (TWindowSubItem::is_usable((s32)player) == 0) {
             return;
         }
-        sel = get_cursor_value__19TWindowMenuIconLineFv(self->list_win);
+        sel = select_cursor_entry__22TWindowSubShortCutListFv(self->list_win);
         if ((sel & 0xF) == 4) {
             if (TAdSinglePlyChrSelectGC::create_if_key_pressed() == 0) {
                 break;
@@ -438,7 +449,7 @@ void run_task__20TWindowShortListCtrlFv(TWindowShortListCtrl *window_short_list_
         ((TWindowSubComCard *)(self->tech_win))->clear_flag_and_release();
         self->state = 10;
     case 10:
-        ((TObjPlayer *)player)->update_cursor((s16)((TWindowMenu *)self->tech_win)->get_selected_value());
+        ((TObjPlayer *)player)->update_cursor(get_selected_menu_value(self->tech_win));
         if (update_selection__19TWindowSubTechniqueFPsPl(self->sub20, self->sub28, self->player_id) != 0) {
             ((TWindowShortListCtrl *)self)->refresh_technique_rows((s32) self->tech_win, (Sc_8026EBB0 *) lbl_8044F5A0);
         }
@@ -451,26 +462,26 @@ void run_task__20TWindowShortListCtrlFv(TWindowShortListCtrl *window_short_list_
                 ((TWindowShortListCtrl *)self)->refresh_technique_rows((s32) self->tech_win, (Sc_8026EBB0 *) lbl_8044F5A0);
             }
         }
-        if (((TWindowMenu *)(self->tech_win))->is_cancelled() != 0) {
+        if (((TWindowSubComCard *)(self->tech_win))->get_status_flag() != 0) {
             queue_destruction__7TObjectFv(self);
             return;
         }
-        if (((TWindowMenu *)(self->tech_win))->is_decided() != 0) {
+        if (((TWindowMenu *)(self->tech_win))->is_visible() != 0) {
             self->state = 11;
         }
         break;
     case 11:
-        ((TObjPlayer *)player)->update_cursor((s16)((TWindowMenu *)self->tech_win)->get_selected_value());
+        ((TObjPlayer *)player)->update_cursor(get_selected_menu_value(self->tech_win));
         if (BACK_PRESSED(idx)) {
             play_sound_effect(0x52F16, 0, 0, 0);
             queue_destruction__7TObjectFv(self);
             return;
         }
-        if (try_equip_item__10TObjPlayerFii(player, (s16)((TWindowMenu *)self->tech_win)->get_selected_value()) != 0) {
+        if (try_equip_item__10TObjPlayerFii(player, get_selected_menu_value(self->tech_win)) != 0) {
             queue_destruction__7TObjectFv(self);
             return;
         }
-        if (TWindowSubTechnique::is_technique_available((s16)((TWindowMenu *)self->tech_win)->get_selected_value(), self->player_id) == 0) {
+        if (TWindowSubTechnique::is_technique_available(get_selected_menu_value(self->tech_win), self->player_id) == 0) {
             ((TWindowShortListCtrl *)self)->refresh_technique_rows((s32) self->tech_win, (Sc_8026EBB0 *) lbl_8044F5A0);
             self->state = 9;
             return;
@@ -488,22 +499,22 @@ void *__dt__20TWindowShortListCtrlFv(TWindowShortListCtrl *arg0, s16 arg1) {
 
     if (arg0 != NULL) {
         *(void **)((s8 *)arg0 + 0x18) = __vt__20TWindowShortListCtrl;
-        player = get_player_by_client_id((s32)(arg0->m_24));
+        player = (s32) get_player_by_client_id((s32)(arg0->m_24));
         if ((player != 0) && (has_player_active_menu__11TWindowCtrlFv(arg0->m_24) == 0) && (TWindowCtrl__sub_8024A1A8() == 0)) {
             ((TObjPlayer *)player)->init_parts();
         }
         end_player_keyboard_hold(arg0->m_24);
         TWindowCtrl::clear_flag_8();
         if ((u32) arg0->m_34 != 0U) {
-            ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x34)))->close();
+            TWindow__close(*(void **)((s8 *)arg0 + 0x34));
             arg0->m_34 = 0U;
         }
         if ((u32) arg0->m_30 != 0U) {
-            ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x30)))->close();
+            TWindow__close(*(void **)((s8 *)arg0 + 0x30));
             arg0->m_30 = 0U;
         }
         if ((u32) arg0->m_2c != 0U) {
-            ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x2C)))->close();
+            TWindow__close(*(void **)((s8 *)arg0 + 0x2C));
             arg0->m_2c = 0U;
         }
         __dt__7TObjectFv(arg0, 0);
@@ -512,6 +523,43 @@ void *__dt__20TWindowShortListCtrlFv(TWindowShortListCtrl *arg0, s16 arg1) {
         }
     }
     return arg0;
+}
+
+TWindowShortListCtrl::TWindowShortListCtrl(TObject *parent, s32 client_id) : TObject(parent) {
+    m_name = TWindowShortListCtrl__name;
+    this->m_24 = client_id;
+    TObjPlayer *player = (TObjPlayer *)get_player_by_client_id(this->m_24);
+    if (player == NULL) {
+        queue_destruction();
+        return;
+    }
+    CharacterAppearanceFields *appearance = (CharacterAppearanceFields *)player->name;
+    if (appearance == NULL) {
+        queue_destruction();
+        return;
+    }
+    this->m_1c = get_card_window_flags(this->m_24);
+    if (this->m_1c == 2 && is_technique_usable() == 0) {
+        this->m_1c++;
+        if (this->m_1c >= 4) {
+            this->m_1c -= 4;
+        }
+    }
+    if ((appearance->classFlags & 0x10) && this->m_1c == 3) {
+        this->m_1c++;
+        if (this->m_1c >= 4) {
+            this->m_1c -= 4;
+        }
+    }
+    sub_8026EA48();
+    this->m_1e = 0;
+    this->m_2c = 0;
+    this->m_30 = 0;
+    this->m_34 = 0;
+    this->m_38 = (u32)-1;
+    begin_player_keyboard_hold(this->m_24);
+    TWindowCtrl::set_flag_active();
+    player->reset_equip_slots();
 }
 
 void TWindowShortListCtrl::set_card_window_flags(s32 arg0, s32 arg1) {

@@ -1,4 +1,7 @@
+#include "pso/system/ArrayAllocation.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/TMainTask.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/misc/TKeyBoardControl_8000F764.h"
@@ -70,11 +73,11 @@ void TOKeyAncient03::send_switch_changed(s32 flags) {
 }
 
 void TOKeyAncient03::trigger_deactivate_sound() {
-    play_sound_effect(0x4004B20D, &position, 0, 0);
+    play_sound_effect(0x4004B20D, (const Vec *)(&position), 0, 0);
 }
 
 void TOKeyAncient03::trigger_activate_sound() {
-    play_sound_effect(0x4004B20D, &position, 0, 0);
+    play_sound_effect(0x4004B20D, (const Vec *)(&position), 0, 0);
 }
 
 void TOKeyAncient03::update_switch_off() {
@@ -124,10 +127,10 @@ void TOKeyAncient03::render() {
     u32 flags;
 
     if (update_object_view_visibility(view_range, model_radius) != 0) {
-        TObjFish::set_global_param(TOKeyAncient03__texture_variants[is_on]);
+        set_current_texture_list((GinjaTextureList *)(TOKeyAncient03__texture_variants[is_on]));
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
+        rotate_matrix_y(NULL, this->rotation.yaw);
         object = (NJS_OBJECT *)model;
         post_translate_matrix(object->pos);
         draw_ginja_model((s32)object->model);
@@ -166,24 +169,22 @@ void TOKeyAncient03::cleanup_refs() {
     if (TOKeyAncient03__texture_variants != NULL) {
         TObjPlayer::free_if_valid(TOKeyAncient03__texture_variants[1]);
         if (TOKeyAncient03__texture_variants != NULL) {
-            mem_free(TOKeyAncient03__texture_variants);
+            ::operator delete[](TOKeyAncient03__texture_variants);
             TOKeyAncient03__texture_variants = NULL;
         }
     }
     if (TOKeyAncient03__model_archive != NULL) {
-        TLobby__sub_8001FE7C(TOKeyAncient03__model_archive, 1);
+        delete (BmlResource *)(TOKeyAncient03__model_archive);
         TOKeyAncient03__model_archive = NULL;
     }
 }
 
 void TOKeyAncient03::load_resources() {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
+    BmlResource *resource = new BmlResource(1, (BmlResourceDescriptor *)&bm_fs_obj_o_doorpanel_resource_descriptor, 0, 0, NULL);
     s32 *textures;
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_fs_obj_o_doorpanel_resource_descriptor, 0, 0, 0);
-    }
+
     TOKeyAncient03__model_archive = resource;
-    textures = (s32 *)mem_alloc(8);
+    textures = (s32 *)::operator new[](8);
     TOKeyAncient03__texture_variants = textures;
     textures[0] = TOKeyAncient03__model_archive->models[0].m_c;
     TOKeyAncient03__texture_variants[1] = (s32)load_gvm_texture_file((s32) "fs_obj_o_doorpanelg.gvm");

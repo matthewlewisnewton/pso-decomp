@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TLobby_801C25B4.h"
 #include "pso/misc/TLobby_802268F4.h"
@@ -15,7 +16,7 @@ extern u8 lbl_80438D48[];
 extern u8 lbl_80438D50[];
 void update_duel_end_effect(Obj_8007FA94 *self);
 void *__ct__17TDuelEffectNumberFP7TObjectPvPv(void *p, s32 v, void *s, s32 n);
-s32 play_sound_effect(s32, void *, s32, s32);
+
 extern u8 lbl_80438D40[];
 extern u8 lbl_80438D58[];
 f32 duel_start_countdown_effect_pos[3] = { 320.0f, 221.0f, 0.5f };

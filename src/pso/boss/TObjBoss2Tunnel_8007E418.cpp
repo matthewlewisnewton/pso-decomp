@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/map/CsnQuery.h"
 #include "pso/boss/TObjBoss2Tunnel_8007E418.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/system/vector.h"
@@ -15,7 +16,6 @@ extern const f32 TObjBoss2Tunnel__data_805D9234;
 s32 angle_diff_s16(s32, s32);
 s32 approach_angle_limited(s32, s32, s32);
 int vec3_add_to(void*, void*);
-void *csnVecterUnder(void *, s32, f32);
 
 s32 TObjBoss2Tunnel::decrement_packed_timer(u32 *arg0, s32 arg1) {
     u32 temp_r5;
@@ -31,36 +31,32 @@ s32 TObjBoss2Tunnel::decrement_packed_timer(u32 *arg0, s32 arg1) {
 
 extern f32 TObjBoss2Tunnel__data_805D9210;
 
-s32 TObjBoss2Tunnel::spawn_effect(s32 arg0, void *arg1, void *arg2) {
-    f32 temp_f1;
-    void *temp_r3;
+s32 adjust_point_to_ground_with_normal(const Vec *source, Vec *destination, Vec *normal) {
+    CsnHit *hit;
 
-    VecCopy((Vec *)arg1, (const Vec *)arg0);
-    temp_f1 = *(f32 *)((s8 *)arg1 + 4);
-    *(f32 *)((s8 *)arg1 + 4) = (f32) (temp_f1 + TObjBoss2Tunnel__data_805D9210);
-    temp_r3 = csnVecterUnder(arg1, 0x16EF, temp_f1);
-    if (temp_r3 != NULL) {
-        VecCopy((Vec *)arg1, (const Vec *)(*(s32 *)((s8 *)temp_r3 + 4)));
-        VecCopy((Vec *)arg2, (const Vec *)(*(s32 *)((s8 *)temp_r3 + 4) + 0xC));
+    VecCopy(destination, source);
+    destination->y += TObjBoss2Tunnel__data_805D9210;
+    hit = csnVecterUnder(destination, 0x16EF);
+    if (hit != NULL) {
+        VecCopy(destination, &hit->contact->point);
+        VecCopy(normal, &hit->contact->normal);
         return 1;
     }
-    VecCopy((Vec *)arg1, (const Vec *)arg0);
+    VecCopy(destination, source);
     return 0;
 }
 
-s32 TObjBoss2Tunnel::adjust_to_ground(s32 arg0, void *arg1) {
-    f32 temp_f1;
-    void *temp_r3;
+s32 adjust_point_to_ground(const Vec *source, Vec *destination) {
+    CsnHit *hit;
 
-    VecCopy((Vec *)arg1, (const Vec *)arg0);
-    temp_f1 = *(f32 *)((s8 *)arg1 + 4);
-    *(f32 *)((s8 *)arg1 + 4) = (f32) (temp_f1 + TObjBoss2Tunnel__data_805D9210);
-    temp_r3 = csnVecterUnder(arg1, 0x16EF, temp_f1);
-    if (temp_r3 != NULL) {
-        VecCopy((Vec *)arg1, (const Vec *)(*(s32 *)((s8 *)temp_r3 + 4)));
+    VecCopy(destination, source);
+    destination->y += TObjBoss2Tunnel__data_805D9210;
+    hit = csnVecterUnder(destination, 0x16EF);
+    if (hit != NULL) {
+        VecCopy(destination, &hit->contact->point);
         return 1;
     }
-    VecCopy((Vec *)arg1, (const Vec *)arg0);
+    VecCopy(destination, source);
     return 0;
 }
 

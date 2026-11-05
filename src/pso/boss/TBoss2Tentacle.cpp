@@ -1,3 +1,6 @@
+#include "pso/math/MatrixCopy.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/system/vector.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/TBoss2Tentacle.h"
@@ -93,7 +96,7 @@ void TBoss2Tentacle__sub_80039D64(void* a0);
 void TBoss2Tentacle__sub_80039DBC(void* p);
 void TBoss2Tentacle__sub_80039DD4(void* p);
 s32 approach_angle_limited(s32, s32, s32);
-s32 play_sound_effect(int, void *, int, int);
+
 f32 sin_table_lookup(s32);
 s32 matrix_mult_vec(int, void *, void *);
 s32 set_matrix_identity(int);
@@ -103,8 +106,14 @@ extern s32 boss2_tentacle_angle_limit_table[];
 void run_task__14TBoss2TentacleFv(u8 *arg0);
 s32 rand();
 extern s32 TBoss2Tentacle__name;
+extern const f32 lbl_805D855C;
+extern const f32 lbl_805D8560;
 f32 newton_sqrtf(f32);
 void TBoss2Tentacle__sub_80039990(void);
+extern const f32 lbl_805D8548;
+extern const f32 lbl_805D854C;
+extern const f32 lbl_805D8550;
+extern const f32 lbl_805D8554;
 void TBoss2Tentacle__sub_80039994(Obj_80039994 *o, f32 len);
 void TBoss2Tentacle__sub_80039D98(void* p);
 void TBoss2Tentacle__sub_80039DC8(void* p);
@@ -122,24 +131,24 @@ void render__14TBoss2TentacleFv(u8 *arg0) {
     u8 *temp_r7;
     u8 *temp_r8;
     set_motion_packed_rotation();
-    TObjFish::set_global_param(lbl_805D4BD8);
+    set_current_texture_list((GinjaTextureList *)(lbl_805D4BD8));
     push_matrix();
     switch (*(s32 *)((s8 *)arg0 + 0x1C)) {
     case 0:
-        TObjPlayer::concat_matrix(0, (int) (*(s32 *)((s8 *)arg0 + 0x110)));
+        concat_matrix((MtxP)(0), (const f32 (*)[4])((int) (*(s32 *)((s8 *)arg0 + 0x110))));
         rotate_matrix_y(0, (int) (*(s32 *)((s8 *)arg0 + 0x11C)));
         draw_model_motion((lbl_805D4BD0), (TBoss2Tentacle__motion_data), (f32) (*(f32 *)((s8 *)arg0 + 0x114)));
         break;
     case 1:
     case 4:
     case 5:
-        TObjPlayer::concat_matrix(0, (int) (*(s32 *)((s8 *)arg0 + 0x110)));
+        concat_matrix((MtxP)(0), (const f32 (*)[4])((int) (*(s32 *)((s8 *)arg0 + 0x110))));
         rotate_matrix_x(0, (int) (*(s32 *)((s8 *)arg0 + 0x120)));
         rotate_matrix_y(0, (int) (*(s32 *)((s8 *)arg0 + 0x11C)));
         draw_model_motion((lbl_805D4BD0), (TBoss2Tentacle__motion_data), (f32) (*(f32 *)((s8 *)arg0 + 0x114)));
         break;
     case 2:
-        TObjPlayer::concat_matrix(0, (int) (*(s32 *)((s8 *)arg0 + 0x110)));
+        concat_matrix((MtxP)(0), (const f32 (*)[4])((int) (*(s32 *)((s8 *)arg0 + 0x110))));
         rotate_matrix_x(0, (int) (*(s32 *)((s8 *)arg0 + 0x120)));
         rotate_matrix_y(0, (int) (*(s32 *)((s8 *)arg0 + 0x11C)));
         draw_chunk_object((lbl_805D4BD0));
@@ -215,7 +224,7 @@ void run_task__14TBoss2TentacleFv(u8 *arg0) {
         v.z = v.y = v.x = 0.0f;
         push_matrix();
         set_matrix_identity(0);
-        TObjPlayer::concat_matrix(0, F(s32, 0x110));
+        concat_matrix((MtxP)(0), (const f32 (*)[4])(F(s32, 0x110)));
         matrix_mult_vec(0, &v, arg0 + 0x140);
         pop_matrix();
         VecCopy((Vec *)&v, (const Vec *)(arg0 + 0x12C));
@@ -249,7 +258,7 @@ void run_task__14TBoss2TentacleFv(u8 *arg0) {
                 if (inst != NULL) {
                     emit_effect_and_step__13TBoss2DeRolLeFPvPv(inst, &pos);
                 }
-                play_sound_effect(0x4003A507, &pos, 0, 0);
+                play_sound_effect(0x4003A507, (const Vec *)(&pos), 0, 0);
             }
             if (F(f32, 0x138) >= 0.4f * len) {
                 F(f32, 0x13C) = 1.0f;
@@ -309,13 +318,13 @@ void TBoss2Tentacle__sub_80039994(Obj_80039994 *o, f32 len) {
     s32 i;
     s32 prev, ang;
     s32 j;
-    f32 scale = 0.5f;
+    f32 scale = lbl_805D8548;
     f32 half = scale * len;
-    f32 h = 60.0f - o->f144;
+    f32 h = lbl_805D854C - o->f144;
     f32 a;
     f32 step = o->f138;
     a = -(h / (half * half));
-    step /= 9.0f;
+    step /= lbl_805D8550;
     f32 dx, dy, px, py, w, k;
     for (i = 0; i < 10; i++) {
         f32 t = step * (f32)i;
@@ -354,7 +363,7 @@ void TBoss2Tentacle__sub_80039994(Obj_80039994 *o, f32 len) {
         for (i = 2; i < 12; i++) {
             o->pts[i].x = o->pts[i].x * w + k * ((V3_80039994 *)&TBoss2Tentacle__segment_points)[i].x;
         }
-        o->vals[2] = (s32)(16384.0f * (1.0f - o->f13C) + (f32)o->vals[2] * w);
+        o->vals[2] = (s32)(lbl_805D8554 * (1.0f - o->f13C) + (f32)o->vals[2] * w);
         for (i = 3; i < 12; i++) {
             o->vals[i] = (s32)((f32)o->vals[i] * w);
         }
@@ -393,6 +402,7 @@ void TBoss2Tentacle__sub_80039DBC(void* p) { *(s32*)((char*)p + 0x20) = 4; }
 void TBoss2Tentacle__sub_80039DC8(void* p) { *(s32*)((char*)p + 0x20) = 1; }
 void TBoss2Tentacle__sub_80039DD4(void* p) { *(s32*)((char*)p + 0x20) = 0; }
 
+    extern const float lbl_805D8558;
 
 void TBoss2Tentacle::reset_segment_points() {
     Obj_80039DE0 *self = (Obj_80039DE0 *)this;
@@ -403,7 +413,7 @@ void TBoss2Tentacle::reset_segment_points() {
     }
 }
 
-void TBoss2Tentacle__sub_80039E54(void* a0) { *(float*)((char*)a0 + 0x118) = 1.6f; *(int*)((char*)a0 + 0x124) = 3038; }
+void TBoss2Tentacle__sub_80039E54(void* a0) { *(float*)((char*)a0 + 0x118) = lbl_805D8558; *(int*)((char*)a0 + 0x124) = 3038; }
 
 void TBoss2Tentacle__sub_80039E68(void* p) { TBoss2Tentacle__sub_80039D98(p); }
 
@@ -423,6 +433,7 @@ void TBoss2Tentacle::forward_80039DC8() { TBoss2Tentacle__sub_80039DC8(this); }
 
 }
 
+// This position preserves the native function order and vtable relocation targets.
 TBoss2Tentacle::~TBoss2Tentacle() {}
 
 TBoss2Tentacle::TBoss2Tentacle(TObject *parent, s32 arg2, s32 arg3) : TObject(parent) {
@@ -437,8 +448,8 @@ TBoss2Tentacle::TBoss2Tentacle(TObject *parent, s32 arg2, s32 arg3) : TObject(pa
         VecCopy((Vec *)&((Obj_80039F50 *)this)->pts[i], (const Vec *)&TBoss2Tentacle__segment_points[i]);
         ((Obj_80039F50 *)this)->vals[i] = TBoss2Tentacle__segment_point_defaults[i];
     }
-    ((Obj_80039F50 *)this)->f114 = (TBoss2Tentacle__motion_data->frameCount - 1) * (3.0517578125e-05f * (f32)rand());
-    ((Obj_80039F50 *)this)->f118 = 0.8f;
+    ((Obj_80039F50 *)this)->f114 = (TBoss2Tentacle__motion_data->frameCount - 1) * (lbl_805D855C * (f32)rand());
+    ((Obj_80039F50 *)this)->f118 = lbl_805D8560;
     ((Obj_80039F50 *)this)->f11C = 0;
     ((Obj_80039F50 *)this)->f120 = 0;
     ((Obj_80039F50 *)this)->f124 = 0x5EF;

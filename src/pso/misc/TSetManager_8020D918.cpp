@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/TSetManager.h"
 #include "pso/misc/TLobby.h"
@@ -41,7 +42,6 @@ extern A_8020DBCC *quest_object_entries;
 extern B_8020DBCC *TLobby__data_805D6144;
 void read_disc_file(char *, void *);
 s32 replace_file_extension__6TLobbyFPvPvPv(char *arg0, char *arg1, char *arg2);
-void *mem_alloc(u32);
 }
 void arrive_floor_population(void);
 extern s32 lbl_805D60F8;
@@ -58,7 +58,6 @@ s32 load_map_decoration_rows(s32 map, s32 grp, s32 room);
 extern "C" {
 void* TSetManager__ct(void*, s32);
 void* __nw__7TObjectFUl(u32);
-void mem_free(void*);
 
 extern s32 tl_02;
 
@@ -71,12 +70,12 @@ void TSetManager::create() {
 
 void TLobby__sub_8020D94C(void) {
     if ((u32) TLobby__data_805D611C != 0U) {
-        mem_free((void*)TLobby__data_805D611C);
+        ::operator delete[]((void*)TLobby__data_805D611C);
         TLobby__data_805D611C = 0U;
         TLobby__data_805D6120 = 0;
     }
     if ((u32) TLobby__data_805D6124 != 0U) {
-        mem_free((void*)TLobby__data_805D6124);
+        ::operator delete[]((void*)TLobby__data_805D6124);
         TLobby__data_805D6124 = 0U;
         TLobby__data_805D6128 = 0;
     }
@@ -105,7 +104,7 @@ s32 load_map_decoration_rows(s32 map, s32 grp, s32 room) {
         return 0;
     }
     TLobby__data_805D6120 = (u32)size / 0x44;
-    if ((TLobby__data_805D611C = (u32)mem_alloc(TLobby__data_805D6120 * 0x44)) == 0) {
+    if ((TLobby__data_805D611C = (u32)::operator new[](TLobby__data_805D6120 * 0x44)) == 0) {
         return 0;
     }
     read_disc_file(path, (void *)TLobby__data_805D611C);

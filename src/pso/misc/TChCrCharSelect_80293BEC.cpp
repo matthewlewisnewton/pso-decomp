@@ -1,6 +1,7 @@
 #include "types.h"
 #include "pso/misc/TChCrTagName.h"
 #include "pso/misc/TChCrTagOccupation.h"
+#include "pso/TChCrTagOccHeader.h"
 #include "pso/TChCrCharSelect.h"
 #include "pso/TChCrTagOccupation.h"
 #include "pso/TChCrTagPlBack.h"

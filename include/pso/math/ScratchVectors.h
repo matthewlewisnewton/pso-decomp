@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include <dolphin/mtx/GeoTypes.h>
+#include "pso/math/ScratchVectorStorage.h"
 
 // Global scratch storage the game's movement code computes in.
 struct ScratchRotation {
@@ -11,8 +12,6 @@ struct ScratchRotation {
     s32 z;
 };
 
-extern Vec scratch_vec;
-extern Vec lbl_8050BF00;  // a second scratch vector, after scratch_vec
 extern ScratchRotation scratch_rotation;
 
 #endif

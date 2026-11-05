@@ -1,3 +1,8 @@
+#include "pso/enemy/BattleParameters.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
+#include "pso/player/TObjChara.h"
+#include "pso/player/demo_mode.h"
 #include "types.h"
 #include "pso/system/NinjaUtil.h"
 #include "pso/boss/TBoss3VoloptHiraisin.h"
@@ -15,7 +20,7 @@
 #include "pso/unk/text_803E2D70.h"
 
 extern "C" {
-s32 play_sound_effect(s32 id, Vec *pos, s32 a2, s32 flags);
+
 s32 TObjFish__sub_8001EDB0(BmlResource *resource, s32 index);
 void obj_setFlags30(TObject *obj, u32 mask);
 void submit_cursor_candidate(TObject *obj, s32 a1);
@@ -30,7 +35,6 @@ void scale_matrix(void *mtx, f32 x, f32 y, f32 z);
 
 TUnk_8048FA00 *init_from_model__11TBreakUpMdlFl(TUnk_8048FA00 *obj, s32 model);
 void trigger_dell_biter_events__10TObjPlayerFv(Vec *pos);
-void update_collisions__10TObjPlayerFv(TObjEnemy *obj);
 
 extern u32 model_render_flags;
 extern u32 saved_model_render_flags;
@@ -127,7 +131,7 @@ void TBoss3VoloptHiraisin::sub_80040FDC() {
         actorFlags |= 0x40000;
         ((CollisionState *)bodies)->flags |= 4;
         ((CollisionState *)bodies)->flags &= ~2;
-        play_sound_effect(0x4003A306, &position, 0, 0);
+        play_sound_effect(0x4003A306, (const Vec *)(&position), 0, 0);
         state = 1;
     case 1:
         position.y -= 0.5f;
@@ -146,9 +150,9 @@ void TBoss3VoloptHiraisin::start_attack() {
     s16 max_hp;
     u32 flags;
     TBoss3Volopt::create_breakup_mdl((s32)volopt_hiraisin_breakup_model, (s32)&volopt_hiraisin_breakup_params,
-                                     TObjFish__sub_8001EDB0(volopt_hiraisin_resources, 0x10), (s32)&m_2fc, rotation_y);
-    trigger_dell_biter_events__10TObjPlayerFv((Vec *)&m_2fc);
-    play_sound_effect(0x4001C112, &position, 0, 0);
+                                     TObjFish__sub_8001EDB0(volopt_hiraisin_resources, 0x10), (s32)&body_center_position, this->rotation.yaw);
+    trigger_dell_biter_events__10TObjPlayerFv((Vec *)&body_center_position);
+    play_sound_effect(0x4001C112, (const Vec *)(&position), 0, 0);
     m_388 &= ~1;
     max_hp = hpmax;
     referenceHp = max_hp;
@@ -177,19 +181,19 @@ void TBoss3VoloptHiraisin::update_drop() {
     switch (state) {
     case 0:
         this->requested_action = 4;
-        y_speed = -2.27f;
+        movement_velocity.y = -2.27f;
         state = 1;
         hover_angle = 0;
         break;
     case 1:
         advance_animation();
-        position.y = position.y + y_speed;
+        position.y = position.y + movement_velocity.y;
         if (position.y <= 4.6f) {
             position.y = 4.6f;
             state = 2;
             ((CollisionState *)bodies)->flags &= ~4;
             ((CollisionState *)bodies)->flags |= 2;
-            play_sound_effect(0x4003A808, &position, 0, 0);
+            play_sound_effect(0x4003A808, (const Vec *)(&position), 0, 0);
         }
         break;
     case 2:
@@ -203,7 +207,7 @@ void TBoss3VoloptHiraisin::update_drop() {
     case 3:
         break;
     }
-    update_collisions__10TObjPlayerFv(this);
+    ((TObjCollidable *)(this))->update_collisions();
 }
 
 void TBoss3VoloptHiraisin::sub_80041314() {
@@ -232,7 +236,7 @@ void TBoss3VoloptHiraisin::sub_80041314() {
 void TBoss3VoloptHiraisin::render() {
     f32 scale;
     if (!(actorFlags & 0x02000000) && update_object_view_visibility(400.0f, 40.0f) != 0) {
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         saved_model_render_flags = model_render_flags;
         model_render_flags |= 0x01000000;
         select_actor_lighting((s32)this);
@@ -244,8 +248,8 @@ void TBoss3VoloptHiraisin::render() {
             translate_matrix(0, 0.0f, 20.0f, 0.0f);
         }
         translate_matrix(0, 0.0f, sin_table_lookup(hover_angle), 0.0f);
-        rotate_matrix_y(NULL, rotation_y);
-        if (TObjPlayer::check_demo_mode() == 1) {
+        rotate_matrix_y(NULL, this->rotation.yaw);
+        if (check_demo_mode() == 1) {
             draw_chunk_object(model);
         } else {
             draw();
@@ -259,7 +263,7 @@ void TBoss3VoloptHiraisin::render() {
             scale = 1.0f - 0.02202643f * (position.y - 4.6f);
             translate_matrix(0, position.x, 4.5f, position.z);
             scale_matrix(NULL, scale, scale, scale);
-            TObjFish::set_global_param(TObjFish__sub_8001EDB0(volopt_hiraisin_resources, 0));
+            set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0(volopt_hiraisin_resources, 0)));
             draw_chunk_object((void *)get_bml_model(volopt_hiraisin_resources, 0));
             pop_matrix();
         }
@@ -286,7 +290,7 @@ void TBoss3VoloptHiraisin::dispatch_state() {
 }
 
 void TBoss3VoloptHiraisin::run_task() {
-    if (TObjPlayer::check_demo_mode() != 1) {
+    if (check_demo_mode() != 1) {
         if (mode != 5) {
             if (has_flag_0x800() != 0) {
                 vfunc_63();
@@ -303,11 +307,11 @@ void TBoss3VoloptHiraisin::run_task() {
             state = 0;
         }
         dispatch_state();
-        VecCopy((Vec *)&m_2fc, &position);
+        VecCopy((Vec *)&body_center_position, &position);
         if (mode != 5) {
-            m_300 -= 30.0f;
+            body_center_position.y -= 30.0f;
         }
-        copy_position();
+        copy_body_to_center();
         submit_cursor_candidate(this, -1);
         minimap_render_dot(&position, -0x5DB4, 1, 0);
         volopt_hiraisin_spin_node->rotation_y += 0x4000;
@@ -330,10 +334,10 @@ void TBoss3VoloptHiraisin::init_models() {
         breakup = init_from_model__11TBreakUpMdlFl(breakup, get_bml_model(volopt_hiraisin_resources, 0x10));
     }
     volopt_hiraisin_breakup_model = breakup;
-    volopt_hiraisin_stats = TLobby::register_boss(0x24);
-    volopt_hiraisin_stats_b = TLobby::dispatch_shared_handler_b(0x24);
-    volopt_hiraisin_object_params = TLobby::register_object(0x24);
-    volopt_hiraisin_stat_table = TLobby::dispatch_shared_handler_a(0x24);
+    volopt_hiraisin_stats = get_battle_base_stats(0x24);
+    volopt_hiraisin_stats_b = get_battle_attack_params(0x24);
+    volopt_hiraisin_object_params = get_battle_resistance_params(0x24);
+    volopt_hiraisin_stat_table = get_battle_movement_params(0x24);
 }
 
 void *TBoss3VoloptHiraisin::create(void *set_data) {
@@ -345,12 +349,12 @@ TBoss3VoloptHiraisin::~TBoss3VoloptHiraisin() {
 }
 
 void TBoss3VoloptHiraisin::init_params() {
-    VecCopy((Vec *)&m_2fc, &position);
-    m_300 -= 30.0f;
-    copy_position();
+    VecCopy((Vec *)&body_center_position, &position);
+    body_center_position.y -= 30.0f;
+    copy_body_to_center();
     motion_list = volopt_hiraisin_resources->motions;
     action_table = volopt_hiraisin_motions;
-    set_field_d8((s32)action_table);
+    set_action_table((TObjMotionAction *)((s32)action_table));
     init_collision_body_parts(this, volopt_hiraisin_body_parts, 1);
     variant = 0;
     movementParameters = &volopt_hiraisin_movement;
@@ -389,8 +393,8 @@ TBoss3VoloptHiraisin::TBoss3VoloptHiraisin(TObject *parent, void *set_data) : TO
     init_params();
 }
 
-void TBoss3VoloptHiraisin::copy_position() {
-    VecCopy(&center, (Vec *)&m_2fc);
+void TObjChara::copy_body_to_center() {
+    VecCopy(&center, (Vec *)&body_center_position);
 }
 
 void TBoss3VoloptHiraisin::load_params_from_table(s32 index) {

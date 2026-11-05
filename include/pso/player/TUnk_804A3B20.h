@@ -6,7 +6,6 @@
 class TUnk_804A3B20 : public TUnk_804A4948 {
 public:
     virtual ~TUnk_804A3B20();
-    virtual void vfunc_62();
     void *init_state_vtable();
 };
 

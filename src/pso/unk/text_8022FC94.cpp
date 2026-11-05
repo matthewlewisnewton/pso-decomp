@@ -1,3 +1,6 @@
+#include "pso/system/ArrayAllocation.h"
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/TParticleCtrl.h"
 #include "types.h"
 #include "pso/unk/text_80086D50.h"
@@ -97,9 +100,8 @@ s32 clamp_nonnegative_int(s32 x);
 extern RecoveredGlobal_8022FE84_lbl_804CC510 tech_high_level_linear_power_table;
 extern RecoveredGlobal_8022FE84_lbl_804CC55C lbl_804CC55C;
 extern "C" {
-s32 play_sound_effect(s32 id, void *pos, s32 a, s32 b);
+
 void queue_destruction__7TObjectFv(void *self);
-void mem_free(void *p);
 void __dl__7TObjectFPv(void *);
 extern TTecFoieData_80230144 TTecFoie__emitter_profile_table[];
 extern void *__vt__8TTecFoie[];
@@ -107,9 +109,9 @@ TTecFoie_80230144 *__dt__8TTecFoieFv(TTecFoie_80230144 *self, s16 deleting);
 s32 attach_particle_model(int, int, int, int, int, f32);
 void *spawn_particle_effect_with_rotation(void *pos, void *dir, s32 id, u16 e);
 void *spawn_continuous_particle_effect_with_flags(void *, s32, u16);
-s32 mem_alloc(s32);
 extern s32 lbl_805D63B0;
-void *spawn_particle_effect(void *pos, s32 id);
+extern const f32 lbl_805DC7F8;
+
 void *TTecFoie__ct(void *, void *, void *, void *, void *);
 void *construct_aimed__8TTecFoieFlPUcPUcs(void *, void *, void *, void *, void *);
 void *__nw__7TObjectFUl(int);
@@ -134,7 +136,7 @@ void TTecFoie::create_particle_emitters() {
   fwd.y = 0;
   fwd.z = self->az;
   spawn_directional_particle(self->pos, &fwd, 0x18);
-  self->emitters = (void **) mem_alloc(TTecFoie__emitter_profile_table[self->band].count * 4);
+  self->emitters = (void **) reinterpret_cast<s32>(::operator new[](TTecFoie__emitter_profile_table[self->band].count * 4));
   for (i = 0; i < TTecFoie__emitter_profile_table[self->band].count; i++)
   {
     Binding_8022FC94 *b = &(*((Binding_8022FC94 **) (&TTecFoie__emitter_profile_table[self->band])))[i];
@@ -159,7 +161,7 @@ void TTecFoie::create_particle_emitters() {
     {
       if ((*((Binding_8022FC94 **) (&TTecFoie__emitter_profile_table[self->band])))[i].flags & 0x20)
       {
-        attach_particle_model((int) self->emitters[i], TParticleCtrl::get_particle_model(0), lbl_805D63B0, 0, 1, 1.0f);
+        attach_particle_model((int) self->emitters[i], TParticleCtrl::get_particle_model(0), lbl_805D63B0, 0, 1, lbl_805DC7F8);
       }
       ((TParticleCtrl *)(self->emitters[i]))->set_scale((*((Binding_8022FC94 **) (&TTecFoie__emitter_profile_table[self->band])))[i].scale, (*((Binding_8022FC94 **) (&TTecFoie__emitter_profile_table[self->band])))[i].scale);
     }
@@ -189,8 +191,8 @@ void TTecFoie::init_projectile_params() {
 
 void TTecFoie::vfunc_6() {
     s32 arg0 = (s32)this;
-    spawn_particle_effect((void *)(arg0 + 0x20), 0x1DC);
-    spawn_particle_effect((void *)(arg0 + 0x20), 0x1DD);
+    spawn_particle_effect((const Vec *)((arg0 + 0x20)), 0x1DC);
+    spawn_particle_effect((const Vec *)((arg0 + 0x20)), 0x1DD);
 }
 
 void TTecFoie::vfunc_8(void *target_arg) {
@@ -199,7 +201,7 @@ void TTecFoie::vfunc_8(void *target_arg) {
     d.kind = 1;
     d.amount = this->power;
     target->receive(((Tec_80230004 *)this)->owner, d, ((Tec_80230004 *)this)->f8, 0, -1);
-    play_sound_effect(0x4002A828, target->pos, 0, 0);
+    play_sound_effect(0x4002A828, (const Vec *)(target->pos), 0, 0);
     queue_destruction__7TObjectFv(this);
 }
 
@@ -224,7 +226,7 @@ TTecFoie_80230144 *__dt__8TTecFoieFv(TTecFoie_80230144 *self, s16 deleting) {
         for (u32 i = 0; i < TTecFoie__emitter_profile_table[self->band].count; ++i) {
             queue_destruction__7TObjectFv(self->emitters[i]);
         }
-        mem_free(self->emitters);
+        ::operator delete[](self->emitters);
         ((TObjPlayer *)self)->destroy_technique_effect_resources(0);
         if (deleting > 0) __dl__7TObjectFPv(self);
     }

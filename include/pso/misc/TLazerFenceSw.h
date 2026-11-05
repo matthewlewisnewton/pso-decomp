@@ -6,9 +6,6 @@
 
 struct TLazerFenceSw : public TOKey {
     virtual ~TLazerFenceSw();
-    virtual void trigger_deactivate_sound();
-    virtual void trigger_activate_sound();
-    virtual void debug_draw_key_id();
     virtual void update_switch_off();
     virtual void update_switch_on();
     u32 m_104;

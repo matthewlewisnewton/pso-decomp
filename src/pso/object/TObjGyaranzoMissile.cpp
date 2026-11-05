@@ -1,5 +1,7 @@
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
-#include "pso/object/TObjGyaranzoMissile.h"
 #include "pso/system/NinjaUtil.h"
 #include "pso/system/vector.h"
 #include "pso/object/TObjMotion.h"
@@ -8,7 +10,10 @@
 #include "pso/player/TObjPlayer.h"
 
 
-CollisionBody gyaranzo_missile_collision_body_b = {{0.0f, 0.0f, 0.0f}, 0.0f, 0.0f, 0, 0x8001, {0.0f, 0.0f, 0.0f}, 0.0f};
+struct RecoveredGlobal_800D4BD0_lbl_80494468 {
+    s32 value;
+    u8 remaining[0x28];
+};
 
 struct RecoveredGlobal_800D4BD0___vt__19TObjGyaranzoMissile {
     s32 value;
@@ -49,18 +54,19 @@ extern s32 tl_04;
 s32 rand();
 s32 matrix_mult_vec(int, int, int);
 s32 rotate_matrix_x(int, int);
+extern RecoveredGlobal_800D4BD0_lbl_80494468 gyaranzo_missile_collision_body_b;
 extern s32 __vt__19TObjGyaranzoMissile[];
 extern s32 lbl_805D2A80;
 extern f32 TObjGyaranzoMissile__speed_scale;
 u8 *TObjGyaranzoMissile__ct(u8 *arg0, u8 *arg1, u8 *arg2, s16 arg3);
 void queue_destruction__7TObjectFv(void *);
 Obj_800D47B4 *get_battle_param__10TObjPlayerFi(s32);
-void *spawn_particle_effect(void *pos, s32 id);
+
 s32 remap_area_sound_id(s32 arg0, s32 arg1);
 void *find_entity_by_id(u16);
 void init_all_slots__10TObjPlayerFv(void *);
 void check_enemy_body_collisions(void *);
-s32 play_sound_effect(void *, void *, int, int);
+
 extern Parm_800D47B4 lbl_8043C464[];
 u32 csnVector(void *, void *, int);
 Target_800D4990 *find_active_entity_by_id(u16);
@@ -84,7 +90,6 @@ s32 draw_chunk_object();
 void translate_matrix(u32 arg0, f32 x, f32 y, f32 z);
 s32 push_matrix();
 void __dl__7TObjectFPv(void *);
-s32 set_global_param__8TObjFishFl();
 
 extern s32 model_render_flags;
 
@@ -111,18 +116,17 @@ void TObjGyaranzoMissile::sub_800D47B4() {
             }
         }
     }
-    spawn_particle_effect(&position, 0xFB);
-    play_sound_effect((void *)remap_area_sound_id(0x4003A80C, 0x19), &position, 0, 0);
+    spawn_particle_effect((const Vec *)(&position), 0xFB);
+    play_sound_effect((s32)((void *)remap_area_sound_id(0x4003A80C, 0x19)), &position, 0, 0);
     queue_destruction__7TObjectFv(this);
 }
 
 void TObjGyaranzoMissile::render() {
-    TObjFish__sub_8001EDB0((void *)gyaranzo_bml_resource, 6);
-    set_global_param__8TObjFishFl();
+    set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0((void *)gyaranzo_bml_resource, 6)));
     push_matrix();
     post_translate_matrix((u8 *)&this->position);
-    rotate_matrix_x(0, (int)this->rotation_x);
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_x(0, (int)this->rotation.pitch);
+    rotate_matrix_y(0, this->rotation.yaw);
     translate_matrix(0, 0.0f, (f32) (this->wobble_height * sin_table_lookup((int) this->wobble_phase)), 0.0f);
     model_render_flags &= 0xFFFFFBFF;
     get_bml_model((void *)gyaranzo_bml_resource, 6);
@@ -147,7 +151,7 @@ void TObjGyaranzoMissile::run_task() {
     }
     VecCopy(&prev_position, &position);
     vec3_add_to(&position, &velocity);
-    direction_to_rotation_xy((u8 *)&velocity, &rotation_x, &rotation_y);
+    direction_to_rotation_xy((u8 *)&velocity, &this->rotation.pitch, &this->rotation.yaw);
     wobble_phase += wobble_speed;
     if (timer >= 10) {
         if (csnVector(&prev_position, &position, -1) != 0) {
@@ -177,25 +181,32 @@ void TObjGyaranzoMissile::run_task() {
     }
 }
 
+void *__dt__19TObjGyaranzoMissileFv(void *arg0, s16 arg1) {
+    if (arg0 != NULL) {
+        *(s32 **)((s8 *)arg0 + 0x18) = __vt__19TObjGyaranzoMissile;
+        free_collision_body_parts(arg0);
+        __dt__14TObjCollidableFv(arg0, 0);
+        if (arg1 > 0) {
+            __dl__7TObjectFPv(arg0);
+        }
+    }
+    return arg0;
 }
-TObjGyaranzoMissile::~TObjGyaranzoMissile() {
-    free_collision_body_parts(this);
-}
-extern "C" {
 #pragma push
 #pragma fp_contract on
+typedef char RecoveredGlobal_800D4BD0_lbl_80494468_size[sizeof(RecoveredGlobal_800D4BD0_lbl_80494468) == 0x2C ? 1 : -1];
 typedef char RecoveredGlobal_800D4BD0___vt__19TObjGyaranzoMissile_size[sizeof(RecoveredGlobal_800D4BD0___vt__19TObjGyaranzoMissile) == 0x3C ? 1 : -1];
 u8 *TObjGyaranzoMissile__ct(u8 *gyaranzo_missile, u8 *arg1, u8 *arg2, s16 arg3) {
     u8 *temp_r4;
     __ct__14TObjCollidableFP7TObject(gyaranzo_missile, tl_04);
     *(s32 **)((s8 *)gyaranzo_missile + 0x18) = &(*(RecoveredGlobal_800D4BD0___vt__19TObjGyaranzoMissile *)&__vt__19TObjGyaranzoMissile).value;
     *(s32 *)((s8 *)gyaranzo_missile + 0) = (s32) lbl_805D2A80;
-    init_collision_body_parts(gyaranzo_missile, &gyaranzo_missile_collision_body_b, 1);
+    init_collision_body_parts(gyaranzo_missile, &gyaranzo_missile_collision_body_b.value, 1);
     ((Col_800D4990 *)((TObjGyaranzoMissile *)gyaranzo_missile)->bodies)->radius = (f32) 4.0f;
     VecCopy(&((TObjGyaranzoMissile *)gyaranzo_missile)->position, (const Vec *)((int) (*(s32 *)((s8 *)arg2 + 0))));
     ((TObjGyaranzoMissile *)gyaranzo_missile)->target_id = arg3;
     *(s32 *)((s8 *)gyaranzo_missile + 0x5C) = (s32) *(s32 *)((s8 *)arg2 + 4);
-    ((TObjGyaranzoMissile *)gyaranzo_missile)->rotation_y = (s32) *(s32 *)((s8 *)arg2 + 8);
+    ((TObjGyaranzoMissile *)gyaranzo_missile)->rotation.yaw = (s32) *(s32 *)((s8 *)arg2 + 8);
     ((TObjGyaranzoMissile *)gyaranzo_missile)->wobble_phase = (s32) (182.04445f * (3.6e+02f * (3.0517578e-05f * (f32) rand())));
     ((TObjGyaranzoMissile *)gyaranzo_missile)->wobble_speed = (s32) (*(f32 *)((s8 *)arg2 + 0xC) * (0.5f * ((3.0517578e-05f * (f32) rand()) + 1.0f)));
     ((TObjGyaranzoMissile *)gyaranzo_missile)->wobble_height = (f32) *(f32 *)((s8 *)arg2 + 0x10);
@@ -205,7 +216,7 @@ u8 *TObjGyaranzoMissile__ct(u8 *gyaranzo_missile, u8 *arg1, u8 *arg2, s16 arg3) 
     ((TObjGyaranzoMissile *)gyaranzo_missile)->velocity.y = (f32) 0.0f;
     ((TObjGyaranzoMissile *)gyaranzo_missile)->velocity.z = (f32) TObjGyaranzoMissile__speed_scale;
     push_matrix_from(identity_matrix);
-    rotate_matrix_y(0, (int) (((TObjGyaranzoMissile *)gyaranzo_missile)->rotation_y));
+    rotate_matrix_y(0, (int) (((TObjGyaranzoMissile *)gyaranzo_missile)->rotation.yaw));
     rotate_matrix_x(0, (int) (*(s32 *)((s8 *)gyaranzo_missile + 0x5C)));
     temp_r4 = (gyaranzo_missile + 0xAC);
     matrix_mult_vec(0, (int)temp_r4, (int)temp_r4);

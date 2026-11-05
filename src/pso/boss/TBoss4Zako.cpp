@@ -1,3 +1,5 @@
+#include "pso/enemy/BattleParameters.h"
+#include "pso/misc/ParticleFactory.h"
 #include "pso/boss/TBoss4Zako.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/player/TObjPlayer.h"
@@ -128,7 +130,7 @@ extern const f32 lbl_805D8CC8;
 extern const f32 lbl_805D8CE4;
 void vt6__9TBoss4UroFv(u8 *arg0);
 void queue_destruction__7TObjectFv(void *arg0);
-void *spawn_particle_effect(void *pos, s32 id);
+
 extern const f32 lbl_805D8CB8;
 extern const f32 lbl_805D8CC0;
 void vt2__11TBoss4BishiFv(u8 *arg0);
@@ -316,7 +318,7 @@ extern "C" TObjEnemy *__ct__9TObjEnemyFP7TObject(void *, void *);
 
 struct O_8005D6B0 { u8 pad[0x374]; s32 f374; };
 
-f32 *dispatch_shared_handler_a__6TLobbyFl(s32);
+
 s32 get_instance_count__9TBoss4UroFv();
 
 void *create_particle_emitter(void *pos, s32 id);
@@ -410,7 +412,7 @@ s32 TBoss4Zako__ct(s32 arg0, s32 parent, s32 arg2) {
     *(f32 *)((s8 *)THIS + 0x30C) = lbl_805D8CBC;
     *(f32 *)((s8 *)THIS + 0x308) = lbl_805D8CBC;
     *(s32 *)((s8 *)THIS + 0x2A8) = 0;
-    ((TObjEnemy *)THIS)->bind_enemy_combat_stats((u8 *)(TLobby::register_boss(0x35)), (u8 *)(TLobby::dispatch_shared_handler_b(0x35)), (u8 *)(TLobby::register_object(0x35)));
+    ((TObjEnemy *)THIS)->bind_enemy_combat_stats((u8 *)(get_battle_base_stats(0x35)), (u8 *)(get_battle_attack_params(0x35)), (u8 *)(get_battle_resistance_params(0x35)));
     *(s16 *)((s8 *)THIS + 0x33E) = *(s16 *)((s8 *)THIS + 0x32C);
     ((TBoss3Volopt *)THIS)->reset_photon_effect();
     ((TObjEnemy *)THIS)->set_param(0);
@@ -431,11 +433,11 @@ s32 TBoss4Zako__ct(s32 arg0, s32 parent, s32 arg2) {
     *(f32 *)((s8 *)THIS + 0x3B0) = lbl_805D8CBC;
     *(s32 *)((s8 *)THIS + 0x3BC) = lbl_805D8CF8 * random_ratio__9TObjCharaFv((s32)THIS);
     *(s32 *)((s8 *)THIS + 0x3C0) = lbl_805D8D34 * random_ratio__9TObjCharaFv((s32)THIS) + lbl_805D8D30;
-    *(f32 *)((s8 *)THIS + 0x39C) = *dispatch_shared_handler_a__6TLobbyFl(0x35);
+    *(f32 *)((s8 *)THIS + 0x39C) = *((f32 *)get_battle_movement_params(0x35));
     if (*(f32 *)((s8 *)THIS + 0x39C) <= TBoss4Zako_one_third || *(f32 *)((s8 *)THIS + 0x39C) > lbl_805D8D38) {
         *(f32 *)((s8 *)THIS + 0x39C) = lbl_805D8D3C;
     }
-    *(f32 *)((s8 *)THIS + 0x3A0) = *dispatch_shared_handler_a__6TLobbyFl(0x39);
+    *(f32 *)((s8 *)THIS + 0x3A0) = *((f32 *)get_battle_movement_params(0x39));
     if (*(f32 *)((s8 *)THIS + 0x3A0) <= TBoss4Zako_one_third || *(f32 *)((s8 *)THIS + 0x3A0) > lbl_805D8D40) {
         *(f32 *)((s8 *)THIS + 0x3A0) = lbl_805D8D44;
     }
@@ -526,7 +528,7 @@ void TBoss4Zako::run_task() {
         if (((TBoss4Zako *)self)->sub_8005D698() != 0) {
             if (self->m_3a8 != 0) {
                 self->m_384->flags |= 1;
-                ((TObjPlayer *)self)->update_collisions();
+                ((TObjCollidable *)self)->update_collisions();
                 submit_cursor_candidate(self, -1);
                 minimap_render_dot(self->m_2fc, -0x5DB4, 1, 0);
             } else {
@@ -662,7 +664,7 @@ void TBoss4Zako::update_sink_state() {
     m_38.y = (f32) (m_38.y + lbl_805D8CB8);
     temp_f1 = m_38.y;
     if ((temp_f1 < lbl_805D8CBC) && (temp_f1 >= lbl_805D8CB8)) {
-        spawn_particle_effect((&m_38), 0xF3);
+        spawn_particle_effect((const Vec *)((&m_38)), 0xF3);
     }
     m_5c = (m_5c + 0x111);
     if (m_38.y < lbl_805D8CC0) {
@@ -849,7 +851,7 @@ void run_task__9TBoss4UroFv(TBoss4Uro *self) {
         ((TBoss4Zako *)self)->apply_contact_damage();
         ((TObjEnemy *)self)->update_prev_position();
         if (((TBoss4Zako *)self)->sub_8005D698() != 0) {
-            ((TObjPlayer *)self)->update_collisions();
+            ((TObjCollidable *)self)->update_collisions();
             submit_cursor_candidate(self, -1);
             minimap_render_dot(self->f2FC, -0x5DB4, 1, 0);
         }
@@ -940,7 +942,7 @@ void vt5__9TBoss4UroFv(u8 *arg0) {
     *(f32 *)((s8 *)arg0 + 0x3C) = (f32) (*(f32 *)((s8 *)arg0 + 0x3C) + lbl_805D8CB8);
     temp_f1 = *(f32 *)((s8 *)arg0 + 0x3C);
     if ((temp_f1 < lbl_805D8CBC) && (temp_f1 >= lbl_805D8CB8)) {
-        spawn_particle_effect((arg0 + 0x38), 0xF3);
+        spawn_particle_effect((const Vec *)((arg0 + 0x38)), 0xF3);
     }
     *(s32 *)((s8 *)arg0 + 0x5C) = (s32) (*(s32 *)((s8 *)arg0 + 0x5C) + 0x111);
     if (*(f32 *)((s8 *)arg0 + 0x3C) < lbl_805D8CC0) {
@@ -1077,7 +1079,7 @@ void TBoss4Zako__sub_8005BC4C(TBoss4Bishi *self) {
         ((TBoss4Zako *)self)->apply_contact_damage();
         ((TObjEnemy *)self)->update_prev_position();
         if (((TBoss4Zako *)self)->sub_8005D698() != 0) {
-            ((TObjPlayer *)self)->update_collisions();
+            ((TObjCollidable *)self)->update_collisions();
             submit_cursor_candidate(self, -1);
             minimap_render_dot(self->f2FC, -0x5DB4, 1, 0);
         }
@@ -1119,7 +1121,7 @@ void vt2__11TBoss4BishiFv(u8 *arg0) {
     *(f32 *)((s8 *)arg0 + 0x3C) = (f32) (*(f32 *)((s8 *)arg0 + 0x3C) + lbl_805D8CB8);
     temp_f1 = *(f32 *)((s8 *)arg0 + 0x3C);
     if ((temp_f1 < lbl_805D8CBC) && (temp_f1 >= lbl_805D8CB8)) {
-        spawn_particle_effect((arg0 + 0x38), 0xF3);
+        spawn_particle_effect((const Vec *)((arg0 + 0x38)), 0xF3);
     }
     *(s32 *)((s8 *)arg0 + 0x5C) = (s32) (*(s32 *)((s8 *)arg0 + 0x5C) + 0x111);
     if (*(f32 *)((s8 *)arg0 + 0x3C) < lbl_805D8CC0) {
@@ -1167,7 +1169,7 @@ void enemy_spawn_jellen_effect__9TObjCharaFv();
 void apply_switch_attack__9TObjCharaFv();
 void vfunc_78__9TObjCharaFl();
 void vfunc_77__9TObjCharaFv();
-void vfunc_76__9TObjCharaFv();
+void vfunc_76__9TObjCharaFf();
 void vfunc_75__9TObjCharaFf();
 void vfunc_28__9TObjCharaFv();
 void get_actor_level_index__9TObjCharaFv();
@@ -1309,7 +1311,7 @@ s32 __vt__11TBoss4Bishi[83] = {
     (s32)recalc_stats__9TObjCharaFv,
     (s32)vfunc_74__9TObjEnemyFl,
     (s32)vfunc_75__9TObjCharaFf,
-    (s32)vfunc_76__9TObjCharaFv,
+    (s32)vfunc_76__9TObjCharaFf,
     (s32)vfunc_77__9TObjCharaFv,
     (s32)vfunc_78__9TObjCharaFl,
     (s32)vfunc_79__9TObjEnemyFPl,
@@ -1394,7 +1396,7 @@ s32 __vt__9TBoss4Uro[83] = {
     (s32)recalc_stats__9TObjCharaFv,
     (s32)vfunc_74__9TObjEnemyFl,
     (s32)vfunc_75__9TObjCharaFf,
-    (s32)vfunc_76__9TObjCharaFv,
+    (s32)vfunc_76__9TObjCharaFf,
     (s32)vfunc_77__9TObjCharaFv,
     (s32)vfunc_78__9TObjCharaFl,
     (s32)vfunc_79__9TObjEnemyFPl,
@@ -1479,7 +1481,7 @@ s32 __vt__10TBoss4Zako[83] = {
     (s32)recalc_stats__9TObjCharaFv,
     (s32)vfunc_74__9TObjEnemyFl,
     (s32)vfunc_75__9TObjCharaFf,
-    (s32)vfunc_76__9TObjCharaFv,
+    (s32)vfunc_76__9TObjCharaFf,
     (s32)vfunc_77__9TObjCharaFv,
     (s32)vfunc_78__9TObjCharaFl,
     (s32)vfunc_79__9TObjEnemyFPl,

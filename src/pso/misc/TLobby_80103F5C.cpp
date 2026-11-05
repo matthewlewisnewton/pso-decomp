@@ -1,3 +1,5 @@
+#include "pso/system/ArrayAllocation.h"
+#include "pso/protocol/ItemDropPacket.h"
 #include "pso/misc/TLobby_801E43E4.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_80120FC4.h"
@@ -10,23 +12,6 @@
 #include "pso/misc/TLobby.h"
 #include "pso/item/TItemData.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/item/TUnk_8049F770.h"
-#include "pso/item/TUnk_8049FE00.h"
-#include "pso/item/TUnk_8049FC90.h"
-#include "pso/item/TUnk_8049FA50.h"
-#include "pso/item/TUnk_8049F8E0.h"
-#include "pso/item/TUnk_8049FB08.h"
-#include "pso/item/TUnk_8049F998.h"
-#include "pso/item/TUnk_8049FD48.h"
-#include "pso/item/TUnk_8049FED0.h"
-#include "pso/item/TUnk_8049FF88.h"
-#include "pso/unk/TUnk_8049FBC0.h"
-#include "pso/item/TUnk_8049F828.h"
-#include "pso/enemy/TUnk_804E6FA8.h"
-#include "pso/item/TUnk_804F112C.h"
-#include "pso/unk/TUnk_804F0C48.h"
-#include "pso/item/TUnk_804F0D34.h"
-#include "pso/unk/TUnk_804F0FF0.h"
 
 struct In_8010440C { u8 pad0; u8 idx; };
 
@@ -38,9 +23,9 @@ struct Ent_80103F68 { u8 pad[0x24]; };
 #pragma auto_inline off
 #pragma dont_inline off
 
+struct Tbl_801044B8 { s32 v[17]; };
 
 extern "C" {
-void mem_free(void *p);
 extern u32 TLobby__floor_item_entry_pool;
 extern s32 floor_item_row_table;
 extern s32 floor_item_counts_by_floor;
@@ -49,7 +34,6 @@ extern int floor_item_free_id_count;
 extern s32 floor_item_next_sort_keys;
 extern s32 lbl_805D5430;
 s32 __construct_new_array(s32, s32 *, s32, s32, s32);
-s32 mem_alloc(s32);
 extern s32 __ct__9FloorItemFv[];
     extern int lbl_805D5868;
 void TLobby__sub_801041BC(void *arg0);
@@ -74,40 +58,15 @@ extern s32 TLobby__designated_client_id;
 void send_6x26_unequip_item__10TObjPlayerFPvPv(void *self, void *item);
 s32 get_item_id__5TItemFv();
 int get_item_field_6__10TObjPlayerFPv(void *p);
+extern void *item_tool_factory_table[];
 void *TLobby__sub_8010440C(In_8010440C *arg0);
 void *get_weapon_factory_for_item(In_80104438 *arg0);
 int is_quest_active(void);
 s32 TItemDropSub__sub_80107B74();
 }
 extern void *weapon_factory_table[];
-// Tool item factories, indexed by the tool type byte (TLobby__sub_8010440C).
-void *item_tool_factory_table[24] = {
-    (void *)TUnk_8049F770::create,
-    (void *)TUnk_8049FE00::create,
-    (void *)create_technique_disk_item,
-    (void *)create_sol_atomizer_item,
-    (void *)create_moon_atomizer_item,
-    (void *)create_star_atomizer_item,
-    (void *)create_status_cure_item,
-    (void *)create_telepipe_item,
-    (void *)TUnk_8049FED0::create,
-    (void *)TItemObject::create,
-    (void *)create_item_grinder,
-    (void *)create_material_item,
-    (void *)TUnk_8049F828::create,
-    (void *)TItemObject::create,
-    (void *)TItemObject::create,
-    (void *)create_add_slot_item,
-    (void *)TItemObject::create,
-    (void *)TItemObject::create,
-    (void *)TItemObject::create,
-    (void *)TItemObject::create,
-    (void *)TUnk_804F112C::create,
-    (void *)TUnk_804F0C48::create,
-    (void *)TUnk_804F0D34::create,
-    (void *)TUnk_804F0FF0::create,
-};
 
+extern Tbl_801044B8 item_drop_area_remap_table;
 void normalize_drop_area(s32 *p);
 extern "C" {
 void bswap_sync_item_state_header(G_SyncItemState_6x6D_Decompressed *header);
@@ -137,28 +96,28 @@ void TLobby::reset_floor_items() {
 }
 
 void TLobby::free_boss_rocks() {
-    mem_free((void *)floor_item_next_sort_keys);
+    ::operator delete[]((void *)floor_item_next_sort_keys);
     floor_item_next_sort_keys = 0;
-    mem_free((void *)floor_item_free_id_stack);
+    ::operator delete[]((void *)floor_item_free_id_stack);
     floor_item_free_id_stack = 0;
     (*(s32 *)&floor_item_free_id_count) = 0;
-    mem_free((void *)floor_item_counts_by_floor);
+    ::operator delete[]((void *)floor_item_counts_by_floor);
     floor_item_counts_by_floor = 0;
-    mem_free((void *)floor_item_row_table);
+    ::operator delete[]((void *)floor_item_row_table);
     floor_item_row_table = 0;
     if ((u32) TLobby__floor_item_entry_pool != 0U) {
-        mem_free((void *)(TLobby__floor_item_entry_pool - 0x10));
+        ::operator delete[]((void *)(TLobby__floor_item_entry_pool - 0x10));
     }
     TLobby__floor_item_entry_pool = 0U;
     ((FlagWord *)(&lbl_805D5430))->reset();
 }
 void TLobby::alloc_objects() {
-    (*(s32 *)&TLobby__floor_item_entry_pool) = __construct_new_array(mem_alloc(0x1E610), __ct__9FloorItemFv, 0, 0x24, 0xD80);
-    floor_item_row_table = mem_alloc(0x48);
-    floor_item_counts_by_floor = mem_alloc(0x48);
-    floor_item_free_id_stack = mem_alloc(0x40);
+    (*(s32 *)&TLobby__floor_item_entry_pool) = __construct_new_array(reinterpret_cast<s32>(::operator new[](0x1E610)), __ct__9FloorItemFv, 0, 0x24, 0xD80);
+    floor_item_row_table = reinterpret_cast<s32>(::operator new[](0x48));
+    floor_item_counts_by_floor = reinterpret_cast<s32>(::operator new[](0x48));
+    floor_item_free_id_stack = reinterpret_cast<s32>(::operator new[](0x40));
     (*(s32 *)&floor_item_free_id_count) = 0;
-    floor_item_next_sort_keys = mem_alloc(0x24);
+    floor_item_next_sort_keys = reinterpret_cast<s32>(::operator new[](0x24));
     ((FlagWord *)(&lbl_805D5430))->reset();
     TLobby::reset_floor_items();
 }
@@ -173,7 +132,15 @@ void TLobby__sub_801041BC(void *arg0) {
 void TLobby__sub_801041D8(void) {
     ((FlagWord *)(&lbl_805D5430))->set(1);
 }
-void TLobby::bswap_item() { bswap_16((u16 *)((char*)this + 0x2)); bswap_32((u32 *)((char*)this + 0x4)); bswap_32((u32 *)((char*)this + 0x8)); bswap_16((u16 *)((char*)this + 0xc)); bswap_16((u16 *)((char*)this + 0xe)); bswap__9TItemDataFv((s32)((char*)this + 0x10)); }
+void bswap_item__6TLobbyFv(void *record) {
+    u8 *bytes = static_cast<u8 *>(record);
+    bswap_16(reinterpret_cast<u16 *>(bytes + 2));
+    bswap_32(reinterpret_cast<u32 *>(bytes + 4));
+    bswap_32(reinterpret_cast<u32 *>(bytes + 8));
+    bswap_16(reinterpret_cast<u16 *>(bytes + 0xC));
+    bswap_16(reinterpret_cast<u16 *>(bytes + 0xE));
+    bswap__9TItemDataFv(reinterpret_cast<s32>(bytes + 0x10));
+}
 
 TLobbyFloorItemEntry *TLobby::copy_floor_item_entry(TLobbyFloorItemEntry *dst, TLobbyFloorItemEntry *src) {
     *dst = *src;
@@ -279,8 +246,8 @@ void normalize_drop_area(s32 *p) {
     } else if (p != NULL) {
         v = *p;
         if (v >= 0x13 && v < 0x24) {
-            s32 remap[17] = { 1, 2, 3, 4, 8, 5, 6, 7, 8, 9, 10, 9, 10, 3, 5, 8, 10 };
-            *p = remap[(u32)(v - 0x13)];
+            Tbl_801044B8 t = item_drop_area_remap_table;
+            *p = t.v[(u32)(v - 0x13)];
         }
     }
 }

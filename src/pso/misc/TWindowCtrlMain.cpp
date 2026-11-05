@@ -46,7 +46,7 @@ s32 TWindowMainMenu__sub_8024E3D4(void *);
 int spawn_action_palette_slot_light(void*);
 int open_submenu__15TWindowSubEquipFll(void*);
 int render_nodes__7TObjectFv(void);
-int append_line__14TWindowMessageFii(void*);
+int send_and_handle__6TLobbyFii(void*);
 int try_open_battle_menu__15TWindowMainMenuFs(void*);
 int update_com_card__9TWindowDDFv(void*);
 
@@ -56,6 +56,7 @@ void TWindowCtrlMain::run_task() { { (void)(update_com_card__9TWindowDDFv(this))
 void load_hud_palette_textures(void);
 extern void *TWindowCtrlMain__display_flags;
 extern f32 window_depth_order_cursor;
+extern const f32 lbl_805DCC58;
 TWindowCtrlMain::~TWindowCtrlMain() {
     W_8024D3C0 *root;
     s32 i;
@@ -178,7 +179,7 @@ void TWindowCtrlMain::reset_all(void* _w0) {
     TWindowCtrlMain__sub_controller = 0;
     window_clip_out_instance = 0;
     TWindowCtrlMain__instance = 0;
-    window_depth_order_cursor = -1.5999999f;
+    window_depth_order_cursor = lbl_805DCC58;
     for (i = 0; i < 6; i++) {
         ((TWindowCtrlMain *)(&TWindowCtrlMain__viewport_states[i]))->init_fields();
     }
@@ -191,7 +192,7 @@ bool TWindowCtrlMain__sub_8024D868(u8 *arg0) {
     return *(s16 *)((s8 *)arg0 + 0x20) <= 0;
 }
 
-void TWindowCtrlMain::update_child_2c() { void* m = *(void**)((char*)this + 0x2c); if (m) append_line__14TWindowMessageFii(m); }
+void TWindowCtrlMain::update_child_2c() { void* m = *(void**)((char*)this + 0x2c); if (m) send_and_handle__6TLobbyFii(m); }
 void TWindowCtrlMain::spawn_palette_slot_light() { void* m = *(void**)((char*)this + 0x34); if (m) spawn_action_palette_slot_light(m); }
 void TWindowCtrlMain::update_field28() { void* m = *(void**)((char*)this + 0x28); if (m) open_submenu__15TWindowSubEquipFll(m); }
 void TWindowCtrlMain::free_member() { void* m = *(void**)((char*)this + 0x28); if (m) try_open_battle_menu__15TWindowMainMenuFs(m); }
