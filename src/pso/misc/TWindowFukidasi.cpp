@@ -10,6 +10,7 @@
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/misc/TWindowCtrl.h"
 #include "pso/misc/TWindowCtrlMain.h"
+#include "pso/misc/TLobby.h"
 #include "pso/misc/TWindowKeyBoardSoft.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 #include "pso/misc/TWindowSubSymbolChat.h"
@@ -162,7 +163,6 @@ u32 get_player_by_client_id(u32);
 s32 get_array_entry__13TUnk_804CE018Fi(void *, s32);
 
 s32 get_field_20__17TWindowSubComCardFv();
-s32 set_field_1c__6TLobbyFf(f32);
 s32 refresh_status_display__9TWindowDDFv(void *);
 s32 draw_resolved_window__15TWindowFukidasiFllll(Fuki_80250F70 *, f32 *, f32 *, s32);
 f32 * get_message_by_type__11TWindowCtrlFScl(u8, int);
@@ -856,7 +856,7 @@ __declspec(section ".sdata2") extern const f32 lbl_805DCD54[1] = {1000000.0f};
 
 void TWindowFukidasi::init_flags(s32 flags) {
     this->m_58 = (f32) (TWindowFukidasi__data_805DCD30[0]);
-    set_field_1c__6TLobbyFf(60000.0f);
+    ((TLobby *)this)->set_field_1c(60000.0f);
     if (this->sub_80246948() != 0) {
         this->m_2c = (s32) (this->m_2c | 1);
     }
