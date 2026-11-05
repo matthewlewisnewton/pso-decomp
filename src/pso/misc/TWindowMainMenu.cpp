@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/misc/TWindowLockOn.h"
@@ -91,7 +92,7 @@ void TWindowMainMenu::update_submenu() {
 void TWindowMainMenu::close_submenu(void* a1) { if (m_1c != NULL) { m_1c->pop_level(); m_1c->clear_menu_flags(); populate_menu__15TWindowMainMenuFPvPv((u8 *)this, (Ent_802646E4 *)(a1)); } }
 void TWindowMainMenu::refresh_submenu(void* a1) { if (m_1c != NULL) { m_1c->park_selection(); m_1c->clear_menu_flags(); populate_menu__15TWindowMainMenuFPvPv((u8 *)this, (Ent_802646E4 *)(a1)); } }
 
-void TWindowMainMenu::close() { if (*(unsigned int*)((char*)this + 0x1c) != 0) { TWindow__close((u8 *)(*(void**)((char*)this + 0x1c))); *(int*)((char*)this + 0x1c) = 0; } }
+void TWindowMainMenu::close() { if (*(unsigned int*)((char*)this + 0x1c) != 0) { ((TWindowBase *)(*(void**)((char*)this + 0x1c)))->close(); *(int*)((char*)this + 0x1c) = 0; } }
 
 void TWindowMainMenu::open_menu_with_entry(s16 arg1) {
     TWindowMenuMainMenu *menu;

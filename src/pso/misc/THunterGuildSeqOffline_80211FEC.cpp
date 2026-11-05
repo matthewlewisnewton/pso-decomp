@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/misc/THunterGuildSeqOffline_80211FEC.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/misc/TLobby.h"
@@ -26,7 +27,7 @@ void *refresh_with_default_list__20TWindowSubStatusDispFll(void *, void *);
 void *get_window_layout_position(s32);
 char *strcpy(char *, const char *);
 extern u8 member_name_window_pos[];
-u8 *THunterGuildSeqOffline__ct(u8 *arg0, s32 arg1, s32 arg2);
+u8 *THunterGuildSeqOffline__ct(u8 *arg0, s32 arg1, TObjPlayer *player);
 void *__nw__7TObjectFUl(int);
 
     extern int lbl_80513E70[];
@@ -40,7 +41,7 @@ extern void *tl_05;
 void *THunterGuildSeqOffline::create(void *arg0) {
     void *o = __nw__7TObjectFUl(0x3C);
     if (o != NULL) {
-        o = THunterGuildSeqOffline__ct((u8 *)o, (s32)tl_05, (s32)arg0);
+        o = THunterGuildSeqOffline__ct((u8 *)o, (s32)tl_05, (TObjPlayer *)arg0);
     }
     return o;
 }
@@ -59,7 +60,7 @@ s32 THunterGuildSeqOffline__sub_80212074(void) {
     if (player == 0) {
         return 0;
     }
-    temp_r3_3 = ((TBoss3Volopt *)player)->get_field_3e0();
+    temp_r3_3 = ((TObjPlayer *)player)->get_current_area();
     if ((temp_r3_3 != 0x12) && ((temp_r3_3 >= 0x12) || (temp_r3_3 != 0))) {
         return 0;
     }
@@ -86,7 +87,7 @@ s32 THunterGuildSeqOffline::check_party_gathered() {
     for (i = 0; i < 4; i++) {
         u32 q = get_player_by_client_id(i);
         if (q != 0) {
-            switch (((TBoss3Volopt *)q)->get_field_3e0()) {
+            switch (((TObjPlayer *)q)->get_current_area()) {
             case 0:
             case 0x12:
                 break;
@@ -139,7 +140,7 @@ void TMemberCheck::open_member_name_window() {
     Seq_80212304 *self = (Seq_80212304 *)this;
     s32 i;
     if (self->win != 0) {
-        TWindow__close((u8 *)self->win);
+        ((TWindowBase *)self->win)->close();
         self->win = 0;
     }
     self->win = refresh_with_default_list__20TWindowSubStatusDispFll(get_window_layout_position(0xBD), member_name_window_pos);

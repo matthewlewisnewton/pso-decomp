@@ -15,7 +15,7 @@ void *initialize_with_flags__13TParticleCtrlFPCvlllllUs(void *, void *, void *, 
 
 #pragma push
 #pragma opt_propagation off
-void *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags) {
+TParticleCtrl *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags) {
     void *p;
     s32 idx = id;
     if (particle_pool_limit > idx) {
@@ -23,7 +23,7 @@ void *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags) {
         if (p != 0) {
             p = initialize_with_flags__13TParticleCtrlFPCvlllllUs(p, pos, &particle_global_entry_table[idx], 1, 0, 0, 0, flags);
         }
-        return p;
+        return (TParticleCtrl *)p;
     }
     if (particle_pool_limit + 0x40 > idx) {
         idx -= 0x200;
@@ -31,7 +31,7 @@ void *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags) {
         if (p != 0) {
             p = initialize_with_flags__13TParticleCtrlFPCvlllllUs(p, pos, &particle_area_entry_table[idx], 1, 0, 0, 0, flags);
         }
-        return p;
+        return (TParticleCtrl *)p;
     }
     return 0;
 }

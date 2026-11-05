@@ -15,19 +15,19 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (regenerated on this branch after merging main `6c239b296`, 2026-11-05)
+## Summary (regenerated on this branch after merging main `319105d5c`, 2026-11-05)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `6c239b296` (2026-11-05). Assembly is counted as functions;
+after merging main `319105d5c` (2026-11-05). Assembly is counted as functions;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
 |---|---:|---:|
 | Assembly (`asm` + `orig_asm` include) | 8 functions (14 source lines) | 5 |
 | MWCC intrinsics | 85 | 55 |
-| Direct hardware access (GX FIFO `0xCC008000` etc.) | 71 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,828 | 875 |
-| Per-unit compiler overrides in `configure.py` | 156 | 156 |
+| Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
+| CodeWarrior pragmas (excluding push/pop) | 5,797 | 876 |
+| Per-unit compiler overrides in `configure.py` | 167 | 167 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -72,8 +72,8 @@ etc. or their port equivalents) instead of the fixed address.
 
 ## 4. CodeWarrior pragmas
 
-5,832 pragmas in 877 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1151, `inline_depth` 1043, `fp_contract` 913, `auto_inline` 842,
+5,836 pragmas in 877 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1153, `inline_depth` 1045, `fp_contract` 911, `auto_inline` 844,
 `opt_common_subs` 618, `scheduling` 260, `opt_propagation` 241,
 `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56,
 `defer_codegen` 50, `pack` 46. Reason: reproduce the original code generation
@@ -103,6 +103,12 @@ small float differences without FMA).
 |---|---|---|---|---|
 | `src/pso/boss/TObjBoss2Tunnel.cpp` | `TObjBoss2Tunnel__sub_8007D1D0` (`0x8007D1D0`, size `0x658`) | one `#pragma opt_propagation off` | Approved by Matt 2026-11-04 4:38 PM PT (per-function `opt_propagation off` for #290). It replaces upstream #185's unit switch `-opt nopropagation`; every other function in the unit is 100% without it. The original tests `lbz r3, boss2_tunnel_state_flag` / `cmplwi r3, 0` and computes the copy-filter flag (`clrlwi r3, r3, 31; xori r28, r3, 1`) before `bl TObjBoss2Tunnel__sub_8036EF44`. With propagation on, the load stays live in r30 across the calls, `clrlwi`/`xori` move after `TObjBoss2Tunnel__sub_8036EF44` and `set_display_copy_filter__Fi`, and each early exit branches to a shorter epilogue (`b 0x1210` instead of `b 0x1224`): 92.25%. | Drop the pragma. The flag is `!(boss2_tunnel_state_flag & 1)`; a port does not need MWCC's propagation schedule. |
 
+### Approved: `TLobby__sub_8020DC78` ([#357](https://github.com/matthewlewisnewton/pso-decomp/pull/357))
+
+| File | Function | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/misc/TSetManager_8020D918.cpp` | `TLobby__sub_8020DC78` | one scoped `#pragma opt_propagation off` | Approved by Matt 2026-11-05, t250s1179. Propagation merged the separate null locals into one register, leaving six callee-saved register rows different at 99.77419%. Disabling it preserves the distinct object-pool and enemy-row null locals: the target is 100% (620/620 bytes), the whole unit `.text` is 100% (1728/1728), and every sibling stays exact. Precedents: `TObjBoss2Tunnel__sub_8007D1D0` and `TEF_LensFlare::render`. | Drop the pragma. A port does not need MWCC's propagation schedule. |
+
 ### Approved: `TUnk_804E4B3C::update_spawn_timer` ([#290](https://github.com/matthewlewisnewton/pso-decomp/pull/290))
 
 | File | Function | What | Why | Port should |
@@ -123,7 +129,7 @@ small float differences without FMA).
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-156 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+167 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
@@ -140,6 +146,9 @@ Port should: build everything with one modern compiler. Only `-fp_contract on`
 (float results) and deferred emission order (no semantic effect) need thought;
 nothing else changes behaviour.
 
+| Unit | Flags | What needs the fused multiply-adds | Original asm | Rest of the unit |
+|---|---|---|---|---|
+| `pso/player/TObjPlayer_801542CC.cpp` | `-fp_contract on` | `TObjPlayer__sub_8015434C` only. `body->center.x = body->offset.x * sine + pos.x` and `body->center.z = body->offset.z * cosine + pos.z`. | `fmadds f0, f1, f30, f0` at `0x80154408` (offset.x * sin + pos.x); `fadds f0, f1, f0` at `0x8015441C` (pos.y + offset.y, not fused); `fmadds f0, f1, f31, f0` at `0x8015442C` (offset.z * cos + pos.z). No `fmsubs` in this function. | Objdiff of the whole unit with the flag versus without it: the other 55 functions stay at the score they had without the flag (all exact), and `.bss`, `.data`, and `.sdata2` stay 100%. `resolve_actor_sphere_contact`'s `(x * x) + (z * z)` stays `fmuls` + `fadds`. The `fmadds` at `0x8015532C` and `0x8015533C` are in `resolve_player_box_contact`, from that function's existing `#pragma fp_contract on` (already on main), not from this override. Precedent: GC/Wii projects put `-fp_contract on` in the base flags ([dtk-template configure.py](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209)). `cflags_pso` omits it, so this one unit opts back in, the same kind of override as `TObjTombstone.cpp`. |
 `TObjBoss2Tunnel.cpp`, `TObjBoss2Tunnel_8003B138.cpp`, and `TObjBoss2Tunnel_802F2070.cpp` set `-fp_contract on` because the curve and tunnel helpers fuse multiply-adds. Each unit stays byte-exact, which is why the flag is on the unit rather than a per-function `fp_contract` pragma. Precedent: [dtk-template](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209) and Melee, TP, TWW, and Pikmin 2, which contract globally.
 
 ### `text_803D8910.cpp`: `-fp_contract on`
@@ -148,11 +157,11 @@ nothing else changes behaviour.
 |---|---|---|---|---|
 | `src/pso/unk/text_803D8910.cpp` | `vec3_dot`, `vec3_cross` | unit cflag `-fp_contract on` (ginja defaults otherwise, including `-inline off`) | The original is scalar `fmadds` (`vec3_dot`, `0x803D89C0`) and `fmsubs` (`vec3_cross`, `0x803D8A18`), not `PSVECDotProduct` / `PSVECCrossProduct`. Same source with `-fp_contract off` scores 64.5% and 44.76%; with the flag, 93.5% and 91.19%. `vec3_add_to` and the seven matrix helpers stay 100% either way. `-inline on`, `auto`, `noauto`, and `all` leave the object byte-identical; `deferred` and `auto,deferred` emit the C functions in reverse order. So the ginja `-inline off` stays. Precedent: [dtk-template `-fp_contract on`](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209); Melee, TP, TWW, and Pikmin 2 contract globally. | Keep fused multiply-adds. The flag does not make either function byte-exact. |
 
-### `TAdMultiPlyChrSelectGC_802C50EC.cpp` ([#294](https://github.com/matthewlewisnewton/pso-decomp/pull/294))
+### `TAdChrSelPlyPlateGC.cpp` ([#250](https://github.com/matthewlewisnewton/pso-decomp/pull/250))
 
-| File | Function | What | Why | Port should |
+| File | Functions | What | Why | Port should |
 |---|---|---|---|---|
-| `src/pso/ui/TAdMultiPlyChrSelectGC_802C50EC.cpp` | `TAdMultiPlyChrSelectGC__sub_802C5F1C`; also `mark_grid_cell_occupied` inlined into `sub_802C5688` and `sub_802C6660` | unit `-inline on` instead of the game default `-inline off`, together with the `-fp_contract on` row below | The slot clamp is a `static inline` helper with no symbol of its own. Under `-inline off` the helper is a real call and the function is 332 bytes (42.79518%). Under `-inline on` the row stays in `r8` and the cell in `r7`, and the function is 236 bytes. `v0` and `v1` are `a / 256.0f` and `(lbl_805DE588 + a) / 256.0f`. MWCC folds that into `fmuls` by the pooled reciprocal at `805DE584` (exactly 1/256) with the dividend on the left. The same flag inlines `mark_grid_cell_occupied(row, col)`. `802C6660` passes `row + 1, col + 1` (its `row`/`col` are the 0-based quad indices); the inlined arguments are the `addi` before `mulli 0x14` and `stwx` at `0x802C67xx`. `802C5688` already holds grid coordinates and stays 700/700. `-inline auto` inlines other functions (`update` 108→572, `update_option_cursor` 476→700, `handle_dpad_input` 564→788). `-inline deferred` emits the unit backwards. With `-inline on` and `-fp_contract on` together, every function and section of this object matches (43/43, `.text` 7288; `.rodata` 0x80471A88–0x80471D08 and `.sdata2` 0x805DE560–0x805DE588 as on main). Evidence: [chr-select-slot-clamp-inline.md](evidence/chr-select-slot-clamp-inline.md), [chr-select-confirm-cell-store.md](evidence/chr-select-confirm-cell-store.md). Precedent: [Brawl `-inline on`](https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264) (only functions marked `inline`); [`-inline auto` in dtk-template](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203) was tried and does not keep this unit identical. | Drop the flag. The value is `min(slot, 3)` applied to each cell's texture row, and the occupied-cell store is `grid[row][col] = -1`. A port does not need MWCC's inline-local numbering. |
+| `src/pso/ui/TAdChrSelPlyPlateGC.cpp` | `TAdMultiPlyChrSelectGC__sub_802C5F1C`; also `mark_grid_cell_occupied` inlined into `sub_802C5688` and `sub_802C6660` | unit `-inline on` instead of the game default `-inline off`, together with the `-fp_contract on` row below | The slot clamp is a `static inline` helper with no symbol of its own. Under `-inline off` the helper is a real call and the function is 332 bytes (42.79518%). Under `-inline on` the row stays in `r8` and the cell in `r7`, and the function is 236 bytes. `v0` and `v1` are `a / 256.0f` and `(lbl_805DE588 + a) / 256.0f`. MWCC folds that into `fmuls` by the pooled reciprocal at `805DE584` (exactly 1/256) with the dividend on the left. The same flag inlines `mark_grid_cell_occupied(row, col)`. `802C6660` passes `row + 1, col + 1` (its `row`/`col` are the 0-based quad indices); the inlined arguments are the `addi` before `mulli 0x14` and `stwx` at `0x802C67xx`. `802C5688` already holds grid coordinates and stays 700/700. `-inline auto` inlines other functions (`update` 108→572, `update_option_cursor` 476→700, `handle_dpad_input` 564→788). `-inline deferred` emits the unit backwards. With `-inline on` and `-fp_contract on` together, every function and section of this object matches (36/36, `.text` 7400 including the folded destructor; `.rodata` 0x80471A88–0x80471D08 and owned `.sdata2` 0x805DE580–0x805DE588). Evidence: [chr-select-slot-clamp-inline.md](evidence/chr-select-slot-clamp-inline.md), [chr-select-confirm-cell-store.md](evidence/chr-select-confirm-cell-store.md). Precedent: [Brawl `-inline on`](https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264) (only functions marked `inline`); [`-inline auto` in dtk-template](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203) was tried and does not keep this unit identical. | Drop the flag. The value is `min(slot, 3)` applied to each cell's texture row, and the occupied-cell store is `grid[row][col] = -1`. A port does not need MWCC's inline-local numbering. |
 
 `pso/effect/TEF_LensFlare.cpp` (this change) sets `-fp_contract on` because the
 recovered renderer contracts its attenuation and displacement multiply-adds
@@ -228,6 +237,53 @@ and all 34 functions and every section are byte-exact.
 | `pso/effect/TEffIndirectCtrl.cpp` | `deform_indirect_texture_wave` (`0x802A8CC0`), `update_indirect_texture_wave` (`0x802A8E4C`) | unit switch `-fp_contract on`; replaces the two scoped `#pragma fp_contract on` blocks that came over from `TEffIndirectCtrl_802A88AC.cpp` | Each helper fuses the wave offset into one `fmadds f0,f2,f1,f0` (`+0xC8C`, `+0xE18`). Without contraction both drop to 98.38%: each fused multiply-add becomes an `fmuls` and an `fadds`, and `.text` grows from 5192 to 5200 bytes. No other function in the unit contracts. With the unit switch the object is identical to the one the pragmas produced. Precedent: [dtk-template `configure.py`](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209) (`-fp_contract on`), and the same pragma-to-unit-switch change for `TWindowKeyBoardSoft_8024E68C.cpp` (#219, below). | Keep fused multiply-add, or accept small float differences. |
 | `pso/effect/TEffIndirectCtrl.cpp` | `load_indirect_dat`, `load_indirect_info`, `TEffIndirectCtrl__name` (data) | unit switch `-str reuse,readonly` | `"indirect.dat"`, `"indinfo.dat"` and `"TEffIndirectCtrl"` are in this unit's `.rodata` (`0x8046FBB8`, `0x8046FBC8`, `0x8046FBD4`), with `.sdata` pointers to them. Without the switch MWCC puts the three literals in `.data`: `.rodata` shrinks from 160 to 112 bytes, `.data` grows from 84 to 132, and `.data` falls to 57%. Same switch and reason as `TObjTombstone.cpp`; the same pair of switches as `TBoss6PlotFalz_802B0228.cpp`. | Drop the switch. |
 
+#322 (split from #240) builds `pso/misc/TWindowSubStatusDisp_80256B94.cpp`
+with `-fp_contract on` and `-inline off,deferred` (unit-level flags allowed
+under Matt's 2026-11-04 2:37 PM PT policy).
+
+`-fp_contract on`: the original fuses the depth term of
+`render__13TUnk_804CF930FP18TWindowDrawContext` into one `fmadds` at
+`0x80257118` (`0.299f * depth + ctx->depth`, then `-1.0f / ...`); MWCC only
+emits that from plain C with contraction on. Only that function's code
+changes when contraction is turned off. The bar is `sum *= 7.5f; bar =
+(tick - sum) * 17.0f;`, which stays `fmuls` / `fsubs` / `fmuls`. The other
+functions and `.sdata2` stay byte-identical with contraction off.
+
+`-inline off,deferred`: the two vtables `__vt__13TUnk_804CF918` (`.data`
+`0x804CF918`) and `__vt__13TUnk_804CF930` (`0x804CF930`) are emitted by the
+virtual destructors. With `-inline off` and the functions defined in address
+order, MWCC puts the derived table at the lower address. Defining the
+derived functions first and compiling `-inline off` puts the base table
+first but emits the derived functions first in `.text`. `-inline off,deferred`
+emits that reversed source in address order and still puts
+`__vt__13TUnk_804CF918` ahead of `__vt__13TUnk_804CF930`. Each table is
+`0x18` bytes (top offset 0, RTTI 0, then the four virtuals; the base
+`calc_bar_width` slot is the pure-virtual zero). The whole unit, including
+`.text` `0x7e8`, `.rodata` 8, `.data` `0x30` and `.sdata2` `0x78`, matches
+with the flag. Without deferred the same source does not. Precedent:
+[dtk-template configure.py#L203](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203)
+(`-inline auto`) and #L209 (`-fp_contract on`), and this tree's
+`TQuestListVM.cpp` / `TObjTombstone.cpp` deferred units. Functions affected:
+the whole translation unit. The destructors are `__dt__13TUnk_804CF918Fv`
+and `__dt__13TUnk_804CF930Fv`; the other virtuals are
+`update__13TUnk_804CF918Fv`, `render__13TUnk_804CF918FP18TWindowDrawContext`,
+`calc_bar_width__13TUnk_804CF930Fv`, `update__13TUnk_804CF930Fv`, and
+`render__13TUnk_804CF930FP18TWindowDrawContext`.
+The signed `open_tick` cast's `0x4330000080000000` bias is
+`lbl_8044EE40`. That object was an unclaimed 8-byte `.rodata` gap; the only
+relocation to it is the `lis`/`lfd` in `render__13TUnk_804CF930FP18TWindowDrawContext`,
+so the range `0x8044EE40..0x8044EE48` belongs to this unit. It is
+`scope:local` for the same reason as the other unreferenced compiler pools
+(`TObjFish_8033CCC8`'s `lbl_80477F08`): the compiler names the pool `@N`, and
+nothing else loads the export. With the bytes in the unit, objdiff's
+`functionRelocDiffs=data_value` treats `@N` and `lbl_8044EE40` as the same
+load, and `render__13TUnk_804CF930FP18TWindowDrawContext` is byte-identical. The unit's `.sdata2` floats
+`lbl_805DCE58` through `lbl_805DCECC` are the same kind of unreferenced pool
+(`0.0f` and the other literals, including `lbl_805DCECC` = 2.0f) and are
+`scope:local` too, which is what makes the whole unit linkable. Port: drop the flag;
+`0.299f * depth + ctx->depth` may become a separate multiply and add. The
+cast stays a cast.
+
 ### `TWindowKeyBoardSoft_8024E68C.cpp`: `-fp_contract on` ([#219](https://github.com/matthewlewisnewton/pso-decomp/pull/219))
 
 | File | Functions | What | Why | Port should |
@@ -265,17 +321,42 @@ plain source: `free_all` (no copied loop-counter alias) and
 | `pso/boss/TObjBoss2Tunnel_802F2070.cpp` | all 27 functions (`0x802F2070`-`0x802F2C84`), written in reverse address order | unit switch `-inline off,deferred` | Data order. The original `.sbss` holds the ctor's function-local static `constructed$35` (+0) and its guard `init$36` (+4) before `run_task`'s handler-table guard `init$59` (+5), although `run_task` (`0x802F28E0`) comes before the ctor `TObjBoss2Tunnel__sub_802F2A2C` in `.text`. Target asm: `lbz r0,init$59` at `0x802F2900` and `stb r0,init$59` at `0x802F295C`; `lbz r0,init$36` at `0x802F2BA0`, then `li r0,1; stw r0,constructed$35; stb r0,init$36` at `0x802F2BAC`-`0x802F2BB4`. MWCC creates function-local statics in parse order and, with `deferred`, emits code in reverse definition order ([compiler-emission-evidence.md](evidence/compiler-emission-evidence.md)); only that combination gives both orders. Without the switch the guard was emulated with two hand-written globals set in the ctor. With it the ctor has a real `static s32 constructed = 1;`, `.sbss` goes from 66.67% to 100%, `.data` gets real symbol sizes (`@56`-`@58`, `handlers$55`, `boss2_tunnel_effect_tail`), and `.text`, `.rodata` and `.sdata2` stay identical (27/27 functions 100%). check_pr: 0 regressions. The sibling `TObjBoss2Tunnel.cpp` and `TBoss6PlotFalz_802B0228.cpp` (upstream #183) use the same switch, as do `TObjEneRe2Flower_800C3E14.cpp` and `TObjEneEpsilonGuard_8035F5C8.cpp`. Precedent: per-object `-inline` settings in [dtk-template `configure.py`](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203) and [brawl](https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264). | Drop the switch; definition order does not matter to a port. |
 | `pso/boss/TObjBoss2Tunnel.cpp` | the unit (all functions; upstream [#185](https://github.com/zeroz41/pso-decomp/pull/185)'s `configure.py` entry) | unit switches `-inline off,deferred -pool off -sdata 4` | Copied from upstream zeroz41 [#185](https://github.com/zeroz41/pso-decomp/pull/185) with the code. Upstream's fourth switch, `-opt nopropagation`, is replaced by the approved per-function `opt_propagation off` on `TObjBoss2Tunnel__sub_8007D1D0` (section 4). Measured by dropping one switch at a time: without `-pool off`, `run_confirm_message_loop` is 90.25%; without `-sdata 4`, `draw_snapshot_capture_overlay` 78.35%, `TObjBoss2Tunnel__sub_8007DB80` 85.33%, `reset_state` 93.33%, `show_message_and_wait` 96.50%, `run_confirm_message_loop` 97.15%, `TObjBoss2Tunnel__sub_8007D1D0` 99.61%; without `deferred`, the function order flips and most functions drop to 99.2-99.9%. With all three and the pragma, every section of the unit is 100%. `-pool off` and `-sdata 4` are already used by `TOKurage.cpp`, the `TOKey*`/`TOSensor*` units and `TObjEnemyCustom.cpp`. | Drop the switches. |
 
+Linking `TObjBoss2Tunnel_802F2070.cpp` also needs `cw_align` (`.sbss=4 .sdata2=4` in `configure.py`, applied by `tools/cw_comment_align.py`). mwld places small data using the alignment stored in the CodeWarrior `.comment` record. GC/2.6 writes 8 there, and `-sdata 4` does not change it, so `.sbss` (original start `0x805D696C`) and `.sdata2` (original start `0x805DECCC`) were each inserted 4 bytes late. That one pad shifted the rest of `.sdata2` and every `sda21` offset that follows. The script rewrites the comment record and `sh_addralign` after compile; the section bytes are unchanged. Objdiff stays at 100% either way, because it matches relocations symbolically.
+
 ### `-opt nolifetimes,nocse,noprop,noloop`: `TMovie_80143988.cpp` ([#167](https://github.com/matthewlewisnewton/pso-decomp/pull/167))
 
 | Unit | Function | What | Why | Port should |
 |---|---|---|---|---|
 | `pso/misc/TMovie_80143988.cpp` | `pack_movie_frame` (`0x80143988`, 564 bytes; the only function in the unit) | unit switch `-opt nolifetimes,nocse,noprop,noloop` | The original keeps each named local in one register for the whole function: the packed word is built in place in `r25`, and `mr r24, r25` copies it for the second scanline before every luma insert (`0x80143A4C`, `0x80143A70`, ... eight times). The cache-touch offset is the single `li r0, 0x20` hoisted to the entry (`0x8014398C`) and reused by both `dcbt r31, r0` / `dcbt r9, r0` (`0x80143A30`, `0x80143ADC`). The pad scales are recomputed late in the entry (`slwi r5, r25, 2` ... `slwi r3, r24, 2`, `0x80143A18`–`0x80143A20`). Without `nolifetimes` the unit is 53.40% (568 bytes, `stmw r21`). Without `noprop`, `touch` is propagated as a constant: 70.50%, 596 bytes. Without `nocse` or `noloop` the shared stride and pad shifts become frontend temps coloured in the wrong order: 93.06%, 564 bytes. With the switch, `.text` (564 bytes), relocations and symbols match the target object. The source is plain C++ (no `__rlwinm`/`__rlwimi`); only `__dcbt` (section 2) remains. Precedent: Petari uses these keywords per object: [`-opt nolifetimes,nocse,noprop`](https://github.com/SMGCommunity/Petari/blob/50c1eae28478c8b1b1c8708ab8ce9a3b845ee6c6/configure.py#L3735), [`-opt nolifetimes,noloop`](https://github.com/SMGCommunity/Petari/blob/50c1eae28478c8b1b1c8708ab8ce9a3b845ee6c6/configure.py#L2974), [`-opt noloop`](https://github.com/SMGCommunity/Petari/blob/50c1eae28478c8b1b1c8708ab8ce9a3b845ee6c6/configure.py#L1532). SFA uses [`-opt nolifetimes`](https://github.com/zcanann/SFA-Decomp/blob/f561e933ecc7356259bccdd6a7ce9a4462a950a0/configure.py#L1586). This repo already has `-opt noprop` and `-opt nocse` units. Evidence: [pack-movie-frame-unit-flags.md](evidence/pack-movie-frame-unit-flags.md). | Drop the switch. The source is plain C++; drop the cache touch too. |
 
-### `TAdMultiPlyChrSelectGC_802C50EC.cpp` ([#214](https://github.com/matthewlewisnewton/pso-decomp/pull/214))
+### `TAdChrSelPlyPlateGC.cpp`: `-fp_contract on` ([#214](https://github.com/matthewlewisnewton/pso-decomp/pull/214), folded by [#250](https://github.com/matthewlewisnewton/pso-decomp/pull/250))
 
 | File | Function | What | Why | Port should |
 |---|---|---|---|---|
-| `src/pso/ui/TAdMultiPlyChrSelectGC_802C50EC.cpp` | `sub_802C50EC` (`fmadds` at `0x802C5148`), `sub_802C522C` (`0x802C5274`), `sub_802C5688` (`0x802C58AC`), `sub_802C6660` (`0x802C676C`) | unit `-fp_contract on`, together with the `-inline on` row above | The original unit has one `fmadds` in each of those four functions, so the whole unit was built with contraction on. Main had `#pragma fp_contract on` around the first two only; the unit flag replaces that pragma. Without contraction, `sub_802C50EC` drops to 97.81%, `sub_802C522C` to 96.98%, `sub_802C5688` to 98.03%, and `sub_802C6660` to 93.89%. With both unit flags, every function and section matches. Precedent: [#219](https://github.com/matthewlewisnewton/pso-decomp/pull/219) (`TWindowKeyBoardSoft_8024E68C.cpp`, above) and `TObjTombstone.cpp`, both unit `-fp_contract on`. | Keep fused multiply-add, or accept small float differences. |
+| `src/pso/ui/TAdChrSelPlyPlateGC.cpp` | `sub_802C50EC` (`fmadds` at `0x802C5148`), `sub_802C522C` (`0x802C5274`), `sub_802C5688` (`0x802C58AC`), `sub_802C6660` (`0x802C676C`) | unit `-fp_contract on`, together with the `-inline on` row above | The original unit has one `fmadds` in each of those four functions, so the whole unit was built with contraction on. Main had `#pragma fp_contract on` around the first two only; the unit flag replaces that pragma. Without contraction, `sub_802C50EC` drops to 97.81%, `sub_802C522C` to 96.98%, `sub_802C5688` to 98.03%, and `sub_802C6660` to 93.89%. With both unit flags, every function and section matches. Precedent: [#219](https://github.com/matthewlewisnewton/pso-decomp/pull/219) (`TWindowKeyBoardSoft_8024E68C.cpp`, above) and `TObjTombstone.cpp`, both unit `-fp_contract on`. | Keep fused multiply-add, or accept small float differences. |
+
+### `TBoss6Type1.cpp` ([#289](https://github.com/matthewlewisnewton/pso-decomp/pull/289))
+
+| Flag | Why | Evidence |
+|---|---|---|
+| `-inline deferred` | Least inline mode that keeps this unit's object identical. | Against `-inline noauto,deferred,level=1` (the previous profile): every section and relocation is byte-identical, so `noauto` and `level=1` do nothing here. `-inline off,deferred` changes 3 functions (`Boss6Anim::copy_transform`, `copy_block` and `TBoss6Type1__sub_802B96C0`). `-inline noauto` changes 2 (`load_params_from_table` and `TBoss6Type1__sub_802B6C30`). `-inline auto` changes 20, including `draw_model`, `run_task` and the constructor. Measured on the source with every function exact. |
+| `-fp_contract on` | The unit's multiply-adds are `fmadds`. | `-fp_contract off` changes 16 functions, including `fire_at_all_players`, `spawn_grav_ball`, `update_sway` and `TBoss6Type1__sub_802B626C`. |
+
+Precedent: [dtk-template](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203) (`-inline auto`) and [#L209](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209) (`-fp_contract on`); Melee, TP, TWW and Pikmin 2 contract globally; [Brawl](https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264) uses `-inline on`.
+
+The unit has no per-function pragmas.
+
+Source construct MWCC accepts and standard C++ does not:
+
+| File | What | Why | Port should |
+|---|---|---|---|
+| `src/pso/boss/TBoss6Type1.cpp` | Seven `s32` constants (`boss6_type1_particle_slot_count`, `boss6_type1_sway_speed_min`/`_range`, `boss6_type1_sway_hold_min`/`_range`, `boss6_type1_anim_count`, `boss6_type1_main_anim`) are declared `extern const` near the top and defined `static const` at the end of the file. | The original reads them with `lwz` from `.sdata2` (`0x805DE2D4`, `0x805DE3A8`..`0x805DE3B4`, `0x805DE3C4`/`0x805DE3C8`), each placed at its first reader in deferred generation order. MWCC folds a `const` scalar read after its definition, and writes an external-linkage one at parse time (offset 0, ahead of every literal). Only an internal-linkage definition after its readers gives both the loads and the positions. Before, the values were externs, `.sdata2` was 95.73% and `0x805DE2C8`..`0x805DE2D0` / `0x805DE3C4`..`0x805DE3F0` were unowned; now the split owns `0x805DE2C8`..`0x805DE3F0`, the section is 296/296 bytes and the unit links. Evidence: [tboss6type1-sdata2-constants.md](evidence/tboss6type1-sdata2-constants.md). | Drop the `extern` declarations and define the constants (`static const` or `constexpr`) above their first use. |
+
+### `-inline noauto`: inventory child links ([#304](https://github.com/matthewlewisnewton/pso-decomp/pull/304))
+
+| Unit | Function | What | Why | Port should |
+|---|---|---|---|---|
+| `pso/unk/text_801D40D4.cpp`, `pso/player/TObjPlayer_801D5220.cpp`, `pso/player/TPlyItem.cpp`, `pso/player/TObjPlayer_801D4CB8.cpp` | inventory walks (`TObjPlayer__sub_801D4368`, the `TItemList` walks, `destroy_subobjects_recursive`) | unit switch `-inline noauto` | `m_down` / `m_next` are `TObject *`. The slots are `TItemList`. `TItemList::link_down` / `link_next` are class-body inline and hold the one downcast. `-inline noauto` folds each call to `lwz` of `+0x14` / `+0xC`, the same bytes as the old cast. `-inline off` leaves a `bl` and grows the walks (`TObjPlayer__sub_801D4368` `0x248` → `0x278`). `-inline auto` also inlines unmarked `TObjPlayer__sub_801D4730` into `sort_by_key`, so it is not used. Every other function in these objects is unchanged versus `-inline off`. Precedent: [dtk-template](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203) (`-inline auto`); this repo's `TWindowMainMenu_802AD538.cpp` (`-inline noauto,level=1`). | Drop the switch and the accessors; a downcast at the walk is the portable spelling. |
 
 ## 6. Approved regressions
 
@@ -302,6 +383,10 @@ or `other: <what>`); the fork PR that brought it in; and the tag
 
 | Function/symbol | Unit | File | Upstream PR | Cheat type | Fork PR | Tag |
 |---|---|---|---|---|---|---|
+| `clear_sound_listener_position` | `pso/misc/TLobby_802268F4.cpp` | `src/pso/misc/TLobby_802268F4.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | other: dead-stripped function | [#352](https://github.com/matthewlewisnewton/pso-decomp/pull/352) | upstream catch-up, rewrite later |
+| `__vt__25TObjCityMainWarpChallenge` | `pso/object/TObjCityMainWarpChallenge.cpp` | `src/pso/object/TObjCityMainWarpChallenge.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | other: hand-written vtable | [#352](https://github.com/matthewlewisnewton/pso-decomp/pull/352) | upstream catch-up, rewrite later |
+| `TObjCityMainWarpChallenge.cpp` | `pso/object/TObjCityMainWarpChallenge.cpp` | `configure.py` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | other: per-unit cflags override | [#352](https://github.com/matthewlewisnewton/pso-decomp/pull/352) | upstream catch-up, rewrite later |
+| `TObjPlayer::apply_status_effect` | `TObjPlayer_801542CC` | `src/pso/player/TObjPlayer_801542CC.cpp` | [#171](https://github.com/zeroz41/pso-decomp/pull/171) | other: s32-to-pointer cast | #305 | upstream catch-up, rewrite later |
 | `TObjBoss2Tunnel__sub_8007D1D0` (`0x8007D1D0`): snapshot cursor `flags = (u32 *)p`, `levels = (u32 *)(p + 0x30)`, `name = (char *)(p + 0x60)` | `pso/boss/TObjBoss2Tunnel.cpp` | `src/pso/boss/TObjBoss2Tunnel.cpp` | [#185](https://github.com/zeroz41/pso-decomp/pull/185) | raw offset cast | [#290](https://github.com/matthewlewisnewton/pso-decomp/pull/290) | upstream catch-up, rewrite later |
 | `TObjBoss2Tunnel__sub_8007D1D0`: `((TLobby *)p)->move_data(...)` on the snapshot buffer | `pso/boss/TObjBoss2Tunnel.cpp` | `src/pso/boss/TObjBoss2Tunnel.cpp` | [#185](https://github.com/zeroz41/pso-decomp/pull/185) | other: receiver cast | [#290](https://github.com/matthewlewisnewton/pso-decomp/pull/290) | upstream catch-up, rewrite later |
 | `is_on_current_screen__11TCameraCtrlFv` (declared `extern "C"` with a wide `(ControllerInputContext *, s32)` signature; called by `TObjBoss2Tunnel__sub_8007D1D0`) | `pso/boss/TObjBoss2Tunnel.cpp` | `src/pso/boss/TObjBoss2Tunnel.cpp` | [#185](https://github.com/zeroz41/pso-decomp/pull/185) | extern "C" mangled name | [#290](https://github.com/matthewlewisnewton/pso-decomp/pull/290) | upstream catch-up, rewrite later |
@@ -330,7 +415,7 @@ entry when the PR merges.
 | [#285](https://github.com/matthewlewisnewton/pso-decomp/pull/285) | `static asm void pad_03_8042E9FC_text` via `orig_asm` include (`src/pso/unk/text_8042E9FC.cpp`) | PR body: 5-word stranded epilogue; 0/60 C probes across 20 compilers reach it. **No approval recorded and no scalar fallback**; it needs one under the rule above. |
 | [#296](https://github.com/matthewlewisnewton/pso-decomp/pull/296) | `scheduling` ×5, `peephole`, `optimize_for_size` pragmas | Reason not recorded. Drop in a port. |
 | [#250](https://github.com/matthewlewisnewton/pso-decomp/pull/250) | `fp_contract` ×3 | Reason not recorded. |
-| [#303](https://github.com/matthewlewisnewton/pso-decomp/pull/303), [#295](https://github.com/matthewlewisnewton/pso-decomp/pull/295), [#289](https://github.com/matthewlewisnewton/pso-decomp/pull/289), [#225](https://github.com/matthewlewisnewton/pso-decomp/pull/225), [#222](https://github.com/matthewlewisnewton/pso-decomp/pull/222), [#215](https://github.com/matthewlewisnewton/pso-decomp/pull/215) | 1 to 4 inlining/optimization pragmas each | Reason not recorded. Drop in a port. |
+| [#303](https://github.com/matthewlewisnewton/pso-decomp/pull/303), [#295](https://github.com/matthewlewisnewton/pso-decomp/pull/295), [#289](https://github.com/matthewlewisnewton/pso-decomp/pull/289), [#225](https://github.com/matthewlewisnewton/pso-decomp/pull/225), [#222](https://github.com/matthewlewisnewton/pso-decomp/pull/222), [#215](https://github.com/matthewlewisnewton/pso-decomp/pull/215), [#128](https://github.com/matthewlewisnewton/pso-decomp/pull/128) | 1 to 4 inlining/optimization pragmas each | Reason not recorded. Drop in a port. |
 | [#240](https://github.com/matthewlewisnewton/pso-decomp/pull/240) | Not scanned | Diff exceeds GitHub's 300-file limit; scan locally after it merges. |
 | [#167](https://github.com/matthewlewisnewton/pso-decomp/pull/167) | Unit switch `-opt nolifetimes,nocse,noprop,noloop` on `TMovie_80143988.cpp` (section 5); the pre-existing `__dcbt` in `pack_movie_frame` | `pack_movie_frame` matches 100% in plain C++. The earlier `__rlwinm` / `__rlwimi` calls are gone. `__dcbt` is the original data-cache touch (`dcbt r31, r0` / `dcbt r9, r0`). Port: drop the switch and the cache touch. |
 
