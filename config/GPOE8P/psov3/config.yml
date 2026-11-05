@@ -619,6 +619,7 @@ force_active:
   - TLobby__sub_801E6BB8
   - TLobby__sub_801E6C2C
   - TLobby__sub_801E6C40
+  - TLobby__sub_8020D94C
   - TLobby__sub_802232F8
   - TLobby__sub_80223D48
   - TLobby__sub_80223DD8
@@ -1409,7 +1410,6 @@ force_active:
   - TObjPlayer__sub_80354EEC
   - TObjPlayer__sub_80355098
   - TObjPlayer__sub_80363C5C
-  - copy_and_flush__FPvlPv
   - TObjPlayer__sub_803DA84C
   - TObjPlayer__sub_803DA8B4
   - TObjPlayer__sub_803DAA70
@@ -4681,6 +4681,7 @@ force_active:
   - copy_action_state__12TBoss8DragonFPUc
   - copy_all_data__6TLobbyFii
   - copy_all_entries__6TLobbyFii
+  - copy_and_flush__FPvlPv
   - copy_and_flush_texture__16TEffIndirectCtrlFPUc
   - copy_angle_state__12TBoss8DragonFPvPvPv
   - copy_bank_from_card_window__Fl
@@ -8154,6 +8155,7 @@ force_active:
   - load_globals__14QuestVmContextFv
   - load_indirect_info__Fv
   - load_item_pmt__Fv
+  - load_map_decoration_rows__Flll
   - load_map_texture_archive__6TSceneFl
   - load_model__15TBoss3VoloptP01Fl
   - load_models__22TObjContainerJungEnemyFv
