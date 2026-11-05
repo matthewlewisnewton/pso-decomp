@@ -5004,7 +5004,7 @@ void qst_op_item_check(u32 first, u32 destination) {
 }
 
 void qst_op_item_delete2(u32 src, u32 dst) {
-    Item_801EE77C item;
+    TItemData item;
     u32 player;
     TItemList *slot;
     TItem *owner;
@@ -5013,27 +5013,27 @@ void qst_op_item_delete2(u32 src, u32 dst) {
     }
     player = get_player_by_client_id(local_client_id);
     if (player != 0) {
-        init__9TItemDataFv(&item);
-        item.data[0] = qst_registers[(u8)src++];
-        item.data[1] = qst_registers[(u8)src++];
-        item.data[2] = qst_registers[(u8)src];
+        item.init();
+        item.data1.data_u8[0] = qst_registers[(u8)src++];
+        item.data1.data_u8[1] = qst_registers[(u8)src++];
+        item.data1.data_u8[2] = qst_registers[(u8)src];
         slot = ((TObjPlayer *)player)->inventory_objects->set_mode_and_refresh_object(&item);
         if (slot != 0) {
             owner = slot->get_owner_if_alive();
             if (owner != 0) {
-                owner->copy_to_item_data((TItemData *)&item);
-                qst_registers[(u8)dst++] = item.data[0];
-                qst_registers[(u8)dst++] = item.data[1];
-                qst_registers[(u8)dst++] = item.data[2];
-                qst_registers[(u8)dst++] = item.data[3];
-                qst_registers[(u8)dst++] = item.data[4];
-                qst_registers[(u8)dst++] = item.data[5];
-                qst_registers[(u8)dst++] = item.data[6];
-                qst_registers[(u8)dst++] = (s8)item.data[7];
-                qst_registers[(u8)dst++] = item.data[8];
-                qst_registers[(u8)dst++] = (s8)item.data[9];
-                qst_registers[(u8)dst++] = item.data[10];
-                qst_registers[(u8)dst] = (s8)item.data[11];
+                owner->copy_to_item_data(&item);
+                qst_registers[(u8)dst++] = item.data1.data_u8[0];
+                qst_registers[(u8)dst++] = item.data1.data_u8[1];
+                qst_registers[(u8)dst++] = item.data1.data_u8[2];
+                qst_registers[(u8)dst++] = item.data1.data_u8[3];
+                qst_registers[(u8)dst++] = item.data1.data_u8[4];
+                qst_registers[(u8)dst++] = item.data1.data_u8[5];
+                qst_registers[(u8)dst++] = item.data1.data_u8[6];
+                qst_registers[(u8)dst++] = (s8)item.data1.data_u8[7];
+                qst_registers[(u8)dst++] = item.data1.data_u8[8];
+                qst_registers[(u8)dst++] = (s8)item.data1.data_u8[9];
+                qst_registers[(u8)dst++] = item.data1.data_u8[10];
+                qst_registers[(u8)dst] = (s8)item.data1.data_u8[11];
                 get_item_record__23TShopJudgmentItemWindowFPv((void *)player, item.id, 1);
                 return;
             }
@@ -5047,7 +5047,7 @@ void qst_op_item_delete2(u32 src, u32 dst) {
 }
 
 void qst_op_item_delete(u32 src, u32 dst) {
-    Item_801EE77C item;
+    TItemData item;
     u32 player;
     TItemList *slot;
     TItem *owner;
@@ -5060,19 +5060,19 @@ void qst_op_item_delete(u32 src, u32 dst) {
         if (slot != 0) {
             owner = slot->get_owner_if_alive();
             if (owner != 0) {
-                owner->copy_to_item_data((TItemData *)&item);
-                qst_registers[(u8)dst++] = item.data[0];
-                qst_registers[(u8)dst++] = item.data[1];
-                qst_registers[(u8)dst++] = item.data[2];
-                qst_registers[(u8)dst++] = item.data[3];
-                qst_registers[(u8)dst++] = item.data[4];
-                qst_registers[(u8)dst++] = item.data[5];
-                qst_registers[(u8)dst++] = item.data[6];
-                qst_registers[(u8)dst++] = (s8)item.data[7];
-                qst_registers[(u8)dst++] = item.data[8];
-                qst_registers[(u8)dst++] = (s8)item.data[9];
-                qst_registers[(u8)dst++] = item.data[10];
-                qst_registers[(u8)dst] = (s8)item.data[11];
+                owner->copy_to_item_data(&item);
+                qst_registers[(u8)dst++] = item.data1.data_u8[0];
+                qst_registers[(u8)dst++] = item.data1.data_u8[1];
+                qst_registers[(u8)dst++] = item.data1.data_u8[2];
+                qst_registers[(u8)dst++] = item.data1.data_u8[3];
+                qst_registers[(u8)dst++] = item.data1.data_u8[4];
+                qst_registers[(u8)dst++] = item.data1.data_u8[5];
+                qst_registers[(u8)dst++] = item.data1.data_u8[6];
+                qst_registers[(u8)dst++] = (s8)item.data1.data_u8[7];
+                qst_registers[(u8)dst++] = item.data1.data_u8[8];
+                qst_registers[(u8)dst++] = (s8)item.data1.data_u8[9];
+                qst_registers[(u8)dst++] = item.data1.data_u8[10];
+                qst_registers[(u8)dst] = (s8)item.data1.data_u8[11];
                 get_item_record__23TShopJudgmentItemWindowFPv((void *)player, qst_registers[(u8)src], 1);
                 return;
             }

@@ -3452,7 +3452,7 @@ void TObjPlayer::draw() {
 }
 
 s32 TObjPlayer::try_pickup_item() {
-    s32 temp_r3;
+    TItem *owner;
     s32 arg0 = (s32)this;
 
     if (obj_isState2_324__9TObjCharaFv() != 0) {
@@ -3460,13 +3460,13 @@ s32 TObjPlayer::try_pickup_item() {
     }
     TItemList *slot = find_revival_item();
     if (slot != NULL) {
-        temp_r3 = (s32)slot->get_owner_if_alive();
-        if (temp_r3 == 0) {
+        owner = slot->get_owner_if_alive();
+        if (owner == NULL) {
             return 0;
         }
         ((s32 (*)(s32))recover_full__10TObjPlayerFPv)(arg0);
         ((FlagWord *)(arg0 + 0x858))->set(4);
-        ((s32 (*)(s32, s32, s32))send_6x29_delete_item__10TObjPlayerFPvii)(arg0, ((s32 (*)(s32))get_item_id__5TItemFv)(temp_r3), 1);
+        ((s32 (*)(s32, s32, s32))send_6x29_delete_item__10TObjPlayerFPvii)(arg0, owner->get_item_id(), 1);
         return 1;
     }
     return 0;
@@ -6027,8 +6027,8 @@ s32 fn_801B7CEC(TObjPlayer *player, s8 arg1, s8 arg2, s8 arg3) {
 void handle_6x28_feed_mag(s32 arg0) {
     Cmd_801B7D68 cmd;
     TObjPlayer *p;
-    s32 a;
-    s32 b;
+    TItem *a;
+    TItem *b;
     TObjPlayer__sub_801C0D7C((u8 *)&cmd);
     ((TObjPlayer *)(&cmd))->copy_pair_fields2((void *)arg0);
     ((TObjPlayer *)(&cmd))->bswap_body_dwords2();
@@ -6037,11 +6037,11 @@ void handle_6x28_feed_mag(s32 arg0) {
         TItemList *slot_a;
         TItemList *slot_b;
         if (p != NULL && (slot_a = p->inventory_objects->start_inventory_update(cmd.item_a)) != NULL) {
-            a = (s32)slot_a->get_owner_if_alive();
-            if (a != 0 && (slot_b = p->inventory_objects->start_inventory_update(cmd.item_b)) != NULL) {
-                b = (s32)slot_b->get_owner_if_alive();
-                if (b != 0) {
-                    feed_item_to_mag((TItem *)a, (TItem *)b);
+            a = slot_a->get_owner_if_alive();
+            if (a != NULL && (slot_b = p->inventory_objects->start_inventory_update(cmd.item_b)) != NULL) {
+                b = slot_b->get_owner_if_alive();
+                if (b != NULL) {
+                    feed_item_to_mag(a, b);
                 }
             }
         }
