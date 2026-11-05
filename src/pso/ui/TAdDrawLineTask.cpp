@@ -11,6 +11,7 @@ f32 newton_sqrtf(f32);
 }
 
 extern const char *TAdDrawLineTask__class_name;
+extern const f32 lbl_805D7DD8;
 extern const f32 lbl_805D7DDC;
 extern const f32 lbl_805D7DE0;
 extern const f32 lbl_805D7DE4;
@@ -22,7 +23,7 @@ void TAdDrawLineTask::render() {
 
 void TAdDrawLineTask::run_task() {
     allow_rendering();
-    if (1.0f + frame < duration) {
+    if (lbl_805D7DD8 + frame < duration) {
         color.channels.green += color_step.channels.green;
         color.channels.red += color_step.channels.red;
         color.channels.alpha += color_step.channels.alpha;
@@ -35,7 +36,7 @@ void TAdDrawLineTask::run_task() {
         vertices[3].y += step_y;
         vertices[3].w += step_w;
         vertices[3].color.value = color.value;
-        frame += 1.0f;
+        frame += lbl_805D7DD8;
         return;
     }
     vertices[2].x = line.end.x + half_width_x;

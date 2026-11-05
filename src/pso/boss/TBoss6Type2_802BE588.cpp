@@ -1,3 +1,6 @@
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/SoundEffect.h"
+#include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/boss/TBoss6Type2_802BE588.h"
 #include "pso/unk/text_80087278.h"
@@ -28,11 +31,16 @@ extern s32 lbl_805D6758;
 extern u8 lbl_805D675C;
 extern const f32 lbl_805DE3F8;
 extern f32 lbl_805DE4DC;
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+extern const f32 lbl_805DE4F0;
+
+extern const f32 lbl_805DE4E0;
+extern const f32 lbl_805DE4E4;
 void *get_player_by_client_id(s32 i);
-s32 play_sound_effect(int, void *, int, int);
+
 s32 spawn_flow_soul__11TBoss6Type2Fiii(s32 arg0, s32 arg1, s32 arg2);
 extern const f32 lbl_805DE404;
+extern const f32 lbl_805DE4E8;
+extern const f32 lbl_805DE4EC;
 extern s32 lbl_805D6780;
 extern u8 lbl_805D6784;
 extern const f32 lbl_805DE400;
@@ -71,21 +79,21 @@ void TBoss6Type2::update_zako_timer() {
     }
 }
 
-void TBoss6Type2__sub_802BE648(TBoss6Type2 *boss6_type2) {
-    if ((s32) *(s32 *)((s8 *)boss6_type2 + 0x460) == 0) {
-        if ((s32) *(s32 *)((s8 *)boss6_type2 + 0x374) == 0x1D) {
-            send_action_packet__11TBoss6Type2FSc(boss6_type2, (void*)((int) (choose_random_motion__11TBoss6Type2Fv())));
+void TBoss6Type2::sub_802BE648() {
+    if ((s32) this->m_460 == 0) {
+        if ((s32) this->m_374 == 0x1D) {
+            send_action_packet__11TBoss6Type2FSc(this, (void*)((int) (choose_random_motion__11TBoss6Type2Fv())));
             return;
         }
-        boss6_type2->update_attack_target();
+        this->update_attack_target();
     }
 }
 
-void TBoss6Type2__sub_802BE6A0(u8 *arg0) {
-    *(s32 *)((s8 *)arg0 + 0x45C) = 0x4B;
-    *(s32 *)((s8 *)arg0 + 0x460) = 0x4B;
-    *(s32 *)((s8 *)arg0 + 0x504) = 0;
-    TBoss6Type2__sub_802BB768(arg0);
+void TBoss6Type2::sub_802BE6A0() {
+    this->unk_45C = 0x4B;
+    this->m_460 = 0x4B;
+    this->unk_504 = 0;
+    TBoss6Type2__sub_802BB768(this);
 }
 
 void TBoss6Type2::update_rock_spawn_state() {
@@ -98,12 +106,12 @@ void TBoss6Type2::update_rock_spawn_state() {
     select_next_state();
 }
 
-void TBoss6Type2__sub_802BE738(u8 *arg0) {
+void TBoss6Type2::sub_802BE738() {
     s32 temp_r0;
-    temp_r0 = *(s32 *)((s8 *)arg0 + 0x4D4);
-    *(s32 *)((s8 *)arg0 + 0x45C) = temp_r0;
-    *(s32 *)((s8 *)arg0 + 0x460) = temp_r0;
-    *(s32 *)((s8 *)arg0 + 0x420) = (s32) (*(s32 *)((s8 *)arg0 + 0x420) + 1);
+    temp_r0 = this->unk_4D4;
+    this->unk_45C = temp_r0;
+    this->m_460 = temp_r0;
+    this->m_420 = (s32) (this->m_420 + 1);
 }
 
 void TBoss6Type2::tick_timer_0x460() {
@@ -170,17 +178,17 @@ void TBoss6Type2::update_charge_timer() {
     s32 temp_r0;
     *(f32 *)((s8 *)((u8 *)this) + 0x41C) = (f32) ((f32) *(s32 *)((s8 *)((u8 *)this) + 0x460) / (f32) *(s32 *)((s8 *)((u8 *)this) + 0x45C));
     temp_f1 = *(f32 *)((s8 *)((u8 *)this) + 0x41C);
-    if (temp_f1 < 0.0f) {
-        *(f32 *)((s8 *)((u8 *)this) + 0x41C) = 0.0f;
-    } else if (temp_f1 > 1.0f) {
-        *(f32 *)((s8 *)((u8 *)this) + 0x41C) = 1.0f;
+    if (temp_f1 < lbl_805DE4E0) {
+        *(f32 *)((s8 *)((u8 *)this) + 0x41C) = (f32) lbl_805DE4E0;
+    } else if (temp_f1 > lbl_805DE4E4) {
+        *(f32 *)((s8 *)((u8 *)this) + 0x41C) = (f32) lbl_805DE4E4;
     }
-    play_persistent_sound(0x4006A30B, ((s32) this), (0U), 0, 0);
+    play_persistent_sound((s32)(0x4006A30B), (const void *)(((s32) this)), (const Vec *)((0U)), 0, 0);
     temp_r0 = *(s32 *)((s8 *)((u8 *)this) + 0x460) - 1;
     *(s32 *)((s8 *)((u8 *)this) + 0x460) = temp_r0;
     if (temp_r0 < 0) {
         *(s32 *)((s8 *)((u8 *)this) + 0x418) = 0;
-        *(f32 *)((s8 *)((u8 *)this) + 0x41C) = 0.0f;
+        *(f32 *)((s8 *)((u8 *)this) + 0x41C) = (f32) lbl_805DE4E0;
         this->copy_anim_state();
         this->destroy_part(7);
         this->set_action_state((void *)0);
@@ -190,26 +198,26 @@ void TBoss6Type2::update_charge_timer() {
 
 void TBoss6Type2::start_flow_soul_effect() {
     Obj_802BE9AC *arg0 = (Obj_802BE9AC *)this;
-    static s32 dur = (s32)(60.0f / lbl_805DE404);
+    static s32 dur = (s32)(lbl_805DE4E8 / lbl_805DE404);
     Vec_802BE9AC v;
     u32 pl;
     s32 d = dur;
     arg0->t45C = d;
     arg0->t460 = d;
-    play_sound_effect(0x68A25, &arg0->pos, 0, 1);
+    play_sound_effect(0x68A25, (const Vec *)(&arg0->pos), 0, 1);
     ((TBoss6Type2 *)arg0)->spawn_particle_slot(7);
     TBoss6Type2__sub_802BB768(arg0);
     if (arg0->client != 0xFFFF) {
         pl = (u32)get_player_by_client_id(arg0->client);
         if (pl != 0) {
             VecCopy__FP3VecPC3Vec(&v, (void *)(pl + 0x38));
-            v.y += 10.0f;
+            v.y += lbl_805DE4EC;
             spawn_flow_soul__11TBoss6Type2Fiii((s32)arg0, (s32)&v, (s32)arg0->t45C);
-            spawn_particle_effect((void *)(pl + 0x38), 0x36);
+            spawn_particle_effect((const Vec *)((pl + 0x38)), 0x36);
         }
         ((TBoss6EffHyoui *)(arg0->client))->create((void *)1, (void *)arg0->t45C);
         if (((TBoss6Type2 *)arg0)->is_target_valid() == 0) {
-            play_sound_effect(0x40069E13, &arg0->pos, 0, 1);
+            play_sound_effect(0x40069E13, (const Vec *)(&arg0->pos), 0, 1);
         }
     }
 }
@@ -218,72 +226,74 @@ void update_attack_timer__11TBoss6Type2FPv(u8 *arg0) {
     s32 temp_r0;
     u32 player;
 
-    play_persistent_sound(0x4006A30B, (s32)arg0, (u32)(arg0 + 0x38), 0, 1);
+    play_persistent_sound((s32)(0x4006A30B), (const void *)((s32)arg0), (const Vec *)((u32)(arg0 + 0x38)), 0, 1);
     temp_r0 = *(s32 *)((s8 *)arg0 + 0x460) - 1;
     *(s32 *)((s8 *)arg0 + 0x460) = temp_r0;
     if (temp_r0 < 0) {
         if (((TBoss6Type2 *)arg0)->check_target() != 0) {
             if (((TBoss6Type2 *)arg0)->is_target_valid() == 0) {
-                play_sound_effect(0x40069E13, arg0 + 0x38, 0, 1);
+                play_sound_effect(0x40069E13, (const Vec *)(arg0 + 0x38), 0, 1);
             }
             player = (u32)get_player_by_client_id((*(u16 *)((s8 *)arg0 + 0x55C)));
             if (player != 0U) {
-                spawn_particle_effect((void *)(player + 0x38), 0x36);
+                spawn_particle_effect((const Vec *)((player + 0x38)), 0x36);
             }
         }
         ((TBoss6Type2 *)arg0)->set_action_state((void *)0x1B);
     }
 }
 
-void TBoss6Type2__sub_802BEB78(u8 *arg0) {
+void TBoss6Type2::sub_802BEB78() {
     s32 temp_r0;
     if ((s8) lbl_805D6784 == 0) {
         lbl_805D6784 = 1;
-        lbl_805D6780 = (s32) (60.0f / lbl_805DE400);
+        lbl_805D6780 = (s32) (lbl_805DE4E8 / lbl_805DE400);
     }
     temp_r0 = lbl_805D6780;
-    *(s32 *)((s8 *)arg0 + 0x45C) = temp_r0;
-    *(s32 *)((s8 *)arg0 + 0x460) = temp_r0;
-    play_sound_effect(0x68A25, arg0 + 0x38, 0, 1);
-    TBoss6Type2__sub_802BB768(arg0);
-    if (*(u16 *)((s8 *)arg0 + 0x464) != 0xFFFF) {
-        TBoss6Type2::create_flow_soul((void *)arg0, arg0 + 0x620, (void *)(*(u16 *)((s8 *)arg0 + 0x464)), (void *)(*(s32 *)((s8 *)arg0 + 0x45C)));
-        ((TBoss6EffHyoui *)(*(u16 *)((s8 *)arg0 + 0x464)))->create((void *)0, (void *)(*(s32 *)((s8 *)arg0 + 0x45C)));
+    this->unk_45C = temp_r0;
+    this->m_460 = temp_r0;
+    play_sound_effect(0x68A25, (const Vec *)&this->position, 0, 1);
+    TBoss6Type2__sub_802BB768(this);
+    if (this->m_464 != 0xFFFF) {
+        TBoss6Type2::create_flow_soul((void *)this, this->unk_620, (void *)this->m_464, (void *)this->unk_45C);
+        ((TBoss6EffHyoui *)this->m_464)->create((void *)0, (void *)this->unk_45C);
     }
 }
 
 #pragma push
+// Porting exception (approved by Matt 2026-11-04, see docs/porting-exceptions.md):
+// no honest source form reproduces MWCC's 0.0f load placement here without
+// opt_common_subs off. Remove this pragma when porting off MWCC.
 #pragma opt_common_subs off
-#pragma fp_contract on
-void TBoss6Type2__sub_802BEC28(TBoss6Type2 *arg0) {
+void TBoss6Type2::sub_802BEC28() {
     f32 temp_f1;
     s32 temp_r0;
     u32 player;
-    *(f32 *)((s8 *)arg0 + 0x41C) = (f32) (1.0f - ((f32) *(s32 *)((s8 *)arg0 + 0x460) / (f32) *(s32 *)((s8 *)arg0 + 0x45C)));
-    temp_f1 = *(f32 *)((s8 *)arg0 + 0x41C);
-    if (temp_f1 < 0.0f) {
-        *(f32 *)((s8 *)arg0 + 0x41C) = 0.0f;
-    } else if (temp_f1 > 1.0f) {
-        *(f32 *)((s8 *)arg0 + 0x41C) = 1.0f;
+    this->m_41c = (f32) (lbl_805DE4E4 - ((f32) this->m_460 / (f32) this->unk_45C));
+    temp_f1 = this->m_41c;
+    if (temp_f1 < lbl_805DE4E0) {
+        this->m_41c = (f32) lbl_805DE4E0;
+    } else if (temp_f1 > lbl_805DE4E4) {
+        this->m_41c = (f32) lbl_805DE4E4;
     }
-    play_persistent_sound(0x4006A30B, (s32)arg0, (u32)((u8 *)arg0 + 0x38), 0, 1);
-    temp_r0 = *(s32 *)((s8 *)arg0 + 0x460) - 1;
-    *(s32 *)((s8 *)arg0 + 0x460) = temp_r0;
+    play_persistent_sound((s32)(0x4006A30B), (const void *)this, (const Vec *)&this->position, 0, 1);
+    temp_r0 = this->m_460 - 1;
+    this->m_460 = temp_r0;
     if (temp_r0 < 0) {
-        *(s32 *)((s8 *)arg0 + 0x418) = 1;
-        *(f32 *)((s8 *)arg0 + 0x41C) = 1.0f;
-        if (arg0->check_target() != 0) {
-            if (arg0->is_target_valid() == 0) {
-                play_sound_effect(0x40069E13, (u8 *)arg0 + 0x38, 0, 1);
+        this->m_418 = 1;
+        this->m_41c = (f32) lbl_805DE4E4;
+        if (this->check_target() != 0) {
+            if (this->is_target_valid() == 0) {
+                play_sound_effect(0x40069E13, (const Vec *)&this->position, 0, 1);
             }
-            player = (u32)get_player_by_client_id(((s32) *(u16 *)((s8 *)arg0 + 0x55C)));
+            player = (u32)get_player_by_client_id((s32) this->unk_55C);
             if (player != 0U) {
-                spawn_particle_effect((void *)(player + 0x38), 0x36);
+                spawn_particle_effect((const Vec *)((player + 0x38)), 0x36);
             }
         }
-        arg0->copy_anim_state();
-        arg0->destroy_part(6);
-        arg0->set_action_state((void *)0x1B);
+        this->copy_anim_state();
+        this->destroy_part(6);
+        this->set_action_state((void *)0x1B);
     }
 }
 #pragma pop
@@ -293,13 +303,13 @@ void TBoss6Type2::spawn_death_soul() {
     s32 temp_r0;
     if ((s8) lbl_805D677C == 0) {
         lbl_805D677C = 1;
-        lbl_805D6778 = (s32) (60.0f / lbl_805DE400);
+        lbl_805D6778 = (s32) (lbl_805DE4E8 / lbl_805DE400);
     }
     temp_r0 = lbl_805D6778;
     *(s32 *)((s8 *)arg0 + 0x45C) = temp_r0;
     *(s32 *)((s8 *)arg0 + 0x460) = temp_r0;
     *(s32 *)((s8 *)arg0 + 0x420) = 0;
-    play_sound_effect(0x68A25, arg0 + 0x38, 0, 1);
+    play_sound_effect(0x68A25, (const Vec *)(arg0 + 0x38), 0, 1);
     ((TBoss6Type2 *)arg0)->spawn_particle_slot(6);
     TBoss6Type2__sub_802BB768(arg0);
     if (*(u16 *)((s8 *)arg0 + 0x464) != 0xFFFF) {
@@ -315,61 +325,61 @@ extern u8 lbl_805D6774;
 extern f32 lbl_805DE3FC;
 void TBoss6Type2__sub_802BBC74(TBoss6Type2 *boss);
 
-void TBoss6Type2__sub_802BEE38(TBoss6Type2 *boss) {
+void TBoss6Type2::sub_802BEE38() {
     s32 sound;
     s32 n;
     s32 idx;
     s32 grp;
     if ((s8) lbl_805D676C == 0) {
         lbl_805D676C = 1;
-        lbl_805D6768 = (s32) (10.0f / lbl_805DE3FC - 10.0f);
+        lbl_805D6768 = (s32) (lbl_805DE4EC / lbl_805DE3FC - lbl_805DE4EC);
     }
-    if (boss->m_460 == *(s32 *)((u8 *)boss + 0x45C) - lbl_805D6768) {
+    if (this->m_460 == this->unk_45C - lbl_805D6768) {
         sound = 0x40069C05;
-        switch ((s32) boss->m_374) {
+        switch ((s32) this->m_374) {
         case 17:
         case 20:
         case 23:
             sound = 0x40069C06;
             break;
         }
-        play_sound_effect(sound, &boss->position, 0, 0);
+        play_sound_effect((s32)(sound), (const Vec *)(&this->position), 0, 0);
     }
     if ((s8) lbl_805D6774 == 0) {
         lbl_805D6774 = 1;
-        lbl_805D6770 = (s32) (10.0f / lbl_805DE3FC);
+        lbl_805D6770 = (s32) (lbl_805DE4EC / lbl_805DE3FC);
     }
-    if (boss->m_460 == *(s32 *)((u8 *)boss + 0x45C) - lbl_805D6770) {
-        switch ((s32) boss->m_374) {
+    if (this->m_460 == this->unk_45C - lbl_805D6770) {
+        switch ((s32) this->m_374) {
         case 17:
         case 20:
         case 23:
-            play_sound_effect(0x40069C07, &boss->position, 0, 0);
+            play_sound_effect(0x40069C07, (const Vec *)(&this->position), 0, 0);
             break;
         }
-        TBoss6Type2__sub_802BBC74(boss);
+        TBoss6Type2__sub_802BBC74(this);
     }
-    if (boss->m_460 == 24) {
+    if (this->m_460 == 24) {
         TCameraCtrl::set_shake_preset(1);
     }
-    if (--boss->m_460 < 0) {
-        switch ((s32) boss->m_374) {
+    if (--this->m_460 < 0) {
+        switch ((s32) this->m_374) {
         case 15:
         case 16:
         case 17:
-            if ((s32) boss->m_418 != 0) {
-                boss->set_action_state((void *)27);
+            if ((s32) this->m_418 != 0) {
+                this->set_action_state((void *)27);
             } else {
-                boss->set_action_state((void *)0);
+                this->set_action_state((void *)0);
             }
             break;
         default:
-            n = (s32) boss->m_374 - 15;
+            n = (s32) this->m_374 - 15;
             grp = n / 3;
             idx = n % 3;
-            idx = ((boss->m_478 & 1) + idx);
+            idx = ((this->m_478 & 1) + idx);
             idx = (idx + 1) % 3;
-            boss->set_action_state((void *)(idx + ((grp - 1) * 3) + 15));
+            this->set_action_state((void *)(idx + ((grp - 1) * 3) + 15));
             break;
         }
     }
@@ -398,7 +408,7 @@ void TBoss6Type2::update_attack_sequence() {
     s32 temp_r0_2;
 
     if ((s32) *(s32 *)((s8 *)arg0 + 0x460) == (s32) (*(s32 *)((s8 *)arg0 + 0x45C) - 0x3C)) {
-        play_sound_effect(0x69C0F, arg0 + 0x38, 0, 1);
+        play_sound_effect(0x69C0F, (const Vec *)(arg0 + 0x38), 0, 1);
     }
     if ((s32) *(s32 *)((s8 *)arg0 + 0x460) == (s32) (*(s32 *)((s8 *)arg0 + 0x45C) - 0x78)) {
         TBoss6Type2__sub_802BAD04((s32)arg0);
@@ -443,7 +453,7 @@ void TBoss6Type2::update_state_34() { if (*(int*)((char*)this + 0x460) == 34) { 
 void TBoss6Type2::init_attack_timers() {
     *(s32 *)((s8 *)((u8 *)this) + 0x45C) = 0xB4;
     *(s32 *)((s8 *)((u8 *)this) + 0x460) = 0xB4;
-    play_sound_effect(0x4006970E, (void *)(((u8 *)this) + 0x38), 0, 1);
+    play_sound_effect(0x4006970E, (const Vec *)((((u8 *)this) + 0x38)), 0, 1);
     if ((s32) *(s32 *)((s8 *)((u8 *)this) + 0x418) == 0) {
         TBoss6Type2__sub_802BB7C0(this);
         return;
@@ -458,10 +468,10 @@ void update_death_sequence__11TBoss6Type2FPv(u8 *boss6_type2) {
     d = *(s32 *)((s8 *)boss6_type2 + 0x45C);
     s32 d16 = d - 0x16;
     if (*(s32 *)((s8 *)boss6_type2 + 0x460) == d - 7) {
-        play_sound_effect(0x4006A601, boss6_type2 + 0x38, 0, 0);
+        play_sound_effect(0x4006A601, (const Vec *)(boss6_type2 + 0x38), 0, 0);
     }
     if (*(s32 *)((s8 *)boss6_type2 + 0x460) == d16) {
-        play_sound_effect(0x40069E03, boss6_type2 + 0x38, 0, 1);
+        play_sound_effect(0x40069E03, (const Vec *)(boss6_type2 + 0x38), 0, 1);
     }
     ((TBoss6Type2 *)boss6_type2)->trigger_screen_pos();
     switch (*(s32 *)((s8 *)boss6_type2 + 0x460)) {
@@ -486,7 +496,7 @@ void update_death_sequence__11TBoss6Type2FPv(u8 *boss6_type2) {
     }
 }
 
-void TBoss6Type2__sub_802BF3F4(void* p) { if (*(int*)((char*)p + 0x460) == 45) { TBoss6Type2::drop_random_rocks((s32)p, (s32)((void*)0)); } }
+void TBoss6Type2::sub_802BF3F4() { if (this->m_460 == 45) { TBoss6Type2::drop_random_rocks((s32)this, (s32)((void*)0)); } }
 
 extern "C" {
 
@@ -495,7 +505,7 @@ void TBoss6Type2::init_timers_and_copy_pos() {
   if (((s8) lbl_805D675C) == 0)
   {
     lbl_805D675C = 1;
-    lbl_805D6758 = (s32) (15.0f + ((*(const f32 *)&lbl_805DE4DC) / lbl_805DE3F8));
+    lbl_805D6758 = (s32) (lbl_805DE4F0 + ((*(const f32 *)&lbl_805DE4DC) / lbl_805DE3F8));
   }
   *((s32 *) (((s8 *) arg0) + 0x460)) = (*((s32 *) (((s8 *) arg0) + 0x45C)) = (s32) lbl_805D6758);
   VecCopy__FP3VecPC3Vec(arg0 + 0x50C, arg0 + 0x38);
@@ -511,7 +521,7 @@ void TBoss6Type2::update_timer() {
     s32 temp_r0;
 
     if ((s32) *(s32 *)((s8 *)arg0 + 0x460) == (s32) (*(s32 *)((s8 *)arg0 + 0x45C) - 7)) {
-        play_sound_effect(0x4006A604, arg0 + 0x38, 0, 0);
+        play_sound_effect(0x4006A604, (const Vec *)(arg0 + 0x38), 0, 0);
     }
     temp_r0 = *(s32 *)((s8 *)arg0 + 0x460) - 1;
     *(s32 *)((s8 *)arg0 + 0x460) = temp_r0;

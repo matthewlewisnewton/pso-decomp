@@ -1,4 +1,9 @@
+#include "pso/player/demo_mode.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
+#include "pso/misc/PersistentSound.h"
 #include "pso/player/PlayerAttackParams.h"
+#include "pso/npc/NpcModelRegistry.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
 #include "types.h"
 #include "pso/enemy/TObjEneBalClaw.h"
@@ -52,7 +57,7 @@ void spawn_lobby_npc_enemy(void) {
     stack.sp14 = *(s32 *)((s8 *)&lbl_80439B8C.value + 0xC);
     stack.sp8 = *(s32 *)((s8 *)lbl_805D4F20 + 0x430);
     temp_r5 = (u8 *)(*(u8 **)((s8 *)lbl_805D4F20 + 0x42C));
-    TLobby::spawn_npc_enemy((s16)(0x14), (s32)((int) (*(s32 *)((s8 *)temp_r5 + 0x28))), (s32)((int) (*(s32 *)((s8 *)temp_r5 + 0x2C))), &stack.sp8, (f32)((f32) (*(f32 *)((s8 *)((s32 *)TObjEneBalClawClaw__collision_body_template) + 0xC))), (f32)((f32) ((15.0f))));
+    NpcModelRegistry::register_animated_chunk((s16)(0x14), (void *)((s32)((int) (*(s32 *)((s8 *)temp_r5 + 0x28)))), (void *)((s32)((int) (*(s32 *)((s8 *)temp_r5 + 0x2C)))), (const NpcAnimationBinding *)((s32)((void *)&stack.sp8)), (f32)((f32) (*(f32 *)((s8 *)((s32 *)TObjEneBalClawClaw__collision_body_template) + 0xC))), (f32)((f32) ((15.0f))));
 }
 
 #include <stddef.h>
@@ -135,7 +140,6 @@ void calc_velocity_toward_destination(void *self, Vec_80090850 pos, Vec_80090850
 void update_move_to_target__18TObjEneBalClawClawFPv(Claw_80090850 *self);
 int update_if_active__15TObjEnemyCustomFl(void*, int);
 void move_along_ground_avoiding_walls__15TObjEnemyCustomF3Vecff(void *, Vec_80090504, void *, f32, f32);
-s32 update_collisions__10TObjPlayerFv(void *);
 void TObjEneBalClawClaw__sub_80090824(void);
 void vfunc_58__18TObjEneBalClawClawFv(void);
 
@@ -160,10 +164,10 @@ void TObjEneBalClawClaw::update_chase_state() {
         }
         *(f32 *)((s8 *)((u8 *)this) + 0x30C) = (0.0f);
         move_along_ground_avoiding_walls__15TObjEnemyCustomF3Vecff(this, *(Vec_80090504 *)((s8 *)this->target + 0x2FC), this->bodies, (-0.6f), *(f32 *)((s8 *)this->bodies + 0xC));
-        turn_toward_direction(*(s32 *)((s8 *)this->movementParameters + 8), (Vec *)unk_308);
+        turn_toward_direction(*(s32 *)((s8 *)this->movementParameters + 8), &movement_velocity);
         advance_animation();
         apply_actor_gravity((TObjEnemy *)this, (s32 *)(0), (0.0f));
-        update_collisions__10TObjPlayerFv(this);
+        ((TObjCollidable *)(this))->update_collisions();
         break;
     }
 }
@@ -296,7 +300,7 @@ s32 rotate_matrix_y(s32, s32);
 s32 translate_matrix(s32, f32, f32, f32);
 s32 push_matrix();
 s32 pop_matrix();
-s32 set_global_param__8TObjFishFl(s32);
+
 s32 defer_render__7TObjectFv(void *);
 
 void TObjEneBalClawClaw::clear_flag() {
@@ -325,7 +329,7 @@ extern s32 model_render_flags;
 
 void TObjEneBalClawClaw__sub_80090A10(u8 *ene_bal_claw_claw, u8 *arg1, s32 arg2, s16 arg3) {
     VecCopy((Vec *)(ene_bal_claw_claw + 0x38), (const Vec *)arg1);
-    ((TObjEneBalClawClaw *)ene_bal_claw_claw)->rotation_y = arg2;
+    ((TObjEneBalClawClaw *)ene_bal_claw_claw)->rotation.yaw = arg2;
     ((TObjEneBalClawClaw *)ene_bal_claw_claw)->referenceHp = arg3;
     ((TObjEneBalClawClaw *)ene_bal_claw_claw)->hp = arg3;
     sub_80090798__18TObjEneBalClawClawFv(ene_bal_claw_claw);
@@ -369,21 +373,21 @@ void TObjEneBalClawClaw::render() {
         temp_r3 = ((VA_80090950 *)arg0)->m9((1.2e+02f), (4e+02f), (1e+01f));
         if (temp_r3 != 0) {
             var_r30 = 1;
-            set_global_param__8TObjFishFl(this->texlist);
+            set_current_texture_list((GinjaTextureList *)(this->texlist));
             select_actor_lighting(arg0);
             TObjPlayer::toggle_particle_effect();
             push_matrix();
             model_render_flags &= 0xFFFFFBFF;
-            if (TObjPlayer::check_demo_mode() == 1) {
+            if (check_demo_mode() == 1) {
                 post_translate_matrix((u8 *)&this->position);
                 rotate_matrix_x(0, *(s32 *)((s8 *)arg0 + 0x5C));
-                rotate_matrix_y(0, this->rotation_y);
+                rotate_matrix_y(0, this->rotation.yaw);
                 draw_chunk_object(*(s32 *)((s8 *)arg0 + 0x34));
             } else {
                 translate_matrix(0, (0.0f), this->m_3b4 + *(f32 *)((s8 *)arg0 + 0x3BC), (0.0f));
                 post_translate_matrix((u8 *)&this->position);
                 rotate_matrix_x(0, *(s32 *)((s8 *)arg0 + 0x5C));
-                rotate_matrix_y(0, this->rotation_y);
+                rotate_matrix_y(0, this->rotation.yaw);
                 if (this->m_388 & 4) {
                     if (((VB_80090950 *)(arg0 + 0x390))->m8() != 0) {
                         ((VB_80090950 *)(arg0 + 0x390))->m6();
@@ -444,7 +448,6 @@ void TObjEneBalClawClaw::sub_80090D3C() {
 
 
 #define reset_active_state__18TObjEneBalClawClawFPv (*(s32 (*)(void *, s32, s32))&reset_active_state__18TObjEneBalClawClawFPv)
-#define update_collisions__10TObjPlayerFv (*(s32 (*)(void *))&update_collisions__10TObjPlayerFv)
 #define update_enemy_wander_move (*(s32 (*)(void *, void *, int, void *, f32))&update_enemy_wander_move)
 #define update_if_active__15TObjEnemyCustomFl (*(s32 (*)(void *, int))&update_if_active__15TObjEnemyCustomFl)
 #define clear_attack_flag__14TObjEneBalClawFv (*(s32 (*)(void *))&clear_attack_flag__14TObjEneBalClawFv)
@@ -562,10 +565,10 @@ struct Claw_80090ECC {
 extern "C" {
 void queue_destruction__7TObjectFv(void *);
 void TObjPlayer__sub_800A04F0(void *);
-void play_sound_effect(int, void *, int, int);
+
 void TObjEneBalClawClaw__sub_80091134(Claw_80091134 *self);
 s32 check_path_obstructed(void *, void *);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 void TObjEneBalClawClaw__sub_80091200(Claw_80091200 *self);
 Claw_80091354 *find_active_entity_by_id(u16);
 void update_chase__18TObjEneBalClawClawFPv(Claw_80091354 *self);
@@ -583,7 +586,7 @@ struct En0VObj_80090DD0 : En0Base_80090DD0 {
 void TObjEneBalClawClaw__sub_800914A4(void);
 void action__18TObjEneBalClawClawFPv(u8 *arg0);
 s32 play_area_se_with_particle__12TBoss3VoloptFv(void *, s32);
-s32 TObjPlayer__sub_800A0554(void *);
+s32 start_negative_fade_phase__13TUnk_80490470Fv(void *);
 
 void action__18TObjEneBalClawClawFPv(u8 *ene_bal_claw_claw) {
     s32 temp_r4;
@@ -597,7 +600,7 @@ void action__18TObjEneBalClawClawFPv(u8 *ene_bal_claw_claw) {
         ((TObjEneBalClawClaw *)ene_bal_claw_claw)->actorFlags = temp_r4;
         ((TObjEneBalClawClaw *)ene_bal_claw_claw)->requested_action = 0;
         play_area_se_with_particle__12TBoss3VoloptFv(ene_bal_claw_claw + 0x38, temp_r4);
-        TObjPlayer__sub_800A0554(ene_bal_claw_claw + 0x390);
+        start_negative_fade_phase__13TUnk_80490470Fv(ene_bal_claw_claw + 0x390);
         ((TObjEneBalClawClaw *)ene_bal_claw_claw)->state = 1;
     case 1:
         ((TObjMotion *)ene_bal_claw_claw)->advance_animation();
@@ -654,7 +657,7 @@ void TObjEneBalClawClaw__sub_80090ECC(Claw_80090ECC *self) {
         SEEK_80090ECC(self, &v, (0.7f));
         ((TObjEnemy *)self)->turn_toward_direction(self->info->f8, (Vec *)self->f308);
         if (((TObjMotion *)self)->is_passing_frame((f32)(8.0f)) != 0) {
-            play_sound_effect(0x4003B032, self->f38, 0, 0);
+            play_sound_effect(0x4003B032, (const Vec *)(self->f38), 0, 0);
             if (self->target->m18(self, (1.0f)) != 0) {
                 self->target->m23(self, (3.0f));
                 self->target->m20(self, (1.0f));
@@ -676,17 +679,17 @@ void TObjEneBalClawClaw__sub_80090ECC(Claw_80090ECC *self) {
     }
     ((TObjMotion *)self)->advance_animation();
     apply_actor_gravity((TObjEnemy *)((u8 *)self), (s32 *)(0), (0.0f));
-    update_collisions__10TObjPlayerFv(self);
+    ((TObjCollidable *)(self))->update_collisions();
 }
 
 void TObjEneBalClawClaw__sub_80091134(Claw_80091134 *self) {
     switch (self->state) {
     case 0:
-        ((TObjPlayer *)self)->refresh_lobby_state();
+        ((TObjEnemy *)self)->distribute_experience_and_request_drop();
         self->fieldB8 = 4;
         TObjPlayer__sub_800A04F0(&self->motion);
         fn_800D911C((Vec *)(self->effects));
-        play_sound_effect(0x4003AD37, self->pos, 0, 0);
+        play_sound_effect(0x4003AD37, (const Vec *)(self->pos), 0, 0);
         self->state = 1;
     case 1:
         (((TObjMotion *)self)->advance_animation());
@@ -720,8 +723,8 @@ void TObjEneBalClawClaw__sub_80091200(Claw_80091200 *self) {
         self->vel.x *= (0.9f);
         self->vel.z *= (0.9f);
         apply_actor_gravity((TObjEnemy *)((u8 *)self), (s32 *)(0), (0.0f));
-        update_collisions__10TObjPlayerFv(self);
-        play_persistent_sound(0x4003B235, (s32)self, (u32)((u8 *)self + 0x38), 0, 0);
+        ((TObjCollidable *)(self))->update_collisions();
+        play_persistent_sound((s32)(0x4003B235), (const void *)((s32)self), (const Vec *)((u32)((u8 *)self + 0x38)), 0, 0);
         if (self->fB4 != 8) {
             self->f30 &= ~0x200;
             self->f388 &= ~1;
@@ -757,13 +760,13 @@ void update_chase__18TObjEneBalClawClawFPv(Claw_80091354 *self) {
             RESET(self);
             break;
         }
-        play_persistent_sound(0x4003B235, (s32)self, (u32)((u8 *)self + 0x38), 0, 0);
+        play_persistent_sound((s32)(0x4003B235), (const void *)(self), (const Vec *)((u32)((u8 *)self + 0x38)), 0, 0);
         Vec_80091354 v = self->target->pos;
         update_enemy_wander_move(self, &v, 1, self->info, self->info->f4);
         ((TObjEnemy *)self)->turn_toward_direction(self->info->f8, (Vec *)((u8 *)self + 0x308));
         ((TObjMotion *)self)->advance_animation();
         apply_actor_gravity((TObjEnemy *)((u8 *)self), (s32 *)(0), (0.0f));
-        update_collisions__10TObjPlayerFv(self);
+        ((TObjCollidable *)(self))->update_collisions();
         break;
     }
     case -1:
@@ -940,7 +943,7 @@ extern "C" void enemy_spawn_jellen_effect__9TObjCharaFv();
 extern "C" void enemy_spawn_zalure_effect__9TObjCharaFv();
 extern "C" void vfunc_78__9TObjCharaFl();
 extern "C" void vfunc_77__9TObjCharaFv();
-extern "C" void vfunc_76__9TObjCharaFv();
+extern "C" void vfunc_76__9TObjCharaFf();
 extern "C" void vfunc_75__9TObjCharaFf();
 extern "C" void clear_lobby_object_state__9TObjEnemyFv();
 extern "C" void get_center__9TObjCharaFv();
@@ -1005,7 +1008,7 @@ void *__vt__18TObjEneBalClawClaw[83] = {
     (void *)&reset_pose__9TObjCharaFv, (void *)&get_anim_node_position__15TObjEnemyCustomFlP3Vec, (void *)&vfunc_66__9TObjCharaFv, (void *)&vfunc_67__9TObjCharaFf,
     (void *)&get_pos__9TObjCharaFl, (void *)&apply_switch_attack__9TObjCharaFv, (void *)&enemy_spawn_jellen_effect__9TObjCharaFv, (void *)&trigger_switch_attack__9TObjCharaFv,
     (void *)&enemy_spawn_zalure_effect__9TObjCharaFv, (void *)&recalc_stats__9TObjCharaFv, (void *)&vfunc_74__9TObjEnemyFl, (void *)&vfunc_75__9TObjCharaFf,
-    (void *)&vfunc_76__9TObjCharaFv, (void *)&vfunc_77__9TObjCharaFv, (void *)&vfunc_78__9TObjCharaFl, (void *)&vfunc_79__15TObjEnemyCustomFPl,
+    (void *)&vfunc_76__9TObjCharaFf, (void *)&vfunc_77__9TObjCharaFv, (void *)&vfunc_78__9TObjCharaFl, (void *)&vfunc_79__15TObjEnemyCustomFPl,
     (void *)&apply_hit_message_flags__9TObjEnemyFPv, (void *)&apply_set_data__9TObjEnemyFPv, (void *)&clear_lobby_object_state__9TObjEnemyFv,
 };
 #define __vt__18TObjEneBalClawClaw ((s32 *)__vt__18TObjEneBalClawClaw)
@@ -1143,7 +1146,7 @@ void TObjEneBalClawClaw::run_task() {
     u8 *temp_r5;
     u8 *arg0 = (u8 *)this;
     TObjEneBalClaw__sub_8008D68C();
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         TObjEneBalClawClaw__sub_80090824(arg0);
         TObjEneBalClawClaw__sub_800914A4(arg0);
         return;
@@ -1176,8 +1179,8 @@ void TObjEneBalClawClaw::run_task() {
         }
         ((TObjEneBalClaw *)arg0)->update_claw_angle();
         VecCopy((Vec *)(arg0 + 0x2FC), (const Vec *)(arg0 + 0x38));
-        temp_f2 = this->m_300;
-        this->m_300 = (f32) (temp_f2 + (this->m_3b4 + *(f32 *)((s8 *)arg0 + 0x3BC)));
+        temp_f2 = this->body_center_position.y;
+        this->body_center_position.y = (f32) (temp_f2 + (this->m_3b4 + *(f32 *)((s8 *)arg0 + 0x3BC)));
         temp_f1 = this->m_3b4;
         temp_r5 = (unsigned char *) (this->bodies);
         *(f32 *)((s8 *)temp_r5 + 4) = (f32) (temp_f1 + *(f32 *)((s8 *)arg0 + 0x3BC));
@@ -1238,7 +1241,7 @@ s32 TObjEneBalClawClaw__ct(void *arg0) {
     *(s32 *)((s8 *)self + 0) = lbl_805D2978;
     *(s32 *)((s8 *)self + 0xDC) = *(s32 *)((s8 *)lbl_805D4F20 + 0x430);
     *(u8 **)((s8 *)self + 0xD8) = (u8 *)balclaw_claw_model_node_desc;
-    ((TObjMotion *)self)->set_field_d8((s32)(*(u8 **)((s8 *)self + 0xD8)));
+    ((TObjMotion *)self)->set_action_table((TObjMotionAction *)((s32)(*(u8 **)((s8 *)self + 0xD8))));
     init_collision_body_parts(self, TObjEneBalClawClaw__collision_body_template, 1);
     *(s32 *)((s8 *)self + 0x368) = 0;
     *(u8 **)((s8 *)self + 0x350) = (u8 *)lbl_8048F100;
@@ -1254,7 +1257,7 @@ s32 TObjEneBalClawClaw__ct(void *arg0) {
     VecCopy((Vec *)(self + 0x2FC), (const Vec *)(self + 0x38));
     *(f32 *)((s8 *)self + 0x300) += (5.0f);
     ((TBoss3Volopt *)self)->reset_photon_effect();
-    ((TObjEneBalClawClaw *)self)->sub_80090418(2);
+    ((TObjEneBalClawClaw *)self)->select_model(2);
     *(s32 *)((s8 *)self + 0x3B8) = 0;
     *(f32 *)((s8 *)self + 0x3BC) = (0.0f);
     *(f32 *)((s8 *)self + 0x3AC) = (15.0f);
@@ -1267,7 +1270,7 @@ s32 TObjEneBalClawClaw__ct(void *arg0) {
 #undef self
 #pragma pop
 u8 *TObjEneBalClawClaw__sub_80091B98(u8 *ene_bal_claw_claw, s32 arg1, u8 *arg2, s32 arg3, s32 arg4, u8 *arg5, s32 arg6, s32 _w7) {
-    TObjEneBalClaw__ct((TObjEneBalClaw *)ene_bal_claw_claw);
+    __ct__14TObjEneBalClawFP7TObject((TObjEneBalClaw *)ene_bal_claw_claw, (TObject *)arg1);
     *(s32 **)((s8 *)ene_bal_claw_claw + 0x18) = &(*(RecoveredGlobal_80091B98_lbl_8048F148 *)__vt__18TObjEneBalClawClaw).value;
     ((TObjEneBalClawClaw *)ene_bal_claw_claw)->entity_id = arg3;
     *(s16 *)((s8 *)ene_bal_claw_claw + 0x2C) = arg4;
@@ -1275,9 +1278,9 @@ u8 *TObjEneBalClawClaw__sub_80091B98(u8 *ene_bal_claw_claw, s32 arg1, u8 *arg2, 
     *(s16 *)((s8 *)ene_bal_claw_claw + 0x2A) = (s16) *(s16 *)((s8 *)arg2 + 0x2A);
     VecCopy((Vec *)(ene_bal_claw_claw + 0x38), (const Vec *)(arg5));
     VecCopy((Vec *)(ene_bal_claw_claw + 0x50), (const Vec *)(arg2 + 0x50));
-    ((TObjEneBalClawClaw *)ene_bal_claw_claw)->rotation_z = 0;
+    ((TObjEneBalClawClaw *)ene_bal_claw_claw)->rotation.roll = 0;
     *(s32 *)((s8 *)ene_bal_claw_claw + 0x5C) = 0;
-    ((TObjEneBalClawClaw *)ene_bal_claw_claw)->rotation_y = arg6;
+    ((TObjEneBalClawClaw *)ene_bal_claw_claw)->rotation.yaw = arg6;
     TObjEneBalClawClaw__ct(ene_bal_claw_claw);
     *(s32 *)((s8 *)ene_bal_claw_claw + 0x80) = 0;
     ((TObjEneBalClawClaw *)ene_bal_claw_claw)->m_3b8 = (s32) *(s32 *)((s8 *)arg2 + 0x3B8);
@@ -1289,7 +1292,7 @@ u8 *TObjEneBalClawClaw__sub_80091B98(u8 *ene_bal_claw_claw, s32 arg1, u8 *arg2, 
 
 typedef char RecoveredGlobal_80091C58_lbl_8048F148_size[sizeof(RecoveredGlobal_80091C58_lbl_8048F148) == 0x14C ? 1 : -1];
 u8 *TObjEneBalClawClaw__sub_80091C58(u8 *ene_bal_claw_claw, s32 arg1, u8 *arg1_arg) {
-    TObjEneBalClaw__ct((TObjEneBalClaw *)(ene_bal_claw_claw));
+    __ct__14TObjEneBalClawFP7TObject((TObjEneBalClaw *)ene_bal_claw_claw, (TObject *)arg1);
     *(s32 **)((s8 *)ene_bal_claw_claw + 0x18) = &(*(RecoveredGlobal_80091C58_lbl_8048F148 *)__vt__18TObjEneBalClawClaw).value;
     ((TObjEneBalClawClaw *)(ene_bal_claw_claw))->apply_set_data(arg1_arg);
     TObjEneBalClawClaw__ct(ene_bal_claw_claw);

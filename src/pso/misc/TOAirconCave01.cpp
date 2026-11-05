@@ -1,4 +1,6 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/TMainTask.h"
 #include "pso/misc/TOAirconCave01.h"
 #include "pso/object/TObjFish.h"
@@ -19,11 +21,11 @@ BmlResource *TOAirconCave01__model_archive;
 void TOAirconCave01::render() {
     NJS_OBJECT *object = (NJS_OBJECT *)TOAirconCave01__model_archive->models[0].model;
     if (update_object_view_visibility(view_range, model_radius) != 0) {
-        rotation_x += 0x106;
+        this->rotation.pitch += 0x106;
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
-        TObjFish::set_global_param(texlist);
+        rotate_matrix_y(NULL, this->rotation.yaw);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         draw_ginja_model((s32)object->model);
         pop_matrix();
     }
@@ -35,17 +37,13 @@ void *TOAirconCave01::create(void *set_data) {
 
 void TOAirconCave01::release_static_resource() {
     if (TOAirconCave01__model_archive != NULL) {
-        TLobby__sub_8001FE7C(TOAirconCave01__model_archive, 1);
+        delete (BmlResource *)(TOAirconCave01__model_archive);
         TOAirconCave01__model_archive = NULL;
     }
 }
 
 void TOAirconCave01::load_shared_resource() {
-    void *memory = ::operator new(0x440);
-    BmlResource *resource = (BmlResource *)memory;
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(memory, 1, &TOAirconCave01__shared_resource_desc, 0, 0, 0);
-    }
+    BmlResource *resource = new BmlResource(1, (BmlResourceDescriptor *)&TOAirconCave01__shared_resource_desc, 0, 0, NULL);
     TOAirconCave01__model_archive = resource;
 }
 

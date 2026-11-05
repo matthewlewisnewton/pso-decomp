@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/items/TItemWeapon.h"
 #include "pso/item/TItemEffOrgaFlowShot.h"
@@ -19,6 +20,8 @@ struct RecoveredGlobal_803268D8_lbl_804ECFB0 {
     u8 remaining[0xF4];
 };
 
+struct Rec_80326D54 { f32 a; s32 b; s32 c; s32 d; };
+
 struct Obj_80326D54 { u8 pad[0x1F8]; f32 x1F8; f32 x1FC; };
 
 extern "C" {
@@ -30,6 +33,7 @@ extern s32 lbl_804ECFB0[];
 u8 *TObjPlayer__sub_803268D8(u8 *arg0, u8 *arg1, s32 _w2);
 u8 *TItemTimerEvent__ct(void *, u32, s32, s32);
 void translate_matrix(u32 arg0, f32 x, f32 y, f32 z);
+extern Rec_80326D54 lbl_80476760;
 extern const f32 lbl_805DF660;
 void TObjPlayer__sub_80326D54(Obj_80326D54 *arg0);
 void *__dt__13TUnk_804ECEB8Fv(void *arg0, s16 arg1);
@@ -49,11 +53,11 @@ s32 __nw__15TItemHeapObjectFUl(s32);
 s32 get_owner_client__5TItemFv(void *);
 s16 get_actor_tp(u8 *p);
 
-extern s32 __vt__13TUnk_804ECDC0[];
+extern s32 lbl_804ECDC0[];
 
 void *TUnk_804ECDC0::set_vtable_mode2_alt(s32 _w1, void *_w2) {
     __ct__11TItemWeaponFP7TObjectPUc((void *)this, (void *)_w1);
-    *(s32 **)((s8 *)this + 0x18) = __vt__13TUnk_804ECDC0;
+    *(s32 **)((s8 *)this + 0x18) = lbl_804ECDC0;
     set_weapon_flags(2);
     return this;
 }
@@ -307,8 +311,9 @@ void *__dt__13TUnk_804ED1A0Fv(void *arg0, s16 arg1) {
 void TObjPlayer__sub_80326D54(Obj_80326D54 *arg0) {
     switch (TObjPlayer::get_player_list()) {
     case 2: {
-        NJS_ARGB color = { arg0->x1FC, 0.0f, 0.0f, 0.0f };
-        TItem::begin_offset_material_color(&color);
+        Rec_80326D54 r = lbl_80476760;
+        r.a = arg0->x1FC;
+        TItem::begin_offset_material_color((const NJS_ARGB *)&r);
         break;
     }
     case 3:
@@ -426,7 +431,6 @@ void *__dt__13TUnk_804ED390Fv(void *arg0, s16 arg1) {
 #undef lbl_804ED298
 void config_dark_flow_attack_collider(int a0, void* a1);
 extern "C" {
-s32 play_sound_effect(s32, s32, s32, s32);
 
 s16 get_actor_hp(u8 *p);
 s32 update_active_game_effect__10TObjPlayerFv(void *);
@@ -463,7 +467,7 @@ void TUnk_804ED488::emit_marker_effects() {
             fire_shot_at_target((void *)(*(s32 *)&this->owner + 0x38), (void *)0, 0);
             fire_shot_at_target((void *)(*(s32 *)&this->owner + 0x38), (void *)0, 0x11C7);
             fire_shot_at_target((void *)(*(s32 *)&this->owner + 0x38), (void *)0, 0x238E);
-            play_sound_effect(0x4001A642, *(s32 *)&this->owner + 0x38, 0, 0);
+            play_sound_effect(0x4001A642, (const Vec *)(*(s32 *)&this->owner + 0x38), 0, 0);
             return;
         }
         update_active_game_effect__10TObjPlayerFv(this);

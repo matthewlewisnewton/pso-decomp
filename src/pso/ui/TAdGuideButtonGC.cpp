@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "pso/ui/TAdGuideButtonGC.h"
 #include "pso/misc/TWindowSubStatusDisp_803DEE6C.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC_802C6F88.h"
@@ -25,7 +26,7 @@ void TAdGuideButtonGC::draw_label(int style, const char *text) {
 #pragma pop
 void TAdGuideButtonGC::draw_quad(int style) {
     if (guide_button_texture_handle != 0) {
-        TObjFish::set_global_param(guide_button_texture_handle);
+        set_current_texture_list((GinjaTextureList *)(guide_button_texture_handle));
         begin_screen_draw(1);
         set_draw_texture_and_color(0,-1);
         draw_textured_quad_at_depth((f32 *)quads, 0.5f);

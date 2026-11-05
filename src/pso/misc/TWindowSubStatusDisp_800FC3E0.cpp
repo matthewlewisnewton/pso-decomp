@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "pso/TFontSmallHelp.h"
 #include "pso/misc/TWindowSubStatusDisp_800FBD74.h"
 #include "types.h"
@@ -42,7 +43,7 @@ void TWindowSubStatusDisp::render_forward(void *context) {
 }
 
 void TWindowSubStatusDisp::begin_render(s32) {
-    TObjFish::set_global_param(localized_alphabet_list);
+    set_current_texture_list((GinjaTextureList *)(localized_alphabet_list));
 }
 
 void TFontSmallHelp::set_color(u32 text_color) {
@@ -76,14 +77,14 @@ void TFontSmallHelp::render() {
     f32 screen[2];
     VecCopy(&pos, &position);
     push_matrix_from(identity_matrix);
-    rotate_matrix_y(NULL, camera_ctrl_instance->yaw);
-    rotate_matrix_x(NULL, camera_ctrl_instance->pitch);
-    rotate_matrix_z(NULL, camera_ctrl_instance->roll);
+    rotate_matrix_y(NULL, camera_ctrl_instance->m_194);
+    rotate_matrix_x(NULL, camera_ctrl_instance->m_190);
+    rotate_matrix_z(NULL, camera_ctrl_instance->m_198);
     rotate_vector_by_matrix(NULL, &forward, &forward);
     pop_matrix();
-    diff.x = pos.x - camera_ctrl_instance->pos_x;
-    diff.y = pos.y - camera_ctrl_instance->pos_y;
-    diff.z = pos.z - camera_ctrl_instance->pos_z;
+    diff.x = pos.x - camera_ctrl_instance->position.x;
+    diff.y = pos.y - camera_ctrl_instance->position.y;
+    diff.z = pos.z - camera_ctrl_instance->position.z;
     {
         f32 xx = diff.x * diff.x;
         f32 yy = diff.y * diff.y;

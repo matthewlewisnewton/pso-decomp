@@ -22,6 +22,7 @@ struct Rec_8031EDF8
 };
 
 extern s32 actor_frame_tick;
+extern const f32 lbl_805DF448;
 
 void TObjEneRecon::remove_tracked_id(s32 id) {
     T_8031EDBC *self = (T_8031EDBC *)this;
@@ -62,7 +63,7 @@ void TObjEneRecobox::update_floor_probe() {
     u8 *temp_r3;
     if ((actor_frame_tick % 5) == 0) {
         VecCopy((Vec *)&stack.sp8, (const Vec *)&this->position);
-        stack.spC += 15.0f;
+        stack.spC += lbl_805DF448;
         temp_r3 = (u8 *)(csnVectorUnder((Vec *)&stack.sp8, (u32 *)&this->m_120, 0x4000));
         if (temp_r3 != NULL) {
             *(s32 *)((s8 *)arg0 + 0x3E0) = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)temp_r3 + 4)) + 0x18);

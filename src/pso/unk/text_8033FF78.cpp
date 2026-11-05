@@ -35,6 +35,7 @@ int get_player_data__10TObjPlayerFi(int a0);
 f32 vector_length(void *);
 s32 subtract_vector(void *, void *);
 extern const f32 lbl_805DFAF8;
+extern const f32 lbl_805DFB10;
 s32 create__10TObjMapCsnFl(void *);
 extern E_8034009C lbl_8047843C[];
 void fn_8034009C(O_8034009C *arg0);
@@ -50,7 +51,7 @@ void TBoss6Demo15_TYPE2_WAIT::check_any_player_near() {
     arg0->f24 = 0;
     n = TLobby::get_game_mode();
     y = lbl_805DFAF8;
-    lim = 25.0f;
+    lim = lbl_805DFB10;
     for (i = 0; i < n; i++) {
         p = (P_8033FF78 *)get_player_data__10TObjPlayerFi(i);
         if (((TBoss6PlotFalz *)p)->is_active() != 0) {

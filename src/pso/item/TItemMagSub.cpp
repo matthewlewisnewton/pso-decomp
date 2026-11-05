@@ -1,3 +1,4 @@
+struct NJS_OBJECT;
 #include "pso/system/NinjaTypes.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
@@ -115,7 +116,7 @@ TItemMagSub::TItemMagSub(TObjPlayer *player, TItemMag *mag) : TItemHeapObject(ma
 #pragma pop
 
 void TItemMagSub::reset() {
-    VecCopy((Vec *)translation_offset, (Vec *)&owner->m_2fc);
+    VecCopy((Vec *)translation_offset, (Vec *)&owner->body_center_position);
     rotation_phase[2] = 0;
     rotation_phase[1] = 0;
     rotation_phase[0] = 0;
@@ -172,7 +173,7 @@ void TItemMagSub::update_follow() {
 
     if (motion != NULL) {
         if (motion->joint_index == -1) {
-            VecCopy(&target, (Vec *)&owner->m_2fc);
+            VecCopy(&target, (Vec *)&owner->body_center_position);
         } else {
             owner->get_anim_node_position(motion->joint_index, &target);
         }
@@ -224,7 +225,7 @@ void TItemMagSub::update_transition() {
 void TItemMagSub::update_special_pose() {
     if (motion != NULL) {
         if (motion->joint_index == -1) {
-            VecCopy(&follow_anchor, (Vec *)&owner->m_2fc);
+            VecCopy(&follow_anchor, (Vec *)&owner->body_center_position);
         } else {
             owner->get_anim_node_position(motion->joint_index, &follow_anchor);
         }
@@ -247,7 +248,7 @@ s32 TItemMagSub::resolve_owner_heading() {
 
     player = owner;
     pose = (MagOwnerPose **)player->current_motion;
-    heading = player->rotation_y;
+    heading = player->rotation.yaw;
     if (pose != NULL) {
         current = *pose;
         if (current != NULL) {
@@ -261,7 +262,7 @@ s32 TItemMagSub::resolve_owner_heading() {
 }
 
 void TItemMagSub::render() {
-    if (is_point_on_screen(&owner->m_2fc, 400.0f, 20.0f) && model != NULL) {
+    if (is_point_on_screen(&owner->body_center_position, 400.0f, 20.0f) && model != NULL) {
         drawing = this;
         set_texlist(textures);
         push_matrix();
@@ -269,13 +270,13 @@ void TItemMagSub::render() {
         drawn_node = 0;
         selected_node = 0;
         if (animation != NULL) {
-            set_chunk_model_node_callback((s32)TItemMagSub::update_node_oscillation);
+            set_chunk_model_node_callback(TItemMagSub::update_node_oscillation);
             set_motion_packed_rotation();
             draw_model_motion(model, animation, animation_frame);
             clear_motion_packed_rotation();
             set_chunk_model_node_callback(0);
         } else {
-            draw_node_tree_with_callback((NJS_OBJECT *)model, (void (*)(NJS_OBJECT *))TItemMagSub::update_node_oscillation);
+            draw_node_tree_with_callback((NJS_OBJECT *)model, TItemMagSub::update_node_oscillation);
         }
         drawn_node = 0;
         pop_matrix();
@@ -303,7 +304,7 @@ void TItemMagSub::render_shadows() {
         drawn_node = 0;
         selected_node = 0;
         if (animation != NULL) {
-            set_chunk_model_node_callback((s32)TItemMagSub::update_node_oscillation);
+            set_chunk_model_node_callback(TItemMagSub::update_node_oscillation);
             set_motion_packed_rotation();
             draw_model_motion(model, animation, animation_frame);
             clear_motion_packed_rotation();
@@ -341,7 +342,7 @@ void TItemMagSub::apply_placement_matrix() {
         heading = resolve_owner_heading();
         rotate_matrix_y(NULL, heading);
     } else {
-        rotate_matrix_y(NULL, owner->rotation_y);
+        rotate_matrix_y(NULL, owner->rotation.yaw);
     }
     post_translate_matrix(translation_offset);
     follow = motion;
@@ -387,7 +388,7 @@ void accumulate_mag_axis_oscillation(f32 *out, s32 *phase, MagAxisOscillationPar
     *out = axis->amplitude * sin_table_lookup(*phase + axis->phase_offset);
 }
 
-void TItemMagSub::update_node_oscillation(void *node) {
+void TItemMagSub::update_node_oscillation(NJS_OBJECT *node) {
     if (drawing != NULL) {
         drawing->apply_node_oscillation(node);
         drawn_node++;
@@ -459,7 +460,7 @@ void TItemMagSub::set_motion_type(s32 type) {
     if (player != NULL) {
         s32 joint = motion->joint_index;
         if (joint == -1) {
-            VecCopy(&follow_anchor, (Vec *)&player->m_2fc);
+            VecCopy(&follow_anchor, (Vec *)&player->body_center_position);
             return;
         }
         player->get_anim_node_position(joint, &follow_anchor);

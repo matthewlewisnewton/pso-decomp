@@ -7,20 +7,23 @@ struct Obj_803D64F8 {
 };
 
 extern "C" {
+extern const f32 lbl_805E0DF0;
+extern const f32 lbl_805E0DF4;
+extern const f32 lbl_805E0DF8;
 void fn_803D64F8(Obj_803D64F8 *p);
 #pragma push
 #pragma scheduling off
 void fn_803D64F8(Obj_803D64F8 *p) {
-    p->a = 0.0f;
-    p->b = 0.0f;
-    p->c = 0.0f;
-    p->d = 0.0f;
-    p->e = 0.0f;
-    p->f = -1.0f;
+    p->a = lbl_805E0DF0;
+    p->b = lbl_805E0DF0;
+    p->c = lbl_805E0DF0;
+    p->d = lbl_805E0DF0;
+    p->e = lbl_805E0DF0;
+    p->f = lbl_805E0DF4;
     p->g = 0;
     p->h = 0x2aaa;
-    p->i = -1.0f;
-    p->j = -60000.0f;
+    p->i = lbl_805E0DF4;
+    p->j = lbl_805E0DF8;
 }
 #pragma pop
 

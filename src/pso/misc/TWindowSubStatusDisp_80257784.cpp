@@ -1,3 +1,5 @@
+#include "pso/system/ArrayAllocation.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/system/memory.h"
 #include "pso/misc/TCameraCtrl.h"
@@ -5,6 +7,8 @@
 #include "pso/misc/TUnk_804CF930.h"
 #include "pso/misc/TWindowCtrl.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
+#include "pso/misc/TWindowKeyBoardSoft.h"
+#include "pso/ui/ItemListRow.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/item/TItem.h"
 #include "pso/map/FloorArea.h"
@@ -16,61 +20,6 @@ struct RecoveredGlobal_80258100_lbl_804CF998 {
 };
 
 extern unsigned char lbl_804CF998[];
-
-// Screen x, y of each item icon slot (indexed by get_entry_ptr).
-extern const f32 status_disp_item_icon_coord_table[51][2] = {
-    { 161.0f, 98.0f },
-    { 179.0f, 98.0f },
-    { 197.0f, 98.0f },
-    { 215.0f, 98.0f },
-    { 233.0f, 98.0f },
-    { 161.0f, 116.0f },
-    { 179.0f, 116.0f },
-    { 197.0f, 116.0f },
-    { 215.0f, 116.0f },
-    { 233.0f, 116.0f },
-    { 161.0f, 134.0f },
-    { 179.0f, 134.0f },
-    { 197.0f, 134.0f },
-    { 215.0f, 134.0f },
-    { 233.0f, 134.0f },
-    { 161.0f, 152.0f },
-    { 179.0f, 152.0f },
-    { 197.0f, 152.0f },
-    { 215.0f, 152.0f },
-    { 233.0f, 152.0f },
-    { 161.0f, 170.0f },
-    { 179.0f, 170.0f },
-    { 197.0f, 170.0f },
-    { 215.0f, 170.0f },
-    { 233.0f, 170.0f },
-    { 233.0f, 224.0f },
-    { 197.0f, 224.0f },
-    { 215.0f, 224.0f },
-    { 72.0f, 238.0f },
-    { 90.0f, 238.0f },
-    { 108.0f, 238.0f },
-    { 126.0f, 238.0f },
-    { 161.0f, 188.0f },
-    { 179.0f, 188.0f },
-    { 197.0f, 188.0f },
-    { 215.0f, 188.0f },
-    { 233.0f, 188.0f },
-    { 161.0f, 206.0f },
-    { 179.0f, 206.0f },
-    { 197.0f, 206.0f },
-    { 215.0f, 206.0f },
-    { 233.0f, 206.0f },
-    { 161.0f, 224.0f },
-    { 179.0f, 224.0f },
-    { 54.0f, 238.0f },
-    { 197.0f, 80.0f },
-    { 215.0f, 80.0f },
-    { 233.0f, 80.0f },
-    { 197.0f, 62.0f },
-    { 215.0f, 62.0f },
-    { 233.0f, 62.0f },
-};
 
 extern "C" {
 
@@ -103,7 +52,6 @@ void TWindowSubStatusDisp::finalize_state() {
 }
 
 void reset__20TWindowSubStatusDispFPv(void *arg0);
-void mem_free(void *p);
 
 void reset__20TWindowSubStatusDispFPv(void *arg0) {
     *(s8 *)((s8 *)arg0 + 0x1C) = 0x33;
@@ -114,11 +62,11 @@ void reset__20TWindowSubStatusDispFPv(void *arg0) {
     *(s32 *)((s8 *)arg0 + 0x34) = -1;
     *(s32 *)((s8 *)arg0 + 0x18) = 0;
     if (((u32) *(u32 *)((s8 *)arg0 + 0x24) != 0U) && (*(u16 *)((s8 *)arg0 + 0) & 0x10)) {
-        mem_free((void *)(*(u32 *)((s8 *)arg0 + 0x24)));
+        ::operator delete[]((void *)(*(u32 *)((s8 *)arg0 + 0x24)));
     }
     *(u32 *)((s8 *)arg0 + 0x24) = 0U;
     if (((u32) *(u32 *)((s8 *)arg0 + 0x20) != 0U) && (*(u16 *)((s8 *)arg0 + 0) & 8)) {
-        mem_free((void *)(*(u32 *)((s8 *)arg0 + 0x20)));
+        ::operator delete[]((void *)(*(u32 *)((s8 *)arg0 + 0x20)));
     }
     *(u32 *)((s8 *)arg0 + 0x20) = 0U;
     *(u16 *)((s8 *)arg0 + 0) = (u16) (*(u16 *)((s8 *)arg0 + 0) & ~0x1BFD);
@@ -381,7 +329,7 @@ void select_item_icon__20TWindowSubStatusDispFPviUcUci(void *arg0, s32 arg1, u8 
 
 void TWindowSubStatusDisp::setup_entry_msg_d1(s32 arg1) {
     *(f32 *)((s8 *)((u8 *)this) + 8) = (f32) lbl_805DCF04;
-    *(s8 *)&this->unk_1C = 0x33;
+    *(s8 *)&this->frame_pad_1c = 0x33;
     this->m_1d = 0x33;
     *(s32 *)((s8 *)((u8 *)this) + 0x20) = replace_owned_string__20TWindowSubStatusDispFPviiii(this, (s32)((int) (TWindowSubStatusDisp::get_message_10(0xD1))), (s32)((int) (*(s32 *)((s8 *)((u8 *)this) + 0x20))), 8, 1);
     *(s32 *)((s8 *)((u8 *)this) + 0x30) = 0xFF909090;
@@ -391,7 +339,7 @@ void TWindowSubStatusDisp::setup_entry_msg_d1(s32 arg1) {
 
 void TWindowSubStatusDisp::setup_entry_msg_d0(s32 arg1) {
     *(f32 *)((s8 *)((u8 *)this) + 8) = (f32) lbl_805DCF08;
-    *(s8 *)&this->unk_1C = 0x33;
+    *(s8 *)&this->frame_pad_1c = 0x33;
     this->m_1d = 0x33;
     *(s32 *)((s8 *)((u8 *)this) + 0x20) = replace_owned_string__20TWindowSubStatusDispFPviiii(this, (s32)((int) (TWindowSubStatusDisp::get_message_10(0xD0))), (s32)((int) (*(s32 *)((s8 *)((u8 *)this) + 0x20))), 8, 1);
     *(s32 *)((s8 *)((u8 *)this) + 0x30) = 0xFF909090;
@@ -401,7 +349,7 @@ void TWindowSubStatusDisp::setup_entry_msg_d0(s32 arg1) {
 
 void TWindowSubStatusDisp::init_no_item_entry(s32 arg1) {
     *(f32 *)((s8 *)((u8 *)this) + 8) = (f32) lbl_805DCF08;
-    *(s8 *)&this->unk_1C = 0x33;
+    *(s8 *)&this->frame_pad_1c = 0x33;
     this->m_1d = 0x33;
     *(s32 *)((s8 *)((u8 *)this) + 0x20) = replace_owned_string__20TWindowSubStatusDispFPviiii(this, (s32)((int) (TWindowSubStatusDisp::get_message_10(0xCF))), (s32)((int) (*(s32 *)((s8 *)((u8 *)this) + 0x20))), 8, 1);
     *(s32 *)((s8 *)((u8 *)this) + 0x30) = 0xFF909090;
@@ -411,7 +359,7 @@ void TWindowSubStatusDisp::init_no_item_entry(s32 arg1) {
 
 void TWindowSubStatusDisp::init_entry(s8 arg1, s8 arg2, u8 arg3, u32 src, s32 arg5) {
     *(f32 *)((s8 *)((u8 *)this) + 8) = (f32) lbl_805DCF08;
-    *(s8 *)&this->unk_1C = arg1;
+    *(s8 *)&this->frame_pad_1c = arg1;
     this->m_1d = arg2;
     *(s32 *)((s8 *)((u8 *)this) + 0x28) = (s32) arg3;
     this->m_2c = -1;
@@ -423,7 +371,7 @@ void TWindowSubStatusDisp::init_entry(s8 arg1, s8 arg2, u8 arg3, u32 src, s32 ar
 
 void TWindowSubStatusDisp__sub_80258A28(u8 *window_sub_status_disp, s32 arg1, s32 arg2) {
     *(f32 *)((s8 *)window_sub_status_disp + 8) = (f32) lbl_805DCF08;
-    *(s8 *)&((TWindowSubStatusDisp *)window_sub_status_disp)->unk_1C = 0x33;
+    *(s8 *)&((TWindowSubStatusDisp *)window_sub_status_disp)->frame_pad_1c = 0x33;
     ((TWindowSubStatusDisp *)window_sub_status_disp)->m_1d = 9;
     text_builder_reset();
     TWindowSubStatusDisp__sub_80228F5C(arg1);
@@ -436,7 +384,7 @@ void TWindowSubStatusDisp__sub_80258A28(u8 *window_sub_status_disp, s32 arg1, s3
 
 void TWindowSubStatusDisp::setup_stat_line(s32 src, s32 arg2, s32 arg3) {
     *(f32 *)((s8 *)this + 8) = (f32) lbl_805DCF08;
-    *(s8 *)&this->unk_1C = 0x33;
+    *(s8 *)&this->frame_pad_1c = 0x33;
     this->m_1d = 0x2D;
     *(s32 *)((s8 *)this + 0x20) = replace_owned_string__20TWindowSubStatusDispFPviiii(this, src, *(s32 *)((s8 *)this + 0x20), 8, 1);
     update_stat_line__20TWindowSubStatusDispFPvi(this, arg2);
@@ -485,7 +433,7 @@ void TWindowSubStatusDisp::init_list_entry(u8 arg1, s32 src, s32 arg3) {
 }
 void init_status_entry__20TWindowSubStatusDispFPvcUii(u8 *window_sub_status_disp, s8 arg1, u32 src, s32 arg3) {
     *(f32 *)((s8 *)window_sub_status_disp + 8) = (f32) lbl_805DCF04;
-    *(s8 *)&((TWindowSubStatusDisp *)window_sub_status_disp)->unk_1C = 0x33;
+    *(s8 *)&((TWindowSubStatusDisp *)window_sub_status_disp)->frame_pad_1c = 0x33;
     ((TWindowSubStatusDisp *)window_sub_status_disp)->m_1d = arg1;
     *(s32 *)((s8 *)window_sub_status_disp + 0x28) = -1;
     ((TWindowSubStatusDisp *)window_sub_status_disp)->m_2c = -1;
@@ -617,7 +565,7 @@ void TWindowSubStatusDisp::set_item_info(void* a1, int a2, void* a3) {
     int temp_r3;
 
     *(float*)((char*)this + 0x8) = lbl_805DCF08;
-    *(unsigned char *)&this->unk_1C = 51;
+    *(unsigned char *)&this->frame_pad_1c = 51;
     temp_r31 = get_item_data__6TLobbyFUl(a1);
     temp_r3 = is_wrapped__9TItemDataFPv(a1);
     select_item_icon__20TWindowSubStatusDispFPviUcUci(this, (void*)temp_r31, (void*)(*(unsigned char*)((char*)a1 + 0x0)), (void*)(*(unsigned char*)((char*)a1 + 0x1)), (void*)temp_r3);
@@ -655,8 +603,8 @@ struct Quad_8025941C { f32 v[8]; };
 
 extern "C" {
 u32 calc_text_width(char *s);
-void set_text_draw_params(s32 arg0, s32 arg1, s32 arg2, f32 farg0, f32 farg1);
-void draw_item_list_icon(s32, u8 *, s32, s32, f32);
+void set_text_draw_params(TWindowDrawContext *arg0, s32 arg1, s32 arg2, f32 farg0, f32 farg1);
+void draw_item_list_icon(ItemListWindowView *, ItemListPosition *, s32, s32, f32);
 }
 s32 draw_window_text(f32 *pos, const char *s, s32 color, s32 mode, f32 width);
 extern const f32 lbl_805DCF14;
@@ -669,7 +617,6 @@ extern const f32 lbl_805DCF10;
 extern const f32 lbl_805DCF18;
 extern "C" {
 void calc_row_width__20TWindowSubStatusDispFv(Row_8025930C *arg0);
-s32 mem_alloc(s32);
 s32 measure_string_len__20TWindowSubStatusDispFv(s32);
 char *strncpy(char *, const char *, unsigned long);
 s32 replace_owned_string__20TWindowSubStatusDispFPviiii(void *arg0, s32 src, s32 buf, s32 mask, s32 copy);
@@ -682,7 +629,7 @@ void TWindowSubStatusDisp::set_ground_item(void *it, s32 arg2) {
     s32 temp_r31;
 
     *(f32 *)((s8 *)this + 8) = (f32) lbl_805DCF08;
-    *(s8 *)&this->unk_1C = 0x33;
+    *(s8 *)&this->frame_pad_1c = 0x33;
     temp_r31 = get_item_data__6TLobbyFUl(it);
     select_item_icon__20TWindowSubStatusDispFPviUcUci(this, temp_r31, *(u8 *)((s8 *)it + 0), *(u8 *)((s8 *)it + 1), is_wrapped__9TItemDataFPv(it));
     forward_message__6TLobbyFlUl(get_shared_text_buffer(), it);
@@ -701,7 +648,7 @@ extern const f32 lbl_805DCF0C;
 
 void TWindowSubStatusDisp::init_display(s32 src, s32 arg2) {
     *(f32 *)((s8 *)this + 8) = (f32) lbl_805DCF0C;
-    *(s8 *)&this->unk_1C = 0x33;
+    *(s8 *)&this->frame_pad_1c = 0x33;
     this->m_1d = 0x33;
     *(s32 *)((s8 *)this + 0x20) = replace_owned_string__20TWindowSubStatusDispFPviiii(this, src, (s32)(*(s32 *)((s8 *)this + 0x20)), 8, 1);
     *(s32 *)((s8 *)this + 0x30) = -1;
@@ -709,16 +656,18 @@ void TWindowSubStatusDisp::init_display(s32 src, s32 arg2) {
     *(u16 *)((s8 *)this + 0) = (u16) (*(u16 *)((s8 *)this + 0) | 0x45);
 }
 
+    extern unsigned char status_disp_item_icon_coord_table[];
+
 s32 replace_owned_string__20TWindowSubStatusDispFPviiii(void *arg0, s32 src, s32 buf, s32 mask, s32 copy) {
     u16 *flags = (u16 *)arg0;
     s32 n;
     if (buf != 0 && (*flags & mask)) {
         *flags &= ~mask;
-        mem_free((void *)buf);
+        ::operator delete[]((void *)buf);
     }
     if ((u32)src != 0 && copy != 0) {
         n = measure_string_len__20TWindowSubStatusDispFv(src);
-        buf = mem_alloc(n + 1);
+        buf = reinterpret_cast<s32>(::operator new[](static_cast<size_t>(n) + 1));
         strncpy((char *)buf, (const char *)src, n + 1);
         *flags |= mask;
     } else {
@@ -751,37 +700,34 @@ extern s32 lbl_805D63F0;
 extern const f32 lbl_805DCF1C;
 void begin_screen_draw(s32 arg0);
 void set_draw_texture_and_color(s32 idx, s32 arg1);
-s32 set_global_param__8TObjFishFl(s32);
-s32 try_open__19TWindowKeyBoardSoftFii(s32, s32);
+
 void draw_textured_quad_at_depth(f32 *q, f32 depth);
 
-void draw_item_list_icon(s32 win, u8 *pos, s32 icon, s32 style, f32 depth) {
+void draw_item_list_icon(ItemListWindowView *win, ItemListPosition *pos, s32 icon, s32 style, f32 depth) {
     Quad_8025941C q;
-    ItemListPosition *p;
     f32 *entry;
     f32 scale;
     f32 offset;
     f32 edge;
 
     if ((u8)icon != 0x33) {
-        p = (ItemListPosition *)pos;
         begin_screen_draw(1);
-        set_global_param__8TObjFishFl(lbl_805D63F0);
+        set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
         set_draw_texture_and_color(1, style);
         entry = (f32 *)TWindowSubStatusDisp::get_entry_ptr(icon);
         offset = lbl_805DCF14;
         scale = lbl_805DCF1C;
-        q.v[0] = p->x;
-        q.v[1] = p->y;
-        q.v[2] = offset + p->x;
-        q.v[3] = offset + p->y;
+        q.v[0] = pos->x;
+        q.v[1] = pos->y;
+        q.v[2] = offset + pos->x;
+        q.v[3] = offset + pos->y;
         q.v[4] = entry[0] * scale;
         q.v[5] = entry[1] * scale;
         edge = offset + entry[0];
         q.v[6] = edge * scale;
         edge = offset + entry[1];
         q.v[7] = edge * scale;
-        if (try_open__19TWindowKeyBoardSoftFii(win, (s32)&q) != 0) {
+        if (TWindowKeyBoardSoft::try_open(win, q.v) != 0) {
             draw_textured_quad_at_depth(q.v, depth);
         }
         TWindowSubStatusDisp::get_player();
@@ -801,19 +747,19 @@ void draw_item_list_row(ItemListRow *row, ItemListWindowView *win) {
   s32 style;
   if (((TWindowSubStatusDisp *)row)->is_flag_4_set() != 0)
   {
-    y = win->y + row->y;
-    if (((!((row->height + y) < win->clip_top)) && (!((win->y + row->y) > win->clip_bottom))) && (win->visible >= 0))
+    y = win->inner_y + row->y;
+    if (((!((row->height + y) < win->clip_top)) && (!((win->inner_y + row->y) > win->clip_bottom))) && (win->open_tick >= 0))
     {
-      pos.x = win->x + row->x;
-      pos.y = win->y + row->y;
+      pos.x = win->inner_x + row->x;
+      pos.y = win->inner_y + row->y;
       depth = lbl_805DCF20 / (lbl_805DCF24 + win->depth);
       if (row->flags & 0x200)
       {
-        draw_item_list_icon((s32) win, (u8 *)&pos, row->status_icon, -1, depth);
+        draw_item_list_icon(win, &pos, row->status_icon, -1, depth);
         pos.x += lbl_805DCF14;
-        draw_item_list_icon((s32) win, (u8 *)&pos, row->category_icon, -1, depth);
+        draw_item_list_icon(win, &pos, row->category_icon, -1, depth);
         pos.x += lbl_805DCF14;
-        draw_item_list_icon((s32) win, (u8 *)&pos, (u8) row->status_style, -1, depth);
+        draw_item_list_icon(win, &pos, (u8) row->status_style, -1, depth);
         pos.x += lbl_805DCF14;
       }
       else
@@ -822,29 +768,29 @@ void draw_item_list_row(ItemListRow *row, ItemListWindowView *win) {
         if (row->flags & 0x100)
         {
           pos.x += lbl_805DCF14;
-          draw_item_list_icon((s32) win, (u8 *)&pos, row->status_icon, row->status_style, depth);
+          draw_item_list_icon(win, &pos, row->status_icon, row->status_style, depth);
         }
         else
         {
-          draw_item_list_icon((s32) win, (u8 *)&pos, row->status_icon, row->status_style, depth);
+          draw_item_list_icon(win, &pos, row->status_icon, row->status_style, depth);
           pos.x += lbl_805DCF14;
         }
         set_default_alpha_blend();
-        draw_item_list_icon((s32) win, (u8 *)&pos, row->category_icon, row->category_style, depth);
+        draw_item_list_icon(win, &pos, row->category_icon, row->category_style, depth);
         pos.x += lbl_805DCF14;
       }
       new_var = row;
       if (new_var->flags & 0x1000)
       {
-        set_text_draw_params((s32)win, 1, 0, (f32)depth, (f32)win->text_clip);
+        set_text_draw_params(win, 1, 0, (f32)depth, (f32)win->clip_right);
       }
       else
       {
-        set_text_draw_params((s32)win, 1, 1, (f32)depth, (f32)lbl_805DCF28);
+        set_text_draw_params(win, 1, 1, (f32)depth, (f32)lbl_805DCF28);
       }
       if (new_var->flags & 0x400)
       {
-        pos.x = (lbl_805DCF2C * win->width) + win->x;
+        pos.x = (lbl_805DCF2C * win->inner_w) + win->inner_x;
         pos.x = -((lbl_805DCF2C * ((f32) calc_text_width((char *)new_var->label))) - pos.x);
       }
       if (row->flags & 0x800)
@@ -864,7 +810,7 @@ void draw_item_list_row(ItemListRow *row, ItemListWindowView *win) {
         draw_window_text((f32 *)&pos, (const char *)new_var->label, style, 1, (f32)lbl_805DCF28);
       }
       f32 width = (f32) calc_text_width((char *)new_var->suffix);
-      pos.x = (win->x + win->width) - width;
+      pos.x = (win->inner_x + win->inner_w) - width;
       draw_window_text((f32 *)&pos, (const char *)row->suffix, new_var->suffix_style, 1, (f32)lbl_805DCF28);
     }
   }
@@ -894,14 +840,14 @@ void *TWindowSubStatusDisp::dispose(s16 arg1) {
             temp_r3 = *(u16 *)&this->m_name;
             if (temp_r3 & 0x10) {
                 *(u16 *)&this->m_name = (u16) (temp_r3 & 0xFFFFFFEF);
-                mem_free((void *)(*(u32 *)&this->m_24));
+                ::operator delete[]((void *)(*(u32 *)&this->m_24));
             }
         }
         if ((u32) *(u32 *)&this->m_20 != 0U) {
             temp_r3_2 = *(u16 *)&this->m_name;
             if (temp_r3_2 & 8) {
                 *(u16 *)&this->m_name = (u16) (temp_r3_2 & 0xFFFFFFF7);
-                mem_free((void *)(*(u32 *)&this->m_20));
+                ::operator delete[]((void *)(*(u32 *)&this->m_20));
             }
         }
         deleting_destructor__20TWindowSubStatusDispFs(this, 0);

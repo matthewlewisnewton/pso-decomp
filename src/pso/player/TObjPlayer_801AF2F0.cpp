@@ -1,3 +1,8 @@
+#include "pso/math/VectorNormalize.h"
+#include "pso/math/MatrixCopy.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
+#include "pso/math/ScratchVectorStorage.h"
 #include "pso/system/ChunkMaterialState.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "types.h"
@@ -2427,7 +2432,7 @@ void update_all_units__10TObjPlayerFll(void *, u8);
 s32 TAdPlayerLoadGC__sub_801E1B50(s32);
 int is_item_area_enabled(void);
 s32 __ct__17TMedicalCenterMesFP7TObjectP10TObjPlayer(void *, void *, void *);
-s32 play_sound_effect(s32, s32, s32, s32);
+
 void set_area__6TLobbyFl(void *, int, int);
 void TWindowSubStatusDisp__sub_80228F5C(s32 arg0);
 void text_builder_append(u8 *str);
@@ -2529,7 +2534,6 @@ extern u8 lbl_80446F50[];
 extern u8 lbl_80446F5C[];
 extern const f64 lbl_80446F68;
 extern u8 main_phase_state[];
-extern Vec_801B6964 scratch_vec[];
 extern DeathItemPosition lbl_8050BF60;
 extern Color_801B6964 player_feedback_light_color[];
 extern void *player_slot_table[];
@@ -2599,10 +2603,10 @@ s32 calc_stat_threshold__10TObjPlayerFPv(void *arg0) {
 
 void TObjPlayer::update_facing_from_lock() {
     if (((VObj_801AF3C4 *)*(void **)((s8 *)this + 0x380))->m8() != 0) {
-        this->set_field_dc(((VObj_801AF3C4 *)*(void **)((s8 *)this + 0x380))->m75(1));
+        this->set_motion_list((BmlMotionEntry *)(((VObj_801AF3C4 *)*(void **)((s8 *)this + 0x380))->m75(1)));
         return;
     }
-    this->set_field_dc(((VObj_801AF3C4 *)*(void **)((s8 *)this + 0x380))->m75(0));
+    this->set_motion_list((BmlMotionEntry *)(((VObj_801AF3C4 *)*(void **)((s8 *)this + 0x380))->m75(0)));
 }
 
 void TObjPlayer::sub_801AF454(s32 x) {
@@ -3554,7 +3558,7 @@ void TObjPlayer::spawn_effect(s32 arg0) {
 void draw__10TObjPlayerFPvf(void *player, f32 farg0) {
     push_matrix();
     translate_matrix_vec3((u8 *)(0), (u8 *)(((s32 (*)(void *))get_position_ptr__10TObjPlayerFv)(player)));
-    rotate_matrix_y(0, ((TObjPlayer *)player)->rotation_y);
+    rotate_matrix_y(0, ((TObjPlayer *)player)->rotation.yaw);
     ((TObjPlayer *)player)->calc_joint_matrices(((TObjPlayer *)player)->current_motion, farg0, *(s32 *)((s8 *)player + 0xE0));
     pop_matrix();
 }
@@ -3562,7 +3566,7 @@ void draw__10TObjPlayerFPvf(void *player, f32 farg0) {
 void TObjPlayer::draw() {
     push_matrix();
     translate_matrix_vec3((u8 *)(0), (u8 *)(((s32 (*)(void *))get_position_ptr__10TObjPlayerFv)(this)));
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     calc_joint_matrices(this->current_motion, *(f32 *)&TObjPlayer__data_805DC278, *(s32 *)((s8 *)this + 0xE0));
     pop_matrix();
 }
@@ -3844,7 +3848,7 @@ void TObjPlayer__sub_801B1C8C(void) {
 
 void TObjPlayer::play_sound_if_on_floor(s32 sound_id) {
     if (((s32 (*)(void))is_on_current_floor__10TObjPlayerFi)() != 0) {
-        play_sound_effect(sound_id, (s32)get_position_ptr(), 0, 0);
+        play_sound_effect((s32)(sound_id), (const Vec *)((s32)get_position_ptr()), 0, 0);
     }
 }
 
@@ -5056,9 +5060,9 @@ void submit_target_to_player_cursor(void *target, s32 id) {
 }
 
 void TObjPlayer::update_facing_vector() {
-    this->m_404 = sin_table_lookup(this->rotation_y);
+    this->m_404 = sin_table_lookup(this->rotation.yaw);
     *(f32 *)((s8 *)((u8 *)this) + 0x408) = (f32) TObjPlayer__data_805DC278;
-    this->m_40c = cos_table_lookup(this->rotation_y);
+    this->m_40c = cos_table_lookup(this->rotation.yaw);
     update_ground_contact();
     if ((u32) this->m_424 != 0U) {
         ((TMainCursor *)(*(void **)((s8 *)((u8 *)this) + 0x424)))->reset_slots();
@@ -5537,7 +5541,7 @@ void TObjPlayer::select_contextual_pickup_action() {
                             } else {
                                 type = 0;
                                 if (check_flag_100__10TObjPlayerFPv(this) == 0 && ((TObjPlayer *)(((u8 *)this) + 0x550))->check_action_usable(4) != 0) {
-                                    play_sound_effect(0x3816, ((s32 (*)(s32))get_position_ptr__10TObjPlayerFv)(ent), 0, 1);
+                                    play_sound_effect(0x3816, (const Vec *)(((s32 (*)(s32))get_position_ptr__10TObjPlayerFv)(ent)), 0, 1);
                                 }
                             }
                         }
@@ -5750,7 +5754,7 @@ void TObjPlayer::copy_stats(void *arg1) {
     *(s16 *)((s8 *)this + 0xC) = (s16) *(s16 *)((s8 *)arg1 + 0xC);
 }
 
-void TObjPlayer::notify_volopt_if_ready(void* p) { if (((int (*)(void*))is_locally_controlled__10TObjPlayerFPv)(p) != 0) { ((int (*)(void*, void*, void*, void*))play_sound_effect)((void*)335646, (void*)0, (void*)0, (void*)0); } }
+void TObjPlayer::notify_volopt_if_ready(void* p) { if (((int (*)(void*))is_locally_controlled__10TObjPlayerFPv)(p) != 0) { play_sound_effect((s32)((void*)335646), (const Vec *)((void*)0), 0, 0); } }
 
 void spawn_level_change_feedback__10TObjPlayerFv(s32 arg0, s32 arg1) {
     void *p;
@@ -5760,16 +5764,16 @@ void spawn_level_change_feedback__10TObjPlayerFv(s32 arg0, s32 arg1) {
         __ct__14TFontSmallHelpFUlUllUl(p, ((s32 (*)(s32))get_entity_id)(arg0), -1, 0x3C, arg1);
     }
     TObjPlayer::new_child_object(((s32 (*)(s32))get_entity_id)(arg0));
-    scratch_vec[0].x = 0.0f;
-    scratch_vec[0].y = -1.0f;
-    scratch_vec[0].z = 0.0f;
+    scratch_vec.vector.x = 0.0f;
+    scratch_vec.vector.y = -1.0f;
+    scratch_vec.vector.z = 0.0f;
     player_feedback_light_color[0].r = 1.0f;
     player_feedback_light_color[0].g = 1.0f;
     player_feedback_light_color[0].b = 0.8f;
     player_feedback_light_color[0].a = 0.63f;
     p = ((void * (*)(u32))__nw__7TObjectFUl)(0x64);
     if (p != NULL) {
-        ((void (*)(void *, Color_801B6964 *, f32, Vec_801B6964 *, s32, s32, s32))construct_actor_light_task)(p, player_feedback_light_color, 0.2f, scratch_vec, 10, arg0, tl_07);
+        ((void (*)(void *, Color_801B6964 *, f32, Vec *, s32, s32, s32))construct_actor_light_task)(p, player_feedback_light_color, 0.2f, (&scratch_vec.vector), 10, arg0, tl_07);
     }
     publish_actor_light_scalars(((s32 (*)(s32))get_entity_id)(arg0), 1.0f, 0.5f);
 }
@@ -5986,7 +5990,7 @@ void TObjPlayer::init_effect_5f0() {
     set_action_id__10TObjPlayerFs((u8 *)&this->m_5f0, 0x10);
     set_anim_state__10TObjPlayerFs((u8 *)&this->m_5f0, ((TObjPlayer *)arg0)->get_idle_animation());
     ((TObjPlayer *)(arg0 + 0x5F0))->set_state(0);
-    ((TObjPlayer *)(arg0 + 0x5F0))->set_anim_state(this->rotation_y);
+    ((TObjPlayer *)(arg0 + 0x5F0))->set_anim_state(this->rotation.yaw);
 }
 
 void TObjPlayer::get_hand_joint_position(s32 arg1) {
@@ -6513,8 +6517,8 @@ void TObjPlayer::request_item_drop(s32 arg1, s32 arg2) {
     s32 id;
     if (check_player_action_allowed() != 0 &&
         (TAdPlayerLoadGC__sub_801E1B50(get_chr_select_state__23TAdSinglePlyChrSelectGCFv()) != 0 ||
-         TAdPlayerLoadGC::probe_card_slot(get_chr_select_state__23TAdSinglePlyChrSelectGCFv()) != 1)) {
-        ((void (*)(s32, s32, s32, s32))play_sound_effect)(0x53F06, 0, 0, 0);
+         ((TAdPlayerLoadGC *)(get_chr_select_state__23TAdSinglePlyChrSelectGCFv()))->probe_card_slot() != 1)) {
+        play_sound_effect(0x53F06, 0, 0, 0);
         return;
     }
     if (start_inventory_update__10TObjPlayerFi(*(s32 *)(((u8 *)this) + 0xD00), arg1) == 0) {
@@ -6750,7 +6754,7 @@ bool TObjPlayer::is_target_in_facing_cone(void *target_arg) {
     to.x = target->x - x;
     to.y = TObjPlayer__data_805DC278;
     to.z = target->z - z;
-    ((TObjBoss2Tunnel *)(&to))->update_scale();
+    normalize_vector_checked((Vec *)(&to));
     dot = ((f32 (*)(Vec_801B92EC *, Vec_801B92EC *))vec3_dot)(&fwd, &to);
     return !(dot < cos_table_lookup(0x1555));
 }
@@ -6811,7 +6815,7 @@ void TObjPlayer::get_anim_node_position(s32 arg1, Vec *arg2) {
     stack.spC = TObjPlayer__data_805DC278;
     stack.sp8 = TObjPlayer__data_805DC278;
     push_matrix_from(0);
-    TObjPlayer::copy_matrix((u32)(0), (u32)((void *) (((TObjMotion *)arg0)->get_item_ptr(arg1))));
+    copy_matrix((MtxP)((u32)(0)), (const f32 (*)[4])((u32)((void *) (((TObjMotion *)arg0)->get_item_ptr(arg1)))));
     TCameraCtrl::concat_matrix(0, (int) (TCameraCtrl::get_view_matrix()));
     matrix_mult_vec(0, &stack.sp8, (void *)arg2);
     pop_matrix();
@@ -7180,7 +7184,7 @@ s32 TObjPlayer::start_camera_pan(s16 arg1, s32 angle) {
     ((s32 (*)(void *))set_action_id__10TObjPlayerFs)(arg0 + 0x5F0);
     ((s32 (*)(void *, s16))set_anim_state__10TObjPlayerFs)(arg0 + 0x5F0, this->requested_action);
     ((TObjPlayer *)(arg0 + 0x5F0))->set_state(0);
-    ((TObjPlayer *)(arg0 + 0x5F0))->set_anim_state(this->rotation_y);
+    ((TObjPlayer *)(arg0 + 0x5F0))->set_anim_state(this->rotation.yaw);
     return 1;
 }
 
@@ -7193,7 +7197,7 @@ s32 TObjPlayer::init_photon_blast(s16 arg1) {
     set_action_id__10TObjPlayerFs((u8 *)&this->m_5f0, 0x10);
     set_anim_state__10TObjPlayerFs((u8 *)&this->m_5f0, arg1);
     ((TObjPlayer *)(arg0 + 0x5F0))->set_state(0);
-    ((TObjPlayer *)(arg0 + 0x5F0))->set_anim_state(this->rotation_y);
+    ((TObjPlayer *)(arg0 + 0x5F0))->set_anim_state(this->rotation.yaw);
     return 1;
 }
 
@@ -7206,7 +7210,7 @@ s32 TObjPlayer::start_freeze() {
     set_action_id__10TObjPlayerFs((u8 *)&this->m_5f0, 0x10);
     set_anim_state__10TObjPlayerFs((u8 *)&this->m_5f0, ((TObjPlayer *)arg0)->get_idle_animation());
     ((TObjPlayer *)(arg0 + 0x5F0))->set_state(0);
-    ((TObjPlayer *)(arg0 + 0x5F0))->set_anim_state(this->rotation_y);
+    ((TObjPlayer *)(arg0 + 0x5F0))->set_anim_state(this->rotation.yaw);
     return 1;
 }
 
@@ -7375,7 +7379,7 @@ void TObjPlayer::draw_head_attachments() {
     if ((u32) this->m_8b4 != 0U) {
         this->get_item_ptr(0x3A);
         ((s32 (*)(void))push_matrix_from)();
-        TObjFish::set_global_param((s32)((void *) (((u8 *)this) + 0xB88)));
+        set_current_texture_list((GinjaTextureList *)(((void *) (((u8 *)this) + 0xB88))));
         if (this->m_flags & 0x400) {
             set_shadow_material_state();
         }
@@ -7386,7 +7390,7 @@ void TObjPlayer::draw_head_attachments() {
     if ((u32) *(u32 *)((s8 *)((u8 *)this) + 0x8B0) != 0U) {
         this->get_item_ptr(0x3B);
         ((s32 (*)(void))push_matrix_from)();
-        TObjFish::set_global_param((s32)((void *) (((u8 *)this) + 0xA1C)));
+        set_current_texture_list((GinjaTextureList *)(((void *) (((u8 *)this) + 0xA1C))));
         if (this->m_flags & 0x400) {
             set_shadow_material_state();
         }
@@ -7399,7 +7403,7 @@ void TObjPlayer::draw_head_attachments() {
     if ((u32) *(u32 *)((s8 *)((u8 *)this) + 0x8AC) != 0U) {
         this->get_item_ptr(0x3B);
         ((s32 (*)(void))push_matrix_from)();
-        TObjFish::set_global_param((s32)((void *) (((u8 *)this) + 0xA1C)));
+        set_current_texture_list((GinjaTextureList *)(((void *) (((u8 *)this) + 0xA1C))));
         var_r31 = 0;
         if (this->m_flags & 0x400) {
             var_r31 = 1;
@@ -7423,7 +7427,7 @@ void draw_body__10TObjPlayerFPvi(u8 *player, s32 arg1) {
     VecCopy((Vec *)(&stack.sp8), (const Vec *)(player + 0x38));
     stack.spC += *(f32 *)((s8 *)player + 0x5FC);
     translate_matrix_vec3((u8 *)(0), (u8 *)&stack.sp8);
-    ((s32 (*)(int, int))rotate_matrix_y)(0, (int) (((TObjPlayer *)player)->rotation_y));
+    ((s32 (*)(int, int))rotate_matrix_y)(0, (int) (((TObjPlayer *)player)->rotation.yaw));
     if (((PlayerScaleState *)(player  + 0x5B0))->is_scaled() != 0) {
         temp_r3 = (u8 *)(TObjPlayer__sub_801BF934(player + 0x5B0));
         ((s32 (*)(int, f32, f32, f32))scale_matrix)(0, (f32) (*(f32 *)((s8 *)temp_r3 + 0)), (f32) (*(f32 *)((s8 *)temp_r3 + 4)), (f32) (*(f32 *)((s8 *)temp_r3 + 8)));
@@ -7436,7 +7440,7 @@ void draw_body__10TObjPlayerFPvi(u8 *player, s32 arg1) {
         set_chunk_material_override_pair(-1, 0x800);
         set_shadow_material_state();
     }
-    TObjFish::set_global_param((s32)(player + 0xCF4));
+    set_current_texture_list((GinjaTextureList *)((player + 0xCF4)));
     set_motion_packed_rotation();
     if (arg1 == 2) {
         ((TObjPlayer *)player)->motion_flags = (s32) (((TObjPlayer *)player)->motion_flags | 0x400);
@@ -7568,7 +7572,7 @@ void run_task__10TObjPlayerFv(TObjPlayer *player) {
     ((s32 (*)(void *, s16, s32))run_action_state_phase__10TObjPlayerFisi)(player, player->mode, 1);
     player->advance_animation();
     ((TObjChara *)player)->calc_attach_pos();
-    ((TBoss3VoloptHiraisin *)player)->copy_position();
+    ((TObjChara *)player)->copy_body_to_center();
     ((TObjPlayer *)((u8 *)player + 0x84C))->copy_offset_position(player);
     if (((s32 (*)(void *, s32))obj_testFlags30__14TObjCollidableFUl)(player, 0x800) != 0) {
         ((TObjCollidable *)player)->refresh_collision_body_centers();
@@ -7938,7 +7942,7 @@ s32 TObjPlayer::send_respawn_position() {
     ((TObjPlayer *)(&cmd))->init_cmd_6x24();
     pick = list[(s32)((f32)count * (lbl_805DC2D8 * (lbl_805DC288 * (f32)rand())))].obj;
     if (pick == NULL || count == 0) {
-        area = this->rotation_y;
+        area = this->rotation.yaw;
         VecCopy((Vec *)pos, (const Vec *)((u8 *)this + 0x38));
     } else {
         area = pick->ang;

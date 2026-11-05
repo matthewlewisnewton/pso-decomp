@@ -1,3 +1,5 @@
+#include "pso/system/ArrayAllocation.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/vector.h"
 #include "pso/system/NinjaTypes.h"
 void set_constant_material(const NJS_ARGB *color);
@@ -183,14 +185,12 @@ void set_chunk_material_override_pair(s32, s32, s32, s32);
 void draw_chunk_object(void *);
 void queue_destruction__7TObjectFv();
 void *__nw__7TObjectFUl(int);
-void mem_free(void *p);
-void *mem_alloc(u32);
 f32 newton_sqrtf(f32);
 f32 calc_nearest_crater_distance(void *);
 f32 horizontal_distance_squared(void *, void *);
 f32 sin_table_lookup(s32);
 f32 cos_table_lookup(s32, f32);
-s32 update_scale__15TObjBoss2TunnelFv(void *, f32);
+s32 normalize_vector_checked(void *, f32);
 void rotate_matrix_y(int, int);
 void rotate_matrix_x(int, int);
 u8 *TObjBoss1MokoHill_SoloM__ct(u8 *arg0, u8 *arg1, u8 *arg2, s32 arg3);
@@ -268,7 +268,7 @@ void TObjBoss1MokoHill_SoloM::render() {
     Ent_8002CE78 *p;
     s32 i;
     if (arg0->active != 0) {
-        TObjFish::set_global_param(dragon_common_texture_list);
+        set_current_texture_list((GinjaTextureList *)(dragon_common_texture_list));
         update_dragon_trail_uvs((Obj_8002D4C0 *)((struct Obj_8002D4C0 *)dragon_trail_position_source));
         for (p = (Ent_8002CE78 *)lbl_805D4B78, i = 0; i < lbl_805D4B74; i++, p++) {
             *p->dst = p->base + p->ofs;
@@ -458,7 +458,7 @@ void update_dragon_trail_uvs(Obj_8002D4C0 *self) {
     }
 }
 
-void TBoss8Dragon::free_resources() { mem_free((void *)lbl_805D4B78); lbl_805D4B78 = 0; mem_free((void *)lbl_805D4B6C); lbl_805D4B6C = 0; ((int (*)(void*, void*))destroy__12TBoss8DragonFPvs)((void*)lbl_805D4B64, (void*)1); lbl_805D4B64 = 0; ((int (*)(void*, void*))destroy__12TBoss8DragonFPvs)((void*)lbl_805D4B68, (void*)1); lbl_805D4B68 = 0; ((int (*)(void*, void*))destroy__12TBoss8DragonFPvs)((void*)lbl_805D4B60, (void*)1); lbl_805D4B60 = 0; }
+void TBoss8Dragon::free_resources() { ::operator delete[]((void *)lbl_805D4B78); lbl_805D4B78 = 0; ::operator delete[]((void *)lbl_805D4B6C); lbl_805D4B6C = 0; ((int (*)(void*, void*))destroy__12TBoss8DragonFPvs)((void*)lbl_805D4B64, (void*)1); lbl_805D4B64 = 0; ((int (*)(void*, void*))destroy__12TBoss8DragonFPvs)((void*)lbl_805D4B68, (void*)1); lbl_805D4B68 = 0; ((int (*)(void*, void*))destroy__12TBoss8DragonFPvs)((void*)lbl_805D4B60, (void*)1); lbl_805D4B60 = 0; }
 
 s32 TBoss8Dragon__sub_8002DAEC(void *arg0) {
     return *(s32 *)((s8 *)arg0 + 0x14) + ((*(s32 *)((s8 *)arg0 + 0xC) + 3) * 2);
@@ -470,9 +470,9 @@ s32 TBoss8Dragon__sub_8002DB04(void *arg0) {
 
 void *destroy__12TBoss8DragonFPvs(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
-        mem_free((void *)(*(s32 *)((s8 *)arg0 + 0x10)));
+        ::operator delete[]((void *)(*(s32 *)((s8 *)arg0 + 0x10)));
         *(s32 *)((s8 *)arg0 + 0x10) = 0;
-        mem_free((void *)(*(s32 *)((s8 *)arg0 + 0x14)));
+        ::operator delete[]((void *)(*(s32 *)((s8 *)arg0 + 0x14)));
         *(s32 *)((s8 *)arg0 + 0x14) = 0;
         *(s32 *)((s8 *)arg0 + 0x18) = 0;
         *(s32 *)((s8 *)arg0 + 0x1C) = 0;
@@ -497,8 +497,8 @@ Grid_8002DB7C *init_grid_mesh__12TBoss8DragonFPviiiPv(Grid_8002DB7C *g, s32 widt
     g->strips = strips;
     g->materialWords = materialWords;
     g->stripWords = g->width * 6 + 1;
-    g->polygons = (u16 *)mem_alloc((g->materialWords + 5 + g->stripWords * g->strips) * 2);
-    g->vertices = (u32 *)mem_alloc((g->width * (g->strips + 1) * 6 + 3) * 4);
+    g->polygons = (u16 *)::operator new[]((g->materialWords + 5 + g->stripWords * g->strips) * 2);
+    g->vertices = (u32 *)::operator new[]((g->width * (g->strips + 1) * 6 + 3) * 4);
     p = (s16 *)g->polygons;
     for (i = 0; i < g->materialWords; i++) {
         *p++ = *material++;
@@ -585,7 +585,7 @@ f32 TBoss8Dragon::apply_velocity_scale(f32 farg0, f32 farg1) {
         *(f32 *)((s8 *)this + 0) = temp_f2;
         *(f32 *)&this->unk_4 = (f32) lbl_805D81F4;
         this->m_8 = (f32) (this->m_8 * temp_f1_2);
-        update_scale__15TObjBoss2TunnelFv(this, temp_f1_2);
+        normalize_vector_checked(this, temp_f1_2);
     }
     return var_f31;
 }
@@ -614,7 +614,7 @@ void TObjBoss1Rock::render() {
         ((void (*)(s32, s32))set_chunk_material_override_pair)(0xFF00, 0x800);
         set_constant_material((const NJS_ARGB *)((&self->color)));
         push_matrix();
-        TObjFish::set_global_param(dragon_common_texture_list);
+        set_current_texture_list((GinjaTextureList *)(dragon_common_texture_list));
         post_translate_matrix(self->pos);
         rotate_matrix_y(0, self->ry);
         rotate_matrix_x(0, self->rx);
@@ -624,7 +624,7 @@ void TObjBoss1Rock::render() {
         model_render_flags = saved_model_render_flags;
     } else {
         push_matrix();
-        TObjFish::set_global_param(dragon_common_texture_list);
+        set_current_texture_list((GinjaTextureList *)(dragon_common_texture_list));
         post_translate_matrix(self->pos);
         rotate_matrix_y(0, self->ry);
         rotate_matrix_x(0, self->rx);
