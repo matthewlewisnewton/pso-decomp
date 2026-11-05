@@ -754,7 +754,6 @@ force_active:
   - TOTrapAncient01__class_name
   - TOTrapAncient01__ct
   - TOTrapAncient02R__ct
-  - TOTrapAncient02R__vt79
   - TOTrapAncient02__ct
   - TOTrapChainSawDamage__ct
   - TOTrapChainSawDamage__sub_802C9C00
@@ -16727,6 +16726,7 @@ force_active:
   - vfunc_80__21TObjContainerAbeEnemyFv
   - vfunc_81__14TOTrapSeabed01Fv
   - vfunc_81__15TOTrapAncient01Fv
+  - vfunc_81__16TOTrapAncient02RFv
   - vfunc_81__21TObjContainerAbeEnemyFv
   - vfunc_81__6TOTrapFv
   - vfunc_82__12TOMineIcon04Fv

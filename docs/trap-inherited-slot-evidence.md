@@ -49,7 +49,11 @@ original generated those copies first, as deferred generation does. The unit
 is therefore built with deferred generation and reversed definitions; see
 [porting exceptions](porting-exceptions.md).
 
-Ancient02R keeps a hand-written table in `TOTrapAncient02.cpp`. GC/2.6
-rejects a cast from a virtual member pointer to a function address, so the
-table names `vfunc_87__6TOTrapFf` with C linkage, like its other entries. That
-names the existing function; it is not the original source spelling.
+Ancient02R's vtable is native too. `TOTrapAncient02.cpp` defines
+`~TOTrapAncient02R`, so it emits the table, which inherits slot 87 and
+TOTrapAncient02's `render` and `vfunc_84`. Slot 81 is
+`TOTrapAncient02R::vfunc_81`, formerly the C-named `TOTrapAncient02R__vt79`. R
+overrides slots 20 to 24 itself, so no weak TOTrap copies are emitted. The
+original `.data` has the vtable before `TOTrapAncient02::vfunc_84`'s switch
+table, which is the deferred-generation order; see
+[porting exceptions](porting-exceptions.md).

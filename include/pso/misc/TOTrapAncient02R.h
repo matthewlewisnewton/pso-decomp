@@ -12,6 +12,7 @@ struct TOTrapAncient02R : public TOTrapAncient02 {
     virtual s32 is_any_player_matching_stat();
     virtual void submit_cursor_and_notify();
     virtual void find_target_player();
+    virtual void vfunc_81();
     virtual void vfunc_82();
     virtual void vfunc_88();
     virtual void vfunc_86();
@@ -22,8 +23,8 @@ struct TOTrapAncient02R : public TOTrapAncient02 {
     virtual f32 receive_physical_attack(void *, f32);
     virtual int calc_distance_accuracy_penalty(void *, void *, void *, float);
     virtual s32 select_melee_contact_body(void *, f32);
-    u32 m_35c;
-    u32 m_360;
+    s32 m_35c;
+    s32 m_360;
     u32 m_364;
     u32 m_368;
     void calc_trap_count();
