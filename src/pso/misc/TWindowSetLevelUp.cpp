@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/TObject.h"
 #include "pso/TWindowSetLevelUp.h"
@@ -134,7 +135,7 @@ void draw_window_scrollbar(Scroll_8026D790 *scroll, Ctx_8026D790 *c, f32 *offset
     x = c->x + c->width - lbl_805DD300;
     y = lbl_805DD304 + c->y;
     begin_screen_draw(0);
-    TObjFish::set_global_param((s32)lbl_805D63F0);
+    set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
     set_draw_texture_and_color(0, 0xFF646464);
     depth = lbl_805DD308 / (lbl_805DD30C + c->x38);
     q.x = x;

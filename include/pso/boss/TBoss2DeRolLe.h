@@ -1,3 +1,4 @@
+struct NJS_OBJECT;
 #ifndef PSO_BOSS_TBOSS2DEROLLE_H
 #define PSO_BOSS_TBOSS2DEROLLE_H
 
@@ -23,16 +24,6 @@ struct TBoss2DeRolLe : public TObjEneDD_ST {
     virtual void vfunc_63();
     virtual void vfunc_61();
     void clear_play_flags();
-    u8 unk_374[0x8];
-    f32 m_37c;
-    u8 unk_380[0x24];
-    u32 m_3c0;
-    u32 m_3c4;
-    u32 m_3c8;
-    u32 m_3cc;
-    u32 m_3d0;
-    u32 m_3d4;
-    void* m_3d8;
     u8 _pad3DC[0x18];
     u32 m_3f4;
     u8 _pad3F8[0xC];
@@ -103,7 +94,7 @@ void TBoss2DeRolLe__sub_800360A8(void *arg0);
 void TBoss2DeRolLe__sub_80036358(void *p);
 void TBoss2DeRolLe__sub_800363A0(void *p);
 s32 TBoss2Joint_get_shell_max_hp(void);
-void TObjPlayer__sub_8002F61C(void);
+void TObjPlayer__sub_8002F61C(NJS_OBJECT *);
 u8 *__dt__13TBoss2DeRolLeFv(u8 *arg0, s16 arg1);
 void activate_laser_light__13TBoss2DeRolLeFPv(void *arg0);
 void advance_phase_wrap__13TBoss2DeRolLeFPv(u8 *arg0);

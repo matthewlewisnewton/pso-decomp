@@ -4,13 +4,16 @@
 #include "types.h"
 #include "pso/TObject.h"
 
+class TAdPlyChrSelPlateGC;
+class TAdChrSelMovePlateGC;
+
 struct TAdChrSelASlotGC : public TObject {
-    TAdChrSelASlotGC(TObject *arg1, void *arg2);
+    TAdChrSelASlotGC(TObject *parent, s32 mode);
     virtual ~TAdChrSelASlotGC();
     virtual void render();
     virtual void run_task();
     u32 state_frames;
-    u8 _pad20[0x4];
+    s32 mode;
     u32 state;
     u32 prev_state;
     u8 _pad2C[0x4];
@@ -48,11 +51,11 @@ struct TAdChrSelASlotGC : public TObject {
     void init(s32 arg1);
     s32 get_slot_index();
     void forward_slot_selection(void* a1, void* a2);
-    u8 unk_34[0x4];
-    s32 m_38;
+    TAdPlyChrSelPlateGC *m_34;
+    TAdPlyChrSelPlateGC *m_38;
     u8 unk_3C[0x4];
     s32 m_40;
-    u8 unk_44[0x4];
+    TAdChrSelMovePlateGC *m_44;
     u32 m_48;
     u8 unk_4C[0x4];
     u32 m_50;
@@ -70,4 +73,6 @@ struct TAdChrSelASlotGC : public TObject {
 };
 
 typedef char TAdChrSelASlotGC_size[sizeof(TAdChrSelASlotGC) == 0x80 ? 1 : -1];
+extern "C" TAdChrSelASlotGC *get_or_create_slot_window__22TAdMultiPlyChrSelectGCFii(TObject *parent, s32 mode);
+
 #endif

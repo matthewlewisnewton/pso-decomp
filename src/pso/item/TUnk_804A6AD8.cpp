@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 // ---- pso/unk/text_80130898
 #include "types.h"
 #include "pso/item/TItem.h"
@@ -109,8 +110,8 @@ void TUnk_804A6AD8::emit_marker_effects() {
     } else {
         arg0->m49(arg0->f214, 0, 0, 1);
     }
-    spawn_particle_effect(arg0->f208, 9);
-    spawn_particle_effect(arg0->f214, 9);
+    spawn_particle_effect((const Vec *)(arg0->f208), 9);
+    spawn_particle_effect((const Vec *)(arg0->f214), 9);
 }
 
 void TUnk_804A6AD8::yasminkov_9000m_eject_casing(s32 arg1, s32 arg2) {

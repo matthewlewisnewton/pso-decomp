@@ -1,5 +1,8 @@
+#include "pso/system/ArrayAllocation.h"
+#include "pso/system/SoundSlotPitch.h"
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/TParticleCtrl.h"
-#include "pso/misc/TTecRaBarta.h"
 #include "types.h"
 #include "pso/misc/TTecRaBarta.h"
 extern "C" void *__dt__13TUnk_804CC148Fv(void *, s16);
@@ -157,7 +160,6 @@ void *get_bml_motion(void *, int);
 void *get_bml_model(void *, int);
 void attach_particle_model(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
 
-void *mem_alloc(u32 size);
 extern void *technique_effect_bml;
 extern void *lbl_805D63B0;
 s32 is_technique_ready__8TTecCtrlFv();
@@ -166,9 +168,8 @@ extern Params_802377FC tech_high_level_linear_power_table;
 extern Scale_802377FC lbl_804CC55C;
 void calc_parameters__11TTecRaBartaFv(RaBarta_802377FC *self);
 
-s32 play_sound_effect(s32, s32, s32, s32);
+
 void __dl__7TObjectFPv(void *);
-s32 update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
 
 typedef char RecoveredGlobal_80237194_lbl_8044D8EC_size[sizeof(RecoveredGlobal_80237194_lbl_8044D8EC) == 0xC ? 1 : -1];
 
@@ -199,7 +200,7 @@ void TTecRaBarta::vfunc_8(void *pos) {
   u32 i;
   Vec_80237494 point;
   Emitter_80237494 *binding;
-  self->emitters = (void **)mem_alloc(rabarta_band_emitter_table[self->band].count * 4);
+  self->emitters = (void **)::operator new[](rabarta_band_emitter_table[self->band].count * 4);
   for (i = 0; i < rabarta_band_emitter_table[self->band].count; i++)
   {
     VecCopy((Vec *)&point, (const Vec *)(self->source + 0x38));
@@ -238,7 +239,7 @@ void TTecRaBarta::vfunc_8(void *pos) {
       VecCopy((Vec *)&point2, (const Vec *)(self->source + 0x38));
     }
     point2.y += dy;
-    emitter = spawn_particle_effect(&point2, b2->entry);
+    emitter = spawn_particle_effect((const Vec *)(&point2), (s32)(b2->entry));
     id = b2->flags >> 16;
     if (emitter != 0)
     {
@@ -254,32 +255,32 @@ void TTecRaBarta::vfunc_9() {
 
     switch (*(s16 *)&this->unk_7A) {
     case 0:
-        this->m_ec = play_sound_effect(0x4002A706, this->source + 0x2FC, 0, 0);
+        this->m_ec = play_sound_effect(0x4002A706, (const Vec *)(this->source + 0x2FC), 0, 0);
         handle = this->m_ec;
         if (handle >= 0) {
             update_technique_slot__10TTecRaFoieFl(handle, 0x100, 0);
         }
         return;
     case 1:
-        this->m_ec = play_sound_effect(0x4002A706, this->source + 0x2FC, 0, 0);
+        this->m_ec = play_sound_effect(0x4002A706, (const Vec *)(this->source + 0x2FC), 0, 0);
         return;
     case 2:
     case 3:
-        this->m_ec = play_sound_effect(0x4002A706, this->source + 0x2FC, 0, 0);
+        this->m_ec = play_sound_effect(0x4002A706, (const Vec *)(this->source + 0x2FC), 0, 0);
         handle = this->m_ec;
         if (handle >= 0) {
             update_technique_slot__10TTecRaFoieFl(handle, -0x180, 0);
         }
         break;
     case 4:
-        this->m_ec = play_sound_effect(0x4002A706, this->source + 0x2FC, 0, 0);
+        this->m_ec = play_sound_effect(0x4002A706, (const Vec *)(this->source + 0x2FC), 0, 0);
         handle = this->m_ec;
         if (handle >= 0) {
             update_technique_slot__10TTecRaFoieFl(handle, -0x250, 0);
         }
         break;
     case 5:
-        this->m_ec = play_sound_effect(0x4002A706, this->source + 0x2FC, 0, 0);
+        this->m_ec = play_sound_effect(0x4002A706, (const Vec *)(this->source + 0x2FC), 0, 0);
         handle = this->m_ec;
         if (handle >= 0) {
             update_technique_slot__10TTecRaFoieFl(handle, -0x100, 0);
@@ -398,7 +399,6 @@ struct Self_80237A94 {
     void **objs;
 };
 
-void mem_free(void *p);
 
 void *TTecRaBarta__ct(void *self_, void *source, void *origin, void *pos, void *level);
 void create__11TTecRaBartaFPvPvPvPv(void *arg0, void *arg1, void *arg2, void *arg3);
@@ -419,20 +419,27 @@ void TTecRaBarta::create(void *arg1, void *arg2) {
     }
 }
 
-}
-TTecRaBarta::~TTecRaBarta() {
+struct Self_80237A94 *__dt__11TTecRaBartaFv(struct Self_80237A94 *self, s16 arg1) {
     u32 i;
     void *obj;
-    for (i = 0; i < rabarta_band_emitter_table[((struct Self_80237A94 *)this)->band].count; i++) {
-        obj = ((struct Self_80237A94 *)this)->objs[i];
-        if (obj != NULL) {
-            queue_destruction__7TObjectFv(obj);
+
+    if (self != NULL) {
+        self->vtable = __vt__11TTecRaBarta;
+        for (i = 0; i < rabarta_band_emitter_table[self->band].count; i++) {
+            obj = self->objs[i];
+            if (obj != NULL) {
+                queue_destruction__7TObjectFv(obj);
+            }
+        }
+        stop_sound_request((s32)self->emitters);
+        ::operator delete[](self->objs);
+        __dt__13TUnk_804CC148Fv((void *)((TUnk_804CC148 *)self), 0);
+        if (arg1 > 0) {
+            __dl__7TObjectFPv(self);
         }
     }
-    stop_sound_request((s32)((struct Self_80237A94 *)this)->emitters);
-    mem_free(((struct Self_80237A94 *)this)->objs);
+    return self;
 }
-extern "C" {
 
 void TTecRaBarta::render() {  }
 

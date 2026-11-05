@@ -1,4 +1,6 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/misc/TOComputerMachine01.h"
 #include "pso/TMainTask.h"
 #include "pso/TParticleCtrl.h"
@@ -33,7 +35,7 @@ s32 TOComputerMachine01::last_scroll_frame;
 void *TOComputerMachine01::screen_meshes[4];
 
 s32 TOComputerMachine01::update_object_view_visibility(f32 range, f32 radius) {
-    if (xz_distance_squared(&position, (Vec *)&camera_ctrl_instance->pos_x) < radius * radius) {
+    if (xz_distance_squared(&position, &camera_ctrl_instance->position) < radius * radius) {
         visibility = 1;
         return visibility;
     }
@@ -54,8 +56,8 @@ void TOComputerMachine01::render() {
         }
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
-        TObjFish::set_global_param(texlist);
+        rotate_matrix_y(NULL, this->rotation.yaw);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         body = (NJS_OBJECT *)model;
         draw_ginja_model((s32)body->model);
         TParticleCtrl::begin_effect_render();
@@ -82,17 +84,14 @@ void TOComputerMachine01::unload_resources() {
         screen_meshes[i] = NULL;
     }
     if (model_resource != NULL) {
-        TLobby__sub_8001FE7C(model_resource, 1);
+        delete (BmlResource *)(model_resource);
         model_resource = NULL;
     }
 }
 
 void TOComputerMachine01::load_resources() {
     NJS_OBJECT *screen;
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_fs_obj_kenkyu_com_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&bm_fs_obj_kenkyu_com_resource_descriptor), 0, 0, (void *)(0));
     model_resource = resource;
     screen = ((NJS_OBJECT *)resource->models->model)->child;
     screen_meshes[3] = screen->model;

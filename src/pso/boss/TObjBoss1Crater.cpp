@@ -1,5 +1,5 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
-#include "pso/boss/TObjBoss1Crater.h"
 #include "pso/boss/TBoss8Dragon_800BC53C.h"
 #include "pso/system/vector.h"
 #include "pso/boss/TObjBoss1Crater.h"
@@ -125,9 +125,9 @@ extern s32 model_render_flags;
 
 void TObjBoss1Crater::render() {
     push_matrix();
-    TObjFish::set_global_param(dragon_common_texture_list);
+    set_current_texture_list((GinjaTextureList *)(dragon_common_texture_list));
     post_translate_matrix((u8 *)&this->position);
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     model_render_flags |= 0x01000000;
     draw_chunk_object((void *)(*(s32 *)((s8 *)(*(void **)((s8 *)lbl_805D4B50 + 0x42C)) + 8)));
     model_render_flags &= 0xFEFFFFFF;
@@ -194,12 +194,18 @@ void TObjBoss1Crater::area_attack_receive_direct(void *self_arg, f32 *arg2, void
     }
 }
 
+void *__dt__15TObjBoss1CraterFv(void *arg0, s16 arg1) {
+    if (arg0 != NULL) {
+        *(s32 **)((s8 *)arg0 + 0x18) = __vt__15TObjBoss1Crater;
+        if (((TObjBoss1Crater *)arg0)->m_b4 != NULL) { __dt__17AreaAttackHistoryFv((s32)(((TObjBoss1Crater *)arg0)->m_b4), 1); *(s32 *)((s8 *)arg0 + 0xB4) = 0; }
+        if (*(void **)((s8 *)arg0 + 0xB0) != NULL) { queue_destruction__7TObjectFv(*(void **)((s8 *)arg0 + 0xB0)); *(s32 *)((s8 *)arg0 + 0xB0) = 0; }
+        __dt__13TUnk_804928CCFv(arg0, 0);
+        if (arg1 > 0) {
+            __dl__7TObjectFPv(arg0);
+        }
+    }
+    return arg0;
 }
-TObjBoss1Crater::~TObjBoss1Crater() {
-    if (this->m_b4 != NULL) { __dt__17AreaAttackHistoryFv((s32)(this->m_b4), 1); *(s32 *)((s8 *)this + 0xB4) = 0; }
-    if (*(void **)((s8 *)this + 0xB0) != NULL) { queue_destruction__7TObjectFv(*(void **)((s8 *)this + 0xB0)); *(s32 *)((s8 *)this + 0xB0) = 0; }
-}
-extern "C" {
 
 Crater_8002C544 *TObjBoss1Crater__ct(Crater_8002C544 *self, void *arg1, void *arg2, void *arg3) {
     f32 r;

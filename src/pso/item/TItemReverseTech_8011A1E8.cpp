@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/TMainTask.h"
 #include "types.h"
 #include "pso/system/memory.h"
@@ -43,8 +44,6 @@ s8 func_801A5E54__Fv();
 extern RecoveredGlobal_8011A3D8_lbl_804A03A8 TItemReverseTech__cleanup_callback_table;
 s32 prs_decompress_alloc(int, int, int);
 int set_stream_and_load_file__6TLobbyFi(char *);
-void mem_free(void *p);
-void *mem_alloc(u32 size);
 char *strncpy(char *, const char *, u32);
 void load_gvm_texture_archive(int, int);
 extern Name_8011A270 lbl_8043E714;
@@ -87,7 +86,7 @@ void TItemReverseTech::create() {
     }
 }
 
-void free__16TItemReverseTechFv(void) { free_texture_if_valid((u32)TItemReverseTech__texture_archive); mem_free((void *)TItemReverseTech__name_buffer); TItemReverseTech__name_buffer = 0; mem_free((void *)TItemReverseTech__entry_table); TItemReverseTech__entry_table = 0; ::operator delete((void *)TItemReverseTech__texture_archive); TItemReverseTech__texture_archive = 0; }
+void free__16TItemReverseTechFv(void) { free_texture_if_valid((u32)TItemReverseTech__texture_archive); ::operator delete[]((void *)TItemReverseTech__name_buffer); TItemReverseTech__name_buffer = 0; ::operator delete[]((void *)TItemReverseTech__entry_table); TItemReverseTech__entry_table = 0; ::operator delete((void *)TItemReverseTech__texture_archive); TItemReverseTech__texture_archive = 0; }
 
 typedef char RecoveredGlobal_8011A350_main_task_size[sizeof(RecoveredGlobal_8011A350_main_task) == 0x34 ? 1 : -1];
 
@@ -100,9 +99,9 @@ void TItemReverseTech::load_textures() {
     Hdr_8011A270 *hdr;
     int file;
     int buf;
-    TItemReverseTech__name_buffer = (int)mem_alloc(0x1C);
+    TItemReverseTech__name_buffer = (int)::operator new[](0x1C);
     strncpy((char *)TItemReverseTech__name_buffer, name->s, 0x1B);
-    e = (Ent_8011A270 *)mem_alloc(0xCC);
+    e = (Ent_8011A270 *)::operator new[](0xCC);
     TItemReverseTech__entry_table = (int)e;
     for (i = 0; i < 17; i++, e++) {
         e->name = TItemReverseTech__name_buffer;
@@ -114,11 +113,11 @@ void TItemReverseTech::load_textures() {
     hdr->entries = TItemReverseTech__entry_table;
     file = set_stream_and_load_file__6TLobbyFi(name->s);
     if (file != 0) {
-        buf = (int)mem_alloc(0x200000);
+        buf = (int)::operator new[](0x200000);
         if (buf != 0 && prs_decompress_alloc(file, buf, 0x200000) > 0) {
             load_gvm_texture_archive(buf, TItemReverseTech__texture_archive);
         }
-        mem_free((void *)buf);
+        ::operator delete[]((void *)buf);
     }
     TAdSinglePlyChrSelectGC::safe_free(file);
 }

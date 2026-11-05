@@ -5,41 +5,34 @@
 #include "pso/object/TObject_80019A50.h"
 
 #include "pso/boss/TBoss6PlotFalz.h"
+#include "pso/boss/TBoss6Tube.h"
 #include "pso/boss/TBoss6Thanks.h"
 #include "pso/render/render_util.h"
-#include "pso/misc/TWindowCtrlMain.h"
+#include "pso/misc/TLobby_801E2F94.h"
 
 
 const char *lbl_805D3E90 = "TBoss6EmptyWarp";
 
 // Full-screen quad drawn over the view by TBoss6EmptyWarp::render.
-f32 empty_warp_overlay_vertices[8] = {
-    0.0f, 0.0f, 640.0f, 0.0f, 640.0f, 480.0f, 0.0f, 480.0f,
+ColorLineVertex empty_warp_overlay_vertices[4] = {
+    { 0.0f, 0.0f }, { 640.0f, 0.0f }, { 640.0f, 480.0f }, { 0.0f, 480.0f },
 };
-extern const f32 empty_warp_overlay_zero_vec[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
-
-struct Stack_802B0DCC {
-    f32 * sp8;
-    const f32 * spC;
-    s32 sp10;
-    s32 sp14;
-};
+__declspec(section ".rodata") u32 empty_warp_overlay_zero_vec[4] = { 0, 0, 0, 0 };
 
 void draw_empty_warp_overlay(void) {
-    Stack_802B0DCC stack;
-    stack.spC = empty_warp_overlay_zero_vec;
-    stack.sp10 = 0;
-    stack.sp14 = 4;
-    stack.sp8 = empty_warp_overlay_vertices;
+    ColorLineList stack;
+    stack.colors = empty_warp_overlay_zero_vec;
+    stack.unk_8 = 0;
+    stack.count = 4;
+    stack.verts = empty_warp_overlay_vertices;
     set_depth_buffer_settings_1();
-    ((TWindowCtrlMain *)(&stack.sp8))->draw_strip_swap_color(4, 2, -1.0f);
+    stack.draw_strip_swap_color(4, 2, -1.0f);
     restore_saved_depth_alpha_state();
 }
 
 extern "C" {
 s32 is_flag_set__14TBoss6PlotFalzFv();
 s32 is_ship_door_ready__12TBoss6ThanksFv();
-void end_cutscene_camera__14TBoss6PlotFalzFPv(void);
 
 void TBoss6EmptyWarp::render() { draw_empty_warp_overlay(); }
 
@@ -66,7 +59,7 @@ void TBoss6EmptyWarp::run_task() {
 
 }
 TBoss6EmptyWarp::~TBoss6EmptyWarp() {
-    end_cutscene_camera__14TBoss6PlotFalzFPv();
+    TBoss6PlotFalz::end_cutscene_camera();
 }
 extern "C" {
 
@@ -95,11 +88,17 @@ void *TBoss6EmptyWarp::create() {
     return o;
 }
 
-void TBoss6EmptyWarp::activate_warp() {
-    *(s32 *)&this->unk_1C = 1;
+// 0x802B0FC8 and 0x802B1004 are in this unit (text ends at Tube::render,
+// 0x802B1020). They write TBoss6Tube::m_1c / m_20. +0x20 is past
+// TBoss6EmptyWarp, whose constructor allocates 0x20 bytes.
+void TBoss6Tube::activate_warp() {
+    this->m_1c = 1;
     play_sound_effect(0x4003351F, 0, 0, 0);
 }
-void TBoss6EmptyWarp__sub_802B1004(void* p) { *(s32*)((char*)p + 0x20) = 0; *(s32*)((char*)p + 0x1c) = 2; }
+void TBoss6Tube::sub_802B1004() {
+    this->m_20 = 0;
+    this->m_1c = 2;
+}
 int TBoss6EmptyWarp__sub_802B1018(void) { return 0; }
 
 }

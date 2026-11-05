@@ -333,6 +333,8 @@ void GXAdjustForOverscan(GXRenderModeObj_803DD430 *rmin, GXRenderModeObj_803DD43
 extern GXRenderModeObj_803DD430 GXNtsc480IntDf;
 extern GXRenderModeObj_803DD430 GXMpal480IntDf;
 extern GXRenderModeObj_803DD430 GXPal528IntDf;
+extern char lbl_804FC668[];
+extern char lbl_804FC674[];
 void *OSGetArenaLo(void);
 void OSSetArenaLo(void *);
 f64 cos(f64);
@@ -350,7 +352,7 @@ void get_render_mode_for_tv_format(GXRenderModeObj_803DD430 *rmode, GXRenderMode
         rmode = &GXMpal480IntDf;
         break;
     default:
-        OSPanic("gjSystem.c", 0x340, "invalid TV format\x0A");
+        OSPanic(lbl_804FC668, 0x340, lbl_804FC674);
         break;
     }
     GXAdjustForOverscan(rmode, out, 0, 0);

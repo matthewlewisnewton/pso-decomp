@@ -41,7 +41,7 @@ void TBoss7Crawfish::update_motion_and_release() {
             ((TParticleCtrl *)temp_ptr)->set_position((u8 *)&this->position);
         }
     }
-    if (TBoss7Crawfish__sub_80308ED8(arg0, (u8 *)&this->unk_308) == 0) {
+    if (TBoss7Crawfish__sub_80308ED8(arg0, (u8 *)&this->movement_velocity) == 0) {
         ((TBoss7Crawfish *)arg0)->free_child();
         ((TBoss7Crawfish *)arg0)->change_state(3);
         return;

@@ -1,3 +1,6 @@
+#include "pso/system/ArrayAllocation.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/misc/TOBarrierEnergy01.h"
 #include "pso/TMainTask.h"
@@ -72,13 +75,10 @@ TOBarrierEnergy01::~TOBarrierEnergy01() {
 }
 
 void TOBarrierEnergy01::load_resources() {
-    BmlResource *archive = (BmlResource *)::operator new(0x440);
-    if (archive != NULL) {
-        archive = load_resource_from_descriptor(archive, 1, &bm_fs_obj_lazerguard_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *archive = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&bm_fs_obj_lazerguard_resource_descriptor), 0, 0, (void *)(0));
     barrier_energy_shared_bml_archive = archive;
     barrier_energy_model = (void *)get_bml_model(archive, 0);
-    barrier_energy_texlists = (s32 *)mem_alloc(3 * sizeof(s32));
+    barrier_energy_texlists = (s32 *)::operator new[](3 * sizeof(s32));
     barrier_energy_texlists[0] = (s32)load_gvm_texture_file((s32)"fs_obj_laz_guard_r.gvm");
     barrier_energy_texlists[1] = TObjFish__sub_8001EDB0(barrier_energy_shared_bml_archive, 1);
     barrier_energy_texlists[2] = TObjFish__sub_8001EDB0(barrier_energy_shared_bml_archive, 0);
@@ -88,12 +88,12 @@ void TOBarrierEnergy01::free_resources() {
     if (barrier_energy_texlists != NULL) {
         TObjPlayer::free_if_valid(barrier_energy_texlists[0]);
         if (barrier_energy_texlists != NULL) {
-            mem_free(barrier_energy_texlists);
+            ::operator delete[](barrier_energy_texlists);
             barrier_energy_texlists = NULL;
         }
     }
     if (barrier_energy_shared_bml_archive != NULL) {
-        TLobby__sub_8001FE7C(barrier_energy_shared_bml_archive, 1);
+        delete (BmlResource *)(barrier_energy_shared_bml_archive);
         barrier_energy_shared_bml_archive = NULL;
     }
 }
@@ -106,12 +106,12 @@ void TOBarrierEnergy01::render() {
     if (update_object_view_visibility(view_range, model_radius) != 0) {
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
-        TObjFish::set_global_param(texlist);
+        rotate_matrix_y(NULL, this->rotation.yaw);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         TParticleCtrl::begin_effect_render();
         draw_ginja_model_with_motion(model, motion, animation_frame);
         TParticleCtrl::end_effect_render();
-        TObjFish::set_global_param(barrier_energy_texlists[2]);
+        set_current_texture_list((GinjaTextureList *)(barrier_energy_texlists[2]));
         draw_ginja_object(barrier_energy_model);
         pop_matrix();
     }
@@ -153,21 +153,21 @@ void TOBarrierEnergy01::play_ambient_loop_sound() {
     switch (get_current_floor_area()) {
     case AREA_FOREST1:
     case AREA_FOREST2:
-        play_persistent_sound(0x4CB09, (s32)this, (u32)&position, 0, 0);
+        play_persistent_sound((s32)(0x4CB09), (const void *)(this), (const Vec *)((u32)&position), 0, 0);
         return;
     case AREA_CAVE1:
     case AREA_CAVE2:
     case AREA_CAVE3:
-        play_persistent_sound(0x44B08, (s32)this, (u32)&position, 0, 0);
+        play_persistent_sound((s32)(0x44B08), (const void *)(this), (const Vec *)((u32)&position), 0, 0);
         return;
     case AREA_MINE1:
     case AREA_MINE2:
-        play_persistent_sound(0x4004CB02, (s32)this, (u32)&position, 0, 0);
+        play_persistent_sound((s32)(0x4004CB02), (const void *)(this), (const Vec *)((u32)&position), 0, 0);
         return;
     case AREA_RUINS1:
     case AREA_RUINS2:
     case AREA_RUINS3:
-        play_persistent_sound(0x4004CB09, (s32)this, (u32)&position, 0, 0);
+        play_persistent_sound((s32)(0x4004CB09), (const void *)(this), (const Vec *)((u32)&position), 0, 0);
         return;
     case AREA_PIONEER2_EP1:
         return;
