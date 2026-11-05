@@ -96,7 +96,7 @@ small float differences without FMA).
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-145 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+146 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
@@ -120,6 +120,30 @@ into `fnmsubs`/`fmadds`. The same unit places `lbl_80438E40` with
 in `.rodata`. Port: keep FMA or accept small float differences; a normal
 `const` is enough for the vector.
 
+### `TWindowKeyBoardSoft_8024E68C.cpp` ([#187](https://github.com/matthewlewisnewton/pso-decomp/pull/187))
+
+`-fp_contract on` for the whole unit. The soft-keyboard layout fuses
+multiply-adds in `scale_point_about_pivot`, `apply_context_transform_to_rect`,
+`apply_window_closing_stretch`, `clip_textured_quad`, and
+`init_text_window_layout`. Without the flag, and with the old per-function
+`#pragma fp_contract on` removed, the unit is 93.57% (2240 bytes instead of
+2156): those five functions score 84.76%, 81.71%, 92.31%, 88.82%, and 87.87%,
+and `set_open_tick` is 99.22%. With the flag, objdiff is 2156/2156 and 17/17,
+including every section that was already exact.
+
+`-inline auto` was tested on the same unit and not kept. It inlines
+`clip_textured_quad` into `try_open` and drops `.text` to 79.87% (2552 bytes).
+The unit stays at the default `-inline off`. `-inline deferred` was not tested;
+the functions are already in original order.
+
+Precedent: [dtk-template](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209)
+(`-fp_contract on`); Melee, Twilight Princess, The Wind Waker, and Pikmin 2
+enable it globally. The per-function `#pragma fp_contract on` and
+`#pragma opt_common_subs off` that were on this file are gone.
+`set_open_tick` reads the 7.5 span once as a value and once through
+`*(const f32 *)&`, which is the load the original keeps in `f2`. A plain
+second use is commoned into `f3` and the function misses by one byte.
+
 ## 6. Approved regressions
 
 None on main.
@@ -135,7 +159,7 @@ entry when the PR merges.
 | [#285](https://github.com/matthewlewisnewton/pso-decomp/pull/285) | `static asm void pad_03_8042E9FC_text` via `orig_asm` include (`src/pso/unk/text_8042E9FC.cpp`) | PR body: 5-word stranded epilogue; 0/60 C probes across 20 compilers reach it. **No approval recorded and no scalar fallback**; it needs one under the rule above. |
 | [#296](https://github.com/matthewlewisnewton/pso-decomp/pull/296) | `scheduling` ×5, `peephole`, `optimize_for_size` pragmas | Reason not recorded. Drop in a port. |
 | [#250](https://github.com/matthewlewisnewton/pso-decomp/pull/250) | `fp_contract` ×3 | Reason not recorded. |
-| [#303](https://github.com/matthewlewisnewton/pso-decomp/pull/303), [#295](https://github.com/matthewlewisnewton/pso-decomp/pull/295), [#289](https://github.com/matthewlewisnewton/pso-decomp/pull/289), [#225](https://github.com/matthewlewisnewton/pso-decomp/pull/225), [#222](https://github.com/matthewlewisnewton/pso-decomp/pull/222), [#215](https://github.com/matthewlewisnewton/pso-decomp/pull/215), [#187](https://github.com/matthewlewisnewton/pso-decomp/pull/187), [#128](https://github.com/matthewlewisnewton/pso-decomp/pull/128) | 1 to 4 inlining/optimization pragmas each | Reason not recorded. Drop in a port. |
+| [#303](https://github.com/matthewlewisnewton/pso-decomp/pull/303), [#295](https://github.com/matthewlewisnewton/pso-decomp/pull/295), [#289](https://github.com/matthewlewisnewton/pso-decomp/pull/289), [#225](https://github.com/matthewlewisnewton/pso-decomp/pull/225), [#222](https://github.com/matthewlewisnewton/pso-decomp/pull/222), [#215](https://github.com/matthewlewisnewton/pso-decomp/pull/215), [#128](https://github.com/matthewlewisnewton/pso-decomp/pull/128) | 1 to 4 inlining/optimization pragmas each | Reason not recorded. Drop in a port. |
 | [#240](https://github.com/matthewlewisnewton/pso-decomp/pull/240) | Not scanned | Diff exceeds GitHub's 300-file limit; scan locally after it merges. |
 
 The scan covers source lines only; `configure.py` overrides added by PRs show up
