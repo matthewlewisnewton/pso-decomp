@@ -18,54 +18,19 @@
 #include "pso/misc/TNowLoading.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/TParticleCtrl.h"
-
-struct VBase_18_39be15 { char pad[0x18]; };
-
-struct VObj_18_39be15 : VBase_18_39be15 {
-    virtual void m0();
-    virtual void m1();
-    virtual void m2();
-    virtual void m3();
-    virtual void m4();
-    virtual void m5();
-    virtual void m6();
-    virtual void m7();
-    virtual void m8();
-    virtual void m9();
-    virtual void m10();
-    virtual void m11();
-    virtual void m12();
-    virtual void m13();
-    virtual s32 m14(s32 *, void *);
-};
+#include "pso/player/TObjPlayer_801542CC.h"
+#include "pso/unk/text_80087278.h"
 
 struct V2_802EF2AC { s32 x; f32 y; };
-
-struct Bullet_802EF2AC {
-    u8 pad0[0x38];
-    f32 pos[3];
-    u8 pad44[0xB0 - 0x44];
-    f32 b0, b4, b8, bc;
-    f32 c0, c4, c8;
-    f32 cc[3];
-    u8 padD8[0xE4 - 0xD8];
-    s32 e4;
-    u32 e8;
-    f32 ec;
-    void *f0[2];
-};
 
 struct Ent_802EF74C { s32 a; s32 b; s32 c; f32 d; };
 
 extern "C" {
-TParticleCtrl *spawn_continuous_particle_effect_with_flags(const Vec *pos, s32 idx, s32 flags);
 extern const char *lbl_805D3FD4;
-s32 project_actor_to_ground(void *, void *, void *);
 extern V2_802EF2AC lbl_80474038[];
 extern s32 lbl_80474040[];
 extern const f32 lbl_805DEA00;
 extern const f32 lbl_805DEA04;
-void __dl__7TObjectFPv(void *);
 extern Ent_802EF74C boss7_photon_bullet_level_table[];
 extern const char *lbl_805D3FD0;
 }
@@ -119,59 +84,58 @@ TBoss7PhotonBullet::TBoss7PhotonBullet(TObject *parent, TObjBase *owner, const V
     age = 0;
     grounded = 0;
     fall = 0.0f;
-    trail = spawn_continuous_particle_effect_with_flags(&travel, 0x202, 0x40);
-    glow = spawn_continuous_particle_effect_with_flags(&travel, 0x203, 0x40);
+    effects[0] = spawn_continuous_particle_effect_with_flags(&travel, 0x202, 0x40);
+    effects[1] = spawn_continuous_particle_effect_with_flags(&travel, 0x203, 0x40);
 }
 
 TBoss7PhotonBullet::~TBoss7PhotonBullet() {
-    if (trail != NULL) {
-        trail->queue_destruction();
+    if (effects[0] != NULL) {
+        effects[0]->queue_destruction();
     }
-    if (glow != NULL) {
-        glow->queue_destruction();
+    if (effects[1] != NULL) {
+        effects[1]->queue_destruction();
     }
 }
 
 void TBoss7PhotonBullet::run_task() {
-    Bullet_802EF2AC *arg0 = (Bullet_802EF2AC *)this;
     s32 i;
-    if (arg0->c4 > 18.7f) {
-        arg0->ec += 0.05f;
-        if (arg0->ec >= 3.0f) {
-            arg0->ec = 3.0f;
+    if (travel.y > 18.7f) {
+        fall += 0.05f;
+        if (fall >= 3.0f) {
+            fall = 3.0f;
         }
-        arg0->c4 -= arg0->ec;
-        arg0->c0 = (2.0f) * arg0->b4 + arg0->c0;
-        arg0->c8 = (2.0f) * arg0->bc + arg0->c8;
+        travel.y -= fall;
+        travel.x = (2.0f) * aim.x + travel.x;
+        travel.z = (2.0f) * aim.z + travel.z;
     } else {
-        arg0->c4 = 18.7f;
-        arg0->c0 = arg0->b4 * arg0->b0 + arg0->c0;
-        arg0->c8 = arg0->bc * arg0->b0 + arg0->c8;
+        travel.y = 18.7f;
+        travel.x = aim.x * speed + travel.x;
+        travel.z = aim.z * speed + travel.z;
     }
-    arg0->pos[0] = arg0->c0;
-    arg0->pos[2] = arg0->c8;
+    position.x = travel.x;
+    position.z = travel.z;
     for (i = 0; i != 2; i++) {
-        if (arg0->f0[i] != 0) {
-            ((TParticleCtrl *)arg0->f0[i])->set_position(&arg0->c0);
+        if (effects[i] != NULL) {
+            effects[i]->set_position(&travel);
         }
     }
-    if (arg0->e4 % 16 == 0) {
-        if (project_actor_to_ground(arg0, arg0->pos, arg0->cc) != 0) {
-            arg0->e8 |= 1;
+    if (age % 16 == 0) {
+        if (project_actor_to_ground(this, &position, &shadow_pos) != 0) {
+            grounded |= 1;
         } else {
-            arg0->e8 &= ~1;
+            grounded &= ~1;
         }
     }
-    if (arg0->pos[0] <= lbl_805DEA00 && arg0->pos[0] >= lbl_805DEA04) {
+    if (position.x <= lbl_805DEA00 && position.x >= lbl_805DEA04) {
         V2_802EF2AC v = lbl_80474038[0];
         v.y = TBoss7PhotonBullet::get_target_pos_y();
-        if (((VObj_18_39be15 *)(arg0))->m14(lbl_80474040, &v) != 0) {
+        if (vfunc_16(lbl_80474040, &v) != 0) {
             queue_destruction();
             return;
         }
     }
-    arg0->e4++;
-    if (arg0->e4 >= 0x78) {
+    age++;
+    if (age >= 0x78) {
         queue_destruction();
     }
 }

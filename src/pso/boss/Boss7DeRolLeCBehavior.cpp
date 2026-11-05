@@ -754,12 +754,12 @@ extern s32 model_render_flags;
 void TObjPlayer__sub_802E80A0(void);
 NJS_MOTION *get_bml_motion(void *resource, s32 id);
 int TObjFish__sub_8001EDB0(void*, void*);
-Boss7TentacleNode *get_bml_model(void *resource, s32 id);
+NJS_OBJECT *get_bml_model(void *resource, s32 id);
 
     extern void *lbl_805D6918;
 NJS_MOTION *TObjPlayer::notify_fish_obj(s32 id) { return get_bml_motion(lbl_805D6918, id); }
 
-Boss7TentacleNode *TObjPlayer::queue_boss_effect(s32 id) { return get_bml_model(lbl_805D6918, id); }
+NJS_OBJECT *TObjPlayer::queue_boss_effect(s32 id) { return get_bml_model(lbl_805D6918, id); }
 
 void TObjPlayer__sub_802E80A0(void) { TObjFish__sub_8001EDB0((void*)lbl_805D6918, (void*)0); }
 
@@ -1608,7 +1608,7 @@ void TObjFish__sub_802E85E0(u8 *arg0, u32 arg1, s32 arg2) {
                         adjust_point_to_ground((const Vec *)&v, (Vec *)((void *)&v));
                     }
                     for (j = 0; j != 4; j++) {
-                        ((TBoss7Tentacle *)(self->kids[j]))->start_attack_at_position((u8 *)&v, self->f738);
+                        ((TBoss7Tentacle *)(self->kids[j]))->start_attack_at_position((const Vec *)&v, self->f738);
                     }
                     self->fired = 1;
                     self->timer = 0;
@@ -2364,7 +2364,7 @@ void handle_tentacle_attack_state__8TObjFishFPvUii(Fish_802E9ADC *o, u32 arg1, s
                     v.z = r * cos_table_lookup(ang);
                     adjust_point_to_ground((const Vec *)&v, (Vec *)((void *)&v));
                 }
-                ((TBoss7Tentacle *)(o->tent[o->idx]))->start_attack_at_position((u8 *)&v, (s32)o->arg);
+                ((TBoss7Tentacle *)(o->tent[o->idx]))->start_attack_at_position((const Vec *)&v, (s32)o->arg);
                 o->idx++;
                 if (o->idx >= 4) {
                     o->timer = 0;

@@ -6,8 +6,6 @@
 #include "types.h"
 #include <stddef.h>
 
-struct Boss7TentacleNode;
-
 class TBoss7Tentacle : public TObject {
 public:
     TBoss7Tentacle(TObject *parent, const f32 (*matrix)[4], s32 kind);
@@ -24,14 +22,14 @@ public:
     void reset_state();
     void setup_state();
     void init_segments();
-    void start_attack_at_position(u8 *arg1, s32 arg2);
+    void start_attack_at_position(const Vec *target, s32 arg2);
 
     // 0x1C is used both as a position Vec and as the (model, anim, scale_x)
     // triple, so the two views are declared as one union.
     union {
         Vec position;
         struct {
-            Boss7TentacleNode *m_1c;
+            NJS_OBJECT *m_1c;
             NJS_MOTION *m_20;
             f32 m_24;
         } ent;

@@ -18,8 +18,7 @@ struct TBoss7PhotonBullet : public TUnk_804928CC {
     s32 age;
     u32 grounded;
     f32 fall;
-    TParticleCtrl *trail;
-    TParticleCtrl *glow;
+    TParticleCtrl *effects[2];
     static f32 get_target_pos_y();
 };
 

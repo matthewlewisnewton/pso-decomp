@@ -7,28 +7,29 @@
 #include "pso/unk/text_803D853C.h"
 #include "pso/unk/text_803E2D70.h"
 #include "pso/TBoss7Tentacle.h"
+#include "pso/boss/Boss7TentacleBanks.h"
+#include "pso/boss/TBoss4Type2_800874F4.h"
 #include "pso/boss/TBoss7DeRolLeC.h"
 #include "pso/boss/TBoss7TentacleNeedle.h"
 #include "pso/boss/TBoss7Joint.h"
 #include "pso/boss/TObjBoss2Tunnel.h"
+#include "pso/math/AngleLookup.h"
+#include "pso/math/MatrixTransforms.h"
+#include "pso/math/MatrixVector.h"
+#include "pso/misc/ParticleFactory.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/player/TObjPlayer_80011014.h"
+#include "pso/player/TObjPlayer_801AF2F0.h"
+#include "pso/render/render_util.h"
+#include "pso/system/MatrixStack.h"
+#include "pso/system/SoundEffect.h"
+#include "pso/unk/text_803D8F74.h"
 #include "pso/TParticleCtrl.h"
+#include <stdlib.h>
 
-struct Ten_802F08A8;
-struct V_802EFF24 { f32 x, y, z; };
-struct Boss7TentacleNode {
-    u32 flags;
-    u8 pad4[4];
-    V_802EFF24 pos;
-    u8 pad14[8];
-    s32 ang;
-    u8 pad20[0xC];
-    Boss7TentacleNode *next;
-    Boss7TentacleNode *child;
-    u8 pad34[4];
-};
+struct GinjaTextureList;
+
 extern "C" {
-TParticleCtrl *create_particle_emitter(const Vec *pos, s32 id);
 u8 TBoss7Tentacle__sub_802F0904(TBoss7Tentacle *arg0);
 void TBoss7Tentacle__sub_802F0918(TBoss7Tentacle *p);
 void TBoss7Tentacle__sub_802F09B4(TBoss7Tentacle *p);
@@ -41,38 +42,17 @@ void TBoss7Tentacle__sub_802F0AF0(TBoss7Tentacle *arg0);
 void TBoss7Tentacle__sub_802F0B58(TBoss7Tentacle *arg0);
 void TBoss7Tentacle__sub_802F0B70(TBoss7Tentacle *p);
 void TBoss7Tentacle__sub_802F0B80(TBoss7Tentacle *p);
+void TBoss7Tentacle__sub_802F0608(TBoss7Tentacle *tentacle, f32 len);
 void TObjPlayer__sub_802EFEC4(void);
 void TObjPlayer__sub_802F0D2C(void);
 void fn_802EFEA8(void);
-f64 atan2_float(f32, f32);
-s32 approach_angle_limited(s32, s32, s32);
-s32 play_sound_effect(int, void *, int, int);
-void TBoss7Tentacle__sub_802F0608(TBoss7Tentacle *tentacle, f32 len);
-f32 sin_table_lookup(s32);
-s32 set_matrix_identity(int);
-s32 subtract_vector(void *, void *);
-s32 transform_point_by_current_matrix(void *, void *);
-void push_matrix(void);
-f32 newton_sqrtf(f32);
-void copy_model_node(Boss7TentacleNode *dst, Boss7TentacleNode *src);
-void pop_matrix(void);
-void attach_particle_model(TParticleCtrl *emitter, Boss7TentacleNode *model, NJS_MOTION *motion, s32 arg3, s32 arg4, f32 scale);
-TParticleCtrl *spawn_particle_effect(const Vec *pos, s32 id);
-NJS_MOTION *TObjPlayer__sub_802E80A0(void);
-f32 horizontal_distance_squared(void *, void *);
-TObjPlayer *get_player_by_client_id(s32 i);
-void __dl__7TObjectFPv(void *);
-void __dt__7TObjectFv(void *, int);
-s32 rand(void);
-s32 rotate_matrix_y(int, int);
-void rotate_matrix_by_node_angles(void *, int);
-void scale_current_matrix(const f32 *scale);
-void post_translate_matrix(void *);
 
-extern s32 __vt__20TBoss7TentacleNeedle[];
-extern Boss7TentacleNode lbl_80541528[];
-extern Vec TBoss7Tentacle__segment_offsets[];
-extern u32 TBoss7Tentacle__needle_offsets[];
+// The headers that carry these (TBoss1Dragon.h, TBoss8Dragon_80065C90.h,
+// Boss7DeRolLeCBehavior.h) declare them with u8 * / s32 / void stand-ins that
+// other units still rely on.
+void copy_model_node(NJS_OBJECT *dst, NJS_OBJECT *src);
+void attach_particle_model(TParticleCtrl *emitter, NJS_OBJECT *model, GinjaTextureList *texlist, s32 arg3, s32 arg4, f32 scale);
+GinjaTextureList *TObjPlayer__sub_802E80A0(void);
 
 struct Boss7TentacleNeedleTargetState {
     NJS_MOTION *f0;
@@ -81,7 +61,7 @@ struct Boss7TentacleNeedleTargetState {
     u8 remaining[4];
 };
 extern Boss7TentacleNeedleTargetState boss7_tentacle_needle_target_state;
-extern Boss7TentacleNode *lbl_805D6948;
+extern NJS_OBJECT *lbl_805D6948;
 
 // .rodata 0x80474070-0x804740C8 and the .sdata names are not this TU's: defined here, run_task would
 // address the tables and its 10430.38 literal off one hoisted .rodata base, and defined after their
@@ -95,8 +75,8 @@ extern const char *boss7_tentacle_needle_name_ptr;
 
 extern "C" {
 void TObjPlayer__sub_802F0D30(void) {
-    Boss7TentacleNode *src;
-    Boss7TentacleNode *dst;
+    NJS_OBJECT *src;
+    NJS_OBJECT *dst;
     s32 i;
 
     src = TObjPlayer::queue_boss_effect(1);
@@ -104,19 +84,19 @@ void TObjPlayer__sub_802F0D30(void) {
     dst = lbl_80541528;
     for (i = 0; i < 12; i++) {
         copy_model_node(dst, src);
-        dst->next = dst + 1;
+        dst->child = dst + 1;
         dst++;
-        src = src->next;
+        src = src->child;
     }
     copy_model_node(dst, src);
-    dst->child = dst + 1;
-    copy_model_node(&dst[1], src->child);
+    dst->sibling = dst + 1;
+    copy_model_node(&dst[1], src->sibling);
     for (i = 0; i < 14; i++) {
-        lbl_80541528[i].flags &= ~3;
-        TBoss7Tentacle__segment_offsets[i].x = (f64)lbl_80541528[i].pos.x;
-        TBoss7Tentacle__segment_offsets[i].y = lbl_80541528[i].pos.y;
-        TBoss7Tentacle__segment_offsets[i].z = lbl_80541528[i].pos.z;
-        TBoss7Tentacle__needle_offsets[i] = (u32)lbl_80541528[i].ang;
+        lbl_80541528[i].evalflags &= ~(NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG);
+        TBoss7Tentacle__segment_offsets[i].x = (f64)lbl_80541528[i].pos[0];
+        TBoss7Tentacle__segment_offsets[i].y = lbl_80541528[i].pos[1];
+        TBoss7Tentacle__segment_offsets[i].z = lbl_80541528[i].pos[2];
+        TBoss7Tentacle__needle_offsets[i] = lbl_80541528[i].ang[2];
     }
 }
 }
@@ -163,14 +143,14 @@ void TBoss7Tentacle__sub_802F0B58(TBoss7Tentacle *arg0) {
     arg0->m_3c = (s32)(arg0->m_3c & 0xFFFFFFFD);
 }
 
-void TBoss7Tentacle::start_attack_at_position(u8 *arg1, s32 arg2) {
+void TBoss7Tentacle::start_attack_at_position(const Vec *target, s32 arg2) {
     s32 var_r5;
     var_r5 = arg2;
     if ((var_r5 <= 0) || (var_r5 >= 0x258)) {
         var_r5 = 0x78;
     }
     m_168 = var_r5;
-    VecCopy(&m_14c, (const Vec *)arg1);
+    VecCopy(&m_14c, target);
     TBoss7Tentacle__sub_802F0A14(this);
 }
 
@@ -319,7 +299,7 @@ void TBoss7Tentacle::run_task() {
         push_matrix();
         set_matrix_identity(0);
         concat_matrix(0, m_130);
-        transform_point_by_current_matrix(&v, &geo.m_40);
+        transform_point_by_current_matrix(&v.x, &geo.m_40);
         pop_matrix();
         VecCopy(&v, &m_14c);
         subtract_vector(&v, &geo.m_40);
@@ -473,14 +453,14 @@ void TBoss7Tentacle::render() {
         draw_chunk_object(ent.m_1c);
         break;
     case 3:
-        post_translate_matrix(&geo.m_40);
+        post_translate_matrix(&geo.m_40.x);
         scale_current_matrix(lbl_80474070);
         rotate_matrix_zyx(0, 0, m_13c, m_140);
         for (var_ctr = 0; var_ctr < 14; var_ctr++) {
-            lbl_80541528[var_ctr].pos.x = geo.m_50[var_ctr].x;
-            lbl_80541528[var_ctr].pos.y = geo.m_50[var_ctr].y;
-            lbl_80541528[var_ctr].pos.z = geo.m_50[var_ctr].z;
-            lbl_80541528[var_ctr].ang = m_f8[var_ctr];
+            lbl_80541528[var_ctr].pos[0] = geo.m_50[var_ctr].x;
+            lbl_80541528[var_ctr].pos[1] = geo.m_50[var_ctr].y;
+            lbl_80541528[var_ctr].pos[2] = geo.m_50[var_ctr].z;
+            lbl_80541528[var_ctr].ang[2] = m_f8[var_ctr];
         }
         scale_current_matrix(&ent.m_24);
         draw_chunk_object((lbl_80541528));
@@ -511,9 +491,9 @@ TBoss7TentacleNeedle::TBoss7TentacleNeedle(TObject *parent, Vec *pos)
     : TObject(parent) {
     m_name = boss7_tentacle_needle_name_ptr;
     m_34 = 1e-05f;
-    m_28 = 0;
-    m_2c = (s32)(65536.0f * (3.0517578e-05f * (f32)rand()));
-    m_30 = 0;
+    angle[0] = 0;
+    angle[1] = (s32)(65536.0f * (3.0517578e-05f * (f32)rand()));
+    angle[2] = 0;
     position.x = 5.0f * (3.0517578e-05f * (f32)rand()) + pos->x - 2.5f;
     position.y = pos->y;
     position.z = 5.0f * (3.0517578e-05f * (f32)rand()) + pos->z - 2.5f;
@@ -557,8 +537,8 @@ void TBoss7TentacleNeedle::render() {
     TObjPlayer::draw_effect();
     set_motion_packed_rotation();
     push_matrix();
-    post_translate_matrix(&this->position);
-    rotate_matrix_by_node_angles(&this->m_28, 1);
+    post_translate_matrix(&position.x);
+    rotate_matrix_by_node_angles(angle, 1);
     draw_model_motion(lbl_805D6948, this->m_78, this->m_74);
     pop_matrix();
     clear_motion_packed_rotation();
@@ -640,7 +620,7 @@ s32 TBoss7TentacleNeedle::advance_toward_limit(f32 farg0) {
     return 1;
 }
 
-s32 TBoss7TentacleNeedle::advance_anim_time_wrapped(f32 d) {
+void TBoss7TentacleNeedle::advance_anim_time_wrapped(f32 d) {
     f32 lim = (f32)m_78->nbFrame - 1.0f;
     m_74 += d;
     if (lim <= m_74) {
@@ -662,14 +642,11 @@ void TBoss7TentacleNeedle::restart_particle_effect() {
 }
 
 extern "C" {
-// Unit-owned .bss banks (claim 1eadd7fe: pso/boss/TBoss7TentacleNeedle .bss
-// 0x80541528-0x80541928). Definition order == address order: nodes 0x310,
-// segment_offsets +0x310 (0xA8), needle_offsets +0x3B8 (0x38).
-// In-TU defined (twin TBoss2Tentacle precedent, 100.0): enables MWCC
-// base-hoist into r31 + copy-propagation sink; externs remat instead.
-Boss7TentacleNode lbl_80541528[14];
+// Defined here, in address order, so run_task and render address the banks
+// off one hoisted base; as externs each access rematerialises the address.
+NJS_OBJECT lbl_80541528[14];
 Vec TBoss7Tentacle__segment_offsets[14];
 u32 TBoss7Tentacle__needle_offsets[14];
 Boss7TentacleNeedleTargetState boss7_tentacle_needle_target_state;
-Boss7TentacleNode *lbl_805D6948;
+NJS_OBJECT *lbl_805D6948;
 }

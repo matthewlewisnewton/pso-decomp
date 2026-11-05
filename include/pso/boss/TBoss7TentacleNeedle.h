@@ -17,12 +17,10 @@ struct TBoss7TentacleNeedle : public TObject {
     void damage_nearby_players();
     void finish_retract();
     s32 advance_toward_limit(f32 step);
-    s32 advance_anim_time_wrapped(f32 step);
+    void advance_anim_time_wrapped(f32 step);
     void restart_particle_effect();
     Vec position;
-    u32 m_28;
-    u32 m_2c;
-    u32 m_30;
+    s32 angle[3];
     f32 m_34;
     u32 m_38;
     s32 m_3c;
