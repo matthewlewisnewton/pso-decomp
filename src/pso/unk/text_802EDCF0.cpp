@@ -28,7 +28,8 @@ s32 __dt__7TObjectFv(void *, int);
 s32 free_if_positive__13TBoss2DeRolLeFis(s32 arg0, s16 arg1);
 s32 __dl__7TObjectFPv(void *);
 extern s32 TBoss7DeRolLeC__vtable[];
-extern u32 boss7_joint_state;
+struct TBoss7DeRolLeC;
+extern TBoss7DeRolLeC *boss7_joint_state;
 u8 *__dt__14TBoss7DeRolLeCFv(u8 *arg0, s16 arg1) {
     Obj_802EDCF0 *o = (Obj_802EDCF0 *) arg0;
     s32 i;
@@ -68,7 +69,7 @@ u8 *__dt__14TBoss7DeRolLeCFv(u8 *arg0, s16 arg1) {
         }
         ::operator delete[]((void *)o->f6D8);
         ((TObjCollidable *)arg0)->clear_collision_bodies();
-        if (boss7_joint_state == (u32) arg0) {
+        if (boss7_joint_state == (TBoss7DeRolLeC *) arg0) {
             boss7_joint_state = 0;
         }
         ((TObjFish *)arg0)->destroy_child();
