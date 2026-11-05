@@ -357,11 +357,9 @@ void TObjPlayer::draw_tri_fan_3d(s32 n, u32 flags) {
 void DCFlushRange(void *, u32);
 void TLobby__sub_801E3CF0(u32 *);
 
-// `buf` is a local copy of dst. Declaring it separately puts the file cursor in r31
-// and the buffer in r30, which is the original allocation.
-s32 *TLobby__sub_801E38A0(s32 arg0, s32 *arg1, s32 *arg2, s32 *dst, s32 *arg4) {
+s32 *TLobby__sub_801E38A0(s32 arg0, s32 *arg1, s32 *arg2, s32 *buf, s32 *arg4) {
     u8 *p;
-    s32 *buf;
+    s32 *chosen;
     s32 pos;
     s32 tag;
     u32 size;
@@ -418,11 +416,12 @@ s32 *TLobby__sub_801E38A0(s32 arg0, s32 *arg1, s32 *arg2, s32 *dst, s32 *arg4) {
     default:
         goto bad;
     }
-    if (dst == 0) {
-        buf = (s32 *)TQuestVmDownLoadServer::alloc(size);
+    if (buf == 0) {
+        chosen = (s32 *)TQuestVmDownLoadServer::alloc(size);
     } else {
-        buf = dst;
+        chosen = buf;
     }
+    buf = chosen;
     if (buf == 0) {
         return 0;
     }

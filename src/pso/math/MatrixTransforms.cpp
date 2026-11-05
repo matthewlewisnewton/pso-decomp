@@ -50,13 +50,6 @@ extern "C" void copy_matrix(MtxP dest, const f32 (*source)[4]) {
 
 #pragma pop
 
-// Upstream zeroz41/pso-decomp #180 (squash 9575dbb7c), unchanged. Scalar rewrite pending.
-// Fork scalar C++ (#306, not a match: the original is paired-single psq_l/ps_sub/psq_st):
-//   v->x -= sub->x; v->y -= sub->y; v->z -= sub->z;
-asm void subtract_vector(Vec *v, const Vec *sub) {
-#include "orig_asm/pso/math/MatrixTransforms/subtract_vector.inc"
-}
-
 void euler_zyx_to_quaternion(u8 *arg0, u8 *arg1) {
     f32 temp_f1;
     f32 temp_f27;
