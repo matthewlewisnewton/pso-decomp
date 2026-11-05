@@ -23,15 +23,14 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/map/FloorArea.h"
-#include "pso/object/TObjChip.h"
+#include "pso/TObjChip.h"
+#include "pso/TMainTask.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/player/TObjPlayer_801AF2F0.h"
 
 struct E_8017A1A4 { u8 pad[0xc]; f32 f; u8 pad2[0x2c - 0x10]; };
 
 struct Obj_8017A1A4 { u8 pad[0xa4]; E_8017A1A4 *arr; };
-
-struct Self_80179EC0 { u8 pad[0x18]; s32 *vt; u8 pad1c[0x358 - 0x1C]; u8 arr[4][0x1C]; };
 
 struct VBase_801797D4 { char pad[0x18]; };
 
@@ -124,19 +123,6 @@ struct Trap_80179B8C : VObj_80179B8C {
     Fade_80179B8C fades[4];
 };
 
-struct TrapChipParams {
-    f32 params[3];
-    Vec pos;
-    f32 velocity[3];
-    s32 rotation[3];
-    s32 count_and_lifetime[2];
-    f32 floor_and_scale[2];
-    s32 model;
-    s32 textures;
-    s32 kind;
-};
-typedef char TrapChipParams_size[sizeof(TrapChipParams) == 0x4c ? 1 : -1];
-
 extern "C" {
 u16 get_entity_id(TObjBase *);
 void obj_set_flag_20000(TObjBase *);
@@ -165,31 +151,20 @@ CollisionBody lbl_804B4844 = {
 };
 const char *TOTrapAncient01__class_name = "TOTrapAncient01";
 // The original symbol reserves eight bytes; only the first word is accessed here.
-struct AncientTrapResourceSlot { u32 value; u8 reserved[4]; };
+struct AncientTrapResourceSlot { BmlResource *value; u8 reserved[4]; };
 AncientTrapResourceSlot TOTrapAncient01__bml_resource;
-extern const f32 TOTrapAncient01__data_805DBA4C;
-extern const f32 lbl_805DBA5C;
 f32 TObjPlayer__sub_8017A1A4(Obj_8017A1A4 *self, s32 i);
 s32 free_collision_body_parts(void *);
-s32 __destroy_arr(void *, void *, int, int);
-void __dl__7TObjectFPv(void *);
 extern s32 __vt__15TOTrapAncient01[];
-Self_80179EC0 *__dt__15TOTrapAncient01Fv(Self_80179EC0 *self, s16 flag);
 s32 init_collision_body_parts(void *, void *, int);
 void TOTrap__ct(void *, void *, void *);
 void __construct_array(void *, void *, void *, int, int);
 void __ct__15RenderFadeStateFv(void *);
-extern const f32 lbl_805DBA54;
-extern const f32 lbl_805DBA6C;
-extern const f32 lbl_805DBA74;
 VObj_801797D4 *get_battle_param__10TObjPlayerFi(s32);
 s32 check_value_equals__13TUnk_804B6C24Fl(void *, s32);
 void submit_cursor_candidate(void *, s32);
 
 extern s32 lbl_805D3530;
-extern const f32 lbl_805DBA48;
-extern const f32 lbl_805DBA50;
-extern void *tl_06;
 s32 is_split_screen();
 s32 get_camera_mode__11TCameraCtrlFv();
 void update__15RenderFadeStateFv(void *);
@@ -206,17 +181,11 @@ extern s32 saved_chunk_polygon_flags_and_mask;
 extern s32 saved_chunk_polygon_flags_or_mask;
 extern s32 chunk_polygon_flags_or_mask;
 extern s32 chunk_polygon_flags_and_mask;
-extern const f32 lbl_805DBA58;
-extern const f32 lbl_805DBA60;
-extern const f32 lbl_805DBA64;
-extern const f32 lbl_805DBA68;
 void render__15TOTrapAncient01Fv(Trap_80179B8C *self);
 void fn_80141CF0(const Vec *pos, Vec *scale, void *color);
 void TOTrapAncient02R__sub_80154D78(void *);
-void *__nw__7TObjectFUl(int);
 s32 is_current_room(void *);
 
-extern void *tl_05;
 extern s32 trap_ancient_light_color[];
 
 // Reverse definitions with deferred generation reproduce this unit's original
@@ -247,8 +216,8 @@ TOTrapAncient01 *TOTrapAncient01__ct(TOTrapAncient01 *self, void *parent, void *
     self->apply_object_set_data((void *)((s32)creator));
     self->initialize_position_copies();
     self->calc_attach_pos();
-    self->model = (void *)get_bml_model((void *)TOTrapAncient01__bml_resource.value, 3);
-    self->texlist = TObjFish__sub_8001EDB0((void *)TOTrapAncient01__bml_resource.value, 3);
+    self->model = (void *)get_bml_model(TOTrapAncient01__bml_resource.value, 3);
+    self->texlist = TObjFish__sub_8001EDB0(TOTrapAncient01__bml_resource.value, 3);
     self->mode = 0;
     self->range = 0.5f * self->scale.x + 30.0f;
     if (self->scale.y < 0.0f) {
@@ -260,7 +229,7 @@ TOTrapAncient01 *TOTrapAncient01__ct(TOTrapAncient01 *self, void *parent, void *
     self->m_34C = -self->scale.y / self->scale.z;
     self->m_350 = 30.0f + (f32)self->set_params[2];
     if (get_main_phase() == 0xE) {
-        self->m_350 *= lbl_805DBA74;
+        self->m_350 *= 0.33f;
     }
     if (self->m_350 < 0.0f) {
         self->m_350 = 0.0f;
@@ -295,19 +264,19 @@ TOTrapAncient01::~TOTrapAncient01() {
 }
 
 void TOTrapAncient01::load_resources() {
-  TOTrapAncient01__bml_resource.value = (u32)new BmlResource(1, &bm_o_trap_ancient01_resource_descriptor, 0, 0, NULL);
-  TMotorcycle::add_entry(0x39, get_bml_model((void *)TOTrapAncient01__bml_resource.value, 3), TObjFish__sub_8001EDB0((void *)TOTrapAncient01__bml_resource.value, 3), 20.0f, 0.0f);
+  TOTrapAncient01__bml_resource.value = new BmlResource(1, &bm_o_trap_ancient01_resource_descriptor, 0, 0, NULL);
+  TMotorcycle::add_entry(0x39, get_bml_model(TOTrapAncient01__bml_resource.value, 3), TObjFish__sub_8001EDB0(TOTrapAncient01__bml_resource.value, 3), 20.0f, 0.0f);
 }
 
 void TOTrapAncient01::release_static_resource() {
-    if ((u32) TOTrapAncient01__bml_resource.value != 0U) {
-        delete (BmlResource *)((void*)TOTrapAncient01__bml_resource.value);
-        TOTrapAncient01__bml_resource.value = 0U;
+    if (TOTrapAncient01__bml_resource.value != NULL) {
+        delete TOTrapAncient01__bml_resource.value;
+        TOTrapAncient01__bml_resource.value = NULL;
     }
 }
 
 void *TOTrapAncient01::create() {
-    TOTrapAncient01 *o = (TOTrapAncient01 *)__nw__7TObjectFUl(0x3C8);
+    TOTrapAncient01 *o = (TOTrapAncient01 *)TObject::operator new(sizeof(TOTrapAncient01));
     if (o != NULL) {
         o = TOTrapAncient01__ct(o, tl_05, this);
     }
@@ -526,54 +495,30 @@ f32 TOTrapAncient01::receive_physical_attack(void *arg1, f32 farg0) {
 }
 
 void TOTrapAncient01::play_sounds() {
-    TrapChipParams a = {
-        {0.5f, 0.03f, 0.15f}, {0.0f, 0.0f, 0.0f},
+    const TObjChipParams a = {
+        {0.5f, 0.03f, 0.15f}, {position.x, position.y, position.z},
         {3.0f, 5.0f, 3.0f}, {0x800, 0x100, 0x800}, {4, 30},
-        {0.0f, 1.0f}, 0, 0, 22
+        {position.y, 1.0f},
+        get_bml_model(TOTrapAncient01__bml_resource.value, 0),
+        TObjFish__sub_8001EDB0(TOTrapAncient01__bml_resource.value, 0), 22
     };
-    {
-        f32 x = position.x, y = position.y, z = position.z;
-        a.pos.x = x;
-        a.pos.y = y;
-        a.pos.z = z;
-        a.floor_and_scale[0] = y;
-    }
-    a.model = get_bml_model((void *)TOTrapAncient01__bml_resource.value, 0);
-    a.textures = TObjFish__sub_8001EDB0((void *)TOTrapAncient01__bml_resource.value, 0);
-    TrapChipParams b = {
-        {0.5f, 0.03f, 0.15f}, {0.0f, 0.0f, 0.0f},
+    const TObjChipParams b = {
+        {0.5f, 0.03f, 0.15f}, {position.x, position.y, position.z},
         {3.0f, 5.0f, 3.0f}, {0x800, 0x100, 0x800}, {4, 30},
-        {0.0f, 1.0f}, 0, 0, 22
+        {position.y, 1.0f},
+        get_bml_model(TOTrapAncient01__bml_resource.value, 1),
+        TObjFish__sub_8001EDB0(TOTrapAncient01__bml_resource.value, 1), 22
     };
-    {
-        f32 x = position.x, y = position.y, z = position.z;
-        b.pos.x = x;
-        b.pos.y = y;
-        b.pos.z = z;
-        b.floor_and_scale[0] = y;
-    }
-    b.model = get_bml_model((void *)TOTrapAncient01__bml_resource.value, 1);
-    b.textures = TObjFish__sub_8001EDB0((void *)TOTrapAncient01__bml_resource.value, 1);
-    TrapChipParams c = {
-        {0.5f, 0.03f, 0.15f}, {0.0f, 0.0f, 0.0f},
+    const TObjChipParams c = {
+        {0.5f, 0.03f, 0.15f}, {position.x, position.y, position.z},
         {3.0f, 5.0f, 3.0f}, {0x800, 0x100, 0x800}, {4, 30},
-        {0.0f, 1.0f}, 0, 0, 22
+        {position.y, 1.0f},
+        get_bml_model(TOTrapAncient01__bml_resource.value, 2),
+        TObjFish__sub_8001EDB0(TOTrapAncient01__bml_resource.value, 2), 22
     };
-    {
-        f32 x = position.x, y = position.y, z = position.z;
-        c.pos.x = x;
-        c.pos.y = y;
-        c.pos.z = z;
-        c.floor_and_scale[0] = y;
-    }
-    c.model = get_bml_model((void *)TOTrapAncient01__bml_resource.value, 2);
-    c.textures = TObjFish__sub_8001EDB0((void *)TOTrapAncient01__bml_resource.value, 2);
-    void *o = __nw__7TObjectFUl(0x234);
-    if (o != NULL) __ct__8TObjChipFP7TObjectP14TObjChipParams((u8 *)o, (u8 *)tl_06, (u8 *)&a);
-    o = __nw__7TObjectFUl(0x234);
-    if (o != NULL) __ct__8TObjChipFP7TObjectP14TObjChipParams((u8 *)o, (u8 *)tl_06, (u8 *)&b);
-    o = __nw__7TObjectFUl(0x234);
-    if (o != NULL) __ct__8TObjChipFP7TObjectP14TObjChipParams((u8 *)o, (u8 *)tl_06, (u8 *)&c);
+    new TObjChip(tl_06, const_cast<TObjChipParams *>(&a));
+    new TObjChip(tl_06, const_cast<TObjChipParams *>(&b));
+    new TObjChip(tl_06, const_cast<TObjChipParams *>(&c));
     TParticleCtrl *particle = spawn_particle_effect(&position, 0x8b);
     if (particle != NULL) particle->set_scale(1.25f, 1.25f);
     switch (get_current_floor_area()) {

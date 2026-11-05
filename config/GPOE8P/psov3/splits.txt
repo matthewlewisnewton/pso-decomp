@@ -5495,15 +5495,16 @@ pso/misc/TOSymbolchatColli.cpp:
 
 pso/misc/TOTrap.cpp:
 	.text       start:0x80178B78 end:0x8017939C
+	.data       start:0x804B46B8 end:0x804B4820
 	.sdata2     start:0x805DBA38 end:0x805DBA48
 
 pso/misc/TOTrapAncient01.cpp:
 	.text       start:0x8017939C end:0x8017A20C
 	.rodata     start:0x80442CE0 end:0x80442E70
-	.data       start:0x804B4820 end:0x804B4AD8
+	.data       start:0x804B4820 end:0x804B4AD4
 	.sdata      start:0x805D31A0 end:0x805D31A8
 	.sbss       start:0x805D5AD0 end:0x805D5AD8
-	.sdata2     start:0x805DBA48 end:0x805DBA74
+	.sdata2     start:0x805DBA48 end:0x805DBA78
 
 pso/misc/TOTrapAncient02R.cpp:
 	.text       start:0x8017A20C end:0x8017A210

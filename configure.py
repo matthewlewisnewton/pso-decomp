@@ -436,14 +436,15 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Calendar month/day stores retain GC/1.3.2 scheduling; see calendar-conversion-evidence.md.
     "pso/misc/pso_date.cpp": {"mw_version": "GC/1.3.2"},
     "pso/boss/TBoss4DarkFalz_8004C93C.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sym on")},
+    # GC/2.0, like TOExplosiveMachine: play_sounds loads the three debris
+    # positions before storing them (GC/2.6 interleaves them: 91.09%).
     # Reverse definitions and deferred generation place the native trap vtable
     # before its switch tables while preserving the original function order.
-    # Contracted FP keeps TOTrapAncient01__ct exact (98.86% without it).
-    # -opt nolifetimes keeps render exact (99.42% without it). Read-only
-    # pooled strings and -pooldata=off keep the debris-copy prologue; without
-    # pooldata off that prologue is stmw. -opt nopropagation is not set: it
-    # only steered play_sounds registers and is not an approved exception.
-    "pso/misc/TOTrapAncient01.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on", "-str reuse,readonly", "-pooldata=off", "-opt nolifetimes")},
+    # Contracted FP keeps TOTrapAncient01__ct and render exact (98.86% and
+    # 97.66% without it). -opt nolifetimes keeps render exact (99.42% without
+    # it). -pooldata=off keeps play_sounds' copy prologue (94.54% without it);
+    # read-only strings keep the .rodata/.data/.sdata layout.
+    "pso/misc/TOTrapAncient01.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on", "-str reuse,readonly", "-pooldata=off", "-opt nolifetimes")},
     "pso/enemy/TObjEneBalClawBody_80090178.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sdata 4")},
     # Deferred generation preserves the flower vtable before its dispatch table.
     "pso/enemy/TObjEneRe2Flower_800C3E14.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},

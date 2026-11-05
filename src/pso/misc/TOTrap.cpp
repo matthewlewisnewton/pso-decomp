@@ -285,16 +285,7 @@ extern s32 lbl_805D3198;
 Self_80179244 *TOTrap__ct(Self_80179244 *self, void *a, void *b);
 void __dl__7TObjectFPv(void *);
 
-void *__dt__6TOTrapFv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__6TOTrap;
-        __dt__9TObjCharaFv(arg0, 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
-}
+TOTrap::~TOTrap() {}
 
 Self_80179244 *TOTrap__ct(Self_80179244 *self, void *a, void *b) {
     __ct__9TObjCharaFP7TObject(self, a, b);
@@ -372,26 +363,4 @@ s32 TOTrap::try_start_action(s32 arg1, s32) {
 
 s32 TOTrap::roll_physical_accuracy(void *source, s32, f32) {
     return source != target;
-}
-
-s32 TOTrap::select_melee_contact_body(void *source, f32) {
-    return source != target;
-}
-
-int TOTrap::calc_distance_accuracy_penalty(void *source, void *, void *, f32) {
-    return source != target;
-}
-
-f32 TOTrap::receive_direct_attack(void *source, DirectAttackPayload, void *, s32, s32) {
-    if (source != target) {
-        receive_physical_attack(NULL, 1.0f);
-    }
-    return 0.0f;
-}
-
-f32 TOTrap::receive_weapon_special_attack(void *source, void *) {
-    if (source != target) {
-        receive_physical_attack(NULL, 1.0f);
-    }
-    return 0.0f;
 }
