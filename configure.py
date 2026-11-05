@@ -464,17 +464,6 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # half-width nudge and the drop placement fuse multiply-adds.
     # -str reuse,readonly: the literals live in this unit's .rodata.
     "pso/object/TObjTombstone.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on", "-str reuse,readonly")},
-    # TAdMultiPlyChrSelectGC_802C50EC: -fp_contract on because the original
-    # contracts all four multiply-adds (fmadds at 802C5148, 802C5274, 802C58AC
-    # and 802C676C). The UV scale is `x / 256.0f`; MWCC folds that into a
-    # multiply by the pooled reciprocal at 0x805DE584, which this object
-    # emits as @168. -inline on inlines only clamped_slot_802C5F1C (the
-    # original has no out-of-line copy). -inline auto also inlines other
-    # small functions; -inline deferred emits the unit backwards.
-    "pso/ui/TAdMultiPlyChrSelectGC_802C50EC.cpp": {
-        "cflags": _switch(cflags_pso, "-fp_contract on", "-inline on"),
-        "symbol_mappings": {"TAdMultiPlyChrSelectGC__data_805DE584": "@168"},
-    },
     # GC/2.0: compiler-expanded struct copies take 2.0's registers.
     # The ending item handler table keeps 2.0's store/load scheduling for its
     # zero-initialized local member-function-pointer array.
@@ -523,6 +512,21 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/item/TObjContainerItem.cpp": {"mw_version": "GC/1.3.2"},
     "pso/misc/TContainerAncient01.cpp": {"mw_version": "GC/1.3.2"},
     "pso/ui/TAdSinglePlyChrSelectGC_801FBF54.cpp": {"mw_version": "GC/1.3.2"},
+    # Four depth/UV multiply-adds contract, so -fp_contract on replaces the old
+    # per-function pragmas. -inline on inlines only clamped_active_slot
+    # and mark_grid_cell_occupied; -inline auto also inlines eight unmarked
+    # calls and those functions stop matching. See
+    # docs/evidence/chr-select-slot-clamp-inline.md.
+    # The eight compiler-pool globals before this unit's owned 0.53 / 1/256
+    # literals are defined by TAdMultiPlyChrSelectGC_literals.s, including the
+    # 16.0 conversion constant shared with the separately split ctor.
+    "pso/ui/TAdChrSelPlyPlateGC.cpp": {
+        "cflags": _switch(cflags_pso, "-fp_contract on", "-inline on"),
+        "symbol_mappings": {
+            "@102": "lbl_805DE580",
+            "@175": "TAdMultiPlyChrSelectGC__data_805DE584",
+        },
+    },
     "pso/misc/TQuestVmDownLoadServer.cpp": {"mw_version": "GC/1.3.2", "cflags": _switch(cflags_pso, "-inline deferred")},
     "pso/misc/TCameraCtrl.cpp": {"mw_version": "GC/1.3.2"},
     "pso/misc/TKeyBoardControl_8025EC04.cpp": {"mw_version": "GC/1.3.2"},

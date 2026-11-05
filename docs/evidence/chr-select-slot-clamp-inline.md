@@ -1,97 +1,95 @@
-# Character-select slot clamp (`sub_802C5F1C`)
+# Character-select slot clamp is an inlined helper
 
-`TAdMultiPlyChrSelectGC__sub_802C5F1C` (`0x802C5F1C`, 236 bytes) fills a 4×3
-grid of selection quads and clamps the active player slot
-(`TAdMultiPlyChrSelectGC__data_805D67D8`) to 3. The original inner loop keeps
-the hoisted row (`self + i*96`) in `r8` and the cell in `r7`:
+`TAdMultiPlyChrSelectGC__sub_802C5F1C` (`0x802C5F1C`, 236 bytes,
+`src/pso/ui/TAdChrSelPlyPlateGC.cpp`, the plate unit `0x802C50EC-0x802C6DD4`) fills
+a 4x3 grid of selection quads. Each cell clamps the active player slot (`TAdMultiPlyChrSelectGC__data_805D67D8`)
+to 3. Written out of line, the function compiles to the original except for one
+register pair (99.15%). With the clamp in an `inline` helper (`clamped_active_slot`) and the
+unit built with `-inline on`, it is byte-exact. The equivalent
+`-inline on,noauto` spelling produces the same object. With `-inline off`,
+the clamp helper is emitted and called and `.text` grows from 7400 to 7520
+bytes; the explicit cell-store helper is inlined as well in the final object.
 
-```
-add   r8, r3, r4
-lwz   r0, TAdMultiPlyChrSelectGC__data_805D67D8
-li    r7, 3
-cmpwi r0, 4
-bge   ...
-mr    r7, r0
-xoris r0, r7, 32768
-add   r7, r8, r5
-```
+## Allocation
 
-A straight loop in the caller is the same 59 instructions with `r7` and `r8`
-swapped (objdiff 99.15254%, nine argument mismatches). MWCC numbers named
-locals below its own temporaries and colours the hoisted row first, so the
-row takes `r7`.
-
-## Flag
-
-The clamp is `static inline clamped_slot_802C5F1C` (placeholder; it has no
-symbol). Under `-inline on` the clamp locals are temporaries created before
-the hoisted row, so the row stays in `r8` and the cell in `r7`. The helper
-is not emitted out of line.
-
-The cell stores are written directly. `a` is the slot scale, used for `v0`
-and again in the `v1` sum. Both products are divisions by `256.0f`:
-
-```
-v0 = a / 256.0f;
-v1 = (lbl_805DE588 + a) / 256.0f;
-```
-
-`TAdMultiPlyChrSelectGC__data_805DE584` is exactly `1/256` (`0x3b800000`).
-Division is not commutative, so MWCC does not swap the operands, and the
-backend folds `/ 256.0f` into `fmuls` by that pooled reciprocal with the
-dividend still on the left (`fmuls f2,f0,f3` for `v0`, `fmuls f0,f0,f3` for
-`v1`). Objdiff scores the function 100% (236 bytes).
-
-A multiply by the named scale does not. `optimizecomm` swaps a commutative
-operator when the left tree costs more than the right. The sum is an add
-(cost 2) and the scale is a load (cost 1), so `(lbl + a) * scale` is parsed
-as `scale * sum` and emits `fmuls f0,f3,f0` (99.830505%). Writing
-`scale * (lbl + a)`, `+scale`, `(0.f, scale)`, or `scale + 0.f` does the
-same. A named sum (`b = lbl + a; v1 = b * scale`) costs 1 on the left and
-matches, including `fmuls f0,f0,f3`, but that name is used once, so it is
-not in the source. Reusing `a` for the sum keeps the sum on the left and
-moves every prologue load (11 mismatched instructions).
-
-The literals this file already uses (`0.5f`, `255.0f`, `-206.0f`, then the
-zero, `0.54f`, `1/6`, `1.0f`, `16.0f`, and `0.53f` that the other functions
-load) are emitted in that order, and the reciprocal is appended. That is
-the DOL's `.sdata2` from `0x805DE560` through `0x805DE588`, so the split
-covers that range. The zero tables defined in this file run from
-`0x804E0A48` through `0x804E0B00`; the `.data` split covers them. With both
-ranges claimed, every compiled function in the unit is exact and both
-sections match. Claiming only the old 12-byte `.sdata2` leaves the new
-pool outside the original object, and the float relocs no longer match.
-
-The unit's `configure.py` entry replaces `-inline off` with `-inline on`.
-Retested on this source:
-
-| Flag | `sub_802C5F1C` | Other functions that were already exact | Kept |
+| Role | Original | Out-of-line clamp | Inline helper |
 |---|---|---|---|
-| `-inline off` | real call, 332 bytes, 42.79518% | the extra `clamped_slot_802C5F1C` symbol is emitted | no |
-| `-inline auto` | 99.830505% (236) on the multiply form; not retested after the division | `update` 108→572, `update_option_cursor` 476→700, `handle_dpad_input` 564→788 | no |
-| `-inline on` | 100% (236) | the other compiled functions stay exact | yes |
+| hoisted row pointer `self + i*96` | `r8` | `r7` | `r8` |
+| cell pointer `row + j*32` | `r7` | `r8` | `r7` |
+| slot load | `r0` | `r0` | `r0` |
+| clamped slot | `r7` | `r8` | `r7` |
 
-`-inline all`, `-inline deferred`, `-inline noauto`, and `-inline auto,deferred`
-were measured on the previous body. `all` and `auto,deferred` inline the same
-extra functions as `auto`. `deferred` reverses emission order. `noauto`
-matched `-inline on`. They are not used on this source.
+## Why only inlining gives it
 
-`-inline auto` is the smaller request in other projects. On this source it
-leaves the commuted `fmuls` and inlines functions that are not marked
-`inline`. `-inline on` inlines only the helper. Nothing else in this file
-is marked `inline`. Precedent for that switch:
-<https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264>.
-The `auto` spelling that was tried first:
-<https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203>.
+Traced with the MWCC debugger (`GC/2.6`, unit flags) and read against the
+[mweppc](https://github.com/doldecomp/mweppc) decompilation:
 
-## Return value
+- The backend numbers GPR virtual registers as arguments first, then named locals,
+  then compiler `@` temporaries, and colours the highest number first.
+- Loop-invariant hoisting creates the row temporary before common-subexpression
+  elimination creates the cell temporary. Out of line, the clamp's `cur`/`slot` are
+  named locals and sit below both (`slot` r33, `cur` r34, cell r38, row r39), so the row
+  is coloured first and takes `r7`.
+- Inlining turns the helper's locals into `@` temporaries before those optimizer
+  passes run. They are numbered above the row (`cur` r39, `slot` r38, row r37, cell r36),
+  so the clamp takes `r0`/`r7` first and the row moves to `r8`, as in the original.
 
-The function's last instruction is `addi r1, r1, 0x10` / `blr`. It never
-writes `r3`. The callers do not read `r3`, so the return type is `void`.
-Both compiled callers still pass the old `f1C` in `r4`. The body does not
-read that argument. `TAdMultiPlyChrSelectGC` stays `0xA0` bytes, and
-`get_or_create` is `new TAdMultiPlyChrSelectGC`, which is `li r3, 160` /
-`bl __nw__7TObjectFUl`. The grid this function fills is `S_802C6008`, the
-same view `update_option_cursor` already uses; `S_802C61E4` is that view
-under `handle_dpad_input`'s name. The quads sit in what was padding between
-`f1C` and `sel`, so those callers' offsets are unchanged.
+Spelling probes under `-inline on` (helper and caller otherwise as in the source):
+
+| Helper / caller | Word diffs |
+|---|---|
+| `slot` declared before `cur`, caller reads `u0` first (source) | 0 |
+| `cur` declared before `slot` | 5 (clamp `r0`/`r7` swapped) |
+| slot passed as an argument (`if`, `?:`) | 5 |
+| caller without the `u0` local, or calling the helper before reading `u0` | 5 (`f5`/`f6` swapped) |
+
+Earlier out-of-line probes (declaration orders, signedness, loop shapes, scoped
+temporaries, member forms, pragmas) are listed in the PR #294 and PR #250 attempt logs; none
+moved the row pointer off `r7` without a no-op statement.
+
+## Which unit inline flag
+
+Same source, compared with the `-inline on` object (`.text` 7400, `.rodata` 640,
+`.data` 200, `.sdata2` 8), which matches the original unit.
+
+| Flag | Whole unit | What changed |
+|---|---|---|
+| `-inline on` | identical to the original | explicit inline only |
+| `-inline on,noauto` | identical to `-inline on` | equivalent explicit-inline-only spelling |
+| `-inline noauto` | identical to `-inline on` | relies on MWCC's default still being explicit inline |
+| `-inline off` | `.text` 7520 | helper emitted; `sub_802C5F1C` is a call |
+| `-inline auto` | `.text` 9448, 8 functions differ | also inlines unmarked calls |
+| `-inline all` | same as `-inline auto` | |
+| `-inline auto,deferred` | `.text` 10608, 15 functions differ, `.sdata2` moves | |
+| `-inline deferred`, `-inline on,deferred` | each function's instructions match, `.text` and `.sdata2` bytes do not | deferred emission reorders the unit |
+
+## Main-line 802C50EC cleanups folded into this unit
+
+The folded plate retains `TAdChrSelPlyPlateGC` as the receiver and owner of the
+quad grid. Main's later standalone-unit cleanups do not require growing that
+class or a placement-new allocation: the `TAdMultiPlyChrSelectGC` allocation
+stays at the retail `0xA0`, and the quad-fill function remains a `void` function
+with an integer parameter that the two callers advance but the callee does not
+read. The typed plate `quad` and `cursor` arrays describe the same view that
+main adds to its `S_802C6008` shadow; `S_802C61E4` is that same view, not a
+second allocation.
+
+The grid writes use the final main-line arithmetic: `v0` is `a / 256.0f` and
+`v1` is `(lbl_805DE588 + a) / 256.0f`. MWCC contracts the division by the exact
+pooled reciprocal at `0x805DE584`, with the original dividend on the left. The
+folded source already uses those divisions, together with its typed receiver,
+`void` return, and unused integer parameter. Porting those commits therefore
+preserves the source and the exact object rather than recreating the standalone
+unit or its temporary class-growth workaround.
+
+The folded unit retains #214's typed plate, `alpha`, `home[4][3]`/`ox`/`oy`,
+`mark_grid_cell_occupied`, and confirm-cell evidence. It takes the #250 data
+ownership without changing the exact C++: `.data` is
+`0x804E0A48-0x804E0B10`, which includes the later standalone unit's expanded
+`0x804E0A48-0x804E0B00` range, and `.sdata2` is `0x805DE580-0x805DE588`, which
+covers the reciprocal used by these divisions. The preceding unit's
+literals stay externs, defined by `TAdMultiPlyChrSelectGC_literals.s` with global bindings. Only the 0.53 and reciprocal constants are owned here;
+the folded unit is source-linked with its 18 unreferenced globals force-active.
+
+Ported commits: `36e860b33` (retail allocation / view), `ee03d9da2` (direct
+stores), and `8f43cc281` (division and literals).
