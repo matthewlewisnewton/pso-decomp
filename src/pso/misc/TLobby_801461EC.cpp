@@ -199,17 +199,17 @@ struct AccountEntry {
     s32 valid;
 };
 u32 lbl_8050C0A8[7];
-static u32 lbl_8050C0C4[368];
-static u32 lbl_8050C684[64];
-AccountEntry lbl_8050C784[3];
+u32 lbl_8050C0C4[368];
+u32 lbl_8050C684[64];
+AccountEntry lobby_account_entries[3]; /* cleared by TLobby::init_account_entries, filled by load_network_configs; [2] is the modem account */
 u32 lbl_8050CCE8[73];
-static __declspec(section ".data") s32 lbl_8050CE0C[2];
+__declspec(section ".data") s32 lbl_8050CE0C[2];
 char lbl_8050CE14[0x20];
-static char lbl_8050CE34[0x20];
-static u8 lbl_8050CE54[0x114];
+char lbl_8050CE34[0x20];
+u8 lbl_8050CE54[0x114];
 extern s32 lbl_805D5714;
 #define lbl_8050C0A8 (*(RecoveredGlobal_8014672C_lbl_8050C0A8 *)lbl_8050C0A8)
-#define lbl_8050C784 (*(unsigned char (*)[0x564])lbl_8050C784)
+#define lbl_8050C784 (*(unsigned char (*)[0x564])lobby_account_entries)
 #define lbl_8050CCE8 (*(RecoveredGlobal_80146CB8_lbl_8050CCE8 *)lbl_8050CCE8)
 #define lbl_8050CE14 (*(RecoveredGlobal_80146D44_lbl_8050CE14 *)lbl_8050CE14)
 
@@ -804,7 +804,7 @@ extern char lbl_8043F404[];
 s32 TLobby__sub_80147284(void);
 void TLobby__sub_80147978(void);
 
-#define lbl_8050C784 (*(Cfg_801471A0 *)lbl_8050C784)
+#define lbl_8050C784 (*(Cfg_801471A0 *)lobby_account_entries)
 #define TLobby__sub_803FB184 ((s16 (*)(void *))TLobby__sub_803FB184)
 
 s32 TLobby::set_dns_servers() {
@@ -913,13 +913,13 @@ s32 TLobby__sub_8014734C(s32 idx, s16 id) {
     if (TLobby__sub_80145DB4(1) == 0) {
         return 6;
     }
-    if (lbl_8050C784[2].valid == 0) {
+    if (lobby_account_entries[2].valid == 0) {
         return 1;
     }
     if (lbl_8050CE0C[1] == 0) {
         return 1;
     }
-    if (lbl_8050C784[2].phone[idx].number[0] == 0) {
+    if (lobby_account_entries[2].phone[idx].number[0] == 0) {
         return 3;
     }
     lbl_805D2D00 = id;
@@ -992,7 +992,7 @@ s32 TLobby__sub_8014734C(s32 idx, s16 id) {
     TLobby::copy_name_buffer(&modem);
     cfg.flags = 1;
     cfg.wait = 0;
-    cfg.wC = lbl_8050C784[2].host;
+    cfg.wC = lobby_account_entries[2].host;
     if (*TLobby__sub_80146D44() == 0) {
         cfg.password = get_ppp_password_buffer();
     } else {
@@ -1098,7 +1098,7 @@ s32 TLobby__sub_8014734C(s32 idx, s16 id) {
         return 4;
     }
 }
-#define lbl_8050C784 (*(Cfg_801471A0 *)lbl_8050C784)
+#define lbl_8050C784 (*(Cfg_801471A0 *)lobby_account_entries)
 
 s32 TLobby__sub_801478C4(s32 arg0) {
     s32 count;
@@ -1134,7 +1134,7 @@ struct Acct_8014797C {
     u32 f1C4;
     s32 valid;
 };
-#define lbl_8050C784 (*(Acct_8014797C (*)[3])lbl_8050C784)
+#define lbl_8050C784 (*(Acct_8014797C (*)[3])lobby_account_entries)
 #define memset ((void *(*)(void *, s32, u32))memset)
 #define strncpy ((char *(*)(char *, const char *, u32))strncpy)
 void TLobby::init_account_entries() {

@@ -167,7 +167,6 @@ or `other: <what>`); the fork PR that brought it in; and the tag
 | TLobby__sub_80146314 `func_801A5E54__Fv` | pso/misc/TLobby_801461EC.cpp | src/pso/misc/TLobby_801461EC.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | #0 | upstream catch-up, rewrite later |
 | TLobby__sub_8014734C `func_801A5E54__Fv` | pso/misc/TLobby_801461EC.cpp | src/pso/misc/TLobby_801461EC.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | #0 | upstream catch-up, rewrite later |
 | AccountEntry, NetConnectCfg, NetLinkStatus, ModemDialConfig | pso/misc/TLobby_801461EC.cpp | src/pso/misc/TLobby_801461EC.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | #0 | upstream catch-up, rewrite later |
-| `...bss.0` | pso/misc/TLobby_801461EC.cpp | tools/coalesce_bss_anchor.py | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | other: bss symbol coalesce | #0 | upstream catch-up, rewrite later |
 
 ## Pending in open PRs
 

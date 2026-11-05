@@ -724,13 +724,6 @@ def generate_build_ninja(
         mwcc_extab_implicit.append(transform_dep)
         mwcc_sjis_extab_implicit.append(transform_dep)
 
-    # TLobby_801461EC: MWCC pools .bss through ...bss.0 and keeps the small
-    # arrays as local symbols. The DOL only has the four globals, so objdiff
-    # will not score the unit until those locals are folded back in.
-    bss_anchor = config.tools_dir / "coalesce_bss_anchor.py"
-    mwcc_bss_cmd = f"{mwcc_cmd} && $python {bss_anchor} $out"
-    mwcc_bss_implicit: List[Optional[Path]] = [*mwcc_implicit, bss_anchor]
-
     n.comment("Link ELF file")
     n.rule(
         name="link",
@@ -753,16 +746,6 @@ def generate_build_ninja(
     n.rule(
         name="mwcc",
         command=mwcc_cmd,
-        description="MWCC $out",
-        depfile="$basefile.d",
-        deps="gcc",
-    )
-    n.newline()
-
-    n.comment("MWCC build (fold split .bss locals into the DOL globals)")
-    n.rule(
-        name="mwcc_bss",
-        command=mwcc_bss_cmd,
         description="MWCC $out",
         depfile="$basefile.d",
         deps="gcc",
@@ -1070,9 +1053,6 @@ def generate_build_ninja(
                 variables["extab_padding"] = "".join(
                     f"{i:02x}" for i in obj.options["extab_padding"]
                 )
-            if obj.name == "pso/misc/TLobby_801461EC.cpp" and build_rule == "mwcc":
-                build_rule = "mwcc_bss"
-                build_implcit = mwcc_bss_implicit
             n.comment(f"{obj.name}: {lib_name} (linked {obj.completed})")
             n.build(
                 outputs=obj.src_obj_path,

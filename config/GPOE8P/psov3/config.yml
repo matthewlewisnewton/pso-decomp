@@ -7335,9 +7335,13 @@ force_active:
   - lbl_8050AAD4
   - lbl_8050BED0
   - lbl_8050C0A8
-  - lbl_8050C784
+  - lbl_8050C0C4
+  - lbl_8050C684
   - lbl_8050CCE8
+  - lbl_8050CE0C
   - lbl_8050CE14
+  - lbl_8050CE34
+  - lbl_8050CE54
   - lbl_8050EA64
   - lbl_80511DD8
   - lbl_80511EFC
@@ -8056,6 +8060,7 @@ force_active:
   - load_texture__12TItemTexLoadFl
   - load_texture_archive__12TItemTexLoadFv
   - load_texture_sequence_frame
+  - lobby_account_entries
   - lobby_buffer_refcount
   - lobby_checked_read_ptr_table
   - lobby_class_name
