@@ -5,7 +5,8 @@
 #include <stddef.h>
 #include "pso/object/TObjMotion.h"
 
-struct Cam_801F9314;
+struct Rect_801F9228;
+struct RadarMapViewState;
 
 struct RadarViewportParameters
 {
@@ -57,7 +58,7 @@ struct TRaderMapCore : public TObjBase {
     void reset_counter();
     static void hide_radar();
     static void show_radar();
-    static s32 set_view_scissor(void *self, int mode, void *arg2);
+    static s32 set_view_scissor(void *self, int mode, Rect_801F9228 *rect);
     static void free_map_data();
     static void free_heap();
     static void set_piece_flags(s32 arg0);
@@ -76,8 +77,9 @@ struct TRaderMapCore : public TObjBase {
     // r3 is this and r4 is the view mode. A second int would be passed in r5,
     // which this call never sets.
     void begin_map_view(int mode);
-    // r3 is this (unread) and r4 is the overhead camera.
-    void setup_overhead_projection(Cam_801F9314 *view);
+    // r3 is this (unread). r4 points at one 0x28 view record; the camera
+    // words are that record's first 0x1C.
+    void setup_overhead_projection(RadarMapViewState *view);
     void setup_view(s32 arg1);
     // The caller passes the view mode. This body does not read it.
     void render_region_records(s32 mode);

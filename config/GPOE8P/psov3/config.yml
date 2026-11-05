@@ -1450,10 +1450,6 @@ force_active:
   - TRKPositionFile
   - TRKPostInterruptEvent
   - TRK_mainError
-  - TRaderMapCore__floor_discovery_table
-  - TRaderMapCore__marker_buffer
-  - TRaderMapCore__sub_801F967C
-  - TRaderMapCore__sub_801F9D38
   - TRecvGenerateID__sub_801DFBC4
   - TSaveChCr__ct
   - TSceneSora__ct
@@ -3497,7 +3493,6 @@ force_active:
   - begin_appear__15TObjEneSlimeOneFv
   - begin_defeat_sequence__14TBoss4DarkFalzFv
   - begin_hidden_flight__16TObjEneNanoDragoFv
-  - begin_map_view__13TRaderMapCoreFi
   - begin_meseta_deposit__18TCheckRoomSequenceFPv
   - begin_meseta_withdrawal__18TCheckRoomSequenceFPv
   - begin_parse__24TMessageWindowControllerFPCcPc
@@ -4529,7 +4524,6 @@ force_active:
   - computer_screen_model_b__13TObjLobbyMain
   - configure_scripted_camera_playback__FP14CameraPlaybackl
   - configure_subtype__12TObjEneSharkFv
-  - configure_viewport__13TRaderMapCoreFPC23RadarViewportParameters
   - confirm_and_close_if_valid__15TShopWindowBaseFv
   - confirm_and_free__17TWindowSubComCardFv
   - construct__12T_OWEHMS_ExpFP10TObjPlayer
@@ -4655,7 +4649,6 @@ force_active:
   - copy_struct_f8__6TLobbyFii
   - copy_target_record__11TMainCursorFPvPv
   - copy_transform__11TBoss6Type2FPv
-  - copy_transform__13TRaderMapCoreFPv
   - copy_udp_socket_event_record
   - copy_vec3__11TBoss6Type2Fii
   - copy_vec_array__11TBoss6Type2Fv
@@ -5033,7 +5026,6 @@ force_active:
   - draw_area_chunk_objects__10TObjPlayerFv
   - draw_arrows__18TWindowInputNumberFv
   - draw_at_joint__14TItemProShieldFl
-  - draw_backdrop__13TRaderMapCoreFP13TRaderMapCorel
   - draw_background__13TWindowStatusFPUc
   - draw_background__17TAdGameStartSubGCFPv
   - draw_background__18TWindowPartyStatusFPUc
@@ -5047,7 +5039,6 @@ force_active:
   - draw_closing__8TObjDoorFPv
   - draw_color_palette__24TWindowSubSymbolChatHelpFPv
   - draw_color_quad_2d__FPvPvi
-  - draw_compass__13TRaderMapCoreFl
   - draw_current_pic__10TEndingPicFv
   - draw_cursor__19TWindowSubMagPhotonFi
   - draw_cursor__22TWindowSubCustomSelectFPUc
@@ -5055,7 +5046,6 @@ force_active:
   - draw_dialing_status__12TAdDialingGCFv
   - draw_effect_chain__15TOTrapAncient02Fv
   - draw_empty_warp_overlay__Fv
-  - draw_enemy_gate_markers__13TRaderMapCoreFv
   - draw_entry__12TAdMultiOkGCFi
   - draw_entry_if_visible__19TWindowDD_WS_StringFPv
   - draw_entry_tab__20TWindowSubStatusDispFPv
@@ -5120,7 +5110,6 @@ force_active:
   - draw_outline_quad__18TWindowEffectLightFl
   - draw_palette_cells__22TWindowSubCustomSelectFi
   - draw_photon_blast_fan
-  - draw_player_markers__13TRaderMapCoreFv
   - draw_quad__16TAdGuideButtonGCFi
   - draw_queued_models__FUl
   - draw_ray_quads__8TAdRayGCFlPUcPvl
@@ -6649,8 +6638,6 @@ force_active:
   - is_printable_key__16TKeyBoardControlFPvUc
   - is_rader_map_active__Fv
   - is_remote__16G_ClientIDHeaderFv
-  - is_render_admitted__13TRaderMapCoreFPv
-  - is_render_admitted_default__13TRaderMapCoreFv
   - is_render_deferred__7TObjectFv
   - is_same_slot_entry__23TAdSinglePlyChrSelectGCFPviPvi
   - is_secondary_sequence__12TBoss1DragonFv
@@ -7189,8 +7176,6 @@ force_active:
   - lbl_804C4794
   - lbl_804C4878
   - lbl_804C6900
-  - lbl_804C87B4
-  - lbl_804C87E4
   - lbl_804C8934
   - lbl_804C8A44
   - lbl_804C9C9C
@@ -13078,9 +13063,6 @@ force_active:
   - quick_sort__11TMainCursorFllll
   - quick_sort_partition__11TMainCursorFiPvii
   - rabarta_band_emitter_table
-  - radar_map_backdrop_color
-  - radar_map_view_rect_table
-  - radar_map_view_scissor_table
   - rafoie_burst_table
   - rand_scaled_offset__12TBoss8DragonFiii
   - random_child_position__13TObjEneMe1GeeFP13TObjEneMe1GeeP3Vec
@@ -13615,7 +13597,6 @@ force_active:
   - render_particle_effects__9TMainTaskFv
   - render_present_box__5TItemFv
   - render_reflection__13TObjEneMorfosFv
-  - render_region_records__13TRaderMapCoreFl
   - render_shadow__10TObjPlayerFv
   - render_shadow_flags
   - render_shadows__11TItemMagSubFv
@@ -13682,7 +13663,6 @@ force_active:
   - reset_camera_if_fullscreen__6TLobbyFPv
   - reset_color__13TUnk_80490470Fv
   - reset_color__19MaterialOpacityFadeFv
-  - reset_counter__13TRaderMapCoreFv
   - reset_counters__11TBoss6Type2Fv
   - reset_cursor__17TAdMultiConfirmGCFPv
   - reset_display__15TObjEneSlimeOneFv
@@ -14602,7 +14582,6 @@ force_active:
   - set_type__15TPlyPhotonChairFl
   - set_type_dragon__10TObjPlayerFv
   - set_value__6TLobbyFl
-  - set_view_scissor__13TRaderMapCoreFPviPv
   - set_visible_flag__14TBoss6PlotFalzFv
   - set_volopt_cage_flag__Fv
   - set_vtable_mode2_alt__13TUnk_804ECDC0FlPv
@@ -14622,7 +14601,6 @@ force_active:
   - setup_list__13TWindowSubMagFv
   - setup_mode_menu__21TAdMultiChgGameModeGCFPvl
   - setup_move_bounds__18TObjEneMe3SinowZoaFv
-  - setup_overhead_projection__13TRaderMapCoreFP12Cam_801F9314
   - setup_photon_blast_camera__13TUnk_804C3248Fv
   - setup_projection_tex_matrix__10TObjPlayerFv
   - setup_projection_texture__10TObjPlayerFlll
@@ -14631,7 +14609,6 @@ force_active:
   - setup_telepipe_field__9TTecLukerFv
   - setup_tex_gen__10TObjPlayerFv
   - setup_vertex_format__10TObjPlayerFv
-  - setup_view__13TRaderMapCoreFl
   - setup_vtx_desc__10TObjPlayerFv
   - shared_breakup_model
   - shared_model_resource__16TObjRainbowLobby
@@ -14688,7 +14665,6 @@ force_active:
   - shop_weapon_stock_generated_flags
   - shop_weapon_stock_level
   - shop_weapon_stock_target_counts
-  - should_show_map__13TRaderMapCoreFv
   - should_show_warning__14TObjBagWarnWinFPv
   - show__5TItemFv
   - show_active_window__11TWindowCtrlFv

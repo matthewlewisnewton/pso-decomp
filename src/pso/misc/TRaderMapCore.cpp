@@ -160,8 +160,6 @@ struct Map_801F9D84 { Region_801F9D84 *regions; void *textures; s32 count; };
 
 struct Vec3_801F9314 { f32 x, y, z; };
 
-struct Cam_801F9314 { Vec3_801F9314 dir; Vec3_801F9314 pos; s32 rot; };
-
 struct Color_801FAAEC { f32 r, g, b, a; };
 
 struct Model_801FAAEC { u8 pad[4]; s32 obj; };
@@ -447,8 +445,7 @@ void TRaderMapCore::configure_viewport(const RadarViewportParameters* view) {
     GXSetScissorBoxOffset((int)((s32) temp_f31), (int)((s32) temp_f30));
 }
 
-s32 TRaderMapCore::set_view_scissor(void *self, int mode, void *arg2) {
-    Rect_801F9228 *rect = (Rect_801F9228 *)arg2;
+s32 TRaderMapCore::set_view_scissor(void *self, int mode, Rect_801F9228 *rect) {
     u32 w;
     u32 h;
     u32 y;
@@ -463,18 +460,18 @@ s32 TRaderMapCore::set_view_scissor(void *self, int mode, void *arg2) {
 }
 #pragma fp_contract reset
 
-void TRaderMapCore::setup_overhead_projection(Cam_801F9314 *arg1) {
+void TRaderMapCore::setup_overhead_projection(RadarMapViewState *view) {
     Vec3_801F9314 up = lbl_8044A794;
     Vec3_801F9314 eye;
     Vec3_801F9314 at;
-    eye.x = arg1->dir.x * lbl_805D3608;
-    eye.y = arg1->dir.y * lbl_805D3608;
-    eye.z = arg1->dir.z * lbl_805D3608;
-    at.x = arg1->pos.x + eye.x;
-    at.y = arg1->pos.y + eye.y;
-    at.z = arg1->pos.z + eye.z;
+    eye.x = view->position.x * lbl_805D3608;
+    eye.y = view->position.y * lbl_805D3608;
+    eye.z = view->position.z * lbl_805D3608;
+    at.x = view->field0c + eye.x;
+    at.y = view->field10 + eye.y;
+    at.z = view->field14 + eye.z;
     push_matrix_from(identity_matrix);
-    rotate_matrix_y(0, 0x8000 - arg1->rot);
+    rotate_matrix_y(0, 0x8000 - view->field18);
     rotate_vector_by_matrix(0, &up, &up);
     pop_matrix();
     // These projection constants are pooled in this unit.
@@ -1043,20 +1040,9 @@ void TRaderMapCore::update_follow_projection(s32 mode) {
 
 void TRaderMapCore::copy_transform(void* q) { *(f32 *)&this->m_name = *(f32*)((char*)q + 0x0); *(f32 *)&this->m_flags = *(f32*)((char*)q + 0x4); *(f32 *)&this->m_prev = *(f32*)((char*)q + 0x8); *(f32 *)&this->m_next = *(f32*)((char*)q + 0xc); *(f32 *)&this->m_up = *(f32*)((char*)q + 0x10); *(f32 *)&this->m_down = *(f32*)((char*)q + 0x14); *(u32*)((char*)this + 0x18) = *(u32*)((char*)q + 0x18); *(u32 *)&this->entity_id = *(u32*)((char*)q + 0x1c); *(f32 *)&this->m_20 = *(f32*)((char*)q + 0x20); *(f32 *)&this->texlist = *(f32*)((char*)q + 0x24); }
 
-union CompassSpriteColor {
-    u32 word;
-    struct {
-        u8 c0;
-        u8 c1;
-        u8 c2;
-        u8 alpha;
-    } ch;
-};
-
 void TRaderMapCore::draw_compass(s32 mode) {
     SpriteDescriptor sprite;
-    CompassSpriteColor color;
-    s32 color_arg;
+    u32 color;
     f32 scale;
     f32 pos;
     f32 *compass_xy;
@@ -1075,18 +1061,14 @@ void TRaderMapCore::draw_compass(s32 mode) {
     sprite.rotation = 0;
     sprite.unknown18 = TRaderMapCore__data_805D5F4C;
     sprite.frames = lbl_804C87E4;
-    color.word = 0xFFFFFFFF;
     TParticleCtrl::begin_effect_render();
     compass_xy = &lbl_804C87B4[mode][0];
     marker_xy = &lbl_804C87B4[mode][2];
     sprite.x = marker_xy[0] + (f32)lbl_804C87E4[1].center_x;
     sprite.y = marker_xy[1] + (f32)lbl_804C87E4[1].center_y;
     set_default_alpha_blend();
-    color.ch.alpha = (u8)this->m_19c;
-    // Right-nested so the low half is the rlwinm base: srwi, then rlwimi 0,7, then rlwimi 8,15.
-    color_arg = ((color.word << 16) & 0x00FF0000u) |
-                (((color.word << 16) & 0xFF000000u) | (color.word >> 16));
-    sprite.draw_compass_sprite(1, color_arg, 0x21, TRaderMapCore__data_805DC58C);
+    color = 0xFFFFFF00u | (u8)this->m_19c;
+    sprite.draw_compass_sprite(1, (color << 16) | (color >> 16), 0x21, TRaderMapCore__data_805DC58C);
     sprite.x = compass_xy[0] + (f32)lbl_804C87E4[0].center_x;
     sprite.y = compass_xy[1] + (f32)lbl_804C87E4[0].center_y;
     sprite.rotation = this->m_174;
@@ -1160,7 +1142,7 @@ void TRaderMapCore::setup_view(s32 arg1) {
     GXSetScissorBoxOffset(0, 0);
     TCameraCtrl__sub_801E32D8(radar_screen_center_x_f32, radar_screen_center_y_f32);
     ((TCameraCtrl *)camera_ctrl_instance)->setup_default_view(0);
-    TRaderMapCore::set_view_scissor((void *)arg0, 0, (void *)((void *) ((u8 *)&radar_map_view_scissor_table + (arg1 * 0x10))));
+    set_view_scissor((void *)arg0, 0, &radar_map_view_scissor_table[arg1]);
     TObjLight::apply_distant_light();
     TParticleCtrl::end_effect_render();
 }
@@ -1182,18 +1164,18 @@ void TRaderMapCore::begin_map_view(int mode) {
     typedef char sp20_offset[(offsetof(Stack_801FA9D8, sp20) == 0x18) ? 1 : -1];
     typedef char viewport_offset[(offsetof(Stack_801FA9D8, viewport) == 0x1C) ? 1 : -1];
     Stack_801FA9D8 stack;
-    u8 *temp_r5;
+    RadarViewRect_801FA9D8 *rect;
     TCameraCtrl::restore_full_screen_view();
     memset((void *)&stack.viewport, 0, 0x30);
-    temp_r5 = (u8 *)&radar_map_view_rect_table + (mode * 0x14);
-    stack.viewport.center_x = *(f32 *)((s8 *)temp_r5 + 0);
-    stack.viewport.center_y = *(f32 *)((s8 *)temp_r5 + 4);
-    stack.viewport.screen_width = *(f32 *)((s8 *)temp_r5 + 8);
-    stack.viewport.screen_height = *(f32 *)((s8 *)temp_r5 + 0xC);
-    stack.viewport.value18 = *(f32 *)((s8 *)temp_r5 + 0x10);
+    rect = &radar_map_view_rect_table[mode];
+    stack.viewport.center_x = rect->center_x;
+    stack.viewport.center_y = rect->center_y;
+    stack.viewport.screen_width = rect->screen_width;
+    stack.viewport.screen_height = rect->screen_height;
+    stack.viewport.value18 = rect->depth;
     configure_viewport(&stack.viewport);
-    set_view_scissor(this, 2, (void *)((void *) ((u8 *)&(*(RecoveredGlobal_801FA9D8_lbl_804C8784 *)&radar_map_view_scissor_table).value + (mode * 0x10))));
-    setup_overhead_projection((Cam_801F9314 *)((void *) ((u8 *)&(*(RecoveredGlobal_801FA9D8_TRaderMapCore__data_80513708 *)&TRaderMapCore__map_view_state).value + (mode * 0x28))));
+    set_view_scissor(this, 2, &radar_map_view_scissor_table[mode]);
+    setup_overhead_projection(&TRaderMapCore__map_view_state[mode]);
     stack.sp18 = *(s32 *)((s8 *)&lbl_8044A770.value + 0);
     stack.sp1C = *(s32 *)((s8 *)&lbl_8044A770.value + 4);
     stack.sp20 = *(s32 *)((s8 *)&lbl_8044A770.value + 8);
