@@ -4,14 +4,15 @@
 #include "types.h"
 
 class TPlyItem;
+class TObject;
 
 extern "C" {
-void *TPlyItem__ct(TPlyItem *ply_item);
+void *TPlyItem__ct(TPlyItem *ply_item, TObject *parent);
 }
 
 // --- C functions defined in TPlyItem.cpp ---
 extern "C" {
-void *TPlyItem__ct(TPlyItem *ply_item);
+void *TPlyItem__ct(TPlyItem *ply_item, TObject *parent);
 }
 // --- end of C functions
 

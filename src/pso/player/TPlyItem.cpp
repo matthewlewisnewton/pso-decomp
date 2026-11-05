@@ -26,13 +26,13 @@ TPlyItem::~TPlyItem() {
 
 extern "C" {
 
-void __ct__7TObjectFP7TObject(void *);
+void __ct__7TObjectFP7TObject(void *, TObject *);
 
 extern s32 __vt__8TPlyItem[];
 extern void *TPlyItem_name_ref;
 
-void *TPlyItem__ct(TPlyItem *ply_item) {
-    __ct__7TObjectFP7TObject(ply_item);
+void *TPlyItem__ct(TPlyItem *ply_item, TObject *parent) {
+    __ct__7TObjectFP7TObject(ply_item, parent);
     *(s32 **)((s8 *)ply_item + 0x18) = __vt__8TPlyItem;
     ((TItemList *)((char *)ply_item + 32))->init_items();
     *(void * *)&ply_item->m_name = TPlyItem_name_ref;
