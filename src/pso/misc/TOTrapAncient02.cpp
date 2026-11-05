@@ -6,6 +6,7 @@
 #include "pso/math/ScratchVectorStorage.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 #include "pso/system/NinjaUtil.h"
 #include "pso/TMainTask.h"
 #include "pso/render/render_util.h"
@@ -91,30 +92,17 @@ extern char lbl_80442EF0[];
 extern const char *lbl_805D31A8[];
 extern const char *lbl_805D31AC[];
 extern const char *lbl_805D31B0[];
-struct TrapAncient02ResourceDescriptor {
-    const char *bml_filename;
-    const char *const *model_filenames;
-    const char *const *motion_filenames;
-    s16 model_count;
-    s16 motion_count;
-};
+// The model list and BML descriptor of each pillar: the torabasami default,
+// the VR temple pillar and the jungle/seabed pillar.
 struct TrapAncient02ResourceRecord {
     const char *model_filenames[2];
-    TrapAncient02ResourceDescriptor descriptor;
+    BmlResourceDescriptor descriptor;
 };
-typedef char TrapAncient02ResourceDescriptor_size[(sizeof(TrapAncient02ResourceDescriptor) == 0x10) ? 1 : -1];
 typedef char TrapAncient02ResourceRecord_size[(sizeof(TrapAncient02ResourceRecord) == 0x18) ? 1 : -1];
-TrapAncient02ResourceRecord trap_ancient02_torabasami_resources = {
-    { lbl_80442E70, 0 },
-    { lbl_80442E88, trap_ancient02_torabasami_resources.model_filenames, lbl_805D31A8, 1, 0 }
-};
-TrapAncient02ResourceRecord trap_ancient02_ruins_pillar_resources = {
-    { lbl_80442EA4, 0 },
-    { lbl_80442EC0, trap_ancient02_ruins_pillar_resources.model_filenames, lbl_805D31AC, 1, 0 }
-};
-TrapAncient02ResourceRecord trap_ancient02_seabed_pillar_resources = {
-    { lbl_80442ED8, 0 },
-    { lbl_80442EF0, trap_ancient02_seabed_pillar_resources.model_filenames, lbl_805D31B0, 1, 0 }
+TrapAncient02ResourceRecord trap_ancient02_resources[3] = {
+    { { lbl_80442E70, 0 }, { lbl_80442E88, trap_ancient02_resources[0].model_filenames, lbl_805D31A8, 1, 0 } },
+    { { lbl_80442EA4, 0 }, { lbl_80442EC0, trap_ancient02_resources[1].model_filenames, lbl_805D31AC, 1, 0 } },
+    { { lbl_80442ED8, 0 }, { lbl_80442EF0, trap_ancient02_resources[2].model_filenames, lbl_805D31B0, 1, 0 } },
 };
 CollisionBody trap_ancient02_collision_body = {
     { 0.0f, 8.5f, 0.0f }, 2.0f, 0.0f, 0, 0x38003, { 0.0f, 0.0f, 0.0f }, 0.0f
@@ -187,12 +175,12 @@ void *__dt__15TOTrapAncient02Fv(TOTrapAncient02 *trap, s16 arg1) {
 }
 
 void TOTrapAncient02::load_resources() {
-    char *base = (char *)&trap_ancient02_torabasami_resources;
+    TrapAncient02ResourceRecord *records = trap_ancient02_resources;
     BmlResource *obj;
     switch (get_current_floor_area()) {
     case AREA_VR_TEMPLE_ALPHA:
     case AREA_VR_TEMPLE_BETA:
-        obj = new BmlResource(1, (BmlResourceDescriptor *)(base + 0x20), 0, 0, (void *)(0));
+        obj = new BmlResource(1, &records[1].descriptor, 0, 0, NULL);
         TOTrapAncient02__shared_resource = obj;
         lbl_805D5AE0 = find_object_node((NJS_OBJECT *)get_bml_model(obj, 0), 2)->model;
         lbl_805D5AE4 = 2;
@@ -207,14 +195,14 @@ void TOTrapAncient02::load_resources() {
     case AREA_SEABED_LOWER:
     case AREA_SEASIDE_NIGHT:
     case AREA_TOWER:
-        obj = new BmlResource(1, (BmlResourceDescriptor *)(base + 0x38), 0, 0, (void *)(0));
+        obj = new BmlResource(1, &records[2].descriptor, 0, 0, NULL);
         TOTrapAncient02__shared_resource = obj;
         lbl_805D5AE0 = find_object_node((NJS_OBJECT *)get_bml_model(obj, 0), 2)->model;
         lbl_805D5AE4 = 1;
         lbl_805D5ADC = 0;
         break;
     default:
-        obj = new BmlResource(1, (BmlResourceDescriptor *)(base + 8), 0, 0, (void *)(0));
+        obj = new BmlResource(1, &records[0].descriptor, 0, 0, NULL);
         TOTrapAncient02__shared_resource = obj;
         lbl_805D5AE0 = ((NJS_OBJECT *)obj->models->model)->child->child->model;
         lbl_805D5AE4 = 1;
@@ -358,7 +346,7 @@ void TOTrapAncient02::vfunc_81() {
             p = (void *)get_player_by_client_id((this->player));
             this->target = (u8 *)p;
             if (this->target != NULL) {
-                d = horizontal_distance_squared((const Vec *)((u8 *)this->target + 0x38), (const Vec *)&this->position);
+                d = horizontal_distance_squared(&((TObjChara *)this->target)->position, &this->position);
                 this->dist = this->range - TObjPlayer__sub_8017A1A4(p, 0);
                 if (d < this->dist * this->dist) {
                     if (this->player == local_client_id) {

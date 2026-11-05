@@ -15621,9 +15621,7 @@ force_active:
   - transform_vertex_list__18TObjTailsTailsMoveFv
   - translate_key_char__16TKeyBoardControlFPvUcPUs
   - trap_ancient02_collision_body
-  - trap_ancient02_ruins_pillar_resources
-  - trap_ancient02_seabed_pillar_resources
-  - trap_ancient02_torabasami_resources
+  - trap_ancient02_resources
   - traverse_animated_node_tree__FPv
   - trigger_activate_sound__11TOKeyCave01Fv
   - trigger_activate_sound__14TOKeyAncient03Fv
