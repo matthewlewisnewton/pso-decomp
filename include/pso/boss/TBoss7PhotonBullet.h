@@ -3,21 +3,23 @@
 
 #include "types.h"
 #include "pso/player/TUnk_804928CC.h"
+#include "pso/TParticleCtrl.h"
 
 struct TBoss7PhotonBullet : public TUnk_804928CC {
+    TBoss7PhotonBullet(TObject *parent, TObjBase *owner, const Vec *origin, const Vec *aim, f32 scale);
     virtual ~TBoss7PhotonBullet();
-    void render();
-    void run_task();
-    void* m_cc;
-    u8 _padD0[0x8];
-    void* m_d8;
-    u8 _padDC[0x8];
-    u32 m_e4;
-    u32 m_e8;
-    u8 _padEC[0x4];
-    u32 m_f0;
-    u32 m_f4;
-    u8 unk_DC[0x1C];
+    virtual void render();
+    virtual void run_task();
+    f32 speed;
+    Vec aim;
+    Vec travel;
+    Vec shadow_pos;
+    Vec shadow_scale;
+    s32 age;
+    u32 grounded;
+    f32 fall;
+    TParticleCtrl *trail;
+    TParticleCtrl *glow;
     static f32 get_target_pos_y();
 };
 

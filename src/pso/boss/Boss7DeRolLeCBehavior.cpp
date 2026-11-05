@@ -16,6 +16,7 @@ struct NJS_OBJECT;
 #include "pso/misc/TRaderMapCore.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/boss/TBoss7PhotonBullet.h"
+#include "pso/TBoss7PhotonPad.h"
 #include "pso/TBoss7Tentacle.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/boss/TBoss3Volopt.h"
@@ -555,13 +556,11 @@ struct Fish_802E7B40 { u8 pad[0x6DC]; void* t[4]; };
 struct Fish_802E7B94 { u8 pad[0x6DC]; void* t[4]; };
 
 extern "C" {
-void queue_boss_effect__10TObjPlayerFPv(void* a0);
 void TObjPlayer__sub_802E7F30(void *unused, s32 arg1);
 void TBoss7Tentacle__sub_802F0B80(void* p);
 void TObjFish__sub_802E7B40(Fish_802E7B40* o);
 void TBoss7Tentacle__sub_802F0B70(void* p);
 void TObjFish__sub_802E7B94(Fish_802E7B94* o);
-#define queue_boss_effect__10TObjPlayerFPv ((u32 (*)(int))queue_boss_effect__10TObjPlayerFPv)
 void TBoss7DeRolLeC::render_shadows() {
     if (*(s32 *)((s8 *)this->bodies + 0x18) & 1) {
         render_shadows__9TObjEnemyFv((u8 *)this);
@@ -626,9 +625,8 @@ struct EffectRef_802E7EA0 { u8 pad[4]; EffectNode_802E7EA0 *node; };
 struct Saved_802E7EA0 { u8 pad[0x5A8]; s32 a[10]; s32 b[10]; };
 
 void TObjPlayer__sub_802E7EA0(void *arg0) {
-    u32 effect;
+    u32 effect = (u32)TObjPlayer::queue_boss_effect(0);
     s32 i;
-    effect = queue_boss_effect__10TObjPlayerFPv(0);
     for (i = 0; i != 10; i++) {
         ((Saved_802E7EA0 *)arg0)->a[i] = ((EffectRef_802E7EA0 *)find_model_node(effect, lbl_804739AC[i]))->node->value;
         ((Saved_802E7EA0 *)arg0)->b[i] = ((EffectRef_802E7EA0 *)find_model_node(effect, lbl_804739D4[i]))->node->value;
@@ -651,7 +649,7 @@ void TObjPlayer__sub_802E7F30(void *unused, s32 arg1) {
     {
       var_r4 = (s32 *)lbl_804739AC;
       var_r4 = (s32 *) (*((s32 *) (((s8 *)lbl_804739AC) + var_r31)));
-      temp_r3 = (u8 *) find_model_node(queue_boss_effect__10TObjPlayerFPv(0), (s32) var_r4);
+      temp_r3 = (u8 *) find_model_node((u32)TObjPlayer::queue_boss_effect(0), (s32) var_r4);
     }
     if (temp_r3 != 0)
     {
@@ -662,7 +660,7 @@ void TObjPlayer__sub_802E7F30(void *unused, s32 arg1) {
     var_r4 = (s32 *)lbl_804739D4;
     var_r4 = (s32 *)lbl_804739D4;
     var_r4 = (s32 *) (*((s32 *) (((s8 *)lbl_804739D4) + var_r31)));
-    temp_r3_2 = (u8 *) find_model_node(queue_boss_effect__10TObjPlayerFPv(0), (s32) var_r4);
+    temp_r3_2 = (u8 *) find_model_node((u32)TObjPlayer::queue_boss_effect(0), (s32) var_r4);
     if (temp_r3_2 != 0)
     {
       var_r3 = (u8 *) ((RecoveredFields_802E7F30_temp_r3_2 *) temp_r3_2)->field_4;
@@ -672,10 +670,9 @@ void TObjPlayer__sub_802E7F30(void *unused, s32 arg1) {
 }
 
 void TObjPlayer__sub_802E7FC0(void *arg0) {
-    u32 effect;
+    u32 effect = (u32)TObjPlayer::queue_boss_effect(0);
     s32 i;
     EffectRef_802E7EA0 *ref;
-    effect = queue_boss_effect__10TObjPlayerFPv(0);
     for (i = 0; i != 10; i++) {
         ref = (EffectRef_802E7EA0 *)find_model_node(effect, lbl_804739AC[i]);
         ref->node->value = ((Saved_802E7EA0 *)arg0)->a[i];
@@ -685,8 +682,6 @@ void TObjPlayer__sub_802E7FC0(void *arg0) {
 }
 
 }
-
-#undef queue_boss_effect__10TObjPlayerFPv
 
 #include <stddef.h>
 struct Stack_802E8274 {
@@ -757,14 +752,14 @@ extern s32 chunk_polygon_flags_or_mask;
 extern s32 chunk_polygon_flags_and_mask;
 extern s32 model_render_flags;
 void TObjPlayer__sub_802E80A0(void);
-int get_bml_motion(void*, void*);
+NJS_MOTION *get_bml_motion(void *resource, s32 id);
 int TObjFish__sub_8001EDB0(void*, void*);
-int get_bml_model(void*, void*);
+Boss7TentacleNode *get_bml_model(void *resource, s32 id);
 
-    extern int lbl_805D6918;
-void *TObjPlayer::notify_fish_obj(void* a0) { return (void *)get_bml_motion((void*)lbl_805D6918, a0); }
+    extern void *lbl_805D6918;
+NJS_MOTION *TObjPlayer::notify_fish_obj(s32 id) { return get_bml_motion(lbl_805D6918, id); }
 
-void queue_boss_effect__10TObjPlayerFPv(void* a0) { get_bml_model((void*)lbl_805D6918, a0); }
+Boss7TentacleNode *TObjPlayer::queue_boss_effect(s32 id) { return get_bml_model(lbl_805D6918, id); }
 
 void TObjPlayer__sub_802E80A0(void) { TObjFish__sub_8001EDB0((void*)lbl_805D6918, (void*)0); }
 
@@ -3750,7 +3745,6 @@ struct Boss_802ECE90 { u8 pad[0x530]; Vec pads[16]; u8 pad5F0[0x690 - 0x5F0]; u8
 void TObjFish__sub_802ECE90(void *arg0, int idx, int arg) {
     s32 angle;
     Vec dir;
-    void *o;
     angle = 0x3800 - idx * 51;
     dir.x = sin_table_lookup(angle);
     dir.y = lbl_805DEA10;
@@ -3758,10 +3752,7 @@ void TObjFish__sub_802ECE90(void *arg0, int idx, int arg) {
     if (((Boss_802ECE90 *)arg0)->mode == 2) {
         dir.x = dir.x * lbl_805DEA70;
     }
-    o = TObject::operator new(0x38);
-    if (o != NULL) {
-        __ct__15TBoss7PhotonPadFllll((u8 *)o, (s32)((Boss_802ECE90 *)arg0)->nodes, (s32)&((Boss_802ECE90 *)arg0)->pads[idx], (s32)&dir, arg);
-    }
+    new TBoss7PhotonPad((TObject *)((Boss_802ECE90 *)arg0)->nodes, &((Boss_802ECE90 *)arg0)->pads[idx], &dir, arg);
     play_sound_effect((s32)((void *)0x39D11), (const Vec *)(&((Boss_802ECE90 *)arg0)->pads[idx]), 0, (s32)((void *)1));
 }
 
