@@ -1,3 +1,5 @@
+#include "pso/player/demo_mode.h"
+#include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "types.h"
 #include "pso/boss/Boss7DeRolLeCBehavior.h"
@@ -20,15 +22,17 @@ struct J_802EEB88 { u8 pad[0x38C]; u8 sub; };
 
 extern "C" {
 s32 add_radar_scaled_marker(void *, int, int, int, f32);
+extern const f32 lbl_805DEBB8;
 void initialize_enemy_state__9TObjEneDDFl(void *, s32);
 extern s32 __vt__11TBoss7Joint[];
 extern s32 lbl_805D3FC0;
-s32 register_object__6TLobbyFl(int);
-s32 dispatch_shared_handler_b__6TLobbyFl(int);
-s32 register_boss__6TLobbyFl(int);
-s32 reset_hp__9TObjEneDDFPUcPUcPUc(void *, int, int, int);
+
+
+
+s32 reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(void *, int, int, int);
 extern s32 lbl_80473FB8[];
 extern s32 boss7_joint_params[];
+extern const f32 lbl_805DEBBC;
 struct VOff_802EE9A4_arg0_802EE9A4 { char pad_0[0x2FC]; char f_2FC[1]; };
 
 s32 apply_damage_and_set_effect__8TObjFishFl(int, int, int);
@@ -41,6 +45,8 @@ void TBoss7Joint::store_position() {
     VecCopy((Vec *)((char *)this + 116), (const Vec *)self->f_2FC);
 }
 
+extern const f32 lbl_805DEBB0;
+extern const f32 lbl_805DEBB4;
 
 void TBoss7Joint::vfunc_62() {
     s16 temp_r4;
@@ -49,7 +55,7 @@ void TBoss7Joint::vfunc_62() {
     temp_r4 = this->hp;
     temp_r31 = this->hpmax - temp_r4;
     if (is_part_active__11TBoss7JointFv(this, temp_r4) != 0U) {
-        TObjFish__sub_802EC468((s32)(((u8 *)this) + 0x38), 15.0f, 12.0f);
+        TObjFish__sub_802EC468((s32)(((u8 *)this) + 0x38), lbl_805DEBB0, lbl_805DEBB4);
         apply_damage_and_set_effect__8TObjFishFl((int) (*(s32 *)((s8 *)((u8 *)this) + 0x10)), temp_r31, this->m_2d4);
     } else {
         *(s32 *)((s8 *)((u8 *)this) + 0x3C4) = (s32) (*(s32 *)((s8 *)((u8 *)this) + 0x3C4) - temp_r31);
@@ -65,14 +71,14 @@ void TBoss7Joint::vfunc_62() {
 
 void TBoss7Joint::run_task() {
     u8 *arg0 = (u8 *)this;
-    if (TObjPlayer::check_demo_mode() == 0) {
+    if (check_demo_mode() == 0) {
         VecCopy((Vec *)(arg0 + 0x38), (const Vec *)((int) (*(s32 *)((s8 *)arg0 + 0x3C0))));
         this->vfunc_83();
         store_position();
         this->vfunc_88();
         if (*(s32 *)((s8 *)this->bodies + 0x18) & 1) {
             ((TObjEnemy *)arg0)->submit_default_cursor_candidate();
-            add_radar_scaled_marker((u8 *)&this->position, -0x5DB4, 1, 1, 1.2f);
+            add_radar_scaled_marker((u8 *)&this->position, -0x5DB4, 1, 1, lbl_805DEBB8);
         }
     }
 }
@@ -97,13 +103,13 @@ s32 TBoss7Joint::init_params() {
     copy_collision_body((CollisionBody *)(&((J_802EEB88 *)this)->sub), (const CollisionBody *)lbl_80473FB8);
     set_collision_body(&((J_802EEB88 *)this)->sub);
     transform_part_positions();
-    reset_hp__9TObjEneDDFPUcPUcPUc(this, register_boss__6TLobbyFl(0x10), dispatch_shared_handler_b__6TLobbyFl(0xF), register_object__6TLobbyFl(0x10));
+    reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(this, ((s32)get_battle_base_stats(0x10)), ((s32)get_battle_attack_params(0xF)), ((s32)get_battle_resistance_params(0x10)));
     *(s16 *)((s8 *)this + 0x32C) = 0x4E20;
     *(s16 *)((s8 *)this + 0x2B8) = 0x4E20;
     check_state_flag_2();
     *(s32 **)((s8 *)this + 0x350) = boss7_joint_params;
     *(s16 *)((s8 *)this + 0x33E) = *(s16 *)((s8 *)this + 0x2B8);
-    *(f32 *)((s8 *)this + 0x37C) = 3.0f;
+    *(f32 *)((s8 *)this + 0x37C) = lbl_805DEBBC;
     this->vfunc_96();
     *(s32 *)((s8 *)this + 0x3BC) = 0;
     return *(s32 *)((s8 *)this + 0x3C4) = TBoss7Joint_get_shell_max_hp();

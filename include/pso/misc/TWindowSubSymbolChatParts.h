@@ -2,9 +2,9 @@
 #define PSO_MISC_TWINDOWSUBSYMBOLCHATPARTS_H
 
 #include "types.h"
-#include "pso/misc/TWindowAddition.h"
+#include "pso/misc/TUnk_804CDFE8.h"
 
-struct TWindowSubSymbolChatParts : public TWindowAddition {
+struct TWindowSubSymbolChatParts : public TUnk_804CDFE8 {
     virtual ~TWindowSubSymbolChatParts();
     void sub_80285274(u8 *);
     void sub_80285054();
@@ -12,12 +12,6 @@ struct TWindowSubSymbolChatParts : public TWindowAddition {
     s32 sub_80283974();
     virtual void render();
     virtual void run_task();
-    u8 _pad1C[0x4];
-    s16 m_20;
-    u8 _pad22[0xA];
-    u32 m_2c;
-    u8 _pad30[0x2C];
-    u32 m_5c;
     u8 _pad60[0x8];
     void* m_68;
     u8 _pad6C[0x4];
@@ -41,6 +35,9 @@ struct TWindowSubSymbolChatParts : public TWindowAddition {
 typedef char TWindowSubSymbolChatParts_size[sizeof(TWindowSubSymbolChatParts) == 0x90 ? 1 : -1];
 
 extern "C" {
+void select_index_and_scroll__20TWindowSubSymbolChatFl(TWindowSubSymbolChatParts *, s32);
+void update_height__20TWindowSubSymbolChatFv(TWindowSubSymbolChatParts *);
+void open__20TWindowSubSymbolChatFl(TWindowSubSymbolChatParts *, s32);
 void *__dt__25TWindowSubSymbolChatPartsFv(void *arg0, s16 arg1);
 void fn_80284C04(u8 *arg0);
 void render__25TWindowSubSymbolChatPartsFv(u8 *arg0);

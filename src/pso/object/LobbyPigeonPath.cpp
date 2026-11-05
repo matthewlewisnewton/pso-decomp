@@ -1,7 +1,13 @@
 #include "pso/animation/MotionContext.h"
+#include "pso/map/CsnGroundQuery.h"
+#include "pso/player/demo_mode.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #pragma push
 
 #include "types.h"
+#include "pso/npc/NpcModelRegistry.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/TMainTask.h"
 #include "pso/system/vector.h"
@@ -192,7 +198,6 @@ struct Obj_802C22A4 {
 struct PigeonMovement { s32 motion; f32 pathSpeed, animationSpeed, lookAhead; s32 turnStep; };
 
 extern "C" {
-Hit_802C22A4 *csnVecterUnder(Vec_802C22A4 *, s32);
 void vec3_add_to(void *, void *);
 u8 *TObjPathObj__ct(u8 *arg0, s32 arg1, s32 arg2);
 
@@ -491,12 +496,10 @@ typedef struct { f32 f0, f4, f8, fC; s32 f10; } Ent_802C17FC;
 
 typedef struct { u8 pad[4]; u32 n; } Anim_802C17FC;
 
-void TLobby__sub_8001FE7C(void*, int);
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 s32 debug_draw_line(s32 *, s32 *, s32, s32);
 
 u8 * load_gvm_texture_file(s32);
-s32 play_sound_effect(int, void *, int, int);
+
 void __dl__7TObjectFPv(void *);
 void * __nw__7TObjectFUl(int);
 
@@ -538,26 +541,26 @@ extern s32 jungle_seagull_vtable[];
 extern s32 lbl_804E0910[];
 extern s32 lbl_804E094C[];
 extern s32 seabed_dolphin_vtable[];
-u32 seabed_dolphin_bml_archive;
-s32 seabed_dolphin_texture_handle;
-u32 jungle_ebi_model_resource;
-u32 jungle_ebi_texture_gvm_handle;
-u32 jungle_bird_bml_resource;
-u32 lobby_pigeon_texture_gvm;
-u32 lobby_kamome_model_resource;
-u32 lobby_kamome_texture_gvm_handle;
+extern u32 seabed_dolphin_bml_archive;
+extern s32 seabed_dolphin_texture_handle;
+extern u32 jungle_ebi_model_resource;
+extern u32 jungle_ebi_texture_gvm_handle;
+extern u32 jungle_bird_bml_resource;
+extern u32 lobby_pigeon_texture_gvm;
+extern u32 lobby_kamome_model_resource;
+extern u32 lobby_kamome_texture_gvm_handle;
 
 #pragma push
 #pragma fp_contract on
 void TUnk_804E0898::vfunc_14() {
     LobbyPigeon *self = (LobbyPigeon *)this;
-  if (TObjPlayer::check_demo_mode() == 1 &&
+  if (check_demo_mode() == 1 &&
       TMainTask::get_render_pass() == 0)
     draw_line_strip__10TObjPlayerFPviif((u8 *)(self), (s32)(self->model),
                                         (s32)(self->path), (1.0f));
   if (self->phase == 0 || lobby_pigeon_lobby_type == 0)
     return;
-  TObjFish::set_global_param((s32)(lobby_pigeon_lobby_type));
+  set_current_texture_list((GinjaTextureList *)((lobby_pigeon_lobby_type)));
   push_matrix();
   post_translate_matrix((void *)(self->position));
   rotate_matrix_y(0, (s32)(self->facing));
@@ -682,7 +685,7 @@ void TObjPlayer::destroy_instance() {
         lobby_kamome_texture_gvm_handle = 0U;
     }
     if ((u32) lobby_kamome_model_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)lobby_kamome_model_resource, 1);
+        delete (BmlResource *)((void*)lobby_kamome_model_resource);
         lobby_kamome_model_resource = 0U;
     }
 }
@@ -690,11 +693,8 @@ void TObjPlayer::destroy_instance() {
 void TObjPlayer::load_kamome_resources() {
     s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
+    temp_r3 = (int)new BmlResource(5, (BmlResourceDescriptor *)(&bm_obj_jungle_kamome_resource_descriptor.value), 0, 0, (void *)(0));
     var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 5, &bm_obj_jungle_kamome_resource_descriptor.value, 0, 0, 0));
-    }
     (*(s32 *)&lobby_kamome_model_resource) = var_r0;
     (*(u8 * *)&lobby_kamome_texture_gvm_handle) = load_gvm_texture_file((s32) &lbl_80471978.value);
 }
@@ -787,13 +787,13 @@ s32 TUnk_804E08D4::sub_802C1660() {
 
 void TUnk_804E08D4::vfunc_14() {
     u8 *arg0 = (u8 *)this;
-    if ((TObjPlayer::check_demo_mode() == 1) && (TMainTask::get_render_pass() == 0)) {
+    if ((check_demo_mode() == 1) && (TMainTask::get_render_pass() == 0)) {
         ((s32 (*)(void *, s32, s32, f32))draw_line_strip__10TObjPlayerFPviif)(arg0, *(s32 *)&this->unk_98, *(s32 *)((s8 *)arg0 + 0xA0), (1.0f));
     }
-    TObjFish::set_global_param((*(s32 *)&lobby_kamome_texture_gvm_handle));
+    set_current_texture_list((GinjaTextureList *)((*(s32 *)&lobby_kamome_texture_gvm_handle)));
     push_matrix();
     post_translate_matrix((u8 *)&this->position);
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     post_translate_matrix((u8 *)&this->unk_AC);
     rotate_matrix_y(0, this->m_b8);
     rotate_matrix_z(0, this->m_c0);
@@ -822,10 +822,10 @@ void TUnk_804E08D4::vfunc_13(s32) {
         Vec_802C17FC v = lbl_80471908;
         set_matrix_identity((u8 *)&m);
         translate_matrix_vec3((u8 *)&m, (u8 *)&this->position);
-        ((s32 (*)(void *, int))rotate_matrix_y)(&m, this->rotation_y);
+        ((s32 (*)(void *, int))rotate_matrix_y)(&m, this->rotation.yaw);
         translate_matrix_vec3((u8 *)&m, (u8 *)&this->unk_AC);
         ((s32 (*)(void *, void *, void *))matrix_mult_vec)(&m, &v, &v);
-        play_sound_effect(0x4BC04, (u8 *)&this->position, 0x7F, 0);
+        play_sound_effect(0x4BC04, (const Vec *)((u8 *)&this->position), 0x7F, 0);
         *(s32 *)&this->unk_CC = (s32) (((3e+01f) * ((4.0f) * ((3.0517578e-05f) * (f32) rand()))) + (1.5e+02f));
     }
 }
@@ -880,7 +880,7 @@ void TObjPlayer::free_statics() {
         lobby_pigeon_texture_gvm = 0U;
     }
     if ((u32) jungle_bird_bml_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)jungle_bird_bml_resource, 1);
+        delete (BmlResource *)((void*)jungle_bird_bml_resource);
         jungle_bird_bml_resource = 0U;
     }
 }
@@ -888,11 +888,8 @@ void TObjPlayer::free_statics() {
 void TObjPlayer::load_jungle_bird_resources() {
     s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
+    temp_r3 = (int)new BmlResource(5, (BmlResourceDescriptor *)(&bm_obj_jungle_bird_resource_descriptor.value), 0, 0, (void *)(0));
     var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 5, &bm_obj_jungle_bird_resource_descriptor.value, 0, 0, 0));
-    }
     (*(s32 *)&jungle_bird_bml_resource) = var_r0;
     (*(u8 * *)&lobby_pigeon_texture_gvm) = load_gvm_texture_file((s32) &lbl_80471990.value);
 }
@@ -985,13 +982,13 @@ s32 TUnk_804E0910::sub_802C1E34() {
 
 void TUnk_804E0910::vfunc_14() {
     u8 *arg0 = (u8 *)this;
-    if ((TObjPlayer::check_demo_mode() == 1) && (TMainTask::get_render_pass() == 0)) {
+    if ((check_demo_mode() == 1) && (TMainTask::get_render_pass() == 0)) {
         ((s32 (*)(void *, s32, s32, f32))draw_line_strip__10TObjPlayerFPviif)(arg0, *(s32 *)&this->unk_98, *(s32 *)((s8 *)arg0 + 0xA0), (1.0f));
     }
-    TObjFish::set_global_param((*(s32 *)&lobby_pigeon_texture_gvm));
+    set_current_texture_list((GinjaTextureList *)((*(s32 *)&lobby_pigeon_texture_gvm)));
     push_matrix();
     post_translate_matrix((u8 *)&this->position);
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     post_translate_matrix((u8 *)&this->unk_AC);
     rotate_matrix_y(0, this->m_b8);
     rotate_matrix_z(0, this->m_c0);
@@ -1069,7 +1066,7 @@ void TObjPlayer::free_chr_select() {
         jungle_ebi_texture_gvm_handle = 0U;
     }
     if ((u32) jungle_ebi_model_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)jungle_ebi_model_resource, 1);
+        delete (BmlResource *)((void*)jungle_ebi_model_resource);
         jungle_ebi_model_resource = 0U;
     }
 }
@@ -1077,11 +1074,8 @@ void TObjPlayer::free_chr_select() {
 void TObjPlayer::load_jungle_ebi_resources() {
     s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
+    temp_r3 = (int)new BmlResource(5, (BmlResourceDescriptor *)(&bm_obj_jungle_ebi_resource_descriptor.value), 0, 0, (void *)(0));
     var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 5, &bm_obj_jungle_ebi_resource_descriptor.value, 0, 0, 0));
-    }
     (*(s32 *)&jungle_ebi_model_resource) = var_r0;
     (*(u8 * *)&jungle_ebi_texture_gvm_handle) = load_gvm_texture_file((s32) &lbl_804719A4.value);
 }
@@ -1115,7 +1109,7 @@ s32 TUnk_804E094C::update_path_follow_rotation(void *, f32) {
         Hit_802C22A4 *hit;
         vec3_add_to(&p, &self->pos);
         p.y += (1e+04f);
-        hit = csnVecterUnder(&p, 0x16EF);
+        hit = (Hit_802C22A4 *)csnVecterUnder((const Vec *)&p, 0x16EF);
         if (hit != NULL) {
             self->pos.y = hit->n->y;
         }
@@ -1199,13 +1193,13 @@ s32 TUnk_804E094C::sub_802C2548() {
 
 void TUnk_804E094C::vfunc_14() {
     u8 *arg0 = (u8 *)this;
-    if ((TObjPlayer::check_demo_mode() == 1) && (TMainTask::get_render_pass() == 0)) {
+    if ((check_demo_mode() == 1) && (TMainTask::get_render_pass() == 0)) {
         ((s32 (*)(void *, s32, s32, f32))draw_line_strip__10TObjPlayerFPviif)(arg0, *(s32 *)&this->unk_98, *(s32 *)((s8 *)arg0 + 0xA0), (1.0f));
     }
-    TObjFish::set_global_param((*(s32 *)&jungle_ebi_texture_gvm_handle));
+    set_current_texture_list((GinjaTextureList *)((*(s32 *)&jungle_ebi_texture_gvm_handle)));
     push_matrix();
     post_translate_matrix((u8 *)&this->position);
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     post_translate_matrix((u8 *)&this->unk_AC);
     rotate_matrix_y(0, this->m_b8);
     rotate_matrix_z(0, this->m_c0);
@@ -1282,21 +1276,18 @@ void TObjPlayer__sub_802C2900(void) {
         (*(u32 *)&seabed_dolphin_texture_handle) = 0U;
     }
     if ((u32) seabed_dolphin_bml_archive != 0U) {
-        TLobby__sub_8001FE7C((void*)seabed_dolphin_bml_archive, 1);
+        delete (BmlResource *)((void*)seabed_dolphin_bml_archive);
         seabed_dolphin_bml_archive = 0U;
     }
 }
 
 void TObjPlayer::load_seabed_dolphin() {
-    Obj_802C2958 *o = ((Obj_802C2958 * (*)(s32))::operator new)(0x440);
-    if (o != 0) {
-        o = ((Obj_802C2958 * (*)(Obj_802C2958 *, s32, void *, s32, s32, s32))load_resource_from_descriptor)(o, 5, bm_obj_seabed_dolphin_resource_descriptor, 0, 0, 0);
-    }
+    Obj_802C2958 *o = (Obj_802C2958 *)new BmlResource(5, (BmlResourceDescriptor *)bm_obj_seabed_dolphin_resource_descriptor, 0, 0, NULL);
     (*(Obj_802C2958 * *)&seabed_dolphin_bml_archive) = o;
     seabed_dolphin_texture_handle = ((s32 (*)(void *))load_gvm_texture_file)(lbl_804719B8);
     Q_802C2958 q = *(Q_802C2958 *)seabed_dolphin_anim_binding;
     q.a = (*(Obj_802C2958 * *)&seabed_dolphin_bml_archive)->f430;
-    TLobby::spawn_npc_enemy((s16)0x40, (s32)(((s32 (*)(void *, s32, s32, s32, s32, void *))get_bml_model)((*(Obj_802C2958 * *)&seabed_dolphin_bml_archive), 0, ((Q_802C2958 *)seabed_dolphin_anim_binding)->c, ((Q_802C2958 *)seabed_dolphin_anim_binding)->b, ((Q_802C2958 *)seabed_dolphin_anim_binding)->a, seabed_dolphin_anim_binding)), (NJS_TEXLIST *)seabed_dolphin_texture_handle, &q, (f32)((16.0f)), (f32)((1e+01f)));
+    NpcModelRegistry::register_animated_chunk((s16)0x40, (void *)((s32)(((s32 (*)(void *, s32, s32, s32, s32, void *))get_bml_model)((*(Obj_802C2958 * *)&seabed_dolphin_bml_archive), 0, ((Q_802C2958 *)seabed_dolphin_anim_binding)->c, ((Q_802C2958 *)seabed_dolphin_anim_binding)->b, ((Q_802C2958 *)seabed_dolphin_anim_binding)->a, seabed_dolphin_anim_binding))), (void *)((s32)seabed_dolphin_texture_handle), (const NpcAnimationBinding *)((s32)(&q)), (f32)((16.0f)), (f32)((1e+01f)));
 }
 
 s32 TUnk_804E0988::sub_802C2A10() {
@@ -1387,13 +1378,13 @@ s32 TUnk_804E0988::sub_802C2C48() {
 
 void TUnk_804E0988::vfunc_14() {
     u8 *arg0 = (u8 *)this;
-    if ((TObjPlayer::check_demo_mode() == 1) && (TMainTask::get_render_pass() == 0)) {
+    if ((check_demo_mode() == 1) && (TMainTask::get_render_pass() == 0)) {
         ((s32 (*)(void *, s32, s32, f32))draw_line_strip__10TObjPlayerFPviif)(arg0, *(s32 *)&this->unk_98, *(s32 *)((s8 *)arg0 + 0xA0), (1.0f));
     }
-    TObjFish::set_global_param(seabed_dolphin_texture_handle);
+    set_current_texture_list((GinjaTextureList *)(seabed_dolphin_texture_handle));
     push_matrix();
     post_translate_matrix((u8 *)&this->position);
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     post_translate_matrix((u8 *)&this->unk_AC);
     rotate_matrix_y(0, this->m_b8);
     rotate_matrix_z(0, this->m_c0);
@@ -1474,7 +1465,7 @@ void draw_line_strip__10TObjPlayerFPviif(u8 *path_obj, s32 arg1, s32 arg2, f32 f
                                                               sp8, var_f31);
       push_matrix();
       post_translate_matrix(path_obj + 0x38);
-      rotate_matrix_y(0, ((TObjPathObj *)path_obj)->rotation_y);
+      rotate_matrix_y(0, ((TObjPathObj *)path_obj)->rotation.yaw);
       debug_draw_line(sp14, sp8, 0xF0F0F0FF, 0xF0F0F0FF);
       pop_matrix();
     } while (temp_r30 != 0);

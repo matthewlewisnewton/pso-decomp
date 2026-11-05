@@ -1,40 +1,14 @@
+#pragma readonly_strings on
 #include "types.h"
-#include "pso/TAdBackTxtGC.h"
-#include "pso/misc/TWindowSubStatusDisp.h"
-#include "pso/object/TObjFish.h"
 #include "pso/player/TObjPlayer_8023E480.h"
 #include "pso/system/ModelDrawContext.h"
 #include "pso/ui/TAdBackTxtGC.h"
 #include "pso/render/render_util.h"
+
 #include "pso/TObject.h"
+#include "pso/TAdBackTxtGC.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/TMainTask.h"
-
-extern "C" {
-void begin_screen_draw(s32 arg0);
-s32 draw_textured_quad_at_depth(void *, f32, f32, f32);
-void set_draw_texture_and_color(s32 idx, s32 arg1);
-extern s32 TAdBackTxtGC__backtext_texture_list;
-void TAdBackTxtGC::draw_character_background_frame(s32 arg1, s32 arg2) {
-    u8 *arg0 = (u8 *)this;
-  f32 buffer_8[8];
-  begin_screen_draw(1);
-  TObjFish::set_global_param((s32)((void *) TAdBackTxtGC__backtext_texture_list));
-  set_draw_texture_and_color(arg1, arg2);
-  buffer_8[0] = 0.0f;
-  buffer_8[1] = 0.0f;
-  buffer_8[2] = 639.0f;
-  buffer_8[3] = 479.0f;
-  buffer_8[4] = 0.0f;
-  buffer_8[5] = 0.0f;
-  buffer_8[7] = (buffer_8[6] = 1.0f);
-  draw_textured_quad_at_depth(&buffer_8[0], (f32) (*((f32 *) (((s8 *) arg0) + 0x20))), 639.0f, 0.0f);
-  TWindowSubStatusDisp::get_player();
-}
-
-}
-
-#pragma readonly_strings on
 
 extern "C" {
 
@@ -72,6 +46,7 @@ void run_task__12TAdBackTxtGCFv(void *arg0) {
 }
 
 extern void *__vt__12TAdBackTxtGC[];
+extern const f32 lbl_805DDD08;
 extern const char *TAdBackTxtGC__name;
 
 }
@@ -85,7 +60,7 @@ void *__ct__12TAdBackTxtGCFv(void *ad_back_txt_gc) {
     *(void ***)((s8 *)ad_back_txt_gc + 0x18) = __vt__12TAdBackTxtGC;
     ((TAdBackTxtGC *)ad_back_txt_gc)->m_name = TAdBackTxtGC__name;
     *(u32 *)((s8 *)ad_back_txt_gc + 0x1C) = -1;
-    *(f32 *)((s8 *)ad_back_txt_gc + 0x20) = 0.0025641026f;
+    *(f32 *)((s8 *)ad_back_txt_gc + 0x20) = lbl_805DDD08;
     *(u32 *)((s8 *)ad_back_txt_gc + 0x24) = 1;
     return ad_back_txt_gc;
 }
@@ -98,6 +73,7 @@ void *__ct__12TAdBackTxtGCFv(void *ad_back_txt_gc) {
     };
     __declspec(section ".data") TexList_804DC0D4 TAdBackTxtGC_backtext_tex_list = { lbl_804DC098, 5 };
 const char *TAdBackTxtGC__name = "TAdBackTxtGC";
+extern u32 TAdBackTxtGC__backtext_texture_list;
 void release_texture_list(void*);
 
 void TAdSinglePlyChrSelectGC::free_singleton_805D65C0() {

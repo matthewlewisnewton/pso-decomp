@@ -1,9 +1,8 @@
 #include "types.h"
-#include "pso/misc/TWindowMenuIconLine.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowSubQuestBoard.h"
 #include "pso/quest/TQuestThread.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
+#include "pso/misc/TWindowSubQuestBoard_8027D148.h"
 #include "pso/misc/TWindowSubQuestBoard_8027D1E8.h"
 #include "pso/misc/TWindowMenu.h"
 #include "pso/misc/TWindowSubQuestBoardSelect.h"
@@ -42,6 +41,7 @@ void __dl__7TObjectFPv(void *);
 void __dt__7TObjectFv(void *, int);
 void __ct__7TObjectFP7TObject(void *, void *);
 extern s32 __vt__19TWindowSubQuestBoard[];
+s32 get_selected_menu_value(s32);
 s8 get_page_index__20TWindowSubQuestBoardFv(s32);
 s32 fn_8027D1E8(s32);
 extern Ent_8027CFC8 quest_board_handlers[];
@@ -55,29 +55,29 @@ void TUnk_804D1818::run_task() {
     case 0:
     case 1:
         if (this->m_2c != 0U) {
-            ((TWindowBase *)(*(void * *)&this->m_2c))->close();
+            TWindow__close((u8 *)(*(void * *)&this->m_2c));
             this->m_2c = 0U;
         }
         ((TWindowSubComCard *)(*(s32 *)&this->unk_28))->clear_flag_and_release();
         *(u8 *)((s8 *)this + 0x1C) = 2;
     case 2:
-        if (((TWindowMenu *)(*(s32 *)&this->unk_28))->is_cancelled() != 0) {
+        if (((TWindowSubComCard *)(*(s32 *)&this->unk_28))->get_status_flag() != 0) {
             (*(VO_8027CCCC * *)&this->m_24)->m7();
             *(u8 *)((s8 *)this + 0x1C) = 5;
             break;
         }
-        if (((TWindowMenu *)(*(s32 *)&this->unk_28))->is_decided() != 0) {
+        if (((TWindowMenu *)(*(s32 *)&this->unk_28))->is_visible() != 0) {
             *(u8 *)((s8 *)this + 0x1C) = 3;
         }
         break;
     case 3:
-        t = ((TWindowMenu *)(*(s32 *)&this->unk_28))->get_selected_value();
+        t = get_selected_menu_value(*(s32 *)&this->unk_28);
         this->m_2c = sub_8027C884(t);
         *(u8 *)((s8 *)this + 0x1C) = 4;
     case 4:
         this->update_photon_selection();
         update_quest_board_card_flags();
-        if (((TWindowMenuIconLine *)(this->m_2c))->is_cancelled() != 0) {
+        if (((TLobby *)(this->m_2c))->get_flag_bit2() != 0) {
             *(u8 *)((s8 *)this + 0x1C) = 1;
         }
         break;
@@ -87,8 +87,8 @@ void TUnk_804D1818::run_task() {
 void *TUnk_804D1818::dt(s16 arg1) {
     if (this != NULL) {
         *(s32 **)((s8 *)this + 0x18) = __vt__19TWindowSubQuestBoard;
-        if (this->m_2c != NULL) { ((TWindowBase *)this->m_2c)->close(); this->m_2c = 0; }
-        if (*(void * *)&(this->unk_28) != NULL) { ((TWindowBase *)(*(void * *)&(this->unk_28)))->close(); *(s32 *)&(this->unk_28) = 0; }
+        if (this->m_2c != NULL) { TWindow__close((u8 *)this->m_2c); this->m_2c = 0; }
+        if (*(void * *)&(this->unk_28) != NULL) { TWindow__close((u8 *)(*(void * *)&(this->unk_28))); *(s32 *)&(this->unk_28) = 0; }
         __dt__7TObjectFv(this, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(this);
@@ -165,31 +165,5 @@ void TWindowSubQuestBoard::run_task() {
 }
 TWindowSubQuestBoard::~TWindowSubQuestBoard() {
     TWindowCtrl__sub_8027D1F8();
-    if (*(void **)((s8 *)this + 0x28) != NULL) { ((TWindowBase *)(*(void **)((s8 *)this + 0x28)))->close(); this->m_28 = 0; }
+    if (*(void **)((s8 *)this + 0x28) != NULL) { TWindow__close((u8 *)(*(void **)((s8 *)this + 0x28))); this->m_28 = 0; }
 }
-
-extern "C" {
-
-void *__nw__7TObjectFUl(int);
-
-extern void *TWindowSubQuestBoard__class_name;
-
-}
-TWindowSubQuestBoard::TWindowSubQuestBoard(TObject *object, void *arg2) : TObject(object) {
-    void *o;
-    *(void * *)&this->m_name = TWindowSubQuestBoard__class_name;
-    *(void **)((s8 *)this + 0x24) = object;
-    *(void **)((s8 *)this + 0x20) = arg2;
-    o = __nw__7TObjectFUl(0x68);
-    if (o != NULL) {
-        o = TWindowSubQuestBoardSelect__ct((TWindowSubQuestBoardSelect *)((u8 *)o));
-    }
-    *(void **)((s8 *)this + 0x28) = o;
-    this->quest_thread_board = NULL;
-    this->m_1c = 0;
-    TWindowCtrl__sub_8027D214();
-}
-
-u8 TWindowSubQuestBoard::get_page_index() { return *(u8*)((char*)this + 0x61); }
-int TWindowSubQuestBoardSelect::is_open() { return this->m_60 & 0x1; }
-int TWindowSubQuestBoard__sub_8027D1DC(void* p) { return *(u8*)((char*)p + 0x60) & 0x2; }

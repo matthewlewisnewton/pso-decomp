@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/map/FloorArea.h"
 #include "pso/misc/TContainerAncient01.h"
@@ -7,12 +8,11 @@
 #include "pso/object/TObjDoorJung.h"
 #include "pso/misc/TSceneMaterial.h"
 #include "pso/TMainTask.h"
-#include "pso/effect/TEffIndirectCtrl.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/misc/TRaderMapCore.h"
 #include "pso/object/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/unk/text_802A8210.h"
+#include "pso/effect/TEffIndirectCtrl.h"
 #include "pso/item/TItemDrop_800F93F0.h"
 #include "pso/misc/TLobby_80131794.h"
 #include "pso/misc/TLobby_80207DA8.h"
@@ -21,7 +21,6 @@
 #include "pso/object/TObjButterflyLobby.h"
 #include "pso/object/TObjMapCsn.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
-#include "pso/misc/TLobby.h"
 
 struct SurfaceAreaTable { s32 enabled[36]; };
 
@@ -202,14 +201,12 @@ struct Ang_8020533C { s32 x, y, z; };
 
 struct Node_8020533C { u8 pad0[8]; Vec_8020533C pos; Ang_8020533C ang; };
 
-struct Model_8020533C { u8 pad0[4]; void *tex; s32 f8; u8 padC[2]; u8 fE; u8 fF; };
+struct Model_8020533C { u8 pad0[4]; TUnk_804DDF04 *tex; s32 f8; u8 padC[2]; u8 fE; u8 fF; };
 
 struct Lobby_8020533C { Vec_8020533C v; Ang_8020533C a; void *param; Node_8020533C *node; s16 scene; u8 id; };
 
 
 void render_projected_shadow_receiver(void *, void *);
-
-void draw_field_1c__6TSceneFlll(void *, s32, s32, s32);
 
 void release_indexed_entry__6TLobbyFl(Lobby_8020533C *);
 
@@ -366,6 +363,10 @@ extern s32 __vt__6TScene[];
 
 
 void bind_gvm_texture_list(s32 *, u32);
+
+
+
+s32 debug_print__6TLobbyFle(s32 *, ...);
 
 s32 collect_collision_groups(u32, s32);
 
@@ -843,7 +844,7 @@ void TScene::load_scene_data(s32 name) {
     temp_r31 = ((TScene *)((s32 *)&sp8))->update_lobby_scene();
     if (get_current_floor_area() == AREA_LOBBY) {
         if ((temp_r31 > 0) && ((u32) temp_r31 <= 0x10000U)) {
-            temp_r3 = (s32)TQuestVmDownLoadServer::alloc(0x10000);
+            temp_r3 = ((TQuestVmDownLoadServer *)0x10000)->alloc();
             TScene__collision_file_buffer = temp_r3;
             if (temp_r3 != 0U) {
                 scene_collision_data = (s32 *)load_relocatable_file((s32)((s32 *)&sp8), temp_r3);
@@ -851,7 +852,7 @@ void TScene::load_scene_data(s32 name) {
             }
         }
     } else if (temp_r31 > 0) {
-        temp_r3_2 = (s32)TQuestVmDownLoadServer::alloc(temp_r31);
+        temp_r3_2 = ((TQuestVmDownLoadServer *)temp_r31)->alloc();
         TScene__collision_file_buffer = temp_r3_2;
         if (temp_r3_2 != 0U) {
             scene_collision_data = (s32 *)load_relocatable_file((s32)((s32 *)&sp8), temp_r3_2);
@@ -863,7 +864,7 @@ void TScene::load_scene_data(s32 name) {
         collect_collision_groups(temp_csn, *scene_collision_data);
         return;
     }
-    TLobby::debug_print("TScene : CANNOT LOAD COLLISION DATA");
+    debug_print__6TLobbyFle((s32 *)"TScene : CANNOT LOAD COLLISION DATA");
 }
 
 void TScene::load_scene_rel_file(s32 arg0) {
@@ -886,14 +887,14 @@ void TScene::load_scene_rel_file(s32 arg0) {
     }
     if (area == AREA_LOBBY) {
         if (size > 0 && (u32)size <= 0x80000U) {
-            TScene__map_rel_load_buffer = (s32)TQuestVmDownLoadServer::alloc(0x80000);
+            TScene__map_rel_load_buffer = ((TQuestVmDownLoadServer *)0x80000)->alloc();
             if (TScene__map_rel_load_buffer != 0U) {
                 TScene__data_805D5FCC = (SceneMaterialRoot *)load_relocatable_file((s32)((s32 *)id), TScene__map_rel_load_buffer);
                 TScene__map_rel_load_size_limit = 0x80000;
             }
         }
     } else if (size > 0) {
-        TScene__map_rel_load_buffer = (s32)TQuestVmDownLoadServer::alloc(size);
+        TScene__map_rel_load_buffer = ((TQuestVmDownLoadServer *)size)->alloc();
         if (TScene__map_rel_load_buffer != 0U) {
             TScene__data_805D5FCC = (SceneMaterialRoot *)load_relocatable_file((s32)((s32 *)id), TScene__map_rel_load_buffer);
             TScene__map_rel_load_size_limit = size;
@@ -919,7 +920,7 @@ void TScene::load_supplementary_t_rel(s32 name) {
     replace_file_extension__6TLobbyFPvPvPv((char *)((s32 *)id), (char *)name, (char *)((s32 *)"t.rel"));
     n = ((TScene *)id)->update_lobby_scene();
     if (n > 0) {
-        TScene__supplementary_rel_buffer = (s32)TQuestVmDownLoadServer::alloc(n);
+        TScene__supplementary_rel_buffer = ((TQuestVmDownLoadServer *)n)->alloc();
         if (TScene__supplementary_rel_buffer != 0U) {
             TScene__texture_wave_resource = (u32)load_relocatable_file((s32)((s32 *)id), TScene__supplementary_rel_buffer);
             TScene__loaded_floor_rel_file_index = n;
@@ -948,7 +949,7 @@ void TScene::load_map_texture_archive(s32 name) {
     }
     if (area == AREA_LOBBY) {
         if ((var_r30 > 0) && ((u32) var_r30 <= 0x100U)) {
-            temp_r3 = (s32)TQuestVmDownLoadServer::alloc(0x100);
+            temp_r3 = ((TQuestVmDownLoadServer *)0x100)->alloc();
             TScene__texture_animation_buffer = temp_r3;
             if (temp_r3 != 0U) {
                 read_disc_file((char *)(sp8), temp_r3);
@@ -956,7 +957,7 @@ void TScene::load_map_texture_archive(s32 name) {
             }
         }
     } else if (var_r30 > 0) {
-        temp_r3_2 = (s32)TQuestVmDownLoadServer::alloc(var_r30);
+        temp_r3_2 = ((TQuestVmDownLoadServer *)var_r30)->alloc();
         TScene__texture_animation_buffer = temp_r3_2;
         if (temp_r3_2 != 0U) {
             read_disc_file((char *)(sp8), temp_r3_2);
@@ -978,14 +979,14 @@ void TScene::load_floor_bin_file(s32 name) {
     size = ((TScene *)sp8)->update_lobby_scene();
     if (get_current_floor_area() == AREA_LOBBY) {
         if (size > 0 && (u32)size <= 0x100U) {
-            TScene__data_805D6020 = (s32)TQuestVmDownLoadServer::alloc(0x100);
+            TScene__data_805D6020 = ((TQuestVmDownLoadServer *)0x100)->alloc();
             if (TScene__data_805D6020 != 0U) {
                 read_disc_file((char *)sp8, TScene__data_805D6020);
                 floor_bin_file_size = 0x100;
             }
         }
     } else if (size > 0) {
-        TScene__data_805D6020 = (s32)TQuestVmDownLoadServer::alloc(size);
+        TScene__data_805D6020 = ((TQuestVmDownLoadServer *)size)->alloc();
         if (TScene__data_805D6020 != 0U) {
             read_disc_file((char *)sp8, TScene__data_805D6020);
             floor_bin_file_size = size;
@@ -1005,7 +1006,7 @@ void TScene::load_file_to_buffer(s32 name) {
     temp_r31 = ((TScene *)sp8)->update_lobby_scene();
     if (get_current_floor_area() == AREA_LOBBY) {
         if ((temp_r31 > 0) && ((u32) temp_r31 <= 0x100U)) {
-            temp_r3 = (s32)TQuestVmDownLoadServer::alloc(0x100);
+            temp_r3 = ((TQuestVmDownLoadServer *)0x100)->alloc();
             TScene__material_info_buffer = temp_r3;
             if (temp_r3 != 0U) {
                 read_disc_file((char *)(sp8), temp_r3);
@@ -1013,7 +1014,7 @@ void TScene::load_file_to_buffer(s32 name) {
             }
         }
     } else if (temp_r31 > 0) {
-        temp_r3_2 = (s32)TQuestVmDownLoadServer::alloc(temp_r31);
+        temp_r3_2 = ((TQuestVmDownLoadServer *)temp_r31)->alloc();
         TScene__material_info_buffer = temp_r3_2;
         if (temp_r3_2 != 0U) {
             read_disc_file((char *)(sp8), temp_r3_2);
@@ -1122,7 +1123,7 @@ void load_scene_collision_file(s32 name) {
                 collect_collision_groups(csn, *scene_collision_data);
                 return;
             }
-            TLobby::debug_print("TScene : CANNOT LOAD COLLISION DATA");
+            debug_print__6TLobbyFle((s32 *)"TScene : CANNOT LOAD COLLISION DATA");
             return;
         }
         scene_collision_data = NULL;
@@ -1555,7 +1556,7 @@ void TScene::render_map_sections() {
             TScene__render_callback();
         }
         if (*(void **)((u8 *)TScene__data_805D5FCC + 0x14) != NULL) {
-            TObjFish::set_global_param((s32)(*(void **)((u8 *)TScene__data_805D5FCC + 0x14)));
+            set_current_texture_list((GinjaTextureList *)((*(void **)((u8 *)TScene__data_805D5FCC + 0x14))));
         }
         sec = TScene__data_805D5FCC->sections;
         prepare_ginja_model();
@@ -1602,7 +1603,7 @@ void TScene::render_static_map_section(SceneMaterialSection *scene_material_sect
     SceneMaterialStatic *e;
     s32 i;
     Node_8020533C *node;
-    void *tex;
+    TUnk_804DDF04 *tex;
 
     for (i = 0, e = scene_material_section->objects; i < scene_material_section->count; i++, e++) {
         if (arg2 != 0 && !(e->flags & 0x10000)) {
@@ -1659,7 +1660,7 @@ void TScene::render_static_map_section(SceneMaterialSection *scene_material_sect
                 } else {
                     TObjEneRecon::notify_scene(-1);
                 }
-                TObjFish::set_global_param((s32)((void *)*(s32 *)((s8 *)TScene__data_805D5FCC + 0x14)));
+                set_current_texture_list((GinjaTextureList *)(((void *)*(s32 *)((s8 *)TScene__data_805D5FCC + 0x14))));
                 set_material_alpha_compare_reference(TScene__data_805D5FCC->flags);
                 draw_ginja_object(node);
                 TObjEneRecon::update_particle_if_active();
@@ -1684,11 +1685,11 @@ void TScene::render_static_map_section(SceneMaterialSection *scene_material_sect
                 Model_8020533C *m = (Model_8020533C *)e->node;
                 if (m != NULL) {
                     if (m->tex != NULL) {
-                        draw_field_1c__6TSceneFlll(tex = m->tex, m->f8, m->fE, 0);
-                        TObjFish::set_global_param((s32)((void *)*(s32 *)((s8 *)TScene__data_805D5FCC + 0x14)));
+                        enable_indirect_tev(tex = m->tex, m->f8, m->fE, 0);
+                        set_current_texture_list((GinjaTextureList *)(((void *)*(s32 *)((s8 *)TScene__data_805D5FCC + 0x14))));
                         set_material_alpha_compare_reference(TScene__data_805D5FCC->flags);
                         draw_ginja_object(node);
-                        TScene::set_indirect_tev((u32)tex, 0);
+                        disable_indirect_tev(tex, 0);
                     }
                 }
             }
@@ -1712,7 +1713,7 @@ void TScene::render_static_map_section(SceneMaterialSection *scene_material_sect
 }
 void draw_ginja_model_with_motion(void *, void *, f32);
 void TScene::render_animated_map_section(SceneMaterialSection *scene_material_section, s32 arg2) {
-  void *texture;
+  TUnk_804DDF04 *texture;
   SceneMaterialAnimated *e;
   s32 i;
   Node_8020533C *node;
@@ -1779,14 +1780,14 @@ void TScene::render_animated_map_section(SceneMaterialSection *scene_material_se
       if (m != 0)
       {
 
-        void *tex = m->tex;
+        TUnk_804DDF04 *tex = m->tex;
         if (tex != 0)
         {
-          draw_field_1c__6TSceneFlll(texture = tex, m->f8, m->fE, 0);
-          TObjFish::set_global_param((s32)((void *) (*((s32 *) (((s8 *) TScene__data_805D5FCC) + 0x14)))));
+          enable_indirect_tev(texture = tex, m->f8, m->fE, 0);
+          set_current_texture_list((GinjaTextureList *)(((void *) (*((s32 *) (((s8 *) TScene__data_805D5FCC) + 0x14))))));
           set_material_alpha_compare_reference(TScene__data_805D5FCC->flags);
           draw_ginja_model_with_motion(node, e->motion, e->frame);
-          TScene::set_indirect_tev((u32) texture, 0);
+          disable_indirect_tev(texture, 0);
         }
 
       }

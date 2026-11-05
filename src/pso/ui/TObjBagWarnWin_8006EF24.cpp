@@ -4,6 +4,7 @@
 
 extern "C" {
 extern u8 *text_language_group_table;
+void *__ct__14TObjBagWarnWinFv(void *, void *);
 void *__nw__7TObjectFUl(int);
 
 void *TObjBagWarnWin::create(void *bag_warn_win) {

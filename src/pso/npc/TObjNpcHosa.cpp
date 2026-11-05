@@ -1,9 +1,10 @@
 #include "types.h"
-#include "pso/npc/TObjNpcHosa.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/npc/TObjNpcKenkyuW.h"
 #include "pso/unk/text_8014B8A4.h"
 #include "pso/npc/TUnk_804A9F50.h"
 #include "pso/system/BmlResourceDescriptor.h"
+#include "pso/npc/TObjNpcHosa.h"
 #include "pso/npc/TObjNpcBase.h"
 #include "pso/npc/TObjNpcLappy.h"
 #include "pso/player/TObjPlayer.h"
@@ -30,20 +31,17 @@ struct RecoveredGlobal_802A3B00___vt__11TObjNpcHosa {
 };
 
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
-
 s32 TObjFish__sub_8001EDB0(int, int);
 s32 get_bml_model(int, int);
 extern s32 __vt__11TObjNpcHosa[];
 extern const char *TObjNpcHosa__name;
-void TLobby__sub_8001FE7C(void*, int);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
 
 void TObjNpcHosa::destroy_static_instance() {
     if ((u32) TObjNpcHosa__static_model_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)TObjNpcHosa__static_model_resource, 1);
+        delete (BmlResource *)((void*)TObjNpcHosa__static_model_resource);
         TObjNpcHosa__static_model_resource = 0U;
     }
 }
@@ -51,17 +49,21 @@ void TObjNpcHosa::destroy_static_instance() {
 void TObjNpcHosa::load_static_resource() {
     s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
+    temp_r3 = (int)new BmlResource(1, (BmlResourceDescriptor *)(&npc_hosa_resource_descriptor), 0, 0, (void *)(0));
     var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &npc_hosa_resource_descriptor, 0, 0, 0));
-    }
     (*(s32 *)&TObjNpcHosa__static_model_resource) = var_r0;
 }
 
+void *__dt__11TObjNpcHosaFv(void *arg0, s16 arg1) {
+    if (arg0 != NULL) {
+        *(s32 **)((s8 *)arg0 + 0x18) = __vt__11TObjNpcHosa;
+        ((TUnk_804A9F50 *)arg0)->destroy_npc_lappy_base(0);
+        if (arg1 > 0) {
+            __dl__7TObjectFPv(arg0);
+        }
+    }
+    return arg0;
 }
-TObjNpcHosa::~TObjNpcHosa() {}
-extern "C" {
 
 extern void *tl_04;
 
@@ -71,7 +73,7 @@ u8 *TObjNpcHosa__ct(u8 *player, s32 arg1, s32 arg2) {
     *(s32 **)((s8 *)player + 0x18) = &(*(RecoveredGlobal_802A3B00___vt__11TObjNpcHosa *)&__vt__11TObjNpcHosa).value;
     *(s32 *)((s8 *)player + 0) = (s32) TObjNpcHosa__name;
     ((TObjNpcHosa *)(player))->apply_set_data((void *)arg2);
-    ((TObjPlayer *)player)->init_position_vectors();
+    ((TObjChara *)player)->initialize_position_copies();
     *(s32 *)((s8 *)player + 0x34) = get_bml_model((int) ((*(s32 *)&TObjNpcHosa__static_model_resource)), 0);
     ((TObjNpcHosa *)player)->texlist = TObjFish__sub_8001EDB0((int) ((*(s32 *)&TObjNpcHosa__static_model_resource)), 0);
     ((TObjNpcBase *)player)->setup_common();

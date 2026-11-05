@@ -1,6 +1,5 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/protocol/protocol_types.h"
-#include "pso/misc/TWindowMessage.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/item/TItemMag.h"
 #include "pso/TMainTask.h"
@@ -47,7 +46,6 @@ int qst_label_address(int label);
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/ui/TChallenge4PResult.h"
 #include "pso/object/TObjMotion.h"
-#include "pso/object/TObjTombstone.h"
 #include "pso/TObject.h"
 #include "pso/object/TQuestDamageTask.h"
 #include "pso/player/TObjPlayer.h"
@@ -1597,6 +1595,7 @@ void qst_op_set_enemy_resist_data(s32 arg0);
 void qst_op_set_enemy_attack_data(s32 arg0);
 void qst_op_set_enemy_physical_data(int _w0);
 void qst_op_set_cmode_grave_rates(s32 reg);
+void TObjTombstone__sub_80074E74(f32 *w);
 void qst_op_chl_get_timerecord(s32 arg0);
 void qst_op_chl_set_timerecord(s32 arg0);
 void qst_op_get_game_version(s32 arg0);
@@ -1876,12 +1875,12 @@ void unhide_room_set_objects(s32 a, s16 b, s16 c, s32 d);
 s32 TCheckRoomSequence__sub_80210D44(u8 *item, s32 slot);
 s32 handle_main_phase__6TLobbyFl();
 void try_close__6TLobbyFPv(void *p);
-s32 play_sound_effect(int, int, int, int);
+
 void play_cue_stream_file(s32 name);
 int TLobby__sub_802272B4(void*);
 int TLobby__sub_8022733C(void*);
 void set_area__6TLobbyFl(void *, int, int);
-Card_801EB10C * __ct__13TUnk_804CC048FP7TObjectPvPv(void *, void *, void *, void *);
+Card_801EB10C * construct__13TUnk_804CC048FPvPvPv(void *, void *, void *, void *);
 }
 u8 is_floor_switch_set(u32 id, s16 floor);
 extern "C" {
@@ -1895,6 +1894,7 @@ void * __nw__7TObjectFUl(u32);
 }
 void create_quest_telepipe_for_client(u16 arg0);
 extern "C" {
+void TWindow__close(u8 *arg0);
 void request_active_window_close(void);
 s32 set_timer_window_time__11TWindowCtrlFv(int, void *);
 int close_timer_window__11TWindowCtrlFv(void*);
@@ -2013,6 +2013,7 @@ extern RecoveredGlobal_801EC90C_lbl_80449AFC lbl_80449B08;
 extern s32 lbl_80449B10[];
 extern Tbl_801E9AF8 lobby_index_identity_table_a[];
 extern s32 lbl_80449B2C[];
+extern const f64 lbl_80449CC0;
 extern RecoveredGlobal_801ECF84_lbl_8050D3E0 lbl_8050D3E0;
 extern s32 symbolchat_colli_param_table[];
 extern E_801E93B4 controller_input_state[];
@@ -2057,7 +2058,7 @@ void qst_op_scroll_text() {
     void *win;
 
     if (qst_message_window != NULL) {
-        ((TWindowBase *)qst_message_window)->close();
+        TWindow__close((u8 *)qst_message_window);
     }
     pos.x = x;
     pos.y = y;
@@ -2150,7 +2151,7 @@ void qst_op_chat_box() {
     s32 arg = qst_args[5];
 
     if (qst_message_window != NULL) {
-        ((TWindowBase *)qst_message_window)->close();
+        TWindow__close((u8 *)qst_message_window);
     }
     pos.x = x;
     pos.y = y;
@@ -2559,7 +2560,7 @@ void qst_op_get_total_deaths() {
 void qst_op_atan2_int(void) {
     u8 temp_r31;
     temp_r31 = (u8) qst_args[0];
-    qst_registers[(u8)temp_r31] = (s32) (10430.38043493439 * atan2_float((void *) qst_args, (f32) (*(f32 *)&qst_args[1]), (f32) (*(f32 *)&qst_args[2])));
+    qst_registers[(u8)temp_r31] = (s32) (lbl_80449CC0 * atan2_float((void *) qst_args, (f32) (*(f32 *)&qst_args[1]), (f32) (*(f32 *)&qst_args[2])));
 }
 
 void qst_op_tan() {
@@ -3585,7 +3586,7 @@ void qst_op_send_mail(void) {
     ((TLobby *)((s32)&tag))->init_guild_card_tag();
     card = (Card_801EB10C *)__nw__7TObjectFUl(0x10A8);
     if (card != NULL) {
-        card = __ct__13TUnk_804CC048FP7TObjectPvPv(card, 0, 0, 0);
+        card = construct__13TUnk_804CC048FPvPvPv(card, 0, 0, 0);
     }
     strncpy(buf, (int)src, 0x3FF);
     ((TLobby *)buf)->trim_whitespace();
@@ -3895,7 +3896,7 @@ void qst_op_set_cmode_rank_override(void) {
     char *src = *(char **)&qst_args[1];
     card = (Card_801EBD40 *)__nw__7TObjectFUl(0x10A8);
     if (card != NULL) {
-        card = ((Card_801EBD40 *)__ct__13TUnk_804CC048FP7TObjectPvPv(card, 0, 0, 0));
+        card = ((Card_801EBD40 *)construct__13TUnk_804CC048FPvPvPv(card, 0, 0, 0));
     }
     strncpy(buf, (int)src, 0x1FF);
     ((TLobby *)buf)->trim_whitespace();
@@ -5287,7 +5288,7 @@ void qst_op_nop_A0_debug(void) {
     void *s = *(void **)&qst_args[1];
     o = (VObj_18 *)((void * (*)(u32, void *))__nw__7TObjectFUl)(0x10A8, qst_args);
     if (o != NULL) {
-        o = ((VObj_18 * (*)(void *, void *, void *, void *))__ct__13TUnk_804CC048FP7TObjectPvPv)(o, 0, 0, 0);
+        o = ((VObj_18 * (*)(void *, void *, void *, void *))construct__13TUnk_804CC048FPvPvPv)(o, 0, 0, 0);
     }
     buf[0x1FF] = 0;
     ((void (*)(void *, void *, int))strncpy)(buf, s, 0x1FF);
@@ -5606,13 +5607,15 @@ void qst_op_player_effect_nc(u8 arg0) {
     }
 }
 
+s32 find_card_file__15TAdPlayerLoadGCFiPv(s32, const char *);
+extern const char lbl_80449CC8[];
 void qst_op_has_ep3_save_file() {
     u8 reg = qst_args[0];
     s32 ok = 0;
-    if (TAdPlayerLoadGC::probe_card_slot(0) != 0 && TAdPlayerLoadGC::find_card_file(0, "PSO3_CHARACTER") == 0 && TAdPlayerLoadGC::get_load_result((void *)0) == 0) {
+    if (((TAdPlayerLoadGC *)0)->probe_card_slot() != 0 && find_card_file__15TAdPlayerLoadGCFiPv(0, lbl_80449CC8) == 0 && TAdPlayerLoadGC::get_load_result((void *)0) == 0) {
         ok = 1;
     }
-    if (ok == 0 && TAdPlayerLoadGC::probe_card_slot(1) != 0 && TAdPlayerLoadGC::find_card_file(1, "PSO3_CHARACTER") == 0 && TAdPlayerLoadGC::get_load_result((void *)1) == 0) {
+    if (ok == 0 && ((TAdPlayerLoadGC *)1)->probe_card_slot() != 0 && find_card_file__15TAdPlayerLoadGCFiPv(1, lbl_80449CC8) == 0 && TAdPlayerLoadGC::get_load_result((void *)1) == 0) {
         ok = 1;
     }
     qst_registers[reg] = ok;
@@ -5981,7 +5984,7 @@ void qst_op_npc_crt(void) {
 
 void qst_op_winend(void) {
     if (qst_message_window != NULL) {
-        ((TWindowBase *)qst_message_window)->close();
+        TWindow__close((u8 *)qst_message_window);
         qst_message_window = NULL;
     }
     TWindowCtrl::clear_flag_bit2();
@@ -6033,7 +6036,7 @@ void qst_op_add_msg(void) {
         return;
     }
     if (qst_message_window_qb != 0) {
-        ((TWindowMessage *)qst_message_window_qb)->append_line(x, 3);
+        ((TLobby *)qst_message_window_qb)->send_and_handle(x, 3);
         qst_suspend_reason = QST_WAIT_MESSAGE_QB;
         return;
     }
@@ -6045,7 +6048,7 @@ extern "C" {
 
 void qst_op_close_msg_qb(void) {
     if (qst_message_window_qb != NULL) {
-        ((TWindowBase *)qst_message_window_qb)->close();
+        TWindow__close((u8 *)qst_message_window_qb);
         qst_message_window_qb = 0U;
     }
 }
@@ -6055,12 +6058,12 @@ void qst_op_disp_msg_qb(void) {
     s32 t = qst_args[0];
     Pair_801F1838 pr = lbl_80449A38[0];
     if (qst_message_window_qb != 0) {
-        ((TWindowBase *)qst_message_window_qb)->close();
+        TWindow__close((u8 *)qst_message_window_qb);
         qst_message_window_qb = 0;
     }
     qst_message_window_qb = (void *)update_window_mode_from_progress__6TLobbyFPv(get_window_layout_position(0x71), &pr);
-    ((TWindowMessage *)qst_message_window_qb)->append_line(t, 3);
-    ((TWindowBase *)qst_message_window_qb)->set_depth(lbl_805DC4D4);
+    ((TLobby *)qst_message_window_qb)->send_and_handle(t, 3);
+    ((TLobby *)qst_message_window_qb)->set_field_1c(lbl_805DC4D4);
     qst_suspend_reason = QST_WAIT_MESSAGE_QB;
 }
 
@@ -6069,7 +6072,7 @@ void qst_op_window_msg(void) {
     u32 temp_r3;
     text = qst_args[0];
     if (qst_message_window != NULL) {
-        ((TWindowBase *)qst_message_window)->close();
+        TWindow__close((u8 *)qst_message_window);
     }
     temp_r3 = create_quest_message_window();
     qst_message_window = (void *)temp_r3;
@@ -6086,7 +6089,7 @@ void qst_op_bgm(void) {
 }
 
 void qst_op_se(void) {
-    play_sound_effect((int) (*(s32 *)((s8 *)((u8 *)(&quest_sound_effect_ids.value) + (qst_args[0] * 4)) + 0)), 0, 0, 0);
+    play_sound_effect((s32)((int) (*(s32 *)((s8 *)((u8 *)(&quest_sound_effect_ids.value) + (qst_args[0] * 4)) + 0))), 0, 0, 0);
 }
 
 void qst_op_fadeout(void) { TLobby::init_fadeout_state((s32)((void*)0)); qst_suspend_reason = QST_WAIT_FADE; }
@@ -6103,7 +6106,7 @@ void qst_op_list(void) {
     text = *(char **)&qst_args[1];
     list = (List_801F1A0C *)__nw__7TObjectFUl(0x10A8);
     if (list != 0) {
-        list = (List_801F1A0C *)((void * (*)(void *, void *, void *, void *))__ct__13TUnk_804CC048FP7TObjectPvPv)(list, 0, 0, 0);
+        list = (List_801F1A0C *)((void * (*)(void *, void *, void *, void *))construct__13TUnk_804CC048FPvPvPv)(list, 0, 0, 0);
     }
     ((char * (*)(char *, const char *, u32))strncpy)(buf, text, 0x1FF);
     ((TLobby *)buf)->trim_whitespace();
@@ -6115,7 +6118,7 @@ void qst_op_list(void) {
     ((TWindowSubComCard *)qst_list_window)->calc_window_size();
     align_menu_entry_positions((s32)qst_list_window);
     ((TCheckRoomSequence *)qst_list_window)->set_ready_flag();
-    ((TWindowBase *)qst_list_window)->set_depth(lbl_805DC4D8);
+    ((TLobby *)qst_list_window)->set_field_1c(lbl_805DC4D8);
     qst_registers[idx] = 0;
     qst_result_register = idx;
     qst_suspend_reason = QST_WAIT_LIST;

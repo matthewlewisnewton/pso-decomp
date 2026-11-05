@@ -13,8 +13,4 @@ void *TSetManager__ct(void *set_manager);
 }
 // --- end of C functions
 
-extern "C" {
-void TSetManager__sub_8020D7D4(void);
-}
-
 #endif

@@ -48,7 +48,7 @@ int obj_getPtr2B0_20(u8 *p);
 s16 obj_getS16_2BA(u8 *p);
 s16 get_actor_hp(void *object);
 s16 get_actor_tp(void *object);
-u8 obj_is_hit_receivable(u8 *arg0);
+s32 obj_is_hit_receivable(u8 *arg0);
 void play_shock_feedback__10TObjPlayerFii(s32 arg0, s32 arg1);
 void show_meseta_label(s32 arg0, u32 arg1, s32 arg2, s32 arg3);
 void spawn_poison_effect__10TObjPlayerFii(s32 arg0, s32 arg1);
@@ -60,7 +60,7 @@ s32 update_attack_stat_status__9TObjCharaFv(u8 *player);
 u16 find_nearest_visible_player(TObjEnemy *enemy, Vec *out, f32 radius);
 void calc_velocity_toward_destination(TObjEnemy *enemy, Vec from, Vec to, f32 speed);
 f32 update_enemy_wander_move(TObjEnemy *enemy, Vec *dest, s32 mode, EnemyMoveParams *params, f32 min_distance);
-s32 enemy_turn_toward_dest(TObjEnemy *enemy, s32 turn_speed);
+void enemy_turn_toward_dest(TObjEnemy *enemy, s32 turn_speed);
 u16 get_entity_id(TObjBase *object);
 }
 

@@ -1,3 +1,5 @@
+#include "pso/system/ArrayAllocation.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/vector.h"
 #include "pso/system/NinjaTypes.h"
 void set_constant_material(const NJS_ARGB *color);
@@ -96,6 +98,21 @@ struct Grid_8002DB7C {
     Object_8002DB7C object;
 };
 
+struct Ent_8002DF7C { u8 pad0[8]; s32 id; u8 padc[4]; };
+
+struct Res_8002DF7C { u8 pad0[0x42C]; Ent_8002DF7C *ents; };
+
+struct Obj_8002DF7C {
+    u8 pad0[0x1C];
+    u8 pos[0x18];
+    s32 ry;
+    s32 rx;
+    f32 x3c;
+    f32 color;
+    u8 pad44[0x50 - 0x44];
+    s32 idx;
+};
+
 typedef struct Obj_8002CD8C {
     s32 unk0;
     u8 pad4[0x14];
@@ -158,6 +175,7 @@ extern const f32 lbl_805D81E0;
 extern const f32 lbl_805D81E4;
 extern const f32 lbl_805D81F4;
 extern const f32 lbl_805D81F8;
+extern const f32 lbl_805D8200;
 
 void translate_matrix(u32 arg0, f32 x, f32 y, f32 z);
 void push_matrix(void);
@@ -167,14 +185,12 @@ void set_chunk_material_override_pair(s32, s32, s32, s32);
 void draw_chunk_object(void *);
 void queue_destruction__7TObjectFv();
 void *__nw__7TObjectFUl(int);
-void mem_free(void *p);
-void *mem_alloc(u32);
 f32 newton_sqrtf(f32);
 f32 calc_nearest_crater_distance(void *);
 f32 horizontal_distance_squared(void *, void *);
 f32 sin_table_lookup(s32);
 f32 cos_table_lookup(s32, f32);
-s32 update_scale__15TObjBoss2TunnelFv(void *, f32);
+s32 normalize_vector_checked(void *, f32);
 void rotate_matrix_y(int, int);
 void rotate_matrix_x(int, int);
 u8 *TObjBoss1MokoHill_SoloM__ct(u8 *arg0, u8 *arg1, u8 *arg2, s32 arg3);
@@ -252,7 +268,7 @@ void TObjBoss1MokoHill_SoloM::render() {
     Ent_8002CE78 *p;
     s32 i;
     if (arg0->active != 0) {
-        TObjFish::set_global_param(dragon_common_texture_list);
+        set_current_texture_list((GinjaTextureList *)(dragon_common_texture_list));
         update_dragon_trail_uvs((Obj_8002D4C0 *)((struct Obj_8002D4C0 *)dragon_trail_position_source));
         for (p = (Ent_8002CE78 *)lbl_805D4B78, i = 0; i < lbl_805D4B74; i++, p++) {
             *p->dst = p->base + p->ofs;
@@ -284,8 +300,8 @@ void TObjBoss1MokoHill_SoloM::render() {
 #pragma fp_contract on
 void TObjBoss1MokoHill_SoloM::run_task() {
     Trail_8002CFB8 *self = (Trail_8002CFB8 *)this;
-    Vec pos;
-    Vec vel;
+    Vec_8002CFB8 pos;
+    Vec_8002CFB8 vel;
     f32 d;
     f32 ax;
     f32 az;
@@ -339,11 +355,14 @@ void TObjBoss1MokoHill_SoloM::run_task() {
             pos.z = s * lbl_805D81B4 + ((Vec_8002CFB8 *)dragon_trail_position_source)->z;
             vel.x = pos.x - ax;
             vel.z = pos.z - az;
-            normalize_vector_xz(&vel);
+            normalize_vector_xz((Vec *)(&vel));
             vel.x *= 1.5f;
             vel.z *= 1.5f;
             vel.y = lerp__9TDeadSpotFff(6.0f, 9.0f);
-            new TObjBoss1Rock((TObject *)self->f10, &pos, &vel, 1);
+            o = __nw__7TObjectFUl(0x54);
+            if (o != NULL) {
+                ((TObjBoss1Rock *)o)->construct(self->f10, &pos, &vel, (void *)1);
+            }
         }
         for (p = (Ent_8002CFB8 *)lbl_805D4B78, i = 0; i < lbl_805D4B74; p++, i++) {
             switch (p->state) {
@@ -439,7 +458,7 @@ void update_dragon_trail_uvs(Obj_8002D4C0 *self) {
     }
 }
 
-void TBoss8Dragon::free_resources() { mem_free((void *)lbl_805D4B78); lbl_805D4B78 = 0; mem_free((void *)lbl_805D4B6C); lbl_805D4B6C = 0; ((int (*)(void*, void*))destroy__12TBoss8DragonFPvs)((void*)lbl_805D4B64, (void*)1); lbl_805D4B64 = 0; ((int (*)(void*, void*))destroy__12TBoss8DragonFPvs)((void*)lbl_805D4B68, (void*)1); lbl_805D4B68 = 0; ((int (*)(void*, void*))destroy__12TBoss8DragonFPvs)((void*)lbl_805D4B60, (void*)1); lbl_805D4B60 = 0; }
+void TBoss8Dragon::free_resources() { ::operator delete[]((void *)lbl_805D4B78); lbl_805D4B78 = 0; ::operator delete[]((void *)lbl_805D4B6C); lbl_805D4B6C = 0; ((int (*)(void*, void*))destroy__12TBoss8DragonFPvs)((void*)lbl_805D4B64, (void*)1); lbl_805D4B64 = 0; ((int (*)(void*, void*))destroy__12TBoss8DragonFPvs)((void*)lbl_805D4B68, (void*)1); lbl_805D4B68 = 0; ((int (*)(void*, void*))destroy__12TBoss8DragonFPvs)((void*)lbl_805D4B60, (void*)1); lbl_805D4B60 = 0; }
 
 s32 TBoss8Dragon__sub_8002DAEC(void *arg0) {
     return *(s32 *)((s8 *)arg0 + 0x14) + ((*(s32 *)((s8 *)arg0 + 0xC) + 3) * 2);
@@ -451,9 +470,9 @@ s32 TBoss8Dragon__sub_8002DB04(void *arg0) {
 
 void *destroy__12TBoss8DragonFPvs(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
-        mem_free((void *)(*(s32 *)((s8 *)arg0 + 0x10)));
+        ::operator delete[]((void *)(*(s32 *)((s8 *)arg0 + 0x10)));
         *(s32 *)((s8 *)arg0 + 0x10) = 0;
-        mem_free((void *)(*(s32 *)((s8 *)arg0 + 0x14)));
+        ::operator delete[]((void *)(*(s32 *)((s8 *)arg0 + 0x14)));
         *(s32 *)((s8 *)arg0 + 0x14) = 0;
         *(s32 *)((s8 *)arg0 + 0x18) = 0;
         *(s32 *)((s8 *)arg0 + 0x1C) = 0;
@@ -478,8 +497,8 @@ Grid_8002DB7C *init_grid_mesh__12TBoss8DragonFPviiiPv(Grid_8002DB7C *g, s32 widt
     g->strips = strips;
     g->materialWords = materialWords;
     g->stripWords = g->width * 6 + 1;
-    g->polygons = (u16 *)mem_alloc((g->materialWords + 5 + g->stripWords * g->strips) * 2);
-    g->vertices = (u32 *)mem_alloc((g->width * (g->strips + 1) * 6 + 3) * 4);
+    g->polygons = (u16 *)::operator new[]((g->materialWords + 5 + g->stripWords * g->strips) * 2);
+    g->vertices = (u32 *)::operator new[]((g->width * (g->strips + 1) * 6 + 3) * 4);
     p = (s16 *)g->polygons;
     for (i = 0; i < g->materialWords; i++) {
         *p++ = *material++;
@@ -566,7 +585,7 @@ f32 TBoss8Dragon::apply_velocity_scale(f32 farg0, f32 farg1) {
         *(f32 *)((s8 *)this + 0) = temp_f2;
         *(f32 *)&this->unk_4 = (f32) lbl_805D81F4;
         this->m_8 = (f32) (this->m_8 * temp_f1_2);
-        update_scale__15TObjBoss2TunnelFv(this, temp_f1_2);
+        normalize_vector_checked(this, temp_f1_2);
     }
     return var_f31;
 }
@@ -582,5 +601,35 @@ f32 lerp__9TDeadSpotFff(f32 farg0, f32 farg1) {
 #pragma fp_contract on
 f32 rand_signed_unit(void) {
     return lbl_805D8184 * ((lbl_805D818C * (f32) rand()) - lbl_805D817C);
+}
+#pragma pop
+
+#pragma push
+#pragma fp_contract on
+void TObjBoss1Rock::render() {
+    Obj_8002DF7C *self = (Obj_8002DF7C *)this;
+    if (self->color < lbl_805D8200) {
+        saved_model_render_flags = model_render_flags;
+        model_render_flags = saved_model_render_flags | 0x810;
+        ((void (*)(s32, s32))set_chunk_material_override_pair)(0xFF00, 0x800);
+        set_constant_material((const NJS_ARGB *)((&self->color)));
+        push_matrix();
+        set_current_texture_list((GinjaTextureList *)(dragon_common_texture_list));
+        post_translate_matrix(self->pos);
+        rotate_matrix_y(0, self->ry);
+        rotate_matrix_x(0, self->rx);
+        ((void (*)(s32))draw_chunk_object)((*(Res_8002DF7C **)&lbl_805D4B50)->ents[self->idx].id);
+        pop_matrix();
+        ((void (*)(s32, s32))set_chunk_material_override_pair)(0xFF00, 0);
+        model_render_flags = saved_model_render_flags;
+    } else {
+        push_matrix();
+        set_current_texture_list((GinjaTextureList *)(dragon_common_texture_list));
+        post_translate_matrix(self->pos);
+        rotate_matrix_y(0, self->ry);
+        rotate_matrix_x(0, self->rx);
+        ((void (*)(s32))draw_chunk_object)((*(Res_8002DF7C **)&lbl_805D4B50)->ents[self->idx].id);
+        pop_matrix();
+    }
 }
 #pragma pop

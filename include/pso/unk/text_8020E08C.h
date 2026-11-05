@@ -3,16 +3,22 @@
 
 #include "types.h"
 
-extern "C" {
-void TLobby__sub_8020E3BC(void);
-void TLobby__sub_8020E3C0(void);
-}
+struct Saved_8020E08C {
+    u16 id;
+    s16 flags;
+    s16 room;
+    s16 wave;
+};
 
-// --- C functions defined in TLobby_8020E3BC.cpp ---
-extern "C" {
-void TLobby__sub_8020E3BC(void);
-void TLobby__sub_8020E3C0(void);
-}
-// --- end of C functions
+struct Floor_8020E08C {
+    s32 objects;
+    s32 enemies;
+    u32 objectPlacement;
+    u32 enemyPlacement;
+    Saved_8020E08C *objectRows;
+    Saved_8020E08C *enemyRows;
+};
+
+extern "C" Floor_8020E08C TLobby__floor_enemy_group_table[18];
 
 #endif

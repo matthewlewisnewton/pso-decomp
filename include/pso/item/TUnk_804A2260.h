@@ -6,15 +6,9 @@
 class TUnk_804A2260 : public TItemWeapon {
 public:
     virtual ~TUnk_804A2260();
-    virtual void vfunc_60();
     void sub_80124C90();
     virtual void update_weapon();
-    virtual void emit_marker_effects();
     u8 unk_1F8[0x4];
 };
-
-extern "C" {
-u8 *TObjPlayer__sub_801250F8(u8 *player, u8 *arg1, s32 _w2);
-}
 
 #endif

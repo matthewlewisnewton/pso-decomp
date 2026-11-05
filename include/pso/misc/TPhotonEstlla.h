@@ -5,7 +5,6 @@
 #include "pso/misc/TUnk_804C3248.h"
 
 struct TPhotonEstlla : public TUnk_804C3248 {
-    TPhotonEstlla(u8 *arg1);
     virtual ~TPhotonEstlla();
     void sub_801AA6F8();
     u8 _pad158[0x24];

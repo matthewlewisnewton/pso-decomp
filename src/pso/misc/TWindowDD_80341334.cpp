@@ -2,7 +2,7 @@
 #include "pso/misc/TWindowDD_80341334.h"
 #include "pso/misc/TWindowSubStatusDisp_8025A9B4.h"
 #include "pso/misc/TWindowDD_WS_String.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TWindowDD.h"
 #include "pso/misc/TWindowHelpItem.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
@@ -49,6 +49,7 @@ extern const s32 lbl_805DFC18;
 extern const f32 lbl_805DFC94;
 extern RecoveredGlobal_803414DC_lbl_804EFC00 lbl_804EFC00;
 extern const s32 TWindowDD__data_805DFC14;
+extern const f32 lbl_805DFC20;
 s32 __nw__7TObjectFUl(int);
 extern const f32 TWindowDD__data_805DFB20;
 void __dl__7TObjectFPv(void *);
@@ -74,7 +75,7 @@ u8 *TWindowDD__sub_8034138C(u8 *arg0, s32 arg1, s32 arg2, s32 str, s32 arg4) {
     ((TWindowSubSymbolChatPartsSet *)(arg0 + 0x64))->copy_vec2((void *)arg1);
     ((TWindowSubSymbolChatPartsSet *)(arg0 + 0x6C))->copy_vec2((void *)arg2);
     *(s32 *)((s8 *)arg0 + 0x60) = arg4;
-    window_help_item = (u8 *)(((TWindowBase *)arg0)->get_array_entry(0));
+    window_help_item = (u8 *)(((TUnk_804CE018 *)arg0)->get_array_entry(0));
     if (window_help_item != NULL) {
         set_text_entry_string((window_help_item), (str), 0x80);
         ((TWindowHelpItem *)window_help_item)->m_8 = (f32) lbl_805DFC94;
@@ -108,7 +109,7 @@ s32 TWindowDD__sub_8034146C(s32 arg0, s32 arg1, s32 str, s32 arg3, f32 farg0) {
 
 void TWindowDD__sub_803414DC(void) {
     *(s32 *)((s8 *)&lbl_804EFC00.value + 0x18) = (s32) TWindowDD__data_805DFC14;
-    *(f32 *)((s8 *)(&(*(RecoveredGlobal_803414DC_TWindowDD__data_804EFC24 *)&TWindowDD__data_804EFC24).value) + 8) = 50038.0f;
+    *(f32 *)((s8 *)(&(*(RecoveredGlobal_803414DC_TWindowDD__data_804EFC24 *)&TWindowDD__data_804EFC24).value) + 8) = (f32) lbl_805DFC20;
 }
 
 static void (*s_ctor_defaults)(void) __attribute__((section(".ctors"))) = TWindowDD__sub_803414DC;

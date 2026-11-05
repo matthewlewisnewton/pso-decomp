@@ -8,9 +8,6 @@ struct SoundRequestOwner {
 };
 
 struct SoundRequestVoice {
-    SoundRequestVoice();
-    ~SoundRequestVoice();
-
     SoundRequestOwner* owner;
     s32 state;
     u32 flags;

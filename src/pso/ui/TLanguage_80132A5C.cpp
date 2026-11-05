@@ -69,7 +69,7 @@ void TLanguage::load_fonts(s32 language) {
     GvmTexture *alphabet;
     sp8 = TLobby::tmp_buf_use_req(TLanguage__class_name);
     TLanguage::draw_string((void *)f256_alphabet_gvp, &sp8, 0x48);
-    TLobby::tmp_buf_release((const char *)TLanguage__class_name);
+    ((TLobby *)TLanguage__class_name)->tmp_buf_release();
 
     switch (language) {
         case LANGUAGE_JAPANESE:
@@ -118,7 +118,7 @@ void TLanguage::load_fonts(s32 language) {
             break;
     }
 
-    TWindowSubStatusDisp::begin_render((s32)alphabet);
+    TWindowSubStatusDisp::begin_render();
 
     TLanguage::set_entry_index(LANGUAGE_JAPANESE, 0x48);
     TLanguage::set_entry_index(LANGUAGE_GERMAN, 0x4B);

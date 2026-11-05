@@ -1,3 +1,5 @@
+#include "pso/system/ArrayAllocation.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/CharacterAppearanceTables.h"
 #include "pso/system/BmlResourceDescriptor.h"
@@ -15,7 +17,6 @@
 #include "pso/misc/TQuestVmDownLoadServer.h"
 #include "pso/object/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/render/render_util.h"
 
 struct W_80290250 { u8 pad[0xfc]; s32 bufp; s32 rc; u8 data[4]; };
 
@@ -30,13 +31,10 @@ extern const f32 lbl_805DD954;
 s32 find_shape_triangle_region(u8 *arg0);
 TChCrLoadAfsTextureReq *create_ch_cr_load_afs_texture_req(void *figure, void *list, void *slot, void *index);
 extern "C" {
-void calc_shape_region_coefficients(f32 *point);
-s32 blend_shape_chunk_vertices(void);
-f32 vector_length(f32 *v);
-s32 normalize_vector(f32 *v);
+void calc_shape_region_coefficients(void *point);
+void blend_shape_chunk_vertices(void);
 }
-// Ninja chunk model (NJS_CNK_MODEL): vertex chunk list, polygon chunk list, bounds.
-struct CreationShapeModel { s32 *vertex_list; s16 *polygon_list; f32 center[3]; };
+struct CreationShapeModel { u8 pad[8]; f32 center[3]; };
 struct CreationShapeNode { u32 eval_flags; CreationShapeModel *model; f32 pos[3]; s32 ang[3]; f32 scl[3]; };
 extern "C" {
 void TAdSinglePlyChrSelectGC__sub_802905A4(void* p, void* q);
@@ -66,10 +64,8 @@ void TAdSinglePlyChrSelectGC__sub_80290884(void* p, void* q);
 s32 count_char_diffs__23TAdSinglePlyChrSelectGCFPvPv(void *, void *);
 extern CreationTextureCacheEntry *char_select_current_entry;
 void TAdSinglePlyChrSelectGC__sub_8028ED54(void);
-void blend_creation_proportion_shapes(f32 *);
-s32 TLobby__sub_8001FE7C(void *, int);
+void blend_creation_proportion_shapes(void *);
 void *__dt__10TObjMotionFv(void *arg0, s16 arg1);
-void mem_free(void *p);
 s32 __dl__7TObjectFPv(void *);
 void TAdSinglePlyChrSelectGC__sub_8028F084(CreationTextureCacheEntry *entry, TCharaMaking *appearance);
 void TCharaMaking__bind_appearance_texture_lists(s32 *hair, s32 *head, s32 *body, TCharaMaking *appearance);
@@ -293,9 +289,7 @@ struct Sel_802902CC {
     s32 e[3];
 };
 
-s32 load_resource_from_descriptor(s32, s32, s32, s32, s32, s32);
 s32 __ct__10TObjMotionFP7TObject(void *, void *);
-void *mem_alloc(u32 size);
 }
 extern u32 creation_figure_object;
 void request_creation_motion(s32 arg0);
@@ -315,7 +309,8 @@ extern "C" {
 void TCharaMaking__bind_head_shape_nodes(CharacterAppearanceFields *appearance, void *model);
 void TCharaMaking__bind_body_shape_nodes(CharacterAppearanceFields *appearance, void *model);
 void *TCMCharacter__ct(void *arg0, void *arg1);
-extern s32 creation_region_sample_index_table[24]; extern CreationShapePoint lbl_804D400C[9]; extern void* lbl_804D4054[21];
+extern void* creation_region_sample_index_table[24]; extern void* lbl_804D400C[18]; extern void* lbl_804D4054[21];
+#define creation_region_sample_index_table ((s32 *)creation_region_sample_index_table)
 #define lbl_804D4054 ((s32 *)lbl_804D4054)
 #pragma defer_codegen on
 }
@@ -383,10 +378,7 @@ void *TCMCharacter__ct(void *motion, void *arg1) {
     char_select_active_flag = 0;
     char_creation_figure_draw_flag = 0;
     creation_figure_object = (u32)motion;
-    res = (s32)(int)::operator new(0x440);
-    if (res != 0) {
-        res = load_resource_from_descriptor(res, 6, ((s32 *)character_making_resource_descriptor_table)[((TCharaMaking *)cm)->get_display_index()], 0, 0, 0);
-    }
+    res = (s32)(int)new BmlResource(6, (BmlResourceDescriptor *)(((s32 *)character_making_resource_descriptor_table)[((TCharaMaking *)cm)->get_display_index()]), 0, 0, (void *)(0));
     chara_select_preview_resource = res;
     for (p = ((CreationTextureCacheEntry *)creation_texture_cache); p < ((CreationTextureCacheEntry *)creation_texture_cache) + 0x80; p++) {
         p->in_use = 0;
@@ -400,16 +392,16 @@ void *TCMCharacter__ct(void *motion, void *arg1) {
     char_select_current_entry = 0;
     ((void (*)(int))TAdSinglePlyChrSelectGC__sub_8028ED54)(0);
     char_select_current_entry = 0;
-    ((TObjMotion *)motion)->set_field_d8((s32)((void *)character_making_action_table));
-    ((TObjMotion *)motion)->set_field_dc(*(s32 *)((s8 *)creation_menu_main_obj + 0x430));
+    ((TObjMotion *)motion)->set_action_table((TObjMotionAction *)((s32)((void *)character_making_action_table)));
+    ((TObjMotion *)motion)->set_motion_list((BmlMotionEntry *)(*(s32 *)((s8 *)creation_menu_main_obj + 0x430)));
     ((TObjMotion *)motion)->requested_action = creation_motion_group(creation_player_character);
     ((TObjMotion *)motion)->set_animation(((TObjMotion *)motion)->requested_action);
-    *(s32 *)((s8 *)motion + 0xE0) = (s32)mem_alloc(0xC00);
+    *(s32 *)((s8 *)motion + 0xE0) = (s32)::operator new[](0xC00);
     *(f32 *)((s8 *)motion + 0x40) = lbl_805DD940;
     *(f32 *)((s8 *)motion + 0x3C) = lbl_805DD940;
     *(f32 *)((s8 *)motion + 0x38) = lbl_805DD940;
-    ((TObjMotion *)motion)->rotation_z = 0;
-    ((TObjMotion *)motion)->rotation_y = 0;
+    ((TObjMotion *)motion)->rotation.roll = 0;
+    ((TObjMotion *)motion)->rotation.yaw = 0;
     *(s32 *)((s8 *)motion + 0x5C) = 0;
     load_creation_shape_rel((W_80290250 *)motion);
     reset_character_creation_figure_rotation();
@@ -427,14 +419,14 @@ u8 *TAdSinglePlyChrSelectGC__sub_802908CC(u8 *arg0, s16 arg1) {
             }
         }
         ((TAdSinglePlyChrSelectGC *)arg0)->free_field_FC();
-        TLobby__sub_8001FE7C((void *)chara_select_preview_resource, 1);
+        delete (BmlResource *)((void *)chara_select_preview_resource);
         chara_select_preview_resource = 0;
         ((TCMCharacter *)arg0)->reset_model_parts();
         (*(s32 *)&chara_select_head_node) = 0;
         (*(s32 *)&chara_select_hair_node_b) = 0;
         (*(s32 *)&chara_select_hair_node_a) = 0;
         ((TAdSinglePlyChrSelectGC *)arg0)->m_34 = 0;
-        mem_free((void *)(*(s32 *)((s8 *)arg0 + 0xE0)));
+        ::operator delete[]((void *)(*(s32 *)((s8 *)arg0 + 0xE0)));
         creation_resource_ready_state = 0;
         creation_figure_object = 0;
         lbl_805D49B4 = 0;
@@ -560,7 +552,7 @@ void TAdSinglePlyChrSelectGC::reset_creation_parts() {
 }
 void load_creation_shape_rel(W_80290250 *arg0) {
     s32 rc;
-    arg0->bufp = (s32)TQuestVmDownLoadServer::alloc(0x44000);
+    arg0->bufp = ((TQuestVmDownLoadServer *)0x44000)->alloc();
     rc = TLobby::request_file_read((s32)(chara_select_creation_shape_rel_files[((TCharaMaking *)(*(void * *)&creation_player_character))->get_display_index()]), (s32)arg0->bufp, (s32 *)arg0->data, (void **)0);
     arg0->rc = rc;
     if (rc >= 0) {
@@ -581,23 +573,23 @@ void TCMCharacter::run_task() {
     (this->*modes[char_select_active_flag])();
 }
 
+#undef creation_region_sample_index_table
 #undef lbl_804D4054
 
-// The three shape samples (corners in lbl_804D400C) of each proportion region.
-s32 creation_region_sample_index_table[24] = {
-    1, 3, 0,
-    0, 4, 3,
-    3, 5, 4,
-    1, 3, 2,
-    2, 6, 3,
-    3, 5, 6,
-    2, 6, 7,
-    8, 7, 2,
+void *creation_region_sample_index_table[24] = {
+    (void *)0x1, (void *)0x3, (void *)0x0, (void *)0x0,
+    (void *)0x4, (void *)0x3, (void *)0x3, (void *)0x5,
+    (void *)0x4, (void *)0x1, (void *)0x3, (void *)0x2,
+    (void *)0x2, (void *)0x6, (void *)0x3, (void *)0x3,
+    (void *)0x5, (void *)0x6, (void *)0x2, (void *)0x6,
+    (void *)0x7, (void *)0x8, (void *)0x7, (void *)0x2,
 };
-// The (width, height) corner of each shape sample in the proportion plane.
-CreationShapePoint lbl_804D400C[9] = {
-    {0.0f, 0.0f}, {1.0f / 3.0f, 0.0f}, {2.0f / 3.0f, 0.0f}, {1.0f / 3.0f, 0.5f}, {0.0f, 1.0f},
-    {1.0f / 3.0f, 1.0f}, {2.0f / 3.0f, 1.0f}, {1.0f, 1.0f}, {1.0f, 0.0f},
+void *lbl_804D400C[18] = {
+    (void *)0x0, (void *)0x0, (void *)0x3eaaaaab, (void *)0x0,
+    (void *)0x3f2aaaab, (void *)0x0, (void *)0x3eaaaaab, (void *)0x3f000000,
+    (void *)0x0, (void *)0x3f800000, (void *)0x3eaaaaab, (void *)0x3f800000,
+    (void *)0x3f2aaaab, (void *)0x3f800000, (void *)0x3f800000, (void *)0x3f800000,
+    (void *)0x3f800000, (void *)0x0,
 };
 void *lbl_804D4054[21] = {
     (void *)0x0, (void *)0x0, (void *)&TAdSinglePlyChrSelectGC__sub_802908CC, (void *)&run_task__12TCMCharacterFv,
@@ -608,6 +600,7 @@ void *lbl_804D4054[21] = {
     (void *)0x0,
 };
 
+#define creation_region_sample_index_table ((s32 *)creation_region_sample_index_table)
 #define lbl_804D4054 ((s32 *)lbl_804D4054)
 
 void TCMCharacter::apply_character_appearance() {
@@ -688,11 +681,11 @@ void TAdSinglePlyChrSelectGC::draw_creation_figure() {
         push_matrix();
         translate_matrix_vec3(0, ((u8 *)this) + 0x38);
         rotate_matrix_y(0, creation_figure_rotation_y);
-        TObjFish::set_global_param((s32)((u8 *)char_select_current_entry + 0x460));
+        set_current_texture_list((GinjaTextureList *)(((u8 *)char_select_current_entry + 0x460)));
         this->draw_player_model();
         ((TObjMotion *)((u8 *)this))->get_item_ptr(0x3A);
         push_matrix_from();
-        TObjFish::set_global_param((s32)((u8 *)char_select_current_entry + 0x2EC));
+        set_current_texture_list((GinjaTextureList *)(((u8 *)char_select_current_entry + 0x2EC)));
         TObjPlayer::play_phase_transition_sound(creation_head_model_parts[*(s16 *)((s8 *)char_select_current_entry + 0xA)].model);
         pop_matrix();
         v = creation_cap_model_parts[*(s16 *)((s8 *)char_select_current_entry + 0xC)].model;
@@ -700,7 +693,7 @@ void TAdSinglePlyChrSelectGC::draw_creation_figure() {
             TCharaMaking::enable_making();
             ((TObjMotion *)((u8 *)this))->get_item_ptr(0x3B);
             push_matrix_from();
-            TObjFish::set_global_param((s32)((u8 *)char_select_current_entry + 0x178));
+            set_current_texture_list((GinjaTextureList *)(((u8 *)char_select_current_entry + 0x178)));
             TObjPlayer::play_phase_transition_sound(v);
             pop_matrix();
             TCharaMaking::clear_flag_bit0();
@@ -710,7 +703,7 @@ void TAdSinglePlyChrSelectGC::draw_creation_figure() {
             TCharaMaking::enable_making();
             ((TObjMotion *)((u8 *)this))->get_item_ptr(0x3B);
             push_matrix_from();
-            TObjFish::set_global_param((s32)((u8 *)char_select_current_entry + 0x178));
+            set_current_texture_list((GinjaTextureList *)(((u8 *)char_select_current_entry + 0x178)));
             TCharaMaking::setup_from_data(v, creation_player_character);
             pop_matrix();
             TCharaMaking::clear_flag_bit0();
@@ -823,85 +816,7 @@ s32 clear_creation_shape_eval_masks(f32 *dst, const f32 *a, const f32 *b, const 
     return 1;
 }
 
-// Blends the vertex chunks of the three source models into the destination
-// model's chunk list with the region weights: positions, normals (renormalised)
-// and the upper half of the Ninja flags word.
-s32 blend_shape_chunk_vertices(void) {
-    s32 *a;
-    s32 *b;
-    s32 *c;
-    s32 *d;
-    s32 n;
-    s32 extra;
-    s32 count;
-    s32 k;
-    s32 rest;
-    f32 v[3];
-    f32 fa;
-    f32 fb;
-    f32 fc;
-    CreationModelNodeState *dst = creation_shape_blend.destination;
-    for (k = 0; k < 3; k++) {
-    }
-    d = ((CreationShapeNode *)dst->node)->model->vertex_list;
-    a = ((CreationShapeNode *)creation_shape_blend.sources[0]->node)->model->vertex_list;
-    b = ((CreationShapeNode *)creation_shape_blend.sources[1]->node)->model->vertex_list;
-    c = ((CreationShapeNode *)creation_shape_blend.sources[2]->node)->model->vertex_list;
-    for (n = 1000; n > 0; n--) {
-        extra = TAdSinglePlyChrSelectGC::map_button_code(*d & 0xFF);
-        if (extra < 0) {
-            break;
-        }
-        count = (u32)d[1] >> 16;
-        d += 2;
-        a += 2;
-        b += 2;
-        c += 2;
-        for (; count > 0; count--) {
-            for (k = 3; k > 0; k--) {
-                *d++ = f32_bits(creation_shape_blend.weights[2] * bits_to_f32(*c++) +
-                                (creation_shape_blend.weights[0] * bits_to_f32(*a++) +
-                                 creation_shape_blend.weights[1] * bits_to_f32(*b++)));
-            }
-            rest = extra;
-            if (rest >= 3) {
-                v[0] = creation_shape_blend.weights[2] * bits_to_f32(*c++) +
-                       (creation_shape_blend.weights[0] * bits_to_f32(*a++) + creation_shape_blend.weights[1] * bits_to_f32(*b++));
-                v[1] = creation_shape_blend.weights[2] * bits_to_f32(*c++) +
-                       (creation_shape_blend.weights[0] * bits_to_f32(*a++) + creation_shape_blend.weights[1] * bits_to_f32(*b++));
-                v[2] = creation_shape_blend.weights[2] * bits_to_f32(*c++) +
-                       (creation_shape_blend.weights[0] * bits_to_f32(*a++) + creation_shape_blend.weights[1] * bits_to_f32(*b++));
-                if (vector_length(v) != lbl_805DD940) {
-                    normalize_vector(v);
-                }
-                d[0] = f32_bits(v[0]);
-                d[1] = f32_bits(v[1]);
-                d[2] = f32_bits(v[2]);
-                d += 3;
-                rest -= 3;
-            }
-            if (rest >= 1) {
-                fa = (s32)((u32)*a++ >> 16);
-                fb = (s32)((u32)*b++ >> 16);
-                fc = (s32)((u32)*c++ >> 16);
-                *d = ((s32)(creation_shape_blend.weights[2] * fc +
-                            (creation_shape_blend.weights[0] * fa + creation_shape_blend.weights[1] * fb)) << 16) |
-                     (*d & 0xFFFF);
-                d++;
-                rest--;
-            }
-            if (rest > 0) {
-                d += rest;
-                a += rest;
-                b += rest;
-                c += rest;
-            }
-        }
-    }
-    return 1;
-}
-
-void blend_creation_proportion_shapes(f32 *point) {
+void blend_creation_proportion_shapes(void *point) {
     s32 samples[3];
     u32 flags;
     s32 n;

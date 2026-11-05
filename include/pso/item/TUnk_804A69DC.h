@@ -6,11 +6,9 @@
 class TUnk_804A69DC : public TItemWeapon {
 public:
     virtual ~TUnk_804A69DC();
-    virtual void reserved_53();
-    virtual void vfunc_60();
-    virtual void activate_effect(s32);
     virtual void update_idle();
     virtual void update_attack();
+    virtual void vfunc_17(s32);
     void for_each_target_in_range(f32);
     void *init_state_35();
     virtual void update_weapon();
@@ -20,9 +18,5 @@ public:
     u8 unk_200[0x4];
     s32 m_204;
 };
-
-extern "C" {
-void *__dt__13TUnk_804A69DCFv(void *arg0, s16 arg1);
-}
 
 #endif

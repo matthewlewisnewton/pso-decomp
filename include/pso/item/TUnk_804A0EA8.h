@@ -10,8 +10,4 @@ public:
     virtual void emit_marker_effects();
 };
 
-extern "C" {
-void *guld_milla_ct(void *player);
-}
-
 #endif

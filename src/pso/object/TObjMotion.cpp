@@ -1,3 +1,4 @@
+struct NJS_OBJECT;
 #include "types.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/object/TObjMotion.h"
@@ -140,8 +141,8 @@ f32 TObjMotion::get_root_motion_step(f32 *dx, f32 *dz) {
         end = k->key[2] + (dv * (t2 - (f32)k->keyframe)) / span;
     }
     d = end - start;
-    *dx = d * sin_table_lookup(rotation_y);
-    *dz = d * cos_table_lookup(rotation_y);
+    *dx = d * sin_table_lookup(this->rotation.yaw);
+    *dz = d * cos_table_lookup(this->rotation.yaw);
     return d;
 }
 
@@ -218,7 +219,7 @@ s32 TObjMotion::calc_joint_matrices(NJS_MOTION *with, f32 at_frame, s32 matrices
     }
     set_motion_packed_rotation();
     player_joint_matrix_write_ptr = (Mtx34 *)matrices;
-    set_chunk_model_node_callback((s32)save_joint_matrix_callback);
+    set_chunk_model_node_callback(save_joint_matrix_callback);
     draw_motion((NJS_OBJECT *)model, with, at_frame);
     set_chunk_model_node_callback(0);
     clear_motion_packed_rotation();
@@ -231,7 +232,7 @@ s32 TObjMotion::calc_joint_matrices(f32 at_frame) {
     }
     set_motion_packed_rotation();
     player_joint_matrix_write_ptr = anim_model_matrix_array;
-    set_chunk_model_node_callback((s32)save_joint_matrix_callback);
+    set_chunk_model_node_callback(save_joint_matrix_callback);
     draw_motion((NJS_OBJECT *)model, current_motion, at_frame);
     set_chunk_model_node_callback(0);
     clear_motion_packed_rotation();
@@ -255,7 +256,7 @@ int TObjMotion::is_passing_frame(f32 at_frame) {
     return 0;
 }
 
-void save_joint_matrix_callback() {
+void save_joint_matrix_callback(NJS_OBJECT *) {
     get_current_matrix(player_joint_matrix_write_ptr);
     player_joint_matrix_write_ptr++;
 }
@@ -263,7 +264,7 @@ void save_joint_matrix_callback() {
 void TObjMotion::draw_saving_joints() {
     u32 flags;
     player_joint_matrix_write_ptr = (Mtx34 *)joint_matrices;
-    set_chunk_model_node_callback((s32)save_joint_matrix_callback);
+    set_chunk_model_node_callback(save_joint_matrix_callback);
     flags = motion_flags;
     if ((flags & MOTION_BLENDING) && !(flags & MOTION_DRAW_UNBLENDED)) {
         draw_model_blend_motion(model, &blend, frame);
@@ -281,7 +282,7 @@ void TObjMotion::draw_saving_joints_checked() {
     matrices = (Mtx34 *)joint_matrices;
     if (matrices != NULL) {
         player_joint_matrix_write_ptr = matrices;
-        set_chunk_model_node_callback((s32)save_joint_matrix_callback);
+        set_chunk_model_node_callback(save_joint_matrix_callback);
         flags = motion_flags;
         if ((flags & MOTION_BLENDING) && !(flags & MOTION_DRAW_UNBLENDED)) {
             draw_model_blend_motion(model, &blend, frame);
@@ -398,8 +399,8 @@ void TObjMotion::change_action(s16 action) {
 }
 
 void TObjMotion::init_motion(TObjMotionAction *actions, BmlMotionEntry *motions, s16 action) {
-    set_field_d8((s32)actions);
-    set_field_dc((s32)motions);
+    set_action_table(actions);
+    set_motion_list(motions);
     set_animation(action);
 }
 

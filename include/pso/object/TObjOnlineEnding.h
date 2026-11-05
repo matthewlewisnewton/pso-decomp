@@ -28,8 +28,4 @@ struct TObjOnlineEnding : public TObjBase {
 };
 
 typedef char TObjOnlineEnding_size[sizeof(TObjOnlineEnding) == 0x158 ? 1 : -1];
-extern "C" {
-void fn_802E52AC(void);
-}
-
 #endif

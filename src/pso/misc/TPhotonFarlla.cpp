@@ -1,3 +1,6 @@
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "types.h"
@@ -107,10 +110,10 @@ void TPhotonFarlla::render() {
     if (this->m_1a0 != 0) {
         scroll_strip_uvs(farlla_photon_blast_model_buffers, self->f14C, 0);
         TParticleCtrl::begin_effect_render();
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)(this->texlist));
         push_matrix();
         translate_matrix(0, self->pos.x, self->pos.y, self->pos.z);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         ((TUnk_804C3248 *)self)->set_photon_blast_joint_callback();
         saved_model_render_flags = model_render_flags;
         copy_argb((NJS_ARGB *)&saved_model_draw_color, (NJS_ARGB *)&model_material_color);
@@ -146,11 +149,10 @@ struct Stack_801AB018 {
 
 extern "C" {
 void *find_entity_by_id(u16 id);
-s32 spawn_photon_blast_attachment_effects(void *, int);
 }
 u8 *construct_photon_magic_square_normal(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 extern "C" {
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 u32 __nw__7TObjectFUl(int);
 
 #pragma push
@@ -187,7 +189,7 @@ void TPhotonFarlla::run_task() {
         ((TUnk_804C3248 *)arg0)->begin_photon_summon_camera(1);
         *(s32 *)&this->unk_1A4 = 0;
         ((TObjMotion *)arg0)->set_field_b8(0);
-        spawn_photon_blast_attachment_effects(arg0, 0);
+        spawn_photon_blast_attachment_effects(this, 0);
     }
     this->m_194 = (s16) this->requested_action;
     ((TUnk_804C3248 *)arg0)->update_state();
@@ -204,9 +206,9 @@ void TPhotonFarlla::run_task() {
             VecCopy((Vec *)(&stack.sp14), (const Vec *)(temp_r3_3 + 0x38));
         }
         stack.sp18 += 1e+01f;
-        spawn_particle_effect((&stack.sp14), 0x151);
+        spawn_particle_effect((const Vec *)((&stack.sp14)), 0x151);
         stack.sp18 += 5.0f;
-        spawn_particle_effect((&stack.sp14), 0x15F);
+        spawn_particle_effect((const Vec *)((&stack.sp14)), 0x15F);
     }
     temp_r3_4 = *(s32 *)&this->unk_1A4;
     if ((133.0f == (f32) temp_r3_4) || (135.0f == (f32) temp_r3_4)) {
@@ -215,7 +217,7 @@ void TPhotonFarlla::run_task() {
             VecCopy((Vec *)(&stack.sp8), (const Vec *)(temp_r3_5 + 0x38));
             stack.spC += 1e+01f;
         }
-        spawn_particle_effect((&stack.sp8), 0x151);
+        spawn_particle_effect((const Vec *)((&stack.sp8)), 0x151);
     }
     if ((f32) *(s32 *)&this->unk_1A4 > 138.0f) {
         temp_f1 = this->m_184;
@@ -224,7 +226,7 @@ void TPhotonFarlla::run_task() {
         }
     }
     if ((s32) this->m_1a0 != 0) {
-        play_persistent_sound(0x4002462F, (s32)arg0, 0, 0, 0);
+        play_persistent_sound((s32)(0x4002462F), (const void *)((s32)arg0), (const Vec *)(0), 0, 0);
     }
 }
 }
@@ -265,6 +267,8 @@ s32 sub_801AAE6C__13TPhotonFarllaFv(void *, int);
 u8 *construct_photon_magic_square_normal(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 extern "C" {
 
+extern u8 lbl_80446D40[];
+extern u8 lbl_80446D4C[];
 extern s32 lbl_805D34E0;
 extern u8 *photon_blast_shared_resource;
 
@@ -303,7 +307,7 @@ u8 *TPhotonFarlla__ct(u8 *arg0, u8 *arg1) {
     Stack_801AB370 pos;
     u8 *e;
     void *p;
-    __ct__13TUnk_804C3248Fv(arg0);
+    photon_base_ct(arg0);
     *(u8 **)((s8 *)arg0 + 0x18) = (u8 *)lbl_804C3564;
     *(s32 *)((s8 *)arg0 + 0) = lbl_805D34E0;
     *(s32 *)((s8 *)arg0 + 0x138) = 0;
@@ -315,12 +319,12 @@ u8 *TPhotonFarlla__ct(u8 *arg0, u8 *arg1) {
     ((TPhotonFarlla *)arg0)->m_180 = (u8 *)find_entity_by_id(((TPhotonFarlla *)arg0)->m_17c);
     e = ((TPhotonFarlla *)arg0)->m_180;
     if (e != NULL) {
-        ((TPhotonFarlla *)arg0)->rotation_y = *(s32 *)((s8 *)e + 0x60);
+        ((TPhotonFarlla *)arg0)->rotation.yaw = *(s32 *)((s8 *)e + 0x60);
     }
     *(s32 *)((s8 *)arg0 + 0x34) = *(s32 *)((s8 *)(*(u8 **)((s8 *)photon_blast_shared_resource + 0x42C)) + 0x8);
     ((TPhotonFarlla *)arg0)->texlist = *(s32 *)((s8 *)(*(u8 **)((s8 *)photon_blast_shared_resource + 0x42C)) + 0xC);
-    ((TObjMotion *)arg0)->set_field_d8((s32) photon_blast_farlla_params);
-    ((TObjMotion *)arg0)->set_field_dc(*(s32 *)((s8 *)photon_blast_shared_resource + 0x430));
+    ((TObjMotion *)arg0)->set_action_table((TObjMotionAction *)((s32) photon_blast_farlla_params));
+    ((TObjMotion *)arg0)->set_motion_list((BmlMotionEntry *)(*(s32 *)((s8 *)photon_blast_shared_resource + 0x430)));
     ((TPhotonFarlla *)arg0)->requested_action = 1;
     ((TObjMotion *)arg0)->set_animation(((TPhotonFarlla *)arg0)->requested_action);
     ((TObjMotion *)arg0)->set_field_b8(((TPhotonFarlla *)arg0)->requested_action);
@@ -366,11 +370,11 @@ u8 *TPhotonFarlla__ct(u8 *arg0, u8 *arg1) {
         if (p != NULL) {
             construct_photon_magic_square_normal((u8 *)p, (s32)arg0, 0, (s32)&pos, 0x78);
         }
-        spawn_photon_blast_attachment_effects(arg0, 0);
-        play_cue_stream_file((s32)"farla2.adx");
+        spawn_photon_blast_attachment_effects((TPhotonFarlla *)arg0, 0);
+        play_cue_stream_file((s32)lbl_80446D40);
     } else {
         spawn_photon_blast_opening_effects(0, ((TPhotonFarlla *)arg0)->m_17c);
-        play_cue_stream_file((s32)"farla.adx");
+        play_cue_stream_file((s32)lbl_80446D4C);
     }
     return arg0;
 }

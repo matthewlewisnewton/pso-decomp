@@ -9,8 +9,4 @@ public:
     virtual void emit_marker_effects();
 };
 
-extern "C" {
-void *TObjPlayer__sub_80125F24(void *arg0);
-}
-
 #endif

@@ -22,8 +22,4 @@ void TObjBoss5PillarDemo__sub_8028ADB0(u32 arg0);
 void *__dt__19TObjBoss5PillarDemoFv(void *arg0, s16 arg1);
 }
 
-extern "C" {
-void fn_8028ADDC(void *p);
-}
-
 #endif

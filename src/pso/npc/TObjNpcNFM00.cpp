@@ -1,8 +1,8 @@
 #include "types.h"
-#include "pso/npc/TObjNpcNFM00.h"
 #include "pso/misc/TLanguage_801E4874.h"
 #include "pso/unk/text_800F9B84.h"
 #include "pso/unk/text_8014B8A4.h"
+#include "pso/npc/TObjNpcNFM00.h"
 #include "pso/npc/TUnk_804A9F50.h"
 #include "pso/npc/TObjNpcNFM01.h"
 #include "pso/misc/TLobby.h"
@@ -24,6 +24,8 @@ extern s32 TObjNpcNFM00__texture_gvm_handle;
 u8 *TObjNpcNFM00__ct(u8 *arg0, s32 arg1, s32 arg2);
 extern u32 TObjNpcNFM01__model_object;
 extern u32 TObjNpcNFM01__texture_handle;
+extern char lbl_8043FD58[];
+extern char lbl_8043FD6C[];
 void * TObjNpcNFM01__create(void *arg0);
 void *__dt__12TObjNpcNFM00Fv(void *arg0, s16 arg1);
 void release_texture_list(void*);
@@ -31,9 +33,16 @@ void *__ct__11TObjControlFP7TObject(void *, void *);
 void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
 
+void *__dt__12TObjNpcNFM00Fv(void *arg0, s16 arg1) {
+    if (arg0 != NULL) {
+        *(s32 **)((s8 *)arg0 + 0x18) = __vt__12TObjNpcNFM00;
+        ((TUnk_804A9F50 *)arg0)->destroy_npc_lappy_base(0);
+        if (arg1 > 0) {
+            __dl__7TObjectFPv(arg0);
+        }
+    }
+    return arg0;
 }
-TObjNpcNFM00::~TObjNpcNFM00() {}
-extern "C" {
 
 extern void *tl_04;
 
@@ -43,7 +52,7 @@ u8 *TObjNpcNFM00__ct(u8 *player, s32 arg1, s32 arg2) {
     *(s32 **)((s8 *)player + 0x18) = &(*(RecoveredGlobal_8014C9D4___vt__12TObjNpcNFM00 *)&__vt__12TObjNpcNFM00).value;
     *(s32 *)((s8 *)player + 0) = (s32) TObjNpcNFM00__name;
     ((TObjNpcNFM00 *)(player))->apply_set_data((void *)arg2);
-    ((TObjPlayer *)player)->init_position_vectors();
+    ((TObjChara *)player)->initialize_position_copies();
     *(s32 *)((s8 *)player + 0x34) = (s32) *TObjNpcNFM00__shared_named_model_object;
     ((TObjNpcNFM00 *)player)->texlist = (s32) TObjNpcNFM00__texture_gvm_handle;
     ((TObjNpcBase *)player)->setup_common();
@@ -76,8 +85,8 @@ void TObjNpcNFM01::free_resources() {
     }
 }
 void TObjNpcNFM01::load_resources() {
-    TObjNpcNFM01__model_object = (u32)create_named_object((s32)"npc_h01_data.rel");
-    TObjNpcNFM01__texture_handle = (u32)load_gvm_texture_file((s32)"n_h01_e_body.gvm");
+    TObjNpcNFM01__model_object = (u32)create_named_object((s32)lbl_8043FD58);
+    TObjNpcNFM01__texture_handle = (u32)load_gvm_texture_file((s32)lbl_8043FD6C);
 }
 
 }

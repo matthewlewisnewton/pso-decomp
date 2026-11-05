@@ -1,3 +1,6 @@
+#include "pso/system/ArrayAllocation.h"
+#include "pso/system/SoundSlotPitch.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/TParticleCtrl.h"
 #include "types.h"
 #include "pso/effect/TUnk_804CCC68.h"
@@ -192,7 +195,7 @@ s32 is_technique_ready__8TTecCtrlFv();
 extern RecoveredGlobal_80235348_lbl_804CC510 tech_high_level_linear_power_table;
 extern RecoveredGlobal_80235348_lbl_804CC55C lbl_804CC55C;
 void queue_destruction__7TObjectFv(void *arg0);
-void mem_free(void *p);
+
 void __dl__7TObjectFPv(void *);
 extern TTecGiBartaData_80230B48 TTecMegid__emitter_bands[];
 extern void *__vt__9TTecMegid[];
@@ -200,10 +203,11 @@ TTecGiBarta_80230B48 *__dt__9TTecMegidFv(TTecGiBarta_80230B48 *self, s16 deletin
 u16 get_entity_id(void *);
 void __ct__13TUnk_804CCC68FlPUcPUcl();
 extern s32 lbl_805D37E8;
+extern const f32 lbl_805DC884;
 u8 *TTecMegid__ct(TTecMegid *arg0, s32 _w1, s32 _w2, s32 _w3, s32 _w4);
 void construct_facing_technique__10TObjPlayerFPviPvii();
 s32 obj_isState3_324__9TObjCharaFv(void *);
-s32 play_sound_effect(s32, s32, s32, s32);
+
 s32 get_technique_caster_flags(s32, u16);
 void TTecMegid__vt6(Obj_80235490 *self, VObj_80235490 *target);
 void *find_entity_by_id(u16);
@@ -219,11 +223,11 @@ void *get_bml_model(s32, u32);
 s32 attach_particle_model(void *, void *, s32, int, int, f32);
 void *spawn_particle_effect_with_rotation(void *, void *, u32, u16);
 void *spawn_continuous_particle_effect_with_flags(void *, u32, u16);
-void **mem_alloc(u32, s32);
+
 extern s32 technique_effect_bml;
 extern s32 lbl_805D63B0;
+extern const f32 lbl_805DC880;
 u32 __nw__7TObjectFUl(s32 a0 = 0);
-s32 update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
 
 void TTecMegid::update_by_state() {
     u8 *arg0 = (u8 *)this;
@@ -231,29 +235,29 @@ void TTecMegid::update_by_state() {
 
     switch (this->band) {
     case 0:
-        handle = play_sound_effect(0x4002A60B, (int)(arg0 + 0x20), 0, 0);
+        handle = play_sound_effect(0x4002A60B, (const Vec *)((arg0 + 0x20)), 0, 0);
         if (handle >= 0) {
             update_technique_slot__10TTecRaFoieFl(handle, 0x100, 0);
         }
         return;
     case 1:
-        play_sound_effect(0x4002A60B, (int)(arg0 + 0x20), 0, 0);
+        play_sound_effect(0x4002A60B, (const Vec *)((arg0 + 0x20)), 0, 0);
         return;
     case 2:
     case 3:
-        handle = play_sound_effect(0x4002A60B, (int)(arg0 + 0x20), 0, 0);
+        handle = play_sound_effect(0x4002A60B, (const Vec *)((arg0 + 0x20)), 0, 0);
         if (handle >= 0) {
             update_technique_slot__10TTecRaFoieFl(handle, -0x180, 0);
         }
         break;
     case 4:
-        handle = play_sound_effect(0x4002A60B, (int)(arg0 + 0x20), 0, 0);
+        handle = play_sound_effect(0x4002A60B, (const Vec *)((arg0 + 0x20)), 0, 0);
         if (handle >= 0) {
             update_technique_slot__10TTecRaFoieFl(handle, -0x250, 0);
         }
         break;
     case 5:
-        handle = play_sound_effect(0x4002A60B, (int)(arg0 + 0x20), 0, 0);
+        handle = play_sound_effect(0x4002A60B, (const Vec *)((arg0 + 0x20)), 0, 0);
         if (handle >= 0) {
             update_technique_slot__10TTecRaFoieFl(handle, -0x100, 0);
         }
@@ -285,7 +289,7 @@ void TTecMegid::spawn_particle_emitters() {
   sp8.a = self->f54;
   sp8.b = 0;
   sp8.c = self->f5c;
-  self->emitters = mem_alloc(TTecMegid__emitter_bands[this->band].count * 4, self->f54);
+  self->emitters = static_cast<void **>(::operator new[](TTecMegid__emitter_bands[this->band].count * 4));
   for (i = 0; i < ((Data_802351B4 *) TTecMegid__emitter_bands)[this->band].count; i++)
   {
     mode = 0;
@@ -313,7 +317,7 @@ void TTecMegid::spawn_particle_emitters() {
       if (((Data_802351B4 *) TTecMegid__emitter_bands)[this->band].rows[i].flags & 0x20)
       {
         new_var = ((Data_802351B4 *) TTecMegid__emitter_bands)[this->band].rows[i].flags >> 16;
-        attach_particle_model(self->emitters[i], get_bml_model(technique_effect_bml, new_var), lbl_805D63B0, 0, 1, 1.0f);
+        attach_particle_model(self->emitters[i], get_bml_model(technique_effect_bml, new_var), lbl_805D63B0, 0, 1, lbl_805DC880);
       }
     }
   }
@@ -362,7 +366,7 @@ void TTecMegid__vt6(Obj_80235490 *self, VObj_80235490 *target) {
         }
         HitInfo_80235490 info = tmp;
         target->m21(self->source, &info, self->contact, 0x12, -1);
-        play_sound_effect(0x4002AD29, (s32)((u8 *)target + 0x38), 0, 0);
+        play_sound_effect(0x4002AD29, (const Vec *)(((u8 *)target + 0x38)), 0, 0);
         if (self->fc8 < 12) {
             if ((get_technique_caster_flags(0x12, self->fc8) & 1) == 0) {
                 queue_destruction__7TObjectFv(self);
@@ -400,7 +404,7 @@ TTecGiBarta_80230B48 *__dt__9TTecMegidFv(TTecGiBarta_80230B48 *self, s16 deletin
                 queue_destruction__7TObjectFv((self->emitters[i]));
             }
         }
-        mem_free(self->emitters);
+        ::operator delete[](self->emitters);
         ((TObjPlayer *)self)->destroy_technique_effect_resources(0);
         if (deleting > 0) __dl__7TObjectFPv(self);
     }
@@ -441,7 +445,7 @@ u8 *TTecMegid__ct(TTecMegid *tec_megid, s32 _w1, s32 _w2, s32 _w3, s32 _w4) {
     *(void **)((s8 *)tec_megid + 0x18) = __vt__9TTecMegid;
     *(s32 *)((s8 *)tec_megid + 0) = lbl_805D37E8;
     tec_megid->init_parameters();
-    *(f32 *)((s8 *)tec_megid + 0x178) = 0.0f;
+    *(f32 *)((s8 *)tec_megid + 0x178) = lbl_805DC884;
     for (i = 0; i < 0x20; i++) {
         ((Obj_8023589C *)tec_megid)->ids[i] = 0xFFFF;
     }
@@ -461,7 +465,7 @@ u8 *TTecMegid::construct_facing(s32 _w1, s32 _w2, s32 _w3, s32 _w4) {
     *(void **)((s8 *)arg0 + 0x18) = __vt__9TTecMegid;
     *(s32 *)&this->m_name = lbl_805D37E8;
     init_parameters();
-    *(f32 *)((s8 *)arg0 + 0x178) = 0.0f;
+    *(f32 *)((s8 *)arg0 + 0x178) = lbl_805DC884;
     for (i = 0; i < 0x20; i++) {
         ((Obj_80235940 *)arg0)->ids[i] = 0xFFFF;
     }

@@ -1,11 +1,15 @@
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/protocol/protocol_types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/misc/TLobby_801E43E4.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/system/ChunkMaterialState.h"
 #include "types.h"
 #include "pso/TMainTask.h"
 #include "pso/unk/text_80198A2C.h"
-#include "pso/unk/text_80235A20.h"
+#include "pso/unk/text_80235A8C.h"
 #include "pso/math/MatrixTransforms.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/system/GinjaMaterial.h"
@@ -49,7 +53,7 @@ struct RecoveredGlobal_80198228___vt__12TObjSinBoard {
 #pragma inline_depth(1)
 #pragma auto_inline off
 #pragma dont_inline off
-struct Pos_8019806C { f32 w[12]; };
+struct Pos_8019806C { u32 w[12]; };
 
 struct Uv_8019806C { u32 w[4]; };
 
@@ -68,23 +72,16 @@ extern s32 lobby_gvm_texture_handles[];
 extern s32 gogo_ball_bml_resource;
 s32 __ct__8TObjBaseFP7TObject(void *, void *);
 extern s32 __vt__12TObjSinBoard[];
+extern s32 TObjSinBoard__class_name;
 s32 scale_matrix(int, f32, f32, f32);
 s32 rotate_matrix_x(int, int);
+extern Pos_8019806C TObjSinBoard__quad_position_table;
+extern Uv_8019806C sin_board_uv_table;
 extern u8 signboard_texture_list[];
 extern u32 TObjSinBoard__texture_buffer;
-}
-
-const char *TObjSinBoard__class_name = "TObjSinBoard";
-const Pos_8019806C TObjSinBoard__quad_position_table = {
-    -10.0f, -10.0f, 0.0f, 10.0f, -10.0f, 0.0f, 10.0f, 10.0f, 0.0f, -10.0f, 10.0f, 0.0f,
-};
-const Uv_8019806C sin_board_uv_table = {0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF};
-const char *memcard_file_099_name = "PSO______099";
-
-extern "C" {
 struct Vec_80198E84;
 extern Vec_80198E84 gogo_ball_sync_state[];
-s32 play_sound_effect(int, void *, int, int);
+
 void *__nw__7TObjectFUl(s32);
 struct Sys_80198A2C;
 extern Sys_80198A2C gogo_ball_configuration;
@@ -113,7 +110,7 @@ void TObjSinBoard::render() {
         d.col = col;
         d.count = 4;
         set_default_alpha_blend();
-        TObjFish::set_global_param((int) signboard_texture_list);
+        set_current_texture_list((GinjaTextureList *)(signboard_texture_list));
         set_texture_num(0);
         TParticleCtrl::begin_effect_render();
         push_matrix();
@@ -173,9 +170,9 @@ void TUnk_804B8DD0::render() {
     bml_model = (u8 *)(get_bml_model((void *)gogo_ball_bml_resource, 1));
     if (bml_model != NULL) {
         if ((s32) this->m_28 != 0) {
-            TObjFish::set_global_param((int) (*(s32 *)((s8 *)lobby_gvm_texture_handles + 0x1C)));
+            set_current_texture_list((GinjaTextureList *)((*(s32 *)((s8 *)lobby_gvm_texture_handles + 0x1C))));
         } else {
-            TObjFish::set_global_param((int) (*(s32 *)((s8 *)lobby_gvm_texture_handles + 0x20)));
+            set_current_texture_list((GinjaTextureList *)((*(s32 *)((s8 *)lobby_gvm_texture_handles + 0x20))));
         }
         push_matrix();
         post_translate_matrix((u8 *)&this->unk_1C);
@@ -241,7 +238,7 @@ void TUnk_804B8DD0::update_effects() {
             VecCopy((Vec *)&v6, (const Vec *)&this->unk_1C);
             v6.y += 7.0f;
             spawn_particle_effect_with_flags(&v6, 0x20D, 0x40);
-            play_sound_effect(0x4001A82E, (u8 *)&this->unk_1C, 0, 0);
+            play_sound_effect(0x4001A82E, (const Vec *)((u8 *)&this->unk_1C), 0, 0);
         }
     } else if (*(u16 *)((s8 *)&gogo_ball_configuration + 0x48) == 2) {
         (this->m_30)++;
@@ -252,7 +249,7 @@ void TUnk_804B8DD0::update_effects() {
                 v2a.y += 7.0f;
                 spawn_particle_effect_with_flags(&v2a, 0x45, 0x40);
                 spawn_particle_effect_with_flags(&v2a, 0x189, 0x40);
-                play_sound_effect(0x4001C112, (u8 *)&this->unk_1C, 0, 0);
+                play_sound_effect(0x4001C112, (const Vec *)((u8 *)&this->unk_1C), 0, 0);
             }
         } else {
             if (this->m_30 == 1) {
@@ -261,7 +258,7 @@ void TUnk_804B8DD0::update_effects() {
                 v2b.y += 7.0f;
                 spawn_particle_effect_with_flags(&v2b, 0x45, 0x40);
                 spawn_particle_effect_with_flags(&v2b, 0x189, 0x40);
-                play_sound_effect(0x4001C112, (u8 *)&this->unk_1C, 0, 0);
+                play_sound_effect(0x4001C112, (const Vec *)((u8 *)&this->unk_1C), 0, 0);
             }
         }
     } else if (*(u16 *)((s8 *)&gogo_ball_configuration + 0x48) != 0) {
@@ -370,9 +367,9 @@ typedef char RecoveredGlobal_80198960_lbl_8050DD58_size[sizeof(RecoveredGlobal_8
 void TUnk_804B8DE8::render() {
     if ((((u32) gogo_ball_bml_resource != 0U) || ((u32) *(u32 *)((s8 *)lobby_gvm_texture_handles + 0x10) != 0U)) && ((u16) *(u16 *)((s8 *)&gogo_ball_configuration + 0x48) != 6)) {
         if ((s32) *(s32 *)((s8 *)((u8 *)this) + 0x50) == 1) {
-            TObjFish::set_global_param((int) (*(u32 *)((s8 *)lobby_gvm_texture_handles + 0x10)));
+            set_current_texture_list((GinjaTextureList *)((*(u32 *)((s8 *)lobby_gvm_texture_handles + 0x10))));
         } else {
-            TObjFish::set_global_param((int) (*(u32 *)((s8 *)lobby_gvm_texture_handles + 0x14)));
+            set_current_texture_list((GinjaTextureList *)((*(u32 *)((s8 *)lobby_gvm_texture_handles + 0x14))));
         }
         push_matrix();
         post_translate_matrix(((u8 *)this) + 0x1C);
@@ -439,86 +436,8 @@ struct Sys_80198A2C { u8 pad0[0x48]; u16 mode; };
 
 extern "C" {
 void *spawn_particle_effect_with_rotation(void *pos, void *dir, s32 id, int e);
-void *spawn_particle_effect(void *pos, s32 id);
-s32 play_sound_effect(int, void *, int, int);
-void *lbl_804B8A10[210] = {
-    (void *)0xbf000000, (void *)0x3f600000, (void *)0x0, (void *)0x40600000,
-    (void *)0x40200000, (void *)0x8d480ff, (void *)0x0, (void *)0x41a00000,
-    (void *)0x0, (void *)0x0, (void *)0x0, (void *)0xc3770000,
-    (void *)0x0, (void *)0x0, (void *)0x43770000, (void *)0x0,
-    (void *)0x0, (void *)0x41f00000, (void *)0x60000, (void *)0x41000000,
-    (void *)0x40400000, (void *)0xbf000000, (void *)0x3f600000, (void *)0x0,
-    (void *)0x40600000, (void *)0x40200000, (void *)0x8d48000, (void *)0xff0000,
-    (void *)0x41200000, (void *)0x0, (void *)0x0, (void *)0x0,
-    (void *)0xc3770000, (void *)0x0, (void *)0x0, (void *)0x43770000,
-    (void *)0x0, (void *)0x0, (void *)0x41f00000, (void *)0x20000,
-    (void *)0x41000000, (void *)0x40400000, (void *)0xbdcccccd, (void *)0x3f000000,
-    (void *)0x0, (void *)0x40133333, (void *)0x40133333, (void *)0x8d480ff,
-    (void *)0x0, (void *)0x41200000, (void *)0x0, (void *)0x0,
-    (void *)0x0, (void *)0xc3770000, (void *)0x0, (void *)0x0,
-    (void *)0x43770000, (void *)0x0, (void *)0x0, (void *)0x41f00000,
-    (void *)0x30000, (void *)0x40400000, (void *)0x40600000, (void *)0xbf000000,
-    (void *)0x3f600000, (void *)0x0, (void *)0x40600000, (void *)0x40200000,
-    (void *)0x8d48000, (void *)0xff0000, (void *)0x41200000, (void *)0x0,
-    (void *)0x0, (void *)0x0, (void *)0xc3770000, (void *)0x0,
-    (void *)0x0, (void *)0x43770000, (void *)0x0, (void *)0x0,
-    (void *)0x41f00000, (void *)0x10000, (void *)0x41000000, (void *)0x40400000,
-    (void *)0xbf000000, (void *)0x3f600000, (void *)0x0, (void *)0x40600000,
-    (void *)0x40200000, (void *)0x8d480ff, (void *)0xff000000, (void *)0x41200000,
-    (void *)0x0, (void *)0x0, (void *)0x0, (void *)0xc3770000,
-    (void *)0x0, (void *)0x0, (void *)0x43770000, (void *)0x0,
-    (void *)0x0, (void *)0x41f00000, (void *)0x60000, (void *)0x41000000,
-    (void *)0x40400000, (void *)0xbf000000, (void *)0x3f600000, (void *)0x0,
-    (void *)0x40600000, (void *)0x40200000, (void *)0x8d48000, (void *)0xff0000,
-    (void *)0x41c80000, (void *)0x0, (void *)0x0, (void *)0x0,
-    (void *)0xc3770000, (void *)0x0, (void *)0x0, (void *)0x43770000,
-    (void *)0x0, (void *)0x0, (void *)0x41f00000, (void *)0x0,
-    (void *)0x41000000, (void *)0x40400000, (void *)0xbf000000, (void *)0x3f600000,
-    (void *)0x0, (void *)0x40600000, (void *)0x40200000, (void *)0x8d480ff,
-    (void *)0xff000000, (void *)0x41200000, (void *)0x0, (void *)0x0,
-    (void *)0x0, (void *)0xc3770000, (void *)0x0, (void *)0x0,
-    (void *)0x43770000, (void *)0x0, (void *)0x0, (void *)0x41f00000,
-    (void *)0x10000, (void *)0x41000000, (void *)0x40400000, (void *)0xbdcccccd,
-    (void *)0x3f000000, (void *)0x0, (void *)0x40133333, (void *)0x40133333,
-    (void *)0x8d480ff, (void *)0x0, (void *)0x41200000, (void *)0x0,
-    (void *)0x0, (void *)0x0, (void *)0xc3770000, (void *)0x0,
-    (void *)0x0, (void *)0x43770000, (void *)0x0, (void *)0x0,
-    (void *)0x41f00000, (void *)0x30000, (void *)0x40400000, (void *)0x40600000,
-    (void *)0xbf000000, (void *)0x3f600000, (void *)0x0, (void *)0x40600000,
-    (void *)0x40200000, (void *)0x8d480ff, (void *)0xff000000, (void *)0x41200000,
-    (void *)0x0, (void *)0x0, (void *)0x0, (void *)0xc3770000,
-    (void *)0x0, (void *)0x0, (void *)0x43770000, (void *)0x0,
-    (void *)0x0, (void *)0x41f00000, (void *)0x20000, (void *)0x41000000,
-    (void *)0x40400000, (void *)0xbf000000, (void *)0x3f600000, (void *)0x0,
-    (void *)0x40600000, (void *)0x40200000, (void *)0x8d480ff, (void *)0xff000000,
-    (void *)0x41200000, (void *)0x0, (void *)0x0, (void *)0x0,
-    (void *)0xc3770000, (void *)0x0, (void *)0x0, (void *)0x43770000,
-    (void *)0x0, (void *)0x0, (void *)0x41f00000, (void *)0x0,
-    (void *)0x41000000, (void *)0x40400000,
-};
-const char *biri_ball_motion_names[2] = {NULL, NULL};
-void *biri_ball_model_names[6] = {
-    (void *)"biri_ball.nj", (void *)"fd_obj804_gorl03_dai.gj", (void *)"robby_cat.nj", (void *)"robby_chu.nj",
-    (void *)"rokeorange_churoke.nj", (void *)0x0,
-};
-void *language_lobby_texture_descriptor[4] = {
-    (void *)"biri_ball.bml", (void *)&biri_ball_model_names, (void *)&biri_ball_motion_names, (void *)0x50000,
-};
-void *lbl_804B8D80[5] = {
-    (void *)0x50005, (void *)0x0, (void *)0x0, (void *)0xff00ff,
-    (void *)0x0,
-};
-void *lbl_804B8D94[3] = {
-    (void *)0x43fa0000, (void *)0x41a00000, (void *)0x0,
-};
-void *lbl_804B8DA0[3] = {
-    (void *)0xc3fa0000, (void *)0x41a00000, (void *)0x0,
-};
-struct Color_80199A44 { f32 a, r, g, b; };
-const Color_80199A44 fish_draw_color[1] = {{0.2f, 0.0f, 0.0f, 0.0f}};
-// spawn_particle_effect_with_rotation takes x/y/z angles (0x8000 = half turn).
-struct Rot_80198A2C { s32 x, y, z; };
-const Rot_80198A2C boss3_volopt_init_vec = {0, 0, 0x8000};
+
+extern Vec_80198A2C boss3_volopt_init_vec;
 #pragma push
 #pragma fp_contract on
 void TUnk_804B8DE8::run_task() {
@@ -534,15 +453,15 @@ void TUnk_804B8DE8::run_task() {
     if (state == 0) {
         if (self->f50 != 0) {
             if ((*(Pad_80198A2C *)&gogo_ball_sync_state).buttons & (this->m_54 != 0 ? 0x10 : 1)) {
-                play_sound_effect(0x4002A605, &self->pos, 0, 0);
-                play_sound_effect(0x40052D15, &self->pos, 0, 0);
+                play_sound_effect(0x4002A605, (const Vec *)(&self->pos), 0, 0);
+                play_sound_effect(0x40052D15, (const Vec *)(&self->pos), 0, 0);
                 this->m_4c = 1;
                 return;
             }
         } else {
             if ((*(Pad_80198A2C *)&gogo_ball_sync_state).buttons & (this->m_54 != 0 ? 0x20 : 2)) {
-                play_sound_effect(0x4002A605, &self->pos, 0, 0);
-                play_sound_effect(0x40052D15, &self->pos, 0, 0);
+                play_sound_effect(0x4002A605, (const Vec *)(&self->pos), 0, 0);
+                play_sound_effect(0x40052D15, (const Vec *)(&self->pos), 0, 0);
                 this->m_4c = 1;
                 return;
             }
@@ -550,7 +469,7 @@ void TUnk_804B8DE8::run_task() {
     }
     if (state != 0) {
         if (self->effect == NULL) {
-            Rot_80198A2C init = boss3_volopt_init_vec;
+            Vec_80198A2C init = boss3_volopt_init_vec;
             if (gogo_ball_configuration.mode != 6) {
                 self->effect = spawn_particle_effect_with_rotation(&self->pos, &init, 0xC0, 2);
             }
@@ -564,7 +483,7 @@ void TUnk_804B8DE8::run_task() {
             Vec_80198A2C v;
             VecCopy((Vec *)&v, (const Vec *)&self->pos);
             v.y += (18.0f);
-            spawn_particle_effect(&v, 0x1DB);
+            spawn_particle_effect((const Vec *)(&v), 0x1DB);
         }
         self->pos.y = (0.001f) * (f32)(self->timer * self->timer) + self->pos.y;
         if (self->effect != NULL) {
@@ -656,10 +575,10 @@ void TWindowTimer::throw_gogo_ball(s32 arg1, s32 arg2) {
     stack.sp14 = *(f32 *)((s8 *)((u8 *)this) + 0);
     stack.sp18 = *(f32 *)((s8 *)((u8 *)this) + 8);
     if (is_on_current_screen__11TCameraCtrlFv((void *) ((u8 *)&controller_input_state.value + 0x20), 4) != 0) {
-        play_sound_effect(0x4001A311, this, 0, 0);
+        play_sound_effect(0x4001A311, (const Vec *)(this), 0, 0);
         stack.sp1C = 1;
     } else {
-        play_sound_effect(0x4002A600, this, 0, 0);
+        play_sound_effect(0x4002A600, (const Vec *)(this), 0, 0);
         stack.sp1C = 0;
     }
     ((TWindowTimer *)((s32)&stack.sp8))->send_gogo_ball();
@@ -670,7 +589,6 @@ void TWindowTimer::throw_gogo_ball(s32 arg1, s32 arg2) {
 struct Vec_80198E84 { f32 x; f32 y; f32 z; s32 w; u8 pad10[2]; s16 f12; };
 
 extern "C" {
-void TLobby__sub_8001FE7C(s32, int, void *, f32);
 extern s32 lobby_gvm_texture_handles[];
 void fn_80198E84(void);
 void fn_80198E84(void) {
@@ -682,7 +600,7 @@ void fn_80198E84(void) {
     gogo_ball_sync_state->y = (0.0f);
     gogo_ball_sync_state->z = (63.0f);
     gogo_ball_sync_state->w = 0;
-    TLobby__sub_8001FE7C(gogo_ball_bml_resource, 1, gogo_ball_sync_state, (63.0f));
+    delete (BmlResource *)(gogo_ball_bml_resource);
     gogo_ball_bml_resource = 0;
     for (i = 0; i < 9; i++) {
         TObjPlayer::free_if_valid(lobby_gvm_texture_handles[i]);
@@ -699,7 +617,6 @@ struct Cfg_80198F14 { f32 f0; f32 f4; f32 f8; s32 fC; u8 pad10[2]; s16 f12; u8 p
 struct Pair_80198F14 { s32 a; s32 b; };
 
 extern "C" {
-void *load_resource_from_descriptor(void *, int, void *, int, int, int);
 u8 *load_gvm_texture_file(s32 arg0);
 extern char lbl_80446088[];
 extern char lbl_80446098[];
@@ -722,10 +639,7 @@ void TLanguage::load_lobby_textures() {
     c->f18 = 0;
     p->a = 0;
     p->b = 0;
-    obj = ::operator new(0x440);
-    if (obj != 0) {
-        obj = load_resource_from_descriptor(obj, 5, language_lobby_texture_descriptor, 0, 0, 0);
-    }
+    obj = new BmlResource(5, (BmlResourceDescriptor *)(language_lobby_texture_descriptor), 0, 0, (void *)(0));
     (*(void**)&gogo_ball_bml_resource) = obj;
     lobby_gvm_texture_handles[0] = (s32)load_gvm_texture_file((s32)lbl_80446088);
     lobby_gvm_texture_handles[1] = (s32)load_gvm_texture_file((s32)lbl_80446098);
@@ -804,6 +718,85 @@ u8 *TWindowTimer__sub_801988E8(u8 *arg0, u8 *arg1, s32 arg2, s32 arg3, u8 *arg4)
 u8 *TWindowTimer__sub_8019A574(u8 *arg0);
 s32 TWindowShortListCtrl__check_controller_button(void *, int);
 
+extern "C" u8 lbl_80445FF0[];
+extern "C" u8 lbl_80446000[];
+extern "C" u8 lbl_80446018[];
+extern "C" u8 lbl_80446028[];
+extern "C" u8 lbl_80446038[];
+extern "C" u8 lbl_80446050[];
+extern "C" u8 biri_ball_motion_names[];
+void *lbl_804B8A10[210] = {
+    (void *)0xbf000000, (void *)0x3f600000, (void *)0x0, (void *)0x40600000,
+    (void *)0x40200000, (void *)0x8d480ff, (void *)0x0, (void *)0x41a00000,
+    (void *)0x0, (void *)0x0, (void *)0x0, (void *)0xc3770000,
+    (void *)0x0, (void *)0x0, (void *)0x43770000, (void *)0x0,
+    (void *)0x0, (void *)0x41f00000, (void *)0x60000, (void *)0x41000000,
+    (void *)0x40400000, (void *)0xbf000000, (void *)0x3f600000, (void *)0x0,
+    (void *)0x40600000, (void *)0x40200000, (void *)0x8d48000, (void *)0xff0000,
+    (void *)0x41200000, (void *)0x0, (void *)0x0, (void *)0x0,
+    (void *)0xc3770000, (void *)0x0, (void *)0x0, (void *)0x43770000,
+    (void *)0x0, (void *)0x0, (void *)0x41f00000, (void *)0x20000,
+    (void *)0x41000000, (void *)0x40400000, (void *)0xbdcccccd, (void *)0x3f000000,
+    (void *)0x0, (void *)0x40133333, (void *)0x40133333, (void *)0x8d480ff,
+    (void *)0x0, (void *)0x41200000, (void *)0x0, (void *)0x0,
+    (void *)0x0, (void *)0xc3770000, (void *)0x0, (void *)0x0,
+    (void *)0x43770000, (void *)0x0, (void *)0x0, (void *)0x41f00000,
+    (void *)0x30000, (void *)0x40400000, (void *)0x40600000, (void *)0xbf000000,
+    (void *)0x3f600000, (void *)0x0, (void *)0x40600000, (void *)0x40200000,
+    (void *)0x8d48000, (void *)0xff0000, (void *)0x41200000, (void *)0x0,
+    (void *)0x0, (void *)0x0, (void *)0xc3770000, (void *)0x0,
+    (void *)0x0, (void *)0x43770000, (void *)0x0, (void *)0x0,
+    (void *)0x41f00000, (void *)0x10000, (void *)0x41000000, (void *)0x40400000,
+    (void *)0xbf000000, (void *)0x3f600000, (void *)0x0, (void *)0x40600000,
+    (void *)0x40200000, (void *)0x8d480ff, (void *)0xff000000, (void *)0x41200000,
+    (void *)0x0, (void *)0x0, (void *)0x0, (void *)0xc3770000,
+    (void *)0x0, (void *)0x0, (void *)0x43770000, (void *)0x0,
+    (void *)0x0, (void *)0x41f00000, (void *)0x60000, (void *)0x41000000,
+    (void *)0x40400000, (void *)0xbf000000, (void *)0x3f600000, (void *)0x0,
+    (void *)0x40600000, (void *)0x40200000, (void *)0x8d48000, (void *)0xff0000,
+    (void *)0x41c80000, (void *)0x0, (void *)0x0, (void *)0x0,
+    (void *)0xc3770000, (void *)0x0, (void *)0x0, (void *)0x43770000,
+    (void *)0x0, (void *)0x0, (void *)0x41f00000, (void *)0x0,
+    (void *)0x41000000, (void *)0x40400000, (void *)0xbf000000, (void *)0x3f600000,
+    (void *)0x0, (void *)0x40600000, (void *)0x40200000, (void *)0x8d480ff,
+    (void *)0xff000000, (void *)0x41200000, (void *)0x0, (void *)0x0,
+    (void *)0x0, (void *)0xc3770000, (void *)0x0, (void *)0x0,
+    (void *)0x43770000, (void *)0x0, (void *)0x0, (void *)0x41f00000,
+    (void *)0x10000, (void *)0x41000000, (void *)0x40400000, (void *)0xbdcccccd,
+    (void *)0x3f000000, (void *)0x0, (void *)0x40133333, (void *)0x40133333,
+    (void *)0x8d480ff, (void *)0x0, (void *)0x41200000, (void *)0x0,
+    (void *)0x0, (void *)0x0, (void *)0xc3770000, (void *)0x0,
+    (void *)0x0, (void *)0x43770000, (void *)0x0, (void *)0x0,
+    (void *)0x41f00000, (void *)0x30000, (void *)0x40400000, (void *)0x40600000,
+    (void *)0xbf000000, (void *)0x3f600000, (void *)0x0, (void *)0x40600000,
+    (void *)0x40200000, (void *)0x8d480ff, (void *)0xff000000, (void *)0x41200000,
+    (void *)0x0, (void *)0x0, (void *)0x0, (void *)0xc3770000,
+    (void *)0x0, (void *)0x0, (void *)0x43770000, (void *)0x0,
+    (void *)0x0, (void *)0x41f00000, (void *)0x20000, (void *)0x41000000,
+    (void *)0x40400000, (void *)0xbf000000, (void *)0x3f600000, (void *)0x0,
+    (void *)0x40600000, (void *)0x40200000, (void *)0x8d480ff, (void *)0xff000000,
+    (void *)0x41200000, (void *)0x0, (void *)0x0, (void *)0x0,
+    (void *)0xc3770000, (void *)0x0, (void *)0x0, (void *)0x43770000,
+    (void *)0x0, (void *)0x0, (void *)0x41f00000, (void *)0x0,
+    (void *)0x41000000, (void *)0x40400000,
+};
+void *biri_ball_model_names[6] = {
+    (void *)&lbl_80445FF0, (void *)&lbl_80446000, (void *)&lbl_80446018, (void *)&lbl_80446028,
+    (void *)&lbl_80446038, (void *)0x0,
+};
+void *language_lobby_texture_descriptor[4] = {
+    (void *)&lbl_80446050, (void *)&biri_ball_model_names, (void *)&biri_ball_motion_names, (void *)0x50000,
+};
+void *lbl_804B8D80[5] = {
+    (void *)0x50005, (void *)0x0, (void *)0x0, (void *)0xff00ff,
+    (void *)0x0,
+};
+void *lbl_804B8D94[3] = {
+    (void *)0x43fa0000, (void *)0x41a00000, (void *)0x0,
+};
+void *lbl_804B8DA0[3] = {
+    (void *)0xc3fa0000, (void *)0x41a00000, (void *)0x0,
+};
 
 struct E54_801990B4 { u8 b[0x54]; };
 
@@ -1106,6 +1099,7 @@ s32 TUnk_804B8E18::reflect_velocity_off_collision(void *p, void *v) {
 #define normalize_vector ((s32 (*)(void*))normalize_vector)
 #define draw_shadow_on_ground ((s32 (*)(void*))draw_shadow_on_ground)
 struct Vec_80199A44 { f32 x, y, z; };
+struct Color_80199A44 { f32 a, r, g, b; };
 struct Glob_80199A44 { u8 pad[0x1C]; f32 scale; u8 pad20[0x28]; u16 kind; };
 
 s32 get_bml_model(void *, s32);
@@ -1120,6 +1114,7 @@ f32 vec_squared_length(void *);
 s32 push_matrix_from(void *);
 void set_chunk_material_override_pair(s32, s32);
 s32 draw_chunk_object(s32);
+extern Color_80199A44 fish_draw_color[];
 extern u8 identity_matrix[];
 extern s32 saved_model_render_flags;
 extern s32 saved_chunk_polygon_flags_and_mask;
@@ -1182,7 +1177,7 @@ void draw_model__8TObjFishFPv(u8 *arg0) {
     if (lobby_gvm_texture_handles != 0 && (*(void**)&gogo_ball_bml_resource) != 0) {
         switch ((*(Glob_80199A44 *)&gogo_ball_configuration).kind) {
         case 0:
-            TObjFish::set_global_param(lobby_gvm_texture_handles[0]);
+            set_current_texture_list((GinjaTextureList *)(lobby_gvm_texture_handles[0]));
             set_cull_back();
             draw_chunk_object(get_bml_model((*(void**)&gogo_ball_bml_resource), 3));
             set_cull_front();
@@ -1190,7 +1185,7 @@ void draw_model__8TObjFishFPv(u8 *arg0) {
             set_cull_none();
             break;
         case 1:
-            TObjFish::set_global_param(lobby_gvm_texture_handles[1]);
+            set_current_texture_list((GinjaTextureList *)(lobby_gvm_texture_handles[1]));
             set_cull_back();
             draw_chunk_object(get_bml_model((*(void**)&gogo_ball_bml_resource), 0));
             set_cull_front();
@@ -1198,7 +1193,7 @@ void draw_model__8TObjFishFPv(u8 *arg0) {
             set_cull_none();
             break;
         case 2:
-            TObjFish::set_global_param(lobby_gvm_texture_handles[2]);
+            set_current_texture_list((GinjaTextureList *)(lobby_gvm_texture_handles[2]));
             set_cull_back();
             draw_chunk_object(get_bml_model((*(void**)&gogo_ball_bml_resource), 0));
             set_cull_front();
@@ -1206,7 +1201,7 @@ void draw_model__8TObjFishFPv(u8 *arg0) {
             set_cull_none();
             break;
         case 3:
-            TObjFish::set_global_param(lobby_gvm_texture_handles[3]);
+            set_current_texture_list((GinjaTextureList *)(lobby_gvm_texture_handles[3]));
             set_cull_back();
             draw_chunk_object(get_bml_model((*(void**)&gogo_ball_bml_resource), 0));
             set_cull_front();
@@ -1214,7 +1209,7 @@ void draw_model__8TObjFishFPv(u8 *arg0) {
             set_cull_none();
             break;
         case 6:
-            TObjFish::set_global_param(lobby_gvm_texture_handles[6]);
+            set_current_texture_list((GinjaTextureList *)(lobby_gvm_texture_handles[6]));
             set_cull_back();
             draw_chunk_object(get_bml_model((*(void**)&gogo_ball_bml_resource), 2));
             set_cull_front();

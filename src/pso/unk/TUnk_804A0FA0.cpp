@@ -6,7 +6,6 @@
 #include "pso/unk/TUnk_804A0FA0.h"
 #include "pso/item/TItemEffOrgaFlowShot.h"
 #include "pso/unk/text_801224D4.h"
-#include "pso/item/TItemEquipVariant_80120CF8.h"
 
 struct Self_801223E0 { u8 pad[0x1f8]; f32 f1f8; };
 
@@ -16,7 +15,7 @@ u8 *__nw__5TItemFUl(s32);
 extern s32 tl_05;
 void scale_matrix(s32, f32, f32, f32);
 
-void vfunc_60__13TUnk_804A0FA0Fv(Self_801223E0 *self);
+void apply_blade_dance_model_scale(Self_801223E0 *self);
 }
 u8 *create_guld_milla(s32 arg0) {
     u8 *temp_r3;
@@ -32,13 +31,13 @@ u8 *create_guld_milla(s32 arg0) {
     return NULL;
 }
 
-void TUnk_804A0FA0::vfunc_60() {
-    if (((TItem *)((Self_801223E0 *)this))->get_item_index() == 5) {
+void apply_blade_dance_model_scale(Self_801223E0 *self) {
+    if (((TItem *)self)->get_item_index() == 5) {
         s32 n = TObjPlayer::get_player_list();
         switch (n) {
         case 3:
         case 4:
-            scale_matrix(0, 1.0f, ((Self_801223E0 *)this)->f1f8, ((Self_801223E0 *)this)->f1f8);
+            scale_matrix(0, 1.0f, self->f1f8, self->f1f8);
             break;
         }
     }
@@ -64,16 +63,23 @@ void TUnk_804A0FA0::update_attack() {
 
 }
 
+struct RecoveredGlobal_801224D4_lbl_804A0FA0 {
+    s32 value;
+    u8 remaining[0xF4];
+};
+
 extern "C" {
 u8 *__nw__5TItemFUl(s32);
+extern s32 tl_05;
 u8 * __ct__11TItemWeaponFP7TObjectPUc(void *, void *);
 }
-extern s32 __vt__13TUnk_804A0FA0[];
+extern RecoveredGlobal_801224D4_lbl_804A0FA0 lbl_804A0FA0;
 
+typedef char RecoveredGlobal_801224D4_lbl_804A0FA0_size[sizeof(RecoveredGlobal_801224D4_lbl_804A0FA0) == 0xF8 ? 1 : -1];
 u8 *construct_dagger_weapon(u8 *player, u8 *arg1, u8 *arg2) {
     u8 temp_r0;
     __ct__11TItemWeaponFP7TObjectPUc(player, arg1);
-    *(s32 **)((s8 *)player + 0x18) = __vt__13TUnk_804A0FA0;
+    *(s32 **)((s8 *)player + 0x18) = &lbl_804A0FA0.value;
     ((TItemWeapon *)player)->set_weapon_flags(0x600);
     *(f32 *)((s8 *)player + 0x1F8) = (f32) 1.0f;
     temp_r0 = *(u8 *)((s8 *)arg2 + 2);
@@ -96,5 +102,3 @@ u8 *create_dagger_weapon(u8 *arg0) {
     }
     return NULL;
 }
-
-TUnk_804A0FA0::~TUnk_804A0FA0() {}

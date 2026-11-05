@@ -11,8 +11,4 @@ public:
     u8 unk_1F8[0x4];
 };
 
-extern "C" {
-void *belra_cannon_ct(void *player);
-}
-
 #endif

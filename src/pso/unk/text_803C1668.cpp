@@ -1,10 +1,11 @@
 #include "types.h"
+#include "pso/unk/text_803C1780.h"
 struct Hdl_803C1668 {
     u8 pad0[2];
     s16 f2;
     u8 pad4[8];
-    u8 fc;
-    u8 fd;
+    s8 fc;
+    s8 fd;
     s8 fe;
     s8 ff;
     s32 f10;
@@ -41,17 +42,16 @@ struct Hdl_803C1668 {
     s32 f9c;
     u8 padA0[8];
     s16 fa8;
-    u8 faa[2];
+    s16 faa;
 };
 
 extern "C" {
-s32 TLobby__sub_803C1780(s32, s32, s16 *, u8 *, u8 *, s8 *, s8 *, s32 *, s32 *, s32 *, u8 *);
 void *memset(void *, int, u32);
 s16 DVDReadPrio(Hdl_803C1668 *h, s32 arg1, s32 arg2);
 s16 DVDReadPrio(Hdl_803C1668 *h, s32 arg1, s32 arg2) {
     s16 n;
     h->f2 = 1;
-    if (TLobby__sub_803C1780(arg1, arg2, &n, &h->fc, &h->fd, &h->ff, &h->fe, &h->f14, &h->f18, &h->f10, h->faa) < 0) {
+    if (TLobby__sub_803C1780(reinterpret_cast<u8 *>(arg1), arg2, &n, &h->fc, &h->fd, &h->ff, &h->fe, &h->f14, &h->f18, &h->f10, &h->faa) < 0) {
         return 0;
     }
     h->f1c = 0;

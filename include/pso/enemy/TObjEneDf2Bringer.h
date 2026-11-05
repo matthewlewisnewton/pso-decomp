@@ -5,27 +5,19 @@
 #include "pso/enemy/TObjEneDD_ST.h"
 
 struct TObjEneDf2Bringer : public TObjEneDD_ST {
-    TObjEneDf2Bringer(TObject *arg1, void *arg2);
     virtual ~TObjEneDf2Bringer();
-    virtual s32 vfunc_104(f32);
     virtual void vfunc_88();
     virtual void vfunc_83();
     virtual void vfunc_105();
-    virtual void dispatch_action(u32 state, s32 reason);
+    virtual void vfunc_106();
     void set_effect_pos_above_self();
     void sub_80098DEC();
-    void sub_800994F8();
     void vfunc_63();
     void vfunc_62();
     void vfunc_61();
     void vfunc_28();
     void render();
     void run_task();
-    u8 unk_374[0x30];
-    u32 m_3c0;
-    void* m_3c4;
-    u8 _pad3C8[0x10];
-    u32 m_3d8;
     u8 _pad3DC[0x4];
     void* m_3e0;
     u8 _pad3E4[0x6C];

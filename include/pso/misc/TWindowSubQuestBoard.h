@@ -40,8 +40,4 @@ void TWindowSubQuestBoard__sub_8027CF50(s32 arg0, s32 arg1);
 }
 // --- end of C functions
 
-extern "C" {
-int TWindowSubQuestBoard__sub_8027D1DC(void *p);
-}
-
 #endif

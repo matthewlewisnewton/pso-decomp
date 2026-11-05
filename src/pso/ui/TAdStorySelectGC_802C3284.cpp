@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/TAdStorySelectGC.h"
 #include "pso/ui/TAdDrawLineCtrl.h"
 #include "pso/misc/TLobby_80132ED0.h"
@@ -29,7 +30,7 @@ struct Self_802C3400 { s32 f0; u8 pad4[0x14]; void *vt; void *f1C; void *f20; };
 extern "C" {
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, s32);
 s32 TWindowShortListCtrl__check_controller_button(void *, s32);
-void play_sound_effect(s32, s32, s32, s32);
+
 extern u8 controller_input_state[];
 extern s32 lbl_805D67C0;
 void *__nw__7TObjectFUl(u32);
@@ -48,6 +49,7 @@ extern A_802C3400 lbl_804719FC[];
 extern B_802C3400 story_select_rect_table;
 extern void *__vt__16TAdStorySelectGC[];
 extern s32 lbl_805D3EC8;
+extern const f32 lbl_805DE528;
 Self_802C3400 *__ct__16TAdStorySelectGCFv(Self_802C3400 *self, void *parent);
 void TAdStorySelectGC::render() {  }
 void TAdStorySelectGC::run_task() {
@@ -155,7 +157,7 @@ Self_802C3400 *__ct__16TAdStorySelectGCFv(Self_802C3400 *self, void *parent) {
     self->f20 = p;
     ((TAdMultiPlyChrSelectGC *)((s32)self->f20))->set_entry_value(0, get_localized_text_entry(0x14, 0));
     ((TAdMultiPlyChrSelectGC *)((s32)self->f20))->set_entry_value(1, get_localized_text_entry(0x14, 1));
-    create_draw_line_ctrl__13TAdMcSelectGCFiif((s32)self, 0xA, 0.0f);
+    create_draw_line_ctrl__13TAdMcSelectGCFiif((s32)self, 0xA, (f32)lbl_805DE528);
     return self;
 }
 

@@ -27,8 +27,4 @@ void *__dt__14TObjNpcNgcBaseFv(void *arg0, s16 arg1);
 }
 // --- end of C functions
 
-extern "C" {
-u8 *TObjNpcNgcBase__ct(u8 *arg0, s32 arg1, s32 arg2, s32 arg3);
-}
-
 #endif

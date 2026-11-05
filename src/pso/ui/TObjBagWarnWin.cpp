@@ -1,12 +1,13 @@
 #include "pso/TObjBagWarnWin.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/ui/TObjBagWarnWin_8006EF24.h"
 #include "pso/unk/text_8006EF80.h"
 #include "pso/misc/TCameraCtrl.h"
-#include "pso/misc/TWindowAddition.h"
+#include "pso/misc/TUnk_804CDFE8.h"
 #include "pso/map/FloorArea.h"
+
 #include "types.h"
 #include "pso/misc/TLobby.h"
+#include "pso/map/FloorArea.h"
 
 struct Sub_8006EC20 {
     u8 pad[0x1C];
@@ -23,15 +24,22 @@ struct Ctrl_8006EC20 {
 };
 
 extern "C" {
+s32 TWindow__close(int);
 s32 TWindowCtrlMain__sub_8024CE58();
 void *get_player_by_client_id(s32 i);
 s32 TLobby__sub_80211C3C();
 extern s32 local_client_id;
-s32 append_line__14TWindowMessageFii(u32, void *, s32);
-u32 create__14TWindowMessageFPvll(s32, void *, s32);
+extern const f32 lbl_805D90B8;
+extern const f32 lbl_805D90BC;
+extern const f32 lbl_805D90C0;
+extern const f32 lbl_805D90C4;
+s32 send_and_handle__6TLobbyFii(u32, void *, s32);
+u32 set_window_mode_4__6TLobbyFPvll(s32, void *, s32);
 s32 get_window_layout_position(s32);
 s32 strncpy(void *, s32, s32);
 extern u8 TObjBagWarnWin__message_window_size[];
+extern const f32 lbl_805D90C8;
+extern const f32 lbl_805D90CC;
 
 s32 TObjBagWarnWin::should_show_warning(void *arg0) {
     Ctrl_8006EC20 *ctrl;
@@ -47,12 +55,12 @@ s32 TObjBagWarnWin::should_show_warning(void *arg0) {
     }
     switch (get_current_floor_area()) {
     case AREA_PIONEER2_EP1:
-        if (ctrl->f38 <= -100.0f || ctrl->f38 >= 330.0f) {
+        if (ctrl->f38 <= lbl_805D90B8 || ctrl->f38 >= lbl_805D90BC) {
             return 0;
         }
         break;
     case AREA_PIONEER2_EP2:
-        if (ctrl->f38 <= -40.0f || ctrl->f40 <= -175.0f) {
+        if (ctrl->f38 <= lbl_805D90C0 || ctrl->f40 <= lbl_805D90C4) {
             return 0;
         }
         break;
@@ -83,42 +91,24 @@ void TObjBagWarnWin::run_task() {
             }
         }
     } else if (TObjBagWarnWin::should_show_warning(arg0) == 0) {
-        ((TWindowBase *)(*(u32 *)((s8 *)arg0 + 0x1C)))->close();
+        TWindow__close((int) (*(u32 *)((s8 *)arg0 + 0x1C)));
         *(u32 *)((s8 *)arg0 + 0x1C) = 0U;
         *(s32 *)((s8 *)arg0 + 0xA0) = 0x1E;
     }
 }
 void TObjBagWarnWin::open_message_window() {
     u8 *arg0 = (u8 *)this;
-    *(u32 *)((s8 *)arg0 + 0x1C) = create__14TWindowMessageFPvll(get_window_layout_position(0x38), TObjBagWarnWin__message_window_size, 1);
+    *(u32 *)((s8 *)arg0 + 0x1C) = set_window_mode_4__6TLobbyFPvll(get_window_layout_position(0x38), TObjBagWarnWin__message_window_size, 1);
     if ((u32) *(u32 *)((s8 *)arg0 + 0x1C) != 0U) {
-        ((TWindowBase *)(*(u32 *)((s8 *)arg0 + 0x1C)))->set_depth(70200.0f);
+        ((TLobby *)(*(u32 *)((s8 *)arg0 + 0x1C)))->set_field_1c(lbl_805D90C8);
         if (TCameraCtrl::get_camera_id() == 4) {
-            ((TWindowAddition *)(*(u32 *)((s8 *)arg0 + 0x1C)))->set_position_xy(0.8f, 0.8f);
+            ((TUnk_804CDFE8 *)(*(u32 *)((s8 *)arg0 + 0x1C)))->set_position_xy(lbl_805D90CC, lbl_805D90CC);
         }
         strncpy(arg0 + 0x20, TQuestVmDownLoadServer__sub_8006EF6C(0x59), 0x7F);
         *(s8 *)((s8 *)arg0 + 0x9F) = 0;
-        append_line__14TWindowMessageFii(*(u32 *)((s8 *)arg0 + 0x1C), arg0 + 0x20, 0);
+        send_and_handle__6TLobbyFii(*(u32 *)((s8 *)arg0 + 0x1C), arg0 + 0x20, 0);
     }
 }
 TObjBagWarnWin::~TObjBagWarnWin() {}
-
-}
-
-extern "C" {
-
-void __ct__7TObjectFP7TObject(void *, void *);
-
-extern s32 __vt__14TObjBagWarnWin[];
-extern void *lbl_805D2848;
-
-void *__ct__14TObjBagWarnWinFv(void *bag_warn_win, void *parent) {
-    __ct__7TObjectFP7TObject(bag_warn_win, parent);
-    *(s32 **)((s8 *)bag_warn_win + 0x18) = __vt__14TObjBagWarnWin;
-    *(void * *)&((TObjBagWarnWin *)bag_warn_win)->m_name = lbl_805D2848;
-    *(u32 *)((s8 *)bag_warn_win + 0x1C) = 0;
-    *(u32 *)((s8 *)bag_warn_win + 0xA0) = 0;
-    return bag_warn_win;
-}
 
 }

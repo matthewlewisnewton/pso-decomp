@@ -1,3 +1,5 @@
+#include "pso/system/ArrayAllocation.h"
+#include "pso/enemy/BattleParameters.h"
 #include "types.h"
 #include "pso/misc/TKeyBoardControl_8000F764.h"
 #include "pso/misc/TLobby_8001D6A0.h"
@@ -16,6 +18,7 @@
 #include "pso/misc/TLobby_801E2F94.h"
 #include "pso/misc/TPlyJoinLobbyEntry.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
+#include "pso/misc/TLobby_800F9DA0.h"
 
 #pragma readonly_strings on
 
@@ -302,9 +305,6 @@ struct File_8001DC30
   Pair_8001DC30 pairs[4][0x60];
 };
 s32 is_main_phase_15__9TObjEneDDFv(void);
-void read_disc_file(const char *, void *);
-void mem_free(void *);
-void *mem_alloc(u32 size);
 }
 extern const char lbl_80434A20[];
 extern const char lbl_80434A38[];
@@ -341,7 +341,7 @@ void load_battle_param_entry(void) {
       name = lbl_80434A6C;
     }
   }
-  file = (File_8001DC30 *) mem_alloc(0xF600);
+  file = (File_8001DC30 *) ::operator new[](0xF600);
   if (file != 0)
   {
     read_disc_file(name, file);
@@ -397,7 +397,7 @@ void load_battle_param_entry(void) {
       }
 
     }
-    mem_free(file);
+    ::operator delete[](file);
  ;
   }
 }
@@ -537,22 +537,22 @@ u8 is_valid_player_index__6TLobbyFi(s32 arg0) {
 }
 
     extern int battle_parameter_difficulty;
-void*TLobby::dispatch_shared_handler_a(s32 index) { return get_player_entry__6TLobbyFii(battle_parameter_difficulty, index); }
+BattleMovementParams *get_battle_movement_params(s32 index) { return (BattleMovementParams *)get_player_entry__6TLobbyFii(battle_parameter_difficulty, index); }
 
     extern int battle_param_movement;
 void* get_player_entry__6TLobbyFii(int a0, int a1) {  return (char*)(battle_param_movement) + a1 * 48; }
 
-void*TLobby::register_object(s32 index) { return get_entry__6TLobbyFii(battle_parameter_difficulty, index); }
+ActorParamBlock *get_battle_resistance_params(s32 index) { return (ActorParamBlock *)get_entry__6TLobbyFii(battle_parameter_difficulty, index); }
 
     extern int TLobby__battle_param_resistances;
 void* get_entry__6TLobbyFii(int a0, int a1) {  return (char*)(TLobby__battle_param_resistances) + a1 * 32; }
 
-void*TLobby::dispatch_shared_handler_b(s32 index) { return TLobby__sub_8001E270(battle_parameter_difficulty, index); }
+AttackParams *get_battle_attack_params(s32 index) { return (AttackParams *)TLobby__sub_8001E270(battle_parameter_difficulty, index); }
 
     extern int TLobby__battle_param_attacks;
 void* TLobby__sub_8001E270(int a0, int a1) {  return (char*)(TLobby__battle_param_attacks) + a1 * 48; }
 
-void*TLobby::register_boss(s32 index) { return TLobby__sub_8001E2A8(battle_parameter_difficulty, index); }
+BattleBaseStats *get_battle_base_stats(s32 index) { return (BattleBaseStats *)TLobby__sub_8001E2A8(battle_parameter_difficulty, index); }
 
     extern int battle_param_stats;
 void* TLobby__sub_8001E2A8(int a0, int a1) {  return (char*)(battle_param_stats) + a1 * 36; }
@@ -564,7 +564,6 @@ void set_difficulty__6TLobbyFi(s32 arg0) {
 extern u32 TLobby__battle_parameter_buffer;
 
 extern s32 game_difficulty_selection;
-void mem_free(void*);
 
 extern s32 enable_v2_features;
 
@@ -600,7 +599,7 @@ void TLobby::update_difficulty() {
 
 void TLobby::free_boss4_rock() {
     if ((u32) TLobby__battle_parameter_buffer != 0U) {
-        mem_free((void*)TLobby__battle_parameter_buffer);
+        ::operator delete[]((void*)TLobby__battle_parameter_buffer);
         TLobby__battle_parameter_buffer = 0U;
     }
     battle_param_stats = 0;
@@ -611,7 +610,7 @@ void TLobby::free_boss4_rock() {
 }
 
 void alloc_battle_param_tables(void) {
-    u8 *buf = (u8 *)mem_alloc(0x3d80);
+    u8 *buf = (u8 *)::operator new[](0x3d80);
     s32 i;
     for (i = 0; i < 0x3d80; i++) {
         buf[i] = 0;
