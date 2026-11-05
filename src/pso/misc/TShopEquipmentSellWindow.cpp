@@ -15,6 +15,8 @@
 #include "pso/misc/TShopEquipmentSellWindow.h"
 #include "pso/TShopWindowBase.h"
 #include "pso/item/TItem.h"
+#include "pso/TPlyItem.h"
+#include "pso/TItemList.h"
 #include "pso/misc/TCheckRoomSequence.h"
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TWindowSubComCard.h"
@@ -66,7 +68,7 @@ struct Entry_8021CF04 {
 
 struct Owner_8021CF04 {
     u8 pad0[0xD00];
-    void *inventory;
+    TPlyItem *inventory;
 };
 
 struct WinBase_8021CF04 { char pad[0x18]; };
@@ -107,7 +109,7 @@ struct Entry_8021CC44 {
 
 struct Owner_8021CC44 {
     u8 pad0[0xD00];
-    void *inventory;
+    TPlyItem *inventory;
 };
 
 struct Win_8021CC44 {
@@ -160,8 +162,6 @@ void *__ct__15TWindowHelpItemFPvUs(void *, s32, u16);
 void TWindowHelpItem__set_displayed_item_by_id(void *arg0, s32 arg1);
 s32 get_cursor_value__19TWindowMenuIconLineFv(void *);
 void *create_window_quantity(u16 arg0);
-u32 set_mode_and_refresh_object__10TObjPlayerFPvi(void *, void *);
-void *get_owner_if_alive__10TObjPlayerFv(u32);
 void *create_cost_window(u16);
 void get_item_count__24TShopEquipmentSellWindowFv(void *, s32);
 extern const f32 lbl_805DC6D8;
@@ -279,8 +279,9 @@ void TShopEquipmentSellWindow::handle_selection() {
             TWindowHelpItem__set_displayed_item_by_id(w->help_win, w->entries[i].item.id);
         }
         if (w->status_win != NULL && i != w->sel) {
-            if (set_mode_and_refresh_object__10TObjPlayerFPvi(w->owner->inventory, &w->entries[i].item) != 0) {
-                TShopEquipmentSellWindow::set_entry_count(w->status_win, ((void *(*)(void))get_owner_if_alive__10TObjPlayerFv)());
+            TItemList *slot = w->owner->inventory->set_mode_and_refresh_object(&w->entries[i].item);
+            if (slot != NULL) {
+                TShopEquipmentSellWindow::set_entry_count(w->status_win, slot->get_owner_if_alive());
             } else {
                 TShopEquipmentSellWindow::set_entry_count(w->status_win, 0);
             }
@@ -333,8 +334,8 @@ void TShopEquipmentSellWindow::build_sell_list() {
     s32 i;
     s32 v;
     void *p;
-    u32 r;
-    n = ((TObjPlayer *)(self->owner->inventory))->count_matching_items((int)ids);
+    TItemList *r;
+    n = self->owner->inventory->count_matching_items(ids);
     self->count = 0;
     for (i = 0; i < n; i++) {
         if (ids[i] != 0) {
@@ -390,17 +391,17 @@ void TShopEquipmentSellWindow::build_sell_list() {
     }
     if (self->qty_win == NULL) {
         self->qty_win = create_window_quantity(((TShopSequence *)self)->get_child_field1c());
-        r = set_mode_and_refresh_object__10TObjPlayerFPvi(self->owner->inventory, &self->entries[0].item);
+        r = self->owner->inventory->set_mode_and_refresh_object(&self->entries[0].item);
         if (r != 0) {
-            TShopEquipmentSellWindow::set_entry_count(self->qty_win, get_owner_if_alive__10TObjPlayerFv(r));
+            TShopEquipmentSellWindow::set_entry_count(self->qty_win, r->get_owner_if_alive());
         } else {
             TShopEquipmentSellWindow::set_entry_count(self->qty_win, 0);
         }
     } else if (self->list_win != NULL) {
         v = get_cursor_value__19TWindowMenuIconLineFv(self->list_win);
-        r = set_mode_and_refresh_object__10TObjPlayerFPvi(self->owner->inventory, &self->entries[v].item);
+        r = self->owner->inventory->set_mode_and_refresh_object(&self->entries[v].item);
         if (r != 0) {
-            TShopEquipmentSellWindow::set_entry_count(self->qty_win, get_owner_if_alive__10TObjPlayerFv(r));
+            TShopEquipmentSellWindow::set_entry_count(self->qty_win, r->get_owner_if_alive());
         } else {
             TShopEquipmentSellWindow::set_entry_count(self->qty_win, 0);
         }
