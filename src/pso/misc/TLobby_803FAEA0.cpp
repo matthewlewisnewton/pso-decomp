@@ -421,7 +421,7 @@ u32 TLobby__sub_80402AFC(u8 *p);
 u8 *write_network_u16_be(u8 *p, u16 v);
 extern Tbl_80408718 lbl_805C1AB0;
 s32 TLobby__sub_80405304(void *arg0);
-s32 update_connection_state__6TLobbyFi(void *, void *);
+s32 update_connection_state__6TLobbyFP13Self_803FD74C(void *, void *);
 void TLobby__sub_803F97E8(int);
 void NetMemcpy(void * _w0, void * _w1, int _w2);
 s32 TLobby__sub_803FC684(u8 *, u8 *, u8 *);
@@ -771,7 +771,7 @@ s32 TLobby__sub_803FB6A0(void) {
     St_803FB6A0 *st = (St_803FB6A0 *)lbl_805C0038;
     Sess_803FB6A0 *sess = (Sess_803FB6A0 *)&lbl_805BFF68;
     u8 *state = &st->state;
-    update_connection_state__6TLobbyFi(state, &lbl_805BFF68);
+    update_connection_state__6TLobbyFP13Self_803FD74C(state, &lbl_805BFF68);
     if (*state == 6) {
         while (st->busy != 0) {
             TUdpSocket::unlock_mutex(((Sock_803FB6A0 *)&lbl_805C18A0)->sock);
