@@ -33,7 +33,7 @@ null path.
 
 | Form | Function | Difference |
 |---|---|---|
-| `matrix_stack_base = (u8 *)0xE0000000` (shipped) | 100% | none |
+| `matrix_stack_base = (u8 *)0xE0000000` | 100% | same bytes as the null-plus-offset form; the cast is not the source |
 | `u8 matrix_stack_lc[] : 0xE0000000` (absolute object, the `hw_regs.h` form), base and limit from it | 83.6% | `lis r3`, value kept in `r3`; limit is `add r0, r3, r0`; null path is `mr r3, r0` / `b` |
 | same, limit kept as the integer `(arg1 - 1) * 0x30 + 0xE0000000` | 85.8% | `subis` matches; stores still use `r3` and the null path reuses it |
 | `Mtx`-typed absolute array | 85.8% | same as above |
@@ -45,6 +45,7 @@ null path.
 | `extern const u8 locked_cache : 0xE0000000` (scalar), limit is pointer add | not exact | `const` does not fold the address; same `lis r3` / `add` / `mr` as the array |
 | scalar `&locked_cache` for the stores only, limit is the integer `(arg1 - 1) * 0x30 + 0xE0000000` | not exact | `addis` matches; stores stay `lis r3`; null path is `b` / `mr r3, r0`; `mulli` writes `r4` |
 | `extern LockedCacheMatrix locked_cache_matrix` (linker symbol), `matrix_stack_base = locked_cache_matrix.cell` | not exact | `lis`/`addi` of `locked_cache_matrix@ha`/`@l` (`R_PPC_ADDR16_HA`, `R_PPC_ADDR16_LO`); limit is `add`; null path is `b` / `mr`. The original `lis r0, 0xE000` has no relocation |
+| `u8 *base = 0; base += 0xE0000000` (shipped) | 100% | same stream as the integer cast: shared `lis r0`, `addis` limit, null path `lis r3, 0xE000`, no relocation on that constant |
 
 `init_matrix_stack` is static (`init_matrix_stack__10TObjPlayerFll`): r3 is the unused first argument, so it is the first free GPR. MWCC colors the address of an absolute object into that GPR and keeps it live across `addi r0, r4, -1`. The original `lis r0` is instruction selection of an integer immediate, not a colored pointer. `const` on the scalar does not change that. r0 is available for the immediate only, and writing that immediate as a pointer is the `(u8 *)0xE0000000` cast.
 
@@ -59,8 +60,9 @@ turn the address into the original immediate.
 
 `ChunkMaterialState.cpp` types `matrix_stack_base` and `matrix_stack_limit` as
 `u8 *`, so the limit is pointer arithmetic and `move_data` gets the base with
-no cast. The integer-to-pointer conversion happens once, at the locked-cache
-constant. `text_803D96A8.cpp` keeps the base's `u32` declarations because every
+no cast. The base is a null pointer plus `0xE0000000`. That is pointer
+arithmetic, and MWCC folds it to the same `lis r0, 0xE000` as the integer
+constant, with no relocation. `text_803D96A8.cpp` keeps the base's `u32` declarations because every
 function there treats the stack as integers (`current_matrix` is `u32`, and
 `concat_matrix__11TCameraCtrlFUlUl` takes `u32` matrices). `push_matrix_from` therefore
 converts `next` and `current_matrix` to `void *` for `move_data`, where the base

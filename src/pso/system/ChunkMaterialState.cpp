@@ -210,10 +210,15 @@ void TKeyBoardControl::clamp_axes() {
 }
 
 void TObjPlayer::init_matrix_stack(s32 arg0, s32 arg1) {
-    matrix_stack_base = (u8 *)0xE0000000;
+    // Null plus the locked-cache offset. MWCC folds that to lis r0, 0xE000
+    // with no relocation, then addi r0, r4, -1 kills r0 so the identity null
+    // path rematerializes lis r3, 0xE000.
+    u8 *base = 0;
+    base += 0xE0000000;
+    matrix_stack_base = base;
     current_matrix = 0xE0000000;
-    matrix_stack_limit = matrix_stack_base + (arg1 - 1) * 0x30;
-    PSMTXIdentity(identity_matrix == 0 ? matrix_stack_base : identity_matrix);
+    matrix_stack_limit = base + (arg1 - 1) * 0x30;
+    PSMTXIdentity(identity_matrix == 0 ? base : identity_matrix);
     move_data(matrix_stack_base, identity_matrix, 0x30);
 }
 

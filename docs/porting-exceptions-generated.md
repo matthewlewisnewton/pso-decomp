@@ -152,8 +152,8 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1043,
 | `src/pso/player/TObjPlayer_803E21B8.cpp:258` | `(*(volatile WGPipe_803E2810 *)0xCC008000).f32 = s;` |
 | `src/pso/player/TObjPlayer_803E21B8.cpp:259` | `(*(volatile WGPipe_803E2810 *)0xCC008000).f32 = t;` |
 | `src/pso/player/TObjPlayer_803E5470.cpp:21` | `#define GXWGFifo_803E549C (*(volatile WGPipe_803E549C *)0xCC008000)` |
-| `src/pso/system/ChunkMaterialState.cpp:213` | `matrix_stack_base = (u8 *)0xE0000000;` |
-| `src/pso/system/ChunkMaterialState.cpp:214` | `current_matrix = 0xE0000000;` |
+| `src/pso/system/ChunkMaterialState.cpp:217` | `base += 0xE0000000;` |
+| `src/pso/system/ChunkMaterialState.cpp:219` | `current_matrix = 0xE0000000;` |
 | `src/pso/system/ModelDrawContext.cpp:218` | `int src = cached_blend_factor_table[(v & 0xE0000000) >> 29];` |
 | `src/pso/unk/text_801E3F24.cpp:27` | `*(s32 *)0xCC008000 = arg0;` |
 | `src/pso/unk/text_801E3F24.cpp:31` | `*(f32 *)0xCC008000 = farg0;` |
