@@ -1207,13 +1207,13 @@ void TObjBoss2Tunnel::show_message_and_wait(s32 arg0) {
         switch (arg0) {
         case -2:
         case -9:
-            ((TWindowMessage *)win)->append_line(get_localized_text_entry(0x24, 3), 3);
+            win->append_line(get_localized_text_entry(0x24, 3), 3);
             break;
         case -4:
-            ((TWindowMessage *)win)->append_line(get_localized_text_entry(0x24, 0xD), 3);
+            win->append_line(get_localized_text_entry(0x24, 0xD), 3);
             break;
         default:
-            ((TWindowMessage *)win)->append_line(get_localized_text_entry(0x24, 0xC), 3);
+            win->append_line(get_localized_text_entry(0x24, 0xC), 3);
             break;
         }
         win->set_depth(36900.0f);
@@ -1271,8 +1271,8 @@ s32 TObjBoss2Tunnel::run_confirm_message_loop() {
     }
     win = (TWindowMessage *)TWindowMessage::create((s32)window_pos, (s32)window_size, (u32)1, 4);
     if (win != NULL) {
-        ((TWindowMessage *)win)->append_line(get_localized_text_entry(0x24, 0xB), 3);
-        ((TWindowBase *)win)->set_depth(36900.0f);
+        win->append_line(get_localized_text_entry(0x24, 0xB), 3);
+        win->set_depth(36900.0f);
     }
     win->complete_reveal();
     graph = (TDLGraph *)TDLGraph::create();
