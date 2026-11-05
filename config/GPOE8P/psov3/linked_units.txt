@@ -306,6 +306,7 @@ pso/boss/TBoss7LaserLight.cpp
 pso/boss/TBoss7LaserPtcl.cpp
 pso/boss/TBoss7LaserPtcl_8035AE54.cpp
 pso/boss/TBoss7PhotonBullet_802EF26C.cpp
+pso/boss/TBoss7TentacleNeedle.cpp
 pso/boss/TBoss8DragonColli.cpp
 pso/boss/TBoss8DragonDemo.cpp
 pso/boss/TBoss8DragonEffBreath.cpp
@@ -1094,6 +1095,7 @@ pso/misc/TLobby_80221820.cpp
 pso/misc/TLobby_80222D24.cpp
 pso/misc/TLobby_802230F8.cpp
 pso/misc/TLobby_80226070.cpp
+pso/misc/TLobby_802268F4.cpp
 pso/misc/TLobby_80228C84.cpp
 pso/misc/TLobby_8023F734.cpp
 pso/misc/TLobby_80242910.cpp
@@ -1959,6 +1961,7 @@ pso/misc/pso_date.cpp
 pso/network/NetworkInfoCodec.cpp
 pso/network/NetworkInfoLoader.cpp
 pso/network/NetworkMessageTransport.cpp
+pso/network/NetworkPacketRuntime.cpp
 pso/network/NetworkTransport.cpp
 pso/network/TGameProtocol.cpp
 pso/network/TProtocol.cpp
@@ -2073,6 +2076,7 @@ pso/object/TObjCityMainWarpChallenge.cpp
 pso/object/TObjCityMainWarp_801867F4.cpp
 pso/object/TObjCityMainWarp_80186C44.cpp
 pso/object/TObjCityMainWarp_80186E24.cpp
+pso/object/TObjCityMainWarp_80186F84.cpp
 pso/object/TObjCollision.cpp
 pso/object/TObjComputer.cpp
 pso/object/TObjControl.cpp
@@ -2419,6 +2423,7 @@ pso/player/TObjPlayer_8013085C.cpp
 pso/player/TObjPlayer_80130BF0.cpp
 pso/player/TObjPlayer_80148DCC.cpp
 pso/player/TObjPlayer_8014C610.cpp
+pso/player/TObjPlayer_801542CC.cpp
 pso/player/TObjPlayer_8015C4CC.cpp
 pso/player/TObjPlayer_8015C8D8.cpp
 pso/player/TObjPlayer_80178150.cpp
