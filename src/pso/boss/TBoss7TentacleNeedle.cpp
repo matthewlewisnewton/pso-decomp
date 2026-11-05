@@ -105,15 +105,15 @@ void TObjPlayer__sub_802F0D2C(void) {  }
 
 TBoss7Tentacle::TBoss7Tentacle(TObject *object, const f32 (*matrix)[4], s32 kind) : TObject(object) {
     m_name = lbl_805D3FD8;
-    ent.m_1c = TObjPlayer::queue_boss_effect(1);
-    ent.m_20 = TObjPlayer::notify_fish_obj(0x11);
+    model = TObjPlayer::queue_boss_effect(1);
+    motion = TObjPlayer::notify_fish_obj(0x11);
     m_130 = matrix;
-    fld.m_4c = kind;
+    this->kind = kind;
     m_30 = 0;
     m_34 = 0;
     m_38 = 0;
     this->init_segments();
-    m_134 = (f32)(ent.m_20->nbFrame - 1) * (3.0517578e-05f * (f32)rand());
+    m_134 = (f32)(motion->nbFrame - 1) * (3.0517578e-05f * (f32)rand());
     m_138 = 0.8f;
     m_13c = 0;
     m_140 = 0;
@@ -127,9 +127,9 @@ TBoss7Tentacle::TBoss7Tentacle(TObject *object, const f32 (*matrix)[4], s32 kind
     m_14c.y = 0.0f;
     m_14c.z = 0.0f;
     m_3c = 0;
-    ent.m_24 = 1.0f;
-    m_28 = 1.0f;
-    m_2c = 1.0f;
+    scale.x = 1.0f;
+    scale.y = 1.0f;
+    scale.z = 1.0f;
 }
 
 TBoss7Tentacle::~TBoss7Tentacle() {}
@@ -164,7 +164,7 @@ void TBoss7Tentacle__sub_802F0AD0(TBoss7Tentacle *a0) { a0->m_138 = 1.6f; a0->m_
 void TBoss7Tentacle::init_segments() {
     s32 i;
     for (i = 0; i < 14; i++) {
-        VecCopy(&geo.m_50[i], &TBoss7Tentacle__segment_offsets[i]);
+        VecCopy(&segments[i], &TBoss7Tentacle__segment_offsets[i]);
         m_f8[i] = TBoss7Tentacle__needle_offsets[i];
     }
 }
@@ -191,11 +191,11 @@ void TBoss7Tentacle::sub_802F09FC() {
 
 void TBoss7Tentacle::sub_802F09EC() { m_140 = 0; m_13c = 0; }
 
-void TBoss7Tentacle__sub_802F09C8(TBoss7Tentacle *a0) { a0->m_13c = TBoss7Tentacle__target_angle_table[a0->fld.m_4c]; a0->m_140 = 0; }
+void TBoss7Tentacle__sub_802F09C8(TBoss7Tentacle *a0) { a0->m_13c = TBoss7Tentacle__target_angle_table[a0->kind]; a0->m_140 = 0; }
 
 void TBoss7Tentacle__sub_802F09B4(TBoss7Tentacle *p) { p->m_13c = 0; p->m_140 = 16384; }
 
-void TBoss7Tentacle::setup_state() { m_13c = TBoss7Tentacle__target_angle_table[fld.m_4c]; m_140 = 16384; m_38 = 0; }
+void TBoss7Tentacle::setup_state() { m_13c = TBoss7Tentacle__target_angle_table[kind]; m_140 = 16384; m_38 = 0; }
 
 void TBoss7Tentacle::reset_state() { m_13c = 0; m_140 = 0; m_38 = 0; init_segments(); m_158 = 20.0f; m_164 = 0; m_15c = 0.0f; m_160 = 1.0f; }
 
@@ -206,7 +206,7 @@ u8 TBoss7Tentacle__sub_802F0904(TBoss7Tentacle *arg0) {
 }
 
 void TBoss7Tentacle::advance_path_position() {
-    f32 lim = (f32)(ent.m_20->nbFrame - 1);
+    f32 lim = (f32)(motion->nbFrame - 1);
     m_134 = m_134 + m_138;
     if (m_134 >= lim) {
         m_134 = m_134 - lim;
@@ -219,7 +219,7 @@ void TBoss7Tentacle__sub_802F0608(TBoss7Tentacle *tentacle, f32 len) {
     s32 j;
     f32 scale = 0.5f;
     f32 half = scale * len;
-    f32 h = 60.0f - tentacle->fld.m_44;
+    f32 h = 60.0f - tentacle->base.y;
     f32 a;
     f32 step = tentacle->m_158;
     a = -(h / (half * half));
@@ -229,18 +229,18 @@ void TBoss7Tentacle__sub_802F0608(TBoss7Tentacle *tentacle, f32 len) {
         f32 t = step * (f32)i;
         f32 d = t - half;
         s32 k = i + 2;
-        tentacle->geo.m_50[k].x = scale * t;
-        tentacle->geo.m_50[k].y = scale * (d * (a * d) + h);
+        tentacle->segments[k].x = scale * t;
+        tentacle->segments[k].y = scale * (d * (a * d) + h);
     }
-    tentacle->geo.m_50[2].x = 0.0f;
-    tentacle->geo.m_50[2].y = 0.0f;
-    tentacle->geo.m_50[2].z = 0.0f;
+    tentacle->segments[2].x = 0.0f;
+    tentacle->segments[2].y = 0.0f;
+    tentacle->segments[2].z = 0.0f;
     px = 0.0f;
     py = 0.0f;
     prev = 0;
     for (j = 3; j <= 11; j++) {
-        f32 x = tentacle->geo.m_50[j].x;
-        f32 y = tentacle->geo.m_50[j].y;
+        f32 x = tentacle->segments[j].x;
+        f32 y = tentacle->segments[j].y;
         dx = x - px;
         dy = y - py;
         px = x;
@@ -248,9 +248,9 @@ void TBoss7Tentacle__sub_802F0608(TBoss7Tentacle *tentacle, f32 len) {
         ang = (s32)(10430.38043493439 * atan2_float(dy, dx));
         tentacle->m_f8[j - 1] = ang - prev;
         prev = ang;
-        tentacle->geo.m_50[j].x = newton_sqrtf(dy * dy + dx * dx);
-        tentacle->geo.m_50[j].y = 0.0f;
-        tentacle->geo.m_50[j].z = 0.0f;
+        tentacle->segments[j].x = newton_sqrtf(dy * dy + dx * dx);
+        tentacle->segments[j].y = 0.0f;
+        tentacle->segments[j].z = 0.0f;
     }
     tentacle->m_f8[11] = tentacle->m_f8[10];
     w = tentacle->m_15c;
@@ -258,7 +258,7 @@ void TBoss7Tentacle__sub_802F0608(TBoss7Tentacle *tentacle, f32 len) {
         k = 1.0f - w;
         k *= tentacle->m_160;
         for (i = 2; i < 12; i++) {
-            tentacle->geo.m_50[i].x = tentacle->geo.m_50[i].x * w + k * TBoss7Tentacle__segment_offsets[i].x;
+            tentacle->segments[i].x = tentacle->segments[i].x * w + k * TBoss7Tentacle__segment_offsets[i].x;
         }
         tentacle->m_f8[2] = (s32)(16384.0f * (1.0f - tentacle->m_15c) + (f32)tentacle->m_f8[2] * w);
         for (i = 3; i < 12; i++) {
@@ -274,7 +274,7 @@ void TBoss7Tentacle::run_task() {
         advance_path_position();
         m_148 = m_148 + m_144;
         m_13c = (s32)(1365.0f * (1.0f + sin_table_lookup(m_148)));
-        if (!(fld.m_4c & 1)) {
+        if (!(kind & 1)) {
             m_13c = -m_13c;
         }
         break;
@@ -299,10 +299,10 @@ void TBoss7Tentacle::run_task() {
         push_matrix();
         set_matrix_identity(0);
         concat_matrix(0, m_130);
-        transform_point_by_current_matrix(&v.x, &geo.m_40);
+        transform_point_by_current_matrix(&v.x, &base);
         pop_matrix();
         VecCopy(&v, &m_14c);
-        subtract_vector(&v, &geo.m_40);
+        subtract_vector(&v, &base);
         len = normalize_vector_xz(&v);
         m_13c = (s32)(10430.38043493439 * atan2_float(v.x, v.z)) + 0x8000;
         VecCopy(&p, &m_14c);
@@ -315,7 +315,7 @@ void TBoss7Tentacle::run_task() {
                 m_38 = 1;
             }
             for (i = 2; i < 12; i++) {
-                geo.m_50[i].x = m_160 * TBoss7Tentacle__segment_offsets[i].x;
+                segments[i].x = m_160 * TBoss7Tentacle__segment_offsets[i].x;
             }
             m_f8[2] = 0x4000;
             break;
@@ -338,7 +338,7 @@ void TBoss7Tentacle::run_task() {
             } else {
                 m_15c = m_158 / (0.4f * len);
             }
-            m_140 = approach_angle_limited(m_140, boss7_tentacle_angle_table[fld.m_4c], 0x100);
+            m_140 = approach_angle_limited(m_140, boss7_tentacle_angle_table[kind], 0x100);
             TBoss7Tentacle__sub_802F0608(this, len);
             break;
         case 2:
@@ -369,7 +369,7 @@ void TBoss7Tentacle::run_task() {
     }
     case 4:
         advance_path_position();
-        m_13c = approach_angle_limited(m_13c, TBoss7Tentacle__target_angle_table[fld.m_4c], 0x80);
+        m_13c = approach_angle_limited(m_13c, TBoss7Tentacle__target_angle_table[kind], 0x80);
         break;
     case 5:
         advance_path_position();
@@ -411,14 +411,14 @@ void TBoss7Tentacle::switch_state() {
 
 void TBoss7Tentacle::update_extend_amount() {
     if (m_3c & 2) {
-        m_2c = (f32)(m_2c - 0.1f);
-        if (m_2c < 0.0f) {
-            m_2c = 0.0f;
+        scale.z = (f32)(scale.z - 0.1f);
+        if (scale.z < 0.0f) {
+            scale.z = 0.0f;
         }
     } else {
-        m_2c += 0.2f;
-        if (m_2c > 1.0f) {
-            m_2c = 1.0f;
+        scale.z += 0.2f;
+        if (scale.z > 1.0f) {
+            scale.z = 1.0f;
         }
     }
 }
@@ -432,8 +432,8 @@ void TBoss7Tentacle::render() {
         set_motion_packed_rotation();
         concat_matrix(0, m_130);
         rotate_matrix_y(0, m_13c);
-        scale_current_matrix(&ent.m_24);
-        draw_model_motion(ent.m_1c, ent.m_20, m_134);
+        scale_current_matrix(&scale.x);
+        draw_model_motion(model, motion, m_134);
         clear_motion_packed_rotation();
         break;
     case 1:
@@ -442,27 +442,27 @@ void TBoss7Tentacle::render() {
         set_motion_packed_rotation();
         concat_matrix(0, m_130);
         rotate_matrix_zyx(0, m_140, m_13c, 0);
-        scale_current_matrix(&ent.m_24);
-        draw_model_motion(ent.m_1c, ent.m_20, m_134);
+        scale_current_matrix(&scale.x);
+        draw_model_motion(model, motion, m_134);
         clear_motion_packed_rotation();
         break;
     case 2:
         concat_matrix(0, m_130);
         rotate_matrix_zyx(0, m_140, m_13c, 0);
-        scale_current_matrix(&ent.m_24);
-        draw_chunk_object(ent.m_1c);
+        scale_current_matrix(&scale.x);
+        draw_chunk_object(model);
         break;
     case 3:
-        post_translate_matrix(&geo.m_40.x);
+        post_translate_matrix(&base.x);
         scale_current_matrix(lbl_80474070);
         rotate_matrix_zyx(0, 0, m_13c, m_140);
         for (var_ctr = 0; var_ctr < 14; var_ctr++) {
-            lbl_80541528[var_ctr].pos[0] = geo.m_50[var_ctr].x;
-            lbl_80541528[var_ctr].pos[1] = geo.m_50[var_ctr].y;
-            lbl_80541528[var_ctr].pos[2] = geo.m_50[var_ctr].z;
+            lbl_80541528[var_ctr].pos[0] = segments[var_ctr].x;
+            lbl_80541528[var_ctr].pos[1] = segments[var_ctr].y;
+            lbl_80541528[var_ctr].pos[2] = segments[var_ctr].z;
             lbl_80541528[var_ctr].ang[2] = m_f8[var_ctr];
         }
-        scale_current_matrix(&ent.m_24);
+        scale_current_matrix(&scale.x);
         draw_chunk_object((lbl_80541528));
         break;
     }

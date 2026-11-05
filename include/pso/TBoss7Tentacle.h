@@ -24,37 +24,18 @@ public:
     void init_segments();
     void start_attack_at_position(const Vec *target, s32 arg2);
 
-    // 0x1C is used both as a position Vec and as the (model, anim, scale_x)
-    // triple, so the two views are declared as one union.
-    union {
-        Vec position;
-        struct {
-            NJS_OBJECT *m_1c;
-            NJS_MOTION *m_20;
-            f32 m_24;
-        } ent;
-    };
-    f32 m_28;
-    f32 m_2c;
+    NJS_OBJECT *model;
+    NJS_MOTION *motion;
+    // z is the extend amount update_extend_amount moves between 0 and 1.
+    Vec scale;
     s32 m_30;
     s32 m_34;
     s32 m_38;
     s32 m_3c;
-    // 0x40 is the attack-origin Vec in run_task/render. fld.m_44 and
-    // fld.m_4c sit on top of that Vec's y and the word after it.
-    union {
-        struct {
-            Vec m_40;
-            u8 gap_4c[4];
-            Vec m_50[14];
-        } geo;
-        struct {
-            u8 gap_40[4];
-            f32 m_44;
-            u8 unk_48[0x4];
-            s32 m_4c;
-        } fld;
-    };
+    // World position of the attach point, from m_130 in run_task.
+    Vec base;
+    s32 kind;
+    Vec segments[14];
     s32 m_f8[14];
     const f32 (*m_130)[4];
     f32 m_134;
@@ -70,5 +51,9 @@ public:
     s32 m_164;
     s32 m_168;
 };
+
+typedef char TBoss7TentacleBaseOffset[offsetof(TBoss7Tentacle, base) == 0x40 ? 1 : -1];
+typedef char TBoss7TentacleSegmentsOffset[offsetof(TBoss7Tentacle, segments) == 0x50 ? 1 : -1];
+typedef char TBoss7TentacleSize[sizeof(TBoss7Tentacle) == 0x16C ? 1 : -1];
 
 #endif
