@@ -16,6 +16,7 @@
 #include "pso/misc/TWindowSubItem.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 struct Base_8021B974 { char pad[0x18]; };
 struct VObj_8021B974 : Base_8021B974 {
@@ -222,7 +223,6 @@ void send_6x25_equip_item(void *, s32, s32);
 }
 s32 is_single_purchase_shop_item(u8 *p);
 extern "C" {
-void TWindow__close(void *);
 s32 get_selected_menu_value(void *);
 extern const s32 local_client_id;
 f32 get_scale__15TShopWindowBaseFv(void *);

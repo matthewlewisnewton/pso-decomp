@@ -32,6 +32,7 @@ struct RecoveredGlobal_8036DE10_lbl_804F37D4 {
 #include "pso/TAdPlayerLoadGC.h"
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TWindowSubComCard.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 struct Stack_8036EA24 {
     s32 sp8;
     s32 spC;
@@ -66,7 +67,6 @@ struct Self_8036E2AC {
 };
 
 extern "C" {
-void TWindow__close(u8 *arg0);
 s32 get_selected_menu_value(void *);
 void *__nw__7TObjectFUl(int);
 void *__ct__9TAdBackGCFv(void *, void *);

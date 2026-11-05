@@ -14,6 +14,7 @@
 #include "pso/misc/TWindowSubItem.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 struct Base_8021A394 { char pad[0x18]; };
 struct VObj_8021A394 : Base_8021A394 {
@@ -210,7 +211,6 @@ s32 try_buy_item(int, void *);
 s32 is_single_purchase_shop_item(u8 *p);
 extern "C" {
 f32 get_scale__15TShopWindowBaseFv(void *);
-void TWindow__close(void *);
 s32 get_selected_menu_value(void *);
 u32 create_yes_no_window(int, u16, int, int);
 s32 get_window_layout_position(s32);

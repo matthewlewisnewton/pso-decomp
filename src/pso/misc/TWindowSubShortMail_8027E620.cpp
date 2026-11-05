@@ -20,6 +20,7 @@ class TChCrTagPlBack;
 #include "pso/misc/TWindowSubStatusDisp.h"
 #include "pso/object/TObjCityMainWarp.h"
 #include "pso/ui/TAdChrSelASlotGC.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 extern "C" {
 s32 get_message_10__20TWindowSubStatusDispFl(s32);
@@ -28,7 +29,6 @@ s32 get_window_layout_position(s32);
 s32 create_confirm_menu_window__19TWindowSubShortMailFv();
 s32 align_menu_entry_positions(s32);
 s32 build_menu__19TWindowSubShortMailFv();
-void TWindow__close(u8 *arg0);
 int select_cursor_entry__22TWindowSubShortCutListFv(void *);
 u8 get_field_cc__19TWindowSubShortMailFPv(void *);
 s32 open_confirm_prompt__19TWindowSubShortMailFPvi(void *, s32);

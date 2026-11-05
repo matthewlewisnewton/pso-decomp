@@ -10,6 +10,7 @@
 #include "pso/misc/TWindowSubSymbolChatPartsSet.h"
 #include "pso/menu/T_ATS_DrawCalendar.h"
 #include "pso/TAdTimeSetGC.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 extern "C" {
 s32 TAdSinglePlyChrSelectGC__sub_802E1868(void);
@@ -96,7 +97,6 @@ int TKeyBoardControl__sub_8000F9CC(void*);
 void TLobby__sub_8022614C(s32 arg0);
 void update_music_stream_gain(s32 user);
 s32 init_sound_mode__6TLobbyFPv(void);
-void TWindow__close(u8 *arg0);
 void *__ct__12TAdBackTxtGCFv(void *, void *);
 void __ct__7TObjectFP7TObject(void *);
 void *__ct__9TAdBackGCFv(void *, void *);

@@ -8,6 +8,7 @@
 #include "pso/misc/TWindowSubComCard.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/misc/TQuestVmDownLoadServer.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 struct RecoveredGlobal_800739BC_lbl_8048C9D8 {
     s32 value;
@@ -66,7 +67,6 @@ extern char lbl_80438618[];
 extern s32 challenge_grade_letter_table[];
 extern char lbl_805D9128[2];
 extern char lbl_805D9130[2];
-void TWindow__close(void *);
 s32 TWindowCtrlMain__sub_8024CE58();
 int TWindowMenu::is_visible() { return (this->m_70 >> 1) & 0x1; }
 typedef char RecoveredGlobal_800739BC_lbl_8048C9D8_size[sizeof(RecoveredGlobal_800739BC_lbl_8048C9D8) == 0x748 ? 1 : -1];

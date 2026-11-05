@@ -42,6 +42,7 @@
 #include "pso/unk/text_80131ADC.h"
 #include "pso/unk/text_8026CB5C.h"
 #include "pso/map/FloorArea.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 #pragma readonly_strings on
 
@@ -57,7 +58,6 @@ s32 init_quest_script_context(s32, void *);
 s32 check_flag_100__10TObjPlayerFPv(void *);
 s32 TWindowShortListCtrl__check_controller_button(void *, s32);
 s32 has_player_active_menu__11TWindowCtrlFv(s32);
-void TWindow__close(void *);
 void *check_room_seq_4__16TAdChrSelASlotGCFl(void *, s32);
 void *update_window_mode_from_progress__6TLobbyFPv(void *, WindowPos *);
 s32 align_menu_entry_positions(u32);

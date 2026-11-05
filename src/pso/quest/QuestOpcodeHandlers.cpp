@@ -52,6 +52,7 @@ int qst_label_address(int label);
 #include "pso/boss/TBoss1Dragon.h"
 #include "pso/boss/TBoss3Volopt.h"
 #include "pso/ui/Language.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 extern "C" {
 void qst_op_va_start(void);
@@ -1894,7 +1895,6 @@ void * __nw__7TObjectFUl(u32);
 }
 void create_quest_telepipe_for_client(u16 arg0);
 extern "C" {
-void TWindow__close(u8 *arg0);
 void request_active_window_close(void);
 s32 set_timer_window_time__11TWindowCtrlFv(int, void *);
 int close_timer_window__11TWindowCtrlFv(void*);
@@ -6453,8 +6453,6 @@ void qst_op_gset(u16 arg0);
 namespace pf2_p6 { extern "C" { s32 dispatch_by_main_phase__14TBoss4DarkFalzFUs(s32); } }
 #define dispatch_by_main_phase__14TBoss4DarkFalzFUs pf2_p6::dispatch_by_main_phase__14TBoss4DarkFalzFUs
 void qst_op_thread_stg(u16 arg0);
-extern "C" {
-}
 void qst_op_thread(u16 arg0);
 extern "C" {
 void qst_op_rev(s32 arg0);

@@ -11,6 +11,7 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/TObjChallengeRetry.h"
 #include "pso/map/FloorArea.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 #pragma readonly_strings on
 
@@ -37,7 +38,6 @@ void TLobby__sub_80072880(u8 *arg0);
 void TLobby__sub_800728FC(u8 *arg0);
 void TLobby__sub_80072AB8(void *arg0);
 s32 TLobby__sub_8006FBE4();
-void TWindow__close(u8 *arg0);
 s32 TQuestVmDownLoadServer__sub_8006EF6C(s32);
 s32 get_window_layout_position(s32);
 u32 check_room_seq_4__16TAdChrSelASlotGCFl(s32, s32);

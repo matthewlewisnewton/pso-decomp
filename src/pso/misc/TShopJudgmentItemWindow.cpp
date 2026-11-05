@@ -19,6 +19,7 @@
 #include "pso/misc/TWindowSubTradeMain.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/ui/Language.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 struct Base_802205E4 { char pad[0x18]; };
 struct VObj_802205E4 : Base_802205E4 {
@@ -163,7 +164,6 @@ extern "C" {
 int obj_getPtr2B0_20(u8 *p);
 void update_all__6TLobbyFi(s32 arg0);
 void play_cue_stream_file(s32 name);
-void TWindow__close(u8 *arg0);
 s32 get_selected_menu_value(int);
 s32 select_cursor_entry__22TWindowSubShortCutListFv(int);
 extern s32 lbl_8044C1D4[];

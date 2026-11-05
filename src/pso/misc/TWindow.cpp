@@ -12,6 +12,7 @@
 #include "pso/misc/TLobby.h"
 #include "pso/quest/TQuestListVM.h"
 #include "pso/misc/TWindowSubComCard.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 struct Base_80216BCC_80216B44 { char pad[0x18]; };
 struct VObj_80216BCC_80216B44 : Base_80216BCC_80216B44 {
@@ -113,7 +114,6 @@ extern "C" {
 u16 get_entity_id(void *);
 s32 get_quest_list_text(s32, s32);
 f32 get_scale__15TShopWindowBaseFv(void *);
-void TWindow__close(u8 *arg0);
 u8 *create_yes_no_window(s32 arg0, s32 arg1, u32 arg2, u32 arg3);
 s32 select_cursor_entry__22TWindowSubShortCutListFv(s32);
 void *get_window_layout_position(s32);

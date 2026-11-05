@@ -6,6 +6,7 @@
 #include "pso/misc/TRaderMapCore.h"
 #include "pso/misc/TWindowMessagePage.h"
 #include "pso/quest/TQuestThread.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 #pragma readonly_strings on
 extern "C" {
 void *memset(void *, int, unsigned long);
@@ -20,7 +21,6 @@ s32 get_game_play_mode();
 s32 get_shop_text(s32 arg0);
 TWindowMessagePage *create__18TWindowMessagePageFllll(s32, s32, s32, s32);
 TWindowMessagePage *set_text__18TWindowMessagePageFlll(s32, s32, s32);
-void TWindow__close(u8 *arg0);
 __declspec(section ".rodata") extern const char message_tag_error[];
 }
 s32 get_guild_text(s32 arg0);

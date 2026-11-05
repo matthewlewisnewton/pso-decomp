@@ -6,7 +6,6 @@
 #include "pso/misc/TWindowMenu.h"
 #include "pso/TObject.h"
 
-extern "C" void TWindow__close(u8 *arg0);
 
 #include "types.h"
 #include "pso/quest/TQuestListVMData.h"
@@ -72,6 +71,7 @@ extern s32 lbl_805D49B4;
 #include "pso/ui/TAdMcSelectGC.h"
 #include "pso/ui/TAdWarningBaseGC.h"
 #include "pso/ui/TMessageWindowController.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 struct SubtractiveRng {
     SubtractiveRng();

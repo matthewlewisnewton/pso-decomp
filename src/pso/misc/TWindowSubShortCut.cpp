@@ -17,6 +17,7 @@ struct TWindowShortCut;
 #include "pso/misc/TWindowSubShortCutList.h"
 #include "pso/misc/TWindowSubShortMail.h"
 #include "pso/object/TObjCityMainWarp.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 struct Win_8027DBB8 { u8 pad[0x20]; s32 f20; };
 
@@ -45,7 +46,6 @@ s32 clear_chat_shortcut();
 s32 store_chat_shortcut(s32 arg0, s32 arg1);
 extern "C" {
 void *__nw__7TObjectFUl(u32);
-void TWindow__close(u8 *arg0);
 u8 get_selected_menu_value(int);
 s32 select_cursor_entry__22TWindowSubShortCutListFv(s32);
 void open_com_card_list__18TWindowSubShortCutFv(void *arg0);

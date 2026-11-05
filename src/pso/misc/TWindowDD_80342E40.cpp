@@ -5,6 +5,7 @@
 #include "pso/TObject.h"
 #include "pso/misc/TShopEquipmentSellWindow.h"
 #include "pso/ui/TWindowInputNumber.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 struct W_80342ED0 {
     u8 pad0[0x20];
@@ -18,7 +19,6 @@ struct W_80342ED0 {
 };
 
 extern "C" {
-void TWindow__close(u8 *arg0);
 void TWindowDD__sub_80341AF8(u8 *arg0);
 s32 open_numeric_parameter_input__9TWindowDDFPviii(void *, int, void *, void *);
 s32 classify_id__9TWindowDDFs();

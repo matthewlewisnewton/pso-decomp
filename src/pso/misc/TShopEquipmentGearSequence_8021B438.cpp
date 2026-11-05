@@ -10,6 +10,7 @@
 #include "pso/misc/TCheckRoomSequence.h"
 #include "pso/quest/TQuestListVM.h"
 #include "pso/misc/TWindowSubComCard.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 struct VBase_18_a93f07
 {
@@ -80,7 +81,6 @@ void queue_destruction__7TObjectFv(void *arg0);
 void *__dt__13TShopSequenceFv(void *arg0, s16 arg1);
 s32 sub_8022397C__15TShopWindowBaseFv(void *);
 s32 __dl__7TObjectFPv(void *);
-void TWindow__close(u8 *arg0);
 extern RecoveredGlobal_8021B7D0___vt__26TShopEquipmentGearSequence __vt__26TShopEquipmentGearSequence;
 extern RecoveredGlobal_8021B7D0_TShopEquipmentGearSequence__data_80513EB0 TShopEquipmentGearSequence__window_slot_table;
 extern s32 lbl_805D6220;

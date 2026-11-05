@@ -2,6 +2,7 @@
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TUnk_804D1160.h"
 #include "pso/misc/TWindowSubEquip.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 struct Equip_80275CB0 {
     u8 pad0[0x18];
@@ -28,7 +29,6 @@ void *TWindowSubCustomEquip__ct(void *, s32);
 extern u8 lbl_8044F718[];
 extern s32 lbl_804D1160[];
 void *TWindowSubEquip__sub_80275CB0(void *arg0, void *arg1, s32 arg2);
-void TWindow__close(u8 *arg0);
 void __dl__7TObjectFPv(void *);
 void __dt__7TObjectFv(void *, int);
 

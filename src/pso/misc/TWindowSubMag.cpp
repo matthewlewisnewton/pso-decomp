@@ -23,6 +23,7 @@
 #include "pso/misc/TWindowSubTradeMain.h"
 #include "pso/object/TObjCityMainWarp.h"
 #include "pso/item/TItem.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 struct Obj_8027C0C4 { u8 pad[0x61]; s8 f61; u8 pad2[2]; s32 arr[1]; };
 
@@ -91,7 +92,6 @@ s32 send_and_handle__6TLobbyFii(s32, s32 *, s32);
 s32 get_window_layout_position(s32);
 void *get_player_by_client_id(s32);
 s32 is_player_input_active(s32);
-void TWindow__close(u8 *arg0);
 void *__nw__7TObjectFUl(u32);
 void *__ct__15TWindowHelpItemFPvUs(void *, s32, s32);
 void *fn_802628C0(s32, void *, s32);

@@ -12,6 +12,7 @@
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/ui/TAdSnAkPassConfirmGC.h"
 #include "pso/quest/TQuestThread.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 struct Elt80364258_80364258 { s32 f0; };
 
@@ -76,7 +77,6 @@ extern s32 password_entry_dispatch_state;
 RecoveredGlobal_8032BA8C_TAdEnterPasswordGC__data_804EDA20 TAdEnterPasswordGC__input_buffer = { 0 };
 #pragma explicit_zero_data off
 void queue_destruction__7TObjectFv(void *);
-void TWindow__close(u8 *arg0);
 extern u8 *password_entry_keyboard_control;
 extern const f32 lbl_805DF780;
 s32 create_default_callback__22TAdEnterSerialAccessGCFv(void *);

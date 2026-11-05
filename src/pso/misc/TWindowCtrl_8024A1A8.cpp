@@ -9,6 +9,7 @@
 #include "pso/misc/TWindowSubStatusDisp.h"
 #include "pso/misc/TWindowTimer.h"
 #include "pso/system/TOChatSensorCapture.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 struct Stack_8024A228 {
     s32 sp8;
     s32 spC;
@@ -66,7 +67,6 @@ extern void *TWindowCtrl__active_window;
 void TLobby__sub_8024AAA0(s32 arg0, s32 arg1);
 u32 get_window__11TWindowCtrlFl(void);
 s32 update_field28__15TWindowCtrlMainFv(u32 a0 = 0, s32 a1 = 0);
-void TWindow__close(u8 *arg0);
 s32 TWindowCtrl__sub_8024B098(void *, void *);
 extern RecoveredGlobal_8024A228_lbl_804CEA88 window_ctrl_main_callback_desc;
 void TWindowCtrl__sub_8024A228(s32 arg0);

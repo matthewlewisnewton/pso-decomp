@@ -14,6 +14,7 @@ struct TShopKeepItemWindow;
 #include "pso/misc/TWindowSubComCard.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/ui/TWindowInputNumber.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 #pragma readonly_strings on
 
@@ -185,7 +186,6 @@ extern "C" {
 u8 is_item_record_empty(u8 *arg0);
 void init__9TItemDataFv(void *);
 void init_item_entry__18TCheckRoomSequenceFPv(Obj_80211408 *self);
-void TWindow__close(TWin_8020F070 *);
 void close_window__18TCheckRoomSequenceFPv(TCheckRoomSequence_8020F070 *self);
 int set_field_20__15TShopWindowBaseFl(void*, void*);
 int reset_controller_input_state(void *);

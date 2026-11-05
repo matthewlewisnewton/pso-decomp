@@ -6,6 +6,7 @@
 #include "pso/TAdPlayerLoadGC.h"
 #include "pso/misc/TCheckMemoryCard.h"
 #include "pso/misc/TLobby.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 typedef struct Vec_801A4D30 {
     s32 x, y, z;
 } Vec_801A4D30;
@@ -31,7 +32,6 @@ void set_active_camera_pose(void *, void *);
 s32 activate_camera_mode(s32 arg0);
 s32 verify_system_file__23TAdSinglePlyChrSelectGCFPv(void);
 s32 pso_system_load_gc(void);
-void TWindow__close(u8 *arg0);
 void *update_window_mode_from_progress__6TLobbyFPv(void *, void *);
 s32 TAdSinglePlyChrSelectGC__sub_8033B9F8(void *);
 extern Vec_801A4D30 lbl_80446940;

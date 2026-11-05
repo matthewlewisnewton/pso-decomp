@@ -83,6 +83,7 @@ struct TAdChrSelSlotGC_802C7314 {
 #include "pso/misc/TWindowSubSymbolChatPartsSet.h"
 #include "pso/object/TObjFish.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 struct TObject;
 struct StatusWindow;
 struct CallbackTask;
@@ -124,7 +125,6 @@ extern s32 lbl_805D67E8;
 extern const f32 lbl_805DE5B8, lbl_805DE5BC, lbl_805DE5C0;
 void TAdChrSelSlotGC__sub_802C7498(struct S802C7498_802C70AC *arg0, s32 arg1);
 void release_texture_list(void*);
-void TWindow__close(u8 *arg0);
 s32 __dl__7TObjectFPv(void *);
 s32 __dt__7TObjectFv(void *, s32);
 void restore_saved_depth_alpha_state(void);

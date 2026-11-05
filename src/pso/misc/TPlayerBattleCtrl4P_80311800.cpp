@@ -9,6 +9,7 @@
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TWindowCtrl.h"
 #include "pso/misc/TWindowSubComCard.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 struct RecoveredGlobal_80311A64_TPlayerBattleCtrl4P__data_80542E90 {
     u16 value;
@@ -22,7 +23,6 @@ struct O_80311C2C { u8 pad[0x20]; void *w0; void *w1; u8 pad2[0x294 - 0x28]; Ids
 extern "C" {
 u32 get_player_by_client_id(s32);
 s32 check_player_flag1__6TLobbyFv();
-void TWindow__close(u8 *arg0);
 void send_code_45_to_window__19TPlayerBattleCtrl4PFPvii(void *arg0, s32 arg1, s32 arg2);
 s32 record_split_screen_battle_results(void *);
 s32 set_state__19TPlayerBattleCtrl4PFv(void *, int);

@@ -24,6 +24,7 @@
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/ui/TWindowInputNumber.h"
 #include "pso/map/FloorArea.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 struct Base_A_80279714 { char pad[0x18]; };
 struct V_A_80279714 : Base_A_80279714 {
@@ -145,7 +146,6 @@ u32 is_action_active__10TObjPlayerFv(s32);
 void decrement_clamped(void *, s32);
 
 s32 __nw__7TObjectFUl(s32);
-void TWindow__close(void *);
 s32 TWindowCtrl__sub_8024A228(s32);
 u32 __ct__15TWindowHelpItemFPvUs(s32, s32, s32);
 s32 get_selected_menu_value(u32);

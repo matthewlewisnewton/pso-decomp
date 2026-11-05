@@ -13,6 +13,7 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/misc/TWindowOptionCtrl_8026CBA4.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 struct RecoveredGlobal_802155B4_TQuestListOnline__data_80513DE8 {
     s32 value;
@@ -97,7 +98,6 @@ extern TWindowMessage *TQuestListOnline__quest_info_window;
 extern int TQuestListOnline__download_barrier_window;
 extern int quest_download_active;
 extern s32 TQuestListOnline__instance;
-void TWindow__close(u8 *arg0);
 extern RecoveredGlobal_80215ABC_lbl_804CA0B8 section_id_favored_grind_table;
 extern s32 lbl_805D6238;
 extern G_802156E0 *item_appraisal_rules;

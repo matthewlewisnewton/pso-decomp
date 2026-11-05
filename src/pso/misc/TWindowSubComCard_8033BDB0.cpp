@@ -14,8 +14,8 @@ struct VObj : VBase { virtual void m0(int); };
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TQuestVmDownLoadServer.h"
 #include "pso/misc/TWindowOptionCtrl.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 extern "C" {
-void TWindow__close(u8 *arg0);
 u32 get_message_10__20TWindowSubStatusDispFl(s32);
 s32 align_menu_entry_positions(u32);
 int forward_trade_action_default__16TObjCityMainWarpFPviii(void *p, int a1, int a2, int a3);

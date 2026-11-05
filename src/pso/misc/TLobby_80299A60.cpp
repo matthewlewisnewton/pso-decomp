@@ -14,6 +14,7 @@
 
 #include "types.h"
 #include "pso/map/FloorArea.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 extern "C" {
 s32 get_main_phase();
@@ -185,7 +186,6 @@ int forward_trade_action_default__16TObjCityMainWarpFPviii(void *p, int a1, int 
 s32 get_player_by_client_id(int);
 s32 TQuestVmDownLoadServer__sub_8006EF6C(s32);
 s32 get_window_layout_position(s32);
-void TWindow__close(u8 *arg0);
 void TObjPlayer__sub_8024ABDC(s32 arg0);
 void play_effect_default__10TObjPlayerFii(s32 arg0, s32 arg1);
 

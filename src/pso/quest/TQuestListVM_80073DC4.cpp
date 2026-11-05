@@ -7,6 +7,7 @@
 #include "pso/misc/TWindowCtrl.h"
 #include "pso/misc/TWindowSubComCard.h"
 #include "pso/ui/TAdChrSelASlotGC.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 struct TObjNewFloorWin_80073DCC { u8 pad[0x1C]; s32 state; void *window; s32 timer24; s32 timer28; };
 
@@ -19,7 +20,6 @@ s32 get_window_layout_position(s32);
 s32 sprintf(void *, const char *, ...);
 extern char lbl_80438660[];
 void queue_destruction__7TObjectFv(void *);
-void TWindow__close(void *);
 s32 TWindowCtrlMain__sub_8024CE58();
 void TShopWindowBase::set_field_20(s32 v) { *(s32 *)&(*(u32 *)((u8 *)this + 0x20)) = v; }
 

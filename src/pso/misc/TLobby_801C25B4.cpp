@@ -20,6 +20,7 @@
 #include "types.h"
 #include "pso/ui/Language.h"
 #include "pso/map/FloorArea.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 typedef struct Lobby_801C2898 {
     u8 pad0[0x268];
@@ -787,7 +788,6 @@ extern s32 TLobby__battle_ctrl_default_value;
 void init_char_slots__6TLobbyFv(void);
 void close_and_play_effect__6TLobbyFii(int arg0, s32 arg1);
 void set_slot__23TAdSinglePlyChrSelectGCFi(u16);
-void TWindow__close(void *);
 void *set_window_mode_4__6TLobbyFPvll(void *, void *, s32);
 void *get_window_layout_position(s32);
 extern Flags_801C3AF4 *controller_input_state[];
@@ -859,7 +859,6 @@ void send_battle_mode_params__6TLobbyFcii(s8 arg0, s32 arg1, s32 arg2);
 void handle_battle_result__6TLobbyFii(int arg0, s32 arg1);
 void close_and_play_effect__6TLobbyFii(int arg0, s32 arg1);
 u32 __nw__7TObjectFUl(s32);
-void TWindow__close(void *);
 s32 has_player_active_menu__11TWindowCtrlFv(s32);
 u32 TWindowDuelResult__ct(void *, s32);
 s32 get_selected_menu_value(void *);
@@ -884,7 +883,6 @@ s32 check_all_players_ready__6TLobbyFv(void *);
 void TLobby__sub_801C2C34(void *);
 void clear_battle_player_ready_flags(void);
 u32 __nw__7TObjectFUl(s32);
-void TWindow__close(void *);
 void *set_window_mode_4__6TLobbyFPvll(void *, void *, s32);
 void *get_window_layout_position(s32);
 int sprintf(char *str, const char *format, ...);
@@ -1845,7 +1843,6 @@ void update_player_battle_ctrl_state(void *arg0) {
 
 extern "C" {
 void update_player_battle_ctrl_state(void *arg0);
-void TWindow__close(void *);
 extern s32 lbl_805D55C0;
 }
 

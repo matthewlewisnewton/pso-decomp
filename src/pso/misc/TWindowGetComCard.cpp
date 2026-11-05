@@ -13,6 +13,7 @@
 #include "pso/misc/TWindowSubComCard.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 #include "pso/object/TObjCityMainWarp.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 struct RecoveredGlobal_80252FCC___vt__17TWindowGetComCard {
     s32 value;
@@ -64,7 +65,6 @@ int fn_80252CBC(void* p);
 void TLobby__sub_8024AC20(s32 arg0);
 s32 TWindowCtrl__sub_8024A314();
 void TWindowReturnCity__sub_8024ACA8(s32 arg0);
-void TWindow__close(u8 *arg0);
 s32 init_parts__10TObjPlayerFv();
 
 void TWindowFukidasi__sub_80252C38(void* p) { *(u8*)((char*)p + 0x71) |= 0x4; }

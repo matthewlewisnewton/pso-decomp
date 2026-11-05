@@ -17,6 +17,7 @@
 #include "pso/misc/TWindowSubItem.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/ui/TWindowInputNumber.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 struct VBase_18_a93f07
 {
@@ -88,7 +89,6 @@ struct Win_8021EA48 : VBase_8021EA48 {
 extern "C" {
 s32 get_entity_id(s32);
 f32 get_scale__15TShopWindowBaseFv(void *);
-void TWindow__close(void *);
 u8 *create_yes_no_window(s32 arg0, s32 arg1, u32 arg2, u32 arg3);
 s32 get_window_layout_position(s32);
 s32 compact_items__18TCheckRoomSequenceFi(int);

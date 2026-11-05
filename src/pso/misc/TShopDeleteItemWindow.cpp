@@ -22,6 +22,7 @@
 #include "pso/misc/TWindowSetLevelUp.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 #include "pso/unk/text_80222C28.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 struct Base_80337910 { char pad[0x18]; };
 struct VObj_80337910 : Base_80337910 {
@@ -83,7 +84,6 @@ s32 remove_bank_item_amount__18TCheckRoomSequenceFiii(int, int, int);
 s32 copy_item_record__18TCheckRoomSequenceFiPvi(int, void *, int);
 s32 copy_bank_to_card_window(int);
 s32 sub_8022397C__15TShopWindowBaseFv(void *);
-void TWindow__close(void *);
 s32 get_selected_menu_value(int);
 s32 select_cursor_entry__22TWindowSubShortCutListFv(int);
 void TShopDeleteItemWindow__sub_80337E2C(Win_80337C2C *win);

@@ -13,6 +13,7 @@
 #include "pso/ui/TAdChrSelASlotGC.h"
 #include "pso/quest/TQuestThread.h"
 #include "pso/map/FloorArea.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 extern "C" f32 TWindowSubEquip__sub_80263AF8(u8 *arg0, u32 arg1);
 
@@ -144,7 +145,6 @@ s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, s32);
 s32 TWindowShortListCtrl__check_controller_button(void *, s32);
 s32 try_equip_item__10TObjPlayerFii(s32, s32);
 
-void TWindow__close(u8 *arg0);
 // set_field_1c__6TLobbyFf declared above
 s32 is_player_input_active(s32);
 void call_if_split_screen(void *, s32);

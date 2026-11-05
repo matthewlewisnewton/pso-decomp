@@ -33,6 +33,7 @@ TMedicalCenterMesInput controller_input_state[];
 #include "pso/misc/TShopGenerator.h"
 #include "pso/misc/TWindowCtrl.h"
 #include "pso/misc/TWindowSubComCard.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 struct RecoveredGlobal_802169A8_TMedicalCenterSequence__data_80513E90 {
     s32 value;
@@ -140,7 +141,6 @@ s32 set_service_counter_camera(void *, int);
 void *__dt__13TShopSequenceFv(void *arg0, s16 arg1);
 s32 sub_8022397C__15TShopWindowBaseFv(void *);
 s32 __dl__7TObjectFPv(void *);
-void TWindow__close(u8 *arg0);
 extern RecoveredGlobal_802169A8___vt__22TMedicalCenterSequence __vt__22TMedicalCenterSequence;
 extern RecoveredGlobal_802169A8_TMedicalCenterSequence__data_80513E90 TMedicalCenterSequence__data_80513E90;
 u8 *__dt__22TMedicalCenterSequenceFv(TMedicalCenterSequence *arg0, s16 arg1);
