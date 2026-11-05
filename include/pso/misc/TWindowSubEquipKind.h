@@ -4,9 +4,11 @@
 #include "types.h"
 #include "pso/misc/TUnk_804D0618.h"
 
+struct TWindowDrawContext;
+
 struct TWindowSubEquipKind : public TUnk_804D0618 {
     virtual ~TWindowSubEquipKind();
-    void draw_tab_label(void *);
+    void draw_tab_label(TWindowDrawContext *);
     virtual void render();
     s16 m_88;
     s16 m_8a;
