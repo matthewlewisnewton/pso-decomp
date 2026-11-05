@@ -440,8 +440,12 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # per-function pragmas left over from the split units.
     # TObjBoss2Tunnel_8003B138 and _802F2070 also stay byte-exact (same functions exact as before)
     # with -fp_contract on for the whole unit, which replaces their per-function pragmas.
+    # _802F2070 is deferred with its definitions in reverse address order: the
+    # ctor's function-local static and guard precede run_task's table guard in
+    # .sbss, as in the original. TObjBoss2Tunnel.cpp keeps upstream #185's
+    # switches; each is needed (docs/porting-exceptions.md sections 5 and 7).
     "pso/boss/TObjBoss2Tunnel_8003B138.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
-    "pso/boss/TObjBoss2Tunnel_802F2070.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
+    "pso/boss/TObjBoss2Tunnel_802F2070.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on")},
     "pso/boss/TObjBoss2Tunnel.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-opt nopropagation", "-pool off", "-sdata 4", "-fp_contract on")},
     "pso/boss/TBoss4DarkFalz_8004C93C.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sym on")},
     "pso/enemy/TObjEneBalClawBody_80090178.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sdata 4")},
@@ -702,13 +706,6 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/misc/TLobby_8001EF5C.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
     "pso/quest/QuestOpcodeHandlers.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
     "pso/quest/TQuestThread.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
-    # TQuestListVM: deferred emission puts __vt__12TQuestListVM ahead of the
-    # run_task switch table (written from the last function back). -pool off
-    # keeps each title and window size its own reloc, and -str reuse,readonly
-    # matches the read-only string objects. The whole unit stays byte-exact.
-    # Precedent: dtk-template configure.py unit cflags, and this tree's
-    # TObjBoss2Tunnel / TBoss6EmptyWarp unit flags.
-    "pso/quest/TQuestListVM.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-pool off", "-str reuse,readonly")},
     # Status gauge: contracting the unit makes `0.299f * depth + ctx->depth`
     # the fmadds at 0x80257118. The bar multiply stays a separate fmuls
     # because the 7.5 scale is applied to the sum before the tick subtract.

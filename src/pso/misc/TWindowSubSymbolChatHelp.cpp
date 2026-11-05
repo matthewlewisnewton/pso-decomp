@@ -1,6 +1,6 @@
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TWindowSubStatusDisp_803DEE6C.h"
 #include "pso/misc/TWindowSubSymbolChatPartsSet.h"
 #include "pso/misc/TWindowSubSymbolChatHelp.h"
@@ -257,7 +257,7 @@ void TWindowSubSymbolChatHelp::render() {
     s32 arg0 = (s32)this;
     s32 temp_r3;
     temp_r3 = draw_default_entry__9TWindowDDFl();
-    ((TWindowBase *)arg0)->draw_window_frame((void *)temp_r3);
+    ((TUnk_804CE018 *)arg0)->draw_window_frame((void *)temp_r3);
     draw_help_entries((void *)temp_r3);
 }
 

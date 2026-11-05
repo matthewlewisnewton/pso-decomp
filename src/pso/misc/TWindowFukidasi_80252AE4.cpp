@@ -1,8 +1,9 @@
 #include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/misc/TWindowFukidasi_80252AE4.h"
-#include "pso/misc/TWindowAddition.h"
+#include "pso/misc/TUnk_804CDFE8.h"
 #include "pso/misc/TUnk_804CF0B8.h"
+#include "pso/misc/TWindowAddition.h"
 #include "pso/misc/TWindowCtrl.h"
 #include "pso/misc/TWindowFukidasi.h"
 
@@ -23,7 +24,7 @@ u8 *__dt__13TUnk_804CF0B8Fv(u8 *arg0, s16 arg1) {
             ::operator delete[](((TUnk_804CF0B8 *)arg0)->name);
             ((TUnk_804CF0B8 *)arg0)->name = NULL;
         }
-        ((TWindowAddition *)arg0)->destroy_window(0);
+        ((TUnk_804CDFE8 *)arg0)->destroy_window(0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }

@@ -19,7 +19,7 @@ extern "C" {
 TGStreamPrefix *open__8TGStreamFPvPvi(TGStreamPrefix *stream, void *name, s32 direct_read_mode);
 TGStreamPrefix *destroy_gstream(TGStreamPrefix *stream, s16 delete_storage);
 void read_sectors_sync__8TGStreamFll(TGStreamPrefix *stream, s32 sector_count, s32 destination);
-s32 read_data__8TGStreamFPUcl(TGStreamPrefix *stream, u8 *destination, s32 byte_count);
+s32 read_data__8TGStreamFll(TGStreamPrefix *stream, s32 destination, s32 byte_count);
 void reset__8TGStreamFv(void);
 void reset_gstream_buffer(void);
 }

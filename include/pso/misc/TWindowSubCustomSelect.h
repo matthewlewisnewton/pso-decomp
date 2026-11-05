@@ -2,9 +2,9 @@
 #define PSO_MISC_TWINDOWSUBCUSTOMSELECT_H
 
 #include "types.h"
-#include "pso/misc/TWindowAddition.h"
+#include "pso/misc/TUnk_804CDFE8.h"
 
-struct TWindowSubCustomSelect : public TWindowAddition {
+struct TWindowSubCustomSelect : public TUnk_804CDFE8 {
     virtual ~TWindowSubCustomSelect();
     virtual void render();
     u8 _pad60[0x8];

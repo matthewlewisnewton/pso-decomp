@@ -2,9 +2,9 @@
 #define PSO_MISC_TWINDOWCOMCARD_H
 
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TUnk_804CE018.h"
 
-struct TWindowComCard : public TWindowBase {
+struct TWindowComCard : public TUnk_804CE018 {
     virtual ~TWindowComCard();
     virtual void render();
     virtual void run_task();

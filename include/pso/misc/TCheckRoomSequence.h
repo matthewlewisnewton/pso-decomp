@@ -6,6 +6,10 @@
 
 struct TCheckRoomSequence : public TShopSequence {
     virtual ~TCheckRoomSequence();
+    u32 m_38;
+    u32 m_3c;
+    u32 m_40;
+    u32 m_44;
     u32 m_48;
     void set_ready_flag();
     void set_position(f32 a, f32 b);

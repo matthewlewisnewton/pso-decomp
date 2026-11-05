@@ -1,5 +1,4 @@
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/misc/THunterGuildSeqOffline_80211FEC.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/misc/TLobby.h"
@@ -27,7 +26,7 @@ void *refresh_with_default_list__20TWindowSubStatusDispFll(void *, void *);
 void *get_window_layout_position(s32);
 char *strcpy(char *, const char *);
 extern u8 member_name_window_pos[];
-u8 *THunterGuildSeqOffline__ct(u8 *arg0, s32 arg1, TObjPlayer *player);
+u8 *THunterGuildSeqOffline__ct(u8 *arg0, s32 arg1, s32 arg2);
 void *__nw__7TObjectFUl(int);
 
     extern int lbl_80513E70[];
@@ -41,7 +40,7 @@ extern void *tl_05;
 void *THunterGuildSeqOffline::create(void *arg0) {
     void *o = __nw__7TObjectFUl(0x3C);
     if (o != NULL) {
-        o = THunterGuildSeqOffline__ct((u8 *)o, (s32)tl_05, (TObjPlayer *)arg0);
+        o = THunterGuildSeqOffline__ct((u8 *)o, (s32)tl_05, (s32)arg0);
     }
     return o;
 }
@@ -140,7 +139,7 @@ void TMemberCheck::open_member_name_window() {
     Seq_80212304 *self = (Seq_80212304 *)this;
     s32 i;
     if (self->win != 0) {
-        ((TWindowBase *)self->win)->close();
+        TWindow__close((u8 *)self->win);
         self->win = 0;
     }
     self->win = refresh_with_default_list__20TWindowSubStatusDispFll(get_window_layout_position(0xBD), member_name_window_pos);

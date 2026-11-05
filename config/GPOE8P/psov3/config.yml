@@ -1436,7 +1436,8 @@ force_active:
   - TQuestListChallenge__name
   - TQuestListChallenge__stage_table
   - TQuestListChallenge__vt9
-  - TQuestListVM_class_name
+  - TQuestListVM__class_name_string
+  - TQuestListVM__sub_8021884C
   - TQuestThreadBoard__class_name
   - TQuestThread__class_name
   - TQuestThread__floor_handler_ids
@@ -1445,6 +1446,7 @@ force_active:
   - TQuestVmDownLoadServer__rng_cipher_state
   - TQuestVmDownLoadServer__sub_801F6B98
   - TQuestVmDownLoadServer__sub_801F8538
+  - TQuestVmDownLoadServer__sub_80219EC4
   - TRKEXICallBack
   - TRKInterruptHandlerEnableInterrupts
   - TRKLoadContext
@@ -2005,7 +2007,6 @@ force_active:
   - __dt__12TObjQuestColFv
   - __dt__12TObjRaderColFv
   - __dt__12TObjRainCtrlFv
-  - __dt__12TQuestListVMFv
   - __dt__12TQuestThreadFv
   - __dt__13PointerBufferFv
   - __dt__13TAdGuideTxtGCFv
@@ -2592,7 +2593,6 @@ force_active:
   - __vt__12TObjParticle
   - __vt__12TObjRaderCol
   - __vt__12TObjRainCtrl
-  - __vt__12TQuestListVM
   - __vt__12TQuestThread
   - __vt__12TTecZondeEff
   - __vt__12T_OWEHMS_Exp
@@ -3990,7 +3990,7 @@ force_active:
   - build_dead_list_window__15TObjDeadListWinFv
   - build_default_save_file__23TAdSinglePlyChrSelectGCFv
   - build_door_collision_triangles__18TObjCityDoor_LobbyFv
-  - build_download_list__12TQuestListVMFv
+  - build_download_list__12TQuestListVMFPv
   - build_item_list__23TShopJudgmentItemWindowFPv
   - build_menu__19TWindowSubShortMailFv
   - build_mode_menu__21TAdMultiSelGameModeGCFl
@@ -4361,7 +4361,7 @@ force_active:
   - clamp_difficulty__6TLobbyFl
   - clamp_flight_height__13TObjEneBm3FlyFv
   - clamp_hp_value__10TObjPlayerFPs
-  - clamp_item_list_scroll__19TWindowMenuIconLineFv
+  - clamp_item_list_scroll__13TUnk_804D0618Fv
   - clamp_menu_choice_scroll__11TWindowMenuFv
   - clamp_min_player_distance__9TBoss4UroFPv
   - clamp_params_and_init__14TOTrapSeabed01Fv
@@ -4933,7 +4933,6 @@ force_active:
   - dimedian_walk_motion_filename
   - disable__23MagNodeOscillationStateFv
   - disable_attack_body__13TObjEneMe1GeeFv
-  - disable_cancel__19TWindowMenuIconLineFv
   - disable_channel_polling__16TKeyBoardControlFl
   - disable_window_flags__6TLobbyFPv
   - dispatch_action__12TBoss1DragonFUll
@@ -4978,8 +4977,6 @@ force_active:
   - dispatch_state_update__15TObjEneGyaranzoFv
   - display_copy_filter_enabled
   - display_exp_gain__FlUlll
-  - display_guild_message__12TQuestListVMFll
-  - display_message__12TQuestListVMFPCcl
   - distribute_part_damage__15TBoss3VoloptP02Fv
   - do_action_447__10TObjPlayerFv
   - do_action_447_from_packet__10TObjPlayerFPvPv
@@ -5093,7 +5090,7 @@ force_active:
   - draw_line_strip__10TObjPlayerFPviif
   - draw_locked__8TObjDoorFPv
   - draw_menu_backdrop_gradients__Fl
-  - draw_message_frame_row__11TWindowBaseFPvPv
+  - draw_message_frame_row__13TUnk_804CE018FPvPv
   - draw_message_window__11TAdEp3ExistFl
   - draw_model_12__25TBoss6Demo20_TYPE2_APPEARFv
   - draw_model_13__23TBoss6Demo21_TYPE2_DEADFv
@@ -5162,7 +5159,7 @@ force_active:
   - draw_title_rings
   - draw_value__13TWindowMesetaFl
   - draw_window__17TWindowDuelResultFPv
-  - draw_window_frame_strips__11TWindowBaseFPvPv
+  - draw_window_frame_strips__13TUnk_804CE018FPvPv
   - draw_window_scanlines__FPUcPUc
   - draw_window_uv_sprite_part
   - draw_with_fade__19TObjEneEpsilonGuardFPvi
@@ -5917,7 +5914,6 @@ force_active:
   - get_destroy_event_obj__6TLobbyFv
   - get_distance_to_local_player_xz__13TObjTombstoneFv
   - get_dominant_stats__8TItemMagFv
-  - get_download_seed__12TQuestListVMFv
   - get_drop_item_mode__6TLobbyFv
   - get_drop_random_float__10TObjPlayerFUl
   - get_drop_table_mode_flags
@@ -6117,6 +6113,7 @@ force_active:
   - handle_cancel__28TWindowSubSymbolChatPartsSetFv
   - handle_challenge_retry_confirm__18TObjChallengeRetryFv
   - handle_chat_input__11TWindowChatFv
+  - handle_click__12TQuestListVMFv
   - handle_close__22THunterGuildSeqOfflineFPv
   - handle_close_flag__17TWindowSubComCardFv
   - handle_close_input__17TJudgmentSequenceFv
@@ -6183,7 +6180,7 @@ force_active:
   - handle_msg_type1_for_idle_slots__6TLobbyFv
   - handle_msg_type2__6TLobbyFl
   - handle_number_input__21TShopDeleteItemWindowFv
-  - handle_open__19TWindowMenuIconLineFv
+  - handle_open__13TUnk_804D0618Fv
   - handle_pad_transfer_done__16TKeyBoardControlFiUiPv
   - handle_page_input__24TWindowSubSymbolChatHelpFv
   - handle_page_input__26TWindowSubQuestBoardSelectFv
@@ -6277,7 +6274,6 @@ force_active:
   - hurt_state__14TObjEneBm5WolfFl
   - hwSetITDMode
   - hwSetTimeOffset
-  - idle__12TQuestListVMFv
   - ignore_trade_proposal_event__Fv
   - illGillChargeEffectPosition1
   - illGillChargeEffectPosition2
@@ -6592,7 +6588,7 @@ force_active:
   - is_dead__12TBoss3VoloptFv
   - is_destination_ahead__12TBoss1DragonFPv
   - is_done__16TObjItemOKWindowFv
-  - is_downloadable_new_entry__12TQuestListVMFP14QuestBinHeader
+  - is_downloadable_new_entry__12TQuestListVMFPvPv
   - is_duplicate_shop_armor
   - is_duplicate_shop_shield_or_unit
   - is_duplicate_shop_weapon
@@ -8047,7 +8043,6 @@ force_active:
   - load_scene_data__6TSceneFl
   - load_scene_map_file__Fl
   - load_scene_rel_file__6TSceneFl
-  - load_selected_bin__12TQuestListVMFv
   - load_selected_char__23TAdSinglePlyChrSelectGCFv
   - load_selected_character__23TAdSinglePlyChrSelectGCFv
   - load_selected_player_slot__12TQuestListVMFv
@@ -13005,7 +13000,7 @@ force_active:
   - poll_input__19TWindowKeyBoardHardFv
   - poll_key_state__16TKeyBoardControlFv
   - poll_load__12TChCrLoadAfsFv
-  - poll_quest_download__12TQuestListVMFv
+  - poll_quest_download__12TQuestListVMFPv
   - populate_quest_floor_sets__Fv
   - populate_sub_item_list
   - pose_player__15TEndingPicStageF17player_class_typeSc
@@ -13068,14 +13063,12 @@ force_active:
   - quest_bgm_nomal_filename
   - quest_bgm_open_filename
   - quest_bgm_smile_filename
-  - quest_decrypt_result_size
   - quest_download_file_header
   - quest_download_file_info
   - quest_download_file_slot
   - quest_floor_designations
   - quest_list_battle_stage_table
   - quest_list_challenge_stage_table
-  - quest_list_vm_instance
   - quest_player_class_name_buffer
   - quest_player_name_buffer
   - quest_vm_load__12TQuestListVMFv
@@ -13113,9 +13106,9 @@ force_active:
   - read_be_u32__Fv
   - read_byte__24TMessageWindowControllerFv
   - read_byte_advance__6TLobbyFv
-  - read_data_sync__6TLobbyFllPUc
+  - read_data_sync__6TLobbyFlll
   - read_file_header__9TLanguageFiPv
-  - read_into_buffer__9TLanguageFPUcl
+  - read_into_buffer__9TLanguageFll
   - read_stream_u16__Fv
   - read_stream_u8__Fv
   - read_u16_le__9TLanguageFv
@@ -14266,7 +14259,7 @@ force_active:
   - scale_by_level__14TOTrapChainSawFf
   - scale_owner_height__11TItemMagSubFf
   - scale_size__12TBoss8DragonFfff
-  - scan_memcard_quest_files__12TQuestListVMFv
+  - scan_memcard_quest_files__12TQuestListVMFPv
   - scene_file_buffer_size
   - scene_format_dispatch_tables
   - schedule_pack_reaction__14TObjEneBm5WolfFPvis
@@ -14592,7 +14585,6 @@ force_active:
   - set_state__15TObjEneSlimeOneFl
   - set_state__16TAdChrSelASlotGCFv
   - set_state__21TAdMultiChgGameModeGCFl
-  - set_state_after_message__12TQuestListVMFl
   - set_state_by_distance__10TBoss2MineFl
   - set_state_by_timer__14TObjEneBm5WolfFi
   - set_state_flags_6__14TObjEnePanarmsFv
@@ -15342,6 +15334,7 @@ force_active:
   - sub_8020F1DC__18TCheckRoomSequenceFv
   - sub_802100F8__18TCheckRoomSequenceFv
   - sub_802100FC__18TCheckRoomSequenceFv
+  - sub_80219064__12TQuestListVMFv
   - sub_8022C008__13TUnk_804CC148Fv
   - sub_80237258__19TTecPlayerInfluenceFv
   - sub_80247080__11TWindowChatFv
@@ -16064,7 +16057,7 @@ force_active:
   - update_load_state__9TItemLoadFv
   - update_load_status__12TQuestListVMFv
   - update_lobby_pigeon_visibility__13TUnk_804E0898Fv
-  - update_lobby_selection__12TQuestListVMFv
+  - update_lobby_selection__12TQuestListVMFPv
   - update_locked_pulse__8TObjDoorFPv
   - update_long_action__8TItemMagFv
   - update_lower_contact_delta__11TBoss6Type2Fv
@@ -16225,7 +16218,7 @@ force_active:
   - update_scale_pulse__15TObjEneDelDepthFv
   - update_scale_sound__11TBoss4Type3Fv
   - update_scroll_close__6TLobbyFv
-  - update_scroll_offset__19TWindowMenuIconLineFv
+  - update_scroll_offset__13TUnk_804D0618Fv
   - update_scroll_target_position__21TWindowSubComCardListFv
   - update_scroll_value__11TWindowMenuFv
   - update_search__15TObjEneMe1GiGueFv
@@ -16492,7 +16485,6 @@ force_active:
   - vfunc_109__13TUnk_8049387CFv
   - vfunc_109__17TObjEneMe1CanadinFv
   - vfunc_109__23TObjEneMe1CanadinLeaderFv
-  - vfunc_10__12TQuestListVMFv
   - vfunc_110__13TObjEneMe1GeeFl
   - vfunc_110__13TUnk_8049387CFl
   - vfunc_110__17TObjEneMe1CanadinFl
@@ -16529,7 +16521,6 @@ force_active:
   - vfunc_117__17TObjEneMe1CanadinFP17TObjEneMe1Canadin
   - vfunc_117__23TObjEneMe1CanadinLeaderFP17TObjEneMe1Canadin
   - vfunc_118__17TObjEneMe3ShinowaFv
-  - vfunc_11__12TQuestListVMFv
   - vfunc_11__17TQuestListOfflineFv
   - vfunc_12__8TObjChipFv
   - vfunc_13__13TUnk_804B5C08Fl
@@ -16727,7 +16718,6 @@ force_active:
   - vfunc_6__11TTecRaZondeFPv
   - vfunc_6__12TNeedleShootFv
   - vfunc_6__12TODoorCave01FPsl
-  - vfunc_6__12TQuestListVMFll
   - vfunc_6__14TOTrapSeabed01FPsl
   - vfunc_6__15TODoorAncient08FPsl
   - vfunc_6__15TODoorAncient09FPsl
@@ -16854,7 +16844,6 @@ force_active:
   - vt5__9TBoss4UroFv
   - vt6__9TBoss4UroFv
   - wait_aram_request__16TAdWarningBaseGCFv
-  - wait_for_message__12TQuestListVMFv
   - wait_for_players__12TBoss1DragonFl
   - wait_for_players__13TBoss5GryphonFl
   - wait_for_quest__10TChallengeFv

@@ -1,5 +1,4 @@
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TKeyBoardControl_80131C58.h"
 #include "pso/misc/TKeyBoardControl_8025EC04.h"
 #include "pso/misc/TKeyBoardControl_803F0C50.h"
@@ -108,9 +107,9 @@ void run_task__16TKeyBoardControlFv(TKeyBoardControl *key_board_control) {
 
 }
 TKeyBoardControl::~TKeyBoardControl() {
-    if (*(void **)((s8 *)this + 0x28) != NULL) { ((TWindowBase *)(*(void **)((s8 *)this + 0x28)))->close(); }
-    if (*(void **)((s8 *)this + 0x24) != NULL) { ((TWindowBase *)(*(void **)((s8 *)this + 0x24)))->close(); }
-    if (*(void **)((s8 *)this + 0x20) != NULL) { ((TWindowBase *)(*(void **)((s8 *)this + 0x20)))->close(); }
+    if (*(void **)((s8 *)this + 0x28) != NULL) { TWindow__close((u8 *)(*(void **)((s8 *)this + 0x28))); }
+    if (*(void **)((s8 *)this + 0x24) != NULL) { TWindow__close((u8 *)(*(void **)((s8 *)this + 0x24))); }
+    if (*(void **)((s8 *)this + 0x20) != NULL) { TWindow__close((u8 *)(*(void **)((s8 *)this + 0x20))); }
 }
 
 extern "C" {

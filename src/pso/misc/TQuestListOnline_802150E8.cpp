@@ -1,12 +1,11 @@
 #include "pso/system/ArrayAllocation.h"
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/system/main_loop.h"
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/misc/TWindowMessage.h"
 #include "pso/TMainTask.h"
 #include "pso/misc/TQuestVmDownLoadServer.h"
-#include "pso/misc/TWindowAddition.h"
+#include "pso/misc/TUnk_804CDFE8.h"
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TQuestListOnline.h"
 #include "pso/misc/TDLGraph.h"
@@ -97,7 +96,7 @@ extern int TQuestListOnline__quest_info_window;
 extern int TQuestListOnline__download_barrier_window;
 extern int quest_download_active;
 extern s32 TQuestListOnline__instance;
-void close__11TWindowBaseFv(u8 *arg0);
+void TWindow__close(u8 *arg0);
 extern RecoveredGlobal_80215ABC_lbl_804CA0B8 section_id_favored_grind_table;
 extern s32 lbl_805D6238;
 extern G_802156E0 *item_appraisal_rules;
@@ -129,7 +128,7 @@ extern char lbl_805DC66C[4];
 extern char lbl_805DC670[4];
 extern char lbl_805DC674[4];
 s32 THunterGuildSeqOffline__sub_80212074();
-int create__14TWindowMessageFllUll(s32, Pair_80215380 *, s32, s32);
+int create_message_window__6TLobbyFllUls(s32, Pair_80215380 *, s32, s32);
 extern Pair_80215380 lbl_8044BCB8[];
 extern const f32 lbl_805DC678;
 
@@ -143,9 +142,9 @@ void TQuestListOnline::begin_file_download() {
         p.a = lbl_8044BCC0[0].a;
         p.b = lbl_8044BCC0[0].b;
         TQuestListOnline__download_window = update_window_mode_from_progress__6TLobbyFPv(get_window_layout_position(0x2C), &p);
-        ((TWindowMessage *)TQuestListOnline__download_window)->append_line(get_guild_text(0x14), 1);
+        ((TLobby *)TQuestListOnline__download_window)->send_and_handle(get_guild_text(0x14), 1);
         ((TWindowMessage *)TQuestListOnline__download_window)->complete_reveal();
-        ((TWindowBase *)TQuestListOnline__download_window)->set_depth(lbl_805DC664);
+        ((TLobby *)TQuestListOnline__download_window)->set_field_1c(lbl_805DC664);
         main_task.begin_frame();
         ((TMainTask *)((u8 *)&main_task))->run_tl_camera_tasks();
         main_task.render();
@@ -210,16 +209,16 @@ void TQuestListOnline::receive_quest_info(void *arg0) {
         if (THunterGuildSeqOffline__sub_80212074() != 0) {
             ((TWindowCtrl *)local_client_id)->suppress_slot();
             if ((u32) TQuestListOnline__quest_info_window != 0U) {
-                ((TWindowBase *)TQuestListOnline__quest_info_window)->close();
+                TWindow__close((u8 *)TQuestListOnline__quest_info_window);
                 TQuestListOnline__quest_info_window = 0;
             }
             p.a = lbl_8044BCB8[0].a;
             p.b = lbl_8044BCB8[0].b;
-            TQuestListOnline__quest_info_window = create__14TWindowMessageFllUll(get_window_layout_position(0x2E), &p, 1, local_client_id);
-            ((TWindowBase *)TQuestListOnline__quest_info_window)->set_depth(lbl_805DC664);
-            ((TWindowMessage *)TQuestListOnline__quest_info_window)->append_line(TQuestListOnline__selected_quest_info + 4, 0x80);
+            TQuestListOnline__quest_info_window = create_message_window__6TLobbyFllUls(get_window_layout_position(0x2E), &p, 1, local_client_id);
+            ((TLobby *)TQuestListOnline__quest_info_window)->set_field_1c(lbl_805DC664);
+            ((TLobby *)TQuestListOnline__quest_info_window)->send_and_handle(TQuestListOnline__selected_quest_info + 4, 0x80);
             if (TCameraCtrl::get_camera_id() >= 2) {
-                ((TWindowAddition *)TQuestListOnline__quest_info_window)->set_position_xy(lbl_805DC678, lbl_805DC678);
+                ((TUnk_804CDFE8 *)TQuestListOnline__quest_info_window)->set_position_xy(lbl_805DC678, lbl_805DC678);
             }
         }
     }
@@ -256,15 +255,15 @@ void TQuestListOnline::release_resources() {
         TQuestListOnline__quest_list_buffer = 0U;
     }
     if ((u32) (*(u32 *)&TQuestListOnline__download_window) != 0U) {
-        ((TWindowBase *)(*(u32 *)&TQuestListOnline__download_window))->close();
+        TWindow__close((u8 *)((*(u32 *)&TQuestListOnline__download_window)));
         (*(u32 *)&TQuestListOnline__download_window) = 0U;
     }
     if ((u32) (*(u32 *)&TQuestListOnline__quest_info_window) != 0U) {
-        ((TWindowBase *)(*(u32 *)&TQuestListOnline__quest_info_window))->close();
+        TWindow__close((u8 *)((*(u32 *)&TQuestListOnline__quest_info_window)));
         (*(u32 *)&TQuestListOnline__quest_info_window) = 0U;
     }
     if ((u32) (*(u32 *)&TQuestListOnline__download_barrier_window) != 0U) {
-        ((TWindowBase *)(*(u32 *)&TQuestListOnline__download_barrier_window))->close();
+        TWindow__close((u8 *)((*(u32 *)&TQuestListOnline__download_barrier_window)));
         (*(u32 *)&TQuestListOnline__download_barrier_window) = 0U;
     }
     (*(s32 *)&quest_download_active) = 0;
@@ -276,8 +275,8 @@ void TQuestListOnline::release_resources() {
 }
 
 void TQuestListOnline::init_download_buffers() {
-    (*(s32 *)&TQuestListOnline__quest_list_buffer) = (s32)TQuestVmDownLoadServer::alloc(0x11D4);
-    TQuestListOnline__selected_quest_info = (s32)TQuestVmDownLoadServer::alloc(0x124);
+    (*(s32 *)&TQuestListOnline__quest_list_buffer) = ((TQuestVmDownLoadServer *)((void *)0x11D4))->alloc();
+    TQuestListOnline__selected_quest_info = ((TQuestVmDownLoadServer *)((void *)0x124))->alloc();
     (*(s32 *)&TQuestListOnline__download_window) = 0;
     (*(s32 *)&TQuestListOnline__quest_info_window) = 0;
     (*(s32 *)&TQuestListOnline__download_barrier_window) = 0;

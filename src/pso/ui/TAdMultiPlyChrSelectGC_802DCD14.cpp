@@ -1,6 +1,5 @@
 #include "pso/system/SoundEffect.h"
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC_802DCD14.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC.h"
 #include "pso/TAdMultiChgGameModeGC.h"
@@ -28,6 +27,7 @@ u32 TAdMultiPlyChrSelectGC__sub_802DBE4C(void *, s32 *);
 s32 TAdMultiPlyChrSelectGC__sub_802DBEC4(void *, s32 *);
 s32 TAdMultiPlyChrSelectGC__sub_802DC294(void *, s32);
 s32 TAdMultiPlyChrSelectGC__sub_802E0024(s32, u32);
+s32 TWindow__close(void *);
 s32 get_card_index__22TAdMultiPlyChrSelectGCFv(s32, s32);
 s32 load_tables();
 s32 swap_characters__23TAdSinglePlyChrSelectGCFii(u32, s32);
@@ -180,7 +180,7 @@ loop_7:
     ret = get_card_index__22TAdMultiPlyChrSelectGCFv(this->m_5c, 1);
     if (swap_characters__23TAdSinglePlyChrSelectGCFii((u32)iter, ret + 4) == 1) {
         if ((u32) this->m_84 != 0U) {
-            ((TWindowBase *)(*(void * *)&this->m_84))->close();
+            TWindow__close(*(void * *)&this->m_84);
             this->m_84 = 0U;
         }
         temp_u = TAdMultiPlyChrSelectGC::get_global_state();

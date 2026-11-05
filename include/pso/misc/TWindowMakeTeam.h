@@ -17,12 +17,7 @@ struct TWindowMakeTeam : public TObject {
     u32 m_30;
     u32 m_34;
     static s32 draw_entry_0x110(s8 arg0);
-    s32 is_enabled();
-    u8 get_mode();
-    u8 read_mode();
-    s32 get_field_20();
-    int test_flag_1d_bit1();
-    int test_flag_1d_bit0();
+    u8 is_enabled();
     void set_state(s32 arg1);
     void send_state();
     void update_ok_button();

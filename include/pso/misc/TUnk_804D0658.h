@@ -1,9 +1,9 @@
 #ifndef PSO_MISC_TUNK_804D0658_H
 #define PSO_MISC_TUNK_804D0658_H
 #include "types.h"
-#include "pso/misc/TWindowAddition.h"
+#include "pso/misc/TUnk_804CDFE8.h"
 
-class TUnk_804D0658 : public TWindowAddition {
+class TUnk_804D0658 : public TUnk_804CDFE8 {
 public:
     virtual ~TUnk_804D0658();
     void draw();

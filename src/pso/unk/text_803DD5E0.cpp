@@ -384,7 +384,7 @@ void replace_gvm_texture_directory(GvmTextureList_803DDDC8* list, s32 stride, co
         if (names) {
             s32 length = strlen((char*)record);
             if (length > 0) {
-                move_data((texture->name), record, length);
+                ((TLobby *)(texture->name))->move_data(record, length);
             }
             record += 0x1C;
         }
@@ -544,9 +544,9 @@ void *load_nj_chunk_model_resource(u8 *base, u32 *off, u32 *out) {
     u32 v;
     pos = 0;
     src = base + *off;
-    move_data((&magic), src, 4);
+    ((TLobby *)(&magic))->move_data(src, 4);
     TLobby::bswap_u32(&magic);
-    move_data((&size), src + 4, 4);
+    ((TLobby *)(&size))->move_data(src + 4, 4);
     TLobby::bswap_u32(&size);
     src += 8;
     *off += 8;
@@ -593,7 +593,7 @@ void *load_nj_chunk_model_resource(u8 *base, u32 *off, u32 *out) {
     if (buf == NULL) {
         return NULL;
     }
-    move_data(buf, src, size);
+    ((TLobby *)buf)->move_data(src, size);
     DCFlushRange(buf, size);
     src += size;
     *off += size;
@@ -602,17 +602,17 @@ unknown:
     *out = 0x2A2A2A2A;
     return NULL;
 relocate:
-    move_data((&magic), src, 4);
+    ((TLobby *)(&magic))->move_data(src, 4);
     TLobby::bswap_u32(&magic);
     *off += 4;
     magic = TLobby::bswap32_value(magic);
     if (magic == 0x504F4630) {
-        move_data((&size), src + 4, 4);
+        ((TLobby *)(&size))->move_data(src + 4, 4);
         TLobby::bswap_u32(&size);
         src += 8;
         *off += 4;
         while (size != 0) {
-            move_data((&b0), src, 1);
+            ((TLobby *)(&b0))->move_data(src, 1);
             src++;
             (*off)++;
             size--;
@@ -621,18 +621,18 @@ relocate:
                 v = b0 & 0x3F;
                 break;
             case 0x80:
-                move_data((&b1), src, 1);
+                ((TLobby *)(&b1))->move_data(src, 1);
                 src++;
                 size--;
                 (*off)++;
                 v = ((b0 & 0x3F) << 8) | b1;
                 break;
             case 0xC0:
-                move_data((&b1), src, 1);
+                ((TLobby *)(&b1))->move_data(src, 1);
                 size--;
-                move_data((&b2), src + 1, 1);
+                ((TLobby *)(&b2))->move_data(src + 1, 1);
                 size--;
-                move_data((&b3), src + 2, 1);
+                ((TLobby *)(&b3))->move_data(src + 2, 1);
                 src += 3;
                 size--;
                 *off += 3;

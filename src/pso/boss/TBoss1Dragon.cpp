@@ -434,6 +434,7 @@ void prepare_flight_destination__12TBoss1DragonFPv(u8 *arg0);
 extern const f32 lbl_805D800C;
 s32 get_current_floor();
 u32 get_player_by_client_id(s32);
+void *alloc__22TQuestVmDownLoadServerFv(s32);
 extern u8 lbl_80435394[];
 extern s32 lbl_805D2648;
 extern s32 lbl_805D264C;
@@ -5593,7 +5594,6 @@ block_12:
 
 #include "pso/enemy/TObjEnePanarms.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
-#include "pso/misc/TQuestVmDownLoadServer.h"
 
 #pragma inline_depth(1)
 #pragma auto_inline off
@@ -5747,8 +5747,8 @@ Obj_80029C78 *destroy__12TBoss1DragonFPvs(Obj_80029C78 *o, s16 flag) {
             TBoss1Dragon__data_805D4B2C = 0;
         }
         __destroy_arr(o->f6E8, (void *)__dt__15RenderFadeStateFv, 0x1c, 4);
-        TObjBoss2Tunnel::maybe_delete((s32)o->f618, (s16)(-1));
-        TObjBoss2Tunnel::maybe_delete((s32)o->f5F4, (s16)(-1));
+        TObjBoss2Tunnel::maybe_delete((AccelerationCurve *)o->f618, (s16)(-1));
+        TObjBoss2Tunnel::maybe_delete((AccelerationCurve *)o->f5F4, (s16)(-1));
         __dt__7TObjectFv(o->f3C4, -1);
         __dt__12TObjEneDD_STFv(o, 0);
         if (flag > 0) {
@@ -6009,7 +6009,7 @@ void TBoss1Dragon::load_resources() {
     }
     source = ((DragonResource *)TBoss1Dragon__data_805D4B08)->model->root;
     lbl_805D4B24 = TBoss1Dragon::countModelNodes(source);
-    TBoss1Dragon__data_805D4B28 = (u32)TQuestVmDownLoadServer::alloc(lbl_805D4B24 * 0x50);
+    TBoss1Dragon__data_805D4B28 = (u32)alloc__22TQuestVmDownLoadServerFv(lbl_805D4B24 * 0x50);
     lbl_804FE1B8.state[0] = 0;
     lbl_804FE1B8.state[1] = 0;
     lbl_804FE1B8.params[0] = (0.0f);

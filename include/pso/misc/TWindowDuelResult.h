@@ -2,9 +2,9 @@
 #define PSO_MISC_TWINDOWDUELRESULT_H
 
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TUnk_804CE018.h"
 
-struct TWindowDuelResult : public TWindowBase {
+struct TWindowDuelResult : public TUnk_804CE018 {
     virtual ~TWindowDuelResult();
     u8 _pad28[8];
     u32 m_68;

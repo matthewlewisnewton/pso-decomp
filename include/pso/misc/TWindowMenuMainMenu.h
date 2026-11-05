@@ -3,7 +3,7 @@
 
 #include "types.h"
 #include <stddef.h>
-#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TWindowDrawContext.h"
 
 // get_row_position writes this pair: x then y (the entry's x/y targets).
@@ -42,7 +42,7 @@ typedef char TMainMenuEntry_size[sizeof(TMainMenuEntry) == 0x18 ? 1 : -1];
 typedef char TMainMenuEntry_flags[offsetof(TMainMenuEntry, flags) == 0x13 ? 1 : -1];
 typedef char TMainMenuEntry_kind[offsetof(TMainMenuEntry, kind) == 0x12 ? 1 : -1];
 
-struct TWindowMenuMainMenu : public TWindowBase {
+struct TWindowMenuMainMenu : public TUnk_804CE018 {
     virtual ~TWindowMenuMainMenu();
     void handle_navigation_input();
     void handle_confirm();

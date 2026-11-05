@@ -1,6 +1,4 @@
 #include "types.h"
-#include "pso/misc/TWindowMessage.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowShortListCtrl_801A4FC0.h"
 #include "pso/ui/TObjBagWarnWin_8006EF24.h"
 #include "pso/misc/TUnk_804C2298.h"
@@ -33,6 +31,7 @@ void set_active_camera_pose(void *, void *);
 s32 activate_camera_mode(s32 arg0);
 s32 verify_system_file__23TAdSinglePlyChrSelectGCFPv(void);
 s32 pso_system_load_gc(void);
+void TWindow__close(u8 *arg0);
 void *update_window_mode_from_progress__6TLobbyFPv(void *, void *);
 s32 TAdSinglePlyChrSelectGC__sub_8033B9F8(void *);
 extern Vec_801A4D30 lbl_80446940;
@@ -95,13 +94,13 @@ void TUnk_804C2298::run_task() {
             Pair_801A4D30 a = lbl_80446958[0];
             Pair_801A4D30 b = lbl_80446960[0];
             self->window = update_window_mode_from_progress__6TLobbyFPv(&a, &b);
-            ((TWindowMessage *)(self->window))->append_line(TQuestVmDownLoadServer__sub_8006EF6C(0xC), 1);
+            ((TLobby *)(self->window))->send_and_handle(TQuestVmDownLoadServer__sub_8006EF6C(0xC), 1);
             self->state = 7;
         }
         break;
     case 7:
         if (TAdPlayerLoadGC::get_instance() == 0) {
-            ((TWindowBase *)self->window)->close();
+            TWindow__close((u8 *)self->window);
             self->window = NULL;
             self->state = 8;
         }

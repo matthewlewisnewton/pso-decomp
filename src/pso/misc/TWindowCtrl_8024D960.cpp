@@ -1,6 +1,6 @@
 #include "types.h"
 #include "pso/misc/TWindowMainMenu.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TWindowLockOn.h"
 #include "pso/misc/TWindowCtrl.h"
 #include "pso/misc/TWindowShortListCtrl.h"
@@ -36,6 +36,7 @@ void window_request_show(void *arg0);
 extern "C" {
 s32 is_split_screen();
 s32 TWindowCtrl__sub_8024C7F8(void *);
+s32 TWindow__close(void *);
 s32 TWindowCtrl__sub_8024A314();
 s32 TWindowCtrl__sub_8024C7C4(void *);
 s32 TWindowCtrl__sub_8024C7E0(void *);
@@ -210,12 +211,12 @@ void TWindowCtrl::update_main_menu_request() {
 #pragma fp_contract on
 void TWindowCtrl::update_target_info_window() {
     u8 *arg0 = (u8 *)this;
-    if ((*(void **)((s8 *)arg0 + 0x38) != NULL) && ((((TObject *)(*(void **)((s8 *)arg0 + 0x38)))->all_parents_unqueued_for_destruction() == 0) || (((TWindowBase *)(*(u32 *)((s8 *)arg0 + 0x38)))->sub_80244994() == 0))) {
+    if ((*(void **)((s8 *)arg0 + 0x38) != NULL) && ((((TObject *)(*(void **)((s8 *)arg0 + 0x38)))->all_parents_unqueued_for_destruction() == 0) || (((TUnk_804CE018 *)(*(u32 *)((s8 *)arg0 + 0x38)))->sub_80244994() == 0))) {
         *(u32 *)((s8 *)arg0 + 0x38) = 0U;
     }
     if ((TWindowCtrl__sub_8024C7E0(arg0) != 0) || (get_active_menu() != 0) || (((TWindowCtrl *)arg0)->is_visible() != 0) || (TWindowCtrl__sub_8024C7C4(arg0) != 0) || (TWindowCtrl__sub_8024A314() != 0)) {
         if ((u32) *(u32 *)((s8 *)arg0 + 0x38) != 0U) {
-            ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x38)))->close();
+            TWindow__close(*(void **)((s8 *)arg0 + 0x38));
             *(u32 *)((s8 *)arg0 + 0x38) = 0U;
         }
     } else {

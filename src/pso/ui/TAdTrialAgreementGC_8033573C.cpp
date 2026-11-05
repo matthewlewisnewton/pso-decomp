@@ -70,7 +70,7 @@ s32 TAdTrialAgreementGC::check_card_file(s32 arg0) {
         return 0;
     }
     wait_for_load__19TAdTrialAgreementGCFv(arg0);
-    temp_r3 = TAdPlayerLoadGC::find_card_file(0, (const char *)pso_system_card_filename);
+    temp_r3 = find_card_file__15TAdPlayerLoadGCFiPv(0, (const char *)pso_system_card_filename);
     if ((temp_r3 == 0) || ((temp_r3 + 0x10000) == 0xFF41U)) {
         return 1;
     }

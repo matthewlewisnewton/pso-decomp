@@ -25,7 +25,7 @@ extern const f32 lbl_805DD620;
 }
 
 void TWindowSubEquipList::add_status_line(u8 icon, TItem *item, s32 slot) {
-    EquipListRow *row = (EquipListRow *)get_array_entry(entry_count);
+    EquipListRow *row = (EquipListRow *)get_array_entry(m_72);
     if (item == NULL) {
         init_status_entry__20TWindowSubStatusDispFPvcUii(row, icon, 0, slot);
         row->height += lbl_805DD620;
@@ -36,7 +36,7 @@ void TWindowSubEquipList::add_status_line(u8 icon, TItem *item, s32 slot) {
     if (icon == 4) {
         row->height += lbl_805DD620;
     }
-    entry_count++;
+    m_72++;
 }
 
 u8 get_class_weapon_icon_index(void *self, u8 *player);

@@ -4,17 +4,11 @@
 #include "pso/TObject.h"
 #include "types.h"
 
-struct TWindowMessage;
-struct TWindowSubComCardList;
-
 class TObjChallengeRetry : public TObject {
 public:
- s32 state;
+ u8 _pad1c[0x04];
  s32 m_20;
  s32 m_24;
- s32 countdown;
- TWindowSubComCardList *menu;
- TWindowMessage *message;
 
 public:
     virtual ~TObjChallengeRetry();

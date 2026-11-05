@@ -49,8 +49,8 @@ void TLobby__sub_8001EDD8(List_8001EDD8 *self, s32 item) {
     self->items[self->count++] = item;
 }
 
-void TLobby::tmp_buf_release_if_owner(const char *name) {
-    if (((s32) tmp_buf_in_use_flag == 0) && (strcmp(&TLobby__tmp_buf_name.value, (void *)name) == 0)) {
+void TLobby__sub_8001EDF4(u8 *arg0) {
+    if (((s32) tmp_buf_in_use_flag == 0) && (strcmp(&TLobby__tmp_buf_name.value, arg0) == 0)) {
         tmp_buf_in_use_flag = 1;
         TLobby__tmp_buf_name.value = 0;
     }
@@ -73,7 +73,7 @@ s32 TLobby::tmp_buf_release(const char *name) {
     return 1;
 }
 
-s32 TLobby::tmp_buf_is_free() {
+s32 TLobby__sub_8001EEF4(void) {
     return tmp_buf_in_use_flag;
 }
 s32 TLobby::tmp_buf_use_req(const char *name) {

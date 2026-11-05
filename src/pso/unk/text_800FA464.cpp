@@ -87,7 +87,7 @@ void process_async_file_reads(void) {
                 ((TLobby *)dst)->copy_u16_array((u16 *)async_file_read_sector_buffer, (s32)(n / 2));
                 break;
             default:
-                move_data(dst, (const void *)async_file_read_sector_buffer, (u32)n);
+                ((TLobby *)dst)->move_data((const void *)async_file_read_sector_buffer, (u32)n);
                 break;
             }
             TLobby::destroy_instance();

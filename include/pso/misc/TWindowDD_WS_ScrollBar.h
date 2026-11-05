@@ -1,9 +1,9 @@
 #ifndef PSO_MISC_TWINDOWDD_WS_SCROLLBAR_H
 #define PSO_MISC_TWINDOWDD_WS_SCROLLBAR_H
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TUnk_804CE018.h"
 
-class TWindowDD_WS_ScrollBar : public TWindowBase {
+class TWindowDD_WS_ScrollBar : public TUnk_804CE018 {
 public:
     virtual ~TWindowDD_WS_ScrollBar();
     void *dt(s16);
