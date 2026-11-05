@@ -45,7 +45,6 @@ extern s32 lbl_804CF918[];
 void sub_80256BDC__13TUnk_804CF930Fs(u8 *arg0, s16 arg1);
 void calc_bar_width__20TWindowSubStatusDispFPv(struct Bar_80256C00 *bar);
 f32 fabs_float(f32);
-extern const f32 lbl_805DCE58;
 const f32 lbl_805DCECC = 2.0f;
 void step_gauge_bar_width(Gauge_802571B4 *g);
 s32 try_open__19TWindowKeyBoardSoftFii(void *, void *);
@@ -193,6 +192,9 @@ void TWindowSubStatusDisp__sub_80257024(TUnk_804CF930 *self, TWindowDrawContext 
     Pos_80256E0C pos;
     f32 bar;
     f32 sum = self->y / 21.0f + self->x / ctx->inner_w;
+    // Signed cast. Its bias is this unit's .rodata (lbl_8044EE40). Nothing
+    // else loads that object, so it is scope:local. Naming the double emits
+    // a second copy and the lis/lfd stops matching the compiler pool.
     f32 tick = (f32)ctx->open_tick;
 
     sum *= 7.5f;
@@ -228,7 +230,7 @@ void step_gauge_bar_width(Gauge_802571B4 *g) {
     f32 target;
     f32 diff;
     g->flags &= ~4;
-    if (g->max <= lbl_805DCE58 || g->val <= lbl_805DCE58) {
+    if (g->max <= 0.0f || g->val <= 0.0f) {
         target = 0.0f;
     } else {
         target = (g->val * g->scale) / g->max;
@@ -237,7 +239,7 @@ void step_gauge_bar_width(Gauge_802571B4 *g) {
     if (fabs_float(diff) < lbl_805DCECC) {
         g->cur = target;
         g->flags |= 4;
-    } else if (diff > lbl_805DCE58) {
+    } else if (diff > 0.0f) {
         g->cur += lbl_805DCECC;
     } else {
         g->cur -= lbl_805DCECC;
@@ -277,9 +279,7 @@ typedef void *(*Ctor_80257D44)(void *, void *, s32);
 #define step_gauge_bar_width ((void (*)(void *))step_gauge_bar_width)
 
 #define lbl_804CF930 (*(unsigned char (*)[1])&lbl_804CF930)
-extern const float lbl_805DCE58;
-
-void*TUnk_804CF930::init_from(void*a1, int a2) { sub_80256BDC__13TUnk_804CF930Fs(this, a2); *(int*)((char*)this + 0x4) = (int)lbl_804CF930; *(float*)((char*)this + 0x1c) = lbl_805DCE58; *(float*)((char*)this + 0xc) = *(float*)((char*)a1 + 0x4); *(float*)((char*)this + 0x10) = *(float*)((char*)a1 + 0x8); *(float*)((char*)this + 0x8) = *(float*)((char*)a1 + 0xc); *(float*)((char*)this + 0x14) = *(float*)((char*)a1 + 0x18); *(int*)((char*)this + 0x18) = *(int*)((char*)a1 + 0x10); *(short*)((char*)this + 0x0) = *(int*)((char*)a1 + 0x14); *(float*)((char*)this + 0x20) = *(float*)((char*)a1 + 0x1c); *(float*)((char*)this + 0x24) = *(float*)((char*)a1 + 0x20); return this; }
+void*TUnk_804CF930::init_from(void*a1, int a2) { sub_80256BDC__13TUnk_804CF930Fs(this, a2); *(int*)((char*)this + 0x4) = (int)lbl_804CF930; *(float*)((char*)this + 0x1c) = 0.0f; *(float*)((char*)this + 0xc) = *(float*)((char*)a1 + 0x4); *(float*)((char*)this + 0x10) = *(float*)((char*)a1 + 0x8); *(float*)((char*)this + 0x8) = *(float*)((char*)a1 + 0xc); *(float*)((char*)this + 0x14) = *(float*)((char*)a1 + 0x18); *(int*)((char*)this + 0x18) = *(int*)((char*)a1 + 0x10); *(short*)((char*)this + 0x0) = *(int*)((char*)a1 + 0x14); *(float*)((char*)this + 0x20) = *(float*)((char*)a1 + 0x1c); *(float*)((char*)this + 0x24) = *(float*)((char*)a1 + 0x20); return this; }
 
 }
 

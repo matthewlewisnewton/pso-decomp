@@ -170,10 +170,20 @@ is written `sum *= 7.5f; bar = (tick - sum) * 17.0f;`, which stays
 objdiff of the unit with and without the flag, recorded in the #322 PR body. Precedent:
 [dtk-template configure.py#L209](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209)
 (`-fp_contract on`), and in-tree `TObjTombstone.cpp` / `PadRumble.cpp`.
-Still open: the signed `open_tick` conversion pools its `0x4330000080000000`
-bias locally, while the original loads it from `lbl_8044EE40`, so
-`sub_80257024` is 99.9%, not byte-identical. Port: drop the flag;
-`0.299f * depth + ctx->depth` may become a separate multiply and add.
+The signed `open_tick` cast's `0x4330000080000000` bias is
+`lbl_8044EE40`. That object was an unclaimed 8-byte `.rodata` gap; the only
+relocation to it is the `lis`/`lfd` in `TWindowSubStatusDisp__sub_80257024`,
+so the range `0x8044EE40..0x8044EE48` belongs to this unit. It is
+`scope:local` for the same reason as the other unreferenced compiler pools
+(`TObjFish_8033CCC8`'s `lbl_80477F08`): the compiler names the pool `@N`, and
+nothing else loads the export. With the bytes in the unit, objdiff's
+`functionRelocDiffs=data_value` treats `@N` and `lbl_8044EE40` as the same
+load, and `sub_80257024` is byte-identical. The unit's `.sdata2` floats
+`lbl_805DCE58` through `lbl_805DCECC` are the same kind of unreferenced pool
+(`0.0f` and the other literals, including `lbl_805DCECC` = 2.0f) and are
+`scope:local` too, which is what makes the whole unit linkable. Port: drop the flag;
+`0.299f * depth + ctx->depth` may become a separate multiply and add. The
+cast stays a cast.
 
 ## 6. Approved regressions
 
