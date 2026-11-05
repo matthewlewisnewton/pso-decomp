@@ -89,7 +89,7 @@ const char seabed01_multi_gsl_path[] = "gsl_seabed01_multi.gsl";
 const char seabed02_multi_gsl_path[] = "gsl_seabed02_multi.gsl";
 const char empty_gsl_path[4] = "";
 char *gsl_archive_path_buffer_ptr = (char *)gsl_archive_entries;
-s32 gstream_tmp_buffer;
+u8 *gstream_tmp_buffer;
 u32 TItemDrop__gsl_adxf_handle;
 s32 TItemDrop__gsl_entry_count;
 s32 TItemDrop__data_805D53CC;
@@ -306,12 +306,12 @@ void open_gsl_archive(char *name) {
     }
 }
 
-void TLobby::read_data_sync(s32 arg0, s32 arg1, s32 arg2) {
+void TLobby::read_data_sync(s32 arg0, s32 arg1, u8 *dst) {
     s32 sp8;
 
     sp8 = arg0;
     ((s32 (*)())read_checked_align__6TLobbyFlll)();
-    TLobby::set_read_params((int)&sp8, (int)arg1, (int)arg2);
+    TLobby::set_read_params((int)&sp8, (int)arg1, (int)dst);
 loop_1:
     if (TLobby__sub_803CC4C0(sp8) != 3) {
         TLobby::run_frame();
@@ -325,7 +325,7 @@ void align_gstream_read_offset(void *self, s32 n) {
     gstream_buffer_read_offset = n * ((gstream_buffer_read_offset + n - 1) / n);
 }
 
-s32 TGStream::read_data(s32 dst, s32 size) {
+s32 TGStream::read_data(u8 *dst, s32 size) {
     TGStreamPrefix *arg0 = (TGStreamPrefix *)this;
     s32 total;
     s32 n;
@@ -339,7 +339,7 @@ s32 TGStream::read_data(s32 dst, s32 size) {
         } else {
             n = get_gstream_buffered_bytes();
         }
-        move_data((u8 *)dst, (const void *)(gstream_tmp_buffer + gstream_buffer_read_offset), (u32)n);
+        move_data(dst, gstream_tmp_buffer + gstream_buffer_read_offset, n);
         dst += n;
         size -= n;
         total += n;
@@ -419,7 +419,7 @@ TGStreamPrefix *open__8TGStreamFPvPvi(TGStreamPrefix *g_stream_prefix, void *fil
         while (TLobby::tmp_buf_is_free() == 0) {
             TLobby::pump_frames();
         }
-        gstream_tmp_buffer = TLobby::tmp_buf_use_req((const char *)TGStream__class_name_string);
+        gstream_tmp_buffer = (u8 *)TLobby::tmp_buf_use_req((const char *)TGStream__class_name_string);
     }
     return g_stream_prefix;
 }

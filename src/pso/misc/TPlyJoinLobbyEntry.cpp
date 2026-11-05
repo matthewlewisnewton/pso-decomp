@@ -1259,9 +1259,9 @@ extern s32 TLobby__data_805D5594;
 void close_and_set_state_12__6TLobbyFv(void);
 void open_keyboard_window__6TLobbyFv(void);
 void send_room_change__6TLobbyFi(s32 arg0);
-s32 TKeyBoardControl__ct(s32, s32, s32, s32, s32, s32);
+void *TKeyBoardControl__ct(void *, s32, s32, s32, s32, s32);
 s32 get_window_layout_position(s32);
-s32 __nw__7TObjectFUl(s32);
+void *__nw__7TObjectFUl(u32);
 void close_all_windows__6TLobbyFv(void);
 s32 fn_80131B18(s32, s32);
 s32 send_room_change__9TProtocolFi(s32, s32);
@@ -1311,8 +1311,8 @@ s32 get_seq_phase__6TLobbyFPv(s32);
 extern s32 TLobby__data_805D5594;
 
 void open_make_team_window__6TLobbyFi(s32 arg0);
-s32 TWindowMakeTeam__ct(s32, s32, s32);
-s32 __nw__7TObjectFUl(s32);
+TWindowMakeTeam *TWindowMakeTeam__ct(void *, s32, s32);
+void *__nw__7TObjectFUl(u32);
 
 extern s32 TLobby__data_805D5594;
 extern s32 TLobby__join_lobby_controller;
@@ -2415,10 +2415,10 @@ void open_menu_window__6TLobbyFv(void) {
 }
 
 void open_make_team_window__6TLobbyFi(s32 arg0) {
-    s32 var_r4;
+    void *var_r4;
 
     var_r4 = __nw__7TObjectFUl(0x38);
-    if (var_r4 != 0) {
+    if (var_r4 != NULL) {
         var_r4 = TWindowMakeTeam__ct(var_r4, TLobby__join_lobby_controller, arg0);
     }
     lobby_make_team_window = (TWindowMakeTeam *)var_r4;
@@ -2492,7 +2492,7 @@ void close_and_send_text_list__6TLobbyFv(void) {
 }
 
 void open_keyboard_window__6TLobbyFv(void) {
-    s32 var_r0;
+    void *kb;
     s32 tmp_r3;
 
     if ((u32) (*(u32 *)&TLobby__current_dialog_window) != 0U) {
@@ -2509,11 +2509,11 @@ void open_keyboard_window__6TLobbyFv(void) {
         ((s32 (*)(u32))align_menu_entry_positions)(lobby_keyboard_prompt_window);
         ((TAdChrSelASlotGC *)lobby_keyboard_prompt_window)->set_flag_40();
     }
-    var_r0 = __nw__7TObjectFUl(0x2C);
-    if (var_r0 != 0) {
-        var_r0 = TKeyBoardControl__ct(var_r0, TLobby__join_lobby_controller, 0x10, 0, 0, local_client_id);
+    kb = __nw__7TObjectFUl(0x2C);
+    if (kb != NULL) {
+        kb = TKeyBoardControl__ct(kb, TLobby__join_lobby_controller, 0x10, 0, 0, local_client_id);
     }
-    (*(s32 *)&lobby_keyboard_controller) = var_r0;
+    lobby_keyboard_controller = (u32)kb;
     ((TWindowMakeTeam *)(*(s32 *)&lobby_keyboard_controller))->set_sub_position((u8 *)(get_window_layout_position(0xC4)));
     fn_80131B18((*(s32 *)&lobby_keyboard_controller), get_window_layout_position(0xC5));
     TLobby__data_805D5594 = 9;

@@ -27,7 +27,7 @@ void *refresh_with_default_list__20TWindowSubStatusDispFll(void *, void *);
 void *get_window_layout_position(s32);
 char *strcpy(char *, const char *);
 extern u8 member_name_window_pos[];
-u8 *THunterGuildSeqOffline__ct(u8 *arg0, s32 arg1, s32 arg2);
+u8 *THunterGuildSeqOffline__ct(u8 *arg0, s32 arg1, TObjPlayer *player);
 void *__nw__7TObjectFUl(int);
 
     extern int lbl_80513E70[];
@@ -41,7 +41,7 @@ extern void *tl_05;
 void *THunterGuildSeqOffline::create(void *arg0) {
     void *o = __nw__7TObjectFUl(0x3C);
     if (o != NULL) {
-        o = THunterGuildSeqOffline__ct((u8 *)o, (s32)tl_05, (s32)arg0);
+        o = THunterGuildSeqOffline__ct((u8 *)o, (s32)tl_05, (TObjPlayer *)arg0);
     }
     return o;
 }

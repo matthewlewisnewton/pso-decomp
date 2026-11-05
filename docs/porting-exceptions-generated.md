@@ -9,7 +9,7 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 |---|---:|---:|
 | asm | 9 | 3 |
 | intrinsic | 83 | 54 |
-| hardware | 71 | 13 |
+| hardware | 69 | 13 |
 | pragma | 5847 | 880 |
 | configure.py per-unit override | 150 | 150 |
 
@@ -148,10 +148,8 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `src/pso/player/TObjPlayer_803E21B8.cpp:258` | `(*(volatile WGPipe_803E2810 *)0xCC008000).f32 = s;` |
 | `src/pso/player/TObjPlayer_803E21B8.cpp:259` | `(*(volatile WGPipe_803E2810 *)0xCC008000).f32 = t;` |
 | `src/pso/player/TObjPlayer_803E5470.cpp:21` | `#define GXWGFifo_803E549C (*(volatile WGPipe_803E549C *)0xCC008000)` |
-| `src/pso/system/ChunkMaterialState.cpp:213` | `matrix_stack_base = 0xE0000000;` |
+| `src/pso/system/ChunkMaterialState.cpp:213` | `matrix_stack_base = (u8 *)0xE0000000;` |
 | `src/pso/system/ChunkMaterialState.cpp:214` | `current_matrix = 0xE0000000;` |
-| `src/pso/system/ChunkMaterialState.cpp:215` | `matrix_stack_limit = (arg1 - 1) * 0x30 + 0xE0000000;` |
-| `src/pso/system/ChunkMaterialState.cpp:216` | `PSMTXIdentity(identity_matrix == 0 ? (u8 *)0xE0000000 : identity_matrix);` |
 | `src/pso/system/ModelDrawContext.cpp:218` | `int src = cached_blend_factor_table[(v & 0xE0000000) >> 29];` |
 | `src/pso/unk/text_801E3F24.cpp:27` | `*(s32 *)0xCC008000 = arg0;` |
 | `src/pso/unk/text_801E3F24.cpp:31` | `*(f32 *)0xCC008000 = farg0;` |

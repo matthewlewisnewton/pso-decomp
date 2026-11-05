@@ -23,7 +23,7 @@ struct Ent_803D9E38 { u8 *p; s32 a; s32 b; };
 
 struct Tbl_803D9E38 { u8 pad[8]; Ent_803D9E38 arr[1]; };
 
-extern u32 matrix_stack_base;
+extern u8 *matrix_stack_base;
 extern u32 current_matrix;
 extern "C" {
 void PSMTXConcat(const f32 (*)[4], const f32 (*)[4], f32 (*)[4]);
