@@ -456,15 +456,8 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # TAdMultiPlyChrSelectGC_802C50EC: -fp_contract on because the original
     # contracts all four multiply-adds (fmadds at 802C5148, 802C5274, 802C58AC
     # and 802C676C).
-    # -inline on (not auto) inlines only clamped_slot_802C5F1C. Written in the
-    # caller, sub_802C5F1C swaps r7/r8 in the bdnz loop (row in r7, cell in r8;
-    # original row r8, cell r7). Inlining numbers the clamp locals ahead of the
-    # hoisted row. -inline auto also inlines unmarked functions (update 108 to
-    # 564, update_selection 668 to 2664, sub_802C6660 488 to 580, and three
-    # more). -inline deferred emits the unit backwards. Precedent: Brawl
-    # configure.py -inline on (only functions marked inline).
     "pso/ui/TAdMultiPlyChrSelectGC_802C50EC.cpp": {
-        "cflags": _switch(cflags_pso, "-inline on", "-fp_contract on"),
+        "cflags": _switch(cflags_pso, "-fp_contract on"),
     },
     # GC/2.0: compiler-expanded struct copies take 2.0's registers.
     # The ending item handler table keeps 2.0's store/load scheduling for its

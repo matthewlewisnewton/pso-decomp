@@ -154,12 +154,6 @@ force_active:
   - TAdGuideTxtGC__class_name
   - TAdMultiChgGameModeGC__sub_8036DE10
   - TAdMultiChgGameModeGC__sub_8036E19C
-  - TAdMultiPlyChrSelectGC__data_804E0A68
-  - TAdMultiPlyChrSelectGC__data_804E0AE0
-  - TAdMultiPlyChrSelectGC__data_804E0AF0
-  - TAdMultiPlyChrSelectGC__selected_slot_order
-  - TAdMultiPlyChrSelectGC__sub_802C50EC
-  - TAdMultiPlyChrSelectGC__sub_802C522C
   - TAdMultiPlyChrSelectGC__sub_803367E8
   - TAdMultiSaveGC__sub_802FF170
   - TAdMultiSaveGC__sub_802FF1F4
@@ -3113,7 +3107,6 @@ force_active:
   - add_mind__8MagStatsFs
   - add_photon_blast__8MagStatsFUc
   - add_pow__8MagStatsFs
-  - add_selected_slot__22TAdMultiPlyChrSelectGCFv
   - add_shield_stat_contribution__9TItemDataFPviiPv
   - add_status_line__19TWindowSubEquipListFUcP5TIteml
   - add_synchro__8MagStatsFl
@@ -5126,7 +5119,6 @@ force_active:
   - draw_selected_bar__11TWindowMenuFPUc
   - draw_selected_entry__20TWindowSubSymbolChatFv
   - draw_selected_part_cursor__28TWindowSubSymbolChatPartsSetFi
-  - draw_selection_cursors__22TAdMultiPlyChrSelectGCFv
   - draw_serial_chars__22TAdEnterSerialAccessGCFl
   - draw_serial_plates__22TAdEnterSerialAccessGCFv
   - draw_serial_separators__22TAdEnterSerialAccessGCFv
@@ -5388,7 +5380,6 @@ force_active:
   - filter_input_flags__12TBoss1DragonFiii
   - find_active_item_by_id__19TWindowMenuMainMenuFi
   - find_active_pad_rumble_effect_by_id__FUl
-  - find_active_slot__22TAdMultiPlyChrSelectGCFv
   - find_archive_entry__6TLobbyFPvPvPvPv
   - find_area_technique_contact__FPviPvPv
   - find_attack_target__13TObjEneMe1GeeFPvPv
@@ -5398,7 +5389,6 @@ force_active:
   - find_enemy_by_id__16TObjEneBm5GibonUFi
   - find_entry_rest__17TWindowSubComCardFPvl
   - find_farthest_balloon_slot__11TWindowCtrlFPvUs
-  - find_first_open_cell__22TAdMultiPlyChrSelectGCFlPUl
   - find_free_chat_log_slot__6TLobbyFv
   - find_free_file_names__22TQuestVmDownLoadServerFv
   - find_free_item_slot__19TWindowMenuMainMenuFv
@@ -6138,7 +6128,6 @@ force_active:
   - handle_deposit_confirm__19TShopKeepItemWindowFv
   - handle_deposit_list_select__19TShopKeepItemWindowFv
   - handle_descend_state__13TBoss5GryphonFl
-  - handle_dpad_input__22TAdMultiPlyChrSelectGCFv
   - handle_dpad_shortcuts__11TWindowChatFv
   - handle_equip_offer__20TShopArmorListWindowFv
   - handle_equip_offer__24TShopEquipmentListWindowFv
@@ -8232,7 +8221,6 @@ force_active:
   - move__17TObjEneMe1CanadinFl
   - move_along_angle__13TBoss5GryphonFPvif
   - move_around_center__15TObjEneMe1GiGueFP3Vecf
-  - move_cursor__22TAdMultiPlyChrSelectGCFlllll
   - move_cursor_prev__11TWindowMenuFv
   - move_enter__11TBoss4Type2Fv
   - move_idle__11TBoss4Type2Fv
@@ -13229,7 +13217,6 @@ force_active:
   - remove_equipped_item__10TObjPlayerFPvii
   - remove_owner_bonuses__12TItemProUnitFv
   - remove_player__6TLobbyFUiii
-  - remove_selected_slot__22TAdMultiPlyChrSelectGCFl
   - render__10TAdADXlogoFv
   - render__10TAdTitleGCFv
   - render__10TButterflyFv
@@ -16107,7 +16094,6 @@ force_active:
   - update_opening__15TODoorVS2Door01Fv
   - update_opening__17TOBarrierEnergy01Fv
   - update_opening_glow__8TObjDoorFPv
-  - update_option_cursor__22TAdMultiPlyChrSelectGCFv
   - update_or_dispatch__14TBoss7DeRolLeCFv
   - update_orbit_position__16TBoss3VoloptCoreFv
   - update_orbit_state__16TBoss3VoloptCoreFv

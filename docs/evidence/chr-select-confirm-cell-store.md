@@ -1,61 +1,85 @@
-# Character-select confirm: typed tables and the cell store
+# Character-select plate: typed tables, the cell store, and the float order
 
-Base: fork `main` `7ba27eaf2`, merged into PR
+Base: fork `main` `f6dedd375`, merged into PR
 [#214](https://github.com/matthewlewisnewton/pso-decomp/pull/214). Unit
-`pso/ui/TAdMultiPlyChrSelectGC_802C50EC.cpp`, function
-`TAdMultiPlyChrSelectGC__sub_802C5688` (`0x802C5688`, 700 bytes). Unit flags
-are `GC/2.6`, `-O4,s`, `-inline on`, `-fp_contract on` (section 5 of the
+`pso/ui/TAdMultiPlyChrSelectGC_802C50EC.cpp`, functions
+`TAdMultiPlyChrSelectGC__sub_802C5688` (`0x802C5688`, 700 bytes) and
+`TAdMultiPlyChrSelectGC__sub_802C6660` (`0x802C6660`, 488 bytes). Unit flags
+are `GC/2.6`, `-O4,s`, `-inline off`, `-fp_contract on` (section 5 of the
 porting-exceptions register). Allocation was read with the MWCC debugger
 (retrowin32 + `mwcc_debugger.py`, GC/2.6) and the
 [mweppc](https://github.com/doldecomp/mweppc) decompilation.
 
-## Observed allocation
+## The object is a `TAdChrSelPlyPlateGC`
 
-With the cell reached through `s32 *entry = &grid[row][col]`, the function
-compiled to the original except for one register pair (99.74%):
+The callers pass `TAdMultiPlyChrSelectGC::m_5c`. `fn_802C6F20` fills that field:
+it allocates 0x538 bytes and calls `TAdChrSelPlyPlateGC__ct`. The vtable at
+`lbl_804E0B10` holds `__dt__19TAdChrSelPlyPlateGCFv`, then the functions at
+`0x802C6AC8` and `0x802C54C4` (`update_selection`, `update`), then
+`render_shadows__7TObjectFv`. The fields that `5688` and `6660` use are now
+members of `TAdChrSelPlyPlateGC`, and so are `find_active_slot`,
+`find_first_open_cell`, and their callers `update_selection`,
+`handle_dpad_input`, `update_option_cursor` and `move_cursor`. Those six were
+renamed `__19TAdChrSelPlyPlateGC` in `symbols.txt`. They compile to the same
+bytes as before, and no call site casts between the two classes.
 
-| Role | Original | Pointer to the cell |
+## Typed tables
+
+- Main declared the shown-flag and slot-id tables as `void *[4]` and reached
+  them through `(s32 *)` cast macros.
+- `IRO_FindAssigned` only recognises an `EOBJREF` base. A store through
+  `ETYPCON(EOBJREF)` or through a pointer is therefore indirect, and it kills
+  every global load (`GetExprKillsByIndirectAssignment`). The frontend then
+  re-read the active player before the slot-id store. That swapped the cell
+  offset and `player * 4` between `r9` and `r10`.
+- Typed as `s32[4]` / `f32[4]` and indexed in place, all three stores are
+  direct stores to known objects. The player load stays available, and the
+  integer registers of `5688` match the original.
+
+## Remaining gap 1: float operand order (`5688`, `6660`)
+
+- `optimizecomm` (`CExpr.c`) runs at parse time. It swaps the operands of a
+  commutative operator when `left->cost > right->cost`.
+- `makediadicnode` (`CExpr2.c`) computes the costs. A global load
+  (`EINDIRECT(EOBJREF)`) costs 1. A product of two such loads costs 2.
+- Plain `(f32)player * row_h * scale` is therefore parsed as
+  `scale * ((f32)player * row_h)`. It emits `fmuls fD, f_scale, f_product`, and
+  the scale load gets the first float virtual register (`f38`, ahead of the
+  bias `f39` and the row height `f42`).
+- The original has `fmuls f1, f1, f2` (product first), with bias `f4`, row
+  height `f3` and scale `f2`. For the product to stay on the left, it has to
+  cost 1 at parse time, which means it was a variable.
+- A float local for each product (`f32 v0 = (f32)player * row_h;
+  .v0 = v0 * scale;`) gives exactly that. Writing `scale * (...)` by hand, or
+  changing the order of the inner product, produces the same object as the
+  plain form.
+
+## Remaining gap 2: the occupied-cell store (`6660`)
+
+- Frontend linearisation distributes `grid[row + 1][col + 1]` into
+  `row * 20 + col * 4 + 0x18`. The code is `stw r5, 0x18(r3)`.
+- The original adds 1 to each coordinate (`addi r0, r5, 1`; `addi r0, r3, 1`),
+  then scales and adds them, and stores with `stwx`. That happens when the
+  incremented coordinates are held in variables before indexing.
+- `row++; col++;` on the `split_slot_index` outputs is not an alternative.
+  Both are address-taken, so the increments are stored back to the stack
+  (94.92%).
+
+## Measured shapes
+
+The source keeps the plain expressions. The review of
+[#214](https://github.com/matthewlewisnewton/pso-decomp/pull/214) rejected
+single-use locals, so none of the local-variable shapes below is kept.
+
+| `5688` | `6660` | Shape |
 |---|---|---|
-| cell offset `row * 20 + col * 4` | `r9` | `r10` |
-| `player * 4` (shown flag and slot-id index) | `r10` | `r9` |
-| `f4EC * 4` (slot-id value) | `r9` | `r10` |
+| 99.63% | 95.29% | plain expressions (source) |
+| 100% | — | `5688`: float local per product (`player0`/`v0`/`player1`/`v1`) |
+| — | 96.07% | `6660`: float local per product only |
+| — | 99.22% | `6660`: `row_i`/`col_i`/`occupied` cell pointer only |
+| — | 100% | `6660`: both of the above |
+| — | 94.92% | `6660`: `row++; col++;` before the store |
 
-## Mechanism
-
-- Virtual registers are numbered as arguments, then named locals (reverse
-  declaration order), then frontend `@` temps (latest created first), then
-  backend temps in creation order (`allocate_local_vregs` in `CodeGen.c`).
-  The nodes below are all in the first simplify level, so they are coloured
-  from the highest number down, each taking the lowest free register.
-- For the cell offset to get `r9`, the grid base (`r6`), the player (`r7`) and
-  the table base (`r8`) have to be coloured before it, and `player * 4` after
-  it. That needs `player * 4` < cell offset < player in virtual-register
-  number.
-- The shown-flag and slot-id tables were `void *[4]` reached through `(s32 *)`
-  cast macros. `IRO_FindAssigned` only recognises an `EOBJREF` base, so a
-  store through `ETYPCON(EOBJREF)` or through a pointer counts as indirect and
-  kills every global load (`GetExprKillsByIndirectAssignment`). The frontend
-  therefore re-read the active player before the slot-id store. The backend
-  merged the two `player << 2` afterwards as backend temp r64, which is
-  coloured before the named `entry` (r33).
-- With the tables typed as `s32[4]` / `f32[4]` and the cell indexed in place,
-  all three stores are direct stores to known objects. The player load stays
-  available, so the frontend makes it `@151`, the cell address `@152`,
-  `f4EC * 4` `@153`, and `player << 2` `@154` (r49, r48, r47, r46). That
-  colours player `r7`, cell `r9`, `f4EC * 4` `r9` and `player * 4` `r10`,
-  as in the original.
-
-## Source shapes
-
-| Shape | Result |
-|---|---|
-| `void *` tables with cast macros, pointer to the cell (old source) | 99.74%, pair swapped |
-| Typed tables, pointer to the cell | 99.74%, pair swapped (the pointer store still kills the player) |
-| Cast macros, cell indexed in place | 99.74%, pair swapped (the cast store kills the player) |
-| Typed tables, cell indexed in place | exact |
-| Named `s32 *shown = &shown_flags[player]` after the reject branch | propagated away; 99.74% |
-| Cell store before the shown-flag store (cast macros) | 98.34% |
-| Slot-id store before the cell store (cast macros) | 89.01%, `stmw` prologue |
-
-Every other function in the unit compiles to the same bytes with the typed
-tables (`.text` 7288, `.data` 184, `.rodata` 8).
+The two-step `s32 (*sel)[3] = self->sel;` that older heads used in `5688` is no
+longer needed: with the typed tables, the plain `self->sel[player][f4EC]` gives
+the original integer code.
