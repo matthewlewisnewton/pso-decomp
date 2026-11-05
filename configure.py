@@ -562,6 +562,13 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/boss/TBoss7PhotonBullet_802EF26C.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on")},
     "pso/enemy/TObjEnemyCustom.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-pool off", "-str reuse,readonly")},
     "pso/boss/TBoss3VoloptCore.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
+    # -inline deferred is byte-identical to noauto,deferred,level=1 here
+    # (.text/.data/.rodata/.sdata2 and relocs). off,deferred changes 21
+    # functions (copy_transform, sub_802B96C0); noauto alone changes 86;
+    # -fp_contract off changes 71 (draw_part_motions, sub_802B626C). The
+    # multiply-adds are fmadds. dtk-template uses -inline auto and
+    # -fp_contract on; Melee, TP, TWW and Pikmin 2 contract globally.
+    "pso/boss/TBoss6Type1.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-fp_contract on")},
     "pso/boss/TBoss3VoloptP01.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
     # Delbiter uses deferred code generation: reverse source definitions put
     # native vtables before the switch tables and functions in address order.

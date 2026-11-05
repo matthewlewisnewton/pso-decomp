@@ -4,6 +4,8 @@
 #include "types.h"
 #include "pso/misc/TORockCaveBrakable.h"
 
+struct TObjMapCsn;
+
 struct TORockJungleM01 : public TORockCaveBrakable {
     virtual ~TORockJungleM01();
     virtual void vfunc_16();
@@ -15,7 +17,7 @@ struct TORockJungleM01 : public TORockCaveBrakable {
     u32 m_d0;
     u8 _padD4[0x4];
     u32 m_d8;
-    u32 m_dc;
+    TObjMapCsn *m_dc;
     virtual void run_task();
     static void *create(void *arg0);
 };
