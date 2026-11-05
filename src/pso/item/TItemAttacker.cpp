@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/TItemAttacker.h"
 #include "pso/system/vector.h"
 
@@ -21,7 +22,6 @@ struct Rec_80103368 { u8 pad[0x1C]; f32 v[3]; u8 pad2[0x2C - 0x28]; };
 struct M_80103368 { u8 pad[0xA4]; Rec_80103368 *recs; };
 
 extern "C" {
-void mem_free(void *p);
 extern s32 item_buffer_temp_mode;
 extern s32 item_buff_buffer;
 void TItemBuff__ct(void);
@@ -30,9 +30,9 @@ extern const char *TItemAttacker__name;
 void TItemAttacker__sub_8010349C(u32 arg0);
 int get_item_chunk_buffer(int a0);
 u8 *TItemTimer__ct(u8 *arg0, s32 arg1, s32 arg2, s32 arg3);
+s32 TLobby__sub_8001EEF4();
 void deliver_delayed_weapon_hit(u8 *arg0);
 s32 __nw__7TObjectFUl(int);
-void *mem_alloc(u32 size);
 void queue_destruction__7TObjectFv(void *arg0);
 
 }
@@ -198,9 +198,9 @@ int get_item_chunk_buffer(int a0) {  return item_nj_chunk_buffer_table[a0]; }
 void TItemBuff__ct(void) {
     if ((u32) (*(u32 *)&item_buff_buffer) != 0) {
         if ((s32) item_buffer_temp_mode != 0) {
-            TLobby::tmp_buf_release((const char *)(s32) &(*(RecoveredGlobal_8010355C_lbl_8043E038 *)(s32 *)"TItemBuff").value);
+            ((TLobby *)((s32) &(*(RecoveredGlobal_8010355C_lbl_8043E038 *)(s32 *)"TItemBuff").value))->tmp_buf_release();
         } else {
-            mem_free((void *)(*(u32 *)&item_buff_buffer));
+            ::operator delete[]((void *)(*(u32 *)&item_buff_buffer));
         }
         (*(u32 *)&item_buff_buffer) = 0;
     }
@@ -211,12 +211,12 @@ s32 create_item_buff(s32 arg0) {
 
     if (arg0 != 0) {
         TItemBuff__ct();
-        temp_r3 = TLobby::tmp_buf_is_free();
+        temp_r3 = TLobby__sub_8001EEF4();
         item_buffer_temp_mode = temp_r3;
         if ((temp_r3 != 0) && (arg0 < 0x40000)) {
             item_buff_buffer = TLobby::tmp_buf_use_req((const char *)(s32 *)"TItemBuff");
         } else {
-            item_buff_buffer = (s32)mem_alloc(arg0);
+            item_buff_buffer = (s32)::operator new[](arg0);
         }
     }
     return item_buff_buffer;

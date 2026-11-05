@@ -1,3 +1,4 @@
+#include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/object/TObjEnvSoundEx.h"
 #include "pso/object/TObjEnvSoundGlobal.h"
@@ -33,7 +34,7 @@ u8 *TObjEnvSoundEx__ct(u8 *arg0, s32 arg1, s32 arg2);
 void copy_pair__18TObjEnvSoundGlobalFPvPv(void* p, void* q);
 extern RecoveredGlobal_801902D8_lbl_804B7A70 environment_sound_tables_by_area;
 
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 f32 xz_distance_squared(void *, void *);
 extern u8 *camera_ctrl_instance;
 void run_task__14TObjEnvSoundExFv(Env_80190624 *o);
@@ -77,10 +78,10 @@ void TObjEnvSoundGlobal::run_task() {
     case 0:
         break;
     case 1:
-        play_persistent_sound((s32)self->sound, (s32)self, (u32)self->pos, 0, 0);
+        play_persistent_sound((s32)self->sound, (const void *)(self), (const Vec *)((u32)self->pos), 0, 0);
         break;
     case 2:
-        play_persistent_sound((s32)self->sound, (s32)self, (u32)(0), (s32)self->param, 2);
+        play_persistent_sound((s32)self->sound, (const void *)(self), (const Vec *)((u32)(0)), (s32)self->param, 2);
         break;
     }
 }
@@ -176,10 +177,10 @@ void run_task__14TObjEnvSoundExFv(Env_80190624 *o) {
         case 0:
             break;
         case 1:
-            play_persistent_sound((s32)o->f9C, (s32)o, (u32)((f32 *)o->pos), 0, 0);
+            play_persistent_sound((s32)o->f9C, (const void *)((s32)o), (const Vec *)((u32)((f32 *)o->pos)), 0, 0);
             break;
         case 2:
-            play_persistent_sound((s32)o->f9C, (s32)o, (u32)((f32 *)(0)), (s32)((s32)o->vol), 2);
+            play_persistent_sound((s32)o->f9C, (const void *)((s32)o), (const Vec *)((u32)((f32 *)(0))), (s32)o->vol, 2);
             break;
         }
     } else {
@@ -192,10 +193,10 @@ void run_task__14TObjEnvSoundExFv(Env_80190624 *o) {
             case 0:
                 break;
             case 1:
-                play_persistent_sound((s32)o->f9C, (s32)o, (u32)((f32 *)o->pos), 0, 0);
+                play_persistent_sound((s32)o->f9C, (const void *)((s32)o), (const Vec *)((u32)((f32 *)o->pos)), 0, 0);
                 break;
             case 2:
-                play_persistent_sound((s32)o->f9C, (s32)o, (u32)((f32 *)(0)), (s32)((s32)o->vol), 2);
+                play_persistent_sound((s32)o->f9C, (const void *)((s32)o), (const Vec *)((u32)((f32 *)(0))), (s32)o->vol, 2);
                 break;
             }
         }
@@ -300,7 +301,7 @@ struct Pkt_80190BA0 { u32 header; s32 target; s32 event; };
 
 extern "C" {
 
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 void byteswap_event_packet__6TLobbyFi(s32 arg0);
 s32 get_current_floor(void);
 }
@@ -329,10 +330,10 @@ void TObjEnvSound::run_task() {
         case 0:
             break;
         case 1:
-            play_persistent_sound((s32)this->m_98, (s32)arg0, (u32)(arg0 + 0x38), 0, 0);
+            play_persistent_sound((s32)this->m_98, (const void *)((s32)arg0), (const Vec *)((u32)(arg0 + 0x38)), 0, 0);
             return;
         case 2:
-            play_persistent_sound((s32)this->m_98, (s32)arg0, (u32)(arg0 + 0x38), (s32)this->m_94, 2);
+            play_persistent_sound((s32)this->m_98, (const void *)((s32)arg0), (const Vec *)((u32)(arg0 + 0x38)), (s32)this->m_94, 2);
             break;
         }
     }

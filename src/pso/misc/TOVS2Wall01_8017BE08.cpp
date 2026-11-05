@@ -1,3 +1,5 @@
+#include "pso/player/demo_mode.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/player/TObjChara.h"
@@ -76,7 +78,7 @@ int TOVS2Wall01::interact_player_neg1() { return submit_cursor_candidate(this, -
 
 void TOVS2Wall01::run_task() {
     u8 *arg0 = (u8 *)this;
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         TOVS2Wall01__sub_8017B9AC(arg0);
         return;
     }
@@ -111,8 +113,8 @@ void TOVS2Wall01::render() {
         }
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
-        TObjFish::set_global_param(this->texlist);
+        rotate_matrix_y(0, this->rotation.yaw);
+        set_current_texture_list((GinjaTextureList *)(this->texlist));
         draw_ginja_object(this->model);
         pop_matrix();
         if (var_r31 != 0) {

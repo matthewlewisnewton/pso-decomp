@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/menu/CreationInput.h"
 #include "types.h"
 #include "pso/misc/TChCrCharSelect_802938E4.h"
@@ -7,7 +8,6 @@ extern "C" {
 
 s32 wrap_slot_index_to_range__15TChCrCharSelectFv(void *);
 s32 clamp_slot_index_to_range__15TChCrCharSelectFv(s32);
-s32 play_sound_effect(s32, s32, s32, s32);
 
 extern s32 TChCrCharSelect__selected_slot_index;
 extern s32 TChCrCharSelect__input_mode;

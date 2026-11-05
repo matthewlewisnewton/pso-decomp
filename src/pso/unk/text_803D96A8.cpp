@@ -1,6 +1,8 @@
+#include "pso/math/MatrixCopy.h"
 #include "types.h"
 #include "pso/system/GinjaModelQueue.h"
 #include "pso/unk/text_803D96A8.h"
+#include "pso/math/MatrixTransforms.h"
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/misc/TLobby.h"
@@ -24,7 +26,7 @@ struct Tbl_803D9E38 { u8 pad[8]; Ent_803D9E38 arr[1]; };
 extern u32 matrix_stack_base;
 extern u32 current_matrix;
 extern "C" {
-f32 PSMTXConcat(int, int, int);
+void PSMTXConcat(const f32 (*)[4], const f32 (*)[4], f32 (*)[4]);
 extern u32 matrix_stack_limit;
 void PSMTXQuat(void *, void *);
 s32 fn_803DA12C(u8 *, s32, s32, s32);
@@ -44,26 +46,28 @@ void rotate_matrix_x(Matrix34* matrix, s32 angle) {
         if (matrix == NULL) selected = (Matrix34*)current_matrix;
         else selected = matrix;
         PSMTXRotRad(&rotation, 'x', (f32)(lbl_805E0F48 * (f64)angle));
-        PSMTXConcat((int)selected, (int)&rotation, (int)selected);
+        PSMTXConcat((const f32 (*)[4])selected, (const f32 (*)[4])&rotation, (MtxP)selected);
     }
+}
+
 }
 
 #pragma push
 #pragma scheduling off
-void TObjPlayer::concat_matrix(u32 arg0, u32 arg1) {
-    u32 elements;
-    u32 var_r4;
-    elements = arg0;
-    var_r4 = arg1;
-    if (elements == 0U) {
-        elements = current_matrix;
+extern "C" void concat_matrix(MtxP dest, const f32 (*source)[4]) {
+    MtxP elements = dest;
+    const f32 (*selected_source)[4] = source;
+    if (elements == NULL) {
+        elements = (MtxP)current_matrix;
     }
-    if (var_r4 == 0U) {
-        var_r4 = current_matrix;
+    if (selected_source == NULL) {
+        selected_source = (MtxP)current_matrix;
     }
-    PSMTXConcat(elements, var_r4, elements);
+    PSMTXConcat(elements, selected_source, elements);
 }
 #pragma pop
+
+extern "C" {
 
 #pragma push
 #pragma peephole off
@@ -80,7 +84,7 @@ void TCameraCtrl::concat_matrix(u32 arg0, u32 arg1) {
     if (var_r4 == 0U) {
         var_r4 = current_matrix;
     }
-    PSMTXConcat(var_r4, elements, elements);
+    PSMTXConcat((const f32 (*)[4])var_r4, (const f32 (*)[4])elements, (MtxP)elements);
 }
 #pragma pop
 
@@ -119,7 +123,7 @@ void TObjPlayer::concat_quaternion_rotation() {
     q.y = arg0[2];
     q.z = arg0[3];
     PSMTXQuat(sp18, &q);
-    PSMTXConcat(current_matrix, (int)sp18, current_matrix);
+    PSMTXConcat((const f32 (*)[4])current_matrix, (const f32 (*)[4])sp18, (MtxP)current_matrix);
 }
 
 void TObjPlayer::apply_quat_rotation(f32 farg0) {
@@ -131,7 +135,7 @@ void TObjPlayer::apply_quat_rotation(f32 farg0) {
     q.y = arg0[1];
     q.z = arg0[2];
     PSMTXQuat(sp18, &q);
-    PSMTXConcat(current_matrix, (int)sp18, current_matrix);
+    PSMTXConcat((const f32 (*)[4])current_matrix, (const f32 (*)[4])sp18, (MtxP)current_matrix);
 }
 
 #pragma push

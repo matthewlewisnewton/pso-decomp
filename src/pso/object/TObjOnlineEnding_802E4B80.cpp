@@ -1,5 +1,6 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/TObject.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/system/vector.h"
@@ -14,6 +15,7 @@
 
 extern "C" {
 
+void TWindow__close(u8 *arg0);
 void *__nw__7TObjectFUl(int);
 
     extern int player_unique_pair_entry_count;
@@ -172,7 +174,7 @@ int TObjOnlineEnding::get_instance() {  return player_unique_pair_entry_count; }
     extern unsigned char lbl_8050DAD0[];
 void*TObjOnlineEnding::get_attack_entry(int a0) {  return (char*)lbl_8050DAD0 + a0 * 8; }
 
-void TObjOnlineEnding::close_window() { if (*(unsigned int *)&this->m_154 != 0) { ((TWindowBase *)(*(void* *)&this->m_154))->close(); *(int *)&this->m_154 = 0; } }
+void TObjOnlineEnding::close_window() { if (*(unsigned int *)&this->m_154 != 0) { TWindow__close((u8 *)(*(void* *)&this->m_154)); *(int *)&this->m_154 = 0; } }
 
 }
 
@@ -285,7 +287,7 @@ void TObjOnlineEnding::render() {
     push_matrix();
     post_translate_matrix(lbl_804E3A38);
     scale_matrix(0, online_ending_scene_scale, lbl_805DE934, lbl_805DE934);
-    TObjFish::set_global_param(*(s32 *)&this->m_94);
+    set_current_texture_list((GinjaTextureList *)(*(s32 *)&this->m_94));
     draw_model_motion((void *)*(s32 *)&this->m_90, (void *)*(s32 *)&this->m_98, arg0->f150);
     pop_matrix();
     for (i = 0; i < *(s32 *)&this->m_148; i++) {
@@ -473,7 +475,6 @@ void *TObjOnlineEnding__ct(void *arg0, void *parent) {
 #pragma pop
 #undef SELF
 
-void TLobby__sub_8001FE7C(void*, int);
 void *TObjOnlineEnding__ct(void *, void *);
 
 void *TObjOnlineEnding::create(void *arg0) {
@@ -486,7 +487,7 @@ void *TObjOnlineEnding::create(void *arg0) {
 
 void TBoss4DarkFalz::free_global_instance() {
     if ((u32) lbl_805D68F4 != 0U) {
-        TLobby__sub_8001FE7C((void*)lbl_805D68F4, 1);
+        delete (BmlResource *)((void*)lbl_805D68F4);
         lbl_805D68F4 = 0U;
     }
 }

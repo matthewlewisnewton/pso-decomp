@@ -1,5 +1,6 @@
+#include "pso/system/ArrayAllocation.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/ui/TAdEnterBaseGC_8032B38C.h"
 #include "pso/ui/TAdEnterPasswordGC.h"
 #include "pso/TLevelSelect.h"
@@ -75,6 +76,7 @@ extern s32 password_entry_dispatch_state;
 RecoveredGlobal_8032BA8C_TAdEnterPasswordGC__data_804EDA20 TAdEnterPasswordGC__input_buffer = { 0 };
 #pragma explicit_zero_data off
 void queue_destruction__7TObjectFv(void *);
+void TWindow__close(u8 *arg0);
 extern u8 *password_entry_keyboard_control;
 extern const f32 lbl_805DF780;
 s32 create_default_callback__22TAdEnterSerialAccessGCFv(void *);
@@ -89,11 +91,10 @@ extern s32 __vt__18TAdEnterPasswordGC[];
 extern s32 TAdEnterPasswordGC__class_name;
 void clear_password__18TAdEnterPasswordGCFPv(T_8032BBF0 *self);
 void update_children__18TAdEnterPasswordGCFPv(O_8032BC1C *arg0);
-void mem_free(void *p);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 TWindowShortListCtrl__check_controller_button(void *, int);
 s32 get_field_118__22TAdEnterSerialAccessGCFv(void);
-s32 play_sound_effect(int, int, int, int);
+
 s32 forward_input__22TAdEnterSerialAccessGCFPv(void *, int, s32);
 s32 strlen(s32);
 extern u8 controller_input_state[];
@@ -115,12 +116,12 @@ void close_window_and_destroy__18TAdEnterPasswordGCFPv(u8 *arg0) {
     u8 *temp_r3_2;
     temp_r3 = (u8 *)(*(u8 **)((s8 *)arg0 + 0x30));
     if (temp_r3 != NULL) {
-        ((TWindowBase *)temp_r3)->close();
+        TWindow__close(temp_r3);
         *(u8 **)((s8 *)arg0 + 0x30) = NULL;
     }
     temp_r3_2 = (u8 *)(*(u8 **)((s8 *)arg0 + 0x34));
     if (temp_r3_2 != NULL) {
-        ((TWindowBase *)temp_r3_2)->close();
+        TWindow__close(temp_r3_2);
         *(u8 **)((s8 *)arg0 + 0x34) = NULL;
     }
     if ((void *) password_entry_keyboard_control != NULL) {
@@ -146,7 +147,7 @@ void update_password_input__18TAdEnterPasswordGCFPv(Pw_8032B6A0 *self) {
   int cur;
   if (((self->len == 0) && (TWindowShortListCtrl__check_controller_button(controller_physical_port_bank + 0x20, 2) != 0)) || ((self->len == 0) && (test_flag_4c__23TAdSinglePlyChrSelectGCFv(controller_input_state + 0x160, 2) != 0)))
   {
-    mem_free((void *)buf);
+    ::operator delete[]((void *)buf);
     memset(&TAdEnterPasswordGC__input_buffer.value, 0, 9);
     self->f20 = 2;
     password_entry_dispatch_state = 4;
@@ -217,7 +218,7 @@ void update_password_input__18TAdEnterPasswordGCFPv(Pw_8032B6A0 *self) {
     password_entry_dispatch_state = 4;
   }
   self->len = strlen(buf);
-  mem_free((void *)buf);
+  ::operator delete[]((void *)buf);
 }
 
 void open_keyboard_window__18TAdEnterPasswordGCFPv(s32 arg0) {

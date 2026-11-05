@@ -1,3 +1,5 @@
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TKeyBoardControl_803DE9C4.h"
 #include "pso/misc/TWindowSubStatusDisp_803DEE6C.h"
@@ -164,7 +166,7 @@ extern s32 lbl_805D67D4;
 extern const f32 lbl_805DE57C;
 extern const f32 lbl_805DE580;
 s32 TWindowShortListCtrl__check_controller_button(void *, int);
-s32 play_sound_effect(int, void *, int, int);
+
 s32 TAdMultiPlyChrSelectGC__sub_802C5F1C(void *, int);
 extern u8 controller_physical_port_bank[];
 extern Jump_802C5C84 multi_chr_select_cursor_jump_table[][5];
@@ -178,14 +180,6 @@ extern const f32 lbl_805DE568;
 extern const f32 lbl_805DE570;
 extern const f32 lbl_805DE574;
 extern const f32 lbl_805DE578;
-extern const f32 TAdMultiPlyChrSelectGC__data_805DE584;
-extern const f32 lbl_805DE588;
-extern const f32 lbl_805DE58C;
-extern const f32 lbl_805DE590;
-extern const f32 lbl_805DE594;
-extern const f32 lbl_805DE598;
-extern const f32 lbl_805DE59C;
-extern const f32 lbl_805DE5A0;
 
 void *TAdMultiPlyChrSelectGC__data_804E0A48[4] = {
     (void *)0x0, (void *)0x0, (void *)0x0, (void *)0x0,
@@ -221,7 +215,7 @@ void TAdMultiPlyChrSelectGC__sub_802C50EC(s32 arg0) {
     for (i = 0; i < 4; i++) {
         if (TAdMultiPlyChrSelectGC__data_804E0AE0[i] == 1) {
             begin_screen_draw(1);
-            TObjFish::set_global_param(lbl_805D67D0);
+            set_current_texture_list((GinjaTextureList *)(lbl_805D67D0));
             set_draw_texture_and_color(0, ((s32)(lbl_805DE564 * TAdMultiPlyChrSelectGC__data_804E0AF0[i] + lbl_805DE560) << 24) | 0xFFFFFF);
             q.u0 = self->quad[i + 4][0].u0;
             q.u1 = self->quad[i + 4][0].u1;
@@ -248,7 +242,7 @@ void TAdMultiPlyChrSelectGC__sub_802C522C(s32 arg0) {
         if (TAdMultiPlyChrSelectGC__data_804E0AE0[i] == 1) {
             s32 alpha = (s32)(lbl_805DE564 * TAdMultiPlyChrSelectGC__data_804E0AF0[i] + lbl_805DE560);
             begin_screen_draw(1);
-            TObjFish::set_global_param(lbl_805D67D0);
+            set_current_texture_list((GinjaTextureList *)(lbl_805D67D0));
             set_draw_texture_and_color(0, (alpha << 24) | 0xFFFFFF);
             draw_textured_quad_at_depth(&self->quad[i + 4][0].x, lbl_805DE570);
             TWindowSubStatusDisp::get_player();
@@ -297,7 +291,7 @@ void TAdMultiPlyChrSelectGC::draw_selection_cursors() {
                 set_color_blending_mode(0, 8);
                 set_color_blending_mode(1, 0xA);
                 begin_screen_draw(1);
-                TObjFish::set_global_param(lbl_805D67D4);
+                set_current_texture_list((GinjaTextureList *)(lbl_805D67D4));
                 set_draw_texture_and_color(0, self->sel[i][j]);
                 draw_textured_quad_at_depth(self->r324, lbl_805DE580);
                 draw_textured_quad_at_depth(self->r344, lbl_805DE580);
@@ -457,7 +451,7 @@ void TAdMultiPlyChrSelectGC::move_cursor(s32 x_, s32 y_, s32 dx, s32 dy, s32 dep
     if (TAdMultiPlyChrSelectGC__data_804E0A68[ny][nx] == 1) {
         x += dx;
         y += dy;
-        play_sound_effect(0x54100, NULL, 0, 0);
+        play_sound_effect(0x54100, (const Vec *)(NULL), 0, 0);
         self->f4EC = x - 1;
         self->f4AC[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC] = y - 1;
         return;
@@ -526,55 +520,6 @@ void TAdMultiPlyChrSelectGC::move_cursor(s32 x_, s32 y_, s32 dx, s32 dy, s32 dep
         }
         move_cursor(nx - 1, ny - 1, dx, dy, 4);
     }
-}
-
-s32 TAdMultiPlyChrSelectGC__sub_802C5F1C(void *arg0, int arg1) {
-    S_802C50EC *self = (S_802C50EC *)arg0;
-    u32 i;
-    u32 j;
-    s32 cnt;
-    s32 idx;
-    f32 uu;
-    f32 a;
-    f32 b;
-
-    /* Per-player 4x3 grid of selection quads: cell texture coords scale the shared
-       (u,v) page, with the active-slot column clamped to 3. */
-    for (i = 0; i < 4; i++) {
-        for (j = 0; j < 3; j++) {
-            cnt = TAdMultiPlyChrSelectGC__data_805D67D8;
-            uu = TAdMultiPlyChrSelectGC__data_805DE56C;
-            idx = 3;
-            if (cnt < 4) {
-                idx = cnt;
-            }
-            /* All quad stores route through the re-cast arg0, and the identity
-               i++/i-- pair between the v0 and u1 stores is load-bearing: it
-               re-ties the allocator onto orig's row-pointer/clamp numbering. */
-            ((S_802C50EC *)arg0)->quad[i][j].u0 = uu;
-            a = lbl_805DE588 * (f32)idx;
-            b = lbl_805DE588 + a;
-            ((S_802C50EC *)arg0)->quad[i][j].v0 = a * TAdMultiPlyChrSelectGC__data_805DE584;
-            i++;
-            i--;
-            ((S_802C50EC *)arg0)->quad[i][j].u1 = lbl_805DE58C;
-            ((S_802C50EC *)arg0)->quad[i][j].v1 = b * TAdMultiPlyChrSelectGC__data_805DE584;
-        }
-    }
-
-    /* Fixed home slots for the trailing (unpaired) columns. */
-    self->cursor[0][4] = lbl_805DE590;
-    self->cursor[0][5] = lbl_805DE594;
-    ((S_802C50EC *)arg0)->cursor[0][6] = lbl_805DE598;
-    ((S_802C50EC *)arg0)->cursor[0][7] = lbl_805DE59C;
-    ((S_802C50EC *)arg0)->cursor[1][4] = TAdMultiPlyChrSelectGC__data_805DE56C;
-    ((S_802C50EC *)arg0)->cursor[1][5] = lbl_805DE594;
-    ((S_802C50EC *)arg0)->cursor[1][6] = lbl_805DE590;
-    ((S_802C50EC *)arg0)->cursor[1][7] = lbl_805DE59C;
-    ((S_802C50EC *)arg0)->cursor[2][4] = lbl_805DE598;
-    ((S_802C50EC *)arg0)->cursor[2][5] = lbl_805DE594;
-    ((S_802C50EC *)arg0)->cursor[2][6] = lbl_805DE5A0;
-    ((S_802C50EC *)arg0)->cursor[2][7] = lbl_805DE59C;
 }
 
 void TAdMultiPlyChrSelectGC::update_option_cursor() {

@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TQuadSpriteSclCol.h"
 
@@ -106,7 +107,7 @@ void render__17TQuadSpriteSclColFv(Self_801E5C24 *self) {
     sh = sw * (lbl_805DC480 / (lbl_805DC480 * lbl_8058D4F8.aspect));
     TParticleCtrl::begin_effect_render();
     begin_screen_draw(1);
-    TObjFish::set_global_param((s32)((void *)self->desc->param4));
+    set_current_texture_list((GinjaTextureList *)(((void *)self->desc->param4)));
     set_draw_texture_and_color(self->desc->param8, self->desc->param1C);
     one = lbl_805DC484;
     for (i = 0, ci = 0, li = 0; i < self->desc->count; i++, ci += 0x10, li += 0x2C) {

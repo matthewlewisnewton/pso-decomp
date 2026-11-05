@@ -1,3 +1,5 @@
+#include "pso/enemy/TObjEnemy.h"
+#include "pso/enemy/EnemyUnknownHooks.h"
 #include "types.h"
 #include "pso/boss/TBoss8Dragon_800BB650.h"
 #include "pso/enemy/TObjEneBm3Fly.h"
@@ -16,7 +18,6 @@ u32 csnLookAt(void *, void *);
 s32 is_alive__8TObjBaseFv(void *);
 f32 horizontal_distance_squared(void *, void *);
 int submit_cursor_candidate(void*, int);
-int refresh_lobby_state__10TObjPlayerFv(void*);
 int send_entity_set_flags__9TObjEnemyFv(void*);
 
 void TBoss8Dragon__sub_800BB650(void* p, void* q) { *(u16*)((char*)p + 0x0) = *(u16*)((char*)q + 0x0); *(f32*)((char*)p + 0x4) = *(f32*)((char*)q + 0x4); }
@@ -49,7 +50,7 @@ s32 enemy_nearest_visible_player_sq(u8 *arg0, f32 farg0) {
     return result;
 }
 
-void TObjEnemy::refresh_and_send_entity_flags() { refresh_lobby_state__10TObjPlayerFv(this); send_entity_set_flags__9TObjEnemyFv(this); }
+void TObjEnemy::refresh_and_send_entity_flags() { distribute_experience_and_request_drop(); send_entity_set_flags__9TObjEnemyFv(this); }
 
 int TObjEneBm3Fly::was_hit_by_ranged() { return (this->m_2dc >> 1) & 0x1; }
 
@@ -63,8 +64,8 @@ void TObjEneDD::clear_attack_receipts() {
     }
 }
 
-void TBoss8Dragon::noop() {  }
-void TBoss8Dragon__sub_800BB7D4(void) {  }
+void fn_800BB7D0(void *) { }
+void fn_800BB7D4(void *, s32) { }
 void TBoss8Dragon__sub_800BB7D8(void) {  }
 void TBoss8Dragon__sub_800BB7DC(void) {  }
 int TObjEnemy::submit_default_cursor_candidate() { return submit_cursor_candidate(this, -1); }

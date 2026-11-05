@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/object/TObjMistCtrl.h"
 #include "pso/unk/text_803E29B0.h"
@@ -68,7 +69,7 @@ void TPlayerFootStamp::render() {
     if (horizontal_distance_squared((const Vec *)((void *)(arg0 + 0x7C)), (const Vec *)((void *)(camera_ctrl_instance + 0x178))) < lbl_805DE1F8) {
         saved_model_render_flags = model_render_flags;
         set_default_alpha_blend();
-        TObjFish::set_global_param(player_footstamp_texture_gvm_handle);
+        set_current_texture_list((GinjaTextureList *)(player_footstamp_texture_gvm_handle));
         set_texture_num((*(s16 *)((s8 *)arg0 + 0xBE)));
         set_depth_buffer_settings_1();
         draw_particle_strip((arg0 + 0x1C), (void *)(4), (void *)(1));

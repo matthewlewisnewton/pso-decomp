@@ -1,6 +1,7 @@
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
-#include "pso/misc/TWindowAddition.h"
+#include "pso/misc/TUnk_804CE018.h"
+#include "pso/misc/TUnk_804CDFE8.h"
+#include "pso/misc/TWindowDrawContext.h"
 
 struct Ctx_80244364 { u8 pad[0x10]; f32 x; f32 y; };
 
@@ -22,23 +23,22 @@ typedef struct Disp_80244238 {
 } Disp_80244238;
 
 extern "C" {
-s32 set_position_xy__15TWindowAdditionFff(f32, f32);
+s32 set_position_xy__13TUnk_804CDFE8Fff(f32, f32);
 extern s32 lbl_805D3878;
 extern const f32 lbl_805DCAAC;
 extern const f32 lbl_805DCAB0;
-Ctx_80244364 *setup_window_draw_context__11TWindowBaseFl(Obj_80244364 *self, f32 *p);
-Ctx_80244364 *get_draw_context__11TWindowBaseFPv(Obj_80244364 *self);
+Ctx_80244364 *setup_window_draw_context__13TUnk_804CE018Fl(Obj_80244364 *self, f32 *p);
 extern const f32 lbl_805DCAA8;
 
 #pragma push
 #pragma fp_contract on
-void TWindowAddition::step_window_tween() {
+void TUnk_804CDFE8::step_window_tween() {
     Disp_80244238 *o = (Disp_80244238 *)this;
     f32 d;
     u32 n = o->n;
     if (n == 0) {
         d = o->tz - o->z;
-        ((TWindowBase *)o)->save_position();
+        ((TUnk_804CE018 *)o)->save_position();
     } else {
         d = (o->tw - o->w) / n;
         o->x += (o->tx - o->x) / n;
@@ -51,19 +51,20 @@ void TWindowAddition::step_window_tween() {
 }
 #pragma pop
 
-Ctx_80244364 *get_draw_context__11TWindowBaseFPv(Obj_80244364 *self) {
-    Ctx_80244364 *c = setup_window_draw_context__11TWindowBaseFl(self, self->a);
+TWindowDrawContext *get_draw_context__11TWindowBaseFPv(void *window) {
+    Obj_80244364 *self = (Obj_80244364 *)window;
+    Ctx_80244364 *c = setup_window_draw_context__13TUnk_804CE018Fl(self, self->a);
     c->x -= self->x;
     c->y -= self->y;
-    return c;
+    return (TWindowDrawContext *)c;
 }
 
-void TWindowAddition::sub_802443B4() {
+void TUnk_804CDFE8::sub_802443B4() {
     u8 *arg0 = (u8 *)this;
     *(s32 *)&this->m_name = (s32) lbl_805D3878;
     *(f32 *)((s8 *)arg0 + 0x68) = (f32) lbl_805DCAAC;
     *(f32 *)((s8 *)arg0 + 0x6C) = (f32) lbl_805DCAAC;
-    set_position_xy__15TWindowAdditionFff(lbl_805DCAB0, lbl_805DCAB0);
+    set_position_xy__13TUnk_804CDFE8Fff(lbl_805DCAB0, lbl_805DCAB0);
 }
 
 }

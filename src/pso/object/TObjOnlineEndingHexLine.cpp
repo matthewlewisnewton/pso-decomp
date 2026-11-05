@@ -7,7 +7,7 @@
 struct Param_802E5CB0 { f32 a; f32 b; s32 c; f32 d; };
 typedef char Param_802E5CB0_size[sizeof(Param_802E5CB0) == 0x10 ? 1 : -1];
 
-struct V2_802E55B8 { f32 x, y; };
+struct V2_802E55B8 { f32 values[2]; };
 struct P2_802E55B8 { s16 x, y; };
 struct Hex_802E55B8 { u8 pad[0x1C]; P2_802E55B8 pts[32]; };
 struct Desc_802E55B8 { V2_802E55B8 *pts; u32 *cols; s32 z; s32 n; };
@@ -205,13 +205,13 @@ void render__23TObjOnlineEndingHexLineFv(u8 *arg0) {
         if (i == 0) {
             calc_rotated_hex_point__23TObjOnlineEndingHexLineFPvPv(&q0, &((Hex_802E55B8 *) arg0)->pts[0]);
             calc_rotated_hex_point__23TObjOnlineEndingHexLineFPvPv(pq1, &((Hex_802E55B8 *) arg0)->pts[1]);
-            pts[0].x = *(f32 *)((s8 *)arg0 + 0x9C) * (q0.x - q1.x) + q1.x;
-            pts[0].y = *(f32 *)((s8 *)arg0 + 0x9C) * (q0.y - q1.y) + q1.y;
+            pts[0].values[0] = *(f32 *)((s8 *)arg0 + 0x9C) * (q0.values[0] - q1.values[0]) + q1.values[0];
+            pts[0].values[1] = *(f32 *)((s8 *)arg0 + 0x9C) * (q0.values[1] - q1.values[1]) + q1.values[1];
         } else if (i == last) {
             calc_rotated_hex_point__23TObjOnlineEndingHexLineFPvPv(&p0, &((Hex_802E55B8 *) arg0)->pts[last - 1]);
             calc_rotated_hex_point__23TObjOnlineEndingHexLineFPvPv(pp1, &((Hex_802E55B8 *) arg0)->pts[last]);
-            pts[last].x = *(f32 *)((s8 *)arg0 + 0x9C) * (p0.x - p1.x) + p1.x;
-            pts[last].y = *(f32 *)((s8 *)arg0 + 0x9C) * (p0.y - p1.y) + p1.y;
+            pts[last].values[0] = *(f32 *)((s8 *)arg0 + 0x9C) * (p0.values[0] - p1.values[0]) + p1.values[0];
+            pts[last].values[1] = *(f32 *)((s8 *)arg0 + 0x9C) * (p0.values[1] - p1.values[1]) + p1.values[1];
         } else {
             calc_rotated_hex_point__23TObjOnlineEndingHexLineFPvPv(&pts[i], &((Hex_802E55B8 *) arg0)->pts[i]);
         }
@@ -334,33 +334,33 @@ void handle_6x92(u8 *arg0) {
 #pragma fp_contract on
 
 s32 calc_rotated_hex_point__23TObjOnlineEndingHexLineFPvPv(V2_802E55B8 *arg0, P2_802E55B8 *arg1) {
-    V2_802E5B0C p;
+    V2_802E55B8 p;
     f32 s;
     f32 c;
     f32 sc;
     s32 ang;
 
     if (*(s16 *)((s8 *)arg1 + 2) & 1) {
-        p.x = lbl_805DE980 * (lbl_805DE970 + (f32) *(s16 *)((s8 *)arg1 + 0));
+        p.values[0] = lbl_805DE980 * (lbl_805DE970 + (f32) *(s16 *)((s8 *)arg1 + 0));
     } else {
-        p.x = (f32) (*(s16 *)((s8 *)arg1 + 0) * 0x1E);
+        p.values[0] = (f32) (*(s16 *)((s8 *)arg1 + 0) * 0x1E);
     }
     f32 y = (f32) (*(s16 *)((s8 *)arg1 + 2) * 0x19);
     V2_802E5B0C ctr = lbl_80472C00[0];
     ang = *(s32 *)((s8 *)&TObjOnlineEndingHexLine__hex_line_params + 8);
-    p.x = p.x - ctr.x;
-    p.y = y;
-    p.y = p.y - ctr.y;
+    p.values[0] = p.values[0] - ctr.x;
+    p.values[1] = y;
+    p.values[1] = p.values[1] - ctr.y;
     s = sin_table_lookup(ang);
     c = cos_table_lookup(*(s32 *)((s8 *)&TObjOnlineEndingHexLine__hex_line_params + 8));
     sc = *(f32 *)((s8 *)&TObjOnlineEndingHexLine__hex_line_params + 4);
-    V2_802E5B0C q = p;
-    p.x = c * q.x - s * q.y;
-    p.y = s * q.x + c * q.y;
-    p.x = p.x * sc;
-    p.y = p.y * sc;
-    p.x = p.x + ctr.x;
-    p.y = p.y + ctr.y;
+    V2_802E55B8 q = p;
+    p.values[0] = c * q.values[0] - s * q.values[1];
+    p.values[1] = s * q.values[0] + c * q.values[1];
+    p.values[0] = p.values[0] * sc;
+    p.values[1] = p.values[1] * sc;
+    p.values[0] = p.values[0] + ctr.x;
+    p.values[1] = p.values[1] + ctr.y;
     ((TWindowSubSymbolChatPartsSet *)arg0)->copy_vec2(&p);
     return 1;
 }

@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "types.h"
 #include "pso/enemy/TObjEneEpsilon_800B92AC.h"
@@ -152,7 +153,7 @@ void *create_particle_emitter(void *pos, s32 id);
 s32 noop__9TObjEneDDFv(void *);
 s32 check_hit_flag__16TObjEneRe2FlowerFv(void *);
 s32 TObjPlayer__sub_800C4A5C(int, void *, void *, int);
-s32 play_sound_effect(void *, void *, int, int);
+
 u32 __nw__7TObjectFUl(int);
 extern u8 *lbl_805D5170;
 extern const f32 lbl_805D9FD8;
@@ -212,7 +213,7 @@ void fn_800C3088(u8 *arg0, int arg1) {
             (((VObj_18_880cfd *)((u8 *) ((RecoveredFields_800C3088_arg0 *) arg0)->field_390))->m23((arg0), (lbl_805D9FD4)));
           }
         }
-        play_sound_effect((void *) fn_800C3A60((s32)arg0, 0x4003A814), arg0 + 0x38, 0, 0);
+        play_sound_effect((s32)((void *) fn_800C3A60((s32)arg0, 0x4003A814)), (const Vec *)(arg0 + 0x38), 0, 0);
         TObjPlayer::play_effect_if_v2(-0x200);
       }
         break;
@@ -275,14 +276,14 @@ void fn_800C32DC(u8 *owner, s32 arg1) {
             VecCopy((Vec *)(&stack.sp8), (const Vec *)(owner + 0x3DC));
             stack.spC = lbl_805D9FDC + *(f32 *)((s8 *)owner + 0x3C);
             if ((((TObjEneRe2Flower *)owner)->get_flag_11() != 0) || (TObjEneDD::check_v2_mode() != 0)) {
-                TTecMegid::create_ex((s32)owner, (s32)((void *)&stack.sp8), (s32)((int) (((TObjEneRe2Flower *)owner)->rotation_y)), (s32)((int) (TObjEneDD::clamp_frame_index((int) (*(s32 *)((s8 *)lbl_805D5170 + 0x18))))));
+                TTecMegid::create_ex((s32)owner, (s32)((void *)&stack.sp8), (s32)((int) (((TObjEneRe2Flower *)owner)->rotation.yaw)), (s32)((int) (TObjEneDD::clamp_frame_index((int) (*(s32 *)((s8 *)lbl_805D5170 + 0x18))))));
             } else {
                 temp_r3_3 = __nw__7TObjectFUl(0x104);
                 if (temp_r3_3 != 0U) {
-                    TObjPlayer__sub_800C4A5C(temp_r3_3, owner, &stack.sp8, (int) (((TObjEneRe2Flower *)owner)->rotation_y));
+                    TObjPlayer__sub_800C4A5C(temp_r3_3, owner, &stack.sp8, (int) (((TObjEneRe2Flower *)owner)->rotation.yaw));
                 }
             }
-            play_sound_effect((void *) (fn_800C3A60((s32)owner, 0x4003A10E)), owner + 0x3DC, 0, 0);
+            play_sound_effect((s32)((void *) (fn_800C3A60((s32)owner, 0x4003A10E))), (const Vec *)(owner + 0x3DC), 0, 0);
         }
         ((TObjEneDD *)(owner))->vfunc_102();
         ((TObjEneDD *)(owner))->vfunc_88();
@@ -449,7 +450,7 @@ void TObjEneDD::state_chase_target(s32 arg1) {
         *(s32 *)((s8 *)arg0 + 0x414) = 0;
         *(s32 *)((s8 *)arg0 + 0x420) = 0;
         if (((TObjEneRe2Flower *)arg0)->get_flag_11() != 0) {
-            play_sound_effect((void *)0x4003A840, (u8 *)&this->position, 0, 0);
+            play_sound_effect((s32)((void *)0x4003A840), (const Vec *)((u8 *)&this->position), 0, 0);
         }
         break;
     case 3:
@@ -458,7 +459,7 @@ void TObjEneDD::state_chase_target(s32 arg1) {
             if (d > lbl_805D9FE0 || *(void **)((s8 *)arg0 + 0x390) == NULL) {
                 ((TObjEneDD *)arg0)->transition_enemy_state(2);
             } else if (d < lbl_805D9FE4) {
-                t = angle_difference_abs(this->rotation_y, *(s32 *)((s8 *)arg0 + 0x420));
+                t = angle_difference_abs(this->rotation.yaw, *(s32 *)((s8 *)arg0 + 0x420));
                 if (t < ((AttackParams *)(this->m_318))->get_attack_angle()) {
                     ((TObjEneDD *)arg0)->transition_enemy_state(5);
                 }
@@ -482,15 +483,15 @@ void TObjEneDD::state_chase_target(s32 arg1) {
                     enemy_set_target_id(arg0, idx);
                 }
             }
-        } else if (((TObjEneEpsilon *)arg0)->update_death_check() == 0) {
+        } else if (((TObjEneDD_ST *)arg0)->check_target_validity() == 0) {
             break;
         }
         ((TObjEneDD_ST *)arg0)->enemy_copy_target_destination();
         ((TObjEneDD *)arg0)->update_velocity();
         (*(s32 *)((s8 *)arg0 + 0x414))++;
         *(s32 *)((s8 *)arg0 + 0x420) = (s32)(lbl_8043BBD8 * atan2_float(*(f32 *)((s8 *)arg0 + 0x3A0), *(f32 *)((s8 *)arg0 + 0x3A8)));
-        this->rotation_y = approach_angle_limited(this->rotation_y, *(s32 *)((s8 *)arg0 + 0x420), *(void **)((s8 *)this->movementParameters + 8));
-        this->rotation_y = (s16)this->rotation_y;
+        this->rotation.yaw = approach_angle_limited(this->rotation.yaw, *(s32 *)((s8 *)arg0 + 0x420), *(void **)((s8 *)this->movementParameters + 8));
+        this->rotation.yaw = (s16)this->rotation.yaw;
         this->vfunc_102();
         this->vfunc_88();
         noop__9TObjEneDDFv(arg0);

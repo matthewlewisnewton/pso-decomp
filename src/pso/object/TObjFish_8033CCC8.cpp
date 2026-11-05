@@ -1,3 +1,7 @@
+#include "pso/system/ModelNodePositionCapture.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
+#include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/system/PadRumble.h"
 #include "pso/misc/TOTrapAncient01_80226534.h"
@@ -23,14 +27,14 @@ struct Vec_8033CDF8 { f32 x, y, z; };
 struct Fish_8033CDF8 { u8 pad[0x4C]; Vec_8033CDF8 vecs[3]; };
 
 extern "C" {
-s32 play_sound_effect(int, int, int, int);
+
 extern Range_8033CDF8 fish_spawn_entry_table[];
-void clear_render_callback__8TObjFishFv(void);
 s32 push_matrix(void);
 f32 post_translate_matrix(void);
 extern const f32 lbl_805DFA58;
 extern const f32 lbl_805DFA5C;
 extern const f32 lbl_805DFA60;
+__declspec(section ".sdata2") extern const f32 TBoss6Demo11_TYPE1_DEAD_progress_limit[2];
 void *TObjFish__sub_8033D1AC(void *, void *, void *);
 void __dl__7TObjectFPv(void *);
 void __dt__7TObjectFv(void *, int);
@@ -55,12 +59,12 @@ void TBoss6Demo11_TYPE1_DEAD::render_fade_model() {
         push_matrix();
         set_motion_packed_rotation();
         ((f32 (*)(void *))post_translate_matrix)(arg0 + 0x1C);
-        TObjFish::set_global_param(*(s32 *)&(*(void * *)((u8 *)this + 0x2C)));
+        set_current_texture_list((GinjaTextureList *)(*(s32 *)&(*(void * *)((u8 *)this + 0x2C))));
         draw_model_motion((void *)(*(s32 *)&(this->m_28)), (void *)(*(s32 *)&(this->m_30)), this->m_40);
-        TObjFish::set_global_param(this->m_38);
-        ((TObjFish *)((this->m_88)))->set_draw_callback_list();
+        set_current_texture_list((GinjaTextureList *)(this->m_38));
+        ((ModelNodePositionCapture *)((this->m_88)))->install();
         draw_model_motion((void *)(*(s32 *)&(*(void * *)((u8 *)this + 0x34))), (void *)(*(s32 *)((s8 *)arg0 + 0x3C)), this->m_40);
-        ((int (*)(void *))clear_render_callback__8TObjFishFv)((this->m_88));
+        ((ModelNodePositionCapture *)(this->m_88))->clear();
         clear_motion_packed_rotation();
         pop_matrix();
         if (var_f31 < lbl_805DFA58) {
@@ -81,8 +85,8 @@ void TBoss6Demo11_TYPE1_DEAD::run_task() {
     Vec_8033CDF8 *p;
     u8 *q;
     Range_8033CDF8 *t;
-    if ((F(f32, 0x40) += 0.7f) > 179.0f) {
-        F(f32, 0x40) = 179.0f;
+    if ((F(f32, 0x40) += 0.7f) > TBoss6Demo11_TYPE1_DEAD_progress_limit[0]) {
+        F(f32, 0x40) = TBoss6Demo11_TYPE1_DEAD_progress_limit[0];
     }
     switch (F(s32, 0x44)) {
     case 0x98:
@@ -102,7 +106,7 @@ void TBoss6Demo11_TYPE1_DEAD::run_task() {
         break;
     }
     if (F(s32, 0x44) >= 0x89) {
-        play_persistent_sound(0x4003A424, (s32)arg0, 0, 0, 0);
+        play_persistent_sound((s32)(0x4003A424), (const void *)((s32)arg0), (const Vec *)(0), 0, 0);
     }
     switch (F(s32, 0x44)) {
     case 0xE:
@@ -164,7 +168,7 @@ void *TBoss6Demo11_TYPE1_DEAD::destroy(s16 arg1) {
     if (this != NULL) {
         *(s32 **)((s8 *)this + 0x18) = lbl_804EF9EC;
         restore_player_cameras();
-        if (*(void * *)&(this->m_88) != NULL) { TObjFish::init_state_1(*(void * *)&(this->m_88)); *(s32 *)&(this->m_88) = 0; }
+        if (*(void * *)&(this->m_88) != NULL) { ModelNodePositionCapture::destroy((ModelNodePositionCapture *)(*(void * *)&(this->m_88))); *(s32 *)&(this->m_88) = 0; }
         if (*(void * *)&(this->unk_8C) != NULL) { TParticleCtrl::release(*(void * *)&(this->unk_8C)); *(s32 *)&(this->unk_8C) = 0; }
         __dt__7TObjectFv(this, 0);
         if (arg1 > 0) {
@@ -183,8 +187,14 @@ void *TBoss6PlotFalz::create(void *arg0, void *arg1) {
     return o;
 }
 
-__declspec(section ".rodata") double lbl_80477F08 = 4503601774854144.0;
-__declspec(section ".sdata2") f32 lbl_805DFA64 = 0.7f;
-__declspec(section ".sdata2") f32 lbl_805DFA68[2] = { 179.0f, 0.0f };
+// lbl_80477F08 is the compiler pool for the signed cast in render_fade_model.
+// Defining it by name emitted a second copy (16-byte .rodata against 8).
+// 0.7f is the same kind of pool for lbl_805DFA64: naming that float changes
+// the registers in run_task. 179.0f and the trailing 0.0f are TBoss6Demo11_TYPE1_DEAD_progress_limit.
+// Both pool symbols are scope:local; nothing else loads them.
+// Original 8-byte .sdata2 pool object at 0x805DFA68 (was lbl_805DFA68):
+// [0] = 179.0f, the clamp limit run_task applies to the +0.7f progress at
+// 0x40; [1] = 0.0f. Read by element so the real symbol, not a literal, is used.
+__declspec(section ".sdata2") extern const f32 TBoss6Demo11_TYPE1_DEAD_progress_limit[2] = { 179.0f, 0.0f };
 
 }

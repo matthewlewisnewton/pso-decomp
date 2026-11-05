@@ -1,5 +1,5 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC_802DD8E0.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC.h"
 #include "pso/misc/TWindowSubComCard.h"
@@ -33,16 +33,16 @@ struct RecoveredGlobal_802DDBA8_lbl_8050E3B8 {
 extern "C" {
 s32 queue_destruction__7TObjectFv(void *);
 s32 is_slot_active__23TAdSinglePlyChrSelectGCFUi();
+s32 TWindow__close(void *);
 s32 is_multiplayer_character_slot_selected(s32);
 s32 TAdMultiPlyChrSelectGC__sub_802C6558();
 s32 TAdMultiPlyChrSelectGC__sub_802C658C();
 s32 TAdMultiPlyChrSelectGC__sub_802C6920();
 s32 TAdMultiPlyChrSelectGC__sub_802E0024(s32, s32);
 s32 create_effects__14TAdGameStartGCFPv(s32);
-s32 get_or_create_slot_window__22TAdMultiPlyChrSelectGCFii(void *, s32);
 s32 clear_entries__18TAdChrMoveEffectGCFv();
 s32 TWindowShortListCtrl__check_controller_button(void *, s32, s32);
-s32 play_sound_effect(s32, s32, s32, s32);
+
 s32 get_instance__22TAdMultiPlyChrSelectGCFv(s32);
 extern RecoveredGlobal_802DDD08_TAdMultiPlyChrSelectGC__data_804727B0 TAdMultiPlyChrSelectGC__character_slot_positions;
 extern s32 controller_physical_port_bank[];
@@ -261,7 +261,7 @@ void TAdMultiPlyChrSelectGC::reset_to_select() {
         *(u32 *)&this->m_6c = 0U;
     }
     if ((u32) this->m_84 != 0U) {
-        ((TWindowBase *)(*(void * *)&this->m_84))->close();
+        TWindow__close(*(void * *)&this->m_84);
         this->m_84 = 0U;
     }
     if ((u32) *(u32 *)&this->unk_88 != 0U) {
@@ -269,7 +269,7 @@ void TAdMultiPlyChrSelectGC::reset_to_select() {
         *(u32 *)&this->unk_88 = 0U;
     }
     *(s32 *)&this->unk_50 = 0;
-    *(s32 *)&this->unk_68 = get_or_create_slot_window__22TAdMultiPlyChrSelectGCFii(this, 1);
+    *(s32 *)&this->unk_68 = (s32)get_or_create_slot_window__22TAdMultiPlyChrSelectGCFii(this, 1);
     TAdMultiPlyChrSelectGC::set_select_mode(this->m_5c, 0);
     ((TAdMultiPlyChrSelectGC *)(this->m_5c))->set_state_ready();
     if ((((TAdMultiPlyChrSelectGC *)(*(s32 *)&this->unk_78))->get_ready_state() == 0) && (TAdMultiPlyChrSelectGC__sub_802C6558() > 1) && (is_multiplayer_character_slot_selected(0) != 0)) {

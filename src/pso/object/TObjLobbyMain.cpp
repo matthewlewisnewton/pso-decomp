@@ -1,3 +1,5 @@
+#include "pso/player/demo_mode.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/object/TObjLobbyMain.h"
 #include "pso/TMainTask.h"
@@ -29,8 +31,6 @@
 #pragma readonly_strings on
 
 extern "C" {
-void TLobby__sub_8001FE7C(BmlResource *resource, s32 del);
-BmlResource *load_resource_from_descriptor(void *resource, s32 kind, BmlResourceDescriptor *descriptor, s32, s32, s32);
 AnimationMotion *get_bml_motion(BmlResource *resource, s32 index);
 void draw_ginja_model_with_motion(s32 model, AnimationMotion *motion, f32 frame);
 extern s32 actor_frame_tick;
@@ -117,10 +117,7 @@ TObjLobbyMain::~TObjLobbyMain() {
 }
 
 void TObjLobbyMain::load_resources() {
-    void *resource = ::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 5, &bm_obj_lobby_main_resource_descriptor, 0, 0, 0);
-    }
+    void *resource = new BmlResource(5, (BmlResourceDescriptor *)(&bm_obj_lobby_main_resource_descriptor), 0, 0, (void *)(0));
     model_resource = (BmlResource *)resource;
     lobby_texlist = TLobby::get_lobby_texlist();
     computer_screen_model = (NJS_CNK_MODEL *)((NJS_OBJECT *)get_bml_model(model_resource, 6))
@@ -132,7 +129,7 @@ void TObjLobbyMain::load_resources() {
 
 void TObjLobbyMain::free_resources() {
     if (model_resource != NULL) {
-        TLobby__sub_8001FE7C(model_resource, 1);
+        delete (BmlResource *)(model_resource);
         model_resource = NULL;
     }
 }
@@ -142,7 +139,7 @@ void *TObjLobbyMain::create(void *set_data) {
 }
 
 void TObjLobbyMain::run_task() {
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         demo_step();
     }
     switch (fade_state) {
@@ -215,11 +212,11 @@ void TObjLobbyMain::render() {
     if (lobby_texlist != 0 && update_object_view_visibility(view_range, model_radius) != 0) {
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
+        rotate_matrix_y(NULL, this->rotation.yaw);
         if (fade_state != 2) {
             scale_matrix(NULL, fade_scale, 1.0f, fade_scale);
         }
-        TObjFish::set_global_param(lobby_texlist);
+        set_current_texture_list((GinjaTextureList *)(lobby_texlist));
         index = model_index;
         motion = lobby_main_model_motions[index];
         if (motion != 5) {
@@ -270,7 +267,7 @@ void TObjLobbyMain::update_emitter_positions() {
             push_matrix();
             set_matrix_identity(NULL);
             post_translate_matrix(&position.x);
-            rotate_matrix_y(NULL, rotation_y);
+            rotate_matrix_y(NULL, this->rotation.yaw);
             matrix_mult_vec(NULL, &pos, &pos);
             emitter0->set_position(&pos);
             pop_matrix();
@@ -281,7 +278,7 @@ void TObjLobbyMain::update_emitter_positions() {
             push_matrix();
             set_matrix_identity(NULL);
             post_translate_matrix(&position.x);
-            rotate_matrix_y(NULL, rotation_y);
+            rotate_matrix_y(NULL, this->rotation.yaw);
             matrix_mult_vec(NULL, &pos, &pos);
             emitter1->set_position(&pos);
             pop_matrix();

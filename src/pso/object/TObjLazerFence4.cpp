@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/object/TObjDoorJung.h"
@@ -94,10 +95,10 @@ void TObjLazerFence4::init_models() {
 }
 
 void TObjLazerFence4::draw() {
-    TObjFish::set_global_param((s32)lazer_fence_norm_texture_list);
+    set_current_texture_list((GinjaTextureList *)(lazer_fence_norm_texture_list));
     push_matrix();
     post_translate_matrix((void *)((char *)this + 56));
-    rotate_matrix_y(0, *(void * *)&this->rotation_y);
+    rotate_matrix_y(0, *(void * *)&this->rotation.yaw);
     draw_ginja_object(this->m_c0);
     pop_matrix();
 }
@@ -118,10 +119,10 @@ void TObjLazerFence4::draw_model() {
     var_r31 += 4;
   }
   while (var_r30 < 0xC);
-  TObjFish::set_global_param((s32)((void *)((*(s32 *)&lazer_fence_norm_texture_list))));
+  set_current_texture_list((GinjaTextureList *)(((void *)((*(s32 *)&lazer_fence_norm_texture_list)))));
   push_matrix();
   post_translate_matrix((u8 *)&this->position);
-  rotate_matrix_y(0, (void *)this->rotation_y);
+  rotate_matrix_y(0, (void *)this->rotation.yaw);
   draw_ginja_object((void *)(*((s32 *) (((s8 *) arg0) + 0xC0))));
   TParticleCtrl::begin_effect_render();
   new_var = (s32 *) (((s8 *) arg0) + 0xC4);

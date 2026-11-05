@@ -1,4 +1,6 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/render/render_util.h"
 #include "pso/object/TObjFish.h"
 #include "pso/misc/TORockJungleL01.h"
@@ -331,7 +333,7 @@ extern Offs_8029C390 lbl_80465884;
 extern ChipParam_8029C390 lbl_80465890;
 extern u8 identity_matrix[];
 extern void *tl_05;
-s32 play_sound_effect(s32, s32, s32, s32);
+
 void free_collision_body_parts(void *);
 int update__15RenderFadeStateFv(void*);
 void __dl__7TObjectFPv(void *);
@@ -341,7 +343,7 @@ void TORockJungleM01::run_task() { update__15RenderFadeStateFv((char*)this + 0xb
 
 void TORockJungleM01::vfunc_18() {
     s32 arg0 = (s32)this;
-    play_sound_effect(0x4BC19, arg0 + 0x38, 0, 0);
+    play_sound_effect(0x4BC19, (const Vec *)(arg0 + 0x38), 0, 0);
 }
 
 void TORockJungleM01::vfunc_16() {
@@ -519,7 +521,6 @@ extern s32 __vt__15TORockJungleS01[];
 extern s32 TORockJungleS01__name;
 
 extern u32 TORockJungleS01__texture_resource;
-void *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 u8 *load_gvm_texture_file(s32 arg0);
 extern u8 lbl_804658EC[];
 extern u8 lbl_80465904[];
@@ -529,8 +530,7 @@ void *__nw__7TObjectFUl(int);
 extern Offs_8029C7DC lbl_8046581C;
 extern Spawn_8029C7DC lbl_80465828;
 extern u8 identity_matrix[];
-s32 play_sound_effect(s32, s32, s32, s32);
-void TLobby__sub_8001FE7C(void*, int);
+
 s32 release_texture_list(void*);
 void free_collision_body_parts(void *);
 void __dl__7TObjectFPv(void *);
@@ -538,7 +538,7 @@ void *__dt__18TORockCaveBrakableFv(void *arg0, s16 arg1);
 
 void TORockJungleS01::vfunc_18() {
     s32 arg0 = (s32)this;
-    play_sound_effect(0x4BC19, arg0 + 0x38, 0, 0);
+    play_sound_effect(0x4BC19, (const Vec *)(arg0 + 0x38), 0, 0);
 }
 
 void TORockJungleS01::vfunc_16() {
@@ -638,16 +638,13 @@ void TORockJungleS01::free_globals() {
         TORockJungleS01__texture_resource = 0U;
     }
     if ((u32) TORockJungleS01__bml_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)TORockJungleS01__bml_resource, 1);
+        delete (BmlResource *)((void*)TORockJungleS01__bml_resource);
         TORockJungleS01__bml_resource = 0U;
     }
 }
 void TORockJungleS01::load_resources() {
     void *o;
-    o = ::operator new(0x440);
-    if (o != NULL) {
-        o = load_resource_from_descriptor(o, 1, TORockJungleS01_resource_descriptor, 0, 0, 0);
-    }
+    o = new BmlResource(1, (BmlResourceDescriptor *)(TORockJungleS01_resource_descriptor), 0, 0, (void *)(0));
     TORockJungleS01__bml_resource = (u32)o;
     switch (get_current_floor_area()) {
     case AREA_SEASIDE:
