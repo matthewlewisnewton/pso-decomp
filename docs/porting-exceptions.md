@@ -201,9 +201,9 @@ or `other: <what>`); the fork PR that brought it in; and the tag
 
 | Function/symbol | Unit | File | Upstream PR | Cheat type | Fork PR | Tag |
 |---|---|---|---|---|---|---|
-| `clear_sound_listener_position` | `pso/misc/TLobby_802268F4.cpp` | `src/pso/misc/TLobby_802268F4.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | other: dead-stripped function | #0 | upstream catch-up, rewrite later |
-| `__vt__25TObjCityMainWarpChallenge` | `pso/object/TObjCityMainWarpChallenge.cpp` | `src/pso/object/TObjCityMainWarpChallenge.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | other: hand-written vtable | #0 | upstream catch-up, rewrite later |
-| `TObjCityMainWarpChallenge.cpp` | `pso/object/TObjCityMainWarpChallenge.cpp` | `configure.py` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | other: per-unit cflags override | #0 | upstream catch-up, rewrite later |
+| `clear_sound_listener_position` | `pso/misc/TLobby_802268F4.cpp` | `src/pso/misc/TLobby_802268F4.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | other: dead-stripped function | [#352](https://github.com/matthewlewisnewton/pso-decomp/pull/352) | upstream catch-up, rewrite later |
+| `__vt__25TObjCityMainWarpChallenge` | `pso/object/TObjCityMainWarpChallenge.cpp` | `src/pso/object/TObjCityMainWarpChallenge.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | other: hand-written vtable | [#352](https://github.com/matthewlewisnewton/pso-decomp/pull/352) | upstream catch-up, rewrite later |
+| `TObjCityMainWarpChallenge.cpp` | `pso/object/TObjCityMainWarpChallenge.cpp` | `configure.py` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | other: per-unit cflags override | [#352](https://github.com/matthewlewisnewton/pso-decomp/pull/352) | upstream catch-up, rewrite later |
 
 ## Pending in open PRs
 
