@@ -31,6 +31,12 @@ byte-exact.
   unit-wide `-fp_contract on` replaces the scoped pragmas they had before.
 - **Scroll helper.** `-opt noprop` (#291) keeps the scroll offset as a
   named local.
+- **Interfaces.** The unit's calls out come from their owners' headers:
+  `read_disc_file` (`TLobby_800F9DA0.h`), `set_texture_name` (Ninja's
+  `njSetTextureName`, `GinjaTexture.h`) and `load_texture_list`
+  (`text_803DD5E0.h`). The texture entry's third word holds the global index
+  until `load_texture_list` replaces it with the loaded texture, and
+  `GinjaTextureEntry` names both states.
 
 The reasons and evidence for each switch are in
 [porting-exceptions.md](porting-exceptions.md) section 5.

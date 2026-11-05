@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (regenerated on this branch after merging main `7ba27eaf2`, 2026-11-04)
+## Summary (regenerated on this branch after merging main `f6dedd375`, 2026-11-04)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `7ba27eaf2` (2026-11-04). Assembly is counted as functions;
+after merging main `f6dedd375` (2026-11-04). Assembly is counted as functions;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
