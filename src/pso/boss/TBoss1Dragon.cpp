@@ -5747,8 +5747,8 @@ Obj_80029C78 *destroy__12TBoss1DragonFPvs(Obj_80029C78 *o, s16 flag) {
             TBoss1Dragon__data_805D4B2C = 0;
         }
         __destroy_arr(o->f6E8, (void *)__dt__15RenderFadeStateFv, 0x1c, 4);
-        TObjBoss2Tunnel::maybe_delete((s32)o->f618, (s16)(-1));
-        TObjBoss2Tunnel::maybe_delete((s32)o->f5F4, (s16)(-1));
+        TObjBoss2Tunnel::maybe_delete((AccelerationCurve *)o->f618, (s16)(-1));
+        TObjBoss2Tunnel::maybe_delete((AccelerationCurve *)o->f5F4, (s16)(-1));
         __dt__7TObjectFv(o->f3C4, -1);
         __dt__12TObjEneDD_STFv(o, 0);
         if (flag > 0) {

@@ -6754,8 +6754,8 @@ u8 *__dt__12TBoss8DragonFv(u8 *arg0, s16 arg1) {
             TBoss8Dragon__data_805D69AC = NULL;
         }
         __destroy_arr(arg0 + 0x6DC, (void *)__dt__15RenderFadeStateFv, 0x1C, 4);
-        TObjBoss2Tunnel::maybe_delete((s32)(arg0 + 0x610), (s16)(-1));
-        TObjBoss2Tunnel::maybe_delete((s32)(arg0 + 0x5EC), (s16)(-1));
+        TObjBoss2Tunnel::maybe_delete((AccelerationCurve *)(arg0 + 0x610), (s16)(-1));
+        TObjBoss2Tunnel::maybe_delete((AccelerationCurve *)(arg0 + 0x5EC), (s16)(-1));
         __dt__7TObjectFv(arg0 + 0x3C4, -1);
         __dt__12TObjEneDD_STFv(arg0, 0);
         if (arg1 > 0) {

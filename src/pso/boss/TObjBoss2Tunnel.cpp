@@ -242,7 +242,7 @@ f32 normalize_vector_xz(Vec *vector) {
 }
 
 extern "C" {
-void TObjBoss2Tunnel::render(void* a1) { push_matrix(); TObjPlayer::invert_matrix_in_place((u32)((void*)0)); get_current_matrix(a1); pop_matrix(); }
+void TObjBoss2Tunnel::render(void* a1) { push_matrix(); TObjPlayer::invert_matrix_in_place(0); get_current_matrix(a1); pop_matrix(); }
 
 }
 extern "C" {
@@ -401,11 +401,11 @@ AccelerationCurve *TObjBoss2Tunnel::reset_coords_pass(AccelerationCurve *c) {
     return c;
 }
 
-s32 TObjBoss2Tunnel::maybe_delete(s32 arg0, s16 arg1) {
-    if ((arg0 != 0) && (arg1 > 0)) {
-        ::operator delete((void *)arg0);
+AccelerationCurve *TObjBoss2Tunnel::maybe_delete(AccelerationCurve *c, s16 arg1) {
+    if ((c != NULL) && (arg1 > 0)) {
+        ::operator delete(c);
     }
-    return arg0;
+    return c;
 }
 
 }
@@ -481,16 +481,16 @@ f32 sample_acceleration_curve(AccelerationCurve *c, f32 t) {
 
 }
 extern "C" {
-s32 TObjBoss2Tunnel::reset_floats(s32 arg0) {
-    reset_floats((PiecewiseCurve *)arg0);
-    return arg0;
+PiecewiseCurve *TObjBoss2Tunnel::reset_floats_pass(PiecewiseCurve *c) {
+    reset_floats(c);
+    return c;
 }
 
-s32 TObjBoss2Tunnel::dt(s32 arg0, s16 arg1) {
-    if ((arg0 != 0) && (arg1 > 0)) {
-        ::operator delete((void *)arg0);
+PiecewiseCurve *TObjBoss2Tunnel::dt(PiecewiseCurve *c, s16 arg1) {
+    if ((c != NULL) && (arg1 > 0)) {
+        ::operator delete(c);
     }
-    return arg0;
+    return c;
 }
 
 }
@@ -557,8 +557,8 @@ extern "C" {
 f32 TObjBoss2Tunnel::eval_piecewise_curve(PiecewiseCurve *c, f32 farg0) {
     f32 t;
     f32 r = 0.0f;
-    if (farg0 < 0.0f) {
-        r = 0.0f;
+    if (farg0 < r) {
+        r = r;
     } else {
         if (farg0 < c->accelEnd) {
             r = c->accel * farg0 + c->v0;
@@ -856,9 +856,9 @@ s32 TObjBoss2Tunnel__sub_8007D1D0(void) {
         *p++ = 2;
         countp = (u16 *)p;
         p += 2;
-        flags = ((SnapshotPlayerBlock *)p)->class_flags;
-        levels = ((SnapshotPlayerBlock *)p)->levels;
-        name = ((SnapshotPlayerBlock *)p)->names[0];
+        flags = (u32 *)p;
+        levels = (u32 *)(p + 0x30);
+        name = (char *)(p + 0x60);
         memset(name, 0, 0x120);
         count = TLobby::get_game_mode();
         me = (TObjPlayer *)find_entity_by_id(local_client_id);

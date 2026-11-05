@@ -105,11 +105,11 @@ struct TObjBoss2Tunnel : public TObject {
     static void free_buffers();
     static void reset_state();
     static void reset_floats(PiecewiseCurve *curve);
-    static s32 dt(s32 arg0, s16 arg1);
-    static s32 reset_floats(s32 arg0);
+    static PiecewiseCurve *dt(PiecewiseCurve *curve, s16 arg1);
+    static PiecewiseCurve *reset_floats_pass(PiecewiseCurve *curve);
     static int check_param_threshold(AccelerationCurve *c, f32 arg1);
     static void reset_coords(AccelerationCurve *c);
-    static s32 maybe_delete(s32 arg0, s16 arg1);
+    static AccelerationCurve *maybe_delete(AccelerationCurve *c, s16 arg1);
     static s32 count_active_segments(void *node);
     static AccelerationCurve *reset_coords_pass(AccelerationCurve *c);
     static s32 decrement_packed_timer(u32 *arg0, s32 arg1);
