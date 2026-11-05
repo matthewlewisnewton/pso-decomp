@@ -636,6 +636,8 @@ force_active:
   - TLobby__sub_80225CB8
   - TLobby__sub_80227A94
   - TLobby__sub_80228118
+  - TLobby__sub_8023FCC0
+  - TLobby__sub_8023FFB8
   - TLobby__sub_80292AB4
   - TLobby__sub_80292BB8
   - TLobby__sub_80292DA0
@@ -4216,6 +4218,7 @@ force_active:
   - calc_trap_count__16TOTrapAncient02RFv
   - calc_tube_progress__10TBoss6TubeFl
   - calc_xz_direction_to__16TObjEneBm5GibonUFPvPvPv
+  - calculate_crc16_ccitt__FPCUcl
   - call_9A24_plus_1__11TBoss6Type2FPl
   - call_null__12TBoss8DragonFv
   - call_state_action__14TBoss6PlotFalzFv
@@ -7555,6 +7558,9 @@ force_active:
   - lbl_80514D40
   - lbl_80514F58
   - lbl_8051607C
+  - lbl_805162EC
+  - lbl_80517BEC
+  - lbl_80517E44
   - lbl_80540B64
   - lbl_80540B70
   - lbl_80540B88
@@ -13991,6 +13997,7 @@ force_active:
   - reset_selection__21TWindowSubCustomEquipFv
   - reset_slime_tail_node_index
   - reset_sound_events__10TObjCameraFv
+  - reset_sound_group_fade__6TLobbyFv
   - reset_spawn_after_hold__15TObjEneMe1GiGueFv
   - reset_state
   - reset_state__10TSceneSoraFv
@@ -15070,6 +15077,8 @@ force_active:
   - sorcerers_cane_ct__FPUcPUcl
   - sort_by_key__13List_801D4744Fv
   - sound_bank_file_crc16
+  - sound_bank_file_indices
+  - sound_bank_file_sizes
   - sound_bank_filename_a_enemy_pool
   - sound_bank_filename_a_enemy_proj
   - sound_bank_filename_a_enemy_samp
@@ -15247,6 +15256,7 @@ force_active:
   - sound_bank_load_list_v1_enemy_v1_env
   - sound_bank_load_list_v2_enemy_v2_env
   - sound_bank_load_list_w_enemy_w_env
+  - sound_bank_load_routes
   - sound_control_state
   - sound_effect_bank_range_routes
   - sound_effect_range_a_enemy
@@ -16144,6 +16154,7 @@ force_active:
   - update_countdown__15TObjDeadListWinFv
   - update_countdown_shrink__14TBoss4DarkFalzFv
   - update_countdown_state__11TBoss6Type1Fv
+  - update_crc16_ccitt__6TLobbyFUsUc
   - update_cursor_pos__20TWindowShortListCtrlFv
   - update_customize_help_text__13TUnk_804D1160FPv
   - update_cut__11TBoss4Type3Fv
