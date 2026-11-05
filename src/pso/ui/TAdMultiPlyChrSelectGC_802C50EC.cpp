@@ -110,7 +110,6 @@ extern s32 lbl_805D67D4;
 extern const f32 lbl_805DE57C;
 extern const f32 lbl_805DE580;
 extern const f32 lbl_80471CE0[2];
-extern const f32 TAdMultiPlyChrSelectGC__data_805DE584;
 s32 TWindowShortListCtrl__check_controller_button(void *, int);
 
 s32 TAdMultiPlyChrSelectGC__sub_802C5F1C(void *, int);
@@ -316,9 +315,9 @@ void TAdMultiPlyChrSelectGC__sub_802C5688(TAdChrSelPlyPlateGC *self) {
     self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].y = self->quad[self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC]][self->f4EC].y;
     self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].w = self->quad[self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC]][self->f4EC].w;
     self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].u0 = TAdMultiPlyChrSelectGC__data_805DE56C;
-    self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].v0 = (f32)TAdMultiPlyChrSelectGC__data_805D67D8 * lbl_80471CE0[1] * TAdMultiPlyChrSelectGC__data_805DE584;
-    self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].u1 = lbl_80471CE0[0] * TAdMultiPlyChrSelectGC__data_805DE584;
-    self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].v1 = ((f32)TAdMultiPlyChrSelectGC__data_805D67D8 * lbl_80471CE0[1] + lbl_80471CE0[1]) * TAdMultiPlyChrSelectGC__data_805DE584;
+    self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].v0 = (f32)TAdMultiPlyChrSelectGC__data_805D67D8 * lbl_80471CE0[1] / 256.0f;
+    self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].u1 = lbl_80471CE0[0] / 256.0f;
+    self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].v1 = ((f32)TAdMultiPlyChrSelectGC__data_805D67D8 * lbl_80471CE0[1] + lbl_80471CE0[1]) / 256.0f;
     self->alpha[self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC]][self->f4EC] = 0;
     TAdMultiPlyChrSelectGC::add_selected_slot();
     TAdMultiPlyChrSelectGC__data_805D67D8 = self->find_active_slot();
@@ -636,9 +635,9 @@ void TAdMultiPlyChrSelectGC__sub_802C6660(TAdChrSelPlyPlateGC *self) {
             self->quad[i + 4][0].y = self->quad[row][col].y;
             self->quad[i + 4][0].w = self->quad[row][col].w;
             self->quad[i + 4][0].u0 = TAdMultiPlyChrSelectGC__data_805DE56C;
-            self->quad[i + 4][0].v0 = (f32)(s32)i * lbl_80471CE0[1] * TAdMultiPlyChrSelectGC__data_805DE584;
-            self->quad[i + 4][0].u1 = lbl_80471CE0[0] * TAdMultiPlyChrSelectGC__data_805DE584;
-            self->quad[i + 4][0].v1 = ((f32)(s32)i * lbl_80471CE0[1] + lbl_80471CE0[1]) * TAdMultiPlyChrSelectGC__data_805DE584;
+            self->quad[i + 4][0].v0 = (f32)(s32)i * lbl_80471CE0[1] / 256.0f;
+            self->quad[i + 4][0].u1 = lbl_80471CE0[0] / 256.0f;
+            self->quad[i + 4][0].v1 = ((f32)(s32)i * lbl_80471CE0[1] + lbl_80471CE0[1]) / 256.0f;
             TAdMultiPlyChrSelectGC__data_804E0A68[row + 1][col + 1] = -1;
         }
     }

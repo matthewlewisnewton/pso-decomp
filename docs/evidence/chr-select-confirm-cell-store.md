@@ -36,23 +36,27 @@ bytes as before, and no call site casts between the two classes.
   direct stores to known objects. The player load stays available, and the
   integer registers of `5688` match the original.
 
-## Remaining gap 1: float operand order (`5688`, `6660`)
+## Float operand order (`5688` closed, `6660` partly)
 
 - `optimizecomm` (`CExpr.c`) runs at parse time. It swaps the operands of a
-  commutative operator when `left->cost > right->cost`.
+  commutative operator when `left->cost > right->cost`. It does not run on
+  division. A float constant on the right of a multiply is swapped to the left;
+  an integer constant on the right is left alone.
 - `makediadicnode` (`CExpr2.c`) computes the costs. A global load
   (`EINDIRECT(EOBJREF)`) costs 1. A product of two such loads costs 2.
 - Plain `(f32)player * row_h * scale` is therefore parsed as
-  `scale * ((f32)player * row_h)`. It emits `fmuls fD, f_scale, f_product`, and
-  the scale load gets the first float virtual register (`f38`, ahead of the
-  bias `f39` and the row height `f42`).
-- The original has `fmuls f1, f1, f2` (product first), with bias `f4`, row
-  height `f3` and scale `f2`. For the product to stay on the left, it has to
-  cost 1 at parse time, which means it was a variable.
-- A float local for each product (`f32 v0 = (f32)player * row_h;
-  .v0 = v0 * scale;`) gives exactly that. Writing `scale * (...)` by hand, or
-  changing the order of the inner product, produces the same object as the
-  plain form.
+  `scale * ((f32)player * row_h)`. It emits `fmuls fD, f_scale, f_product`.
+- The original has `fmuls f1, f1, f2` (product first). That is what a
+  non-commutative `/ 256.0f` becomes after the backend folds the division into
+  a multiply by the pooled reciprocal: the dividend stays on the left.
+- The pool entry is the four bytes at `0x805DE584` (`3b800000`, 1/256). The
+  unit's `.sdata2` split owns them, and objdiff maps
+  `TAdMultiPlyChrSelectGC__data_805DE584` to the compiler pool `@168`.
+  `802C5688` is then 100% (700/700). `802C6660` moves from 95.29% to 96.07%:
+  the scale load and the bias register match, and the cell store below does
+  not.
+- A float local for each product also puts the product on the left, and the
+  review rejected those single-use locals. They are not in the source.
 
 ## Remaining gap 2: the occupied-cell store (`6660`)
 
@@ -67,13 +71,14 @@ bytes as before, and no call site casts between the two classes.
 
 ## Measured shapes
 
-The source keeps the plain expressions. The review of
-[#214](https://github.com/matthewlewisnewton/pso-decomp/pull/214) rejected
+The source uses `/ 256.0f` for the three UV scales in each function. The review
+of [#214](https://github.com/matthewlewisnewton/pso-decomp/pull/214) rejected
 single-use locals, so none of the local-variable shapes below is kept.
 
 | `5688` | `6660` | Shape |
 |---|---|---|
-| 99.63% | 95.29% | plain expressions (source) |
+| 100% | 96.07% | `/ 256.0f`, pool at `0x805DE584` (source) |
+| 99.63% | 95.29% | plain `* data_805DE584` |
 | 100% | — | `5688`: float local per product (`player0`/`v0`/`player1`/`v1`) |
 | — | 96.07% | `6660`: float local per product only |
 | — | 99.22% | `6660`: `row_i`/`col_i`/`occupied` cell pointer only |

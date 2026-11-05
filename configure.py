@@ -455,9 +455,12 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/object/TObjTombstone.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on", "-str reuse,readonly")},
     # TAdMultiPlyChrSelectGC_802C50EC: -fp_contract on because the original
     # contracts all four multiply-adds (fmadds at 802C5148, 802C5274, 802C58AC
-    # and 802C676C).
+    # and 802C676C). The UV scale is `x / 256.0f`; MWCC folds that into a
+    # multiply by the pooled reciprocal at 0x805DE584, which this object
+    # emits as @168.
     "pso/ui/TAdMultiPlyChrSelectGC_802C50EC.cpp": {
         "cflags": _switch(cflags_pso, "-fp_contract on"),
+        "symbol_mappings": {"TAdMultiPlyChrSelectGC__data_805DE584": "@168"},
     },
     # GC/2.0: compiler-expanded struct copies take 2.0's registers.
     # The ending item handler table keeps 2.0's store/load scheduling for its
