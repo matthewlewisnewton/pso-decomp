@@ -191,7 +191,7 @@ or `other: <what>`); the fork PR that brought it in; and the tag
 
 | Function/symbol | Unit | File | Upstream PR | Cheat type | Fork PR | Tag |
 |---|---|---|---|---|---|---|
-| TLobby_80228818.cpp:391 opt_propagation (`render__14TUnk_804CC048Fv`) | pso/misc/TLobby_80228818.cpp | src/pso/misc/TLobby_80228818.cpp | [#192](https://github.com/zeroz41/pso-decomp/pull/192) | steering pragma | #0 | upstream catch-up, rewrite later |
+| TLobby_80228818.cpp:391 opt_propagation (`render__14TUnk_804CC048Fv`) | pso/misc/TLobby_80228818.cpp | src/pso/misc/TLobby_80228818.cpp | [#192](https://github.com/zeroz41/pso-decomp/pull/192) | steering pragma | [#360](https://github.com/matthewlewisnewton/pso-decomp/pull/360) | upstream catch-up, rewrite later |
 
 ## Pending in open PRs
 
