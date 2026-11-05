@@ -176,7 +176,7 @@ void TShopItemListWindow::display_message(const char *text, s32 flags) {
     }
 }
 
-void TShopItemListWindow::vfunc_6() {
+void TShopItemListWindow::vfunc_6(s32, s32) {
     struct VObj_8021F16C_8021F134 *temp_r3;
 
     temp_r3 = (struct VObj_8021F16C_8021F134 *)*(void **)((s8 *)this + 0x2C);

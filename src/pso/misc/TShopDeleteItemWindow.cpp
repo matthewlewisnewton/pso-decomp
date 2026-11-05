@@ -116,7 +116,7 @@ void TShopDeleteItemWindow::display_message(const char *text, s32 flags) {
     }
 }
 
-void TShopDeleteItemWindow::vfunc_6() {
+void TShopDeleteItemWindow::vfunc_6(s32, s32) {
     struct VObj_80337948_80337910 *o = (struct VObj_80337948_80337910 *)*(void **)((s8 *)this + 0x64);
     if (o != NULL) {
         o->m4();

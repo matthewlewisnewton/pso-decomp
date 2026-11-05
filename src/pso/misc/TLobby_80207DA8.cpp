@@ -964,7 +964,7 @@ s32 TLobby::add_player(s32 arg0, s32 arg1, s32 arg2) {
     }
     temp_r3 = HA2(area_event_set_heap, arg2);
     if (temp_r3 != 0) {
-        ((TLobby *)temp_r3)->move_data((const void *)arg1, (u32)arg2);
+        move_data((void *)temp_r3, (const void *)arg1, (u32)arg2);
         *((s32 *)((s8 *)lobby_slot_ptr_table + temp_r29)) = temp_r3;
         bswap_floor_event_set(arg0);
         return 1;

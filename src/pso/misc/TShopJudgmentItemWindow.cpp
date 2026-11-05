@@ -211,7 +211,7 @@ void TShopJudgmentItemWindow::display_message(const char *text, s32 flags) {
     }
 }
 
-void TShopJudgmentItemWindow::vfunc_8() {
+void TShopJudgmentItemWindow::vfunc_8(s32, s32) {
     struct VObj_8022061C_802205E4 *temp_r3;
 
     temp_r3 = (struct VObj_8022061C_802205E4 *)this->m_164;

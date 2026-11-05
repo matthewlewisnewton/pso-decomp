@@ -1131,7 +1131,7 @@ void copy_bank_to_card_window(s32 slot) {
         if (w != 0) {
             w->meseta = lbl_80513DA8[slot];
             w->count = lbl_80513D98[slot];
-            ((TLobby *)(w->items))->move_data(bank_item_records_by_slot[slot], 0x12C0);
+            move_data((w->items), bank_item_records_by_slot[slot], 0x12C0);
         }
     }
 }
@@ -1145,7 +1145,7 @@ void copy_bank_from_card_window(s32 slot) {
     if (w != 0) {
         lbl_80513DA8[slot] = w->meseta;
         lbl_80513D98[slot] = w->count;
-        ((TLobby *)(bank_item_records_by_slot[slot]))->move_data(w->items, 0x12C0);
+        move_data((bank_item_records_by_slot[slot]), w->items, 0x12C0);
     }
 }
 #pragma pop
@@ -1239,5 +1239,5 @@ void TAdSinglePlyChrSelectGC::init_item_entry() {
 
 void* TAdSinglePlyChrSelectGC__sub_802115C0(void* p) { ((TAdSinglePlyChrSelectGC *)p)->init_item_entry(); return p; }
 
-void TShopWindowBase::vfunc_6() {  }
+void TShopWindowBase::vfunc_6(s32, s32) {  }
 }

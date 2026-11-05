@@ -120,12 +120,32 @@ Port should: build everything with one modern compiler. Only `-fp_contract on`
 nothing else changes behaviour.
 
 #240 adds `pso/quest/TQuestListVM.cpp`: `-inline off,deferred`, `-pool off`,
-`-str reuse,readonly`. The quest-list vtable precedes its switch table, so
-emission is deferred and written from the last function back. Its titles and
-window sizes are addressed one by one (no shared `.rodata` base), and its
-strings are read-only. The same reason is the comment on that `configure.py`
-entry. Port: drop the flags; vtable-versus-switch order and string pooling may
-differ.
+`-str reuse,readonly`. Deferred inlining emits the unit from the last function
+back, so `__vt__12TQuestListVM` (`.data` `0x804C9D50`) precedes
+`jumptable_804C9D80`, the switch table for `vfunc_11__12TQuestListVMFv`,
+instead of following the function that references it. `-pool off` stops the
+titles and window sizes from sharing one `.rodata` base: each is its own
+object (`quest_file_prefix` at `0x8044BEE8`, `quest_file_99_name` at
+`0x8044BEF4`, `download_list_title_jp` at `0x8044BF04`, `download_list_title`
+at `0x8044BF14`, `tmp_buf_owner_name` at `0x8044BF20`,
+`TQuestListVM__class_name_string` at `0x8044BF30`, `description_window_size`
+at `0x8044BF40`, `detail_window_size` at `0x8044BF48`,
+`quest_file_name_format` at `0x8044BF50`) with its own relocation.
+`-str reuse,readonly` keeps those strings read-only and merged when the text
+repeats. Affected functions are the whole translation unit, including
+`vfunc_11__12TQuestListVMFv` (the switch),
+`__ct__12TQuestListVMFP7TObjectP15TShopWindowBaseP8TObjBase` (installs the
+vtable), `vfunc_6__12TQuestListVMFll`, `display_message__12TQuestListVMFPCcl`,
+and `close_windows__12TQuestListVMFv`. Objdiff of
+`psov3/pso/quest/TQuestListVM` with these flags is byte-identical on every
+function and every named data object. The aggregated `.rodata` section in the
+object is one trailing zero shorter than the original slice; that pad is
+alignment in the linked DOL, which matches. Precedent:
+[dtk-template `configure.py` unit cflags](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203)
+(per-unit `cflags` such as `-inline deferred` / `-str reuse,readonly`) and
+this tree's `TObjBoss2Tunnel_8003B138.cpp` (`-fp_contract on`) and
+`TBoss6EmptyWarp_802B0E2C.cpp` (`-str reuse,readonly`). Port: drop the flags;
+vtable-versus-switch order and string pooling may differ.
 
 `pso/effect/TEF_LensFlare.cpp` sets `-fp_contract on` because the recovered
 renderer contracts its attenuation and displacement multiply-adds into

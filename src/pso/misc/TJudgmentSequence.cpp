@@ -213,5 +213,5 @@ void TJudgmentSequence__sub_80216058(void) {
     }
 }
 
-void TShopWindowBase::vfunc_8() {  }
+void TShopWindowBase::vfunc_8(s32, s32) {  }
 }

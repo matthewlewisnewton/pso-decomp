@@ -185,7 +185,7 @@ void TShopEquipmentSellWindow::display_message(const char *text, s32 flags) {
     }
 }
 
-void TShopEquipmentSellWindow::vfunc_6() {
+void TShopEquipmentSellWindow::vfunc_6(s32, s32) {
     struct VObj_8021C8A8_8021C870 *o = (struct VObj_8021C8A8_8021C870 *)*(void **)((s8 *)this + 0x388);
     if (o != NULL) {
         o->m4();

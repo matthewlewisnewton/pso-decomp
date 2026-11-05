@@ -408,7 +408,7 @@ u32 TLobby__join_entry_window_obj;
 u32 TLobby_warp_menu_window;
 u32 lobby_com_card_window;
 s32 lobby_make_team_menu_window;
-u32 lobby_make_team_window;
+TWindowMakeTeam *lobby_make_team_window;
 u32 lobby_keyboard_prompt_window;
 u32 lobby_keyboard_controller;
 u32 lobby_scroll_text_window;
@@ -1234,7 +1234,7 @@ extern u32 lobby_player_construction_window;
 extern u32 TLobby__join_entry_window_obj;
 extern u32 TLobby_warp_menu_window;
 extern u32 lobby_com_card_window;
-extern u32 lobby_make_team_window;
+extern TWindowMakeTeam *lobby_make_team_window;
 extern u32 lobby_keyboard_prompt_window;
 extern u32 lobby_keyboard_controller;
 extern u32 lobby_scroll_text_window;
@@ -1392,7 +1392,7 @@ extern u32 TLobby__list_window;
 extern u32 TLobby__join_entry_window_obj;
 extern u32 TLobby_warp_menu_window;
 extern u32 lobby_com_card_window;
-extern u32 lobby_make_team_window;
+extern TWindowMakeTeam *lobby_make_team_window;
 extern u32 lobby_keyboard_prompt_window;
 extern u32 lobby_scroll_text_window;
 
@@ -1403,7 +1403,7 @@ extern u32 TLobby__list_window;
 extern u32 TLobby__join_entry_window_obj;
 extern u32 TLobby_warp_menu_window;
 extern u32 lobby_com_card_window;
-extern u32 lobby_make_team_window;
+extern TWindowMakeTeam *lobby_make_team_window;
 extern u32 lobby_keyboard_prompt_window;
 extern u32 lobby_keyboard_controller;
 extern u32 lobby_scroll_text_window;
@@ -1517,20 +1517,15 @@ void handle_com_card__6TLobbyFv(void);
 void handle_create_game_window__6TLobbyFv(void);
 void update__6TLobbyFv(void);
 s32 reset_controller_input_state();
-s32 TLobby__sub_8013AD50(u32);
-s32 TLobby__sub_8013AD5C(u32);
-s8 TLobby__sub_8013AD6C(u32);
-s32 TLobby__sub_8013AD74(u32);
-s32 TWindowMakeTeam__sub_80264B24(u32);
-s32 TWindowMakeTeam__sub_80264B38(u32);
+s32 TWindowMakeTeam__sub_80264B24(TWindowMakeTeam *);
+s32 TWindowMakeTeam__sub_80264B38(TWindowMakeTeam *);
 s32 TWindowShortListCtrl__check_controller_button(void *, s32);
 void close_all_windows__6TLobbyFv(void);
 s32 send_server_time_accepted__9TProtocolFv(s32);
-s8 get_mode__6TLobbyFv(u32);
 s32 is_enabled__15TWindowMakeTeamFv(u32);
 s32 send_create_game__9TProtocolFPcPcUcUcUcUc(s32, s32, s32, u8, u8, u8, s32);
 
-extern u32 lobby_make_team_window;
+extern TWindowMakeTeam *lobby_make_team_window;
 
 extern s8 controller_input_state[];
 extern u32 TLobby__join_entry_window_obj;
@@ -1966,14 +1961,14 @@ void handle_create_game_window__6TLobbyFv(void) {
     s32 temp_r0;
 
     if ((u32) lobby_make_team_window != 0U) {
-        if (TLobby__sub_8013AD74(lobby_make_team_window) != 0) {
+        if (lobby_make_team_window->test_flag_1d_bit0() != 0) {
             temp_r3 = TWindowMakeTeam__sub_80264B38(lobby_make_team_window);
             if (temp_r3 != 0) {
                 temp_r30 = TWindowMakeTeam__sub_80264B24(lobby_make_team_window);
-                temp_r29 = TLobby__sub_8013AD6C(lobby_make_team_window) == 2;
-                temp_r28 = is_enabled__15TWindowMakeTeamFv(lobby_make_team_window);
-                temp_r27 = get_mode__6TLobbyFv(lobby_make_team_window) == 1;
-                temp_r0 = TLobby__sub_8013AD5C(lobby_make_team_window);
+                temp_r29 = (s8)lobby_make_team_window->read_mode() == 2;
+                temp_r28 = lobby_make_team_window->is_enabled();
+                temp_r27 = (s8)lobby_make_team_window->get_mode() == 1;
+                temp_r0 = lobby_make_team_window->get_field_20();
                 send_create_game__9TProtocolFPcPcUcUcUcUc((*(s32 *)&(*(s32 *)&(*(s32 *)&(*(s32 *)&TLobby__protocol_instance)))), temp_r3, temp_r30, temp_r28, temp_r29, temp_r27, temp_r0);
                 ((s32 (*)())destroy_lobby_ui__6TLobbyFv)();
                 return;
@@ -1981,7 +1976,7 @@ void handle_create_game_window__6TLobbyFv(void) {
             close_all_windows__6TLobbyFv();
             return;
         }
-        if (TLobby__sub_8013AD50(lobby_make_team_window) != 0) {
+        if (lobby_make_team_window->test_flag_1d_bit1() != 0) {
             close_all_windows__6TLobbyFv();
         }
     }
@@ -2426,7 +2421,7 @@ void open_make_team_window__6TLobbyFi(s32 arg0) {
     if (var_r4 != 0) {
         var_r4 = TWindowMakeTeam__ct(var_r4, TLobby__join_lobby_controller, arg0);
     }
-    (*(s32 *)&lobby_make_team_window) = var_r4;
+    lobby_make_team_window = (TWindowMakeTeam *)var_r4;
     TLobby__data_805D5594 = 0xA;
 }
 
@@ -3638,7 +3633,7 @@ extern s32 TLobby__join_entry_window_obj;
 extern s32 TLobby_warp_menu_window;
 extern s32 lobby_com_card_window;
 extern s32 lobby_make_team_menu_window;
-extern s32 lobby_make_team_window;
+extern TWindowMakeTeam *lobby_make_team_window;
 extern s32 lobby_keyboard_prompt_window;
 extern s32 lobby_keyboard_controller;
 extern s32 lobby_scroll_text_window;

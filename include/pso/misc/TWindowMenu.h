@@ -37,6 +37,7 @@ struct TWindowMenu : public TWindowAddition {
     void* m_68;
     u8 _pad6C[0x4];
     u16 m_70;
+    void set_loss_flag();
     u16 m_72;
     u16 m_74;
     u16 m_76;

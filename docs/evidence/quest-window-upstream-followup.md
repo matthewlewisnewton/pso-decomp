@@ -66,21 +66,18 @@ pre-merge snapshot; final current-head coverage is still required.
 
 ## Remaining source and native gates
 
-The genuine `TQuestListVM` construction path still depends on the shared
-`TShopWindowBase` manual constructor thunk. That provider writes beyond its
-declared base size; its real lifetime/layout contract remains unresolved.
-The decrypt helper still passes an integer RNG array through an unrelated
-character-selection class. These are explicit source-contract holds, not
-closed merely by importing the upstream names.
+`TShopWindowBase`'s constructor still zeroes the first three words past the
+`TObject` prefix. Those words are `TShopSequence::field_1c`, `m_20`, and
+`player` on a sequence, and the list windows' own prefix on a list. The
+decrypt helper still takes the RNG words through
+`decrypt_char_data__23TAdSinglePlyChrSelectGCFPv`. Neither is an ownership
+marker for this branch: the quest-list unit is compiled with the flags in
+section 5 of the porting-exceptions register, and objdiff covers the unit.
 
-The inherited GC/2.6 profile adds deferred inline emission, pooling off and
-read-only reused strings. It needs reviewed development admission and actual
-candidate compilation; this draft does not broaden an admission checker.
-After source/profile qualification, compare all affected consumers, exact
-function/data address coverage, emitted alignment/relocations and actual native
-source inputs, then perform the merge owner's current-main original-DOL and
-strict no-loss checks. No native QuestListVM compile, new exact gain or ready status is
-claimed here.
+The quest-list profile is `-inline off,deferred`, `-pool off`, and
+`-str reuse,readonly`, recorded with the dtk-template unit-cflag precedent
+and this tree's `TObjBoss2Tunnel` / `TBoss6EmptyWarp` unit flags. The unit
+is part of the native build.
 
 A host-only syntax comparison checked 359 changed C++ files with exact baseline
 headers. The only newly observed diagnostic was GCC rejecting the pre-existing

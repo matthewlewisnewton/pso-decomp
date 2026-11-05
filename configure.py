@@ -682,9 +682,12 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/unk/text_8039739C.cpp": {"cflags": _switch(cflags_pso, "-O4,p")},
     "pso/quest/QuestOpcodeHandlers.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
     "pso/quest/TQuestThread.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
-    # The quest-list vtable precedes its switch table: deferred, written from
-    # its last function back. Its titles and window sizes are addressed one
-    # by one (no shared .rodata base), and its strings are read-only.
+    # TQuestListVM: deferred emission puts __vt__12TQuestListVM ahead of the
+    # run_task switch table (written from the last function back). -pool off
+    # keeps each title and window size its own reloc, and -str reuse,readonly
+    # matches the read-only string objects. The whole unit stays byte-exact.
+    # Precedent: dtk-template configure.py unit cflags, and this tree's
+    # TObjBoss2Tunnel / TBoss6EmptyWarp unit flags.
     "pso/quest/TQuestListVM.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-pool off", "-str reuse,readonly")},
 }
 

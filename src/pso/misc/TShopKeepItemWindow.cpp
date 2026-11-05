@@ -137,7 +137,7 @@ void TShopKeepItemWindow::display_message(const char *text, s32 flags) {
     }
 }
 
-void TShopKeepItemWindow::vfunc_6() {
+void TShopKeepItemWindow::vfunc_6(s32, s32) {
     struct VObj_8022187C_80221844 *o = (struct VObj_8022187C_80221844 *)this->m_380;
     if (o != NULL) {
         o->m4();

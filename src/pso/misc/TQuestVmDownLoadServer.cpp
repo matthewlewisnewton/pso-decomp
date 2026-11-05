@@ -484,11 +484,11 @@ void TQuestVmDownLoadServer::encrypt_download_data(s32 size) {
     ((TAdSinglePlyChrSelectGC *)(&TQuestVmDownLoadServer__rng_cipher_state))->apply_rng_cipher(((u32 *)this), size & ~3);
     src = TQuestVmDownLoadServer::alloc(size);
     dst = TQuestVmDownLoadServer::alloc(size);
-    ((TLobby *)src)->move_data((const void *)this, (u32)size);
+    move_data(src, (const void *)this, (u32)size);
     subtractive_rng_seed(&TQuestVmDownLoadServer__rng_cipher_state, download_rng_seed_pair[1]);
     subtractive_rng_make_shuffle((s32 *)&TQuestVmDownLoadServer__rng_cipher_state);
     TAdSinglePlyChrSelectGC::permute_save_blocks(&TQuestVmDownLoadServer__rng_cipher_state, (const u8*)src, (u8*)dst, (u32)size);
-    ((TLobby *)this)->move_data((const void *)dst, (u32)size);
+    move_data(this, (const void *)dst, (u32)size);
     TAdSinglePlyChrSelectGC::safe_free((u32)dst);
     TAdSinglePlyChrSelectGC::safe_free((u32)src);
 }
@@ -497,11 +497,11 @@ void TQuestVmDownLoadServer::unshuffle_and_decrypt(void *data, s32 size) {
     void *dst;
     src = TQuestVmDownLoadServer::alloc(size);
     dst = TQuestVmDownLoadServer::alloc(size);
-    ((TLobby *)src)->move_data((const void *)((u32 *)data), (u32)size);
+    move_data(src, (const void *)((u32 *)data), (u32)size);
     subtractive_rng_seed(&TQuestVmDownLoadServer__rng_cipher_state, download_rng_seed_pair[1]);
     subtractive_rng_make_shuffle((s32 *)&TQuestVmDownLoadServer__rng_cipher_state);
     subtractive_rng_unshuffle((void *)&TQuestVmDownLoadServer__rng_cipher_state, (const u8 *)src, (u8 *)dst, (u32)size);
-    ((TLobby *)((u32 *)data))->move_data((const void *)dst, (u32)size);
+    move_data(((u32 *)data), (const void *)dst, (u32)size);
     TAdSinglePlyChrSelectGC::safe_free((u32)dst);
     TAdSinglePlyChrSelectGC::safe_free((u32)src);
     subtractive_rng_seed(&TQuestVmDownLoadServer__rng_cipher_state, download_rng_seed_pair[0]);
@@ -534,7 +534,7 @@ s32 TQuestVmDownLoadServer::verify_checksum(const void *arg0, s32 arg1) {
   {
     return 0;
   }
-  ((TLobby *)temp_r3)->move_data((const void *)arg0, (u32)arg1);
+  move_data(temp_r3, (const void *)arg0, (u32)arg1);
   temp_r29 = *((s32 *) (((s8 *) temp_r3) + 4));
   *((s32 *) (((s8 *) temp_r3) + 4)) = 0;
   temp_r31 = TQuestVmDownLoadServer__sub_801F8538(temp_r3, arg1);
