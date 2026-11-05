@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 13 | 4 |
 | intrinsic | 83 | 54 |
 | hardware | 69 | 13 |
-| pragma | 5780 | 875 |
-| configure.py per-unit override | 169 | 169 |
+| pragma | 5781 | 875 |
+| configure.py per-unit override | 170 | 170 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1146, `inline_depth` 1038, `fp_contract` 888, `auto_inline` 837, `opt_common_subs` 611, `scheduling` 260, `opt_propagation` 237, `readonly_strings` 204, `peephole` 103, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 41, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 21, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1146, `inline_depth` 1038, `fp_contract` 888, `auto_inline` 837, `opt_common_subs` 611, `scheduling` 260, `opt_propagation` 237, `readonly_strings` 204, `peephole` 103, `optimization_level` 88, `bool` 56, `defer_codegen` 51, `pack` 46, `opt_loop_invariants` 41, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 21, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -207,6 +207,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1146, `inline_depth` 1038,
 | `pso/boss/TObjBoss2Tunnel_802F2070.cpp` | `(multi-line entry; see configure.py)` | Deferred, with definitions in reverse address order: the ctor's function-local static and guard precede run_task's table guard in .sbss, as in the original (docs/porting-exceptions.md section 5). .sbss starts at 0x805D696C and .sdata2 at 0x805DECCC, both only 4-aligned. mwld takes alignment from the CodeWarrior comment record, which GC/2.6 writes as 8, so the pool and every later sda21 offset shift by 4. cw_align rewrites that record after compile. -sdata 4 does not. |
 | `pso/boss/TObjBoss2Tunnel.cpp` | `-inline off,deferred, -pool off, -sdata 4, -fp_contract on` | Upstream #185's -inline off,deferred, -pool off and -sdata 4; each is needed (docs/porting-exceptions.md section 5). |
 | `pso/boss/TBoss4DarkFalz_8004C93C.cpp` | `-inline deferred, -sym on` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
+| `pso/object/TObjDFDemo1.cpp` | `-sdata 4` | Upstream #180: the 8-byte zanzo motion list stays in .data (-sdata 4). |
 | `pso/enemy/TObjEneBalClawBody_80090178.cpp` | `-inline deferred, -sdata 4` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/enemy/TObjEneRe2Flower_800C3E14.cpp` | `-inline off,deferred` | Deferred generation preserves the flower vtable before its dispatch table. |
 | `pso/enemy/TObjEneEpsilonGuard_8035F5C8.cpp` | `-inline off,deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
@@ -960,7 +961,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1146, `inline_depth` 1038,
 | `src/pso/object/TObjCityMainWarp_801867F4.cpp` | fp_contract×1 |
 | `src/pso/object/TObjControl.cpp` | fp_contract×1 |
 | `src/pso/object/TObjCurtainLobby.cpp` | readonly_strings×1 |
-| `src/pso/object/TObjDFDemo0.cpp` | fp_contract×1 |
+| `src/pso/object/TObjDFDemo1.cpp` | defer_codegen×1, fp_contract×1 |
 | `src/pso/object/TObjDFDemo2.cpp` | readonly_strings×1, opt_common_subs×1, opt_propagation×1 |
 | `src/pso/object/TObjDFDemo3.cpp` | readonly_strings×1, opt_common_subs×1 |
 | `src/pso/object/TObjDFHorming.cpp` | fp_contract×6, auto_inline×3, dont_inline×3, inline_depth×2, readonly_strings×1, cplusplus×1, opt_common_subs×1 |

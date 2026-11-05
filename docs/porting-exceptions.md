@@ -300,6 +300,7 @@ cast stays a cast.
 | `src/pso/boss/TBoss7PhotonBullet_802EF26C.cpp` | `run_task__18TBoss7PhotonBulletFv` (`0x802EF2AC`); unit vtable order | unit `configure.py` override `-inline off,deferred -fp_contract on` | `run_task` contracts `2.0f * aim + travel` into `fmadds`; with `-fp_contract off` the function grows by `0x10`. Deferred emission, with the definitions written bottom to top, places `__vt__18TBoss7PhotonBullet` then `__vt__15TBoss7PhotonPad` while `.text` stays in address order; without it the compiler emits the pad vtable first. Both vtables are the compiler's own (virtual destructor, `run_task`, `render`); `TOBJECT_OUT_OF_LINE_HELPERS` keeps `queue_destruction` as the external call. With the flags the unit matches every section (`.text` 1428, `.data` 116, `.sdata2` 28, 8/8 functions). Precedent: `-fp_contract on` in [dtk-template `configure.py`](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209), and `-inline off,deferred` on `TObjTombstone.cpp` and other units here. | Drop the flags; the C++ is the behavior. |
 
 
+
 ### `-opt noprop`: `TEffIndirectCtrl.cpp` ([#291](https://github.com/matthewlewisnewton/pso-decomp/pull/291))
 
 #291 approved this for `TEffIndirectCtrl_802A88AC.cpp`, which #161 merged into
@@ -398,6 +399,11 @@ or `other: <what>`); the fork PR that brought it in; and the tag
 
 | Function/symbol | Unit | File | Upstream PR | Cheat type | Fork PR | Tag |
 |---|---|---|---|---|---|---|
+| `multi_chg_game_mode_window_extent` | `pso/ui/TAdMultiChgGameModeGC_8036DE10.cpp` | `src/pso/ui/TAdMultiChgGameModeGC_8036DE10.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | other: __declspec(section ".data") | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
+| `lbl_804F3A18` | `pso/ui/TAdMultiChgGameModeGC_8036DE10.cpp` | `src/pso/ui/TAdMultiChgGameModeGC_8036DE10.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | other: __declspec(section ".data") | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
+| `TObjDFDemo1.cpp:149` `#pragma defer_codegen on` | `pso/object/TObjDFDemo1.cpp` | `src/pso/object/TObjDFDemo1.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | steering pragma | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
+| `TObjDFDemo1.cpp:204` `#pragma fp_contract on` | `pso/object/TObjDFDemo1.cpp` | `src/pso/object/TObjDFDemo1.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | steering pragma | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
+| `configure.py:440` `-sdata 4` | `pso/object/TObjDFDemo1.cpp` | `configure.py` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | other: per-unit cflags override | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
 | TObjEneDubchik.cpp | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | other: unit flags -inline off,deferred and -str reuse,readonly | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
 | TObjEneDubchik.cpp:166 inline_depth | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | steering pragma | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
 | TObjEneDubchik.cpp:167 auto_inline | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | steering pragma | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
@@ -821,6 +827,7 @@ or `other: <what>`); the fork PR that brought it in; and the tag
 | `TBoss1Dragon__ct` (`0x80029DE4`): `extern "C" void __ct__17AccelerationCurveFv` and the two calls `(AccelerationCurve *)(arg0 + 0x5F4)` and `(arg0 + 0x618)`. Matt, 2026-11-05 10:17 AM PT: do not replace these with a real constructor. It matches only under `-inline off,deferred`, which reverses this linked unit. The calls are this PR's rename of `reset_coords_pass` | `pso/boss/TBoss1Dragon.cpp` | `src/pso/boss/TBoss1Dragon.cpp` | [#191](https://github.com/zeroz41/pso-decomp/pull/191) | extern "C" mangled name | [#302](https://github.com/matthewlewisnewton/pso-decomp/pull/302) | upstream catch-up, rewrite later |
 | `lbl_80481280` (`.data` `0x80481280`, 107 pointers) and its stores in `TBoss1Dragon__ct` (`+0x18`) and `destroy__12TBoss1DragonFPvs`. Matt, 2026-11-05 10:17 AM PT: a compiler vtable and real destructor do not match the DOL r31/r30 homes. Only this table | `pso/boss/TBoss1Dragon.cpp` | `src/pso/boss/TBoss1Dragon.cpp` | [#191](https://github.com/zeroz41/pso-decomp/pull/191) | other: hand-written vtable | [#302](https://github.com/matthewlewisnewton/pso-decomp/pull/302) | upstream catch-up, rewrite later |
 | `TBoss6Rock::run_task` | `pso/boss/TBoss6Rock.cpp` | `src/pso/boss/TBoss6Rock.cpp` | [#181](https://github.com/zeroz41/pso-decomp/pull/181) | `other: u64 pointer widen` | [#313](https://github.com/matthewlewisnewton/pso-decomp/pull/313) | upstream catch-up, rewrite later |
+
 
 ## Pending in open PRs
 
