@@ -786,7 +786,12 @@ force_active:
   - TObjBoss2CeilJunk__sub_8003A868
   - TObjBoss2DustCtrl__ct
   - TObjBoss2Tunnel__ct
+  - TObjBoss2Tunnel__snapshot_buffer
+  - TObjBoss2Tunnel__snapshot_saved_flag
+  - TObjBoss2Tunnel__snapshot_state
   - TObjBoss2Tunnel__sub_8003C1C8
+  - TObjBoss2Tunnel__sub_8007DB80
+  - TObjBoss2Tunnel__sub_8007EAE4
   - TObjBoss5PillarCtrl__ct
   - TObjBoss5PillarDemo__ct
   - TObjBoss5PillarDemo__sub_8028ACE8
@@ -3879,6 +3884,8 @@ force_active:
   - boss2_tunnel_color_table
   - boss2_tunnel_model_index_table
   - boss2_tunnel_model_order_table
+  - boss2_tunnel_snapshot_buffer
+  - boss2_tunnel_state_flag
   - boss4_type2_attack_pattern_table
   - boss4_type2_class_name
   - boss4_type3_collision_body_desc
@@ -5142,6 +5149,7 @@ force_active:
   - draw_shadowed_node_tree__10TObjPlayerFv
   - draw_slot__14TWindowSubItemFlll
   - draw_slot_icons__15TAdChrSelSlotGCFv
+  - draw_snapshot_capture_overlay
   - draw_split_screen_dividers__20TWindowSubStatusDispFv
   - draw_status_text__19TWindowKeyBoardHardFP18TWindowDrawContext
   - draw_status_window__14TAdPlyStatusGCFPvPv
@@ -5305,6 +5313,7 @@ force_active:
   - epsilon_guard_camera_ctrl_ptr
   - epsilon_guard_camera_step
   - epsilon_guard_params
+  - eval_piecewise_curve__15TObjBoss2TunnelFP14PiecewiseCurvef
   - evict_lowest_key_floor_item__Fl
   - evolve_by_level__8TItemMagFv
   - evolve_first_form__8TItemMagFv
@@ -5394,6 +5403,7 @@ force_active:
   - fill_list_entry__6TLobbyFPvPv
   - fill_range__15TBoss6SwordWaveFPvPv
   - filter_input_flags__12TBoss1DragonFiii
+  - finalize_and_send_60__15TObjBoss2TunnelFP16G_PlaySound_6xB2
   - find_active_item_by_id__19TWindowMenuMainMenuFi
   - find_active_pad_rumble_effect_by_id__FUl
   - find_archive_entry__6TLobbyFPvPvPvPv
@@ -8152,6 +8162,7 @@ force_active:
   - me3_stelth_bml_resource_desc
   - megid_projectile_weapon_vtable
   - member_check_name_ptr
+  - memcard_check_snapshot
   - menu_font_render_rects
   - merge_adjacent_free_blocks__6TLobbyFv
   - merge_halves__14TObjEnePanarmsFv
@@ -13797,6 +13808,7 @@ force_active:
   - rotate_title_background_quad__FlPUcPUclf
   - run_active_state__18TObjEneBalClawClawFv
   - run_and_return_arg__10TObjPlayerFl
+  - run_confirm_message_loop__15TObjBoss2TunnelFv
   - run_default_state__12TBoss8DragonFv
   - run_demo_task__16TObjEneNanoDragoFv
   - run_floor_cleanup_callbacks__6TLobbyFi
@@ -14249,6 +14261,7 @@ force_active:
   - salSynthSendMessage
   - sample_carrier_attachments__17TObjEneBm3FlyNestFP10NJS_OBJECT
   - sample_clamped_path_position__FPvlPvlf
+  - sample_piecewise_curve
   - sample_root_height__12TBoss1DragonFv
   - saveCurrentDestination__12TBoss1DragonFv
   - saveTargetDestination__12TBoss1DragonFv
@@ -14708,6 +14721,7 @@ force_active:
   - show_intro_text__19TPlayerBattleCtrl4PFv
   - show_message__17TMCFormatSequenceFll
   - show_message__18TChallenge4PResultFl
+  - show_message_and_wait__15TObjBoss2TunnelFl
   - show_part__9TObjLukerFl
   - show_score_results__6TLobbyFPv
   - show_seq_phase_message__6TLobbyFi
