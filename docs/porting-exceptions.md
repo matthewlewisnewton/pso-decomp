@@ -173,6 +173,8 @@ this tree's `TObjBoss2Tunnel_8003B138.cpp` (`-fp_contract on`) and
 `TBoss6EmptyWarp_802B0E2C.cpp` (`-str reuse,readonly`). Port: drop the flags;
 vtable-versus-switch order and string pooling may differ.
 
+`TObjBoss2Tunnel.cpp`, `TObjBoss2Tunnel_8003B138.cpp`, and `TObjBoss2Tunnel_802F2070.cpp` set `-fp_contract on` because the curve and tunnel helpers fuse multiply-adds. Each unit stays byte-exact, which is why the flag is on the unit rather than a per-function `fp_contract` pragma. Precedent: [dtk-template](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209) and Melee, TP, TWW, and Pikmin 2, which contract globally.
+
 `pso/effect/TEF_LensFlare.cpp` sets `-fp_contract on` because the recovered
 renderer contracts its attenuation and displacement multiply-adds into
 `fnmsubs`/`fmadds`. The same unit places `lbl_80438E40` with
@@ -239,6 +241,7 @@ entry when the PR merges.
 | [#250](https://github.com/matthewlewisnewton/pso-decomp/pull/250) | `fp_contract` ×3 | Reason not recorded. |
 | [#303](https://github.com/matthewlewisnewton/pso-decomp/pull/303), [#295](https://github.com/matthewlewisnewton/pso-decomp/pull/295), [#289](https://github.com/matthewlewisnewton/pso-decomp/pull/289), [#225](https://github.com/matthewlewisnewton/pso-decomp/pull/225), [#222](https://github.com/matthewlewisnewton/pso-decomp/pull/222), [#215](https://github.com/matthewlewisnewton/pso-decomp/pull/215), [#187](https://github.com/matthewlewisnewton/pso-decomp/pull/187), [#128](https://github.com/matthewlewisnewton/pso-decomp/pull/128) | 1 to 4 inlining/optimization pragmas each | Reason not recorded. Drop in a port. |
 | [#290](https://github.com/matthewlewisnewton/pso-decomp/pull/290) | Unit `-fp_contract on` for `TObjBoss2Tunnel.cpp`, `TObjBoss2Tunnel_8003B138.cpp`, and `TObjBoss2Tunnel_802F2070.cpp`. | Allowed unit flag. The timer's `#pragma opt_common_subs off` is the approved entry above. `-fp_contract on` replaces the old per-function contraction pragmas; each of these units stays byte-exact. Precedent: dtk-template `configure.py` `-fp_contract off` and this tree's other `-fp_contract on` units. |
+| [#240](https://github.com/matthewlewisnewton/pso-decomp/pull/240) | Unit `-inline off,deferred -pool off -str reuse,readonly` on `pso/quest/TQuestListVM.cpp`. | Allowed unit flags. Every function and named object is exact; the linked DOL matches. Precedent: dtk-template `configure.py` per-unit `-inline deferred` / `-str reuse,readonly`. |
 
 The scan covers source lines only; `configure.py` overrides added by PRs show up
 in the generated table once merged.

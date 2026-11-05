@@ -138,7 +138,7 @@ void TQuestListOnline::decompress_quest_buffer(s32 arg0) {
 s32 TQuestListOnline::init() {
     TQuestListOnline__decompression_cursor = 0;
     if (TLobby::tmp_buf_is_free() != 0) {
-        TQuestListOnline__decompression_cursor = TLobby::tmp_buf_use_req((const char *)lbl_8044BEB0);
+        TQuestListOnline__decompression_cursor = (s32)TLobby::tmp_buf_use_req((const char *)lbl_8044BEB0);
         return 1;
     }
     return 0;

@@ -25,7 +25,7 @@ extern s32 tmp_buf_in_use_flag;
 void TLobby__sub_8001EDD8(List_8001EDD8 *self, s32 item);
 char *strncpy(char *d, const char *s, u32 n);
 extern char lbl_80434AE8[];
-extern s32 lobby_download_buffer;
+extern u8 *lobby_download_buffer;
 extern char lbl_80434AA0[];
 extern char lbl_80434AC0[];
 
@@ -76,7 +76,7 @@ s32 TLobby::tmp_buf_release(const char *name) {
 s32 TLobby::tmp_buf_is_free() {
     return tmp_buf_in_use_flag;
 }
-s32 TLobby::tmp_buf_use_req(const char *name) {
+u8 *TLobby::tmp_buf_use_req(const char *name) {
     if (tmp_buf_in_use_flag != 0) {
         tmp_buf_in_use_flag = 0;
         strncpy(((char *)&TLobby__tmp_buf_name), name, 0x20);

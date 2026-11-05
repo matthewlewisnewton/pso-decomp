@@ -184,7 +184,7 @@ s32 TGStream::read_whole_file(s32 arg0, u8 *arg1) {
     return size;
 }
 
-s32 TGStream::load_sct_file(s32 name, s32 dst) {
+s32 TGStream::load_sct_file(s32 name, u8 *dst) {
     Stream_800FDBA8 st;
     s32 size;
     s32 sectors;
@@ -202,13 +202,13 @@ s32 TGStream::load_sct_file(s32 name, s32 dst) {
             debug_print__6TLobbyFle("TGStream::gsSctLoadFile Malloc Failed.");
         }
         ((TGStream *)((s32 *)&st))->read_sectors_sync(sectors, buf);
-        prs_decompress_buffer(buf, dst);
+        prs_decompress_buffer(buf, (s32)dst);
         TAdSinglePlyChrSelectGC::safe_free(buf);
         size = st.info->size;
         ((s32 (*)(s32 *, s32))destroy_gstream)((s32 *)((s32 *)&st), -1);
         return size;
     }
-    ((TGStream *)((s32 *)&st))->read_sectors_sync(sectors, dst);
+    ((TGStream *)((s32 *)&st))->read_sectors_sync(sectors, (s32)dst);
     ((s32 (*)(s32 *, s32))destroy_gstream)((s32 *)((s32 *)&st), -1);
     return size;
 }
@@ -416,7 +416,7 @@ TGStreamPrefix *open__8TGStreamFPvPvi(TGStreamPrefix *g_stream_prefix, void *fil
         while (TLobby::tmp_buf_is_free() == 0) {
             TLobby::pump_frames();
         }
-        gstream_tmp_buffer = (u8 *)TLobby::tmp_buf_use_req((const char *)TGStream__class_name_string);
+        gstream_tmp_buffer = TLobby::tmp_buf_use_req((const char *)TGStream__class_name_string);
     }
     return g_stream_prefix;
 }
