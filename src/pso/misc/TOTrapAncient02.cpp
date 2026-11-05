@@ -5,6 +5,7 @@
 #include "pso/misc/PersistentSound.h"
 #include "pso/math/ScratchVectorStorage.h"
 #include "types.h"
+#include "pso/TTecZondeEff.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/system/BmlResourceDescriptor.h"
 #include "pso/system/NinjaUtil.h"
@@ -660,7 +661,7 @@ void TOTrapAncient02R::vfunc_81() {
                         {
                             void *t = TObject::operator new(0x260);
                             if (t != NULL) {
-                                ((TTecZonde *)t)->construct_bolt_effect((u8 *)tl_07, (u8 *)(&scratch_vec.vector), (u8 *)(&lbl_8050BF00.vector), 0x14000000, 0x14, range, 1.8f);
+                                ((TTecZondeEff *)t)->construct_bolt_effect((u8 *)tl_07, (u8 *)(&scratch_vec.vector), (u8 *)(&lbl_8050BF00.vector), 0x14000000, 0x14, range, 1.8f);
                             }
                         }
                         play_sound_effect(0x4002A408, &scratch_vec.vector, 0, 0);
