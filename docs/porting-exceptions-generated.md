@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 13 | 4 |
 | intrinsic | 83 | 54 |
 | hardware | 71 | 13 |
-| pragma | 5843 | 882 |
+| pragma | 5842 | 881 |
 | configure.py per-unit override | 151 | 151 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1150, `inline_depth` 1042, `fp_contract` 919, `auto_inline` 842, `opt_common_subs` 623, `scheduling` 262, `opt_propagation` 240, `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 43, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 21, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1150, `inline_depth` 1042, `fp_contract` 919, `auto_inline` 842, `opt_common_subs` 623, `scheduling` 262, `opt_propagation` 240, `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 43, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 21, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -720,7 +720,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1150, `inline_depth` 1042,
 | `src/pso/misc/TOSparkMachine01.cpp` | readonly_strings×1 |
 | `src/pso/misc/TOSwitchAttack_801778A4.cpp` | opt_lifetimes×1 |
 | `src/pso/misc/TOSwitchTimer.cpp` | readonly_strings×1 |
-| `src/pso/misc/TOTrap.cpp` | explicit_unused_unused_members×1 |
 | `src/pso/misc/TOTrapAncient02.cpp` | fp_contract×7 |
 | `src/pso/misc/TOTrapChainSawEdge.cpp` | auto_inline×16, dont_inline×16, inline_depth×16, readonly_strings×1, fp_contract×1, opt_propagation×1 |
 | `src/pso/misc/TOVS2Wall01.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
