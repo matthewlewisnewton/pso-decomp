@@ -30,6 +30,7 @@ union Boss6NodePos {
 
 struct TBoss6PlotFalz;
 struct TBoss6Zanzo;
+class TParticleCtrl;
 // The three action bytes send_6xA4_action copies into the 6xA4 packet.
 struct Boss6ActionArgs {
     s8 b0;
@@ -127,7 +128,7 @@ struct TBoss6Type1 : public TObjEnemy {
     s32 m_4f0;
     s32 m_4f4;
     // Particle emitters release_effect_slot / spawn_effect_slot index.
-    u32 effect_slots[4];
+    TParticleCtrl *effect_slots[4];
     s32 m_508;
     u32 unk_50C[24];
     Vec m_56C;

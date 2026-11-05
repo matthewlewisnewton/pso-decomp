@@ -15,6 +15,7 @@
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/TObjControl.h"
 #include "pso/boss/TBoss6Zanzo.h"
+#include "pso/boss/TBoss4Type2_800874F4.h"
 #include "pso/boss/TBoss6Type1.h"
 #include "pso/boss/TBoss6Mine.h"
 #include "pso/system/SoundEffect.h"
@@ -146,7 +147,6 @@ void TBoss6Type1__sub_802B5AB0(TBoss6Type1 *self);
 extern const s32 lbl_805DE2D4;
 void TBoss6Type1__sub_802B4D38(TBoss6Type1 *self);
 void TBoss6Type1__sub_802B5DD4(TBoss6Type1 *self);
-void *create_particle_emitter(void *pos, s32 id);
 extern EffectSlotEntry TBoss6Type1__effect_slot_table[];
 extern u8 lbl_80471014[];
 Boss6Motion *get_bml_motion(s32, s32);
@@ -2158,7 +2158,7 @@ void TBoss6Type1::rotate_around_center(s32 num, s32 den) {
 
 void TBoss6Type1__sub_802B4D38(TBoss6Type1 *self) {
     s32 i;
-    for (i = 0; i < 4; i++) self->effect_slots[i] = 0;
+    for (i = 0; i < 4; i++) self->effect_slots[i] = NULL;
 }
 
 void TBoss6Type1__sub_802B4CF4(TBoss6Type1 *arg0) {
@@ -2180,11 +2180,11 @@ void TBoss6Type1::sub_802B4C28() {
             if (k >= 0) {
                 VecCopy(&v, &this->node_positions_578[k].v);
             }
-            ((TParticleCtrl *)this->effect_slots[i])->set_position(&v);
+            this->effect_slots[i]->set_position(&v);
             switch (i) {
             case 0:
             case 1:
-                ((TParticleCtrl *)(this->effect_slots[i]))->set_direction(lbl_80471014);
+                this->effect_slots[i]->set_direction(lbl_80471014);
                 break;
             }
         }
@@ -2192,18 +2192,18 @@ void TBoss6Type1::sub_802B4C28() {
 }
 
 void TBoss6Type1::spawn_effect_slot(s32 arg1) {
-    if (this->effect_slots[arg1] == 0U) {
+    if (this->effect_slots[arg1] == NULL) {
         Vec v = this->position;
-        this->effect_slots[arg1] = (u32)create_particle_emitter(&v, TBoss6Type1__effect_slot_table[arg1].a);
-        if (this->effect_slots[arg1] != 0U) {
-            ((TParticleCtrl *)this->effect_slots[arg1])->set_flags(0x40);
+        this->effect_slots[arg1] = create_particle_emitter(&v, TBoss6Type1__effect_slot_table[arg1].a);
+        if (this->effect_slots[arg1] != NULL) {
+            this->effect_slots[arg1]->set_flags(0x40);
         }
     }
 }
 void TBoss6Type1::release_effect_slot(s32 arg1) {
-    if (this->effect_slots[arg1] != 0U) {
-        TParticleCtrl::release((void *)this->effect_slots[arg1]);
-        this->effect_slots[arg1] = 0U;
+    if (this->effect_slots[arg1] != NULL) {
+        TParticleCtrl::release(this->effect_slots[arg1]);
+        this->effect_slots[arg1] = NULL;
     }
 }
 
