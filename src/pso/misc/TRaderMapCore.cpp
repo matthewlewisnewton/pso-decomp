@@ -1077,7 +1077,7 @@ void TRaderMapCore::draw_compass(s32 mode) {
     f32 *compass_xy;
     f32 *marker_xy;
 
-    if (apply_compass_param__13TRaderMapCoreFv(&this->m_90) == 0) {
+    if (TRaderMapCore::apply_compass_param(&this->m_90) == 0) {
         return;
     }
     scale = TRaderMapCore__data_805DC534;
@@ -1101,12 +1101,12 @@ void TRaderMapCore::draw_compass(s32 mode) {
     color_arg = color.word >> 16;
     color_arg = __rlwimi(color_arg, color.word, 16, 0, 7);
     color_arg = __rlwimi(color_arg, color.word, 16, 8, 15);
-    ((TObjPlayer *)&sprite)->draw_compass_sprite(1, color_arg, 0x21, TRaderMapCore__data_805DC58C);
+    sprite.draw_compass_sprite(1, color_arg, 0x21, TRaderMapCore__data_805DC58C);
     sprite.x = compass_xy[0] + (f32)lbl_804C87E4[0].x;
     sprite.y = compass_xy[1] + (f32)lbl_804C87E4[0].y;
     sprite.rotation = this->m_174;
     set_additive_blend();
-    ((TObjPlayer *)&sprite)->draw_compass_sprite(0, -1, 0x21, TRaderMapCore__data_805DC58C);
+    sprite.draw_compass_sprite(0, -1, 0x21, TRaderMapCore__data_805DC58C);
     TParticleCtrl::end_effect_render();
 }
 

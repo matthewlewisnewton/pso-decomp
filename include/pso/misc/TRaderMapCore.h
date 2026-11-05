@@ -67,6 +67,9 @@ struct TRaderMapCore : public TObjBase {
     static s32 reveal_region_by_id(s16 id);
     void draw_player_markers();
     void copy_transform(void* q);
+    // Binds the compass texture list. The caller passes &m_90 (the scroll
+    // delay); the body does not read that pointer.
+    static s32 apply_compass_param(const s32 *delay);
     void draw_compass(s32 mode);
     void setup_view(s32 arg1);
     void render_region_records(void * _w1);

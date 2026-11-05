@@ -1614,8 +1614,6 @@ struct TObjPlayer : public TObjChara {
     void check_idle_movement_request();
     void push_to_list(s32 arg1);
     static s32 run_and_return_arg(s32 arg0);
-    // The receiver is the on-stack sprite descriptor, not player state.
-    void draw_compass_sprite(s32 index, s32 color, s32 flags, f32 depth);
 };
 
 #include <stddef.h>
