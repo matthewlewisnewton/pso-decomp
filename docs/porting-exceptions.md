@@ -23,7 +23,7 @@ entry says *reason not recorded*.
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 71 | 13 |
 | CodeWarrior pragmas (excluding push/pop) | 5,864 | 885 |
-| Per-unit compiler overrides in `configure.py` | 144 | 144 |
+| Per-unit compiler overrides in `configure.py` | 149 | 149 |
 | Approved regressions | 0 on main, 1 pending (#291) | |
 
 ## Rule for assembly
@@ -50,19 +50,13 @@ The four MusyX entries predate the scalar-fallback rule and have **no C fallback
 reproduce single PowerPC instructions the original compiled code used; no
 per-site reason is recorded.
 
-`__fmadds` in `TWindowSubStatusDisp__sub_80257024`
-(`src/pso/misc/TWindowSubStatusDisp_80256B94.cpp`, added by #240): the fused
-multiply-add at `0x80257118` (`0.299f * self->depth + ctx->depth`). The bar
-value is `((f32)open_tick - (y / 21 + x / inner_w) * 7.5) * 17`, and the
-original emits that as `fmuls`, `fsubs`, `fmuls`. Putting the tick on the
-right (`-((y / 21 + x / inner_w) * 7.5 - (f32)open_tick) * 17`) is what makes
-MWCC interleave the conversion with the divisions (97.8%); it also leaves an
-extra `fneg`. A unit `-fp_contract on` (dtk-template `configure.py` line for
-`-fp_contract on`, same as in-tree `PadRumble.cpp`) does fuse the depth add,
-and the other ten functions in the unit stay exact, but it rewrites the bar
-as `fnmsubs` and the function falls to 96.3%. The intrinsic stays so the
-depth `fmadds` is the one at `0x80257118` and the bar is left uncontracted.
-Port: write `0.299f * self->depth + ctx->depth`.
+`TWindowSubStatusDisp_80256B94.cpp` no longer uses `__fmadds`. Unit
+`-fp_contract on` (see section 5) emits the depth `fmadds` at `0x80257118`
+from `0.299f * self->depth + ctx->depth`. The bar is `(tick - sum) * 17`
+after `sum *= 7.5f`, which stays `fmuls` / `fsubs` / `fmuls`. The signed
+`open_tick` cast still pools its bias locally; the original loads that
+double from `lbl_8044EE40` outside this unit, so the function is not
+byte-identical. Port: the C above.
 
 Port should: `__fabsf`/`__fabs` → `fabsf`/`fabs`; `__abs` → `abs`; `__cntlzw` →
 a count-leading-zeros helper (`__builtin_clz` with a zero check, returns 32 for 0);
@@ -102,7 +96,7 @@ small float differences without FMA).
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-144 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+149 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
@@ -126,6 +120,11 @@ window sizes are addressed one by one (no shared `.rodata` base), and its
 strings are read-only. The same reason is the comment on that `configure.py`
 entry. Port: drop the flags; vtable-versus-switch order and string pooling may
 differ.
+
+#240 also builds `pso/misc/TWindowSubStatusDisp_80256B94.cpp` with
+`-fp_contract on`. That is the depth `fmadds` described in section 2.
+Port: drop the flag; `0.299f * depth + ctx->depth` may be a separate
+multiply and add.
 
 ## 6. Approved regressions
 

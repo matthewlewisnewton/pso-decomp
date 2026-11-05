@@ -186,12 +186,17 @@ void TUnk_804CF930::draw_status_gauge_bar(void *ctx, void *pos_arg, f32 depth, f
 }
 
 void TWindowSubStatusDisp__sub_80257024(TUnk_804CF930 *self, TWindowDrawContext *ctx) {
-    f32 bar;
+    // depth before bar: the two values live across the draw calls, and this
+    // order is what puts depth in f31 and the bar in f29.
+    f32 depth;
     f32 len;
     Pos_80256E0C pos;
-    f32 depth;
+    f32 bar;
+    f32 sum = self->y / 21.0f + self->x / ctx->inner_w;
+    f32 tick = (f32)ctx->open_tick;
 
-    bar = -((self->y / 21.0f + self->x / ctx->inner_w) * 7.5f - (f32)ctx->open_tick) * 17.0f;
+    sum *= 7.5f;
+    bar = (tick - sum) * 17.0f;
     if (bar <= 0.0f) {
         return;
     }
@@ -205,7 +210,7 @@ void TWindowSubStatusDisp__sub_80257024(TUnk_804CF930 *self, TWindowDrawContext 
     }
     pos.x = ctx->inner_x + self->x;
     pos.y = ctx->inner_y + self->y;
-    depth = -1.0f / __fmadds(0.299f, self->depth, ctx->depth);
+    depth = -1.0f / (0.299f * self->depth + ctx->depth);
     begin_screen_draw(1);
     set_current_texture_list(lbl_805D63F0);
     set_draw_texture_and_color(0xB, -1);

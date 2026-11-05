@@ -682,6 +682,10 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # its last function back. Its titles and window sizes are addressed one
     # by one (no shared .rodata base), and its strings are read-only.
     "pso/quest/TQuestListVM.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-pool off", "-str reuse,readonly")},
+    # Status gauge: contracting the unit makes `0.299f * depth + ctx->depth`
+    # the fmadds at 0x80257118. The bar multiply stays a separate fmuls
+    # because the 7.5 scale is applied to the sum before the tick subtract.
+    "pso/misc/TWindowSubStatusDisp_80256B94.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
 }
 
 # MusyX (Factor 5). Its objects carry extab/extabindex for every non-leaf
