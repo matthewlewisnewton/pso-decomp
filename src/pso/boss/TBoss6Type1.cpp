@@ -1366,8 +1366,6 @@ extern "C" void TBoss6Type1__sub_802B6504(TBoss6Type1 *self) {
     s32 add;
     s32 made;
     Vec *pts;
-    s32 half;
-    s32 i;
     Boss6MineSpawn spawn;
 
     seed = self->m_41c;
@@ -1401,7 +1399,6 @@ extern "C" void TBoss6Type1__sub_802B6504(TBoss6Type1 *self) {
         s32 angle = 0;
         s32 ang_step = 0x5555;
         s32 ring = 1;
-        s32 div = 3;
     ring_point:
         pts[pi].x = radius * sin_table_lookup(angle);
         pts[pi].y = 0.0f;
@@ -1414,9 +1411,8 @@ extern "C" void TBoss6Type1__sub_802B6504(TBoss6Type1 *self) {
         if (angle <= 0x10000 - ang_step / 2) {
             goto ring_point;
         }
-        div += 3;
-        ang_step = 0x10000 / div;
         ring += 1;
+        ang_step = 0x10000 / (ring * 3);
         radius += spacing;
         angle = 0;
         if ((ring & 1) == 0) {
@@ -1426,6 +1422,8 @@ extern "C" void TBoss6Type1__sub_802B6504(TBoss6Type1 *self) {
         goto ring_point;
     ring_done:;
     }
+    s32 half;
+    s32 i;
     half = points / 2;
     if (half > 1) {
         for (i = 0; i < half; i++) {
