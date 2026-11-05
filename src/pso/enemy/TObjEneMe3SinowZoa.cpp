@@ -2861,7 +2861,7 @@ void TObjEneMe3SinowZoa__sub_80317F90(u8 *arg0, s32 arg1) {
                 v.x = TObjEneMe3SinowZoa__data_805DF31C;
                 v.y = TObjEneMe3SinowZoa__data_805DF314;
                 v.z = TObjEneMe3SinowZoa__data_805DF320;
-                ((TObjBoss2Tunnel *)(&v))->init_zako(arg0 + 0x38, *(s32 *)((s8 *)arg0 + 0x60));
+                ((TObjBoss2Tunnel *)(&v))->init_zako((Vec *)arg0, (void *)(arg0 + 0x38), *(s32 *)((s8 *)arg0 + 0x60));
                 TObjPlayer::spawn_effect_f8((s32)&v, 0x14);
             }
             break;
