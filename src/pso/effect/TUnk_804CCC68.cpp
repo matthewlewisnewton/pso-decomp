@@ -1,3 +1,4 @@
+#include "pso/map/CsnGroundQuery.h"
 #include "types.h"
 #include "pso/system/vector.h"
 #include "pso/effect/TUnk_804CCC68.h"
@@ -60,7 +61,6 @@ extern "C" {
 s32 check_technique_projectile_wall_hit__13TUnk_804CCC68Fv(void *, f32, f32);
 f32 fabs_float(f32);
 s32 queue_destruction__7TObjectFv(void *);
-u8 *csnVecterUnder(s32 *, s32);
 u8 *csnVector(f32 *, f32 *, s32);
 s32 angle_difference_abs(int, int);
 void step_ground_technique_projectile(RecoveredFields_8023A510_arg0 *arg0);
@@ -123,7 +123,7 @@ void step_ground_technique_projectile(RecoveredFields_8023A510_arg0 *arg0) {
     arg0->field_28 = (f32) ((arg0->field_50 * arg0->field_64) + arg0->field_28);
     VecCopy((Vec *)(&stack.sp1C), (const Vec *)(((u8 *)arg0) + 0x20));
     stack.sp20 += 1e+01f;
-    temp_r3 = (u8 *)(csnVecterUnder(&stack.sp1C, 0x16EF));
+    temp_r3 = (u8 *)(csnVecterUnder((const Vec *)&stack.sp1C, 0x16EF));
     if (temp_r3 != NULL) {
         arg0->field_24 = (f32) (5.0f + *(f32 *)((s8 *)(((RecoveredFields_8023A510_temp_r3 *)temp_r3)->field_4) + 4));
     }

@@ -1,3 +1,4 @@
+#include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/misc/TWindowSubStatusDisp_802598E4.h"
 #include "pso/misc/TWindowKeyBoardSoft.h"
@@ -11,7 +12,7 @@ struct RecoveredGlobal_8025A0A4_lbl_804CF9E0 {
 
 extern "C" {
 f32 fabs_float(f32, f32);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 }
 extern s32 lbl_804CF9E0[];
 
@@ -77,7 +78,7 @@ void TWindowSubStatusDisp::update_pb_counter_approach() {
     f32 temp_f30;
     if (*(f32 *)((s8 *)((u8 *)this) + 0x28) != *(f32 *)((s8 *)((u8 *)this) + 0x24)) {
         if (*(u16 *)((s8 *)((u8 *)this) + 0) & 8) {
-            play_persistent_sound(0x44E03, (s32)this, 0, 0, 0);
+            play_persistent_sound((s32)(0x44E03), (const void *)(this), (const Vec *)(0), 0, 0);
         }
         temp_f2 = *(f32 *)((s8 *)((u8 *)this) + 0x28);
         temp_f30 = temp_f2 - *(f32 *)((s8 *)((u8 *)this) + 0x24);

@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TCameraCtrl_80082FCC.h"
 #include "pso/TMainTask.h"
@@ -85,7 +86,7 @@ void TCameraCtrl::copy_position_vectors(void *arg1, void *arg2) {
 
 void TCameraCtrl::update_single_screen() {
     if ((is_split_screen() == 0) && ((u32) camera_render_target_singleton != 0U)) {
-        TObjFish::set_global_param(camera_render_target_singleton + 0x1C);
+        set_current_texture_list((GinjaTextureList *)(camera_render_target_singleton + 0x1C));
         load_list_texture(0, 0, 0, 0);
     }
 }

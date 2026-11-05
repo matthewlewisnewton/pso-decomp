@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
 #include "pso/misc/TRaderMapCore.h"
@@ -53,7 +54,7 @@ void TUnk_804E24F0::emit_marker_effects() {
     s32 arg0 = (s32)this;
 
     ((TItemWeapon *)arg0)->get_gun_point(&sp8);
-    spawn_particle_effect(&sp8, 9);
+    spawn_particle_effect((const Vec *)(&sp8), 9);
     ((TItemWeapon *)arg0)->spawn_light_task();
     ((TItemWeapon *)arg0)->fire_shot_at_target(&sp8, 0, 0);
 }

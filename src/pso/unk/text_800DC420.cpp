@@ -1,3 +1,5 @@
+#include "pso/map/CsnGroundQuery.h"
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/unk/TUnk_80494E10.h"
 #include "pso/system/NinjaUtil.h"
@@ -63,14 +65,13 @@ struct Ang_800DC83C { s32 x, y, z; };
 
 extern "C" {
 s32 TObjPlayer__sub_800DC478(u8 *arg0, s32 arg1, f32 farg0);
-s32 *csnVecterUnder(s32 origin, s32 mask);
 extern s32 lbl_805D5254;
 f32 TObjPlayer__sub_800DC434(s32 arg0, s32 arg1);
 s32 TObjPlayer__sub_800DC420(void *self, s32 i);
 extern D_800DC448 *nano_drago_entry_params_resource;
 u16 get_entity_id(void *);
 s32 is_split_screen();
-s32 spawn_particle_effect(void *, int);
+
 extern const f32 lbl_805D525C;
 extern s32 lbl_805D526C;
 extern s32 local_client_id;
@@ -149,13 +150,13 @@ void hit_object_in_radius__10TObjPlayerFPvPvPv(Src_800DC4B4 *arg0, Obj_800DC4B4 
             ((TObjEneNanoDrago *)attacker)->trigger_hit_camera_shake((u32)obj);
         }
     }
-    spawn_particle_effect(obj->pos, 0xFB);
-    spawn_particle_effect(obj->pos, 0xFC);
+    spawn_particle_effect((const Vec *)(obj->pos), 0xFB);
+    spawn_particle_effect((const Vec *)(obj->pos), 0xFC);
 }
 
 s32 TObjPlayer::snap_to_ground(s32 arg0, s32 arg1) {
     u8 *temp_r3;
-    temp_r3 = (u8 *)(csnVecterUnder(arg1, 0x16EF));
+    temp_r3 = (u8 *)(csnVecterUnder((const Vec *)arg1, 0x16EF));
     if (temp_r3 == NULL) {
         return 0;
     }

@@ -1,3 +1,4 @@
+#include "pso/map/CsnGroundQuery.h"
 #include "types.h"
 #include "pso/enemy/TObjEneDD_800BA138.h"
 #include "pso/enemy/TObjEneRe7BeruraPunch_80095E18.h"
@@ -68,9 +69,7 @@ extern "C" {
 
 u8 * csnVector(s32, s32, s32);
 void *find_entity_by_id(u16 id);
-s32 TObjEneRe7Berura__sub_80094D98();
 
-void TObjEneRe7Berura__sub_80094C68(TObjEneRe7Berura *self);
 s32 refresh_collision_body_centers__14TObjCollidableFv(void *, void *, f32, f32);
 extern Pair_80096150 lbl_80439F28[];
 
@@ -116,7 +115,7 @@ void TObjEneRe7BeruraPunch::render() {
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         translate_matrix(0, 0.0f, *(f32 *)&this->unk_CC, 0.0f);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         temp_f1 = this->m_f4;
         scale_matrix(0, temp_f1, temp_f1, 1.0f);
         TObjEneRe7Berura::init_part(this->m_b8);
@@ -181,8 +180,9 @@ void TObjEneRe7BeruraPunch::update_flight() {
     this->snap_to_ground();
     if ((var_r31 != 0) || (sub_80096150() != 0) || (this->m_114 > this->m_c8)) {
         this->m_b4 = 2;
-        if (find_entity_by_id(this->m_b0) != NULL) {
-            TObjEneRe7Berura__sub_80094D98();
+        TObjEneRe7Berura *owner = (TObjEneRe7Berura *)find_entity_by_id(this->m_b0);
+        if (owner != NULL) {
+            owner->clear_active_part_flag_2();
         }
     }
 }
@@ -211,7 +211,7 @@ s32 TObjEneRe7BeruraPunch::sub_80096150() {
     }
     this->call_vt16_with_default((void *)&p, (void *)(*(s32 *)&this->_padD8));
     if (entity != 0) {
-        TObjEneRe7Berura__sub_80094C68((TObjEneRe7Berura *)entity);
+        ((TObjEneRe7Berura *)entity)->fn_80094C68();
     }
     return 0;
 }
@@ -225,13 +225,13 @@ void TObjEneRe7BeruraPunch::launch(s32 arg1, s32 arg2) {
     ((TObjEneRe7BeruraPunch *)arg0)->snap_to_ground();
     entity = (u8 *)find_entity_by_id(this->m_b0);
     if (entity != NULL) {
-        this->rotation_y = (s32) *(s32 *)((s8 *)entity + 0x60);
+        this->rotation.yaw = (s32) *(s32 *)((s8 *)entity + 0x60);
     } else {
-        this->rotation_y = 0;
+        this->rotation.yaw = 0;
     }
-    *(f32 *)&this->unk_BC = sin_table_lookup(this->rotation_y);
+    *(f32 *)&this->unk_BC = sin_table_lookup(this->rotation.yaw);
     this->m_c0 = (f32) 0.0f;
-    *(f32 *)&this->unk_C4 = cos_table_lookup(this->rotation_y);
+    *(f32 *)&this->unk_C4 = cos_table_lookup(this->rotation.yaw);
     this->m_c8 = (f32) 3e+02f;
     ((TObjEneRe7BeruraPunch *)arg0)->reset();
     this->m_b4 = 1;
@@ -260,7 +260,6 @@ struct Vec_8009640C { f32 x, y, z; };
 struct Ang_8009640C { s32 x, y, z; };
 
 extern "C" {
-s32 *csnVecterUnder(s32 origin, s32 mask);
 
 u16 get_entity_id(void *);
 extern RecoveredGlobal_80096750_lbl_8048F930 TObjEneRe7BeruraPunch__collision_body_templates;
@@ -305,7 +304,7 @@ void TObjEneRe7BeruraPunch::snap_to_ground() {
   u8 *temp_r3;
   VecCopy((Vec *)(&stack.sp8), (const Vec *)(arg0 + 0xDC));
   stack.spC = 2e+01f;
-  temp_r3 = (u8 *)csnVecterUnder((s32)&stack.sp8, 0x16EF);
+  temp_r3 = (u8 *)csnVecterUnder((const Vec *)&stack.sp8, 0x16EF);
   if (temp_r3 != 0)
   {
     VecCopy((Vec *)(arg0 + 0x38), (const Vec *)(*((s32 *) (((s8 *) temp_r3) + 4))));
@@ -359,10 +358,10 @@ void TObjEneRe7BeruraPunch::run_task() {
     }
     if (*(s32 *)&this->m_b4 == 1) {
         ang.x = 0;
-        ang.y = this->rotation_y + 0x4000;
+        ang.y = this->rotation.yaw + 0x4000;
         ang.z = -0x4000;
-        s = -sin_table_lookup(this->rotation_y);
-        c = -cos_table_lookup(this->rotation_y);
+        s = -sin_table_lookup(this->rotation.yaw);
+        c = -cos_table_lookup(this->rotation.yaw);
         if (*(void * *)&this->m_d0 == NULL) {
             *(void * *)&this->m_d0 = create_particle_emitter(&this->position, 0xDD);
             if (*(void * *)&this->m_d0 != NULL) {

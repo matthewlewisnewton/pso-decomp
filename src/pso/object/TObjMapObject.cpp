@@ -1,3 +1,5 @@
+#include "pso/player/demo_mode.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/object/TObjMapObject.h"
 #include "pso/object/TObjFish.h"
@@ -53,7 +55,7 @@ s32 TObjMapObject::is_any_player_within_radius_xz(f32 radius_sq) {
 }
 
 void TObjMapObject::run_task() {
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         sub_80158604();
         return;
     }
@@ -68,8 +70,8 @@ void TObjMapObject::render() {
     if (detail != 0 && is_in_view_depth(30.0f) != 0) {
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
-        TObjFish::set_global_param(texlist);
+        rotate_matrix_y(NULL, this->rotation.yaw);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         if (motion != NULL) {
             if (detail == 1) {
                 draw_model_motion(model, motion, animation_frame);

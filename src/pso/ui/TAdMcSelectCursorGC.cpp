@@ -1,3 +1,5 @@
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TWindowSubStatusDisp_803DEE6C.h"
 #include "pso/ui/TAdMcSelectCursorGC_8032A610.h"
@@ -38,7 +40,7 @@ extern s32 lbl_805D41D0;
 extern const f32 lbl_805DF740;
 extern const f32 lbl_805DF744;
 Obj_8032A574 *TAdMcSelectCursorGC__ct(Obj_8032A574 *arg0);
-void play_sound_effect(s32, s32, s32, s32);
+
 extern u8 controller_input_state[];
 extern u8 controller_physical_port_bank[];
 extern const f32 lbl_805DF72C;
@@ -57,7 +59,7 @@ extern const f32 lbl_805DF728;
 void TAdMcSelectCursorGC::render_cursor() {
     u8 *arg0 = (u8 *)this;
     begin_screen_draw(1);
-    TObjFish::set_global_param(TAdMcSelectCursorGC__texture_entry);
+    set_current_texture_list((GinjaTextureList *)(TAdMcSelectCursorGC__texture_entry));
     set_draw_texture_and_color(0, ((this->m_128 << 0x18) | 0xFF0000 | 0xFFFF));
     draw_textured_quad_at_depth((f32 *)(arg0 + 0x28), lbl_805DF728);
     TWindowSubStatusDisp::get_player();
