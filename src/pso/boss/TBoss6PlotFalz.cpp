@@ -1,3 +1,4 @@
+#define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/ArrayAllocation.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
@@ -759,7 +760,7 @@ void destroy_static_instance__14TBoss6PlotFalzFv(void) {
 
 void queue_instance_destruction__14TBoss6PlotFalzFv(void) {
     if (TBoss6PlotFalz__type1_instance != NULL) {
-        queue_destruction__7TObjectFv(TBoss6PlotFalz__type1_instance);
+        TBoss6PlotFalz__type1_instance->queue_destruction();
         TBoss6PlotFalz__type1_instance = NULL;
     }
 }
@@ -786,7 +787,12 @@ u32 create__11TBoss6Type2Fl(void *, int);
 s32 TBoss6Type1__sub_802ABDEC(s32 seed);
 s32 is_locally_controlled__10TObjPlayerFPv(s32);
 f32 xyz_distance(const void *, const void *);
-void TBoss6PlotFalz::release_object() { if (this->m_384 != 0) { queue_destruction__7TObjectFv(this->m_384); this->m_384 = 0; } }
+void TBoss6PlotFalz::release_object() {
+    if (this->m_384 != 0) {
+        this->m_384->queue_destruction();
+        this->m_384 = 0;
+    }
+}
 
 s32 TBoss6PlotFalz::get_target_pos_a(s32 arg0, s32 arg1) {
     if ((u32) TBoss6PlotFalz__type2_instance == 0U) {
