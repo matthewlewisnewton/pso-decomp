@@ -6068,7 +6068,7 @@ void load_resources__13TBoss2DeRolLeFv(void) {
     m = n->next;
     ((s32 *)boss2_derolle_primary_color_targets)[1] = m->h->v + 8;
     ((s32 *)boss2_derolle_primary_color_targets)[2] = m->next->h->v + 8;
-    derolle_texture_list_handle = (u8 *)find_model_node(*(s32 *)(*(u8 **)(res + 0x42C) + 0x28), 0x4D);
+    derolle_texture_list_handle = (u8 *)find_model_node(*(u32 *)(*(u8 **)(res + 0x42C) + 0x28), 0x4D);
     lbl_805D4BCC = *(s32 *)(derolle_texture_list_handle + 0x2C);
     for (m2 = 0; m2 < 11; m2++) {
         p = &derolle_segment_texture_slots[m2];

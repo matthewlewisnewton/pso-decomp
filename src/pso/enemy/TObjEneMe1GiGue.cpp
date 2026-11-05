@@ -181,7 +181,7 @@ s32 enemy_turn_half_toward_dest(void *);
 extern Vec lbl_80472274[];
 
 s32 is_split_screen();
-s32 init_from_model__11TBreakUpMdlFl(s32, s32);
+s32 init_from_model__11TBreakUpMdlFl(s32, void *);
 s32 find_active_entity_by_id(int);
 s32 submit_cursor_candidate(void *, int);
 s32 minimap_render_dot(void *, int, int, int);

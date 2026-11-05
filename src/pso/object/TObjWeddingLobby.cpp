@@ -19,7 +19,7 @@
 
 extern "C" {
 AnimationMotion *get_bml_motion(BmlResource *resource, s32 index);
-void draw_ginja_model_with_motion(s32 model, AnimationMotion *motion, f32 frame);
+void draw_ginja_model_with_motion(void *model, AnimationMotion *motion, f32 frame);
 }
 
 __declspec(section ".data") const char *bm_obj_lobby_bell_model_names[3] = { "lobby_obj_bell_D8_yane.gj", "lobby_obj_bell_VN_null1.gj", NULL };

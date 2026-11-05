@@ -135,7 +135,7 @@ s32 check_player_flag1__6TLobbyFv();
 void *get_player_by_client_id(s32 i);
 extern s32 local_client_id;
 s32 TObjFish__sub_8001EDB0(void *, s32);
-s32 get_bml_model(void *, s32);
+void *get_bml_model(void *, s32);
 extern RecoveredGlobal_80179E34_lbl_804B4834 bm_o_trap_ancient01_resource_descriptor;
 extern u32 TOTrapAncient01__bml_resource;
 extern const f32 TOTrapAncient01__data_805DBA4C;
@@ -393,7 +393,7 @@ extern s32 trap_ancient_light_color[];
 typedef struct RecoveredGlobal_80179E34_lbl_804B4834 RecoveredGlobal_80179E34_lbl_804B4834;
 void TOTrapAncient01::load_resources() {
   TOTrapAncient01__bml_resource = (u32)new BmlResource(1, (BmlResourceDescriptor *)&bm_o_trap_ancient01_resource_descriptor.value, 0, 0, NULL);
-  TMotorcycle::add_entry(0x39, get_bml_model((void *)TOTrapAncient01__bml_resource, 3), TObjFish__sub_8001EDB0((void *)TOTrapAncient01__bml_resource, 3), lbl_805DBA5C, TOTrapAncient01__data_805DBA4C);
+  TMotorcycle::add_entry(0x39, (s32)get_bml_model((void *)TOTrapAncient01__bml_resource, 3), TObjFish__sub_8001EDB0((void *)TOTrapAncient01__bml_resource, 3), lbl_805DBA5C, TOTrapAncient01__data_805DBA4C);
 }
 
 Self_80179EC0 *__dt__15TOTrapAncient01Fv(Self_80179EC0 *self, s16 flag) {
@@ -422,7 +422,7 @@ void *TOTrapAncient01__ct(void *arg0, void *arg1, void *arg2) {
     ((TOTrapAncient01 *)arg0)->apply_object_set_data((void *)((s32)arg2));
     ((TObjChara *)arg0)->initialize_position_copies();
     ((TObjChara *)arg0)->calc_attach_pos();
-    *(s32 *)((s8 *)self + 0x34) = get_bml_model((void *)TOTrapAncient01__bml_resource, 3);
+    *(void **)((s8 *)self + 0x34) = get_bml_model((void *)TOTrapAncient01__bml_resource, 3);
     *(s32 *)((s8 *)self + 0x24) = TObjFish__sub_8001EDB0((void *)TOTrapAncient01__bml_resource, 3);
     *(s16 *)((s8 *)self + 0x326) = 0;
     *(f32 *)((s8 *)self + 0x334) = 0.5f * *(f32 *)((s8 *)self + 0x68) + 30.0f;

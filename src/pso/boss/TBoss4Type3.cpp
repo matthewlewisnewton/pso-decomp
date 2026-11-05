@@ -124,7 +124,7 @@ struct Self_8005AE60 {
     u8 pad340[0x378 - 0x340];
     u8 f378[0x38C - 0x378];
     s32 f38C;
-    s32 f390;
+    BmlResource *f390;
     s32 f394;
     u8 pad398[0x3A0 - 0x398];
     s32 f3A0;
@@ -386,9 +386,9 @@ u16 get_entity_id(void *);
 s32 is_split_screen();
 void queue_destruction__7TObjectFv(void *);
 
-s32 get_bml_motion(s32, s32);
-s32 TObjFish__sub_8001EDB0(s32, s32);
-s32 get_bml_model(s32, s32);
+s32 get_bml_motion(BmlResource *, s32);
+s32 TObjFish__sub_8001EDB0(BmlResource *, s32);
+s32 get_bml_model(BmlResource *, s32);
 void fn_80044330(void *p);
 void fn_8004AA04(void *);
 void TObjPlayer__sub_80052390(f32 x);

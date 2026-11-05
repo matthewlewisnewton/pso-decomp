@@ -30,7 +30,7 @@ typedef struct Lobby_8001FD98 {
 
 struct Lobby_8001FA1C {
     s32 f0;
-    s32 *f4;
+    NJS_OBJECT **f4;
     s32 *f8;
     BmlResource *fC;
     void *f10;
@@ -494,7 +494,7 @@ void load_bin_model_callback(Lobby_8001FA1C *self) {
             }
             break;
         case 0x4E4A434D:
-            *self->f4 = data;
+            *self->f4 = (NJS_OBJECT *)data;
             self->fC->loaded_models++;
             break;
         default:

@@ -52,7 +52,7 @@ void rotate_matrix_x(int, int);
 void push_matrix(void);
 void pop_matrix(void);
 void post_translate_matrix(void *);
-void draw_chunk_object(int);
+void draw_chunk_object(NJS_OBJECT *);
 void set_chunk_material_override_pair(int, int, u32, s32, s32, u32);
 f32 xyz_distance(void *, void *);
 }
@@ -63,7 +63,7 @@ extern TCameraCtrl *camera_ctrl_instance;
 extern u32 saved_model_render_flags;
 extern s32 saved_chunk_polygon_flags_and_mask;
 extern s32 saved_chunk_polygon_flags_or_mask;
-extern s32 falz_zako_chunk_model;
+extern void *falz_zako_chunk_model;
 extern s32 TBoss4ZakoDraw__draw_buffer_index;
 extern s32 TBoss4ZakoDraw__rotation_phase;
 extern s32 chunk_polygon_flags_or_mask;
@@ -76,7 +76,7 @@ extern const f32 lbl_805DF144;
 extern const f32 lbl_805DF148;
 extern const f32 lbl_805DF14C;
 extern u32 dark_falz_controller_instance;
-extern s32 falz_zako_texture_list;
+extern GinjaTextureList *falz_zako_texture_list;
 
 Boss4ZakoBuffer boss4_zako_draw_buffers[2];
 
@@ -149,7 +149,7 @@ void TObjPlayer__sub_8030A9B0() {
         col.a = lbl_805DF13C * k + lbl_805DF14C;
         col.r = lbl_805DF14C;
         set_constant_material(&col);
-        draw_chunk_model((void *)falz_zako_chunk_model);
+        draw_chunk_model(falz_zako_chunk_model);
         pop_matrix();
     }
     chunk_polygon_flags_and_mask = saved_chunk_polygon_flags_and_mask;
@@ -158,19 +158,19 @@ void TObjPlayer__sub_8030A9B0() {
 }
 
 void TObjPlayer::draw_area_chunk_objects() {
+    NJS_OBJECT *model;
     Boss4ZakoBuffer *t = &boss4_zako_draw_buffers[TBoss4ZakoDraw__draw_buffer_index];
     Boss4ZakoEntry *p = t->ents;
-    s32 r31;
     s32 i;
-    r31 = get_bml_model((BmlResource *)TBoss4Uro::get_instance_count(), 8);
+    model = get_bml_model(TBoss4Uro::get_instance_count(), 8);
     TObjPlayer__sub_80052390(lbl_805DF148);
-    set_current_texture_list((GinjaTextureList *)(falz_zako_texture_list));
+    set_current_texture_list(falz_zako_texture_list);
     for (i = 0; i < t->count; i++, p++) {
         push_matrix();
         post_translate_matrix(&p->pos);
         rotate_matrix_y(0, p->f10);
         rotate_matrix_x(0, p->f0c);
-        draw_chunk_object(r31);
+        draw_chunk_object(model);
         pop_matrix();
     }
     TObjPlayer::sync_player_globals();
@@ -184,7 +184,7 @@ void TCameraCtrl__sub_8030ABF4(void) {
         if (is_split_screen() == 0) {
             TCameraCtrl::set_viewport_scissor(2, rect);
         }
-        model = (NJS_OBJECT *)get_bml_model((BmlResource *)TBoss4Uro::get_instance_count(), 8);
+        model = get_bml_model(TBoss4Uro::get_instance_count(), 8);
         model->child->ang[1] = TBoss4ZakoDraw__rotation_phase << 12;
         TObjPlayer::draw_area_chunk_objects();
         TObjPlayer__sub_8030A9B0();

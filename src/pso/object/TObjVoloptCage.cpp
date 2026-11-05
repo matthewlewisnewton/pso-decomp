@@ -193,7 +193,7 @@ void TObjVoloptCage::destroy() {
 
 void TObjVoloptCage::init_break_model() {
     TBreakUpMdl *model;
-    volopt_cage_model = boss3_volopt_resources->models[0x12].model;
+    volopt_cage_model = (s32)boss3_volopt_resources->models[0x12].model;
     model = (TBreakUpMdl *)::operator new(0x10);
     if (model != NULL) {
         model = (TBreakUpMdl *)model->init_from_model(volopt_cage_model);

@@ -32,9 +32,9 @@ s32 rotate_matrix_y(s32, s32);
 s32 push_matrix();
 s32 post_translate_matrix(void *);
 void render__11TObjDFDemo3Fv(u8 *arg0);
-s32 get_bml_motion(s32, s32);
-s32 TObjFish__sub_8001EDB0(s32, s32);
-s32 get_bml_model(s32, s32);
+s32 get_bml_motion(BmlResource *, s32);
+s32 TObjFish__sub_8001EDB0(BmlResource *, s32);
+s32 get_bml_model(BmlResource *, s32);
 
 s32 __ct__8TObjBaseFP7TObject(void *, void *);
 }
@@ -191,7 +191,7 @@ S_EF94 *__dt__11TObjDFDemo3Fv(S_EF94 *o, s16 flag) {
 
 #define lbl_804856C0 ((u8 *)lbl_804856C0)
 u8 *TObjDFDemo3__ct(u8 *arg0, s32 parent, s32 arg2, s32 arg3) {
-    s32 cnt;
+    BmlResource *cnt;
     __ct__8TObjBaseFP7TObject(arg0, (void *)parent);
     *(void **)((s8 *)arg0 + 0x18) = (void *)__vt__11TObjDFDemo3;
     *(s32 *)((s8 *)arg0 + 0) = (s32) TObjDFDemo3__name;

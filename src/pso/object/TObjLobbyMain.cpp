@@ -32,7 +32,7 @@
 
 extern "C" {
 AnimationMotion *get_bml_motion(BmlResource *resource, s32 index);
-void draw_ginja_model_with_motion(s32 model, AnimationMotion *motion, f32 frame);
+void draw_ginja_model_with_motion(void *model, AnimationMotion *motion, f32 frame);
 extern s32 actor_frame_tick;
 }
 

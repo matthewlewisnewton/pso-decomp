@@ -1118,12 +1118,12 @@ void TObjPlayer__sub_800AA82C(void) {
     } else {
         lbl_805D5098 = (s32)load_gvm_texture_file((s32)lbl_8043ACD0);
     }
-    n = (Node_800AA82C *)find_model_node(*(s32 *)((u8 *)lbl_805D5090->mdl + 0x18), 0x17);
+    n = (Node_800AA82C *)find_model_node(*(u32 *)((u8 *)lbl_805D5090->mdl + 0x18), 0x17);
     n->f30 = 0;
     TObjPlayer__sub_800A4294();
     lbl_805D509C = (Node_800AA82C *)find_model_node(lbl_805D5090->mdl->f8, 0x15);
     lbl_805D50A0 = (Node_800AA82C *)find_model_node(lbl_805D5090->mdl->f8, 0x2A);
-    ((NJS_OBJECT *)find_model_node(*(s32 *)((u8 *)lbl_805D5090->mdl + 0x18), 0x15))->evalflags |= 8;
+    ((NJS_OBJECT *)find_model_node(*(u32 *)((u8 *)lbl_805D5090->mdl + 0x18), 0x15))->evalflags |= 8;
     p = ::operator new(0x10);
     if (p != NULL) {
         p = ((TBreakUpMdl *)p)->init_from_model(lbl_805D5090->mdl->f8);

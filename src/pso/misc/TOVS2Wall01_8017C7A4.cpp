@@ -61,7 +61,7 @@ void TOVS2Wall01::load_resources() {
   var_r0 = temp_r3;
   (*(s32 *)&TOVS2Wall01__bml_resource) = var_r0;
   ;
-  TMotorcycle::add_entry(0x3A, (int) ((s32)get_bml_model((s32)((int) (*(s32 *)&TOVS2Wall01__bml_resource)), 5)), (int) TObjFish__sub_8001EDB0((int)((int) var_r0), (void *)(5)), (f32) lbl_805DBAB4, (f32) lbl_805DBAA8);
+  TMotorcycle::add_entry(0x3A, (s32)get_bml_model((s32)((int) (*(s32 *)&TOVS2Wall01__bml_resource)), 5), (int) TObjFish__sub_8001EDB0((int)((int) var_r0), (void *)(5)), (f32) lbl_805DBAB4, (f32) lbl_805DBAA8);
 }
 
 }

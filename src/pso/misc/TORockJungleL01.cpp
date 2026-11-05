@@ -658,7 +658,7 @@ void TORockJungleS01::load_resources() {
         TORockJungleS01__texture_resource = (u32)load_gvm_texture_file((s32)lbl_8046591C);
         break;
     }
-    TMotorcycle::add_entry((s16)0x3E, (s32)(TORockJungleS01::get_model(0)), (s32)(get_jungle_rock_texture_resource(0)), (f32)5.0f, (f32)0.0f);
+    TMotorcycle::add_entry((s16)0x3E, (s32)TORockJungleS01::get_model(0), (s32)(get_jungle_rock_texture_resource(0)), (f32)5.0f, (f32)0.0f);
 }
 
 }

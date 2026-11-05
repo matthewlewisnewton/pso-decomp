@@ -1698,7 +1698,7 @@ struct Self_80054A1C {
     u8 pad340[0x378 - 0x340];
     u8 f378[0x38C - 0x378];
     s32 f38C;
-    s32 f390;
+    BmlResource *f390;
     s32 f394;
     u8 pad398[0x3A0 - 0x398];
     s32 f3A0;

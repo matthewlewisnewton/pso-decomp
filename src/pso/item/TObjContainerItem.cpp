@@ -410,7 +410,7 @@ extern s32 local_client_id;
 extern const f32 lbl_805DBCF4;
 void *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags);
 u8 *__ct__8TObjChipFP7TObjectP14TObjChipParams(u8 *arg0, u8 *arg1, u8 *arg2);
-s32 dispatch_fish_event__6TLobbyFPv(void *a0);
+void *dispatch_fish_event__6TLobbyFPv(void *a0);
 void *__nw__7TObjectFUl(int);
 extern void *tl_05;
 void TObjContainerAbeEnemy__vt77(const Obj_8018860C *self);
@@ -426,7 +426,7 @@ void *__dt__21TObjContainerAbeEnemyFv(void *arg0, s16 arg1);
 u8 *TObjContainerBase__ct(u8 *arg0, s32 arg1, s32 arg2);
 s32 __dl__7TObjectFPv(void *);
 extern s32 __vt__17TObjContainerBase[];
-s32 get_container_param(s32 index);
+NJS_OBJECT *get_container_param(s32 index);
 extern TObjChipParams *lbl_805D5B80;
 extern TObjChipParams *lbl_805D5B84;
 extern BmlResource *lbl_805D5B78;
@@ -969,7 +969,7 @@ u8 *TObjContainerNoItem__ct(u8 *arg0, s32 arg1, s32 arg2) {
     init_container_base((arg0), (arg1), (arg2));
     *(s32 **)((s8 *)arg0 + 0x18) = &(*(RecoveredGlobal_8018925C___vt__19TObjContainerNoItem *)&__vt__19TObjContainerNoItem).value;
     *(s32 *)((s8 *)arg0 + 0) = (s32) TObjContainerNoItem__name;
-    *(s32 *)((s8 *)arg0 + 0x34) = get_container_param(1);
+    *(NJS_OBJECT **)((s8 *)arg0 + 0x34) = get_container_param(1);
     ((TObjContainerNoItem *)arg0)->mode = 0;
     ((TObjContainerNoItem *)arg0)->actorFlags = (s32) (((TObjContainerNoItem *)arg0)->actorFlags | 0x60000000);
     init_collision_body_parts(arg0, &forest_box_collision_body_parts, 1);
@@ -1122,7 +1122,7 @@ u8 *TObjContainerEnemy__ct(u8 *arg0, s32 arg1, s32 arg2) {
     init_container_base((arg0), (arg1), (arg2));
     *(s32 **)((s8 *)arg0 + 0x18) = &(*(RecoveredGlobal_801897A4___vt__18TObjContainerEnemy *)&__vt__18TObjContainerEnemy).value;
     *(s32 *)((s8 *)arg0 + 0) = (s32) TObjContainerEnemy__name;
-    *(s32 *)((s8 *)arg0 + 0x34) = get_container_param(1);
+    *(NJS_OBJECT **)((s8 *)arg0 + 0x34) = get_container_param(1);
     ((TObjContainerEnemy *)arg0)->mode = 0;
     ((TObjContainerEnemy *)arg0)->actorFlags = (s32) (((TObjContainerEnemy *)arg0)->actorFlags | 0x60000000);
     init_collision_body_parts(arg0, &forest_box_collision_body_parts, 1);
@@ -1343,7 +1343,7 @@ u8 *TObjContainerItem__ct(u8 *arg0, s32 arg1, s32 arg2) {
     init_container_base((arg0), (arg1), (arg2));
     *(s32 **)((s8 *)arg0 + 0x18) = &(*(RecoveredGlobal_80189BE0___vt__17TObjContainerItem *)&__vt__17TObjContainerItem).value;
     *(s32 *)((s8 *)arg0 + 0) = (s32) TObjContainerItem__name;
-    *(s32 *)((s8 *)arg0 + 0x34) = get_container_param(1);
+    *(NJS_OBJECT **)((s8 *)arg0 + 0x34) = get_container_param(1);
     ((TObjContainerItem *)arg0)->mode = 0;
     ((TObjContainerItem *)arg0)->actorFlags = (s32) (((TObjContainerItem *)arg0)->actorFlags | 0x60000000);
     init_collision_body_parts(arg0, &forest_box_collision_body_parts, 1);
@@ -1565,7 +1565,7 @@ void TLobby::load_console_resources() {
     }
 }
 
-s32 get_container_param(s32 index) { return get_bml_model(lbl_805D5B78, index); }
+NJS_OBJECT *get_container_param(s32 index) { return get_bml_model(lbl_805D5B78, index); }
 
 void TLobby::free_char_select_resources() {
     if ((u32) lbl_805D5B7C != 0U) {
@@ -1608,7 +1608,7 @@ void load_forest_box_resources(void) {
         lbl_805D5B84 = &forest_box_break_params[1];
         break;
     }
-    TMotorcycle::add_entry(1, get_container_param(1), lbl_805D5B7C, lbl_805DBD0C, lbl_805DBCF4);
+    TMotorcycle::add_entry(1, (s32)get_container_param(1), lbl_805D5B7C, lbl_805DBD0C, lbl_805DBCF4);
 }
 
 // ---- TLazerFenceSw

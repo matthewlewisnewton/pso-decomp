@@ -181,7 +181,7 @@ struct Obj_8018B030 : VBase_8018B030 {
     s32 x24;
     u8 pad28[0x30 - 0x28];
     u32 flags;
-    s32 x34;
+    void *x34;
     Vec_8018B030 pos;
     u8 pad44[0x74 - 0x44];
     Vec_8018B030 pos74;
@@ -204,7 +204,7 @@ extern s32 TContainerAncient01R__name;
 
 void queue_destruction__7TObjectFv(void *);
 u32 get_bml_motion(int, int);
-s32 get_bml_model(int, int);
+void *get_bml_model(int, int);
 s32 submit_cursor_candidate(void *, int, f32);
 s32 run_task__7TObjectFv(void *);
 extern s32 TContainerAncient01R__bml_resource;
@@ -636,10 +636,10 @@ void TContainerAncient01R::run_task() {
         }
     }
     if ((u32) this->current_motion == get_bml_motion(TContainerAncient01R__bml_resource, 0)) {
-        *(s32 *)&this->model = get_bml_model(TContainerAncient01R__bml_resource, 0);
+        *(void **)&this->model = get_bml_model(TContainerAncient01R__bml_resource, 0);
     }
     if ((u32) this->current_motion == get_bml_motion(TContainerAncient01R__bml_resource, 1)) {
-        *(s32 *)&this->model = get_bml_model(TContainerAncient01R__bml_resource, 1);
+        *(void **)&this->model = get_bml_model(TContainerAncient01R__bml_resource, 1);
     }
     run_task__7TObjectFv(arg0);
 }
@@ -903,7 +903,7 @@ struct VObj8018B8BC_8018B79C : VBase8018B8BC_8018B79C {
 
 extern "C" {
 u32 get_bml_motion(int, int);
-s32 get_bml_model(int, int);
+void *get_bml_model(int, int);
 s32 submit_cursor_candidate(void *, int, f32);
 s32 run_task__7TObjectFv(void *);
 extern s32 TContainerAncient01__bml_resource;
@@ -1005,10 +1005,10 @@ void TContainerAncient01::run_task() {
         }
     }
     if ((u32) this->current_motion == get_bml_motion(TContainerAncient01__bml_resource, 0)) {
-        *(s32 *)&this->model = get_bml_model(TContainerAncient01__bml_resource, 0);
+        *(void **)&this->model = get_bml_model(TContainerAncient01__bml_resource, 0);
     }
     if ((u32) this->current_motion == get_bml_motion(TContainerAncient01__bml_resource, 1)) {
-        *(s32 *)&this->model = get_bml_model(TContainerAncient01__bml_resource, 1);
+        *(void **)&this->model = get_bml_model(TContainerAncient01__bml_resource, 1);
     }
     run_task__7TObjectFv(arg0);
 }
@@ -1063,7 +1063,7 @@ void TContainerAncient01::load_resources() {
     }
     Param_8018BB64 prm = container_ancient_anim_binding[0];
     prm.a = ((Res_8018BB64 *)TContainerAncient01__bml_resource)->x430;
-    TObjEneMe3Stelth::spawn_attack((s16)0x3B, (s32)(get_bml_model(TContainerAncient01__bml_resource, 0)), (s32)(TObjFish__sub_8001EDB0(TContainerAncient01__bml_resource, 0)), (s32)&prm, (f32)1e+01f, (f32)TContainerAncient01__data_805DBD14[0]);
+    TObjEneMe3Stelth::spawn_attack((s16)0x3B, (s32)get_bml_model(TContainerAncient01__bml_resource, 0), (s32)(TObjFish__sub_8001EDB0(TContainerAncient01__bml_resource, 0)), (s32)&prm, (f32)1e+01f, (f32)TContainerAncient01__data_805DBD14[0]);
 }
 
 }
@@ -1122,7 +1122,7 @@ struct V_8018BE98 : B_8018BE98 {
 extern "C" {
 
 s32 TObjFish__sub_8001EDB0(int, int);
-s32 get_bml_model(int, int);
+void *get_bml_model(int, int);
 
 extern s32 __vt__19TContainerAncient01[];
 extern s32 TContainerAncient01__name;
@@ -1158,7 +1158,7 @@ u8 *TContainerAncient01__ct(u8 *arg0, s32 arg1, s32 arg2) {
     *(s32 **)((s8 *)arg0 + 0x18) = &(*(RecoveredGlobal_8018BD00___vt__19TContainerAncient01 *)&__vt__19TContainerAncient01).value;
     *(s32 *)((s8 *)arg0 + 0) = (s32) TContainerAncient01__name;
     ((TContainerAncient01 *)(arg0))->apply_object_set_data((void *)arg2);
-    *(s32 *)((s8 *)arg0 + 0x34) = get_bml_model((int) ((*(u8 * *)&TContainerAncient01__bml_resource)), 0);
+    *(void **)((s8 *)arg0 + 0x34) = get_bml_model((int) ((*(u8 * *)&TContainerAncient01__bml_resource)), 0);
     ((TContainerAncient01 *)arg0)->texlist = TObjFish__sub_8001EDB0((int) ((*(u8 * *)&TContainerAncient01__bml_resource)), 0);
     ((TContainerAncient01 *)arg0)->action_table = TContainerAncient01__anim_table;
     ((TObjMotion *)arg0)->set_action_table((TObjMotionAction *)((s32)((void *) (((TContainerAncient01 *)arg0)->action_table))));

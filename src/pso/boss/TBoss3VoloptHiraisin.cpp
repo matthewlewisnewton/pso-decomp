@@ -33,7 +33,7 @@ void post_translate_matrix(const f32 *pos);
 void rotate_matrix_y(void *mtx, s32 angle);
 void scale_matrix(void *mtx, f32 x, f32 y, f32 z);
 
-TUnk_8048FA00 *init_from_model__11TBreakUpMdlFl(TUnk_8048FA00 *obj, s32 model);
+TUnk_8048FA00 *init_from_model__11TBreakUpMdlFl(TUnk_8048FA00 *obj, void *model);
 void trigger_dell_biter_events__10TObjPlayerFv(Vec *pos);
 
 extern u32 model_render_flags;
@@ -327,7 +327,7 @@ void TBoss3VoloptHiraisin::destroy() {
 void TBoss3VoloptHiraisin::init_models() {
     TUnk_8048FA00 *breakup;
     volopt_hiraisin_resources = boss3_volopt_resources;
-    volopt_hiraisin_spin_node = (ModelNode *)find_model_node(get_bml_model(boss3_volopt_resources, 0x10), 0xB);
+    volopt_hiraisin_spin_node = (ModelNode *)find_model_node((u32)get_bml_model(boss3_volopt_resources, 0x10), 0xB);
     volopt_hiraisin_spin_node->flags &= ~2;
     breakup = (TUnk_8048FA00 *)::operator new(0x10);
     if (breakup != NULL) {

@@ -39,7 +39,7 @@ s32 TObjFish__sub_8001EDB0(BmlResource *resource, s32 index) {
     return resource->models[index].m_c;
 }
 
-s32 get_bml_model(BmlResource *resource, s32 index) {
+NJS_OBJECT *get_bml_model(BmlResource *resource, s32 index) {
     return resource->models[index].model;
 }
 

@@ -1625,7 +1625,7 @@ void TObjEneLappy::load_resources() {
     } else {
         (*(u32 *)&rappy_alternate_texture_list) = *(s32 *)(*(u8 **)(RES_800C17B8 + 0x42C) + 0x1C);
     }
-    (*(s32 *)&rappy_visibility_node) = (s32)find_model_node((*(s32 *)(*(u8 **)(RES_800C17B8 + 0x42C) + 8)), 0x12);
+    (*(s32 *)&rappy_visibility_node) = (s32)find_model_node((*(u32 *)(*(u8 **)(RES_800C17B8 + 0x42C) + 8)), 0x12);
     for (i = 0; i < 2; i++) {
         lappy_boss_stats_handles[i] = ((s32)get_battle_base_stats(i + 0x18));
         lappy_boss_stats_ptrs_b[i] = ((s32)get_battle_attack_params(i + 0x18));

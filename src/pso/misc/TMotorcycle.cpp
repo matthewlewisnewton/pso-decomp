@@ -41,7 +41,7 @@ typedef char RecoveredGlobal_801950B8_lbl_804B8564_size[sizeof(RecoveredGlobal_8
 struct Moto_801951C8 { s32 x0; u8 pad4[0x30 - 4]; u32 flags; u8 pad34[0x68 - 0x34]; f32 x68; u8 pad6C[0xBC - 0x6C]; s32 xBC; };
 
 extern "C" {
-s32 get_bml_model(void *, int);
+NJS_OBJECT *get_bml_model(void *, int);
 }
 void rotate_matrix_yxz(s32 matrix, s32 arg1, s32 arg2, s32 arg3);
 extern "C" {
@@ -119,8 +119,8 @@ void TMotorcycle::load_resources() {
     var_r0 = temp_r3;
     (*(u8 * *)&TMotorcycle__bml_resource) = (unsigned char *) ((void *) var_r0);
     (*(u8 * *)&TMotorcycle__texture_list) = load_gvm_texture_file((s32) &lbl_80445E18.value);
-    TMotorcycle::add_entry((s16)(0x3C), (s32)((void *) (((s32)get_bml_model((void *)((*(u8 * *)&TMotorcycle__bml_resource)), 0)))), (s32)((void *) ((*(u8 * *)&TMotorcycle__texture_list))), lbl_805DBED8, lbl_805DBEDC);
-    TMotorcycle::add_entry((s16)(0x3D), (s32)((void *) (((s32)get_bml_model((void *)((*(u8 * *)&TMotorcycle__bml_resource)), 1)))), (s32)((void *) ((*(u8 * *)&TMotorcycle__texture_list))), lbl_805DBED8, lbl_805DBEDC);
+    TMotorcycle::add_entry((s16)(0x3C), (s32)get_bml_model((*(u8 * *)&TMotorcycle__bml_resource), 0), (s32)((void *) ((*(u8 * *)&TMotorcycle__texture_list))), lbl_805DBED8, lbl_805DBEDC);
+    TMotorcycle::add_entry((s16)(0x3D), (s32)get_bml_model((*(u8 * *)&TMotorcycle__bml_resource), 1), (s32)((void *) ((*(u8 * *)&TMotorcycle__texture_list))), lbl_805DBED8, lbl_805DBEDC);
 }
 
 void *__dt__11TMotorcycleFv(void *arg0, s16 arg1) {
