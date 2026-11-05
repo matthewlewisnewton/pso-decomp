@@ -19,7 +19,7 @@ struct TOTrapSeabed01 : public TOTrap {
     virtual f32 receive_physical_attack(void *, f32);
     virtual void play_sounds();
     u32 m_344;
-    u32 m_348;
+    s32 m_348;
     u32 m_34c;
     u32 m_350;
     u32 m_354;

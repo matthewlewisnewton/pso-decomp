@@ -23,77 +23,6 @@
 
 
 
-struct VBase_18_f37bb9 { char pad[0x18]; };
-
-struct VObj_18_f37bb9 : VBase_18_f37bb9 {
-    virtual void m0();
-    virtual void m1();
-    virtual void m2();
-    virtual void m3();
-    virtual void m4();
-    virtual void m5();
-    virtual void m6();
-    virtual void m7();
-    virtual void m8();
-    virtual void m9();
-    virtual void m10();
-    virtual void m11();
-    virtual void m12();
-    virtual void m13();
-    virtual void m14();
-    virtual void m15();
-    virtual void m16();
-    virtual void m17();
-    virtual void m18();
-    virtual void m19();
-    virtual s32 m20(s32, f32);
-    virtual void m21();
-    virtual void m22();
-    virtual void m23();
-    virtual void m24();
-    virtual void m25();
-    virtual void m26();
-    virtual void m27();
-    virtual void m28();
-    virtual void m29();
-    virtual void m30();
-    virtual void m31();
-    virtual void m32();
-    virtual void m33();
-    virtual void m34();
-    virtual void m35();
-    virtual void m36();
-    virtual void m37();
-    virtual void m38();
-    virtual void m39();
-    virtual void m40();
-    virtual void m41();
-    virtual void m42();
-    virtual void m43();
-    virtual void m44();
-    virtual void m45();
-    virtual void m46();
-    virtual void m47();
-    virtual void m48();
-    virtual void m49();
-    virtual void m50();
-    virtual void m51();
-    virtual void m52();
-    virtual void m53();
-    virtual void m54();
-    virtual void m55();
-    virtual void m56();
-    virtual void m57();
-    virtual void m58();
-    virtual void m59();
-    virtual void m60();
-    virtual void m61();
-    virtual void m62();
-    virtual void m63();
-    virtual void m64();
-    virtual s32 m65(f32);
-};
-
 struct Vec_802C9E3C { f32 x, y, z; };
 
 struct Mtx_802C9E3C { f32 m[3][4]; };
@@ -421,7 +350,7 @@ void TOTrapSeabed01::clamp_params_and_init() {
     this->mode = 0;
     this->range = 15.0f;
     this->dist = 15.0f;
-    *(s32 *)&this->m_348 = (s32) (30.0f * (f32) this->set_params[0]);
+    this->m_348 = (s32) (30.0f * (f32) this->set_params[0]);
     if (*(s32 *)&this->set_params[1] != 0) {
         *(s32 *)&this->m_34c = 1;
     } else {
@@ -563,19 +492,18 @@ void TOTrapSeabed01::vfunc_81() {
 }
 
 void TOTrapSeabed01::vfunc_82() {
-    u8 *arg0 = (u8 *)this;
     s32 temp_r0;
     temp_r0 = this->m_348 - 1;
     this->m_348 = temp_r0;
     if (temp_r0 < 0) {
-        *(f32 *)((s8 *)this->bodies + 0xC) = 15.0f;
-        ((TObjCollidable *)arg0)->set_indexed_flags(0, 0x100);
+        bodies->radius = 15.0f;
+        set_indexed_flags(0, 0x100);
         TObjPlayer::init_all_slots();
-        ((TObjPlayer *)arg0)->check_object_collisions();
-        ((VObj_18_f37bb9 *)(arg0))->m65(1.0f);
-        this->receive_physical_attack((void *)(*(s32 *)((s8 *)arg0 + 0x2A8)), 1.0f);
+        check_object_collisions();
+        vfunc_67(1.0f);
+        receive_physical_attack(target, 1.0f);
     }
-    submit_cursor_candidate(arg0, -1);
+    submit_cursor_candidate(this, -1);
 }
 
 void check_hold_player__14TOTrapSeabed01FPv(u8 *trap_seabed01) {
