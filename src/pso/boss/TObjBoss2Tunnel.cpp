@@ -407,12 +407,11 @@ AccelerationCurve *TObjBoss2Tunnel::reset_coords_pass(AccelerationCurve *c) {
 }
 
 AccelerationCurve *TObjBoss2Tunnel::maybe_delete(AccelerationCurve *c, s16 arg1) {
-
-AccelerationCurve *TObjBoss2Tunnel::maybe_delete(AccelerationCurve *c, s16 arg1) {
     if ((c != NULL) && (arg1 > 0)) {
         ::operator delete(c);
     }
-
+    return c;
+}
 
 }
 void TObjBoss2Tunnel::reset_coords(AccelerationCurve *c) {
