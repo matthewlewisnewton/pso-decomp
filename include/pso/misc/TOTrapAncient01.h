@@ -16,8 +16,7 @@ struct TOTrapAncient01 : public TOTrap {
     virtual void vfunc_6(s16 *, s32);
     virtual f32 receive_physical_attack(void *, f32);
     virtual void render();
-    s32 m_344;
-    f32 m_348;
+    DirectAttackPayload attack;
     f32 m_34C;
     f32 m_350;
     f32 m_354;

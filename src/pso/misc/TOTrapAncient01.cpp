@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include "pso/player/demo_mode.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/misc/PersistentSound.h"
@@ -24,104 +25,17 @@
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/map/FloorArea.h"
 #include "pso/TObjChip.h"
+#include "pso/misc/TCameraCtrl.h"
 #include "pso/TMainTask.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/player/TObjPlayer_801AF2F0.h"
+#include "pso/render/render_util.h"
+#include "pso/system/MatrixStack.h"
+#include "pso/system/GinjaMaterial.h"
+#include "pso/math/MatrixTransforms.h"
+#include "pso/unk/text_803D8F74.h"
+#include "pso/unk/text_800FD8A0.h"
 
-struct E_8017A1A4 { u8 pad[0xc]; f32 f; u8 pad2[0x2c - 0x10]; };
-
-struct Obj_8017A1A4 { u8 pad[0xa4]; E_8017A1A4 *arr; };
-
-struct VBase_801797D4 { char pad[0x18]; };
-
-struct VObj_801797D4 : VBase_801797D4 {
-    virtual void m0();
-    virtual void m1();
-    virtual void m2();
-    virtual void m3();
-    virtual void m4();
-    virtual void m5();
-    virtual void m6();
-    virtual void m7();
-    virtual void m8();
-    virtual void m9();
-    virtual void m10();
-    virtual void m11();
-    virtual void m12();
-    virtual void m13();
-    virtual void m14();
-    virtual void m15();
-    virtual void m16();
-    virtual void m17();
-    virtual void m18();
-    virtual void m19();
-    virtual void m20(s32, f32);
-    virtual void m21(void *, void *, s32, s32, s32);
-    virtual void m22();
-    virtual void m23(void *, f32);
-};
-
-struct Ent_801797D4 { u8 pad[0xC]; f32 fC; };
-
-struct Pair_801797D4 { s32 a; s32 b; };
-
-struct Trap_801797D4 : VObj_801797D4 {
-    u8 pad1C[0xA4 - 0x1C];
-    Ent_801797D4 *fA4;
-    u8 padA8[0x2A8 - 0xA8];
-    s32 f2A8;
-    u8 pad2AC[0x344 - 0x2AC];
-    Pair_801797D4 f344;
-    u8 pad34C[0x354 - 0x34C];
-    f32 f354;
-};
-
-struct Vec_80179B8C { f32 x, y, z; };
-
-struct Node_80179B8C { u8 pad0[4]; s32 f4; u8 mtx[0x2C - 8]; Node_80179B8C *child; };
-
-struct FadeBase_80179B8C { char pad[0x14]; };
-
-struct Fade_80179B8C : FadeBase_80179B8C {
-    virtual void m0();
-    virtual void m1();
-    virtual void m2();
-    virtual void m3();
-    virtual void m4();
-    virtual void m5();
-    virtual void m6();
-    virtual void m7();
-    u8 pad18[4];
-};
-
-struct VBase_80179B8C { char pad[0x18]; };
-
-struct VObj_80179B8C : VBase_80179B8C {
-    virtual void m0();
-    virtual void m1();
-    virtual void m2();
-    virtual void m3();
-    virtual void m4();
-    virtual void m5();
-    virtual void m6();
-    virtual void m7();
-    virtual s32 m8(f32, f32);
-};
-
-struct Trap_80179B8C : VObj_80179B8C {
-    u8 pad1C[0x24 - 0x1C];
-    s32 f24;
-    u8 pad28[0x34 - 0x28];
-    Node_80179B8C *model;
-    u8 pos38[0x60 - 0x38];
-    s32 f60;
-    u8 pad64[0x6C - 0x64];
-    f32 f6C;
-    u8 pad70[0x340 - 0x70];
-    s32 f340;
-    u8 pad344[0x358 - 0x344];
-    Fade_80179B8C fades[4];
-};
 
 extern "C" {
 u16 get_entity_id(TObjBase *);
@@ -129,7 +43,6 @@ void obj_set_flag_20000(TObjBase *);
 void obj_clear_flag30_20000(TObjBase *);
 // Trap callers show this receiver is not restricted to TObjEnemy.
 u16 find_nearest_visible_player(void *, Vec *, f32);
-f32 horizontal_distance_squared(const Vec *, const Vec *);
 s32 obj_is_hit_receivable(u8 *);
 
 s32 check_player_flag1__6TLobbyFv();
@@ -153,40 +66,25 @@ const char *TOTrapAncient01__class_name = "TOTrapAncient01";
 // The original symbol reserves eight bytes; only the first word is accessed here.
 struct AncientTrapResourceSlot { BmlResource *value; u8 reserved[4]; };
 AncientTrapResourceSlot TOTrapAncient01__bml_resource;
-f32 TObjPlayer__sub_8017A1A4(Obj_8017A1A4 *self, s32 i);
+f32 TObjPlayer__sub_8017A1A4(TObjCollidable *self, s32 i);
 s32 free_collision_body_parts(void *);
 extern s32 __vt__15TOTrapAncient01[];
 s32 init_collision_body_parts(void *, void *, int);
 void TOTrap__ct(void *, void *, void *);
 void __construct_array(void *, void *, void *, int, int);
 void __ct__15RenderFadeStateFv(void *);
-VObj_801797D4 *get_battle_param__10TObjPlayerFi(s32);
 s32 check_value_equals__13TUnk_804B6C24Fl(void *, s32);
-void submit_cursor_candidate(void *, s32);
 
 extern s32 lbl_805D3530;
 s32 is_split_screen();
-s32 get_camera_mode__11TCameraCtrlFv();
-void update__15RenderFadeStateFv(void *);
-s32 rand(void);
-int rotate_matrix_y(int, int);
-int push_matrix();
-int pop_matrix();
-int post_translate_matrix(void *);
-int draw_ginja_model(int);
-void translate_matrix(s32, f32, f32, f32);
 extern s32 model_render_flags;
 extern s32 saved_model_render_flags;
 extern s32 saved_chunk_polygon_flags_and_mask;
 extern s32 saved_chunk_polygon_flags_or_mask;
 extern s32 chunk_polygon_flags_or_mask;
 extern s32 chunk_polygon_flags_and_mask;
-void render__15TOTrapAncient01Fv(Trap_80179B8C *self);
-void fn_80141CF0(const Vec *pos, Vec *scale, void *color);
 void TOTrapAncient02R__sub_80154D78(void *);
-s32 is_current_room(void *);
 
-extern s32 trap_ancient_light_color[];
 
 // Reverse definitions with deferred generation reproduce this unit's original
 // function order and place the native vtable before the switch tables.
@@ -196,13 +94,13 @@ void TOTrapAncient02R::vfunc_86() {
     s32 x;
     x = is_current_room(this);
     if (x == 1) {
-        fn_80141CF0(&this->home_position, &scratch_vec.vector, trap_ancient_light_color);
+        fn_80141CF0(&this->home_position, &scratch_vec.vector, &trap_ancient_light_color);
         TOTrapAncient02R__sub_80154D78(this);
     }
 }
 
-f32 TObjPlayer__sub_8017A1A4(Obj_8017A1A4 *self, s32 i) {
-    return self->arr[i].f;
+f32 TObjPlayer__sub_8017A1A4(TObjCollidable *self, s32 i) {
+    return self->bodies[i].radius;
 }
 
 // The original exports this constructor under the C name TOTrapAncient01__ct,
@@ -238,13 +136,13 @@ TOTrapAncient01 *TOTrapAncient01__ct(TOTrapAncient01 *self, void *parent, void *
     if (self->set_params[0] < 0) {
         self->set_params[0] = 0;
     }
-    self->m_348 = self->vfunc_87((f32)self->set_params[0]);
+    self->attack.power = self->vfunc_87((f32)self->set_params[0]);
     if (self->set_params[1] < 0) {
         self->set_params[1] = 0;
     } else if (self->set_params[1] > 5) {
         self->set_params[1] = 5;
     }
-    self->m_344 = self->set_params[1];
+    self->attack.kind = self->set_params[1];
     self->dist = 15.0f;
     self->player = 0xFFFF;
     init_collision_body_parts(self, &lbl_804B4844, 1);
@@ -283,51 +181,51 @@ void *TOTrapAncient01::create() {
     return o;
 }
 
-void render__15TOTrapAncient01Fv(Trap_80179B8C *self) {
-    Fade_80179B8C *fade;
-    Node_80179B8C *n;
+void TOTrapAncient01::render() {
+    RenderFadeState *fade;
+    NJS_OBJECT *n;
     s32 i;
-    Vec_80179B8C v;
+    Vec v;
     i = 0;
     if (is_split_screen() != 0) {
-        i = get_camera_mode__11TCameraCtrlFv();
+        i = TCameraCtrl::get_camera_mode();
     }
-    fade = &self->fades[i];
-    update__15RenderFadeStateFv(fade);
-    self->f340 = self->m8(400.0f, 20.0f);
-    if (self->f340 == 1) {
-        if (((RenderFadeState *)fade)->updateFromCamera((const f32*)(self->pos38)) == 1) {
+    fade = &fades[i];
+    fade->update();
+    m_340 = update_object_view_visibility(400.0f, 20.0f);
+    if (m_340 == 1) {
+        if (fade->updateFromCamera(&position.x) == 1) {
             saved_model_render_flags = model_render_flags;
             saved_chunk_polygon_flags_and_mask = chunk_polygon_flags_and_mask;
             saved_chunk_polygon_flags_or_mask = chunk_polygon_flags_or_mask;
-            fade->m6();
+            fade->set_flags_and_apply_damage_color();
         }
         push_matrix();
-        post_translate_matrix(self->pos38);
-        rotate_matrix_y(0, self->f60);
-        if (check_demo_mode() != 1 && self->f6C <= 0.0f) {
+        post_translate_matrix(&position.x);
+        rotate_matrix_y(0, rotation.yaw);
+        if (check_demo_mode() != 1 && scale.y <= 0.0f) {
             v.x = 0.1f * (0.000030517578125f * (f32)rand()) - 0.05f;
             v.y = 0.0f;
             v.z = 0.1f * (0.000030517578125f * (f32)rand()) - 0.05f;
-            post_translate_matrix(&v);
+            post_translate_matrix(&v.x);
         }
-        set_current_texture_list((GinjaTextureList *)(self->f24));
-        n = self->model;
+        set_current_texture_list((GinjaTextureList *)texlist);
+        n = (NJS_OBJECT *)model;
         push_matrix();
-        translate_matrix(0, 0.0f, self->f6C, 0.0f);
-        post_translate_matrix(n->mtx);
-        draw_ginja_model(self->model->f4);
+        translate_matrix(0, 0.0f, scale.y, 0.0f);
+        post_translate_matrix(n->pos);
+        draw_ginja_model((s32)((NJS_OBJECT *)model)->model);
         n = n->child;
         push_matrix();
-        post_translate_matrix(n->mtx);
+        post_translate_matrix(n->pos);
         TParticleCtrl::begin_effect_render();
-        draw_ginja_model(n->f4);
+        draw_ginja_model((s32)n->model);
         TParticleCtrl::end_effect_render();
         pop_matrix();
         pop_matrix();
         pop_matrix();
-        if (((RenderFadeState *)fade)->updateFromCamera((const f32*)(self->pos38)) == 1) {
-            fade->m7();
+        if (fade->updateFromCamera(&position.x) == 1) {
+            fade->clear_flag_and_notify();
             chunk_polygon_flags_and_mask = saved_chunk_polygon_flags_and_mask;
             chunk_polygon_flags_or_mask = saved_chunk_polygon_flags_or_mask;
             model_render_flags = saved_model_render_flags;
@@ -373,7 +271,7 @@ grounded:
             target = (u8 *)p;
             if (target != NULL) {
                 f32 d = horizontal_distance_squared(&((TObjPlayer *)target)->position, &position);
-                dist -= TObjPlayer__sub_8017A1A4((Obj_8017A1A4 *)p, 0);
+                dist -= TObjPlayer__sub_8017A1A4(p, 0);
                 if (d < dist * dist) {
                     if (TObjPlayer::is_locally_controlled(target)) {
                         send_6x2C_impose_hold(p, &position, -1, 0, dist);
@@ -408,17 +306,17 @@ grounded:
 
 void TOTrapAncient01::vfunc_82() {
     s32 i;
-    VObj_801797D4 *p;
-    this->calc_attach_pos();
-    ((Trap_801797D4 *)this)->f354 -= 1.0f;
-    if (((Trap_801797D4 *)this)->f354 < 0.0f) {
-        ((Trap_801797D4 *)this)->fA4->fC = 15.0f;
+    TObjChara *p;
+    calc_attach_pos();
+    m_354 -= 1.0f;
+    if (m_354 < 0.0f) {
+        bodies->radius = 15.0f;
         set_indexed_flags(0, 0x100);
         TObjPlayer::init_all_slots();
-        ((TObjPlayer *)this)->check_object_collisions();
+        check_object_collisions();
         for (i = 0; i < 16; i++) {
-            p = get_battle_param__10TObjPlayerFi(i);
-            if (p == 0) {
+            p = (TObjChara *)TObjPlayer::get_battle_param(i);
+            if (p == NULL) {
                 break;
             }
             if (obj_is_hit_receivable((u8 *)p) == 0) {
@@ -427,26 +325,23 @@ void TOTrapAncient01::vfunc_82() {
             if (check_value_equals__13TUnk_804B6C24Fl(p, lbl_805D3530) == 0) {
                 break;
             }
-            {
-            Pair_801797D4 v = ((Trap_801797D4 *)this)->f344;
-            p->m21(this, &v, 0, -1, -1);
-            }
-            if (((Trap_801797D4 *)this)->f344.a < 5) {
-                p->m23(((Trap_801797D4 *)this), 0.0f);
+            p->receive_direct_attack(this, attack, NULL, -1, -1);
+            if (attack.kind < 5) {
+                p->apply_knockback_from_attacker((u8 *)this, 0.0f);
             }
         }
-        ((Trap_801797D4 *)this)->m20(((Trap_801797D4 *)this)->f2A8, 1.0f);
+        receive_physical_attack(target, 1.0f);
     }
-    submit_cursor_candidate(((Trap_801797D4 *)this), -1);
+    submit_cursor_candidate(this, -1);
     switch (get_current_floor_area()) {
     case AREA_RUINS1:
     case AREA_RUINS2:
     case AREA_RUINS3:
-        play_persistent_sound((s32)(0x4004C618), (const void *)(((Trap_801797D4 *)this)), &this->position, 0, 0);
+        play_persistent_sound(0x4004C618, this, &position, 0, 0);
         break;
     case AREA_VR_SPACESHIP_ALPHA:
     case AREA_VR_SPACESHIP_BETA:
-        play_persistent_sound((s32)(0x4004C610), (const void *)(((Trap_801797D4 *)this)), &this->position, 0, 0);
+        play_persistent_sound(0x4004C610, this, &position, 0, 0);
         break;
     case AREA_PIONEER2_EP1:
         return;
@@ -572,7 +467,7 @@ void TOTrapAncient01::vfunc_6(s16 *arg1, s32 arg2) {
         }
         this->release_trapped_player();
         set_flag8();
-        queue_destruction__7TObjectFv(this);
+        queue_destruction();
     }
 }
 

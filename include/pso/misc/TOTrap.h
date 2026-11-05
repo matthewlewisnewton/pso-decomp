@@ -26,7 +26,7 @@ struct TOTrap : public TObjChara {
     f32 dist;
     u16 player;
     u8 _pad33E[0x2];
-    u32 m_340;
+    s32 m_340;
     virtual void render();
     virtual s32 select_melee_contact_body(void *source, f32) { return source != target; }
     virtual int calc_distance_accuracy_penalty(void *source, void *, void *, f32) { return source != target; }
