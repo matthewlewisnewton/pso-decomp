@@ -1,3 +1,5 @@
+#include "pso/player/demo_mode.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TOQuestTalkBase.h"
 #include "pso/TMainTask.h"
@@ -100,7 +102,7 @@ void TOQuestTalkBase::run_task() {
     TObjPlayer *player;
     f32 frame;
     f32 end;
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         update_demo();
         return;
     }
@@ -165,8 +167,8 @@ void TOQuestTalkBase::render() {
     if (visible == 1) {
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
-        TObjFish::set_global_param(texlist);
+        rotate_matrix_y(NULL, this->rotation.yaw);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         if (active == 1) {
             if (motion != NULL) {
                 draw_model_motion(model, motion, animation_frame);

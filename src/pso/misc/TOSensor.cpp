@@ -1,3 +1,4 @@
+#include "pso/misc/PersistentSound.h"
 // Built -inline off,deferred: the functions are written from the last back.
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
@@ -83,16 +84,16 @@ void TOSensor::play_on_loop_sound() {
     case AREA_CAVE1:
     case AREA_CAVE2:
     case AREA_CAVE3:
-        play_persistent_sound(0x4411D, (s32)this, (u32)&position, 0, 0);
+        play_persistent_sound((s32)(0x4411D), (const void *)(this), (const Vec *)((u32)&position), 0, 0);
         return;
     case AREA_MINE1:
     case AREA_MINE2:
-        play_persistent_sound(0x4004C114, (s32)this, (u32)&position, 0, 0);
+        play_persistent_sound((s32)(0x4004C114), (const void *)(this), (const Vec *)((u32)&position), 0, 0);
         return;
     case AREA_RUINS1:
     case AREA_RUINS2:
     case AREA_RUINS3:
-        play_persistent_sound(0x4641A, (s32)this, (u32)&position, 0, 0);
+        play_persistent_sound((s32)(0x4641A), (const void *)(this), (const Vec *)((u32)&position), 0, 0);
     case AREA_PIONEER2_EP1:
         return;
     case AREA_FOREST1:
@@ -117,16 +118,16 @@ void TOSensor::play_off_loop_sound() {
     case AREA_CAVE1:
     case AREA_CAVE2:
     case AREA_CAVE3:
-        play_persistent_sound(0x43C1C, (s32)this, (u32)&position, 0, 0);
+        play_persistent_sound((s32)(0x43C1C), (const void *)(this), (const Vec *)((u32)&position), 0, 0);
         return;
     case AREA_MINE1:
     case AREA_MINE2:
-        play_persistent_sound(0x4004BC13, (s32)this, (u32)&position, 0, 0);
+        play_persistent_sound((s32)(0x4004BC13), (const void *)(this), (const Vec *)((u32)&position), 0, 0);
         return;
     case AREA_RUINS1:
     case AREA_RUINS2:
     case AREA_RUINS3:
-        play_persistent_sound(0x46419, (s32)this, (u32)&position, 0, 0);
+        play_persistent_sound((s32)(0x46419), (const void *)(this), (const Vec *)((u32)&position), 0, 0);
     case AREA_PIONEER2_EP1:
         return;
     case AREA_FOREST1:

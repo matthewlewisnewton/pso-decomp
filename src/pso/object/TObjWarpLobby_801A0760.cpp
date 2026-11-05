@@ -1,5 +1,5 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TPlyJoinLobbyEntry.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/object/TObjWarpLobby_801A0760.h"
@@ -40,6 +40,7 @@ extern s32 warp_lobby_directory_label_table[];
 s32 queue_destruction__7TObjectFv(u32);
 s32 is_idle__6TLobbyFv();
 u32 find_warp_player_in_range(void *, u16, f32);
+s32 get_selected_menu_value(u32);
 extern s32 local_client_id;
 
 void run_task__13TObjWarpLobbyFv(VO_801A0894 *arg0);
@@ -71,10 +72,10 @@ void TObjWarpLobby::open_lobby_menu() {
 void TObjWarpLobby::render() {
     u8 *arg0 = (u8 *)this;
     if (((s32) *(s32 *)((s8 *)arg0 + 0xCC) != 0) && (((WarpLobbyVObj_801A07F8*)arg0)->m8(4e+02f, 2e+01f) != 0)) {
-        TObjFish::set_global_param(lbl_805D5CCC);
+        set_current_texture_list((GinjaTextureList *)(lbl_805D5CCC));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         TParticleCtrl::begin_effect_render();
         draw_ginja_model_with_motion(*(s32 *)((s8 *)(*(void **)((s8 *)TObjWarpLobby__instance + 0x42C)) + 8), *(s32 *)((s8 *)(*(void **)((s8 *)TObjWarpLobby__instance + 0x430)) + 4), this->m_c8);
         TParticleCtrl::end_effect_render();
@@ -95,8 +96,8 @@ void run_task__13TObjWarpLobbyFv(VO_801A0894 *arg0) {
         if (((u32) ((TObjWarpLobby *)arg0)->m_cc == 0U) && (is_idle__6TLobbyFv() != 0)) {
             ((TObjWarpLobby *)arg0)->open_lobby_menu();
         }
-        if (((u32) ((TObjWarpLobby *)arg0)->m_cc != 0U) && (((TWindowMenu *)(((TObjWarpLobby *)arg0)->m_cc))->is_decided() != 0)) {
-            selected_menu_value = ((TWindowMenu *)(((TObjWarpLobby *)arg0)->m_cc))->get_selected_value();
+        if (((u32) ((TObjWarpLobby *)arg0)->m_cc != 0U) && (((TWindowMenu *)(((TObjWarpLobby *)arg0)->m_cc))->is_visible() != 0)) {
+            selected_menu_value = get_selected_menu_value(((TObjWarpLobby *)arg0)->m_cc);
             if (((TObjWarpLobby *)arg0)->m_cc != 0U) {
                 queue_destruction__7TObjectFv(((TObjWarpLobby *)arg0)->m_cc);
                 ((TObjWarpLobby *)arg0)->m_cc = 0U;
@@ -105,7 +106,7 @@ void run_task__13TObjWarpLobbyFv(VO_801A0894 *arg0) {
             send_room_change__6TLobbyFi(selected_menu_value);
         }
     } else if ((u32) ((TObjWarpLobby *)arg0)->m_cc != 0U) {
-        ((TWindowBase *)(*(void **)((s8 *)arg0 + 0xB0)))->close();
+        TWindow__close((u8 *)(*(void **)((s8 *)arg0 + 0xB0)));
         ((TObjWarpLobby *)arg0)->m_cc = 0U;
         TWindowCtrl::clear_flag();
     }

@@ -1,3 +1,4 @@
+struct NJS_OBJECT;
 #ifndef PSO_MISC_TODRAGONFLYMACHINE01_H
 #define PSO_MISC_TODRAGONFLYMACHINE01_H
 
@@ -15,7 +16,7 @@ struct TODragonflyMachine01 : public TODragonfly {
     virtual void run_task();
     void update_yaw_animation();
     // The model-node callback render installs: turns node 6 (the head).
-    static void rotate_animated_node();
+    static void rotate_animated_node(NJS_OBJECT *);
     static void *create(void *set_data);
     static void unload_static_data();
     static void load_resources();

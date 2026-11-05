@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/boss/TObjBoss5Pillar.h"
 #include "pso/boss/TObjBoss5PillarDemo.h"
@@ -48,7 +49,7 @@ void TObjBoss5Pillar::render() {
     u8 *arg0 = (u8 *)this;
     if (TObjPlayer::is_any_teammate_in_state() == 0) {
         push_matrix();
-        TObjFish::set_global_param(boss5_common_texture_list);
+        set_current_texture_list((GinjaTextureList *)(boss5_common_texture_list));
         post_translate_matrix((u8 *)&this->m_2c);
         if ((s32) this->m_1c != 3) {
             fn_8028ADDC((void *)this->m_48);

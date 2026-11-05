@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TWindowSubStatusDisp_803DEE6C.h"
 #include "pso/TAdSelectTxtSubGC.h"
@@ -9,7 +10,7 @@ extern const f32 lbl_805DDF38;
 
 void TAdSelectTxtSubGC::render_status() {
     begin_screen_draw(1);
-    TObjFish::set_global_param((s32)status_disp_texture_handle);
+    set_current_texture_list((GinjaTextureList *)(status_disp_texture_handle));
     set_draw_texture_and_color((s32)(*(void * *)&(*(s16 *)((u8 *)this + 0x20))), (s32)(*(void **)((s8 *)this + 0x80)));
     draw_textured_quad_at_depth((f32 *)((char *)this + 68), lbl_805DDF38);
     TWindowSubStatusDisp::get_player();

@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/render/render_util.h"
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
@@ -101,11 +102,11 @@ void TOChatSensor::init_params() {
     f32 temp_f0;
     s32 temp_r5;
 
-    this->m_90 = (u32) *(u32 *)&this->rotation_x;
+    this->m_90 = (u32) *(u32 *)&this->rotation.pitch;
     if ((u32) this->m_90 >= 2U) {
         this->m_90 = 0U;
     }
-    this->m_98 = (u32) *(u32 *)&this->rotation_y;
+    this->m_98 = (u32) *(u32 *)&this->rotation.yaw;
     if ((u32) this->m_98 >= 2U) {
         this->m_90 = 0U;
     }
@@ -129,7 +130,7 @@ void TOChatSensor::init_params() {
 
 void TOChatSensor::render() {
     u8 *arg0 = (u8 *)this;
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         NJS_ARGB color;
         color.a = lbl_805DB388;
         color.r = lbl_805DB388;

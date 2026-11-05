@@ -1,5 +1,5 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowSubLog.h"
 #include "pso/unk/text_8026A93C.h"
 #include "pso/misc/TWindowCtrl_8024ADAC.h"
@@ -43,7 +43,7 @@ s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 TWindowShortListCtrl__check_controller_button(int, int);
 s32 is_flag_set__11TLoadingCurFv(void *, int);
 s32 is_on_current_screen__11TCameraCtrlFv(int, int);
-s32 play_sound_effect(int, int, int, int);
+
 s32 TWindowCtrl__sub_8024701C(int);
 void TWindowChat__sub_80247DFC(u8 *arg0);
 void TWindowChat__sub_80247E50(u8 *arg0);
@@ -90,7 +90,7 @@ void TWindowSubLog::run_task() {
 }
 TWindowSubLog::~TWindowSubLog() {
     if (*(void **)((s8 *)this + 0x28) != NULL) { queue_destruction__7TObjectFv(*(void **)((s8 *)this + 0x28)); this->m_28 = 0; }
-    if (*(void **)((s8 *)this + 0x24) != NULL) { ((TWindowBase *)(*(void **)((s8 *)this + 0x24)))->close(); this->m_24 = 0; }
+    if (*(void **)((s8 *)this + 0x24) != NULL) { TWindow__close((u8 *)(*(void **)((s8 *)this + 0x24))); this->m_24 = 0; }
     if (*(void **)((s8 *)this + 0x20) != NULL) { ((TWindowSubLog *)(*(void **)((s8 *)this + 0x20)))->clear_flag4c_bit8(); ((TWindowSubLog *)(*(void **)((s8 *)this + 0x20)))->cleanup(); }
     TWindowCtrl__sub_8024ADF0((s32)(*(void **)((s8 *)this + 0x1C)));
 }

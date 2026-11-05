@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TLanguage_801E4874.h"
 #include "pso/npc/TObjNpcARM00.h"
@@ -25,7 +26,7 @@ struct RecoveredGlobal_80147C18___vt__12TObjNpcAHM01 {
 };
 
 extern "C" {
-s32 play_sound_effect(int, void *, int, int);
+
 extern s32 __vt__12TObjNpcAHM01[];
 void release_texture_list(void*);
 void *__ct__11TObjControlFP7TObject(void *, void *);
@@ -66,7 +67,7 @@ u8 *TObjNpcAHM01__ct(u8 *player, s32 arg1, s32 arg2) {
     *(s32 **)((s8 *)player + 0x18) = &(*(RecoveredGlobal_80147C18___vt__12TObjNpcAHM01 *)&__vt__12TObjNpcAHM01).value;
     *(s32 *)((s8 *)player + 0) = (s32) TObjNpcAHM01__name;
     ((TObjNpcAHM01 *)(player))->apply_set_data((void *)arg2);
-    ((TObjPlayer *)player)->init_position_vectors();
+    ((TObjChara *)player)->initialize_position_copies();
     *(s32 *)((s8 *)player + 0x34) = (s32) *(*(s32 * *)&TObjNpcAHM01__shared_object);
     ((TObjNpcAHM01 *)player)->texlist = (s32) (*(s32 *)&TObjNpcAHM01__texture_handle);
     ((TObjNpcBase *)player)->setup_common();
@@ -75,7 +76,7 @@ u8 *TObjNpcAHM01__ct(u8 *player, s32 arg1, s32 arg2) {
 
 void TObjNpcAHM01::play_voice() {
     s32 arg0 = (s32)this;
-    play_sound_effect(0x40004C15, (void *)(arg0 + 0x38), 0, 0);
+    play_sound_effect(0x40004C15, (const Vec *)((arg0 + 0x38)), 0, 0);
 }
 
 s32 TObjNpcBase::is_target_in_attack_range() { return 0; }

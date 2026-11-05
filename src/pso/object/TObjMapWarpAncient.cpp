@@ -1,7 +1,9 @@
+#include "pso/system/CurrentTextureList.h"
 // ---- pso/object/TObjGoalWarpAncient_8017CB60
 #pragma push
 
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/object/TObjMapWarp.h"
 #include "pso/misc/TLobby_8030A6A8.h"
 #include "pso/object/TObjGoalWarpAncient_8017CB60.h"
@@ -77,14 +79,14 @@ void render__19TObjGoalWarpAncientFv(TObjGoalWarpAncient *goal_warp_ancient) {
     if (((VObj8017CB60_8017CB60_more_8017cca4_0 *) goal_warp_ancient)->m8(4e+02f, 2e+01f) != 0) {
         push_matrix();
         post_translate_matrix((u8 *)goal_warp_ancient + 0x38);
-        rotate_matrix_y(0, goal_warp_ancient->rotation_y);
+        rotate_matrix_y(0, goal_warp_ancient->rotation.yaw);
         TParticleCtrl::begin_effect_render();
-        TObjFish::set_global_param(*(s32 *)((s8 *)goal_warp_ancient + 0xD8));
+        set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)goal_warp_ancient + 0xD8)));
         draw_ginja_model_with_motion(goal_warp_ancient->m_e8, *(s32 *)((s8 *)goal_warp_ancient + 0xE4), *(f32 *)((s8 *)goal_warp_ancient + 0xC4));
-        TObjFish::set_global_param(*(s32 *)((s8 *)goal_warp_ancient + 0xE0));
+        set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)goal_warp_ancient + 0xE0)));
         draw_ginja_model_with_motion(*(s32 *)((s8 *)goal_warp_ancient + 0xD4), *(s32 *)((s8 *)goal_warp_ancient + 0xE8), *(f32 *)((s8 *)goal_warp_ancient + 0xC8));
         TParticleCtrl::end_effect_render();
-        TObjFish::set_global_param(*(s32 *)((s8 *)goal_warp_ancient + 0xDC));
+        set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)goal_warp_ancient + 0xDC)));
         draw_ginja_object((void *)(*(s32 *)((s8 *)goal_warp_ancient + 0xD0)));
         pop_matrix();
     }
@@ -207,16 +209,16 @@ void TObjMapWarpAncient::render() {
     if (((VObj_8017CED8_more_8017cca4_1*)arg0)->m8(4e+02f, 2e+01f) != 0) {
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         TParticleCtrl::begin_effect_render();
         if ((s32) *(s32 *)((s8 *)arg0 + 0x88) >= 0) {
-            TObjFish::set_global_param(this->m_10c);
+            set_current_texture_list((GinjaTextureList *)(this->m_10c));
             draw_ginja_model_with_motion(*(s32 *)&this->m_100, *(s32 *)&this->m_118, *(f32 *)&this->unk_FC);
         }
-        TObjFish::set_global_param(this->m_110);
+        set_current_texture_list((GinjaTextureList *)(this->m_110));
         draw_ginja_object((void *)this->m_104);
         TParticleCtrl::end_effect_render();
-        TObjFish::set_global_param(this->m_114);
+        set_current_texture_list((GinjaTextureList *)(this->m_114));
         draw_ginja_object((void *)this->m_108);
         pop_matrix();
     }
@@ -260,7 +262,6 @@ void TObjMapWarpAncient::run_task() {
 
 extern "C" {
 
-void TLobby__sub_8001FE7C(void*, int);
 s32 TObjGoalWarpAncient__sub_8017D2D4(int);
 s32 TObjMapWarp__ct();
 void __dl__7TObjectFPv(void *);
@@ -306,7 +307,7 @@ void TObjMapWarpAncient::free_globals() {
     TObjPlayer::free_if_valid(goal_warp_ancient_gvm_texture);
     goal_warp_ancient_gvm_texture = 0;
     if ((u32) ancient_warp_shared_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)ancient_warp_shared_resource, 1);
+        delete (BmlResource *)((void*)ancient_warp_shared_resource);
         ancient_warp_shared_resource = 0U;
     }
 }

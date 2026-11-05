@@ -1,3 +1,6 @@
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #pragma push
 
 #define TOBJECT_OUT_OF_LINE_HELPERS
@@ -14,6 +17,13 @@
 #include "pso/object/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/object/TObjDFDemo1.h"
+
+// Keep the shared zero export and the surrounding constant-pool layout.
+__declspec(section ".sdata2") extern const f32 lbl_805D8990;
+__declspec(section ".sdata2") extern const f32 lbl_805D8994;
+__declspec(section ".sdata2") extern const f32 lbl_805D8998;
+__declspec(section ".sdata2") extern const f32 lbl_805D899C;
+__declspec(section ".sdata2") extern const f32 lbl_805D89A0;
 
 typedef struct Rec_8004E2C8 {
     s32 a;
@@ -78,6 +88,8 @@ extern s32 model_render_flags;
 void *TObjDFDemo0__ct(void *, void *);
 void *__nw__7TObjectFUl(int);
 
+} // extern "C"
+
 void *TObjDFDemo0::create(void *arg0) {
     void *o = __nw__7TObjectFUl(0x110);
     if (o != NULL) {
@@ -115,7 +127,7 @@ void TObjDFDemo1::sub_8004E068() {
   }
   col = ((Outer_8004E068 *)find_model_node(self->recs[1].a, 0x6A))->in->col;
   t = self->f110;
-  f = 0.0f;
+  f = lbl_805D8990;
   if (t >= 0xF0)
   {
     f = 1.0f;
@@ -123,11 +135,11 @@ void TObjDFDemo1::sub_8004E068() {
   else
     if (t > 0xE6)
   {
-    f = (t - 0xE6) / 10.0f;
+    f = (t - 0xE6) / lbl_805D8994;
   }
-  col[3] = (col[3] & 0xFF) | ((s32) (255.0f * f) << 8);
+  col[3] = (col[3] & 0xFF) | ((s32) (lbl_805D8998 * f) << 8);
   t = self->f110;
-  f = 0.0f;
+  f = lbl_805D8990;
   if (t >= 0x104)
   {
     f = 1.0f;
@@ -135,9 +147,9 @@ void TObjDFDemo1::sub_8004E068() {
   else
     if (t > 0xF0)
   {
-    f = (t - 0xF0) / 20.0f;
+    f = (t - 0xF0) / lbl_805D899C;
   }
-  hi = ((s32) (255.0f * f)) << 8;
+  hi = ((s32) (lbl_805D8998 * f)) << 8;
   for (i = 0; i < 3; i++)
   {
     e = &lbl_8048561C[i];
@@ -152,14 +164,14 @@ void TObjDFDemo1::sub_8004E068() {
     TObjPlayer__sub_80052390(alpha);
   }
   model_render_flags |= 0x20000;
-  TObjEneRe4Sorcerer__sub_801E3F1C(0.0f, self->f118);
+  TObjEneRe4Sorcerer__sub_801E3F1C(lbl_805D8990, self->f118);
   push_matrix();
   set_motion_packed_rotation();
   post_translate_matrix(self->f100);
   rotate_matrix_y(0, this->m_10c);
   for (j = 0; j < 2; j++)
   {
-    TObjFish::set_global_param(self->recs[j].b);
+    set_current_texture_list((GinjaTextureList *)(self->recs[j].b));
     draw_model_motion((void *)((*(&self->recs[j])).a), (void *)self->recs[j].c, this->m_114);
   }
   clear_motion_packed_rotation();
@@ -170,6 +182,11 @@ void TObjDFDemo1::sub_8004E068() {
     TObjPlayer::sync_player_globals();
   }
 }
+// Follow the pooled 1.0f and 12.0f entries. The next unit also uses this zero.
+__declspec(section ".sdata2") const f32 lbl_805D8990 = 0.0f;
+__declspec(section ".sdata2") const f32 lbl_805D8994 = 10.0f;
+__declspec(section ".sdata2") const f32 lbl_805D8998 = 255.0f;
+__declspec(section ".sdata2") const f32 lbl_805D899C = 20.0f;
 
 void TObjDFDemo1::draw_fading_model() {
     Obj_8004E2C8 *arg0 = (Obj_8004E2C8 *)this;
@@ -191,9 +208,9 @@ void TObjDFDemo1::draw_fading_model() {
     set_motion_packed_rotation();
     post_translate_matrix(arg0->f100);
     rotate_matrix_y(0, this->m_10c);
-    max = 30.0f;
+    max = lbl_805D89A0;
     for (i = 0; i < 6; i++) {
-        TObjFish::set_global_param(arg0->recs[i].b);
+        set_current_texture_list((GinjaTextureList *)(arg0->recs[i].b));
         f = this->m_114;
         switch (i) {
         case 0:
@@ -212,9 +229,10 @@ void TObjDFDemo1::draw_fading_model() {
     }
 }
 
-void TObjDFDemo1::render() { draw_fading_model(); sub_8004E068(); }
+// Define after its use above so MWCC does not create a second pooled 30.0f.
+__declspec(section ".sdata2") const f32 lbl_805D89A0 = 30.0f;
 
-}
+void TObjDFDemo1::render() { draw_fading_model(); sub_8004E068(); }
 
 #pragma pop
 
@@ -248,7 +266,7 @@ extern "C" {
 f32 sin_table_lookup(s32);
 f32 cos_table_lookup(s32);
 void vec3_add_to(f32 *, f32 *);
-void play_sound_effect(int, void *, int, int);
+
 extern DFDemo1Emitter lbl_80485590[];
 }
 
@@ -282,7 +300,7 @@ void TObjDFDemo1::run_task() {
         }
     }
     if (self->timer >= 0x46 && self->timer <= 0x82) {
-        TParticleCtrl *fx = (TParticleCtrl *)spawn_particle_effect(self->pos, 0x14E);
+        TParticleCtrl *fx = spawn_particle_effect((const Vec *)(self->pos), 0x14E);
         if (fx != NULL) {
             fx->set_flags(0x40);
         }
@@ -291,7 +309,7 @@ void TObjDFDemo1::run_task() {
         start_pad_rumble_all(0xC0, 0xF);
     }
     if (self->timer == 0x7C) {
-        play_sound_effect(0x4003AA26, self->pos, 0, 1);
+        play_sound_effect(0x4003AA26, (const Vec *)(self->pos), 0, 1);
     }
     if ((m_114 += 0.5f) > 149.0f) {
         m_114 = 149.0f;

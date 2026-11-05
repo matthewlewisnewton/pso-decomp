@@ -1,3 +1,5 @@
+#include "pso/system/CurrentTextureList.h"
+#include "pso/player/TObjChara.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/boss/TBoss3VoloptHiraisin.h"
@@ -151,10 +153,10 @@ void TObjPlayer::draw_model() {
     if ((self->m8(*(f32 *)&this->unk_398, *(f32 *)((s8 *)arg0 + 0x39C)) != 0) && ((s32) *(s32 *)&this->unk_390 == 1)) {
         select_actor_lighting((s32)arg0);
         model_render_flags |= 1;
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)(this->texlist));
         push_matrix_from(0);
         translate_matrix_vec3((u8 *)(0), (u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         set_motion_packed_rotation();
         if ((s32) this->m_394 != 0) {
             draw_chunk_object(this->model);
@@ -229,7 +231,7 @@ void TObjNpcBase::run_task() {
   advance_animation();
   this->update_prev_position();
   new_var = ((u8 *)this);
-  ((TBoss3VoloptHiraisin *)new_var)->copy_position();
+  ((TObjChara *)new_var)->copy_body_to_center();
   if ((((s32)this->m_3a8) > 0) && (TRaderMapCore::is_not_split_screen() == 0))
   {
     submit_cursor_candidate((void *) this, -1);
