@@ -47,8 +47,8 @@ void TUnk_804C349C::update_and_destroy() {
 }
 
 void TUnk_804C349C::run_task() {
-    this->m_38 = (s32)get_player_by_client_id(*(u16 *)((s8 *)this + 0x3C));
-    if ((s32) this->m_4c != 0) {
+    this->owner = (TObjPlayer *)get_player_by_client_id(this->owner_client_id);
+    if (this->animated != 0) {
         step_photon_blast_sequence(this);
         return;
     }
