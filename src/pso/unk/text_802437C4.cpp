@@ -1,5 +1,5 @@
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TUnk_804CE018.h"
 #include "pso/TWindowEffectLight.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 struct Win_802437C4 {
@@ -17,34 +17,34 @@ struct Pt_802437C4 { f32 x, y; };
 
 extern "C" {
 s32 is_split_screen();
-s32 sub_80244994__11TWindowBaseFv();
+s32 sub_80244994__13TUnk_804CE018Fv();
 extern const f32 lbl_805DCA2C;
 void spawn_action_palette_slot_light(Win_802437C4 *arg0, s32 arg1);
 #pragma push
 #pragma fp_contract on
 void spawn_action_palette_slot_light(Win_802437C4 *arg0, s32 arg1) {
     Pt_802437C4 pt;
-    s32 kind;
+    s16 kind;
     Ent_802437C4 *e;
     f32 s;
     f32 hw;
     f32 s2;
     f32 hw2;
-    if (sub_80244994__11TWindowBaseFv() == 0) {
+    if (sub_80244994__13TUnk_804CE018Fv() == 0) {
         return;
     }
     switch (arg1) {
     case 1:
         kind = 0;
-        e = (Ent_802437C4 *)((TWindowBase *)arg0)->get_array_entry(2);
+        e = (Ent_802437C4 *)((TUnk_804CE018 *)arg0)->get_array_entry(2);
         break;
     case 2:
         kind = 2;
-        e = (Ent_802437C4 *)((TWindowBase *)arg0)->get_array_entry(4);
+        e = (Ent_802437C4 *)((TUnk_804CE018 *)arg0)->get_array_entry(4);
         break;
     case 3:
         kind = 1;
-        e = (Ent_802437C4 *)((TWindowBase *)arg0)->get_array_entry(6);
+        e = (Ent_802437C4 *)((TUnk_804CE018 *)arg0)->get_array_entry(6);
         break;
         return;
     default:
@@ -61,7 +61,7 @@ void spawn_action_palette_slot_light(Win_802437C4 *arg0, s32 arg1) {
         pt.x = lbl_805DCA2C * e->w + (arg0->x + e->x);
         pt.y = lbl_805DCA2C * e->h + (arg0->y + e->y);
     }
-    TWindowEffectLight::create(&pt, (void *)kind, (void *)arg0->id);
+    TWindowEffectLight::create(&pt, kind, arg0->id);
 }
 #pragma pop
 

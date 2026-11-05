@@ -1,3 +1,5 @@
+#include "pso/player/demo_mode.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEnemyCustom.h"
 #include "pso/map/CsnQuery.h"
@@ -81,7 +83,7 @@ TObjEnemyCustom::~TObjEnemyCustom() {
 }
 
 void TObjEnemyCustom::run_task() {
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         run_demo_task();
         return;
     }
@@ -173,7 +175,7 @@ void TObjEnemyCustom::update_wander_state() {
             turn_toward_direction(((EnemyMoveParams *)movementParameters)->turn_speed, velocity());
         }
         apply_actor_gravity(this, NULL, 0.0f);
-        ((TObjPlayer *)this)->update_collisions();
+        ((TObjCollidable *)this)->update_collisions();
         return;
     }
 }
@@ -195,7 +197,7 @@ void TObjEnemyCustom::update() {
                 ((TObjEnemyCustomVictim *)target)->apply_knockback_from_attacker(this, 3.0f);
             }
         }
-        ((TObjPlayer *)this)->update_collisions();
+        ((TObjCollidable *)this)->update_collisions();
         if (this->action_flags != 4) {
             state = -1;
         }
@@ -222,7 +224,7 @@ void TObjEnemyCustom::update_state_machine() {
         if (!(actorFlags & 0x800000)) {
             apply_actor_gravity(this, NULL, 0.0f);
         }
-        ((TObjPlayer *)this)->update_collisions();
+        ((TObjCollidable *)this)->update_collisions();
         remaining = timer;
         timer = remaining - 1;
         if (remaining < 0) {
@@ -253,9 +255,9 @@ void TObjEnemyCustom::update_knockback_state() {
         advance_animation();
         move_with_wall_slide((u8 *)this);
         velocity()->x *= 0.5f;
-        m_310 *= 0.5f;
+        movement_velocity.z *= 0.5f;
         apply_actor_gravity(this, NULL, 0.0f);
-        ((TObjPlayer *)this)->update_collisions();
+        ((TObjCollidable *)this)->update_collisions();
         if (this->action_flags != 8) {
             state = -1;
         }
@@ -289,11 +291,11 @@ void TObjEnemyCustom::update_dying_state() {
     case 1:
         advance_animation();
         apply_actor_gravity(this, NULL, 0.0f);
-        ((TObjPlayer *)this)->update_collisions();
+        ((TObjCollidable *)this)->update_collisions();
         if (this->frame < 0.5f * (30.0f * this->play_speed)) {
             move_with_wall_slide((u8 *)this);
             velocity()->x *= 0.5f;
-            m_310 *= 0.5f;
+            movement_velocity.z *= 0.5f;
         }
         break;
     default:
@@ -303,12 +305,12 @@ void TObjEnemyCustom::update_dying_state() {
 
 void TObjEnemyCustom::render() {
     if (update_object_view_visibility(400.0f, 20.0f) != 0) {
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(0, rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         model_render_flags &= ~0x400;
-        if (TObjPlayer::check_demo_mode() == 1) {
+        if (check_demo_mode() == 1) {
             draw_chunk_object(model);
         } else {
             draw();
@@ -326,7 +328,7 @@ void TObjEnemyCustom::run_demo_task() {
 void TObjEnemyCustom::render_anim_model_at_pos() {
     push_matrix_from(identity_matrix);
     post_translate_matrix(&position.x);
-    rotate_matrix_y(0, rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     calc_joint_matrices(frame);
     pop_matrix();
 }
@@ -387,8 +389,8 @@ s32 TObjEnemyCustom::turn_toward_point(Vec *point, s32 max_step, s32 angle_offse
     Vec delta = *point;
     subtract_vector(&delta, &position);
     angle_offset += (s32)(10430.38043493439 * atan2_float(delta.x, delta.z));
-    rotation_y = approach_angle_limited(rotation_y, angle_offset, max_step);
-    return angle_difference_abs(rotation_y, angle_offset);
+    this->rotation.yaw = approach_angle_limited(this->rotation.yaw, angle_offset, max_step);
+    return angle_difference_abs(this->rotation.yaw, angle_offset);
 }
 
 void TObjEnemyCustom::sub_800C73F4() {

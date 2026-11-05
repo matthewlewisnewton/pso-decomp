@@ -1,3 +1,6 @@
+#include "pso/system/ArrayAllocation.h"
+#include "pso/map/CsnGroundQuery.h"
+#include "pso/math/ScratchVectorStorage.h"
 #include "types.h"
 #include "pso/system/FlagWord.h"
 #include "pso/player/TObjChara.h"
@@ -135,11 +138,10 @@ s32 build_collision_box_corners(s32 arg0, s32 arg1, Box_80154EF8 *box, u32 out);
 s32 subtract_vector(void *, void *);
 extern s32 enable_v2_features;
 f32 get_collision_body_radius(Obj_801547E0 *self, s32 i);
-extern Vec_80155294 scratch_vec;
 f64 atan2_float(f32, f32);
 extern const f64 lbl_804400F0;
 s32 angle_difference_abs(s32, s32);
-void *find_entity_by_id(u16 id);
+TObjCollidable *find_entity_by_id(u16 id);
 extern s32 quest_object_entries;
 void handle_6x0B_update_object_state(G_UpdateObjectState_6x0B *packet);
 }
@@ -169,7 +171,6 @@ s32 angle_diff_s16(s32 a, s32 b);
 s32 normalize_vector(void *);
 void* refresh_actor_body_spheres(CollisionBody_80155FBC, CollisionBody_80155FBC);
 extern s32 TObjPlayer__data_8050D460[];
-void *mem_alloc(u32 size);
 void *__construct_new_array(void *, void (*)(void *), void *, s32, s32);
 Part_80156780 *init_collision_body_parts(Obj_80156780 *self, Part_80156780 *src, s32 count);
 void *get_player_by_client_id(u32 id);
@@ -177,13 +178,11 @@ void TLobby__sub_80156BA8(void *p);
 void check_enemy_body_collisions(void *arg0);
 extern unsigned char lbl_8050DAD0[];
 extern int player_unique_pair_entry_count;
-void mem_free(void *p);
 void free_collision_body_parts(G_80156720 *arg0);
 u16 get_entity_id(int);
 extern const f32 lbl_805DB29C;
 void *memcpy(void *, const void *, u32);
 s32 *csnVectorUnder(s32 arg0, u32 *arg1, s32 arg2);
-s32 *csnVecterUnder(s32 origin, s32 mask);
 u16 TObjRoomId__sub_801A1DB8(u16);
 extern const f32 lbl_805DB2A0;
 s32 project_actor_to_ground(Obj_80156844 *self, Vec_80156844 *pos, Vec_80156844 *normal);
@@ -425,7 +424,7 @@ u16 register_entity_by_id(void *ov) {
 #undef TBL
 #undef o
 
-void *find_entity_by_id(u16 id) {
+TObjCollidable *find_entity_by_id(u16 id) {
     s32 lo;
     s32 mid;
     s32 hi;
@@ -434,7 +433,7 @@ void *find_entity_by_id(u16 id) {
         return 0;
     }
     if (id < 12) {
-        return get_player_by_client_id(id);
+        return (TObjCollidable *)get_player_by_client_id(id);
     }
     lo = 0;
     hi = lbl_805D5868 - 1;
@@ -448,7 +447,7 @@ void *find_entity_by_id(u16 id) {
     }
     e = ((Ent_80154CB4 **)TObjPlayer__data_8050D460)[lo];
     if (e != 0 && e->id == id) {
-        return e;
+        return (TObjCollidable *)e;
     }
     return 0;
 }
@@ -490,7 +489,7 @@ void TObjCollidable::refresh_collision_body_centers() {
     if (arg0 != NULL && this->bodies != NULL && ((TObject *)arg0)->all_parents_unqueued_for_destruction() != 0) {
         n = arg0->count;
         push_matrix_from(identity_matrix);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         for (i = 0; i < n; i++) {
             VecCopy__FP3VecPC3Vec(&sp8, &arg0->ents[i]);
             rotate_vector_by_current_matrix(&sp8, &sp8);
@@ -650,13 +649,13 @@ s32 resolve_player_box_contact(u8 *arg0, u8 *arg1, u8 *arg2) {
         moved = 0;
         xl = hw * hw + get_collision_body_radius((Obj_801547E0 *)arg0, 0);
         zl = hd * hd + get_collision_body_radius((Obj_801547E0 *)arg0, 0);
-        VecCopy__FP3VecPC3Vec(&scratch_vec, &radial);
+        VecCopy__FP3VecPC3Vec(&scratch_vec.vector, &radial);
         push_matrix_from(identity_matrix);
         rotate_matrix_y(0, -*(s32 *)(arg1 + 0x60));
-        rotate_vector_by_current_matrix(&scratch_vec, &scratch_vec);
+        rotate_vector_by_current_matrix(&scratch_vec.vector, &scratch_vec.vector);
         pop_matrix();
-        xx = scratch_vec.x * scratch_vec.x;
-        zz = scratch_vec.z * scratch_vec.z;
+        xx = scratch_vec.vector.x * scratch_vec.vector.x;
+        zz = scratch_vec.vector.z * scratch_vec.vector.z;
         dx = xl - xx;
         dz = zl - zz;
         if (xx + zz < lbl_805DB284) {
@@ -667,13 +666,13 @@ s32 resolve_player_box_contact(u8 *arg0, u8 *arg1, u8 *arg2) {
         } else if (*(u32 *)(arg2 + 0x18) & 0x20000000) {
             v.x = v.y = v.z = TObjPlayer__data_805DB270;
             if (hd < hw) {
-                if (TObjPlayer__data_805DB270 < scratch_vec.z) {
+                if (TObjPlayer__data_805DB270 < scratch_vec.vector.z) {
                     v.z = lbl_805DB288;
                 } else {
                     v.z = lbl_805DB28C;
                 }
             } else {
-                if (TObjPlayer__data_805DB270 < scratch_vec.x) {
+                if (TObjPlayer__data_805DB270 < scratch_vec.vector.x) {
                     v.x = lbl_805DB288;
                 } else {
                     v.x = lbl_805DB28C;
@@ -681,12 +680,12 @@ s32 resolve_player_box_contact(u8 *arg0, u8 *arg1, u8 *arg2) {
             }
             SHIFT_80155294(*(s32 *)(arg1 + 0x60));
         } else if (dx < dz) {
-            v.x = scratch_vec.x < 0.0f ? lbl_805DB28C : lbl_805DB288;
+            v.x = scratch_vec.vector.x < 0.0f ? lbl_805DB28C : lbl_805DB288;
             v.z = v.y = TObjPlayer__data_805DB270;
             SHIFT_80155294(*(s32 *)(arg1 + 0x60));
             v.x = TObjPlayer__data_805DB270;
             v.y = TObjPlayer__data_805DB270;
-            if (scratch_vec.z < TObjPlayer__data_805DB270) {
+            if (scratch_vec.vector.z < TObjPlayer__data_805DB270) {
                 v.z = lbl_805DB290;
             } else {
                 v.z = lbl_805DB294;
@@ -695,13 +694,13 @@ s32 resolve_player_box_contact(u8 *arg0, u8 *arg1, u8 *arg2) {
         } else {
             v.x = TObjPlayer__data_805DB270;
             v.y = TObjPlayer__data_805DB270;
-            if (scratch_vec.z < TObjPlayer__data_805DB270) {
+            if (scratch_vec.vector.z < TObjPlayer__data_805DB270) {
                 v.z = lbl_805DB28C;
             } else {
                 v.z = lbl_805DB288;
             }
             SHIFT_80155294(*(s32 *)(arg1 + 0x60));
-            v.x = scratch_vec.x < 0.0f ? lbl_805DB290 : lbl_805DB294;
+            v.x = scratch_vec.vector.x < 0.0f ? lbl_805DB290 : lbl_805DB294;
             v.z = v.y = TObjPlayer__data_805DB270;
             SHIFT_80155294(*(s32 *)(arg1 + 0x60));
         }
@@ -986,7 +985,7 @@ u32 TObjCollidable::check_actor_body_contact(void *o_arg, f32 range) {
             a.colliders = this->bodies;
             a.count = self->a8;
             VecCopy__FP3VecPC3Vec(&a.position, &self->pos);
-            a.facing = this->rotation_y;
+            a.facing = this->rotation.yaw;
             b.colliders = o->a4;
             b.count = o->a8;
             VecCopy__FP3VecPC3Vec(&b.position, &o->pos);
@@ -1078,7 +1077,7 @@ void TObjCollidable::check_object_collisions() {
         }
     }
 }
-void TObjPlayer::update_collisions() { check_object_collisions(); check_enemy_body_collisions(this); }
+void TObjCollidable::update_collisions() { check_object_collisions(); check_enemy_body_collisions(this); }
 void TObjCollidable::clear_collision_bodies() {
     body_flags = NULL;
     bodies = NULL;
@@ -1095,12 +1094,12 @@ void free_collision_body_parts(G_80156720 *arg0) {
     u8 *p = arg0->f9c;
     if (p != 0) {
         if (p != 0) {
-            mem_free((p - 0x10));
+            ::operator delete[]((p - 0x10));
         }
         arg0->f9c = 0;
     }
     if (arg0->fa4 != 0) {
-        mem_free(arg0->fa4);
+        ::operator delete[](arg0->fa4);
         arg0->fa4 = 0;
     }
 }
@@ -1110,7 +1109,7 @@ Part_80156780 *init_collision_body_parts(Obj_80156780 *self, Part_80156780 *src,
     s32 i;
     if (self->parts == 0) {
         self->count = count;
-        self->parts = (Part_80156780 *)mem_alloc(self->count * 0x2c);
+        self->parts = (Part_80156780 *)::operator new[](self->count * 0x2c);
         for (i = 0; i < self->count; i++) {
             copy_collision_body((CollisionBody *)&self->parts[i], (const CollisionBody *)src++);
         }
@@ -1118,7 +1117,7 @@ Part_80156780 *init_collision_body_parts(Obj_80156780 *self, Part_80156780 *src,
     }
     if (self->f9c == 0) {
         n = self->count;
-        self->f9c = __construct_new_array(mem_alloc(n * 4 + 0x10), (void (*)(void *))__ct__8FlagWordFv, 0, 4, n);
+        self->f9c = __construct_new_array(::operator new[](n * 4 + 0x10), (void (*)(void *))__ct__8FlagWordFv, 0, 4, n);
     }
     return self->parts;
 }
@@ -1140,7 +1139,7 @@ s32 project_actor_to_ground(Obj_80156844 *self, Vec_80156844 *pos, Vec_80156844 
     if (coll != 0) {
         hit = (Hit_80156844 *)csnVectorUnder((s32)&v, (u32 *)coll, flags);
     } else {
-        hit = (Hit_80156844 *)csnVecterUnder((s32)&v, flags);
+        hit = (Hit_80156844 *)csnVecterUnder((const Vec *)&v, flags);
     }
     if (hit == NULL) {
         return 0;
@@ -1195,3 +1194,7 @@ s32 TObjCollidable::access_object_saved_state(void *lobby, s16 arg2) {
     return 1;
 }
 }
+
+s32 TObjPlayer__data_8050D460[0x18C];
+int player_battle_param_table[0x10];
+unsigned char lbl_8050DAD0[0x80];

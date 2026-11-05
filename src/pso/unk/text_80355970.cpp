@@ -24,7 +24,7 @@ s32 spawn_gryphon_tornado(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     u8 *temp_r3;
     VecCopy((Vec *)(&stack.sp8), (const Vec *)(arg2));
     stack.spC = lbl_805D8D48;
-    temp_r3 = (u8 *)(csnVecterUnder((s32)&stack.sp8, 0x16EF));
+    temp_r3 = (u8 *)(csnVecterUnder((const Vec *)&stack.sp8, 0x16EF));
     if (temp_r3 == NULL) {
         return 0;
     }

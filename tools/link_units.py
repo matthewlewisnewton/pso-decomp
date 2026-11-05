@@ -17,6 +17,7 @@ Usage:
   link_units.py scan --write    # add candidates, drop regressions, write list
   link_units.py bisect          # after a build.sha1 failure: find the culprit
   link_units.py force-active --write   # list unreferenced symbols of linked units in config.yml
+  link_units.py force-active --check   # fail if that generated list is out of date (no writes)
 
 ``scan`` also writes ``linked_units_blocked.json`` next to the list: units
 whose functions all match but whose object fails a link check, with every
@@ -42,9 +43,11 @@ import argparse
 import functools
 import hashlib
 import json
+import struct
 import subprocess
 import sys
 from pathlib import Path
+from typing import NamedTuple
 
 try:
     from .mwcc_parts import mwcat_discarded_text_bytes
@@ -98,12 +101,27 @@ OBJ_DIR = ROOT / "build" / "GPOE8P" / "src"
 SHF_ALLOC = 0x2
 
 
-def elf_alloc_section_layout(path: Path) -> dict[str, tuple[int, int]]:
-    """{section name: (size, alignment)} for each allocated section of a
-    big-endian ELF32 object (mwcc .o). Pure-python: no objdump needed."""
+class ElfSectionPart(NamedTuple):
+    index: int
+    name: str
+    type: int
+    offset: int
+    size: int
+    alignment: int
+    base: int
+
+
+def _elf_alloc_section_parts(path: Path) -> list[ElfSectionPart]:
+    """Allocated ELF sections as (index, name, type, file offset, size, alignment, base).
+
+    MWCC can emit several sections named .text when source files change under
+    -sym on. MWLD concatenates same-name sections in section-table order, with
+    each contribution aligned independently. Symbol st_value remains relative
+    to its specific section index, not to the concatenated output section.
+    """
     b = path.read_bytes()
     if b[:4] != b"\x7fELF":
-        return {}
+        return []
     be = lambda o, n=4: int.from_bytes(b[o:o + n], "big")
     shoff, shentsize, shnum, shstrndx = be(0x20), be(0x2E, 2), be(0x30, 2), be(0x32, 2)
     hdrs = []
@@ -112,13 +130,27 @@ def elf_alloc_section_layout(path: Path) -> dict[str, tuple[int, int]]:
         hdrs.append((be(o), be(o + 4), be(o + 8), be(o + 16), be(o + 20), be(o + 32)))
     _, _, _, stroff, strsize, _ = hdrs[shstrndx]
     strtab = b[stroff:stroff + strsize]
-    out = {}
-    for name_off, typ, flags, off, size, alignment in hdrs:
-        if not (flags & SHF_ALLOC) or size == 0 or typ == 0:
+    ends: dict[str, int] = {}
+    parts = []
+    for index, (name_off, typ, flags, off, size, alignment) in enumerate(hdrs):
+        if not (flags & SHF_ALLOC) or typ == 0:
             continue
-        end = strtab.index(b"\0", name_off)
-        out[strtab[name_off:end].decode()] = (size, alignment)
-    return out
+        name = strtab[name_off:strtab.index(b"\0", name_off)].decode()
+        alignment = max(alignment, 1)  # ELF sh_addralign 0 and 1 both mean unaligned.
+        if alignment & (alignment - 1):
+            raise ValueError(f"{path}: invalid section alignment {alignment}")
+        base = (ends.get(name, 0) + alignment - 1) & -alignment
+        ends[name] = base + size
+        parts.append(ElfSectionPart(index, name, typ, off, size, alignment, base))
+    return parts
+
+
+def elf_alloc_section_layout(path: Path) -> dict[str, tuple[int, int]]:
+    """Concatenated size and required alignment of each allocated section name."""
+    out = {}
+    for _, name, _, _, size, alignment, base in _elf_alloc_section_parts(path):
+        out[name] = (base + size, max(out.get(name, (0, 1))[1], alignment))
+    return {name: layout for name, layout in out.items() if layout[0]}
 
 
 def elf_alloc_sections(path: Path) -> dict[str, int]:
@@ -156,6 +188,92 @@ def elf_symbol_bindings(path: Path) -> dict[str, tuple[int, int]]:
 def elf_defined_globals(path: Path) -> dict[str, int]:
     """{name: st_type} of every defined GLOBAL/WEAK symbol in a BE ELF32 .o."""
     return {name: typ for name, (_, typ) in elf_symbol_bindings(path).items()}
+
+
+# MWCC's int-to-double biases. Unsigned is 2**52. Signed is 2**52 + 2**31.
+_UNSIGNED_BIAS = bytes.fromhex("4330000000000000")
+_SIGNED_BIAS = bytes.fromhex("4330000080000000")
+
+
+def conversion_pool_kind(path: Path, name: str) -> str | None:
+    """'unsigned' or 'signed' when `name` is exactly one MWCC int-to-double bias.
+
+    The symbol must be a defined global or weak object, 8 bytes, 8-byte aligned,
+    in .rodata or .sdata2, and those 8 bytes must be the whole object. A larger
+    object that happens to contain the pattern is not a conversion-pool constant.
+    Unreadable or unexpected objects return None rather than a guess.
+    """
+    try:
+        image = _elf_named_object(path, name)
+    except (OSError, ValueError, IndexError, UnicodeError, struct.error):
+        return None
+    if image is None:
+        return None
+    section, value, data = image
+    if section not in (".rodata", ".sdata2") or value % 8 or data == b"":
+        return None
+    if data == _UNSIGNED_BIAS:
+        return "unsigned"
+    if data == _SIGNED_BIAS:
+        return "signed"
+    return None
+
+
+def _elf_named_object(path: Path, name: str) -> tuple[str, int, bytes] | None:
+    """(section, value, bytes) of one defined global/weak STT_OBJECT, or None."""
+    b = path.read_bytes()
+    if len(b) < 52 or b[:7] != b"\x7fELF\x01\x02\x01":
+        raise ValueError(f"{path}: expected ELF32 big-endian object")
+    be = lambda o, n=4: int.from_bytes(b[o:o + n], "big")
+    kind, machine = be(16, 2), be(18, 2)
+    if kind != 1 or machine != 20:
+        raise ValueError(f"{path}: expected relocatable PowerPC object")
+    shoff, shentsize, shnum, shstrndx = be(0x20), be(0x2E, 2), be(0x30, 2), be(0x32, 2)
+    if shentsize != 40 or not shnum or shoff < 52 or shoff + shnum * 40 > len(b):
+        raise ValueError(f"{path}: invalid section table")
+    if shstrndx >= shnum:
+        raise ValueError(f"{path}: invalid section-name index")
+    hdrs = [struct.unpack_from(">10I", b, shoff + i * 40) for i in range(shnum)]
+    shstr_off, shstr_size = hdrs[shstrndx][4], hdrs[shstrndx][5]
+    if shstr_off + shstr_size > len(b):
+        raise ValueError(f"{path}: invalid section-name table")
+    shstr = b[shstr_off:shstr_off + shstr_size]
+    found = None
+    for header in hdrs:
+        _, typ, _, _, off, size, link, _, _, _ = header
+        if typ != 2:
+            continue
+        if link >= shnum or hdrs[link][1] != 3:
+            raise ValueError(f"{path}: invalid symbol string table")
+        stroff, strsize = hdrs[link][4], hdrs[link][5]
+        if stroff + strsize > len(b):
+            raise ValueError(f"{path}: invalid symbol string table")
+        strtab = b[stroff:stroff + strsize]
+        if size % 16 or off + size > len(b):
+            raise ValueError(f"{path}: invalid symbol table")
+        for o in range(off + 16, off + size, 16):
+            name_off, value, sym_size, info, _, shndx = struct.unpack_from(">IIIBBH", b, o)
+            if (info >> 4) not in (1, 2) or (info & 0xF) != 1 or shndx == 0 or shndx >= shnum:
+                continue
+            if name_off >= len(strtab):
+                raise ValueError(f"{path}: invalid symbol name")
+            end = strtab.find(b"\0", name_off)
+            if end < 0:
+                raise ValueError(f"{path}: unterminated symbol name")
+            if strtab[name_off:end].decode("utf-8") != name:
+                continue
+            if found is not None:
+                raise ValueError(f"{path}: duplicate object symbol {name}")
+            sec_name_off = hdrs[shndx][0]
+            if sec_name_off >= len(shstr):
+                raise ValueError(f"{path}: invalid section name")
+            sec_end = shstr.find(b"\0", sec_name_off)
+            section = shstr[sec_name_off:sec_end].decode("utf-8")
+            sec_off, sec_size = hdrs[shndx][4], hdrs[shndx][5]
+            if sym_size != 8 or value + sym_size > sec_size or sec_off + value + sym_size > len(b):
+                return None
+            found = (section, value, b[sec_off + value:sec_off + value + sym_size])
+    return found
 
 
 def _obj_path(u: dict) -> Path:
@@ -305,6 +423,7 @@ def elf_global_object_layout(path: Path) -> dict[str, tuple[str, int]]:
     hdrs = [tuple(be(shoff + i * shentsize + k) for k in (0, 4, 8, 16, 20, 24))
             for i in range(shnum)]
     shstr = b[hdrs[shstrndx][3]:hdrs[shstrndx][3] + hdrs[shstrndx][4]]
+    parts = {part.index: part for part in _elf_alloc_section_parts(path)}
     objects = {}
     for _, typ, _, off, size, link in hdrs:
         if typ != 2:
@@ -321,7 +440,7 @@ def elf_global_object_layout(path: Path) -> dict[str, tuple[str, int]]:
                 continue
             section = shstr[section_name:shstr.index(b"\0", section_name)].decode()
             name = strtab[name_off:strtab.index(b"\0", name_off)].decode()
-            objects[name] = (section, value)
+            objects[name] = (section, parts[shndx].base + value)
     return objects
 
 
@@ -361,6 +480,10 @@ def section_size_mismatch(u: dict) -> list[str]:
     a, b = elf_alloc_sections(split), elf_alloc_sections(obj)
     if ".text" in b:  # functions mwld will dead-strip (see extra_compiled_symbols)
         stripped = stripped_functions(u, split, obj)
+        if stripped and sum(part.name == ".text" for part in _elf_alloc_section_parts(obj)) > 1:
+            # Removing bytes can change the padding before a later contribution.
+            # A raw subtraction is not a proof of the resulting linker layout.
+            return [".text: cannot prove repeated-section layout after function stripping"]
         b[".text"] -= sum(stripped.values())
         # mwld drops a stripped function's exception-table entries with it
         for section, size in stripped_exception_bytes(obj, set(stripped)).items():
@@ -429,9 +552,16 @@ def _tail_has_named_symbols(path: Path, section: str, start: int, end: int) -> b
                 be(shoff + i * shentsize + 24)) for i in range(shnum)]
     _, _, stroff, strsize, _ = headers[shstrndx]
     strings = b[stroff:stroff + strsize]
-    section_index = next((i for i, (name, *_rest) in enumerate(headers)
-                          if strings[name:strings.index(b"\0", name)].decode() == section), None)
-    if section_index is None:
+    parts = [part for part in _elf_alloc_section_parts(path) if part.name == section]
+    previous_end = 0
+    for _, _, _, _, size, _, base in parts:
+        # Linker-created gaps have no stored bytes. Do not mistake synthetic
+        # zero-fill from elf_section_bytes for original padding evidence.
+        if previous_end < base and previous_end < end and base > start:
+            return True
+        previous_end = base + size
+    bases = {part.index: part.base for part in parts}
+    if not bases:
         return True
     for _, typ, off, size, link in headers:
         if typ != 2:
@@ -440,7 +570,8 @@ def _tail_has_named_symbols(path: Path, section: str, start: int, end: int) -> b
         strings = b[stroff:stroff + strsize]
         for pos in range(off, off + size, 16):
             info = b[pos + 12]
-            if be(pos + 14, 2) != section_index or info & 0xF in (3, 4):
+            section_index = be(pos + 14, 2)
+            if section_index not in bases or info & 0xF in (3, 4):
                 continue
             if info >> 4 not in (1, 2) and info & 0xF not in (1, 2):
                 continue
@@ -448,7 +579,7 @@ def _tail_has_named_symbols(path: Path, section: str, start: int, end: int) -> b
             name = strings[name_off:strings.index(b"\0", name_off)].decode()
             if not name or _DTK_GAP_RE.match(name):
                 continue
-            value, extent = be(pos + 4), max(1, be(pos + 8))
+            value, extent = bases[section_index] + be(pos + 4), max(1, be(pos + 8))
             if value < end and value + extent > start:
                 return True
     return False
@@ -476,17 +607,16 @@ def _is_alignment_pad(split: Path, section: str, start: int, split_size: int, si
 
 
 def elf_section_bytes(path: Path, section: str) -> bytes | None:
-    """Contents of `section` in a BE ELF32 .o, or None for NOBITS (.bss)."""
+    """Concatenated section contents, including alignment gaps; None for NOBITS."""
     b = path.read_bytes()
-    be = lambda o, n=4: int.from_bytes(b[o:o + n], "big")
-    shoff, shentsize, shnum, shstrndx = be(0x20), be(0x2E, 2), be(0x30, 2), be(0x32, 2)
-    strbase = be(shoff + shstrndx * shentsize + 16)
-    for i in range(shnum):
-        o = shoff + i * shentsize
-        name = b[strbase + be(o):b.index(b"\0", strbase + be(o))].decode()
-        if name == section:
-            return None if be(o + 4) == 8 else b[be(o + 16):be(o + 16) + be(o + 20)]
-    return None
+    parts = [part for part in _elf_alloc_section_parts(path) if part.name == section]
+    if not parts or any(part.type == 8 for part in parts):
+        return None
+    out = bytearray()
+    for _, _, _, off, size, _, base in parts:
+        out.extend(bytes(base - len(out)))
+        out.extend(b[off:off + size])
+    return bytes(out)
 
 
 def elf_function_sizes(path: Path, local: bool = False) -> dict[str, int]:
@@ -523,6 +653,12 @@ def stripped_exception_bytes(path: Path, names: set[str]) -> dict[str, int]:
     hdrs = [tuple(be(shoff + i * shentsize + k) for k in (0, 4, 16, 20, 24, 28)) for i in range(shnum)]
     shstr = hdrs[shstrndx][2]
     sec_name = lambda i: b[shstr + hdrs[i][0]:b.index(b"\0", shstr + hdrs[i][0])].decode()
+    # This discount parser only proves single-section exception records. Do not
+    # associate repeated extab/index sections by name: relocations identify an
+    # ELF section index. Leave their bytes counted until such proof is available.
+    if any(sum(sec_name(i) == name for i in range(shnum)) > 1
+           for name in ("extab", "extabindex")):
+        return {}
     index = next((i for i in range(shnum) if sec_name(i) == "extabindex"), None)
     extab = next((i for i in range(shnum) if sec_name(i) == "extab"), None)
     rela = next((i for i in range(shnum) if hdrs[i][1] == 4 and hdrs[i][5] == index), None)
@@ -588,6 +724,7 @@ def elf_function_order_by_section(path: Path) -> dict[str, list[str]]:
     hdrs = [tuple(be(shoff + i * shentsize + k) for k in (0, 4, 8, 16, 20, 24))
             for i in range(shnum)]
     shstr = b[hdrs[shstrndx][3]:hdrs[shstrndx][3] + hdrs[shstrndx][4]]
+    bases = {part.index: part.base for part in _elf_alloc_section_parts(path)}
     rows = []
     for _, typ, _, off, size, link in hdrs:
         if typ != 2:
@@ -603,9 +740,9 @@ def elf_function_order_by_section(path: Path) -> dict[str, list[str]]:
                 continue
             section = shstr[section_name:shstr.index(b"\0", section_name)].decode()
             name = strtab[name_off:strtab.index(b"\0", name_off)].decode()
-            rows.append((section, val, name))
+            rows.append((section, bases[shndx] + val, shndx, name))
     order: dict[str, list[str]] = {}
-    for section, _, name in sorted(rows):
+    for section, _, _, name in sorted(rows):
         order.setdefault(section, []).append(name)
     return order
 
@@ -734,6 +871,23 @@ def scan(write: bool) -> int:
                                 for s in u.get("sections") or []
                                 if int(s.get("size", 0) or 0) and s.get("fuzzy_match_percent", 0) != 100]
                     blocked[n] = reasons
+    pool_notes = []
+    for n, reasons in sorted(blocked.items()):
+        split = SPLIT_OBJ_DIR / (n[:-len(Path(n).suffix)] + ".o")
+        if not split.exists():
+            continue
+        for reason in reasons:
+            if not reason.startswith("missing "):
+                continue
+            symbol = reason.split(" ", 1)[1]
+            kind = conversion_pool_kind(split, symbol)
+            if kind:
+                pool_notes.append(
+                    f"  compiler-generated conversion pool ({kind}): {symbol} in {n}")
+    if pool_notes:
+        print("conversion-pool constants among missing symbols "
+              "(unreferenced ones can be localized; a reference from another split keeps the export):")
+        print("\n".join(pool_notes))
     regress = sorted(n for n in linked if not exact.get(n, False))
     keep = sorted(n for n in linked if exact.get(n, False))
     want_active = _force_active_names(set(keep + add), symbols) if write else []
@@ -893,7 +1047,7 @@ def _force_active_names(linked: set[str], symbols: list[tuple[str, int, str]]) -
     return want
 
 
-def _update_force_active(want: list[str], write: bool) -> None:
+def _update_force_active(want: list[str], write: bool) -> bool:
     have = _read_force_active()
     add = sorted(set(want) - set(have))
     drop = sorted(set(have) - set(want))
@@ -902,13 +1056,25 @@ def _update_force_active(want: list[str], write: bool) -> None:
         _write_force_active(want)
         print(f"  wrote {CONFIG_YML.relative_to(ROOT)} force_active block ({len(want)} names); "
               "dtk re-splits + regenerates ldscript FORCEACTIVE on the next ninja")
+    return bool(add or drop)
 
 
-def force_active(write: bool) -> int:
+def force_active(write: bool, check: bool = False) -> int:
+    """Compare the current linkset using fresh split inputs supplied by the build.
+
+    This is a metadata consistency check, not proof that a copied build directory
+    belongs to this revision or that removing retention entries preserves the DOL.
+    """
+    if not LINKED.is_file():
+        sys.exit(f"missing linked-unit inventory {LINKED}; no outputs written")
     snapshot, symbols = _read_symbol_inventory()
     want = _force_active_names(set(_read_list(LINKED)), symbols)
     _check_symbol_inventory(snapshot)
-    _update_force_active(want, write)
+    changed = _update_force_active(want, write)
+    if check and changed:
+        print("FAIL: force_active is out of date; regenerate from fresh build inputs "
+              "with `link_units.py force-active --write`, then rebuild and validate")
+        return 1
     return 0
 
 
@@ -1001,15 +1167,17 @@ def main() -> int:
     s.add_argument("--write", action="store_true")
     sub.add_parser("check")
     sub.add_parser("bisect")
-    f = sub.add_parser("force-active", help="tag unreferenced symbols of linked units in symbols.txt")
-    f.add_argument("--write", action="store_true")
+    f = sub.add_parser("force-active", help="synchronize unreferenced linked-unit symbols in config.yml")
+    mode = f.add_mutually_exclusive_group()
+    mode.add_argument("--write", action="store_true")
+    mode.add_argument("--check", action="store_true", help="fail on drift without writing files")
     a = ap.parse_args()
     if a.cmd == "scan":
         return scan(a.write)
     if a.cmd == "check":
         return check()
     if a.cmd == "force-active":
-        return force_active(a.write)
+        return force_active(a.write, a.check)
     return bisect()
 
 

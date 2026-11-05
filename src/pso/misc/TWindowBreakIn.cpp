@@ -1,8 +1,13 @@
 #include "types.h"
 #include "pso/misc/TWindowCtrlMain_8024674C.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TWindowBreakIn.h"
 #include "pso/misc/TWindowDD.h"
+
+#pragma push
+#pragma readonly_strings on
+const char *lbl_805D3890 = "TWindowBreakIn";
+#pragma pop
 
 struct RecoveredGlobal_80246C58_lbl_804CE1B8 {
     s32 value;
@@ -18,7 +23,6 @@ extern "C" {
 u8 * get_window_layout_position(s32);
 extern RecoveredGlobal_80246C58_lbl_804CE1B8 window_break_in_layout;
 extern s32 __vt__14TWindowBreakIn[];
-extern s32 lbl_805D3890;
 s32 draw_visible_window_entries(s32, s32, s32);
 void __dl__7TObjectFPv(void *);
 s32 draw_default_entry__9TWindowDDFl();

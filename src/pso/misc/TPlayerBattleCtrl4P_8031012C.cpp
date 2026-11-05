@@ -1,5 +1,4 @@
 #include "pso/system/TSetEvtDestroy.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/item/TItem.h"
 #include "types.h"
 #include "pso/misc/TPlayerBattleCtrl4P.h"
@@ -106,6 +105,7 @@ extern "C" {
 s32 *get_split_screen_battle_rankings(void);
 void clear_split_screen_battle_window_slots(T_803102A4 *self);
 extern void *TPlayerBattleCtrl4P__instance;
+void TWindow__close(u8 *arg0);
 void *get_player_by_client_id(s32);
 void *__nw__7TObjectFUl(u32);
 void *TWindowDuelResult__ct(void *, int);
@@ -207,7 +207,7 @@ s32 TPlayerBattleCtrl4P::close_windows_on_button() {
         if (get_player_by_client_id(i) != 0) {
             if (self->win[i] != NULL) {
                 if (TWindowShortListCtrl__check_controller_button(controller_input_state[get_map_id__13TRaderMapCoreFv()].sub, 2) != 0) {
-                    ((TWindowBase *)(self->win[i]))->close();
+                    TWindow__close((u8 *)self->win[i]);
                     self->win[i] = 0;
                 } else {
                     r = 0;
@@ -223,7 +223,7 @@ void TPlayerBattleCtrl4P::close_player_windows() {
     s32 i;
     for (i = 0; i < 4; i++) {
         if (o->win[i] != 0) {
-            ((TWindowBase *)(o->win[i]))->close();
+            TWindow__close((u8 *)o->win[i]);
             o->win[i] = 0;
         }
     }
@@ -798,11 +798,11 @@ void TPlayerBattleCtrl4P::shuffle_order() {
         o->order[i] = order[i];
     }
     if (this->intro_window != NULL) {
-        ((TWindowBase *)this->intro_window)->close();
+        TWindow__close((u8 *)this->intro_window);
         this->intro_window = NULL;
     }
     if (this->menu_window != NULL) {
-        ((TWindowBase *)this->menu_window)->close();
+        TWindow__close((u8 *)this->menu_window);
         this->menu_window = NULL;
     }
     close_player_windows();
@@ -898,3 +898,5 @@ void TPlayerBattleCtrl4P::init_battle() {
 }
 
 #undef get_player_by_client_id
+
+RecoveredGlobal_80310300_TPlayerBattleCtrl4P__data_80542E90 split_screen_battle_rankings;

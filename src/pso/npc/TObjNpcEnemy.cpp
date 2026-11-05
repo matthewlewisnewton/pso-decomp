@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/boss/TBoss3VoloptHiraisin.h"
@@ -9,6 +10,7 @@
 #include "pso/player/TObjChara.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/npc/TObjNpcEnemy.h"
+#include "pso/npc/NpcModelEntry.h"
 #include "pso/object/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/render/render_util.h"
@@ -114,14 +116,14 @@ s16 *TObjNpcEnemy::insert_slot_by_id(s16 arg0) {
     if (i < 0xF) {
         memmove(e + 1, e, (0xF - i) * 0x24);
     }
-    ((TObjNpcEnemy *)e)->reset_anim_fields();
+    ((NpcModelEntry *)e)->reset();
     return (s16 *)e;
 }
 
 void TObjNpcEnemy::reset_all_anim_fields() {
     s32 i;
     for (i = 0; i < 0x10; i++) {
-        ((TObjNpcEnemy *)(&((Ent_802D732C *)&TObjNpcEnemy__entry_table)[i]))->reset_anim_fields();
+        ((NpcModelEntry *)(&((Ent_802D732C *)&TObjNpcEnemy__entry_table)[i]))->reset();
     }
 }
 
@@ -178,7 +180,7 @@ void TObjNpcEnemy::draw_debug_info() {
     debug_printf_at(0x130018, lbl_80472600);
     debug_printf_at(0x13001A, lbl_80472610);
     TObjNpcEnemy::set_global_count(0xF0F0F0FF);
-    p = TObjNpcEnemy::get_entry_by_index((s16) this->rotation_x);
+    p = TObjNpcEnemy::get_entry_by_index((s16) this->rotation.pitch);
     if (p != *(s16 * *)&this->m_3b8) {
         ((TObjNpcEnemy *)arg0)->set_npc_data(p);
     }
@@ -196,13 +198,13 @@ void TObjNpcEnemy::draw_debug_info() {
         break;
     case 1:
     case 3:
-        if (p[0x10] <= this->rotation_z || this->rotation_z < 0) {
+        if (p[0x10] <= this->rotation.roll || this->rotation.roll < 0) {
             TObjNpcEnemy::set_global_count(0xFF0000FF);
             debug_printf_at(0x24001A, lbl_80472620);
             TObjNpcEnemy::set_global_count(0xF0F0F0FF);
             this->requested_action = 0;
         } else {
-            this->requested_action = this->rotation_z;
+            this->requested_action = this->rotation.roll;
         }
         ((TObjMotion *)arg0)->advance_animation();
         break;
@@ -247,12 +249,12 @@ void TObjNpcEnemy::render() {
         if (((TObjNpcEnemy *)arg0)->sub_802D7444() != 0) {
             model_render_flags |= 1;
         }
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)(this->texlist));
         push_matrix_from(0);
         translate_matrix_vec3(0, ((u8 *)&this->position));
         temp_r4 = (unsigned char *) (this->m_3b8);
         translate_matrix(0, (int)temp_r4, (f32)lbl_805DE7D8, (f32) (*(f32 *)((s8 *)temp_r4 + 4)), (f32)lbl_805DE7D8);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         update_state();
         pop_matrix();
         if (((TObjNpcEnemy *)arg0)->sub_802D7444() != 0) {
@@ -285,14 +287,14 @@ u8 *TObjNpcEnemy__ct(u8 *arg0, s32 arg1, s32 arg2) {
     *(s32 **)((s8 *)arg0 + 0x18) = &(*(RecoveredGlobal_802D78A0___vt__12TObjNpcEnemy *)&__vt__12TObjNpcEnemy).value;
     *(s32 *)((s8 *)arg0 + 0) = (s32) TObjNpcEnemy_class_name;
     ((TObjNpcEnemy *)(arg0))->apply_set_data((void *)arg2);
-    ((TObjPlayer *)arg0)->init_position_vectors();
+    ((TObjChara *)arg0)->initialize_position_copies();
     ((TObjNpcEnemy *)(arg0))->apply_set_params(0, 1);
     ((TObjNpcEnemy *)arg0)->movementParameters = &npc_movement_parameters.value;
     ((TObjChara *)arg0)->set_motion_params(&npc_default_battle_stats.value);
     init_collision_body_parts(arg0, &TObjNpcEnemy__collision_body_parts.value, 1);
     ((TObjPlayer *)arg0)->register_object_by_id();
     ((TObjEnemy *)arg0)->update_prev_position();
-    ((TBoss3VoloptHiraisin *)arg0)->copy_position();
+    ((TObjChara *)arg0)->copy_body_to_center();
     ((TObjNpcEnemy *)arg0)->set_npc_data((void *)((int) (((s32)TObjNpcEnemy::get_entry_by_index((s16)((int) ((s16) *(s32 *)((s8 *)arg0 + 0x5C))))))));
     return arg0;
 }
@@ -312,3 +314,5 @@ void * TObjNpcEnemy__create(void *arg0) {
 }
 
 }
+
+RecoveredGlobal_802D72E4_TObjNpcEnemy__data_80540FF0 TObjNpcEnemy__entry_table;

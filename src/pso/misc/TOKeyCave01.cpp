@@ -1,4 +1,7 @@
+#include "pso/system/ArrayAllocation.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/TMainTask.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/TProtocol.h"
@@ -89,12 +92,12 @@ void TOKeyCave01::trigger_deactivate_sound() {
     if (enable_v2_features == 1 && (get_current_floor_area() == AREA_BATTLE1 || get_current_floor_area() == AREA_BATTLE2)) {
         sound = key_cave01_switch_sounds[get_current_floor_area()];
         if (sound >= 0) {
-            play_sound_effect(sound, &position, 0, 0);
+            play_sound_effect((s32)(sound), (const Vec *)(&position), 0, 0);
         }
     } else {
         sound = key_cave01_switch_sounds[get_current_floor_area()];
         if (sound >= 0) {
-            play_sound_effect(sound, &position, 0, 0);
+            play_sound_effect((s32)(sound), (const Vec *)(&position), 0, 0);
         }
     }
 }
@@ -104,12 +107,12 @@ void TOKeyCave01::trigger_activate_sound() {
     if (enable_v2_features == 1 && (get_current_floor_area() == AREA_BATTLE1 || get_current_floor_area() == AREA_BATTLE2)) {
         sound = key_cave01_switch_sounds[get_current_floor_area()];
         if (sound >= 0) {
-            play_sound_effect(sound, &position, 0, 0);
+            play_sound_effect((s32)(sound), (const Vec *)(&position), 0, 0);
         }
     } else {
         sound = key_cave01_switch_sounds[get_current_floor_area()];
         if (sound >= 0) {
-            play_sound_effect(sound, &position, 0, 0);
+            play_sound_effect((s32)(sound), (const Vec *)(&position), 0, 0);
         }
     }
 }
@@ -167,10 +170,10 @@ void TOKeyCave01::render() {
     u32 flags;
 
     if (update_object_view_visibility(view_range, model_radius) != 0) {
-        TObjFish::set_global_param(TOKeyCave01__texture_lists[is_on]);
+        set_current_texture_list((GinjaTextureList *)(TOKeyCave01__texture_lists[is_on]));
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
+        rotate_matrix_y(NULL, this->rotation.yaw);
         object = (NJS_OBJECT *)model;
         post_translate_matrix(object->pos);
         draw_ginja_model((s32)object->model);
@@ -216,12 +219,12 @@ void TOKeyCave01::free_objects() {
     if (TOKeyCave01__texture_lists != NULL) {
         TObjPlayer::free_if_valid(TOKeyCave01__texture_lists[0]);
         if (TOKeyCave01__texture_lists != NULL) {
-            mem_free(TOKeyCave01__texture_lists);
+            ::operator delete[](TOKeyCave01__texture_lists);
             TOKeyCave01__texture_lists = NULL;
         }
     }
     if (TOKeyCave01__resource_bundle != NULL) {
-        TLobby__sub_8001FE7C(TOKeyCave01__resource_bundle, 1);
+        delete (BmlResource *)(TOKeyCave01__resource_bundle);
         TOKeyCave01__resource_bundle = NULL;
     }
 }
@@ -231,23 +234,17 @@ void TOKeyCave01::load_resources() {
     BmlResource *resource;
 
     if (TContainerAncient01::is_global_state_in_table() == 1 || area == AREA_SEABED_UPPER || area == AREA_SEABED_LOWER) {
-        resource = (BmlResource *)::operator new(0x440);
-        if (resource != NULL) {
-            resource = load_resource_from_descriptor(resource, 1, &fs_obj_key_jungle_resource_descriptor, 0, 0, 0);
-        }
+        resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&fs_obj_key_jungle_resource_descriptor), 0, 0, (void *)(0));
         TOKeyCave01__resource_bundle = resource;
-        TOKeyCave01__texture_lists = (s32 *)mem_alloc(8);
+        TOKeyCave01__texture_lists = (s32 *)::operator new[](8);
         TOKeyCave01__texture_lists[0] = (s32)load_gvm_texture_file((s32) "fs_obj_key_jungle_red.gvm");
         TOKeyCave01__texture_lists[1] = TOKeyCave01__resource_bundle->models[0].m_c;
         key_cave_render_state = 1;
         return;
     }
-    resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_fs_obj_do_doa_panel_resource_descriptor, 0, 0, 0);
-    }
+    resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&bm_fs_obj_do_doa_panel_resource_descriptor), 0, 0, (void *)(0));
     TOKeyCave01__resource_bundle = resource;
-    TOKeyCave01__texture_lists = (s32 *)mem_alloc(8);
+    TOKeyCave01__texture_lists = (s32 *)::operator new[](8);
     TOKeyCave01__texture_lists[0] = (s32)load_gvm_texture_file((s32) "fs_obj_do_doa_panelr.gvm");
     TOKeyCave01__texture_lists[1] = TOKeyCave01__resource_bundle->models[0].m_c;
     key_cave_render_state = 0;

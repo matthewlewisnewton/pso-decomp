@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/TPlyCharData.h"
 #include "pso/misc/TWindowCtrlMain.h"
 #include "pso/misc/TKeyBoardControl_80131C58.h"
@@ -15,7 +16,10 @@
 #include "pso/object/TObjCMMainMenu.h"
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/misc/TCharaMaking.h"
+#include "pso/system/BmlResourceLoader.h"
 #include "pso/misc/TLobby.h"
+
+#pragma readonly_strings on
 
 
 struct RecoveredGlobal_8028EC24_lbl_8051C07C {
@@ -31,15 +35,12 @@ struct RecoveredGlobal_8028EBCC_TObjCMMainMenu__data_804DB9C8 {
 extern RecoveredGlobal_8028EC24_lbl_8051C07C character_creation_name_buffer;
 extern RecoveredGlobal_8028EBCC_TObjCMMainMenu__data_804DB9C8 TObjCMMainMenu__data_804DB9C8;
 extern "C" {
-void *load_resource_from_descriptor(void *, s32, s32 *, s32, s32, s32);
 u8 *TCameraCtrl__ct(u8 *arg0, void *parent);
 s32 init_menu_scene_lights(s32 *, s32);
 void *__nw__7TObjectFUl(s32);
 s32 init_and_create__15TChCrCharSelectFv(s32);
 }
-extern s32 lbl_80451290[];
 extern s32 default_scene_light_config[];
-extern s32 creation_menu_resource_descriptor[];
 extern s32 tl_camera;
 extern s32 tl_03;
 extern void *creation_menu_main_obj;
@@ -65,16 +66,13 @@ void init_creation_menu_scene(void) {
     TKeyBoardControl__sub_80131F60();
     TWindowCtrlMain::reset_all((void*)1);
     p = (void *)new TWindowCtrlMain();
-    p = ::operator new(0x440);
-    if (p != NULL) {
-        p = load_resource_from_descriptor(p, 1, creation_menu_resource_descriptor, 0, 0, 0);
-    }
+    p = new BmlResource(1, (BmlResourceDescriptor *)(&creation_menu_resource_descriptor), 0, 0, (void *)(0));
     creation_menu_main_obj = p;
     if (p != NULL) {
         fn_80291178();
         fn_8028D940();
         load_floor_sound_bank(0);
-        play_area_music((char *)lbl_80451290);
+        play_area_music("CHARA.adx");
         if (TObjCMMainMenu::get_current_char_flag() != 0) {
             TObjCMMainMenu__sub_8028EC34();
             TObjCMMainMenu__sub_8028EC24();

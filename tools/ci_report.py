@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-"""Fetch the objdiff report CI already made for a master commit, so nothing rebuilds it.
+"""Fetch the objdiff report CI already made for a main commit, so nothing rebuilds it.
 
 Usage: python tools/ci_report.py --sha COMMIT --out build/GPOE8P/baseline.json
 
 CI keeps each build's report as the artifact `report-<tree hash>`. A report counts for a
 commit only when it was built from that commit's tree by a run that can vouch for it:
   - a successful ci.yml run of the merged pull request's final head (the PR's build of its
-    merge commit is master's build when the PR merged with master unchanged), or
-  - a successful progress.yml run of that very master commit.
+    merge commit is main's build when the PR merged with main unchanged), or
+  - a successful progress.yml run of that very main commit.
 Any other run could name an artifact after the tree, so its report is ignored.
 
 Exits 0 with the report written to --out, or 1 when no trusted report exists.
@@ -56,7 +56,7 @@ def trusted(run, sha, merged_heads):
     if run.get("path") == ".github/workflows/ci.yml":
         return run.get("event") == "pull_request" and run.get("head_sha") in merged_heads
     if run.get("path") == ".github/workflows/progress.yml":
-        return (run.get("event") in ("push", "workflow_dispatch") and run.get("head_branch") == "master"
+        return (run.get("event") in ("push", "workflow_dispatch") and run.get("head_branch") == "main"
                 and run.get("head_sha") == sha)
     return False
 
@@ -86,7 +86,7 @@ def fetch(repo, sha, token):
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--sha", required=True, help="master commit")
+    parser.add_argument("--sha", required=True, help="main commit")
     parser.add_argument("--out", required=True, type=Path, help="where to write report.json")
     parser.add_argument("--repo", default=os.environ.get("GITHUB_REPOSITORY"))
     args = parser.parse_args()

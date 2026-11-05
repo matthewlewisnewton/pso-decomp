@@ -1,8 +1,9 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TWindowCtrlMain_8024674C.h"
 #include "pso/misc/TWindowSubShortMail_80246CB8.h"
 #include "pso/player/TObjPlayer_8023E480.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TWindowCtrlMain.h"
 #include "pso/misc/TWindowFukidasi.h"
 #include "pso/misc/TLanguage.h"
@@ -15,17 +16,17 @@
 struct Obj_80246948 { u8 pad[0x2c]; u32 f2c; };
 
 extern s32 lbl_8044E658[];
-extern s32 lbl_8044E688[];
-extern s32 hud_palette_texture_filename[];
-extern s32 lbl_8044E6B0[];
-extern s32 lbl_8044E6C4[];
-extern s32 lbl_8044E6D8[];
-extern s32 lbl_8044E6F0[];
-extern s32 lbl_8044E708[];
-extern s32 lbl_8044E720[];
-extern s32 lbl_8044E734[];
-extern s32 lbl_8044E748[];
-extern s32 lbl_8044E758[];
+extern const char lbl_8044E688[];
+extern const char hud_palette_texture_filename[];
+extern const char lbl_8044E6B0[];
+extern const char lbl_8044E6C4[];
+extern const char lbl_8044E6D8[];
+extern const char lbl_8044E6F0[];
+extern const char lbl_8044E708[];
+extern const char lbl_8044E720[];
+extern const char lbl_8044E734[];
+extern const char lbl_8044E748[];
+extern const char lbl_8044E758[];
 extern s32 f256_hyouji_texlist[];
 extern u32 lbl_805D63F0;
 extern s16 window_ui_theme_index;
@@ -53,10 +54,10 @@ void load_hud_palette_textures(void) {
     TLanguage::draw_string((void *)lbl_8044E720, (void *)sp8, 1);
     TLanguage::draw_string((void *)lbl_8044E734, (void *)sp8, 0x4A);
     TLanguage::draw_string((void *)lbl_8044E748, (void *)sp8, 0x43);
-    TLobby::tmp_buf_release((const char *)lbl_8044E658);
+    ((TLobby *)lbl_8044E658)->tmp_buf_release();
     TLobby__sub_8023E554((s32)lbl_8044E758, (s32)f256_hyouji_texlist);
     lbl_805D63F0 = (u32)f256_hyouji_texlist;
-    TObjFish::set_global_param((s32)((void *)f256_hyouji_texlist));
+    set_current_texture_list((GinjaTextureList *)(((void *)f256_hyouji_texlist)));
     TLanguage::set_entry_index(0, 0x40);
     TLanguage::set_entry_index(1, 0x41);
     TLanguage::set_entry_index(2, 0x42);
@@ -73,7 +74,21 @@ void load_hud_palette_textures(void) {
     window_ui_theme_index = 0;
 }
 
-u8 TWindowBase::sub_80246948() {
+// The HUD texture archives, defined after their use so load_hud_palette_textures
+// addresses each one on its own.
+__declspec(section ".rodata") const char lbl_8044E688[] = "f256_hyouji_a.gvp";
+__declspec(section ".rodata") const char hud_palette_texture_filename[] = "f256_hyouji_b.gvp";
+__declspec(section ".rodata") const char lbl_8044E6B0[] = "f256_hyouji_c.gvp";
+__declspec(section ".rodata") const char lbl_8044E6C4[] = "b256_mainmenu.gvp";
+__declspec(section ".rodata") const char lbl_8044E6D8[] = "f256_actionpallet_a.gvp";
+__declspec(section ".rodata") const char lbl_8044E6F0[] = "f256_actionpallet_b.gvp";
+__declspec(section ".rodata") const char lbl_8044E708[] = "f256_actionpallet_c.gvp";
+__declspec(section ".rodata") const char lbl_8044E720[] = "r256_symparts.gvp";
+__declspec(section ".rodata") const char lbl_8044E734[] = "f256_duelcount.gvp";
+__declspec(section ".rodata") const char lbl_8044E748[] = "f256_carsol.gvp";
+__declspec(section ".rodata") const char lbl_8044E758[] = "f256_hyouji";
+
+u8 TUnk_804CE018::sub_80246948() {
     Obj_80246948 *self = (Obj_80246948 *)this;
     return !(self->f2c & 1);
 }
@@ -93,14 +108,14 @@ void TWindowSubStatusDisp::update_entry_visibility() {
     u32 temp_r25;
     u32 temp_r24;
     s32 arg0 = (s32)this;
-    temp_r31 = ((TWindowBase *)arg0)->get_array_entry(7);
-    temp_r30 = ((TWindowBase *)arg0)->get_array_entry(6);
-    temp_r29 = ((TWindowBase *)arg0)->get_array_entry(5);
-    temp_r28 = ((TWindowBase *)arg0)->get_array_entry(4);
-    temp_r27 = ((TWindowBase *)arg0)->get_array_entry(3);
-    temp_r26 = ((TWindowBase *)arg0)->get_array_entry(2);
-    temp_r25 = ((TWindowBase *)arg0)->get_array_entry(1);
-    temp_r24 = ((TWindowBase *)arg0)->get_array_entry(0);
+    temp_r31 = (s32)((TUnk_804CE018 *)arg0)->get_array_entry(7);
+    temp_r30 = (s32)((TUnk_804CE018 *)arg0)->get_array_entry(6);
+    temp_r29 = (s32)((TUnk_804CE018 *)arg0)->get_array_entry(5);
+    temp_r28 = (s32)((TUnk_804CE018 *)arg0)->get_array_entry(4);
+    temp_r27 = (s32)((TUnk_804CE018 *)arg0)->get_array_entry(3);
+    temp_r26 = (s32)((TUnk_804CE018 *)arg0)->get_array_entry(2);
+    temp_r25 = (s32)((TUnk_804CE018 *)arg0)->get_array_entry(1);
+    temp_r24 = (s32)((TUnk_804CE018 *)arg0)->get_array_entry(0);
     if (is_guild_card_receive_active() != 0) {
         if (temp_r31 != 0U) {
             ((TWindowSubStatusDisp *)temp_r31)->clear_visible_flag();

@@ -1,6 +1,6 @@
 #include "types.h"
 #include "pso/TMainTask.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TUnk_804CE018.h"
 #include "pso/ui/TAdEp3Exist.h"
 #include "pso/quest/TQuestListVM_8007EAF8.h"
 #include "pso/ui/TAdAgreementBaseGC.h"
@@ -10,13 +10,28 @@
 
 #include "pso/TLevelSelect.h"
 #include "pso/misc/TLobby.h"
+#include "pso/ui/TAdEnterSerialAccessGC.h"
 #include "pso/ui/TAdScrollWinGC.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
+
+#pragma readonly_strings on
+
+const f32 lbl_8047B8A8[2] = { 89.0f, 394.0f };
+const f32 lbl_8047B8B0[2] = { 462.0f, 18.0f };
+const char *TAdEp3Exist__name = "TAdEp3Exist";
+const f32 lbl_8047B8C4[2] = { 85.0f, 384.0f };
+const f32 lbl_8047B8CC[2] = { 470.0f, 32.0f };
+
+extern "C" void draw_message_window__11TAdEp3ExistFl(void);
+
+void TAdEp3Exist::vfunc_6() {
+    TAdEnterSerialAccessGC::create_callback((void *)lbl_8047B8C4, (void *)lbl_8047B8CC, (void *)draw_message_window__11TAdEp3ExistFl);
+}
 
 struct Obj_8036F4DC { u8 pad0[8]; u8 cnt; u8 bits; };
 
 struct Ep3_8036F354 {
-    s32 x0;
+    const char *name;
     u8 pad4[0x18 - 0x4];
     void *vt;
     u32 win1C;
@@ -77,13 +92,11 @@ int reset_and_set_mode__21TAdMultiChgGameModeGCFv(void*);
 void __ct__9TAdBackGCFv(void *, void *);
 void __ct__12TAdBackTxtGCFv(void *, void *);
 u32 __ct__14TAdSelectCurGCFv(void *, TObject *, void *, void *);
-extern u8 lbl_8047B8A8[];
-extern u8 lbl_8047B8B0[];
 extern s32 __vt__11TAdEp3Exist[];
-extern s32 lbl_805D4500;
 void *TAdEp3Exist__ct(Ep3_8036F354 *o);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, s32);
 s32 TWindowShortListCtrl__check_controller_button(void *, s32);
+void TWindow__close(u8 *arg0);
 int TAdEp3Exist__sub_8036F0AC(void* p);
 extern u8 controller_input_state[];
 extern u8 controller_physical_port_bank[];
@@ -97,7 +110,7 @@ int request_transition__21TAdMultiChgGameModeGCFv(void*);
 
 void TAdEp3Exist::draw_message_window(s32 arg1) {
     s32 arg0 = (s32)this;
-    ((TWindowBase *)arg0)->draw_window_frame((void *) (arg1));
+    ((TUnk_804CE018 *)arg0)->draw_window_frame((void *) (arg1));
     render_status_line__15TAdSubPlyItemGCFi((int) (get_localized_text_entry(0x2C, 0xA)), -1, (f32) (lbl_805E0440 - (f32) (calc_text_width((char *)(get_localized_text_entry(0x2C, 0xA))) >> 1U)), (f32) (lbl_805E0444), (f32) (lbl_805E0448));
 }
 
@@ -140,7 +153,7 @@ void TAdEp3Exist::run_task() {
         break;
     case 2:
         if (o->win != 0) {
-            ((TWindowBase *)o->win)->close();
+            TWindow__close((u8 *)o->win);
             o->win = 0;
         }
         close_window();
@@ -180,7 +193,7 @@ void *TAdEp3Exist__ct(Ep3_8036F354 *o) {
     bool go;
     __ct__7TObjectFP7TObject();
     o->vt = __vt__11TAdEp3Exist;
-    o->x0 = lbl_805D4500;
+    o->name = TAdEp3Exist__name;
     o->win1C = 0;
     o->cur20 = 0;
     o->x24 = 0;
@@ -221,10 +234,10 @@ void *TAdEp3Exist__ct(Ep3_8036F354 *o) {
     o->win1C = r;
     r = (u32)__nw__7TObjectFUl(0x708);
     if (r != 0) {
-        r = __ct__14TAdSelectCurGCFv((void *)r, tl_clipout, lbl_8047B8A8, lbl_8047B8B0);
+        r = __ct__14TAdSelectCurGCFv((void *)r, tl_clipout, (void *)lbl_8047B8A8, (void *)lbl_8047B8B0);
     }
     o->cur20 = r;
-    ((TLevelSelect *)(o->cur20))->add_item_rect(lbl_8047B8A8);
+    ((TLevelSelect *)(o->cur20))->add_item_rect((void *)lbl_8047B8A8);
     fn_80329BAC((void *)o->cur20);
     ((TLobby *)(o->cur20))->set_ad_field(0);
     return o;

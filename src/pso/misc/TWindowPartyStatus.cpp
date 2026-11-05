@@ -1,6 +1,7 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TWindowSimpleStatus.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TUnk_804CE018.h"
 
 #include <stddef.h>
 #include "pso/misc/TWindowPartyStatus.h"
@@ -82,7 +83,7 @@ void TWindowPartyStatus::draw_background(u8 *arg1) {
     f32 temp_f6;
     temp_f31 = lbl_805DF1EC / this->m_54;
     begin_screen_draw(1);
-    TObjFish::set_global_param(lbl_805D63F0);
+    set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
     set_draw_texture_and_color(0xB, (*(s32 *)((s8 *)arg1 + 0x34)));
     temp_f2 = *(f32 *)((s8 *)arg1 + 0x10);
     stack.sp8 = temp_f2;
@@ -118,8 +119,8 @@ void TWindowPartyStatus::run_task() {
     update_status_help_item((arg0));
     ((TWindowSimpleStatus *)arg0)->update_status_icons((void *)(get_window_layout_position(0xAC)));
     ((TWindowDD *)arg0)->initialize_subwindow();
-    ((TWindowBase *)arg0)->update_fade();
-    ((TWindowBase *)arg0)->update_window_entry_list((void *)(arg0 + 0x24));
+    ((TUnk_804CE018 *)arg0)->update_fade();
+    ((TUnk_804CE018 *)arg0)->update_window_entry_list((void *)(arg0 + 0x24));
     ((TWindowSimpleStatus *)arg0)->apply_random_shake();
 }
 

@@ -1,4 +1,7 @@
+#include "pso/player/demo_mode.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include <stdlib.h>
 #include "pso/TMainTask.h"
 #include "pso/TParticleCtrl.h"
@@ -45,12 +48,12 @@ void TORainbowCave01::render() {
     u32 flags;
     if (update_object_view_visibility(view_range, model_radius) != 0 && -1.0f < fade) {
         TParticleCtrl::begin_effect_render();
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         flags = model_render_flags;
         saved_model_render_flags = flags;
         model_render_flags = flags | 0x20;
         color.b = color.g = color.r = 0.0f;
-        if (TObjPlayer::check_demo_mode() == 1) {
+        if (check_demo_mode() == 1) {
             color.a = 0.0f;
         } else {
             color.a = fade;
@@ -58,7 +61,7 @@ void TORainbowCave01::render() {
         set_constant_material(&color);
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
+        rotate_matrix_y(NULL, this->rotation.yaw);
         scale_current_matrix(&model_scale.x);
         draw_ginja_object(model);
         pop_matrix();
@@ -93,16 +96,13 @@ void *TORainbowCave01::create(void *set_data) {
 
 void TORainbowCave01::free_static_data() {
     if (TORainbowCave01__bml_resource != NULL) {
-        TLobby__sub_8001FE7C(TORainbowCave01__bml_resource, 1);
+        delete (BmlResource *)(TORainbowCave01__bml_resource);
         TORainbowCave01__bml_resource = NULL;
     }
 }
 
 void TORainbowCave01::load_resource_instance() {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &abeniji_fe_obj001_niji_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&abeniji_fe_obj001_niji_resource_descriptor), 0, 0, (void *)(0));
     TORainbowCave01__bml_resource = resource;
 }
 

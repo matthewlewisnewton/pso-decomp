@@ -1,3 +1,5 @@
+#include "pso/system/ArrayAllocation.h"
+#include "pso/player/demo_mode.h"
 #include "pso/render/render_util.h"
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
@@ -70,7 +72,6 @@ void fn_8017866C(void *, s32, u16);
 void run_task__17TOSymbolchatColliFv(Obj_80178890 *self);
 u32 prs_decompress_buffer(s32 arg0, s32 arg1);
 s32 set_stream_and_load_file__6TLobbyFi(s32);
-void *mem_alloc(u32 size);
 extern u32 symbolchat_colli_param_table[];
 extern s32 lbl_805D3190;
 extern int symbol_chat_colli_entries;
@@ -81,7 +82,6 @@ u8 is_current_floor_switch_set(u16);
 s32 free_collision_body_parts(void *);
 s32 __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
-void mem_free(void *p);
 
 s32 TOSymbolchatColli::get_state() {
     if (is_current_floor_switch_set(this->m_37c) == 1) {
@@ -145,7 +145,7 @@ void TOSymbolchatColli::init_collision_params() {
 
 void TOSymbolchatColli::render() {
     u8 *arg0 = (u8 *)this;
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         NJS_ARGB color;
         color.a = lbl_805DBA2C;
         color.r = lbl_805DBA30;
@@ -184,12 +184,12 @@ void *TOSymbolchatColli::create(void *arg0) {
     return o;
 }
 
-void TOSymbolchatColli::free_rock() { mem_free((void *)symbol_chat_colli_entries); symbol_chat_colli_entries = 0; }
+void TOSymbolchatColli::free_rock() { ::operator delete[]((void *)symbol_chat_colli_entries); symbol_chat_colli_entries = 0; }
 
 void TOSymbolchatColli::load_symbol_chat_data() {
     s32 h;
     s32 i;
-    symbol_chat_colli_entries = (int)mem_alloc(0x840);
+    symbol_chat_colli_entries = (int)::operator new[](0x840);
     h = set_stream_and_load_file__6TLobbyFi(lbl_805D3190);
     if (h != 0) {
         prs_decompress_buffer(h, symbol_chat_colli_entries);

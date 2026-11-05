@@ -1,7 +1,7 @@
 #include "types.h"
 #include "pso/misc/TWindowDD_803488A8.h"
 #include "pso/misc/TWindowDD_WS_String.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TWindowDD.h"
 
 struct Src_80348A9C { f32 x; f32 y; };
@@ -18,7 +18,7 @@ extern const f32 TWindowDD__data_805DFCD8;
 extern f32 lbl_805DFCDC;
 extern const f32 lbl_805DFCE0;
 extern const f32 lbl_805DFCE4;
-extern Src_80348A9C TWindowDD__data_805434E8[][8];
+Src_80348A9C TWindowDD__data_805434E8[7][8];
 extern s32 *TWindowDD__player_name_buffers;
 extern s32 *TWindowDD__data_805D6E28;
 extern s16 *lbl_805D6E34;
@@ -151,7 +151,7 @@ extern s32 twindowdd_entry_count;
 
 #pragma push
 #pragma fp_contract on
-void TWindowBase::calc_inner_rect(u8 *arg1) {
+void TUnk_804CE018::calc_inner_rect(u8 *arg1) {
     u8 *arg0 = (u8 *)this;
     f32 y0;
     f32 ky;

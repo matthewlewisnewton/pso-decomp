@@ -1,3 +1,5 @@
+#include "pso/player/demo_mode.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/object/TObjCurtainLobby.h"
 #include "pso/TMainTask.h"
@@ -15,8 +17,6 @@
 #pragma readonly_strings on
 
 extern "C" {
-void TLobby__sub_8001FE7C(BmlResource *resource, s32 del);
-BmlResource *load_resource_from_descriptor(void *resource, s32 kind, BmlResourceDescriptor *descriptor, s32, s32, s32);
 }
 
 __declspec(section ".sdata") const char *bm_obj_lobby_curtain_motion_names[1] = { NULL };
@@ -42,10 +42,10 @@ void TObjCurtainLobby::demo_step() {}
 void TObjCurtainLobby::render() {
     if (state != 0 && (u32)texlist != 0) {
         TParticleCtrl::begin_effect_render();
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
+        rotate_matrix_y(NULL, this->rotation.yaw);
         if (state != 3) {
             scale_matrix(NULL, scale, 1.0f, scale);
         }
@@ -56,7 +56,7 @@ void TObjCurtainLobby::render() {
 }
 
 void TObjCurtainLobby::run_task() {
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         demo_step();
     }
     switch (state) {
@@ -94,16 +94,13 @@ void *TObjCurtainLobby::create(void *set_data) {
 
 void TObjCurtainLobby::free_resources() {
     if (model_resource != NULL) {
-        TLobby__sub_8001FE7C(model_resource, 1);
+        delete (BmlResource *)(model_resource);
         model_resource = NULL;
     }
 }
 
 void TObjCurtainLobby::load_resources() {
-    void *resource = ::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 5, &bm_obj_lobby_curtain_resource_descriptor, 0, 0, 0);
-    }
+    void *resource = new BmlResource(5, (BmlResourceDescriptor *)(&bm_obj_lobby_curtain_resource_descriptor), 0, 0, (void *)(0));
     model_resource = (BmlResource *)resource;
     lobby_texlist = TLobby::get_lobby_texlist();
 }

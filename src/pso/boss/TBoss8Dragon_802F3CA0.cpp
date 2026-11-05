@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/unk/text_803D96A8.h"
@@ -99,7 +100,7 @@ void TBoss8Dragon::draw_motion_model() {
     s32 idx;
     Anim_802F3D6C *anim;
     if (((VObj_18_26a62c *)(arg0))->m8(lbl_805DED54, TBoss8Dragon__data_805DED58) != 0) {
-        TObjFish::set_global_param(*(s32 *)(arg0 + 0x24));
+        set_current_texture_list((GinjaTextureList *)(*(s32 *)(arg0 + 0x24)));
         push_matrix();
         post_translate_matrix((u8 *)&this->m_38);
         rotate_matrix_y(0, *(s32 *)(arg0 + 0x60));

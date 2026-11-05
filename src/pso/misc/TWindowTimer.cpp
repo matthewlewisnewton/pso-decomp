@@ -6,12 +6,14 @@
 #include "pso/misc/TWindowSubStatusDisp_8025A9B4.h"
 #include "pso/unk/text_80198A2C.h"
 #include "pso/unk/text_8026CB5C.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TWindowTimer.h"
 #include "pso/misc/TWindowDD.h"
 #include "pso/misc/TWindowHelpItem.h"
 #include "pso/misc/TWindowSubShortMail.h"
 #include "pso/misc/TWindowSubSymbolChatPartsSet.h"
+
+#pragma readonly_strings on
 
 struct RecoveredGlobal_80287FBC_lbl_804D2E74 {
     s32 value;
@@ -31,7 +33,6 @@ extern const f32 lbl_805DD890;
 extern RecoveredGlobal_80287FBC_lbl_804D2E74 window_timer_layout;
 extern s32 __vt__12TWindowTimer[];
 extern s32 TWindowTimer__name;
-extern s32 lbl_8044FCE8[];
 extern s32 lbl_805DD888;
 extern s32 lbl_805DD88C;
 s32 get_window_layout_position(s32);
@@ -54,17 +55,16 @@ void TWindowTimer::update_chat_parts() {
     ((TWindowSubSymbolChatPartsSet *)(arg0 + 0x30))->copy_vec2((void*)window_layout_position);
 }
 
-extern s32 lbl_8044FCE0[];
 extern s32 lbl_805DD884;
 
 void TWindowTimer::draw(s32 arg1, s32 arg2) {
     s32 array_entry;
 
-    array_entry = get_array_entry(0);
+    array_entry = (s32)get_array_entry(0);
     text_builder_reset();
     text_builder_append((u8 *)&lbl_805DD884);
     append_padded_number(arg1, 3);
-    text_builder_append((u8 *)lbl_8044FCE0);
+    text_builder_append((u8 *)"\tC7:\tC3");
     append_padded_number(arg2, 3);
     set_text_entry_string((u8 *)array_entry, (u32)(get_shared_text_buffer()), 0x20);
     ((TWindowHelpItem *)array_entry)->reset_float_field();
@@ -74,12 +74,12 @@ void TWindowTimer::set_time(u32 secs) {
     s32 entry;
     u32 hours;
     u32 mins;
-    entry = get_array_entry(0);
+    entry = (s32)get_array_entry(0);
     text_builder_reset();
     hours = secs / 3600;
     secs %= 3600;
     if (hours > 9) {
-        text_builder_append((u8 *)lbl_8044FCE8);
+        text_builder_append((u8 *)"9'59\"59");
     } else {
         append_padded_number((hours), 1);
         text_builder_append((u8 *)&lbl_805DD888);
@@ -131,7 +131,7 @@ void run_task__12TWindowTimerFv(TWindowTimer *window_timer) {
   {
     window_timer->draw((s32)((int) TWindowTimer::get_timer_value(0)), (s32)((int) TWindowTimer::get_timer_value(1)));
   }
- do { ((TWindowDD *)window_timer)->initialize_subwindow(); window_timer->update_chat_parts(); window_timer->ease_window_timer_position(); ((TWindowBase *)window_timer)->update_window_entry_list((u8 *)window_timer + 0x24); } while (0);
+ do { ((TWindowDD *)window_timer)->initialize_subwindow(); window_timer->update_chat_parts(); window_timer->ease_window_timer_position(); ((TUnk_804CE018 *)window_timer)->update_window_entry_list((u8 *)window_timer + 0x24); } while (0);
 }
 
 void *__dt__12TWindowTimerFv(void *arg0, s16 arg1) {
@@ -152,7 +152,7 @@ u8 *TWindowTimer__ct(TWindowTimer *window_timer) {
     *(s32 *)((s8 *)window_timer + 0) = (s32) TWindowTimer__name;
     window_timer->m_60 = 0;
     window_timer->update_chat_parts();
-    ((TWindowBase *)window_timer)->save_position();
+    ((TUnk_804CE018 *)window_timer)->save_position();
     return (u8 *)window_timer;
 }
 

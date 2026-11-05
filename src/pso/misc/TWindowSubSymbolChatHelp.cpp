@@ -1,5 +1,6 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TWindowSubStatusDisp_803DEE6C.h"
 #include "pso/misc/TWindowSubSymbolChatPartsSet.h"
 #include "pso/misc/TWindowSubSymbolChatHelp.h"
@@ -158,7 +159,7 @@ void draw_help_icon__24TWindowSubSymbolChatHelpFiPvii(s32 arg0, Win_802845EC *ar
 void TWindowSubSymbolChatHelp::draw_help_entries(void *arg1) {
     if ((s32) *(s32 *)((s8 *)arg1 + 0x30) >= 0) {
         begin_screen_draw(1);
-        TObjFish::set_global_param(lbl_805D63F0);
+        set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
         set_draw_texture_and_color(2, -1);
         draw_help_icon__24TWindowSubSymbolChatHelpFiPvii((s32)this, (Win_802845EC *)(arg1), 0, -1);
         draw_help_icon__24TWindowSubSymbolChatHelpFiPvii((s32)this, (Win_802845EC *)(arg1), 1, -1);
@@ -256,7 +257,7 @@ void TWindowSubSymbolChatHelp::render() {
     s32 arg0 = (s32)this;
     s32 temp_r3;
     temp_r3 = draw_default_entry__9TWindowDDFl();
-    ((TWindowBase *)arg0)->draw_window_frame((void *)temp_r3);
+    ((TUnk_804CE018 *)arg0)->draw_window_frame((void *)temp_r3);
     draw_help_entries((void *)temp_r3);
 }
 

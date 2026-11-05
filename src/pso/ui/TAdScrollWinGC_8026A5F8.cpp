@@ -1,5 +1,4 @@
 #include "types.h"
-#include "pso/misc/TWindowMessage.h"
 #include "pso/ui/TAdScrollWinGC_8026A5F8.h"
 #include "pso/misc/TWindowMessageLog.h"
 #include "pso/misc/TLobby.h"
@@ -18,7 +17,7 @@ s32 measure_string_len__20TWindowSubStatusDispFv(void *);
 s32 strncpy(int, void *, int);
 extern s32 TAdScrollWinGC__chat_log_heap;
 extern u8 *chat_last_line_buffer;
-extern RecoveredGlobal_8026A6DC_lbl_805187D8 chat_log_lines;
+RecoveredGlobal_8026A6DC_lbl_805187D8 chat_log_lines;
 s32 strlen();
 
     extern const float lbl_805DD240;
@@ -29,7 +28,7 @@ void TAdScrollWinGC::advance_scroll(f32 v) { *(f32*)((char*)this + 0x94) += v; }
 void fn_8026A61C(void* p, f32 v) { *(f32*)((char*)p + 0x94) += v; }
 
 void TWindowMessageLog::append_line(s32 arg1) {
-    ((TWindowMessage *)((u8 *)this))->append_line(arg1, 0x502);
+    ((TLobby *)((u8 *)this))->send_and_handle(arg1, 0x502);
     update_scroll_position();
 }
 

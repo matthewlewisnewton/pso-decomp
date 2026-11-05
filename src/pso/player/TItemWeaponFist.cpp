@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 // ---- pso/unk/text_80126740
 #include "types.h"
 #include "pso/item/TItem.h"
@@ -158,7 +159,7 @@ struct WeaponPlayerAttachmentInterface : WeaponPlayerObjectPrefix {
 
 extern "C" {
 s32 reflect_matrix_in_plane(s32, f32 *, f32);
-void *spawn_particle_effect(void *pos, s32 id);
+
 s16 get_validated_attack_stage(u8 *arg0);
 }
 extern s32 knuckle_second_hand_pass;
@@ -200,6 +201,12 @@ void TItemWeaponFist::emit_marker_effects() {
     index = stage;
     index += k;
     arg0->player->sample_joint_position(knuckle_marker_joint_table[index], buf);
-    spawn_particle_effect(buf, 0x1D0);
+    spawn_particle_effect((const Vec *)(buf), 0x1D0);
   }
 }
+
+// Joint each knuckle marker effect is spawned at, three per row.
+s32 knuckle_marker_joint_table[18] = {
+    0x09, 0x12, 0x30, 0x30, 0x12, 0x12, 0x30, 0x30, 0x30,
+    0x23, 0x30, 0x30, 0x23, 0x30, 0x12, 0x30, 0x12, 0x12,
+};

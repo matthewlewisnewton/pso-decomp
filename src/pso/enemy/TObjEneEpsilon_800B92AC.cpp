@@ -27,26 +27,27 @@ s32 calc_shot_position__13TBoss5GryphonFPUcfff(void *, s32, f32, f32, f32);
 f64 atan2_float(f32, f32);
 
 void TObjEneEpsilon__sub_800B92AC(u8 *ene_epsilon, s32 arg1, f32 farg0) {
-    s32 sp8;
+    Vec sp8;
     ((TObjEneEpsilon *)ene_epsilon)->fire_attack_a((s32) &sp8, arg1, farg0);
     ((TObjEneEpsilon *)(ene_epsilon))->vfunc_101((u8 *)&sp8);
 }
 
-void TObjEneEpsilon__sub_800B92F8(u8 *ene_epsilon, s32 arg1, f32 farg0) {
-    s32 sp8;
-    ((TObjEneEpsilon *)ene_epsilon)->fire_attack_b((s32) &sp8, arg1, farg0);
-    ((TObjEneEpsilon *)(ene_epsilon))->vfunc_101((u8 *)&sp8);
+u8 *TObjEneEpsilon__sub_800B92F8(u8 *actor, s32 max_step, f32 distance) {
+    Vec destination;
+    TObjEneEpsilon *receiver = (TObjEneEpsilon *)actor;
+    receiver->fire_attack_b((s32)&destination, max_step, distance);
+    return receiver->vfunc_101((u8 *)&destination);
 }
 }
 
 void enemy_turn_and_move_on_ground(u8 *arg0, s32 arg1, f32 farg0) {
-    s32 sp8;
+    Vec sp8;
     ((TObjEneEpsilon *)arg0)->fire_attack_b((s32) &sp8, arg1, farg0);
     ((TBoss5Gryphon *)arg0)->try_move_actor_xz_on_ground((u8 *)&sp8);
 }
 
 void TObjEneEpsilon__sub_800B9384(u8 *arg0, s32 arg1, f32 farg0) {
-    s32 sp8;
+    Vec sp8;
     ((TObjEneEpsilon *)arg0)->fire_attack_c((s32) &sp8, arg1, farg0);
     ((TBoss5Gryphon *)arg0)->try_move_actor_xz_on_ground((u8 *)&sp8);
 }
@@ -56,7 +57,7 @@ void TObjEneEpsilon::fire_attack_a(s32 out, s32 arg2, f32 farg0) {
 
     dist = farg0;
     turn_toward_target_direction(arg2);
-    calc_wall_clamped_destination((void *)this, (void *)out, (f32)(sin_table_lookup(this->rotation_y)), (f32)((f32)cos_table_lookup(this->rotation_y)), (f32)((f32)dist));
+    calc_wall_clamped_destination((void *)this, (void *)out, (f32)(sin_table_lookup(this->rotation.yaw)), (f32)((f32)cos_table_lookup(this->rotation.yaw)), (f32)((f32)dist));
 }
 
 void TObjEneEpsilon::fire_attack_b(s32 arg1, s32 arg2, f32 farg0) {
@@ -65,8 +66,8 @@ void TObjEneEpsilon::fire_attack_b(s32 arg1, s32 arg2, f32 farg0) {
 
     dist = farg0;
     turn_toward_target_direction(arg2);
-    dz = cos_table_lookup(this->rotation_y);
-    calc_wall_slide_destination((void *)this, (void *)arg1, (f32)(sin_table_lookup(this->rotation_y)), (f32)((f32)dz), (f32)((f32)dist));
+    dz = cos_table_lookup(this->rotation.yaw);
+    calc_wall_slide_destination((void *)this, (void *)arg1, (f32)(sin_table_lookup(this->rotation.yaw)), (f32)((f32)dz), (f32)((f32)dist));
 }
 
 void TObjEneEpsilon::fire_attack_c(s32 arg1, s32 arg2, f32 farg0) {
@@ -74,17 +75,17 @@ void TObjEneEpsilon::fire_attack_c(s32 arg1, s32 arg2, f32 farg0) {
 
     temp_f30 = farg0;
     turn_toward_target_direction(arg2);
-    calc_shot_position__13TBoss5GryphonFPUcfff(this, arg1, sin_table_lookup(this->rotation_y), cos_table_lookup(this->rotation_y), temp_f30);
+    calc_shot_position__13TBoss5GryphonFPUcfff(this, arg1, sin_table_lookup(this->rotation.yaw), cos_table_lookup(this->rotation.yaw), temp_f30);
 }
 
 extern const f64 lbl_8043B698;
 
 void TObjEneDD::turn_toward_target_direction(s32 arg1) {
-    this->rotation_y = (s32) approach_angle_limited(this->rotation_y, (s32) (lbl_8043B698 * atan2_float(*(f32 *)((s8 *)this + 0x3A0), *(f32 *)((s8 *)this + 0x3A8))), arg1);
+    this->rotation.yaw = (s32) approach_angle_limited(this->rotation.yaw, (s32) (lbl_8043B698 * atan2_float(*(f32 *)((s8 *)this + 0x3A0), *(f32 *)((s8 *)this + 0x3A8))), arg1);
 }
 
-s32 TObjEneEpsilon::update_death_check() {
-    if ((this->vfunc_99() == 0) && (is_player_entity_id(this->m_38c) == 0)) {
+s32 TObjEneDD_ST::check_target_validity() {
+    if ((this->vfunc_99() == 0) && (is_player_entity_id(target_entity_id) == 0)) {
         enemy_clear_target__12TObjEneDD_STFUs(this);
         return 0;
     }
@@ -107,8 +108,8 @@ block_5:
 }
 
 void TObjEneDD_ST::enemy_init_validate_period(s32 arg1) {
-    *(s32 *)((s8 *)((u8 *)this) + 0x3BC) = arg1;
-    *(s32 *)((s8 *)((u8 *)this) + 0x3B8) = (s32) ((this->entity_id + 3) % *(s32 *)((s8 *)((u8 *)this) + 0x3BC));
+    validation_period = arg1;
+    validation_counter = (s32) ((this->entity_id + 3) % validation_period);
 }
 
 void TObjEneDD::set_target_destination(const Vec *position) { VecCopy__FP3VecPC3Vec((char *)this + 0x394, position); }
@@ -126,8 +127,8 @@ void TObjEneDD_ST::enemy_copy_target_destination() {
 #define enemy_clear_target__12TObjEneDD_STFUs ((s32 (*)(void *))enemy_clear_target__12TObjEneDD_STFUs)
 
 s32 TObjEneDD_ST::update_linked_position(f32 scale) {
-    return enemy_tick_target_acquisition__12TObjEneDD_STFPllf((u8 *)this, (s32 *)((u8 *)this + 0x3B0),
-                               *(s32 *)((s8 *)this + 0x3B4), scale);
+    return enemy_tick_target_acquisition__12TObjEneDD_STFPllf((u8 *)this, &acquisition_counter,
+                               acquisition_period, scale);
 }
 s32 TObjEneDD_ST::enemy_tick_target_acquisition(s32 *counter, s32 limit, f32 scale) {
     s32 var_r31;
@@ -198,8 +199,8 @@ s32 enemy_bind_or_clear_target(void *self, u16 x) {
 s32 TObjEneDD_ST::vfunc_104(f32 distance) { return select_nearest_target(distance); }
 
 void TObjEneDD_ST::enemy_init_acquire_period(s32 arg1) {
-    *(s32 *)((s8 *)((u8 *)this) + 0x3B0) = (s32) (this->entity_id % arg1);
-    *(s32 *)((s8 *)((u8 *)this) + 0x3B4) = arg1;
+    acquisition_counter = (s32) (this->entity_id % arg1);
+    acquisition_period = arg1;
 }
 
 void TObjEneDD_ST::enemy_clear_target(u16 _w1) {

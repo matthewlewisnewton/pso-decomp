@@ -1,14 +1,11 @@
 #include "types.h"
+#include "pso/network/ModemLaunchContext.h"
 #include "pso/unk/text_8042EE4C.h"
 
 extern "C" {
 u32 exi_read_status_byte__6TLobbyFv();
 s32 EXIGetType(int, int, void *);
 extern u32 lbl_805D7CC8;
-
-extern s32 lbl_805D7CA8;
-extern s8 *lbl_805D7CB8;
-extern u8 *lbl_805D7CC0;
 
 s32 TLobby__sub_8042EE4C(s32 *arg0) {
     s32 sp8;
@@ -52,20 +49,18 @@ s32 fn_8042EF48(s8 arg0) {
     if ((s32) lbl_805D7CA8 == 0) {
         return -1;
     }
-    *lbl_805D7CB8 = arg0;
-    *(s32 *)((s8 *)lbl_805D7CC0 + 4) = (s32) (*(s32 *)((s8 *)lbl_805D7CC0 + 4) | 0x1000);
+    lbl_805D7CB8->field_00 = arg0;
+    lbl_805D7CC0->flags |= 0x1000;
     return 0;
 }
 }
-
-extern u8 *lbl_805D7CC4;
 
 s32 set_modem_check_param_360(s8 arg0) {
     if ((s32) lbl_805D7CA8 == 0) {
         return -1;
     }
-    *(s8 *)((s8 *)lbl_805D7CC4 + 0x360) = arg0;
-    *(s32 *)((s8 *)lbl_805D7CC0 + 4) = (s32) (*(s32 *)((s8 *)lbl_805D7CC0 + 4) | 0x800);
+    lbl_805D7CC4->field_360 = arg0;
+    lbl_805D7CC0->flags |= 0x800;
     return 0;
 }
 
@@ -73,8 +68,8 @@ s32 set_modem_param(s16 arg0) {
     if ((s32) lbl_805D7CA8 == 0) {
         return -1;
     }
-    *(s16 *)((s8 *)lbl_805D7CC4 + 0x23E) = arg0;
-    *(s32 *)((s8 *)lbl_805D7CC0 + 4) = (s32) (*(s32 *)((s8 *)lbl_805D7CC0 + 4) | 0x800);
+    lbl_805D7CC4->field_23e = arg0;
+    lbl_805D7CC0->flags |= 0x800;
     return 0;
 }
 
@@ -82,8 +77,8 @@ s32 set_modem_check_char(s8 arg0) {
     if ((s32) lbl_805D7CA8 == 0) {
         return -1;
     }
-    *(s8 *)((s8 *)lbl_805D7CC4 + 0x23D) = arg0;
-    *(s32 *)((s8 *)lbl_805D7CC0 + 4) = (s32) (*(s32 *)((s8 *)lbl_805D7CC0 + 4) | 0x800);
+    lbl_805D7CC4->field_23d = arg0;
+    lbl_805D7CC0->flags |= 0x800;
     return 0;
 }
 
@@ -91,8 +86,8 @@ s32 set_modem_flag(s8 arg0) {
     if ((s32) lbl_805D7CA8 == 0) {
         return -1;
     }
-    *(s8 *)((s8 *)lbl_805D7CC4 + 0x23C) = arg0;
-    *(s32 *)((s8 *)lbl_805D7CC0 + 4) = (s32) (*(s32 *)((s8 *)lbl_805D7CC0 + 4) | 0x800);
+    lbl_805D7CC4->field_23c = arg0;
+    lbl_805D7CC0->flags |= 0x800;
     return 0;
 }
 
@@ -100,14 +95,14 @@ s32 set_modem_check_param(s32 arg0) {
     if ((s32) lbl_805D7CA8 == 0) {
         return -1;
     }
-    *(s32 *)((s8 *)lbl_805D7CC4 + 0xF4) = arg0;
-    *(s32 *)((s8 *)lbl_805D7CC0 + 4) = (s32) (*(s32 *)((s8 *)lbl_805D7CC0 + 4) | 0x800);
+    lbl_805D7CC4->field_0f4 = arg0;
+    lbl_805D7CC0->flags |= 0x800;
     return 0;
 }
 
 s32 TAdTrialModemChkGC__sub_8042F080(s16 arg0) {
-    *(s16 *)((s8 *)lbl_805D7CC4 + 0x1C2) = arg0;
-    *(s32 *)((s8 *)lbl_805D7CC0 + 4) = (s32) (*(s32 *)((s8 *)lbl_805D7CC0 + 4) | 0x800);
+    lbl_805D7CC4->field_1c2 = arg0;
+    lbl_805D7CC0->flags |= 0x800;
     return 0;
 }
 
@@ -115,8 +110,8 @@ s32 set_modem_trial_param(s16 arg0) {
     if ((s32) lbl_805D7CA8 == 0) {
         return -1;
     }
-    *(s16 *)((s8 *)lbl_805D7CC4 + 0x1C0) = arg0;
-    *(s32 *)((s8 *)lbl_805D7CC0 + 4) = (s32) (*(s32 *)((s8 *)lbl_805D7CC0 + 4) | 0x800);
+    lbl_805D7CC4->field_1c0 = arg0;
+    lbl_805D7CC0->flags |= 0x800;
     return 0;
 }
 
@@ -124,8 +119,8 @@ s32 TAdTrialModemChkGC__sub_8042F0D4(s8 arg0) {
     if ((s32) lbl_805D7CA8 == 0) {
         return -1;
     }
-    *(s8 *)((s8 *)lbl_805D7CC4 + 0x13D) = arg0;
-    *(s32 *)((s8 *)lbl_805D7CC0 + 4) = (s32) (*(s32 *)((s8 *)lbl_805D7CC0 + 4) | 0x800);
+    lbl_805D7CC4->field_13d = arg0;
+    lbl_805D7CC0->flags |= 0x800;
     return 0;
 }
 
@@ -133,7 +128,7 @@ s32 TAdPlayerLoadGC__sub_8042F108(s8 arg0) {
     if ((s32) lbl_805D7CA8 == 0) {
         return -1;
     }
-    *(s8 *)((s8 *)lbl_805D7CC4 + 0x13C) = arg0;
-    *(s32 *)((s8 *)lbl_805D7CC0 + 4) = (s32) (*(s32 *)((s8 *)lbl_805D7CC0 + 4) | 0x800);
+    lbl_805D7CC4->field_13c = arg0;
+    lbl_805D7CC0->flags |= 0x800;
     return 0;
 }

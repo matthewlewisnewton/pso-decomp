@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/system/memory.h"
 #include "pso/player/TObjPlayer.h"
@@ -38,7 +39,7 @@ struct V_80309E9C { f32 x, y, z; };
 struct Fol_80309E9C { u16 a; u16 b; u8 pad[0x8]; V_80309E9C v[3]; };
 
 extern "C" {
-int spawn_particle_effect(void*, void*);
+
 void *__nw__7TObjectFUl(int);
 void *TPlyPtclObjectRightHand__ct(void *, void *);
 void *TPlyPtclObjectLeftHand__ct(void *arg0, u8 *_w1);
@@ -214,7 +215,7 @@ s32 TObjPlayer::check_hit_by_id(s32 arg0, s32 arg1, s32 arg2) {
     return particle_effect_with_flags;
 }
 
-s32 emit_player_particle(void* p, void* a1, void* a2) { return spawn_particle_effect(a1, a2); }
+s32 emit_player_particle(void* p, void* a1, void* a2) { return (s32)spawn_particle_effect((const Vec *)(a1), (s32)(a2)); }
 s32 TPlyPtclObjectRightHand__vt7(s32 arg0) {
     void *player;
     player = get_player_by_client_id((u16) get_lifetime__22TPlyFollowParticleCtrlFv());

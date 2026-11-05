@@ -1,5 +1,7 @@
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/system/vector.h"
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/misc/TWindowSubComCard.h"
@@ -393,11 +395,12 @@ void send_6x21_inter_level_warp(void *obj, s32 value);
 void send_6x55_intra_map_warp(u16 id, void *pos, s32 c);
 s32 init__23TAdSinglePlyChrSelectGCFv();
 s32 get_floor_map_terrain(s32);
-s32 play_sound_effect(s32, s32, s32, s32);
+
 void set_area__6TLobbyFl(void *, int, int);
 void __dl__7TObjectFPv(void *);
 void * __nw__7TObjectFUl(int);
 void __ct__7TObjectFP7TObject(void *, void *);
+void TWindow__close(void *);
 s32 align_menu_entry_positions(u32);
 u32 create_window_menu(s32, s32, s16);
 s32 get_window_layout_position(s32);
@@ -578,7 +581,6 @@ struct VObj_8019DA54_8019D964 : Base_8019DA54_8019D964 {
     virtual void m12(); virtual void m13();
 };
 
-s32 TLobby__sub_8001FE7C(s32, s32);
 s32 release_texture_list(void*);
 
 extern s32 forest_warp_bml_resource;
@@ -595,7 +597,7 @@ void TObjWarpBase::free_globals() {
         TAdSinglePlyChrSelectGC::safe_free(forest_warp_texture_list);
         forest_warp_texture_list = 0U;
     }
-    TLobby__sub_8001FE7C(forest_warp_bml_resource, 1);
+    delete (BmlResource *)(forest_warp_bml_resource);
     forest_warp_bml_resource = 0;
 }
 
@@ -648,7 +650,7 @@ void TObjWarpBase::vfunc_14() {
 
     player = (u32) *(u32 *)((s8 *)this + 0xB0);
     if (player != 0U) {
-        ((TWindowBase *)player)->close();
+        TWindow__close((u8 *)player);
         *(u32 *)((s8 *)this + 0xB0) = 0U;
         player = (u32)get_player_by_client_id(*(u16 *)((s8 *)this + 0xB8));
         if (player != 0U) {
@@ -736,7 +738,7 @@ void TObjMapWarp::closePlayerWindow(u16 arg1) {
     temp_r31 = (u8 *)(arg0 + ((arg1 * 4) & 0x3FFFC));
     temp_r3 = *(u32 *)((s8 *)temp_r31 + 0xEC);
     if (temp_r3 != 0U) {
-        ((TWindowBase *)temp_r3)->close();
+        TWindow__close((u8 *)temp_r3);
         *(u32 *)((s8 *)temp_r31 + 0xEC) = 0U;
         player = ((u32)get_player_by_client_id((u32)((void *) ((s32) arg1))));
         if (player != 0U) {
@@ -798,7 +800,7 @@ void TObjMapWarp::process_player_warps() {
         for (i = 0; i < 4; i++) {
             if (can_warp__11TObjMapWarpFlUs(this, i) == 0) {
                 if (d->win[i] != NULL) {
-                    ((TWindowBase *)(d->win[i]))->close();
+                    TWindow__close(d->win[i]);
                     d->win[i] = NULL;
                 }
             } else {
@@ -825,7 +827,7 @@ void TObjMapWarp::process_player_warps() {
     }
     if (((VObj_8019D250 *)this)->m14() == 0) {
         if (this->m_b0 != NULL) {
-            ((TWindowBase *)this->m_b0)->close();
+            TWindow__close(this->m_b0);
             this->m_b0 = NULL;
         }
     } else {
@@ -905,10 +907,10 @@ void TObjMapWarpForest::run_task() {
 void TObjMapWarpForest::render() {
     u8 *arg0 = (u8 *)this;
     if (((VObj8019CF38_8019CCF0 *) arg0)->m8(400.0f, 20.0f) != 0) {
-        TObjFish::set_global_param(*(s32 *)&this->textures);
+        set_current_texture_list((GinjaTextureList *)(*(s32 *)&this->textures));
         ((s32 (*)(void))push_matrix)();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         draw_ginja_object(this->baseModel);
         TParticleCtrl::begin_effect_render();
         ((s32 (*)(s32, s32, f32))draw_ginja_model_with_motion)(*(s32 *)&this->beamModel, *(s32 *)&this->motion, this->frame);
@@ -997,7 +999,7 @@ void TObjAreaWarp::handle_area_selection() {
     void *t;
     if (((VObj_8019CAB0 *)this)->m14() == 0) {
         if (d->fB0 != NULL) {
-            ((TWindowBase *)d->fB0)->close();
+            TWindow__close(d->fB0);
             d->fB0 = NULL;
         }
     } else {
@@ -1053,7 +1055,7 @@ void confirm_area_transfer__12TObjAreaWarpFPvi(u8 *arg0, s32 arg1) {
     ((TObjAreaWarpQuest *)(&lbl_80515BA0.value))->get_dest_area();
     ((s32 (*)(void))send_inter_level_warp_all__10TNpcPlayerFl)();
     send_6x21_inter_level_warp((void *)arg1, (((TObjAreaWarpQuest *)(&lbl_80515BA0.value))->get_dest_area()));
-    ((s32 (*)(s32, u32, s16, s32))play_sound_effect)(0x40003205, 0U, 0, 0);
+    play_sound_effect(0x40003205, (const Vec *)(0U), 0, 0);
 }
 
 void handle_6x94_inter_level_warp(Pkt_8019C988 *arg0) {
@@ -1151,10 +1153,10 @@ void TObjAreaWarpForest::render() {
             n = n->next2C;
         }
         m = self->fD0;
-        TObjFish::set_global_param(self->fDC);
+        set_current_texture_list((GinjaTextureList *)(self->fDC));
         push_matrix();
         ((void (*)(void *))post_translate_matrix)(self->f38);
-        ((void (*)(int, int))rotate_matrix_y)(0, this->rotation_y);
+        ((void (*)(int, int))rotate_matrix_y)(0, this->rotation.yaw);
         push_matrix();
         ((void (*)(void *))post_translate_matrix)(m->f8);
         draw_ginja_model((s32)m->f4);
@@ -1262,7 +1264,7 @@ void TObjAreaWarpQuest::render() {
             n = n->next2C;
         }
         m = self->fD0;
-        TObjFish::set_global_param(self->fDC);
+        set_current_texture_list((GinjaTextureList *)(self->fDC));
         push_matrix();
         ((void (*)(void *))post_translate_matrix)(self->f38);
         ((void (*)(int, int))rotate_matrix_y)(0, self->f60);
@@ -1401,7 +1403,7 @@ void TObjAreaWarpEnding::render() {
         }
     }
     root = arg0->fCC;
-    TObjFish::set_global_param(arg0->fD8);
+    set_current_texture_list((GinjaTextureList *)(arg0->fD8));
     push_matrix();
     ((void (*)(void *))post_translate_matrix)(arg0->pos);
     ((void (*)(int, int))rotate_matrix_y)(0, arg0->f60);
@@ -1742,7 +1744,7 @@ void TObjAreaWarpEndingJung::render() {
         TObjWarpJung::set_global_render_param();
         ((s32 (*)(void))push_matrix)();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         TObjWarpJung::render_warp(0);
         TParticleCtrl::begin_effect_render();
         TObjWarpJung::render_warp_effect(1, (s32) this->m_c4);

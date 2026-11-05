@@ -1,3 +1,5 @@
+#include "pso/player/demo_mode.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/object/TObjStendGlassLobby.h"
 #include "pso/TMainTask.h"
@@ -15,8 +17,6 @@
 #pragma readonly_strings on
 
 extern "C" {
-void TLobby__sub_8001FE7C(BmlResource *resource, s32 del);
-BmlResource *load_resource_from_descriptor(void *resource, s32 kind, BmlResourceDescriptor *descriptor, s32, s32, s32);
 }
 
 const char *bm_obj_lobby_stendglass_motion_names[1] = { NULL };
@@ -31,10 +31,10 @@ void TObjStendGlassLobby::demo_step() {}
 void TObjStendGlassLobby::render() {
     if (fade_state != 0 && (u32)texlist != 0) {
         TParticleCtrl::begin_effect_render();
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
+        rotate_matrix_y(NULL, this->rotation.yaw);
         if (fade_state != 3) {
             scale_matrix(NULL, fade_scale, 1.0f, fade_scale);
         }
@@ -45,7 +45,7 @@ void TObjStendGlassLobby::render() {
 }
 
 void TObjStendGlassLobby::run_task() {
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         demo_step();
     }
     switch (fade_state) {
@@ -96,16 +96,13 @@ void *TObjStendGlassLobby::create(void *set_data) {
 
 void TObjStendGlassLobby::free_resources() {
     if (static_model_resource != NULL) {
-        TLobby__sub_8001FE7C(static_model_resource, 1);
+        delete (BmlResource *)(static_model_resource);
         static_model_resource = NULL;
     }
 }
 
 void TObjStendGlassLobby::load_resources() {
-    void *resource = ::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 5, &bm_obj_lobby_stendglass_resource_descriptor, 0, 0, 0);
-    }
+    void *resource = new BmlResource(5, (BmlResourceDescriptor *)(&bm_obj_lobby_stendglass_resource_descriptor), 0, 0, (void *)(0));
     static_model_resource = (BmlResource *)resource;
     lobby_texlist = TLobby::get_lobby_texlist();
 }
