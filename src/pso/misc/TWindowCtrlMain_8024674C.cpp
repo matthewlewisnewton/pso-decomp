@@ -88,7 +88,7 @@ __declspec(section ".rodata") const char lbl_8044E734[] = "f256_duelcount.gvp";
 __declspec(section ".rodata") const char lbl_8044E748[] = "f256_carsol.gvp";
 __declspec(section ".rodata") const char lbl_8044E758[] = "f256_hyouji";
 
-u8 TUnk_804CE018::sub_80246948() {
+s32 TUnk_804CE018::sub_80246948() {
     Obj_80246948 *self = (Obj_80246948 *)this;
     return !(self->f2c & 1);
 }

@@ -5,14 +5,15 @@
 #include "pso/misc/TUnk_804CDFE8.h"
 
 struct TWindowDrawContext;
+struct BalloonSlice;
 
 class TUnk_804CF0B8 : public TUnk_804CDFE8 {
 public:
     virtual ~TUnk_804CF0B8();
     void draw_name_plate(TWindowDrawContext *ctx, u32 color);
-    void draw_body(void *, u32, f32 *, f32);
-    void draw_body_row(void *, void *, f32, f32, f32, f32);
-    void draw_tail(void *, u32, f32 *, f32);
+    void draw_body(TWindowDrawContext *ctx, u32 argb, f32 *offset, f32 depth);
+    void draw_body_row(BalloonSlice *s, TWindowDrawContext *ctx, f32 offsetX, f32 rowTop, f32 fullWidth, f32 rowHeight);
+    void draw_tail(TWindowDrawContext *ctx, u32 color, f32 *offset, f32 depth);
     void sub_80251DF0(s16, s32, s16, f32);
     s32 clamp_position(void *, f32);
     void set_color(u16);
@@ -53,8 +54,9 @@ public:
     char *name;
     f32 m_7c;
     f32 m_80;
-    s32 m_84;
-    u8 unk_88[0x10];
+    u32 color;
+    f32 center[2];
+    f32 head[2];
 };
 typedef char TUnk_804CF0B8_name_offset[offsetof(TUnk_804CF0B8, name) == 0x78 ? 1 : -1];
 typedef char TUnk_804CF0B8_next_offset[offsetof(TUnk_804CF0B8, m_7c) == 0x7c ? 1 : -1];

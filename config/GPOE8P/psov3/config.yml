@@ -5041,9 +5041,9 @@ force_active:
   - draw_blend_motion_tree
   - draw_blob_shadows__22TObjEneSlimeTailAttackFv
   - draw_body__13TBoss5GryphonFv
-  - draw_body__13TUnk_804CF0B8FPvUlPff
+  - draw_body__13TUnk_804CF0B8FP18TWindowDrawContextUlPff
   - draw_body_models__11TBoss6Type2Fv
-  - draw_body_row__13TUnk_804CF0B8FPvPvffff
+  - draw_body_row__13TUnk_804CF0B8FP12BalloonSliceP18TWindowDrawContextffff
   - draw_bottom_bar__20TWindowSubStatusDispFv
   - draw_closed__8TObjDoorFPv
   - draw_closed_glow__8TObjDoorFPv
@@ -5152,7 +5152,7 @@ force_active:
   - draw_tab__12TWindowTimerFll
   - draw_tag_sprite__12TChCrTagNameFPv
   - draw_tag_sprites__12TChCrTagNameFPv
-  - draw_tail__13TUnk_804CF0B8FPvUlPff
+  - draw_tail__13TUnk_804CF0B8FP18TWindowDrawContextUlPff
   - draw_text_glyphs__19TWindowKeyBoardBaseFPvPv
   - draw_tiled_background__20TWindowSubStatusDispFv
   - draw_title_background_pulse
@@ -6372,7 +6372,7 @@ force_active:
   - init_enemy__22TObjEneMe3SinowZoaRealFv
   - init_field_d4__16TODoorLaboNormalFv
   - init_fields__13TUnk_804F0AF8FlPv
-  - init_flags__15TWindowFukidasiFPvi
+  - init_flags__15TWindowFukidasiFl
   - init_floor_encounter_sections__6TLobbyFv
   - init_follow_particle_ctrl__10TObjPlayerFv
   - init_forward__19TItemDisconnectCtrlFv
