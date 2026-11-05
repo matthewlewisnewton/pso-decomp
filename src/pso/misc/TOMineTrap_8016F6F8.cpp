@@ -214,7 +214,7 @@ inline void TOMineTrap::strike_player(TObjChara *actor) {
     }
     if (horizontal_distance_squared(&this->position, &actor->position) < this->m_350 * this->m_350) {
         if (actor->obj_isState2_324() == 0) {
-            this->target = (u8 *)actor;
+            this->target = actor;
             switch (this->attack.kind) {
             case 2:
                 ((TObjChara *)this->target)->apply_movement_ailment(0);
@@ -233,7 +233,7 @@ inline void TOMineTrap::strike_player(TObjChara *actor) {
 
 inline void TOMineTrap::strike_enemy(TObjChara *actor, TObjPlayer *owner) {
     if (horizontal_distance_squared(&this->position, &actor->position) < this->m_350 * this->m_350) {
-        this->target = (u8 *)actor;
+        this->target = actor;
         switch (this->attack.kind) {
         case 2:
             ((TObjChara *)this->target)->apply_movement_ailment(0);
@@ -269,9 +269,9 @@ inline void TOMineTrap::strike_actor(TObjChara *actor, TObjPlayer *owner) {
         this->strike_player(actor);
     } else if (id < 0x4000) {
         this->strike_enemy(actor, owner);
-    } else if (check_value_equals__13TUnk_804B6C24Fl(actor, TOMineTrap__data_805D3080) != 0 &&
+    } else if (check_value_equals__7TObjectFPCc(actor, TOMineTrap__data_805D3080) != 0 &&
                horizontal_distance_squared(&this->position, &actor->position) < this->m_350 * this->m_350) {
-        this->target = (u8 *)actor;
+        this->target = actor;
         ((TObjChara *)this->target)->receive_physical_attack(this, TOMineTrap__data_805DB868);
     }
 }
