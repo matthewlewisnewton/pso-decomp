@@ -717,6 +717,12 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # the fmadds at 0x80257118. The bar multiply stays a separate fmuls
     # because the 7.5 scale is applied to the sum before the tick subtract.
     "pso/misc/TWindowSubStatusDisp_80256B94.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on")},
+    # sub_802C5F1C clamps the player slot in a static inline helper. -inline auto
+    # also inlines other small functions and breaks seven exact ones; -inline
+    # deferred emits the unit in reverse order. -inline on inlines only that
+    # helper (same object as -inline noauto here). Evidence:
+    # docs/evidence/chr-select-slot-clamp-inline.md.
+    "pso/ui/TAdMultiPlyChrSelectGC_802C50EC.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
 }
 
 # MusyX (Factor 5). Its objects carry extab/extabindex for every non-leaf

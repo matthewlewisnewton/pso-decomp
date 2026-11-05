@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (regenerated on this branch after merging main `f6dedd375`, 2026-11-04)
+## Summary (regenerated on this branch after merging main `e4877e8f1`, 2026-11-04)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `f6dedd375` (2026-11-04). Assembly is counted as functions;
+after merging main `e4877e8f1` (2026-11-04). Assembly is counted as functions;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -26,8 +26,8 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 7 functions (13 source lines) | 4 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 71 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,852 | 884 |
-| Per-unit compiler overrides in `configure.py` | 148 | 148 |
+| CodeWarrior pragmas (excluding push/pop) | 5,842 | 880 |
+| Per-unit compiler overrides in `configure.py` | 154 | 154 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -70,7 +70,7 @@ etc. or their port equivalents) instead of the fixed address.
 
 ## 4. CodeWarrior pragmas
 
-5,852 pragmas in 884 files; per-file table in the generated file. Main kinds:
+5,842 pragmas in 880 files; per-file table in the generated file. Main kinds:
 `dont_inline` 1151, `inline_depth` 1043, `fp_contract` 924, `auto_inline` 842,
 `opt_common_subs` 624, `scheduling` 262, `opt_propagation` 240,
 `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56,
@@ -109,7 +109,7 @@ small float differences without FMA).
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-148 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+149 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
@@ -176,9 +176,15 @@ vtable-versus-switch order and string pooling may differ.
 
 `TObjBoss2Tunnel.cpp`, `TObjBoss2Tunnel_8003B138.cpp`, and `TObjBoss2Tunnel_802F2070.cpp` set `-fp_contract on` because the curve and tunnel helpers fuse multiply-adds. Each unit stays byte-exact, which is why the flag is on the unit rather than a per-function `fp_contract` pragma. Precedent: [dtk-template](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209) and Melee, TP, TWW, and Pikmin 2, which contract globally.
 
-`pso/effect/TEF_LensFlare.cpp` sets `-fp_contract on` because the recovered
-renderer contracts its attenuation and displacement multiply-adds into
-`fnmsubs`/`fmadds`. The same unit places `lbl_80438E40` with
+### `TAdMultiPlyChrSelectGC_802C50EC.cpp` ([#294](https://github.com/matthewlewisnewton/pso-decomp/pull/294))
+
+| File | Function | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/ui/TAdMultiPlyChrSelectGC_802C50EC.cpp` | `TAdMultiPlyChrSelectGC__sub_802C5F1C` | unit `-inline on` instead of the game default `-inline off` | The slot clamp is a `static inline` helper with no symbol of its own. Under `-inline off` the helper is a real call and the function is 332 bytes (42.79518%). Under `-inline on` the row stays in `r8` and the cell in `r7`, and the function is 236 bytes. `v0` and `v1` are `a / 256.0f` and `(lbl_805DE588 + a) / 256.0f`. MWCC folds that into `fmuls` by the pooled reciprocal at `805DE584` (exactly 1/256) with the dividend on the left, and the function is exact. `-inline auto` inlines other functions (`update` 108→572, `update_option_cursor` 476→700, `handle_dpad_input` 564→788). The other compiled functions and the data sections stay exact under `-inline on`. Evidence: [chr-select-slot-clamp-inline.md](evidence/chr-select-slot-clamp-inline.md). Precedent: [Brawl `-inline on`](https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264) (only functions marked `inline`); [`-inline auto` in dtk-template](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203) was tried and does not keep this unit identical. | Drop the flag. The value is `min(slot, 3)` applied to each cell's texture row. A port does not need MWCC's inline-local numbering. |
+
+`pso/effect/TEF_LensFlare.cpp` (this change) sets `-fp_contract on` because the
+recovered renderer contracts its attenuation and displacement multiply-adds
+into `fnmsubs`/`fmadds`. The same unit places `lbl_80438E40` with
 `__declspec(section ".rodata")` so the original `{0,0,-1}` vector symbol stays
 in `.rodata`. Port: keep FMA or accept small float differences; a normal
 `const` is enough for the vector.
