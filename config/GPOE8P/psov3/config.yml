@@ -416,6 +416,7 @@ force_active:
   - TBoss8Dragon__sub_802F3C94
   - TBoss8Dragon__sub_802F3F20
   - TBoss8Dragon__sub_802FDF10
+  - TBoss8Dragon__sub_8030B80C
   - TBoss8Dragon__sub_8036AF50
   - TButterfly__ct
   - TCameraCtrl__data_805D8FAC
@@ -2197,7 +2198,6 @@ force_active:
   - __dt__13TUnk_804F0D34Fv
   - __dt__13TUnk_804F0FF0Fv
   - __dt__13TUnk_804F1280Fv
-  - __dt__13TUnk_804F1A78Fv
   - __dt__13TUnk_804F3428Fv
   - __dt__13TUnk_804F3640Fv
   - __dt__13TUnk_804F3A20Fv
@@ -2791,7 +2791,6 @@ force_active:
   - __vt__13TUnk_804F0D34
   - __vt__13TUnk_804F0FF0
   - __vt__13TUnk_804F1280
-  - __vt__13TUnk_804F1A78
   - __vt__13TUnk_804F3428
   - __vt__13TUnk_804F3640
   - __vt__13TUnk_804F3A20
@@ -3403,7 +3402,7 @@ force_active:
   - apply_poison_status__12TBoss1DragonFv
   - apply_poison_status__13TObjEneRe4BitFv
   - apply_position_to_node_list__14TObjEneBm5WolfFv
-  - apply_remote_action__13TBoss5GryphonFP28G_GalGryphonBossActions_6xA0
+  - apply_remote_action__13TBoss5GryphonFPvPv
   - apply_resta_heal__11TBoss4Type2Fv
   - apply_rock_hits_to_players__11TBoss6Type2Fv
   - apply_room_transform__FlPUcPUc
@@ -4221,6 +4220,7 @@ force_active:
   - calc_xz_direction_to__16TObjEneBm5GibonUFPvPvPv
   - calculate_crc16_ccitt__FPCUcl
   - call_9A24_plus_1__11TBoss6Type2FPl
+  - call_null__12TBoss8DragonFv
   - call_state_action__14TBoss6PlotFalzFv
   - camera_slot_positions
   - camera_slot_scan_index__10TObjCamera
@@ -4458,7 +4458,7 @@ force_active:
   - choose_next_action__11TBoss6Type1Fv
   - choose_next_action__12TBoss1DragonFv
   - choose_next_action__13TBoss5GryphonFPvPv
-  - choose_next_camera_shot__18TObjLiveCameraCtrlFv
+  - choose_next_camera_shot__12TBoss8DragonFv
   - choose_roaming_destination__14TObjEneBm5WolfFv
   - choose_turn_motion__11TBoss6Type2Fv
   - chr_sel_a_slot_plate_layout
@@ -4742,7 +4742,7 @@ force_active:
   - copy__15DepthAlphaStateFP15DepthAlphaState
   - copy__16TPlyGuildCardTagFPv
   - copy__6TMovieFPv
-  - copy_action_state__22G_GalGryphonBossActionFP22G_GalGryphonBossAction
+  - copy_action_state__12TBoss8DragonFPUc
   - copy_all_data__6TLobbyFii
   - copy_all_entries__6TLobbyFii
   - copy_and_flush__FPvlPv
@@ -4798,7 +4798,7 @@ force_active:
   - copy_rotation_to_current_matrix
   - copy_save_data__23TAdSinglePlyChrSelectGCFii
   - copy_slime_tail_pose
-  - copy_spawn_params__12TBoss8DragonFP28G_GalGryphonBossActions_6xA0
+  - copy_spawn_params__12TBoss8DragonFPv
   - copy_stat_block__17TWindowSetLevelUpFl
   - copy_state__11TBoss6Type2FPv
   - copy_state__12TWindowTimerFPUc
@@ -6113,7 +6113,6 @@ force_active:
   - get_field_2__9TTecLukerFPv
   - get_field_44__23TAdSinglePlyChrSelectGCFv
   - get_field_cc__19TWindowSubShortMailFPv
-  - get_first_dragon_part_id__18TObjLiveCameraCtrlFv
   - get_flag_1__10TObjPlayerFv
   - get_flag_bit0__14TObjEneBm5WolfFPv
   - get_flag_or_zero__20TWindowSubStatusDispFPvSc
@@ -6140,7 +6139,6 @@ force_active:
   - get_level_tier__6TLobbyFl
   - get_list_item8__24TShopEquipmentListWindowFv
   - get_lobby_theme_clamped__16TObjCurtainLobbyFv
-  - get_local_client_id__18TObjLiveCameraCtrlFv
   - get_mag_state__13TWindowSubMagFv
   - get_mail_ptr__19TWindowSubShortMailFPv
   - get_material_index__18TPlayerLobbyMarkerFv
@@ -14228,7 +14226,6 @@ force_active:
   - run_task__13TUnk_804F0BF0Fv
   - run_task__13TUnk_804F0D1CFv
   - run_task__13TUnk_804F1280Fv
-  - run_task__13TUnk_804F1A78Fv
   - run_task__13TUnk_804F3428Fv
   - run_task__13TUnk_804F3640Fv
   - run_task__13TUnk_804F3A20Fv
@@ -16377,7 +16374,7 @@ force_active:
   - update_linked_state__13TUnk_804F322CFv
   - update_list__24TShopEquipmentListWindowFPv
   - update_list_scroll__22TWindowSubCustomSelectFv
-  - update_live_camera__18TObjLiveCameraCtrlFv
+  - update_live_camera__12TBoss8DragonFv
   - update_load_progress__12TChCrLoadReqFv
   - update_load_state__16TAdChrSelASlotGCFv
   - update_load_state__9TItemLoadFv
@@ -16713,7 +16710,7 @@ force_active:
   - update_title_prompt__19TAdTrialAgreementGCFv
   - update_title_rects__10TAdTitleGCFv
   - update_title_tex_positions__13TAdTitleTexGCFPv
-  - update_toggle_state__18TObjLiveCameraCtrlFv
+  - update_toggle_state__12TBoss8DragonFv
   - update_topple_state__16TBoss3VoloptCoreFv
   - update_trade_window_visibility__11TWindowCtrlFv
   - update_trail_points__11TBoss6Type1Fv
