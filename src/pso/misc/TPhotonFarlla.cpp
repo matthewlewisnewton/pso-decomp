@@ -4,6 +4,7 @@
 #include "pso/system/NinjaTypes.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "types.h"
+#include "pso/system/StripBufferPair.h"
 #include "pso/misc/TRaderMapCore.h"
 #include "pso/misc/MaterialColorFade.h"
 #include "pso/boss/TBoss2DeRolLe.h"
@@ -52,7 +53,7 @@ struct Self_801AAF00 {
 };
 
 extern u8 *photon_blast_shared_resource;
-extern u32 estlla_photon_blast_model;
+extern void *estlla_photon_blast_model;
 extern "C" {
 s32 scroll_strip_uvs(void *, s16, int);
 s32 clear_render_context__10TObjPlayerFv(void *);
@@ -78,14 +79,7 @@ void TObjPlayer::destroy_global_buffer() {
 }
 
 void create_estlla_photon_blast_model(void) {
-    s32 temp_r3;
-    s32 var_r0;
-    temp_r3 = (int)::operator new(0x14);
-    var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (((TLobby *)temp_r3)->alloc_tables(*(s32 *)((s8 *)(*(void **)((s8 *)(*(u8 **)((s8 *)photon_blast_shared_resource + 0x42C)) + 0x98)) + 0x2C), 0));
-    }
-    (*(s32 *)&estlla_photon_blast_model) = var_r0;
+    estlla_photon_blast_model = new StripBufferPair(*(s32 *)((s8 *)(*(void **)((s8 *)(*(u8 **)((s8 *)photon_blast_shared_resource + 0x42C)) + 0x98)) + 0x2C), 0);
 }
 
 void TPhotonFarlla::sub_801AAE6C() { this->m_184 = 0.0f; *(float*)((char*)this + 0x188) = 0.0f; this->m_18c = 0.0f; *(float*)((char*)this + 0x190) = 0.0f; }

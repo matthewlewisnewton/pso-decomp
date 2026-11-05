@@ -603,3 +603,33 @@ f32 rand_signed_unit(void) {
     return lbl_805D8184 * ((lbl_805D818C * (f32) rand()) - lbl_805D817C);
 }
 #pragma pop
+
+#pragma push
+#pragma fp_contract on
+void TObjBoss1Rock::render() {
+    Obj_8002DF7C *self = (Obj_8002DF7C *)this;
+    if (self->color < lbl_805D8200) {
+        saved_model_render_flags = model_render_flags;
+        model_render_flags = saved_model_render_flags | 0x810;
+        ((void (*)(s32, s32))set_chunk_material_override_pair)(0xFF00, 0x800);
+        set_constant_material((const NJS_ARGB *)((&self->color)));
+        push_matrix();
+        set_current_texture_list((GinjaTextureList *)(dragon_common_texture_list));
+        post_translate_matrix(self->pos);
+        rotate_matrix_y(0, self->ry);
+        rotate_matrix_x(0, self->rx);
+        ((void (*)(s32))draw_chunk_object)((*(Res_8002DF7C **)&lbl_805D4B50)->ents[self->idx].id);
+        pop_matrix();
+        ((void (*)(s32, s32))set_chunk_material_override_pair)(0xFF00, 0);
+        model_render_flags = saved_model_render_flags;
+    } else {
+        push_matrix();
+        set_current_texture_list((GinjaTextureList *)(dragon_common_texture_list));
+        post_translate_matrix(self->pos);
+        rotate_matrix_y(0, self->ry);
+        rotate_matrix_x(0, self->rx);
+        ((void (*)(s32))draw_chunk_object)((*(Res_8002DF7C **)&lbl_805D4B50)->ents[self->idx].id);
+        pop_matrix();
+    }
+}
+#pragma pop

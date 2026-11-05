@@ -1,7 +1,8 @@
 #include "types.h"
 #include "pso/misc/TLobby_8013AD38.h"
-#include "pso/misc/TUnk_804D0618.h"
+#include "pso/misc/TWindowMenuIconLine.h"
 #include "pso/misc/TLobby.h"
+#include "pso/misc/TWindowMakeTeam.h"
 #include "pso/misc/TCheckRoomSequence.h"
 
 struct RecoveredGlobal_8013ADB0_TAdEnterSerialAccessGC__data_804EC9B8 {
@@ -20,13 +21,13 @@ extern RecoveredGlobal_8013ADB0_TAdEnterSerialAccessGC__data_804EC9B8 TAdEnterSe
 extern RecoveredGlobal_8013AD80_TAdEnterSerialAccessGC__data_804EC9C4 TAdEnterSerialAccessGC__access_key_input_buffer;
 int hex_to_decimal_string__22TAdEnterSerialAccessGCFi(void);
 
-int TUnk_804D0618::get_status_flag() { return (this->m_70 >> 1) & 0x1; }
-int TLobby::get_flag_bit2() { return (*(u16*)((char*)this + 0x70) >> 2) & 0x1; }
-int TLobby__sub_8013AD50(void* p) { return (*(u8*)((char*)p + 0x1d) >> 1) & 0x1; }
-s32 TLobby__sub_8013AD5C(void* p) { return *(s32*)((char*)p + 0x20); }
-u8 TLobby::get_mode() { return *(u8*)((char*)this + 0x1e); }
-u8 TLobby__sub_8013AD6C(void* p) { return *(u8*)((char*)p + 0x1e); }
-int TLobby__sub_8013AD74(void* p) { return *(u8*)((char*)p + 0x1d) & 0x1; }
+int TWindowMenuIconLine::is_decided() { return (this->state_flags >> 1) & 0x1; }
+int TWindowMenuIconLine::is_cancelled() { return (this->state_flags >> 2) & 0x1; }
+int TWindowMakeTeam::test_flag_1d_bit1() { return (this->m_1d >> 1) & 0x1; }
+s32 TWindowMakeTeam::get_field_20() { return this->m_20; }
+u8 TWindowMakeTeam::get_mode() { return this->m_1e; }
+u8 TWindowMakeTeam::read_mode() { return this->m_1e; }
+int TWindowMakeTeam::test_flag_1d_bit0() { return this->m_1d & 0x1; }
 
 typedef char RecoveredGlobal_8013AD80_TAdEnterSerialAccessGC__data_804EC9C4_size[sizeof(RecoveredGlobal_8013AD80_TAdEnterSerialAccessGC__data_804EC9C4) == 0x10 ? 1 : -1];
 s32 *get_access_key_input_buffer(void) {

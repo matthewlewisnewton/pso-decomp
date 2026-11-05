@@ -38,18 +38,16 @@ struct Item_801BE890 { u8 b[0x1C]; };
 
 struct Inv_801BE890 { s32 f0; Item_801BE890 items[0x1E]; };
 
-extern "C" {
-Inv_801BE890 *init_inventory_list__10TObjPlayerFPv(Inv_801BE890 *arg0);
-
-Inv_801BE890 *init_inventory_list__10TObjPlayerFPv(Inv_801BE890 *arg0) {
+void *TObjPlayer::init_inventory_list(void *list) {
     s32 i;
-    arg0->f0 = 0;
+    ((Inv_801BE890 *)list)->f0 = 0;
     for (i = 0; i < 0x1E; i++) {
-        init__17TPlyInventoryItemFv((u8 *)&arg0->items[i]);
+        init__17TPlyInventoryItemFv((u8 *)&((Inv_801BE890 *)list)->items[i]);
     }
-    return arg0;
+    return list;
 }
 
+extern "C" {
 void TObjPlayer::set_move_mode(s32 v) { this->m_3dc = v; }
 void TObjPlayer::set_input_mode(s32 v) { this->m_3d8 = v; }
 
