@@ -146,6 +146,25 @@ in `.rodata`. Port: keep FMA or accept small float differences; a normal
 
 None on main.
 
+## 7. Upstream catch-up (rewrite later)
+
+Matt, 2026-11-04 6:55 PM PT: "Yes, allow the one-time upstream asm exception with
+those guardrails." Code taken unchanged from upstream zeroz41/pso-decomp #167-#191
+may keep upstream's asm and other patterns the fork otherwise bans, so the fork can
+catch up quickly. Each instance gets one row here; the C++ rewrite comes later.
+Guardrails: the code is upstream's own (cite the upstream PR), check_pr passes with
+0 matched/linked regressions, and new fork code still follows the full rules.
+
+Columns (all required; `tools/list_port_exceptions.py --check` validates them):
+function/symbol; unit; file (repo path); upstream PR (#167-#191); cheat type (`asm`,
+`raw offset cast`, `extern "C" mangled name`, `steering pragma`, `shadow struct`,
+or `other: <what>`); the fork PR that brought it in; and the tag
+`upstream catch-up, rewrite later`. List and count them with
+`python3 tools/list_port_exceptions.py --upstream-catchup`; check_pr prints the count.
+
+| Function/symbol | Unit | File | Upstream PR | Cheat type | Fork PR | Tag |
+|---|---|---|---|---|---|---|
+
 ## Pending in open PRs
 
 Found by `tools/list_port_exceptions.py --pr N` on 2026-11-04. Add or remove the
