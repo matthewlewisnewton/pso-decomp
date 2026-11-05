@@ -230,12 +230,14 @@ void TLobby::reset_id_tables() {
 }
 
 void TLobby__sub_8020DC78(void) {
+    s32 n;
+    s32 i;
+    s32 j;
     LobbyPopulationTables *base = &TLobby__data_80513A40;
     LobbyPoolEntry (LobbyPopulationTables::*enemy_member)[18];
     LobbyPoolEntry (LobbyPopulationTables::*object_member)[18];
-    s32 i;
-    s32 j;
-    s32 n;
+    LobbyFloorRows (LobbyPopulationTables::*enemy_rows_member)[18];
+    LobbyFloorRows (LobbyPopulationTables::*object_rows_member)[18];
     TLobby__data_805D6134 = 0;
     if (TLobby__data_805D6138 != NULL) {
         memset(TLobby__data_805D6138, 0, 0x31680);
@@ -276,47 +278,42 @@ void TLobby__sub_8020DC78(void) {
     TLobby__data_805D6120 = 0;
     TLobby__data_805D6128 = 0;
     lbl_805D6100 = 0;
-    // pool_entries is at offset 0, so `base->pool_entries` is the anchor
-    // register itself. Applying a pointer-to-member is the address calculation
-    // MWCC keeps as `addi rX, rBase, 0`.
+    // The member-pointer apply encodes the offset as value+1. Decaying the
+    // array to an element pointer at each use is what reduces +1-1 to
+    // `addi rX, rBase, offset` and leaves that address in a temporary.
     enemy_member = &LobbyPopulationTables::pool_entries;
-    {
-        LobbyPoolEntry *enemy_pool = base->*enemy_member;
-        for (j = 17; j >= 0; j--) {
-            if (enemy_pool[j].enemies != NULL) {
-                archive_pool_free(TLobby__data_805D6104, enemy_pool[j].enemies);
-                enemy_pool[j].enemies = NULL;
-            }
+    for (j = 17; j >= 0; j--) {
+        if (static_cast<LobbyPoolEntry *>(base->*enemy_member)[j].enemies != NULL) {
+            archive_pool_free(TLobby__data_805D6104,
+                static_cast<LobbyPoolEntry *>(base->*enemy_member)[j].enemies);
+            static_cast<LobbyPoolEntry *>(base->*enemy_member)[j].enemies = NULL;
         }
     }
     object_member = &LobbyPopulationTables::pool_entries;
-    {
-        LobbyPoolEntry *object_pool = base->*object_member;
-        for (j = 17; j >= 0; j--) {
-            if (object_pool[j].objects != NULL) {
-                archive_pool_free(TLobby__data_805D6104, object_pool[j].objects);
-                object_pool[j].objects = NULL;
-            }
+    for (j = 17; j >= 0; j--) {
+        if (static_cast<LobbyPoolEntry *>(base->*object_member)[j].objects != NULL) {
+            archive_pool_free(TLobby__data_805D6104,
+                static_cast<LobbyPoolEntry *>(base->*object_member)[j].objects);
+            static_cast<LobbyPoolEntry *>(base->*object_member)[j].objects = NULL;
         }
     }
-    {
-        LobbyFloorRows *rows = base->floors;
-        for (j = 17; j >= 0; j--) {
-            if (rows[j].enemyRows != NULL) {
-                TLobby__data_805D6108->heap_free(rows[j].enemyRows);
-                rows[j].enemyRows = NULL;
-            }
+    enemy_rows_member = &LobbyPopulationTables::floors;
+    for (j = 17; j >= 0; j--) {
+        if (static_cast<LobbyFloorRows *>(base->*enemy_rows_member)[j].enemyRows != NULL) {
+            TLobby__data_805D6108->heap_free(
+                static_cast<LobbyFloorRows *>(base->*enemy_rows_member)[j].enemyRows);
+            static_cast<LobbyFloorRows *>(base->*enemy_rows_member)[j].enemyRows = NULL;
         }
     }
-    {
-        LobbyFloorRows *rows = base->floors;
-        for (j = 17; j >= 0; j--) {
-            if (rows[j].objectRows != NULL) {
-                TLobby__data_805D6108->heap_free(rows[j].objectRows);
-                rows[j].objectRows = NULL;
-            }
+    object_rows_member = &LobbyPopulationTables::floors;
+    for (j = 17; j >= 0; j--) {
+        if (static_cast<LobbyFloorRows *>(base->*object_rows_member)[j].objectRows != NULL) {
+            TLobby__data_805D6108->heap_free(
+                static_cast<LobbyFloorRows *>(base->*object_rows_member)[j].objectRows);
+            static_cast<LobbyFloorRows *>(base->*object_rows_member)[j].objectRows = NULL;
         }
     }
+
     memset(base->floors, 0, 0x1B0);
 }
 
