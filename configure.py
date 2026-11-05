@@ -480,6 +480,11 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # -str reuse,readonly: the two file names and the class name are in this
     # unit's .rodata. See docs/porting-exceptions.md section 5.
     "pso/effect/TEffIndirectCtrl.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred", "-opt noprop", "-fp_contract on", "-str reuse,readonly")},
+    # pack_movie_frame: the original keeps every named local in one register
+    # (no lifetime splitting), recomputes its pad and stride shifts instead of
+    # sharing them, and leaves invariant hoisting to the backend. See
+    # docs/porting-exceptions.md section 5.
+    "pso/misc/TMovie_80143988.cpp": {"cflags": _switch(cflags_pso, "-opt nolifetimes,nocse,noprop,noloop")},
     "pso/boss/Boss5GryphonBehavior.cpp": {"mw_version": "GC/2.0"},
     "pso/enemy/TObjEneGyaranzo.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred")},
     "pso/misc/TOExplosiveMachine.cpp": {"mw_version": "GC/2.0"},
