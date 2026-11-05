@@ -88,7 +88,7 @@ struct TBoss8Dragon : public TObjEneDD_ST
     f32 m_670;
     u32 m_674;
     u16 m_678;
-    u16 m_67a;
+    s16 m_67a;
     u32 m_67c;
     u32 m_680;
     u32 m_684;
