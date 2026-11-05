@@ -521,7 +521,13 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/enemy/TObjEneGyaranzo.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred")},
     "pso/misc/TOExplosiveMachine.cpp": {"mw_version": "GC/2.0"},
     "pso/enemy/TObjEneSlimeTailAttack.cpp": {"mw_version": "GC/2.0"},
-    "pso/boss/TBoss8Dragon.cpp": {"mw_version": "GC/2.0"},
+    # -inline off,deferred: the real TBoss8Dragon constructor addresses
+    # __vt__12TBoss8Dragon as addi r0, r31, 2348 from the .data anchor.
+    # Plain -inline off emits lis/addi of the vtable symbol and the ctor
+    # grows 0x554 -> 0x558. Deferred also emits the compiler vtable at
+    # .data+0x92C, where the hand table was. Other functions are unchanged.
+    # See docs/porting-exceptions.md section 5.
+    "pso/boss/TBoss8Dragon.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred")},
     # GC/1.3.2: the container files 0x8018807C-0x8018D900, the CRC-32 pair
     # (`xoris/xori 0xFFFF`; 2.x always emits `li -1; xor`), and five others.
     # TObjCamera: 1.3.2 copies CameraSoundEvent member by member unscheduled.
