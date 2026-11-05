@@ -1,6 +1,11 @@
 {
- "pso/boss/TObjBoss2Tunnel_8007C5C0.cpp": [
-  "missing TObjBoss2Tunnel__data_80438A90"
+ "pso/boss/TObjBoss2Tunnel_802F2070.cpp": [
+  "missing lbl_80474458",
+  "missing lbl_805D6971",
+  "size .sbss:12!=6",
+  "alignment .sbss:0x805D696C needs 8-byte alignment",
+  "alignment .sdata2:0x805DECCC needs 8-byte alignment",
+  "data .sbss:66.66667%"
  ],
  "pso/effect/TEffStarLight2D.cpp": [
   "section .data",
@@ -16,6 +21,20 @@
   "size .sdata2:36!=24",
   "alignment .sdata2:0x805D9454 needs 8-byte alignment",
   "data .sdata2:80.0%"
+ ],
+ "pso/misc/TLobby_801E2F94.cpp": [
+  "missing lbl_80449730",
+  "missing lbl_805DC418",
+  "missing lbl_805DC41C",
+  "missing lbl_805DC420",
+  "missing lbl_805DC424",
+  "missing lbl_805DC428",
+  "missing lbl_805DC42C",
+  "missing lbl_805DC430",
+  "missing lbl_805DC434",
+  "missing lbl_805DC438",
+  "missing lbl_805DC43C",
+  "missing lbl_805DC440"
  ],
  "pso/misc/TLobby_802268F4.cpp": [
   "missing lbl_805DC74C",
