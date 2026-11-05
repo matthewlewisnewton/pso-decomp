@@ -5,6 +5,7 @@
 #include "pso/misc/TOMine.h"
 
 struct TObjPlayer;
+class TObjChara;
 
 extern "C" {
 // Whether the player has check_flag 0x10000 set.
@@ -45,7 +46,10 @@ struct TOMineTrap : public TOMine {
     void sync_position();
     void send_state_packet(u16 idx);
     int update_trap_sub();
-    static s32 show_owner_message(s32 arg0, u32 arg1);
+    static s32 show_owner_message(TOMineTrap *trap, TObjChara *actor);
+    void strike_actor(TObjChara *actor, TObjPlayer *owner);
+    void strike_player(TObjChara *actor);
+    void strike_enemy(TObjChara *actor, TObjPlayer *owner);
 };
 
 typedef char TOMineTrap_size[sizeof(TOMineTrap) == 0x384 ? 1 : -1];

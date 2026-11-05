@@ -2834,7 +2834,7 @@ void TObjEneMe3SinowZoa::state_knockback(s32 arg1) {
 
 #pragma fp_contract on
 void TObjEneMe3SinowZoa__sub_80317F90(u8 *arg0, s32 arg1) {
-    Vec_80317F90 v;
+    Vec v;
     Vec_80317F90 p;
     *(s32 *)((s8 *)arg0 + 0x3C0) = 0;
     switch (arg1) {
@@ -2861,7 +2861,7 @@ void TObjEneMe3SinowZoa__sub_80317F90(u8 *arg0, s32 arg1) {
                 v.x = TObjEneMe3SinowZoa__data_805DF31C;
                 v.y = TObjEneMe3SinowZoa__data_805DF314;
                 v.z = TObjEneMe3SinowZoa__data_805DF320;
-                ((TObjBoss2Tunnel *)(&v))->init_zako(arg0 + 0x38, *(s32 *)((s8 *)arg0 + 0x60));
+                TObjBoss2Tunnel::init_zako(&v, arg0 + 0x38, *(s32 *)((s8 *)arg0 + 0x60));
                 TObjPlayer::spawn_effect_f8((s32)&v, 0x14);
             }
             break;
