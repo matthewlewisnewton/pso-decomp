@@ -605,7 +605,8 @@ struct TLobby : public TObject {
     s32 mark_ready();
     void set_active();
     void reset_connection_state();
-    void handle_request_timeout();
+    // Called as a timer function pointer with the connection fsm in r3.
+    static void handle_request_timeout(TLobby* self);
     static s32 init_net_list(s16 arg0, s16 arg1);
     static void init_net_block_18A0();
     static s32 run_net_init_step();

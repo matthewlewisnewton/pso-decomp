@@ -69,9 +69,9 @@ etc. or their port equivalents) instead of the fixed address.
 
 ## 4. CodeWarrior pragmas
 
-5,865 pragmas in 886 files; per-file table in the generated file. Main kinds:
+5,866 pragmas in 886 files; per-file table in the generated file. Main kinds:
 `dont_inline` 1153, `inline_depth` 1045, `fp_contract` 931, `auto_inline` 844,
-`opt_common_subs` 624, `scheduling` 262, `opt_propagation` 240,
+`opt_common_subs` 625, `scheduling` 262, `opt_propagation` 240,
 `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56,
 `defer_codegen` 50, `pack` 46. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
@@ -93,6 +93,12 @@ small float differences without FMA).
 | File | Function | What | Why | Port should |
 |---|---|---|---|---|
 | `src/pso/effect/TEF_LensFlare.cpp` | `TEF_LensFlare::render` | one scoped `#pragma opt_propagation off` | MWCC propagation needed for the exact receiver/descriptor cursor codegen. Approved by Matt 2026-11-04. | Drop it. |
+
+### Approved: `TLobby__sub_803FCF44` ([#298](https://github.com/matthewlewisnewton/pso-decomp/pull/298))
+
+| File | Function | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/misc/TLobby_803FC178.cpp` | `TLobby__sub_803FCF44` (0x803FCF44, 328 bytes) | one scoped `#pragma opt_common_subs on` | Approved by Matt 2026-11-04 4:38 PM PT. This avetcp unit is compiled `-opt nocse`, so common-subexpression elimination is already off for the file. This function needs it back on. Without the pragma the two reads of `lbl_805C02D0` become one hoisted `...bss.0` base (frame 32→40, saves r29) and the length clamp folds from `lhz` / `extsh` / `addi r0,r4,0` (0x803FD03C–0x803FD04C) to `lha`; the function is 320 bytes, 82.65%. `#pragma opt_propagation off` around the same body does not change that. With `opt_common_subs on` the original bytes return: direct `lis`/`addi` of `lbl_805C02D0` at 0x803FD034 and 0x803FD058, frame 32. The CHAP reader's `dont_inline` / `inline_depth` pair is not part of this exception; the builder does not call those inlines. | Drop the pragma. The value is the clamped copy into the challenge buffer; a port does not need MWCC's addressing. |
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
@@ -137,7 +143,6 @@ entry when the PR merges.
 | [#250](https://github.com/matthewlewisnewton/pso-decomp/pull/250) | `fp_contract` ×3 | Reason not recorded. |
 | [#303](https://github.com/matthewlewisnewton/pso-decomp/pull/303), [#295](https://github.com/matthewlewisnewton/pso-decomp/pull/295), [#289](https://github.com/matthewlewisnewton/pso-decomp/pull/289), [#225](https://github.com/matthewlewisnewton/pso-decomp/pull/225), [#222](https://github.com/matthewlewisnewton/pso-decomp/pull/222), [#215](https://github.com/matthewlewisnewton/pso-decomp/pull/215), [#187](https://github.com/matthewlewisnewton/pso-decomp/pull/187), [#128](https://github.com/matthewlewisnewton/pso-decomp/pull/128) | 1 to 4 inlining/optimization pragmas each | Reason not recorded. Drop in a port. |
 | [#240](https://github.com/matthewlewisnewton/pso-decomp/pull/240) | Not scanned | Diff exceeds GitHub's 300-file limit; scan locally after it merges. |
-| [#298](https://github.com/matthewlewisnewton/pso-decomp/pull/298) | Fake linkage: `extern "C" void handle_request_timeout__6TLobbyFv(void)`, stored into the one-word timer callback in `TLobby__sub_80402CE0` (`src/pso/misc/TLobby_803FC178.cpp`) | **Not approved.** The binary relocates that slot to `handle_request_timeout__6TLobbyFv`. On MWCC GC/1.2.5 through 2.7 a pointer to a non-static member is 12 bytes (`this_delta`, `v_offset`, function address), including for a class with no bases and no virtuals, and the assignment does not compile. The runtime's `__ptmf_scall4` is not selectable from a pragma (`gcc_extensions`, `pointercast_lvalue`, `ecplusplus`, `mpwc_relax`). The real non-static `TLobby::handle_request_timeout` stays; it is already byte-exact and reads `this`. Port: on a compiler whose pointer-to-member is a single address, store `&TLobby::handle_request_timeout`. |
 
 The scan covers source lines only; `configure.py` overrides added by PRs show up
 in the generated table once merged.

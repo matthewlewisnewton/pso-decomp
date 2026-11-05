@@ -1008,7 +1008,14 @@ s16 TLobby__sub_803FC820(Conn_804004DC *c, Hdr_803FC4B4 *hdr, B_803FADA0 *src) {
     TLobby__sub_803FE6CC(c, code, hdr->flag, reply);
     return ret;
 }
+#pragma pop
 
+// Porting exception (approved by Matt 2026-11-04 4:38 PM PT, see
+// docs/porting-exceptions.md): this avetcp unit is -opt nocse. Common
+// subs has to be on here so lbl_805C02D0 stays two direct ha/lo pairs
+// and the length clamp stays lhz/extsh/addi. Drop the pragma when porting.
+#pragma push
+#pragma opt_common_subs on
 struct ChapName_803FCF44 { char data[7]; };
 const ChapName_803FCF44 lbl_805E1158 = { "avetcp" };
 
@@ -3157,15 +3164,11 @@ s16 TLobby__sub_80402BB4(u8 *arg0, s32 timeout) {
 
 extern const char lbl_805E1180[4];
 extern "C" B_803FADA0 *TLobby__sub_80403634(Self_803FD74C *fsm);
-// MWCC 1.2.5n member pointers are 12 bytes and cannot convert to a
-// function pointer. The timer stores the 4-byte address of
-// TLobby::handle_request_timeout.
-extern "C" void handle_request_timeout__6TLobbyFv(void);
 struct Conn_80402CE0;
 struct Self_80402CE0;
 struct Timer_80402CE0 {
     u8 pad0[0x10];
-    void (*callback)(void);
+    void (*callback)(TLobby *);
     Self_80402CE0 *arg;
     u8 pad18[4];
 };
@@ -3231,7 +3234,7 @@ extern "C" void TLobby__sub_80402CE0(Conn_80402CE0 *conn) {
         fsm->f0 = 0;
         fsm->f3 = fsm->f4;
         fsm->f6 = fsm->f7;
-        timer->callback = handle_request_timeout__6TLobbyFv;
+        timer->callback = TLobby::handle_request_timeout;
         timer->arg = fsm;
         TLobby__sub_80405298((N_80405298 *)timer, fsm->proto->timeout);
     }
@@ -3309,8 +3312,8 @@ block_10:
     }
 }
 
-void TLobby::handle_request_timeout() {
-    u8 *arg0 = (u8 *)this;
+void TLobby::handle_request_timeout(TLobby* self) {
+    u8 *arg0 = (u8 *)self;
     u8 *temp_r4;
     temp_r4 = (u8 *)(*(u8 **)((s8 *)arg0 + 0x30));
     if ((u8) *(u8 *)((s8 *)arg0 + 3) != 0) {

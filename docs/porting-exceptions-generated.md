@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 9 | 3 |
 | intrinsic | 83 | 54 |
 | hardware | 71 | 13 |
-| pragma | 5865 | 886 |
+| pragma | 5866 | 886 |
 | configure.py per-unit override | 145 | 145 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045, `fp_contract` 931, `auto_inline` 844, `opt_common_subs` 624, `scheduling` 262, `opt_propagation` 240, `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 43, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 22, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045, `fp_contract` 931, `auto_inline` 844, `opt_common_subs` 625, `scheduling` 262, `opt_propagation` 240, `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 43, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 22, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -673,7 +673,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `src/pso/misc/TLobby_803DE778.cpp` | scheduling×2, peephole×2 |
 | `src/pso/misc/TLobby_803F8794.cpp` | opt_common_subs×11, opt_propagation×8, dont_inline×8, inline_depth×8, scheduling×1 |
 | `src/pso/misc/TLobby_803FAEA0.cpp` | opt_common_subs×11, opt_propagation×8, dont_inline×8, inline_depth×8, scheduling×1 |
-| `src/pso/misc/TLobby_803FC178.cpp` | dont_inline×20, inline_depth×18, opt_common_subs×16, opt_propagation×9, optimization_level×2, bool×2, opt_lifetimes×1, opt_dead_assignments×1, scheduling×1 |
+| `src/pso/misc/TLobby_803FC178.cpp` | dont_inline×20, inline_depth×18, opt_common_subs×17, opt_propagation×9, optimization_level×2, bool×2, opt_lifetimes×1, opt_dead_assignments×1, scheduling×1 |
 | `src/pso/misc/TLobby_804048E8.cpp` | opt_common_subs×12, dont_inline×9, inline_depth×9, opt_propagation×8, scheduling×1 |
 | `src/pso/misc/TLobby_804050DC.cpp` | dont_inline×36, opt_common_subs×29, inline_depth×26, opt_propagation×17, pool_data×15, optimization_level×9, opt_unroll_loops×1, scheduling×1, opt_lifetimes×1 |
 | `src/pso/misc/TLobby_80426CAC.cpp` | dont_inline×4, inline_depth×3, opt_propagation×2, opt_common_subs×2, auto_inline×1 |
