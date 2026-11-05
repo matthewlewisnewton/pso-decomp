@@ -16,6 +16,8 @@ struct player_stats;
 
 struct TItem;
 struct TechniqueContactList;
+struct NJS_MOTION;
+struct NJS_OBJECT;
 
 // The frames a player stays protected from hits (after getting up, being
 // hurt, or a mag's invincibility).
@@ -1255,8 +1257,9 @@ struct TObjPlayer : public TObjChara {
     void draw_motion_node_list();
     static void resolve_render_keys(u32 **src, u32 **dst);
     static void advance_render_counters();
-    static void notify_fish_obj(void* a0);
+    static NJS_MOTION *notify_fish_obj(s32 id);
     static void draw_effect();
+    static NJS_OBJECT *queue_boss_effect(s32 id);
     void draw_trail_pair();
     s32 apply_area_attack_hits(u8 *arg1, s32 arg2, u32 arg3, f32 farg0);
     void update_aim_and_fire();
