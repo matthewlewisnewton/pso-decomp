@@ -13,6 +13,7 @@
 #include "pso/misc/TWindowKeyBoardSoft.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 #include "pso/misc/TWindowSubSymbolChat.h"
+#include "pso/misc/TWindowSubStatusDisp_803DEE6C.h"
 #include "pso/object/TObjFish.h"
 
 __declspec(section ".sdata2") extern const f32 lbl_805DCDC0[2];
@@ -249,16 +250,13 @@ void rotate_matrix_x(s32, s32);
 s32 push_matrix_from(void *src);
 void push_matrix();
 void pop_matrix();
-void *begin_screen_draw(s32 arg0);
-void DVDConvertEntrynumToPath(f32 *q);
-void set_draw_texture_and_color(s32 idx, s32 arg1);
 
 extern Cam_802511E4 TCameraCtrl__data_804FF634;
 extern s32 TWindowFukidasi__balloon_color_table[];
 extern Vec_80251380 fukidasi_forward_vec;
 extern RecoveredGlobal_80251BA0_lbl_804CF080 window_fukidasi_layout_entries;
 extern u8 identity_matrix[];
-extern s32 window_fukidasi_class_name;
+extern const char *window_fukidasi_class_name;
 extern Cam_80251380 *camera_ctrl_instance;
 extern void *lbl_805D63F0;
 
@@ -955,7 +953,7 @@ void init_flags__15TWindowFukidasiFPvi(void *arg0, s32 arg1) {
 void TUnk_804CF0B8::sub_80251DF0(s16 arg1, s32 str, s16 arg3, f32 farg0) {
     s32 temp_r3;
 
-    *(s32 *)((s8 *)this + 0) = (s32) window_fukidasi_class_name;
+    this->m_name = window_fukidasi_class_name;
     this->m_70 = 0;
     this->m_71 = 0;
     this->m_72 = 2;
@@ -983,7 +981,6 @@ struct NamePlateQuad { f32 x0, y0, x1, y1, u0, v0, u1, v1; };
 extern "C" {
 int get_name_text_width(void *);
 void apply_context_transform_to_rect(View_80252764 *, NamePlateQuad *);
-void draw_textured_quad_at_depth(f32 *, f32);
 void set_text_draw_params(View_80252764 *, s32, s32, f32, f32);
 }
 void TUnk_804CF0B8::draw_name_plate(TWindowDrawContext *ctx, u32 color) {
@@ -1000,8 +997,8 @@ void TUnk_804CF0B8::draw_name_plate(TWindowDrawContext *ctx, u32 color) {
         pos[0] = ctx->x - 11.0f;
         pos[1] = ctx->y - 10.0f;
         depth = -1.0f / (0.0598f + ctx->depth);
-        // The call consumes begin_screen_draw's return register. begin_render overwrites it.
-        TWindowSubStatusDisp::render_forward(begin_screen_draw(1));
+        begin_screen_draw(1);
+        TWindowSubStatusDisp::render_forward();
         set_draw_texture_and_color(0, plateColor);
         q.x0 = pos[0]; q.y0 = pos[1]; q.x1 = 16.0f + q.x0; q.y1 = (lbl_805DCD10[0]) + q.y0;
         q.u0 = 0.56640625f; q.v0 = 0.92578125f; q.u1 = 0.62890625f; q.v1 = 1.0f;
