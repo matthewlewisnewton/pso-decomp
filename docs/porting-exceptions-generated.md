@@ -85,12 +85,12 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1147, `inline_depth` 1039,
 | `src/pso/object/TObjQuestCol.cpp:12` | `__cntlzw` |
 | `src/pso/object/TObjQuestCol2.cpp:11` | `__cntlzw` |
 | `src/pso/object/TObjTombstone.cpp:427` | `__cntlzw` |
-| `src/pso/player/TObjPlayer_80011014.cpp:4896` | `__fabs` |
-| `src/pso/player/TObjPlayer_80011014.cpp:4904` | `__frsqrte` |
+| `src/pso/player/TObjPlayer_80011014.cpp:4890` | `__fabs` |
+| `src/pso/player/TObjPlayer_80011014.cpp:4898` | `__frsqrte` |
 | `src/pso/player/TObjPlayer_800AAFBC.cpp:350` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_8012AF98.cpp:12` | `__cntlzw` |
-| `src/pso/player/TObjPlayer_801AF2F0.cpp:2517` | `__cntlzw` |
-| `src/pso/player/TObjPlayer_801AF2F0.cpp:5046` | `__cntlzw` |
+| `src/pso/player/TObjPlayer_801AF2F0.cpp:2509` | `__cntlzw` |
+| `src/pso/player/TObjPlayer_801AF2F0.cpp:5048` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_803DF7A8.cpp:95` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_803DF7A8.cpp:116` | `__frsqrte` |
 | `src/pso/player/TObjPlayer_803DF7A8.cpp:131` | `__fabs` |
