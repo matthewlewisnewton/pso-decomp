@@ -420,30 +420,30 @@ void TAdMultiPlyChrSelectGC::create_widgets() {
     if (p != 0) {
         __ct__12TAdBackTxtGCFv((void *) p, this);
     }
-    switch (this->grid.m_48) {
+    switch (this->m_48) {
     case 0:
     case 2:
         p = __nw__7TObjectFUl(0x138);
         if (p != 0) {
             __ct__10TAdTitleGCFP7TObjectl((void *) p, this, 0);
         }
-        *(s32 *)&this->grid.unk_68 = (s32)get_or_create_slot_window__22TAdMultiPlyChrSelectGCFii(this, 1);
-        *(s32 *)&this->grid.unk_60 = get_or_create_player__22TAdMultiPlyChrSelectGCFiiii((s32)this, 1, -1, 0);
+        *(s32 *)&this->unk_68 = (s32)get_or_create_slot_window__22TAdMultiPlyChrSelectGCFii(this, 1);
+        *(s32 *)&this->unk_60 = get_or_create_player__22TAdMultiPlyChrSelectGCFiiii((s32)this, 1, -1, 0);
         break;
     case 1: {
         p = __nw__7TObjectFUl(0x138);
         if (p != 0) {
             __ct__10TAdTitleGCFP7TObjectl((void *) p, this, 8);
         }
-        *(s32 *)&this->grid.unk_68 = (s32)get_or_create_slot_window__22TAdMultiPlyChrSelectGCFii(this, 2);
-        this->grid.m_6c = create__16TAdChrSelBSlotGCFPv(this);
+        *(s32 *)&this->unk_68 = (s32)get_or_create_slot_window__22TAdMultiPlyChrSelectGCFii(this, 2);
+        this->m_6c = create__16TAdChrSelBSlotGCFPv(this);
         I2_802DF9B4 pos = lbl_80472828[0];
         p = __nw__7TObjectFUl(0x708);
         if (p != 0) {
             p = __ct__14TAdSelectCurGCFv((void *) p, this, &pos, lbl_80472808);
         }
-        *(u32 *)&this->grid.unk_70 = p;
-        *(s32 *)&this->grid.unk_60 = get_or_create_player__22TAdMultiPlyChrSelectGCFiiii((s32)this, 2, -1, 0);
+        *(u32 *)&this->unk_70 = p;
+        *(s32 *)&this->unk_60 = get_or_create_player__22TAdMultiPlyChrSelectGCFiiii((s32)this, 2, -1, 0);
         break;
     }
     }
@@ -451,9 +451,9 @@ void TAdMultiPlyChrSelectGC::create_widgets() {
     if (p != 0) {
         p = __ct__13TAdGuideTxtGCFv((void *) p, this);
     }
-    this->grid.m_64 = p;
-    set_entry_value__22TAdMultiPlyChrSelectGCFlUl(this->grid.m_64, 0, &TAdMultiPlyChrSelectGC__data_805DE898);
-    set_entry_value__22TAdMultiPlyChrSelectGCFlUl(this->grid.m_64, 1, &TAdMultiPlyChrSelectGC__data_805DE898);
+    this->m_64 = p;
+    set_entry_value__22TAdMultiPlyChrSelectGCFlUl(this->m_64, 0, &TAdMultiPlyChrSelectGC__data_805DE898);
+    set_entry_value__22TAdMultiPlyChrSelectGCFlUl(this->m_64, 1, &TAdMultiPlyChrSelectGC__data_805DE898);
     p = __nw__7TObjectFUl(0x9C);
     if (p != 0) {
         p = __ct__13TAdTitleTexGCFv((void *) p, this);
@@ -464,11 +464,11 @@ void TAdMultiPlyChrSelectGC::create_widgets() {
     if (p != 0) {
         p = __ct__14TAdGameStartGCFv((void *) p, tl_clipout);
     }
-    *(u32 *)&this->grid.unk_78 = p;
+    *(u32 *)&this->unk_78 = p;
     V2_802DF9B4 v = lbl_80472848[0];
     v.x = multi_chr_select_widget_layout[0].x;
     v.y = multi_chr_select_widget_layout[0].y;
-    this->grid.m_5c = (s32)fn_802C6F20(tl_02, (s32)&v);
+    this->m_5c = (s32)fn_802C6F20(tl_02, (s32)&v);
     TAdMultiPlyChrSelectGC::get_move_effect(tl_clipout);
 }
 

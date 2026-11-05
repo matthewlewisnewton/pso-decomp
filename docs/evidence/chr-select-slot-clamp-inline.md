@@ -1,6 +1,6 @@
 # Character-select slot clamp (`sub_802C5F1C`)
 
-`TAdMultiPlyChrSelectGC::sub_802C5F1C` (`0x802C5F1C`, 236 bytes) fills a 4×3
+`TAdMultiPlyChrSelectGC__sub_802C5F1C` (`0x802C5F1C`, 236 bytes) fills a 4×3
 grid of selection quads and clamps the active player slot
 (`TAdMultiPlyChrSelectGC__data_805D67D8`) to 3. The original inner loop keeps
 the hoisted row (`self + i*96`) in `r8` and the cell in `r7`:
@@ -52,31 +52,14 @@ file is marked `inline`. Precedent for that switch:
 The `auto` spelling that was tried first:
 <https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203>.
 
-## Return value and the grid members
+## Return value
 
 The function's last instruction is `addi r1, r1, 0x10` / `blr`. It never
-writes `r3`. The three callers (`update_option_cursor` at `0x802C6028`,
-`handle_dpad_input` at `0x802C6204`, and the unmatched plate constructor at
-`0x802C6E6C`) do not read `r3` afterwards, so the return type is `void`.
-The two compiled callers increment `m_1c` and then call. That increment is
-`lwz r4, 0x1c(r3)` / `addi` / `stw` whether or not the old value is passed
-as an argument, so the parameter is not part of the matched code. The
-unmatched plate constructor at `0x802C6E6C` still passes the slot global in
-`r4`; this body does not read it. The function takes no parameter.
-
-The quad array and the integer fields `m_24`..`m_9c` are the same bytes at
-`0x24`. `initialize_selection_state` stores integers there (`stw` to `m_34`
-and the rest) and this function stores the cell texture floats (`stfs`).
-Both are members of one union, and each function uses the member of the
-type it stores. `cursor` is at `0x324`, `sel` at `0x4AC`, `f4DC` at `0x4DC`,
-`f4EC` at `0x4EC`, `f4F8` at `0x4F8`. `update_option_cursor` and
-`handle_dpad_input` use those members on `this`. The function is a member;
-its symbol is `sub_802C5F1C__22TAdMultiPlyChrSelectGCFv`.
-
-`get_or_create` still executes `li r3, 160` / `bl __nw__7TObjectFUl`. The
-class is `0x530` bytes once the grid is a member, so that call passes the
-literal `0xA0` and constructs with placement new. That placement
-`operator new` is `inline`. `TAdMultiPlyChrSelectGC.cpp` needs `-inline on`
-for the same reason as this unit: `-inline off` outlines it (`get_or_create`
-26→31 instructions) and `-inline auto` also inlines `__ct` (27→62). With
-`-inline on`, all 15 functions in that unit match the original object.
+writes `r3`. The callers do not read `r3`, so the return type is `void`.
+Both compiled callers still pass the old `f1C` in `r4`. The body does not
+read that argument. `TAdMultiPlyChrSelectGC` stays `0xA0` bytes, and
+`get_or_create` is `new TAdMultiPlyChrSelectGC`, which is `li r3, 160` /
+`bl __nw__7TObjectFUl`. The grid this function fills is `S_802C6008`, the
+same view `update_option_cursor` already uses; `S_802C61E4` is that view
+under `handle_dpad_input`'s name. The quads sit in what was padding between
+`f1C` and `sel`, so those callers' offsets are unchanged.

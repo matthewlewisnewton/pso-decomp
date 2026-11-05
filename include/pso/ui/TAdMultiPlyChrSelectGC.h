@@ -4,17 +4,7 @@
 #include "types.h"
 #include "pso/TObject.h"
 
-/* One selection cell: position, then the page of texture coordinates sub_802C5F1C fills. */
-struct TAdMultiPlyChrSelectGC_Quad {
-    f32 x, y, z, w, u0, v0, u1, v1;
-};
-struct TAdMultiPlyChrSelectGC_V2 { f32 x, y; };
-
-/* Selects the placement form of operator new. The retail allocator is still __nw(0xA0). */
-enum ChrSelectStorage { chr_select_storage };
-
 struct TAdMultiPlyChrSelectGC : public TObject {
-    void *operator new(size_t, void *storage, ChrSelectStorage) { return storage; }
     TAdMultiPlyChrSelectGC(TObject *parent, s32 mode);
     virtual ~TAdMultiPlyChrSelectGC();
     void create_widgets();
@@ -22,60 +12,23 @@ struct TAdMultiPlyChrSelectGC : public TObject {
     virtual void render();
     u32 m_1c;
     u32 m_20;
-    /* The 4x3 grid (and the four extra rows the draw pass reads) occupies 0x24..0x324.
-       The same bytes are the integer fields below: initialize_selection_state stores
-       s32/u32 there, and sub_802C5F1C stores the cell texture floats. Each function
-       names the member it actually stores. */
-    union {
-        struct {
-            u32 m_24;
-            u8 unk_28[0x4];
-            f32 m_2c;
-            u8 unk_30[0x4];
-            s32 m_34;
-            u8 unk_38[0x4];
-            u32 m_3c;
-            u32 m_40;
-            u8 _pad44[0x4];
-            u32 m_48;
-            u32 m_4c;
-            u8 unk_50[0x4];
-            s32 m_54;
-            u8 unk_58[0x4];
-            s32 m_5c;
-            u8 unk_60[0x4];
-            u32 m_64;
-            u8 unk_68[0x4];
-            s32 m_6c;
-            u8 unk_70[0x4];
-            u32 m_74;
-            u8 unk_78[0x4];
-            s32 m_7c;
-            u8 unk_80[0x4];
-            u32 m_84;
-            u8 unk_88[0x4];
-            s32 m_8c;
-            u8 unk_90[0x4];
-            u32 m_94;
-            u8 unk_98[0x4];
-            s32 m_9c;
-        } grid;
-        TAdMultiPlyChrSelectGC_Quad quad[8][3];
-    };
-    f32 cursor[3][8];
-    TAdMultiPlyChrSelectGC_V2 home[4][3];
-    u8 pad3e4[0x444 - 0x3E4];
-    s32 a[4][3];
-    u8 pad474[0x4A4 - 0x474];
-    f32 ox;
-    f32 oy;
-    s32 sel[4][3];
-    s32 f4DC[4];
-    s32 f4EC;
-    u8 pad4f0[8];
-    s32 f4F8;
-    u8 pad4fc[4];
-    s32 b[4][3];
+    u32 m_24;
+    u8 unk_28[0x4];
+    f32 m_2c;
+    u8 unk_30[0x4];
+    s32 m_34;
+    u8 unk_38[0x4];
+    u32 m_3c;
+    u32 m_40;
+    u8 _pad44[0x4];
+    u32 m_48;
+    u32 m_4c;
+    u8 unk_50[0x4];
+    s32 m_54;
+    u8 unk_58[0x4];
+    s32 m_5c;
+    u8 unk_60[0x4];
+    u32 m_64;
     void set_index_and_close_status(s32 arg1);
     void set_status_value(s32 arg1);
     void handle_event(s32 arg1);
@@ -100,7 +53,6 @@ struct TAdMultiPlyChrSelectGC : public TObject {
     void move_cursor(s32 x_, s32 y_, s32 dx, s32 dy, s32 depth);
     void update_option_cursor();
     void handle_dpad_input();
-    void sub_802C5F1C();
     static void init();
     static s32 get_status();
     static s32 is_selection_confirmed();
@@ -153,6 +105,20 @@ struct TAdMultiPlyChrSelectGC : public TObject {
     static int get_chr_select_state();
     s32 get_ready_state();
     static u32 get_move_effect(s32 arg0);
+    u8 unk_68[0x4];
+    s32 m_6c;
+    u8 unk_70[0x4];
+    u32 m_74;
+    u8 unk_78[0x4];
+    s32 m_7c;
+    u8 unk_80[0x4];
+    u32 m_84;
+    u8 unk_88[0x4];
+    s32 m_8c;
+    u8 unk_90[0x4];
+    u32 m_94;
+    u8 unk_98[0x4];
+    s32 m_9c;
     static s32 dispatch_draw_command(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
     void update_selection();
     void open_windows();
@@ -164,5 +130,5 @@ struct TAdMultiPlyChrSelectGC : public TObject {
     void update_card_confirm();
 };
 
-typedef char TAdMultiPlyChrSelectGC_size[sizeof(TAdMultiPlyChrSelectGC) == 0x530 ? 1 : -1];
+typedef char TAdMultiPlyChrSelectGC_size[sizeof(TAdMultiPlyChrSelectGC) == 0xA0 ? 1 : -1];
 #endif

@@ -8,8 +8,8 @@
 
 extern "C" {
 void copy_vec2__28TWindowSubSymbolChatPartsSetFPv(void *);
-s32 TAdMultiPlyChrSelectGC::get_player_index() { return this->grid.m_24; }
-void TAdMultiPlyChrSelectGC::set_cursor_index(s32 v) { this->grid.m_24 = v; }
+s32 TAdMultiPlyChrSelectGC::get_player_index() { return this->m_24; }
+void TAdMultiPlyChrSelectGC::set_cursor_index(s32 v) { this->m_24 = v; }
 void TAdMultiPlyChrSelectGC::set_field_100(s32 v) { *(s32*)((char*)this + 0x100) = v; }
 
 void fn_802D50B8(void *arg0, void *arg1, void *arg2, void *arg3) {
