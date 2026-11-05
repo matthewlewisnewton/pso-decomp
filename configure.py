@@ -429,6 +429,14 @@ GAME_COMPILER = "GC/2.6"
 # keeps an object until its source changes) or with other switches. Every
 # entry is here because a function or data section matches only this way.
 GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
+    # TObjPlayer__sub_8015434C fuses offset*sin+pos (fmadds at 0x80154408)
+    # and offset*cos+pos (fmadds at 0x8015442C). The same flag leaves every
+    # other function in this unit unchanged, including resolve_actor_sphere_contact's
+    # (x*x)+(z*z) as fmuls+fadds. resolve_player_box_contact's fmadds at
+    # 0x8015532C and 0x8015533C already come from that function's pragma.
+    # Precedent: dtk-template's GC/Wii base flags use -fp_contract on
+    # (https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209).
+    "pso/player/TObjPlayer_801542CC.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
     # Upstream #183: the Falz plot table TU is built with deferred inlining
     # (its state actions come out in reverse table order).
     "pso/boss/TBoss6PlotFalz_802B0228.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-str reuse,readonly")},
@@ -442,7 +450,14 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Deferred, with definitions in reverse address order: the ctor's
     # function-local static and guard precede run_task's table guard in .sbss,
     # as in the original (docs/porting-exceptions.md section 5).
-    "pso/boss/TObjBoss2Tunnel_802F2070.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on")},
+    # .sbss starts at 0x805D696C and .sdata2 at 0x805DECCC, both only 4-aligned.
+    # mwld takes alignment from the CodeWarrior comment record, which GC/2.6
+    # writes as 8, so the pool and every later sda21 offset shift by 4.
+    # cw_align rewrites that record after compile. -sdata 4 does not.
+    "pso/boss/TObjBoss2Tunnel_802F2070.cpp": {
+        "cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on"),
+        "cw_align": ".sbss=4 .sdata2=4",
+    },
     # Upstream #185's -inline off,deferred, -pool off and -sdata 4; each is
     # needed (docs/porting-exceptions.md section 5).
     "pso/boss/TObjBoss2Tunnel.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-pool off", "-sdata 4", "-fp_contract on")},
@@ -464,6 +479,12 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # half-width nudge and the drop placement fuse multiply-adds.
     # -str reuse,readonly: the literals live in this unit's .rodata.
     "pso/object/TObjTombstone.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on", "-str reuse,readonly")},
+    # Vol Opt scenery is one TU. Deferred emission puts TOBoss4Rock::run_task
+    # first; -sdata 4 keeps the 8-byte motion-name array in .data.
+    "pso/misc/TOBoss4.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on", "-str reuse,readonly", "-sdata 4", "-inline deferred")},
+    # Dark Falz rocks are one TU, written last-defined first. -fp_contract on
+    # fuses the fall and spin multiply-adds.
+    "pso/boss/TBoss6Rock.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on", "-str reuse,readonly", "-inline off,deferred")},
     # GC/2.0: compiler-expanded struct copies take 2.0's registers.
     # The ending item handler table keeps 2.0's store/load scheduling for its
     # zero-initialized local member-function-pointer array.
@@ -736,6 +757,10 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/misc/TOSensorGeneral01.cpp": {"cflags": _switch(cflags_pso, "-sdata 4", "-str reuse,readonly", "-pool off")},
     # Unlike the other keys it addresses its descriptors off one .data base.
     "pso/misc/TOKeyGenericSw.cpp": {"cflags": _switch(cflags_pso, "-sdata 4", "-str reuse,readonly")},
+    # __vt__25TObjCityMainWarpChallenge at 0x804B6188 precedes
+    # jumptable_804B61DC. Whole unit matches with nothing inlined.
+    # See docs/evidence/city-main-warp-challenge-vtable.md.
+    "pso/object/TObjCityMainWarpChallenge.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     # Quest-collision deleting destructors share a TU. Deferred generation
     # emits the last definition first, which is the only order that puts each
     # vtable before the next class's (TObjQuestColA then TObjQuestCol;

@@ -12,6 +12,15 @@ f32 xyz_distance(Vec *a, Vec *b);
 void load_current_pos_matrix(s32 arg0);
 void load_current_tex_matrix(s32 i);
 void load_list_texture(s32 idx, s32 wrapS, s32 wrapT, s32 map);
-s32 spheres_overlap(u8 *arg0, u8 *arg1);
+struct CollisionVector_80155C54 {
+    f32 x;
+    f32 y;
+    f32 z;
+};
+struct CollisionSphere_80155C54 {
+    CollisionVector_80155C54 center;
+    f32 radius;
+};
+s32 spheres_overlap(CollisionSphere_80155C54 *arg0, CollisionSphere_80155C54 *arg1);
 
 #endif
