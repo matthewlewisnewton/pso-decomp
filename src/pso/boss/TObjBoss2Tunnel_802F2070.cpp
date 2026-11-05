@@ -434,4 +434,3 @@ s32 TObjBoss2Tunnel__sub_802F2070(void) {
     return (boss2_tunnel_state_flags >> 0xFU) & 1;
 }
 }
-
