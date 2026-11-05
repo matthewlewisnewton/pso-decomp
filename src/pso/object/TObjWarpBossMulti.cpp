@@ -207,7 +207,7 @@ struct Obj_8019F578 {
 };
 
 extern "C" {
-s32 check_player_flag1__6TLobbyFv(void);
+s32 check_player_flag1__10TObjPlayerFv(void);
 s32 get_message_10__20TWindowSubStatusDispFl(s32);
 void *get_player_by_client_id(s32 i);
 s32 fn_80248994(void *, u32, int);
@@ -390,8 +390,8 @@ s32 align_menu_entry_positions(u32);
 u32 check_room_seq_4__16TAdChrSelASlotGCFl(s32, s32);
 void obj_clear_flag30_20000(void *arg0);
 void obj_set_flag_20000(void *arg0);
-void play_effect_default__10TObjPlayerFii(s32 arg0, s32 arg1);
-s32 send_code_45_1__10TObjPlayerFl();
+void play_effect_default__10TObjPlayerFP10TObjPlayerl(s32 arg0, s32 arg1);
+s32 send_code_45_1__10TObjPlayerFP10TObjPlayer();
 
 char *strcpy(char *, const char *);
 s32 is_locally_controlled__10TObjPlayerFPv(u32);
@@ -770,7 +770,7 @@ void TObjWarpBossMulti::notify_player(void *arg0, s32 arg1) {
 
     player = (s32)get_player_by_client_id(arg1);
     if (player != 0) {
-        send_code_45_1__10TObjPlayerFl();
+        send_code_45_1__10TObjPlayerFP10TObjPlayer();
         obj_clear_flag30_20000((void *)player);
     }
 }
@@ -780,7 +780,7 @@ void TObjWarpBoss::warp_player(s32 arg1) {
 
     player = (s32)get_player_by_client_id(arg1);
     if (player != 0) {
-        play_effect_default__10TObjPlayerFii(player, -1);
+        play_effect_default__10TObjPlayerFP10TObjPlayerl(player, -1);
         obj_set_flag_20000((void *)player);
         *(s32 *)((s8 *)this + 0x174) = 0x12C;
     }
@@ -1126,7 +1126,7 @@ s32 TObjWarpBoss::update_warp_dialogs() {
     {
             ((THunterGuildSeqOffline *)(self->list))->advance_matching_entries(self->inside[j] != 0, j);
       color = 0xF0F0F0FF;
-      if (((self->mode == 1) && (((u32)get_player_by_client_id((j))) != 0)) && (check_player_flag1__6TLobbyFv() != 0))
+      if (((self->mode == 1) && (((u32)get_player_by_client_id((j))) != 0)) && (check_player_flag1__10TObjPlayerFv() != 0))
       {
         color = 0xFFFF00FF;
       }

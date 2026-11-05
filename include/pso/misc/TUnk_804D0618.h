@@ -3,6 +3,8 @@
 #include "types.h"
 #include "pso/misc/TUnk_804CDFE8.h"
 
+struct TWindowDrawContext;
+
 struct Scroll_8026D790;
 
 class TUnk_804D0618 : public TUnk_804CDFE8 {
@@ -11,7 +13,7 @@ public:
     virtual void run_task();
     virtual void render();
     virtual void vfunc_6(u32, s32);
-    void draw_selected_list_entry(s32);
+    void draw_selected_list_entry(TWindowDrawContext *);
     void update_scroll_offset();
     void clamp_item_list_scroll();
     void center_list_selection();
@@ -23,16 +25,6 @@ public:
     void set_flag4();
     int get_flag();
     int get_status_flag();
-    u8 unk_1C[0x4];
-    s16 m_20;
-    u8 unk_22[0xA];
-    s32 m_2c;
-    u8 unk_30[0x8];
-    f32 m_38;
-    u8 unk_3C[0x10];
-    void* m_4c;
-    u8 unk_50[0xC];
-    s32 m_5c;
     u8 unk_60[0x4];
     u32 m_64;
     u32 m_68;

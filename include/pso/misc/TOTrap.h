@@ -5,6 +5,7 @@
 #include "pso/player/TObjChara.h"
 
 struct TOTrap : public TObjChara {
+    TOTrap(TObject *parent, void *creator);
     virtual ~TOTrap();
     virtual void find_target_player();
     virtual void submit_cursor_and_notify();
@@ -26,12 +27,22 @@ struct TOTrap : public TObjChara {
     f32 dist;
     u16 player;
     u8 _pad33E[0x2];
-    u32 m_340;
+    s32 m_340;
     virtual void render();
-    virtual s32 select_melee_contact_body(void *, f32);
-    virtual int calc_distance_accuracy_penalty(void *, void *, void *, f32);
-    virtual f32 receive_direct_attack(void *, DirectAttackPayload, void *, s32, s32);
-    virtual f32 receive_weapon_special_attack(void *, void *);
+    virtual s32 select_melee_contact_body(void *source, f32) { return source != target; }
+    virtual int calc_distance_accuracy_penalty(void *source, void *, void *, f32) { return source != target; }
+    virtual f32 receive_direct_attack(void *source, DirectAttackPayload, void *, s32, s32) {
+        if (source != target) {
+            receive_physical_attack(NULL, 1.0f);
+        }
+        return 0.0f;
+    }
+    virtual f32 receive_weapon_special_attack(void *source, void *) {
+        if (source != target) {
+            receive_physical_attack(NULL, 1.0f);
+        }
+        return 0.0f;
+    }
     virtual s32 roll_physical_accuracy(void *, s32, f32);
 };
 

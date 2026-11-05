@@ -59,15 +59,15 @@ void TOComputerMachine01::render() {
         rotate_matrix_y(NULL, this->rotation.yaw);
         set_current_texture_list((GinjaTextureList *)(texlist));
         body = (NJS_OBJECT *)model;
-        draw_ginja_model((s32)body->model);
+        draw_ginja_model(body->model);
         TParticleCtrl::begin_effect_render();
         screen = body->child;
-        draw_ginja_model((s32)screen->model);
+        draw_ginja_model(screen->model);
         screen = screen->sibling;
-        draw_ginja_model((s32)screen->model);
+        draw_ginja_model(screen->model);
         screen = screen->sibling;
-        draw_ginja_model((s32)screen->model);
-        draw_ginja_model((s32)screen->sibling->model);
+        draw_ginja_model(screen->model);
+        draw_ginja_model(screen->sibling->model);
         TParticleCtrl::end_effect_render();
         pop_matrix();
     }

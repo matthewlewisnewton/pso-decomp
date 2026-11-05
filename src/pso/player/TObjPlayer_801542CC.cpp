@@ -5,6 +5,7 @@
 #include "pso/system/FlagWord.h"
 #include "pso/player/TObjChara.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/misc/TOTrapAncient02R.h"
 #include "pso/player/TUnk_804928CC.h"
 #include "pso/enemy/TUnk_80493450.h"
 #include "pso/object/TObjMotion.h"
@@ -197,7 +198,6 @@ s32 resolve_actor_sphere_contact(u8 *arg0, s32 arg1, s32 arg2);
 s32 respond_to_body_contact(u8 *arg0, u32 arg1, u8 *arg2);
 s32 spheres_overlap(u8 *arg0, u8 *arg1);
 extern "C" {
-void TOTrapAncient02R__sub_80154D78(void);
 void TObjPlayer__sub_801542F4(s32 a);
 void reset_global_table(void);
 u8 test_elt_flag__13TUnk_80493450Fll(void *arg0, s32 arg1, s32 arg2);
@@ -452,7 +452,7 @@ TObjCollidable *find_entity_by_id(u16 id) {
     return 0;
 }
 
-void TOTrapAncient02R__sub_80154D78(void) {  }
+void TOTrapAncient02R__sub_80154D78(TObject *object) {  }
 void TObjPlayer::init_all_slots() { { int i; for (i = 0; i < 16; i++) { TObjPlayer__sub_80154E28((int)((void*)i), (int)((void*)0)); } } }
 s32 TObjPlayer::find_or_alloc_slot(u32 arg0) {
     s32 var_r31;

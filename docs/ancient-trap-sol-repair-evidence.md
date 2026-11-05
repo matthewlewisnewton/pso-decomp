@@ -13,8 +13,8 @@ no-op case labels follow that block at the shared epilogue. The jump crosses
 no automatic initialization. The area expression is evaluated only on the
 positive-scale path; grounded execution does not consult it.
 
-This source arrangement preserves the original dense table with GC/2.6 and
-the unit's `-O4,s -inline off,deferred -sdata2 4` configuration. Moving the
+This source arrangement preserves the original dense table with the unit's
+GC/2.0 `-O4,s -inline off,deferred -sdata2 4` configuration. Moving the
 no-op cases to a different exit can change the table or replace it with a
 comparison tree. Deferred generation also affects when compiler controls
 take effect, so a pragma around the function body may not control its final

@@ -27,8 +27,8 @@ void end_player_keyboard_hold(s32 arg0);
 void TWindow__close(u8 *arg0);
 void obj_clear_flag30_20000(void *arg0);
 void obj_set_flag_20000(void *arg0);
-void play_effect_default__10TObjPlayerFii(s32 arg0, s32 arg1);
-s32 send_code_45_1__10TObjPlayerFl();
+void play_effect_default__10TObjPlayerFP10TObjPlayerl(s32 arg0, s32 arg1);
+s32 send_code_45_1__10TObjPlayerFP10TObjPlayer();
 
 extern s32 local_client_id;
 
@@ -64,7 +64,7 @@ void TObjCityMainWarp::notify_player_warp(void *arg0, s32 arg1) {
 
     player = (s32)get_player_by_client_id(arg1);
     if (player != 0) {
-        send_code_45_1__10TObjPlayerFl();
+        send_code_45_1__10TObjPlayerFP10TObjPlayer();
         obj_clear_flag30_20000((void *)player);
     }
 }
@@ -74,7 +74,7 @@ void TObjCityMainWarpChallenge::trigger_warp_effect(s32 arg1) {
 
     player = (s32)get_player_by_client_id(arg1);
     if (player != 0) {
-        play_effect_default__10TObjPlayerFii(player, -1);
+        play_effect_default__10TObjPlayerFP10TObjPlayerl(player, -1);
         obj_set_flag_20000((void *)player);
         this->m_174 = 0x12C;
     }

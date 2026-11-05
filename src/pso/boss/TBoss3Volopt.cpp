@@ -33,6 +33,7 @@
 #include "pso/object/TObjVoloptCage.h"
 #include "pso/object/TObjVoloptPillar.h"
 #include "pso/object/TObjVoloptShutter.h"
+#include "pso/map/FloorArea.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/player/TUnk_804B6C24.h"
 #include "pso/system/BmlResource.h"
@@ -79,7 +80,7 @@ u16 get_entity_id(void *object);
 void obj_setFlags30(void *object, s32 flags);
 u16 TObjRoomId__sub_801A1DB8(u16 id);
 void TObjPlayer__sub_801BA42C(void);
-extern s32 door_vo_ship_class_name;
+extern const char *door_vo_ship_class_name;
 extern s32 local_client_id;
 extern s32 lbl_805D5868;
 extern s32 registered_player_count;
@@ -278,8 +279,8 @@ void TObject::pause_update() {
     m_flags |= PAUSE_UPDATE;
 }
 
-BOOL TUnk_804B6C24::check_value_equals(s32 name) {
-    return (s32)m_name == name;
+BOOL TObject::check_value_equals(const char *name) {
+    return m_name == name;
 }
 
 void clear_volopt_cage_flag() {
@@ -375,18 +376,20 @@ void VoloptPhase2Message::swap() {
     }
 }
 
-s32 TBoss3Volopt::get_field_3e0() {
-    return m_3e0;
+typedef char TObjPlayer_current_area_offset[offsetof(TObjPlayer, current_area) == 0x3E0 ? 1 : -1];
+
+s32 TObjPlayer::get_current_area() {
+    return current_area;
 }
 
-void TBoss3Volopt::reset_photon_effect() {
-    ((TObjPlayer *)this)->register_object_by_id();
+void TObjEnemy::register_by_id() {
+    register_object_by_id();
 }
 
 TBoss3Volopt::TBoss3Volopt(void *set_data) : TObjEnemyCustom(tl_04) {
     m_name = TBoss3Volopt_name;
     apply_set_data(set_data);
-    reset_photon_effect();
+    register_by_id();
     move_to_arena(0);
     VecCopy(&position, VecCopy((Vec *)&body_center_position, &boss3_volopt_spawn_pos));
     actorFlags |= 0x06040000;
@@ -563,7 +566,7 @@ void TBoss3Volopt::move_to_arena(s32 phase2) {
             for (i = 0; i < registered_player_count; i++) {
                 player = TObjPlayer::get_player_data(i);
                 if (player != NULL && TObjRoomId__sub_801A1DB8(get_entity_id(player)) == 0 &&
-                    ((TBoss3Volopt *)player)->get_field_3e0() == 0xD) {
+                    player->get_current_area() == AREA_VOL_OPT) {
                     send_position(player, &volopt_phase2_player_positions[i], volopt_phase2_player_angles[i]);
                 }
             }
@@ -1329,8 +1332,8 @@ void TBoss3Volopt::push_actors_out(s32 phase2) {
         actor = TObjPlayer::get_player_data(i);
         if (actor == NULL) continue;
         if (actor->bodies == NULL) continue;
-        if (((TUnk_804B6C24 *)actor)->check_value_equals((s32)TOCapsuleAncient01::class_name) != 0) continue;
-        if (((TUnk_804B6C24 *)actor)->check_value_equals(door_vo_ship_class_name) != 0) continue;
+        if (actor->check_value_equals(TOCapsuleAncient01::class_name) != 0) continue;
+        if (actor->check_value_equals(door_vo_ship_class_name) != 0) continue;
         if (!(actor->bodies->flags & 0x20000)) continue;
         if (fabs_float(actor->position.z - center_z) > 1000.0f) {
             Vec pos = *&actor->position;

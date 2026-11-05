@@ -22,8 +22,8 @@ s32 TObjPlayer__sub_802E72DC(void *, void *, void *, int);
 s32 vfunc_93__9TObjEneDDFv(void *);
 s32 vfunc_94__9TObjEneDDFv(void *);
 
-    extern int boss7_joint_state;
-int TBoss7Joint::get_state() {  return boss7_joint_state; }
+    extern TBoss7DeRolLeC *boss7_joint_state;
+TBoss7DeRolLeC *TBoss7Joint::get_state() {  return boss7_joint_state; }
 
 void TBoss7DeRolLeC::apply_poison_status() {  }
 void TBoss7DeRolLeC::apply_paralysis() {  }

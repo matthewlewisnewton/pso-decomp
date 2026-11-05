@@ -4,13 +4,15 @@
 #include "types.h"
 #include "pso/misc/TUnk_804CDFE8.h"
 
+struct TWindowDrawContext;
+
 struct TWindowMenu : public TUnk_804CDFE8 {
     virtual ~TWindowMenu();
     s32 get_selected_entry();
     int sub_80266BB8();
     u8 test_menu_flag();
-    void render_selected_entry(s32);
-    void draw_selected_bar(u8 *);
+    void render_selected_entry(TWindowDrawContext *);
+    void draw_selected_bar(TWindowDrawContext *);
     void layout_entries();
     void update_scroll_value();
     void advance_past_disabled_menu_rows();
@@ -19,18 +21,6 @@ struct TWindowMenu : public TUnk_804CDFE8 {
     void reset_selection();
     int is_visible();
     virtual void render();
-    u8 _pad1C[0x4];
-    s16 m_20;
-    u8 _pad22[0x2];
-    void* m_24;
-    u8 _pad28[0x4];
-    u32 m_2c;
-    u8 unk_30[0x8];
-    f32 m_38;
-    u8 unk_3C[0xC];
-    f32 m_48;
-    u8 unk_4C[0x10];
-    u32 m_5c;
     u8 _pad60[0x8];
     void* m_68;
     u8 _pad6C[0x4];

@@ -414,7 +414,7 @@ s32 TBoss4Zako__ct(s32 arg0, s32 parent, s32 arg2) {
     *(s32 *)((s8 *)THIS + 0x2A8) = 0;
     ((TObjEnemy *)THIS)->bind_enemy_combat_stats((u8 *)(get_battle_base_stats(0x35)), (u8 *)(get_battle_attack_params(0x35)), (u8 *)(get_battle_resistance_params(0x35)));
     *(s16 *)((s8 *)THIS + 0x33E) = *(s16 *)((s8 *)THIS + 0x32C);
-    ((TBoss3Volopt *)THIS)->reset_photon_effect();
+    ((TObjEnemy *)THIS)->register_by_id();
     ((TObjEnemy *)THIS)->set_param(0);
     *(s32 *)((s8 *)THIS + 0x388) = 0;
     if ((*(u32 *)((s8 *)THIS + 0x3B4) = (u32)create_particle_emitter(THIS + 0x38, 0x103)) != 0) {

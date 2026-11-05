@@ -7,12 +7,17 @@ already integrated changes were not replayed. Upstream #167 changes a player
 function and is not a dependency. The subsequent commits recover types and
 consumer accesses separately, preserving the import and attribution in history.
 
-Fork #226 deferred this 34,912-byte range. This PR defines and selects a narrower
-**six-object, 29,184-byte data-only unit**, from `8058DE08` to `80595008`.
-The remaining 5,728 bytes stay in the original automatic BSS fallback.
-The provider's complete text range and its own BSS remain unchanged. This is a
-provisional recovery boundary at real object boundaries, not a claim about the
-historical translation unit. The data unit is selected in `linked_units.txt`.
+Fork #226 deferred this 34,912-byte range. The first recovery defined and selected
+a narrower **six-object, 29,184-byte data-only unit**, from `8058DE08` to
+`80595008`, and left the remaining 5,728 bytes in the automatic BSS fallback.
+`QuestDownloadBuffers.cpp` now owns the whole `8058DE08..80596668` range.
+`docs/evidence/quest-download-deferred-storage.md` records why that tail stays
+in this unit.
+
+The provider's complete text range and its own BSS remain unchanged: that BSS
+still starts at the pool. Extending this data unit up to that address follows
+the object order and that compiler signal. It is not a claim about the
+historical source filename. The data unit is selected in `linked_units.txt`.
 The historical native validation below proves 29,184 newly matched and
 source-linked data bytes, with no new exact functions.
 
@@ -46,11 +51,18 @@ writes a byte-record pointer and splices a node into a bucket; `803E95BC`
 returns nodes through the same next-pointer field. No alternate active node
 variant or larger enclosing storage object is invented.
 
-The four deferred objects are `lbl_80595008` (2,448 bytes),
-`quest_download_slot_chain_table` (2,240 bytes), `lbl_80596258` (12 bytes), and
-`quest_download_text_buffer` (1,028 bytes). Their initial imported definitions
-remain in history. The native 40,000-byte allocator pool begins at `80596668`,
-after the complete buffer range, and is not part of this new data unit.
+The four objects that follow the six cache buffers are `lbl_80595008` (2,448
+bytes), `quest_download_slot_chain_table` (2,240 bytes), `lbl_80596258` (12
+bytes), and `quest_download_text_buffer` (1,028 bytes). They are defined in this
+unit as the existing symbol extents. The slot array uses the canonical
+`QuestDownloadSlot[80]`. `lbl_80595008` is `QuestDownloadWorkspace`: the last
+`0xD0` bytes are the 32-entry query result read by `803EA428`, and the leading
+`0x8C0` bytes have no load or store through this symbol. `lbl_80596258` is the
+12-character display prefix copied from `lbl_8047E68C` and overwritten at
+offsets 5..7 by `803EB4D4`. `quest_download_text_buffer` stays an opaque
+`u8[0x404]`; its readers disagree on the element type. The native 40,000-byte
+allocator pool begins at `80596668` and belongs to
+`TQuestVmDownLoadServer_803E6970`, not to this data unit.
 
 ## Validation and review boundaries
 
@@ -114,12 +126,14 @@ shipped-asset findings, not arbitrary-caller guarantees. They do not prove a
 reachable original overflow or establish that either 1,028-byte buffer's final
 four bytes are unused padding.
 
-The deferred workspace's final 0xD0 bytes serve query results, but the first
-0x8C0 bytes' complete type and owner remain unresolved. The slot array must use
-#203's canonical 80-record definition. Shared text has byte, halfword and ID
-views; a larger array or union alone does not establish their lifetime changes,
-retained values or EE580 bounds. Callback quiescence after DMA timeout also
-remains unproved. These holds prevent claiming the full 34,912-byte scope done.
+The workspace's final 0xD0 bytes are the 32-entry query result. The first
+0x8C0 bytes still have no direct reference, so they stay an untyped leading
+array inside that one object. The slot array uses #203's canonical
+80-record definition. Shared text has byte, halfword and ID views; a larger
+array or union alone does not establish their lifetime changes, retained
+values or EE580 bounds. Callback quiescence after DMA timeout also remains
+unproved. Those holds still bar a typed query object. They do not keep the
+named BSS extents out of this data unit.
 
 ## Historical native activation validation
 

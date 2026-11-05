@@ -4,6 +4,7 @@
 #include "pso/object/TObjMotion.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/object/TObjMapCsn.h"
 
 #pragma inline_depth(1)
 #pragma auto_inline off
@@ -50,11 +51,10 @@ s32 push_matrix();
 s32 pop_matrix();
 s32 scale_current_matrix(void *);
 s32 post_translate_matrix(void *);
-void draw_ginja_model(s32 model);
+void draw_ginja_model(void * model);
 void draw_node_tree__18TObjLaboDesignBaseFiPv(s32 arg0, u8 *arg1);
 s32 init_collision_body_parts(void *, int, int);
 s32 __ct__14TObjCollidableFP7TObject();
-s32 create__10TObjMapCsnFl(void *, f32, f32);
 u8 *TObjLaboDesignBase__ct(u8 *arg0, s32 arg1, s32 arg2, s32 arg3);
 void *TObjLaboDesignBase__create(void *arg0);
 void *TObjLaboDesignBase__sub_80364D38(void *arg0);
@@ -257,7 +257,7 @@ void draw_node_tree__18TObjLaboDesignBaseFiPv(s32 arg0, u8 *arg1) {
             scale_current_matrix(var_r30 + 0x20);
         }
         if (!(temp_r31 & 8)) {
-            draw_ginja_model((*(s32 *)((s8 *)var_r30 + 4)));
+            draw_ginja_model((*(void **)((s8 *)var_r30 + 4)));
         }
         if (!(temp_r31 & 0x10)) {
             temp_r4 = (u8 *)(*(u8 **)((s8 *)var_r30 + 0x2C));
@@ -337,7 +337,7 @@ u8 *TObjLaboDesignBase__ct(u8 *player, s32 arg1, s32 arg2, s32 arg3) {
         (*(f32 *)(copy_storage_80365210.bytes + 0x24)) = lbl_805E02A8;
         (*(f32 *)(copy_storage_80365210.bytes + 0x28)) = lbl_805E02AC;
         (*(f32 *)(copy_storage_80365210.bytes + 0x2C)) = lbl_805E02B0;
-        *(s32 *)((s8 *)player + 0xBC) = create__10TObjMapCsnFl((void *) ((copy_storage_80365210.bytes)), lbl_805E02AC, lbl_805E02A8);
+        *(TObjMapCsn **)((s8 *)player + 0xBC) = TObjMapCsn::create(copy_storage_80365210.bytes);
     }
     return player;
 }

@@ -17,6 +17,7 @@
 #include "pso/object/TObjFish.h"
 #include "pso/object/TObject_8001A448.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/player/TObjPlayer_801AF2F0.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/GinjaTextureMatrices.h"
 #include "pso/system/vector.h"
@@ -39,15 +40,11 @@ void post_translate_matrix(const Vec *v);
 void rotate_matrix_y(s32 matrix, s32 angle);
 s32 rand(void);
 
-TObjPlayer *get_player_by_client_id(s32 id);
 s32 obj_setFlags30(TObjBase *actor, s32 flags);
-void send_6x2C_impose_hold(TObjPlayer *player, const Vec *pos, s32 a2, s32 a3, f32 time);
-void submit_cursor_candidate(TObjVoloptCage *cage, s32 a1);
 void init_collision_body_parts(TObjCollidable *actor, const CollisionBody *bodies, s32 count);
 void free_collision_body_parts(TObjCollidable *actor);
 void create_breakup_mdl__12TBoss3VoloptFlllll(TBreakUpMdlPieces *model, VoloptBreakUpParams *params, s32 textures,
                                               Vec *pos, s32 angle);
-s32 check_flag__10TObjPlayerFl(void *player, s32 flag);
 }
 
 extern BmlResource *lbl_805D4CE4;
@@ -149,7 +146,7 @@ void TObjVoloptCage::update_capture() {
         player = get_player_by_client_id(targetId);
         if (player != NULL) {
             if (TObjPlayer::is_locally_controlled(player) != 0) {
-                send_6x2C_impose_hold(player, &position, -1, 0, 10.0f);
+                send_6x2C_impose_hold(10.0f, player, &position, -1, 0);
                 obj_set_flag_20000(player);
             }
             set_volopt_cage_flag();
@@ -261,8 +258,8 @@ void TObjVoloptCage::run_task() {
 TObjVoloptCage::~TObjVoloptCage() {
     TObjPlayer *player = get_player_by_client_id(targetId);
     if (player != NULL && TObjPlayer::is_locally_controlled(player) != 0) {
-        if (((TLobby *)player)->check_player_flag1() != 0) {
-            TObjPlayer::send_code_45_1((s32)player);
+        if (((TObjPlayer *)player)->check_player_flag1() != 0) {
+            TObjPlayer::send_code_45_1(player);
         }
         obj_clear_flag30_20000(player);
     }
@@ -287,7 +284,7 @@ TObjVoloptCage::TObjVoloptCage(TObjEnemy *boss, u16 target, u16 id, s32 group) :
     set_entry = 0;
     *(s16 *)&room = *(s16 *)&boss->room;
     *((s16 *)&room + 1) = *((s16 *)&boss->room + 1);
-    ((TBoss3Volopt *)this)->reset_photon_effect();
+    register_by_id();
     set_param(0x2E);
     position.y = -25.0f;
     recalc_combat_stats(volopt_cage_combat_stats, NULL, NULL, 1.0f, 1.0f);
@@ -311,8 +308,8 @@ void obj_clear_flag30_20000(TObjBase *actor) {
     actor->obj_clearFlags30(0x20000);
 }
 
-s32 TLobby::check_player_flag1() {
-    return check_flag__10TObjPlayerFl(this, 1);
+s32 TObjPlayer::check_player_flag1() {
+    return check_flag(1);
 }
 
 s32 TObjPlayer::check_flag(s32 flag) {

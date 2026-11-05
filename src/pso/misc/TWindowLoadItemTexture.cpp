@@ -28,7 +28,7 @@ TWindowLoadItemTexture *fn_802628C0(void *layout, void *table, void *id) {
     fn_80262C2C(window);
     sprite = (s32)window->get_array_entry(0);
     *(f32 *)(sprite + 0x8) = 0.5f * window->m_38 - 32.0f - 4.0f;
-    *(f32 *)(sprite + 0xC) = 0.5f * *(f32 *)window->unk_3C - 32.0f - 1e+01f;
+    *(f32 *)(sprite + 0xC) = 0.5f * window->unk_3c - 32.0f - 1e+01f;
     *(f32 *)(sprite + 0x10) = 64.0f;
     *(f32 *)(sprite + 0x14) = 64.0f;
     set_sprite_uv_bounds((void *)sprite, 0.0f, 0.0f, 1.0f, 1.0f);
@@ -47,7 +47,7 @@ extern s32 __vt__22TWindowLoadItemTexture[];
 extern s32 lbl_805D3940;
 extern s32 tl_07;
 
-s32 draw_visible_window_entries(void *, void *, s32);
+s32 draw_visible_window_entries(void *, void *, TWindowKeyBoardSoft *);
 void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
 
@@ -66,7 +66,7 @@ void *TWindowLoadItemTexture::create(void *arg1) {
 }
 
 void render__22TWindowLoadItemTextureFv(TWindowLoadItemTexture *arg0) {
-    s32 temp_r31;
+    TWindowKeyBoardSoft *temp_r31;
 
     if ((s32) arg0->m_60 == 1) {
         arg0->m_70 = (u32)(*(TItemTexLoad**)((s8 *)arg0 + 0x6C))->ready_texture_list();
@@ -77,7 +77,7 @@ void render__22TWindowLoadItemTextureFv(TWindowLoadItemTexture *arg0) {
     }
     temp_r31 = ((TUnk_804CE018 *)arg0)->setup_window_draw_context((s32)((u8 *)arg0 + 0x64));
     if (arg0->m_61 & 1) {
-        ((TUnk_804CE018 *)arg0)->draw_window_frame((void *)temp_r31);
+        ((TUnk_804CE018 *)arg0)->draw_window_frame(temp_r31);
     }
     draw_visible_window_entries(arg0, (u8 *)arg0 + 0x24, temp_r31);
 }

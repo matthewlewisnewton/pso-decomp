@@ -75,7 +75,7 @@ void TOSensorAncient01::render() {
         set_current_texture_list((GinjaTextureList *)(ancient_sensor_resource_pair_table[set_params[2]].red));
         object = (NJS_OBJECT *)model;
         post_translate_matrix(object->pos);
-        draw_ginja_model((s32)object->model);
+        draw_ginja_model(object->model);
         TParticleCtrl::begin_effect_render();
         push_matrix();
         object = object->child;
@@ -83,7 +83,7 @@ void TOSensorAncient01::render() {
             set_current_texture_list((GinjaTextureList *)(ancient_sensor_resource_pair_table[sensor_texture_table_index].plain));
         }
         post_translate_matrix(object->pos);
-        draw_ginja_model((s32)object->model);
+        draw_ginja_model(object->model);
         pop_matrix();
         push_matrix();
         object = object->sibling;
@@ -91,7 +91,7 @@ void TOSensorAncient01::render() {
             set_current_texture_list((GinjaTextureList *)(ancient_sensor_resource_pair_table[sensor_texture_table_index].plain));
         }
         post_translate_matrix(object->pos);
-        draw_ginja_model((s32)object->model);
+        draw_ginja_model(object->model);
         pop_matrix();
         push_matrix();
         object = object->sibling;
@@ -99,7 +99,7 @@ void TOSensorAncient01::render() {
             set_current_texture_list((GinjaTextureList *)(ancient_sensor_resource_pair_table[sensor_texture_table_index].plain));
         }
         post_translate_matrix(object->pos);
-        draw_ginja_model((s32)object->model);
+        draw_ginja_model(object->model);
         pop_matrix();
         TParticleCtrl::end_effect_render();
         push_matrix();
@@ -107,27 +107,27 @@ void TOSensorAncient01::render() {
         post_translate_matrix(object->pos);
         rotate_matrix_y(NULL, spin_angle);
         TParticleCtrl::begin_effect_render();
-        draw_ginja_model((s32)object->model);
+        draw_ginja_model(object->model);
         TParticleCtrl::end_effect_render();
         push_matrix();
         object = object->child;
         translate_matrix(0, object->pos[0] + pulse_offset, object->pos[1], object->pos[2]);
-        draw_ginja_model((s32)object->model);
+        draw_ginja_model(object->model);
         pop_matrix();
         push_matrix();
         object = object->sibling;
         translate_matrix(0, object->pos[0], object->pos[1], object->pos[2] - pulse_offset);
-        draw_ginja_model((s32)object->model);
+        draw_ginja_model(object->model);
         pop_matrix();
         push_matrix();
         object = object->sibling;
         translate_matrix(0, object->pos[0] - pulse_offset, object->pos[1], object->pos[2]);
-        draw_ginja_model((s32)object->model);
+        draw_ginja_model(object->model);
         pop_matrix();
         push_matrix();
         object = object->sibling;
         translate_matrix(0, object->pos[0], object->pos[1], object->pos[2] + pulse_offset);
-        draw_ginja_model((s32)object->model);
+        draw_ginja_model(object->model);
         pop_matrix();
         pop_matrix();
         pop_matrix();
@@ -159,9 +159,9 @@ void TOSensorAncient01::load_resources() {
     sensor_ancient01_model_resource = resource;
     ancient_sensor_resource_pair_table = (TOSensorAncient01Textures *)::operator new[](0x10);
     ancient_sensor_resource_pair_table[0].plain = sensor_ancient01_model_resource->models[0].m_c;
-    ancient_sensor_resource_pair_table[0].red = (s32)load_gvm_texture_file((s32) "fs_obj_o_sensor01r.gvm");
-    ancient_sensor_resource_pair_table[1].plain = (s32)load_gvm_texture_file((s32) "fs_obj_o_sensor02.gvm");
-    ancient_sensor_resource_pair_table[1].red = (s32)load_gvm_texture_file((s32) "fs_obj_o_sensor02r.gvm");
+    ancient_sensor_resource_pair_table[0].red = (s32)load_gvm_texture_file("fs_obj_o_sensor01r.gvm");
+    ancient_sensor_resource_pair_table[1].plain = (s32)load_gvm_texture_file("fs_obj_o_sensor02.gvm");
+    ancient_sensor_resource_pair_table[1].red = (s32)load_gvm_texture_file("fs_obj_o_sensor02r.gvm");
     lbl_805D5A90 = 0;
     lbl_805D5A94 = 0;
     lbl_805D5A98 = 0;

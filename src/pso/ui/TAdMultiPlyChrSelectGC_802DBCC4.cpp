@@ -40,7 +40,7 @@ s32 sprintf(void *, const void *, ...);
 s32 TAdMultiPlyChrSelectGC__sub_802DFFE8(s32);
 s32 TAdMultiPlyChrSelectGC__sub_802DC294(S_802DC294 *arg0, s32 arg1);
 s32 copy_selected_characters__23TAdSinglePlyChrSelectGCFPv(void *);
-s32 is_multiplayer_character_slot_selected(u32);
+s32 is_multiplayer_character_slot_selected(s32);
 s32 TAdMultiPlyChrSelectGC__sub_802C6558();
 s32 TAdMultiPlyChrSelectGC__sub_802C658C(u32);
 s32 set_entry_value__22TAdMultiPlyChrSelectGCFlUl(int, int, void *);

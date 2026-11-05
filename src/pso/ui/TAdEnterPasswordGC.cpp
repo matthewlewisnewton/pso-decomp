@@ -13,7 +13,7 @@
 #include "pso/ui/TAdSnAkPassConfirmGC.h"
 #include "pso/quest/TQuestThread.h"
 
-struct Elt80364258_80364258 { s32 f0; };
+struct Elt80364258_80364258 { TObject *f0; };
 
 struct RecoveredGlobal_8032B904_lbl_80477278 { s32 value; u8 remaining[0xC]; };
 typedef char RecoveredGlobal_8032B904_lbl_80477278_size[sizeof(RecoveredGlobal_8032B904_lbl_80477278) == 0x10 ? 1 : -1];
@@ -54,18 +54,6 @@ struct Pw_8032B6A0
   s32 len;
 };
 
-struct TAdEnterPasswordGC {
-    virtual void m0();
-    char pad[0x18];
-    s32 state;
-    s32 f20;
-    s32 f24;
-    void open_keyboard_window(void *);
-    void update_password_input(void *);
-    void request_transition(void *);
-    void set_multi_chg_game_mode_0x14(void *);
-    void close_window_and_destroy(void *);
-};
 typedef TAdEnterPasswordGC TAdEnterPasswordGC_8032B984;
 typedef void (TAdEnterPasswordGC_8032B984::*Pmf_8032B984)();
 
@@ -307,7 +295,7 @@ void update_children__18TAdEnterPasswordGCFPv(O_8032BC1C *arg0) {
     }
 }
 
-void TAdEnterPasswordGC__sub_8032BC94(u8 *arg0, s32 arg1) {
+void TAdEnterPasswordGC__sub_8032BC94(u8 *arg0, TObject *arg1) {
     s32 temp_r0;
     temp_r0 = *(s32 *)((s8 *)arg0 + 0x80);
     if (temp_r0 < 0x18) {
@@ -316,12 +304,12 @@ void TAdEnterPasswordGC__sub_8032BC94(u8 *arg0, s32 arg1) {
     }
 }
 
-s32 dispatch_input_to_instance__18TAdEnterPasswordGCFi(s32 arg0) {
+s32 TAdEnterPasswordGC::dispatch_input_to_instance(TObject *arg0) {
     if ((u32) lbl_805D6CB8 != 0U) {
         if (((TAdSnAkPassConfirmGC *)lbl_805D6CB8)->get_confirm_state() != 0) {
             return 0;
         }
-        TAdEnterPasswordGC__sub_8032BC94((u8 *)lbl_805D6CB8, (s32)arg0);
+        TAdEnterPasswordGC__sub_8032BC94((u8 *)lbl_805D6CB8, arg0);
         return 1;
     }
     return 0;

@@ -245,7 +245,7 @@ void draw_line_list(Lines_801E341C *l, s32 n, u32 flags) {
 void reset_line_width(void) { current_line_width = 12; }
 
 void set_line_width(int a0) { current_line_width = a0; }
-void TWindowCtrlMain::draw_strip_swap_color(s32 n, s32 flags, f32 scale) {
+void ColorLineList::draw_strip_swap_color(s32 n, s32 flags, f32 scale) {
     s32 i;
     u32 x;
     u32 *p;
@@ -253,7 +253,7 @@ void TWindowCtrlMain::draw_strip_swap_color(s32 n, s32 flags, f32 scale) {
         ((TObjCMHairMenu *)this)->draw_tri_fan_2d(n, flags, scale);
         return;
     }
-    p = ((Ctrl_801E352C *)this)->data;
+    p = colors;
     for (i = 0; i < n; i++) {
         x = *p;
         *p = (x << 8) | (x >> 24);
@@ -261,7 +261,7 @@ void TWindowCtrlMain::draw_strip_swap_color(s32 n, s32 flags, f32 scale) {
     }
     ((TObjCMHairMenu *)this)->draw_tri_fan_2d(n, flags, scale);
     {
-    u32 *q = ((Ctrl_801E352C *)this)->data;
+    u32 *q = colors;
     u32 y;
     for (i = 0; i < n; i++) {
         y = *q;
@@ -356,9 +356,11 @@ void TObjPlayer::draw_tri_fan_3d(s32 n, u32 flags) {
 
 void DCFlushRange(void *, u32);
 void TLobby__sub_801E3CF0(u32 *);
-
-s32 *TLobby__sub_801E38A0(s32 arg0, s32 *arg1, s32 *arg2, s32 *buf, s32 *arg4) {
+// Reads one Ninja chunk (NJCM, NJTL, NMDM, ...) at file + *offset into dst (or a fresh
+// allocation), stores its type, then applies the POF0 pointer-offset list that follows.
+s32 *TLobby__sub_801E38A0(s32 file, s32 *offset, s32 *type, s32 *dst, s32 *size_out) {
     u8 *p;
+    s32 *buf;
     s32 pos;
     s32 tag;
     u32 size;
@@ -369,81 +371,85 @@ s32 *TLobby__sub_801E38A0(s32 arg0, s32 *arg1, s32 *arg2, s32 *buf, s32 *arg4) {
     s32 off;
 
     pos = 0;
-    p = (u8 *)(arg0 + *arg1);
+    p = (u8 *)(file + *offset);
     ((TLobby *)(&tag))->move_data(p, 4);
     TLobby__sub_801E3CF0((u32 *)&tag);
     ((TLobby *)(&size))->move_data(p + 4, 4);
     TLobby__sub_801E3CF0(&size);
     p += 8;
-    *arg1 += 8;
+    *offset += 8;
     tag = TLobby::bswap32_value(tag);
     switch (tag) {
     case 0x4E4A494E:
-        *arg2 = 0x4E4A494E;
+        *type = 0x4E4A494E;
         break;
     case 0x4E4A434D:
     case 0x474A434D:
-        *arg2 = 0x4E4A434D;
+        *type = 0x4E4A434D;
         break;
     case 0x474A424D:
-        *arg2 = 0x4E4A424D;
+        *type = 0x4E4A424D;
         break;
     case 0x4E4A544C:
     case 0x474A544C:
-        *arg2 = 0x4E4A544C;
+        *type = 0x4E4A544C;
         break;
     case 0x4E4A4C49:
-        *arg2 = 0x4E4A4C49;
+        *type = 0x4E4A4C49;
         break;
     case 0x4E4A4341:
-        *arg2 = 0x4E4A4341;
+        *type = 0x4E4A4341;
         break;
     case 0x4E4D444D:
     case 0x474D444D:
-        *arg2 = 0x4E4D444D;
+        *type = 0x4E4D444D;
         break;
     case 0x474C494D:
-        *arg2 = 0x4E4C494D;
+        *type = 0x4E4C494D;
         break;
     case 0x4743414D:
-        *arg2 = 0x4E43414D;
+        *type = 0x4E43414D;
         break;
     case 0x4E53534D:
     case 0x4753534D:
-        *arg2 = 0x4E53534D;
+        *type = 0x4E53534D;
         break;
     default:
         goto bad;
     }
-    buf = (buf == 0) ? (s32 *)((TQuestVmDownLoadServer *)size)->alloc() : buf;
+    if (dst == 0) {
+        buf = (s32 *)((TQuestVmDownLoadServer *)size)->alloc();
+    } else {
+        buf = dst;
+    }
     if (buf == 0) {
         return 0;
     }
-    if (arg4 != 0) {
-        *arg4 = size;
+    if (size_out != 0) {
+        *size_out = size;
     }
     ((TLobby *)buf)->move_data(p, size);
     DCFlushRange(buf, size);
     p += size;
-    *arg1 += size;
+    *offset += size;
     goto next;
 bad:
-    *arg2 = 0x2A2A2A2A;
+    *type = 0x2A2A2A2A;
     return 0;
 next:
     ((TLobby *)(&tag))->move_data(p, 4);
     TLobby__sub_801E3CF0((u32 *)&tag);
-    *arg1 += 4;
+    *offset += 4;
     tag = TLobby::bswap32_value(tag);
     if (tag == 0x504F4630) {
         ((TLobby *)(&size))->move_data(p + 4, 4);
         TLobby__sub_801E3CF0(&size);
         p += 8;
-        *arg1 += 4;
+        *offset += 4;
         while (size != 0) {
             ((TLobby *)(&b0))->move_data(p, 1);
             p++;
-            *arg1 += 1;
+            *offset += 1;
             size--;
             switch (b0 & 0xC0) {
             case 0:
@@ -455,7 +461,7 @@ next:
                 ((TLobby *)(&b1))->move_data(p, 1);
                 p++;
                 size--;
-                *arg1 += 1;
+                *offset += 1;
                 off = ((b0 << 8) & 0x3F00) | b1;
                 break;
             case 0xC0:
@@ -466,7 +472,7 @@ next:
                 ((TLobby *)(&b3))->move_data(p + 2, 1);
                 p += 3;
                 size--;
-                *arg1 += 3;
+                *offset += 3;
                 off = (((b0 << 24) & 0x3F000000) | (b1 << 16) | (b2 << 8)) | b3;
                 break;
             default:

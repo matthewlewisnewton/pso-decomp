@@ -112,7 +112,7 @@ void * get_field_20__17TWindowSubComCardFv(void *e);
 void refresh_status_display__9TWindowDDFv(void *);
 void TWindowChat__sub_80247D2C(void *p);
 s32 is_window_display_enabled();
-s32 draw_visible_window_entries(void *, void *, s32);
+s32 draw_visible_window_entries(void *, void *, TWindowDrawContext *);
 void measure_message_text_width(Ent_80265C30 *e, f32 x);
 void TWindowSubComCard__sub_80265500(u8 *arg0);
 s32 TWindowSubComCard__sub_80265660(Obj_80265660 *o, s16 i);
@@ -130,12 +130,12 @@ void * __dt__11TWindowMenuFv(void *arg0, s16 arg1);
 u8 * TWindowMenu__ct(u8 *arg0, u32 arg1, s32 arg2, s32 arg3);
 u8 test_menu_flag__11TWindowMenuFv(u8 *arg0);
 s32 clamp_list_scroll_offset(int, void *, void *);
-s32 draw_window_scrollbar(s32, s32, void *);
+s32 draw_window_scrollbar(s32, TWindowDrawContext *, void *);
 u32 reset_selection__20TWindowSubStatusDispFv(int, void *);
-s32 forward_render__20TWindowSubStatusDispFv(s32, s32);
+s32 forward_render__20TWindowSubStatusDispFv(s32, TWindowDrawContext *);
 s32 construct_type1_heading__20TWindowSubStatusDispFll(s32, s32, s32);
 }
-void draw_selection_bar(u8 *arg0, u8 *arg1, s32 arg2);
+void draw_selection_bar(TWindowDrawContext *arg0, u8 *arg1, s32 arg2);
 void set_text_entry_string(u8 *arg0, u32 str, s32 arg2);
 void update_chat_window(void* p);
 s32 create_titled_window_menu(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
@@ -726,7 +726,7 @@ void TWindowSubComCard::draw_card_icon(s32 arg1, s32 arg2) {
     ((int (*)(void*, void*, void*, void*))create_titled_window_menu)((void*)arg0, (void*)arg1, (void*)arg2, (void*)(4));
 }
 
-void TWindowMenu::draw_selected_bar(u8 *window_key_board_soft) {
+void TWindowMenu::draw_selected_bar(TWindowDrawContext *window_key_board_soft) {
     s16 temp_r4;
     u16 *temp_r3;
     if (!(actor_frame_tick & 0x10)) {
@@ -734,30 +734,30 @@ void TWindowMenu::draw_selected_bar(u8 *window_key_board_soft) {
         if (temp_r4 >= 0) {
             temp_r3 = (u16 *)(((s32)((u16 * (*)(void *, int))get_array_entry__13TUnk_804CE018Fi)(this, (s32) temp_r4)));
             if (*temp_r3 & 1) {
-                draw_selection_bar((window_key_board_soft), (u8 *)temp_r3, 1);
+                draw_selection_bar(window_key_board_soft, (u8 *)temp_r3, 1);
             }
         }
     }
 }
 
-void TWindowMenu::render_selected_entry(s32 window_key_board_soft) {
+void TWindowMenu::render_selected_entry(TWindowDrawContext *window_key_board_soft) {
     u16 *temp_r3;
 
     temp_r3 = ((u16 * (*)(void *, int))get_array_entry__13TUnk_804CE018Fi)(this, *(s16 *)&this->m_78);
     if (*temp_r3 & 1) {
-        draw_selection_bar((u8 *)window_key_board_soft, (u8 *)temp_r3, is_visible());
+        draw_selection_bar(window_key_board_soft, (u8 *)temp_r3, is_visible());
     }
 }
 
 void render__11TWindowMenuFv(TWindowMenu *arg0) {
-    s32 window_key_board_soft;
+    TWindowDrawContext *window_key_board_soft;
 
-    window_key_board_soft = (s32)get_draw_context__11TWindowBaseFPv(arg0);
-    ((TUnk_804CE018 *)arg0)->draw_window_frame((void *)window_key_board_soft);
+    window_key_board_soft = get_draw_context__11TWindowBaseFPv(arg0);
+    ((TUnk_804CE018 *)arg0)->draw_window_frame(window_key_board_soft);
     draw_visible_window_entries(arg0, (u8 *)arg0 + 0x24, window_key_board_soft);
     if (!(arg0->m_70 & 0x80)) {
         arg0->render_selected_entry(window_key_board_soft);
-        arg0->draw_selected_bar((u8 *)window_key_board_soft);
+        arg0->draw_selected_bar(window_key_board_soft);
     }
     if ((u32) arg0->m_88 != 0U) {
         forward_render__20TWindowSubStatusDispFv(arg0->m_88, window_key_board_soft);

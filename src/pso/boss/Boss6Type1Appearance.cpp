@@ -12,6 +12,7 @@
 #include "pso/boss/TBoss6Demo10_TYPE1_APPEAR.h"
 #include "pso/boss/TBoss3Volopt.h"
 #include "pso/boss/TBoss4Type2.h"
+#include "pso/boss/Boss6ScrollStrips.h"
 #include "pso/boss/TBoss6PlotFalz.h"
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/misc/TNowLoading.h"
@@ -50,10 +51,9 @@ s32 get_bml_motion(s32, s32);
 s32 TObjFish__sub_8001EDB0(s32, s32);
 s32 get_bml_model(s32, s32);
 
-int build_tables__14TBoss6PlotFalzFPvPvi(void *, void *, int);
 extern Vec lbl_80477DEC;
 extern s32 boss6_type1_appear_node_desc[];
-extern s32 boss6_type1_appear_model_node_descriptors[];
+extern Boss6StripDesc boss6_type1_appear_model_node_descriptors[];
 extern CameraAngles lbl_80477E30;
 extern CameraPlayback lbl_80477E3C;
 extern s32 lbl_804DF614[];
@@ -64,7 +64,6 @@ __declspec(section ".sdata") extern AppearanceClassTag TBoss6Demo10_TYPE1_APPEAR
 struct AppearanceZero { f32 value; u32 padding; };
 __declspec(section ".sdata2") extern const AppearanceZero lbl_805DFA50;
 Fish_8033CB4C *__ct__25TBoss6Demo10_TYPE1_APPEARFP7TObject(Fish_8033CB4C *self, void *parent);
-s32 refresh_players_equipment__14TBoss6PlotFalzFPv();
 void post_translate_matrix(const f32 *);
 s32 push_matrix();
 void *__nw__7TObjectFUl(int);
@@ -96,7 +95,7 @@ void run_task__25TBoss6Demo10_TYPE1_APPEARFv(TBoss6Demo10_TYPE1_APPEAR *boss6_de
     if (temp_f1 > lbl_805DFA4C) {
         *(f32 *)((s8 *)boss6_demo10_type1_appear + 0x34) = (f32) lbl_805DFA4C;
     }
-    ((TBoss6PlotFalz *)((u8 *)boss6_demo10_type1_appear + 0x40))->scroll_strips_uv(8, 0);
+    ((Boss6ScrollStrips *)((u8 *)boss6_demo10_type1_appear + 0x40))->scroll_strips_uv(8, 0);
     if ((s32) boss6_demo10_type1_appear->m_38 == 0x78) {
         play_sound_effect(0x4003A105, 0, 0, 0);
     }
@@ -162,8 +161,8 @@ void run_task__25TBoss6Demo10_TYPE1_APPEARFv(TBoss6Demo10_TYPE1_APPEAR *boss6_de
 }
 TBoss6Demo10_TYPE1_APPEAR::~TBoss6Demo10_TYPE1_APPEAR() {
     restore_player_cameras();
-    refresh_players_equipment__14TBoss6PlotFalzFPv();
-    ((TBoss6PlotFalz *)(((u8 *)this) + 0x40))->free_buffer_pairs();
+    TBoss6PlotFalz::refresh_players_equipment();
+    ((Boss6ScrollStrips *)(((u8 *)this) + 0x40))->free_buffer_pairs();
     if ((u32) this->m_60 != 0U) {
         ModelNodePositionCapture::destroy((ModelNodePositionCapture *)(*(void **)((s8 *)this + 0x60)));
         this->m_60 = 0U;
@@ -195,7 +194,7 @@ TBoss6Demo10_TYPE1_APPEAR::TBoss6Demo10_TYPE1_APPEAR(TObject *parent) : TObject(
     }
     ((Fish_8033CB4C *)this)->x60 = (s32)ModelNodePositionCapture::create((ModelNodePositionEntry *)(boss6_type1_appear_node_desc), (Vec *)((((Fish_8033CB4C *)this)->x54)));
     ((Fish_8033CB4C *)this)->x64 = 0;
-    build_tables__14TBoss6PlotFalzFPvPvi(((Fish_8033CB4C *)this)->x40, boss6_type1_appear_model_node_descriptors, 2);
+    ((Boss6ScrollStrips *)((Fish_8033CB4C *)this)->x40)->build_tables(boss6_type1_appear_model_node_descriptors, 2);
     activate_camera_mode(5);
     set_scripted_camera_pose(&lbl_80477DEC, &lbl_80477DEC, &lbl_80477E30);
     cache_target_and_forward__11TCameraCtrlFl(&lbl_80477E3C, 0x416C);
@@ -217,7 +216,7 @@ extern const char TBoss6Demo10_TYPE1_APPEAR__class_name[];
 __declspec(section ".rodata") const char TBoss6Demo10_TYPE1_APPEAR__class_name[] ATTRIBUTE_ALIGN(4) = "TBoss6Demo10_TYPE1_APPEAR";
 __declspec(section ".rodata") Vec lbl_80477DEC = {0.0f, 25.0f, 75.0f};
 __declspec(section ".rodata") s32 boss6_type1_appear_node_desc[] = {0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x00000000, 0x00000000, 0x00000000};
-__declspec(section ".rodata") s32 boss6_type1_appear_model_node_descriptors[] = {0x00000003, 0x00000001, 0x00000000, 0x00000006, 0x00000001, 0x00000000};
+__declspec(section ".rodata") Boss6StripDesc boss6_type1_appear_model_node_descriptors[] = {{3, 1, 0}, {6, 1, 0}};
 __declspec(section ".rodata") CameraAngles lbl_80477E30 = {0, 0, 0};
 __declspec(section ".rodata") CameraPlayback lbl_80477E3C = {1, 2, 0, 0.0f, 0.7f};
 s32 boss6_type1_appear_motion_indices[] = {35, 36};

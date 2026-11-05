@@ -18,6 +18,7 @@
 #include "pso/boss/TBoss4Type2.h"
 #include "pso/boss/TBoss6PlotFalz.h"
 #include "pso/boss/TBoss6Type1.h"
+#include "pso/boss/TBoss6Zanzo.h"
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TNowLoading.h"
@@ -55,7 +56,7 @@ struct Fish_8033E0F0 {
     Vec_8033E0F0 f90;
     u8 pad9C[0xA0 - 0x9C];
     void *emit[4];
-    void *fb0;
+    TBoss6Zanzo *fb0;
 };
 
 struct Pl_8033E0F0 {
@@ -67,7 +68,6 @@ struct Pl_8033E0F0 {
 
 extern "C" {
 void *__nw__7TObjectFUl(int);
-s32 refresh_players_equipment__14TBoss6PlotFalzFPv();
 extern void *__vt__23TBoss6Demo21_TYPE2_DEAD[];
 void push_matrix();
 void post_translate_matrix(void *);
@@ -77,7 +77,6 @@ s32 get_bml_model(void *, int);
 
 void __ct__7TObjectFP7TObject(void *);
 void *get_fish_count__8TObjFishFv(void);
-s32 create_zanzo__11TBoss6Type1FPvPvPv(void *, int, int);
 void vec3_add_to(void *, void *);
 f32 vector_length(void *);
 void subtract_vector(void *, void *);
@@ -85,8 +84,6 @@ void normalize_vector(void *);
 #define __vt__23TBoss6Demo21_TYPE2_DEAD ((u8 *)__vt__23TBoss6Demo21_TYPE2_DEAD)
 
 int get_player_data__10TObjPlayerFi(int a0);
-s32 is_locally_controlled__10TObjPlayerFPv(void *);
-s32 is_state_1f__14TBoss6PlotFalzFUi(u32 arg0);
 void run_task__23TBoss6Demo21_TYPE2_DEADFv(Fish_8033E0F0 *arg0);
 
 }
@@ -317,7 +314,7 @@ void run_task__23TBoss6Demo21_TYPE2_DEADFv(Fish_8033E0F0 *arg0) {
         mid.x *= (0.5f);
         mid.y *= (0.5f);
         mid.z *= (0.5f);
-        ((TBoss6Type1 *)(arg0->fb0))->set_effect_points((f32 *)&a, (u32 *)lbl_8047817C);
+        arg0->fb0->set_effect_points((Vec *)&a, (u32 *)lbl_8047817C);
     }
     if (arg0->timer == 0x23A) {
         s32 n = TLobby::get_game_mode();
@@ -327,7 +324,7 @@ void run_task__23TBoss6Demo21_TYPE2_DEADFv(Fish_8033E0F0 *arg0) {
         vec3_add_to(&c, lbl_804780B8);
         for (i = 0; i < n; i++) {
             Pl_8033E0F0 *p = (Pl_8033E0F0 *)get_player_data__10TObjPlayerFi(i);
-            if (is_locally_controlled__10TObjPlayerFPv(p) != 0 && is_state_1f__14TBoss6PlotFalzFUi((u32)p) != 0) {
+            if (TObjPlayer::is_locally_controlled(p) != 0 && TBoss6PlotFalz::is_state_1f((TObjPlayer *)p) != 0) {
                 Vec_8033E0F0 d;
                 VecCopy((Vec *)&d, (const Vec *)&p->pos);
                 subtract_vector(&d, &c);
@@ -366,7 +363,7 @@ TBoss6Demo21_TYPE2_DEAD::~TBoss6Demo21_TYPE2_DEAD() {
         }
     }
     restore_player_cameras();
-    refresh_players_equipment__14TBoss6PlotFalzFPv();
+    TBoss6PlotFalz::refresh_players_equipment();
     if (((O_8033E5A8 *)this)->f70 != NULL) {
         ModelNodePositionCapture::destroy((ModelNodePositionCapture *)(((O_8033E5A8 *)this)->f70));
         ((O_8033E5A8 *)this)->f70 = NULL;
@@ -428,7 +425,7 @@ void *TBoss6Demo21_TYPE2_DEAD__ct(void *arg0p, void *arg1, void *arg2) {
     for (i = 0; i < 4; i++) {
         ((Fish_8033E688 *)arg0)->arr[i] = 0;
     }
-    ((TBoss6Type1 *)arg0)->motion_flags = create_zanzo__11TBoss6Type1FPvPvPv(arg0, 3, 0xF);
+    ((Fish_8033E0F0 *)arg0)->fb0 = TBoss6Zanzo::create((TObject *)arg0, 3, 0xF);
     *(f32 *)((s8 *)arg0 + 0x4C) = (0.0f);
     *(s32 *)((s8 *)arg0 + 0x50) = 0;
     return arg0;

@@ -37,6 +37,7 @@
 #include "pso/object/TObjVoloptCage.h"
 #include "pso/object/TObjVoloptPillar.h"
 #include "pso/object/TObjMotion.h"
+#include "pso/map/FloorArea.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/byteswap.h"
@@ -77,7 +78,7 @@ s32 TCameraCtrl__sub_8006A044(int, f32);
 
 s32 TObjPlayer__sub_801BA42C();
 s32 approach_angle_limited(s32, s32, s32);
-u8 *get_player_by_client_id(s32);
+TObjPlayer *get_player_by_client_id(s32);
 s32 matrix_mult_vec(int, void *, void *);
 extern u8 identity_matrix[];
 void TBoss3Volopt__sub_800FD344(s32 arg0, s32 arg1, s32 arg2, void *arg3, void *arg4);
@@ -273,7 +274,7 @@ void TBoss3VoloptP02::init_params() {
     referenceHp = hp;
     set_param(0x2E);
     update_prev_position();
-    ((TBoss3Volopt *)this)->reset_photon_effect();
+    register_by_id();
     load_params_from_table(0x13);
     for (i = 0; i < 4; i++) {
         arc_lines[i] = NULL;
@@ -599,7 +600,7 @@ void TBoss3VoloptP02::fn_80046CB8() {
             break;
         }
         play_persistent_sound((s32)(0x4003C616), (const void *)(this), (const Vec *)(&position), (s16)(0), 0);
-        turn_toward_point((Vec *)(target + 0x38), 0x566, -0x4000);
+        turn_toward_point(&target->position, 0x566, -0x4000);
         play_persistent_sound((s32)(0x4003A60E), (const void *)(this), (const Vec *)(&position), (s16)(0), 0);
         advance_animation();
         render_anim_model_at_pos();
@@ -618,7 +619,7 @@ void TBoss3VoloptP02::fn_80046CB8() {
             break;
         }
         play_persistent_sound((s32)(0x4003C616), (const void *)(this), (const Vec *)(&position), (s16)(0), 0);
-        turn_toward_point((Vec *)(target + 0x38), 0x566, -0x4000);
+        turn_toward_point(&target->position, 0x566, -0x4000);
         play_persistent_sound((s32)(0x4003A60E), (const void *)(this), (const Vec *)(&position), (s16)(0), 0);
         advance_animation();
         render_anim_model_at_pos();
@@ -641,7 +642,7 @@ void TBoss3VoloptP02::fn_80046CB8() {
             vfunc_58();
             break;
         }
-        turn_toward_point((Vec *)(target + 0x38), 0x566, -0x4000);
+        turn_toward_point(&target->position, 0x566, -0x4000);
         play_persistent_sound((s32)(0x4003C616), (const void *)(this), (const Vec *)(&position), (s16)(0), 0);
         render_anim_model_at_pos();
         get_anim_node_position(0x3C, &line_origin);
@@ -759,7 +760,7 @@ void TBoss3VoloptP02::fn_800465B0() {
             s32 turn;
             advance_animation();
             push_players_out_of_radius();
-            turn = turn_toward_point((Vec *)(target + 0x38), 0x566, 0);
+            turn = turn_toward_point(&target->position, 0x566, 0);
             play_persistent_sound((s32)(0x4003A60E), (const void *)(this), (const Vec *)(&position), (s16)(0), 0);
             if ((turn < 0 ? -turn : turn) <= 0x566) {
                 timer = 45;
@@ -811,7 +812,7 @@ void TBoss3VoloptP02::fn_800465B0() {
     case 5: {
         f32 blend;
         f32 inverse;
-        turn_toward_point((Vec *)(target + 0x38), 0x566, 0);
+        turn_toward_point(&target->position, 0x566, 0);
         play_persistent_sound((s32)(0x4003A30C), (const void *)(this), (const Vec *)(&position), (s16)(0), 0);
         for (i = 0; i < 5; i++) {
             if (*(s16 *)&timer < (duration / 6) * (5 - i)) {
@@ -916,7 +917,7 @@ void TBoss3VoloptP02::fn_80046260() {
         state = 1;
     case 1:
         if (target != NULL) {
-            Vec v = *(Vec *)(target + 0x38);
+            Vec v = target->position;
             subtract_vector(&v, &position);
             this->rotation.yaw = approach_angle_limited(this->rotation.yaw, (s32)((65536.0 / (2.0 * 3.141592f)) * atan2_float(v.x, v.z)) + 0x8000, 0x566);
         }
@@ -1331,7 +1332,7 @@ s16 TBoss3VoloptP02::collect_targets_in_front() {
         if (player == NULL || get_entity_id(player) >= 0x1000) {
             break;
         }
-        if (((TBoss3Volopt *)player)->get_field_3e0() != 0xD) {
+        if (player->get_current_area() != AREA_VOL_OPT) {
             continue;
         }
         if (player->actorFlags & 0x02000800) {
@@ -1363,7 +1364,7 @@ u16 TBoss3VoloptP02::find_facing_player() {
         if (player == NULL || get_entity_id(player) >= 0x1000) {
             break;
         }
-        if (((TBoss3Volopt *)player)->get_field_3e0() != 0xD) {
+        if (player->get_current_area() != AREA_VOL_OPT) {
             continue;
         }
         if (player->actorFlags & 0x02000800) {
@@ -1673,10 +1674,10 @@ void TBoss3VoloptP02::fn_80044680() {
         if (ring_timer <= 0) {
             if (wave_index == 0) {
                 for (i = 0; i < 4; i++) {
-                    u8 *player = get_player_by_client_id(i);
+                    TObjPlayer *player = get_player_by_client_id(i);
                     if (player != NULL) {
                         for (j = 0; j < 4; j++) {
-                            if (xz_distance_squared((Vec *)(player + 0x38), &ring_positions[j]) <= 100.0f) {
+                            if (xz_distance_squared(&player->position, &ring_positions[j]) <= 100.0f) {
                                 i = 4;
                                 state = 5;
                                 break;
