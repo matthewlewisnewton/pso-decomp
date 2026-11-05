@@ -10,6 +10,7 @@
 #include "pso/misc/TWindowSubComCard.h"
 #include "pso/object/TObjFish.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
+#include "pso/misc/TWindowDrawContext.h"
 
 
 struct Bar_80256C00 {
@@ -40,7 +41,6 @@ void sub_80256BDC__13TUnk_804CF930Fs(u8 *arg0, s16 arg1);
 void calc_bar_width__20TWindowSubStatusDispFPv(struct Bar_80256C00 *bar);
 extern const f32 lbl_805DCE58;
 void step_gauge_bar_width(Gauge_802571B4 *g);
-void draw_status_gauge_bar__13TUnk_804CF930FPvPvff(Gauge_80256E0C *self, void *ctx, Pos_80256E0C *pos, f32 depth, f32 len);
 void *destroy__13TUnk_804CF930Fs(void *arg0, s16 arg1);
 void *TWindowSubStatusDisp__sub_80257298(void *arg0, s16 arg1);
 }
@@ -61,29 +61,18 @@ struct Gauge_80257784 {
     s32 f64;
 };
 
-struct Parent_80257784 {
-    u8 pad0[0x10];
-    f32 f10;
-    f32 f14;
-    f32 f18;
-    u8 pad1C[0x30 - 0x1C];
-    s32 f30;
-    u8 pad34[0x38 - 0x34];
-    f32 f38;
-};
-
 struct Pos_80257784 { f32 x, y; };
 
 extern "C" {
+void draw_status_gauge_bar__13TUnk_804CF930FP18TWindowDrawContextPvff(Gauge_80257784 *self, TWindowDrawContext *ctx, Pos_80257784 *pos, f32 depth, f32 len);
 s32 TWindowSubStatusDisp__sub_80256C40(void *, void *, void *, f32);
-#define draw_status_gauge_bar__13TUnk_804CF930FPvPvff ((s32 (*)(void *, void *, void *, f32, f32))draw_status_gauge_bar__13TUnk_804CF930FPvPvff)
 s32 begin_screen_draw(s32, f32, f32, f32);
 void set_draw_texture_and_color(s32 idx, s32 arg1);
 }
 void set_constant_material_color(u32 x);
 extern s32 lbl_805D63F0;
 extern "C" {
-void draw_gauge__20TWindowSubStatusDispFPvPv(Gauge_80257784 *self, Parent_80257784 *parent);
+void draw_gauge__20TWindowSubStatusDispFPvPv(Gauge_80257784 *self, TWindowDrawContext *parent);
 struct Col_802575C0 { u8 r, g, b, a; };
 
 struct Fade_802575C0 {
@@ -235,7 +224,7 @@ void TWindowSubStatusDisp::update_disp_value() {
 
 #pragma push
 #pragma fp_contract on
-void draw_gauge__20TWindowSubStatusDispFPvPv(Gauge_80257784 *self, Parent_80257784 *parent) {
+void draw_gauge__20TWindowSubStatusDispFPvPv(Gauge_80257784 *self, TWindowDrawContext *parent) {
     Pos_80257784 pos;
     f32 scale;
     f32 lo;
@@ -246,9 +235,9 @@ void draw_gauge__20TWindowSubStatusDispFPvPv(Gauge_80257784 *self, Parent_802577
     f32 ratio;
     f32 sz;
     s32 col;
-    used = self->f10 / 21.0f + self->fC / parent->f18;
+    used = self->f10 / 21.0f + self->fC / parent->inner_w;
     used *= 7.5f;
-    avail = 17.0f * ((f32)parent->f30 - used);
+    avail = 17.0f * ((f32)parent->open_tick - used);
     if (avail <= 0.0f) {
         return;
     }
@@ -274,10 +263,10 @@ void draw_gauge__20TWindowSubStatusDispFPvPv(Gauge_80257784 *self, Parent_802577
         hi = avail;
     }
     if (!(hi <= 0.0f) || (self->flags & 8)) {
-        pos.x = parent->f10 + self->fC;
-        pos.y = parent->f14 + self->f10;
+        pos.x = parent->inner_x + self->fC;
+        pos.y = parent->inner_y + self->f10;
         sz = self->f8;
-        scale = -1.0f / (0.299f * sz + parent->f38);
+        scale = -1.0f / (0.299f * sz + parent->depth);
         begin_screen_draw(1, sz, 0.299f, -1.0f);
         set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
         set_draw_texture_and_color(0xB, -1);
@@ -286,9 +275,9 @@ void draw_gauge__20TWindowSubStatusDispFPvPv(Gauge_80257784 *self, Parent_802577
         }
         if (hi > 0.0f) {
             set_constant_material_color(col);
-            draw_status_gauge_bar__13TUnk_804CF930FPvPvff(self, parent, &pos, scale, hi);
+            draw_status_gauge_bar__13TUnk_804CF930FP18TWindowDrawContextPvff(self, parent, &pos, scale, hi);
             set_constant_material_color(self->f18);
-            draw_status_gauge_bar__13TUnk_804CF930FPvPvff(self, parent, &pos, scale, lo);
+            draw_status_gauge_bar__13TUnk_804CF930FP18TWindowDrawContextPvff(self, parent, &pos, scale, lo);
         }
         TWindowSubStatusDisp::get_player();
     }
@@ -350,7 +339,6 @@ u8 *TWindowSubStatusDisp::init_layout_entry_copy(u8 *arg1) {
 }
 }
 
-#undef draw_status_gauge_bar__13TUnk_804CF930FPvPvff
 #undef destroy__13TUnk_804CF930Fs
 #undef sub_80256BDC__13TUnk_804CF930Fs
 #undef calc_bar_width__20TWindowSubStatusDispFPv
