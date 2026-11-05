@@ -377,6 +377,38 @@ void TAdMultiPlyChrSelectGC__sub_802C561C(S_802C50EC *self) {
     }
 }
 
+void TAdMultiPlyChrSelectGC__sub_802C5688(S_802C50EC *self) {
+    u32 cell[2];
+    f32 top;
+    f32 bottom;
+    s32 row = self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC] + 1;
+    s32 col = self->f4EC + 1;
+    if (TAdMultiPlyChrSelectGC__data_804E0A68[row][col] == -1) {
+        play_sound_effect(0x53F06, 0, 0, 0);
+        return;
+    }
+    TAdMultiPlyChrSelectGC__data_804E0AE0[TAdMultiPlyChrSelectGC__data_805D67D8] = 1;
+    TAdMultiPlyChrSelectGC__data_804E0A68[row][col] = -1;
+    ((s32 *)&TAdMultiPlyChrSelectGC__data_804E0A48)[TAdMultiPlyChrSelectGC__data_805D67D8] =
+        self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC] + self->f4EC * 4;
+    self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].x = self->quad[self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC]][self->f4EC].x;
+    self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].z = self->quad[self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC]][self->f4EC].z;
+    self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].y = self->quad[self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC]][self->f4EC].y;
+    self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].w = self->quad[self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC]][self->f4EC].w;
+    self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].u0 = 0.0f;
+    top = TAdMultiPlyChrSelectGC__data_805D67D8 * lbl_80471CE0[1];
+    self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].v0 = top / 256.0f;
+    self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].u1 = lbl_80471CE0[0] / 256.0f;
+    bottom = TAdMultiPlyChrSelectGC__data_805D67D8 * lbl_80471CE0[1] + lbl_80471CE0[1];
+    self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].v1 = bottom / 256.0f;
+    self->a[self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC]][self->f4EC] = 0;
+    TAdMultiPlyChrSelectGC::add_selected_slot();
+    TAdMultiPlyChrSelectGC__data_805D67D8 = ((s32 (*)(void *))find_active_slot__22TAdMultiPlyChrSelectGCFv)(self);
+    TAdMultiPlyChrSelectGC::find_first_open_cell((s32)self, cell);
+    self->f4EC = cell[1] - 1;
+    self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC] = cell[0] - 1;
+}
+
 void TAdMultiPlyChrSelectGC::init_slot_position(s32 arg1, s32 arg2, s32 arg3) {
     S_802C5944 *arg0 = (S_802C5944 *)this;
     copy_vec2__28TWindowSubSymbolChatPartsSetFPv(&arg0->v[arg2][arg3]);
@@ -719,6 +751,38 @@ void TAdMultiPlyChrSelectGC__sub_802C65C0(s32 arg0) {
     TAdMultiPlyChrSelectGC__data_804E0A68[ri][ci] = multi_ply_chr_select_default_slot_table[ri][ci];
     ((s32 *)&TAdMultiPlyChrSelectGC__data_804E0A48)[arg0] = -1;
     TAdMultiPlyChrSelectGC::remove_selected_slot(arg0);
+}
+
+void TAdMultiPlyChrSelectGC__sub_802C6660(S_802C50EC *self) {
+    s32 i;
+    s32 c;
+    s32 r;
+    u32 cell[2];
+    f32 top;
+    f32 bottom;
+    for (i = 0; i < 4u; i++) {
+        if (((s32 (*)(s32))is_multiplayer_character_slot_selected)(i) != 0) {
+            TAdMultiPlyChrSelectGC__data_804E0AE0[i] = 1;
+            TAdMultiPlyChrSelectGC::split_slot_index(i, &c, &r);
+            self->quad[i + 4][0].x = self->quad[r][c].x;
+            self->quad[i + 4][0].z = self->quad[r][c].z;
+            self->quad[i + 4][0].y = self->quad[r][c].y;
+            self->quad[i + 4][0].w = self->quad[r][c].w;
+            self->quad[i + 4][0].u0 = 0.0f;
+            top = i * lbl_80471CE0[1];
+            self->quad[i + 4][0].v0 = top / 256.0f;
+            self->quad[i + 4][0].u1 = lbl_80471CE0[0] / 256.0f;
+            bottom = i * lbl_80471CE0[1] + lbl_80471CE0[1];
+            self->quad[i + 4][0].v1 = bottom / 256.0f;
+            s32 row = r + 1;
+            s32 col = c + 1;
+            TAdMultiPlyChrSelectGC__data_804E0A68[row][col] = -1;
+        }
+    }
+    TAdMultiPlyChrSelectGC__data_805D67D8 = ((s32 (*)(void *))find_active_slot__22TAdMultiPlyChrSelectGCFv)(self);
+    TAdMultiPlyChrSelectGC::find_first_open_cell((s32)self, cell);
+    self->f4EC = cell[1] - 1;
+    self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC] = cell[0] - 1;
 }
 
 typedef char RecoveredGlobal_802C6848_lbl_804E0B00_size[sizeof(RecoveredGlobal_802C6848_lbl_804E0B00) == 0x10 ? 1 : -1];

@@ -5894,7 +5894,7 @@ force_active:
   - generate_shop_inventory__6TLobbyFl
   - generate_shop_weapon_stock__Fl
   - generate_tool_drop__9TItemDropFiiPv
-  - get_6x47_cast_packet_size__FPUc
+  - get_6x47_cast_packet_size__FP20G_CastTechnique_6x47
   - get__12CursorActionFv
   - get_abs__15TAdLdQuestPrtGCFv
   - get_action_cursor_priority__11TMainCursorFPvll

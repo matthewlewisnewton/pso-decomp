@@ -61,7 +61,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1043,
 | `src/pso/misc/TLobby_80145E40.cpp:28` | `__cntlzw` |
 | `src/pso/misc/TLobby_803C4698.cpp:234` | `__frsqrte` |
 | `src/pso/misc/TMainCursor.cpp:845` | `__cntlzw` |
-| `src/pso/misc/TNpcPlayer.cpp:3268` | `__cntlzw` |
+| `src/pso/misc/TNpcPlayer.cpp:3269` | `__cntlzw` |
 | `src/pso/misc/TOHealGeneral.cpp:64` | `__cntlzw` |
 | `src/pso/misc/TOSymbolchatColli.cpp:93` | `__cntlzw` |
 | `src/pso/misc/TQuestVmDownLoadServer.cpp:544` | `__cntlzw` |
@@ -341,7 +341,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1043,
 | `pso/unk/text_8039739C.cpp` | `-O4,p` | Metrowerks' GCN_Mem_Alloc.c (runtime library code at -O4,p); belongs in the runtime lib under its own name. |
 | `pso/quest/QuestOpcodeHandlers.cpp` | `-inline on` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/quest/TQuestThread.cpp` | `-inline on` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
-| `pso/ui/TAdMultiPlyChrSelectGC_802C50EC.cpp` | `-inline on` | sub_802C5F1C clamps the player slot in a static inline helper. -inline auto also inlines other small functions and breaks seven exact ones; -inline deferred emits the unit in reverse order. -inline on inlines only that helper (same object as -inline noauto here). Evidence: docs/evidence/chr-select-slot-clamp-inline.md. |
+| `pso/ui/TAdMultiPlyChrSelectGC_802C50EC.cpp` | `-inline on, -fp_contract on` | sub_802C5F1C clamps the player slot in a static inline helper. -inline auto also inlines other small functions and breaks seven exact ones; -inline deferred emits the unit in reverse order. -inline on inlines only that helper (same object as -inline noauto here). -fp_contract on fuses player*38+38 in sub_802C6660 (and sub_802C5688) into fmadds; without it sub_802C6660 is 98.03%. Evidence: docs/evidence/chr-select-slot-clamp-inline.md and docs/porting-exceptions.md section 5. |
 | `pso/unk/text_803D8098.cpp` | `(multi-line entry; see configure.py)` | render_debug_text (0x803D85D8) saves r25-r31 with bl _savegpr_25 / _restgpr_25, and its glyph quads are the inlined SDK FIFO writers (sth/stw to 0xCC008000), not calls. -inline on inlines only functions marked inline, so queue_debug_text stays a call from debug_printf_at. The matrix helpers in text_803D8910.cpp match under the ginja defaults. |
 | `pso/misc/TKeyBoardControl_803F0C50.cpp` | `GC/1.2.5n` | Epilogue order (mtlr before the restores) only 1.2.5n produces. |
 | `pso/unk/text_803F1804.cpp` | `GC/1.2.5n` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |

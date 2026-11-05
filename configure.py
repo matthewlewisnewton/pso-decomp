@@ -708,9 +708,11 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # sub_802C5F1C clamps the player slot in a static inline helper. -inline auto
     # also inlines other small functions and breaks seven exact ones; -inline
     # deferred emits the unit in reverse order. -inline on inlines only that
-    # helper (same object as -inline noauto here). Evidence:
-    # docs/evidence/chr-select-slot-clamp-inline.md.
-    "pso/ui/TAdMultiPlyChrSelectGC_802C50EC.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
+    # helper (same object as -inline noauto here). -fp_contract on fuses
+    # player*38+38 in sub_802C6660 (and sub_802C5688) into fmadds; without it
+    # sub_802C6660 is 98.03%. Evidence: docs/evidence/chr-select-slot-clamp-inline.md
+    # and docs/porting-exceptions.md section 5.
+    "pso/ui/TAdMultiPlyChrSelectGC_802C50EC.cpp": {"cflags": _switch(cflags_pso, "-inline on", "-fp_contract on")},
 }
 
 # MusyX (Factor 5). Its objects carry extab/extabindex for every non-leaf

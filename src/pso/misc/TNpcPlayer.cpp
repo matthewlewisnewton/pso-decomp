@@ -17,6 +17,7 @@ extern "C" void render__10TNpcPlayerFv();
 #include "pso/misc/TWindowCtrl.h"
 #include "pso/object/TObjFogCollision.h"
 #include "pso/protocol/protocol_types.h"
+#include "pso/protocol/subcmd_6x.h"
 
 extern "C" {
 s32 VecCopy__FP3VecPC3Vec(void *, int);
@@ -478,7 +479,7 @@ s32 clamp_partner_counter(s32 arg0, s32 arg1, s16 arg2);
 void bswap_6x45_packet(void* p);
 void bswap_6x44_packet(void* p);
 void bswap_6x43_packet(void* p);
-u8 get_6x47_cast_packet_size(u8 *arg0);
+u8 get_6x47_cast_packet_size(G_CastTechnique_6x47 *arg0);
 void init_6x40_walk_packet(void* a0);
 int get_registered_object_count(void);
 const char *get_partner_custom_text(s32 kind, u16 player);
@@ -1737,7 +1738,7 @@ void set_type__10TNpcPlayerFPvs(void* p, s16 v) { *(s16*)((char*)p + 0x0) = v; }
 
 void set_state__10TNpcPlayerFPvs(void* p, s16 v) { *(s16*)((char*)p + 0x2) = v; }
 
-void TNpcPlayer::byteswap_pos() { bswap_16__FPUs((void*)(this)); bswap_16__FPUs((void*)((char*)this + 0x2)); }
+void TechniqueTarget::bswap() { bswap_16__FPUs((void*)(this)); bswap_16__FPUs((void*)((char*)this + 0x2)); }
 
 void TNpcPlayer::set_state(s32 v) { *(s32*)((char*)this + 0x0) = v; }
 
@@ -1759,7 +1760,7 @@ void TNpcPlayer::reset_model() { init_model(); update_players__6TLobbyFv((s32)th
 
 void TNpcPlayer__sub_80152D64(void* p) { *(u8*)((char*)p + 0x3) = 0; *(u8*)((char*)p + 0x2) = 0; *(u8*)((char*)p + 0x1) = 0; *(u8*)((char*)p + 0x0) = 0; }
 
-void *TNpcPlayer::init_cast_technique_cmd() {
+G_CastTechnique_6x47 *G_CastTechnique_6x47::init() {
     TNpcPlayer__sub_80152D64((void*)((void *)((char *)this + 4)));
     __construct_array((void *)((char *)this + 8), fn_80152EF8, 0, 4, 10);
     *(u8 *)((s8 *)this + 0x0) = 71;
@@ -1767,23 +1768,23 @@ void *TNpcPlayer::init_cast_technique_cmd() {
     return this;
 }
 
-u8 get_6x47_cast_packet_size(u8 *arg0) {
+u8 get_6x47_cast_packet_size(G_CastTechnique_6x47 *arg0) {
     return (u8) (0x30 - ((0xA - (s8) *(u8 *)((s8 *)arg0 + 7)) * 4));
 }
 
-void TNpcPlayer::byteswap_positions() {
+void G_CastTechnique_6x47::bswap() {
     N_80152C8C *arg0 = (N_80152C8C *)this;
     s32 i;
     ((G_ClientIDHeader *)arg0)->bswap();
     for (i = 0; i < arg0->count; i++) {
-        ((TNpcPlayer *)(&arg0->pos[i]))->byteswap_pos();
+        ((TechniqueTarget *)(&arg0->pos[i]))->bswap();
     }
 }
 
-void TNpcPlayer::finalize_and_send_packet() {
+void G_CastTechnique_6x47::send() {
     u8 *arg0 = (u8 *)this;
-    *(s8 *)((s8 *)arg0 + 1) = (s8) ((((u32)get_6x47_cast_packet_size((u8 *)(arg0))) >> 2U) & 0x3F);
-    byteswap_positions();
+    *(s8 *)((s8 *)arg0 + 1) = (s8) ((((u32)get_6x47_cast_packet_size((G_CastTechnique_6x47 *)(arg0))) >> 2U) & 0x3F);
+    bswap();
     send_subcommand((u8 *)((void *) (arg0)));
 }
 
@@ -2734,7 +2735,7 @@ void request_technique_cast__10TNpcPlayerFPvi(Npc_80150A34 *self, s32 kind) {
     Msg_80150A34 m;
     u8 *actor;
 
-    ((TNpcPlayer *)(&m))->init_cast_technique_cmd();
+    ((G_CastTechnique_6x47 *)(&m))->init();
     actor = self->p78->actor;
     if (kind == 15 || kind == 16) {
         ((TNpcPlayer *)self)->request_chatter(0x16);
@@ -2759,7 +2760,7 @@ void request_technique_cast__10TNpcPlayerFPvi(Npc_80150A34 *self, s32 kind) {
             ((void (*)(void *, u16))set_type__10TNpcPlayerFPvs)(m.sub, ((TNpcPlayer *)(self->p78))->get_npc_state());
             set_state__10TNpcPlayerFPvs(m.sub, TNpcPlayer__sub_801528DC(self->p78));
         }
-        ((TNpcPlayer *)(&m))->finalize_and_send_packet();
+        ((G_CastTechnique_6x47 *)(&m))->send();
     }
 }
 
