@@ -7,18 +7,11 @@
 struct TWindowKeyBoardBase : public TUnk_804CE018 {
     virtual ~TWindowKeyBoardBase();
     void init_keyboard_text_field(u32, u32);
-    void sub_8025E6DC(u8 *);
+    void sub_8025E6DC(TWindowKeyBoardSoft *);
     void draw_wrapped_text(void *, void *);
     void draw_text_glyphs(void *, void *);
     int sub_8025EB68();
     bool sub_8025CB10();
-    u8 unk_1C[0x10];
-    s32 m_2c;
-    u8 unk_30[0x8];
-    f32 m_38;
-    u8 unk_3C[0xC];
-    f32 m_48;
-    u8 unk_4C[0x14];
     u16 m_60;
     u16 m_62;
     u8 _pad64[0x1];

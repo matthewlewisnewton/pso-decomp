@@ -62,3 +62,33 @@ Same source, compared with the `-inline on` object (`.text` 7400, `.rodata` 640,
 | `-inline all` | same as `-inline auto` | |
 | `-inline auto,deferred` | `.text` 10608, 15 functions differ, `.sdata2` moves | |
 | `-inline deferred`, `-inline on,deferred` | each function's instructions match, `.text` and `.sdata2` bytes do not | deferred emission reorders the unit |
+
+## Main-line 802C50EC cleanups folded into this unit
+
+The folded plate retains `TAdChrSelPlyPlateGC` as the receiver and owner of the
+quad grid. Main's later standalone-unit cleanups do not require growing that
+class or a placement-new allocation: the `TAdMultiPlyChrSelectGC` allocation
+stays at the retail `0xA0`, and the quad-fill function remains a `void` function
+with an integer parameter that the two callers advance but the callee does not
+read. The typed plate `quad` and `cursor` arrays describe the same view that
+main adds to its `S_802C6008` shadow; `S_802C61E4` is that same view, not a
+second allocation.
+
+The grid writes use the final main-line arithmetic: `v0` is `a / 256.0f` and
+`v1` is `(lbl_805DE588 + a) / 256.0f`. MWCC contracts the division by the exact
+pooled reciprocal at `0x805DE584`, with the original dividend on the left. The
+folded source already uses those divisions, together with its typed receiver,
+`void` return, and unused integer parameter. Porting those commits therefore
+preserves the source and the exact object rather than recreating the standalone
+unit or its temporary class-growth workaround.
+
+The folded unit retains the direct UV stores and expanded literal coverage
+established on main without changing its proven section layout: `.data` is
+`0x804E0A48-0x804E0B10`, which includes the later standalone unit's expanded
+`0x804E0A48-0x804E0B00` range, and `.sdata2` is `0x805DE580-0x805DE588`, which
+covers the reciprocal used by these divisions. The other main-line literals are
+already used by the surrounding folded routines; their addresses remain owned
+by that unit rather than a second translation unit.
+
+Ported commits: `36e860b33` (retail allocation / view), `ee03d9da2` (direct
+stores), and `8f43cc281` (division and literals).

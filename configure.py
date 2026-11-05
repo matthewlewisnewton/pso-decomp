@@ -435,6 +435,17 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/boss/TBoss6EmptyWarp_802B0E2C.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
     # Calendar month/day stores retain GC/1.3.2 scheduling; see calendar-conversion-evidence.md.
     "pso/misc/pso_date.cpp": {"mw_version": "GC/1.3.2"},
+    # Curve and xz helpers fuse multiply-adds. The whole TU stays byte-exact
+    # with -fp_contract on (all three tunnel units), so the flag belongs on the
+    # unit rather than as per-function pragmas left over from the split units.
+    "pso/boss/TObjBoss2Tunnel_8003B138.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
+    # Deferred, with definitions in reverse address order: the ctor's
+    # function-local static and guard precede run_task's table guard in .sbss,
+    # as in the original (docs/porting-exceptions.md section 5).
+    "pso/boss/TObjBoss2Tunnel_802F2070.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on")},
+    # Upstream #185's -inline off,deferred, -pool off and -sdata 4; each is
+    # needed (docs/porting-exceptions.md section 5).
+    "pso/boss/TObjBoss2Tunnel.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-pool off", "-sdata 4", "-fp_contract on")},
     "pso/boss/TBoss4DarkFalz_8004C93C.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sym on")},
     "pso/enemy/TObjEneBalClawBody_80090178.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sdata 4")},
     # Deferred generation preserves the flower vtable before its dispatch table.
@@ -463,6 +474,28 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
         # entry label. Map the target entry name to the object's image label.
         "symbol_mappings": {"@12": "...data.0"},
     },
+    # GC/2.0: run_task's 36-byte PMF array initializer interleaves its copy
+    # tail with actor_frame_tick (load, tail load, clrlwi., table load, tail
+    # store). GC/2.5, 2.6 and 2.7 pack the tail pair and move the tick
+    # relocation from +0xE4 to +0xEC; GC/2.0p1 and GC/1.3.2 drop the wave
+    # helpers.
+    # -inline off,deferred: the vtables come out in reverse order of their
+    # key functions, and .data has TUnk_804DDF04's vtable before this
+    # class's while TUnk_804DDF04's destructor comes first in .text.
+    # -opt noprop: deform_indirect_texture_scroll keeps its s16 scroll offset
+    # as a named local (extsh r28, after the coordinate masks in r30/r29).
+    # With copy propagation the frontend replaces it with a hoisted temporary
+    # that the allocator colours first (r30).
+    # -fp_contract on: both texture-wave helpers fuse the wave offset into an
+    # fmadds.
+    # -str reuse,readonly: the two file names and the class name are in this
+    # unit's .rodata. See docs/porting-exceptions.md section 5.
+    "pso/effect/TEffIndirectCtrl.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred", "-opt noprop", "-fp_contract on", "-str reuse,readonly")},
+    # pack_movie_frame: the original keeps every named local in one register
+    # (no lifetime splitting), recomputes its pad and stride shifts instead of
+    # sharing them, and leaves invariant hoisting to the backend. See
+    # docs/porting-exceptions.md section 5.
+    "pso/misc/TMovie_80143988.cpp": {"cflags": _switch(cflags_pso, "-opt nolifetimes,nocse,noprop,noloop")},
     "pso/boss/Boss5GryphonBehavior.cpp": {"mw_version": "GC/2.0"},
     "pso/enemy/TObjEneGyaranzo.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred")},
     "pso/misc/TOExplosiveMachine.cpp": {"mw_version": "GC/2.0"},
@@ -505,7 +538,24 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Row-header copy is a 16-byte struct assignment. -inline off outlines it;
     # noauto,level=1 inlines that helper only. The rest of the unit stays out of line.
     "pso/misc/TWindowMainMenu_802AD538.cpp": {"cflags": _switch(cflags_pso, "-inline noauto,level=1")},
+    # Soft-keyboard clip, scale, and layout fuse multiply-adds into fmadds/fnmsubs
+    # (scale_point_about_pivot, apply_context_transform_to_rect,
+    # apply_window_closing_stretch, clip_textured_quad, init_text_window_layout).
+    # Unit -fp_contract on replaces the per-function pragmas. Precedent:
+    # https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209
+    "pso/misc/TWindowKeyBoardSoft_8024E68C.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
     "pso/boss/TBoss7LaserLight.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
+    # Position jitter and the tentacle curve contract mul-add to fmadds, so
+    # this unit is built with -fp_contract on. -inline off,deferred emits
+    # functions and vtables in reverse source order: the Needle vtable then
+    # the Tentacle vtable, with .text still in address order.
+    # GC/2.0: the Needle constructor's const emitter copy. Before 2.5 a const
+    # local whose address escapes stays out of the worst-case alias set, so
+    # the three word loads of pos batch ahead of the stores; 2.6 interleaves.
+    "pso/boss/TBoss7TentacleNeedle.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on")},
+    # Photon bullet run_task contracts a mul-add. Deferred emission puts the
+    # compiler vtables in address order while the definitions stay bottom-to-top.
+    "pso/boss/TBoss7PhotonBullet_802EF26C.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on")},
     "pso/enemy/TObjEnemyCustom.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-pool off", "-str reuse,readonly")},
     "pso/boss/TBoss3VoloptCore.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
     "pso/boss/TBoss3VoloptP01.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
@@ -527,6 +577,16 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/misc/TOBiwaMushi.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on", "-str reuse,readonly", "-sdata 4")},
     "pso/misc/TODragonflyCave01.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on", "-str reuse,readonly", "-sdata 4")},
     "pso/misc/TODragonflyMachine01.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on", "-str reuse,readonly", "-sdata 4")},
+    # Three fmadds in the original text, and nowhere else in the unit:
+    # __ct__10TOMineTrap at 0x80170058 (fmadds f2,f3,f4,f2), follow_target at
+    # 0x80170B9C (fmadds f0,f1,f0,f2), update_float_height at 0x80170D30
+    # (fmadds f0,f3,f1,f0). No fmsubs. The same expressions are fmuls+fadds
+    # when the flag is omitted. Every other function, including run_task, is
+    # byte-identical with the flag off, and .rodata stays exact.
+    # -inline on expands run_task's mode-4 strike helpers (strike_actor,
+    # strike_player, strike_enemy); no other function in the unit changes.
+    # See docs/porting-exceptions.md.
+    "pso/misc/TOMineTrap_8016F6F8.cpp": {"cflags": _switch(cflags_pso, "-inline on", "-fp_contract on")},
     "pso/item/TItem.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred")},
     # TItemProArmor.cpp, TItemProShield.cpp and TItemProUnit.cpp are written
     # from their last function back (deferred code generation, which also puts
@@ -664,6 +724,10 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # The character creation camera: deferred with nothing inlined, and its
     # multiply-adds contracted into fmadds.
     "pso/camera/CreationCamera.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on")},
+    # The lens-flare renderer contracts its attenuation and displacement
+    # multiply-adds into fnmsubs/fmadds; the whole unit stays byte-exact with
+    # -fp_contract on, so that is this translation unit's setting.
+    "pso/effect/TEF_LensFlare.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
     # The pad rumble and Ninja helper code contract multiply-adds into fmadds/fnmsubs.
     "pso/system/PadRumble.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
     "pso/system/NinjaUtil.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},

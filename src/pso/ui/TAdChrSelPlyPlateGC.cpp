@@ -605,23 +605,19 @@ void TAdMultiPlyChrSelectGC__sub_802C5F1C(TAdChrSelPlyPlateGC *self, int arg1) {
     u32 i;
     u32 j;
     s32 slot;
-    f32 u0;
     f32 top;
-    f32 bottom;
 
     /* Per-player 4x3 grid of selection quads: cell texture coords scale the shared
        (u,v) page, with the active-slot column clamped to 3. arg1 is the caller's
        post-incremented cursor generation and is not read here. */
     for (i = 0; i < 4; i++) {
         for (j = 0; j < 3; j++) {
-            u0 = TAdMultiPlyChrSelectGC__data_805DE56C;
             slot = clamped_active_slot();
-            self->quad[i][j].u0 = u0;
+            self->quad[i][j].u0 = TAdMultiPlyChrSelectGC__data_805DE56C;
             top = lbl_805DE588 * (f32)slot;
-            bottom = lbl_805DE588 + top;
             self->quad[i][j].v0 = top / 256.0f;
             self->quad[i][j].u1 = lbl_805DE58C;
-            self->quad[i][j].v1 = bottom / 256.0f;
+            self->quad[i][j].v1 = (lbl_805DE588 + top) / 256.0f;
         }
     }
 

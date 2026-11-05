@@ -27,7 +27,7 @@ void TWindowDD_WS_Word::render() {
     s32 idx;
     s32 i;
     s32 j;
-    entry = (TWindowKeyBoardSoft *)TWindowDD::draw_default_entry((s32)self);
+    entry = TWindowDD::draw_default_entry((s32)self);
     self->calc_inner_rect((u8 *)entry);
     TWindowDD__sub_80341674(self, (u8 *)entry);
     if (self->m_8c != 0) {
@@ -51,7 +51,7 @@ void TWindowDD_WS_Word::render() {
         }
     }
     entry->inner_y += lbl_805DFCA0;
-    draw_visible_window_entries(self, &self->entries, entry);
+    draw_visible_window_entries(self, (TWindowDDWordEntryList *)&self->m_24, entry);
 }
 
 #define sub_80341AC0__17TWindowDD_WS_WordFv ((s32 (*)(void))sub_80341AC0__17TWindowDD_WS_WordFv)
