@@ -229,6 +229,11 @@ void TLobby::reset_id_tables() {
     }
 }
 
+#pragma push
+// Porting exception (approved by Matt 2026-11-05, t250s1179): propagation
+// merges the separate null locals into one register. Disable it only here to
+// preserve the original register coloring; remove this when porting off MWCC.
+#pragma opt_propagation off
 void TLobby__sub_8020DC78(void) {
     s32 n;
     s32 i;
@@ -238,6 +243,9 @@ void TLobby__sub_8020DC78(void) {
     LobbyFloorRows (LobbyPopulationTables::*enemy_rows_member)[18];
     LobbyFloorRows (LobbyPopulationTables::*object_rows_member)[18];
     LobbyPoolEntry *object_pool;
+    void *object_blank;
+    void *row_blank;
+    LobbyFloorRows *enemy_rows;
     TLobby__data_805D6134 = 0;
     if (TLobby__data_805D6138 != NULL) {
         memset(TLobby__data_805D6138, 0, 0x31680);
@@ -293,17 +301,19 @@ void TLobby__sub_8020DC78(void) {
     object_member = &LobbyPopulationTables::pool_entries;
     object_pool = static_cast<LobbyPoolEntry *>(base->*object_member);
     for (s32 j = 17; j >= 0; j--) {
+        object_blank = NULL;
         if (object_pool[j].objects != NULL) {
             archive_pool_free(TLobby__data_805D6104, object_pool[j].objects);
-            object_pool[j].objects = NULL;
+            object_pool[j].objects = object_blank;
         }
     }
     enemy_rows_member = &LobbyPopulationTables::floors;
+    enemy_rows = static_cast<LobbyFloorRows *>(base->*enemy_rows_member);
     for (s32 j = 17; j >= 0; j--) {
-        if (static_cast<LobbyFloorRows *>(base->*enemy_rows_member)[j].enemyRows != NULL) {
-            TLobby__data_805D6108->heap_free(
-                static_cast<LobbyFloorRows *>(base->*enemy_rows_member)[j].enemyRows);
-            static_cast<LobbyFloorRows *>(base->*enemy_rows_member)[j].enemyRows = NULL;
+        row_blank = NULL;
+        if (enemy_rows[j].enemyRows != NULL) {
+            TLobby__data_805D6108->heap_free(enemy_rows[j].enemyRows);
+            enemy_rows[j].enemyRows = row_blank;
         }
     }
     object_rows_member = &LobbyPopulationTables::floors;
@@ -317,6 +327,7 @@ void TLobby__sub_8020DC78(void) {
 
     memset(base->floors, 0, 0x1B0);
 }
+#pragma pop
 
 void depart_floor_population(int unused) {
     Area_8020DEE4 *area = &TLobby__floor_enemy_group_table[get_current_floor()];
