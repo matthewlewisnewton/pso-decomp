@@ -794,16 +794,14 @@ BmlResource::BmlResource(s32 kind, BmlResourceDescriptor *descriptor, s32 arg3, 
 extern char lbl_80434E4C[];
 extern char lbl_80434E60[];
 
-static inline void load_model_list(BmlResource *self, void **list) {
-    s32 i;
-    for (i = 0; *list != NULL; list++, i++) {
+static inline void load_model_list(BmlResource *self, void **list, s32 i) {
+    for (; *list != NULL; list++, i++) {
         self->load_bin_model(*list, i);
     }
 }
 
-static inline void load_motion_list(BmlResource *self, void **list) {
-    s32 i;
-    for (i = 0; *list != NULL; list++, i++) {
+static inline void load_motion_list(BmlResource *self, void **list, s32 i) {
+    for (; *list != NULL; list++, i++) {
         self->load_bin_motion(*list, i);
     }
 }
@@ -852,8 +850,10 @@ BmlResource *init_from_id_lists(BmlResource *self, s32 kind, void **models, void
     }
     if (self->flags & 1) {
         TLobby::tmp_buf_use_req(lbl_80434E4C);
-        load_model_list(self, models);
-        load_motion_list(self, motions);
+        s32 model_i = 0;
+        load_model_list(self, models, model_i);
+        s32 motion_i = 0;
+        load_motion_list(self, motions, motion_i);
         TLobby::tmp_buf_release(lbl_80434E4C);
         self->set_flag_and_notify();
     } else if (self->flags & 2) {
