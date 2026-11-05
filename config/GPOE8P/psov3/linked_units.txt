@@ -283,6 +283,7 @@ pso/boss/TBoss6Tube.cpp
 pso/boss/TBoss6Tube_802B1020.cpp
 pso/boss/TBoss6Tube_802B15F4.cpp
 pso/boss/TBoss6Tube_802B16BC.cpp
+pso/boss/TBoss6Type1.cpp
 pso/boss/TBoss6Type1_802B20C0.cpp
 pso/boss/TBoss6Type1_80320AE0.cpp
 pso/boss/TBoss6Type1_80323DCC.cpp
@@ -1492,6 +1493,7 @@ pso/misc/TQuestVmDownLoadServer_801F9010.cpp
 pso/misc/TQuestVmDownLoadServer_8033BC88.cpp
 pso/misc/TQuestVmDownLoadServer_8033C22C.cpp
 pso/misc/TQuestVmDownLoadServer_803E5668.cpp
+pso/misc/TRaderMapCore.cpp
 pso/misc/TRaderMapCore_801A6CEC.cpp
 pso/misc/TRaderMapCore_801F3710.cpp
 pso/misc/TRaderMapCore_801FB2B8.cpp
@@ -2670,6 +2672,7 @@ pso/ui/TAdMultiPlyChrSelectGC.cpp
 pso/ui/TAdMultiPlyChrSelectGC_801A6EA0.cpp
 pso/ui/TAdMultiPlyChrSelectGC_802B1850.cpp
 pso/ui/TAdMultiPlyChrSelectGC_802C6F88.cpp
+pso/ui/TAdMultiPlyChrSelectGC_literals.s
 pso/ui/TAdMultiPlyChrSelectGC_802D50A0.cpp
 pso/ui/TAdMultiPlyChrSelectGC_802DBCC4.cpp
 pso/ui/TAdMultiPlyChrSelectGC_802DC3D4.cpp
@@ -3153,6 +3156,7 @@ pso/unk/text_801C543C.cpp
 pso/unk/text_801C5454.cpp
 pso/unk/text_801C5470.cpp
 pso/unk/text_801D34E0.cpp
+pso/unk/text_801D40D4.cpp
 pso/unk/text_801D5DDC.cpp
 pso/unk/text_801D6D60.cpp
 pso/unk/text_801D6D8C.cpp
