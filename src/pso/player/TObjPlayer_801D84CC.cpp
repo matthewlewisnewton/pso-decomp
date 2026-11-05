@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/item/TItem.h"
@@ -125,10 +126,10 @@ void TObjPlayer__sub_801D877C(u8 *arg0) {
         select_actor_lighting((s32)arg0);
         push_matrix();
         translate_matrix_vec3(0, (arg0 + 0x38));
-        rotate_matrix_y(0, (int) (((TUnk_804C4540 *)arg0)->rotation_y));
+        rotate_matrix_y(0, (int) (((TUnk_804C4540 *)arg0)->rotation.yaw));
         save_render_material_state((arg0 + 0x608));
         ((TObjPlayer *)arg0)->apply_material_color_override();
-        TObjFish::set_global_param((s32)(arg0 + 0xCF4));
+        set_current_texture_list((GinjaTextureList *)((arg0 + 0xCF4)));
         set_motion_packed_rotation();
         ((TObjPlayer *)arg0)->draw_saving_joints_checked();
         clear_motion_packed_rotation();
@@ -141,7 +142,7 @@ void TObjPlayer__sub_801D877C(u8 *arg0) {
     }
     push_matrix();
     translate_matrix_vec3(0, (arg0 + 0x38));
-    rotate_matrix_y(0, (int) (((TUnk_804C4540 *)arg0)->rotation_y));
+    rotate_matrix_y(0, (int) (((TUnk_804C4540 *)arg0)->rotation.yaw));
     ((TUnk_804C4540 *)arg0)->calc_joint_matrices(((TUnk_804C4540 *)arg0)->current_motion, ((TUnk_804C4540 *)arg0)->frame, *(s32 *)((s8 *)arg0 + 0xE0));
     pop_matrix();
 }

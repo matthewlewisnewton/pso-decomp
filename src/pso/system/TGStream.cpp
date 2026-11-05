@@ -27,6 +27,7 @@ struct Stream_800FDBA8 {
 extern "C" {
 s32 get_file_size__6TLobbyFv(void *);
 s32 is_split_screen();
+void debug_print__6TLobbyFle(const char *, ...);
 s32 TLobby__sub_803CC4C0(s32);
 s32 read_checked_align__6TLobbyFlll(s32);
 s32 strcmp(void *, void *);
@@ -152,7 +153,7 @@ s32 TGStream::load_file(s32 arg0) {
         return 0;
     }
     temp_r31 = (temp_r3_2 + 0x7FF) / 2048;
-    temp_r3 = (s32)TQuestVmDownLoadServer::alloc(temp_r31 << 0xB);
+    temp_r3 = ((TQuestVmDownLoadServer *)(temp_r31 << 0xB))->alloc();
     if (temp_r3 == 0) {
         ((s32 (*)(s32 *, s32))destroy_gstream)(sp8, -1);
         return 0;
@@ -199,9 +200,9 @@ s32 TGStream::load_sct_file(s32 name, s32 dst) {
     }
     sectors = (size + 0x7FF) / 2048;
     if (st.info != NULL && st.info->size != 0) {
-        buf = (s32)TQuestVmDownLoadServer::alloc(((st.info->size + 0x7FF) / 2048) << 11);
+        buf = ((TQuestVmDownLoadServer *)(((st.info->size + 0x7FF) / 2048) << 11))->alloc();
         if (buf == 0) {
-            TLobby::debug_print("TGStream::gsSctLoadFile Malloc Failed.");
+            debug_print__6TLobbyFle("TGStream::gsSctLoadFile Malloc Failed.");
         }
         ((TGStream *)((s32 *)&st))->read_sectors_sync(sectors, buf);
         prs_decompress_buffer(buf, dst);
@@ -218,7 +219,7 @@ s32 TGStream::load_sct_file(s32 name, s32 dst) {
 void TGStream::read_sectors_sync(s32 arg1, s32 arg2) {
     TGStreamPrefix *arg0 = (TGStreamPrefix *)this;
     read_checked_align__6TLobbyFlll(arg0->adxf_handle);
-    TLobby::set_read_params(&arg0->adxf_handle, (int)arg1, (int)arg2);
+    TLobby::set_read_params((int)&arg0->adxf_handle, (int)arg1, (int)arg2);
 loop_1:
     if (TLobby__sub_803CC4C0(arg0->adxf_handle) != 3) {
         TLobby::run_frame();
@@ -281,7 +282,7 @@ void open_gsl_archive(char *name) {
         if (TItemDrop__gsl_adxf_handle != 0) {
             TGStream::reset();
             ((s32 (*)(u32, s32, GslArchiveEntry *))read_checked_align__6TLobbyFlll)(TItemDrop__gsl_adxf_handle, 6, gsl_archive_entries);
-            TLobby::set_read_params(&TItemDrop__gsl_adxf_handle, 6, (int)gsl_archive_entries);
+            TLobby::set_read_params((int)&TItemDrop__gsl_adxf_handle, 6, (int)gsl_archive_entries);
             for (;;) {
                 if (((s32 (*)(u32))TLobby__sub_803CC4C0)(TItemDrop__gsl_adxf_handle) == 3) {
                     break;
@@ -310,7 +311,7 @@ void TLobby::read_data_sync(s32 arg0, s32 arg1, s32 arg2) {
 
     sp8 = arg0;
     ((s32 (*)())read_checked_align__6TLobbyFlll)();
-    TLobby::set_read_params(&sp8, (int)arg1, (int)arg2);
+    TLobby::set_read_params((int)&sp8, (int)arg1, (int)arg2);
 loop_1:
     if (TLobby__sub_803CC4C0(sp8) != 3) {
         TLobby::run_frame();
@@ -381,7 +382,7 @@ TGStreamPrefix *destroy_gstream(TGStreamPrefix *g_stream_prefix, s16 arg1) {
             ((TLobby *)(g_stream_prefix->adxf_handle))->close_adxf_handle();
         }
         if ((s32) g_stream_prefix->direct_read_mode == 0) {
-            TLobby::tmp_buf_release((const char *)TGStream__class_name_string);
+            ((TLobby *)TGStream__class_name_string)->tmp_buf_release();
         }
         if (arg1 > 0) {
             ::operator delete(g_stream_prefix);
@@ -415,7 +416,7 @@ TGStreamPrefix *open__8TGStreamFPvPvi(TGStreamPrefix *g_stream_prefix, void *fil
     }
     g_stream_prefix->direct_read_mode = arg2;
     if ((s32) g_stream_prefix->direct_read_mode == 0) {
-        while (TLobby::tmp_buf_is_free() == 0) {
+        while (TLobby__sub_8001EEF4() == 0) {
             TLobby::pump_frames();
         }
         gstream_tmp_buffer = TLobby::tmp_buf_use_req((const char *)TGStream__class_name_string);

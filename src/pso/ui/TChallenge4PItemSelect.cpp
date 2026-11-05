@@ -1,11 +1,10 @@
 #include "pso/ui/TChallenge4PItemSelect.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/protocol/protocol_types.h"
 #include "pso/item/TItemData_8010EDA8.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/misc/TCameraCtrl.h"
-#include "pso/misc/TWindowAddition.h"
+#include "pso/misc/TUnk_804CDFE8.h"
 #include "pso/misc/TWindowSubComCardList.h"
 #include "pso/misc/TWindowMenu.h"
 #include "types.h"
@@ -26,15 +25,15 @@ struct Stack_8034B158 {
     u8 trailing_storage[0x11];
 };
 
-// One selectable item: the first three item-code bytes, stored as words.
-struct Challenge4PItemCode {
-    s32 type;
-    s32 group;
-    s32 subtype;
+struct RecoveredGlobal_8034B158_lbl_804F00C8 {
+    s32 value;
+    u8 remaining[0x5C];
 };
 
 extern "C" {
 void init__9TItemDataFv(void *);
+s32 get_selected_menu_value(void *);
+extern RecoveredGlobal_8034B158_lbl_804F00C8 TChallenge4PItemSelect__item_table;
 }
 
 extern "C" {
@@ -46,11 +45,8 @@ s32 fn_8034BE30(TChallenge4PResult *);
 s32 forward_trade_action_default__16TObjCityMainWarpFPviii(u32, s32, s32, s32);
 
 }
-s32 challenge4p_item_select_text_ids[8] = { 0x120, 0x13D, 0x159, 0x11D, 0x12A, 0x147, 0x11F, 0x14E };
-Challenge4PItemCode TChallenge4PItemSelect__item_table[8] = {
-    { 0, 0x2B, 0 }, { 0, 0x48, 0 }, { 0, 0x64, 0 }, { 0, 0x28, 0 },
-    { 0, 0x35, 0 }, { 0, 0x52, 0 }, { 0, 0x2A, 0 }, { 0, 0x59, 0 },
-};
+extern s32 challenge4p_item_select_text_ids[];
+typedef char RecoveredGlobal_8034B158_lbl_804F00C8_size[sizeof(RecoveredGlobal_8034B158_lbl_804F00C8) == 0x60 ? 1 : -1];
 extern void *lbl_805D433C;
 
 extern "C" { s32 TChallenge4PResult__slot_entries[4]; }
@@ -93,6 +89,7 @@ void fn_8034BE38(TObjPlayer *);
 void TLobby__sub_8024AC20(u16);
 void update_entries__18TChallenge4PResultFii(s32 arg0, s32 arg1);
 s32 __ct__18TChallenge4PResultFP7TObjectUsl(void *, s32, int, s32);
+void TWindow__close(u8 *arg0);
 u32 __nw__7TObjectFUl(s32);
 
 }
@@ -309,13 +306,13 @@ void TChallenge4PResult::show_message(s32 text_handle) {
     if (message_window != NULL) {
         ((TWindowMessagePage *)message_window)->set_message((void *)text_handle, 0x81);
         if (TCameraCtrl::get_instance() > 2) {
-            ((TWindowAddition *)message_window)->set_position_xy(0.9f, 0.9f);
+            ((TUnk_804CDFE8 *)message_window)->set_position_xy(0.9f, 0.9f);
         }
     }
 }
 
 extern "C" {
-void TChallenge4PResult::close_window() { if (this->message_window != 0) { this->message_window->close(); this->message_window = 0; } }
+void TChallenge4PResult::close_window() { if (this->message_window != 0) { TWindow__close((u8 *)this->message_window); this->message_window = 0; } }
 }
 
 extern "C" {
@@ -421,7 +418,7 @@ TChallenge4PItemSelect::TChallenge4PItemSelect(TObject *parent, TChallenge4PResu
 }
 
 TChallenge4PItemSelect::~TChallenge4PItemSelect() {
-    if (menu_window != nullptr) { ((TWindowBase *)menu_window)->close(); menu_window = nullptr; }
+    if (menu_window != nullptr) { TWindow__close((u8 *)menu_window); menu_window = nullptr; }
 }
 
 void TChallenge4PItemSelect::run_task() {
@@ -456,9 +453,9 @@ void TChallenge4PItemSelect::open_menu() {
             } while (var_r29 < 8);
             ((TWindowSubComCardList *)((u32 &)menu_window))->set_scroll_target(252.0f, 1.4e+02f);
             TWindowSubComCard__sub_80265500((u32 &)menu_window);
-            ((TWindowBase *)((u32 &)menu_window))->set_depth(3.9e+04f);
+            ((TLobby *)((u32 &)menu_window))->set_field_1c(3.9e+04f);
             if (TCameraCtrl::get_instance() > 2) {
-                ((TWindowAddition *)((u32 &)menu_window))->set_position_xy(0.9f, 0.9f);
+                ((TUnk_804CDFE8 *)((u32 &)menu_window))->set_position_xy(0.9f, 0.9f);
             }
             state = 1;
         }
@@ -474,8 +471,8 @@ void TChallenge4PItemSelect::submit_selected_item() {
     u8 *temp_r31;
     u8 *window_menu;
     window_menu = (u8 *)((u8 *)menu_window);
-    if ((window_menu != NULL) && (((TWindowMenu *)window_menu)->is_decided() != 0)) {
-        temp_r31 = (u8 *)&TChallenge4PItemSelect__item_table[((TWindowMenu *)menu_window)->get_selected_value()];
+    if ((window_menu != NULL) && (((TWindowMenu *)window_menu)->is_visible() != 0)) {
+        temp_r31 = (u8 *)&TChallenge4PItemSelect__item_table.value + (get_selected_menu_value((u8 *)menu_window) * 0xC);
         init__9TItemDataFv(&stack.sp8);
         stack.sp8 = (s8) *(s32 *)((s8 *)temp_r31 + 0);
         stack.sp9 = (s8) *(s32 *)((s8 *)temp_r31 + 4);

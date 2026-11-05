@@ -1,3 +1,5 @@
+#include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 #include "pso/misc/TODoorCave03.h"
 
 #include "pso/TMainTask.h"
@@ -53,7 +55,7 @@ void TODoorCave03::update_closing() {
     } else {
         position.y = y - 1.0f;
     }
-    play_persistent_sound(0x42807, (s32)this, (u32)&position, 0, 0);
+    play_persistent_sound((s32)(0x42807), (const void *)(this), (const Vec *)((u32)&position), 0, 0);
 }
 
 void TODoorCave03::update_open() {
@@ -75,7 +77,7 @@ void TODoorCave03::update_opening() {
     } else {
         position.y += 1.0f;
     }
-    play_persistent_sound(0x42807, (s32)this, (u32)&position, 0, 0);
+    play_persistent_sound((s32)(0x42807), (const void *)(this), (const Vec *)((u32)&position), 0, 0);
 }
 
 void TODoorCave03::update_closed() {
@@ -100,10 +102,10 @@ void TODoorCave03::update_closed() {
 void TODoorCave03::render() {
     NJS_OBJECT *node;
     if (update_object_view_visibility(view_range, model_radius) != 0 && is_in_view_depth(30.0f) != 0) {
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
+        rotate_matrix_y(NULL, this->rotation.yaw);
         node = (NJS_OBJECT *)model;
         post_translate_matrix(node->pos);
         draw_ginja_model((s32)node->model);
@@ -134,7 +136,7 @@ void *TODoorCave03::create(void *set_data) {
 
 void TODoorCave03::destroy() {
     if (bml_resource != NULL) {
-        TLobby__sub_8001FE7C(bml_resource, 1);
+        delete (BmlResource *)(bml_resource);
         bml_resource = NULL;
     }
 }
@@ -142,17 +144,11 @@ void TODoorCave03::destroy() {
 void TODoorCave03::load_resources() {
     BmlResource *resource;
     if (enable_v2_features == 1 && TLobby::is_online_ready() != 0) {
-        resource = (BmlResource *)::operator new(0x440);
-        if (resource != NULL) {
-            resource = load_resource_from_descriptor(resource, 1, &door_cave03_a_resource_descriptor, 0, 0, 0);
-        }
+        resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&door_cave03_a_resource_descriptor), 0, 0, (void *)(0));
         bml_resource = resource;
         return;
     }
-    resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &door_cave03_resource_descriptor, 0, 0, 0);
-    }
+    resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&door_cave03_resource_descriptor), 0, 0, (void *)(0));
     bml_resource = resource;
 }
 

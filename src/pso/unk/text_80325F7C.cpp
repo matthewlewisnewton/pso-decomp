@@ -1,3 +1,4 @@
+#include "pso/math/VectorNormalize.h"
 #include "types.h"
 #include "pso/map/CsnQuery.h"
 #include "pso/unk/text_80325F7C.h"
@@ -35,10 +36,13 @@ void copy_position__12TBoss8DragonFl(void *, void *);
 void TObjPlayer__sub_80325D58(void *, void *, void *, void *);
 void project_point_onto_line(void *, void *, void *);
 extern const f32 lbl_805DF630;
+extern const f32 lbl_805DF638;
 s32 rand(void);
 void vec3_add_to(void *, void *);
 void subtract_vector(void *, void *);
 extern const f32 lbl_805D8D48;
+extern const f32 lbl_805DF63C;
+extern const f32 lbl_805DF640;
 extern const f32 lbl_805DF644;
 extern const f32 lbl_805DF648;
 extern const f32 lbl_805DF64C;
@@ -69,9 +73,9 @@ void fn_80325F7C(void *arg0) {
                 dir.x = ray.d.x;
                 dir.y = ray.d.y;
                 dir.z = ray.d.z;
-                ((TObjBoss2Tunnel *)(&dir))->update_scale();
+                normalize_vector_checked((Vec *)(&dir));
                 TObjPlayer__sub_80325D58(arg0, &pos, &dir, &hit);
-                TBoss8Dragon__sub_80063FB8(inst, &hit, 6.0f);
+                TBoss8Dragon__sub_80063FB8(inst, &hit, lbl_805DF638);
             }
             i++;
         } while (i < 4);
@@ -93,20 +97,20 @@ void TBoss5GryphonLightningHorn::rebuild_lightning_segments() {
     p.x += self->vel.x;
     p.y += self->vel.y;
     p.z += self->vel.z;
-    p.y = 60.0f;
-    hit = (Hit_80326074 *)csnVecterUnder((s32)&p, 0x16EF);
+    p.y = lbl_805DF63C;
+    hit = (Hit_80326074 *)csnVecterUnder((const Vec *)&p, 0x16EF);
     if (hit == NULL || (h = hit->pos[1]) > lbl_805D8D48) {
         get_wing_position__26TBoss5GryphonLightningWingFl(self, &p);
-        self->vel.x *= 0.5f;
-        self->vel.y *= 0.5f;
-        self->vel.z *= 0.5f;
+        self->vel.x *= lbl_805DF640;
+        self->vel.y *= lbl_805DF640;
+        self->vel.z *= lbl_805DF640;
     } else {
         p.y = h;
     }
     copy_position__12TBoss8DragonFl(self, &q);
     VecCopy((Vec *)&d, (const Vec *)&p);
     subtract_vector(&d, &q);
-    len = ((TObjBoss2Tunnel *)(&d))->update_scale() / (self->n - 1);
+    len = normalize_vector_checked((Vec *)(&d)) / (self->n - 1);
     d.x *= len;
     d.y *= len;
     d.z *= len;

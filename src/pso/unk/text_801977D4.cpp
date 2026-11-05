@@ -43,6 +43,8 @@ void subtract_vector(void *, void *);
 f32 normalize_vector(void *);
 extern u8 *TObjRain__streak_line_list[];
 extern u8 *camera_ctrl_instance;
+extern const f32 lbl_805DBF10;
+extern const f32 lbl_805DBF14;
 
 void TObjRain::draw_streaks() {
     struct Rain_801977D4 *self = (struct Rain_801977D4 *)this;
@@ -55,12 +57,12 @@ void TObjRain::draw_streaks() {
             set_line_width(5);
             VecCopy((Vec *)TObjRain__streak_line_list[0], (const Vec *)&drop->position);
             struct Vec_801977D4 pos = drop->position;
-            if (xz_distance_squared(camera_ctrl_instance + 0x178, &pos) < 90000.0f) {
+            if (xz_distance_squared(camera_ctrl_instance + 0x178, &pos) < lbl_805DBF10) {
                 struct Vec_801977D4 dir = drop->velocity;
                 normalize_vector(&dir);
-                dir.x *= 12.0f;
-                dir.y *= 12.0f;
-                dir.z *= 12.0f;
+                dir.x *= lbl_805DBF14;
+                dir.y *= lbl_805DBF14;
+                dir.z *= lbl_805DBF14;
                 subtract_vector(&pos, &drop->velocity);
                 VecCopy((Vec *)(TObjRain__streak_line_list[0] + 0xC), (const Vec *)&pos);
                 draw_line_list(TObjRain__streak_line_list, 1, 5);

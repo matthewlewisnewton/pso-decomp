@@ -1,4 +1,6 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/misc/TOMonumentAncient01.h"
 #include "pso/TMainTask.h"
 #include "pso/TParticleCtrl.h"
@@ -28,10 +30,10 @@ void TOMonumentAncient01::update_demo() {}
 
 void TOMonumentAncient01::render() {
     if (update_object_view_visibility(view_range, model_radius) == 1) {
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
+        rotate_matrix_y(NULL, this->rotation.yaw);
         draw_ginja_object((void *)get_bml_model(model_resource, 2));
         TParticleCtrl::begin_effect_render();
         draw_ginja_object((void *)get_bml_model(model_resource, 1));
@@ -47,16 +49,13 @@ void *TOMonumentAncient01::create(void *set_data) {
 
 void TOMonumentAncient01::unload_resources() {
     if (model_resource != NULL) {
-        TLobby__sub_8001FE7C(model_resource, 1);
+        delete (BmlResource *)(model_resource);
         model_resource = NULL;
     }
 }
 
 void TOMonumentAncient01::load_resources() {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 5, &bm_fs_obj_o_sekihi01_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = (BmlResource *)new BmlResource(5, (BmlResourceDescriptor *)(&bm_fs_obj_o_sekihi01_resource_descriptor), 0, 0, (void *)(0));
     model_resource = resource;
 }
 

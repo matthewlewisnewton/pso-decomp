@@ -1,5 +1,6 @@
+#include "pso/system/ArrayAllocation.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/ui/TAdEnterPPPPassGC.h"
 #include "pso/unk/text_8014618C.h"
 #include "pso/TLevelSelect.h"
@@ -40,6 +41,7 @@ struct T_8033954C { s32 f0; u8 pad[0x14]; void *vt; u8 pad2[0x40 - 0x1C]; s32 f4
 
 extern "C" {
 void queue_destruction__7TObjectFv(void *);
+void TWindow__close(u8 *arg0);
 extern u8 *password_entry_keyboard_control;
 extern s32 password_entry_dispatch_state;
 extern const f32 lbl_805DF9E8;
@@ -59,10 +61,9 @@ extern s32 __vt__17TAdEnterPPPPassGC[];
 extern s32 TAdEnterPPPPassGC__name;
 T_8033954C *TAdEnterPPPPassGC__ct(T_8033954C *arg0);
 char *realloc_buffer__17TWindowSubComCardFv(u8 *);
-void mem_free(void *);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 TWindowShortListCtrl__check_controller_button(void *, int);
-void play_sound_effect(int, int, int, int);
+
 s32 forward_input__22TAdEnterSerialAccessGCFPv(void *, int, char *);
 s32 strlen(const char *);
 extern u8 controller_input_state[];
@@ -83,12 +84,12 @@ void close_windows_and_advance__17TAdEnterPPPPassGCFPv(u8 *arg0) {
     u8 *temp_r3_2;
     temp_r3 = (u8 *)(*(u8 **)((s8 *)arg0 + 0x30));
     if (temp_r3 != NULL) {
-        ((TWindowBase *)temp_r3)->close();
+        TWindow__close(temp_r3);
         *(u8 **)((s8 *)arg0 + 0x30) = NULL;
     }
     temp_r3_2 = (u8 *)(*(u8 **)((s8 *)arg0 + 0x34));
     if (temp_r3_2 != NULL) {
-        ((TWindowBase *)temp_r3_2)->close();
+        TWindow__close(temp_r3_2);
         *(u8 **)((s8 *)arg0 + 0x34) = NULL;
     }
     if ((void *) password_entry_keyboard_control != NULL) {
@@ -115,7 +116,7 @@ void update_password_input__17TAdEnterPPPPassGCFPv(u8 *ad_enter_serial_access_gc
     buf = realloc_buffer__17TWindowSubComCardFv(password_entry_keyboard_control);
     if ((*(s32 *)&((TAdEnterSerialAccessGC *)ad_enter_serial_access_gc)->m_40 == 0 && TWindowShortListCtrl__check_controller_button(controller_physical_port_bank + 0x20, 2) != 0) ||
         (*(s32 *)&((TAdEnterSerialAccessGC *)ad_enter_serial_access_gc)->m_40 == 0 && test_flag_4c__23TAdSinglePlyChrSelectGCFv(controller_input_state + 0x160, 2) != 0)) {
-        mem_free(buf);
+        ::operator delete[](buf);
         set_password__17TAdEnterPPPPassGCFi((s32)&lbl_805DF9EC);
         *(s32 *)&((TAdEnterSerialAccessGC *)ad_enter_serial_access_gc)->m_20 = 2;
         password_entry_dispatch_state = 4;
@@ -165,7 +166,7 @@ void update_password_input__17TAdEnterPPPPassGCFPv(u8 *ad_enter_serial_access_gc
         password_entry_dispatch_state = 4;
     }
     *(s32 *)&((TAdEnterSerialAccessGC *)ad_enter_serial_access_gc)->m_40 = strlen(buf);
-    mem_free(buf);
+    ::operator delete[](buf);
 }
 
 void open_keyboard_window__17TAdEnterPPPPassGCFPv(u8 *ad_enter_serial_access_gc) {

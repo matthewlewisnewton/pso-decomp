@@ -1,5 +1,4 @@
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TShopGenerator.h"
 #include "pso/misc/THunterGuildSeqOffline_80213788.h"
 #include "pso/misc/TKeyBoardControl_8000F764.h"
@@ -8,7 +7,7 @@
 #include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/ui/TObjBagWarnWin_8006EF24.h"
 #include "pso/misc/TShopSequence.h"
-#include "pso/misc/TWindowAddition.h"
+#include "pso/misc/TUnk_804CDFE8.h"
 #include "pso/TShopWindowBase.h"
 #include "pso/misc/TWindowSubComCardList.h"
 #include "pso/misc/TWindowMenu.h"
@@ -130,6 +129,8 @@ struct Obj_80213980 : V_80213980 { char pad1c[0x14]; s32 state; s32 f34; s32 thr
 
 extern "C" {
 s32 get_window_layout_position(int, f32);
+extern const f32 lbl_805DC658;
+extern const f32 lbl_805DC65C;
 void queue_destruction__7TObjectFv(void *arg0);
 void *__dt__13TShopSequenceFv(void *arg0, s16 arg1);
 s32 sub_8022397C__15TShopWindowBaseFv(void *);
@@ -237,9 +238,9 @@ void THunterGuildSeqOffline__sub_80213980(Obj_80213980 *self) {
 
 void THunterGuildSeqOffline__sub_80213B18(u8 *shop_sequence) {
     Stack_80213B18 stack;
-    stack.sp8 = 332.0f;
-    stack.spC = 80.0f;
-    ((TShopSequence *)shop_sequence)->create_message_window((s32)(get_window_layout_position(0x2C, 332.0f)), (s32)((s32) &stack.sp8));
+    stack.sp8 = lbl_805DC658;
+    stack.spC = lbl_805DC65C;
+    ((TShopSequence *)shop_sequence)->create_message_window((s32)(get_window_layout_position(0x2C, lbl_805DC658)), (s32)((s32) &stack.sp8));
     ((VObj_18_97738d *)(shop_sequence))->m7(1, 1);
     *(s32 *)((s8 *)shop_sequence + 0x30) = 0;
     ((TShopWindowBase *)shop_sequence)->set_field_20(2);
@@ -293,7 +294,7 @@ u8 *__dt__28THunterGuildSeqOnline_ClientFv(u8 *arg0, s16 arg1) {
         ((TShopSequence *)arg0)->close_message_window();
         temp_r3_2 = *(u32 *)((s8 *)arg0 + 0x3C);
         if (temp_r3_2 != 0U) {
-            ((TWindowBase *)temp_r3_2)->close();
+            TWindow__close((u8 *)temp_r3_2);
             *(u32 *)((s8 *)arg0 + 0x3C) = 0U;
         }
         *(s32 *)((s8 *)&lbl_80513E70.value + (sub_8022397C__15TShopWindowBaseFv(arg0) * 4)) = 0;
@@ -351,7 +352,7 @@ struct VObj_80213E64_80213E38 : Base_80213E64_80213E38 {
     extern int evt2_random_enemies_mode;
 void set_random_enemies_mode(void) { TLobby::set_enemy_mode_flag(); evt2_random_enemies_mode = 2; TKeyBoardControl__sub_8000F950(); }
 
-struct VObj_80213E64_80213E38 *offline_quest_list_vm;
+extern struct VObj_80213E64_80213E38 *offline_quest_list_vm;
 extern "C" {
 
 void THunterGuildSeqOffline__sub_80213E64(void) {
@@ -596,6 +597,7 @@ struct RecoveredGlobal_80214254_THunterGuildSeqOffline__data_80513DC8 {
 };
 
 extern "C" {
+s32 get_selected_menu_value(void *);
 extern RecoveredGlobal_80214254_THunterGuildSeqOffline__data_80513DC8 THunterGuildSeqOffline__quest_result_callbacks;
 typedef char RecoveredGlobal_80214254_THunterGuildSeqOffline__data_80513DC8_size[sizeof(RecoveredGlobal_80214254_THunterGuildSeqOffline__data_80513DC8) == 0x10 ? 1 : -1];
 void fn_80214254(u8 *shop_window_base) {
@@ -603,11 +605,11 @@ void fn_80214254(u8 *shop_window_base) {
     u8 *window_menu;
     u8 *window_sub_com_card;
     window_menu = (u8 *)(*(u8 **)((s8 *)shop_window_base + 0x38));
-    if ((window_menu != NULL) && (((TWindowMenu *)window_menu)->is_decided() != 0)) {
-        selected_menu_value = ((TWindowMenu *)(*(u8 **)((s8 *)shop_window_base + 0x38)))->get_selected_value();
+    if ((window_menu != NULL) && (((TWindowMenu *)window_menu)->is_visible() != 0)) {
+        selected_menu_value = get_selected_menu_value(*(u8 **)((s8 *)shop_window_base + 0x38));
         switch (selected_menu_value) {
         case 0:
-            ((TWindowBase *)(*(u8 **)((s8 *)shop_window_base + 0x38)))->close();
+            TWindow__close(*(u8 **)((s8 *)shop_window_base + 0x38));
             *(u8 **)((s8 *)shop_window_base + 0x38) = NULL;
             ((VObj_18_97738d *)(shop_window_base))->m7(9, 1);
             *(s32 *)((s8 *)shop_window_base + 0x34) = 1;
@@ -617,7 +619,7 @@ void fn_80214254(u8 *shop_window_base) {
             ((TShopWindowBase *)shop_window_base)->set_field_20(0xC);
             break;
         case 1:
-            ((TWindowBase *)(*(u8 **)((s8 *)shop_window_base + 0x38)))->close();
+            TWindow__close(*(u8 **)((s8 *)shop_window_base + 0x38));
             *(u8 **)((s8 *)shop_window_base + 0x38) = NULL;
             ((VObj_18_97738d *)(shop_window_base))->m7(0xA, 1);
             *(s32 *)((s8 *)shop_window_base + 0x34) = 0;
@@ -626,8 +628,8 @@ void fn_80214254(u8 *shop_window_base) {
         }
     }
     window_sub_com_card = (u8 *)(*(u8 **)((s8 *)shop_window_base + 0x38));
-    if ((window_sub_com_card != NULL) && (((TWindowMenu *)window_sub_com_card)->is_cancelled() != 0)) {
-        ((TWindowBase *)(*(u8 **)((s8 *)shop_window_base + 0x38)))->close();
+    if ((window_sub_com_card != NULL) && (((TWindowSubComCard *)window_sub_com_card)->get_status_flag() != 0)) {
+        TWindow__close(*(u8 **)((s8 *)shop_window_base + 0x38));
         *(u8 **)((s8 *)shop_window_base + 0x38) = NULL;
         ((VObj_18_97738d *)(shop_window_base))->m7(0xA, 1);
         *(s32 *)((s8 *)shop_window_base + 0x34) = 0;
@@ -708,6 +710,8 @@ int is_quest_active(void);
 s32 __ct__12TMemberCheckFP7TObject(int, void *);
 u32 __nw__7TObjectFUl(int);
 s32 get_window_layout_position(s32);
+extern const f32 lbl_805DC658;
+extern const f32 lbl_805DC65C;
 int is_quest_active(void);
 s32 sub_802239EC__13TShopSequenceFv(void *);
 s32 sub_80223A48__15TShopWindowBaseFv(void *);
@@ -728,7 +732,7 @@ void create_judgment_item_window__15TShopWindowBaseFPv(void *shop_sequence) {
     if ((vobj->m8r() != 0) && ((sub_80223A48__15TShopWindowBaseFv(shop_sequence) != 0) || (sub_802239EC__13TShopSequenceFv(shop_sequence) != 0))) {
         *(s32 *)((s8 *)shop_sequence + 0x38) = (s32)create_yes_no_window(get_window_layout_position(0x2B), (u16)get_entity_id(*(s32 *)((s8 *)shop_sequence + 0x24)), 0, 0);
         ((TWindowSubComCardList *)(*(s32 *)((s8 *)shop_sequence + 0x38)))->set_selected_index(1);
-        ((TWindowAddition *)(*(s32 *)((s8 *)shop_sequence + 0x38)))->set_position_xy(get_scale__15TShopWindowBaseFv(shop_sequence), get_scale__15TShopWindowBaseFv(shop_sequence));
+        ((TUnk_804CDFE8 *)(*(s32 *)((s8 *)shop_sequence + 0x38)))->set_position_xy(get_scale__15TShopWindowBaseFv(shop_sequence), get_scale__15TShopWindowBaseFv(shop_sequence));
         vobj->m7(8, 1);
         ((TShopWindowBase *)shop_sequence)->set_field_20(7);
     }
@@ -842,8 +846,8 @@ void init_window__22THunterGuildSeqOfflineFPv(u8 *shop_sequence) {
     typedef char spC_offset[(offsetof(Stack_8021488C, spC) == 0x4) ? 1 : -1];
     Stack_8021488C stack;
     u32 temp_r3;
-    stack.sp8 = 332.0f;
-    stack.spC = 80.0f;
+    stack.sp8 = lbl_805DC658;
+    stack.spC = lbl_805DC65C;
     ((TShopSequence *)shop_sequence)->create_message_window((s32)((int) (get_window_layout_position(0x2C))), (s32)&stack.sp8);
     if (is_quest_active() == 0) {
         temp_r3 = __nw__7TObjectFUl(0x80);
@@ -965,7 +969,7 @@ u8 *__dt__28THunterGuildSeqOnline_ServerFv(u8 *arg0, s16 arg1) {
         ((TShopSequence *)arg0)->close_message_window();
         temp_r3_2 = *(u32 *)((s8 *)arg0 + 0x38);
         if (temp_r3_2 != 0U) {
-            ((TWindowBase *)temp_r3_2)->close();
+            TWindow__close((u8 *)temp_r3_2);
             *(u32 *)((s8 *)arg0 + 0x38) = 0U;
         }
         *(s32 *)((s8 *)&lbl_80513E60.value + (sub_8022397C__15TShopWindowBaseFv(arg0) * 4)) = 0;

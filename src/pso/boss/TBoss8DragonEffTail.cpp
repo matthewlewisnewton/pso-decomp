@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/boss/TBoss1DragonColli.h"
 #include "pso/boss/TBoss8Dragon_800BC53C.h"
 #include "pso/enemy/TObjEneDD_800BA754.h"
@@ -93,9 +94,11 @@ struct Obj_802FE494 : VB_802FE494 {
 };
 
 extern "C" {
+extern const f32 lbl_805DEF18;
 extern u8 boss8_dragon_eff_tail_init_data[];
 extern s32 __vt__19TBoss8DragonEffTail[];
 extern s32 TBoss8DragonEffTail__name;
+extern const f32 lbl_805DEF14;
 EffTail_8002C06C *TBoss8DragonEffTail__ct(EffTail_8002C06C *arg0, s32 arg1, s32 arg2);
 f32 sin_table_lookup(s32);
 f32 cos_table_lookup(s32);
@@ -107,7 +110,9 @@ void translate_matrix(u32 arg0, f32 x, f32 y, f32 z);
 void push_matrix(void);
 s32 pop_matrix(void);
 extern P8_802FE494 lbl_80474BBC[];
-s32 TLobby__sub_8001FE7C(s32, s32);
+extern const f32 lbl_805DEF08;
+extern const f32 lbl_805DEF0C;
+extern const f32 lbl_805DEF10;
 s32 release_texture_list(void*);
 void __dl__7TObjectFPv(void *);
 int fill_value_array(void*);
@@ -123,8 +128,8 @@ void run_task__19TBoss8DragonEffTailFv(u8 *arg0p) {
     Obj_802FE494 *self = (Obj_802FE494 *)arg0p;
     VecCopy((Vec *)(arg0p + 0x38), (const Vec *)((u8 *)self->xB4 + 0x24));
     ((void (*)(void *, void *))vec3_add_to)(arg0p + 0x38, (u8 *)self->xB4 + 0x78);
-    self->x38 *= 0.5f;
-    self->x40 *= 0.5f;
+    self->x38 *= lbl_805DEF08;
+    self->x40 *= lbl_805DEF08;
     self->x3C = *(f32 *)(self->xB0 + 0x3C);
     self->x60 = *(s32 *)(self->xB0 + 0x60);
     p = self->xB4;
@@ -136,17 +141,17 @@ void run_task__19TBoss8DragonEffTailFv(u8 *arg0p) {
         e = self->xA4 + off;
         VecCopy((Vec *)(e + 0x1C), (const Vec *)p);
         matrix_mult_vec(0, p++, e);
-        update_collider_contact_by_height(e, 30.0f);
+        update_collider_contact_by_height(e, lbl_805DEF0C);
     }
     pop_matrix();
     if (self->xBC == 1) {
-        self->xC0 = 5.0f * cos_table_lookup(self->x60);
-        self->xC4 = 0.0f;
-        self->xC8 = 5.0f * -sin_table_lookup(self->x60);
+        self->xC0 = lbl_805DEF10 * cos_table_lookup(self->x60);
+        self->xC4 = lbl_805DEF14;
+        self->xC8 = lbl_805DEF10 * -sin_table_lookup(self->x60);
     } else {
-        self->xC0 = 5.0f * -cos_table_lookup(self->x60);
-        self->xC4 = 0.0f;
-        self->xC8 = 5.0f * sin_table_lookup(self->x60);
+        self->xC0 = lbl_805DEF10 * -cos_table_lookup(self->x60);
+        self->xC4 = lbl_805DEF14;
+        self->xC8 = lbl_805DEF10 * sin_table_lookup(self->x60);
     }
     {
         P8_802FE494 sp = lbl_80474BBC[0];
@@ -162,7 +167,7 @@ void TBoss8DragonEffTail__vt18(s32 arg0, s32 arg1) {
 
 void TBoss8DragonEffTail::apply_hit_if_active(void *arg1_arg, f32 *) {
     u8 *arg1 = (u8 *)arg1_arg;
-    ((VObj_18 *)(arg1))->m20(this->m_ac, this, 1.0f);
+    ((VObj_18 *)(arg1))->m20(this->m_ac, this, lbl_805DEF18);
 }
 
 void TBoss8DragonEffTail::enable() { this->m_bc = 1; get_state(); }
@@ -204,9 +209,9 @@ EffTail_8002C06C *TBoss8DragonEffTail__ct(EffTail_8002C06C *arg0, s32 arg1, s32 
     }
     arg0->unkB8 = p;
     arg0->unkBC = 0;
-    arg0->unkC0 = 0.0f;
-    arg0->unkC4 = 0.0f;
-    arg0->unkC8 = 0.0f;
+    arg0->unkC0 = lbl_805DEF14;
+    arg0->unkC4 = lbl_805DEF14;
+    arg0->unkC8 = lbl_805DEF14;
     return arg0;
 }
 
@@ -216,7 +221,7 @@ void TBoss8DragonEffTail::free_statics() {
         TAdSinglePlyChrSelectGC::safe_free(dragon_tail_gvm_texture_handle);
         dragon_tail_gvm_texture_handle = 0U;
     }
-    TLobby__sub_8001FE7C(boss8_eff_tail_bml_resource, 1);
+    delete (BmlResource *)(boss8_eff_tail_bml_resource);
     boss8_eff_tail_bml_resource = 0;
 }
 

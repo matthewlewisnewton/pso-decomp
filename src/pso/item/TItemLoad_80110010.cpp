@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/item/TItemLoad.h"
 #include "pso/item/TItemLoad_80110010.h"
@@ -36,20 +37,18 @@ extern s16 lbl_8043E4C0[];
 extern s16 lbl_8043E4C8[];
 extern void *TItemLoad__model_load_task_root;
 extern s32 *TItemLoad__model_slot_in_use;
-void *mem_alloc(u32);
 void TLobby__sub_801E3E9C(s32, s32, void *, s32);
 extern s32 lbl_8049F43C[];
 Load_8011006C *init_buffer__9TItemLoadFPviii(Load_8011006C *self, s32 arg1, s32 arg2, s32 count);
 s32 get_bml_motion(s32, s32);
 s32 TObjFish__sub_8001EDB0(s32, s32);
 s32 get_bml_model(s32, s32);
-void mem_free(void *p);
 
 void *TUnk_8049F42C::sub_80110010(s16 arg1) {
     if (this != NULL) {
         *(s32 *)((s8 *)this + 0x14) = (s32)lbl_8049F43C;
         ((TItemLoad *)this)->free_texture();
-        mem_free((void *)(*(s32 *)((s8 *)this + 0)));
+        ::operator delete[]((void *)(*(s32 *)((s8 *)this + 0)));
         if (arg1 > 0) {
             ::operator delete(this);
         }
@@ -62,7 +61,7 @@ extern s32 TItemLoad__bml_resource;
 Load_8011006C *init_buffer__9TItemLoadFPviii(Load_8011006C *self, s32 id, s32 arg2, s32 count) {
     s32 n = (count + 1) * 2;
     self->f14 = lbl_8049F43C;
-    self->buf = mem_alloc((n + 0x116) & ~3);
+    self->buf = ::operator new[]((n + 0x116) & ~3);
     self->f8 = arg2;
     self->f4 = 0;
     self->fC = 0;

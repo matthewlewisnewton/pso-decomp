@@ -1,4 +1,6 @@
+#include "pso/system/ArrayAllocation.h"
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/item/TItemLoad_8010F52C.h"
 #include "pso/item/TItemLoad_801105AC.h"
 #include "pso/item/TUnk_8049F42C.h"
@@ -31,8 +33,6 @@ struct VObj_801105AC : Base_801105AC {
 };
 
 extern "C" {
-void *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
-void *mem_alloc(u32 size);
 void * __nw__7TObjectFUl(s32);
 void *__ct__7TObjectFP7TObject(void *, void *);
 extern s32 TItemLoad__bml_resource;
@@ -40,19 +40,17 @@ extern void *TItemLoad__model_load_task_root;
 extern void *TItemLoad__completed_model_load_task_root;
 extern s32 TItemLoad__model_slot_in_use;
 extern s32 item_load_resource_handle;
-s32 TLobby__sub_8001FE7C(s32, s32);
 s32 __ct__9TItemLoadFv(void *, s32);
-void mem_free(void *p);
 
 void TItemLoad::free_all() {
-    mem_free((void *)TItemLoad__model_slot_in_use);
+    ::operator delete[]((void *)TItemLoad__model_slot_in_use);
     if ((void *) TItemLoad__model_load_task_root != NULL) {
         ((VObj_801105AC *)TItemLoad__model_load_task_root)->m0(1);
     }
     if ((void *) TItemLoad__completed_model_load_task_root != NULL) {
         ((VObj_801105AC *)TItemLoad__completed_model_load_task_root)->m0(1);
     }
-    TLobby__sub_8001FE7C(TItemLoad__bml_resource, 1);
+    delete (BmlResource *)(TItemLoad__bml_resource);
     item_load_resource_handle = 0;
     TItemLoad__bml_resource = 0;
     TItemLoad__model_load_task_root = NULL;
@@ -70,10 +68,7 @@ void TItemLoad::init_resources() {
     s32 i;
     TItemLoad::alloc_work_buffer();
     TItemLoad__sub_8010F5A0();
-    p = ::operator new(0x440);
-    if (p != NULL) {
-        p = load_resource_from_descriptor(p, 5, &item_bml_resource_descriptor, 0, 0, 0);
-    }
+    p = new BmlResource(5, (BmlResourceDescriptor *)(&item_bml_resource_descriptor), 0, 0, (void *)(0));
     TItemLoad__bml_resource = (s32)p;
     p = __nw__7TObjectFUl(0x1C);
     if (p != NULL) {
@@ -85,7 +80,7 @@ void TItemLoad::init_resources() {
         p = __ct__7TObjectFP7TObject(p, NULL);
     }
     TItemLoad__model_load_task_root = p;
-    buf = (u32)mem_alloc(0x30);
+    buf = (u32)::operator new[](0x30);
     TItemLoad__model_slot_in_use = buf;
     item_load_resource_handle = 0;
     if (buf != 0) {

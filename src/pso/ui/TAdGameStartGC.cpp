@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "pso/protocol/protocol_types.h"
 #include "pso/misc/TLobby_801E43E4.h"
 #include "pso/TObject.h"
@@ -248,13 +249,13 @@ __declspec(section ".rodata") extern const char lbl_80472C48[] = "TAdGameStartSu
 void begin_screen_draw(s32 arg0);
 s32 draw_textured_quad_at_depth(void *, int, f32);
 void set_draw_texture_and_color(s32 idx, s32 arg1);
-s32 game_start_player_instance;
+extern s32 game_start_player_instance;
 
 void draw_background__17TAdGameStartSubGCFPv(u8 *arg0) {
     s32 temp_r4;
 
     begin_screen_draw(1);
-    TObjFish::set_global_param(game_start_player_instance);
+    set_current_texture_list((GinjaTextureList *)(game_start_player_instance));
     set_draw_texture_and_color(0, ((*(s32 *)((s8 *)arg0 + 0x80) << 0x18) | 0xFF0000 | 0xFFFF));
     temp_r4 = *(s32 *)((s8 *)arg0 + 0x1C);
     draw_textured_quad_at_depth(arg0 + 0x40, temp_r4, (f32) (((0.01f) * (f32) temp_r4) + (0.8f)));

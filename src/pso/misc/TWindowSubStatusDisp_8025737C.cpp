@@ -1,12 +1,16 @@
+#include "pso/system/SoundSlotPitch.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TWindowSubStatusDisp_8025737C.h"
 #include "pso/system/memory.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 #include "pso/ui/TAdChrMoveEffectGC.h"
 #include "pso/misc/TWindowSubComCard.h"
 #include "pso/object/TObjFish.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
+#include "pso/misc/TWindowDrawContext.h"
 
 
 struct Bar_80256C00 {
@@ -33,10 +37,10 @@ struct Gauge_80256E0C { u8 p0[0x14]; f32 max; };
 struct Pos_80256E0C { f32 x; f32 y; };
 
 extern "C" {
-void calc_bar_width__13TUnk_804CF930Fv(struct Bar_80256C00 *bar);
+void sub_80256BDC__13TUnk_804CF930Fs(u8 *arg0, s16 arg1);
+void calc_bar_width__20TWindowSubStatusDispFPv(struct Bar_80256C00 *bar);
 extern const f32 lbl_805DCE58;
 void step_gauge_bar_width(Gauge_802571B4 *g);
-void draw_status_gauge_bar__13TUnk_804CF930FPvPvff(Gauge_80256E0C *self, void *ctx, Pos_80256E0C *pos, f32 depth, f32 len);
 void *destroy__13TUnk_804CF930Fs(void *arg0, s16 arg1);
 void *TWindowSubStatusDisp__sub_80257298(void *arg0, s16 arg1);
 }
@@ -57,29 +61,18 @@ struct Gauge_80257784 {
     s32 f64;
 };
 
-struct Parent_80257784 {
-    u8 pad0[0x10];
-    f32 f10;
-    f32 f14;
-    f32 f18;
-    u8 pad1C[0x30 - 0x1C];
-    s32 f30;
-    u8 pad34[0x38 - 0x34];
-    f32 f38;
-};
-
 struct Pos_80257784 { f32 x, y; };
 
 extern "C" {
+void draw_status_gauge_bar__13TUnk_804CF930FP18TWindowDrawContextPvff(Gauge_80257784 *self, TWindowDrawContext *ctx, Pos_80257784 *pos, f32 depth, f32 len);
 s32 TWindowSubStatusDisp__sub_80256C40(void *, void *, void *, f32);
-#define draw_status_gauge_bar__13TUnk_804CF930FPvPvff ((s32 (*)(void *, void *, void *, f32, f32))draw_status_gauge_bar__13TUnk_804CF930FPvPvff)
 s32 begin_screen_draw(s32, f32, f32, f32);
 void set_draw_texture_and_color(s32 idx, s32 arg1);
 }
 void set_constant_material_color(u32 x);
 extern s32 lbl_805D63F0;
 extern "C" {
-void draw_gauge__20TWindowSubStatusDispFPvPv(Gauge_80257784 *self, Parent_80257784 *parent);
+void draw_gauge__20TWindowSubStatusDispFPvPv(Gauge_80257784 *self, TWindowDrawContext *parent);
 struct Col_802575C0 { u8 r, g, b, a; };
 
 struct Fade_802575C0 {
@@ -117,10 +110,10 @@ struct Bar_8025799C {
     s16 timer;
 };
 
-void update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
-s32 play_sound_effect(u32, s32, s32, s32);
+
 #define destroy__13TUnk_804CF930Fs ((s32 (*)(s32, s32 *))destroy__13TUnk_804CF930Fs)
-#define calc_bar_width__13TUnk_804CF930Fv ((s32 (*)())calc_bar_width__13TUnk_804CF930Fv)
+#define sub_80256BDC__13TUnk_804CF930Fs ((int (*)(void*, int))sub_80256BDC__13TUnk_804CF930Fs)
+#define calc_bar_width__20TWindowSubStatusDispFPv ((s32 (*)())calc_bar_width__20TWindowSubStatusDispFPv)
 #define step_gauge_bar_width ((void (*)(void *))step_gauge_bar_width)
 void* init_from__13TUnk_804CF930FPvi(void* a0, void* a1, int a2);
 u32 update_text_color_transition(Fade_802575C0 *fade);
@@ -198,7 +191,7 @@ void start_text_color_transition(Fade_802575C0 *arg0, u32 rgb, f32 time) {
         arg0->tr = c.r;
         arg0->tg = c.g;
         arg0->tb = c.b;
-        ((TAdChrMoveEffectGC *)(&c))->copy4(&arg0->col);
+        fn_80257720(&c, &arg0->col);
         time = 1.0f / time;
         arg0->cr = c.r;
         arg0->cg = c.g;
@@ -210,16 +203,28 @@ void start_text_color_transition(Fade_802575C0 *arg0, u32 rgb, f32 time) {
     }
 }
 
-void TAdChrMoveEffectGC::copy4(void* q) { *(u8 *)&this->m_name = *(u8*)((char*)q + 0x0); *(u8*)((char*)this + 0x1) = *(u8*)((char*)q + 0x1); *(u8*)((char*)this + 0x2) = *(u8*)((char*)q + 0x2); *(u8*)((char*)this + 0x3) = *(u8*)((char*)q + 0x3); }
+}
+
+#pragma push
+#pragma scheduling off // preserves the native load/store order
+void fn_80257720(void *destination, const void *source) {
+    *(u8 *)destination = *(const u8 *)((const char *)source + 0);
+    *(u8 *)((char *)destination + 1) = *(const u8 *)((const char *)source + 1);
+    *(u8 *)((char *)destination + 2) = *(const u8 *)((const char *)source + 2);
+    *(u8 *)((char *)destination + 3) = *(const u8 *)((const char *)source + 3);
+}
+#pragma pop
+
+extern "C" {
 
 void TWindowSubStatusDisp::update_disp_value() {
-    calc_bar_width__13TUnk_804CF930Fv();
+    calc_bar_width__20TWindowSubStatusDispFPv();
     *(s16 *)((s8 *)this + 0x28) = (s16) *(f32 *)&this->m_24;
 }
 
 #pragma push
 #pragma fp_contract on
-void draw_gauge__20TWindowSubStatusDispFPvPv(Gauge_80257784 *self, Parent_80257784 *parent) {
+void draw_gauge__20TWindowSubStatusDispFPvPv(Gauge_80257784 *self, TWindowDrawContext *parent) {
     Pos_80257784 pos;
     f32 scale;
     f32 lo;
@@ -230,9 +235,9 @@ void draw_gauge__20TWindowSubStatusDispFPvPv(Gauge_80257784 *self, Parent_802577
     f32 ratio;
     f32 sz;
     s32 col;
-    used = self->f10 / 21.0f + self->fC / parent->f18;
+    used = self->f10 / 21.0f + self->fC / parent->inner_w;
     used *= 7.5f;
-    avail = 17.0f * ((f32)parent->f30 - used);
+    avail = 17.0f * ((f32)parent->open_tick - used);
     if (avail <= 0.0f) {
         return;
     }
@@ -258,21 +263,21 @@ void draw_gauge__20TWindowSubStatusDispFPvPv(Gauge_80257784 *self, Parent_802577
         hi = avail;
     }
     if (!(hi <= 0.0f) || (self->flags & 8)) {
-        pos.x = parent->f10 + self->fC;
-        pos.y = parent->f14 + self->f10;
+        pos.x = parent->inner_x + self->fC;
+        pos.y = parent->inner_y + self->f10;
         sz = self->f8;
-        scale = -1.0f / (0.299f * sz + parent->f38);
+        scale = -1.0f / (0.299f * sz + parent->depth);
         begin_screen_draw(1, sz, 0.299f, -1.0f);
-        TObjFish::set_global_param(lbl_805D63F0);
+        set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
         set_draw_texture_and_color(0xB, -1);
         if (self->flags & 8) {
             TWindowSubStatusDisp__sub_80256C40(self, parent, &pos, scale);
         }
         if (hi > 0.0f) {
             set_constant_material_color(col);
-            draw_status_gauge_bar__13TUnk_804CF930FPvPvff(self, parent, &pos, scale, hi);
+            draw_status_gauge_bar__13TUnk_804CF930FP18TWindowDrawContextPvff(self, parent, &pos, scale, hi);
             set_constant_material_color(self->f18);
-            draw_status_gauge_bar__13TUnk_804CF930FPvPvff(self, parent, &pos, scale, lo);
+            draw_status_gauge_bar__13TUnk_804CF930FP18TWindowDrawContextPvff(self, parent, &pos, scale, lo);
         }
         TWindowSubStatusDisp::get_player();
     }
@@ -334,8 +339,8 @@ u8 *TWindowSubStatusDisp::init_layout_entry_copy(u8 *arg1) {
 }
 }
 
-#undef draw_status_gauge_bar__13TUnk_804CF930FPvPvff
 #undef destroy__13TUnk_804CF930Fs
-#undef calc_bar_width__13TUnk_804CF930Fv
+#undef sub_80256BDC__13TUnk_804CF930Fs
+#undef calc_bar_width__20TWindowSubStatusDispFPv
 #undef step_gauge_bar_width
 #undef lbl_804CF930

@@ -1,11 +1,13 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/ui/TAdChrSelASlotGC.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC_802D50A0.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC_802E0FC8.h"
-#include "pso/ui/TAdChrSelPlyPlateGC.h"
+#include "pso/unk/text_802C6DD4.h"
 #include "pso/misc/TLobby_80132ED0.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/object/TObject_80019A50.h"
+#include "pso/ui/TAdMultiPlyChrSelectGC_802C50EC.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC_802DBCC4.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC_802DC3D4.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC_802DC760.h"
@@ -37,18 +39,16 @@ u32 __ct__14TAdSelectCurGCFv(void *, void *, void *, void *);
 s32 set_entry_value__22TAdMultiPlyChrSelectGCFlUl(u32, int, void *);
 u32 __ct__13TAdGuideTxtGCFv(void *, void *);
 u32 __ct__14TAdGameStartGCFv(void *, s32);
-u8 *get_or_create_slot_window__22TAdMultiPlyChrSelectGCFii(s32 arg0, s32 arg1);
 s32 create__16TAdChrSelBSlotGCFPv(void *);
 extern V2_802DF9B4 multi_chr_select_widget_layout[];
 extern u8 lbl_80472808[];
 extern I2_802DF9B4 lbl_80472828[];
 extern Blk_802DF9B4 multi_chr_select_layout_table[];
 extern V2_802DF9B4 lbl_80472848[];
-extern TObject *tl_02;
+extern s32 tl_02;
 extern s32 tl_clipout;
 extern s32 TAdMultiPlyChrSelectGC__data_805DE898;
 s32 TWindowShortListCtrl__check_controller_button(void *, s32, s32);
-s32 play_sound_effect(s32, s32, s32, s32);
 
 extern s8 controller_physical_port_bank[];
 extern u32 multi_chr_select_serial_access_state;
@@ -61,7 +61,7 @@ void update_state_serial__22TAdMultiPlyChrSelectGCFPv(void *arg0) {
         *(u32 *)((s8 *)arg0 + 0x90) = 0U;
     }
     if ((u32) *(u32 *)((s8 *)arg0 + 0x80) != 0U) {
-        ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x80)))->close();
+        TWindow__close((u8 *)(*(void **)((s8 *)arg0 + 0x80)));
         *(u32 *)((s8 *)arg0 + 0x80) = 0U;
     }
     if ((u32) *(u32 *)((s8 *)arg0 + 0x8C) != 0U) {
@@ -73,7 +73,7 @@ void update_state_serial__22TAdMultiPlyChrSelectGCFPv(void *arg0) {
         *(u32 *)((s8 *)arg0 + 0x98) = 0U;
     }
     if ((u32) *(u32 *)((s8 *)arg0 + 0x7C) != 0U) {
-        ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x7C)))->close();
+        TWindow__close((u8 *)(*(void **)((s8 *)arg0 + 0x7C)));
         *(u32 *)((s8 *)arg0 + 0x7C) = 0U;
     }
     if ((u32) *(u32 *)((s8 *)arg0 + 0x74) != 0U) {
@@ -127,6 +127,7 @@ struct C_802DF114 {
 };
 typedef void (C_802DF114::*Pmf_802DF114)();
 void set_default_camera__21TAdMultiChgGameModeGCFv(void *);
+int TAdMultiPlyChrSelectGC__sub_802C6920(void);
 extern "C" void TAdMultiPlyChrSelectGC__sub_802DCCA4();
 extern "C" void update_idle_timer__22TAdMultiPlyChrSelectGCFv();
 extern "C" void reset_to_select__22TAdMultiPlyChrSelectGCFv();
@@ -426,7 +427,7 @@ void TAdMultiPlyChrSelectGC::create_widgets() {
         if (p != 0) {
             __ct__10TAdTitleGCFP7TObjectl((void *) p, this, 0);
         }
-        *(s32 *)&this->unk_68 = (s32)get_or_create_slot_window__22TAdMultiPlyChrSelectGCFii((s32)this, 1);
+        *(s32 *)&this->unk_68 = (s32)get_or_create_slot_window__22TAdMultiPlyChrSelectGCFii(this, 1);
         *(s32 *)&this->unk_60 = get_or_create_player__22TAdMultiPlyChrSelectGCFiiii((s32)this, 1, -1, 0);
         break;
     case 1: {
@@ -434,7 +435,7 @@ void TAdMultiPlyChrSelectGC::create_widgets() {
         if (p != 0) {
             __ct__10TAdTitleGCFP7TObjectl((void *) p, this, 8);
         }
-        *(s32 *)&this->unk_68 = (s32)get_or_create_slot_window__22TAdMultiPlyChrSelectGCFii((s32)this, 2);
+        *(s32 *)&this->unk_68 = (s32)get_or_create_slot_window__22TAdMultiPlyChrSelectGCFii(this, 2);
         this->m_6c = create__16TAdChrSelBSlotGCFPv(this);
         I2_802DF9B4 pos = lbl_80472828[0];
         p = __nw__7TObjectFUl(0x708);
@@ -467,7 +468,7 @@ void TAdMultiPlyChrSelectGC::create_widgets() {
     V2_802DF9B4 v = lbl_80472848[0];
     v.x = multi_chr_select_widget_layout[0].x;
     v.y = multi_chr_select_widget_layout[0].y;
-    this->m_5c = (s32)fn_802C6F20(tl_02, (vec2f *)&v);
+    this->m_5c = (s32)fn_802C6F20(tl_02, (s32)&v);
     TAdMultiPlyChrSelectGC::get_move_effect(tl_clipout);
 }
 

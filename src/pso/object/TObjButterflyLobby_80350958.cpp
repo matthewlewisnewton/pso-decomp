@@ -1,5 +1,6 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
-#include "pso/object/TObjButterflyLobby.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/object/TObjButterflyLobby_80350958.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/system/vector.h"
@@ -9,19 +10,6 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/misc/TLobbyEventTheme.h"
-#include "pso/system/BmlResourceDescriptor.h"
-#include "pso/unk/text_803516F8.h"
-
-extern char lbl_80478D80[];
-extern char lbl_80478D98[];
-extern char lbl_80478DAC[];
-extern char lbl_80478DC4[];
-
-const char *bm_butterfly_lobby_model_names[3] = {lbl_80478D80, lbl_80478D98, NULL};
-__declspec(section ".data") const char *bm_butterfly_lobby_motion_names[2] = {lbl_80478DAC, NULL};
-BmlResourceDescriptor bm_butterfly_lobby_resource_descriptor = {
-    lbl_80478DC4, bm_butterfly_lobby_model_names, bm_butterfly_lobby_motion_names, 2, 1,
-};
 
 struct ButterflyLobbyBase_80350958 { char pad[0x18]; };
 struct ButterflyLobbyVObj_80350958 : ButterflyLobbyBase_80350958 {
@@ -67,14 +55,14 @@ s32 draw_ginja_model_with_motion(int, void *, f32);
 s32 get_bml_motion(void *, int);
 s32 push_matrix();
 
-s32 lobby_butterfly_bml_resource;
+extern s32 lobby_butterfly_bml_resource;
 
 void render__18TObjButterflyLobbyFPv(TObjButterflyLobby *butterfly_lobby) {
     f32 temp_f1;
 
     push_matrix();
     post_translate_matrix((u8 *)butterfly_lobby + 0x38);
-    rotate_matrix_y(0, butterfly_lobby->rotation_y);
+    rotate_matrix_y(0, butterfly_lobby->rotation.yaw);
     rotate_matrix_x(0, -0x2000);
     if ((s32) butterfly_lobby->m_90 != 3) {
         temp_f1 = *(f32 *)((s8 *)butterfly_lobby + 0x94);
@@ -100,7 +88,7 @@ void TObjButterflyLobby::init_params() {
 
 void TObjButterflyLobby::render() {
     if ((((ButterflyLobbyVObj_80350958*)this)->m8(400.0f, 20.0f) != 0) && ((s32) this->m_90 != 0)) {
-        TObjFish::set_global_param(this->m_c8);
+        set_current_texture_list((GinjaTextureList *)(this->m_c8));
         render__18TObjButterflyLobbyFPv((TObjButterflyLobby *)((u8 *)this));
     }
 }
@@ -299,15 +287,19 @@ s32 get_bml_model(void *, int);
 s32 __ct__8TObjBaseFP7TObject();
 extern s32 __vt__18TObjButterflyLobby[];
 extern s32 lbl_805D4360;
-void TLobby__sub_8001FE7C(void*, int);
 void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
 
+void *__dt__18TObjButterflyLobbyFv(void *arg0, s16 arg1) {
+    if (arg0 != NULL) {
+        *(s32 **)((s8 *)arg0 + 0x18) = __vt__18TObjButterflyLobby;
+        __dt__8TObjBaseFv(arg0, 0);
+        if (arg1 > 0) {
+            __dl__7TObjectFPv(arg0);
+        }
+    }
+    return arg0;
 }
-TObjButterflyLobby::~TObjButterflyLobby() {
-
-}
-extern "C" {
 
 extern void *tl_05;
 
@@ -345,24 +337,9 @@ void *TObjButterflyLobby__create(void *arg0) {
 
 void TObjButterflyLobby::destroy_instance() {
     if ((u32) lobby_butterfly_bml_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)lobby_butterfly_bml_resource, 1);
+        delete (BmlResource *)((void*)lobby_butterfly_bml_resource);
         lobby_butterfly_bml_resource = 0U;
     }
-}
-
-}
-
-extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
-void fn_803516F8(void) {
-    s32 temp_r3;
-    s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
-    var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &bm_butterfly_lobby_resource_descriptor, 0, 0, 0));
-    }
-    lobby_butterfly_bml_resource = var_r0;
 }
 
 }

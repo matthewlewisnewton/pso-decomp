@@ -1,4 +1,9 @@
+#include "pso/player/demo_mode.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
+#include "pso/math/ScratchVectorStorage.h"
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/misc/TKeyBoardControl_8000F764.h"
 #include "pso/misc/TOTrap_801791EC.h"
 #include "pso/object/TObject_80019A50.h"
@@ -131,7 +136,6 @@ void *get_player_by_client_id(s32 i);
 extern s32 local_client_id;
 s32 TObjFish__sub_8001EDB0(void *, s32);
 s32 get_bml_model(void *, s32);
-u8 *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern RecoveredGlobal_80179E34_lbl_804B4834 bm_o_trap_ancient01_resource_descriptor;
 extern u32 TOTrapAncient01__bml_resource;
 extern const f32 TOTrapAncient01__data_805DBA4C;
@@ -155,7 +159,7 @@ VObj_801797D4 *get_battle_param__10TObjPlayerFi(s32);
 s32 obj_is_hit_receivable(void *);
 s32 check_value_equals__13TUnk_804B6C24Fl(void *, s32);
 void submit_cursor_candidate(void *, s32);
-void play_persistent_sound(s32, void *, void *, s32, s32);
+
 extern s32 lbl_805D3530;
 extern const f32 lbl_805DBA48;
 s32 is_split_screen();
@@ -179,7 +183,6 @@ extern const f32 lbl_805DBA60;
 extern const f32 lbl_805DBA64;
 extern const f32 lbl_805DBA68;
 void render__15TOTrapAncient01Fv(Trap_80179B8C *self);
-void TLobby__sub_8001FE7C(void*, int);
 void fn_80141CF0(void *, void *, void *);
 void TOTrapAncient02R__sub_80154D78(void *);
 void *__nw__7TObjectFUl(int);
@@ -269,11 +272,11 @@ void TOTrapAncient01::vfunc_82() {
     case AREA_RUINS1:
     case AREA_RUINS2:
     case AREA_RUINS3:
-        play_persistent_sound(0x4004C618, ((Trap_801797D4 *)this), (u8 *)((Trap_801797D4 *)this) + 0x38, 0, 0);
+        play_persistent_sound((s32)(0x4004C618), (const void *)(((Trap_801797D4 *)this)), (const Vec *)((u8 *)((Trap_801797D4 *)this) + 0x38), 0, 0);
         break;
     case AREA_VR_SPACESHIP_ALPHA:
     case AREA_VR_SPACESHIP_BETA:
-        play_persistent_sound(0x4004C610, ((Trap_801797D4 *)this), (u8 *)((Trap_801797D4 *)this) + 0x38, 0, 0);
+        play_persistent_sound((s32)(0x4004C610), (const void *)(((Trap_801797D4 *)this)), (const Vec *)((u8 *)((Trap_801797D4 *)this) + 0x38), 0, 0);
         break;
     case AREA_PIONEER2_EP1:
         return;
@@ -339,13 +342,13 @@ void render__15TOTrapAncient01Fv(Trap_80179B8C *self) {
         push_matrix();
         post_translate_matrix(self->pos38);
         rotate_matrix_y(0, self->f60);
-        if (TObjPlayer::check_demo_mode() != 1 && self->f6C <= TOTrapAncient01__data_805DBA4C) {
+        if (check_demo_mode() != 1 && self->f6C <= TOTrapAncient01__data_805DBA4C) {
             v.x = lbl_805DBA60 * (lbl_805DBA64 * (f32)rand()) - lbl_805DBA68;
             v.y = TOTrapAncient01__data_805DBA4C;
             v.z = lbl_805DBA60 * (lbl_805DBA64 * (f32)rand()) - lbl_805DBA68;
             post_translate_matrix(&v);
         }
-        TObjFish::set_global_param(self->f24);
+        set_current_texture_list((GinjaTextureList *)(self->f24));
         n = self->model;
         push_matrix();
         translate_matrix(0, TOTrapAncient01__data_805DBA4C, self->f6C, TOTrapAncient01__data_805DBA4C);
@@ -380,31 +383,17 @@ void *TOTrapAncient01::create() {
 
 void TOTrapAncient01::release_static_resource() {
     if ((u32) TOTrapAncient01__bml_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)TOTrapAncient01__bml_resource, 1);
+        delete (BmlResource *)((void*)TOTrapAncient01__bml_resource);
         TOTrapAncient01__bml_resource = 0U;
     }
 }
 
-extern s32 scratch_vec[];
 extern s32 trap_ancient_light_color[];
 
 typedef struct RecoveredGlobal_80179E34_lbl_804B4834 RecoveredGlobal_80179E34_lbl_804B4834;
 void TOTrapAncient01::load_resources() {
-  s32 temp_r31;
-  int new_var;
-  s32 temp_r3;
-  s32 var_r0;
-  temp_r3 = (int)::operator new(0x440);
-  var_r0 = temp_r3;
-  temp_r31 = var_r0;
-  new_var = 0;
-  if (temp_r31 != new_var)
-  {
-    var_r0 = (long) load_resource_from_descriptor((void *) temp_r3, 1, &bm_o_trap_ancient01_resource_descriptor.value, 0, 0, 0);
-  }
-  (*(u8 * *)&TOTrapAncient01__bml_resource) = (unsigned char *) ((void *) var_r0);
-  temp_r31 = TObjFish__sub_8001EDB0((void *) var_r0, 3);
-  TMotorcycle::add_entry(0x39, (int) get_bml_model((*(u8 * *)&TOTrapAncient01__bml_resource), 3), (int) temp_r31, (f32) lbl_805DBA5C, (f32) TOTrapAncient01__data_805DBA4C);
+  TOTrapAncient01__bml_resource = (u32)new BmlResource(1, (BmlResourceDescriptor *)&bm_o_trap_ancient01_resource_descriptor.value, 0, 0, NULL);
+  TMotorcycle::add_entry(0x39, get_bml_model((void *)TOTrapAncient01__bml_resource, 3), TObjFish__sub_8001EDB0((void *)TOTrapAncient01__bml_resource, 3), lbl_805DBA5C, TOTrapAncient01__data_805DBA4C);
 }
 
 Self_80179EC0 *__dt__15TOTrapAncient01Fv(Self_80179EC0 *self, s16 flag) {
@@ -431,7 +420,7 @@ void *TOTrapAncient01__ct(void *arg0, void *arg1, void *arg2) {
     __construct_array(self + 0x358, (void *)__ct__15RenderFadeStateFv, (void *)__dt__15RenderFadeStateFv, 0x1C, 4);
     *(s32 *)((s8 *)self + 0) = TOTrapAncient01__class_name;
     ((TOTrapAncient01 *)arg0)->apply_object_set_data((void *)((s32)arg2));
-    ((TObjPlayer *)arg0)->init_position_vectors();
+    ((TObjChara *)arg0)->initialize_position_copies();
     ((TObjChara *)arg0)->calc_attach_pos();
     *(s32 *)((s8 *)self + 0x34) = get_bml_model((void *)TOTrapAncient01__bml_resource, 3);
     *(s32 *)((s8 *)self + 0x24) = TObjFish__sub_8001EDB0((void *)TOTrapAncient01__bml_resource, 3);
@@ -485,7 +474,7 @@ void TOTrapAncient02R::vfunc_86() {
     s32 x;
     x = is_current_room(this);
     if (x == 1) {
-        fn_80141CF0((void *)((char *)this + 80), scratch_vec, trap_ancient_light_color);
+        fn_80141CF0((void *)((char *)this + 80), (&scratch_vec.vector), trap_ancient_light_color);
         TOTrapAncient02R__sub_80154D78(this);
     }
 }

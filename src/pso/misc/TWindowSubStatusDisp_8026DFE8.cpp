@@ -1,7 +1,8 @@
+#include "pso/misc/TWindowDrawContext.h"
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TWindowSubStatusDisp_802671F0.h"
-#include "pso/misc/TWindowMenuIconLine.h"
+#include "pso/misc/TUnk_804D0618.h"
 #include "pso/misc/TUnk_804D0948.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 
@@ -16,7 +17,6 @@ struct RecoveredGlobal_8026E168_lbl_804D0948 {
 };
 
 extern "C" {
-s32 get_draw_context__11TWindowBaseFPv();
 s32 draw_visible_window_entries(void *, void *, int);
 s32 draw_item_list_capacity(void *, int, int, int);
 s32 draw_window_scrollbar(void *, int, void *);
@@ -36,17 +36,17 @@ void TUnk_804D0948::render() {
     s32 temp_r3;
     s32 n;
     void *p;
-    temp_r3 = get_draw_context__11TWindowBaseFPv();
-    ((TWindowBase *)arg0)->draw_window_frame((void *)temp_r3);
+    temp_r3 = (s32)get_draw_context__11TWindowBaseFPv(this);
+    ((TUnk_804CE018 *)arg0)->draw_window_frame((void *)temp_r3);
     draw_visible_window_entries(arg0, arg0 + 0x24, temp_r3);
-    if (!(this->state_flags & 0x80)) {
-        ((TWindowMenuIconLine *)arg0)->draw_selected_list_entry(temp_r3);
+    if (!(this->m_70 & 0x80)) {
+        ((TUnk_804D0618 *)arg0)->draw_selected_list_entry(temp_r3);
     }
     n = *(s32 *)&this->unk_88;
     if (n > 0) {
-        draw_item_list_capacity(arg0, temp_r3, this->entry_count, n);
+        draw_item_list_capacity(arg0, temp_r3, this->m_72, n);
     }
-    p = this->status_display;
+    p = this->m_80;
     if (p != NULL) {
         forward_render__20TWindowSubStatusDispFv(p, temp_r3);
     }
@@ -57,7 +57,7 @@ void TUnk_804D0948::render() {
 }
 #pragma pop
 
-void TUnk_804D0948::run_task() { run_task__19TWindowMenuIconLineFv((u8 *)this); }
+void TUnk_804D0948::run_task() { run_task__13TUnk_804D0618Fv((u8 *)this); }
 
 void *TWindowSubStatusDisp::deleting_dtor(s16 arg1) {
     if (this != NULL) {

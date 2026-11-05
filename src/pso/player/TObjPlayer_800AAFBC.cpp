@@ -1,3 +1,7 @@
+#include "pso/misc/MaterialOpacityFade.h"
+#include "pso/misc/RenderFadeState.h"
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/system/NinjaUtil.h"
 #include "pso/player/TUnk_80491460.h"
@@ -16,7 +20,6 @@
 #include "pso/enemy/TObjEneLappy.h"
 #include "pso/enemy/TObjEnePanarms.h"
 #include "pso/enemy/TObjEneRe7Berura.h"
-#include "pso/misc/RenderFadeState.h"
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/misc/TNowLoading.h"
 #include "pso/object/TObjFish.h"
@@ -123,18 +126,6 @@ struct VBase_14_800ABDD8
   char pad[0x14];
 };
 
-struct VObj_14_800ABDD8 : VBase_14_800ABDD8 {
-    virtual void m0();
-    virtual void m1();
-    virtual void m2();
-    virtual void m3();
-    virtual void m4();
-    virtual void m5();
-    virtual void m6();
-    virtual void m7();
-    virtual s32 m8();
-};
-
 struct VBase_18_800ABDD8
 {
   char pad[0x18];
@@ -153,22 +144,10 @@ struct VObj_18_800ABDD8 : VBase_18_800ABDD8 {
     virtual s32 m9(f32, f32, f32);
 };
 
-struct Fade_800ABDD8 : VBase_14_800ABDD8 {
-    virtual void m0();
-    virtual void m1();
-    virtual void m2();
-    virtual void m3();
-    virtual void m4();
-    virtual void m5();
-    virtual void m6();
-    virtual void m7();
-    u32 x18;
-};
-
 struct Owner_800ABDD8
 {
   u8 pad[0x3CC];
-  Fade_800ABDD8 fades[4];
+  RenderFadeState fades[4];
 };
 
 struct Vec_800ABDD8
@@ -186,7 +165,7 @@ void draw_chunk_object(void *child);
 s32 rotate_matrix_y(s32, s32);
 s32 push_matrix();
 s32 pop_matrix();
-extern s32 dubchik_texlist;
+extern s32 lbl_805D5094;
 extern s32 model_render_flags;
 
 void __dl__7TObjectFPv(void *);
@@ -199,6 +178,7 @@ s32 vec3_add_to(void *, void *);
 extern const f32 lbl_805D9B5C;
 extern const f32 lbl_805D9B60;
 f32 fabs_float(f32);
+extern const f32 lbl_805D9B10;
 s32 rotate_vector_by_matrix(int, void *, void *);
 s32 push_matrix_from(void *);
 extern RecoveredGlobal_800ABA9C_lbl_8058D490 identity_matrix;
@@ -207,7 +187,7 @@ extern Vec_800AB31C lbl_8043ACE0[];
 extern s32 __vt__13TUnk_80491460[];
 extern void *tl_06;
 extern const f32 lbl_805D9B64;
-void *spawn_particle_effect(void *pos, s32 id);
+
 extern Pair_800AB0EC lbl_8043ACEC[];
 extern const f32 lbl_805D9B58;
 f32 newton_sqrtf();
@@ -220,10 +200,56 @@ u32 TObjPlayer__sub_800A4204(void *, void *, void *, void *, int);
 s32 __ct__14TObjCollidableFP7TObject(void *, void *);
 void *__nw__7TObjectFUl(int);
 extern s32 player_sub_800ab7a0_id_table[];
-extern void *dubchik_resource;
+extern void *lbl_805D5090;
 
+u8 *TObjPlayer__sub_800AB7A0(u8 *arg0, s32 arg1, u8 *arg2, s32 arg3, s32 arg4);
+void TObjPlayer__sub_800AAFF0(void* p, f32 v);
 void __dt__7TObjectFv(void *, int);
 
+extern s32 lbl_805D5098;
+
+void TObjEneDubchik::init_level_stats(s32 arg1) {
+    s32 var_r0;
+
+    *(s32 *)&this->model = (s32) *(s32 *)((s8 *)(*(void **)((s8 *)lbl_805D5090 + 0x42C)) + 8);
+    if (arg1 == 0) {
+        var_r0 = *(s32 *)((s8 *)(*(void **)((s8 *)lbl_805D5090 + 0x42C)) + 0xC);
+    } else {
+        var_r0 = lbl_805D5098;
+    }
+    this->texlist = var_r0;
+}
+
+void TObjPlayer__sub_800AAFF0(void* p, f32 v) { *(f32*)((char*)p + 0x8) = v; }
+
+void TObjPlayer::clear_flag_04000000() {
+    u8 *arg0 = (u8 *)this;
+    u8 *temp_r6;
+    temp_r6 = (u8 *)this->bodies;
+    *(s32 *)((s8 *)temp_r6 + 0x18) = (s32) (*(s32 *)((s8 *)temp_r6 + 0x18) & 0xF5FFFFFF);
+    ((TObjBase *)arg0)->obj_clearFlags30(0x04000000U);
+}
+
+void TObjPlayer::set_invuln_flags() {
+    u8 *arg0 = (u8 *)this;
+    u8 *temp_r5;
+    temp_r5 = (u8 *)this->bodies;
+    *(s32 *)((s8 *)temp_r5 + 0x18) = (s32) (*(s32 *)((s8 *)temp_r5 + 0x18) | 0x0A000000);
+    obj_setFlags30(arg0, 0x04000000U);
+}
+
+s32 TObjEneDubchik::sub_800AB068() {
+    u8 *arg0 = (u8 *)this;
+  u8 *new_var;
+  f32 temp_f31;
+  ;
+  if ((fabs_float((*((f32 *) (((s8 *) arg0) + 0x38))) - (*((f32 *) (((s8 *) arg0) + 0x44)))) + fabs_float((*((f32 *) (((s8 *) arg0) + 0x40))) - (*((f32 *) (((s8 *) arg0) + 0x4C))))) > lbl_805D9B10)
+  {
+    VecCopy__FP3VecPC3Vec((void *) ((new_var = arg0) + 0x38), (u8 *)&this->prev_position);
+    return 1;
+  }
+  return 0;
+}
 
 s32 TUnk_80491460::try_hit_target(int arg1) {
     u8 *e = (u8 *)arg1;
@@ -233,7 +259,7 @@ s32 TUnk_80491460::try_hit_target(int arg1) {
         tmp.b = (f32)this->m_68;
         Pair_800AB0EC arg = tmp;
         ((VObj_800AB0EC *)e)->m21(o->f64, &arg, 0, -1, -1);
-        spawn_particle_effect(e + 0x2FC, 0xFB);
+        spawn_particle_effect((const Vec *)(e + 0x2FC), 0xFB);
         queue_destruction__7TObjectFv(o);
     }
 }
@@ -283,7 +309,7 @@ void TUnk_80491460::run_task() {
 void *TObjPlayer::dt(s16 arg1) {
     if (this != NULL) {
         *(s32 **)((s8 *)this + 0x18) = __vt__13TUnk_80491460;
-        if ((void *)this->rotation_x != NULL) { queue_destruction__7TObjectFv((void *)this->rotation_x); }
+        if ((void *)this->rotation.pitch != NULL) { queue_destruction__7TObjectFv((void *)this->rotation.pitch); }
         __dt__7TObjectFv(this, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(this);
@@ -312,7 +338,6 @@ TUnk_80491460::TUnk_80491460(void *arg1, s32 arg2, s32 arg3, s32 arg4) : TObject
     ((Obj_800AB31C *)this)->f68 = arg4;
 }
 
-
 void TObjPlayer::cancel_action() {
     if (get_action_priority() != 1) {
         if ((u32) *(u32 *)&this->override_speed != 0U) {
@@ -325,8 +350,8 @@ s32 TObjPlayer::get_action_priority() {
     return (s32)((u32)__cntlzw(3 - *(s16 *)((s8 *)this + 0xAE)) >> 5);
 }
 void TObjPlayer::draw_model_no_fog() {
-    TObjFish::set_global_param(dubchik_texlist);
-    TObjFish::set_global_param((*(s32 *)&this->action_table));
+    set_current_texture_list((GinjaTextureList *)(lbl_805D5094));
+    set_current_texture_list((GinjaTextureList *)((*(s32 *)&this->action_table)));
     push_matrix();
     post_translate_matrix((u8 *)&this->blend.frame[1]);
     rotate_matrix_y(0, (*(s32 *)&this->frame));
@@ -410,7 +435,7 @@ void *TUnk_80491478::destroy_with_particle_cleanup(s16 arg1) {
     return this;
 }
 
-u8 *TObjPlayer__sub_800AB7A0(u8 *arg0, s32 arg1, TObjEneDubchik *arg2, NJS_TEXLIST *arg3, Vec *arg4) {
+u8 *TObjPlayer__sub_800AB7A0(u8 *arg0, s32 arg1, u8 *arg2, s32 arg3, s32 arg4) {
     Vec_800AB7A0 v;
     Vec_800AB7A0 out;
     void *obj;
@@ -423,7 +448,7 @@ u8 *TObjPlayer__sub_800AB7A0(u8 *arg0, s32 arg1, TObjEneDubchik *arg2, NJS_TEXLI
     ((TUnk_80491478 *)arg0)->m_ae = 0;
     t = player_sub_800ab7a0_id_table[arg1];
     ((TUnk_80491478 *)arg0)->m_d8 = arg3;
-    ((TUnk_80491478 *)arg0)->m_c8 = (s32)find_model_node(*(s32 *)((s8 *)(*(u8 **)((s8 *)dubchik_resource + 0x42C)) + 0x18), (s32)t);
+    ((TUnk_80491478 *)arg0)->m_c8 = (s32)find_model_node(*(s32 *)((s8 *)(*(u8 **)((s8 *)lbl_805D5090 + 0x42C)) + 0x18), (s32)t);
     *(Vec_800AB7A0 **)((s8 *)arg0 + 0xCC) = &((Arr_800AB7A0 *)arg2)->arr[arg1];
     VecCopy__FP3VecPC3Vec(arg0 + 0xF0, (void *) VecCopy__FP3VecPC3Vec(arg0 + 0xDC, (void *)arg4));
     ((TUnk_80491478 *)arg0)->m_e8 = 3.0f + *(f32 *)((s8 *)arg2 + 0x3C);
@@ -452,11 +477,11 @@ u8 *TObjPlayer__sub_800AB7A0(u8 *arg0, s32 arg1, TObjEneDubchik *arg2, NJS_TEXLI
     return arg0;
 }
 
-typedef struct Fade_800ABDD8 Fade_800ABDD8;
+typedef struct RenderFadeState RenderFadeState;
 typedef struct Owner_800ABDD8 Owner_800ABDD8;
 typedef struct VBase_14_800ABDD8 VBase_14_800ABDD8;
 typedef struct VBase_18_800ABDD8 VBase_18_800ABDD8;
-typedef struct VObj_14_800ABDD8 VObj_14_800ABDD8;
+typedef struct MaterialColorFade MaterialColorFade;
 typedef struct VObj_18_800ABDD8 VObj_18_800ABDD8;
 typedef struct Vec_800ABDD8 Vec_800ABDD8;
 #define PSO_VCALL_VObj_18_800ABDD8_m9(_self, _arg0, _arg1, _arg2) (((VObj_18_800ABDD8 *)(_self))->m9((_arg0), (_arg1), (_arg2)))
