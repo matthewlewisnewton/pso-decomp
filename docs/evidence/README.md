@@ -13,6 +13,7 @@ guides.
 - [Cast-technique (6x47) register allocation](cast-technique-6x47-register-allocation.md)
 - [Actor position layout guards](chara-position-layout-evidence.md)
 - [Character movement vector](chara-velocity-evidence.md)
+- [Character-select slot clamp inlining](chr-select-slot-clamp-inline.md)
 - [Chunk model node callbacks](chunk-node-callback-evidence.md)
 - [CodeWarrior source order and emitted layout](compiler-emission-evidence.md)
 - [Conversion-pool constants](conversion-pool-constants.md)

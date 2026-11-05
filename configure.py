@@ -724,6 +724,12 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Same -inline noauto as text_801D40D4.cpp. destroy_subobjects_recursive's
     # child load stays lwz r31,20(r3) and the sibling step stays lwz r31,12(r31).
     "pso/player/TObjPlayer_801D4CB8.cpp": {"cflags": _switch(cflags_pso, "-inline noauto")},
+    # sub_802C5F1C clamps the player slot in a static inline helper. -inline auto
+    # also inlines other small functions and breaks seven exact ones; -inline
+    # deferred emits the unit in reverse order. -inline on inlines only that
+    # helper (same object as -inline noauto here). Evidence:
+    # docs/evidence/chr-select-slot-clamp-inline.md.
+    "pso/ui/TAdMultiPlyChrSelectGC_802C50EC.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
 }
 
 # MusyX (Factor 5). Its objects carry extab/extabindex for every non-leaf
