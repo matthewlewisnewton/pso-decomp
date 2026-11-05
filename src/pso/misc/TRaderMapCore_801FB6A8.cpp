@@ -97,7 +97,7 @@ void TRaderMapCore::load_map_resources() {
     TRaderMapCore__render_mode = 1;
 }
 
-s32 apply_compass_param__13TRaderMapCoreFv(const s32 *ignored) {
+s32 TRaderMapCore::apply_compass_param(const s32 *delay) {
     if (TRaderMapCore__data_805D5F4C != NULL) {
         set_current_texture_list(TRaderMapCore__data_805D5F4C);
         return 1;
