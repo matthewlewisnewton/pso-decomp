@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (regenerated on this branch after merging main `1db58393d`, 2026-11-04)
+## Summary (regenerated on this branch after merging main `7ba27eaf2`, 2026-11-04)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `1db58393d` (2026-11-04). Assembly is counted as functions;
+after merging main `7ba27eaf2` (2026-11-04). Assembly is counted as functions;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -26,7 +26,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 5 functions (9 source lines) | 3 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 71 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,860 | 886 |
+| CodeWarrior pragmas (excluding push/pop) | 5,861 | 886 |
 | Per-unit compiler overrides in `configure.py` | 147 | 147 |
 | Approved regressions | 0 | 0 |
 
@@ -69,9 +69,9 @@ etc. or their port equivalents) instead of the fixed address.
 
 ## 4. CodeWarrior pragmas
 
-5,860 pragmas in 886 files; per-file table in the generated file. Main kinds:
+5,861 pragmas in 886 files; per-file table in the generated file. Main kinds:
 `dont_inline` 1153, `inline_depth` 1045, `fp_contract` 926, `auto_inline` 844,
-`opt_common_subs` 624, `scheduling` 262, `opt_propagation` 240,
+`opt_common_subs` 625, `scheduling` 262, `opt_propagation` 240,
 `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56,
 `defer_codegen` 50, `pack` 46. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
@@ -99,6 +99,12 @@ small float differences without FMA).
 | File | Function | What | Why | Port should |
 |---|---|---|---|---|
 | `src/pso/misc/TWindowKeyBoardSoft_8024E68C.cpp` | `TWindowKeyBoardSoft::set_open_tick` @ `0x8024E7B8` (size `0x80`) | one `#pragma opt_common_subs off` | Approved by Matt on 2026-11-04 4:38 PM PT. Without it, common-subexpression elimination swaps the two SDA21 constant loads at `set_open_tick+0x3c` / `+0x44`: matched order is `lfs f2, lbl_805DCC88@sda21` then `lfs f3, lbl_805DCC84@sda21` (`0x8024E7F4` / `0x8024E7FC`); with CSE on those loads swap (`f2`/`f3` renumbered) so the function is the same length and not the same bytes. The float math (`(lbl_805DCC88 + (f32)tick) / lbl_805DCC88` then `* lbl_805DCC84`) is otherwise identical. Unit `-fp_contract on` is separate (section 5) and does not fix this load order. | Drop the pragma. A port does not need MWCC's CSE schedule for these two loads. |
+
+### Approved: `TLobby__sub_803FCF44` ([#298](https://github.com/matthewlewisnewton/pso-decomp/pull/298))
+
+| File | Function | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/misc/TLobby_803FC178.cpp` | `TLobby__sub_803FCF44` @ `0x803FCF44` (size `0x148`) | one scoped `#pragma opt_common_subs on` | Approved by Matt 2026-11-04 6:14 PM PT. This avetcp unit is compiled `-opt nocse`, so common-subexpression elimination is off for the file. The original reuses common subexpressions in this one function: two direct `lis`/`addi` of `lbl_805C02D0` (`0x803FD034` and `0x803FD058`) and a length clamp of `lhz` / `extsh` / `addi r0,r4,0` (`0x803FD03C`–`0x803FD04C`), frame 32. Without the pragma those reads become one hoisted `...bss.0` base (frame 32→40, saves r29) and the clamp folds to `lha`. The function is then 83.24% (objdiff instruction match 82.65%). `#pragma opt_propagation off` does not change that. `-inline` (`auto`, `deferred`, `auto,deferred`, `noauto`, `on`, `off`, `all`) and `-fp_contract on`/`off` leave the builder at 82.65%, and the auto modes regress other exact functions. Unit-wide `-opt commonsubs` drops other functions in the file. | Drop the pragma. The value is the clamped copy into the challenge buffer; a port does not need MWCC's addressing. |
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 

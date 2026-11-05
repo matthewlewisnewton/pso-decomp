@@ -674,6 +674,9 @@ struct Names_80403168 {
     PapOpts_80402CE0 opts;
     u8 a[0x80];
     u8 b[0x80];
+    // lbl_805C0620 is the next BSS symbol, at +0x148. PAP addresses its
+    // b9/bA/timeout as members of this object (lbz/lhz r12+0x15A).
+    RecoveredGlobal_80402B60_lbl_805C0620 tail[0];
 };
 typedef char Names_80403168_size[sizeof(Names_80403168) == 0x148 ? 1 : -1];
 struct Buf_803FC684 { char a[0x80]; char b[0x80]; u8 opts[0x14]; Proto_803FC318 proto; };
@@ -1023,6 +1026,8 @@ s16 TLobby__sub_803FC820(Conn_804004DC *c, Hdr_803FC4B4 *hdr, B_803FADA0 *src) {
 struct ChapName_803FCF44 { char data[7]; };
 const ChapName_803FCF44 lbl_805E1158 = { "avetcp" };
 
+#pragma push
+#pragma opt_common_subs on
 B_803FADA0 *TLobby__sub_803FCF44(Self_803FD74C *fsm) {
     Chap_803FC728 *chap = fsm->f30;
     s32 tick;
@@ -1056,6 +1061,7 @@ B_803FADA0 *TLobby__sub_803FCF44(Self_803FD74C *fsm) {
     NetMemcpy(lbl_805C02D0.p8, buf->buf, len);
     return buf;
 }
+#pragma pop
 
 s32 TLobby::set_flags_and_state() {
     u8 *arg0 = (u8 *)this;
@@ -3208,9 +3214,9 @@ extern "C" void TLobby__sub_80402CE0(Conn_80402CE0 *conn) {
         p->h6 = 0xE;
         p->b8 = 1;
         p->bB = 0;
-        p->b9 = lbl_805C0620.b9;
-        p->bA = lbl_805C0620.bA;
-        p->timeout = lbl_805C0620.timeout_sec * 1000;
+        p->b9 = g->tail[0].b9;
+        p->bA = g->tail[0].bA;
+        p->timeout = g->tail[0].timeout_sec * 1000;
         p->f10 = TLobby__sub_803FE84C;
         p->f14 = TLobby__sub_803FE84C;
         p->f18 = TLobby__sub_803FE84C;
