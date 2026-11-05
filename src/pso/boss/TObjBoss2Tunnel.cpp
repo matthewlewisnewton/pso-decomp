@@ -124,7 +124,6 @@ extern char lbl_804C8974[];
 s8 func_801A5E54__Fv(void);
 s32 TWindowShortListCtrl__check_controller_button(void *, s32);
 extern TCameraCtrl *camera_ctrl_instance;
-void set_depth_buffer_settings_1__Fv(void);
 void restore_saved_depth_alpha_state(void);
 extern s32 lbl_805D63F0;
 s32 TAdPlayerLoadGC__sub_801E0FA4(s32);
@@ -150,7 +149,7 @@ f32 normalize_vector(void *);
 
 
 u8 boss2_tunnel_state_flag;
-s16 TObjBoss2Tunnel__snapshot_state;
+u16 TObjBoss2Tunnel__snapshot_state;
 s32 *boss2_tunnel_snapshot_buffer;
 void *TObjBoss2Tunnel__snapshot_buffer;
 s32 TObjBoss2Tunnel__snapshot_saved_flag;
@@ -241,14 +240,14 @@ f32 normalize_vector_xz(Vec *vector) {
 }
 
 extern "C" {
-void TObjBoss2Tunnel::render(void* a1) { push_matrix(); TObjPlayer::invert_matrix_in_place((u32)((void*)0)); get_current_matrix(a1); pop_matrix(); }
+void TObjBoss2Tunnel::render(void* a1) { push_matrix(); TObjPlayer::invert_matrix_in_place(0); get_current_matrix(a1); pop_matrix(); }
 
 }
 extern "C" {
-void TObjBoss2Tunnel::transform_vec_by_camera(s32 arg0, s32 arg1, s32 arg2) {
+void TObjBoss2Tunnel::transform_vec_by_camera(void *unused, const Vec *src, Vec *dst) {
     push_matrix();
     TCameraCtrl::concat_matrix(0, (u32)TCameraCtrl::get_view_matrix());
-    matrix_mult_vec(NULL, (const Vec *)arg1, (Vec *)arg2);
+    matrix_mult_vec(NULL, src, dst);
     pop_matrix();
 }
 
@@ -400,11 +399,11 @@ AccelerationCurve *TObjBoss2Tunnel::reset_coords_pass(AccelerationCurve *c) {
     return c;
 }
 
-s32 TObjBoss2Tunnel::maybe_delete(s32 arg0, s16 arg1) {
-    if ((arg0 != 0) && (arg1 > 0)) {
-        ::operator delete((void *)arg0);
+AccelerationCurve *TObjBoss2Tunnel::maybe_delete(AccelerationCurve *c, s16 arg1) {
+    if ((c != NULL) && (arg1 > 0)) {
+        ::operator delete(c);
     }
-    return arg0;
+    return c;
 }
 
 }
@@ -480,16 +479,16 @@ f32 sample_acceleration_curve(AccelerationCurve *c, f32 t) {
 
 }
 extern "C" {
-s32 TObjBoss2Tunnel::reset_floats(s32 arg0) {
-    reset_floats((PiecewiseCurve *)arg0);
-    return arg0;
+PiecewiseCurve *TObjBoss2Tunnel::reset_floats_pass(PiecewiseCurve *c) {
+    reset_floats(c);
+    return c;
 }
 
-s32 TObjBoss2Tunnel::dt(s32 arg0, s16 arg1) {
-    if ((arg0 != 0) && (arg1 > 0)) {
-        ::operator delete((void *)arg0);
+PiecewiseCurve *TObjBoss2Tunnel::dt(PiecewiseCurve *c, s16 arg1) {
+    if ((c != NULL) && (arg1 > 0)) {
+        ::operator delete(c);
     }
-    return arg0;
+    return c;
 }
 
 }
@@ -556,8 +555,8 @@ extern "C" {
 f32 TObjBoss2Tunnel::eval_piecewise_curve(PiecewiseCurve *c, f32 farg0) {
     f32 t;
     f32 r = 0.0f;
-    if (farg0 < 0.0f) {
-        r = 0.0f;
+    if (farg0 < r) {
+        r = r;
     } else {
         if (farg0 < c->accelEnd) {
             r = c->accel * farg0 + c->v0;
@@ -659,7 +658,7 @@ void draw_snapshot_capture_overlay(void) {
         v[i].z = 0.25f;
         v[i].color = 0x8F000000;
     }
-    set_depth_buffer_settings_1__Fv();
+    set_depth_buffer_settings_1();
     v[0].x = 0.0f;
     v[0].y = 0.0f;
     v[1].x = 640.0f;
@@ -855,9 +854,9 @@ s32 TObjBoss2Tunnel__sub_8007D1D0(void) {
         *p++ = 2;
         countp = (u16 *)p;
         p += 2;
-        flags = ((SnapshotPlayerBlock *)p)->class_flags;
-        levels = ((SnapshotPlayerBlock *)p)->levels;
-        name = ((SnapshotPlayerBlock *)p)->names[0];
+        flags = (u32 *)p;
+        levels = (u32 *)(p + 0x30);
+        name = (char *)(p + 0x60);
         memset(name, 0, 0x120);
         count = TLobby::get_game_mode();
         me = (TObjPlayer *)find_entity_by_id(local_client_id);
@@ -916,7 +915,7 @@ s32 TObjBoss2Tunnel__sub_8007D1D0(void) {
                     if (t > limit) {
                         t = limit;
                     }
-                    func_803DCDFC__Fv();
+                    func_803DCDFC();
                     controller_stuff();
                     main_task.run_tl_camera_tasks();
                     pos[0] = 192.0f;
@@ -935,7 +934,7 @@ s32 TObjBoss2Tunnel__sub_8007D1D0(void) {
                     TParticleCtrl::end_effect_render();
                     render_tick();
                 } while (TAdPlayerLoadGC__sub_801E1B50(1) == 0xFFFFFFFF);
-                if (TAdPlayerLoadGC::get_load_result((void *)1) == 0xFFFFFF81) {
+                if (TAdPlayerLoadGC::get_load_result(1) == 0xFFFFFF81) {
                     TObjBoss2Tunnel::show_message_and_wait(-2);
                 }
                 if (graph != NULL) {
@@ -969,11 +968,11 @@ s32 memcard_check_snapshot(s32 arg0, s32 *arg1) {
     }
     if (TAdPlayerLoadGC::probe_and_check_card(1) == 0) {
         if (arg1 != NULL) {
-            if ((u32)(TAdPlayerLoadGC::get_load_result((void *)1) + 0x10000) == 0xff83U) {
+            if ((u32)(TAdPlayerLoadGC::get_load_result(1) + 0x10000) == 0xff83U) {
                 if (arg1 != NULL) {
                     *arg1 = -6;
                 }
-            } else if ((u32)(TAdPlayerLoadGC::get_load_result((void *)1) + 0x10000) == 0xff21U) {
+            } else if ((u32)(TAdPlayerLoadGC::get_load_result(1) + 0x10000) == 0xff21U) {
                 if (arg1 != NULL) {
                     *arg1 = -8;
                 }
@@ -1145,7 +1144,7 @@ s32 TObjBoss2Tunnel::load_snapshot() {
     Stack_8007CBC4 stack;
     s32 buf;
     if (TAdPlayerLoadGC__sub_801E1B50(1) == 0) {
-        if (((s32) (*(u16 *)&TObjBoss2Tunnel__snapshot_state) != 0) && ((s32) (*(u16 *)&TObjBoss2Tunnel__snapshot_state) >= 0) && ((s32) (*(u16 *)&TObjBoss2Tunnel__snapshot_state) < 3)) {
+        if (((s32) TObjBoss2Tunnel__snapshot_state != 0) && ((s32) TObjBoss2Tunnel__snapshot_state >= 0) && ((s32) TObjBoss2Tunnel__snapshot_state < 3)) {
             buf = TObjPlayer__sub_800845F8();
             if (TAdPlayerLoadGC__sub_801E1538(&stack.sp8, TObjBoss2Tunnel__snapshot_buffer) == 0) {
                 memcpy((void *)buf, (void *)(stack.sp60 + 8), 0x1818C);
@@ -1207,13 +1206,13 @@ void TObjBoss2Tunnel::show_message_and_wait(s32 arg0) {
         switch (arg0) {
         case -2:
         case -9:
-            ((TWindowMessage *)win)->append_line(get_localized_text_entry(0x24, 3), 3);
+            win->append_line(get_localized_text_entry(0x24, 3), 3);
             break;
         case -4:
-            ((TWindowMessage *)win)->append_line(get_localized_text_entry(0x24, 0xD), 3);
+            win->append_line(get_localized_text_entry(0x24, 0xD), 3);
             break;
         default:
-            ((TWindowMessage *)win)->append_line(get_localized_text_entry(0x24, 0xC), 3);
+            win->append_line(get_localized_text_entry(0x24, 0xC), 3);
             break;
         }
         win->set_depth(36900.0f);
@@ -1225,7 +1224,7 @@ void TObjBoss2Tunnel::show_message_and_wait(s32 arg0) {
     frames = 0;
     for (;;) {
         frames++;
-        func_803DCDFC__Fv();
+        func_803DCDFC();
         controller_stuff();
         if (camera_ctrl_instance != NULL) {
             camera_ctrl_instance->setup_default_view(0);
@@ -1271,8 +1270,8 @@ s32 TObjBoss2Tunnel::run_confirm_message_loop() {
     }
     win = (TWindowMessage *)TWindowMessage::create((s32)window_pos, (s32)window_size, (u32)1, 4);
     if (win != NULL) {
-        ((TWindowMessage *)win)->append_line(get_localized_text_entry(0x24, 0xB), 3);
-        ((TWindowBase *)win)->set_depth(36900.0f);
+        win->append_line(get_localized_text_entry(0x24, 0xB), 3);
+        win->set_depth(36900.0f);
     }
     win->complete_reveal();
     graph = (TDLGraph *)TDLGraph::create();
@@ -1286,7 +1285,7 @@ s32 TObjBoss2Tunnel::run_confirm_message_loop() {
     pad = &controller_physical_port_bank.controllers[3];
     for (;;) {
         frames++;
-        func_803DCDFC__Fv();
+        func_803DCDFC();
         controller_stuff();
         if (camera_ctrl_instance != NULL) {
             camera_ctrl_instance->setup_default_view(0);
