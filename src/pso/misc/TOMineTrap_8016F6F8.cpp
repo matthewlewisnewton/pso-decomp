@@ -201,15 +201,85 @@ void TOMineTrap::vfunc_86() {
     this->actorFlags = (s32) (this->actorFlags & 0xFFFBFFFF);
 }
 
+/* Mode 4's strike against one actor. The unit is built with -inline on, so
+ * these expand into run_task. The actor has to arrive as the inline argument,
+ * and the player and enemy branches have to stay separate inlines, to keep the
+ * original register and stack layout (docs/porting-exceptions.md). */
+inline void TOMineTrap::strike_player(TObjChara *actor) {
+    if (TObjPlayer::get_player_count() != 1) {
+        return;
+    }
+    if (((TObjPlayer *)actor)->get_floor() != get_current_floor()) {
+        return;
+    }
+    if (horizontal_distance_squared(&this->position, &actor->position) < this->m_350 * this->m_350) {
+        if (actor->obj_isState2_324() == 0) {
+            this->target = (u8 *)actor;
+            switch (this->attack.kind) {
+            case 2:
+                ((TObjChara *)this->target)->apply_movement_ailment(0);
+                break;
+            default:
+                ((TObjChara *)this->target)->receive_direct_attack(this, this->attack, 0, -1, -1);
+                break;
+            }
+            record_attack_source(this->target, this->get_trap_type());
+        }
+        if (this->m_380 != 1) {
+            this->m_380 = TOMineTrap::show_owner_message(this, actor);
+        }
+    }
+}
+
+inline void TOMineTrap::strike_enemy(TObjChara *actor, TObjPlayer *owner) {
+    if (horizontal_distance_squared(&this->position, &actor->position) < this->m_350 * this->m_350) {
+        this->target = (u8 *)actor;
+        switch (this->attack.kind) {
+        case 2:
+            ((TObjChara *)this->target)->apply_movement_ailment(0);
+            ((TObjChara *)this->target)->vfunc_74(0);
+            break;
+        default:
+            ((TObjChara *)this->target)->receive_direct_attack(owner, this->attack, 0, -1, -1);
+            break;
+        }
+        record_attack_source(this->target, this->get_trap_type());
+    }
+}
+
+inline void TOMineTrap::strike_actor(TObjChara *actor, TObjPlayer *owner) {
+    if (actor == 0 || actor == (TObjChara *)this) {
+        return;
+    }
+    if (actor->obj_testFlags30(0x4000800) != 0) {
+        return;
+    }
+    if (actor->alt_room != this->alt_room && actor->room != this->room &&
+        actor->room != this->alt_room) {
+        return;
+    }
+    u16 id = get_entity_id(actor);
+    if (id == 0xFFFF) {
+        return;
+    }
+    if (id == this->get_trap_type() && TOMineTrap::get_trap_count() != 1) {
+        return;
+    }
+    if (id < 0x1000) {
+        this->strike_player(actor);
+    } else if (id < 0x4000) {
+        this->strike_enemy(actor, owner);
+    } else if (check_value_equals__13TUnk_804B6C24Fl(actor, TOMineTrap__data_805D3080) != 0 &&
+               horizontal_distance_squared(&this->position, &actor->position) < this->m_350 * this->m_350) {
+        this->target = (u8 *)actor;
+        ((TObjChara *)this->target)->receive_physical_attack(this, TOMineTrap__data_805DB868);
+    }
+}
+
 /* Mode 0/2 watch for a victim, mode 3 counts down to the armed state and
  * mode 4 detonates against every actor in range once, then queues its own
  * destruction. */
 void TOMineTrap::run_task() {
-    TObjPlayer *owner;
-    TObjChara *actor;
-    s32 i;
-    u16 id;
-
     this->update_float_height();
     switch (this->mode) {
     case 0:
@@ -231,79 +301,20 @@ void TOMineTrap::run_task() {
         submit_cursor_candidate(this, -1);
         return;
     }
-    case 4:
-        owner = (TObjPlayer *)get_player_by_client_id(this->get_trap_type());
+    case 4: {
+        TObjPlayer *owner = (TObjPlayer *)get_player_by_client_id(this->get_trap_type());
         if (owner == 0) {
             owner = (TObjPlayer *)this;
         }
-        for (i = 0; i < lbl_805D5868; i++) {
-            actor = (TObjChara *)TObjPlayer::get_player_data(i);
-            if (actor == 0 || actor == (TObjChara *)this) {
-                continue;
-            }
-            if (actor->obj_testFlags30(0x4000800) != 0) {
-                continue;
-            }
-            if (actor->alt_room != this->alt_room && actor->room != this->room &&
-                actor->room != this->alt_room) {
-                continue;
-            }
-            id = get_entity_id(actor);
-            if (id == 0xFFFF) {
-                continue;
-            }
-            if (id == this->get_trap_type() && TOMineTrap::get_trap_count() != 1) {
-                continue;
-            }
-            if (id < 0x1000) {
-                if (TObjPlayer::get_player_count() != 1) {
-                    continue;
-                }
-                if (((TObjPlayer *)actor)->get_floor() != get_current_floor()) {
-                    continue;
-                }
-                if (horizontal_distance_squared(&this->position, &actor->position) < this->m_350 * this->m_350) {
-                    if (actor->obj_isState2_324() == 0) {
-                        this->target = (u8 *)actor;
-                        switch (this->attack.kind) {
-                        case 2:
-                            ((TObjChara *)this->target)->apply_movement_ailment(0);
-                            break;
-                        default:
-                            ((TObjChara *)this->target)->receive_direct_attack(this, this->attack, 0, -1, -1);
-                            break;
-                        }
-                        record_attack_source(this->target, this->get_trap_type());
-                    }
-                    if (this->m_380 != 1) {
-                        this->m_380 = TOMineTrap::show_owner_message((s32)this, (u32)actor);
-                    }
-                }
-            } else if (id < 0x4000) {
-                if (horizontal_distance_squared(&this->position, &actor->position) < this->m_350 * this->m_350) {
-                    this->target = (u8 *)actor;
-                    switch (this->attack.kind) {
-                    case 2:
-                        ((TObjChara *)this->target)->apply_movement_ailment(0);
-                        ((TObjChara *)this->target)->vfunc_74(0);
-                        break;
-                    default:
-                        ((TObjChara *)this->target)->receive_direct_attack(owner, this->attack, 0, -1, -1);
-                        break;
-                    }
-                    record_attack_source(this->target, this->get_trap_type());
-                }
-            } else if (check_value_equals__13TUnk_804B6C24Fl(actor, TOMineTrap__data_805D3080) != 0 &&
-                       horizontal_distance_squared(&this->position, &actor->position) < this->m_350 * this->m_350) {
-                this->target = (u8 *)actor;
-                ((TObjChara *)this->target)->receive_physical_attack(this, TOMineTrap__data_805DB868);
-            }
+        for (s32 i = 0; i < lbl_805D5868; i++) {
+            this->strike_actor((TObjChara *)TObjPlayer::get_player_data(i), owner);
         }
         this->mode = 5;
         this->clear_player_status_flag(0, 1);
         this->sub_8017070C();
         this->queue_destruction();
         return;
+    }
     default:
         return;
     }
@@ -365,8 +376,6 @@ s32 get_bml_model(void *, s32);
 s32 TObjFish__sub_8001EDB0(void *, s32);
 void init_collision_body_parts(void *, void *, s32);
 
-#pragma push
-#pragma fp_contract on
 TOMineTrap::TOMineTrap(TObjPlayer *owner, s16 trap_index, s16 trap_id) : TOMine((TObject *)tl_05) {
     TObjPlayer *owner_player;
     s32 floor;
@@ -399,8 +408,12 @@ TOMineTrap::TOMineTrap(TObjPlayer *owner, s16 trap_index, s16 trap_id) : TOMine(
                 attack.power = lbl_805DB86C * area_scale *
                                (lbl_805DB870 * (lbl_805DB878 * owner_player->get_actor_level_index() + lbl_805DB874));
             }
-            if (attack.power < lbl_805DB85C) {
-                attack.power = lbl_805DB85C;
+            /* lbl_805DB85C is 0.0f. Naming it makes MWCC share the load in a
+             * temp created before the reload of attack.power, so the compare
+             * swaps f0 and f1. The literal is not shared, and the unit's
+             * .sdata2 is that one constant (0x805DB85C). */
+            if (attack.power < 0.0f) {
+                attack.power = 0.0f;
             }
             break;
         case 1:
@@ -472,7 +485,6 @@ TOMineTrap::TOMineTrap(TObjPlayer *owner, s16 trap_index, s16 trap_id) : TOMine(
         queue_destruction();
     }
 }
-#pragma pop
 
 s32 TOMine::is_target_in_list(void *obj) {
     TOMine *self = this;
@@ -712,7 +724,6 @@ void TOMine::vfunc_86() {
 }
 
 typedef struct Stack_80170AC8 Stack_80170AC8;
-#pragma fp_contract on
 void TOMine::follow_target() {
     u8 *arg0 = (u8 *)this;
   unsigned short new_var;
@@ -767,8 +778,6 @@ void TOMine::sub_80170BEC() {
 
 void TOMineTrap__sub_80170CD4(void* p) { ((TOMineTrap *)p)->sync_position(); }
 
-#pragma push
-#pragma fp_contract on
 void TOMine::update_float_height() {
     u8 *arg0 = (u8 *)this;
     f32 temp_f1;
@@ -786,7 +795,6 @@ void TOMine::update_float_height() {
         *(f32 *)((s8 *)arg0 + 0x338) = (f32) (*(f32 *)((s8 *)arg0 + 0x338) + sin_table_lookup(*(s32 *)&this->rotation.pitch));
     }
 }
-#pragma pop
 
 void TOMineTrap::sync_position() { VecCopy((Vec *)((char*)this + 0x38), (const Vec *)((char*)this + 0x334)); refresh_collision_body_centers(); }
 void TOMine::detonate() {
