@@ -26,12 +26,13 @@ extern "C" {
 u32 __nw__7TObjectFUl(s32);
 s32 fn_802F1FB0(void *, s32, s32, f32, s32);
 void spawn__13TUnk_804E4B3CFll(void *arg0, s32 arg1, s32 arg2);
-extern u32 boss2_tunnel_state_flags;
+u32 boss2_tunnel_state_flags;
+s32 lbl_805D696C;
+s8 lbl_805D6970;
 void TObjBoss2Tunnel__sub_802F2278(void);
 s32 TObjBoss2Tunnel__sub_802F22F4(void);
-void TObjBoss2Tunnel__sub_802F23FC(void);
 void queue_destruction__7TObjectFv(void *arg0);
-extern RecoveredGlobal_802F2400_lbl_804E4A1C boss2_tunnel_spawn_timer_table_b;
+extern s32 boss2_tunnel_spawn_timer_table_b[10];
 extern const f32 lbl_805DEC68;
 extern const f32 lbl_805DEC98;
 extern const f32 lbl_805DEC9C;
@@ -48,11 +49,14 @@ extern const f32 lbl_805DECD8;
 extern const f32 lbl_805DECDC;
 extern const f32 lbl_805DECE0;
 extern const f32 lbl_805DECE4;
-void TObjBoss2Tunnel__sub_802F2400(u8 *arg0);
-extern s32 boss2_tunnel_spawn_timer_table[];
+extern const f32 lbl_805DECE8;
+extern const f32 lbl_805DECEC;
+extern const f32 lbl_805DECF0;
+extern const f32 lbl_805DECF4;
+extern s32 boss2_tunnel_spawn_timer_table[0x1F];
 extern const f32 lbl_805DECB4;
 extern const f32 lbl_805DECFC;
-void TObjBoss2Tunnel__sub_802F273C(void);
+void TObjBoss2Tunnel__sub_802F273C(void *);
 s32 TObjBoss2Tunnel__sub_8007DEE4(void *, f32, f32, f32, f32, f32);
 s32 advance_phase__15TObjBoss2TunnelFv(void *, void *);
 f32 fabs_float(f32);
@@ -86,9 +90,7 @@ s32 TObjBoss2Tunnel__sub_802F1AE0(void *, u32, int);
 u32 TObjBoss7TunnelCol__ct(void *, void *);
 
 extern u8 TObjBoss2Tunnel__raft_splash_offset_table[];
-extern u8 lbl_804E4A44[];
-extern s32 lbl_805D696C;
-extern s8 lbl_805D6970;
+extern Vec_802F25AC lbl_804E4A44[2];
 extern const f32 lbl_805DED0C;
 extern const f32 lbl_805DED10;
 void *TObjBoss2Tunnel__sub_802F2A2C(void *arg0p, s32 parent);
@@ -182,11 +184,12 @@ void TUnk_804E4B3C::render() {
     }
 }
 
-void TObjBoss2Tunnel__sub_802F23FC(void) {  }
-void TObjBoss2Tunnel__sub_802F2400(u8 *boss2_tunnel) {
+void TUnk_804E4B3C::sub_802F23FC() {}
+void TUnk_804E4B3C::sub_802F2400() {
+#define boss2_tunnel ((u8 *)this)
     f32 temp_f1;
     u32 temp_r3;
-    ((TObjBoss2Tunnel *)boss2_tunnel)->update_spawn_timer((s32)&boss2_tunnel_spawn_timer_table_b.value, 0xA, 1);
+    ((TObjBoss2Tunnel *)boss2_tunnel)->update_spawn_timer((s32)boss2_tunnel_spawn_timer_table_b, 0xA, 1);
     if ((*(s32 *)&boss2_tunnel_state_flags) & 8) {
         temp_f1 = ((TObjBoss2Tunnel *)boss2_tunnel)->m_80;
         if (temp_f1 < lbl_805DEC98) {
@@ -216,6 +219,7 @@ void TObjBoss2Tunnel__sub_802F2400(u8 *boss2_tunnel) {
             TItemEffOrgaFlowShot::approach_value((f32 *)(boss2_tunnel + 0x54), (f32)lbl_805DECC8, (f32)lbl_805DECE4);
         }
     }
+#undef boss2_tunnel
 }
 void TObjBoss2Tunnel::init_effect() {
     advance_effect_timer();
@@ -236,9 +240,9 @@ void TObjBoss2Tunnel::update_dust_spawn() {
     u32 p;
     *(s32 *)((s8 *)arg0 + 0x74) = *(s32 *)((s8 *)arg0 + 0x74) - 1;
     if (*(s32 *)((s8 *)arg0 + 0x74) <= 0) {
-        v.x = 200.0f * rand_signed_unit();
-        v.y = 90.0f * (3.0517578125e-05f * (f32)rand()) + 10.0f;
-        v.z = 600.0f;
+        v.x = lbl_805DECCC * rand_signed_unit();
+        v.y = lbl_805DECEC * (lbl_805DECF0 * (f32)rand()) + lbl_805DECE8;
+        v.z = lbl_805DECF4;
         p = __nw__7TObjectFUl(0x30);
         if (p != 0U) {
             __ct__13TObjBoss7DustFv((u8 *)p, (s32)tl_05, (s32)&v);
@@ -283,7 +287,7 @@ void TObjBoss2Tunnel::advance_effect_timer() {
         *(f32 *)((s8 *)this + 0x5C) = (f32) lbl_805DEC68;
     }
 }
-void TObjBoss2Tunnel__sub_802F273C(void) {  }
+void TObjBoss2Tunnel__sub_802F273C(void *) {  }
 void TUnk_804E4B3C::update_phase_motion() {
     u8 *arg0 = (u8 *)this;
     f32 sp8;
@@ -329,6 +333,59 @@ void TUnk_804E4B3C::update_phase_motion() {
         break;
     }
 }
+
+// One .data block, in address order: the effect table is the base
+// run_task uses for the pointer-to-member template at +0xe4 and the
+// live copy at +0x108. The float table follows that copy.
+struct Boss2TunnelEffectEntry {
+    s32 count;
+    const s32 *indices;
+};
+
+extern "C" {
+extern const s32 lbl_804743B0[];
+extern const s32 lbl_804743BC[];
+extern const s32 lbl_804743CC[];
+extern const s32 lbl_804743D8[];
+extern const s32 lbl_804743E4[];
+
+Boss2TunnelEffectEntry boss2_tunnel_effect_name_table[5] = {
+    {3, lbl_804743B0},
+    {4, lbl_804743BC},
+    {3, lbl_804743CC},
+    {3, lbl_804743D8},
+    {4, lbl_804743E4},
+};
+s32 boss2_tunnel_spawn_timer_table[0x1F] = {
+    2, 1, 2, 1, 1, 2, 2, 1, 2, 1, 2, 2, 1, 1, 1, 2,
+    1, 2, 1, 2, 1, 2, 2, 1, 1, 2, 1, 2, 1, 2, 1,
+};
+s32 boss2_tunnel_spawn_timer_table_b[10] = {1, 1, 3, 4, 3, 3, 3, 3, 3, 3};
+Vec_802F25AC lbl_804E4A44[2] = {
+    {78.0f, 0.0f, 83.0f},
+    {-78.0f, 0.0f, 83.0f},
+};
+}
+
+void TUnk_804E4B3C::run_task() {
+    update_phase_motion();
+    static void (TUnk_804E4B3C::*phase_handlers[])() = {
+        reinterpret_cast<void (TUnk_804E4B3C::*)()>(&TObjBoss2Tunnel::init_effect),
+        &TUnk_804E4B3C::sub_802F2400,
+        &TUnk_804E4B3C::sub_802F23FC,
+    };
+    void (TUnk_804E4B3C::*handler)() = phase_handlers[*(s32 *)((s8 *)this + 0x1C)];
+    (this->*handler)();
+    TObjBoss2Tunnel__sub_802F273C(this);
+}
+
+extern "C" f32 lbl_804E4AA4[12] = {
+    26.0f, -19.0f, 62.0f,
+    -26.0f, -19.0f, 62.0f,
+    26.0f, -19.0f, 0.0f,
+    -26.0f, -19.0f, 0.0f,
+};
+
 void *TUnk_804E4B3C::destroy(s16 arg1) {
     if (this != NULL) {
         *(s32 **)((s8 *)this + 0x18) = lbl_804E4B3C;
@@ -383,7 +440,7 @@ void *TObjBoss2Tunnel__sub_802F2A2C(void *arg0p, s32 parent) {
     for (i = 0; i < 2; i++) {
         p = __nw__7TObjectFUl(0x40);
         if (p != 0) {
-            TObjBoss7RaftSplash__ct((void *) p, arg0, lbl_804E4A44 + i * 0xC, TObjBoss2Tunnel__raft_splash_offset_table + i * 0xC, arg0 + 0x5C);
+            TObjBoss7RaftSplash__ct((void *) p, arg0, &lbl_804E4A44[i], TObjBoss2Tunnel__raft_splash_offset_table + i * 0xC, arg0 + 0x5C);
         }
     }
     p = __nw__7TObjectFUl(0x2C);
@@ -448,3 +505,27 @@ typedef char RecoveredGlobal_802F2400_lbl_804E4A1C_size[sizeof(RecoveredGlobal_8
 #pragma push
 #pragma opt_common_subs off
 #pragma pop
+
+// Initializers stay after the functions so MWCC loads these symbols instead
+// of copying their values into a second pool.
+extern "C" {
+__declspec(section ".sdata2") extern const f32 lbl_805DECC8 = -1.0f;
+__declspec(section ".sdata2") extern const f32 lbl_805DECCC = 200.0f;
+__declspec(section ".sdata2") extern const f32 lbl_805DECD0 = 0.04f;
+__declspec(section ".sdata2") extern const f32 lbl_805DECD4 = 0.2f;
+__declspec(section ".sdata2") extern const f32 lbl_805DECD8 = -30.000001907348633f;
+__declspec(section ".sdata2") extern const f32 lbl_805DECDC = 0.06f;
+__declspec(section ".sdata2") extern const f32 lbl_805DECE0 = 0.3f;
+__declspec(section ".sdata2") extern const f32 lbl_805DECE4 = -15.000000953674316f;
+__declspec(section ".sdata2") extern const f32 lbl_805DECE8 = 10.0f;
+__declspec(section ".sdata2") extern const f32 lbl_805DECEC = 90.0f;
+__declspec(section ".sdata2") extern const f32 lbl_805DECF0 = 3.0517578125e-05f;
+__declspec(section ".sdata2") extern const f32 lbl_805DECF4 = 600.0f;
+// The static-local guard occupies 0x805D6971. These zeros are the pad
+// through 0x805D6978; two bytes then a 4-aligned array so nothing lands
+// on the guard or opens a hole. File-scope static keeps them local, matching
+// the split.
+static u8 lbl_805D6972;
+static u8 lbl_805D6973;
+static u8 tunnel_sbss_tail[4];
+}

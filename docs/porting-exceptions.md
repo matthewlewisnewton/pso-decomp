@@ -102,7 +102,7 @@ small float differences without FMA).
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-147 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+148 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
@@ -138,6 +138,12 @@ in `.rodata`. Port: keep FMA or accept small float differences; a normal
 |---|---|---|---|---|
 | `pso/effect/TEffIndirectCtrl_802A88AC.cpp` | `deform_indirect_texture_scroll` (`0x802A8FD8`) | unit switch `-opt noprop`, the unit-wide form of `opt_propagation off` (approved for `TEF_LensFlare::render`, #272) | The original keeps the scroll offset as a named `s16` local: `clrlwi r30,r21,26; clrlwi r29,r20,26; extsh r28,r4` at `0x802A90E4`, then `add r5,r5,r28` at `0x802A9158`. With propagation, the frontend replaces the single `off16 = offset` with a hoisted temp, which is coloured before the masks: `clrlwi r29; clrlwi r28; extsh r30`, six operands, 99.79%. Main matched only with a cancelling `off16++; off16--;`, removed here. No `-inline` or `-fp_contract` setting moves it. With the switch, the object is identical to main's in every section, relocation, and symbol. Every other function in the unit is unchanged. Precedent: per-object switches in [brawl](https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264) (`-opt peephole -opt schedule` on `nt_etc_so.cpp`, L723), and this repo's `-opt nocse` / `-opt nopeephole` units. The precedent is weak: brawl uses `-opt peephole/schedule`, not `noprop`; no other decomp found using `-opt noprop`. Accepted by Matt 2026-11-04 4:34 PM PT. Evidence: [indirect-scroll-offset-propagation.md](evidence/indirect-scroll-offset-propagation.md). | Drop the switch. The source is plain C++. |
 
+### `TObjCityMainWarpChallenge.cpp`: `-inline off,deferred`
+
+| Unit | What | Why | Port should |
+|---|---|---|---|
+| `pso/object/TObjCityMainWarpChallenge.cpp` | unit switch `-inline off,deferred` | The file is written last function first. Deferred emission puts that last definition first, so `.text` stays in address order (`0x801871D0`–`0x80187C98`) and the hand-written vtable at `0x804B6188` precedes `jumptable_804B61DC`. Nothing is inlined. Evidence: [city-main-warp-challenge-vtable.md](evidence/city-main-warp-challenge-vtable.md). | One translation unit in address order. A compiler that emits data with the function that uses it does not need the reversed source. |
+
 ## 6. Approved regressions
 
 None on main.
@@ -160,6 +166,9 @@ or `other: <what>`); the fork PR that brought it in; and the tag
 
 | Function/symbol | Unit | File | Upstream PR | Cheat type | Fork PR | Tag |
 |---|---|---|---|---|---|---|
+| `clear_sound_listener_position` | `pso/misc/TLobby_802268F4.cpp` | `src/pso/misc/TLobby_802268F4.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | other: dead-stripped function | #0 | upstream catch-up, rewrite later |
+| `run_task__13TUnk_804E4B3CFv` | `pso/boss/TObjBoss2Tunnel_802F2070.cpp` | `src/pso/boss/TObjBoss2Tunnel_802F2070.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | other: member-pointer cast | #0 | upstream catch-up, rewrite later |
+| `__vt__25TObjCityMainWarpChallenge` | `pso/object/TObjCityMainWarpChallenge.cpp` | `src/pso/object/TObjCityMainWarpChallenge.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | other: hand-written vtable | #0 | upstream catch-up, rewrite later |
 
 ## Pending in open PRs
 

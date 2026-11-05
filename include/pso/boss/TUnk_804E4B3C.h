@@ -9,6 +9,8 @@ public:
     virtual void run_task();
     void *destroy(s16);
     void update_phase_motion();
+    void sub_802F23FC();
+    void sub_802F2400();
     void spawn(s32, s32);
     virtual void render();
     u8 unk_1C[0x68];

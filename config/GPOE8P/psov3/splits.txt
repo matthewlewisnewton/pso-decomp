@@ -5738,12 +5738,12 @@ pso/object/TObjCityMainWarp_80186E24.cpp:
 	.text       start:0x80186E24 end:0x80186F84
 
 pso/object/TObjCityMainWarp_80186F84.cpp:
-	.text       start:0x80186F84 end:0x80187824
-	.data       start:0x804B61DC end:0x804B61F8
+	.text       start:0x80186F84 end:0x801871D0
 
 pso/object/TObjCityMainWarpChallenge.cpp:
-	.text       start:0x80187824 end:0x80187C98
+	.text       start:0x801871D0 end:0x80187C98
 	.rodata     start:0x80444A68 end:0x80444A70
+	.data       start:0x804B6188 end:0x804B61F8
 
 pso/misc/TWindowSubTradeMain_80187C98.cpp:
 	.text       start:0x80187C98 end:0x80187D90
@@ -7785,7 +7785,7 @@ pso/misc/TOTrapAncient01_80226534.cpp:
 pso/misc/TLobby_802268F4.cpp:
 	.text       start:0x802268F4 end:0x80227390
 	.bss        start:0x80514C60 end:0x80514F58
-	.sdata2     start:0x805DC74C end:0x805DC760
+	.sdata2     start:0x805DC748 end:0x805DC760
 
 pso/misc/TLoadCtrl_80227390.cpp:
 	.text       start:0x80227390 end:0x80227A2C
@@ -10646,7 +10646,9 @@ pso/unk/text_802F1FB0.cpp:
 pso/boss/TObjBoss2Tunnel_802F2070.cpp:
 	.text       start:0x802F2070 end:0x802F2C90
 	.rodata     start:0x80474458 end:0x80474460
-	.sdata2     start:0x805DECCC end:0x805DECF8
+	.data       start:0x804E4978 end:0x804E4AD4
+	.sbss       start:0x805D6968 end:0x805D6978
+	.sdata2     start:0x805DECC8 end:0x805DECF8
 
 pso/boss/TBoss8DragonDemo.cpp:
 	.text       start:0x802F2C90 end:0x802F2E7C
