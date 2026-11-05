@@ -20,9 +20,9 @@ extern s8 controller_physical_port_bank[];
 s32 clear_entries__18TAdChrMoveEffectGCFv();
 
 void TAdMultiPlyChrSelectGC::check_cancel_input() {
-    if ((((TAdMultiPlyChrSelectGC *)(this->m_6c))->get_mode() < 0x14) || (TWindowShortListCtrl__check_controller_button(controller_physical_port_bank + 0x20, 2) != 0)) {
+    if ((((TAdMultiPlyChrSelectGC *)(this->grid.m_6c))->get_mode() < 0x14) || (TWindowShortListCtrl__check_controller_button(controller_physical_port_bank + 0x20, 2) != 0)) {
         TAdPlayerLoadGC::set_state(1);
-        *(s32 *)&this->unk_58 = 0;
+        *(s32 *)&this->grid.unk_58 = 0;
         this->m_20 = 0x1D;
     }
 }
@@ -59,13 +59,13 @@ void TAdMultiPlyChrSelectGC__sub_802DC440(void *arg0) {
 void TAdMultiPlyChrSelectGC::handle_input() {
     void *temp_r31;
 
-    if ((u32) this->m_94 != 0U) {
-        ((TWindowSubComCard *)(*(void * *)&this->m_94))->close();
-        this->m_94 = 0U;
+    if ((u32) this->grid.m_94 != 0U) {
+        ((TWindowSubComCard *)(*(void * *)&this->grid.m_94))->close();
+        this->grid.m_94 = 0U;
     }
-    if (((TAdMultiPlyChrSelectGC *)(this->m_6c))->get_mode() < 0x14) {
-        if (((TAdMultiPlyChrSelectGC *)(*(s32 *)&this->unk_68))->get_player_index() < 0xE) {
-            *(s32 *)&this->unk_58 = 0;
+    if (((TAdMultiPlyChrSelectGC *)(this->grid.m_6c))->get_mode() < 0x14) {
+        if (((TAdMultiPlyChrSelectGC *)(*(s32 *)&this->grid.unk_68))->get_player_index() < 0xE) {
+            *(s32 *)&this->grid.unk_58 = 0;
         }
         *(s32 *)&this->m_20 = 0x1D;
         return;

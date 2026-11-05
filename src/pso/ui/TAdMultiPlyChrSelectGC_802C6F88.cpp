@@ -37,7 +37,7 @@ void TAdMultiPlyChrSelectGC::update_transition_anim() {
     s32 temp_r3;
     s32 temp_r3_2;
 
-    temp_r3 = *(s32 *)&this->m_40;
+    temp_r3 = *(s32 *)&this->grid.m_40;
     if (temp_r3 <= 0x96) {
         var_f4 = lbl_805DE5A8;
         var_f31 = (lbl_805DE5AC - (f32) temp_r3) / lbl_805DE5AC;
@@ -47,7 +47,7 @@ void TAdMultiPlyChrSelectGC::update_transition_anim() {
         var_f4 = (lbl_805DE5AC - (f32) temp_r3_2) / lbl_805DE5AC;
     }
     TLobby__sub_8001EA5C(*(f32 *)&this->m_1c, *(f32 *)&this->m_20, lbl_805DE5B0, var_f4);
-    TLobby__sub_8001E998(this->m_2c, *(f32 *)&this->unk_30, lbl_805DE5B0, var_f31);
+    TLobby__sub_8001E998(this->grid.m_2c, *(f32 *)&this->grid.unk_30, lbl_805DE5B0, var_f31);
 }
 
 }

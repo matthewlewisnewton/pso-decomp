@@ -22,29 +22,29 @@ extern char controller_physical_port_bank[];
 extern s32 TAdMultiPlyChrSelectGC__data_805DE898;
 
 void TAdMultiPlyChrSelectGC::close_and_reset() {
-    if ((u32) *(u32 *)&this->unk_80 != 0U) {
-        TWindow__close((u8 *)(*(void * *)&this->unk_80));
-        *(u32 *)&this->unk_80 = 0U;
+    if ((u32) *(u32 *)&this->grid.unk_80 != 0U) {
+        TWindow__close((u8 *)(*(void * *)&this->grid.unk_80));
+        *(u32 *)&this->grid.unk_80 = 0U;
     }
-    if ((u32) this->m_94 != 0U) {
-        ((TWindowSubComCard *)(*(void * *)&this->m_94))->close();
-        this->m_94 = 0U;
+    if ((u32) this->grid.m_94 != 0U) {
+        ((TWindowSubComCard *)(*(void * *)&this->grid.m_94))->close();
+        this->grid.m_94 = 0U;
     }
-    ((TAdMultiPlyChrSelectGC *)(this->m_5c))->reset_cursor_state();
-    if ((u32) *(u32 *)&this->unk_70 != 0U) {
-        disallow_rendering__7TObjectFv((TObject *)(*(void * *)&this->unk_70));
+    ((TAdMultiPlyChrSelectGC *)(this->grid.m_5c))->reset_cursor_state();
+    if ((u32) *(u32 *)&this->grid.unk_70 != 0U) {
+        disallow_rendering__7TObjectFv((TObject *)(*(void * *)&this->grid.unk_70));
     }
-    ((TAdMultiPlyChrSelectGC *)(*(s32 *)&this->unk_60))->set_field_100(1);
-    set_entry_value__22TAdMultiPlyChrSelectGCFlUl(*(s32 *)&this->m_64, 0, &TAdMultiPlyChrSelectGC__data_805DE898);
-    set_entry_value__22TAdMultiPlyChrSelectGCFlUl(*(s32 *)&this->m_64, 1, &TAdMultiPlyChrSelectGC__data_805DE898);
-    *(s32 *)&this->unk_30 = -1;
-    if ((((TAdMultiPlyChrSelectGC *)(this->m_6c))->is_state_closing() == 0) && (TWindowShortListCtrl__check_controller_button(controller_physical_port_bank + 0x20, 2) != 0)) {
+    ((TAdMultiPlyChrSelectGC *)(*(s32 *)&this->grid.unk_60))->set_field_100(1);
+    set_entry_value__22TAdMultiPlyChrSelectGCFlUl(*(s32 *)&this->grid.m_64, 0, &TAdMultiPlyChrSelectGC__data_805DE898);
+    set_entry_value__22TAdMultiPlyChrSelectGCFlUl(*(s32 *)&this->grid.m_64, 1, &TAdMultiPlyChrSelectGC__data_805DE898);
+    *(s32 *)&this->grid.unk_30 = -1;
+    if ((((TAdMultiPlyChrSelectGC *)(this->grid.m_6c))->is_state_closing() == 0) && (TWindowShortListCtrl__check_controller_button(controller_physical_port_bank + 0x20, 2) != 0)) {
         play_sound_effect(0x52F16, 0, 0, 0);
-        *(s32 *)&this->unk_28 = 0x1B;
+        *(s32 *)&this->grid.unk_28 = 0x1B;
         *(s32 *)&this->m_20 = 0x1A;
         return;
     }
-    if ((((TAdMultiPlyChrSelectGC *)(*(s32 *)&this->unk_68))->get_player_index() == 0xE) && (((TAdMultiPlyChrSelectGC *)(this->m_6c))->get_mode() == 0x14)) {
+    if ((((TAdMultiPlyChrSelectGC *)(*(s32 *)&this->grid.unk_68))->get_player_index() == 0xE) && (((TAdMultiPlyChrSelectGC *)(this->grid.m_6c))->get_mode() == 0x14)) {
         *(s32 *)&this->m_20 = 0x1E;
     }
 }

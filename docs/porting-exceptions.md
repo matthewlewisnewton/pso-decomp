@@ -27,7 +27,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 71 | 13 |
 | CodeWarrior pragmas (excluding push/pop) | 5,865 | 886 |
-| Per-unit compiler overrides in `configure.py` | 146 | 146 |
+| Per-unit compiler overrides in `configure.py` | 148 | 148 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -96,7 +96,7 @@ small float differences without FMA).
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-146 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+148 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
@@ -117,7 +117,13 @@ nothing else changes behaviour.
 
 | File | Function | What | Why | Port should |
 |---|---|---|---|---|
-| `src/pso/ui/TAdMultiPlyChrSelectGC_802C50EC.cpp` | `TAdMultiPlyChrSelectGC__sub_802C5F1C` | unit `-inline on` instead of the game default `-inline off` | The slot clamp is a `static inline` helper with no symbol of its own. Under `-inline off` the helper is a real call (332 bytes). Written in the caller, nine instruction words differ, all register fields: the original is `add r8,r3,r4` / `lwz r0` / `li r7,3` / `mr r7,r0` / `xoris r0,r7,32768` / `add r7,r8,r5` and the stores through `r7`; the plain loop swaps `r7` and `r8`. Inlining numbers the clamp locals ahead of the hoisted row, which is the original allocation. `-inline auto` and `-inline all` also inline other small functions (`update` 108→572, `update_option_cursor` 476→700, `handle_dpad_input` 564→788, and four more) and are not used. `-inline deferred` matches each body but emits the unit in reverse order. `-inline noauto` produces the same object as `-inline on`; the explicit switch is `on`. The other 32 exact functions and `.data` / `.rodata` / `.sdata2` are unchanged. Evidence: [chr-select-slot-clamp-inline.md](evidence/chr-select-slot-clamp-inline.md). Precedent: [Brawl `-inline on`](https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264) (only functions marked `inline`); [`-inline auto` in dtk-template](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203) was the first flag tried and does not keep this unit identical. | Drop the flag. The value is `min(slot, 3)` applied to each cell's texture row. A port does not need MWCC's inline-local numbering. |
+| `src/pso/ui/TAdMultiPlyChrSelectGC_802C50EC.cpp` | `TAdMultiPlyChrSelectGC::sub_802C5F1C` | unit `-inline on` instead of the game default `-inline off` | The slot clamp is a `static inline` helper with no symbol of its own. Under `-inline off` the helper is a real call (332 bytes). Written in the caller, nine instruction words differ, all register fields: the original is `add r8,r3,r4` / `lwz r0` / `li r7,3` / `mr r7,r0` / `xoris r0,r7,32768` / `add r7,r8,r5` and the stores through `r7`; the plain loop swaps `r7` and `r8`. Inlining numbers the clamp locals ahead of the hoisted row, which is the original allocation. `-inline auto` and `-inline all` also inline other small functions (`update` 108→572, `update_option_cursor` 476→700, `handle_dpad_input` 564→788, and four more) and are not used. `-inline deferred` matches each body but emits the unit in reverse order. `-inline noauto` produces the same object as `-inline on`; the explicit switch is `on`. The other 32 exact functions and `.data` / `.rodata` / `.sdata2` are unchanged. Evidence: [chr-select-slot-clamp-inline.md](evidence/chr-select-slot-clamp-inline.md). Precedent: [Brawl `-inline on`](https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264) (only functions marked `inline`); [`-inline auto` in dtk-template](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203) was the first flag tried and does not keep this unit identical. | Drop the flag. The value is `min(slot, 3)` applied to each cell's texture row. A port does not need MWCC's inline-local numbering. |
+
+### `TAdMultiPlyChrSelectGC.cpp` ([#294](https://github.com/matthewlewisnewton/pso-decomp/pull/294))
+
+| File | Function | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/ui/TAdMultiPlyChrSelectGC.cpp` | `get_or_create` | unit `-inline on` instead of the game default `-inline off` | Retail `get_or_create` is `li r3,160` / `bl __nw__7TObjectFUl` / `bl __ct`. The class also carries the selection grid through `0x530`, so the allocation size is the literal `0xA0` and the constructor is placement-new. The placement `operator new` is marked `inline`. Under `-inline off` it is a real call and `get_or_create` grows from 26 to 31 instructions, with an extra `__nw__22TAdMultiPlyChrSelectGCFUlPv16ChrSelectStorage`. `-inline auto` inlines the constructor as well (`__ct` 27→62, `get_or_create` 26→76). `-inline on` inlines only that operator new: `get_or_create` matches, and the other 14 functions in the unit are unchanged. Precedent: [Brawl `-inline on`](https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264). | Drop the flag and allocate `sizeof` the class. The retail binary requests `0xA0` and still indexes the grid past that. |
 
 `pso/effect/TEF_LensFlare.cpp` (this change) sets `-fp_contract on` because the
 recovered renderer contracts its attenuation and displacement multiply-adds

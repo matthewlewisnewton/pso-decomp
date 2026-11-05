@@ -685,6 +685,13 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # helper (same object as -inline noauto here). Evidence:
     # docs/evidence/chr-select-slot-clamp-inline.md.
     "pso/ui/TAdMultiPlyChrSelectGC_802C50EC.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
+    # get_or_create still calls __nw(0xA0). The class now carries the selection
+    # grid, so placement new at the real address only stays a direct constructor
+    # call when its operator new is inlined. -inline off leaves that call
+    # out of line (get_or_create 26 -> 31). -inline auto also inlines the
+    # constructor (27 -> 62). -inline on inlines only the marked operator new;
+    # the other 14 functions in the unit stay identical.
+    "pso/ui/TAdMultiPlyChrSelectGC.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
 }
 
 # MusyX (Factor 5). Its objects carry extab/extabindex for every non-leaf

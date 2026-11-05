@@ -43,36 +43,36 @@ void TAdMultiPlyChrSelectGC::update_input_state() {
 
     if (TWindowShortListCtrl__check_controller_button((s8 *)controller_physical_port_bank + 0x20, 2) != 0) {
         play_sound_effect(0x52F16, 0, 0, 0);
-        if ((u32) this->m_94 != 0U) {
-            ((TWindowSubComCard *)(*(void * *)&this->m_94))->close();
-            this->m_94 = 0U;
+        if ((u32) this->grid.m_94 != 0U) {
+            ((TWindowSubComCard *)(*(void * *)&this->grid.m_94))->close();
+            this->grid.m_94 = 0U;
         }
-        *(s32 *)&this->unk_58 = (s32) (*(s32 *)&this->unk_58 + 1);
+        *(s32 *)&this->grid.unk_58 = (s32) (*(s32 *)&this->grid.unk_58 + 1);
         *(s32 *)&this->m_20 = 0x1F;
         return;
     }
-    if (((TAdMultiPlyChrSelectGC *)(this->m_6c))->get_mode() < 0x14) {
-        if (((TAdMultiPlyChrSelectGC *)(*(s32 *)&this->unk_68))->get_player_index() < 0xE) {
-            *(s32 *)&this->unk_58 = 0;
+    if (((TAdMultiPlyChrSelectGC *)(this->grid.m_6c))->get_mode() < 0x14) {
+        if (((TAdMultiPlyChrSelectGC *)(*(s32 *)&this->grid.unk_68))->get_player_index() < 0xE) {
+            *(s32 *)&this->grid.unk_58 = 0;
         }
-        if ((u32) this->m_94 != 0U) {
-            ((TWindowSubComCard *)(*(void * *)&this->m_94))->close();
-            this->m_94 = 0U;
+        if ((u32) this->grid.m_94 != 0U) {
+            ((TWindowSubComCard *)(*(void * *)&this->grid.m_94))->close();
+            this->grid.m_94 = 0U;
         }
         *(s32 *)&this->m_20 = 0x1D;
         return;
     }
-    if (((TWindowMessageYesNo *)(this->m_94))->is_child_visible() != 0) {
-        switch (((TWindowSubComCard *)(this->m_94))->get_slot_or_neg1()) {
+    if (((TWindowMessageYesNo *)(this->grid.m_94))->is_child_visible() != 0) {
+        switch (((TWindowSubComCard *)(this->grid.m_94))->get_slot_or_neg1()) {
         case 0:
             *(s32 *)&this->m_20 = 0x21;
             return;
         case 1:
-            if ((u32) this->m_94 != 0U) {
-                ((TWindowSubComCard *)(*(void * *)&this->m_94))->close();
-                this->m_94 = 0U;
+            if ((u32) this->grid.m_94 != 0U) {
+                ((TWindowSubComCard *)(*(void * *)&this->grid.m_94))->close();
+                this->grid.m_94 = 0U;
             }
-            *(s32 *)&this->unk_58 = (s32) (*(s32 *)&this->unk_58 + 1);
+            *(s32 *)&this->grid.unk_58 = (s32) (*(s32 *)&this->grid.unk_58 + 1);
             *(s32 *)&this->m_20 = 0x1F;
             break;
         }

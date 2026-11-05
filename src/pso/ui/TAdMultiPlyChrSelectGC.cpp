@@ -41,9 +41,9 @@ void TAdMultiPlyChrSelectGC::handle_event(s32 arg1) {
         temp_r3 = (void *)TAdMultiPlyChrSelectGC__sub_802C6920();
         TAdMultiPlyChrSelectGC::split_slot_index((s32)temp_r3, &sp14, &sp10);
         TAdMultiPlyChrSelectGC::init();
-        ((TAdMultiPlyChrSelectGC *)(this->m_5c))->set_field_4ec(sp14);
-        TAdMultiPlyChrSelectGC__sub_802E0024((O_802E0024 *)(this->m_5c), sp10);
-        this->m_9c = 1;
+        ((TAdMultiPlyChrSelectGC *)(this->grid.m_5c))->set_field_4ec(sp14);
+        TAdMultiPlyChrSelectGC__sub_802E0024((O_802E0024 *)(this->grid.m_5c), sp10);
+        this->grid.m_9c = 1;
         return;
     case 4:
         TAdMultiPlyChrSelectGC__sub_802C6920();
@@ -52,10 +52,10 @@ void TAdMultiPlyChrSelectGC::handle_event(s32 arg1) {
             temp_r3 = (void *)TAdMultiPlyChrSelectGC__sub_802C6920();
             TAdMultiPlyChrSelectGC::split_slot_index((s32)temp_r3, &spC, &sp8);
             TAdMultiPlyChrSelectGC::init();
-            ((TAdMultiPlyChrSelectGC *)(this->m_5c))->set_field_4ec(spC);
-            TAdMultiPlyChrSelectGC__sub_802E0024((O_802E0024 *)(this->m_5c), sp8);
+            ((TAdMultiPlyChrSelectGC *)(this->grid.m_5c))->set_field_4ec(spC);
+            TAdMultiPlyChrSelectGC__sub_802E0024((O_802E0024 *)(this->grid.m_5c), sp8);
         }
-        this->m_9c = 1;
+        this->grid.m_9c = 1;
         return;
     }
 }
@@ -71,37 +71,37 @@ typedef char RecoveredGlobal_802DFF0C___vt__22TAdMultiPlyChrSelectGC_size[sizeof
 void TAdMultiPlyChrSelectGC::initialize_selection_state(s32 arg1) {
     s32 v;
     *(s32 *)&this->m_1c = 0;
-    *(s32 *)&this->unk_30 = -1;
-    this->m_34 = -1;
-    *(s32 *)&this->_pad44 = 2;
-    *(s32 *)&this->unk_38 = 0;
-    *(s32 *)&this->unk_58 = 0;
+    *(s32 *)&this->grid.unk_30 = -1;
+    this->grid.m_34 = -1;
+    *(s32 *)&this->grid._pad44 = 2;
+    *(s32 *)&this->grid.unk_38 = 0;
+    *(s32 *)&this->grid.unk_58 = 0;
     v = TAdMultiPlyChrSelectGC::get_clamped_cursor();
-    *(s32 *)&this->m_4c = v;
-    *(s32 *)&this->m_2c = 2;
+    *(s32 *)&this->grid.m_4c = v;
+    *(s32 *)&this->grid.m_2c = 2;
     v = 0;
-    *(s32 *)&this->m_48 = arg1;
-    *(s32 *)&this->m_74 = v;
+    *(s32 *)&this->grid.m_48 = arg1;
+    *(s32 *)&this->grid.m_74 = v;
     lbl_805D68C8 = v;
-    *(s32 *)&this->unk_50 = v;
-    this->m_54 = 1;
-    *(s32 *)&this->unk_68 = v;
-    *(s32 *)&this->unk_60 = v;
-    this->m_5c = v;
-    *(s32 *)&this->unk_78 = v;
-    *(s32 *)&this->unk_70 = v;
-    this->m_7c = v;
-    *(s32 *)&this->unk_80 = v;
-    *(s32 *)&this->m_84 = v;
-    *(s32 *)&this->unk_88 = v;
-    this->m_8c = v;
-    *(s32 *)&this->unk_90 = v;
-    *(s32 *)&this->m_94 = v;
-    *(s32 *)&this->unk_98 = v;
-    *(s32 *)&this->m_3c = v;
-    *(s32 *)&this->m_40 = v;
-    this->m_9c = v;
-    if (*(s32 *)&this->m_48 == 1) {
+    *(s32 *)&this->grid.unk_50 = v;
+    this->grid.m_54 = 1;
+    *(s32 *)&this->grid.unk_68 = v;
+    *(s32 *)&this->grid.unk_60 = v;
+    this->grid.m_5c = v;
+    *(s32 *)&this->grid.unk_78 = v;
+    *(s32 *)&this->grid.unk_70 = v;
+    this->grid.m_7c = v;
+    *(s32 *)&this->grid.unk_80 = v;
+    *(s32 *)&this->grid.m_84 = v;
+    *(s32 *)&this->grid.unk_88 = v;
+    this->grid.m_8c = v;
+    *(s32 *)&this->grid.unk_90 = v;
+    *(s32 *)&this->grid.m_94 = v;
+    *(s32 *)&this->grid.unk_98 = v;
+    *(s32 *)&this->grid.m_3c = v;
+    *(s32 *)&this->grid.m_40 = v;
+    this->grid.m_9c = v;
+    if (*(s32 *)&this->grid.m_48 == 1) {
         v = 0x1D;
     }
     *(s32 *)&this->m_20 = v;
@@ -194,13 +194,16 @@ TAdMultiPlyChrSelectGC::TAdMultiPlyChrSelectGC(TObject *parent, s32 mode) : TObj
     handle_event(TAdMultiPlyChrSelectGC::get_select_flag());
 }
 
+/* Class layout runs through the selection grid (0x530), but the retail allocator
+   still requests 0xA0. Pass that size explicitly so this stays the original call. */
 u8 *get_or_create__22TAdMultiPlyChrSelectGCFii(s32 arg0, s32 arg1) {
     u8 *ad_multi_ply_chr_select_gc;
     u8 *var_r0;
     if ((void *) TAdMultiPlyChrSelectGC__instance != NULL) {
         return TAdMultiPlyChrSelectGC__instance;
     }
-    var_r0 = (u8 *)new TAdMultiPlyChrSelectGC((TObject *)arg0, arg1);
+    var_r0 = (u8 *)TObject::operator new(0xA0);
+    var_r0 = (u8 *)new (var_r0, chr_select_storage) TAdMultiPlyChrSelectGC((TObject *)arg0, arg1);
     TAdMultiPlyChrSelectGC__instance = var_r0;
     return var_r0;
 }

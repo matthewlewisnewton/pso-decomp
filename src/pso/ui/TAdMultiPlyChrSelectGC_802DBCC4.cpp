@@ -139,7 +139,7 @@ s32 TAdMultiPlyChrSelectGC::get_state_result() {
         var_r4 = 0;
         break;
     case 12:
-        var_r4 = get_instance__22TAdMultiPlyChrSelectGCFv(this->m_5c);
+        var_r4 = get_instance__22TAdMultiPlyChrSelectGCFv(this->grid.m_5c);
         break;
     case 29:
         var_r4 = 0;
