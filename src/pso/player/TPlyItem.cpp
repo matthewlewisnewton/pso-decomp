@@ -11,7 +11,7 @@ extern TObjPlayer *item_reduce_target_player;
 }
 
 TPlyItem::~TPlyItem() {
-    TItemList__sub_801D5B10((char*)this + 0x20, -1);
+    TItemList__sub_801D5B10(item_pool, -1);
 }
 
 #include "pso/misc/TLobby.h"
@@ -22,7 +22,7 @@ TPlyItem::~TPlyItem() {
 extern void *TPlyItem_name_ref;
 
 TPlyItem::TPlyItem(TObject *parent) : TObject(parent) {
-    ((TItemList *)((char *)this + 32))->init_items();
+    ((TItemList *)item_pool)->init_items();
     *(void **)&m_name = TPlyItem_name_ref;
     item_count = 0;
     unk_1E = 0;

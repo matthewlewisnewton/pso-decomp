@@ -2243,7 +2243,6 @@ void release_all_players_control_lock(void);
 s32 check_conditions__10TObjPlayerFv(void *, s16);
 u8 *TObjPlayer__sub_801CFBFC(u8 *arg0);
 void run_action_state_phase__10TObjPlayerFsl(void *, s32, s32);
-s32 insert_item_node__10TObjPlayerFiiiii(void *, void *, void *, void *, int);
 void create_drop_nodes__9TItemListFPvPvPvPvi(u8*,DeathItemPosition*,TObjPlayer*,DeathDropRecord*,s32);
 s32 check_player_action_allowed();
 s32 TObjPlayer__sub_801D4368(void * a0 = 0);
@@ -4927,7 +4926,7 @@ void TObjPlayer::update_facing_vector() {
 }
 
 void TObjPlayer::clear_action_flag() {
-    if ((TObjPlayer__sub_801C2044(&this->inventory_objects->pad_20[0]) == 0) && ((u32)is_action_active() != 0U)) {
+    if ((TObjPlayer__sub_801C2044(this->inventory_objects->item_pool) == 0) && ((u32)is_action_active() != 0U)) {
         this->clear_flag_0x2();
         TObjPlayer::send_code_45_1((s32)this);
     }
@@ -6349,7 +6348,9 @@ void TObjPlayer::request_meseta_drop(s32 arg1) {
         set_action_flag_2();
         ((TObjPlayer *)(&stack.sp8))->init_item_data(arg1);
         stack.sp14 = -1;
-        insert_item_node__10TObjPlayerFiiiii(&this->inventory_objects->pad_20[0], (void *) (TObjPlayer__sub_801BF914((void *) (((u8 *)this) + 0x84C))), this, &stack.sp8, -1);
+        TObjPlayer::insert_item_node((int)this->inventory_objects->item_pool,
+                                    (int)TObjPlayer__sub_801BF914(((u8 *)this) + 0x84C), (int)this,
+                                    (int)&stack.sp8, -1);
     }
 }
 
@@ -6379,7 +6380,9 @@ void TObjPlayer::request_item_drop(s32 arg1, s32 arg2) {
     if (owner->get_amount() - arg2 > 0) {
         item.id = -1;
     }
-    insert_item_node__10TObjPlayerFiiiii(&this->inventory_objects->pad_20[0], (void *)TObjPlayer__sub_801BF914(((u8 *)this) + 0x84C), this, &item, id);
+    TObjPlayer::insert_item_node((int)this->inventory_objects->item_pool,
+                                (int)TObjPlayer__sub_801BF914(((u8 *)this) + 0x84C), (int)this,
+                                (int)&item, id);
 }
 
 s32 TObjPlayer::count_items_of_type(s8 arg1, s8 arg2, s8 arg3) {

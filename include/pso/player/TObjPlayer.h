@@ -703,6 +703,10 @@ struct TObjPlayer : public TObjChara {
     static int get_hold_effect_count();
     static int get_item_count_max();
     void *init();
+    // Drops one item: the item pool inside the owner's TPlyItem, the floor
+    // record, the owner, the TItemData to copy and the item id. The original
+    // declared all five as int, so the callers hand it casts.
+    static void insert_item_node(int pool, int floor, int owner, int data, int id);
     void set_field4(s32 v);
     void*init_c2098_return_self();
     u8 get_field_5();

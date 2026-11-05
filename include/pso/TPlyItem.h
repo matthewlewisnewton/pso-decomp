@@ -26,7 +26,12 @@ public:
     virtual ~TPlyItem();
     s16 item_count;
     u16 unk_1E;
-    u8 pad_20[0x1C4 - 0x20];
+    // The item pool TItemList::init_items builds (record arrays at +0x28 and
+    // +0xA8) and TObjPlayer::insert_item_node fills. The original has a second
+    // class also called TItemList for it, so it cannot be a typed member here:
+    // the inventory-node TItemList this header declares is 0x20 bytes, the
+    // size create_inventory passes to operator new.
+    u8 item_pool[0x1C4 - 0x20];
     TItemList *item_list;
     TObject *unk_1C8;
 

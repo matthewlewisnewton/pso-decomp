@@ -20,22 +20,24 @@ void create_drop_nodes__9TItemListFPvPvPvPvi(void *arg0, void *arg1, void *arg2,
 s32 TItemList__sub_801D5854(s32, s32);
 s32 copy_item_data__9TItemListFv(s32, s32);
 s32 create_node__9TItemListFPvPvPvSc(s32, s32, s32, s32);
+}
 
-void insert_item_node__10TObjPlayerFiiiii(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+void TObjPlayer::insert_item_node(int pool, int floor, int owner, int data, int id) {
     s32 temp_r31;
     s32 temp_r30;
 
-    temp_r31 = TItemList__sub_801D5868((void*)arg0, (void*)(0));
-    temp_r30 = TItemList__sub_801D5854(arg0, 0);
+    temp_r31 = TItemList__sub_801D5868((void*)pool, (void*)(0));
+    temp_r30 = TItemList__sub_801D5854(pool, 0);
     if (TItemList__sub_801D5844((void *)temp_r31) != 0) {
         TItemList__sub_801D5838((void *)temp_r31);
-        ((TObjPlayer *)temp_r30)->set_field4(arg4);
-        copy_item_data__9TItemListFv(temp_r30, arg3);
-        create_node__9TItemListFPvPvPvSc(arg0, arg2, arg1, 0);
-        TItemList__sub_801D5804((s32 *)arg0);
+        ((TObjPlayer *)temp_r30)->set_field4(id);
+        copy_item_data__9TItemListFv(temp_r30, data);
+        create_node__9TItemListFPvPvPvSc(pool, owner, floor, 0);
+        TItemList__sub_801D5804((s32 *)pool);
     }
 }
 
+extern "C" {
 void create_drop_nodes__9TItemListFPvPvPvPvi(void *arg0, void *arg1, void *arg2, Rec_801D35FC *arg3, s32 arg4) {
     s32 i;
     u8 *p;
