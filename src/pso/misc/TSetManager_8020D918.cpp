@@ -232,7 +232,6 @@ void TLobby::reset_id_tables() {
 void TLobby__sub_8020DC78(void) {
     s32 n;
     s32 i;
-    s32 j;
     LobbyPopulationTables *base = &TLobby__data_80513A40;
     LobbyPoolEntry (LobbyPopulationTables::*enemy_member)[18];
     LobbyPoolEntry (LobbyPopulationTables::*object_member)[18];
@@ -282,7 +281,7 @@ void TLobby__sub_8020DC78(void) {
     // array to an element pointer at each use is what reduces +1-1 to
     // `addi rX, rBase, offset` and leaves that address in a temporary.
     enemy_member = &LobbyPopulationTables::pool_entries;
-    for (j = 17; j >= 0; j--) {
+    for (s32 j = 17; j >= 0; j--) {
         if (static_cast<LobbyPoolEntry *>(base->*enemy_member)[j].enemies != NULL) {
             archive_pool_free(TLobby__data_805D6104,
                 static_cast<LobbyPoolEntry *>(base->*enemy_member)[j].enemies);
@@ -290,7 +289,7 @@ void TLobby__sub_8020DC78(void) {
         }
     }
     object_member = &LobbyPopulationTables::pool_entries;
-    for (j = 17; j >= 0; j--) {
+    for (s32 j = 17; j >= 0; j--) {
         if (static_cast<LobbyPoolEntry *>(base->*object_member)[j].objects != NULL) {
             archive_pool_free(TLobby__data_805D6104,
                 static_cast<LobbyPoolEntry *>(base->*object_member)[j].objects);
@@ -298,7 +297,7 @@ void TLobby__sub_8020DC78(void) {
         }
     }
     enemy_rows_member = &LobbyPopulationTables::floors;
-    for (j = 17; j >= 0; j--) {
+    for (s32 j = 17; j >= 0; j--) {
         if (static_cast<LobbyFloorRows *>(base->*enemy_rows_member)[j].enemyRows != NULL) {
             TLobby__data_805D6108->heap_free(
                 static_cast<LobbyFloorRows *>(base->*enemy_rows_member)[j].enemyRows);
@@ -306,7 +305,7 @@ void TLobby__sub_8020DC78(void) {
         }
     }
     object_rows_member = &LobbyPopulationTables::floors;
-    for (j = 17; j >= 0; j--) {
+    for (s32 j = 17; j >= 0; j--) {
         if (static_cast<LobbyFloorRows *>(base->*object_rows_member)[j].objectRows != NULL) {
             TLobby__data_805D6108->heap_free(
                 static_cast<LobbyFloorRows *>(base->*object_rows_member)[j].objectRows);
