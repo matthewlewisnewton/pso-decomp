@@ -252,7 +252,7 @@ void TWindowOptionCtrl::handle_save_result() {
             return;
         case 14:
             if (TAdPlayerLoadGC__sub_801E1B50(1) == 0) {
-                if ((u32) TAdPlayerLoadGC::get_load_result((void *)1) == 0xFFFFFF81U) {
+                if ((u32) TAdPlayerLoadGC::get_load_result(1) == 0xFFFFFF81U) {
                     set_option_and_confirm(9, 0);
                     *(s32 *)((s8 *)arg0 + 0x1C) = 0xF;
                     return;

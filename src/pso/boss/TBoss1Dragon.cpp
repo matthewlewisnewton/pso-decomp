@@ -1,4 +1,3 @@
-#include "pso/boss/DragonCoord9.h"
 #include "pso/boss/EffectGeometryParameters.h"
 #include "pso/misc/CameraHelpers.h"
 #include "pso/system/MatrixVectorArray.h"
@@ -3741,7 +3740,7 @@ void TBoss1Dragon::update_flight_state(u32 arg1) {
             this->fallVelocity += (1.0f);
             t = sample_acceleration_curve(arg0 + 0x618, this->fallVelocity);
             this->rotation.yaw = (s32)((f32)*(s32 *)((s8 *)arg0 + 0x65C) * t + (f32)*(s32 *)((s8 *)arg0 + 0x874));
-            if (((TObjBoss2Tunnel *)(arg0 + 0x618))->check_param_threshold(this->fallVelocity) != 0) {
+            if (TObjBoss2Tunnel::check_param_threshold((AccelerationCurve *)(arg0 + 0x618), this->fallVelocity) != 0) {
                 this->fallVelocity = (0.0f);
                 this->stateStep = 1;
             }
@@ -3751,7 +3750,7 @@ void TBoss1Dragon::update_flight_state(u32 arg1) {
             t = sample_acceleration_curve(arg0 + 0x5F4, this->fallVelocity);
             this->position.x = *(f32 *)((s8 *)arg0 + 0x3A0) * t + base[0];
             this->position.z = *(f32 *)((s8 *)arg0 + 0x3A8) * t + base[2];
-            if (((TObjBoss2Tunnel *)(arg0 + 0x5F4))->check_param_threshold(this->fallVelocity) != 0) {
+            if (TObjBoss2Tunnel::check_param_threshold((AccelerationCurve *)(arg0 + 0x5F4), this->fallVelocity) != 0) {
                 this->stateStep = 2;
             }
             break;
@@ -5749,8 +5748,8 @@ Obj_80029C78 *destroy__12TBoss1DragonFPvs(Obj_80029C78 *o, s16 flag) {
             TBoss1Dragon__data_805D4B2C = 0;
         }
         __destroy_arr(o->f6E8, (void *)__dt__15RenderFadeStateFv, 0x1c, 4);
-        ((DragonCoord9 *)o->f618)->~DragonCoord9();
-        ((DragonCoord9 *)o->f5F4)->~DragonCoord9();
+        ((AccelerationCurve *)o->f618)->~AccelerationCurve();
+        ((AccelerationCurve *)o->f5F4)->~AccelerationCurve();
         __dt__7TObjectFv(o->f3C4, -1);
         __dt__12TObjEneDD_STFv(o, 0);
         if (flag > 0) {
@@ -5762,7 +5761,7 @@ Obj_80029C78 *destroy__12TBoss1DragonFPvs(Obj_80029C78 *o, s16 flag) {
 
 #define F_29DE4(o, T, off) (*(T *)(o + (off)))
 #define O_29DE4 ((Obj_80029DE4 *)arg0)
-extern "C" void __ct__12DragonCoord9Fv(DragonCoord9 *);
+extern "C" void __ct__17AccelerationCurveFv(AccelerationCurve *);
 #pragma push
 #pragma opt_loop_invariants off
 #pragma opt_common_subs off
@@ -5775,8 +5774,8 @@ u8 *TBoss1Dragon__ct(u8 *arg0, void *arg1, void *arg2) {
     __ct__12TObjEneDD_STFP7TObject(arg0, arg1);
     F_29DE4(arg0, s32, 0x18) = (s32)lbl_80481280;
     __ct__7TObjectFP7TObject(arg0 + 0x3C4, 0);
-    __ct__12DragonCoord9Fv((DragonCoord9 *)(arg0 + 0x5F4));
-    __ct__12DragonCoord9Fv((DragonCoord9 *)(arg0 + 0x618));
+    __ct__17AccelerationCurveFv((AccelerationCurve *)(arg0 + 0x5F4));
+    __ct__17AccelerationCurveFv((AccelerationCurve *)(arg0 + 0x618));
     __construct_array(arg0 + 0x6E8, __ct__15RenderFadeStateFv, __dt__15RenderFadeStateFv, 0x1C, 4);
     __ct__14SubtractiveRngFv(arg0 + 0x77C);
     F_29DE4(arg0, s32, 0) = lbl_805D2650;
@@ -5829,8 +5828,8 @@ u8 *TBoss1Dragon__ct(u8 *arg0, void *arg1, void *arg2) {
     F_29DE4(arg0, f32, 0x5E8) = (0.0f);
     F_29DE4(arg0, f32, 0x5EC) = (0.0f);
     F_29DE4(arg0, f32, 0x5F0) = (0.0f);
-    ((TObjBoss2Tunnel *)(arg0 + 0x5F4))->reset_coords();
-    ((TObjBoss2Tunnel *)(arg0 + 0x618))->reset_coords();
+    TObjBoss2Tunnel::reset_coords((AccelerationCurve *)(arg0 + 0x5F4));
+    TObjBoss2Tunnel::reset_coords((AccelerationCurve *)(arg0 + 0x618));
     VecCopy__FP3VecPC3Vec((s32)(arg0 + 0x63C), (s32)&O_29DE4->pos);
     VecCopy__FP3VecPC3Vec((s32)(arg0 + 0x648), (s32)&O_29DE4->pos);
     F_29DE4(arg0, s32, 0x654) = 0;

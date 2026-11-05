@@ -2076,8 +2076,9 @@ struct Dragon_802F951C : VObj_18_444bc5 {
     s32 field_3C0;
     u8 pad3C4[0x5E0 - 0x3C4];
     Vec_802F951C v5E0;
-    u8 curve0[0x610 - 0x5EC];
-    u8 curve1[0x654 - 0x610];
+    AccelerationCurve curve0;
+    AccelerationCurve curve1;
+    u8 pad634[0x654 - 0x634];
     s32 sign;
     u8 pad658[0x84C - 0x658];
     s32 field_84C;
@@ -5003,7 +5004,7 @@ void state_turn_and_charge__12TBoss8DragonFPvUi(u8 *boss8_dragon, u32 arg1) {
         ((TBoss8Dragon *)d)->activate_attack();
         d->field_3C0 &= ~0x36;
         ((TObjEneDD *)d)->update_velocity();
-        init_acceleration_curve(d->curve0, 0.1f, -0.1f, d->f3AC, 2.0f + *(f32 *)(TBoss8Dragon__data_80541DDC[0] + 0x14));
+        init_acceleration_curve(&d->curve0, 0.1f, -0.1f, d->f3AC, 2.0f + *(f32 *)(TBoss8Dragon__data_80541DDC[0] + 0x14));
         diff = angle_diff_s16(d->angle, (s32)(TBoss8Dragon__data_80474B28 * atan2_float(d->dir.x, d->dir.z)));
         if (diff >= 0) {
             d->sign = 1;
@@ -5011,7 +5012,7 @@ void state_turn_and_charge__12TBoss8DragonFPvUi(u8 *boss8_dragon, u32 arg1) {
             diff = -diff;
             d->sign = -1;
         }
-        init_acceleration_curve(d->curve1, 16.0f, -16.0f, (f32)diff, (f32)(s32)(256.0f * (2.0f + *(f32 *)(TBoss8Dragon__data_80541DDC[0] + 0x14))));
+        init_acceleration_curve(&d->curve1, 16.0f, -16.0f, (f32)diff, (f32)(s32)(256.0f * (2.0f + *(f32 *)(TBoss8Dragon__data_80541DDC[0] + 0x14))));
         d->base = d->angle;
         d->field_84C = 0;
         d->field_864 = 0.0f;
@@ -5043,23 +5044,23 @@ void state_turn_and_charge__12TBoss8DragonFPvUi(u8 *boss8_dragon, u32 arg1) {
         switch (d->field_84C) {
         case 0:
             d->field_864 += 1.0f;
-            d->angle = (s32)((f32)d->sign * sample_acceleration_curve(d->curve1, d->field_864) + (f32)d->base);
-            if (((TObjBoss2Tunnel *)(d->curve1))->check_param_threshold(d->field_864) != 0) {
+            d->angle = (s32)((f32)d->sign * sample_acceleration_curve(&d->curve1, d->field_864) + (f32)d->base);
+            if (TObjBoss2Tunnel::check_param_threshold(&d->curve1, d->field_864) != 0) {
                 d->field_864 = 0.0f;
                 d->field_84C = 1;
             }
             break;
         case 1: {
-            f32 prev = sample_acceleration_curve(d->curve0, d->field_864);
+            f32 prev = sample_acceleration_curve(&d->curve0, d->field_864);
             f32 dlt;
             Vec_802F951C v;
             d->field_864 += 1.0f;
-            dlt = sample_acceleration_curve(d->curve0, d->field_864) - prev;
+            dlt = sample_acceleration_curve(&d->curve0, d->field_864) - prev;
             v.x = d->dir.x * dlt;
             v.y = 0.0f;
             v.z = d->dir.z * dlt;
             apply_ground_movement__12TBoss8DragonFPvPv(boss8_dragon, &v.x);
-            if (((TObjBoss2Tunnel *)(d->curve0))->check_param_threshold(d->field_864) != 0) {
+            if (TObjBoss2Tunnel::check_param_threshold(&d->curve0, d->field_864) != 0) {
                 d->field_84C = 2;
             }
             break;
@@ -6814,8 +6815,8 @@ TBoss8Dragon::TBoss8Dragon(TObject *arg1, void *arg2) : TObjEneDD_ST(arg1), chil
     *(f32 *)((s8 *)((u8 *)this) + 0x5E0) = TBoss8Dragon__data_805DED50;
     ((TBoss8Dragon *)((u8 *)this))->m_5e4 = TBoss8Dragon__data_805DED50;
     *(f32 *)((s8 *)((u8 *)this) + 0x5E8) = TBoss8Dragon__data_805DED50;
-    ((TObjBoss2Tunnel *)(((u8 *)this) + 0x5EC))->reset_coords();
-    ((TObjBoss2Tunnel *)(((u8 *)this) + 0x610))->reset_coords();
+    TObjBoss2Tunnel::reset_coords((AccelerationCurve *)(((u8 *)this) + 0x5EC));
+    TObjBoss2Tunnel::reset_coords((AccelerationCurve *)(((u8 *)this) + 0x610));
     VecCopy__FP3VecPC3Vec(((u8 *)this) + 0x634, ((u8 *)this) + 0x38);
     VecCopy__FP3VecPC3Vec(((u8 *)this) + 0x640, ((u8 *)this) + 0x38);
     ((TBoss8Dragon *)((u8 *)this))->m_64c = 0;

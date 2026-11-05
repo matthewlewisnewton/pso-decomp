@@ -8,7 +8,7 @@ struct G_GalGryphonBossActions_6xA0;
 #include "pso/enemy/TObjEneDD_ST.h"
 #include "pso/misc/RenderFadeState.h"
 #include "pso/player/TObjChara.h"
-#include "pso/boss/DragonCoord9.h"
+#include "pso/boss/TObjBoss2Tunnel.h"
 
 // The 0x3C0 prefix is TObjEneDD_ST. These overrides are the slots whose
 // addresses differ from __vt__12TObjEneDD_ST. Member order is the teardown
@@ -71,8 +71,8 @@ struct TBoss8Dragon : public TObjEneDD_ST
     u8 unk_5E0[0x4];
     f32 m_5e4;
     u8 unk_5E8[0x4];
-    DragonCoord9 coords_5ec;
-    DragonCoord9 coords_610;
+    AccelerationCurve coords_5ec;
+    AccelerationCurve coords_610;
     void* m_634;
     u8 _pad638[0x8];
     void* m_640;
