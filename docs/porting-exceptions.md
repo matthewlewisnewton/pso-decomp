@@ -23,7 +23,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
 |---|---:|---:|
-| Assembly (`asm` + `orig_asm` include) | 5 functions (9 source lines) | 3 |
+| Assembly (`asm` + `orig_asm` include) | 6 functions (11 source lines) | 4 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 71 | 13 |
 | CodeWarrior pragmas (excluding push/pop) | 5,860 | 886 |

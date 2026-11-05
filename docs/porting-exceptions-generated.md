@@ -7,7 +7,7 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 
 | Category | Hits | Files |
 |---|---:|---:|
-| asm | 9 | 3 |
+| asm | 11 | 4 |
 | intrinsic | 83 | 54 |
 | hardware | 71 | 13 |
 | pragma | 5860 | 886 |
@@ -28,6 +28,8 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `src/musyx/runtime/StdReverb/reverb.c:94` | `asm void HandleReverb(void *sptr, void *rv, int k) {` |
 | `src/musyx/runtime/StdReverb/reverb.c:95` | `#include "orig_asm/musyx/runtime/StdReverb/reverb/HandleReverb.inc"` |
 | `src/pso/unk/text_803E2D70.cpp:314` | `asm void transform_chunk_vertices_pos_normal(register Hdr_803E34B0 *job, register ReorderedMatrix_803E3390 *matrix) {` |
+| `src/pso/unk/text_8042E8C4.cpp:28` | `asm void LaunchDol(register void* dol) {` |
+| `src/pso/unk/text_8042E8C4.cpp:29` | `#include "orig_asm/pso/unk/text_8042E8C4/LaunchDol.inc"` |
 
 ## MWCC intrinsics
 
