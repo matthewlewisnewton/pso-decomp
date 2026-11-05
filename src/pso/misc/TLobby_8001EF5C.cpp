@@ -33,11 +33,11 @@ struct Lobby_8001FA1C {
     s32 *f4;
     s32 *f8;
     BmlResource *fC;
-    s32 f10;
+    void *f10;
     u32 f14;
 };
 
-struct Params_8001FA1C { void *a; s32 b; };
+struct Params_8001FA1C { void *a; void *b; };
 
 struct Lobby_8001FB6C;
 struct Rec_80020004 { char name[0x20]; s32 size; u8 pad24[8]; s32 texSize; u8 pad30[0x10]; };
@@ -816,7 +816,7 @@ static inline void request_motion_list(BmlResource *self, u32 *list) {
     s32 i;
     for (i = 0; *list != 0; list++, i++) {
         req.a = &self->motions[i].motion;
-        req.b = (s32)self;
+        req.b = self;
         TLobby::create_named_entry(*list, lobby_download_buffer, load_bin_motion_callback, &req, (void **)&handle);
         TLobby__sub_8001EDD8(self, handle);
     }
@@ -875,7 +875,7 @@ BmlResource *init_from_id_lists(BmlResource *self, s32 kind, u32 *models, u32 *m
             req.f4 = &self->models[i].model;
             req.f8 = &self->models[i].m_c;
             req.fC = self;
-            req.f10 = (s32)&self->models[i];
+            req.f10 = &self->models[i];
             req.f14 = TLobby::get_resource_file_size((const char *)*p);
             TLobby::create_named_entry(*p, lobby_download_buffer, load_bin_model_callback, &req, (void **)&handle);
             TLobby__sub_8001EDD8(self, handle);
