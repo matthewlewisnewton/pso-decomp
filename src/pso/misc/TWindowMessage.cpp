@@ -336,7 +336,23 @@ struct G_80269DA4 { s32 a; s32 b; };
 extern "C" {
 s32 TLobby__sub_80269DA4(V2_80269DA4 size, void *arg1);
 extern G_80269DA4 lbl_804D06F8[];
-TWindowMessage *TWindowMessage__ct(TWindowMessage *arg0, const void *arg1, u32 arg2, s32 arg3);
+struct TWindowMessageInit {
+    const char *m_name;
+    u8 pad_04[0x14];
+    void *vt;
+    u8 pad_1c[0x54];
+    u32 m_70;
+    s32 m_74;
+    u32 m_78;
+    TWindowMessageLine *lines;
+    f32 unk_80;
+    f32 m_84;
+    s32 next_line;
+    s32 line_count;
+};
+typedef char TWindowMessageInit_size[sizeof(TWindowMessageInit) == 0x90 ? 1 : -1];
+
+TWindowMessage *TWindowMessage__ct(TWindowMessageInit *arg0, const void *arg1, u32 arg2, s32 arg3);
 TWindowMessage *__nw__7TObjectFUl(s32);
 extern RecoveredGlobal_80269CA4_lbl_804D071C message_window_settings;
 
@@ -365,7 +381,7 @@ TWindowMessage *TLobby::create_message_window(const void *arg0, const void *arg1
     temp_r3 = __nw__7TObjectFUl(0x90);
     var_r0 = temp_r3;
     if (var_r0 != NULL) {
-        var_r0 = TWindowMessage__ct(temp_r3, arg0, arg2, arg3);
+        var_r0 = TWindowMessage__ct((TWindowMessageInit *)temp_r3, arg0, arg2, arg3);
     }
     return var_r0;
 }
@@ -393,7 +409,7 @@ void *construct_with_parent__13TUnk_804CDFE8FPv(void *, void *, s16, const void 
 extern s32 __vt__14TWindowMessage[];
 extern const char *lbl_805D3980;
 
-TWindowMessage *TWindowMessage__ct(TWindowMessage *arg0, const void *arg1, u32 arg2, s32 arg3);
+TWindowMessage *TWindowMessage__ct(TWindowMessageInit *arg0, const void *arg1, u32 arg2, s32 arg3);
 void *__dt__14TWindowMessageFv(void *arg0, s16 arg1);
 void __dl__7TObjectFPv(void *);
 
@@ -430,11 +446,11 @@ void *__dt__14TWindowMessageFv(void *arg0, s16 arg1) {
     }
     return arg0;
 }
-TWindowMessage *TWindowMessage__ct(TWindowMessage *window, const void *layout, u32 count, s32 slot) {
+TWindowMessage *TWindowMessage__ct(TWindowMessageInit *window, const void *layout, u32 count, s32 slot) {
     u32 i;
     TWindowMessageLine *line;
     construct_with_parent__13TUnk_804CDFE8FPv(window, &message_window_settings, slot, layout);
-    *(void **)((s8 *)window + 0x18) = &__vt__14TWindowMessage;
+    window->vt = &__vt__14TWindowMessage;
     window->m_name = lbl_805D3980;
     window->m_70 = 0;
     window->m_74 = 0;
@@ -450,7 +466,7 @@ TWindowMessage *TWindowMessage__ct(TWindowMessage *window, const void *layout, u
         line->timer = 0;
         line++;
     }
-    return window;
+    return (TWindowMessage *)window;
 }
 
 }

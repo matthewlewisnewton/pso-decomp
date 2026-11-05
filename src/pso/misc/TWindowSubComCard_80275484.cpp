@@ -4,10 +4,10 @@
 
 extern "C" {
 
-s32 TWindowSubComCardList__sub_802757AC(s32, s32, s32, s32, s32);
+s32 TWindowSubComCardList__sub_802757AC(s32, const void *, s32, s32, s32);
 s32 __nw__7TObjectFUl(s32);
 
-s32 TWindowSubComCard::create_card_list(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+s32 TWindowSubComCard::create_card_list(const void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 var_r3;
 
     fn_80266378(7);

@@ -80,22 +80,25 @@ These need cross-file retypes beyond this branch:
   `create_titled_window_menu__FPCvlll`. Callers that already hold the
   lookup pointer pass it with no cast, and those units are function-100%,
   including `TWindowSubMag`, `TWindowSubTechnique` and `TWindowSubItem`.
-  `TWindowSubMagPhoton` is function-100% but still casts the layout pointer
-  to `s32` for `TWindowSubStatusDisp__sub_80248BE8` (that free function and
-  `refresh_with_default_list__20TWindowSubStatusDispFll` still take integers;
-  `draw_with_layer__13TAdVIConfigGCFlll` forwards the same integers). The folded `TObjBoss2Tunnel` message functions
-  pass their `f32` position arrays the same way and stay 100%.
+  `TWindowSubMagPhoton` passes the layout pointer into a local
+  `const void *` prototype of the unmangled
+  `TWindowSubStatusDisp__sub_80248BE8`. The definition and
+  `refresh_with_default_list__20TWindowSubStatusDispFll` /
+  `draw_with_layer__13TAdVIConfigGCFlll` stay integer parameters so those
+  symbols do not rename. The photon unit stays function-100%.
+  The folded `TObjBoss2Tunnel` message functions pass their `f32` position
+  arrays the same way and stay 100%.
   `update_window_mode_from_progress` now passes `this` with no cast.
-  Two adapter casts remain because the callee's public symbol is still an
-  integer: `TWindowSubComCard_80271E7C` casts its `s32` lookup into the three
-  `set_window_mode_4` calls (widening that file's lookup renames
-  `create_for_card__14TWindowComCardFlll`), and `open_yes_no_prompt` stays
-  the unmangled `s32` symbol and casts into `create_titled_window_menu`.
-  Both are function-100%. The other lookup files still declare
-  `get_window_layout_position` as returning `s32`. That remainder still
-  runs through `check_room_seq_4__16TAdChrSelASlotGCFl`,
-  `draw_card_icon__17TWindowSubComCardFll`, and the mangled
-  `TWindowHelpItem` / `TWindowInputNumber` ctors.
+  `TWindowSubComCard_80271E7C` returns the lookup as `const void *` and
+  passes it into `set_window_mode_4` with no cast. The one-caller members
+  moved with it: `create_for_card__14TWindowComCardFPCvll`,
+  `create_com_card_window__17TWindowSubComCardFPCv`,
+  `create_card_list__17TWindowSubComCardFPCvlll`. `open_yes_no_prompt`'s
+  layout argument is `const void *` and is passed to
+  `create_titled_window_menu` with no cast. Those units stay
+  function-100%. Callers that do not include the header still declare the
+  unmangled prompt as taking `s32`. The other lookup files still declare
+  `get_window_layout_position` as returning `s32`.
 - **The window constructor chain.** `create_message_window` now returns
   the `TWindowMessage *` from `__nw__7TObjectFUl` and `TWindowMessage__ct`
   with no cast, and that function stays 100%. `update_window_mode_from_progress`
@@ -112,8 +115,11 @@ These need cross-file retypes beyond this branch:
   destructor, so that vtable cannot be the one MWCC emits. The C-named
   `TWindowMessage__ct` stays. Its field stores now use `m_name`, `m_70`,
   `m_74`, `next_line`, `line_count`, `m_78`, `m_84`, `unk_80` and `lines`,
-  and the function is still 100%. The vptr store at 0x18 has no declared
-  field (it is the hidden `TObject` vptr) and is still a byte offset.
+  and the function is still 100%. The vptr store uses a flat
+  `TWindowMessageInit::vt` at offset 0x18, the same pattern as
+  `TWindowMainMenu__ct`, so the body no longer writes `(s8 *)window + 0x18`.
+  The function stays the unmangled C symbol. A C++ constructor of the
+  virtual hierarchy still inserts the base call the DOL does not have.
 - **`TLobby::send_and_handle(int, int)`.** It has 127 call sites, so a text
   pointer is still passed as an integer.
 - **`create_yes_no_window` locals now take `const void *`.** The eight

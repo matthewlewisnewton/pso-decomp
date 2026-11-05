@@ -2,7 +2,9 @@
 #include "types.h"
 #include "pso/system/PadRumble.h"
 #include "pso/misc/TWindowCtrl_8024A054.h"
-#include "pso/misc/TWindowSubStatusDisp_80248BE8.h"
+extern "C" {
+u8 *TWindowSubStatusDisp__sub_80248BE8(const void *layout, const void *entries, s32 arg2);
+}
 #include "pso/misc/TWindowMainMenu.h"
 #include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TUnk_804D0618.h"
@@ -233,7 +235,7 @@ s32 TUnk_804D1818::sub_8027C884(s32 arg1) {
     s16 var_r29;
     s32 temp_r31;
     s32 temp_r3;
-    temp_r31 = (s32)TWindowSubStatusDisp__sub_80248BE8((s32)(get_window_layout_position(0x16)), (s32)lbl_8044FA28, (s32)this->m_20);
+    temp_r31 = (s32)TWindowSubStatusDisp__sub_80248BE8(get_window_layout_position(0x16), lbl_8044FA28, this->m_20);
     switch (arg1) {
     case 0:
         ((TUnk_804D0618 *)temp_r31)->ensure_status_display((int) (get_message_10__20TWindowSubStatusDispFl(0x66)));

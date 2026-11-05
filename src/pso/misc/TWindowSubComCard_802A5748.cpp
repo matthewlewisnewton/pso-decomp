@@ -51,12 +51,12 @@ void initialize_option_dialog(void *arg0, s32 arg1, s32 arg2, f32 farg0) {
     ((TWindowSubComCard *)(*(s32 *)((s8 *)arg0 + 0x28)))->calc_layout_height(farg0);
 }
 
-void open_yes_no_prompt(TChCrTagPlBack *ch_cr_tag_pl_back, u32 arg1, s32 arg2, s32 arg3, f32 farg0) {
+void open_yes_no_prompt(TChCrTagPlBack *ch_cr_tag_pl_back, u32 arg1, s32 arg2, const void *arg3, f32 farg0) {
     s32 sp8;
     if (arg1 == 0U) {
-        *(s32 *)((s8 *)ch_cr_tag_pl_back + 0x28) = create_window_menu(arg3, 1, *(s32 *)((s8 *)ch_cr_tag_pl_back + 0x24));
+        *(s32 *)((s8 *)ch_cr_tag_pl_back + 0x28) = ((s32 (*)(const void *, s32, s32))create_window_menu)(arg3, 1, *(s32 *)((s8 *)ch_cr_tag_pl_back + 0x24));
     } else {
-        *(s32 *)((s8 *)ch_cr_tag_pl_back + 0x28) = (long) (create_titled_window_menu((const void *)arg3, 1, arg1, *(s32 *)((s8 *)ch_cr_tag_pl_back + 0x24)));
+        *(s32 *)((s8 *)ch_cr_tag_pl_back + 0x28) = (long) (create_titled_window_menu(arg3, 1, arg1, *(s32 *)((s8 *)ch_cr_tag_pl_back + 0x24)));
     }
     forward_trade_action_default__16TObjCityMainWarpFPviii(((void *) *(s32 *)((s8 *)ch_cr_tag_pl_back + 0x28)), (arg2), 0x21, 0);
     ((TAdChrSelASlotGC *)(*(s32 *)((s8 *)ch_cr_tag_pl_back + 0x28)))->set_flag_40();
