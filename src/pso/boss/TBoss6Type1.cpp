@@ -1525,8 +1525,7 @@ extern "C" void TBoss6Type1__sub_802B715C(TBoss6Type1 *self) {
         self->update_effect_points();
         n = TLobby::get_game_mode();
         for (i = 0; i < n; i++) {
-            Vec rel;
-            Vec seg;
+            Vec dir[2];
             Vec *chain[4];
             f32 cross_y[3];
             Vec c;
@@ -1540,13 +1539,13 @@ extern "C" void TBoss6Type1__sub_802B715C(TBoss6Type1 *self) {
             chain[1] = &self->m_4c8;
             chain[2] = tip;
             for (k = 0; k < 3; k++) {
-                VecCopy(&seg, chain[k + 1]);
-                subtract_vector(&seg, chain[k]);
-                VecCopy(&rel, &p->position);
-                subtract_vector(&rel, chain[k]);
-                seg.y = 0.0f;
-                rel.y = 0.0f;
-                vec3_cross(&seg, &rel, &c);
+                VecCopy(&dir[0], chain[k + 1]);
+                subtract_vector(&dir[0], chain[k]);
+                VecCopy(&dir[1], &p->position);
+                subtract_vector(&dir[1], chain[k]);
+                dir[0].y = 0.0f;
+                dir[1].y = 0.0f;
+                vec3_cross(&dir[0], &dir[1], &c);
                 cross_y[k] = c.y;
                 if (k > 0) {
                     f32 prev = cross_y[k - 1];
