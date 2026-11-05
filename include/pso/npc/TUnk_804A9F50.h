@@ -6,9 +6,7 @@
 class TUnk_804A9F50 : public TObjNpcBase {
 public:
     virtual ~TUnk_804A9F50();
-    virtual void request_action(s32 action);
+    void *destroy_npc_lappy_base(s16);
 };
-
-extern "C" void *__dt__13TUnk_804A9F50Fv(void *, s16);
 
 #endif

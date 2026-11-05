@@ -15,6 +15,10 @@ extern const char *TObjEneDellBiter_Eff_TpAbsorb1__class_name;
 extern u8 lbl_8047511C[];
 extern s32 lbl_80475124[];
 extern DelbiterParticleAngles lbl_8047512C;
+extern const f32 lbl_805DEFA0;
+extern const f32 lbl_805DEFA4;
+extern const f32 lbl_805DEFA8;
+extern const f32 lbl_805DEFAC;
 }
 
 extern "C" {
@@ -26,6 +30,9 @@ f32 cos_table_lookup(s32);
 s32 is_vec_xz_cross_negative(void *, void *);
 s32 rotate_xz_pair_by_angle(void *, void *, s32);
 extern const char *TObjEneDellBiter_Eff_Rush__name;
+extern const f32 lbl_805DEFAC;
+extern const f32 lbl_805DEFB0;
+extern const f32 lbl_805DEFB4;
 }
 
 #pragma fp_contract on
@@ -40,10 +47,10 @@ TObjEneDellBiter_Eff_Rush::TObjEneDellBiter_Eff_Rush(
     field_30 = 0;
     VecCopy(&displacement, &recipient->position);
     subtract_vector(&displacement, &source->position);
-    displacement.y = 0.0f;
-    direction.x = sin_table_lookup(source->rotation_y);
-    direction.y = 0.0f;
-    direction.z = cos_table_lookup(source->rotation_y);
+    displacement.y = lbl_805DEFAC;
+    direction.x = sin_table_lookup(source->rotation.yaw);
+    direction.y = lbl_805DEFAC;
+    direction.z = cos_table_lookup(source->rotation.yaw);
     if (is_vec_xz_cross_negative(&direction, &displacement) != 0) {
         rotate_xz_pair_by_angle(&direction.x, &direction.z, -0x1800);
     } else {
@@ -67,13 +74,13 @@ void TObjEneDellBiter_Eff_Rush::run_task() {
         return;
     }
     f32 speed = strength;
-    if (speed <= 0.02f) {
+    if (speed <= lbl_805DEFB0) {
         queue_destruction();
         return;
     }
-    target->x_speed = direction.x * speed;
-    target->m_310 = direction.z * strength;
-    strength *= 0.8f;
+    target->movement_velocity.x = direction.x * speed;
+    target->movement_velocity.z = direction.z * strength;
+    strength *= lbl_805DEFB4;
 }
 
 void TObjEneDellBiter_Eff_Rush::render() {}
@@ -84,11 +91,11 @@ TObjEneDellBiter_Eff_TpAbsorb1::TObjEneDellBiter_Eff_TpAbsorb1(
     DelbiterParticleAngles angles;
     m_name = TObjEneDellBiter_Eff_TpAbsorb1__class_name;
     power = attack_power;
-    distance = 0.0f;
-    sample_distance = 0.0f;
+    distance = lbl_805DEFAC;
+    sample_distance = lbl_805DEFAC;
     VecCopy(&position, origin);
     direction.x = sin_table_lookup(angle);
-    direction.y = 0.0f;
+    direction.y = lbl_805DEFAC;
     direction.z = cos_table_lookup(angle);
     attack_history = history;
     bodies->shape = 1;
@@ -113,10 +120,10 @@ void TObjEneDellBiter_Eff_TpAbsorb1::run_task() {
     f32 step;
     if (effect != NULL) {
         VecCopy(&destination, &position);
-        destination.x += 5.0f * direction.x;
-        step = 16.0f;
-        destination.z += 5.0f * direction.z;
-        distance += 5.0f;
+        destination.x += lbl_805DEFA0 * direction.x;
+        step = lbl_805DEFA4;
+        destination.z += lbl_805DEFA0 * direction.z;
+        distance += lbl_805DEFA0;
         while (distance > sample_distance) {
             VecCopy(&sample, &position);
             sample.x += sample_distance * direction.x;
@@ -126,15 +133,15 @@ void TObjEneDellBiter_Eff_TpAbsorb1::run_task() {
             }
             sample_distance += step;
         }
-        sample_distance -= 5.0f;
-        distance -= 5.0f;
+        sample_distance -= lbl_805DEFA0;
+        distance -= lbl_805DEFA0;
         if (csnVector(&position, &destination, 0x1EFF) != 0) {
             queue_destruction();
             return;
         }
         VecCopy(&position, &destination);
-        bodies->half_width = 2.5f;
-        bodies->radius = 2.5f;
+        bodies->half_width = lbl_805DEFA8;
+        bodies->radius = lbl_805DEFA8;
         update_enemy_collision_flags();
         if (bodies->flags & 0x200000) {
             queue_destruction();

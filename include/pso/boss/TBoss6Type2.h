@@ -70,7 +70,8 @@ struct TBoss6Type2
     u8 unk_410[0x4];
     void * m_414;
     u32 m_418;
-    f32 state_progress;  // 1 - state_timer / state_duration
+    // Charge / soul progress, 0..1. sub_802BEC28 stores the elapsed ratio here.
+    f32 m_41c;
     u32 m_420;
     u32 m_424;
     u32 m_428;
@@ -86,8 +87,8 @@ struct TBoss6Type2
     s16 m_454;
     u8 unk_456[0x2];
     u32 m_458;
-    s32 state_duration;  // what state_timer was last set to
-    s32 state_timer;     // counts down to 0 in the state handlers
+    s32 unk_45C;
+    s32 m_460;
     u16 m_464;
     u16 m_466;
     u16 m_468;
@@ -100,23 +101,29 @@ struct TBoss6Type2
     u32 m_47c;
     u32 m_480;
     TBoss6Type2Point target_position;
-    u8 _pad490[0x4F8 - 0x490];
+    u8 _pad490[0x44];
+    s32 unk_4D4;
+    u8 _pad4D8[0x20];
     u32 m_4f8;
     u8 unk_4FC[0x4];
     f32 m_500;
-    u8 unk_504[0x4];
+    s32 unk_504;
     u32 m_508;
     u8 _pad50C[0x520 - 0x50C];
     s32 lower_contact_index;
     TBoss6Type2Point lower_contact_delta;
     TBoss6Type2Point previous_lower_contact;
-    u8 _pad53C[0x59C - 0x53C];
+    u8 _pad53C[0x20];
+    u16 unk_55C;
+    u8 _pad55E[0x3E];
     void* m_59c;
     u8 _pad5A0[0x5C0 - 0x5A0];
     TBoss6Type2Point contact_point_5c0;
     u8 _pad5CC[0x5FC - 0x5CC];
     TBoss6Type2Point contact_point_5fc;
-    u8 _pad608[0x764 - 0x608];
+    u8 _pad608[0x18];
+    u8 unk_620[0xC];
+    u8 unk_62C[0x138];
     u32 m_764;
     void* m_768;
 
@@ -213,7 +220,9 @@ struct TBoss6Type2
     void init_timers_and_copy_pos();
     void update_timer();
     void update_when_timer_zero();
-    void start_death_sequence();
+    void start_death_sequence(u8 *arg0);
+    void update_death_sequence(void *arg0);
+    void update_attack_timer(void *arg0);
     void update_zako_spawn_timer();
     void reset_timers_and_spawn_particle();
     void update_zako_phase();
@@ -275,9 +284,6 @@ struct TBoss6Type2
     void send_state_action();
     void turn_toward_target();
     void apply_pending_effect();
-    // State-table handlers (lbl_804E00DC rows: enter / idle / update)
-    void update_attack_timer();
-    void update_death_sequence();
     void sub_802BE648();
     void sub_802BE6A0();
     void sub_802BE738();
@@ -292,7 +298,15 @@ struct TBoss6Type2
 };
 
 typedef char TBoss6Type2_offset_position[(offsetof(TBoss6Type2, position) == 0x38) ? 1 : -1];
+typedef char TBoss6Type2_offset_m_41c[(offsetof(TBoss6Type2, m_41c) == 0x41C) ? 1 : -1];
+typedef char TBoss6Type2_offset_unk_45C[(offsetof(TBoss6Type2, unk_45C) == 0x45C) ? 1 : -1];
+typedef char TBoss6Type2_offset_m_460[(offsetof(TBoss6Type2, m_460) == 0x460) ? 1 : -1];
 typedef char TBoss6Type2_offset_target_position[(offsetof(TBoss6Type2, target_position) == 0x484) ? 1 : -1];
+typedef char TBoss6Type2_offset_unk_4D4[(offsetof(TBoss6Type2, unk_4D4) == 0x4D4) ? 1 : -1];
+typedef char TBoss6Type2_offset_unk_504[(offsetof(TBoss6Type2, unk_504) == 0x504) ? 1 : -1];
+typedef char TBoss6Type2_offset_unk_55C[(offsetof(TBoss6Type2, unk_55C) == 0x55C) ? 1 : -1];
+typedef char TBoss6Type2_offset_unk_620[(offsetof(TBoss6Type2, unk_620) == 0x620) ? 1 : -1];
+typedef char TBoss6Type2_offset_unk_62C[(offsetof(TBoss6Type2, unk_62C) == 0x62C) ? 1 : -1];
 typedef char TBoss6Type2_offset_lower_contact_index[(offsetof(TBoss6Type2, lower_contact_index) == 0x520) ? 1 : -1];
 typedef char TBoss6Type2_offset_lower_contact_delta[(offsetof(TBoss6Type2, lower_contact_delta) == 0x524) ? 1 : -1];
 typedef char TBoss6Type2_offset_previous_lower_contact[(offsetof(TBoss6Type2, previous_lower_contact) == 0x530) ? 1 : -1];

@@ -1,4 +1,7 @@
+#include "pso/player/demo_mode.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include <stdlib.h>
 #include "pso/TMainTask.h"
 #include "pso/math/AngleLookup.h"
@@ -39,11 +42,11 @@ BmlResource *TOKurage__bml_resource;
 // x step), at most 0x40 a frame.
 void TOKurage::update_tilt() {
     s32 old_rotation[3];
-    copy_xyz(old_rotation, &rotation_x);
-    rotation_x = (s32)(6000.0f * (position.z - prev_position.z));
-    rotation_z = (s32)(-6000.0f * (position.x - prev_position.x));
-    rotation_x = approach_angle_limited(old_rotation[0], rotation_x, 0x40);
-    rotation_z = approach_angle_limited(old_rotation[2], rotation_z, 0x40);
+    copy_xyz(old_rotation, &this->rotation.pitch);
+    this->rotation.pitch = (s32)(6000.0f * (position.z - prev_position.z));
+    this->rotation.roll = (s32)(-6000.0f * (position.x - prev_position.x));
+    this->rotation.pitch = approach_angle_limited(old_rotation[0], this->rotation.pitch, 0x40);
+    this->rotation.roll = approach_angle_limited(old_rotation[2], this->rotation.roll, 0x40);
 }
 
 void TOKurage::check_player_distance() {
@@ -86,7 +89,7 @@ void TOKurage::init() {
 void TOKurage::run_task() {
     f32 y;
     VecCopy(&prev_position, &position);
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         debug_print_ranges();
         return;
     }
@@ -133,7 +136,7 @@ void TOKurage::run_task() {
             dir.y = 0.0f;
             dir.z = 2.0f * (0.0015f * (3.0517578125e-05f * (f32)rand())) + 0.05f;
             push_matrix_from(&identity_matrix);
-            rotate_matrix_y(NULL, rotation_y);
+            rotate_matrix_y(NULL, this->rotation.yaw);
             rotate_vector_by_matrix(NULL, &dir, &out);
             pop_matrices(1);
             velocity.x += out.x;
@@ -147,9 +150,9 @@ void TOKurage::run_task() {
         break;
     case 2:
         if (turn_dir == 0) {
-            rotation_y = (f32)rotation_y + (200.0f * (3.0517578125e-05f * (f32)rand()) + 200.0f);
+            this->rotation.yaw = (f32)this->rotation.yaw + (200.0f * (3.0517578125e-05f * (f32)rand()) + 200.0f);
         } else {
-            rotation_y = (f32)rotation_y - (200.0f * (3.0517578125e-05f * (f32)rand()) + 200.0f);
+            this->rotation.yaw = (f32)this->rotation.yaw - (200.0f * (3.0517578125e-05f * (f32)rand()) + 200.0f);
         }
         if (rising == 0) {
             Vec dir;
@@ -158,7 +161,7 @@ void TOKurage::run_task() {
             dir.y = 0.0f;
             dir.z = 2.0f * (0.025f * (3.0517578125e-05f * (f32)rand())) + 0.05f;
             push_matrix_from(&identity_matrix);
-            rotate_matrix_y(NULL, rotation_y);
+            rotate_matrix_y(NULL, this->rotation.yaw);
             rotate_vector_by_matrix(NULL, &dir, &out);
             pop_matrices(1);
             velocity.x += out.x;
@@ -240,13 +243,13 @@ void TOKurage::run_task() {
             break;
         case 3:
             if (turn_dir == 0) {
-                rotation_y = (f32)rotation_y + (200.0f * (3.0517578125e-05f * (f32)rand()) + 200.0f);
+                this->rotation.yaw = (f32)this->rotation.yaw + (200.0f * (3.0517578125e-05f * (f32)rand()) + 200.0f);
             } else {
-                rotation_y = (f32)rotation_y - (200.0f * (3.0517578125e-05f * (f32)rand()) + 200.0f);
+                this->rotation.yaw = (f32)this->rotation.yaw - (200.0f * (3.0517578125e-05f * (f32)rand()) + 200.0f);
             }
             if (rising == 0) {
                 push_matrix_from(&identity_matrix);
-                rotate_matrix_y(NULL, rotation_y);
+                rotate_matrix_y(NULL, this->rotation.yaw);
                 pop_matrices(1);
             }
             if (xyz_distance(&home, &position) < scale.y / 5.0f) {
@@ -276,8 +279,8 @@ void TOKurage::render() {
     if (update_object_view_visibility(view_range, model_radius) != 0) {
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_zyx(NULL, rotation_x, rotation_y, rotation_z);
-        TObjFish::set_global_param(texlist);
+        rotate_matrix_zyx(NULL, this->rotation.pitch, this->rotation.yaw, this->rotation.roll);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         switch (state) {
         case 4:
             saved_model_render_flags = model_render_flags;
@@ -312,16 +315,13 @@ void *TOKurage::create(void *set_data) {
 
 void TOKurage::destroy_static_instance() {
     if (TOKurage__bml_resource != NULL) {
-        TLobby__sub_8001FE7C(TOKurage__bml_resource, 1);
+        delete (BmlResource *)(TOKurage__bml_resource);
         TOKurage__bml_resource = NULL;
     }
 }
 
 void TOKurage::load_static_resource() {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_fs_obj_kurage_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&bm_fs_obj_kurage_resource_descriptor), 0, 0, (void *)(0));
     TOKurage__bml_resource = resource;
 }
 

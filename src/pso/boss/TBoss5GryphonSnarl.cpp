@@ -1,10 +1,10 @@
 #include "pso/boss/TBoss5GryphonSnarl.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/unk/text_80087278.h"
 #include "pso/system/vector.h"
 
 #include "types.h"
-#include "pso/boss/TBoss8Dragon_8005D700.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/boss/TBoss8Dragon.h"
 #include "pso/misc/TNowLoading.h"
@@ -20,6 +20,7 @@ s32 * TBoss5GryphonSnarl__effect_table;
 
 
 extern "C" {
+s32 TBoss8Dragon__sub_8005D700(void *self);
 extern s32 boss5_gryphon_snarl_effect_id_table[4];
 extern s32 *TBoss5GryphonSnarl__effect_table;
 extern const char *lbl_805D2820;
@@ -31,7 +32,6 @@ f32 cos_table_lookup(s32);
 s32 get_bml_model(s32, s32);
 void attach_particle_model(void *, s32, s32, s32, s32, f32);
 
-s32 TLobby__sub_8001FE7C(s32, s32);
 s32 release_texture_list(void*);
 
 void TBoss5GryphonSnarl::render() {  }
@@ -142,8 +142,8 @@ void TBoss5GryphonSnarl__sub_80066E84(void) {  }
 extern s32 lbl_805D4DD8;
 extern u32 boss5_common_texture_list;
 
-void TBoss5GryphonSnarl__sub_80066E88(void) {
-    switch (TBoss8Dragon__sub_8005D700()) {
+void TBoss5GryphonSnarl__sub_80066E88(void *self) {
+    switch (TBoss8Dragon__sub_8005D700(self)) {
     case 0:
         TBoss5GryphonSnarl__effect_table = boss5_gryphon_snarl_effect_id_table;
         break;
@@ -156,6 +156,6 @@ void TLobby__sub_80066EC0(void) {
         TAdSinglePlyChrSelectGC::safe_free(boss5_common_texture_list);
         boss5_common_texture_list = 0U;
     }
-    TLobby__sub_8001FE7C(lbl_805D4DD8, 1);
+    delete (BmlResource *)(lbl_805D4DD8);
     lbl_805D4DD8 = 0;
 }

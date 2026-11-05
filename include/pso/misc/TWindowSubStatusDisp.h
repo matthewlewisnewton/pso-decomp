@@ -3,31 +3,13 @@
 
 #include "types.h"
 #include <stddef.h>
-#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TUnk_804CE018.h"
 
-struct TWindowSubStatusDisp : public TWindowBase {
+struct TWindowSubStatusDisp : public TUnk_804CE018 {
     virtual ~TWindowSubStatusDisp();
     void calc_row_width();
     virtual void run_task();
     virtual void render();
-    u8 unk_1C[0x1];
-    s8 m_1d;
-    u8 unk_1E[0x1];
-    signed char m_1f;
-    s16 m_20;
-    u8 _pad22[0x2];
-    void* m_24;
-    u8 unk_28[0x2];
-    s16 m_2a;
-    s32 m_2c;
-    u8 unk_30[0x4];
-    s32 m_34;
-    u8 unk_38[0x4];
-    f32 m_3c;
-    u8 unk_40[0xC];
-    f32 m_4c;
-    u8 unk_50[0xC];
-    u32 m_5c;
     s16 m_60;
     u16 m_62;
     u32 m_64;
@@ -155,7 +137,7 @@ struct TWindowSubStatusDisp : public TWindowBase {
     static s32 resolve_player_slot(s32 slot);
     void render_status_and_children();
     u8 *init_layout_entry_copy(u8 *arg1);
-    u8 *init_layout_entry_rect(u8 *arg1, s32 arg2);
+    u8 *init_layout_entry_rect(u8 *arg1, s16 arg2);
     void advance_state();
     void finalize_state();
     void setup_entry_msg_d1(s32 arg1);

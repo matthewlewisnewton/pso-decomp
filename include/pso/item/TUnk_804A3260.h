@@ -5,17 +5,14 @@
 
 class TUnk_804A3260 : public TItemWeapon {
 public:
-    TUnk_804A3260(s32 parent, u8 *item);
     virtual ~TUnk_804A3260();
-    virtual void vfunc_60();
     virtual void reserved_53();
     virtual void update_weapon();
-    virtual void emit_marker_effects();
-    f32 muzzle[2][3];
-    s32 effectJoint;
-    s32 effectAngle;
-    s32 effectScaleJoint;
-    s32 effectFrame;
+    u8 unk_1F8[0x18];
+    s32 m_210;
+    u8 unk_214[0x4];
+    s32 m_218;
+    u8 unk_21C[0x4];
 };
 
 #endif

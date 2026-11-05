@@ -23,15 +23,16 @@ s32 TObjPlayer::get_target_field_1c() {
     return 0;
 }
 
+extern f32 lbl_805DFEC8;
 
 f32 TObjPlayer::get_attached_float_24() {
     if ((void *) this->m_next == NULL) {
-        return 0.0f;
+        return lbl_805DFEC8;
     }
     if (get_flag_1() != 0) {
         return *(f32 *)((s8 *)this->m_next + 0x24);
     }
-    return 0.0f;
+    return lbl_805DFEC8;
 }
 s32 TObjPlayer::try_ground_action(s32 arg1) {
     if ((u32) *(u32 *)((s8 *)this + 0xC) == 0U) {

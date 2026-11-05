@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/object/TObjRainbowLobby.h"
 #include "pso/TMainTask.h"
@@ -15,8 +16,6 @@
 #pragma readonly_strings on
 
 extern "C" {
-void TLobby__sub_8001FE7C(BmlResource *resource, s32 del);
-BmlResource *load_resource_from_descriptor(void *resource, s32 kind, BmlResourceDescriptor *descriptor, s32, s32, s32);
 // Defined (returning u8) in the lobby-event module; the original callers test
 // the full register.
 }
@@ -30,10 +29,10 @@ BmlResource *TObjRainbowLobby::shared_model_resource;
 void TObjRainbowLobby::render() {
     if (state != 0) {
         TParticleCtrl::begin_effect_render();
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
+        rotate_matrix_y(NULL, this->rotation.yaw);
         if (state != 3) {
             scale_matrix(NULL, scale, 1.0f, scale);
         }
@@ -79,16 +78,13 @@ void *TObjRainbowLobby::create(void *set_data) {
 
 void TObjRainbowLobby::free_resources() {
     if (shared_model_resource != NULL) {
-        TLobby__sub_8001FE7C(shared_model_resource, 1);
+        delete (BmlResource *)(shared_model_resource);
         shared_model_resource = NULL;
     }
 }
 
 void TObjRainbowLobby::load_resources() {
-    void *resource = ::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_obj_lobby_rainbow_resource_descriptor, 0, 0, 0);
-    }
+    void *resource = new BmlResource(1, (BmlResourceDescriptor *)(&bm_obj_lobby_rainbow_resource_descriptor), 0, 0, (void *)(0));
     shared_model_resource = (BmlResource *)resource;
 }
 

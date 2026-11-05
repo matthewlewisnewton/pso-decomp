@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "types.h"
 #include "pso/system/vector.h"
 #include "pso/player/TObjChara.h"
@@ -388,14 +389,6 @@ struct B_800F698C {
     s16 f0; u8 pad2[4]; u16 f6; s16 f8; s16 fA; u8 padC[4]; Vec_800F698C v10; Vec_800F698C v1C; f32 f28[5]; s16 f3C; s16 f3E;
 };
 
-struct Node_800F6E2C {
-    u8 pad0[0x340];
-    Node_800F6E2C *f340;
-    Node_800F6E2C *f344;
-    Node_800F6E2C *f348;
-    Node_800F6E2C *f34C;
-};
-
 struct VBase_800F6BF0 { u8 pad[0x18]; };
 
 struct Plr_800F6BF0 : VBase_800F6BF0 {
@@ -426,7 +419,6 @@ void obj_setFlags30(void *, s32);
 s32 is_split_screen();
 s32 get_current_floor();
 void queue_destruction__7TObjectFv(void *arg0);
-s32 exchange_object_state__9TObjEnemyFls(void *, void *, int);
 void pause_update__7TObjectFv(void *arg0);
 s32 is_quest_active();
 s32 is_flag_set__6TLobbyFv();
@@ -435,16 +427,14 @@ Ene_800F62E0 * find_active_entity_by_id(u16);
 void * __ct__11TObjControlFP7TObject(void *arg0);
 void handle_6x9C_set_enemy_low_game_flags_ultimate(Msg_800F62E0 *arg0);
 void handle_6x0A_update_enemy_state(Msg_800F6464 *arg0);
-void distribute_experience__9TObjEnemyFv(TObjPlayer_800F6B68 *self);
 void award_enemy_experience__9TObjEnemyFl(u8 *arg0, s32 arg1);
-void link_chain_nodes__10TObjPlayerFPvPvPv(void *arg0, Node_800F6E2C *arg1, Node_800F6E2C *arg2);
 void apply_by_index__9TObjEnemyFs(s16, void *);
 void resume_update__7TObjectFv(void *arg0);
 s32 get_attack_credit_slot_count(void *);
 f32 TLobby__sub_800F7A6C();
 f32 TLobby__sub_800F7A7C();
 s32 create_font_small_task(void *, s32, s32, s32, s32 *, s32, u16);
-int send_6x60_standard_drop_item_request(void*);
+void send_6x60_standard_drop_item_request(void*);
 s32 fn_801B0480(void *, void *, s32);
 s32 draw_player_status(void *, void *, s32 *);
 s32 submit_cursor_candidate(int, int);
@@ -478,7 +468,7 @@ void TObjControl::run_task() {
         queue_destruction__7TObjectFv(this);
         return;
     }
-    if (TObjPlayer::check_demo_mode() == 0) {
+    if (check_demo_mode() == 0) {
         if (((EnemyControlDispatch *)(enemy))->m31() != 0) {
             resume_update__7TObjectFv((enemy));
             ((EnemyControlDispatch *)(enemy))->m61();
@@ -648,7 +638,7 @@ void TObjEnemy::send_6x0A_enemy_state(void *state_in) {
     u32 new_flags;
     if (((Pkt_800F65D0 *)state_in) != NULL) {
         ((TLobby *)(&state))->copy_header(((Pkt_800F65D0 *)state_in));
-    } else if (this->exchange_object_state((s32)&state, 1) == 0) {
+    } else if (this->exchange_object_state(&state, 1) == 0) {
         return;
     }
     init_6x0A_enemy_state_packet(&msg);
@@ -674,7 +664,7 @@ s32 TObjEnemy::vfunc_74(s32 kind) {
     s32 ret;
     ret = 0;
     if (this->entity_id >= 0x1000 && this->entity_id < 0x4000) {
-        exchange_object_state__9TObjEnemyFls(this, &pkt, 1);
+        exchange_object_state(&pkt, 1);
         pkt.diff = this->hpmax - this->hp;
         pkt.id = this->actorFlags;
         switch (kind) {
@@ -689,7 +679,7 @@ s32 TObjEnemy::vfunc_74(s32 kind) {
             pkt.bv = lbl_805DA8C0 * ((f32)TObjPlayer__sub_8001943C(this, 3) / lbl_805DA8C4 - lbl_805DA8C8);
             break;
         }
-        ret = exchange_object_state__9TObjEnemyFls(this, &pkt, 0);
+        ret = exchange_object_state(&pkt, 0);
         if (ret != 0) {
             send_6x0A_enemy_state(&pkt);
         }
@@ -789,9 +779,9 @@ u8 *get_enemy_entity(u16 arg0) {
     return 0;
 }
 
-void TObjPlayer::refresh_lobby_state() { distribute_experience__9TObjEnemyFv((TObjPlayer_800F6B68 *)(this)); query_lobby_state(); }
+void TObjEnemy::distribute_experience_and_request_drop() { distribute_experience(); request_standard_drop(); }
 
-int TObjPlayer::query_lobby_state() { return send_6x60_standard_drop_item_request(this); }
+void TObjEnemy::request_standard_drop() { send_6x60_standard_drop_item_request(this); }
 
 void TObjEnemy::distribute_experience() {
     s32 count;
@@ -849,35 +839,35 @@ void TObjEnemy::update_prev_position() {
     VecCopy((Vec *)(arg0 + 0x2FC), (const Vec *)(arg0 + 0x38));
     temp_r3 = (unsigned char *) (this->m_2b0);
     if (temp_r3 != NULL) {
-        this->m_300 = (f32) ((lbl_805DA8DC * *(f32 *)((s8 *)temp_r3 + 0x10)) + this->m_300);
+        this->body_center_position.y = (f32) ((lbl_805DA8DC * *(f32 *)((s8 *)temp_r3 + 0x10)) + this->body_center_position.y);
     }
 }
 #pragma pop
 
-void link_chain_nodes__10TObjPlayerFPvPvPv(void *arg0, Node_800F6E2C *arg1, Node_800F6E2C *arg2) {
-    Node_800F6E2C *p = arg1->f34C;
-    Node_800F6E2C *q = arg2->f34C;
+void TObjEnemy::link_last_group_child(TObjEnemy *source, TObjEnemy *destination) {
+    TObjEnemy *p = source->children;
+    TObjEnemy *q = destination->children;
     if (p != NULL) {
-        while (p->f348 != NULL) {
-            p = p->f348;
+        while (p->next != NULL) {
+            p = p->next;
         }
         if (q == NULL) {
-            if (p->f344 != NULL) {
-                p->f344->f348 = NULL;
-                p->f344 = NULL;
+            if (p->previous != NULL) {
+                p->previous->next = NULL;
+                p->previous = NULL;
             }
-            p->f340 = arg2;
-            arg2->f34C = p;
+            p->group = destination;
+            destination->children = p;
             return;
         }
-        while (q->f348 != NULL) {
-            q = q->f348;
+        while (q->next != NULL) {
+            q = q->next;
         }
-        if (p->f344 != NULL) {
-            p->f344->f348 = NULL;
+        if (p->previous != NULL) {
+            p->previous->next = NULL;
         }
-        p->f344 = q;
-        q->f348 = p;
+        p->previous = q;
+        q->next = p;
     }
 }
 
@@ -1122,9 +1112,8 @@ s32 TUnk_80493450::countChildren() {
     return count;
 }
 
-s32 TObjPlayer::is_action_available() {
-    TObjEnemy*_w0 = (TObjEnemy*)this;
-    return ((s32)_w0->groupRoot()) ? 1 : 0;
+s32 TObjEnemy::has_group() {
+    return groupRoot() ? 1 : 0;
 }
 
 TObjEnemy* TObjEnemy::groupRoot() {

@@ -1,5 +1,4 @@
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/unk/text_8030C340.h"
@@ -69,20 +68,20 @@ TWindowCtrl_8024C160 *__dt__11TWindowCtrlFv(TWindowCtrl_8024C160 *self, s16 flag
         self->vt = __vt__11TWindowCtrl;
         for (i = 3; i >= 0; i--) {
             if (self->wins84[i] != NULL) {
-                ((TWindowBase *)(self->wins84[i]))->close();
+                TWindow__close((u8 *)self->wins84[i]);
                 self->wins84[i] = NULL;
             }
         }
         if (self->f44 != NULL) {
-            ((TWindowBase *)self->f44)->close();
+            TWindow__close((u8 *)self->f44);
             self->f44 = NULL;
         }
         if (self->f34 != NULL) {
-            ((TWindowBase *)self->f34)->close();
+            TWindow__close((u8 *)self->f34);
             self->f34 = NULL;
         }
         if (self->f30 != NULL) {
-            ((TWindowBase *)self->f30)->close();
+            TWindow__close((u8 *)self->f30);
             self->f30 = NULL;
         }
         if (self->f40 != NULL) {
@@ -95,7 +94,7 @@ TWindowCtrl_8024C160 *__dt__11TWindowCtrlFv(TWindowCtrl_8024C160 *self, s16 flag
         }
         for (i = 2; i >= 0; i--) {
             if (self->wins78[i] != NULL) {
-                ((TWindowBase *)(self->wins78[i]))->close();
+                TWindow__close((u8 *)self->wins78[i]);
                 self->wins78[i] = NULL;
             }
         }
@@ -110,7 +109,7 @@ TWindowCtrl_8024C160 *__dt__11TWindowCtrlFv(TWindowCtrl_8024C160 *self, s16 flag
             self->f38 = NULL;
         }
         if (self->f2C != NULL) {
-            ((TWindowBase *)self->f2C)->close();
+            TWindow__close((u8 *)self->f2C);
             self->f2C = NULL;
         }
         if (TWindowCtrl__active_window == self) {

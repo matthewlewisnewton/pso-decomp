@@ -1,12 +1,13 @@
+#include "pso/math/MatrixCopy.h"
 #include "types.h"
 #include "pso/math/MatrixTransforms.h"
-#include "pso/unk/text_803D9650.h"
 #include "dolphin/mtx.h"
 #include "pso/player/TObjPlayer.h"
 
 struct Matrix34 { f32 elements[3][4]; };
 
 extern "C" {
+s32 matrix_apply_translation(int, f32, f32, f32);
 extern u32 current_matrix;
 f32 sin_table_lookup(int);
 f32 cos_table_lookup(int);
@@ -27,29 +28,27 @@ void rotate_matrix_z(Matrix34* matrix, s32 angle) {
     }
 }
 
+}
+
 #pragma push
 #pragma peephole off
-void TObjPlayer::copy_matrix(u32 arg0, u32 arg1) {
+extern "C" void copy_matrix(MtxP dest, const f32 (*source)[4]) {
     u32 var_r0;
     u32 var_r3;
-    if (arg0 == 0U) {
+    if (dest == NULL) {
         var_r0 = current_matrix;
     } else {
-        var_r0 = arg0;
+        var_r0 = (u32)dest;
     }
-    if (arg1 == 0U) {
+    if (source == NULL) {
         var_r3 = current_matrix;
     } else {
-        var_r3 = arg1;
+        var_r3 = (u32)source;
     }
     PSMTXCopy((MtxP)var_r3, (MtxP)var_r0);
 }
-}
-#pragma pop
 
-asm void subtract_vector(Vec *v, const Vec *sub) {
-#include "orig_asm/pso/math/MatrixTransforms/subtract_vector.inc"
-}
+#pragma pop
 
 void euler_zyx_to_quaternion(u8 *arg0, u8 *arg1) {
     f32 temp_f1;
@@ -100,6 +99,6 @@ void translate_matrix(u32 arg0, f32 x, f32 y, f32 z) {
     if (var_r3 == 0U) {
         phi_r3 = current_matrix;
     }
-    matrix_apply_translation((MtxP)phi_r3, x, y, z);
+    matrix_apply_translation(phi_r3, x, y, z);
 }
 #pragma pop

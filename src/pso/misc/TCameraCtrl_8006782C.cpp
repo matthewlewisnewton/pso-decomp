@@ -27,7 +27,17 @@ extern "C" {
 f32 vector_length(void *);
 extern RecoveredGlobal_80067AB0_lbl_80438150 camera_ctrl_default_offset_vecs;
 extern u8 *camera_ctrl_instance;
+extern const f32 lbl_805D8F38;
+extern const f32 lbl_805D8F4C;
+extern const f32 lbl_805D8F50;
+extern const f32 lbl_805D8F54;
+extern const f32 lbl_805D8F58;
+extern const f32 lbl_805D8F5C;
 void normalize_vector(void *);
+extern const f32 lbl_805D8F3C;
+extern const f32 lbl_805D8F40;
+extern const f32 lbl_805D8F44;
+extern const f32 lbl_805D8F48;
 void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
 s32 is_on_current_screen__11TCameraCtrlFv(void *, s32);
@@ -57,10 +67,10 @@ void TCameraCtrl::update_target_follow() {
         temp_r4 = *(u8 **)((s8 *)arg0 + 0x1C);
         stack.sp8 = *(f32 *)((s8 *)temp_r4 + 0x38) - *(f32 *)((s8 *)temp_r3 + 0);
         temp_f1 = (*(f32 *)((s8 *)temp_r4 + 0x40)) - *(f32 *)((s8 *)temp_r3 + 8);
-        stack.spC = 0.0f;
+        stack.spC = lbl_805D8F38;
         stack.sp10 = temp_f1;
         temp_f1_2 = vector_length(&stack.sp8);
-        if (0.0f != temp_f1_2) {
+        if (lbl_805D8F38 != temp_f1_2) {
             normalize_vector(&stack.sp8);
         } else {
             return;
@@ -70,13 +80,13 @@ void TCameraCtrl::update_target_follow() {
             *(f32 *)((s8 *)arg0 + 0x48) = (f32) *(f32 *)((s8 *)temp_r3 + 0);
             *(f32 *)((s8 *)arg0 + 0x50) = (f32) *(f32 *)((s8 *)temp_r3 + 8);
             *(f32 *)((s8 *)arg0 + 0x4C) = (f32) *(f32 *)((s8 *)temp_r3 + 4);
-            if (*(f32 *)((s8 *)arg0 + 0x4C) >= 50.0f) {
-                *(f32 *)((s8 *)arg0 + 0x4C) = 60.0f;
+            if (*(f32 *)((s8 *)arg0 + 0x4C) >= lbl_805D8F3C) {
+                *(f32 *)((s8 *)arg0 + 0x4C) = (f32) lbl_805D8F40;
             }
-            *(f32 *)((s8 *)arg0 + 0x3C) = (f32) ((45.42f * stack.sp8) + *(f32 *)((s8 *)(*(u8 **)((s8 *)arg0 + 0x1C)) + 0x38));
-            *(f32 *)((s8 *)arg0 + 0x44) = (f32) ((45.42f * stack.sp10) + *(f32 *)((s8 *)(*(u8 **)((s8 *)arg0 + 0x1C)) + 0x40));
-            *(f32 *)((s8 *)arg0 + 0x40) = (f32) (15.0f + *(f32 *)((s8 *)(*(u8 **)((s8 *)arg0 + 0x1C)) + 0x3C));
-            if (temp_f1_2 < 100.0f) {
+            *(f32 *)((s8 *)arg0 + 0x3C) = (f32) ((lbl_805D8F44 * stack.sp8) + *(f32 *)((s8 *)(*(u8 **)((s8 *)arg0 + 0x1C)) + 0x38));
+            *(f32 *)((s8 *)arg0 + 0x44) = (f32) ((lbl_805D8F44 * stack.sp10) + *(f32 *)((s8 *)(*(u8 **)((s8 *)arg0 + 0x1C)) + 0x40));
+            *(f32 *)((s8 *)arg0 + 0x40) = (f32) (lbl_805D8F48 + *(f32 *)((s8 *)(*(u8 **)((s8 *)arg0 + 0x1C)) + 0x3C));
+            if (temp_f1_2 < lbl_805D8F4C) {
                 *(s32 *)((s8 *)arg0 + 0x114) = 1;
                 *(f32 *)((s8 *)arg0 + 0x118) = (f32) (*(f32 *)((s8 *)arg0 + 0x48) - *(f32 *)((s8 *)(*(u8 **)((s8 *)arg0 + 0x1C)) + 0x38));
                 *(f32 *)((s8 *)arg0 + 0x11C) = (f32) (*(f32 *)((s8 *)arg0 + 0x4C) - *(f32 *)((s8 *)(*(u8 **)((s8 *)arg0 + 0x1C)) + 0x3C));
@@ -88,7 +98,7 @@ void TCameraCtrl::update_target_follow() {
             }
             break;
         case 1:
-            if (temp_f1_2 > 100.0f) {
+            if (temp_f1_2 > lbl_805D8F4C) {
                 *(s32 *)((s8 *)arg0 + 0x114) = 0;
             }
             *(f32 *)((s8 *)arg0 + 0x48) = (f32) (*(f32 *)((s8 *)arg0 + 0x118) + *(f32 *)((s8 *)(*(u8 **)((s8 *)arg0 + 0x1C)) + 0x38));
@@ -111,19 +121,19 @@ void TUnk_804887F8::update_follow_flags() {
     typedef char sp10_offset[(offsetof(Stack_80067AB0, sp10) == 0x8) ? 1 : -1];
     Stack_80067AB0 stack;
     this->m_38 = 0x15;
-    this->m_58 = 1.65f;
+    this->m_58 = (f32) lbl_805D8F50;
     stack.sp8 = *(f32 *)((s8 *)camera_ctrl_instance + 0x184) - this->target.x;
     stack.spC = *(f32 *)((s8 *)camera_ctrl_instance + 0x188) - this->target.y;
     stack.sp10 = *(f32 *)((s8 *)camera_ctrl_instance + 0x18C) - *(f32 *)((s8 *)arg0 + 0x50);
-    *(f32 *)((s8 *)arg0 + 0x5C) = (f32) ((0.7f * vector_length(&stack.sp8)) / 100.0f);
+    *(f32 *)((s8 *)arg0 + 0x5C) = (f32) ((lbl_805D8F54 * vector_length(&stack.sp8)) / lbl_805D8F4C);
     if (((TUnk_80488E00 *)arg0)->predict_obstruction() != 0) {
         this->m_fc = (s32) (this->m_fc | 1);
     } else {
         this->m_fc = (s32) (this->m_fc & 0xFFFFFFFE);
     }
-    this->m_e8 = 0.0f;
-    *(f32 *)((s8 *)arg0 + 0xEC) = 19.8f;
-    this->m_f0 = -5.0f;
+    this->m_e8 = (f32) lbl_805D8F38;
+    *(f32 *)((s8 *)arg0 + 0xEC) = (f32) lbl_805D8F58;
+    this->m_f0 = (f32) lbl_805D8F5C;
     VecCopy((Vec *)(arg0 + 0xDC), (const Vec *)(&camera_ctrl_default_offset_vecs.value));
 }
 

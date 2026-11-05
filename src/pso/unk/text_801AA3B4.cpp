@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/unk/text_801AA3B4.h"
 #include "pso/system/BmlResourceDescriptor.h"
 #include "pso/player/TObjPlayer.h"
@@ -42,19 +43,17 @@ struct PhotonBlastChain_801AA424 {
 };
 
 extern "C" {
-void TLobby__sub_8001FE7C(u32, int);
 void call_funcs_reverse__6TLobbyFPvUi(void *, int);
 extern u8 photon_blast_load_callback_table[];
 extern u32 photon_blast_donation_flags[];
 extern u32 photon_blast_shared_resource;
 extern struct PhotonBlastChain_801AA424 photon_blast_sequence_table[];
-u8 *load_resource_from_descriptor(u8 *, int, void *, int, int, int);
 s32 run_load_callback_table(void *, int);
 void TObjPlayer__sub_801AA3B4(void) {
     s32 i;
     call_funcs_reverse__6TLobbyFPvUi(photon_blast_load_callback_table, 0x50);
     if (photon_blast_shared_resource != 0U) {
-        TLobby__sub_8001FE7C(photon_blast_shared_resource, 1);
+        delete (BmlResource *)(photon_blast_shared_resource);
         photon_blast_shared_resource = 0U;
     }
     for (i = 0; i < 4; i++) {
@@ -77,10 +76,7 @@ void TObjPlayer::clear_photon_blast_slots() {
 void load_photon_blast_resources(void) {
     u8 *p;
     s32 i;
-    p = (u8 *)::operator new(0x440);
-    if (p != NULL) {
-        p = load_resource_from_descriptor(p, 1, &photon_blast_resource_descriptor, 0, 0, 0);
-    }
+    p = (u8 *)new BmlResource(1, (BmlResourceDescriptor *)(&photon_blast_resource_descriptor), 0, 0, (void *)(0));
     photon_blast_shared_resource = (u32) p;
     run_load_callback_table(photon_blast_load_callback_table, 0x50);
     for (i = 0; i < 4; i++) {

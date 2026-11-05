@@ -1,6 +1,6 @@
 #include "types.h"
 #include "pso/TMainTask.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TUnk_804CE018.h"
 #include "pso/ui/TAdEp3Exist.h"
 #include "pso/quest/TQuestListVM_8007EAF8.h"
 #include "pso/ui/TAdAgreementBaseGC.h"
@@ -80,6 +80,9 @@ u8 TAdEp3Exist__sub_8036F590(u8 *arg0);
 s32 get_localized_text_entry(s32 arg0, s32 arg1);
 u32 calc_text_width(char *s);
 s32 render_status_line__15TAdSubPlyItemGCFi(int, int, f32, f32, f32);
+extern const f32 lbl_805E0440;
+extern const f32 lbl_805E0444;
+extern const f32 lbl_805E0448;
 void queue_destruction__7TObjectFv(void *);
 s32 load_and_verify_character_save__23TAdSinglePlyChrSelectGCFPc(void *, void *);
 u8 *get_instance__23TAdSinglePlyChrSelectGCFv(void);
@@ -93,9 +96,11 @@ extern s32 __vt__11TAdEp3Exist[];
 void *TAdEp3Exist__ct(Ep3_8036F354 *o);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, s32);
 s32 TWindowShortListCtrl__check_controller_button(void *, s32);
+void TWindow__close(u8 *arg0);
 int TAdEp3Exist__sub_8036F0AC(void* p);
 extern u8 controller_input_state[];
 extern u8 controller_physical_port_bank[];
+extern const f32 lbl_805E044C;
 int prs_read_control_bit(Obj_8036F4DC *arg0);
 void TAdEp3Exist__sub_8036F5A4(void* p);
 void *memmove(void *, const void *, u32);
@@ -105,8 +110,8 @@ int request_transition__21TAdMultiChgGameModeGCFv(void*);
 
 void TAdEp3Exist::draw_message_window(s32 arg1) {
     s32 arg0 = (s32)this;
-    ((TWindowBase *)arg0)->draw_window_frame((void *) (arg1));
-    render_status_line__15TAdSubPlyItemGCFi((int) (get_localized_text_entry(0x2C, 0xA)), -1, (f32) (320.0f - (f32) (calc_text_width((char *)(get_localized_text_entry(0x2C, 0xA))) >> 1U)), 394.0f, 0.8f);
+    ((TUnk_804CE018 *)arg0)->draw_window_frame((void *) (arg1));
+    render_status_line__15TAdSubPlyItemGCFi((int) (get_localized_text_entry(0x2C, 0xA)), -1, (f32) (lbl_805E0440 - (f32) (calc_text_width((char *)(get_localized_text_entry(0x2C, 0xA))) >> 1U)), (f32) (lbl_805E0444), (f32) (lbl_805E0448));
 }
 
 void TAdEp3Exist::render() {
@@ -148,11 +153,11 @@ void TAdEp3Exist::run_task() {
         break;
     case 2:
         if (o->win != 0) {
-            ((TWindowBase *)o->win)->close();
+            TWindow__close((u8 *)o->win);
             o->win = 0;
         }
         close_window();
-        if ((f32)++o->count > 4.5f) {
+        if ((f32)++o->count > lbl_805E044C) {
             o->state = o->next;
         }
         break;

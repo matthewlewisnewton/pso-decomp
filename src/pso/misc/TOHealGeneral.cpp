@@ -1,3 +1,5 @@
+#include "pso/player/demo_mode.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TOHealGeneral.h"
 #include "pso/TMainTask.h"
@@ -158,7 +160,7 @@ void TOHealGeneral::find_heal_target() {
             if (effect != NULL) {
                 effect->set_owner_id(heal_target);
             }
-            play_sound_effect(0x4002AB0E, &position, 0, 0);
+            play_sound_effect(0x4002AB0E, (const Vec *)(&position), 0, 0);
             break;
         }
     }
@@ -166,7 +168,7 @@ void TOHealGeneral::find_heal_target() {
 #pragma pop
 
 void TOHealGeneral::run_task() {
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         update_demo();
         return;
     }
@@ -193,8 +195,8 @@ void TOHealGeneral::render() {
     if (update_object_view_visibility(view_range, model_radius) != 0) {
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
-        TObjFish::set_global_param(texlist);
+        rotate_matrix_y(NULL, this->rotation.yaw);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         base = (NJS_OBJECT *)model;
         post_translate_matrix(base->pos);
         draw_ginja_model((s32)base->model);
@@ -220,7 +222,7 @@ void *TOHealGeneral::create(void *set_data) {
 
 void TOHealGeneral::unload_resources() {
     if (model_resource != NULL) {
-        TLobby__sub_8001FE7C(model_resource, 1);
+        delete (BmlResource *)(model_resource);
         model_resource = NULL;
     }
 }
@@ -237,17 +239,11 @@ void TOHealGeneral::load_resources() {
     case AREA_SEABED_LOWER:
     case AREA_SEASIDE_NIGHT:
     case AREA_TOWER:
-        resource = (BmlResource *)::operator new(0x440);
-        if (resource != NULL) {
-            resource = load_resource_from_descriptor(resource, 1, &fe_obj_kaifuku_moto_2_resource_descriptor, 0, 0, 0);
-        }
+        resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&fe_obj_kaifuku_moto_2_resource_descriptor), 0, 0, (void *)(0));
         model_resource = resource;
         return;
     }
-    resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_fe_obj_kaifuku_moto_resource_descriptor, 0, 0, 0);
-    }
+    resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&bm_fe_obj_kaifuku_moto_resource_descriptor), 0, 0, (void *)(0));
     model_resource = resource;
 }
 

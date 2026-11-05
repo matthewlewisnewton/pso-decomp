@@ -18,6 +18,8 @@ struct TObjEnemy : public TObjChara {
     s32 turn_toward_direction(s32 max_step, Vec *direction);
     void award_enemy_experience(s32);
     void distribute_experience();
+    void distribute_experience_and_request_drop();
+    void request_standard_drop();
     void send_6x9C_enemy_low_game_flags(s32);
     void set_flags_B0(u32);
     void sub_800A7798(f32);
@@ -27,10 +29,12 @@ struct TObjEnemy : public TObjChara {
     virtual void apply_set_data(void *);
     virtual void clear_lobby_object_state();
     virtual s32 vfunc_74(s32);
-    s32 exchange_object_state(s32, s16);
+    s32 exchange_object_state(void *state, s16 operation);
     void sub_8002AE64();
     virtual const char *get_name();
     TObjEnemy* groupRoot();
+    s32 has_group();
+    void link_last_group_child(TObjEnemy *source, TObjEnemy *destination);
     u32 subtype;
     u16 targetId;
     s16 resetTimer;
@@ -42,7 +46,7 @@ struct TObjEnemy : public TObjChara {
     TObjEnemy* children;
     void* movementParameters;
     f32 parameters[5];
-    s32 variant;
+    u32 variant;
     u32 state36C;
     void* control;
     static s32 apply_by_index(s16 arg0);
