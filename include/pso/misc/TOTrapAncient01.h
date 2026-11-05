@@ -6,6 +6,7 @@
 #include "pso/misc/RenderFadeState.h"
 
 struct TOTrapAncient01 : public TOTrap {
+    TOTrapAncient01(TObject *parent, void *creator);
     virtual ~TOTrapAncient01();
     virtual void vfunc_82();
     virtual void vfunc_81();
@@ -29,9 +30,5 @@ struct TOTrapAncient01 : public TOTrap {
 };
 
 typedef char TOTrapAncient01_size[sizeof(TOTrapAncient01) == 0x3C8 ? 1 : -1];
-
-extern "C" {
-TOTrapAncient01 *TOTrapAncient01__ct(TOTrapAncient01 *self, void *parent, void *creator);
-}
 
 #endif

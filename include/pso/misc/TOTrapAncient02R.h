@@ -5,6 +5,7 @@
 #include "pso/misc/TOTrapAncient02.h"
 
 struct TOTrapAncient02R : public TOTrapAncient02 {
+    TOTrapAncient02R(TObject *parent, void *creator);
     virtual ~TOTrapAncient02R();
     void init_trap_object_id();
     void clamp_trap_level_param();

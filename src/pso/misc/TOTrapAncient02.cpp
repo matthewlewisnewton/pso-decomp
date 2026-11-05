@@ -64,10 +64,7 @@ void send_6x2C_impose_hold(void *, void *, s32, s32, f32);
 extern s32 local_client_id;
 s32 check_player_flag1__6TLobbyFv();
 void *__dt__6TOTrapFv(void *arg0, s16 arg1);
-void * TOTrap__ct(void *, void *, void *);
-TOTrapAncient02R *TOTrapAncient02R__ct(TOTrapAncient02R *arg0, void *arg1, void *arg2);
 void * __dt__15TOTrapAncient02Fv(void *arg0, s16 arg1);
-TOTrapAncient02 *TOTrapAncient02__ct(TOTrapAncient02 *self, void *parent, void *creator);
 
 void __dl__7TObjectFPv(void *);
 s32 dispatch_input_to_instance__18TAdEnterPasswordGCFi(void *);
@@ -123,7 +120,6 @@ TrapAncient02ResourceRecord trap_ancient02_seabed_pillar_resources = {
 CollisionBody trap_ancient02_collision_body = {
     { 0.0f, 8.5f, 0.0f }, 2.0f, 0.0f, 0, 0x38003, { 0.0f, 0.0f, 0.0f }, 0.0f
 };
-extern s32 __vt__16TOTrapAncient02R[];
 
 
 
@@ -147,38 +143,35 @@ void TOTrapAncient02R::submit_cursor_and_notify() {
 
 #pragma push
 #pragma fp_contract on
-TOTrapAncient02 *TOTrapAncient02__ct(TOTrapAncient02 *self, void *parent, void *creator) {
-    TOTrap__ct(self, parent, creator);
-    *(s32 **)((s8 *)self + 0x18) = __vt__15TOTrapAncient02;
-    self->m_name = lbl_805D31B4;
-    self->apply_object_set_data(creator);
-    self->initialize_position_copies();
-    self->calc_attach_pos();
-    self->model = (void *)TOTrapAncient02__shared_resource->models->model;
-    self->texlist = TOTrapAncient02__shared_resource->models->m_c;
-    self->mode = 0;
-    self->phase = 0;
-    self->range = lbl_805DBAA0 * self->scale.x + lbl_805DBA9C;
-    self->dist = self->range;
-    self->reset = lbl_805DBA9C + (f32)self->set_params[0];
-    if (self->reset < 0) {
-        self->reset = 0;
+TOTrapAncient02::TOTrapAncient02(TObject *parent, void *creator) : TOTrap(parent, creator) {
+    this->m_name = lbl_805D31B4;
+    this->apply_object_set_data(creator);
+    this->initialize_position_copies();
+    this->calc_attach_pos();
+    this->model = (void *)TOTrapAncient02__shared_resource->models->model;
+    this->texlist = TOTrapAncient02__shared_resource->models->m_c;
+    this->mode = 0;
+    this->phase = 0;
+    this->range = lbl_805DBAA0 * this->scale.x + lbl_805DBA9C;
+    this->dist = this->range;
+    this->reset = lbl_805DBA9C + (f32)this->set_params[0];
+    if (this->reset < 0) {
+        this->reset = 0;
     }
-    self->timer = self->reset;
-    self->player = 0xFFFF;
-    init_collision_body_parts(self, &trap_ancient02_collision_body, 1);
-    self->refresh_collision_body_centers();
-    self->actorFlags |= 0x60000000;
-    self->register_object_by_id();
-    self->h348 = lbl_805DBA80;
-    self->h344 = lbl_805DBA80;
-    self->m_34c = 0;
-    if (self->rotation.roll > 0) {
-        self->m_358 = 1;
+    this->timer = this->reset;
+    this->player = 0xFFFF;
+    init_collision_body_parts(this, &trap_ancient02_collision_body, 1);
+    this->refresh_collision_body_centers();
+    this->actorFlags |= 0x60000000;
+    this->register_object_by_id();
+    this->h348 = lbl_805DBA80;
+    this->h344 = lbl_805DBA80;
+    this->m_34c = 0;
+    if (this->rotation.roll > 0) {
+        this->m_358 = 1;
     } else {
-        self->m_358 = 0;
+        this->m_358 = 0;
     }
-    return self;
 }
 #pragma pop
 
@@ -240,11 +233,7 @@ void TOTrapAncient02::destroy_instance() {
 }
 
 void *TOTrapAncient02::create(void *arg0) {
-    TOTrapAncient02 *o = (TOTrapAncient02 *)TObject::operator new(sizeof(TOTrapAncient02));
-    if (o != NULL) {
-        o = TOTrapAncient02__ct(o, tl_05, arg0);
-    }
-    return o;
+    return new TOTrapAncient02(tl_05, arg0);
 }
 
 void TOTrapAncient02::render() {
@@ -528,39 +517,36 @@ void TOTrapAncient02::vfunc_86() {  }
 
 #pragma push
 #pragma fp_contract on
-TOTrapAncient02R *TOTrapAncient02R__ct(TOTrapAncient02R *trap_ancient02_r, void *arg1, void *arg2) {
-    TOTrapAncient02__ct(trap_ancient02_r, arg1, arg2);
-    *(s32 **)((s8 *)trap_ancient02_r + 0x18) = __vt__16TOTrapAncient02R;
-    trap_ancient02_r->m_name = lbl_805D31B8;
-    trap_ancient02_r->apply_object_set_data(arg2);
-    trap_ancient02_r->initialize_position_copies();
-    trap_ancient02_r->calc_attach_pos();
-    trap_ancient02_r->model = (void *)TOTrapAncient02__shared_resource->models->model;
-    trap_ancient02_r->texlist = TOTrapAncient02__shared_resource->models->m_c;
-    trap_ancient02_r->mode = 0;
-    trap_ancient02_r->phase = 0;
-    trap_ancient02_r->range = lbl_805DBAA0 * trap_ancient02_r->scale.x + lbl_805DBA9C;
-    trap_ancient02_r->dist = trap_ancient02_r->range;
-    trap_ancient02_r->reset = (s32) (lbl_805DBA9C + (f32) trap_ancient02_r->set_params[0]);
-    if (trap_ancient02_r->reset < 0) {
-        trap_ancient02_r->reset = 0;
+TOTrapAncient02R::TOTrapAncient02R(TObject *parent, void *creator) : TOTrapAncient02(parent, creator) {
+    this->m_name = lbl_805D31B8;
+    this->apply_object_set_data(creator);
+    this->initialize_position_copies();
+    this->calc_attach_pos();
+    this->model = (void *)TOTrapAncient02__shared_resource->models->model;
+    this->texlist = TOTrapAncient02__shared_resource->models->m_c;
+    this->mode = 0;
+    this->phase = 0;
+    this->range = lbl_805DBAA0 * this->scale.x + lbl_805DBA9C;
+    this->dist = this->range;
+    this->reset = (s32) (lbl_805DBA9C + (f32) this->set_params[0]);
+    if (this->reset < 0) {
+        this->reset = 0;
     }
-    trap_ancient02_r->timer = trap_ancient02_r->reset;
-    trap_ancient02_r->init_trap_object_id();
-    trap_ancient02_r->clamp_trap_level_param();
-    trap_ancient02_r->calc_trap_count();
-    trap_ancient02_r->init_trap_param_clamped();
-    trap_ancient02_r->player = 0xFFFF;
-    trap_ancient02_r->target = NULL;
-    trap_ancient02_r->h348 = lbl_805DBA80;
-    trap_ancient02_r->h344 = lbl_805DBA80;
-    trap_ancient02_r->m_34c = 0;
-    if (trap_ancient02_r->rotation.roll > 0) {
-        trap_ancient02_r->m_358 = 1;
+    this->timer = this->reset;
+    this->init_trap_object_id();
+    this->clamp_trap_level_param();
+    this->calc_trap_count();
+    this->init_trap_param_clamped();
+    this->player = 0xFFFF;
+    this->target = NULL;
+    this->h348 = lbl_805DBA80;
+    this->h344 = lbl_805DBA80;
+    this->m_34c = 0;
+    if (this->rotation.roll > 0) {
+        this->m_358 = 1;
     } else {
-        trap_ancient02_r->m_358 = 0;
+        this->m_358 = 0;
     }
-    return trap_ancient02_r;
 }
 #pragma pop
 
@@ -570,11 +556,7 @@ TOTrapAncient02R::~TOTrapAncient02R() {
 #pragma push
 #pragma fp_contract on
 void *TOTrapAncient02R::create(void *arg0) {
-    TOTrapAncient02R *o = (TOTrapAncient02R *)TObject::operator new(sizeof(TOTrapAncient02R));
-    if (o != NULL) {
-        o = TOTrapAncient02R__ct(o, tl_05, arg0);
-    }
-    return o;
+    return new TOTrapAncient02R(tl_05, arg0);
 }
 #pragma pop
 

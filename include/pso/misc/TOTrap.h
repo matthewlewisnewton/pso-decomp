@@ -5,6 +5,7 @@
 #include "pso/player/TObjChara.h"
 
 struct TOTrap : public TObjChara {
+    TOTrap(TObject *parent, void *creator);
     virtual ~TOTrap();
     virtual void find_target_player();
     virtual void submit_cursor_and_notify();

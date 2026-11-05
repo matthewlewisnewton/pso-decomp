@@ -756,9 +756,6 @@ force_active:
   - TOSymbolchatColli__ct
   - TOTrapAncient01__bml_resource
   - TOTrapAncient01__class_name
-  - TOTrapAncient01__ct
-  - TOTrapAncient02R__ct
-  - TOTrapAncient02__ct
   - TOTrapChainSawDamage__ct
   - TOTrapChainSawDamage__sub_802C9C00
   - TOTrapChainSawDamage__vt14
@@ -769,7 +766,6 @@ force_active:
   - TOTrapChainSawKey__ct
   - TOTrapChainSaw__level_scale_table
   - TOTrapChainSaw__name
-  - TOTrapSeabed01__ct
   - TOVS2Wall01__ct
   - TOVS2Wreck01__ct
   - TOVS2Wreck02__ct
@@ -1779,6 +1775,7 @@ force_active:
   - __ct__14TOKeyGenericSwFP7TObjectPv
   - __ct__14TOKeyMachine01FP7TObjectPv
   - __ct__14TOTrapChainSawFP7TObjectPv
+  - __ct__14TOTrapSeabed01FP7TObjectPv
   - __ct__14TObjEneGibblesFP7TObjectPv
   - __ct__14TObjEneIllGillFP7TObjectPv
   - __ct__14TObjEnePanBARAFP7TObjectPvl
@@ -1802,6 +1799,8 @@ force_active:
   - __ct__15TODoorMachine02FP7TObjectPv
   - __ct__15TODoorVS2Door01FP7TObjectPv
   - __ct__15TORainbowCave01FP7TObjectPv
+  - __ct__15TOTrapAncient01FP7TObjectPv
+  - __ct__15TOTrapAncient02FP7TObjectPv
   - __ct__15TObjDeadListWinFP7TObject
   - __ct__15TObjEneDelDepthFP7TObjectPv
   - __ct__15TObjEneGyaranzoFP7TObjectPv
@@ -1824,6 +1823,7 @@ force_active:
   - __ct__16TOFenceAncient03FP7TObjectPv
   - __ct__16TOFenceAncient04FP7TObjectPv
   - __ct__16TORevlightCave01FP7TObjectPv
+  - __ct__16TOTrapAncient02RFP7TObjectPv
   - __ct__16TObjCurtainLobbyFP7TObjectPv
   - __ct__16TObjEneDellBiterFP7TObjectPv
   - __ct__16TObjEneMerillLiaFP7TObjectPv

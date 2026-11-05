@@ -5,6 +5,7 @@
 #include "pso/misc/TOTrap.h"
 
 struct TOTrapSeabed01 : public TOTrap {
+    TOTrapSeabed01(TObject *parent, void *creator);
     virtual ~TOTrapSeabed01();
     void draw_object_tree(NJS_OBJECT *object);
     void render_effect_layers();

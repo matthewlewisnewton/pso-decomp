@@ -114,11 +114,8 @@ typedef char SeabedTrapCollisionBody_size[(sizeof(SeabedTrapCollisionBody) == 0x
 
 extern "C" {
 s32 init_collision_body_parts(void *, void *, int);
-s32 TOTrap__ct(void *);
 extern SeabedTrapCollisionBody seabed_trap_collision_body;
-extern s32 __vt__14TOTrapSeabed01[];
 extern const char *TOTrapSeabed01_class_name;
-u8 *TOTrapSeabed01__ct(TOTrapSeabed01 *arg0, s32 arg1, s32 arg2);
 extern u8 lbl_804720E8[];
 extern u8 lbl_80472100[];
 extern SeabedTrapResourceDescriptor seabed_trap_resource_descriptor;
@@ -192,23 +189,20 @@ SeabedTrapFragmentSpawn seabed_trap_fragment_spawns[6] = {
 // Reverse definitions with deferred generation reproduce this unit's original
 // function order and generate the inline TOTrap slots first.
 
-u8 *TOTrapSeabed01__ct(TOTrapSeabed01 *trap_seabed01, s32 arg1, s32 arg2) {
-    TOTrap__ct(trap_seabed01);
-    *(s32 **)((s8 *)trap_seabed01 + 0x18) = __vt__14TOTrapSeabed01;
-    trap_seabed01->m_name = TOTrapSeabed01_class_name;
-    ((TOTrapSeabed01 *)(trap_seabed01))->apply_object_set_data((void *)arg2);
-    trap_seabed01->model = (void *)get_bml_model(TOTrapSeabed01__bml_resource, 0);
-    trap_seabed01->current_motion = (NJS_MOTION *)get_bml_motion(TOTrapSeabed01__bml_resource, 0);
-    trap_seabed01->play_speed = 1.0f;
-    trap_seabed01->frame = 0.0f;
-    trap_seabed01->clamp_params_and_init();
-    init_collision_body_parts(trap_seabed01, &seabed_trap_collision_body, 1);
-    ((TObjCollidable *)trap_seabed01)->refresh_collision_body_centers();
-    ((TObjPlayer *)trap_seabed01)->register_object_by_id();
-    trap_seabed01->actorFlags = (s32) (trap_seabed01->actorFlags | 0x60040000);
-    trap_seabed01->m_344 = 0;
-    trap_seabed01->m_358 = -1;
-    return (u8 *)trap_seabed01;
+TOTrapSeabed01::TOTrapSeabed01(TObject *parent, void *creator) : TOTrap(parent, creator) {
+    m_name = TOTrapSeabed01_class_name;
+    apply_object_set_data(creator);
+    model = (void *)get_bml_model(TOTrapSeabed01__bml_resource, 0);
+    current_motion = (NJS_MOTION *)get_bml_motion(TOTrapSeabed01__bml_resource, 0);
+    play_speed = 1.0f;
+    frame = 0.0f;
+    clamp_params_and_init();
+    init_collision_body_parts(this, &seabed_trap_collision_body, 1);
+    refresh_collision_body_centers();
+    register_object_by_id();
+    actorFlags |= 0x60040000;
+    m_344 = 0;
+    m_358 = -1;
 }
 
 TOTrapSeabed01::~TOTrapSeabed01() {
@@ -259,11 +253,7 @@ void TOTrapSeabed01::free_static_resources() {
 }
 
 void *TOTrapSeabed01::create(void *arg0) {
-    void *o = TObject::operator new(0x35C);
-    if (o != NULL) {
-        o = TOTrapSeabed01__ct((TOTrapSeabed01 *)((u8 *)o), (s32)tl_05, (s32)arg0);
-    }
-    return o;
+    return new TOTrapSeabed01(tl_05, arg0);
 }
 
 void TOTrapSeabed01::clamp_params_and_init() {

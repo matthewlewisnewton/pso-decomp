@@ -275,26 +275,18 @@ void TOTrap::render() {
 #include "pso/player/TObjChara.h"
 #include "pso/misc/TOTrap.h"
 
-struct Self_80179244 { s32 type; u8 pad4[0x18 - 4]; s32 *vt; u8 pad1c[0x334 - 0x1C]; f32 f334; f32 f338; u16 s33c; u8 pad33e[2]; s32 f340; };
-
 extern "C" {
-void *__ct__9TObjCharaFP7TObject(void *, void *, void *);
-extern s32 __vt__6TOTrap[];
-extern s32 lbl_805D3198;
+extern const char *lbl_805D3198;
 
-Self_80179244 *TOTrap__ct(Self_80179244 *self, void *a, void *b);
 void __dl__7TObjectFPv(void *);
 
 TOTrap::~TOTrap() {}
 
-Self_80179244 *TOTrap__ct(Self_80179244 *self, void *a, void *b) {
-    __ct__9TObjCharaFP7TObject(self, a, b);
-    self->vt = __vt__6TOTrap;
-    self->type = lbl_805D3198;
-    self->f334 = self->f338 = 0.0f;
-    self->s33c = 0xFFFF;
-    self->f340 = 1;
-    return self;
+TOTrap::TOTrap(TObject *parent, void *creator) : TObjChara(parent) {
+    m_name = lbl_805D3198;
+    range = dist = 0.0f;
+    player = 0xFFFF;
+    m_340 = 1;
 }
 
 void TOTrap::vfunc_84() {  }

@@ -447,7 +447,7 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # positions before storing them (GC/2.6 interleaves them: 91.09%).
     # Reverse definitions and deferred generation place the native trap vtable
     # before its switch tables while preserving the original function order.
-    # Contracted FP keeps TOTrapAncient01__ct and render exact (98.86% and
+    # Contracted FP keeps the constructor and render exact (98.86% and
     # 97.66% without it). -opt nolifetimes keeps render exact (99.42% without
     # it). -pooldata=off keeps play_sounds' copy prologue (94.54% without it);
     # read-only strings keep the .rodata/.data/.sdata layout.

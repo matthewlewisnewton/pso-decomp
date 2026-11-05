@@ -65,10 +65,6 @@ const char *TOTrapAncient01__class_name = "TOTrapAncient01";
 struct AncientTrapResourceSlot { BmlResource *value; u8 reserved[4]; };
 AncientTrapResourceSlot TOTrapAncient01__bml_resource;
 f32 TObjPlayer__sub_8017A1A4(TObjCollidable *self, s32 i);
-extern s32 __vt__15TOTrapAncient01[];
-void TOTrap__ct(void *, void *, void *);
-void __construct_array(void *, void *, void *, int, int);
-void __ct__15RenderFadeStateFv(void *);
 s32 check_value_equals__13TUnk_804B6C24Fl(void *, s32);
 
 extern s32 lbl_805D3530;
@@ -92,57 +88,51 @@ f32 TObjPlayer__sub_8017A1A4(TObjCollidable *self, s32 i) {
     return self->bodies[i].radius;
 }
 
-// The original exports this constructor under the C name TOTrapAncient01__ct,
-// so it is not a C++ ctor the compiler can set the vtable pointer for.
-TOTrapAncient01 *TOTrapAncient01__ct(TOTrapAncient01 *self, void *parent, void *creator) {
+TOTrapAncient01::TOTrapAncient01(TObject *parent, void *creator) : TOTrap(parent, creator) {
     s32 i;
-    TOTrap__ct(self, parent, creator);
-    *(s32 **)((s8 *)self + 0x18) = __vt__15TOTrapAncient01;
-    __construct_array(self->fades, (void *)__ct__15RenderFadeStateFv, (void *)__dt__15RenderFadeStateFv, sizeof(RenderFadeState), 4);
-    self->m_name = TOTrapAncient01__class_name;
-    self->apply_object_set_data(creator);
-    self->initialize_position_copies();
-    self->calc_attach_pos();
-    self->model = (void *)get_bml_model(TOTrapAncient01__bml_resource.value, 3);
-    self->texlist = TObjFish__sub_8001EDB0(TOTrapAncient01__bml_resource.value, 3);
-    self->mode = 0;
-    self->range = 0.5f * self->scale.x + 30.0f;
-    if (self->scale.y < 0.0f) {
-        self->scale.y = 0.0f;
+    this->m_name = TOTrapAncient01__class_name;
+    this->apply_object_set_data(creator);
+    this->initialize_position_copies();
+    this->calc_attach_pos();
+    this->model = (void *)get_bml_model(TOTrapAncient01__bml_resource.value, 3);
+    this->texlist = TObjFish__sub_8001EDB0(TOTrapAncient01__bml_resource.value, 3);
+    this->mode = 0;
+    this->range = 0.5f * this->scale.x + 30.0f;
+    if (this->scale.y < 0.0f) {
+        this->scale.y = 0.0f;
     }
-    if (self->scale.z < 1.0f) {
-        self->scale.z = 1.0f;
+    if (this->scale.z < 1.0f) {
+        this->scale.z = 1.0f;
     }
-    self->m_34C = -self->scale.y / self->scale.z;
-    self->m_350 = 30.0f + (f32)self->set_params[2];
+    this->m_34C = -this->scale.y / this->scale.z;
+    this->m_350 = 30.0f + (f32)this->set_params[2];
     if (get_main_phase() == 0xE) {
-        self->m_350 *= 0.33f;
+        this->m_350 *= 0.33f;
     }
-    if (self->m_350 < 0.0f) {
-        self->m_350 = 0.0f;
+    if (this->m_350 < 0.0f) {
+        this->m_350 = 0.0f;
     }
-    self->m_354 = self->m_350;
-    if (self->set_params[0] < 0) {
-        self->set_params[0] = 0;
+    this->m_354 = this->m_350;
+    if (this->set_params[0] < 0) {
+        this->set_params[0] = 0;
     }
-    self->attack.power = self->vfunc_87((f32)self->set_params[0]);
-    if (self->set_params[1] < 0) {
-        self->set_params[1] = 0;
-    } else if (self->set_params[1] > 5) {
-        self->set_params[1] = 5;
+    this->attack.power = this->vfunc_87((f32)this->set_params[0]);
+    if (this->set_params[1] < 0) {
+        this->set_params[1] = 0;
+    } else if (this->set_params[1] > 5) {
+        this->set_params[1] = 5;
     }
-    self->attack.kind = self->set_params[1];
-    self->dist = 15.0f;
-    self->player = 0xFFFF;
-    init_collision_body_parts(self, &lbl_804B4844, 1);
-    self->refresh_collision_body_centers();
-    self->actorFlags |= 0x60040000;
-    self->get_or_assign_entity_id(0);
-    self->register_object_by_id();
+    this->attack.kind = this->set_params[1];
+    this->dist = 15.0f;
+    this->player = 0xFFFF;
+    init_collision_body_parts(this, &lbl_804B4844, 1);
+    this->refresh_collision_body_centers();
+    this->actorFlags |= 0x60040000;
+    this->get_or_assign_entity_id(0);
+    this->register_object_by_id();
     for (i = 0; i < 4; i++) {
-        self->fades[i].activate_and_dispatch();
+        this->fades[i].activate_and_dispatch();
     }
-    return self;
 }
 
 TOTrapAncient01::~TOTrapAncient01() {
@@ -163,11 +153,7 @@ void TOTrapAncient01::release_static_resource() {
 }
 
 void *TOTrapAncient01::create() {
-    TOTrapAncient01 *o = (TOTrapAncient01 *)TObject::operator new(sizeof(TOTrapAncient01));
-    if (o != NULL) {
-        o = TOTrapAncient01__ct(o, tl_05, this);
-    }
-    return o;
+    return new TOTrapAncient01(tl_05, this);
 }
 
 void TOTrapAncient01::render() {
