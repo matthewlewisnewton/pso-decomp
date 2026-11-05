@@ -1,3 +1,5 @@
+#include "pso/system/ArrayAllocation.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/misc/TODoorAncient09.h"
 
 #include "pso/TMainTask.h"
@@ -73,12 +75,9 @@ TODoorAncient09::~TODoorAncient09() {
 }
 
 void TODoorAncient09::load_resources() {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &door_ancient09_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&door_ancient09_resource_descriptor), 0, 0, (void *)(0));
     bml_resource = resource;
-    texture_lists = (s32 *)mem_alloc(8);
+    texture_lists = (s32 *)::operator new[](8);
     texture_lists[0] = bml_resource->models[0].m_c;
     texture_lists[1] = (s32)load_gvm_texture_file((s32)"fs_obj_o_door05l_g.gvm");
 }
@@ -87,12 +86,12 @@ void TODoorAncient09::destroy() {
     if (texture_lists != NULL) {
         TObjPlayer::free_if_valid(texture_lists[1]);
         if (texture_lists != NULL) {
-            mem_free(texture_lists);
+            ::operator delete[](texture_lists);
             texture_lists = NULL;
         }
     }
     if (bml_resource != NULL) {
-        TLobby__sub_8001FE7C(bml_resource, 1);
+        delete (BmlResource *)(bml_resource);
         bml_resource = NULL;
     }
 }
@@ -111,16 +110,16 @@ void TODoorAncient09::update_closed() {
         case AREA_CAVE1:
         case AREA_CAVE2:
         case AREA_CAVE3:
-            play_sound_effect(0x42807, &position, 0, 0);
+            play_sound_effect(0x42807, (const Vec *)(&position), 0, 0);
             break;
         case AREA_MINE1:
         case AREA_MINE2:
-            play_sound_effect(0x4004BC01, &position, 0, 0);
+            play_sound_effect(0x4004BC01, (const Vec *)(&position), 0, 0);
             break;
         case AREA_RUINS1:
         case AREA_RUINS2:
         case AREA_RUINS3:
-            play_sound_effect(0x4004B708, &position, 0, 0);
+            play_sound_effect(0x4004B708, (const Vec *)(&position), 0, 0);
             break;
         case AREA_PIONEER2_EP1:
         case AREA_LOBBY:
@@ -142,16 +141,16 @@ void TODoorAncient09::update_open() {
         case AREA_CAVE1:
         case AREA_CAVE2:
         case AREA_CAVE3:
-            play_sound_effect(0x42807, &position, 0, 0);
+            play_sound_effect(0x42807, (const Vec *)(&position), 0, 0);
             break;
         case AREA_MINE1:
         case AREA_MINE2:
-            play_sound_effect(0x4004BC01, &position, 0, 0);
+            play_sound_effect(0x4004BC01, (const Vec *)(&position), 0, 0);
             break;
         case AREA_RUINS1:
         case AREA_RUINS2:
         case AREA_RUINS3:
-            play_sound_effect(0x4004B708, &position, 0, 0);
+            play_sound_effect(0x4004B708, (const Vec *)(&position), 0, 0);
             break;
         case AREA_PIONEER2_EP1:
         case AREA_LOBBY:
@@ -174,16 +173,16 @@ void TODoorAncient09::render() {
         case 3:
             push_matrix();
             post_translate_matrix(&position.x);
-            rotate_matrix_y(NULL, rotation_y);
-            TObjFish::set_global_param(texlist);
+            rotate_matrix_y(NULL, this->rotation.yaw);
+            set_current_texture_list((GinjaTextureList *)(texlist));
             draw_ginja_model_with_motion(model, motion, animation_frame);
             pop_matrix();
             return;
         case 2:
             push_matrix();
             post_translate_matrix(&position.x);
-            rotate_matrix_y(NULL, rotation_y);
-            TObjFish::set_global_param(texlist);
+            rotate_matrix_y(NULL, this->rotation.yaw);
+            set_current_texture_list((GinjaTextureList *)(texlist));
             draw_ginja_model_with_motion(model, motion, animation_end_frame - 1.0f);
             pop_matrix();
             return;
@@ -218,18 +217,18 @@ void TODoorAncient09::draw_switch_lights() {
     }
     on[1] = set;
     push_matrix();
-    TObjFish::set_global_param(texture_lists[0]);
+    set_current_texture_list((GinjaTextureList *)(texture_lists[0]));
     post_translate_matrix(&position.x);
     post_translate_matrix(root->pos);
-    rotate_matrix_y(NULL, rotation_y);
+    rotate_matrix_y(NULL, this->rotation.yaw);
     draw_ginja_model((s32)root->model);
     draw_ginja_model((s32)root->child->model);
     TParticleCtrl::begin_effect_render();
     for (i = 0; i < 2; i++) {
         if (on[i] != 0) {
-            TObjFish::set_global_param(texture_lists[1]);
+            set_current_texture_list((GinjaTextureList *)(texture_lists[1]));
         } else {
-            TObjFish::set_global_param(texture_lists[0]);
+            set_current_texture_list((GinjaTextureList *)(texture_lists[0]));
         }
         push_matrix();
         pair = pairs[i];
@@ -283,25 +282,25 @@ void TODoorAncient09::play_open_sound() {
     if (!(door_flags & 1)) {
         switch (get_current_floor_area()) {
         case AREA_PIONEER2_EP1:
-            play_sound_effect(0x42A04, &position, 0, 0);
+            play_sound_effect(0x42A04, (const Vec *)(&position), 0, 0);
             break;
         case AREA_FOREST1:
         case AREA_FOREST2:
-            play_sound_effect(0x4BC07, &position, 0, 0);
+            play_sound_effect(0x4BC07, (const Vec *)(&position), 0, 0);
             break;
         case AREA_CAVE1:
         case AREA_CAVE2:
         case AREA_CAVE3:
-            play_sound_effect(0x42807, &position, 0, 0);
+            play_sound_effect(0x42807, (const Vec *)(&position), 0, 0);
             break;
         case AREA_MINE1:
         case AREA_MINE2:
-            play_sound_effect(0x4004BC00, &position, 0, 0);
+            play_sound_effect(0x4004BC00, (const Vec *)(&position), 0, 0);
             break;
         case AREA_RUINS1:
         case AREA_RUINS2:
         case AREA_RUINS3:
-            play_sound_effect(0x4004BC07, &position, 0, 0);
+            play_sound_effect(0x4004BC07, (const Vec *)(&position), 0, 0);
             break;
         case AREA_LOBBY:
             break;

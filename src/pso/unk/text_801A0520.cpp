@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/unk/text_801A0520.h"
 #include "pso/object/TObjDoorJung.h"
 #include "pso/system/BmlResourceDescriptor.h"
@@ -20,7 +21,6 @@ struct Node_801A0578 {
 };
 
 extern "C" {
-void TLobby__sub_8001FE7C(void *, int);
 extern void *TObjWarpJung__beam_bml_resource;
 extern s32 warp_jung_beam_motion;
 extern s32 warp_jung_model_handle;
@@ -28,7 +28,6 @@ extern s32 warp_jung_beam_models[6];
 s32 get_bml_motion(void *, s32);
 s32 TObjFish__sub_8001EDB0(void *, s32);
 Node_801A0578 *get_bml_model(void *, s32);
-void *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 }
 extern char lbl_80446718[];
 extern char lbl_80446728[];
@@ -40,7 +39,7 @@ extern s32 lbl_805D5CC0;
 extern s32 lbl_805D5CC4;
 void free_warp_jung_beam_resources(void) {
     s32 i;
-    TLobby__sub_8001FE7C(TObjWarpJung__beam_bml_resource, 1);
+    delete (BmlResource *)(TObjWarpJung__beam_bml_resource);
     TObjWarpJung__beam_bml_resource = 0;
     warp_jung_beam_motion = 0;
     warp_jung_model_handle = 0;
@@ -51,10 +50,7 @@ void free_warp_jung_beam_resources(void) {
 void load_warp_beam_resources(void) {
     Node_801A0578 *root;
     void *p;
-    p = ::operator new(0x440);
-    if (p != NULL) {
-        p = load_resource_from_descriptor(p, 5, &jungle_warp_beam_resource_descriptor, 0, 0, 0);
-    }
+    p = new BmlResource(5, (BmlResourceDescriptor *)(&jungle_warp_beam_resource_descriptor), 0, 0, (void *)(0));
     TObjWarpJung__beam_bml_resource = p;
     warp_jung_beam_motion = get_bml_motion(p, 0);
     warp_jung_model_handle = TObjFish__sub_8001EDB0(TObjWarpJung__beam_bml_resource, 0);

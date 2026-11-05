@@ -1,9 +1,9 @@
 #include "types.h"
-#include "pso/npc/TObjNpcNHW00.h"
 #include "pso/misc/TLanguage_801E4874.h"
 #include "pso/npc/TObjNpcNHW01.h"
 #include "pso/unk/text_800F9B84.h"
 #include "pso/npc/TUnk_804A8640.h"
+#include "pso/npc/TObjNpcNHW00.h"
 #include "pso/misc/TLobby.h"
 #include "pso/npc/TObjNpcBase.h"
 #include "pso/npc/TObjNpcFemaleBase.h"
@@ -47,9 +47,16 @@ void TObjNpcNHW00::load_resources() {
     TObjNpcNHW00__texture_gvm_handle = (u32)load_gvm_texture_file((s32)"n_b00_body.gvm");
 }
 
+void *__dt__12TObjNpcNHW00Fv(void *arg0, s16 arg1) {
+    if (arg0 != NULL) {
+        *(s32 **)((s8 *)arg0 + 0x18) = __vt__12TObjNpcNHW00;
+        ((TUnk_804A8640 *)arg0)->destroy_npc_female_base(0);
+        if (arg1 > 0) {
+            __dl__7TObjectFPv(arg0);
+        }
+    }
+    return arg0;
 }
-TObjNpcNHW00::~TObjNpcNHW00() {}
-extern "C" {
 
 extern void *tl_04;
 
@@ -59,7 +66,7 @@ u8 *TObjNpcNHW00__ct(u8 *arg0, s32 arg1, s32 arg2) {
     *(s32 **)((s8 *)arg0 + 0x18) = &(*(RecoveredGlobal_8014D124___vt__12TObjNpcNHW00 *)&__vt__12TObjNpcNHW00).value;
     *(s32 *)((s8 *)arg0 + 0) = (s32) TObjNpcNHW00__name;
     ((TObjNpcNHW00 *)(arg0))->apply_set_data((void *)arg2);
-    ((TObjPlayer *)arg0)->init_position_vectors();
+    ((TObjChara *)arg0)->initialize_position_copies();
     *(s32 *)((s8 *)arg0 + 0x34) = (s32) *(*(s32 * *)&TObjNpcNHW00__shared_named_model_object);
     ((TObjNpcNHW00 *)arg0)->texlist = (s32) (*(s32 *)&TObjNpcNHW00__texture_gvm_handle);
     ((TObjNpcBase *)arg0)->setup_common();

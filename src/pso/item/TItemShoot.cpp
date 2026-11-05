@@ -62,8 +62,9 @@ void *__vt__15TItemShootModel[7] = {
 };
 }
 
+extern "C" const f32 lbl_805DAC68;
 extern "C" const f32 lbl_805DAC60;
-#define kLifeDecay 1.0f
+#define kLifeDecay lbl_805DAC68
 #define kLifeFloor lbl_805DAC60
 
 void TItemShoot::run_task() {

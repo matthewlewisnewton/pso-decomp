@@ -1,5 +1,7 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TRaderMapCore.h"
+#include "pso/misc/RadarCompass.h"
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TScene.h"
 #include "pso/object/TObjFish.h"
@@ -7,7 +9,6 @@
 
 struct Ent_801FB798 { s32 a; char *name; };
 
-extern u32 TRaderMapCore__data_805D5F4C;
 extern "C" {
 s32 get_current_floor();
 s32 save_floor_discovery__13TRaderMapCoreFiPv(int, int);
@@ -22,6 +23,7 @@ s32 replace_file_extension__6TLobbyFPvPvPv(char *arg0, char *arg1, char *arg2);
 void init_radar_floor_flags(s32, u8 *);
 s32 get_floor_scene_table(s32 arg0);
 void bind_gvm_texture_list(char *, u8 *);
+extern const char lbl_8044A7B0[];
 extern s32 lbl_805D49B4;
 extern s32 TRaderMapCore__data_805D5F30;
 extern s8 lbl_805D5F34;
@@ -76,7 +78,7 @@ void TRaderMapCore::load_map_resources() {
     area = get_current_floor_area();
     status = TScene::get_status();
     e = (Ent_801FB798 *)get_floor_scene_table(area);
-    replace_file_extension__6TLobbyFPvPvPv((char *)buf, (char *)e[status].name, (char *)"r.rel");
+    replace_file_extension__6TLobbyFPvPvPv((char *)buf, (char *)e[status].name, (char *)lbl_8044A7B0);
     TRaderMapCore__floor_map_resource = (u8 *)create_named_object((s32)buf);
     if (TRaderMapCore__floor_map_resource != NULL && *(u32 *)(TRaderMapCore__floor_map_resource + 4) != 0) {
         replace_file_extension__6TLobbyFPvPvPv((char *)buf, (char *)e[status].name, (char *)lbl_805DC5AC);
@@ -95,9 +97,9 @@ void TRaderMapCore::load_map_resources() {
     TRaderMapCore__render_mode = 1;
 }
 
-s32 TRaderMapCore::apply_compass_param() {
-    if ((u32) TRaderMapCore__data_805D5F4C != 0U) {
-        TObjFish::set_global_param((s32) TRaderMapCore__data_805D5F4C);
+s32 apply_compass_param__13TRaderMapCoreFv(const s32 *ignored) {
+    if (TRaderMapCore__data_805D5F4C != NULL) {
+        set_current_texture_list(TRaderMapCore__data_805D5F4C);
         return 1;
     }
     return -1;

@@ -44,11 +44,13 @@ void TObjSeabedSuisoBrakable::free_static_resources() {
         texture_list = 0;
     }
     if (bml_resource != NULL) {
-        TLobby__sub_8001FE7C(bml_resource, 1);
+        delete (BmlResource *)(bml_resource);
         bml_resource = NULL;
     }
 }
 
+#pragma push
+#pragma opt_propagation off
 void TObjSeabedSuisoBrakable::load_resources() {
     s32 i;
     void *p;
@@ -56,12 +58,9 @@ void TObjSeabedSuisoBrakable::load_resources() {
 
     switch (get_current_floor_area()) {
     case AREA_SEABED_LOWER: {
-        p = ::operator new(0x440);
-        if (p != NULL) {
-            p = load_resource_from_descriptor(p, 1, &bm_obj_seabed_suiso_2_resource_descriptor, 0, 0, 0);
-        }
+        p = new BmlResource(1, (BmlResourceDescriptor *)(&bm_obj_seabed_suiso_2_resource_descriptor), 0, 0, (void *)(0));
         bml_resource = (BmlResource *)p;
-        if ((texture_list = (u32)load_gvm_texture_file((s32)"obj_seabed_suiso_2.GVM")) != 0) {
+        if ((texture_list = (u32)load_gvm_texture_file((s32)seabed_suiso_2_gvm_name)) != 0) {
             SeabedSuisoTextureNames names = seabed_suiso_2_texture_names;
             for (i = 0; i < 5; i++) {
                 texture_entries[i] = ((TObjDoorJung *)texture_list)->find_entry_by_name(names.name[i]);
@@ -71,12 +70,9 @@ void TObjSeabedSuisoBrakable::load_resources() {
     }
     case AREA_SEABED_UPPER:
     default: {
-        p = ::operator new(0x440);
-        if (p != NULL) {
-            p = load_resource_from_descriptor(p, 1, &bm_obj_seabed_suiso_resource_descriptor, 0, 0, 0);
-        }
+        p = new BmlResource(1, (BmlResourceDescriptor *)(&bm_obj_seabed_suiso_resource_descriptor), 0, 0, (void *)(0));
         bml_resource = (BmlResource *)p;
-        if ((texture_list = (u32)load_gvm_texture_file((s32)"obj_seabed_suiso.GVM")) != 0) {
+        if ((texture_list = (u32)load_gvm_texture_file((s32)seabed_suiso_gvm_name)) != 0) {
             SeabedSuisoTextureNames names = seabed_suiso_texture_names;
             for (i = 0; i < 5; i++) {
                 texture_entries[i] = ((TObjDoorJung *)texture_list)->find_entry_by_name(names.name[i]);
@@ -101,6 +97,8 @@ void TObjSeabedSuisoBrakable::load_resources() {
         }
     }
 }
+
+#pragma pop
 
 s32 TObjSeabedSuisoBrakable::get_texture_entry(int index) {
     return texture_entries[index];

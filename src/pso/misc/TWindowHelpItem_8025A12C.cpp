@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/misc/TLobby_8001D6A0.h"
 #include "pso/misc/TWindowSubStatusDisp_8024FBA8.h"
@@ -40,9 +41,7 @@ typedef struct Win_8025A354 {
 typedef struct Vec2_8025A354 { f32 x, y; } Vec2_8025A354;
 
 extern "C" {
-s32 sub_80256BDC__13TUnk_804CF930Fl(void *, void *);
-void mem_free(void *p);
-void *mem_alloc(u32 size);
+s32 sub_80256BDC__13TUnk_804CF930Fs(void *, void *);
 s32 strncpy(s32, u32, s32);
 void render_summary_row__15TWindowHelpItemFv(Item_8025A354 *self, Win_8025A354 *w);
 s32 measure_string_len__20TWindowSubStatusDispFv(u32);
@@ -122,11 +121,11 @@ void TWindowHelpItem::set_flag4_and_field1c(s32 arg1) {
 void TWindowHelpItem::set_help_text(u32 arg1) {
     s32 temp_r3;
 
-    mem_free(this->m_vtable18);
+    ::operator delete[](this->m_vtable18);
     this->m_vtable18 = 0;
     if (arg1 != 0U) {
         temp_r3 = measure_string_len__20TWindowSubStatusDispFv(arg1);
-        *(s32 *)&this->m_vtable18 = (s32)mem_alloc(temp_r3 + 1);
+        *(s32 *)&this->m_vtable18 = (s32)::operator new[](temp_r3 + 1);
         strncpy(*(s32 *)&this->m_vtable18, arg1, temp_r3 + 1);
     }
 }
@@ -181,7 +180,7 @@ void tick_display_timer__15TWindowHelpItemFPv(void *arg0) {
 void *destroy__15TWindowHelpItemFPvs(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(void ***)((s8 *)arg0 + 4) = lbl_804CF9F8;
-        mem_free((void *)(*(s32 *)((s8 *)arg0 + 0x18)));
+        ::operator delete[]((void *)(*(s32 *)((s8 *)arg0 + 0x18)));
         ((TUnk_804CF930 *)arg0)->destroy((s16)(0));
         if (arg1 > 0) {
             ::operator delete(arg0);
@@ -192,7 +191,7 @@ void *destroy__15TWindowHelpItemFPvs(void *arg0, s16 arg1) {
 
 typedef char RecoveredGlobal_8025A594_lbl_804CF9F8_size[sizeof(RecoveredGlobal_8025A594_lbl_804CF9F8) == 0x18 ? 1 : -1];
 u8 *TWindowHelpItem__sub_8025A594(u8 *arg0, s32 arg1, s32 arg2) {
-    sub_80256BDC__13TUnk_804CF930Fl((void *)arg0, (void *)arg2);
+    sub_80256BDC__13TUnk_804CF930Fs((void *)arg0, (void *)arg2);
     *(s32 **)((s8 *)arg0 + 4) = &(*(RecoveredGlobal_8025A594_lbl_804CF9F8 *)&lbl_804CF9F8).value;
     ((TWindowSubSymbolChatPartsSet *)(arg0 + 8))->copy_vec2((void *)(arg1 + 4));
     *(s32 *)((s8 *)arg0 + 0x10) = -1;

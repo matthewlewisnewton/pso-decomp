@@ -1,5 +1,5 @@
 #include "types.h"
-#include "pso/misc/TWindowSubComCard.h"
+#include "pso/misc/TCheckMemoryCard.h"
 #include "pso/misc/TLobby_80132ED0.h"
 #include "pso/misc/TKeyBoardControl_8000F764.h"
 
@@ -9,14 +9,13 @@ struct ComCardText_8033BCDC {
     s32 keyboard_entry;
 };
 
-struct ComCardView_8033BCDC { u8 pad[0x4c]; s32 f4c; };
 
 extern "C" {
 extern const ComCardText_8033BCDC lbl_80477DC4[];
-void fn_8033BCDC(TWindowSubComCard *card, s32 kind, s32 menu_kind, s32 sub_entry, s32 alt_sub_entry);
+void fn_8033BCDC(TCheckMemoryCard *card, s32 kind, s32 menu_kind, s32 sub_entry, s32 alt_sub_entry);
 }
 
-void fn_8033BCDC(TWindowSubComCard *card, s32 kind, s32 menu_kind, s32 sub_entry, s32 alt_sub_entry) {
+void fn_8033BCDC(TCheckMemoryCard *card, s32 kind, s32 menu_kind, s32 sub_entry, s32 alt_sub_entry) {
     s32 text;
     s32 sub_text;
     s32 group;
@@ -26,7 +25,7 @@ void fn_8033BCDC(TWindowSubComCard *card, s32 kind, s32 menu_kind, s32 sub_entry
     entry = lbl_80477DC4[kind].entry;
     sub_text = 0;
 
-    if (((ComCardView_8033BCDC *)card)->f4c != 0) {
+    if ((s32)card->m_4c != 0) {
         entry = 0x6E;
     }
     if (TKeyBoardControl__sub_8000F8EC() == 0xF) {

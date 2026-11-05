@@ -9,7 +9,5 @@ u8 *__ct__18TChCrTagOccupationFv(u8 *arg0, s32 arg1, s32 _w2);
 void *__dt__17TChCrTagOccHeaderFv(void *self, s16 m);
 void *__dt__18TChCrTagOccupationFv(void *self, s16 m);
 }
-void create_all_ch_cr_tag_headers(void);
-void *create_ch_cr_tag_occ_header(void *arg0);
 
 #endif

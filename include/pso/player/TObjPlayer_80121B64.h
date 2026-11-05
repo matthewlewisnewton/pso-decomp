@@ -4,12 +4,12 @@
 #include "types.h"
 
 extern "C" {
-void vfunc_57__13TUnk_804A0BC0Fv(void *p);
+void TObjPlayer__sub_80121B64(void *p);
 }
 
 // --- C functions defined in TObjPlayer_80121B64.cpp ---
 extern "C" {
-void vfunc_57__13TUnk_804A0BC0Fv(void *p);
+void TObjPlayer__sub_80121B64(void *p);
 }
 // --- end of C functions
 

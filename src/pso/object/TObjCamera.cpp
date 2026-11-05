@@ -1,5 +1,7 @@
+#include "pso/system/CurrentTextureList.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/object/TObjCamera.h"
 #include "pso/TMainTask.h"
 #include "pso/animation/ActorAnimationState.h"
@@ -22,13 +24,10 @@
 #pragma readonly_strings on
 
 extern "C" {
-u8 *load_resource_from_descriptor(void *, s32, BmlResourceDescriptor *, s32, s32, s32);
-void TLobby__sub_8001FE7C(void *, int);
 AnimationMotion *get_bml_motion(u32, int);
 s32 get_bml_model(u32, int);
-void TObjFish__sub_8001EDB0(u32, int);
-void set_global_param__8TObjFishFl();
-void get_camera_ctrl__9TObjEneDDFv(const Vec *, Vec *);
+s32 TObjFish__sub_8001EDB0(u32, int);
+void transform_point_to_view(const Vec *, Vec *);
 }
 
 __declspec(section ".data") const char *fe_obj_cam_model_names[2] = { "fe_obj_cam840_841.gj", NULL };
@@ -62,7 +61,7 @@ void TObjCamera::play_sound_events() {
     s32 i;
     for (i = 0; i < 8; i++) {
         if (sound_events[i].played == 0 && animation_frame >= sound_events[i].frame) {
-            play_sound_effect(sound_events[i].sound_id, &sound_events[i].position, 0, 0);
+            play_sound_effect((s32)(sound_events[i].sound_id), (const Vec *)(&sound_events[i].position), 0, 0);
             sound_events[i].played = 1;
         }
     }
@@ -80,7 +79,7 @@ void TObjCamera::init_sound_events() {
     for (i = 0; i < 8; i++) {
         sound_events[i] = camera_sound_events[i];
         push_matrix_from(identity_matrix);
-        rotate_matrix_y(0, rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         matrix_mult_vec(0, &sound_events[i].position, &sound_events[i].position);
         pop_matrix();
         vec3_add_to(&sound_events[i].position, &position);
@@ -93,7 +92,7 @@ void TObjCamera::update_camera_slots() {
     for (i = 0; i < 8; i++) {
         if (camera_slot_scan_index == camera_slot_id_table[i]) {
             Vec v = { 0.0f, 0.0f, 0.0f };
-            get_camera_ctrl__9TObjEneDDFv(&v, &camera_slot_positions[i]);
+            transform_point_to_view(&v, &camera_slot_positions[i]);
         }
     }
     camera_slot_scan_index += 1;
@@ -132,11 +131,10 @@ s32 TObjCamera::update_object_view_visibility(f32 radius, f32 depth) {
 void TObjCamera::render() {
     s32 i;
     if (update_object_view_visibility(400.0f, 20.0f) != 0) {
-        TObjFish__sub_8001EDB0(model_resource, 0);
-        set_global_param__8TObjFishFl();
+        set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0(model_resource, 0)));
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(0, rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         camera_slot_scan_index = 0;
         set_model_node_callback((s32)TObjCamera::update_camera_slots);
         draw_ginja_model_with_motion((void *)get_bml_model(model_resource, 0),
@@ -219,7 +217,7 @@ void *TObjCamera::create(void *set_data) {
 
 void TObjCamera::free_resources() {
     if (model_resource != 0) {
-        TLobby__sub_8001FE7C((void *)model_resource, 1);
+        delete (BmlResource *)((void *)model_resource);
         model_resource = 0;
     }
 }
@@ -228,10 +226,7 @@ void TObjCamera::load_resources() {
     void *resource;
     u32 loaded;
     camera_slot_scan_index = 0;
-    resource = ::operator new(0x440);
+    resource = new BmlResource(1, (BmlResourceDescriptor *)&fe_obj_cam_resource_descriptor, 0, 0, NULL);
     loaded = (u32)resource;
-    if (loaded != 0) {
-        loaded = (u32)load_resource_from_descriptor(resource, 1, &fe_obj_cam_resource_descriptor, 0, 0, 0);
-    }
     model_resource = loaded;
 }

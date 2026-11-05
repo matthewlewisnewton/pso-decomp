@@ -1,3 +1,4 @@
+#include "pso/math/ScratchVectorStorage.h"
 #include "types.h"
 #include "pso/system/vector.h"
 #include "pso/map/CsnQuery.h"
@@ -24,11 +25,7 @@ struct Vec_80079608 {
     f32 z;
 };
 
-struct Hit_80079608 {
-    Vec_80079608 pos;
-    Vec_80079608 normal;
-    u8 pad18[4];
-};
+typedef CsnContact Hit_80079608;
 
 struct Query_80079608 {
     s32 count;
@@ -38,12 +35,7 @@ struct Query_80079608 {
     Vec_80079608 *offsets;
 };
 
-struct Result_80079608 {
-    s32 hit;
-    Hit_80079608 *hits;
-    s32 index;
-    f32 best;
-};
+typedef CsnQueryResult Result_80079608;
 
 struct Poly_8007970C { u8 pad[0x24]; };
 
@@ -134,17 +126,15 @@ void TObjPlayer__sub_8007911C(void);
 void TObjPlayer__sub_80079120(s32);
 s32 evaluate_ground_triangles(s32, s32, u32 *);
 extern s32 lbl_804389CC[];
-extern s32 lbl_80500140[];
 s32 *csnVectorUnder(Vec *arg0, u32 *arg1, s32 arg2);
 s32 TObjPlayer__sub_80079118(s32 * _w0);
 void TObjPlayer__sub_80079120(s32 _w0);
 extern u32 lbl_804FFD40[];
 extern s32 lbl_804389E8[];
-s32 *csnVecterUnder(s32 arg0, s32 arg1);
 void *query_wall_radial(Obj_8007A32C *self);
 void TObjPlayer__sub_80079124(void *, void *);
 u32 TObjPlayer__sub_80079DE0(void *, void *);
-f32 vec_squared_length(Vec_800798A0 *);
+f32 vec_squared_length(Vec *);
 extern s32 lbl_804389C0[];
 s32 *csnLookAt(s32 arg0, s32 arg1);
 s32 intersect_wall_triangle_one_sided(void *, void *, void *, E_80079580 *, u32, s32);
@@ -152,13 +142,11 @@ f32 fabs_float(f32);
 extern const f32 lbl_805D9204;
 s32 select_deepest_wall_ray(Query_80079608 *q, Result_80079608 *r);
 void TObjPlayer__sub_80079124(void * _w0, void * _w1);
-extern s32 *csn_query_hit_buffer;
+extern CsnHit *csn_query_hit_buffer;
 s32 query_segment_wall_meshes(void *arg0, void *arg1, u32 arg2, Node_8007970C **list);
 s32 check_line_hits_walls__10TObjPlayerFPvPviPv(void *arg0, void *arg1, int arg2, Node_800797DC **list);
 f32 vec3_dot(void *, void *);
 void vec3_cross(void *, void *, void *);
-extern Vec_800798A0 scratch_vec;
-extern Vec_800798A0 lbl_8050BF00;
 extern Vec_800798A0 lbl_8050BF20;
 extern Vec_800798A0 lbl_8050BF40;
 extern Vec_800798A0 lbl_8050BF60;
@@ -228,7 +216,6 @@ s32 calc_segment_xz_distance_sq(Vec_8007A138 *c, Vec_8007A138 *o, Vec_8007A138 *
     return dist <= radius * radius;
 }
 }
-extern s32 csn_query_map_object[];
 extern s32 lbl_80438988[];
 void *query_prepared_wall_polygons(void *self);
 extern s32 lbl_804389A8[];
@@ -273,15 +260,15 @@ s32 select_deepest_wall_ray(Query_80079608 *q, Result_80079608 *r) {
     r->index = -1;
     r->best = lbl_805D9204;
     off = q->offsets;
-    hit = r->hits;
+    hit = r->contact;
     n = q->count;
     for (; i < n; off++, hit++, i++) {
         end.x = q->origin.x + off->x;
         end.y = q->origin.y + off->y;
         end.z = q->origin.z + off->z;
         if (query_wall_segment(&q->origin, &end, q->flags, (s32)hit) != 0) {
-            f32 dz = end.z - hit->pos.z;
-            f32 dx = end.x - hit->pos.x;
+            f32 dz = end.z - hit->point.z;
+            f32 dx = end.x - hit->point.x;
             d = fabs_float(dx * hit->normal.x + dz * hit->normal.z);
             if (r->best < d) {
                 r->hit = 1;
@@ -302,9 +289,9 @@ s32 query_segment_wall_meshes(void *arg0, void *arg1, u32 arg2, Node_8007970C **
     u32 flags;
     Poly_8007970C *poly;
     TObjPlayer__sub_80079124(arg0, arg1);
-    csn_query_hit_buffer = lbl_80500140;
-    csn_query_hit_buffer[0] = 0;
-    wall_query_hit_result = csn_query_hit_buffer[1];
+    csn_query_hit_buffer = &lbl_80500140;
+    csn_query_hit_buffer->hit = 0;
+    wall_query_hit_result = (s32)csn_query_hit_buffer->contact;
     csn_query_nearest_hit_t = lbl_805D91F4;
     vsub(arg0, arg1, dir);
     for (; *list != NULL; list++) {
@@ -317,7 +304,7 @@ s32 query_segment_wall_meshes(void *arg0, void *arg1, u32 arg2, Node_8007970C **
             intersect_wall_triangle_one_sided(arg0, dir, (void *)arg2, (E_80079580 *)poly, flags, 0);
         }
     }
-    return csn_query_hit_buffer[0];
+    return csn_query_hit_buffer->hit;
 }
 
 s32 check_line_hits_walls__10TObjPlayerFPvPviPv(void *arg0, void *arg1, int arg2, Node_800797DC **list) {
@@ -327,9 +314,9 @@ s32 check_line_hits_walls__10TObjPlayerFPvPviPv(void *arg0, void *arg1, int arg2
     s32 n;
     u32 flags;
     Poly_800797DC *poly;
-    csn_query_hit_buffer = lbl_80500140;
-    csn_query_hit_buffer[0] = 0;
-    wall_query_hit_result = csn_query_hit_buffer[1];
+    csn_query_hit_buffer = &lbl_80500140;
+    csn_query_hit_buffer->hit = 0;
+    wall_query_hit_result = (s32)csn_query_hit_buffer->contact;
     vsub(arg0, arg1, dir);
     for (; *list != NULL; list++) {
         mesh = (*list)->mesh;
@@ -371,10 +358,10 @@ s32 intersect_wall_triangle_one_sided(void *arg0, void *arg1, void *arg2, E_8007
         return 0;
     }
     v = &VERTS[FACE->idx[0]];
-    scratch_vec.x = ORG->x - v->x;
-    scratch_vec.y = ORG->y - v->y;
-    scratch_vec.z = ORG->z - v->z;
-    t = vec3_dot(&scratch_vec, &n);
+    scratch_vec.vector.x = ORG->x - v->x;
+    scratch_vec.vector.y = ORG->y - v->y;
+    scratch_vec.vector.z = ORG->z - v->z;
+    t = vec3_dot(&scratch_vec.vector, &n);
     if (t <= lbl_805D91FC) {
         return 0;
     }
@@ -386,18 +373,18 @@ s32 intersect_wall_triangle_one_sided(void *arg0, void *arg1, void *arg2, E_8007
     lbl_8050BF60.y = DIR->y * t + ORG->y;
     lbl_8050BF60.z = DIR->z * t + ORG->z;
     v1 = &VERTS[FACE->idx[1]];
-    vsub(&lbl_8050BF60, v, &scratch_vec);
-    vsub(&lbl_8050BF60, v1, &lbl_8050BF00);
-    vec3_cross(&scratch_vec, &lbl_8050BF00, &lbl_8050BF40);
+    vsub(&lbl_8050BF60, v, &scratch_vec.vector);
+    vsub(&lbl_8050BF60, v1, &lbl_8050BF00.vector);
+    vec3_cross(&scratch_vec.vector, &lbl_8050BF00.vector, &lbl_8050BF40);
     if (vec3_dot(&lbl_8050BF40, &n) < lbl_805D91F0) {
         return 0;
     }
     vsub(&lbl_8050BF60, &VERTS[FACE->idx[2]], &lbl_8050BF20);
-    vec3_cross(&lbl_8050BF00, &lbl_8050BF20, &lbl_8050BF40);
+    vec3_cross(&lbl_8050BF00.vector, &lbl_8050BF20, &lbl_8050BF40);
     if (vec3_dot(&lbl_8050BF40, &n) < lbl_805D91F0) {
         return 0;
     }
-    vec3_cross(&lbl_8050BF20, &scratch_vec, &lbl_8050BF40);
+    vec3_cross(&lbl_8050BF20, &scratch_vec.vector, &lbl_8050BF40);
     if (vec3_dot(&lbl_8050BF40, &n) < lbl_805D91F0) {
         return 0;
     }
@@ -405,14 +392,14 @@ s32 intersect_wall_triangle_one_sided(void *arg0, void *arg1, void *arg2, E_8007
     case 0:
         if (t < csn_query_nearest_hit_t) {
             csn_query_nearest_hit_t = t;
-            *csn_query_hit_buffer = 1;
+            csn_query_hit_buffer->hit = 1;
             VecCopy((Vec *)wall_query_hit_result, (const Vec *)&lbl_8050BF60);
             VecCopy((Vec *)(wall_query_hit_result + 0xC), (const Vec *)&n);
             *(u32 *)((s8 *)wall_query_hit_result + 0x18) = FACE->flags;
         }
         break;
     case 1:
-        *csn_query_hit_buffer = 1;
+        csn_query_hit_buffer->hit = 1;
         VecCopy((Vec *)wall_query_hit_result, (const Vec *)&lbl_8050BF60);
         VecCopy((Vec *)(wall_query_hit_result + 0xC), (const Vec *)&n);
         *(u32 *)((s8 *)wall_query_hit_result + 0x18) = FACE->flags;
@@ -421,7 +408,7 @@ s32 intersect_wall_triangle_one_sided(void *arg0, void *arg1, void *arg2, E_8007
         if (csn_query_hit_count >= 0x20) {
             return 0;
         }
-        *csn_query_hit_buffer = 1;
+        csn_query_hit_buffer->hit = 1;
         VecCopy((Vec *)wall_query_hit_result, (const Vec *)&lbl_8050BF60);
         VecCopy((Vec *)(wall_query_hit_result + 0xC), (const Vec *)&n);
         *(u32 *)((s8 *)wall_query_hit_result + 0x18) = FACE->flags;
@@ -544,8 +531,8 @@ u32 TObjPlayer__sub_80079DE0(void *a, void *b) {
     len = newton_sqrtf(lenSq);
     while ((w = *src++) != NULL) {
         if (w->flags & 0x8000) {
-            vsub(a, &w->pos, &scratch_vec);
-            dsq = vec_squared_length(&scratch_vec);
+            vsub(a, &w->pos, &scratch_vec.vector);
+            dsq = vec_squared_length(&scratch_vec.vector);
             r = len + w->radius;
             r *= r;
             if (dsq <= r) {
@@ -663,9 +650,9 @@ Wall_8007A138 *query_collision_segment_groups(Vec_8007A138 *a, Vec_8007A138 *b, 
     newton_sqrtf(lenSq);
     while ((w = *src++) != NULL) {
         if (w->flags & mask) {
-            (*(Vec_8007A138 *)&scratch_vec).x = w->pos.x - a->x;
-            (*(Vec_8007A138 *)&scratch_vec).z = w->pos.z - a->z;
-            dsq = (*(Vec_8007A138 *)&scratch_vec).x * (*(Vec_8007A138 *)&scratch_vec).x + (*(Vec_8007A138 *)&scratch_vec).z * (*(Vec_8007A138 *)&scratch_vec).z;
+            scratch_vec.vector.x = w->pos.x - a->x;
+            scratch_vec.vector.z = w->pos.z - a->z;
+            dsq = scratch_vec.vector.x * scratch_vec.vector.x + scratch_vec.vector.z * scratch_vec.vector.z;
             r = len + w->radius;
             r *= r;
             if (dsq <= r) {
@@ -686,7 +673,7 @@ Wall_8007A138 *query_collision_segment_groups(Vec_8007A138 *a, Vec_8007A138 *b, 
 void *query_prepared_wall_polygons(void *self) {
     void *r;
     TObjPlayer__sub_8007911C();
-    r = csn_query_map_object;
+    r = &csn_query_map_object;
     if (select_deepest_wall_ray((Query_80079608 *)(self), (Result_80079608 *)(r)) == 0) {
         r = 0;
     }
@@ -697,7 +684,7 @@ void *query_prepared_wall_polygons(void *self) {
 void *query_wall_radial(Obj_8007A32C *self) {
     void *r;
     TObjPlayer__sub_8007911C();
-    r = csn_query_map_object;
+    r = &csn_query_map_object;
     if (prepare_wall_query_polygons(self->fc, self->f4, self->f8) == 0) {
         r = 0;
     } else if (select_deepest_wall_ray((Query_80079608 *)(self), (Result_80079608 *)(r)) == 0) {
@@ -710,7 +697,7 @@ void *query_wall_radial(Obj_8007A32C *self) {
 s32 *csnLookAt(s32 arg0, s32 arg1) {
     s32 *var_r31;
     TObjPlayer__sub_8007911C();
-    var_r31 = lbl_80500140;
+    var_r31 = &lbl_80500140.hit;
     TObjPlayer__sub_80079124((void *)arg0, (void *)arg1);
     if (TObjPlayer__sub_80079DE0((void *)arg0, (void *)arg1) == 0U) {
         var_r31 = NULL;
@@ -726,7 +713,7 @@ s32 *csnVectorUnder(Vec *arg0, u32 *arg1, s32 arg2) {
     TObjPlayer__sub_80079108();
     TObjPlayer__sub_8007911C();
     TObjPlayer__sub_80079120((s32)arg0);
-    var_r31 = lbl_80500140;
+    var_r31 = &lbl_80500140.hit;
     if ((u32) *arg1 == 0U) {
         if (((u32)refill_csn_candidate_cache((P_80079C64 *)(arg0), (M_80079C64 **)(arg1), arg2)) == 0U) {
             var_r31 = NULL;
@@ -747,15 +734,15 @@ done:
     TObjPlayer__sub_80079118(lbl_804389CC);
     return var_r31;
 }
-s32 *csnVecterUnder(s32 origin, s32 mask) {
-    s32 *var_r31;
+CsnHit *csnVecterUnder(const Vec *origin, u32 mask) {
+    CsnHit *var_r31;
     TObjPlayer__sub_80079108();
     TObjPlayer__sub_8007911C();
-    TObjPlayer__sub_80079120(origin);
-    var_r31 = ((s32 *)&lbl_80500140);
+    TObjPlayer__sub_80079120((s32)origin);
+    var_r31 = &lbl_80500140;
     if (((u32)select_ground_query_groups((CsnVector *)(origin), mask)) == 0U) {
         var_r31 = 0;
-    } else if (evaluate_ground_triangles(origin, mask, lbl_804FFD40) == 0) {
+    } else if (evaluate_ground_triangles((s32)origin, mask, lbl_804FFD40) == 0) {
         var_r31 = 0;
     }
     TObjPlayer__sub_80079118(lbl_804389E8);

@@ -2,9 +2,9 @@
 #define PSO_MISC_TWINDOWSUBITEMLIST_H
 
 #include "types.h"
-#include "pso/misc/TWindowMenuIconLine.h"
+#include "pso/misc/TUnk_804D0618.h"
 
-struct TWindowSubItemList : public TWindowMenuIconLine {
+struct TWindowSubItemList : public TUnk_804D0618 {
     virtual ~TWindowSubItemList();
     void sub_8027ACF8(u8 *);
     void render();

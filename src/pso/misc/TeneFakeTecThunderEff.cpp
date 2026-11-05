@@ -105,7 +105,7 @@ struct Obj_800A39A8 {
 
 f32 fabs_float(f32);
 f32 rand_signed_unit();
-s32 update_scale__15TObjBoss2TunnelFv(void *);
+s32 normalize_vector_checked(void *);
 f32 vector_length(void *);
 s32 subtract_vector(void *, void *);
 extern const f32 lbl_805D99F4;
@@ -179,7 +179,7 @@ void build_beam_points__12TTecZondeEffFPv(Obj_800A39A8 *o) {
             p->y = u;
             p->z = v;
             p->x = inv * (u * e1 + v * e2);
-            update_scale__15TObjBoss2TunnelFv(p);
+            normalize_vector_checked(p);
             p++;
         }
         break;
@@ -201,7 +201,7 @@ void build_beam_points__12TTecZondeEffFPv(Obj_800A39A8 *o) {
             p->z = u;
             p->x = v;
             p->y = inv * (u * e1 + v * e2);
-            update_scale__15TObjBoss2TunnelFv(p);
+            normalize_vector_checked(p);
             p++;
         }
         break;
@@ -223,7 +223,7 @@ void build_beam_points__12TTecZondeEffFPv(Obj_800A39A8 *o) {
             p->x = u;
             p->y = v;
             p->z = inv * (u * e1 + v * e2);
-            update_scale__15TObjBoss2TunnelFv(p);
+            normalize_vector_checked(p);
             p++;
         }
         break;

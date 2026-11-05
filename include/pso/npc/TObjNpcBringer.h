@@ -6,7 +6,7 @@
 class TObjNpcBringer : public TObjNpcBase {
 public:
     virtual ~TObjNpcBringer();
-    virtual void request_action(s32);
+    virtual void vfunc_88();
 public:
     static void *create(void *arg0);
 };

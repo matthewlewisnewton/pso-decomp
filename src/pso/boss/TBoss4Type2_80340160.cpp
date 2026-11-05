@@ -1,3 +1,4 @@
+#include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/misc/TOTrapAncient01_80226534.h"
 #include "pso/ui/TAdPlyStatusGC_8033FD48.h"
@@ -35,7 +36,7 @@ void TBoss6Demo15_TYPE2_WAIT::run_task() {
             ((TParticleCtrl *)temp_r3)->set_position((u8 *)&this->m_40);
         }
         ((TBoss6Demo15_TYPE2_WAIT *)arg0)->check_any_player_near();
-        play_persistent_sound(0x4003A126, (s32)arg0, (u32)(arg0 + 0x40), 0, 0);
+        play_persistent_sound((s32)(0x4003A126), (const void *)((s32)arg0), (const Vec *)((u32)(arg0 + 0x40)), 0, 0);
         if (((TObjFish *)(*(u8 * *)&this->unk_1C))->get_phase() != 4) {
             queue_destruction__7TObjectFv(arg0);
         }

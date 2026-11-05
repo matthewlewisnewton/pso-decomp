@@ -1,5 +1,4 @@
 #include "pso/misc/TWindowDD.h"
-#include "pso/misc/TWindowBase.h"
 
 #include "types.h"
 #include "pso/player/TObjPlayer.h"
@@ -63,6 +62,7 @@ void TWindowDD__sub_8034740C(u8 *arg0, s32 arg1, s32 arg2);
 void TWindowDD__sub_803474CC(M_80347758 *entry, s16 id, char *word, s32 buf, s32 *pos);
 s32 TWindowDD__sub_80348D88(M_80347758 *entry);
 extern const s32 word_select_numeric_limits[];
+extern const char lbl_804786A0[];
 extern s32 TWindowDD__window_mode;
 s32 TWindowDD__sub_80348B70(s32);
 void TWindowDD__sub_80347474(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
@@ -87,7 +87,7 @@ extern const f32 lbl_805DFBEC;
 extern const f32 lbl_805DFC28;
 void TWindowDD__sub_80347E04(W_80347E04 *arg0, s32 arg1);
 s32 update_state__9TWindowDDFv(void *, u32, u16);
-E_80347CC8 *get_array_entry__11TWindowBaseFi(void *, s32);
+E_80347CC8 *get_array_entry__13TUnk_804CE018Fi(void *, s32);
 s32 refresh_status_display__9TWindowDDFv(void *);
 extern s32 local_client_id;
 extern u32 TWindowDD__work_buffer;
@@ -272,7 +272,7 @@ void TWindowDD__sub_803474CC(M_80347758 *entry, s16 id, char *word, s32 buf, s32
                 break;
             case 2:
                 TWindowDD::append_string((s32)word, buf, pos);
-                TWindowDD::append_string((s32)" Lv.", buf, pos);
+                TWindowDD::append_string((s32)lbl_804786A0, buf, pos);
                 TWindowDD::append_string((s32)num, buf, pos);
                 break;
             case 3:
@@ -480,7 +480,7 @@ void TWindowDD__sub_80347CC8(W_80347CC8 *arg0, void *window_dd) {
     update_state__9TWindowDDFv(window_dd, TWindowDD__work_buffer, local_client_id);
     s = arg0->f70;
     if (s != NULL) {
-        e = get_array_entry__11TWindowBaseFi(s, 0);
+        e = get_array_entry__13TUnk_804CE018Fi(s, 0);
         if (e != NULL) {
             refresh_status_display__9TWindowDDFv(e);
             x = 10.0f + e->f10;
@@ -536,7 +536,7 @@ void TWindowDD__sub_80347E04(W_80347E04 *arg0, s32 arg1) {
         b.y = a.y;
         o = (u8 *)TWindowDD__sub_8034146C((s32)&a, (s32)&b, (s32)r, 1, (f32)lbl_805DFBE4);
         if (o != NULL) {
-            ((TWindowBase *)o)->set_depth(lbl_805DFC28);
+            ((TLobby *)o)->set_field_1c(lbl_805DFC28);
             TWindowDD__sub_803412A0((u32)o);
             ((TWindowSubSymbolChatPartsSet *)(o + 0x40))->copy_vec2(&v);
             ((TWindowDD *)o)->init_and_set_field50((void *)TWindowDD__data_805DFB50);

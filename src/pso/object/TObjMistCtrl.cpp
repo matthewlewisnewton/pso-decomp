@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/object/TObjMistCtrl.h"
 #include "pso/unk/text_803E29B0.h"
@@ -49,6 +50,7 @@ extern s32 camera_ctrl_instance;
 extern s32 saved_model_render_flags;
 extern s32 player_footstamp_texture_gvm_handle;
 extern s32 model_render_flags;
+extern const f32 lbl_805DE1F8;
 
 typedef char RecoveredGlobal_802AF7C0___vt__12TObjMistCtrl_size[sizeof(RecoveredGlobal_802AF7C0___vt__12TObjMistCtrl) == 0x38 ? 1 : -1];
 u8 *TObjMistCtrl__ct(u8 *mist_ctrl, s32 parent, u32 arg2) {
@@ -64,10 +66,10 @@ u8 *TObjMistCtrl__ct(u8 *mist_ctrl, s32 parent, u32 arg2) {
 
 void TPlayerFootStamp::render() {
     u8 *arg0 = (u8 *)this;
-    if (horizontal_distance_squared((const Vec *)((void *)(arg0 + 0x7C)), (const Vec *)((void *)(camera_ctrl_instance + 0x178))) < 22500.0f) {
+    if (horizontal_distance_squared((const Vec *)((void *)(arg0 + 0x7C)), (const Vec *)((void *)(camera_ctrl_instance + 0x178))) < lbl_805DE1F8) {
         saved_model_render_flags = model_render_flags;
         set_default_alpha_blend();
-        TObjFish::set_global_param(player_footstamp_texture_gvm_handle);
+        set_current_texture_list((GinjaTextureList *)(player_footstamp_texture_gvm_handle));
         set_texture_num((*(s16 *)((s8 *)arg0 + 0xBE)));
         set_depth_buffer_settings_1();
         draw_particle_strip((arg0 + 0x1C), (void *)(4), (void *)(1));

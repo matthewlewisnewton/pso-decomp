@@ -1,3 +1,4 @@
+struct NJS_OBJECT;
 #ifndef PSO_OBJECT_TOBJFISH_H
 #define PSO_OBJECT_TOBJFISH_H
 
@@ -26,15 +27,10 @@ struct TObjFish : public TObjBase {
     static void spawn_particle(s32 arg0, s32 arg1, f32 farg0);
     static void free_resource();
     static void load_area_resource();
-    static void draw_callback_transform_to_view();
-    void set_draw_callback_list();
-    void clear_render_callback();
-    s32 is_entry_table_valid();
-    static void init_state_1(void *arg0);
     static void load_models();
     void update_attached_orientation();
     void destroy_child();
-    static s32 set_global_param(s32 arg0);
+
     void handle_death_state(u32 arg1);
     static void spawn_via_trap(s32 arg0, s32 arg1, s32 arg2);
     static void set_effect_target_position(void* p, void* a1, void* a2);
