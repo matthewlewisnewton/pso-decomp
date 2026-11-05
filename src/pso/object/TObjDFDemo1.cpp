@@ -366,4 +366,3 @@ void TObjDFDemo1::sub_8004E068() {
         TObjPlayer::sync_player_globals();
     }
 }
-
