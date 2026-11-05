@@ -697,13 +697,13 @@ void TBoss6Type1::set_action_state(s32 arg1) {
 
 extern "C" {
 
-void Boss6Anim::copy_transform(Boss6Anim *src) {
-    *this = *src;
-}
-
 void *TBoss6Type1::copy_block(void *d, void *s) {
     *(Boss6AnimBlock *)d = *(Boss6AnimBlock *)s;
     return d;
+}
+
+void Boss6Anim::copy_transform(Boss6Anim *src) {
+    *this = *src;
 }
 
 void TBoss6Type1__sub_802B854C(TBoss6Type1 *self) {
@@ -1178,6 +1178,72 @@ void TBoss6Type1__sub_802B73AC(TBoss6Type1 *self) {
         }
     }
 }
+extern "C" {
+void TBoss4DarkFalz__sub_8004B4F0(void *dst, void *src);
+s32 TBoss6Type1__sub_802ABDEC(s32 seed);
+s32 is_normal_difficulty();
+extern const s32 lbl_80470F70[5];
+extern const Vec lbl_80470F84;
+}
+
+// Sword sweep: while anim set 14 is between 10.5 and 15, damage players inside the
+// triangle position → m_4c8 → effect_points[1], then remember effect_points[1].
+extern "C" void TBoss6Type1__sub_802B715C(TBoss6Type1 *self) {
+    f32 t = self->anims[0].t;
+    Boss6Motion *motion = self->anims[0].motion;
+    Vec *tip = &self->effect_points[1];
+    if (motion == get_bml_motion(self->m_3fc, TBoss6Type1__motion_set_table[14].ids[0]) &&
+        !(t < 10.5f) && !(t > 15.0f)) {
+        f32 end = 10.5f + self->anims[0].speed;
+        s32 n;
+        s32 i;
+        if (t >= 10.5f && t < end) {
+            play_sound_effect(0x40038A0E, &self->effect_points[0], 0, 0);
+        }
+        self->update_effect_points();
+        n = TLobby::get_game_mode();
+        for (i = 0; i < n; i++) {
+            Vec dir[2];
+            Vec *chain[4];
+            f32 cross_y[3];
+            Vec c;
+            s32 inside = 1;
+            s32 k;
+            TObjPlayer *p = TObjPlayer::get_player_data(i);
+            if (is_active__14TBoss6PlotFalzFv() == 0) {
+                continue;
+            }
+            chain[0] = chain[3] = &self->position;
+            chain[1] = &self->m_4c8;
+            chain[2] = tip;
+            for (k = 0; k < 3; k++) {
+                VecCopy(&dir[0], chain[k + 1]);
+                subtract_vector(&dir[0], chain[k]);
+                VecCopy(&dir[1], &p->position);
+                subtract_vector(&dir[1], chain[k]);
+                dir[0].y = 0.0f;
+                dir[1].y = 0.0f;
+                vec3_cross(&dir[0], &dir[1], &c);
+                cross_y[k] = c.y;
+                if (k > 0) {
+                    f32 prev = cross_y[k - 1];
+                    if ((prev < 0.0f && cross_y[k] >= 0.0f) || (prev > 0.0f && cross_y[k] <= 0.0f)) {
+                        inside = 0;
+                        break;
+                    }
+                }
+            }
+            if (inside != 0) {
+                s32 r = TBoss6PlotFalz::rand_vary_count(self->unk_480, 0.1f);
+                DirectAttackPayload payload;
+                payload.kind = 0;
+                payload.power = (f32)r;
+                p->receive_direct_attack(self, payload, 0, -1, -1);
+            }
+        }
+    }
+    VecCopy(&self->m_4c8, tip);
+}
 void TBoss6Type1__sub_802B6C30(TBoss6Type1 *self) {
     s32 n;
     Vec *p4;
@@ -1343,16 +1409,71 @@ void TBoss6Type1::damage_players_in_range() {
         }
     }
 }
-extern "C" {
-void TBoss4DarkFalz__sub_8004B4F0(void *dst, void *src);
-s32 TBoss6Type1__sub_802ABDEC(s32 seed);
-s32 is_normal_difficulty();
-extern const f32 lbl_805DE37C;
-extern const f32 lbl_805DE380;
-extern const f32 lbl_805DE384;
-extern const f32 lbl_805DE390;
-extern const s32 lbl_80470F70[5];
-extern const Vec lbl_80470F84;
+
+// Fires five kakusan shots from nodes {4, 3, 7, 5, 6}, each 46.25 further out.
+extern "C" void TBoss6Type1__sub_802B6944(TBoss6Type1 *self) {
+    u16 slot;
+    s32 i;
+    f32 radius;
+    f32 lift;
+    slot = self->m_41c & 3;
+    lift = 5.0f * (self->m_41c & 3);
+    radius = -92.5f;
+    for (i = 0; i < 5; i++) {
+        Boss6NodePos node = self->node_positions_578[lbl_80470F70[i]];
+        Vec dir;
+        f32 len;
+        f32 scale;
+        dir.x = radius * cos_table_lookup(-self->rotation.yaw);
+        dir.y = lift;
+        dir.z = radius * sin_table_lookup(-self->rotation.yaw);
+        subtract_vector(&dir, &node.v);
+        len = vector_length(&dir);
+        if (len <= 1e-05f) {
+            len = 1.0f;
+            dir.x = 1.0f;
+        }
+        scale = 7.5f / len;
+        dir.x *= scale;
+        dir.y *= scale;
+        dir.z *= scale;
+        if (is_normal_difficulty() != 0) {
+            TBoss6Type1::create_kakusan(self, &node.v, &dir, 0xFFFF, 7.5f);
+        } else {
+            TBoss6Type1::create_kakusan(self, &node.v, &dir, slot, 7.5f);
+        }
+        slot = (slot + 1) & 3;
+        radius += 46.25f;
+    }
+    play_sound_effect(0x4003A10B, &self->node_positions_578[7].v, 0, 0);
+}
+
+void TBoss6Type1::spawn_grav_ball() {
+    Vec v;
+    s32 flag;
+    TObjPlayer *pl;
+    s8 b;
+    s32 ang;
+    f32 r;
+    flag = 1;
+    pl = get_player_by_client_id(this->m_41c & 3);
+    if (is_active__14TBoss6PlotFalzFv() != 0) {
+        VecCopy(&v, &pl->position);
+        flag = 0;
+        v.y = this->position.y;
+    }
+    b = this->m_41c;
+    if (b & 0x40) {
+        flag = 1;
+    }
+    if (flag != 0) {
+        ang = (b & 0xF) << 12;
+        r = 80.0f * ((f32)((b >> 3) & 0xF) / 15.0f) + 10.0f;
+        VecCopy(&v, (&this->position));
+        v.x += r * sin_table_lookup(ang);
+        v.z += r * cos_table_lookup(ang);
+    }
+    TBoss6Type1::create_grav_ball(this, &v);
 }
 
 // Places a ring of TBoss6Mine around node 0. The ring count follows the plot phase
@@ -1466,131 +1587,6 @@ extern "C" void TBoss6Type1__sub_802B6504(TBoss6Type1 *self) {
     if (self->m_4e0 > 0) {
         play_sound_effect(0x4003B51B, &self->position, 0, 0);
     }
-}
-
-// Fires five kakusan shots from nodes {4, 3, 7, 5, 6}, each 46.25 further out.
-extern "C" void TBoss6Type1__sub_802B6944(TBoss6Type1 *self) {
-    u16 slot;
-    s32 i;
-    f32 radius;
-    f32 lift;
-    slot = self->m_41c & 3;
-    lift = 5.0f * (self->m_41c & 3);
-    radius = lbl_805DE37C;
-    for (i = 0; i < 5; i++) {
-        Boss6NodePos node = self->node_positions_578[lbl_80470F70[i]];
-        Vec dir;
-        f32 len;
-        f32 scale;
-        dir.x = radius * cos_table_lookup(-self->rotation.yaw);
-        dir.y = lift;
-        dir.z = radius * sin_table_lookup(-self->rotation.yaw);
-        subtract_vector(&dir, &node.v);
-        len = vector_length(&dir);
-        if (len <= 1e-05f) {
-            len = 1.0f;
-            dir.x = 1.0f;
-        }
-        scale = lbl_805DE380 / len;
-        dir.x *= scale;
-        dir.y *= scale;
-        dir.z *= scale;
-        if (is_normal_difficulty() != 0) {
-            TBoss6Type1::create_kakusan(self, &node.v, &dir, 0xFFFF, lbl_805DE380);
-        } else {
-            TBoss6Type1::create_kakusan(self, &node.v, &dir, slot, lbl_805DE380);
-        }
-        slot = (slot + 1) & 3;
-        radius += lbl_805DE384;
-    }
-    play_sound_effect(0x4003A10B, &self->node_positions_578[7].v, 0, 0);
-}
-
-// Sword sweep: while anim set 14 is between 10.5 and 15, damage players inside the
-// triangle position → m_4c8 → effect_points[1], then remember effect_points[1].
-extern "C" void TBoss6Type1__sub_802B715C(TBoss6Type1 *self) {
-    f32 t = self->anims[0].t;
-    Boss6Motion *motion = self->anims[0].motion;
-    Vec *tip = &self->effect_points[1];
-    if (motion == get_bml_motion(self->m_3fc, TBoss6Type1__motion_set_table[14].ids[0]) &&
-        !(t < lbl_805DE390) && !(t > 15.0f)) {
-        f32 end = lbl_805DE390 + self->anims[0].speed;
-        s32 n;
-        s32 i;
-        if (t >= lbl_805DE390 && t < end) {
-            play_sound_effect(0x40038A0E, &self->effect_points[0], 0, 0);
-        }
-        self->update_effect_points();
-        n = TLobby::get_game_mode();
-        for (i = 0; i < n; i++) {
-            Vec dir[2];
-            Vec *chain[4];
-            f32 cross_y[3];
-            Vec c;
-            s32 inside = 1;
-            s32 k;
-            TObjPlayer *p = TObjPlayer::get_player_data(i);
-            if (is_active__14TBoss6PlotFalzFv() == 0) {
-                continue;
-            }
-            chain[0] = chain[3] = &self->position;
-            chain[1] = &self->m_4c8;
-            chain[2] = tip;
-            for (k = 0; k < 3; k++) {
-                VecCopy(&dir[0], chain[k + 1]);
-                subtract_vector(&dir[0], chain[k]);
-                VecCopy(&dir[1], &p->position);
-                subtract_vector(&dir[1], chain[k]);
-                dir[0].y = 0.0f;
-                dir[1].y = 0.0f;
-                vec3_cross(&dir[0], &dir[1], &c);
-                cross_y[k] = c.y;
-                if (k > 0) {
-                    f32 prev = cross_y[k - 1];
-                    if ((prev < 0.0f && cross_y[k] >= 0.0f) || (prev > 0.0f && cross_y[k] <= 0.0f)) {
-                        inside = 0;
-                        break;
-                    }
-                }
-            }
-            if (inside != 0) {
-                s32 r = TBoss6PlotFalz::rand_vary_count(self->unk_480, 0.1f);
-                DirectAttackPayload payload;
-                payload.kind = 0;
-                payload.power = (f32)r;
-                p->receive_direct_attack(self, payload, 0, -1, -1);
-            }
-        }
-    }
-    VecCopy(&self->m_4c8, tip);
-}
-
-void TBoss6Type1::spawn_grav_ball() {
-    Vec v;
-    s32 flag;
-    TObjPlayer *pl;
-    s8 b;
-    s32 ang;
-    f32 r;
-    flag = 1;
-    pl = get_player_by_client_id(this->m_41c & 3);
-    if (is_active__14TBoss6PlotFalzFv() != 0) {
-        VecCopy(&v, &pl->position);
-        flag = 0;
-        v.y = this->position.y;
-    }
-    b = this->m_41c;
-    if (b & 0x40) {
-        flag = 1;
-    }
-    if (flag != 0) {
-        ang = (b & 0xF) << 12;
-        r = 80.0f * ((f32)((b >> 3) & 0xF) / 15.0f) + 10.0f;
-        VecCopy(&v, (&this->position));
-        v.x += r * sin_table_lookup(ang);
-        v.z += r * cos_table_lookup(ang);
-    }
-    TBoss6Type1::create_grav_ball(this, &v);
 }
 void TBoss6Type1::increase_field_clamped_max() {
     this->m_4dc += 1.0f / 30.0f;
