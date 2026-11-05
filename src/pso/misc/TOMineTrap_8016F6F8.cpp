@@ -408,8 +408,12 @@ TOMineTrap::TOMineTrap(TObjPlayer *owner, s16 trap_index, s16 trap_id) : TOMine(
                 attack.power = lbl_805DB86C * area_scale *
                                (lbl_805DB870 * (lbl_805DB878 * owner_player->get_actor_level_index() + lbl_805DB874));
             }
-            if (attack.power < lbl_805DB85C) {
-                attack.power = lbl_805DB85C;
+            /* lbl_805DB85C is 0.0f. Naming it makes MWCC share the load in a
+             * temp created before the reload of attack.power, so the compare
+             * swaps f0 and f1. The literal is not shared, and the unit's
+             * .sdata2 is that one constant (0x805DB85C). */
+            if (attack.power < 0.0f) {
+                attack.power = 0.0f;
             }
             break;
         case 1:

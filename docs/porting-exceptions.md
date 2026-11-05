@@ -156,22 +156,27 @@ Objdiff of the whole unit (`GC/2.6`, `-O4,s -inline on -sdata2 4`), flag on
 versus flag omitted: `run_task` is byte-identical either way (100%, 952
 bytes). Every other function that is exact without the flag stays exact with
 it. `.rodata` (`lbl_804421F8`, 8 bytes) is exact either way. The three
-functions above change, from 98.73% (1076 bytes) / 97.81% (296) / 95.60%
-(172) without the flag to 99.91% (1072 bytes) / 100% / 100% with it. Those
-multiply-adds compile as `fmuls`+`fadds` when `-fp_contract` is omitted and
-`fmadds` when it is on.
+functions above change, from 98.82% (1076 bytes) / 97.81% (296) / 95.60%
+(172) without the flag to 100% (1072 bytes) / 100% / 100% with it. `run_task`
+is byte-identical either way. Those multiply-adds compile as `fmuls`+`fadds`
+when `-fp_contract` is omitted and `fmadds` when it is on.
 
-The constructor's remaining gap is the clamp at `0x80170068`: the original is
-`lfs f1, 0x358(r28); lfs f0, lbl_805DB85C; fcmpo f1, f0` then `stfs f0`, and
-this source swaps `f0`/`f1`. `lbl_805DB85C` is `0.0f` in the shared `.sdata2`
-pool (`0x805DB840`-`0x805DB890`), which `text_8016F1C0.cpp`, this unit and
-`TOMine.cpp` all read. As an `extern const` global, its load is shared by the
-frontend CSE pass, and that temp is numbered below the reload of the field, so
-the reload gets `f0`. Written as the literal `0.0f`, the clamp compiles to the
-original registers. The only difference left is that the relocation then
-points at a pool entry of this unit's own (`.sdata2`) instead of
-`lbl_805DB85C`. Matching it honestly needs that pool to belong to one unit
-spanning those splits; this PR leaves the unit boundaries alone.
+The constructor clamp (`0x80170068`) is written `attack.power < 0.0f`.
+`lbl_805DB85C` is that `0.0f`. Loaded by name, it is an `extern const`, so
+the frontend CSE pass puts it in a temp numbered below the reload of
+`attack.power` and the compare swaps `f0`/`f1` (99.91%). A literal is not
+shared, so the reload is `f1` and the constant is `f0`, which is the
+original. That literal is the unit's only `.sdata2` entry. The split claims
+`0x805DB85C`-`0x805DB860` (`align:4`), the address of `lbl_805DB85C`. The
+other uses in this file still name the symbol, and both relocations resolve
+there. Defining `lbl_805DB85C = 0.0f` in the file does not do this: MWCC
+inlines the const, so every use becomes a second pool slot 4 bytes after
+the exported symbol, and `receive_physical_attack` and
+`receive_weapon_special_attack` leave exact. The compiled `.sdata2` section
+is 8-aligned and `0x805DB85C` is not, and the pool symbol is the compiler's
+`@252` rather than `lbl_805DB85C`, which `text_8016F1C0.cpp` and `TOMine.cpp`
+still reference. The unit therefore matches (38/38 functions, `.text`,
+`.rodata` and `.sdata2`) and is not linked.
 
 `follow_target` and `update_float_height` are exact on main through
 function-local `fp_contract` pragmas. This PR removes those pragmas; the unit
