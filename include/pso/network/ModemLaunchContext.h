@@ -5,6 +5,23 @@
 #include <stddef.h>
 
 // Views of the reserved launch record at 0x80003100. Unknown spans stay opaque.
+// DolImageHeader is the DOL file header stored at ModemLaunchContext::field_104:
+// 7 text slots, 11 data slots, then BSS and the entry. File offsets are
+// relative to that header. Not a recovered original type name.
+struct DolImageHeader {
+    u32 text_offset[7];
+    u32 data_offset[11];
+    void *text_address[7];
+    void *data_address[11];
+    u32 text_size[7];
+    u32 data_size[11];
+    void *bss_address;
+    u32 bss_size;
+    void (*entry)();
+};
+
+typedef char DolImageHeaderBss[offsetof(DolImageHeader, bss_address) == 0xD8 ? 1 : -1];
+typedef char DolImageHeaderEntry[offsetof(DolImageHeader, entry) == 0xE0 ? 1 : -1];
 struct ModemLaunchOptions {
     u8 unknown_000[4];
     char text[0xF0];
@@ -48,7 +65,8 @@ struct ModemLaunchData {
 struct ModemLaunchContext {
     char path[0x100];
     s32 field_100;
-    s32 field_104;
+    // DOL image address. fn_8042EBA4 stores the s32 its caller passes.
+    DolImageHeader *field_104;
     u32 payload_size;
     u8 unknown_10c[4];
     u8 data[0x8000];
@@ -71,6 +89,7 @@ typedef char ModemLaunchArguments[offsetof(ModemLaunchData, arguments) == 0x6020
 typedef char ModemLaunchOptionsOffset[offsetof(ModemLaunchData, options) == 0x7020 ? 1 : -1];
 typedef char ModemLaunchParametersOffset[offsetof(ModemLaunchData, parameters) == 0x7820 ? 1 : -1];
 typedef char ModemLaunchContextData[offsetof(ModemLaunchContext, data) == 0x110 ? 1 : -1];
+typedef char ModemLaunchContextImage[offsetof(ModemLaunchContext, field_104) == 0x104 ? 1 : -1];
 
 extern "C" {
 extern s32 lbl_805D7CA8;

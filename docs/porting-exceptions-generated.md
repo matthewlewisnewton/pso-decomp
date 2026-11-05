@@ -7,11 +7,11 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 
 | Category | Hits | Files |
 |---|---:|---:|
-| asm | 13 | 4 |
+| asm | 15 | 5 |
 | intrinsic | 83 | 54 |
 | hardware | 71 | 13 |
 | pragma | 5852 | 884 |
-| configure.py per-unit override | 148 | 148 |
+| configure.py per-unit override | 149 | 149 |
 
 Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1043, `fp_contract` 924, `auto_inline` 842, `opt_common_subs` 624, `scheduling` 262, `opt_propagation` 240, `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 43, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 22, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
@@ -32,6 +32,8 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1043,
 | `src/pso/math/MatrixVector.cpp:76` | `asm void matrix_identity(u8 *arg0) {` |
 | `src/pso/math/MatrixVector.cpp:77` | `#include "orig_asm/pso/math/MatrixVector/matrix_identity.inc"` |
 | `src/pso/unk/text_803E2D70.cpp:314` | `asm void transform_chunk_vertices_pos_normal(register Hdr_803E34B0 *job, register ReorderedMatrix_803E3390 *matrix) {` |
+| `src/pso/unk/text_8042E8C4.cpp:24` | `asm void LaunchDol(register ModemLaunchContext *ctx) {` |
+| `src/pso/unk/text_8042E8C4.cpp:25` | `#include "orig_asm/pso/unk/text_8042E8C4/LaunchDol.inc"` |
 
 ## MWCC intrinsics
 
@@ -349,6 +351,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1043,
 | `pso/misc/TLobby_803FC178.cpp` | `-opt nocse` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/TLobby_804048E8.cpp` | `-opt nocse` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/TLobby_804050DC.cpp` | `-opt nocse` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
+| `pso/unk/text_8042E8C4.cpp` | `-inline auto, -opt nocse,nostrength,noprop` | LaunchDol's C++ recovery matches all 74 pre-tail instructions (0x000..0x124) with -inline auto -opt nocse,nostrength,noprop: the section loops index with lwzx off a byte induction variable, recompute base+index per load, keep zero in r30 for cmplw, and evaluate the section source address before loading r3/r5. |
 
 ## CodeWarrior pragmas per file
 
