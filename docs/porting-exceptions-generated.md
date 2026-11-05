@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 13 | 4 |
 | intrinsic | 83 | 54 |
 | hardware | 69 | 13 |
-| pragma | 5779 | 873 |
+| pragma | 5780 | 875 |
 | configure.py per-unit override | 169 | 169 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1146, `inline_depth` 1038, `fp_contract` 887, `auto_inline` 837, `opt_common_subs` 611, `scheduling` 260, `opt_propagation` 237, `readonly_strings` 204, `peephole` 103, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 41, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 21, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1146, `inline_depth` 1038, `fp_contract` 888, `auto_inline` 837, `opt_common_subs` 611, `scheduling` 260, `opt_propagation` 237, `readonly_strings` 204, `peephole` 103, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 41, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 21, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -466,6 +466,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1146, `inline_depth` 1038,
 | `src/pso/boss/TBoss8Dragon_80325D38.cpp` | fp_contract×1 |
 | `src/pso/boss/TBoss8Dragon_8036AEF8.cpp` | fp_contract×1 |
 | `src/pso/boss/TObjBoss1Crater_8002C6B4.cpp` | fp_contract×1 |
+| `src/pso/boss/TObjBoss1Rock.cpp` | fp_contract×1 |
 | `src/pso/boss/TObjBoss2CeilJunk.cpp` | opt_dead_assignments×1 |
 | `src/pso/boss/TObjBoss2DustCtrl.cpp` | opt_propagation×1 |
 | `src/pso/boss/TObjBoss2Tunnel.cpp` | opt_propagation×1 |
@@ -675,7 +676,8 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1146, `inline_depth` 1038,
 | `src/pso/misc/TLobby_80207644.cpp` | opt_common_subs×3 |
 | `src/pso/misc/TLobby_80207DA8.cpp` | fp_contract×1 |
 | `src/pso/misc/TLobby_80222D24.cpp` | fp_contract×2, scheduling×2, readonly_strings×1 |
-| `src/pso/misc/TLobby_80227A2C.cpp` | fp_contract×1, opt_propagation×1 |
+| `src/pso/misc/TLobby_80228154.cpp` | fp_contract×1 |
+| `src/pso/misc/TLobby_80228818.cpp` | opt_propagation×1 |
 | `src/pso/misc/TLobby_8023F734.cpp` | opt_common_subs×3, opt_propagation×3, opt_dead_assignments×3, readonly_strings×1, fp_contract×1 |
 | `src/pso/misc/TLobby_802409AC.cpp` | fp_contract×1, inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/misc/TLobby_80291D94.cpp` | inline_depth×3, auto_inline×3, dont_inline×3, fp_contract×1 |
