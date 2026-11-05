@@ -1296,12 +1296,6 @@ struct Stack_801B8A80 {
     u8 trailing_storage[0x4];
 };
 
-struct DeathDropRecord {
-    s32 state;
-    s32 source_id;
-    TItemData item;
-};
-
 struct DeathItemPosition { f32 x,y,z; };
 
 struct PlayerDeathItemFields {

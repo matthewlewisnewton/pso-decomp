@@ -17,13 +17,6 @@ extern TItem **player_owner_collect_cursor;
 }
 extern TObjPlayer *item_reduce_target_player;
 
-struct Collected_801D52A8 {
-    s8 mode;
-    u8 pad[3];
-    s32 id;
-    TItemData data;
-};
-extern Collected_801D52A8 *player_item_collect_cursor;
 s32 compare_item_data_masked(void *arg0, void *arg1, s32 arg2);
 extern "C" {
 
@@ -51,8 +44,8 @@ void TObjPlayer__sub_801D52A8(TItemList *arg0) {
         if (TItemList::is_item_valid(n) != 0) {
             o = n->get_owner_if_alive();
             if ((o != NULL) && (is_item_equipped(o) != 0) && (o->get_item_type() == 0)) {
-                o->copy_to_item_data(&player_item_collect_cursor->data);
-                player_item_collect_cursor->id = o->get_item_id();
+                o->copy_to_item_data(&player_item_collect_cursor->item);
+                player_item_collect_cursor->source_id = o->get_item_id();
                 player_item_collect_cursor += 1;
                 inventory_walk_visit_count += 1;
             }

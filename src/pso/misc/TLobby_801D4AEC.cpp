@@ -53,7 +53,6 @@ void TLobby__sub_801D4C28(TPlyItem *a0, void *a1, int a2, int a3) { item_reduce_
 
 void TPlyItem::set_globals_and_update(void *a1, int a2) { item_reduce_target_player = a1; item_reduce_owner_match_field_ec = a2; item_list->reduce_child_item_amounts(); }
 
-    extern void *player_item_collect_cursor;
-int TPlyItem::set_globals_and_notify(TObjPlayer *player, void *out) { player_item_collect_cursor = out; inventory_walk_visit_count = 0; TObjPlayer__sub_801D52A8(item_list); return inventory_walk_visit_count; }
+int TPlyItem::set_globals_and_notify(TObjPlayer *player, DeathDropRecord *out) { player_item_collect_cursor = out; inventory_walk_visit_count = 0; TObjPlayer__sub_801D52A8(item_list); return inventory_walk_visit_count; }
 
 }

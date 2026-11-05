@@ -2,11 +2,20 @@
 #define PSO_TPLYITEM_H
 
 #include "pso/TObject.h"
+#include "pso/item/TItemData.h"
 #include "types.h"
 #include <stddef.h>
 
 class TItemList;
 struct TObjPlayer;
+
+// 0x1C record of an item dropped on death; set_globals_and_notify fills
+// source_id and item.
+struct DeathDropRecord {
+    s32 state;
+    s32 source_id;
+    TItemData item;
+};
 
 // Inventory object stored at TObjPlayer::inventory_objects (0xD00).
 // TPlyItem__ct clears the count at +0x1C. create_inventory stores the
@@ -24,7 +33,7 @@ public:
     s32 use_item(TObjPlayer *player, s32 item_id, s32 amount);
     void set_globals_and_update(void *player, int kind);
     // Collects the inventory items into out; player is unused.
-    int set_globals_and_notify(TObjPlayer *player, void *out);
+    int set_globals_and_notify(TObjPlayer *player, DeathDropRecord *out);
     // First argument of the old free function is this inventory object.
     void remove_equipped_item(TObjPlayer *player, TItemList *slot);
     // Both store the matching TItem pointers into out and return the count.
@@ -54,5 +63,6 @@ extern s32 inventory_update_field_d8_key;
 extern u8 item_reduce_owner_match_field_ec;
 extern u8 reduce_owner_match_id;
 extern s32 *TObjPlayer__owner_field_write_cursor;
+extern DeathDropRecord *player_item_collect_cursor;
 
 #endif
