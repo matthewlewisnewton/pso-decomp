@@ -114,15 +114,15 @@ void TItemList::unequip_invalid_items_recursive() {
 }
 
 void TItemList::count_items_recursive() {
-    s32 sp8[7];
+    TItemData sp8;
     TItemList *down;
     TItem *temp;
 
     down = link_down();
     while (down != NULL) {
         if ((TItemList::is_item_valid(down) != 0) && ((temp = down->get_owner_if_alive()) != NULL)) {
-            temp->copy_to_item_data((TItemData *)&sp8[0]);
-            if (item_identity_matches(&sp8[0], inventory_search_item_data) != 0) {
+            temp->copy_to_item_data(&sp8);
+            if (item_identity_matches(&sp8, inventory_search_item_data) != 0) {
                 inventory_walk_visit_count += 1;
             }
         }
@@ -132,7 +132,7 @@ void TItemList::count_items_recursive() {
 }
 
 TItemList *TItemList::find_inventory_item_matching_data() {
-    s32 data[8];
+    TItemData data;
     TItemList *node;
     TItemList *found;
     TItem *owner;
@@ -140,8 +140,8 @@ TItemList *TItemList::find_inventory_item_matching_data() {
         if (TItemList::is_item_valid(node) != 0) {
             owner = node->get_owner_if_alive();
             if (owner != NULL) {
-                owner->copy_to_item_data((TItemData *)data);
-                if (compare_item_data_masked(data, inventory_search_item_data, 0) != 0) {
+                owner->copy_to_item_data(&data);
+                if (compare_item_data_masked(&data, inventory_search_item_data, 0) != 0) {
                     return node;
                 }
             }
@@ -155,7 +155,7 @@ TItemList *TItemList::find_inventory_item_matching_data() {
 }
 
 TItemList *find_matching_inventory_item_node(TItemList *root) {
-    s32 data[8];
+    TItemData data;
     TItemList *node;
     TItemList *found;
     TItem *owner;
@@ -163,8 +163,8 @@ TItemList *find_matching_inventory_item_node(TItemList *root) {
         if (TItemList::is_item_valid(node) != 0) {
             owner = node->get_owner_if_alive();
             if (owner != NULL) {
-                owner->copy_to_item_data((TItemData *)data);
-                if (item_identity_matches(data, inventory_search_item_data) != 0) {
+                owner->copy_to_item_data(&data);
+                if (item_identity_matches(&data, inventory_search_item_data) != 0) {
                     return node;
                 }
             }

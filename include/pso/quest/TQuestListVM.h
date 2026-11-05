@@ -4,8 +4,6 @@
 #include "types.h"
 #include "pso/TShopWindowBase.h"
 
-class TPlyItem;
-
 struct TQuestListVM : public TShopWindowBase {
     virtual ~TQuestListVM();
     s32 quest_vm_load();
@@ -26,7 +24,7 @@ struct TQuestListVM : public TShopWindowBase {
     f32 m_40;
     u8 unk_44[0x26C];
     u8 unk_2B0[0xA50];
-    TPlyItem *m_d00;
+    s32 m_d00;
     u8 unk_D04[0x1664];
     u32 m_2368;
     u8 _pad236C[0x4];

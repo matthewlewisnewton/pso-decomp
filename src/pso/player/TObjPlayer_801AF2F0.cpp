@@ -6595,7 +6595,7 @@ void send_6x29_delete_item__10TObjPlayerFPvii(void *obj, s32 a, s32 b) {
 }
 
 TItemList *TObjPlayer::pickup_item(TItem *arg1) {
-    u32 sp8[5];
+    TItemData sp8;
     TItemList *id;
     TItemList *list;
     s32 n;
@@ -6623,7 +6623,7 @@ TItemList *TObjPlayer::pickup_item(TItem *arg1) {
         break;
     case 3:
         if (TObjPlayer__sub_801C1AC8(arg1) != 0) {
-            arg1->copy_to_item_data((TItemData *)&sp8);
+            arg1->copy_to_item_data(&sp8);
             id = inventory_objects->set_mode_and_refresh_object(&sp8);
             if (id == NULL) {
                 list = new TItemList(inventory_objects->item_list);

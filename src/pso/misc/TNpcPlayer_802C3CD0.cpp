@@ -15,33 +15,6 @@ struct O_802C4688 { u8 pad[0x408]; u8 buf[1]; };
 struct E_802C4698;
 struct O_802C4698;
 struct O_802C4688;
-struct VBase_802C3F74 { char pad[0x18]; };
-
-struct Item_802C3F74 : VBase_802C3F74 {
-    virtual void m0();
-    virtual void m1();
-    virtual void m2();
-    virtual void m3();
-    virtual void m4();
-    virtual void m5();
-    virtual void m6();
-    virtual void m7();
-    virtual void m8();
-    virtual void m9();
-    virtual void m10();
-    virtual void m11();
-    virtual void m12();
-    virtual void m13();
-    virtual void m14();
-    virtual void m15();
-    virtual void m16();
-    virtual void m17();
-    virtual void m18();
-    virtual void m19();
-    virtual void m20(s32);
-    virtual void m21(s32);
-};
-
 extern "C" {
 s16 get_actor_tp(void *);
 s16 get_actor_hp(void *);
@@ -122,13 +95,13 @@ void export_character_data__10TObjPlayerFPvPv(u8 *arg0, u8 *arg1) {
     ((TObjPlayer *)arg0)->set_flag_524288();
 }
 void export_state_to_record__10TObjPlayerFPvPv(u8 *arg0, s8 *arg1) {
-    Item_802C3F74 *items[30];
+    TItem *items[30];
     s16 hp;
     s16 facing;
-    Item_802C3F74 *item;
+    TItem *item;
     s32 i;
     s32 n;
-    Item_802C3F74 **p;
+    TItem **p;
     s32 k;
     s32 b;
     s32 i2;
@@ -146,9 +119,9 @@ void export_state_to_record__10TObjPlayerFPvPv(u8 *arg0, s8 *arg1) {
     p = items;
     n = 0;
     for (i2 = 0; i2 != 13; i2++) {
-        item = (Item_802C3F74 *)((TObjPlayer *)arg0)->get_equipped_item(i2);
+        item = ((TObjPlayer *)arg0)->get_equipped_item(i2);
         if (item != NULL) {
-            item->m21(1);
+            item->remove_equip_stats(1);
             *p++ = item;
             n++;
         }
@@ -158,7 +131,7 @@ void export_state_to_record__10TObjPlayerFPvPv(u8 *arg0, s8 *arg1) {
     p = items;
     for (i = 0; i < 30; i++) {
         if (*p != NULL) {
-            ((TItem *)*p)->export_inventory_entry((void *)rec);
+            (*p)->export_inventory_entry((void *)rec);
             p++;
         } else {
             reset(rec);
@@ -180,9 +153,9 @@ void export_state_to_record__10TObjPlayerFPvPv(u8 *arg0, s8 *arg1) {
         split_capped_value__10TObjPlayerFUcPUcPSc(TObjPlayer__sub_801C0124(arg0 + 0x428, k), TObjPlayer__sub_802C4688((O_802C4688 *)arg1, k), (E_802C4698 *)a);
     }
     for (m = 0; m != 13; m++) {
-        item = (Item_802C3F74 *)((TObjPlayer *)arg0)->get_equipped_item(m);
+        item = ((TObjPlayer *)arg0)->get_equipped_item(m);
         if (item != NULL) {
-            item->m20(1);
+            item->add_equip_stats(1);
         }
     }
     ((TObjPlayer *)arg0)->set_hp_clamped(hp);
