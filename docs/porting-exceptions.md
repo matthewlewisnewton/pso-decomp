@@ -70,8 +70,8 @@ etc. or their port equivalents) instead of the fixed address.
 ## 4. CodeWarrior pragmas
 
 5,842 pragmas in 880 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1153, `inline_depth` 1045, `fp_contract` 926, `auto_inline` 844,
-`opt_common_subs` 624, `scheduling` 262, `opt_propagation` 240,
+`dont_inline` 1153, `inline_depth` 1045, `fp_contract` 917, `auto_inline` 844,
+`opt_common_subs` 618, `scheduling` 260, `opt_propagation` 240,
 `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56,
 `defer_codegen` 50, `pack` 46. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
