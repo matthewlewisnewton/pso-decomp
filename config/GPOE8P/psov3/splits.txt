@@ -2365,6 +2365,7 @@ pso/unk/text_80104F4C.cpp:
 
 pso/unk/text_80104FCC.cpp:
 	.text       start:0x80104FCC end:0x801057A8
+	.data       start:0x8049EEFC end:0x8049EF54
 
 pso/unk/text_801057A8.cpp:
 	.text       start:0x801057A8 end:0x80105874
