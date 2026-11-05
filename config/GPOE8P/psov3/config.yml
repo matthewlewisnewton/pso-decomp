@@ -3258,7 +3258,7 @@ force_active:
   - apply_all_default__8TFogCtrlFv
   - apply_armor_effect_flags__13TItemProArmorFv
   - apply_attack_stat_status__13TObjEneRe4BitFPv
-  - apply_balance__19TWindowSoundBalanceFPv
+  - apply_balance__19TWindowSoundBalanceFP18TWindowDrawContext
   - apply_battle_ctrl_effect__Fi
   - apply_behavior_parameters__13TObjEneMe1GeeFv
   - apply_blend_mode_1__10TObjPlayerFv
@@ -5169,7 +5169,7 @@ force_active:
   - draw_record_with_camera__19TAdTrialAgreementGCFlll
   - draw_screen__22TAdEnterSerialAccessGCFPvPv
   - draw_segment__15TEffStarLight2DFP15ColorLineVertexP15ColorLineVertexP15ColorLineVertexP15ColorLineVertexl
-  - draw_selected_bar__11TWindowMenuFPUc
+  - draw_selected_bar__11TWindowMenuFP18TWindowDrawContext
   - draw_selected_entry__20TWindowSubSymbolChatFv
   - draw_selected_part_cursor__28TWindowSubSymbolChatPartsSetFi
   - draw_serial_chars__22TAdEnterSerialAccessGCFl
@@ -5181,7 +5181,7 @@ force_active:
   - draw_slot__14TWindowSubItemFlll
   - draw_slot_icons__15TAdChrSelSlotGCFv
   - draw_split_screen_dividers__20TWindowSubStatusDispFv
-  - draw_status_text__19TWindowKeyBoardHardFPv
+  - draw_status_text__19TWindowKeyBoardHardFP18TWindowDrawContext
   - draw_status_window__14TAdPlyStatusGCFPvPv
   - draw_status_window__15TAdMcSelectMcGCFv
   - draw_stretched_segment__22TObjEneSlimeTailAttackFPvPvf
@@ -5198,7 +5198,7 @@ force_active:
   - draw_title_background_pulse
   - draw_title_layer__10TAdTitleGCFll
   - draw_title_rings
-  - draw_value__13TWindowMesetaFl
+  - draw_value__13TWindowMesetaFP19TWindowKeyBoardSoft
   - draw_window__17TWindowDuelResultFPv
   - draw_window_frame_strips__13TUnk_804CE018FPvPv
   - draw_window_scanlines__FPUcPUc
@@ -13689,7 +13689,7 @@ force_active:
   - render_shadows_for_each_node__7TObjectFv
   - render_state__18TAdLoadQuestCellGCFv
   - render_static_map_section__6TSceneFP20SceneMaterialSectionl
-  - render_status__14TWindowDepositFl
+  - render_status__14TWindowDepositFP19TWindowKeyBoardSoft
   - render_status__18TAdMultiPlayerNoGCFv
   - render_summary_row__15TWindowHelpItemFv
   - render_text_entry
@@ -14614,7 +14614,7 @@ force_active:
   - set_player_id__11TPlayerSoulFUs
   - set_player_room_control_flag__FP10TObjPlayer
   - set_pos_target__11TCameraCtrlFPvPvl
-  - set_position__15TWindowQuantityFl
+  - set_position__15TWindowQuantityFP19TWindowKeyBoardSoft
   - set_primary_p01s__12TBoss3VoloptFl
   - set_quest_label__15TOQuestTalkBaseFl
   - set_quest_list_mode_19__18TCheckRoomSequenceFPv
