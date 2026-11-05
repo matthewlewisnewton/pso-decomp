@@ -11,7 +11,7 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | intrinsic | 83 | 54 |
 | hardware | 71 | 13 |
 | pragma | 5851 | 884 |
-| configure.py per-unit override | 149 | 149 |
+| configure.py per-unit override | 150 | 150 |
 
 Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1043, `fp_contract` 923, `auto_inline` 842, `opt_common_subs` 623, `scheduling` 262, `opt_propagation` 241, `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 43, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 22, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
@@ -329,6 +329,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1043,
 | `pso/misc/TOSensorAncient01.cpp` | `-sdata 4, -str reuse,readonly, -pool off` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/TOSensorGeneral01.cpp` | `-sdata 4, -str reuse,readonly, -pool off` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/TOKeyGenericSw.cpp` | `-sdata 4, -str reuse,readonly` | Unlike the other keys it addresses its descriptors off one .data base. |
+| `pso/object/TObjCityMainWarpChallenge.cpp` | `-inline off,deferred` | City main-warp challenge is written last function first. Deferred emission puts that last definition first, so .text stays in address order (0x801871D0-0x80187C98) and the hand-written __vt__25TObjCityMainWarpChallenge at 0x804B6188 precedes jumptable_804B61DC. Whole unit matches with nothing inlined. See docs/evidence/city-main-warp-challenge-vtable.md. |
 | `pso/object/TObjQuestColA_80196FE4.cpp` | `-inline off,deferred` | Quest-collision deleting destructors share a TU. Deferred generation emits the last definition first, which is the only order that puts each vtable before the next class's (TObjQuestColA then TObjQuestCol; TObjQuestColApcINW then TObjQuestColApcIN). |
 | `pso/object/TObjQuestColApcINW_80196EDC.cpp` | `-inline off,deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/camera/CreationCamera.cpp` | `-inline off,deferred, -fp_contract on` | The character creation camera: deferred with nothing inlined, and its multiply-adds contracted into fmadds. |

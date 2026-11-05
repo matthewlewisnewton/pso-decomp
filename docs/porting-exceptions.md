@@ -26,7 +26,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 7 functions (13 source lines) | 4 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 71 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,852 | 884 |
+| CodeWarrior pragmas (excluding push/pop) | 5,851 | 884 |
 | Per-unit compiler overrides in `configure.py` | 148 | 148 |
 | Approved regressions | 0 | 0 |
 
@@ -70,9 +70,9 @@ etc. or their port equivalents) instead of the fixed address.
 
 ## 4. CodeWarrior pragmas
 
-5,852 pragmas in 884 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1151, `inline_depth` 1043, `fp_contract` 924, `auto_inline` 842,
-`opt_common_subs` 624, `scheduling` 262, `opt_propagation` 240,
+5,851 pragmas in 884 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1151, `inline_depth` 1043, `fp_contract` 923, `auto_inline` 842,
+`opt_common_subs` 623, `scheduling` 262, `opt_propagation` 241,
 `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56,
 `defer_codegen` 50, `pack` 46. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
@@ -109,7 +109,7 @@ small float differences without FMA).
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-148 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+149 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
@@ -173,6 +173,12 @@ plain source: `free_all` (no copied loop-counter alias) and
 |---|---|---|---|---|
 | `pso/misc/TMovie_80143988.cpp` | `pack_movie_frame` (`0x80143988`, 564 bytes; the only function in the unit) | unit switch `-opt nolifetimes,nocse,noprop,noloop` | The original keeps each named local in one register for the whole function: the packed word is built in place in `r25`, and `mr r24, r25` copies it for the second scanline before every luma insert (`0x80143A4C`, `0x80143A70`, ... eight times). The cache-touch offset is the single `li r0, 0x20` hoisted to the entry (`0x8014398C`) and reused by both `dcbt r31, r0` / `dcbt r9, r0` (`0x80143A30`, `0x80143ADC`). The pad scales are recomputed late in the entry (`slwi r5, r25, 2` ... `slwi r3, r24, 2`, `0x80143A18`–`0x80143A20`). Without `nolifetimes` the unit is 53.40% (568 bytes, `stmw r21`). Without `noprop`, `touch` is propagated as a constant: 70.50%, 596 bytes. Without `nocse` or `noloop` the shared stride and pad shifts become frontend temps coloured in the wrong order: 93.06%, 564 bytes. With the switch, `.text` (564 bytes), relocations and symbols match the target object. The source is plain C++ (no `__rlwinm`/`__rlwimi`); only `__dcbt` (section 2) remains. Precedent: Petari uses these keywords per object: [`-opt nolifetimes,nocse,noprop`](https://github.com/SMGCommunity/Petari/blob/50c1eae28478c8b1b1c8708ab8ce9a3b845ee6c6/configure.py#L3735), [`-opt nolifetimes,noloop`](https://github.com/SMGCommunity/Petari/blob/50c1eae28478c8b1b1c8708ab8ce9a3b845ee6c6/configure.py#L2974), [`-opt noloop`](https://github.com/SMGCommunity/Petari/blob/50c1eae28478c8b1b1c8708ab8ce9a3b845ee6c6/configure.py#L1532). SFA uses [`-opt nolifetimes`](https://github.com/zcanann/SFA-Decomp/blob/f561e933ecc7356259bccdd6a7ce9a4462a950a0/configure.py#L1586). This repo already has `-opt noprop` and `-opt nocse` units. Evidence: [pack-movie-frame-unit-flags.md](evidence/pack-movie-frame-unit-flags.md). | Drop the switch. The source is plain C++; drop the cache touch too. |
 
+### `TObjCityMainWarpChallenge.cpp`: `-inline off,deferred`
+
+| Unit | What | Why | Port should |
+|---|---|---|---|
+| `pso/object/TObjCityMainWarpChallenge.cpp` | unit switch `-inline off,deferred` | The file is written last function first. Deferred emission puts that last definition first, so `.text` stays in address order (`0x801871D0`–`0x80187C98`) and the hand-written vtable at `0x804B6188` precedes `jumptable_804B61DC`. Nothing is inlined. Evidence: [city-main-warp-challenge-vtable.md](evidence/city-main-warp-challenge-vtable.md). | One translation unit in address order. A compiler that emits data with the function that uses it does not need the reversed source. |
+
 ## 6. Approved regressions
 
 None on main.
@@ -199,6 +205,9 @@ or `other: <what>`); the fork PR that brought it in; and the tag
 | `TLobby__sub_80402CE0` `conn + 0x38`, `g + 0x15A/0x15B/0x15C/0x3C` | `pso/misc/TLobby_803FC178.cpp` | `src/pso/misc/TLobby_803FC178.cpp` | [#184](https://github.com/zeroz41/pso-decomp/pull/184) | raw offset cast | [#359](https://github.com/matthewlewisnewton/pso-decomp/pull/359) | upstream catch-up, rewrite later |
 | `Self_80402CE0` | `pso/misc/TLobby_803FC178.cpp` | `src/pso/misc/TLobby_803FC178.cpp` | [#184](https://github.com/zeroz41/pso-decomp/pull/184) | shadow struct | [#359](https://github.com/matthewlewisnewton/pso-decomp/pull/359) | upstream catch-up, rewrite later |
 | `Timer_80402CE0` | `pso/misc/TLobby_803FC178.cpp` | `src/pso/misc/TLobby_803FC178.cpp` | [#184](https://github.com/zeroz41/pso-decomp/pull/184) | shadow struct | [#359](https://github.com/matthewlewisnewton/pso-decomp/pull/359) | upstream catch-up, rewrite later |
+| `clear_sound_listener_position` | `pso/misc/TLobby_802268F4.cpp` | `src/pso/misc/TLobby_802268F4.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | other: dead-stripped function | [#352](https://github.com/matthewlewisnewton/pso-decomp/pull/352) | upstream catch-up, rewrite later |
+| `__vt__25TObjCityMainWarpChallenge` | `pso/object/TObjCityMainWarpChallenge.cpp` | `src/pso/object/TObjCityMainWarpChallenge.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | other: hand-written vtable | [#352](https://github.com/matthewlewisnewton/pso-decomp/pull/352) | upstream catch-up, rewrite later |
+| `TObjCityMainWarpChallenge.cpp` | `pso/object/TObjCityMainWarpChallenge.cpp` | `configure.py` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | other: per-unit cflags override | [#352](https://github.com/matthewlewisnewton/pso-decomp/pull/352) | upstream catch-up, rewrite later |
 
 ## Pending in open PRs
 
