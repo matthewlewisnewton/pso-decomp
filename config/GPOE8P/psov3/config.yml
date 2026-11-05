@@ -430,6 +430,8 @@ force_active:
   - TContainerAncient01__sub_8018BE90
   - TDPBShower__ct
   - TDuelEffectNumber__sub_800802F8
+  - TEF_LensFlare__class_name
+  - TEF_LensFlare__class_name_string
   - TEffGuard__class_name
   - TEffHit__class_name
   - TEffStarLight2D_class_name
@@ -627,6 +629,12 @@ force_active:
   - TLobby__sub_80426190
   - TLobby__sub_804262CC
   - TLobby__sub_80426AAC
+  - TLobby__sub_80428830
+  - TLobby__sub_80428A38
+  - TLobby__sub_80428BB0
+  - TLobby__sub_80428DC8
+  - TLobby__sub_80428EC0
+  - TLobby__sub_804293B0
   - TLobby_warp_menu_window
   - TLockOnCursor__sub_8013EBBC
   - TLockOnCursor__sub_8013EBE8
@@ -2017,6 +2025,7 @@ force_active:
   - __dt__13TAdTitleTexGCFv
   - __dt__13TBoss5GryphonFv
   - __dt__13TBoss6KakusanFv
+  - __dt__13TEF_LensFlareFv
   - __dt__13TGameProtocolFv
   - __dt__13TItemAttackerFv
   - __dt__13TItemEffArmorFv
@@ -2610,6 +2619,7 @@ force_active:
   - __vt__13TBoss5Gryphon
   - __vt__13TBoss6Kakusan
   - __vt__13TBoss6MagMine
+  - __vt__13TEF_LensFlare
   - __vt__13TItemAttacker
   - __vt__13TItemEffArmor
   - __vt__13TItemEffEquip
@@ -6773,6 +6783,7 @@ force_active:
   - lbl_804373A4
   - lbl_80438528
   - lbl_80438534
+  - lbl_80438E40
   - lbl_80439494
   - lbl_804394A4
   - lbl_804394BC
@@ -7404,6 +7415,10 @@ force_active:
   - lbl_805B94BC
   - lbl_805B9534
   - lbl_805BA5C0
+  - lbl_805C06D8
+  - lbl_805C0710
+  - lbl_805C0FD0
+  - lbl_805C1890
   - lbl_805CF240
   - lbl_805CF380
   - lbl_805D27E8
@@ -8009,6 +8024,7 @@ force_active:
   - lbl_805E03DC
   - lbl_805E03E0
   - lbl_805E03E4
+  - lens_flare_reflected_element_descriptors
   - lerp_follow_anchor__FP3VecP3VecPf
   - level_text_buffer
   - level_to_reward__6TLobbyFl
@@ -13308,6 +13324,7 @@ force_active:
   - render__13TAdMcSelectGCFv
   - render__13TAdTitleTexGCFv
   - render__13TBoss6KakusanFv
+  - render__13TEF_LensFlareFv
   - render__13TItemEffArmorFv
   - render__13TLockOnCursorFv
   - render__13TOCapsuleLaboFv
@@ -13690,6 +13707,7 @@ force_active:
   - reset_all_tech_slots__10TObjPlayerFv
   - reset_and_invoke__6TLobbyFv
   - reset_and_recreate__14TBoss6PlotFalzFv
+  - reset_buffer_pool__6TLobbyFv
   - reset_by_door__18TObjLazerFenceNormFv
   - reset_by_door__19TObjLazerFenceExtraFPv
   - reset_camera_if_fullscreen__6TLobbyFPv
@@ -13887,6 +13905,7 @@ force_active:
   - run_task__13TAdTitleTexGCFv
   - run_task__13TBoss5GryphonFv
   - run_task__13TBoss6KakusanFv
+  - run_task__13TEF_LensFlareFv
   - run_task__13TGameProtocolFv
   - run_task__13TItemAttackerFv
   - run_task__13TItemEffArmorFv
@@ -16859,6 +16878,7 @@ force_active:
   - wait_for_quest__10TChallengeFv
   - wait_for_vi_retrace__Fv
   - wait_next_idle__11TBoss4Type2Fv
+  - wait_timeout_loop__FP12ModemRequest
   - wander_around__16TObjEneNanoDragoFP3Vecf
   - warp_boss_handle_window__12TObjWarpBossFv
   - warp_nearby_players__14TBoss6PlotFalzFv
