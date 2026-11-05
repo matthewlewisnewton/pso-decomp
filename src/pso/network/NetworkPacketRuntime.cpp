@@ -426,30 +426,20 @@ extern u32 dhcp_last_tick_ms;
 extern u32 dhcp_lease_elapsed;
 s32 NetRegisterTimer(s32 period, s16 locked, void *fn);
 
-// DHCP client reset. The 28-byte stack block is the mode-4 interface request
-// and then the info buffer passed to TLobby__sub_80422F70. lbl_805D7B4C is the
-// RFC 2132 magic cookie (99, 130, 83, 99).
-s32 TLobby__sub_80424E44(s16 iface) {
-    DhcpOption_804FD948 *opt;
-    struct {
-        s32 type;
-        s32 a;
-        s32 b;
-        s32 c;
-        u8 rest[12];
-    } info;
+// The option clear and the mode-4 open are separate inline functions. MWCC
+// then keeps the zero in r31 across the clear, copies it into the loop index
+// r30, and uses r29 as the table pointer, which is the original allocation.
+static inline void dhcp_reset_client(s16 iface) {
     u32 i;
-    s32 status;
 
     dhcp_state = 0;
     lbl_805D7B0C = 0;
     dhcp_reply_received = 0;
     lbl_805D7B14 = TLobby__sub_804250A8(0);
     dhcp_socket = -1;
-    opt = lbl_804FD948;
-    for (i = 0; i < 12; i++, opt++) {
-        opt->present = 0;
-        NetMemset(opt->data, 0, opt->size);
+    for (i = 0; i < 12; i++) {
+        lbl_804FD948[i].present = 0;
+        NetMemset(lbl_804FD948[i].data, 0, lbl_804FD948[i].size);
     }
     lbl_805D7B40 = NULL;
     lbl_805D7B44 = NULL;
@@ -460,9 +450,6 @@ s32 TLobby__sub_80424E44(s16 iface) {
     lbl_805D7B58 = 0;
     NetMemset(dhcp_hostname, 0, 32);
     dhcp_elapsed_ms = 0;
-    info.type = 4;
-    info.a = 0;
-    info.b = 0;
     dhcp_last_tick_ms = 0;
     dhcp_lease_time = 0;
     dhcp_renewal_time = 0;
@@ -473,17 +460,31 @@ s32 TLobby__sub_80424E44(s16 iface) {
     dhcp_lease_expiry = 0;
     lbl_805D7BA0 = 0;
     lbl_805D7B08 = iface;
-    info.c = 0;
-    status = 0;
-    if (TLobby__sub_8042315C(iface, &info) < 0) {
-        status = -1;
-    } else if (TLobby__sub_80422F70(iface, &info, 0x1C, lbl_805D7B1C) < 0) {
-        TLobby__sub_80423064(iface, 4);
-        status = -1;
-    } else {
-        TLobby__sub_80423064(iface, 4);
+}
+
+static inline s32 dhcp_open_mode4(s16 iface) {
+    s32 addr[7];
+
+    addr[0] = 4;
+    addr[1] = 0;
+    addr[2] = 0;
+    addr[3] = 0;
+    if (TLobby__sub_8042315C(iface, addr) < 0) {
+        return -1;
     }
-    if (status != 0) {
+    if (TLobby__sub_80422F70(iface, addr, 0x1C, lbl_805D7B1C) < 0) {
+        TLobby__sub_80423064(iface, 4);
+        return -1;
+    }
+    TLobby__sub_80423064(iface, 4);
+    return 0;
+}
+
+// DHCP client reset. lbl_805D7B4C is the RFC 2132 magic cookie (99, 130, 83, 99).
+// The 28-byte stack block is the mode-4 request, then the info buffer.
+s32 TLobby__sub_80424E44(s16 iface) {
+    dhcp_reset_client(iface);
+    if (dhcp_open_mode4(lbl_805D7B08) != 0) {
         lbl_805D7BA0 = 3;
         return -1;
     }
