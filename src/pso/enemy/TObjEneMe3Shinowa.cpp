@@ -3868,7 +3868,7 @@ void TObjEneMe3ShinowaMirage__sub_800E4FE8(u8 *ene_dd_st, s32 arg1) {
 
 void TObjEneMe3ShinowaMirage::state_break_apart(s32 arg1) {
     u8 *arg0 = (u8 *)this;
-    Vec_800E4DD0 sp14;
+    Vec sp14;
     Vec_800E4DD0 sp8;
     switch (arg1) {
     case 4:
@@ -3894,7 +3894,7 @@ void TObjEneMe3ShinowaMirage::state_break_apart(s32 arg1) {
                 sp14.x = TObjEneMe3ShinowaMirage__data_805DA5B8;
                 sp14.y = TObjEneMe3ShinowaMirage__data_805DA5E8;
                 sp14.z = TObjEneMe3ShinowaMirage__data_805DA5EC;
-                ((TObjBoss2Tunnel *)(&sp14))->init_zako(arg0 + 0x38, *(s32 *)((s8 *)arg0 + 0x60));
+                TObjBoss2Tunnel::init_zako(&sp14, arg0 + 0x38, *(s32 *)((s8 *)arg0 + 0x60));
                 TObjPlayer::spawn_effect_f8((s32)&sp14, 0x14);
             }
             break;
