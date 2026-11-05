@@ -3,6 +3,8 @@
 
 #include "types.h"
 
+struct GinjaTextureList;
+
 extern "C" {
 void TLobby__sub_803DDD20(s32 arg0);
 s32 TLobby__sub_803DDD2C(s32 arg0);
@@ -20,6 +22,8 @@ void TLobby__sub_803DDD20(s32 arg0);
 s32 TLobby__sub_803DDD2C(s32 arg0);
 void TLobby__sub_803DDD40(s32 arg0, s32 arg1);
 void *load_nj_chunk_model_resource(u8 *base, u32 *off, u32 *out);
+// Loads every texture in `texlist`; -1 if one failed, else 1.
+s32 load_texture_list(GinjaTextureList *texlist);
 }
 // --- end of C functions
 
