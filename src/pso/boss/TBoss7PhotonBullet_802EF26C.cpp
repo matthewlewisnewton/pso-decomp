@@ -21,17 +21,20 @@
 #include "pso/player/TObjPlayer_801542CC.h"
 #include "pso/unk/text_80087278.h"
 
-struct V2_802EF2AC { s32 x; f32 y; };
-
-struct Ent_802EF74C { s32 a; s32 b; s32 c; f32 d; };
+struct Boss7PhotonLevel {
+    s32 shots;
+    s32 interval;
+    s32 spread;
+    f32 speed;
+};
 
 extern "C" {
 extern const char *lbl_805D3FD4;
-extern V2_802EF2AC lbl_80474038[];
+extern DirectAttackPayload lbl_80474038[];
 extern s32 lbl_80474040[];
 extern const f32 lbl_805DEA00;
 extern const f32 lbl_805DEA04;
-extern Ent_802EF74C boss7_photon_bullet_level_table[];
+extern Boss7PhotonLevel boss7_photon_bullet_level_table[];
 extern const char *lbl_805D3FD0;
 }
 
@@ -43,8 +46,8 @@ TBoss7PhotonPad::TBoss7PhotonPad(TObject *parent, const Vec *shot_origin, const 
     origin = shot_origin;
     level = shot_level;
     VecCopy(&pos, direction);
-    rotate_xz_pair_by_angle(&pos.x, &pos.z, (s32)(-(boss7_photon_bullet_level_table[level].c / 2)));
-    shots = boss7_photon_bullet_level_table[level].a;
+    rotate_xz_pair_by_angle(&pos.x, &pos.z, (s32)(-(boss7_photon_bullet_level_table[level].spread / 2)));
+    shots = boss7_photon_bullet_level_table[level].shots;
     timer = 0;
 }
 
@@ -55,10 +58,10 @@ void TBoss7PhotonPad::run_task() {
     if (timer <= 0) {
         TBoss7DeRolLeC *st = TBoss7Joint::get_state();
         if (st != NULL) {
-            new TBoss7PhotonBullet(m_up, st, origin, &pos, 1.5f * boss7_photon_bullet_level_table[level].d);
+            new TBoss7PhotonBullet(m_up, st, origin, &pos, 1.5f * boss7_photon_bullet_level_table[level].speed);
         }
-        timer = boss7_photon_bullet_level_table[level].b;
-        rotate_xz_pair_by_angle(&pos.x, &pos.z, (s32)(boss7_photon_bullet_level_table[level].c / boss7_photon_bullet_level_table[level].a));
+        timer = boss7_photon_bullet_level_table[level].interval;
+        rotate_xz_pair_by_angle(&pos.x, &pos.z, (s32)(boss7_photon_bullet_level_table[level].spread / boss7_photon_bullet_level_table[level].shots));
         shots--;
         if (shots == 0) {
             queue_destruction();
@@ -127,9 +130,9 @@ void TBoss7PhotonBullet::run_task() {
         }
     }
     if (position.x <= lbl_805DEA00 && position.x >= lbl_805DEA04) {
-        V2_802EF2AC v = lbl_80474038[0];
-        v.y = TBoss7PhotonBullet::get_target_pos_y();
-        if (vfunc_16(lbl_80474040, &v) != 0) {
+        DirectAttackPayload attack = lbl_80474038[0];
+        attack.power = TBoss7PhotonBullet::get_target_pos_y();
+        if (vfunc_16(lbl_80474040, &attack) != 0) {
             queue_destruction();
             return;
         }
@@ -141,8 +144,7 @@ void TBoss7PhotonBullet::run_task() {
 }
 
 void TBoss7PhotonBullet::render() {
-    u8 *arg0 = (u8 *)this;
-    if (*(s32 *)((s8 *)arg0 + 0xE8) & 1) {
-        ((TObjEneDD *)(arg0 + 0x38))->draw_oriented_shadow((s32)(arg0 + 0xCC), 0, (u32)(arg0 + 0xD8));
+    if (grounded & 1) {
+        TObjEneDD::draw_oriented_shadow(&position, &shadow_pos, 0, &shadow_scale);
     }
 }

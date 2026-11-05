@@ -90,7 +90,7 @@ s32 TObjPlayer::apply_area_attack_hits(u8 *arg1, s32 arg2, u32 object, f32 range
 void TObjEneBm9Mericarol_Bomb::render() {
     u8 *arg0 = (u8 *)this;
     if ((s32) *(s32 *)((s8 *)arg0 + 0x10C) != 0) {
-        ((TObjEneDD *)(arg0 + 0x38))->draw_oriented_shadow((s32)(arg0 + 0xD8), 0, (u32)0);
+        TObjEneDD::draw_oriented_shadow(&position, (const Vec *)(arg0 + 0xD8), 0, NULL);
     }
 }
 
