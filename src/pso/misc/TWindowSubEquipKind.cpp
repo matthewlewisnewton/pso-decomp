@@ -18,17 +18,17 @@ s32 draw_visible_window_entries(void *, void *, s32);
 s32 run_task__19TWindowMenuIconLineFv();
 s32 draw_window_scrollbar(s32, s32, void *);
 void __dl__7TObjectFPv(void *);
-s32 forward_render__20TWindowSubStatusDispFv(s32, s32);
+s32 forward_render__20TWindowSubStatusDispFv(s32, TWindowDrawContext *);
 
 void render__19TWindowSubEquipKindFv(u8 *arg0) {
-    s32 temp_r3;
+    TWindowDrawContext *temp_r3;
 
     temp_r3 = (s32)get_draw_context__11TWindowBaseFPv(arg0);
     ((TWindowBase *)arg0)->draw_window_frame((void *)temp_r3);
     draw_visible_window_entries(arg0, arg0 + 0x24, temp_r3);
     ((TWindowMenuIconLine *)arg0)->draw_selected_list_entry(temp_r3);
     if ((s16) ((TWindowSubEquipKind *)arg0)->m_88 != 4) {
-        ((TWindowSubEquipKind *)arg0)->draw_tab_label((void *)temp_r3);
+        ((TWindowSubEquipKind *)arg0)->draw_tab_label(temp_r3);
     }
     if ((u32) *(u32 *)((s8 *)arg0 + 0x80) != 0U) {
         forward_render__20TWindowSubStatusDispFv(*(u32 *)((s8 *)arg0 + 0x80), temp_r3);

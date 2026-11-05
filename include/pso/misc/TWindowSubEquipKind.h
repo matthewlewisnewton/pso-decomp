@@ -6,7 +6,7 @@
 
 struct TWindowSubEquipKind : public TWindowMenuIconLine {
     virtual ~TWindowSubEquipKind();
-    void draw_tab_label(void *);
+    void draw_tab_label(TWindowDrawContext *);
     virtual void render();
     s16 m_88;
     s16 m_8a;

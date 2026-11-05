@@ -6,7 +6,7 @@
 
 struct TWindowSubItemList : public TWindowMenuIconLine {
     virtual ~TWindowSubItemList();
-    void sub_8027ACF8(u8 *);
+    void sub_8027ACF8(TWindowDrawContext *);
     void render();
     void run_task();
     u8 unk_88[0x4];

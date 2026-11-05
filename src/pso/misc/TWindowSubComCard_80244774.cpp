@@ -413,7 +413,7 @@ void TWindowBase::sub_80244F2C(u8 *arg1, u8 *arg2, s16 arg3) {
 void draw_selection_bar(TWindowDrawContext *window_key_board_soft, u8 *arg1, s32 arg2) {
     UVPair_8024503C uv = selection_bar_texture_coordinates;
     UV_8024503C *p;
-    Quad_802455CC q;
+    Box_8024E8E8 q;
     f32 x1;
     f32 x;
     f32 y;
@@ -442,7 +442,7 @@ void draw_selection_bar(TWindowDrawContext *window_key_board_soft, u8 *arg1, s32
     q.v0 = p->v / 256.0f;
     q.u1 = (16.0f + p->u) / 256.0f;
     q.v1 = (18.0f + p->v) / 256.0f;
-    if (TWindowKeyBoardSoft::try_open(window_key_board_soft, &q.x0) != 0) {
+    if (TWindowKeyBoardSoft::try_open(window_key_board_soft, &q) != 0) {
         draw_textured_quad_at_depth(&q.x0, z);
     }
     t = x + window_key_board_soft->inner_w;
@@ -455,7 +455,7 @@ void draw_selection_bar(TWindowDrawContext *window_key_board_soft, u8 *arg1, s32
     q.v0 = p->v / 256.0f;
     q.u1 = (16.0f + u) / 256.0f;
     q.v1 = (18.0f + p->v) / 256.0f;
-    if (TWindowKeyBoardSoft::try_open(window_key_board_soft, &q.x0) != 0) {
+    if (TWindowKeyBoardSoft::try_open(window_key_board_soft, &q) != 0) {
         draw_textured_quad_at_depth(&q.x0, z);
     }
     q.x0 = x1;
@@ -466,7 +466,7 @@ void draw_selection_bar(TWindowDrawContext *window_key_board_soft, u8 *arg1, s32
     q.v0 = p->v / 256.0f;
     q.u1 = (16.0f + (16.0f + p->u)) / 256.0f;
     q.v1 = (18.0f + p->v) / 256.0f;
-    if (TWindowKeyBoardSoft::try_open(window_key_board_soft, &q.x0) != 0) {
+    if (TWindowKeyBoardSoft::try_open(window_key_board_soft, &q) != 0) {
         draw_textured_quad_at_depth(&q.x0, z);
     }
     TWindowSubStatusDisp::get_player();

@@ -42,7 +42,7 @@ extern RecoveredGlobal_802AE59C_lbl_8050E208 controller_input_state;
 }
 
 void TMainMenuEntry::draw_item_labels(TWindowDrawContext *w) {
-    Rect_802AD538 r;
+    Box_8024E8E8 r;
     f32 scale;
     UV_802AD538 *uv;
     u32 color;
@@ -85,7 +85,7 @@ void TMainMenuEntry::draw_item_labels(TWindowDrawContext *w) {
         r.v0 = uv->v / 256.0f;
         r.u1 = (98.0f + uv->u) / 256.0f;
         r.v1 = (16.0f + uv->v) / 256.0f;
-        if (TWindowKeyBoardSoft::try_open(w, &r.x0) != 0) {
+        if (TWindowKeyBoardSoft::try_open(w, &r) != 0) {
             draw_textured_quad_at_depth(&r.x0, scale);
         }
         TWindowSubStatusDisp::get_player();

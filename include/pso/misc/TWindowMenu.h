@@ -10,8 +10,8 @@ struct TWindowMenu : public TUnk_804CE018 {
     s32 get_selected_entry();
     int sub_80266BB8();
     u8 test_menu_flag();
-    void render_selected_entry(s32);
-    void draw_selected_bar(u8 *);
+    void render_selected_entry(TWindowDrawContext *);
+    void draw_selected_bar(TWindowDrawContext *);
     void layout_entries();
     void update_scroll_value();
     void advance_past_disabled_menu_rows();

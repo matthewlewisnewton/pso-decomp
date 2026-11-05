@@ -5,6 +5,8 @@
 #include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TWindowBase.h"
 
+struct TWindowDrawContext;
+
 struct TWindowSubAreaMapDisp : public TUnk_804CE018 {
     virtual ~TWindowSubAreaMapDisp();
     u8 unk_60[0x4];
@@ -23,7 +25,7 @@ typedef char TWindowSubAreaMapDisp_size[sizeof(TWindowSubAreaMapDisp) == 0x78 ? 
 
 extern "C" {
 u8 *TWindowSubAreaMapDisp__ct(TWindowSubAreaMapDisp *arg0);
-void TWindowSubStatusDisp__sub_80271A6C(s32 arg0, u8 *arg1);
+void TWindowSubStatusDisp__sub_80271A6C(s32 arg0, TWindowDrawContext *arg1);
 u8 *__dt__21TWindowSubAreaMapDispFv(TWindowSubAreaMapDisp *arg0, s16 arg1);
 void fn_80271848(s32 arg0, u8 *arg1);
 }

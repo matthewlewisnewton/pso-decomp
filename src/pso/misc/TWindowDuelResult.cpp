@@ -47,8 +47,8 @@ const char *window_duel_result_class_name = "TWindowDuelResult";
 }
 
 extern "C" {
-s32 draw_visible_window_entries(void *, void *, int);
-s32 draw_list_page_indicator(int, int);
+s32 draw_visible_window_entries(void *, void *, TWindowKeyBoardSoft *);
+s32 draw_list_page_indicator(int, TWindowKeyBoardSoft *);
 void draw_window__17TWindowDuelResultFPv(u8 *arg0);
 s32 construct_base__9TWindowDDFPUcsPUc(void *, void *, void *, int);
 s32 TWindowDuelResult__sub_8024F3CC(void *);

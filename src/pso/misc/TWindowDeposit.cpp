@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/misc/TWindowKeyBoardSoft.h"
 #include "pso/misc/TWindowSubStatusDisp_80144B14.h"
 #include "pso/misc/TWindowSubStatusDisp_8025A9B4.h"
 #include "pso/misc/TWindowSubStatusDisp_80287570.h"
@@ -23,7 +24,7 @@ struct RecoveredGlobal_8024E548___vt__14TWindowDeposit
 };
 
 extern "C" {
-s32 draw_visible_window_entries(void *, void *, int);
+s32 draw_visible_window_entries(void *, void *, TWindowKeyBoardSoft *);
 s32 construct_base__9TWindowDDFPUcsPUc(void *, void *, void *, int);
 s32 get_window_layout_position(int);
 extern RecoveredGlobal_8024E548_lbl_804CEB70 window_deposit_layout;
@@ -34,19 +35,19 @@ extern const f32 lbl_805DCC64;
 extern const f32 lbl_805DCC68;
 extern const f32 lbl_805DCC6C;
 extern const f32 lbl_805DCC70;
-s32 draw_window_tab(s32, s32, s32, f32);
+s32 draw_window_tab(TWindowKeyBoardSoft *, f32 *, s32, f32);
 void __dl__7TObjectFPv(void *);
 int initialize_subwindow__9TWindowDDFv(void*);
 
-void TWindowDeposit::render_status(s32 arg1) {
-    draw_window_tab(arg1, arg1 + 0x10, 3, this->m_60);
+void TWindowDeposit::render_status(TWindowKeyBoardSoft *arg1) {
+    draw_window_tab(arg1, &arg1->inner_x, 3, this->m_60);
 }
 
 void render__14TWindowDepositFv(s32 arg0) {
     s32 ctx;
     ctx = ((TWindowBase *)arg0)->setup_window_draw_context(arg0 + 0x64);
     ((TWindowDeposit *)arg0)->render_status(ctx);
-    draw_visible_window_entries((void *)arg0, (void *)(arg0 + 0x24), (int)ctx);
+    draw_visible_window_entries((void *)arg0, (void *)(arg0 + 0x24), ctx);
 }
 
 void TWindowDeposit::run_task() { initialize_subwindow__9TWindowDDFv(this); update_window_entry_list((char*)this + 0x24); }

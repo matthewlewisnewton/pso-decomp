@@ -720,6 +720,12 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Precedent: dtk-template configure.py unit cflags, and this tree's
     # TObjBoss2Tunnel / TBoss6EmptyWarp unit flags.
     "pso/quest/TQuestListVM.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-pool off", "-str reuse,readonly")},
+    # sub_802C5F1C clamps the player slot in a static inline helper. -inline auto
+    # also inlines other small functions and breaks seven exact ones; -inline
+    # deferred emits the unit in reverse order. -inline on inlines only that
+    # helper (same object as -inline noauto here). Evidence:
+    # docs/evidence/chr-select-slot-clamp-inline.md.
+    "pso/ui/TAdMultiPlyChrSelectGC_802C50EC.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
 }
 
 # MusyX (Factor 5). Its objects carry extab/extabindex for every non-leaf

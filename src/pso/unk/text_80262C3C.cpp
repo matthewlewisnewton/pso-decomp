@@ -162,7 +162,7 @@ extern const f32 lbl_805DD120;
 s32 obj_testFlags30__14TObjCollidableFUl(s32, s32);
 s32 obj_isState3_324__9TObjCharaFv(void *);
 s32 is_script_controlled__10TObjPlayerFv(void *);
-s32 draw_visible_window_entries(void *, void *, int);
+s32 draw_visible_window_entries(void *, void *, TWindowKeyBoardSoft *);
 void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(u32);
 s32 construct_base__9TWindowDDFPUcsPUc(void *, void *, void *, int);
@@ -502,7 +502,7 @@ void *TWindowLockOn::create_for_target(s32 arg0, u16 arg1) {
 }
 
 void render__13TWindowLockOnFv(TWindowLockOn *arg0) {
-    s32 temp_r3;
+    TWindowKeyBoardSoft *temp_r3;
 
     temp_r3 = ((TWindowBase *)arg0)->setup_window_draw_context((s32)((u8 *)arg0 + 0x68));
     ((TWindowBase *)arg0)->draw_window_frame((void *)temp_r3);
