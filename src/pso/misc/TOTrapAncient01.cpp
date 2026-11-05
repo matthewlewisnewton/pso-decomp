@@ -17,6 +17,7 @@
 #include "pso/misc/TOTrap.h"
 #include "pso/misc/TOTrapAncient01.h"
 #include "pso/misc/TLobby.h"
+#include "pso/player/TUnk_804B6C24.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/misc/RenderFadeState.h"
 #include "pso/misc/TMotorcycle.h"
@@ -64,7 +65,6 @@ const char *TOTrapAncient01__class_name = "TOTrapAncient01";
 // The original symbol reserves eight bytes; only the first word is accessed here.
 struct AncientTrapResourceSlot { BmlResource *value; u8 reserved[4]; };
 AncientTrapResourceSlot TOTrapAncient01__bml_resource;
-s32 check_value_equals__13TUnk_804B6C24Fl(void *, s32);
 
 extern s32 lbl_805D3530;
 void TOTrapAncient02R__sub_80154D78(void *);
@@ -296,7 +296,7 @@ void TOTrapAncient01::vfunc_82() {
             if (obj_is_hit_receivable((u8 *)p) == 0) {
                 break;
             }
-            if (check_value_equals__13TUnk_804B6C24Fl(p, lbl_805D3530) == 0) {
+            if (((TUnk_804B6C24 *)p)->check_value_equals(lbl_805D3530) == 0) {
                 break;
             }
             p->receive_direct_attack(this, attack, NULL, -1, -1);
