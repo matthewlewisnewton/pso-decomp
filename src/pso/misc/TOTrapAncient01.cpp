@@ -35,20 +35,18 @@
 #include "pso/math/MatrixTransforms.h"
 #include "pso/unk/text_803D8F74.h"
 #include "pso/unk/text_800FD8A0.h"
+#include "pso/system/BmlResource.h"
+#include "pso/object/TObjFish_8001ED90.h"
+#include "pso/player/TObjPlayer_801542CC.h"
+#include "pso/object/TObjVoloptCage.h"
+#include "pso/player/TObjPlayer_80011014.h"
+#include "pso/network/client_id.h"
+#include "pso/render/model_render_state.h"
 
 
 extern "C" {
-u16 get_entity_id(TObjBase *);
-void obj_set_flag_20000(TObjBase *);
-void obj_clear_flag30_20000(TObjBase *);
-// Trap callers show this receiver is not restricted to TObjEnemy.
-u16 find_nearest_visible_player(void *, Vec *, f32);
-s32 obj_is_hit_receivable(u8 *);
 
 s32 check_player_flag1__6TLobbyFv();
-extern s32 local_client_id;
-s32 TObjFish__sub_8001EDB0(void *, s32);
-s32 get_bml_model(void *, s32);
 const char *bm_o_trap_ancient01_model_names[] = {
     "fe_obj_o_turigane_hahen01.gj", "fe_obj_o_turigane_hahen02.gj",
     "fe_obj_o_turigane_hahen03.gj", "fs_obj_o_turigane.gj", NULL
@@ -67,22 +65,13 @@ const char *TOTrapAncient01__class_name = "TOTrapAncient01";
 struct AncientTrapResourceSlot { BmlResource *value; u8 reserved[4]; };
 AncientTrapResourceSlot TOTrapAncient01__bml_resource;
 f32 TObjPlayer__sub_8017A1A4(TObjCollidable *self, s32 i);
-s32 free_collision_body_parts(void *);
 extern s32 __vt__15TOTrapAncient01[];
-s32 init_collision_body_parts(void *, void *, int);
 void TOTrap__ct(void *, void *, void *);
 void __construct_array(void *, void *, void *, int, int);
 void __ct__15RenderFadeStateFv(void *);
 s32 check_value_equals__13TUnk_804B6C24Fl(void *, s32);
 
 extern s32 lbl_805D3530;
-s32 is_split_screen();
-extern s32 model_render_flags;
-extern s32 saved_model_render_flags;
-extern s32 saved_chunk_polygon_flags_and_mask;
-extern s32 saved_chunk_polygon_flags_or_mask;
-extern s32 chunk_polygon_flags_or_mask;
-extern s32 chunk_polygon_flags_and_mask;
 void TOTrapAncient02R__sub_80154D78(void *);
 
 
@@ -111,7 +100,7 @@ TOTrapAncient01 *TOTrapAncient01__ct(TOTrapAncient01 *self, void *parent, void *
     *(s32 **)((s8 *)self + 0x18) = __vt__15TOTrapAncient01;
     __construct_array(self->fades, (void *)__ct__15RenderFadeStateFv, (void *)__dt__15RenderFadeStateFv, sizeof(RenderFadeState), 4);
     self->m_name = TOTrapAncient01__class_name;
-    self->apply_object_set_data((void *)((s32)creator));
+    self->apply_object_set_data(creator);
     self->initialize_position_copies();
     self->calc_attach_pos();
     self->model = (void *)get_bml_model(TOTrapAncient01__bml_resource.value, 3);
@@ -437,25 +426,24 @@ void TOTrapAncient01::play_sounds() {
 }
 
 void TOTrapAncient01::release_trapped_player() {
-    s32 temp_r3;
-    s32 temp_r3_2;
+    TObjPlayer *player;
     if (TRaderMapCore::is_not_split_screen() == 1) {
         if (this->target != NULL) {
-            temp_r3 = (s32)get_player_by_client_id((get_entity_id((TObjBase *)this->target)));
-            if (temp_r3 != 0) {
+            player = get_player_by_client_id(get_entity_id((TObjBase *)this->target));
+            if (player != NULL) {
                 if (check_player_flag1__6TLobbyFv() != 0) {
-                    TObjPlayer::send_code_45_1(temp_r3);
+                    TObjPlayer::send_code_45_1((s32)player);
                 }
-                obj_clear_flag30_20000((TObjBase *)temp_r3);
+                obj_clear_flag30_20000(player);
             }
         }
-    } else if ((this->target != NULL) && ((s32) local_client_id == (s32) get_entity_id((TObjBase *)this->target))) {
-        temp_r3_2 = (s32)get_player_by_client_id(local_client_id);
-        if (temp_r3_2 != 0) {
+    } else if ((this->target != NULL) && (local_client_id == get_entity_id((TObjBase *)this->target))) {
+        player = get_player_by_client_id(local_client_id);
+        if (player != NULL) {
             if (check_player_flag1__6TLobbyFv() != 0) {
-                TObjPlayer::send_code_45_1(temp_r3_2);
+                TObjPlayer::send_code_45_1((s32)player);
             }
-            obj_clear_flag30_20000((TObjBase *)temp_r3_2);
+            obj_clear_flag30_20000(player);
         }
     }
 }

@@ -20,7 +20,7 @@ struct TOTrapSeabed01 : public TOTrap {
     virtual void play_sounds();
     u32 m_344;
     s32 m_348;
-    u32 m_34c;
+    s32 m_34c;
     u32 m_350;
     u32 m_354;
     u32 m_358;
