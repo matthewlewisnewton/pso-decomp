@@ -9,11 +9,11 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 |---|---:|---:|
 | asm | 13 | 4 |
 | intrinsic | 83 | 54 |
-| hardware | 71 | 13 |
-| pragma | 5788 | 874 |
-| configure.py per-unit override | 160 | 160 |
+| hardware | 69 | 13 |
+| pragma | 5796 | 876 |
+| configure.py per-unit override | 163 | 163 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1147, `inline_depth` 1039, `fp_contract` 893, `auto_inline` 838, `opt_common_subs` 611, `scheduling` 260, `opt_propagation` 237, `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 41, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 21, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1149, `inline_depth` 1041, `fp_contract` 895, `auto_inline` 840, `opt_common_subs` 611, `scheduling` 260, `opt_propagation` 237, `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 41, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 21, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -54,32 +54,32 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1147, `inline_depth` 1039,
 | `src/pso/enemy/TObjEneMe1GiGue.cpp:1393` | `__cntlzw` |
 | `src/pso/enemy/TObjEneMe3Shinowa.cpp:2526` | `__cntlzw` |
 | `src/pso/item/TItemMag.cpp:1351` | `__cntlzw` |
-| `src/pso/misc/TCheckRoomSequence.cpp:293` | `__cntlzw` |
-| `src/pso/misc/THunterGuildSeqOffline_80211FEC.cpp:70` | `__cntlzw` |
+| `src/pso/misc/TCheckRoomSequence.cpp:292` | `__cntlzw` |
+| `src/pso/misc/THunterGuildSeqOffline_80211FEC.cpp:71` | `__cntlzw` |
 | `src/pso/misc/TKeyBoardControl_803F0C50.cpp:267` | `__cntlzw` |
 | `src/pso/misc/TLoadingCur.cpp:174` | `__cntlzw` |
 | `src/pso/misc/TLobby_80145E40.cpp:28` | `__cntlzw` |
 | `src/pso/misc/TLobby_803C4698.cpp:234` | `__frsqrte` |
 | `src/pso/misc/TMainCursor.cpp:844` | `__cntlzw` |
-| `src/pso/misc/TNpcPlayer.cpp:2371` | `__cntlzw` |
+| `src/pso/misc/TNpcPlayer.cpp:2383` | `__cntlzw` |
 | `src/pso/misc/TOHealGeneral.cpp:64` | `__cntlzw` |
 | `src/pso/misc/TOSymbolchatColli.cpp:93` | `__cntlzw` |
-| `src/pso/misc/TQuestVmDownLoadServer.cpp:543` | `__cntlzw` |
+| `src/pso/misc/TQuestVmDownLoadServer.cpp:542` | `__cntlzw` |
 | `src/pso/misc/TRaderMapCore_8030A808.cpp:9` | `__cntlzw` |
-| `src/pso/misc/TWindowDD_8034725C.cpp:337` | `__cntlzw` |
+| `src/pso/misc/TWindowDD_8034725C.cpp:338` | `__cntlzw` |
 | `src/pso/misc/TWindowFukidasi.cpp:361` | `__cntlzw` |
 | `src/pso/misc/TWindowFukidasi.cpp:458` | `__cntlzw` |
 | `src/pso/misc/TWindowFukidasi.cpp:515` | `__cntlzw` |
 | `src/pso/misc/TWindowFukidasi.cpp:591` | `__cntlzw` |
 | `src/pso/misc/TWindowKeyBoardBase_8008102C.cpp:71` | `__cntlzw` |
-| `src/pso/misc/TWindowMainMenu_802AD538.cpp:281` | `__cntlzw` |
+| `src/pso/misc/TWindowMainMenu_802AD538.cpp:282` | `__cntlzw` |
 | `src/pso/misc/TWindowSnapShot_802A5B2C.cpp:32` | `__rlwinm` |
 | `src/pso/misc/TWindowSnapShot_802A5B2C.cpp:33` | `__rlwinm` |
 | `src/pso/misc/TWindowSnapShot_802A5B2C.cpp:43` | `__rlwinm` |
 | `src/pso/misc/TWindowSnapShot_802A5B2C.cpp:44` | `__rlwinm` |
 | `src/pso/misc/TWindowSubComCard_80244774.cpp:229` | `__cntlzw` |
-| `src/pso/misc/TWindowSubItem.cpp:361` | `__cntlzw` |
-| `src/pso/misc/TWindowSubStatusDisp_8025A9B4.cpp:96` | `__cntlzw` |
+| `src/pso/misc/TWindowSubItem.cpp:359` | `__cntlzw` |
+| `src/pso/misc/TWindowSubStatusDisp_8025A9B4.cpp:95` | `__cntlzw` |
 | `src/pso/misc/TWindowSubStatusDisp_80287570.cpp:209` | `__cntlzw` |
 | `src/pso/object/TObjCMMainMenu_8028D9A8.cpp:108` | `__cntlzw` |
 | `src/pso/object/TObjQuestCol.cpp:12` | `__cntlzw` |
@@ -110,10 +110,10 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1147, `inline_depth` 1039,
 | `src/pso/render/render_util_tail.cpp:21` | `__frsqrte` |
 | `src/pso/system/SjMemoryBuffer.cpp:26` | `__cntlzw` |
 | `src/pso/ui/TAdExNetConfirmGC.cpp:9` | `__cntlzw` |
-| `src/pso/ui/TAdSinglePlyChrSelectGC_801FBF54.cpp:294` | `__cntlzw` |
-| `src/pso/ui/TAdSinglePlyChrSelectGC_801FBF54.cpp:529` | `__cntlzw` |
-| `src/pso/ui/TAdSinglePlyChrSelectGC_801FBF54.cpp:1527` | `__cntlzw` |
-| `src/pso/ui/TAdSinglePlyChrSelectGC_801FBF54.cpp:1556` | `__cntlzw` |
+| `src/pso/ui/TAdSinglePlyChrSelectGC_801FBF54.cpp:293` | `__cntlzw` |
+| `src/pso/ui/TAdSinglePlyChrSelectGC_801FBF54.cpp:528` | `__cntlzw` |
+| `src/pso/ui/TAdSinglePlyChrSelectGC_801FBF54.cpp:1518` | `__cntlzw` |
+| `src/pso/ui/TAdSinglePlyChrSelectGC_801FBF54.cpp:1547` | `__cntlzw` |
 | `src/pso/ui/TAdSinglePlyChrSelectGC_8028C8E0.cpp:129` | `__cntlzw` |
 | `src/pso/ui/TAdSinglePlyChrSelectGC_802E13C8.cpp:174` | `__cntlzw` |
 | `src/pso/unk/text_802530D0.cpp:24` | `__cntlzw` |
@@ -152,10 +152,8 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1147, `inline_depth` 1039,
 | `src/pso/player/TObjPlayer_803E21B8.cpp:258` | `(*(volatile WGPipe_803E2810 *)0xCC008000).f32 = s;` |
 | `src/pso/player/TObjPlayer_803E21B8.cpp:259` | `(*(volatile WGPipe_803E2810 *)0xCC008000).f32 = t;` |
 | `src/pso/player/TObjPlayer_803E5470.cpp:21` | `#define GXWGFifo_803E549C (*(volatile WGPipe_803E549C *)0xCC008000)` |
-| `src/pso/system/ChunkMaterialState.cpp:213` | `matrix_stack_base = 0xE0000000;` |
+| `src/pso/system/ChunkMaterialState.cpp:213` | `matrix_stack_base = (u8 *)0xE0000000;` |
 | `src/pso/system/ChunkMaterialState.cpp:214` | `current_matrix = 0xE0000000;` |
-| `src/pso/system/ChunkMaterialState.cpp:215` | `matrix_stack_limit = (arg1 - 1) * 0x30 + 0xE0000000;` |
-| `src/pso/system/ChunkMaterialState.cpp:216` | `PSMTXIdentity(identity_matrix == 0 ? (u8 *)0xE0000000 : identity_matrix);` |
 | `src/pso/system/ModelDrawContext.cpp:218` | `int src = cached_blend_factor_table[(v & 0xE0000000) >> 29];` |
 | `src/pso/unk/text_801E3F24.cpp:27` | `*(s32 *)0xCC008000 = arg0;` |
 | `src/pso/unk/text_801E3F24.cpp:31` | `*(f32 *)0xCC008000 = farg0;` |
@@ -348,6 +346,9 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1147, `inline_depth` 1039,
 | `pso/unk/text_8039739C.cpp` | `-O4,p` | Metrowerks' GCN_Mem_Alloc.c (runtime library code at -O4,p); belongs in the runtime lib under its own name. |
 | `pso/quest/QuestOpcodeHandlers.cpp` | `-inline on` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/quest/TQuestThread.cpp` | `-inline on` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
+| `pso/misc/TLobby_8001EF5C.cpp` | `-inline on` | init_from_id_lists (0x8002058C, size 0x30C) inlines its model and motion walks. Default -inline off outlines them. auto leaves .text at 62.53% and .data at 0%; auto,deferred leaves .text at 52.51% and .data at 0%. deferred matched the previous extern "C" body, but on this C++ function it emits the function at .text+0 instead of .text+0x1630, so the linked DOL does not match. -inline on keeps the bytes and that order. Precedent: dtk-template -inline auto https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203 and Brawl -inline on https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264 |
+| `pso/quest/TQuestListVM.cpp` | `-inline off,deferred, -pool off, -str reuse,readonly` | TQuestListVM: deferred emission puts __vt__12TQuestListVM ahead of the run_task switch table (written from the last function back). -pool off keeps each title and window size its own reloc, and -str reuse,readonly matches the read-only string objects. The whole unit stays byte-exact. Precedent: dtk-template configure.py unit cflags, and this tree's TObjBoss2Tunnel / TBoss6EmptyWarp unit flags. |
+| `pso/misc/TWindowSubStatusDisp_80256B94.cpp` | `-inline off,deferred, -fp_contract on` | Status gauge: contracting the unit makes `0.299f * depth + ctx->depth` the fmadds at 0x80257118. The bar multiply stays a separate fmuls because the 7.5 scale is applied to the sum before the tick subtract. |
 | `pso/unk/text_801D40D4.cpp` | `-inline noauto` | Inventory walks read TItemList children through the class-body accessors TItemList::link_down / link_next (typed_down in TObjPlayer_801D4CB8, whose receiver is TObjPlayer). -inline noauto folds each call to the lwz of m_down (+0x14) or m_next (+0xC). -inline off leaves a bl and grows the walks (TObjPlayer__sub_801D4368 0x248 -> 0x278, and the TItemList walks by the same 8-byte call). -inline auto also inlines the unmarked TObjPlayer__sub_801D4730 into sort_by_key, so it is not this unit's flag. With noauto the whole object matches -inline off on the old cast spelling, including every function that does not call the accessor. Precedent: https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203 (-inline auto) and TWindowMainMenu_802AD538.cpp (-inline noauto,level=1). |
 | `pso/player/TObjPlayer_801D5220.cpp` | `-inline noauto` | Same -inline noauto as text_801D40D4.cpp. count_owned_items and the other TItemList walks stay the lwz of m_down / m_next; -inline off grows each. |
 | `pso/player/TPlyItem.cpp` | `-inline noauto` | Same -inline noauto as text_801D40D4.cpp. The three TPlyItem walks (reduce_owner_matched_items, reduce_child_item_amounts, collect_owner_fields_recursive) stay byte-identical to the cast spelling. |
@@ -476,6 +477,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1147, `inline_depth` 1039,
 | `src/pso/effect/TEffClitical.cpp` | opt_common_subs×1, opt_propagation×1 |
 | `src/pso/effect/TEffGuard.cpp` | readonly_strings×1 |
 | `src/pso/effect/TEffHit.cpp` | readonly_strings×1 |
+| `src/pso/effect/TEffIndirectCtrl_802A88AC.cpp` | fp_contract×2 |
 | `src/pso/effect/TEffStarLight2D.cpp` | opt_common_subs×1, fp_contract×1 |
 | `src/pso/effect/TEffStarLight2D_Base.cpp` | fp_contract×1, opt_common_subs×1, opt_propagation×1 |
 | `src/pso/effect/TEffect.cpp` | readonly_strings×1 |
@@ -1025,6 +1027,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1147, `inline_depth` 1039,
 | `src/pso/player/TObjPlayer_801D84CC.cpp` | inline_depth×1, auto_inline×1, dont_inline×1, scheduling×1 |
 | `src/pso/player/TObjPlayer_8022C6C4.cpp` | opt_propagation×1 |
 | `src/pso/player/TObjPlayer_8023E480.cpp` | readonly_strings×1 |
+| `src/pso/player/TObjPlayer_802A8368.cpp` | inline_depth×2, auto_inline×2, dont_inline×2 |
 | `src/pso/player/TObjPlayer_802D5B78.cpp` | fp_contract×1 |
 | `src/pso/player/TObjPlayer_802E6CA8.cpp` | opt_common_subs×1, opt_propagation×1, fp_contract×1 |
 | `src/pso/player/TObjPlayer_8033E910.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
