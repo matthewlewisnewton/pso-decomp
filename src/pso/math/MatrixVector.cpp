@@ -4,8 +4,13 @@
 struct Vec_803D8D1C { f32 x, y, z; };
 
 extern "C" {
-f32 matrix_identity(void *);
+void matrix_identity(u8 *arg0);
 extern u8 *current_matrix;
+// Shared {1.0f, 0.0f} float pair in an .sdata block no unit owns yet; the
+// original math kernels read their 1.0f from it instead of a pooled literal.
+// The complete array type keeps the small-data (SDA21) reference of the
+// original object.
+extern f32 lbl_805D46AC[2];
 void GXGetProjectionv(f32 *p);
 void GXGetViewportv(f32 *vp);
 void GXProject(f32 x, f32 y, f32 z, u8 *mtx, f32 *pm, f32 *vp, f32 *sx, f32 *sy, f32 *sz);
@@ -16,6 +21,15 @@ s32 translate_matrix(f32, f32, f32);
 
 void scale_matrix_vec3(u8 *arg0, u8 *arg1) {
     scale_matrix((f32) (*(f32 *)((s8 *)arg1 + 0)), (f32) (*(f32 *)((s8 *)arg1 + 4)), (f32) (*(f32 *)((s8 *)arg1 + 8)));
+}
+
+// Approximate length: the original sums the squares in single precision and
+// applies bare `frsqrte`+`fres` estimates to the sum. CW cannot chain those
+// two without an intervening frsp (its __frsqrte is f64-typed and __fres
+// f32-typed in every shipped version), so this kernel keeps the original's
+// hand-written body, built from the disc like the SDK's assembly.
+asm f32 vector_length(const Vec *v) {
+#include "orig_asm/pso/math/MatrixVector/vector_length.inc"
 }
 
 #pragma push
@@ -37,6 +51,15 @@ void rotate_matrix_about_axis(u8 *arg0, s32 arg1, s32 arg2) {
 
 void translate_matrix_vec3(u8 *arg0, u8 *arg1) {
     translate_matrix((f32) (*(f32 *)((s8 *)arg1 + 0)), (f32) (*(f32 *)((s8 *)arg1 + 4)), (f32) (*(f32 *)((s8 *)arg1 + 8)));
+}
+
+// Writes the 3x4 identity to arg0. The original loads the shared {1.0f, 0.0f}
+// pair's first float, makes the zero pair with `ps_sub` and the {1,0} pairs
+// with `ps_merge01`, and stores them with `psq_st`. CW 2.6 has no paired-
+// single intrinsics and never auto-emits them, so this kernel keeps the
+// original's hand-written body, built from the disc like the SDK's assembly.
+asm void matrix_identity(u8 *arg0) {
+#include "orig_asm/pso/math/MatrixVector/matrix_identity.inc"
 }
 
 #pragma push
