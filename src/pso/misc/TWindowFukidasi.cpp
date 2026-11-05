@@ -1136,7 +1136,7 @@ void TUnk_804CF0B8::run_task() {
         if (this->m_71 & 8) {
             this->m_74 = this->m_74 - 1;
             this->m_58 += 0.1f;
-            *(f32 *)((u8 *)this + 0x1C) += 0.1f;
+            this->m_depth += 0.1f;
             if (this->m_74 < 0) {
                 this->m_70 = 7;
             }
