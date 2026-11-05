@@ -1,4 +1,7 @@
+#include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 #include "pso/system/ChunkMaterialState.h"
+#include "pso/system/BmlResourceClass.h"
 #include "types.h"
 #include "pso/misc/MaterialColorFade.h"
 #include "pso/system/vector.h"
@@ -85,7 +88,6 @@ void *__dt__8TObjDoorFv(void *arg0, s16 arg1);
 void *__nw__7TObjectFUl(int);
 extern void *tl_05;
 void *TObjDoor__create(void *arg0);
-void TLobby__sub_8001FE7C(void*, int);
 extern s32 TObjDoor__resource_param;
 extern u32 door_resource_handle;
 u8 *TObjDoorJung__ct(u8 *arg0, s32 arg1, s32 arg2);
@@ -96,7 +98,6 @@ extern s32 saved_model_render_flags;
 extern s32 model_render_flags;
 void render__8TObjDoorFPv(Door_8018E40C *arg0);
 s32 draw_closed__8TObjDoorFPv(Door_8018E5F4 *arg0);
-u8 *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 u8 *load_gvm_texture_file(s32 arg0);
 s32 get_bml_model(s32, s32);
 s32 get_bml_motion(s32, s32);
@@ -107,7 +108,7 @@ s32 activate_camera_mode(s32);
 }
 s32 check_player_door_proximity(s32 arg0, s32 arg1, f32 farg0);
 extern "C" {
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 u8 is_current_floor_switch_set(u16);
 extern s32 TObjDoor__data_805D5BC8;
 s32 init_collision_body_parts(void *, void *, s32);
@@ -215,7 +216,7 @@ void *lbl_804B77F0[18] = {
 #define TObjDoor__label_color_table ((Color_8018E40C *)TObjDoor__label_color_table)
 
 void draw_model__8TObjDoorFPv(Door_8018E358 *arg0) {
-    TObjFish::set_global_param(TObjDoor__resource_param);
+    set_current_texture_list((GinjaTextureList *)(TObjDoor__resource_param));
     push_matrix();
     post_translate_matrix(arg0->f38);
     rotate_matrix_y(0, arg0->f60);
@@ -232,7 +233,7 @@ void draw_model__8TObjDoorFPv(Door_8018E358 *arg0) {
 }
 
 void render__8TObjDoorFPv(Door_8018E40C *arg0) {
-    TObjFish::set_global_param(TObjDoor__resource_param);
+    set_current_texture_list((GinjaTextureList *)(TObjDoor__resource_param));
     push_matrix();
     post_translate_matrix(arg0->f38);
     rotate_matrix_y(0, arg0->f60);
@@ -258,7 +259,7 @@ void render__8TObjDoorFPv(Door_8018E40C *arg0) {
 }
 
 void draw_closing__8TObjDoorFPv(Door_8018E358 *arg0) {
-    TObjFish::set_global_param(TObjDoor__resource_param);
+    set_current_texture_list((GinjaTextureList *)(TObjDoor__resource_param));
     push_matrix();
     post_translate_matrix(arg0->f38);
     rotate_matrix_y(0, arg0->f60);
@@ -275,7 +276,7 @@ void draw_closing__8TObjDoorFPv(Door_8018E358 *arg0) {
 }
 
 s32 draw_closed__8TObjDoorFPv(Door_8018E5F4 *arg0) {
-    TObjFish::set_global_param(TObjDoor__resource_param);
+    set_current_texture_list((GinjaTextureList *)(TObjDoor__resource_param));
     push_matrix();
     post_translate_matrix(arg0->f38);
     rotate_matrix_y(0, arg0->f60);
@@ -309,7 +310,7 @@ void update_timer__8TObjDoorFPv(void *arg0) {
 }
 
 s32 draw_locked__8TObjDoorFPv(Door_8018E74C *arg0) {
-    TObjFish::set_global_param(TObjDoor__resource_param);
+    set_current_texture_list((GinjaTextureList *)(TObjDoor__resource_param));
     push_matrix();
     post_translate_matrix(arg0->f38);
     rotate_matrix_y(0, arg0->f60);
@@ -469,14 +470,14 @@ void TObjDoor::update_state() {
         }
         break;
     case 4:
-        play_persistent_sound(0x49e08, (s32)this, (u32)&this->position, 0, 0);
+        play_persistent_sound((s32)(0x49e08), (const void *)(this), (const Vec *)((u32)&this->position), 0, 0);
         this->frame+=(1.8f);
         if(this->frame>(TObjDoor__motion_table[0]->frameCount-1)) {
             this->frame=(TObjDoor__motion_table[0]->frameCount-1);this->state=5;
         }
         break;
     case 3:
-        play_persistent_sound(0x49e08, (s32)this, (u32)&this->position, 0, 0);
+        play_persistent_sound((s32)(0x49e08), (const void *)(this), (const Vec *)((u32)&this->position), 0, 0);
         this->frame-=1.8f;
         if(this->frame<0.0f) {this->frame=0.0f;this->state=2;}
         break;
@@ -515,9 +516,9 @@ void run_task__8TObjDoorFv(VObj_8018EF70 *self) {
     }
     (self->*((Pmf_8018EF70 *)lbl_804B7760)[((TObjDoor *)self)->state])();
     if (((TObjDoor *)self)->state == 0) {
-        minimap_render_gate((u8 *)self + 0x38, 0xFFFF0000, ((TObjDoor *)self)->rotation_y, 0, 0);
+        minimap_render_gate((u8 *)self + 0x38, 0xFFFF0000, ((TObjDoor *)self)->rotation.yaw, 0, 0);
     } else {
-        minimap_render_gate((u8 *)self + 0x38, 0xFF00FF00, ((TObjDoor *)self)->rotation_y, 0, 0);
+        minimap_render_gate((u8 *)self + 0x38, 0xFF00FF00, ((TObjDoor *)self)->rotation.yaw, 0, 0);
     }
     if (TObjDoor__data_805D5BC8 != 0) {
         ((TObjDoor *)self)->state = saved;
@@ -575,17 +576,14 @@ void TObjDoor::free_resources() {
     TObjPlayer::free_if_valid(TObjDoor__resource_param);
     TObjDoor__resource_param = 0;
     if ((u32) door_resource_handle != 0U) {
-        TLobby__sub_8001FE7C((void*)door_resource_handle, 1);
+        delete (BmlResource *)((void*)door_resource_handle);
         door_resource_handle = 0U;
     }
 }
 
 extern "C" const char lbl_80445588[] = "fe_obj_door.gvm";
 void TObjDoor::load_resources() {
-    s32 p = (int)::operator new(0x440);
-    if (p != 0) {
-        p = (s32)load_resource_from_descriptor((void *)p, 5, door_resource_descriptor, 0, 0, 0);
-    }
+    s32 p = (int)new BmlResource(5, (BmlResourceDescriptor *)(door_resource_descriptor), 0, 0, (void *)(0));
     door_resource_handle = p;
     TObjDoor__resource_param = (s32)load_gvm_texture_file((s32)lbl_80445588);
     ((s32 *)&TObjDoor__model_resource_ptrs)[0] = get_bml_model(door_resource_handle, 4);

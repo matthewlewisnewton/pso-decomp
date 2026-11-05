@@ -1,3 +1,6 @@
+#include "pso/player/demo_mode.h"
+#include "pso/system/CurrentTextureList.h"
+struct NJS_OBJECT;
 #include "types.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/misc/TODragonflyMachine01.h"
@@ -98,7 +101,7 @@ void TODragonflyMachine01::update_yaw_animation() {
     }
 }
 
-void TODragonflyMachine01::rotate_animated_node() {
+void TODragonflyMachine01::rotate_animated_node(NJS_OBJECT *) {
     if (node_index == 6) {
         rotate_matrix_y(NULL, node_yaw);
     }
@@ -113,16 +116,16 @@ void TODragonflyMachine01::render() {
         switch (yaw_animation_state) {
         case 3:
         case 4:
-            rotate_matrix_y(NULL, rotation_y - animation_yaw);
+            rotate_matrix_y(NULL, this->rotation.yaw - animation_yaw);
             break;
         default:
-            rotate_matrix_y(NULL, rotation_y);
+            rotate_matrix_y(NULL, this->rotation.yaw);
             break;
         }
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         node_index = 0;
         node_yaw = animation_yaw;
-        set_chunk_model_node_callback((s32)&rotate_animated_node);
+        set_chunk_model_node_callback(&rotate_animated_node);
         draw_ginja_model_with_motion(model, motion, animation_frame);
         set_chunk_model_node_callback(0);
         pop_matrix();
@@ -132,7 +135,7 @@ void TODragonflyMachine01::render() {
 void TODragonflyMachine01::run_task() {
     bob_angle = (s32) (bob_angle + bob_angle_step);
     bob_offset = (f32) (bob_height * sin_table_lookup(bob_angle));
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         update_demo();
         return;
     }
@@ -161,17 +164,14 @@ void *TODragonflyMachine01::create(void *set_data) {
 
 void TODragonflyMachine01::unload_static_data() {
     if (model_resource != NULL) {
-        TLobby__sub_8001FE7C(model_resource, 1);
+        delete (BmlResource *)(model_resource);
         model_resource = NULL;
     }
 }
 
 void TODragonflyMachine01::load_resources() {
     BmlResource *resource;
-    resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_fs_obj_mekatombo_resource_descriptor, 0, 0, 0);
-    }
+    resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&bm_fs_obj_mekatombo_resource_descriptor), 0, 0, (void *)(0));
     model_resource = resource;
     node_index = 0;
     node_yaw = 0;

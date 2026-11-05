@@ -30,7 +30,7 @@ void TObjNpcBase::setup_common() {
     init_collision_body_parts(self, npc_base_collision_body_desc, 1);
     ((TObjPlayer *)self)->register_object_by_id();
     ((TObjEnemy *)self)->update_prev_position();
-    ((TBoss3VoloptHiraisin *)self)->copy_position();
+    ((TObjChara *)self)->copy_body_to_center();
     this->apply_set_params(0, 1);
 }
 

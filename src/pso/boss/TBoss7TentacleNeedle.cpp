@@ -1,3 +1,7 @@
+#include "pso/boss/Boss7TentacleBanks.h"
+#include "pso/math/MatrixCopy.h"
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/system/vector.h"
 #include "types.h"
 #include "pso/object/TObject_80019A50.h"
@@ -16,7 +20,7 @@ struct Ten_802F08A8;
 extern "C" {
 f64 atan2_float(f32, f32);
 s32 approach_angle_limited(s32, s32, s32);
-s32 play_sound_effect(int, void *, int, int);
+
 void TBoss7Tentacle__sub_802F0608(TBoss7Tentacle *tentacle, f32 len);
 f32 sin_table_lookup(s32);
 s32 set_matrix_identity(int);
@@ -95,13 +99,13 @@ struct RecoveredGlobal_802EFEC4_lbl_80541918 {
 
 typedef char RecoveredGlobal_802EFEC4_lbl_80541918_size[sizeof(RecoveredGlobal_802EFEC4_lbl_80541918) == 0x10 ? 1 : -1];
 
-struct V_802F0A5C { f32 x, y, z; };
+typedef Vec V_802F0A5C;
 
 struct Ten_802F0A5C { u8 pad0[0x50]; V_802F0A5C v[14]; u32 w[14]; };
 
 struct V_802EFF24 { f32 x, y, z; };
 
-struct Node_802EFF24 { u32 flags; u8 pad4[4]; V_802EFF24 pos; u8 pad14[8]; s32 ang; u8 pad20[0x18]; };
+typedef DragonModelNode Node_802EFF24;
 
 struct Tent_802EFF24 { u8 pad0[0x50]; V_802EFF24 pos[14]; s32 ang[14]; };
 
@@ -115,7 +119,7 @@ typedef struct Anim_802F0BE8 { u8 pad0[4]; u32 n; } Anim_802F0BE8;
 
 s32 obj_testFlags30__14TObjCollidableFUl(void *, s32);
 s32 attach_particle_model(int, int, int, int, int, f32);
-void *spawn_particle_effect(void *pos, s32 id);
+
 f32 horizontal_distance_squared(void *, void *);
 void *get_player_by_client_id(s32 i);
 void __dl__7TObjectFPv(void *);
@@ -130,11 +134,8 @@ void rotate_matrix_by_node_angles(void *, int);
 s32 scale_current_matrix(void *);
 void post_translate_matrix(void *);
 
-extern V_802F0A5C TBoss7Tentacle__segment_offsets[];
 extern s32 __vt__20TBoss7TentacleNeedle[];
 extern s32 lbl_80474070[];
-extern Node_802EFF24 lbl_80541528[];
-extern u32 TBoss7Tentacle__needle_offsets[];
 extern RecoveredGlobal_802EFB1C_lbl_80541918 boss7_tentacle_needle_target_state;
 extern s32 lbl_805D3FD8;
 extern s32 lbl_805D6948;
@@ -161,14 +162,14 @@ void TBoss7Tentacle::restart_particle_effect() {
     queue_destruction__7TObjectFv((*((void **) (((s8 *) arg0) + 0x40))));
     *((u32 *) (((s8 *) arg0) + 0x40)) = 0U;
   }
-  particle_effect = (s32)spawn_particle_effect((arg0 + 0x1C), 0x215);
+  particle_effect = (s32)spawn_particle_effect((const Vec *)((arg0 + 0x1C)), 0x215);
   temp_r3 = particle_effect;
   if (temp_r3 != 0)
   {
     particle_effect = TObjPlayer__sub_802E80A0();
     attach_particle_model((int) temp_r3, (int) queue_boss_effect__10TObjPlayerFPv(4), (int) particle_effect, 0, 0, (f32) (*(f32 *)&TBoss7Tentacle__data_805DEC00));
   }
-  play_sound_effect(0x3A809, (void *) (arg0 + 0x1C), 0, 0);
+  play_sound_effect(0x3A809, (const Vec *)((arg0 + 0x1C)), 0, 0);
 }
 
 s32 TBoss7Tentacle::advance_anim_time_wrapped(f32 d) {
@@ -211,7 +212,7 @@ void damage_nearby_players__14TBoss7TentacleFPv(u8 *boss7_tentacle) {
                 Hit_802EF99C a = b;
                 ((VObj_18_9935f6 *)p)->m21(*(s32 *)(boss7_tentacle + 0x10), &a, 0, -1, -1);
                 if (((Obj_802EF99C *)boss7_tentacle)->flags[(u16)i] == 0) {
-                    spawn_particle_effect(p + 0x2FC, 0x214);
+                    spawn_particle_effect((const Vec *)(p + 0x2FC), 0x214);
                     ((Obj_802EF99C *)boss7_tentacle)->flags[(u16)i] = 1;
                 }
             }
@@ -294,48 +295,6 @@ void *__dt__20TBoss7TentacleNeedleFv(void *arg0, s16 arg1) {
     return arg0;
 }
 
-void __ct__7TObjectFP7TObject(void *, void *);
-void *create_particle_emitter(void *pos, s32 id);
-extern s32 boss7_tentacle_needle_name_ptr;
-extern const f32 lbl_805DEC20;
-extern const f32 lbl_805DEC24;
-extern const f32 lbl_805DEC2C;
-extern const f32 lbl_805DEC30;
-
-struct Arr_802EFD08 { u8 pad[0x44]; s32 a[12]; };
-
-#pragma push
-#pragma fp_contract on
-u8 *TBoss7TentacleNeedle__ct(TBoss7TentacleNeedle *self, void *parent, V_802F0A5C *pos) {
-    __ct__7TObjectFP7TObject((void *)self, parent);
-    *(s32 **)((s8 *)self + 0x18) = __vt__20TBoss7TentacleNeedle;
-    *(s32 *)((s8 *)self + 0x0) = boss7_tentacle_needle_name_ptr;
-    *(f32 *)((s8 *)self + 0x34) = lbl_805DEC20;
-    *(s32 *)((s8 *)self + 0x28) = 0;
-    *(s32 *)((s8 *)self + 0x2C) = (s32)(lbl_805DEC24 * (lbl_805DEC28 * (f32)rand()));
-    *(s32 *)((s8 *)self + 0x30) = 0;
-    *(f32 *)((s8 *)self + 0x1C) = lbl_805DEC2C * (lbl_805DEC28 * (f32)rand()) + pos->x - lbl_805DEC30;
-    *(f32 *)((s8 *)self + 0x20) = pos->y;
-    *(f32 *)((s8 *)self + 0x24) = lbl_805DEC2C * (lbl_805DEC28 * (f32)rand()) + pos->z - lbl_805DEC30;
-    *(s32 *)((s8 *)self + 0x38) = 0;
-    *(s32 *)((s8 *)self + 0x3C) = 0;
-    s32 w0; s32 w1; s32 w2; s32 v[3];
-    w2 = ((s32 *)pos)[2];
-    w1 = ((s32 *)pos)[1];
-    w0 = ((s32 *)pos)[0];
-    v[0] = w0;
-    v[1] = w1;
-    v[2] = w2;
-    *(s32 *)((s8 *)self + 0x40) = (s32)create_particle_emitter(v, 0x212);
-    for (s32 i = 0; i < 12; i++) {
-        ((Arr_802EFD08 *)self)->a[i] = 0;
-    }
-    *(s32 *)((s8 *)self + 0x78) = boss7_tentacle_needle_target_state.value;
-    *(f32 *)((s8 *)self + 0x74) = TBoss7Tentacle__data_805DEC04;
-    return (u8 *)self;
-}
-#pragma pop
-
 void fn_802EFEA8(void) {
     *(s32 *)((s8 *)(&(*(RecoveredGlobal_802EFEA8_lbl_80541918 *)&boss7_tentacle_needle_target_state).value) + 0) = 0;
     lbl_805D6948 = 0;
@@ -366,24 +325,24 @@ void render__14TBoss7TentacleFv(u8 *arg0) {
     switch (*(s32 *)((s8 *)arg0 + 0x30)) {
     case 0:
         set_motion_packed_rotation();
-        TObjPlayer::concat_matrix(0, (int) (*(s32 *)((s8 *)arg0 + 0x130)));
+        concat_matrix((MtxP)(0), (const f32 (*)[4])((int) (*(s32 *)((s8 *)arg0 + 0x130))));
         rotate_matrix_y(0, (int) (*(s32 *)((s8 *)arg0 + 0x13C)));
         scale_current_matrix((void *) ((u8 *)(arg0) + 0x24));
-        ((s32 (*)(void *, int, f32))draw_model_motion)((void *) (*(s32 **)((s8 *)arg0 + 0x1C)), (int) (*(s32 *)((s8 *)arg0 + 0x20)), (f32) (*(f32 *)((s8 *)arg0 + 0x134)));
+        draw_model_motion((void *) (*(s32 **)((s8 *)arg0 + 0x1C)), (void *) (*(s32 *)((s8 *)arg0 + 0x20)), (f32) (*(f32 *)((s8 *)arg0 + 0x134)));
         clear_motion_packed_rotation();
         break;
     case 1:
     case 4:
     case 5:
         set_motion_packed_rotation();
-        TObjPlayer::concat_matrix(0, (int) (*(s32 *)((s8 *)arg0 + 0x130)));
+        concat_matrix((MtxP)(0), (const f32 (*)[4])((int) (*(s32 *)((s8 *)arg0 + 0x130))));
         rotate_matrix_zyx(0, (*(s32 *)((s8 *)arg0 + 0x140)), (*(s32 *)((s8 *)arg0 + 0x13C)), 0);
         scale_current_matrix((void *) ((u8 *)(arg0) + 0x24));
-        ((s32 (*)(void *, int, f32))draw_model_motion)((void *) (*(s32 **)((s8 *)arg0 + 0x1C)), (int) (*(s32 *)((s8 *)arg0 + 0x20)), (f32) (*(f32 *)((s8 *)arg0 + 0x134)));
+        draw_model_motion((void *) (*(s32 **)((s8 *)arg0 + 0x1C)), (void *) (*(s32 *)((s8 *)arg0 + 0x20)), (f32) (*(f32 *)((s8 *)arg0 + 0x134)));
         clear_motion_packed_rotation();
         break;
     case 2:
-        TObjPlayer::concat_matrix(0, (int) (*(s32 *)((s8 *)arg0 + 0x130)));
+        concat_matrix((MtxP)(0), (const f32 (*)[4])((int) (*(s32 *)((s8 *)arg0 + 0x130))));
         rotate_matrix_zyx(0, (*(s32 *)((s8 *)arg0 + 0x140)), (*(s32 *)((s8 *)arg0 + 0x13C)), 0);
         scale_current_matrix((void *) ((u8 *)(arg0) + 0x24));
         draw_chunk_object((*(s32 **)((s8 *)arg0 + 0x1C)));
@@ -393,10 +352,10 @@ void render__14TBoss7TentacleFv(u8 *arg0) {
         scale_current_matrix((void *) (lbl_80474070));
         rotate_matrix_zyx(0, 0, (*(s32 *)((s8 *)arg0 + 0x13C)), (*(s32 *)((s8 *)arg0 + 0x140)));
         for (var_ctr = 0; var_ctr < 14; var_ctr++) {
-            lbl_80541528[var_ctr].pos.x = ((Tent_802EFF24 *)arg0)->pos[var_ctr].x;
-            lbl_80541528[var_ctr].pos.y = ((Tent_802EFF24 *)arg0)->pos[var_ctr].y;
-            lbl_80541528[var_ctr].pos.z = ((Tent_802EFF24 *)arg0)->pos[var_ctr].z;
-            lbl_80541528[var_ctr].ang = ((Tent_802EFF24 *)arg0)->ang[var_ctr];
+            lbl_80541528[var_ctr].position.x = ((Tent_802EFF24 *)arg0)->pos[var_ctr].x;
+            lbl_80541528[var_ctr].position.y = ((Tent_802EFF24 *)arg0)->pos[var_ctr].y;
+            lbl_80541528[var_ctr].position.z = ((Tent_802EFF24 *)arg0)->pos[var_ctr].z;
+            lbl_80541528[var_ctr].rotation.z = ((Tent_802EFF24 *)arg0)->ang[var_ctr];
         }
         scale_current_matrix((void *) ((u8 *)(arg0) + 0x24));
         draw_chunk_object((lbl_80541528));
@@ -481,7 +440,7 @@ void run_task__14TBoss7TentacleFv(u8 *boss7_tentacle) {
         v.z = TBoss7Tentacle__data_805DEC04;
         push_matrix();
         set_matrix_identity(0);
-        TObjPlayer::concat_matrix(0, *(s32 *)((s8 *)boss7_tentacle + 0x130));
+        concat_matrix((MtxP)(0), (const f32 (*)[4])(*(s32 *)((s8 *)boss7_tentacle + 0x130)));
         transform_point_by_current_matrix(&v, boss7_tentacle + 0x40);
         pop_matrix();
         VecCopy((Vec *)&v, (const Vec *)(boss7_tentacle + 0x14C));
@@ -514,7 +473,7 @@ void run_task__14TBoss7TentacleFv(u8 *boss7_tentacle) {
                         ((TBoss7PhotonBullet *)st)->emit_hit_effect(&p);
                     }
                 }
-                play_sound_effect(0x3A809, &p, 0, 0);
+                play_sound_effect(0x3A809, (const Vec *)(&p), 0, 0);
             }
             if (*(f32 *)((s8 *)boss7_tentacle + 0x158) >= lbl_805DEC44 * len) {
                 *(f32 *)((s8 *)boss7_tentacle + 0x15C) = TBoss7Tentacle__data_805DEC00;
@@ -742,43 +701,3 @@ TBoss7Tentacle::TBoss7Tentacle(TObject *object, s32 arg2, s32 arg3) : TObject(ob
 }
 
 void TObjPlayer__sub_802F0D2C(void) {  }
-
-
-extern "C" {
-void copy_model_node(u8 *dst, u8 *src);
-
-// Unit-owned .bss banks (claim 1eadd7fe: pso/boss/TBoss7TentacleNeedle .bss
-// 0x80541528-0x80541918). Definition order == address order: nodes 0x310,
-// segment_offsets +0x310 (0xA8), needle_offsets +0x3B8 (0x38).
-// In-TU defined (twin TBoss2Tentacle precedent, 100.0): enables MWCC
-// base-hoist into r31 + copy-propagation sink; externs remat instead.
-Node_802EFF24 lbl_80541528[14];
-V_802F0A5C TBoss7Tentacle__segment_offsets[14];
-u32 TBoss7Tentacle__needle_offsets[14];
-
-void TObjPlayer__sub_802F0D30(void) {
-    Node_802EFF24 *src;
-    Node_802EFF24 *dst;
-    s32 i;
-
-    src = (Node_802EFF24 *)queue_boss_effect__10TObjPlayerFPv(1);
-    notify_fish_obj__10TObjPlayerFPv(0x11);
-    dst = lbl_80541528;
-    for (i = 0; i < 12; i++) {
-        copy_model_node((u8 *)dst, (u8 *)src);
-        *(u32 *)&dst->pad20[0xC] = (u32)(dst + 1);
-        dst++;
-        src = *(Node_802EFF24 **)&src->pad20[0xC];
-    }
-    copy_model_node((u8 *)dst, (u8 *)src);
-    *(u32 *)&dst->pad20[0x10] = (u32)(dst + 1);
-    copy_model_node((u8 *)&dst[1], (u8 *)*(Node_802EFF24 **)&src->pad20[0x10]);
-    for (i = 0; i < 14; i++) {
-        lbl_80541528[i].flags &= ~3;
-        TBoss7Tentacle__segment_offsets[i].x = (f64)lbl_80541528[i].pos.x;
-        TBoss7Tentacle__segment_offsets[i].y = lbl_80541528[i].pos.y;
-        TBoss7Tentacle__segment_offsets[i].z = lbl_80541528[i].pos.z;
-        TBoss7Tentacle__needle_offsets[i] = (u32)lbl_80541528[i].ang;
-    }
-}
-}

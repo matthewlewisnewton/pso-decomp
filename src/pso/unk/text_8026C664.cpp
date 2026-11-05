@@ -1,3 +1,5 @@
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TWindowSubStatusDisp_803DEE6C.h"
 #include "pso/unk/text_8026C664.h"
@@ -117,7 +119,7 @@ void draw_list_page_indicator(Self_8026C800 *self, Rect_8026C800 *r) {
     pos.y = (r->y + r->h) - 22.0f;
     scale = (-1.0f) / (0.1495f + r->f38);
     begin_screen_draw(1);
-    TObjFish::set_global_param(lbl_805D63F0);
+    set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
     set_draw_texture_and_color(0, -1);
     fn_8026C708((u8 *)r, (f32)(4e+01f + pos.x), (f32)(2.0f + pos.y), (f32)scale, (f32)self->phase);
     fn_8026C664((u8 *)r, (f32)(pos.x - 69.0f), (f32)(2.0f + pos.y), (f32)scale, (f32)self->phase);
@@ -162,7 +164,7 @@ struct Pad_8026C9DC {
 
 extern "C" {
 s32 TWindowShortListCtrl__check_controller_button(void *, u32);
-void play_sound_effect(s32, s32, s32, s32);
+
 extern Pad_8026C9DC controller_input_state[];
 
 s32 handle_list_page_flip_input(Ctl_8026C9DC *arg0) {

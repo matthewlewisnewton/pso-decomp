@@ -1,5 +1,8 @@
+#include "pso/player/demo_mode.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/object/TObjWarpBase.h"
 #include "pso/misc/THunterGuildSeqOffline.h"
 #include "pso/misc/TLobby.h"
@@ -222,6 +225,7 @@ s32 get_main_phase();
 s32 is_local_client_floor_leader();
 s32 TObjWarpBossMulti__sub_8019E570(s32 arg0, f32 farg0);
 void close_windows__12TObjWarpBossFv(void *arg0);
+s32 TWindow__close(void *);
 extern s32 boss_warp_confirmation_model;
 extern s32 warp_boss_motion;
 extern s32 __vt__12TObjWarpBoss[];
@@ -244,7 +248,6 @@ extern "C" {
 s32 get_bml_motion(s32, s32);
 s32 TObjFish__sub_8001EDB0(s32, s32);
 s32 get_bml_model(s32, s32);
-s32 load_resource_from_descriptor(s32, void *, s32, s32, s32);
 extern s32 boss_warp_base_model;
 extern s32 warp_boss_model;
 extern s32 warp_boss_bml_motion;
@@ -339,7 +342,6 @@ int get_boss_warp_model_handle(void);
 int fn_8019F9AC(void);
 }
 }
-void TLobby__sub_8001FE7C(void*, int);
 void TObjFish__sub_8019F72C(void);
 }
 s32 TObjWarpBossMulti__create(s32 arg0);
@@ -390,7 +392,7 @@ void obj_clear_flag30_20000(void *arg0);
 void obj_set_flag_20000(void *arg0);
 void play_effect_default__10TObjPlayerFii(s32 arg0, s32 arg1);
 s32 send_code_45_1__10TObjPlayerFl();
-s32 play_sound_effect(s32, void *, s32, s32);
+
 char *strcpy(char *, const char *);
 s32 is_locally_controlled__10TObjPlayerFPv(u32);
 
@@ -526,11 +528,11 @@ void render__17TObjWarpBossMultiFv(u8 *warp_boss_multi) {
 block_4:
         push_matrix();
         post_translate_matrix(warp_boss_multi + 0x38);
-        rotate_matrix_y(0, ((TObjWarpBossMulti *)warp_boss_multi)->rotation_y);
-        TObjFish::set_global_param(*(s32 *)((s8 *)warp_boss_multi + 0xE8));
+        rotate_matrix_y(0, ((TObjWarpBossMulti *)warp_boss_multi)->rotation.yaw);
+        set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)warp_boss_multi + 0xE8)));
         draw_ginja_object((void *)(((TObjWarpBossMulti *)warp_boss_multi)->m_f0));
         TParticleCtrl::begin_effect_render();
-        TObjFish::set_global_param(*(s32 *)((s8 *)warp_boss_multi + 0xEC));
+        set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)warp_boss_multi + 0xEC)));
         switch (*(s32 *)((s8 *)warp_boss_multi + 0xF0)) {
         case 0:
             draw_ginja_model_with_motion(((TObjWarpBossMulti *)warp_boss_multi)->m_f4, *(s32 *)((s8 *)warp_boss_multi + 0xE0), ((TObjWarpBossMulti *)warp_boss_multi)->m_f8);
@@ -729,11 +731,11 @@ void TObjWarpBoss::close_windows() {
         *(u32 *)((s8 *)this + 0x168) = 0U;
     }
     if ((u32) this->m_b0 != 0U) {
-        ((TWindowBase *)(*(void **)((s8 *)this + 0xB0)))->close();
+        TWindow__close(*(void **)((s8 *)this + 0xB0));
         this->m_b0 = 0U;
     }
     if ((u32) this->m_180 != 0U) {
-        ((TWindowBase *)(*(void **)((s8 *)this + 0x164)))->close();
+        TWindow__close(*(void **)((s8 *)this + 0x164));
         this->m_180 = 0U;
     }
     end_player_keyboard_hold(local_client_id);
@@ -826,7 +828,7 @@ void TObjWarpBoss::warp_boss_handle_window() {
             }
         } else {
             if ((u32) *(u32 *)((s8 *)this + 0xB0) != 0U) {
-                ((TWindowBase *)(*(void **)((s8 *)this + 0xB0)))->close();
+                TWindow__close(*(void **)((s8 *)this + 0xB0));
                 *(u32 *)((s8 *)this + 0xB0) = 0U;
             }
             end_player_keyboard_hold(local_client_id);
@@ -839,7 +841,7 @@ void TObjWarpBoss::warp_boss_handle_window() {
         return;
     case -1:
         if ((u32) *(u32 *)((s8 *)this + 0xB0) != 0U) {
-            ((TWindowBase *)(*(void **)((s8 *)this + 0xB0)))->close();
+            TWindow__close(*(void **)((s8 *)this + 0xB0));
             *(u32 *)((s8 *)this + 0xB0) = 0U;
         }
         end_player_keyboard_hold(local_client_id);
@@ -894,7 +896,7 @@ void TObjWarpBoss::update_warp_state() {
         break;
     case 0:
         *(s32 *)((s8 *)arg0 + 0x160) = 0x12C;
-        play_sound_effect(0x40003205, arg0 + 0x38, 0, 0);
+        play_sound_effect(0x40003205, (const Vec *)(arg0 + 0x38), 0, 0);
         *(s16 *)((s8 *)arg0 + 0xE0) = 1;
         *(s32 *)((s8 *)arg0 + 0xD0) = (s32) warp_boss_model;
         *(s32 *)((s8 *)arg0 + 0xD4) = (s32) warp_boss_bml_motion;
@@ -953,11 +955,11 @@ void TObjWarpBoss::update_warp_confirmation() {
             break;
         }
         if (*(void **)((s8 *)arg0 + 0xB0) != NULL) {
-            ((TWindowBase *)(*(void **)((s8 *)arg0 + 0xB0)))->close();
+            TWindow__close(*(void **)((s8 *)arg0 + 0xB0));
             *(void **)((s8 *)arg0 + 0xB0) = NULL;
         }
         if (*(void **)((s8 *)arg0 + 0x164) != NULL) {
-            ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x164)))->close();
+            TWindow__close(*(void **)((s8 *)arg0 + 0x164));
             *(void **)((s8 *)arg0 + 0x164) = NULL;
         }
         break;
@@ -1047,7 +1049,7 @@ void TObjWarpBoss::update_warp_occupants() {
         self->names[i][0] = 0;
     }
     if (old != self->count && self->window != 0) {
-        ((TWindowBase *)self->window)->close();
+        ((s32 (*)(u32))TWindow__close)(self->window);
         self->window = 0;
     }
     pl2 = (Player_8019EE14 *)get_player_by_client_id(local_client_id);
@@ -1182,12 +1184,12 @@ void TObjWarpBoss::render() {
 block_4:
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
-        TObjFish::set_global_param(warp_boss_model_handle);
+        rotate_matrix_y(0, this->rotation.yaw);
+        set_current_texture_list((GinjaTextureList *)(warp_boss_model_handle));
         draw_ginja_object((void *)boss_warp_base_model);
         if (*(void **)((s8 *)arg0 + 0xD0) != 0) {
             TParticleCtrl::begin_effect_render();
-            TObjFish::set_global_param(lbl_805D5CA4);
+            set_current_texture_list((GinjaTextureList *)(lbl_805D5CA4));
             ((s32 (*)(u32, s32, f32))draw_ginja_model_with_motion)(*(u32 *)((s8 *)arg0 + 0xD0), *(s32 *)((s8 *)arg0 + 0xD4), *(f32 *)((s8 *)arg0 + 0xC4));
             TParticleCtrl::end_effect_render();
         }
@@ -1197,7 +1199,7 @@ block_4:
 
 void TObjWarpBoss::run_task() {
     u8 *arg0 = (u8 *)this;
-    if (TObjPlayer::check_demo_mode() != 1) {
+    if (check_demo_mode() != 1) {
         if (!(*(s16 *)((s8 *)arg0 + 0xE2) & 1) && ((s16) *(s16 *)((s8 *)arg0 + 0xDE) != (s16) *(s16 *)((s8 *)arg0 + 0xDC))) {
             if ((s16) *(s16 *)((s8 *)arg0 + 0xE0) != -1) {
                 *(s16 *)((s8 *)arg0 + 0xE0) = -1;
@@ -1286,7 +1288,7 @@ s32 TObjWarpBossMulti__create(s32 arg0) {
 }
 void TObjFish__sub_8019F72C(void) {
     if ((u32) boss_warp_resource_bundle != 0U) {
-        TLobby__sub_8001FE7C((void*)boss_warp_resource_bundle, 1);
+        delete (BmlResource *)((void*)boss_warp_resource_bundle);
         boss_warp_resource_bundle = 0U;
     }
 }
@@ -1295,10 +1297,7 @@ void TObjFish::load_models() {
     s32 r;
     area = get_current_floor_area();
     if (area >= 8 && area <= 0xA) {
-        r = ((s32)::operator new(0x440));
-        if (r != 0) {
-            r = ((s32 (*)(s32, s32, void *, s32, s32, s32)) load_resource_from_descriptor)(r, 5, lbl_804B94D8, 0, 0, 0);
-        }
+        r = (s32)new BmlResource(5, (BmlResourceDescriptor *)lbl_804B94D8, 0, 0, NULL);
         (*(s32 *)&boss_warp_resource_bundle) = r;
         (*(s32 *)&boss_warp_base_model) = get_bml_model(r, 0);
         (*(s32 *)&boss_warp_confirmation_model) = get_bml_model((*(s32 *)&boss_warp_resource_bundle), 2);
@@ -1310,10 +1309,7 @@ void TObjFish::load_models() {
         return;
     }
     if (TContainerAncient01::is_global_state_in_table() != 0 || area == AREA_SEABED_UPPER || area == AREA_SEABED_LOWER) {
-        r = ((s32)::operator new(0x440));
-        if (r != 0) {
-            r = ((s32 (*)(s32, s32, void *, s32, s32, s32)) load_resource_from_descriptor)(r, 5, lbl_804B94FC, 0, 0, 0);
-        }
+        r = (s32)new BmlResource(5, (BmlResourceDescriptor *)lbl_804B94FC, 0, 0, NULL);
         (*(s32 *)&boss_warp_resource_bundle) = r;
         (*(s32 *)&boss_warp_base_model) = get_bml_model(r, 0);
         (*(s32 *)&boss_warp_confirmation_model) = get_bml_model((*(s32 *)&boss_warp_resource_bundle), 1);
@@ -1324,10 +1320,7 @@ void TObjFish::load_models() {
         (*(s32 *)&lbl_805D5CA4) = TObjFish__sub_8001EDB0((*(s32 *)&boss_warp_resource_bundle), 0);
         return;
     }
-    r = ((s32)::operator new(0x440));
-    if (r != 0) {
-        r = ((s32 (*)(s32, s32, void *, s32, s32, s32)) load_resource_from_descriptor)(r, 5, lbl_804B94AC, 0, 0, 0);
-    }
+    r = (s32)new BmlResource(5, (BmlResourceDescriptor *)lbl_804B94AC, 0, 0, NULL);
     (*(s32 *)&boss_warp_resource_bundle) = r;
     (*(s32 *)&boss_warp_base_model) = get_bml_model(r, 0);
     (*(s32 *)&boss_warp_confirmation_model) = get_bml_model((*(s32 *)&boss_warp_resource_bundle), 2);

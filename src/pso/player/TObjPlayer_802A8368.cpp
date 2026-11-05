@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/effect/TEffIndirectCtrl.h"
 #include "pso/player/TObjPlayer.h"
@@ -58,8 +59,6 @@ extern const f32 lbl_805DE024;
 s32 setup_indirect_tev_alternate(s32 arg0, s32 unused, s32 sampler, s32 arg3);
 extern Tbl5_802A8448 indirect_tev_ordinary_scale_table;
 s32 setup_indirect_tev_ordinary(s32 arg0, s32 sampler, s32 scale, s32 second);
-void eff_indirect_update_and_flush(TEffIndirectCtrl *arg0);
-void update_eff_indirect(TEffIndirectCtrl *arg0);
 void deform_indirect_texture_wave(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, u8 arg5);
 s32 update_indirect_texture_wave(s32, s32, s32, s32, s32, u8);
 extern "C" {
@@ -121,7 +120,7 @@ s32 setup_indirect_tev_ordinary(s32 arg0, s32 sampler, s32 scale, s32 second) {
         m1[1][2] = lbl_805DE024;
         GXSetIndTexMtx(1, m1, 1);
     }
-    TObjFish::set_global_param(((Owner_802A8448 *)arg0)->list);
+    set_current_texture_list((GinjaTextureList *)(((Owner_802A8448 *)arg0)->list));
     load_list_texture(0, sampler, sampler, 5);
 }
 
@@ -142,7 +141,7 @@ s32 setup_indirect_tev_alternate(s32 arg0, s32 unused, s32 sampler, s32 arg3) {
         mtx[1][1] = lbl_805DE020;
         mtx[1][2] = lbl_805DE024;
         GXSetIndTexMtx(1, mtx, 1);
-        TObjFish::set_global_param(((Owner_802A85F0 *)arg0)->list);
+        set_current_texture_list((GinjaTextureList *)(((Owner_802A85F0 *)arg0)->list));
         load_list_texture(0, sampler, sampler, 5);
     }
 }
@@ -157,12 +156,14 @@ void TEffIndirectCtrl::update_scroll_mode() {
     DCFlushRange(self->buf, 0x1000);
 }
 
-void update_eff_indirect(TEffIndirectCtrl *eff_indirect_ctrl) {
+void TEffIndirectCtrl::update_eff_indirect() {
+    TEffIndirectCtrl *eff_indirect_ctrl = this;
     eff_indirect_ctrl->copy_and_flush_texture(get_indirect_source_pixels(eff_indirect_ctrl->m_24));
     deform_indirect_texture_wave(eff_indirect_ctrl->m_1c, (s32) *(f32 *)((s8 *)eff_indirect_ctrl + 0x48), eff_indirect_ctrl->m_4c, eff_indirect_ctrl->m_3c, eff_indirect_ctrl->m_40, *(u8 *)((s8 *)(*(void **)((s8 *)eff_indirect_ctrl + 0x20)) + 6));
     DCFlushRange(eff_indirect_ctrl->m_1c, 0x1000);
 }
-void eff_indirect_update_and_flush(TEffIndirectCtrl *eff_indirect_ctrl) {
+void TEffIndirectCtrl::eff_indirect_update_and_flush() {
+    TEffIndirectCtrl *eff_indirect_ctrl = this;
     eff_indirect_ctrl->copy_and_flush_texture(get_indirect_source_pixels(eff_indirect_ctrl->m_24));
     update_indirect_texture_wave(eff_indirect_ctrl->m_1c, (s32) *(f32 *)((s8 *)eff_indirect_ctrl + 0x48), eff_indirect_ctrl->m_4c, eff_indirect_ctrl->m_3c, eff_indirect_ctrl->m_40, *(u8 *)((s8 *)(*(void **)((s8 *)eff_indirect_ctrl + 0x20)) + 6));
     DCFlushRange(eff_indirect_ctrl->m_1c, 0x1000);

@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include <dolphin/mtx.h>
 #include "pso/map/CsnQuery.h"
 #include "pso/boss/TBoss5GryphonLightningWing.h"
@@ -7,12 +8,6 @@
 #include "pso/TBoss5GryphonLightningWing.h"
 
 #include "types.h"
-
-struct Stack_80351DA8 {
-    f32 sp8;
-    f32 spC;
-    f32 sp10;
-};
 
 #include <stddef.h>
 #include "pso/misc/TLobby.h"
@@ -31,29 +26,9 @@ struct Stack_80351A80 {
     u8 trailing_storage[0x8];
 };
 
-struct Vec_80351C18 { f32 x, y, z; };
-
-struct Pt_80351C18 { Vec_80351C18 v; f32 w; };
-
-struct Wing_80351C18 {
-    s32 x0;
-    u8 pad4[0x14];
-    void *vt;
-    u8 pad1C[0x48 - 0x1C];
-    Pt_80351C18 pts[4];
-    u8 pad88[8];
-    s32 n;
-    s32 pad94;
-    s32 x98;
-    s32 x9C;
-};
-
 extern "C" {
-s32 __nw__7TObjectFUl(int);
 extern const f32 lbl_805D8D48;
-s32 play_sound_effect(int, void *, int, int);
-s32 TBoss5GryphonLightning__ct(f32);
-extern u8 __vt__26TBoss5GryphonLightningWing[];
+
 extern const char *lbl_805D4368;
 s32 TBoss8Dragon__sub_80063FB8(s32, s32 *, f32);
 
@@ -74,7 +49,8 @@ void TBoss5GryphonLightningWing::render() {  }
 
 #pragma push
 #pragma opt_common_subs off
-void run_task__26TBoss5GryphonLightningWingFv(TBoss5GryphonLightningWing *boss5_gryphon_lightning_wing) {
+void TBoss5GryphonLightningWing::run_task() {
+    TBoss5GryphonLightningWing *boss5_gryphon_lightning_wing = this;
     Stack_80351A80 stack;
     *(f32 *)((s8 *)boss5_gryphon_lightning_wing + 0x88) = (f32) ((f32) *(s32 *)((s8 *)boss5_gryphon_lightning_wing + 0x94) / (f32) *(s32 *)((s8 *)boss5_gryphon_lightning_wing + 0x9C));
     if (*(f32 *)((s8 *)boss5_gryphon_lightning_wing + 0x88) > 1.0f) {
@@ -88,7 +64,7 @@ void run_task__26TBoss5GryphonLightningWingFv(TBoss5GryphonLightningWing *boss5_
     boss5_gryphon_lightning_wing->apply_lightning_effect();
     if ((s32) *(s32 *)((s8 *)boss5_gryphon_lightning_wing + 0x94) == (s32) *(s32 *)((s8 *)boss5_gryphon_lightning_wing + 0x98)) {
         boss5_gryphon_lightning_wing->get_wing_position((s32)&stack.sp8);
-        play_sound_effect(0x40032516, &stack.sp8, 0, 0);
+        play_sound_effect(0x40032516, (const Vec *)(&stack.sp8), 0, 0);
     }
     ((TBoss5GryphonLightning *)boss5_gryphon_lightning_wing)->spawn_gryphon_lightning();
     if ((s32) *(s32 *)((s8 *)boss5_gryphon_lightning_wing + 0x94) >= (s32) *(s32 *)((s8 *)boss5_gryphon_lightning_wing + 0x9C)) {
@@ -98,32 +74,31 @@ void run_task__26TBoss5GryphonLightningWingFv(TBoss5GryphonLightningWing *boss5_
 #pragma pop
 
 TBoss5GryphonLightningWing::~TBoss5GryphonLightningWing() {}
-s32 __ct__26TBoss5GryphonLightningWingFv(int arg0, void *arg1, void *a, void *mid, void *b, void *arg5, void *arg6) {
+TBoss5GryphonLightningWing::TBoss5GryphonLightningWing(TObject *parent, const Vec *start, Vec *middle, const Vec *end, s32 duration, s32 delay)
+    : TBoss5GryphonLightning(parent, 20.0f, start) {
     s32 i;
-    TBoss5GryphonLightning__ct(20.0f);
-    ((Wing_80351C18 *)arg0)->vt = __vt__26TBoss5GryphonLightningWing;
-    ((Wing_80351C18 *)arg0)->x0 = ((s32)lbl_805D4368);
-    ((Wing_80351C18 *)arg0)->n = 3;
-    ((Wing_80351C18 *)arg0)->x98 = (s32)arg5;
-    ((Wing_80351C18 *)arg0)->x9C = (s32)arg5 + (s32)arg6;
-    VecCopy((Vec *)(&((Wing_80351C18 *)arg0)->pts[0]), (const Vec *)a);
-    VecCopy((Vec *)(&((Wing_80351C18 *)arg0)->pts[((Wing_80351C18 *)arg0)->n - 1]), (const Vec *)b);
-    for (i = 1; i < ((Wing_80351C18 *)arg0)->n - 1; i++) {
-        ((Wing_80351C18 *)arg0)->pts[i].v.x = ((Vec_80351C18 *)mid)->x;
-        ((Wing_80351C18 *)arg0)->pts[i].v.y = ((Vec_80351C18 *)mid)->y;
-        ((Wing_80351C18 *)arg0)->pts[i].v.z = ((Vec_80351C18 *)mid)->z;
+    m_name = lbl_805D4368;
+    m_90 = 3;
+    m_98 = duration;
+    m_9c = duration + delay;
+    VecCopy(&points[0].position, start);
+    VecCopy(&points[m_90 - 1].position, end);
+    // Keep the mutable middle-point borrow and the real base-subobject view:
+    // MWCC then preserves the native per-iteration coordinate loads/stores.
+    TBoss5GryphonLightning *lightning = this;
+    for (i = 1; i < m_90 - 1; i++) {
+        lightning->points[i].position.x = middle->x;
+        lightning->points[i].position.y = middle->y;
+        lightning->points[i].position.z = middle->z;
     }
-    return arg0;
 }
 
-s32 spawn_lightning_wing__12TBoss8DragonFiiiiii(s32 arg0, s32 arg1, s32 mid, s32 arg3, s32 arg4, s32 arg5) {
+s32 spawn_lightning_wing__12TBoss8DragonFiiiiii(TObject *parent, const Vec *start, Vec *middle, const Vec *end, s32 duration, s32 delay) {
     Vec position;
     f32 ground_height;
-    s32 allocation;
-    s32 effect;
     u8* collision;
-    VecCopy(&position, (const Vec *)arg3);
-    collision = (u8 *)csnVecterUnder((s32)((s32*)&position), 0x16EF);
+    VecCopy(&position, end);
+    collision = (u8 *)csnVecterUnder(&position, 0x16EF);
     if (collision == NULL) {
         position.y = lbl_805D8D48;
     } else {
@@ -134,20 +109,16 @@ s32 spawn_lightning_wing__12TBoss8DragonFiiiiii(s32 arg0, s32 arg1, s32 mid, s32
             position.y = ground_height;
         }
     }
-    allocation = __nw__7TObjectFUl(0xA0);
-    effect = allocation;
-    if (effect != 0) {
-        effect = __ct__26TBoss5GryphonLightningWingFv(allocation, (void *)((void*)arg0), (void *)((void*)arg1), (void *)((void*)mid), &position, (void *)((void*)arg4), (void *)((void*)arg5));
-    }
-    return effect;
+    return (s32)new TBoss5GryphonLightningWing(parent,
+        start, middle, &position, duration, delay);
 }
 
-void fn_80351DA8(s32 arg0, u8 *pos, u8 *out, s32 arg3, s32 arg4) {
-    Stack_80351DA8 stack;
-    stack.sp8 = *(f32 *)((s8 *)out + 0);
-    stack.spC = *(f32 *)((s8 *)pos + 4);
-    stack.sp10 = *(f32 *)((s8 *)out + 8);
-    spawn_lightning_wing__12TBoss8DragonFiiiiii(arg0, (s32)((s32) pos), (s32)((s32) &stack.sp8), (s32)((s32) out), arg3, arg4);
+void fn_80351DA8(TObject *parent, Vec *start, Vec *end, s32 duration, s32 delay) {
+    Vec middle;
+    middle.x = end->x;
+    middle.y = start->y;
+    middle.z = end->z;
+    spawn_lightning_wing__12TBoss8DragonFiiiiii(parent, start, &middle, end, duration, delay);
 }
 
 }

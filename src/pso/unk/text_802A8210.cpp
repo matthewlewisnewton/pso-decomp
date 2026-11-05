@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "types.h"
 #include "pso/effect/TEffIndirectCtrl.h"
 #include "pso/unk/text_802A8210.h"
@@ -41,7 +42,7 @@ s8 find_indirect_effect_ctrl(u8 arg0) {
         if (indirect_effect_ctrl_table[i] != 0) {
             u8 id = TEffIndirectCtrl__sub_802A9554(indirect_effect_ctrl_table[i]);
             if (id == arg0) {
-                if (TObjPlayer::check_demo_mode() == 0) {
+                if (check_demo_mode() == 0) {
                     TEffIndirectCtrl__sub_802A9548(indirect_effect_ctrl_table[i]);
                 }
                 return i;

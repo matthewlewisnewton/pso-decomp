@@ -1,3 +1,7 @@
+#include "pso/enemy/BattleParameters.h"
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/SoundEffect.h"
+struct NJS_OBJECT;
 #include "types.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/TParticleCtrl.h"
@@ -196,7 +200,7 @@ void * create__16TObjDFBeamCursorFPvPv(void *arg0, void *arg1);
 u8 * TObjDFRecBall__ct(u8 *arg0, u8 *arg1, u8 *arg2, u8 *arg3);
 void * create__13TObjDFRecBallFPvPvPv(void *arg0, void *arg1, void *arg2);
 s32 TBoss4Type3__sub_8005254C(s16);
-void *spawn_particle_effect(void *pos, s32 id);
+
 void *create_particle_emitter(void *pos, s32 id);
 void __dl__7TObjectFPv(void *);
 void * __nw__7TObjectFUl(int);
@@ -358,8 +362,8 @@ u8 *TObjDFHorming__ct(u8 *arg0, s32 parent, s32 arg2, u16 arg3) {
     ((TObjDFHorming *)arg0)->m_350 = lbl_805D8A78 * cos_table_lookup(ang) / scale;
     *(f32 *)((s8 *)arg0 + 0x34C) = lbl_805D8A7C / scale;
     *(f32 *)((s8 *)arg0 + 0x354) = lbl_805D8A80;
-    *(s32 *)&((TObjDFHorming *)arg0)->m_360 = *(s32 *)((s8 *)(TLobby::dispatch_shared_handler_a(0x38)) + 0x28);
-    *(f32 *)((s8 *)arg0 + 0x364) = *(f32 *)((s8 *)(TLobby::dispatch_shared_handler_a(0x38)) + 0);
+    *(s32 *)&((TObjDFHorming *)arg0)->m_360 = *(s32 *)((s8 *)(get_battle_movement_params(0x38)) + 0x28);
+    *(f32 *)((s8 *)arg0 + 0x364) = *(f32 *)((s8 *)(get_battle_movement_params(0x38)) + 0);
     if (*(f32 *)((s8 *)arg0 + 0x364) < lbl_805D8A30 || *(f32 *)((s8 *)arg0 + 0x364) > lbl_805D8A34) {
         *(f32 *)((s8 *)arg0 + 0x364) = lbl_805D8A70;
     }
@@ -409,7 +413,7 @@ void fn_spawn_particle_f3_with_flags(s32 arg0, s32 arg1) {
     u32 particle_effect;
     VecCopy((Vec *)(&position.x), (const Vec *)(arg1));
     position.y += lbl_805D8A90;
-    particle_effect = (u32)spawn_particle_effect((&position.x), 0xF3);
+    particle_effect = (u32)spawn_particle_effect((const Vec *)((&position.x)), 0xF3);
     if (particle_effect != 0U) {
         ((TParticleCtrl *)particle_effect)->set_flags(0x40);
     }
@@ -473,7 +477,7 @@ void run_task__16TObjDFBeamCursorFv(u8 *arg0) {
     temp_r0 = *(s32 *)((s8 *)arg0 + 0x1C) - 1;
     *(s32 *)((s8 *)arg0 + 0x1C) = temp_r0;
     if (temp_r0 <= 0) {
-        spawn_particle_effect((arg0 + 0x20), 0x38);
+        spawn_particle_effect((const Vec *)((arg0 + 0x20)), 0x38);
         ((s32 (*)(void *))queue_destruction__7TObjectFv)(arg0);
     }
 }
@@ -621,7 +625,7 @@ void enemy_spawn_jellen_effect__9TObjCharaFv();
 void enemy_spawn_zalure_effect__9TObjCharaFv();
 void vfunc_78__9TObjCharaFl();
 void vfunc_77__9TObjCharaFv();
-void vfunc_76__9TObjCharaFv();
+void vfunc_76__9TObjCharaFf();
 void vfunc_75__9TObjCharaFf();
 void get_center__9TObjCharaFv();
 void get_actor_level_index__9TObjCharaFv();
@@ -728,7 +732,7 @@ void *__vt__13TObjDFHorming[] = {
     (void *)recalc_stats__9TObjCharaFv,
     (void *)vfunc_74__9TObjCharaFl,
     (void *)vfunc_75__9TObjCharaFf,
-    (void *)vfunc_76__9TObjCharaFv,
+    (void *)vfunc_76__9TObjCharaFf,
     (void *)vfunc_77__9TObjCharaFv,
     (void *)vfunc_78__9TObjCharaFl,
 };
@@ -768,7 +772,7 @@ void *__vt__13TObjDFRecover[] = {
     (void *)render__7TObjectFv,
     (void *)render_shadows__7TObjectFv,
 };
-s32 play_sound_effect(int, int, int, int);
+
 }
 
 #pragma push
@@ -959,7 +963,7 @@ void *TObjDFTenchuFuru::create(void *arg1) {
 }
 
 typedef char RecoveredGlobal_80051A18_lbl_804FF240_size[sizeof(RecoveredGlobal_80051A18_lbl_804FF240) == 0x60 ? 1 : -1];
-void TObjDFTenchuFuru::capture_matrix_by_frame() {
+void TObjDFTenchuFuru::capture_matrix_by_frame(NJS_OBJECT *) {
     switch ((s32) (*(s32 *)&TObjDFTenchuFuru__matrix_node_index)) {
     case 0x3B:
         get_current_matrix((&df_captured_matrix_pair.value));
@@ -973,7 +977,7 @@ void TObjDFTenchuFuru::capture_matrix_by_frame() {
 
 void TObjDFTenchuFuru__sub_80051A7C(void) { set_chunk_model_node_callback(0); }
 
-void TObjDFTenchuFuru::register_callback() { TObjDFTenchuFuru__matrix_node_index = 0; set_chunk_model_node_callback((s32)TObjDFTenchuFuru::capture_matrix_by_frame); }
+void TObjDFTenchuFuru::register_callback() { TObjDFTenchuFuru__matrix_node_index = 0; set_chunk_model_node_callback(TObjDFTenchuFuru::capture_matrix_by_frame); }
 typedef char RecoveredGlobal_80051AD0_lbl_804858B4_size[sizeof(RecoveredGlobal_80051AD0_lbl_804858B4) == 0xC ? 1 : -1];
 typedef char RecoveredGlobal_80051AD0_lbl_804FF228_size[sizeof(RecoveredGlobal_80051AD0_lbl_804FF228) == 0xC ? 1 : -1];
 typedef char RecoveredGlobal_80051AD0_lbl_804FF234_size[sizeof(RecoveredGlobal_80051AD0_lbl_804FF234) == 0xC ? 1 : -1];

@@ -1,3 +1,7 @@
+#include "pso/player/demo_mode.h"
+#include "pso/enemy/BattleParameters.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/boss/TBoss6Type1.h"
@@ -97,7 +101,6 @@ void *__vt__13TBoss6MagMine[11] = {
     (void *)0x0, (void *)0x0, (void *)0x0,
 };
 void vec3_add_to(void *, void *);
-s32 check_demo_mode__10TObjPlayerFv(void *);
 s32 query_teammate_state__9TObjEneDDFv();
 void submit_cursor_candidate(void *, int);
 void add_radar_scaled_marker(void *, int, int, int, f32);
@@ -105,7 +108,7 @@ void vt2__13TBoss6MagMineFv(u8 *arg0);
 void vt1__13TBoss6MagMineFv(u8 *arg0);
 s32 is_locally_controlled__10TObjPlayerFPv(void *);
 int get_player_data__10TObjPlayerFi(int a0);
-void play_sound_effect(int, Vec_80368C14 *, int, int);
+
 f32 vector_length(Vec_80368C14 *);
 void subtract_vector(Vec_80368C14 *, void *);
 void explode__13TBoss6MagMineFPv(Mine_80368C14 *o);
@@ -113,7 +116,7 @@ s32 get_field_0x42c__13TBoss6MagMineFPv(void* p);
 int TBoss6PlotFalz__sub_8036964C(void);
 void TBoss6MagMine__sub_80368AB8(u8 *arg0, u8 *arg1);
 s32 VecCopy__FP3VecPC3Vec(s32, s32);
-u8 *dispatch_shared_handler_a__6TLobbyFl(int);
+
 void *create_particle_emitter(void *pos, s32 id);
 s32 init_collision_body_parts(void *, void *, int);
 s32 normalize_vector(void *);
@@ -171,7 +174,7 @@ void TUnk_804F322C::update_linked_state() {
     temp_r31 = TObjFish__sub_8001EDB0(*(s32 *)((s8 *)this + 0x374), 2);
     bml_model = get_bml_model(*(s32 *)((s8 *)this + 0x374), 2);
     bml_motion = get_bml_motion(*(s32 *)((s8 *)this + 0x374), 0);
-    TObjFish::set_global_param(temp_r31);
+    set_current_texture_list((GinjaTextureList *)(temp_r31));
     TBoss6PlotFalz__sub_802AC008(*(f32 *)((s8 *)this + 0x3A8), 0.0f);
     draw_model_motion((void *)bml_model, (void *)bml_motion, *(f32 *)((s8 *)this + 0x398));
     TBoss6PlotFalz::update_camera_target();
@@ -238,7 +241,7 @@ void explode__13TBoss6MagMineFPv(Mine_80368C14 *o) {
             }
         }
     }
-    play_sound_effect(0x4003BA1E, &o->pos, 0, 0);
+    play_sound_effect(0x4003BA1E, (const Vec *)(&o->pos), 0, 0);
 }
 
 s32 is_player_in_range__13TBoss6MagMineFPv(void *arg0_) {
@@ -356,7 +359,7 @@ public:
 void TUnk_804F322C::run_task() {
     TBoss6MagMine_80368FA0 *self = (TBoss6MagMine_80368FA0 *)this;
     s32 color;
-    if (check_demo_mode__10TObjPlayerFv(self) != 0) {
+    if (check_demo_mode() != 0) {
         return;
     }
     if (TBoss6PlotFalz::is_boss_active() == 0) {
@@ -379,7 +382,7 @@ void TUnk_804F322C::run_task() {
     }
     copy_pos__13TBoss6MagMineFi((s32)self);
     if (self->state == 2) {
-        ((TObjPlayer *)self)->update_collisions();
+        ((TObjCollidable *)self)->update_collisions();
         submit_cursor_candidate(self, -1);
     }
     if (self->state != 0) {
@@ -435,10 +438,10 @@ s32 TBoss6MagMine__ct(s32 arg0, s32 parent, s32 arg2) {
     VecCopy__FP3VecPC3Vec(arg0 + 0x384, arg2 + 0x4C);
     ((TObjChara *)self)->add_flags_2e4(8);
     ((TBoss3Volopt *)(self))->apply_set_data((void *)arg2);
-    if (((TObjEnemy *)self)->exchange_object_state((s32)&key, (s16)1) != 0) {
+    if (((TObjEnemy *)self)->exchange_object_state(&key, (s16)1) != 0) {
         key.a = 0;
         key.c = 0;
-        ((TObjEnemy *)self)->exchange_object_state((s32)&key, (s16)0);
+        ((TObjEnemy *)self)->exchange_object_state(&key, (s16)0);
     }
     *(s32 *)((s8 *)self + 0x374) = TObjFish::get_fish_count();
     *(s32 *)((s8 *)self + 0x24) = 0;
@@ -448,11 +451,11 @@ s32 TBoss6MagMine__ct(s32 arg0, s32 parent, s32 arg2) {
     VecCopy__FP3VecPC3Vec(arg0 + 0x2FC, arg0 + 0x38);
     *(f32 *)((s8 *)self + 0x308) = *(f32 *)((s8 *)self + 0x30C) = *(f32 *)((s8 *)self + 0x310) = 0.0f;
     *(s32 *)((s8 *)self + 0x2A8) = 0;
-    ((TObjEnemy *)self)->bind_enemy_combat_stats((u8 *)(TLobby::register_boss(0x2D)), (u8 *)(TLobby::dispatch_shared_handler_b(0x2D)), (u8 *)(TLobby::register_object(0x2D)));
+    ((TObjEnemy *)self)->bind_enemy_combat_stats((u8 *)(get_battle_base_stats(0x2D)), (u8 *)(get_battle_attack_params(0x2D)), (u8 *)(get_battle_resistance_params(0x2D)));
     *(s16 *)((s8 *)self + 0x33E) = *(s16 *)((s8 *)self + 0x32C);
     ((TBoss3Volopt *)self)->reset_photon_effect();
     ((TObjEnemy *)self)->set_param(0);
-    d = dispatch_shared_handler_a__6TLobbyFl(0x2D);
+    d = ((u8 *)get_battle_movement_params(0x2D));
     *(s32 *)((s8 *)self + 0x39C) = (s32) *(f32 *)((s8 *)d + 4);
     if ((f32) *(s32 *)((s8 *)self + 0x39C) <= 0.0f) {
         *(s32 *)((s8 *)self + 0x39C) = 0x14;
