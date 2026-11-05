@@ -1316,6 +1316,7 @@ struct TObjPlayer : public TObjChara {
     void sync_current_floor();
     void sync_current_area();
     s32 get_current_area();
+    s32 is_volopt_phase_final();
     static int get_key_machine_global_state(void* p);
     void set_flag_drop_weapon_on_death();
     static void disable_drop_weapon_on_death(void *arg0);

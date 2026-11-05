@@ -182,28 +182,26 @@ struct Shot_80356374 {
 extern "C" {
 extern s32 lbl_805D43AC;
 extern const f32 lbl_805DFFF4;
-u8 *TBoss6SwordShot__ct(void *arg0, TObject *arg1, const Vec *arg2, s32 arg3, f32 farg0);
+}
 
 #pragma push
 #pragma opt_common_subs off
-#define self ((Shot_80356374 *)arg0)
-u8 *TBoss6SwordShot__ct(void *arg0, TObject *arg1, const Vec *arg2, s32 arg3, f32 farg0) {
+TBoss6SwordShot::TBoss6SwordShot(TObject *owner, const Vec *pos, s32 with_particles, f32 speed) : TObject(owner) {
     f32 scale;
     f32 v;
     void *p;
-    __ct__7TObjectFP7TObject(arg0, arg1);
-    self->vt18 = (s32 *)__vt__15TBoss6SwordShot;
+    Shot_80356374 *self = (Shot_80356374 *)this;
     self->f0 = lbl_805D43AC;
-    self->owner = arg1;
-    VecCopy((Vec *)&self->pos, arg2);
-    self->speed = farg0;
+    self->owner = owner;
+    VecCopy((Vec *)&self->pos, pos);
+    self->speed = speed;
     self->f30 = 0;
     v = *((f32 *)get_battle_movement_params(0x2B));
     self->life = (s32)v;
     if (lbl_805DFFE8 == v) {
         self->life = 0x14;
     }
-    if (arg3 != 0) {
+    if (with_particles != 0) {
         scale = lbl_805DFFF0;
         if (self->speed > lbl_805DFFF4) {
             scale = self->speed / lbl_805DFFF4;
@@ -215,22 +213,15 @@ u8 *TBoss6SwordShot__ct(void *arg0, TObject *arg1, const Vec *arg2, s32 arg3, f3
             ((TParticleCtrl *)p)->set_scale(scale, lbl_805DFFF0);
         }
     }
-    return (u8 *)arg0;
 }
-#undef self
 #pragma pop
+
+extern "C" {
 
 #pragma push
 #pragma fp_contract on
 TBoss6SwordShot *TBoss6SwordShot::create(TObject *owner, const Vec *pos, s32 with_particles, f32 speed) {
-    u8 *temp_r3;
-    u8 *var_r0;
-    temp_r3 = (u8 *)(__nw__7TObjectFUl(0x38));
-    var_r0 = temp_r3;
-    if (var_r0 != NULL) {
-        var_r0 = (u8 *)(TBoss6SwordShot__ct(temp_r3, owner, pos, with_particles, speed));
-    }
-    return (TBoss6SwordShot *)var_r0;
+    return new TBoss6SwordShot(owner, pos, with_particles, speed);
 }
 #pragma pop
 
