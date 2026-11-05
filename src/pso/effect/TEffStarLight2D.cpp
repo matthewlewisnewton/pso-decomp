@@ -3,6 +3,16 @@
 #include "pso/effect/TEffStarLightChild.h"
 #include "types.h"
 
+// 0x805D9450 is the unowned word before this pool. Base's render and draw
+// path load 2, 0, 255 and -15 from here. A const float use is copied into
+// the literal pool, so naming the zero inserts a second 0 between -15 and
+// -100. The non-const view is still an lfs of lbl_805D9454 and is not copied.
+extern const f32 lbl_805D9450 = 2.0f;
+extern const f32 lbl_805D9454 = 0.0f;
+extern const f32 lbl_805D9458 = 255.0f;
+extern const f32 lbl_805D945C = -15.0f;
+#define starlight_zero (*const_cast<f32 *>(&lbl_805D9454))
+
 struct Vec_800851B0 { f32 x; f32 y; f32 z; };
 
 struct P2_800851B0 { f32 x; f32 z; };
@@ -72,7 +82,7 @@ void run_task__15TEffStarLight2DFv(Star_800851B0 *self) {
     void *child;
 
     matrix_mult_vec(0, &self->pos, &view);
-    if (view.z > 0.0f) {
+    if (view.z > starlight_zero) {
         return;
     }
     project_world_to_screen(0, &self->pos, &scr);
@@ -120,13 +130,13 @@ void run_task__18TEffStarLightChildFv(Star_80085424 *self) {
     Vec_80085424 b;
     Vec_80085424 c;
     s32 inside = 0;
-    c.z = 0.0f;
+    c.z = starlight_zero;
     c.x = 0.5f * (self->x0 + self->x1);
     c.y = 0.5f * (self->y0 + self->y1);
-    a.z = 0.0f;
+    a.z = starlight_zero;
     a.x = self->x0;
     a.y = self->y0;
-    b.z = 0.0f;
+    b.z = starlight_zero;
     b.x = self->x1;
     b.y = self->y1;
     approach_vector_fixed_distance(&a, &c, &a, self->angle);
@@ -160,18 +170,18 @@ Star_800855F8 *__ct__18TEffStarLightChildFv(Star_800855F8 *self, Pt_800855F8 *a,
     __ct__7TObjectFP7TObject(self, parent);
     self->vt = __vt__18TEffStarLightChild;
     self->name = TEffStarLightChild__name;
-    if (speed <= 0.0f) {
+    if (speed <= starlight_zero) {
         speed = 1.0f;
     }
     d.x = b->x - a->x;
     d.y = b->y - a->y;
-    d.z = 0.0f;
-    if (0.0f != vector_length(&d)) {
+    d.z = starlight_zero;
+    if (starlight_zero != vector_length(&d)) {
         normalize_vector(&d);
     } else {
-        d.x = 0.0f;
-        d.y = 0.0f;
-        d.z = 0.0f;
+        d.x = starlight_zero;
+        d.y = starlight_zero;
+        d.z = starlight_zero;
     }
     self->x0 = d.y * w + b->x;
     self->y0 = d.x * w + b->y;
@@ -187,3 +197,6 @@ Star_800855F8 *__ct__18TEffStarLightChildFv(Star_800855F8 *self, Pt_800855F8 *a,
     return self;
 }
 #pragma pop
+
+// 0x805D9474 is the unread word after 0.5f. The next pool starts at 0x805D9478.
+extern const f32 lbl_805D9474 = 0.0f;
