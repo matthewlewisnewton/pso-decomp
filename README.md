@@ -11,9 +11,9 @@ Nothing from the game is included here. You need your own copy of the game to bu
 <!-- progress-table -->
 | | Matched | Linked |
 |:--|--:|--:|
-| Code | 95.51% (4,157,588 of 4,353,092) | 80.07% (3,485,624 of 4,353,092) |
-| Data | 82.51% (1,453,303 of 1,761,303) | 60.55% (1,066,479 of 1,761,303) |
-| Functions | 99.11% (27,326 of 27,572) | |
+| Code | 95.54% | 80.07% |
+| Data | 82.51% | 60.55% |
+| Functions | 99.12% (27,328 of 27,572) | |
 | Units | | 71.14% (3,545 of 4,983) |
 <!-- /progress-table -->
 
