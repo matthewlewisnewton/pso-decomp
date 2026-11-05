@@ -22,11 +22,11 @@ void TLobby::free_singleton_805D7018() {
     }
 }
 void TBGMulti__ct(void) {
-    s32 sp8[4];
+    u8 *sp8[4];
     if (TCameraCtrl::get_camera_id() == 3) {
         sp8[0] = TLobby::tmp_buf_use_req("TBGMulti");
         TLanguage::draw_string((void *)"f128_gr.gvp", sp8, 0x4D);
-        ((TLobby *)"TBGMulti")->tmp_buf_release();
+        TLobby::tmp_buf_release("TBGMulti");
         (*(s32 *)&TBGMulti__textures) = (s32)load_gvm_texture_file((s32)"bg_multi.gvm");
         set_current_texture_list((GinjaTextureList *)TBGMulti__textures);
         TLanguage::set_entry_index(0, 0x4D);

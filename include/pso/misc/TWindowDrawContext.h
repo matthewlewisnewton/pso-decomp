@@ -4,18 +4,6 @@
 #include "types.h"
 #include <stddef.h>
 
-// Eight floats of a textured quad: position, then UVs.
-struct Box_8024E8E8 {
-    f32 x0;
-    f32 y0;
-    f32 x1;
-    f32 y1;
-    f32 u0;
-    f32 v0;
-    f32 u1;
-    f32 v1;
-};
-
 // Prefix of the text window opened for a menu frame.
 // draw_frame reads x/y/w/inner_h/color. The clip rect continues through
 // clip_bottom, so the singleton allocated for a frame is 0x4C bytes.
@@ -38,8 +26,7 @@ struct TWindowDrawContext {
     f32 clip_right;
     f32 clip_bottom;
 
-    s32 is_point_in_bounds(Box_8024E8E8 *quad);
-    s32 clip_textured_quad(Box_8024E8E8 *quad);
+    s32 is_point_in_bounds(f32 *quad);
 };
 
 typedef char TWindowDrawContext_size[sizeof(TWindowDrawContext) == 0x4C ? 1 : -1];
