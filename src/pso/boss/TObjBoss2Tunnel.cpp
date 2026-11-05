@@ -245,10 +245,10 @@ void TObjBoss2Tunnel::render(void* a1) { push_matrix(); TObjPlayer::invert_matri
 
 }
 extern "C" {
-void TObjBoss2Tunnel::transform_vec_by_camera(s32 arg0, s32 arg1, s32 arg2) {
+void TObjBoss2Tunnel::transform_vec_by_camera(void *unused, const Vec *src, Vec *dst) {
     push_matrix();
     TCameraCtrl::concat_matrix(0, (u32)TCameraCtrl::get_view_matrix());
-    matrix_mult_vec(NULL, (const Vec *)arg1, (Vec *)arg2);
+    matrix_mult_vec(NULL, src, dst);
     pop_matrix();
 }
 
