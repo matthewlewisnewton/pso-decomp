@@ -436,7 +436,7 @@ void *TObjOnlineEnding__ct(void *arg0, void *parent) {
     }
     for (i = 0; i < 4; i++) {
         pl = (u8 *)get_player_by_client_id(i);
-        if (pl != 0 && SELF->fA0 == ((TBoss3Volopt *)pl)->get_field_3e0()) {
+        if (pl != 0 && SELF->fA0 == ((TObjPlayer *)pl)->get_current_area()) {
             s32 c;
             e = &SELF->ent[SELF->count];
             e->active = 1;

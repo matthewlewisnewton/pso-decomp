@@ -116,7 +116,6 @@ extern const char *lbl_805D2AB8;
 extern const s32 lbl_8043CD38[];
 CollisionBody *init_collision_body_parts(TObjCollidable *, CollisionBody *, s32);
 s32 TObjFish__sub_8001EDB0(BmlResource *, s32);
-void reset_photon_effect__12TBoss3VoloptFv(TObjEnemy *);
 
 extern TObjMotionAction lbl_80495524[];
 extern const char lbl_8043CD28[] = "TObjEnePanBARA";
@@ -229,7 +228,7 @@ TObjEnePanBARA::TObjEnePanBARA(TObject *parent, void *set_data, s32 part) : TObj
         return;
     }
     referenceHp = hp;
-    reset_photon_effect__12TBoss3VoloptFv(this);
+    register_by_id();
     movementParameters = NULL;
     if (part_index == 0) {
         set_param(0x17);

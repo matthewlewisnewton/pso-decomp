@@ -15,6 +15,10 @@ struct SpriteDescriptor {
     s32 rotation;
     void *unknown18;
     SpriteFrame *frames;
+
+    // Both callers pass a SpriteDescriptor (the radar stack sprite, and the
+    // lobby sprite at lbl_804EF3E0). The body reads only these fields.
+    void draw_compass_sprite(s32 index, s32 color, s32 flags, f32 depth);
 };
 
 typedef char SpriteFrameSize[(sizeof(SpriteFrame) == 0x14) ? 1 : -1];
@@ -22,9 +26,5 @@ typedef char SpriteDescriptorSize[(sizeof(SpriteDescriptor) == 0x20) ? 1 : -1];
 typedef char SpriteDescriptorRotation[(offsetof(SpriteDescriptor, rotation) == 0x14) ? 1 : -1];
 typedef char SpriteDescriptorPointer[(offsetof(SpriteDescriptor, unknown18) == 0x18) ? 1 : -1];
 typedef char SpriteDescriptorFrames[(offsetof(SpriteDescriptor, frames) == 0x1c) ? 1 : -1];
-
-// The descriptor and its frame array are borrowed for the duration of the call.
-// The caller must supply a valid frame index.
-extern "C" void draw_compass_sprite__10TObjPlayerFlllf(SpriteDescriptor *sprite, s32 index, s32 color, s32 flags, f32 depth);
 
 #endif

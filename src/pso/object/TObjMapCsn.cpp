@@ -41,7 +41,7 @@ s32 __dl__7TObjectFPv(void *);
 extern RecoveredGlobal_80194988___vt__10TObjMapCsn __vt__10TObjMapCsn;
 u8 *__dt__10TObjMapCsnFv(u8 *arg0, s16 arg1);
 extern s32 TObjMapCsn__class_name;
-u8 *TObjMapCsn__ct(TObjMapCsn *arg0, s32 arg1, s32 arg2);
+u8 *TObjMapCsn__ct(TObjMapCsn *arg0, s32 arg1, void *set_data);
 s32 matrix_mult_vec(int, void *, void *);
 s32 translate_matrix_vec3(int, void *);
 s32 rotate_vector_by_matrix(int, void *, void *);
@@ -50,7 +50,6 @@ s32 pop_matrix();
 extern s8 map_csn_box_triangle_indices[];
 extern Vec_801946D0 map_csn_box_face_normals[];
 extern s32 identity_matrix[];
-s32 __nw__7TObjectFUl(s32);
 
 void TObjMapCsn::render() {  }
 
@@ -147,12 +146,12 @@ s32 TObjMapCsn::build_box_triangles() {
     return pop_matrix();
 }
 
-s32 TObjMapCsn::create(s32 arg0) {
-    s32 map_csn;
+TObjMapCsn *TObjMapCsn::create(void *set_data) {
+    TObjMapCsn *map_csn;
 
-    map_csn = __nw__7TObjectFUl(0x254);
-    if (map_csn != 0) {
-        map_csn = ((s32)TObjMapCsn__ct((TObjMapCsn *)((u8 *)map_csn), (s32)(TObjMapCsn::get_map_count()), (s32)arg0));
+    map_csn = (TObjMapCsn *)TObject::operator new(sizeof(TObjMapCsn));
+    if (map_csn != NULL) {
+        map_csn = (TObjMapCsn *)TObjMapCsn__ct(map_csn, TObjMapCsn::get_map_count(), set_data);
     }
     return map_csn;
 }
@@ -169,13 +168,13 @@ u8 *__dt__10TObjMapCsnFv(u8 *arg0, s16 arg1) {
     }
     return arg0;
 }
-u8 *TObjMapCsn__ct(TObjMapCsn *map_csn, s32 arg1, s32 arg2) {
+u8 *TObjMapCsn__ct(TObjMapCsn *map_csn, s32 arg1, void *set_data) {
     f32 temp_f0;
     f32 temp_f1;
     __ct__14TObjCollidableFP7TObject(map_csn, arg1);
     *(s32 **)((s8 *)map_csn + 0x18) = &(*(RecoveredGlobal_801949FC___vt__10TObjMapCsn *)&__vt__10TObjMapCsn).value;
     *(s32 *)((s8 *)map_csn + 0) = (s32) TObjMapCsn__class_name;
-    ((TObjMapCsn *)(map_csn))->apply_object_set_data((void *)arg2);
+    map_csn->apply_object_set_data(set_data);
     map_csn->actorFlags = (s32) (map_csn->actorFlags | 0x40000000);
     map_csn->update_state();
     map_csn->build_box_triangles();

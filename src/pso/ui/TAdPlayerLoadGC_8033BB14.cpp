@@ -12,11 +12,11 @@ s32 fn_8033BAB4(void *);
 s32 TCheckMemoryCard::sub_8033BB14() {
     s32 var_r31;
 
-    if (((TAdPlayerLoadGC *)0)->probe_card_slot() == 0) {
+    if (TAdPlayerLoadGC::probe_card_slot(0) == 0) {
         this->m_2c = 0;
         return 1;
     }
-    if (((TAdPlayerLoadGC *)0)->probe_and_check_card() == 0) {
+    if (TAdPlayerLoadGC::probe_and_check_card(0) == 0) {
         this->m_2c = 0;
         return 4;
     }
