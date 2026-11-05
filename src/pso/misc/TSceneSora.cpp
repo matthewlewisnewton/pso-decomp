@@ -71,7 +71,6 @@ s32 rotate_matrix_y(int, int);
 s32 push_matrix();
 
 void *get_current_floor();
-u32 TLobby__sub_8002058C(void *, int, Res_80207478 *, Res_80207478 *, int, int, int);
 s32 lookup_scene_object__6TLobbyFPv(void *, Ref_80207478 *);
 void *adxf_open__6TLobbyFUii(char *, int);
 extern char lbl_8044A9D0[];
@@ -212,7 +211,7 @@ void TSceneSora::load_sky_resources() {
         a.n = 0;
         o = (u32)(int)::operator new(0x440);
         if (o != 0) {
-            o = TLobby__sub_8002058C((void *)o, 1, &b, &a, 0, 0, 0);
+            o = (u32)init_from_id_lists((BmlResource *)o, 1, (u32 *)&b, (u32 *)&a, 0, 0, 0);
         }
         TSceneSora__sky_bml_resource = o;
         TSceneSora__sky_active_flag = 1;

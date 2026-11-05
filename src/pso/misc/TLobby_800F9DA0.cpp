@@ -23,12 +23,11 @@ s8 func_801A5E54__Fv();
 void func_803DCDFC__Fv(void);
 void system_reset(void);
 
-s32 TLobby::get_file_size() {
+s32 TLobby::get_file_size(const char *name) {
     s32 temp_r31;
     s32 temp_r3;
-    s32 uninit;
 
-    temp_r3 = adxf_open__6TLobbyFUii(uninit, 0);
+    temp_r3 = adxf_open__6TLobbyFUii((s32)name, 0);
     if (temp_r3 == 0) {
         return -1;
     }

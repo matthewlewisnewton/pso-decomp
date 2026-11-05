@@ -691,6 +691,15 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Metrowerks' GCN_Mem_Alloc.c (runtime library code at -O4,p); belongs
     # in the runtime lib under its own name.
     "pso/unk/text_8039739C.cpp": {"cflags": _switch(cflags_pso, "-O4,p")},
+    # init_from_id_lists (0x8002058C, size 0x30C) inlines its model and motion
+    # walks. Default -inline off outlines them. auto leaves .text at 62.53% and
+    # .data at 0%; auto,deferred leaves .text at 52.51% and .data at 0%. deferred
+    # matched the previous extern "C" body, but on this C++ function it emits the
+    # function at .text+0 instead of .text+0x1630, so the linked DOL does not
+    # match. -inline on keeps the bytes and that order. Precedent: dtk-template
+    # -inline auto https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203
+    # and Brawl -inline on https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264
+    "pso/misc/TLobby_8001EF5C.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
     "pso/quest/QuestOpcodeHandlers.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
     "pso/quest/TQuestThread.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
     # TQuestListVM: deferred emission puts __vt__12TQuestListVM ahead of the

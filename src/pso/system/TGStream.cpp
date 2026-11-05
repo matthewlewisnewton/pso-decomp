@@ -11,8 +11,6 @@
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/map/FloorArea.h"
 
-struct Entry_800FD944 { u8 pad[0x24]; s32 size; };
-
 struct Info_800FDBA8 {
     u8 pad[0x28];
     s32 size;
@@ -25,12 +23,11 @@ struct Stream_800FDBA8 {
 };
 
 extern "C" {
-s32 get_file_size__6TLobbyFv(void *);
 s32 is_split_screen();
 void debug_print__6TLobbyFle(const char *, ...);
 s32 TLobby__sub_803CC4C0(s32);
 s32 read_checked_align__6TLobbyFlll(s32);
-s32 strcmp(void *, void *);
+s32 strcmp(const void *, const void *);
 s32 strlen(char *);
 s32 strncpy(char *, char *, s32);
 u32 adxf_open__6TLobbyFUii(char *, s32);
@@ -115,12 +112,12 @@ const char *ep2_multi_area_gsl_filename_table[13] = {
     jungle01_multi_gsl_path, jungle02_multi_gsl_path, jungle03_multi_gsl_path, jungle04_multi_gsl_path, jungle05_multi_gsl_path, seabed01_multi_gsl_path, seabed02_multi_gsl_path, empty_gsl_path, empty_gsl_path, empty_gsl_path, empty_gsl_path, jungle06_gsl_path, jungle07_gsl_path
 };
 
-s32 TLobby::get_resource_file_size() {
-    Entry_800FD944 *e = ((Entry_800FD944 * (*)(void *, s32))find_gsl_entry)(this, 0);
+s32 TLobby::get_resource_file_size(const char *name) {
+    GslArchiveEntry *e = find_gsl_entry(name, 0);
     if (e != NULL) {
-        return e->size;
+        return e->file_size;
     }
-    return get_file_size__6TLobbyFv(this);
+    return TLobby::get_file_size(name);
 }
 
 void load_area_gsl(void) {
@@ -241,7 +238,7 @@ void TGStream__sub_800FDD64(void) {  }
 int get_gstream_file_size(void) {  return gstream_file_size; }
 }
 s32 get_gstream_buffered_bytes();
-GslArchiveEntry *find_gsl_entry(void *name) {
+GslArchiveEntry *find_gsl_entry(const void *name, s32) {
     GslArchiveEntry *e;
     s32 i;
     if (TItemDrop__gsl_adxf_handle == 0) {
@@ -397,14 +394,14 @@ TGStreamPrefix *open__8TGStreamFPvPvi(TGStreamPrefix *g_stream_prefix, void *fil
     g_stream_prefix->adxf_handle = 0;
     g_stream_prefix->archive_entry = NULL;
     TGStream::reset();
-    g_stream_prefix->archive_entry = (GslArchiveEntry *)((void * (*)(void *, s32))find_gsl_entry)(file, 1);
+    g_stream_prefix->archive_entry = find_gsl_entry(file, 1);
     if ((void *) g_stream_prefix->archive_entry != NULL) {
         g_stream_prefix->adxf_handle = (s32) TItemDrop__gsl_adxf_handle;
         TLobby__sub_803CC578(g_stream_prefix->adxf_handle, g_stream_prefix->archive_entry->archive_offset, 0);
         gstream_file_size = g_stream_prefix->archive_entry->file_size;
         ((s32 (*)(void *, void *, s32))strncpy)(g_stream_prefix, g_stream_prefix->archive_entry, 0x20);
     } else {
-        temp_r3 = get_file_size__6TLobbyFv(file);
+        temp_r3 = TLobby::get_file_size((const char *)file);
         gstream_file_size = temp_r3;
         if (temp_r3 > 0) {
             g_stream_prefix->adxf_handle = ((s32 (*)(void *, s32))adxf_open__6TLobbyFUii)(file, 0);

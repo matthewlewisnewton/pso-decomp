@@ -49,7 +49,7 @@ u8 *load_gvm_texture_file(s32 arg0) {
     Hdr_801E4874 hdr;
     big = 0;
     TLobby::pump_frames();
-    size = ((TLobby *)arg0)->get_resource_file_size();
+    size = TLobby::get_resource_file_size((const char *)arg0);
     if (size <= 0) {
         debug_print__6TLobbyFle(texture_file_load_error_format, arg0);
         return NULL;

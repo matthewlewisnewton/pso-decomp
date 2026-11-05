@@ -11,7 +11,7 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | intrinsic | 83 | 54 |
 | hardware | 69 | 13 |
 | pragma | 5842 | 880 |
-| configure.py per-unit override | 152 | 152 |
+| configure.py per-unit override | 153 | 153 |
 
 Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045, `fp_contract` 917, `auto_inline` 844, `opt_common_subs` 618, `scheduling` 260, `opt_propagation` 240, `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 42, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 22, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
@@ -334,6 +334,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `pso/render/render_util_head.cpp` | `GC/1.3.2, -fp_contract on, -DPSO_SDK_COMPACT_MATH` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/render/render_util_tail.cpp` | `GC/1.3.2, -fp_contract on, -DPSO_SDK_COMPACT_MATH` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/unk/text_8039739C.cpp` | `-O4,p` | Metrowerks' GCN_Mem_Alloc.c (runtime library code at -O4,p); belongs in the runtime lib under its own name. |
+| `pso/misc/TLobby_8001EF5C.cpp` | `-inline on` | init_from_id_lists (0x8002058C, size 0x30C) inlines its model and motion walks. Default -inline off outlines them. auto leaves .text at 62.53% and .data at 0%; auto,deferred leaves .text at 52.51% and .data at 0%. deferred matched the previous extern "C" body, but on this C++ function it emits the function at .text+0 instead of .text+0x1630, so the linked DOL does not match. -inline on keeps the bytes and that order. Precedent: dtk-template -inline auto https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203 and Brawl -inline on https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264 |
 | `pso/quest/QuestOpcodeHandlers.cpp` | `-inline on` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/quest/TQuestThread.cpp` | `-inline on` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/quest/TQuestListVM.cpp` | `-inline off,deferred, -pool off, -str reuse,readonly` | TQuestListVM: deferred emission puts __vt__12TQuestListVM ahead of the run_task switch table (written from the last function back). -pool off keeps each title and window size its own reloc, and -str reuse,readonly matches the read-only string objects. The whole unit stays byte-exact. Precedent: dtk-template configure.py unit cflags, and this tree's TObjBoss2Tunnel / TBoss6EmptyWarp unit flags. |

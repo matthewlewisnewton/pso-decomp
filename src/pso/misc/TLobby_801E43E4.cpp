@@ -143,7 +143,7 @@ s32 TLobby::load_texture_pvm_file(const char *name, s32 arg1) {
     if (((TLobby *)path)->compare_file_extension(lbl_805DC448) != 0) {
         change_file_extension__6TLobbyFPvPvPv(0, path, lbl_805DC448);
     }
-    size = ((TLobby *)path)->get_resource_file_size();
+    size = TLobby::get_resource_file_size((const char *)path);
     if (size <= 0) {
         debug_print__6TLobbyFle(texture_pvm_not_found_format, name);
         return -1;
