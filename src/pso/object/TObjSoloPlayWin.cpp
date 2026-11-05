@@ -10,7 +10,6 @@ u32 get_player_by_client_id(s32);
 s32 TWindowCtrlMain__sub_8024CE58();
 s32 obj_testFlags30__14TObjCollidableFUl(u32, s32);
 void* get_window_layout_position(s32);
-void* set_window_mode_4__6TLobbyFPvll(void*, void*, s32);
 void* TQuestVmDownLoadServer__sub_8006EF6C(s32);
 s32 send_and_handle__6TLobbyFii(void*, void*, s32);
 extern s32 local_client_id;
@@ -40,7 +39,7 @@ s32 TObjSoloPlayWin::can_start_win_timer() {
     return 0;
 }
 void TObjSoloPlayWin::open_result_window() {
-    m_result_window = set_window_mode_4__6TLobbyFPvll(get_window_layout_position(0x3E), solo_play_result_window_extent, 1);
+    m_result_window = TLobby::set_window_mode_4(get_window_layout_position(0x3E), solo_play_result_window_extent, 1);
     if (m_result_window != 0) {
         ((TLobby *)m_result_window)->set_field_1c(solo_play_result_window_depth);
         send_and_handle__6TLobbyFii(m_result_window, TQuestVmDownLoadServer__sub_8006EF6C(0x5F), 2);

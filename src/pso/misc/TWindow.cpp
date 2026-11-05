@@ -118,7 +118,6 @@ s32 get_quest_list_text(s32, s32);
 f32 get_scale__15TShopWindowBaseFv(void *);
 s32 select_cursor_entry__22TWindowSubShortCutListFv(s32);
 s32 calc_list_content_extent(void *);
-void *set_window_mode_4__6TLobbyFPvll(void *, void *, s32);
 extern Pos_80216F50 lbl_8044BE9C[];
 extern void *story_quest_list_resource;
 s32 get_selected_menu_value(u32);
@@ -286,7 +285,7 @@ void TQuestListOffline::init_quest_list_window() {
         if (self->f40 == NULL) {
             pos.a = lbl_8044BE9C[0].a;
             pos.b = lbl_8044BE9C[0].b;
-            self->f40 = set_window_mode_4__6TLobbyFPvll(get_window_layout_position(0x2D), &pos, 1);
+            self->f40 = TLobby::set_window_mode_4(get_window_layout_position(0x2D), &pos, 1);
             ((TLobby *)(self->f40))->send_and_handle(get_quest_list_text(0xE, self->f54->f8), 0x80);
             self->f50 = 0;
         } else {

@@ -386,7 +386,7 @@ struct TLobby : public TObject {
     static void send_card_window_state();
     int send_and_handle(int a1, int a2);
     static TWindowMessage *create_message_window(const void *layout, const void *size, u32 kind, s32 slot);
-    static TWindowMessage *set_window_mode_4(void *layout, s32 size, s32 mode);
+    static TWindowMessage *set_window_mode_4(const void *layout, const void *size, s32 mode);
     void update_window_mode_from_progress(void *arg1);
     void set_field_90(s32 v);
     void add_list_entry(s32 arg1, s32 arg2, s32 arg3);

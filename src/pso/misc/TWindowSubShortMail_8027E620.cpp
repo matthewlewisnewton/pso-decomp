@@ -25,7 +25,7 @@ class TChCrTagPlBack;
 extern "C" {
 s32 get_message_10__20TWindowSubStatusDispFl(s32);
 int forward_trade_action_default__16TObjCityMainWarpFPviii(void *p, int a1, int a2, int a3);
-s32 get_window_layout_position(s32);
+const void *get_window_layout_position(s32);
 s32 create_confirm_menu_window__19TWindowSubShortMailFv();
 s32 align_menu_entry_positions(s32);
 s32 build_menu__19TWindowSubShortMailFv();
@@ -45,9 +45,9 @@ void TWindowSubShortMail__sub_8027FAD0(u8 *);
 s32 get_card_window_area__6TLobbyFv();
 void * get_mail_ptr__19TWindowSubShortMailFPv(void *);
 s32 realloc_buffer__17TWindowSubComCardFv(s32);
-s32 check_room_seq_4__16TAdChrSelASlotGCFl(s32, s32);
+s32 check_room_seq_4__16TAdChrSelASlotGCFl(const void *, s32);
 s32 get_main_phase();
-s32 draw_card_icon__17TWindowSubComCardFll(s32, s32, s32);
+s32 draw_card_icon__17TWindowSubComCardFll(const void *, s32, s32);
 extern const f32 TWindowSubShortMail__data_805DD6C8;
 s32 fn_8007B83C(s32);
 void *TLobby__sub_8022598C(int a0);
@@ -55,7 +55,6 @@ u32 get_lobby_id__6TLobbyFPv();
 int get_short_mail_ctrl__6TLobbyFv(void);
 void clear_lobby_flag__6TLobbyFv(void);
 s32 add_status_entry__20TWindowSubStatusDispFScll(void *, s32, s32, u32);
-void *set_window_mode_4__6TLobbyFPvll(s32, void *, s32);
 extern s32 lbl_8044FACC[];
 s32 create__19TWindowMessageYesNoFPvPvPvPv(void *, s32, s32, s32);
 s32 free_member__17TWindowSubComCardFv(s32, s32);
@@ -67,7 +66,7 @@ s32 get_shared_text_buffer();
 void send_simple_mail__6TLobbyFiPv(s32 arg0, void *arg1);
 int send_find_user_self_tag__6TLobbyFi(void*);
 s32 __nw__7TObjectFUl(s32);
-u8 *fn_80267F38(s32 arg0, s32 arg1, s32 arg2, s16 arg3);
+u8 *fn_80267F38(const void *arg0, s32 arg1, s32 arg2, s16 arg3);
 int get_flag_bit0__6TLobbyFv(void);
 }
 void update_chat_window(void *p);
@@ -129,7 +128,7 @@ s32 TWindowSubShortMail::open_confirm_dialog() {
 }
 
 s32 open_menu__19TWindowSubShortMailFv(void) {
-    s32 window_layout_position;
+    const void *window_layout_position;
     s32 temp_r31;
 
     window_layout_position = get_window_layout_position(0xA2);
@@ -147,7 +146,7 @@ s32 open_menu__19TWindowSubShortMailFv(void) {
 extern const f32 lbl_805DD6CC;
 
 s32 create_window__19TWindowSubShortMailFv(void) {
-    s32 window_layout_position;
+    const void *window_layout_position;
     s32 temp_r31;
 
     window_layout_position = get_window_layout_position(0xA1);
@@ -170,7 +169,7 @@ extern s32 tl_00;
 
 s32 create_confirm_menu_window__19TWindowSubShortMailFv(void) {
     s32 temp_r31;
-    temp_r31 = check_room_seq_4__16TAdChrSelASlotGCFl((s32)((void *)(((s32)get_window_layout_position(0xA0)))), 2);
+    temp_r31 = check_room_seq_4__16TAdChrSelASlotGCFl(get_window_layout_position(0xA0), 2);
     forward_trade_action_default__16TObjCityMainWarpFPviii((void *)temp_r31, (int)((int) (get_message_10__20TWindowSubStatusDispFl(0x107))), 6, 0x16);
     forward_trade_action_default__16TObjCityMainWarpFPviii((void *)temp_r31, (int)((int) (get_message_10__20TWindowSubStatusDispFl(0x108))), 6, 0x18);
     ((TWindowSubComCardList *)temp_r31)->set_flag70_bit10();
@@ -208,7 +207,7 @@ extern const f32 lbl_805DD6D4;
 s32 build_menu__19TWindowSubShortMailFv(void) {
     s32 temp_r31;
     s32 msg;
-    temp_r31 = draw_card_icon__17TWindowSubComCardFll((s32)(get_window_layout_position(0x9D)), 3, (s32)(get_message_10__20TWindowSubStatusDispFl(0x1E)));
+    temp_r31 = draw_card_icon__17TWindowSubComCardFll(get_window_layout_position(0x9D), 3, (s32)(get_message_10__20TWindowSubStatusDispFl(0x1E)));
     if (get_main_phase() == 0xF) {
         forward_trade_action_default__16TObjCityMainWarpFPviii((void *)temp_r31, (int)(get_message_10__20TWindowSubStatusDispFl(0x7F)), 6, 0xB);
         forward_trade_action_default__16TObjCityMainWarpFPviii((void *)temp_r31, (int)(get_message_10__20TWindowSubStatusDispFl(0x59)), 6, 0xF);
@@ -279,7 +278,7 @@ s32 TWindowSubShortMail::refresh_mail_list(void *arg1) {
             this->m_3c = 0;
         }
     } else if (this->m_3c == 0) {
-        *(void * *)&this->m_3c = set_window_mode_4__6TLobbyFPvll(get_window_layout_position(0x9C), lbl_8044FACC, 1);
+        *(void * *)&this->m_3c = TLobby::set_window_mode_4(get_window_layout_position(0x9C), lbl_8044FACC, 1);
         this->m_24 = -1;
     }
     if (sel == -1) {
@@ -292,7 +291,7 @@ s32 TWindowSubShortMail::refresh_mail_list(void *arg1) {
 
 s32 TWindowSubShortMail::create_list_item() {
     s32 temp_r31;
-    s32 window_layout_position;
+    const void *window_layout_position;
 
     window_layout_position = get_window_layout_position(0x9B);
     temp_r31 = (s32)fn_80267F38(window_layout_position, (s32)lbl_8044FAC4, 8, (s16) this->m_20);
@@ -342,7 +341,7 @@ s32 TWindowSubShortMail__sub_8007B834(void *);
 void TWindowSubShortMail__sub_80131998(void *);
 void TWindowSubShortMail__sub_8027E620(void *p);
 }
-s32 create_titled_window_menu(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
+s32 create_titled_window_menu(const void *arg0, s32 arg1, s32 arg2, s32 arg3);
 extern const f32 lbl_805DD6D8;
 void remove_short_mail_by_id(u32 id);
 extern "C" {
@@ -716,7 +715,7 @@ s32 TUnk_804D1AD0::create_status_category_menu() {
   else
   {
     temp_r31 = ((s32 (*)(int)) get_message_10__20TWindowSubStatusDispFl)(0x1D);
-    var_r31 = create_titled_window_menu((int) ((s32 (*)(int)) get_window_layout_position)(0x18), 3, temp_r31, (*((s32 *) (((s8 *) arg0) + 0x1C))));
+    var_r31 = create_titled_window_menu(((const void *(*)(int)) get_window_layout_position)(0x18), 3, temp_r31, (*((s32 *) (((s8 *) arg0) + 0x1C))));
   }
   forward_trade_action_default__16TObjCityMainWarpFPviii((void *)var_r31, (int) ((s32 (*)(int)) get_message_10__20TWindowSubStatusDispFl)(0x10A), 0x36, 0);
   forward_trade_action_default__16TObjCityMainWarpFPviii((void *)var_r31, (int) ((s32 (*)(int)) get_message_10__20TWindowSubStatusDispFl)(0x10B), 0x36, 1);

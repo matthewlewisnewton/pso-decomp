@@ -36,7 +36,6 @@ s32 get_selected_menu_value(void *);
 s32 align_menu_entry_positions(void *);
 int forward_trade_action_default__16TObjCityMainWarpFPviii(void *p, int a1, int a2, int a3);
 void *check_room_seq_4__16TAdChrSelASlotGCFl(void *, int);
-void *set_window_mode_4__6TLobbyFPvll(void *, void *, int);
 void *get_window_layout_position(int);
 extern u8 lbl_80475B70[];
 void TLobby__sub_801036CC();
@@ -189,7 +188,7 @@ void TPlayerBattleCtrl4P::close_rematch_menu() {
 void TPlayerBattleCtrl4P::update_rematch_menu() {
     if (has_player_active_menu__11TWindowCtrlFv(local_client_id) == 0) {
         if (((O_80311C2C *)this)->w0 == NULL) {
-            ((O_80311C2C *)this)->w0 = set_window_mode_4__6TLobbyFPvll(get_window_layout_position(0x53), lbl_80475B70, 1);
+            ((O_80311C2C *)this)->w0 = TLobby::set_window_mode_4(get_window_layout_position(0x53), lbl_80475B70, 1);
             if (((O_80311C2C *)this)->w0 != NULL) {
                 ((TLobby *)(((O_80311C2C *)this)->w0))->send_and_handle(((O_80311C2C *)this)->ids->a, 0x80);
             }

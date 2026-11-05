@@ -16,7 +16,7 @@ extern "C" {
 
 s32 TKeyBoardControl__ct(s32, s32, s32, s32, s32, s32);
 s32 get_info_board_ptr__6TLobbyFv();
-s32 get_window_layout_position(s32);
+void *get_window_layout_position(s32);
 s32 __nw__7TObjectFUl(s32);
 s32 get_keyboard_field_6c__15TWindowMakeTeamFv(s32, s32);
 
@@ -59,9 +59,9 @@ s32 TWindowSubInformationBoard::open_keyboard(s32 arg0) {
 extern s32 lbl_80478C34[];
 
 void TWindowSubInformationBoard::show_card_a7() {
-    s32 window_layout_position;
+    void *window_layout_position;
     window_layout_position = get_window_layout_position(0xA7);
-    TLobby::set_window_mode_4((void *)window_layout_position, (s32)lbl_80478C34, 1);
+    TLobby::set_window_mode_4(window_layout_position, lbl_80478C34, 1);
     this->m_24 = -1;
 }
 

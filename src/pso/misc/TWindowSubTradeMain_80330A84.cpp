@@ -402,7 +402,7 @@ s32 TWindowShortListCtrl__check_controller_button(void *, int);
 
 void TWindow__close(u8 *arg0);
 }
-s32 create_titled_window_menu(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
+s32 create_titled_window_menu(const void *arg0, s32 arg1, s32 arg2, s32 arg3);
 void window_request_show(void *);
 extern "C" {
 s32 TWindowCtrl__sub_8024701C(void *);
@@ -436,7 +436,7 @@ s32 TWindowSubTradeMain::open_confirm_yes_no() {
 s32 TWindowSubTradeMain::create_trade_menu() {
     u8 *arg0 = (u8 *)this;
   s32 titled_window_menu;
-  titled_window_menu = create_titled_window_menu((int) ((s32 (*)(int))get_window_layout_position)(0x5E), 4, (0, get_message_10__20TWindowSubStatusDispFl(0xDD)), (int) ((RecoveredFields_80331434_arg0 *) arg0)->field_28);
+  titled_window_menu = create_titled_window_menu(((const void *(*)(int))get_window_layout_position)(0x5E), 4, (0, get_message_10__20TWindowSubStatusDispFl(0xDD)), (int) ((RecoveredFields_80331434_arg0 *) arg0)->field_28);
   forward_trade_action_default__16TObjCityMainWarpFPviii((void *)titled_window_menu, (int)((int) get_message_10__20TWindowSubStatusDispFl(0xDC)), 6, 0x11);
   forward_trade_action_default__16TObjCityMainWarpFPviii((void *)titled_window_menu, (int)((int) get_message_10__20TWindowSubStatusDispFl(0xE3)), 6, 0x16);
   ((TWindowSubTradeMain *)titled_window_menu)->add_text_entry((int) get_message_10__20TWindowSubStatusDispFl(0xDE), 6, 0x1A, (int) 0xFFEE946E);
@@ -451,7 +451,7 @@ typedef struct RecoveredFields_80331520_arg0 RecoveredFields_80331520_arg0;
 s32 TWindowSubTradeMain::build_trade_menu() {
     u8 *arg0 = (u8 *)this;
   s32 titled_window_menu;
-  titled_window_menu = create_titled_window_menu((int) ((s32 (*)(int))get_window_layout_position)(0x5C), 5, (0, get_message_10__20TWindowSubStatusDispFl(0x26)), (int) ((RecoveredFields_80331520_arg0 *) arg0)->field_28);
+  titled_window_menu = create_titled_window_menu(((const void *(*)(int))get_window_layout_position)(0x5C), 5, (0, get_message_10__20TWindowSubStatusDispFl(0x26)), (int) ((RecoveredFields_80331520_arg0 *) arg0)->field_28);
   forward_trade_action_default__16TObjCityMainWarpFPviii((void *)titled_window_menu, (int)((int) get_message_10__20TWindowSubStatusDispFl(0xDA)), 6, 3);
   forward_trade_action_default__16TObjCityMainWarpFPviii((void *)titled_window_menu, (int)((int) get_message_10__20TWindowSubStatusDispFl(0xDB)), 6, 0xA);
   forward_trade_action_default__16TObjCityMainWarpFPviii((void *)titled_window_menu, (int)((int) get_message_10__20TWindowSubStatusDispFl(0xDC)), 6, 0x11);

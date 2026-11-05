@@ -44,7 +44,6 @@ s32 get_layout_id__20TWindowSubStatusDispFv(void *);
 s32 fn_80071A9C(void *, void *, void *);
 u8 *get_player_by_client_id(s32);
 void send_and_handle__6TLobbyFii(void *, char *, s32);
-void *set_window_mode_4__6TLobbyFPvll(void *, void *, s32);
 void *get_window_layout_position(s32);
 int sprintf(char *, const char *, ...);
 char *strcat(char *, const char *);
@@ -136,7 +135,7 @@ void TAdSinglePlyChrSelectGC::format_challenge_stage_times(s32 arg0, s32 arg1) {
 
 void TLobby::open_challenge_window(s32 arg0, s32 arg1) {
     void *win;
-    win = set_window_mode_4__6TLobbyFPvll(get_window_layout_position(0x3B), challenge_window_extent, 1);
+    win = TLobby::set_window_mode_4(get_window_layout_position(0x3B), challenge_window_extent, 1);
     (*(Chal_8007369C *)&challenge_mode_state).window = win;
     if (win == NULL) {
         return;
@@ -155,7 +154,7 @@ void TLobby::open_challenge_progress_window(void *arg1) {
     Rec_80073738 *rec;
     s32 i;
     void *win;
-    win = set_window_mode_4__6TLobbyFPvll(get_window_layout_position(0x3B), challenge_window_extent, 1);
+    win = TLobby::set_window_mode_4(get_window_layout_position(0x3B), challenge_window_extent, 1);
     CHAL->window = win;
     if (win == NULL) {
         return;

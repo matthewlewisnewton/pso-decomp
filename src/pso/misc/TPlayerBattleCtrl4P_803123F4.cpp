@@ -1,4 +1,5 @@
 #include "pso/misc/TPlayerBattleCtrl4P.h"
+#include "pso/misc/TLobby.h"
 #include "pso/TObject.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
 
@@ -16,7 +17,6 @@ struct BattleIntroWindowSize { f32 x, y; };
 
 extern "C" {
 void *get_window_layout_position(s32);
-void *set_window_mode_4__6TLobbyFPvll(void *, void *, s32);
 extern const BattleIntroWindowSize lbl_80475B60;
 s32 lbl_805D6AB0;
 void send_and_handle__6TLobbyFii(void *, void *, int);
@@ -66,7 +66,7 @@ void TPlayerBattleCtrl4P::show_intro_text() {
 void TPlayerBattleCtrl4P::open_intro_window() {
     if (((BattleIntroWindowState *)this)->intro_window == NULL) {
         BattleIntroWindowSize size = lbl_80475B60;
-        ((BattleIntroWindowState *)this)->intro_window = set_window_mode_4__6TLobbyFPvll(
+        ((BattleIntroWindowState *)this)->intro_window = TLobby::set_window_mode_4(
             get_window_layout_position(0x52), &size, 1);
     }
     lbl_805D6AB0 = 0;

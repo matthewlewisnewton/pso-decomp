@@ -177,15 +177,14 @@ void send_giveup_to_all_players__6TLobbyFv(void);
 void close_giveup_window__6TLobbyFPv(void* a0);
 void play_all_players_effect__6TLobbyFPv(void* a0);
 void play_effect_all_players__6TLobbyFPv(void*);
-u32 check_room_seq_4__16TAdChrSelASlotGCFl(s32, s32);
+u32 check_room_seq_4__16TAdChrSelASlotGCFl(void *, s32);
 s32 check_player_flag1__6TLobbyFv();
 s32 TLobby__sub_8024AC20(int);
-u32 set_window_mode_4__6TLobbyFPvll(s32, s32 *, s32);
 s32 TLobby__sub_80292F5C();
 int forward_trade_action_default__16TObjCityMainWarpFPviii(void *p, int a1, int a2, int a3);
 s32 get_player_by_client_id(int);
 s32 TQuestVmDownLoadServer__sub_8006EF6C(s32);
-s32 get_window_layout_position(s32);
+void *get_window_layout_position(s32);
 void TObjPlayer__sub_8024ABDC(s32 arg0);
 void play_effect_default__10TObjPlayerFii(s32 arg0, s32 arg1);
 
@@ -206,7 +205,7 @@ void TObjChallenge4PRetry::open_message_window() {
         TWindow__close((u8 *)(*(void **)((s8 *)this + 0x30)));
         *(u32 *)((s8 *)this + 0x30) = 0U;
     }
-    *(u32 *)((s8 *)this + 0x30) = set_window_mode_4__6TLobbyFPvll(get_window_layout_position(0x39), message_window_position, 1);
+    *(void **)((s8 *)this + 0x30) = TLobby::set_window_mode_4(get_window_layout_position(0x39), message_window_position, 1);
     if ((u32) *(u32 *)((s8 *)this + 0x30) != 0U) {
         ((TLobby *)(*(u32 *)((s8 *)this + 0x30)))->send_and_handle(TQuestVmDownLoadServer__sub_8006EF6C(0x5E), 1);
     }

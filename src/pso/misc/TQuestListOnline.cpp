@@ -80,9 +80,8 @@ struct T_80217B30 { u8 pad[0x38]; s32 f38; };
 extern "C" {
 s32 get_entity_id(int);
 int set_field_20__15TShopWindowBaseFl(void*, int);
-s32 send_and_handle__6TLobbyFii(int, void *, int);
+s32 send_and_handle__6TLobbyFii(void *, void *, int);
 s32 calc_list_content_extent(u32);
-u32 set_window_mode_4__6TLobbyFPvll(const void *, void *, int);
 extern Stack_80217EC4 lbl_8044BED4[];
 extern u8 *TQuestListOnline__quest_list_buffer;
 
@@ -340,7 +339,7 @@ void TQuestListOnline::build_list_window() {
         }
         if (description_window == 0U) {
             Stack_80217EC4 sp8 = lbl_8044BED4[0];
-            description_window = set_window_mode_4__6TLobbyFPvll(get_window_layout_position(0x2D), &sp8, 1);
+            description_window = TLobby::set_window_mode_4(get_window_layout_position(0x2D), &sp8, 1);
             send_and_handle__6TLobbyFii(description_window, TQuestListOnline__quest_list_buffer + 0x2C, 0x80);
         } else {
             send_and_handle__6TLobbyFii(description_window, TQuestListOnline__quest_list_buffer + 0x2C, 0x80);

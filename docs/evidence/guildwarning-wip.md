@@ -72,21 +72,25 @@ parameter inside the loop. MWCC hoists that conversion as the original's
 
 These need cross-file retypes beyond this branch:
 
-- **The `s32` layout convention.** 98 files declare
-  `get_window_layout_position` locally, mostly as returning `s32`/`int`.
-  They have 386 lookup calls; 96 are wrapped in integer or pointer casts
-  and 18 go through function-pointer casts. Window helpers that take that
-  integer also need retyping. Following "this file's lookup becomes a
-  pointer, so every other consumer of it must take one" from
-  `set_window_mode_4__6TLobbyFPvll` (18 caller files),
-  `update_window_mode_from_progress__6TLobbyFPv` (16) or
-  `create_titled_window_menu__Fllll` (8) reaches the same group of about 76
-  files. It runs through `check_room_seq_4__16TAdChrSelASlotGCFl` (30 files),
-  `draw_card_icon__17TWindowSubComCardFll` (8), and the mangled
-  `TWindowHelpItem` / `TWindowInputNumber` ctors. Until then,
-  `TWindowSubMag`, `TWindowSubTechnique`, `set_window_mode_4` and the
-  quest-list callers keep an integer-to-pointer cast or a local mangled
-  prototype.
+- **The `s32` layout convention, partly retyped.** `set_window_mode_4` is
+  the real static member `set_window_mode_4__6TLobbyFPCvPCvl` (layout and
+  size are `const void *`). `create_titled_window_menu` is
+  `create_titled_window_menu__FPCvlll`. Callers that already hold the
+  lookup pointer pass it with no cast, and those units are function-100%,
+  including `TWindowSubMag`, `TWindowSubTechnique`, `TWindowSubItem` and
+  `TWindowSubMagPhoton`. The folded `TObjBoss2Tunnel` message functions
+  pass their `f32` position arrays the same way and stay 100%. Three
+  adapter casts remain because the callee's public symbol is still an
+  integer: `update_window_mode_from_progress` casts its `s32` `this`,
+  `TWindowSubComCard_80271E7C` casts its `s32` lookup into the three
+  `set_window_mode_4` calls (widening that file's lookup renames
+  `create_for_card__14TWindowComCardFlll`), and `open_yes_no_prompt` stays
+  the unmangled `s32` symbol and casts into `create_titled_window_menu`.
+  All three are function-100%. The other lookup files still declare
+  `get_window_layout_position` as returning `s32`. That remainder still
+  runs through `check_room_seq_4__16TAdChrSelASlotGCFl`,
+  `draw_card_icon__17TWindowSubComCardFll`, and the mangled
+  `TWindowHelpItem` / `TWindowInputNumber` ctors.
 - **The window constructor chain.** A cast-free factory is
   `return new TWindowMessage(...)`. Retyping `TWindowMessage__ct` alone only
   moves the cast, because the `__nw` result and the ctor result share one

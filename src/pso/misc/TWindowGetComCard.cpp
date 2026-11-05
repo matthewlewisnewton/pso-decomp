@@ -41,7 +41,6 @@ s32 text_builder_append();
 s32 __ct__7TObjectFP7TObject();
 void TObjPlayer__sub_8024ABDC(s32 arg0);
 void fn_8024AC64(s32 arg0);
-s32 set_window_mode_4__6TLobbyFPvll(void *, void *, int);
 extern s32 lbl_8044ED94[];
 extern s32 lbl_8044ED9C[];
 extern void *__vt__17TWindowGetComCard[];
@@ -151,9 +150,9 @@ TWindowGetComCard::~TWindowGetComCard() {
         TWindow__close((u8 *)(*(void **)((s8 *)this + 0x20)));
         this->m_20 = 0U;
     }
-    if ((u32) this->m_1c != 0U) {
+    if (this->m_1c != NULL) {
         TWindow__close((u8 *)(*(void **)((s8 *)this + 0x1C)));
-        this->m_1c = 0U;
+        this->m_1c = NULL;
     }
     TWindowReturnCity__sub_8024ACA8(local_client_id);
     TLobby__sub_8024AC20(local_client_id);
@@ -168,7 +167,7 @@ u8 *TWindowGetComCard__ct(TWindowGetComCard *window_get_com_card) {
     __ct__7TObjectFP7TObject();
     *(s32 **)((s8 *)window_get_com_card + 0x18) = &(*(RecoveredGlobal_80252FCC___vt__17TWindowGetComCard *)&__vt__17TWindowGetComCard).value;
     *(s32 *)((s8 *)window_get_com_card + 0) = (s32) TWindowGetComCard__name;
-    window_get_com_card->m_1c = set_window_mode_4__6TLobbyFPvll(lbl_8044ED94, lbl_8044ED9C, 1);
+    window_get_com_card->m_1c = TLobby::set_window_mode_4(lbl_8044ED94, lbl_8044ED9C, 1);
     window_get_com_card->m_20 = 0;
     if (init_com_card__17TWindowSubComCardFv() != 0) {
         temp_r31 = (s32)TWindowGetComCard__sub_8007B594();

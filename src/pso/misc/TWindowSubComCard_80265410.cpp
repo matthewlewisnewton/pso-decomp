@@ -137,7 +137,7 @@ s32 construct_type1_heading__20TWindowSubStatusDispFll(s32, s32, s32);
 void draw_selection_bar(TWindowDrawContext *arg0, u8 *arg1, s32 arg2);
 void set_text_entry_string(u8 *arg0, u32 str, s32 arg2);
 void update_chat_window(void* p);
-s32 create_titled_window_menu(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
+s32 create_titled_window_menu(const void *arg0, s32 arg1, s32 arg2, s32 arg3);
 extern s32 __vt__11TWindowMenu[];
 extern const f64 lbl_8044F330;
 extern RecoveredGlobal_80266378_lbl_804D05A8 lbl_804D05A8;
@@ -705,7 +705,7 @@ void TAdChrSelASlotGC::check_room_seq_4(s32 arg1) {
     ((int (*)(void*, void*, void*))create_window_menu)((void*)arg0, (void*)arg1, (void*)(4));
 }
 
-s32 create_titled_window_menu(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+s32 create_titled_window_menu(const void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 temp_r31;
     s32 temp_r3;
     s32 var_r0;

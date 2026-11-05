@@ -373,7 +373,6 @@ s32 __ct__7TObjectFP7TObject(void *, void *);
 s32 TWindow__close(int);
 s32 TWindowCtrlMain__sub_8024CE58();
 void send_and_handle__6TLobbyFii(void *, char *, int);
-void * set_window_mode_4__6TLobbyFPvll(void *, void *, int);
 void * get_window_layout_position(int);
 char * get_card_window_field__6TLobbyFv(void);
 int strncmp(const char *, const char *, unsigned long);
@@ -571,7 +570,7 @@ void update_idle_timeout__6TLobbyFPv(u8 *object) {
             t->state = 1;
             if ((*(Obj_80134F9C * *)&TLobby__idle_timeout_object) == 0 && TWindowCtrlMain__sub_8024CE58() != 0) {
                 sprintf(lobby_idle_timeout_text_buffer, get_seq_phase__6TLobbyFPv(0x1F), t->limit - elapsed);
-                (*(Obj_80134F9C * *)&TLobby__idle_timeout_object) = (Obj_80134F9C *)set_window_mode_4__6TLobbyFPvll(get_window_layout_position(0xCA), &tmp, 1);
+                (*(Obj_80134F9C * *)&TLobby__idle_timeout_object) = (Obj_80134F9C *)TLobby::set_window_mode_4(get_window_layout_position(0xCA), &tmp, 1);
                 send_and_handle__6TLobbyFii((void *)(*(Obj_80134F9C * *)&TLobby__idle_timeout_object), lobby_idle_timeout_text_buffer, 0x80);
                 ((TLobby *)(*(Obj_80134F9C * *)&TLobby__idle_timeout_object))->set_field_1c(lbl_805DB0A8);
                 ((TWindowMessage *)(*(Obj_80134F9C * *)&TLobby__idle_timeout_object))->complete_reveal();
@@ -987,7 +986,7 @@ void TLobby__sub_80135DE4(void *msg) {
     }
     if (TLobby__data_805D5594 == 0x11) {
         Pair_80135E7C p = lbl_8043EE20[0];
-        TLobby__card_list_window = set_window_mode_4__6TLobbyFPvll(get_window_layout_position(0xC9), &p, 1);
+        TLobby__card_list_window = TLobby::set_window_mode_4(get_window_layout_position(0xC9), &p, 1);
         send_and_handle__6TLobbyFii(TLobby__card_list_window, (char *)msg + 4, 3);
         ((TLobby *)TLobby__card_list_window)->set_field_1c(lbl_805DB0AC);
     }
@@ -3436,7 +3435,7 @@ void open_download_list_window__6TLobbyFiPv(s32 arg0, Ent_80135E7C *arg1) {
     {
         Pair_80135E7C p = lbl_8043EE18[0];
         w = get_window_layout_position(0xC7);
-        TLobby__download_list_window = set_window_mode_4__6TLobbyFPvll(w, &p, 1);
+        TLobby__download_list_window = TLobby::set_window_mode_4(w, &p, 1);
         send_and_handle__6TLobbyFii(TLobby__download_list_window, (char *)arg1 + 0x2C, 3);
     }
     TLobby__card_list_selected_index = 0;

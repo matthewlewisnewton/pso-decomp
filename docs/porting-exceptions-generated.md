@@ -115,7 +115,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1043,
 | `src/pso/ui/TAdSinglePlyChrSelectGC_801FBF54.cpp:1530` | `__cntlzw` |
 | `src/pso/ui/TAdSinglePlyChrSelectGC_801FBF54.cpp:1559` | `__cntlzw` |
 | `src/pso/ui/TAdSinglePlyChrSelectGC_8028C8E0.cpp:129` | `__cntlzw` |
-| `src/pso/ui/TAdSinglePlyChrSelectGC_802E13C8.cpp:174` | `__cntlzw` |
+| `src/pso/ui/TAdSinglePlyChrSelectGC_802E13C8.cpp:175` | `__cntlzw` |
 | `src/pso/unk/text_802530D0.cpp:24` | `__cntlzw` |
 | `src/pso/unk/text_803D8DE0.cpp:32` | `__frsqrte` |
 | `src/pso/unk/text_803D8DE0.cpp:76` | `__frsqrte` |

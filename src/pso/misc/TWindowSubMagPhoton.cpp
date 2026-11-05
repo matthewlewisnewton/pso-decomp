@@ -64,14 +64,14 @@ s32 get_message_10__20TWindowSubStatusDispFl(s32);
 s32 fn_801A51F0(int);
 s32 set_field_1c__6TLobbyFf(s32);
 s32 TWindowSubEquip__sub_80263AF8(s32, s32);
-s32 get_window_layout_position(s32);
+const void *get_window_layout_position(s32);
 extern u8 lbl_8044FA28[];
 void *__dt__19TWindowSubMagPhotonFv(void *arg0, s16 arg1);
 s32 get_selected_menu_value(s32);
 s32 align_menu_entry_positions(s32);
 void __dl__7TObjectFPv(void *);
 }
-s32 create_titled_window_menu(s32, s32, s32, s32);
+s32 create_titled_window_menu(const void *, s32, s32, s32);
 extern "C" {
 s32 forward_trade_action_default__16TObjCityMainWarpFPviii(s32, s32, s32, s32);
 s32 is_split_screen();

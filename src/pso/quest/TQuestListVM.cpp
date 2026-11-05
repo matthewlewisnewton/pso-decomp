@@ -170,7 +170,7 @@ struct Obj_8021916C {
     s32 f2370;
     void *f2374;
     u8 pad2378[4];
-    u32 f237C;
+    void *f237C;
     void *f2380;
 };
 struct Rec_802194BC { u8 pad[0xD]; char name[0x20]; char desc[0x80]; u8 padAD[0xB4 - 0xAD]; s32 slot; s32 type; };
@@ -192,14 +192,13 @@ s32 strcmp(const char *, const char *);
 s32 is_downloadable_new_entry__12TQuestListVMFPvPv(QL_802193F0 *q, Ent_802193F0 *e);
 int get_entity_id(int);
 f32 get_scale__15TShopWindowBaseFv(void *);
-void send_and_handle__6TLobbyFii(u32, void *, int);
+void send_and_handle__6TLobbyFii(void *, void *, int);
 extern const f32 lbl_805DC6B8;
 extern const f32 lbl_805DC6BC;
 s32 TAdPlayerLoadGC__sub_801E1538(Dl_80218E94 *, s32);
 s32 poll_download__12TQuestListVMFv(void *);
 s32 get_selected_menu_value(void *);
 s32 calc_list_content_extent(void *);
-u32 set_window_mode_4__6TLobbyFPvll(const void *, void *, int);
 u32 create_item_list_window(void *, int, u16);
 char *strcpy(char *, const char *);
 void *memcpy(void *, const void *, unsigned long);
@@ -608,10 +607,10 @@ s32 TQuestListVM::build_download_list(void *p) {
             calc_list_content_extent(*(void **)(arg0 + 0x2374));
             ((TShopWindowBase *)arg0)->set_field_20((s32)((void *)6));
         }
-        if (*(u32 *)(arg0 + 0x237C) == 0U) {
+        if (*(void **)(arg0 + 0x237C) == NULL) {
             QuestListWindowSize sp8 = lbl_8044BF40;
-            *(u32 *)(arg0 + 0x237C) = set_window_mode_4__6TLobbyFPvll(get_window_layout_position(0x2D), &sp8, 1);
-            send_and_handle__6TLobbyFii(*(u32 *)(arg0 + 0x237C), arg0 + 0x55, 0x80);
+            *(void **)(arg0 + 0x237C) = TLobby::set_window_mode_4(get_window_layout_position(0x2D), &sp8, 1);
+            send_and_handle__6TLobbyFii(*(void **)(arg0 + 0x237C), arg0 + 0x55, 0x80);
             *(s32 *)(arg0 + 0x236C) = 0;
         }
     }

@@ -270,7 +270,6 @@ extern const f32 lbl_805DD508;
 s32 align_menu_entry_positions(s32);
 extern const f32 lbl_805DD510;
 s32 create_menu_window__17TWindowSubComCardFv(void);
-s32 set_window_mode_4__6TLobbyFPvll(s32, s32 *, s32);
 extern char lbl_8044F6C4[];
 void open_mode4_window__17TWindowSubComCardFv(void);
 extern char lbl_8044F6AC[];
@@ -299,7 +298,7 @@ s32 TLobby__sub_802428F8(void *p);
 int get_com_card_data__6TLobbyFv(void);
 extern const f32 lbl_805DD51C;
 void rebuild_com_card_list__17TWindowSubComCardFii(s32 arg0, s32 arg1);
-s32 create__17TWindowSubComCardFv(void);
+void *create__17TWindowSubComCardFv(void);
 s32 create_keyboard__17TWindowSubComCardFi(s32 arg0);
 s32 create_keyboard__17TWindowSubComCardFii(s32 arg0, s32 arg1);
 void update_display_value__17TWindowSubComCardFUiUiPv(u32 arg0, u32 arg1, s32 *arg2);
@@ -362,12 +361,12 @@ s32 create_keyboard__17TWindowSubComCardFi(s32 arg0) {
 extern s32 lbl_8044F6CC[];
 extern f32 lbl_805DD4FC;
 
-s32 create__17TWindowSubComCardFv(void) {
-    s32 temp_r31;
+void *create__17TWindowSubComCardFv(void) {
+    void *temp_r31;
     s32 window_layout_position;
 
     window_layout_position = get_window_layout_position(0x98);
-    temp_r31 = set_window_mode_4__6TLobbyFPvll(window_layout_position, lbl_8044F6CC, 1);
+    temp_r31 = TLobby::set_window_mode_4((const void *)window_layout_position, lbl_8044F6CC, 1);
     set_field_1c__6TLobbyFf(lbl_805DD4FC);
     return temp_r31;
 }
@@ -464,7 +463,7 @@ s32 create_menu_window__17TWindowSubComCardFv(void) {
   return title;
 }
 void open_mode4_window__17TWindowSubComCardFv(void) {
-    set_window_mode_4__6TLobbyFPvll((s32)(get_window_layout_position(0x8f)), (s32 *)lbl_8044F6C4, 1);
+    TLobby::set_window_mode_4((const void *)get_window_layout_position(0x8f), lbl_8044F6C4, 1);
 }
 
 struct ComCardRec_80272A98 { u32 id; char name[0xD0]; };
@@ -602,7 +601,7 @@ u32 TWindowSubComCard__sub_80272DE0(TWindowSubComCard *window_sub_com_card) {
 #pragma pop
 
 void open_layout_window__17TWindowSubComCardFv(void) {
-    set_window_mode_4__6TLobbyFPvll((s32)(get_window_layout_position(0x80)), (s32 *)lbl_8044F6AC, 1);
+    TLobby::set_window_mode_4((const void *)get_window_layout_position(0x80), lbl_8044F6AC, 1);
 }
 
 #pragma push

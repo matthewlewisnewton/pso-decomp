@@ -89,12 +89,12 @@ s32 text_builder_append();
 s32 set_field_1c__6TLobbyFf(void *);
 s32 TWindowSubEquip__sub_80263AF8(s32, s32);
 s32 send_and_handle__6TLobbyFii(s32, s32 *, s32);
-s32 get_window_layout_position(s32);
+const void *get_window_layout_position(s32);
 void *get_player_by_client_id(s32);
 s32 is_player_input_active(s32);
 void *__nw__7TObjectFUl(u32);
-void *__ct__15TWindowHelpItemFPvUs(void *, s32, s32);
-void *fn_802628C0(s32, void *, s32);
+void *__ct__15TWindowHelpItemFPvUs(void *, const void *, s32);
+void *fn_802628C0(const void *, void *, s32);
 void queue_destruction__7TObjectFv(void *arg0);
 s32 call_if_split_screen(void *, s32);
 s32 select_cursor_entry__22TWindowSubShortCutListFv(s32);
@@ -105,7 +105,7 @@ s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 
 s32 are_status_entries_ready__13TWindowSubMagFi(void *);
 s32 fn_8025373C(u8 *self);
-void *TWindowSubMagPhoton__ct(void *, s32, s32, s32);
+void *TWindowSubMagPhoton__ct(void *, const void *, s32, s32);
 int TWindowSubMag__sub_8027C0E8(void* p);
 u32 is_action_active__10TObjPlayerFv(void *);
 extern u8 lbl_8044F9E8[];
@@ -114,12 +114,12 @@ void *TWindowSubMag__ct(TWindowSubMag *arg0, s32 arg1, s32 arg2);
 void *__dt__13TWindowSubMagFv(TWindowSubMag *arg0, s16 arg1);
 void TWindowHelpItem__set_displayed_item_by_id(u8 *arg0, s32 arg1);
 s32 *get_help_text_string(s32);
-s32 create_equip_kind_window(s32, s32 *, s32);
+s32 create_equip_kind_window(const void *, s32 *, s32);
 s32 __ct__7TObjectFP7TObject();
 s32 __dl__7TObjectFPv(void *);
 s32 __dt__7TObjectFv(void *, s32);
 }
-s32 create_titled_window_menu(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
+s32 create_titled_window_menu(const void *arg0, s32 arg1, s32 arg2, s32 arg3);
 void append_text_space(void);
 void text_builder_reset(void);
 void window_request_show(void *arg0);
@@ -230,10 +230,10 @@ void *TWindowSubMag::create_learned_blast_toast() {
 
 void *TWindowSubMag::create() {
     void *temp_r31;
-    s32 window_layout_position;
+    const void *window_layout_position;
 
     window_layout_position = get_window_layout_position(0xB);
-    temp_r31 = TLobby::create_message_window((const void *)window_layout_position, lbl_8044FA00, 1, this->m_28);
+    temp_r31 = TLobby::create_message_window(window_layout_position, lbl_8044FA00, 1, this->m_28);
     TWindowSubEquip__sub_80263AF8(this->m_30, 4);
     set_field_1c__6TLobbyFf(temp_r31);
     *(s32 *)((s8 *)temp_r31 + 0x5C) = 0x186A0;
@@ -273,7 +273,7 @@ void *TWindowSubMag::create_action_menu(s32 id) {
 s32 TWindowSubMag::create_list() {
     s32 equip_kind_window;
 
-    s32 window_layout_position = get_window_layout_position(0xD);
+    const void *window_layout_position = get_window_layout_position(0xD);
     equip_kind_window = create_equip_kind_window(window_layout_position, lbl_8044F9F8, this->m_28);
     ((TUnk_804D0618 *)equip_kind_window)->ensure_status_display(get_message_10__20TWindowSubStatusDispFl(0x24));
     TWindowSubEquip__sub_80263AF8(this->m_30, 2);
@@ -287,7 +287,7 @@ extern s32 lbl_8044F9F0[];
 
 s32 TWindowSubMag::setup_list() {
     s32 equip_kind_window;
-    s32 window_layout_position;
+    const void *window_layout_position;
 
     window_layout_position = get_window_layout_position(7);
     equip_kind_window = create_equip_kind_window(window_layout_position, lbl_8044F9F0, this->m_28);

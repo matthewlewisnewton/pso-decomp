@@ -24,9 +24,9 @@ s32 is_palette_entry_displayable__10TObjPlayerFv(u8 *arg0, u8 kind, u8 sub);
 s32 get_message_10__20TWindowSubStatusDispFl(int);
 s32 set_field_1c__6TLobbyFf(int);
 }
-s32 create_titled_window_menu(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
+s32 create_titled_window_menu(const void *arg0, s32 arg1, s32 arg2, s32 arg3);
 extern "C" {
-s32 get_window_layout_position(int);
+const void *get_window_layout_position(int);
 extern s16 *technique_menu_category_lists[];
 
 s32 get_cursor_pos__20TWindowShortListCtrlFv(s32);
@@ -96,7 +96,7 @@ void TWindowSubTechnique::rebuildTechniqueList(s32 list, s32 category) {
 
 s32 TWindowSubTechnique::create_title_window() {
   s32 titled_window_menu;
-  titled_window_menu = create_titled_window_menu((int) get_window_layout_position(0x13), 5, (0, get_message_10__20TWindowSubStatusDispFl(0x30)), (this->playerIndex));
+  titled_window_menu = create_titled_window_menu(get_window_layout_position(0x13), 5, (0, get_message_10__20TWindowSubStatusDispFl(0x30)), (this->playerIndex));
   TWindowSubEquip__sub_80263AF8((u8 *)this->m_30, 1);
   set_field_1c__6TLobbyFf((int) titled_window_menu);
   ((TWindowSubComCardList *)titled_window_menu)->set_flag70_bit100();
@@ -164,7 +164,7 @@ void __dt__7TObjectFv(void *, int);
 }
 void text_builder_reset(void);
 void toggle_help_window_on_button(u32 arg0, s32 arg1);
-s32 create_titled_window_menu(s32, s32, s32, s32);
+s32 create_titled_window_menu(const void *, s32, s32, s32);
 extern "C" {
 
 s32 TWindowSubTechnique::open_menu() {
@@ -266,7 +266,7 @@ void TWindowSubTechnique::run_task() {
         break;
     }
     case 3:
-        self->help = TLobby::create_message_window((const void *)get_window_layout_position(0x14), lbl_8044FC54, 1, self->player);
+        self->help = TLobby::create_message_window(get_window_layout_position(0x14), lbl_8044FC54, 1, self->player);
         TWindowSubEquip__sub_80263AF8((u8 *)self->f30, 2);
         set_field_1c__6TLobbyFf((s32)self->help);
         call_if_split_screen(self->help, self->player);

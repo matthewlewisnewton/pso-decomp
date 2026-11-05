@@ -11,7 +11,7 @@ void TWindowSubComCard__sub_80265500(u8 *arg0);
 void TWindowSubComCard__sub_80265680(u8 *arg0, s16 arg1);
 void *__dt__11TWindowMenuFv(void *arg0, s16 arg1);
 }
-s32 create_titled_window_menu(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
+s32 create_titled_window_menu(const void *arg0, s32 arg1, s32 arg2, s32 arg3);
 extern "C" {
 s32 create_window_menu(const WindowLayoutPosition *layout, s32 arg1, s32 arg2);
 u8 *create_yes_no_window(const WindowLayoutPosition *layout, s32 slot, u32 yes_text, u32 no_text);

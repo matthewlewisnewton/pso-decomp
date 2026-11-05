@@ -96,7 +96,7 @@ s32 load_player_and_wait__23TAdSinglePlyChrSelectGCFv();
 int TKeyBoardControl__sub_8000F9CC(void*);
 void TLobby__sub_8022614C(s32 arg0);
 void update_music_stream_gain(s32 user);
-void TWindow__close(u8 *arg0);
+void TWindow__close(void *arg0);
 void *__ct__12TAdBackTxtGCFv(void *, void *);
 void __ct__7TObjectFP7TObject(void *);
 void *__ct__9TAdBackGCFv(void *, void *);
