@@ -4788,7 +4788,7 @@ s32 TQuestVmDownLoadServer__sub_803F03B4(u8 *data, Ent_803F03B4 *ents, s32 n, s3
         keyb = cursor[1];
         cursor += 2;
         ents->key = keyb;
-        if (keyb > *max) {
+        if ((u16)keyb > *max) {
             *max = ents->key;
         }
         if (*cursor <= 11) {
