@@ -6,8 +6,11 @@
 
 struct CreationTextureCacheEntry;
 struct TCheckMemoryCard;
+class TPlyCharData;
 
 struct TAdSinglePlyChrSelectGC : public TObject {
+    // Character record for a slot; 0xFFFF asks for the selected one.
+    static TPlyCharData *get_char_index(unsigned int slot);
     virtual ~TAdSinglePlyChrSelectGC();
     void update_state(int);
     void show_confirm_dialog(void *);
@@ -53,7 +56,7 @@ struct TAdSinglePlyChrSelectGC : public TObject {
     static void destroy();
     static s32 create_if_key_pressed();
     static int get_game_mode();
-    u8 is_both_confirmed();
+    s32 is_both_confirmed();
     void advance_wrapped_cursor();
     void *destroy_and_free(s16 arg1);
     void init_image_buffer(u8 *arg1, s32 arg2);

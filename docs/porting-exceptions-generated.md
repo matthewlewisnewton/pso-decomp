@@ -11,7 +11,7 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | intrinsic | 83 | 54 |
 | hardware | 71 | 13 |
 | pragma | 5788 | 874 |
-| configure.py per-unit override | 156 | 156 |
+| configure.py per-unit override | 160 | 160 |
 
 Pragma kinds (excluding push/pop/once): `dont_inline` 1147, `inline_depth` 1039, `fp_contract` 893, `auto_inline` 838, `opt_common_subs` 611, `scheduling` 260, `opt_propagation` 237, `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 41, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 21, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
@@ -54,13 +54,13 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1147, `inline_depth` 1039,
 | `src/pso/enemy/TObjEneMe1GiGue.cpp:1393` | `__cntlzw` |
 | `src/pso/enemy/TObjEneMe3Shinowa.cpp:2526` | `__cntlzw` |
 | `src/pso/item/TItemMag.cpp:1351` | `__cntlzw` |
-| `src/pso/misc/TCheckRoomSequence.cpp:294` | `__cntlzw` |
+| `src/pso/misc/TCheckRoomSequence.cpp:293` | `__cntlzw` |
 | `src/pso/misc/THunterGuildSeqOffline_80211FEC.cpp:70` | `__cntlzw` |
 | `src/pso/misc/TKeyBoardControl_803F0C50.cpp:267` | `__cntlzw` |
 | `src/pso/misc/TLoadingCur.cpp:174` | `__cntlzw` |
 | `src/pso/misc/TLobby_80145E40.cpp:28` | `__cntlzw` |
 | `src/pso/misc/TLobby_803C4698.cpp:234` | `__frsqrte` |
-| `src/pso/misc/TMainCursor.cpp:845` | `__cntlzw` |
+| `src/pso/misc/TMainCursor.cpp:844` | `__cntlzw` |
 | `src/pso/misc/TNpcPlayer.cpp:2371` | `__cntlzw` |
 | `src/pso/misc/TOHealGeneral.cpp:64` | `__cntlzw` |
 | `src/pso/misc/TOSymbolchatColli.cpp:93` | `__cntlzw` |
@@ -85,12 +85,12 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1147, `inline_depth` 1039,
 | `src/pso/object/TObjQuestCol.cpp:12` | `__cntlzw` |
 | `src/pso/object/TObjQuestCol2.cpp:11` | `__cntlzw` |
 | `src/pso/object/TObjTombstone.cpp:427` | `__cntlzw` |
-| `src/pso/player/TObjPlayer_80011014.cpp:4898` | `__fabs` |
-| `src/pso/player/TObjPlayer_80011014.cpp:4906` | `__frsqrte` |
+| `src/pso/player/TObjPlayer_80011014.cpp:4890` | `__fabs` |
+| `src/pso/player/TObjPlayer_80011014.cpp:4898` | `__frsqrte` |
 | `src/pso/player/TObjPlayer_800AAFBC.cpp:350` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_8012AF98.cpp:12` | `__cntlzw` |
-| `src/pso/player/TObjPlayer_801AF2F0.cpp:2675` | `__cntlzw` |
-| `src/pso/player/TObjPlayer_801AF2F0.cpp:5209` | `__cntlzw` |
+| `src/pso/player/TObjPlayer_801AF2F0.cpp:2510` | `__cntlzw` |
+| `src/pso/player/TObjPlayer_801AF2F0.cpp:5049` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_803DF7A8.cpp:95` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_803DF7A8.cpp:116` | `__frsqrte` |
 | `src/pso/player/TObjPlayer_803DF7A8.cpp:131` | `__fabs` |
@@ -126,8 +126,8 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1147, `inline_depth` 1039,
 | File:line | Source |
 |---|---|
 | `src/pso/boss/TObjBoss2Tunnel_803E2BAC.cpp:22` | `#define GXWGFifo_803E2BCC (*(volatile WGPipe_803E2BCC *)0xCC008000)` |
-| `src/pso/misc/TMainCursor.cpp:896` | `((TMainCursor *)arg2)->set_flags(0xE0000800);` |
-| `src/pso/misc/TMainCursor.cpp:912` | `((TMainCursor *)arg2)->set_flags(0xE0000000);` |
+| `src/pso/misc/TMainCursor.cpp:895` | `((TMainCursor *)arg2)->set_flags(0xE0000800);` |
+| `src/pso/misc/TMainCursor.cpp:911` | `((TMainCursor *)arg2)->set_flags(0xE0000000);` |
 | `src/pso/misc/TParticleCtrl_803E29FC.cpp:32` | `#define GXWGFifo_803E2A1C (*(volatile WGPipe_803E2A1C *)0xCC008000)` |
 | `src/pso/misc/TWindowSubStatusDisp_803DEE6C.cpp:12` | `#define FIFO_803DF00C (*(volatile Pipe_803DF00C *)0xCC008000)` |
 | `src/pso/misc/TWindowSubStatusDisp_803DEE6C.cpp:34` | `#define FIFO_803DEECC (*(volatile Pipe_803DEECC *)0xCC008000)` |
@@ -348,6 +348,10 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1147, `inline_depth` 1039,
 | `pso/unk/text_8039739C.cpp` | `-O4,p` | Metrowerks' GCN_Mem_Alloc.c (runtime library code at -O4,p); belongs in the runtime lib under its own name. |
 | `pso/quest/QuestOpcodeHandlers.cpp` | `-inline on` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/quest/TQuestThread.cpp` | `-inline on` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
+| `pso/unk/text_801D40D4.cpp` | `-inline noauto` | Inventory walks read TItemList children through the class-body accessors TItemList::link_down / link_next (typed_down in TObjPlayer_801D4CB8, whose receiver is TObjPlayer). -inline noauto folds each call to the lwz of m_down (+0x14) or m_next (+0xC). -inline off leaves a bl and grows the walks (TObjPlayer__sub_801D4368 0x248 -> 0x278, and the TItemList walks by the same 8-byte call). -inline auto also inlines the unmarked TObjPlayer__sub_801D4730 into sort_by_key, so it is not this unit's flag. With noauto the whole object matches -inline off on the old cast spelling, including every function that does not call the accessor. Precedent: https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203 (-inline auto) and TWindowMainMenu_802AD538.cpp (-inline noauto,level=1). |
+| `pso/player/TObjPlayer_801D5220.cpp` | `-inline noauto` | Same -inline noauto as text_801D40D4.cpp. count_owned_items and the other TItemList walks stay the lwz of m_down / m_next; -inline off grows each. |
+| `pso/player/TPlyItem.cpp` | `-inline noauto` | Same -inline noauto as text_801D40D4.cpp. The three TPlyItem walks (reduce_owner_matched_items, reduce_child_item_amounts, collect_owner_fields_recursive) stay byte-identical to the cast spelling. |
+| `pso/player/TObjPlayer_801D4CB8.cpp` | `-inline noauto` | Same -inline noauto as text_801D40D4.cpp. destroy_subobjects_recursive's child load stays lwz r31,20(r3) and the sibling step stays lwz r31,12(r31). |
 | `pso/unk/text_803D8098.cpp` | `(multi-line entry; see configure.py)` | render_debug_text (0x803D85D8) saves r25-r31 with bl _savegpr_25 / _restgpr_25, and its glyph quads are the inlined SDK FIFO writers (sth/stw to 0xCC008000), not calls. -inline on inlines only functions marked inline, so queue_debug_text stays a call from debug_printf_at. The matrix helpers in text_803D8910.cpp match under the ginja defaults. |
 | `pso/misc/TKeyBoardControl_803F0C50.cpp` | `GC/1.2.5n` | Epilogue order (mtlr before the restores) only 1.2.5n produces. |
 | `pso/unk/text_803F1804.cpp` | `GC/1.2.5n` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |

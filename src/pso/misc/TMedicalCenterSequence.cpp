@@ -150,7 +150,6 @@ u8 *TMedicalCenterSequence__ct(u8 *arg0, s32 arg1, s32 arg2);
 f32 get_scale__15TShopWindowBaseFv(void *);
 u8 *create_yes_no_window(const void *arg0, s32 arg1, u32 arg2, u32 arg3);
 
-s32 try_spend_actor_meseta(u8 *arg0, s32 arg1);
 int sub_802239EC__13TShopSequenceFv(void *);
 int sub_80223A48__15TShopWindowBaseFv(void *);
 s32 get_selected_menu_value(u32);
@@ -322,7 +321,7 @@ void TMedicalCenterSequence::exec_heal() {
         ((TObjPlayer *)(*(s32 *)((s8 *)this + 0x24)))->refill_traps();
     }
     ((TObjPlayer *)(*(s32 *)((s8 *)this + 0x24)))->send_field_state();
-    try_spend_actor_meseta((u8 *)(*(s32 *)((s8 *)this + 0x24)), 0xA);
+    try_spend_actor_meseta((TObjPlayer *)(*(s32 *)((s8 *)this + 0x24)), 0xA);
     ((VObj_802165D8_802163AC *)this)->m4(0x22, 1);
     set_field_20((s32)((void*)(0xA)));
 }

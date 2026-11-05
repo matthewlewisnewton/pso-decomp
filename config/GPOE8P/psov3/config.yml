@@ -1383,6 +1383,7 @@ force_active:
   - TObjPlayer__sub_801C6FCC
   - TObjPlayer__sub_801C6FE0
   - TObjPlayer__sub_801C7098
+  - TObjPlayer__sub_801D45B0
   - TObjPlayer__sub_801D8A38
   - TObjPlayer__sub_801D9C34
   - TObjPlayer__sub_8023E034
@@ -1712,6 +1713,7 @@ force_active:
   - __OSDispatchInterrupt
   - __VIInit
   - __aborting
+  - __as__12Ent_801D4744FR12Ent_801D4744
   - __as__13GameListEntryFRC13GameListEntry
   - __as__14LobbyListEntryFRC14LobbyListEntry
   - __as__14QuestListEntryFRC14QuestListEntry
@@ -1728,6 +1730,7 @@ force_active:
   - __ct__11TOBiwaMushiFPv
   - __ct__11TOKeyCave01FP7TObjectPv
   - __ct__11TPlayerSoulFP7TObjectUs
+  - __ct__12Ent_801D4744Fv
   - __ct__12TBGLightningFv
   - __ct__12TBoss3VoloptFPv
   - __ct__12TChCrEffWallFP7TObject
@@ -1752,6 +1755,7 @@ force_active:
   - __ct__12TOSignCave03FP7TObjectPv
   - __ct__12TOSwitchItemFP7TObjectPv
   - __ct__12TObjEneSharkFP7TObjectPv
+  - __ct__13List_801D4744Fl
   - __ct__13PointerBufferFlPv
   - __ct__13TItemAttackerFllll
   - __ct__13TItemEffFlameFP7TObjectP12ActorBodyHit
@@ -2050,6 +2054,7 @@ force_active:
   - __dt__12TObjRaderColFv
   - __dt__12TObjRainCtrlFv
   - __dt__12TQuestThreadFv
+  - __dt__13List_801D4744Fv
   - __dt__13PointerBufferFv
   - __dt__13TAdGuideTxtGCFv
   - __dt__13TAdMcSelectGCFv
@@ -4980,7 +4985,7 @@ force_active:
   - destroy_parts__13TBoss5GryphonFv
   - destroy_static_array__10TObjPlayerFv
   - destroy_sub_objects__15TBoss3VoloptP02Fv
-  - destroy_subobjects_recursive__10TObjPlayerFv
+  - destroy_subobjects_recursive__9TItemListFv
   - detect_device_type__16TKeyBoardControlFl
   - dimedian_action_table
   - dimedian_appear_motion_filename
@@ -13344,7 +13349,7 @@ force_active:
   - remove_duplicate_bindings__21TWindowSubCustomEquipFPv
   - remove_entry_at__6TLobbyFi
   - remove_equip_effects__14TItemEquipBaseFv
-  - remove_equipped_item__10TObjPlayerFPvii
+  - remove_equipped_item__8TPlyItemFP10TObjPlayerP9TItemList
   - remove_owner_bonuses__12TItemProUnitFv
   - remove_player__6TLobbyFUiii
   - remove_selected_slot__22TAdMultiPlyChrSelectGCFl
@@ -14906,6 +14911,7 @@ force_active:
   - solo_play_result_window_extent
   - some_stub__9TProtocolFv
   - sorcerers_cane_ct__FPUcPUcl
+  - sort_by_key__13List_801D4744Fv
   - sound_bank_file_crc16
   - sound_bank_filename_a_enemy_pool
   - sound_bank_filename_a_enemy_proj

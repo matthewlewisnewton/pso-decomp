@@ -5,6 +5,8 @@
 #include "pso/TObject.h"
 #include "pso/item/TItemData.h"
 
+struct TItemList;
+
 struct TLobbyFloorItemEntry {
     u8 n;
     u8 m_1;
@@ -272,10 +274,6 @@ struct TLobby : public TObject {
     void bswap_set_battle_mode_data();
     void send_6x7D_set_battle_mode_data();
     static s32 free_if_positive(s32 arg0, s16 arg1);
-    void reduce_item_amount(s32 arg1, s32 arg2, s32 arg3);
-    s32 use_item(s32 arg1, s32 arg2, s32 arg3);
-    void set_globals_and_update(int a1, int a2);
-    int set_globals_and_notify(int a1, int a2);
     void update_all_children();
     void set_volume(u8 arg1);
     void set_validated_field_0x11(u8 arg1);
@@ -767,8 +765,6 @@ struct TLobby : public TObject {
     static s32 tmp_buf_use_req(const char *name);
     void handle_quest_download_chunk();
     static u16 alloc_actor_ids(s32 arg);
-    void reduce_owner_matched_items();
-    void reduce_child_item_amounts();
     static s32 cancel_pending_alarms();
     static void get_time_seconds(s32 *out);
     static void get_time_ms(s32 *out);

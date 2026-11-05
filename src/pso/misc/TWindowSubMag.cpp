@@ -10,6 +10,7 @@
 #include "pso/misc/TUnk_804D0618.h"
 #include "pso/misc/TWindowSubMagPhoton.h"
 #include "pso/misc/TWindowSubMag.h"
+#include "pso/player/TObjPlayer.h"
 #include "pso/item/TItemData.h"
 #include "pso/item/TItemMag.h"
 #include "pso/misc/TLobby.h"
@@ -107,7 +108,6 @@ s32 are_status_entries_ready__13TWindowSubMagFi(void *);
 s32 fn_8025373C(u8 *self);
 void *TWindowSubMagPhoton__ct(void *, const void *, s32, s32);
 int TWindowSubMag__sub_8027C0E8(void* p);
-u32 is_action_active__10TObjPlayerFv(void *);
 extern u8 lbl_8044F9E8[];
 extern Pad_8027B888 controller_input_state[];
 void *TWindowSubMag__ct(TWindowSubMag *arg0, s32 arg1, s32 arg2);
@@ -491,7 +491,7 @@ void TWindowSubMag::run_task(void *arg0) {
         }
         break;
     case 16:
-        if (is_action_active__10TObjPlayerFv(player) == 0) {
+        if ((u32)((TObjPlayer *)player)->is_action_active() == 0U) {
             self->state = 1;
         }
         break;

@@ -13,6 +13,7 @@
 #include "pso/item/TItem.h"
 #include "pso/misc/TShopArmorListWindow.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/TPlyItem.h"
 #include "pso/TShopWindowBase.h"
 #include "pso/misc/TShopKeepItemWindow.h"
 #include "pso/misc/TUnk_804CDFE8.h"
@@ -91,7 +92,7 @@ struct Ent_80221F08 {
 
 struct Self_80221F08 {
     char pad0[0x24];
-    u8 *f24;
+    TObjPlayer *f24;
     Ent_80221F08 ents[30];
     char pad370[0x4];
     s32 f374;
@@ -333,7 +334,7 @@ s32 TShopKeepItemWindow::rebuild_item_list() {
     s32 i;
     s32 cur;
     self->f378 = 1;
-    count = ((TObjPlayer *)(*(s32 *)((s8 *)self->f24 + 0xD00)))->count_matching_items((int)buf);
+    count = self->f24->inventory_objects->count_matching_items(buf);
     self->f374 = 0;
     for (i = 0; i < count; i++) {
         if (buf[i] != 0 && ((TItem *)(buf[i]))->copy_to_item_data((TItemData *)self->ents[self->f374].item) != 0) {

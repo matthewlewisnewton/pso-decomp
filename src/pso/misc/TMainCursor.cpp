@@ -695,7 +695,6 @@ loop_1:
 }
 
 s32 check_flag_100__10TObjPlayerFPv(void *player);
-s32 is_key_machine_ready__10TObjPlayerFv();
 s32 TMainCursor__sub_8013E2A0(void *list);
 s16 TMainCursor__sub_8013E298(void *entry);
 s16 TMainCursor__sub_8013E920(void *entry);
@@ -734,7 +733,7 @@ s32 TMainCursor::bind_action_channels() {
         type = self->channel.get_type();
         enabled = self->channel.get_enabled();
         if (is_current_area_item_enabled() == 0) {
-            if (is_key_machine_ready__10TObjPlayerFv() == 0) {
+            if (TObjPlayer::is_key_machine_ready() == 0) {
                 return;
             }
             if (type != 4) {
