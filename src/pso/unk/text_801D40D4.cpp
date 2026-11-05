@@ -54,7 +54,7 @@ void fn_801C1BA8(void *, void *);
 s32 is_both_confirmed__23TAdSinglePlyChrSelectGCFv(void *);
 
 // Byte 0 of the item data is the item type.
-s32 fn_801D40D4(s32 arg0, TPlyInventoryItem *arg1, u8 *arg2) {
+s32 fn_801D40D4(s32 arg0, TPlyInventoryItem *arg1, TPlyInventoryItem *arg2) {
     s32 i;
     for (i = 0; i < arg0; i++) {
         if (arg1->m_flags & 8) {
@@ -62,7 +62,7 @@ s32 fn_801D40D4(s32 arg0, TPlyInventoryItem *arg1, u8 *arg2) {
                 fn_801C1BA8(arg2, arg1);
             }
             if (arg1->m_data.data1.data_u8[0] == 2) {
-                fn_801C1BA8(arg2 + 0x1C, arg1);
+                fn_801C1BA8(arg2 + 1, arg1);
             }
         }
         arg1++;
