@@ -3,10 +3,11 @@
 Base: fork `main` `f6dedd375`, merged into PR
 [#214](https://github.com/matthewlewisnewton/pso-decomp/pull/214). Unit
 `pso/ui/TAdMultiPlyChrSelectGC_802C50EC.cpp`, functions
-`TAdMultiPlyChrSelectGC__sub_802C5688` (`0x802C5688`, 700 bytes) and
-`TAdMultiPlyChrSelectGC__sub_802C6660` (`0x802C6660`, 488 bytes). Unit flags
-are `GC/2.6`, `-O4,s`, `-inline off`, `-fp_contract on` (section 5 of the
-porting-exceptions register). Allocation was read with the MWCC debugger
+`TAdMultiPlyChrSelectGC__sub_802C5688` (`0x802C5688`, 700 bytes),
+`TAdMultiPlyChrSelectGC__sub_802C5F1C` (`0x802C5F1C`, 236 bytes), and
+`TAdMultiPlyChrSelectGC__sub_802C6660` (`0x802C6660`, 488 bytes). All three
+match. Unit flags are `GC/2.6`, `-O4,s`, `-inline on`, `-fp_contract on`
+(section 5 of the porting-exceptions register). Allocation was read with the MWCC debugger
 (retrowin32 + `mwcc_debugger.py`, GC/2.6) and the
 [mweppc](https://github.com/doldecomp/mweppc) decompilation.
 
@@ -52,22 +53,29 @@ bytes as before, and no call site casts between the two classes.
 - The pool entry is the four bytes at `0x805DE584` (`3b800000`, 1/256). The
   unit's `.sdata2` split owns them, and objdiff maps
   `TAdMultiPlyChrSelectGC__data_805DE584` to the compiler pool `@168`.
-  `802C5688` is then 100% (700/700). `802C6660` moves from 95.29% to 96.07%:
-  the scale load and the bias register match, and the cell store below does
-  not.
+  `802C5688` is then 100% (700/700). `802C6660` moves from 95.29% to 96.07%
+  until the cell store below is written through the shared helper.
 - A float local for each product also puts the product on the left, and the
   review rejected those single-use locals. They are not in the source.
 
-## Remaining gap 2: the occupied-cell store (`6660`)
+## Occupied-cell store (`6660` closed)
 
-- Frontend linearisation distributes `grid[row + 1][col + 1]` into
-  `row * 20 + col * 4 + 0x18`. The code is `stw r5, 0x18(r3)`.
-- The original adds 1 to each coordinate (`addi r0, r5, 1`; `addi r0, r3, 1`),
-  then scales and adds them, and stores with `stwx`. That happens when the
-  incremented coordinates are held in variables before indexing.
+- `grid[row + 1][col + 1] = -1` linearises to `row * 20 + col * 4 + 0x18`
+  and stores with `stw r5, 0x18(r3)`. The original adds 1 first
+  (`addi r0, r5, 1`; `addi r0, r3, 1`), then scales, and stores with `stwx`.
+- `row` and `col` in `802C6660` are the 0-based quad indices (`quad[row][col]`).
+  The grid has a one-cell border, so the occupied cell is one past each.
+  `802C5688` already holds those grid coordinates (`sel + 1`, `f4EC + 1`) and
+  uses them for the read and the write.
+- Both stores go through `static inline void mark_grid_cell_occupied(s32 row, s32 col)`,
+  which is `grid[row][col] = -1`. `-inline on` (the same flag that inlines the
+  slot clamp) evaluates `802C6660`'s `row + 1, col + 1` arguments before the
+  store, which is the `addi` / `mulli 0x14` / `stwx`. `802C5688` passes the
+  coordinates it already has and stays 700/700. There is no out-of-line copy.
 - `row++; col++;` on the `split_slot_index` outputs is not an alternative.
   Both are address-taken, so the increments are stored back to the stack
-  (94.92%).
+  (94.92%). A `row_i`/`col_i` local used only for that store matches and was
+  rejected as steering; it is not in the source.
 
 ## Measured shapes
 
@@ -77,7 +85,8 @@ single-use locals, so none of the local-variable shapes below is kept.
 
 | `5688` | `6660` | Shape |
 |---|---|---|
-| 100% | 96.07% | `/ 256.0f`, pool at `0x805DE584` (source) |
+| 100% | 100% | `/ 256.0f` plus `mark_grid_cell_occupied` (source) |
+| 100% | 96.07% | `/ 256.0f`, direct `grid[row + 1][col + 1] = -1` |
 | 99.63% | 95.29% | plain `* data_805DE584` |
 | 100% | — | `5688`: float local per product (`player0`/`v0`/`player1`/`v1`) |
 | — | 96.07% | `6660`: float local per product only |

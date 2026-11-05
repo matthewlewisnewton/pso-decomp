@@ -61,7 +61,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1043,
 | `src/pso/misc/TLobby_80145E40.cpp:28` | `__cntlzw` |
 | `src/pso/misc/TLobby_803C4698.cpp:234` | `__frsqrte` |
 | `src/pso/misc/TMainCursor.cpp:845` | `__cntlzw` |
-| `src/pso/misc/TNpcPlayer.cpp:2382` | `__cntlzw` |
+| `src/pso/misc/TNpcPlayer.cpp:2371` | `__cntlzw` |
 | `src/pso/misc/TOHealGeneral.cpp:64` | `__cntlzw` |
 | `src/pso/misc/TOSymbolchatColli.cpp:93` | `__cntlzw` |
 | `src/pso/misc/TQuestVmDownLoadServer.cpp:544` | `__cntlzw` |
@@ -79,7 +79,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1043,
 | `src/pso/misc/TWindowSnapShot_802A5B2C.cpp:44` | `__rlwinm` |
 | `src/pso/misc/TWindowSubComCard_80244774.cpp:229` | `__cntlzw` |
 | `src/pso/misc/TWindowSubItem.cpp:361` | `__cntlzw` |
-| `src/pso/misc/TWindowSubStatusDisp_8025A9B4.cpp:95` | `__cntlzw` |
+| `src/pso/misc/TWindowSubStatusDisp_8025A9B4.cpp:96` | `__cntlzw` |
 | `src/pso/misc/TWindowSubStatusDisp_80287570.cpp:209` | `__cntlzw` |
 | `src/pso/object/TObjCMMainMenu_8028D9A8.cpp:108` | `__cntlzw` |
 | `src/pso/object/TObjQuestCol.cpp:12` | `__cntlzw` |
@@ -213,7 +213,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1043,
 | `pso/enemy/TObjEneDelDepth.cpp` | `-inline off,deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/object/TObjChip.cpp` | `-inline off,deferred` | TObjChip: render's colour template sits after draw_chips' in .rodata while render comes first in .text, so the source runs backwards. |
 | `pso/object/TObjTombstone.cpp` | `-inline off,deferred, -fp_contract on, -str reuse,readonly` | One unit, written last-defined first: the vtable and the late helpers precede the early ones in .text. -fp_contract on: draw_name_labels' half-width nudge and the drop placement fuse multiply-adds. -str reuse,readonly: the literals live in this unit's .rodata. |
-| `pso/ui/TAdMultiPlyChrSelectGC_802C50EC.cpp` | `(multi-line entry; see configure.py)` | TAdMultiPlyChrSelectGC_802C50EC: -fp_contract on because the original contracts all four multiply-adds (fmadds at 802C5148, 802C5274, 802C58AC and 802C676C). The UV scale is `x / 256.0f`; MWCC folds that into a multiply by the pooled reciprocal at 0x805DE584, which this object emits as @168. |
+| `pso/ui/TAdMultiPlyChrSelectGC_802C50EC.cpp` | `(multi-line entry; see configure.py)` | TAdMultiPlyChrSelectGC_802C50EC: -fp_contract on because the original contracts all four multiply-adds (fmadds at 802C5148, 802C5274, 802C58AC and 802C676C). The UV scale is `x / 256.0f`; MWCC folds that into a multiply by the pooled reciprocal at 0x805DE584, which this object emits as @168. -inline on inlines only clamped_slot_802C5F1C (the original has no out-of-line copy). -inline auto also inlines other small functions; -inline deferred emits the unit backwards. |
 | `pso/item/TItemSpecialEvent_803531FC.cpp` | `(multi-line entry; see configure.py)` | GC/2.0: compiler-expanded struct copies take 2.0's registers. The ending item handler table keeps 2.0's store/load scheduling for its zero-initialized local member-function-pointer array. |
 | `pso/effect/TEffIndirectCtrl.cpp` | `GC/2.0, -inline off,deferred, -opt noprop, -fp_contract on, -str reuse,readonly` | GC/2.0: run_task's 36-byte PMF array initializer interleaves its copy tail with actor_frame_tick (load, tail load, clrlwi., table load, tail store). GC/2.5, 2.6 and 2.7 pack the tail pair and move the tick relocation from +0xE4 to +0xEC; GC/2.0p1 and GC/1.3.2 drop the wave helpers. -inline off,deferred: the vtables come out in reverse order of their key functions, and .data has TUnk_804DDF04's vtable before this class's while TUnk_804DDF04's destructor comes first in .text. -opt noprop: deform_indirect_texture_scroll keeps its s16 scroll offset as a named local (extsh r28, after the coordinate masks in r30/r29). With copy propagation the frontend replaces it with a hoisted temporary that the allocator colours first (r30). -fp_contract on: both texture-wave helpers fuse the wave offset into an fmadds. -str reuse,readonly: the two file names and the class name are in this unit's .rodata. See docs/porting-exceptions.md section 5. |
 | `pso/misc/TMovie_80143988.cpp` | `-opt nolifetimes,nocse,noprop,noloop` | pack_movie_frame: the original keeps every named local in one register (no lifetime splitting), recomputes its pad and stride shifts instead of sharing them, and leaves invariant hoisting to the backend. See docs/porting-exceptions.md section 5. |

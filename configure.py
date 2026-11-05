@@ -457,9 +457,11 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # contracts all four multiply-adds (fmadds at 802C5148, 802C5274, 802C58AC
     # and 802C676C). The UV scale is `x / 256.0f`; MWCC folds that into a
     # multiply by the pooled reciprocal at 0x805DE584, which this object
-    # emits as @168.
+    # emits as @168. -inline on inlines only clamped_slot_802C5F1C (the
+    # original has no out-of-line copy). -inline auto also inlines other
+    # small functions; -inline deferred emits the unit backwards.
     "pso/ui/TAdMultiPlyChrSelectGC_802C50EC.cpp": {
-        "cflags": _switch(cflags_pso, "-fp_contract on"),
+        "cflags": _switch(cflags_pso, "-fp_contract on", "-inline on"),
         "symbol_mappings": {"TAdMultiPlyChrSelectGC__data_805DE584": "@168"},
     },
     # GC/2.0: compiler-expanded struct copies take 2.0's registers.

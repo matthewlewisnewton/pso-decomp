@@ -112,7 +112,14 @@ extern const f32 lbl_805DE580;
 extern const f32 lbl_80471CE0[2];
 s32 TWindowShortListCtrl__check_controller_button(void *, int);
 
-s32 TAdMultiPlyChrSelectGC__sub_802C5F1C(void *, int);
+void TAdMultiPlyChrSelectGC__sub_802C5F1C(TAdChrSelPlyPlateGC *, int);
+extern const f32 lbl_805DE588;
+extern const f32 lbl_805DE58C;
+extern const f32 lbl_805DE590;
+extern const f32 lbl_805DE594;
+extern const f32 lbl_805DE598;
+extern const f32 lbl_805DE59C;
+extern const f32 lbl_805DE5A0;
 extern u8 controller_physical_port_bank[];
 extern Jump_802C5C84 multi_chr_select_cursor_jump_table[][5];
 void TAdMultiPlyChrSelectGC__sub_802C50EC(s32);
@@ -131,6 +138,12 @@ s32 TAdMultiPlyChrSelectGC__data_804E0A48[4] = {
 s32 TAdMultiPlyChrSelectGC__selected_slot_order[4] = {
     0, 0, 0, 0,
 };
+/* The grid has a one-cell border, so a 0-based quad (row, col) is grid cell
+   (row + 1, col + 1). Both confirm paths mark that cell occupied. */
+static inline void mark_grid_cell_occupied(s32 row, s32 col) {
+    TAdMultiPlyChrSelectGC__data_804E0A68[row][col] = -1;
+}
+
 s32 TAdMultiPlyChrSelectGC__data_804E0A68[6][5] = {
     0, 0, 0, 0, 0,
     0, 0, 0, 0, 0,
@@ -308,7 +321,7 @@ void TAdMultiPlyChrSelectGC__sub_802C5688(TAdChrSelPlyPlateGC *self) {
         return;
     }
     TAdMultiPlyChrSelectGC__data_804E0AE0[TAdMultiPlyChrSelectGC__data_805D67D8] = 1;
-    TAdMultiPlyChrSelectGC__data_804E0A68[row][col] = -1;
+    mark_grid_cell_occupied(row, col);
     TAdMultiPlyChrSelectGC__data_804E0A48[TAdMultiPlyChrSelectGC__data_805D67D8] = self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC] + self->f4EC * 4;
     self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].x = self->quad[self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC]][self->f4EC].x;
     self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].z = self->quad[self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC]][self->f4EC].z;
@@ -491,6 +504,51 @@ void TAdChrSelPlyPlateGC::move_cursor(s32 x_, s32 y_, s32 dx, s32 dy, s32 depth)
     }
 }
 
+/* Active player slot, clamped to 3. Inlined; the original has no separate function. */
+static inline s32 clamped_slot_802C5F1C() {
+    s32 idx = 3;
+    s32 cnt = TAdMultiPlyChrSelectGC__data_805D67D8;
+    if (cnt < 4) {
+        idx = cnt;
+    }
+    return idx;
+}
+
+void TAdMultiPlyChrSelectGC__sub_802C5F1C(TAdChrSelPlyPlateGC *self, int) {
+    u32 i;
+    u32 j;
+    s32 idx;
+    f32 a;
+
+    /* Per-player 4x3 grid of selection quads. Cell texture coords scale the shared
+       (u,v) page by the active slot, clamped to 3. Dividing by 256 folds to the
+       reciprocal multiply with the dividend on the left; the pooled value is the
+       1/256 at 805DE584. The int is the old f1C the callers pass; this body does
+       not read it. Nothing writes r3. */
+    for (i = 0; i < 4; i++) {
+        for (j = 0; j < 3; j++) {
+            idx = clamped_slot_802C5F1C();
+            self->quad[i][j].u0 = TAdMultiPlyChrSelectGC__data_805DE56C;
+            a = lbl_805DE588 * (f32)idx;
+            self->quad[i][j].v0 = a / 256.0f;
+            self->quad[i][j].u1 = lbl_805DE58C;
+            self->quad[i][j].v1 = (lbl_805DE588 + a) / 256.0f;
+        }
+    }
+    self->cursor[0][4] = lbl_805DE590;
+    self->cursor[0][5] = lbl_805DE594;
+    self->cursor[0][6] = lbl_805DE598;
+    self->cursor[0][7] = lbl_805DE59C;
+    self->cursor[1][4] = TAdMultiPlyChrSelectGC__data_805DE56C;
+    self->cursor[1][5] = lbl_805DE594;
+    self->cursor[1][6] = lbl_805DE590;
+    self->cursor[1][7] = lbl_805DE59C;
+    self->cursor[2][4] = lbl_805DE598;
+    self->cursor[2][5] = lbl_805DE594;
+    self->cursor[2][6] = lbl_805DE5A0;
+    self->cursor[2][7] = lbl_805DE59C;
+}
+
 void TAdChrSelPlyPlateGC::update_option_cursor() {
     TAdMultiPlyChrSelectGC__sub_802C5F1C(this, this->f1C++);
     if (this->f4DC[this->f4EC] != 0 && this->f4F8 == 0) {
@@ -638,7 +696,7 @@ void TAdMultiPlyChrSelectGC__sub_802C6660(TAdChrSelPlyPlateGC *self) {
             self->quad[i + 4][0].v0 = (f32)(s32)i * lbl_80471CE0[1] / 256.0f;
             self->quad[i + 4][0].u1 = lbl_80471CE0[0] / 256.0f;
             self->quad[i + 4][0].v1 = ((f32)(s32)i * lbl_80471CE0[1] + lbl_80471CE0[1]) / 256.0f;
-            TAdMultiPlyChrSelectGC__data_804E0A68[row + 1][col + 1] = -1;
+            mark_grid_cell_occupied(row + 1, col + 1);
         }
     }
     TAdMultiPlyChrSelectGC__data_805D67D8 = self->find_active_slot();
