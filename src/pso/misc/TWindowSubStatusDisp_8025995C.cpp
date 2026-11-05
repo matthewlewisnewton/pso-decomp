@@ -23,7 +23,6 @@ s32 map_char_to_font_code(s32);
 u8 get_small_font_glyph_width();
 s32 TWindowSubStatusDisp__sub_800FC248(s32);
 s32 build_small_font_glyph_quad(s32, Pos_80259A84 *);
-s32 render_forward__20TWindowSubStatusDispFPv();
 s32 set_glyph_quad_extents(s32, Pos_80259A84 *);
 s32 calc_gauge_scale__20TWindowSubStatusDispFPvPvi(s32, Pos_80259A84 *, s32);
 s32 end_render_forward__20TWindowSubStatusDispFPv();
@@ -98,7 +97,7 @@ void render_numeric_digit_entries(u8 *arg0, TWindowDrawContext *window_key_board
       break;
     case 1:
       begin_screen_draw(1);
-      render_forward__20TWindowSubStatusDispFPv();
+      TWindowSubStatusDisp::render_forward();
       set_draw_texture_and_color(0, *((s32 *) (((s8 *) arg0) + 0x1C)));
       break;
   }
