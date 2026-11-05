@@ -7,10 +7,10 @@
 #include "pso/TObject.h"
 #include "pso/misc/TQuestVmDownLoadServer.h"
 #include "pso/misc/TScene.h"
-#include "pso/misc/TGStream.h"
 
 extern "C" {
 
+int read_whole_file__8TGStreamFlPUc(void);
 void TLobby__sub_800F8AD0(void);
 void TLobby__sub_800F8F34(void);
 void TLobby__sub_803382E4(void);
@@ -36,12 +36,8 @@ s32 TLobby::get_file_size(const char *name) {
     return temp_r31;
 }
 
-extern const char *disc_read_filename;
-
-s32 read_disc_file(const char *filename, void *buffer) {
-    disc_read_filename = filename;
-    return TGStream::read_whole_file((s32)filename, (u8 *)buffer);
-}
+    extern int disc_read_filename;
+void read_disc_file(int a0) { disc_read_filename = a0; read_whole_file__8TGStreamFlPUc(); }
 
 extern s32 tl_su;
 extern s32 tl_camera;

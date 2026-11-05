@@ -1,6 +1,5 @@
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
-#include "pso/misc/TWindowKeyBoardSoft.h"
 #include "pso/misc/TWindowKeyBoardSoft_8024E68C.h"
 #include "pso/misc/TWindowKeyBoardSoft.h"
 #include "pso/misc/TWindowSubStatusDisp_8025B050.h"
@@ -19,6 +18,8 @@ struct Win_8025B0D0 {
     f32 f1C; f32 f20; f32 f24; f32 f28;
     s32 i2C; s32 *p30; s32 i34;
 };
+
+struct Quad_8025B0D0 { f32 v[8]; };
 
 extern "C" {
 void apply_context_transform_to_rect(TWindowDrawContext *, f32 *);
@@ -67,7 +68,7 @@ void set_sprite_dimensions(void* p, f32 a, f32 b) { *(f32*)((char*)p + 0x10) = a
 #pragma fp_contract on
 
 void draw_window_uv_sprite_part(Win_8025B0D0 *arg0, TWindowDrawContext *arg1) {
-    Box_8024E8E8 q;
+    Quad_8025B0D0 q;
     f32 x;
     f32 y;
     f32 scale;
@@ -104,19 +105,19 @@ void draw_window_uv_sprite_part(Win_8025B0D0 *arg0, TWindowDrawContext *arg1) {
     w = arg0->f10;
     lo = (0.5f) - len;
     hi = (0.5f) + len;
-    q.x0 = w * lo + x;
-    q.y0 = arg0->f14 * lo + y;
-    q.x1 = w * hi + x;
-    q.y1 = arg0->f14 * hi + y;
-    q.u0 = arg0->f1C;
-    q.v0 = arg0->f20;
-    q.u1 = arg0->f24;
-    q.v1 = arg0->f28;
+    q.v[0] = w * lo + x;
+    q.v[1] = arg0->f14 * lo + y;
+    q.v[2] = w * hi + x;
+    q.v[3] = arg0->f14 * hi + y;
+    q.v[4] = arg0->f1C;
+    q.v[5] = arg0->f20;
+    q.v[6] = arg0->f24;
+    q.v[7] = arg0->f28;
     if (arg0->flags & 0x10) {
-        apply_context_transform_to_rect(arg1, &q.x0);
-        draw_textured_quad_at_depth(&q.x0, scale);
-    } else if (TWindowKeyBoardSoft::try_open(arg1, &q) != 0) {
-        draw_textured_quad_at_depth(&q.x0, scale);
+        apply_context_transform_to_rect(arg1, q.v);
+        draw_textured_quad_at_depth((f32 *)&q, scale);
+    } else if (TWindowKeyBoardSoft::try_open(arg1, q.v) != 0) {
+        draw_textured_quad_at_depth((f32 *)&q, scale);
     }
     TWindowSubStatusDisp::get_player();
     set_default_alpha_blend();

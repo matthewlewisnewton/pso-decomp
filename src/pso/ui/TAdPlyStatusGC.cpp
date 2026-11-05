@@ -2,7 +2,6 @@
 #include "types.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/TMainTask.h"
-#include "pso/misc/TWindowDrawContext.h"
 #include "pso/misc/TWindowSubStatusDisp_8024FBA8.h"
 #include "pso/misc/TWindowSubStatusDisp_803DEE6C.h"
 #include "pso/system/ModelDrawContext.h"
@@ -87,7 +86,7 @@ void update_shown__14TAdPlyStatusGCFv(struct RecoveredFields_8033F9DC_arg0 *arg0
 void set_load_state__14TAdPlyStatusGCFPvi(u8 *arg0, s32 arg1);
 void set_depth__11TWindowBaseFf(f32);
 s32 create_callback__22TAdEnterSerialAccessGCFPvPvPv(void *, void *, void *);
-void draw_status_window__14TAdPlyStatusGCFPvPv(void *arg0, TWindowDrawContext *arg1);
+void draw_status_window__14TAdPlyStatusGCFPvPv(void *arg0, void *arg1);
 extern u8 lbl_804783D8[];
 extern const f32 lbl_805DFAEC;
 s32 TAdPlyStatusGC__sub_8033F8B0(void *arg0, void *arg1);
@@ -157,7 +156,7 @@ Status_8033F3D8 **get_status_sub__14TAdPlyStatusGCFv(s32);
 extern const f32 lbl_805DFAE0;
 extern const f32 lbl_805DFAE4;
 extern Vec2_8033F3D8 ply_status_window_offset_table[];
-void draw_status_window__14TAdPlyStatusGCFPvPv(void *arg0, TWindowDrawContext *arg1) {
+void draw_status_window__14TAdPlyStatusGCFPvPv(void *arg0, void *arg1) {
     Item_8033F3D8 items[3];
     Box_8033F3D8 box;
     Vec2_8033F3D8 pts[3];
@@ -179,7 +178,7 @@ void draw_status_window__14TAdPlyStatusGCFPvPv(void *arg0, TWindowDrawContext *a
         TWindowSubStatusDisp::get_player();
     }
     format_status_strings__14TAdPlyStatusGCFPv((char *)items);
-    set_text_draw_params(arg1, 1, 1, (f32)lbl_805DFAE0, (f32)lbl_805DFAE4);
+    set_text_draw_params((s32)arg1, 1, 1, (f32)lbl_805DFAE0, (f32)lbl_805DFAE4);
     for (i = 0; i < 3; i++) {
         pts[i].x = ply_status_window_points_first[i].x + OFF_8033F3D8.x;
         pts[i].y = ply_status_window_points_first[i].y + OFF_8033F3D8.y;

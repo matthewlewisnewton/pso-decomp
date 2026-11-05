@@ -35,14 +35,14 @@ u32 *destroy__19TWindowKeyBoardBaseFPvs(u32 *arg0, s16 arg1);
 int initialize_subwindow__9TWindowDDFv(void*);
 
 void TWindowKeyBoardBase::render() {
-    TWindowKeyBoardSoft *temp_r31;
+    s32 temp_r31;
 
     if ((sub_8025EB68__19TWindowKeyBoardBaseFv() == 0) && ((sub_8025CB10__19TWindowKeyBoardBaseFv(this) != 0) || (this->m_62 & 2))) {
         temp_r31 = TWindowDD::draw_default_entry((s32)this);
         if (this->m_62 & 2) {
-            draw_window_frame(temp_r31);
+            draw_window_frame((void *)temp_r31);
         }
-        sub_8025E6DC(temp_r31);
+        sub_8025E6DC((u8 *)temp_r31);
     }
 }
 

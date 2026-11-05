@@ -632,6 +632,7 @@ s32 OSDisableInterrupts(void);
 s32 OSRestoreInterrupts(s32);
 void TLobby__sub_803F97E8(int);
 s32 TLobby__sub_803FC684(u8 *, u8 *, u8 *);
+extern u8 lbl_805C0038[];
 extern s16 lbl_805D7A7C;
 s32 TLobby__sub_8040B838(u8 *dst, u8 *src, s16 len);
 s16 TLobby__sub_8040DC8C(u8 *arg0, u8 *arg1);
@@ -1058,8 +1059,6 @@ typedef struct Lobby_804062A0 {
     u8 sub[0x140];
 } Lobby_804062A0;
 
-extern Lobby_804062A0 lbl_805C0038;
-
 struct RecoveredFields_80401B8C_arg0;
 struct Self_8040098C;
 #pragma dont_inline off
@@ -1115,7 +1114,7 @@ void ppp_input_packet__6TLobbyFPv(Strm_80405A74 *arg0) {
     if (arg0 == NULL) {
         return;
     }
-    G = (u8 *)&lbl_805C0038;
+    G = lbl_805C0038;
     if (lbl_805D7A7A == 0 && arg0->p[0] == 0xFF && arg0->p[1] == 3 &&
         TLobby__sub_80401BCC(&arg0, &lobby_ppp_read_buf, 2) == 2) {
         read_network_u16_be(&lobby_ppp_read_buf);
@@ -1271,44 +1270,15 @@ s32 TLobby__sub_804060B8(u8 *data, s32 len, int type) {
 }
 #pragma pop
 
-void TLobby__sub_8040059C(Lobby_804062A0 *arg0);
-void TLobby__sub_80402CE0(Lobby_804062A0 *arg0);
-void TLobby__sub_803FC318(Lobby_804062A0 *arg0);
-void TLobby__sub_803FEF4C(Lobby_804062A0 *arg0);
-void TLobby__sub_803F9FAC(Lobby_804062A0 *arg0);
-extern s32 lbl_805D7ADC;
-
-inline void open_conn_804062A0(void) {
-    Lobby_804062A0 *l = &lbl_805C0038;
-
-    if (l->state == 0) {
-        l->state = 1;
-    }
-    TLobby__sub_803FD958(l->sub);
-}
-
-s32 TLobby__sub_804061FC(s32 arg0) {
-    Lobby_804062A0 *conn;
-
-    lbl_805D7ADC = 0;
-    conn = &lbl_805C0038;
-    NetMemset(&lbl_805C0038, 0, sizeof(lbl_805C0038));
-    conn->state = 0;
-    TLobby__sub_8040059C(conn);
-    TLobby__sub_80402CE0(conn);
-    TLobby__sub_803FC318(conn);
-    TLobby__sub_803FEF4C(conn);
-    TLobby__sub_803F9FAC(conn);
-    open_conn_804062A0();
-    return 0;
-}
-
 s32 TLobby__sub_804062A0(s16 arg0) {
-    Lobby_804062A0 *l = &lbl_805C0038;
+    Lobby_804062A0 *l = (Lobby_804062A0 *)lbl_805C0038;
 
     switch (arg0) {
     case 0x82:
-        open_conn_804062A0();
+        if (l->state == 0) {
+            l->state = 1;
+        }
+        TLobby__sub_803FD958(l->sub);
         return 0;
     case 0x81:
         TLobby__sub_803FD85C(l->sub);
@@ -10511,18 +10481,17 @@ void NetRunProtocolDispatchLoop(void) {
     s16 i;
 
     for (;;) {
-        NetworkDispatchState *g = &network_dispatch_state;
-        NetReceiveMessage(g->queue_handle, &msg, sizeof(msg));
-        TLobby::lock_mutex(g->lock_handle);
+        NetReceiveMessage(network_dispatch_state.queue_handle, &msg, sizeof(msg));
+        TLobby::lock_mutex(network_dispatch_state.lock_handle);
         for (i = 0; i < 3; i++) {
-            if (g->handlers[i].used != 0 && g->handlers[i].type == msg.protocol) {
-                if (g->handlers[i].fn != NULL) {
-                    g->handlers[i].fn(msg.payload, msg.detail, msg.first, msg.second);
+            if (network_dispatch_state.handlers[i].used != 0 && network_dispatch_state.handlers[i].type == msg.protocol) {
+                if (network_dispatch_state.handlers[i].fn != NULL) {
+                    network_dispatch_state.handlers[i].fn(msg.payload, msg.detail, msg.first, msg.second);
                 }
                 break;
             }
         }
-        TUdpSocket::unlock_mutex(g->lock_handle);
+        TUdpSocket::unlock_mutex(network_dispatch_state.lock_handle);
         TLobby::dispatch_handler_by_id(msg.first, msg.second, msg.payload);
         NetYieldThread();
     }

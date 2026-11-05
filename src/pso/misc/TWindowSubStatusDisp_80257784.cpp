@@ -1,6 +1,5 @@
 #include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
-#include "pso/misc/TWindowKeyBoardSoft.h"
 #include "types.h"
 #include "pso/system/memory.h"
 #include "pso/misc/TCameraCtrl.h"
@@ -601,10 +600,12 @@ typedef struct Row_8025930C {
     char *suffix;
 } Row_8025930C;
 
+struct Quad_8025941C { f32 v[8]; };
+
 extern "C" {
 u32 calc_text_width(char *s);
 void set_text_draw_params(TWindowDrawContext *arg0, s32 arg1, s32 arg2, f32 farg0, f32 farg1);
-void draw_item_list_icon(TWindowDrawContext *, ItemListPosition *, s32, s32, f32);
+void draw_item_list_icon(ItemListWindowView *, ItemListPosition *, s32, s32, f32);
 }
 s32 draw_window_text(f32 *pos, const char *s, s32 color, s32 mode, f32 width);
 extern const f32 lbl_805DCF14;
@@ -612,7 +613,7 @@ extern const f32 lbl_805DCF20;
 extern const f32 lbl_805DCF24;
 extern const f32 lbl_805DCF28;
 extern const f32 lbl_805DCF2C;
-void draw_item_list_row(ItemListRow *row, TWindowDrawContext *win);
+void draw_item_list_row(ItemListRow *row, ItemListWindowView *win);
 extern const f32 lbl_805DCF10;
 extern const f32 lbl_805DCF18;
 extern "C" {
@@ -703,8 +704,8 @@ void set_draw_texture_and_color(s32 idx, s32 arg1);
 
 void draw_textured_quad_at_depth(f32 *q, f32 depth);
 
-void draw_item_list_icon(TWindowDrawContext *win, ItemListPosition *pos, s32 icon, s32 style, f32 depth) {
-    Box_8024E8E8 q;
+void draw_item_list_icon(ItemListWindowView *win, ItemListPosition *pos, s32 icon, s32 style, f32 depth) {
+    Quad_8025941C q;
     f32 *entry;
     f32 scale;
     f32 offset;
@@ -717,18 +718,18 @@ void draw_item_list_icon(TWindowDrawContext *win, ItemListPosition *pos, s32 ico
         entry = (f32 *)TWindowSubStatusDisp::get_entry_ptr(icon);
         offset = lbl_805DCF14;
         scale = lbl_805DCF1C;
-        q.x0 = pos->x;
-        q.y0 = pos->y;
-        q.x1 = offset + pos->x;
-        q.y1 = offset + pos->y;
-        q.u0 = entry[0] * scale;
-        q.v0 = entry[1] * scale;
+        q.v[0] = pos->x;
+        q.v[1] = pos->y;
+        q.v[2] = offset + pos->x;
+        q.v[3] = offset + pos->y;
+        q.v[4] = entry[0] * scale;
+        q.v[5] = entry[1] * scale;
         edge = offset + entry[0];
-        q.u1 = edge * scale;
+        q.v[6] = edge * scale;
         edge = offset + entry[1];
-        q.v1 = edge * scale;
-        if (TWindowKeyBoardSoft::try_open(win, &q) != 0) {
-            draw_textured_quad_at_depth(&q.x0, depth);
+        q.v[7] = edge * scale;
+        if (TWindowKeyBoardSoft::try_open(win, q.v) != 0) {
+            draw_textured_quad_at_depth(q.v, depth);
         }
         TWindowSubStatusDisp::get_player();
     }
@@ -737,8 +738,9 @@ void draw_item_list_icon(TWindowDrawContext *win, ItemListPosition *pos, s32 ico
 
 typedef struct ItemListRow ItemListRow;
 typedef struct ItemListPosition ItemListPosition;
+typedef struct ItemListWindowView ItemListWindowView;
 #pragma fp_contract on
-void draw_item_list_row(ItemListRow *row, TWindowDrawContext *win) {
+void draw_item_list_row(ItemListRow *row, ItemListWindowView *win) {
   ItemListPosition pos;
   ItemListRow *new_var;
   f32 y;

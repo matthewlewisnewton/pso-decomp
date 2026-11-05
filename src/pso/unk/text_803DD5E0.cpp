@@ -1,7 +1,6 @@
 #include "types.h"
 #include "pso/unk/text_803DA798.h"
 #include "pso/unk/text_803DD5E0.h"
-#include "pso/system/GinjaMaterialState.h"
 #include "pso/system/memory.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/misc/TLobby.h"
@@ -12,6 +11,10 @@ struct S_803DDD78 { s8 a, b; };
 struct S_803DDD94 { s8 a, b, c, d; };
 
 struct S_803DA7E0 { s32 a, b, c, d, e; };
+
+struct Ent_803DD6DC { s32 f0; s32 f4; s32 f8; };
+
+struct Obj_803DD6DC { struct Ent_803DD6DC *ents; u32 count; };
 
 typedef struct Info_803DDA68 { u32 f0; s32 f4; s32 f8; s32 fC; s32 f10; s32 f14; } Info_803DDA68;
 
@@ -52,9 +55,10 @@ extern s32 lbl_805D77A0;
 extern "C" {
 void TLobby__sub_803DDD78(S_803DDD78 *d, S_803DDD78 *s);
 void copy_4word_struct__6TLobbyFPvPv(S_803DDD94 *d, S_803DDD94 *s);
-s32 TObjPlayer__sub_803DD6DC(GinjaTextureList *texlist, s32 index);
+void TObjPlayer__sub_803DD6DC(struct Obj_803DD6DC *arg0, s32 arg1);
 extern S_803DA7E0 lbl_8058D470;
-typedef s32 (*Fn_803DD6DC)(GinjaTextureList *, s32);
+s32 load_texture_list(struct Obj_803DD6DC *arg0);
+typedef void (*Fn_803DD6DC)(struct Obj_803DD6DC *, s32);
 extern Fn_803DD6DC lbl_804FC688[];
 s32 TObjPlayer__sub_803D9E38(s32 *arg0, u32 arg1, s32 *arg2, u32 *arg3);
 s32 TObjPlayer__sub_803DAC48(Obj_803DDA68 *, s32, s32, s32, Desc_803DDA68 *, s32 *);
@@ -93,10 +97,10 @@ void TObjPlayer__sub_803DD5E8(GvmTextureList_803DDDC8 *list, GvmTextureEntry_803
     list->textures = entries;
 }
 
-s32 TObjPlayer__sub_803DD6DC(GinjaTextureList *texlist, s32 index) {
+void TObjPlayer__sub_803DD6DC(struct Obj_803DD6DC *arg0, s32 arg1) {
     s32 idx;
 
-    switch (texlist->entries[index].value04 & 0x5C000000) {
+    switch (arg0->ents[arg1].f4 & 0x5C000000) {
     case 0x0:
         idx = 0;
         break;
@@ -113,7 +117,7 @@ s32 TObjPlayer__sub_803DD6DC(GinjaTextureList *texlist, s32 index) {
         idx = 2;
         break;
     }
-    return lbl_804FC688[idx](texlist, index);
+    lbl_804FC688[idx](arg0, arg1);
 }
 
 extern s32 lbl_805D77A4;
@@ -274,14 +278,14 @@ s32 TObjPlayer__sub_803DDB34(Obj_803DDA68 *obj, s32 idx) {
     return 1;
 }
 
-s32 load_texture_list(GinjaTextureList *texlist) {
+s32 load_texture_list(struct Obj_803DD6DC *arg0) {
     u32 i;
-    if (texlist->count == 0) {
+    if (arg0->count == 0) {
         lbl_8058D470.c = 1;
         return -1;
     }
-    for (i = 0; i < texlist->count; i++) {
-        if (TObjPlayer__sub_803DD6DC(texlist, i) < 0) {
+    for (i = 0; i < arg0->count; i++) {
+        if (((s32 (*)(struct Obj_803DD6DC *, s32))TObjPlayer__sub_803DD6DC)(arg0, i) < 0) {
             lbl_8058D470.a = i;
             return -1;
         }

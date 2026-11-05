@@ -271,8 +271,8 @@ extern s32 TWindowSubStatusDisp__class_name;
 extern const f32 lbl_805DD70C;
 SD_80281760 *TWindowSubStatusDisp__ct(SD_80281760 *arg0, s32 arg1);
 void *get_player_by_client_id(s32 i);
-s32 draw_visible_window_entries(void *, void *, TWindowKeyBoardSoft *);
-s32 draw_list_page_indicator(s32, TWindowKeyBoardSoft *);
+s32 draw_visible_window_entries(void *, void *, s32);
+s32 draw_list_page_indicator(s32, s32);
 void __dl__7TObjectFPv(void *);
 void destroy_window_base__9TWindowDDFs(void *, int);
 }
@@ -333,11 +333,11 @@ void TWindowSubStatusDisp::dispatch_page_update() {
 #pragma defer_codegen off
 
 void TWindowSubStatusDisp::render() {
-    TWindowKeyBoardSoft *temp_r3;
+    s32 temp_r3;
 
     if (get_player_by_client_id(this->m_20) != 0U) {
         temp_r3 = this->setup_window_draw_context((s32)(((u8 *)this) + 0x6C));
-        draw_window_frame(temp_r3);
+        draw_window_frame((void *)temp_r3);
         draw_visible_window_entries(this, ((u8 *)this) + 0x24, temp_r3);
         draw_list_page_indicator(this->m_68, temp_r3);
     }
