@@ -214,10 +214,10 @@ void TQuestListOnline::receive_quest_info(void *arg0) {
             p.a = lbl_8044BCB8[0].a;
             p.b = lbl_8044BCB8[0].b;
             TQuestListOnline__quest_info_window = TLobby::create_message_window(get_window_layout_position(0x2E), &p, 1, local_client_id);
-            ((TLobby *)TQuestListOnline__quest_info_window)->set_field_1c(lbl_805DC664);
-            ((TLobby *)TQuestListOnline__quest_info_window)->send_and_handle(TQuestListOnline__selected_quest_info + 4, 0x80);
+            TQuestListOnline__quest_info_window->set_field_1c(lbl_805DC664);
+            TQuestListOnline__quest_info_window->send_and_handle(TQuestListOnline__selected_quest_info + 4, 0x80);
             if (TCameraCtrl::get_camera_id() >= 2) {
-                ((TUnk_804CDFE8 *)TQuestListOnline__quest_info_window)->set_position_xy(lbl_805DC678, lbl_805DC678);
+                TQuestListOnline__quest_info_window->set_position_xy(lbl_805DC678, lbl_805DC678);
             }
         }
     }

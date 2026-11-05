@@ -16,6 +16,7 @@ struct TWindowSubMag;
 #include "pso/player/TObjPlayer.h"
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TWindowMainMenu.h"
+#include "pso/misc/TWindowMessage.h"
 #include "pso/misc/TWindowOptionCtrl_8026CBA4.h"
 
 extern "C" {
@@ -218,10 +219,10 @@ void TWindowMainMenu::update_description_text(s32 arg1) {
         *(s32 *)((s8 *)this + 0x48) = arg1;
         if (m_message_window == NULL) {
             m_message_window = TLobby::create_message_window(get_window_layout_position(0x1B), lbl_8044F2E0, 1, m_client_id);
-            ((TLobby *)(*(u32 *)((s8 *)this + 0x24)))->set_field_1c(lbl_805DD13C);
+            m_message_window->set_field_1c(lbl_805DD13C);
             call_if_split_screen(*(u32 *)((s8 *)this + 0x24), *(s32 *)((s8 *)this + 0x54));
         }
-        ((TLobby *)(*(u32 *)((s8 *)this + 0x24)))->send_and_handle(select_main_menu_item_10(arg1), 0x80);
+        m_message_window->send_and_handle(select_main_menu_item_10(arg1), 0x80);
     }
 }
 

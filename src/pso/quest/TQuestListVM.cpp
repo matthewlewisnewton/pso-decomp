@@ -22,6 +22,7 @@
 #include "pso/misc/TWindowSubItem.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/ui/Language.h"
+#include "pso/misc/TWindowMessage.h"
 #include "pso/misc/TWindowOptionCtrl_8026CBA4.h"
 
 struct VBase18_80218570 { char pad[0x18]; };
@@ -449,10 +450,10 @@ void TQuestListVM::open_confirm_window() {
         QuestListWindowSize sp8 = lbl_8044BF48;
         u16 id = get_entity_id(*(s32 *)&this->m_24);
         this->m_2380 = TLobby::create_message_window(get_window_layout_position(0x2E), &sp8, 1, id);
-        send_and_handle__6TLobbyFii((u32)this->m_2380, (void *)(TQuestListVM__decrypted_quest_buffer + 0xB4), 1);
-        ((TLobby *)(this->m_2380))->set_field_1c(lbl_805DC6B8);
+        this->m_2380->send_and_handle((s32)(TQuestListVM__decrypted_quest_buffer + 0xB4), 1);
+        this->m_2380->set_field_1c(lbl_805DC6B8);
         if (TCameraCtrl::get_camera_id() >= 2) {
-            ((TUnk_804CDFE8 *)(this->m_2380))->set_position_xy(lbl_805DC6BC, lbl_805DC6BC);
+            this->m_2380->set_position_xy(lbl_805DC6BC, lbl_805DC6BC);
         }
     }
     if (this->m_2380 != 0U) {

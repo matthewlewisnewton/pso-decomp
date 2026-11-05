@@ -18,6 +18,7 @@
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TWindowSubComCard.h"
 #include "pso/misc/TWindowSubItem.h"
+#include "pso/misc/TWindowMessage.h"
 #include "pso/misc/TWindowOptionCtrl_8026CBA4.h"
 struct Stack_80217EC4 {
     s32 sp8;
@@ -78,9 +79,9 @@ struct T_80217B30 { u8 pad[0x38]; s32 f38; };
 extern "C" {
 s32 get_entity_id(int);
 int set_field_20__15TShopWindowBaseFl(void*, int);
-s32 send_and_handle__6TLobbyFii(void *, void *, int);
+s32 send_and_handle__6TLobbyFii(int, void *, int);
 s32 calc_list_content_extent(u32);
-void *set_window_mode_4__6TLobbyFPvll(const void *, void *, int);
+u32 set_window_mode_4__6TLobbyFPvll(const void *, void *, int);
 extern Stack_80217EC4 lbl_8044BED4[];
 extern u8 *TQuestListOnline__quest_list_buffer;
 
@@ -139,7 +140,7 @@ void TQuestListOnline::handle_quest_confirm() {
                     this->info_window = NULL;
                 }
                 if (this->description_window != NULL) {
-                    queue_destruction__7TObjectFv(this->description_window);
+                    queue_destruction__7TObjectFv(*(void * *)&this->description_window);
                     this->description_window = NULL;
                 }
                 if (this->list_window != NULL) {
@@ -290,13 +291,13 @@ void TQuestListOnline::show_info_window() {
         stack.spC = *(s32 *)((s8 *)&lbl_8044BEDC.value + 4);
         temp_r31 = get_entity_id(window_owner);
         info_window = TLobby::create_message_window(get_window_layout_position(0x2E), &stack.sp8, 1, temp_r31);
-        ((TLobby *)info_window)->set_field_1c(lbl_805DC6A4);
+        info_window->set_field_1c(lbl_805DC6A4);
         if (TCameraCtrl::get_camera_id() >= 2) {
-            ((TUnk_804CDFE8 *)info_window)->set_position_xy(lbl_805DC6A8, lbl_805DC6A8);
+            info_window->set_position_xy(lbl_805DC6A8, lbl_805DC6A8);
         }
     }
     if ((u32) TQuestListOnline__selected_quest_info != 0U) {
-        send_and_handle__6TLobbyFii(info_window, (void *)(TQuestListOnline__selected_quest_info + 4), 0x80);
+        info_window->send_and_handle(TQuestListOnline__selected_quest_info + 4, 0x80);
     }
     set_field_20__15TShopWindowBaseFl((void*)this, 3);
 }
