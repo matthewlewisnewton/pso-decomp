@@ -1482,40 +1482,19 @@ extern const s32 lbl_80470F70[5];
 extern const Vec lbl_80470F84;
 }
 
-struct Boss6MineSpawn {
-    s16 a0;
-    s16 a2;
-    s16 a4;
-    s16 a6;
-    s16 a8;
-    s16 aa;
-    s16 ac;
-    s16 ae;
-    Vec inner;
-    Vec c1c;
-    u32 c28[5];
-    s16 a3c;
-    s16 a3e;
-    TBoss6Type1 *owner;
-    Vec position;
-    Vec point;
-    s32 delay;
-    s32 rng;
-};
-
 // Places a ring of TBoss6Mine around node 0. The ring count follows the plot phase
 // (18 on phase 0, 36 otherwise); points sit on rings of radius k*95/rings.
 extern "C" void TBoss6Type1__sub_802B6504(TBoss6Type1 *self) {
     s32 seed;
+    s32 step;
     s32 count;
     s32 points;
     s32 rings;
     s32 add;
+    s32 made;
+    Vec *pts;
     s32 half;
     s32 i;
-    s32 made;
-    s32 step;
-    Vec *pts;
     Boss6MineSpawn spawn;
 
     seed = self->m_41c;
@@ -1604,7 +1583,7 @@ extern "C" void TBoss6Type1__sub_802B6504(TBoss6Type1 *self) {
         if (((TBoss6PlotFalz *)self->m_3f8)->get_next_point(&spawn.a0, &spawn.a6) == 0) {
             break;
         }
-        if (TBoss6Mine::create((s32)&spawn) == 0) {
+        if (TBoss6Mine::create(&spawn) == 0) {
             break;
         }
         made += 1;
@@ -1620,12 +1599,12 @@ extern "C" void TBoss6Type1__sub_802B6504(TBoss6Type1 *self) {
 
 // Fires five kakusan shots from nodes {4, 3, 7, 5, 6}, each 46.25 further out.
 extern "C" void TBoss6Type1__sub_802B6944(TBoss6Type1 *self) {
-    s16 slot;
+    u16 slot;
     s32 i;
-    f32 lift;
     f32 radius;
-    slot = (u8)self->m_41c & 3;
-    lift = 5.0f * (f32)slot;
+    f32 lift;
+    slot = self->m_41c & 3;
+    lift = 5.0f * (self->m_41c & 3);
     radius = lbl_805DE37C;
     for (i = 0; i < 5; i++) {
         Boss6NodePos node = self->node_positions_578[lbl_80470F70[i]];
@@ -1638,17 +1617,17 @@ extern "C" void TBoss6Type1__sub_802B6944(TBoss6Type1 *self) {
         subtract_vector(&dir, &node.v);
         len = vector_length(&dir);
         if (len <= 1e-05f) {
-            dir.x = 1.0f;
             len = 1.0f;
+            dir.x = 1.0f;
         }
         scale = lbl_805DE380 / len;
         dir.x *= scale;
         dir.y *= scale;
         dir.z *= scale;
         if (is_normal_difficulty() != 0) {
-            TBoss6Type1::create_kakusan((s32)self, (u8 *)&node.v, (u8 *)&dir, (s16)-1, lbl_805DE380);
+            TBoss6Type1::create_kakusan(self, &node.v, &dir, 0xFFFF, lbl_805DE380);
         } else {
-            TBoss6Type1::create_kakusan((s32)self, (u8 *)&node.v, (u8 *)&dir, slot, lbl_805DE380);
+            TBoss6Type1::create_kakusan(self, &node.v, &dir, slot, lbl_805DE380);
         }
         slot = (slot + 1) & 3;
         radius += lbl_805DE384;

@@ -76,7 +76,7 @@ extern s32 TBoss6Kakusan__name;
 extern const f32 TBoss6Kakusan__data_805DF518;
 extern const f32 TBoss6Kakusan__data_805DF51C;
 extern const f32 lbl_805DF53C;
-u8 *TBoss6Kakusan__ct(u8 *arg0, s32 arg1, u8 *arg2, u8 *arg3, s16 arg4, f32 farg0);
+u8 *TBoss6Kakusan__ct(u8 *arg0, TObject *arg1, Vec *arg2, Vec *arg3, u16 arg4, f32 farg0);
 extern const f32 lbl_805DF52C;
 extern const f32 lbl_805DF530;
 extern const f32 lbl_805DF534;
@@ -262,7 +262,7 @@ TBoss6Kakusan::~TBoss6Kakusan() {
 
 #pragma push
 #pragma opt_common_subs off
-u8 *TBoss6Kakusan__ct(u8 *boss6_kakusan, s32 arg1, u8 *arg2, u8 *arg3, s16 arg4, f32 farg0) {
+u8 *TBoss6Kakusan__ct(u8 *boss6_kakusan, TObject *arg1, Vec *arg2, Vec *arg3, u16 arg4, f32 farg0) {
     f32 temp_f2;
     u32 temp_r3;
     __ct__7TObjectFP7TObject((void *)boss6_kakusan, (void *)arg1);
@@ -298,13 +298,13 @@ u8 *TBoss6Kakusan__ct(u8 *boss6_kakusan, s32 arg1, u8 *arg2, u8 *arg3, s16 arg4,
 }
 #pragma pop
 
-u8 *TBoss6Type1::create_kakusan(s32 arg0, u8 *arg1, u8 *arg2, s16 arg3, f32 farg0) {
+u8 *TBoss6Type1::create_kakusan(TObject *parent, Vec *pos, Vec *dir, u16 target_client, f32 speed) {
     u8 *boss6_kakusan;
     u8 *var_r0;
     boss6_kakusan = (u8 *)(__nw__7TObjectFUl(0x58));
     var_r0 = boss6_kakusan;
     if (var_r0 != NULL) {
-        var_r0 = (u8 *)(TBoss6Kakusan__ct(boss6_kakusan, arg0, arg1, arg2, arg3, farg0));
+        var_r0 = (u8 *)(TBoss6Kakusan__ct(boss6_kakusan, parent, pos, dir, target_client, speed));
     }
     return var_r0;
 }

@@ -115,7 +115,7 @@ struct TBoss6Type1 : public TObjEnemy {
     u8 scroll_strips_u[0x14]; // scroll_strips_uv(8, 0) every frame
     u8 scroll_strips_v[0x14]; // scroll_strips_uv(0, 0x22) every frame
     TObject *map_csn;
-    static u8 *create_kakusan(s32 arg0, u8 *arg1, u8 *arg2, s16 arg3, f32 farg0);
+    static u8 *create_kakusan(TObject *parent, Vec *pos, Vec *dir, u16 target_client, f32 speed);
     static void *copy_block(void *d, void *s);
     static void fire_at_all_players(void *self, f32 dy);
     static void calc_grid_cell_position(void *o, void *out);

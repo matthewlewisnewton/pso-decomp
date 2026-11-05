@@ -412,7 +412,7 @@ extern s32 tl_04;
 #pragma fp_contract on
 #define VecCopyP ((u8 *(*)(void *, void *))VecCopy__FP3VecPC3Vec)
 #define THIS self
-s32 TBoss6Mine__ct(s32 arg0, s32 parent, s32 arg2) {
+s32 TBoss6Mine__ct(s32 arg0, s32 parent, Boss6MineSpawn *arg2) {
     u8 *self;
     Tmp_80324A00 tmp;
     f32 f;
@@ -471,7 +471,7 @@ s32 TBoss6Mine__ct(s32 arg0, s32 parent, s32 arg2) {
 }
 #pragma pop
 
-u32 TBoss6Mine::create(s32 arg0) {
+u32 TBoss6Mine::create(Boss6MineSpawn *spawn) {
     s32 var_r31;
     s32 var_r4;
 
@@ -481,7 +481,7 @@ u32 TBoss6Mine::create(s32 arg0) {
         if (var_r4 != 0) {
             var_r4 = __ct__11TObjControlFP7TObject(var_r4, tl_04);
         }
-        var_r31 = TBoss6Mine__ct(var_r31, var_r4, arg0);
+        var_r31 = TBoss6Mine__ct(var_r31, var_r4, spawn);
     }
     return var_r31;
 }
