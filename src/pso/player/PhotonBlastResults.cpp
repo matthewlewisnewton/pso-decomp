@@ -222,9 +222,8 @@ void clear_photon_blast_donations(void) {
         photon_blast_donation_flags[i] = 0;
     }
 }
-// u16 view of set_type__10TObjPlayerFs: 0xFFFF is lis/subi, and the section id is mr.
-// TObjPlayer::set_type(s16) emits li r4,-1 and extsh instead.
-#define SET_TYPE ((void (*)(void *, u16))set_type__10TObjPlayerFs)
+// set_type takes s16. 0xFFFF folds to li r4,-1 and the section id is extsh.
+// The original caller zero-extends both (lis/addi, mr). This is the real call.
 void admit_photon_blast_sequence(u8 *players, void *self) {
     Slot_801A8868 a[4];
     Slot_801A8868 b[4];
@@ -249,7 +248,7 @@ void admit_photon_blast_sequence(u8 *players, void *self) {
     ((TObjPlayer *)(&b[3]))->init_arrays();
     Counts_801A8868 counts = photon_blast_result_counts_init;
     for (n = 0; n < 4; n++) {
-        SET_TYPE(&b[n], 0xFFFF);
+        ((TObjPlayer *)&b[n])->set_type((s16)0xFFFF);
         ((TObjPlayer *)(&b[n]))->set_field_2(-1);
     }
     n = 0;
@@ -258,13 +257,13 @@ void admit_photon_blast_sequence(u8 *players, void *self) {
         p = get_player_by_client_id(((TObjPlayer *)players)->get_section_id());
         if (p != NULL && p->get_room() == ((TObjBase *)self)->get_room()
             && TObjPlayer__sub_80313114(players) != -1) {
-            SET_TYPE(&a[n], ((TObjPlayer *)players)->get_section_id());
+            ((TObjPlayer *)&a[n])->set_type(((TObjPlayer *)players)->get_section_id());
             ((TObjPlayer *)(&a[n]))->set_field_2(TObjPlayer__sub_80313114(players));
             n++;
         }
     }
     for (i = n; i < 4; i++) {
-        SET_TYPE(&a[i], 0xFFFF);
+        ((TObjPlayer *)&a[i])->set_type((s16)0xFFFF);
         ((TObjPlayer *)(&a[i]))->set_field_2(-1);
     }
     for (m = 0; m < 4; m++) {
@@ -330,7 +329,6 @@ void admit_photon_blast_sequence(u8 *players, void *self) {
     TObjPlayer__sub_801AA528((s32)&a[1], -1);
     TObjPlayer__sub_801AA528((s32)&a[0], -1);
 }
-#undef SET_TYPE
 // Applies one queued blast. calc_photon_blast_power is a method of this sequence.
 void deliver_photon_blast_results_animated(PhotonBlastSequence_801A9870 *seq) {
     s32 i;
