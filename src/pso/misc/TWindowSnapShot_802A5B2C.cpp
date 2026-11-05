@@ -1,4 +1,3 @@
-#define PSO_WINDOW_BYTE_COUNT
 #include "pso/system/ArrayAllocation.h"
 #include "pso/system/RlcArchive.h"
 #include "types.h"

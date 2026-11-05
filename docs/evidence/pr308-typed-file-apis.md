@@ -76,8 +76,10 @@ all 3,549 linked units exact. The lower unit count versus that older baseline
 comes from main's consolidations; no unit was unlinked for this recovery.
 The DOL SHA-1 check passes. Both targets and the GBA runtime remain linked.
 
-The existing `init_from_id_lists` plain-index fallback remains a lower honest
-match; the earlier reference-counter matching shape is not part of this work.
+`init_from_id_lists` walks each id list with a pointer and a local index.
+That body scores 99.10256% (776 bytes against the original 780). The
+reference-counter shape that closes the remaining register gap is not part
+of this work.
 
 ## Final main refresh
 

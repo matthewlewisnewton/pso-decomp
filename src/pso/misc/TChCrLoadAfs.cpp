@@ -116,7 +116,7 @@ void *__nw__7TObjectFUl(int);
 
 void TChCrLoadAfs::start_download() {
     s32 count;
-    u32 temp_r3_3;
+    void *temp_r3_3;
 
     if (try_begin_load__12TChCrLoadAfsFPv() != 0) {
         AdxfHandle *file = ADXF_OpenAfs(source_20, source_24);
@@ -126,9 +126,9 @@ void TChCrLoadAfs::start_download() {
             return;
         }
         count = ADXF_GetFsizeSct(load_handle);
-        temp_r3_3 = (u32)TQuestVmDownLoadServer::alloc(count << 0xB);
+        temp_r3_3 = TQuestVmDownLoadServer::alloc(count << 0xB);
         buffer_address = temp_r3_3;
-        if (temp_r3_3 == 0U) {
+        if (temp_r3_3 == NULL) {
             load_state = 3;
             return;
         }
@@ -175,10 +175,10 @@ TChCrLoadAfs::~TChCrLoadAfs() {
         ADXF_Close(load_handle);
         load_handle = NULL;
     }
-    u32 buffer = buffer_address;
-    if (buffer != 0) {
-        TAdSinglePlyChrSelectGC::safe_free((int)buffer);
-        buffer_address = 0;
+    void *buffer = buffer_address;
+    if (buffer != NULL) {
+        TAdSinglePlyChrSelectGC::safe_free((u32)buffer);
+        buffer_address = NULL;
     }
     release_load_slot__12TChCrLoadAfsFv(this);
 }
@@ -307,7 +307,7 @@ void TChCrLoadAfsTextureReq::start_read(void *) {
         buf = TQuestVmDownLoadServer::alloc(n << 11);
         arg0->bufs[arg0->f5c] = buf;
         if (buf != NULL) {
-            TLobby::read_checked_align(arg0->f60, n, (s32)arg0->bufs[arg0->f5c]);
+            TLobby::read_checked_align(arg0->f60, n, arg0->bufs[arg0->f5c]);
             arg0->f2c = 2;
         }
     }

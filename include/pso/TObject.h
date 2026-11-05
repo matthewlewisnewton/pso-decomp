@@ -92,12 +92,11 @@ public:
     u16 m_flags;
     u16 m_id;
     TObject *m_prev;
-#ifdef PSO_WINDOW_BYTE_COUNT
-    // This word is the captured byte count in TWindowSnapShot, which reuses the sibling slot.
-    s32 m_buffer_size;
-#else
-    TObject *m_next;
-#endif
+    // Sibling link. TWindowSnapShot keeps its captured byte count in the same word.
+    union {
+        TObject *m_next;
+        s32 m_buffer_size;
+    };
     TObject *m_up;
     TObject *m_down;
 

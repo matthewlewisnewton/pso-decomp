@@ -20,7 +20,7 @@ s32 lbl_805D63C4;
 
 
 extern "C" {
-s32 set_stream_and_load_file__6TLobbyFi(void *);
+s32 set_stream_and_load_file__6TLobbyFPCv(void *);
 s32 sprintf(char *, const char *, ...);
 void load_gvm_texture_archive(s32, s32);
 extern char texture_prs_stream_filename_buffer[];
@@ -51,7 +51,7 @@ s32 TLobby__sub_8023E4B4(s32 arg0, s32 arg1) {
     s32 h;
     s32 buf;
     sprintf(texture_prs_stream_filename_buffer, "%s.prs", arg0);
-    h = set_stream_and_load_file__6TLobbyFi(texture_prs_stream_filename_buffer);
+    h = set_stream_and_load_file__6TLobbyFPCv(texture_prs_stream_filename_buffer);
     if (h == 0) {
         TAdSinglePlyChrSelectGC::safe_free(h);
         return 0;

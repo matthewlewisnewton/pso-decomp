@@ -15,7 +15,7 @@ struct Obj_800F9BAC { u8 pad[0x1C]; u32 base; u8 pad20[4]; u32 root; };
 extern "C" {
 s32 apply_rel_relocations(void *);
 u8 *ct_object__13TUnk_8049C658Fv(u8 *, s32 *);
-s32 set_stream_and_load_file__6TLobbyFi(s32);
+s32 set_stream_and_load_file__6TLobbyFPCv(s32);
 u8 *__nw__7TObjectFUl(s32);
 s32 strncpy(void *, s32, s32);
 s32 memset(void *, s32, s32);
@@ -35,7 +35,7 @@ s32 create_named_object(s32 arg0) {
         memset(var_r30 + 0x28, 0, 0x11);
         strncpy(var_r30 + 0x28, arg0, 0x10);
         *(void **)((s8 *)var_r30 + 0) = (var_r30 + 0x28);
-        *(s32 *)((s8 *)var_r30 + 0x1C) = set_stream_and_load_file__6TLobbyFi(arg0);
+        *(s32 *)((s8 *)var_r30 + 0x1C) = set_stream_and_load_file__6TLobbyFPCv(arg0);
         *(s32 *)((s8 *)var_r30 + 0x20) = temp_r3;
         return apply_rel_relocations(var_r30);
     }

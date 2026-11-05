@@ -21,7 +21,7 @@
 extern "C" {
 TLobby **lobby_checked_read_ptr_table[4] = { 0, 0, 0, 0 };
 s32 lbl_80499A10[4] = { 0, 0, 0, 0 };
-u32 lbl_80499A20[4] = { 0, 0, 0, 0 };
+void *lbl_80499A20[4] = { 0, 0, 0, 0 };
 u32 lbl_80499A30[4] = { 0, 0, 0, 0 };
     extern unsigned char area_transfer_pending_flag;
 extern "C" u8 lbl_8043D7A8[];
@@ -812,16 +812,16 @@ void TLobby::invoke_callback() {
 void TLobby::set_keyboard_mode(int a0) { (*(int *)&main_phase_deferred_callback) = a0; }
 extern TLobby **pending_file_read_handle_ref;
 extern s32 pending_file_read_sector_count;
-extern u32 pending_file_read_destination;
+extern void *pending_file_read_destination;
 extern s32 pending_file_read_flush_requested;
 
 void TLobby::flush_pending() {
-    u32 temp_r5;
+    void *temp_r5;
     s32 count;
     if ((s32) pending_file_read_flush_requested != 0) {
         temp_r5 = pending_file_read_destination;
         pending_file_read_flush_requested = 0;
-        if ((temp_r5 != 0U)) {
+        if (temp_r5 != NULL) {
             count = pending_file_read_sector_count;
             if (count != 0) {
                 TLobby::read_checked_align(*pending_file_read_handle_ref, count, temp_r5);
@@ -859,7 +859,7 @@ void TLobby::clear_player_slot_tables(s32 n) {
     lbl_80499A30[n] = 0;
 }
 
-void TLobby::set_entry_params(s32 arg1, s32 arg2, s32 arg3) {
+void TLobby::set_entry_params(s32 arg1, s32 arg2, void *arg3) {
     lobby_checked_read_ptr_table[arg1] = (TLobby **)this;
     lbl_80499A10[arg1] = arg2;
     lbl_80499A20[arg1] = arg3;

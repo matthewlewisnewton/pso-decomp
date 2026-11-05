@@ -1048,7 +1048,7 @@ void load_data_buffers(void) {
     }
     temp_r31 = TScene::update_lobby_scene(screen_binary_filename);
     if (temp_r31 <= 0x1818C) {
-        temp_r30 = TLobby::set_stream_and_load_file((s32)screen_binary_filename);
+        temp_r30 = TLobby::set_stream_and_load_file(screen_binary_filename);
         if (temp_r30 != 0) {
             if (boss2_tunnel_snapshot_buffer != NULL) {
                 memmove(boss2_tunnel_snapshot_buffer, (void *)temp_r30, temp_r31);

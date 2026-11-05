@@ -56,7 +56,7 @@ s32 TItemTexLoad::load_texture(s32 index) {
                 unload_texture();
                 return 0;
             }
-            TLobby::read_checked_align(m_archive_handle, r, (int)m_archive_buffer);
+            TLobby::read_checked_align(m_archive_handle, r, m_archive_buffer);
         }
         return 1;
     }

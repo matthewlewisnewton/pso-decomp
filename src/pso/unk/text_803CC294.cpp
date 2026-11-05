@@ -34,7 +34,18 @@ struct Ent_803CD5C4 {
 
 struct Strm_803CD5C4 { u8 f0; s8 f1; };
 
-struct LogEnt_803CD16C { s8 type; s8 phase; u16 seq; s32 a; s32 b; s32 c; };
+struct LogEnt_803CD16C {
+    s8 type;
+    s8 phase;
+    u16 seq;
+    union {
+        s32 a;
+        const void *name;
+        void *handle;
+    };
+    s32 b;
+    s32 c;
+};
 
 struct Buf_803CD16C { u8 data[0x10C]; };
 
@@ -245,7 +256,7 @@ s32 ADXF_Stop(AdxfHandle *arg0) {
         e->type = 5;
         e->phase = 0;
         e->seq = seq;
-        e->a = (s32)arg0;
+        e->handle = arg0;
         e->b = -1;
         e->c = -1;
         adxf_log_write_index = i + 1;
@@ -284,7 +295,7 @@ s32 ADXF_Stop(AdxfHandle *arg0) {
         e->type = 5;
         e->phase = 1;
         e->seq = ((LogHdr_803CC980 *)&lbl_8057B7B0)->seq;
-        e->a = (s32)arg0;
+        e->handle = arg0;
         e->b = -1;
         e->c = -1;
         adxf_log_write_index = i + 1;
@@ -293,8 +304,8 @@ s32 ADXF_Stop(AdxfHandle *arg0) {
 }
 #pragma pop
 
-s32 TLobby::read_checked_align(void *file, s32 arg1, s32 arg2) {
-    if (arg2 & 0x1F) {
+s32 TLobby::read_checked_align(void *file, s32 count, void *dest) {
+    if (((u32)dest & 0x1F) != 0) {
         TLobby::notify_error((const char *)(&lbl_8047CA28.value));
         return -3;
     }
@@ -392,7 +403,7 @@ inline s32 close_803CCE9C(Snd_803CC980 *arg0) {
         e->type = 5;
         e->phase = 0;
         e->seq = seq;
-        e->a = (s32)arg0;
+        e->handle = arg0;
         e->b = -1;
         ((LogHdr_803CC980 *)&lbl_8057B7B0)->seq = seq;
         e->c = -1;
@@ -432,7 +443,7 @@ inline s32 close_803CCE9C(Snd_803CC980 *arg0) {
         e->type = 5;
         e->phase = 1;
         e->seq = ((LogHdr_803CC980 *)&lbl_8057B7B0)->seq;
-        e->a = (s32)arg0;
+        e->handle = arg0;
         e->b = -1;
         e->c = -1;
         adxf_log_write_index = i + 1;
@@ -450,7 +461,7 @@ void ADXF_Close(AdxfHandle *file) {
         e->type = 3;
         e->phase = 0;
         e->seq = seq;
-        e->a = (s32)file;
+        e->handle = file;
         e->b = -1;
         e->c = -1;
         adxf_log_write_index = i + 1;
@@ -471,7 +482,7 @@ void ADXF_Close(AdxfHandle *file) {
             e->type = 3;
             e->phase = 1;
             e->seq = ((LogHdr_803CCE9C *)&lbl_8057B7B0)->seq;
-            e->a = (s32)file;
+            e->handle = file;
             e->b = -1;
             e->c = -1;
             adxf_log_write_index = i + 1;
@@ -582,7 +593,7 @@ AdxfHandle *ADXF_Open(const void *name, s32 mode) {
         e->type = 1;
         e->phase = 0;
         e->seq = seq;
-        e->a = (s32)name;
+        e->name = name;
         e->b = mode;
         ((LogHdr_803CD3A8 *)&lbl_8057B7B0)->seq = seq;
         e->c = -1;
@@ -603,7 +614,7 @@ AdxfHandle *ADXF_Open(const void *name, s32 mode) {
         e->type = 1;
         e->phase = 1;
         e->seq = ((LogHdr_803CD3A8 *)&lbl_8057B7B0)->seq;
-        e->a = (s32)name;
+        e->name = name;
         e->b = mode;
         e->c = -1;
         adxf_log_write_index = i + 1;

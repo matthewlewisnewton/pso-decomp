@@ -16,14 +16,14 @@ struct AsyncFileReadRequest {
 };
 
 extern "C" {
-void load_gvm_texture_archive(u32, s32);
+void load_gvm_texture_archive(u8 *, s32);
 }
 extern char fsrv_read_pvm_buffer_tag[];
 extern AsyncFileReadRequest *async_file_read_current_request;
 extern s32 async_file_read_state;
-extern u32 async_file_read_sector_buffer;
+extern u8 *async_file_read_sector_buffer;
 extern AdxfHandle *lobby_download_state_ptr;
-extern u32 async_file_read_texture_buffer;
+extern u8 *async_file_read_texture_buffer;
 void process_async_file_reads(void) {
     switch (async_file_read_state) {
     case 0:
@@ -33,8 +33,8 @@ void process_async_file_reads(void) {
             } else {
                 async_file_read_current_request->flags |= 0x100;
                 if (async_file_read_current_request->flags & 2) {
-                    async_file_read_texture_buffer = (u32)TLobby::tmp_buf_use_req(fsrv_read_pvm_buffer_tag);
-                    if (async_file_read_texture_buffer != 0) {
+                    async_file_read_texture_buffer = TLobby::tmp_buf_use_req(fsrv_read_pvm_buffer_tag);
+                    if (async_file_read_texture_buffer != NULL) {
                         lobby_download_state_ptr = ADXF_Open(async_file_read_current_request->name, 0);
                         TLobby::read_checked_align(lobby_download_state_ptr, async_file_read_current_request->count, async_file_read_texture_buffer);
                         async_file_read_state = 3;
@@ -45,7 +45,7 @@ void process_async_file_reads(void) {
                     AdxfHandle *h = lobby_download_state_ptr = ADXF_Open(async_file_read_current_request->name, 0);
                     if (h != 0) {
                         if (async_file_read_current_request->count > 1) {
-                            TLobby::read_checked_align(h, async_file_read_current_request->count - 1, (u32)async_file_read_current_request->dst);
+                            TLobby::read_checked_align(h, async_file_read_current_request->count - 1, async_file_read_current_request->dst);
                             async_file_read_state = 1;
                         } else {
                             TLobby::read_checked_align(h, 1, async_file_read_sector_buffer);
@@ -85,7 +85,7 @@ void process_async_file_reads(void) {
                 ((TLobby *)dst)->copy_u16_array((u16 *)async_file_read_sector_buffer, (s32)(n / 2));
                 break;
             default:
-                move_data(dst, (const void *)async_file_read_sector_buffer, (u32)n);
+                move_data(dst, async_file_read_sector_buffer, (u32)n);
                 break;
             }
             TLobby::destroy_instance();

@@ -145,8 +145,8 @@ struct TLobby : public TObject {
     static s32 run_disk_error_check();
     u32 write_packet_header(s32 arg1, s32 arg2, u32 arg3);
     s32 alloc_download_quest(s32 arg1, s32 *arg2);
-    static s32 set_stream_and_load_file(int a0);
-    static void set_stream_state(int a0);
+    static s32 set_stream_and_load_file(const void *name);
+    static void set_stream_state(const void *name);
     static void reset_state_flags();
     static void process_deferred_player_setup();
     static s32 get_file_size(const void *name);
@@ -855,7 +855,7 @@ struct TLobby : public TObject {
     static void dec_ref_and_reset_tables();
     static void init_afs_adxf_state();
     static s32 get_afs_file_info(s32 arg0, s32 arg1, char *arg2, s32 *arg3, s32 *arg4, s32 *arg5);
-    static s32 read_checked_align(void *file, s32 arg1, s32 arg2);
+    static s32 read_checked_align(void *file, s32 count, void *dest);
     static void release_used_slots();
     static s32 read_afs_toc(s32 arg0);
     s32 demux_stream_chunks();
@@ -949,7 +949,7 @@ struct TLobby : public TObject {
     static void flush_checked_reads();
     static void reset_read_state();
     static void clear_player_slot_tables(s32 n);
-    void set_entry_params(s32 arg1, s32 arg2, s32 arg3);
+    void set_entry_params(s32 arg1, s32 arg2, void *dest);
     static void set_read_params(int a0, int a1, int a2);
     void draw_fullscreen_texture_quad();
     static void release_menu_font();

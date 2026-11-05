@@ -256,7 +256,7 @@ s32 resolve_sound_effect_bank(Owner_8023FBBC *owner, s32 kind, s32 bank, s32 ind
 struct E_8023FF38 { u8 pad[0x40]; s32 f40; u8 pad2[0x5c]; };
 
 struct Ent_8023FCC0 {
-    u32 h[4];
+    void *h[4];
     s32 k[4];
     s32 pad20;
 };
@@ -294,25 +294,25 @@ s32 TLobby__sub_8023FFB8(Obj_8023FCC0 *self, int id) {
     s32 i;
     s32 ret;
     if (self->ents[id].h[3] != 0) {
-        xfree((void *)self->ents[id].h[3]);
+        xfree(self->ents[id].h[3]);
         self->ents[id].h[3] = 0;
     }
     if (self->ents[id].h[2] != 0) {
-        xfree((void *)self->ents[id].h[2]);
+        xfree(self->ents[id].h[2]);
         self->ents[id].h[2] = 0;
     }
     if (self->ents[id].h[1] != 0) {
-        xfree((void *)self->ents[id].h[1]);
+        xfree(self->ents[id].h[1]);
         self->ents[id].h[1] = 0;
     }
     if (self->ents[id].h[0] != 0) {
-        xfree((void *)self->ents[id].h[0]);
+        xfree(self->ents[id].h[0]);
         self->ents[id].h[0] = 0;
     }
     for (i = 0; i < 4; i++) {
         self->fC24[i] = sound_bank_file_sizes[sound_bank_file_indices[id][i]];
         self->fC24[i] = (self->fC24[i] + 0x7FF) & ~0x7FF;
-        self->ents[id].h[i] = (u32)xmalloc(self->fC24[i]);
+        self->ents[id].h[i] = xmalloc(self->fC24[i]);
         if (self->ents[id].h[i] == 0) {
             ret = 3;
             goto fail;
@@ -325,25 +325,25 @@ s32 TLobby__sub_8023FFB8(Obj_8023FCC0 *self, int id) {
         }
     }
     for (i = 0; i < 4; i++) {
-        TLobby::read_checked_align(self->fC14[i], (s32)(self->fC24[i] / 2048), (s32)self->ents[id].h[i]);
+        TLobby::read_checked_align(self->fC14[i], self->fC24[i] / 2048, self->ents[id].h[i]);
         ((TLobby *)(&self->fC14[i]))->set_entry_params(i, self->fC24[i] / 2048, self->ents[id].h[i]);
     }
     return 0;
 fail:
     if (self->ents[id].h[3] != 0) {
-        xfree((void *)self->ents[id].h[3]);
+        xfree(self->ents[id].h[3]);
         self->ents[id].h[3] = 0;
     }
     if (self->ents[id].h[2] != 0) {
-        xfree((void *)self->ents[id].h[2]);
+        xfree(self->ents[id].h[2]);
         self->ents[id].h[2] = 0;
     }
     if (self->ents[id].h[1] != 0) {
-        xfree((void *)self->ents[id].h[1]);
+        xfree(self->ents[id].h[1]);
         self->ents[id].h[1] = 0;
     }
     if (self->ents[id].h[0] != 0) {
-        xfree((void *)self->ents[id].h[0]);
+        xfree(self->ents[id].h[0]);
         self->ents[id].h[0] = 0;
     }
     return ret;

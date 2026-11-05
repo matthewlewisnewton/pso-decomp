@@ -19,7 +19,7 @@ public:
     AdxfHandle *load_handle;
     u32 source_20;
     u32 source_24;
-    u32 buffer_address;
+    void *buffer_address;
     s32 load_state;
     s32 state_30;
     s32 timer;

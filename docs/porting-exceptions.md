@@ -164,12 +164,16 @@ including section order. Precedent for this family of unit-level inline switches
 [dtk-template `-inline auto`](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203)
 and [Brawl `-inline on`](https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264).
 
-The table above records the earlier matching revision. The current PR #308
-plain-index fallback deliberately gives up exactness in `init_from_id_lists`
-and leaves this unit unlinked, after the reference-counter shape was rejected.
-The flag is retained from that revision; the table is not a claim that the
-current initializer is exact. The typed file API recovery is recorded in
-[pr308-typed-file-apis.md](evidence/pr308-typed-file-apis.md).
+The table above records the earlier matching revision. The current source
+walks each id list with a pointer and a local index (`load_model_list`,
+`load_motion_list`, and the flag `& 2` model request). Objdiff of that body
+is 99.10256% (776 bytes against the original 780). The missing instruction
+is the flag `& 1` model walk's `mr r28, r30`; the motion walk keeps the
+pointer in r30 and the index in r28. The reference-counter shape that
+restores those registers was rejected and is not restored. The unit stays
+unlinked. The flag is retained from the matching revision; the table is not
+a claim that the current initializer is exact. The typed file API recovery
+is recorded in [pr308-typed-file-apis.md](evidence/pr308-typed-file-apis.md).
 
 ### `pso/quest/QuestOpcodeHandlers.cpp`: `-inline on`
 
