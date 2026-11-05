@@ -6,9 +6,9 @@
 #include "pso/TPlyItem.h"
 #include "pso/item/TItem.h"
 #include "pso/misc/TWindowActionPalette_801C1890.h"
+#include "pso/player/TObjPlayer_801D4890.h"
 
 extern "C" {
-s32 TObjPlayer__sub_801D49F4(TPlyItem *player, TObjPlayer *arg1, s32 *arg2, s32 arg3);
 
     extern void *TObjPlayer__owner_field_write_cursor;
     extern int inventory_walk_visit_count;

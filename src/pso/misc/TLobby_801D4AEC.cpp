@@ -5,13 +5,13 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/TItemList.h"
 #include "pso/item/TItem.h"
+#include "pso/misc/TLobby_801D4AEC.h"
+#include "pso/misc/TWindowActionPalette_801C1890.h"
+#include "pso/player/TObjPlayer_801D5220.h"
 
 extern "C" {
 
-void TLobby__sub_801D4C28(TPlyItem *a0, void *a1, int a2, int a3);
 s32 try_spend_actor_meseta(TObjPlayer *player, s32 amount);
-s32 is_item_equipped(void *);
-void TObjPlayer__sub_801D52A8(TItemList *arg0);
 
 void TPlyItem::reduce_item_amount(TObjPlayer *arg1, TItemList *slot, s32 arg3) {
     s16 temp_r4;

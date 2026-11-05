@@ -33,7 +33,6 @@ s32 weapon_has_extra_attack(u32);
 int check_flag_100__10TObjPlayerFPv(void *p);
 s32 validate_and_clear_slot__10TObjPlayerFv(void *, s32);
 void init__9TItemDataFv(void *);
-void *set_mode_and_refresh_object__10TObjPlayerFPvi(void *, TItemData_801D8044 *);
 s32 TObjPlayer__sub_801AF694(void *, s32);
 u16 get_entity_id(void *);
 s32 TWindowCtrl__sub_8024A228(s32);

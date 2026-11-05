@@ -67,6 +67,8 @@
 
 #include "pso/misc/TLobby_80207644.h"
 #include "pso/player/PhotonBlastGauge.h"
+#include "pso/player/TObjPlayer_801D4890.h"
+#include "pso/misc/TLobby_801D4AEC.h"
 
 #define M0(x) virtual void m##x();
 struct Base_801AF2F0 { char pad[0x18]; };
@@ -2274,8 +2276,6 @@ void create_drop_nodes__9TItemListFPvPvPvPvi(u8*,DeathItemPosition*,TObjPlayer*,
 s32 check_player_action_allowed();
 s32 TObjPlayer__sub_801D4368(void * a0 = 0);
 void TObjPlayer__sub_801D47EC(void *, s32, s32);
-s32 TObjPlayer__sub_801D49F4(TPlyItem *inv, TObjPlayer *player, s32 *item_ids, s32 count);
-void TLobby__sub_801D4C28(TPlyItem *, void *, s32, s32);
 u8 * TPlyItem__ct(void *, void *);
 s32 draw_party_label__15TFontSmallLobbyFiUis(s32, s32, s32);
 s32 accumulate_damage_stats(s32, s32, s32);

@@ -5,15 +5,14 @@
 #include <stddef.h>
 #include "pso/item/TItem.h"
 #include "pso/misc/TOSwitchItem.h"
+#include "pso/misc/TWindowActionPalette_801C1890.h"
+#include "pso/player/TObjPlayer_801D5220.h"
 
 extern "C" {
 s32 item_identity_matches(void *arg0, void *arg1);
 extern u8 *inventory_search_item_data;
-TItemList *find_matching_inventory_item_node(TItemList *root);
 extern s32 inventory_walk_visit_count;
 extern TItem **player_owner_collect_cursor;
-s32 is_item_equipped();
-void TObjPlayer__sub_801D52A8(TItemList *arg0);
 }
 extern TObjPlayer *item_reduce_target_player;
 
@@ -52,7 +51,7 @@ void TObjPlayer__sub_801D52A8(TItemList *arg0) {
     for (n = arg0->link_down(); n != NULL; n = n->link_next()) {
         if (TItemList::is_item_valid(n) != 0) {
             o = n->get_owner_if_alive();
-            if ((o != NULL) && (is_item_equipped() != 0) && (o->get_item_type() == 0)) {
+            if ((o != NULL) && (is_item_equipped(o) != 0) && (o->get_item_type() == 0)) {
                 o->copy_to_item_data(&player_item_collect_cursor->data);
                 player_item_collect_cursor->id = o->get_item_id();
                 player_item_collect_cursor += 1;
@@ -104,7 +103,7 @@ void TItemList::unequip_invalid_items_recursive() {
     for (n = link_down(); n != NULL; n = n->link_next()) {
         if (TItemList::is_item_valid(n) != 0) {
             o = n->get_owner_if_alive();
-            if ((o != NULL) && (is_item_equipped() != 0) && (o->is_unit() == 0) &&
+            if ((o != NULL) && (is_item_equipped(o) != 0) && (o->is_unit() == 0) &&
                 (TObjPlayer::get_slot_value(item_reduce_target_player->equipped_items, o->get_attach_slot()) != 0U)) {
                 item_reduce_target_player->unequip_item(o);
             }
