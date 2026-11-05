@@ -231,7 +231,8 @@ void TLobby::reset_id_tables() {
 
 void TLobby__sub_8020DC78(void) {
     LobbyPopulationTables *base = &TLobby__data_80513A40;
-    LobbyFloorRows *rows;
+    LobbyPoolEntry (LobbyPopulationTables::*enemy_member)[18];
+    LobbyPoolEntry (LobbyPopulationTables::*object_member)[18];
     s32 i;
     s32 j;
     s32 n;
@@ -275,30 +276,45 @@ void TLobby__sub_8020DC78(void) {
     TLobby__data_805D6120 = 0;
     TLobby__data_805D6128 = 0;
     lbl_805D6100 = 0;
-    for (j = 17; j >= 0; j--) {
-        if (base->pool_entries[j].enemies != NULL) {
-            archive_pool_free(TLobby__data_805D6104, base->pool_entries[j].enemies);
-            base->pool_entries[j].enemies = NULL;
+    // pool_entries is at offset 0, so `base->pool_entries` is the anchor
+    // register itself. Applying a pointer-to-member is the address calculation
+    // MWCC keeps as `addi rX, rBase, 0`.
+    enemy_member = &LobbyPopulationTables::pool_entries;
+    {
+        LobbyPoolEntry *enemy_pool = base->*enemy_member;
+        for (j = 17; j >= 0; j--) {
+            if (enemy_pool[j].enemies != NULL) {
+                archive_pool_free(TLobby__data_805D6104, enemy_pool[j].enemies);
+                enemy_pool[j].enemies = NULL;
+            }
         }
     }
-    for (j = 17; j >= 0; j--) {
-        if (base->pool_entries[j].objects != NULL) {
-            archive_pool_free(TLobby__data_805D6104, base->pool_entries[j].objects);
-            base->pool_entries[j].objects = NULL;
+    object_member = &LobbyPopulationTables::pool_entries;
+    {
+        LobbyPoolEntry *object_pool = base->*object_member;
+        for (j = 17; j >= 0; j--) {
+            if (object_pool[j].objects != NULL) {
+                archive_pool_free(TLobby__data_805D6104, object_pool[j].objects);
+                object_pool[j].objects = NULL;
+            }
         }
     }
-    rows = base->floors;
-    for (j = 17; j >= 0; j--) {
-        if (rows[j].enemyRows != NULL) {
-            TLobby__data_805D6108->heap_free(rows[j].enemyRows);
-            rows[j].enemyRows = NULL;
+    {
+        LobbyFloorRows *rows = base->floors;
+        for (j = 17; j >= 0; j--) {
+            if (rows[j].enemyRows != NULL) {
+                TLobby__data_805D6108->heap_free(rows[j].enemyRows);
+                rows[j].enemyRows = NULL;
+            }
         }
     }
-    rows = base->floors;
-    for (j = 17; j >= 0; j--) {
-        if (rows[j].objectRows != NULL) {
-            TLobby__data_805D6108->heap_free(rows[j].objectRows);
-            rows[j].objectRows = NULL;
+    {
+        LobbyFloorRows *rows = base->floors;
+        for (j = 17; j >= 0; j--) {
+            if (rows[j].objectRows != NULL) {
+                TLobby__data_805D6108->heap_free(rows[j].objectRows);
+                rows[j].objectRows = NULL;
+            }
         }
     }
     memset(base->floors, 0, 0x1B0);
