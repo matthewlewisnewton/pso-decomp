@@ -1,5 +1,6 @@
 #include "pso/system/ArrayAllocation.h"
 #include "types.h"
+#include "pso/system/StripBufferPair.h"
 #include "pso/enemy/TObjEnemy.h"
 
 #include <stddef.h>
@@ -14,28 +15,24 @@ struct Stack_800F5D80 {
 };
 
 extern "C" {
-s32 collect_model_strips_by_texture(void *, s32, s32, s32);
-s32 count_model_strips_by_texture();
+void collect_model_strips_by_texture(void *ctx, s32 model, s32 filter);
+void count_model_strips_by_texture(void *ctx, s32 model, s32 filter);
 
-extern s32 plist_strip_write_ptr;
-extern s32 plist_strip_uv_write_ptr;
+extern void *plist_strip_write_ptr;
+extern void *plist_strip_uv_write_ptr;
 extern s32 plist_texture_matches_filter;
 
-void *TLobby::alloc_tables(s32 arg1, s32 arg2) {
-    s32 temp_r6;
-
-    *(s32 *)&this->m_flags = 0;
-    *(s32 *)&this->m_name = 0;
+StripBufferPair::StripBufferPair(s32 model, s32 filter) {
+    strip_count = 0;
+    uv_count = 0;
     plist_texture_matches_filter = 0;
-    count_model_strips_by_texture();
-    *(s32 *)&this->m_prev = (s32)::operator new[](*(s32 *)&this->m_flags * 8);
-    *(s32 *)&this->m_next = (s32)::operator new[](*(s32 *)&this->m_name * 4);
-    plist_strip_write_ptr = *(s32 *)&this->m_prev;
-    temp_r6 = *(s32 *)&this->m_next;
-    plist_strip_uv_write_ptr = temp_r6;
+    count_model_strips_by_texture(this, model, filter);
+    strips = ::operator new[](strip_count * 8);
+    uvs = ::operator new[](uv_count * 4);
+    plist_strip_write_ptr = strips;
+    plist_strip_uv_write_ptr = uvs;
     plist_texture_matches_filter = 0;
-    collect_model_strips_by_texture(this, arg1, arg2, temp_r6);
-    return this;
+    collect_model_strips_by_texture(this, model, filter);
 }
 void TObjEnemy::clear_lobby_object_state() {
     s32 arg0 = (s32)this;

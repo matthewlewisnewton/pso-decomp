@@ -49,6 +49,8 @@ struct TObjEnemy : public TObjChara {
     static s32 apply_by_index(s16 arg0);
     int apply_player_54a00();
     s32 mask_sub_flags(s32 arg1);
+    // Defined in TBoss3Volopt.cpp.
+    void register_by_id();
 };
 typedef char EnemyBaseSize[(sizeof(TObjEnemy)==0x374)?1:-1];
 #endif

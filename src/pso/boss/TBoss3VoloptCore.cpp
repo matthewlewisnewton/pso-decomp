@@ -160,7 +160,7 @@ void TBoss3VoloptCore::init_params() {
     referenceHp = hp;
     set_param(0x2E);
     update_prev_position();
-    ((TBoss3Volopt *)this)->reset_photon_effect();
+    register_by_id();
     load_entry_params_volopt(0x18);
     m_388 |= 0x10000;
     orbit_angle = 0;

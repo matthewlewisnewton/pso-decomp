@@ -284,7 +284,7 @@ TObjVoloptCage::TObjVoloptCage(TObjEnemy *boss, u16 target, u16 id, s32 group) :
     set_entry = 0;
     *(s16 *)&room = *(s16 *)&boss->room;
     *((s16 *)&room + 1) = *((s16 *)&boss->room + 1);
-    ((TBoss3Volopt *)this)->reset_photon_effect();
+    register_by_id();
     set_param(0x2E);
     position.y = -25.0f;
     recalc_combat_stats(volopt_cage_combat_stats, NULL, NULL, 1.0f, 1.0f);

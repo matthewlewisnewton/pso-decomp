@@ -33,7 +33,7 @@ void TObjPlayer::vfunc_76(f32 amount) {
 void TObjPlayer::vfunc_77() { add_photon_blast_chain_charge((char*)this + 0x4ac); }
 
 int TObjPlayer__vt77(void) { return 0; }
-u8 TObjPlayer::check_camera_mode() {
+s32 TObjPlayer::check_camera_mode() {
     return (u8) (is_quest_active() == 1);
 }
 void TObjPlayer__sub_801BE2C0(void* p, s32 v) { *(s32*)((char*)p + 0x370) = v; }

@@ -11,7 +11,6 @@ s32 get_main_phase();
 s32 is_locally_controlled__10TObjPlayerFPv(void *);
 s32 obj_isState2_324__9TObjCharaFv(void *);
 u16 get_entity_id(void *);
-s32 check_flag__10TObjPlayerFl(void *, int);
 }
 void reset_cameras_to_actor(void *actor, s32 arg1);
 extern "C" {
@@ -44,7 +43,7 @@ void TObjPlayer::place_on_area_entry() {
 
     if (get_main_phase() == 0xE && is_single_screen__10TObjPlayerFv() == 0 &&
         is_locally_controlled__10TObjPlayerFPv(arg0) != 0 && has_active_camera_event__10TObjPlayerFv(arg0) == 0 &&
-        check_flag__10TObjPlayerFl(arg0, 0x100000) == 0 && is_key_machine_ready__10TObjPlayerFv() != 0) {
+        ((TObjPlayer *)arg0)->check_flag(0x100000) == 0 && TObjPlayer::is_key_machine_ready() != 0) {
         ((TObjPlayer *)arg0)->set_state_flags(0x100000);
         ((TObjBase *)arg0)->set_position_from(get_lobby_entry_ptr__10TObjPlayerFv(arg0));
         this->rotation.yaw = TObjPlayer__sub_801D8C3C(arg0);
