@@ -30,6 +30,7 @@ guides.
 - [Matrix copy and concatenation](matrix-copy-concat-evidence.md)
 - [Motion drawing and model callbacks](motion-draw-callback-evidence.md)
 - [Motion table setters](motion-table-setter-evidence.md)
+- [MusyX assembly and scalar fallbacks](musyx-asm-fallbacks.md)
 - [Negative fade phase](negative-fade-phase-evidence.md)
 - [Native Nest continuation](nest-native-recovery-evidence.md)
 - [One-shot positional sound](one-shot-sound-evidence.md)
