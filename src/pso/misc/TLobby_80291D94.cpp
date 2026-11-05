@@ -625,7 +625,7 @@ void copy_player_visual_record(void *, void *);
 void __ct__12TPlyCharDataFv(void *);
 #define get_player_by_client_id ((Pl_80292730 * (*)(s32))get_player_by_client_id)
 Pl_80292730 *create_player_object(s32, s32, void *);
-void clamp_and_set_unit_value__10TObjPlayerFUcl(void *, u8, s16);
+void clamp_and_set_unit_value__10TObjPlayerFiUci(void *, u8, s16);
 void begin_action_state__10TObjPlayerFPv(void *);
 void send_command__10TNpcPlayerFlScllPSc(u8, s32, s32, s32, void *);
 #define is_challenge_mode_active ((s32 (*)())is_challenge_mode_active)
@@ -709,7 +709,7 @@ void TLobby::rebuild_players_for_stage(s32 arg0) {
             ((TObjPlayer *)((u8 *)p + 0x428))->set_all_technique_levels((void *)0xFF);
             if (tbl->entries != NULL) {
                 for (e = tbl->entries; e->id != 0xFF; e++) {
-                    clamp_and_set_unit_value__10TObjPlayerFUcl(p, e->id, e->val);
+                    clamp_and_set_unit_value__10TObjPlayerFiUci(p, e->id, e->val);
                 }
             }
             *(s32 *)((s8 *)p + 0xD58) = 0;

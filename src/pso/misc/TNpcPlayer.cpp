@@ -5,6 +5,7 @@
 #include "pso/object/TUnk_804AF7B0.h"
 #include "pso/system/memory.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/unk/text_8036BDA0.h"
 #include "pso/misc/TNpcPlayer.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/map/FloorArea.h"
@@ -18,7 +19,6 @@ extern "C" void render__10TNpcPlayerFv();
 #include "pso/misc/TWindowCtrl.h"
 #include "pso/object/TObjFogCollision.h"
 #include "pso/protocol/protocol_types.h"
-#include "pso/protocol/subcmd_6x.h"
 
 extern "C" {
 s32 VecCopy__FP3VecPC3Vec(void *, int);
@@ -195,6 +195,16 @@ struct Tgt_80150050 { u8 pad[0x38]; V3_80150050 pos; };
 struct Mid_80150050 { u8 pad[0x94]; Tgt_80150050 *tgt; };
 
 struct Npc_80150050 { u8 pad0[0x74]; Mid_80150050 *mid; u8 pad78[0x34]; V3_80150050 pos; u8 pad_b8[0x18]; V3_80150050 dst; };
+
+struct Msg_80150A34 {
+    u8 pad0[2];
+    u16 type;
+    s8 kind;
+    u8 pad5;
+    s8 e;
+    s8 one;
+    u8 sub[0x2C];
+};
 
 struct Owner_80150A34 { u8 pad[0x94]; u8 *actor; };
 
@@ -406,6 +416,8 @@ struct Npc_801518A4;
 
 struct Obj_80152F28 { u16 a; u16 b; };
 
+struct N_80152C8C { u8 pad0[7]; s8 count; u32 pos[1]; };
+
 struct Line_8014E488 { Vec_8014E3B0 p; Vec_8014E3B0 d; };
 
 s16 get_actor_tp(u8 *p);
@@ -496,7 +508,7 @@ s32 clamp_partner_counter(s32 arg0, s32 arg1, s16 arg2);
 void bswap_6x45_packet(void* p);
 void bswap_6x44_packet(void* p);
 void bswap_6x43_packet(void* p);
-u8 get_6x47_cast_packet_size(G_CastTechnique_6x47 *cmd);
+u8 get_6x47_cast_packet_size(u8 *arg0);
 void init_6x40_walk_packet(void* a0);
 int get_registered_object_count(void);
 const char *get_partner_custom_text(s32 kind, u16 player);
@@ -2859,10 +2871,10 @@ void TNpcPlayer::init_state() {
 }
 
 void request_technique_cast__10TNpcPlayerFPvi(Npc_80150A34 *self, s32 kind) {
-    G_CastTechnique_6x47 m;
+    Msg_80150A34 m;
     u8 *actor;
 
-    m.init();
+    ((G_CastTechnique_6x47 *)(&m))->init();
     actor = self->p78->actor;
     if (kind == 15 || kind == 16) {
         ((TNpcPlayer *)self)->request_chatter(0x16);
@@ -2872,22 +2884,22 @@ void request_technique_cast__10TNpcPlayerFPvi(Npc_80150A34 *self, s32 kind) {
         ((TNpcPlayer *)self)->request_chatter(2);
     }
     if (TObjPlayer::try_camera_action((s32)actor, (s32)kind) != 0) {
-        m.header.client_id = get_npc_type__10TNpcPlayerFPv(self->p78);
-        m.technique_number = kind;
-        m.target_count = 1;
+        m.type = get_npc_type__10TNpcPlayerFPv(self->p78);
+        m.kind = kind;
+        m.one = 1;
         if (kind == 15 || kind == 16) {
             if (kind == 15) {
                 self->flags |= 0x10000;
             }
-            m.level = get_cast_technique_level(actor + 0x428, kind);
-            ((void (*)(void *, u16))set_type__10TNpcPlayerFPvs)(m.targets, ((s32 (*)(void *))get_npc_type__10TNpcPlayerFPv)(self->p74));
-            set_state__10TNpcPlayerFPvs(m.targets, 0);
+            m.e = get_cast_technique_level(actor + 0x428, kind);
+            ((void (*)(void *, u16))set_type__10TNpcPlayerFPvs)(m.sub, ((s32 (*)(void *))get_npc_type__10TNpcPlayerFPv)(self->p74));
+            set_state__10TNpcPlayerFPvs(m.sub, 0);
         } else {
-            m.level = get_cast_technique_level(actor + 0x428, kind);
-            ((void (*)(void *, u16))set_type__10TNpcPlayerFPvs)(m.targets, ((TNpcPlayer *)(self->p78))->get_npc_state());
-            set_state__10TNpcPlayerFPvs(m.targets, TNpcPlayer__sub_801528DC(self->p78));
+            m.e = get_cast_technique_level(actor + 0x428, kind);
+            ((void (*)(void *, u16))set_type__10TNpcPlayerFPvs)(m.sub, ((TNpcPlayer *)(self->p78))->get_npc_state());
+            set_state__10TNpcPlayerFPvs(m.sub, TNpcPlayer__sub_801528DC(self->p78));
         }
-        m.send();
+        ((TNpcPlayer *)(&m))->finalize_and_send_packet();
     }
 }
 
@@ -3852,29 +3864,31 @@ void init_6x43_attack_packet(u8 *arg0) {
     *(s8 *)((s8 *)arg0 + 1) = 2;
 }
 
-void G_CastTechnique_6x47::send() {
-    header.size = (get_6x47_cast_packet_size(this) >> 2) & 0x3F;
-    bswap();
-    send_subcommand(this);
+void TNpcPlayer::finalize_and_send_packet() {
+    u8 *arg0 = (u8 *)this;
+    *(s8 *)((s8 *)arg0 + 1) = (s8) ((((u32)get_6x47_cast_packet_size((u8 *)(arg0))) >> 2U) & 0x3F);
+    ((G_CastTechnique_6x47 *)this)->bswap();
+    send_subcommand((u8 *)((void *) (arg0)));
 }
 
 void G_CastTechnique_6x47::bswap() {
+    N_80152C8C *arg0 = (N_80152C8C *)this;
     s32 i;
-    header.bswap();
-    for (i = 0; i < target_count; i++) {
-        targets[i].bswap();
+    ((G_ClientIDHeader *)arg0)->bswap();
+    for (i = 0; i < arg0->count; i++) {
+        ((TNpcPlayer *)(&arg0->pos[i]))->byteswap_pos();
     }
 }
 
-u8 get_6x47_cast_packet_size(G_CastTechnique_6x47 *cmd) {
-    return (u8) (0x30 - ((0xA - cmd->target_count) * 4));
+u8 get_6x47_cast_packet_size(u8 *arg0) {
+    return (u8) (0x30 - ((0xA - (s8) *(u8 *)((s8 *)arg0 + 7)) * 4));
 }
 
 G_CastTechnique_6x47 *G_CastTechnique_6x47::init() {
-    TNpcPlayer__sub_80152D64(&technique_number);
-    __construct_array(targets, fn_80152EF8, 0, 4, 10);
-    header.subcommand = 71;
-    header.size = 12;
+    TNpcPlayer__sub_80152D64((void*)((void *)((char *)this + 4)));
+    __construct_array((void *)((char *)this + 8), fn_80152EF8, 0, 4, 10);
+    *(u8 *)((s8 *)this + 0x0) = 71;
+    *(u8 *)((s8 *)this + 0x1) = 12;
     return this;
 }
 
@@ -3898,7 +3912,7 @@ void TNpcPlayer::set_field_0(s16 v) { *(s16*)((char*)this + 0x0) = v; }
 
 void TNpcPlayer::set_state(s32 v) { *(s32*)((char*)this + 0x0) = v; }
 
-void TechniqueTarget::bswap() { bswap_16__FPUs(&entity_id); bswap_16__FPUs(&unknown_a2); }
+void TNpcPlayer::byteswap_pos() { bswap_16__FPUs((void*)(this)); bswap_16__FPUs((void*)((char*)this + 0x2)); }
 
 void set_state__10TNpcPlayerFPvs(void* p, s16 v) { *(s16*)((char*)p + 0x2) = v; }
 

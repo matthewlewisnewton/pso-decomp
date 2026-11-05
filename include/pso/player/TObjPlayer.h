@@ -4,20 +4,25 @@ struct NJS_OBJECT;
 
 #include "types.h"
 #include "pso/player/PhotonBlastGauge.h"
+#include "pso/player/TechniqueCastState.h"
 #include "pso/player/PlayerClassFlags.h"
 #include "pso/player/PlayerScaleState.h"
 #include "pso/player/RenderMaterialState.h"
 #include "pso/player/TObjChara.h"
-#include "pso/player/TechniqueCastState.h"
 
 struct TItemData;
 
 struct player_stats;
 
 struct TItem;
+struct TItemList;
+class TPlyItem;
 struct TechniqueContactList;
 struct NJS_MOTION;
 struct NJS_OBJECT;
+
+struct TObjPlayer;
+extern "C" s32 try_spend_actor_meseta(TObjPlayer *player, s32 amount);
 
 // The frames a player stays protected from hits (after getting up, being
 // hurt, or a mag's invincibility).
@@ -105,7 +110,7 @@ struct TObjPlayer : public TObjChara {
         u8 bindings[2][4][4];
     };
 
-    u32 find_revival_item();
+    TItemList *find_revival_item();
     void request_inventory_item(TItemData* item);
     ActionPalette* select_action_palette(int secondary);
     s32 add_meseta(s32 amount);
@@ -157,7 +162,12 @@ struct TObjPlayer : public TObjChara {
     u8 unk_3D4[0x4];
     s32 m_3d8;
     s32 m_3dc;
-    u8 unk_3E0[0x4];
+    // sync_current_area stores the floor area here. render_model_and_set_attach_points
+    // also writes a node position through unk_3E0, over the following words.
+    union {
+        s32 current_area;
+        u8 unk_3E0[0x4];
+    };
     s32 current_floor;
     u8 unk_3E8[0x4];
     s32 m_3ec;
@@ -174,7 +184,10 @@ struct TObjPlayer : public TObjChara {
     void* m_41c;
     u8 unk_420[0x4];
     s32 m_424;
-    TechniqueCastState technique_state;
+    union {
+        u8 technique_levels[0x84];
+        TechniqueCastState technique_state;
+    };
     PhotonBlastGauge photon_blast_gauge;
     ActionPalette action_palettes[2];
     u8 unk_548[0x4];
@@ -199,8 +212,7 @@ struct TObjPlayer : public TObjChara {
     void* m_64c;
     u8 _pad650[0x8];
     void* m_658;
-    s32 intra_map_area;
-    Vec intra_map_pos;
+    u8 _pad65C[0x10];
     void* m_66c;
     u8 _pad670[0x8];
     void* m_678;
@@ -243,7 +255,7 @@ struct TObjPlayer : public TObjChara {
     u32 m_8b4;
     u8 unk_8B8[0x444];
     s32 m_cfc;
-    void* inventory_objects;
+    TPlyItem *inventory_objects;
     void *equipped_items[13];  // by equip slot; read through get_equipped_item
     u8 unk_D38[0x10];
     f32 m_d48;
@@ -395,6 +407,25 @@ struct TObjPlayer : public TObjChara {
     void clear_header_struct();
     static void set_com_card_window(s32 arg0);
     static s32 is_locally_controlled(void *player);
+    // Tells the server one inventory item went away. Defined in
+    // TObjPlayer_801AF2F0.cpp; the int widths are what the symbol encodes.
+    static void send_6x29_delete_item(void *player, int item_id, int count);
+    // Re-equips the items a saved character was wearing. Defined in
+    // TObjPlayer_801AF2F0.cpp; TObjPlayer_801BCF04.cpp used to declare the
+    // count u8 and the records an s32.
+    static void bind_saved_inventory_equipment(void *player, void *records, int count);
+    // Clears an inventory list in place and hands it back. Defined in
+    // TObjPlayer_801BE778.cpp.
+    static void *init_inventory_list(void *list);
+    // True on either Pioneer 2 floor. Defined in TObjPlayer_801AF2F0.cpp,
+    // which returned u8; every other unit declares it s32.
+    static s32 is_key_machine_ready();
+    // Reads the player's 0x800000 action flag. Defined in
+    // TObjPlayer_801AF2F0.cpp, which dropped the result on the floor.
+    static s32 check_flag_800000(void *player);
+    // Re-creates one saved item and equips it if its slot is free.
+    // Defined in TObjPlayer_801AF2F0.cpp.
+    static void equip_saved_item_if_slot_empty(void *player, void *record);
     static TObjPlayer *get_player_data(int index);
     int queue_destruction();
     s32 test_action_mask(s32 arg1);
@@ -459,9 +490,11 @@ struct TObjPlayer : public TObjChara {
     s32 is_body_collision_inactive();
     static int get_slot_value(void *slots, int slot);
     void play_sound_if_on_floor(s32 sound_id);
-    u32 pickup_item(TItem *item);
+    TItemList *pickup_item(TItem *item);
     s32 can_pickup_item_by_id(TItem *item);
     s32 can_pickup_item(TItemData *data);
+    // 0 when the battle rules forbid equipping the item with item_id.
+    s32 check_switch_available(s32 item_id);
     static u8 find_adjacent_matching_slot(u8 arg0);
     static u8 get_next_matching_special_index(u8 arg0);
     static void free_item_globals();
@@ -613,7 +646,9 @@ struct TObjPlayer : public TObjChara {
     static void free_shared_data();
     static void finalize_shared();
     static void init_shared();
-    static u8 check_camera_mode();
+    // Every caller outside TObjPlayer_801BE1C0.cpp declares this s32; the
+    // body keeps the (u8) narrowing the original emits.
+    static s32 check_camera_mode();
     int is_android();
     int is_newman();
     int check_stat_flag_41c();
@@ -693,8 +728,16 @@ struct TObjPlayer : public TObjChara {
     int is_handle_valid();
     int forward_801C210C();
     static int get_hold_effect_count();
+    void set_technique_id(s16 v);
     static int get_item_count_max();
     void *init();
+    // The animation the player returns to after unequipping, from its
+    // current action at +0x326.
+    static s16 unequip_by_field326(void *player);
+    // Drops one item: the item pool inside the owner's TPlyItem, the floor
+    // record, the owner, the TItemData to copy and the item id. The original
+    // declared all five as int, so the callers hand it casts.
+    static void insert_item_node(int pool, int floor, int owner, int data, int id);
     void set_field4(s32 v);
     void*init_c2098_return_self();
     u8 get_field_5();
@@ -948,6 +991,7 @@ struct TObjPlayer : public TObjChara {
     void bswap_u16_pair_list();
     void bswap_u16_pair();
     void set_technique_state(s32 v);
+    void set_technique_id(u8 v);
     int test_bit1_at_10();
     f32 get_float_14();
     void set_tech_override(u8 v);
@@ -966,22 +1010,9 @@ struct TObjPlayer : public TObjChara {
     int is_flag32_clear();
     int get_field_340(int _w1);
     static int check_status_flag_128(void* p);
-    int run_and_get_result(int a1);
-    int run_state_query(int a1);
-    s32 update_inventory_item(s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5);
-    void find_first_inventory_entry(int a1);
-    void destroy_subobjects(int a1);
-    void destroy_subobjects_recursive();
-    void start_inventory_update(int a1);
-    void count_owned_items();
-    void collect_item_owners_recursive();
-    void collect_alive_owners();
-    void unequip_invalid_items_recursive();
-    void count_items_recursive();
-    void *find_inventory_item_matching_data();
-    void *find_inventory_item_by_field_d8();
-    s32 get_owner_if_alive();
-    void set_field_1c(s32 v);
+    void unequip_item(TItem *item);
+    // Fills out with the inventory export records; 0 without an inventory.
+    s32 query_state_if_present(void *out);
     static s32 decrement_timer(s32 *arg0);
     static void reset_particle_ctrl(s32 *arg0);
     void*init_sub_objects();
@@ -1013,12 +1044,14 @@ struct TObjPlayer : public TObjChara {
     s16 get_section_clamped();
     s16 get_or_init_field_4();
     static void split_capped_value(u8 arg0, u8 *arg1, s8 *arg2);
+    u8 get_valid_technique();
     void level_up_all_techniques(s32 add);
     static u8 clamp_to_max(s32 arg0, u8 arg1, u8 arg2);
     void validate_and_clear_slot();
     static u8 is_invalid_slot(u8 arg0);
     static u8 is_valid_technique_id(s16 arg0);
     static s32 is_valid_technique_slot(u8 arg0);
+    void set_tech_level(s16 arg1);
     void reset_slots();
     void set_field_1c(f32 v);
     void set_field18(f32 v);
@@ -1167,7 +1200,6 @@ struct TObjPlayer : public TObjChara {
     static void set_global_state(s32 arg0);
     static void set_global_7778(s32 arg0);
     static void update_render_state();
-    void collect_owner_fields_recursive();
     static void set_global_color_rgba(u32 v);
     static void set_global_color_rgba_alt_b(u32 v);
     void cast_gifoie();
@@ -1232,7 +1264,6 @@ struct TObjPlayer : public TObjChara {
     static void alloc_shared_buffers();
     static void destroy_char_data_array();
     static s8 get_rule_field_0();
-    void sort_by_key();
     static void set_slot_type_state(s32 arg0, s32 arg1, s16 arg2, s16 arg3);
     void set_all_technique_levels(void *arg1);
     void copy_all_technique_entries(void *arg1);
@@ -1309,6 +1340,8 @@ struct TObjPlayer : public TObjChara {
     static s32 check_technique_castable(s32 arg0);
     void sync_current_floor();
     void sync_current_area();
+    s32 get_current_area();
+    s32 is_volopt_phase_final();
     static int get_key_machine_global_state(void* p);
     void set_flag_drop_weapon_on_death();
     static void disable_drop_weapon_on_death(void *arg0);
@@ -1417,6 +1450,7 @@ struct TObjPlayer : public TObjChara {
     void request_item_drop(s32 arg1, s32 arg2);
     s32 count_items_of_type(s8 arg1, s8 arg2, s8 arg3);
     void dispatch_action(s32 arg1, s32 arg2);
+    void dispatch_input(s32 *item_ids, s32 count);
     s32 can_inventory_accept_item(u8 *item);
     s32 update_target_lock();
     void use_current_item();
@@ -1509,10 +1543,6 @@ struct TObjPlayer : public TObjChara {
     static s32 try_camera_action(s32 arg0, s32 arg1);
     void bswap_entry_list();
     void reset_movement_state();
-    int count_matching_items(int a1);
-    int apply_shop_judgment(int a1);
-    void set_flag_and_update(int a1);
-    s32 count_items_by_id(s32 arg1);
     static void update_party_cursors(s32 arg0, s32 arg1);
     void init_action_config();
     s32 can_use_palette_action_for_entry(u32 obj);
@@ -1523,6 +1553,7 @@ struct TObjPlayer : public TObjChara {
     f32 select_normal_attack_marker();
     u8 get_castable_technique_level();
     static void update_all_units(s32 arg0, s32 arg1);
+    static s32 check_technique_level(s32 arg0, s32 arg1, u8 arg2);
     void build_shop_item_list();
     void reset_action_palette();
     u8 *create_state_513();
@@ -1622,8 +1653,6 @@ struct TObjPlayer : public TObjChara {
 typedef char PlayerActionPaletteSize[(sizeof(TObjPlayer::ActionPalette) == 0x24) ? 1 : -1];
 typedef char PlayerActionPaletteBanks[(offsetof(TObjPlayer::ActionPalette, bindings) == 4) ? 1 : -1];
 typedef char PlayerPaletteModifierOffset[(offsetof(TObjPlayer, photon_blast_gauge) == 0x4AC) ? 1 : -1];
-typedef char PlayerIntraMapAreaOffset[(offsetof(TObjPlayer, intra_map_area) == 0x65C) ? 1 : -1];
-typedef char PlayerIntraMapPosOffset[(offsetof(TObjPlayer, intra_map_pos) == 0x660) ? 1 : -1];
 typedef char PlayerActionPalettesOffset[(offsetof(TObjPlayer, action_palettes) == 0x500) ? 1 : -1];
 typedef char PlayerStateAfterPalettes[(offsetof(TObjPlayer, m_550) == 0x550) ? 1 : -1];
 typedef char PlayerHairSelectorOffset[(offsetof(TObjPlayer, m_878) == 0x878) ? 1 : -1];
@@ -1633,4 +1662,5 @@ typedef char PlayerHairWaitOffset[(offsetof(TObjPlayer, m_cfc) == 0xCFC) ? 1 : -
 typedef char PlayerInventoryObjectOffset[(offsetof(TObjPlayer, inventory_objects) == 0xD00) ? 1 : -1];
 
 typedef char TObjPlayer_size[sizeof(TObjPlayer) == 0xDB8 ? 1 : -1];
+#include "pso/player/TechniqueCastAliases.h"
 #endif
