@@ -4,6 +4,7 @@
 #include "pso/system/ChunkMaterialState.h"
 #include "types.h"
 #include "pso/system/NinjaUtil.h"
+#include "pso/system/NinjaTypes.h"
 #include "pso/misc/MaterialColorFade.h"
 #include "pso/system/vector.h"
 #include "pso/player/TUnk_804E3BD8.h"
@@ -21,7 +22,6 @@ struct Col_802E6CB0 { f32 a; f32 b; f32 c; f32 d; };
 
 struct Part_802E6CB0 { u8 pad0[0x18]; s32 f18; u8 pad1c[4]; s32 f20; f32 f24; s32 type; };
 
-struct Node_802E6CB0 { u8 pad0[4]; s32 model; u8 pad8[0x28]; Node_802E6CB0 *next; };
 
 struct Vec_802E6F10 { f32 x, y, z; };
 
@@ -45,7 +45,6 @@ struct Col_802E708C { f32 a; f32 b; f32 c; f32 d; };
 
 struct Part_802E708C { u8 pad0[0x18]; u8 rot[0xC]; f32 f24; s32 type; };
 
-struct Node_802E708C { u8 pad0[4]; s32 model; u8 pad8[0x24]; Node_802E708C *child; Node_802E708C *next; };
 
 typedef struct Vec_802E72DC { f32 x, y, z; } Vec_802E72DC;
 
@@ -141,12 +140,12 @@ void __ct__7TObjectFP7TObject(void *);
 int TObjPlayer::get_instance() {  return multiplay_texture_f512_handle; }
 
 void TUnk_804E3BA8::render() {
-    Node_802E6CB0 *node;
+    NJS_OBJECT *node;
     Part_802E6CB0 *part;
     s32 i;
-    u8 *fx = (u8 *)TObjPlayer::queue_boss_effect(2);
+    NJS_OBJECT *fx = TObjPlayer::queue_boss_effect(2);
     Col_802E6CB0 c = lbl_80472C9C;
-    node = *(Node_802E6CB0 **)((s8 *)fx + 0x2C);
+    node = fx->child;
     part = *(Part_802E6CB0 * *)&this->unk_28;
     TObjPlayer::draw_effect();
     push_matrix();
@@ -160,7 +159,7 @@ void TUnk_804E3BA8::render() {
         switch (part->type) {
         case 0:
         case 1:
-            draw_chunk_model((void *)node->model);
+            draw_chunk_model(node->model);
             break;
         case 2:
             saved_model_render_flags = model_render_flags;
@@ -169,13 +168,13 @@ void TUnk_804E3BA8::render() {
             set_constant_material((const NJS_ARGB *)(((f32 *)&c)));
             set_chunk_material_override_pair(0xFF00, 0x800);
             set_chunk_blend(0x2500);
-            draw_chunk_model((void *)node->model);
+            draw_chunk_model(node->model);
             set_chunk_material_override_pair(0xFF00, 0);
             model_render_flags = saved_model_render_flags;
             break;
         }
         pop_matrix();
-        node = node->next;
+        node = node->sibling;
         part++;
     }
     pop_matrix();
@@ -241,16 +240,16 @@ void TObjPlayer__sub_802E7084(void) {  }
 void TObjPlayer__sub_802E7088(void) {  }
 
 void TUnk_804E3BC0::render() {
-    Node_802E708C *node;
+    NJS_OBJECT *node;
     Part_802E708C *part;
-    u8 *fx = (u8 *)TObjPlayer::queue_boss_effect(3);
+    NJS_OBJECT *fx = TObjPlayer::queue_boss_effect(3);
     Col_802E708C c = lbl_80472C80;
-    node = *(Node_802E708C **)((s8 *)fx + 0x2C);
+    node = fx->child;
     Vec_802E708C s = lbl_80472C90;
     s.z = s.y = s.x = lbl_805DE9F8;
     part = *(Part_802E708C * *)&this->unk_28;
     TObjPlayer::draw_effect();
-    for (node = node->child; node != NULL; node = node->next) {
+    for (node = node->child; node != NULL; node = node->sibling) {
         push_matrix();
         post_translate_matrix(part);
         rotate_matrix_by_node_angles(part->rot, 0);
@@ -258,7 +257,7 @@ void TUnk_804E3BC0::render() {
         switch (part->type) {
         case 0:
         case 1:
-            draw_chunk_model((void *)node->model);
+            draw_chunk_model(node->model);
             break;
         case 2:
             saved_model_render_flags = model_render_flags;
@@ -267,7 +266,7 @@ void TUnk_804E3BC0::render() {
             set_constant_material((const NJS_ARGB *)((&c)));
             set_chunk_material_override_pair(0xFF00, 0x800);
             set_chunk_blend(0x2500);
-            draw_chunk_model((void *)node->model);
+            draw_chunk_model(node->model);
             set_chunk_material_override_pair(0xFF00, 0);
             model_render_flags = saved_model_render_flags;
             break;

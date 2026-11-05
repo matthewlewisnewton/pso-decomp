@@ -123,7 +123,7 @@ typedef char RecoveredGlobal_8035ACBC___vt__15TBoss7LaserPtcl_size[sizeof(Recove
 
 struct Ptcl_8035AD68 {
     u8 pad0[0x10];
-    void *x10;
+    TBoss7DeRolLeC *x10;
     u8 pad14[0x8];
     u8 x1c[0x24];
     f32 x40;
@@ -230,7 +230,7 @@ void TUnk_804F1C88::run_task() {
     TObjPlayer::apply_status_effect((s32)o->x1c);
     for (i = 0; i != TObjOnlineEnding::get_instance(); i++) {
         u8 **e = (u8 **)TObjOnlineEnding::get_attack_entry(i);
-        ((TBoss7DeRolLeC *)(o->x10))->emit_hit_effect(*e + 0x38);
+        o->x10->emit_hit_effect(*e + 0x38);
     }
     reset_global_table();
     if (6e+01f < o->x40) {

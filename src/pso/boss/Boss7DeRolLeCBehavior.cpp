@@ -38,6 +38,7 @@ struct NJS_OBJECT;
 #include "pso/object/TObjMotion.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/boss/TBoss7TentacleNeedle.h"
+#include "pso/player/TObjPlayer_801AF2F0.h"
 #include "pso/boss/TBoss7DeRolLeC.h"
 #include "pso/TObject.h"
 #include "pso/system/vector.h"
@@ -1454,12 +1455,11 @@ extern RecoveredGlobal_802EC468_lbl_804FF5E8 lbl_804FF5E8;
 struct Boss_802E83E8 { u8 pad[0x728]; s32 timer; s32 count; u8 pad730[0x7CC - 0x730]; u16 targets[4]; };
 
 extern "C" {
-void *get_player_by_client_id(s32 i);
 }
 
 void TObjFish__sub_802E83E8(u8 *boss, u32 k) {
     Boss_802E83E8 *self = (Boss_802E83E8 *)boss;
-    u8 *player;
+    TObjPlayer *player;
     u16 id;
     u16 n;
     switch (k) {
@@ -1487,9 +1487,9 @@ void TObjFish__sub_802E83E8(u8 *boss, u32 k) {
             if (self->timer == 0) {
                 self->timer = 20;
                 self->count--;
-                player = (u8 *)get_player_by_client_id(self->targets[self->count & 3]);
+                player = get_player_by_client_id(self->targets[self->count & 3]);
                 if (player != NULL) {
-                    new TBoss7TentacleNeedle((TObject *)boss, &((TObjPlayer *)player)->position);
+                    new TBoss7TentacleNeedle((TObject *)boss, &player->position);
                 }
             } else {
                 self->timer--;
